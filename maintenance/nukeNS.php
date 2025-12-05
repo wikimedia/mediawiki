@@ -84,7 +84,7 @@ class NukeNS extends Maintenance {
 					$this->commitTransaction( $dbw, __METHOD__ );
 					// Delete revisions as appropriate
 					/** @var NukePage $child */
-					$child = $this->runChild( NukePage::class, 'nukePage.php' );
+					$child = $this->createChild( NukePage::class, 'nukePage.php' );
 					'@phan-var NukePage $child';
 					$child->deleteRevisions( $revs );
 					$n_deleted++;

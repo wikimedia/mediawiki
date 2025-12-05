@@ -106,7 +106,7 @@ TEXT
 					"nonexistent categories from the category table.\n\n" );
 			} else {
 				$this->output( "Running cleanupEmptyCategories.php\n" );
-				$cleanup = $this->runChild( CleanupEmptyCategories::class );
+				$cleanup = $this->createChild( CleanupEmptyCategories::class );
 				'@phan-var CleanupEmptyCategories $cleanup';
 				// Pass no options into the child because of a parameter collision between "mode", which
 				// both scripts use but set to different values. We'll just use the defaults.

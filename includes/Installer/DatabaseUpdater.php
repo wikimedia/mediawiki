@@ -1216,12 +1216,12 @@ abstract class DatabaseUpdater {
 	 * @note protected since 1.35
 	 *
 	 * @since 1.32
-	 * @param string $class Maintenance subclass
+	 * @param class-string<Maintenance> $class Maintenance subclass
 	 * @param string $unused Unused, kept for compatibility
 	 */
 	protected function runMaintenance( $class, $unused = '' ) {
 		$this->output( "Running $class...\n" );
-		$task = $this->maintenance->runChild( $class );
+		$task = $this->maintenance->createChild( $class );
 		$ok = $task->execute();
 		if ( !$ok ) {
 			throw new RuntimeException( "Execution of $class did not complete successfully." );
@@ -1314,7 +1314,7 @@ abstract class DatabaseUpdater {
 			return;
 		}
 		$this->output( "Updating category collations...\n" );
-		$task = $this->maintenance->runChild( UpdateCollation::class );
+		$task = $this->maintenance->createChild( UpdateCollation::class );
 		$ok = $task->execute();
 		if ( $ok !== false ) {
 			$this->output( "...done.\n" );
@@ -1327,7 +1327,7 @@ abstract class DatabaseUpdater {
 			return;
 		}
 		$this->output( "Converting djvu metadata..." );
-		$task = $this->maintenance->runChild( RefreshImageMetadata::class );
+		$task = $this->maintenance->createChild( RefreshImageMetadata::class );
 		'@phan-var RefreshImageMetadata $task';
 		$task->loadParamsAndArgs( RefreshImageMetadata::class, [
 			'force' => true,
@@ -1350,7 +1350,7 @@ abstract class DatabaseUpdater {
 		/**
 		 * @var RebuildLocalisationCache $cl
 		 */
-		$cl = $this->maintenance->runChild(
+		$cl = $this->maintenance->createChild(
 			RebuildLocalisationCache::class, 'rebuildLocalisationCache.php'
 		);
 		'@phan-var RebuildLocalisationCache $cl';
@@ -1368,7 +1368,7 @@ abstract class DatabaseUpdater {
 		/**
 		 * @var MigrateLinksTable $task
 		 */
-		$task = $this->maintenance->runChild(
+		$task = $this->maintenance->createChild(
 			MigrateLinksTable::class, 'migrateLinksTable.php'
 		);
 		'@phan-var MigrateLinksTable $task';
@@ -1389,7 +1389,7 @@ abstract class DatabaseUpdater {
 		/**
 		 * @var MigrateLinksTable $task
 		 */
-		$task = $this->maintenance->runChild(
+		$task = $this->maintenance->createChild(
 			MigrateLinksTable::class, 'migrateLinksTable.php'
 		);
 		'@phan-var MigrateLinksTable $task';
@@ -1410,7 +1410,7 @@ abstract class DatabaseUpdater {
 		/**
 		 * @var MigrateLinksTable $task
 		 */
-		$task = $this->maintenance->runChild(
+		$task = $this->maintenance->createChild(
 			MigrateLinksTable::class, 'migrateLinksTable.php'
 		);
 		'@phan-var MigrateLinksTable $task';
@@ -1431,7 +1431,7 @@ abstract class DatabaseUpdater {
 		/**
 		 * @var UpdateCollation $task
 		 */
-		$task = $this->maintenance->runChild(
+		$task = $this->maintenance->createChild(
 			UpdateCollation::class, 'updateCollation.php'
 		);
 		'@phan-var UpdateCollation $task';
