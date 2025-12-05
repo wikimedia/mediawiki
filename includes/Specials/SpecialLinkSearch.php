@@ -101,6 +101,16 @@ class SpecialLinkSearch extends QueryPage {
 			'<nowiki>' . $this->getLanguage()->commaList( $protocols_list ) . '</nowiki>',
 			count( $protocols_list )
 		);
+		$ignoredDomains = $this->getConfig()->get( MainConfigNames::ExternalLinksIgnoreDomains );
+		if ( $ignoredDomains ) {
+			$out->addWikiMsg(
+				'linksearch-text-ignored-domains',
+				$this->getLanguage()->listToText( array_map( static function ( $i ) {
+					return "<code>$i</code>";
+				}, $ignoredDomains ) ),
+				count( $ignoredDomains )
+			);
+		}
 		$fields = [
 			'target' => [
 				'type' => 'text',
