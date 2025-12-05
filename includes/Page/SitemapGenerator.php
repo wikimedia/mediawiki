@@ -10,6 +10,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\Xml\Xml;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Utility for generating a sitemap
@@ -251,7 +252,7 @@ class SitemapGenerator {
 				$query = $variant === null ? '' : 'variant=' . urlencode( $variant );
 				$xml .= '<url>' .
 					Xml::element( 'loc', null, $title->getCanonicalURL( $query ) ) .
-					Xml::element( 'lastmod', null, wfTimestamp( TS_ISO_8601, $row->page_touched ) ) .
+					Xml::element( 'lastmod', null, wfTimestamp( TS::ISO_8601, $row->page_touched ) ) .
 					"</url>\n";
 			}
 		}

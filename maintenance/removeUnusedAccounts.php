@@ -11,6 +11,7 @@
 
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -62,7 +63,7 @@ class RemoveUnusedAccounts extends Maintenance {
 			if ( count(
 				array_intersect( $userGroupManager->getUserEffectiveGroups( $instance ), $excludedGroups ) ) == 0
 				&& $this->isInactiveAccount( $instance, $row->actor_id ?? null, true )
-				&& wfTimestamp( TS_UNIX, $row->user_touched ) < wfTimestamp( TS_UNIX, time() - $touchedSeconds
+				&& wfTimestamp( TS::UNIX, $row->user_touched ) < wfTimestamp( TS::UNIX, time() - $touchedSeconds
 				)
 			) {
 				# Inactive; print out the name and flag it

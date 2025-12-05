@@ -66,6 +66,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Service for looking up page revisions.
@@ -1028,7 +1029,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		}
 
 		// Construct the new revision
-		$timestamp = MWTimestamp::now( TS_MW );
+		$timestamp = MWTimestamp::now( TS::MW );
 		$newRevision = MutableRevisionRecord::newFromParentRevision( $oldRevision );
 
 		$newRevision->setComment( $comment );
@@ -2789,7 +2790,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 				->where( [ 'rev_id' => $id ] )
 				->caller( __METHOD__ )->fetchField();
 
-		return ( $timestamp !== false ) ? MWTimestamp::convert( TS_MW, $timestamp ) : false;
+		return ( $timestamp !== false ) ? MWTimestamp::convert( TS::MW, $timestamp ) : false;
 	}
 
 	/**

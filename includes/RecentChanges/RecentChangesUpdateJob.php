@@ -15,6 +15,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Purge expired rows from the recentchanges table.
@@ -170,7 +171,7 @@ class RecentChangesUpdateJob extends Job {
 			->from( 'querycache_info' )
 			->where( [ 'qci_type' => 'activeusers' ] )
 			->caller( __METHOD__ )->fetchField();
-		$cTimeUnix = $cTime ? (int)wfTimestamp( TS_UNIX, $cTime ) : 1;
+		$cTimeUnix = $cTime ? (int)wfTimestamp( TS::UNIX, $cTime ) : 1;
 
 		// Pick the date range to fetch from. This is normally from the last
 		// update to till the present time, but has a limited window.
@@ -226,7 +227,7 @@ class RecentChangesUpdateJob extends Job {
 					'qcc_type' => 'activeusers',
 					'qcc_namespace' => NS_USER,
 					'qcc_title' => $name,
-					'qcc_value' => (int)wfTimestamp( TS_UNIX, $lastEditTime ),
+					'qcc_value' => (int)wfTimestamp( TS::UNIX, $lastEditTime ),
 					'qcc_namespacetwo' => 0, // unused
 					'qcc_titletwo' => '' // unused
 				];
@@ -259,7 +260,7 @@ class RecentChangesUpdateJob extends Job {
 			->deleteFrom( 'querycachetwo' )
 			->where( [
 				'qcc_type' => 'activeusers',
-				$dbw->expr( 'qcc_value', '<', $nowUnix - $days * 86400 ) // TS_UNIX
+				$dbw->expr( 'qcc_value', '<', $nowUnix - $days * 86400 ) // TS::UNIX
 			] )
 			->caller( __METHOD__ )->execute();
 

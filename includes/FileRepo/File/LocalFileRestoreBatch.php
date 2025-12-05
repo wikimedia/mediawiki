@@ -16,6 +16,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Helper class for file undeletion
@@ -252,10 +253,10 @@ class LocalFileRestoreBatch {
 					// This was originally a current version; we
 					// have to devise a new archive name for it.
 					// Format is <timestamp of archiving>!<name>
-					$timestamp = (int)wfTimestamp( TS_UNIX, $row->fa_deleted_timestamp );
+					$timestamp = (int)wfTimestamp( TS::UNIX, $row->fa_deleted_timestamp );
 
 					do {
-						$archiveName = wfTimestamp( TS_MW, $timestamp ) . '!' . $row->fa_name;
+						$archiveName = wfTimestamp( TS::MW, $timestamp ) . '!' . $row->fa_name;
 						$timestamp++;
 					} while ( isset( $archiveNames[$archiveName] ) );
 				}

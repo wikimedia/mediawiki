@@ -14,6 +14,7 @@ use MediaWiki\User\User;
 use RevisionDeleter;
 use RuntimeException;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Trait for creating a know set of test pages in the database,
@@ -197,7 +198,7 @@ trait PageDumpTestDataTrait {
 	 * @param DumpAsserter $asserter
 	 */
 	protected function setRevisionVarMappings( $prefix, RevisionRecord $rev, DumpAsserter $asserter ) {
-		$ts = wfTimestamp( TS_ISO_8601, $rev->getTimestamp() );
+		$ts = wfTimestamp( TS::ISO_8601, $rev->getTimestamp() );
 		$title = $this->getServiceContainer()->getTitleFormatter()->getPrefixedText(
 			$rev->getPageAsLinkTarget()
 		);

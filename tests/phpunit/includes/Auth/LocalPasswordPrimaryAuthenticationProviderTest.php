@@ -23,6 +23,7 @@ use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
 use StatusValue;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group AuthManager
@@ -200,12 +201,12 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegratio
 			->caller( __METHOD__ )->fetchRow();
 
 		$this->manager->removeAuthenticationSessionData( null );
-		$row->user_password_expires = wfTimestamp( TS_MW, time() + 200 );
+		$row->user_password_expires = wfTimestamp( TS::MW, time() + 200 );
 		$providerPriv->setPasswordResetFlag( $userName, Status::newGood(), $row );
 		$this->assertNull( $this->manager->getAuthenticationSessionData( 'reset-pass' ) );
 
 		$this->manager->removeAuthenticationSessionData( null );
-		$row->user_password_expires = wfTimestamp( TS_MW, time() - 200 );
+		$row->user_password_expires = wfTimestamp( TS::MW, time() - 200 );
 		$providerPriv->setPasswordResetFlag( $userName, Status::newGood(), $row );
 		$ret = $this->manager->getAuthenticationSessionData( 'reset-pass' );
 		$this->assertNotNull( $ret );
@@ -213,7 +214,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegratio
 		$this->assertTrue( $ret->hard );
 
 		$this->manager->removeAuthenticationSessionData( null );
-		$row->user_password_expires = wfTimestamp( TS_MW, time() - 1 );
+		$row->user_password_expires = wfTimestamp( TS::MW, time() - 1 );
 		$providerPriv->setPasswordResetFlag( $userName, Status::newGood(), $row );
 		$ret = $this->manager->getAuthenticationSessionData( 'reset-pass' );
 		$this->assertNotNull( $ret );
@@ -633,7 +634,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegratio
 		$this->assertSame(
 			$expectExpiry,
 			wfTimestampOrNull(
-				TS_MW,
+				TS::MW,
 				$dbw->newSelectQueryBuilder()
 					->select( 'user_password_expires' )
 					->from( 'user' )

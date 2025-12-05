@@ -31,7 +31,7 @@ class UserGroupMembership {
 	/** @var string */
 	private $group;
 
-	/** @var string|null Timestamp of expiry in TS_MW format, or null if no expiry */
+	/** @var string|null Timestamp of expiry in TS::MW format, or null if no expiry */
 	private $expiry;
 
 	/** @var bool Expiration flag */
@@ -40,7 +40,7 @@ class UserGroupMembership {
 	/**
 	 * @param int $userId The ID of the user who belongs to the group
 	 * @param string|null $group The internal group name
-	 * @param string|null $expiry Timestamp of expiry in TS_MW format, or null if no expiry
+	 * @param string|null $expiry Timestamp of expiry in TS::MW format, or null if no expiry
 	 */
 	public function __construct( int $userId = 0, ?string $group = null, ?string $expiry = null ) {
 		$this->userId = $userId;
@@ -64,7 +64,7 @@ class UserGroupMembership {
 	}
 
 	/**
-	 * @return string|null Timestamp of expiry in TS_MW format, or null if no expiry
+	 * @return string|null Timestamp of expiry in TS::MW format, or null if no expiry
 	 */
 	public function getExpiry() {
 		return $this->expiry;

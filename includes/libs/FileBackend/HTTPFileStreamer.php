@@ -11,6 +11,7 @@ namespace Wikimedia\FileBackend;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Http\HttpStatus;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Functions related to the output of file content
@@ -113,7 +114,7 @@ class HTTPFileStreamer {
 
 		// Send Last-Modified HTTP header for client-side caching
 		$mtimeCT = new ConvertibleTimestamp( $info['mtime'] );
-		$headerFunc( 'Last-Modified: ' . $mtimeCT->getTimestamp( TS_RFC2822 ) );
+		$headerFunc( 'Last-Modified: ' . $mtimeCT->getTimestamp( TS::RFC2822 ) );
 
 		if ( ( $flags & self::STREAM_ALLOW_OB ) == 0 ) {
 			( $this->obResetFunc )();
@@ -133,7 +134,7 @@ class HTTPFileStreamer {
 		// Don't send if client has up to date cache
 		if ( isset( $optHeaders['if-modified-since'] ) ) {
 			$modsince = preg_replace( '/;.*$/', '', $optHeaders['if-modified-since'] );
-			if ( $mtimeCT->getTimestamp( TS_UNIX ) <= strtotime( $modsince ) ) {
+			if ( $mtimeCT->getTimestamp( TS::UNIX ) <= strtotime( $modsince ) ) {
 				ini_set( 'zlib.output_compression', 0 );
 				$headerFunc( 304 );
 				return true; // ok

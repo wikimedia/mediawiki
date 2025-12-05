@@ -15,6 +15,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A query module to enumerate pages that belong to a category.
@@ -272,7 +273,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$vals['type'] = $row->cl_type;
 				}
 				if ( $fld_timestamp ) {
-					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->cl_timestamp );
+					$vals['timestamp'] = wfTimestamp( TS::ISO_8601, $row->cl_timestamp );
 				}
 				$fit = $result->addValue( [ 'query', $this->getModuleName() ],
 					null, $vals );

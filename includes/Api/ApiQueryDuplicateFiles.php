@@ -12,6 +12,7 @@ use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\RepoGroup;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A query module to list duplicates of the given file(s)
@@ -133,7 +134,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 				} else {
 					$r = [
 						'name' => $dupName,
-						'timestamp' => wfTimestamp( TS_ISO_8601, $dupFile->getTimestamp() ),
+						'timestamp' => wfTimestamp( TS::ISO_8601, $dupFile->getTimestamp() ),
 						'shared' => !$dupFile->isLocal(),
 					];
 					$uploader = $dupFile->getUploader( File::FOR_PUBLIC );

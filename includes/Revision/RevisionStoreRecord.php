@@ -16,6 +16,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A RevisionRecord representing an existing revision persisted in the revision table.
@@ -71,7 +72,7 @@ class RevisionStoreRecord extends RevisionRecord {
 
 		// Don't use MWTimestamp::convert, instead let any detailed exception from MWTimestamp
 		// bubble up (T254210)
-		$timestamp = ( new MWTimestamp( $row->rev_timestamp ) )->getTimestamp( TS_MW );
+		$timestamp = ( new MWTimestamp( $row->rev_timestamp ) )->getTimestamp( TS::MW );
 
 		$this->mUser = $user;
 		$this->mMinorEdit = (bool)$row->rev_minor_edit;

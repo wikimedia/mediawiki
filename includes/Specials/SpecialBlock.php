@@ -47,6 +47,7 @@ use OOUI\LabelWidget;
 use OOUI\Widget;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Message\MessageSpecifier;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Allow users with 'block' user right to block IPs and user accounts from
@@ -713,7 +714,7 @@ class SpecialBlock extends FormSpecialPage {
 			if ( $block->getExpiry() == 'infinity' ) {
 				$fields['Expiry']['default'] = $this->codexFormData[ 'blockExpiryDefault' ] = 'infinite';
 			} else {
-				$fields['Expiry']['default'] = wfTimestamp( TS_RFC2822, $block->getExpiry() );
+				$fields['Expiry']['default'] = wfTimestamp( TS::RFC2822, $block->getExpiry() );
 
 				// Don't overwrite if expiry was specified in the URL
 				if ( !isset( $this->codexFormData[ 'blockExpiryPreset' ] ) ) {
@@ -797,7 +798,7 @@ class SpecialBlock extends FormSpecialPage {
 			// No expiry specified
 			return '';
 		}
-		return substr( wfTimestamp( TS_ISO_8601, $expiry ), 0, 16 );
+		return substr( wfTimestamp( TS::ISO_8601, $expiry ), 0, 16 );
 	}
 
 	/**

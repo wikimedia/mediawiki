@@ -27,6 +27,7 @@ use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group Language
@@ -1712,8 +1713,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$oldTz = date_default_timezone_get();
 		date_default_timezone_set( 'Australia/Melbourne' );
 		try {
-			$ts1 = wfTimestamp( TS_UNIX, '20250115001810' );
-			$ts2 = wfTimestamp( TS_UNIX, '20250415001810' );
+			$ts1 = wfTimestamp( TS::UNIX, '20250115001810' );
+			$ts2 = wfTimestamp( TS::UNIX, '20250415001810' );
 			$result = $this->getLang()->formatDurationBetweenTimestamps( $ts1, $ts2 );
 			$this->assertSame( '3 months', $result );
 		} finally {
@@ -2007,7 +2008,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[
 				[ 'formatDurationBetweenTimestamps', 665553906, 665553906 + ( 1023 * 60 * 60 ) ],
 				'1023 hours',
-				wfTimestamp( TS_UNIX, '1991-02-03 04:05:06' ),
+				wfTimestamp( TS::UNIX, '1991-02-03 04:05:06' ),
 				'relative with initial timestamp'
 			],
 			[ [ 'formatDurationBetweenTimestamps', 0, 0 ], 'now', 0, 'now' ],
@@ -2023,14 +2024,14 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[
 				[ 'timeanddate', '19910910000000' ],
 				'10 september',
-				wfTimestamp( TS_UNIX, '19910203040506' ),
+				wfTimestamp( TS::UNIX, '19910203040506' ),
 				'partial'
 			],
 			[ 'dummy', 'dummy', 0, 'return garbage as is' ],
 			'Relative timestamp that causes negative number from strtotime' => [
 				'-0.000000000000000001 seconds',
 				'-0.000000000000000001 seconds',
-				wfTimestamp( TS_UNIX, '20200524200807' ),
+				wfTimestamp( TS::UNIX, '20200524200807' ),
 				'Relative timestamp that fails to be parsed by strtotime should be returned without modification'
 			],
 		];

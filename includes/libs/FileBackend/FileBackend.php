@@ -1035,7 +1035,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @param array $params Parameters include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
-	 * @return string|false TS_MW timestamp or false (missing file or I/O error)
+	 * @return string|false TS::MW timestamp or false (missing file or I/O error)
 	 */
 	abstract public function getFileTimestamp( array $params );
 
@@ -1109,7 +1109,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * Get quick information about a file at a storage path in the backend.
 	 * If the file does not exist, then this returns false.
 	 * Otherwise, the result is an associative array that includes:
-	 *   - mtime  : the last-modified timestamp (TS_MW)
+	 *   - mtime  : the last-modified timestamp (TS::MW)
 	 *   - size   : the file size (bytes)
 	 * Additional values may be included for internal use only.
 	 *

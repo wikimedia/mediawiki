@@ -23,6 +23,8 @@ use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\Subquery;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * This class is used to get a list of active users. The ones with specials
@@ -113,7 +115,7 @@ class ActiveUsersPager extends UsersPager {
 		$dbr = $this->getDatabase();
 
 		$activeUserSeconds = $this->getConfig()->get( MainConfigNames::ActiveUserDays ) * 86400;
-		$timestamp = $dbr->timestamp( (int)wfTimestamp( TS_UNIX ) - $activeUserSeconds );
+		$timestamp = $dbr->timestamp( (int)ConvertibleTimestamp::now( TS::UNIX ) - $activeUserSeconds );
 		$fname = __METHOD__ . ' (' . $this->getSqlComment() . ')';
 
 		// Inner subselect to pull the active users out of querycachetwo

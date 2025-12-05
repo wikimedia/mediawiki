@@ -12,6 +12,7 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Describe and execute a background job.
@@ -182,7 +183,7 @@ abstract class Job implements RunnableJob {
 	 * @since 1.22
 	 */
 	public function getReleaseTimestamp() {
-		$time = wfTimestampOrNull( TS_UNIX, $this->params['jobReleaseTimestamp'] ?? null );
+		$time = wfTimestampOrNull( TS::UNIX, $this->params['jobReleaseTimestamp'] ?? null );
 		return $time ? (int)$time : null;
 	}
 
@@ -191,7 +192,7 @@ abstract class Job implements RunnableJob {
 	 * @since 1.26
 	 */
 	public function getQueuedTimestamp() {
-		$time = wfTimestampOrNull( TS_UNIX, $this->metadata['timestamp'] ?? null );
+		$time = wfTimestampOrNull( TS::UNIX, $this->metadata['timestamp'] ?? null );
 		return $time ? (int)$time : null;
 	}
 
@@ -290,7 +291,7 @@ abstract class Job implements RunnableJob {
 	 * @return array Map of:
 	 *   - rootJobIsSelf    : true
 	 *   - rootJobSignature : hash (e.g. SHA1) that identifies the task
-	 *   - rootJobTimestamp : TS_MW timestamp of this instance of the task
+	 *   - rootJobTimestamp : TS::MW timestamp of this instance of the task
 	 * @since 1.21
 	 */
 	public static function newRootJobParams( $key ) {

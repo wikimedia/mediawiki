@@ -15,6 +15,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Pager\AlphabeticPager;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @ingroup Pager
@@ -77,7 +78,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		$description = $this->msg( 'restriction-level-' . $row->pt_create_perm )->escaped();
 		$lang = $this->getLanguage();
 		$expiry = strlen( $row->pt_expiry ) ?
-			$lang->formatExpiry( $row->pt_expiry, TS_MW ) :
+			$lang->formatExpiry( $row->pt_expiry, TS::MW ) :
 			'infinity';
 
 		if ( $expiry !== 'infinity' ) {

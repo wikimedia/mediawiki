@@ -27,6 +27,7 @@ use MediaWiki\Xml\XmlSelect;
 use MessageLocalizer;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Page addition to a user's watchlist
@@ -183,7 +184,7 @@ class WatchAction extends FormAction {
 
 		if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() ) {
 			// If it's already being temporarily watched, add the existing expiry as an option in the dropdown.
-			$currentExpiry = $watchedItem->getExpiry( TS_ISO_8601 );
+			$currentExpiry = $watchedItem->getExpiry( TS::ISO_8601 );
 			$daysLeft = $watchedItem->getExpiryInDaysText( $msgLocalizer, true );
 			$expiryOptions = array_merge( [ $daysLeft => $currentExpiry ], $expiryOptions );
 
@@ -262,7 +263,7 @@ class WatchAction extends FormAction {
 		if ( $submittedExpiry ) {
 			// We can't use $this->watchedItem to get the expiry because it's not been saved at this
 			// point in the request and so its values are those from before saving.
-			$expiry = ExpiryDef::normalizeExpiry( $submittedExpiry, TS_ISO_8601 );
+			$expiry = ExpiryDef::normalizeExpiry( $submittedExpiry, TS::ISO_8601 );
 
 			// If the expiry label isn't one of the predefined ones in the dropdown, calculate 'x days'.
 			$expiryDays = WatchedItem::calculateExpiryInDays( $expiry );

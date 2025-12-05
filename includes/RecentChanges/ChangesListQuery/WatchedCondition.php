@@ -7,6 +7,7 @@ use MediaWiki\Utils\MWTimestamp;
 use stdClass;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\RawSQLExpression;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Check if a recentchange row is watched by the current watchlist user.
@@ -41,7 +42,7 @@ class WatchedCondition extends ChangesListConditionBase {
 	public function evaluate( stdClass $row, $value ): bool {
 		if ( !$this->userId
 			|| ( $this->enableExpiry && $row->we_expiry !== null
-				&& MWTimestamp::convert( TS_UNIX, $row->we_expiry ) <= wfTimestamp() )
+				&& MWTimestamp::convert( TS::UNIX, $row->we_expiry ) <= wfTimestamp() )
 			|| $row->wl_user === null
 		) {
 			return $value === 'notwatched';

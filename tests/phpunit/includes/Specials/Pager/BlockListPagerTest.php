@@ -23,6 +23,8 @@ use MediaWikiIntegrationTestCase;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group Database
@@ -275,7 +277,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			'bl_by' => $admin->getId(),
 			'bl_by_text' => $admin->getName(),
 			'bl_sitewide' => 1,
-			'bl_timestamp' => $this->getDb()->timestamp( wfTimestamp( TS_MW ) ),
+			'bl_timestamp' => $this->getDb()->timestamp( ConvertibleTimestamp::now( TS::MW ) ),
 			'bl_reason_text' => '[[Comment link]]',
 			'bl_reason_data' => null,
 		];

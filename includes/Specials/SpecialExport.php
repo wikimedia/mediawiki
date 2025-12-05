@@ -25,6 +25,7 @@ use MediaWiki\Title\TitleFormatter;
 use WikiExporter;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A special page that allows users to export pages in a XML file
@@ -131,7 +132,7 @@ class SpecialExport extends SpecialPage {
 			$rawOffset = $request->getVal( 'offset' );
 
 			if ( $rawOffset ) {
-				$offset = wfTimestamp( TS_MW, $rawOffset );
+				$offset = wfTimestamp( TS::MW, $rawOffset );
 			} else {
 				$offset = null;
 			}

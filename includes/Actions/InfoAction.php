@@ -48,6 +48,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Displays information about a page.
@@ -877,7 +878,7 @@ class InfoAction extends FormlessAction {
 				$result['watchers'] = $watchedItemStore->countWatchers( $title );
 
 				if ( $config->get( MainConfigNames::ShowUpdatedMarker ) ) {
-					$updated = (int)wfTimestamp( TS_UNIX, $page->getTimestamp() );
+					$updated = (int)wfTimestamp( TS::UNIX, $page->getTimestamp() );
 					$result['visitingWatchers'] = $watchedItemStore->countVisitingWatchers(
 						$title,
 						$updated - $config->get( MainConfigNames::WatchersMaxAge )

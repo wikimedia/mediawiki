@@ -29,6 +29,7 @@ use OOUI\ButtonWidget;
 use OOUI\HtmlSnippet;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * List of the last changes made to the wiki
@@ -315,7 +316,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$watched = !empty( $obj->wl_user );
 			if ( $watched && $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
 				$notExpired = $obj->we_expiry === null
-					|| MWTimestamp::convert( TS_UNIX, $obj->we_expiry ) > wfTimestamp();
+					|| MWTimestamp::convert( TS::UNIX, $obj->we_expiry ) > wfTimestamp();
 				$watched = $watched && $notExpired;
 			}
 			$changeLine = $list->recentChangesLine( $rc, $watched, $counter );

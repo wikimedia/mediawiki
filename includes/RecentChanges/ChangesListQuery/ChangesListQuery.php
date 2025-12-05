@@ -32,6 +32,7 @@ use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 use function array_key_exists;
 
 /**
@@ -1455,7 +1456,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 */
 	private function estimateSize() {
 		$now = ConvertibleTimestamp::time();
-		$min = (int)ConvertibleTimestamp::convert( TS_UNIX, $this->minTimestamp );
+		$min = (int)ConvertibleTimestamp::convert( TS::UNIX, $this->minTimestamp );
 		$period = min( $now - $min, $this->rcMaxAge );
 		return $this->rcStats->getIdDelta() * $this->density * $period;
 	}
@@ -1493,7 +1494,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 */
 	private function doPartitionQuery( SelectQueryBuilder $sqb, &$rows ) {
 		$now = ConvertibleTimestamp::time();
-		$minTime = (int)ConvertibleTimestamp::convert( TS_UNIX,
+		$minTime = (int)ConvertibleTimestamp::convert( TS::UNIX,
 			$this->minTimestamp ?? $now - $this->rcMaxAge );
 		$limit = $this->limit ?? 10_000;
 		$rcSize = $this->rcStats->getIdDelta();
@@ -1529,7 +1530,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 				$rows[] = $row;
 			}
 			$partitioner->notifyResult(
-				$row ? (int)ConvertibleTimestamp::convert( TS_UNIX, $row->rc_timestamp ) : null,
+				$row ? (int)ConvertibleTimestamp::convert( TS::UNIX, $row->rc_timestamp ) : null,
 				$res->numRows()
 			);
 		} while ( !$partitioner->isDone() );

@@ -10,6 +10,7 @@ use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @internal for use by core REST infrastructure
@@ -93,7 +94,7 @@ class RevisionContentHelper extends PageContentHelper {
 			'id' => $revision->getId(),
 			'size' => $revision->getSize(),
 			'minor' => $revision->isMinor(),
-			'timestamp' => wfTimestampOrNull( TS_ISO_8601, $revision->getTimestamp() ),
+			'timestamp' => wfTimestampOrNull( TS::ISO_8601, $revision->getTimestamp() ),
 			'content_model' => $revision->getMainContentModel(),
 			'page' => [
 				'id' => $page->getId(),

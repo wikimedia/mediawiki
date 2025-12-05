@@ -24,6 +24,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group Database
@@ -458,7 +459,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		// Create the source page with two revisions with the same timestamp
 		$user = static::getTestSysop()->getUser();
 		$title1 = $this->insertPage( "Merge7" )["title"];
-		$timestamp = MWTimestamp::now( TS_MW );
+		$timestamp = MWTimestamp::now( TS::MW );
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$revision = MutableRevisionRecord::newFromParentRevision( $store->getFirstRevision( $title1 ) );
 		$revision->setTimestamp( $timestamp );

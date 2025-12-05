@@ -22,6 +22,7 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\RawSQLExpression;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Query module to enumerate all user blocks
@@ -267,7 +268,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['byid'] = (int)$row->actor_user;
 			}
 			if ( $fld_timestamp ) {
-				$block['timestamp'] = wfTimestamp( TS_ISO_8601, $row->bl_timestamp );
+				$block['timestamp'] = wfTimestamp( TS::ISO_8601, $row->bl_timestamp );
 			}
 			if ( $fld_expiry ) {
 				$block['expiry'] = ApiResult::formatExpiry( $row->bl_expiry );
@@ -275,8 +276,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 					$duration = $this->msg( 'infiniteblock' )->plain();
 				} else {
 					$duration = $this->getLanguage()->formatDurationBetweenTimestamps(
-						(int)wfTimestamp( TS_UNIX, $row->bl_timestamp ),
-						(int)wfTimestamp( TS_UNIX, $row->bl_expiry )
+						(int)wfTimestamp( TS::UNIX, $row->bl_timestamp ),
+						(int)wfTimestamp( TS::UNIX, $row->bl_expiry )
 					);
 				}
 				$block['duration-l10n'] = $duration;

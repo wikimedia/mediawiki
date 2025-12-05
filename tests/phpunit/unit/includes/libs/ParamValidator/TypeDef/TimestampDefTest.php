@@ -9,6 +9,7 @@ use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\TypeDef\TimestampDef;
 use Wikimedia\ParamValidator\ValidationException;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \Wikimedia\ParamValidator\TypeDef\TimestampDef
@@ -34,14 +35,14 @@ class TimestampDefTest extends TypeDefTestCase {
 			'Basic test' => [ [], true ],
 			'Default format ConvertibleTimestamp' => [ [ 'defaultFormat' => 'ConvertibleTimestamp' ], true ],
 			'Default format DateTime' => [ [ 'defaultFormat' => 'DateTime' ], true ],
-			'Default format TS_ISO_8601' => [ [ 'defaultFormat' => TS_ISO_8601 ], true ],
+			'Default format TS::ISO_8601' => [ [ 'defaultFormat' => TS::ISO_8601 ], true ],
 			'Default format invalid (string)' => [ [ 'defaultFormat' => 'foobar' ], false ],
 			'Default format invalid (int)' => [ [ 'defaultFormat' => 1000 ], false ],
 			'Stringify format ConvertibleTimestamp' => [
 				[ 'stringifyFormat' => 'ConvertibleTimestamp' ], false
 			],
 			'Stringify format DateTime' => [ [ 'stringifyFormat' => 'DateTime' ], false ],
-			'Stringify format TS_ISO_8601' => [ [ 'stringifyFormat' => TS_ISO_8601 ], true ],
+			'Stringify format TS::ISO_8601' => [ [ 'stringifyFormat' => TS::ISO_8601 ], true ],
 			'Stringify format invalid (string)' => [ [ 'stringifyFormat' => 'foobar' ], false ],
 			'Stringify format invalid (int)' => [ [ 'stringifyFormat' => 1000 ], false ],
 		];
@@ -61,7 +62,7 @@ class TimestampDefTest extends TypeDefTestCase {
 		$now = new ConvertibleTimestamp( 1559764242 );
 
 		$formatDT = [ TimestampDef::PARAM_TIMESTAMP_FORMAT => 'DateTime' ];
-		$formatMW = [ TimestampDef::PARAM_TIMESTAMP_FORMAT => TS_MW ];
+		$formatMW = [ TimestampDef::PARAM_TIMESTAMP_FORMAT => TS::MW ];
 
 		return [
 			// We don't try to validate all formats supported by ConvertibleTimestamp, just
@@ -104,10 +105,10 @@ class TimestampDefTest extends TypeDefTestCase {
 
 			// Formatting
 			'=> DateTime' => [ 'now', $now->timestamp, $formatDT ],
-			'=> TS_MW' => [ 'now', '20190605195042', $formatMW ],
-			'=> TS_MW as default' => [ 'now', '20190605195042', [], [ 'defaultFormat' => TS_MW ] ],
-			'=> TS_MW overriding default'
-				=> [ 'now', '20190605195042', $formatMW, [ 'defaultFormat' => TS_ISO_8601 ] ],
+			'=> TS::MW' => [ 'now', '20190605195042', $formatMW ],
+			'=> TS::MW as default' => [ 'now', '20190605195042', [], [ 'defaultFormat' => TS::MW ] ],
+			'=> TS::MW overriding default'
+				=> [ 'now', '20190605195042', $formatMW, [ 'defaultFormat' => TS::ISO_8601 ] ],
 		];
 	}
 
@@ -142,8 +143,8 @@ class TimestampDefTest extends TypeDefTestCase {
 					'messages' => [],
 				],
 			],
-			'Test with format TS_ISO_8601' => [
-				[ TimestampDef::PARAM_TIMESTAMP_FORMAT => TS_ISO_8601 ],
+			'Test with format TS::ISO_8601' => [
+				[ TimestampDef::PARAM_TIMESTAMP_FORMAT => TS::ISO_8601 ],
 				self::STDRET,
 				[
 					'issues' => [ 'X' ],
@@ -185,7 +186,7 @@ class TimestampDefTest extends TypeDefTestCase {
 			[ '20180203040506', '2018-02-03T04:05:06Z' ],
 			[ $specific, '2018-02-03T04:05:06Z' ],
 			[ $specific->timestamp, '2018-02-03T04:05:06Z' ],
-			[ $specific, '20180203040506', [], [ 'stringifyFormat' => TS_MW ] ],
+			[ $specific, '20180203040506', [], [ 'stringifyFormat' => TS::MW ] ],
 		];
 	}
 

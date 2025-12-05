@@ -24,6 +24,7 @@ use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMUtils;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\Rest\Handler\PageHTMLHandler
@@ -384,7 +385,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$etag = $response->getHeaderLine( 'ETag' );
 		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x/%s"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
-		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
+		$this->assertSame( MWTimestamp::convert( TS::RFC2822, $time ),
 			$response->getHeaderLine( 'Last-Modified' ) );
 
 		// Now, test that headers work when getting from cache too.
@@ -397,14 +398,14 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$etag = $response->getHeaderLine( 'ETag' );
 		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x/%s"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
-		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
+		$this->assertSame( MWTimestamp::convert( TS::RFC2822, $time ),
 			$response->getHeaderLine( 'Last-Modified' ) );
 
 		// Now, expire the cache
 		$time += 1000;
 		MWTimestamp::setFakeTime( $time );
 		$this->assertTrue(
-			$page->getTitle()->invalidateCache( MWTimestamp::convert( TS_MW, $time ) ),
+			$page->getTitle()->invalidateCache( MWTimestamp::convert( TS::MW, $time ) ),
 			'Can invalidate cache'
 		);
 		DeferredUpdates::doUpdates();
@@ -418,7 +419,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$etag = $response->getHeaderLine( 'ETag' );
 		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x/%s"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
-		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
+		$this->assertSame( MWTimestamp::convert( TS::RFC2822, $time ),
 			$response->getHeaderLine( 'Last-Modified' ) );
 	}
 
@@ -503,7 +504,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $page->getTitle()->getPrefixedText(), $data['title'] );
 		$this->assertSame( $page->getLatest(), $data['latest']['id'] );
 		$this->assertSame(
-			wfTimestampOrNull( TS_ISO_8601, $page->getTimestamp() ),
+			wfTimestampOrNull( TS::ISO_8601, $page->getTimestamp() ),
 			$data['latest']['timestamp']
 		);
 		$this->assertSame( CONTENT_MODEL_WIKITEXT, $data['content_model'] );

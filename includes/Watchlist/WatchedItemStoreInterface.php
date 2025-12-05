@@ -369,7 +369,7 @@ interface WatchedItemStoreInterface {
 	public function removeWatchBatchForUser( UserIdentity $user, array $targets );
 
 	/**
-	 * Convert $timestamp to TS_MW or return null if the page was visited since then by $user
+	 * Convert $timestamp to TS::MW or return null if the page was visited since then by $user
 	 *
 	 * Use this only on single-user methods (having higher read-after-write expectations)
 	 * and not in places involving arbitrary batches of different users
@@ -379,7 +379,7 @@ interface WatchedItemStoreInterface {
 	 * @param string|null $timestamp Value of wl_notificationtimestamp from the DB
 	 * @param UserIdentity $user
 	 * @param PageReference $target
-	 * @return string|null TS_MW timestamp of first unseen revision or null if there isn't one
+	 * @return string|null TS::MW timestamp of first unseen revision or null if there isn't one
 	 */
 	public function getLatestNotificationTimestamp(
 		$timestamp, UserIdentity $user, PageReference $target );

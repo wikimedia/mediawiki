@@ -16,6 +16,7 @@ use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Send information about this MediaWiki instance to mediawiki.org.
@@ -204,7 +205,7 @@ class Pingback {
 			// https://gerrit.wikimedia.org/g/mediawiki/extensions/EventLogging/+/d47dbc10455bcb6dbc98a49fa169f75d6131c3da/includes/EventLogging.php#274
 			// onwards.
 			'$schema' => self::EVENT_PLATFORM_SCHEMA_ID,
-			'client_dt' => ConvertibleTimestamp::now( TS_ISO_8601 ),
+			'client_dt' => ConvertibleTimestamp::now( TS::ISO_8601 ),
 
 			// This would be added by
 			// https://gerrit.wikimedia.org/r/plugins/gitiles/mediawiki/extensions/EventLogging/+/d47dbc10455bcb6dbc98a49fa169f75d6131c3da/includes/EventSubmitter/EventBusEventSubmitter.php#81

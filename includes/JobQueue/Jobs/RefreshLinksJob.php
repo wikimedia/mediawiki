@@ -28,6 +28,7 @@ use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Job to update link tables for rerendered wiki pages.
@@ -304,7 +305,7 @@ class RefreshLinksJob extends Job {
 	}
 
 	/**
-	 * @return string|null Minimum lag-safe TS_MW timestamp with regard to root job creation
+	 * @return string|null Minimum lag-safe TS::MW timestamp with regard to root job creation
 	 */
 	private function getLagAwareRootTimestamp() {
 		// Get the timestamp of the change that triggered this job
@@ -320,8 +321,8 @@ class RefreshLinksJob extends Job {
 		} else {
 			// For transclusion updates, the template changes must be reflected
 			$lagAwareTimestamp = wfTimestamp(
-				TS_MW,
-				(int)wfTimestamp( TS_UNIX, $rootTimestamp ) + self::NORMAL_MAX_LAG
+				TS::MW,
+				(int)wfTimestamp( TS::UNIX, $rootTimestamp ) + self::NORMAL_MAX_LAG
 			);
 		}
 

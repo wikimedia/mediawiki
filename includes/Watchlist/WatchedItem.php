@@ -16,6 +16,7 @@ use MediaWiki\Utils\MWTimestamp;
 use MessageLocalizer;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Representation of a pair of user and title for watchlist entries.
@@ -142,11 +143,11 @@ class WatchedItem {
 	 * When the watched item will expire.
 	 *
 	 * @since 1.35
-	 * @param int|null $style Given timestamp format to style the ConvertibleTimestamp
-	 * @return string|null null or in a format acceptable to ConvertibleTimestamp (TS_* constants).
-	 *  Default is TS_MW format.
+	 * @param int|TS|null $style Given timestamp format to style the ConvertibleTimestamp
+	 * @return string|null null or in a format acceptable to ConvertibleTimestamp (TS::* constants).
+	 *  Default is TS::MW format.
 	 */
-	public function getExpiry( ?int $style = TS_MW ) {
+	public function getExpiry( int|TS|null $style = TS::MW ) {
 		return $this->expiry instanceof ConvertibleTimestamp
 			? $this->expiry->getTimestamp( $style )
 			: $this->expiry;
@@ -193,8 +194,8 @@ class WatchedItem {
 			return null;
 		}
 
-		$unixTimeExpiry = (int)MWTimestamp::convert( TS_UNIX, $expiry );
-		$diffInSeconds = $unixTimeExpiry - (int)wfTimestamp( TS_UNIX );
+		$unixTimeExpiry = (int)MWTimestamp::convert( TS::UNIX, $expiry );
+		$diffInSeconds = $unixTimeExpiry - (int)ConvertibleTimestamp::now( TS::UNIX );
 		$diffInDays = $diffInSeconds / self::SECONDS_IN_A_DAY;
 
 		if ( $diffInDays < 1 ) {

@@ -4,6 +4,7 @@ namespace Wikimedia\Rdbms;
 
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 class MWPostgreSqlPlatform extends PostgreSQLPlatform {
 	/**
@@ -25,7 +26,7 @@ class MWPostgreSqlPlatform extends PostgreSQLPlatform {
 				$pgTimestamp = $default;
 			} else {
 				$timestamp = new ConvertibleTimestamp( $default );
-				$pgTimestamp = $timestamp->getTimestamp( TS_POSTGRES );
+				$pgTimestamp = $timestamp->getTimestamp( TS::POSTGRES );
 			}
 
 			return " DEFAULT '$pgTimestamp' ";

@@ -559,7 +559,7 @@ class Parser {
 	 * @since 1.46
 	 */
 	public function getParseTime(): DateTime {
-		$ts = $this->mOptions->getTimestamp(); /* TS_MW */
+		$ts = $this->mOptions->getTimestamp(); /* TS::MW */
 		$date = DateTime::createFromFormat(
 			'YmdHis', $ts, new DateTimeZone( 'UTC' )
 		);
@@ -6071,7 +6071,7 @@ class Parser {
 	/**
 	 * Get the timestamp associated with the current revision, adjusted for
 	 * the default server-local timestamp
-	 * @return string TS_MW timestamp
+	 * @return string TS::MW timestamp
 	 * @since 1.9
 	 */
 	public function getRevisionTimestamp() {

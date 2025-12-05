@@ -48,6 +48,7 @@ use StatusValue;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @ingroup API
@@ -890,7 +891,7 @@ class ApiUpload extends ApiBase {
 				unset( $warnings['no-change'] );
 
 				$warnings['nochange'] = [
-					'timestamp' => wfTimestamp( TS_ISO_8601, $file['timestamp'] )
+					'timestamp' => wfTimestamp( TS::ISO_8601, $file['timestamp'] )
 				];
 			}
 
@@ -898,7 +899,7 @@ class ApiUpload extends ApiBase {
 				$dupes = [];
 				foreach ( $warnings['duplicate-version'] as $dupe ) {
 					$dupes[] = [
-						'timestamp' => wfTimestamp( TS_ISO_8601, $dupe['timestamp'] )
+						'timestamp' => wfTimestamp( TS::ISO_8601, $dupe['timestamp'] )
 					];
 				}
 				unset( $warnings['duplicate-version'] );

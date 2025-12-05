@@ -17,6 +17,7 @@ use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Page\SitemapGenerator;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -173,7 +174,7 @@ class GenerateSitemap extends Maintenance {
 		$this->compress = $this->getOption( 'compress', 'yes' ) !== 'no';
 		$this->skipRedirects = $this->hasOption( 'skip-redirects' );
 		$this->dbr = $this->getReplicaDB();
-		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
+		$this->timestamp = wfTimestamp( TS::ISO_8601, wfTimestampNow() );
 		$encIdentifier = rawurlencode( $this->identifier );
 		$indexPath = "{$this->fspath}sitemap-index-{$encIdentifier}.xml";
 		$this->indexFile = fopen( "{$this->fspath}sitemap-index-{$encIdentifier}.xml", 'wb' );

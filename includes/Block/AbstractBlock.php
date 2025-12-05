@@ -15,6 +15,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @note Extensions should not subclass this, as MediaWiki currently does not
@@ -102,7 +103,7 @@ abstract class AbstractBlock implements Block {
 		if ( isset( $options['decodedTimestamp'] ) ) {
 			$this->setTimestamp( $options['decodedTimestamp'] );
 		} else {
-			$this->setTimestamp( wfTimestamp( TS_MW, $options['timestamp'] ) );
+			$this->setTimestamp( wfTimestamp( TS::MW, $options['timestamp'] ) );
 		}
 		$this->setHideName( (bool)$options['hideName'] );
 		$this->isHardblock( !$options['anonOnly'] );

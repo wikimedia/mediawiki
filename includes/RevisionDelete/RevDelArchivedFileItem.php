@@ -12,6 +12,7 @@ use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\RevisionList\RevisionListBase;
 use MediaWiki\SpecialPage\SpecialPage;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Item class for a filearchive table row
@@ -112,7 +113,7 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 		$user = $this->list->getUser();
 		$ret = [
 			'title' => $this->list->getPageName(),
-			'timestamp' => wfTimestamp( TS_ISO_8601, $file->getTimestamp() ),
+			'timestamp' => wfTimestamp( TS::ISO_8601, $file->getTimestamp() ),
 			'width' => $file->getWidth(),
 			'height' => $file->getHeight(),
 			'size' => $file->getSize(),

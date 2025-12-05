@@ -21,6 +21,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\Rest\Handler\Helper\PageContentHelper
@@ -352,7 +353,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 			'title' => $title->getPrefixedText(),
 			'latest' => [
 				'id' => $revision->getId(),
-				'timestamp' => wfTimestampOrNull( TS_ISO_8601, $revision->getTimestamp() )
+				'timestamp' => wfTimestampOrNull( TS::ISO_8601, $revision->getTimestamp() )
 			],
 			'content_model' => $content->getModel(),
 			'license' => [
@@ -389,7 +390,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 			'user_id' => 444,
 			'user_text' => 'Morg',
 			'comment' => $comment->text,
-			'timestamp' => wfTimestampOrNull( TS_ISO_8601, $timestamp ),
+			'timestamp' => wfTimestampOrNull( TS::ISO_8601, $timestamp ),
 			'tags' => [],
 			'restrictions' => [],
 			'page_language' => 'en',

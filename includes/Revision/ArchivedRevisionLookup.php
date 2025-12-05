@@ -11,6 +11,7 @@ use MediaWiki\Page\PageIdentity;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @since 1.38
@@ -141,7 +142,7 @@ class ArchivedRevisionLookup {
 			] )
 			->orderBy( 'ar_timestamp DESC' )
 			->caller( __METHOD__ )->fetchRow();
-		$prevDeleted = $row ? wfTimestamp( TS_MW, $row->ar_timestamp ) : false;
+		$prevDeleted = $row ? wfTimestamp( TS::MW, $row->ar_timestamp ) : false;
 		$prevDeletedId = $row ? intval( $row->ar_rev_id ) : null;
 
 		$row = $dbr->newSelectQueryBuilder()
@@ -155,7 +156,7 @@ class ArchivedRevisionLookup {
 			] )
 			->orderBy( 'rev_timestamp DESC' )
 			->caller( __METHOD__ )->fetchRow();
-		$prevLive = $row ? wfTimestamp( TS_MW, $row->rev_timestamp ) : false;
+		$prevLive = $row ? wfTimestamp( TS::MW, $row->rev_timestamp ) : false;
 		$prevLiveId = $row ? intval( $row->rev_id ) : null;
 
 		if ( $prevLive && $prevLive > $prevDeleted ) {

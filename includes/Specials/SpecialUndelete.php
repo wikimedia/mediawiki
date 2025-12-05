@@ -67,6 +67,7 @@ use SearchEngineFactory;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Special page allowing users with the appropriate permissions to view
@@ -203,7 +204,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$this->mSearchPrefix = $request->getText( 'prefix' );
 		$time = $request->getVal( 'timestamp' );
-		$this->mTimestamp = $time ? wfTimestamp( TS_MW, $time ) : '';
+		$this->mTimestamp = $time ? wfTimestamp( TS::MW, $time ) : '';
 		$this->mFilename = $request->getVal( 'file' );
 
 		$posted = $request->wasPosted() &&
@@ -857,7 +858,7 @@ class SpecialUndelete extends SpecialPage {
 			$targetPage = $this->getPageTitle();
 			$targetQuery = [
 				'target' => $this->mTargetObj->getPrefixedText(),
-				'timestamp' => wfTimestamp( TS_MW, $revRecord->getTimestamp() )
+				'timestamp' => wfTimestamp( TS::MW, $revRecord->getTimestamp() )
 			];
 		} else {
 			// Revision in the revision table, viewable by oldid
@@ -1354,7 +1355,7 @@ class SpecialUndelete extends SpecialPage {
 			);
 
 		$revTextSize = '';
-		$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
+		$ts = wfTimestamp( TS::MW, $row->ar_timestamp );
 		// Build checkboxen...
 		if ( $this->mAllowed ) {
 			if ( $this->mInvert ) {
@@ -1441,7 +1442,7 @@ class SpecialUndelete extends SpecialPage {
 
 	private function formatFileRow( \stdClass $row ): string {
 		$file = ArchivedFile::newFromRow( $row );
-		$ts = wfTimestamp( TS_MW, $row->fa_timestamp );
+		$ts = wfTimestamp( TS::MW, $row->fa_timestamp );
 		$user = $this->getUser();
 
 		$checkBox = '';

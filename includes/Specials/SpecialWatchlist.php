@@ -837,7 +837,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	/**
 	 * @param RecentChange $rc
-	 * @return string|null TS_MW timestamp of first unseen revision or null if there isn't one
+	 * @return string|null TS::MW timestamp of first unseen revision or null if there isn't one
 	 */
 	private function getLatestNotificationTimestamp( RecentChange $rc ) {
 		return $this->watchedItemStore->getLatestNotificationTimestamp(

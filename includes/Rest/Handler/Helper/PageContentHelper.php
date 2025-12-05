@@ -27,6 +27,7 @@ use MediaWiki\Title\TitleFormatter;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @internal for use by core REST infrastructure
@@ -250,7 +251,7 @@ class PageContentHelper {
 			'title' => $this->titleFormatter->getPrefixedText( $page ),
 			'latest' => [
 				'id' => $revision->getId(),
-				'timestamp' => wfTimestampOrNull( TS_ISO_8601, $revision->getTimestamp() )
+				'timestamp' => wfTimestampOrNull( TS::ISO_8601, $revision->getTimestamp() )
 			],
 			'content_model' => $revision->getMainContentModel(),
 			'license' => [
@@ -299,7 +300,7 @@ class PageContentHelper {
 			'user_id' => $revision->getUser( RevisionRecord::RAW )->getId(),
 			'user_text' => $publicUser ? $publicUser->getName() : null,
 			'comment' => $publicComment ? $publicComment->text : null,
-			'timestamp' => wfTimestampOrNull( TS_ISO_8601, $revision->getTimestamp() ),
+			'timestamp' => wfTimestampOrNull( TS::ISO_8601, $revision->getTimestamp() ),
 			'tags' => $tags,
 			'restrictions' => $restrictions,
 			'page_language' => $title->getPageLanguage()->getCode(),

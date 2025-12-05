@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\User\UserGroupMembership;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 class UserGroupMembershipTest extends MediaWikiIntegrationTestCase {
 
@@ -68,12 +69,12 @@ class UserGroupMembershipTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\User\UserGroupMembership::isExpired
 	 */
 	public function testIsExpired() {
-		$ts = wfTimestamp( TS_MW, time() - 100 );
+		$ts = wfTimestamp( TS::MW, time() - 100 );
 		$ugm = new UserGroupMembership( 1, null, $ts );
 		$this->assertTrue(
 			$ugm->isExpired()
 		);
-		$ts = wfTimestamp( TS_MW, time() + 100 );
+		$ts = wfTimestamp( TS::MW, time() + 100 );
 		$ugm = new UserGroupMembership( 1, null, $ts );
 		$this->assertFalse(
 			$ugm->isExpired()

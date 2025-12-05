@@ -12,6 +12,7 @@ namespace MediaWiki\Feed;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Generate an Atom feed.
@@ -28,7 +29,7 @@ class AtomFeed extends ChannelFeed {
 	private function formatTime( $timestamp ) {
 		if ( $timestamp ) {
 			// need to use RFC 822 time format at least for rss2.0
-			return gmdate( 'Y-m-d\TH:i:s', (int)wfTimestamp( TS_UNIX, $timestamp ) );
+			return gmdate( 'Y-m-d\TH:i:s', (int)wfTimestamp( TS::UNIX, $timestamp ) );
 		}
 		return null;
 	}

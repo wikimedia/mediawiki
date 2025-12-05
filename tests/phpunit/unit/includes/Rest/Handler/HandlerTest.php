@@ -24,6 +24,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\Rest\Handler
@@ -823,7 +824,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$handler->applyConditionalResponseHeaders( $response );
 		$this->assertSame( '"TEST"', $response->getHeaderLine( 'ETag' ) );
 
-		$lastModified = ConvertibleTimestamp::convert( TS_MW, $response->getHeaderLine( 'Last-Modified' ) );
+		$lastModified = ConvertibleTimestamp::convert( TS::MW, $response->getHeaderLine( 'Last-Modified' ) );
 		$this->assertSame( '20220101223344', $lastModified );
 	}
 

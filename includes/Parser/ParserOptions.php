@@ -31,6 +31,7 @@ use MediaWiki\Utils\MWTimestamp;
 use ReflectionClass;
 use Wikimedia\IPUtils;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @brief Set options of the Parser
@@ -1069,7 +1070,7 @@ class ParserOptions {
 
 	/**
 	 * Timestamp used for {{CURRENTDAY}} etc.
-	 * @return string TS_MW timestamp
+	 * @return string TS::MW timestamp
 	 */
 	public function getTimestamp() {
 		if ( $this->mTimestamp === null ) {
@@ -1698,7 +1699,7 @@ class ParserOptions {
 					$revRecord = new MutableRevisionRecord( $page );
 					$revRecord->setContent( SlotRecord::MAIN, $content )
 						->setUser( $user )
-						->setTimestamp( MWTimestamp::now( TS_MW ) )
+						->setTimestamp( MWTimestamp::now( TS::MW ) )
 						->setId( 0 )
 						->setPageId( $pageId )
 						->setParentId( $parentRevision );

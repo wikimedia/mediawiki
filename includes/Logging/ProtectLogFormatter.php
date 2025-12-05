@@ -14,6 +14,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleParser;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * This class formats protect log entries.
@@ -170,7 +171,7 @@ class ProtectLogFormatter extends LogFormatter {
 			foreach ( $ret['details'] as &$detail ) {
 				if ( isset( $detail['expiry'] ) ) {
 					$detail['expiry'] = $contLang->
-						formatExpiry( $detail['expiry'], TS_ISO_8601, 'infinite' );
+						formatExpiry( $detail['expiry'], TS::ISO_8601, 'infinite' );
 				}
 			}
 		}

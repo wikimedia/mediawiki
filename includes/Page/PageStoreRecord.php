@@ -9,6 +9,7 @@ namespace MediaWiki\Page;
 use MediaWiki\Utils\MWTimestamp;
 use stdClass;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Immutable data record representing an editable page on a wiki.
@@ -93,7 +94,7 @@ class PageStoreRecord extends PageIdentityValue implements ExistingPageRecord {
 	 * Timestamp at which the page was last rerendered.
 	 */
 	public function getTouched(): string {
-		return MWTimestamp::convert( TS_MW, $this->row->page_touched );
+		return MWTimestamp::convert( TS::MW, $this->row->page_touched );
 	}
 
 	/**

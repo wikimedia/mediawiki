@@ -24,6 +24,7 @@ use MWCryptHash;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPSet;
 use Wikimedia\IPUtils;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A service class for checking blocks.
@@ -792,7 +793,7 @@ class BlockManager {
 	 */
 	private function setBlockCookie( DatabaseBlock $block, WebResponse $response ) {
 		// Calculate the default expiry time.
-		$maxExpiryTime = wfTimestamp( TS_MW, (int)wfTimestamp() + ( 24 * 60 * 60 ) );
+		$maxExpiryTime = wfTimestamp( TS::MW, (int)wfTimestamp() + ( 24 * 60 * 60 ) );
 
 		// Use the block's expiry time only if it's less than the default.
 		$expiryTime = $block->getExpiry();
@@ -801,7 +802,7 @@ class BlockManager {
 		}
 
 		// Set the cookie
-		$expiryValue = (int)wfTimestamp( TS_UNIX, $expiryTime );
+		$expiryValue = (int)wfTimestamp( TS::UNIX, $expiryTime );
 		$cookieOptions = [ 'httpOnly' => false ];
 		$cookieValue = $this->getCookieValue( $block );
 		$response->setCookie( 'BlockID', $cookieValue, $expiryValue, $cookieOptions );

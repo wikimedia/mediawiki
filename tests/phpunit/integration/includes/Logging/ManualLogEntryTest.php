@@ -85,7 +85,7 @@ class ManualLogEntryTest extends MediaWikiIntegrationTestCase {
 				'rc_bot' => (string)intval( $userHasBotRight ),
 				'rc_log_type' => 'phpunit',
 				'rc_log_action' => 'test',
-				// The RecentChanges object stores the timestamp as TS_MW, even if DB stores it in a different
+				// The RecentChanges object stores the timestamp as TS::MW, even if DB stores it in a different
 				// format.
 				'rc_timestamp' => '20300405060708',
 				'rc_deleted' => (string)LogPage::DELETED_ACTION,

@@ -37,7 +37,7 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 	private $updater;
 	/** @var bool */
 	private $recursive;
-	/** @var string|false TS_MW */
+	/** @var string|false TS::MW */
 	private $freshness;
 
 	/** @var RevisionRecord */
@@ -51,7 +51,7 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 	 * @param PageIdentity $page Page we are updating
 	 * @param RevisionRecord $revisionRecord
 	 * @param DerivedPageDataUpdater $updater
-	 * @param array $options Options map; supports "recursive" (bool) and "freshness" (string|false, TS_MW)
+	 * @param array $options Options map; supports "recursive" (bool) and "freshness" (string|false, TS::MW)
 	 */
 	public function __construct(
 		ILBFactory $lbFactory,

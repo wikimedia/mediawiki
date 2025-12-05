@@ -11,6 +11,7 @@ namespace MediaWiki\RevisionList;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use stdClass;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Abstract base class for revision items
@@ -110,7 +111,7 @@ abstract class RevisionItemBase {
 	 */
 	public function getTimestamp() {
 		$field = $this->getTimestampField();
-		return wfTimestamp( TS_MW, $this->row->$field );
+		return wfTimestamp( TS::MW, $this->row->$field );
 	}
 
 	/**

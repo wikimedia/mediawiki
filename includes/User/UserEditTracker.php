@@ -12,6 +12,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Track info about user edit counts and timings
@@ -188,7 +189,7 @@ class UserEditTracker {
 			return false; // no edits
 		}
 
-		return ConvertibleTimestamp::convert( TS_MW, $time );
+		return ConvertibleTimestamp::convert( TS::MW, $time );
 	}
 
 	/**

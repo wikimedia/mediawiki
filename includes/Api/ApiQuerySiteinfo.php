@@ -43,6 +43,7 @@ use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A query action to return meta information about the wiki site.
@@ -269,7 +270,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['server'] = $config->get( MainConfigNames::Server );
 		$data['servername'] = $config->get( MainConfigNames::ServerName );
 		$data['wikiid'] = WikiMap::getCurrentWikiId();
-		$data['time'] = wfTimestamp( TS_ISO_8601, time() );
+		$data['time'] = wfTimestamp( TS::ISO_8601, time() );
 
 		$data['misermode'] = (bool)$config->get( MainConfigNames::MiserMode );
 
@@ -674,7 +675,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 						$ret['vcs-url'] = $gitInfo->getHeadViewUrl();
 						$vcsDate = $gitInfo->getHeadCommitDate();
 						if ( $vcsDate !== false ) {
-							$ret['vcs-date'] = wfTimestamp( TS_ISO_8601, $vcsDate );
+							$ret['vcs-date'] = wfTimestamp( TS::ISO_8601, $vcsDate );
 						}
 					}
 

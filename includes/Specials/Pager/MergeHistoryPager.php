@@ -21,6 +21,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @ingroup Pager
@@ -122,7 +123,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$stxt = '';
 		$last = $this->msg( 'last' )->escaped();
 
-		$ts = wfTimestamp( TS_MW, $row->rev_timestamp );
+		$ts = wfTimestamp( TS::MW, $row->rev_timestamp );
 		$tsWithId = $ts . "|" . $row->rev_id;
 		$oldCheckBox = Html::radio(
 			'mergepointold',

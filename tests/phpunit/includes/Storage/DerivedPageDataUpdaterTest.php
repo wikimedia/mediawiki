@@ -52,6 +52,7 @@ use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group Database
@@ -598,7 +599,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getPreparedEdit()
 	 */
 	public function testGetPreparedEditAfterPrepareUpdate() {
-		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
+		$clock = MWTimestamp::convert( TS::UNIX, '20100101000000' );
 		MWTimestamp::setFakeTime( static function () use ( &$clock ) {
 			return $clock++;
 		} );
@@ -1754,7 +1755,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * Regression test for T368006
 	 */
 	public function testTemplateUpdate() {
-		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
+		$clock = MWTimestamp::convert( TS::UNIX, '20100101000000' );
 		MWTimestamp::setFakeTime( static function () use ( &$clock ) {
 			return $clock++;
 		} );

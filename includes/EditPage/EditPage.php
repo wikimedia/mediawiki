@@ -108,6 +108,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * The HTML user interface for page editing.
@@ -786,7 +787,7 @@ class EditPage implements IEditObject {
 		if ( $user->isTemp() ) {
 			$expiryAfterDays = $this->tempUserCreator->getExpireAfterDays();
 			if ( $expiryAfterDays ) {
-				$expirationCutoff = (int)ConvertibleTimestamp::now( TS_UNIX ) - ( 86_400 * $expiryAfterDays );
+				$expirationCutoff = (int)ConvertibleTimestamp::now( TS::UNIX ) - ( 86_400 * $expiryAfterDays );
 
 				// If the user was created before the expiration cutoff, then log them out, expire any other existing
 				// sessions, and revoke any access to the account that may exist.
@@ -795,7 +796,7 @@ class EditPage implements IEditObject {
 				$firstUserRegistration = $this->userRegistrationLookup->getFirstRegistration( $user );
 				if (
 					$firstUserRegistration &&
-					ConvertibleTimestamp::convert( TS_UNIX, $firstUserRegistration ) < $expirationCutoff
+					ConvertibleTimestamp::convert( TS::UNIX, $firstUserRegistration ) < $expirationCutoff
 				) {
 					// Log the user out of the expired temporary account.
 					$user->logout();
@@ -1323,7 +1324,7 @@ class EditPage implements IEditObject {
 			// is necessary because ApiEditPage uses preview when it saves (yuck!). Note that it
 			// only works because the unnormalized value is retrieved again below in
 			// getCheckboxesDefinitionForWatchlist().
-			$submittedExpiry = ExpiryDef::normalizeExpiry( $submittedExpiry, TS_ISO_8601 );
+			$submittedExpiry = ExpiryDef::normalizeExpiry( $submittedExpiry, TS::ISO_8601 );
 			if ( $submittedExpiry !== false ) {
 				$this->watchlistExpiry = $submittedExpiry;
 			}
@@ -3993,7 +3994,7 @@ class EditPage implements IEditObject {
 		if ( !$this->mTitle->exists() && $this->mTitle->hasDeletedEdits() ) {
 			$this->lastDelete = $this->getLastDelete();
 			if ( $this->lastDelete ) {
-				$deleteTime = wfTimestamp( TS_MW, $this->lastDelete->log_timestamp );
+				$deleteTime = wfTimestamp( TS::MW, $this->lastDelete->log_timestamp );
 				if ( $deleteTime > $this->starttime ) {
 					$this->deletedSinceEdit = true;
 				}

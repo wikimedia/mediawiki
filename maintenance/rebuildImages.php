@@ -28,6 +28,7 @@ use MediaWiki\Specials\SpecialUpload;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Maintenance script to update image metadata records.
@@ -140,10 +141,10 @@ class ImageBuilder extends Maintenance {
 		$rate = $this->processed / $delta;
 
 		$this->output( sprintf( "%s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec <%.2f%% updated>\n",
-			wfTimestamp( TS_DB, intval( $now ) ),
+			wfTimestamp( TS::DB, intval( $now ) ),
 			$portion * 100.0,
 			$this->table,
-			wfTimestamp( TS_DB, intval( $eta ) ),
+			wfTimestamp( TS::DB, intval( $eta ) ),
 			$this->processed,
 			$this->count,
 			$rate,

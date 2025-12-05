@@ -24,6 +24,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\ServerInfo;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * RDBMS-based caching module
@@ -1162,7 +1163,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	private function decodeDbExpiry( IDatabase $db, string $dbExpiry ) {
 		return ( $dbExpiry === $db->timestamp( self::INF_TIMESTAMP_PLACEHOLDER ) )
 			? self::TTL_INDEFINITE
-			: (int)ConvertibleTimestamp::convert( TS_UNIX, $dbExpiry );
+			: (int)ConvertibleTimestamp::convert( TS::UNIX, $dbExpiry );
 	}
 
 	/**
@@ -1340,7 +1341,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		&$keysDeletedCount = 0,
 		?array $progress = null
 	) {
-		$cutoffUnix = (int)ConvertibleTimestamp::convert( TS_UNIX, $timestamp );
+		$cutoffUnix = (int)ConvertibleTimestamp::convert( TS::UNIX, $timestamp );
 		$tableIndexes = range( 0, $this->numTableShards - 1 );
 		shuffle( $tableIndexes );
 
@@ -1380,7 +1381,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				if ( $res->numRows() ) {
 					$row = $res->current();
 					if ( $minExpUnix === null ) {
-						$minExpUnix = (int)ConvertibleTimestamp::convert( TS_UNIX, $row->exptime );
+						$minExpUnix = (int)ConvertibleTimestamp::convert( TS::UNIX, $row->exptime );
 						$totalSeconds = max( $cutoffUnix - $minExpUnix, 1 );
 					}
 
@@ -1402,7 +1403,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 				if ( $progress && is_callable( $progress['fn'] ) ) {
 					if ( $totalSeconds ) {
-						$maxExpUnix = (int)ConvertibleTimestamp::convert( TS_UNIX, $maxExp );
+						$maxExpUnix = (int)ConvertibleTimestamp::convert( TS::UNIX, $maxExp );
 						$remainingSeconds = $cutoffUnix - $maxExpUnix;
 						$processedSeconds = max( $totalSeconds - $remainingSeconds, 0 );
 						// For example, if we've done 1.5 table shard, and are thus half-way on the

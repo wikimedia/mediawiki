@@ -41,6 +41,7 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\UnitTestingHelper;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group API
@@ -370,13 +371,13 @@ class ApiMainTest extends ApiTestCase {
 		$mock = $this->createMock( ApiBase::class );
 		$mock->method( 'getModuleName' )->willReturn( 'testmodule' );
 		$mock->method( 'getConditionalRequestData' )
-			->willReturn( wfTimestamp( TS_MW, $now - 3600 ) );
+			->willReturn( wfTimestamp( TS::MW, $now - 3600 ) );
 		$mock->expects( $this->never() )->method( 'execute' );
 
 		$req = new FauxRequest( [
 			'action' => 'testmodule',
 		] );
-		$req->setHeader( 'If-Modified-Since', wfTimestamp( TS_RFC2822, $now - 3600 ) );
+		$req->setHeader( 'If-Modified-Since', wfTimestamp( TS::RFC2822, $now - 3600 ) );
 		$req->setRequestURL( "http://localhost" );
 
 		$api = new ApiMain( $req );
@@ -624,27 +625,27 @@ class ApiMainTest extends ApiTestCase {
 
 			// Basic If-Modified-Since
 			'If-Modified-Since, modified one second earlier' =>
-				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 304 ],
+				[ [ 'If-Modified-Since' => wfTimestamp( TS::RFC2822, $now ) ],
+					[ 'last-modified' => wfTimestamp( TS::MW, $now - 1 ) ], 304 ],
 			'If-Modified-Since, modified now' =>
-				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now ) ], 304 ],
+				[ [ 'If-Modified-Since' => wfTimestamp( TS::RFC2822, $now ) ],
+					[ 'last-modified' => wfTimestamp( TS::MW, $now ) ], 304 ],
 			'If-Modified-Since, modified one second later' =>
-				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now + 1 ) ], 200 ],
+				[ [ 'If-Modified-Since' => wfTimestamp( TS::RFC2822, $now ) ],
+					[ 'last-modified' => wfTimestamp( TS::MW, $now + 1 ) ], 200 ],
 
 			// If-Modified-Since ignored when If-None-Match is given too
 			'Non-matching If-None-Match and matching If-Modified-Since' =>
 				[ [ 'If-None-Match' => '""',
-					'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
-					[ 'etag' => '"x"', 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 200 ],
+					'If-Modified-Since' => wfTimestamp( TS::RFC2822, $now ) ],
+					[ 'etag' => '"x"', 'last-modified' => wfTimestamp( TS::MW, $now - 1 ) ], 200 ],
 			'Non-matching If-None-Match and matching If-Modified-Since with no ETag' =>
 				[
 					[
 						'If-None-Match' => '""',
-						'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now )
+						'If-Modified-Since' => wfTimestamp( TS::RFC2822, $now )
 					],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ],
+					[ 'last-modified' => wfTimestamp( TS::MW, $now - 1 ) ],
 					304
 				],
 
@@ -653,40 +654,40 @@ class ApiMainTest extends ApiTestCase {
 				[ [ 'If-None-Match' => '"foo", "bar"' ], [ 'etag' => '"bar"' ], 200,
 					[ 'post' => true ] ],
 			'Matching If-Modified-Since with POST' =>
-				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 200,
+				[ [ 'If-Modified-Since' => wfTimestamp( TS::RFC2822, $now ) ],
+					[ 'last-modified' => wfTimestamp( TS::MW, $now - 1 ) ], 200,
 					[ 'post' => true ] ],
 
 			// Other date formats allowed by the RFC
 			'If-Modified-Since with alternate date format 1' =>
 				[ [ 'If-Modified-Since' => gmdate( 'l, d-M-y H:i:s', $now ) . ' GMT' ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 304 ],
+					[ 'last-modified' => wfTimestamp( TS::MW, $now - 1 ) ], 304 ],
 			'If-Modified-Since with alternate date format 2' =>
 				[ [ 'If-Modified-Since' => gmdate( 'D M j H:i:s Y', $now ) ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 304 ],
+					[ 'last-modified' => wfTimestamp( TS::MW, $now - 1 ) ], 304 ],
 
 			// Old browser extension to HTTP/1.0
 			'If-Modified-Since with length' =>
-				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) . '; length=123' ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 304 ],
+				[ [ 'If-Modified-Since' => wfTimestamp( TS::RFC2822, $now ) . '; length=123' ],
+					[ 'last-modified' => wfTimestamp( TS::MW, $now - 1 ) ], 304 ],
 
 			// Invalid date formats should be ignored
 			'If-Modified-Since with invalid date format' =>
 				[ [ 'If-Modified-Since' => gmdate( 'Y-m-d H:i:s', $now ) . ' GMT' ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 200 ],
+					[ 'last-modified' => wfTimestamp( TS::MW, $now - 1 ) ], 200 ],
 			'If-Modified-Since with entirely unparseable date' =>
 				[ [ 'If-Modified-Since' => 'a potato' ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 200 ],
+					[ 'last-modified' => wfTimestamp( TS::MW, $now - 1 ) ], 200 ],
 
 			// Anything before $wgCdnMaxAge seconds ago should be considered
 			// expired.
 			'If-Modified-Since with CDN post-expiry' =>
-				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now - $wgCdnMaxAge * 2 ) ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now - $wgCdnMaxAge * 3 ) ],
+				[ [ 'If-Modified-Since' => wfTimestamp( TS::RFC2822, $now - $wgCdnMaxAge * 2 ) ],
+					[ 'last-modified' => wfTimestamp( TS::MW, $now - $wgCdnMaxAge * 3 ) ],
 					200, [ 'cdn' => true ] ],
 			'If-Modified-Since with CDN pre-expiry' =>
-				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now - $wgCdnMaxAge / 2 ) ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now - $wgCdnMaxAge * 3 ) ],
+				[ [ 'If-Modified-Since' => wfTimestamp( TS::RFC2822, $now - $wgCdnMaxAge / 2 ) ],
+					[ 'last-modified' => wfTimestamp( TS::MW, $now - $wgCdnMaxAge * 3 ) ],
 					304, [ 'cdn' => true ] ],
 		];
 	}

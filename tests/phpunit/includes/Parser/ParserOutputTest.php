@@ -21,6 +21,7 @@ use Wikimedia\Parsoid\Core\MergeStrategy;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Tests\SerializationTestTrait;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\Parser\ParserOutput
@@ -1313,7 +1314,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Parser\ParserOutput::setCacheTime
 	 */
 	public function testGetCacheTime() {
-		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
+		$clock = MWTimestamp::convert( TS::UNIX, '20100101000000' );
 		MWTimestamp::setFakeTime( static function () use ( &$clock ) {
 			return $clock++;
 		} );

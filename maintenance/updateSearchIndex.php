@@ -11,6 +11,7 @@ use MediaWiki\Search\SearchUpdate;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -64,7 +65,7 @@ class UpdateSearchIndex extends Maintenance {
 		} elseif ( is_readable( $posFile ) ) {
 			$start = file_get_contents( $posFile );
 		} else {
-			$start = wfTimestamp( TS_MW, time() - 86400 );
+			$start = wfTimestamp( TS::MW, time() - 86400 );
 		}
 
 		$this->doUpdateSearchIndex( $start, $end );

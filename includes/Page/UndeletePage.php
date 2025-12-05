@@ -36,6 +36,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ReadOnlyMode;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Backend logic for performing a page undelete action.
@@ -576,7 +577,7 @@ class UndeletePage {
 		Assert::postcondition( $page->exists(), 'The page should exist now' );
 
 		// Check if a deleted revision will become the current revision...
-		$latestRestorableRowTimestamp = wfTimestamp( TS_MW, $latestRestorableRow->ar_timestamp );
+		$latestRestorableRowTimestamp = wfTimestamp( TS::MW, $latestRestorableRow->ar_timestamp );
 		if ( $latestRestorableRowTimestamp > $previousTimestamp ) {
 			// Check the state of the newest to-be version...
 			if ( !$this->unsuppress

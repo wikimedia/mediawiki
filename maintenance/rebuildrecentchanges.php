@@ -19,6 +19,7 @@ use MediaWiki\RecentChanges\RecentChange;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Maintenance script that rebuilds recent changes from scratch.
@@ -77,8 +78,8 @@ class RebuildRecentchanges extends Maintenance {
 		$commentStore = $this->getServiceContainer()->getCommentStore();
 
 		if ( $this->hasOption( 'from' ) && $this->hasOption( 'to' ) ) {
-			$this->cutoffFrom = (int)wfTimestamp( TS_UNIX, $this->getOption( 'from' ) );
-			$this->cutoffTo = (int)wfTimestamp( TS_UNIX, $this->getOption( 'to' ) );
+			$this->cutoffFrom = (int)wfTimestamp( TS::UNIX, $this->getOption( 'from' ) );
+			$this->cutoffTo = (int)wfTimestamp( TS::UNIX, $this->getOption( 'to' ) );
 
 			$sec = $this->cutoffTo - $this->cutoffFrom;
 			$days = $sec / 24 / 3600;

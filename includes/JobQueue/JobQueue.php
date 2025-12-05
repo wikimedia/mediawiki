@@ -451,7 +451,7 @@ abstract class JobQueue {
 	 *
 	 * This requires that $job has two special fields in the "params" array:
 	 *   - rootJobSignature : hash (e.g. SHA1) that identifies the task
-	 *   - rootJobTimestamp : TS_MW timestamp of this instance of the task
+	 *   - rootJobTimestamp : TS::MW timestamp of this instance of the task
 	 *
 	 * A "root job" is a conceptual job that consist of potentially many smaller jobs
 	 * that are actually inserted into the queue. For example, "refreshLinks" jobs are

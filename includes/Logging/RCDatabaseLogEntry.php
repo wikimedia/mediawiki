@@ -18,6 +18,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A subclass of DatabaseLogEntry for objects constructed from entries in the
@@ -116,7 +117,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 
 	/** @inheritDoc */
 	public function getTimestamp() {
-		return wfTimestamp( TS_MW, $this->row->rc_timestamp );
+		return wfTimestamp( TS::MW, $this->row->rc_timestamp );
 	}
 
 	/** @inheritDoc */

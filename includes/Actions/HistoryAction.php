@@ -25,6 +25,8 @@ use MediaWiki\Utils\MWTimestamp;
 use stdClass;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * This class handles printing the history page for an article. In order to
@@ -421,7 +423,7 @@ class HistoryAction extends FormlessAction {
 			$this->msg( 'nohistory' )->inContentLanguage()->text(),
 			$this->msg( 'history-feed-empty' )->inContentLanguage()->parseAsBlock(),
 			$this->getTitle()->getFullURL(),
-			wfTimestamp( TS_MW ),
+			ConvertibleTimestamp::now( TS::MW ),
 			'',
 			$this->getTitle()->getTalkPage()->getFullURL()
 		);

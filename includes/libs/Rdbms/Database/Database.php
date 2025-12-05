@@ -24,6 +24,7 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\Telemetry\NoopTracer;
 use Wikimedia\Telemetry\SpanInterface;
 use Wikimedia\Telemetry\TracerInterface;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A single concrete connection to a relational database.
@@ -3539,7 +3540,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	}
 
 	/** @inheritDoc */
-	public function decodeExpiry( $expiry, $format = TS_MW ) {
+	public function decodeExpiry( $expiry, $format = TS::MW ) {
 		return $this->platform->decodeExpiry( $expiry, $format );
 	}
 

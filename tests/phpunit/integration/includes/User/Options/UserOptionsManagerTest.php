@@ -17,6 +17,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group Database
@@ -517,8 +518,8 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 		$user = $this->getTestUser()->getUser();
 		$userTouched = $user->getDBTouched();
 		$newTouched = ConvertibleTimestamp::convert(
-			TS_MW,
-			intval( ConvertibleTimestamp::convert( TS_UNIX, $userTouched ) ) + 100
+			TS::MW,
+			intval( ConvertibleTimestamp::convert( TS::UNIX, $userTouched ) ) + 100
 		);
 		ConvertibleTimestamp::setFakeTime( $newTouched );
 
@@ -527,7 +528,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 		$manager->saveOptions( $user );
 
 		ConvertibleTimestamp::setFakeTime(
-			intval( ConvertibleTimestamp::convert( TS_UNIX, $userTouched ) ) + 200
+			intval( ConvertibleTimestamp::convert( TS::UNIX, $userTouched ) ) + 200
 		);
 		$this->assertSame( $newTouched, $user->getDBTouched() );
 		$user->clearInstanceCache();

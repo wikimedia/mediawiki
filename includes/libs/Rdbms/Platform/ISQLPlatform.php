@@ -10,6 +10,7 @@ use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\Subquery;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Interface for query language.
@@ -404,10 +405,10 @@ interface ISQLPlatform {
 	 * Decode an expiry time into a DBMS independent format
 	 *
 	 * @param string $expiry DB timestamp field value for expiry
-	 * @param int $format TS_* constant, defaults to TS_MW
+	 * @param int|TS $format TS::* constant, defaults to TS::MW
 	 * @return string
 	 */
-	public function decodeExpiry( $expiry, $format = TS_MW );
+	public function decodeExpiry( $expiry, $format = TS::MW );
 
 	/**
 	 * Returns an SQL expression for a simple conditional

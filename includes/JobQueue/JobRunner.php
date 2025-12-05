@@ -24,6 +24,8 @@ use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Job queue runner utility methods.
@@ -404,7 +406,7 @@ class JobRunner {
 		// Record root job age for jobs being run
 		$rootTimestamp = $job->getRootJobParams()['rootJobTimestamp'];
 		if ( $rootTimestamp ) {
-			$age = max( 0, $jobStartTime - (int)wfTimestamp( TS_UNIX, $rootTimestamp ) );
+			$age = max( 0, $jobStartTime - (int)wfTimestamp( TS::UNIX, $rootTimestamp ) );
 
 			$this->statsFactory->getTiming( "jobqueue_pickup_root_age_seconds" )
 				->setLabel( 'jobtype', $jType )
@@ -618,7 +620,7 @@ class JobRunner {
 	 */
 	private function debugCallback( $msg ) {
 		if ( $this->debug ) {
-			( $this->debug )( wfTimestamp( TS_DB ) . " $msg\n" );
+			( $this->debug )( ConvertibleTimestamp::now( TS::DB ) . " $msg\n" );
 		}
 	}
 }

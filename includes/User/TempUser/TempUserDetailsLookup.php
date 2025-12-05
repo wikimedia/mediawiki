@@ -8,6 +8,8 @@ use IteratorIterator;
 use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Caching lookup service for metadata related to temporary accounts, such as expiration.
@@ -96,7 +98,7 @@ class TempUserDetailsLookup {
 		}
 
 		$expireAfterDays = $this->tempUserConfig->getExpireAfterDays();
-		$expiresAt = (int)wfTimestamp( TS_UNIX, $registration ) + $expireAfterDays * 86400;
-		return $expiresAt < wfTimestamp( TS_UNIX );
+		$expiresAt = (int)wfTimestamp( TS::UNIX, $registration ) + $expireAfterDays * 86400;
+		return $expiresAt < ConvertibleTimestamp::now( TS::UNIX );
 	}
 }

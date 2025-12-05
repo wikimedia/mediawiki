@@ -11,6 +11,7 @@ namespace MediaWiki\Api;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A query module to enumerate categories the set of pages belong to.
@@ -141,7 +142,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 					$vals['sortkeyprefix'] = $row->cl_sortkey_prefix;
 				}
 				if ( isset( $prop['timestamp'] ) ) {
-					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->cl_timestamp );
+					$vals['timestamp'] = wfTimestamp( TS::ISO_8601, $row->cl_timestamp );
 				}
 				if ( isset( $prop['hidden'] ) ) {
 					$vals['hidden'] = $row->pp_propname !== null;

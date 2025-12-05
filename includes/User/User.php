@@ -61,6 +61,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @defgroup User User management
@@ -184,9 +185,9 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 	/** @var string */
 	public $mEmail;
-	/** @var string TS_MW timestamp from the DB */
+	/** @var string TS::MW timestamp from the DB */
 	public $mTouched;
-	/** @var string|null TS_MW timestamp from cache */
+	/** @var string|null TS::MW timestamp from cache */
 	protected $mQuickTouched;
 	/** @var string|null */
 	protected $mToken;
@@ -535,7 +536,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 				}
 
 				$ttl = $cache->adaptiveTTL(
-					(int)wfTimestamp( TS_UNIX, $this->mTouched ),
+					(int)wfTimestamp( TS::UNIX, $this->mTouched ),
 					$ttl
 				);
 
@@ -549,7 +550,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 					foreach ( $groupMemberships as $ugm ) {
 						if ( $ugm->getExpiry() ) {
 							$secondsUntilExpiry =
-								(int)wfTimestamp( TS_UNIX, $ugm->getExpiry() ) - time();
+								(int)wfTimestamp( TS::UNIX, $ugm->getExpiry() ) - time();
 
 							if ( $secondsUntilExpiry > 0 && $secondsUntilExpiry < $ttl ) {
 								$ttl = $secondsUntilExpiry;
@@ -1003,7 +1004,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		$loggedOut = $this->mRequest && !defined( 'MW_NO_SESSION' )
 			? $this->mRequest->getSession()->getLoggedOutTimestamp() : 0;
 		if ( $loggedOut !== 0 ) {
-			$this->mTouched = wfTimestamp( TS_MW, $loggedOut );
+			$this->mTouched = wfTimestamp( TS::MW, $loggedOut );
 		} else {
 			$this->mTouched = '1'; # Allow any pages to be cached
 		}
@@ -1180,7 +1181,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		}
 
 		if ( isset( $row->user_touched ) ) {
-			$this->mTouched = wfTimestamp( TS_MW, $row->user_touched );
+			$this->mTouched = wfTimestamp( TS::MW, $row->user_touched );
 		} else {
 			$all = false;
 		}
@@ -1199,10 +1200,10 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 		if ( isset( $row->user_email ) ) {
 			$this->mEmail = $row->user_email;
-			$this->mEmailAuthenticated = wfTimestampOrNull( TS_MW, $row->user_email_authenticated );
+			$this->mEmailAuthenticated = wfTimestampOrNull( TS::MW, $row->user_email_authenticated );
 			$this->mEmailToken = $row->user_email_token;
-			$this->mEmailTokenExpires = wfTimestampOrNull( TS_MW, $row->user_email_token_expires );
-			$registration = wfTimestampOrNull( TS_MW, $row->user_registration );
+			$this->mEmailTokenExpires = wfTimestampOrNull( TS::MW, $row->user_email_token_expires );
+			$registration = wfTimestampOrNull( TS::MW, $row->user_registration );
 			MediaWikiServices::getInstance()
 				->getUserRegistrationLookup()
 				->setCachedRegistration( $this, $registration );
@@ -1600,15 +1601,15 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * Generate a current or new-future timestamp to be stored in the
 	 * user_touched field when we update things.
 	 *
-	 * @return string Timestamp in TS_MW format
+	 * @return string Timestamp in TS::MW format
 	 */
 	private function newTouchedTimestamp() {
-		$time = (int)ConvertibleTimestamp::now( TS_UNIX );
+		$time = (int)ConvertibleTimestamp::now( TS::UNIX );
 		if ( $this->mTouched ) {
-			$time = max( $time, (int)ConvertibleTimestamp::convert( TS_UNIX, $this->mTouched ) + 1 );
+			$time = max( $time, (int)ConvertibleTimestamp::convert( TS::UNIX, $this->mTouched ) + 1 );
 		}
 
-		return ConvertibleTimestamp::convert( TS_MW, $time );
+		return ConvertibleTimestamp::convert( TS::MW, $time );
 	}
 
 	/**
@@ -1680,8 +1681,8 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * @since 1.45
 	 */
 	public function debouncedDBTouch() {
-		$oldTouched = (int)ConvertibleTimestamp::convert( TS_UNIX, $this->getDBTouched() );
-		$newTouched = (int)ConvertibleTimestamp::now( TS_UNIX );
+		$oldTouched = (int)ConvertibleTimestamp::convert( TS::UNIX, $this->getDBTouched() );
+		$newTouched = (int)ConvertibleTimestamp::now( TS::UNIX );
 
 		if ( ( $newTouched - $oldTouched ) < ( 300 + mt_rand( 1, 20 ) ) ) {
 			// Touched would be updated too soon, skip this round
@@ -1695,7 +1696,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Validate the cache for this account.
-	 * @param string $timestamp A timestamp in TS_MW format
+	 * @param string $timestamp A timestamp in TS::MW format
 	 * @return bool
 	 */
 	public function validateCache( $timestamp ) {
@@ -1708,7 +1709,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * Use this value only to validate caches via inequalities
 	 * such as in the case of HTTP If-Modified-Since response logic
 	 *
-	 * @return string TS_MW Timestamp
+	 * @return string TS::MW Timestamp
 	 */
 	public function getTouched() {
 		$this->load();
@@ -1718,7 +1719,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 				$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 				$key = $cache->makeKey( 'user-quicktouched', 'id', $this->mId );
 
-				$this->mQuickTouched = wfTimestamp( TS_MW, $cache->getCheckKeyTime( $key ) );
+				$this->mQuickTouched = wfTimestamp( TS::MW, $cache->getCheckKeyTime( $key ) );
 			}
 
 			return max( $this->mTouched, $this->mQuickTouched );
@@ -1729,7 +1730,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Get the user_touched timestamp field (time of last DB updates)
-	 * @return string TS_MW Timestamp
+	 * @return string TS::MW Timestamp
 	 * @since 1.26
 	 */
 	public function getDBTouched() {
@@ -1848,7 +1849,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Get the timestamp of the user's e-mail authentication
-	 * @return string TS_MW timestamp
+	 * @return string TS::MW timestamp
 	 */
 	public function getEmailAuthenticationTimestamp() {
 		$this->load();
@@ -2196,8 +2197,8 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		$editCount = $this->getEditCount();
 		$registration = $this->getRegistration();
 		$now = time();
-		$learnerRegistration = wfTimestamp( TS_MW, $now - $learnerMemberSince * 86400 );
-		$experiencedRegistration = wfTimestamp( TS_MW, $now - $experiencedUserMemberSince * 86400 );
+		$learnerRegistration = wfTimestamp( TS::MW, $now - $learnerMemberSince * 86400 );
+		$experiencedRegistration = wfTimestamp( TS::MW, $now - $experiencedUserMemberSince * 86400 );
 		if ( $registration === null ) {
 			// for some very old accounts, this information is missing in the database
 			// treat them as old enough to be 'experienced'
@@ -2863,7 +2864,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		$now = ConvertibleTimestamp::time();
 
 		$expires = $now + $tokenLifeTimeSeconds;
-		$expiration = wfTimestamp( TS_MW, $expires );
+		$expiration = wfTimestamp( TS::MW, $expires );
 		$this->load();
 		$token = MWCryptRand::generateHex( 32 );
 		$hash = md5( $token );
@@ -2982,7 +2983,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Set the e-mail authentication timestamp.
-	 * @param string|null $timestamp TS_MW timestamp
+	 * @param string|null $timestamp TS::MW timestamp
 	 */
 	public function setEmailAuthenticationTimestamp( $timestamp ) {
 		$this->load();

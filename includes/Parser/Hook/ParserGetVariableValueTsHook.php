@@ -19,7 +19,7 @@ interface ParserGetVariableValueTsHook {
 	 * @since 1.35
 	 *
 	 * @param Parser $parser
-	 * @param string &$time Actual time (timestamp) in TS_UNIX format
+	 * @param string &$time Actual time (timestamp) in TS::UNIX format
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onParserGetVariableValueTs( $parser, &$time );

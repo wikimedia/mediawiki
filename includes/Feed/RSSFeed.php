@@ -9,6 +9,8 @@
 
 namespace MediaWiki\Feed;
 
+use Wikimedia\Timestamp\TimestampFormat as TS;
+
 /**
  * Generate an RSS feed.
  *
@@ -24,7 +26,7 @@ class RSSFeed extends ChannelFeed {
 	 */
 	private function formatTime( $ts ) {
 		if ( $ts ) {
-			return gmdate( 'D, d M Y H:i:s \G\M\T', (int)wfTimestamp( TS_UNIX, $ts ) );
+			return gmdate( 'D, d M Y H:i:s \G\M\T', (int)wfTimestamp( TS::UNIX, $ts ) );
 		}
 		return null;
 	}

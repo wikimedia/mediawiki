@@ -26,6 +26,7 @@ use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\ParamValidator\TypeDef\StringDef;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group API
@@ -353,7 +354,7 @@ class ApiBaseTest extends ApiTestCase {
 				// correct!
 				$this->assertMatchesRegularExpression( '/^\d{14}$/', $result );
 				$this->assertLessThanOrEqual( 1,
-					abs( wfTimestamp( TS_UNIX, $result ) - time() ),
+					abs( wfTimestamp( TS::UNIX, $result ) - time() ),
 					"Result $result differs from expected $expected by " .
 					'more than one second' );
 			} else {
@@ -1037,7 +1038,7 @@ class ApiBaseTest extends ApiTestCase {
 				] ],
 			],
 			'Timestamp' => [
-				wfTimestamp( TS_UNIX, '20211221122112' ),
+				wfTimestamp( TS::UNIX, '20211221122112' ),
 				[ ParamValidator::PARAM_TYPE => 'timestamp' ],
 				'20211221122112',
 				[],
@@ -1092,7 +1093,7 @@ class ApiBaseTest extends ApiTestCase {
 					ParamValidator::PARAM_TYPE => 'timestamp',
 					ParamValidator::PARAM_ISMULTI => 1,
 				],
-				[ wfTimestamp( TS_MW, 100 ), wfTimestamp( TS_MW, 101 ) ],
+				[ wfTimestamp( TS::MW, 100 ), wfTimestamp( TS::MW, 101 ) ],
 				[],
 			],
 			'Expiry array' => [

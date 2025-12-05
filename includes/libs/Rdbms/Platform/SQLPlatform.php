@@ -22,6 +22,7 @@ use Wikimedia\Rdbms\QueryBuilderFromRawSql;
 use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\Subquery;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Sql abstraction object.
@@ -524,7 +525,7 @@ class SQLPlatform implements ISQLPlatform {
 	public function timestamp( $ts = 0 ) {
 		$t = new ConvertibleTimestamp( $ts );
 		// Let errors bubble up to avoid putting garbage in the DB
-		return $t->getTimestamp( TS_MW );
+		return $t->getTimestamp( TS::MW );
 	}
 
 	/** @inheritDoc */
@@ -549,7 +550,7 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	/** @inheritDoc */
-	public function decodeExpiry( $expiry, $format = TS_MW ) {
+	public function decodeExpiry( $expiry, $format = TS::MW ) {
 		if ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() ) {
 			return 'infinity';
 		}

@@ -16,6 +16,7 @@ use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\ObjectCache\WANObjectCache;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Prioritized list of file repositories.
@@ -110,7 +111,7 @@ class RepoGroup {
 			$options['latest'] = $options['bypassCache']; // b/c
 		}
 		if ( isset( $options['time'] ) && $options['time'] !== false ) {
-			$options['time'] = wfTimestamp( TS_MW, $options['time'] );
+			$options['time'] = wfTimestamp( TS::MW, $options['time'] );
 		} else {
 			$options['time'] = false;
 		}

@@ -65,6 +65,7 @@ use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\RelPath;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
@@ -877,7 +878,7 @@ class OutputPage extends ContextSource {
 			return false;
 		}
 
-		$timestamp = wfTimestamp( TS_MW, $timestamp );
+		$timestamp = wfTimestamp( TS::MW, $timestamp );
 		$modifiedTimes = [
 			'page' => $timestamp,
 			'user' => $this->getUser()->getTouched(),
@@ -889,14 +890,14 @@ class OutputPage extends ContextSource {
 			// change (site configuration, default preferences, skin HTML, interface messages,
 			// URLs to other files and services) and must roll-over in a timely manner (T46570)
 			$modifiedTimes['sepoch'] = wfTimestamp(
-				TS_MW,
+				TS::MW,
 				time() - $config->get( MainConfigNames::CdnMaxAge )
 			);
 		}
 		$this->getHookRunner()->onOutputPageCheckLastModified( $modifiedTimes, $this );
 
 		$maxModified = max( $modifiedTimes );
-		$this->mLastModified = wfTimestamp( TS_RFC2822, $maxModified );
+		$this->mLastModified = wfTimestamp( TS::RFC2822, $maxModified );
 
 		$clientHeader = $this->getRequest()->getHeader( 'If-Modified-Since' );
 		if ( $clientHeader === false ) {
@@ -917,7 +918,7 @@ class OutputPage extends ContextSource {
 				. ": unable to parse the client's If-Modified-Since header: $clientHeader" );
 			return false;
 		}
-		$clientHeaderTime = wfTimestamp( TS_MW, $clientHeaderTime );
+		$clientHeaderTime = wfTimestamp( TS::MW, $clientHeaderTime );
 
 		# Make debug info
 		$info = '';
@@ -925,13 +926,13 @@ class OutputPage extends ContextSource {
 			if ( $info !== '' ) {
 				$info .= ', ';
 			}
-			$info .= "$name=" . wfTimestamp( TS_ISO_8601, $value );
+			$info .= "$name=" . wfTimestamp( TS::ISO_8601, $value );
 		}
 
 		wfDebug( __METHOD__ . ': client sent If-Modified-Since: ' .
-			wfTimestamp( TS_ISO_8601, $clientHeaderTime ), 'private' );
+			wfTimestamp( TS::ISO_8601, $clientHeaderTime ), 'private' );
 		wfDebug( __METHOD__ . ': effective Last-Modified: ' .
-			wfTimestamp( TS_ISO_8601, $maxModified ), 'private' );
+			wfTimestamp( TS::ISO_8601, $maxModified ), 'private' );
 		if ( $clientHeaderTime < $maxModified ) {
 			wfDebug( __METHOD__ . ": STALE, $info", 'private' );
 			return false;
@@ -960,7 +961,7 @@ class OutputPage extends ContextSource {
 	 *        wfTimestamp()
 	 */
 	public function setLastModified( $timestamp ) {
-		$this->mLastModified = wfTimestamp( TS_RFC2822, $timestamp );
+		$this->mLastModified = wfTimestamp( TS::RFC2822, $timestamp );
 	}
 
 	/**
@@ -2838,7 +2839,7 @@ class OutputPage extends ContextSource {
 			return;
 		}
 
-		$age = MWTimestamp::time() - (int)wfTimestamp( TS_UNIX, $mtime );
+		$age = MWTimestamp::time() - (int)wfTimestamp( TS::UNIX, $mtime );
 		$adaptiveTTL = max( 0.9 * $age, $minTTL );
 		$adaptiveTTL = min( $adaptiveTTL, $maxTTL );
 
@@ -3205,7 +3206,7 @@ class OutputPage extends ContextSource {
 					if ( !$config->get( MainConfigNames::DebugRedirects ) ) {
 						$response->statusHeader( (int)$code );
 					}
-					$this->mLastModified = wfTimestamp( TS_RFC2822 );
+					$this->mLastModified = wfTimestamp( TS::RFC2822 );
 				}
 				if ( $config->get( MainConfigNames::VaryOnXFP ) ) {
 					$this->addVaryHeader( 'X-Forwarded-Proto' );
@@ -4165,9 +4166,10 @@ class OutputPage extends ContextSource {
 			$vars['wgUserIsTemp'] = $user->isTemp();
 			$vars['wgUserEditCount'] = $user->getEditCount();
 			$userReg = $user->getRegistration();
-			$vars['wgUserRegistration'] = $userReg ? (int)wfTimestamp( TS_UNIX, $userReg ) * 1000 : null;
+			$vars['wgUserRegistration'] = $userReg ? (int)wfTimestamp( TS::UNIX, $userReg ) * 1000 : null;
 			$userFirstReg = $services->getUserRegistrationLookup()->getFirstRegistration( $user );
-			$vars['wgUserFirstRegistration'] = $userFirstReg ? (int)wfTimestamp( TS_UNIX, $userFirstReg ) * 1000 : null;
+			$vars['wgUserFirstRegistration'] = $userFirstReg ?
+				(int)wfTimestamp( TS::UNIX, $userFirstReg ) * 1000 : null;
 			// Get the revision ID of the oldest new message on the user's talk
 			// page. This can be used for constructing new message alerts on
 			// the client side.

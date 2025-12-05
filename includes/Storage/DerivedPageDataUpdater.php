@@ -56,6 +56,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILBFactory;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A handle for managing updates for derived page data on edit, import, purge, etc.
@@ -864,7 +865,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 		// NOTE: user and timestamp must be set, so they can be used for
 		// {{subst:REVISIONUSER}} and {{subst:REVISIONTIMESTAMP}} in PST!
-		$this->revision->setTimestamp( MWTimestamp::now( TS_MW ) );
+		$this->revision->setTimestamp( MWTimestamp::now( TS::MW ) );
 		$this->revision->setUser( $user );
 
 		// Set up ParserOptions to operate on the new revision
@@ -1837,7 +1838,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 *   - defer: one of the DeferredUpdates constants, or false to run immediately after waiting
 	 *     for replication of the changes from the SecondaryDataUpdates hooks (default: false)
 	 *   - freshness: used with 'defer'; forces an update if the last update was before the given timestamp,
-	 *     even if the page and its dependencies didn't change since then (TS_MW; default: false)
+	 *     even if the page and its dependencies didn't change since then (TS::MW; default: false)
 	 * @since 1.32
 	 */
 	public function doSecondaryDataUpdates( array $options = [] ) {

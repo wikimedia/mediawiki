@@ -7,6 +7,8 @@ use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group Database
@@ -32,7 +34,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideAttribs() {
 		$attribs = [
-			'rc_timestamp' => wfTimestamp( TS_MW ),
+			'rc_timestamp' => ConvertibleTimestamp::now( TS::MW ),
 			'rc_namespace' => NS_USER,
 			'rc_title' => 'Tony',
 			'rc_source' => RecentChange::SRC_EDIT,

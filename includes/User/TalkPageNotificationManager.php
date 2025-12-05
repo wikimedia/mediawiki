@@ -16,6 +16,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Manages user talk page notifications
@@ -181,7 +182,7 @@ class TalkPageNotificationManager {
 
 	/**
 	 * Returns the timestamp of the latest revision of the user talkpage
-	 * that the user has already seen in TS_MW format.
+	 * that the user has already seen in TS::MW format.
 	 * If the user has no new messages, returns null
 	 *
 	 * @param UserIdentity $user
@@ -209,7 +210,7 @@ class TalkPageNotificationManager {
 			// cache *not* having a new message as well (if $timestamp is null).
 			$this->userMessagesCache[$userKey] = true;
 		}
-		return $timestamp !== null ? MWTimestamp::convert( TS_MW, $timestamp ) : null;
+		return $timestamp !== null ? MWTimestamp::convert( TS::MW, $timestamp ) : null;
 	}
 
 	/**

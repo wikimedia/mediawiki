@@ -57,6 +57,7 @@ use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Represents a title within MediaWiki.
@@ -3292,7 +3293,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	/**
 	 * Updates page_touched for this page; called from LinksUpdate.php
 	 *
-	 * @param string|null $purgeTime [optional] TS_MW timestamp
+	 * @param string|null $purgeTime [optional] TS::MW timestamp
 	 * @return bool True if the update succeeded
 	 */
 	public function invalidateCache( $purgeTime = null ) {
@@ -3378,7 +3379,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 */
 	public function getTouched( int $flags = IDBAccessObject::READ_NORMAL ) {
 		$touched = $this->getFieldFromPageStore( 'page_touched', $flags );
-		return $touched ? MWTimestamp::convert( TS_MW, $touched ) : false;
+		return $touched ? MWTimestamp::convert( TS::MW, $touched ) : false;
 	}
 
 	/**

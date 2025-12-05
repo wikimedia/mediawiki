@@ -25,6 +25,7 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\Subquery;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Query module to enumerate all deleted revisions.
@@ -337,7 +338,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$rev = [];
 			$anyHidden = false;
 
-			$rev['timestamp'] = wfTimestamp( TS_ISO_8601, $row->ar_timestamp );
+			$rev['timestamp'] = wfTimestamp( TS::ISO_8601, $row->ar_timestamp );
 			if ( $fld_revid ) {
 				$rev['revid'] = (int)$row->ar_rev_id;
 			}

@@ -14,6 +14,7 @@ use MediaWiki\Block\SystemBlock;
 use MediaWiki\Language\Language;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Helper class for API modules that display block information. Intended for use via
@@ -55,7 +56,7 @@ class ApiBlockInfoHelper {
 		$vals['blockedbyid'] = $blocker ? $blocker->getId() : 0;
 		$vals['blockreason'] = $block->getReasonComment()
 			->message->inLanguage( $language )->plain();
-		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->getTimestamp() );
+		$vals['blockedtimestamp'] = wfTimestamp( TS::ISO_8601, $block->getTimestamp() );
 		$expiry = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
 		$vals['blockexpiry'] = $expiry;
 		$vals['blockpartial'] = !$block->isSitewide();

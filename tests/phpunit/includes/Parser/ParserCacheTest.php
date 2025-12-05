@@ -29,6 +29,7 @@ use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -48,7 +49,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->time = time();
-		$this->cacheTime = ConvertibleTimestamp::convert( TS_MW, $this->time + 1 );
+		$this->cacheTime = ConvertibleTimestamp::convert( TS::MW, $this->time + 1 );
 		$this->page = $this->createPageRecord();
 
 		ConvertibleTimestamp::setFakeTime( $this->time );

@@ -28,6 +28,7 @@ use Profiler;
 use RuntimeException;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Base class for QuickTemplate-based skins.
@@ -927,7 +928,7 @@ class SkinTemplate extends Skin {
 			$watchStore = $services->getWatchedItemStore();
 			$watchedItem = $watchStore->getWatchedItem( $performer->getUser(), $title );
 			$diffInDays = $watchedItem->getExpiryInDays();
-			$watchExpiry = $watchedItem->getExpiry( TS_ISO_8601 );
+			$watchExpiry = $watchedItem->getExpiry( TS::ISO_8601 );
 			if ( $diffInDays ) {
 				$msgParams = [ $diffInDays ];
 				// Resolves to tooltip-ca-unwatch-expiring message

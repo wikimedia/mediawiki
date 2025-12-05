@@ -8,6 +8,7 @@ use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\ParamValidator\ValidationException;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \Wikimedia\ParamValidator\TypeDef\ExpiryDef
@@ -132,15 +133,15 @@ class ExpiryDefTest extends TypeDefTestCase {
 		);
 		$this->assertSame(
 			'2050-01-01T00:00:00Z',
-			ExpiryDef::normalizeExpiry( '205001010000', TS_ISO_8601 )
+			ExpiryDef::normalizeExpiry( '205001010000', TS::ISO_8601 )
 		);
 		$this->assertSame(
 			'1970-01-01T00:00:00Z',
-			ExpiryDef::normalizeExpiry( '1970-01-01T00:00:00Z', TS_ISO_8601 )
+			ExpiryDef::normalizeExpiry( '1970-01-01T00:00:00Z', TS::ISO_8601 )
 		);
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Invalid expiry value: 0' );
-		ExpiryDef::normalizeExpiry( 0, TS_ISO_8601 );
+		ExpiryDef::normalizeExpiry( 0, TS::ISO_8601 );
 	}
 
 	public static function provideGetInfo() {
@@ -178,20 +179,20 @@ class ExpiryDefTest extends TypeDefTestCase {
 		ConvertibleTimestamp::setFakeTime( '20200527000000' );
 		$this->assertSame(
 			'2020-11-27T00:00:00Z',
-			ExpiryDef::normalizeUsingMaxExpiry( '10 months', '6 months', TS_ISO_8601 )
+			ExpiryDef::normalizeUsingMaxExpiry( '10 months', '6 months', TS::ISO_8601 )
 		);
 		$this->assertSame(
 			'2020-10-27T00:00:00Z',
-			ExpiryDef::normalizeUsingMaxExpiry( '2020-10-27T00:00:00Z', '6 months', TS_ISO_8601 )
+			ExpiryDef::normalizeUsingMaxExpiry( '2020-10-27T00:00:00Z', '6 months', TS::ISO_8601 )
 		);
 		$this->assertSame(
 			'infinity',
-			ExpiryDef::normalizeUsingMaxExpiry( 'infinity', '6 months', TS_ISO_8601 )
+			ExpiryDef::normalizeUsingMaxExpiry( 'infinity', '6 months', TS::ISO_8601 )
 		);
-		$this->assertNull( ExpiryDef::normalizeUsingMaxExpiry( null, '6 months', TS_ISO_8601 ) );
+		$this->assertNull( ExpiryDef::normalizeUsingMaxExpiry( null, '6 months', TS::ISO_8601 ) );
 
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Invalid expiry value: invalid expiry' );
-		ExpiryDef::normalizeUsingMaxExpiry( 'invalid expiry', '6 months', TS_ISO_8601 );
+		ExpiryDef::normalizeUsingMaxExpiry( 'invalid expiry', '6 months', TS::ISO_8601 );
 	}
 }

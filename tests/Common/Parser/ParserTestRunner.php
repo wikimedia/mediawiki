@@ -82,6 +82,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @ingroup Testing
@@ -1382,7 +1383,7 @@ class ParserTestRunner {
 
 		$options = $parserOptionsCallback( $context, $title, $revProps );
 		$options->setTimestamp(
-			MWTimestamp::convert( TS_MW, $revProps['timestamp'] )
+			MWTimestamp::convert( TS::MW, $revProps['timestamp'] )
 		);
 		$options->setUserLang( $opts['userlanguage'] ?? $context->getLanguage() );
 

@@ -8,6 +8,7 @@
  */
 
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Class for some IPTC functions.
@@ -361,9 +362,9 @@ class IPTC {
 			return null;
 		}
 
-		$unixTS = wfTimestamp( TS_UNIX, $date . substr( $time, 0, 6 ) );
+		$unixTS = wfTimestamp( TS::UNIX, $date . substr( $time, 0, 6 ) );
 		if ( $unixTS === false ) {
-			wfDebugLog( 'iptc', "IPTC: can't convert date to TS_UNIX: $date $time." );
+			wfDebugLog( 'iptc', "IPTC: can't convert date to TS::UNIX: $date $time." );
 
 			return null;
 		}
@@ -375,7 +376,7 @@ class IPTC {
 			$tz = -$tz;
 		}
 
-		$finalTimestamp = wfTimestamp( TS_EXIF, (int)$unixTS + $tz );
+		$finalTimestamp = wfTimestamp( TS::EXIF, (int)$unixTS + $tz );
 		if ( $finalTimestamp === false ) {
 			wfDebugLog( 'iptc', "IPTC: can't make final timestamp. Date: " . ( (int)$unixTS + $tz ) );
 

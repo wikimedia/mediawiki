@@ -22,6 +22,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use RuntimeException;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @defgroup RecentChanges Recent changes
@@ -631,7 +632,7 @@ class RecentChange implements Taggable {
 	 */
 	public function loadFromRow( $row ) {
 		$this->mAttribs = get_object_vars( $row );
-		$this->mAttribs['rc_timestamp'] = wfTimestamp( TS_MW, $this->mAttribs['rc_timestamp'] );
+		$this->mAttribs['rc_timestamp'] = wfTimestamp( TS::MW, $this->mAttribs['rc_timestamp'] );
 		// rc_deleted MUST be set
 		$this->mAttribs['rc_deleted'] = $row->rc_deleted;
 
@@ -654,7 +655,7 @@ class RecentChange implements Taggable {
 
 		// Watchlist expiry.
 		if ( isset( $row->we_expiry ) && $row->we_expiry ) {
-			$this->watchlistExpiry = wfTimestamp( TS_MW, $row->we_expiry );
+			$this->watchlistExpiry = wfTimestamp( TS::MW, $row->we_expiry );
 		}
 	}
 
@@ -784,7 +785,7 @@ class RecentChange implements Taggable {
 		$rcMaxAge =
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCMaxAge );
 
-		return (int)wfTimestamp( TS_UNIX, $timestamp ) > time() - $tolerance - $rcMaxAge;
+		return (int)wfTimestamp( TS::UNIX, $timestamp ) > time() - $tolerance - $rcMaxAge;
 	}
 
 	/**

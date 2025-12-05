@@ -28,6 +28,8 @@ use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Storage layer class for WatchedItems.
@@ -803,7 +805,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 			$target,
 			$this->getLatestNotificationTimestamp(
 				$row->wl_notificationtimestamp, $user, $target ),
-			wfTimestampOrNull( TS_ISO_8601, $row->we_expiry ?? null ),
+			wfTimestampOrNull( TS::ISO_8601, $row->we_expiry ?? null ),
 			array_values( $labels )
 		);
 	}
@@ -955,7 +957,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 				return;
 			}
 
-			$expiry = ExpiryDef::normalizeUsingMaxExpiry( $expiry, $this->maxExpiryDuration, TS_ISO_8601 );
+			$expiry = ExpiryDef::normalizeUsingMaxExpiry( $expiry, $this->maxExpiryDuration, TS::ISO_8601 );
 		} else {
 			$expiry = null;
 		}
@@ -996,7 +998,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		if ( !$targets ) {
 			return true;
 		}
-		$expiry = ExpiryDef::normalizeUsingMaxExpiry( $expiry, $this->maxExpiryDuration, TS_ISO_8601 );
+		$expiry = ExpiryDef::normalizeUsingMaxExpiry( $expiry, $this->maxExpiryDuration, TS::ISO_8601 );
 		$rows = [];
 		foreach ( $targets as $target ) {
 			$rows[] = [
@@ -1211,7 +1213,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		UserIdentity $user,
 		PageReference $target
 	) {
-		$timestamp = wfTimestampOrNull( TS_MW, $timestamp );
+		$timestamp = wfTimestampOrNull( TS::MW, $timestamp );
 		if ( $timestamp === null ) {
 			return null; // no notification
 		}
@@ -1351,7 +1353,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 			}
 		}
 
-		// Get the timestamp (TS_MW) of this revision to track the latest one seen
+		// Get the timestamp (TS::MW) of this revision to track the latest one seen
 		$id = $oldid;
 		$seenTime = null;
 		if ( !$id ) {
@@ -1388,7 +1390,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 					$this->latestUpdateCache->set( $key, $value->toArray(), BagOStuff::TTL_PROC_LONG );
 				} elseif ( $seenTime === false ) {
 					// Revision does not exist
-					$value->set( $subKey, wfTimestamp( TS_MW ) );
+					$value->set( $subKey, ConvertibleTimestamp::now( TS::MW ) );
 					$this->latestUpdateCache->set( $key,
 						$value->toArray(),
 						BagOStuff::TTL_PROC_LONG );
@@ -1422,7 +1424,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 
 	/**
 	 * @param UserIdentity $user
-	 * @return array|null The map contains prefixed title keys and TS_MW values
+	 * @return array|null The map contains prefixed title keys and TS::MW values
 	 */
 	private function getPageSeenTimestamps( UserIdentity $user ) {
 		$key = $this->getPageSeenTimestampsKey( $user );
@@ -1505,7 +1507,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		// throughout the codebase
 		$ts = new MWTimestamp( $notificationTimestamp );
 		$ts->timestamp->add( new DateInterval( 'PT1S' ) );
-		$notificationTimestamp = $ts->getTimestamp( TS_MW );
+		$notificationTimestamp = $ts->getTimestamp( TS::MW );
 
 		if ( $notificationTimestamp < $item->getNotificationTimestamp() ) {
 			if ( $force != 'force' ) {

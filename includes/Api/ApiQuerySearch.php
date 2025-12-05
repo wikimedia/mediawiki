@@ -18,6 +18,7 @@ use SearchResult;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Query module to perform full text search within wiki titles and content
@@ -250,7 +251,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			$vals['snippet'] = $result->getTextSnippet();
 		}
 		if ( isset( $prop['timestamp'] ) ) {
-			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $result->getTimestamp() );
+			$vals['timestamp'] = wfTimestamp( TS::ISO_8601, $result->getTimestamp() );
 		}
 		if ( isset( $prop['titlesnippet'] ) ) {
 			$vals['titlesnippet'] = $result->getTitleSnippet();

@@ -26,6 +26,7 @@ use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Manage the pre-emptive page parsing for edits to wiki pages.
@@ -146,7 +147,7 @@ class PageEditStash {
 			$newKey = $this->getStashKey( $page, $contentHash, $user, $other_version );
 			$editInfo = $this->getStashValue( $newKey );
 		}
-		if ( $editInfo && (int)wfTimestamp( TS_UNIX, $editInfo->timestamp ) >= $cutoffTime ) {
+		if ( $editInfo && (int)wfTimestamp( TS::UNIX, $editInfo->timestamp ) >= $cutoffTime ) {
 			$alreadyCached = true;
 		} else {
 			$pageUpdater->setContent( SlotRecord::MAIN, $content );
@@ -283,7 +284,7 @@ class PageEditStash {
 			return false;
 		}
 
-		$age = time() - (int)wfTimestamp( TS_UNIX, $editInfo->output->getCacheTime() );
+		$age = time() - (int)wfTimestamp( TS::UNIX, $editInfo->output->getCacheTime() );
 		$logContext['age'] = $age;
 
 		$isCacheUsable = true;
@@ -407,7 +408,7 @@ class PageEditStash {
 
 	/**
 	 * @param UserIdentity $user
-	 * @return string|null TS_MW timestamp or null
+	 * @return string|null TS::MW timestamp or null
 	 */
 	private function lastEditTime( UserIdentity $user ): ?string {
 		$time = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
@@ -418,7 +419,7 @@ class PageEditStash {
 			->caller( __METHOD__ )
 			->fetchField();
 
-		return wfTimestampOrNull( TS_MW, $time );
+		return wfTimestampOrNull( TS::MW, $time );
 	}
 
 	/**
@@ -488,7 +489,7 @@ class PageEditStash {
 		$parserOutput = $stashInfo->output;
 		// If an item is renewed, mind the cache TTL determined by config and parser functions.
 		// Put an upper limit on the TTL to avoid extreme template/file staleness.
-		$age = time() - (int)wfTimestamp( TS_UNIX, $parserOutput->getCacheTime() );
+		$age = time() - (int)wfTimestamp( TS::UNIX, $parserOutput->getCacheTime() );
 		$ttl = min( $parserOutput->getCacheExpiry() - $age, self::MAX_CACHE_TTL );
 		// Avoid extremely stale user signature timestamps (T84843)
 		if ( $parserOutput->getOutputFlag( ParserOutputFlags::USER_SIGNATURE ) ) {

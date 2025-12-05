@@ -16,6 +16,7 @@ use MediaWikiIntegrationTestCase;
 use stdClass;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Tests\SerializationTestUtils;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A collection of serialization test cases for parser cache.
@@ -128,7 +129,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertSame( self::FAKE_CACHE_EXPIRY, $object->getCacheExpiry() );
 					$testCase->assertNull( $object->getCacheRevisionId() );
 					$testCase->assertSame(
-						MWTimestamp::convert( TS_MW, self::FAKE_TIME ),
+						MWTimestamp::convert( TS::MW, self::FAKE_TIME ),
 						$object->getCacheTime()
 					);
 					// When the cacheRevisionId is not set, this method always returns true.
@@ -137,7 +138,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertTrue( $object->isCacheable() );
 					$testCase->assertSame(
 						$object->getCacheTime(),
-						MWTimestamp::convert( TS_MW, self::FAKE_TIME )
+						MWTimestamp::convert( TS::MW, self::FAKE_TIME )
 					);
 				}
 			],
@@ -287,7 +288,7 @@ abstract class ParserCacheSerializationTestCases {
 		);
 		$parserOutputWithMetadata->addImage(
 			new TitleValue( NS_FILE, 'Image1' ),
-			MWTimestamp::convert( TS_MW, 123456789 ),
+			MWTimestamp::convert( TS::MW, 123456789 ),
 			'test_sha1'
 		);
 		$parserOutputWithMetadata->addExternalLink( 'https://test.org' );
@@ -297,7 +298,7 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->setJsConfigVar( 'key1', 'value1' );
 		$parserOutputWithMetadata->addWarningMsg( 'rawmessage', 'warning1' );
 		$parserOutputWithMetadata->setIndexPolicy( 'noindex' );
-		$parserOutputWithMetadata->setRevisionTimestamp( MWTimestamp::convert( TS_MW, 987654321 ) );
+		$parserOutputWithMetadata->setRevisionTimestamp( MWTimestamp::convert( TS::MW, 987654321 ) );
 		$parserOutputWithMetadata->setLimitReportData( 'limit_report_key1', 'value1' );
 		$parserOutputWithMetadata->setEnableOOUI( true );
 		$parserOutputWithMetadata->setHideNewSection( true );
@@ -316,7 +317,7 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadataPost1_31->addWrapperDivClass( 'test_wrapper' );
 		$parserOutputWithMetadataPost1_31->setSpeculativePageIdUsed( 4242 );
 		$parserOutputWithMetadataPost1_31->setRevisionTimestampUsed(
-			MWTimestamp::convert( TS_MW, 123456789 )
+			MWTimestamp::convert( TS::MW, 123456789 )
 		);
 		$parserOutputWithMetadataPost1_31->setRevisionUsedSha1Base36( 'test_hash' );
 		$parserOutputWithMetadataPost1_31->setNoGallery( true );
@@ -482,7 +483,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertSame( 'test_wrapper', $object->getWrapperDivClass() );
 					$testCase->assertSame( 4242, $object->getSpeculativePageIdUsed() );
 					$testCase->assertSame(
-						MWTimestamp::convert( TS_MW, 123456789 ),
+						MWTimestamp::convert( TS::MW, 123456789 ),
 						$object->getRevisionTimestampUsed()
 					);
 					$testCase->assertSame( 'test_hash', $object->getRevisionUsedSha1Base36() );
@@ -550,7 +551,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [
 						[
 							'link' => '6:Image1',
-							'time' => MWTimestamp::convert( TS_MW, 123456789 ),
+							'time' => MWTimestamp::convert( TS::MW, 123456789 ),
 							'sha1' => 'test_sha1',
 						]
 					], array_map(
@@ -564,7 +565,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [ 'key1' => 'value1' ], $object->getJsConfigVars() );
 					$testCase->assertArrayEquals( [ MessageValue::new( 'rawmessage', [ 'warning1' ] ) ], $object->getWarningMsgs() );
 					$testCase->assertSame( 'noindex', $object->getIndexPolicy() );
-					$testCase->assertSame( MWTimestamp::convert( TS_MW, 987654321 ), $object->getRevisionTimestamp() );
+					$testCase->assertSame( MWTimestamp::convert( TS::MW, 987654321 ), $object->getRevisionTimestamp() );
 					$testCase->assertArrayEquals(
 						[ 'limit_report_key1' => 'value1' ],
 						$object->getLimitReportData()
@@ -627,7 +628,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [
 						[
 							'link' => '6:Image1',
-							'time' => MWTimestamp::convert( TS_MW, 123456789 ),
+							'time' => MWTimestamp::convert( TS::MW, 123456789 ),
 							'sha1' => 'test_sha1',
 						]
 					], array_map(
@@ -641,7 +642,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [ 'key1' => 'value1' ], $object->getJsConfigVars() );
 					$testCase->assertArrayEquals( [ MessageValue::new( 'rawmessage', [ 'warning1' ] ) ], $object->getWarningMsgs() );
 					$testCase->assertSame( 'noindex', $object->getIndexPolicy() );
-					$testCase->assertSame( MWTimestamp::convert( TS_MW, 987654321 ), $object->getRevisionTimestamp() );
+					$testCase->assertSame( MWTimestamp::convert( TS::MW, 987654321 ), $object->getRevisionTimestamp() );
 					$testCase->assertArrayEquals(
 						[ 'limit_report_key1' => 'value1' ],
 						$object->getLimitReportData()

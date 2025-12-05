@@ -29,6 +29,7 @@ use MediaWiki\User\UserNameUtils;
 use stdClass;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A query action to enumerate the recent changes that were done to the wiki.
@@ -493,7 +494,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		/* Add the timestamp. */
 		if ( $this->fld_timestamp ) {
-			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->rc_timestamp );
+			$vals['timestamp'] = wfTimestamp( TS::ISO_8601, $row->rc_timestamp );
 		}
 
 		/* Add edit summary / log summary. */

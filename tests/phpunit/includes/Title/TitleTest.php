@@ -16,6 +16,7 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group Database
@@ -527,7 +528,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $title->getWikiId(), $record->getWikiId() );
 
 		$this->assertSame( $title->getLatestRevID(), $record->getLatest() );
-		$this->assertSame( MWTimestamp::convert( TS_MW, $title->getTouched() ), $record->getTouched() );
+		$this->assertSame( MWTimestamp::convert( TS::MW, $title->getTouched() ), $record->getTouched() );
 		$this->assertSame( $title->isNewPage(), $record->isNew() );
 		$this->assertSame( $title->isRedirect(), $record->isRedirect() );
 		$this->assertSame( $title->getTouched(), $record->getTouched() );

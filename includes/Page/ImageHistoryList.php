@@ -15,6 +15,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Builds the image revision log shown on image pages
@@ -108,7 +109,7 @@ class ImageHistoryList extends ContextSource {
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		$timestamp = wfTimestamp( TS_MW, $file->getTimestamp() );
+		$timestamp = wfTimestamp( TS::MW, $file->getTimestamp() );
 		// @phan-suppress-next-line PhanUndeclaredMethod
 		$img = $iscur ? $file->getName() : $file->getArchiveName();
 		$uploader = $file->getUploader( File::FOR_THIS_USER, $user );
@@ -294,7 +295,7 @@ class ImageHistoryList extends ContextSource {
 		}
 
 		$lang = $this->getLanguage();
-		$timestamp = wfTimestamp( TS_MW, $file->getTimestamp() );
+		$timestamp = wfTimestamp( TS::MW, $file->getTimestamp() );
 		$alt = $this->msg(
 			'filehist-thumbtext',
 			$lang->userTimeAndDate( $timestamp, $user ),

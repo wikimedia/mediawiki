@@ -24,6 +24,7 @@ use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Pager for Special:Contributions
@@ -207,7 +208,7 @@ class ContribsPager extends ContributionsPager {
 			// the endpoints of our date range appear inclusive
 			// but the internal end offsets are always exclusive
 			$legacyTimestamp = ReverseChronologicalPager::getOffsetDate( $year, $month );
-			$legacyDateTime = new DateTime( $legacyTimestamp->getTimestamp( TS_ISO_8601 ) );
+			$legacyDateTime = new DateTime( $legacyTimestamp->getTimestamp( TS::ISO_8601 ) );
 			$legacyDateTime = $legacyDateTime->modify( '-1 day' );
 
 			// Clear the new timestamp range options if used and

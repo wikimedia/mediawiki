@@ -30,6 +30,7 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\Subquery;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @ingroup Pager
@@ -538,7 +539,7 @@ class ImageListPager extends TablePager {
 		$linkRenderer = $this->getLinkRenderer();
 		switch ( $field ) {
 			case 'thumb':
-				$opt = [ 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) ];
+				$opt = [ 'time' => wfTimestamp( TS::MW, $this->mCurrentRow->img_timestamp ) ];
 				$file = $this->localRepo->findFile( $this->getCurrentRow()->img_name, $opt );
 				// If statement for paranoia
 				if ( $file ) {
@@ -564,7 +565,7 @@ class ImageListPager extends TablePager {
 						$filePage,
 						$filePage->getText()
 					);
-					$opt = [ 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) ];
+					$opt = [ 'time' => wfTimestamp( TS::MW, $this->mCurrentRow->img_timestamp ) ];
 					$file = $this->localRepo->findFile( $value, $opt );
 					if ( $file ) {
 						$download = Html::element(

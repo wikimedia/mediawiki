@@ -19,6 +19,7 @@ use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * API interface for setting the wl_notificationtimestamp field
@@ -140,7 +141,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 
 			$result['notificationtimestamp'] = $timestamp === null
 				? ''
-				: wfTimestamp( TS_ISO_8601, $timestamp );
+				: wfTimestamp( TS::ISO_8601, $timestamp );
 		} else {
 			// First, log the invalid titles
 			foreach ( $pageSet->getInvalidTitlesAndReasons() as $r ) {
@@ -198,7 +199,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 					) {
 						$r['notificationtimestamp'] = '';
 						if ( $timestamps[$ns][$dbkey] !== null ) {
-							$r['notificationtimestamp'] = wfTimestamp( TS_ISO_8601, $timestamps[$ns][$dbkey] );
+							$r['notificationtimestamp'] = wfTimestamp( TS::ISO_8601, $timestamps[$ns][$dbkey] );
 						}
 					} else {
 						$r['notwatched'] = true;

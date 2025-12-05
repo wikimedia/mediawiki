@@ -29,6 +29,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A simple method to retrieve the plain source of an article,
@@ -224,7 +225,7 @@ class RawAction extends FormlessAction {
 		// Get it from the DB
 		$rev = $this->revisionLookup->getRevisionByTitle( $title, $this->getOldId() );
 		if ( $rev ) {
-			$lastMod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
+			$lastMod = wfTimestamp( TS::RFC2822, $rev->getTimestamp() );
 			$request->response()->header( "Last-modified: $lastMod" );
 
 			// Public-only due to cache headers

@@ -58,6 +58,7 @@ use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ReplacementArray;
 use Wikimedia\StringUtils\StringUtils;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Base class for language-specific code.
@@ -2474,7 +2475,7 @@ class Language implements Bcp47Code {
 
 	/**
 	 * @param string $ts The time format which needs to be turned into a
-	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 *   date('YmdHis') format with wfTimestamp(TS::MW,$ts)
 	 * @param bool $adj Whether to adjust the time output according to the
 	 *   user configured offset ($timecorrection)
 	 * @param mixed $format True to use user's date format preference
@@ -2483,7 +2484,7 @@ class Language implements Bcp47Code {
 	 * @return string
 	 */
 	public function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
-		$ts = wfTimestamp( TS_MW, $ts );
+		$ts = wfTimestamp( TS::MW, $ts );
 		if ( $adj ) {
 			$ts = $this->userAdjust( $ts, $timecorrection );
 		}
@@ -2493,7 +2494,7 @@ class Language implements Bcp47Code {
 
 	/**
 	 * @param string $ts The time format which needs to be turned into a
-	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 *   date('YmdHis') format with wfTimestamp(TS::MW,$ts)
 	 * @param bool $adj Whether to adjust the time output according to the
 	 *   user configured offset ($timecorrection)
 	 * @param mixed $format True to use user's date format preference
@@ -2502,7 +2503,7 @@ class Language implements Bcp47Code {
 	 * @return string
 	 */
 	public function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
-		$ts = wfTimestamp( TS_MW, $ts );
+		$ts = wfTimestamp( TS::MW, $ts );
 		if ( $adj ) {
 			$ts = $this->userAdjust( $ts, $timecorrection );
 		}
@@ -2512,7 +2513,7 @@ class Language implements Bcp47Code {
 
 	/**
 	 * @param string $ts The time format which needs to be turned into a
-	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 *   date('YmdHis') format with wfTimestamp(TS::MW,$ts)
 	 * @param bool $adj Whether to adjust the time output according to the
 	 *   user configured offset ($timecorrection)
 	 * @param mixed $format What date format to return the result in; if it's false output the
@@ -2522,7 +2523,7 @@ class Language implements Bcp47Code {
 	 * @return string
 	 */
 	public function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false ) {
-		$ts = wfTimestamp( TS_MW, $ts );
+		$ts = wfTimestamp( TS::MW, $ts );
 		if ( $adj ) {
 			$ts = $this->userAdjust( $ts, $timecorrection );
 		}
@@ -2677,7 +2678,7 @@ class Language implements Bcp47Code {
 	 *
 	 * @param string $type Can be 'date', 'time' or 'both'
 	 * @param string $ts The time format which needs to be turned into a
-	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 *   date('YmdHis') format with wfTimestamp(TS::MW,$ts)
 	 * @param UserIdentity $user User used to get preferences for timezone and format
 	 * @param array $options Array, can contain the following keys:
 	 *   - 'timecorrection': time correction, can have the following values:
@@ -2692,7 +2693,7 @@ class Language implements Bcp47Code {
 	 * @return string
 	 */
 	private function internalUserTimeAndDate( $type, $ts, UserIdentity $user, array $options ) {
-		$ts = wfTimestamp( TS_MW, $ts );
+		$ts = wfTimestamp( TS::MW, $ts );
 		$options += [ 'timecorrection' => true, 'format' => true ];
 		if ( $options['timecorrection'] !== false ) {
 			if ( $options['timecorrection'] === true ) {
@@ -2721,7 +2722,7 @@ class Language implements Bcp47Code {
 	 * the given user.
 	 *
 	 * @param mixed $ts Mixed: the time format which needs to be turned into a
-	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 *   date('YmdHis') format with wfTimestamp(TS::MW,$ts)
 	 * @param UserIdentity $user User used to get preferences for timezone and format
 	 * @param array $options Array, can contain the following keys:
 	 *   - 'timecorrection': time correction, can have the following values:
@@ -2744,7 +2745,7 @@ class Language implements Bcp47Code {
 	 * the given user.
 	 *
 	 * @param mixed $ts The time format which needs to be turned into a
-	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 *   date('YmdHis') format with wfTimestamp(TS::MW,$ts)
 	 * @param UserIdentity $user User used to get preferences for timezone and format
 	 * @param array $options Array, can contain the following keys:
 	 *   - 'timecorrection': time correction, can have the following values:
@@ -2767,7 +2768,7 @@ class Language implements Bcp47Code {
 	 * the given user.
 	 *
 	 * @param mixed $ts The time format which needs to be turned into a
-	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 *   date('YmdHis') format with wfTimestamp(TS::MW,$ts)
 	 * @param UserIdentity $user User used to get preferences for timezone and format
 	 * @param array $options Array, can contain the following keys:
 	 *   - 'timecorrection': time correction, can have the following values:
@@ -2854,18 +2855,18 @@ class Language implements Bcp47Code {
 			 * @todo FIXME: Add better handling of future timestamps.
 			 */
 			$format = $this->getDateFormatString( 'both', $user->getDatePreference() ?: 'default' );
-			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
+			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS::MW ) );
 		} elseif (
 			$days > 5 &&
 			$ts->timestamp->format( 'Y' ) !== $relativeTo->timestamp->format( 'Y' )
 		) {
 			// Timestamps are in different years and more than 5 days apart: use full date
 			$format = $this->getDateFormatString( 'date', $user->getDatePreference() ?: 'default' );
-			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
+			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS::MW ) );
 		} elseif ( $days > 5 ) {
 			// Timestamps are in same year and more than 5 days ago: show day and month only.
 			$format = $this->getDateFormatString( 'pretty', $user->getDatePreference() ?: 'default' );
-			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
+			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS::MW ) );
 		} elseif ( $days > 1 ) {
 			// Timestamp within the past 5 days: show the day of the week and time
 			$format = $this->getDateFormatString( 'time', $user->getDatePreference() ?: 'default' );
@@ -2873,19 +2874,19 @@ class Language implements Bcp47Code {
 			// The following messages are used here:
 			// * sunday-at, monday-at, tuesday-at, wednesday-at, thursday-at, friday-at, saturday-at
 			$ts = $this->msg( "$weekday-at" )
-				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
+				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS::MW ) ) )
 				->text();
 		} elseif ( $days == 1 ) {
 			// Timestamp was yesterday: say 'yesterday' and the time.
 			$format = $this->getDateFormatString( 'time', $user->getDatePreference() ?: 'default' );
 			$ts = $this->msg( 'yesterday-at' )
-				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
+				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS::MW ) ) )
 				->text();
 		} elseif ( $diff->h > 1 || ( $diff->h == 1 && $diff->i > 30 ) ) {
 			// Timestamp was today, but more than 90 minutes ago: say 'today' and the time.
 			$format = $this->getDateFormatString( 'time', $user->getDatePreference() ?: 'default' );
 			$ts = $this->msg( 'today-at' )
-				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
+				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS::MW ) ) )
 				->text();
 
 		// From here on in, the timestamp was soon enough ago so that we can simply say
@@ -4446,7 +4447,7 @@ class Language implements Bcp47Code {
 			}
 
 			// Return the timestamp as-is if it is in an unknown format to ConvertibleTimestamp (T354663)
-			$time = ConvertibleTimestamp::convert( TS_MW, $time );
+			$time = ConvertibleTimestamp::convert( TS::MW, $time );
 			if ( $time === false ) {
 				return $str;
 			}
@@ -4613,7 +4614,7 @@ class Language implements Bcp47Code {
 	 * Decode an expiry (block, protection, etc.) which has come from the DB
 	 *
 	 * @param string $expiry Database expiry String
-	 * @param true|int $format True to process using language functions, or TS_ constant
+	 * @param true|int|TS $format True to process using language functions, or TS:: constant
 	 *     to return the expiry in a given timestamp
 	 * @param string $infinity If $format is not true, use this string for infinite expiry
 	 * @param UserIdentity|null $user If $format is true, use this user for date format

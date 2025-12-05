@@ -11,6 +11,7 @@ use RuntimeException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Class for getting statistically unique IDs without a central coordinator
@@ -326,10 +327,10 @@ class GlobalIdGenerator {
 	 * Get timestamp in a specified format from UUIDv1
 	 *
 	 * @param string $uuid the UUID to get the timestamp from
-	 * @param int $format the format to convert the timestamp to. Default: TS_MW
+	 * @param int|TS $format the format to convert the timestamp to. Default: TS::MW
 	 * @return string|false timestamp in requested format or false
 	 */
-	public function getTimestampFromUUIDv1( string $uuid, int $format = TS_MW ) {
+	public function getTimestampFromUUIDv1( string $uuid, int|TS $format = TS::MW ) {
 		$components = [];
 		if ( !preg_match(
 			'/^([0-9a-f]{8})-([0-9a-f]{4})-(1[0-9a-f]{3})-([89ab][0-9a-f]{3})-([0-9a-f]{12})$/',

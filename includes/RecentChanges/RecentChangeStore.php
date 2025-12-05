@@ -30,6 +30,7 @@ use RuntimeException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @since 1.45
@@ -558,7 +559,7 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 
 		$rc = new RecentChange( $categoryTitle, $user );
 		$rc->setAttribs( [
-			'rc_timestamp' => MWTimestamp::convert( TS_MW, $timestamp ),
+			'rc_timestamp' => MWTimestamp::convert( TS::MW, $timestamp ),
 			'rc_namespace' => $categoryTitle->getNamespace(),
 			'rc_title' => $categoryTitle->getDBkey(),
 			'rc_source' => RecentChange::SRC_CATEGORIZE,

@@ -14,6 +14,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Core REST API endpoint that handles page updates (main slot only)
@@ -147,7 +148,7 @@ class UpdateHandler extends EditHandler {
 
 			$data['edit']['newrevid'] = $currentRev->getId();
 			$data['edit']['newtimestamp']
-				= MWTimestamp::convert( TS_ISO_8601, $currentRev->getTimestamp() );
+				= MWTimestamp::convert( TS::ISO_8601, $currentRev->getTimestamp() );
 		}
 
 		return parent::mapActionModuleResult( $data );

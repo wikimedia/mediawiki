@@ -9,6 +9,7 @@ use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\RdfWriterFactory;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -116,7 +117,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 			->say( 'cc', 'license' )->is( $licenseUrl )
 			->say( 'schema', 'softwareVersion' )->value( CategoriesRdf::FORMAT_VERSION )
 			->say( 'schema', 'dateModified' )
-			->value( wfTimestamp( TS_ISO_8601, $timestamp ), 'xsd', 'dateTime' )
+			->value( wfTimestamp( TS::ISO_8601, $timestamp ), 'xsd', 'dateTime' )
 			->say( 'schema', 'isPartOf' )->is( (string)$urlUtils->expand( '/', PROTO_CANONICAL ) )
 			->say( 'owl', 'imports' )->is( CategoriesRdf::OWL_URL );
 	}

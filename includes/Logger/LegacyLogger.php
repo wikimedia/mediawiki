@@ -17,6 +17,8 @@ use Psr\Log\LogLevel;
 use Throwable;
 use UDPTransport;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * PSR-3 logger that mimics the historic implementation of MediaWiki's former
@@ -360,7 +362,7 @@ class LegacyLogger extends AbstractLogger {
 	 * @return string
 	 */
 	protected static function formatAsWfDebugLog( $channel, $message, $context ) {
-		$time = wfTimestamp( TS_DB );
+		$time = ConvertibleTimestamp::now( TS::DB );
 		$wiki = WikiMap::getCurrentWikiId();
 		$host = wfHostname();
 		$text = "{$time} {$host} {$wiki}: {$message}\n";

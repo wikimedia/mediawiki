@@ -24,6 +24,7 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Query module to enumerate all deleted files.
@@ -206,7 +207,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['sha1'] = \Wikimedia\base_convert( $row->fa_sha1, 36, 16, 40 );
 			}
 			if ( $fld_timestamp ) {
-				$file['timestamp'] = wfTimestamp( TS_ISO_8601, $row->fa_timestamp );
+				$file['timestamp'] = wfTimestamp( TS::ISO_8601, $row->fa_timestamp );
 			}
 			if ( ( $fld_size || $fld_dimensions ) && $canViewFile && $exists ) {
 				$file['size'] = $row->fa_size;

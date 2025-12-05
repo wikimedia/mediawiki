@@ -12,6 +12,7 @@ use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -98,7 +99,7 @@ class ImportTextFiles extends Maintenance {
 
 		foreach ( $files as $file => $text ) {
 			$pageName = $prefix . pathinfo( $file, PATHINFO_FILENAME );
-			$timestamp = $useTimestamp ? wfTimestamp( TS_UNIX, filemtime( $file ) ) : wfTimestampNow();
+			$timestamp = $useTimestamp ? wfTimestamp( TS::UNIX, filemtime( $file ) ) : wfTimestampNow();
 
 			$title = Title::newFromText( $pageName );
 			// Have to check for # manually, since it gets interpreted as a fragment
@@ -114,7 +115,7 @@ class ImportTextFiles extends Maintenance {
 			$actualTitle = $title->getPrefixedText();
 
 			if ( $exists ) {
-				$touched = wfTimestamp( TS_UNIX, $title->getTouched() );
+				$touched = wfTimestamp( TS::UNIX, $title->getTouched() );
 				if ( !$overwrite ) {
 					$this->output( "Title $actualTitle already exists. Skipping.\n" );
 					$skipCount++;

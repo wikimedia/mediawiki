@@ -33,6 +33,7 @@ use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Xml\XmlSelect;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Handles the page protection UI and backend
@@ -194,7 +195,7 @@ class ProtectionForm {
 			$value = $this->mExpirySelection[$action];
 		}
 		try {
-			return ExpiryDef::normalizeExpiry( $value, TS_MW );
+			return ExpiryDef::normalizeExpiry( $value, TS::MW );
 		} catch ( InvalidArgumentException ) {
 			return false;
 		}

@@ -14,6 +14,7 @@ namespace MediaWiki\Logging;
 use MediaWiki\Message\Message;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\User;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * This class formats new user log entries.
@@ -50,7 +51,7 @@ class NewUsersLogFormatter extends LogFormatter {
 
 	/** @inheritDoc */
 	public function getComment() {
-		$timestamp = wfTimestamp( TS_MW, $this->entry->getTimestamp() );
+		$timestamp = wfTimestamp( TS::MW, $this->entry->getTimestamp() );
 		if ( $timestamp < '20080129000000' ) {
 			# Suppress $comment from old entries (before 2008-01-29),
 			# not needed and can contain incorrect links

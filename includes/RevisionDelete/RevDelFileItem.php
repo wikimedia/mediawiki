@@ -14,6 +14,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\RevisionList\RevisionListBase;
 use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Item class for an oldimage table row
@@ -231,7 +232,7 @@ class RevDelFileItem extends RevDelItem {
 		$ret = [
 			'title' => $this->list->getPageName(),
 			'archivename' => $file->getArchiveName(),
-			'timestamp' => wfTimestamp( TS_ISO_8601, $file->getTimestamp() ),
+			'timestamp' => wfTimestamp( TS::ISO_8601, $file->getTimestamp() ),
 			'width' => $file->getWidth(),
 			'height' => $file->getHeight(),
 			'size' => $file->getSize(),

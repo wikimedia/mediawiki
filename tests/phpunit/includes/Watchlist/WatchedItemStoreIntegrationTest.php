@@ -7,6 +7,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchlistLabel;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @author Addshore
@@ -147,15 +148,15 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		// Watch for a duration greater than the max ($wgWatchlistExpiryMaxDuration),
 		// which should get changed to the max.
-		$expiry = wfTimestamp( TS_MW, strtotime( '10 years' ) );
+		$expiry = wfTimestamp( TS::MW, strtotime( '10 years' ) );
 		$store->addWatch( $user, $title, $expiry );
 		$this->assertLessThanOrEqual(
-			wfTimestamp( TS_MW, strtotime( '6 months' ) ),
+			wfTimestamp( TS::MW, strtotime( '6 months' ) ),
 			$store->loadWatchedItem( $user, $title )->getExpiry()
 		);
 
 		// Valid expiry that's less than the max.
-		$expiry = wfTimestamp( TS_MW, strtotime( '1 week' ) );
+		$expiry = wfTimestamp( TS::MW, strtotime( '1 week' ) );
 
 		$store->addWatch( $user, $title, $expiry );
 		$this->assertSame(
@@ -196,7 +197,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertLessThanOrEqual(
 			strtotime( '1 month' ),
 			wfTimestamp(
-				TS_UNIX,
+				TS::UNIX,
 				$store->loadWatchedItem( $user, $title )->getExpiry()
 			)
 		);
@@ -220,7 +221,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		// Use a relative timestamp in the near future to ensure we don't exceed the max.
 		// See testWatchAndUnWatchItemWithExpiry() for tests regarding the max duration.
-		$timestamp = wfTimestamp( TS_MW, strtotime( '1 week' ) );
+		$timestamp = wfTimestamp( TS::MW, strtotime( '1 week' ) );
 		$store->addWatchBatchForUser( $user, [ $title1, $title2 ], $timestamp );
 
 		$this->assertSame(

@@ -34,6 +34,7 @@ use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A module that allows for editing and creating pages.
@@ -574,7 +575,7 @@ class ApiEditPage extends ApiBase {
 				} else {
 					$r['oldrevid'] = (int)$oldRevId;
 					$r['newrevid'] = (int)$newRevId;
-					$r['newtimestamp'] = wfTimestamp( TS_ISO_8601,
+					$r['newtimestamp'] = wfTimestamp( TS::ISO_8601,
 						$pageObj->getTimestamp() );
 				}
 

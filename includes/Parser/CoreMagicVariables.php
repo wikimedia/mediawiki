@@ -16,6 +16,7 @@ use MediaWiki\Specials\SpecialVersion;
 use MediaWiki\Utils\MWTimestamp;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Expansions of core magic variables, used by the parser.
@@ -198,7 +199,7 @@ class CoreMagicVariables {
 
 				return $pageLang->formatNumNoSeparators( $ts->format( 'Y' ) );
 			case 'currenttime':
-				return $pageLang->time( $ts->getTimestamp( TS_MW ), false, false );
+				return $pageLang->time( $ts->getTimestamp( TS::MW ), false, false );
 			case 'currenthour':
 				self::applyUnitTimestampDeadline( $parser, $ts, 'H' );
 
@@ -256,7 +257,7 @@ class CoreMagicVariables {
 				# second argument is 'raw'; magic variables are "not raw"
 				return CoreParserFunctions::$id( $parser, null );
 			case 'currenttimestamp':
-				return $ts->getTimestamp( TS_MW );
+				return $ts->getTimestamp( TS::MW );
 			case 'localtimestamp':
 				$localTs = self::makeTsLocal( $svcOptions, $ts );
 

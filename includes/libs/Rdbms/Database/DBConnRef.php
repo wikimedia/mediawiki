@@ -4,6 +4,7 @@ namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
 use Stringable;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Helper class used for automatically re-using IDatabase connections and lazily
@@ -875,7 +876,7 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 	}
 
 	/** @inheritDoc */
-	public function decodeExpiry( $expiry, $format = TS_MW ) {
+	public function decodeExpiry( $expiry, $format = TS::MW ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

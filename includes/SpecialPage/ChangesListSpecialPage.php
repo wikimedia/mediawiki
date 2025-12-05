@@ -37,6 +37,7 @@ use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Special page which uses a ChangesList to show query results.
@@ -1292,7 +1293,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$cutoff = $dbr->timestamp( $cutoff_unixtime );
 
 		$fromValid = preg_match( '/^[0-9]{14}$/', $opts['from'] );
-		if ( $fromValid && $opts['from'] > wfTimestamp( TS_MW, $cutoff ) ) {
+		if ( $fromValid && $opts['from'] > wfTimestamp( TS::MW, $cutoff ) ) {
 			$cutoff = $dbr->timestamp( $opts['from'] );
 		} else {
 			$opts->reset( 'from' );

@@ -21,6 +21,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Watchlist\WatchedItemStore;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Query module to get information about the currently logged-in user
@@ -213,14 +214,14 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['email'] = $user->getEmail();
 			$auth = $user->getEmailAuthenticationTimestamp();
 			if ( $auth !== null ) {
-				$vals['emailauthenticated'] = wfTimestamp( TS_ISO_8601, $auth );
+				$vals['emailauthenticated'] = wfTimestamp( TS::ISO_8601, $auth );
 			}
 		}
 
 		if ( isset( $this->prop['registrationdate'] ) ) {
 			$regDate = $user->getRegistration();
 			if ( $regDate !== false ) {
-				$vals['registrationdate'] = wfTimestampOrNull( TS_ISO_8601, $regDate );
+				$vals['registrationdate'] = wfTimestampOrNull( TS::ISO_8601, $regDate );
 			}
 		}
 
@@ -328,7 +329,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if ( $timestamp === false ) {
 			return null;
 		}
-		return MWTimestamp::convert( TS_ISO_8601, $timestamp );
+		return MWTimestamp::convert( TS::ISO_8601, $timestamp );
 	}
 
 	/** @inheritDoc */

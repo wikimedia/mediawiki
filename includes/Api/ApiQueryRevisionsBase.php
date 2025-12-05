@@ -35,6 +35,7 @@ use stdClass;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A base class for functions common to producing a list of revisions.
@@ -375,7 +376,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		}
 
 		if ( $this->fld_timestamp ) {
-			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $revision->getTimestamp() );
+			$vals['timestamp'] = wfTimestamp( TS::ISO_8601, $revision->getTimestamp() );
 		}
 
 		if ( $this->fld_size ) {

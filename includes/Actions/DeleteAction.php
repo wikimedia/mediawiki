@@ -37,6 +37,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\RequestTimeout\TimeoutException;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Handle page deletion
@@ -248,7 +249,7 @@ class DeleteAction extends FormAction {
 		$expiry = $this->getRequest()->getText( 'wpWatchlistExpiry' );
 
 		if ( $context->getConfig()->get( MainConfigNames::WatchlistExpiry ) && $expiry !== '' ) {
-			$expiry = ExpiryDef::normalizeExpiry( $expiry, TS_ISO_8601 );
+			$expiry = ExpiryDef::normalizeExpiry( $expiry, TS::ISO_8601 );
 		} else {
 			$expiry = null;
 		}

@@ -13,6 +13,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserConfig;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * This class represents a service that provides high-level operations on user groups.
@@ -405,6 +406,6 @@ class UserGroupAssignmentService {
 
 		// @todo FIXME: Non-qualified absolute times are not in users specified timezone
 		// and there isn't notice about it in the ui (see ProtectionForm::getExpiry)
-		return wfTimestamp( TS_MW, $unix );
+		return wfTimestamp( TS::MW, $unix );
 	}
 }

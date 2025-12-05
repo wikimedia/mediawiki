@@ -23,6 +23,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Manage user group memberships.
@@ -173,7 +174,7 @@ class UserGroupManager {
 			(int)$row->ug_user,
 			$row->ug_group,
 			$row->ug_expiry === null ? null : wfTimestamp(
-				TS_MW,
+				TS::MW,
 				$row->ug_expiry
 			)
 		);
@@ -662,7 +663,7 @@ class UserGroupManager {
 		}
 
 		if ( $expiry ) {
-			$expiry = wfTimestamp( TS_MW, $expiry );
+			$expiry = wfTimestamp( TS::MW, $expiry );
 		}
 
 		// TODO: Deprecate passing out user object in the hook by introducing

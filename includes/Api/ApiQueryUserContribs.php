@@ -30,6 +30,7 @@ use Wikimedia\IPUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * This query action adds a list of a specified user's contributions to the output.
@@ -561,7 +562,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		}
 
 		if ( $this->fld_timestamp ) {
-			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->rev_timestamp );
+			$vals['timestamp'] = wfTimestamp( TS::ISO_8601, $row->rev_timestamp );
 		}
 
 		if ( $this->fld_flags ) {

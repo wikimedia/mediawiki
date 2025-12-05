@@ -17,6 +17,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\User\UserRequirementsConditionChecker
@@ -125,13 +126,13 @@ class UserRequirementsConditionCheckerTest extends MediaWikiIntegrationTestCase 
 		$editTrackerMock = $this->createMock( UserEditTracker::class );
 		$editTrackerMock->method( 'getUserEditCount' )->willReturn( 20 );
 		$editTrackerMock->method( 'getFirstEditTimestamp' )->willReturn(
-			MWTimestamp::convert( TS_MW, time() - 60 )
+			MWTimestamp::convert( TS::MW, time() - 60 )
 		);
 		$this->setService( 'UserEditTracker', $editTrackerMock );
 
 		$registrationLookupMock = $this->createMock( UserRegistrationLookup::class );
 		$registrationLookupMock->method( 'getRegistration' )->willReturn(
-			MWTimestamp::convert( TS_MW, time() - 120 )
+			MWTimestamp::convert( TS::MW, time() - 120 )
 		);
 		$this->setService( 'UserRegistrationLookup', $registrationLookupMock );
 

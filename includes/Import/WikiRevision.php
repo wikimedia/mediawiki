@@ -20,6 +20,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Represents a revision, log entry or upload during the import process.
@@ -45,7 +46,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.2
-	 * @var string TS_MW timestamp, a string with 14 digits
+	 * @var string TS::MW timestamp, a string with 14 digits
 	 */
 	public $timestamp = "20010115000000";
 
@@ -201,7 +202,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 */
 	public function setTimestamp( $ts ) {
 		# 2003-08-05T18:30:02Z
-		$this->timestamp = wfTimestamp( TS_MW, $ts );
+		$this->timestamp = wfTimestamp( TS::MW, $ts );
 	}
 
 	/**
@@ -404,7 +405,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.2
-	 * @return string TS_MW timestamp, a string with 14 digits
+	 * @return string TS::MW timestamp, a string with 14 digits
 	 */
 	public function getTimestamp() {
 		return $this->timestamp;

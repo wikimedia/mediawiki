@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\RangeChronologicalPager;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Test class for RangeChronologicalPagerTest logic.
@@ -21,7 +22,7 @@ class RangeChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 		$pager = $this->getMockForAbstractClass( RangeChronologicalPager::class );
 		$this->assertEquals(
 			$expected,
-			wfTimestamp( TS_MW, $pager->getDateCond( $inputYear, $inputMonth, $inputDay ) )
+			wfTimestamp( TS::MW, $pager->getDateCond( $inputYear, $inputMonth, $inputDay ) )
 		);
 	}
 

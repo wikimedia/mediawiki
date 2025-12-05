@@ -47,6 +47,8 @@ use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * DifferenceEngine is responsible for rendering the difference between two revisions as HTML.
@@ -1722,7 +1724,7 @@ class DifferenceEngine extends ContextSource {
 		if ( $this->getConfig()->get( MainConfigNames::ShowHostnames ) ) {
 			$data[] = wfHostname();
 		}
-		$data[] = wfTimestamp( TS_DB );
+		$data[] = ConvertibleTimestamp::now( TS::DB );
 
 		return "<!-- diff generator: " .
 			implode( " ", array_map( "htmlspecialchars", $data ) ) .
@@ -1948,7 +1950,7 @@ class DifferenceEngine extends ContextSource {
 		$header .= Html::element( 'span',
 			[
 				'class' => 'mw-diff-timestamp',
-				'data-timestamp' => wfTimestamp( TS_ISO_8601, $revtimestamp ),
+				'data-timestamp' => wfTimestamp( TS::ISO_8601, $revtimestamp ),
 			], ''
 		);
 

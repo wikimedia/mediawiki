@@ -2370,7 +2370,7 @@ abstract class File implements MediaHandlerState {
 	 * Get the 14-character timestamp of the file upload
 	 *
 	 * @stable to override
-	 * @return string|false TS_MW timestamp or false on failure
+	 * @return string|false TS::MW timestamp or false on failure
 	 */
 	public function getTimestamp() {
 		$this->assertRepoDefined();
@@ -2379,7 +2379,7 @@ abstract class File implements MediaHandlerState {
 	}
 
 	/**
-	 * Returns the timestamp (in TS_MW format) of the last change of the description page.
+	 * Returns the timestamp (in TS::MW format) of the last change of the description page.
 	 * Returns false if the file does not have a description page, or retrieving the timestamp
 	 * would be expensive.
 	 * @since 1.25

@@ -35,6 +35,7 @@ use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 use function array_key_exists;
 
 /**
@@ -1628,7 +1629,7 @@ class DatabaseBlockStore {
 	 */
 	public function getAutoblockExpiry( $timestamp, ?string $parentExpiry = null ) {
 		$maxDuration = $this->options->get( MainConfigNames::AutoblockExpiry );
-		$expiry = wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX, $timestamp ) + $maxDuration );
+		$expiry = wfTimestamp( TS::MW, (int)wfTimestamp( TS::UNIX, $timestamp ) + $maxDuration );
 		if ( $parentExpiry !== null && $parentExpiry !== 'infinity' ) {
 			$expiry = min( $parentExpiry, $expiry );
 		}

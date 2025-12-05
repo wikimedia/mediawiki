@@ -28,6 +28,7 @@ use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @brief Class for a file system (FS) based file backend.
@@ -592,7 +593,7 @@ class FSFileBackend extends FileBackendStore {
 			$ct = new ConvertibleTimestamp( $stat['mtime'] );
 
 			return [
-				'mtime' => $ct->getTimestamp( TS_MW ),
+				'mtime' => $ct->getTimestamp( TS::MW ),
 				'size' => $stat['size']
 			];
 		}

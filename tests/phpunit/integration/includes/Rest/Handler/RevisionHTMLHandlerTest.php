@@ -26,6 +26,7 @@ use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\Rest\Handler\RevisionHTMLHandler
@@ -176,7 +177,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
-		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time + 10 ),
+		$this->assertSame( MWTimestamp::convert( TS::RFC2822, $time + 10 ),
 			$response->getHeaderLine( 'Last-Modified' ) );
 
 		$etag = $response->getHeaderLine( 'ETag' );
@@ -190,13 +191,13 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$this->assertSame( $etag, $response->getHeaderLine( 'ETag' ) );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
-		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time + 10 ),
+		$this->assertSame( MWTimestamp::convert( TS::RFC2822, $time + 10 ),
 			$response->getHeaderLine( 'Last-Modified' ) );
 
 		// Now, expire the cache, and assert we are getting a new timestamp back
 		MWTimestamp::setFakeTime( $time + 10000 );
 		$this->assertTrue(
-			$page->getTitle()->invalidateCache( MWTimestamp::convert( TS_MW, $time ) ),
+			$page->getTitle()->invalidateCache( MWTimestamp::convert( TS::MW, $time ) ),
 			'Can invalidate cache'
 		);
 		DeferredUpdates::doUpdates();
@@ -208,7 +209,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$this->assertNotSame( $etag, $response->getHeaderLine( 'ETag' ) );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
-		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time + 10000 ),
+		$this->assertSame( MWTimestamp::convert( TS::RFC2822, $time + 10000 ),
 			$response->getHeaderLine( 'Last-Modified' ) );
 	}
 
@@ -319,7 +320,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $rev->getSize(), $data['size'] );
 		$this->assertSame( $rev->isMinor(), $data['minor'] );
 		$this->assertSame(
-			wfTimestampOrNull( TS_ISO_8601, $rev->getTimestamp() ),
+			wfTimestampOrNull( TS::ISO_8601, $rev->getTimestamp() ),
 			$data['timestamp']
 		);
 		$this->assertSame( $page->getId(), $data['page']['id'] );

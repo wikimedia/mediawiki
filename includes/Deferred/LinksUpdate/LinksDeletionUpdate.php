@@ -30,7 +30,7 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 	/**
 	 * @param PageIdentity $page Page we are updating
 	 * @param int|null $pageId ID of the page we are updating [optional]
-	 * @param string|null $timestamp TS_MW timestamp of deletion
+	 * @param string|null $timestamp TS::MW timestamp of deletion
 	 */
 	public function __construct( PageIdentity $page, $pageId = null, $timestamp = null ) {
 		if ( $pageId ) {

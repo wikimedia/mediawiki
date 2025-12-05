@@ -10,6 +10,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group Database
@@ -72,8 +73,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 
 		$ipTimestamp = wfTimestamp(
-			TS_MW,
-			wfTimestamp( TS_UNIX, $this->firstRev->getTimestamp() ) + 1
+			TS::MW,
+			wfTimestamp( TS::UNIX, $this->firstRev->getTimestamp() ) + 1
 		);
 		$rev = new MutableRevisionRecord( $page );
 		$rev->setUser( UserIdentityValue::newAnonymous( $this->ipEditor ) );

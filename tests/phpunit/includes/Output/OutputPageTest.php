@@ -39,6 +39,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\DependencyStore\DependencyStore;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @author Matthew Flaschen
@@ -656,7 +657,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				[ $lastModified, $lastModified, false, [ MainConfigNames::CachePages => false ] ],
 			'$wgCacheEpoch' =>
 				[ $lastModified, $lastModified, false,
-					[ MainConfigNames::CacheEpoch => wfTimestamp( TS_MW, $lastModified + 1 ) ] ],
+					[ MainConfigNames::CacheEpoch => wfTimestamp( TS::MW, $lastModified + 1 ) ] ],
 			'Recently-touched user' =>
 				[ $lastModified, $lastModified, false, [],
 				static function ( OutputPage $op, $testCase ) {

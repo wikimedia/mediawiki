@@ -3,6 +3,7 @@
 use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\FileBackend\HTTPFileStreamer;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \Wikimedia\FileBackend\HTTPFileStreamer
@@ -86,7 +87,7 @@ class HTTPFileStreamerTest extends TestCase {
 		$mtime = filemtime( self::FILE );
 		$size = filesize( self::FILE );
 
-		$modified = MWTimestamp::convert( TS_RFC2822, $mtime );
+		$modified = MWTimestamp::convert( TS::RFC2822, $mtime );
 
 		yield 'simple stream' => [
 			[],
@@ -112,7 +113,7 @@ class HTTPFileStreamerTest extends TestCase {
 		yield 'modified' => [
 			[],
 			[
-				'if-modified-since' => MWTimestamp::convert( TS_RFC2822, $mtime - 1 )
+				'if-modified-since' => MWTimestamp::convert( TS::RFC2822, $mtime - 1 )
 			],
 			[
 				"Last-Modified: $modified",
@@ -124,7 +125,7 @@ class HTTPFileStreamerTest extends TestCase {
 		yield 'not modified' => [
 			[],
 			[
-				'if-modified-since' => MWTimestamp::convert( TS_RFC2822, $mtime + 1 )
+				'if-modified-since' => MWTimestamp::convert( TS::RFC2822, $mtime + 1 )
 			],
 			[
 				'HTTP/1.1 304 Not Modified'

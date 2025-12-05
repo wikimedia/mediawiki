@@ -44,7 +44,7 @@ class MWTimestamp extends ConvertibleTimestamp {
 	}
 
 	/**
-	 * Convert a TS_MW format string, with optional time zone, to
+	 * Convert a TS::MW format string, with optional time zone, to
 	 * a MWTimestamp.
 	 *
 	 * This is more efficient that using the general constructor,

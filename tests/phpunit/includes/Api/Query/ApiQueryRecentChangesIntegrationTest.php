@@ -13,6 +13,8 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group API
@@ -680,7 +682,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 
 		$rc = new RecentChange;
 		$rc->mAttribs = [
-			'rc_timestamp' => wfTimestamp( TS_MW ),
+			'rc_timestamp' => ConvertibleTimestamp::now( TS::MW ),
 			'rc_namespace' => $title->getNamespace(),
 			'rc_title' => $title->getDBkey(),
 			'rc_source' => 'external',

@@ -16,6 +16,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Mutable RevisionRecord implementation, for building new revision entries programmatically.
@@ -249,7 +250,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @return self
 	 */
 	public function setTimestamp( string $timestamp ) {
-		$this->mTimestamp = MWTimestamp::convert( TS_MW, $timestamp );
+		$this->mTimestamp = MWTimestamp::convert( TS::MW, $timestamp );
 
 		return $this;
 	}

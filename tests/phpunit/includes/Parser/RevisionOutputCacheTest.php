@@ -25,6 +25,7 @@ use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -45,7 +46,7 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$this->time = time();
-		$this->cacheTime = MWTimestamp::convert( TS_MW, $this->time + 1 );
+		$this->cacheTime = MWTimestamp::convert( TS::MW, $this->time + 1 );
 		MWTimestamp::setFakeTime( $this->time );
 
 		$this->revision = new MutableRevisionRecord(
@@ -53,7 +54,7 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 			RevisionRecord::LOCAL
 		);
 		$this->revision->setId( 24 );
-		$this->revision->setTimestamp( MWTimestamp::convert( TS_MW, $this->time ) );
+		$this->revision->setTimestamp( MWTimestamp::convert( TS::MW, $this->time ) );
 		$this->revision->setSlot(
 			SlotRecord::newUnsaved(
 				SlotRecord::MAIN,
@@ -187,8 +188,8 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		$cache->save( $parserOutput, $this->revision, $options, $this->cacheTime );
 
 		// determine cache epoch younger than cache time
-		$cacheTime = MWTimestamp::convert( TS_UNIX, $parserOutput->getCacheTime() );
-		$epoch = MWTimestamp::convert( TS_MW, $cacheTime + 60 );
+		$cacheTime = MWTimestamp::convert( TS::UNIX, $parserOutput->getCacheTime() );
+		$epoch = MWTimestamp::convert( TS::MW, $cacheTime + 60 );
 
 		// create a cache with the new epoch
 		$cache = $this->createRevisionOutputCache( $store, null, 60 * 60, $epoch );
@@ -210,7 +211,7 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		$cache->save( $parserOutput, $this->revision, $options, $this->cacheTime );
 
 		// move the clock forward by 60 seconds
-		$cacheTime = MWTimestamp::convert( TS_UNIX, $parserOutput->getCacheTime() );
+		$cacheTime = MWTimestamp::convert( TS::UNIX, $parserOutput->getCacheTime() );
 		MWTimestamp::setFakeTime( $cacheTime + 60 );
 
 		// create a cache that expires after 30 seconds

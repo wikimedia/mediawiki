@@ -13,7 +13,7 @@ interface ParserCacheMetadata {
 	 * or -1 for uncacheable for legacy reasons.
 	 * @todo remove legacy -1
 	 *
-	 * @return string|int TS_MW timestamp
+	 * @return string|int TS::MW timestamp
 	 */
 	public function getCacheTime();
 

@@ -18,6 +18,7 @@ use MediaWiki\User\UserRigorOptions;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A primary authentication provider that uses a temporary password.
@@ -221,7 +222,7 @@ abstract class AbstractTemporaryPasswordPrimaryAuthenticationProvider
 				if (
 					$this->passwordReminderResendTime
 					&& $tempPassTime
-					&& time() < (int)wfTimestamp( TS_UNIX, $tempPassTime )
+					&& time() < (int)wfTimestamp( TS::UNIX, $tempPassTime )
 						+ $this->passwordReminderResendTime * 3600
 				) {
 					// Round the time in hours to 3 d.p., in case someone is specifying
@@ -352,9 +353,9 @@ abstract class AbstractTemporaryPasswordPrimaryAuthenticationProvider
 	 * @return bool
 	 */
 	protected function isTimestampValid( $timestamp ) {
-		$time = wfTimestampOrNull( TS_MW, $timestamp );
+		$time = wfTimestampOrNull( TS::MW, $timestamp );
 		if ( $time !== null ) {
-			$expiry = (int)wfTimestamp( TS_UNIX, $time ) + $this->newPasswordExpiry;
+			$expiry = (int)wfTimestamp( TS::UNIX, $time ) + $this->newPasswordExpiry;
 			if ( time() >= $expiry ) {
 				return false;
 			}

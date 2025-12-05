@@ -37,6 +37,7 @@ use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\Assert;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\Page\WikiPage
@@ -1415,12 +1416,12 @@ more stuff
 			->where( $condition )
 			->fetchField();
 		$this->assertTrue(
-			wfTimestamp( TS_UNIX, $startTimeStamp )
-			<= wfTimestamp( TS_UNIX, $pageTouched )
+			wfTimestamp( TS::UNIX, $startTimeStamp )
+			<= wfTimestamp( TS::UNIX, $pageTouched )
 		);
 		$this->assertTrue(
-			wfTimestamp( TS_UNIX, $endTimeStamp )
-			>= wfTimestamp( TS_UNIX, $pageTouched )
+			wfTimestamp( TS::UNIX, $endTimeStamp )
+			>= wfTimestamp( TS::UNIX, $pageTouched )
 		);
 
 		// Try inserting the same page again and checking the result is false (no change)
@@ -2021,12 +2022,12 @@ more stuff
 			->from( 'page' )
 			->where( [ 'page_id' => $page->getId() ] )
 			->fetchField();
-		$touched = MWTimestamp::convert( TS_MW, $touched );
+		$touched = MWTimestamp::convert( TS::MW, $touched );
 
 		// Internal cache of the touched time was set after the page was created
 		$this->assertSame( $touched, $page->getTouched() );
 
-		$touched = MWTimestamp::convert( TS_MW, MWTimestamp::convert( TS_UNIX, $touched ) + 100 );
+		$touched = MWTimestamp::convert( TS::MW, MWTimestamp::convert( TS::UNIX, $touched ) + 100 );
 		$page->getTitle()->invalidateCache( $touched );
 
 		// Re-load touched time

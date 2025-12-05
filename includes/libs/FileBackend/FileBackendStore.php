@@ -32,6 +32,7 @@ use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @brief Base class for all backends using particular storage medium.
@@ -1934,7 +1935,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return; // invalid storage path
 		}
-		$mtime = (int)ConvertibleTimestamp::convert( TS_UNIX, $val['mtime'] );
+		$mtime = (int)ConvertibleTimestamp::convert( TS::UNIX, $val['mtime'] );
 		$ttl = $this->wanStatCache->adaptiveTTL( $mtime, 7 * 86400, 300, 0.1 );
 		// Set the cache unless it is currently salted.
 		if ( !$this->wanStatCache->set( $this->fileCacheKey( $path ), $val, $ttl ) ) {

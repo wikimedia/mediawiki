@@ -32,6 +32,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Xml\Xml;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @ingroup Dump
@@ -638,7 +639,7 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	public function writeTimestamp( $timestamp, $indent = "      " ) {
-		$ts = wfTimestamp( TS_ISO_8601, $timestamp );
+		$ts = wfTimestamp( TS::ISO_8601, $timestamp );
 		return $indent . Xml::element( 'timestamp', null, $ts ) . "\n";
 	}
 

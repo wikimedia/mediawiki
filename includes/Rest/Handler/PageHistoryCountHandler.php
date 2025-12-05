@@ -24,6 +24,7 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\RawSQLExpression;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Handler class for Core REST API endpoints that perform operations on revisions
@@ -342,7 +343,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 			return null;
 		}
 		if ( $this->lastModifiedTimes === null ) {
-			$currentRevTime = (int)wfTimestampOrNull( TS_UNIX, $currentRev->getTimestamp() );
+			$currentRevTime = (int)wfTimestampOrNull( TS::UNIX, $currentRev->getTimestamp() );
 			$loggingTableTime = $this->loggingTableTime( $currentRev->getPageId() );
 			$this->lastModifiedTimes = [
 				'currentRevTS' => $currentRevTime,
@@ -363,7 +364,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 			->from( 'logging' )
 			->where( [ 'log_page' => $pageId ] )
 			->caller( __METHOD__ )->fetchField();
-		return $res ? (int)wfTimestamp( TS_UNIX, $res ) : null;
+		return $res ? (int)wfTimestamp( TS::UNIX, $res ) : null;
 	}
 
 	/**

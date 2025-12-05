@@ -554,7 +554,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @param string $timestamp TS_MW timestamp
+	 * @param string $timestamp TS::MW timestamp
 	 * @since 1.34
 	 */
 	public function setRevisionTimestampUsed( $timestamp ): void {
@@ -562,7 +562,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @return string|null TS_MW timestamp or null if not used
+	 * @return string|null TS::MW timestamp or null if not used
 	 * @since 1.34
 	 */
 	public function getRevisionTimestampUsed() {
@@ -1041,14 +1041,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @return string|null TS_MW timestamp of the revision content
+	 * @return string|null TS::MW timestamp of the revision content
 	 */
 	public function getRevisionTimestamp(): ?string {
 		return $this->mTimestamp;
 	}
 
 	/**
-	 * @return string|null TS_MW timestamp of the revision content
+	 * @return string|null TS::MW timestamp of the revision content
 	 * @deprecated since 1.42; use ::getRevisionTimestamp() instead
 	 */
 	public function getTimestamp() {
@@ -1207,14 +1207,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @param ?string $timestamp TS_MW timestamp of the revision content
+	 * @param ?string $timestamp TS::MW timestamp of the revision content
 	 */
 	public function setRevisionTimestamp( ?string $timestamp ): void {
 		$this->mTimestamp = $timestamp;
 	}
 
 	/**
-	 * @param ?string $timestamp TS_MW timestamp of the revision content
+	 * @param ?string $timestamp TS::MW timestamp of the revision content
 	 *
 	 * @return ?string The previous value of the timestamp
 	 * @deprecated since 1.42; use ::setRevisionTimestamp() instead

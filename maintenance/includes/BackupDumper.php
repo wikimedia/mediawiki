@@ -28,6 +28,8 @@ use MediaWiki\WikiMap\WikiMap;
 use WikiExporter;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 use XmlDumpWriter;
 
 /**
@@ -426,7 +428,7 @@ abstract class BackupDumper extends Maintenance {
 
 	public function showReport() {
 		if ( $this->reporting ) {
-			$now = wfTimestamp( TS_DB );
+			$now = ConvertibleTimestamp::now( TS::DB );
 			$nowts = microtime( true );
 			$deltaAll = $nowts - $this->startTime;
 			$deltaPart = $nowts - $this->lastTime;
@@ -436,7 +438,7 @@ abstract class BackupDumper extends Maintenance {
 			if ( $deltaAll ) {
 				$portion = $this->revCount / $this->maxCount;
 				$eta = $this->startTime + $deltaAll / $portion;
-				$etats = wfTimestamp( TS_DB, intval( $eta ) );
+				$etats = wfTimestamp( TS::DB, intval( $eta ) );
 				$pageRate = $this->pageCount / $deltaAll;
 				$revRate = $this->revCount / $deltaAll;
 			} else {

@@ -18,6 +18,7 @@ use MediaWiki\Utils\MWTimestamp;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -211,9 +212,9 @@ class RevisionOutputCache {
 			return false;
 		}
 
-		$cacheTime = (int)MWTimestamp::convert( TS_UNIX, $output->getCacheTime() );
-		$expiryTime = (int)MWTimestamp::convert( TS_UNIX, $this->cacheEpoch );
-		$expiryTime = max( $expiryTime, (int)MWTimestamp::now( TS_UNIX ) - $this->cacheExpiry );
+		$cacheTime = (int)MWTimestamp::convert( TS::UNIX, $output->getCacheTime() );
+		$expiryTime = (int)MWTimestamp::convert( TS::UNIX, $this->cacheEpoch );
+		$expiryTime = max( $expiryTime, (int)MWTimestamp::now( TS::UNIX ) - $this->cacheExpiry );
 
 		if ( $cacheTime < $expiryTime ) {
 			$this->incrementStats( $revision, 'miss', 'expired' );
@@ -229,7 +230,7 @@ class RevisionOutputCache {
 	 * @param ParserOutput $output
 	 * @param RevisionRecord $revision
 	 * @param ParserOptions $parserOptions
-	 * @param string|null $cacheTime TS_MW timestamp when the output was generated
+	 * @param string|null $cacheTime TS::MW timestamp when the output was generated
 	 */
 	public function save(
 		ParserOutput $output,

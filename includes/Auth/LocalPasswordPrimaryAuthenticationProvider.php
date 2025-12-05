@@ -17,6 +17,7 @@ use stdClass;
 use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A primary authentication provider that uses the password field in the 'user' table.
@@ -55,7 +56,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 	 */
 	protected function getPasswordResetData( $username, $row ) {
 		$now = (int)wfTimestamp();
-		$expiration = wfTimestampOrNull( TS_UNIX, $row->user_password_expires );
+		$expiration = wfTimestampOrNull( TS::UNIX, $row->user_password_expires );
 		if ( $expiration === null || (int)$expiration >= $now ) {
 			return null;
 		}

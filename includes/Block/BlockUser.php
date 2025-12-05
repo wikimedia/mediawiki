@@ -31,6 +31,7 @@ use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
 use RevisionDeleteUser;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Handles the backend logic of blocking users
@@ -303,11 +304,11 @@ class BlockUser {
 	 *
 	 * @param string $expiry Whatever was typed into the form
 	 *
-	 * @return string|false Timestamp (format TS_MW) or 'infinity' or false on error.
+	 * @return string|false Timestamp (format TS::MW) or 'infinity' or false on error.
 	 */
 	public static function parseExpiryInput( string $expiry ) {
 		try {
-			return ExpiryDef::normalizeExpiry( $expiry, TS_MW );
+			return ExpiryDef::normalizeExpiry( $expiry, TS::MW );
 		} catch ( InvalidArgumentException ) {
 			return false;
 		}

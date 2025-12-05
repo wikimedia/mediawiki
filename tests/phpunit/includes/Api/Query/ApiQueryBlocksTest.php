@@ -8,6 +8,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group API
@@ -32,8 +33,8 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$sysop = $this->getTestSysop()->getUser();
 
 		$time = time();
-		$ts = wfTimestamp( TS_MW, $time );
-		$expiry = wfTimestamp( TS_MW, $time + 24 * 60 * 60 );
+		$ts = wfTimestamp( TS::MW, $time );
+		$expiry = wfTimestamp( TS::MW, $time + 24 * 60 * 60 );
 		$block = $this->getServiceContainer()->getDatabaseBlockStore()
 			->insertBlockWithParams( [
 				'targetUser' => $badActor,
@@ -52,7 +53,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$subset = [
 			'id' => $block->getId(),
 			'user' => $badActor->getName(),
-			'expiry' => wfTimestamp( TS_ISO_8601, $expiry ),
+			'expiry' => wfTimestamp( TS::ISO_8601, $expiry ),
 			'duration-l10n' => '1 day',
 		];
 		$this->assertArraySubmapSame( $subset, $data['query']['blocks'][0] );

@@ -28,6 +28,7 @@ use MediaWiki\Watchlist\WatchedItem;
 use stdClass;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * This query action allows clients to retrieve a list of recently modified pages
@@ -444,13 +445,13 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		/* Add the timestamp. */
 		if ( $this->fld_timestamp ) {
-			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->rc_timestamp );
+			$vals['timestamp'] = wfTimestamp( TS::ISO_8601, $row->rc_timestamp );
 		}
 
 		if ( $this->fld_notificationtimestamp ) {
 			$vals['notificationtimestamp'] = ( $row->wl_notificationtimestamp == null )
 				? ''
-				: wfTimestamp( TS_ISO_8601, $row->wl_notificationtimestamp );
+				: wfTimestamp( TS::ISO_8601, $row->wl_notificationtimestamp );
 		}
 
 		/* Add edit summary / log summary. */
@@ -516,7 +517,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			// Add expiration, T263796
 			$expiryString = $row->we_expiry ?? null;
 			if ( $expiryString ) {
-				$vals['expiry'] = wfTimestamp( TS_ISO_8601, $expiryString );
+				$vals['expiry'] = wfTimestamp( TS::ISO_8601, $expiryString );
 			} else {
 				$vals['expiry'] = false;
 			}

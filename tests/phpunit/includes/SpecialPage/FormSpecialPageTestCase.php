@@ -13,6 +13,7 @@ use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Factory for handling the special page list and generating SpecialPage objects.
@@ -50,7 +51,7 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$block = $this->createMock( DatabaseBlock::class );
 		$block->method( 'isSitewide' )->willReturn( true );
 		$block->method( 'getTargetUserIdentity' )->willReturn( $user );
-		$block->method( 'getExpiry' )->willReturn( MWTimestamp::convert( TS_MW, 10 ) );
+		$block->method( 'getExpiry' )->willReturn( MWTimestamp::convert( TS::MW, 10 ) );
 		$user->method( 'getBlock' )->willReturn( $block );
 
 		$this->expectException( UserBlockedError::class );
@@ -85,7 +86,7 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$block = $this->createMock( DatabaseBlock::class );
 		$block->method( 'isSitewide' )->willReturn( false );
 		$block->method( 'getTargetUserIdentity' )->willReturn( $user );
-		$block->method( 'getExpiry' )->willReturn( MWTimestamp::convert( TS_MW, 10 ) );
+		$block->method( 'getExpiry' )->willReturn( MWTimestamp::convert( TS::MW, 10 ) );
 		$user->method( 'getBlock' )->willReturn( $block );
 
 		$this->assertNull( $special->checkExecutePermissions( $user ) );

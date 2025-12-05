@@ -33,6 +33,7 @@ use MediaWiki\Utils\MWTimestamp;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @ingroup Pager
@@ -187,7 +188,7 @@ class BlockListPager extends TablePager {
 					$formatted .= '<br />' . $this->msg(
 						'ipb-blocklist-duration-left',
 						$language->formatDurationBetweenTimestamps(
-							(int)$timestamp->getTimestamp( TS_UNIX ),
+							(int)$timestamp->getTimestamp( TS::UNIX ),
 							MWTimestamp::time(),
 							4
 						)

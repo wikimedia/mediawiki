@@ -20,6 +20,8 @@ use MediaWiki\Title\Title;
 use RuntimeException;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\ObjectCache\WANObjectCache;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A foreign repository for a remote MediaWiki accessible through api.php requests.
@@ -397,9 +399,9 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 			&& isset( $metadata['timestamp'] )
 		) {
 			wfDebug( __METHOD__ . " Thumbnail was already downloaded before" );
-			$modified = (int)wfTimestamp( TS_UNIX, $backend->getFileTimestamp( [ 'src' => $localFilename ] ) );
-			$remoteModified = (int)wfTimestamp( TS_UNIX, $metadata['timestamp'] );
-			$current = (int)wfTimestamp( TS_UNIX );
+			$modified = (int)wfTimestamp( TS::UNIX, $backend->getFileTimestamp( [ 'src' => $localFilename ] ) );
+			$remoteModified = (int)wfTimestamp( TS::UNIX, $metadata['timestamp'] );
+			$current = (int)ConvertibleTimestamp::now( TS::UNIX );
 			$diff = abs( $modified - $current );
 			if ( $remoteModified < $modified && $diff < $this->fileCacheExpiry ) {
 				/* Use our current and already downloaded thumbnail */
@@ -553,7 +555,7 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 
 		if ( $status->isOK() ) {
 			$lmod = $req->getResponseHeader( 'Last-Modified' );
-			$mtime = $lmod ? (int)wfTimestamp( TS_UNIX, $lmod ) : false;
+			$mtime = $lmod ? (int)wfTimestamp( TS::UNIX, $lmod ) : false;
 
 			return $req->getContent();
 		} else {

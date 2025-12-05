@@ -8,6 +8,7 @@ namespace Wikimedia\Rdbms\Platform;
 use Wikimedia\Rdbms\DBLanguageError;
 use Wikimedia\Rdbms\Query;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @since 1.39
@@ -36,7 +37,7 @@ class PostgresPlatform extends SQLPlatform {
 	public function timestamp( $ts = 0 ) {
 		$ct = new ConvertibleTimestamp( $ts );
 
-		return $ct->getTimestamp( TS_POSTGRES );
+		return $ct->getTimestamp( TS::POSTGRES );
 	}
 
 	/** @inheritDoc */

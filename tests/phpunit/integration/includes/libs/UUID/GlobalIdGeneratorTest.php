@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -163,8 +164,8 @@ class GlobalIdGeneratorTest extends PHPUnit\Framework\TestCase {
 	public function testGetTimestampFromUUIDv1( string $uuid, string $ts ) {
 		$this->assertEquals( $ts, $this->globalIdGenerator->getTimestampFromUUIDv1( $uuid ) );
 		$this->assertEquals(
-			ConvertibleTimestamp::convert( TS_ISO_8601, $ts ),
-			$this->globalIdGenerator->getTimestampFromUUIDv1( $uuid, TS_ISO_8601 )
+			ConvertibleTimestamp::convert( TS::ISO_8601, $ts ),
+			$this->globalIdGenerator->getTimestampFromUUIDv1( $uuid, TS::ISO_8601 )
 		);
 	}
 

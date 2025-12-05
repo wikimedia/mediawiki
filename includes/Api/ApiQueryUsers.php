@@ -18,6 +18,7 @@ use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Query module to get information about a list of users
@@ -199,7 +200,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 
 				if ( isset( $this->prop['registration'] ) ) {
-					$data[$key]['registration'] = wfTimestampOrNull( TS_ISO_8601, $user->getRegistration() );
+					$data[$key]['registration'] = wfTimestampOrNull( TS::ISO_8601, $user->getRegistration() );
 				}
 
 				if ( isset( $this->prop['groups'] ) ) {

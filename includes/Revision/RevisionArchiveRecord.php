@@ -16,6 +16,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use stdClass;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A RevisionRecord representing a revision of a deleted page persisted in the archive table.
@@ -55,7 +56,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 	) {
 		parent::__construct( $page, $slots, $wikiId );
 
-		$timestamp = MWTimestamp::convert( TS_MW, $row->ar_timestamp );
+		$timestamp = MWTimestamp::convert( TS::MW, $row->ar_timestamp );
 		Assert::parameter( is_string( $timestamp ), '$row->rev_timestamp', 'must be a valid timestamp' );
 
 		$this->mArchiveId = intval( $row->ar_id );

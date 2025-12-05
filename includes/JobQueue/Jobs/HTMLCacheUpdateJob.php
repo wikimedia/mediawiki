@@ -12,6 +12,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Job to purge the HTML/file cache for all pages that link to or use another page or file
@@ -114,7 +115,7 @@ class HTMLCacheUpdateJob extends Job {
 			return;
 		}
 
-		$rootTsUnix = wfTimestampOrNull( TS_UNIX, $this->params['rootJobTimestamp'] ?? null );
+		$rootTsUnix = wfTimestampOrNull( TS::UNIX, $this->params['rootJobTimestamp'] ?? null );
 		// Bump page_touched to the current timestamp. This previously used the root job timestamp
 		// (e.g. template/file edit time), which is a bit more efficient when template edits are
 		// rare and don't effect the same pages much. However, this way better de-duplicates jobs,

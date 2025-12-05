@@ -63,6 +63,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * This is a class for doing query pages; since they're almost all the same,
@@ -276,8 +277,8 @@ abstract class QueryPage extends SpecialPage {
 	 * Does this query return timestamps rather than integers in its
 	 * 'value' field? If true, this class will convert 'value' to a
 	 * UNIX timestamp for caching.
-	 * NOTE: formatRow() may get timestamps in TS_MW (mysql), TS_DB (pgsql)
-	 *       or TS_UNIX (querycache) format, so be sure to always run them
+	 * NOTE: formatRow() may get timestamps in TS::MW (mysql), TS::DB (pgsql)
+	 *       or TS::UNIX (querycache) format, so be sure to always run them
 	 *       through wfTimestamp()
 	 * @stable to override
 	 * @return bool
@@ -442,7 +443,7 @@ abstract class QueryPage extends SpecialPage {
 			foreach ( $res as $i => $row ) {
 				if ( isset( $row->value ) ) {
 					if ( $this->usesTimestamps() ) {
-						$value = (int)wfTimestamp( TS_UNIX, $row->value );
+						$value = (int)wfTimestamp( TS::UNIX, $row->value );
 					} else {
 						$value = intval( $row->value ); // T16414
 					}

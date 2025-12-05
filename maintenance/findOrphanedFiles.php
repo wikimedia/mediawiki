@@ -80,7 +80,7 @@ class FindOrphanedFiles extends Maintenance {
 				}
 
 				$oldNames[] = $name;
-				[ , $base ] = explode( '!', $name, 2 ); // <TS_MW>!<img_name>
+				[ , $base ] = explode( '!', $name, 2 ); // <TS::MW>!<img_name>
 				$oiWheres[]  = $dbr->expr( 'oi_name', '=', $base )->and( 'oi_archive_name', '=', $name );
 			} else {
 				if ( $verbose ) {
@@ -128,7 +128,7 @@ class FindOrphanedFiles extends Maintenance {
 		}
 
 		foreach ( array_diff( $oldNames, $oldNamesFound ) as $name ) {
-			[ , $base ] = explode( '!', $name, 2 ); // <TS_MW>!<img_name>
+			[ , $base ] = explode( '!', $name, 2 ); // <TS::MW>!<img_name>
 			$file = $repo->newFromArchiveName( Title::makeTitle( NS_FILE, $base ), $name );
 			// Print name and public URL to ease recovery
 			$this->output( $name . "\n" . $file->getCanonicalUrl() . "\n\n" );

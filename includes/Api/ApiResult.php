@@ -16,6 +16,7 @@ use UnexpectedValueException;
 use Wikimedia\Message\ListParam;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * This class represents the result of the API operations.
@@ -1230,7 +1231,7 @@ class ApiResult implements ApiSerializable {
 		) {
 			return $infinity;
 		} else {
-			return wfTimestamp( TS_ISO_8601, $expiry );
+			return wfTimestamp( TS::ISO_8601, $expiry );
 		}
 	}
 

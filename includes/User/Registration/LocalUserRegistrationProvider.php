@@ -5,6 +5,7 @@ namespace MediaWiki\User\Registration;
 use InvalidArgumentException;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 class LocalUserRegistrationProvider implements IUserRegistrationProvider {
 
@@ -33,7 +34,7 @@ class LocalUserRegistrationProvider implements IUserRegistrationProvider {
 				->caller( __METHOD__ )
 				->fetchField();
 
-		return wfTimestampOrNull( TS_MW, $userRegistration );
+		return wfTimestampOrNull( TS::MW, $userRegistration );
 	}
 
 	/**
@@ -77,7 +78,7 @@ class LocalUserRegistrationProvider implements IUserRegistrationProvider {
 				->fetchResultSet();
 
 			foreach ( $res as $row ) {
-				$timestampsById[$row->user_id] = wfTimestampOrNull( TS_MW, $row->user_registration );
+				$timestampsById[$row->user_id] = wfTimestampOrNull( TS::MW, $row->user_registration );
 			}
 		}
 

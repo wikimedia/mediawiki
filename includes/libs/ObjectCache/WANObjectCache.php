@@ -1426,7 +1426,7 @@ class WANObjectCache implements
 	 *                 $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 	 *                 $ts = $dbr->selectField( 'cat_toys', 'MAX(ct_touched)', ... );
 	 *
-	 *                 return wfTimestampOrNull( TS_UNIX, $ts );
+	 *                 return wfTimestampOrNull( TS::UNIX, $ts );
 	 *             },
 	 *             // Avoid DB queries for repeated access
 	 *             'pcTTL' => $cache::TTL_PROC_SHORT
@@ -2136,7 +2136,7 @@ class WANObjectCache implements
 	 *             );
 	 *             foreach ( $res as $row ) {
 	 *                 $rows[$row->id] = $row;
-	 *                 $mtime = wfTimestamp( TS_UNIX, $row->timestamp );
+	 *                 $mtime = wfTimestamp( TS::UNIX, $row->timestamp );
 	 *                 $ttls[$row->id] = $this->adaptiveTTL( $mtime, $ttls[$row->id] );
 	 *             }
 	 *
@@ -2470,7 +2470,7 @@ class WANObjectCache implements
 	 * Example usage:
 	 * @code
 	 *     // Last-modified time of page
-	 *     $mtime = wfTimestamp( TS_UNIX, $page->getTimestamp() );
+	 *     $mtime = wfTimestamp( TS::UNIX, $page->getTimestamp() );
 	 *     // Get adjusted TTL. If $mtime is 3600 seconds ago and $minTTL/$factor left at
 	 *     // defaults, then $ttl is 3600 * .2 = 720. If $minTTL was greater than 720, then
 	 *     // $ttl would be $minTTL. If $maxTTL was smaller than 720, $ttl would be $maxTTL.

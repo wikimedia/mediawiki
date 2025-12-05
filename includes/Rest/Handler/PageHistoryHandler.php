@@ -24,6 +24,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\RawSQLExpression;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Handler class for Core REST API endpoints that perform operations on revisions
@@ -301,7 +302,7 @@ class PageHistoryHandler extends SimpleHandler {
 
 				$revision = [
 					'id' => $rev->getId(),
-					'timestamp' => wfTimestamp( TS_ISO_8601, $rev->getTimestamp() ),
+					'timestamp' => wfTimestamp( TS::ISO_8601, $rev->getTimestamp() ),
 					'minor' => $rev->isMinor(),
 					'size' => $rev->getSize()
 				];

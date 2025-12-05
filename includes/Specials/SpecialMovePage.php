@@ -51,6 +51,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\StringUtils\StringUtils;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Implement Special:Movepage for changing page titles
@@ -980,7 +981,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		# Get text from expiry selection dropdown, T261230
 		$expiry = $this->getRequest()->getText( 'wpWatchlistExpiry' );
 		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) && $expiry !== '' ) {
-			$expiry = ExpiryDef::normalizeExpiry( $expiry, TS_ISO_8601 );
+			$expiry = ExpiryDef::normalizeExpiry( $expiry, TS::ISO_8601 );
 		} else {
 			$expiry = null;
 		}

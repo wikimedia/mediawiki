@@ -33,6 +33,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\TimestampException;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Handles the backend logic of merging the histories of two
@@ -466,11 +467,11 @@ class MergeHistory {
 		$logEntry->setTarget( $this->source );
 		$srcParams = [
 			'4::dest' => $this->titleFormatter->getPrefixedText( $this->dest ),
-			'5::mergepoint' => $this->getTimestampLimit()->getTimestamp( TS_MW ),
+			'5::mergepoint' => $this->getTimestampLimit()->getTimestamp( TS::MW ),
 			'6::mergerevid' => $this->revidLimit
 		];
 		if ( $this->timestampStartLimit ) {
-			$srcParams['7::mergestart'] = $this->timestampStartLimit->getTimestamp( TS_MW );
+			$srcParams['7::mergestart'] = $this->timestampStartLimit->getTimestamp( TS::MW );
 			$srcParams['8::mergestartid'] = $this->revidStart;
 		}
 		$logEntry->setParameters( $srcParams );
@@ -486,11 +487,11 @@ class MergeHistory {
 
 		$destParams = [
 			'4::src'        => $this->titleFormatter->getPrefixedText( $this->source ),
-			'5::mergepoint' => $this->getTimestampLimit()->getTimestamp( TS_MW ),
+			'5::mergepoint' => $this->getTimestampLimit()->getTimestamp( TS::MW ),
 			'6::mergerevid' => $this->revidLimit
 		];
 		if ( $this->timestampStartLimit ) {
-			$destParams['7::mergestart'] = $this->timestampStartLimit->getTimestamp( TS_MW );
+			$destParams['7::mergestart'] = $this->timestampStartLimit->getTimestamp( TS::MW );
 			$destParams['8::mergestartid'] = $this->revidStart;
 		}
 

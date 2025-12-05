@@ -21,6 +21,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleParser;
 use MediaWiki\User\User;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * This class formats block log entries.
@@ -75,7 +76,7 @@ class BlockLogFormatter extends LogFormatter {
 			$blockExpiry = $this->context->getLanguage()->translateBlockExpiry(
 				$params[4],
 				$this->context->getUser(),
-				(int)wfTimestamp( TS_UNIX, $this->entry->getTimestamp() )
+				(int)wfTimestamp( TS::UNIX, $this->entry->getTimestamp() )
 			);
 			if ( $this->plaintext ) {
 				// @phan-suppress-next-line SecurityCheck-XSS Unlikely positive, only if language format is bad
@@ -342,7 +343,7 @@ class BlockLogFormatter extends LogFormatter {
 				$params['5::duration'] = 'infinity';
 				$params[':plain:duration-l10n'] = $this->msg( 'infiniteblock' )->plain();
 			} else {
-				$ts = (int)wfTimestamp( TS_UNIX, $entry->getTimestamp() );
+				$ts = (int)wfTimestamp( TS::UNIX, $entry->getTimestamp() );
 				$expiry = strtotime( $params['5::duration'], $ts );
 				if ( $expiry !== false && $expiry > 0 ) {
 					$params[':timestamp:expiry'] = $expiry;

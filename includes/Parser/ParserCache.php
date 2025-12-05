@@ -416,7 +416,7 @@ class ParserCache {
 	 * @param ParserOutput $parserOutput
 	 * @param PageRecord $page
 	 * @param ParserOptions $popts
-	 * @param string|null $cacheTime TS_MW timestamp when the cache was generated
+	 * @param string|null $cacheTime TS::MW timestamp when the cache was generated
 	 * @param int|null $revId Revision ID that was parsed
 	 */
 	public function save(

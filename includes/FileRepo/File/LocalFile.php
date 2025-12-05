@@ -49,6 +49,8 @@ use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Local file in the wiki's own database.
@@ -187,7 +189,7 @@ class LocalFile extends File {
 	/** @var string Description of current revision of the file */
 	private $description;
 
-	/** @var string TS_MW timestamp of the last change of the file description */
+	/** @var string TS::MW timestamp of the last change of the file description */
 	private $descriptionTouched;
 
 	/** @var bool Whether the row was upgraded on load */
@@ -406,7 +408,7 @@ class LocalFile extends File {
 				}
 
 				if ( $this->fileExists ) {
-					$ttl = $cache->adaptiveTTL( (int)wfTimestamp( TS_UNIX, $this->timestamp ), $ttl );
+					$ttl = $cache->adaptiveTTL( (int)wfTimestamp( TS::UNIX, $this->timestamp ), $ttl );
 				} else {
 					$ttl = $cache::TTL_DAY;
 				}
@@ -638,7 +640,7 @@ class LocalFile extends File {
 			$unprefixed['actor'] ?? null
 		);
 
-		$this->timestamp = wfTimestamp( TS_MW, $unprefixed['timestamp'] );
+		$this->timestamp = wfTimestamp( TS::MW, $unprefixed['timestamp'] );
 
 		$this->loadMetadataFromDbFieldValue(
 			$this->repo->getReplicaDB(), $unprefixed['metadata'] );
@@ -1896,7 +1898,7 @@ class LocalFile extends File {
 
 		$props = $props ?: $this->repo->getFileProps( $this->getVirtualUrl() );
 		$props['description'] = $comment;
-		$props['timestamp'] = wfTimestamp( TS_MW, $timestamp ); // DB -> TS_MW
+		$props['timestamp'] = wfTimestamp( TS::MW, $timestamp ); // DB -> TS::MW
 		$this->setProps( $props );
 
 		# Fail now if the file isn't there
@@ -1999,13 +2001,13 @@ class LocalFile extends File {
 
 			if ( $allowTimeKludge ) {
 				# Use LOCK IN SHARE MODE to ignore any transaction snapshotting
-				$lUnixtime = $row ? (int)wfTimestamp( TS_UNIX, $row->img_timestamp ) : false;
+				$lUnixtime = $row ? (int)wfTimestamp( TS::UNIX, $row->img_timestamp ) : false;
 				# Avoid a timestamp that is not newer than the last version
 				# TODO: the image/oldimage tables should be like page/revision with an ID field
-				if ( $lUnixtime && (int)wfTimestamp( TS_UNIX, $timestamp ) <= $lUnixtime ) {
+				if ( $lUnixtime && (int)wfTimestamp( TS::UNIX, $timestamp ) <= $lUnixtime ) {
 					sleep( 1 ); // fast enough re-uploads would go far in the future otherwise
 					$timestamp = $dbw->timestamp( $lUnixtime + 1 );
-					$this->timestamp = wfTimestamp( TS_MW, $timestamp ); // DB -> TS_MW
+					$this->timestamp = wfTimestamp( TS::MW, $timestamp ); // DB -> TS::MW
 				}
 			}
 
@@ -2311,7 +2313,7 @@ class LocalFile extends File {
 			$archiveRel = $dstRel;
 			$archiveName = basename( $archiveRel );
 		} else {
-			$archiveName = wfTimestamp( TS_MW ) . '!' . $this->getName();
+			$archiveName = ConvertibleTimestamp::now( TS::MW ) . '!' . $this->getName();
 			$archiveRel = $this->getArchiveRel( $archiveName );
 		}
 
@@ -2638,7 +2640,7 @@ class LocalFile extends File {
 
 	/**
 	 * @stable to override
-	 * @return string|false TS_MW timestamp, a string with 14 digits
+	 * @return string|false TS::MW timestamp, a string with 14 digits
 	 */
 	public function getTimestamp() {
 		$this->load();
@@ -2665,7 +2667,7 @@ class LocalFile extends File {
 				->where( [ 'page_namespace' => $this->title->getNamespace() ] )
 				->andWhere( [ 'page_title' => $this->title->getDBkey() ] )
 				->caller( __METHOD__ )->fetchField();
-			$this->descriptionTouched = $touched ? wfTimestamp( TS_MW, $touched ) : false;
+			$this->descriptionTouched = $touched ? wfTimestamp( TS::MW, $touched ) : false;
 		}
 
 		return $this->descriptionTouched;

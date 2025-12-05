@@ -23,6 +23,7 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Page existence and metadata cache.
@@ -434,7 +435,7 @@ class LinkCache implements LoggerAwareInterface {
 					$setOpts += Database::getCacheSetOptions( $dbr );
 
 					$row = $fetchCallback( $dbr, $ns, $dbkey, [] );
-					$mtime = $row ? (int)wfTimestamp( TS_UNIX, $row->page_touched ) : false;
+					$mtime = $row ? (int)wfTimestamp( TS::UNIX, $row->page_touched ) : false;
 					$ttl = $this->wanCache->adaptiveTTL( $mtime, $ttl );
 
 					return $row;

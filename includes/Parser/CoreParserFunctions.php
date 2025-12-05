@@ -30,6 +30,7 @@ use MediaWiki\User\User;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\RemexHtml\Tokenizer\Attributes;
 use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Various core parser functions, registered in every Parser
@@ -1753,7 +1754,7 @@ class CoreParserFunctions {
 				// parser options. The rendered timestamp can be compared to that
 				// of the timestamp specified by the parser options.
 				$resThen = substr(
-					$parser->getContentLanguage()->userAdjust( wfTimestamp( TS_MW, time() + $mtts ), '' ),
+					$parser->getContentLanguage()->userAdjust( wfTimestamp( TS::MW, time() + $mtts ), '' ),
 					$start,
 					$len
 				);

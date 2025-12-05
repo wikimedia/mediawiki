@@ -14,6 +14,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Foreign file accessible through api.php requests.
@@ -296,7 +297,7 @@ class ForeignAPIFile extends File {
 	 * @return string|false
 	 */
 	public function getTimestamp() {
-		return wfTimestamp( TS_MW,
+		return wfTimestamp( TS::MW,
 			isset( $this->mInfo['timestamp'] )
 				? strval( $this->mInfo['timestamp'] )
 				: null

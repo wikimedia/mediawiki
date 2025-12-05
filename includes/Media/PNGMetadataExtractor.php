@@ -12,6 +12,7 @@
  */
 
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * PNG frame counter.
@@ -302,7 +303,7 @@ class PNGMetadataExtractor {
 					$t['y'], $t['m'], $t['d'], $t['h'],
 					$t['min'], $t['s'] );
 
-				$exifTime = wfTimestamp( TS_EXIF, $strTime );
+				$exifTime = wfTimestamp( TS::EXIF, $strTime );
 
 				if ( $exifTime ) {
 					$text['DateTime'] = $exifTime;
@@ -361,7 +362,7 @@ class PNGMetadataExtractor {
 				// @todo FIXME: Currently timezones are ignored.
 				// possibly should be wfTimestamp's
 				// responsibility. (at least for numeric TZ)
-				$formatted = wfTimestamp( TS_EXIF, $value );
+				$formatted = wfTimestamp( TS::EXIF, $value );
 				if ( $formatted ) {
 					// Only change if we could convert the
 					// date.

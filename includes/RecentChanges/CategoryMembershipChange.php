@@ -128,7 +128,7 @@ class CategoryMembershipChange {
 	}
 
 	/**
-	 * @param string $timestamp Timestamp of the recent change to occur in TS_MW format
+	 * @param string $timestamp Timestamp of the recent change to occur in TS::MW format
 	 * @param PageIdentity $categoryPage Page of the category a page is being added to or removed from
 	 * @param UserIdentity|null $user User object of the user that made the change
 	 * @param string $comment Change summary

@@ -12,6 +12,8 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\User;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group medium
@@ -1115,7 +1117,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 		$rc = new RecentChange;
 		$rc->mAttribs = [
-			'rc_timestamp' => wfTimestamp( TS_MW ),
+			'rc_timestamp' => ConvertibleTimestamp::now( TS::MW ),
 			'rc_namespace' => $title->getNamespace(),
 			'rc_title' => $title->getDBkey(),
 			'rc_source' => 'external',

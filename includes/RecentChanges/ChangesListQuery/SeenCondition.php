@@ -9,6 +9,7 @@ use stdClass;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Check if the recentchange row has been seen by the current watchlist user.
@@ -38,13 +39,13 @@ class SeenCondition extends ChangesListConditionBase {
 		} else {
 			$firstUnseen = $this->getLatestNotificationTimestamp( $row, $this->user );
 			$seen = $firstUnseen === null
-				|| $firstUnseen > ConvertibleTimestamp::convert( TS_MW, $row->rc_timestamp );
+				|| $firstUnseen > ConvertibleTimestamp::convert( TS::MW, $row->rc_timestamp );
 		}
 		return $seen === $value;
 	}
 
 	/**
-	 * @return string|null TS_MW timestamp of first unseen revision or null if there isn't one
+	 * @return string|null TS::MW timestamp of first unseen revision or null if there isn't one
 	 */
 	private function getLatestNotificationTimestamp( stdClass $row, UserIdentity $user ) {
 		if ( $row->rc_title === '' ) {

@@ -13,6 +13,7 @@ namespace MediaWiki\Watchlist;
 use MediaWiki\Page\PageReference;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\DBReadOnlyError;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @internal
@@ -194,7 +195,7 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	public function getLatestNotificationTimestamp(
 		$timestamp, UserIdentity $user, PageReference $target
 	) {
-		return wfTimestampOrNull( TS_MW, $timestamp );
+		return wfTimestampOrNull( TS::MW, $timestamp );
 	}
 
 	/** @inheritDoc */

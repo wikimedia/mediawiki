@@ -7,6 +7,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\RevisionList\RevisionItem;
 use MediaWiki\RevisionList\RevisionList;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\RevisionList\RevisionList
@@ -62,7 +63,7 @@ class RevisionListTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( intval( $row->rev_user ), $revisionItem->getAuthorId() );
 		$this->assertSame( strval( $row->rev_user_text ), $revisionItem->getAuthorName() );
 		$this->assertSame(
-			wfTimestamp( TS_MW, $row->rev_timestamp ),
+			wfTimestamp( TS::MW, $row->rev_timestamp ),
 			$revisionItem->getTimestamp()
 		);
 

@@ -14,6 +14,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\JsonCodec\JsonCodecable;
 use Wikimedia\JsonCodec\JsonCodecableTrait;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Parser cache specific expiry check.
@@ -30,7 +31,7 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	protected array $mParseUsedOptions = [];
 
 	/**
-	 * @var string|int TS_MW timestamp when this object was generated, or -1 for not cacheable. Used
+	 * @var string|int TS::MW timestamp when this object was generated, or -1 for not cacheable. Used
 	 * in ParserCache.
 	 */
 	protected string|int $mCacheTime = '';
@@ -47,7 +48,7 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	protected ?int $mCacheRevisionId = null;
 
 	/**
-	 * @return string|int TS_MW timestamp
+	 * @return string|int TS::MW timestamp
 	 */
 	public function getCacheTime() {
 		// NOTE: keep support for undocumented used of -1 to mean "not cacheable".
@@ -67,13 +68,13 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	/**
 	 * setCacheTime() sets the timestamp expressing when the page has been rendered.
 	 * This does not control expiry, see updateCacheExpiry() for that!
-	 * @param string $t TS_MW timestamp
+	 * @param string $t TS::MW timestamp
 	 * @return string
 	 */
 	public function setCacheTime( $t ) {
 		// NOTE: keep support for undocumented used of -1 to mean "not cacheable".
 		if ( is_string( $t ) && $t !== '-1' ) {
-			$t = MWTimestamp::convert( TS_MW, $t );
+			$t = MWTimestamp::convert( TS::MW, $t );
 		}
 
 		if ( $t === -1 || $t === '-1' ) {
@@ -163,7 +164,7 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	public function expired( $touched ) {
 		$cacheEpoch = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::CacheEpoch );
 
-		$expiry = MWTimestamp::convert( TS_MW, MWTimestamp::time() - $this->getCacheExpiry() );
+		$expiry = MWTimestamp::convert( TS::MW, MWTimestamp::time() - $this->getCacheExpiry() );
 
 		return !$this->isCacheable() // parser says it's not cacheable
 			|| $this->getCacheTime() < $touched

@@ -7,6 +7,7 @@ use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group API
@@ -23,7 +24,7 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 	 * @covers \MediaWiki\Api\ApiQueryUserInfo::getLatestContributionTime
 	 */
 	public function testTimestamp() {
-		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
+		$clock = MWTimestamp::convert( TS::UNIX, '20100101000000' );
 		MWTimestamp::setFakeTime( static function () use ( &$clock ) {
 			return $clock += 1000;
 		} );
@@ -48,7 +49,7 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 		$status = $this->editPage( $page, 'two' );
 		$this->assertStatusOK( $status );
 
-		$revisionTimestamp = MWTimestamp::convert( TS_ISO_8601, $page->getTimestamp() );
+		$revisionTimestamp = MWTimestamp::convert( TS::ISO_8601, $page->getTimestamp() );
 
 		$apiResult = $this->doApiRequest( $params, null, false, $performer );
 		$this->assertArrayNotHasKey( 'continue', $apiResult[0] );

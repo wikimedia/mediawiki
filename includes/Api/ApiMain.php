@@ -45,6 +45,7 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampException;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * This is the main API class, used for both external and internal processing.
@@ -1323,7 +1324,7 @@ class ApiMain extends ApiBase {
 			}
 			$lastMod = $this->mModule->getConditionalRequestData( 'last-modified' );
 			if ( $lastMod !== null ) {
-				$response->header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $lastMod ) );
+				$response->header( 'Last-Modified: ' . wfTimestamp( TS::RFC2822, $lastMod ) );
 			}
 		}
 
@@ -1385,7 +1386,7 @@ class ApiMain extends ApiBase {
 		// Send an Expires header
 		$maxAge = min( $this->mCacheControl['s-maxage'], $this->mCacheControl['max-age'] );
 		$expiryUnixTime = ( $maxAge == 0 ? 1 : time() + $maxAge );
-		$response->header( 'Expires: ' . wfTimestamp( TS_RFC2822, $expiryUnixTime ) );
+		$response->header( 'Expires: ' . wfTimestamp( TS::RFC2822, $expiryUnixTime ) );
 
 		// Construct the Cache-Control header
 		$ccHeader = '';
@@ -1575,7 +1576,7 @@ class ApiMain extends ApiBase {
 		}
 
 		if ( $this->getParameter( 'curtimestamp' ) ) {
-			$result->addValue( null, 'curtimestamp', wfTimestamp( TS_ISO_8601 ), ApiResult::NO_SIZE_CHECK );
+			$result->addValue( null, 'curtimestamp', wfTimestamp( TS::ISO_8601 ), ApiResult::NO_SIZE_CHECK );
 		}
 
 		if ( $this->getParameter( 'responselanginfo' ) ) {
@@ -1792,7 +1793,7 @@ class ApiMain extends ApiBase {
 					$ts = new ConvertibleTimestamp( $value );
 					if (
 						// RFC 7231 IMF-fixdate
-						$ts->getTimestamp( TS_RFC2822 ) === $value ||
+						$ts->getTimestamp( TS::RFC2822 ) === $value ||
 						// RFC 850
 						$ts->format( 'l, d-M-y H:i:s' ) . ' GMT' === $value ||
 						// asctime (with and without space-padded day)
@@ -1812,12 +1813,12 @@ class ApiMain extends ApiBase {
 							if ( $config->get( MainConfigNames::UseCdn ) ) {
 								// T46570: the core page itself may not change, but resources might
 								$modifiedTimes['sepoch'] = wfTimestamp(
-									TS_MW, time() - $config->get( MainConfigNames::CdnMaxAge )
+									TS::MW, time() - $config->get( MainConfigNames::CdnMaxAge )
 								);
 							}
 							$this->getHookRunner()->onOutputPageCheckLastModified( $modifiedTimes, $this->getOutput() );
 							$lastMod = max( $modifiedTimes );
-							$return304 = wfTimestamp( TS_MW, $lastMod ) <= $ts->getTimestamp( TS_MW );
+							$return304 = wfTimestamp( TS::MW, $lastMod ) <= $ts->getTimestamp( TS::MW );
 						}
 					}
 				} catch ( TimestampException ) {

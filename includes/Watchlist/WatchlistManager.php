@@ -26,6 +26,7 @@ use MediaWiki\User\UserIdentity;
 use StatusValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\ReadOnlyMode;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * WatchlistManager service
@@ -513,7 +514,7 @@ class WatchlistManager {
 			// If there's an old watched item, a non-null change to the expiry requires an UPDATE.
 			$oldWatchPeriod = $oldWatchedItem->getExpiry() ?? 'infinity';
 			$changingWatchStatus = $changingWatchStatus ||
-				$oldWatchPeriod !== ExpiryDef::normalizeExpiry( $expiry, TS_MW );
+				$oldWatchPeriod !== ExpiryDef::normalizeExpiry( $expiry, TS::MW );
 		}
 
 		if ( $changingWatchStatus ) {

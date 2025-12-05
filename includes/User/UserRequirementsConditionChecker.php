@@ -20,6 +20,7 @@ use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @since 1.45
@@ -107,11 +108,11 @@ class UserRequirementsConditionChecker {
 			case APCOND_AGE:
 				$reqAge = $cond[1] ?? $this->options->get( MainConfigNames::AutoConfirmAge );
 				$registration = $this->userRegistrationLookup->getRegistration( $user );
-				$age = time() - (int)wfTimestampOrNull( TS_UNIX, $registration );
+				$age = time() - (int)wfTimestampOrNull( TS::UNIX, $registration );
 				return $age >= $reqAge;
 			case APCOND_AGE_FROM_EDIT:
 				$age = time() - (int)wfTimestampOrNull(
-					TS_UNIX,
+					TS::UNIX,
 					$this->userEditTracker->getFirstEditTimestamp( $user )
 				);
 				return $age >= $cond[1];

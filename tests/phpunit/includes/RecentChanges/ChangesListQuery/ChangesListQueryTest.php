@@ -32,6 +32,7 @@ use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * There is also a unit test.
@@ -302,7 +303,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		return preg_replace_callback(
 			"/'($d4-$d2-$d2 $d2:$d2:$d2$tz)'/",
 			static function ( $m ) {
-				return "'" . ConvertibleTimestamp::convert( TS_MW, $m[1] ) . "'";
+				return "'" . ConvertibleTimestamp::convert( TS::MW, $m[1] ) . "'";
 			},
 			$sql
 		);

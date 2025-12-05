@@ -53,6 +53,7 @@ use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 use Wikimedia\WrappedString;
 
 /**
@@ -851,7 +852,7 @@ class ResourceLoader implements LoggerAwareInterface {
 				: ''
 			);
 			header( "Cache-Control: public, max-age=$maxage, s-maxage=$maxage" . $staleDirective );
-			header( 'Expires: ' . ConvertibleTimestamp::convert( TS_RFC2822, time() + $maxage ) );
+			header( 'Expires: ' . ConvertibleTimestamp::convert( TS::RFC2822, time() + $maxage ) );
 		}
 
 		foreach ( $this->extraHeaders as $header ) {

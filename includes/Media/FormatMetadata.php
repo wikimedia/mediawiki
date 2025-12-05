@@ -20,6 +20,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Format Image metadata values into a human readable form.
@@ -155,7 +156,7 @@ class FormatMetadata extends ContextSource {
 					. ':' . str_pad( (string)( (int)$m[0] / (int)$m[1] ), 2, '0', STR_PAD_LEFT )
 					. ':' . str_pad( (string)( (int)$s[0] / (int)$s[1] ), 2, '0', STR_PAD_LEFT );
 
-				$time = wfTimestamp( TS_MW, '1971:01:01 ' . $vals );
+				$time = wfTimestamp( TS::MW, '1971:01:01 ' . $vals );
 				// the 1971:01:01 is just a placeholder, and not shown to user.
 				if ( $time && (int)$time > 0 ) {
 					$vals = $this->getLanguage()->time( $time );
@@ -278,7 +279,7 @@ class FormatMetadata extends ContextSource {
 							$val
 						) ) {
 							// Full date.
-							$time = wfTimestamp( TS_MW, $val );
+							$time = wfTimestamp( TS::MW, $val );
 							if ( $time && (int)$time > 0 ) {
 								$val = $this->getLanguage()->timeanddate( $time );
 								break;
@@ -287,14 +288,14 @@ class FormatMetadata extends ContextSource {
 							// No second field. Still format the same
 							// since timeanddate doesn't include seconds anyways,
 							// but second still available in api
-							$time = wfTimestamp( TS_MW, $val . ':00' );
+							$time = wfTimestamp( TS::MW, $val . ':00' );
 							if ( $time && (int)$time > 0 ) {
 								$val = $this->getLanguage()->timeanddate( $time );
 								break;
 							}
 						} elseif ( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d)$/D', $val ) ) {
 							// If only the date but not the time is filled in.
-							$time = wfTimestamp( TS_MW, substr( $val, 0, 4 )
+							$time = wfTimestamp( TS::MW, substr( $val, 0, 4 )
 								. substr( $val, 5, 2 )
 								. substr( $val, 8, 2 )
 								. '000000' );
@@ -1426,7 +1427,7 @@ class FormatMetadata extends ContextSource {
 			return $file->getExtendedMetadata() ?: [];
 		}
 
-		$uploadDate = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
+		$uploadDate = wfTimestamp( TS::ISO_8601, $file->getTimestamp() );
 
 		$fileMetadata = [
 			// This is modification time, which is close to "upload" time.

@@ -65,6 +65,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @defgroup Page Page
@@ -489,11 +490,11 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 			$this->mTitle->loadFromRow( $data );
 			$this->mId = intval( $data->page_id );
-			$this->mTouched = MWTimestamp::convert( TS_MW, $data->page_touched );
+			$this->mTouched = MWTimestamp::convert( TS::MW, $data->page_touched );
 			$this->mLanguage = $data->page_lang ?? null;
 			$this->mLinksUpdated = $data->page_links_updated === null
 				? null
-				: MWTimestamp::convert( TS_MW, $data->page_links_updated );
+				: MWTimestamp::convert( TS::MW, $data->page_links_updated );
 			$this->mPageIsRedirectField = (bool)$data->page_is_redirect;
 			$this->mIsNew = (bool)( $data->page_is_new ?? 0 );
 			$this->mLatest = intval( $data->page_latest );
@@ -640,7 +641,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 	/**
 	 * Get the page_touched field
-	 * @return string Timestamp in TS_MW format
+	 * @return string Timestamp in TS::MW format
 	 */
 	public function getTouched() {
 		if ( !$this->mDataLoaded ) {
@@ -662,7 +663,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 	/**
 	 * Get the page_links_updated field
-	 * @return string|null Timestamp in TS_MW format
+	 * @return string|null Timestamp in TS::MW format
 	 */
 	public function getLinksTimestamp() {
 		if ( !$this->mDataLoaded ) {
@@ -774,7 +775,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			$this->loadLastEdit();
 		}
 
-		return MWTimestamp::convert( TS_MW, $this->mTimestamp );
+		return MWTimestamp::convert( TS::MW, $this->mTimestamp );
 	}
 
 	/**
@@ -783,7 +784,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * @return void
 	 */
 	public function setTimestamp( $ts ) {
-		$this->mTimestamp = MWTimestamp::convert( TS_MW, $ts );
+		$this->mTimestamp = MWTimestamp::convert( TS::MW, $ts );
 	}
 
 	/**

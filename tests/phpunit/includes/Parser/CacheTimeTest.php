@@ -8,6 +8,7 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Tests\SerializationTestTrait;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\Parser\CacheTime
@@ -86,7 +87,7 @@ class CacheTimeTest extends MediaWikiIntegrationTestCase {
 		$cacheTime->setCacheTime( MWTimestamp::now() );
 		$this->assertTrue(
 			$cacheTime->expired(
-				MWTimestamp::convert( TS_MW, MWTimestamp::now( TS_UNIX ) + 10 )
+				MWTimestamp::convert( TS::MW, MWTimestamp::now( TS::UNIX ) + 10 )
 			)
 		);
 
@@ -95,7 +96,7 @@ class CacheTimeTest extends MediaWikiIntegrationTestCase {
 		$cacheTime->setCacheTime( MWTimestamp::now() );
 		$this->assertTrue(
 			$cacheTime->expired(
-				MWTimestamp::convert( TS_MW, MWTimestamp::now( TS_UNIX ) + 15 )
+				MWTimestamp::convert( TS::MW, MWTimestamp::now( TS::UNIX ) + 15 )
 			)
 		);
 	}

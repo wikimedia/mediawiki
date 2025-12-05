@@ -52,6 +52,7 @@ use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper
@@ -568,15 +569,15 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		// make sure the etag didn't change after getHtml();
 		$this->assertStringContainsString( $renderId->getKey(), $helper->getETag() );
 		$this->assertSame(
-			MWTimestamp::convert( TS_MW, $lastModified ),
-			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
+			MWTimestamp::convert( TS::MW, $lastModified ),
+			MWTimestamp::convert( TS::MW, $helper->getLastModified() )
 		);
 
 		// Now, expire the cache. etag and timestamp should change
-		$now = MWTimestamp::convert( TS_UNIX, self::TIMESTAMP_LATER ) + 10000;
+		$now = MWTimestamp::convert( TS::UNIX, self::TIMESTAMP_LATER ) + 10000;
 		$this->setFakeTime( $now, $cache );
 		$this->assertTrue(
-			$page->getTitle()->invalidateCache( MWTimestamp::convert( TS_MW, $now ) ),
+			$page->getTitle()->invalidateCache( MWTimestamp::convert( TS::MW, $now ) ),
 			'Cannot invalidate cache'
 		);
 		DeferredUpdates::doUpdates();
@@ -586,8 +587,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertStringNotContainsString( $renderId->getKey(), $helper->getETag() );
 		$this->assertSame(
-			MWTimestamp::convert( TS_MW, $now ),
-			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
+			MWTimestamp::convert( TS::MW, $now ),
+			MWTimestamp::convert( TS::MW, $helper->getLastModified() )
 		);
 	}
 
@@ -605,8 +606,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		// Try without providing a revision
 		$this->assertSame(
-			MWTimestamp::convert( TS_MW, $touchDate ),
-			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
+			MWTimestamp::convert( TS::MW, $touchDate ),
+			MWTimestamp::convert( TS::MW, $helper->getLastModified() )
 		);
 
 		// Provide the latest revision
@@ -615,8 +616,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		], $page, self::PARAM_DEFAULTS, $this->newAuthority(), $page->getLatest() );
 
 		$this->assertSame(
-			MWTimestamp::convert( TS_MW, $touchDate ),
-			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
+			MWTimestamp::convert( TS::MW, $touchDate ),
+			MWTimestamp::convert( TS::MW, $helper->getLastModified() )
 		);
 	}
 
@@ -660,8 +661,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertStringContainsString( $renderId->getKey(), $helper->getETag() );
 		$this->assertSame(
-			MWTimestamp::convert( TS_MW, $lastModified ),
-			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
+			MWTimestamp::convert( TS::MW, $lastModified ),
+			MWTimestamp::convert( TS::MW, $helper->getLastModified() )
 		);
 	}
 

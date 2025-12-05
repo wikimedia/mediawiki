@@ -9,6 +9,7 @@ use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\FileBackend\FSFileBackend;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCase {
 
@@ -886,14 +887,14 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 
 			$this->assertEquals( strlen( $content ), $size,
 				"Correct file size of '$path'" );
-			$this->assertTrue( abs( time() - wfTimestamp( TS_UNIX, $time ) ) < 10,
+			$this->assertTrue( abs( time() - wfTimestamp( TS::UNIX, $time ) ) < 10,
 				"Correct file timestamp of '$path'" );
 
 			$size = $stat['size'];
 			$time = $stat['mtime'];
 			$this->assertEquals( strlen( $content ), $size,
 				"Correct file size of '$path'" );
-			$this->assertTrue( abs( time() - wfTimestamp( TS_UNIX, $time ) ) < 10,
+			$this->assertTrue( abs( time() - wfTimestamp( TS::UNIX, $time ) ) < 10,
 				"Correct file timestamp of '$path'" );
 
 			$this->backend->clearCache( [ $path ] );

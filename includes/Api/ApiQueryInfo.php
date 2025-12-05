@@ -38,6 +38,7 @@ use MediaWiki\Watchlist\WatchedItemStore;
 use MessageLocalizer;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * A query module to show basic page information.
@@ -359,7 +360,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageInfo['pagelanguagedir'] = $pageLanguage->getDir();
 
 		if ( $pageExists ) {
-			$pageInfo['touched'] = wfTimestamp( TS_ISO_8601, $this->pageTouched[$pageid] );
+			$pageInfo['touched'] = wfTimestamp( TS::ISO_8601, $this->pageTouched[$pageid] );
 			$pageInfo['lastrevid'] = (int)$this->pageLatest[$pageid];
 			$pageInfo['length'] = (int)$this->pageLength[$pageid];
 
@@ -419,7 +420,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$pageInfo['notificationtimestamp'] = '';
 			if ( isset( $this->notificationtimestamps[$ns][$dbkey] ) ) {
 				$pageInfo['notificationtimestamp'] =
-					wfTimestamp( TS_ISO_8601, $this->notificationtimestamps[$ns][$dbkey] );
+					wfTimestamp( TS::ISO_8601, $this->notificationtimestamps[$ns][$dbkey] );
 			}
 		}
 
@@ -909,7 +910,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			if ( $this->fld_watched ) {
 				$this->watched[$nsId][$dbKey] = true;
 
-				$expiry = $item->getExpiry( TS_ISO_8601 );
+				$expiry = $item->getExpiry( TS::ISO_8601 );
 				if ( $expiry ) {
 					$this->watchlistExpiries[$nsId][$dbKey] = $expiry;
 				}
@@ -985,7 +986,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$age = $config->get( MainConfigNames::WatchersMaxAge );
 			$timestamps = [];
 			foreach ( $timestampRes as $row ) {
-				$revTimestamp = wfTimestamp( TS_UNIX, (int)$row->rev_timestamp );
+				$revTimestamp = wfTimestamp( TS::UNIX, (int)$row->rev_timestamp );
 				$timestamps[$row->page_namespace][$row->page_title] = (int)$revTimestamp - $age;
 			}
 			$titlesWithThresholds = array_map(

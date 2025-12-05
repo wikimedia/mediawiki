@@ -8,6 +8,8 @@
  */
 
 use Wikimedia\FileBackend\FSFile\FSFile;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Class representing an in-memory fake file.
@@ -39,7 +41,7 @@ class MockFSFile extends FSFile {
 
 	/** @inheritDoc */
 	public function getTimestamp() {
-		return wfTimestamp( TS_MW );
+		return ConvertibleTimestamp::now( TS::MW );
 	}
 
 	/** @inheritDoc */

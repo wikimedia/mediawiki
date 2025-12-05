@@ -21,6 +21,8 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Query module to enumerate all registered users.
@@ -223,7 +225,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			] ] );
 
 			// Actually count the actions using a subquery (T66505 and T66507)
-			$timestamp = $db->timestamp( (int)wfTimestamp( TS_UNIX ) - $activeUserSeconds );
+			$timestamp = $db->timestamp( (int)ConvertibleTimestamp::now( TS::UNIX ) - $activeUserSeconds );
 			$subqueryBuilder = $db->newSelectQueryBuilder()
 				->select( 'COUNT(*)' )
 				->from( 'recentchanges' )
@@ -317,7 +319,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 			if ( $fld_registration ) {
 				$data['registration'] = $row->user_registration ?
-					wfTimestamp( TS_ISO_8601, $row->user_registration ) : '';
+					wfTimestamp( TS::ISO_8601, $row->user_registration ) : '';
 			}
 
 			if ( $fld_implicitgroups || $fld_groups || $fld_rights ) {

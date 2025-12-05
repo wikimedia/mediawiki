@@ -37,6 +37,7 @@ use PHPUnit\Framework\MockObject\Rule\InvokedCount;
 use TestLogger;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\User\UserGroupManager
@@ -130,7 +131,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->expiryTime = wfTimestamp( TS_MW, time() + 100500 );
+		$this->expiryTime = wfTimestamp( TS::MW, time() + 100500 );
 		$this->clearHooks();
 	}
 
@@ -464,7 +465,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	public function testPurgeExpired() {
 		$manager = $this->getManager();
 		$user = $this->getTestUser()->getUser();
-		$expiryInPast = wfTimestamp( TS_MW, time() - 100500 );
+		$expiryInPast = wfTimestamp( TS::MW, time() - 100500 );
 		$this->assertTrue(
 			$manager->addUserToGroup( $user, 'expired', $expiryInPast ),
 			'can add expired group'
@@ -618,7 +619,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	public static function provideGetUserAutopromoteAge() {
 		yield 'Successful promote' => [
 			[ APCOND_AGE, 1000 ],
-			MWTimestamp::convert( TS_MW, time() - 1000000 ),
+			MWTimestamp::convert( TS::MW, time() - 1000000 ),
 			[ 'test_autoconfirmed' ]
 		];
 		yield 'Not old enough' => [
@@ -655,7 +656,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	public static function provideGetUserAutopromoteEditAge() {
 		yield 'Successful promote' => [
 			[ APCOND_AGE_FROM_EDIT, 1000 ],
-			MWTimestamp::convert( TS_MW, time() - 1000000 ),
+			MWTimestamp::convert( TS::MW, time() - 1000000 ),
 			[ 'test_autoconfirmed' ]
 		];
 		yield 'Not old enough' => [

@@ -17,6 +17,8 @@ use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group Database
@@ -192,7 +194,7 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 	}
 
 	public function testSaveUserGroups_change_expiry() {
-		$expiry = wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX ) + 100 );
+		$expiry = wfTimestamp( TS::MW, (int)ConvertibleTimestamp::now( TS::UNIX ) + 100 );
 		$target = $this->getTestUser( [ 'bot' ] )->getUser();
 		$performer = $this->getTestSysop()->getUser();
 		$request = new FauxRequest(

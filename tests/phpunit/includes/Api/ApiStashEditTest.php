@@ -16,6 +16,7 @@ use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\Api\ApiStashEdit
@@ -382,7 +383,7 @@ class ApiStashEditTest extends ApiTestCase {
 	protected function doStashOld(
 		User $user, $text = 'Content', $howOld = PageEditStash::PRESUME_FRESH_TTL_SEC
 	) {
-		ConvertibleTimestamp::setFakeTime( ConvertibleTimestamp::now( TS_UNIX ) - $howOld - 1 );
+		ConvertibleTimestamp::setFakeTime( ConvertibleTimestamp::now( TS::UNIX ) - $howOld - 1 );
 		$this->doStash( [ 'text' => $text ], $user );
 	}
 

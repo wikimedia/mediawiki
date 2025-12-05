@@ -11,6 +11,7 @@ use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 class ConditionalDefaultsLookup {
 
@@ -148,7 +149,7 @@ class ConditionalDefaultsLookup {
 					return false;
 				}
 
-				return $registration > ConvertibleTimestamp::convert( TS_MW, $cond[0] );
+				return $registration > ConvertibleTimestamp::convert( TS::MW, $cond[0] );
 			case CUDCOND_ANON:
 				return !$userIdentity->isRegistered();
 			case CUDCOND_NAMED:

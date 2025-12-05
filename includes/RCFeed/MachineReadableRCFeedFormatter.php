@@ -11,6 +11,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Abstract class so there can be multiple formatters outputting the same data
@@ -58,7 +59,7 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 			'title' => $rc->getTitle()->getPrefixedText(),
 			'title_url' => $rc->getTitle()->getCanonicalURL(),
 			'comment' => $rc->getAttribute( 'rc_comment' ),
-			'timestamp' => (int)wfTimestamp( TS_UNIX, $rc->getAttribute( 'rc_timestamp' ) ),
+			'timestamp' => (int)wfTimestamp( TS::UNIX, $rc->getAttribute( 'rc_timestamp' ) ),
 			'user' => $rc->getAttribute( 'rc_user_text' ),
 			'bot' => (bool)$rc->getAttribute( 'rc_bot' ),
 			'notify_url' => $recentChangeRCFeedNotifier->getNotifyUrl( $rc ),

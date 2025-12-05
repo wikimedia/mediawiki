@@ -22,6 +22,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Job to add recent change entries mentioning category membership changes
@@ -124,7 +125,7 @@ class CategoryMembershipChangeJob extends Job {
 		// Clear any stale REPEATABLE-READ snapshot
 		$dbr->flushSnapshot( __METHOD__ );
 
-		$cutoffUnix = wfTimestamp( TS_UNIX, $this->params['revTimestamp'] );
+		$cutoffUnix = wfTimestamp( TS::UNIX, $this->params['revTimestamp'] );
 		// Using ENQUEUE_FUDGE_SEC handles jobs inserted out of revision order due to the delay
 		// between COMMIT and actual enqueueing of the CategoryMembershipChangeJob job.
 		$cutoffUnix -= self::ENQUEUE_FUDGE_SEC;
@@ -147,7 +148,7 @@ class CategoryMembershipChangeJob extends Job {
 
 		// Only consider revisions newer than any such revision
 		if ( $row ) {
-			$cutoffUnix = wfTimestamp( TS_UNIX, $row->rev_timestamp );
+			$cutoffUnix = wfTimestamp( TS::UNIX, $row->rev_timestamp );
 			$lastRevId = (int)$row->rev_id;
 		} else {
 			$lastRevId = 0;
@@ -265,7 +266,7 @@ class CategoryMembershipChangeJob extends Job {
 	/**
 	 * @param WikiPage $page
 	 * @param RevisionRecord $rev
-	 * @param string $parseTimestamp TS_MW
+	 * @param string $parseTimestamp TS::MW
 	 *
 	 * @return string[] category names
 	 */

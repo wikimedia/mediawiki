@@ -17,6 +17,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group API
@@ -211,7 +212,7 @@ class ApiBlockTest extends ApiTestCase {
 			->from( 'block' )
 			->where( [ 'bl_id' => $res[0]['block']['id'] ] )
 			->caller( __METHOD__ )->fetchField();
-		$this->assertSame( (int)wfTimestamp( TS_UNIX, $expiry ), $fakeTime + 86400 );
+		$this->assertSame( (int)wfTimestamp( TS::UNIX, $expiry ), $fakeTime + 86400 );
 
 		// Check log format (T248196)
 		$blob = $this->newSelectQueryBuilder()

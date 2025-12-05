@@ -27,6 +27,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\RequestTimeout\TimeoutException;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @ingroup API
@@ -614,7 +615,7 @@ class ApiComparePages extends ApiBase {
 			if ( isset( $this->props['timestamp'] ) ) {
 				$revTimestamp = $rev->getTimestamp();
 				if ( $revTimestamp ) {
-					$vals["{$prefix}timestamp"] = wfTimestamp( TS_ISO_8601, $revTimestamp );
+					$vals["{$prefix}timestamp"] = wfTimestamp( TS::ISO_8601, $revTimestamp );
 				}
 			}
 

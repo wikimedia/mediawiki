@@ -15,6 +15,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper
@@ -266,7 +267,7 @@ class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
 			'id' => $revision->getId(),
 			'size' => $revision->getSize(),
 			'minor' => $revision->isMinor(),
-			'timestamp' => wfTimestampOrNull( TS_ISO_8601, $revision->getTimestamp() ),
+			'timestamp' => wfTimestampOrNull( TS::ISO_8601, $revision->getTimestamp() ),
 			'content_model' => $content->getModel(),
 			'page' => [
 				'id' => $title->getArticleID(),

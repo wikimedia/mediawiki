@@ -8,6 +8,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @group API
@@ -154,7 +155,7 @@ class ApiMoveTest extends ApiTestCase {
 
 		// New page should have the same expiry.
 		$expiry2 = $store->getWatchedItem( $user, $title2 )->getExpiry();
-		$this->assertSame( wfTimestamp( TS_MW, $expiry ), $expiry2 );
+		$this->assertSame( wfTimestamp( TS::MW, $expiry ), $expiry2 );
 	}
 
 	public function testMoveNonexistent() {

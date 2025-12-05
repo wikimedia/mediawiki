@@ -18,6 +18,7 @@ use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\IPUtils;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Integration tests for DatabaseBlockStore.
@@ -648,7 +649,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 
 		// Modify a block option
 		$existingBlock->isUsertalkEditAllowed( true );
-		$newExpiry = wfTimestamp( TS_MW, time() + 1000 );
+		$newExpiry = wfTimestamp( TS::MW, time() + 1000 );
 		$existingBlock->setExpiry( $newExpiry );
 
 		$result = $store->updateBlock( $existingBlock );

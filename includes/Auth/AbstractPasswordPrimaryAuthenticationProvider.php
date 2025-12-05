@@ -14,6 +14,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Basic framework for a primary authentication provider that uses passwords
@@ -170,7 +171,7 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 	 */
 	protected function getNewPasswordExpiry( $username ) {
 		$days = $this->config->get( MainConfigNames::PasswordExpirationDays );
-		$expires = $days ? wfTimestamp( TS_MW, time() + $days * 86400 ) : null;
+		$expires = $days ? wfTimestamp( TS::MW, time() + $days * 86400 ) : null;
 
 		// Give extensions a chance to force an expiration
 		$this->getHookRunner()->onResetPasswordExpiration(

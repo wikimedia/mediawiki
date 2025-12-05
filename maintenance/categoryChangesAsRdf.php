@@ -10,6 +10,7 @@ use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\TurtleRdfWriter;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -100,10 +101,10 @@ SPARQLD;
 		$now = new MWTimestamp();
 		$rcMaxAge = $this->getConfig()->get( MainConfigNames::RCMaxAge );
 
-		if ( (int)$now->getTimestamp( TS_UNIX ) - (int)$startTS->getTimestamp( TS_UNIX ) > $rcMaxAge ) {
+		if ( (int)$now->getTimestamp( TS::UNIX ) - (int)$startTS->getTimestamp( TS::UNIX ) > $rcMaxAge ) {
 			$this->error( "Start timestamp too old, maximum RC age is $rcMaxAge!" );
 		}
-		if ( (int)$now->getTimestamp( TS_UNIX ) - (int)$endTS->getTimestamp( TS_UNIX ) > $rcMaxAge ) {
+		if ( (int)$now->getTimestamp( TS::UNIX ) - (int)$endTS->getTimestamp( TS::UNIX ) > $rcMaxAge ) {
 			$this->error( "End timestamp too old, maximum RC age is $rcMaxAge!" );
 		}
 
@@ -199,7 +200,7 @@ SPARQLD;
 	 */
 	public function updateTS( $timestamp ) {
 		$dumpUrl = '<' . $this->categoriesRdf->getDumpURI() . '>';
-		$ts = wfTimestamp( TS_ISO_8601, $timestamp );
+		$ts = wfTimestamp( TS::ISO_8601, $timestamp );
 		$tsQuery = <<<SPARQL
 DELETE {
   $dumpUrl schema:dateModified ?o .
