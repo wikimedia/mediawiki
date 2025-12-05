@@ -114,6 +114,7 @@ because of Phabricator reports.
 
 * (T409708) Added language support for Bole (bol).
 * (T409393) Added language support for Javanese (Javanese script) (jv-java).
+* (T411884) Added language support for Nawat (ppl).
 * …
 
 === Breaking changes in 1.46 ===

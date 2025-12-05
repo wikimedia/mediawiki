@@ -434,6 +434,7 @@ class Names {
 		'pms' => 'Piemontèis', # Piedmontese
 		'pnb' => 'پنجابی', # Western Punjabi
 		'pnt' => 'Ποντιακά', # Pontic/Pontic Greek
+		'ppl' => 'Nawat', # Nawat
 		'prg' => 'prūsiskan', # Prussian
 		'ps' => 'پښتو', # Pashto
 		'pt' => 'português', # Portuguese
