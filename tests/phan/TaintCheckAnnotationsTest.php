@@ -28,7 +28,6 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\WebRequest;
-use MediaWiki\Shell\Result;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Status\Status;
 use MediaWiki\Status\StatusFormatter;
@@ -1063,8 +1062,7 @@ class TaintCheckAnnotationsTest {
 		Shell $shell,
 		\MediaWiki\Shell\Command $shellCmd,
 		\Shellbox\Command\Command $shellboxCmd,
-		Result $result, // Alias of UnboxedResult
-		UnboxedResult $unboxedResult
+		UnboxedResult $unboxedResult,
 	) {
 		wfShellExec( [ $_GET['a'] ] ); // Safe
 		wfShellExec( $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-ShellInjection
@@ -1094,9 +1092,6 @@ class TaintCheckAnnotationsTest {
 
 		$shellboxCmd->unsafeParams( $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-ShellInjection
 		$shellboxCmd->unsafeParams( '', '', '', '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-ShellInjection
-
-		echo $result->getStdout(); // @phan-suppress-current-line SecurityCheck-XSS
-		echo $result->getStderr(); // @phan-suppress-current-line SecurityCheck-XSS
 
 		echo $unboxedResult->getStdout(); // @phan-suppress-current-line SecurityCheck-XSS
 		echo $unboxedResult->getStderr(); // @phan-suppress-current-line SecurityCheck-XSS
