@@ -4,6 +4,8 @@
  * @file
  */
 
+use MediaWiki\Upload\Exception\UploadStashException;
+
 /**
  * @newable
  * @ingroup SpecialPage

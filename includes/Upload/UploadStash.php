@@ -13,15 +13,15 @@ use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Upload\Exception\UploadStashBadPathException;
+use MediaWiki\Upload\Exception\UploadStashFileException;
+use MediaWiki\Upload\Exception\UploadStashFileNotFoundException;
+use MediaWiki\Upload\Exception\UploadStashNoSuchKeyException;
+use MediaWiki\Upload\Exception\UploadStashNotLoggedInException;
+use MediaWiki\Upload\Exception\UploadStashWrongOwnerException;
+use MediaWiki\Upload\Exception\UploadStashZeroLengthFileException;
 use MediaWiki\User\UserIdentity;
 use MWFileProps;
-use UploadStashBadPathException;
-use UploadStashFileException;
-use UploadStashFileNotFoundException;
-use UploadStashNoSuchKeyException;
-use UploadStashNotLoggedInException;
-use UploadStashWrongOwnerException;
-use UploadStashZeroLengthFileException;
 
 /**
  * UploadStash is intended to accomplish a few things:

@@ -15,10 +15,10 @@ use MediaWiki\JobQueue\Job;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Status\Status;
+use MediaWiki\Upload\Exception\UploadStashException;
 use MediaWiki\Upload\UploadBase;
 use MediaWiki\Upload\UploadFromChunks;
 use UnexpectedValueException;
-use UploadStashException;
 use Wikimedia\ScopedCallback;
 
 /**

@@ -14,6 +14,7 @@
 use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
+use MediaWiki\Upload\Exception\UploadStashException;
 use MediaWiki\Upload\UploadStash;
 
 // @codeCoverageIgnoreStart

@@ -13,8 +13,8 @@ use LogicException;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\Upload\Exception\UploadStashBadPathException;
 use MediaWiki\User\UserIdentity;
-use UploadStashBadPathException;
 
 /**
  * Implements uploading from previously stored file.

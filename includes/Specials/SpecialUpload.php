@@ -33,6 +33,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\Upload\Exception\UploadStashException;
 use MediaWiki\Upload\UploadBase;
 use MediaWiki\Upload\UploadFromStash;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -41,7 +42,6 @@ use MediaWiki\Watchlist\WatchlistManager;
 use Psr\Log\LoggerInterface;
 use UnexpectedValueException;
 use UploadForm;
-use UploadStashException;
 
 /**
  * Form for uploading media files.

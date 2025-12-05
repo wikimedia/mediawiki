@@ -4,9 +4,13 @@
  * @file
  */
 
+namespace MediaWiki\Upload\Exception;
+
 use MediaWiki\Exception\ILocalizedException;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
+use RuntimeException;
+use Throwable;
 use Wikimedia\Message\MessageSpecifier;
 
 /**

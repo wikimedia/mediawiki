@@ -10,8 +10,8 @@ use MediaWiki\FileRepo\File\UnregisteredLocalFile;
 use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\SpecialPage\SpecialPage;
-use UploadStashBadPathException;
-use UploadStashFileNotFoundException;
+use MediaWiki\Upload\Exception\UploadStashBadPathException;
+use MediaWiki\Upload\Exception\UploadStashFileNotFoundException;
 
 /**
  * @ingroup Upload

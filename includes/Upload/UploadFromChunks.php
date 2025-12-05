@@ -9,12 +9,12 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Status\Status;
+use MediaWiki\Upload\Exception\UploadChunkFileException;
+use MediaWiki\Upload\Exception\UploadChunkVerificationException;
+use MediaWiki\Upload\Exception\UploadStashBadPathException;
+use MediaWiki\Upload\Exception\UploadStashException;
 use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
-use UploadChunkFileException;
-use UploadChunkVerificationException;
-use UploadStashBadPathException;
-use UploadStashException;
 use Wikimedia\FileBackend\FileBackend;
 
 /**

@@ -20,11 +20,11 @@ use MediaWiki\Pager\UploadStashPager;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
+use MediaWiki\Upload\Exception\UploadStashBadPathException;
+use MediaWiki\Upload\Exception\UploadStashFileNotFoundException;
 use MediaWiki\Upload\UploadStash;
 use MediaWiki\Utils\UrlUtils;
 use SpecialUploadStashTooLargeException;
-use UploadStashBadPathException;
-use UploadStashFileNotFoundException;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

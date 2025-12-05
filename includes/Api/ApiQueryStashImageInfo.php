@@ -11,8 +11,8 @@ namespace MediaWiki\Api;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Language\Language;
 use MediaWiki\Page\File\BadFileLookup;
-use UploadStashBadPathException;
-use UploadStashFileNotFoundException;
+use MediaWiki\Upload\Exception\UploadStashBadPathException;
+use MediaWiki\Upload\Exception\UploadStashFileNotFoundException;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
