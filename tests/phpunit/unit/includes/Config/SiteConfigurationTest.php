@@ -2,12 +2,12 @@
 
 use MediaWiki\Config\SiteConfiguration;
 
+/**
+ * @covers \MediaWiki\Config\SiteConfiguration
+ */
 class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 
-	/**
-	 * @var SiteConfiguration
-	 */
-	protected $mConf;
+	protected SiteConfiguration $mConf;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -119,9 +119,6 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		];
 	}
 
-	/**
-	 * @covers \MediaWiki\Config\SiteConfiguration::siteFromDB
-	 */
 	public function testSiteFromDb() {
 		$this->assertSame(
 			[ 'wikipedia', 'en' ],
@@ -147,9 +144,6 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Config\SiteConfiguration::getLocalDatabases
-	 */
 	public function testGetLocalDatabases() {
 		$this->assertEquals(
 			[ 'enwiki', 'dewiki', 'frwiki' ],
@@ -158,9 +152,6 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Config\SiteConfiguration::get
-	 */
 	public function testGetConfVariables() {
 		// Simple
 		$this->assertEquals(
@@ -287,9 +278,6 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Config\SiteConfiguration::siteFromDB
-	 */
 	public function testSiteFromDbWithCallback() {
 		$this->mConf->siteParamsCallback = [ self::class, 'getSiteParamsCallback' ];
 
@@ -310,9 +298,6 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Config\SiteConfiguration
-	 */
 	public function testParameterReplacement() {
 		$this->mConf->siteParamsCallback = [ self::class, 'getSiteParamsCallback' ];
 
@@ -361,9 +346,6 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Config\SiteConfiguration::getAll
-	 */
 	public function testGetAllGlobals() {
 		$this->mConf->siteParamsCallback = [ self::class, 'getSiteParamsCallback' ];
 
@@ -414,9 +396,6 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Config\SiteConfiguration
-	 */
 	public function testSuffixAndTagConflict() {
 		$conf = new SiteConfiguration;
 
@@ -434,6 +413,29 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 			[ 'y', 'x' ],
 			$conf->get( 'MyVariable', 'bbbar', 'bar', [], [ 'alpha', 'bar' ] ),
 			'get(): variable with +merge for a tag that is also a suffix'
+		);
+	}
+
+	public function testSuffixesAreOptional() {
+		$conf = new SiteConfiguration;
+
+		$conf->suffixes = [];
+		$conf->wikis = [ 'foodev', 'centraldev', 'bordeuxdev' ];
+		$conf->settings = [
+			'wgSitename' => [
+				'default' => 'My Wiki',
+				'centraldev' => 'Central',
+				'bordeuxdev' => 'Bordeaux',
+			],
+			'wgLanguageCode' => [
+				'default' => 'en',
+				'bordeuxdev' => 'fr',
+			],
+		];
+
+		$this->assertSame(
+			[ 'wgSitename' => 'Central', 'wgLanguageCode' => 'en' ],
+			$conf->getAll( 'centraldev' ),
 		);
 	}
 }
