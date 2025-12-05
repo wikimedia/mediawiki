@@ -58,9 +58,10 @@ class SpecialContribute extends IncludableSpecialPage {
 			)
 		);
 		$cards = $contributeFactory->getCards();
-		$user = $this->getContext()->getUser();
 
-		$templateParser = new TemplateParser( __DIR__ . '/Contribute/Templates' );
+		$templateParser = new TemplateParser(
+			dirname( __DIR__, 2 ) . '/resources/templates/SpecialContribute'
+		);
 		$templateData = [
 			'cards' => $cards,
 		];

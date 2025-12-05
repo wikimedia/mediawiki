@@ -18,7 +18,7 @@ class HTMLConfirmEmailBuilder implements IConfirmEmailBuilder {
 		private readonly UrlUtils $urlUtils
 	) {
 		$this->templateParser = new TemplateParser(
-			__DIR__ . '/templates', $cache
+			dirname( __DIR__, 3 ) . '/resources/templates/ConfirmEmail', $cache
 		);
 	}
 
