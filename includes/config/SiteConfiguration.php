@@ -533,7 +533,9 @@ class SiteConfiguration {
 		// Make tags based on the db suffix (e.g. wiki family) automatically
 		// available for use in wgConf. The user does not have to maintain
 		// wiki tag lookups (e.g. dblists at WMF) for the wiki family.
-		$wikiTags[] = $ret['suffix'];
+		if ( $ret['suffix'] !== null ) {
+			$wikiTags[] = $ret['suffix'];
+		}
 
 		$ret['tags'] = array_unique( array_merge( $ret['tags'], $wikiTags ) );
 
