@@ -1,8 +1,8 @@
 <?php
 namespace MediaWiki\Tests\JobQueue\Jobs;
 
+use MediaWiki\User\UserEditCountInitJob;
 use MediaWikiIntegrationTestCase;
-use UserEditCountInitJob;
 
 /**
  * @group JobQueue
@@ -18,7 +18,7 @@ class UserEditCountInitJobTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \UserEditCountInitJob
+	 * @covers \MediaWiki\User\UserEditCountInitJob
 	 * @dataProvider provideTestCases
 	 */
 	public function testUserEditCountInitJob( $startingEditCount, $setCount, $finalCount ) {

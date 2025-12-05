@@ -2226,12 +2226,12 @@ return [
 				'clearUserWatchlist' => 'MediaWiki\\Watchlist\\ClearUserWatchlistJob',
 				'watchlistExpiry' => 'MediaWiki\\Watchlist\\WatchlistExpiryJob',
 				'cdnPurge' => 'MediaWiki\\JobQueue\\Jobs\\CdnPurgeJob',
-				'userGroupExpiry' => 'UserGroupExpiryJob',
+				'userGroupExpiry' => 'MediaWiki\\User\\UserGroupExpiryJob',
 				'clearWatchlistNotifications' => 'MediaWiki\\Watchlist\\ClearWatchlistNotificationsJob',
-				'userOptionsUpdate' => 'UserOptionsUpdateJob',
+				'userOptionsUpdate' => 'MediaWiki\\User\\Options\\UserOptionsUpdateJob',
 				'revertedTagUpdate' => 'MediaWiki\\JobQueue\\Jobs\\RevertedTagUpdateJob',
 				'null' => 'MediaWiki\\JobQueue\\Jobs\\NullJob',
-				'userEditCountInit' => 'UserEditCountInitJob',
+				'userEditCountInit' => 'MediaWiki\\User\\UserEditCountInitJob',
 				'parsoidCachePrewarm' => [
 					'class' => 'MediaWiki\\JobQueue\\Jobs\\ParsoidCachePrewarmJob',
 					'services' => [

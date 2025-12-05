@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\User;
+
 use MediaWiki\JobQueue\GenericParameterJob;
 use MediaWiki\JobQueue\Job;
 use MediaWiki\MediaWikiServices;
@@ -22,10 +24,12 @@ class UserGroupExpiryJob extends Job implements GenericParameterJob {
 
 	/**
 	 * Run the job
+	 *
 	 * @return bool Success
 	 */
 	public function run() {
 		MediaWikiServices::getInstance()->getUserGroupManager()->purgeExpired();
+
 		return true;
 	}
 }

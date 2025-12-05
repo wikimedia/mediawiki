@@ -491,6 +491,10 @@ because of Phabricator reports.
     - UploadStashFileHook
     - UploadVerifyFileHook
     - UploadVerifyUploadHook
+  - MediaWiki\User:
+    - UserEditCountInitJob
+    - UserGroupExpiryJob
+    - Options/UserOptionsUpdateJob
   - Watchlist related hook: MediaWiki\Hook => MediaWiki\Watchlist\Hook
     - WatchedItemQueryServiceExtensionsHook
   - The LockManager library: Wikimedia\LockManager

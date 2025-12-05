@@ -8,7 +8,6 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\UserEditCountUpdate;
 use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\WikiMap\WikiMap;
-use UserEditCountInitJob;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\SelectQueryBuilder;
