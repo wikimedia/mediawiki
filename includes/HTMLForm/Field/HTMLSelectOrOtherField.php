@@ -26,8 +26,13 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		parent::__construct( $params );
 		$this->getOptions();
 		if ( !in_array( 'other', $this->mOptions, true ) ) {
-			$msg =
-				$params['other'] ?? wfMessage( 'htmlform-selectorother-other' )->text();
+			if ( array_key_exists( 'other', $params ) ) {
+				$msg = $params['other'];
+			} elseif ( array_key_exists( 'other-message', $params ) ) {
+				$msg = $this->getMessage( $params['other-message'] )->text();
+			} else {
+				$msg = $this->msg( 'htmlform-selectorother-other' )->text();
+			}
 			// Have 'other' always as first element
 			$this->mOptions = [ $msg => 'other' ] + $this->mOptions;
 		}

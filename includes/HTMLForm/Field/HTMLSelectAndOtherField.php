@@ -29,22 +29,21 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
-		if ( array_key_exists( 'other', $params ) ) {
-			// Do nothing
-		} elseif ( array_key_exists( 'other-message', $params ) ) {
-			$params['other'] = $this->getMessage( $params['other-message'] )->plain();
-		} else {
-			$params['other'] = $this->msg( 'htmlform-selectorother-other' )->plain();
-		}
-
 		parent::__construct( $params );
 
 		if ( $this->getOptions() === null ) {
 			throw new InvalidArgumentException( 'HTMLSelectAndOtherField called without any options' );
 		}
 		if ( !in_array( 'other', $this->mOptions, true ) ) {
+			if ( array_key_exists( 'other', $params ) ) {
+				$msg = $params['other'];
+			} elseif ( array_key_exists( 'other-message', $params ) ) {
+				$msg = $this->getMessage( $params['other-message'] )->text();
+			} else {
+				$msg = $this->msg( 'htmlform-selectorother-other' )->text();
+			}
 			// Have 'other' always as first element
-			$this->mOptions = [ $params['other'] => 'other' ] + $this->mOptions;
+			$this->mOptions = [ $msg => 'other' ] + $this->mOptions;
 		}
 		$this->mFlatOptions = self::flattenOptions( $this->getOptions() );
 	}
