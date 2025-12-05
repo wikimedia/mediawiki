@@ -142,21 +142,21 @@
         },
         {
             "name": "coderkungfu/php-queue",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CoderKungfu/php-queue.git",
-                "reference": "cd29afd03a5b4b740ce6c50128f1e69723c54f72"
+                "reference": "60b35b9fe80be9fbfe1fe29dc94161083f03b569"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CoderKungfu/php-queue/zipball/cd29afd03a5b4b740ce6c50128f1e69723c54f72",
-                "reference": "cd29afd03a5b4b740ce6c50128f1e69723c54f72",
+                "url": "https://api.github.com/repos/CoderKungfu/php-queue/zipball/60b35b9fe80be9fbfe1fe29dc94161083f03b569",
+                "reference": "60b35b9fe80be9fbfe1fe29dc94161083f03b569",
                 "shasum": ""
             },
             "require": {
                 "clio/clio": "0.1.*",
-                "monolog/monolog": "~1.3||~2",
+                "monolog/monolog": "*",
                 "php": ">=5.3.0"
             },
             "require-dev": {
@@ -209,9 +209,9 @@
             ],
             "support": {
                 "issues": "https://github.com/CoderKungfu/php-queue/issues",
-                "source": "https://github.com/CoderKungfu/php-queue/tree/1.0.1"
+                "source": "https://github.com/CoderKungfu/php-queue/tree/1.0.2"
             },
-            "time": "2021-04-09T13:40:23+00:00"
+            "time": "2025-12-04T01:20:46+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -4912,16 +4912,16 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v1.0.0",
+            "version": "v1.0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig.git",
-                "reference": "bea873a074af3f3c303b7e7b8ecf097e805d080f"
+                "reference": "38c5c9af46e543c2aeadef17307a6e881beaba3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/bea873a074af3f3c303b7e7b8ecf097e805d080f",
-                "reference": "bea873a074af3f3c303b7e7b8ecf097e805d080f",
+                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/38c5c9af46e543c2aeadef17307a6e881beaba3b",
+                "reference": "38c5c9af46e543c2aeadef17307a6e881beaba3b",
                 "shasum": ""
             },
             "require": {
@@ -4998,9 +4998,9 @@
                 "payments"
             ],
             "support": {
-                "source": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig/tree/v1.0.0"
+                "source": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig/tree/v1.0.2.1"
             },
-            "time": "2025-11-21T12:21:27+00:00"
+            "time": "2025-12-04T17:25:19+00:00"
         },
         {
             "name": "wikimedia/timestamp",
@@ -10109,7 +10109,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
