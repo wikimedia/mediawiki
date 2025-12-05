@@ -433,7 +433,7 @@ class IcuCollation extends Collation {
 	private function fetchFirstLetterData() {
 		// Generate data from serialized data file
 		if ( isset( self::TAILORING_FIRST_LETTERS[$this->locale] ) ) {
-			$letters = require __DIR__ . "/data/first-letters-root.php";
+			$letters = require dirname( __DIR__, 2 ) . "/languages/data/first-letters-root.php";
 			// Append additional characters
 			$letters = array_merge( $letters, self::TAILORING_FIRST_LETTERS[$this->locale] );
 			// Remove unnecessary ones, if any
@@ -447,7 +447,7 @@ class IcuCollation extends Collation {
 				$letters[] = $this->digitTransformLanguage->formatNumNoSeparators( $digit );
 			}
 		} elseif ( $this->locale === 'root' ) {
-			$letters = require __DIR__ . "/data/first-letters-root.php";
+			$letters = require dirname( __DIR__, 2 ) . "/languages/data/first-letters-root.php";
 		} else {
 			throw new RuntimeException( "MediaWiki does not support ICU locale " .
 				"\"{$this->locale}\"" );
