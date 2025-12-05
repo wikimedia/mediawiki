@@ -33,7 +33,7 @@ use Wikimedia\FileBackend\FSFileBackend;
  * @covers \Wikimedia\FileBackend\FileOps\FileOp
  * @covers \Wikimedia\FileBackend\FileOpBatch
  * @covers \Wikimedia\FileBackend\HTTPFileStreamer
- * @covers \LockManagerGroup
+ * @covers \MediaWiki\FileBackend\LockManager\LockManagerGroup
  * @covers \Wikimedia\FileBackend\FileOps\MoveFileOp
  * @covers \Wikimedia\FileBackend\FileOps\NullFileOp
  * @covers \Wikimedia\FileBackend\FileOps\StoreFileOp

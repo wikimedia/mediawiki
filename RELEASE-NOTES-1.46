@@ -421,6 +421,8 @@ because of Phabricator reports.
     - WikiExporter__dumpStableQueryHook
     - XmlDumpWriterOpenPageHook
     - XmlDumpWriterWriteRevisionHook
+  - FileBackend\LockManager:
+    - LockManagerGroup
   - FileRepo related hooks: MediaWiki\Hook => MediaWiki\FileRepo\Hook
     - FileTransformedHook
     - FileUploadHook

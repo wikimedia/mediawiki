@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\FileBackend\FileBackendGroup;
+use MediaWiki\FileBackend\LockManager\LockManagerGroup;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Wikimedia\FileBackend\FSFile\TempFSFileFactory;
