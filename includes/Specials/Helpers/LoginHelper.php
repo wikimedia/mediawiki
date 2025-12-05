@@ -17,11 +17,9 @@ class LoginHelper extends ContextSource {
 	use ProtectedHookAccessorTrait;
 
 	/**
-	 * @deprecated Direct access to this static property is deprecated since 1.45.
-	 *   Use {@link LoginHelper::getValidErrorMessages} instead.
 	 * @var string[]
 	 */
-	public static $validErrorMessages = [
+	private static $validErrorMessages = [
 		'exception-nologin-text',
 		'exception-nologin-text-for-temp-user',
 		'watchlistanontext',
