@@ -2310,6 +2310,7 @@
 	"watchlistlabels-form-field-name": "標籤名稱",
 	"watchlistlabels-form-name-too-long": "標籤名稱太長。請將長度維持在 256 位元組以內（提供的值為 $1 {{PLURAL:$1|位元組}}）。",
 	"watchlistlabels-form-name-too-short": "標籤名稱不能是空白。",
+	"watchlistlabels-form-name-exists": "標籤名稱「$1」已被使用。",
 	"watchlistlabels-form-submit-new": "建立",
 	"watchlistlabels-form-submit-edit": "儲存",
 	"watchlist-filters-labels-title": "標籤",

@@ -230,7 +230,7 @@
 	"cannotdelete-title": "Odstranjenje stranice «$1» jest nemožno",
 	"delete-scheduled": "Stranica «$1» jest zaplanovana do odstranjenja.\nProsimo vašu trpělivost.",
 	"delete-hook-aborted": "Odstranjenje bylo prěrvano hakom.\nNe bylo podano objasnjenje.",
-	"no-null-revision": "Stvorjenje novoj prazdnoj versije stranice «$1» ne udalo se.",
+	"no-null-revision": "Stvorjenje novoj fiktivnoj versije stranice «$1» ne udalo se.",
 	"badtitle": "Nedopustima nazva",
 	"badtitletext": "Nazva ukazanoj stranice jest pogrěšna, prazdna ili ju sodrživaje nepravilny medžujezyčny ili medžuprojektny link.\nMože byti, že ona sodrživaje jedin ili veče znakov nedozvoljenyh v nazvah stranic.",
 	"title-invalid": "Zaprošena nazva stranice jest nepravilna.",

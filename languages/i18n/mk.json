@@ -2194,6 +2194,7 @@
 	"watchlistlabels-form-field-name": "Име на натписот",
 	"watchlistlabels-form-name-too-long": "Натписот има предолго име. Треба да е под 256 бајти (внесената вредност изнесува $1 {{PLURAL:$1|бајт|бајти}}).",
 	"watchlistlabels-form-name-too-short": "Името на натписот не може да стои празно.",
+	"watchlistlabels-form-name-exists": "Името на натписот „$1“ е зафатено.",
 	"watchlistlabels-form-submit-new": "Создај",
 	"watchlistlabels-form-submit-edit": "Зачувај",
 	"watchlist-filters-labels-title": "Натписи",
