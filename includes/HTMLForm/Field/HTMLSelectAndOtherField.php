@@ -271,7 +271,10 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		return $this->getDefault();
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @stable to override
+	 * @return int
+	 */
 	public function getSize() {
 		return $this->mParams['size'] ?? 45;
 	}
