@@ -33,7 +33,7 @@ class IcuCollation extends Collation {
 	protected $digitTransformLanguage;
 
 	/** @var bool */
-	private $useNumericCollation = false;
+	private $isNumericCollation = false;
 
 	/** @var array */
 	private $firstLetterData;
@@ -334,13 +334,10 @@ class IcuCollation extends Collation {
 		$this->primaryCollator = Collator::create( $locale );
 		$this->primaryCollator->setStrength( Collator::PRIMARY );
 
-		// If the special suffix for numeric collation is present, turn on numeric collation.
+		// Strip the numeric collation suffix so that it doesn't trip up fetchFirstLetterData()
 		if ( str_ends_with( $locale, '-u-kn' ) ) {
-			$this->useNumericCollation = true;
-			// Strip off the special suffix so it doesn't trip up fetchFirstLetterData().
+			$this->isNumericCollation = true;
 			$this->locale = substr( $this->locale, 0, -5 );
-			$this->mainCollator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
-			$this->primaryCollator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
 		}
 	}
 
@@ -388,7 +385,7 @@ class IcuCollation extends Collation {
 			$sortLetter = substr( $sortLetter, strlen( "\u{FDD0}" ) );
 		}
 
-		if ( $this->useNumericCollation ) {
+		if ( $this->isNumericCollation ) {
 			// If the sort letter is a number, return '0–9' (or localized equivalent).
 			// ASCII value of 0 is 48. ASCII value of 9 is 57.
 			// Note that this also applies to non-Arabic numerals since they are
