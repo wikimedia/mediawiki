@@ -2027,7 +2027,7 @@
 	"linksearch-ns": "Namespace:",
 	"linksearch-ok": "Search",
 	"linksearch-text": "Wildcards such as \"*.wikipedia.org\" may be used.<br />\nSupported {{PLURAL:$2|protocol|protocols}}: $1 (defaults to http:// and https:// if no protocol is specified).",
-	"linksearch-text-ignored-domains": "Links to the following {{PLURAL:$2|domain is|domains are}} not recorded and as such won't be shown: $1.",
+	"linksearch-text-ignored-domains": "Links to the following {{PLURAL:$2|domain|domains}} are not recorded and as such won't be shown: $1.",
 	"linksearch-line": "$1 is linked from $2",
 	"linksearch-error": "Wildcards may appear only at the start of the hostname.",
 	"listusersfrom": "Display users starting at:",
