@@ -13,7 +13,6 @@ class EditWatchlistNormalHTMLForm extends OOUIHTMLForm {
 	/** @inheritDoc */
 	public function getLegend( $namespace ) {
 		$namespace = (int)substr( $namespace, 2 );
-
 		return $namespace == NS_MAIN
 			? $this->msg( 'blanknamespace' )->text()
 			: $this->getContext()->getLanguage()->getFormattedNsText( $namespace );

@@ -21,8 +21,10 @@ use MediaWiki\RecentChanges\EnhancedChangesList;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\Request\DerivativeRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
@@ -68,7 +70,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	/**
 	 * @var int|false where the value is one of the SpecialEditWatchlist:EDIT_ prefixed
-	 * constants (e.g. EDIT_NORMAL)
+	 * constants (e.g. EDIT_RAW)
 	 */
 	private $currentMode;
 
@@ -124,20 +126,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$output->addModuleStyles( [ 'mediawiki.special' ] );
 		$output->addModules( [ 'mediawiki.special.watchlist' ] );
 
-		$mode = SpecialEditWatchlist::getMode( $request, $subpage );
-		$this->currentMode = $mode;
-
-		if ( $mode !== false ) {
-			if ( $mode === SpecialEditWatchlist::EDIT_RAW ) {
-				$title = SpecialPage::getTitleFor( 'EditWatchlist', 'raw' );
-			} elseif ( $mode === SpecialEditWatchlist::EDIT_CLEAR ) {
-				$title = SpecialPage::getTitleFor( 'EditWatchlist', 'clear' );
-			} else {
-				$title = SpecialPage::getTitleFor( 'EditWatchlist' );
-			}
-
+		$title = $this->getRedirect( $request, $subpage );
+		if ( $title ) {
 			$output->redirect( $title->getLocalURL() );
-
 			return;
 		}
 
@@ -173,6 +164,29 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				'SpecialEditWatchlistUrl' => SpecialPage::getTitleFor( 'EditWatchlist' )->getLinkURL(),
 			] );
 		}
+	}
+
+	/**
+	 * Handle legacy urls
+	 *
+	 * @param WebRequest $request
+	 * @param string|null $subpage
+	 * @return Title|null
+	 */
+	private function getRedirect( WebRequest $request, ?string $subpage ): ?Title {
+		$title = null;
+		$mode = SpecialEditWatchlist::getMode( $request, $subpage );
+		$this->currentMode = $mode;
+		if ( $mode !== false ) {
+			if ( $mode === SpecialEditWatchlist::EDIT_RAW ) {
+				$title = SpecialPage::getTitleFor( 'EditWatchlist', 'raw' );
+			} elseif ( $mode === SpecialEditWatchlist::EDIT_CLEAR ) {
+				$title = SpecialPage::getTitleFor( 'EditWatchlist', 'clear' );
+			} else {
+				$title = SpecialPage::getTitleFor( 'EditWatchlist' );
+			}
+		}
+		return $title;
 	}
 
 	/**

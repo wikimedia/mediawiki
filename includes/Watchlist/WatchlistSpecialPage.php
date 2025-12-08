@@ -90,7 +90,7 @@ trait WatchlistSpecialPage {
 		// These should be kept in sync with SpecialWatchlist::WATCHLIST_TAB_PATHS.
 		$modes = array_filter( [
 			'view' => [ 'Watchlist', false, false ],
-			'edit' => [ 'EditWatchlist', false, SpecialEditWatchlist::EDIT_NORMAL ],
+			'edit' => [ 'EditWatchlist', false, SpecialEditWatchlist::EDIT ],
 			'labels' => $this->getConfig()->get( MainConfigNames::EnableWatchlistLabels )
 				? [ 'WatchlistLabels', false, false ]
 				: null,

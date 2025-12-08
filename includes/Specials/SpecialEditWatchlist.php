@@ -6,8 +6,6 @@
 
 namespace MediaWiki\Specials;
 
-use EditWatchlistCheckboxSeriesField;
-use EditWatchlistNormalHTMLForm;
 use LogicException;
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -18,6 +16,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\OOUIHTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\WikiPageFactory;
@@ -25,7 +24,6 @@ use MediaWiki\Pager\EditWatchlistPager;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
-use MediaWiki\Status\Status;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
@@ -51,8 +49,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	public const EDIT_CLEAR = 1;
 	public const EDIT_RAW = 2;
-	public const EDIT_NORMAL = 3;
+	public const EDIT = 3;
 	public const VIEW = 4;
+
+	public const CHECKBOX_NAME = 'wpTitles';
 
 	/** @var string|null */
 	protected $successMessage;
@@ -69,7 +69,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private WatchlistManager $watchlistManager;
 	protected EditWatchlistPager $pager;
 
-	/** @var int|false where the value is one of the EDIT_ prefixed constants (e.g. EDIT_NORMAL) */
+	/** @var int|false where the value is one of the EDIT constants (e.g. EDIT_RAW) */
 	private $currentMode;
 
 	public function __construct(
@@ -91,14 +91,20 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
 		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
 		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
-		$this->pager = $this->getDefaultPager();
+		$this->pager = $this->getDefaultPager(
+			(bool)$services->getMainConfig()->get( MainConfigNames::WatchlistExpiry )
+		);
 	}
 
-	private function getDefaultPager(): EditWatchlistPager {
+	private function getDefaultPager( bool $expiryEnabled ): EditWatchlistPager {
 		return new EditWatchlistPager(
 			$this->getContext(),
+			$this->getPageTitle(),
 			$this->watchedItemStore,
 			$this->nsInfo,
+			$this->linkBatchFactory,
+			$this->getHookRunner(),
+			$expiryEnabled,
 		);
 	}
 
@@ -134,7 +140,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		] );
 		$out->addModules( [ 'mediawiki.special.watchlistedit' ] );
 
-		$mode = self::getMode( $this->getRequest(), $mode, self::EDIT_NORMAL );
+		$mode = self::getMode( $this->getRequest(), $mode, self::EDIT );
 		$this->currentMode = $mode;
 		$this->outputSubtitle();
 
@@ -160,7 +166,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				}
 				break;
 
-			case self::EDIT_NORMAL:
+			case self::EDIT:
 			default:
 				$this->executeViewEditWatchlist();
 				break;
@@ -180,56 +186,68 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Executes an edit mode for the watchlist view, from which you can manage your watchlist
+	 * @return HTMLForm
 	 */
-	protected function executeViewEditWatchlist() {
-		$out = $this->getOutput();
-		$out->setPageTitleMsg( $this->msg( 'watchlistedit-normal-title' ) );
-
-		$watchlistInfo = $this->getWatchlistInfo();
-		$this->getHookRunner()->onWatchlistEditorBeforeFormRender( $watchlistInfo );
-
+	private function createNamespaceSelectForm(): HTMLForm {
 		$namespaceFormDescriptor = [
 			'namespace' => [
 				'type' => 'namespaceselect',
 				'name' => 'namespace',
-				'id' => 'namespace',
+				'id' => 'namespace-selector',
 				'label-message' => 'namespace',
 				'all' => '',
 				'default' => '',
 				'include' => array_merge( array_values( $this->nsInfo->getSubjectNamespaces() ) ),
 			],
 		];
-		$namespaceSelectForm = HTMLForm::factory( 'ooui', $namespaceFormDescriptor, $this->getContext() );
+		$namespaceSelectForm = HTMLForm::factory( 'codex', $namespaceFormDescriptor, $this->getContext() );
 		$namespaceSelectForm
 			->setMethod( 'get' )
-			->setTitle( $this->getPageTitle() ) // Remove subpage
-			->setSubmitTextMsg( 'allpagessubmit' )
-			->prepareForm();
+			->setId( 'namespace-selector-form' )
+			->setTitle( $this->getPageTitle() )
+			->setSubmitTextMsg( 'allpagessubmit' );
+		if ( $this->getRequest()->getInt( 'limit' ) ) {
+			$namespaceSelectForm->addHiddenField( 'limit', $this->getRequest()->getInt( 'limit' ) );
+		}
+		return $namespaceSelectForm->prepareForm();
+	}
 
-		if ( count( $watchlistInfo ) > 0 ) {
-			$form = $this->getNormalForm( $watchlistInfo );
-			$form->prepareForm();
+	/**
+	 * Executes an edit mode for the watchlist view, from which you can manage your watchlist
+	 */
+	protected function executeViewEditWatchlist() {
+		$output = $this->getOutput();
+		$output->setPageTitleMsg( $this->msg( 'watchlistedit-normal-title' ) );
 
-			$result = $form->tryAuthorizedSubmit();
-			if ( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
-				$out->addHTML( $this->successMessage );
-				$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
-				return;
+		if ( $this->getRequest()->wasPosted() ) {
+			$this->handleEditWatchlistFormSubmission( $output );
+		}
+
+		$this->createNamespaceSelectForm()->displayForm( '' );
+		$output->addHTML( $this->pager->getBody() );
+	}
+
+	/**
+	 * @param OutputPage $output
+	 * @return void
+	 */
+	private function handleEditWatchlistFormSubmission( OutputPage $output ) {
+		if ( ( new HTMLForm( [], $this->getContext() ) )->requestIsAuthorized() ) {
+			$removed = [];
+			$titles = $this->getRequest()->getArray( self::CHECKBOX_NAME );
+			if ( is_array( $titles ) ) {
+				$this->unwatchTitles( $titles );
+				$removed = array_merge( $removed, $titles );
 			}
-
-			$namespaceSelectForm?->displayForm( false );
-			$out->addHTML( $this->pager->getNavigationBar() );
-
-			$form->displayForm( $result );
-
-			$out->addHTML( $this->pager->getNavigationBar() );
-		} else {
-			if ( $this->getContext()->getRequest()->getIntOrNull( 'namespace' ) ) {
-				$namespaceSelectForm?->displayForm( false );
-				$out->addWikiMsg( 'nowatchlistnamespace' );
-			} else {
-				$out->addWikiMsg( 'nowatchlist' );
+			if ( count( $removed ) > 0 ) {
+				$this->successMessage = $this->msg( 'watchlistedit-normal-done' )
+					->numParams( count( $removed ) )->parse();
+				$this->showTitles( $removed, $this->successMessage );
+				$output->addHTML( Html::rawElement(
+					'div',
+					[ 'class' => 'edit-watchlist-result' ],
+					$this->successMessage
+				) );
 			}
 		}
 	}
@@ -467,27 +485,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Get a paged list of titles on a user's watchlist, excluding talk pages,
-	 * and return as a two-dimensional array with namespace and title.
-	 *
-	 * @return array
-	 */
-	protected function getWatchlistInfo() {
-		$titles = [];
-		$lb = $this->linkBatchFactory->newLinkBatch();
-
-		$this->pager->doQuery();
-		$watchedItems = $this->pager->getOrderedResult();
-		foreach ( $watchedItems as $item ) {
-			$titles[$item->wl_namespace][$item->wl_title] = $item->expiryInDaysText;
-			$lb->add( $item->wl_namespace, $item->wl_title );
-		}
-
-		$lb->execute();
-		return $titles;
-	}
-
-	/**
 	 * Validates watchlist entry
 	 *
 	 * @param Title $title
@@ -623,166 +620,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param array $data
-	 * @return bool
-	 */
-	private function submitNormal( $data ) {
-		$removed = [];
-
-		foreach ( $data as $titles ) {
-			// ignore the 'check all' checkbox, which is a boolean value
-			if ( is_array( $titles ) ) {
-				$this->unwatchTitles( $titles );
-				$removed = array_merge( $removed, $titles );
-			}
-		}
-
-		if ( count( $removed ) > 0 ) {
-			$this->successMessage = $this->msg( 'watchlistedit-normal-done'
-			)->numParams( count( $removed ) )->parse();
-			$this->showTitles( $removed, $this->successMessage );
-
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Get the standard watchlist editing form
-	 *
-	 * @param array $watchlistInfo
-	 * @return HTMLForm
-	 */
-	protected function getNormalForm( array $watchlistInfo ) {
-		$fields = [];
-		$count = 0;
-
-		$this->getHookRunner()->onWatchlistEditorBeforeFormRender( $watchlistInfo );
-		foreach ( $watchlistInfo as $namespace => $pages ) {
-			$options = [];
-			foreach ( $pages as $dbkey => $expiryDaysText ) {
-				$title = Title::makeTitleSafe( $namespace, $dbkey );
-
-				if ( $this->checkTitle( $title, $namespace, $dbkey ) ) {
-					$text = $this->buildRemoveLine( $title, $expiryDaysText );
-					$options[$text] = $title->getPrefixedText();
-					$count++;
-				}
-			}
-
-			// checkTitle can filter some options out, avoid empty sections
-			if ( count( $options ) > 0 ) {
-				// add a checkbox to select all entries in namespace
-				$fields['CheckAllNs' . $namespace] = [
-					'cssclass' => 'mw-watchlistedit-checkall',
-					'type' => 'check',
-					'section' => "ns$namespace",
-					'label' => $this->msg( 'watchlistedit-normal-check-all' )->text()
-				];
-
-				$fields['TitlesNs' . $namespace] = [
-					'cssclass' => 'mw-watchlistedit-check',
-					'class' => EditWatchlistCheckboxSeriesField::class,
-					'options' => $options,
-					'section' => "ns$namespace",
-				];
-
-				$namespace = $this->getContext()->getRequest()->getIntOrNull( 'namespace' );
-				if ( $namespace ) {
-					$fields['namespace'] = [
-						'type' => 'hidden',
-						'name' => 'namespace',
-						'default' => $namespace,
-					];
-				}
-
-				$fields['offset'] = [
-					'type' => 'hidden',
-					'name' => 'offset',
-					'default' => $this->pager->getOffset(),
-				];
-			}
-		}
-		$this->cleanupWatchlist();
-
-		$form = new EditWatchlistNormalHTMLForm( $fields, $this->getContext() );
-		$form->setTitle( $this->getPageTitle() ); // Remove subpage
-		$form->setSubmitTextMsg( 'watchlistedit-normal-submit' );
-		$form->setSubmitDestructive();
-		# Used message keys:
-		# 'accesskey-watchlistedit-normal-submit', 'tooltip-watchlistedit-normal-submit'
-		$form->setSubmitTooltip( 'watchlistedit-normal-submit' );
-		$form->setWrapperLegendMsg( 'watchlistedit-normal-legend' );
-		$form->addHeaderHtml( $this->msg( 'watchlistedit-normal-explain' )->parse() );
-		$form->setSubmitCallback( $this->submitNormal( ... ) );
-
-		return $form;
-	}
-
-	/**
-	 * Build the label for a checkbox, with a link to the title, and various additional bits
-	 *
-	 * @param Title $title
-	 * @param string $expiryDaysText message shows the number of days a title has remaining in a user's watchlist.
-	 *               If this param is not empty then include a message that states the time remaining in a watchlist.
-	 * @return string
-	 */
-	private function buildRemoveLine( $title, string $expiryDaysText = '' ): string {
-		$linkRenderer = $this->getLinkRenderer();
-		$link = $linkRenderer->makeLink( $title );
-
-		$tools = [];
-		$tools['talk'] = $linkRenderer->makeLink(
-			$title->getTalkPage(),
-			$this->msg( 'talkpagelinktext' )->text()
-		);
-
-		if ( $title->exists() ) {
-			$tools['history'] = $linkRenderer->makeKnownLink(
-				$title,
-				$this->msg( 'history_small' )->text(),
-				[],
-				[ 'action' => 'history' ]
-			);
-		}
-
-		if ( $title->getNamespace() === NS_USER && !$title->isSubpage() ) {
-			$tools['contributions'] = $linkRenderer->makeKnownLink(
-				SpecialPage::getTitleFor( 'Contributions', $title->getText() ),
-				$this->msg( 'contribslink' )->text()
-			);
-		}
-
-		$this->getHookRunner()->onWatchlistEditorBuildRemoveLine(
-			$tools, $title, $title->isRedirect(), $this->getSkin(), $link );
-
-		if ( $title->isRedirect() ) {
-			// Linker already makes class mw-redirect, so this is redundant
-			$link = '<span class="watchlistredir">' . $link . '</span>';
-		}
-
-		$watchlistExpiringMessage = '';
-		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) && $expiryDaysText ) {
-			$watchlistExpiringMessage = Html::element(
-				'span',
-				[ 'class' => 'mw-watchlistexpiry-msg' ],
-				$expiryDaysText
-			);
-		}
-
-		return $link . ' ' . Html::openElement( 'span', [ 'class' => 'mw-changeslist-links' ] ) .
-			implode(
-				'',
-				array_map( static function ( $tool ) {
-					return Html::rawElement( 'span', [], $tool );
-				}, $tools )
-			) .
-			Html::closeElement( 'span' ) .
-			$watchlistExpiringMessage;
-	}
-
-	/**
 	 * Get a form for editing the watchlist in "raw" mode
 	 *
 	 * @return HTMLForm
@@ -849,8 +686,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			case self::EDIT_RAW:
 				return self::EDIT_RAW;
 			case 'edit':
-			case self::EDIT_NORMAL:
-				return self::EDIT_NORMAL;
+			case self::EDIT:
+				return self::EDIT;
 			default:
 				return $defaultValue;
 		}

@@ -79,7 +79,8 @@ class HTMLSelectNamespace extends HTMLFormField {
 	public function getInputCodex( $value, $hasErrors ) {
 		$optionParams = [
 			'all' => $this->mAllValue,
-			'in-user-lang' => $this->mUserLang
+			'in-user-lang' => $this->mUserLang,
+			'include' => $this->mInclude,
 		];
 		$select = new HTMLSelectField( [
 			'options' => array_flip( Html::namespaceSelectorOptions( $optionParams ) )

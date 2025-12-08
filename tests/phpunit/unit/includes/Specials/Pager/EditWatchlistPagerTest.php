@@ -2,13 +2,15 @@
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Navigation\CodexPagerNavigationBuilder;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Page\PageReference;
 use MediaWiki\Pager\EditWatchlistPager;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\NamespaceInfo;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -31,6 +33,8 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 		$user->method( 'getId' )->willReturn( self::$USER_ID );
 		$defaultOptions = [
 			'watchedItemStore' => $this->createMock( WatchedItemStore::class ),
+			'hookRunner' => $this->createMock( HookRunner::class ),
+			'linkBatchFactory' => $this->createMock( LinkBatchFactory::class ),
 			'namespaceInfo' => $namespaceInfo,
 			'user' => $user,
 			'request' => [ 'method' => 'GET', 'data' => [] ],
@@ -40,7 +44,7 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 		$output = $this->createMock( OutputPage::class );
 		$output->method( 'addModuleStyles' );
 		$output->method( 'addModules' );
-		$title = $this->createMock( PageReference::class );
+		$title = $this->createMock( Title::class );
 		$context = $this->createMock( RequestContext::class );
 		$context->method( 'getUser' )
 			->willReturn( $options['user'] );
@@ -89,11 +93,13 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 
 		// Parent class constructor uses MediaWikiServices singleton which is not available here, so work around it
 		$pager = new class(
-			$context, $options['watchedItemStore'], $options['namespaceInfo']
+			$context, $title, $options['watchedItemStore'], $options['namespaceInfo'],
+			$options['linkBatchFactory'], $options['hookRunner']
 		) extends EditWatchlistPager {
 			public function __construct(
-				IContextSource $context, protected WatchedItemStoreInterface $wis,
-				protected NamespaceInfo $namespaceInfo
+				IContextSource $context, protected Title $title, protected WatchedItemStoreInterface $wis,
+				protected NamespaceInfo $namespaceInfo,
+				protected LinkBatchFactory $linkBatchFactory, protected HookRunner $hookRunner
 			) {
 				// copied from the parent, but without referring to MediawikiServices
 				$this->setContext( $context );
@@ -102,18 +108,13 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 				$this->mDefaultLimit = 50;
 				$this->mLimit = $this->mRequest->getText( 'limit', $this->mDefaultLimit );
 				$this->mIsBackwards = ( $this->mRequest->getRawVal( 'dir' ) === 'prev' );
-				$this->mIndexField = $this->getIndexField()['title'];
+				$this->mIndexField = $this->getIndexField()[0];
 				$this->mExtraSortFields = [];
 				$this->mDefaultDirection = self::QUERY_ASCENDING;
 			}
 		};
 		$pager->mDb = $db;
 		return $pager;
-	}
-
-	public function testFormatRow() {
-		$pager = $this->instantiatePager();
-		$this->assertSame( '', $pager->formatRow( [] ) );
 	}
 
 	public function testGetQueryInfo() {
@@ -124,7 +125,7 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 	public function testGetIndexField() {
 		$pager = $this->instantiatePager();
 		$expected = [
-			'title' => [ 'wl_namespace', 'wl_title' ],
+			[ 'wl_namespace', 'wl_title' ],
 		];
 		$this->assertSame( $expected, $pager->getIndexField() );
 	}
@@ -199,12 +200,12 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 					]
 				],
 				'expectedResult' => new FakeResultWrapper( [
-					[ 'wl_namespace' => 777, 'wl_title' => 'Page_1', 'we_expiry' => 20250909180500,
-						'expiryInDaysText' => '20250909180500 days' ],
-					[ 'wl_namespace' => 999, 'wl_title' => 'Page_2', 'we_expiry' => 20250909180530,
-						'expiryInDaysText' => '20250909180530 days' ],
-					[ 'wl_namespace' => 666, 'wl_title' => 'Page_X', 'we_expiry' => null,
-						'expiryInDaysText' => '' ],
+					[ 'wl_namespace' => 777, 'wl_title' => 'Page_1',
+						'expiry' => '20250909180500 days' ],
+					[ 'wl_namespace' => 999, 'wl_title' => 'Page_2',
+						'expiry' => '20250909180530 days' ],
+					[ 'wl_namespace' => 666, 'wl_title' => 'Page_X',
+						'expiry' => '' ],
 				] ),
 			],
 			// data set 1: sort, offset, limit specified in request data
@@ -230,10 +231,10 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 					]
 				],
 				'expectedResult' => new FakeResultWrapper( [
-					[ 'wl_namespace' => 999, 'wl_title' => 'Page_2', 'we_expiry' => 20250909180530,
-						'expiryInDaysText' => '20250909180530 days' ],
-					[ 'wl_namespace' => 777, 'wl_title' => 'Page_1', 'we_expiry' => 20250909180500,
-						'expiryInDaysText' => '20250909180500 days' ],
+					[ 'wl_namespace' => 999, 'wl_title' => 'Page_2',
+						'expiry' => '20250909180530 days' ],
+					[ 'wl_namespace' => 777, 'wl_title' => 'Page_1',
+						'expiry' => '20250909180500 days' ],
 				] ),
 			],
 		];

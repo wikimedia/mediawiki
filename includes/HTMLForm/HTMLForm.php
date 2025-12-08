@@ -664,7 +664,21 @@ class HTMLForm extends ContextSource {
 	 */
 	public function tryAuthorizedSubmit() {
 		$result = false;
+		if ( $this->requestIsAuthorized() ) {
+			$this->mWasSubmitted = true;
+			$result = $this->trySubmit();
+		}
 
+		return $result;
+	}
+
+	/**
+	 * Return true if the http request passes identity and csrf checks
+	 *
+	 * @since 1.46
+	 * @return bool
+	 */
+	public function requestIsAuthorized(): bool {
 		if ( $this->mFormIdentifier === null ) {
 			$identOkay = true;
 		} else {
@@ -687,13 +701,7 @@ class HTMLForm extends ContextSource {
 				$tokenOkay = true;
 			}
 		}
-
-		if ( $tokenOkay && $identOkay ) {
-			$this->mWasSubmitted = true;
-			$result = $this->trySubmit();
-		}
-
-		return $result;
+		return $identOkay && $tokenOkay;
 	}
 
 	/**

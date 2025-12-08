@@ -4,53 +4,46 @@
 ( function () {
 	$( () => {
 		let checkAllChangeOngoing = false;
-		let multiselectChangeOngoing = false;
+		let selectChangeOngoing = false;
 
-		const checkAllCheckboxes = $( '.mw-watchlistedit-checkall .oo-ui-checkboxInputWidget' )
-			.toArray()
-			.map( ( element ) => OO.ui.infuse( element ) );
+		const $watchedItemCheckboxes = $( '.watchlist-item-checkbox' );
+		const $selectAllCheckbox = $( '#select-all-checkbox' );
 
-		const multiselects = $( '.mw-watchlistedit-check .oo-ui-checkboxMultiselectInputWidget' )
-			.toArray()
-			.map( ( element ) => OO.ui.infuse( element ).checkboxMultiselectWidget );
-
-		checkAllCheckboxes.forEach( ( checkbox, index ) => {
-			checkbox.on( 'change', ( isChecked ) => {
-				if ( multiselectChangeOngoing ) {
-					return;
-				}
-				checkAllChangeOngoing = true;
-
-				// Select or de-select all the title checkboxes for this namespace
-				const multiselect = multiselects[ index ];
-				multiselect.selectItems( isChecked ? multiselect.items : [] );
-
-				checkAllChangeOngoing = false;
+		$selectAllCheckbox.on( 'change', ( event ) => {
+			if ( selectChangeOngoing ) {
+				return;
+			}
+			checkAllChangeOngoing = true;
+			const isChecked = event.target.checked;
+			$watchedItemCheckboxes.each( ( i, input ) => {
+				input.checked = isChecked;
 			} );
+			checkAllChangeOngoing = false;
 		} );
 
-		multiselects.forEach( ( multiselect, index ) => {
-			multiselect.on( 'change', () => {
-				if ( checkAllChangeOngoing ) {
-					return;
-				}
-				multiselectChangeOngoing = true;
-
-				// Update the state of the check-all checkbox for this namespace
-				const checkAllCheckbox = checkAllCheckboxes[ index ];
-				const numSelectedItems = multiselect.findSelectedItems().length;
-				if ( numSelectedItems === multiselect.items.length ) {
-					checkAllCheckbox.setSelected( true );
-					checkAllCheckbox.setIndeterminate( false );
-				} else if ( numSelectedItems === 0 ) {
-					checkAllCheckbox.setSelected( false );
-					checkAllCheckbox.setIndeterminate( false );
-				} else {
-					checkAllCheckbox.setIndeterminate( true );
-				}
-
-				multiselectChangeOngoing = false;
-			} );
+		$watchedItemCheckboxes.on( 'change', () => {
+			if ( checkAllChangeOngoing ) {
+				return;
+			}
+			selectChangeOngoing = true;
+			const numSelectedItems = $watchedItemCheckboxes.filter( ( i, input ) => input.checked === true ).length;
+			if ( numSelectedItems === $watchedItemCheckboxes.length ) {
+				$selectAllCheckbox.prop( 'checked', true );
+				$selectAllCheckbox.prop( 'indeterminate', false );
+			} else if ( numSelectedItems === 0 ) {
+				$selectAllCheckbox.prop( 'checked', false );
+				$selectAllCheckbox.prop( 'indeterminate', false );
+			} else {
+				$selectAllCheckbox.prop( 'indeterminate', true );
+			}
+			selectChangeOngoing = false;
 		} );
+
+		$( '#namespace-selector' ).on(
+			'change',
+			( event ) => {
+				event.target.form.submit();
+			}
+		);
 	} );
 }() );
