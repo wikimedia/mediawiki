@@ -21,8 +21,8 @@ class WebInstallerLanguage extends WebInstallerPage {
 	public function execute() {
 		global $wgLang;
 		$r = $this->parent->request;
-		$userLang = $r->getVal( 'uselang' );
-		$contLang = $r->getVal( 'ContLang' );
+		$userLang = $r->getVal( 'uselang', '' );
+		$contLang = $r->getVal( 'ContLang', '' );
 
 		$languages = MediaWikiServices::getInstance()
 			->getLanguageNameUtils()
