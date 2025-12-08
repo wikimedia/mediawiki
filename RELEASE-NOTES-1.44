@@ -11,8 +11,58 @@ PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
 THIS IS NOT A RELEASE YET
 
 === Changes since 1.44.2 ===
-* (T85085) Improve CSS checking in SVG filter.
 * Localisation updates.
+* (T394396) Revert "SECURITY: Escape rawElement $content".
+* UserGroupManager: Use MainConfigNames::PrivilegedGroups rather than
+  string literal.
+* (T406391) RemexCompatFormatter: Don't encode HTML entities in raw-text
+  elements.
+* (T402438) api: Allow ApiResult to override imagerepository key in
+  prop=imageinfo.
+* ParserOutput: Add default values for JSON deserialization.
+* (T355853, T407172) Make the login and signup forms wider.
+* (T292868) Forward-compatibility: allow output flags to be serialized in
+  `OutputFlags`.
+* (T85085) Improve CSS checking in SVG filter.
+* (T405064) Fix the premature loop exit in Parser.cleanUpTocLine.
+* (T407289) i18n: deprecate double-underscore magic words which don't start/end
+  with __.
+* i18n: all behavior switches should start/end with __ (part 2).
+* (T407289) i18n: Remove deprecated behavior switches without underscores in
+  et/sh-latn/vep.
+* (T407770) Add symfony/polyfill-php84 and symfony/polyfill-php85.
+* maintenance/getConfiguration.php: Fix null warning and serialize error.
+* (T328605) ApiParse: Introduce prop=tocdata as replacement for prop=sections.
+* (T406283) ApiSandbox: Use POST when we have long URL.
+* (T401987, T401995) SECURITY: Disable xslt option by default.
+* (T410913) SpecialVersion: Fix "Cannot use bool as array" warning.
+* (T410928) resourceloader: Fix null offset in ClientHtml module sorting.
+* (T410934) Remove noop xml_parser_free() calls.
+* (T410920) Language: Prevent passing '' to ord() in ucfirst().
+* (T410912) Language: Fix "ord(): Providing a string that is not one byte long
+  is deprecated."
+* (T410912) MessageCache: Fix "ord(): Providing a string that is not one byte
+  long is deprecated."
+* (T410920) Language: Prevent passing '' to ord() in lcfirst().
+* (T410963) Upgrade wikimedia/xmp-reader from 0.9.4 to 0.10.2.
+* (T411016) Upgrading wikimedia/cldr-plural-rule-parser (v2.0.0 => v3.0.0).
+* ResourceLoader: Update cssjanus/cssjanus to wikimedia/cssjanus.
+* (T411075) Api: Initialise reference variable.
+* (T411018) IndexPager: Set '' as default value for 'order'.
+* (T410914) Language: Fix PHP 8.5 warnings for NAN/INF string coercion in
+  formatNumInternal.
+* (T410914) Language: Fix PHP 8.5 warnings for NAN/INF string coercion in
+  parseFormattedNumber.
+* (T338103, T411214) ApiResult: Fix "ord(): Providing a string that is not one
+  byte long is deprecated."
+* (T391882) HTMLFormFieldCloner: Fix multiple bugs related to conditional
+  states.
+* (T406374) htmlform: Load ooui before infusing field cloner buttons.
+* (T411199) initEditCount: Fix count for users with no edits.
+* (T411827) SpecialPageFactory: Handle resolveAlias() returning null in
+  getPage() and exists().
+* (T410514) Config: Fix "Using null as the key parameter for array_key_exists"
+  PHP 8.5 warning.
 
 == MediaWiki 1.44.2 ==
 
