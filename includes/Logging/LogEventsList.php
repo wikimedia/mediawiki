@@ -291,17 +291,20 @@ class LogEventsList extends ContextSource {
 			return $formDescriptor;
 		}
 
-		if ( $type === 'newusers' || $type === '' ) {
+		if ( $this->tempUserConfig->isKnown() ) {
 			// Add option to exclude/include temporary account creations in results,
-			// excluding them by default.
-			if ( $this->tempUserConfig->isKnown() ) {
-				$formDescriptor[] = [
-						'type' => 'check',
-						'label-message' => 'newusers-excludetempacct',
-						'name' => 'excludetempacct',
-						'default' => true,
-					];
+			// excluding them by default. If we're on a different log, use a hidden field
+			// to preserve the checked by default behavior.
+			$fieldType = 'hidden';
+			if ( $type === 'newusers' || $type === '' ) {
+				$fieldType = 'check';
 			}
+			$formDescriptor[] = [
+				'type' => $fieldType,
+				'label-message' => 'newusers-excludetempacct',
+				'name' => 'excludetempacct',
+				'default' => true,
+			];
 		}
 
 		// Allow extensions to add an extra input into the descriptor array.

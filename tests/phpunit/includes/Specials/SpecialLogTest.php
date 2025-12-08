@@ -16,6 +16,8 @@ use MediaWiki\Specials\SpecialLog;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use RevisionDeleter;
 use TestUser;
+use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @group Database
@@ -191,7 +193,12 @@ class SpecialLogTest extends SpecialPageTestBase {
 			new FauxRequest(),
 			'qqx'
 		);
-		$this->assertStringNotContainsString( 'excludetempacct', $html );
+
+		$input = DOMCompat::querySelector(
+			DOMUtils::parseHTML( $html ),
+			'input[name=excludetempacct][type=hidden]'
+		);
+		$this->assertNotNull( $input );
 	}
 
 	/**
