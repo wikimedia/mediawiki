@@ -64,6 +64,10 @@ THIS IS NOT A RELEASE YET
 * (T411199) initEditCount: Fix count for users with no edits.
 * (T411827) SpecialPageFactory: Handle resolveAlias() returning null in
   getPage() and exists().
+* (T411968) Installer: Do not use null as array offset.
+* Add support for HTTP/3 in MultiHttpClient.
+* (T295568) mediawiki.jqueryMsg: Support self-closing HTML tags.
+* (T411968) EditResultBuilder: Do not use null as array offset.
 
 == MediaWiki 1.43.5 ==
 
