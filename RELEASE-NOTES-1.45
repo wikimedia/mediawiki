@@ -16,6 +16,10 @@ THIS IS NOT A RELEASE YET
   getPage() and exists().
 * (T410514) Config: Fix "Using null as the key parameter for array_key_exists"
   PHP 8.5 warning.
+* (T391882) HTMLFormFieldCloner: Update version number in deprecation message.
+* (T411968) Installer: Do not use null as array offset.
+* Add support for HTTP/3 in MultiHttpClient.
+* (T411968) EditResultBuilder: Do not use null as array offset.
 
 == MediaWiki 1.45.0 ==
 
