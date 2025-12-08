@@ -1232,7 +1232,7 @@
 	"userrights-unchangeable-col": "Grupper du ikke kan endre",
 	"userrights-irreversible-marker": "$1 *",
 	"userrights-expiry-current": "Løper ut $1",
-	"userrights-expiry-none": "Utløper ikke",
+	"userrights-expiry-none": "Ingen utløpsdato",
 	"userrights-expiry": "Utløper:",
 	"userrights-expiry-existing": "Gjeldende utløpstid: $2 $3",
 	"userrights-expiry-othertime": "Annen tid:",

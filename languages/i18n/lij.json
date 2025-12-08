@@ -797,6 +797,8 @@
 	"unstrip-size-category": "Pàgine dónde l'é sconpasòu o lìmite de dimensción de unstrip",
 	"unstrip-size-category-desc": "A pàgina a sconpàssa o lìmite de dimensción de unstrip",
 	"converter-manual-rule-error": "Rilevòu erô inta régola manoâ de conversción da léngoa",
+	"bad-double-underscore-category": "E pàgine con di comutatoî de conportaménto no vàlidi",
+	"bad-double-underscore-category-desc": "A pàgina a contêgne 'n [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|comutatô de conportaménto]] localizòu no vàlido. E localizaçioìn vàlide coménsan e finìscian con di trætìn bàssi dóggi.",
 	"undo-success": "Quésta modìfica a peu êse anulâ.\nContròlla e diferénse mostræ chi de sótta fra e dôe verscioìn p'êse segûo chò-u contegnûo o corispónde a quànte dexidiòu, e dónca pùbrica e modìfiche pe conpletâ a procedûa d'anulaménto.",
 	"undo-failure": "Inposcìbile anulâ a modìfica pe caxón de 'n conflìtto con de modìfiche intermédie.",
 	"undo-main-slot-only": "A modìfica a no peu êse anulâ percöse a pertócca do contegnûo fêua do slot prinçipâ.",

@@ -162,7 +162,8 @@
 			"Jessicamss93",
 			"BraunOBruno",
 			"ACheJu",
-			"Rkieferbaum"
+			"Rkieferbaum",
+			"Sixaxis"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -315,7 +316,7 @@
 	"history_short": "Histórico",
 	"history_small": "histórico",
 	"updatedmarker": "atualizado desde sua última visita",
-	"printableversion": "Versão para impressão",
+	"printableversion": "Versão para imprimir",
 	"printableversion-deprecated-warning": "A versão imprimível não é mais suportada e pode ter erros de renderização. Atualize os favoritos do seu navegador e use a função de impressão padrão do navegador.",
 	"permalink": "Link permanente",
 	"print": "Imprimir",

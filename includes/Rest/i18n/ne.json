@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"बडा काजी"
+		]
+	},
+	"rest-permission-denied-anon": "अज्ञात प्रयोगकर्ता द्वारा पहुँचयोग्य छैन",
+	"rest-permission-denied-title": "प्रयोगकर्तालाई शीर्षक पढ्ने अधिकार छैन ($1)",
+	"rest-permission-denied-revision": "अनुरोध गरिएको संशोधन ($1)मा प्रयोगकर्ताको पहुँच छैन।"
+}

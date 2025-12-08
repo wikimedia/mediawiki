@@ -822,6 +822,8 @@
 	"unstrip-size-category": "Puslapiai, kuriuose viršyta „unstrip“ dydžio riba.",
 	"unstrip-size-category-desc": "Puslapis viršija „unstrip“ didžio ribą.",
 	"converter-manual-rule-error": "Rankinėje kalbos pertvarkymo taisyklėje rasta klaida",
+	"bad-double-underscore-category": "Puslapiai su netinkamais elgsenos jungikliais",
+	"bad-double-underscore-category-desc": "Puslapyje yra neteisingai lokalizuotas [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|elgesio jungiklis]]. Galiojančios lokalizacijos prasideda ir baigiasi dvigubais pabraukimais.",
 	"undo-success": "Redagavimas gali būti atšauktas. Prašome patikrinti toliau esantį palyginimą, kad įsitikintumėte, jog tai ir norite padaryti, ir tada išsaugokite toliau esančius pakeitimus, kad užbaigtumėte redagavimo atšaukimą.",
 	"undo-failure": "Keitimas negali būti atšauktas dėl konfliktuojančių tarpinių keitimų.",
 	"undo-main-slot-only": "Redagavimas negali būti atšauktas, nes jis susijęs su turiniu, esančiu už pagrindinio lizdo ribų.",

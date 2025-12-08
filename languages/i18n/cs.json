@@ -849,6 +849,8 @@
 	"unstrip-size-category": "Stránky překračující limit velikosti unstrip",
 	"unstrip-size-category-desc": "Stránka překračuje limit velikosti unstrip.",
 	"converter-manual-rule-error": "Detekována chyba v pravidlech manuální jazykové konverze",
+	"bad-double-underscore-category": "Stránky s chybnými přepínači chování",
+	"bad-double-underscore-category-desc": "Stránka obsahuje neplatný přeložený [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|přepínač chování]]. Platné překlady začínají a končí dvojitým podtržítkem.",
 	"undo-success": "Editace může být zrušena.\nProsím, zkontrolujte porovnání níže, abyste se ujistili, že to chcete provést, a poté pro dokončení zrušení editace níže zobrazené změny zveřejněte.",
 	"undo-failure": "Editace nemohla být zrušena kvůli konfliktu mezilehlých editací.",
 	"undo-main-slot-only": "Editace nemohla být zrušena, protože zapojuje obsah mimo hlavní sloupec",
