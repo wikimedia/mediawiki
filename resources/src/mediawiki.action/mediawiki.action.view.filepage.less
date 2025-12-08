@@ -2,6 +2,7 @@
  * File description page
  */
 @import 'mediawiki.skin.variables.less';
+@import 'mediawiki.mixins.less';
 
 /* stylelint-disable selector-class-pattern */
 
@@ -187,20 +188,9 @@
 	}
 }
 
-@media screen {
-	html.skin-theme-clientpref-night {
-		#file img {
-			background-color: #c8ccd1;
-		}
-	}
-}
-
-// Dark-mode support; we are content to have fall-back to no action.
-/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-@media screen and ( prefers-color-scheme: dark ) {
-	html.skin-theme-clientpref-os {
-		#file img {
-			background-color: #c8ccd1;
-		}
-	}
+#file img {
+	// Transparent images often expect a light background
+	.darkmode-custom-fix( {
+		background-color: #c8ccd1;
+	} );
 }

@@ -88,16 +88,10 @@ figure[ typeof~='mw:File/Thumb' ] {
 			background-image: @background-image-magnify-ltr;
 
 			// Invert icon for night mode
-			.skin-theme-clientpref-night & {
+			// TODO: Use mask-image instead.
+			.darkmode-custom-fix( {
 				filter: invert( 1 );
-			}
-
-			/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-			@media ( prefers-color-scheme: dark ) {
-				.skin-theme-clientpref-os & {
-					filter: invert( 1 );
-				}
-			}
+			} );
 
 			// Defaults for page content language
 

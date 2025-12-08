@@ -42,38 +42,25 @@
 	outline: @border-width-thick @border-style-base @tempuserlink-color;
 	border-radius: @border-radius-base;
 	white-space: nowrap;
-}
 
-a.mw-tempuserlink.mw-userlink.external {
-	// Needed to override !important rule for .plainlinks a.external
-	/* stylelint-disable-next-line declaration-no-important */
-	background-color: @tempuserlink-color !important;
-}
-
-.dark-mode-tempuserlink-styles() {
-	.mw-tempuserlink {
+	.darkmode-custom-fix( {
 		// Color is calculated to match @background-color-interactive in dark-mode.
 		// The passed-in background color is @background-color-inverted.
 		// Transparency is needed for T400577.
 		background-color: @tempuserlink-color-dark-mode;
 		outline-color: @tempuserlink-color-dark-mode;
-	}
+	} );
+}
 
-	a.mw-tempuserlink.mw-userlink.external {
-		// Needed to override !important rule for .plainlinks a.external
+// Need to override !important rule for .plainlinks a.external
+a.mw-tempuserlink.mw-userlink.external {
+	/* stylelint-disable-next-line declaration-no-important */
+	background-color: @tempuserlink-color !important;
+
+	.darkmode-custom-fix( {
 		/* stylelint-disable-next-line declaration-no-important */
 		background-color: @tempuserlink-color-dark-mode !important;
-	}
-}
-
-html.skin-theme-clientpref-night {
-	.dark-mode-tempuserlink-styles();
-}
-
-@media ( prefers-color-scheme: dark ) {
-	html.skin-theme-clientpref-os {
-		.dark-mode-tempuserlink-styles();
-	}
+	} );
 }
 
 /** Class is added by UserLinkRenderer::userLink */

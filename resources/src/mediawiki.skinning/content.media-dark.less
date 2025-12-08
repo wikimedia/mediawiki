@@ -1,7 +1,7 @@
-/* stylelint-disable selector-class-pattern */
 @import 'mediawiki.skin.variables.less';
+@import 'mediawiki.mixins.less';
 
-.dark-mode-image-styles() {
+.darkmode-custom-fix( {
 	/* Desktop legacy HTML */
 	.mw-parser-output,
 	/* Parsoid HTML (mobile) */
@@ -22,14 +22,4 @@
 			}
 		}
 	}
-}
-
-html.skin-theme-clientpref-night {
-	.dark-mode-image-styles();
-}
-
-@media ( prefers-color-scheme: dark ) {
-	html.skin-theme-clientpref-os {
-		.dark-mode-image-styles();
-	}
-}
+} );

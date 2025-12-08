@@ -13,6 +13,10 @@
 .client-js .sortable:not( .jquery-tablesorter ) > * > tr:first-child > th:not( .unsortable ),
 .jquery-tablesorter th.headerSort {
 	background-image: url( images/sort_both.svg );
+	// TODO: use mask-image instead
+	.darkmode-custom-fix( {
+		background-image: url( images/sort_both_inverted.svg );
+	} );
 	cursor: pointer;
 	background-repeat: no-repeat;
 	background-position: center right;
@@ -22,50 +26,15 @@
 .jquery-tablesorter {
 	th.headerSortUp {
 		background-image: url( images/sort_up.svg );
+		.darkmode-custom-fix( {
+			background-image: url( images/sort_up_inverted.svg );
+		} );
 	}
 
 	th.headerSortDown {
 		background-image: url( images/sort_down.svg );
-	}
-}
-
-/* forced night mode */
-html.skin-theme-clientpref-night.client-js {
-	@media screen {
-		.sortable:not( .jquery-tablesorter ) > * > tr:first-child > th.headerSort,
-		.jquery-tablesorter th.headerSort {
-			background-image: url( images/sort_both_inverted.svg );
-		}
-
-		.jquery-tablesorter {
-			th.headerSortUp {
-				background-image: url( images/sort_up_inverted.svg );
-			}
-
-			th.headerSortDown {
-				background-image: url( images/sort_down_inverted.svg );
-			}
-		}
-	}
-}
-
-/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-@media screen and ( prefers-color-scheme: dark ) {
-	/* automatic mode */
-	html.skin-theme-clientpref-os.client-js {
-		.sortable:not( .jquery-tablesorter ) > * > tr:first-child > th.headerSort,
-		.jquery-tablesorter th.headerSort {
-			background-image: url( images/sort_both_inverted.svg );
-		}
-
-		.jquery-tablesorter {
-			th.headerSortUp {
-				background-image: url( images/sort_up_inverted.svg );
-			}
-
-			th.headerSortDown {
-				background-image: url( images/sort_down_inverted.svg );
-			}
-		}
+		.darkmode-custom-fix( {
+			background-image: url( images/sort_down_inverted.svg );
+		} );
 	}
 }

@@ -220,3 +220,20 @@
 	@opacity: 1 - ( min( red( @color ), green( @color ), blue( @color ) ) / 255 );
 	@result: .solid-to-opacity( @color, @opacity, @background )[ @result ];
 }
+
+// Generate selectors for custom dark mode styles.
+// Design tokens should be used where possible instead of this mixin.
+.darkmode-custom-fix( @rules ) {
+	@media screen {
+		html.skin-theme-clientpref-night & {
+			@rules();
+		}
+	}
+
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+	@media screen and ( prefers-color-scheme: dark ) {
+		html.skin-theme-clientpref-os & {
+			@rules();
+		}
+	}
+}

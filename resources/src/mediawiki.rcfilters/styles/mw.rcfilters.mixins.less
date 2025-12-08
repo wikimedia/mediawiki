@@ -51,22 +51,10 @@
 
 .background-color-with-dark-mode( @bgcolor ) {
 	background-color: @bgcolor;
-
-	html.skin-theme-clientpref-night & {
+	// TODO: Use design tokens instead
+	.darkmode-custom-fix( {
 		background-color: darken( @bgcolor, 70% );
-	}
-
-	/**
-	 * Auto night mode.
-	 *
-	 * Applies the night mode color palette only in response to system settings.
-	 */
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-	@media ( prefers-color-scheme: dark ) {
-		html.skin-theme-clientpref-os & {
-			background-color: darken( @bgcolor, 70% );
-		}
-	}
+	} );
 }
 
 // A mixin just for changesListWrapperWidget page, to output the scope of the widget
