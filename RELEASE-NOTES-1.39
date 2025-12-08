@@ -13,6 +13,16 @@ THIS IS NOT A RELEASE YET
 
 === Changes since 1.39.15 ===
 * Localisation updates.
+* (T406391) RemexCompatFormatter: Don't encode HTML entities in raw-text
+  elements.
+* (T401155) Update wikimedia/ip-utils to 5.0.0.
+* ResourceLoader: Update cssjanus/cssjanus to wikimedia/cssjanus.
+* (T407289) i18n: deprecate double-underscore magic words which don't start/end
+  with __.
+* i18n: all behavior switches should start/end with __ (part 2).
+* (T407289) i18n: Remove deprecated behavior switches without underscores in
+  et/sh-latn/vep.
+* (T401987, T401995) SECURITY: Disable xslt option by default.
 
 == MediaWiki 1.39.15 ==
 
