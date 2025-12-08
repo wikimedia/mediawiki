@@ -149,16 +149,20 @@ class SpecialLog extends SpecialPage {
 			if ( $this->tempUserConfig->isKnown() ) {
 				// See T398423
 				// Three cases possible:
-				// 1. Special:Log/newusers is loaded as-is. The checkbox will be shown checked by default
-				// but have no value and is expected to exclude temporary accounts
-				// 2. form submitted, exclude temp accounts
-				// 3. form submitted, include temp accounts
-				// Check for cases 1 and 2 and omit temporary accounts in the pager query.
+				// 1. Special:Log/newusers is loaded as-is with 'user' field empty or set to non-temp user.
+				// The checkbox will be shown checked by default but have no value and is expected to exclude
+				// temporary accounts.
+				// 2. Special:Log/newusers is loaded as-is with 'user' field set to a temp username.
+				// The checkbox will be shown unchecked and have no value. We expect not to exclude temporary accounts.
+				// 3. form submitted, exclude temp accounts
+				// 4. form submitted, include temp accounts
+				// Check for cases 1 and 3 and omit temporary accounts in the pager query.
 				$formWasSubmitted = $this->getRequest()->getVal( 'wpFormIdentifier' ) === 'logeventslist';
 				if (
 					(
 						!$formWasSubmitted &&
-						!$this->getRequest()->getVal( 'excludetempacct' )
+						!$this->getRequest()->getVal( 'excludetempacct' ) &&
+						!$this->tempUserConfig->isTempName( $opts->getValue( 'user' ) )
 					) ||
 					(
 						$formWasSubmitted &&
@@ -376,7 +380,8 @@ class SpecialLog extends SpecialPage {
 			$opts->getValue( 'type' ),
 			$opts->getValue( 'year' ),
 			$opts->getValue( 'month' ),
-			$opts->getValue( 'day' )
+			$opts->getValue( 'day' ),
+			$opts->getValue( 'user' ),
 		);
 		if ( !$succeed ) {
 			return;

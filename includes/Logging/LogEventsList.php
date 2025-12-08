@@ -118,9 +118,10 @@ class LogEventsList extends ContextSource {
 	 *  preselected.
 	 * @param int|string $day A day in the 1..31 range. Use 0 to start with no month
 	 *  preselected.
+	 * @param string $username Name of the filter-by performer, as typed in the form
 	 * @return bool Whether the options are valid
 	 */
-	public function showOptions( $type = '', $year = 0, $month = 0, $day = 0 ) {
+	public function showOptions( $type = '', $year = 0, $month = 0, $day = 0, $username = '' ) {
 		$formDescriptor = [];
 
 		// Basic selectors
@@ -150,7 +151,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		// Add extra inputs if any
-		$extraInputsDescriptor = $this->getExtraInputsDesc( $type );
+		$extraInputsDescriptor = $this->getExtraInputsDesc( $type, $username );
 
 		// Single inputs (array of attributes) and multiple inputs (array of arrays)
 		// are supported. Distinguish between the two by checking if the first element
@@ -277,9 +278,10 @@ class LogEventsList extends ContextSource {
 
 	/**
 	 * @param string $type
+	 * @param string $username The name of the filter-by performer, as typed in the form
 	 * @return array Form descriptor
 	 */
-	private function getExtraInputsDesc( $type ) {
+	private function getExtraInputsDesc( $type, $username ) {
 		$formDescriptor = [];
 
 		if ( $type === 'suppress' ) {
@@ -303,7 +305,7 @@ class LogEventsList extends ContextSource {
 				'type' => $fieldType,
 				'label-message' => 'newusers-excludetempacct',
 				'name' => 'excludetempacct',
-				'default' => true,
+				'default' => !$this->tempUserConfig->isTempName( $username ),
 			];
 		}
 
