@@ -2634,7 +2634,7 @@
 	"sp-contributions-concurrency-ip": "Disculpa, hay muchas solicitudes desde tu dirección IP en este momento. Por favor intenta más tarde.",
 	"sp-contributions-newcontribution": "Contribución nueva",
 	"whatlinkshere": "Lo que enlaza aquí",
-	"whatlinkshere-count": "Muestrando $1 {{PLURAL:$1|elemento|elementos}}.",
+	"whatlinkshere-count": "Mostrando $1 {{PLURAL:$1|elemento|elementos}}.",
 	"whatlinkshere-title": "Páginas que enlazan con «$1»",
 	"whatlinkshere-page": "Página:",
 	"linkshere": "Las siguientes páginas enlazan a <strong>$2</strong>:",

@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			".hecko",
 			"Juwan",
+			"Ookap",
 			"Tbodt",
 			"物灵"
 		]
@@ -58,8 +60,25 @@
 	"sun": "suno #7",
 	"period-am": "tenpo pi suno kama",
 	"period-pm": "tenpo pi suno tawa",
+	"timezone-local": "tenpo sina",
+	"years": "{{PLURAL:$1|tenpo sike $1}}",
+	"months": "{{PLURAL:$1|tenpo mun $1}}",
+	"weeks": "{{PLURAL:$1|tenpo esun $1}}",
+	"days": "{{PLURAL:$1|tenpo suno $1}}",
+	"hours": "{{PLURAL:$1|tenpo ilo suli $1}}",
+	"minutes": "{{PLURAL:$1|tenpo ilo lili $1}}",
+	"seconds": "{{PLURAL:$1|tenpo ilo $1 pi lili mute}}",
 	"ago": "$1 pini",
+	"duration-millennia": "{{PLURAL:$1|tenpo sike $1000}}",
+	"duration-centuries": "{{PLURAL:$1|tenpo sike $100}}",
+	"duration-decades": "{{PLURAL:$1|tenpo sike $10}}",
+	"duration-years": "{{PLURAL:$1|tenpo sike $1}}",
+	"duration-months": "{{PLURAL:$1|tenpo mun $1}}",
+	"duration-weeks": "{{PLURAL:$1|tenpo esun $1}}",
 	"duration-days": "tenpo suno {{PLURAL:$1|$1}}",
+	"duration-hours": "{{PLURAL:$1|tenpo ilo suli $1}}",
+	"duration-minutes": "{{PLURAL:$1|tenpo ilo lili $1}}",
+	"duration-seconds": "{{PLURAL:$1|tenpo ilo $1 pi lili mute}}",
 	"yesterday-at": "tenpo $1 pi suno pini",
 	"just-now": "tenpo pini lili"
 }

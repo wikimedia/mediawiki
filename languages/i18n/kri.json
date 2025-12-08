@@ -6,7 +6,8 @@
 			"Jose77",
 			"Meno25",
 			"Nemo bis",
-			"Protostar"
+			"Protostar",
+			"SaldırganSincap"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Katigɔri|Katigɔridɛm}}",
@@ -228,7 +229,7 @@
 	"newarticletext": "Yu dɔn fala wan link to pej we nɔ de yet.\nFɔ mek di pej, bigin fɔ tayp na di bɔks we de dɔŋ (luk di [ $1 ɛp pej] fɔ mɔ info).\nIf yu mek mistek , klik di <strong>bak</strong> bɔtin na yu brɔwza.",
 	"anontalkpagetext": "----\n <em>Dis na di diskishɔn pej fɔ pɔsin we nɔ no in nem we nɔ mek akɔn yet, ɔ we nɔ de yuz am.</em> \nSo wi fɔ yuz di nɔmba IP adrɛs fɔ no dɛn.\nDis kayn IP adrɛs kin sheb bay sɔm pipul dɛn we de yuz am.\nIf yu na pɔsin we nɔ no yu nem ɛn yu fil se dɛn dɔn rayt kɔmɛnt dɛn we nɔ impɔtant to yu, duya [[Special:CreateAccount|kriet wan akɔn]] ɔ [[Special:UserLogin|log in]] fɔ avɔyd fɔ kɔnfyus tumara bambay wit ɔda yuza dɛn we nɔ no dɛn nem.",
 	"noarticletext": "Naw no tɛks nɔ de na dis pej.\nYu kin [[Special:Search/{{PAGENAME}}|search fɔ dis pej taytul]] na ɔda pej dɛn,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} fɛn di lɔg dɛn we gɛt fɔ du wit am],\nɔ [{{fullurl:{{FULLPAGENAME}}|action=edit}} mek dis pej]</span> .",
-	"noarticletext-nopermission": "Naw no tɛks nɔ de na dis pej.\nYu kin [[Special:Search/{{PAGENAME}}|search fɔ dis pej taytul]] na ɔda pej dɛn,\n <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} fɛn di lɔg dɛn we gɛt fɔ du wit am],\nɔ [{{fullurl:{{FULLPAGENAME}}|akshɔn=ɛdit}} mek dis pej]</span> .",
+	"noarticletext-nopermission": "Naw no tɛks nɔ de na dis pej.\nYu kin [[Special:Search/{{PAGENAME}}|search fɔ dis pej taytul]] na ɔda pej dɛn,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} fɛn di lɔg dɛn we gɛt fɔ du wit am],\nɔ [{{fullurl:{{FULLPAGENAME}}|akshɔn=ɛdit}} mek dis pej]</span>.",
 	"userpage-userdoesnotexist-view": "Yuz akaunt \"$1\" nɔ rɛjista na dis wiki.",
 	"previewnote": "<strong>Mɛmba se dis na jɔs prɛviu.</strong> \nYu chenj dɛn nɔ dɔn pablish yet!",
 	"continue-editing": "Go na di say usay dɛn de ɛdit",

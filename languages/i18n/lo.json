@@ -8,6 +8,7 @@
 			"Lookruk",
 			"Passawuth",
 			"RenKtv",
+			"SaldırganSincap",
 			"Tuinui",
 			"沈澄心",
 			"아라"
@@ -401,7 +402,7 @@
 	"accmailtext": "ລະຫັດຜ່ານ ຂອງ \"$1\" ໄດ້ຖືກສົ່ງໄປ $2 ແລ້ວ.",
 	"newarticle": "(ໃໝ່)",
 	"newarticletext": "ທ່ານ ໄດ້ມາຮອດ ໜ້າທີ່ຍັງບໍ່ໄດ້ຖືກສ້າງຂຶ້ນເທື່ອ. ທ່ານ ສາມາດເລີ່ມ ສ້າງໜ້າ ໂດຍ ພິມໃສ່ ກັບ ຂ້າງລຸ່ມ.(ເບິ່ງລາຍລະອຽດຕື່ມ ທີ່ [$1 ໜ້າຊ່ວຍເຫຼືອ]).\nຖ້າ ທ່ານ ມາຮອດນີ້ ໂດຍຄວາມຜິດພາດ, ກະລຸນາ ກົດ ປຸ່ມ '''ກັບຄືນ''', ຢູ່ ໂປຣແກຣມ ທ່ອງເວັບ ຂອງທ່ານ.",
-	"noarticletext": "ຕອນນີ້ໜ້ານີ້ຍັງບໍ່ມີເນື້ອໃນໃດໆ, ທ່ານສາມາດ[[Special:Search/{{PAGENAME}}|ຄົ້ນຫາໜ້າຫົວຂໍ້ນີ້]]ໃນໜ້າອື່ນໆ, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ຄົ້ນຫາບັນທຶກອື່ນໆທີ່ກ່ຽວຂ້ອງ], ຫຼື [{{fullurl:{{FULLPAGENAME}}|action=edit}} ສ້າງໜ້ານີ້].",
+	"noarticletext": "ຕອນນີ້ໜ້ານີ້ຍັງບໍ່ມີເນື້ອໃນໃດໆ, ທ່ານສາມາດ[[Special:Search/{{PAGENAME}}|ຄົ້ນຫາໜ້າຫົວຂໍ້ນີ້]]ໃນໜ້າອື່ນໆ, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ຄົ້ນຫາບັນທຶກອື່ນໆທີ່ກ່ຽວຂ້ອງ], ຫຼື [{{fullurl:{{FULLPAGENAME}}|action=edit}} ສ້າງໜ້ານີ້]</span>.",
 	"userpage-userdoesnotexist-view": "ບັນຊີຜູ້ໃຊ້ \"$1\" ຍັງບໍ່ໄດ້ລົງທະບຽນຢູ່ໃນວິກິນີ້",
 	"clearyourcache": "<strong>ໝາຍເຫດ:</strong> ຫຼັງແຜຍແພ່ ທ່ານອາດຕ້ອງລ້າງແຄຊເວັບບຣາວເຊີຂອງທ່ານເພື່ອເບິ່ງການປຽນແປງ\n* <strong>ໄຟຟອກ / ຊາຟາຣີ:</strong> ກົດ <em>Shift</em> ຄ້າງຂະນະຄລິກ <em>Reload</em> ຫຼື ກົດ <em>Ctrl-F5</em> ຫຼື <em>Ctrl-R</em> (<em>⌘-R</em> ເທິ່ງແມັກ)\n* <strong>ກູໂກລ ໂຄຣມ:</strong> ກົດ <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> ເທິ່ງແມັກ)\n* <strong>ອິນເຕີເນັດເອັກພລອເຣີ / ເອັຈ:</strong> ກົດ <em>Ctrl</em> ຄ້າງຂະນະຄລິກ <em>Refresh</em> ຫຼື ກົດ <em>Ctrl-F5</em>\n* <strong>ໂອເປຣ່າ:</strong> ກົດ <em>Ctrl-F5</em>.",
 	"previewnote": "<strong>ຈຳໄວ້ວ່ານີ້ແມ່ນພຽງການສະແດງໂຕຢ່າງເທົ່ານັ້ນ</strong> ການແກ້ໄຂຂອງທ່ານຍັງບໍ່ທັນຖືກບັນທຶກ!",
