@@ -158,7 +158,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
-	 *   - httpVersion     : One of 'v1.0', 'v1.1', 'v2' or 'v2.0'. Leave empty to use
+	 *   - httpVersion     : One of 'v1.0', 'v1.1', 'v2', 'v2.0', 'v3' or 'v3.0'. Leave empty to use
 	 *                       PHP/curl's default
 	 * @return array Response array for request
 	 */
@@ -192,7 +192,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
-	 *   - httpVersion     : One of 'v1.0', 'v1.1', 'v2' or 'v2.0'. Leave empty to use
+	 *   - httpVersion     : One of 'v1.0', 'v1.1', 'v2', 'v2.0', 'v3' or 'v3.0'. Leave empty to use
 	 *                       PHP/curl's default
 	 * @return array[] $reqs With response array populated for each
 	 * @throws \Exception
@@ -219,6 +219,10 @@ class MultiHttpClient implements LoggerAwareInterface {
 				case 'v2':
 				case 'v2.0':
 					$opts['httpVersion'] = CURL_HTTP_VERSION_2_0;
+					break;
+				case 'v3':
+				case 'v3.0':
+					$opts['httpVersion'] = CURL_HTTP_VERSION_3;
 					break;
 				default:
 					$opts['httpVersion'] = CURL_HTTP_VERSION_NONE;
