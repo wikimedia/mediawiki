@@ -40,6 +40,7 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 	public function testGetThumbSizes( $filename, $expectedNumberThumbs ) {
 		/** @var ImagePage $iPage */
 		$iPage = TestingAccessWrapper::newFromObject( $this->getImagePage( $filename ) );
+		$this->overrideConfigValue( MainConfigNames::SVGNativeRendering, false );
 
 		$actual = $iPage->getThumbSizes( 545, 700 );
 		$this->assertCount( $expectedNumberThumbs, $actual );

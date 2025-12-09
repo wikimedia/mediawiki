@@ -1293,6 +1293,8 @@ parsoid=wt2html,wt2wt,html2html
 Image: bitmap thumbs can't be enlarged past original size, but vector can.
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgSVGNativeRendering=false
 !! wikitext
 [[File:Foobar.jpg|thumb|2000px]]
 
@@ -1322,6 +1324,8 @@ parsoid=wt2html,wt2wt,html2html
 Image: bitmap frameless can't be enlarged past original size, but vector can
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgSVGNativeRendering=false
 !! wikitext
 [[File:Foobar.jpg|frameless|2000px]]
 
@@ -1363,6 +1367,8 @@ parsoid=wt2html,html2html
 Image: framed vector images are scaled to their default size AND have srcset
 !! options
 parsoid=wt2html,html2html
+!! config
+wgSVGNativeRendering=false
 !! wikitext
 [[File:Foobar.svg|frame]]
 !! html/php
@@ -1474,7 +1480,21 @@ parsoid=wt2html,wt2wt,html2html
 !! end
 
 !! test
+SVG thumbnails with native SVG rendering
+!! config
+wgSVGNativeRendering=true
+!! wikitext
+[[File:Foobar.svg|thumb|caption]]
+!! html/php
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.svg" class="mw-file-description"><img src="http://example.com/images/f/ff/Foobar.svg" decoding="async" width="180" height="135" class="mw-file-element" /></a><figcaption>caption</figcaption></figure>
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.svg" class="mw-file-description"><img resource="./File:Foobar.svg" src="http://example.com/images/f/ff/Foobar.svg" decoding="async" data-file-width="240" data-file-height="180" data-file-type="drawing" height="135" width="180" class="mw-file-element"/></a><figcaption>caption</figcaption></figure>
+!! end
+
+!! test
 SVG thumbnails with no language set
+!! config
+wgSVGNativeRendering=false
 !! wikitext
 [[File:Foobar.svg|thumb|caption]]
 !! html/php
@@ -1485,6 +1505,8 @@ SVG thumbnails with no language set
 
 !! test
 SVG thumbnails with language de
+!! config
+wgSVGNativeRendering=false
 !! wikitext
 [[File:Foobar.svg|lang=de|thumb|caption]]
 
@@ -1509,6 +1531,8 @@ File:Foobar.svg|lang=de|caption
 
 !! test
 SVG thumbnails with invalid language code
+!! config
+wgSVGNativeRendering=false
 !! wikitext
 [[File:Foobar.svg|thumb|caption|lang=invalid:language:code]]
 !! html/php
@@ -1522,6 +1546,8 @@ SVG thumbnails in page language
 !! options
 title=Rupage
 language=ru
+!! config
+wgSVGNativeRendering=false
 !! wikitext
 [[Файл:Foobar.svg]] [[Файл:Foobar.svg|lang=en]]
 
@@ -1556,6 +1582,8 @@ SVG thumbnails in page language not present in the file
 !! options
 title=Depage
 language=de
+!! config
+wgSVGNativeRendering=false
 !! wikitext
 [[Datei:Foobar.svg]] [[Datei:Foobar.svg|sprache=ru]]
 
@@ -2114,6 +2142,8 @@ Parsoid-specific image handling - whitespace caption
 
 !! test
 Parsoid-specific image handling - lang option
+!! config
+wgSVGNativeRendering=false
 !! wikitext
 foo
 [[File:Foobar.svg|lang=de|caption]]

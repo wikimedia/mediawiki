@@ -430,7 +430,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @covers \MediaWiki\Media\SvgHandler::allowRenderingByUserAgent()
-	 * @dataProvider provideNativeSVGDataRendering
+	 * @dataProvider provideNativeSVGRendering
 	 *
 	 * @param string $filename of the file to test
 	 * @param bool $svgEnabled value of MainConfigNames::SVGNativeRendering
@@ -438,7 +438,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	 * @param bool $expected if the SVG is expected to be rendered natively by browser agent
 	 * @return void
 	 */
-	public function testNativeSVGDataRendering( $filename, $svgEnabled, $filesizeLimit, $expected ) {
+	public function testNativeSVGRendering( $filename, $svgEnabled, $filesizeLimit, $expected ) {
 		$this->filePath = __DIR__ . '/../../data/media/';
 		$this->overrideConfigValues( [
 			MainConfigNames::SVGNativeRendering => $svgEnabled,
@@ -450,13 +450,17 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		self::assertEquals( $expected, $handler->allowRenderingByUserAgent( $file ) );
 	}
 
-	public static function provideNativeSVGDataRendering() {
+	public static function provideNativeSVGRendering() {
 		return [
-			[ 'Tux.svg', false, 50 * 1024, false, 'SVG without Native rendering enabled' ],
-			[ 'Tux.svg', true, 50 * 1024, true, 'SVG with Native rendering enforced' ],
-			[ 'Tux.svg', true, 1, true, 'SVG with Native rendering enforced ignoring filesize limit' ],
-			[ 'Tux.svg', 'partial', 223250, true, 'SVG with partial Native rendering' ],
-			[ 'Tux.svg', 'partial', 1, false, 'SVG with partial Native rendering, where filesize is bigger than the limit' ],
+			// name, SVGNativeRendering, SVGNativeRenderingSizeLimit, expected, comment
+			[ 'Tux.svg', false, 50 * 1024, false, 'SVG without native rendering enabled' ],
+			[ 'Tux.svg', true, 50 * 1024, false, 'SVG with native rendering enforced' ],
+			[ 'Tux.svg', true, null, true, 'SVG with native rendering enforced, ignoring filesize limit' ],
+			[ 'Tux.svg', true, 223251, true, 'SVG with native rendering enforced, under filesize limit' ],
+			[ 'Tux.svg', true, 223250, false, 'SVG with native rendering enforced, at filesize limit' ],
+			[ 'Tux.svg', 'partial', null, true, 'SVG with partial native rendering, ignoring filesize limit' ],
+			[ 'Tux.svg', 'partial', 223251, true, 'SVG with partial native rendering, under filesize limit' ],
+			[ 'Tux.svg', 'partial', 223250, false, 'SVG with partial native rendering, at filesize limit' ],
 			[ 'translated.svg', 'partial', null, false, 'SVG with translations should not be left to native rendering' ],
 		];
 	}

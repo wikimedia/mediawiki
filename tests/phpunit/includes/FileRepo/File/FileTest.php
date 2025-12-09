@@ -20,7 +20,10 @@ class FileTest extends MediaWikiMediaTestCase {
 	 * @covers \MediaWiki\FileRepo\File\File::canAnimateThumbIfAppropriate
 	 */
 	public function testCanAnimateThumbIfAppropriate( $filename, $expected ) {
-		$this->overrideConfigValue( MainConfigNames::MaxAnimatedGifArea, 9000 );
+		$this->overrideConfigValues( [
+			MainConfigNames::MaxAnimatedGifArea => 9000,
+			MainConfigNames::SVGNativeRendering => true
+		] );
 		$file = $this->dataFile( $filename );
 		$this->assertEquals( $expected, $file->canAnimateThumbIfAppropriate() );
 	}
@@ -35,7 +38,7 @@ class FileTest extends MediaWikiMediaTestCase {
 			[ 'Toll_Texas_1.svg', true ],
 			[ 'LoremIpsum.djvu', true ],
 			[ '80x60-2layers.xcf', true ],
-			[ 'Soccer_ball_animated.svg', false ],
+			[ 'Soccer_ball_animated.svg', true ],
 			[ 'Bishzilla_blink.gif', false ],
 			[ 'animated.gif', true ],
 		];

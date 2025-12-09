@@ -59,6 +59,10 @@ class MockImageHandler {
 			'dstUrl' => $dstUrl,
 		];
 
+		if ( $image->isVectorized() && !$image->mustRender() ) {
+			return $that->doClientImage( $image, $scalerParams );
+		}
+
 		# In some cases, we do not bother generating a thumbnail.
 		if ( !$image->mustRender() &&
 			$scalerParams['physicalWidth'] == $scalerParams['srcWidth']

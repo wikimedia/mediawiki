@@ -58,27 +58,31 @@ class SvgHandler extends ImageHandler {
 		return true;
 	}
 
-	/**
-	 * @param File $file
-	 * @return bool
-	 */
-	public function allowRenderingByUserAgent( $file ) {
+	public function allowRenderingByUserAgent( File $file ): bool {
 		$svgNativeRendering = MediaWikiServices::getInstance()
 			->getMainConfig()->get( MainConfigNames::SVGNativeRendering );
-		if ( $svgNativeRendering === true ) {
-			// Don't do any transform for any SVG.
-			return true;
-		}
-		if ( $svgNativeRendering !== 'partial' ) {
+		if ( $svgNativeRendering === false ) {
 			// SVG images are always rasterized to PNG
 			return false;
 		}
+
+		// Files bigger than the limit have to be rendered as PNG, as big files might be a tax on the user agent
 		$maxSVGFilesize = MediaWikiServices::getInstance()
 			->getMainConfig()->get( MainConfigNames::SVGNativeRenderingSizeLimit );
-		// Browsers don't really support SVG translations, so always render them to PNG
-		// Files bigger than the limit are also rendered as PNG, as big files might be a tax on the user agent
-		return count( $this->getAvailableLanguages( $file ) ) <= 1
-			&& $file->getSize() <= $maxSVGFilesize;
+		if ( $maxSVGFilesize && $file->getSize() >= $maxSVGFilesize ) {
+			return false;
+		}
+
+		if ( $svgNativeRendering === true ) {
+			return true;
+		}
+
+		// 'partial' mode: only allow if considered safe
+		// Browsers don't really support SVG translations, so always render those to PNG
+		if ( $svgNativeRendering === 'partial' ) {
+			return count( $this->getAvailableLanguages( $file ) ) <= 1;
+		}
+		return false;
 	}
 
 	/** @inheritDoc */
@@ -263,8 +267,7 @@ class SvgHandler extends ImageHandler {
 		$lang = $this->getLanguageFromParams( $params );
 
 		if ( $this->allowRenderingByUserAgent( $image ) ) {
-			// No transformation required for native rendering
-			return new ThumbnailImage( $image, $image->getURL(), false, $params );
+			return $this->getClientScalingThumbnailImage( $image, $params );
 		}
 
 		if ( $flags & self::TRANSFORM_LATER ) {
@@ -423,6 +426,30 @@ class SvgHandler extends ImageHandler {
 		if ( !$im->writeImage( $dstPath ) ) {
 			return "Could not write to $dstPath";
 		}
+	}
+
+	/**
+	 * Get a ThumbnailImage that represents an image that will be scaled
+	 * client side
+	 *
+	 * @stable to override
+	 * @param File $image File associated with this thumbnail
+	 * @param array $params Array with scaler params
+	 * @return ThumbnailImage
+	 */
+	protected function getClientScalingThumbnailImage( $image, $params ) {
+		$url = $image->getUrl();
+		if ( isset( $params['isFilePageThumb'] ) && $params['isFilePageThumb'] ) {
+			// Use a versioned URL on file description pages
+			$url = $image->getFilePageThumbUrl( $url );
+		}
+
+		$actualParams = [
+			'width' => $params['clientWidth'],
+			'height' => $params['clientHeight'],
+		] + $params;
+
+		return new ThumbnailImage( $image, $url, null, $actualParams );
 	}
 
 	/** @inheritDoc */

@@ -326,7 +326,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	abstract protected function getScalerType( $dstPath, $checkDstPath = true );
 
 	/**
-	 * Get a ThumbnailImage that respresents an image that will be scaled
+	 * Get a ThumbnailImage that represents an image that will be scaled
 	 * client side
 	 *
 	 * @stable to override
