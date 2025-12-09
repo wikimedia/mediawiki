@@ -10,6 +10,11 @@
 	border-spacing: 0;
 	font-style: normal;
 
+	tr {
+		background-color: @background-color-neutral-subtle;
+		margin-bottom: @spacing-50;
+	}
+
 	th,
 	td {
 		border: @border-base;
@@ -17,11 +22,7 @@
 		padding: @spacing-50 @spacing-100;
 	}
 
-	tr {
-		background-color: @background-color-neutral;
-		margin-bottom: @spacing-50;
-	}
-
+	// The key column. Also in nested keys.
 	th {
 		background-color: @background-color-base;
 		font-weight: normal;
@@ -36,24 +37,9 @@
 
 .mw-json-value,
 .mw-json-single-value {
-	background-color: #dcfae3;
+	background-color: @background-color-neutral;
 	font-family: @font-family-monospace--fallback;
 	white-space: pre-wrap;
-
-	/* stylelint-disable selector-class-pattern */
-	html.skin-theme-clientpref-night & {
-		@media screen {
-			background-color: @background-color-transparent;
-		}
-	}
-
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-	@media screen and ( prefers-color-scheme: dark ) {
-		html.skin-theme-clientpref-os & {
-			background-color: @background-color-transparent;
-		}
-	}
-	/* stylelint-enable selector-class-pattern */
 }
 
 .mw-json-single-value {
