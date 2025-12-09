@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"बडा काजी"
+		]
+	},
+	"rest-permission-error": "अनुमति अस्वीकृत: $1",
+	"rest-permission-denied-anon": "अज्ञात प्रयोगकर्ता द्वारा पहुँचयोग्य छैन",
+	"rest-permission-denied-title": "प्रयोगकर्तालाई शीर्षक पढ्ने अधिकार छैन ($1)",
+	"rest-permission-denied-revision": "अनुरोध गरिएको संशोधन ($1)मा प्रयोगकर्ताको पहुँच छैन।",
+	"rest-mock-error": "ठट्टा त्रुटि।",
+	"rest-edit-conflict": "सम्पादन बाँझियो ($1)",
+	"rest-unknown-parsoid-transformation": "अज्ञात रूपान्तरण।"
+}

@@ -3518,7 +3518,7 @@
 	"version-poweredby-translators": "translatewiki.net の翻訳者たち",
 	"version-poweredby-various": "その他の作者",
 	"version-credits-summary": "[[Special:Version|MediaWiki]] に貢献した以下の人たちに感謝します。",
-	"version-license-info": "MediaWikiはフリーソフトウェアです。あなたは、フリーソフトウェア財団の発行するGNU一般公衆利用許諾書 (GNU General Public License) (バージョン2、またはそれ以降のライセンス) の規約に基づき、このライブラリを再配布および改変できます。\n\nMediaWikiは、有用であることを期待して配布されていますが、<strong>商用</strong>あるいは<strong>特定の目的に適する</strong>かどうかも含めて、暗黙的にも、<em>一切保証されません</em>。詳しくは、GNU一般公衆利用許諾書をご覧ください。\n\nあなたはこのプログラムと共に、[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU一般公衆利用許諾契約書の複製]を受け取ったはずです。受け取っていない場合は、フリーソフトウェア財団 (the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA) まで請求するか、[//www.gnu.org/licenses/old-licenses/gpl-2.0.html オンラインで閲覧]してください。",
+	"version-license-info": "MediaWikiはフリーソフトウェアです。あなたは、フリーソフトウェア財団の発行するGNU一般公衆利用許諾書 (GNU General Public License) (バージョン2、またはそれ以降のライセンス) の規約に基づき、このライブラリを再配布および改変できます。\n\nMediaWikiは、有用であることを期待して配布されていますが、<strong>商用</strong>あるいは<strong>特定の目的に適する</strong>かどうかも含めて、暗黙的にも、<em>一切保証されません</em>。詳しくは、GNU一般公衆利用許諾書をご覧ください。\n\nあなたはこのプログラムと共に、[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU一般公衆利用許諾契約書の複製]を受け取ったはずです。受け取っていない場合は、[//www.gnu.org/licenses/old-licenses/gpl-2.0.html オンラインで閲覧]してください。",
 	"version-software": "インストール済みソフトウェア",
 	"version-software-product": "製品",
 	"version-software-version": "バージョン",

@@ -1386,6 +1386,7 @@
 	"listusersfrom": "Mına paydalanıwshıdan baslap kórsetiw:",
 	"listusers-submit": "Kórsetiw",
 	"listusers-noresult": "Paydalanıwshı tabılmadı.",
+	"listusers-blocked": "(bloklanǵan)",
 	"activeusers": "Belsendi paydalanıwshılar dizimi",
 	"activeusers-intro": "Bul sońǵı $1 {{PLURAL:$1|kúnde|kúnde}} qandayda bir háreketti ámelge asırǵan paydalanıwshılar dizimi.",
 	"activeusers-count": "sońǵı {{PLURAL:$3|kúnde|$3 kúnde}} $1 {{PLURAL:$1|háreket|háreket}}",

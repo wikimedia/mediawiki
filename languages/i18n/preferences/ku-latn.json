@@ -32,7 +32,7 @@
 	"password-substring-username-match": "Divê şîfreya te ne di navê te de bê.",
 	"password-name-match": "Divê şîfreya te ji navê te yê bikarhêneriyê cuda be.",
 	"password-login-forbidden": "Bikaranîna vî navî û vê şîfreyê hatiye qedexekirin.",
-	"prefs-help-yourpassword": "Vegerandina hesabê çalak e. Ji bo mîhengên zêdetir li $1 binêre.",
+	"prefs-help-yourpassword": "Vegerandina hesêb vekirî ye. Ji bo bêhtir eyaran li $1 binêre.",
 	"tog-prefershttps": "Herdem girêdaneke parastî bi kar bîne wexte go tu têketî yî",
 	"prefs-user-downloaddata-label": "Bigihe daneyên hesabê:",
 	"prefs-user-downloaddata-info": "Danên hesabê min ji vê projeyê",
@@ -173,5 +173,5 @@
 	"prefs-searchmisc": "Giştî",
 	"prefs-advancedsearchoptions": "Vebijarkên berfireh",
 	"prefs-reset-intro": "Tu karî vê rûpelê bi kar bînî ji bonî ku hemû eyarên xwe vegerînî ên pêşî.\nEv nikare were vegerandin.",
-	"restoreprefs": "Hemû mîhengên standard ji nû ve ava bike"
+	"restoreprefs": "Hemû eyarên standard ji nû ve bîne"
 }

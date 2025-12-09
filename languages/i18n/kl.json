@@ -8,7 +8,8 @@
 			"Qaqqalik",
 			"StarrySky",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"AmazingJus"
 		]
 	},
 	"sunday": "Sapaat",
@@ -131,7 +132,7 @@
 	"page-rss-feed": "\"$1\" RSS Feed",
 	"red-link-title": "$1 (Qupperneq suli allaffigineqanngilaq)",
 	"nstab-main": "Allaaserisaq",
-	"nstab-user": "Atuisup quppernera",
+	"nstab-user": "{{GENDER:$1|Atuisup quppernera}}",
 	"nstab-special": "Immikkut",
 	"nstab-project": "Pillugu",
 	"nstab-image": "Assiliaq",
@@ -290,7 +291,7 @@
 	"namespace": "Quppernerup ilusia:",
 	"invert": "Quppernerup ilusia qinernagu",
 	"blanknamespace": "(Pingaarneq)",
-	"tool-link-contributions": "Atuisup tapii",
+	"tool-link-contributions": "{{GENDER:$1|Atuisup}} tapii",
 	"mycontris": "Tapikka",
 	"uctop": "kingulleq",
 	"month": "Qaammat:",
@@ -302,7 +303,7 @@
 	"whatlinkshere": "Suna maangamut innersuussisoq",
 	"whatlinkshere-prev": "{{PLURAL:$1|siulia|siulii $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|tullia|tullii $1}}",
-	"blockip": "Atuisoq asseruk",
+	"blockip": "{{GENDER:$1|Atuisoq}} asseruk",
 	"ipaddressorusername": "IP adresse imalt. atuisoq:",
 	"ipboptions": "2 tiimit:2 hours,ulloq 1:1 day,ullut 3:3 days,sap akunn 1:1 week,sap akunn 2:2 weeks,qaammat 1:1 month,qaammatit 3:3 months,qaammatit 6:6 months,ukioq 1:1 year,killeqanngitsoq:infinite",
 	"ipblocklist-submit": "Ujarlerit",
@@ -354,7 +355,7 @@
 	"monthsall": "tamarmik",
 	"autosumm-new": "Qupperneq pilersippaa '$1'",
 	"specialpages": "Quppernerit immikkut ittut",
-	"searchsuggest-search": "Ujarlerit",
+	"searchsuggest-search": "{{SITENAME}} ujarlerit",
 	"skin-action-protect": "Illersoruk",
 	"skin-action-move": "Nuuguk"
 }

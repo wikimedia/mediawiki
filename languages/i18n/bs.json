@@ -3410,6 +3410,7 @@
 	"mw-widgets-copytextlayout-copy-success": "Kopirano u međuspremnik.",
 	"mw-widgets-dateinput-no-date": "Datum nije izabran",
 	"mw-widgets-mediasearch-input-placeholder": "Pretraži multimediju",
+	"mw-widgets-mediasearch-recent-uploads": "{{GENDER:$1|Vaša}} nedavna postavljanja",
 	"mw-widgets-mediasearch-noresults": "Nema rezultata.",
 	"mw-widgets-table-row-delete": "Obriši red",
 	"mw-widgets-titleinput-description-new-page": "stranica još ne postoji",

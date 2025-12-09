@@ -19,7 +19,8 @@
 			"Waldyrious",
 			"Mbs262",
 			"Albertoleoncio",
-			"GoEThe"
+			"GoEThe",
+			"Maria Manuela Silva"
 		]
 	},
 	"preferences": "Preferências",
@@ -101,7 +102,7 @@
 	"emailauthenticated": "O seu endereço de correio eletrónico foi confirmado a $2, às $3.",
 	"allowemail": "Permitir que outros utilizadores me enviem correio eletrónico",
 	"email-allow-new-users-label": "Permitir mensagens de correio de utilizadores novos",
-	"prefs-help-email-allow-new-users": "Habilitar esta opção irá autorizar o envio de correio eletrónicos de utilizadores não [[{{MediaWiki:grouppage-autoconfirmed}}|autoconfirmados]].",
+	"prefs-help-email-allow-new-users": "Ativar esta opção irá permitir que os utilizadores que não são [[{{MediaWiki:grouppage-autoconfirmed}}|auto confirmados]] lhe enviem mensagens.",
 	"tog-ccmeonemails": "Enviar-me cópias das mensagens de correio eletrónico que eu enviar a outros utilizadores",
 	"email-mutelist-label": "Proibir estes utilizadores de me enviarem correio eletrónico:",
 	"tog-enotifwatchlistpages": "Notificar-me por correio eletrónico quando uma página ou ficheiro vigiado for alterado",
