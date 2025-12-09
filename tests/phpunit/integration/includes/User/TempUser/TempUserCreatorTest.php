@@ -305,8 +305,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 
 		// Repeat creating a temporary account, and verify that this fails due to the rate limit.
 		$status = $tuc->create( null, new FauxRequest() );
-		// TODO: Use new message key (T357777, T357802)
-		$this->assertStatusError( 'acct_creation_throttle_hit', $status );
+		$this->assertStatusError( 'acct_creation_throttle_hit-temp', $status );
 		// If the temporary account creation failed due to the rate limit, then no log entry should have been created.
 		$this->assertSame(
 			0,
@@ -360,7 +359,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		// already created temporary accounts and assert that it fails
 		RequestContext::getMain()->getRequest()->setIP( '1:1:1:1:1:1:1:2' );
 		$status = $tuc->create( null, RequestContext::getMain()->getRequest() );
-		$this->assertStatusError( 'acct_creation_throttle_hit', $status );
+		$this->assertStatusError( 'acct_creation_throttle_hit-temp', $status );
 		// If the temporary account creation failed due to the rate limit, then no log entry should have been created.
 		$this->assertSame(
 			0,
