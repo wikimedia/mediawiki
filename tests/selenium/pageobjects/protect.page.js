@@ -33,6 +33,9 @@ class ProtectPage extends Page {
 		await this.allowOnlyAdministrators.click();
 		await this.submit.scrollIntoView();
 		await this.submit.click();
+		await browser.waitUntil(
+			async () => !/[?&]action=protect(?:&|$)/.test( await browser.getUrl() )
+		);
 	}
 
 }

@@ -7,6 +7,7 @@ import HistoryPage from '../pageobjects/history.page.js';
 import UndoPage from '../pageobjects/undo.page.js';
 import ProtectPage from '../pageobjects/protect.page.js';
 import LoginPage from 'wdio-mediawiki/LoginPage.js';
+import LogoutPage from 'wdio-mediawiki/LogoutPage.js';
 import { getTestString, isTargetNotWikitext } from 'wdio-mediawiki/Util.js';
 
 describe( 'Page', () => {
@@ -130,7 +131,7 @@ describe( 'Page', () => {
 		);
 
 		// Logout
-		await browser.deleteAllCookies();
+		await LogoutPage.logout();
 
 		// Check that we can't edit the page anymore
 		await EditPage.openForEditing( name );
