@@ -173,6 +173,13 @@
 				$unwatchLink.trigger( 'blur' );
 			} );
 		}
+
+		// Load the watchlist labels' onboarding process, if it's not been dismissed already.
+		if ( mw.config.get( 'enableWatchlistLabels' ) &&
+			mw.user.options.get( 'watchlistlabelonboarding', '1' )
+		) {
+			mw.loader.load( 'mediawiki.special.watchlistlabels.onboarding' );
+		}
 	} );
 
 }() );

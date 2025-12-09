@@ -1522,6 +1522,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'type' => 'api',
 		];
 
+		// T408235
+		$defaultPreferences['watchlistlabelonboarding'] = [
+			'type' => 'api',
+		];
+
 		$tokenButton = new ButtonWidget( [
 			'href' => SpecialPage::getTitleFor( 'ResetTokens' )->getLinkURL( [
 				'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText()

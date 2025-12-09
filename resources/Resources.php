@@ -2870,6 +2870,31 @@ return [
 			'CdxButton',
 		],
 	],
+	'mediawiki.special.watchlistlabels.onboarding' => [
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.special.watchlistlabels',
+		'packageFiles' => [
+			'label-onboarding.js',
+			'LabelOnboarding.vue',
+		],
+		'dependencies' => [
+			'vue',
+			'@wikimedia/codex'
+		],
+		"messages" => [
+			"watchlistlabels-onboarding-progress",
+			"watchlistlabels-onboarding-prev",
+			"watchlistlabels-onboarding-next",
+			"watchlistlabels-onboarding-final",
+			"watchlistlabels-onboarding-manage-title",
+			"watchlistlabels-onboarding-manage-body",
+			"watchlistlabels-onboarding-edit-title",
+			"watchlistlabels-onboarding-edit-body",
+			"watchlistlabels-onboarding-editmanage-title",
+			"watchlistlabels-onboarding-editmanage-body",
+			"watchlistlabels-onboarding-filter-title",
+			"watchlistlabels-onboarding-filter-body"
+		],
+	],
 	'mediawiki.tempUserBanner.styles' => [
 		'styles' => [
 			'resources/src/mediawiki.tempUserBanner/tempUserBanner.less',

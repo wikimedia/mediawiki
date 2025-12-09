@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_812_35593)">
+<rect x="0.5" y="0.5" width="127" height="127" rx="1.5" fill="#E8EEFF" stroke="#DADDE3"/>
+<rect x="13" y="14" width="115" height="114" fill="white"/>
+<rect x="26" y="27" width="34" height="5" fill="#DADDE3"/>
+<path d="M26 36H128" stroke="#C8CCD1" stroke-width="0.5"/>
+<rect x="26" y="38" width="16.8" height="3" fill="#3366CC"/>
+<rect x="45.7998" y="38" width="16.8" height="3" fill="#3366CC"/>
+<rect x="65.5996" y="38" width="16.8" height="3" fill="#3366CC"/>
+<rect x="85.4004" y="38" width="16.8" height="3" fill="#3366CC"/>
+<rect x="105.2" y="38" width="16.8" height="3" fill="#3366CC"/>
+<path d="M26 43H128" stroke="#C8CCD1" stroke-width="0.5"/>
+<rect x="26" y="47" width="102" height="5" fill="#DADDE3"/>
+<path d="M26 56H128" stroke="#C8CCD1" stroke-width="0.5"/>
+<rect x="26" y="60" width="14" height="5" fill="#DADDE3"/>
+<path d="M26 69H128" stroke="#C8CCD1" stroke-width="0.5"/>
+<mask id="path-17-inside-1_812_35593" fill="white">
+<path d="M26 73H162V82H26V73Z"/>
+</mask>
+<path d="M26 73H162V82H26V73Z" fill="#EAECF0"/>
+<path d="M26 73V72.5H25.5V73H26ZM162 73H162.5V72.5H162V73ZM26 73V73.5H162V73V72.5H26V73ZM162 73H161.5V82H162H162.5V73H162ZM26 82H26.5V73H26H25.5V82H26Z" fill="#C8CCD1" mask="url(#path-17-inside-1_812_35593)"/>
+<rect x="29.25" y="75.25" width="12.8333" height="4.5" rx="2.25" fill="#F8F9FA" stroke="#C8CCD1" stroke-width="0.5"/>
+<rect x="46.583" y="75.25" width="12.8333" height="4.5" rx="2.25" fill="#F8F9FA" stroke="#C8CCD1" stroke-width="0.5"/>
+<rect x="63.917" y="75.25" width="12.8333" height="4.5" rx="2.25" fill="#F8F9FA" stroke="#C8CCD1" stroke-width="0.5"/>
+<mask id="path-22-inside-2_812_35593" fill="white">
+<path d="M26 82H135V87H26V82Z"/>
+</mask>
+<path d="M26 82V81.5H25.5V82H26ZM135 82H135.5V81.5H135V82ZM135 87V87.5H135.5V87H135ZM26 87H25.5V87.5H26V87ZM26 82V82.5H135V82V81.5H26V82ZM135 82H134.5V87H135H135.5V82H135ZM135 87V86.5H26V87V87.5H135V87ZM26 87H26.5V82H26H25.5V87H26Z" fill="#C8CCD1" mask="url(#path-22-inside-2_812_35593)"/>
+<rect x="26" y="92" width="15" height="5" fill="#DADDE3"/>
+<rect x="26" y="104" width="136" height="5" fill="#DADDE3"/>
+<rect x="26" y="113" width="136" height="5" fill="#DADDE3"/>
+<rect x="26" y="122" width="136" height="5" fill="#DADDE3"/>
+</g>
+<rect x="0.5" y="0.5" width="127" height="127" rx="1.5" stroke="#C8CCD1"/>
+<defs>
+<clipPath id="clip0_812_35593">
+<rect width="128" height="128" rx="2" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+

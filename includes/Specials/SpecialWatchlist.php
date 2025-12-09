@@ -169,6 +169,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$output->addJsConfigVars( [
 				'enableWatchlistLabels' => true,
 				'watchlistLabels' => $watchlistLabels,
+				'SpecialWatchlistLabelsUrl' => SpecialPage::getTitleFor( 'WatchlistLabels' )->getLinkURL(),
+				'SpecialEditWatchlistUrl' => SpecialPage::getTitleFor( 'EditWatchlist' )->getLinkURL(),
 			] );
 		}
 	}

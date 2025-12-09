@@ -281,7 +281,7 @@ FilterTagMultiselectWidget.prototype.createViewsSelectWidget = function () {
 				icon: 'folderPlaceholder',
 				label: mw.msg( 'watchlist-filters-labels-title' ),
 				title: mw.msg( 'watchlist-filters-view-labels-tooltip' ),
-				classes: this.isMobile ? [ 'mw-rcfilters-ui-cell' ] : []
+				classes: [ 'mw-rcfilters-ui-watchlistlabels' ].concat( this.isMobile ? [ 'mw-rcfilters-ui-cell' ] : [] )
 			} )
 		);
 	}
