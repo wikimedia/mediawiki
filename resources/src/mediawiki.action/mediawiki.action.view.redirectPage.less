@@ -3,6 +3,7 @@
  */
 
 /* stylelint-disable selector-class-pattern */
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
 
 /**
@@ -25,40 +26,27 @@
 		display: inline;
 		margin: 0;
 		padding: 0;
-		.padding-inline( 47px, 0 );
 
-		.mw-content-ltr & {
-			/* @noflip */
-			background: transparent url( images/redirect-ltr.svg ) bottom left no-repeat;
-		}
+		&::before {
+			content: '';
+			display: inline-block;
+			vertical-align: middle;
+			width: 47px;
+			height: 20px;
+			background: @color-base;
 
-		.mw-content-rtl & {
-			/* @noflip */
-			background: transparent url( images/redirect-rtl.svg ) bottom right no-repeat;
-		}
-
-		@media screen {
-			html.skin-theme-clientpref-night & {
-				filter: invert( 1 );
-
-				> a {
-					filter: invert( 1 );
-				}
+			.mw-content-ltr & {
+				/* @noflip */
+				-webkit-mask-image: url( images/redirect-ltr.svg );
+				/* @noflip */
+				mask-image: url( images/redirect-ltr.svg );
 			}
-		}
-		/**
-		* Auto night mode.
-		*
-		* Applies the night mode color palette only in response to system settings.
-		*/
-		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-		@media screen and ( prefers-color-scheme: dark ) {
-			html.skin-theme-clientpref-os & {
-				filter: invert( 1 );
 
-				> a {
-					filter: invert( 1 );
-				}
+			.mw-content-rtl & {
+				/* @noflip */
+				-webkit-mask-image: url( images/redirect-rtl.svg );
+				/* @noflip */
+				mask-image: url( images/redirect-rtl.svg );
 			}
 		}
 	}
