@@ -4,6 +4,7 @@
 			"Caiofernandes",
 			"Hamilton Abreu",
 			"Mansil alfalb",
+			"Maria Manuela Silva",
 			"Mbs262"
 		]
 	},
@@ -75,7 +76,7 @@
 	"rest-unmapped-action-error": "Erro do módulo de operação não mapeado: $1",
 	"rest-unsupported-transform-input": "Entrada não suportada: $1",
 	"rest-bad-etag": "ETag incorreta: $1",
-	"rest-no-stashed-content": "Não foi encontrado nenhum conteúdo escondido para $1",
+	"rest-no-stashed-content": "Não foi encontrado nenhum conteúdo escondido para $1. Isto deve-se muito provavelmente ao facto de a sua sessão de edição ter expirado. Tente copiar as suas alterações, recarregue a página, e tente novamente.",
 	"rest-unsupported-profile-version": "Versão do perfil não suportada: $1",
 	"rest-no-json-decode": "A carga útil não descodifica para uma matriz em JSON",
 	"rest-parsoid-unsupported-media": "Tipo de multimédia não suportado",
@@ -88,6 +89,10 @@
 	"rest-unsupported-language-conversion": "Conversão de língua não suportada: $1 para $2",
 	"rest-unknown-content-model": "Modelo de conteúdo desconhecido: $1",
 	"rest-page-bundle-validation-error": "PageBundle não coincide com contentVersion: $1",
+	"rest-module": "Módulo",
+	"rest-module-default": "Módulo predefinido",
+	"rest-module-extra-routes-title": "API REST do MediaWiki",
+	"rest-module-specs.v0-title": "Especificações",
 	"rest-param-desc-media-links-title": "Título da página",
 	"rest-property-desc-revision-url-older": "Se disponível, o URL para obter o segmento da revisão anterior",
 	"rest-property-desc-revision-url-newer": "Se disponível, o URL para obter o seguinte segmento da revisão"

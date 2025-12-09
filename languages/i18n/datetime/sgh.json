@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chixiijak"
+		]
+	},
+	"monday": "Yīwum meθ",
+	"tuesday": "Δiyůnum meθ",
+	"wednesday": "Arayum meθ",
+	"thursday": "Cavorum meθ",
+	"friday": "Pīnʒum meθ",
+	"saturday": "Xoɣ̌um meθ",
+	"sunday": "Wūvdum meθ",
+	"mon": "Yīw",
+	"tue": "Δiy",
+	"wed": "Ara",
+	"thu": "Cav",
+	"fri": "Pīn",
+	"sat": "Xoɣ̌",
+	"sun": "Wūv"
+}
