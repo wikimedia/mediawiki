@@ -436,9 +436,6 @@ class SpecialUpload extends SpecialPage {
 			$destName = $this->mRequest->getText( 'wpDestFile' );
 		}
 
-		// Needed if we have warnings to show
-		$sourceURL = $this->mRequest->getText( 'wpUploadFileURL' );
-
 		$form = new HTMLForm( [
 			'CacheKey' => [
 				'type' => 'hidden',
@@ -456,10 +453,6 @@ class SpecialUpload extends SpecialPage {
 				'type' => 'hidden',
 				'default' => $destName,
 			],
-			'UploadFileURL' => [
-				'type' => 'hidden',
-				'default' => $sourceURL,
-			],
 		], $this->getContext(), 'uploadProgress' );
 		$form->setSubmitText( $this->msg( 'upload-refresh' )->escaped() );
 		// TODO: use codex, add a progress bar
@@ -471,6 +464,20 @@ class SpecialUpload extends SpecialPage {
 				return true;
 			}
 		);
+		// Needed if we have warnings to show
+		$form->addHiddenFields( array_diff_key(
+			$this->mRequest->getValues(),
+			[
+				'title' => null,
+				'wpEditToken' => null,
+				'wpCacheKey' => null,
+				'wpSourceType' => null,
+				'wpDestUrl' => null,
+				'wpDestFile' => null,
+				'wpUpload' => null,
+				'wpUploadIgnoreWarning' => null,
+			]
+		) );
 		$form->prepareForm();
 		$this->getOutput()->addHTML( $form->getHTML( false ) );
 	}
