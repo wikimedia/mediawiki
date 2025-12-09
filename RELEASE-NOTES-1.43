@@ -8,7 +8,7 @@ PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
 
 == MediaWiki 1.43.6 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.43 branch.
 
 === Changes since 1.43.5 ===
 * Localisation updates.
@@ -36,7 +36,7 @@ THIS IS NOT A RELEASE YET
 * maintenance/getConfiguration.php: Fix null warning and serialize error.
 * (T328605) ApiParse: Introduce prop=tocdata as replacement for prop=sections.
 * (T406283) ApiSandbox: Use POST when we have long URL.
-* (T401987, T401995) SECURITY: Disable xslt option by default.
+* (T401987, T401995, CVE-2025-67484) SECURITY: Disable xslt option by default.
 * (T410913) SpecialVersion: Fix "Cannot use bool as array" warning.
 * (T410928) resourceloader: Fix null offset in ClientHtml module sorting.
 * (T410934) Remove noop xml_parser_free() calls.
@@ -68,6 +68,21 @@ THIS IS NOT A RELEASE YET
 * Add support for HTTP/3 in MultiHttpClient.
 * (T295568) mediawiki.jqueryMsg: Support self-closing HTML tags.
 * (T411968) EditResultBuilder: Do not use null as array offset.
+* Add http/3 to runMulti in MultiHttpClient
+* (T406639, CVE-2025-67477) SECURITY: Escape word-separator message in
+  Special:ApiSandbox.
+* (T406664, CVE-2025-67475) SECURITY: Escape square brackets in autocomment
+  links.
+* (T385403, CVE-2025-67478) SECURITY: Always escape commas in mail
+  encoded-words.
+* (T407131, CVE-2025-67479) SECURITY: Sanitizer: disallow underscore and wide
+  underscore in data-* attribute names.
+* (T401053, CVE-2025-67480) SECURITY: Check read permissions in
+  ApiQueryRevisionsBase.
+* (T409226, CVE-2025-67483) SECURITY: mediawiki.page.preview: Escape
+  'comma-separator' between multiple protection levels.
+* (T251032, CVE-2025-67481) SECURITY: Disallow 'style' attribute in client-side
+  messages (jqueryMsg).
 
 == MediaWiki 1.43.5 ==
 
