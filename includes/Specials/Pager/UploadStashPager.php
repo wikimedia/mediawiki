@@ -13,6 +13,7 @@ use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Pager\IndexPager;
 use MediaWiki\Pager\TablePager;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Upload\UploadStash;
@@ -44,6 +45,7 @@ class UploadStashPager extends TablePager {
 
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
+		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 
 		parent::__construct( $context, $linkRenderer );
 
