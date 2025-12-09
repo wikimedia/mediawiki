@@ -9,7 +9,7 @@ PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
 
 == MediaWiki 1.39.16 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since 1.39.15 ===
 * Localisation updates.
@@ -22,7 +22,17 @@ THIS IS NOT A RELEASE YET
 * i18n: all behavior switches should start/end with __ (part 2).
 * (T407289) i18n: Remove deprecated behavior switches without underscores in
   et/sh-latn/vep.
-* (T401987, T401995) SECURITY: Disable xslt option by default.
+* (T401987, T401995, CVE-2025-67484) SECURITY: Disable xslt option by default.
+* (T406664, CVE-2025-67475) SECURITY: Escape square brackets in autocomment
+  links.
+* (T385403, CVE-2025-67478) SECURITY: Always escape commas in mail
+  encoded-words.
+* (T407131, CVE-2025-67479) SECURITY: Sanitizer: disallow underscore and wide
+  underscore in data-* attribute names.
+* (T401053, CVE-2025-67480) SECURITY: Check read permissions in
+  ApiQueryRevisionsBase.
+* (T251032, CVE-2025-67481) SECURITY: Disallow 'style' attribute in client-side
+  messages (jqueryMsg).
 
 == MediaWiki 1.39.15 ==
 
