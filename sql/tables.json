@@ -2052,6 +2052,12 @@
 					"length": 255,
 					"default": ""
 				}
+			},
+			{
+				"name": "il_target_id",
+				"type": "bigint",
+				"comment": "Foreign key to linktarget.lt_id",
+				"options": { "notnull": false, "unsigned": true }
 			}
 		],
 		"indexes": [
@@ -2069,6 +2075,25 @@
 				"columns": [
 					"il_from_namespace",
 					"il_to",
+					"il_from"
+				],
+				"comment": "Index for Special:Whatlinkshere with namespace filter",
+				"unique": false
+			},
+			{
+				"name": "il_target_id",
+				"columns": [
+					"il_target_id",
+					"il_from"
+				],
+				"comment": "Reverse index, for Special:Whatlinkshere and file description page local usage",
+				"unique": false
+			},
+			{
+				"name": "il_backlinks_namespace_target_id",
+				"columns": [
+					"il_from_namespace",
+					"il_target_id",
 					"il_from"
 				],
 				"comment": "Index for Special:Whatlinkshere with namespace filter",

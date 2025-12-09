@@ -317,6 +317,7 @@ CREATE TABLE /*_*/imagelinks (
   il_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
   il_to BLOB DEFAULT '' NOT NULL,
   il_from_namespace INTEGER DEFAULT 0 NOT NULL,
+  il_target_id BIGINT UNSIGNED DEFAULT NULL,
   PRIMARY KEY(il_from, il_to)
 );
 
@@ -324,6 +325,13 @@ CREATE INDEX il_to ON /*_*/imagelinks (il_to, il_from);
 
 CREATE INDEX il_backlinks_namespace ON /*_*/imagelinks (
   il_from_namespace, il_to, il_from
+);
+
+CREATE INDEX il_target_id ON /*_*/imagelinks (il_target_id, il_from);
+
+CREATE INDEX il_backlinks_namespace_target_id ON /*_*/imagelinks (
+  il_from_namespace, il_target_id,
+  il_from
 );
 
 
