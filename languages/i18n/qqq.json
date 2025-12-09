@@ -671,6 +671,7 @@
 	"throttled-mailpassword": "Used in [[Special:PasswordReset]]. Parameters:\n* $1 - password reset email resend time (in hours)",
 	"mailerror": "Used as error message in sending confirmation mail to user. Parameters:\n* $1 - new mail address",
 	"acct_creation_throttle_hit": "Error message at [[Special:CreateAccount]].\n\nParameters:\n* $1 - number of accounts\n* $2 - period, one of the following messages:\n{{Related|Duration}}",
+	"acct_creation_throttle_hit-temp": "Error message shown when an unregistered user tries to start editing, but they cannot get a new temporary account, because the rate limit on temp. account creation has been hit.\n\nParameters:\n* $1 - number of accounts\n* $2 - period, one of the following messages:\n{{Related|Duration}}",
 	"invalidemailaddress": "Shown as a warning when written an invalid email address in [[Special:Preferences]] and {{fullurl:Special:UserLogin|type=signup}} page",
 	"cannotchangeemail": "Error message shown when user goes to [[Special:ChangeEmail]] but email addresses cannot be changed on the site.",
 	"emaildisabled": "Error message shown when user tries to set an email address but email features are disabled.",

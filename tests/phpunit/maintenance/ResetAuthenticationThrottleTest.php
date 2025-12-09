@@ -91,7 +91,7 @@ class ResetAuthenticationThrottleTest extends MaintenanceBaseTestCase {
 		// Verify that a second call does not get a name
 		$request->getSession()->clear();
 		$this->assertStatusError(
-			'acct_creation_throttle_hit', $temporaryAccountCreator->create( null, $request )
+			'acct_creation_throttle_hit-temp', $temporaryAccountCreator->create( null, $request )
 		);
 		// Run the maintenance script to clear the throttle
 		$this->maintenance->setOption( 'tempaccount', 1 );
