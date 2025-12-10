@@ -1,3 +1,16 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+/**
+ * ESM-compatible __dirname helper
+ *
+ * @param {string} metaUrl - usually import.meta.url
+ * @return {string} directory name/path
+ */
+export function dirname( metaUrl ) {
+	return path.dirname( fileURLToPath( metaUrl ) );
+}
+
 /**
  * Generate a random number string with some additional extended ASCII.
  *

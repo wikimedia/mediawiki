@@ -52,6 +52,7 @@ making assertions that depend on its outcome.
 
 `Util` is a collection of popular utility methods.
 
+* `dirname(string metaUrl)`
 * `getTestString([ string prefix ])`
 * `isTargetNotWikitext(string target)`
 * `waitForModuleState(string moduleName [, string moduleStatus [, number timeout ] ])`
