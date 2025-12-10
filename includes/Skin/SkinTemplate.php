@@ -296,7 +296,6 @@ class SkinTemplate extends Skin {
 			'footer-places',
 			// All historic menus are covered by requested menus so can be unset
 			// This should match the default for Skin::getOptions()['menus']
-			'namespaces',
 			'views',
 			'actions',
 			'variants'
@@ -692,13 +691,7 @@ class SkinTemplate extends Skin {
 
 		$menuOptions = $this->getOptions()['menus'];
 		$intro = 'Skins must now pass `menus` key to skin definition in skin.json. Default value is: '
-			. "['namespaces', 'views', 'actions', 'variants', 'personal']. <br>";
-		if ( in_array( 'namespaces', $menuOptions ) ) {
-			wfDeprecatedMsg(
-				$intro . 'Menu "namespaces" is deprecated. Please replace with "associated-pages".',
-				'1.46'
-			);
-		}
+			. "['associated-pages', 'views', 'actions', 'variants', 'personal']. <br>";
 
 		// A menu that includes the notifications. Now deprecated.
 		if ( in_array( 'personal', $menuOptions ) ) {
@@ -1035,10 +1028,6 @@ class SkinTemplate extends Skin {
 	 * @since 1.37
 	 */
 	protected function runOnSkinTemplateNavigationHooks( SkinTemplate $skin, &$content_navigation ) {
-		$beforeHookAssociatedPages = array_keys( $content_navigation['associated-pages'] ?? [] );
-		$beforeHookNamespaces = array_keys( $content_navigation['namespaces'] ?? [] );
-		$fallbackNeeded = count( $beforeHookAssociatedPages ) === count( $beforeHookNamespaces );
-
 		// Snapshot footer menu keys before the hook runs, so we can detect
 		// new items added by extensions (T426358).
 		$beforeHookFooter = [
@@ -1050,7 +1039,6 @@ class SkinTemplate extends Skin {
 		// Equiv to SkinTemplateContentActions, run
 		$this->getHookRunner()->onSkinTemplateNavigation__Universal(
 			$skin, $content_navigation );
-
 		// check all items have been added with the required fields
 		foreach ( $content_navigation as $menuName => $menuItems ) {
 			foreach ( $menuItems as $itemName => $itemData ) {
@@ -1087,30 +1075,6 @@ class SkinTemplate extends Skin {
 					$footer->addItem( $section, $newItems );
 				}
 			}
-		}
-
-		if ( !$fallbackNeeded ) {
-			return;
-		}
-		// The new `associatedPages` menu (added in 1.39)
-		// should be backwards compatible with `namespaces`.
-		// To do this we look for hook modifications to both keys. If modifications are not
-		// made the new key, but are made to the old key, associatedPages reverts back to the
-		// links in the namespaces menu.
-		// It's expected in future that `namespaces` menu will become an alias for `associatedPages`
-		// at which point this code can be removed.
-		$afterHookNamespaces = array_keys( $content_navigation[ 'namespaces' ] ?? [] );
-		$afterHookAssociatedPages = array_keys( $content_navigation[ 'associated-pages' ] ?? [] );
-		$associatedPagesChanged = count( array_diff( $afterHookAssociatedPages, $beforeHookAssociatedPages ) ) > 0;
-		$namespacesChanged = count( array_diff( $afterHookNamespaces, $beforeHookNamespaces ) ) > 0;
-		// If some change occurred to namespaces via the hook, revert back to namespaces.
-		if ( !$associatedPagesChanged && $namespacesChanged ) {
-			wfDeprecatedMsg(
-				'Modification of the `namespaces` menu using SkinTemplateNavigation__Universal is ' .
-					'now deprecated. Please use `associated-pages` instead.',
-				'1.46'
-			);
-			$content_navigation['associated-pages'] = $content_navigation['namespaces'];
 		}
 	}
 
@@ -1172,7 +1136,6 @@ class SkinTemplate extends Skin {
 		if ( in_array( 'user-page', $requestedMenus ) ) {
 			unset( $userMenu['userpage' ] );
 		}
-		$legacySupportNamespaces = in_array( 'namespaces', $requestedMenus );
 		$legacyUserMenuSupport = in_array( 'personal', $requestedMenus );
 		$content_navigation = $categoriesData + [
 			// Modern keys: Please ensure these get unset inside Skin::prepareQuickTemplate
@@ -1193,12 +1156,8 @@ class SkinTemplate extends Skin {
 			'actions' => [],
 			'variants' => [],
 		];
-		if ( $legacySupportNamespaces ) {
-			$content_navigation['namespaces'] = [];
-		}
 
 		$associatedPages = [];
-		$namespaces = [];
 		$userCanRead = $this->getAuthority()->probablyCan( 'read', $title );
 
 		// Checks if page is some kind of content
@@ -1491,7 +1450,6 @@ class SkinTemplate extends Skin {
 					}
 				}
 			}
-			$namespaces = $associatedPages;
 		} else {
 			// If it's not content, and a request URL is set it's got to be a special page
 			try {
@@ -1499,18 +1457,9 @@ class SkinTemplate extends Skin {
 			} catch ( MWException ) {
 				$url = false;
 			}
-			$namespaces['special'] = [
-				'class' => 'selected',
-				'text' => $this->msg( 'nstab-special' )->text(),
-				'href' => $url, // @see: T4457, T4510
-				'context' => 'subject'
-			];
 			$associatedPages += $this->getSpecialPageAssociatedNavigationLinks( $title );
 		}
 
-		if ( $legacySupportNamespaces ) {
-			$content_navigation['namespaces'] = $namespaces;
-		}
 		$content_navigation['associated-pages'] = $associatedPages;
 		// Populate footer menus from SkinComponentFooter so that extensions
 		// can modify them via the Universal hook (T318376).

@@ -319,7 +319,7 @@ abstract class Skin extends ContextSource {
 	 *     presence of `associated-pages` means the skin will render a menu
 	 *     compatible with mw.util.addPortletLink which has the ID p-associated-pages.
 	 *
-	 *     Default: `['namespaces', 'views', 'actions', 'variants']`
+	 *     Default: `['views', 'actions', 'variants']`
 	 *
 	 *     Opt-in menus:
 	 *     - `associated-pages`
@@ -2469,7 +2469,7 @@ abstract class Skin extends ContextSource {
 			'wrapSiteNotice' => false,
 			'menus' => [
 				// Legacy keys that are enabled by default for backwards compatibility
-				'namespaces',
+				'associated-pages',
 				'views',
 				'actions',
 				'variants',
