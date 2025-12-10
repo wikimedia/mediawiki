@@ -303,20 +303,36 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'language_urls', $this->getLanguages() ?: false );
 
 		$content_navigation = $this->buildContentNavigationUrlsInternal();
+		$requestedMenus = $this->getOptions()['menus'];
 		# Personal toolbar
-		$tpl->set( 'personal_urls', $this->makeSkinTemplatePersonalUrls( $content_navigation ) );
+		if ( !in_array( 'user-menu', $requestedMenus ) ) {
+			$tpl->set( 'personal_urls', $this->makeSkinTemplatePersonalUrls( $content_navigation ) );
+		}
 		// The user-menu, notifications, and user-interface-preferences are new content navigation entries which aren't
 		// expected to be part of content_navigation or content_actions. Adding them in there breaks skins that do not
 		// expect it. (See T316196)
-		unset(
-			$content_navigation['user-menu'],
-			$content_navigation['notifications'],
-			$content_navigation['user-page'],
-			$content_navigation['user-interface-preferences'],
-			$content_navigation['category-normal'],
-			$content_navigation['category-hidden'],
-			$content_navigation['associated-pages']
-		);
+		$optInKeys = [
+			'user-menu',
+			'notifications',
+			'user-page',
+			'user-interface-preferences',
+			'category-normal',
+			'category-hidden',
+			'associated-pages',
+			// All historic menus are covered by requested menus so can be unset
+			// This should match the default for Skin::getOptions()['menus']
+			'namespaces',
+			'views',
+			'actions',
+			'variants'
+		];
+		// We could iterate on keys of $requestedMenus but that might break skins making use of their own custom menus
+		// This is safer for backwards compatibility!
+		foreach ( $optInKeys as $key ) {
+			if ( !in_array( $key, $requestedMenus ) ) {
+				unset( $content_navigation[ $key ] );
+			}
+		}
 		$content_actions = $this->buildContentActionUrls( $content_navigation );
 		$tpl->set( 'content_navigation', $content_navigation );
 		$tpl->set( 'content_actions', $content_actions );
