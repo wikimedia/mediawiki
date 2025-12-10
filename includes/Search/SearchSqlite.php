@@ -8,6 +8,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Search\SqlSearchResultSet;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 

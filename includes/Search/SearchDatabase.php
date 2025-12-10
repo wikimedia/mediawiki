@@ -7,6 +7,7 @@
  * @ingroup Search
  */
 
+use MediaWiki\Search\SqlSearchResultSet;
 use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IConnectionProvider;

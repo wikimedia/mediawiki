@@ -110,7 +110,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 			$related = '';
 			// TODO: remove this instanceof and always pass [], let implementors do the cast if
 			// they want to be SearchDatabase specific
-			$terms = $result instanceof \SqlSearchResult ? $result->getTermMatches() : [];
+			$terms = $result instanceof \MediaWiki\Search\SqlSearchResult ? $result->getTermMatches() : [];
 			if ( !$this->hookRunner->onShowSearchHit( $this->specialPage, $result,
 				$terms, $link, $redirect, $section, $extract, $score,
 				// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
@@ -181,7 +181,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 
 		$attributes = [ 'data-serp-pos' => $position ];
 		$this->hookRunner->onShowSearchHitTitle( $title, $snippet, $result,
-			$result instanceof \SqlSearchResult ? $result->getTermMatches() : [],
+			$result instanceof \MediaWiki\Search\SqlSearchResult ? $result->getTermMatches() : [],
 			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$this->specialPage, $query, $attributes );
 

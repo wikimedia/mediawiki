@@ -11,6 +11,7 @@
  */
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Search\SqlSearchResultSet;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

@@ -507,6 +507,10 @@ because of Phabricator reports.
     - QuorumLockManager
     - RedisLockManager
     - ScopedLock
+  - MediaWiki\Search:
+    - SearchMySQL
+    - SqlSearchResult
+    - SqlSearchResultSet
 * Using an int for the $mode parameter of LanguageFallback::getAll() is now
   deprecated.  Use the new LanguageFallbackMode enumeration instead.
 * LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use

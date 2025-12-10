@@ -7,9 +7,13 @@
  * @ingroup Search
  */
 
+namespace MediaWiki\Search;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use RevisionSearchResult;
+use SearchHighlighter;
 
 class SqlSearchResult extends RevisionSearchResult {
 	/** @var string[] */
@@ -53,3 +57,6 @@ class SqlSearchResult extends RevisionSearchResult {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SqlSearchResult::class, 'SqlSearchResult' );

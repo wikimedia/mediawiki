@@ -10,9 +10,11 @@
  * @ingroup Search
  */
 
+namespace MediaWiki\Search;
+
 use MediaWiki\MediaWikiServices;
+use SearchDatabase;
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -45,7 +47,7 @@ class SearchMySQL extends SearchDatabase {
 		# @todo FIXME: This doesn't handle parenthetical expressions.
 		$m = [];
 		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
-				$filteredText, $m, PREG_SET_ORDER )
+			$filteredText, $m, PREG_SET_ORDER )
 		) {
 			$services = MediaWikiServices::getInstance();
 			$contLang = $services->getContentLanguage();
@@ -289,10 +291,10 @@ class SearchMySQL extends SearchDatabase {
 	}
 
 	/**
-	 * @since 1.41 (changed)
 	 * @param string $filteredTerm
 	 * @param bool $fulltext
 	 * @return SelectQueryBuilder
+	 * @since 1.41 (changed)
 	 */
 	private function getCountQueryBuilder( $filteredTerm, $fulltext ): SelectQueryBuilder {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
@@ -420,7 +422,7 @@ class SearchMySQL extends SearchDatabase {
 
 			$dbr = $this->dbProvider->getReplicaDatabase();
 			// The real type is still IDatabase, but IReplicaDatabase is used for safety.
-			'@phan-var IDatabase $dbr';
+			'@phan-var \Wikimedia\Rdbms\IDatabase $dbr';
 			// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
 			$result = $dbr->query( $sql, __METHOD__ );
 			$row = $result->fetchObject();
@@ -435,3 +437,6 @@ class SearchMySQL extends SearchDatabase {
 		return self::$mMinSearchLength;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SearchMySQL::class, 'SearchMySQL' );
