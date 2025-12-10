@@ -2031,6 +2031,7 @@
 	"apisandbox-request-php-label": "Požadavek jako PHP pole:",
 	"apisandbox-request-time": "Trvání požadavku: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-request-post": "Tento požadavek musí být odeslán pomocí metody HTTP POST.",
+	"apisandbox-request-post2": "Kvůli velikosti obsahu byl tento požadavek odeslán metodou HTTP POST.",
 	"apisandbox-request-formdata": "Tento požadavek musí být odeslán jako načtení souboru (tj. pomocí <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "Opravit token a znovu odeslat",
 	"apisandbox-results-fixtoken-fail": "Nepodařilo se načíst token „$1“.",

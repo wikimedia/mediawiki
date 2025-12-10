@@ -53,5 +53,6 @@
 	"thu": "Jerdein",
 	"fri": "Jeheiney",
 	"sat": "Jesarn",
-	"sun": "Jedoonee"
+	"sun": "Jedoonee",
+	"duration-days": "$1 {{PLURAL:$1|laa|laaghyn}}"
 }
