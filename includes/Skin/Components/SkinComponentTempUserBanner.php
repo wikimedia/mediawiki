@@ -47,7 +47,8 @@ class SkinComponentTempUserBanner implements SkinComponent {
 			'href' => $this->loginUrl,
 			'id' => 'pt-login',
 			'title' => $this->localizer->msg( 'tooltip-pt-login' )->text(),
-			'class' => 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled'
+			'class' => 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled',
+			'data-event-name' => 'temp-user-banner.login',
 		],
 		$this->localizer->msg( 'pt-login' )->text() );
 	}
@@ -58,7 +59,8 @@ class SkinComponentTempUserBanner implements SkinComponent {
 				'href' => $this->createAccountUrl,
 				'id' => 'pt-createaccount',
 				'title' => $this->localizer->msg( 'tooltip-pt-createaccount' )->text(),
-				'class' => 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled'
+				'class' => 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled',
+				'data-event-name' => 'temp-user-banner.create-account',
 			],
 			$this->localizer->msg( 'pt-createaccount' )->text()
 		);
@@ -76,7 +78,8 @@ class SkinComponentTempUserBanner implements SkinComponent {
 					'id' => 'mw-temp-user-banner-tooltip-button',
 					'class' => 'mw-temp-user-banner-tooltip-summary cdx-button '
 						. 'cdx-button--icon-only cdx-button--weight-quiet',
-					'aria-label' => $this->localizer->msg( 'temp-user-banner-tooltip-label' )->text()
+					'aria-label' => $this->localizer->msg( 'temp-user-banner-tooltip-label' )->text(),
+					'data-event-name' => 'temp-user-banner.info',
 					],
 					Html::element( 'span', [ 'class' => 'mw-temp-user-banner-tooltip-icon ' ] )
 				)
