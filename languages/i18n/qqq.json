@@ -1668,6 +1668,7 @@
 	"rcfilters-view-tags-tooltip": "Tooltip for the button that loads the tags view in [[Special:RecentChanges]]",
 	"rcfilters-view-return-to-default-tooltip": "Tooltip for the button that returns to the default filter view in [[Special:RecentChanges]]",
 	"rcfilters-view-tags-help-icon-tooltip": "Tooltip for the help button that leads user to Special:Tags page",
+	"rcfilters-view-wllabels-help-icon-tooltip": "Tooltip for the help button that leads user to Special:WatchlistLabels page",
 	"rcfilters-liveupdates-button": "Label for the button to enable or disable live updates on [[Special:RecentChanges]]",
 	"rcfilters-liveupdates-button-title-on": "Tooltip for the button to disable live updates on [[Special:RecentChanges]].",
 	"rcfilters-liveupdates-button-title-off": "Tooltip for the button to enable live updates on [[Special:RecentChanges]].",

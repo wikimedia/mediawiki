@@ -181,7 +181,20 @@ FilterMenuHeaderWidget.prototype.onModelSearchChange = function () {
 		this.invertNamespacesButton.toggle( currentView === 'namespaces' );
 		this.invertWLLabelsButton.toggle( currentView === 'wllabels' );
 		this.backButton.toggle( currentView !== 'default' );
-		this.helpIcon.toggle( currentView === 'tags' );
+
+		// Modify help icon for watchlist labels/tags view
+		if ( currentView === 'wllabels' ) {
+			this.helpIcon.setHref( mw.util.getUrl( 'Special:WatchlistLabels' ) );
+			this.helpIcon.setTitle( mw.msg( 'rcfilters-view-wllabels-help-icon-tooltip' ) );
+			this.helpIcon.toggle( true );
+		} else if ( currentView === 'tags' ) {
+			this.helpIcon.setHref( mw.util.getUrl( 'Special:Tags' ) );
+			this.helpIcon.setTitle( mw.msg( 'rcfilters-view-tags-help-icon-tooltip' ) );
+			this.helpIcon.toggle( true );
+		} else {
+			this.helpIcon.toggle( false );
+		}
+
 		this.view = currentView;
 	}
 };
