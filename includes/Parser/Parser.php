@@ -5103,6 +5103,7 @@ class Parser {
 	 * @deprecated since 1.34; should not be used outside parser class.
 	 */
 	public function replaceLinkHolders( &$text ) {
+		wfDeprecated( __METHOD__, '1.46' );
 		$this->replaceLinkHoldersPrivate( $text );
 	}
 
@@ -5389,6 +5390,7 @@ class Parser {
 	 * @deprecated since 1.46; use ::makeImageHtml() instead
 	 */
 	public function makeImage( LinkTarget $link, $options, $holders = false ) {
+		wfDeprecated( __METHOD__, '1.46' );
 		return $this->makeImageInternal(
 			$link, $options, $holders ?: null, shouldReplaceLinkHolders: false
 		);
