@@ -688,6 +688,8 @@ because of Phabricator reports.
   deprecation warnings. Use UserRequirementsCondition hook, instead.
 * The RecentChange::parseToRCType and RecentChange::parseFromRCType methods are
   deprecated and will now trigger deprecation warnings.
+* Parser::makeImage() has been deprecated; use ::makeImageHtml() instead,
+  which doesn't expose the internal LinkHolderArray.
 * The WatchedItemQueryServiceExtensions hook is deprecated and is no longer
   called. Use ApiQueryBaseBeforeQuery, ApiQueryBaseAfterQuery,
   ApiQueryBaseProcessRow and ApiQueryWatchlistExtractOutputData.

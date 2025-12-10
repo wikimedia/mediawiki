@@ -2647,7 +2647,7 @@ class Parser {
 					}
 					# cloak any absolute URLs inside the image markup, so handleExternalLinks() won't touch them
 					$s .= $prefix . $this->armorLinks(
-						$this->makeImage( $nt, $text, $holders ) ) . $trail;
+						$this->makeImageInternal( $nt, $text, $holders ) ) . $trail;
 					continue;
 				} elseif ( $ns === NS_CATEGORY ) {
 					# Strip newlines from the left hand context of Category
@@ -5365,11 +5365,51 @@ class Parser {
 	 *
 	 * @param LinkTarget $link
 	 * @param string $options
+	 * @return string HTML
+	 * @since 1.46
+	 */
+	public function makeImageHtml( LinkTarget $link, string $options ): string {
+		return $this->makeImageInternal(
+			$link, $options, shouldReplaceLinkHolders: true
+		);
+	}
+
+	/**
+	 * Parse image options text and use it to make an image
+	 *
+	 * @param LinkTarget $link
+	 * @param string $options
 	 * @param LinkHolderArray|false $holders
+	 *  If $holders is `false`, link holders are replaced in the alt text but
+	 *  may still be present elsewhere in the returned HTML.
+	 *  Use ::makeImageHtml if you want to ensure no link holders remain in
+	 *  the returned HTML.
 	 * @return string HTML
 	 * @since 1.5
+	 * @deprecated since 1.46; use ::makeImageHtml() instead
 	 */
 	public function makeImage( LinkTarget $link, $options, $holders = false ) {
+		return $this->makeImageInternal(
+			$link, $options, $holders ?: null, shouldReplaceLinkHolders: false
+		);
+	}
+
+	/**
+	 * Parse image options text and use it to make an image
+	 *
+	 * @param LinkTarget $link
+	 * @param string $options
+	 * @param ?LinkHolderArray $holders
+	 * @return string HTML
+	 * @since 1.46
+	 */
+	private function makeImageInternal(
+		LinkTarget $link,
+		string $options,
+		?LinkHolderArray $holders = null,
+		bool $shouldReplaceLinkHolders = false
+	): string {
+		$holders ??= false; // old API
 		# Check if the options text is of the form "options|alt text"
 		# Options are:
 		#  * thumbnail  make a thumbnail with enlarge-icon and caption, alignment depends on lang
@@ -5567,6 +5607,9 @@ class Parser {
 		}
 		if ( $file ) {
 			$this->modifyImageHtml( $file, $params, $ret );
+		}
+		if ( $shouldReplaceLinkHolders ) {
+			$this->replaceLinkHoldersPrivate( $ret );
 		}
 
 		return $ret;
