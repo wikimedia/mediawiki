@@ -1950,12 +1950,12 @@ class HookRunner implements
 	}
 
 	/** @inheritDoc */
-	public function onFormatAutocomments( &$comment, $pre, $auto, $post, $title,
+	public function onFormatAutocomments( &$comment, $pre, $extractedText, $post, $title,
 		$local, $wikiId
 	) {
 		return $this->container->run(
 			'FormatAutocomments',
-			[ &$comment, $pre, $auto, $post, $title, $local, $wikiId ]
+			[ &$comment, $pre, $extractedText, $post, $title, $local, $wikiId ]
 		);
 	}
 
