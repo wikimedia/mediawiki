@@ -36,16 +36,22 @@ const slice = Array.prototype.slice,
 			CONTENTLANGUAGE: mw.config.get( 'wgContentLanguage' )
 		},
 		// Whitelist for allowed HTML elements in wikitext.
-		// Self-closing tags are not currently supported.
 		// Filled in with server-side data below
 		allowedHtmlElements: [],
+		// Whitelist for allowed self-closing elements.
+		// We're not using server data here because we don't want to allow <meta> or <link>.
+		allowedSelfClosingHtmlElements: [
+			'br',
+			'wbr',
+			'hr'
+		],
 		// Key tag name, value allowed attributes for that tag.
-		// See Sanitizer::setupAttributeWhitelist
+		// See Sanitizer::setupAttributesAllowedInternal
 		allowedHtmlCommonAttributes: [
 			// HTML
 			'id',
 			'class',
-			'style',
+			// 'style' attribute is not allowed because it is difficult to sanitize (T251032)
 			'lang',
 			'dir',
 			'title',
@@ -706,7 +712,7 @@ Parser.prototype = {
 		 * Checks if HTML is allowed
 		 *
 		 * @param {string} startTagName HTML start tag name
-		 * @param {string} endTagName HTML start tag name
+		 * @param {string|null} endTagName HTML end tag name, or null for self-closing tags
 		 * @param {Object} attributes array of consecutive key value pairs,
 		 *  with index 2 * n being a name and 2 * n + 1 the associated value
 		 * @return {boolean} true if this is HTML is allowed, false otherwise
@@ -714,22 +720,19 @@ Parser.prototype = {
 		 */
 		function isAllowedHtml( startTagName, endTagName, attributes ) {
 			startTagName = startTagName.toLowerCase();
-			endTagName = endTagName.toLowerCase();
-			if ( startTagName !== endTagName || settings.allowedHtmlElements.indexOf( startTagName ) === -1 ) {
+			const isSelfClosing = endTagName === null;
+			if (
+				( isSelfClosing && settings.allowedSelfClosingHtmlElements.indexOf( startTagName ) === -1 ) ||
+				( !isSelfClosing && ( startTagName !== endTagName.toLowerCase() || settings.allowedHtmlElements.indexOf( startTagName ) === -1 ) )
+			) {
 				return false;
 			}
-
-			const badStyle = /[\000-\010\013\016-\037\177]|expression|filter\s*:|accelerator\s*:|-o-link\s*:|-o-link-source\s*:|-o-replace\s*:|url\s*\(|image\s*\(|image-set\s*\(/i;
 
 			let attributeName;
 			for ( let i = 0, len = attributes.length; i < len; i += 2 ) {
 				attributeName = attributes[ i ];
 				if ( settings.allowedHtmlCommonAttributes.indexOf( attributeName ) === -1 &&
 					( settings.allowedHtmlAttributesByElement[ startTagName ] || [] ).indexOf( attributeName ) === -1 ) {
-					return false;
-				}
-				if ( attributeName === 'style' && attributes[ i + 1 ].search( badStyle ) !== -1 ) {
-					mw.log( 'HTML tag not parsed due to dangerous style attribute' );
 					return false;
 				}
 			}
@@ -744,6 +747,7 @@ Parser.prototype = {
 		}
 
 		const openHtmlStartTag = makeStringParser( '<' );
+		const optionalWhitespace = makeRegexParser( /\s*/ );
 		const optionalForwardSlash = makeRegexParser( /^\/?/ );
 		const openHtmlEndTag = makeStringParser( '</' );
 		const closeHtmlTag = makeRegexParser( /^\s*>/ );
@@ -761,6 +765,7 @@ Parser.prototype = {
 				openHtmlStartTag,
 				asciiAlphabetLiteral,
 				htmlAttributes,
+				optionalWhitespace,
 				optionalForwardSlash,
 				closeHtmlTag
 			] );
@@ -771,6 +776,16 @@ Parser.prototype = {
 
 			const endOpenTagPos = pos;
 			const startTagName = parsedOpenTagResult[ 1 ];
+			const wrappedAttributes = parsedOpenTagResult[ 2 ];
+			const attributes = wrappedAttributes.slice( 1 );
+
+			// Handle self-closing elements before parsing any contents
+			if ( settings.allowedSelfClosingHtmlElements.indexOf( startTagName ) !== -1 ) {
+				if ( isAllowedHtml( startTagName, null, attributes ) ) {
+					return [ 'HTMLELEMENT', startTagName, wrappedAttributes ];
+				}
+				return [ 'CONCAT', input.slice( startOpenTagPos, endOpenTagPos ) ];
+			}
 
 			const parsedHtmlContents = nOrMore( 0, expression )();
 
@@ -789,8 +804,6 @@ Parser.prototype = {
 
 			const endCloseTagPos = pos;
 			const endTagName = parsedCloseTagResult[ 1 ];
-			const wrappedAttributes = parsedOpenTagResult[ 2 ];
-			const attributes = wrappedAttributes.slice( 1 );
 			if ( isAllowedHtml( startTagName, endTagName, attributes ) ) {
 				return [ 'HTMLELEMENT', startTagName, wrappedAttributes ]
 					.concat( parsedHtmlContents );

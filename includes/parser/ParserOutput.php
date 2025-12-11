@@ -3072,32 +3072,46 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
+		// (This includes changing default values when fields are missing.)
 
 		$this->mRawText = $jsonData['Text'];
 		$this->mLanguageLinkMap = [];
 		foreach ( ( $jsonData['LanguageLinks'] ?? [] ) as $l ) {
 			$this->addLanguageLink( $l );
 		}
-		$this->mCategories = $jsonData['Categories'];
-		$this->mIndicators = $jsonData['Indicators'];
-		$this->mTitleText = $jsonData['TitleText'];
-		$this->mLinks = $jsonData['Links'];
-		$this->mLinksSpecial = $jsonData['LinksSpecial'];
-		$this->mTemplates = $jsonData['Templates'];
-		$this->mTemplateIds = $jsonData['TemplateIds'];
-		$this->mImages = $jsonData['Images'];
-		$this->mFileSearchOptions = $jsonData['FileSearchOptions'];
-		$this->mExternalLinks = $jsonData['ExternalLinks'];
-		$this->mInterwikiLinks = $jsonData['InterwikiLinks'];
-		$this->mNewSection = $jsonData['NewSection'];
-		$this->mHideNewSection = $jsonData['HideNewSection'];
-		$this->mNoGallery = $jsonData['NoGallery'];
-		$this->mHeadItems = $jsonData['HeadItems'];
-		$this->mModuleSet = array_fill_keys( $jsonData['Modules'], true );
-		$this->mModuleStyleSet = array_fill_keys( $jsonData['ModuleStyles'], true );
-		$this->mJsConfigVars = $jsonData['JsConfigVars'];
-		$this->mWarnings = $jsonData['Warnings'];
-		$this->mFlags = $jsonData['Flags'];
+		// Default values should match the property default values.
+		$this->mCategories = $jsonData['Categories'] ?? [];
+		$this->mIndicators = $jsonData['Indicators'] ?? [];
+		$this->mTitleText = $jsonData['TitleText'] ?? '';
+		$this->mLinks = $jsonData['Links'] ?? [];
+		$this->mLinksSpecial = $jsonData['LinksSpecial'] ?? [];
+		$this->mTemplates = $jsonData['Templates'] ?? [];
+		$this->mTemplateIds = $jsonData['TemplateIds'] ?? [];
+		$this->mImages = $jsonData['Images'] ?? [];
+		$this->mFileSearchOptions = $jsonData['FileSearchOptions'] ?? [];
+		$this->mExternalLinks = $jsonData['ExternalLinks'] ?? [];
+		$this->mInterwikiLinks = $jsonData['InterwikiLinks'] ?? [];
+		$this->mHeadItems = $jsonData['HeadItems'] ?? [];
+		$this->mModuleSet = array_fill_keys( $jsonData['Modules'] ?? [], true );
+		$this->mModuleStyleSet = array_fill_keys( $jsonData['ModuleStyles'] ?? [], true );
+		$this->mJsConfigVars = $jsonData['JsConfigVars'] ?? [];
+		$this->mWarnings = $jsonData['Warnings'] ?? [];
+
+		// Set flags stored as properties
+		$this->mFlags = $jsonData['Flags'] ?? [];
+		$this->mNoGallery = $jsonData['NoGallery'] ?? false;
+		$this->mEnableOOUI = $jsonData['EnableOOUI'] ?? false;
+		$this->setIndexPolicy( $jsonData['IndexPolicy'] ?? '' );
+		$this->mNewSection = $jsonData['NewSection'] ?? false;
+		$this->mHideNewSection = $jsonData['HideNewSection'] ?? false;
+		$this->mPreventClickjacking = $jsonData['PreventClickjacking'] ?? false;
+		// Set all generic output flags (whether stored as properties or not)
+		// (This is effectively a logical-OR if these are also serialized
+		// above.)
+		foreach ( $jsonData['OutputFlags'] ?? [] as $flag ) {
+			$this->setOutputFlag( $flag );
+		}
+
 		if ( isset( $jsonData['TOCData'] ) ) {
 			$this->mTOCData = $jsonData['TOCData'];
 		// Backward-compatibility with old TOCData encoding (T327439)
@@ -3116,25 +3130,22 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				}
 			}
 		}
-		$this->mProperties = self::detectAndDecodeBinary( $jsonData['Properties'] );
-		$this->mTimestamp = $jsonData['Timestamp'];
-		$this->mEnableOOUI = $jsonData['EnableOOUI'];
-		$this->setIndexPolicy( $jsonData['IndexPolicy'] );
+		$this->mProperties = self::detectAndDecodeBinary( $jsonData['Properties'] ?? [] );
+		$this->mTimestamp = $jsonData['Timestamp'] ?? null;
 		$this->mExtensionData = $jsonData['ExtensionData'] ?? [];
-		$this->mLimitReportData = $jsonData['LimitReportData'];
-		$this->mLimitReportJSData = $jsonData['LimitReportJSData'];
+		$this->mLimitReportData = $jsonData['LimitReportData'] ?? [];
+		$this->mLimitReportJSData = $jsonData['LimitReportJSData'] ?? [];
 		$this->mCacheMessage = $jsonData['CacheMessage'] ?? '';
 		$this->mParseStartTime = []; // invalid after reloading
 		$this->mTimeProfile = $jsonData['TimeProfile'] ?? [];
-		$this->mPreventClickjacking = $jsonData['PreventClickjacking'];
-		$this->mExtraScriptSrcs = $jsonData['ExtraScriptSrcs'];
-		$this->mExtraDefaultSrcs = $jsonData['ExtraDefaultSrcs'];
-		$this->mExtraStyleSrcs = $jsonData['ExtraStyleSrcs'];
-		$this->mSpeculativeRevId = $jsonData['SpeculativeRevId'];
-		$this->speculativePageIdUsed = $jsonData['SpeculativePageIdUsed'];
-		$this->revisionTimestampUsed = $jsonData['RevisionTimestampUsed'];
-		$this->revisionUsedSha1Base36 = $jsonData['RevisionUsedSha1Base36'];
-		$this->mWrapperDivClasses = $jsonData['WrapperDivClasses'];
+		$this->mExtraScriptSrcs = $jsonData['ExtraScriptSrcs'] ?? [];
+		$this->mExtraDefaultSrcs = $jsonData['ExtraDefaultSrcs'] ?? [];
+		$this->mExtraStyleSrcs = $jsonData['ExtraStyleSrcs'] ?? [];
+		$this->mSpeculativeRevId = $jsonData['SpeculativeRevId'] ?? null;
+		$this->speculativePageIdUsed = $jsonData['SpeculativePageIdUsed'] ?? null;
+		$this->revisionTimestampUsed = $jsonData['RevisionTimestampUsed'] ?? null;
+		$this->revisionUsedSha1Base36 = $jsonData['RevisionUsedSha1Base36'] ?? null;
+		$this->mWrapperDivClasses = $jsonData['WrapperDivClasses'] ?? [];
 		$this->mMaxAdaptiveExpiry = $jsonData['MaxAdaptiveExpiry'] ?? INF;
 	}
 

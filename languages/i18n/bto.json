@@ -614,6 +614,7 @@
 	"rightsnone": "(uda)",
 	"feedback-message": "Mensahe:",
 	"searchsuggest-search": "Pag-anapon a {{SITENAME}}",
+	"searchsuggest-containing": "Mag-anap ka mga pahinang agku",
 	"expand_templates_remove_nowiki": "Itago a <nowiki> tags sa resulta",
 	"skin-view-create-local": "Dugangan sa lokal na deskripsyon",
 	"nstab-mainpage": "Unang pahina",

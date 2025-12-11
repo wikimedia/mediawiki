@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nokeoo"
+		]
+	},
+	"cdx-dialog-close-button-label": "Uždaryti",
+	"cdx-label-optional-flag": "(nebūtina)",
+	"cdx-message-dismiss-button-label": "Uždaryti",
+	"cdx-search-input-search-button-label": "Ieškoti",
+	"cdx-table-select-all-label": "Pasirinkti visas eilutes",
+	"cdx-table-select-row-label": "Pasirinkti $1 eilutę iš $2",
+	"cdx-table-sort-caption": "$1 (stulpelių antraštes su mygtukais galima rūšiuoti).",
+	"cdx-typeahead-search-search-results-label": "Paieškos rezultatai",
+	"cdx-table-pager-button-first-page": "Pirmas puslapis",
+	"cdx-table-pager-button-last-page": "Paskutinis puslapis",
+	"cdx-table-pager-button-next-page": "Kitas puslapis",
+	"cdx-table-pager-button-prev-page": "Ankstesnis puslapis",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 eilutė|$1 eilutės|$1 eilučių}}",
+	"cdx-table-pager-items-per-page-default": "Rezultatų puslapyje",
+	"cdx-table-pagination-status-message-determinate-long": "Rodomi rezultatai $1–$2 iš $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 iš $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Rodomi rezultatai $1–$2 iš daugelio",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 iš daugelio",
+	"cdx-table-pagination-status-message-indeterminate-final": "{{PLURAL:$1|Rodoma paskutinis $1 rezultatas|Rodomi paskutiniai $1 rezultatai|Rodoma paskutinis $1 rezultatų}}",
+	"cdx-table-pagination-status-message-pending": "Įkeliami rezultatai..."
+}

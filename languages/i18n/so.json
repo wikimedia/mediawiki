@@ -1014,7 +1014,6 @@
 	"specialpages-group-pages": "liiska maqaalada",
 	"blankpage": "Bog masaxan",
 	"tag-filter": "[[Special:Tags|Filtaraha]] tag:",
-	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tags-display-header": "Muuqaalka liiska bedelka",
 	"htmlform-reset": "Ka noqo wax bedelka",
 	"htmlform-selectorother-other": "kuwa kale",

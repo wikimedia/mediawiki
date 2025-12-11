@@ -9,7 +9,8 @@
 			"Jeeputer",
 			"Meisam",
 			"Reza1615",
-			"ZxxZxxZ"
+			"ZxxZxxZ",
+			"LordProfo"
 		]
 	},
 	"exif-imagewidth": "عرض",
@@ -176,8 +177,8 @@
 	"exif-originaldocumentid": "شناسهٔ یکتای سند اصلی",
 	"exif-licenseurl": "نشانی اینترنتی برای مجوز حق تکثیر",
 	"exif-morepermissionsurl": "اطلاعات مجوزهای جایگزین",
-	"exif-attributionurl": "در زمان استفاده مجدد، لطفاً پیوند دهید به",
-	"exif-preferredattributionname": "در زمان استفاده مجدد، لطفاً اعتبار دهید به",
+	"exif-attributionurl": "در زمان استفادهٔ دوباره، لطفاً پیوند دهید به",
+	"exif-preferredattributionname": "در زمان استفادهٔ دوباره، لطفاً اعتبار دهید به",
 	"exif-pngfilecomment": "توضیحات پرونده PNG",
 	"exif-disclaimer": "تکذیب‌نامه",
 	"exif-contentwarning": "هشدار محتوا",
@@ -204,6 +205,7 @@
 	"exif-photometricinterpretation-8": "CIE L*a*b*‎",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (رمزنگاری ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (رمزنگاری ITU)",
+	"exif-photometricinterpretation-32803": "آرایه فیلتر رنگ",
 	"exif-unknowndate": "تاریخ نامعلوم",
 	"exif-orientation-1": "عادی",
 	"exif-orientation-2": "افقی پشت و روشده",

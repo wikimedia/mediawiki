@@ -14,7 +14,8 @@
 			"Omnipaedista",
 			"Protnet",
 			"SucreRouge",
-			"ZaDiak"
+			"ZaDiak",
+			"Jimkats"
 		]
 	},
 	"exif-imagewidth": "Πλάτος",
@@ -199,7 +200,9 @@
 	"exif-compression-4": "Κωδικοποίηση Φαξ CCITT Ομάδας 4",
 	"exif-copyrighted-true": "Προστατεύεται από πνευματικά δικαιώματα",
 	"exif-copyrighted-false": "Δεν έχει οριστεί καθεστώς πνευματικών δικαιωμάτων",
+	"exif-photometricinterpretation-0": "Μαύρο και άσπρο (Άσπρο είναι 0)",
 	"exif-photometricinterpretation-1": "Μαύρο και λευκό (Μαύρο 0)",
+	"exif-photometricinterpretation-3": "Παλέτα",
 	"exif-unknowndate": "Άγνωστη ημερομηνία",
 	"exif-orientation-1": "Φυσικός",
 	"exif-orientation-2": "Έχει αντιστραφεί οριζόντια.",
@@ -270,6 +273,12 @@
 	"exif-scenetype-1": "Εικόνα που φωτογραφήθηκε απ` ευθείας",
 	"exif-customrendered-0": "Κανονική επεξεργασία",
 	"exif-customrendered-1": "Ειδική επεξεργασία",
+	"exif-customrendered-2": "HDR (δεν έχει αποθηκευτεί πρωτότυπο)",
+	"exif-customrendered-3": "HDR (αρχικό αποθηκευμένο)",
+	"exif-customrendered-4": "Πρωτότυπο (για HDR)",
+	"exif-customrendered-6": "Πανόραμα",
+	"exif-customrendered-7": "Πορτρέτο HDR",
+	"exif-customrendered-8": "Πορτρέτο",
 	"exif-exposuremode-0": "Αυτόματη έκθεση",
 	"exif-exposuremode-1": "Χειροκίνητη έκθεση",
 	"exif-exposuremode-2": "Αυτόματο bracket",
@@ -355,5 +364,15 @@
 	"exif-urgency-normal": "Κανονική ($1)",
 	"exif-urgency-low": "Χαμηλή ($1)",
 	"exif-urgency-high": "Υψηλή ($1)",
-	"exif-urgency-other": "Προτεραιότητα που ορίστηκε από το χρήστη ($1)"
+	"exif-urgency-other": "Προτεραιότητα που ορίστηκε από το χρήστη ($1)",
+	"exif-firstphotodate": "Ημερομηνία πρώτης φωτογραφίας",
+	"exif-lastphotodate": "Ημερομηνία τελευταίας φωτογραφίας",
+	"exif-projectiontype": "Τύπος προβολής",
+	"exif-projectiontype-equirectangular": "Ισογωνική",
+	"exif-usepanoramaviewer": "Χρήση πανοραμικής προβολής",
+	"exif-usepanoramaviewer-true": "Ναί",
+	"exif-usepanoramaviewer-false": "Όχι",
+	"exif-exposurelockused": "Χρησιμοποιήθηκε κλείδωμα έκθεσης",
+	"exif-exposurelockused-true": "Ναι",
+	"exif-exposurelockused-false": "Όχι"
 }

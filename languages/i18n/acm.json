@@ -7,7 +7,8 @@
 			"Lolekek",
 			"MRidhaAJ",
 			"محمد أحمد عبد الفتاح",
-			"Mohammdaon"
+			"Mohammdaon",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "الاحد",
@@ -631,7 +632,7 @@
 	"newarticletext": "إنته رحت لصفحة محد مسويها.\nعلمود تسوي هاي الصفحة إبدي إكتب بالصندوك اللي جوا (شوف [$1 صفحة المساعدة] حتى تشوف معلومات أكثر).\nإذا رحت لهاي الصفحة بالغلط، دوس <strong>رجوع</strong> على المتصفح مالك.",
 	"anontalkpagetext": "----\n<em>هاي صفحة نقاش مستخدم مجهول ما سوى حساب لو ما يستعمل ذاك الحساب;</em>\nلذا لازم نستعمل رقم الأيبي حتى نتعرف عليهم،\nمثل هاذ العنوان يكدر يشترك بيه عدة مستخدمين.\nلو جنت مستخدم مجهول وتحس أن تعليقات متخصك توجهت إلك، من فضلك [[Special:CreateAccount|سوي حساب]] لو [[Special:UserLogin|سجل الدخول]] حتى تتجنب الارتباك المستقبلي ويه مستخدمين مجهولين ثانيين.",
 	"noarticletext": "هاي الصفحه ما بيهه شي هسه. تكدر [[Special:Search/{{PAGENAME}}|تدور اسمهه]] بالصفحات الثانيه لو <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} تدور بسجلات] (حته تعرف اذه نحذفت)، لو '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} تسويهه]'''</span>.",
-	"noarticletext-nopermission": "هاي الصفحه ما بيهه شي هسه. تكدر [[Special:Search/{{PAGENAME}}|تدور اسمهه]] بالصفحات الثانيه لو <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} تدور بسجلات] (حته تعرف اذه نحذفت)، بس ما يصير تسوي هاي الصفحه.",
+	"noarticletext-nopermission": "هاي الصفحه ما بيهه شي هسه. تكدر [[Special:Search/{{PAGENAME}}|تدور اسمهه]] بالصفحات الثانيه لو <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} تدور بسجلات]</span> (حته تعرف اذه نحذفت)، بس ما يصير تسوي هاي الصفحه.",
 	"missing-revision-permission": "هاي المراجعه #$1 تعود لصفحه ممسوحه. تكدر [{{fullurl:{{#Special:Undelete}}|target=$3&timestamp=$2&diff=prev}} تطلعهه]؛ تكدر تطلع التفاصيل ب[{{fullurl:{{#Special:Log}}/delete|page=$3}} المحذوفات].",
 	"missing-revision": "المراجعه #$1 من الصفحه اللي اسمها \"{{FULLPAGENAME}}\" مو موجوده.\n\nهاذ يصير عادة عن طريق اتباع وصلة تاريخ قديمه لصفحة محذوفه.\nالتفاصيل موجوده بـ [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
 	"missing-revision-content": "تعذر تحميل المراجعه #$1 من الصفحة اللي اسمها \"$2\".",

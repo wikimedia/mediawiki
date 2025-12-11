@@ -1093,14 +1093,14 @@
 			'Attributes with single quotes are normalized to double'
 		);
 
-		mw.messages.set( 'jquerymsg-escaped-double-quotes-attribute', '<i style="font-family:&quot;Arial&quot;">Styled</i>' );
+		mw.messages.set( 'jquerymsg-escaped-double-quotes-attribute', '<i title="Hello &quot;World&quot;">Title</i>' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-escaped-double-quotes-attribute' ),
 			mw.messages.get( 'jquerymsg-escaped-double-quotes-attribute' ),
 			'Escaped attributes are parsed correctly'
 		);
 
-		mw.messages.set( 'jquerymsg-escaped-single-quotes-attribute', '<i style=\'font-family:&#039;Arial&#039;\'>Styled</i>' );
+		mw.messages.set( 'jquerymsg-escaped-single-quotes-attribute', '<i title=\'Hello &#039;World&#039;\'>Title</i>' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-escaped-single-quotes-attribute' ),
 			mw.messages.get( 'jquerymsg-escaped-single-quotes-attribute' ),
@@ -1126,13 +1126,6 @@
 			formatParse( 'jquerymsg-unclosed-tag' ),
 			'Foo&lt;tag&gt;bar',
 			'Nonsupported unclosed tags are escaped'
-		);
-
-		mw.messages.set( 'jquerymsg-self-closing-tag', 'Foo<tag/>bar' );
-		assert.htmlEqual(
-			formatParse( 'jquerymsg-self-closing-tag' ),
-			'Foo&lt;tag/&gt;bar',
-			'Self-closing tags don\'t cause a parse error'
 		);
 
 		mw.messages.set( 'jquerymsg-asciialphabetliteral-regression', '<b >>>="dir">asd</b>' );
@@ -1178,6 +1171,57 @@
 			formatParse( 'jquerymsg-entities-attr3' ),
 			'<i title="A&amp;rarr;B"></i>',
 			'"&rarr;" entity is double-escaped in attribute'
+		);
+
+		mw.messages.set( 'jquerymsg-valid-self-closing-tags-1', '<br><wbr><hr>' );
+		mw.messages.set( 'jquerymsg-valid-self-closing-tags-2', '<br/><wbr/><hr/>' );
+		mw.messages.set( 'jquerymsg-valid-self-closing-tags-3', '<br /><wbr  /><hr   />' );
+		mw.messages.set( 'jquerymsg-valid-self-closing-tags-4', '<br class="test" />' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-valid-self-closing-tags-1' ),
+			'<br><wbr><hr>',
+			'Valid self-closing tags without slashes are turned into HTML'
+		);
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-valid-self-closing-tags-2' ),
+			'<br><wbr><hr>',
+			'Valid self-closing tags with slashes are turned into HTML'
+		);
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-valid-self-closing-tags-3' ),
+			'<br><wbr><hr>',
+			'Valid self-closing tags with whitespace and slashes are turned into HTML'
+		);
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-valid-self-closing-tags-4' ),
+			'<br class="test">',
+			'Valid self-closing tags with attributes are turned into HTML'
+		);
+
+		mw.messages.set( 'jquerymsg-invalid-self-closing-tags-1', '<div/>' );
+		mw.messages.set( 'jquerymsg-invalid-self-closing-tags-2', '<foo/>' );
+		mw.messages.set( 'jquerymsg-invalid-self-closing-tags-3', '<br onclick="alert(1)">' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-invalid-self-closing-tags-1' ),
+			'&lt;div/&gt;',
+			'Self-closing syntax on an allowed tag that is not self-closing escapes the tag'
+		);
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-invalid-self-closing-tags-2' ),
+			'&lt;foo/&gt;',
+			'Self-closing syntax on a disallowed tag escapes the tag'
+		);
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-invalid-self-closing-tags-3' ),
+			'&lt;br onclick="alert(1)"&gt;',
+			'Self-closing tags with disallowed attributes are escaped'
+		);
+
+		mw.messages.set( 'jquery-mixed-self-closing-tags', '<div><br></div>' );
+		assert.htmlEqual(
+			formatParse( 'jquery-mixed-self-closing-tags' ),
+			'<div><br></div>',
+			'Self-closing tags inside other tags are turned into HTML'
 		);
 	} );
 
@@ -1315,15 +1359,22 @@
 		);
 	} );
 
-	QUnit.test( 'Do not allow arbitrary style', function ( assert ) {
-		mw.messages.set( 'illegal-style', '<span style="background-image:url( http://example.com )">bar</span>' );
+	QUnit.test( 'Do not allow style attribute (T251032)', function ( assert ) {
+		mw.messages.set( 'unsafe-style', '<span style="background-image:url( http://example.com )">bar</span>' );
+		mw.messages.set( 'safe-style', '<span style="color:red">bar</span>' );
 
 		this.suppressWarnings();
 
 		assert.strictEqual(
-			formatParse( 'illegal-style' ),
+			formatParse( 'unsafe-style' ),
 			'&lt;span style="background-image:url( http://example.com )"&gt;bar&lt;/span&gt;',
-			'illegal-style: \'parse\' format'
+			'unsafe-style: \'parse\' format'
+		);
+
+		assert.strictEqual(
+			formatParse( 'safe-style' ),
+			'&lt;span style="color:red"&gt;bar&lt;/span&gt;',
+			'safe-style: \'parse\' format (all styles are disallowed now, T251032)'
 		);
 	} );
 

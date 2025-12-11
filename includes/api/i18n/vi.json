@@ -10,12 +10,14 @@
 			"Nguyenphutrong2",
 			"Vinhtantran",
 			"NguyenHung",
-			"Bapham123"
+			"Bapham123",
+			"SaldırganSincap",
+			"Nvdtn19"
 		]
 	},
 	"apihelp-main-param-action": "Tác vụ để thực hiện.",
 	"apihelp-main-param-format": "Định dạng của dữ liệu được cho ra.",
-	"apihelp-main-param-uselang": "Ngôn ngữ để sử dụng cho các bản dịch thông điệp. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd>&siprop=languages</kbd> trả về một danh sách các mã ngôn ngữ. Bạn có thể định rõ <kbd>user</kbd> để sử dụng ngôn ngữ của người dùng hiện tại hoặc <kbd>content</kbd> để sử dụng ngôn ngữ nội dung của wiki này.",
+	"apihelp-main-param-uselang": "Ngôn ngữ để sử dụng cho các bản dịch thông điệp. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]]</kbd> trả về một danh sách các mã ngôn ngữ. Bạn có thể định rõ <kbd>user</kbd> để sử dụng ngôn ngữ của người dùng hiện tại hoặc <kbd>content</kbd> để sử dụng ngôn ngữ nội dung của wiki này.",
 	"apihelp-main-paramvalue-errorformat-plaintext": "Mã Wiki có thẻ HTML đã bị xóa và các thực thể đã được thay thế.",
 	"apihelp-main-paramvalue-errorformat-wikitext": "Mã wiki chưa được phân tích.",
 	"apihelp-main-paramvalue-errorformat-none": "Không có văn bản nào được hiển thị, chỉ có mã lỗi.",
@@ -190,8 +192,8 @@
 	"apihelp-query+transcludedin-param-limit": "Tổng số trả về.",
 	"apihelp-query+watchlist-param-limit": "Tổng số kết quả trả về mỗi yêu cầu.",
 	"apihelp-revisiondelete-param-suppress": "Có phải che giấu dữ liệu đối với bảo quản viên cũng như các thành viên khác.",
-	"apihelp-rollback-summary": "Lùi lại sửa đổi cuối cùng của trang này.",
-	"apihelp-rollback-extended-description": "Nếu người dùng cuối cùng đã sửa đổi trang này nhiều lần, tất cả chúng sẽ được lùi lại cùng một lúc.",
+	"apihelp-rollback-summary": "Lùi lại sửa đổi gần đây nhất trên trang này.",
+	"apihelp-rollback-extended-description": "Nếu người dùng gần nhất đã sửa đổi trang này nhiều lần, tất cả sửa đổi của họ sẽ được lùi lại cùng một lúc.",
 	"apihelp-format-example-generic": "Cho ra kết quả truy vấn dưới dạng $1.",
 	"apihelp-json-summary": "Cho ra dữ liệu dưới dạng JSON.",
 	"apihelp-jsonfm-summary": "Cho ra dữ liệu dưới dạng JSON (định dạng bằng HTML).",

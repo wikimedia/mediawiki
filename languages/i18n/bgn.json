@@ -1868,7 +1868,7 @@
 	"widthheightpage": "$1×$2، $3 {{PLURAL:$3|تاکدیم|تاکدیم}}",
 	"file-info": "فایلئ اندازه گ: $1، نوع  MIME $2",
 	"file-info-size": "<span dir=\"ltr\">$1 × $2</span> پیکسل، فایلئ اندازه گ: $3، نوع MIME فایلئ: $4",
-	"file-info-size-pages": "<span style=\"direction:ltr\">$1 × $2</span> نقطه، فایلئ حجم: $3، نوع MIME فایل: $4، $5 تاکدیم",
+	"file-info-size-pages": "<span dir=\"ltr\">$1 × $2</span> نقطه، فایلئ حجم: $3، نوع MIME فایل: $4، $5 تاکدیم",
 	"file-nohires": "گیشتیرین تفکیک پذیری بئ دسترس ئا نه اینت.",
 	"svg-long-desc": "اس‌وی‌جی ئی فایل، گۆ\t ابئاد <span dir=\"ltr\">$1 × $2</span> پیکسل، فایل اندازه گ: $3",
 	"svg-long-error": "SVG ئی فایل ناجایز اینت: $1",

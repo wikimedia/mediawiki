@@ -329,7 +329,7 @@ class EditResultBuilder {
 	 * @return string[]
 	 */
 	private function getRevertTags(): array {
-		if ( isset( self::REVERT_METHOD_TO_CHANGE_TAG[$this->revertMethod] ) ) {
+		if ( $this->revertMethod !== null ) {
 			$revertTag = self::REVERT_METHOD_TO_CHANGE_TAG[$this->revertMethod];
 			if ( in_array( $revertTag, $this->softwareTags ) ) {
 				return [ $revertTag ];

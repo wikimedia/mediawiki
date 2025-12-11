@@ -4,7 +4,8 @@
 			"787IYO",
 			"Misbahu umar",
 			"Umar Ahmad2345",
-			"Stjn"
+			"Stjn",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "Lade",
@@ -524,7 +525,7 @@
 	"passwordreset-emailtext-user": "Ezaloci $1 dan {{SITENAME}} wa ebanzhe nyan ganmin giyeko wo'e{{SITENAME}} ($4). Ezaloci nana {{GENDER:$3|gbami yi|gbami zhi yi}} de alaka be email address nana'e:\n\n$2\n\n{{GENDER:$3|Ganmin giyeko eka tetengi nana|ganmin giyeko eka tetengi nana zhi}}ga zo tun eka {{PLURAL:$5|efo nini|$5 efozhi}}. Gandan gbani wo'e wa li ganmin giyeko woro. Wun'a yi zandoci wo'a giyeko woro, koma wo'e ga yi ganmin giyeko wo'e pa re, wo'e man wa gan wo'e zhe'uban be'a, dzun gan sako nana wo'e fe'o lo ganmin giyeko nyan payin.",
 	"passwordreset-emailelement": "Sunna ezaloci:$1 giyeko eka tetengi:$2",
 	"passwordreset-success": "Wo'e wa ganmin giyeko woro.",
-	"passwordreset-success-details-generic": "Yeji nan wo'e la be nan ga lo, ah la ganmin giyeko zheban be Email wo'e. Ka gan wo'e la le sako ye Email bo'a, yi ya shaura gan wo'e lo [[mw:Special: MyLanguage/Help:Reset_password|reset password help page]]koma wo'e ye wun'o jin kandochi. Wo'e jin wo kawayin<strong>wa ganmin giyeko zheban dan eka tetengi'o. Sako ebanzhe giyeko nini kawayin ga ah fe la be ya gbami wangi ndondo ya {{PLURAL:$1|hour|$1 hour zhi}}</strong> ebo wo'e kan gwa zunye.",
+	"passwordreset-success-details-generic": "Yeji nan wo'e la be nan ga lo, ah la ganmin giyeko zheban be Email wo'e. Ka gan wo'e la le sako ye Email bo'a, yi ya shaura gan wo'e lo [[mw:Special:MyLanguage/Help:Reset_password|reset password help page]]koma wo'e ye wun'o jin kandochi. Wo'e jin wo kawayin<strong>wa ganmin giyeko zheban dan eka tetengi'o. Sako ebanzhe giyeko nini kawayin ga ah fe la be ya gbami wangi ndondo ya {{PLURAL:$1|hour|$1 hour zhi}}</strong> ebo wo'e kan gwa zunye.",
 	"passwordreset-success-info": "Yeji nan zhi wo'e la be nan yi:$1",
 	"passwordreset-emailtext-require-email": "Ama, kagan'u jin wo'e tswa wiwa nana wo'e man'e wa ga wo'e kan gwa Email nan zhi dan eko bo'a nan, wo'a wa gan wo'e la Email wo'e zhe woro mini $1. Wo'a wa email toh sunnah eza loci ya tswitswa giyeko woro. Nana kan gwa enyan yiri wuncin wo.",
 	"passwordreset-nocaller": "Dole eza yichi'a danbo",
@@ -618,7 +619,7 @@
 	"userjsonyoucanpreview": "<strong>Tip:</strong>Yi button nyan \"{{int:showpreview}}\" gwa ebo wo'e man JSON woro cinle kafi wo'e la wun'o tinya nan.",
 	"userjsyoucanpreview": "<strong>Tip:</strong>Yi button nyan \"{{int:showpreview}}\" gwa ebo wo'e man JavaScript woro cinle kafi wo'e la wun'o tinya nan.",
 	"usercsspreview": "<strong>pa gan wo'e de ye CSS wo'e ye cinle kawayin. Wun la de lila tinya!</strong>",
-	"userjsonpreview": "<strong>Pa gan wo'e de ye JSON\n wo'e ye cinle kawayin. Wun la de lila tinya!</strong>",
+	"userjsonpreview": "<strong>Pa gan wo'e de ye JSON.\nwo'e ye cinle kawayin. Wun la de lila tinya!</strong>",
 	"userjspreview": "<strong>Pa gan wo'e de ye CSS wo'e ye cinle kawayin. Wun la de lila tinya!</strong>",
 	"sitecsspreview": "<strong>Pa gan wo'e de ye CSS wo'e ye cinle kawayin. Wun la de lila tinya!</strong>",
 	"sitejsonpreview": "<strong>Pa gan wo'e de ye JSON configuration wo'e ye cinle kawayin. Wun la de lila tinya!</strong>",

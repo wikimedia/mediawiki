@@ -398,6 +398,8 @@
 	"apihelp-query+allimages-summary": "모든 그림을 순차적으로 열거합니다.",
 	"apihelp-query+allimages-param-sort": "정렬할 속성입니다.",
 	"apihelp-query+allimages-param-dir": "나열할 방향입니다.",
+	"apihelp-query+allimages-param-minsize": "이미지의 최저 바이트 수를 제한합니다.",
+	"apihelp-query+allimages-param-maxsize": "이미지의 최대 바이트 수를 제한합니다.",
 	"apihelp-query+allimages-param-limit": "반환할 총 이미지 수입니다.",
 	"apihelp-query+allimages-example-recent": "최근 업로드된 파일을 보여줍니다. [[Special:NewFiles]]와 유사합니다.",
 	"apihelp-query+alllinks-summary": "제시된 이름공간을 가리키는 모든 링크를 열거합니다.",

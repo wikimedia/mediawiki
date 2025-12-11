@@ -1089,7 +1089,6 @@
 	"redirect-file": "Töi berkas",
 	"specialpages": "Nga'örö spesial",
 	"tag-filter": "Tafi [[Special:Tags|Tag]]",
-	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tags-active-yes": "Ya'ia",
 	"tags-active-no": "Lö'ö",
 	"tags-hitcount": "$1 {{PLURAL:$1|zifabö'ö}}",

@@ -1,15 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jimkats"
+			"Jimkats",
+			"Geraki"
 		]
 	},
+	"cdx-chip-input-chip-added": "Το τσιπ $1 προστέθηκε.",
+	"cdx-chip-input-chip-removed": "Το τσιπ $1 αφαιρέθηκε.",
+	"cdx-input-chip-aria-description": "Πατήστε Enter για επεξεργασία ή Delete για κατάργηση.",
 	"cdx-dialog-close-button-label": "Κλείσιμο",
 	"cdx-label-optional-flag": "(προαιρετικό)",
 	"cdx-message-dismiss-button-label": "Κλείσιμο",
 	"cdx-search-input-search-button-label": "Αναζήτηση",
 	"cdx-table-select-all-label": "Επιλογή όλων των γραμμών",
 	"cdx-table-select-row-label": "Επιλογή γραμμών $1 ή $2",
+	"cdx-table-sort-caption": "$1 (οι κεφαλίδες στηλών με κουμπιά είναι ταξινομήσιμες).",
 	"cdx-typeahead-search-search-results-label": "Αποτελέσματα αναζήτησης",
 	"cdx-table-pager-button-first-page": "Πρώτη σελίδα",
 	"cdx-table-pager-button-last-page": "Τελευταία σελίδα",
@@ -21,5 +26,6 @@
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 από $3",
 	"cdx-table-pagination-status-message-indeterminate-long": "Εμφάνιση αποτελεσμάτων $1–$2 από πολλά",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 από πολλά",
+	"cdx-table-pagination-status-message-indeterminate-final": "Εμφάνιση {{PLURAL:$1|του τελευταίου ενός αποτελέσματος|των τελευταίων $1 αποτελεσμάτων}}",
 	"cdx-table-pagination-status-message-pending": "Φόρτωση αποτελεσμάτων..."
 }

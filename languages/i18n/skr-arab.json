@@ -2066,7 +2066,7 @@
 	"svg-long-error": "نادرست ایس وی جی فائل: $1",
 	"show-big-image": "اصل فائل",
 	"show-big-image-preview": "ایں پیشگی ݙکھالے دا حجم:$1",
-	"show-big-image-other": "ٻیاں {{PLURAL:$2|قرارداد|قرارداداں}}: $1۔",
+	"show-big-image-other": "ٻیاں {{PLURAL:$2|ریزولوشن|ریزولوشناں}}: $1۔",
 	"show-big-image-size": "$1 × $2 پکسلز",
 	"file-info-gif-looped": "چکردار",
 	"file-info-gif-frames": "$1 {{PLURAL:$1|چوکھٹا|چوکھٹے}}",

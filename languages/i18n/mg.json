@@ -12,7 +12,8 @@
 			"Urhixidur",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "Alahady",
@@ -83,8 +84,6 @@
 	"index-category": "pejy voasokajy",
 	"noindex-category": "Pejy tsy voatondro",
 	"broken-file-category": "Pejy misy rohin-drakitra tapaka",
-	"categoryviewer-pagedlinks": "($1) ($2)",
-	"category-header-numerals": "$1–$2",
 	"about": "Mombamomba",
 	"article": "Votoatin'ny pejy",
 	"newwindow": "(sokafy anaty takila hafa)",
@@ -730,9 +729,6 @@
 	"slot-name-main": "Loha",
 	"content-model-wikitext": "wiki-soratra",
 	"content-model-text": "soratra tsotra",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
-	"content-model-json": "JSON",
 	"content-json-empty-object": "Zavatra foana",
 	"content-json-empty-array": "Tabilao foana",
 	"unsupported-content-model": "<strong>Fampitandremana:</strong> Ny modely votoaty $1 dia tsy tohanana amin'ity wiki ity.",
@@ -1583,7 +1579,7 @@
 	"uploaded-hostile-svg": "Nahitana CSS tsy azo antoka ao amin'ny zava-pisehoan'ny rakitra SVG nampiakarina.",
 	"uploaded-event-handler-on-svg": "Tsy azo atao amin'ny rakitra SVG ny fametrahana toetra mpikirakira hetsika <code>$1=\"$2\"</code>.",
 	"uploaded-href-attribute-svg": "Ny singa<code>&lt;a&gt;</code> dia afaka mampifandray (href) amin'ny data: (rakitra nampidirina), http:// na https://, na lasitra fragment (#, ao amin'ilay tahirin-kevitra ihany) ihany. Ho an'ny singa hafa, toy ny <image>, data: sy fragment ihany no azo ekena. Andramo ampiditra mivantana ny sary rehefa manondrana ny SVG-nao. Hita ny <code>&lt;$1 $2=\"$3\"&gt;</code>.",
-	"uploaded-href-unsafe-target-svg": "Nahitana href mikendry angona tsy azo antoka: tanjona URIcode>&lt;$1 $2=\"$3\"&gt;</code> ao amin'ny rakitra SVG nampidirina.",
+	"uploaded-href-unsafe-target-svg": "Nahitana href mikendry angona tsy azo antoka: tanjona URI <code>&lt;$1 $2=\"$3\"&gt;</code> ao amin'ny rakitra SVG nampidirina.",
 	"uploaded-animate-svg": "Hita ny tag \"animate\" izay mety manova href, mampiasa ny toetra \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> ao amin'ny rakitra SVG nampakarina.",
 	"uploaded-setting-event-handler-svg": "Voasakana ny fametrahana toetran'ny mpandrindra hetsika, nahita <code>&lt;$1 $2=\"$3\"&gt;</code> tao amin'ny rakitra nalefa.",
 	"uploaded-setting-href-svg": "Tsy azo atao ny mampiasa ny balizy \"set\" hanampiana toetra \"href\" ao amin'ny zavatra reny.",

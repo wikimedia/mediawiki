@@ -285,11 +285,11 @@ class CacheTime implements ParserCacheMetadata, JsonDeserializable {
 			// Backwards compatibility
 			$this->recordOptions( $jsonData['UsedOptions'] ?: [] );
 		} else {
-			$this->mParseUsedOptions = $jsonData['ParseUsedOptions'] ?: [];
+			$this->mParseUsedOptions = $jsonData['ParseUsedOptions'] ?? [];
 		}
-		$this->mCacheExpiry = $jsonData['CacheExpiry'];
-		$this->mCacheTime = $jsonData['CacheTime'];
-		$this->mCacheRevisionId = $jsonData['CacheRevisionId'];
+		$this->mCacheExpiry = $jsonData['CacheExpiry'] ?? null;
+		$this->mCacheTime = $jsonData['CacheTime'] ?? '';
+		$this->mCacheRevisionId = $jsonData['CacheRevisionId'] ?? null;
 	}
 
 	public function __wakeup() {

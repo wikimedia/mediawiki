@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Inkowik"
+		]
 	},
 	"cdx-chip-input-chip-added": "Chip $1 wurde hinzugefügt.",
 	"cdx-chip-input-chip-removed": "Chip $1 wurde entfernt.",
@@ -19,7 +21,7 @@
 	"cdx-table-pager-button-prev-page": "Vorherige Seite",
 	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 Zeile|$1 Zeilen}}",
 	"cdx-table-pager-items-per-page-default": "Ergebnisse pro Seite",
-	"cdx-table-pagination-status-message-determinate-long": "Ergebnisse anzeigen $1–$2 von $3",
+	"cdx-table-pagination-status-message-determinate-long": "Ergebnisse $1–$2 von $3 anzeigen",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 von $3",
 	"cdx-table-pagination-status-message-indeterminate-long": "Ergebnisse $1–$2 von vielen werden angezeigt",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 von vielen",

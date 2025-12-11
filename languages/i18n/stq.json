@@ -234,7 +234,7 @@
 	"directorycreateerror": "Dät Ferteeknis „$1“ kuude nit anlaid wäide.",
 	"filenotfound": "Kuude Doatäi \"$1\" nit fiende.",
 	"unexpected": "Uunferwachteden Wäid: „$1“=„$2“.",
-	"formerror": "<b style=\"color: #cc0000;\">Failer: Do Iengoawen konne nit feroarbaided wäide.</b>",
+	"formerror": "Failer: Do Iengoawen konne nit feroarbaided wäide.",
 	"badarticleerror": "Disse Honnelenge kon ap disse Siede nit moaked wäide.",
 	"cannotdelete": "Ju Siede od Doatäi \"$1\" kon nit läsked wäide.\nFielicht is ju al fon uurswál läsked wuuden.",
 	"cannotdelete-title": "Siede \"$1\" kon nit läsked wäide",

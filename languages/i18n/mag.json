@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"ऐक्टिवेटेड्"
+			"ऐक्टिवेटेड्",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "एतवार",
@@ -483,7 +484,7 @@
 	"newarticletext": "अपने ऐसन पन्नापर ऐलीहे जे अखनितक बनावल न गेलीहे ।\nई पन्नाके बनावेला नीचेके डिब्बामे लिखेला आरम्भकरी (आउ जानकारीला [$1 सहायतापन्ना] देखी) ।\nयदि अपने हियाँ गलती से ऐलहीहे त अपन ब्राउजरके '<strong>पीछे</strong>' बटन दबावी ।",
 	"anontalkpagetext": "----\n<em>ई बार्ता पन्ना ऊ अनाम सदस्सला हे जे अखनी खाता न खोलकै हे वा खाताके प्रयोग न करहे ।</em>\nएहीसे उनखा पहचानेला हमनीके उनखर सङ्ख्यात्मक आईपी पता प्रयोग करे पड़ल ।\nऐसन आईपी पता केत्तो सदस्यला एके हो सकहे ।\nयदि अपने एगो अनाम सदस्य ही आउ अपनेके लगहे जे अपनेके बारेमे अप्रासङ्गिक टिप्पणी कैल गेलीहे त कृपया [[Special:CreateAccount|खाता बनावी]] वा [[Special:UserLogin|खातेमे प्रवेश करी]] ताकि दोसर अनाम सदस्यमे से अपनेके अलिगे से पहचानल जा सके ।",
 	"noarticletext": "अखनी ई पन्नापर कौनो सामग्री न हे।\nअपने दुसरो पन्नामे [[Special:Search/{{PAGENAME}}|ई शीर्षकके खोज]] कर सकही,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} सम्बन्धित लॉग खोज सकही],\nन त ई पन्नाके [{{fullurl:{{FULLPAGENAME}}|action=edit}} बना] सकही</span> ।",
-	"noarticletext-nopermission": "अखनि ई पन्नापर कौनो सामग्री न हे ।\nअपने दोसरो पन्नामे [[Special:Search/{{PAGENAME}}|ई शीर्षकके खोज]] कर सकही,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} सम्बन्धित लॉग खोज सकही], किन्तु अपनेके ई बनावेके अनुमति न हे ।",
+	"noarticletext-nopermission": "अखनि ई पन्नापर कौनो सामग्री न हे ।\nअपने दोसरो पन्नामे [[Special:Search/{{PAGENAME}}|ई शीर्षकके खोज]] कर सकही,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} सम्बन्धित लॉग खोज सकही]</span>, किन्तु अपनेके ई बनावेके अनुमति न हे ।",
 	"userpage-userdoesnotexist-view": "सदस्यखाता \"$1\" ई विकिपर पञ्जीकृत न हे ।",
 	"updated": "(अद्यतनीत)",
 	"note": "<strong>सूचना::</strong>",

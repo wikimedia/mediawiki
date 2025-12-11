@@ -4,10 +4,84 @@ PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
+PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
+
+== MediaWiki 1.43.6 ==
+
+THIS IS NOT A RELEASE YET
+
+=== Changes since 1.43.5 ===
+* Localisation updates.
+* (T394396) Revert "SECURITY: Escape rawElement $content".
+* (T394059) DeduplicateStyles: Only transform possible style nodes.
+* UserGroupManager: Use MainConfigNames::PrivilegedGroups rather than
+  string literal.
+* (T406391) RemexCompatFormatter: Don't encode HTML entities in raw-text
+  elements.
+* (T402438) api: Allow ApiResult to override imagerepository key in
+  prop=imageinfo.
+* ParserOutput: Add default values for JSON deserialization.
+* (T355853, T407172) Make the login and signup forms wider.
+* (T292868) Forward-compatibility: allow output flags to be serialized in
+  `OutputFlags`.
+* ResourceLoader: Update cssjanus/cssjanus to wikimedia/cssjanus.
+* (T85085) Improve CSS checking in SVG filter.
+* (T405064) Fix the premature loop exit in Parser.cleanUpTocLine.
+* (T407289) i18n: deprecate double-underscore magic words which don't start/end
+  with __.
+* i18n: all behavior switches should start/end with __ (part 2).
+* (T407289) i18n: Remove deprecated behavior switches without underscores in
+  et/sh-latn/vep.
+* (T407770) Add symfony/polyfill-php84 and symfony/polyfill-php85.
+* maintenance/getConfiguration.php: Fix null warning and serialize error.
+* (T328605) ApiParse: Introduce prop=tocdata as replacement for prop=sections.
+* (T406283) ApiSandbox: Use POST when we have long URL.
+* (T401987, T401995) SECURITY: Disable xslt option by default.
+* (T410913) SpecialVersion: Fix "Cannot use bool as array" warning.
+* (T410928) resourceloader: Fix null offset in ClientHtml module sorting.
+* (T410934) Remove noop xml_parser_free() calls.
+* (T410920) Language: Prevent passing '' to ord() in ucfirst().
+* (T410912) Language: Fix "ord(): Providing a string that is not one byte long
+  is deprecated."
+* (T410912) MessageCache: Fix "ord(): Providing a string that is not one byte
+  long is deprecated."
+* (T410920) Language: Prevent passing '' to ord() in lcfirst().
+* (T410963) Upgrade wikimedia/xmp-reader from 0.9.4 to 0.10.2.
+* (T411016) Upgrading wikimedia/cldr-plural-rule-parser (v2.0.0 => v3.0.0).
+* (T411075) Api: Initialise reference variable.
+* (T411018) IndexPager: Set '' as default value for 'order'.
+* (T410914) Language: Fix PHP 8.5 warnings for NAN/INF string coercion in
+  formatNumInternal.
+* (T410914) Language: Fix PHP 8.5 warnings for NAN/INF string coercion in
+  parseFormattedNumber.
+* (T338103, T411214) ApiResult: Fix "ord(): Providing a string that is not one
+  byte long is deprecated."
+* (T356544) Replace uses of Xml::fieldset(), deprecated since 1.42.
+* (T393790) htmlform: Fix rendering contents for cloner fields.
+* (T391882) HTMLFormFieldCloner: Fix multiple bugs related to conditional
+  states.
+* (T406374) htmlform: Load ooui before infusing field cloner buttons.
+* (T411199) initEditCount: Fix count for users with no edits.
+* (T411827) SpecialPageFactory: Handle resolveAlias() returning null in
+  getPage() and exists().
+* (T411968) Installer: Do not use null as array offset.
+* Add support for HTTP/3 in MultiHttpClient.
+* (T295568) mediawiki.jqueryMsg: Support self-closing HTML tags.
+* (T411968) EditResultBuilder: Do not use null as array offset.
+
+== MediaWiki 1.43.5 ==
+
+This is a security and maintenance release of the MediaWiki 1.43 branch.
+
+=== Changes since MediaWiki 1.43.4 ===
+* Add missing backport for Extension:DiscussionTools.
+* Add missing backport for Extension:Thanks.
+* (T406322, CVE-2025-11261) SECURITY: Escape system messages in
+  mw.language.listToText.
 
 == MediaWiki 1.43.4 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.43 branch.
 
 === Changes since MediaWiki 1.43.3 ===
 * Localisation updates.
@@ -53,12 +127,30 @@ THIS IS NOT A RELEASE YET
 * Forward-compat data for SelserContext w/ JSON-encoded Content.
 * (T372444, T404230) DeletedContribsPager: Use the UserIdentity object instead
   of the raw target string.
-* Upgrading wikimedia/parsoid (v0.20.3 => v0.20.4).
+* (T401099, CVE-2025-61638) Upgrading wikimedia/parsoid (v0.20.3 => v0.20.4).
 * (T394968) Metadata: ignore LocationCreated, similar to LocationShown.
 * (T366083) OutputTransform: Fix double IDs on headings.
 * (T381617) Use Remex/HtmlHelper to implement Parser::replaceTableOfContents.
 * Re-apply "Use Remex for DeduplicateStyles transform".
 * (T400505) Regenerate patch-drop-page_restrictions-pr_user.sql for SQLite.
+* (T387478, CVE-2025-61634) SECURITY: REST: Set cache-control value of
+  max-age=60 for redirects.
+* (T394396, CVE-2025-61636) SECURITY: Escape rawElement $content.
+* (T394856, CVE-2025-61637) SECURITY: Escape three system messages used by
+  live preview.
+* (T401099, CVE-2025-61638) SECURITY: Sanitize data- attributes.
+* (T280413, CVE-2025-61639) SECURITY: Use ManualLogEntry::getDeleted in
+  ::getRecentChange.
+* (T402075, CVE-2025-61640) SECURITY: Parse messages instead of inserting
+  them as HTML.
+* (T298690, CVE-2025-61641) SECURITY: api: Disable maxsize in QueryAllPages
+  in miser mode.
+* (T402313, CVE-2025-61642) SECURITY: Escape submit button label for Codex-based
+  HTMLForms.
+* (T403757, CVE-2025-61643) SECURITY: Don't send suppressed recent changes to
+  RCFeeds.
+* (T398706, CVE-2025-61646) SECURITY: Prevent leaking hidden usernames in
+  Watchlist/RecentChanges.
 
 == MediaWiki 1.43.3 ==
 

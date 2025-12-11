@@ -56,10 +56,11 @@ class RemexCompatFormatter extends HtmlFormatter {
 			if ( $this->textProcessor !== null ) {
 				$text = call_user_func( $this->textProcessor, $text );
 			}
+
+			// Ensure a consistent representation for all entities
+			$text = Sanitizer::normalizeCharReferences( $text );
 		}
 
-		// Ensure a consistent representation for all entities
-		$text = Sanitizer::normalizeCharReferences( $text );
 		return $text;
 	}
 

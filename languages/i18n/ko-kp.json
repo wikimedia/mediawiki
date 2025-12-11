@@ -374,7 +374,7 @@
 	"createaccountmail": "임의의 림시 통행암호를 전자우편으로 보내기",
 	"createaccountmail-help": "통행암호를 기억하지 않고도 다른 사용자를 위한 계산자리를 만들수 있습니다.",
 	"createacct-realname": "실명 (선택 사항)",
-	"createacct-reason": "리유",
+	"createacct-reason": "리유 (기록은 공개됨)",
 	"createacct-reason-ph": "왜 다른 계산자리를 만들어야 합니까",
 	"createacct-reason-help": "계산자리 생성 일지에 표시되는 통보문",
 	"createacct-submit": "계산자리 만들기",

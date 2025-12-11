@@ -6,7 +6,8 @@
 			"Boesenbergia",
 			"NoiX180",
 			"Munajad.MH",
-			"Bennylin"
+			"Bennylin",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "Ahad",
@@ -380,7 +381,7 @@
 	"noarticletext": "Bâjârina taḍâ' tèks è kaca rèya. Bâ'na ngennèng [[Special:Search/{{PAGENAME}}|nyarè bhul-ombhul kaca rèya]] è kaca sè laèn, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} nyarè log akaè'], otabâ [{{fullurl:{{FULLPAGENAME}}|action=edit}} aghâbây kaca rèya]</span>.",
 	"noarticletext-nopermission": "Bâjarina  taḍâ' tèks è kaca rèya.\nBâ'na ngennèng [[Special:Search/{{PAGENAME}}|nyarè bul-ombul kaca rèya]] è kaca sè laèn, otabâ <span class=\"plainlinks\">[{{fullurl:{{Special:Log}}|page={{FULLPAGENAME}}}} nyarè log sè akaè']</span>, tapè bâ'na ta' aghaḍhu èdhi mon aghâbâyâ kaca rèya.",
 	"userpage-userdoesnotexist-view": "Akun pangangghuy \"$1\" lagghi' ta' taḍaftar è wiki rèya.",
-	"clearyourcache": "<strong>Cathetthan:</strong> Samarèna èpaterbi', Bâ'na kodhu alèbâdhi bhung-embhunganna parambhânna wèb Bâ'na ka'angghuy nèngghu obâ'ân.\n* <strong>Firefox/Safari:</strong> Pètek pa'abit <em>Shift</em> lajhu klik <em>Reload</em>, otabâ pècè'' <em>Ctrl-F5</em> otabâ <em>Ctrl-R</em> (<em>⌘-R è Mac)\n* <strong>Google Chrome:</strong> Pècè' <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> è Mac)\n* <strong>Internet Explorer/Edge:</strong> Pècè' pa'abit <em>Ctrl</em> lajhu pèṭek <em>Refresh</em>, otabâ pècè' <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Pètek pa'abit <em>Menu → Settings</em> (<em>Opera Preferences</em> è Mac) lajhu pèlè <em>Privacy & security → Clear browsing data → Cached images and files</em>.",
+	"clearyourcache": "<strong>Cathetthan:</strong> Samarèna èpaterbi', Bâ'na kodhu alèbâdhi bhung-embhunganna parambhânna wèb Bâ'na ka'angghuy nèngghu obâ'ân.\n* <strong>Firefox/Safari:</strong> Pètek pa'abit <em>Shift</em> lajhu klik <em>Reload</em>, otabâ pècè <em>Ctrl-F5</em> otabâ <em>Ctrl-R</em> (<em>⌘-R</em> è Mac)\n* <strong>Google Chrome:</strong> Pècè' <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> è Mac)\n* <strong>Internet Explorer/Edge:</strong> Pècè' pa'abit <em>Ctrl</em> lajhu pèṭek <em>Refresh</em>, otabâ pècè' <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Pètek pa'abit <em>Menu → Settings</em> (<em>Opera Preferences</em> è Mac) lajhu pèlè <em>Privacy & security → Clear browsing data → Cached images and files</em>.",
 	"usercssyoucanpreview": "<strong>Tip:</strong> Ghuna'aghi mennor \"{{int:showpreview}}\" ka'angghuy ngojhi CSS anyarra bâ'na sabelluna nerbi'aghi.",
 	"userjsyoucanpreview": "<strong>Tip:</strong> Ghuna'aghi mennor \"{{int:showpreview}}\" ghâbây ngojhi JavaScript anyarra bâ'na sabelluna nerbi'aghi.",
 	"userjsonpreview": "<strong>Kènga'è jhâ' bâ'na pèra' ngojhi/ngabâs kaḍâ' pangatoran pangangghuyân JSON. Obâ'ân arèya bellun èterbi'aghi!</strong>",

@@ -13,7 +13,8 @@
 			"Mjbmr",
 			"Mogoeilor",
 			"Nemo bis",
-			"아라"
+			"아라",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "یاٛ شٱمٱ",
@@ -2237,7 +2238,6 @@
 	"confirm-unwatch-button": "خوئه",
 	"confirm-unwatch-top": "ای بلگه نه د سیل برگتو ؤرمیداریت؟",
 	"semicolon-separator": "؛&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",

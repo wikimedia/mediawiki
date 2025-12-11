@@ -24,7 +24,8 @@
 			"The Polish",
 			"Vlad5250",
 			"WaldiSt",
-			"Woytecr"
+			"Woytecr",
+			"Nux"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentacja]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etykieta i wytyczne użytkowania]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista dyskusyjna]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Ogłoszenia dotyczące API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Błędy i propozycje]\n</div>\n<strong>Stan:</strong> API MediaWiki jest ugruntowanym i stabilnym interfejsem, który jest aktywnie wspierany i ulepszany. Mimo iż staramy się tego unikać, czasami mogą mieć miejsce drastyczne zmiany; subskrybuj [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ listę dyskusyjną mediawiki-api-announce], aby być na bieżąco ze zmianami.\n\n<strong>Błędne żądania:</strong> Gdy zostanie wysłane błędne żądanie do API, zostanie wysłany w odpowiedzi nagłówek HTTP z kluczem „MediaWiki-API-Error” i zarówno jego wartość jak i wartość kodu błędu wysłanego w odpowiedzi będą miały taką samą wartość. Aby uzyskać więcej informacji, zobacz [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Błędy i ostrzeżenia]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testowanie:</strong> Aby łatwo testować żądania API, zobacz [[Special:ApiSandbox]].</p>",
@@ -922,6 +923,7 @@
 	"apierror-revwrongpage": "r$1 nie jest wersją strony $2.",
 	"apierror-sectionsnotsupported-what": "Sekcje nie są obsługiwane przez $1.",
 	"apierror-specialpage-cantexecute": "Nie masz uprawnień, aby zobaczyć wyniki tej strony specjalnej.",
+	"apierror-stashfailed-complete": "Przesyłanie w częściach zostało już ukończone. Sprawdź status, aby uzyskać szczegóły.",
 	"apierror-stashwrongowner": "Nieprawidłowy właściciel: $1",
 	"apierror-tempuseracquirefailed": "Nie udało się uzyskać nazwy tymczasowego konta użytkownika.",
 	"apierror-toomanyvalues": "Podano zbyt wiele wartości dla parametru <var>$1</var>. Ograniczenie do $2.",

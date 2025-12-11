@@ -32,7 +32,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MediaWiki\Xml\Xml;
 use MediaWiki\Xml\XmlSelect;
 use RevisionDeleter;
 use UserBlockedError;
@@ -282,8 +281,11 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$form = Html::openElement( 'form', [ 'method' => 'post',
 				'action' => $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] ),
 				'id' => 'mw-revdel-form-revisions' ] ) .
-			Xml::fieldset( $this->msg( "tags-edit-{$this->typeName}-legend",
-				count( $this->ids ) )->text() ) .
+			Html::openElement( 'fieldset' ) .
+			Html::element(
+				'legend', [],
+				$this->msg( "tags-edit-{$this->typeName}-legend", count( $this->ids ) )->text()
+			) .
 			$this->buildCheckBoxes() .
 			Html::openElement( 'table' ) .
 			"<tr>\n" .

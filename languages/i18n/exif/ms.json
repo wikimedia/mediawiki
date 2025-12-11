@@ -5,7 +5,8 @@
 			"Aviator",
 			"Hydra",
 			"Tofeiku",
-			"Zamwan"
+			"Zamwan",
+			"Hakimi97"
 		]
 	},
 	"exif-imagewidth": "Lebar",
@@ -269,6 +270,9 @@
 	"exif-scenetype-1": "Gambar yang diambil secara terus",
 	"exif-customrendered-0": "Proses biasa",
 	"exif-customrendered-1": "Proses tempahan",
+	"exif-customrendered-2": "HDR (tiada fail asli disimpan)",
+	"exif-customrendered-3": "HDR (fail asli disimpan)",
+	"exif-customrendered-4": "Asli (untuk HDR)",
 	"exif-customrendered-6": "Panorama",
 	"exif-customrendered-7": "HDR potret",
 	"exif-customrendered-8": "Potret",
@@ -360,10 +364,15 @@
 	"exif-urgency-other": "Keutamaan tentuan pengguna ($1)",
 	"exif-firstphotodate": "Tarikh pertama foto",
 	"exif-lastphotodate": "Tarikh akhir foto",
+	"exif-projectiontype": "Jenis unjuran",
+	"exif-projectiontype-equirectangular": "Unjuran sama segi empat tepat",
+	"exif-usepanoramaviewer": "Gunakan pemapar panorama",
 	"exif-usepanoramaviewer-true": "Ya",
 	"exif-usepanoramaviewer-false": "Tidak",
+	"exif-exposurelockused": "Kunci pendedahan digunakan",
 	"exif-exposurelockused-true": "Ya",
 	"exif-exposurelockused-false": "Tidak",
+	"exif-poseheadingdegrees": "Tajuk kedudukan (darjah)",
 	"exif-initialcameradolly": "Doli kamera awal",
 	"exif-stitchingsoftware": "Perisian jahit"
 }

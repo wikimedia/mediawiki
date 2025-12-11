@@ -13,7 +13,8 @@
 			"Rumandawi",
 			"Tofeiku",
 			"Ultron90",
-			"아라"
+			"아라",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "Tiwang",
@@ -526,7 +527,7 @@
 	"accmailtext": "Kaatalib somporimonsoi montok [[User talk:$1|$1]] nakaatod no hilo $2.\n\nKaatalib montok akaun wagu milo do alanan hilo id bolikon ''[[Special:ChangePassword|pangalanan kaatalib]]'' soira do kosuang log.",
 	"newarticle": "(Wagu)",
 	"newarticletext": "Nakatanud ko di noputan kumaa bolikan di au po nowonsoi.\nMontok momonsoi bolikan diti, posuato id suang kupuk id siriba (intangai [$1 liwang ponguhupan] montok lobi ogumu kointalangan).\nNung nakaansau ko do hiti, todoso' o butang '''gumuli''' id pelayar nu.",
-	"anontalkpagetext": "----\n<em>Iti nopo nga bolikan pogibabarasan montok di moomomoguno aiso ngaran di au po nokopomonsoi do akaun, toi ko' ii au momoguno. </em>\nMantad dilo, nuru yahai momoguno alamat IP kinumbur montok mongintutun diolo.\nAlamat IP miagal diti milo pogialasan do pipiro moomomoguno.\nNung moomomoguno ko do aiso ngaran om kopuriman do nakaanu komi di aiso pionitan, mangai [[Special:CreateAccount|wonsoyo akaun]] toi ko' [[Special:UserLogin|sumuang log]] montok mongilag koborulangan timpu dumontol miampai moomomoguno suai di aiso ngaran.''",
+	"anontalkpagetext": "----\n<em>Iti nopo nga bolikan pogibabarasan montok di moomomoguno aiso ngaran di au po nokopomonsoi do akaun, toi ko' ii au momoguno.</em>\nMantad dilo, nuru yahai momoguno alamat IP kinumbur montok mongintutun diolo.\nAlamat IP miagal diti milo pogialasan do pipiro moomomoguno.\nNung moomomoguno ko do aiso ngaran om kopuriman do nakaanu komi di aiso pionitan, mangai [[Special:CreateAccount|wonsoyo akaun]] toi ko' [[Special:UserLogin|sumuang log]] montok mongilag koborulangan timpu dumontol miampai moomomoguno suai di aiso ngaran.",
 	"noarticletext": "Dinondo nopo nga aiso po teks id bolikan diti.\nMilo ko nogi do [[Special:Search/{{PAGENAME}}|mogihum do uhu bolikan diti]] id bolikan suai,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mogihum log-log di mionit],\ntoi ko' [{{fullurl:{{FULLPAGENAME}}|action=edit}} momonsoi bolikan diti]</span>.",
 	"noarticletext-nopermission": "Dinondo nopo nga aiso po teks id bolikan diti.\nMilo ko do [[Special:Search/{{PAGENAME}}|mogihum do uhu bolikan diti]] id bolikan suai,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mogihum log-log di mionit],\ntoi ko' [{{fullurl:{{FULLPAGENAME}}|action=edit}} momonsoi bolikan diti]</span>.\n\nDinondo nopo nga aiso po teks id bolikan diti.\nMilo ko do  [[Special:Search/{{PAGENAME}}|mogihum do uhu bolikan diti]] id bolikan suai, toi ko' <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mogihum log-log di mionit]</span>, nga au ko pasagaon do momonsoi bolikan diti.",
 	"userpage-userdoesnotexist": "Akaun momomoguno \"<nowiki>$1</nowiki>\" awu nokorijisto.\nMangai intangai nung mumang ko pomonsoi/mongidit do bolikon diti.",

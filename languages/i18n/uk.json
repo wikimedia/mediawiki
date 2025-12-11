@@ -100,7 +100,8 @@
 			"Mike.Khoroshun",
 			"Hypers",
 			"METROKOP228 UA",
-			"Mykola7"
+			"Mykola7",
+			"MonX94"
 		]
 	},
 	"sunday": "неділя",
@@ -3016,7 +3017,7 @@
 	"group-bureaucrat.css": "/* Розміщений тут CSS-код буде використаний тільки для бюрократів */",
 	"common.js": "/* Розміщений тут код JavaScript буде завантажений всім користувачам при зверненні до будь-якої сторінки */",
 	"group-autoconfirmed.js": "/* Розміщений тут код JavaScript буде завантажений тільки для автопідтверджених користувачів */",
-	"group-user.js": "/* JS, прописана тут, вплине лише на зареєстрованих користувачів */",
+	"group-user.js": "/* JS, прописаний тут, вплине лише на зареєстрованих користувачів */",
 	"group-temp.js": "/* Розміщений тут код JavaScript буде завантажений тільки для тимчасових користувачів */",
 	"group-bot.js": "/* Розміщений тут код JavaScript буде завантажений тільки для ботів */",
 	"group-sysop.js": "/* Розміщений тут код JavaScript буде завантажений тільки для адміністраторів */",
@@ -3246,7 +3247,6 @@
 	"mcrundo-changed": "Сторінку змінили з часу Вашого перегляду різниці версій. Будь ласка, перевірте нову зміну.",
 	"mcrundo-parse-failed": "Не вдалося опрацювати нову версію: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",
@@ -3390,7 +3390,7 @@
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|обговорення]])",
 	"timezone-utc": "UTC",
 	"timezone-local": "Місцеві",
-	"duplicate-defaultsort": "{{#if:{{REVISIONID}}|<span class=\"t-test test\" style=\"display:none;>|\n}}<strong>Увага!</strong> Ключ сортування «$2» перекриває попередній ключ сортування «$1».{{\n#if:{{REVISIONID}}|</span>}}",
+	"duplicate-defaultsort": "<strong>Увага!</strong> Ключ сортування «$2» перекриває попередній ключ сортування «$1».",
 	"duplicate-displaytitle": "<strong>Увага:</strong> Відображений заголовок \"$2\" заміщує раніше відображений заголовок \"$1\".",
 	"restricted-displaytitle": "<strong>Увага:</strong> Відображувану назву «$1» було проігноровано, оскільки вона не відповідає чинній назві сторінки.",
 	"invalid-indicator-name": "<strong>Помилка:</strong> Сторінка індикатора стану <code>name</code> атрибута не може бути пуста.",

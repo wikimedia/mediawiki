@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eleassar"
+			"Eleassar",
+			"SaldırganSincap"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentacija]]\n* [[mw:Special:MyLanguage/API:Etiquette|Bonton in smernice za uporabo]]\n* [[mw:Special:MyLanguage/API:FAQ|VINO]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Dopisni seznam]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api -announce.lists.wikimedia.org/ Obvestila API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Napake in zahteve]\n</div> \n<strong>Stanje:</strong> MediaWiki API je zrel in stabilen vmesnik, ki se aktivno vzdržuje in izboljšuje. Čeprav se temu poskušamo izogniti, bomo morda morali občasno izvesti pomembne spremembe. Za obveščanje o posodobitvah se naročite na [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ dopisni seznam mediawiki-api-announce].\n\n<strong>Napačni zahtevki:</strong> Ko so API-ju poslani napačni zahtevki, bo poslana glava HTTP s ključem »MediaWiki-API-Error«, nato pa bosta vrednost glave in koda napake, poslani nazaj, nastavljeni na isto vrednost. Za več informacij glejte [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Napake in opozorila]].\n\n<p class=\"mw-apisandbox-link\"><strong>Preizkušanje:</strong> Za preprosto preizkušanje zahtevkov API glejte [[Special:ApiSandbox]].</p>",
@@ -1492,7 +1493,7 @@
 	"apihelp-undelete-example-page": "Odizbris strani [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-undelete-example-revisions": "Odizbris dveh redakcij strani [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-unlinkaccount-summary": "Odstranitev povezanega računa tretje stranke s trenutnega uporabnika.",
-	"apihelp-unlinkaccount-example-simple": "Poskus odstranitve povezave trenutnega uporabnika za ponudnika, povezanega s kbd>FooAuthenticationRequest</kbd>.",
+	"apihelp-unlinkaccount-example-simple": "Poskus odstranitve povezave trenutnega uporabnika za ponudnika, povezanega s <kbd>FooAuthenticationRequest</kbd>.",
 	"apihelp-upload-summary": "Naložitev datoteke ali pridobitev statusa čakajočih nalaganj.",
 	"apihelp-upload-param-filename": "Ime ciljne datoteke.",
 	"apihelp-upload-param-comment": "Komentar nalaganja. Uporablja se tudi kot začetno besedilo strani za nove datoteke, če  <var>$1text</var> ni določeno.",
@@ -1642,7 +1643,7 @@
 	"api-help-authmanagerhelper-mergerequestfields": "Združitev informacij o poljih za vse avtentikacijske zahtevke v eno matriko.",
 	"api-help-authmanagerhelper-preservestate": "Če je mogoče, ohrani stanje prejšnjega neuspešnega poskusa prijave.",
 	"api-help-authmanagerhelper-returnurl": "URL za povratno povezavo za poteke avtentikacije tretjih oseb mora biti absoluten. Zahtevan je bodisi ta bodisi <var>$1continue</var> .\n\nKo prejmete odgovor <samp>REDIRECT</samp>, boste običajno odprli brskalniški ali spletni pogled na določen URL <samp>redirecttarget</samp> za potek avtentikacije tretje osebe. Ko se to zaključi, bo tretja oseba poslala brskalniški ali spletni pogled na ta URL. Iz URL-ja morate izvleči vse parametre poizvedbe ali POST in jih kot zahtevek <var>$1continue</var> posredovati temu API-modulu.",
-	"api-help-authmanagerhelper-continue": "Ta zahtevek je nadaljevanje prejšnjega odgovora <samp>UI/samp> ali <samp>REDIRECT</samp>. Zahtevan je bodisi ta bodisi <var>$1returnurl</var>.",
+	"api-help-authmanagerhelper-continue": "Ta zahtevek je nadaljevanje prejšnjega odgovora <samp>UI</samp> ali <samp>REDIRECT</samp>. Zahtevan je bodisi ta bodisi <var>$1returnurl</var>.",
 	"api-help-authmanagerhelper-additional-params": "Ta modul sprejema dodatne parametre, odvisno od razpoložljivih zahtevkov za avtentikacijo. Za določitev razpoložljivih zahtevkov in polj, ki jih uporabljajo, uporabite <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> z <kbd>amirequestsfor= $1</kbd> (ali prejšnjim odgovorom iz tega modula, če je primerno).",
 	"apierror-allimages-redirect": "Pri uporabi <kbd>allimages</kbd> kot generatorja uporabite <kbd>gaifilterredir=nonredirects</kbd> namesto <var>redirects</var>.",
 	"apierror-allpages-generator-redirects": "Pri uporabi <kbd>allpages</kbd> kot generatorja  uporabite <kbd>gapfilterredir=nonredirects</kbd> namesto <var>redirects</var>.",

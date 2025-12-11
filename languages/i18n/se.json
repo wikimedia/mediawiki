@@ -27,7 +27,8 @@
 			"아라",
 			"Jon Harald Søby",
 			"Zache",
-			"Pppery"
+			"Pppery",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "sotnabeaivi",
@@ -2404,8 +2405,8 @@
 	"anoncontribs": "Rievdadusat",
 	"contribute": "Veahkehit",
 	"contributions-subtitle": "Geavaheaddji {{GENDER:$2|$1}} rievdadusat",
-	"contributions-edit-count": "Soames {{GENDER:$1|geavaheaddji}} mas lea/leat $2 {{PLURAL:$2|rievdadeapmi|rievdadeamit}}.",
-	"contributions-account-creation-date": "Geavaheaddjidovddaldat ásahuvvon $1.",
+	"contributions-edit-count": "{{GENDER:$1|Geavaheaddjis}} {{PLURAL:$2|1=lea 1 rievdadus|leat $2 rievdadusa}}.",
+	"contributions-account-creation-date": "Geavaheaddjidovddaldat ráhkaduvvon $1.",
 	"contributions-userdoesnotexist": "Geavaheaddjidovddaldat \"$1\" ii leat registrerejuvvon.",
 	"negative-namespace-not-supported": "Nammagomuvuođat main leat negatiivvalaš árvvut eai dorjojuvvo.",
 	"nocontribs": "Eai gávdnon rievdadusat mat heivejit dáid eavttuide.",
@@ -3157,7 +3158,7 @@
 	"duplicate-defaultsort": "<strong>Várrehus:</strong> Dábálaš sirrenčoavdda \"$2\" buhtte ovddit dábálaš sirrenčoavdaga \"$1\".",
 	"duplicate-displaytitle": "<strong>Várrehus:</strong> Čájáhusnamma «$2», vurkejuvvo ovddeš čájáhusnama «$1» sadjái.",
 	"restricted-displaytitle": "<strong>Várrehus:</strong> Čájáhusnamma «$1» hilgojuvvui danne go dat ii vástit siiddu duohta nammii.",
-	"invalid-indicator-name": "<p>Meattáhus:</strong> Siidodilli-indikahtoriid <code>name</code>-attribuhtta ii sáhte leat guoros.",
+	"invalid-indicator-name": "<strong>Meattáhus:</strong> Siidodilli-indikahtoriid <code>name</code>-attribuhtta ii sáhte leat guoros.",
 	"invalid-langconvert-attrs": "<strong>Meattáhus:</strong> Langcovert-gilkora <code>from</code>- ja <code>to</code>-attribuhtat eai ábut leat guorosin, ja fertejit sisttisdoallat BCP 47-kodaid seamma giela jorgalanvejolaš variánttaid dihte.",
 	"version": "Veršuvdna",
 	"version-extensions": "Ásahuvvon viiddidanoasit",
@@ -3295,6 +3296,7 @@
 	"tags-source-none": "Ii leat šat anus",
 	"tags-hidden": "(čihkkon)",
 	"tags-edit": "rievdat",
+	"tags-helppage-edit": "rievdat liŋkka",
 	"tags-delete": "sihko",
 	"tags-activate": "váldde atnui",
 	"tags-deactivate": "deaktivere",

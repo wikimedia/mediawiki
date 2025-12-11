@@ -25,20 +25,6 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 			NS_MAIN,
 			$performer
 		);
-		$this->editPage(
-			Title::makeTitle( NS_MEDIAWIKI, 'ApiFormatXmlTest' ),
-			'Bogus',
-			'Summary',
-			NS_MAIN,
-			$performer
-		);
-		$this->editPage(
-			Title::makeTitle( NS_MAIN, 'ApiFormatXmlTest' ),
-			'Bogus',
-			'Summary',
-			NS_MAIN,
-			$performer
-		);
 	}
 
 	public static function provideGeneralEncoding() {
@@ -121,18 +107,9 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 			[ [ 'x' => 'foo' ], '<?xml version="1.0"?><api x="foo" xmlns="http://www.mediawiki.org/xml/api/" />',
 				[ 'includexmlnamespace' => 1 ] ],
 
-			// xslt param
-			[ [], '<?xml version="1.0"?><api><warnings><xml xml:space="preserve">Invalid or non-existent stylesheet specified.</xml></warnings></api>',
-				[ 'xslt' => 'DoesNotExist' ] ],
-			[ [], '<?xml version="1.0"?><api><warnings><xml xml:space="preserve">Stylesheet should be in the MediaWiki namespace.</xml></warnings></api>',
-				[ 'xslt' => 'ApiFormatXmlTest' ] ],
-			[ [], '<?xml version="1.0"?><api><warnings><xml xml:space="preserve">Stylesheet should have ".xsl" extension.</xml></warnings></api>',
-				[ 'xslt' => 'MediaWiki:ApiFormatXmlTest' ] ],
-			[ [],
-				'<?xml version="1.0"?><?xml-stylesheet href="' .
-					htmlspecialchars( Title::makeTitle( NS_MEDIAWIKI, 'ApiFormatXmlTest.xsl' )->getLocalURL( 'action=raw' ) ) .
-					'" type="text/xsl" ?><api />',
-				[ 'xslt' => 'MediaWiki:ApiFormatXmlTest.xsl' ] ],
+			// xslt param (deprecated and disabled by default due to T401995)
+			[ [], '<?xml version="1.0"?><api><warnings><xml xml:space="preserve">The xslt option is disabled on this wiki.</xml></warnings></api>',
+				[ 'xslt' => 'MediaWiki:ApiFormatXmlTest.xml' ] ],
 		];
 		// phpcs:enable
 	}

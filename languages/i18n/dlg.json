@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sauit"
+			"Sauit",
+			"SaldırganSincap",
+			"Köpleres"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Категория|Категориялар}}",
@@ -315,7 +317,7 @@
 	"preview": "Предпросмотр",
 	"showpreview": "Уларытыыны таһаара иликкинэ көрүү",
 	"showdiff": "Уларытыылары көрдөр",
-	"anoneditwarning": "<strong>Болҕой:</strong> Киирбэтэххин. Онон тугу эрэ уларытар түгэҥҥэр аатыҥ оннугар IP аадырыһыҥ барыларыгар көстүө. бу сирэй историятыгар киириэ. Өскөтүн strong>[$1 киирдэххинэ]</strong> эбэтэр <strong>[$2 бэлиэтэннэххинэ]</strong>, торумнарырыҥ таллыллыбыт ааккар ситимнэһиэхтэрэ уонна атын да туруоруулар.",
+	"anoneditwarning": "<strong>Болҕой:</strong> Киирбэтэххин. Онон тугу эрэ уларытар түгэҥҥэр аатыҥ оннугар IP аадырыһыҥ барыларыгар көстүө. бу сирэй историятыгар киириэ. Өскөтүн <strong>[$1 киирдэххинэ]</strong> эбэтэр <strong>[$2 бэлиэтэннэххинэ]</strong>, торумнарырыҥ таллыллыбыт ааккар ситимнэһиэхтэрэ уонна атын да туруоруулар.",
 	"missingcommenttext": "Һуруйууну һуруйун.",
 	"blockedtitle": "Кыттыылаак буруйдаммыт",
 	"blockedtext": "<strong>Эн аатын эбэтэр IP-аадырыһын буруйдаабыттар.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nYou can use the «{{int:emailuser}}» feature if a valid email address is specified in your [[Special:Preferences|preferences]] and you have not been blocked from using it.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
@@ -650,7 +652,7 @@
 	"tags-hitcount": "$1 {{PLURAL:$1|уларытыы|уларытыылар}}",
 	"htmlform-submit": "Ыыт",
 	"revdelete-content-hid": "ис коһооно кистэммит",
-	"searchsuggest-search": "{{SITENAME}} иһин көрдөөһүн",
+	"searchsuggest-search": "{{SITENAME}} иһигэр көрдөөһүн",
 	"searchsuggest-containing": "Маннык тыллаак ыстатыйалар:",
 	"nstab-mainpage": "Һүрүн һырай",
 	"blockedtext-made-by": "Буруй бу дьаһабылынан оӈоһулунна: $1.",

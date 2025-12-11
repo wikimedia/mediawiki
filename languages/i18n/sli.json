@@ -20,7 +20,9 @@
 			"Timpul",
 			"ToBeFree",
 			"Äberlausitzer",
-			"아라"
+			"아라",
+			"InNerdsWeTrust",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "Sunntich",
@@ -144,7 +146,7 @@
 	"viewhelppage": "Hilfeseite oazeiga",
 	"categorypage": "Kategorieseite oazeiga",
 	"viewtalkpage": "Dischkur",
-	"otherlanguages": "Ei andern Sproacha",
+	"otherlanguages": "Ei annern Sproacha",
 	"redirectedfrom": "(Wettergeleitet vu $1)",
 	"redirectpagesub": "Weiterleitung",
 	"redirectto": "Weiterleitung noach:",
@@ -199,7 +201,7 @@
 	"page-atom-feed": "Atom-Feed fer „$1“",
 	"red-link-title": "$1 (Seite ies nee doo)",
 	"nstab-main": "Seite",
-	"nstab-user": "{{GENDER:$1|Benutzerseite|Benutzerinnenseite|Benutzerseite}}",
+	"nstab-user": "{{GENDER:$1|Benieterseite|Benieterinnaseite|Benieterseite}}",
 	"nstab-media": "Medienseite",
 	"nstab-special": "Spezioalseite",
 	"nstab-project": "Projektseite",
@@ -510,7 +512,7 @@
 	"shown-title": "Zeige $1 {{PLURAL:$1|Ergebnis|Ergebnisse}} pro Seite",
 	"viewprevnext": "Zeige ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "'S existiert anne Seite, de dan Noama „[[:$1]]“ ei {{SITENAME}} hoat. {{PLURAL:$2|0=|Wettere Suchergebnisse.}}",
-	"searchmenu-new": "Erstelle de Seite „[[:$1]]“ ei diesem Wiki.</strong> {{PLURAL:$2|0=|Siehe ooch de ieber deine Suche gefundene Seite.|Siehe ooch de gefundna Suchergebnisse.}}",
+	"searchmenu-new": "Erstelle de Seite „[[:$1]]“ ei diesem Wiki. {{PLURAL:$2|0=|Siehe ooch de ieber deine Suche gefundene Seite.|Siehe ooch de gefundna Suchergebnisse.}}",
 	"searchprofile-articles": "Inhaltsseita",
 	"searchprofile-images": "Multimedia",
 	"searchprofile-everything": "Olles",

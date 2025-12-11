@@ -8,7 +8,6 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\DerivativeRequest;
-use MediaWiki\Xml\Xml;
 
 /**
  * A container for HTMLFormFields that allows for multiple copies of the set of
@@ -59,6 +58,8 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 	/** @var array<string, HTMLFormField[]> */
 	protected $mFields = [];
+
+	private bool $nonJsUpdate = false;
 
 	/**
 	 * @stable to call
@@ -231,6 +232,16 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 * @return mixed
 	 */
 	public function extractFieldData( $field, $alldata ) {
+		if (
+			// Is an empty array when first rendering a form with a formIdentifier.
+			count( $alldata ) === 0 ||
+			// This field is either part of the cloner template or is newly created
+			// for non-JS users, which is not tracked in the form's field data (T391882).
+			$field->mParams['cloner-key'] === $this->uniqueId
+		) {
+			return $field->getDefault();
+		}
+
 		foreach ( $this->getFieldPath( $field ) as $key ) {
 			$alldata = $alldata[$key];
 		}
@@ -253,7 +264,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		$ret = [];
 		foreach ( $values as $key => $value ) {
 			if ( $key === 'create' || isset( $value['delete'] ) ) {
-				$ret['nonjs'] = 1;
+				$this->nonJsUpdate = true;
 				continue;
 			}
 
@@ -293,11 +304,39 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		return $ret;
 	}
 
+	/** @inheritDoc */
+	public function filter( $values, $alldata ) {
+		// Mimic the later stage of HTMLForm::loadFieldData() as if for normal fields.
+		foreach ( $values as $key => &$fieldsValue ) {
+			$fields = $this->getFieldsForKey( $key );
+			foreach ( $fieldsValue as $fieldname => &$value ) {
+				// Reset to default for fields that are supposed to be disabled.
+				if ( $fields[$fieldname]->isDisabled( $alldata ) ) {
+					$value = $fields[$fieldname]->getDefault();
+				}
+
+				// Apply field-specific filters.
+				$value = $fields[$fieldname]->filter( $value, $alldata );
+			}
+		}
+
+		// Apply the filter defined by the 'filter-callback' option at the end.
+		return parent::filter( $values, $alldata );
+	}
+
+	/** @inheritDoc */
 	public function getDefault() {
 		$ret = parent::getDefault();
 
+		// Some existing use cases in SecurePoll use an empty string as the default value.
+		// TODO: Throw an exception in future versions.
+		if ( $ret !== null && !is_array( $ret ) ) {
+			$type = gettype( $ret );
+			wfDeprecated( __CLASS__ . " with non-array default ($type given)", '1.46' );
+		}
+
 		// The default is one entry with all subfields at their defaults.
-		if ( $ret === null ) {
+		if ( $ret === null || !is_array( $ret ) ) {
 			$fields = $this->getFieldsForKey( $this->uniqueId );
 			$row = [];
 			foreach ( $fields as $fieldname => $field ) {
@@ -317,7 +356,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 * @phan-param array[] $values
 	 */
 	public function cancelSubmit( $values, $alldata ) {
-		if ( isset( $values['nonjs'] ) ) {
+		if ( $this->nonJsUpdate ) {
 			return true;
 		}
 
@@ -348,7 +387,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			return $this->msg( 'htmlform-cloner-required' );
 		}
 
-		if ( isset( $values['nonjs'] ) ) {
+		if ( $this->nonJsUpdate ) {
 			// The submission was a non-JS create/delete click, so fail
 			// validation in case cancelSubmit() somehow didn't already handle
 			// it.
@@ -440,7 +479,12 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 		if ( !empty( $this->mParams['row-legend'] ) ) {
 			$legend = $this->msg( $this->mParams['row-legend'] )->text();
-			$html = Xml::fieldset( $legend, $html );
+			$legend = $legend ? Html::element( 'legend', [], $legend ) : '';
+			$html = Html::rawElement(
+				'fieldset',
+				[],
+				$legend . $html
+			);
 		}
 
 		return $html;
@@ -483,9 +527,6 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		$html = '';
 
 		foreach ( (array)$values as $key => $value ) {
-			if ( $key === 'nonjs' ) {
-				continue;
-			}
 			$html .= Html::rawElement( 'li', [ 'class' => 'mw-htmlform-cloner-li' ],
 				$this->getInputHTMLForKey( $key, $value )
 			);
@@ -545,7 +586,12 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 		if ( !empty( $this->mParams['row-legend'] ) ) {
 			$legend = $this->msg( $this->mParams['row-legend'] )->text();
-			$html = Xml::fieldset( $legend, $html );
+			$legend = $legend ? Html::element( 'legend', [], $legend ) : '';
+			$html = Html::rawElement(
+				'fieldset',
+				[],
+				$legend . $html
+			);
 		}
 
 		return $html;
@@ -555,9 +601,6 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		$html = '';
 
 		foreach ( (array)$values as $key => $value ) {
-			if ( $key === 'nonjs' ) {
-				continue;
-			}
 			$html .= Html::rawElement( 'li', [ 'class' => 'mw-htmlform-cloner-li' ],
 				$this->getInputOOUIForKey( $key, $value )
 			);

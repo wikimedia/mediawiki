@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Умар",
-			"Исмаил Садуев"
+			"Исмаил Садуев",
+			"SaldırganSincap"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документаци]]\n* [[mw:Special:MyLanguage/API:Etiquette|Этикет а, муха лело гойтуш куьйгалла а]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧЗВ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Поштан дӀасакхехьийтар]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ API керланаш]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R ГӀалаташ а, дехарш а]\n</div>\n<strong>Статус:</strong> MediaWiki API — кхиъна а, стабилан а интерфейс, жигара тайеш йолу. Тхо хьожу доьхна хийцамаш цахилийта, делахь наггахь уьш хила мега. ДӀадазло [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ поштан дӀасакхехьийтарш тӀе mediawiki-api-announce], карладахарш хаархьама.\n\n<strong>ГӀалатан дехарш:</strong> API гӀалат долу дехар хилахь, HTTP корта гучубаьра бу «MediaWiki-API-Error» догӀанца, цул тӀаьхьа кортан маьӀна а, гӀалатан код а йухадӀайахьитина дӀахӀоттор йу, оцу маьӀна тӀе. Мадарра. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: ГӀалаташ а, дӀахьедарш а]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тесташйар:</strong> тесташйан аттона API-дехарш, хьажа. [[Special:ApiSandbox]].</p>",
@@ -105,7 +106,7 @@
 	"apihelp-compare-paramvalue-prop-rel": "Хьалха хиллачу «from» а, рогӀерчу «to» а версин идентификаторш.",
 	"apihelp-compare-paramvalue-prop-ids": "АгӀонан а, версин а билгалонаш «from» а, «to» а.",
 	"apihelp-compare-paramvalue-prop-title": "«from» а, «to» а версешна агӀонийн цӀераш.",
-	"apihelp-compare-paramvalue-prop-user": "«from» а, «to» а версешна лерина декъашхочун цӀе а, ID а. Нагахь санна декъашхочун верси дӀайаьккхина йелахь, <samp>fromuserhidden</samp> йа samp>touserhidden</samp> башхалла йухайерзор йу.",
+	"apihelp-compare-paramvalue-prop-user": "«from» а, «to» а версешна лерина декъашхочун цӀе а, ID а. Нагахь санна декъашхочун верси дӀайаьккхина йелахь, <samp>fromuserhidden</samp> йа <samp>touserhidden</samp> башхалла йухайерзор йу.",
 	"apihelp-compare-paramvalue-prop-comment": "«from» а, «to» а версешна лерина хийцамаш баран дийцарш. Нагахь санна комментарийн верси дӀайаьккхина йелахь, <samp>fromcommenthidden</samp> йа <samp>tocommenthidden</samp> башхалла йухайерзор йу.",
 	"apihelp-compare-paramvalue-prop-parsedcomment": "хаамийн парсир хийцар «from» а, «to» а версешна. Нагахь санна комментарин верси дӀайаьккхина йелахь, <samp>fromcommenthidden</samp> йа <samp>tocommenthidden</samp> хьашташ йухайерзор йу.",
 	"apihelp-compare-paramvalue-prop-size": "«from» а, «to» а версин барам.",
@@ -978,7 +979,7 @@
 	"apihelp-query+languageinfo-param-prop": "ХӀора маттана муьлха информаци схьаэца йеза.",
 	"apihelp-query+languageinfo-paramvalue-prop-code": "Меттан код. (ХӀара код MediaWiki-на лерина йу, кхечу стандарташца цхьаьнадогӀуш делахь а.)",
 	"apihelp-query+languageinfo-paramvalue-prop-bcp47": "BCP-47 форматехь меттан код.",
-	"apihelp-query+languageinfo-paramvalue-prop-dir": "Меттан йозанан агӀо (<code>ltr</code> йа <code>rtl</ code>).",
+	"apihelp-query+languageinfo-paramvalue-prop-dir": "Меттан йозанан агӀо (<code>ltr</code> йа <code>rtl</code>).",
 	"apihelp-query+languageinfo-paramvalue-prop-autonym": "Меттан автоним, вуьшта аьлча, цу маттахь йолу цӀе.",
 	"apihelp-query+languageinfo-paramvalue-prop-name": "<var>uselang</var> параметро билгалбаьккхинчу маттахь меттан цӀе, оьшуш хилча меттан резерван варианташ лелош.",
 	"apihelp-query+languageinfo-paramvalue-prop-variantnames": "Меттан хийцаран хьажоргашна лелош йолу меттан варианташна йоца цӀераш.",
@@ -1708,7 +1709,7 @@
 	"apierror-compare-nosuchtosection": "«to» чулацамехь $1 дакъа дац.",
 	"apierror-compare-nofromrevision": "Цхьа а «from» верси. Билгалдаккха <var>fromrev</var>, <var>fromtitle</var> йа <var>fromid</var>.",
 	"apierror-compare-notext": "<var>$1</var> параметр лело йиш йац <var>$2</var> йоцуш.",
-	"apierror-compare-notorevision": "Цхьа а «to» верси йац. Билгалдаккха var>torev</var>, <var>totitle</var>, or <var>toid</var>.",
+	"apierror-compare-notorevision": "Цхьа а «to» верси йац. Билгалдаккха <var>torev</var>, <var>totitle</var>, or <var>toid</var>.",
 	"apierror-concurrency-limit": "Цхьана хенахь леларан доза тӀехдаьккхина. ХӀора дехар йухадерзаре хьоьжуш хила, рогӀерниг дӀадахьийталца.",
 	"apierror-compare-relative-to-deleted": "<kbd>torelative=$1</kbd> лело мегар дац дӀайаьккхинчу ревизица доьзна.",
 	"apierror-compare-relative-to-nothing": "<var>torelative</var> йоьзна йолу 'from' верси йац.",

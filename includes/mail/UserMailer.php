@@ -480,7 +480,8 @@ class UserMailer {
 		}
 
 		// T344912: Add period '.' char
-		$replace = $illegal . '.\t ?_';
+		// T385403: Add comma ',' char
+		$replace = $illegal . '.,\t ?_';
 
 		$out = "=?$charset?Q?";
 		$out .= preg_replace_callback( "/[$replace]/",

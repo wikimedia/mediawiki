@@ -81,7 +81,9 @@
 			"לערי ריינהארט",
 			"아라",
 			"Pere prlpz",
-			"Sma1997"
+			"Sma1997",
+			"SaldırganSincap",
+			"Tiputini"
 		]
 	},
 	"sunday": "diumenge",
@@ -840,6 +842,8 @@
 	"unstrip-size-category-desc": "La pàgina excedeix el límit de mida de substitució.",
 	"bad-language-code-category": "Pàgines amb codis de llengua no vàlids",
 	"bad-language-code-category-desc": "La pàgina conté un <code><nowiki>{{#dir}}</nowiki></code> amb un codi d'idioma no vàlid.",
+	"bad-double-underscore-category": "Pàgines amb canvis de comportament no vàlids",
+	"bad-double-underscore-category-desc": "La pàgina conté un [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|canviador de comportament]] localitzat no vàlid. Les localitzacions vàlides comencen i acaben amb doble subratllat.",
 	"double-px-category": "Pàgines amb mides d'imatge que contenen px addicionals",
 	"double-px-category-desc": "Aquesta pàgina conté una imatge amb un sufix <code>px</code> addicional, com <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Error detectat a la norma de conversió de llengua manual",
@@ -2074,6 +2078,7 @@
 	"apisandbox-request-php-label": "Matriu PHP de sol·licitud:",
 	"apisandbox-request-time": "Temps de sol·licitud: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-request-post": "Aquesta sol·licitud s'ha d'enviar mitjançant el mètode HTTP POST.",
+	"apisandbox-request-post2": "A causa de la mida de la càrrega útil, aquesta sol·licitud s’ha enviat mitjançant el mètode HTTP POST.",
 	"apisandbox-request-formdata": "Aquesta sol·licitud s'ha d'enviar com una càrrega de fitxer (és a dir, utilitzant <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "Corregeix el testimoni i torna-ho a enviar",
 	"apisandbox-results-fixtoken-fail": "No s'ha pogut recuperar el testimoni «$1».",
@@ -3303,7 +3308,7 @@
 	"version-poweredby-translators": "Traductors de translatewiki.net",
 	"version-poweredby-various": "Diferents autors",
 	"version-credits-summary": "El nostre reconeixement a les següents persones per la seva aportació a [[Special:Version|MediaWiki]]",
-	"version-license-info": "MediaWiki és programari lliure, podeu redistribuir-lo i/o modificar-lo sota els termes de la Llicència Pública General GNU publicada per la Free Software Foundation, sigui de la seva versió 2 o (a elecció vostra) de qualsevol versió posterior. \n\nMediaWiki es distribueix en l'esperança de ser d'utilitat, però <em>SENSE CAP GARANTIA</em>; ni tan sols la garantia implícita de <strong>COMERCIALITZACIÓ</strong> o <strong>ADEQUACIÓ A UNA FINALITAT DETERMINADA</strong>. Vegeu la Llicència Pública General GNU per a més informació.\n\nAmb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còpia de la Llicència Pública General GNU]; si no és així, adreceu-vos a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA o bé [//www.gnu.org/licenses/old-licenses/gpl-2.0.html llegiu-la en línia].",
+	"version-license-info": "MediaWiki és programari lliure; podeu redistribuir-lo i/o modificar-lo segons els termes de la Llicència Pública General de GNU publicada per la Free Software Foundation; ja sigui la versió 2 de la Llicència o (a la vostra elecció) qualsevol versió posterior.\n\nMediaWiki es distribueix amb l'esperança que sigui útil, però <em>SENSE CAP GARANTIA</em> ; sense ni tan sols la garantia implícita de <strong>COMERCIABILITAT</strong> o <strong>IDONEÏTAT PER A UN PROPÒSIT PARTICULAR</strong>. Vegeu la Llicència Pública General de GNU per a més detalls.\n\nHauríeu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còpia de la Llicència Pública General de GNU] juntament amb aquest programa; si no, [//www.gnu.org/licenses/old-licenses/gpl-2.0.html llegiu-la en línia].",
 	"version-software": "Programari instal·lat",
 	"version-software-product": "Producte",
 	"version-software-version": "Versió",

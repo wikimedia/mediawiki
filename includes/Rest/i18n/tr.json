@@ -6,10 +6,11 @@
 			"Joseph",
 			"MuratTheTurkish",
 			"SaldırganSincap",
-			"Stonecy"
+			"Stonecy",
+			"Eleman"
 		]
 	},
-	"rest-prefix-mismatch": "İstenen yol ($1), REST API kök yolunun içinde değildi ($2)",
+	"rest-prefix-mismatch": "İstenen yol ($1), REST API temel yolunun ($2) içinde değildi",
 	"rest-wrong-method": "İstek yöntemi ($1), {{PLURAL:$3|bu yol için izin verilen yöntem|bu yol için izin verilen yöntemlerden biri}}  değildi ($2)",
 	"rest-no-match": "İstenen göreceli yol ($1) bilinen herhangi bir işleyiciyle eşleşmedi",
 	"rest-nonexistent-title": "Belirtilen sayfa ($1) yok",
@@ -52,5 +53,6 @@
 	"rest-requires-safe-against-csrf": "Bu uç nokta, CSRF güvenli bir oturum sağlayıcısı gerektirir.",
 	"rest-badtoken": "Sağlanan CSRF anahtarı geçersiz.",
 	"rest-badtoken-missing": "<var>token</var> değişkeni, CSRF-safe kimlik doğrulama yöntemi kullanılmıyorsa gereklidir.",
-	"rest-badtoken-nosession": "CSRF hatası - oturum yok."
+	"rest-badtoken-nosession": "CSRF hatası - oturum yok.",
+	"rest-transform-missing-html": "Herhangi bir html verilmedi."
 }

@@ -9,7 +9,8 @@
 			"Sonia",
 			"Tok Pisin",
 			"Ultron90",
-			"Xð"
+			"Xð",
+			"AmazingJus"
 		]
 	},
 	"sunday": "Rātapu",
@@ -119,8 +120,8 @@
 	"unwatch": "kāti te mātaki",
 	"restriction-edit": "Takatā",
 	"restriction-move": "Nuku",
-	"tool-link-contributions": "Ngā mahi a tēnei mema",
-	"mycontris": "āku mahi",
+	"tool-link-contributions": "Ngā mahi a tēnei {{GENDER:$1|tangata}}",
+	"mycontris": "Āku mahi",
 	"sp-contributions-blocklog": "te taki aukati",
 	"sp-contributions-logs": "ngā taki",
 	"sp-contributions-talk": "kōrero",

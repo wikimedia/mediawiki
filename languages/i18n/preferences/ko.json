@@ -37,7 +37,7 @@
 	"saveprefs": "저장",
 	"tooltip-preferences-save": "환경 설정 저장하기",
 	"savedprefs": "설정을 저장했습니다.",
-	"prefs-back-title": "환경설정으로 돌아가기",
+	"prefs-back-title": "환경 설정으로 돌아가기",
 	"prefs-tabs-navigation-hint": "팁: 탭 목록에서 탭 사이를 둘러보려면 왼쪽과 오른쪽 화살표 키를 사용할 수 있습니다.",
 	"prefs-sections-navigation-hint": "정보: Tab 및 Shift + Tab 키를 사용하여 환경 설정 섹션을 오갈 수 있습니다.",
 	"prefs-personal": "사용자 정보",

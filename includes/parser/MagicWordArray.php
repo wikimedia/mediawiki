@@ -199,7 +199,7 @@ class MagicWordArray {
 	 * Parse a match array from preg_match
 	 *
 	 * @param array<string|int,string> $matches
-	 * @return array{0:string,1:string|false} Pair of (magic word ID, parameter value),
+	 * @return array{0:string,1:string,2:string|false} Tuple of (magic word ID, magic word alias, parameter value),
 	 *  where the latter is instead false if there is no parameter value.
 	 */
 	private function parseMatch( array $matches ): array {
@@ -211,7 +211,7 @@ class MagicWordArray {
 				//     n                 => 'matchedSynonym (again)',
 				//     n + 1             => 'parameterValue',
 				// … ]
-				return [ $magicName, $matches[$key + 1] ?? false ];
+				return [ $magicName, $match, $matches[$key + 1] ?? false ];
 			}
 			// Skip the initial full match and any non-matching group
 			if ( $match !== '' && $key !== 0 ) {
@@ -237,7 +237,8 @@ class MagicWordArray {
 		foreach ( $regexes as $regex ) {
 			$m = [];
 			if ( preg_match( $regex, $text, $m ) ) {
-				return $this->parseMatch( $m );
+				[ $id, $alias, $param ] = $this->parseMatch( $m );
+				return [ $id, $param ];
 			}
 		}
 		return [ false, false ];
@@ -267,14 +268,17 @@ class MagicWordArray {
 	 *
 	 * @see MagicWord::matchAndRemove
 	 * @param string &$text
-	 * @return array<string,false> Keyed by magic word ID
+	 * @param bool $returnAlias When true, returns the localized alias as
+	 *   the value in the returned array. When false (the default), the
+	 *   value in the returned array is `false`.
+	 * @return array<string,string|false> Keyed by magic word ID
 	 */
-	public function matchAndRemove( &$text ): array {
+	public function matchAndRemove( &$text, bool $returnAlias = false ): array {
 		$found = [];
 		$regexes = $this->getRegex();
-		$res = preg_replace_callback( $regexes, function ( $m ) use ( &$found ) {
-			[ $name, $param ] = $this->parseMatch( $m );
-			$found[$name] = $param;
+		$res = preg_replace_callback( $regexes, function ( $m ) use ( &$found, $returnAlias ) {
+			[ $name, $alias, $param ] = $this->parseMatch( $m );
+			$found[$name] = $returnAlias ? $alias : $param;
 			return '';
 		}, $text );
 		// T321234: Don't try to fix old revisions with broken UTF-8, just return $text as is

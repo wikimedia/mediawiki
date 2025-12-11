@@ -1206,7 +1206,7 @@
 	"apihelp-query+search-param-namespace": "ابحث داخل هذه النطاقات فقط.",
 	"apihelp-query+search-param-what": "أي نوع من البحث لأدائه.",
 	"apihelp-query+search-param-info": "أية بيانات وصفية لعرضها.",
-	"apihelp-query+search-param-prop": "أي الخصائص للعودة.",
+	"apihelp-query+search-param-prop": "أي خواص يجب إرجاعها:",
 	"apihelp-query+search-param-qiprofile": "الاستعلام عن ملف شخصي مستقل للاستخدام (يؤثر على خوارزمية الترتيب).",
 	"apihelp-query+search-paramvalue-prop-size": "يضيف حجم الصفحة بالبايت.",
 	"apihelp-query+search-paramvalue-prop-wordcount": "يضيف عدد كلمات الصفحة.",

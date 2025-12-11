@@ -615,7 +615,7 @@
 	"brokenredirects-edit": "changer",
 	"brokenredirects-delete": "effacer",
 	"withoutinterwiki": "Pages sans liens inter-langues",
-	"nbytes": "$1 octet{{PLURAL:$1||s}}",
+	"nbytes": "$1 {{PLURAL:$1|octet|octets}}",
 	"ncategories": "$1 classe{{PLURAL:$1||s}}",
 	"ninterwikis": "$1 {{PLURAL:$1|interwiki|interwikis}}",
 	"nlinks": "$1 {{PLURAL:$1|page liée|pages liées}}",

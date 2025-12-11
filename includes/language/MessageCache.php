@@ -195,7 +195,7 @@ class MessageCache implements LoggerAwareInterface {
 			return $lckey;
 		}
 
-		if ( ord( $lckey ) < 128 ) {
+		if ( ord( $lckey[0] ) < 128 ) {
 			$lckey[0] = strtolower( $lckey[0] );
 		} else {
 			$lckey = MediaWikiServices::getInstance()->getContentLanguage()->lcfirst( $lckey );

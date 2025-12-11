@@ -1525,10 +1525,10 @@ class SpecialPageFactory {
 	 * @return bool True if a special page exists with this name
 	 */
 	public function exists( $name ) {
-		[ $title, /*...*/ ] = $this->resolveAlias( $name );
+		[ $title, ] = $this->resolveAlias( $name );
 
 		$specialPageList = $this->getPageList();
-		return isset( $specialPageList[$title] );
+		return $title !== null && isset( $specialPageList[$title] );
 	}
 
 	/**
@@ -1538,11 +1538,11 @@ class SpecialPageFactory {
 	 * @return SpecialPage|null SpecialPage object or null if the page doesn't exist
 	 */
 	public function getPage( $name ) {
-		[ $realName, /*...*/ ] = $this->resolveAlias( $name );
+		[ $realName, ] = $this->resolveAlias( $name );
 
 		$specialPageList = $this->getPageList();
 
-		if ( isset( $specialPageList[$realName] ) ) {
+		if ( $realName !== null && isset( $specialPageList[$realName] ) ) {
 			$rec = $specialPageList[$realName];
 
 			if ( is_array( $rec ) || is_string( $rec ) || is_callable( $rec ) ) {

@@ -408,6 +408,7 @@
 	"apihelp-parse-paramvalue-prop-images": "Gives the images in the parsed wikitext.",
 	"apihelp-parse-paramvalue-prop-externallinks": "Gives the external links in the parsed wikitext.",
 	"apihelp-parse-paramvalue-prop-sections": "Gives the sections in the parsed wikitext.",
+	"apihelp-parse-paramvalue-prop-tocdata": "Gives the table of contents information in the parsed wikitext.",
 	"apihelp-parse-paramvalue-prop-revid": "Adds the revision ID of the parsed page.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "Adds the title of the parsed wikitext.",
 	"apihelp-parse-paramvalue-prop-subtitle": "Adds the page subtitle for the parsed page.",
@@ -2046,6 +2047,7 @@
 	"apiwarn-validationfailed-valuetoolong": "value too long (no more than $1 {{PLURAL:$1|byte|bytes}} allowed).",
 	"apiwarn-validationfailed": "Validation error for <kbd>$1</kbd>: $2",
 	"apiwarn-wgdebugapi": "<strong>Security Warning:</strong> <var>$wgDebugAPI</var> is enabled.",
+	"apiwarn-xslt-disabled": "The xslt option is disabled on this wiki.",
 
 	"api-feed-error-title": "Error ($1)",
 	"api-usage-docref": "See $1 for API usage.",

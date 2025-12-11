@@ -81,7 +81,7 @@ $magicWords = [
 	'img_right'                 => [ '1', 'oiged', 'paremal', 'right' ],
 	'img_top'                   => [ '1', 'üläh', 'top' ],
 	'img_width'                 => [ '1', '$1piks', '$1px' ],
-	'index'                     => [ '1', '__INDEKS__', 'INDEKSIGA', '__INDEX__' ],
+	'index'                     => [ '1', '__INDEKS__', '__INDEKSIGA__', '__INDEX__' ],
 	'plural'                    => [ '0', 'ÄILUGU:', 'PLURAL:' ],
 	'sitename'                  => [ '1', 'SAITANNIMI', 'KOHANIMI', 'SITENAME' ],
 ];

@@ -269,6 +269,7 @@
 	"exif-scenetype-1": "Tiesiogiai fotografuotas vaizdas",
 	"exif-customrendered-0": "Standartinis procesas",
 	"exif-customrendered-1": "Pasirinktinis procesas",
+	"exif-customrendered-2": "HDR (originalas neišsaugotas)",
 	"exif-customrendered-3": "HDR (originalas išsaugotas)",
 	"exif-customrendered-4": "Originalas (skirtas HDR)",
 	"exif-customrendered-6": "Panorama",
@@ -367,5 +368,6 @@
 	"exif-usepanoramaviewer-true": "Taip",
 	"exif-usepanoramaviewer-false": "Ne",
 	"exif-exposurelockused-true": "Taip",
-	"exif-exposurelockused-false": "Ne"
+	"exif-exposurelockused-false": "Ne",
+	"exif-stitchingsoftware": "Sujungimo programinė įranga"
 }
