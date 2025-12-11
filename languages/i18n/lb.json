@@ -2826,7 +2826,7 @@
 	"confirmemail_html_logo_alttext": "{{SITENAME}}-Logo",
 	"confirmemail_html_par1": "Wëllkomm $1,",
 	"confirmemail_html_button_label": "Confirméiert {{GENDER:$1|Är}} E-Mail-Adress",
-	"confirmemail_plaintext_button_label": "Confirméiert {{GENDER:$1|Är}} E-Mail-Adress <$2>",
+	"confirmemail_plaintext_button_label": "Confirméiert {{GENDER:$1|Är}} E-Mail-Adress: $2",
 	"invalidateemail": "Annulléier d'E-Mailconfirmation",
 	"notificationemail_subject_changed": "D'E-Mail-Adress déi op {{SITENAME}} enregistréiert war gouf geännert",
 	"notificationemail_subject_removed": "D'E-Mail-Adress déi op {{SITENAME}} enregistréiert war gouf ewechgeholl",

@@ -3272,7 +3272,7 @@
 	"confirmemail_html_subject": "Подтвердите ваш адрес электронной почты",
 	"confirmemail_html_logo_alttext": "Логотип {{grammar:genitive|{{SITENAME}}}}",
 	"confirmemail_html_button_label": "Подтвердите {{GENDER:$1|ваш}} адрес электронной почты",
-	"confirmemail_plaintext_button_label": "Подтвердите {{GENDER:$1|ваш}} адрес электронной почты <$2>",
+	"confirmemail_plaintext_button_label": "Подтвердите {{GENDER:$1|ваш}} адрес электронной почты: $2",
 	"invalidateemail": "Отмена подтверждения адреса электронной почты",
 	"notificationemail_subject_changed": "Адрес электронной почты для {{SITENAME}} был изменён",
 	"notificationemail_subject_removed": "{{SITENAME}} зарегистрированный адрес электронной почты был удалён",

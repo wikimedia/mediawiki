@@ -3053,7 +3053,7 @@
 	"confirmemail_html_par1": "Добро дошли, $1,",
 	"confirmemail_html_par2": "'''Ваш {{SITENAME}} налог је скоро готов.''' Само потврдите имејл.",
 	"confirmemail_html_button_label": "{{GENDER:$1|Потврдите}} Ваш имејл",
-	"confirmemail_plaintext_button_label": "{{GENDER:$1|Потврдите}} Ваш имејл <$2>",
+	"confirmemail_plaintext_button_label": "{{GENDER:$1|Потврдите}} Ваш имејл: $2",
 	"invalidateemail": "Отказивање потврде имејла",
 	"notificationemail_subject_changed": "Регистрована имејл-адреса на {{SITENAME}} је промењена",
 	"notificationemail_subject_removed": "Регистрована имејл-адреса на пројекту {{SITENAME}} је уклоњена",

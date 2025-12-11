@@ -3323,7 +3323,7 @@
 	"confirmemail_html_par1": "Bienvenue $1,",
 	"confirmemail_html_par2": "'''Votre compte {{SITENAME}} est presque complet.''' Confirmez votre courriel ci-dessous pour terminer.",
 	"confirmemail_html_button_label": "Confirmer {{GENDER:$1|votre}} courriel",
-	"confirmemail_plaintext_button_label": "Confirmer {{GENDER:$1|votre}} courriel <$2>",
+	"confirmemail_plaintext_button_label": "Confirmer {{GENDER:$1|votre}} courriel: $2",
 	"invalidateemail": "Annuler la confirmation de l’adresse de courriel",
 	"notificationemail_subject_changed": "L’adresse courriel enregistrée sur {{SITENAME}} a été changée",
 	"notificationemail_subject_removed": "L’adresse courriel enregistrée sur {{SITENAME}} a été supprimée",
