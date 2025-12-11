@@ -475,7 +475,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 
 		// First subheading. "For Username (talk | block log | logs | etc.)"
 		$userName = $userObj->getName();
-		$subHeadingsHtml = Html::rawElement( 'div', [ 'class' => 'mw-contributions-user-tools' ],
+		$subHeadingsHtml = Html::rawElement( 'span', [ 'class' => 'mw-contributions-user-tools' ],
 			$this->msg( 'contributions-subtitle' )->rawParams(
 				Html::rawElement( 'bdi', [], $user )
 			)->params( $userName )
@@ -500,8 +500,9 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 					->escaped();
 			}
 
+			$subHeadingsHtml .= Html::element( 'br' );
 			$subHeadingsHtml .= Html::rawElement(
-				'div',
+				'span',
 				[ 'class' => 'mw-contributions-editor-info' ],
 				$userInfo
 			);
