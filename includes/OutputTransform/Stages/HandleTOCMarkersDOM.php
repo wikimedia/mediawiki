@@ -184,7 +184,7 @@ class HandleTOCMarkersDOM extends ContentDOMTransformStage {
 							$doc,
 							'span',
 							[ 'class' => 'toctext' ],
-							$fragTocLine->hasChildNodes() ? $fragTocLine : ''
+							$fragTocLine
 						)
 					)
 				);
