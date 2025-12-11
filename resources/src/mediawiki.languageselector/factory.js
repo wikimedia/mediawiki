@@ -1,6 +1,7 @@
 const Vue = require( 'vue' );
 const { h } = Vue;
 const LookupLanguageSelector = require( './LookupLanguageSelector.vue' );
+const MultiselectLookupLanguageSelector = require( './MultiselectLookupLanguageSelector.vue' );
 
 /**
  * Create a Vue application for the LookupLanguageSelector component.
@@ -54,4 +55,59 @@ function getLookupLanguageSelector( config ) {
 	} );
 }
 
-module.exports = getLookupLanguageSelector;
+/**
+ * Create a Vue application for the MultiselectLookupLanguageSelector component.
+ *
+ * @typedef {Object} MultiselectLookupLanguageSelectorConfig
+ * @property {Array|null} [selectableLanguages=null] List of language codes selectable in the component.
+ * @property {Array|null} [selectedLanguage=null] The language code(s) to select initially.
+ * @property {Object} [menuConfig={}] Configuration for the Codex Lookup menu.
+ * @property {string|null} [apiUrl=null] The API URL to use for language search. Defaults to the current wiki's API.
+ * @property {Function|null} [menuItemSlot=null] Slot function for the menu item.
+ * @property {Function|null} [onLanguageChange=null] Callback function when language is selected/changed.
+ *
+ * @param {MultiselectLookupLanguageSelectorConfig} config The configuration object for the selector.
+ * @return {Object} The Vue application instance
+ */
+function getMultiselectLookupLanguageSelector( config ) {
+	const {
+		selectableLanguages = null,
+		selectedLanguage = null,
+		menuConfig = {},
+		apiUrl = null,
+		menuItemSlot = null,
+		onLanguageChange = null
+	} = config;
+
+	return Vue.createMwApp( {
+		data() {
+			return {
+				apiUrl: apiUrl || mw.util.wikiScript( 'api' ),
+				selectedLanguage,
+				selectableLanguages,
+				menuConfig
+			};
+		},
+		render() {
+			return h( MultiselectLookupLanguageSelector, {
+				searchApiUrl: this.apiUrl,
+				selected: this.selectedLanguage,
+				selectableLanguages: this.selectableLanguages,
+				'onUpdate:selected': ( newValue ) => {
+					this.selectedLanguage = newValue;
+					if ( onLanguageChange ) {
+						onLanguageChange( newValue );
+					}
+				},
+				menuConfig: this.menuConfig
+			}, {
+				'menu-item': menuItemSlot
+			} );
+		}
+	} );
+}
+
+module.exports = {
+	getLookupLanguageSelector,
+	getMultiselectLookupLanguageSelector
+};

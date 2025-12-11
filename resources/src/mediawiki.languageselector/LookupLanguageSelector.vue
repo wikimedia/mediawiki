@@ -53,6 +53,7 @@
 const { defineComponent, ref } = require( 'vue' );
 const { CdxLookup } = require( './codex.js' );
 const LanguageSelector = require( './LanguageSelector.vue' );
+const { computeMenuItems } = require( './menuHelper.js' );
 
 // @vue/component
 module.exports = exports = defineComponent( {
@@ -79,28 +80,6 @@ module.exports = exports = defineComponent( {
 	emits: [ 'update:selected' ],
 	setup() {
 		const inputValue = ref( null );
-
-		/**
-		 * Convert language data to Codex menu items format
-		 *
-		 * @param {string} searchQuery
-		 * @param {string[]} searchResults
-		 * @param {Object} languages
-		 * @return {{label: string, value: string}[]|*}
-		 */
-		const computeMenuItems = ( searchQuery, searchResults, languages ) => {
-			if ( searchQuery && searchQuery.trim().length > 0 ) {
-				return searchResults.map( ( code ) => ( {
-					label: languages[ code ] || code,
-					value: code
-				} ) );
-			}
-
-			return Object.entries( languages ).map( ( [ code, name ] ) => ( {
-				label: name,
-				value: code
-			} ) );
-		};
 
 		return {
 			computeMenuItems,

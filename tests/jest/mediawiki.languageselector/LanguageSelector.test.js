@@ -124,4 +124,21 @@ describe( 'LanguageSelector', () => {
 		expect( wrapper.emitted( 'update:selected' ) ).toBeTruthy();
 		expect( wrapper.emitted( 'update:selected' )[ 0 ] ).toEqual( [ 'fr' ] );
 	} );
+
+	it( 'computes selectedValues for single selection', async () => {
+		const wrapper = mount( { selected: 'en' } );
+		await wrapper.vm.$nextTick();
+
+		expect( wrapper.vm.selectedValues ).toBe( 'en' );
+	} );
+
+	it( 'computes selectedValues for multiple selection', async () => {
+		const wrapper = mount( {
+			selected: [ 'en', 'fr' ],
+			isMultiple: true
+		} );
+		await wrapper.vm.$nextTick();
+
+		expect( wrapper.vm.selectedValues ).toEqual( [ 'en', 'fr' ] );
+	} );
 } );

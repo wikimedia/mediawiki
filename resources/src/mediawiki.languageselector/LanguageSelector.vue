@@ -4,6 +4,7 @@
 		:search-results="searchResults"
 		:search-query="searchQuery"
 		:selection="selection"
+		:selected-values="selectedValues"
 		:search="debouncedSearch"
 		:clear-search-query="clearSearchQuery"
 		:on-selection="onSelection"
@@ -34,10 +35,14 @@ module.exports = exports = defineComponent( {
 			type: Number,
 			default: 300
 		},
-		/** Currently selected language code */
+		/** Currently selected language code(s) */
 		selected: {
-			type: String,
+			type: [ String, Array ],
 			default: null
+		},
+		isMultiple: {
+			type: Boolean,
+			default: false
 		}
 	},
 	emits: [ 'update:selected' ],
@@ -47,10 +52,25 @@ module.exports = exports = defineComponent( {
 		let languageClient = null;
 
 		const languages = computed( () => props.selectableLanguages || supportedLanguages );
-		const selection = computed( () => ( {
-			value: props.selected,
-			label: languages.value[ props.selected ] || props.selected
-		} ) );
+		const selection = computed( () => {
+			if ( props.isMultiple ) {
+				return props.selected.map( ( langCode ) => ( {
+					value: langCode,
+					label: languages.value[ langCode ] || langCode
+				} ) );
+			} else {
+				return {
+					value: props.selected,
+					label: languages.value[ props.selected ] || props.selected
+				};
+			}
+		} );
+		const selectedValues = computed( () => {
+			if ( props.isMultiple ) {
+				return selection.value.map( ( item ) => item.value );
+			}
+			return selection.value.value;
+		} );
 
 		const fetchLanguages = async ( query ) => {
 			const searchRequest = languageClient.searchLanguages( query );
@@ -86,7 +106,13 @@ module.exports = exports = defineComponent( {
 		};
 
 		const onSelection = ( newValue ) => {
-			if ( selection.value.value !== newValue ) {
+			if ( props.isMultiple ) {
+				const isDifferent = newValue.length !== selectedValues.value.length ||
+					newValue.some( ( val, idx ) => val !== selectedValues.value[ idx ] );
+				if ( isDifferent ) {
+					emit( 'update:selected', newValue );
+				}
+			} else if ( selection.value.value !== newValue ) {
 				emit( 'update:selected', newValue );
 			}
 		};
@@ -105,6 +131,7 @@ module.exports = exports = defineComponent( {
 			searchQuery,
 			searchResults,
 			selection,
+			selectedValues,
 			debouncedSearch,
 			onSelection
 		};

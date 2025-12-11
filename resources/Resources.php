@@ -133,9 +133,11 @@ return [
 			'index.js',
 			'LanguageSelector.vue',
 			'LookupLanguageSelector.vue',
+			'MultiselectLookupLanguageSelector.vue',
 			'languageSearch.js',
 			'factory.js',
 			'debounce.js',
+			'menuHelper.js',
 			[
 				'name' => 'supportedLanguages.json',
 				'callback' => static function ( Context $context ) {
@@ -157,7 +159,8 @@ return [
 			],
 		],
 		'codexComponents' => [
-			'CdxLookup'
+			'CdxLookup',
+			'CdxMultiselectLookup'
 		],
 		'messages' => [
 			'languageselector-no-results'
