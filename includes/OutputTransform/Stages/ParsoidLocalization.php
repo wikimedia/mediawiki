@@ -112,9 +112,7 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 				[ 'frag' => $frag, 'lang' => $lang ] = $this->localizeI18n(
 					$i18n, $lang, $doc, DOMUtils::nodeName( $node ) === 'span', $pageRef, $parserOptions
 				);
-				if ( $frag->hasChildNodes() ) {
-					$node->appendChild( $frag );
-				}
+				DOMCompat::appendChild( $node, $frag );
 				$lang = $this->languageFactory->getLanguage( $lang );
 				$node->setAttribute( 'lang', $lang->getHtmlCode() );
 				$node->setAttribute( 'dir', $lang->getDir() );
