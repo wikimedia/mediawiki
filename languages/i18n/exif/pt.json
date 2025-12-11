@@ -10,7 +10,8 @@
 			"Opraco",
 			"Vitorvicentevalente",
 			"Waldir",
-			"Waldyrious"
+			"Waldyrious",
+			"Maria Manuela Silva"
 		]
 	},
 	"exif-imagewidth": "Largura",
@@ -408,6 +409,9 @@
 	"exif-digitalsourcetype-algorithmicallyenhanced": "Multimédia alterada algoritmicamente",
 	"exif-digitalsourcetype-softwareimage": "Criado por programa",
 	"exif-digitalsourcetype-digitalart": "Criado por um humano utilizando ferramentas digitais",
+	"exif-digitalsourcetype-digitalcreation": "Multimédia criada por um humano utilizando as ferramentas não baseadas em IA",
+	"exif-digitalsourcetype-datadrivenmedia": "Representação de multimédia digital de dados por meio de programação humana ou criatividade",
 	"exif-digitalsourcetype-trainedalgorithmicmedia": "Criado utilizando a IA generativa",
+	"exif-digitalsourcetype-algorithmicmedia": "Multimédia criada exclusivamente por um algoritmo não baseado em IA",
 	"exif-digitalsourcetype-screencapture": "Captura de ecrã"
 }

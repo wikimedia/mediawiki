@@ -480,6 +480,7 @@
 	"preview": "Førehandsvising",
 	"showpreview": "Førehandsvis",
 	"showdiff": "Sjå skilnader",
+	"tempuser-expired-link-tooltip": "Denne mellombelskontoen er utgått",
 	"temp-user-banner-description": "Du bruker eit mellombels konto",
 	"temp-user-banner-tooltip-title": "Mellombels konto",
 	"temp-user-banner-tooltip-description-learn-more": "Dette mellombels kontoet blei oppretta etter at ei endring blei urført utan konto på denne nettlesaren og eininga.[[mw:Special:MyLanguage/Help:Temporary_accounts|Lær meir]].",

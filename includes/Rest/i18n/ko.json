@@ -127,5 +127,5 @@
 	"rest-schema-desc-new-page": "소스 (보통 위키텍스트)를 포함한 새 문서",
 	"rest-schema-desc-bare-page": "내용이 없는 문서",
 	"rest-schema-desc-search-results": "검색 결과",
-	"rest-schema-desc-revision-compare": "개정판 비교"
+	"rest-schema-desc-revision-compare": "판 비교"
 }
