@@ -275,7 +275,8 @@ class SpecialWatchlistLabels extends SpecialPage {
 	 */
 	private function showTable() {
 		$codex = new Codex();
-		$this->getOutput()->addModuleStyles( 'mediawiki.special.watchlistlabels' );
+		$this->getOutput()->addModules( 'mediawiki.special.watchlistlabels' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.special.watchlistlabels.styles' );
 
 		// Page title and description.
 		$this->getOutput()->addHTML(
@@ -292,6 +293,7 @@ class SpecialWatchlistLabels extends SpecialPage {
 		];
 		$createButton = Html::element( 'a', $params, $this->msg( 'watchlistlabels-table-new-link' )->text() );
 		$deleteButton = $codex->button()
+			->setAttributes( [ 'class' => 'mw-specialwatchlistlabels-delete-button' ] )
 			->setLabel( $this->msg( 'delete' )->text() )
 			->setIconClass( 'mw-specialwatchlistlabels-icon--trash' )
 			->setType( 'submit' )

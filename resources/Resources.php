@@ -2849,6 +2849,12 @@ return [
 		],
 	],
 	'mediawiki.special.watchlistlabels' => [
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.special.watchlistlabels',
+		'packageFiles' => [
+			'labelmanager.js',
+		],
+	],
+	'mediawiki.special.watchlistlabels.styles' => [
 		'class' => CodexModule::class,
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.special.watchlistlabels',
 		'styles' => [
