@@ -201,11 +201,22 @@
 	overflow: hidden;
 }
 
-.solidToOpacity( @property, @color, @opacity, @before: '', @after: '', @background: #fff ) {
-	@{property}: ~'@{before}' fade( ( ( @color - ( 1 - @opacity ) * ( @background ) ) / @opacity ), @opacity * 100 ) ~'@{after}';
+.solid-to-opacity( @color, @opacity, @background: #fff ) {
+	@result: fade( ( ( @color - ( 1 - @opacity ) * ( @background ) ) / @opacity ), @opacity * 100 );
 }
 
-.solidToMinimumOpacity( @property, @color, @before: '', @after: '', @background: #fff ) {
+/**
+ * Compute the most transparent color that appears the same as @color
+ * when overlaid on the given @background.
+ *
+ * @example
+ *   background-color: .solid-to-minimum-opacity( #eaecf0 )[ @result ];
+ *
+ * @param {Color} @color The solid color to approximate with transparency
+ * @param {Color} [@background=white] The background color to overlay on
+ * @return {Color} @result
+ */
+.solid-to-minimum-opacity( @color, @background: #fff ) {
 	@opacity: 1 - ( min( red( @color ), green( @color ), blue( @color ) ) / 255 );
-	.solidToOpacity( @property, @color, @opacity, @before, @after, @background );
+	@result: .solid-to-opacity( @color, @opacity, @background )[ @result ];
 }

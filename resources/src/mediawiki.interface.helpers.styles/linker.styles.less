@@ -35,8 +35,9 @@
 .mw-tempuserlink {
 	// Color is calculated to match @background-color-interactive.
 	// Transparency is needed for T400577.
-	.solidToMinimumOpacity( background-color, #eaecf0 );
-	.solidToMinimumOpacity( outline, #eaecf0, '2px solid' );
+	@color: .solid-to-minimum-opacity( #eaecf0 )[ @result ];
+	background-color: @color;
+	outline: @border-width-thick @border-style-base @color;
 	border-radius: @border-radius-base;
 	white-space: nowrap;
 }
@@ -46,8 +47,9 @@
 		// Color is calculated to match @background-color-interactive in dark-mode.
 		// The passed-in background color is @background-color-inverted.
 		// Transparency is needed for T400577.
-		.solidToMinimumOpacity( background-color, #27292d, '', '', #000 );
-		.solidToMinimumOpacity( outline, #27292d, '2px solid', '', #000 );
+		@color: .solid-to-minimum-opacity( #27292d, #000 )[ @result ];
+		background-color: @color;
+		outline-color: @color;
 	}
 }
 
