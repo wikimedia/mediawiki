@@ -536,6 +536,7 @@
 	"missingcommenttext": "Please enter a comment.",
 	"missingcommentheader": "<strong>Reminder:</strong> You have not provided a subject for this comment.\nIf you click \"$1\" again, your edit will be published without one.",
 	"summary-preview": "Preview of edit summary:",
+	"autocomment-top": "(top)",
 	"previewerrortext": "An error occurred while attempting to preview your changes.",
 	"blockedtitle": "User is blocked",
 	"blockedtext": "<strong>Your username or IP address has been blocked.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nYou can use the \"{{int:emailuser}}\" feature if a valid email address is specified in your [[Special:Preferences|preferences]] and you have not been blocked from using it.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

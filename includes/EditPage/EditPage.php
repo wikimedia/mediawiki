@@ -3366,7 +3366,7 @@ class EditPage implements IEditObject {
 				!$this->preview && !$this->diff
 			) {
 				$sectionTitle = self::extractSectionTitle( $this->textbox1 ); // FIXME: use Content object
-				if ( $sectionTitle !== false ) {
+				if ( $sectionTitle !== false && $sectionTitle !== '' ) {
 					$this->summary = "/* $sectionTitle */ ";
 				}
 			}

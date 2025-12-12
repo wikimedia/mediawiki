@@ -238,16 +238,22 @@ class CommentParser {
 						// This could be improved by copying as much of Parser::stripSectionName as desired.
 						str_replace( [ '[[:', '[[', ']]' ], '', $section )
 					), 1 );
-					if ( $decodedSection !== '' ) {
+					if ( $decodedSection !== '' || $section === '' ) {
 						if ( $samePage ) {
 							$targetWithSection = new TitleValue( NS_MAIN, '', $decodedSection );
 						} else {
 							$targetWithSection = $selfLinkTarget->createFragmentTarget( $decodedSection );
 						}
+						if ( $section === '' ) {
+							// Special case for edits to the zeroth section (T412472).
+							$linkHtml = wfMessage( 'autocomment-top' )->inLanguage( $this->userLang )->escaped();
+						} else {
+							$linkHtml = $parsedSection;
+						}
 						$parsedSection = $this->makeSectionLink(
 							$targetWithSection,
 							$this->userLang->getArrow() .
-								Html::rawElement( 'bdi', [ 'dir' => $this->userLang->getDir() ], $parsedSection ),
+								Html::rawElement( 'bdi', [ 'dir' => $this->userLang->getDir() ], $linkHtml ),
 							$wikiId,
 							$selfLinkTarget
 						);

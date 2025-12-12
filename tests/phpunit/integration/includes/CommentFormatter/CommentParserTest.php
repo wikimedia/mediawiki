@@ -121,12 +121,12 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 				"/* [[linkie?]] */",
 			],
 			[
-				'<span class="autocomment">: </span> // Edit via via',
+				'<span class="autocomment"><a href="/wiki/Special:BlankPage" title="Special:BlankPage">→<bdi dir="ltr">(top)</bdi></a>: </span> // Edit via via',
 				// Regression test for T222857
 				"/*  */ // Edit via via",
 			],
 			[
-				'<span class="autocomment">: </span> foobar',
+				'<span class="autocomment"><a href="/wiki/Special:BlankPage" title="Special:BlankPage">→<bdi dir="ltr">(top)</bdi></a>: </span> foobar',
 				// Regression test for T222857
 				"/**/ foobar",
 			],
@@ -169,8 +169,13 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 				null
 			],
 			[
-				'',
+				'<span class="autocomment"><a href="/wiki/">→<bdi dir="ltr">(top)</bdi></a></span>',
 				"/* */",
+				false, true
+			],
+			[
+				'<span class="autocomment"><a href="#top">→<bdi dir="ltr">top</bdi></a></span>',
+				"/* top */",
 				false, true
 			],
 			[
