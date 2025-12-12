@@ -118,13 +118,6 @@ describe( 'LookupLanguageSelector', () => {
 		expect( wrapper.html() ).toContain( 'languageselector-no-results' );
 	} );
 
-	it( 'passes selected prop to LanguageSelector', () => {
-		const wrapper = mount( { selected: 'fr' } );
-		const languageSelector = wrapper.findComponent( { name: 'LanguageSelector' } );
-
-		expect( languageSelector.props( 'selected' ) ).toBe( 'fr' );
-	} );
-
 	it( 'emits update:selected when language is selected', async () => {
 		const wrapper = mount();
 		const cdxLookup = wrapper.findComponent( { name: 'CdxLookup' } );

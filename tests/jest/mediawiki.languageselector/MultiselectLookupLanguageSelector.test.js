@@ -93,13 +93,6 @@ describe( 'MultiselectLookupLanguageSelector', () => {
 		expect( cdxMultiselectLookup.props( 'menuConfig' ) ).toEqual( menuConfig );
 	} );
 
-	it( 'passes selected prop to LanguageSelector', () => {
-		const wrapper = mount( { selected: [ 'fr' ] } );
-		const languageSelector = wrapper.findComponent( { name: 'LanguageSelector' } );
-
-		expect( languageSelector.props( 'selected' ) ).toEqual( [ 'fr' ] );
-	} );
-
 	it( 'emits update:selected when language is selected via update:selected', async () => {
 		const wrapper = mount();
 		const cdxMultiselectLookup = wrapper.findComponent( { name: 'CdxMultiselectLookup' } );

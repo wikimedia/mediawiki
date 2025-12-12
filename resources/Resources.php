@@ -131,7 +131,7 @@ return [
 		'remoteBasePath' => '',
 		'packageFiles' => [
 			'index.js',
-			'LanguageSelector.vue',
+			'useLanguageSelector.js',
 			'LookupLanguageSelector.vue',
 			'MultiselectLookupLanguageSelector.vue',
 			'languageSearch.js',

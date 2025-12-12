@@ -1,10 +1,10 @@
-const LanguageSelector = require( './LanguageSelector.vue' );
 const LookupLanguageSelector = require( './LookupLanguageSelector.vue' );
 const { getLookupLanguageSelector, getMultiselectLookupLanguageSelector } = require( './factory.js' );
+const useLanguageSelector = require( './useLanguageSelector.js' );
 
 module.exports = {
 	LookupLanguageSelector,
-	LanguageSelector,
 	getLookupLanguageSelector,
-	getMultiselectLookupLanguageSelector
+	getMultiselectLookupLanguageSelector,
+	useLanguageSelector
 };
