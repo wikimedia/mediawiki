@@ -2695,6 +2695,7 @@
 	"contributions-subtitle": "Contributions for \"user\". Parameters:\n* $1 is an IP address or a username, with a link which points to the user page (if registered user).\n* $2 is the username only without any namespace prefix or link (to be used with GENDER).",
 	"contributions-edit-count": "Lists edit count. Parameters:\n* $1 is the username.\n* $2 is the user's edit count.",
 	"contributions-account-creation-date": "Lists account creation date. Parameters:\n* $1 is the account creation date.",
+	"contributions-ip-range-navigation": "Allows easy navigation to related (broader) IP ranges, when viewing a contributions page for IP address.\n\nParameters:\n* $1 - a comma separated list of links to ranges, e.g. \"/16, /24\"\n* $2 - number of links in the list",
 	"contributions-userdoesnotexist": "This message is used in [[Special:Contributions]]. It is used to tell the user that the name they searched for doesn't exist.\n\nParameters:\n* $1 - a username\n{{Identical|Userdoesnotexist}}",
 	"negative-namespace-not-supported": "This message is used in [[Special:Contributions]] to tell users that use namespaces with negative value. It not supported as associated namespace(s) doesn't exist.",
 	"nocontribs": "Used in [[Special:Contributions]] and [[Special:DeletedContributions]].\n\nSee examples: [[Special:Contributions/x]] and [[Special:DeletedContributions/x]].",

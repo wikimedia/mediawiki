@@ -146,6 +146,12 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 		}
 		return $messageKey;
 	}
+
+	/** @inheritDoc */
+	protected function shouldShowIPRangeNavigationLinks( User $userObj ): bool {
+		// This page doesn't support IP range lookup, so don't suggest viewing it by range
+		return false;
+	}
 }
 
 /** @deprecated class alias since 1.41 */
