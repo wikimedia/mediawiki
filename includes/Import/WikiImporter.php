@@ -10,7 +10,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\Config;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -21,6 +20,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\CacheKeyHelper;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;

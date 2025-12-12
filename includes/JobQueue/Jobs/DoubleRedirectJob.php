@@ -6,10 +6,10 @@
 
 namespace MediaWiki\JobQueue\Jobs;
 
-use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\JobQueue\Job;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\CacheKeyHelper;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\MagicWordFactory;

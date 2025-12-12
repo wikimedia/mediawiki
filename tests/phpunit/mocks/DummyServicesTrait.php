@@ -8,7 +8,6 @@
 namespace MediaWiki\Tests\Unit;
 
 use InvalidArgumentException;
-use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\CommentFormatter\CommentParser;
 use MediaWiki\CommentFormatter\CommentParserFactory;
@@ -21,6 +20,7 @@ use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigSchema;
+use MediaWiki\Page\CacheKeyHelper;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Tests\MockDatabase;
 use MediaWiki\Title\MalformedTitleException;

@@ -3,9 +3,9 @@
 namespace MediaWiki\Rest\Handler;
 
 use InvalidArgumentException;
-use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\CacheKeyHelper;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Page\RedirectLookup;

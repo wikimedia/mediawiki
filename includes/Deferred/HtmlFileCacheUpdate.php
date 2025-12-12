@@ -6,8 +6,8 @@
 
 namespace MediaWiki\Deferred;
 
-use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Cache\HTMLFileCache;
+use MediaWiki\Page\CacheKeyHelper;
 use MediaWiki\Page\PageIdentity;
 use Wikimedia\Assert\Assert;
 
