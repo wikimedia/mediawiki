@@ -103,6 +103,11 @@
 	"apihelp-stashedit-param-title": "पानाच्या मथळ्याचे संपादन होत आहे.",
 	"apihelp-stashedit-param-sectiontitle": "नविन विभागाचा मथळा",
 	"apihelp-stashedit-param-summary": "सारांश बदला.",
+	"apihelp-languagesearch-param-search": "शोध सूत्र.",
+	"apihelp-languagesearch-param-typos": "शोध सूत्रात परवानगी दिलेली स्पेलिंग चूकांची संख्या.",
+	"apihelp-languagesearch-example-1": "\"Te\" साठी शोधा",
+	"apihelp-languagesearch-example-2": "\"ഫി\" साठी शोधा",
+	"apihelp-languagesearch-example-3": "\"ഫി\" साठी शोधा, एक चूक क्षम्य",
 	"api-help-examples": "{{PLURAL:$1|उदाहरण|उदाहरणे}}:",
 	"apierror-cannotreauthenticate": "आपली ओळखण स्थापित न झाल्यामुळे ही क्रिया अनुपलब्ध आहे."
 }

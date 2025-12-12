@@ -42,5 +42,9 @@
 	"apihelp-rollback-summary": "صفحي ۾ آخري سنوار اڻڪريو.",
 	"apihelp-rollback-param-markbot": "موٽايل سنوارن کي نشان لڳايو ۽ بطور بوٽ سنوارون موٽايو.",
 	"apihelp-stashedit-param-contentmodel": "نئين مواد جو مواد نمونو.",
-	"apihelp-stashedit-param-summary": "تَتُ بدلايو."
+	"apihelp-stashedit-param-summary": "تَتُ بدلايو.",
+	"apihelp-languagesearch-param-search": "ڳولا تار.",
+	"apihelp-languagesearch-param-typos": "ڳولا تار ۾ ھجي جي غلطين جو اجازت ڏنل انگ.",
+	"apihelp-languagesearch-example-1": "\"Te\" لاءِ ڳوليو",
+	"apihelp-languagesearch-example-2": "\"ഫി\" لاءِ ڳوليو"
 }

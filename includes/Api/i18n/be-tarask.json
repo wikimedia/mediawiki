@@ -106,6 +106,12 @@
 	"apihelp-query+transcludedin-paramvalue-prop-title": "Назва кожнай старонкі.",
 	"apihelp-query+transcludedin-param-limit": "Колькі вяртаць.",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "Дублюе загаловак <code>Accept-Language</code>, адасланы кліентам у структураваным фармаце.",
+	"apihelp-languagesearch-summary": "Пошук назваў моваў любым альфабэтам.",
+	"apihelp-languagesearch-param-search": "Радок пошуку.",
+	"apihelp-languagesearch-param-typos": "Колькасьць памылак артаграфіі, дазволеных у радку пошуку.",
+	"apihelp-languagesearch-example-1": "Шукаць «Te»",
+	"apihelp-languagesearch-example-2": "Шукаць «ഫി»",
+	"apihelp-languagesearch-example-3": "Шукаць «ഫി», дапушчальная адна памылка",
 	"api-help-title": "Даведка MediaWiki API",
 	"api-help-examples": "{{PLURAL:$1|Прыклад|Прыклады}}:"
 }

@@ -1852,7 +1852,7 @@
 	"filedelete-reason-dropdown": "*일반적인 삭제 이유\n** 저작권 침해\n** 중복된 파일",
 	"filedelete-edit-reasonlist": "삭제 이유 편집",
 	"filedelete-edit-reasonlist-suppress": "숨기기 이유 수정",
-	"filedelete-maintenance": "유지보수 중에는 임시적으로 삭제와 되살리기를 할 수 없습니다.",
+	"filedelete-maintenance": "유지보수 중에는 일시적으로 삭제와 되살리기를 할 수 없습니다.",
 	"filedelete-maintenance-title": "파일을 삭제할 수 없습니다",
 	"mimesearch": "MIME 검색",
 	"mimesearch-summary": "이 페이지는 MIME 유형에 해당하는 파일을 필터합니다.\n입력: 내용종류/하위종류나 내용종류/*, 예를 들어 <code>image/jpeg</code>",

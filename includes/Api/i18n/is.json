@@ -24,6 +24,7 @@
 	"apihelp-query+transcludedin-example-generator": "Sækja upplýsingar um síður sem innifela [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-query+usercontribs-paramvalue-prop-flags": "Bætir við mörkum breytingunnar.",
 	"apihelp-query+watchlist-paramvalue-prop-flags": "Bætir við mökrum fyrir breytinguna.",
+	"apihelp-languagesearch-param-search": "Leitarstrengur",
 	"api-help-license": "Leyfi: [[$1|$2]]",
 	"api-help-license-noname": "Leyfi: [[$1|Sjá tengil]]",
 	"api-help-license-unknown": "Leyfi: <span class=\"apihelp-unknown\">óþekkt</span>",

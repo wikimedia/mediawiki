@@ -86,5 +86,11 @@
 	"apihelp-emailuser-example-email": "Unviar un corréu al usuariu <kbd>WikiSysop</kbd> col testu <kbd>Content</kbd>.",
 	"apihelp-expandtemplates-param-title": "Títulu de la páxina.",
 	"apihelp-expandtemplates-param-text": "Testu wiki a convertir.",
-	"apihelp-opensearch-param-suggest": "Yá nun s’utiliza."
+	"apihelp-opensearch-param-suggest": "Yá nun s’utiliza.",
+	"apihelp-languagesearch-summary": "Buscar nomes de llingua en cualquier alfabetu.",
+	"apihelp-languagesearch-param-search": "Buscar cadena.",
+	"apihelp-languagesearch-param-typos": "Númberu d'errores ortográficos permitíos na cadena de gueta.",
+	"apihelp-languagesearch-example-1": "Buscar \"Te\"",
+	"apihelp-languagesearch-example-2": "Buscar \"ഫി\"",
+	"apihelp-languagesearch-example-3": "Buscar \"ഫി\", permitiendo un fallu d'ortografía"
 }

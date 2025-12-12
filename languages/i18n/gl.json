@@ -426,6 +426,7 @@
 	"throttled-mailpassword": "Envióuseche un correo electrónico para restableceres un contrasinal {{PLURAL:$1|hai unha hora|hai $1 horas}}.\nPara evitar abusos ao sistema só se enviarán mensaxes de restablecemento de contrasinal cada {{PLURAL:$1|hora|$1 horas}}.",
 	"mailerror": "Produciuse un erro ao enviar o correo electrónico: $1",
 	"acct_creation_throttle_hit": "Alguén que visitou este wiki co teu enderezo IP creou {{PLURAL:$1|unha conta|$1 contas}} nun breve período de tempo ($2), que é o máximo permitido.\nPor iso, outras persoas que se conecten desde este enderezo IP non poderán crear máis contas ata que pase un certo tempo.",
+	"acct_creation_throttle_hit-temp": "Alguén que visitou este wiki co teu enderezo IP creou {{PLURAL:$1|unha conta temporal|$1 contas temporais}} nun breve período de tempo ($2), que é o máximo permitido.\nPor iso, outras persoas que se conecten desde este enderezo IP non poderán crear máis contas temporais ata que pase un certo tempo.",
 	"invalidemailaddress": "Ese enderezo de correo electrónico non se pode usar porque semella ter un formato incorrecto.\nEscribe un enderezo cun formato válido ou baleira ese campo.",
 	"cannotchangeemail": "Neste wiki non se poden mudar os enderezos de correo electrónico asociados a unha conta.",
 	"emaildisabled": "Este sitio non pode enviar correos electrónicos.",

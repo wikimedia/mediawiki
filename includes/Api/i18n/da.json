@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Christian List",
 			"Saederup92",
-			"Sarrus"
+			"Sarrus",
+			"Steenth"
 		]
 	},
 	"apihelp-main-param-action": "Hvilken handling der skal udføres",
@@ -100,6 +102,12 @@
 	"apihelp-stashedit-param-sectiontitle": "Titlen på et nyt afsnit.",
 	"apihelp-stashedit-param-text": "Sideindhold.",
 	"apihelp-tag-param-reason": "Årsag for ændringen.",
+	"apihelp-languagesearch-summary": "Søg efter navne på sprog i valgfrit skriftsystem.",
+	"apihelp-languagesearch-param-search": "Søgestreng.",
+	"apihelp-languagesearch-param-typos": "Antallet af stavefejl som tillades i søgestrengen.",
+	"apihelp-languagesearch-example-1": "Søg efter \"Te\"",
+	"apihelp-languagesearch-example-2": "Søg efter \"ഫി\"",
+	"apihelp-languagesearch-example-3": "Søg efter \"ഫി\", og tillad en tastefejl",
 	"apihelp-unblock-summary": "Ophæv blokering af bruger.",
 	"apihelp-unblock-param-reason": "Årsag til ophævelse af blokering.",
 	"apihelp-upload-param-watch": "Overvåg siden.",

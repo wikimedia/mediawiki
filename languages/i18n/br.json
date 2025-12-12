@@ -342,7 +342,7 @@
 	"createaccount": "Krouiñ ur gont nevez",
 	"userlogin-resetpassword-link": "Ankouaet ho ker-tremen ganeoc'h ?",
 	"userlogin-helplink2": "Skoazell evit kevreañ",
-	"userlogin-loggedin": "Kevreet oc'h dija evel {{GENDER:$1|$1}}.\nImplijit ar furmskrid amañ dindan evit kevreañ evel un implijer all.",
+	"userlogin-loggedin": "Kevreet oc'h dija evel {{GENDER:$1|$1}}.",
 	"userlogin-reauth": "Ret eo deoc'h adkevreañ evit prouiñ ez oc'h {{GENDER:$1|$1}}",
 	"userlogin-createanother": "Krouiñ ur gont all",
 	"createacct-emailrequired": "Chomlec'h postel",

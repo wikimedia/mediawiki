@@ -143,6 +143,7 @@
 	"apihelp-resetpassword-param-user": "Utilizaire qu'es estat reïnicializat.",
 	"apihelp-stashedit-param-text": "Contengut de la pagina.",
 	"apihelp-tag-param-reason": "Motiu de la modificacion.",
+	"apihelp-languagesearch-param-search": "Cercar lo tèxte.",
 	"apihelp-unblock-summary": "Desblocar un utilizaire.",
 	"apihelp-unblock-param-reason": "Motiu del desblocatge.",
 	"apihelp-unblock-example-id": "Levar lo blocatge d’ID #<kbd>105</kbd>.",

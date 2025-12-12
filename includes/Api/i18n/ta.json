@@ -45,6 +45,7 @@
 	"apihelp-setpagelanguage-summary": "ஒரு பக்கத்தின் மொழியை மாற்றவும்.",
 	"apihelp-setpagelanguage-param-reason": "மாற்றத்திற்கான காரணம்.",
 	"apihelp-tag-param-reason": "மாற்றத்திற்கான காரணம்.",
+	"apihelp-languagesearch-param-search": "தேடு சரம்.",
 	"api-help-source": "மூலம்: $1",
 	"api-help-license": "அனுமதி: [[$1|$2]]",
 	"api-help-license-noname": "அனுமதி: [[$1|இணைப்பைப் பார்]]",

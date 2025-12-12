@@ -133,5 +133,10 @@
 	"apihelp-login-example-login": "Tràse.",
 	"apihelp-move-summary": "Mòve paggena.",
 	"apihelp-opensearch-param-search": "Ascìa stringa.",
-	"apihelp-opensearch-param-format": "'O furmato 'e ll'output."
+	"apihelp-opensearch-param-format": "'O furmato 'e ll'output.",
+	"apihelp-languagesearch-param-search": "Ascìa stringa.",
+	"apihelp-languagesearch-param-typos": "Nummero errure 'e battitura ca fossero premmesse dint'a na stringa 'e cerca",
+	"apihelp-languagesearch-example-1": "Ascia \"Te\"",
+	"apihelp-languagesearch-example-2": "Ascia \"ഫി\"",
+	"apihelp-languagesearch-example-3": "Cerca \"ഫി\", cunzentenno 'e fà n'errore 'e battitura"
 }

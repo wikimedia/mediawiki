@@ -4,7 +4,8 @@
 			"Jojit fb",
 			"LR Guanzon",
 			"Leeheonjin",
-			"Macofe"
+			"Macofe",
+			"Sky Harbor"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Mga Kasulatan]]\n* [[mw:Special:MyLanguage/API:FAQ|Mga Katanungan]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Listahan ng mga Liham]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Mga API ng Anunsyo]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Mga Bug & Kahilingan]\n</div>\n<strong>Katayuan:</strong> Lahat ng mga tampok na ipinapakita sa pahinang ito ay dapat na gumagana, ngunit ang API ay nasa aktibong pagbuo pa, at maaaring magbago ng kahit anong oras. Mag-subscribe sa [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ the mediawiki-api-announce listahan ng mga liham] para sa abiso ng mga update.\n\n<strong>Mga kahilingan sa mga kamalian:</strong> Kapag ang mga kahilingan sa mga kamalian ay ipinadala sa API, mayroong isang HTTP header na maipapadala na may susing \"MediaWiki-API-Error\" at ang parehong halaga ng ulo at ng kodigo ng kamalian na ipinapadala pabalik ay maitatakda sa parehas na halaga. Para sa karagdagang impormasyon, tingnan ang [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Mga kamalian at babala]].\n\n<strong>Pagsubok:</strong> Para sa madaling pagsubok ng mga kahilingan sa API, tingnan ang [[Special:ApiSandbox]].",
@@ -39,6 +40,12 @@
 	"apihelp-query+templates-example-simple": "Kumuha ng mga suleras o padron na ginamit sa pahinang <kbd>Unang Pahina</kbd>.",
 	"apihelp-query+watchlist-example-simple": "Itala ang mga punong pagbabago ng mga kasalukuyang binagong pahina sa kasalukuyang listahan ng binabantayan ng tagagamit.",
 	"apihelp-revisiondelete-example-revision": "Itago ang nilalaman para sa pagbabago ng <kbd>12345</kbd> sa pahinang <kbd>Unang Pahina</kbd>.",
+	"apihelp-languagesearch-summary": "Maghanap ng mga pangalan ng wika sa anumang eskrito.",
+	"apihelp-languagesearch-param-search": "Linya ng paghahanap.",
+	"apihelp-languagesearch-param-typos": "Bilang ng mga kamalian sa pagbabaybay na pinapahintulutan sa linya ng paghahanap.",
+	"apihelp-languagesearch-example-1": "Maghanap para sa \"Te\"",
+	"apihelp-languagesearch-example-2": "Maghanap para sa \"ഫി\"",
+	"apihelp-languagesearch-example-3": "Maghanap para sa \"ഫി\", na maaaring may isang kamalian sa pagbabaybay",
 	"apihelp-upload-example-url": "Mag-karga mula sa URL.",
 	"apihelp-watch-example-watch": "Bantayan ang pahinang <kbd>Main Page</kbd>."
 }

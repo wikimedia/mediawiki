@@ -44,5 +44,7 @@
 	"apihelp-query+alllinks-paramvalue-prop-title": "Sernavê girêdanê lê zêde dike.",
 	"apihelp-query+search-param-sort": "Nîzama rêzkirina encamên vegerandî rast bikin.",
 	"apihelp-tag-param-reason": "Sedema bo guhartinê.",
+	"apihelp-languagesearch-example-1": "Li \"Te\" bigere",
+	"apihelp-languagesearch-example-2": "Li \"ഫി\" bigere",
 	"api-help-parameters": "{{PLURAL:$1|Parametre}}:"
 }

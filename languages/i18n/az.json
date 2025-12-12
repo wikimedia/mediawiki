@@ -437,6 +437,7 @@
 	"throttled-mailpassword": "Parol sıfırlama funksiyası son {{PLURAL:$1|bir saat|$1 saat}} ərzində artıq istifadə edilib. Bu xidmətin pis niyyətlə istifadə edilməsinin qarşısını almaq üçün, hər {{PLURAL:$1|bir saatda|$1 saatda}} yalnız bir parol sıfırlama e-məktubu göndərilə bilər.",
 	"mailerror": "Məktub göndərmə xətası: $1",
 	"acct_creation_throttle_hit": "Sizin IP ünvanınızdan bu vikidə son $2 ərzində {{PLURAL:$1|1 hesab|$1 hesab}} açılmışdır və bu, həmin müddət ərzində icazə verilən maksimum saydır.\nBu səbəbdən, bu IP ünvanı istifadə edən istifadəçilər hal-hazırda başqa hesab aça bilməzlər.",
+	"acct_creation_throttle_hit-temp": "Sizin IP ünvanınızdan istifadə edərək bu vikiyə daxil olan ziyarətçilər son $2 ərzində {{PLURAL:$1|1 müvəqqəti hesab|$1 müvəqqəti hesab}} yaradıblar ki, bu da bu müddət ərzində icazə verilən maksimum həddir.\nNəticədə, bu IP ünvanından istifadə edən ziyarətçilər hazırda başqa müvəqqəti hesab yarada bilmirlər.",
 	"invalidemailaddress": "E-poçt ünvanınızı qeyri-düzgün formatda olduğu üçün qəbul edə bilmirik.\nXahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.",
 	"cannotchangeemail": "Hesabın e-poçt ünvanı bu viki üzərindən dəyişdirilə bilməz.",
 	"emaildisabled": "Bu saytdan e-poçt göndərə bilməzsiniz.",

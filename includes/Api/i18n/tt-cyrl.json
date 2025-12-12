@@ -9,5 +9,8 @@
 	"apihelp-feedcontributions-param-newonly": "Битләр ясау үзгәртмәләре генә күрсәтелсен.",
 	"apihelp-feedcontributions-param-hideminor": "Кече үзгәрешләрне яшерү.",
 	"apihelp-feedrecentchanges-param-hideminor": "Кече үзгәрешләрне яшерү.",
+	"apihelp-languagesearch-param-search": "Эзләү юлы.",
+	"apihelp-languagesearch-example-1": "«Te» эзләү",
+	"apihelp-languagesearch-example-2": "«ഫി» эзләү",
 	"api-help-param-internal": "Эчке."
 }

@@ -11,6 +11,7 @@
 			"Rachmat04",
 			"Rex",
 			"Veracious",
+			"William Surya Permana",
 			"WongKentir"
 		]
 	},
@@ -133,5 +134,10 @@
 	"apihelp-query+prefixsearch-param-profile": "Cari profil untuk digunakan.",
 	"apihelp-query+search-param-qiprofile": "Meminta profil independen untuk digunakan (berefek pada algoritma peringkat).",
 	"apihelp-revisiondelete-param-ids": "Penanda untuk perubahan yang akan dihapus",
+	"apihelp-languagesearch-param-search": "Cari kata.",
+	"apihelp-languagesearch-param-typos": "Jumlah kesalahan eja yang diperbolehkan dalam kata pencarian.",
+	"apihelp-languagesearch-example-1": "Cari \"Te\"",
+	"apihelp-languagesearch-example-2": "Cari \"ഫി\"",
+	"apihelp-languagesearch-example-3": "Cari \"ഫി\", memperbolehkan satu kesalahan ketik",
 	"api-format-prettyprint-status": "Tanggapan ini akan dikembalikan dengan status $1 $2 HTTP."
 }

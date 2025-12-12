@@ -2088,6 +2088,8 @@
 	"undeleteviewlink": "pregled",
 	"undeleteinvert": "Obrni odabir",
 	"undeletecomment": "Razlog:",
+	"undeletecommentotherlist": "drugi/dodatni razlog",
+	"undelete-edit-commentlist": "Uredi razloge vraćanja",
 	"undeletedpage": "'''$1 je vraćena'''\n\nPogledajte [[Special:Log/delete|evidenciju brisanja]] za zapise nedavnih brisanja i vraćanja.",
 	"undelete-header": "Pogledaj [[Special:Log/delete|evidenciju brisanja]] za nedavno obrisane stranice.",
 	"undelete-search-title": "Pretraži obrisane stranice",

@@ -14,6 +14,12 @@
 	"apihelp-expandtemplates-param-title": "Lapas nosaukums.",
 	"apihelp-query+allrevisions-example-ns-any": "Saraksts ar pirmajām 50 versijām jebkurā vārdtelpā.",
 	"apihelp-query+watchlist-paramvalue-type-new": "Lapu veidošana.",
+	"apihelp-languagesearch-summary": "Meklē valodu nosaukumus jebkurā rakstībā.",
+	"apihelp-languagesearch-param-search": "Meklēšanas vaicājums.",
+	"apihelp-languagesearch-param-typos": "Meklēšanas vaicājumā atļauto pareizrakstības kļūdu skaits.",
+	"apihelp-languagesearch-example-1": "Meklēt \"Te\"",
+	"apihelp-languagesearch-example-2": "Meklēt \"ഫി\"",
+	"apihelp-languagesearch-example-3": "Meklēt \"ഫി\", atļaujot vienu kļūdu",
 	"apihelp-userrights-param-userid": "Lietotāja ID:",
 	"apierror-nosuchuserid": "Nav lietotāja ar ID $1."
 }

@@ -7,5 +7,7 @@
 	"apihelp-block-summary": "सदस्य कय अवरोधित करा जाय।",
 	"apihelp-block-param-reason": "ब्लाक करेकै कारण",
 	"apihelp-block-param-nocreate": "खाते बनावेकै रोका जाय",
-	"apihelp-edit-param-minor": "छोट संपादन"
+	"apihelp-edit-param-minor": "छोट संपादन",
+	"apihelp-languagesearch-param-search": "स्ट्रिङ खोजा जाय",
+	"apihelp-languagesearch-example-1": "\"Te\" खोजा जाय"
 }

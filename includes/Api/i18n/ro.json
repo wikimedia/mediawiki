@@ -27,6 +27,12 @@
 	"apihelp-query+exturlusage-param-protocol": "\nProtocolul URL-ului. Dacă <var>interogarea este goală și $1</var> este setată, protocolul este <kbd>http</kbd> și <kbd>https</kbd> . Lăsați atât aceasta, cât și <var>interogarea $1</var> goale pentru a lista toate linkurile externe.",
 	"apihelp-query+revisions-param-startid": "Începeți enumerarea de la marcajul de timp al revizuirii cu acest ID. Revizia trebuie să existe, dar nu trebuie să aparțină acestei pagini.",
 	"apihelp-query+revisions-param-endid": "Opriți enumerarea la marcajul de timp al revizuirii cu acest ID. Revizia trebuie să existe, dar nu trebuie să aparțină acestei pagini.",
+	"apihelp-languagesearch-summary": "Căutați după nume de limbi în orice script.",
+	"apihelp-languagesearch-param-search": "Șir de căutare.",
+	"apihelp-languagesearch-param-typos": "Numărul de greșeli de scriere permise în șirul de căutare.",
+	"apihelp-languagesearch-example-1": "Căutați după „Te”",
+	"apihelp-languagesearch-example-2": "Căutați după „ഫി”",
+	"apihelp-languagesearch-example-3": "Căutați după „ഫി”, permițând o greșeală de scriere",
 	"api-help-parameters-note": "Alți parametri generali sunt disponibili.",
 	"apierror-readonly": "Wiki-ul este în prezent în modul doar de citit."
 }

@@ -3,6 +3,7 @@
 		"authors": [
 			"01miki10",
 			"1233qwer1234qwer4",
+			"Alluk.",
 			"Hdicu",
 			"Jaakkoh",
 			"MITO",
@@ -126,6 +127,7 @@
 	"apihelp-query+linkshere-param-show": "Näytä vain kohteet, jotka täyttävät nämä kriteerit:",
 	"apihelp-query+querypage-param-page": "Toimintosivun nimi. Huomaa, että kirjainkoolla on merkitystä.",
 	"apihelp-tag-example-rev": "Lisää tunniste <kbd>vandalism</kbd> versioon 123 antamatta perustelua.",
+	"apihelp-languagesearch-param-typos": "Virheiden enimmäislukumäärä hakutekstissä",
 	"apihelp-upload-param-stash": "Mikäli valittu, palvelin säilöö tiedoston väliaikaisesti tallentamisen sijaan.",
 	"apihelp-userrights-param-user": "Käyttäjä.",
 	"api-help-main-header": "Päämoduuli",

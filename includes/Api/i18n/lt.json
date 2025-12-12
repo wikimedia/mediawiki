@@ -6,6 +6,7 @@
 			"Homo",
 			"Hugo.arg",
 			"Nokeoo",
+			"Salpusnis",
 			"Tomasdd",
 			"Zygimantus"
 		]
@@ -352,6 +353,11 @@
 	"apihelp-stashedit-param-text": "Puslapio turinys.",
 	"apihelp-stashedit-param-summary": "Keisti santrauką.",
 	"apihelp-tag-param-reason": "Keitimo priežastis.",
+	"apihelp-languagesearch-param-search": "Ieškoti eilutės.",
+	"apihelp-languagesearch-param-typos": "Leistinas rašybos klaidų skaičius paieškos eilutėje.",
+	"apihelp-languagesearch-example-1": "Ieškoti \"Te\"",
+	"apihelp-languagesearch-example-2": "Ieškoti \"ഫി\"",
+	"apihelp-languagesearch-example-3": "Ieškoti \"ഫി\", leidžiant vieną rinkimo klaidą",
 	"apihelp-unblock-summary": "Atblokuoti naudotoją.",
 	"apihelp-unblock-param-reason": "Atblokavimo priežastis.",
 	"apihelp-unblock-example-id": "Atblokuoti blokavimo ID #<kbd>105</kbd>.",

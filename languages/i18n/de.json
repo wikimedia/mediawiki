@@ -1512,6 +1512,7 @@
 	"rcfilters-view-tags-tooltip": "Ergebnisse filtern, die Bearbeitungsmarkierungen verwenden",
 	"rcfilters-view-return-to-default-tooltip": "Zurück zum Hauptfiltermenü",
 	"rcfilters-view-tags-help-icon-tooltip": "Mehr über Bearbeitungen mit Markierungen erfahren",
+	"rcfilters-view-wllabels-help-icon-tooltip": "Erfahren Sie mehr über die Beobachtungs-Labels",
 	"rcfilters-liveupdates-button": "Live-Aktualisierungen",
 	"rcfilters-liveupdates-button-title-on": "Live-Aktualisierungen ausschalten",
 	"rcfilters-liveupdates-button-title-off": "Neue Änderungen bei Auftreten anzeigen",
@@ -2303,6 +2304,10 @@
 	"watchlistlabels-form-submit-new": "Erstellen",
 	"watchlistlabels-form-submit-edit": "Speichern",
 	"watchlistlabels-limit-reached": "Label kann nicht gespeichert werden: Du hast die maximal zulässige Anzahl ($1) von Beobachtungslisten-Labels erreicht.",
+	"watchlistlabels-delete-header": "{{PLURAL:$1|Dieses Label|Diese Label}} löschen?",
+	"watchlistlabels-delete-warning": "{{PLURAL:$1|Das folgende Beobachtungslisten-Label|Die folgenden $2 Beobachtungslisten-Label}} werden gelöscht. Dieser Vorgang kann nicht rückgängig gemacht werden.",
+	"watchlistlabels-delete-unused": "wird auf keinem Beobachtungslisten-Element verwendet",
+	"watchlistlabels-delete-count": "wird auf {{PLURAL:$2|einem Beobachtungslisten-Element|$2 Beobachtungslisten-Elementen}} verwendet",
 	"watchlist-filters-labels-title": "Labels",
 	"watchlist-filters-labels-list-title": "Beoachtungsliste-Labels",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>nicht</strong> =$1",
@@ -4204,5 +4209,6 @@
 	"temp-user-unable-to-acquire": "Es ist nicht möglich, einen temporären Benutzernamen für das Konto zu erstellen. Bitte versuche es erneut.",
 	"table-of-contents-show-button-aria-label": "Inhaltsverzeichnis anzeigen",
 	"table-of-contents-hide-button-aria-label": "Inhaltsverzeichnis ausblenden",
-	"diff-usergroups": "$1 {{PLURAL:$1|Benutzergruppe|Benutzergruppen}}"
+	"diff-usergroups": "$1 {{PLURAL:$1|Benutzergruppe|Benutzergruppen}}",
+	"languageselector-no-results": "Keine Ergebnisse gefunden."
 }

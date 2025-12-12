@@ -8,6 +8,7 @@
 			"Kizule",
 			"Milicevic01",
 			"Obsuser",
+			"Prevodim",
 			"Сербијана"
 		]
 	},
@@ -81,6 +82,9 @@
 	"apihelp-query+usercontribs-param-show": "Прикажи само ставке које су у складу са овим критеријумима, нпр. само не-мање измене: <kbd>$2show=!minor</kbd>.\n\nАко је одређено <kbd>$2show=patrolled</kbd> или <kbd>$2show=!patrolled</kbd>, измене старије од <var>[[mw:Special:MyLanguage/Manual:$wgRCMaxAge|$wgRCMaxAge]]</var> ($1 {{PLURAL:$1|секунда|секунде|секунди}}) неће бити приказане.",
 	"apihelp-setpagelanguage-extended-description-disabled": "Мењање језика странице није дозвољено на овој Вики.\n\nОмогућите <var>[[mw:Special:MyLanguage/Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var> да бисте користили ову функцију.",
 	"apihelp-stashedit-param-text": "Садржај странице.",
+	"apihelp-languagesearch-summary": "Претражите језике на било ком писму.",
+	"apihelp-languagesearch-param-search": "Текст за претрагу.",
+	"apihelp-languagesearch-param-typos": "Број дозвољених грешака у куцању.",
 	"apihelp-unblock-summary": "Деблокирање корисника.",
 	"apihelp-userrights-param-user": "Корисник.",
 	"api-format-title": "Медијавики API резултат",

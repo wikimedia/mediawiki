@@ -119,6 +119,7 @@
 	"apihelp-query+imageinfo-param-urlheight": "Παρόμοιο με το $1urlwidth.",
 	"apihelp-query+images-param-limit": "Πόσα αρχεία να επιστραφούν.",
 	"apihelp-query+users-paramvalue-prop-gender": "Επισημαίνει το φύλο του χρήστη. Επιστρέφει «αρσενικό», «θηλυκό» ή «άγνωστο»",
+	"apihelp-languagesearch-param-search": "Συμβολοσειρά αναζήτησης.",
 	"api-help-templatedparams-header": "Προτυποποιημένες παράμετροι",
 	"api-help-param-type-limit": "Τύπος: ακέραιος ή <kbd>max</kbd>",
 	"apierror-invalidmethod": "Μη έγκυρη μέθοδος HTTP. Μπορείτε να χρησιμοποιήσετε τα GET ή POST.",

@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Bapham123",
+			"Bluetpp",
 			"Dinhxuanduyet",
 			"Duongvu",
 			"Kizule",
@@ -203,6 +204,12 @@
 	"apihelp-revisiondelete-param-suppress": "Có phải che giấu dữ liệu đối với bảo quản viên cũng như các thành viên khác.",
 	"apihelp-rollback-summary": "Lùi lại sửa đổi gần đây nhất trên trang này.",
 	"apihelp-rollback-extended-description": "Nếu người dùng gần nhất đã sửa đổi trang này nhiều lần, tất cả sửa đổi của họ sẽ được lùi lại cùng một lúc.",
+	"apihelp-languagesearch-summary": "Tìm kiếm tên ngôn ngữ trong bất kỳ tập lệnh nào.",
+	"apihelp-languagesearch-param-search": "Chuỗi tìm kiếm.",
+	"apihelp-languagesearch-param-typos": "Số lỗi chính tả được cho phép trong chuỗi tìm kiếm.",
+	"apihelp-languagesearch-example-1": "Tìm kiếm cho “Te”",
+	"apihelp-languagesearch-example-2": "Tìm kiếm cho “ഫി”",
+	"apihelp-languagesearch-example-3": "Tìm kiếm cho “ഫി” mà cho phép một lỗi chính tả",
 	"apihelp-format-example-generic": "Cho ra kết quả truy vấn dưới dạng $1.",
 	"apihelp-json-summary": "Cho ra dữ liệu dưới dạng JSON.",
 	"apihelp-jsonfm-summary": "Cho ra dữ liệu dưới dạng JSON (định dạng bằng HTML).",

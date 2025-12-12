@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amaia",
 			"An13sa",
 			"Gorkaazk",
 			"Iñaki LL",
@@ -8,6 +9,7 @@
 			"Mikel Ibaiba",
 			"Sator",
 			"Subi",
+			"Theklan",
 			"Xabier Armendaritz"
 		]
 	},
@@ -219,6 +221,10 @@
 	"apihelp-query+search-paramvalue-prop-hasrelated": "Ezikusia.",
 	"apihelp-query+watchlist-paramvalue-prop-title": "Orrialdearen izenburua gehitzen du.",
 	"apihelp-query+watchlist-paramvalue-prop-user": "Aldaketa egin duen erabiltzailea gehitzen du.",
+	"apihelp-languagesearch-param-search": "Bilatu katea.",
+	"apihelp-languagesearch-example-1": "Bilatu \"Te\"",
+	"apihelp-languagesearch-example-2": "Bilatu \"ഫി\"",
+	"apihelp-languagesearch-example-3": "Bilatu \"ഫി\", akats bat baimenduz",
 	"apihelp-upload-param-file": "Fitxategiaren edukia.",
 	"apihelp-upload-example-url": "Igo URL batetik.",
 	"apihelp-userrights-param-reason": "Aldaketarako arrazoia.",

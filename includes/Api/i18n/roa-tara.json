@@ -26,6 +26,12 @@
 	"apihelp-emailuser-param-text": "Cuèrpe d'a mail.",
 	"apihelp-expandtemplates-param-title": "Titole d'a pàgene",
 	"apihelp-purge-param-forcelinkupdate": "Aggionr le tabbelle de collegaminde e fà otre aggiornamende secondarie de date.",
+	"apihelp-languagesearch-summary": "Cirche 'u nome de le lènghe jndr'à tutte le script.",
+	"apihelp-languagesearch-param-search": "Cirche 'a stringhe.",
+	"apihelp-languagesearch-param-typos": "Numere de errore de dizione permesse jndr'à stringhe de ricerche.",
+	"apihelp-languagesearch-example-1": "Cirche \"Te\"",
+	"apihelp-languagesearch-example-2": "Cirche \"ഫി\"",
+	"apihelp-languagesearch-example-3": "Cirche \"ഫി\", cu l'errore de battiture",
 	"api-help-param-internal": "Inderne.",
 	"apierror-compare-relative-to-deleted": "Non ge se pò ausà <kbd>torelative=$1</kbd> relative a 'na revisione scangellate."
 }

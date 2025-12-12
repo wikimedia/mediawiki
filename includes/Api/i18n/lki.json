@@ -23,5 +23,6 @@
 	"apihelp-login-example-login": "إنۆم هەتِن.",
 	"apihelp-logout-summary": "دۀرچئن و پاک کردن داده متن",
 	"apihelp-logout-example-logout": "خروج کاربر فعلی",
-	"apihelp-options-example-reset": "بازنشانی همه تنظیمات."
+	"apihelp-options-example-reset": "بازنشانی همه تنظیمات.",
+	"apihelp-languagesearch-param-search": "جستجوی رشته."
 }

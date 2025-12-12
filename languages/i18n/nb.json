@@ -454,6 +454,7 @@
 	"throttled-mailpassword": "En passordtilbakestillingsepost har allerede blitt sendt for mindre enn {{PLURAL:$1|én time|$1 timer}} siden.\nFor å forhindre misbruk kan bare én passordtilbakestillingsepost sendes per {{PLURAL:$1|time|$1 timer}}.",
 	"mailerror": "Feil under sending av e-post: $1",
 	"acct_creation_throttle_hit": "Gjester med samme IP-adresse som deg har opprettet {{PLURAL:$1|én konto|$1 kontoer}} i løpet av $2, og det er ikke tillatt å opprette flere.\nSom et resultat kan det for tiden ikke opprettes flere kontoer fra denne IP-adressen.",
+	"acct_creation_throttle_hit-temp": "Besøkende på denne wikien med samme IP-adresse som deg har opprettet {{PLURAL:$1|én midlertidig konto|$1 midlertidige kontoer}} i løpet av $2, som er maksimalt antall i denne tidsperioden.\nPå grunn av dette kan ikke de som bruker denne IP-adressen opprette flere midlertidige kontoer for øyeblikket.",
 	"invalidemailaddress": "E-postadressen din kan ikke aksepteres fordi den har ugyldig format.\nSkriv inn en korrekt e-postadresse eller tøm feltet.",
 	"cannotchangeemail": "E-postadresser knyttet til brukerkontoer kan ikke endres på denne wikien.",
 	"emaildisabled": "Dette nettstedet kan ikke sende e-poster.",
