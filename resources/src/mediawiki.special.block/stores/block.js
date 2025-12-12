@@ -246,6 +246,11 @@ module.exports = exports = defineStore( 'block', () => {
 	 * @type {ComputedRef<boolean>}
 	 */
 	const confirmationNeeded = computed( () => !!confirmationMessage.value );
+	/**
+	 * Whether the target is an IP address.
+	 */
+	const showIPTempBlockMessage = computed( () => mw.config.get( 'wgAutoCreateTempUserEnabled' ) &&
+		mw.util.isIPAddress( targetUser.value, true ) );
 
 	// ** Watchers **
 
@@ -634,6 +639,7 @@ module.exports = exports = defineStore( 'block', () => {
 		hardBlock,
 		confirmationMessage,
 		confirmationNeeded,
+		showIPTempBlockMessage,
 		removalReason,
 		removalConfirmationOpen,
 		loadFromData,

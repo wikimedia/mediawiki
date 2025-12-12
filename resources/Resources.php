@@ -2265,6 +2265,9 @@ return [
 			'mediawiki.htmlform',
 			'moment',
 		],
+		'messages' => [
+			'block-target-ip-tempuser-info',
+		],
 	],
 	// This bundles various small (under 5 KB?) JavaScript files that:
 	// - .. are never loaded when viewing or editing wiki pages.
@@ -2441,6 +2444,7 @@ return [
 			'block-success',
 			'block-target',
 			'block-target-placeholder',
+			'block-target-ip-tempuser-info',
 			'block-update',
 			'block-updated-message',
 			'block-user-active-blocks',

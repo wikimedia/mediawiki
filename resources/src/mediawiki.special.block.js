@@ -83,6 +83,21 @@
 			if ( partialActionsRestrictionsWidget ) {
 				partialActionsRestrictionsWidget.setDisabled( isSitewide );
 			}
+
+			if ( isNonEmptyIp && mw.config.get( 'wgAutoCreateTempUserEnabled' ) ) {
+				if ( $( '.mw-block-target-ip-tempuser-info' ).length === 0 ) {
+					const message = mw.msg(
+						'block-target-ip-tempuser-info',
+						blocktarget
+					);
+					const $container = $( '<p>' )
+						.addClass( 'mw-block-target-ip-tempuser-info' )
+						.text( message );
+					$( '#mw-htmlform-target' ).after( $container );
+				}
+			} else {
+				$( '.mw-block-target-ip-tempuser-info' ).remove();
+			}
 		}
 
 		function updateWatchOption( blocktarget ) {

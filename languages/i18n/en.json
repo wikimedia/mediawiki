@@ -2549,6 +2549,7 @@
 	"block-item-edit": "Edit",
 	"block-target": "Target",
 	"block-target-placeholder": "Username, IP address, or IP range",
+	"block-target-ip-tempuser-info": "All temporary account edits from this IP will be blocked. Temporary account creation from this IP will also be blocked.",
 	"block-pages-placeholder": "Add more pages...",
 	"block-namespaces-placeholder": "Add more namespaces...",
 	"block-update": "Update block",

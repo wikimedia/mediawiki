@@ -46,6 +46,9 @@
 		<user-lookup
 			v-model="store.targetUser"
 		></user-lookup>
+		<div v-if="store.showIPTempBlockMessage" class="mw-block-target-ip-tempuser-info">
+			{{ $i18n( 'block-target-ip-tempuser-info' ) }}
+		</div>
 
 		<div v-if="showBlockLogs">
 			<block-log
