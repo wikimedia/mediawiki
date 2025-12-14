@@ -379,7 +379,8 @@ class SpecialRenameUser extends SpecialPage {
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			->setMethod( 'post' )
 			->setId( 'renameuser' )
-			->setSubmitTextMsg( 'renameusersubmit' );
+			->setSubmitTextMsg( 'renameusersubmit' )
+			->setCancelTarget( $this->getPageTitle() )->showCancel( (bool)$warnings );
 
 		$this->getOutput()->addHTML( $htmlForm->prepareForm()->getHTML( false ) );
 	}
