@@ -1,4 +1,6 @@
 <?php
+declare( strict_types = 1 );
+
 use MediaWiki\Language\LanguageNameSearch;
 
 /**
@@ -10,7 +12,7 @@ class LanguageNameSearchTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider searchDataProvider
 	 */
-	public function testSearch( $searchKey, $expected ) {
+	public function testSearch( string $searchKey, array $expected ): void {
 		$actual = LanguageNameSearch::search( $searchKey, 1, 'en' );
 		// This is for better error messages
 		$this->assertEquals( $expected, $actual );
@@ -18,7 +20,7 @@ class LanguageNameSearchTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $actual );
 	}
 
-	public static function searchDataProvider() {
+	public static function searchDataProvider(): array {
 		return [
 			[ 'blargh', []
 			],

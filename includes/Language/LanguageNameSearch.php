@@ -8,6 +8,9 @@ use MediaWiki\MediaWikiServices;
 /**
  * Cross-Language Language name search
  *
+ * FIXME: This class can be marked as readonly once AutoLoaderStructureTest can
+ * parse "readonly" annotations.
+ *
  * Copyright (C) 2012 Alolita Sharma, Amir Aharoni, Arun Ganesh, Brandon Harris,
  * Niklas Laxström, Pau Giner, Santhosh Thottingal, Siebrand Mazeland and other
  * contributors.
@@ -40,7 +43,7 @@ class LanguageNameSearch {
 	 * @param string|null $userLanguage Language tag.
 	 * @return array
 	 */
-	public static function search( $searchKey, $typos = 0, $userLanguage = null ) {
+	public static function search( string $searchKey, int $typos = 0, ?string $userLanguage = null ): array {
 		$services = MediaWikiServices::getInstance();
 		$instance = $services->getLanguageNameSearch();
 		return $instance->doSearch( $searchKey, $typos, $userLanguage );
@@ -65,7 +68,7 @@ class LanguageNameSearch {
 	 * @param string|null $userLanguage Language tag.
 	 * @return array
 	 */
-	public function doSearch( $searchKey, $typos = 0, $userLanguage = null ) {
+	public function doSearch( string $searchKey, int $typos = 0, ?string $userLanguage = null ): array {
 		$results = [];
 		$searchKey = mb_strtolower( $searchKey );
 
@@ -87,7 +90,7 @@ class LanguageNameSearch {
 			}
 		}
 
-		$index = self::getIndex( $searchKey );
+		$index = $this->getIndex( $searchKey );
 		$bucketsForIndex = LanguageNameSearchData::$buckets[$index] ?? [];
 
 		// types are 'prefix', 'infix' (in this order!)
@@ -99,7 +102,7 @@ class LanguageNameSearch {
 				}
 
 				// Apply fuzzy search
-				if ( !self::matchNames( $name, $searchKey, $typos ) ) {
+				if ( !$this->matchNames( $name, $searchKey, $typos ) ) {
 					continue;
 				}
 
@@ -119,7 +122,7 @@ class LanguageNameSearch {
 				}
 
 				foreach ( $candidates as $candidate ) {
-					if ( self::matchNames( $candidate, $searchKey, $typos ) ) {
+					if ( $this->matchNames( $candidate, $searchKey, $typos ) ) {
 						$results[$code] = $candidate;
 						continue 2;
 					}
@@ -130,22 +133,12 @@ class LanguageNameSearch {
 		return $results;
 	}
 
-	/**
-	 * @param string $name
-	 * @param string $searchKey
-	 * @param int $typos
-	 * @return bool
-	 */
-	public static function matchNames( $name, $searchKey, $typos ) {
+	private function matchNames( string $name, string $searchKey, int $typos ): bool {
 		return strrpos( $name, $searchKey, -strlen( $name ) ) !== false
-			|| ( $typos > 0 && self::levenshteinDistance( $name, $searchKey ) <= $typos );
+			|| ( $typos > 0 && $this->levenshteinDistance( $name, $searchKey ) <= $typos );
 	}
 
-	/**
-	 * @param string $name
-	 * @return int
-	 */
-	public static function getIndex( $name ) {
+	public static function getIndex( string $name ): int {
 		$codepoint = self::getCodepoint( $name );
 
 		if ( $codepoint < 4000 ) {
@@ -163,7 +156,7 @@ class LanguageNameSearch {
 	 * @param string $str
 	 * @return int Code point of first letter of string
 	 */
-	public static function getCodepoint( $str ) {
+	private static function getCodepoint( string $str ): int {
 		$values = [];
 		$lookingFor = 1;
 		$strLen = strlen( $str );
@@ -204,11 +197,8 @@ class LanguageNameSearch {
 
 	/**
 	 * Calculate the Levenshtein distance between two strings
-	 * @param string $str1
-	 * @param string $str2
-	 * @return int
 	 */
-	public static function levenshteinDistance( $str1, $str2 ) {
+	private function levenshteinDistance( string $str1, string $str2 ): int {
 		if ( $str1 === $str2 ) {
 			return 0;
 		}
@@ -218,7 +208,7 @@ class LanguageNameSearch {
 			return $length2;
 		}
 		if ( $length1 < $length2 ) {
-			return self::levenshteinDistance( $str2, $str1 );
+			return $this->levenshteinDistance( $str2, $str1 );
 		}
 		$prevRow = range( 0, $length2 );
 		for ( $i = 0; $i < $length1; $i++ ) {
