@@ -41,7 +41,7 @@ function getSpecDuration( suiteMetrics ) {
 	for ( const { duration } of suiteMetrics ) {
 		specDuration += duration;
 	}
-	return specDuration.toFixed( 3 );
+	return specDuration;
 }
 
 /**
@@ -195,7 +195,7 @@ function writeAllProjectMetrics( metricsDir, fileName ) {
 	// Add Project metrics
 	lines.push( '# HELP wdio_project_duration_seconds Total duration of all test suites per project' );
 	lines.push( '# TYPE wdio_project_duration_seconds gauge' );
-	lines.push( formatMetric( 'wdio_project_duration_seconds', projectMetrics.duration, { ...labels } ) );
+	lines.push( formatMetric( 'wdio_project_duration_seconds', projectMetrics.duration.toFixed( 3 ), { ...labels } ) );
 
 	lines.push( '# HELP wdio_project_passed Number of tests passed per project' );
 	lines.push( '# TYPE wdio_project_passed gauge' );
