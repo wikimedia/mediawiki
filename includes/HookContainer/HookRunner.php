@@ -574,7 +574,6 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserGetEmailHook,
 	\MediaWiki\User\Hook\UserGetReservedNamesHook,
 	\MediaWiki\User\Hook\UserGroupsChangedHook,
-	\MediaWiki\User\Hook\UserIsBlockedGloballyHook,
 	\MediaWiki\User\Hook\UserIsBotHook,
 	\MediaWiki\User\Hook\UserIsLockedHook,
 	\MediaWiki\User\Hook\UserLoadAfterLoadFromSessionHook,
@@ -4921,14 +4920,6 @@ class HookRunner implements
 		return $this->container->run(
 			'UserIsBlockedFrom',
 			[ $user, $title, &$blocked, &$allowUsertalk ]
-		);
-	}
-
-	/** @inheritDoc */
-	public function onUserIsBlockedGlobally( $user, $ip, &$blocked, &$block ) {
-		return $this->container->run(
-			'UserIsBlockedGlobally',
-			[ $user, $ip, &$blocked, &$block ]
 		);
 	}
 

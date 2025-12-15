@@ -48,7 +48,6 @@ class SystemBlock extends AbstractBlock {
 	 * - 'proxy': the IP is listed in $wgProxyList
 	 * - 'dnsbl': the IP is associated with a listed domain in $wgDnsBlacklistUrls
 	 * - 'wgSoftBlockRanges': the IP is covered by $wgSoftBlockRanges
-	 * - 'global-block': for backwards compatibility with the UserIsBlockedGlobally hook
 	 *
 	 * @since 1.29
 	 * @return string|null

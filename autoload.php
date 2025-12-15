@@ -3375,7 +3375,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\User\\Hook\\UserGetEmailHook' => __DIR__ . '/includes/User/Hook/UserGetEmailHook.php',
 	'MediaWiki\\User\\Hook\\UserGetReservedNamesHook' => __DIR__ . '/includes/User/Hook/UserGetReservedNamesHook.php',
 	'MediaWiki\\User\\Hook\\UserGroupsChangedHook' => __DIR__ . '/includes/User/Hook/UserGroupsChangedHook.php',
-	'MediaWiki\\User\\Hook\\UserIsBlockedGloballyHook' => __DIR__ . '/includes/User/Hook/UserIsBlockedGloballyHook.php',
 	'MediaWiki\\User\\Hook\\UserIsBotHook' => __DIR__ . '/includes/User/Hook/UserIsBotHook.php',
 	'MediaWiki\\User\\Hook\\UserIsLockedHook' => __DIR__ . '/includes/User/Hook/UserIsLockedHook.php',
 	'MediaWiki\\User\\Hook\\UserLoadAfterLoadFromSessionHook' => __DIR__ . '/includes/User/Hook/UserLoadAfterLoadFromSessionHook.php',

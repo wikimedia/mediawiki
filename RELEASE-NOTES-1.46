@@ -157,6 +157,7 @@ because of Phabricator reports.
 * FileRepo no longer implements getUploadStash(), only LocalRepo does.
 * DatbaseBlock::delete, deprecated in 1.36, has been removed. Please use
   DatabaseBlockStore::deleteBlock instead.
+* The UserIsBlockedGlobally hook, deprecated in 1.40, has been removed
 * …
 
 === Deprecations in 1.46 ===
