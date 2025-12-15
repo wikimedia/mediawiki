@@ -693,6 +693,8 @@
 	"unstrip-size-category": "Stranice s prěvyšenjem razměra «unstrip»",
 	"unstrip-size-category-desc": "Stranica prěvyšaje ograničenje razměra «unstrip».",
 	"converter-manual-rule-error": "Odkryta pogrěška v pravilah ručnoj jezyčnoj konversije",
+	"bad-double-underscore-category": "Stranice s hybnymi prěključami provodženja",
+	"bad-double-underscore-category-desc": "Stranica sodrživaje hybny prěvedeny [[mw:Special:MyLanguag/Help:Magic_words#Behavior_Switches|prěključ provodženja]]. Popravne prěvody načinajut i končajut s dvojnymi podčrknutjemi.",
 	"undo-success": "Pravka može byti odčinjena.\nProsimo, že prověrite sravnjenje niže i ubědite se, že hočete sdělati točno to, a potom, že sovršite odčinjenje pravky publikujuči svoju pravku.",
 	"undo-failure": "Odčinjenje pravky jest nemožno zaradi konflikta s medžuvrěmennymi pravkami.",
 	"undo-main-slot-only": "Pravka ne može byti odčinjena, ibo vključaje sodržanje vně glavnogo slota",

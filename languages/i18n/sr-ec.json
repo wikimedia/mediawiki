@@ -866,7 +866,7 @@
 	"rev-deleted-comment": "(опис измене уклоњен)",
 	"rev-deleted-user": "(корисничко име уклоњено)",
 	"rev-deleted-event": "(детаљи уноса уклоњени)",
-	"rev-deleted-user-contribs": "[измена сакривена са списка због уклоњеног корисничког имена или IP адресе]",
+	"rev-deleted-user-contribs": "[уклоњено корисничко име/IP адреса — измена скривена у доприносима]",
 	"rev-deleted-text-permission": "Измена ове странице је <strong>избрисана</strong>.\nДетаље можете да пронађете у [{{fullurl:{{#Special:Log}}/delete|page=$1}} дневнику брисања].",
 	"rev-suppressed-text": "Ова измена странице је <strong>потиснута</strong>.",
 	"rev-suppressed-text-permission": "Измена ове странице је <strong>сакривена</strong>. Више информација можете наћи у [{{fullurl:{{#Special:Log}}/suppress|page=$1}} дневнику сакривања].",

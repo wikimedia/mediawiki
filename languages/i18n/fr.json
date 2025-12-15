@@ -224,7 +224,8 @@
 			"Abakar B",
 			"Pyschobbens",
 			"TimHBD",
-			"Marphy 123"
+			"Marphy 123",
+			"Lenchanteur"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -1003,7 +1004,7 @@
 	"unstrip-size-category": "Pages où la limite de taille de développement est dépassée",
 	"unstrip-size-category-desc": "La page dépasse la limite de taille de développement.",
 	"converter-manual-rule-error": "Erreur détectée dans la règle manuelle de conversion de langue",
-	"bad-double-underscore-category": "Pages avec des commutateurs de comportement non valides",
+	"bad-double-underscore-category": "Pages avec des modificateurs de comportement non valides",
 	"bad-double-underscore-category-desc": "La page contient un modificateur de comportement [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|modificateur de comportement]] localisé invalide. Les localisations valides commencent et se terminent par deux traits de soulignement.",
 	"undo-success": "La modification peut être annulée.\nVeuillez vérifier que les différences ci-dessous correspondent bien à ce que vous voulez faire, puis publier ces changements pour finaliser l’annulation de cette modification.",
 	"undo-failure": "La modification ne peut pas être annulée à cause de modifications intermédiaires en conflit.",

@@ -1201,7 +1201,7 @@
 	"group-named": "註冊用戶",
 	"group-autoconfirmed": "自動確認用戶",
 	"group-bot": "機械人",
-	"group-sysop": "操作員",
+	"group-sysop": "管理員",
 	"group-interface-admin": "介面管理員",
 	"group-bureaucrat": "事務員",
 	"group-suppress": "監督",

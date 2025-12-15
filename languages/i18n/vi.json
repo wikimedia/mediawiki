@@ -79,7 +79,8 @@
 			"Nvdtn19",
 			"NgocAnMaster",
 			"Bapham123",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"Duongvu"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -2725,7 +2726,7 @@
 	"anononlyblock": "chỉ cấm người dùng vô danh",
 	"noautoblockblock": "đã tắt chức năng tự động cấm",
 	"createaccountblock": "không được mở tài khoản",
-	"emailblock": "đã cấm thư điện tử",
+	"emailblock": "cấm gửi thư điện tử",
 	"blocklist-nousertalk": "không được sửa đổi trang thảo luận cá nhân",
 	"blocklist-editing": "sửa đổi",
 	"blocklist-editing-sitewide": "sửa đổi (toàn website)",
@@ -3274,7 +3275,7 @@
 	"notificationemail_body_changed": "Ai đó, có thể là bạn, từ địa chỉ IP $1,\nđã thay đổi địa chỉ thư điện tử của tài khoản “$2” thành “$3” tại {{SITENAME}}.\n\nNếu bạn không phải là người thay đổi địa chỉ này, xin hãy liên lạc với một bảo quản viên của trang Web ngay lập tức.",
 	"notificationemail_body_removed": "Ai đó, có thể là bạn, từ địa chỉ IP $1,\nđã loại bỏ địa chỉ thư điện tử của tài khoản “$2” tại {{SITENAME}}.\n\nNếu bạn không phải là người loại bỏ địa chỉ này, xin hãy liên lạc với một bảo quản viên của trang Web ngay lập tức.",
 	"scarytranscludedisabled": "[Nhúng giữa các wiki bị tắt]",
-	"scarytranscludefailed": "[Truy xuất bản mẫu $1 bị thất bại]",
+	"scarytranscludefailed": "[Không thể truy xuất bản mẫu cho $1]",
 	"scarytranscludefailed-httpstatus": "[Truy xuất bản mẫu $1 bị thất bại: HTTP $2]",
 	"scarytranscludetoolong": "[Địa chỉ URL quá dài]",
 	"deletedwhileediting": "'''Cảnh báo''': Trang này đã bị xóa sau khi bắt đầu sửa đổi!",

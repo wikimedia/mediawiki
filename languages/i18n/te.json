@@ -36,7 +36,8 @@
 			"Nskjnv",
 			"Tmamatha",
 			"V Bhavya",
-			"Rajadvamshi"
+			"Rajadvamshi",
+			"WikiPBR"
 		]
 	},
 	"tog-underline": "లింక్ అండర్‌లైన్:",
@@ -2131,6 +2132,7 @@
 	"apisandbox-sending-request": "API అభ్యర్థనను పంపిస్తున్నాం...",
 	"apisandbox-loading-results": "API ఫలితాలను అందుకుంటున్నాం...",
 	"apisandbox-results-error": "API క్వెరీ ఫలితాన్ని లోడు చెయ్యడంలో లోపం ఎదురైంది: $1.",
+	"apisandbox-results-login-suppressed": "బ్రౌజరు లోని సేమ్-ఆరిజిన్ సెక్యూరిటీని బైపాస్ చేసే అవకాశం ఉన్నందున, ఈ అభ్యర్థనను లాగౌటైన వాడుకరి లాగా ప్రాసెస్ చేసాం. ఇలాంటి అభ్యర్థనల విషయంలో API ప్రయోగశాల లోని ఆటోమాటిక్ టోకెన్ హ్యాండ్లింగు సరిగా పనిచేయదని గమనించండి. వాటిని మానవికంగా పూరించండి.",
 	"apisandbox-request-selectformat-label": "అభ్యర్థించిన డేటాను ఇలా చూపించు:",
 	"apisandbox-request-format-url-label": "URL క్వెరీ పదం",
 	"apisandbox-request-url-label": "అభ్యర్థన URL:",

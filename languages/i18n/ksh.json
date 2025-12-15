@@ -17,7 +17,8 @@
 			"Vlad5250",
 			"לערי ריינהארט",
 			"아라",
-			"Juwan"
+			"Juwan",
+			"SaldırganSincap"
 		]
 	},
 	"tog-underline": "Dun de Lengks ongerschtriische:",
@@ -639,7 +640,7 @@
 	"protectedpagewarning": "<strong>Opjepass: Di Sigg heh es jähje Veränderonge jeschöz. Blohß de Wikki-Köbeße künne se änndere.</strong>\nHeh kütt der neuste Enndraach em Logbohch för di Sigg:",
 	"semiprotectedpagewarning": "<strong>Opjepass:</strong> Di Sigg heh es halv jeschpächt, wi mer sage, dat heiß, Do muss aanjemeldt un enjelogg sin, wann De dran ändere wells.\nHeh kütt der neuste Enndrach em Logbohch doh drövver:",
 	"cascadeprotectedwarning": "<strong>Opjepaß:</strong> Di Sigg es jeschöz, un nur de Wikki_Köhbeße künne se änndere. Dat es, weil se angeschwoh ennjeföhsch weed. Se es en en Schotz-Kaskahd enjebonge, zosamme met dä {{PLURAL:$1|Sigg|Sigge}}:",
-	"titleprotectedwarning": "<strong>Opjepaß!</strong> Di Sigg heh is jesperrt woode. Bloß [[Special:ListGroupRights|bestemmpte]] Metmaacher dörve di Sigg neu aanläje.'''\nHeh kütt der neuste Enndrach em Logbooch doh drövver:",
+	"titleprotectedwarning": "<strong>Opjepaß: Di Sigg heh is jesperrt woode. Bloß [[Special:ListGroupRights|bestemmpte]] Metmaacher dörve di Sigg neu aanläje.</strong>\nHeh kütt der neuste Enndrach em Logbooch doh drövver:",
 	"templatesused": "{{PLURAL:$1|De Schablohn|De $1 Schablohne|Kein Schablohn}}, di en dä Sigg heh jebruch {{PLURAL:$1|weed|wähde|weed}}, sinn:",
 	"templatesusedpreview": "{{PLURAL:$1|De Schablohn|Schablohne|-nix-}} en dä Vör_Aanseesch heh:",
 	"templatesusedsection": "{{PLURAL:$1|De Schablohn|Schablohne|-nix-}} en däm Avschnedd heh:",

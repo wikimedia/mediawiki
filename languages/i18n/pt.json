@@ -876,6 +876,7 @@
 	"unstrip-size-category-desc": "A página excede a dimensão limite da remoção de etiquetas.",
 	"converter-manual-rule-error": "Erro detetado na regra de conversão de língua manual",
 	"bad-double-underscore-category": "Páginas com cursores de comportamento inválidos",
+	"bad-double-underscore-category-desc": "A página contém um [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|cursor de comportamento]]. AS traduções válidas começam e acabam com sublinhados duplos.",
 	"undo-success": "É possível desfazer a edição.\nVerifique a comparação abaixo, por favor, para se certificar de que isto corresponde ao que pretende fazer.\nDepois publique as alterações, para finalizar e desfazer a edição.",
 	"undo-failure": "Não foi possível desfazer a edição por conflito com alterações intermédias.",
 	"undo-main-slot-only": "Não foi possível desfazer a edição porque ela envolve conteúdo fora do segmento de revisão principal.",
