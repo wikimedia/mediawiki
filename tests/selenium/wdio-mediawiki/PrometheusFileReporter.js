@@ -190,8 +190,6 @@ function writeAllProjectMetrics( metricsDir, fileName ) {
 		tests.push( ...data.tests );
 	}
 
-	projectMetrics.duration.toFixed( 3 );
-
 	const lines = [];
 	const labels = projectMetrics.labels;
 	// Add Project metrics
