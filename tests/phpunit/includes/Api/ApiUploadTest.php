@@ -8,6 +8,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
+use MockHttpTrait;
 use Wikimedia\FileBackend\FSFileBackend;
 use Wikimedia\Mime\MimeAnalyzer;
 
@@ -19,6 +20,8 @@ use Wikimedia\Mime\MimeAnalyzer;
  * @covers \MediaWiki\Api\ApiUpload
  */
 class ApiUploadTest extends ApiUploadTestCase {
+	use MockHttpTrait;
+
 	private ?Authority $uploader = null;
 
 	private function filePath( $fileName ) {
@@ -644,5 +647,182 @@ class ApiUploadTest extends ApiUploadTestCase {
 		], null, $this->uploader );
 		$this->assertArrayHasKey( 'upload', $result );
 		$this->assertEquals( 'Success', $result['upload']['result'] );
+	}
+
+	public function testAsyncUploadWithChunks() {
+		$this->overrideConfigValue( MainConfigNames::EnableAsyncUploads, true );
+		// Set user for RequestContext::exportSession() used by the jobs
+		$this->apiContext->setAuthority( $this->uploader );
+
+		$fileName = 'TestUploadChunks.jpg';
+		$mimeType = 'image/jpeg';
+		$filePath = $this->filePath( 'yuv420.jpg' );
+		$fileSize = filesize( $filePath );
+		$chunkSize = 20 * 1024; // The file is ~60 KiB, use 20 KiB chunks
+
+		$this->overrideConfigValue( MainConfigNames::MinUploadChunkSize, $chunkSize );
+
+		// Base upload params:
+		$params = [
+			'action' => 'upload',
+			'stash' => 1,
+			'async' => 1,
+			'filename' => $fileName,
+			'filesize' => $fileSize,
+			'offset' => 0,
+		];
+
+		// Upload chunks
+		$handle = fopen( $filePath, "r" );
+		$resultOffset = 0;
+		$filekey = false;
+		while ( !feof( $handle ) ) {
+			$chunkData = fread( $handle, $chunkSize );
+
+			// Upload the current chunk into the $_FILE object:
+			$this->fakeUploadChunk( 'chunk', 'blob', $mimeType, $chunkData );
+			if ( !$filekey ) {
+				[ $result ] = $this->doApiRequestWithToken( $params, null,
+					$this->uploader );
+				// Make sure we got a valid chunk continue:
+				$this->assertArrayHasKey( 'upload', $result );
+				$this->assertArrayHasKey( 'filekey', $result['upload'] );
+				$this->assertEquals( 'Continue', $result['upload']['result'] );
+				$this->assertEquals( $chunkSize, $result['upload']['offset'] );
+
+				$filekey = $result['upload']['filekey'];
+				$resultOffset = $result['upload']['offset'];
+			} else {
+				// Filekey set to chunk session
+				$params['filekey'] = $filekey;
+				// Update the offset ( always add chunkSize for subquent chunks
+				// should be in-sync with $result['upload']['offset'] )
+				$params['offset'] += $chunkSize;
+				// Make sure param offset is insync with resultOffset:
+				$this->assertEquals( $resultOffset, $params['offset'] );
+				// Upload current chunk
+				[ $result ] = $this->doApiRequestWithToken( $params, null,
+					$this->uploader );
+				// Make sure we got a valid chunk continue:
+				$this->assertArrayHasKey( 'upload', $result );
+				$this->assertArrayHasKey( 'filekey', $result['upload'] );
+
+				// Check if we were on the last chunk:
+				if ( $params['offset'] + $chunkSize >= $fileSize ) {
+					$this->assertEquals( 'Poll', $result['upload']['result'] );
+					break;
+				} else {
+					$this->assertEquals( 'Continue', $result['upload']['result'] );
+					$resultOffset = $result['upload']['offset'];
+				}
+			}
+		}
+		fclose( $handle );
+
+		// Run the first async part
+		$this->runJobs( [ 'maxJobs' => 1 ], [ 'type' => 'AssembleUploadChunks' ] );
+
+		// Check that we got a valid file result:
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filekey' => $filekey,
+			'checkstatus' => 1,
+		], null, $this->uploader );
+		$this->assertEquals( $fileSize, $result['upload']['imageinfo']['size'] );
+		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
+		$this->assertArrayHasKey( 'filekey', $result['upload'] );
+		$filekey = $result['upload']['filekey'];
+
+		// Now we should try to release the file from stash
+		$this->clearFakeUploads();
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filekey' => $filekey,
+			'filename' => $fileName,
+			'async' => 1,
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for $fileName, altered",
+		], null, $this->uploader );
+		$this->assertArrayHasKey( 'upload', $result );
+		$this->assertEquals( 'Poll', $result['upload']['result'] );
+
+		// Run the second async part
+		$this->runJobs( [ 'maxJobs' => 1 ], [ 'type' => 'PublishStashedFile' ] );
+
+		// Expect the publish result
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filekey' => $filekey,
+			'checkstatus' => 1,
+		], null, $this->uploader );
+		$this->assertArrayHasKey( 'upload', $result );
+		$this->assertEquals( 'Success', $result['upload']['result'] );
+		$this->assertEquals( $fileSize, $result['upload']['imageinfo']['size'] );
+		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
+	}
+
+	public function testUploadUrl() {
+		$this->overrideConfigValue( MainConfigNames::AllowCopyUploads, true );
+		$this->setGroupPermissions( '*', 'upload_by_url', true );
+
+		$fileName = 'TestUploadUrl.jpg';
+		$mimeType = 'image/jpeg';
+		$filePath = $this->filePath( 'yuv420.jpg' );
+
+		$this->installMockHttp( file_get_contents( $filePath ) );
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'url' => 'https://example.com/' . $fileName,
+			'filename' => $fileName,
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for $fileName",
+		], null, $this->uploader );
+
+		$this->assertArrayHasKey( 'upload', $result );
+		$this->assertEquals( 'Success', $result['upload']['result'] );
+		$this->assertSame( filesize( $filePath ), (int)$result['upload']['imageinfo']['size'] );
+		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
+	}
+
+	public function testAsyncUploadUrl() {
+		$this->overrideConfigValues( [
+			MainConfigNames::AllowCopyUploads => true,
+			MainConfigNames::EnableAsyncUploads => true,
+		] );
+		$this->setGroupPermissions( '*', 'upload_by_url', true );
+		// Set user for RequestContext::exportSession() used by the job
+		$this->apiContext->setAuthority( $this->uploader );
+
+		$fileName = 'TestUploadUrl.jpg';
+		$mimeType = 'image/jpeg';
+		$filePath = $this->filePath( 'yuv420.jpg' );
+
+		$this->installMockHttp( file_get_contents( $filePath ) );
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'async' => 1,
+			'url' => 'https://example.com/' . $fileName,
+			'filename' => $fileName,
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for $fileName",
+		], null, $this->uploader );
+
+		$this->assertArrayHasKey( 'upload', $result );
+		$this->assertEquals( 'Poll', $result['upload']['result'] );
+
+		// Run the second async part
+		$this->runJobs( [ 'maxJobs' => 1 ], [ 'type' => 'UploadFromUrl' ] );
+
+		// Expect the publish result
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'url' => 'https://example.com/' . $fileName,
+			'filename' => $fileName,
+			'checkstatus' => 1,
+		], null, $this->uploader );
+		$this->assertArrayHasKey( 'upload', $result );
+		$this->assertEquals( 'Success', $result['upload']['result'] );
+		$this->assertSame( filesize( $filePath ), (int)$result['upload']['imageinfo']['size'] );
+		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
 	}
 }
