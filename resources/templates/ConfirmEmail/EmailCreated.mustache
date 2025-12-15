@@ -1,18 +1,45 @@
 <html>
 <head>
 <style>
+	/* RESET CSS (abridged) */
+	html, body, div, span, p, a, small, strong, footer, header {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+	}
+	/* HTML5 display-role reset for older browsers */
+	footer, header, section {
+		display: block;
+	}
+	body {
+		line-height: 1;
+	}
+
+	/* STYLES */
 	#mw-confirm-email {
 		background-color: #F8F9FA;
+		font-family: -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Inter', 'Helvetica', 'Arial', sans-serif;
+		font-size: 1rem;
+		line-height: 1.375rem;
 	}
 	#mw-confirm-email .mw-confirm-email__content {
 		max-width: 600px;
 		margin: auto;
-		padding: 32px;
+		padding: 16px;
 		background-color: #FFFFFF;
 	}
 
+	@media (min-width: 600px) {
+		#mw-confirm-email .mw-confirm-email__content {
+			padding: 32px;
+		}
+	}
+
 	#mw-confirm-email .mw-confirm-email__logo {
-		width: 50px;
+		width: 100px;
 		margin-bottom: 24px;
 	}
 
@@ -21,6 +48,15 @@
 		margin-bottom: 48px;
 		text-align: center;
 	}
+
+	#mw-confirm-email .mw-confirm-email__welcome {
+		margin-bottom: 16px;
+	}
+
+	#mw-confirm-email strong {
+		font-weight: 700;
+	}
+
 	#mw-confirm-email .mw-confirm-email__button {
 		background: #36C;
 		color: white;
@@ -40,18 +76,28 @@
 		background-color: #233566;
 	}
 
-	#mw-confirm-email .mw-confirm-email__footer {
+	#mw-confirm-email .mw-confirm-email__footer small {
 		color: #54595D;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+	}
+
+	#mw-confirm-email .mw-confirm-email__footer a {
+		color: #36c;
+		text-decoration: none;
+	}
+
+	#mw-confirm-email .mw-confirm-email__footer a:hover {
+		text-decoration: underline;
 	}
 </style>
 </head>
 <body id="mw-confirm-email">
-<div class="mw-confirm-email__content">
+<section class="mw-confirm-email__content">
 {{#logo}}
 	<img class="mw-confirm-email__logo" src="{{icon.src}}" alt="{{icon.alt}}" />
 {{/logo}}
-<section>
-	<p>{{{par1}}}</p>
+	<p class="mw-confirm-email__welcome">{{{par1}}}</p>
 	<p>{{{par2}}}</p>
 	<div class="mw-confirm-email__button-wrapper">
 		<a class="mw-confirm-email__button" href="{{confirmationUrl}}">
@@ -62,6 +108,5 @@
 		<small>{{{footer}}}</small>
 	</p>
 </section>
-</div>
 </body>
 </html>
