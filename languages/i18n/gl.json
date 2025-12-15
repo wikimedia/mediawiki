@@ -745,6 +745,7 @@
 	"undo-summary-anon": "Desfíxose a edición [[Special:Diff/$1|$1]] de [[Special:Contributions/$2|$2]]",
 	"undo-summary-import": "Desfíxose a edición [[Special:Diff/$1|$1]] importada polo usuario [[:$2|$3]]",
 	"undo-summary-import2": "Desfíxose a edición importada [[Special:Diff/$1|$1]] do usuario $2",
+	"undo-summary-multiple": "{{PLURAL:$1|Desfíxose unha revisión|Desfixéronse $1 revisións}} (comezando co número de revisión [[Special:Diff/$2|$2]] e rematando co número de revisión [[Special:Diff/$3|$3]])",
 	"undo-summary-username-hidden": "Desfíxose a edición [[Special:Diff/$1|$1]] dun usuario agochado",
 	"viewpagelogs": "Ver os rexistros desta páxina",
 	"viewpagelogs-lowercase": "ver os rexistros desta páxina",
@@ -1414,6 +1415,7 @@
 	"rcfilters-view-tags-tooltip": "Filtrar resultados usando etiquetas de edición",
 	"rcfilters-view-return-to-default-tooltip": "Volver ó menú principal do filtro",
 	"rcfilters-view-tags-help-icon-tooltip": "Saber máis sobre as edicións etiquetadas.",
+	"rcfilters-view-wllabels-help-icon-tooltip": "Máis información sobre as etiquetas da lista de vixilancia",
 	"rcfilters-liveupdates-button": "Actualizacións instantáneas",
 	"rcfilters-liveupdates-button-title-on": "Desactivar actualizacións en directo",
 	"rcfilters-liveupdates-button-title-off": "Amosar os cambios novos en canto se produzan",
@@ -2208,6 +2210,10 @@
 	"watchlistlabels-form-submit-new": "Crear",
 	"watchlistlabels-form-submit-edit": "Gardar",
 	"watchlistlabels-limit-reached": "Non se pode gardar a etiqueta: alcanzaches o número máximo de etiquetas da lista de vixilancia permitidas ($1).",
+	"watchlistlabels-delete-header": "Queres eliminar {{PLURAL:$1|esta etiqueta|estas etiquetas}}?",
+	"watchlistlabels-delete-warning": "{{PLURAL:$1|Eliminarase a seguinte etiqueta|Eliminaranse as seguintes $2 etiquetas}} da lista de vixilancia. Esta acción non se pode desfacer.",
+	"watchlistlabels-delete-unused": "non se usa en ningún elemento da lista de vixilancia",
+	"watchlistlabels-delete-count": "úsase {{PLURAL:$2|nun elemento|en $1 elementos}} da lista de vixilancia",
 	"watchlist-filters-labels-title": "Etiquetas",
 	"watchlist-filters-labels-list-title": "Etiquetas da lista de vixilancia",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>non</strong> =$1",
@@ -3753,6 +3759,7 @@
 	"pagelang-unchanged-language": "A páxina «$1» xa está configurada na lingua $2.",
 	"pagelang-unchanged-language-default": "A páxina «$1» xa está configurada na lingua de contido por defecto do wiki.",
 	"pagelang-db-failed": "A base de datos fallou ó tentar mudar a lingua da páxina.",
+	"pagelang-invalid-selection": "Seleccionouse unha lingua non válida",
 	"right-pagelang": "Cambiar a lingua da páxina",
 	"action-pagelang": "cambiar a lingua da páxina",
 	"log-name-pagelang": "Rexistro de cambios de linguas",
@@ -4127,5 +4134,6 @@
 	"temp-user-unable-to-acquire": "Non se puido adquirir un nome de usuario para a conta temporal. Inténtao de novo.",
 	"table-of-contents-show-button-aria-label": "Amosar a táboa de contidos",
 	"table-of-contents-hide-button-aria-label": "Agochar a táboa de contidos",
-	"diff-usergroups": "$1 {{PLURAL:$1|grupo|grupos}} de usuario"
+	"diff-usergroups": "$1 {{PLURAL:$1|grupo|grupos}} de usuario",
+	"languageselector-no-results": "Non se atopou ningún resultado."
 }

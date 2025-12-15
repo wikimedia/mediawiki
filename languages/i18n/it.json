@@ -480,9 +480,13 @@
 	"userlogin-resetpassword-link": "Hai dimenticato la password?",
 	"userlogin-helplink2": "Aiuto con l'accesso",
 	"userlogin-loggedin": "Sei già connesso come {{GENDER:$1|$1}}.",
+	"userlogin-loggedin-continue-as": "Continua come {{GENDER:$1|$1}}",
+	"userlogin-loggedin-heading": "Accedi come un altro utente",
 	"userlogin-reauth": "Devi accedere di nuovo per verificare che sei {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Crea un’altra utenza",
+	"createacct-loggedin": "Sei già connesso come {{GENDER:$1|$1}}.",
 	"createacct-loggedin-continue-as": "Continua come {{GENDER:$1|$1}}",
+	"createacct-loggedin-heading": "Crea un’altra utenza",
 	"createacct-emailrequired": "Indirizzo email",
 	"createacct-emailoptional": "Indirizzo di posta elettronica (opzionale)",
 	"createacct-email-ph": "Inserisci il tuo indirizzo email",
@@ -2360,6 +2364,7 @@
 	"rollback-missingrevision": "Impossibile caricare i dati della versione.",
 	"cantrollback": "Impossibile annullare le modifiche.\nL'utente che le ha effettuate è l'unico ad aver contribuito alla pagina.",
 	"alreadyrolled": "Non è possibile annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).\nUn altro utente ha già modificato la pagina oppure ha effettuato il rollback.\n\nLa modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[User talk:$3|discussione]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+	"rollback-nochange": "Annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) non comporterebbe alcuna modifica al testo, poiché l'utente ha già annullato le sue modifiche oppure ha apportato solo modifiche fittizie.",
 	"editcomment": "L'oggetto della modifica era: <em>$1</em>.",
 	"revertpage": "{{PLURAL:$7|Annullata la modifica|Annullate le modifiche}} di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), riportata alla versione precedente di [[User:$1|$1]]",
 	"revertpage-anon": "Ripristina {{PLURAL:$7|la modifica|le modifiche}} di [[Special:Contributions/$2|$2]] all'ultima versione di [[User:$1|$1]]",
@@ -4108,5 +4113,6 @@
 	"benefit-2-description": "Elenco permanente dei contributi che hai apportato al progetto.",
 	"table-of-contents-show-button-aria-label": "Mostra l'indice",
 	"table-of-contents-hide-button-aria-label": "Nascondi l'indice",
-	"diff-usergroups": "$1 {{PLURAL:$1|gruppo utente|gruppi utente}}"
+	"diff-usergroups": "$1 {{PLURAL:$1|gruppo utente|gruppi utente}}",
+	"languageselector-no-results": "Nessun risultato trovato."
 }

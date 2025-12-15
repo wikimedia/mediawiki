@@ -461,6 +461,7 @@
 	"throttled-mailpassword": "Během {{PLURAL:$1|poslední hodiny|posledních $1 hodin}} již bylo heslo jednou zasláno.\nKvůli prevenci zneužívání lze heslo zaslat jen jednou za $1 {{PLURAL:$1|hodinu|hodiny|hodin}}.",
 	"mailerror": "Chyba při zasílání e-mailu: $1",
 	"acct_creation_throttle_hit": "Uživatelé používající vaši IP adresu za poslední $2 vytvořili už $1 {{PLURAL:$1|účet|účty|účtů}}, což je pro toto období maximum.\nProto není v tuto chvíli dovoleno z této IP adresy zakládat další účty.",
+	"acct_creation_throttle_hit-temp": "Uživatelé používající vaši IP adresu za poslední $2 vytvořili na této wiki už $1 {{PLURAL:$1|dočasný účet|dočasné účty|dočasných účtů}}, což je pro toto období maximum.\nProto není v tuto chvíli dovoleno z této IP adresy zakládat další dočasné účty.",
 	"invalidemailaddress": "Zadaná e-mailová adresa nemůže být přijata, neboť nemá správný formát. Zadejte platnou e-mailovou adresu nebo obsah tohoto pole vymažte.",
 	"cannotchangeemail": "U uživatelských účtů na této wiki nelze měnit e-mailové adresy.",
 	"emaildisabled": "Tento server nemůže odesílat e-maily.",
@@ -4115,5 +4116,6 @@
 	"temp-user-unable-to-acquire": "Nebylo vám možné přidělit dočasný uživatelský účet. Zkuste to prosím znovu později.",
 	"table-of-contents-show-button-aria-label": "Zobrazit obsah",
 	"table-of-contents-hide-button-aria-label": "Skrýt obsah",
-	"diff-usergroups": "$1 {{PLURAL:$1|uživatelské skupiny|uživatelské skupiny|uživatelských skupin}}"
+	"diff-usergroups": "$1 {{PLURAL:$1|uživatelské skupiny|uživatelské skupiny|uživatelských skupin}}",
+	"languageselector-no-results": "Nenalezeny žádné výsledky."
 }

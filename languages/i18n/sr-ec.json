@@ -4022,5 +4022,6 @@
 	"benefit-3-description": "Прилагођавање Вашег доживљаја у подешавањима.",
 	"temp-user-unable-to-acquire": "Добављање корисничког имена привременог налога није успело. Молимо покушајте поново.",
 	"table-of-contents-show-button-aria-label": "Прикажи табелу са садржајем",
-	"table-of-contents-hide-button-aria-label": "Сакриј табелу са садржајем"
+	"table-of-contents-hide-button-aria-label": "Сакриј табелу са садржајем",
+	"languageselector-no-results": "Нема резултата."
 }

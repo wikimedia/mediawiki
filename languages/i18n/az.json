@@ -756,6 +756,7 @@
 	"undo-summary-anon": "[[Special:Contributions/$2|$2]] tərəfindən edilmiş [[Special:Diff/$1|$1]] redaktəsi geri qaytardı",
 	"undo-summary-import": "[[:$2|$3]] tərəfindən idxal edilmiş [[Special:Diff/$1|$1]] dəyişikliyi geri qaytarıldı",
 	"undo-summary-import2": "$2 tərəfindən idxal edilmiş [[Special:Diff/$1|$1]] dəyişikliyi geri qaytarıldı",
+	"undo-summary-multiple": "{{PLURAL:$1|$1 dəyişiklik}} ([[Special:Diff/$2|$2]] versiyasından [[Special:Diff/$3|$3]] versiyasına qədər) geri qaytarıldı",
 	"undo-summary-username-hidden": "Gizli istifadəçi tərəfindən edilən [[Special:Diff/$1|$1]] dəyişikliyi geri qaytarıldı",
 	"viewpagelogs": "Bu səhifə ilə bağlı jurnallara bax",
 	"viewpagelogs-lowercase": "bu səhifə ilə bağlı jurnallara bax",
@@ -1425,6 +1426,7 @@
 	"rcfilters-view-tags-tooltip": "Nəticələri redaktə etiketləri əsasında filtrlə",
 	"rcfilters-view-return-to-default-tooltip": "Əsas filtr menyusuna qayıt",
 	"rcfilters-view-tags-help-icon-tooltip": "Etiketli redaktələr barədə ətraflı məlumat",
+	"rcfilters-view-wllabels-help-icon-tooltip": "İzləmə siyahısı etiketləri haqqında daha çox məlumat əldə edin",
 	"rcfilters-liveupdates-button": "Canlı yenilənmə",
 	"rcfilters-liveupdates-button-title-on": "Canlı yeniləmələri söndür",
 	"rcfilters-liveupdates-button-title-off": "Yeni dəyişikliklər baş verən kimi göstər",
@@ -2220,6 +2222,10 @@
 	"watchlistlabels-form-submit-new": "Yarat",
 	"watchlistlabels-form-submit-edit": "Yadda saxla",
 	"watchlistlabels-limit-reached": "Etiketi saxlamaq mümkün deyil: icazə verilən izləmə siyahısı etiketlərinin maksimum sayına ($1) çatmısınız.",
+	"watchlistlabels-delete-header": "Bu {{PLURAL:$1|etiket|etiketlər}} silinsin?",
+	"watchlistlabels-delete-warning": "Aşağıdakı $2 izləmə siyahısı {{PLURAL:$1|etiketi|etiketləri}} silinəcək. Bunu geri qaytarmağın yolu yoxdur.",
+	"watchlistlabels-delete-unused": "istifadəsiz",
+	"watchlistlabels-delete-count": "$1 izləmə siyahısında {{PLURAL:$2|elementində|elementlərində}} istifadə olunur",
 	"watchlist-filters-labels-title": "Etiketlər",
 	"watchlist-filters-labels-list-title": "İzləmə siyahısı etiketləri",
 	"watchlist-filters-tag-prefix-labels-inverted": "=$1 <strong>deyil</strong>",
@@ -3741,6 +3747,7 @@
 	"pagelang-unchanged-language": "$1 səhifəsi artıq $2 dilinə təyin edilib.",
 	"pagelang-unchanged-language-default": "$1 səhifəsi artıq vikinin defolt məzmun dilinə təyin edilib.",
 	"pagelang-db-failed": "Verilənlər bazası səhifənin dilini dəyişdirə bilmədi.",
+	"pagelang-invalid-selection": "Yanlış dil seçildi",
 	"right-pagelang": "Səhifə dilini dəyişmək",
 	"action-pagelang": "səhifə dilini dəyişmək",
 	"log-name-pagelang": "Dil dəyişikliyi jurnalı",
@@ -4112,5 +4119,6 @@
 	"temp-user-unable-to-acquire": "Müvəqqəti istifadəçi adı əldə etmək mümkün deyil. Zəhmət olmasa, bir daha cəhd edin.",
 	"table-of-contents-show-button-aria-label": "Mündəricatı göstər",
 	"table-of-contents-hide-button-aria-label": "Mündəricatı gizlət",
-	"diff-usergroups": "$1 {{PLURAL:$1|istifadəçi qrupu}}"
+	"diff-usergroups": "$1 {{PLURAL:$1|istifadəçi qrupu}}",
+	"languageselector-no-results": "Heç bir nəticə tapılmadı."
 }

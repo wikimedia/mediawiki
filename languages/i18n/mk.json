@@ -741,6 +741,7 @@
 	"undo-summary-anon": "Отповикана преработката [[Special:Diff/$1|$1]] на [[Special:Contributions/$2|$2]]",
 	"undo-summary-import": "Отповикај ја увезената преработка [[Special:Diff/$1|$1]] од корисникот [[:$2|$3]]",
 	"undo-summary-import2": "Отповикај ја увезената преработка [[Special:Diff/$1|$1]] од корисникот $2",
+	"undo-summary-multiple": "{{PLURAL:$1|Вратена една преработка|Вратени $1 преработки}} (почнувајќи со преработката бр. [[Special:Diff/$2|$2]] и завршувајќи со преработката бр. [[Special:Diff/$3|$3]])",
 	"undo-summary-username-hidden": "Поништи ја преработката [[Special:Diff/$1|$1]] на скриен корисник",
 	"viewpagelogs": "Преглед на дневници за оваа страница",
 	"viewpagelogs-lowercase": "преглед на дневници за оваа страница",
@@ -1409,6 +1410,7 @@
 	"rcfilters-view-tags-tooltip": "Филтрирај исход по уредувачки ознаки",
 	"rcfilters-view-return-to-default-tooltip": "Назад на главното филтерско мени",
 	"rcfilters-view-tags-help-icon-tooltip": "Дознајте повеќе за Означените уредувања",
+	"rcfilters-view-wllabels-help-icon-tooltip": "Дознајте повеќе за натписите на Набљудуваните",
 	"rcfilters-liveupdates-button": "Поднови во живо",
 	"rcfilters-liveupdates-button-title-on": "Исклучи поднови во живо",
 	"rcfilters-liveupdates-button-title-off": "Прикажува нови промени во живо",
@@ -2202,6 +2204,10 @@
 	"watchlistlabels-form-submit-new": "Создај",
 	"watchlistlabels-form-submit-edit": "Зачувај",
 	"watchlistlabels-limit-reached": "Не можам да го зачувам натписот: го достигнавте дозволениот број ($1) на натписи на набљудуваните.",
+	"watchlistlabels-delete-header": "Да {{PLURAL:$1|го избришам овој натпис|ги избришам овие натписи}}?",
+	"watchlistlabels-delete-warning": "{{PLURAL:$1|Ќе биде избришан следниов натпис|Ќе бидат избришани следниве $2 натписи}} во набљудуваните. Оваа постапка е неповратна.",
+	"watchlistlabels-delete-unused": "не се користи на ниедна ставка од набљудуваните",
+	"watchlistlabels-delete-count": "се користи на $1 {{PLURAL:$2|ставка|ставки}} од набљудуваните",
 	"watchlist-filters-labels-title": "Натписи",
 	"watchlist-filters-labels-list-title": "Натписи на набљудуваните",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>не</strong> =$1",
@@ -3761,6 +3767,7 @@
 	"pagelang-unchanged-language": "Страницата $1 е веќе наместена на јазикот $2.",
 	"pagelang-unchanged-language-default": "Страницата $1 е веќе наместена на матичниот содржински јазик на викито.",
 	"pagelang-db-failed": "Базата не успеа да го смени содржинскиот јазик.",
+	"pagelang-invalid-selection": "Избран е неважечки јазик",
 	"right-pagelang": "Менување јазик на страница",
 	"action-pagelang": "менување јазик на страница",
 	"log-name-pagelang": "Дневник на менување на јазикот",
@@ -4136,5 +4143,6 @@
 	"temp-user-unable-to-acquire": "Не можев да го добијам корисничкото име за привремена сметка. Обидете се повторно.",
 	"table-of-contents-show-button-aria-label": "Прикажи ја Содржината",
 	"table-of-contents-hide-button-aria-label": "Скриј ја Соодржината",
-	"diff-usergroups": "$1 {{PLURAL:$1|корисничка група|кориснички групи}}"
+	"diff-usergroups": "$1 {{PLURAL:$1|корисничка група|кориснички групи}}",
+	"languageselector-no-results": "Не пронајдов ништо."
 }

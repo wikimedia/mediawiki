@@ -1425,6 +1425,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-centralids": "添加中心ID并为用户附加状态。",
 	"apihelp-query+userinfo-paramvalue-prop-latestcontrib": "添加用户最新贡献的日期。",
 	"apihelp-query+userinfo-paramvalue-prop-cancreateaccount": "返回是否允许用户创建账号。要检查是否可以创建某个特定的账号，请使用 [[Special:ApiHelp/query+users|<kbd>action=query&list=users&usprop=cancreate</kbd>]]。",
+	"apihelp-query+userinfo-paramvalue-prop-watchlistlabels": "添加用户已设置的监视列表标签。",
 	"apihelp-query+userinfo-param-attachedwiki": "与<kbd>$1prop=centralids</kbd>一起使用，表明用户是否附加于此ID定义的wiki。",
 	"apihelp-query+userinfo-example-simple": "获取有关当前用户的信息。",
 	"apihelp-query+userinfo-example-data": "获取有关当前用户的额外信息。",

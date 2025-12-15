@@ -1509,6 +1509,7 @@
 	"rcfilters-view-tags-tooltip": "Sonuçları düzenleme etiketlerini kullanarak filtrele",
 	"rcfilters-view-return-to-default-tooltip": "Ana filtre menüsüne dön",
 	"rcfilters-view-tags-help-icon-tooltip": "Etiketli düzenlemeler hakkında daha fazla bilgi edin",
+	"rcfilters-view-wllabels-help-icon-tooltip": "İzleme listesi etiketleri hakkında daha fazla bilgi edinin",
 	"rcfilters-liveupdates-button": "Canlı güncellemeler",
 	"rcfilters-liveupdates-button-title-on": "Canlı güncellemeleri kapat",
 	"rcfilters-liveupdates-button-title-off": "Yeni değişiklikleri yapıldıkları anda görüntüleyin",
@@ -2303,6 +2304,10 @@
 	"watchlistlabels-form-submit-new": "Oluştur",
 	"watchlistlabels-form-submit-edit": "Sakla",
 	"watchlistlabels-limit-reached": "Etiket saklanamıyor: İzin verilen en fazla izleme listesi etiketi sayısına ($1) ulaştınız.",
+	"watchlistlabels-delete-header": "{{PLURAL:$1|Bu etiket|Bu etiketler}} silinsin mi?",
+	"watchlistlabels-delete-warning": "Aşağıdaki $2 izleme listesi {{PLURAL:$1|etiketi}} silinecektir. Bunu geri almanın hiçbir yolu yoktur.",
+	"watchlistlabels-delete-unused": "herhangi bir izleme listesi ögesinde kullanılmıyor",
+	"watchlistlabels-delete-count": "$1 izleme listesi {{PLURAL:$2|ögesinde}} kullanılıyor",
 	"watchlist-filters-labels-title": "Etiketler",
 	"watchlist-filters-labels-list-title": "İzleme listesi etiketleri",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>dışında</strong> =$1",
@@ -3830,6 +3835,7 @@
 	"pagelang-unchanged-language": "$1 sayfası zaten $2 diline ayarlanmış.",
 	"pagelang-unchanged-language-default": "$1 sayfası zaten vikinin varsayılan içerik diline ayarlanmış.",
 	"pagelang-db-failed": "Veritabanı sayfa dilini değiştiremedi.",
+	"pagelang-invalid-selection": "Geçersiz dil seçildi",
 	"right-pagelang": "Sayfanın dilini değiştir",
 	"action-pagelang": "sayfanın dilini değiştir",
 	"log-name-pagelang": "Dil değişimi günlüğü",
@@ -4203,5 +4209,6 @@
 	"temp-user-unable-to-acquire": "Geçici bir hesap kullanıcı adı alınamıyor. Lütfen tekrar deneyin.",
 	"table-of-contents-show-button-aria-label": "İçindekiler tablosunu göster",
 	"table-of-contents-hide-button-aria-label": "İçindekiler tablosunu gizle",
-	"diff-usergroups": "$1 {{PLURAL:$1|kullanıcı grubu}}"
+	"diff-usergroups": "$1 {{PLURAL:$1|kullanıcı grubu}}",
+	"languageselector-no-results": "Sonuç bulunamadı."
 }

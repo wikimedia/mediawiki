@@ -3809,5 +3809,6 @@
 	"right-renameuser": "सदस्यों का पुनः नामकरण करना",
 	"action-renameuser-global": "ग्लोबल सदस्यों का पुनः नामकरण करने",
 	"right-renameuser-global": "ग्लोबल सदस्यों का पुनः नामकरण करना",
-	"renameuser-renamed-notice": "इस {{GENDER:$1|सदस्य}} का नाम बदल दिया गया है।\nसंदर्भ के लिए नीचे नाम बदलने का लॉग है।"
+	"renameuser-renamed-notice": "इस {{GENDER:$1|सदस्य}} का नाम बदल दिया गया है।\nसंदर्भ के लिए नीचे नाम बदलने का लॉग है।",
+	"languageselector-no-results": "कोई परिणाम नहीं मिला"
 }
