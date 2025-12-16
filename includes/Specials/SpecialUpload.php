@@ -357,6 +357,9 @@ class SpecialUpload extends SpecialPage {
 						break;
 					default:
 						// unknown result, just show a generic error
+						if ( $status->isOK() ) {
+							$status = Status::newFatal( 'upload-progress-unknown' );
+						}
 						$this->showUploadError( $this->getOutput()->parseAsInterface(
 							$status->getWikiText( false, false, $this->getLanguage() ) )
 						);
@@ -369,7 +372,7 @@ class SpecialUpload extends SpecialPage {
 				break;
 			case 'fetching':
 				switch ( $result ) {
-					case 'Success':
+					case 'Poll':
 						// The file is being downloaded from a URL
 						// TODO: show active progress bar saying we're downloading the file
 						$this->showUploadProgress( [ 'active' => true, 'msg' => 'upload-progress-downloading' ] );
@@ -382,6 +385,9 @@ class SpecialUpload extends SpecialPage {
 						break;
 					default:
 						// unknown result, just show a generic error
+						if ( $status->isOK() ) {
+							$status = Status::newFatal( 'upload-progress-unknown' );
+						}
 						$this->showUploadError( $this->getOutput()->parseAsInterface(
 							$status->getWikiText( false, false, $this->getLanguage() ) )
 						);
