@@ -1551,6 +1551,14 @@ class DatabaseBlockStore {
 			throw new RuntimeException( __METHOD__ . ': this block does not have a blocker' );
 		}
 
+		// Acquire a lock on the primary DB for the autoblock to prevent race conditions (T260838)
+		$dbw = $this->getPrimaryDB();
+		$autoblockTargetLockKey = $dbw->getDomainID() . ':autoblock:' . $target;
+		if ( !$dbw->lockIsFree( $autoblockTargetLockKey, __METHOD__ ) ) {
+			return false;
+		}
+		$dbw->lock( $autoblockTargetLockKey, __METHOD__ );
+
 		$timestamp = wfTimestampNow();
 		$expiry = $this->getAutoblockExpiry( $timestamp, $parentBlock->getExpiry() );
 		$autoblock = new DatabaseBlock( [
@@ -1573,6 +1581,9 @@ class DatabaseBlockStore {
 		$this->logger->debug( "Autoblocking {$parentBlock->getTargetName()}@" . $target );
 
 		$status = $this->insertBlock( $autoblock );
+
+		$dbw->unlock( $autoblockTargetLockKey, __METHOD__ );
+
 		return $status
 			? $status['id']
 			: false;

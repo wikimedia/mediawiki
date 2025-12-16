@@ -15,6 +15,7 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
+use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\IPUtils;
 use Wikimedia\ScopedCallback;
@@ -831,6 +832,140 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			->where( [ 'bt_address' => '1.1.1.1' ] )
 			->caller( __METHOD__ )
 			->assertEmptyResult();
+	}
+
+	public function testAutoblockWhenParentBlockIsNotAutoblocking() {
+		$parentBlock = $this->createMock( DatabaseBlock::class );
+		$parentBlock->method( 'isAutoblocking' )
+			->willReturn( false );
+
+		$this->assertFalse(
+			$this->getStore()->doAutoblock( $parentBlock, '1.2.3.67' ),
+			'Should not autoblock if parent block is not autoblocking'
+		);
+	}
+
+	public function testAutoblockWhenIPisInvalid() {
+		$parentBlock = $this->createMock( DatabaseBlock::class );
+		$parentBlock->method( 'isAutoblocking' )
+			->willReturn( true );
+
+		$this->assertFalse(
+			$this->getStore()->doAutoblock( $parentBlock, 'invalidip' ),
+			'Should not autoblock if autoblock IP is invalid'
+		);
+	}
+
+	public function testAutoblockWhenHookDisallows() {
+		// Set up the DB to have no autoblock on the second block
+		$store = $this->getStore( [
+			'constructorArgs' => [ 'hookContainer' => $this->getServiceContainer()->getHookContainer() ]
+		] );
+		$this->assertTrue( $store->deleteBlock( $store->newFromID( $this->autoblockId ) ) );
+		$this->assertNull( $store->newFromID( $this->autoblockId ) );
+
+		$parentBlock = $store->newFromID( $this->unexpiredBlockId );
+		$ip = '1.2.3.67';
+
+		$this->setTemporaryHook(
+			'AbortAutoblock',
+			function ( $actualIP, $actualParentBlock ) use ( $parentBlock, $ip ) {
+				$this->assertSame( $parentBlock, $actualParentBlock );
+				$this->assertSame( $ip, $actualIP );
+				return false;
+			}
+		);
+
+		$this->assertFalse(
+			$store->doAutoblock( $parentBlock, $ip ),
+			'Should not autoblock if hook prevented autoblock'
+		);
+	}
+
+	public function testAutoblockPreventsRaceConditions() {
+		$this->clearHook( 'AbortAutoblock' );
+
+		$mockLogger = $this->createMock( LoggerInterface::class );
+
+		// Set up the DB to have no autoblock on the second block so we can test adding it
+		// and another block that is autoblocking to use as the second block in the race condition
+		$store = $this->getStore( [
+			'constructorArgs' => [
+				'hookContainer' => $this->getServiceContainer()->getHookContainer(),
+				'logger' => $mockLogger,
+			]
+		] );
+		$this->assertTrue( $store->deleteBlock( $store->newFromID( $this->autoblockId ) ) );
+		$this->assertNull( $store->newFromID( $this->autoblockId ) );
+
+		$secondBlock = new DatabaseBlock();
+		$secondBlock->setTarget(
+			$this->getServiceContainer()->getBlockTargetFactory()
+				->newFromUser( $this->getTestUser()->getUserIdentity() )
+		);
+		$secondBlock->setBlocker( $this->getTestSysop()->getUserIdentity() );
+		$store->insertBlock( $secondBlock );
+
+		$parentBlock = $store->newFromID( $this->unexpiredBlockId );
+		$ip = '1.2.3.67';
+
+		// Because we don't have a hook that is run during autoblocking that we hook into,
+		// we instead listen for when the LoggerInterface::debug method is called for
+		// a debug log about autoblocking occurring and trigger a new ::doAutoblock call then
+		// This extra call should return early due to the race condition handling
+		$method = __METHOD__;
+		$autoblockingLogCreated = false;
+		$mockLogger->method( 'debug' )
+			->willReturnCallback( function ( $message ) use (
+				&$autoblockingLogCreated, $store, $parentBlock, $secondBlock, $ip, $method
+			) {
+				// Only interested in logs that indicate an autoblock
+				// on the first parent block is happening
+				if ( !str_starts_with( $message, 'Autoblocking ' . $parentBlock->getTargetName() ) ) {
+					return;
+				}
+
+				// Prevent infinite recursion by setting a flag to only allow this to happen once
+				if ( !$autoblockingLogCreated ) {
+					$this->assertFalse(
+						$store->doAutoblock( $secondBlock, $ip ),
+						'Second race condition call to ::doAutoblock should return early with false'
+					);
+					$dbw = $this->getDb();
+					$this->assertFalse(
+						$dbw->lockIsFree( $dbw->getDomainID() . ':autoblock:' . $ip, $method ),
+						'Lock should not be free for autoblocking in race condition'
+					);
+
+					$autoblockingLogCreated = true;
+				}
+			} );
+
+		$newAutoblockId = $store->doAutoblock( $parentBlock, $ip );
+		$this->assertNotFalse( $newAutoblockId, 'Should have created an autoblock' );
+
+		$autoblockObject = $store->newFromID( $newAutoblockId );
+		$this->assertSame(
+			$ip,
+			$autoblockObject->getTargetName(),
+			'::doAutoblock did not autoblock the correct IP'
+		);
+		$this->assertSame(
+			$this->unexpiredBlockId,
+			$autoblockObject->getParentBlockId(),
+			'::doAutoblock did not associate the autoblock with the expected parent block'
+		);
+
+		// Clear the newly created autoblock and call ::doAutoblock again,
+		// to check that the lock gets cleared at the end of ::doAutoblock.
+		// If it did not then this second call would return false.
+		$this->assertTrue( $store->deleteBlock( $store->newFromID( $newAutoblockId ) ) );
+		$this->assertNull( $store->newFromID( $newAutoblockId ) );
+
+		$this->assertNotFalse(
+			$store->doAutoblock( $parentBlock, $ip ),
+			'A second call that does not race conflict should succeed'
+		);
 	}
 
 	/**
