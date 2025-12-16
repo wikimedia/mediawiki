@@ -261,14 +261,16 @@ trait UploadJobTrait {
 	 */
 	private function setStatusDone() {
 		// Build the image info array while we have the local reference handy
+		// Deprecated, kept for backward compatibility on deployment
 		$imageInfo = ApiUpload::getDummyInstance()->getUploadImageInfo( $this->getUpload() );
 
 		// Cache the info so the user doesn't have to wait forever to get the final info
+		$file = $this->getUpload()->getLocalFile();
 		$this->setStatus(
 			'publish',
 			'Success',
 			Status::newGood(),
-			[ 'filename' => $this->getUpload()->getLocalFile()->getName(), 'imageinfo' => $imageInfo ]
+			[ 'filename' => $file->getName(), 'timestamp' => $file->getTimestamp(), 'imageinfo' => $imageInfo ]
 		);
 	}
 

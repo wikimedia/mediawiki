@@ -377,6 +377,7 @@ class ApiMain extends ApiBase {
 				'WatchlistManager',
 				'WatchedItemStore',
 				'UserOptionsLookup',
+				'RepoGroup',
 			]
 		],
 		'filerevert' => [

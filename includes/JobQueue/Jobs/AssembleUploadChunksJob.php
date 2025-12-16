@@ -140,6 +140,7 @@ class AssembleUploadChunksJob extends Job implements GenericParameterJob {
 			$upload->stash->removeFileNoAuth( $this->params['filekey'] );
 
 			// Build the image info array while we have the local reference handy
+			// Deprecated, kept for backward compatibility on deployment
 			$apiUpload = ApiUpload::getDummyInstance();
 			$imageInfo = $apiUpload->getUploadImageInfo( $upload );
 
