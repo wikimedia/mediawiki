@@ -955,6 +955,7 @@
 	"apihelp-query+info-paramvalue-prop-varianttitles": "Devolve o título en todas as variantes da lingua do contido do sitio.",
 	"apihelp-query+info-paramvalue-prop-linkclasses": "Ofrece as clases CSS adicionais (por exemplo, as cores das ligazóns) usadas para as ligazóns a esta páxina se aparecesen na páxina denominada por <var>$1linkcontext</var>.",
 	"apihelp-query+info-param-linkcontext": "O título de contexto que se debe usar cando se determinan as clases CSS adicionais (por exemplo, as cores das ligazóns) cando <var>$1prop</var> contén <var>linkclasses</var>.",
+	"apihelp-query+info-param-defaultlinkcaption": "Indica se se considera que as ligazóns teñen unha lenda predeterminada (a lenda é un sufixo do destino da ligazón e vai precedida por unha barra, dous puntos ou o inicio dunha cadea). Pode ter impacto nas clases de ligazón devoltas.",
 	"apihelp-query+info-param-testactions": "Probar se o usuario actual pode realizar certas accións na páxina.",
 	"apihelp-query+info-param-testactionsdetail": "Nivel de detalle para <var>$1testactions</var>. Usa os parámetros <var>errorformat</var> e <var>errorlang</var> do [[Special:ApiHelp/main|módulo principal]] para controlar o formato das mensaxes devoltas.",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "Devolver un valor booleano para cada acción.",

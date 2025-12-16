@@ -212,7 +212,7 @@
 	"tog-watchlistreloadautomatically": "Фильтрны үзгәрткәндә автомат рәвештә күзәтү исемлеген яңадан эшләтеп җибәрү (JavaScript таләп ителә)",
 	"tog-watchlisthidecategorization": "Битләрне төркемләү яшерелсен",
 	"tog-watchlisthidepatrolled": "Күзәтү исемлегеннән саклана торган төзәтмәләрне яшерү",
-	"prefs-pageswatchlist": "Күзәтелгән битләр",
+	"prefs-pageswatchlist": "Күзәтелүче битләр",
 	"tog-watchdefault": "Мин үзгәрткән битләр һәм файллар күзәтү исемлегемә өстәлсен",
 	"tog-watchmoves": "Мин күчергән битләр һәм файллар күзәтү исемлегемә өстәлсен",
 	"tog-watchdeletion": "Мин бетергән битләр һәм файллар күзәтү исемлегемә өстәлсен",

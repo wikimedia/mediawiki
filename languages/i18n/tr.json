@@ -839,6 +839,7 @@
 	"undo-summary-anon": "[[Special:Contributions/$2|$2]] tarafından yapılan [[Special:Diff/$1|$1]] numaralı revizyona sahip değişiklik geri alındı",
 	"undo-summary-import": "[[:$2|$3]] tarafından içe aktarılan  [[Special:Diff/$1|$1]] değişikliği geri alındı",
 	"undo-summary-import2": "$2 tarafından içe aktarılan [[Special:Diff/$1|$1]] değişikliği geri alındı",
+	"undo-summary-multiple": "{{PLURAL:$1|$1 revizyonu}} geri al ([[Special:Diff/$2|$2]] revizyon numarasından başlayarak [[Special:Diff/$3|$3]] revizyon numarasına kadar)",
 	"undo-summary-username-hidden": "Gizli bir kullanıcının [[Special:Diff/$1|$1]] değişikliği geri alındı",
 	"viewpagelogs": "Bu sayfa için günlükleri gör",
 	"viewpagelogs-lowercase": "bu sayfa için günlükleri gör",

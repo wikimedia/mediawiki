@@ -3767,6 +3767,7 @@
 	"pagelang-unchanged-language": "La pagina $1 è già impostata alla lingua $2.",
 	"pagelang-unchanged-language-default": "La pagina $1 è già impostata alla lingua predefinita del contenuto del wiki.",
 	"pagelang-db-failed": "Il database non è stato in grado di modificare la lingua della pagina.",
+	"pagelang-invalid-selection": "Lingua selezionata non valida",
 	"right-pagelang": "Modifica la lingua della pagina",
 	"action-pagelang": "modificare la lingua della pagina",
 	"log-name-pagelang": "Modifiche lingua",

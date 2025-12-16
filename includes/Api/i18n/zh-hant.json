@@ -971,6 +971,7 @@
 	"apihelp-query+info-paramvalue-prop-varianttitles": "指定網站內容語言裡所有變體的顯示標題。",
 	"apihelp-query+info-paramvalue-prop-linkclasses": "若它們出現在名為 <var>$1linkcontext</var> 的頁面上，給予使用於連結到此頁面的額外 CSS 類別（例如：連結色彩）。",
 	"apihelp-query+info-param-linkcontext": "當 <var>$1prop</var> 包含 <var>linkclasses</var> 時，在確認的額外 CSS 類別（例如：連結色彩）時使用的上下文標題。",
+	"apihelp-query+info-param-defaultlinkcaption": "是否將連結視為具有預設說明文字（說明文字是連結目標的後綴，開頭帶有反斜線、冒號或字串）。這可能會影響回傳的連結類別。",
 	"apihelp-query+info-param-testactions": "測試目前使用者是否可執行頁面上的某項操作。",
 	"apihelp-query+info-param-testactionsdetail": "<var>$1testactions</var> 的詳情級別。使用[[Special:ApiHelp/main|主模組]]的 <var>errorformat</var> 與 <var>errorlang</var> 參數來控制訊息所回傳格式。",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "回傳各操作的布林值。",

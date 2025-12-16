@@ -2577,6 +2577,7 @@
 	"block-item-edit": "Redaktə et",
 	"block-target": "Hədəf",
 	"block-target-placeholder": "İstifadəçi adı, IP ünvanı və ya IP diapazonu",
+	"block-target-ip-tempuser-info": "Bu IP ünvanından edilən bütün müvəqqəti hesab redaktələri və müvəqqəti hesab yaradılmaları bloklanacaq.",
 	"block-pages-placeholder": "Daha çox səhifə əlavə et...",
 	"block-namespaces-placeholder": "Daha çox ad fəzası əlavə et...",
 	"block-update": "Bloku yenilə",

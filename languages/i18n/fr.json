@@ -2758,6 +2758,7 @@
 	"block-item-edit": "Modifier",
 	"block-target": "Cible",
 	"block-target-placeholder": "Nom d'utilisateur, adresse IP ou plage d'adresses IP",
+	"block-target-ip-tempuser-info": "Toute modification effectuée par un compte temporaire depuis cette adresse IP sera bloquée. La création de comptes temporaires depuis cette adresse IP sera également bloquée.",
 	"block-pages-placeholder": "Ajouter des pages…",
 	"block-namespaces-placeholder": "Ajouter des espaces de noms…",
 	"block-update": "Mettre à jour un blocage",

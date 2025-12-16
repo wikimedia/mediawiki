@@ -2566,6 +2566,7 @@
 	"block-item-edit": "Modificar",
 	"block-target": "Obxectivo",
 	"block-target-placeholder": "Nome de usuario, enderezo IP ou rango de enderezos IP",
+	"block-target-ip-tempuser-info": "Bloquearanse todas as edicións de contas temporais feitas desde este enderezo IP. A creación de contas temporais desde este enderezo IP tamén se bloqueará.",
 	"block-pages-placeholder": "Engadir máis páxinas...",
 	"block-namespaces-placeholder": "Engadir máis espazos de nomes...",
 	"block-update": "Actualizar o bloqueo",
