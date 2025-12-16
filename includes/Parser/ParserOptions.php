@@ -15,6 +15,7 @@ use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -1629,26 +1630,56 @@ class ParserOptions {
 		$defaults = self::getDefaults();
 		$inCacheKey = self::getCacheVaryingOptionsHash();
 		$usedOptions ??= array_keys( $this->options );
-		if (
-			!MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UsePostprocCache ) &&
-			$this->shouldIncludePostproc()
-		) {
+		$usePostprocCache = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UsePostprocCache );
+		if ( !$usePostprocCache && $this->shouldIncludePostproc() ) {
 			return false;
 		}
 
+		$shouldSample = false;
+		$logger = null;
 		if ( !$this->shouldIncludePostproc() ) {
 			$usedOptions = array_diff( $usedOptions, self::$postprocOptions );
+		} else {
+			$shouldSample = true;
 		}
+
+		$safe = true;
 		foreach ( $usedOptions as $option ) {
 			if ( empty( $inCacheKey[$option] ) && empty( self::$callbacks[$option] ) ) {
 				$v = $this->optionToString( $this->options[$option] ?? null );
 				$d = $this->optionToString( $defaults[$option] ?? null );
 				if ( $v !== $d ) {
-					return false;
+					if ( $shouldSample && $logger === null ) {
+						$sampleRate = MediaWikiServices::getInstance()->getMainConfig()->get(
+							MainConfigNames::ParserOptionsLogUnsafeSampleRate
+						);
+						if ( $sampleRate && mt_rand( 1, $sampleRate ) === 1 ) {
+							$logger = LoggerFactory::getInstance( 'ParserOptions' );
+						} else {
+							$shouldSample = false;
+						}
+					}
+					if ( $logger ) {
+						// if we're logging, let's not stop at the first problem (which has a high chance of
+						// always being the same?) but let's gather some more data instead
+						$logger->debug(
+							__METHOD__ . ': Unsafe option {parseroption_name}; safe would be' .
+								'{default_parseroption_value}, got {actual_parseroption_value}',
+							[
+								'parseroption_name' => $option,
+								'default_parseroption_value' => $d,
+								'actual_parseroption_value' => $v
+							]
+						);
+						$safe = false;
+					} else {
+						// if we're not logging, we can stop here, no need to continue
+						return false;
+					}
 				}
 			}
 		}
-		return true;
+		return $safe;
 	}
 
 	/**

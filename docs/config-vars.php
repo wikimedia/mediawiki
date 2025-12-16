@@ -4567,3 +4567,9 @@ $wgUseLeximorph = null;
  * @see MediaWiki\MainConfigSchema::UsePostprocCache
  */
 $wgUsePostprocCache = null;
+
+/**
+ * Config variable stub for the ParserOptionsLogUnsafeSampleRate setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ParserOptionsLogUnsafeSampleRate
+ */
+$wgParserOptionsLogUnsafeSampleRate = null;

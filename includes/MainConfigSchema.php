@@ -13478,5 +13478,20 @@ class MainConfigSchema {
 		'type' => 'boolean',
 	];
 
+	/**
+	 * Sample rate for collecting statistics on unsafe key values in ParserCache.
+	 * Zero disables collection; 1000 means "1 in every 1000 parses will
+	 * be sampled".
+	 *
+	 * @warning This is EXPERIMENTAL and will disappear once analysis is
+	 *  complete.
+	 * @unstable temporary statistics gathering
+	 * @since 1.46
+	 */
+	public const ParserOptionsLogUnsafeSampleRate = [
+		'default' => 0,
+		'type' => 'integer'
+	];
+
 	// endregion -- End Miscellaneous
 }

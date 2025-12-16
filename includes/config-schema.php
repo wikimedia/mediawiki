@@ -2735,6 +2735,7 @@ return [
 			'CloneArticleParserOutput' => true,
 			'UseLeximorph' => false,
 			'UsePostprocCache' => false,
+			'ParserOptionsLogUnsafeSampleRate' => 0,
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -3248,6 +3249,7 @@ return [
 			'CloneArticleParserOutput' => 'boolean',
 			'UseLeximorph' => 'boolean',
 			'UsePostprocCache' => 'boolean',
+			'ParserOptionsLogUnsafeSampleRate' => 'integer',
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',

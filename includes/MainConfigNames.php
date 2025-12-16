@@ -4583,4 +4583,10 @@ class MainConfigNames {
 	 */
 	public const UsePostprocCache = 'UsePostprocCache';
 
+	/**
+	 * Name constant for the ParserOptionsLogUnsafeSampleRate setting, for use with Config::get()
+	 * @see MainConfigSchema::ParserOptionsLogUnsafeSampleRate
+	 */
+	public const ParserOptionsLogUnsafeSampleRate = 'ParserOptionsLogUnsafeSampleRate';
+
 }
