@@ -54,7 +54,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"TreeIsLife",
-			"Spider 001757"
+			"Spider 001757",
+			"Username1233219128"
 		]
 	},
 	"sunday": "nedeľa",
@@ -946,6 +947,7 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|$1 medziľahlá revízia|$1 medziľahlé revízie|$1 medziľahlých revízií}} od viac ako {{PLURAL:$2|$2 používateľa|$2 používateľov}} {{PLURAL:$1|nie je zobrazená|nie sú zobrazené|nie je zobrazených}})",
 	"diff-paragraph-moved-tonew": "Odsek bol presunutý. Kliknutím sa presuniete na nové umiestnenie.",
 	"diff-paragraph-moved-toold": "Odsek bol presunutý. Kliknutím sa presuniete na pôvodné umiestnenie.",
+	"diff-line-deleted": "⟵ vymazať",
 	"difference-missing-revision": "{{PLURAL:$2|$2 revízia|$2 revízie|$2 revízií}} pre požadovaný rozdiel ($1) {{PLURAL:$2|neexistuje|neexistujú|neexistuje}}.\n\nPravdepodobne ste nasledovali zastaraný odkaz na rozdiel revízií, z ktorých niektorá bola medzičasom odstránená.\nPodrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname zmazaní].",
 	"searchresults": "Výsledky vyhľadávania",
 	"search-filter-title-prefix": "Hľadanie iba v stránkach, ktorých názov začína na „$1“",
@@ -1989,7 +1991,7 @@
 	"logeventslist-patrol-log": "Kniha preverených úprav",
 	"logeventslist-tag-log": "Kniha značiek",
 	"logeventslist-newusers-log": "Záznam vytvorených používateľov",
-	"all-logs-page": "Všetky verejné záznamy",
+	"all-logs-page": "Hlavné verejné záznamy",
 	"alllogstext": "Kombinované zobrazenie všetkých dostupných záznamov {{GRAMMAR:genitív|{{SITENAME}}}}.\nMôžete zúžiť rozsah, ak zvolíte typ záznamu, používateľské meno alebo dotyčnú stránku (záleží na veľkosti písmen).",
 	"logempty": "V zázname neboli nájdené zodpovedajúce položky.",
 	"log-title-wildcard": "Hľadať názvy začínajúce týmto textom",

@@ -150,7 +150,9 @@
 			"SCP-2000",
 			"Nvdtn19",
 			"Srapoj",
-			"TeaSummer"
+			"TeaSummer",
+			"Peterxy12",
+			"臺灣象象"
 		]
 	},
 	"sunday": "星期日",
@@ -554,7 +556,7 @@
 	"nocookieslogin": "要登入{{SITENAME}}使用者需使用 Cookies，\n您的 Cookies 未尚開啟。\n請在開啟後重試。",
 	"nocookiesfornew": "這個使用者的帳號未建立，我們不能確認它的來源。\n請確認您已開啟 Cookie，重新載入後再試。",
 	"createacct-loginerror": "已成功建立帳號，但無法自動登入。\n請繼續 [[Special:UserLogin|手動登入]]。",
-	"createacct-temp-warning": "您在 <strong>$1</strong> 臨時帳號上所做的編輯不會轉移到您的固定帳號裡。",
+	"createacct-temp-warning": "您在<strong>$1</strong>臨時帳號上所做的編輯不會轉移到您的固定帳號裡。",
 	"noname": "您輸入的使用者名稱無效。",
 	"userlogin-authpopup-loggingin-title": "登入中…",
 	"userlogin-authpopup-loggingin-body": "應該會開啟一個彈出視窗。如果您沒有看見，我們可以嘗試再次開啟。或者您可以[$1 以舊的方式登入]。",
@@ -1966,7 +1968,7 @@
 	"mimesearch-summary": "本頁面可篩選檔案的 MIME 類型。\n輸入格式：內容類型/子類型 或 內容類型/*，如 <code>image/jpeg</code>。",
 	"mimetype": "MIME 類型：",
 	"download": "下載",
-	"unwatchedpages": "未監視的頁面",
+	"unwatchedpages": "未受監視的頁面",
 	"listredirects": "重新導向清單",
 	"listduplicatedfiles": "重複檔案清單",
 	"listduplicatedfiles-summary": "此清單中包含最新版本的檔案與其他檔案重複的清單，本清單只顯示本地檔案。",

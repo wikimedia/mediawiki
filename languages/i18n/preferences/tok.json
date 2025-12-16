@@ -5,7 +5,8 @@
 			"Robin van der Vliet",
 			"Spenĉjo",
 			"Tbodt",
-			"Ca"
+			"Ca",
+			"Tamzin"
 		]
 	},
 	"preferences": "wile mi",
@@ -92,14 +93,15 @@
 	"underline-always": "lon tenpo ale",
 	"tog-showhiddencats": "kulupu lipu li len la, o len ala e ona lon lipu ante",
 	"prefs-editing": "pali",
-	"tog-editsectiononrightclick": "o ante e kipisi lon nena pi nimi suli",
-	"tog-editondblclick": "luka tu la o open ante e lipu",
+	"tog-editsectiononrightclick": "kipisi lipu la mi luka e nimi kepeken nena M2 la, o open ante e ni",
+	"tog-editondblclick": "mi luka e lipu lon tenpo tu la, o open ante e ona",
 	"prefs-editor": "ilo pali",
 	"editfont-style": "nasin sitelen pi poki pali:",
 	"editfont-monospace": "nasin sitelen pi suli sama",
 	"editfont-sansserif": "nasin sitelen pi namako ala",
 	"editfont-serif": "nasin sitelen namako",
 	"tog-minordefault": "mi toki ante ala la, ante mi li lili",
+	"tog-editrecovery": "o ken e [[Special:EditRecovery|ilo \"{{int:editrecovery}}\"]]",
 	"tog-useeditwarning": "mi open ante e lipu, li weka tan lipu ante la, o toki e ni",
 	"prefs-preview": "lukin taso",
 	"tog-previewonfirst": "o pana e lukin lon open ante",

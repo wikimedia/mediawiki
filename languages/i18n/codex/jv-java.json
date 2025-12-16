@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bennylin"
+		]
+	},
+	"cdx-chip-input-chip-added": "Chip $1 ꦮꦶꦱ꧀ꦢꦶꦠꦩ꧀ꦧꦃꦤꦺ꧉",
+	"cdx-chip-input-chip-removed": "Chip $1 ꦮꦶꦱ꧀ꦢꦶꦧꦸꦱꦏ꧀꧈",
+	"cdx-input-chip-aria-description": "ꦥꦶꦗꦼꦠ꧀Enter​ꦏꦁꦒꦺꦴ​ꦩ꧀ꦧꦼꦱꦸꦠ꧀​ꦲꦸꦠꦮ​Deleteꦏꦁꦒꦺꦴ​ꦩ꧀ꦧꦸꦱꦏ꧀꧈",
+	"cdx-dialog-close-button-label": "ꦠꦸꦠꦸꦥ꧀",
+	"cdx-label-optional-flag": "(ꦲꦺꦴꦥ꧀ꦱꦶꦪꦺꦴꦤꦭ꧀)",
+	"cdx-message-dismiss-button-label": "ꦠꦸꦠꦸꦥ꧀",
+	"cdx-search-input-search-button-label": "ꦒꦺꦴꦭꦺꦏ꧀",
+	"cdx-table-select-all-label": "ꦥꦶꦭꦶꦃ​ꦏꦧꦺꦃ​ꦧꦫꦶꦱ꧀",
+	"cdx-table-select-row-label": "ꦩꦶꦭꦶꦃ​ꦧꦫꦶꦱ꧀​$1​ꦱꦏ​$2",
+	"cdx-table-sort-caption": "$1 (column headers with buttons are sortable).",
+	"cdx-typeahead-search-search-results-label": "ꦏꦱꦶꦭ꧀ꦭꦶꦁ​ꦒꦺꦴꦭꦺꦏ꧀",
+	"cdx-table-pager-button-first-page": "ꦏꦕ​ꦥꦼꦂꦠꦩ",
+	"cdx-table-pager-button-last-page": "ꦏꦕ​ꦏꦺꦫꦶ​ꦝꦺꦮꦺ",
+	"cdx-table-pager-button-next-page": "ꦏꦕ​ꦱꦧꦚ꧀ꦗꦸꦂꦫꦺ",
+	"cdx-table-pager-button-prev-page": "ꦏꦕ​ꦱꦢꦸꦫꦸꦁꦔꦺ",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1ꦧꦫꦶꦱ꧀}}",
+	"cdx-table-pager-items-per-page-default": "ꦏꦱꦶꦭ꧀ꦥꦼꦂ​ꦏꦕ",
+	"cdx-table-pagination-status-message-determinate-long": "ꦤ꧀ꦢꦸꦢꦸꦃꦤꦺ​ꦏꦱꦶꦭ꧀​$1–$2​ꦱꦏ​$3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2​ꦱꦏ​$3",
+	"cdx-table-pagination-status-message-indeterminate-long": "ꦤ꧀ꦢꦸꦢꦸꦃꦤꦺ​ꦏꦱꦶꦭ꧀​$1–$2ꦱꦏ​ꦲꦏꦺꦃ",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2ꦱꦏ​ꦲꦏꦺꦃ",
+	"cdx-table-pagination-status-message-indeterminate-final": "ꦤ꧀ꦢꦸꦢꦸꦃꦤꦺ​{{PLURAL:$1|$1ꦏꦱꦶꦭ꧀}}ꦥꦭꦶꦁ​ꦧꦸꦫꦶ",
+	"cdx-table-pagination-status-message-pending": "ꦔꦩꦺꦴꦠ꧀ꦏꦱꦶꦭ꧀…"
+}

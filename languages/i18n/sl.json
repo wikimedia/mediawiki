@@ -2022,6 +2022,7 @@
 	"apisandbox-request-php-label": "Zahtevaj PHP-matriko:",
 	"apisandbox-request-time": "Trajanje zahtevka: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-request-post": "Ta zahtevek je treba poslati z metodo HTTP POST.",
+	"apisandbox-request-post2": "Zaradi velikosti koristnega tovora je bil ta zahtevek poslan z metodo HTTP POST.",
 	"apisandbox-request-formdata": "Ta zahtevek je treba poslati kot naloženo datoteko (tj. z uporabo <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "Popravite žeton in znova pošljite",
 	"apisandbox-results-fixtoken-fail": "Pridobivanje žetona »$1« ni uspelo.",

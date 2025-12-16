@@ -1770,6 +1770,7 @@
 	"autosumm-blank": "خوي الصفحة",
 	"autosumm-replace": "بدل الصفحة ب'$1'",
 	"autoredircomment": "حوّل صفحة ل [[$1]]",
+	"autosumm-changed-redirect-target": "بدّل لهدف ديال التحويلة من [[$1]] ل [[$2]]",
 	"autosumm-new": "تدارت صفحة ب\"$1\"",
 	"size-megabytes": "$1 ميڭابايت",
 	"lag-warn-normal": "tghiyrat jdad y3ni aqal mn  $1 {{PLURAL:$1|taniya|tawani}} iqdr matbanch lik flista",

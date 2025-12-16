@@ -98,7 +98,8 @@
 			"BraunOBruno",
 			"O andras",
 			"RogueScholar",
-			"Maria Manuela Silva"
+			"Maria Manuela Silva",
+			"BlackShadoww"
 		]
 	},
 	"sunday": "domingo",
@@ -859,6 +860,7 @@
 	"bad-language-code-category": "Páginas com códigos de idioma inválidos",
 	"bad-language-code-category-desc": "A página contém um<nowiki> <code>{{#dir}}</code></nowiki> com um código de idioma inválido.",
 	"bad-double-underscore-category": "Páginas com cursores de comportamento inválidos",
+	"bad-double-underscore-category-desc": "A página contém um [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|cursor de comportamento]]. AS traduções válidas começam e acabam com sublinhados duplos.",
 	"double-px-category": "Páginas com tamanhos de imagem contendo px extras",
 	"double-px-category-desc": "A página contém uma imagem cujo tamanho contém um sufixo <code>px</code> extra, como <code>100pxpx</code> .",
 	"converter-manual-rule-error": "Erro detetado na regra de conversão de língua manual",
