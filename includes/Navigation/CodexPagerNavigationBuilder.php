@@ -21,6 +21,9 @@ class CodexPagerNavigationBuilder extends PagerNavigationBuilder {
 		parent::__construct( $context );
 		$context->getOutput()->addModuleStyles( 'mediawiki.pager.codex.styles' );
 		$context->getOutput()->addModules( 'mediawiki.pager.codex' );
+		$context->getOutput()->addJsConfigVars( [
+			'wgCodexTablePagerLimit' => $queryValues['limit'] ?? $this->currentLimit,
+		] );
 	}
 
 	/**
