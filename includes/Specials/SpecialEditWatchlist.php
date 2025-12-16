@@ -130,9 +130,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$this->outputHeader();
 		$out->addModuleStyles( [
 			'mediawiki.interface.helpers.styles',
-			'mediawiki.special'
+			'mediawiki.special.watchlistedit.styles',
 		] );
-		$out->addModules( [ 'mediawiki.special.watchlist' ] );
+		$out->addModules( [ 'mediawiki.special.watchlistedit' ] );
 
 		$mode = self::getMode( $this->getRequest(), $mode, self::EDIT_NORMAL );
 		$this->currentMode = $mode;

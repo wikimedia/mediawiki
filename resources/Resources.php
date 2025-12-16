@@ -2825,7 +2825,6 @@ return [
 		'scripts' => [
 			'resources/src/mediawiki.special.watchlist/watchlist.js',
 			'resources/src/mediawiki.special.watchlist/visitedstatus.js',
-			'resources/src/mediawiki.special.watchlist/editwatchlist.js'
 		],
 		'messages' => [
 			'addedwatchtext',
@@ -2853,6 +2852,24 @@ return [
 			'oojs-ui-core',
 			'oojs-ui.styles.icons-interactions',
 			'user.options',
+		],
+	],
+	'mediawiki.special.watchlistedit' => [
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.special.watchlistedit',
+		'packageFiles' => [
+			'init.js',
+		],
+		"messages" => [
+		],
+		'dependencies' => [
+			'mediawiki.special.watchlistedit.styles',
+			'oojs-ui-core',
+		],
+	],
+	'mediawiki.special.watchlistedit.styles' => [
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.special.watchlistedit',
+		'styles' => [
+			'editwatchlist.less',
 		],
 	],
 	'mediawiki.special.watchlistlabels' => [
