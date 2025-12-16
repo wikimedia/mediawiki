@@ -2858,12 +2858,20 @@ return [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.special.watchlistedit',
 		'packageFiles' => [
 			'init.js',
+			'LabelDialog.vue',
 		],
 		"messages" => [
+			'cancel',
+			'watchlistlabels-editwatchlist-dialog-button',
+			'watchlistlabels-editwatchlist-dialog-intro',
+			'watchlistlabels-editwatchlist-dialog-intro-more',
+			'watchlistlabels-editwatchlist-dialog-assign',
 		],
 		'dependencies' => [
 			'mediawiki.special.watchlistedit.styles',
 			'oojs-ui-core',
+			'vue',
+			'@wikimedia/codex'
 		],
 	],
 	'mediawiki.special.watchlistedit.styles' => [

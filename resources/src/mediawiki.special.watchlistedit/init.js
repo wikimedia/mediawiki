@@ -46,4 +46,16 @@
 			}
 		);
 	} );
+
+	if ( mw.config.get( 'watchlistLabels' ) ) {
+		const Vue = require( 'vue' );
+		const LabelDialog = require( './LabelDialog.vue' );
+		const removeButton = document.querySelector( '.mw-editwatchlist-remove-selected' );
+		if ( removeButton ) {
+			const labelButtons = document.createElement( 'span' );
+			removeButton.after( ' ', labelButtons );
+			Vue.createMwApp( LabelDialog ).mount( labelButtons );
+		}
+	}
+
 }() );

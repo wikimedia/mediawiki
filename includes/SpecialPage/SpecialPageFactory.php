@@ -678,6 +678,7 @@ class SpecialPageFactory {
 			'class' => SpecialEditWatchlist::class,
 			'services' => [
 				'WatchedItemStore',
+				'WatchlistLabelStore',
 				'TitleParser',
 				'GenderCache',
 				'LinkBatchFactory',

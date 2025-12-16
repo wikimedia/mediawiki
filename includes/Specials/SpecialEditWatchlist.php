@@ -29,6 +29,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleParser;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
+use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Watchlist\WatchlistSpecialPage;
 
@@ -62,6 +63,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 	private TitleParser $titleParser;
 	private WatchedItemStoreInterface $watchedItemStore;
+	private WatchlistLabelStore $watchlistLabelStore;
 	private GenderCache $genderCache;
 	private LinkBatchFactory $linkBatchFactory;
 	private NamespaceInfo $nsInfo;
@@ -74,6 +76,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 	public function __construct(
 		?WatchedItemStoreInterface $watchedItemStore = null,
+		?WatchlistLabelStore $watchlistLabelStore = null,
 		?TitleParser $titleParser = null,
 		?GenderCache $genderCache = null,
 		?LinkBatchFactory $linkBatchFactory = null,
@@ -85,6 +88,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		// This class is extended and therefor fallback to global state - T266065
 		$services = MediaWikiServices::getInstance();
 		$this->watchedItemStore = $watchedItemStore ?? $services->getWatchedItemStore();
+		$this->watchlistLabelStore = $watchlistLabelStore ?? $services->getWatchlistLabelStore();
 		$this->titleParser = $titleParser ?? $services->getTitleParser();
 		$this->genderCache = $genderCache ?? $services->getGenderCache();
 		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
@@ -139,6 +143,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			'mediawiki.special.watchlistedit.styles',
 		] );
 		$out->addModules( [ 'mediawiki.special.watchlistedit' ] );
+		if ( $this->getConfig()->get( MainConfigNames::EnableWatchlistLabels ) ) {
+			$out->addJsConfigVars( [
+				'watchlistLabels' => array_map(
+					static fn ( $label ) => [ 'id' => $label->getId(), 'name' => $label->getName() ],
+					$this->watchlistLabelStore->loadAllForUser( $this->getUser() )
+				),
+			] );
+		}
 
 		$mode = self::getMode( $this->getRequest(), $mode, self::EDIT );
 		$this->currentMode = $mode;

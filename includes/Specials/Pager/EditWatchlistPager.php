@@ -203,7 +203,9 @@ class EditWatchlistPager extends CodexTablePager {
 
 		$html .= Html::openElement( 'form', [
 			'method' => 'post',
-			'id' => 'watchlist-edit-form'
+			'id' => 'watchlist-edit-form',
+			// It's not actually an HTMLForm, but for styling purposes it is.
+			'class' => 'mw-htmlform-codex mw-editwatchlist-form',
 		] );
 		$html .= Html::hidden( 'wpEditToken', $this->getContext()->getCsrfTokenSet()->getToken() );
 		$namespace = $this->getContext()->getRequest()->getIntOrNull( 'namespace' );
@@ -306,7 +308,7 @@ class EditWatchlistPager extends CodexTablePager {
 
 		// Action buttons
 		$buttons = ( new Codex() )->button()
-			->setAttributes( [ 'class' => 'mw-specialwatchlistlabels-delete-button' ] )
+			->setAttributes( [ 'class' => 'mw-editwatchlist-remove-selected' ] )
 			->setLabel( $this->msg( 'watchlistedit-table-remove-selected' )->text() )
 			->setType( 'submit' )
 			->setAction( 'destructive' )

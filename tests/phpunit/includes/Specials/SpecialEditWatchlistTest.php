@@ -24,6 +24,7 @@ class SpecialEditWatchlistTest extends SpecialPageTestBase {
 		$services = $this->getServiceContainer();
 		return new SpecialEditWatchlist(
 			$services->getWatchedItemStore(),
+			$services->getWatchlistLabelStore(),
 			$services->getTitleParser(),
 			$services->getGenderCache(),
 			$services->getLinkBatchFactory(),
