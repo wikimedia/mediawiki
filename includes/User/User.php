@@ -3186,7 +3186,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 *
 	 * @return User|null Returns null if the user was not found in the DB
 	 * @since 1.27
-	 * @deprecated since 1.45. Use User::getInstanceFromPrimary() instead. The exact equivalent of
+	 * @deprecated since 1.46. Use User::getInstanceFromPrimary() instead. The exact equivalent of
 	 *   this method is getInstanceFromPrimary() with the READ_EXCLUSIVE flag, but most callers
 	 *   didn't actually need an exclusive lock, and overusing it is harmful, so consider whether
 	 *   you really need locking.
@@ -3194,7 +3194,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 *   original User object was already from the primary DB.
 	 */
 	public function getInstanceForUpdate() {
-		wfDeprecated( __METHOD__, '1.45' );
+		wfDeprecated( __METHOD__, '1.46' );
 		return $this->getInstanceFromPrimary( IDBAccessObject::READ_EXCLUSIVE );
 	}
 
