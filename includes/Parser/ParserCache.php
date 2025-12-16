@@ -263,6 +263,8 @@ class ParserCache {
 		}
 
 		if ( $metadata === false ) {
+			// We don't currently remove contents from the cache for capacity,
+			// so hitting this case usually means the cache expiry has passed.
 			$this->incrementStats( $page, 'miss', 'absent_metadata' );
 			$this->logger->debug( 'ParserOutput metadata cache miss', [ 'name' => $this->name ] );
 			return null;
@@ -284,6 +286,7 @@ class ParserCache {
 		}
 
 		if ( !$metadata instanceof CacheTime ) {
+			// This should never happen, and is grounds for a rollback.
 			$this->incrementStats( $page, 'miss', 'unserialize' );
 			return null;
 		}
@@ -369,6 +372,12 @@ class ParserCache {
 
 		$value = $this->cache->get( $parserOutputKey, BagOStuff::READ_VERIFIED );
 		if ( $value === false ) {
+			// We don't currently remove contents from the cache for capacity,
+			// and when the cache expiry passes absent_metadata will usually
+			// be reached before this case. This is usually a new set of
+			// cacheable parser options (user language, etc) being used for
+			// a page which already exists in some other form in the cache
+			// (metadata already present).
 			$this->incrementStats( $page, 'miss', 'absent' );
 			$this->logger->debug( 'ParserOutput cache miss', [ 'name' => $this->name ] );
 			return false;
@@ -387,6 +396,7 @@ class ParserCache {
 		}
 
 		if ( !$value instanceof ParserOutput ) {
+			// This should never happen, and is grounds for a rollback.
 			$this->incrementStats( $page, 'miss', 'unserialize' );
 			return false;
 		}
@@ -401,6 +411,9 @@ class ParserCache {
 
 		$wikiPage = $this->wikiPageFactory->newFromTitle( $page );
 		if ( $this->hookRunner->onRejectParserCacheValue( $value, $wikiPage, $popts ) === false ) {
+			// The cached entry is unusable due to a registered hook.
+			// This is typically used to rollback bad entries created by
+			// a botched deploy; see T249595.
 			$this->incrementStats( $page, 'miss', 'rejected' );
 			$this->logger->debug( 'key valid, but rejected by RejectParserCacheValue hook handler',
 				[ 'name' => $this->name ] );
@@ -618,6 +631,12 @@ class ParserCache {
 		string $cacheTier
 	): bool {
 		if ( $staleConstraint < self::USE_EXPIRED && $entry->expired( $page->getTouched() ) ) {
+			// A template affecting the page has been edited, forcing a miss.
+			// (CacheTime::expired() also checks page_touched; if the
+			// cache expiry time had passed no entry would have been
+			// returned and we would not reach here. The cache epoch
+			// and "uncacheable" flags are also checked by
+			// CacheTime::expired() but these will be corner cases.)
 			$this->incrementStats( $page, 'miss', 'expired' );
 			$this->logger->debug( "{$cacheTier} key expired", [
 				'name' => $this->name,
@@ -647,6 +666,7 @@ class ParserCache {
 	): bool {
 		$latestRevId = $page->getLatest( PageRecord::LOCAL );
 		if ( $staleConstraint < self::USE_OUTDATED && $entry->isDifferentRevision( $latestRevId ) ) {
+			// The page itself has been edited (new revision), forcing a miss.
 			$this->incrementStats( $page, 'miss', 'revid' );
 			$this->logger->debug( "{$cacheTier} key is for an old revision", [
 				'name' => $this->name,
