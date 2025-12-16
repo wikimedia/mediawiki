@@ -95,12 +95,14 @@ class ApiUpload extends ApiBase {
 		}
 
 		$user = $this->getUser();
+		$config = $this->getConfig();
 
 		// Parameter handling
 		$this->mParams = $this->extractRequestParams();
 		// Check if async mode is actually supported (jobs done in cli mode)
-		$this->mParams['async'] = ( $this->mParams['async'] &&
-			$this->getConfig()->get( MainConfigNames::EnableAsyncUploads ) );
+		$this->mParams['async'] = $this->mParams['async'] &&
+			$config->get( MainConfigNames::EnableAsyncUploads ) &&
+			( !$this->mParams['url'] || $config->get( MainConfigNames::EnableAsyncUploadsByURL ) );
 
 		// Copy the session key to the file key, for backward compatibility.
 		if ( !$this->mParams['filekey'] && $this->mParams['sessionkey'] ) {
@@ -223,7 +225,7 @@ class ApiUpload extends ApiBase {
 			);
 		} else {
 			$localFile = $upload->getLocalFile();
-			$imParam = ApiQueryImageInfo::getPropertyNames();
+			$imParam = ApiQueryImageInfo::getPropertyNames( [ 'uploadwarning' ] );
 			$info = ApiQueryImageInfo::getInfo(
 				$localFile,
 				array_fill_keys( $imParam, true ),
@@ -646,13 +648,16 @@ class ApiUpload extends ApiBase {
 		}
 
 		// Status report for "upload to stash"/"upload from stash"/"upload by url"
-		if ( $this->mParams['checkstatus'] && ( $this->mParams['filekey'] || $this->mParams['url'] ) ) {
+		if ( $this->mParams['checkstatus'] &&
+			( $this->mParams['filekey'] || ( $this->mParams['url'] && $this->mParams['filename'] ) )
+		) {
 			$statusKey = $this->mParams['filekey'] ?: UploadFromUrl::getCacheKey( $this->mParams );
 			$progress = UploadBase::getSessionStatus( $this->getUser(), $statusKey );
 			if ( !$progress ) {
 				$this->log->info( "Cannot check upload status due to missing upload session for {user}",
 					[
 						'user' => $this->getUser()->getName(),
+						'url' => $this->mParams['url'] ?? '-',
 						'filename' => $this->mParams['filename'] ?? '-',
 						'filekey' => $this->mParams['filekey'] ?? '-'
 					]

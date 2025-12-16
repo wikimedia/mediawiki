@@ -782,12 +782,14 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$this->assertEquals( 'Success', $result['upload']['result'] );
 		$this->assertSame( filesize( $filePath ), (int)$result['upload']['imageinfo']['size'] );
 		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
+		$this->assertArrayNotHasKey( 'html', $result['upload']['imageinfo'] );
 	}
 
 	public function testAsyncUploadUrl() {
 		$this->overrideConfigValues( [
 			MainConfigNames::AllowCopyUploads => true,
 			MainConfigNames::EnableAsyncUploads => true,
+			MainConfigNames::EnableAsyncUploadsByURL => true,
 		] );
 		$this->setGroupPermissions( '*', 'upload_by_url', true );
 		// Set user for RequestContext::exportSession() used by the job
@@ -824,5 +826,6 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$this->assertEquals( 'Success', $result['upload']['result'] );
 		$this->assertSame( filesize( $filePath ), (int)$result['upload']['imageinfo']['size'] );
 		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
+		$this->assertArrayNotHasKey( 'html', $result['upload']['imageinfo'] );
 	}
 }
