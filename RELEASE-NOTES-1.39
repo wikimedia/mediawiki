@@ -7,6 +7,14 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
 
+== MediaWiki 1.39.17 ==
+
+This is a maintenance release of the MediaWiki 1.39 branch.
+
+=== Changes since 1.39.14 ===
+* Localisation updates.
+* (T406664, T412602) Fix backport for T406664.
+
 == MediaWiki 1.39.16 ==
 
 This is a security and maintenance release of the MediaWiki 1.39 branch.
