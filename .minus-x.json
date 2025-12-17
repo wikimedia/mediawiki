@@ -1,0 +1,10 @@
+{
+	"ignoreDirectories": [
+		"./extensions",
+		"./skins",
+		"./docs/coverage",
+		"./docs/html",
+		"./docs/js",
+		"./docs/latex"
+	]
+}

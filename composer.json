@@ -160,7 +160,7 @@
 			"@putenv PHP_CLI_SERVER_WORKERS=8",
 			"@php -S 127.0.0.1:4000"
 		],
-		"lint": "parallel-lint --exclude node_modules --exclude vendor",
+		"lint": "parallel-lint --exclude node_modules --exclude vendor --exclude extensions --exclude skins --exclude cache --exclude docs",
 		"phan": "phan -d . --long-progress-bar",
 		"phpcs": "phpcs -p -s --cache",
 		"fix": [
