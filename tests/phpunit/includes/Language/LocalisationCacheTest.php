@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Language;
 
 use FileDependency;
+use LCStoreStaticArray;
 use MediaWiki\Language\LocalisationCache;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Mocks\Language\MockLocalisationCacheTrait;
@@ -238,5 +239,95 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->fail( "Deps should contain FileDependency for $fileName" );
+	}
+
+	public function testGetExpiredReasonForForcedRebuild(): void {
+		$lc = $this->getMockLocalisationCache( [], [
+			'forceRecache' => true,
+		] );
+		$w = TestingAccessWrapper::newFromObject( $lc );
+		$dir = $this->getNewTempDirectory();
+		$w->store = new LCStoreStaticArray( [ 'directory' => $dir ] );
+
+		// First, create a valid cache
+		$lc->recache( 'en' );
+
+		// Clear the recachedLangs tracking so forceRecache triggers again
+		$w->recachedLangs = [];
+
+		// Now check expiry - should report forced rebuild
+		$expired = $lc->isExpired( 'en' );
+
+		$this->assertTrue( $expired );
+		$this->assertSame( 'Forced rebuild requested', $lc->getExpiredReason( 'en' ) );
+	}
+
+	public function testGetExpiredReasonForMissingCache(): void {
+		$lc = $this->getMockLocalisationCache();
+
+		// Create a fake language code that hasn't been cached yet
+		$expired = $lc->isExpired( 'fake-lang-xyz' );
+
+		$this->assertTrue( $expired );
+		$reason = $lc->getExpiredReason( 'fake-lang-xyz' );
+		$this->assertSame( 'No existing cache', $reason );
+	}
+
+	public function testGetExpiredReasonForNonExpiredLanguage(): void {
+		$lc = $this->getMockLocalisationCache();
+
+		// Recache to create initial cache
+		$lc->recache( 'en' );
+
+		// Now check if it's expired - should be false for a fresh cache
+		$expired = $lc->isExpired( 'en' );
+
+		$this->assertFalse( $expired );
+		// getExpiredReason should return null if language hasn't expired
+		$this->assertNull( $lc->getExpiredReason( 'en' ) );
+	}
+
+	public function testIsExpiredInvalidDependencyReason(): void {
+		$lc = $this->getMockLocalisationCache();
+		$w = TestingAccessWrapper::newFromObject( $lc );
+		$dir = $this->getNewTempDirectory();
+		$w->store = new LCStoreStaticArray( [ 'directory' => $dir ] );
+		$store = $w->store;
+
+		$code = 'xx';
+		$store->startWrite( $code );
+		$store->set( 'deps', [ new \stdClass() ] );
+		$store->set( 'list', [] );
+		$store->set( 'preload', [] );
+		$store->finishWrite();
+
+		$this->assertTrue( $lc->isExpired( $code ) );
+		$this->assertSame( 'stdClass is not a subtype of CacheDependency', $lc->getExpiredReason( $code ) );
+	}
+
+	public function testIsExpiredDependencyExpiredReason(): void {
+		$lc = $this->getMockLocalisationCache();
+		$w = TestingAccessWrapper::newFromObject( $lc );
+		$dir = $this->getNewTempDirectory();
+		$w->store = new LCStoreStaticArray( [ 'directory' => $dir ] );
+		$store = $w->store;
+
+		$code = 'yy';
+		$tmpFile = tempnam( $this->getNewTempDirectory(), 'lct' );
+		file_put_contents( $tmpFile, 'x' );
+		$oldTs = max( 0, filemtime( $tmpFile ) - 100 );
+		$dep = new FileDependency( $tmpFile, $oldTs );
+
+		$store->startWrite( $code );
+		$store->set( 'deps', [ $dep ] );
+		$store->set( 'list', [] );
+		$store->set( 'preload', [] );
+		$store->finishWrite();
+
+		$this->assertTrue( $lc->isExpired( $code ) );
+		$reason = $lc->getExpiredReason( $code );
+		$this->assertIsString( $reason );
+		$this->assertStringContainsString( 'mtime changed', $reason );
+		$this->assertStringContainsString( basename( $tmpFile ), $reason );
 	}
 }

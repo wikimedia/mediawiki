@@ -28,11 +28,26 @@ class MainConfigDependency extends CacheDependency {
 	}
 
 	/** @inheritDoc */
-	public function isExpired() {
+	public function isExpired( $callback = null ) {
 		if ( !$this->getConfig()->has( $this->name ) ) {
+			if ( is_callable( $callback ) ) {
+				$callback ( "{$this->name} does not exist in configuration" );
+			}
 			return true;
 		}
 
-		return $this->getConfig()->get( $this->name ) != $this->value;
+		if ( $this->getConfig()->get( $this->name ) != $this->value ) {
+			// @ silences "var_export does not handle circular references";
+			// phpcs:disable Generic.PHP.NoSilencedErrors.Discouraged
+			$old = @var_export( $this->value, true );
+			$new = @var_export( $this->getConfig()->get( $this->name ), true );
+			// phpcs:enable Generic.PHP.NoSilencedErrors.Discouraged
+			if ( is_callable( $callback ) ) {
+				$callback( "Configuration value {$this->name} changed from {$old} to {$new}" );
+			}
+			return true;
+		}
+
+		return false;
 	}
 }

@@ -273,6 +273,13 @@ class LocalisationCache {
 	private static $pluralRuleTypes = null;
 
 	/**
+	 * An array mapping language code to the reason isExpire( $code ) returned true
+	 *
+	 * @var array<string,string>
+	 */
+	private $expiredReason = [];
+
+	/**
 	 * Return a suitable LCStore as specified by the given configuration.
 	 *
 	 * @since 1.34
@@ -609,6 +616,7 @@ class LocalisationCache {
 		if ( $this->options->get( 'forceRecache' ) && !isset( $this->recachedLangs[$code] ) ) {
 			$this->logger->debug( __METHOD__ . "($code): forced reload" );
 
+			$this->expiredReason[$code] = "Forced rebuild requested";
 			return true;
 		}
 
@@ -619,23 +627,45 @@ class LocalisationCache {
 		if ( $deps === null || $keys === null || $preload === null ) {
 			$this->logger->debug( __METHOD__ . "($code): cache missing, need to make one" );
 
+			$this->expiredReason[$code] = "No existing cache";
 			return true;
 		}
+
+		$expiredReason = '';
+
+		$collectExpiredReason = static function ( $reason ) use ( &$expiredReason ) {
+			$expiredReason = $reason;
+		};
 
 		foreach ( $deps as $dep ) {
 			// Because we're unserializing stuff from cache, we
 			// could receive objects of classes that don't exist
 			// anymore (e.g., uninstalled extensions)
 			// When this happens, always expire the cache
-			if ( !$dep instanceof CacheDependency || $dep->isExpired() ) {
+			if ( !$dep instanceof CacheDependency ) {
+				$this->expiredReason[$code] = get_class( $dep ) . " is not a subtype of CacheDependency";
+				return true;
+			}
+
+			if ( $dep->isExpired( $collectExpiredReason ) ) {
 				$this->logger->debug( __METHOD__ . "($code): cache for $code expired due to " .
 					get_class( $dep ) );
-
+				$this->expiredReason[$code] = $expiredReason;
 				return true;
 			}
 		}
 
 		return false;
+	}
+
+	/**
+	 * Returns a string describing the reason a call to isExpired ( $code ) returned true.
+	 *
+	 * @param string $code
+	 * @return string|null
+	 */
+	public function getExpiredReason( $code ) {
+		return $this->expiredReason[$code] ?? null;
 	}
 
 	/**

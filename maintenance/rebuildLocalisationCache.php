@@ -240,8 +240,9 @@ class RebuildLocalisationCache extends Maintenance {
 
 		foreach ( $codes as $code ) {
 			if ( $force || $lc->isExpired( $code ) ) {
+				$expiredReason = $force ? "Forced" : $lc->getExpiredReason( $code );
 				if ( !$this->hasOption( 'no-progress' ) ) {
-					$this->output( "$operation $code...\n" );
+					$this->output( "$operation $code ($expiredReason)...\n" );
 				}
 				if ( !$this->hasOption( 'dry-run' ) ) {
 					$lc->recache( $code );

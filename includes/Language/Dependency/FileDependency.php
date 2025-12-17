@@ -54,7 +54,7 @@ class FileDependency extends CacheDependency {
 	}
 
 	/** @inheritDoc */
-	public function isExpired() {
+	public function isExpired( $callback = null ) {
 		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 		$lastmod = @filemtime( $this->filename );
 		if ( $lastmod === false ) {
@@ -66,6 +66,9 @@ class FileDependency extends CacheDependency {
 			# Deleted
 			wfDebug( "Dependency triggered: {$this->filename} deleted." );
 
+			if ( is_callable( $callback ) ) {
+				$callback( "{$this->filename} was deleted" );
+			}
 			return true;
 		}
 
@@ -73,6 +76,9 @@ class FileDependency extends CacheDependency {
 			# Modified or created
 			wfDebug( "Dependency triggered: {$this->filename} changed." );
 
+			if ( is_callable( $callback ) ) {
+				$callback( "{$this->filename} mtime changed from {$this->timestamp} to $lastmod" );
+			}
 			return true;
 		}
 

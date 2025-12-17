@@ -36,13 +36,15 @@ class DependencyWrapper {
 	}
 
 	/**
+	 * @param callback|null $callback Optional callback which will be called with a string
+	 *    describing the reason why isExpired() is returning true.
 	 * Returns true if any of the dependencies have expired
 	 *
 	 * @return bool
 	 */
-	public function isExpired() {
+	public function isExpired( $callback = null ) {
 		foreach ( $this->deps as $dep ) {
-			if ( $dep->isExpired() ) {
+			if ( $dep->isExpired( $callback ) ) {
 				return true;
 			}
 		}

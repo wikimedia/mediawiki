@@ -22,11 +22,26 @@ class GlobalDependency extends CacheDependency {
 	}
 
 	/** @inheritDoc */
-	public function isExpired() {
+	public function isExpired( $callback = null ) {
 		if ( !isset( $GLOBALS[$this->name] ) ) {
+			if ( is_callable( $callback ) ) {
+				$callback( "No global named {$this->name}" );
+			}
 			return true;
 		}
 
-		return $GLOBALS[$this->name] != $this->value;
+		if ( $GLOBALS[$this->name] != $this->value ) {
+			if ( is_callable( $callback ) ) {
+				// @ silences "var_export does not handle circular references";
+				// phpcs:disable Generic.PHP.NoSilencedErrors.Discouraged
+				$old = @var_export( $this->value, true );
+				$new = @var_export( $GLOBALS[$this->name], true );
+				// phpcs:enable Generic.PHP.NoSilencedErrors.Discouraged
+				$callback( "Value of global {$this->name} changed from {$old} to {$new}" );
+			}
+			return true;
+		}
+
+		return false;
 	}
 }
