@@ -57,6 +57,10 @@ class UpdateMediaWiki extends Maintenance {
 			'skip-config-validation',
 			'Skips checking whether the existing configuration is valid'
 		);
+		$this->addOption(
+			'log-applied',
+			'Output a message for each update that has already been applied before'
+		);
 	}
 
 	/** @inheritDoc */
@@ -170,6 +174,7 @@ class UpdateMediaWiki extends Maintenance {
 		}
 
 		$updater = DatabaseUpdater::newForDB( $db, $shared, $this );
+		$updater->logApplied = $this->hasOption( 'log-applied' );
 
 		// Avoid upgrading from versions older than 1.35
 		// Using an implicit marker (rev_actor was introduced in 1.34)
@@ -186,10 +191,14 @@ class UpdateMediaWiki extends Maintenance {
 		foreach ( $updater->getPostDatabaseUpdateMaintenance() as $maint ) {
 			$child = $this->createChild( $maint );
 
-			// LoggedUpdateMaintenance is checking the updatelog itself
 			$isLoggedUpdate = $child instanceof LoggedUpdateMaintenance;
 
 			if ( !$isLoggedUpdate && $updater->updateRowExists( $maint ) ) {
+				$updater->outputApplied( "...Update '{$maint}' already logged as completed.\n" );
+				continue;
+			}
+			if ( $child instanceof LoggedUpdateMaintenance && $child->isAlreadyCompleted() ) {
+				$updater->outputApplied( "..." . $child->updateSkippedMessage() . "\n" );
 				continue;
 			}
 
@@ -198,6 +207,7 @@ class UpdateMediaWiki extends Maintenance {
 				$updater->insertUpdateRow( $maint );
 			}
 		}
+		$updater->outputAppliedSummary();
 
 		$updater->setFileAccess();
 

@@ -20,18 +20,8 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 
 	/** @inheritDoc */
 	public function execute() {
-		$db = $this->getPrimaryDB();
-		$key = $this->getUpdateKey();
-		$queryBuilder = $db->newSelectQueryBuilder()
-			->select( '1' )
-			->from( 'updatelog' )
-			->where( [ 'ul_key' => $key ] );
-
-		if ( !$this->hasOption( 'force' )
-			&& $queryBuilder->caller( __METHOD__ )->fetchRow()
-		) {
+		if ( !$this->hasOption( 'force' ) && $this->isAlreadyCompleted() ) {
 			$this->output( "..." . $this->updateSkippedMessage() . "\n" );
-
 			return true;
 		}
 
@@ -39,13 +29,24 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 			return false;
 		}
 
+		$db = $this->getPrimaryDB();
 		$db->newInsertQueryBuilder()
 			->insertInto( 'updatelog' )
 			->ignore()
-			->row( [ 'ul_key' => $key ] )
+			->row( [ 'ul_key' => $this->getUpdateKey() ] )
 			->caller( __METHOD__ )->execute();
 
 		return true;
+	}
+
+	public function isAlreadyCompleted(): bool {
+		$db = $this->getPrimaryDB();
+		return (bool)$db->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'updatelog' )
+			->where( [ 'ul_key' => $this->getUpdateKey() ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 	}
 
 	/**
@@ -60,7 +61,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	 * Message to show that the update was done already and was just skipped
 	 * @return string
 	 */
-	protected function updateSkippedMessage() {
+	public function updateSkippedMessage() {
 		$key = $this->getUpdateKey();
 
 		return "Update '{$key}' already logged as completed. Use --force to run it again.";

@@ -788,7 +788,7 @@ END;
 
 		$primaryIndexExists = $this->db->indexExists( 'searchindex', 'searchindex_pkey', __METHOD__ );
 		if ( $this->updateRowExists( $updateKey ) || ( $primaryIndexExists ) ) {
-			$this->output( "...searchindex table has already been migrated.\n" );
+			$this->outputApplied( "...searchindex table has already been migrated.\n" );
 			if ( !$this->updateRowExists( $updateKey ) ) {
 				$this->insertUpdateRow( $updateKey );
 			}
