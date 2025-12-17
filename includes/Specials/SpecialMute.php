@@ -58,7 +58,7 @@ class SpecialMute extends FormSpecialPage {
 	 */
 	public function execute( $par ) {
 		$this->addHelpLink(
-			'https://meta.wikimedia.org/wiki/Community_health_initiative/User_Mute_features',
+			'https://www.mediawiki.org/wiki/Help:Preferences#Muting_users',
 			true
 		);
 		$this->requireNamedUser( 'specialmute-login-required' );
