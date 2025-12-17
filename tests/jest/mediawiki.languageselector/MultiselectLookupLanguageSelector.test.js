@@ -32,28 +32,16 @@ describe( 'MultiselectLookupLanguageSelector', () => {
 		expect( wrapper.findComponent( { name: 'CdxMultiselectLookup' } ).exists() ).toBe( true );
 	} );
 
-	it( 'computes menu items for all languages when no search query', () => {
-		const wrapper = mount();
+	it( 'sets selectable languages when no search query is specified', () => {
 		const languages = { en: 'English', fr: 'French', de: 'German' };
+		const wrapper = mount( { selectableLanguages: languages } );
 
-		const menuItems = wrapper.vm.computeMenuItems( '', [], languages );
+		const menuItems = wrapper.vm.menuItems;
 
 		expect( menuItems.length ).toBe( 3 );
 		expect( menuItems[ 0 ] ).toEqual( { label: 'English', value: 'en' } );
 		expect( menuItems[ 1 ] ).toEqual( { label: 'French', value: 'fr' } );
 		expect( menuItems[ 2 ] ).toEqual( { label: 'German', value: 'de' } );
-	} );
-
-	it( 'computes menu items for search results when query exists', () => {
-		const wrapper = mount();
-		const languages = { en: 'English', 'en-gb': 'British English', fr: 'French' };
-		const searchResults = [ 'en', 'en-gb' ];
-
-		const menuItems = wrapper.vm.computeMenuItems( 'en', searchResults, languages );
-
-		expect( menuItems.length ).toBe( 2 );
-		expect( menuItems[ 0 ] ).toEqual( { label: 'English', value: 'en' } );
-		expect( menuItems[ 1 ] ).toEqual( { label: 'British English', value: 'en-gb' } );
 	} );
 
 	it( 'updates input value on input', async () => {

@@ -1,14 +1,13 @@
 /**
  * Convert language data to Codex menu items format
  *
- * @param {string} searchQuery
- * @param {string[]} searchResults
  * @param {Object} languages
+ * @param {string[]|undefined} languageCodes Language codes to include; if undefined, include all languages
  * @return {{label: string, value: string}[]}
  */
-function computeMenuItems( searchQuery, searchResults, languages ) {
-	if ( searchQuery && searchQuery.trim().length > 0 ) {
-		return searchResults.map( ( code ) => ( {
+function computeMenuItems( languages, languageCodes ) {
+	if ( languageCodes ) {
+		return languageCodes.map( ( code ) => ( {
 			label: languages[ code ] || code,
 			value: code
 		} ) );

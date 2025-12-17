@@ -1,9 +1,9 @@
 <template>
 	<cdx-multiselect-lookup
-		:input-value="inputValue"
+		v-model:input-value="inputValue"
 		:input-chips="selection"
 		:selected="selectedValues"
-		:menu-items="computeMenuItems( searchQuery, searchResults, languages )"
+		:menu-items="menuItems"
 		:menu-config="menuConfig"
 		@input="search"
 		@update:input-value="onUpdateInputValue"
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-const { defineComponent, ref, toRefs } = require( 'vue' );
+const { defineComponent, ref, toRefs, watch } = require( 'vue' );
 const { CdxMultiselectLookup } = require( './codex.js' );
 const useLanguageSelector = require( './useLanguageSelector.js' );
 const { computeMenuItems } = require( './menuHelper.js' );
@@ -52,12 +52,10 @@ module.exports = exports = defineComponent( {
 		'update:selected'
 	],
 	setup( props, { emit } ) {
-		const inputValue = ref( '' );
 		const { selectableLanguages, selected } = toRefs( props );
 
 		const {
 			languages,
-			searchQuery,
 			searchResults,
 			search,
 			selection,
@@ -66,8 +64,15 @@ module.exports = exports = defineComponent( {
 			clearSearchQuery
 		} = useLanguageSelector( selectableLanguages, selected, props.searchApiUrl, props.debounceDelayMs, true );
 
+		const inputValue = ref( '' );
+		const menuItems = ref( computeMenuItems( languages.value ) );
+
 		const onUpdateInputValue = ( val ) => {
-			inputValue.value = val;
+			if ( val === '' ) {
+				menuItems.value = computeMenuItems( languages.value );
+				return;
+			}
+
 			search( val );
 		};
 
@@ -90,15 +95,20 @@ module.exports = exports = defineComponent( {
 			clearSearchQuery();
 		};
 
+		watch( searchResults, () => {
+			if ( inputValue.value === '' ) {
+				menuItems.value = computeMenuItems( languages.value );
+			} else {
+				menuItems.value = computeMenuItems( languages.value, searchResults.value );
+			}
+		} );
+
 		return {
-			computeMenuItems,
 			inputValue,
-			languages,
-			searchQuery,
-			searchResults,
 			search,
 			selection,
 			selectedValues,
+			menuItems,
 			onUpdateInputValue,
 			onUpdateSelected,
 			onUpdateInputChips

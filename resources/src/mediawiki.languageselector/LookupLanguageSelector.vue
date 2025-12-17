@@ -1,8 +1,8 @@
 <template>
 	<cdx-lookup
-		:input-value="inputValue !== null ? inputValue : ( selection.label || '' )"
+		v-model:input-value="inputValue"
 		:selected="selection.value"
-		:menu-items="computeMenuItems( searchQuery, searchResults, languages )"
+		:menu-items="menuItems"
 		:menu-config="menuConfig"
 		@update:input-value="onUpdateInputValue"
 		@update:selected="onUpdateSelected"
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-const { defineComponent, ref, toRefs } = require( 'vue' );
+const { defineComponent, ref, toRefs, watch } = require( 'vue' );
 const { CdxLookup } = require( './codex.js' );
 const useLanguageSelector = require( './useLanguageSelector.js' );
 const { computeMenuItems } = require( './menuHelper.js' );
@@ -62,8 +62,6 @@ module.exports = exports = defineComponent( {
 	},
 	emits: [ 'update:selected' ],
 	setup( props, { emit } ) {
-		const inputValue = ref( null );
-
 		const { selectableLanguages, selected } = toRefs( props );
 		const {
 			languages,
@@ -75,8 +73,15 @@ module.exports = exports = defineComponent( {
 			selection
 		} = useLanguageSelector( selectableLanguages, selected, props.searchApiUrl, props.debounceDelayMs );
 
-		const onUpdateInputValue = ( val ) => {
-			inputValue.value = val;
+		const inputValue = selection.value ? ref( selection.value.label ) : ref( '' );
+		const menuItems = ref( computeMenuItems( languages.value ) );
+
+		const onUpdateInputValue = async ( val ) => {
+			if ( val === '' ) {
+				menuItems.value = computeMenuItems( languages.value );
+				return;
+			}
+
 			if ( inputValue.value !== selection.value.label ) {
 				search( val );
 			}
@@ -91,13 +96,19 @@ module.exports = exports = defineComponent( {
 			}
 		};
 
+		watch( searchResults, () => {
+			if ( inputValue.value === '' ) {
+				menuItems.value = computeMenuItems( languages.value );
+			} else {
+				menuItems.value = computeMenuItems( languages.value, searchResults.value );
+			}
+		} );
+
 		return {
-			computeMenuItems,
 			inputValue,
-			languages,
 			searchQuery,
-			searchResults,
 			selection,
+			menuItems,
 			onUpdateInputValue,
 			onUpdateSelected
 		};
