@@ -119,15 +119,14 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	 */
 	public function execute( $par ) {
 		$request = $this->getRequest();
-		$target = $request->getText( 'target' );
+		$target = $par ?? $request->getText( 'target' );
+		$target = trim( $target );
 
 		if ( $target !== '' ) {
 			// Update the value in the request so that code reading it
 			// directly form the request gets the trimmed value (T378279).
 			$request->setVal( 'target', trim( $target ) );
 		}
-
-		$target = trim( $par ?? $target );
 
 		$this->setHeaders();
 		$this->outputHeader();
