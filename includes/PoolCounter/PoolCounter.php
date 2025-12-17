@@ -173,7 +173,7 @@ abstract class PoolCounter implements LoggerAwareInterface {
 				 */
 				return Status::newFatal(
 					'poolcounter-usage-error',
-					'You may only aquire a single non-nowait lock.'
+					'You may only acquire a single non-nowait lock.'
 				);
 			}
 		} elseif ( $this->timeout !== 0 ) {
