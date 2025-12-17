@@ -320,10 +320,13 @@ class SpecialWatchlistLabels extends SpecialPage {
 				'title' => $this->msg( 'watchlistlabels-table-edit' )->text(),
 			];
 			$checkboxId = self::PARAM_IDS . '_' . $id;
+			// The sortable columns must have matching '*-sort' elements containing unformatted data for sorting.
 			$data[] = [
 				'select' => $this->getCheckbox( $checkboxId, (string)$id ),
 				'name' => Html::label( $label->getName(), $checkboxId ),
+				'name-sort' => mb_strtolower( $label->getName() ),
 				'count' => $this->getLanguage()->formatNum( $labelCounts[ $id ] ),
+				'count-sort' => $labelCounts[ $id ],
 				'edit' => Html::rawElement( 'a', $params, $editIcon ),
 			];
 		}
@@ -333,11 +336,20 @@ class SpecialWatchlistLabels extends SpecialPage {
 		// and there's only ever one page of results to show (up to 100).
 		$sortCol = $this->getRequest()->getText( 'sort', 'count' );
 		$sortDir = $this->getRequest()->getBool( 'asc' ) ? TableBuilder::SORT_ASCENDING : TableBuilder::SORT_DESCENDING;
-		uasort(
+		$sortColName = $sortCol . '-sort';
+		usort(
 			$data,
-			static fn ( $a, $b ) => $sortDir === TableBuilder::SORT_ASCENDING
-				? strcasecmp( $a[$sortCol], $b[$sortCol] )
-				: strcasecmp( $b[$sortCol], $a[$sortCol] )
+			static function ( $a, $b ) use ( $sortDir, $sortColName ) {
+				if ( !isset( $a[$sortColName] )
+					|| !isset( $b[$sortColName] )
+					|| $a[$sortColName] === $b[$sortColName]
+				) {
+					return 0;
+				}
+				return $sortDir === TableBuilder::SORT_ASCENDING
+					? $a[$sortColName] <=> $b[$sortColName]
+					: $b[$sortColName] <=> $a[$sortColName];
+			}
 		);
 
 		// Put it all together in the table.
