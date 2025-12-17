@@ -672,6 +672,9 @@ class ParserOutputAccess implements LoggerAwareInterface {
 		RevisionRecord $revision,
 		array $options
 	): PoolCounterWork {
+		$profile = $options[ self::OPT_POOL_COUNTER ];
+		// Once we're in a pool counter, don't spawn another poolcounter job
+		$options[self::OPT_POOL_COUNTER] = false;
 		// Default behavior (no caching)
 		$callbacks = [
 			'doWork' => function () use ( $page, $parserOptions, $revision, $options ) {
@@ -750,7 +753,6 @@ class ParserOutputAccess implements LoggerAwareInterface {
 				$workKey = $secondaryCache->makeParserOutputKeyOptionalRevId( $revision, $parserOptions );
 		}
 
-		$profile = $options[ self::OPT_POOL_COUNTER ];
 		$pool = $this->poolCounterFactory->create( $profile, $workKey );
 		return new PoolCounterWorkViaCallback(
 			$pool,
