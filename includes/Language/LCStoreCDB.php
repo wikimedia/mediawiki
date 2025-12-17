@@ -113,4 +113,8 @@ class LCStoreCDB implements LCStore {
 		return "{$this->directory}/l10n_cache-$code.cdb";
 	}
 
+	/** @inheritDoc */
+	public function lateFallback(): bool {
+		return false;
+	}
 }

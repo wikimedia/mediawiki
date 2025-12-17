@@ -54,4 +54,20 @@ interface LCStore {
 	 */
 	public function set( $key, $value );
 
+	/**
+	 * Can this cache type delay fallback lookups to read time?
+	 *
+	 * Returning true will cause the fallbacks to be skipped when
+	 * recaching data, and instead performed via multiple reads if
+	 * necessary at runtime.
+	 *
+	 * This is best when performing lookups is extremely low-cost,
+	 * such as LCStoreStaticArray with the `lateFallback` option.
+	 *
+	 * When reading from disk or network, trading off the space
+	 * for fewer lookups may still be a win. Returning false will
+	 * keep the classic behavior of pre-filling all the fallback
+	 * chains for each language.
+	 */
+	public function lateFallback(): bool;
 }

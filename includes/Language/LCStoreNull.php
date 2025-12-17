@@ -27,4 +27,8 @@ class LCStoreNull implements LCStore {
 	public function set( $key, $value ) {
 	}
 
+	/** @inheritDoc */
+	public function lateFallback(): bool {
+		return false;
+	}
 }

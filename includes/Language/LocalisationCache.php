@@ -13,6 +13,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -110,6 +111,12 @@ class LocalisationCache {
 	 * @var array<string,string>
 	 */
 	private $shallowFallbacks = [];
+
+	/**
+	 * @var string[][] language codes to fall back to, in order, when the store
+	 *                 allows for cheap multiple queries
+	 */
+	private $fallbackCodes = [];
 
 	/**
 	 * An array where the keys are codes that have been re-cached by this instance.
@@ -226,6 +233,11 @@ class LocalisationCache {
 	 * Keys which are loaded automatically by initLanguage()
 	 */
 	private const PRELOADED_KEYS = [ 'dateFormats', 'namespaceNames' ];
+
+	/**
+	 * Keys which are per-language metadata, not to be merged.
+	 */
+	private const META_KEYS = [ 'deps', 'list', 'preload' ];
 
 	private const PLURAL_FILES = [
 		// Load CLDR plural rules
@@ -486,10 +498,51 @@ class LocalisationCache {
 				$this->loadSubitem( $code, $key, $subkey );
 			}
 		} else {
-			$this->data[$code][$key] = $this->store->get( $code, $key );
+			$this->data[$code][$key] = $this->getFromStore( $code, $key );
 		}
 
 		$this->loadedItems[$code][$key] = true;
+	}
+
+	/**
+	 * Get a key from the store and, if active, merge data
+	 * from fallback languages.
+	 *
+	 * @return mixed
+	 */
+	private function getFromStore( string $code, string $key ) {
+		if ( $this->store->lateFallback() ) {
+			$result = null;
+			foreach ( $this->getFallbackCodes( $code ) as $langCode ) {
+				$value = $this->store->get( $langCode, $key );
+				$this->mergeItem( $key, $result, $value );
+				if ( in_array( $key, self::META_KEYS ) ) {
+					break;
+				}
+				if ( is_string( $result ) ) {
+					// No need to do merges or look further
+					break;
+				}
+			}
+			return $result;
+		}
+		return $this->store->get( $code, $key );
+	}
+
+	/**
+	 * Get the set of language codes, including the current language code and any fallbacks
+	 * to read from in order. If fallbacks are disabled this is just the current code.
+	 * @param string $code
+	 * @return string[]
+	 */
+	protected function getFallbackCodes( string $code ): array {
+		if ( !array_key_exists( $code, $this->fallbackCodes ) ) {
+			$this->fallbackCodes[$code] = [
+				$code,
+				...MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $code )
+			];
+		}
+		return $this->fallbackCodes[$code];
 	}
 
 	/**
@@ -523,7 +576,7 @@ class LocalisationCache {
 			return;
 		}
 
-		$value = $this->store->get( $code, "$key:$subkey" );
+		$value = $this->getFromStore( $code, "$key:$subkey" );
 		if ( $value !== null && in_array( $key, self::SOURCE_PREFIX_KEYS ) ) {
 			[
 				$this->sourceLanguage[$code][$key][$subkey],
@@ -550,9 +603,9 @@ class LocalisationCache {
 			return true;
 		}
 
-		$deps = $this->store->get( $code, 'deps' );
-		$keys = $this->store->get( $code, 'list' );
-		$preload = $this->store->get( $code, 'preload' );
+		$deps = $this->getFromStore( $code, 'deps' );
+		$keys = $this->getFromStore( $code, 'list' );
+		$preload = $this->getFromStore( $code, 'preload' );
 		// Different keys may expire separately for some stores
 		if ( $deps === null || $keys === null || $preload === null ) {
 			$this->logger->debug( __METHOD__ . "($code): cache missing, need to make one" );
@@ -579,83 +632,85 @@ class LocalisationCache {
 	/**
 	 * Initialise a language in this object. Rebuild the cache if necessary.
 	 *
-	 * @param string $code
+	 * @param string $langCode
 	 */
-	private function initLanguage( $code ) {
-		if ( isset( $this->initialisedLangs[$code] ) ) {
-			return;
-		}
-
-		$this->initialisedLangs[$code] = true;
-
-		# If the code is of the wrong form for a Messages*.php file, do a shallow fallback
-		if ( !$this->langNameUtils->isValidBuiltInCode( $code ) ) {
-			$this->initShallowFallback( $code, 'en' );
-
-			return;
-		}
-
-		# Re-cache the data if necessary
-		if ( !$this->manualRecache && $this->isExpired( $code ) ) {
-			if ( $this->langNameUtils->isSupportedLanguage( $code ) ) {
-				$this->recache( $code );
-			} elseif ( $code === 'en' ) {
-				throw new RuntimeException( 'MessagesEn.php is missing.' );
-			} else {
-				$this->initShallowFallback( $code, 'en' );
-			}
-
-			return;
-		}
-
-		# Preload some stuff
-		$preload = $this->getItem( $code, 'preload' );
-		if ( $preload === null ) {
-			if ( $this->manualRecache ) {
-				// No Messages*.php file. Do shallow fallback to en.
-				if ( $code === 'en' ) {
-					throw new RuntimeException( 'No localisation cache found for English. ' .
-						'Please run maintenance/rebuildLocalisationCache.php.' );
-				}
-				$this->initShallowFallback( $code, 'en' );
-
-				return;
-			} else {
-				throw new RuntimeException( 'Invalid or missing localisation cache.' );
-			}
-		}
-
-		foreach ( self::SOURCE_PREFIX_KEYS as $key ) {
-			if ( !isset( $preload[$key] ) ) {
+	private function initLanguage( $langCode ) {
+		foreach ( array_reverse( $this->getFallbackCodes( $langCode ) ) as $code ) {
+			if ( isset( $this->initialisedLangs[$code] ) ) {
 				continue;
 			}
-			foreach ( $preload[$key] as $subkey => $value ) {
-				if ( $value !== null ) {
-					[
-						$this->sourceLanguage[$code][$key][$subkey],
-						$preload[$key][$subkey]
-					] = explode( self::SOURCEPREFIX_SEPARATOR, $value, 2 );
+
+			$this->initialisedLangs[$code] = true;
+
+			# If the code is of the wrong form for a Messages*.php file, do a shallow fallback
+			if ( !$this->langNameUtils->isValidBuiltInCode( $code ) ) {
+				$this->initShallowFallback( $code, 'en' );
+
+				continue;
+			}
+
+			# Re-cache the data if necessary
+			if ( !$this->manualRecache && $this->isExpired( $code ) ) {
+				if ( $this->langNameUtils->isSupportedLanguage( $code ) ) {
+					$this->recache( $code );
+				} elseif ( $code === 'en' ) {
+					throw new RuntimeException( 'MessagesEn.php is missing.' );
 				} else {
-					$preload[$key][$subkey] = null;
+					$this->initShallowFallback( $code, 'en' );
+				}
+
+				continue;
+			}
+
+			# Preload some stuff
+			$preload = $this->getItem( $code, 'preload' );
+			if ( $preload === null ) {
+				if ( $this->manualRecache ) {
+					// No Messages*.php file. Do shallow fallback to en.
+					if ( $code === 'en' ) {
+						throw new RuntimeException( 'No localisation cache found for English. ' .
+							'Please run maintenance/rebuildLocalisationCache.php.' );
+					}
+					$this->initShallowFallback( $code, 'en' );
+
+					break;
+				} else {
+					throw new RuntimeException( 'Invalid or missing localisation cache.' );
 				}
 			}
-		}
 
-		if ( isset( $this->data[$code] ) ) {
-			foreach ( $preload as $key => $value ) {
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable -- see isset() above
-				$this->mergeItem( $key, $this->data[$code][$key], $value );
+			foreach ( self::SOURCE_PREFIX_KEYS as $key ) {
+				if ( !isset( $preload[$key] ) ) {
+					continue;
+				}
+				foreach ( $preload[$key] as $subkey => $value ) {
+					if ( $value !== null ) {
+						[
+							$this->sourceLanguage[$code][$key][$subkey],
+							$preload[$key][$subkey]
+						] = explode( self::SOURCEPREFIX_SEPARATOR, $value, 2 );
+					} else {
+						$preload[$key][$subkey] = null;
+					}
+				}
 			}
-		} else {
-			$this->data[$code] = $preload;
-		}
-		foreach ( $preload as $key => $item ) {
-			if ( in_array( $key, self::SPLIT_KEYS ) ) {
-				foreach ( $item as $subkey => $subitem ) {
-					$this->loadedSubitems[$code][$key][$subkey] = true;
+
+			if ( isset( $this->data[$code] ) ) {
+				foreach ( $preload as $key => $value ) {
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable -- see isset() above
+					$this->mergeItem( $key, $this->data[$code][$key], $value );
 				}
 			} else {
-				$this->loadedItems[$code][$key] = true;
+				$this->data[$code] = $preload;
+			}
+			foreach ( $preload as $key => $item ) {
+				if ( in_array( $key, self::SPLIT_KEYS ) ) {
+					foreach ( $item as $subkey => $subitem ) {
+						$this->loadedSubitems[$code][$key][$subkey] = true;
+					}
+				} else {
+					$this->loadedItems[$code][$key] = true;
+				}
 			}
 		}
 	}
@@ -1078,7 +1133,15 @@ class LocalisationCache {
 		$deps = $coreData['deps'];
 		$coreData += $this->readPluralFilesAndRegisterDeps( $code, $deps );
 
-		$codeSequence = [ $code, ...$coreData['fallbackSequence'] ];
+		if ( $this->store->lateFallback() ) {
+			// This LCStore can handle multiple queries efficiently and
+			// requests to merge fallback languages at read time.
+			$codeSequence = [ $code ];
+		} else {
+			// Our LCStore prefers to cache pre-combined data with all
+			// the fallback paths filled out to reduce query count.
+			$codeSequence = [ $code, ...$coreData['fallbackSequence'] ];
+		}
 		$messageDirs = $this->getMessagesDirs();
 		$translationAliasesDirs = $this->options->get( MainConfigNames::TranslationAliasesDirs );
 
@@ -1229,11 +1292,15 @@ class LocalisationCache {
 		$allData['deps'] = $deps;
 
 		# Replace spaces with underscores in namespace names
-		$allData['namespaceNames'] = str_replace( ' ', '_', $allData['namespaceNames'] );
+		if ( isset( $allData['namespaceNames'] ) ) {
+			$allData['namespaceNames'] = str_replace( ' ', '_', $allData['namespaceNames'] );
+		}
 
 		# And do the same for special page aliases. $page is an array.
-		foreach ( $allData['specialPageAliases'] as &$page ) {
-			$page = str_replace( ' ', '_', $page );
+		if ( isset( $allData['specialPageAliases'] ) ) {
+			foreach ( $allData['specialPageAliases'] as &$page ) {
+				$page = str_replace( ' ', '_', $page );
+			}
 		}
 		# Decouple the reference to prevent accidental damage
 		unset( $page );
@@ -1253,12 +1320,17 @@ class LocalisationCache {
 		$unused = true; // Used to be $purgeBlobs, removed in 1.34
 		$this->hookRunner->onLocalisationCacheRecache( $this, $code, $allData, $unused );
 
-		# Save to the process cache and register the items loaded
-		$this->data[$code] = $allData;
-		$this->loadedItems[$code] = [];
-		$this->loadedSubitems[$code] = [];
-		foreach ( $allData as $key => $item ) {
-			$this->loadedItems[$code][$key] = true;
+		if ( $this->store->lateFallback() ) {
+			// Our in-process cache stores merged data, so let it be reloaded
+			// from the new cache as backend declares it's cheap to do so.
+		} else {
+			// Save to the process cache and register the items loaded
+			$this->data[$code] = $allData;
+			$this->loadedItems[$code] = [];
+			$this->loadedSubitems[$code] = [];
+			foreach ( $allData as $key => $item ) {
+				$this->loadedItems[$code][$key] = true;
+			}
 		}
 
 		# Prefix each item with its source language code before save
@@ -1309,12 +1381,15 @@ class LocalisationCache {
 	private function buildPreload( $data ) {
 		$preload = [ 'messages' => [] ];
 		foreach ( self::PRELOADED_KEYS as $key ) {
-			$preload[$key] = $data[$key];
+			if ( isset( $data[$key] ) ) {
+				$preload[$key] = $data[$key];
+			}
 		}
 
-		foreach ( $data['preloadedMessages'] as $subkey ) {
-			$subitem = $data['messages'][$subkey] ?? null;
-			$preload['messages'][$subkey] = $subitem;
+		foreach ( $data['preloadedMessages'] ?? [] as $subkey ) {
+			if ( isset( $data['messages'][$subkey] ) ) {
+				$preload['messages'][$subkey] = $data['messages'][$subkey];
+			}
 		}
 
 		return $preload;

@@ -55,6 +55,10 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 === New features for sysadmins in 1.46 ===
 
+* The 'arrays' localisation cache backend is more compact: a redundant list of
+  message keys, and fallback data from other languages, are now deduplicated.
+  Old cache files should either auto-update or continue to be readable where
+  unchanged.
 * …
 
 === New developer features in 1.46 ===
