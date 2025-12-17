@@ -22,7 +22,7 @@
 	"cdx-table-pager-button-last-page": "Última páxina",
 	"cdx-table-pager-button-next-page": "Páxina seguinte",
 	"cdx-table-pager-button-prev-page": "Páxina anterior",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 ringleira|$1 ringleiras}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 elemento|$1 elementos}}",
 	"cdx-table-pager-items-per-page-default": "Resultados por páxina",
 	"cdx-table-pagination-status-message-determinate-long": "Amosando os resultados do $1 ao $2 dun total de $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 de $3",

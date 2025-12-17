@@ -2128,6 +2128,7 @@
 	"block-confirm-yes": "هو",
 	"block-confirm-no": "نه",
 	"block-submit": "سپارل",
+	"block-success": "[[Special:Contributions/$1|{{GENDER:$1|$1}}]] ([[{{ns:user_talk}}:$1|خبرې اترې]]) باندې بنديز ولگېد. د بنديزونو بياکتنې لپاره [[Special:BlockList|بنديز لړليک]] وگورئ.",
 	"block-user-active-blocks": "کارنده بنديزونه",
 	"block-user-no-active-blocks": "هېڅ کارنده بنديزونه ونه موندل شول",
 	"block-user-previous-blocks": "بنديز يادښت",
