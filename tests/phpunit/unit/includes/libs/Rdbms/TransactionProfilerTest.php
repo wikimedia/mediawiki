@@ -242,6 +242,44 @@ class TransactionProfilerTest extends TestCase {
 		unset( $scope );
 	}
 
+	public function testIsSilenced(): void {
+		$tp = new TransactionProfiler();
+		$tp->setExpectation( 'conns', 0, __METHOD__ );
+		$tp->setExpectation( 'masterConns', 2, __METHOD__ );
+		$tp->setExpectation( 'writes', 0, __METHOD__ );
+
+		// Initial state should be no silenced events
+		$this->assertFalse( $tp->isSilenced( 'writes' ) );
+		$this->assertFalse( $tp->isSilenced( 'masterConns' ) );
+		$this->assertFalse( $tp->isSilenced( 'conns' ) );
+
+		$scope = $tp->silenceForScope( $tp::EXPECTATION_REPLICAS_ONLY );
+
+		// If silencing replica expectations, then only the 'writes' event should be
+		// silenced (as 'masterConns' was non zero and 'conns' is not a replica
+		// only expectation)
+		$this->assertTrue( $tp->isSilenced( 'writes' ) );
+		$this->assertFalse( $tp->isSilenced( 'masterConns' ) );
+		$this->assertFalse( $tp->isSilenced( 'conns' ) );
+
+		unset( $scope );
+
+		$scope = $tp->silenceForScope();
+
+		// If silencing all expectations, then everything should be silenced
+		$this->assertTrue( $tp->isSilenced( 'writes' ) );
+		$this->assertTrue( $tp->isSilenced( 'masterConns' ) );
+		$this->assertTrue( $tp->isSilenced( 'conns' ) );
+
+		unset( $scope );
+	}
+
+	public function testIsSilencedForInvalidEventName(): void {
+		$this->expectException( InvalidArgumentException::class );
+		$tp = new TransactionProfiler();
+		$tp->isSilenced( 'abc' );
+	}
+
 	/** @dataProvider provideGetExpectation */
 	public function testGetExpectation( $expectations, $event, $expectedReturnValue ) {
 		$tp = new TransactionProfiler();
