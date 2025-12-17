@@ -170,10 +170,18 @@ class WatchlistLabelStore {
 	 * @return WatchlistLabel[] Labels indexed by ID
 	 */
 	public function loadAllForUser( UserIdentity $user ): array {
-		$select = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder();
+		$dbr = $this->dbProvider->getReplicaDatabase();
+		$orderBy = 'wll_name';
+		if ( $dbr->getType() === 'mysql' ) {
+			$orderBy = 'CONVERT(wll_name USING utf8mb4) COLLATE utf8mb4_general_ci';
+		} elseif ( $dbr->getType() === 'sqlite' ) {
+			$orderBy = 'wll_name COLLATE NOCASE';
+		}
+		$select = $dbr->newSelectQueryBuilder();
 		$results = $select->table( self::TABLE_WATCHLIST_LABEL )
 			->fields( [ 'wll_id', 'wll_name' ] )
 			->where( [ 'wll_user' => $user->getId() ] )
+			->orderBy( $orderBy, 'ASC' )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 		$labels = [];

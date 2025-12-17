@@ -87,4 +87,29 @@ class WatchlistLabelStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$itemStore->addLabels( $user, [ $title1 ], [ $label ] );
 		$this->assertSame( [ 1 => 1, 2 => 0 ], $labelStore->countItems( [ 1, 2 ] ) );
 	}
+
+	/**
+	 * @dataProvider provideSorting
+	 */
+	public function testSorting( array $labelNames, array $sortedLabelNames ): void {
+		$user = $this->getTestUser()->getUser();
+		$store = $this->getServiceContainer()->getWatchlistLabelStore();
+		foreach ( $labelNames as $labelName ) {
+			$store->save( new WatchlistLabel( $user, $labelName ) );
+		}
+		$loaded = $store->loadAllForUser( $user );
+		$this->assertSame(
+			$sortedLabelNames,
+			array_values( array_map( static fn ( WatchlistLabel $label ) => $label->getName(), $loaded ) )
+		);
+	}
+
+	public static function provideSorting(): array {
+		return [
+			[
+				[ 'pear', 'Banana', 'PEAR', 'Apple' ],
+				[ 'Apple', 'Banana', 'PEAR', 'pear' ],
+			],
+		];
+	}
 }
