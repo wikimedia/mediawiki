@@ -243,6 +243,7 @@ class RevisionRenderer implements LoggerAwareInterface {
 			$slotOutput[$role] = $out;
 
 			// XXX: should the SlotRoleHandler be able to intervene here?
+			// XXX: this should probably just use ParserOutput::collectMetadata
 			$combinedOutput->mergeInternalMetaDataFrom( $out );
 			$combinedOutput->mergeTrackingMetaDataFrom( $out );
 		}

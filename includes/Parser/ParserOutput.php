@@ -2665,11 +2665,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Merges internal metadata such as flags, accessed options, and profiling info
 	 * from $source into this ParserOutput. This should be used whenever the state of $source
 	 * has any impact on the state of this ParserOutput.
+	 * @internal Used only by RevisionRenderer
 	 */
 	public function mergeInternalMetaDataFrom( ParserOutput $source ): void {
 		$this->mWarnings = self::mergeMap( $this->mWarnings, $source->mWarnings ); // don't use getter
 		$this->mWarningMsgs = self::mergeMap( $this->mWarningMsgs, $source->mWarningMsgs );
-		$this->mTimestamp = $this->useMaxValue( $this->mTimestamp, $source->getRevisionTimestamp() );
+		$this->mTimestamp = self::useMaxValue( $this->mTimestamp, $source->getRevisionTimestamp() );
 		if ( $source->hasCacheTime() ) {
 			$sourceCacheTime = $source->getCacheTime();
 			if (
@@ -2704,20 +2705,23 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				);
 			}
 		}
+		if ( $source->mCacheExpiry !== null ) {
+			$this->updateCacheExpiry( $source->mCacheExpiry );
+		}
 
 		foreach ( self::SPECULATIVE_FIELDS as $field ) {
 			if ( $this->$field && $source->$field && $this->$field !== $source->$field ) {
 				wfLogWarning( __METHOD__ . ": inconsistent '$field' properties!" );
 			}
-			$this->$field = $this->useMaxValue( $this->$field, $source->$field );
+			$this->$field = self::useMaxValue( $this->$field, $source->$field );
 		}
 
-		$this->mParseStartTime = $this->useEachMinValue(
+		$this->mParseStartTime = self::useEachMinValue(
 			$this->mParseStartTime,
 			$source->mParseStartTime
 		);
 
-		$this->mTimeProfile = $this->useEachTotalValue(
+		$this->mTimeProfile = self::useEachTotalValue(
 			$this->mTimeProfile,
 			$source->mTimeProfile
 		);
@@ -2738,6 +2742,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Merges HTML metadata such as head items, JS config vars, and HTTP cache control info
 	 * from $source into this ParserOutput. This should be used whenever the HTML in $source
 	 * has been somehow merged into the HTML of this ParserOutput.
+	 * @internal Used only by RevisionRenderer
 	 */
 	public function mergeHtmlMetaDataFrom( ParserOutput $source ): void {
 		// HTML and HTTP
@@ -2747,6 +2752,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mJsConfigVars = self::mergeMapStrategy( $this->mJsConfigVars, $source->mJsConfigVars );
 		if ( $source->mMaxAdaptiveExpiry !== null ) {
 			$this->updateRuntimeAdaptiveExpiry( $source->mMaxAdaptiveExpiry, $source->getCacheExpirySource() );
+		}
+		if ( $source->mCacheExpiry !== null ) {
+			// Deliberately not using ::getCacheExpiry() here, which can get
+			// quantized in MiserMode.
+			$this->updateCacheExpiry( $source->mCacheExpiry, $source->getCacheExpirySource() );
 		}
 		$this->mExtraStyleSrcs = self::mergeList(
 			$this->mExtraStyleSrcs,
@@ -2818,18 +2828,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$this->mExtensionData,
 			$source->mExtensionData
 		);
-
-		if ( $source->mCacheExpiry !== null ) {
-			// Deliberately not using ::getCacheExpiry() here, which can get
-			// quantized in MiserMode.
-			$this->updateCacheExpiry( $source->mCacheExpiry, $source->getCacheExpirySource() );
-		}
 	}
 
 	/**
 	 * Merges dependency tracking metadata such as backlinks, images used, and extension data
 	 * from $source into this ParserOutput. This allows dependency tracking to be done for the
 	 * combined output of multiple content slots.
+	 * @internal Used only by RevisionRenderer
 	 */
 	public function mergeTrackingMetaDataFrom( ParserOutput $source ): void {
 		foreach ( ParserOutputLinkTypes::cases() as $linkType ) {
@@ -3008,6 +3013,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			foreach ( $this->getUsedOptions() as $opt ) {
 				$metadata->recordOption( $opt );
 			}
+			$metadata->mHeadItems = self::mergeMixedList(
+				$metadata->mHeadItems, $this->mHeadItems
+			);
 			if ( $this->mMaxAdaptiveExpiry !== null ) {
 				$metadata->updateRuntimeAdaptiveExpiry( $this->mMaxAdaptiveExpiry, $this->getCacheExpirySource() );
 			}
@@ -3015,6 +3023,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				// Deliberately not using ::getCacheExpiry() here, which can get
 				// quantized in MiserMode.
 				$metadata->updateCacheExpiry( $this->mCacheExpiry, $this->getCacheExpirySource() );
+			}
+			if ( $this->mTimestamp !== null ) {
+				$metadata->setRevisionTimestamp(
+					self::useMaxValue(
+						$this->mTimestamp, $metadata->getRevisionTimestamp()
+					)
+				);
 			}
 			if ( $this->mCacheTime !== '' ) {
 				$metadata->setCacheTime( $this->mCacheTime );
@@ -3028,6 +3043,26 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			if ( $otherTitle === '' ) {
 				$metadata->setTitleText( $this->getTitleText() );
 			}
+			// class names are stored in array keys
+			$metadata->mWrapperDivClasses = self::mergeMap(
+				$metadata->mWrapperDivClasses,
+				$this->mWrapperDivClasses
+			);
+			// T327429: Section merging is broken, since it doesn't respect
+			// global numbering, but there are tests which expect section
+			// metadata to be concatenated.
+			// There should eventually be a deprecation warning here.
+			$tocData = $this->getTOCData();
+			$otherTocData = $metadata->getTOCData();
+			if ( $otherTocData !== null ) {
+				if ( $tocData !== null ) {
+					foreach ( $tocData->getSections() as $s ) {
+						$otherTocData->addSection( clone $s );
+					}
+				}
+			} elseif ( $tocData !== null ) {
+				$metadata->setTOCData( clone $tocData );
+			}
 			foreach (
 				[
 					ParserOutputLinkTypes::TEMPLATE,
@@ -3039,6 +3074,44 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			}
 			foreach ( $this->mWarningMsgs as $key => $msg ) {
 				$metadata->addWarningMsgVal( $msg, (string)$key );
+			}
+			// mWarnings is deprecated, but keep it around
+			foreach ( $this->mWarnings as $str => $ignore ) {
+				$metadata->mWarnings[$str] = 1;
+			}
+			// Final render ID should be a function of all component POs.
+			// In order to make this symmetric w/r/t source and target,
+			// use the lexicographically first one first.
+			if ( $this->getRenderId() !== null ) {
+				$renderIds = [
+					$this->getRenderId(), $metadata->getRenderId() ?? ''
+				];
+				sort( $renderIds, SORT_STRING );
+				$metadata->setRenderId( implode( '', $renderIds ) );
+			}
+
+			foreach ( self::SPECULATIVE_FIELDS as $field ) {
+				if ( $this->$field && $metadata->$field && $this->$field !== $metadata->$field ) {
+					wfLogWarning( __METHOD__ . ": inconsistent '$field' properties!" );
+				}
+				$metadata->$field = self::useMaxValue( $this->$field, $metadata->$field );
+			}
+
+			$metadata->mParseStartTime = self::useEachMinValue(
+				$this->mParseStartTime,
+				$metadata->mParseStartTime
+			);
+
+			$metadata->mTimeProfile = self::useEachTotalValue(
+				$this->mTimeProfile,
+				$metadata->mTimeProfile
+			);
+			// TODO: maintain per-slot limit reports!
+			if ( !$metadata->mLimitReportData ) {
+				$metadata->mLimitReportData = $this->mLimitReportData;
+			}
+			if ( !$metadata->mLimitReportJSData ) {
+				$metadata->mLimitReportJSData = $this->mLimitReportJSData;
 			}
 		}
 	}

@@ -56,9 +56,7 @@ final class PageBundleParserOutputConverter {
 			// potentially transfer fragments from
 			// $originalParserOutput->getContentHolder() to
 			// $parserOutput->getContentHolder()
-			$parserOutput->mergeHtmlMetaDataFrom( $originalParserOutput );
-			$parserOutput->mergeTrackingMetaDataFrom( $originalParserOutput );
-			$parserOutput->mergeInternalMetaDataFrom( $originalParserOutput );
+			$originalParserOutput->collectMetadata( $parserOutput );
 		}
 		if ( isset( $pageBundle->headers['content-language'] ) ) {
 			$lang = LanguageCode::normalizeNonstandardCodeAndWarn(
