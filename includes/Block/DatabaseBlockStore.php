@@ -1554,10 +1554,9 @@ class DatabaseBlockStore {
 		// Acquire a lock on the primary DB for the autoblock to prevent race conditions (T260838)
 		$dbw = $this->getPrimaryDB();
 		$autoblockTargetLockKey = $dbw->getDomainID() . ':autoblock:' . $target;
-		if ( !$dbw->lockIsFree( $autoblockTargetLockKey, __METHOD__ ) ) {
+		if ( !$dbw->lock( $autoblockTargetLockKey, __METHOD__, 0 ) ) {
 			return false;
 		}
-		$dbw->lock( $autoblockTargetLockKey, __METHOD__ );
 
 		$timestamp = wfTimestampNow();
 		$expiry = $this->getAutoblockExpiry( $timestamp, $parentBlock->getExpiry() );
