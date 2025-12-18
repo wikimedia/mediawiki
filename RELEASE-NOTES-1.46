@@ -521,6 +521,8 @@ because of Phabricator reports.
   deprecated.  Use the new LanguageFallbackMode enumeration instead.
 * LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use
   LanguageFallbackModes::{MESSAGES,STRICT} instead.
+* IDatabase::lockIsFree is deprecated. For non-blocking locks, use
+  IDatabase::lock with timeout 0 instead.
 * The AutopromoteCondition hook has been deprecated and will now trigger
   deprecation warnings. Use UserRequirementsCondition hook, instead.
 * The RecentChange::parseToRCType and RecentChange::parseFromRCType methods are

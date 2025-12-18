@@ -935,6 +935,9 @@ interface IDatabase extends IReadableDatabase {
 	 * @return bool
 	 * @throws DBError If an error occurs, {@see query}
 	 * @since 1.20
+	 * @deprecated since 1.46 For non-blocking locks, use IDatabase::lock with timeout 0 instead.
+	 *  For unit testing, use Database::sessionLocksPending or prove that code works
+	 *  under race conditions by asserting the outcome rather than reflecting internals.
 	 */
 	public function lockIsFree( $lockName, $method );
 
