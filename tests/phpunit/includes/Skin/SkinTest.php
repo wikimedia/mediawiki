@@ -787,6 +787,54 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	public function testIgnoreAutoblocksInUserLinks() {
+		// Don't allow extensions to modify the TOOLBOX array
+		$this->clearHook( 'SidebarBeforeOutput' );
+
+		// Set the page to the IP
+		$this->overrideConfigValues( [
+			MainConfigNames::UploadNavigationUrl => false,
+			MainConfigNames::EnableUploads => false,
+		] );
+
+		$skin = new class extends Skin {
+			public function outputPage() {
+			}
+		};
+		$context = RequestContext::newExtraneousContext( Title::makeTitle( NS_SPECIAL, 'Contributions/127.0.0.1' ) );
+		$context->setUser( $this->getTestSysop()->getUser() );
+		$skin->setContext( $context );
+		$anonymousUser = $this->getServiceContainer()->getUserFactory()
+			->newFromUserIdentity( UserIdentityValue::newAnonymous( '127.0.0.1' ) );
+		$skin->setRelevantUser( $anonymousUser );
+
+		// Block a user and autoblock the IP as well
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$this->assertNull( $blockStore->newFromTarget( '127.0.0.1' ) );
+		$user = $this->getTestUser()->getUser();
+		RequestContext::getMain()->getRequest()->setIP( '127.0.0.1' );
+		$this->editPage(
+			'Test page', 'Test Content', 'test', NS_MAIN, $user
+		);
+		$blockStore->insertBlockWithParams( [
+			'address' => $user->getName(),
+			'by' => $user,
+			'reason' => 'test',
+			'timestamp' => wfTimestampNow(),
+			'expiry' => 'infinity',
+			'enableAutoblock' => true,
+		] );
+		$this->assertNotNull( $blockStore->newFromTarget( '127.0.0.1' ), 'Autoblock exists' );
+
+		// Assert that the autoblock is ignored and the ip remains blockable
+		$result = array_keys( $skin->buildSidebar()['TOOLBOX'] );
+		$expected = [ 'contributions', 'log', 'blockip' ];
+		$this->assertArrayEquals(
+			$expected,
+			array_intersect( $expected, $result )
+		);
+	}
+
 	public function testBuildSidebarForContributionsPageOfTemporaryAccount() {
 		// Don't allow extensions to modify the TOOLBOX array as we assert pretty strictly against it.
 		$this->clearHook( 'SidebarBeforeOutput' );
