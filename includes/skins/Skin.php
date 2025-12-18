@@ -6,6 +6,7 @@
 
 namespace MediaWiki\Skin;
 
+use MediaWiki\Block\Block;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
@@ -1392,7 +1393,11 @@ abstract class Skin extends ContextSource {
 				$userBlock = $services
 					->getBlockManager()
 					->getBlock( $user, null );
-				if ( $userBlock ) {
+				// If the block exists, only continue if it's not an autoblock. See T384147.
+				if (
+					$userBlock &&
+					$userBlock->getType() !== Block::TYPE_AUTO
+				) {
 					$useCodex = $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock );
 					$nav_urls[ $useCodex ? 'block-manage-blocks' : 'changeblockip' ] = [
 						'icon' => 'block',
