@@ -129,7 +129,7 @@ class ParserEditTests extends Maintenance {
 		$this->numFailed = 0;
 		$mode = new ParserTestMode( 'legacy' );
 		foreach ( $this->testFiles as $fileName => $fileInfo ) {
-			$this->runner->addArticles( $fileInfo->articles );
+			$teardownGuard = $this->runner->addArticles( $fileInfo->articles, $teardownGuard );
 			foreach ( $fileInfo->testCases as $testInfo ) {
 				$result = $this->runner->runTest( $testInfo, $mode );
 				if ( $result === false ) {
