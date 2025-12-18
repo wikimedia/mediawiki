@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Block\Block;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
@@ -1448,7 +1449,11 @@ abstract class Skin extends ContextSource {
 				$userBlock = MediaWikiServices::getInstance()
 				->getBlockManager()
 				->getBlock( $user, null );
-				if ( $userBlock ) {
+				// If the block exists, only continue if it's not an autoblock. See T384147.
+				if (
+					$userBlock &&
+					$userBlock->getType() !== Block::TYPE_AUTO
+				) {
 					$nav_urls['changeblockip'] = [
 						'icon' => 'block',
 						'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Block', $rootUser )
