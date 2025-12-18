@@ -519,24 +519,24 @@ class DatabaseTest extends TestCase {
 		$db->method( 'getDBname' )->willReturn( 'unittest' );
 
 		$this->assertSame( 0, $db->trxLevel() );
-		$this->assertTrue( $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertFalse( $db->sessionLocksPending() );
 		$this->assertTrue( $db->lock( 'x', __METHOD__ ) );
-		$this->assertFalse( $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertTrue( $db->sessionLocksPending() );
 		$this->assertTrue( $db->unlock( 'x', __METHOD__ ) );
-		$this->assertTrue( $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertFalse( $db->sessionLocksPending() );
 		$this->assertSame( 0, $db->trxLevel() );
 
 		$db->setFlag( DBO_TRX );
-		$this->assertTrue( $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertFalse( $db->sessionLocksPending() );
 		$this->assertTrue( $db->lock( 'x', __METHOD__ ) );
-		$this->assertFalse( $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertTrue( $db->sessionLocksPending() );
 		$this->assertTrue( $db->unlock( 'x', __METHOD__ ) );
-		$this->assertTrue( $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertFalse( $db->sessionLocksPending() );
 		$db->clearFlag( DBO_TRX );
 
 		// Pending writes with DBO_TRX
 		$this->assertSame( 0, $db->trxLevel() );
-		$this->assertTrue( $db->lockIsFree( 'meow', __METHOD__ ) );
+		$this->assertFalse( $db->sessionLocksPending() );
 		$db->setFlag( DBO_TRX );
 		$db->query( "DELETE FROM test WHERE t = 1" ); // trigger DBO_TRX transaction before lock
 		try {
@@ -544,13 +544,13 @@ class DatabaseTest extends TestCase {
 			$this->fail( "Exception not reached" );
 		} catch ( DBUnexpectedError ) {
 			$this->assertSame( 1, $db->trxLevel(), "Transaction not committed." );
-			$this->assertTrue( $db->lockIsFree( 'meow', __METHOD__ ), 'Lock not acquired' );
+			$this->assertFalse( $db->sessionLocksPending(), 'Lock not acquired' );
 		}
 		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
 		// Pending writes without DBO_TRX
 		$db->clearFlag( DBO_TRX );
 		$this->assertSame( 0, $db->trxLevel() );
-		$this->assertTrue( $db->lockIsFree( 'meow2', __METHOD__ ) );
+		$this->assertFalse( $db->sessionLocksPending() );
 		$db->begin( __METHOD__ );
 		$db->query( "DELETE FROM test WHERE t = 1" ); // trigger DBO_TRX transaction before lock
 		try {
@@ -558,32 +558,34 @@ class DatabaseTest extends TestCase {
 			$this->fail( "Exception not reached" );
 		} catch ( DBUnexpectedError ) {
 			$this->assertSame( 1, $db->trxLevel(), "Transaction not committed." );
-			$this->assertTrue( $db->lockIsFree( 'meow2', __METHOD__ ), 'Lock not acquired' );
+			$this->assertFalse( $db->sessionLocksPending(), 'Lock not acquired' );
 		}
 		$db->rollback( __METHOD__ );
 		// No pending writes, with DBO_TRX
 		$db->setFlag( DBO_TRX );
 		$this->assertSame( 0, $db->trxLevel() );
-		$this->assertTrue( $db->lockIsFree( 'wuff', __METHOD__ ) );
+		$this->assertFalse( $db->sessionLocksPending() );
 		$db->query( "SELECT 1", __METHOD__ );
 		$this->assertSame( 1, $db->trxLevel() );
-		$lock = $db->getScopedLockAndFlush( 'wuff', __METHOD__, 1 );
+		$lock1 = $db->getScopedLockAndFlush( 'wuff1', __METHOD__, 1 );
 		$this->assertSame( 0, $db->trxLevel() );
-		$this->assertFalse( $db->lockIsFree( 'wuff', __METHOD__ ), 'Lock already acquired' );
+		$this->assertTrue( $db->sessionLocksPending(), 'Lock wuff1 acquired' );
 		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
 		// No pending writes, without DBO_TRX
 		$db->clearFlag( DBO_TRX );
 		$this->assertSame( 0, $db->trxLevel() );
-		$this->assertTrue( $db->lockIsFree( 'wuff2', __METHOD__ ) );
+		$this->assertTrue( $db->sessionLocksPending(), 'Lock wuff1 still held' );
 		$db->begin( __METHOD__ );
 		try {
-			$lock = $db->getScopedLockAndFlush( 'wuff2', __METHOD__, 1 );
+			$lock2 = $db->getScopedLockAndFlush( 'wuff2', __METHOD__, 1 );
 			$this->fail( "Exception not reached" );
 		} catch ( DBUnexpectedError ) {
 			$this->assertSame( 1, $db->trxLevel(), "Transaction not committed." );
-			$this->assertFalse( $db->lockIsFree( 'wuff2', __METHOD__ ), 'Lock not acquired' );
 		}
 		$db->rollback( __METHOD__ );
+		$this->assertTrue( $db->sessionLocksPending(), 'Lock wuff1 still held' );
+		$lock1 = null;
+		$this->assertFalse( $db->sessionLocksPending(), 'Lock wuff1 released, and wuff2 never acquired' );
 	}
 
 	public function testFlagSetting() {

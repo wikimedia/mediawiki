@@ -106,12 +106,6 @@ class MySQLPlatform extends SQLPlatform {
 	}
 
 	/** @inheritDoc */
-	public function lockIsFreeSQLText( $lockName ) {
-		$encName = $this->quoter->addQuotes( $this->makeLockName( $lockName ) );
-		return "SELECT IS_FREE_LOCK($encName) AS unlocked";
-	}
-
-	/** @inheritDoc */
 	public function unlockSQLText( $lockName ) {
 		$encName = $this->quoter->addQuotes( $this->makeLockName( $lockName ) );
 		return "SELECT RELEASE_LOCK($encName) AS released";

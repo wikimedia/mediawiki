@@ -115,6 +115,8 @@ because of Phabricator reports.
 * ResourceLoader::makeConfigSetScript, deprecated in 1.44, has been removed.
   Use package files instead or return mw.config.set() combined with
   RL\Context::encodeJson, if available. Otherwise, use FormatJson::encode.
+* IDatabase::lockIsFree, deprecated in 1.46, was removed.
+  For non-blocking locks, use IDatabase::lock with timeout 0 instead.
 * BaseSearchResultSet::next() and ::rewind(), deprecated since 1.32 have now
   been removed. Use ::extractResults() or a foreach loop instead.
 * The ParsoidService class, deprecated since 1.39, has been removed. Use the

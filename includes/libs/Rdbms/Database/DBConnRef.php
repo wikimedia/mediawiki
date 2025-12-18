@@ -839,13 +839,6 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 	}
 
 	/** @inheritDoc */
-	public function lockIsFree( $lockName, $method ) {
-		$this->assertRoleAllowsWrites();
-
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	/** @inheritDoc */
 	public function lock( $lockName, $method, $timeout = 5, $flags = 0 ) {
 		$this->assertRoleAllowsWrites();
 

@@ -2900,34 +2900,6 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	/**
 	 * @inheritDoc
 	 */
-	public function lockIsFree( $lockName, $method ) {
-		// RDBMs methods for checking named locks may or may not count this thread itself.
-		// In MySQL, IS_FREE_LOCK() returns 0 if the thread already has the lock. This is
-		// the behavior chosen by the interface for this method.
-		if ( isset( $this->sessionNamedLocks[$lockName] ) ) {
-			$lockIsFree = false;
-		} else {
-			$lockIsFree = $this->doLockIsFree( $lockName, $method );
-		}
-
-		return $lockIsFree;
-	}
-
-	/**
-	 * @see lockIsFree()
-	 *
-	 * @param string $lockName
-	 * @param string $method
-	 * @return bool Success
-	 * @throws DBError
-	 */
-	protected function doLockIsFree( string $lockName, string $method ) {
-		return true; // not implemented
-	}
-
-	/**
-	 * @inheritDoc
-	 */
 	public function lock( $lockName, $method, $timeout = 5, $flags = 0 ) {
 		$lockTsUnix = $this->doLock( $lockName, $method, $timeout );
 		if ( $lockTsUnix !== null ) {

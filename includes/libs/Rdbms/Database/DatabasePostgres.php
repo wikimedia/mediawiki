@@ -987,19 +987,6 @@ __INDEXATTR__;
 	}
 
 	/** @inheritDoc */
-	public function doLockIsFree( string $lockName, string $method ) {
-		$query = new Query(
-			$this->platform->lockIsFreeSQLText( $lockName ),
-			self::QUERY_CHANGE_LOCKS,
-			'SELECT'
-		);
-		$res = $this->query( $query, $method );
-		$row = $res->fetchObject();
-
-		return (bool)$row->unlocked;
-	}
-
-	/** @inheritDoc */
 	public function doLock( string $lockName, string $method, int $timeout ) {
 		$query = new Query(
 			$this->platform->lockSQLText( $lockName, $timeout ),
