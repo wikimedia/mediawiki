@@ -107,6 +107,12 @@
 				}
 			}
 		},
+		"merge": {
+			"file": {
+				"ltr": "images/icons/merge-ltr.svg",
+				"rtl": "images/icons/merge-rtl.svg"
+			}
+		},
 		"qrCode": {
 			"file": "images/icons/qrCode.svg"
 		},
@@ -132,6 +138,12 @@
 				"error",
 				"warning"
 			]
+		},
+		"update": {
+			"file": {
+				"ltr": "images/icons/update-ltr.svg",
+				"rtl": "images/icons/update-rtl.svg"
+			}
 		},
 		"upload": {
 			"file": "images/icons/upload.svg"

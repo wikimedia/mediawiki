@@ -4,6 +4,7 @@
 			"Ajdar",
 			"Don Alessandro",
 			"Ерней",
+			"Ильгиз",
 			"Ильнар"
 		]
 	},
@@ -21,8 +22,12 @@
 	"ooui-dialog-process-dismiss": "Ябу",
 	"ooui-dialog-process-retry": "Кабатлау",
 	"ooui-dialog-process-continue": "Дәвам итү",
+	"ooui-combobox-button-label": "Параметрларны үзгәрт",
 	"ooui-selectfile-button-select": "Файлны сайлагыз",
+	"ooui-selectfile-button-select-multiple": "Файлларны сайлагыз",
 	"ooui-selectfile-placeholder": "Файл сайланмаган",
 	"ooui-selectfile-dragdrop-placeholder": "Файлны монда куегыз",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Файлларны монда тартып куегыз",
+	"ooui-popup-widget-close-button-aria-label": "Ябу",
 	"ooui-field-help": "Белешмә"
 }

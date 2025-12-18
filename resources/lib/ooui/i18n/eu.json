@@ -6,6 +6,7 @@
 			"Mikel Ibaiba",
 			"Sator",
 			"Subi",
+			"Theklan",
 			"Unai Fdz. de Betoño",
 			"Xabier Armendaritz"
 		]
@@ -27,5 +28,6 @@
 	"ooui-selectfile-button-select": "Fitxategi bat aukeratu",
 	"ooui-selectfile-placeholder": "Ez da fitxategirik hautatu",
 	"ooui-selectfile-dragdrop-placeholder": "Fitxategia hemen utzi",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Fitxategiak hemen utzi",
 	"ooui-field-help": "Laguntza"
 }

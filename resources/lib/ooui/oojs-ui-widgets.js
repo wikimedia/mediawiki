@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.53.0
+ * OOUI v0.53.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-09-03T22:03:22Z
+ * Date: 2025-12-18T21:09:01Z
  */
 ( function ( OO ) {
 
@@ -3537,10 +3537,7 @@ OO.ui.OutlineSelectWidget = function OoUiOutlineSelectWidget( config ) {
 	OO.ui.mixin.TabIndexedElement.call( this, config );
 
 	// Events
-	this.$element.on( {
-		focus: this.bindDocumentKeyDownListener.bind( this ),
-		blur: this.unbindDocumentKeyDownListener.bind( this )
-	} );
+	this.attachDocumentKeyDownListenerOnFocus();
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-outlineSelectWidget' );
@@ -3671,10 +3668,7 @@ OO.ui.ButtonSelectWidget = function OoUiButtonSelectWidget( config ) {
 	OO.ui.mixin.TabIndexedElement.call( this, config );
 
 	// Events
-	this.$element.on( {
-		focus: this.bindDocumentKeyDownListener.bind( this ),
-		blur: this.unbindDocumentKeyDownListener.bind( this )
-	} );
+	this.attachDocumentKeyDownListenerOnFocus();
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-buttonSelectWidget' );
@@ -3784,10 +3778,7 @@ OO.ui.TabSelectWidget = function OoUiTabSelectWidget( config ) {
 	OO.ui.mixin.TabIndexedElement.call( this, config );
 
 	// Events
-	this.$element.on( {
-		focus: this.bindDocumentKeyDownListener.bind( this ),
-		blur: this.unbindDocumentKeyDownListener.bind( this )
-	} );
+	this.attachDocumentKeyDownListenerOnFocus();
 
 	// Initialization
 	this.$element
@@ -5811,6 +5802,7 @@ OO.ui.SearchWidget.prototype.onQueryKeydown = function ( e ) {
 		if ( nextItem ) {
 			nextItem.scrollElementIntoView();
 		}
+		e.preventDefault();
 	}
 };
 
@@ -5833,7 +5825,7 @@ OO.ui.SearchWidget.prototype.onQueryChange = function () {
  * Chooses highlighted item.
  *
  * @private
- * @param {string} value New value
+ * @param {jQuery.Event} e
  */
 OO.ui.SearchWidget.prototype.onQueryEnter = function () {
 	const highlightedItem = this.results.findHighlightedItem();

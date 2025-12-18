@@ -5,20 +5,26 @@
 			"Jagwar"
 		]
 	},
+	"ooui-copytextlayout-copy": "Dikaina",
 	"ooui-outline-control-move-down": "Hampidina ilay zavatra",
 	"ooui-outline-control-move-up": "Hampiakatra ilay zavatra",
 	"ooui-outline-control-remove": "Hanala iay zavatra",
 	"ooui-toolbar-more": "Be kokoa",
 	"ooui-toolgroup-expand": "Be kokoa",
 	"ooui-toolgroup-collapse": "Kely kokoa",
+	"ooui-item-remove": "Esorina",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Avela",
 	"ooui-dialog-process-error": "Nisy hadisoana nitranga",
 	"ooui-dialog-process-dismiss": "Esorina",
 	"ooui-dialog-process-retry": "Andramana indray",
 	"ooui-dialog-process-continue": "Tohizana",
+	"ooui-combobox-button-label": "Hamadibadika safidy",
 	"ooui-selectfile-button-select": "Misafidia rakitra iray",
+	"ooui-selectfile-button-select-multiple": "Hisafidy rakitra",
 	"ooui-selectfile-placeholder": "Tsy misy rakitra voafidy",
 	"ooui-selectfile-dragdrop-placeholder": "Hametraka rakitra eto",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Apetraho eto ny rakitra",
+	"ooui-popup-widget-close-button-aria-label": "Hidina",
 	"ooui-field-help": "Fanoroana"
 }

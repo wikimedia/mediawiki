@@ -84,6 +84,12 @@
 				}
 			}
 		},
+		"merge": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/merge-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/merge-rtl.svg"
+			}
+		},
 		"qrCode": {
 			"file": "../wikimediaui/images/icons/qrCode.svg"
 		},
@@ -103,6 +109,12 @@
 			"file": {
 				"ltr": "../wikimediaui/images/icons/tag-ltr.svg",
 				"rtl": "../wikimediaui/images/icons/tag-rtl.svg"
+			}
+		},
+		"update": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/update-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/update-rtl.svg"
 			}
 		},
 		"upload": {

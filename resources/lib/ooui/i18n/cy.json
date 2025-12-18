@@ -11,11 +11,12 @@
 			"ОйЛ"
 		]
 	},
+	"ooui-copytextlayout-copy": "Copïo",
 	"ooui-outline-control-move-down": "Symud yr eitem i lawr",
 	"ooui-outline-control-move-up": "Symud yr eitem i fyny",
 	"ooui-outline-control-remove": "Tynnu'r eitem",
 	"ooui-toolbar-more": "Rhagor",
-	"ooui-toolgroup-expand": "Mwy",
+	"ooui-toolgroup-expand": "Rhagor",
 	"ooui-toolgroup-collapse": "Llai",
 	"ooui-item-remove": "Tynnu",
 	"ooui-dialog-message-accept": "Iawn",
@@ -29,7 +30,7 @@
 	"ooui-selectfile-button-select-multiple": "Dewisiwch ffeiliau",
 	"ooui-selectfile-placeholder": "Dim ffeil wedi'i dewis",
 	"ooui-selectfile-dragdrop-placeholder": "Gollwng ffeil yma",
-	"ooui-selectfile-dragdrop-placeholder-multiple": "Gollyngwch y ffeiliau yma",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Gollwng ffeiliau yma",
 	"ooui-popup-widget-close-button-aria-label": "Cau",
 	"ooui-field-help": "Cymorth"
 }

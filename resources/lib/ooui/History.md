@@ -1,5 +1,32 @@
 # OOUI Release History
 
+## v0.53.1 / 2025-10-15
+
+### Styles
+* Fix text ellipsis in DropdownWidget (Ed Sanders)
+
+### Icons
+* icons: Add 'merge' and 'update' icons to 'content' pack (Volker E.)
+
+### Code
+* Add missing preventDefault to SearchWidget.onQueryKeydown (Thiemo Kreuz)
+* CheckboxMultiselectInputWidget: Save disabled state of options for infusion (Bartosz Dziewoński)
+* Don't assume ESCAPE will de-focus a SelectWidget (Ed Sanders)
+* Element#scrollIntoView: Support alignment to other edges (Ed Sanders)
+* Follow-up I6f17842c: Dialog: Abort executeAction with a resolved promise (Ed Sanders)
+* PopupToolGroup: Fix popup filling available space with align: 'after' (Bartosz Dziewoński)
+* SelectFileInputWidget: fix compareFile (Derk-Jan Hartman)
+* SelectWidget: Fix removeItems() interaction with 'multiselect' (Bartosz Dziewoński)
+* SelectWidget: Use focusin/out instead of focus/blur (Ed Sanders)
+* TabIndexedElement: Provide a default setLabelledBy() method (Bartosz Dziewoński)
+* demos: Fix demo source code not working if default config is empty (Bartosz Dziewoński)
+* docs: Add missing task number in a comment (Bartosz Dziewoński)
+* Fix incomplete documentation for "enter" event (Thiemo Kreuz)
+* build: Add ockcyp/covers-validator to validate @covers annotations (Umherirrender)
+* build: Update phpunit/phpunit to 10.5.58 (Umherirrender)
+* build: Updating mediawiki/mediawiki-codesniffer to 48.0.0 ([BOT] libraryupgrader)
+* tests: Don't use ReflectionProperty::setAccessible(), it's a no-op now (Sam Reed)
+
 ## v0.53.0 / 2025-09-03
 
 ### Features

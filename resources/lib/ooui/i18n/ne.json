@@ -20,12 +20,12 @@
 	"ooui-dialog-message-accept": "ठीक छ",
 	"ooui-dialog-message-reject": "रद्द गर्नुहोस्",
 	"ooui-dialog-process-error": "केही खराबी भयो",
-	"ooui-dialog-process-dismiss": "खारेज गर्ने",
+	"ooui-dialog-process-dismiss": "खारेज गर्नुहोस्",
 	"ooui-dialog-process-retry": "पुन प्रयास गर्नुहोस",
 	"ooui-dialog-process-continue": "जारी राख्नुहोस्",
 	"ooui-selectfile-button-select": "फाइल चयन गर्नुहोस्",
 	"ooui-selectfile-dragdrop-placeholder": "फाइलहरू यहाँ राख्नुहोस्",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "फाइलहरू यहाँ राख्नुहोस्",
 	"ooui-popup-widget-close-button-aria-label": "बन्द गर्नुहोस्",
-	"ooui-field-help": "सहायता"
+	"ooui-field-help": "सहयोग"
 }

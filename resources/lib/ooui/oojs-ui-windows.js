@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.53.0
+ * OOUI v0.53.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-09-03T22:03:22Z
+ * Date: 2025-12-18T21:09:01Z
  */
 ( function ( OO ) {
 
@@ -2934,7 +2934,9 @@ OO.ui.Dialog.prototype.executeAction = function ( action ) {
 	const actionWidgets = this.actions.get( { actions: [ action ], visible: true } );
 	// If the action is shown as an ActionWidget, but is disabled, then do nothing.
 	if ( actionWidgets.length && actionWidgets.every( ( widget ) => widget.isDisabled() ) ) {
-		return $.Deferred().reject().promise();
+		// Return a resolved promise to do nothing. A rejected promise would
+		// trigger an error message (T411186).
+		return $.Deferred().resolve().promise();
 	}
 	this.pushPending();
 	this.currentAction = action;

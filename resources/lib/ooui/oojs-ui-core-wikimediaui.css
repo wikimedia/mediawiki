@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.53.0
+ * OOUI v0.53.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-09-03T22:03:24Z
+ * Date: 2025-12-18T21:09:04Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -1780,9 +1780,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -moz-user-select: none;
   user-select: none;
   box-sizing: border-box;
-}
-.oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
-  display: inline-block;
 }
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
   cursor: pointer;

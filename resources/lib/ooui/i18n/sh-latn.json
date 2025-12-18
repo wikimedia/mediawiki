@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aca",
 			"OC Ripper",
 			"Sf",
 			"Vlad5250",
@@ -25,7 +26,7 @@
 	"ooui-selectfile-button-select": "Izaberi datoteku",
 	"ooui-selectfile-button-select-multiple": "Odaberi datoteke",
 	"ooui-selectfile-placeholder": "Nijedna datoteka nije odabrana",
-	"ooui-selectfile-dragdrop-placeholder": "Prevuci datoteku ovdje",
+	"ooui-selectfile-dragdrop-placeholder": "Prevucite datoteku ovdje",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "Povucite datoteke ovdje",
 	"ooui-popup-widget-close-button-aria-label": "Zatvori",
 	"ooui-field-help": "Pomoć"

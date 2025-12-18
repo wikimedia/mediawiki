@@ -31,5 +31,6 @@
 	"ooui-selectfile-placeholder": "Ніводзін файл не абраны",
 	"ooui-selectfile-dragdrop-placeholder": "Перацягніце файл сюды",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "Перацягніце файлы сюды",
+	"ooui-popup-widget-close-button-aria-label": "Закрыць",
 	"ooui-field-help": "Дапамога"
 }

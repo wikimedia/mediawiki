@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.53.0
+ * OOUI v0.53.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-09-03T22:03:22Z
+ * Date: 2025-12-18T21:09:01Z
  */
 ( function ( OO ) {
 
@@ -622,11 +622,11 @@ OO.ui.mixin = {};
  *  Data can also be specified with the #setData method.
  */
 OO.ui.Element = function OoUiElement( config ) {
+	// Configuration initialization
+	config = config || {};
 	if ( OO.ui.isDemo ) {
 		this.initialConfig = config;
 	}
-	// Configuration initialization
-	config = config || {};
 
 	// Properties
 	this.elementId = null;
@@ -1331,8 +1331,14 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
  * @param {string} [config.duration='fast'] jQuery animation duration value
  * @param {string} [config.direction] Scroll in only one direction, e.g. 'x' or 'y', omit
  *  to scroll in both directions
- * @param {Object} [config.alignToTop=false] Aligns the top of the element to the top of the visible
- *  area of the scrollable ancestor.
+ * @param {boolean} [config.alignToTop=false] Deprecated, use `alignTo: 'top'` instead.
+ *  Aligns the top of the element to the top of the visible area of the scrollable ancestor.
+ * @param {string|string[]} [config.alignTo] Aligns the element to an edge of the visible area of
+ *  the scrollable ancestor. Possible values are 'top' or 'bottom' when scrolling vertically, and
+ *  'left' or 'right' when scrolling horizontally. When scrolling in both directions, an array with
+ *  two values can be used, e.g. `['top', 'right']`.
+ *  When omitted, the element will be scrolled the minimum amount necessary to make it fully
+ *  visible.
  * @param {Object} [config.padding] Additional padding on the container to scroll past.
  *  Object containing any of 'top', 'bottom', 'left', or 'right' as numbers.
  * @param {Object} [config.scrollContainer] Scroll container. Defaults to
@@ -1396,10 +1402,17 @@ OO.ui.Element.static.scrollIntoView = function ( elOrPosition, config ) {
 		};
 	}
 
+	const hasAlignTo = ( align ) => Array.isArray( config.alignTo ) ?
+		config.alignTo.includes( align ) :
+		config.alignTo === align || ( align === 'top' && config.alignToTop );
+
 	if ( !config.direction || config.direction === 'y' ) {
-		if ( position.top < padding.top || config.alignToTop ) {
+		const alignToTop = hasAlignTo( 'top' );
+		const alignToBottom = hasAlignTo( 'bottom' );
+
+		if ( alignToTop || ( !alignToBottom && position.top < padding.top ) ) {
 			animations.scrollTop = containerDimensions.scroll.top + position.top - padding.top;
-		} else if ( position.bottom < padding.bottom ) {
+		} else if ( alignToBottom || position.bottom < padding.bottom ) {
 			animations.scrollTop = containerDimensions.scroll.top +
 				// Scroll the bottom into view, but not at the expense
 				// of scrolling the top out of view
@@ -1407,9 +1420,12 @@ OO.ui.Element.static.scrollIntoView = function ( elOrPosition, config ) {
 		}
 	}
 	if ( !config.direction || config.direction === 'x' ) {
-		if ( position.left < padding.left ) {
+		const alignToLeft = hasAlignTo( 'left' );
+		const alignToRight = hasAlignTo( 'right' );
+
+		if ( alignToLeft || ( !alignToRight && position.left < padding.left ) ) {
 			animations.scrollLeft = containerDimensions.scroll.left + position.left - padding.left;
-		} else if ( position.right < padding.right ) {
+		} else if ( alignToRight || position.right < padding.right ) {
 			animations.scrollLeft = containerDimensions.scroll.left +
 				// Scroll the right into view, but not at the expense
 				// of scrolling the left out of view
@@ -2167,6 +2183,22 @@ OO.ui.mixin.TabIndexedElement.prototype.getInputId = function () {
 	}
 
 	return id;
+};
+
+/**
+ * Set the element with the given ID as a label for this widget.
+ *
+ * @param {string|null} id
+ */
+OO.ui.mixin.TabIndexedElement.prototype.setLabelledBy = function ( id ) {
+	if ( !this.$tabIndexed ) {
+		return;
+	}
+	if ( id ) {
+		this.$tabIndexed.attr( 'aria-labelledby', id );
+	} else {
+		this.$tabIndexed.removeAttr( 'aria-labelledby' );
+	}
 };
 
 /**
@@ -7476,7 +7508,6 @@ OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 					handled = true;
 				}
 				break;
-			case OO.ui.Keys.ESCAPE:
 			case OO.ui.Keys.TAB:
 				if ( currentItem ) {
 					currentItem.setHighlighted( false );
@@ -7523,6 +7554,23 @@ OO.ui.SelectWidget.prototype.bindDocumentKeyDownListener = function () {
  */
 OO.ui.SelectWidget.prototype.unbindDocumentKeyDownListener = function () {
 	this.getElementDocument().removeEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
+};
+
+/**
+ * Attach document keydown listeners when the element is focused
+ *
+ * @param {jQuery} [$element=this.$element] Element to watch
+ * @protected
+ */
+OO.ui.SelectWidget.prototype.attachDocumentKeyDownListenerOnFocus = function ( $element ) {
+	$element = $element || this.$element;
+	$element.on( {
+		// focusin/out are bubbling and so fire before DOM changes, this
+		// means focusout fires when this.$element is detached while focused,
+		// unlike blur.
+		focusin: this.bindDocumentKeyDownListener.bind( this ),
+		focusout: this.unbindDocumentKeyDownListener.bind( this )
+	} );
 };
 
 /**
@@ -8138,10 +8186,7 @@ OO.ui.SelectWidget.prototype.addItems = function ( items, index ) {
 OO.ui.SelectWidget.prototype.removeItems = function ( items ) {
 	// Deselect items being removed
 	for ( let i = 0; i < items.length; i++ ) {
-		const item = items[ i ];
-		if ( item.isSelected() ) {
-			this.selectItem( null );
-		}
+		this.unselectItem( items[ i ] );
 	}
 
 	// Mixin method
@@ -9274,10 +9319,7 @@ OO.ui.RadioSelectWidget = function OoUiRadioSelectWidget( config ) {
 	OO.ui.mixin.TabIndexedElement.call( this, config );
 
 	// Events
-	this.$element.on( {
-		focus: this.bindDocumentKeyDownListener.bind( this ),
-		blur: this.unbindDocumentKeyDownListener.bind( this )
-	} );
+	this.attachDocumentKeyDownListenerOnFocus();
 
 	// Initialization
 	this.$element
@@ -11605,6 +11647,7 @@ OO.ui.TextInputWidget.static.validationPatterns = {
  * An `enter` event is emitted when the user presses Enter key inside the text box.
  *
  * @event OO.ui.TextInputWidget#enter
+ * @param {jQuery.Event} e
  */
 
 /* Methods */
@@ -14326,10 +14369,16 @@ OO.ui.SelectFileInputWidget.prototype.setValue = function ( files ) {
 	}
 
 	function comparableFile( file ) {
-		// Use extend to convert to plain objects so they can be compared.
-		// File objects contains name, size, timestamp and mime type which
-		// should be unique.
-		return Object.assign( {}, file );
+		// File objects are not enumerable for comparison, so we use these simple objects.
+		// This ignores contents, so it's not a perfect comparison
+		return {
+			// Blob properties
+			size: file.size,
+			type: file.type,
+			// File properties
+			lastModified: file.lastModified,
+			name: file.name
+		};
 	}
 
 	if ( !OO.compare(
