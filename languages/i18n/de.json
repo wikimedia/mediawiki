@@ -3332,7 +3332,7 @@
 	"watchlistedit-clear-removed": "{{PLURAL:$1|Ein Seitenname wurde|$1 Seitennamen wurden}} entfernt:",
 	"watchlistedit-too-many": "Deine Beobachtungsliste wurde aktualisiert. Es existieren hier zu viele Seiten zum Anzeigen.",
 	"watchlisttools-clear": "Beobachtungsliste leeren",
-	"watchlisttools-view": "Beobachtungsliste: Änderungen",
+	"watchlisttools-view": "Änderungen anzeigen",
 	"watchlisttools-edit": "Beobachtungsliste ansehen und bearbeiten",
 	"watchlisttools-labels": "Bezeichnungen verwalten",
 	"watchlisttools-raw": "Quelltext der Beobachtungsliste bearbeiten",

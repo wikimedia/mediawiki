@@ -27,7 +27,7 @@
 	"cdx-table-pager-button-last-page": "最后一页",
 	"cdx-table-pager-button-next-page": "下一页",
 	"cdx-table-pager-button-prev-page": "上一页",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1}}行",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1}}项",
 	"cdx-table-pager-items-per-page-default": "各页面结果",
 	"cdx-table-pagination-status-message-determinate-long": "显示$1至$2的结果（共$3个）",
 	"cdx-table-pagination-status-message-determinate-short": "$1至$2（共$3个）",

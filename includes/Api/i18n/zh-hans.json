@@ -1004,6 +1004,7 @@
 	"apihelp-query+info-paramvalue-prop-varianttitles": "提供网站内容语言所有变体的显示标题。",
 	"apihelp-query+info-paramvalue-prop-linkclasses": "如果链接出现在由<var>$1linkcontext</var>命名的页面上，则提供用于链接到此页面的其他CSS 类（例如链接颜色）。",
 	"apihelp-query+info-param-linkcontext": "当<var>$1prop</var>包含<var>linkclasses</var>时，在确定额外CSS类（例如链接颜色）时使用的上下文标题。",
+	"apihelp-query+info-param-defaultlinkcaption": "是否将链接视为具有默认标题（标题是链接目标的后缀，且带前导斜杠、冒号或字符串）。这可能会影响返回的链接类别。",
 	"apihelp-query+info-param-testactions": "测试当前用户是否可以在页面上执行某种操作。",
 	"apihelp-query+info-param-testactionsdetail": "<var>$1testactions</var>的详细级别。使用[[Special:ApiHelp/main|主模块]]的<var>errorformat</var>和<var>errorlang</var>参数来控制返回消息的格式。",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "为每个操作返回一个布尔值。",

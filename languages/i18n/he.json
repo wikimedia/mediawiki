@@ -2442,6 +2442,7 @@
 	"contributions-subtitle": "תוצאות עבור {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|משתמש|משתמשת}} עם {{PLURAL:$2|עריכה אחת|$2 עריכות}}.",
 	"contributions-account-creation-date": "החשבון נוצר ב־$1.",
+	"contributions-ip-range-navigation": "הצגת {{PLURAL:$2|טווח רחב|טווחים רחבים}} יותר: $1",
 	"contributions-userdoesnotexist": "חשבון המשתמש \"$1\" אינו רשום.",
 	"negative-namespace-not-supported": "אין תמיכה במרחבי שם בעלי ערך שלילי.",
 	"nocontribs": "לא נמצאו שינויים המתאימים לקריטריונים אלו.",
