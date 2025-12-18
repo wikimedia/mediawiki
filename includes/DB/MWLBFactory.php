@@ -213,6 +213,7 @@ class MWLBFactory {
 			$serversCheck = $lbConf['servers'];
 		} elseif ( $lbConf['class'] === LBFactoryMulti::class ) {
 			if ( isset( $lbConf['serverTemplate'] ) ) {
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				if ( in_array( $lbConf['serverTemplate']['type'], $typesWithSchema, true ) ) {
 					$lbConf['serverTemplate']['schema'] = $this->options->get( MainConfigNames::DBmwschema );
 				}

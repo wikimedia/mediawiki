@@ -968,7 +968,6 @@ class ApiResult implements ApiSerializable {
 
 				$data = array_values( $data );
 				$metadata[self::META_TYPE] = 'array';
-				// @phan-suppress-next-line PhanTypeMismatchReturnNullable Type mismatch on pass-by-ref args
 				return $data + $keepMetadata;
 
 			case 'kvp':
@@ -1019,7 +1018,6 @@ class ApiResult implements ApiSerializable {
 				}
 				$metadata[self::META_TYPE] = 'array';
 
-				// @phan-suppress-next-line PhanTypeMismatchReturnNullable Type mismatch on pass-by-ref args
 				return $ret + $keepMetadata;
 
 			default:

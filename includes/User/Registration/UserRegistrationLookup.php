@@ -113,7 +113,6 @@ class UserRegistrationLookup {
 		}
 
 		$cacheKey = $this->getCacheKey( $user, $type );
-		/* @phan-suppress-next-line PhanTypeMismatchProperty Phan can't recognize that the types here are the same */
 		$this->registrationCache[$cacheKey] = $timestamp;
 	}
 
