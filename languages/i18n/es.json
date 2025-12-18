@@ -267,7 +267,8 @@
 			"ZhaleyLeitnib",
 			"לערי ריינהארט",
 			"ديفيد",
-			"아라"
+			"아라",
+			"SrGarga"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoría|Categorías}}",
@@ -869,7 +870,7 @@
 	"cascadeprotectedwarning": "<strong>Aviso:</strong> esta página está protegida y solo pueden editarla usuarios con [[Special:ListGroupRights|permisos específicos]] porque está transcluida en {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:",
 	"titleprotectedwarning": "<strong>Aviso: esta página está protegida de modo que se necesitan [[Special:ListGroupRights|permisos específicos]] para crearla.</strong>\nA continuación se muestra la última entrada del registro como referencia:",
 	"templatesused": "{{PLURAL:$1|Plantilla usada|Plantillas usadas}} en esta página:",
-	"templatesusedpreview": "{{PLURAL:$1|Plantilla usada|Plantillas usadas}} en esta previsualización:",
+	"templatesusedpreview": "{{PLURAL:$1| Página|Páginas}} incluidas en esta vista previa:",
 	"templatesusedsection": "{{PLURAL:$1|Plantilla usada|Plantillas usadas}} en esta sección:",
 	"template-protected": "(protegida)",
 	"template-semiprotected": "(semiprotegida)",

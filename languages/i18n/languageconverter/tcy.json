@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ravi Mundkur"
+			"Ravi Mundkur",
+			"ChiK"
 		]
 	},
-	"converter-manual-rule-error": "ದೈಹಿಕ ಭಾಷಾ ಪರಿವರ್ತನ ನಿಯಮೊಡು ದೋಷ ಪತ್ತೆ ಆಂಡ್.",
-	"language-converter-depth-warning": "ಭಾಷಾ ಪರಿವರ್ತಕದ ಗಾಂತ್' ಮಿತಿ ಮೀರ್ದುಂಡು  ($1)"
+	"converter-manual-rule-error": "ಕೈಟ್ ಸೇರಾಯಿನ ಬಾಸೆ ಪರಿವರ್ತನೆ ನಿಯಮೊಡು ದೋಷ ತೊಜಿದ್ ಬತ್ತ್ಂಡ್",
+	"language-converter-depth-warning": "ಬಾಸೆ ಪರಿವರ್ತಕದ ಆಳದ ಮಿತಿನ್ ಮೀರ್ದ್ಂಡ್ ($1)"
 }
