@@ -207,6 +207,9 @@ function writeAllProjectMetrics( metricsDir, fileName ) {
 
 	const lines = [];
 	const labels = projectMetrics.labels;
+
+	const flakyTestsInRun = tests.filter( ( test ) => test.failed > 0 && test.retries > 0 ).length;
+
 	// Add Project metrics
 	lines.push( '# HELP wdio_project_duration_seconds Total duration of all test suites per project' );
 	lines.push( '# TYPE wdio_project_duration_seconds gauge' );
@@ -242,6 +245,14 @@ function writeAllProjectMetrics( metricsDir, fileName ) {
 	lines.push( formatMetric( 'wdio_project_test_duration_seconds_count', projectMetrics.testDurationSecondsCount, { ...labels } )
 	);
 
+	lines.push( '# HELP wdio_project_flaky_tests Number of distinct tests that were flaky in this project' );
+	lines.push( '# TYPE wdio_project_flaky_tests gauge' );
+	lines.push( formatMetric( 'wdio_project_flaky_tests', flakyTestsInRun, { ...labels } ) );
+
+	lines.push( '# HELP wdio_project_flaky 1 if any flaky test occurred in this project, else 0' );
+	lines.push( '# TYPE wdio_project_flaky gauge' );
+	lines.push( formatMetric( 'wdio_project_flaky', Number( flakyTestsInRun > 0 ), { ...labels } ) );
+
 	// Add test metrics
 
 	let addMetaData = true;
@@ -268,6 +279,11 @@ function writeAllProjectMetrics( metricsDir, fileName ) {
 			lines.push( '# HELP wdio_test_duration_max_seconds Max observed test duration (seconds per test)' );
 			lines.push( '# TYPE wdio_test_duration_max_seconds gauge' );
 			lines.push( formatMetric( 'wdio_test_duration_max_seconds', test.testDurationSecondsMax.toFixed( 3 ), { ...testLabels } ) );
+
+			lines.push( '# HELP wdio_test_flaky 1 if the test failed and retried at least once in this run, else 0' );
+			lines.push( '# TYPE wdio_test_flaky gauge' );
+			lines.push( formatMetric( 'wdio_test_flaky', Number( test.failed > 0 && test.retries > 0 ), testLabels ) );
+
 			addMetaData = false;
 		} else {
 			lines.push( formatMetric( 'wdio_test_passed', test.passed, testLabels ) );
@@ -275,6 +291,8 @@ function writeAllProjectMetrics( metricsDir, fileName ) {
 			lines.push( formatMetric( 'wdio_test_skipped', test.skipped, testLabels ) );
 			lines.push( formatMetric( 'wdio_test_retries', test.retries, testLabels ) );
 			lines.push( formatMetric( 'wdio_test_duration_max_seconds', test.testDurationSecondsMax.toFixed( 3 ), { ...testLabels } ) );
+			lines.push( formatMetric( 'wdio_test_flaky', Number( test.failed > 0 && test.retries > 0 ), testLabels ) );
+
 		}
 	}
 	// Only write the file if we have any tests https://phabricator.wikimedia.org/T407831
