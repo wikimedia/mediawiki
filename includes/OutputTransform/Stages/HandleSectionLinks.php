@@ -46,7 +46,7 @@ class HandleSectionLinks extends ContentTextTransformStage {
 			( $options['enableSectionEditLinks'] ?? true ) &&
 			!$po->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS )
 		) {
-			return $this->addSectionLinks( $text, $po, $options );
+			return $this->addSectionLinks( $text, $po, $popts, $options );
 		} else {
 			return preg_replace( self::EDITSECTION_REGEX, '', $text );
 		}
@@ -177,12 +177,16 @@ class HandleSectionLinks extends ContentTextTransformStage {
 		}
 	}
 
-	private function addSectionLinks( string $text, ParserOutput $po, array $options ): string {
+	private function addSectionLinks( string $text, ParserOutput $po, ParserOptions $popts, array $options ): string {
 		$skin = $this->resolveSkin( $options );
 		if ( !$skin ) {
 			// Should be unreachable
 			return $text;
 		}
+		// T413227: skin doesn't mark user interface language as used, but
+		// it is used here.
+		$popts->getUserLangObj();
+
 		return preg_replace_callback( self::EDITSECTION_REGEX, function ( $m ) use ( $skin ) {
 			$editsectionPage = $this->titleFactory->newFromTextThrow( htmlspecialchars_decode( $m[1] ) );
 			$editsectionSection = htmlspecialchars_decode( $m[2] );

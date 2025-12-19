@@ -114,7 +114,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 			foreach ( $sectionMap as $anchor => &$info ) {
 				$h = DOMCompat::getElementById( $df, $anchor );
 				if ( $h !== null ) {
-					$this->transformHeading( $df, $h, $po, $options, $skin, $info );
+					$this->transformHeading( $df, $h, $po, $popts, $options, $skin, $info );
 				}
 			}
 		} else {
@@ -125,7 +125,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 				[ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ], true
 			);
 			$traverser->addHandler( null, function ( Node $node ) use (
-				$df, $po, $options, $skin, &$sectionMap, $headings
+				$df, $po, $popts, $options, $skin, &$sectionMap, $headings
 			) {
 				if ( !( $headings[DOMUtils::nodeName( $node )] ?? false ) ) {
 					return true;
@@ -139,7 +139,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 					return true;
 				}
 				return $this->transformHeading(
-					$df, $node, $po, $options, $skin, $sectionMap[$id]
+					$df, $node, $po, $popts, $options, $skin, $sectionMap[$id]
 				);
 			} );
 			$traverser->traverse( null, $df );
@@ -160,13 +160,16 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 	 * @param DocumentFragment $df
 	 * @param Element $h
 	 * @param ParserOutput $po
+	 * @param ParserOptions $popts
 	 * @param array $options
 	 * @param Skin $skin
 	 * @param array{section:SectionMetadata,processed:bool} &$sectionInfo
 	 * @return Node|null|bool
 	 */
 	private function transformHeading(
-		DocumentFragment $df, Element $h, ParserOutput $po, array $options, Skin $skin, array &$sectionInfo
+		DocumentFragment $df, Element $h,
+		ParserOutput $po, ParserOptions $popts, array $options,
+		Skin $skin, array &$sectionInfo
 	) {
 		$sectionInfo['processed'] = true;
 		$section = $sectionInfo['section'];
@@ -210,6 +213,9 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 			( $options['enableSectionEditLinks'] ?? true ) &&
 			!$po->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS )
 		) {
+			// T413227: skin doesn't mark user interface language as used, but
+			// it is used here.
+			$popts->getUserLangObj();
 			$editPage = $this->titleFactory->newFromTextThrow( $fromTitle );
 			$html = $skin->doEditSectionLink(
 				$editPage, $section->index, $h->textContent,

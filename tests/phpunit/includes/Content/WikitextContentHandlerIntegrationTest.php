@@ -65,7 +65,6 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'expensiveParserFunctionLimit',
 			'maxPPExpandDepth',
 			'maxPPNodeCount',
-			'userlang',
 		];
 		$commonParsoidOptions = array_merge( $commonOptions, [
 			'currentRevisionRecordCallback',
@@ -89,7 +88,9 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				],
 				'Sections' => [
 				],
-				'UsedOptions' => $commonLegacyOptions,
+				'UsedOptions' => array_merge( $commonLegacyOptions, [
+					'userlang',
+				] ),
 			],
 		];
 		yield 'Basic Parsoid render' => [
@@ -148,7 +149,9 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 						'linkAnchor' => 'Hello',
 					],
 				],
-				'UsedOptions' => $commonParsoidOptions,
+				'UsedOptions' => array_merge( $commonParsoidOptions, [
+					'userlang',
+				] ),
 			],
 			'options' => [ 'useParsoid' => true ],
 		];

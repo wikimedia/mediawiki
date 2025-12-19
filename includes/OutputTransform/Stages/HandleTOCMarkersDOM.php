@@ -35,21 +35,21 @@ class HandleTOCMarkersDOM extends ContentDOMTransformStage {
 			if ( $replaced || !( $options['allowTOC'] ?? true ) ) {
 				$marker->remove();
 			} elseif ( ( $options['allowTOC'] ?? true ) && ( $options['injectTOC'] ?? true ) ) {
-				$this->injectToc( $po, $options, $marker );
+				$this->injectToc( $po, $popts, $options, $marker );
 				$replaced = true;
 			}
 		}
 		return $df;
 	}
 
-	private function injectToc( ParserOutput $po, array $options, Element $marker ) {
+	private function injectToc( ParserOutput $po, ParserOptions $popts, array $options, Element $marker ) {
 		$numSections = count( $po->getSections() );
 		if ( $numSections === 0 ) {
 			$marker->remove();
 			return;
 		}
 		$tocData = $po->getTOCData();
-		$lang = $this->resolveUserLanguage( $options );
+		$lang = $this->resolveUserLanguage( $popts, $options );
 		$maxTocLevel = $options['maxtoclevel'] ?? null;
 		if ( $maxTocLevel === null ) {
 			// Use wiki-configured default
@@ -200,10 +200,14 @@ class HandleTOCMarkersDOM extends ContentDOMTransformStage {
 	/**
 	 * Extracts the userLanguage from the $options array, with a fallback on skin language and request
 	 * context language
+	 * @param ParserOptions $popts
 	 * @param array $options
 	 * @return Language
 	 */
-	private function resolveUserLanguage( array $options ): Language {
+	private function resolveUserLanguage( ParserOptions $popts, array $options ): Language {
+		// T413227: mark user interface language as used
+		$popts->getUserLangObj();
+
 		$userLang = $options['userLang'] ?? null;
 		$skin = $options['skin'] ?? null;
 		if ( ( !$userLang ) && $skin ) {
