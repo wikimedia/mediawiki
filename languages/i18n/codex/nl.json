@@ -24,7 +24,7 @@
 	"cdx-table-pager-button-last-page": "Laatste pagina",
 	"cdx-table-pager-button-next-page": "Volgende pagina",
 	"cdx-table-pager-button-prev-page": "Vorige pagina",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 rij|$1 rijen}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 item|$1 items}}",
 	"cdx-table-pager-items-per-page-default": "Resultaten per pagina",
 	"cdx-table-pagination-status-message-determinate-long": "Resultaten $1-$2 van $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1-$2 van $3",

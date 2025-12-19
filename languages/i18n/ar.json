@@ -1114,7 +1114,7 @@
 	"userrights-expiry-current": "تنتهي $1",
 	"userrights-expiry-none": "غير منتهية",
 	"userrights-expiry-existing": "حتى $3، $2",
-	"userrights-expiry-othertime": "وقت آخر:",
+	"userrights-expiry-othertime": "c",
 	"userrights-expiry-options": "1 يوم:1 day,1 أسبوع:1 week,1 شهر:1 month,3 شهور:3 months,6 شهور:6 months,1 سنة:1 year",
 	"userrights-invalid-expiry": "تاريخ انتهاء المجموعة \"$1\" غير صحيح.",
 	"userrights-expiry-in-past": "تاريخ انتهاء المجموعة \"$1\" هو في الماضي.",
