@@ -16,6 +16,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserOptionsLookup;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -385,6 +386,122 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		$actualLanguage = $context->getLanguage();
 
 		$this->assertSame( 'it', $actualLanguage->getCode() );
+	}
+
+	public function testGetLanguageWhenUserNotSafeToLoad() {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'es' );
+
+		// Get a user which has User::isSafeToLoad return false
+		$user = $this->createMock( User::class );
+		$user->method( 'isSafeToLoad' )
+			->willReturn( false );
+
+		// Expect no calls to use the UserOptionsLookup if the user isn't safe to load
+		$this->setService( 'UserOptionsLookup', $this->createNoOpMock( UserOptionsLookup::class ) );
+
+		$context = new RequestContext();
+		$context->setUser( $user );
+
+		$this->assertSame( 'es', $context->getLanguage()->getCode() );
+	}
+
+	public function testGetLanguageNeverOverridesSetLanguageValue() {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'es' );
+
+		// Get a user which has User::isSafeToLoad return false at first
+		// but later in the test return true
+		$isUserSafeToLoad = false;
+		$user = $this->createMock( User::class );
+		$user->method( 'isSafeToLoad' )
+			->willReturnCallback( static function () use ( &$isUserSafeToLoad ) {
+				return $isUserSafeToLoad;
+			} );
+
+		// Set the language preference for the test user to something we will expect to not see,
+		// as the UserOptionsLookup service should not be used in the test (but may be used
+		// by other code so we cannot make it a no-op mock)
+		$userOptionsLookup = new StaticUserOptionsLookup( [ $user->getName() => [ 'language' => 'nb' ] ] );
+		$this->setService( 'UserOptionsLookup', $userOptionsLookup );
+
+		$mockSkin = $this->createMock( Skin::class );
+		$mockSkin->method( 'getSkinName' )
+			->willReturn( 'test-skin' );
+		$this->setTemporaryHook(
+			'RequestContextCreateSkin',
+			static function ( $context, &$skin ) use ( $mockSkin ) {
+				$skin = $mockSkin;
+			}
+		);
+
+		$context = new RequestContext();
+		$context->setUser( $user );
+
+		$this->assertSame(
+			'es',
+			$context->getLanguage()->getCode(),
+			'First call to ::getLanguage should default to the content language'
+		);
+
+		$context->setLanguage( 'it' );
+		$this->assertSame(
+			'it',
+			$context->getLanguage()->getCode(),
+			'Language set via ::setLanguage should be returned by ::getLanguage'
+		);
+
+		// Make User::isSafeToLoad return true now, so that we can test that any
+		// language set by ::setLanguage stops the code from generating the
+		// language once User::isSafeToLoad returns true
+		$isUserSafeToLoad = true;
+
+		$this->assertSame(
+			'it',
+			$context->getLanguage()->getCode(),
+			'Change in User::isSafeToLoad should not have changed the language'
+		);
+	}
+
+	public function testGetLanguageRecachesLanguageWhenUserIsSafeToLoad() {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'es' );
+
+		// Get a user which has User::isSafeToLoad return false at first
+		// but later in the test return true
+		$isUserSafeToLoad = false;
+		$user = $this->createMock( User::class );
+		$user->method( 'isSafeToLoad' )
+			->willReturnCallback( static function () use ( &$isUserSafeToLoad ) {
+				return $isUserSafeToLoad;
+			} );
+
+		// Expect no calls to use the UserOptionsLookup if the user isn't safe to load
+		$getOptionCalled = false;
+		$mockUserOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$mockUserOptionsLookup->method( 'getOption' )
+			->with( $user, 'language' )
+			->willReturnCallback( static function () use ( &$getOptionCalled ) {
+				$getOptionCalled = true;
+				return 'it';
+			} );
+		$this->setService( 'UserOptionsLookup', $mockUserOptionsLookup );
+
+		$context = new RequestContext();
+		$context->setUser( $user );
+		$this->assertSame(
+			'es',
+			$context->getLanguage()->getCode(),
+			'First call to ::getLanguage should default to the content language'
+		);
+
+		// Make User::isSafeToLoad return now return true
+		$isUserSafeToLoad = true;
+
+		$this->assertSame(
+			'it',
+			$context->getLanguage()->getCode(),
+			'Change in User::isSafeToLoad to true should cause language ' .
+				'to be recached using the user options'
+		);
+		$this->assertTrue( $getOptionCalled );
 	}
 
 	public function testCloningNotAllowed() {

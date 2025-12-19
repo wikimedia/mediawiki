@@ -119,6 +119,13 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	private $languageRecursion = false;
 
+	/**
+	 * @var bool|null Boolean flag to indicate what the return value of {@link User::isSafeToLoad}
+	 *   was at the time that the result of {@link self::getLanguage} was cached. null if
+	 *   ::getLanguage has not been called yet or the value was set via ::setLanguage.
+	 */
+	private ?bool $langSetWhenUserWasSafeToLoad = null;
+
 	/** @var Skin|string|null */
 	private $skinFromHook;
 
@@ -426,12 +433,18 @@ class RequestContext implements IContextSource, MutableContext {
 			$obj = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $language );
 			$this->lang = $obj;
 		}
+		$this->langSetWhenUserWasSafeToLoad = null;
 		OutputPage::resetOOUI();
 	}
 
 	/**
 	 * Get the Language object.
 	 * Initialization of user or request objects can depend on this.
+	 *
+	 * If {@link self::getUser} has {@link User::isSafeToLoad} return `false`, then
+	 * the language will be recached when {@link User::isSafeToLoad} returns `true`.
+	 * This behaviour will not occur if the language was set via {@link self::setLanguage}.
+	 *
 	 * @return Language
 	 * @throws LogicException
 	 * @since 1.19
@@ -441,19 +454,30 @@ class RequestContext implements IContextSource, MutableContext {
 			throw new LogicException( 'Recursion detected' );
 		}
 
-		if ( $this->lang === null ) {
-			$this->languageRecursion = true;
+		$this->languageRecursion = true;
 
-			try {
-				$request = $this->getRequest();
+		try {
+			// Generate the lang value if not generated, or if the current value was generated
+			// when User::isSafeToLoad returned false and ::isSafeToLoad now returns true.
+			if (
+				$this->lang === null ||
+				( $this->langSetWhenUserWasSafeToLoad === false && $this->getUser()->isSafeToLoad() )
+			) {
 				$user = $this->getUser();
+				$request = $this->getRequest();
 				$services = MediaWikiServices::getInstance();
 
 				// Optimisation: Avoid slow getVal(), this isn't user-generated content.
 				$code = $request->getRawVal( 'uselang' ) ?? 'user';
 				if ( $code === 'user' ) {
-					$userOptionsLookup = $services->getUserOptionsLookup();
-					$code = $userOptionsLookup->getOption( $user, 'language' );
+					// If the RequestContext user is not safe to load,
+					// then default to the site language as we cannot get user options
+					if ( $user->isSafeToLoad() ) {
+						$userOptionsLookup = $services->getUserOptionsLookup();
+						$code = $userOptionsLookup->getOption( $user, 'language' );
+					} else {
+						$code = $this->getConfig()->get( MainConfigNames::LanguageCode );
+					}
 				}
 
 				// There are certain characters we don't allow in language code strings,
@@ -471,6 +495,7 @@ class RequestContext implements IContextSource, MutableContext {
 
 				( new HookRunner( $services->getHookContainer() ) )->onUserGetLanguageObject( $user, $code, $this );
 
+				$this->langSetWhenUserWasSafeToLoad = $user->isSafeToLoad();
 				if ( $code === $this->getConfig()->get( MainConfigNames::LanguageCode ) ) {
 					$this->lang = $services->getContentLanguage();
 				} else {
@@ -478,9 +503,9 @@ class RequestContext implements IContextSource, MutableContext {
 						->getLanguage( $code );
 					$this->lang = $obj;
 				}
-			} finally {
-				$this->languageRecursion = false;
 			}
+		} finally {
+			$this->languageRecursion = false;
 		}
 
 		return $this->lang;
