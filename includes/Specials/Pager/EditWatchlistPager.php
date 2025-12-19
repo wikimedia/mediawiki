@@ -388,7 +388,7 @@ class EditWatchlistPager extends CodexTablePager {
 
 		// Create checkbox cell
 		$checkbox = $this->getCheckbox(
-			SpecialEditWatchlist::CHECKBOX_NAME . '[]',
+			SpecialEditWatchlist::WL_ITEM_CHECKBOX_NAME . '[]',
 			$title->getPrefixedText(),
 			$title->getPrefixedText(),
 			[ 'watchlist-item-checkbox' ]

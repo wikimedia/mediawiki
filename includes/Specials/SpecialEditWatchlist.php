@@ -16,7 +16,6 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\OOUIHTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\WikiPageFactory;
@@ -32,6 +31,8 @@ use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Watchlist\WatchlistSpecialPage;
+use Wikimedia\Codex\Component\HtmlSnippet;
+use Wikimedia\Codex\Utility\Codex;
 
 /**
  * Users can edit their watchlist via this page.
@@ -53,7 +54,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	public const EDIT = 3;
 	public const VIEW = 4;
 
-	public const CHECKBOX_NAME = 'wpTitles';
+	public const WL_ITEM_CHECKBOX_NAME = 'wpTitles';
 
 	/** @var string|null */
 	protected $successMessage;
@@ -232,7 +233,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$output->setPageTitleMsg( $this->msg( 'watchlistedit-normal-title' ) );
 
 		if ( $this->getRequest()->wasPosted() ) {
-			$this->handleEditWatchlistFormSubmission( $output );
+			$this->handleEditWatchlistFormSubmission();
 		}
 
 		$this->createNamespaceSelectForm()->displayForm( '' );
@@ -240,28 +241,70 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param OutputPage $output
 	 * @return void
 	 */
-	private function handleEditWatchlistFormSubmission( OutputPage $output ) {
+	private function handleEditWatchlistFormSubmission(): void {
 		if ( ( new HTMLForm( [], $this->getContext() ) )->requestIsAuthorized() ) {
-			$removed = [];
-			$titles = $this->getRequest()->getArray( self::CHECKBOX_NAME );
-			if ( is_array( $titles ) ) {
-				$this->unwatchTitles( $titles );
-				$removed = array_merge( $removed, $titles );
+			$action = $this->getRequest()->getText( 'watchlistlabels-action', 'unwatch' );
+			switch ( $action ) {
+				case 'assign':
+					$this->assignLabelsFromFormSubmission();
+					break;
+				case 'unwatch':
+					$this->unwatchItemsFromFormSubmission();
 			}
-			if ( count( $removed ) > 0 ) {
-				$this->successMessage = $this->msg( 'watchlistedit-normal-done' )
-					->numParams( count( $removed ) )->parse();
-				$this->showTitles( $removed, $this->successMessage );
-				$output->addHTML( Html::rawElement(
-					'div',
-					[ 'class' => 'edit-watchlist-result' ],
-					$this->successMessage
-				) );
-			}
+
 		}
+	}
+
+	private function unwatchItemsFromFormSubmission() {
+		$removed = [];
+		$titles = $this->getRequest()->getArray( self::WL_ITEM_CHECKBOX_NAME );
+		if ( is_array( $titles ) ) {
+			$this->unwatchTitles( $titles );
+			$removed = array_merge( $removed, $titles );
+		}
+		if ( count( $removed ) > 0 ) {
+			$successMessage = Html::rawElement(
+				'div', [],
+				$this->msg( 'watchlistedit-normal-done' )
+					->numParams( count( $removed ) )->parse()
+			);
+			$successMessage .= $this->titlesAsHtmlListString( $removed );
+			$this->displayFormSubmitSuccessMessage( $successMessage );
+		}
+	}
+
+	private function assignLabelsFromFormSubmission() {
+		$titleStrings = $this->getRequest()->getArray( self::WL_ITEM_CHECKBOX_NAME );
+		$labels = $this->getRequest()->getArray( 'watchlistlabels' );
+		if ( is_array( $titleStrings ) && count( $titleStrings ) > 0 && is_array( $labels ) && count( $labels ) > 0 ) {
+			$titles = [];
+			foreach ( $titleStrings as $titleString ) {
+				try {
+					$parsedTitle = $this->titleParser->parseTitle( $titleString );
+					$titles[] = PageReferenceValue::localReference(
+						$parsedTitle->getNamespace(), $parsedTitle->getDBkey()
+					);
+				} catch ( MalformedTitleException ) {
+					// do nothing
+				}
+			}
+			$this->watchedItemStore->addLabels( $this->getUser(), $titles, $labels );
+			$successMessage = $this->msg( 'watchlistlabels-assign-labels-done' )
+				->numParams( count( $labels ), count( $titles ) )->parse();
+			$this->displayFormSubmitSuccessMessage( $successMessage );
+		}
+	}
+
+	private function displayFormSubmitSuccessMessage( string $successMessage ) {
+		$output = $this->getOutput();
+		$msgHtml = ( new Codex() )->message()
+			->setType( 'success' )
+			->setContentHtml( new HtmlSnippet( $successMessage, [] ) )
+			->build()
+			->getHtml();
+		$output->addHTML( $msgHtml );
 	}
 
 	/**
@@ -335,13 +378,13 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			if ( $toWatch ) {
 				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-added' )
 					->numParams( count( $toWatch ) )->parse();
-				$this->showTitles( $toWatch, $this->successMessage );
+				$this->appendTitlesToString( $toWatch, $this->successMessage );
 			}
 
 			if ( $toUnwatch ) {
 				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-removed' )
 					->numParams( count( $toUnwatch ) )->parse();
-				$this->showTitles( $toUnwatch, $this->successMessage );
+				$this->appendTitlesToString( $toUnwatch, $this->successMessage );
 			}
 		} else {
 			if ( !$current ) {
@@ -349,7 +392,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 
 			$this->clearUserWatchedItems( 'raw' );
-			$this->showTitles( $current, $this->successMessage );
+			$this->appendTitlesToString( $current, $this->successMessage );
 		}
 
 		return true;
@@ -398,7 +441,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$this->successMessage .= ' ' . $this->msg( 'watchlistedit-' . $messageFor . '-removed' )
 				->numParams( count( $current ) )->parse();
 		$this->getUser()->invalidateCache();
-		$this->showTitles( $current, $this->successMessage );
+		$this->appendTitlesToString( $current, $this->successMessage );
 	}
 
 	/**
@@ -410,22 +453,27 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Print out a list of linked titles
-	 *
-	 * $titles can be an array of strings or Title objects; the former
-	 * is preferred, since Titles are very memory-heavy
+	 * Transform a list of titles to a html list, and append to the passed-by-ref input string
 	 *
 	 * @param array $titles Array of strings, or Title objects
-	 * @param string &$output
+	 * @param string &$string
 	 */
-	private function showTitles( $titles, &$output ) {
+	private function appendTitlesToString( array $titles, string &$string ) {
+		$string .= $this->titlesAsHtmlListString( $titles ) . "\n";
+	}
+
+	/**
+	 * Transform a list of linked titles to a html list
+	 *
+	 * @param array $titles Array of strings, or Title objects
+	 */
+	private function titlesAsHtmlListString( array $titles ): string {
+		if ( count( $titles ) >= 100 ) {
+			return $this->msg( 'watchlistedit-too-many' )->parse();
+		}
 		$talk = $this->msg( 'talkpagelinktext' )->text();
 		// Do a batch existence check
 		$batch = $this->linkBatchFactory->newLinkBatch();
-		if ( count( $titles ) >= 100 ) {
-			$output = $this->msg( 'watchlistedit-too-many' )->parse();
-			return;
-		}
 		foreach ( $titles as $title ) {
 			if ( !$title instanceof Title ) {
 				$title = Title::newFromText( $title );
@@ -440,7 +488,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$batch->execute();
 
 		// Print out the list
-		$output .= "<ul>\n";
+		$string = "<ul>\n";
 
 		$linkRenderer = $this->getLinkRenderer();
 		foreach ( $titles as $title ) {
@@ -449,7 +497,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 
 			if ( $title instanceof Title ) {
-				$output .= '<li>' .
+				$string .= '<li>' .
 					$linkRenderer->makeLink( $title ) . ' ' .
 					$this->msg( 'parentheses' )->rawParams(
 						$linkRenderer->makeLink( $title->getTalkPage(), $talk )
@@ -458,7 +506,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 		}
 
-		$output .= "</ul>\n";
+		$string .= "</ul>\n";
+		return $string;
 	}
 
 	/**
