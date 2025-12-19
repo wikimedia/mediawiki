@@ -1179,7 +1179,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			// Don't show a "create account" link if the user can't.
 			if ( $this->showCreateAccountLink() ) {
 				// link to the other action
-				$linkTitle = $this->getTitleFor( $this->isSignup() ? 'Userlogin' : 'CreateAccount' );
+				$linkTitle = SpecialPage::getTitleFor( $this->isSignup() ? 'Userlogin' : 'CreateAccount' );
 				$linkq = wfArrayToCgi( $this->getPreservedParams( [ 'reset' => true ] ) );
 				$isLoggedIn = $this->getUser()->isRegistered()
 					&& !$this->getUser()->isTemp();
