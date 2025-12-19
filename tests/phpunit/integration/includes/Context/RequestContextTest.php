@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Integration\Context;
 
 use LogicException;
 use MediaWiki\Actions\ActionFactory;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -319,6 +320,71 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		] );
 		$context = new RequestContext();
 		$this->assertInstanceOf( SkinFallback::class, $context->getSkin() );
+	}
+
+	public function testGetLanguageWhenRecursionDetected() {
+		$this->expectException( LogicException::class );
+
+		$this->setTemporaryHook(
+			'UserGetLanguageObject',
+			static function ( $actualUser, $actualCode, IContextSource $actualContext ) {
+				$actualContext->getLanguage();
+			}
+		);
+		$context = new RequestContext();
+		$context->getLanguage();
+	}
+
+	public function testGetLanguageUsesUserGetLanguageObjectHook() {
+		// Set a handler for the UserGetLanguageObject hook that stores the
+		// values passed to it
+		$hookUser = null;
+		$hookCode = null;
+		$hookContext = null;
+		$this->setTemporaryHook(
+			'UserGetLanguageObject',
+			static function ( User $user, string $code, IContextSource $context ) use (
+				&$hookUser, &$hookCode, &$hookContext
+			) {
+				$hookUser = $user;
+				$hookCode = $code;
+				$hookContext = $context;
+			}
+		);
+
+		// Set up a RequestContext with known values
+		$context = new RequestContext();
+
+		$request = new FauxRequest();
+		$request->setVal( 'uselang', 'qqx' );
+		$context->setRequest( $request );
+
+		$mockUser = $this->createMock( User::class );
+		$context->setUser( $mockUser );
+
+		// Hook should not have been called until ::getLanguage is called
+		$this->assertNull( $hookContext );
+
+		$context->getLanguage();
+
+		// Hook should have been called after a call to ::getLanguage
+		$this->assertSame( 'qqx', $hookCode );
+		$this->assertSame( $mockUser, $hookUser );
+		$this->assertSame( $context, $hookContext );
+	}
+
+	public function testGetLanguageWhenUsingLanguagePreference() {
+		// Get a user who's language preference is for Italian
+		$user = $this->getTestUser()->getUser();
+		$userOptionsLookup = new StaticUserOptionsLookup( [ $user->getName() => [ 'language' => 'it' ] ] );
+		$this->setService( 'UserOptionsLookup', $userOptionsLookup );
+
+		$context = new RequestContext();
+		$context->setUser( $user );
+
+		$actualLanguage = $context->getLanguage();
+
+		$this->assertSame( 'it', $actualLanguage->getCode() );
 	}
 
 	public function testCloningNotAllowed() {
