@@ -75,6 +75,11 @@ class OutputTransformPipeline {
 			// for some legacy codepaths.
 			$out = $in;
 		}
+
+		// T413227: skin doesn't mark user interface language as used, but
+		// it is.
+		$popts->getUserLangObj();
+
 		foreach ( $this->stages as $stage ) {
 			if ( $stage->shouldRun( $out, $popts, $options ) ) {
 				// Some stages may (for now) modify $options. See OutputTransformStage documentation for more info.

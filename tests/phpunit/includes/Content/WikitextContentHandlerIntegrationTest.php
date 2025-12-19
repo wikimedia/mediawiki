@@ -65,6 +65,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'expensiveParserFunctionLimit',
 			'maxPPExpandDepth',
 			'maxPPNodeCount',
+			'userlang',
 		];
 		$commonParsoidOptions = array_merge( $commonOptions, [
 			'currentRevisionRecordCallback',

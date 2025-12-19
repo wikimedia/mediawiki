@@ -68,6 +68,7 @@ class ExecutePostCacheTransformHooksTest extends \MediaWikiIntegrationTestCase {
 		);
 		$res->clearParseStartTime();
 		$expected->clearParseStartTime();
+		$expected->recordOption( 'userlang' ); // T413227 workaround
 		$this->assertEquals( $expected, $res );
 	}
 
