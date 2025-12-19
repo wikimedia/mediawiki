@@ -137,16 +137,15 @@ class FSFile {
 	 * @return array
 	 */
 	public static function placeholderProps() {
-		$info = [];
-		$info['fileExists'] = false;
-		$info['size'] = 0;
-		$info['file-mime'] = null;
-		$info['major_mime'] = null;
-		$info['minor_mime'] = null;
-		$info['mime'] = null;
-		$info['sha1'] = '';
-
-		return $info;
+		return [
+			'fileExists' => false,
+			'size' => 0,
+			'file-mime' => null,
+			'major_mime' => null,
+			'minor_mime' => null,
+			'mime' => null,
+			'sha1' => '',
+		];
 	}
 
 	/**

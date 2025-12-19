@@ -75,18 +75,12 @@ class FormOptions implements ArrayAccess {
 	 * @param int $type One of the type constants (optional, defaults to AUTO)
 	 */
 	public function add( $name, $default, $type = self::AUTO ) {
-		$option = [];
-		$option['default'] = $default;
-		$option['value'] = null;
-		$option['consumed'] = false;
-
-		if ( $type !== self::AUTO ) {
-			$option['type'] = $type;
-		} else {
-			$option['type'] = self::guessType( $default );
-		}
-
-		$this->options[$name] = $option;
+		$this->options[$name] = [
+			'default' => $default,
+			'value' => null,
+			'consumed' => false,
+			'type' => $type === self::AUTO ? self::guessType( $default ) : $type,
+		];
 	}
 
 	/**

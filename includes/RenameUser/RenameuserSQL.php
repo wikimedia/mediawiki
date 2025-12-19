@@ -356,18 +356,19 @@ class RenameuserSQL {
 				->orderBy( $timestampC, SelectQueryBuilder::SORT_ASC )
 				->caller( __METHOD__ )->fetchResultSet();
 
-			$jobParams = [];
-			$jobParams['table'] = $table;
-			$jobParams['column'] = $userTextC;
-			$jobParams['uidColumn'] = $userIDC;
-			$jobParams['timestampColumn'] = $timestampC;
-			$jobParams['oldname'] = $this->old;
-			$jobParams['newname'] = $this->new;
-			$jobParams['userID'] = $this->uid;
-			// Timestamp column data for index optimizations
-			$jobParams['minTimestamp'] = '0';
-			$jobParams['maxTimestamp'] = '0';
-			$jobParams['count'] = 0;
+			$jobParams = [
+				'table' => $table,
+				'column' => $userTextC,
+				'uidColumn' => $userIDC,
+				'timestampColumn' => $timestampC,
+				'oldname' => $this->old,
+				'newname' => $this->new,
+				'userID' => $this->uid,
+				// Timestamp column data for index optimizations
+				'minTimestamp' => '0',
+				'maxTimestamp' => '0',
+				'count' => 0,
+			];
 			// Unique column for replica lag avoidance
 			if ( isset( $params['uniqueKey'] ) ) {
 				$jobParams['uniqueKey'] = $params['uniqueKey'];

@@ -2473,22 +2473,19 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 */
 	public function getSlotsQueryInfo( $options = [] ) {
 		$ret = [
-			'tables' => [],
-			'fields' => [],
+			'tables' => [ 'slots' ],
+			'fields' => [
+				'slot_revision_id',
+				'slot_content_id',
+				'slot_origin',
+				'slot_role_id',
+			],
 			'joins'  => [],
-			'keys'  => [],
+			'keys'  => [
+				'rev_id' => 'slot_revision_id',
+				'role_id' => 'slot_role_id',
+			],
 		];
-
-		$ret['keys']['rev_id'] = 'slot_revision_id';
-		$ret['keys']['role_id'] = 'slot_role_id';
-
-		$ret['tables'][] = 'slots';
-		$ret['fields'] = array_merge( $ret['fields'], [
-			'slot_revision_id',
-			'slot_content_id',
-			'slot_origin',
-			'slot_role_id',
-		] );
 
 		if ( in_array( 'role', $options, true ) ) {
 			// Use left join to attach role name, so we still find the revision row even

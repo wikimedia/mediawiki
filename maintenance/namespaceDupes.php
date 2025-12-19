@@ -157,13 +157,14 @@ class NamespaceDupes extends Maintenance {
 		// since we're doing case-sensitive searches in the db.
 		$capitalLinks = $this->getConfig()->get( MainConfigNames::CapitalLinks );
 		foreach ( $spaces as $name => $ns ) {
-			$moreNames = [];
-			$moreNames[] = $contLang->uc( $name );
-			$moreNames[] = $contLang->ucfirst( $contLang->lc( $name ) );
-			$moreNames[] = $contLang->ucwords( $name );
-			$moreNames[] = $contLang->ucwords( $contLang->lc( $name ) );
-			$moreNames[] = $contLang->ucwordbreaks( $name );
-			$moreNames[] = $contLang->ucwordbreaks( $contLang->lc( $name ) );
+			$moreNames = [
+				$contLang->uc( $name ),
+				$contLang->ucfirst( $contLang->lc( $name ) ),
+				$contLang->ucwords( $name ),
+				$contLang->ucwords( $contLang->lc( $name ) ),
+				$contLang->ucwordbreaks( $name ),
+				$contLang->ucwordbreaks( $contLang->lc( $name ) ),
+			];
 			if ( !$capitalLinks ) {
 				foreach ( $moreNames as $altName ) {
 					$moreNames[] = $contLang->lcfirst( $altName );

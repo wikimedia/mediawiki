@@ -69,11 +69,11 @@ class SkinComponentFooter implements SkinComponent {
 		// run the derived data through a cleanup function to unset unexpected data properties
 		// until the spec is updated to reflect the new properties introduced by the menu component.
 		// See https://www.mediawiki.org/wiki/Manual:SkinMustache.php#DataFooter
-		$footerMenuData = [];
-		$footerMenuData['data-info'] = $footerInfoMenuData->getTemplateData();
-		$footerMenuData['data-places'] = $footerSiteMenuData->getTemplateData();
-		$footerMenuData['data-icons'] = $this->getFooterIcons();
-		$footerMenuData = $this->formatFooterDataForCurrentSpec( $footerMenuData );
+		$footerMenuData = $this->formatFooterDataForCurrentSpec( [
+			'data-info' => $footerInfoMenuData->getTemplateData(),
+			'data-places' => $footerSiteMenuData->getTemplateData(),
+			'data-icons' => $this->getFooterIcons(),
+		] );
 
 		return [
 			'data-info' => $footerMenuData['data-info'],

@@ -39,16 +39,11 @@ class SiteListTest extends MediaWikiIntegrationTestCase {
 	 */
 	public static function siteArrayProvider() {
 		$sites = TestSites::getSites();
-
-		$siteArrays = [];
-
-		$siteArrays[] = $sites;
-
-		$siteArrays[] = [ array_shift( $sites ) ];
-
-		$siteArrays[] = [ array_shift( $sites ), array_shift( $sites ) ];
-
-		return self::arrayWrap( $siteArrays );
+		return self::arrayWrap( [
+			$sites,
+			[ array_shift( $sites ) ],
+			[ array_shift( $sites ), array_shift( $sites ) ],
+		] );
 	}
 
 	/**

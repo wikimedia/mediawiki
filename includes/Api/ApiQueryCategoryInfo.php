@@ -66,13 +66,13 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 
 		$catids = array_flip( $cattitles );
 		foreach ( $res as $row ) {
-			$vals = [];
-			$vals['size'] = (int)$row->cat_pages;
-			$vals['pages'] = $row->cat_pages - $row->cat_subcats - $row->cat_files;
-			$vals['files'] = (int)$row->cat_files;
-			$vals['subcats'] = (int)$row->cat_subcats;
-			$vals['hidden'] = (bool)$row->cat_hidden;
-			$fit = $this->addPageSubItems( $catids[$row->cat_title], $vals );
+			$fit = $this->addPageSubItems( $catids[$row->cat_title], [
+				'size' => (int)$row->cat_pages,
+				'pages' => $row->cat_pages - $row->cat_subcats - $row->cat_files,
+				'files' => (int)$row->cat_files,
+				'subcats' => (int)$row->cat_subcats,
+				'hidden' => (bool)$row->cat_hidden,
+			] );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', $row->cat_title );
 				break;

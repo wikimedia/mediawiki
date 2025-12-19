@@ -149,18 +149,18 @@ class ApiSetNotificationTimestamp extends ApiBase {
 				$result[] = $r;
 			}
 			foreach ( $pageSet->getMissingPageIDs() as $p ) {
-				$page = [];
-				$page['pageid'] = $p;
-				$page['missing'] = true;
-				$page['notwatched'] = true;
-				$result[] = $page;
+				$result[] = [
+					'pageid' => $p,
+					'missing' => true,
+					'notwatched' => true,
+				];
 			}
 			foreach ( $pageSet->getMissingRevisionIDs() as $r ) {
-				$rev = [];
-				$rev['revid'] = $r;
-				$rev['missing'] = true;
-				$rev['notwatched'] = true;
-				$result[] = $rev;
+				$result[] = [
+					'revid' => $r,
+					'missing' => true,
+					'notwatched' => true,
+				];
 			}
 
 			$pages = $pageSet->getPages();

@@ -16,17 +16,19 @@ class CdnCacheUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$title = Title::newMainPage();
 
-		$urls1 = [];
-		$urls1[] = $title->getCanonicalURL( '?x=1' );
-		$urls1[] = $title->getCanonicalURL( '?x=2' );
-		$urls1[] = $title->getCanonicalURL( '?x=3' );
+		$urls1 = [
+			$title->getCanonicalURL( '?x=1' ),
+			$title->getCanonicalURL( '?x=2' ),
+			$title->getCanonicalURL( '?x=3' ),
+		];
 		$update1 = $this->newCdnCacheUpdate( $urls1 );
 
-		$urls2 = [];
-		$urls2[] = $title->getCanonicalURL( '?x=2' );
-		$urls2[] = $title->getCanonicalURL( '?x=3' );
-		$urls2[] = $title->getCanonicalURL( '?x=4' );
-		$urls2[] = $title;
+		$urls2 = [
+			$title->getCanonicalURL( '?x=2' ),
+			$title->getCanonicalURL( '?x=3' ),
+			$title->getCanonicalURL( '?x=4' ),
+			$title,
+		];
 		$update2 = $this->newCdnCacheUpdate( $urls2 );
 
 		$expected = [

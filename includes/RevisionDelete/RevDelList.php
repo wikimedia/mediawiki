@@ -279,9 +279,6 @@ abstract class RevDelList extends RevisionListBase {
 		}
 
 		// Log it
-		$authorFields = [];
-		$authorFields['authorActors'] = $authorActors;
-
 		$tags = $params['tags'] ?? [];
 
 		$logEntry = $this->updateLog(
@@ -294,7 +291,8 @@ abstract class RevDelList extends RevisionListBase {
 				'comment' => $comment,
 				'ids' => $idsForLog,
 				'tags' => $tags,
-			] + $authorFields
+				'authorActors' => $authorActors,
+			]
 		);
 
 		$this->emitEvents( $bitPars, $visibilityChangeMap, $tags, $logEntry, $useSuppressLog );

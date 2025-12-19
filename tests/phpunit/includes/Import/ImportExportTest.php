@@ -171,27 +171,25 @@ class ImportExportTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @param string $schemaVersion
-	 * @return string[]
+	 * @return array<string,string>
 	 */
-	private function getSiteVars( $schemaVersion ) {
+	private function getSiteVars( string $schemaVersion ): array {
 		global $wgSitename, $wgDBname, $wgCapitalLinks;
 
-		$vars = [];
-		$vars['mw_version'] = MW_VERSION;
-		$vars['schema_version'] = $schemaVersion;
-
-		$vars['site_name'] = $wgSitename;
-		$vars['project_namespace'] =
-			$this->getServiceContainer()->getTitleFormatter()->getNamespaceName(
+		$services = $this->getServiceContainer();
+		return [
+			'mw_version' => MW_VERSION,
+			'schema_version' => $schemaVersion,
+			'site_name' => $wgSitename,
+			'project_namespace' => $services->getTitleFormatter()->getNamespaceName(
 				NS_PROJECT,
 				'Dummy'
-			);
-		$vars['site_db'] = $wgDBname;
-		$vars['site_case'] = $wgCapitalLinks ? 'first-letter' : 'case-sensitive';
-		$vars['site_base'] = Title::newMainPage()->getCanonicalURL();
-		$vars['site_language'] = $this->getServiceContainer()->getContentLanguage()->getHtmlCode();
-
-		return $vars;
+			),
+			'site_db' => $wgDBname,
+			'site_case' => $wgCapitalLinks ? 'first-letter' : 'case-sensitive',
+			'site_base' => Title::newMainPage()->getCanonicalURL(),
+			'site_language' => $services->getContentLanguage()->getHtmlCode(),
+		];
 	}
 
 	public static function provideImportExport() {

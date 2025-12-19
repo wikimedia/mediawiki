@@ -252,8 +252,7 @@ class InfoAction extends FormlessAction {
 		$pageProperties = $this->pageProps->getAllProperties( $title )[$id] ?? [];
 
 		// Basic information
-		$pageInfo = [];
-		$pageInfo['header-basic'] = [];
+		$pageInfo = [ 'header-basic' => [] ];
 
 		// Display title
 		$displayTitle = $pageProperties['displaytitle'] ??
