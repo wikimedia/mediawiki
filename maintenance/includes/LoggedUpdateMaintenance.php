@@ -21,7 +21,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	/** @inheritDoc */
 	public function execute() {
 		if ( !$this->hasOption( 'force' ) && $this->isAlreadyCompleted() ) {
-			$this->output( "..." . $this->updateSkippedMessage() . "\n" );
+			$this->output( "..." . $this->updateSkippedMessage() . " Use --force to run it again.\n" );
 			return true;
 		}
 
@@ -64,7 +64,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	public function updateSkippedMessage() {
 		$key = $this->getUpdateKey();
 
-		return "Update '{$key}' already logged as completed. Use --force to run it again.";
+		return "Update '{$key}' already logged as completed.";
 	}
 
 	/**
