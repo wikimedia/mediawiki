@@ -59,6 +59,9 @@ For notes on 1.45.x and older releases, see HISTORY.
   message keys, and fallback data from other languages, are now deduplicated.
   Old cache files should either auto-update or continue to be readable where
   unchanged.
+* The update.php maintenance script and the web-based schema updater now skips
+  messages about schema updates that were already applied in earlier MediaWiki
+  versions.
 * …
 
 === New developer features in 1.46 ===
