@@ -2388,16 +2388,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.20
 	 *
 	 * @param array $elements
-	 *
-	 * @return array
+	 * @return array[]
 	 */
 	protected static function arrayWrap( array $elements ) {
-		return array_map(
-			static function ( $element ) {
-				return [ $element ];
-			},
-			$elements
-		);
+		return array_map( static fn ( $element ) => [ $element ], $elements );
 	}
 
 	/**

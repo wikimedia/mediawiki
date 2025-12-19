@@ -88,10 +88,9 @@ class ImportExportTest extends MediaWikiLangTestCase {
 	/**
 	 * @param string $prefix
 	 * @param string[] $keys
-	 *
-	 * @return string[]
+	 * @return array<string,string>
 	 */
-	private function getUniqueNames( string $prefix, array $keys ) {
+	private function getUniqueNames( string $prefix, array $keys ): array {
 		$names = [];
 
 		foreach ( $keys as $k ) {
@@ -103,8 +102,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @param string $xmlData
-	 * @param string[] $pageTitles
-	 *
+	 * @param array<string,string> $pageTitles
 	 * @return string
 	 */
 	private function injectPageTitles( string $xmlData, array $pageTitles ) {
@@ -138,11 +136,10 @@ class ImportExportTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @param string[] $pageTitles
-	 *
-	 * @return string[]
+	 * @param array<string,string> $pageTitles
+	 * @return array<string,string>
 	 */
-	private function getPageInfoVars( array $pageTitles ) {
+	private function getPageInfoVars( array $pageTitles ): array {
 		$vars = [];
 		foreach ( $pageTitles as $name => $page ) {
 			$title = Title::newFromText( $page );
