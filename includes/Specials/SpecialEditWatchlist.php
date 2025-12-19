@@ -65,7 +65,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private WatchedItemStoreInterface $watchedItemStore;
 	private WatchlistLabelStore $watchlistLabelStore;
 	private GenderCache $genderCache;
-	private LinkBatchFactory $linkBatchFactory;
+	protected LinkBatchFactory $linkBatchFactory;
 	private NamespaceInfo $nsInfo;
 	private WikiPageFactory $wikiPageFactory;
 	private WatchlistManager $watchlistManager;
