@@ -73,16 +73,16 @@ module.exports = exports = defineComponent( {
 			selection
 		} = useLanguageSelector( selectableLanguages, selected, props.searchApiUrl, props.debounceDelayMs );
 
-		const inputValue = selection.value ? ref( selection.value.label ) : ref( '' );
+		const inputValue = ref( selection.value && selection.value.label || '' );
 		const menuItems = ref( computeMenuItems( languages.value ) );
 
-		const onUpdateInputValue = async ( val ) => {
+		const onUpdateInputValue = ( val ) => {
 			if ( val === '' ) {
 				menuItems.value = computeMenuItems( languages.value );
 				return;
 			}
 
-			if ( inputValue.value !== selection.value.label ) {
+			if ( val !== selection.value.label ) {
 				search( val );
 			}
 		};
