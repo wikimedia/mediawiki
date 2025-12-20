@@ -4,35 +4,37 @@
 ( function () {
 	$( () => {
 		const $languageSelector = $( '#mw-pl-languageselector' );
+		if ( !$languageSelector.length ) {
+			return;
+		}
+
 		const pageLanguageOptions = OO.ui.infuse( $( '#mw-pl-options' ) );
 		pageLanguageOptions.setValue( '1' );
 
-		if ( $languageSelector ) {
-			mw.loader.using( 'mediawiki.languageselector' ).then( () => {
-				let isValidSelection = true;
-				const languageSelectorWidget = OO.ui.infuse( $languageSelector );
+		mw.loader.using( 'mediawiki.languageselector' ).then( () => {
+			let isValidSelection = true;
+			const languageSelectorWidget = OO.ui.infuse( $languageSelector );
 
-				const initialLanguageCode = languageSelectorWidget.getValue();
-				replaceOOUILanguageSelector( $languageSelector, initialLanguageCode, ( languageCode ) => {
-					if ( languageCode ) {
-						isValidSelection = true;
-						languageSelectorWidget.setValue( languageCode );
-						// Select the 'Language select' option if the user is trying to select a language
-						pageLanguageOptions.setValue( '2' );
-					} else {
-						isValidSelection = false;
-					}
-				} );
-
-				$( '#mw-pagelanguage-form' ).on( 'submit', ( e ) => {
-					if ( !isValidSelection ) {
-						e.preventDefault();
-						mw.notify( mw.msg( 'pagelang-invalid-selection' ), { type: 'error' } );
-						return false;
-					}
-				} );
+			const initialLanguageCode = languageSelectorWidget.getValue();
+			replaceOOUILanguageSelector( $languageSelector, initialLanguageCode, ( languageCode ) => {
+				if ( languageCode ) {
+					isValidSelection = true;
+					languageSelectorWidget.setValue( languageCode );
+					// Select the 'Language select' option if the user is trying to select a language
+					pageLanguageOptions.setValue( '2' );
+				} else {
+					isValidSelection = false;
+				}
 			} );
-		}
+
+			$( '#mw-pagelanguage-form' ).on( 'submit', ( e ) => {
+				if ( !isValidSelection ) {
+					e.preventDefault();
+					mw.notify( mw.msg( 'pagelang-invalid-selection' ), { type: 'error' } );
+					return false;
+				}
+			} );
+		} );
 	} );
 
 	function replaceOOUILanguageSelector( $languageSelector, selectedLanguage, onLanguageChange ) {
