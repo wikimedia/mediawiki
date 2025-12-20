@@ -338,7 +338,7 @@ class FormatMetadata extends ContextSource {
 						break;
 
 					case 'Flash':
-						if ( $val === '' ) {
+						if ( !is_int( $val ) ) {
 							$val = 0;
 						}
 						$flashDecode = [
