@@ -17,8 +17,6 @@ use MediaWiki\Specials\Hook\SpecialLogResolveLogTypeHook;
 use MediaWiki\Specials\SpecialLog;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use TestUser;
-use Wikimedia\Parsoid\Utils\DOMCompat;
-use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @group Database
@@ -184,22 +182,6 @@ class SpecialLogTest extends SpecialPageTestBase {
 			'qqx'
 		);
 		$this->assertStringNotContainsString( 'excludetempacct', $html );
-	}
-
-	public function testTempAccountsExclusionNotShown() {
-		// On pages that don't show account creation logs,
-		// the temporary account exclusion option shouldn't be displayed
-		[ $html, ] = $this->executeSpecialPage(
-			'block',
-			new FauxRequest(),
-			'qqx'
-		);
-
-		$input = DOMCompat::querySelector(
-			DOMUtils::parseHTML( $html ),
-			'input[name=excludetempacct][type=hidden]'
-		);
-		$this->assertNotNull( $input );
 	}
 
 	/**

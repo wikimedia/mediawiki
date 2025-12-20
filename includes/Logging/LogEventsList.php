@@ -123,9 +123,15 @@ class LogEventsList extends ContextSource {
 	 */
 	public function showOptions( $type = '', $year = 0, $month = 0, $day = 0, $username = '' ) {
 		$formDescriptor = [];
+		$typesByName = $this->getTypeMenuOptions();
 
 		// Basic selectors
-		$formDescriptor['type'] = $this->getTypeMenuDesc();
+		$formDescriptor['type'] = [
+			'class' => HTMLSelectField::class,
+			'name' => 'type',
+			'options' => array_flip( $typesByName ),
+			'default' => '',
+		];
 		$formDescriptor['user'] = [
 			'class' => HTMLUserTextField::class,
 			'label-message' => 'specialloguserlabel',
@@ -151,19 +157,8 @@ class LogEventsList extends ContextSource {
 		}
 
 		// Add extra inputs if any
-		$extraInputsDescriptor = $this->getExtraInputsDesc( $type, $username );
-
-		// Single inputs (array of attributes) and multiple inputs (array of arrays)
-		// are supported. Distinguish between the two by checking if the first element
-		// is an array or not.
-		if ( $extraInputsDescriptor ) {
-			if ( isset( $extraInputsDescriptor[0] ) && is_array( $extraInputsDescriptor[0] ) ) {
-				foreach ( $extraInputsDescriptor as $i => $input ) {
-					$formDescriptor[ 'extra_' . $i ] = $input;
-				}
-			} else {
-				$formDescriptor[ 'extra' ] = $extraInputsDescriptor;
-			}
+		foreach ( $this->getExtraInputsDesc( $typesByName, $username ) as $key => $field ) {
+			$formDescriptor[$key] = $field;
 		}
 
 		// Date menu
@@ -186,15 +181,15 @@ class LogEventsList extends ContextSource {
 			'hide-if' => [ '===', 'tagfilter', '' ],
 		];
 
-		// Filter checkboxes, when work on all logs
-		if ( $type === '' ) {
-			$formDescriptor['filters'] = $this->getFiltersDesc();
-		}
+		// Filter checkboxes to hide single log types
+		$formDescriptor['filters'] = $this->getFiltersDesc();
 
-		// Action filter
+		// Action filters
 		$allowedActions = $this->getConfig()->get( MainConfigNames::ActionFilteredLogs );
-		if ( isset( $allowedActions[$type] ) ) {
-			$formDescriptor['subtype'] = $this->getActionSelectorDesc( $type, $allowedActions[$type] );
+		foreach ( $typesByName as $type => $_ ) {
+			if ( isset( $allowedActions[$type] ) ) {
+				$formDescriptor["subtype-$type"] = $this->getActionSelectorDesc( $type, $allowedActions[$type] );
+			}
 		}
 
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
@@ -233,13 +228,15 @@ class LogEventsList extends ContextSource {
 			'flatlist' => true,
 			'options-messages' => $optionsMsg,
 			'default' => array_keys( array_intersect( $filters, [ false ] ) ),
+			// Only shown when displaying all logs
+			'hide-if-nojs' => [ '!==', 'type', '' ],
 		];
 	}
 
 	/**
-	 * @return array Form descriptor
+	 * @return array<string,string> Map of log types that the current user can see to their labels
 	 */
-	private function getTypeMenuDesc() {
+	private function getTypeMenuOptions() {
 		$typesByName = [];
 		// Load the log names
 		foreach ( LogPage::validTypes() as $type ) {
@@ -269,50 +266,68 @@ class LogEventsList extends ContextSource {
 		unset( $typesByName[''] );
 		$typesByName = [ '' => $public ] + $typesByName;
 
-		return [
-			'class' => HTMLSelectField::class,
-			'name' => 'type',
-			'options' => array_flip( $typesByName ),
-			'default' => '',
-		];
+		return $typesByName;
 	}
 
 	/**
-	 * @param string $type
+	 * @param array<string,string> $typesByName Map of log types that the current user can see to their labels
 	 * @param string $username The name of the filter-by performer, as typed in the form
 	 * @return array Form descriptor
 	 */
-	private function getExtraInputsDesc( $type, $username ) {
+	private function getExtraInputsDesc( $typesByName, $username ) {
 		$formDescriptor = [];
 
-		if ( $type === 'suppress' ) {
-			$formDescriptor[] = [
+		if ( isset( $typesByName['suppress'] ) ) {
+			$formDescriptor['extra-suppress'] = [
 				'type' => 'text',
 				'label-message' => 'revdelete-offender',
 				'name' => 'offender',
+				'hide-if-nojs' => [ '!==', 'type', 'suppress' ],
 			];
-			return $formDescriptor;
 		}
 
-		if ( $this->tempUserConfig->isKnown() ) {
+		if ( isset( $typesByName['newusers'] ) ) {
 			// Add option to exclude/include temporary account creations in results,
-			// excluding them by default. If we're on a different log, use a hidden field
-			// to preserve the checked by default behavior.
-			$fieldType = 'hidden';
-			if ( $type === 'newusers' || $type === '' ) {
-				$fieldType = 'check';
+			// excluding them by default.
+			if ( $this->tempUserConfig->isKnown() ) {
+				$formDescriptor['extra-newusers'] = [
+						'type' => 'check',
+						'label-message' => 'newusers-excludetempacct',
+						'name' => 'excludetempacct',
+						'default' => !$this->tempUserConfig->isTempName( $username ),
+						'hide-if' => [ 'AND',
+							[ '!==', 'type', 'newusers' ],
+							[ '!==', 'type', '' ],
+						],
+					];
 			}
-			$formDescriptor[] = [
-				'type' => $fieldType,
-				'label-message' => 'newusers-excludetempacct',
-				'name' => 'excludetempacct',
-				'default' => !$this->tempUserConfig->isTempName( $username ),
-			];
 		}
 
 		// Allow extensions to add an extra input into the descriptor array.
-		$unused = ''; // Deprecated since 1.32, removed in 1.41
-		$this->hookRunner->onLogEventsListGetExtraInputs( $type, $this, $unused, $formDescriptor );
+		// This is a bit weird, because this hook used to be called only for the selected type.
+		foreach ( $typesByName as $type => $_ ) {
+			$extraInputs = [];
+			$unused = ''; // Deprecated since 1.32, removed in 1.41
+			$this->hookRunner->onLogEventsListGetExtraInputs( $type, $this, $unused, $extraInputs );
+			if ( $extraInputs ) {
+				// Single inputs (assoc. array of attributes) and multiple inputs (list of
+				// the aforementioned assoc. arrays) are supported.
+				if ( !array_is_list( $extraInputs ) ) {
+					$extraInputs = [ $extraInputs ];
+				}
+				foreach ( $extraInputs as $i => $input ) {
+					if ( isset( $input['hide-if-nojs'] ) ) {
+						$input['hide-if-nojs'] = [ 'OR',
+							$input['hide-if-nojs'],
+							[ '!==', 'type', $type ]
+						];
+					} else {
+						$input['hide-if-nojs'] = [ '!==', 'type', $type ];
+					}
+					$formDescriptor["extra-$type-$i"] = $input;
+				}
+			}
+		}
 
 		return $formDescriptor;
 	}
@@ -334,8 +349,20 @@ class LogEventsList extends ContextSource {
 		return [
 			'class' => HTMLSelectField::class,
 			'name' => 'subtype',
+			'id' => 'mw-log-action-filter-' . $type,
 			'options-messages' => $actionOptions,
 			'label-message' => 'log-action-filter-' . $type,
+			/*
+			The form on Special:Log has a very long list of 'hide-if' fields (which allow picking the log
+			subtype depending on the selected type), 10 of them just in core, 20+ with some extensions.
+
+			Normally all 'hide-if' fields are shown to no-JS users, but having this many of them is not very
+			usable. Hide them all; they will be shown only after selecting a type and submitting the form.
+
+			This also lets us have multiple fields with `'name' => 'subtype',` without breaking form submission,
+			since only one of them will be visible and enabled and submitted with the form.
+			*/
+			'hide-if-nojs' => [ '!==', 'type', $type ],
 		];
 	}
 
