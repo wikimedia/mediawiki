@@ -341,7 +341,7 @@ abstract class UploadBase {
 		if ( $this->mFileProps && is_string( $this->mFileProps['sha1'] ) ) {
 			return $this->mFileProps['sha1'];
 		}
-		return FSFile::getSha1Base36FromPath( $this->mTempPath );
+		return $this->mTempPath !== '' ? FSFile::getSha1Base36FromPath( $this->mTempPath ) : false;
 	}
 
 	/**
@@ -733,7 +733,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @param int $fileSize
+	 * @param int|null $fileSize
 	 *
 	 * @return array warnings
 	 */
@@ -743,14 +743,14 @@ abstract class UploadBase {
 
 		$warnings = [];
 
-		if ( $uploadSizeWarning && ( $fileSize > $uploadSizeWarning ) ) {
+		if ( $uploadSizeWarning && $fileSize !== null && $fileSize > $uploadSizeWarning ) {
 			$warnings['large-file'] = [
 				Message::sizeParam( $uploadSizeWarning ),
 				Message::sizeParam( $fileSize ),
 			];
 		}
 
-		if ( $fileSize == 0 ) {
+		if ( $fileSize === 0 ) {
 			$warnings['empty-file'] = true;
 		}
 

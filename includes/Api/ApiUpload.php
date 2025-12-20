@@ -758,8 +758,10 @@ class ApiUpload extends ApiBase {
 			}
 
 			$this->mUpload = new UploadFromUrl;
+			// This will not create the temp file in initialize() in async mode.
+			// We still have enough information to call checkWarnings() and such.
 			$this->mUpload->initialize( $this->mParams['filename'],
-				$this->mParams['url'] );
+				$this->mParams['url'], !$this->mParams['async'] );
 		}
 
 		return true;
@@ -906,10 +908,6 @@ class ApiUpload extends ApiBase {
 
 				ApiResult::setIndexedTagName( $dupes, 'ver' );
 				$warnings['duplicateversions'] = $dupes;
-			}
-			// We haven't downloaded the file, so this will result in an empty file warning
-			if ( $this->mParams['async'] && $this->mParams['url'] ) {
-				unset( $warnings['empty-file'] );
 			}
 		}
 

@@ -207,13 +207,15 @@ class UploadFromUrl extends UploadBase {
 	 *
 	 * @param string $name
 	 * @param string $url
+	 * @param bool $initTempFile
 	 */
-	public function initialize( $name, $url ) {
+	public function initialize( $name, $url, $initTempFile = true ) {
 		$this->mUrl = $url;
 
-		$tempPath = $this->makeTemporaryFile();
+		$tempPath = $initTempFile ? $this->makeTemporaryFile() : null;
+		$fileSize = $initTempFile ? 0 : null;
 		# File size and removeTempFile will be filled in later
-		$this->initializePathInfo( $name, $tempPath, 0, false );
+		$this->initializePathInfo( $name, $tempPath, $fileSize, false );
 	}
 
 	/**
