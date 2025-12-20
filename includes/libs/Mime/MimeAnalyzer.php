@@ -367,30 +367,6 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Returns true if the MIME type is known to represent an image format
-	 * supported by the PHP GD library.
-	 *
-	 * @deprecated since 1.40
-	 * @param string $mime
-	 * @return bool
-	 */
-	public function isPHPImageType( string $mime ): bool {
-		wfDeprecated( __METHOD__, '1.40' );
-		// As defined by imagegetsize and image_type_to_mime
-		static $types = [
-			'image/gif', 'image/jpeg', 'image/png',
-			'image/x-bmp', 'image/xbm', 'image/tiff',
-			'image/jp2', 'image/jpeg2000', 'image/iff',
-			'image/xbm', 'image/x-xbitmap',
-			'image/vnd.wap.wbmp', 'image/vnd.xiff',
-			'image/x-photoshop',
-			'application/x-shockwave-flash',
-		];
-
-		return in_array( $mime, $types );
-	}
-
-	/**
 	 * Returns true if the extension represents a type which can
 	 * be reliably detected from its content. Use this to determine
 	 * whether strict content checks should be applied to reject
