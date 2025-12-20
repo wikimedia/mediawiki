@@ -55,7 +55,7 @@ class PageSourceHandler extends SimpleHandler {
 
 		return $this->getRouter()->getRouteUrl(
 			'/' . $pathPrefix . '/page/{title}/html',
-			[ 'title' => $this->titleFormatter->getPrefixedText( $page ) ]
+			[ 'title' => $this->titleFormatter->getPrefixedDBkey( $page ) ]
 		);
 	}
 

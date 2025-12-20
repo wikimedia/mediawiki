@@ -180,7 +180,7 @@ describe( 'Page Source', () => {
 			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
 			assert.nestedPropertyVal( body, 'title', pageWithSpaces );
 			assert.nestedPropertyVal( body, 'key', utils.dbkey( page ) );
-			assert.match( body.html_url, new RegExp( `/page/${ encodeURIComponent( pageWithSpaces ) }/html$` ) );
+			assert.match( body.html_url, new RegExp( `/page/${ encodeURIComponent( utils.dbkey( page ) ) }/html$` ) );
 			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
