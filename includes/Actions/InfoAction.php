@@ -58,60 +58,27 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
 class InfoAction extends FormlessAction {
 	private const VERSION = 1;
 
-	private Language $contentLanguage;
-	private LanguageNameUtils $languageNameUtils;
-	private LinkBatchFactory $linkBatchFactory;
-	private LinkRenderer $linkRenderer;
-	private IConnectionProvider $dbProvider;
-	private MagicWordFactory $magicWordFactory;
-	private NamespaceInfo $namespaceInfo;
-	private PageProps $pageProps;
-	private RepoGroup $repoGroup;
-	private RevisionLookup $revisionLookup;
-	private WANObjectCache $wanObjectCache;
-	private WatchedItemStoreInterface $watchedItemStore;
-	private RedirectLookup $redirectLookup;
-	private RestrictionStore $restrictionStore;
-	private LinksMigration $linksMigration;
-	private UserFactory $userFactory;
-
 	public function __construct(
 		Article $article,
 		IContextSource $context,
-		Language $contentLanguage,
-		LanguageNameUtils $languageNameUtils,
-		LinkBatchFactory $linkBatchFactory,
-		LinkRenderer $linkRenderer,
-		IConnectionProvider $dbProvider,
-		MagicWordFactory $magicWordFactory,
-		NamespaceInfo $namespaceInfo,
-		PageProps $pageProps,
-		RepoGroup $repoGroup,
-		RevisionLookup $revisionLookup,
-		WANObjectCache $wanObjectCache,
-		WatchedItemStoreInterface $watchedItemStore,
-		RedirectLookup $redirectLookup,
-		RestrictionStore $restrictionStore,
-		LinksMigration $linksMigration,
-		UserFactory $userFactory
+		private readonly Language $contentLanguage,
+		private readonly LanguageNameUtils $languageNameUtils,
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly LinkRenderer $linkRenderer,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly MagicWordFactory $magicWordFactory,
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly PageProps $pageProps,
+		private readonly RepoGroup $repoGroup,
+		private readonly RevisionLookup $revisionLookup,
+		private readonly WANObjectCache $wanObjectCache,
+		private readonly WatchedItemStoreInterface $watchedItemStore,
+		private readonly RedirectLookup $redirectLookup,
+		private readonly RestrictionStore $restrictionStore,
+		private readonly LinksMigration $linksMigration,
+		private readonly UserFactory $userFactory,
 	) {
 		parent::__construct( $article, $context );
-		$this->contentLanguage = $contentLanguage;
-		$this->languageNameUtils = $languageNameUtils;
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->linkRenderer = $linkRenderer;
-		$this->dbProvider = $dbProvider;
-		$this->magicWordFactory = $magicWordFactory;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->pageProps = $pageProps;
-		$this->repoGroup = $repoGroup;
-		$this->revisionLookup = $revisionLookup;
-		$this->wanObjectCache = $wanObjectCache;
-		$this->watchedItemStore = $watchedItemStore;
-		$this->redirectLookup = $redirectLookup;
-		$this->restrictionStore = $restrictionStore;
-		$this->linksMigration = $linksMigration;
-		$this->userFactory = $userFactory;
 	}
 
 	/** @inheritDoc */

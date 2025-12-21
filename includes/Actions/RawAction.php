@@ -39,36 +39,16 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class RawAction extends FormlessAction {
 
-	private Parser $parser;
-	private PermissionManager $permissionManager;
-	private RevisionLookup $revisionLookup;
-	private RestrictionStore $restrictionStore;
-	private UserFactory $userFactory;
-
-	/**
-	 * @param Article $article
-	 * @param IContextSource $context
-	 * @param Parser $parser
-	 * @param PermissionManager $permissionManager
-	 * @param RevisionLookup $revisionLookup
-	 * @param RestrictionStore $restrictionStore
-	 * @param UserFactory $userFactory
-	 */
 	public function __construct(
 		Article $article,
 		IContextSource $context,
-		Parser $parser,
-		PermissionManager $permissionManager,
-		RevisionLookup $revisionLookup,
-		RestrictionStore $restrictionStore,
-		UserFactory $userFactory
+		private readonly Parser $parser,
+		private readonly PermissionManager $permissionManager,
+		private readonly RevisionLookup $revisionLookup,
+		private readonly RestrictionStore $restrictionStore,
+		private readonly UserFactory $userFactory,
 	) {
 		parent::__construct( $article, $context );
-		$this->parser = $parser;
-		$this->permissionManager = $permissionManager;
-		$this->revisionLookup = $revisionLookup;
-		$this->restrictionStore = $restrictionStore;
-		$this->userFactory = $userFactory;
 	}
 
 	/** @inheritDoc */

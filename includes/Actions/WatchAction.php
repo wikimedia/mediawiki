@@ -45,24 +45,15 @@ class WatchAction extends FormAction {
 	/** @var false|WatchedItem */
 	protected $watchedItem = false;
 
-	private WatchlistManager $watchlistManager;
-	private UserOptionsLookup $userOptionsLookup;
-
 	/**
 	 * Only public since 1.21
-	 *
-	 * @param Article $article
-	 * @param IContextSource $context
-	 * @param WatchlistManager $watchlistManager
-	 * @param WatchedItemStoreInterface $watchedItemStore
-	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
 		Article $article,
 		IContextSource $context,
-		WatchlistManager $watchlistManager,
+		private readonly WatchlistManager $watchlistManager,
 		WatchedItemStoreInterface $watchedItemStore,
-		UserOptionsLookup $userOptionsLookup
+		private readonly UserOptionsLookup $userOptionsLookup,
 	) {
 		parent::__construct( $article, $context );
 		$this->watchlistExpiry = $this->getContext()->getConfig()->get( MainConfigNames::WatchlistExpiry );
@@ -73,8 +64,6 @@ class WatchAction extends FormAction {
 				$this->getTitle()
 			);
 		}
-		$this->watchlistManager = $watchlistManager;
-		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	/** @inheritDoc */

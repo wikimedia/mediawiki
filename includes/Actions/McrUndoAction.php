@@ -59,35 +59,18 @@ class McrUndoAction extends FormAction {
 	/** @var RevisionRecord|null */
 	protected $curRev = null;
 
-	private ReadOnlyMode $readOnlyMode;
-	private RevisionLookup $revisionLookup;
-	private RevisionRenderer $revisionRenderer;
-	private CommentFormatter $commentFormatter;
-	private bool $useRCPatrol;
+	private readonly bool $useRCPatrol;
 
-	/**
-	 * @param Article $article
-	 * @param IContextSource $context
-	 * @param ReadOnlyMode $readOnlyMode
-	 * @param RevisionLookup $revisionLookup
-	 * @param RevisionRenderer $revisionRenderer
-	 * @param CommentFormatter $commentFormatter
-	 * @param Config $config
-	 */
 	public function __construct(
 		Article $article,
 		IContextSource $context,
-		ReadOnlyMode $readOnlyMode,
-		RevisionLookup $revisionLookup,
-		RevisionRenderer $revisionRenderer,
-		CommentFormatter $commentFormatter,
-		Config $config
+		private readonly ReadOnlyMode $readOnlyMode,
+		private readonly RevisionLookup $revisionLookup,
+		private readonly RevisionRenderer $revisionRenderer,
+		private readonly CommentFormatter $commentFormatter,
+		Config $config,
 	) {
 		parent::__construct( $article, $context );
-		$this->readOnlyMode = $readOnlyMode;
-		$this->revisionLookup = $revisionLookup;
-		$this->revisionRenderer = $revisionRenderer;
-		$this->commentFormatter = $commentFormatter;
 		$this->useRCPatrol = $config->get( MainConfigNames::UseRCPatrol );
 	}
 

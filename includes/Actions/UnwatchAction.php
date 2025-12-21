@@ -23,24 +23,14 @@ use MediaWiki\Watchlist\WatchlistManager;
  */
 class UnwatchAction extends WatchAction {
 
-	private WatchlistManager $watchlistManager;
-
-	/**
-	 * @param Article $article
-	 * @param IContextSource $context
-	 * @param WatchlistManager $watchlistManager
-	 * @param WatchedItemStore $watchedItemStore
-	 * @param UserOptionsLookup $userOptionsLookup
-	 */
 	public function __construct(
 		Article $article,
 		IContextSource $context,
-		WatchlistManager $watchlistManager,
+		private readonly WatchlistManager $watchlistManager,
 		WatchedItemStore $watchedItemStore,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
 	) {
 		parent::__construct( $article, $context, $watchlistManager, $watchedItemStore, $userOptionsLookup );
-		$this->watchlistManager = $watchlistManager;
 	}
 
 	/** @inheritDoc */

@@ -37,36 +37,16 @@ use Profiler;
  */
 class RollbackAction extends FormAction {
 
-	private IContentHandlerFactory $contentHandlerFactory;
-	private RollbackPageFactory $rollbackPageFactory;
-	private UserOptionsLookup $userOptionsLookup;
-	private WatchlistManager $watchlistManager;
-	private CommentFormatter $commentFormatter;
-
-	/**
-	 * @param Article $article
-	 * @param IContextSource $context
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param RollbackPageFactory $rollbackPageFactory
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param WatchlistManager $watchlistManager
-	 * @param CommentFormatter $commentFormatter
-	 */
 	public function __construct(
 		Article $article,
 		IContextSource $context,
-		IContentHandlerFactory $contentHandlerFactory,
-		RollbackPageFactory $rollbackPageFactory,
-		UserOptionsLookup $userOptionsLookup,
-		WatchlistManager $watchlistManager,
-		CommentFormatter $commentFormatter
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly RollbackPageFactory $rollbackPageFactory,
+		private readonly UserOptionsLookup $userOptionsLookup,
+		private readonly WatchlistManager $watchlistManager,
+		private readonly CommentFormatter $commentFormatter,
 	) {
 		parent::__construct( $article, $context );
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->rollbackPageFactory = $rollbackPageFactory;
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->watchlistManager = $watchlistManager;
-		$this->commentFormatter = $commentFormatter;
 	}
 
 	/** @inheritDoc */

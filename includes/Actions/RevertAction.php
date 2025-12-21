@@ -38,24 +38,13 @@ use MediaWiki\Utils\MWTimestamp;
  */
 class RevertAction extends FormAction {
 
-	private Language $contentLanguage;
-	private RepoGroup $repoGroup;
-
-	/**
-	 * @param Article $article
-	 * @param IContextSource $context
-	 * @param Language $contentLanguage
-	 * @param RepoGroup $repoGroup
-	 */
 	public function __construct(
 		Article $article,
 		IContextSource $context,
-		Language $contentLanguage,
-		RepoGroup $repoGroup
+		private readonly Language $contentLanguage,
+		private readonly RepoGroup $repoGroup,
 	) {
 		parent::__construct( $article, $context );
-		$this->contentLanguage = $contentLanguage;
-		$this->repoGroup = $repoGroup;
 	}
 
 	/**

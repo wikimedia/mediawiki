@@ -23,17 +23,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  */
 class ActionFactory {
 
-	/**
-	 * @var array
-	 * Configured actions (eg those added by extensions to $wgActions) that overrides CORE_ACTIONS
-	 */
-	private $actionsConfig;
-
-	private LoggerInterface $logger;
-	private ObjectFactory $objectFactory;
-	private HookContainer $hookContainer;
-	private HookRunner $hookRunner;
-	private IContentHandlerFactory $contentHandlerFactory;
+	private readonly HookRunner $hookRunner;
 
 	/**
 	 * Core default action specifications
@@ -169,18 +159,13 @@ class ActionFactory {
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 */
 	public function __construct(
-		array $actionsConfig,
-		LoggerInterface $logger,
-		ObjectFactory $objectFactory,
-		HookContainer $hookContainer,
-		IContentHandlerFactory $contentHandlerFactory
+		private array $actionsConfig,
+		private readonly LoggerInterface $logger,
+		private readonly ObjectFactory $objectFactory,
+		private readonly HookContainer $hookContainer,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
 	) {
-		$this->actionsConfig = $actionsConfig;
-		$this->logger = $logger;
-		$this->objectFactory = $objectFactory;
-		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	/**
