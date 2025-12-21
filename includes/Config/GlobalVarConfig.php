@@ -43,10 +43,21 @@ class GlobalVarConfig implements Config {
 	 * @inheritDoc
 	 */
 	public function get( $name ) {
-		if ( !$this->has( $name ) ) {
-			throw new ConfigException( __METHOD__ . ": undefined option: '$name'" );
+		$var = $this->prefix . $name;
+
+		// Fast path combines check and retrieval.
+		$value = $GLOBALS[$var] ?? null;
+		if ( $value !== null ) {
+			return $value;
 		}
-		return $GLOBALS[$this->prefix . $name];
+
+		// Slow path: the value is either explicitly null or missing.
+		// We have to pay the price of array_key_exists() here to distinguish the two.
+		if ( array_key_exists( $var, $GLOBALS ) ) {
+			return null;
+		}
+
+		throw new ConfigException( __METHOD__ . ": undefined option: '$name'" );
 	}
 
 	/**

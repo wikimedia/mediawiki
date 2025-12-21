@@ -183,6 +183,7 @@ $wgAutoloadLocalClasses = [
 	'BcryptPassword' => __DIR__ . '/includes/Password/BcryptPassword.php',
 	'BenchmarkCommentFormatter' => __DIR__ . '/maintenance/benchmarks/benchmarkCommentFormatter.php',
 	'BenchmarkEval' => __DIR__ . '/maintenance/benchmarks/benchmarkEval.php',
+	'BenchmarkGlobalVarConfig' => __DIR__ . '/maintenance/benchmarks/benchmarkGlobalVarConfig.php',
 	'BenchmarkHooks' => __DIR__ . '/maintenance/benchmarks/benchmarkHooks.php',
 	'BenchmarkJsValidate' => __DIR__ . '/maintenance/benchmarks/benchmarkJsValidate.php',
 	'BenchmarkJsonCodec' => __DIR__ . '/maintenance/benchmarks/benchmarkJsonCodec.php',
