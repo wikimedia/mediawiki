@@ -716,7 +716,7 @@
 	"undo-summary-anon": "Undo revision [[Special:Diff/$1|$1]] by [[Special:Contributions/$2|$2]]",
 	"undo-summary-import": "Undo imported revision [[Special:Diff/$1|$1]] by user [[:$2|$3]]",
 	"undo-summary-import2": "Undo imported revision [[Special:Diff/$1|$1]] by user $2",
-	"undo-summary-multiple": "Undo {{PLURAL:$1|$1 revision|$1 revisions}} (starting with revision number [[Special:Diff/$2|$2]] and ending with revision number [[Special:Diff/$3|$3]])",
+	"undo-summary-multiple": "Undo {{PLURAL:$1|$1 revision|$1 revisions}} from [[Special:Diff/$2|$2]] until [[Special:Diff/$3|$3]]",
 	"undo-summary-username-hidden": "Undo revision [[Special:Diff/$1|$1]] by a hidden user",
 	"viewpagelogs": "View logs for this page",
 	"viewpagelogs-lowercase": "view logs for this page",
