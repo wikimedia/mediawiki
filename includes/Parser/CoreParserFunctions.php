@@ -117,6 +117,7 @@ class CoreParserFunctions {
 			'interwikilink',
 			'interlanguagelink',
 			'contentmodel',
+			'isbn',
 		];
 		foreach ( $noHashFunctions as $func ) {
 			$parser->setFunctionHook( $func, self::$func( ... ), Parser::SFH_NO_HASH );
@@ -1979,6 +1980,43 @@ class CoreParserFunctions {
 			// Unknown format option
 			return '';
 		}
+	}
+
+	/**
+	 * @param Parser $parser
+	 * @param string $isbn
+	 * @return array
+	 */
+	public static function isbn( $parser, $isbn = '' ) {
+		$space = '(?:\t|&nbsp;|&\#0*160;|&\#[Xx]0*[Aa]0;|\p{Zs})';
+		$spdash = "(?:-|$space)"; # a dash or a non-newline space
+		$regex = "!
+			(?: 97[89] $spdash? )?   #  optional 13-digit ISBN prefix
+			(?: [0-9]  $spdash? ){9} #  9 digits with opt. delimiters
+			[0-9Xx]                  #  check digit
+		!xu";
+		if ( !preg_match( $regex, $isbn ) ) {
+			return [ 'found' => false ];
+		}
+		$isbn = preg_replace( "/$space/", ' ', $isbn );
+		$num = strtr( $isbn, [
+			'-' => '',
+			' ' => '',
+			'x' => 'X',
+		] );
+		$target = SpecialPage::getTitleFor( 'Booksources', $num );
+		$parser->getOutput()->addLink( $target );
+		return [
+			'text' => $parser->getLinkRenderer()->makeKnownLink(
+				$target,
+				"ISBN $isbn",
+				[
+					'class' => 'internal mw-magiclink-isbn',
+					'title' => false, // suppress title attribute
+				]
+			),
+			'isHTML' => true,
+		];
 	}
 
 	/**

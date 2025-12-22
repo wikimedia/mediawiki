@@ -60,6 +60,21 @@ RFC
 822</p>
 !! end
 
+# note, this does not generate a category
+!! test
+Magic links: ISBN using parser function syntax (T413375)
+!! options
+cat
+!! wikitext
+{{#isbn:0-306-40615-2}}
+!! metadata
+!! html/php
+<p><a href="/wiki/Special:BookSources/0306406152" class="internal mw-magiclink-isbn">ISBN 0-306-40615-2</a>
+</p>
+!! html/parsoid
+<p><a href="/wiki/Special:BookSources/0306406152" class="internal mw-magiclink-isbn" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#isbn:0-306-40615-2","function":"isbn"},"params":{},"i":0}}]}'>ISBN 0-306-40615-2</a></p>
+!! end
+
 !! test
 Magic links: ISBN (T3937)
 !! options

@@ -112,6 +112,7 @@ class MagicWordFactory {
 		'contentmodel',
 		'dir',
 		'language',
+		'isbn',
 	];
 
 	/** @var string[] */

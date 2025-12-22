@@ -60,6 +60,9 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 === New user-facing features in 1.46 ===
 
+* (T413375) A new parser function has been added, {{#isbn}}, which replaces
+  the ISBN "magic link" functionality for those wikis which have chosen to
+  disable it.
 * (T12814) Special:MovePage can now move over existing pages when moving the
   talk page (following the same logic as for moving the subject page).
 * (T12814) Special:MovePage will now fail loudly if you ask to move the

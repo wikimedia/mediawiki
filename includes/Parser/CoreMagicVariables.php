@@ -294,6 +294,7 @@ class CoreMagicVariables {
 			case 'contentmodel':
 			case 'dir':
 			case 'language':
+			case 'isbn':
 				# magic variables are the same as empty/default first argument
 				return CoreParserFunctions::$id( $parser );
 			default:

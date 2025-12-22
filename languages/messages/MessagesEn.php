@@ -310,6 +310,7 @@ $magicWords = [
 	'int'                     => [ 0, 'INT:' ],
 	'interlanguagelink'       => [ 1, '#interlanguagelink' ],
 	'interwikilink'           => [ 1, '#interwikilink' ],
+	'isbn'                    => [ 1, '#isbn' ],
 	'language'                => [ 0, '#LANGUAGE' ],
 	'language_option_bcp47'   => [ 1, 'bcp47' ],
 	'lc'                      => [ 0, 'LC:' ],
