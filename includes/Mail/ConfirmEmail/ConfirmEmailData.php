@@ -4,6 +4,12 @@ namespace MediaWiki\Mail\ConfirmEmail;
 
 use MediaWiki\User\UserIdentity;
 
+/**
+ * Value class wrapping variables present in the confirmation email
+ *
+ * @see ConfirmEmailContent
+ * @see ConfirmEmailSender
+ */
 class ConfirmEmailData {
 
 	public function __construct(

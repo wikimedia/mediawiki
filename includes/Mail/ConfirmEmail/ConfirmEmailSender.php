@@ -14,6 +14,9 @@ use MediaWiki\User\UserFactory;
 use MessageLocalizer;
 use StatusValue;
 
+/**
+ * Wrapper for IEmailer for sending confirm email sender
+ */
 class ConfirmEmailSender {
 
 	public const EMAIL_TYPE_CREATED = 'created';
@@ -53,6 +56,8 @@ class ConfirmEmailSender {
 	 * Send the built email to the recipient
 	 *
 	 * Uses PasswordSender as the sender (with `emailsender` as the human-readable name).
+	 *
+	 * @see MainConfigNames::PasswordSender
 	 */
 	private function sendEmailToRecipient(
 		MessageLocalizer $localizer,
@@ -73,6 +78,14 @@ class ConfirmEmailSender {
 		);
 	}
 
+	/**
+	 * Send the email address confirmation message
+	 *
+	 * This method:
+	 * (1) Calls the builder to build the email message
+	 * (2) Runs onUserSendConfirmationMail to allow extensions to modify the email
+	 * (3) Calls IEmailer to actually send the message out
+	 */
 	public function sendConfirmationMail(
 		IContextSource $ctx,
 		string $type, ConfirmEmailData $data
