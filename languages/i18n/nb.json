@@ -2586,7 +2586,7 @@
 	"block-target-placeholder": "Brukernavn, IP-adresse eller -intervall",
 	"block-pages-placeholder": "Legg til flere sider …",
 	"block-namespaces-placeholder": "Legg til flere navnerom …",
-	"block-update": "Oppater blokkering",
+	"block-update": "Oppdater blokkering",
 	"block-unblock-redirected": "Du ble omdirigert fra {{#Special:Unblock}} til {{#Special:Block}}, hvor administratorer kan opprette, redigere og fjerne blokkeringer for et gitt mål.",
 	"block-invalid-id": "Ugyldig blokkerings-ID",
 	"block-removal-title": "Bekreft fjerning av blokkering",

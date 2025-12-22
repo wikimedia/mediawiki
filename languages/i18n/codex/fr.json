@@ -25,7 +25,7 @@
 	"cdx-table-pager-button-last-page": "Dernière page",
 	"cdx-table-pager-button-next-page": "Page suivante",
 	"cdx-table-pager-button-prev-page": "Page précédente",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1| $1 ligne| $1 lignes}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 item|$1 items}}",
 	"cdx-table-pager-items-per-page-default": "Résultats par page",
 	"cdx-table-pagination-status-message-determinate-long": "Affichage des résultats $1 à $2 sur $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 sur $3",

@@ -25,7 +25,7 @@
 	"cdx-table-pager-button-last-page": "الصفحة الأخيرة",
 	"cdx-table-pager-button-next-page": "الصفحة التالية",
 	"cdx-table-pager-button-prev-page": "الصفحة السابقة",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 صف|$1 صفوف}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 عنصر|$1 عناصر}}",
 	"cdx-table-pager-items-per-page-default": "النتائج لكل صفحة",
 	"cdx-table-pagination-status-message-determinate-long": "عرض النتائج $1 – $2 من $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1 – $2 من $3",

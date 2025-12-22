@@ -740,7 +740,7 @@
 	"history-feed-empty": "Poiskana stranica ne jestvuje.\nMože byti, že ona byla odstranjena iz viki ili prěimenovana.\nPoprobujte [[Special:Search|iskati]] relevantne nove stranice na tutoj viki.",
 	"history-edit-tags": "Izměniti značky izbranyh versij",
 	"history-empty": "Odpovědajuče versije ne najdene.",
-	"rev-deleted-comment": "(opis pravdy udaljeny)",
+	"rev-deleted-comment": "(opis pravky udaljeny)",
 	"rev-deleted-user": "(koristničsko ime udaljeno)",
 	"rev-deleted-event": "(podrobnosti iz dnevnika udaljene)",
 	"rev-deleted-user-contribs": "[koristničsko ime ili IP-adres udaljeny – pravka skryta na stranici vklada]",

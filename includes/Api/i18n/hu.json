@@ -87,7 +87,7 @@
 	"apihelp-edit-param-section": "A szerkesztendő szakasz azonosítója. <kbd>0</kbd> a bevezetőhöz, <kbd>new</kbd> új szakaszhoz. Sokszor, de nem mindig, egy pozitív egész szám.",
 	"apihelp-edit-param-sectiontitle": "Az új szakasz címe a <var>$1section=new</var> használatakor.",
 	"apihelp-edit-param-text": "A lap tartalma.",
-	"apihelp-edit-param-summary": "Szerkesztési összefoglaló. A szakasz címe is, ha $1section=new és a $1sectiontitle paraméter nincs beállítva.",
+	"apihelp-edit-param-summary": "Szerkesztési összefoglaló.\n\nHa ez a paraméter nincs megadva vagy üres, [[mw:Special:MyLanguage/Autosummary|egy automatikus szerkesztési összefoglaló generálódhat]].\n\nA <var>$1section=new</var> paraméter használata esetén, ha a <var>$1sectiontitle</var> paraméter nincs megadva, a jelen paraméter értéke lesz a szakaszcím, a szerkesztési összefoglaló pedig automatikusan generált lesz.",
 	"apihelp-edit-param-minor": "A szerkesztés megjelölése apróként.",
 	"apihelp-edit-param-notminor": "Ne jelölje aprónak a szerkesztést akkor sem, ha a „{{int:tog-minordefault}}” felhasználói beállítás igaz.",
 	"apihelp-edit-param-bot": "Szerkesztés megjelölése botszerkesztésként.",

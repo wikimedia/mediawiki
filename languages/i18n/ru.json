@@ -2361,6 +2361,7 @@
 	"watchlistlabels-form-name-too-long": "Имя метки слишком длинное. Оно не должно превышать 256 байт (предоставленное значение: $1 {{PLURAL:$1|байт|байта|байтов}}).",
 	"watchlistlabels-form-submit-new": "Создать",
 	"watchlistlabels-form-submit-edit": "Сохранить",
+	"watchlistlabels-onboarding-progress": "$1 из $2",
 	"watchlist-filters-labels-title": "Метки",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>не</strong> =$1",
 	"enotif_reset": "Отметить все страницы как просмотренные",
@@ -3386,6 +3387,10 @@
 	"watchlistedit-clear-jobqueue": "Ваш список наблюдения очищается. Это может занять некоторое время.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|Была удалена|Были удалены|Было удалено}} $1 {{PLURAL:$1|запись|записи|записей}}:",
 	"watchlistedit-too-many": "Ваш список наблюдения был обновлён. Слишком много страниц для того, чтобы показать их здесь.",
+	"watchlistedit-table-title": "Страницы",
+	"watchlistedit-table-title-pages": "Заголовок страницы",
+	"watchlistedit-table-title-expiry": "Срок действия",
+	"watchlistedit-table-remove-selected": "Не следить",
 	"watchlisttools-clear": "Очистить список",
 	"watchlisttools-view": "Правки на страницах в списке",
 	"watchlisttools-edit": "Просмотреть и править список",
@@ -4278,5 +4283,6 @@
 	"temp-user-unable-to-acquire": "Не удалось получить имя участника для временной учётной записи. Пожалуйста, попробуйте ещё раз.",
 	"table-of-contents-show-button-aria-label": "Показать содержание",
 	"table-of-contents-hide-button-aria-label": "Скрыть содержание",
-	"diff-usergroups": "$1 {{PLURAL:$1|группа участника|группы участника|групп участника}}"
+	"diff-usergroups": "$1 {{PLURAL:$1|группа участника|группы участника|групп участника}}",
+	"languageselector-no-results": "Ничего не найдено."
 }

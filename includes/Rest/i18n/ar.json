@@ -100,6 +100,8 @@
 	"rest-module-specs.v0-desc": "وحدة توثيق ذاتية توفر الاكتشاف والمواصفات والمخططات لجميع الوحدات المتاحة.",
 	"rest-module-content.v1-title": "محتوى الصفحة",
 	"rest-module-content.v1-desc": "يوفر إمكانية الوصول إلى المحتوى والبيانات الوصفية للصفحات والمراجعات",
+	"rest-module-site.v1-title": "واجهة برمجة تطبيقات الموقع",
+	"rest-module-site.v1-desc": "معلومات حول الموقع ككل، مثل خرائط الموقع",
 	"rest-param-desc-mock-desc": "وصف الوهمي",
 	"rest-param-desc-revision-id": "معرف المراجعة",
 	"rest-param-desc-html-input-title": "تحويل عنوان إدخال HTML",

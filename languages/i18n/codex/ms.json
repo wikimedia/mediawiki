@@ -23,7 +23,7 @@
 	"cdx-table-pager-button-last-page": "Laman terakhir",
 	"cdx-table-pager-button-next-page": "Laman berikutnya",
 	"cdx-table-pager-button-prev-page": "Laman sebelumnya",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 baris}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 butir}}",
 	"cdx-table-pager-items-per-page-default": "Hasil setiap laman",
 	"cdx-table-pagination-status-message-determinate-long": "Menunjukkan hasil $1–$2 daripada $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 daripada $3",

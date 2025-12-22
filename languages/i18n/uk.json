@@ -2447,6 +2447,7 @@
 	"contributions-subtitle": "Результати для {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Користувач здійснив|Користувачка здійснила}} $2 {{PLURAL:$2|редагування|редагування|редагувань}}.",
 	"contributions-account-creation-date": "Обліковий запис створено $1.",
+	"contributions-ip-range-navigation": "Показати {{PLURAL:$2|ширший діапазон|ширші діапазони}}: $1",
 	"contributions-userdoesnotexist": "Обліковий запис користувача «$1» не зареєстровано.",
 	"negative-namespace-not-supported": "Не підтримуються простори назв із від'ємними значеннями.",
 	"nocontribs": "Редагувань, що відповідають заданим умовам, не знайдено.",

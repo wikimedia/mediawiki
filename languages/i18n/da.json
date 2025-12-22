@@ -784,6 +784,7 @@
 	"undo-summary-anon": "Fjerner sideversion [[Special:Diff/$1|$1]] af [[Special:Contributions/$2|$2]]",
 	"undo-summary-import": "Fortryd importeret revision [[Special:Diff/$1|$1]] af bruger [[:$2|$3]]",
 	"undo-summary-import2": "Fortryd importeret revision [[Special:Diff/$1|$1]] af bruger $2",
+	"undo-summary-multiple": "Fjerner {{PLURAL:$1|$1 redigering|$1 redigeringer}} (starter med version [[Special:Diff/$2|$2]] og slutter med version [[Special:Diff/$3|$3]])",
 	"undo-summary-username-hidden": "Fjerner sideversion [[Special:Diff/$1|$1]] af en skjult bruger",
 	"viewpagelogs": "Vis loglister for denne side",
 	"viewpagelogs-lowercase": "vis loglister for denne side",
