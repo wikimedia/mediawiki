@@ -271,7 +271,18 @@ class SpecialLog extends SpecialPage {
 	 */
 	public function getSubpagesForPrefixSearch() {
 		$subpages = LogPage::validTypes();
+
+		// Mechanism allowing extensions to change the log types listed as
+		// search hints (T398293).
+		$this->getHookRunner()->onSpecialLogGetSubpagesForPrefixSearch(
+			$this->getContext(),
+			$subpages
+		);
+
 		$subpages[] = 'all';
+
+		// Remove duplicates just in case a hook provides the same subpage twice
+		$subpages = array_unique( $subpages );
 		sort( $subpages );
 		return $subpages;
 	}

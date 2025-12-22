@@ -342,6 +342,7 @@ class HookRunner implements
 	\MediaWiki\Hook\SelfLinkBeginHook,
 	\MediaWiki\Mail\Hook\SendWatchlistEmailNotificationHook,
 	\MediaWiki\Hook\SetupAfterCacheHook,
+	\MediaWiki\Hook\SpecialLogGetSubpagesForPrefixSearchHook,
 	\MediaWiki\Specials\Hook\ShortPagesQueryHook,
 	\MediaWiki\Skin\Hook\SidebarBeforeOutputHook,
 	\MediaWiki\Skin\Hook\SiteNoticeAfterHook,
@@ -4206,6 +4207,18 @@ class HookRunner implements
 		$this->container->run(
 			'SpecialLogResolveLogType',
 			[ $params, &$type ],
+			[ 'abortable' => false ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onSpecialLogGetSubpagesForPrefixSearch(
+		IContextSource $context,
+		array &$subpages
+	): void {
+		$this->container->run(
+			'SpecialLogGetSubpagesForPrefixSearch',
+			[ $context, &$subpages ],
 			[ 'abortable' => false ]
 		);
 	}

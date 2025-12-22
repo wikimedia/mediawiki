@@ -6,6 +6,7 @@
 namespace MediaWiki\Tests\Specials;
 
 use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Hook\SpecialLogResolveLogTypeHook;
 use MediaWiki\Logging\ManualLogEntry;
@@ -245,5 +246,20 @@ class SpecialLogTest extends SpecialPageTestBase {
 			'/logentry-block-block:(.*)127\.0\.0\.1/',
 			$html
 		);
+	}
+
+	public function testSubpagesForPrefixSearchCallsHook(): void {
+		$this->setTemporaryHook(
+			'SpecialLogGetSubpagesForPrefixSearch',
+			static function ( IContextSource $context, array &$subpages ): void {
+				$subpages[] = 'subpage-1';
+				$subpages[] = 'subpage-2';
+			}
+		);
+
+		$pages = $this->newSpecialPage()
+			->prefixSearchSubpages( "sub", 100, 0 );
+
+		$this->assertEquals( [ 'subpage-1', 'subpage-2' ], $pages );
 	}
 }

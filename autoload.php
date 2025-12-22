@@ -1765,6 +1765,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\SpecialListusersHeaderHook' => __DIR__ . '/includes/Specials/Hook/SpecialListusersHeaderHook.php',
 	'MediaWiki\\Hook\\SpecialListusersQueryInfoHook' => __DIR__ . '/includes/Specials/Hook/SpecialListusersQueryInfoHook.php',
 	'MediaWiki\\Hook\\SpecialLogAddLogSearchRelationsHook' => __DIR__ . '/includes/Specials/Hook/SpecialLogAddLogSearchRelationsHook.php',
+	'MediaWiki\\Hook\\SpecialLogGetSubpagesForPrefixSearchHook' => __DIR__ . '/includes/Hook/SpecialLogGetSubpagesForPrefixSearchHook.php',
 	'MediaWiki\\Hook\\SpecialLogResolveLogTypeHook' => __DIR__ . '/includes/Specials/Hook/SpecialLogResolveLogTypeHook.php',
 	'MediaWiki\\Hook\\SpecialMovepageAfterMoveHook' => __DIR__ . '/includes/Specials/Hook/SpecialMovepageAfterMoveHook.php',
 	'MediaWiki\\Hook\\SpecialMuteModifyFormFieldsHook' => __DIR__ . '/includes/Specials/Hook/SpecialMuteModifyFormFieldsHook.php',
