@@ -2785,6 +2785,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		$token = $this->getConfirmationToken( $expiration );
 		$confirmationUrl = $this->getConfirmationTokenUrl( $token );
 		$invalidateUrl = $this->getInvalidationTokenUrl( $token );
+		$this->saveSettings();
 
 		return Status::wrap( $emailer->sendConfirmationMail(
 			RequestContext::getMain(),

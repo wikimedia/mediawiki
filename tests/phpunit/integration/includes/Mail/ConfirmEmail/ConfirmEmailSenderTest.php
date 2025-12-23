@@ -71,5 +71,11 @@ class ConfirmEmailSenderTest extends MediaWikiIntegrationTestCase {
 		$user->saveSettings();
 
 		$this->assertStatusOK( $user->sendConfirmationMail() );
+
+		// Reload the user from the database, as sendConfirmationMail might've modified the state
+		$this->assertTrue( $this->getServiceContainer()
+			->getUserFactory()
+			->newFromId( $user->getId() )
+			->isEmailConfirmationPending() );
 	}
 }
