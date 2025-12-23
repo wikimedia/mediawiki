@@ -1,0 +1,737 @@
+!! Version 2
+# LanguageConverter and language variants parser tests (v2)
+# Based on https://www.mediawiki.org/wiki/Writing_systems/Syntax
+
+# This is the standard article assumed to exist.
+!! article
+Main Page
+!! text
+blah blah
+!! endarticle
+
+# We'll use the following characters below, which hopefully are
+# visually distinct enough to distinguish even for folks who aren't
+# literate in Chinese characters.  We'll use *only* these three
+# characters to minimize our dependency on the "real"
+# transliteration database for Chinese; we don't want updates to
+# those built-in rules to break parser tests.
+#
+#                Traditional   Simplified
+# air (qì)           氣          气
+# horse (mǎ)         馬          马
+# electricity (diàn) 電          电
+#
+# To test conversion rules, we're going to use nonsensical
+# combinations of these characters, or "conversions" to arbitrary
+# latin characters, with the goal of (1) still making the "correct"
+# output easy to distinguish for folks unfamiliar with the characters,
+# and (2) by using nonsense hopefully we won't conflict with any
+# "real" rules in the transliteration database
+# (which presumably only contains sensible character combinations).
+
+!! test
+Verify that the built-in transliteration rules contain our test
+characters (traditional to simplified)
+!! options
+language=zh htmlVariantLanguage=zh-hans
+!! wikitext
+* air (qì): 氣
+* horse (mǎ): 馬
+* electricity (diàn): 電
+!! html
+<ul><li>air (qì): 气</li>
+<li>horse (mǎ): 马</li>
+<li>electricity (diàn): 电</li></ul>
+!! end
+
+!! test
+Verify that the built-in transliteration rules contain our test
+characters (simplified to traditional)
+!! options
+language=zh htmlVariantLanguage=zh-hant
+!! wikitext
+* air (qì): 气
+* horse (mǎ): 马
+* electricity (diàn): 电
+!! html
+<ul><li>air (qì): 氣</li>
+<li>horse (mǎ): 馬</li>
+<li>electricity (diàn): 電</li></ul>
+!! end
+
+### Basic syntax ###
+
+# note "fallback" from zh-hans to zh-cn / zh-hant to zh-tw here
+!! test
+Bidirectional conversion (hans)
+!! options
+language=zh htmlVariantLanguage=zh,zh-hans,zh-cn,zh-my,zh-sg
+!! wikitext
+-{zh-cn:气气气;zh-tw:電電電}-
+!! html
+<p>气气气
+</p>
+!! end
+
+!! test
+Bidirectional conversion (hant)
+!! options
+language=zh htmlVariantLanguage=zh-hant,zh-hk,zh-mo,zh-tw
+!! wikitext
+-{zh-cn:气气气;zh-tw:電電電}-
+!! html
+<p>電電電
+</p>
+!! end
+
+# Unidirectional
+# Fallback is not supported in unidirectional conversion.
+# zh-hans/zh-sg will not use zh-cn's rules.
+
+!! test
+Unidirectional conversion (zh)
+!! options
+language=zh htmlVariantLanguage=zh
+!! wikitext
+-{H|電電電=>zh-cn:气气气}-
+馬马: 電電電, 气气气
+!! html
+<p>
+馬马: 電電電, 气气气
+</p>
+!! end
+
+!! test
+Unidirectional conversion (zh-hans)
+!! options
+language=zh htmlVariantLanguage=zh-hans,zh-my,zh-sg
+!! wikitext
+-{H|電電電=>zh-cn:气气气}-
+馬马: 電電電, 气气气
+!! html
+<p>
+马马: 电电电, 气气气
+</p>
+!! end
+
+!! test
+Unidirectional conversion (zh-cn)
+!! options
+language=zh htmlVariantLanguage=zh-cn
+!! wikitext
+-{H|電電電=>zh-cn:气气气}-
+馬马: 電電電, 气气气
+!! html
+<p>
+马马: 气气气, 气气气
+</p>
+!! end
+
+!! test
+Unidirectional conversion (zh-hant)
+!! options
+language=zh htmlVariantLanguage=zh-hant,zh-hk,zh-mo,zh-tw
+!! wikitext
+-{H|電電電=>zh-cn:气气气}-
+馬马: 電電電, 气气气
+!! html
+<p>
+馬馬: 電電電, 氣氣氣
+</p>
+!! end
+
+# Similarly, zh-cn will not use zh-hans's rules.
+
+!! test
+Unidirectional conversion 2 (zh)
+!! options
+language=zh htmlVariantLanguage=zh
+!! wikitext
+-{H|電電電=>zh-hans:气气气}-
+馬马: 電電電, 气气气
+!! html
+<p>
+馬马: 電電電, 气气气
+</p>
+!! end
+
+!! test
+Unidirectional conversion 2 (zh-cn)
+!! options
+language=zh htmlVariantLanguage=zh-cn,zh-my,zh-sg
+!! wikitext
+-{H|電電電=>zh-hans:气气气}-
+馬马: 電電電, 气气气
+!! html
+<p>
+马马: 电电电, 气气气
+</p>
+!! end
+
+!! test
+Unidirectional conversion 2 (zh-hans)
+!! options
+language=zh htmlVariantLanguage=zh-hans
+!! wikitext
+-{H|電電電=>zh-hans:气气气}-
+馬马: 電電電, 气气气
+!! html
+<p>
+马马: 气气气, 气气气
+</p>
+!! end
+
+!! test
+Unidirectional conversion 2 (zh-hant)
+!! options
+language=zh htmlVariantLanguage=zh-hant,zh-hk,zh-mo,zh-tw
+!! wikitext
+-{H|電電電=>zh-hans:气气气}-
+馬马: 電電電, 气气气
+!! html
+<p>
+馬馬: 電電電, 氣氣氣
+</p>
+!! end
+
+# Disabled
+
+!! test
+Disable language conversion
+!! options
+language=zh htmlVariantLanguage=zh,zh-hans,zh-cn,zh-my,zh-sg,zh-hant,zh-hk,zh-mo,zh-tw
+!! wikitext
+-{氣气}-
+!! html
+<p>氣气
+</p>
+!! end
+
+!! test
+Disable language conversion (alternate form)
+!! options
+language=zh htmlVariantLanguage=zh,zh-hans,zh-cn,zh-my,zh-sg,zh-hant,zh-hk,zh-mo,zh-tw
+!! wikitext
+-{R|氣气}-
+!! html
+<p>氣气
+</p>
+!! end
+
+!! test
+Semi-disabled conversion (zh)
+!! options
+language=zh htmlVariantLanguage=zh
+!! wikitext
+-{H|zh-hant:電電電;zh-hans:气气气}-
+電電電 气气气
+
+電-{}-電電 气-{}-气气
+!! html
+<p>
+電電電 气气气
+</p><p>電電電 气气气
+</p>
+!! end
+
+!! test
+Semi-disabled conversion (zh-hans)
+!! options
+language=zh htmlVariantLanguage=zh-cn,zh-my,zh-sg
+!! wikitext
+-{H|zh-hant:電電電;zh-hans:气气气}-
+電電電 气气气
+
+電-{}-電電 气-{}-气气
+!! html
+<p>
+气气气 气气气
+</p><p>电电电 气气气
+</p>
+!! end
+
+!! test
+Semi-disabled conversion (zh-hant)
+!! options
+language=zh htmlVariantLanguage=zh-hk,zh-mo,zh-tw
+!! wikitext
+-{H|zh-hant:電電電;zh-hans:气气气}-
+電電電 气气气
+
+電-{}-電電 气-{}-气气
+!! html
+<p>
+電電電 電電電
+</p><p>電電電 氣氣氣
+</p>
+!! end
+
+### Common Conversion flags ###
+
+# H flag
+# zh-hans and zh-hant are simply scripts and won't apply bidirectional rules
+# See also the `$manualLevel` parameter in LanguageConverter
+
+!! test
+Insert a conversion rule without output (zh)
+!! options
+language=zh htmlVariantLanguage=zh
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+馬马: 气气气, 馬馬馬, 電電電
+!! html
+<p>
+馬马: 气气气, 馬馬馬, 電電電
+</p>
+!! end
+
+!! test
+Insert a conversion rule without output (zh-hans)
+!! options
+language=zh htmlVariantLanguage=zh-hans
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+馬马: 气气气, 馬馬馬, 電電電
+!! html
+<p>
+马马: 气气气, 马马马, 电电电
+</p>
+!! end
+
+!! test
+Insert a conversion rule without output (zh-cn)
+!! options
+language=zh htmlVariantLanguage=zh-cn,zh-my,zh-sg
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+馬马: 气气气, 馬馬馬, 電電電
+!! html
+<p>
+马马: 气气气, 气气气, 气气气
+</p>
+!! end
+
+!! test
+Insert a conversion rule without output (zh-hant)
+!! options
+language=zh htmlVariantLanguage=zh-hant
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+馬马: 气气气, 馬馬馬, 電電電
+!! html
+<p>
+馬馬: 氣氣氣, 馬馬馬, 電電電
+</p>
+!! end
+
+!! test
+Insert a conversion rule without output (zh-hk)
+!! options
+language=zh htmlVariantLanguage=zh-hk,zh-mo
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+馬马: 气气气, 馬馬馬, 電電電
+!! html
+<p>
+馬馬: 馬馬馬, 馬馬馬, 馬馬馬
+</p>
+!! end
+
+!! test
+Insert a conversion rule without output (zh-tw)
+!! options
+language=zh htmlVariantLanguage=zh-tw
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+馬马: 气气气, 馬馬馬, 電電電
+!! html
+<p>
+馬馬: 電電電, 電電電, 電電電
+</p>
+!! end
+
+# A flag
+
+!! test
+Insert a conversion rule with a result in the current language (zh)
+!! options
+language=zh htmlVariantLanguage=zh
+!! wikitext
+-{A|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+
+气气气, 馬馬馬, 電電電
+!! html
+<p>气气气
+</p><p>气气气, 馬馬馬, 電電電
+</p>
+!! end
+
+!! test
+Insert a conversion rule with a result in the current language (zh-hans)
+!! options
+language=zh htmlVariantLanguage=zh-hans
+!! wikitext
+-{A|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+
+气气气, 馬馬馬, 電電電
+!! html
+<p>气气气
+</p><p>气气气, 马马马, 电电电
+</p>
+!! end
+
+!! test
+Insert a conversion rule with a result in the current language (zh-cn)
+!! options
+language=zh htmlVariantLanguage=zh-cn,zh-my,zh-sg
+!! wikitext
+-{A|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+
+气气气, 馬馬馬, 電電電
+!! html
+<p>气气气
+</p><p>气气气, 气气气, 气气气
+</p>
+!! end
+
+!! test
+Insert a conversion rule with a result in the current language (zh-hant)
+!! options
+language=zh htmlVariantLanguage=zh-hant
+!! wikitext
+-{A|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+
+气气气, 馬馬馬, 電電電
+!! html
+<p>電電電
+</p><p>氣氣氣, 馬馬馬, 電電電
+</p>
+!! end
+
+!! test
+Insert a conversion rule with a result in the current language (zh-hk)
+!! options
+language=zh htmlVariantLanguage=zh-hk,zh-mo
+!! wikitext
+-{A|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+
+气气气, 馬馬馬, 電電電
+!! html
+<p>馬馬馬
+</p><p>馬馬馬, 馬馬馬, 馬馬馬
+</p>
+!! end
+
+!! test
+Insert a conversion rule with a result in the current language (zh-tw)
+!! options
+language=zh htmlVariantLanguage=zh-tw
+!! wikitext
+-{A|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+
+气气气, 馬馬馬, 電電電
+!! html
+<p>電電電
+</p><p>電電電, 電電電, 電電電
+</p>
+!! end
+
+# - flag
+
+!! test
+Remove existing conversion rule (zh)
+!! options
+language=zh htmlVariantLanguage=zh
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}- <!-- Add a rule -->
++ 气气气, 馬馬馬, 電電電
+
+-{-|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}- <!-- Remove a rule -->
+- 气气气, 馬馬馬, 電電電
+!! html
+<p> 
++ 气气气, 馬馬馬, 電電電
+</p><p> 
+- 气气气, 馬馬馬, 電電電
+</p>
+!! end
+
+!! test
+Remove existing conversion rule (zh-hans)
+!! options
+language=zh htmlVariantLanguage=zh-hans
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}- <!-- Add a rule -->
++ 气气气, 馬馬馬, 電電電
+
+-{-|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}- <!-- Remove a rule -->
+- 气气气, 馬馬馬, 電電電
+!! html
+<p> 
++ 气气气, 马马马, 电电电
+</p><p> 
+- 气气气, 马马马, 电电电
+</p>
+!! end
+
+!! test
+Remove existing conversion rule (zh-cn)
+!! options
+language=zh htmlVariantLanguage=zh-cn,zh-my,zh-sg
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}- <!-- Add a rule -->
++ 气气气, 馬馬馬, 電電電
+
+-{-|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}- <!-- Remove a rule -->
+- 气气气, 馬馬馬, 電電電
+!! html
+<p> 
++ 气气气, 气气气, 气气气
+</p><p> 
+- 气气气, 马马马, 电电电
+</p>
+!! end
+
+!! test
+Remove existing conversion rule (zh-hant)
+!! options
+language=zh htmlVariantLanguage=zh-hant
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}- <!-- Add a rule -->
++ 气气气, 馬馬馬, 電電電
+
+-{-|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}- <!-- Remove a rule -->
+- 气气气, 馬馬馬, 電電電
+!! html
+<p> 
++ 氣氣氣, 馬馬馬, 電電電
+</p><p> 
+- 氣氣氣, 馬馬馬, 電電電
+</p>
+!! end
+
+!! test
+Remove existing conversion rule (zh-hk)
+!! options
+language=zh htmlVariantLanguage=zh-hk,zh-mo
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}- <!-- Add a rule -->
++ 气气气, 馬馬馬, 電電電
+
+-{-|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}- <!-- Remove a rule -->
+- 气气气, 馬馬馬, 電電電
+!! html
+<p> 
++ 馬馬馬, 馬馬馬, 馬馬馬
+</p><p> 
+- 氣氣氣, 馬馬馬, 電電電
+</p>
+!! end
+
+!! test
+Remove existing conversion rule (zh-tw)
+!! options
+language=zh htmlVariantLanguage=zh-tw
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}- <!-- Add a rule -->
++ 气气气, 馬馬馬, 電電電
+
+-{-|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}- <!-- Remove a rule -->
+- 气气气, 馬馬馬, 電電電
+!! html
+<p> 
++ 電電電, 電電電, 電電電
+</p><p> 
+- 氣氣氣, 馬馬馬, 電電電
+</p>
+!! end
+
+# T flag
+
+!! test
+Override page title (zh)
+!! options
+title=[[馬马]]
+language=zh htmlVariantLanguage=zh
+showtitle
+!! wikitext
+-{T|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+!! metadata
+<span class="mw-page-title-main">馬马</span>
+!! html
+<p class="mw-empty-elt">
+</p>
+!! end
+
+!! test
+Override page title (zh-hans)
+!! options
+title=[[馬马]]
+language=zh htmlVariantLanguage=zh-hans,zh-cn,zh-my,zh-sg
+showtitle
+!! wikitext
+-{T|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+!! metadata
+气气气
+!! html
+<p class="mw-empty-elt">
+</p>
+!! end
+
+!! test
+Override page title (zh-hk)
+!! options
+title=[[馬马]]
+language=zh htmlVariantLanguage=zh-hk,zh-mo
+showtitle
+!! wikitext
+-{T|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+!! metadata
+馬馬馬
+!! html
+<p class="mw-empty-elt">
+</p>
+!! end
+
+!! test
+Override page title (zh-tw)
+!! options
+title=[[馬马]]
+language=zh htmlVariantLanguage=zh-tw
+showtitle
+!! wikitext
+-{T|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+!! metadata
+電電電
+!! html
+<p class="mw-empty-elt">
+</p>
+!! end
+
+# D flag
+
+!! test
+Describe bidirectional conversion rule
+!! options
+language=zh htmlVariantLanguage=zh,zh-hans,zh-cn,zh-my,zh-sg,zh-hant,zh-hk,zh-mo,zh-tw
+!! wikitext
+-{D|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+!! html
+<p>大陆：气气气；香港：馬馬馬；臺灣：電電電；
+</p>
+!! end
+
+!! test
+Describe unidirectional conversion rule
+!! options
+language=zh htmlVariantLanguage=zh,zh-hans,zh-cn,zh-my,zh-sg,zh-hant,zh-hk,zh-mo,zh-tw
+!! wikitext
+-{D;H|電電電=>zh-cn:气气气}-
+!! html
+<p>電電電⇒大陆：气气气；
+</p>
+!! end
+
+# N flag
+
+!! test
+Localized language names
+!! options
+language=zh htmlVariantLanguage=zh-Hans-CN
+!! wikitext
+-{N|zh-cn}-
+
+-{N|zh-tw}-
+
+-{N|sr-ec}-
+!! html
+<p>大陆
+</p><p>臺灣
+</p><p>српски (ћирилица)
+</p>
+!! end
+
+### Combined conversion flags ###
+
+!! test
+Only consider certain variants for conversion (zh)
+!! options
+language=zh htmlVariantLanguage=zh
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+馬马 1: -{zh;zh-hans;zh-hant|气气气, 馬馬馬, 電電電}-
+
+馬马 2: -{zh;zh-cn;zh-hk|气气气, 馬馬馬, 電電電}-
+!! html
+<p>
+馬马 1: 气气气, 馬馬馬, 電電電
+</p><p>馬马 2: 气气气, 馬馬馬, 電電電
+</p>
+!! end
+
+!! test
+Only consider certain variants for conversion (zh-hans)
+!! options
+language=zh htmlVariantLanguage=zh-hans,zh-cn,zh-my,zh-sg
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+馬马 1: -{zh;zh-hans;zh-hant|气气气, 馬馬馬, 電電電}-
+
+馬马 2: -{zh;zh-cn;zh-hk|气气气, 馬馬馬, 電電電}-
+!! html
+<p>
+马马 1: 气气气, 马马马, 电电电
+</p><p>马马 2: 气气气, 气气气, 气气气
+</p>
+!! end
+
+!! test
+Only consider certain variants for conversion (zh-hant)
+!! options
+language=zh htmlVariantLanguage=zh-hant,zh-hk,zh-mo,zh-tw
+!! wikitext
+-{H|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
+馬马 1: -{zh;zh-hans;zh-hant|气气气, 馬馬馬, 電電電}-
+
+馬马 2: -{zh;zh-cn;zh-hk|气气气, 馬馬馬, 電電電}-
+!! html
+<p>
+馬馬 1: 氣氣氣, 馬馬馬, 電電電
+</p><p>馬馬 2: 馬馬馬, 馬馬馬, 馬馬馬
+</p>
+!! end
+
+### Exceptions ###
+!! test
+Conversion skips <pre> and <code>
+!! options
+language=zh htmlVariantLanguage=zh,zh-hans,zh-cn,zh-my,zh-sg,zh-hant,zh-hk,zh-mo,zh-tw
+!! wikitext
+<pre>氣气</pre>
+<code>氣气</code>
+!! html
+<pre>氣气</pre>
+<p><code>氣气</code>
+</p>
+!! end
+
+!! test
+"Force convert" of <pre>
+!! options
+language=zh htmlVariantLanguage=zh-hans
+!! wikitext
+<pre>氣-{}-气</pre>
+!! html
+<pre>气气</pre>
+!! end
+
+!! test
+"Force convert" of <code>
+!! options
+language=zh htmlVariantLanguage=zh-hant
+!! wikitext
+<code>氣-{}-气</code>
+!! html
+<p><code>氣氣</code>
+</p>
+!! end
