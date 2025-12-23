@@ -1195,7 +1195,9 @@ HtmlEmitter.prototype = {
 
 				if ( target.search( new RegExp( '^(/|' + mw.config.get( 'wgUrlProtocols' ) + ')' ) ) !== -1 ) {
 					$el.attr( 'href', target );
-					if ( target.search( '^' + mw.config.get( 'wgArticlePath' ).replace( /\$1/g, '.+?' ) + '$' ) === -1 ) {
+					const externalRegex = '^(?:' + mw.config.get( 'wgArticlePath' ).replace( /\$1/g, '.+?' ) +
+						'|' + mw.config.get( 'wgScript' ) + '.+?)$';
+					if ( target.search( externalRegex ) === -1 ) {
 						$el.addClass( 'external' );
 					}
 				} else {
