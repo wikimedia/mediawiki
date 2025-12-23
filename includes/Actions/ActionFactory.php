@@ -121,6 +121,7 @@ class ActionFactory {
 			'services' => [
 				'ContentLanguage',
 				'RepoGroup',
+				'UrlUtils',
 			],
 		],
 		'rollback' => [
@@ -128,6 +129,7 @@ class ActionFactory {
 			'services' => [
 				'ContentHandlerFactory',
 				'RollbackPageFactory',
+				'UserFactory',
 				'UserOptionsLookup',
 				'WatchlistManager',
 				'CommentFormatter'

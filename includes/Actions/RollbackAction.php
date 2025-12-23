@@ -21,12 +21,12 @@ use MediaWiki\Exception\ThrottledError;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\UserFactory;
 use MediaWiki\Watchlist\WatchlistManager;
 use Profiler;
 
@@ -42,6 +42,7 @@ class RollbackAction extends FormAction {
 		IContextSource $context,
 		private readonly IContentHandlerFactory $contentHandlerFactory,
 		private readonly RollbackPageFactory $rollbackPageFactory,
+		private readonly UserFactory $userFactory,
 		private readonly UserOptionsLookup $userOptionsLookup,
 		private readonly WatchlistManager $watchlistManager,
 		private readonly CommentFormatter $commentFormatter,
@@ -156,8 +157,7 @@ class RollbackAction extends FormAction {
 			if ( $this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 				$revUser = $rev->getUser( RevisionRecord::RAW );
 			} else {
-				$userFactory = MediaWikiServices::getInstance()->getUserFactory();
-				$revUser = $userFactory->newFromName( $this->context->msg( 'rev-deleted-user' )->plain() );
+				$revUser = $this->userFactory->newFromName( $this->context->msg( 'rev-deleted-user' )->plain() );
 			}
 		}
 
