@@ -3,12 +3,13 @@
 		"authors": [
 			"Noeruchan",
 			"Bapham123",
-			"Duongvu"
+			"Duongvu",
+			"Nvdtn19"
 		]
 	},
 	"cdx-chip-input-chip-added": "Chip $1 đã được thêm vào.",
 	"cdx-chip-input-chip-removed": "Chip $1 đã bị loại bỏ.",
-	"cdx-input-chip-aria-description": "Nhấn Enter để chỉnh sửa hoặc Xóa để xóa.",
+	"cdx-input-chip-aria-description": "Nhấn Enter để sửa đổi hoặc Delete để xóa",
 	"cdx-dialog-close-button-label": "Đóng",
 	"cdx-label-optional-flag": "(tùy chọn)",
 	"cdx-message-dismiss-button-label": "Đóng",
@@ -25,8 +26,8 @@
 	"cdx-table-pager-items-per-page-default": "Kết quả trên mỗi trang",
 	"cdx-table-pagination-status-message-determinate-long": "Hiển thị kết quả $1–$2 trong tổng số $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 trong tổng số $3",
-	"cdx-table-pagination-status-message-indeterminate-long": "Hiển thị kết quả $1–$2 của nhiều",
-	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 của nhiều",
-	"cdx-table-pagination-status-message-indeterminate-final": "Hiển thị {{PLURAL:$1|$1 result|$1 results}} cuối cùng",
+	"cdx-table-pagination-status-message-indeterminate-long": "Hiển thị $1–$2 kết quả trong tổng số nhiều kết quả",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 trong tổng số nhiều",
+	"cdx-table-pagination-status-message-indeterminate-final": "Hiển thị {{PLURAL:$1|$1 kết quả}} cuối cùng",
 	"cdx-table-pagination-status-message-pending": "Đang tải kết quả..."
 }

@@ -3913,7 +3913,7 @@
 	"log-action-filter-delete-restore": "Sivun palauttaminen",
 	"log-action-filter-delete-event": "Lokimerkinnän poistaminen",
 	"log-action-filter-delete-revision": "Version piilottaminen",
-	"log-action-filter-import-interwiki": "Tuonti wikien välillä",
+	"log-action-filter-import-interwiki": "Tuonti toisesta wikistä",
 	"log-action-filter-import-upload": "Tuonti XML-tallennuksella",
 	"log-action-filter-managetags-create": "Merkkauksen luominen",
 	"log-action-filter-managetags-delete": "Merkkauksen tuhoaminen",
