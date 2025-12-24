@@ -95,7 +95,7 @@
 	"prefs-help-email": "Az e-mail-cím megadása nem kötelező, de szükséges új jelszó kéréséhez, ha elfelejtenéd a meglévőt.",
 	"prefs-help-email-required": "Meg kell adnod az e-mail-címedet.",
 	"prefs-help-email-others": "Úgy is dönthetsz, hogy lehetővé teszed mások számára, hogy kapcsolatba lépjenek veled a felhasználói vagy vitalapodon keresztül, anélkül, hogy fel kellene fedned a személyazonosságodat.",
-	"tog-requireemail": "Jelszó-visszaállító e-mailek küldése csak akkor, ha az e-mail-cím és a felhasználónév is meg van adva.",
+	"tog-requireemail": "Jelszó-visszaállító e-mailek küldése csak akkor, ha az e-mail-cím és a felhasználónév is meg van adva",
 	"prefs-help-requireemail": "Ez növeli a személyes adataid biztonságát, és segít a kéretlen e-mailek megelőzésében.",
 	"noemailprefs": "Az alábbi funkciók használatához meg kell adnod az e-mail-címedet.",
 	"emailnotauthenticated": "Az e-mail-címed még nincs megerősítve.\nAz alábbi funkciók egyikéről sem fogsz e-mailt kapni.",

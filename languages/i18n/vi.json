@@ -2362,7 +2362,7 @@
 	"protect-cascadeon": "Trang này hiện bị khóa vì nó được nhúng vào {{PLURAL:$1|những trang|trang}} dưới đây bị bật khóa theo tầng. Việc thay đổi thiết lập khóa của trang này sẽ không ảnh hưởng đến việc khóa theo tầng.",
 	"protect-default": "Cho phép mọi thành viên",
 	"protect-fallback": "Chỉ cho phép những người dùng có quyền “$1”",
-	"protect-level-autoconfirmed": "Chỉ cho phép các thành viên tự động xác nhận",
+	"protect-level-autoconfirmed": "Chỉ cho phép thành viên tự xác nhận",
 	"protect-level-sysop": "Chỉ cho phép bảo quản viên",
 	"protect-summary-cascade": "khóa theo tầng",
 	"protect-expiring": "hết hạn $1 (UTC)",
