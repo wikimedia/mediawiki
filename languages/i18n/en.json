@@ -2956,6 +2956,7 @@
 	"tooltip-ca-nstab-help": "View the help page",
 	"tooltip-ca-nstab-category": "View the category page",
 	"tooltip-minoredit": "Mark this as a minor edit",
+	"tooltip-move": "Move the page",
 	"tooltip-save": "Save your changes",
 	"tooltip-publish": "Publish your changes",
 	"tooltip-preview": "Preview your changes. Please use this before publishing.",

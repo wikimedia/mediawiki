@@ -16,6 +16,7 @@ use MediaWiki\Exception\ThrottledError;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Html\Html;
 use MediaWiki\JobQueue\Jobs\DoubleRedirectJob;
+use MediaWiki\Linker\Linker;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
@@ -805,6 +806,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				'label' => $this->msg( 'movepagebtn' )->text(),
 				'flags' => [ 'primary', 'progressive' ],
 				'type' => 'submit',
+				'accessKey' => Linker::accesskey( 'move' ),
+				'title' => Linker::titleAttrib( 'move' ),
 			] ),
 			[
 				'align' => 'top',

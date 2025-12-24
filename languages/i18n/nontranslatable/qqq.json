@@ -61,6 +61,7 @@
 	"accesskey-feed-rss": "{{doc-accesskey}}\nSee also:\n* {{msg-mw|Feed-rss}}\n* {{msg-mw|Accesskey-feed-rss}}\n* {{msg-mw|Tooltip-feed-rss}}",
 	"accesskey-import": "{{doc-accesskey}}",
 	"accesskey-minoredit": "{{doc-accesskey}}\nSee also:\n* {{msg-mw|Minoredit}}\n* {{msg-mw|Accesskey-minoredit}}\n* {{msg-mw|Tooltip-minoredit}}",
+	"accesskey-move": "{{doc-accesskey}}\n See also: \n* {{msg-mw|Tooltip-move}}",
 	"accesskey-n-currentevents": "{{doc-accesskey}}\nSee also:\n* {{msg-mw|Currentevents}}\n* {{msg-mw|Currentevents-url}}\n* {{msg-mw|Accesskey-n-currentevents}}\n* {{msg-mw|Tooltip-n-currentevents}}",
 	"accesskey-n-help": "{{doc-accesskey}}\nSee also:\n* {{msg-mw|Help}}\n* {{msg-mw|Accesskey-n-help}}\n* {{msg-mw|Tooltip-n-help}}",
 	"accesskey-n-help-mediawiki": "{{notranslate}}\n{{doc-accesskey}}\nAccess key for the MediaWiki help link, normally blank.",
