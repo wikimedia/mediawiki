@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Stefan2255",
 			"Teaparty",
 			"WikiPhoenix",
 			"Yupik"
@@ -24,7 +25,7 @@
 	"cdx-table-pager-button-last-page": "Sista sidan",
 	"cdx-table-pager-button-next-page": "Nästa sida",
 	"cdx-table-pager-button-prev-page": "Föregående sida",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 rad|$1 rader}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 artikel|$1 artiklar}}",
 	"cdx-table-pager-items-per-page-default": "Resultat per sida",
 	"cdx-table-pagination-status-message-determinate-long": "Visar resultat $1–$2 av $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 av $3",

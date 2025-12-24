@@ -3,6 +3,7 @@
 		"authors": [
 			"McDutchie",
 			"Sabelöga",
+			"Stefan2255",
 			"WikiPhoenix"
 		]
 	},
@@ -51,6 +52,12 @@
 	"rest-badtoken-missing": "Parametern <var>token</var> krävs om inte en CSRF-säker autentiseringsmetod används.",
 	"rest-badtoken-nosession": "CSRF-fel - ingen session.",
 	"rest-mock-error": "Testfel.",
+	"rest-param-desc-media-description-url": "URL till sidan som beskriver filen, inklusive licensinformation och annan metadata",
 	"rest-property-desc-mock-desc": "Falsk beskrivning.",
+	"rest-property-desc-page-license": "Information om wikins licens",
+	"rest-property-desc-page-license-url": "URL till den tillämpliga licensen",
+	"rest-property-desc-page-license-title": "Namn på tillämplig licens",
+	"rest-property-desc-page-license-url-html": "URL för den tillämpliga licensen baserat på inställningen $wgRightsUrl",
+	"rest-property-desc-page-license-title-html": "Namn på tillämplig licens baserat på inställningen $wgRightsText",
 	"rest-schema-desc-mock-desc": "Falsk beskrivning."
 }
