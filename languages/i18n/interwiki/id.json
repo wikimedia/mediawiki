@@ -15,7 +15,7 @@
 		]
 	},
 	"interwiki": "Lihat dan sunting data interwiki",
-	"interwiki-title-norights": "Lihat data interwiki",
+	"interwiki-title-norights": "Daftar interwiki",
 	"interwiki_intro": "Ini adalah sebuah laporan mengenai tabel interwiki, yang mendefinisikan jalan pintas awalan untuk menautkan ke wiki lain dan situs luar. Untuk saran penggunaan, silakan lihat [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki manualnya di MediaWiki.org].",
 	"interwiki-legend-label": "Keterangan",
 	"interwiki_prefix": "Prefiks",

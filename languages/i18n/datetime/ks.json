@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Iflaq"
+		]
 	},
 	"january": "جَنؤری",
 	"february": "فرؤری",
@@ -13,7 +15,7 @@
 	"september": "سیٚپٹَمبَر",
 	"october": "اَکتوٗبَر",
 	"november": "نَوَمبَر",
-	"december": "ڈیٚسَمبَر",
+	"december": "دَسَمبَر",
 	"january-gen": "جَنؤری",
 	"february-gen": "فَرؤری",
 	"march-gen": "مارٕچ",

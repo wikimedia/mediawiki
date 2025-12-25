@@ -889,7 +889,7 @@
 	"mergehistory-fail-no-change": "A laptörténet-összefésülő nem fésült össze egy változatot sem. Ellenőrizd a lap és idő paramétereket.",
 	"mergehistory-fail-permission": "Nincsen jogod a laptörténetek egyesítéséhez.",
 	"mergehistory-fail-self-merge": "A forrás- és céllap megegyezik.",
-	"mergehistory-fail-timestamps-overlap": "A forrásváltozatok átfedésben vannak vagy későbbiek a célváltozatoknál.",
+	"mergehistory-fail-timestamps-overlap": "A megadott időszak átfedésben van a céllap már létező lapváltozataival.",
 	"mergehistory-fail-toobig": "Nem lehetséges a laptörténetek egyesítése, mivel több mint $1 {{PLURAL:$1|változást}} kellene áthelyezni.",
 	"mergehistory-no-source": "Nem létezik forráslap $1 néven.",
 	"mergehistory-no-destination": "Nem létezik céllap $1 néven.",
