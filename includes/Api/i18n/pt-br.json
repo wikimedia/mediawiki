@@ -313,6 +313,7 @@
 	"apihelp-managetags-summary": "Execute tarefas de gerenciamento relacionadas às tags de alteração.",
 	"apihelp-managetags-param-operation": "Qual operação para executar:\n;create: Crie uma nova tag de mudança para uso manual.\n;delete: Remove uma tag de mudança do banco de dados, incluindo a remoção da tag de todas as revisões, entradas recentes de alterações e entradas de log em que é usada.\n;active: Ativar uma tag de alteração, permitindo aos usuários aplicá-la manualmente.\n; deactivate: Desative uma tag de alteração, impedindo que usuários a apliquem manualmente.",
 	"apihelp-managetags-paramvalue-operation-create": "Criar uma nova etiqueta de modificação para uso manual.",
+	"apihelp-managetags-paramvalue-operation-delete": "Remover da base de dados uma etiqueta de modificação, incluindo remover a etiqueta de todas as revisões, entradas nas mudanças recentes e entradas do registo onde ela é usada.",
 	"apihelp-managetags-param-tag": "Tag para criar, excluir, ativar ou desativar. Para a criação de tags, a tag não deve existir. Para exclusão de tags, a tag deve existir. Para a ativação da tag, a tag deve existir e não ser usada por uma extensão. Para a desativação da tag, a tag deve estar atualmente ativa e definida manualmente.",
 	"apihelp-managetags-param-reason": "Uma razão opcional para criar, excluir, ativar ou desativar a tag.",
 	"apihelp-managetags-param-ignorewarnings": "Se deseja ignorar quaisquer avisos emitidos durante a operação.",

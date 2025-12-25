@@ -638,7 +638,7 @@
 	"longpageerror": "sitelen sina li suli {{PLURAL:$1|Kilobyte}} $1. suli {{PLURAL:$2|Kilobyte}} $2 taso li ken.",
 	"readonlywarning": "<strong>o sona e ni a: wile sin la ilo sona li kiwen. sina ken ala pana e pali sina lon tenpo ni.</strong>\nsina ken sama e sitelen sina tawa lipu pi ilo sina, li ken kepeken lon tenpo kama.\n\njan pi kiwen iilo li toki e ni: $1",
 	"protectedpagewarning": "<strong>o sona e ni a: awen la jan lawa taso li ken ante e lipu ni.</strong> pini awen la pali nanpa pini li ni:",
-	"semiprotectedpagewarning": "<strong>o sona e ni:</strong> awen la {{int:group-autoconfirmed}} taso li ken ante e lipu ni. pini awen la pali nanpa pini li ni:",
+	"semiprotectedpagewarning": "<strong>o sona e ni:</strong> awen la kulupu \"{{int:group-autoconfirmed}}\" taso li ken ante e lipu ni. pini awen la pali nanpa pini li ni:",
 	"cascadeprotectedwarning": "<strong>o sona e ni:</strong> {{PLURAL:$1|lipu}} pi awen insa ni li kepeken lipu ni. ni la jan pi [[Special:ListGroupRights|ken ante ni taso]] li ken ante e ona.",
 	"titleprotectedwarning": "<strong>o sona e ni a: jan pi [[Special:ListGroupRights|ken]] pona taso li ken pali e lipu ni.</strong>\npini awen la pali nanpa pini li ni:",
 	"templatesused": "{{PLURAL:$1|lipu ni}} li lon lipu ni:",

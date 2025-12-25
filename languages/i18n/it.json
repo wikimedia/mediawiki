@@ -860,6 +860,7 @@
 	"undo-summary-anon": "Annullata la modifica [[Special:Diff/$1|$1]] di [[Special:Contributions/$2|$2]]",
 	"undo-summary-import": "Annullata la versione [[Special:Diff/$1|$1]] importata dall'utente [[:$2|$3]]",
 	"undo-summary-import2": "Annullata la versione [[Special:Diff/$1|$1]] importata dall'utente $2",
+	"undo-summary-multiple": "Annulla {{PLURAL:$1|$1 versione|$1 versioni}} da [[Special:Diff/$2|$2]] a [[Special:Diff/$3|$3]]",
 	"undo-summary-username-hidden": "Annullata la modifica [[Special:Diff/$1|$1]] di un utente nascosto",
 	"viewpagelogs": "Visualizza i registri relativi a questa pagina",
 	"viewpagelogs-lowercase": "visualizza i registri relativi a questa pagina",
