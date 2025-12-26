@@ -406,6 +406,7 @@ return [
 			'VirtualDomainsMapping' => [
 			],
 			'FileSchemaMigrationStage' => 3,
+			'ImageLinksSchemaMigrationStage' => 3,
 			'ExternalLinksDomainGaps' => [
 			],
 			'ContentHandlers' => [
@@ -2886,6 +2887,7 @@ return [
 			'LocalDatabases' => 'array',
 			'VirtualDomainsMapping' => 'object',
 			'FileSchemaMigrationStage' => 'integer',
+			'ImageLinksSchemaMigrationStage' => 'integer',
 			'ExternalLinksDomainGaps' => 'object',
 			'ContentHandlers' => 'object',
 			'NamespaceContentModels' => 'object',

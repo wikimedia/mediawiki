@@ -452,7 +452,6 @@ class NamespaceDupes extends Maintenance {
 			[ $namespaceField, $titleField ] = $linksMigration->getTitleFields( $table );
 			$schemaMigrationStage = $linksMigration::$mapping[$table]['config'] === -1
 				? MIGRATION_NEW
-				// @phan-suppress-next-line PhanTypeMismatchArgument
 				: $this->getConfig()->get( $linksMigration::$mapping[$table]['config'] );
 			$linkTargetLookup = $this->getServiceContainer()->getLinkTargetLookup();
 			$targetIdField = $linksMigration::$mapping[$table]['target_id'];

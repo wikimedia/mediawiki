@@ -58,11 +58,6 @@ class ExistenceLinksTable extends GenericPageLinksTable {
 	}
 
 	/** @inheritDoc */
-	protected function linksTargetNormalizationStage(): int {
-		return SCHEMA_COMPAT_NEW;
-	}
-
-	/** @inheritDoc */
 	protected function virtualDomain(): string {
 		return self::VIRTUAL_DOMAIN;
 	}

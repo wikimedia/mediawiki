@@ -8,6 +8,7 @@ namespace MediaWiki\Linker;
 
 use InvalidArgumentException;
 use MediaWiki\Config\Config;
+use MediaWiki\MainConfigNames;
 
 /**
  * Service for compat reading of links tables
@@ -45,7 +46,7 @@ class LinksMigration {
 		'categorylinks' => [
 			'config' => -1,
 			'page_id' => 'cl_from',
-			'ns' => 14,
+			'ns' => NS_CATEGORY,
 			'title' => 'cl_to',
 			'target_id' => 'cl_target_id',
 			'deprecated_configs' => [],
@@ -60,6 +61,14 @@ class LinksMigration {
 			'target_id' => 'exl_target_id',
 			'deprecated_configs' => [],
 		],
+		'imagelinks' => [
+			'config' => MainConfigNames::ImageLinksSchemaMigrationStage,
+			'page_id' => 'il_from',
+			'ns' => NS_FILE,
+			'title' => 'il_to',
+			'target_id' => 'il_target_id',
+			'deprecated_configs' => [],
+		],
 	];
 
 	/** @var string[] */
@@ -68,6 +77,7 @@ class LinksMigration {
 		'pl' => 'pagelinks',
 		'cl' => 'categorylinks',
 		'exl' => 'existencelinks',
+		'il' => 'imagelinks',
 	];
 
 	public function __construct( Config $config, LinkTargetLookup $linktargetLookup ) {
@@ -154,7 +164,6 @@ class LinksMigration {
 
 	private function isMigrationReadNew( string $table ): bool {
 		return self::$mapping[$table]['config'] === -1 ||
-			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->config->get( self::$mapping[$table]['config'] ) & SCHEMA_COMPAT_READ_NEW;
 	}
 
@@ -166,7 +175,6 @@ class LinksMigration {
 		}
 
 		if ( self::$mapping[$table]['config'] !== -1 && self::$mapping[$table]['deprecated_configs'] ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$config = $this->config->get( self::$mapping[$table]['config'] );
 			foreach ( self::$mapping[$table]['deprecated_configs'] as $deprecatedConfig ) {
 				if ( $config & $deprecatedConfig ) {

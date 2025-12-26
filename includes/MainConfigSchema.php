@@ -3324,6 +3324,22 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Migration stage for imagelinks tables
+	 *
+	 * Use the SCHEMA_COMPAT_XXX flags. Supported values:
+	 *
+	 *   - SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_OLD (SCHEMA_COMPAT_OLD)
+	 *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+	 *
+	 * History:
+	 *   - 1.46: Added
+	 */
+	public const ImageLinksSchemaMigrationStage = [
+		'default' => SCHEMA_COMPAT_OLD,
+		'type' => 'integer',
+	];
+
+	/**
 	 * Gaps in the externallinks table for certain domains.
 	 *
 	 * If you have identified certain domains for which externallinks searches are slow,

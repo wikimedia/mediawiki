@@ -57,13 +57,6 @@ class TemplateLinksTable extends GenericPageLinksTable {
 		return 'tl_target_id';
 	}
 
-	/**
-	 * Normalization stage of the links table (see T222224)
-	 */
-	protected function linksTargetNormalizationStage(): int {
-		return MIGRATION_NEW;
-	}
-
 	/** @inheritDoc */
 	protected function virtualDomain() {
 		return self::VIRTUAL_DOMAIN;

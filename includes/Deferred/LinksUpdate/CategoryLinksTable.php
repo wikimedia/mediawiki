@@ -382,10 +382,6 @@ class CategoryLinksTable extends TitleLinksTable {
 			$this->getDB(), NS_CATEGORY, $changedCategoryNames );
 	}
 
-	protected function linksTargetNormalizationStage(): int {
-		return SCHEMA_COMPAT_NEW;
-	}
-
 	/** @inheritDoc */
 	protected function virtualDomain(): string {
 		return self::VIRTUAL_DOMAIN;

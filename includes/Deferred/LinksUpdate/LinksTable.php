@@ -519,7 +519,7 @@ abstract class LinksTable {
 	 * Normalization stage of the links table (see T222224)
 	 */
 	protected function linksTargetNormalizationStage(): int {
-		return SCHEMA_COMPAT_OLD;
+		return SCHEMA_COMPAT_NEW;
 	}
 
 	/**
