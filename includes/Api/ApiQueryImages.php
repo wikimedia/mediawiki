@@ -9,6 +9,8 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
+use MediaWiki\Linker\LinksMigration;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -21,8 +23,11 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryImages extends ApiQueryGeneratorBase {
 
-	public function __construct( ApiQuery $query, string $moduleName ) {
+	private LinksMigration $linksMigration;
+
+	public function __construct( ApiQuery $query, string $moduleName, LinksMigration $linksMigration ) {
 		parent::__construct( $query, $moduleName, 'im' );
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function execute() {
@@ -45,19 +50,30 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 
 		$params = $this->extractRequestParams();
 
-		$this->addFields( [
-			'il_from',
-			'il_to'
-		] );
-		$this->addTables( 'imagelinks' );
+		$migrationStage = $this->getConfig()->get( MainConfigNames::ImageLinksSchemaMigrationStage );
+		$queryInfo = $this->linksMigration->getQueryInfo( 'imagelinks' );
+
+		$this->addTables( $queryInfo['tables'] );
+
+		if ( $migrationStage & SCHEMA_COMPAT_READ_NEW ) {
+			$this->addFields( [ 'il_from', 'il_to' => 'lt_title' ] );
+			$this->addJoinConds( $queryInfo['joins'] );
+		} else {
+			$this->addFields( [ 'il_from', 'il_to' ] );
+		}
+
 		$this->addWhereFld( 'il_from', array_keys( $pages ) );
 		if ( $params['continue'] !== null ) {
 			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string' ] );
 			$op = $params['dir'] == 'descending' ? '<=' : '>=';
-			$this->addWhere( $this->getDB()->buildComparison( $op, [
-				'il_from' => $cont[0],
-				'il_to' => $cont[1],
-			] ) );
+			$comparison = [ 'il_from' => $cont[0] ];
+			if ( $migrationStage & SCHEMA_COMPAT_READ_NEW ) {
+				$comparison['lt_namespace'] = NS_FILE;
+				$comparison['lt_title'] = $cont[1];
+			} else {
+				$comparison['il_to'] = $cont[1];
+			}
+			$this->addWhere( $this->getDB()->buildComparison( $op, $comparison ) );
 		}
 
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
@@ -86,7 +102,12 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				// No titles so no results
 				return;
 			}
-			$this->addWhereFld( 'il_to', $images );
+			if ( $migrationStage & SCHEMA_COMPAT_READ_NEW ) {
+				$this->addWhereFld( 'lt_title', $images );
+				$this->addWhereFld( 'lt_namespace', NS_FILE );
+			} else {
+				$this->addWhereFld( 'il_to', $images );
+			}
 		}
 
 		$this->setVirtualDomain( ImageLinksTable::VIRTUAL_DOMAIN );

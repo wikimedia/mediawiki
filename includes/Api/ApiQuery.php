@@ -93,6 +93,9 @@ class ApiQuery extends ApiBase {
 		],
 		'images' => [
 			'class' => ApiQueryImages::class,
+			'services' => [
+				'LinksMigration',
+			]
 		],
 		'imageinfo' => [
 			'class' => ApiQueryImageInfo::class,
