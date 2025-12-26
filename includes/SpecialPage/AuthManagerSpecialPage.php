@@ -450,11 +450,11 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * Attempts to do an authentication step with the submitted data.
 	 * Subclasses should probably call this from execute().
 	 * @return false|Status
-	 *    - false if there was no submit at all
-	 *    - a good Status wrapping an AuthenticationResponse if the form submit was successful.
-	 *      This does not necessarily mean that the authentication itself was successful; see the
-	 *      response for that.
-	 *    - a bad Status for form errors.
+	 *   - false if there was no submit at all
+	 *   - a good Status wrapping an AuthenticationResponse if the form submit was successful.
+	 *     This does not necessarily mean that the authentication itself was successful; see the
+	 *     response for that.
+	 *   - a bad Status for form errors.
 	 */
 	protected function trySubmit() {
 		$status = false;

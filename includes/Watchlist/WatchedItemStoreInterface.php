@@ -77,20 +77,18 @@ interface WatchedItemStoreInterface {
 	 *
 	 * @since 1.31
 	 *
-	 * @param array $targetsWithVisitThresholds array of pairs (PageReference $target,
-	 *     mixed $threshold),
-	 *        $threshold is:
-	 *        - a timestamp of the recent edit if $target exists (format accepted by wfTimestamp)
-	 *        - null if $target doesn't exist
+	 * @param array $targetsWithVisitThresholds array of pairs `(PageReference $target, mixed
+	 *   $threshold)`, where `$threshold` is:
+	 *   - a timestamp of the recent edit if $target exists (format accepted by wfTimestamp)
+	 *   - null if $target doesn't exist
 	 * @param int|null $minimumWatchers
 	 *
-	 * @return array multi-dimensional like $return[$namespaceId][$titleString] = $watchers,
-	 *         where $watchers is an int:
-	 *         - if the page exists, number of users watching who have visited the page recently
-	 *         - if the page doesn't exist, number of users that have the page on their watchlist
-	 *         - 0 means there are no visiting watchers or their number is below the
-	 *     minimumWatchers
-	 *         option (if passed).
+	 * @return array multi-dimensional like `$return[$namespaceId][$titleString] = $watchers`,
+	 *   where $watchers is an int:
+	 *   - if the page exists, number of users watching who have visited the page recently
+	 *   - if the page doesn't exist, number of users that have the page on their watchlist
+	 *   - 0 means there are no visiting watchers or their number is below the `minimumWatchers`
+	 *     option (if passed).
 	 */
 	public function countVisitingWatchersMultiple(
 		array $targetsWithVisitThresholds,
@@ -179,10 +177,10 @@ interface WatchedItemStoreInterface {
 	 * @param UserIdentity $user
 	 * @param PageReference[] $targets
 	 *
-	 * @return array multi-dimensional like $return[$namespaceId][$titleString] = $timestamp,
-	 *         where $timestamp is:
-	 *         - string|null value of wl_notificationtimestamp,
-	 *         - false if $target is not watched by $user.
+	 * @return array multi-dimensional like `$return[$namespaceId][$titleString] = $timestamp`,
+	 *   where $timestamp is:
+	 *   - string|null value of wl_notificationtimestamp,
+	 *   - false if $target is not watched by $user.
 	 */
 	public function getNotificationTimestampsBatch( UserIdentity $user, array $targets );
 

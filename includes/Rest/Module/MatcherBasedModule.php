@@ -77,8 +77,8 @@ abstract class MatcherBasedModule extends Module {
 	 * @param string|string[] $method The method(s) the route should be registered for
 	 * @param string $path The path pattern for the route
 	 * @param array $info Information to be associated with the route. Supported keys:
-	 *        - "spec": an object spec for use with ObjectFactory for constructing a Handler object.
-	 *        - "config": an array of configuration valies to be passed to Handler::initContext.
+	 *   - "spec": an object spec for use with ObjectFactory for constructing a Handler object.
+	 *   - "config": an array of configuration valies to be passed to Handler::initContext.
 	 */
 	protected function addRoute( $method, string $path, array $info ) {
 		$methods = (array)$method;

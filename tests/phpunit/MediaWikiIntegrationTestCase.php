@@ -2723,14 +2723,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * of jobs gets applied before trying to run jobs.
 	 *
 	 * @param array $assertOptions An associative array with the following options:
-	 *    - minJobs: The minimum number of jobs expected to be run, default 1
-	 *    - numJobs: The exact number of jobs expected to be run. If set, this
-	 *      overrides minJobs.
-	 *    - complete: Assert that the runner finished with "none-ready", which
-	 *      means execution stopped because the queue was empty. Default true.
-	 *    - ignoreErrorsMatchingFormat: Allow job errors where the error message
-	 *      matches the given format.
-	 * @param array $runOptions Options to pass through to JobRunner::run()
+	 *  - minJobs: The minimum number of jobs expected to be run, default 1
+	 *  - numJobs: The exact number of jobs expected to be run. If set, this
+	 *    overrides minJobs.
+	 *  - complete: Assert that the runner finished with "none-ready", which
+	 *    means execution stopped because the queue was empty. Default true.
+	 *  - ignoreErrorsMatchingFormat: Allow job errors where the error message
+	 *    matches the given format.
+	 * @param array $runOptions Options to pass through to {@link JobRunner::run()}
 	 *
 	 * @since 1.37
 	 */

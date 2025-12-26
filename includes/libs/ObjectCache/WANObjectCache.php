@@ -1986,11 +1986,11 @@ class WANObjectCache implements
 	 *   - a) The $keys argument must be the result of WANObjectCache::makeMultiKeys()
 	 *   - b) The $callback argument expects a function that returns an entity value, using
 	 *        boolean "false" if it does not exist. The callback takes the following arguments:
-	 *         - $id: ID of the entity to query
-	 *         - $oldValue: prior cache value or false if none was present
-	 *         - &$ttl: reference to the TTL to be assigned to the new value (alterable)
-	 *         - &$setOpts: reference to the new value set() options (alterable)
-	 *         - $oldAsOf: generation UNIX timestamp of $oldValue or null if not present
+	 *        - $id: ID of the entity to query
+	 *        - $oldValue: prior cache value or false if none was present
+	 *        - &$ttl: reference to the TTL to be assigned to the new value (alterable)
+	 *        - &$setOpts: reference to the new value set() options (alterable)
+	 *        - $oldAsOf: generation UNIX timestamp of $oldValue or null if not present
 	 *   - c) The return value is a map of (cache key => value) in the order of $keyedIds
 	 *
 	 * @see WANObjectCache::getWithSetCallback()

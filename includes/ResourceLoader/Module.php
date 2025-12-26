@@ -183,6 +183,7 @@ abstract class Module implements LoggerAwareInterface {
 	 *
 	 * For multi-file modules where require() is used to load one file from
 	 * another file, this should return an array structured as follows:
+	 * ```
 	 * [
 	 *     'files' => [
 	 *         'file1.js' => [ 'type' => 'script', 'content' => 'JS code' ],
@@ -191,29 +192,30 @@ abstract class Module implements LoggerAwareInterface {
 	 *     ],
 	 *     'main' => 'file1.js'
 	 * ]
-	 *
+	 * ```
 	 * For plain concatenated scripts, this can either return a string, or an
 	 * associative array similar to the one used for package files:
+	 * ```
 	 * [
 	 *     'plainScripts' => [
 	 *         [ 'content' => 'JS code' ],
 	 *         [ 'content' => 'JS code' ],
 	 *     ],
 	 * ]
-	 *
+	 * ```
 	 * @stable to override
 	 * @param Context $context
 	 * @return string|array JavaScript code (string), or multi-file array with the
 	 *   following keys:
-	 *     - files: An associative array mapping file name to file info structure
-	 *     - main: The name of the main script, a key in the files array
-	 *     - plainScripts: An array of file info structures to be concatenated and
-	 *       executed when the module is loaded.
+	 *   - files: An associative array mapping file name to file info structure
+	 *   - main: The name of the main script, a key in the files array
+	 *   - plainScripts: An array of file info structures to be concatenated and
+	 *     executed when the module is loaded.
 	 *   Each file info structure has the following keys:
-	 *     - type: May be "script", "script-vue" or "data". Optional, default "script".
-	 *     - content: The string content of the file
-	 *     - filePath: A FilePath object describing the location of the source file.
-	 *       This will be used to construct the source map during minification.
+	 *   - type: May be "script", "script-vue" or "data". Optional, default "script".
+	 *   - content: The string content of the file
+	 *   - filePath: A FilePath object describing the location of the source file.
+	 *     This will be used to construct the source map during minification.
 	 */
 	public function getScript( Context $context ) {
 		// Stub, override expected

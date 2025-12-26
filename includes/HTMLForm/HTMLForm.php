@@ -744,11 +744,11 @@ class HTMLForm extends ContextSource {
 	 * function if everything is kosher.
 	 * @stable to override
 	 * @return bool|string|array|Status
-	 *     - Bool true or a good Status object indicates success,
-	 *     - Bool false indicates no submission was attempted,
-	 *     - Anything else indicates failure. The value may be a fatal Status
-	 *       object, an HTML string, or an array of arrays (message keys and
-	 *       params) or strings (message keys)
+	 *   - Bool true or a good Status object indicates success,
+	 *   - Bool false indicates no submission was attempted,
+	 *   - Anything else indicates failure. The value may be a fatal Status
+	 *     object, an HTML string, or an array of arrays (message keys and
+	 *     params) or strings (message keys)
 	 */
 	public function trySubmit() {
 		$valid = true;

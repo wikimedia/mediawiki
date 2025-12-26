@@ -164,7 +164,6 @@ class UpdateQueryBuilder {
 	 *
 	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
-	 * @param-taint $conds exec_sql_numkey
 	 *
 	 * May be either a string containing a single condition, or an array of
 	 * conditions. If an array is given, the conditions constructed from each
@@ -172,28 +171,29 @@ class UpdateQueryBuilder {
 	 *
 	 * Array elements may take one of two forms:
 	 *
-	 *   - Elements with a numeric key are interpreted as raw SQL fragments.
-	 *   - Elements with a string key are interpreted as equality conditions,
-	 *     where the key is the field name.
-	 *     - If the value of such an array element is a scalar (such as a
-	 *       string), it will be treated as data and thus quoted appropriately.
-	 *       If it is null, an IS NULL clause will be added.
-	 *     - If the value is an array, an IN (...) clause will be constructed
-	 *       from its non-null elements, and an IS NULL clause will be added
-	 *       if null is present, such that the field may match any of the
-	 *       elements in the array. The non-null elements will be quoted.
+	 * - Elements with a numeric key are interpreted as raw SQL fragments.
+	 * - Elements with a string key are interpreted as equality conditions,
+	 *   where the key is the field name.
+	 *   - If the value of such an array element is a scalar (such as a
+	 *     string), it will be treated as data and thus quoted appropriately.
+	 *     If it is null, an IS NULL clause will be added.
+	 *   - If the value is an array, an IN (...) clause will be constructed
+	 *     from its non-null elements, and an IS NULL clause will be added
+	 *     if null is present, such that the field may match any of the
+	 *     elements in the array. The non-null elements will be quoted.
 	 *
 	 * Note that expressions are often DBMS-dependent in their syntax.
 	 * DBMS-independent wrappers are provided for constructing several types of
 	 * expression commonly used in condition queries. See:
-	 *    - IDatabase::buildLike()
-	 *    - IDatabase::conditional()
+	 * - {@link ISQLPlatform::buildLike()}
+	 * - {@link ISQLPlatform::conditional()}
 	 *
 	 * Untrusted user input is safe in the values of string keys, however untrusted
 	 * input must not be used in the array key names or in the values of numeric keys.
 	 * Escaping of untrusted input used in values of numeric keys should be done via
-	 * IDatabase::addQuotes()
+	 * {@link IDatabase::addQuotes()}.
 	 *
+	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
 	public function where( $conds ) {

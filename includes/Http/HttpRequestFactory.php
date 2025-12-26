@@ -56,30 +56,30 @@ class HttpRequestFactory {
 	 * Generate a new MWHttpRequest object
 	 * @param string $url Url to use
 	 * @param array $options Possible keys for the array:
-	 *    - timeout             Timeout length in seconds or 'default'
-	 *    - connectTimeout      Timeout for connection, in seconds (curl only) or 'default'
-	 *    - maxTimeout          Override for the configured maximum timeout. This should not be
-	 *                          used in production code.
-	 *    - maxConnectTimeout   Override for the configured maximum connect timeout. This should
-	 *                          not be used in production code.
-	 *    - postData            An array of key-value pairs or a url-encoded form data
-	 *    - proxy               The proxy to use.
-	 *                          Otherwise it will use $wgHTTPProxy or $wgLocalHTTPProxy (if set)
-	 *    - noProxy             Don't use any proxy at all. Takes precedence over proxy value(s).
-	 *    - sslVerifyHost       Verify hostname against certificate
-	 *    - sslVerifyCert       Verify SSL certificate
-	 *    - caInfo              Provide CA information
-	 *    - maxRedirects        Maximum number of redirects to follow (defaults to 5)
-	 *    - followRedirects     Whether to follow redirects (defaults to false).
-	 *                          Note: this should only be used when the target URL is trusted,
-	 *                          to avoid attacks on intranet services accessible by HTTP.
-	 *    - userAgent           A user agent, if you want to override the default
-	 *                          "MediaWiki/{MW_VERSION}".
-	 *    - logger              A \Psr\Logger\LoggerInterface instance for debug logging
-	 *    - username            Username for HTTP Basic Authentication
-	 *    - password            Password for HTTP Basic Authentication
-	 *    - originalRequest     Information about the original request (as a WebRequest object or
-	 *                          an associative array with 'ip' and 'userAgent').
+	 *   - timeout             Timeout length in seconds or 'default'
+	 *   - connectTimeout      Timeout for connection, in seconds (curl only) or 'default'
+	 *   - maxTimeout          Override for the configured maximum timeout. This should not be
+	 *                         used in production code.
+	 *   - maxConnectTimeout   Override for the configured maximum connect timeout. This should
+	 *                         not be used in production code.
+	 *   - postData            An array of key-value pairs or a url-encoded form data
+	 *   - proxy               The proxy to use.
+	 *                         Otherwise it will use $wgHTTPProxy or $wgLocalHTTPProxy (if set)
+	 *   - noProxy             Don't use any proxy at all. Takes precedence over proxy value(s).
+	 *   - sslVerifyHost       Verify hostname against certificate
+	 *   - sslVerifyCert       Verify SSL certificate
+	 *   - caInfo              Provide CA information
+	 *   - maxRedirects        Maximum number of redirects to follow (defaults to 5)
+	 *   - followRedirects     Whether to follow redirects (defaults to false).
+	 *                         Note: this should only be used when the target URL is trusted,
+	 *                         to avoid attacks on intranet services accessible by HTTP.
+	 *   - userAgent           A user agent, if you want to override the default
+	 *                         "MediaWiki/{MW_VERSION}".
+	 *   - logger              A \Psr\Logger\LoggerInterface instance for debug logging
+	 *   - username            Username for HTTP Basic Authentication
+	 *   - password            Password for HTTP Basic Authentication
+	 *   - originalRequest     Information about the original request (as a WebRequest object or
+	 *                         an associative array with 'ip' and 'userAgent').
 	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:string|array,proxy?:?string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:?string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,method?:string,logger?:\Psr\Log\LoggerInterface,username?:string,password?:string,originalRequest?:\MediaWiki\Request\WebRequest|array{ip:string,userAgent:string}} $options
 	 * @param string $caller The method making this request, for profiling @phan-mandatory-param

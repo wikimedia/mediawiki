@@ -471,11 +471,11 @@ class LinksUpdate extends DataUpdate {
 	 * @since 1.38
 	 * @param string $tableName The name of any table that links to local titles
 	 * @param int $setType One of:
-	 *    - LinksTable::INSERTED: The inserted links
-	 *    - LinksTable::DELETED: The deleted links
-	 *    - LinksTable::CHANGED: Both the inserted and deleted links
-	 *    - LinksTable::OLD: The old set of links, loaded before the update
-	 *    - LinksTable::NEW: The new set of links from the ParserOutput
+	 *   - LinksTable::INSERTED: The inserted links
+	 *   - LinksTable::DELETED: The deleted links
+	 *   - LinksTable::CHANGED: Both the inserted and deleted links
+	 *   - LinksTable::OLD: The old set of links, loaded before the update
+	 *   - LinksTable::NEW: The new set of links from the ParserOutput
 	 * @return iterable<PageReferenceValue>
 	 * @phan-return \Traversable
 	 */

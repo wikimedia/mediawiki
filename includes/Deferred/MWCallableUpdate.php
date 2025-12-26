@@ -23,8 +23,8 @@ class MWCallableUpdate
 
 	/**
 	 * @param callable $callback One of the following:
-	 *    - A Closure callback that takes the caller name as its argument
-	 *    - A non-Closure callback that takes no arguments
+	 *  - A Closure callback that takes the caller name as its argument
+	 *  - A non-Closure callback that takes no arguments
 	 * @param string $fname Calling method @phan-mandatory-param
 	 * @param IDatabase|IDatabase[] $dependeeDbws DB handles which might have pending writes
 	 *  upon which this update depends. If any of the handles already has an open transaction,

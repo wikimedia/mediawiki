@@ -28,20 +28,20 @@ class WRStatsFactory {
 	 * @param array $specs An array of metric specification arrays, indexed by
 	 *   name, where each element is an associative array with the following
 	 *   keys (all optional):
-	 *     - type: (string) Always "counter"
-	 *     - resolution: (int|float) The resolution of the counter value.
-	 *       For example, if this is 0.01, counters will be rounded to two
-	 *       decimal places. Necessary because we support backends that only
-	 *       store integers, but we present an interface that allows float
-	 *       values.
-	 *     - sequences: (array) An array of sequence specification, each
-	 *       sequence spec being an associative array with the following keys:
-	 *         - expiry: (int|float) The expiry time of the counters, in seconds.
-	 *         - timeStep: (int|float) The time duration represented by a counter
-	 *           bucket. If this is too small, many buckets will be required,
-	 *           making fetches slower. If this is too large, there will be some
-	 *           jitter in the resulting rates as the current time moves from one
-	 *           bucket to the next.
+	 *   - type: (string) Always "counter"
+	 *   - resolution: (int|float) The resolution of the counter value.
+	 *     For example, if this is 0.01, counters will be rounded to two
+	 *     decimal places. Necessary because we support backends that only
+	 *     store integers, but we present an interface that allows float
+	 *     values.
+	 *   - sequences: (array) An array of sequence specification, each
+	 *     sequence spec being an associative array with the following keys:
+	 *     - expiry: (int|float) The expiry time of the counters, in seconds.
+	 *     - timeStep: (int|float) The time duration represented by a counter
+	 *       bucket. If this is too small, many buckets will be required,
+	 *       making fetches slower. If this is too large, there will be some
+	 *       jitter in the resulting rates as the current time moves from one
+	 *       bucket to the next.
 	 *
 	 * @param string|string[] $prefix A string or array of strings to prefix
 	 *   before storage keys.

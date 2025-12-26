@@ -167,16 +167,16 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	/**
 	 * @param array $mocks Associative array providing mocks to use when constructing the
 	 *   WatchedItemStore. Anything not provided will fall back to a default. Valid keys:
-	 *     * lbFactory
-	 *     * db
-	 *     * queueGroup
-	 *     * cache
-	 *     * readOnlyMode
-	 *     * nsInfo
-	 *     * revisionLookup
-	 *     * expiryEnabled
-	 *     * maxExpiryDuration
-	 *     * watchlistPurgeRate
+	 *   * lbFactory
+	 *   * db
+	 *   * queueGroup
+	 *   * cache
+	 *   * readOnlyMode
+	 *   * nsInfo
+	 *   * revisionLookup
+	 *   * expiryEnabled
+	 *   * maxExpiryDuration
+	 *   * watchlistPurgeRate
 	 * @return WatchedItemStore
 	 */
 	private function newWatchedItemStore( array $mocks = [] ): WatchedItemStore {

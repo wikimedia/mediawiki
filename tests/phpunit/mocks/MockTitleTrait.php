@@ -19,15 +19,15 @@ trait MockTitleTrait {
 	/**
 	 * @param string $text
 	 * @param array $props Additional properties to set. Supported keys:
-	 *        - id: int
-	 *        - namespace: int
-	 *        - fragment: string
-	 *        - interwiki: string
-	 *        - redirect: bool
-	 *        - language: Language
-	 *        - contentModel: string
-	 *        - revision: int
-	 *        - validRedirect: bool
+	 *   - id: int
+	 *   - namespace: int
+	 *   - fragment: string
+	 *   - interwiki: string
+	 *   - redirect: bool
+	 *   - language: Language
+	 *   - contentModel: string
+	 *   - revision: int
+	 *   - validRedirect: bool
 	 *
 	 * @return Title&MockObject
 	 */

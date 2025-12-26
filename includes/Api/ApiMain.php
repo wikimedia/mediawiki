@@ -835,26 +835,26 @@ class ApiMain extends ApiBase {
 	 * Set the type of caching headers which will be sent.
 	 *
 	 * @param string $mode One of:
-	 *    - 'public':     Cache this object in public caches, if the maxage or smaxage
-	 *         parameter is set, or if setCacheMaxAge() was called. If a maximum age is
-	 *         not provided by any of these means, the object will be private.
-	 *    - 'private':    Cache this object only in private client-side caches.
-	 *    - 'anon-public-user-private': Make this object cacheable for logged-out
-	 *         users, but private for logged-in users. IMPORTANT: If this is set, it must be
-	 *         set consistently for a given URL, it cannot be set differently depending on
-	 *         things like the contents of the database, or whether the user is logged in.
+	 *  - 'public':     Cache this object in public caches, if the maxage or smaxage
+	 *    parameter is set, or if setCacheMaxAge() was called. If a maximum age is
+	 *    not provided by any of these means, the object will be private.
+	 *  - 'private':    Cache this object only in private client-side caches.
+	 *  - 'anon-public-user-private': Make this object cacheable for logged-out
+	 *    users, but private for logged-in users. IMPORTANT: If this is set, it must be
+	 *    set consistently for a given URL, it cannot be set differently depending on
+	 *    things like the contents of the database, or whether the user is logged in.
 	 *
-	 *  If the wiki does not allow anonymous users to read it, the mode set here
-	 *  will be ignored, and private caching headers will always be sent. In other words,
-	 *  the "public" mode is equivalent to saying that the data sent is as public as a page
-	 *  view.
+	 * If the wiki does not allow anonymous users to read it, the mode set here
+	 * will be ignored, and private caching headers will always be sent. In other words,
+	 * the "public" mode is equivalent to saying that the data sent is as public as a page
+	 * view.
 	 *
-	 *  For user-dependent data, the private mode should generally be used. The
-	 *  anon-public-user-private mode should only be used where there is a particularly
-	 *  good performance reason for caching the anonymous response, but where the
-	 *  response to logged-in users may differ, or may contain private data.
+	 * For user-dependent data, the private mode should generally be used. The
+	 * anon-public-user-private mode should only be used where there is a particularly
+	 * good performance reason for caching the anonymous response, but where the
+	 * response to logged-in users may differ, or may contain private data.
 	 *
-	 *  If this function is never called, then the default will be the private mode.
+	 * If this function is never called, then the default will be the private mode.
 	 */
 	public function setCacheMode( $mode ) {
 		if ( !in_array( $mode, [ 'private', 'public', 'anon-public-user-private' ] ) ) {

@@ -307,8 +307,8 @@ interface IDatabase extends IReadableDatabase {
 	 * @param string|array $options Combination map/list where each string-keyed entry maps
 	 *   a non-boolean option to the option parameters and each integer-keyed value is the
 	 *   name of a boolean option. Supported options are:
-	 *     - IGNORE: Boolean: skip insertion of rows that would cause unique key conflicts.
-	 *       IDatabase::affectedRows() can be used to determine how many rows were inserted.
+	 *   - IGNORE: Boolean: skip insertion of rows that would cause unique key conflicts.
+	 *     IDatabase::affectedRows() can be used to determine how many rows were inserted.
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError If an error occurs, {@see query}
 	 */
@@ -345,9 +345,9 @@ interface IDatabase extends IReadableDatabase {
 	 * @param string|array $options Combination map/list where each string-keyed entry maps
 	 *   a non-boolean option to the option parameters and each integer-keyed value is the
 	 *   name of a boolean option. Supported options are:
-	 *     - IGNORE: Boolean: skip update of rows that would cause unique key conflicts.
-	 *       IDatabase::affectedRows() includes all matching rows,
-	 *       that includes also rows not updated due to key conflict.
+	 *   - IGNORE: Boolean: skip update of rows that would cause unique key conflicts.
+	 *     IDatabase::affectedRows() includes all matching rows,
+	 *     that includes also rows not updated due to key conflict.
 	 * @param-taint $options none
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @return-taint none
@@ -363,12 +363,12 @@ interface IDatabase extends IReadableDatabase {
 	 * caller to de-duplicate such input beforehand.
 	 *
 	 * Note some important implications of the deletion semantics:
-	 *   - If the table has an AUTOINCREMENT column and $rows omit that column, then any
-	 *     conflicting existing rows will be replaced with newer having higher values for
-	 *     that column, even if nothing else changed.
-	 *   - There might be worse contention than upsert() due to the use of gap-locking.
-	 *     This does not apply to RDBMS types that use predicate locking nor those that
-	 *     just lock the whole table or databases anyway.
+	 * - If the table has an AUTOINCREMENT column and $rows omit that column, then any
+	 *   conflicting existing rows will be replaced with newer having higher values for
+	 *   that column, even if nothing else changed.
+	 * - There might be worse contention than upsert() due to the use of gap-locking.
+	 *   This does not apply to RDBMS types that use predicate locking nor those that
+	 *   just lock the whole table or databases anyway.
 	 *
 	 * This operation will be seen by affectedRows()/insertId() as one query statement,
 	 * regardless of how many statements are actually sent by the class implementation.
@@ -379,8 +379,8 @@ interface IDatabase extends IReadableDatabase {
 	 * @param string|string[]|string[][] $uniqueKeys Column name or non-empty list of column
 	 *   name lists that define all applicable unique keys on the table. There must only be
 	 *   one such key. Each unique key on the table is "applicable" unless either:
-	 *     - It involves an AUTOINCREMENT column for which no values are assigned in $rows
-	 *     - It involves a UUID column for which newly generated UUIDs are assigned in $rows
+	 *   - It involves an AUTOINCREMENT column for which no values are assigned in $rows
+	 *   - It involves a UUID column for which newly generated UUIDs are assigned in $rows
 	 * @param array|array[] $rows Row(s) to insert, in the form of either:
 	 *   - A string-keyed map of (column name => value) defining a new row. Values are
 	 *     treated as literals and quoted appropriately; null is interpreted as NULL.
@@ -416,8 +416,8 @@ interface IDatabase extends IReadableDatabase {
 	 * @param string|string[]|string[][] $uniqueKeys Column name or non-empty list of column
 	 *   name lists that define all applicable unique keys on the table. There must only be
 	 *   one such key. Each unique key on the table is "applicable" unless either:
-	 *     - It involves an AUTOINCREMENT column for which no values are assigned in $rows
-	 *     - It involves a UUID column for which newly generated UUIDs are assigned in $rows
+	 *   - It involves an AUTOINCREMENT column for which no values are assigned in $rows
+	 *   - It involves a UUID column for which newly generated UUIDs are assigned in $rows
 	 * @param array<string,?scalar|RawSQLValue>|array<int,string> $set
 	 *   Combination map/list where each string-keyed entry maps a column
 	 *   to a literal assigned value and each integer-keyed value is a SQL assignment expression

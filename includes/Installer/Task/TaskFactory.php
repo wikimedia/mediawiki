@@ -113,16 +113,16 @@ class TaskFactory {
 	 * @param array $spec Associative array of options. If "callback" is present,
 	 *   then the spec is a callback spec. Otherwise, the spec is an
 	 *   ObjectFactory spec and must contain "class" or "factory".
-	 *     - callback: A callable to call when the task is executed
-	 *     - name: The task name (callback only)
-	 *     - description: The task description (callback only)
-	 *     - after: A task or list of tasks that this task must run after (callback only)
-	 *     - postInstall: If true, the task will run after all install tasks (callback only)
-	 *     - class: The class name (ObjectFactory only)
-	 *     - factory: A factory function (ObjectFactory only)
-	 *     - args: Arguments to pass to the constructor (ObjectFactory only)
-	 *     - schemaBasePath: The base path used for SQL files. This is populated by
-	 *       ExtensionProcessor if the spec comes from an extension.
+	 *   - callback: A callable to call when the task is executed
+	 *   - name: The task name (callback only)
+	 *   - description: The task description (callback only)
+	 *   - after: A task or list of tasks that this task must run after (callback only)
+	 *   - postInstall: If true, the task will run after all install tasks (callback only)
+	 *   - class: The class name (ObjectFactory only)
+	 *   - factory: A factory function (ObjectFactory only)
+	 *   - args: Arguments to pass to the constructor (ObjectFactory only)
+	 *   - schemaBasePath: The base path used for SQL files. This is populated by
+	 *     ExtensionProcessor if the spec comes from an extension.
 	 * @return Task
 	 */
 	public function create( array $spec ): Task {

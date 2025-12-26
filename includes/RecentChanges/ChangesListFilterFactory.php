@@ -15,37 +15,37 @@ class ChangesListFilterFactory {
 	/**
 	 * Register filters from an array of group definitions
 	 *
-	 *  Groups are displayed to the user in the structured UI.  However, if necessary,
-	 *  all of the filters in a group can be configured to only display on the
-	 *  unstructured UI, in which case you don't need a group title.
+	 * Groups are displayed to the user in the structured UI.  However, if necessary,
+	 * all of the filters in a group can be configured to only display on the
+	 * unstructured UI, in which case you don't need a group title.
 	 *
-	 *  The order of both groups and filters is significant; first is top-most priority,
-	 *  descending from there.
+	 * The order of both groups and filters is significant; first is top-most priority,
+	 * descending from there.
 	 *
 	 * @param ChangesListFilterGroupContainer $container
 	 * @param array $definitions An array of associative arrays each consisting
 	 *   of parameters passed to the group class, and also the following
 	 *   parameters recognised by the factory:
-	 *     - class: The name of the group class
-	 *     - requireConfig: An associative array mapping a required config name
-	 *       to its value. If a configuration item with that name and value was
-	 *       not passed to the factory constructor, the group will not be
-	 *       registered.
-	 *     - filters: The following filter properties are recognised, in
-	 *       addition to those used by the filter class constructor:
-	 *         - requireConfig: As for the group
-	 *         - subsets: string[] A list of filter names in the same group
-	 *           which are subsets of this filter.
-	 *         - conflictsWith: An associative array mapping the group name to
-	 *           an associative array mapping the conflicting filter name to an
-	 *           associative array of conflict options which may include
-	 *           "globalKey", "forwardKey" and "backwardKey", which are passed
-	 *           to ChangesListFilter::conflictsWith().
-	 *         - conflictOptions: Defaults for "globalKey", "forwardKey" and
-	 *           "backwardKey" in conflictsWith.
-	 *         - showHideSuffix: This is prefixed with the factory config option
-	 *           "showHidePrefix" and then passed to the filter as "showHide".
-	 * * @phan-param array<int,array{class:class-string<ChangesListFilterGroup>,filters:array}> $definitions
+	 *   - class: The name of the group class
+	 *   - requireConfig: An associative array mapping a required config name
+	 *     to its value. If a configuration item with that name and value was
+	 *     not passed to the factory constructor, the group will not be
+	 *     registered.
+	 *   - filters: The following filter properties are recognised, in
+	 *     addition to those used by the filter class constructor:
+	 *     - requireConfig: As for the group
+	 *     - subsets: string[] A list of filter names in the same group
+	 *       which are subsets of this filter.
+	 *     - conflictsWith: An associative array mapping the group name to
+	 *       an associative array mapping the conflicting filter name to an
+	 *       associative array of conflict options which may include
+	 *       "globalKey", "forwardKey" and "backwardKey", which are passed
+	 *       to ChangesListFilter::conflictsWith().
+	 *     - conflictOptions: Defaults for "globalKey", "forwardKey" and
+	 *       "backwardKey" in conflictsWith.
+	 *     - showHideSuffix: This is prefixed with the factory config option
+	 *       "showHidePrefix" and then passed to the filter as "showHide".
+	 * @phan-param array<int,array{class:class-string<ChangesListFilterGroup>,filters:array}> $definitions
 	 */
 	public function registerFiltersFromDefinitions(
 		ChangesListFilterGroupContainer $container,

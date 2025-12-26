@@ -163,16 +163,16 @@ class BlockUser {
 	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
 	 * @param string $reason Reason of the block
 	 * @param bool[] $blockOptions
-	 *    Valid options:
-	 *    - isCreateAccountBlocked      : Are account creations prevented?
-	 *    - isEmailBlocked              : Is emailing other users prevented?
-	 *    - isHardBlock                 : Are named (non-temporary) users prevented from editing?
-	 *    - isAutoblocking              : Should this block spread to others to
-	 *                                    limit block evasion?
-	 *    - isUserTalkEditBlocked       : Is editing blocked user's own talk page prevented?
-	 *    - isHideUser                  : Should blocked user's name be hidden (needs hideuser)?
-	 *    - isPartial                   : Is this block partial? This is ignored when
-	 *                                    blockRestrictions is not an empty array.
+	 *   Valid options:
+	 *   - isCreateAccountBlocked      : Are account creations prevented?
+	 *   - isEmailBlocked              : Is emailing other users prevented?
+	 *   - isHardBlock                 : Are named (non-temporary) users prevented from editing?
+	 *   - isAutoblocking              : Should this block spread to others to
+	 *                                   limit block evasion?
+	 *   - isUserTalkEditBlocked       : Is editing blocked user's own talk page prevented?
+	 *   - isHideUser                  : Should blocked user's name be hidden (needs hideuser)?
+	 *   - isPartial                   : Is this block partial? This is ignored when
+	 *                                   blockRestrictions is not an empty array.
 	 * @param AbstractRestriction[] $blockRestrictions
 	 * @param string[] $tags Tags that should be assigned to the log entry
 	 */
@@ -406,14 +406,14 @@ class BlockUser {
 	 * @param string|bool $conflictMode The insertion conflict mode. Ignored if
 	 *   a block to update was specified in the constructor, for example by
 	 *   calling UserBlockCommandFactory::newUpdateBlock(). May be one of:
-	 *    - self::CONFLICT_FAIL: Allow the block only if there are no prior
-	 *      blocks on the same target.
-	 *    - self::CONFLICT_NEW: Create an additional block regardless of
-	 *      pre-existing blocks on the same target. This is allowed only if
-	 *      $wgEnableMultiBlocks is true.
-	 *    - self::CONFLICT_REBLOCK: This value is deprecated. If there is one
-	 *      prior block on the target, update it. If there is more than one block,
-	 *      throw an exception.
+	 *   - self::CONFLICT_FAIL: Allow the block only if there are no prior
+	 *     blocks on the same target.
+	 *   - self::CONFLICT_NEW: Create an additional block regardless of
+	 *     pre-existing blocks on the same target. This is allowed only if
+	 *     $wgEnableMultiBlocks is true.
+	 *   - self::CONFLICT_REBLOCK: This value is deprecated. If there is one
+	 *     prior block on the target, update it. If there is more than one block,
+	 *     throw an exception.
 	 *
 	 * @return Status If the block is successful, the value of the returned
 	 *   Status is an instance of a newly placed block.

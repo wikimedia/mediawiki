@@ -31,11 +31,11 @@ trait RestTestTrait {
 
 	/**
 	 * @param array $params Constructor parameters, as an associative array.
-	 *        In addition to the actual parameters, the following pseudo-parameters
-	 *        are supported:
-	 *        - 'config': an associative array of configuration variables, used
-	 *          to construct the 'options' parameter.
-	 *        - 'request': A request object, used to construct the 'validator' parameter.
+	 *   In addition to the actual parameters, the following pseudo-parameters
+	 *   are supported:
+	 *   - 'config': an associative array of configuration variables, used
+	 *     to construct the 'options' parameter.
+	 *   - 'request': A request object, used to construct the 'validator' parameter.
 	 * @return Router
 	 */
 	private function newRouter( array $params = [] ) {

@@ -290,11 +290,11 @@ class BlockManager {
 	 *   non-composite Block. It should return true, to keep that component,
 	 *   or false, to remove that component.
 	 * @return Block|null
-	 *    - If there are zero remaining elements, null will be returned.
-	 *    - If there is one remaining element, a DatabaseBlock or some other
-	 *      non-composite block will be returned.
-	 *    - If there is more than one remaining element, a CompositeBlock will
-	 *      be returned.
+	 *   - If there are zero remaining elements, null will be returned.
+	 *   - If there is one remaining element, a DatabaseBlock or some other
+	 *     non-composite block will be returned.
+	 *   - If there is more than one remaining element, a CompositeBlock will
+	 *     be returned.
 	 */
 	public function filter( ?Block $block, $callback ) {
 		if ( !$block ) {

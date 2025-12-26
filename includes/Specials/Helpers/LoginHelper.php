@@ -71,10 +71,10 @@ class LoginHelper extends ContextSource {
 	 * (which will change it from redirect to link mode).
 	 *
 	 * @param string $type One of the following:
-	 *    - error: display a return to link ignoring $wgRedirectOnLogin
-	 *    - success: display a return to link using $wgRedirectOnLogin if needed
-	 *    - successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
-	 *    - signup: used during signup, functionally identical to 'success'
+	 *   - error: display a return to link ignoring $wgRedirectOnLogin
+	 *   - success: display a return to link using $wgRedirectOnLogin if needed
+	 *   - successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
+	 *   - signup: used during signup, functionally identical to 'success'
 	 * @param string $returnTo Title of page to return to. Overriden by $wgRedirectOnLogin
 	 *   when that is set (and $type is not 'error').
 	 * @param array|string $returnToQuery Query parameters to return to.

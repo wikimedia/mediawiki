@@ -124,20 +124,21 @@ class JobRunner {
 	 *   - status : ok/failed
 	 *   - error  : any error message string
 	 *   - time   : the job run time in ms
+	 *
 	 * The response map also has:
 	 *   - backoffs : the (job/queue type => seconds) map of backoff times
 	 *   - elapsed  : the total time spent running tasks in ms
 	 *   - reached  : the reason the script finished, one of (none-ready, job-limit, time-limit,
-	 *  memory-limit, exception)
+	 *     memory-limit, exception)
 	 *
 	 * This method outputs status information only if a debug handler was set.
 	 * Any exceptions are caught and logged, but are not reported as output.
 	 *
 	 * @param array $options Map of parameters:
-	 *    - type     : specified job/queue type (or false for the default types)
-	 *    - maxJobs  : maximum number of jobs to run
-	 *    - maxTime  : maximum time in seconds before stopping
-	 *    - throttle : whether to respect job backoff configuration
+	 *   - type     : specified job/queue type (or false for the default types)
+	 *   - maxJobs  : maximum number of jobs to run
+	 *   - maxTime  : maximum time in seconds before stopping
+	 *   - throttle : whether to respect job backoff configuration
 	 * @return array Summary response that can easily be JSON serialized
 	 * @throws JobQueueError
 	 */

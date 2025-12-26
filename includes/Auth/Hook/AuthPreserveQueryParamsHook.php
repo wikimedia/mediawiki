@@ -19,15 +19,17 @@ interface AuthPreserveQueryParamsHook {
 	 *
 	 * @since 1.43
 	 *
-	 * @param array &$params Query parameters to preserve, name => value
-	 *    Typically, the hook would do something like
-	 *      $params['foo'] = $options['request']->getRawVal( 'foo' );
+	 * @param array &$params Query parameters to preserve, `name` => `value`.
+	 *   Typically, the hook would do something like:
+	 *   ```
+	 *   $params['foo'] = $options['request']->getRawVal( 'foo' );
+	 *   ```
 	 * @param array $options Information about the purpose of the URL that's being generated
-	 *    - request (WebRequest): The request object. Present since 1.44.
-	 *    - reset (bool, default false): Reset the authentication process, i.e. omit
-	 *      parameters which are related to continuing in-progress authentication.
-	 *      This is used e.g. in the link for switching from the login form to the
-	 *      signup form.
+	 *   - request (WebRequest): The request object. Present since 1.44.
+	 *   - reset (bool, default false): Reset the authentication process, i.e. omit
+	 *     parameters which are related to continuing in-progress authentication.
+	 *     This is used e.g. in the link for switching from the login form to the
+	 *     signup form.
 	 * @phan-param array<string, string> $params
 	 * @phan-param array{request: \MediaWiki\Request\WebRequest, reset?: bool} $options
 	 *

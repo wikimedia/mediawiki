@@ -52,13 +52,13 @@ class PageDataRequestHandler {
 	 *
 	 * @param string|null $subPage
 	 * @param WebRequest $request The request parameters. Known parameters are:
-	 *        - title: the page title
-	 *        - format: the format
-	 *        - oldid|revision: the revision ID
+	 *   - title: the page title
+	 *   - format: the format
+	 *   - oldid|revision: the revision ID
 	 * @param OutputPage $output
 	 *
 	 * @note Instead of an output page, a WebResponse could be sufficient, but
-	 *        redirect logic is currently implemented in OutputPage.
+	 *   redirect logic is currently implemented in OutputPage.
 	 *
 	 * @throws HttpError
 	 */

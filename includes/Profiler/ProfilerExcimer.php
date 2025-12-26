@@ -19,12 +19,12 @@ class ProfilerExcimer extends Profiler {
 
 	/**
 	 * @param array $params Associative array of parameters:
-	 *    - period: The sampling period
-	 *    - maxDepth: The maximum stack depth collected
-	 *    - cpuProfiler: A pre-started ExcimerProfiler instance for CPU
-	 *      profiling of the entire request including configuration.
-	 *    - realProfiler: A pre-started ExcimerProfiler instance for wall
-	 *      clock profiling of the entire request.
+	 *   - period: The sampling period
+	 *   - maxDepth: The maximum stack depth collected
+	 *   - cpuProfiler: A pre-started ExcimerProfiler instance for CPU
+	 *     profiling of the entire request including configuration.
+	 *   - realProfiler: A pre-started ExcimerProfiler instance for wall
+	 *     clock profiling of the entire request.
 	 */
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );

@@ -137,10 +137,10 @@ abstract class MediaHandler {
 	 * @param string $path The filename
 	 * @return array|null Null to fall back to getImageSize(), or an array with
 	 *   the following keys. All keys are optional.
-	 *     - width: The width. If multipage, return the first page width. (optional)
-	 *     - height: The height. If multipage, return the first page height. (optional)
-	 *     - bits: The number of bits for each color (optional)
-	 *     - metadata: A JSON-serializable array of metadata (optional)
+	 *   - width: The width. If multipage, return the first page width. (optional)
+	 *   - height: The height. If multipage, return the first page height. (optional)
+	 *   - bits: The number of bits for each color (optional)
+	 *   - metadata: A JSON-serializable array of metadata (optional)
 	 */
 	public function getSizeAndMetadata( $state, $path ) {
 		return null;

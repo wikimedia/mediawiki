@@ -125,11 +125,11 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	 * Performs a batch of page edits as a specified user
 	 * @param User $user
 	 * @param array $editData associative array, keys:
-	 *                        - target    => PageReference page to edit
-	 *                        - content   => string new content
-	 *                        - summary   => string edit summary
-	 *                        - minorEdit => bool mark as minor edit if true (defaults to false)
-	 *                        - botEdit   => bool mark as bot edit if true (defaults to false)
+	 *   - target    => PageReference page to edit
+	 *   - content   => string new content
+	 *   - summary   => string edit summary
+	 *   - minorEdit => bool mark as minor edit if true (defaults to false)
+	 *   - botEdit   => bool mark as bot edit if true (defaults to false)
 	 */
 	private function doPageEdits( User $user, array $editData ) {
 		foreach ( $editData as $singleEditData ) {

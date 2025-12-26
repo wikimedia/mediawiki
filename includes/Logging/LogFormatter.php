@@ -678,24 +678,24 @@ class LogFormatter {
 	 * Formats parameters values dependent to their type
 	 * @param string $type The type of the value.
 	 *   Valid are currently:
-	 *     * - (empty) or plain: The value is returned as-is
-	 *     * raw: The value will be added to the log message
-	 *            as raw parameter (e.g. no escaping)
-	 *            Use this only if there is no other working
-	 *            type like user-link or title-link
-	 *     * msg: The value is a message-key, the output is
-	 *            the message in user language
-	 *     * msg-content: The value is a message-key, the output
-	 *                    is the message in content language
-	 *     * user: The value is a user name, e.g. for GENDER
-	 *     * user-link: The value is a user name, returns a
-	 *                  link for the user
-	 *     * title: The value is a page title,
-	 *              returns name of page
-	 *     * title-link: The value is a page title,
-	 *                   returns link to this page
-	 *     * number: Format value as number
-	 *     * list: Format value as a comma-separated list
+	 *   * - (empty) or plain: The value is returned as-is
+	 *   * raw: The value will be added to the log message
+	 *          as raw parameter (e.g. no escaping)
+	 *          Use this only if there is no other working
+	 *          type like user-link or title-link
+	 *   * msg: The value is a message-key, the output is
+	 *          the message in user language
+	 *   * msg-content: The value is a message-key, the output
+	 *                  is the message in content language
+	 *   * user: The value is a user name, e.g. for GENDER
+	 *   * user-link: The value is a user name, returns a
+	 *                link for the user
+	 *   * title: The value is a page title,
+	 *            returns name of page
+	 *   * title-link: The value is a page title,
+	 *                 returns link to this page
+	 *   * number: Format value as number
+	 *   * list: Format value as a comma-separated list
 	 * @param mixed $value The parameter value that should be formatted
 	 * @return mixed Formatted value
 	 * @since 1.21

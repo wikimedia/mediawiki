@@ -184,11 +184,11 @@ interface ISQLPlatform {
 	 * @param array $a Containing the data
 	 * @param-taint $a escapes_sql - Note, this is also special-cased in MediaWikiSecurityCheckPlugin
 	 * @param int $mode IDatabase class constant:
-	 *    - IDatabase::LIST_COMMA: Comma separated, no field names
-	 *    - IDatabase::LIST_AND:   ANDed WHERE clause (without the WHERE).
-	 *    - IDatabase::LIST_OR:    ORed WHERE clause (without the WHERE)
-	 *    - IDatabase::LIST_SET:   Comma separated with field names, like a SET clause
-	 *    - IDatabase::LIST_NAMES: Comma separated field names
+	 *   - IDatabase::LIST_COMMA: Comma separated, no field names
+	 *   - IDatabase::LIST_AND:   ANDed WHERE clause (without the WHERE).
+	 *   - IDatabase::LIST_OR:    ORed WHERE clause (without the WHERE)
+	 *   - IDatabase::LIST_SET:   Comma separated with field names, like a SET clause
+	 *   - IDatabase::LIST_NAMES: Comma separated field names
 	 * @param-taint $mode none
 	 * @throws DBError If an error occurs, {@see IDatabase::query}
 	 * @return string
@@ -302,12 +302,17 @@ interface ISQLPlatform {
 	 * {@link anyChar()} or {@link anyString()}.
 	 * Alternatively, the function could be provided with an array of the aforementioned parameters.
 	 *
-	 * Example: $dbr->buildLike( 'My_page_title/', $dbr->anyString() ) returns
-	 * a LIKE clause that searches for subpages of 'My page title'.
+	 * Example:
+	 * ```
+	 * $dbr->buildLike( 'My_page_title/', $dbr->anyString() )
+	 * ```
+	 * returns a LIKE clause that searches for subpages of 'My page title'.
+	 *
 	 * Alternatively:
+	 * ```
 	 *   $pattern = [ 'My_page_title/', $dbr->anyString() ];
 	 *   $query .= $dbr->buildLike( $pattern );
-	 *
+	 * ```
 	 * @since 1.16 in IDatabase, moved to ISQLPlatform in 1.39
 	 * @param string|LikeMatch|non-empty-array<string|LikeMatch> $param
 	 * @param-taint $param escapes_sql

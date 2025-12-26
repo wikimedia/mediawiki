@@ -74,24 +74,24 @@ class RevisionRenderer implements LoggerAwareInterface {
 	 * @param RevisionRecord $rev
 	 * @param ParserOptions|null $options
 	 * @param Authority|null $forPerformer User for privileged access. Default is unprivileged
-	 *        (public) access, unless the 'audience' hint is set to something else RevisionRecord::RAW.
+	 *   (public) access, unless the 'audience' hint is set to something else RevisionRecord::RAW.
 	 * @phpcs:ignore Generic.Files.LineLength.TooLong
 	 * @param array{use-master?:bool,audience?:int,known-revision-output?:ParserOutput,causeAction?:?string,previous-output?:?ParserOutput} $hints
 	 *   Hints given as an associative array. Known keys:
-	 *      - 'use-master' Use primary DB when rendering for the parser cache during save.
-	 *        Default is to use a replica.
-	 *      - 'audience' the audience to use for content access. Default is
-	 *        RevisionRecord::FOR_PUBLIC if $forUser is not set, RevisionRecord::FOR_THIS_USER
-	 *        if $forUser is set. Can be set to RevisionRecord::RAW to disable audience checks.
-	 *      - 'known-revision-output' a combined ParserOutput for the revision, perhaps from
-	 *        some cache. the caller is responsible for ensuring that the ParserOutput indeed
-	 *        matched the $rev and $options. This mechanism is intended as a temporary stop-gap,
-	 *        for the time until caches have been changed to store RenderedRevision states instead
-	 *        of ParserOutput objects.
-	 *      - 'previous-output' A previously-rendered ParserOutput for this page. This
-	 *        can be used by Parsoid for selective updates.
-	 *      - 'causeAction' the reason for rendering. This should be informative, for used for
-	 *        logging and debugging.
+	 *   - 'use-master' Use primary DB when rendering for the parser cache during save.
+	 *     Default is to use a replica.
+	 *   - 'audience' the audience to use for content access. Default is
+	 *     RevisionRecord::FOR_PUBLIC if $forUser is not set, RevisionRecord::FOR_THIS_USER
+	 *     if $forUser is set. Can be set to RevisionRecord::RAW to disable audience checks.
+	 *   - 'known-revision-output' a combined ParserOutput for the revision, perhaps from
+	 *     some cache. the caller is responsible for ensuring that the ParserOutput indeed
+	 *     matched the $rev and $options. This mechanism is intended as a temporary stop-gap,
+	 *     for the time until caches have been changed to store RenderedRevision states instead
+	 *     of ParserOutput objects.
+	 *   - 'previous-output' A previously-rendered ParserOutput for this page. This
+	 *     can be used by Parsoid for selective updates.
+	 *   - 'causeAction' the reason for rendering. This should be informative, for used for
+	 *     logging and debugging.
 	 *
 	 * @return RenderedRevision|null The rendered revision, or null if the audience checks fails.
 	 * @throws BadRevisionException

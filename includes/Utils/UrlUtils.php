@@ -48,22 +48,22 @@ class UrlUtils {
 	 * @stable to call
 	 * @param array $options All keys are optional, but if you omit SERVER then calling expand()
 	 *   (and getServer(), expandIRI(), and matchesDomainList()) will throw. Recognized keys:
-	 *     * self::SERVER: The protocol and server portion of the URLs to expand, with no other parts
-	 *       (port, path, etc.). Example: 'https://example.com'. Protocol-relative URLs are
-	 *       allowed.
-	 *     * self::CANONICAL_SERVER: If SERVER is protocol-relative, this can be set to a
-	 *       fully-qualified version for use when PROTO_CANONICAL is passed to expand(). Defaults
-	 *       to SERVER, with 'http:' prepended if SERVER is protocol-relative.
-	 *     * self::INTERNAL_SERVER: An alternative to SERVER that's used when PROTO_INTERNAL is
-	 *       passed to expand(). It's intended for sites that have a different server name exposed
-	 *       to CDNs. Defaults to SERVER.
-	 *     * self::FALLBACK_PROTOCOL: Used by expand() when no $defaultProto parameter is provided.
-	 *       Defaults to 'http'. The instance created by ServiceWiring sets this to 'https' if the
-	 *       current request is detected to be via HTTPS, and 'http' otherwise.
-	 *     * self::HTTPS_PORT: Defaults to 443. Used when a protocol-relative URL is expanded to
-	 *       https.
-	 *     * self::VALID_PROTOCOLS: An array of recognized URL protocols. The default can be found
-	 *       in MainConfigSchema::UrlProtocols['default'].
+	 *   * self::SERVER: The protocol and server portion of the URLs to expand, with no other parts
+	 *     (port, path, etc.). Example: 'https://example.com'. Protocol-relative URLs are
+	 *     allowed.
+	 *   * self::CANONICAL_SERVER: If SERVER is protocol-relative, this can be set to a
+	 *     fully-qualified version for use when PROTO_CANONICAL is passed to expand(). Defaults
+	 *     to SERVER, with 'http:' prepended if SERVER is protocol-relative.
+	 *   * self::INTERNAL_SERVER: An alternative to SERVER that's used when PROTO_INTERNAL is
+	 *     passed to expand(). It's intended for sites that have a different server name exposed
+	 *     to CDNs. Defaults to SERVER.
+	 *   * self::FALLBACK_PROTOCOL: Used by expand() when no $defaultProto parameter is provided.
+	 *     Defaults to 'http'. The instance created by ServiceWiring sets this to 'https' if the
+	 *     current request is detected to be via HTTPS, and 'http' otherwise.
+	 *   * self::HTTPS_PORT: Defaults to 443. Used when a protocol-relative URL is expanded to
+	 *     https.
+	 *   * self::VALID_PROTOCOLS: An array of recognized URL protocols. The default can be found
+	 *     in MainConfigSchema::UrlProtocols['default'].
 	 */
 	public function __construct( array $options = [] ) {
 		foreach ( $options as $key => $value ) {

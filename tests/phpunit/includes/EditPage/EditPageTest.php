@@ -144,17 +144,17 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @param string|null $baseText Some text to create the page with before attempting the edit.
 	 * @param string $userKey The user to perform the edit as.
 	 * @param array $edit An array of request parameters used to define the edit to perform.
-	 *              Some well known fields are:
-	 *              * wpTextbox1: the text to submit
-	 *              * wpSummary: the edit summary
-	 *              * wpEditToken: the edit token (will be inserted if not provided)
-	 *              * wpEdittime: timestamp of the edit's base revision (will be inserted
-	 *                if not provided)
-	 *              * editRevId: revision ID of the edit's base revision (optional)
-	 *              * wpStarttime: timestamp when the edit started (will be inserted if not provided)
-	 *              * wpSectionTitle: the section to edit
-	 *              * wpMinoredit: mark as minor edit
-	 *              * wpWatchthis: whether to watch the page
+	 *   Some well known fields are:
+	 *   * wpTextbox1: the text to submit
+	 *   * wpSummary: the edit summary
+	 *   * wpEditToken: the edit token (will be inserted if not provided)
+	 *   * wpEdittime: timestamp of the edit's base revision (will be inserted
+	 *     if not provided)
+	 *   * editRevId: revision ID of the edit's base revision (optional)
+	 *   * wpStarttime: timestamp when the edit started (will be inserted if not provided)
+	 *   * wpSectionTitle: the section to edit
+	 *   * wpMinoredit: mark as minor edit
+	 *   * wpWatchthis: whether to watch the page
 	 * @param int|null $expectedCode The expected result code (EditPage::AS_XXX constants).
 	 *                  Set to null to skip the check.
 	 * @param string|null $expectedText The text expected to be on the page after the edit.

@@ -30,42 +30,42 @@ class ZipDirectoryReader {
 	 * @param callable $callback The callback function. It will be called for each file
 	 *   with a single associative array each time, with members:
 	 *
-	 *      - name: The file name. Directories conventionally have a trailing
-	 *        slash.
+	 *   - name: The file name. Directories conventionally have a trailing
+	 *     slash.
 	 *
-	 *      - mtime: The file modification time, in MediaWiki 14-char format
+	 *   - mtime: The file modification time, in MediaWiki 14-char format
 	 *
-	 *      - size: The uncompressed file size
+	 *   - size: The uncompressed file size
 	 *
 	 * @param array $options An associative array of read options, with the option
-	 *    name in the key. This may currently contain:
+	 *   name in the key. This may currently contain:
 	 *
-	 *      - zip64: If this is set to true, then we will emulate a
-	 *        library with ZIP64 support, like OpenJDK 7. If it is set to
-	 *        false, then we will emulate a library with no knowledge of
-	 *        ZIP64.
+	 *   - zip64: If this is set to true, then we will emulate a
+	 *     library with ZIP64 support, like OpenJDK 7. If it is set to
+	 *     false, then we will emulate a library with no knowledge of
+	 *     ZIP64.
 	 *
-	 *        NOTE: The ZIP64 code is untested and probably doesn't work. It
-	 *        turned out to be easier to just reject ZIP64 archive uploads,
-	 *        since they are likely to be very rare. Confirming safety of a
-	 *        ZIP64 file is fairly complex. What do you do with a file that is
-	 *        ambiguous and broken when read with a non-ZIP64 reader, but valid
-	 *        when read with a ZIP64 reader? This situation is normal for a
-	 *        valid ZIP64 file, and working out what non-ZIP64 readers will make
-	 *        of such a file is not trivial.
+	 *     NOTE: The ZIP64 code is untested and probably doesn't work. It
+	 *     turned out to be easier to just reject ZIP64 archive uploads,
+	 *     since they are likely to be very rare. Confirming safety of a
+	 *     ZIP64 file is fairly complex. What do you do with a file that is
+	 *     ambiguous and broken when read with a non-ZIP64 reader, but valid
+	 *     when read with a ZIP64 reader? This situation is normal for a
+	 *     valid ZIP64 file, and working out what non-ZIP64 readers will make
+	 *     of such a file is not trivial.
 	 *
 	 * @return StatusValue A StatusValue object. The following fatal errors are
-	 *         defined:
+	 *   defined:
 	 *
-	 *      - zip-file-open-error: The file could not be opened.
+	 *   - zip-file-open-error: The file could not be opened.
 	 *
-	 *      - zip-wrong-format: The file does not appear to be a ZIP file.
+	 *   - zip-wrong-format: The file does not appear to be a ZIP file.
 	 *
-	 *      - zip-bad: There was something wrong or ambiguous about the file
-	 *        data.
+	 *   - zip-bad: There was something wrong or ambiguous about the file
+	 *     data.
 	 *
-	 *      - zip-unsupported: The ZIP file uses features which
-	 *        ZipDirectoryReader does not support.
+	 *   - zip-unsupported: The ZIP file uses features which
+	 *     ZipDirectoryReader does not support.
 	 *
 	 * The default messages for those fatal errors are written in a way that
 	 * makes sense for upload verification.
@@ -614,18 +614,18 @@ class ZipDirectoryReader {
 	 * @param string $string The binary data input
 	 *
 	 * @param array $struct An associative array giving structure members and their
-	 *    types. In the key is the field name. The value may be either an
-	 *    integer, in which case the field is a little-endian unsigned integer
-	 *    encoded in the given number of bytes, or an array, in which case the
-	 *    first element of the array is the type name, and the subsequent
-	 *    elements are type-dependent parameters. Only one such type is defined:
-	 *       - "string": The second array element gives the length of string.
-	 *          Not null terminated.
+	 *   types. In the key is the field name. The value may be either an
+	 *   integer, in which case the field is a little-endian unsigned integer
+	 *   encoded in the given number of bytes, or an array, in which case the
+	 *   first element of the array is the type name, and the subsequent
+	 *   elements are type-dependent parameters. Only one such type is defined:
+	 *   - "string": The second array element gives the length of string.
+	 *      Not null terminated.
 	 *
 	 * @param int $offset The offset into the string at which to start unpacking.
 	 * @return array Unpacked associative array. Note that large integers in the input
-	 *    may be represented as floating point numbers in the return value, so
-	 *    the use of weak comparison is advised.
+	 *   may be represented as floating point numbers in the return value, so
+	 *   the use of weak comparison is advised.
 	 */
 	private function unpack( $string, $struct, $offset = 0 ) {
 		$size = $this->getStructSize( $struct );

@@ -57,8 +57,8 @@ class RemexRemoveTagHandler extends RelayTokenHandler {
 	 *   The full signature is ?callable(Attributes,mixed...):Attributes
 	 * @param ?array $callbackArgs Optional arguments to attribute handler.
 	 * @param array $options Associative array of options:
-	 *    - commentRegex: If present, allow comments with inner text matching
-	 *      the specified regular expression.
+	 *   - commentRegex: If present, allow comments with inner text matching
+	 *     the specified regular expression.
 	 */
 	public function __construct(
 		TokenHandler $nextHandler,

@@ -148,10 +148,10 @@ class RestrictionStore {
 	 *
 	 * @param PageIdentity $page Must be local
 	 * @return ?array Null if no restrictions. Otherwise an array with the following keys:
-	 *     - user: user id
-	 *     - expiry: 14-digit timestamp or 'infinity'
-	 *     - permission: string (pt_create_perm)
-	 *     - reason: string
+	 *   - user: user id
+	 *   - expiry: 14-digit timestamp or 'infinity'
+	 *   - permission: string (pt_create_perm)
+	 *   - reason: string
 	 */
 	public function getCreateProtection( PageIdentity $page ): ?array {
 		$page->assertWiki( PageIdentity::LOCAL );

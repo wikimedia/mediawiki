@@ -107,11 +107,11 @@ class PostgresInstaller extends DatabaseInstaller {
 	 * dependencies.
 	 *
 	 * @param string $type The type of connection to get:
-	 *    - self::CONN_CREATE_DATABASE: A connection for creating DBs, suitable for pre-
-	 *                                  installation.
-	 *    - self::CONN_CREATE_SCHEMA:   A connection to the new DB, for creating schemas and
-	 *                                  other similar objects in the new DB.
-	 *    - self::CONN_CREATE_TABLES:   A connection with a role suitable for creating tables.
+	 *   - self::CONN_CREATE_DATABASE: A connection for creating DBs, suitable for pre-
+	 *                                 installation.
+	 *   - self::CONN_CREATE_SCHEMA:   A connection to the new DB, for creating schemas and
+	 *                                 other similar objects in the new DB.
+	 *   - self::CONN_CREATE_TABLES:   A connection with a role suitable for creating tables.
 	 * @return ConnectionStatus On success, a connection object will be in the value member.
 	 */
 	protected function openConnection( string $type ) {

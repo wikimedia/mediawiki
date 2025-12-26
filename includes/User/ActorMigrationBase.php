@@ -41,12 +41,12 @@ class ActorMigrationBase {
 	/**
 	 * @param array $fieldInfos An array of associative arrays, giving configuration
 	 *   information about fields which are being migrated. Subkeys are:
-	 *    - removedVersion: The version in which the field was removed
-	 *    - deprecatedVersion: The version in which the field was deprecated
-	 *    - component: The component for removedVersion and deprecatedVersion.
-	 *      Default: MediaWiki.
-	 *    - textField: Override the old text field name. Default {$key}_text.
-	 *    - actorField: Override the actor field name. Default {$key}_actor.
+	 *   - removedVersion: The version in which the field was removed
+	 *   - deprecatedVersion: The version in which the field was deprecated
+	 *   - component: The component for removedVersion and deprecatedVersion.
+	 *     Default: MediaWiki.
+	 *   - textField: Override the old text field name. Default {$key}_text.
+	 *   - actorField: Override the actor field name. Default {$key}_actor.
 	 *   All subkeys are optional.
 	 *
 	 * @stable to override
@@ -54,10 +54,10 @@ class ActorMigrationBase {
 	 *
 	 * @param int $stage The migration stage. This is a combination of
 	 *   SCHEMA_COMPAT_* flags:
-	 *     - SCHEMA_COMPAT_READ_OLD, SCHEMA_COMPAT_WRITE_OLD: Use the old schema,
-	 *       with *_user and *_user_text fields.
-	 *     - SCHEMA_COMPAT_READ_NEW, SCHEMA_COMPAT_WRITE_NEW: Use the new
-	 *       schema. All relevant tables join directly to the actor table.
+	 *   - SCHEMA_COMPAT_READ_OLD, SCHEMA_COMPAT_WRITE_OLD: Use the old schema,
+	 *     with *_user and *_user_text fields.
+	 *   - SCHEMA_COMPAT_READ_NEW, SCHEMA_COMPAT_WRITE_NEW: Use the new
+	 *     schema. All relevant tables join directly to the actor table.
 	 *
 	 * @param ActorStoreFactory $actorStoreFactory
 	 * @param array $options Array of other options. May contain:

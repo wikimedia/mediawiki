@@ -44,18 +44,18 @@ class RequestData extends RequestBase {
 	 *
 	 * @param array $params An associative array of parameters. All parameters
 	 *   have defaults. Parameters are:
-	 *     - method: The HTTP method
-	 *     - uri: The URI
-	 *     - protocolVersion: The HTTP protocol version number
-	 *     - bodyContents: A string giving the request body
-	 *     - serverParams: Equivalent to $_SERVER
-	 *     - cookieParams: Equivalent to $_COOKIE
-	 *     - queryParams: Equivalent to $_GET
-	 *     - uploadedFiles: An array of objects implementing UploadedFileInterface
-	 *     - postParams: Equivalent to $_POST
-	 *     - pathParams: The path template parameters
-	 *     - headers: An array with the key being the header name
-	 *     - cookiePrefix: A prefix to add to cookie names in getCookie()
+	 *   - method: The HTTP method
+	 *   - uri: The URI
+	 *   - protocolVersion: The HTTP protocol version number
+	 *   - bodyContents: A string giving the request body
+	 *   - serverParams: Equivalent to $_SERVER
+	 *   - cookieParams: Equivalent to $_COOKIE
+	 *   - queryParams: Equivalent to $_GET
+	 *   - uploadedFiles: An array of objects implementing UploadedFileInterface
+	 *   - postParams: Equivalent to $_POST
+	 *   - pathParams: The path template parameters
+	 *   - headers: An array with the key being the header name
+	 *   - cookiePrefix: A prefix to add to cookie names in getCookie()
 	 */
 	public function __construct( $params = [] ) {
 		$this->method = $params['method'] ?? 'GET';

@@ -418,21 +418,21 @@ class ParserOutputAccess implements LoggerAwareInterface {
 	 * @param ParserOptions $parserOptions
 	 * @param RevisionRecord|null $revision
 	 * @param int|array $options Bitfield or associative array using the OPT_XXX constants.
-	 *        Passing an int is deprecated and will trigger deprecation warnings
-	 *        in the future.
+	 *   Passing an int is deprecated and will trigger deprecation warnings
+	 *   in the future.
 	 *
 	 * @return Status<ParserOutput> containing a ParserOutput if no error occurred.
-	 *         Well-known errors and warnings include the following messages:
-	 *         - 'view-pool-dirty-output' (warning) The output is dirty (from a stale cache entry).
-	 *         - 'view-pool-contention' (warning) Dirty output was returned immediately instead of
-	 *           waiting to acquire a work lock (when "fast stale" mode is enabled in PoolCounter).
-	 *         - 'view-pool-timeout' (warning) Dirty output was returned after failing to acquire
-	 *           a work lock (got QUEUE_FULL or TIMEOUT from PoolCounter).
-	 *         - 'pool-queuefull' (error) unable to acquire work lock, and no cached content found.
-	 *         - 'pool-timeout' (error) unable to acquire work lock, and no cached content found.
-	 *         - 'pool-servererror' (error) PoolCounterWork failed due to a lock service error.
-	 *         - 'pool-unknownerror' (error) PoolCounterWork failed for an unknown reason.
-	 *         - 'nopagetext' (error) The page does not exist
+	 *   Well-known errors and warnings include the following messages:
+	 *   - 'view-pool-dirty-output' (warning) The output is dirty (from a stale cache entry).
+	 *   - 'view-pool-contention' (warning) Dirty output was returned immediately instead of
+	 *     waiting to acquire a work lock (when "fast stale" mode is enabled in PoolCounter).
+	 *   - 'view-pool-timeout' (warning) Dirty output was returned after failing to acquire
+	 *     a work lock (got QUEUE_FULL or TIMEOUT from PoolCounter).
+	 *   - 'pool-queuefull' (error) unable to acquire work lock, and no cached content found.
+	 *   - 'pool-timeout' (error) unable to acquire work lock, and no cached content found.
+	 *   - 'pool-servererror' (error) PoolCounterWork failed due to a lock service error.
+	 *   - 'pool-unknownerror' (error) PoolCounterWork failed for an unknown reason.
+	 *   - 'nopagetext' (error) The page does not exist
 	 */
 	public function getParserOutput(
 		PageRecord $page,

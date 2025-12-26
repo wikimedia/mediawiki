@@ -207,20 +207,20 @@ abstract class Module {
 	 * @param string $requestMethod
 	 *
 	 * @return array<string,mixed>
-	 *         - bool "found": Whether a match was found. If true, the `handler`
-	 *           or `spec` field must be set.
-	 *         - Handler handler: the Handler object to use. Either "handler" or
-	 *           "spec" must be given.
-	 *         - array "spec":" an object spec for use with ObjectFactory
-	 *         - array "config": the route config, to be passed to Handler::initContext()
-	 *         - string "path": the path the handler is responsible for,
-	 *           including placeholders for path parameters.
-	 *         - string[] "params": path parameters, to be passed the
-	 *           Request::setPathPrams()
-	 *         - string[] "methods": supported methods, if the path is known but
-	 *           the method did not match. Only meaningful if "found" is false.
-	 *           To be used in the Allow header of a 405 response and included
-	 *           in CORS pre-flight.
+	 *   - bool "found": Whether a match was found. If true, the `handler`
+	 *     or `spec` field must be set.
+	 *   - Handler handler: the Handler object to use. Either "handler" or
+	 *     "spec" must be given.
+	 *   - array "spec":" an object spec for use with ObjectFactory
+	 *   - array "config": the route config, to be passed to Handler::initContext()
+	 *   - string "path": the path the handler is responsible for,
+	 *     including placeholders for path parameters.
+	 *   - string[] "params": path parameters, to be passed the
+	 *     Request::setPathPrams()
+	 *   - string[] "methods": supported methods, if the path is known but
+	 *     the method did not match. Only meaningful if "found" is false.
+	 *     To be used in the Allow header of a 405 response and included
+	 *     in CORS pre-flight.
 	 */
 	abstract protected function findHandlerMatch(
 		string $path,

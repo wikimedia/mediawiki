@@ -88,10 +88,10 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 	 * Performs a batch of page edits as a specified user
 	 * @param User $user
 	 * @param array $editData associative array, keys:
-	 *                        - target    => LinkTarget page to edit
-	 *                        - summary   => string edit summary
-	 *                        - minorEdit => bool mark as minor edit if true (defaults to false)
-	 *                        - botEdit   => bool mark as bot edit if true (defaults to false)
+	 *   - target    => LinkTarget page to edit
+	 *   - summary   => string edit summary
+	 *   - minorEdit => bool mark as minor edit if true (defaults to false)
+	 *   - botEdit   => bool mark as bot edit if true (defaults to false)
 	 */
 	private function doPageEdits( User $user, array $editData ) {
 		foreach ( $editData as $singleEditData ) {

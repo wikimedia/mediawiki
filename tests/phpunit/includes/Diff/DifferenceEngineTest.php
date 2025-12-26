@@ -461,9 +461,9 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	 * @param string[]|array[]|null $slots Array mapping slot role to content.
 	 *   If the content is a string, a normal text slot will be created. If the
 	 *   content is an associative array, it can have the following keys:
-	 *    - derived: If present and true, the slot is a derived slot
-	 *    - text: The serialized content
-	 *    - model: The content model ID
+	 *   - derived: If present and true, the slot is a derived slot
+	 *   - text: The serialized content
+	 *   - model: The content model ID
 	 * @return MutableRevisionRecord|null
 	 */
 	private function getRevisionRecord( $slots ) {

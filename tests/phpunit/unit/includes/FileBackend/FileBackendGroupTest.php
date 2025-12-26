@@ -68,10 +68,10 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 	/**
 	 * @param array $options Dictionary to use as a source for ServiceOptions before defaults, plus
 	 *   the following options are available to override other arguments:
-	 *     * 'readOnlyMode'
-	 *     * 'lmgFactory'
-	 *     * 'mimeAnalyzer'
-	 *     * 'tmpFileFactory'
+	 *   * 'readOnlyMode'
+	 *   * 'lmgFactory'
+	 *   * 'mimeAnalyzer'
+	 *   * 'tmpFileFactory'
 	 * @return FileBackendGroup
 	 */
 	private function newObj( array $options = [] ): FileBackendGroup {

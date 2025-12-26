@@ -140,10 +140,12 @@ class GrantsLocalization {
 	}
 
 	/**
-	 * Generate wikitext to display a list of grants. It will be in the format
-	 *     * <grant-group-$group>
-	 *     : <grant-$grant>; <grant-$grant>; ...
-	 *     * ...
+	 * Generate wikitext to display a list of grants. It will be in the format:
+	 * ```
+	 * * <grant-group-$group>
+	 * : <grant-$grant>; <grant-$grant>; ...
+	 * * ...
+	 * ```
 	 * with some HTML classes for styling.
 	 * @param string[]|null $grantsFilter If non-null, only display these grants.
 	 * @param Language|string|null $lang

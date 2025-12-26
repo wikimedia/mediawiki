@@ -1603,13 +1603,13 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * @param array $options for the difference engine. Available options:
-	 *    - diff-type: The text diff format, e.g. "table" or "inline". If the
-	 *      specified format is not supported, the option will be ignored, so
-	 *      the site default format (table) will be used.
-	 *    - expand-url: If true, put full URLs in href attributes (for action=render)
-	 *      FIXME: expand-url is not a slot diff option, it is a DifferenceEngine option.
-	 *    - inline-toggle: If true, and the inline format is supported
-	 *      a format selector toggle switch will be shown.
+	 *   - diff-type: The text diff format, e.g. "table" or "inline". If the
+	 *     specified format is not supported, the option will be ignored, so
+	 *     the site default format (table) will be used.
+	 *   - expand-url: If true, put full URLs in href attributes (for action=render)
+	 *     FIXME: expand-url is not a slot diff option, it is a DifferenceEngine option.
+	 *   - inline-toggle: If true, and the inline format is supported
+	 *     a format selector toggle switch will be shown.
 	 */
 	public function setSlotDiffOptions( $options ) {
 		$validatedOptions = [];

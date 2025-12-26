@@ -58,17 +58,17 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	 * @param string|null $baseText Some text to create the page with before attempting the edit.
 	 * @param User|null $user The user to perform the edit as.
 	 * @param array $edit An array of request parameters used to define the edit to perform.
-	 *              Some well known fields are:
-	 *              * wpTextbox1: the text to submit
-	 *              * wpSummary: the edit summary
-	 *              * wpEditToken: the edit token (will be inserted if not provided)
-	 *              * wpEdittime: timestamp of the edit's base revision (will be inserted
-	 *                if not provided)
-	 *              * editRevId: revision ID of the edit's base revision (optional)
-	 *              * wpStarttime: timestamp when the edit started (will be inserted if not provided)
-	 *              * wpSectionTitle: the section to edit
-	 *              * wpMinorEdit: mark as minor edit
-	 *              * wpWatchthis: whether to watch the page
+	 *   Some well known fields are:
+	 *   * wpTextbox1: the text to submit
+	 *   * wpSummary: the edit summary
+	 *   * wpEditToken: the edit token (will be inserted if not provided)
+	 *   * wpEdittime: timestamp of the edit's base revision (will be inserted
+	 *     if not provided)
+	 *   * editRevId: revision ID of the edit's base revision (optional)
+	 *   * wpStarttime: timestamp when the edit started (will be inserted if not provided)
+	 *   * wpSectionTitle: the section to edit
+	 *   * wpMinorEdit: mark as minor edit
+	 *   * wpWatchthis: whether to watch the page
 	 * @param int $expectedCode The expected result code (EditPage::AS_XXX constants).
 	 * @param string $message Message to show along with any error message.
 	 *

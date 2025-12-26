@@ -166,17 +166,17 @@ class RepoGroup {
 	 * Search repositories for many files at once.
 	 *
 	 * @param array $inputItems An array of titles, or an array of findFile() options with
-	 *    the "title" option giving the title. Example:
-	 *
-	 *     $findItem = [ 'title' => $title, 'private' => true ];
-	 *     $findBatch = [ $findItem ];
-	 *     $repo->findFiles( $findBatch );
-	 *
-	 *    No title should appear in $items twice, as the result use titles as keys
+	 *   the "title" option giving the title. Example:
+	 *   ```
+	 *   $findItem = [ 'title' => $title, 'private' => true ];
+	 *   $findBatch = [ $findItem ];
+	 *   $repo->findFiles( $findBatch );
+	 *   ```
+	 *   No title should appear in $items twice, as the result use titles as keys
 	 * @param int $flags Supports:
-	 *     - FileRepo::NAME_AND_TIME_ONLY : return a (search title => (title,timestamp)) map.
-	 *       The search title uses the input titles; the other is the final post-redirect title.
-	 *       All titles are returned as string DB keys and the inner array is associative.
+	 *   - FileRepo::NAME_AND_TIME_ONLY : return a (search title => (title,timestamp)) map.
+	 *     The search title uses the input titles; the other is the final post-redirect title.
+	 *     All titles are returned as string DB keys and the inner array is associative.
 	 * @return array Map of (file name => File objects) for matches or (search title => (title,timestamp))
 	 */
 	public function findFiles( array $inputItems, $flags = 0 ) {

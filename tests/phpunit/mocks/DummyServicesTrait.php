@@ -309,9 +309,9 @@ trait DummyServicesTrait {
 	 * detecting invalid titles.
 	 *
 	 * @param array $options Supported keys:
-	 *     - validInterwikis: array of interwiki info to pass to getDummyInterwikiLookup
-	 *     - throwMockExceptions: boolean, see above
-	 *     - any of the options passed to getDummyNamespaceInfo (the same $options is passed on)
+	 *   - validInterwikis: array of interwiki info to pass to getDummyInterwikiLookup
+	 *   - throwMockExceptions: boolean, see above
+	 *   - any of the options passed to getDummyNamespaceInfo (the same $options is passed on)
 	 * @return TitleParser
 	 */
 	private function getDummyTitleParser( array $options = [] ): TitleParser {

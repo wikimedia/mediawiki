@@ -81,12 +81,12 @@ class RenameUser {
 	 * @param string $newName
 	 * @param string $reason
 	 * @param array $renameOptions
-	 *    Valid options:
-	 *    - forceGlobalDetach      : Force to detach from CentralAuth
-	 *    - movePages              : Whether user pages should be moved
-	 *    - suppressRedirect       : Whether to suppress redirects for user pages
-	 *    - derived                : Whether shared tables should be updated
-	 *        If derived is true, it is assumed that all shared tables have been updated.
+	 *   Valid options:
+	 *   - forceGlobalDetach      : Force to detach from CentralAuth
+	 *   - movePages              : Whether user pages should be moved
+	 *   - suppressRedirect       : Whether to suppress redirects for user pages
+	 *   - derived                : Whether shared tables should be updated
+	 *       If derived is true, it is assumed that all shared tables have been updated.
 	 */
 	public function __construct(
 		ServiceOptions $options,

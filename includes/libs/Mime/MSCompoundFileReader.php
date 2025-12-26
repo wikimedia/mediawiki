@@ -82,12 +82,12 @@ class MSCompoundFileReader {
 	 *
 	 * @param string $fileName The full path to the file
 	 * @return array An associative array of information about the file:
-	 *    - valid: true if the file is valid, false otherwise
-	 *    - error: An error message in English, should be present if valid=false
-	 *    - errorCode: One of the self::ERROR_* constants
-	 *    - mime: The MIME type detected from the directory contents
-	 *    - mimeFromClsid: The MIME type detected from the CLSID on the root
-	 *      directory entry
+	 *   - valid: true if the file is valid, false otherwise
+	 *   - error: An error message in English, should be present if valid=false
+	 *   - errorCode: One of the self::ERROR_* constants
+	 *   - mime: The MIME type detected from the directory contents
+	 *   - mimeFromClsid: The MIME type detected from the CLSID on the root
+	 *     directory entry
 	 */
 	public static function readFile( $fileName ) {
 		$handle = fopen( $fileName, 'r' );
@@ -106,12 +106,12 @@ class MSCompoundFileReader {
 	 *
 	 * @param resource $fileHandle
 	 * @return array An associative array of information about the file:
-	 *    - valid: true if the file is valid, false otherwise
-	 *    - error: An error message in English, should be present if valid=false
-	 *    - errorCode: One of the self::ERROR_* constants
-	 *    - mime: The MIME type detected from the directory contents
-	 *    - mimeFromClsid: The MIME type detected from the CLSID on the root
-	 *      directory entry
+	 *   - valid: true if the file is valid, false otherwise
+	 *   - error: An error message in English, should be present if valid=false
+	 *   - errorCode: One of the self::ERROR_* constants
+	 *   - mime: The MIME type detected from the directory contents
+	 *   - mimeFromClsid: The MIME type detected from the CLSID on the root
+	 *     directory entry
 	 */
 	public static function readHandle( $fileHandle ) {
 		$reader = new self( $fileHandle );

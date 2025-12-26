@@ -2032,11 +2032,11 @@ class Language implements Bcp47Code {
 	 * @param string $format
 	 * @return array An associative array with the following keys:
 	 *   - pattern: A string with parameters surrounded by braces, like {year},
-	 *       where the parameter names are those returned by Intl.DateTimeFormat.formatToParts(),
-	 *       with a few custom extensions, specifically:
-	 *       - mwMonth: The month name message text
-	 *       - mwMonthGen: The genitive month name message text
-	 *       - mwMonthAbbrev:  The abbreviated month name message text
+	 *     where the parameter names are those returned by Intl.DateTimeFormat.formatToParts(),
+	 *     with a few custom extensions, specifically:
+	 *     - mwMonth: The month name message text
+	 *     - mwMonthGen: The genitive month name message text
+	 *     - mwMonthAbbrev:  The abbreviated month name message text
 	 *   - locale: A fixed locale to override the default one
 	 *   - options: Associative options to pass to the Intl.DateTimeFormat constructor
 	 */

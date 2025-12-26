@@ -82,9 +82,9 @@ class WikiPageFactory {
 	 *
 	 * @param stdClass $row Database row containing at least fields returned by getQueryInfo().
 	 * @param string|int $from Source of $data:
-	 *        - "fromdb" or IDBAccessObject::READ_NORMAL: from a replica DB
-	 *        - "fromdbmaster" or IDBAccessObject::READ_LATEST: from the primary DB
-	 *        - "forupdate" or IDBAccessObject::READ_LOCKING: from the primary DB using SELECT FOR UPDATE
+	 *   - "fromdb" or IDBAccessObject::READ_NORMAL: from a replica DB
+	 *   - "fromdbmaster" or IDBAccessObject::READ_LATEST: from the primary DB
+	 *   - "forupdate" or IDBAccessObject::READ_LOCKING: from the primary DB using SELECT FOR UPDATE
 	 *
 	 * @return WikiPage
 	 */

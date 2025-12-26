@@ -476,10 +476,10 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * @since 1.20
 	 * @param stdClass|false $data DB row containing fields returned by getQueryInfo() or false
 	 * @param string|int $from One of the following:
-	 *        - "fromdb" or IDBAccessObject::READ_NORMAL if the data comes from a replica DB
-	 *        - "fromdbmaster" or IDBAccessObject::READ_LATEST if the data comes from the primary DB
-	 *        - "forupdate"  or IDBAccessObject::READ_LOCKING if the data comes from
-	 *          the primary DB using SELECT FOR UPDATE
+	 *   - "fromdb" or IDBAccessObject::READ_NORMAL if the data comes from a replica DB
+	 *   - "fromdbmaster" or IDBAccessObject::READ_LATEST if the data comes from the primary DB
+	 *   - "forupdate"  or IDBAccessObject::READ_LOCKING if the data comes from
+	 *     the primary DB using SELECT FOR UPDATE
 	 */
 	public function loadFromRow( $data, $from ) {
 		$lc = MediaWikiServices::getInstance()->getLinkCache();
@@ -1701,12 +1701,12 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * @see ParserOptions::newCanonical
 	 *
 	 * @param IContextSource|UserIdentity|string $context One of the following:
-	 *        - IContextSource: Use the User and the Language of the provided
-	 *          context
-	 *        - UserIdentity: Use the provided UserIdentity object and $wgLang
-	 *          for the language, so use an IContextSource object if possible.
-	 *        - 'canonical': Canonical options (anonymous user with default
-	 *          preferences and content language).
+	 *   - IContextSource: Use the User and the Language of the provided
+	 *     context
+	 *   - UserIdentity: Use the provided UserIdentity object and $wgLang
+	 *     for the language, so use an IContextSource object if possible.
+	 *   - 'canonical': Canonical options (anonymous user with default
+	 *     preferences and content language).
 	 * @return ParserOptions
 	 */
 	public function makeParserOptions( $context ) {
