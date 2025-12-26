@@ -730,15 +730,26 @@ class ApiQueryInfo extends ApiQueryBase {
 			if ( $protectedPages ) {
 				$this->setVirtualDomain( ImageLinksTable::VIRTUAL_DOMAIN );
 
-				$res = $this->getDB()->newSelectQueryBuilder()
-					->select( [ 'il_from', 'il_to' ] )
-					->from( 'imagelinks' )
-					->where( [
-						'il_from' => array_keys( $protectedPages ),
-						'il_to' => $images
-					] )
-					->caller( __METHOD__ )
-					->fetchResultSet();
+				$migrationStage = $this->getConfig()->get( MainConfigNames::ImageLinksSchemaMigrationStage );
+				$queryInfo = $this->linksMigration->getQueryInfo( 'imagelinks' );
+
+				$queryBuilder = $this->getDB()->newSelectQueryBuilder()
+					->tables( $queryInfo['tables'] )
+					->where( [ 'il_from' => array_keys( $protectedPages ) ] )
+					->caller( __METHOD__ );
+
+				if ( $migrationStage & SCHEMA_COMPAT_READ_NEW ) {
+					$queryBuilder
+						->fields( [ 'il_from', 'il_to' => 'lt_title' ] )
+						->joinConds( $queryInfo['joins'] )
+						->andWhere( [ 'lt_title' => $images, 'lt_namespace' => NS_FILE ] );
+				} else {
+					$queryBuilder
+						->fields( [ 'il_from', 'il_to' ] )
+						->andWhere( [ 'il_to' => $images ] );
+				}
+
+				$res = $queryBuilder->fetchResultSet();
 
 				foreach ( $res as $row ) {
 					$protection = $protectedPages[$row->il_from];
