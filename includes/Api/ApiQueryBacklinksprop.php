@@ -67,7 +67,6 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			'linktable' => 'imagelinks',
 			'indexes' => [ 'il_to', 'il_backlinks_namespace' ],
 			'from_namespace' => true,
-			'to_namespace' => NS_FILE,
 			'exampletitle' => 'File:Example.jpg',
 			'showredirects' => true,
 			'virtualdomain' => ImageLinksTable::VIRTUAL_DOMAIN,
@@ -120,25 +119,22 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 		// Determine our fields to query on
 		$p = $settings['prefix'];
-		$hasNS = !isset( $settings['to_namespace'] );
-		if ( $hasNS ) {
-			if ( isset( $this->linksMigration::$mapping[$settings['linktable']] ) ) {
-				[ $bl_namespace, $bl_title ] = $this->linksMigration->getTitleFields( $settings['linktable'] );
-			} else {
-				$bl_namespace = "{$p}_namespace";
-				$bl_title = "{$p}_title";
-			}
-		} else {
-			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
-			$bl_namespace = $settings['to_namespace'];
-			$bl_title = "{$p}_to";
 
+		if ( isset( $this->linksMigration::$mapping[$settings['linktable']] ) ) {
+			[ $bl_namespace, $bl_title ] = $this->linksMigration->getTitleFields( $settings['linktable'] );
+		} else {
+			$bl_namespace = "{$p}_namespace";
+			$bl_title = "{$p}_title";
+		}
+		$bl_from = "{$p}_from";
+
+		$hasNS = !is_int( $bl_namespace );
+		if ( !$hasNS ) {
 			$titles = array_filter( $titles, static function ( $t ) use ( $bl_namespace ) {
 				return $t->getNamespace() === $bl_namespace;
 			} );
 			$map = array_intersect_key( $map, [ $bl_namespace => true ] );
 		}
-		$bl_from = "{$p}_from";
 
 		if ( !$titles ) {
 			return; // nothing to do
@@ -199,7 +195,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			$queryInfo = $this->linksMigration->getQueryInfo( $settings['linktable'] );
 			$this->addTables( [ 'page', ...$queryInfo['tables'] ] );
 			$this->addJoinConds( $queryInfo['joins'] );
-			// TODO: Move to links migration
+			// TODO: Remove once imagelinks migration is complete
 			if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
 				$idxWithFromNS .= '_target_id';
 			}
