@@ -6,6 +6,8 @@
  * @file
  */
 
+namespace MediaWiki\Search;
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
@@ -37,3 +39,6 @@ class TitlePrefixSearch extends PrefixSearch {
 		return $titles;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( TitlePrefixSearch::class, 'TitlePrefixSearch' );

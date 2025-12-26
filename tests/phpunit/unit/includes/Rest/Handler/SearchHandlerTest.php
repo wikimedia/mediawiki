@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use InvalidArgumentException;
-use ISearchResultSet;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
@@ -19,6 +18,9 @@ use MediaWiki\Rest\Handler\SearchHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
+use MediaWiki\Search\ISearchResultSet;
+use MediaWiki\Search\SearchEngineConfig;
+use MediaWiki\Search\SearchResult;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -30,9 +32,7 @@ use MediaWikiUnitTestCase;
 use MockSearchResultSet;
 use PHPUnit\Framework\MockObject\MockObject;
 use SearchEngine;
-use SearchEngineConfig;
 use SearchEngineFactory;
-use SearchResult;
 use SearchSuggestion;
 use SearchSuggestionSet;
 use Wikimedia\Message\MessageValue;

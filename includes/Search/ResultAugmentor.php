@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Search\SearchResult;
+
 /**
  * Augment search results.
  * @stable to implement

@@ -6,7 +6,7 @@ use MediaWiki\Title\Title;
 /**
  * @group Search
  * @group Database
- * @covers \PrefixSearch
+ * @covers \MediaWiki\Search\PrefixSearch
  */
 class PrefixSearchTest extends MediaWikiLangTestCase {
 	private const NS_NONCAP = 12346;
@@ -186,8 +186,8 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideSearch
-	 * @covers \PrefixSearch::search
-	 * @covers \PrefixSearch::searchBackend
+	 * @covers \MediaWiki\Search\PrefixSearch::search
+	 * @covers \MediaWiki\Search\PrefixSearch::searchBackend
 	 */
 	public function testSearch( array $case ) {
 		$this->searchProvision( null );
@@ -205,8 +205,8 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideSearch
-	 * @covers \PrefixSearch::search
-	 * @covers \PrefixSearch::searchBackend
+	 * @covers \MediaWiki\Search\PrefixSearch::search
+	 * @covers \MediaWiki\Search\PrefixSearch::searchBackend
 	 */
 	public function testSearchWithOffset( array $case ) {
 		$this->searchProvision( null );
@@ -342,7 +342,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideSearchBackend
-	 * @covers \PrefixSearch::searchBackend
+	 * @covers \MediaWiki\Search\PrefixSearch::searchBackend
 	 */
 	public function testSearchBackend( array $case ) {
 		$this->filterDeprecated( '/Use of PrefixSearchBackend hook/' );

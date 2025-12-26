@@ -2,6 +2,7 @@
 
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Search\RevisionSearchResult;
 use MediaWiki\Title\Title;
 
 /**

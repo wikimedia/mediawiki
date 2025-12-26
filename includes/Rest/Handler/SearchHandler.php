@@ -3,7 +3,6 @@
 namespace MediaWiki\Rest\Handler;
 
 use InvalidArgumentException;
-use ISearchResultSet;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
@@ -16,12 +15,13 @@ use MediaWiki\Rest\Handler\Helper\RestStatusTrait;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
+use MediaWiki\Search\ISearchResultSet;
+use MediaWiki\Search\SearchEngineConfig;
+use MediaWiki\Search\SearchResult;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Title\TitleFormatter;
 use SearchEngine;
-use SearchEngineConfig;
 use SearchEngineFactory;
-use SearchResult;
 use SearchSuggestion;
 use StatusValue;
 use Wikimedia\Message\MessageValue;

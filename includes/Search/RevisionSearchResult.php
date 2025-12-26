@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Search;
+
+use IDBAccessObject;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
@@ -212,3 +215,6 @@ class RevisionSearchResult extends SearchResult {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RevisionSearchResult::class, 'RevisionSearchResult' );

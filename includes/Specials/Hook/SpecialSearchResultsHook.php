@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Specials\Hook;
 
-use ISearchResultSet;
+use MediaWiki\Search\ISearchResultSet;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

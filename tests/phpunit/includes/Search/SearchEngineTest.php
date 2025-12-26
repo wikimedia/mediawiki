@@ -2,6 +2,8 @@
 
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Search\ISearchResultSet;
+use MediaWiki\Search\SearchResult;
 
 /**
  * @group Search
@@ -279,7 +281,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	 * Guard against regressions like T208255
 	 * @dataProvider provideCompletionSearchMustRespectCapitalLinkOverrides
 	 * @covers \SearchEngine::completionSearch
-	 * @covers \PrefixSearch::defaultSearchBackend
+	 * @covers \MediaWiki\Search\PrefixSearch::defaultSearchBackend
 	 * @param string $search
 	 * @param string $expectedSuggestion
 	 * @param int[] $namespaces

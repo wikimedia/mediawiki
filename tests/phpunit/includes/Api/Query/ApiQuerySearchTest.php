@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
-use ISearchResultSet;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Search\ISearchResultSet;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Title\Title;
 use MockSearchEngine;

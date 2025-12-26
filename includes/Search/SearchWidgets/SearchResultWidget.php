@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Search\SearchWidgets;
 
-use SearchResult;
+use MediaWiki\Search\SearchResult;
 
 /**
  * Renders a single search result to HTML

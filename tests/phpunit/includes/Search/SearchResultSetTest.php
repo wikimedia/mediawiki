@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Search\SearchResult;
 use MediaWiki\Title\Title;
 
 class SearchResultSetTest extends MediaWikiIntegrationTestCase {
@@ -10,9 +11,9 @@ class SearchResultSetTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \SearchResultSet::getIterator
-	 * @covers \BaseSearchResultSet::next
-	 * @covers \BaseSearchResultSet::rewind
+	 * @covers \MediaWiki\Search\SearchResultSet::getIterator
+	 * @covers \MediaWiki\Search\BaseSearchResultSet::next
+	 * @covers \MediaWiki\Search\BaseSearchResultSet::rewind
 	 */
 	public function testIterate() {
 		$title = Title::makeTitle( NS_MAIN, __METHOD__ );
@@ -26,8 +27,8 @@ class SearchResultSetTest extends MediaWikiIntegrationTestCase {
 		}
 		$this->assertSame( 1, $count );
 
-		$this->hideDeprecated( 'BaseSearchResultSet::rewind' );
-		$this->hideDeprecated( 'BaseSearchResultSet::next' );
+		$this->hideDeprecated( 'MediaWiki\\Search\\BaseSearchResultSet::rewind' );
+		$this->hideDeprecated( 'MediaWiki\\Search\\BaseSearchResultSet::next' );
 		$resultSet->rewind();
 		$count = 0;
 		foreach ( $resultSet as $iterResult ) {
@@ -55,9 +56,9 @@ class SearchResultSetTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \SearchResultSet::shrink
-	 * @covers \SearchResultSet::count
-	 * @covers \SearchResultSet::hasMoreResults
+	 * @covers \MediaWiki\Search\SearchResultSet::shrink
+	 * @covers \MediaWiki\Search\SearchResultSet::count
+	 * @covers \MediaWiki\Search\SearchResultSet::hasMoreResults
 	 */
 	public function testHasMoreResults() {
 		$title = Title::makeTitle( NS_MAIN, __METHOD__ );
@@ -72,7 +73,7 @@ class SearchResultSetTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \SearchResultSet::shrink
+	 * @covers \MediaWiki\Search\SearchResultSet::shrink
 	 */
 	public function testShrink() {
 		$title = Title::makeTitle( NS_MAIN, __METHOD__ );

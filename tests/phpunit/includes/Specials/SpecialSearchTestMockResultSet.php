@@ -1,8 +1,8 @@
 <?php
 namespace MediaWiki\Tests\Specials;
 
+use MediaWiki\Search\SearchResultSet;
 use MediaWiki\Title\Title;
-use SearchResultSet;
 
 class SpecialSearchTestMockResultSet extends SearchResultSet {
 

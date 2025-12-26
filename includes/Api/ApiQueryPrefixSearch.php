@@ -8,8 +8,8 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\Search\SearchEngineConfig;
 use SearchEngine;
-use SearchEngineConfig;
 use SearchEngineFactory;
 
 /**

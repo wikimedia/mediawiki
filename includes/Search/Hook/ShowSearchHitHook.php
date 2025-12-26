@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Search\Hook;
 
+use MediaWiki\Search\SearchResult;
 use MediaWiki\Specials\SpecialSearch;
-use SearchResult;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

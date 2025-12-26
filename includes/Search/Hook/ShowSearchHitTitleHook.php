@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Search\Hook;
 
+use MediaWiki\Search\SearchResult;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\Title;
-use SearchResult;
 use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**

@@ -4,8 +4,8 @@ namespace MediaWiki\Search\SearchWidgets;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Search\SearchResult;
 use MediaWiki\Specials\SpecialSearch;
-use SearchResult;
 use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**

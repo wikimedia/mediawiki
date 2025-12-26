@@ -532,6 +532,15 @@ because of Phabricator reports.
     - SearchMySQL
     - SqlSearchResult
     - SqlSearchResultSet
+    - BaseSearchResultSet
+    - ISearchResultSet
+    - PrefixSearch
+    - RevisionSearchResult
+    - SearchEngineConfig
+    - SearchResult
+    - SearchResultSet
+    - SearchResultTrait
+    - TitlePrefixSearch
 * Using an int for the $mode parameter of LanguageFallback::getAll() is now
   deprecated.  Use the new LanguageFallbackMode enumeration instead.
 * LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use

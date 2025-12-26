@@ -5,9 +5,9 @@ namespace MediaWiki\Tests\Api;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiOpenSearch;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Search\SearchEngineConfig;
 use MediaWikiIntegrationTestCase;
 use SearchEngine;
-use SearchEngineConfig;
 use SearchEngineFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 

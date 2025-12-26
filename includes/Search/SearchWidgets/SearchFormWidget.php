@@ -8,6 +8,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Search\SearchEngineConfig;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Widget\SearchInputWidget;
@@ -15,7 +16,6 @@ use OOUI\ActionFieldLayout;
 use OOUI\ButtonInputWidget;
 use OOUI\CheckboxInputWidget;
 use OOUI\FieldLayout;
-use SearchEngineConfig;
 
 class SearchFormWidget {
 	/** @internal For use by SpecialSearch only */

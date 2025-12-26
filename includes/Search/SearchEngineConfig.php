@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Search;
+
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
@@ -62,8 +64,8 @@ class SearchEngineConfig {
 
 	/**
 	 * Retrieve original config.
-	 * @deprecated since 1.43, use ServiceOptions instead with DI.
 	 * @return Config
+	 * @deprecated since 1.43, use ServiceOptions instead with DI.
 	 */
 	public function getConfig() {
 		wfDeprecated( __METHOD__, '1.43' );
@@ -154,12 +156,12 @@ class SearchEngineConfig {
 	 * @par extension.json Example:
 	 * @code
 	 * "SearchMappings": {
-	 * 	"foobarsearch": { "class": "MediaWiki\\Extension\\FoobarSearch\\FoobarSearch" }
+	 *    "foobarsearch": { "class": "MediaWiki\\Extension\\FoobarSearch\\FoobarSearch" }
 	 * }
 	 * @endcode
 	 *
-	 * @since 1.35
 	 * @return array
+	 * @since 1.35
 	 */
 	public function getSearchMappings() {
 		return $this->engineMappings;
@@ -182,3 +184,6 @@ class SearchEngineConfig {
 		return $formatted;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SearchEngineConfig::class, 'SearchEngineConfig' );

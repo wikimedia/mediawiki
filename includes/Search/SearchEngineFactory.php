@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Search\SearchEngineConfig;
+use MediaWiki\Search\SearchEngineDummy;
 use MediaWiki\Search\SearchMySQL;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\IConnectionProvider;

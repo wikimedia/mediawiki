@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Search\ISearchResultSet;
+
 /**
  * Perform augmentation of each row and return composite result,
  * indexed by ID.

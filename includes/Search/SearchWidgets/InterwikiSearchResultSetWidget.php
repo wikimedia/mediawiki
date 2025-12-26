@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Search\SearchWidgets;
 
-use ISearchResultSet;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Search\ISearchResultSet;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\Title;
 use OOUI;

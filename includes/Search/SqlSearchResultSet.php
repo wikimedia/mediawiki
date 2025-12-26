@@ -4,7 +4,6 @@ namespace MediaWiki\Search;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use SearchResultSet;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**

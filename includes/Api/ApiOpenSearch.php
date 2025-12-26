@@ -14,10 +14,10 @@ use InvalidArgumentException;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Search\SearchEngineConfig;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
 use SearchEngine;
-use SearchEngineConfig;
 use SearchEngineFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 

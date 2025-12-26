@@ -1,6 +1,7 @@
 <?php
 
 // @phan-file-suppress PhanUndeclaredMethod
+use MediaWiki\Search\SearchResult;
 
 /**
  * Trait useful for SearchResultSet implementations.

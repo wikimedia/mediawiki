@@ -1,5 +1,9 @@
 <?php
 
+use MediaWiki\Search\ISearchResultSet;
+use MediaWiki\Search\SearchResult;
+use MediaWiki\Search\SearchResultSet;
+
 class MockSearchResultSet extends SearchResultSet {
 	/**
 	 * @var SearchResultSet[][] Map from result type to list of results for

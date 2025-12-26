@@ -6,6 +6,7 @@
  * @file
  */
 
+use MediaWiki\Search\PrefixSearch;
 use MediaWiki\Title\Title;
 
 /**

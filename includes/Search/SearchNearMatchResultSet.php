@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Search\SearchResult;
+use MediaWiki\Search\SearchResultSet;
 use MediaWiki\Title\Title;
 
 /**

@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Search\SearchWidgets;
 
-use ISearchResultSet;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Search\ISearchResultSet;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Status\Status;
 

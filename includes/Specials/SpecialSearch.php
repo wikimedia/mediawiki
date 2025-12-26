@@ -8,7 +8,6 @@
 
 namespace MediaWiki\Specials;
 
-use ISearchResultSet;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -21,6 +20,8 @@ use MediaWiki\Message\Message;
 use MediaWiki\Navigation\CodexPagerNavigationBuilder;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\Search\ISearchResultSet;
+use MediaWiki\Search\SearchEngineConfig;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\SearchWidgets\BasicSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\DidYouMeanWidget;
@@ -35,7 +36,6 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsManager;
 use SearchEngine;
-use SearchEngineConfig;
 use SearchEngineFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 

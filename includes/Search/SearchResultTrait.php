@@ -1,5 +1,10 @@
 <?php
 
+namespace MediaWiki\Search;
+
+use Closure;
+use InvalidArgumentException;
+
 /**
  * Trait for SearchResult subclasses to share non-obvious behaviors or methods
  * that rarely specialized
@@ -46,3 +51,6 @@ trait SearchResultTrait {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SearchResultTrait::class, 'SearchResultTrait' );

@@ -1,9 +1,11 @@
 <?php
 
+use MediaWiki\Search\SearchResultTrait;
+
 class SearchResultTraitTest extends MediaWikiIntegrationTestCase {
 	/**
-	 * @covers \SearchResultTrait::getExtensionData
-	 * @covers \SearchResultTrait::setExtensionData
+	 * @covers \MediaWiki\Search\SearchResultTrait::getExtensionData
+	 * @covers \MediaWiki\Search\SearchResultTrait::setExtensionData
 	 */
 	public function testExtensionData() {
 		$result = new class() {
@@ -21,15 +23,15 @@ class SearchResultTraitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \SearchResultTrait::getExtensionData
-	 * @covers \SearchResultTrait::setExtensionData
+	 * @covers \MediaWiki\Search\SearchResultTrait::getExtensionData
+	 * @covers \MediaWiki\Search\SearchResultTrait::setExtensionData
 	 */
 	public function testExtensionDataArrayBC() {
 		$result = new class() {
 			use SearchResultTrait;
 		};
 		$data = [ 'hello' => 'world' ];
-		$this->hideDeprecated( 'SearchResultTrait::setExtensionData with array argument' );
+		$this->hideDeprecated( 'MediaWiki\\Search\\SearchResultTrait::setExtensionData with array argument' );
 		$this->assertEquals( [], $result->getExtensionData(), 'starts empty' );
 		$result->setExtensionData( $data );
 		$this->assertEquals( $data, $result->getExtensionData(), 'can set extension data' );

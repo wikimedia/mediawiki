@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Search\RevisionSearchResult;
+
 class MockSearchResult extends RevisionSearchResult {
 	/** @var bool */
 	private $isMissingRevision = false;

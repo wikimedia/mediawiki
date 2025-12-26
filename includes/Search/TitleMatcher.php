@@ -1,7 +1,6 @@
 <?php
 namespace MediaWiki\Search;
 
-use ISearchResultSet;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;

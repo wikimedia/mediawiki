@@ -13,11 +13,11 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
+use MediaWiki\Search\SearchResult;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsManager;
-use SearchResult;
 use ThumbnailImage;
 use Wikimedia\HtmlArmor\HtmlArmor;
 
