@@ -13,11 +13,11 @@ namespace MediaWiki\Installer;
 use FixInconsistentRedirects;
 use FixWrongPasswordPrefixes;
 use MediaWiki\Maintenance\FixAutoblockLogTitles;
+use MediaWiki\Maintenance\UpdateRestrictions;
 use MigrateExternallinks;
 use MigrateRevisionActorTemp;
 use MigrateRevisionCommentTemp;
 use PopulateUserIsTemp;
-use UpdateRestrictions;
 
 /**
  * Class for handling updates to Sqlite databases.
