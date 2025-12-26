@@ -29,6 +29,7 @@ use MediaWiki\Page\Event\PageMovedEvent;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
@@ -237,7 +238,7 @@ class MovePage {
 	 * @param string|null $reason To check against summary spam regex. Set to null to skip the check,
 	 *   for instance to display errors preemptively before the user has filled in a summary.
 	 * @deprecated since 1.36, use ::authorizeMove or ::probablyCanMove instead.
-	 * @return Status
+	 * @return Status<never>
 	 */
 	public function checkPermissions( Authority $performer, $reason ) {
 		$permissionStatus = $this->authorizeInternal(
@@ -255,7 +256,7 @@ class MovePage {
 	 * valid. Only things based on the two titles
 	 * should be checked here.
 	 *
-	 * @return Status
+	 * @return Status<never>
 	 */
 	public function isValidMove() {
 		$status = new Status();
@@ -336,7 +337,7 @@ class MovePage {
 	 * Checks for when a file is being moved
 	 *
 	 * @see UploadBase::getTitle
-	 * @return Status
+	 * @return Status<never>
 	 */
 	protected function isValidFileMove() {
 		$status = new Status();
@@ -435,7 +436,9 @@ class MovePage {
 	 * @param string|null $reason
 	 * @param bool|null $createRedirect
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
-	 * @return Status
+	 * @phpcs:ignore Generic.Files.LineLength.TooLong
+	 * @return Status<array{nullRevision: RevisionRecord, redirectRevision: ?RevisionRecord, redirectPage: ?ExistingPageRecord}>
+	 *  See {@link moveToInternal()}
 	 */
 	public function move(
 		UserIdentity $user, $reason = null, $createRedirect = true, array $changeTags = []
@@ -455,7 +458,9 @@ class MovePage {
 	 * @param string|null $reason
 	 * @param bool $createRedirect Ignored if user doesn't have suppressredirect permission
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
-	 * @return Status<array>
+	 * @phpcs:ignore Generic.Files.LineLength.TooLong
+	 * @return Status<array{nullRevision: RevisionRecord, redirectRevision: ?RevisionRecord, redirectPage: ?ExistingPageRecord}>
+	 *  See {@link moveToInternal()}
 	 */
 	public function moveIfAllowed(
 		Authority $performer, $reason = null, $createRedirect = true, array $changeTags = []
@@ -492,10 +497,7 @@ class MovePage {
 	 * @param bool|null $createRedirect Whether to create redirects from the old subpages to
 	 *  the new ones
 	 * @param string[] $changeTags Applied to entries in the move log and redirect page revision
-	 * @return Status Good if no errors occurred. Ok if at least one page succeeded. The "value"
-	 *  of the top-level status is an array containing the per-title status for each page. For any
-	 *  move that succeeded, the "value" of the per-title status is the new page title. For any
-	 *  move that failed, the "value" of the per-title status is the subpage it tried to move to.
+	 * @return Status<array<string,Status<string>>> See {@link moveSubpagesInternal()}
 	 */
 	public function moveSubpages(
 		UserIdentity $user, $reason = null, $createRedirect = true, array $changeTags = []
@@ -518,18 +520,16 @@ class MovePage {
 	 * @param bool|null $createRedirect Whether to create redirects from the old subpages to
 	 *  the new ones. Ignored if the user doesn't have the 'suppressredirect' right.
 	 * @param string[] $changeTags Applied to entries in the move log and redirect page revision
-	 * @return Status Good if no errors occurred. Ok if at least one page succeeded. The "value"
-	 *  of the top-level status is an array containing the per-title status for each page. For any
-	 * move that succeeded, the "value" of the per-title status is the new page title. For any
-	 * move that failed, the "value" of the per-title status is the subpage it tried to move to.
-	 * This may not be a valid title; for example the new title could possibly exceed the maximum
-	 * title size,
+	 * @return Status<array<string,Status<string>>> See {@link moveSubpagesInternal()}
 	 */
 	public function moveSubpagesIfAllowed(
 		Authority $performer, $reason = null, $createRedirect = true, array $changeTags = []
 	) {
 		if ( !$performer->authorizeWrite( 'move-subpages', $this->oldTitle ) ) {
-			return Status::newFatal( 'cant-move-subpages' );
+			$status = Status::newFatal( 'cant-move-subpages' );
+			// No pages were moved, so the array of per-page statuses is empty
+			$status->value = [];
+			return $status;
 		}
 		return $this->moveSubpagesInternal(
 			function ( Title $oldSubpage, Title $newSubpage )
@@ -540,6 +540,7 @@ class MovePage {
 		);
 	}
 
+	/** @return Status<array<string,Status<string>>> */
 	private function constructNoSubpagesStatus( int $ns ): Status {
 		$status = Status::newFatal( 'namespace-nosubpages',
 			$this->nsInfo->getCanonicalName( $ns ) );
@@ -550,7 +551,13 @@ class MovePage {
 
 	/**
 	 * @param callable $subpageMoveCallback
-	 * @return Status
+	 * @return Status<array<string,Status<string>>>
+	 *  Good status if no errors occurred. OK status if at least one page succeeded.
+	 *  The "value" of the top-level status is always set, even when errors occurred.
+	 *  It is an array containing the per-title status for each page:
+	 *  For any move that succeeded, the "value" of the per-title status is the new page title.
+	 *  For any move that failed, the "value" of the per-title status is the title it tried to move
+	 *  to, which may not be valid, e.g. if the new title would exceed the maximum title length.
 	 */
 	private function moveSubpagesInternal( callable $subpageMoveCallback ) {
 		// Do the source and target namespaces support subpages?
@@ -622,7 +629,9 @@ class MovePage {
 	 * @param string $reason
 	 * @param bool $createRedirect
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
-	 * @return Status<array>
+	 * @phpcs:ignore Generic.Files.LineLength.TooLong
+	 * @return Status<array{nullRevision: RevisionRecord, redirectRevision: ?RevisionRecord, redirectPage: ?ExistingPageRecord}>
+	 *  See {@link moveToInternal()}
 	 */
 	private function moveUnsafe( UserIdentity $user, $reason, $createRedirect, array $changeTags ) {
 		$status = Status::newGood();
@@ -781,7 +790,7 @@ class MovePage {
 	 * @internal
 	 * @param Title $oldTitle Old location to move the file from.
 	 * @param Title $newTitle New location to move the file to.
-	 * @return Status
+	 * @return Status<mixed>
 	 */
 	private function moveFile( $oldTitle, $newTitle ) {
 		$file = $this->repoGroup->getLocalRepo()->newFile( $oldTitle );
@@ -802,19 +811,20 @@ class MovePage {
 	 * Move page to a title which is either a redirect to the
 	 * source page or nonexistent
 	 *
-	 * @todo This was basically directly moved from Title, it should be split into
-	 *   smaller functions
+	 * @todo This was basically directly moved from Title, it should be split into smaller functions
+	 *
 	 * @param UserIdentity $user doing the move
 	 * @param Title &$nt The page to move to, which should be a redirect or non-existent
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to leave a redirect at the old title. Does not check
-	 *   if the user has the suppressredirect right
+	 *  if the user has the suppressredirect right
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
-	 * @return Status<array> Status object with the following value on success:
-	 *   [
-	 *     'nullRevision' => The dummy revision created by the move (RevisionRecord)
-	 *     'redirectRevision' => The initial revision of the redirect if it was created (RevisionRecord|null)
-	 *   ]
+	 * @phpcs:ignore Generic.Files.LineLength.TooLong
+	 * @return Status<array{nullRevision: RevisionRecord, redirectRevision: ?RevisionRecord, redirectPage: ?ExistingPageRecord}>
+	 *  Status object. On success, the value is an array with the following keys:
+	 *  - nullRevision: The dummy revision created by the move (`RevisionRecord`)
+	 *  - redirectRevision: The initial revision of the redirect if it was created (`RevisionRecord|null`)
+	 *  - redirectPage: The redirect page if it was created (`ExistingPageRecord|null`)
 	 */
 	private function moveToInternal(
 		UserIdentity $user,
