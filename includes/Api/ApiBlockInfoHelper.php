@@ -67,6 +67,9 @@ class ApiBlockInfoHelper {
 			$vals['blockemail'] = $block->isEmailBlocked();
 			$vals['blockowntalk'] = !$block->isUsertalkEditAllowed();
 		}
+		if ( $block instanceof DatabaseBlock ) {
+			$vals['blockautoblocking'] = $block->isAutoblocking();
+		}
 
 		// Formatted timestamps
 		$vals['blockedtimestampformatted'] = $language->formatExpiry(

@@ -6,6 +6,7 @@ use MediaWiki\Api\ApiBlockInfoTrait;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\Block\UserBlockTarget;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
@@ -46,6 +47,7 @@ class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideGetBlockDetails() {
+		$blockTarget = new UserBlockTarget( new UserIdentityValue( 0, 'Test' ) );
 		return [
 			'Sitewide block' => [
 				new DatabaseBlock(),
@@ -58,6 +60,10 @@ class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 			'Email block' => [
 				new DatabaseBlock( [ 'blockEmail' => true ] ),
 				[ 'blockemail' => true ]
+			],
+			'Autoblock-enabled block' => [
+				new DatabaseBlock( [ 'target' => $blockTarget, 'enableAutoblock' => true ] ),
+				[ 'blockautoblocking' => true ]
 			],
 			'System block' => [
 				new SystemBlock( [ 'systemBlock' => 'proxy' ] ),
