@@ -173,6 +173,9 @@ because of Phabricator reports.
   SpecialUserRights::canProcessExpiries), deprecated in 1.45, has been removed.
   There's no replacement; the special page always assumes it can process
   expiries.
+* The tables represented by subclasses of TitleLinksTable are now expected to
+  be normalized to use the linktarget table. If they are not, they should
+  override the linksTargetNormalizationStage method to return MIGRATION_OLD.
 * MimeAnalyzer::isPHPImageType, deprecated in 1.40, has been removed.
 * FileRepo no longer implements getUploadStash(), only LocalRepo does.
 * DatbaseBlock::delete, deprecated in 1.36, has been removed. Please use
