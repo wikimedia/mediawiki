@@ -351,7 +351,6 @@ class MultiHttpClient implements LoggerAwareInterface {
 			$req['response'][2] = $req['response']['headers'];
 			$req['response'][3] = $req['response']['body'];
 			$req['response'][4] = $req['response']['error'];
-			curl_close( $ch );
 			// Close any string wrapper file handles
 			if ( isset( $req['_closeHandle'] ) ) {
 				fclose( $req['_closeHandle'] );
