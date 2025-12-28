@@ -303,6 +303,7 @@ class BacklinkCache {
 			case 'templatelinks':
 			case 'categorylinks':
 			case 'existencelinks':
+			case 'imagelinks':
 				$queryBuilder->where(
 					$this->linksMigration->getLinksConditions( $table, TitleValue::newFromPage( $this->page ) )
 				);
@@ -312,11 +313,6 @@ class BacklinkCache {
 					"{$prefix}_namespace" => $this->page->getNamespace(),
 					"{$prefix}_title" => $this->page->getDBkey(),
 					"{$prefix}_interwiki" => [ '', null ],
-				] );
-				break;
-			case 'imagelinks':
-				$queryBuilder->where( [
-					"{$prefix}_to" => $this->page->getDBkey(),
 				] );
 				break;
 			default:

@@ -607,12 +607,14 @@ class RestrictionStore {
 			return [ [], [], [], [] ];
 		}
 
+		$title = TitleValue::newFromPage( $page );
+
 		$templateLinksDb = $this->loadBalancerFactory->getReplicaDatabase( TemplateLinksTable::VIRTUAL_DOMAIN );
 		$templateLinks = $templateLinksDb->newSelectQueryBuilder()
 			->select( 'tl_from' )
 			->from( 'templatelinks' )
 			->where( [ 'tl_from' => array_keys( $restrictionsByPage ) ] )
-			->andWhere( $this->linksMigration->getLinksConditions( 'templatelinks', TitleValue::newFromPage( $page ) ) )
+			->andWhere( $this->linksMigration->getLinksConditions( 'templatelinks', $title ) )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 
@@ -639,10 +641,8 @@ class RestrictionStore {
 			$imageLinks = $imageLinksDb->newSelectQueryBuilder()
 				->select( 'il_from' )
 				->from( 'imagelinks' )
-				->where( [
-					'il_from' => array_keys( $restrictionsByPage ),
-					'il_to' => $page->getDBkey()
-				] )
+				->where( [ 'il_from' => array_keys( $restrictionsByPage ) ] )
+				->andWhere( $this->linksMigration->getLinksConditions( 'imagelinks', $title ) )
 				->caller( __METHOD__ )
 				->fetchResultSet();
 
@@ -690,6 +690,8 @@ class RestrictionStore {
 			return $cacheEntry['cascade_sources'];
 		}
 
+		$title = TitleValue::newFromPage( $page );
+
 		$dbr = $this->loadBalancerFactory->getReplicaDatabase();
 		$baseQuery = $dbr->newSelectQueryBuilder()
 			->select( [
@@ -706,20 +708,14 @@ class RestrictionStore {
 
 		$templateQuery = clone $baseQuery;
 		$templateQuery->join( 'templatelinks', null, 'tl_from=pr_page' )
-			->fields( [
-				'type' => $dbr->addQuotes( 'tl' ),
-			] )
-			->andWhere(
-				$this->linksMigration->getLinksConditions( 'templatelinks', TitleValue::newFromPage( $page ) )
-			);
+			->fields( [ 'type' => $dbr->addQuotes( 'tl' ) ] )
+			->andWhere( $this->linksMigration->getLinksConditions( 'templatelinks', $title ) );
 
 		if ( $page->getNamespace() === NS_FILE ) {
 			$imageQuery = clone $baseQuery;
 			$imageQuery->join( 'imagelinks', null, 'il_from=pr_page' )
-				->fields( [
-					'type' => $dbr->addQuotes( 'il' ),
-				] )
-				->andWhere( [ 'il_to' => $page->getDBkey() ] );
+				->fields( [ 'type' => $dbr->addQuotes( 'il' ) ] )
+				->andWhere( $this->linksMigration->getLinksConditions( 'imagelinks', $title ) );
 
 			$unionQuery = $dbr->newUnionQueryBuilder()
 				->add( $imageQuery )

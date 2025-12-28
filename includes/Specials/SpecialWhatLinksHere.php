@@ -187,9 +187,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		];
 		$conds['pagelinks'] = $this->linksMigration->getLinksConditions( 'pagelinks', $target );
 		$conds['templatelinks'] = $this->linksMigration->getLinksConditions( 'templatelinks', $target );
-		$conds['imagelinks'] = [
-			'il_to' => $target->getDBkey(),
-		];
+		$conds['imagelinks'] = $this->linksMigration->getLinksConditions( 'imagelinks', $target );
 
 		$namespace = $this->formData['namespace'];
 		if ( $namespace !== '' ) {

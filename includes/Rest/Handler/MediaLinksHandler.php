@@ -4,6 +4,8 @@ namespace MediaWiki\Rest\Handler;
 
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\FileRepo\RepoGroup;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Rest\Handler;
@@ -92,13 +94,27 @@ class MediaLinksHandler extends SimpleHandler {
 	 * @return array the results
 	 */
 	private function getDbResults( int $pageId ) {
-		return $this->dbProvider->getReplicaDatabase( ImageLinksTable::VIRTUAL_DOMAIN )->newSelectQueryBuilder()
-			->select( 'il_to' )
+		$dbr = $this->dbProvider->getReplicaDatabase( ImageLinksTable::VIRTUAL_DOMAIN );
+		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ImageLinksSchemaMigrationStage
+		);
+
+		$qb = $dbr->newSelectQueryBuilder()
 			->from( 'imagelinks' )
 			->where( [ 'il_from' => $pageId ] )
 			->orderBy( 'il_to' )
 			->limit( $this->getMaxNumLinks() + 1 )
-			->caller( __METHOD__ )->fetchFieldValues();
+			->caller( __METHOD__ );
+
+		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$qb->select( 'il_to' );
+		} else {
+			$qb->select( [ 'il_to' => 'lt_title' ] );
+			$qb->join( 'linktarget', null, 'il_target_id = lt_id' );
+			$qb->where( [ 'lt_namespace' => NS_FILE ] );
+		}
+
+		return $qb->fetchFieldValues();
 	}
 
 	/**

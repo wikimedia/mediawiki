@@ -10,6 +10,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\Authority;
@@ -47,6 +48,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		MainConfigNames::MiserMode,
 		MainConfigNames::RCMaxAge,
 		MainConfigNames::EnableChangesListQueryPartitioning,
+		MainConfigNames::ImageLinksSchemaMigrationStage,
 		...ExperienceCondition::CONSTRUCTOR_OPTIONS
 	];
 
@@ -69,6 +71,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	private int|float $rcMaxAge;
 	private bool $enablePartitioning;
 	private bool $forcePartitioning = false;
+	private int $imageLinksMigrationStage;
 
 	private array $densityTunables = [
 		self::DENSITY_LINKS => 0.1,
@@ -243,6 +246,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 
 		$this->rcMaxAge = (int)$config->get( MainConfigNames::RCMaxAge );
 		$this->enablePartitioning = (bool)$config->get( MainConfigNames::EnableChangesListQueryPartitioning );
+		$this->imageLinksMigrationStage = (int)$config->get( MainConfigNames::ImageLinksSchemaMigrationStage );
 	}
 
 	/**
@@ -1312,7 +1316,9 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 				// No imagelinks to a non-image page
 				return false;
 			}
-			$queryBuilder->where( $this->db->expr( 'il_to', '=', $page->getDBkey() ) );
+			$title = TitleValue::newFromPage( $page );
+			$cond = MediaWikiServices::getInstance()->getLinksMigration()->getLinksConditions( 'imagelinks', $title );
+			$queryBuilder->where( $cond );
 		} else {
 			$linkTarget = $page instanceof LinkTarget ? $page : TitleValue::newFromPage( $page );
 			$targetId = $this->linkTargetLookup->getLinkTargetId( $linkTarget );
@@ -1343,9 +1349,9 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		}
 		$prefix = self::LINK_TABLE_PREFIXES[$linkTable];
 		$queryBuilder->where( [ "{$prefix}_from" => $page->getId() ] );
-		if ( $linkTable == 'imagelinks' ) {
-			$queryBuilder->join( 'imagelinks', null, "rc_title = il_to" )
-				->where( [ "rc_namespace" => $page->getNamespace() ] );
+		if ( $linkTable == 'imagelinks' && ( $this->imageLinksMigrationStage & SCHEMA_COMPAT_READ_OLD ) ) {
+			$queryBuilder->join( 'imagelinks', null, 'rc_title = il_to' )
+				->where( [ 'rc_namespace' => $page->getNamespace() ] );
 		} else {
 			$queryBuilder
 				->join( 'linktarget', null,
