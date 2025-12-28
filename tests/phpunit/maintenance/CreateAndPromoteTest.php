@@ -3,7 +3,9 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use CreateAndPromote;
+use MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Password\PasswordError;
 use MediaWiki\Password\PasswordFactory;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SiteStats\SiteStats;
@@ -126,6 +128,53 @@ class CreateAndPromoteTest extends MaintenanceBaseTestCase {
 		$this->maintenance->setArg( 'password', 'abc' );
 		$this->expectCallToFatalError();
 		$this->expectOutputRegex( '/password entered is in a list of very commonly used passwords/' );
+		$this->maintenance->execute();
+	}
+
+	public function testExecuteForExistingUserPasswordErrorStatus() {
+		// Disable all auth providers that could handle passwords, so that the password change fails.
+		// A real wiki could be using a SSO auth provider and have no password authentication whatsoever.
+		$this->overrideConfigValue( MainConfigNames::AuthManagerConfig, [
+			'preauth' => [],
+			'primaryauth' => [],
+			'secondaryauth' => [],
+		] );
+
+		$testUser = $this->getMutableTestUser()->getUser();
+		$this->maintenance->setArg( 'username', $testUser );
+		$this->maintenance->setArg( 'password', PasswordFactory::generateRandomPasswordString( 128 ) );
+		$this->maintenance->setOption( 'force', true );
+
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/Setting the password failed[\s\S]*The authentication data change was not handled/' );
+		$this->maintenance->execute();
+	}
+
+	public function testExecuteForExistingUserPasswordErrorException() {
+		// Make AuthManager throw a PasswordError. Not sure if this exception is possible in practice...
+		$authProvider = $this->getMockBuilder( LocalPasswordPrimaryAuthenticationProvider::class )
+			->disableOriginalConstructor()
+			->onlyMethods( [ 'providerAllowsAuthenticationDataChange' ] )
+			->getMock();
+		$authProvider->method( 'providerAllowsAuthenticationDataChange' )
+			->willThrowException( new PasswordError( 'My test error' ) );
+		$this->overrideConfigValue( MainConfigNames::AuthManagerConfig, [
+			'preauth' => [],
+			'primaryauth' => [
+				__CLASS__ => [
+					'factory' => static fn () => $authProvider,
+				],
+			],
+			'secondaryauth' => [],
+		] );
+
+		$testUser = $this->getMutableTestUser()->getUser();
+		$this->maintenance->setArg( 'username', $testUser );
+		$this->maintenance->setArg( 'password', PasswordFactory::generateRandomPasswordString( 128 ) );
+		$this->maintenance->setOption( 'force', true );
+
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/Unexpected PasswordError: My test error/' );
 		$this->maintenance->execute();
 	}
 

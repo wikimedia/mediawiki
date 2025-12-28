@@ -176,15 +176,16 @@ class CreateAndPromote extends Maintenance {
 					'password' => $password,
 					'retype' => $password,
 				] );
-				if ( !$status->isGood() ) {
-					throw new PasswordError( $status->getMessage( false, false, 'en' )->text() );
-				}
-				if ( $exists ) {
-					$this->output( "Password set.\n" );
-					$user->saveSettings();
-				}
 			} catch ( PasswordError $pwe ) {
-				$this->fatalError( 'Setting the password failed: ' . $pwe->getMessage() );
+				$this->fatalError( 'Unexpected PasswordError: ' . $pwe->getMessage() );
+			}
+			if ( !$status->isGood() ) {
+				$this->output( "Setting the password failed.\n" );
+				$this->fatalError( $status );
+			}
+			if ( $exists ) {
+				$this->output( "Password set.\n" );
+				$user->saveSettings();
 			}
 		}
 
