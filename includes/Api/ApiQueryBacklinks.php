@@ -106,16 +106,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->bl_table = $settings['linktbl'];
 		$this->hasNS = $moduleName !== 'imageusage';
 		$this->linksMigration = $linksMigration;
-		if ( isset( $this->linksMigration::$mapping[$this->bl_table] ) ) {
-			[ $this->bl_ns, $this->bl_title ] = $this->linksMigration->getTitleFields( $this->bl_table );
-		} else {
-			$this->bl_ns = $prefix . '_namespace';
-			if ( $this->hasNS ) {
-				$this->bl_title = $prefix . '_title';
-			} else {
-				$this->bl_title = $prefix . '_to';
-			}
-		}
+		[ $this->bl_ns, $this->bl_title ] = $this->linksMigration->getTitleFields( $this->bl_table );
 		$this->bl_from = $prefix . '_from';
 		$this->bl_from_ns = $prefix . '_from_namespace';
 		$this->bl_code = $code;
@@ -151,16 +142,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		}
 		$this->addFields( [ 'page_is_redirect', 'from_ns' => 'page_namespace' ] );
 
-		if ( isset( $this->linksMigration::$mapping[$this->bl_table] ) ) {
-			$conds = $this->linksMigration->getLinksConditions( $this->bl_table, $this->rootTitle );
-			$this->addWhere( $conds );
-		} else {
-			$this->addWhereFld( $this->bl_title, $this->rootTitle->getDBkey() );
-			if ( $this->hasNS ) {
-				$this->addWhereFld( $this->bl_ns, $this->rootTitle->getNamespace() );
-			}
-		}
-
+		$this->addWhere( $this->linksMigration->getLinksConditions( $this->bl_table, $this->rootTitle ) );
 		$this->addWhereFld( $this->bl_from_ns, $this->params['namespace'] );
 
 		if ( count( $this->cont ) >= 2 ) {
@@ -244,15 +226,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	 */
 	private function runSecondQuery( $resultPageSet = null ) {
 		$db = $this->getDB();
-		if ( isset( $this->linksMigration::$mapping[$this->bl_table] ) ) {
-			$queryInfo = $this->linksMigration->getQueryInfo( $this->bl_table, $this->bl_table );
-			$this->addTables( $queryInfo['tables'] );
-			$this->addJoinConds( $queryInfo['joins'] );
-		} else {
-			$this->addTables( [ $this->bl_table ] );
-		}
-		$this->addTables( [ 'page' ] );
-		$this->addJoinConds( [ 'page' => [ 'JOIN', "{$this->bl_from}=page_id" ] ] );
+		$queryInfo = $this->linksMigration->getQueryInfo( $this->bl_table, $this->bl_table );
+		$this->addTables( [ ...$queryInfo['tables'], 'page' ] );
+		$this->addJoinConds( [ ...$queryInfo['joins'], 'page' => [ 'JOIN', "{$this->bl_from}=page_id" ] ] );
 
 		if ( $resultPageSet === null ) {
 			$this->addFields( [ 'page_id', 'page_title', 'page_namespace', 'page_is_redirect' ] );
