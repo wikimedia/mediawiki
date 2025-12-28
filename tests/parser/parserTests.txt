@@ -12828,9 +12828,11 @@ foo
 T2041: Template parameters shown as broken links
 !! wikitext
 {{{parameter}}}
-!! html
+!! html/php
 <p>{{{parameter}}}
 </p>
+!! html/parsoid
+<p about="#mwt1" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"parameter"},"params":{},"i":0}}]}'>{{{parameter}}}</p>
 !! end
 
 !! test
