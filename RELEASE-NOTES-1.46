@@ -101,6 +101,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 * Updated wikimedia/wrappedstring from 4.0.1 to 4.1.0.
 * Updated jsonrainbow/json-schema from 5.3.0 to 5.3.1.
 * Updated oojs/oojs-ui (OOUI) from v0.53.0 to v0.53.1.
+* Updated symfony/yaml from 6.4.26 to 6.4.30.
 * …
 
 ===== Changed development-only external libraries =====
