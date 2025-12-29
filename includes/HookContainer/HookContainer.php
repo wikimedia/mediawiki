@@ -208,7 +208,7 @@ class HookContainer implements SalvageableService {
 	 *              handler requires service injection, this method will throw an
 	 *              UnexpectedValueException.
 	 *
-	 * @return array
+	 * @return callable-array
 	 */
 	private function makeExtensionHandlerCallback( string $hook, array $handler, array $options = [] ): array {
 		$spec = $handler['handler'];
@@ -248,7 +248,6 @@ class HookContainer implements SalvageableService {
 	 * @return array|false
 	 *  - callback: (callable) Executable handler function
 	 *  - functionName: (string) Handler name for passing to wfDeprecated() or Exceptions thrown
-	 *  - args: (array) Extra handler function arguments (omitted when not needed)
 	 * @phan-return array{callback:callable,functionName:string}|false
 	 */
 	private function normalizeHandler( string $hook, $handler, array $options = [] ) {
