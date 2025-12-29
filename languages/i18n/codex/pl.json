@@ -12,6 +12,6 @@
 	"cdx-table-select-all-label": "Zaznacz wszystkie wiersze",
 	"cdx-table-sort-caption": "$1 (nagłówki z przyciskami umożliwiają sortowanie).",
 	"cdx-typeahead-search-search-results-label": "Wyniki wyszukiwania",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 wiersz|$1 wiersze|$1 wierszy}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 element|$1 elementy|$1 elementów}}",
 	"cdx-table-pager-items-per-page-default": "Wierszy na stronę"
 }

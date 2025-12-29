@@ -185,7 +185,7 @@
 	"tog-minordefault": "Marcar todas as edições como menores por padrão",
 	"tog-forceeditsummary": "Avise-me ao inserir um resumo de edição em branco (ou o resumo de desfazer padrão)",
 	"tog-editrecovery": "Habilitar a funcionalidade [[Special:EditRecovery|{{int:editrecovery}}]]",
-	"tog-editrecovery-help": "Você pode deixar sua opinião na [$1 página de conversa do projeto].",
+	"tog-editrecovery-help": "Você pode deixar sua opinião na [$1 página de discussão do projeto].",
 	"tog-useeditwarning": "Avisar-me quando eu deixar uma janela de edição sem ter salvo as alterações",
 	"prefs-preview": "Pré-visualizar",
 	"tog-previewonfirst": "Mostrar a pré-visualização ao começar a editar",

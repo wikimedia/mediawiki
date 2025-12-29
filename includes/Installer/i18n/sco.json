@@ -210,7 +210,7 @@
 	"config-memcached-help": "Leet o IP addresses tae uise fer Memcached.\nShid speceefie yin per line n speceefie the port tae be uised. Fer example:\n 127.0.0.1:11211\n 192.168.1.25:1234",
 	"config-memcache-needservers": "Ye selected Memcached aes yer cache type but dinna speceefie oni servers.",
 	"config-memcache-badip": "Ye'v entered aen onvalid IP address fer Memcached: $1.",
-	"config-memcache-noport": "Ye didna speceefie ae port tae uise fer Memcached server: $1.\nGif ye dinna knaw the port, the defauut is 11211.",
+	"config-memcache-noport": "Ye didnae specify ae port tae uise fur the Memcached server: $1.\nGin ye dinnae ken the port, the defaut is 11211.",
 	"config-memcache-badport": "Memcached port nummers shid be atween $1 n $2.",
 	"config-extensions": "Extensions",
 	"config-extensions-help": "The extensions leetit abuin were detected in yer <code>./extensions</code> directerie.\n\nThey micht need addeetional confeeguration, but ye can enable thaim nou.",
