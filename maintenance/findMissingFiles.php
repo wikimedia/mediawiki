@@ -45,7 +45,7 @@ class FindMissingFiles extends Maintenance {
 			->limit( $batchSize );
 
 		if ( $mtime1 || $mtime2 ) {
-			$queryBuilder->join( 'page', null, 'page_title = img_name' );
+			$queryBuilder->join( 'page', null, 'page_title = ' . $nameField );
 			$queryBuilder->andWhere( [ 'page_namespace' => NS_FILE ] );
 
 			$queryBuilder->join( 'logging', null, 'log_page = page_id' );
