@@ -117,7 +117,10 @@ class Html {
 			'type' => 'text',
 		],
 		'keygen' => [ 'keytype' => 'rsa' ],
-		'link' => [ 'media' => 'all' ],
+		'link' => [
+			'media' => 'all',
+			'type' => 'text/css',
+		],
 		'menu' => [ 'type' => 'list' ],
 		'script' => [ 'type' => 'text/javascript' ],
 		'style' => [
@@ -405,11 +408,6 @@ class Html {
 		}
 
 		// More subtle checks
-		if ( $element === 'link'
-			&& isset( $attribs['type'] ) && strval( $attribs['type'] ) == 'text/css'
-		) {
-			unset( $attribs['type'] );
-		}
 		if ( $element === 'input' ) {
 			$type = $attribs['type'] ?? null;
 			$value = $attribs['value'] ?? null;
