@@ -2396,7 +2396,7 @@
 	"restriction-create": "Yarat",
 	"restriction-upload": "Yüklə",
 	"restriction-level-sysop": "tam mühafizə",
-	"restriction-level-autoconfirmed": "(yarım-mühafizə)",
+	"restriction-level-autoconfirmed": "yarım-mühafizə",
 	"restriction-level-all": "istənilən səviyyə",
 	"undelete": "Silinmiş səhifələri göstər",
 	"undeletepage": "Silinmiş səhifələrə bax və ya bərpa et",

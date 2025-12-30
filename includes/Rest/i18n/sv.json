@@ -3,7 +3,8 @@
 		"authors": [
 			"McDutchie",
 			"Sabelöga",
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Stefan2255"
 		]
 	},
 	"rest-prefix-mismatch": "Den begärda sökvägen ($1) fanns inte inuti bassökvägen för REST API ($2)",

@@ -924,6 +924,8 @@
 	"unstrip-size-category-desc": "A página excede o limite de tamanho de unstrip.",
 	"bad-language-code-category": "Páginas com códigos de idioma inválidos",
 	"bad-language-code-category-desc": "A página contém um <code><nowiki>{{#dir}}</nowiki></code> com um código de idioma inválido.",
+	"bad-double-underscore-category": "Páginas com cursores de comportamento inválidos",
+	"bad-double-underscore-category-desc": "A página contém um [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|cursor de comportamento]]. AS traduções válidas começam e acabam com sublinhados duplos.",
 	"double-px-category": "Páginas com tamanhos de imagem contendo pixels extra",
 	"double-px-category-desc": "A página contém uma imagem a qual o tamanho contém um sufixo <code>px</code> extra como <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Erro detectado na regra de conversão de língua manual",

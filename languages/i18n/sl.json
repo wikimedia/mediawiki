@@ -619,7 +619,7 @@
 	"autocreate-edit-warning": "<strong>Opozorilo:</strong> Niste prijavljeni. Ko boste opravili urejanje, bo za vas ustvarjen začasen račun. [[{{MediaWiki:tempuser-helppage}}|Izvedite več o tem]]. <strong>[$1 Prijavite se]</strong> ali si <strong>[$2 ustvarite račun]</strong>, da boste še naprej prejemali obvestila po preteku tega računa in da boste lahko dostopali do drugih možnosti.",
 	"anonpreviewwarning": "<em>Niste prijavljeni. Ob objavi strani se bo v zgodovino urejanja te strani zapisal vaš IP-naslov.</em>",
 	"autocreate-preview-warning": "<em>Niste prijavljeni. Ko boste opravili urejanje, bo za vas ustvarjen začasen račun. [[{{MediaWiki:tempuser-helppage}}|Izvedite več o tem]].</em>",
-	"missingsummary": "<strong>Opozorilo:</strong> Niste napisali povzetka urejanja. Ob ponovnem kliku gumba »$1« bo vaše urejanje objavljeno brez njega.",
+	"missingsummary": "<strong>Opozorilo:</strong> Niste napisali povzetka urejanja. Ob ponovnem kliku gumba »$1« bo vaše urejanje objavljeno brez tega.",
 	"selfredirect": "<strong>Opozorilo:</strong> Stran preusmerjate samo nase.\nMorda ste za cilj preusmeritve navedli napačen cilj ali pa urejate napačno stran.\nČe boste znova kliknili »$1«, bo preusmeritev vseeno ustvarjena.",
 	"missingcommenttext": "Prosimo, vnesite komentar.",
 	"missingcommentheader": "<strong>Opozorilo:</strong> Niste vnesli zadeve za ta komentar.\nČe boste znova kliknili »$1«, bo vaše urejanje objavljeno brez nje.",

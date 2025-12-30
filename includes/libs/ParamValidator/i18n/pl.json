@@ -2,17 +2,22 @@
 	"@metadata": {
 		"authors": [
 			"Msz2001",
-			"Rail"
+			"Rail",
+			"Woytecr"
 		]
 	},
 	"paramvalidator-badbool": "Niepoprawna wartość „$2” dla parametru „$1”, który jest typu boolowskiego. Użyj $3 jako „prawda” albo $5 jako „fałsz”.",
+	"paramvalidator-badbool-type": "Nieprawidłowa wartość „$2” dla parametru logicznego „$1”. Zamiast tego otrzymano wartość $3.",
 	"paramvalidator-badexpiry": "Niepoprawna wartość „$2” dla parametru „$1”, określającego czas wygaśnięcia.",
 	"paramvalidator-badexpiry-duration": "Podana wartość „$2” dla parametru <var>$1</var> przekracza maksymalną ($3).",
 	"paramvalidator-badexpiry-duration-max": "Podana wartość „$2” dla parametru <var>$1</var> przekracza maksymalną ($3). Użyta zostanie wartość maksymalna.",
 	"paramvalidator-badexpiry-past": "Wartość „$2” dla parametru „$1”, określającego czas wygaśnięcia, jest w przeszłości.",
 	"paramvalidator-badfloat": "Niepoprawna wartość „$2” dla parametru „$1” typu float.",
+	"paramvalidator-badfloat-type": "Nieprawidłowa wartość „$2” dla parametru zmiennoprzecinkowego „$1”. Zamiast tego otrzymano wartość $3.",
 	"paramvalidator-badfloat-notfinite": "Wartość „$2” dla parametru „$1” typu float jest zbyt duża albo nie jest liczbą.",
 	"paramvalidator-badinteger": "Niepoprawna wartość „$2” dla parametru „$1”, który jest typu całkowitoliczbowego.",
+	"paramvalidator-badinteger-type": "Nieprawidłowa wartość „$2” dla parametru liczbowego „$1”. Zamiast tego otrzymano wartość $3.",
+	"paramvalidator-badinteger-fraction": "Nieprawidłowa wartość „$2” dla parametru logicznego „$1”. Zamiast tego otrzymano liczbę zmiennoprzecinkową z częścią ułamkową.",
 	"paramvalidator-badtimestamp": "Niepoprawna wartość „$2” dla parametru „$1”, który oczekuje znacznika czasu.",
 	"paramvalidator-badupload-cantwrite": "Nie udało się skierować pliku „$1” do dalszego przetwarzania ze względu na błędną konfigurację serwera (błąd zapisu).",
 	"paramvalidator-badupload-formsize": "Przesyłany plik „$1” przekracza maksymalny rozmiar określony przez klienta.",
@@ -30,6 +35,8 @@
 	"paramvalidator-maxchars": "Wartość dla parametru „$1” nie może być dłuższa niż $3 {{PLURAL:$3|znak|znaki|znaków}} (podana ma {{PLURAL:$4|znak|znaki|znaków}}).",
 	"paramvalidator-missingparam": "Parametr „$1” musi być ustawiony.",
 	"paramvalidator-notmulti": "Parametr „$1” pozwala tylko na podanie pojedynczej wartości. Separator U+001F może być użyty jedynie dla parametrów akceptujących wiele wartości.",
+	"paramvalidator-multivalue-must-be-array": "Parametr wielowartościowy „$1” musi zostać podany jako tablica.",
+	"paramvalidator-needstring": "Parametr „$1” akceptuje tylko wartość typu ciąg znaków, ale otrzymał $2",
 	"paramvalidator-outofrange-max": "Wartość „$2” dla parametru „$1” nie może być większa niż $4.",
 	"paramvalidator-outofrange-minmax": "Wartość „$2” dla parametru „$1” musi być pomiędzy $3 i $4.",
 	"paramvalidator-outofrange-min": "Wartość „$2” dla parametru „$1” nie może być mniejsza niż $3.",
@@ -41,7 +48,7 @@
 	"paramvalidator-help-default-empty": "Domyślnie: (pusta)",
 	"paramvalidator-help-deprecated": "Ten parametr jest przestarzały.",
 	"paramvalidator-help-multi-separate": "Rozdzielaj wartości za pomocą znaku „|” lub poprzedź listę U+001F i rozdzielaj wartości również z użyciem U+001F.",
-	"paramvalidator-help-multi-max": "Maksymalna liczba wartości to {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} dla klientów z podwyższonymi limitami).",
+	"paramvalidator-help-multi-max": "Maksymalna liczba wartości to {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} dla klientów mogących korzystać z podwyższonych limitów).",
 	"paramvalidator-help-multi-max-simple": "Maksymalna liczba wartości to {{PLURAL:$1|$1}}.",
 	"paramvalidator-help-multi-all": "Aby wskazać wszystkie wartości, użyj <kbd>$1</kbd>.",
 	"paramvalidator-help-required": "Ten parametr jest wymagany.",

@@ -107,7 +107,7 @@
 	"emailauthenticated": "Alamat surel Anda telah dikonfirmasi pada $3, $2.",
 	"allowemail": "Izinkan pengguna lain mengirim surel kepada saya",
 	"email-allow-new-users-label": "Izinkan surel dari pengguna baru",
-	"prefs-help-email-allow-new-users": "Mengaktifkan opsi ini akan memungkinkan pengguna yang tidak [[{{MediaWiki:grouppage-autoconfirmed}}|terkonfirmasi otomatis]] untuk mengirimkan surel kepada Anda.",
+	"prefs-help-email-allow-new-users": "Menyalakan opsi ini akan memungkinkan pengguna yang tidak [[{{MediaWiki:grouppage-autoconfirmed}}|terkonfirmasi otomatis]] untuk mengirimkan surel kepada Anda.",
 	"tog-ccmeonemails": "Kirimkan saya salinan surel yang saya kirimkan ke orang lain",
 	"email-mutelist-label": "Cegah para pengguna ini mengirim surel kepada saya:",
 	"tog-enotifwatchlistpages": "Kirimkan saya sebuah surel jika suatu halaman atau berkas yang saya pantau berubah",
