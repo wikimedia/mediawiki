@@ -35,7 +35,7 @@ class NukePage extends Maintenance {
 		$delete = $this->hasOption( 'delete' );
 
 		$dbw = $this->getPrimaryDB();
-		$this->beginTransaction( $dbw, __METHOD__ );
+		$this->beginTransactionRound( __METHOD__ );
 
 		# Get page ID
 		$this->output( "Searching for \"$name\"..." );
@@ -73,7 +73,7 @@ class NukePage extends Maintenance {
 				$this->output( "done.\n" );
 			}
 
-			$this->commitTransaction( $dbw, __METHOD__ );
+			$this->commitTransactionRound( __METHOD__ );
 
 			# Delete revisions as appropriate
 			if ( $delete && $count ) {
@@ -98,20 +98,20 @@ class NukePage extends Maintenance {
 			}
 		} else {
 			$this->output( "not found in database.\n" );
-			$this->commitTransaction( $dbw, __METHOD__ );
+			$this->commitTransactionRound( __METHOD__ );
 		}
 	}
 
 	public function deleteRevisions( array $ids ) {
 		$dbw = $this->getPrimaryDB();
-		$this->beginTransaction( $dbw, __METHOD__ );
+		$this->beginTransactionRound( __METHOD__ );
 
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'revision' )
 			->where( [ 'rev_id' => $ids ] )
 			->caller( __METHOD__ )->execute();
 
-		$this->commitTransaction( $dbw, __METHOD__ );
+		$this->commitTransactionRound( __METHOD__ );
 	}
 }
 

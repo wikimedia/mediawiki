@@ -127,7 +127,7 @@ class RebuildFileCache extends Maintenance {
 				->orderBy( 'page_id', SelectQueryBuilder::SORT_ASC )
 				->caller( __METHOD__ )->fetchResultSet();
 
-			$this->beginTransaction( $dbw, __METHOD__ ); // for any changes
+			$this->beginTransactionRound( __METHOD__ ); // for any changes
 			foreach ( $res as $row ) {
 				$rebuilt = false;
 
@@ -193,7 +193,7 @@ class RebuildFileCache extends Maintenance {
 					$this->output( "Page '$title' (id {$row->page_id}) not cacheable\n" );
 				}
 			}
-			$this->commitTransaction( $dbw, __METHOD__ ); // commit any changes
+			$this->commitTransactionRound( __METHOD__ ); // commit any changes
 
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;

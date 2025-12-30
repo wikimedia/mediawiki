@@ -36,7 +36,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 		$report = $this->hasOption( 'report' );
 
 		$dbw = $this->getPrimaryDB();
-		$this->beginTransaction( $dbw, __METHOD__ );
+		$this->beginTransactionRound( __METHOD__ );
 
 		# Find all the orphaned revisions
 		$this->output( "Checking for orphaned revisions..." );
@@ -57,8 +57,8 @@ class DeleteOrphanedRevisions extends Maintenance {
 		$this->output( "found {$count}.\n" );
 
 		# Nothing to do?
-		if ( $report || $count == 0 ) {
-			$this->commitTransaction( $dbw, __METHOD__ );
+		if ( $report || $count === 0 ) {
+			$this->commitTransactionRound( __METHOD__ );
 			return;
 		}
 
@@ -68,7 +68,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 		$this->output( "done.\n" );
 
 		# Close the transaction and call the script to purge unused text records
-		$this->commitTransaction( $dbw, __METHOD__ );
+		$this->commitTransactionRound( __METHOD__ );
 		$this->purgeRedundantText( true );
 	}
 
@@ -79,7 +79,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 	 * @param int[] $id Array of revision id values
 	 * @param IDatabase $dbw Primary DB handle
 	 */
-	private function deleteRevs( array $id, $dbw ) {
+	private function deleteRevs( array $id, IDatabase $dbw ) {
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'revision' )
 			->where( [ 'rev_id' => $id ] )

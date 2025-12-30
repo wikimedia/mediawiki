@@ -46,7 +46,7 @@ class NukeNS extends Maintenance {
 		$delete = $this->hasOption( 'delete' );
 		$all = $this->hasOption( 'all' );
 		$dbw = $this->getPrimaryDB();
-		$this->beginTransaction( $dbw, __METHOD__ );
+		$this->beginTransactionRound( __METHOD__ );
 
 		$res = $dbw->newSelectQueryBuilder()
 			->select( 'page_title' )
@@ -81,7 +81,7 @@ class NukeNS extends Maintenance {
 						->deleteFrom( 'page' )
 						->where( [ 'page_id' => $id ] )
 						->caller( __METHOD__ )->execute();
-					$this->commitTransaction( $dbw, __METHOD__ );
+					$this->commitTransactionRound( __METHOD__ );
 					// Delete revisions as appropriate
 					/** @var NukePage $child */
 					$child = $this->createChild( NukePage::class, 'nukePage.php' );
@@ -93,7 +93,7 @@ class NukeNS extends Maintenance {
 				$this->output( "skip: " . $title->getPrefixedText() . "\n" );
 			}
 		}
-		$this->commitTransaction( $dbw, __METHOD__ );
+		$this->commitTransactionRound( __METHOD__ );
 
 		if ( $n_deleted > 0 ) {
 			$this->purgeRedundantText( true );

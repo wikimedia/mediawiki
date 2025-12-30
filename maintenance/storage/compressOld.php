@@ -26,6 +26,7 @@
  * @file
  * @ingroup Maintenance ExternalStorage
  */
+
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -356,7 +357,7 @@ class CompressOld extends Maintenance {
 
 				$chunk = new ConcatenatedGzipHistoryBlob();
 				$stubs = [];
-				$this->beginTransaction( $dbw, __METHOD__ );
+				$this->beginTransactionRound( __METHOD__ );
 				$usedChunk = false;
 				$primaryOldid = $revs[$i]->old_id;
 
@@ -462,7 +463,7 @@ class CompressOld extends Maintenance {
 				}
 				# Done, next
 				$this->output( "/" );
-				$this->commitTransaction( $dbw, __METHOD__ );
+				$this->commitTransactionRound( __METHOD__ );
 				$i += $thisChunkSize;
 			}
 			$this->output( "\n" );

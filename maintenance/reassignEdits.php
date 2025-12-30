@@ -72,7 +72,7 @@ class ReassignEdits extends Maintenance {
 	 */
 	private function doReassignEdits( &$from, &$to, $updateRC = false, $report = false ) {
 		$dbw = $this->getPrimaryDB();
-		$this->beginTransaction( $dbw, __METHOD__ );
+		$this->beginTransactionRound( __METHOD__ );
 		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
 		$fromActorId = $actorNormalization->findActorId( $from, $dbw );
 
@@ -166,7 +166,7 @@ class ReassignEdits extends Maintenance {
 			}
 		}
 
-		$this->commitTransaction( $dbw, __METHOD__ );
+		$this->commitTransactionRound( __METHOD__ );
 
 		return $total;
 	}

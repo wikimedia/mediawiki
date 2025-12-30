@@ -35,7 +35,7 @@ class DeleteOldRevisions extends Maintenance {
 	private function doDelete( bool $delete = false, array $pageIds = [] ) {
 		# Data should come off the master, wrapped in a transaction
 		$dbw = $this->getPrimaryDB();
-		$this->beginTransaction( $dbw, __METHOD__ );
+		$this->beginTransactionRound( __METHOD__ );
 
 		$pageConds = [];
 		$revConds = [];
@@ -97,7 +97,7 @@ class DeleteOldRevisions extends Maintenance {
 		}
 
 		# Purge redundant text records
-		$this->commitTransaction( $dbw, __METHOD__ );
+		$this->commitTransactionRound( __METHOD__ );
 		if ( $delete ) {
 			$this->purgeRedundantText( true );
 		}

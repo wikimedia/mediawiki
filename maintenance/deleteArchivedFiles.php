@@ -38,7 +38,7 @@ class DeleteArchivedFiles extends Maintenance {
 
 		# Data should come off the master, wrapped in a transaction
 		$dbw = $this->getPrimaryDB();
-		$this->beginTransaction( $dbw, __METHOD__ );
+		$this->beginTransactionRound( __METHOD__ );
 		$repo = $this->getServiceContainer()->getRepoGroup()->getLocalRepo();
 
 		# Get "active" revisions from the filearchive table
@@ -119,7 +119,7 @@ class DeleteArchivedFiles extends Maintenance {
 			$file->releaseFileLock();
 		}
 
-		$this->commitTransaction( $dbw, __METHOD__ );
+		$this->commitTransactionRound( __METHOD__ );
 		$this->output( "Done! [$count file(s)]\n" );
 	}
 }

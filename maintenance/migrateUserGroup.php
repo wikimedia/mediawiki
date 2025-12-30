@@ -57,7 +57,7 @@ class MigrateUserGroup extends Maintenance {
 			$affected = 0;
 			$this->output( "Doing users $blockStart to $blockEnd\n" );
 
-			$this->beginTransaction( $dbw, __METHOD__ );
+			$this->beginTransactionRound( __METHOD__ );
 			// Find the users already in the new group, so that we can exclude them from the UPDATE query
 			// and instead delete the rows.
 			$usersAlreadyInNewGroup = $dbw->newSelectQueryBuilder()
@@ -99,7 +99,7 @@ class MigrateUserGroup extends Maintenance {
 					->caller( __METHOD__ )->execute();
 				$affected += $dbw->affectedRows();
 			}
-			$this->commitTransaction( $dbw, __METHOD__ );
+			$this->commitTransactionRound( __METHOD__ );
 
 			// Clear cache for the affected users (T42340)
 			if ( $affected > 0 ) {

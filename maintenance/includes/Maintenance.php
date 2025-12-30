@@ -1034,7 +1034,7 @@ abstract class Maintenance {
 		}
 		# Data should come off the master, wrapped in a transaction
 		$dbw = $this->getPrimaryDB();
-		$this->beginTransaction( $dbw, __METHOD__ );
+		$this->beginTransactionRound( __METHOD__ );
 
 		# Get "active" text records via the content table
 		$cur = [];
@@ -1087,7 +1087,7 @@ abstract class Maintenance {
 			$this->output( "done.\n" );
 		}
 
-		$this->commitTransaction( $dbw, __METHOD__ );
+		$this->commitTransactionRound( __METHOD__ );
 	}
 
 	/**

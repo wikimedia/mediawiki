@@ -93,7 +93,7 @@ class UpdateRestrictions extends LoggedUpdateMaintenance {
 				}
 			}
 
-			$this->beginTransaction( $dbw, __METHOD__ );
+			$this->beginTransactionRound( __METHOD__ );
 
 			// Insert new format protection settings for the pages in the current batch.
 			// Use INSERT IGNORE to ignore conflicts with new format settings that might exist for the page
@@ -111,7 +111,7 @@ class UpdateRestrictions extends LoggedUpdateMaintenance {
 				->caller( __METHOD__ )
 				->execute();
 
-			$this->commitTransaction( $dbw, __METHOD__ );
+			$this->commitTransactionRound( __METHOD__ );
 
 			$batchMinPageId = $batchMaxPageId;
 		} while ( $batchMaxPageId < $maxPageId );

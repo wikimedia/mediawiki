@@ -66,7 +66,7 @@ class WrapOldPasswords extends Maintenance {
 		$minUserId = 0;
 		while ( true ) {
 			if ( $update ) {
-				$this->beginTransaction( $dbw, __METHOD__ );
+				$this->beginTransactionRound( __METHOD__ );
 			}
 
 			$start = microtime( true );
@@ -88,7 +88,7 @@ class WrapOldPasswords extends Maintenance {
 
 			if ( $res->numRows() === 0 ) {
 				if ( $update ) {
-					$this->commitTransaction( $dbw, __METHOD__ );
+					$this->commitTransactionRound( __METHOD__ );
 				}
 				break;
 			}
@@ -127,7 +127,7 @@ class WrapOldPasswords extends Maintenance {
 			}
 
 			if ( $update ) {
-				$this->commitTransaction( $dbw, __METHOD__ );
+				$this->commitTransactionRound( __METHOD__ );
 
 				// Clear memcached so old passwords are wiped out
 				foreach ( $updateUsers as $user ) {

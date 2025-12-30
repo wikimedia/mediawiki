@@ -232,7 +232,7 @@ TEXT
 	 */
 	private function updateBatch( IResultWrapper $res ) {
 		if ( !$this->dryRun ) {
-			$this->beginTransaction( $this->dbw, __METHOD__ );
+			$this->beginTransactionRound( __METHOD__ );
 		}
 		foreach ( $res as $row ) {
 			$title = Title::newFromRow( $row );
@@ -281,7 +281,7 @@ TEXT
 			}
 		}
 		if ( !$this->dryRun ) {
-			$this->commitTransaction( $this->dbw, __METHOD__ );
+			$this->commitTransactionRound( __METHOD__ );
 		}
 	}
 
@@ -319,14 +319,14 @@ TEXT
 		if ( $this->dryRun ) {
 			$this->numRowsProcessed += count( $rowsToInsert );
 		} else {
-			$this->beginTransaction( $this->dbw, __METHOD__ );
+			$this->beginTransactionRound( __METHOD__ );
 			$this->dbw->newInsertQueryBuilder()
 				->insertInto( $this->targetTable )
 				->ignore()
 				->rows( $rowsToInsert )
 				->caller( __METHOD__ )->execute();
 			$this->numRowsProcessed += $this->dbw->affectedRows();
-			$this->commitTransaction( $this->dbw, __METHOD__ );
+			$this->commitTransactionRound( __METHOD__ );
 		}
 	}
 

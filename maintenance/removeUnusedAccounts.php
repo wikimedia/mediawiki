@@ -163,7 +163,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		];
 		$count = 0;
 
-		$this->beginTransaction( $dbo, __METHOD__ );
+		$this->beginTransactionRound( __METHOD__ );
 		foreach ( $checks as $table => $prefix ) {
 			$count += (int)$dbo->newSelectQueryBuilder()
 				->select( 'COUNT(*)' )
@@ -179,7 +179,7 @@ class RemoveUnusedAccounts extends Maintenance {
 			->where( [ 'log_actor' => $actor, $dbo->expr( 'log_type', '!=', 'newusers' ) ] )
 			->caller( __METHOD__ )->fetchField();
 
-		$this->commitTransaction( $dbo, __METHOD__ );
+		$this->commitTransactionRound( __METHOD__ );
 
 		return $count == 0;
 	}
