@@ -164,7 +164,7 @@ class ApiFormatXml extends ApiFormatBase {
 					$retval .= $indstr . Xml::element( $name, $attributes, $content );
 				} else {
 					if ( $name !== null ) {
-						$retval .= $indstr . Xml::element( $name, $attributes, null );
+						$retval .= $indstr . Xml::openElement( $name, $attributes );
 					}
 					$retval .= static::recXmlPrint( null, $content, $indent );
 					if ( $name !== null ) {
@@ -177,7 +177,7 @@ class ApiFormatXml extends ApiFormatBase {
 				}
 			} else {
 				if ( $name !== null ) {
-					$retval .= $indstr . Xml::element( $name, $attributes, null );
+					$retval .= $indstr . Xml::openElement( $name, $attributes );
 				}
 				foreach ( $subelements as $k => $v ) {
 					$retval .= static::recXmlPrint( $k, $v, $indent );
