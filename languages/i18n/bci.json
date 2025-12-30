@@ -451,8 +451,6 @@
 	"templatesused": "{{PLURAL:$1|Template|Templates}} nga bé fa bé floua boué nga sou:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Templates}} nga bé fa bé floua boué nga sou:",
 	"templatesusedsection": "{{PLURAL:$1|Templati|Templati moun}} nga bé fa bé akpassoua nga sou:",
-	"template-protected": "(ô ti sassa wa)",
-	"template-semiprotected": "(i boué sassalè)",
 	"hiddencategories": "Floua boué nga ô fin {{PLURAL:$1|fialè sou akpassoua koun|$1 fialè sou akpassoua moun}}:",
 	"nocreatetext": "{{SITENAME}} ô djranni floua boué ouflè moun bé yilè i liké vié moun.\nAmoun kloua sa amoun si'n nan amoun a katchi floua boué koun mô ô wolè laa, annzè [[Special:UserLogin|wlou noun annzè yi conti koun]].",
 	"nocreate-loggedin": "Amoun léman atin yiman floua boué ouflè moun.",

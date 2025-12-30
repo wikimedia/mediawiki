@@ -336,8 +336,6 @@
 	"templatesused": "{{PLURAL:$1|Talɣa|Talɣiwin}} lli ittusmrasn ɣ tasna ad:",
 	"templatesusedpreview": "{{PLURAL:$1|Talɣa|Talɣatin}} lli s nskar ɣ tiẓrit ad tamzwarut:",
 	"templatesusedsection": "{{PLURAL:$1|Talɣa|Talɣatin}} ittusmrasn ɣ ugzzum ad:",
-	"template-protected": "(amagaẓ)",
-	"template-semiprotected": "(azin-ugdal)",
 	"hiddencategories": "Tlla tasna ad ɣ {{PLURAL:$1|usmil intln|$1 ismiln ntlnin}}:",
 	"permissionserrors": "Tazglt ɣ turagt",
 	"permissionserrorstext-withaction": "Ur dark tlli turagt ad t$2t, i {{PLURAL:$1|tmntilt|tmntal}} ad:",

@@ -541,8 +541,6 @@
 	"templatesused": "{{PLURAL:$1|Template|Templates}} ausate 'a chesta paggena:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Templates}} ausate dint'a st'anteprimma:",
 	"templatesusedsection": "{{PLURAL:$1|Template|Templates}} ausate dint'a sta sezziona:",
-	"template-protected": "(prutetto)",
-	"template-semiprotected": "(semi-prutetto)",
 	"hiddencategories": "Sta paggena attócca a {{PLURAL:$1|na categurìa annascunnuta|$1 categurìe annascunnute}}:",
 	"nocreatetext": "{{SITENAME}} ha limitato 'a possibilità 'e crià paggene nnove. Putite turnà e cagnà na paggena ch'esiste già, o pure [[Special:UserLogin|trasì o ve riggistrà]].",
 	"nocreate-loggedin": "Nun v'è permesso 'e crià paggene nnove.",

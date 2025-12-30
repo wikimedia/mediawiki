@@ -227,8 +227,6 @@
 	"editingsection": "Enà nwóché $1 (Ébà)",
 	"templatesused": "{{PLURAL:$1|ewn má labó|amenwu má labó}} ma dú ckekù ojí ogbá yí:",
 	"templatesusedpreview": "{{PLURAL:$1|ewn má labó|amenwu má labó}} ma dú ckekù Éwn má Gó ta",
-	"template-protected": "(dídé)",
-	"template-semiprotected": "(éwn mámá didawn kpań)",
 	"hiddencategories": "Ogbá ki de yí defu amenwu {{PLURAL:$1|gbúgbe ki maja|$1 Amí gbúgbe ki maja}}",
 	"permissionserrors": "Ágbòda ewnkima nyóñ",
 	"permissionserrorstext-withaction": "É ché nó óda tí $2, nwá manwu ki joí {{PLURAL:$1|gbíbé|gbíbé amenwu}}",

@@ -465,8 +465,6 @@
 	"cascadeprotectedwarning": "'''警示：'''此頁錮矣，唯有秩纂之，乃因{{PLURAL:$1|一|多}}頁連誅之：",
 	"titleprotectedwarning": "'''警告：此頁錮矣，乃需[[Special:ListGroupRights|權]]用之。'''\n近誌下曰參詳之：",
 	"templatesused": "此文用{{PLURAL:$1|模|模}} ：",
-	"template-protected": "（錮）",
-	"template-semiprotected": "（半錮）",
 	"hiddencategories": "此頁屬隱類之員有$1：",
 	"nocreatetext": "舊題可修，新題謝焉。[[Special:UserLogin|登簿、增簿]]以逮權也。",
 	"nocreate-loggedin": "子權未逮，新頁謝焉。",

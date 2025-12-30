@@ -3,7 +3,8 @@
 		"authors": [
 			"Jcwf",
 			"Jose77",
-			"Nomden"
+			"Nomden",
+			"Woytecr"
 		]
 	},
 	"category-subcat-count": "Olu luhlu lunolu luhlu lulandelayo ngaphantsi kwalo",
@@ -34,7 +35,7 @@
 	"personaltools": "Izixhobo zangaphakathi kwikhompyutha okhetha ukuzisebenzisa",
 	"talk": "Ingxoxo",
 	"views": "Khawujonge apha",
-	"toolbox": "Izixhobo zokuhlalutya ulwimi okanye ulwazi olufakwa ngaphakthi kwikhompyutha",
+	"toolbox": "Izixhobo",
 	"otherlanguages": "Kwezinye Ilwimi",
 	"redirectto": "Lihambise ulise phaya",
 	"lastmodifiedat": "Eli khasi lagqityelwa ukulungiswa kwi-$1, kwi-$2",
@@ -84,7 +85,6 @@
 	"showdiff": "Gcina Utshitshi",
 	"loginreqlink": "vula ungene ekhompyutheni",
 	"noarticletext": "Alikho eli gama kweli phepha/kweli khasi",
-	"template-protected": "likhuselekile/akhuselekile",
 	"previousrevision": "← Inguqulelo endala",
 	"rev-delundel": "Tshintsha le ndlela kubonakala ngayo",
 	"lineno": "Umgca we-$1",

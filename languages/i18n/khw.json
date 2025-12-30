@@ -393,8 +393,6 @@
 	"yourdiff": "تضادات",
 	"templatesused": "ھیہ صفحہا استعمال باک {{PLURAL:$1|سانچہ|سانچا}}:",
 	"templatesusedpreview": " ھیہ پیش منظرا مستعمل {{PLURAL:$1|سانچہ|سانچے}}:",
-	"template-protected": "(محفوظ شدہ)",
-	"template-semiprotected": "(نیم محفوظ)",
 	"hiddencategories": "ھیہ صفحہ {{PLURAL:$1|1 کھوشت زمرے|$1 کھوشت زمرہ جات}}ا شامل شیر:",
 	"permissionserrors": "نقص اجازت",
 	"permissionserrorstext-withaction": "درج ذیل {{PLURAL:$1|وجہ|وجوہاتن}} پرنیکا تاتے $2 کوریکو اجازت نیکی:",

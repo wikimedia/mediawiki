@@ -578,8 +578,6 @@
 	"templatesused": "{{PLURAL:$1|Stranica uključena|Stranice uključene}} u ovu stranicu:",
 	"templatesusedpreview": "{{PLURAL:$1|Stranica uključena|Stranice uključene}} u ovom pregledu:",
 	"templatesusedsection": "{{PLURAL:$1|Šablon|Šabloni}} korišteni u ovoj sekciji:",
-	"template-protected": "(zaštićeno)",
-	"template-semiprotected": "(poluzaštićeno)",
 	"hiddencategories": "Ova stranica pripada u {{PLURAL:$1|$1 skrivenu kategoriju|$1 skrivene kategorije|$1 skrivenih kategorija}}:",
 	"edittools": "<!-- Ovaj tekst će biti prikazan ispod formi za uređivanje i postavljanje. -->",
 	"nocreatetext": "Na {{SITENAME}} je zabranjeno postavljanje novih stranica.\nMožete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLogin|prijaviti ili otvoriti korisnički račun]].",

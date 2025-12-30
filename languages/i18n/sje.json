@@ -300,8 +300,6 @@
 	"templatesused": "{{PLURAL:$1|Skåvve|Skåve}} ma lä aneduvvum dán bielen:",
 	"templatesusedpreview": "{{PLURAL:$1|Skåvve|Skåve}} ma lä aneduvvum dán åvvdåvuosedimen:",
 	"templatesusedsection": "{{PLURAL:$1|Skåvve|Skåve}} ma lä aneduvvum dán guovlon:",
-	"template-protected": "(várrjalam)",
-	"template-semiprotected": "(muhtem-várrjaluvvum)",
 	"hiddencategories": "Dát biele lä {{PLURAL:$1|tjiehkam kategorija|$1 tjiehkam kategorijaj}} sinne:",
 	"permissionserrors": "Låhpedibmevihke",
 	"moveddeleted-notice": "Dát bielle ij gävdnu.\nGádodibme-, várrjalibme ja sirrdemlåggå dát bielest gävdnu vuolen gu referánnsan.",

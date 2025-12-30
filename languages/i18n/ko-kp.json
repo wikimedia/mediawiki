@@ -529,8 +529,6 @@
 	"templatesused": "이 문서에서 사용한 {{PLURAL:$1|틀}}:",
 	"templatesusedpreview": "이 미리 보기에서 사용하고있는 {{PLURAL:$1|틀}}:",
 	"templatesusedsection": "이 문단에서 사용하고있는 {{PLURAL:$1|틀}}:",
-	"template-protected": "(보호됨)",
-	"template-semiprotected": "(준보호됨)",
 	"hiddencategories": "이 문서는 다음의 {{PLURAL:$1|숨은 분류 $1개}}에 속해있습니다:",
 	"nocreatetext": "{{SITENAME}}에서는 새 문서 만들기가 제한되여있습니다.\n이미 존재하는 다른 문서를 편집하거나, [[Special:UserLogin|가입하거나 계산자리를 만들]]수 있습니다.",
 	"nocreate-loggedin": "새 문서를 만들 허가가 없습니다.",

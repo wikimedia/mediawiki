@@ -773,8 +773,6 @@
 	"templatesused": "{{PLURAL:$1|Página incluída|Páginas incluídas}} nesta página:",
 	"templatesusedpreview": "{{PLURAL:$1|Página incluída|Páginas incluídas}} nesta previsão:",
 	"templatesusedsection": "{{PLURAL:$1|Página incluída|Páginad incluídas}} nesta seção:",
-	"template-protected": "(protegida)",
-	"template-semiprotected": "(semiprotegida)",
 	"hiddencategories": "Esta página pertence a {{PLURAL:$1|uma categoria oculta|$1 categorias ocultas}}:",
 	"edittools": "<!-- O texto aqui disponibilizado será exibido abaixo dos formulários de edição e de envio de arquivos. -->",
 	"nocreatetext": "{{SITENAME}} tem restringida a habilidade de criar novas páginas.\nVolte à tela anterior e edite uma página já existente, ou [[Special:UserLogin|autentique-se ou crie uma conta]].",

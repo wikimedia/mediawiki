@@ -545,8 +545,6 @@
 	"templatesused": "{{PLURAL:$1|Template|Template}} ausate sus 'a sta pàgene:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Template}} ausate jndr'à sta andeprime:",
 	"templatesusedsection": "{{PLURAL:$1|Template|Template}} ausate jndr'à sta sezione:",
-	"template-protected": "(prutette)",
-	"template-semiprotected": "(mmienze protette)",
 	"hiddencategories": "Sta pàgene jè membre de {{PLURAL:$1|1 categorja|$1 categorije}} scunnute:",
 	"edittools": "<!-- 'U teste aqquà avène fatte vedè sotte a le module de le cangiaminde e de le carecaminde- -->",
 	"nocreatetext": "{{SITENAME}} ha restritte l'abilità de ccrejà pàggene nuéve.\nTu puè turnà rrete e cangià 'na pàgene ca già esiste, oppure puè [[Special:UserLogin|trasè o ccrejà n'utende nuéve]].",

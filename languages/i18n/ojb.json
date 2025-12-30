@@ -163,8 +163,6 @@
 	"editingsection": "Aanji' $1 (bakise)",
 	"templatesused": "{{PLURAL:$1|Naabizhigan}} aabaji' biindig wa'aw mazina'igan:",
 	"templatesusedpreview": "{{PLURAL:$1|Onadin|Onadined}} aanji' biindig wa'aw waabam-jibwaa:",
-	"template-protected": "(apisidoon)",
-	"template-semiprotected": "(bakise apisidoon)",
 	"hiddencategories": "Wa'aw mazina'igan ayaa dibendaagozi biindig {{PLURAL:$1|gaadoon gidoodem}}:",
 	"permissionserrors": "Bagidin wani",
 	"permissionserrorstext-withaction": "Giin gaawiin ayaan bagidin izhi $2, onji wa'aw {{PLURAL:$1|onji}}:",

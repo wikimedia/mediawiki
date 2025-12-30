@@ -172,8 +172,6 @@
 	"editconflict": "Druwwel beim Ennere: $1",
 	"yourdiff": "Unnerschidde",
 	"templatesused": "{{PLURAL:$1|Blatt|Baedder}} gyuust vun dem Blatt:",
-	"template-protected": "(geschitzt)",
-	"template-semiprotected": "(geschitzt fer neie Yuuser)",
 	"undo-summary": "Enneringe [[Special:Diff/$1|$1]] vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Dischbedutt]]) losgmacht.",
 	"revisionasof": "Version vum $2, $3 Uhr",
 	"previousrevision": "← letscht Version",

@@ -621,8 +621,6 @@
 	"templatesused": "{{PLURAL:$1|Stamp|Stampa}} të përdorura në këtë faqe:",
 	"templatesusedpreview": "{{PLURAL:$1|Stampa|Stampat}} e përdorura në këtë parapamje:",
 	"templatesusedsection": "{{PLURAL:$1|Stamp|Stampa}} e përdoruna në këtë sekcion:",
-	"template-protected": "(mbrojtur)",
-	"template-semiprotected": "(gjysmë-mbrojtur)",
 	"hiddencategories": "Kjo faqe është nën {{PLURAL:$1|një kategori të fshehur|$1 kategori të fshehura}}:",
 	"edittools": "<!-- Teksti këtu do të tregohet poshtë kutive të redaktimit dhe ngarkimit të skedave. -->",
 	"nocreatetext": "Mundësia për të krijuar faqe të reja është kufizuar. Duhet të [[Special:UserLogin|hyni ose të hapni një llogari]] për të krijuar faqe të reja, ose mund të ktheheni mbrapsh dhe të redaktoni një faqe ekzistuese.",

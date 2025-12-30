@@ -571,8 +571,6 @@
 	"templatesused": "{{PLURAL:$1|Mal|Malar}} som er brukte på denne sida:",
 	"templatesusedpreview": "{{PLURAL:$1|Mal som er brukt|Malar som er brukte}} i førehandsvisinga:",
 	"templatesusedsection": "{{PLURAL:$1|Mal som er brukt|Malar som er brukte}} i denne bolken:",
-	"template-protected": "(verna)",
-	"template-semiprotected": "(delvis verna)",
 	"hiddencategories": "Denne sida er med i {{PLURAL:$1|éin gøymd kategori|$1 gøymde kategoriar}}:",
 	"edittools": "<!-- Teksten her vert vist mellom tekstboksen og «Lagre»-knappen når ein endrar ei side. -->",
 	"nocreatetext": "{{SITENAME}} har avgrensa tilgang til å opprette nye sider.\nDu kan gå attende og endre ei eksisterande side, [[Special:UserLogin|logge inn eller opprette ein brukarkonto]].",

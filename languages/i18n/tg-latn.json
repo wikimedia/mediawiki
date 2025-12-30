@@ -288,8 +288,6 @@
 	"cascadeprotectedwarning": "'''Huşdor:''' In sahifa ba illati qaror giriftan dar {{PLURAL:$1|sahifai|sahifahoi}} obşorī-muhofizatşudai zer qufl şudaast, to faqat mudiron bitavonand viroiş kunand:",
 	"templatesused": "{{PLURAL:$1|Şablon|Şablonhoi}} dar in sahifa istifodaşuda:",
 	"templatesusedpreview": "{{PLURAL:$1|Şablon|Şablonhoi}} istifodaşuda dar in peşnamoiş:",
-	"template-protected": "(hifzşuda)",
-	"template-semiprotected": "(nima-muhofizatşuda)",
 	"hiddencategories": "In sahifa dar {{PLURAL:$1|1 gurūhi pinhon|$1 gurūhhoi pinhon}} qaror dorad:",
 	"nocreatetext": "{{SITENAME}} qobilijati eçodi sahifahoi çadidro mahdud karda ast.\nŞumo metavoned bozgaşta sahifai mavçudbudaro viroiş kuned, jo [[Special:UserLogin|ba sistem vurud kuned jo hisobi korbarī eçod kuned]].",
 	"nocreate-loggedin": "Şumo içozati eçodi sahifai çadidro nadored.",

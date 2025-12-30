@@ -178,8 +178,6 @@
 	"editingsection": "You don dey chenj $1 (section)",
 	"templatesused": "{{PLURAL:$1|Templet|Templet-dem}} wey dem yuz for dis pej:",
 	"templatesusedpreview": "{{PLURAL:$1|Templet|Templet-dem}} wey dem yuz for di wey e go dey:",
-	"template-protected": "(e get proteshon)",
-	"template-semiprotected": "(dem protet am smol)",
 	"hiddencategories": "Dis pej dey among {{PLURAL:$1|katigori wey dem hide|$1 katigori-dem wey dem hide}}:",
 	"permissionserrors": "Pemishon mistek",
 	"permissionserrorstext-withaction": "You no get pemishon to $2, for dis {{PLURAL:$1|tins wey mek-am bi like dat|tins-dem wey mek-am bi like dat}}:",

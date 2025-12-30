@@ -173,8 +173,6 @@
 	"editingsection": "$1 секциява калаори",
 	"templatesused": "Эй страницаду {{PLURAL:$1|1=шаблон дёбойни:|шаблонсал дёбойчи:}}",
 	"templatesusedpreview": "{{PLURAL:$1 Эй шаблонади дёбойни}} предпросмотр режимани:",
-	"template-protected": "(ачаси)",
-	"template-semiprotected": "(ниӈга ачаси)",
 	"hiddencategories": "Эй страница {{PLURAL:$1|дяяхан категорияду}} би:",
 	"permissionserrors": "Ачаси",
 	"permissionserrorstext-withaction": "Суэ эйвэ таори ачаси $2 {{PLURAL:$1|эй байтала}}:",

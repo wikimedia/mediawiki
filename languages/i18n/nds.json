@@ -509,8 +509,6 @@
 	"templatesused": "{{PLURAL:$1|Vörlaag|Vörlagen}}, de op düsse Siet bruukt warrt:",
 	"templatesusedpreview": "{{PLURAL:$1|Vörloog|Vörlogen}} de in disse Vörschau bruukt warrt:",
 	"templatesusedsection": "Vörlagen de in dissen Afsnitt bruukt warrt:",
-	"template-protected": "(schuult)",
-	"template-semiprotected": "(half-schuult)",
 	"hiddencategories": "Disse Siet steiht in {{PLURAL:$1|ene verstekene Kategorie|$1 verstekene Kategorien}}:",
 	"edittools": "<!-- Disse Text warrt ünner de Finstern för dat Ännern un Hoochladen wiest. -->",
 	"nocreatetext": "{{SITENAME}} verlööft di dat Opstellen vun ne’e Sieden nich. Du kannst blot Sieden ännern, de al dor sünd, oder du musst di [[Special:UserLogin|anmellen]].",

@@ -507,8 +507,6 @@
 	"templatesused": "Бул баракта колдонулуучу {{PLURAL:$1|калып|калыптар}}:",
 	"templatesusedpreview": "Бул алдын ала көрсөтүүдө колдонулган {{PLURAL:$1|калып|калыптар}}:",
 	"templatesusedsection": "Бул бөлүмдө колдонулуучу {{PLURAL:$1|калып|калыптар}}:",
-	"template-protected": "(корголгон)",
-	"template-semiprotected": "(жарым-жартылай корголгон)",
 	"hiddencategories": "Бул барак {{PLURAL:$1|жашыруун категорияга|$1 жашыруун категорияга}} кирет:",
 	"nocreate-loggedin": "Жаңы барак түзүүгө сизде уруксат жок.",
 	"modeleditnotsupported-title": "Түзөтүү жеткиликсиз",

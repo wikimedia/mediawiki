@@ -347,8 +347,6 @@
 	"templatesused": "Patrons usés sus cette page:",
 	"templatesusedpreview": "Patrons usés dans cette vue d'avance:",
 	"templatesusedsection": "Patrons usés dans cette section:",
-	"template-protected": "(protégé)",
-	"template-semiprotected": "(demi-protégé)",
 	"edittools": "<!-- Le texte que vous mettez ici va être montré sous les boëttes de changements ou d'import de dossier. -->",
 	"nocreatetext": "La création des pages est limitée.  Vous pouvez changer une page qu'a été déjà créée ou [[Special:UserLogin|connecter ou créer un compte]].",
 	"nocreate-loggedin": "Vous avez pas la permission de créer des nouvelles pages.",

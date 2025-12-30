@@ -543,8 +543,6 @@
 	"templatesused": "{{PLURAL:$1|Model|Modeles}} usada en esta paje:",
 	"templatesusedpreview": "{{PLURAL:$1|Model|Modeles}} usada en esta previde:",
 	"templatesusedsection": "{{PLURAL:$1|Stensil|Stensiles}} usada en esta parte:",
-	"template-protected": "(protejeda)",
-	"template-semiprotected": "(semiprotejeda)",
 	"hiddencategories": "Esta paje es un membro de {{PLURAL:$1|un categoria|$1 categorias}} ascondeda:",
 	"nocreatetext": "{{SITENAME}} ia restrinje la capasia de crea pajes nova.\nTu pote vade a retro e edita un paje esistente, o  [[Special:UserLogin|autentici o crea un conta]].",
 	"nocreate-loggedin": "Tu no es permeteda a crea pajes nova.",

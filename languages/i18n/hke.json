@@ -220,8 +220,6 @@
 	"editingsection": "Hingya $1 (section)",
 	"templatesused": "{{PLURAL:$1|Ndolerwako}} kwa kashashali kuno:",
 	"templatesusedpreview": "{{PLURAL:$1|Ndolerwako}} kwa kashashali kuno:",
-	"template-protected": "(lihangirwe)",
-	"template-semiprotected": "(abilangwa hake)",
 	"hiddencategories": "Kwa kashashali kuno kuli {{PLURAL:$1 lutabi lubishirwe|ndabi sibishirwe}}:",
 	"permissionserrors": "Utaherwe rubu",
 	"permissionserrorstext-withaction": "Utawete rubu ku $2, {{PLURAL:$1kubushi bweki|kubushi bwebi}}:",

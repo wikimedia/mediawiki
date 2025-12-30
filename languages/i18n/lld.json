@@ -357,8 +357,6 @@
 	"yourdiff": "Desfarënzies",
 	"templatesused": "{{PLURAL:$1|Model|Modei}} utilisá sön chësta plata:",
 	"templatesusedpreview": "{{PLURAL:$1|Model|Modei}} utilisá sön chësta odüda danfora:",
-	"template-protected": "(scunà)",
-	"template-semiprotected": "(mez sconé)",
 	"hiddencategories": "Chësta plata alda pro {{PLURAL:$1|1 na categoria ascognüda|$1 categories ascognüdes}}:",
 	"permissionserrors": "Al mancia autorisaziuns",
 	"permissionserrorstext-withaction": "N'as nia l'autorisaziun che vá debojëgn por $2, por {{PLURAL:$1|chësta gauja|chëstes gaujes}}:",

@@ -257,8 +257,6 @@
 	"yourtext": "Tami wirin",
 	"templatesused": "{{PLURAL:$1 azentu}} pünelelu tüfa mew:",
 	"templatesusedpreview": "{{PLURAL:$1 azentun}} pünelelu tüfa mew:",
-	"template-protected": "(nürüfkünulu)",
-	"template-semiprotected": "(ella nürüfkünungey)",
 	"hiddencategories": "Tüfachi wülngiñ koneltuy {{PLURAL:$1 ellkan trokiñ}}:",
 	"permissionserrors": "Welulkan eluzungungelu",
 	"permissionserrorstext-withaction": "Elungelaymi mi femael: $2. Tüfachi {{PLURAL:$1 zungu}} mew:",

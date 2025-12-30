@@ -364,8 +364,6 @@
 	"templatesused": "Bu bittä qullanılğan {{PLURAL:$1|ürnäk|ürnäklär}}:",
 	"templatesusedpreview": "Aldan qaraluçı bittä qullanılğan {{PLURAL:$1|ürnäk|ürnäklär}}:",
 	"templatesusedsection": "Bu bülektä qullanılğan {{PLURAL:$1|ürnäk|ürnäklär}}:",
-	"template-protected": "(yaqlanğan)",
-	"template-semiprotected": "(öleşçä yaqlanğan)",
 	"hiddencategories": "Bu bit $1 {{PLURAL:$1|yäşeren törkemgä}} kerä:",
 	"nocreatetext": "{{SITENAME}}: saytta yaña bitlär tözü çiklängän.\nSez artqa qaytıp, tözelgän bitne üzgärtä alasız. [[Special:UserLogin|Kerergä yäisä terkälergä]] täğdim itelä.",
 	"nocreate-loggedin": "Sezgä yaña bitlär tözü xoquqı birelmägän.",

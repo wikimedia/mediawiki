@@ -191,8 +191,6 @@
 	"editingsection": "Ihinyanyurwa rya $1 (igice)",
 	"templatesused": "Ingero {{PLURAL:$1|i|zi}} koreshwa kuri uru rupapuro:",
 	"templatesusedpreview": "Ingero {{PLURAL:$1|ikoreshwa|zikoreshwa}} muri ino shushanyo:",
-	"template-protected": "(biracunzwe)",
-	"template-semiprotected": "(isa n'iyirinzwe)",
 	"hiddencategories": "Uru rupapuro ruri mu {{PLURAL:$1|murwi uhishijwe|$1 mirwi ihishijwe}}:",
 	"permissionserrors": "Ukwihenda mu ruhusha",
 	"permissionserrorstext-withaction": "Ntaruhusha ufise rwo $2, kubwo imvo {{PLURAL:$1|ikurikira|zikurikira}}:",

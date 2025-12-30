@@ -485,8 +485,6 @@
 	"templatesused": "هن صفحي تي شامل {{PLURAL:$1| صفحو|صفحا}}:",
 	"templatesusedpreview": "هن پيش-نگاھ ۾ شامل {{PLURAL:$1| صفحو|صفحا}}:",
 	"templatesusedsection": "هن حصي ۾ شامل {{PLURAL:$1| صفحو|صفحا}}:",
-	"template-protected": "(تحفظيل)",
-	"template-semiprotected": "(نيم-تحفظيل)",
 	"hiddencategories": "هيءُ صفحو {{PLURAL:$1|ھڪ لڪل زمري|$1 لڪل زمرن}}: جو رڪن آهي:",
 	"nocreatetext": "{{SITENAME}} نوان صفحا سرجڻ جي روڪَ ڪئي آھي.\nتوھان اڳ موجود صفحن کي سنواري سگهو ٿا، يا [[Special:UserLogin|داخل ٿي يا نئون کاتو کولي سگهو ٿا]].",
 	"nocreate-loggedin": "توهان کي نوان صفحا سرجڻ جي اجازت ناھي.",

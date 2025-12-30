@@ -525,8 +525,6 @@
 	"templatesused": "ए पन्ना पर इस्तेमाल {{PLURAL:$1|टेम्पलेट|टेम्पलेट कुल}}:",
 	"templatesusedpreview": "एह झलक में इस्तेमाल {{PLURAL:$1|टेम्पलेट}}:",
 	"templatesusedsection": "एह खंड में इस्तेमाल {{PLURAL:$1|टेम्पलेट}}:",
-	"template-protected": "(सुरक्षित)",
-	"template-semiprotected": "(आधा-सुरक्षित)",
 	"hiddencategories": "ई पन्ना {{PLURAL:$1|एगो छिपल श्रेणी|$1 छिपल श्रेणीसभ}} के सदस्य बा:",
 	"nocreatetext": "{{SITENAME}} नया पन्ना बनावे पर रोक लगवले बा।\nपीछे जाईं आ पहिले से बनल पन्ना संपादित करीं या फिर [[Special:UserLogin|लॉगिन करीं या नया खाता बनाईं]]।",
 	"nocreate-loggedin": "रउआँ के नया पन्ना बनावे के अधिकार नइखे।",

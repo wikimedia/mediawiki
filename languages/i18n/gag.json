@@ -227,8 +227,6 @@
 	"templatesused": "Bu sayfada kullanılan {{PLURAL:$1|şablon|şablonlar}}:",
 	"templatesusedpreview": "{{PLURAL:$1|Şablon|Şablonnar}} ani bu ön siirdä kullanıldı:",
 	"templatesusedsection": "Bu bölümde kullanılan {{PLURAL:$1|şablon|şablonlar}}:",
-	"template-protected": "(korumaa)",
-	"template-semiprotected": "(yarı-korunmaa)",
 	"hiddencategories": "Bu sayfa {{PLURAL:$1|1 saklı kategoriyaya|$1 saklı kategoriyaya}} baalı:",
 	"nocreatetext": "{{SITENAME}} eni yazılar yaratmaa yasaklandı.\nSizä yakışêr geeri dönmää hem düzmää var olan yapraa, yaki [[Special:UserLogin|sessiya açmaa yaki esap yaratmaa]].",
 	"permissionserrors": "İzin yannışları",

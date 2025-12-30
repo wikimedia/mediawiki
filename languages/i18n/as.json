@@ -537,8 +537,6 @@
 	"templatesused": "এই পৃষ্ঠাত ব্যৱহৃত {{PLURAL:$1|সাঁচ|সাঁচসমূহ}}:",
 	"templatesusedpreview": "এই খচৰাত ব্যৱহৃত {{PLURAL:$1|সাঁচ|সাঁচ সমূহ}}:",
 	"templatesusedsection": "এই দফাত ব্যৱহৃত {{PLURAL:$1|সাঁচ|সাঁচ সমূহ}}:",
-	"template-protected": "(সুৰক্ষিত)",
-	"template-semiprotected": "(অৰ্ধ-সুৰক্ষিত)",
 	"hiddencategories": "এই পৃষ্ঠাখন {{PLURAL:$1|এটা অদৃশ্য শ্ৰেণীৰ|$1টা অদৃশ্য শ্ৰেণীৰ}} সদস্য:",
 	"nocreatetext": "{{SITENAME}}ত নতুন পৃষ্ঠা সৃষ্টিৰ ক্ষমতা সীমাবদ্ধ কৰা হৈছে।\nআপুনি ঘূৰি গৈ বৰ্তমানে থকা পৃষ্ঠা এটা সম্পাদনা কৰিব পাৰে, বা [[Special:UserLogin|নতুন সদস্যভৰ্তি হওক/ প্ৰবেশ কৰক]] ।",
 	"nocreate-loggedin": "নতুন পৃষ্ঠা সৃষ্টি কৰিবলৈ আপোনাৰ অনুমতি নাই ।",

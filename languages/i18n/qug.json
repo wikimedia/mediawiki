@@ -197,8 +197,6 @@
 	"editingsection": "$1 rakipi killkashpa",
 	"templatesused": "Kay pankaka {{PLURAL:$1|plantilla|plantillakuna}}ta llankachin:",
 	"templatesusedpreview": "Kay ñawpak rikuchiyka {{PLURAL:$1|plantilla|plantillakuna}}ta llankachin:",
-	"template-protected": "allichishka",
-	"template-semiprotected": "chawpilla wichkashka",
 	"hiddencategories": "Kay pankaka {{PLURAL:$1|shuk pakashka samiyachiypimi|$1 pakashka samiyachiykunapimi}} kan:",
 	"permissionserrorstext-withaction": "Mana $2ta ushapankichu, {{PLURAL:$1|imamanta|imakunamanta}}:",
 	"recreate-moveddeleted-warn": "'''Rikupay''': shuk pichashkamari pankata kutin kamachikupanki !\n\n\nTapuripay, kaypi killkanata allimi, mana allimi kanchu.\nUraypi apakunakunapa pichanakunapa kamuta rikuchiwanchik:",

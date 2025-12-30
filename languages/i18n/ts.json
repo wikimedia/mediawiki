@@ -178,8 +178,6 @@
 	"editingsection": "Ndzulamiso wa $1 (Xiyenge)",
 	"copyrightwarning": "Xiya leswaku minyikelo hinkwayo e ka {{SITENAME}} yi tekiwa yitshuxiwe e hansi ka $2 (Vona $1 ku kuma vuxokoxoko).\nloko unga tsakeli leswaku vutsari bya wena byi lulamisiwa no aviwa handle ko tweriwa vusiwana, unga tsari laha.<br />\nU hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe leswi u swinyikelaka u swi tekile e xihloveni xa lerivaleni kumbe laha kunga na mpfumelelo wa mani na mani.\n'''UNGA RHUMERI MATSALWA LA MA SIRHELERIWEKE HANDLE KA MPFUMELELO!'''",
 	"templatesused": "{{PLURAL:$1|Xivumbiwa ntirho lexi|Swivumbiwa ntirho leswi}} tirhisiweke eka tluka leri:",
-	"template-protected": "(Ri sirheleriwile)",
-	"template-semiprotected": "(lisirheleriwile switsanana)",
 	"hiddencategories": "Tluka leri i nandza wa {{PLURAL:$1|ntlwa lowu tumbetiweke|$1 mintlawa leyi tumbetiweke}}:",
 	"permissionserrorstext-withaction": "Awupfumeleriwanga ku $2, hikwalaho ka {{PLURAL:$1|wa xivangelo|wa swivangelo}}:",
 	"recreate-moveddeleted-warn": "'''Tivonele: utumbuluxa tluka leri raha ku suriwa kungarikhale.'''\n\nNhlahluvisisa loko swifanerile ku ya emahlweni u lulamisa tluka leri.\nMatimu yo sula no susa ma kombila laha ehansi ku ku pfuna:",

@@ -338,8 +338,6 @@
 	"templatesused": "{{PLURAL:$1|De foigande Vorlog wead|De foigandn Vorlogn wean}} af dera Seitn vawendt:",
 	"templatesusedpreview": "{{PLURAL:$1|De foigande Vurlog werd|D' foiganden Vurlong wern}} in derer Saiten-Vurschau vawendt:",
 	"templatesusedsection": "{{PLURAL:$1|Dé fóigende Vurlog werd|Fóigende Vurlong wern}} voh dém Obschnit vawendt:",
-	"template-protected": "(schreibgschitzt)",
-	"template-semiprotected": "(schreibgschitzt fia ned-ogmejdte Nutza)",
 	"hiddencategories": "De Seitn is in {{PLURAL:$1|a vasteckde Kategorie|$1 vasteckde Kategorina}} eisortiad:",
 	"nocreate-loggedin": "Du host koah Berechtigung, neiche Seiten z' erstön.",
 	"permissionserrors": "Berechtigungsfeeler",

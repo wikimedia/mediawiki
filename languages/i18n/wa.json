@@ -374,8 +374,6 @@
 	"templatesused": "{{PLURAL:$1|Modele eployî|Modeles eployîs}} e cisse pådje ci:",
 	"templatesusedpreview": "{{PLURAL:$1|Modele eployî|Modeles eployîs}} e ç' preveyaedje ci:",
 	"templatesusedsection": "{{PLURAL:$1|Modele eployî|Modeles eployîs}} e cisse seccion ci:",
-	"template-protected": "(protedjî)",
-	"template-semiprotected": "(dimey-protedjî)",
 	"hiddencategories": "Cisse pådje ci est mimbe {{PLURAL:$1|d’&nbsp;ene categoreye catcheye|di $1 categoreyes catcheyes}}&nbsp;:",
 	"nocreatetext": "{{SITENAME}} a limité l' possibilité d' ahiver des novelès pådjes.\nVos ploz rivni en erî eyet candjî ene pådje k' egzistêye dedja, oudonbén, [[Special:UserLogin|vos elodjî ou ahiver on conte d' uzeu]].",
 	"nocreate-loggedin": "Vos n' avoz nén l' droet d' ahiver des novelès pådjes.",

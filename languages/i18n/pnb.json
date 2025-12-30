@@ -433,8 +433,6 @@
 	"templatesused": "اس صفحے تے  ورتے گئے {{PLURAL:$1|سانچہ|سانچے}}:",
 	"templatesusedpreview": "اس کچے کم تے ورتے گئے {{PLURAL:$1|سانچے|سانچہ}} :",
 	"templatesusedsection": "{{PLURAL:$1|سانچہ|سانچے}} اس ٹوٹے وچ ورتے گئے:",
-	"template-protected": "(سرکھیات)",
-	"template-semiprotected": "(کج بچایا ہویا)",
 	"hiddencategories": "اے صفحہ {{PLURAL:$1|1 چھپی گٹھ|$1 چپھی گٹھیاں}} دا رکن اے:",
 	"nocreatetext": "{{SITENAME}} نے نۓ صفحے بنانے تے پابندی لائی اے۔<br />\nتسی واپس جا کے پہلاں توں موجود صفحیاں تے لکھ سکدے او یا فیر [[Special:UserLogin|اندر آؤ یا نواں کھاتہ کھولو۔]]",
 	"nocreate-loggedin": "توانوں نواں صفحہ بنانے دی اجازت نئیں۔",

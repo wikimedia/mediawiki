@@ -150,8 +150,6 @@
 	"copyrightwarning": "Lyudzu, atguodoj, ka vyss īguļdejums, kas dareits {{grammar:lokatīvs|{{SITENAME}}}}, ir skaitams par publiskuotu saskaņā ar $2 (vairuok info verīs $1).\nKa nagribi, kab Tevi raksteitū kaids redigej i izplota tuoluok, tod, lyudzu, nalīc tū ite!<br />\n\nIzavieljūt \"Saglobuot lopu\", Tu aplīcynoj, ka itū rokstu esi rakstejs voi papyldynovs pats voi izmantovs informaceju nu dorba, kuru naaizsorgoj autortīseibys, voi tamleidzeiga breivi lītojama resursa.\n'''BEZ ATĻUOVIS NADAVĪNOJ DORBU, KURU AIZSORGOJ AUTORTĪSEIBYS!'''",
 	"templatesused": "Itymā puslopā {{PLURAL:$1|izlītuots taiss|izlītuoti taisi}}:",
 	"templatesusedpreview": "Itymā apsavierīņā {{PLURAL:$1|izlītuots taiss|izlītuoti taisi}}:",
-	"template-protected": "(aizsorguota)",
-	"template-semiprotected": "(daleji aizsorguota)",
 	"hiddencategories": "Itei lopa ir {{PLURAL:$1|1 nūglobuotajā kategorejā|$1 nuoglobuotajuos kategorejuos}}:",
 	"permissionserrorstext-withaction": "Tev nav atļuovis iz $2, deļ {{PLURAL:$1|itaida pamata|itaidu pamatu}}:",
 	"viewpagelogs": "Apsavērt ar itū lopu saisteitūs registru īrokstus",

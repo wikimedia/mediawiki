@@ -301,8 +301,6 @@
 	"previewconflict": "Es privizualizason di bus alterason ta rafliti kel testu di kaxa di idison tálikual el ta ser mostradu si bu disidi publika-l.",
 	"semiprotectedpagewarning": "<strong>Nota:</strong> Es página sta protegidu pa ki so uzuárius autorizadu podi edital.\nPa fins di referensia, últimu entrada di rejistu é aprizentadu abaixu:",
 	"templatesusedpreview": "{{PLURAL:$1|Pájina|Pájinas}} nkluídu na es privizualizason:",
-	"template-protected": "(protejidu)",
-	"template-semiprotected": "(semi-protegidu)",
 	"permissionserrors": "Eru di permison",
 	"postedit-confirmation-created": "Bu pájina foi [[Special:Diff/$2|kriadu]].",
 	"postedit-confirmation-saved": "[[Special:Diff/$2|Bu idison]] foi grabadu.",

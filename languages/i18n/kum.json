@@ -223,8 +223,6 @@
 	"yourdiff": "Башгъалыкълар",
 	"templatesused": "Бу сагьифада къоллангъан {{PLURAL:$1|къалип|къалиплер}}",
 	"templatesusedpreview": "Бу инггёрсетивде пайдалангъан {{PLURAL:$1|уьлгюлер|}}:",
-	"template-protected": "(къоругъан)",
-	"template-semiprotected": "(ярты-къорулгъан)",
 	"hiddencategories": "Бу сагьифа {{PLURAL:$1|1 яшырылгъан категориягъа}} янаша:",
 	"permissionserrors": "Гириш ихтиярланы хатасы",
 	"permissionserrorstext-withaction": "Бугъар $2 {{PLURAL:$1|бу себеп|бу себеплеге}} гёре ихтиярынг ёкъ:",

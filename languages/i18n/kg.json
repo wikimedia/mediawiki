@@ -196,8 +196,6 @@
 	"creating": "Na kutûnga $1",
 	"editingsection": "Na kusonika $1 (kibuku)",
 	"editingcomment": "Na kusoba $1 (kibuku ya yimpa)",
-	"template-protected": "(ya kukeba)",
-	"template-semiprotected": "(ya mwa kukeba)",
 	"permissionserrors": "Kifu ya kupesa nswa",
 	"permissionserrorstext": "Nge kele na luve ya kusala yayi ve, samu na:",
 	"permissionserrorstext-withaction": "Nge kele na luve ve ku $2, samu na:(“Nge kele na luve ya kusala yayi ve, samu na:”).",

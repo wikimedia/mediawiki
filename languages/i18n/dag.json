@@ -562,8 +562,6 @@
 	"longpageerror": "<strong>Error: sabbu shɛli a ni zaŋ to ŋɔ nyɛla {{PLURAL:$1|one kilobyte|$1 kilobytes}} long, which is longer than the maximum of {{PLURAL:$2|one kilobyte|$2 kilobytes}}.</strong>\nDinzuɣu di pala din ni tooi zaŋ wuhi salo.",
 	"templatesused": "{{PLURAL:$1|Yaɣili|Yaɣa}} din tum tuma yaɣili ŋɔ:",
 	"templatesusedpreview": "{{PLURAL:$1|Tɛmplati|Tɛmplati nima}} ka mani din yiri na shɛm jɔhi lihi ni:",
-	"template-protected": "(be gulimi)",
-	"template-semiprotected": "(gubu pirigili)",
 	"hiddencategories": "Yaɣili ŋɔ nyɛla din pahi {{PLURAL:$1|pubu din sɔɣi|$1 pubu shɛŋa ŋan sɔɣi}}:",
 	"nocreate-loggedin": "A ka soli ni a niŋ maliniŋ lala CSS paaji ŋɔ zuɣu.",
 	"sectioneditnotsupported-title": "Yaɣ' shɛli a ni niŋdi maliniŋ pala ŋan saɣiti",

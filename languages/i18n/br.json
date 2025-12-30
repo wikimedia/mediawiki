@@ -605,8 +605,6 @@
 	"templatesused": "{{PLURAL:$1|Pajenn|Pajennoù}} enklozet er bajenn-mañ :",
 	"templatesusedpreview": "{{PLURAL:$1|Pajenn|Pajennoù}} enklozet er rakweladenn-mañ :",
 	"templatesusedsection": "{{PLURAL:$1|Pajenn|Pajennoù}} enklozet er rann-mañ :",
-	"template-protected": "(gwarezet)",
-	"template-semiprotected": "(damwarezet)",
 	"hiddencategories": "{{PLURAL:$1|1 rummad kuzhet|$1 rummad kuzhet}} m'emañ rollet ar bajenn-mañ :",
 	"edittools": "<!-- Diskouezet e vo an destenn kinniget amañ dindan ar sternioù kemmañ ha kargañ. -->",
 	"nocreatetext": "Strishaet eo bet an tu da grouiñ pajennoù nevez war {{SITENAME}}.\nGallout a rit mont war-gil ha lakaat kemmañ ur bajenn zo anezhi dija, pe [[Special:UserLogin|en em enrollañ ha krouiñ ur gont]].",

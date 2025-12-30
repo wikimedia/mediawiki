@@ -356,8 +356,6 @@
 	"editingsection": "Ngerisaq $1 (bagian)",
 	"templatesused": "{{PLURAL:$1|Halaman}} haq tepemiluq léq halaman ni:",
 	"templatesusedpreview": "{{PLURAL:$1|Halaman}} haq tepemiluq léq pragitaq ni:",
-	"template-protected": "(tejagaq)",
-	"template-semiprotected": "(semi-tejagaq)",
 	"hiddencategories": "Halaman ni anggota {{PLURAL:$1|bangse haq teseboq|$1 bangse haq teseboq}}:",
 	"permissionserrors": "Kesalaqan pelakoq",
 	"permissionserrorstext-withaction": "Side ndéq bau $2 sengaqn {{PLURAL:$1|pakse}} ni:",

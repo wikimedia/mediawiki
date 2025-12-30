@@ -543,8 +543,6 @@
 	"templatesused": "{{PLURAL:$1|Sjabloon|Sjablone}} wat op hierdie bladsy gebruik word:",
 	"templatesusedpreview": "{{PLURAL:$1|Sjabloon|Sjablone}} gebruik in hierdie voorskou:",
 	"templatesusedsection": "Die volgende {{PLURAL:$1|sjabloon|sjablone}} word in hierdie afdeling gebruik:",
-	"template-protected": "(beskermd)",
-	"template-semiprotected": "(half-beskerm)",
 	"hiddencategories": "Hierdie bladsy is 'n lid van {{PLURAL:$1|1 versteekte kategorie|$1 versteekte kategorieë}}:",
 	"edittools": "<!-- Die teks hier sal onderaan wysiging- en oplaaivorms vertoon word. -->",
 	"nocreatetext": "{{SITENAME}} het die skep van nuwe bladsye beperk.\nU kan slegs bestaande bladsye wysig, of u kan [[Special:UserLogin|aanmeld of 'n gebruiker registreer]].",

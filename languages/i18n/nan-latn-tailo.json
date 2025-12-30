@@ -243,8 +243,6 @@
 	"editingsection": "Pian-tsip $1 (tsiong-kiat)",
 	"templatesused": "Tsit ia̍h iōng ê {{PLURAL:$1|pang-bôo}}",
 	"templatesusedpreview": "Sing khuànn-māi ê tsit ia̍h iōng ê {{PLURAL:$1|pang-bôo}}:",
-	"template-protected": "(hōo pó-hōo)",
-	"template-semiprotected": "(puànn pó-hōo)",
 	"hiddencategories": "Tsit-ê ia̍h sī {{PLURAL:$1|$1 hōo bih luī-pia̍t}}:",
 	"permissionserrors": "Hí-khó tshò-gōo",
 	"permissionserrorstext-withaction": "Lí bô ún-tsún tsuè $2, in-uī ē-kha {{PLURAL:$1|iân-kòo}}:",

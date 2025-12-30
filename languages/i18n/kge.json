@@ -509,8 +509,6 @@
 	"editpage-cannot-use-custom-model": "Model konten halaman sa mak panday tiubah.",
 	"templatesused": "{{PLURAL:$1|Citakan}} say tipakay di halaman hasa:",
 	"templatesusedpreview": "{{PLURAL:$1|Citakan}} say tipakay di gambaran hasa:",
-	"template-protected": "(tilindungi)",
-	"template-semiprotected": "(semi-tilindungi)",
 	"hiddencategories": "Halaman hasa joda da bagiyan jak {{PLURAL:$1|1 kaban tisimbin|$1 kaban tisimbin}}:",
 	"nocreate-loggedin": "Niku makka hak akses untuk ngguway halaman anyar.",
 	"sectioneditnotsupported-title": "Pangeditan bagian mak tidukung",

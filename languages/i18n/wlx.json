@@ -165,8 +165,6 @@
 	"editingsection": "Maale embu $1 (jie)",
 	"templatesused": "{{PLURAL:$1|Bondemaahewuloo|Bondemaahewulo}} a tonneŋ a peeji ŋa:",
 	"templatesusedpreview": "{{PLURAL:$1|Tɛmpileti| Tɛmpiletihi}} aŋ tuŋ ne tuma a daŋkaabu ŋaŋ:",
-	"template-protected": "(guyeŋ)",
-	"template-semiprotected": "Gu-kyɛlii",
 	"hiddencategories": "A peeji ŋa meŋ poɔ yɛ a {{PLURAL:$1|lambo sɔgenuu|$1 lamboe sɔgene}}:",
 	"permissionserrors": "Gbɛŋme Sɔre tehibu",
 	"permissionserrorstext-withaction": "E ba tare sɔre ko $2, a anaŋso {{PLURAL:$1|anaŋso|anaŋsohi}}:",

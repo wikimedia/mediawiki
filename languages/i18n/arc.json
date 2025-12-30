@@ -271,8 +271,6 @@
 	"editingold": "'''ܙܘܗܪܐ: ܫܚܠܦ ܐܢܬ ܬܢܝܬܐ ܥܬܝܩܬܐ ܕܦܐܬܐ ܗܕܐ.'''\nܐܢ ܠܒܟ ܐܢܬ ܦܐܬܐ ܗܕܐ, ܟܠ ܫܘ̈ܚܠܦܐ ܕܐܬܥܒܕܘ ܒܬܪ ܗܕܐ ܬܢܝܬܐ ܢܬܛܠܩܘܢ.",
 	"yourdiff": "ܦܪ̈ܝܫܘܝܬܐ",
 	"templatesused": "{{PLURAL:$1|ܩܠܒܐ|ܩܠܒ̈ܐ}} ܒܦܐܬܐ ܗܕܐ:",
-	"template-protected": "(ܢܛܝܪܐ)",
-	"template-semiprotected": "(ܕܡܘܬ ܢܛܝܪܐ)",
 	"nocreate-loggedin": "ܠܝܬ ܠܟ ܦܣܣܐ ܕܒܪܝܐ ܕܦܐܬܐ ܗܕܐ.",
 	"permissionserrors": "ܦܘܕܐ ܕܦܣܣܐ",
 	"permissionserrorstext-withaction": "ܠܝܬ ܠܟ ܦܣܣܐ ܠ$2, ܒ{{PLURAL:$1|ܥܠܬܐ|ܥܠܬ̈ܐ}} ܕ:",

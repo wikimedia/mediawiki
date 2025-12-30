@@ -125,7 +125,6 @@
 	"userpage-userdoesnotexist-view": "用戶賬號「$1」尚未在此wiki上註冊。",
 	"blocked-notice-logextract": "此用戶目前已封鎖，以下是最近的封鎖紀錄：",
 	"editing": "正在編輯 $1",
-	"template-protected": "（受保護）",
 	"revisionasof": "於 $1 的修訂",
 	"rev-deleted-comment": "（註釋已除）",
 	"rev-deleted-event": "（日誌已除）",

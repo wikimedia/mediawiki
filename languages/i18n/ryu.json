@@ -347,8 +347,6 @@
 	"editingsection": "「$1」直ーちょーいびーん (節単位)",
 	"templatesused": "くぬプレビューで使用されている{{PLURAL:$1|テンプレート}}:",
 	"templatesusedpreview": "くぬプレビューで使用されている{{PLURAL:$1|テンプレート}}:",
-	"template-protected": "(ふしじゅん)",
-	"template-semiprotected": "(半保護)",
 	"hiddencategories": "くぬページや {{PLURAL:$1|$1 個ぬ隠しカテゴリ}}んかい属ちょーいびーん:",
 	"permissionserrors": "権限エラー",
 	"permissionserrorstext-withaction": "うんじゅには「$2」を行う権限がありなさんさ。{{PLURAL:$1|理由}}は以下ぬ通りやいびーん:",

@@ -525,8 +525,6 @@
 	"templatesused": "{{PLURAL:$1|Àdàkọ|Àwọn àdàkọ}} tí a lò lórí ojúewé yìí:",
 	"templatesusedpreview": "{{PLURAL:$1|Àdàkọ|Àwọn àdàkọ}} tí a lò nìnú àkọ́yẹ́wò yìí:",
 	"templatesusedsection": "{{PLURAL:$1|Àdàkọ|Àwọn àdàkọ}} tí a lò nínú abala yìí:",
-	"template-protected": "(aláàbò)",
-	"template-semiprotected": "(aláàbò díẹ̀)",
 	"hiddencategories": "Ojúewé yìí jẹ́ ìkan nínú {{PLURAL:$1|ẹ̀ka bíbòmọ́lẹ̀ 1|àwọn ẹ̀ka bíbòmọ́lẹ̀ $1}}:",
 	"nocreatetext": "{{SITENAME}} ti pààlà ààyè láti ṣ'èdá ojúewé tuntun.\nẸ le padà sẹ́yìn kí ẹ ṣ'àtúnṣe ojúewé tó wà, tàbí [[Special:UserLogin|kí ẹ wọlé tàbí kí ẹ ṣ'èdá àpamọ́]].",
 	"nocreate-loggedin": "Ẹ kò ní ìyọ̀nda láti ṣe'dá ojúewé tuntun.",

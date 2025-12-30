@@ -444,8 +444,6 @@
 	"templatesused": "{{PLURAL:$1|Prantilla|Prantillas}} gastás nesta página:",
 	"templatesusedpreview": "{{PLURAL:$1|Prantilla|Prantillas}} gastás al previsoreal:",
 	"templatesusedsection": "{{PLURAL:$1|Prantilla gastá|Prantillas gastás}} en esti apaltiju:",
-	"template-protected": "(afiau)",
-	"template-semiprotected": "(abati-afiau)",
 	"hiddencategories": "Esta página preteneci a {{PLURAL:$1|1 categoría incultá|$1 categorías incultás}}:",
 	"edittools": "<!-- Esti testu apaicirá embahu los hormulárius d’eición i empuntu. -->",
 	"nocreatetext": "Nu se premiti crial páhinas nuevas a usuárius anónimus.\nPueis gorvel i eital anguna páhina ya desistenti, u [[Special:UserLogin|rustrilti]].",

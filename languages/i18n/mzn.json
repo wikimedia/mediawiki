@@ -465,8 +465,6 @@
 	"protectedpagewarning": "'''هشدار: این صفحه قفل بیّه که فقط کارورونی که مدیر هستنه، بتونن وه ره دچینن.'''\nاین صوه که وه ره قفل بزونه، اینتا بی‌یه:",
 	"templatesused": "استفاده بَیی {{PLURAL:$1|شابلون|شابلون‌ها}}، این صفحه دله:",
 	"templatesusedpreview": "استفاده بئی {{PLURAL:$1|شابلون|شابلون‌ها}}، این پیش‌نمایش دله:",
-	"template-protected": "(قِلف بزه)",
-	"template-semiprotected": "(نیم‌چه قلف هاکرد)",
 	"hiddencategories": "این صفحه {{PLURAL:$1|اتا مخفی رج|$1تا مخفی رج}} دله دره:",
 	"permissionserrors": "دسترسی ندارنی",
 	"permissionserrorstext-withaction": "ته اجازهٔ $2 ره {{PLURAL:$1|دلیل|دلایل}} مقابل وسّه ندانی:",

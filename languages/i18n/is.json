@@ -643,8 +643,6 @@
 	"templatesused": "{{PLURAL:$1|Síða sem innifalin er|Síður sem innifaldar eru}} á þessari síðu:",
 	"templatesusedpreview": "{{PLURAL:$1| Síða sem innifalin er|Síður sem innifaldar eru}} í þessari forskoðun:",
 	"templatesusedsection": "{{PLURAL:$1|Síða sem innifalin er|Síður sem innifaldar eru}} í þessum kafla:",
-	"template-protected": "(vernduð)",
-	"template-semiprotected": "(hálfvernduð)",
 	"hiddencategories": "Þessi síða er meðlimur í $1 {{PLURAL:$1|földum flokki|földum flokkum}}:",
 	"edittools": "<!-- Texti hér mun vera sýndur fyrir neðan breytinga- og upphleðslueyðublöð. -->",
 	"nocreatetext": "{{SITENAME}} hefur takmarkað eiginleikann til að búa til nýjar síður.\nÞú getur farið til baka og breytt fyrirliggjandi síðum eða [[Special:UserLogin|skráð þið inn eða búið til aðgang]].",

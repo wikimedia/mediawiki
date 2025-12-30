@@ -271,8 +271,6 @@
 	"yourdiff": "Parklar",
 	"templatesused": "Bo sayipada kullanîlgan {{PLURAL:$1|kalîp|kalîplar}}:",
 	"templatesusedpreview": "Bo kórsel karamasînda kullanîlgan {{PLURAL:$1|kalîp|kalîplar}}:",
-	"template-protected": "(kollanîla)",
-	"template-semiprotected": "(kísmen kollanîla)",
 	"nocreate-loggedin": "Ğañî sayipa yasaw úşún sízde ruhsat yok.",
 	"sectioneditnotsupported-title": "Bólímdí deñíştírúw múmkún tuwîl",
 	"modeleditnotsupported-title": "Deñíştírme desteklenmiy",

@@ -192,8 +192,6 @@
 	"editingsection": "Maale embo $1 (zie)",
 	"templatesused": "{{PLURAL:$1|Bondemanewuloo|Bondemanewulo}} a tonneŋ a gampɛle ŋa:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Templates}} de a leɛ kaa nyɛ:",
-	"template-protected": "(guyeŋ)",
-	"template-semiprotected": "Gu-kyɛle",
 	"hiddencategories": "A gampɛle ŋa meŋ poɔ la {{PLURAL:$1|a zage sɔgeraa|$1 zage sɔgere}}:",
 	"permissionserrors": "Gbɛre ŋmɛbo",
 	"permissionserrorstext-withaction": "Fo ba taa sɔre ko $2, a anaŋso {{PLURAL:$1|anaŋso|anaŋsori}}:",

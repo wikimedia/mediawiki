@@ -237,8 +237,6 @@
 	"editingsection": "修改$1（段）",
 	"templatesused": "者蜀個頁面使用兮{{PLURAL:$1|模板}}：",
 	"templatesusedpreview": "者個預覽使用兮{{PLURAL:$1|模板}}：",
-	"template-protected": "（乞保護兮）",
-	"template-semiprotected": "（半保護）",
 	"hiddencategories": "者個頁面是{{PLURAL:$1|以下$1個隱藏分類}}兮成員：",
 	"permissionserrors": "權限錯誤",
 	"permissionserrorstext-withaction": "因爲以下兮{{PLURAL:$1|原因}}，汝無權限去$2：",

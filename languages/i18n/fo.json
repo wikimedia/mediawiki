@@ -453,8 +453,6 @@
 	"templatesused": "{{PLURAL:$1|Fyrimynd|Fyrimyndir}} brúktar á hesu síðu:",
 	"templatesusedpreview": "{{PLURAL:$1|Fyrimynd|Fyrimyndir}} brúktar í hesi forskoðan:",
 	"templatesusedsection": "{{PLURAL:$1|Fyrimynd|Fyrimyndir}} brúktar í hesum brotinum:",
-	"template-protected": "(friðað)",
-	"template-semiprotected": "(lutvíst vardar)",
 	"hiddencategories": "Henda síðan er í {{PLURAL:$1|1 fjaldum bólki|$1 fjaldum bólkum}}:",
 	"nocreatetext": "{{SITENAME}} hevur noktað fyri møguleikanum at upprætta nýggjar síður.\nTú kanst fara aftur og rætta eina síðu sum longu er til, ella [[Special:UserLogin|rita teg inn ella få tær eina konto]].",
 	"nocreate-loggedin": "Tú hevur ikki loyvi til at upprætta nýggjar síður.",

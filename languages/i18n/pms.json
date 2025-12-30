@@ -585,8 +585,6 @@
 	"templatesused": "{{PLURAL:$1|Pàgina|Pàgine}} dovrà da costa pàgina-sì:",
 	"templatesusedpreview": "{{PLURAL:$1|Pàgina|Pàgine}} dovrà an costa preuva:",
 	"templatesusedsection": "{{PLURAL:$1|Stamp}} dovrà an costa session-sì:",
-	"template-protected": "(protet)",
-	"template-semiprotected": "(mes-protet)",
 	"hiddencategories": "Sta pàgina-sì a fa part ëd {{PLURAL:$1|na categorìa|$1 categorìe}} stërmà:",
 	"edittools": "<!-- Test ch'a së s-ciàira sot a ij mòduj ëd modìfica e 'd carie d'archivi. -->",
 	"nocreatetext": "{{SITENAME}} a l'ha limità la possibilità ëd creé dle pàgine neuve.\nA peul torné andaré e modifiché na pàgina che a-i é già, ò pura [[Special:UserLogin|rintré ant ël sistema ò deurb-se un cont]].",

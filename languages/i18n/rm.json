@@ -413,8 +413,6 @@
 	"templatesused": "{{PLURAL:$1|In model utilisà|Models utilisads}} sin questa pagina:",
 	"templatesusedpreview": "{{PLURAL:$1|In model utilisà|Models utilisads}} per questa prevista:",
 	"templatesusedsection": "{{PLURAL:$1|In model|Models}} utilisads en quest chapitel:",
-	"template-protected": "(bloccà)",
-	"template-semiprotected": "(mez protegidas)",
 	"hiddencategories": "Quest artitgel è commember da {{PLURAL:$1|1 categoria zuppentada|$1 categorias zuppentadas}}:",
 	"nocreatetext": "{{SITENAME}} ha restrinschì las pussaivladas da crear novas paginas.\nTi pos ir anavos e modifitgar ina pagina existenta, u [[Special:UserLogin|t'annunziar u registrar]].",
 	"nocreate-loggedin": "Ti n'has betg la lubientscha da crear novas paginas.",

@@ -528,8 +528,6 @@
 	"templatesused": "{{PLURAL:$1|Templat}} baen tu alaman on:",
 	"templatesusedpreview": "{{PLURAL:$1|Templat}} ipake i parnidaan samantaro on:",
 	"templatesusedsection": "{{PLURAL:$1|Templat}} na ipake i bagian on:",
-	"template-protected": "(iondingi)",
-	"template-semiprotected": "(satonga-iondingi)",
 	"hiddencategories": "Alaman on ima anggota {{PLURAL:$1|1 kategori namonjap|$1 kategori namonjap}}:",
 	"nocreate-loggedin": "Amu inda adong santabi tu baen alaman na baru.",
 	"sectioneditnotsupported-title": "Panyuntingan i bagian on inda idukung.",

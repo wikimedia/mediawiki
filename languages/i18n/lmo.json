@@ -598,8 +598,6 @@
 	"templatesused": "{{PLURAL:$1|Modell|Modei}} doprad in questa pagina chì:",
 	"templatesusedpreview": "{{PLURAL:$1|Mudel|Mudei}} doprad in 'sta pagina de proeuva chì:",
 	"templatesusedsection": "{{PLURAL:$1|Model|Mudeo}} doprad in quella sezzion chì:",
-	"template-protected": "(protesgiud)",
-	"template-semiprotected": "(semi-prutesgiud)",
 	"hiddencategories": "Quella pagina chì la fa part de {{PLURAL:$1|una categoria sconduda|$1 categorie scondude}}:",
 	"nocreatetext": "{{SITENAME}} l'hà limitad la possibilità de creà di pagine noeuve.\nte podet tornà indree e fagh di cambimanet a una pagina esistenta , opur [[Special:UserLogin|andà dent e dervì un cunt]].",
 	"nocreate-loggedin": "Te gh'hee minga el permess de creà di pagine noeuve",

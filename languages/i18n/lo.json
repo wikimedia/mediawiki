@@ -419,8 +419,6 @@
 	"templatesused": "{{PLURAL:$1|ແມ່ແບບ}}ໄດ້ໃຊ້ໃນໜ້ານີ້:",
 	"templatesusedpreview": "{{PLURAL:$1|ແມ່ແບບ}}ໃຊ້ໃນການສະແດງຕົວຢ່າງນີ້:",
 	"templatesusedsection": "ແມ່ແບບໄດ້ໃຊ້ໃນພາກນີ້:",
-	"template-protected": "(ປ້ອງກັນ)",
-	"template-semiprotected": "(ເຄິ່ງປົກປ້ອງ)",
 	"hiddencategories": "ໜ້ານີ້ແມ່ນສ່ວນໜື່ງຂອງ {{PLURAL:$1|ປະເພດທີ່ເຊື່ອງໄວ້|$1 ໝວດໝູ່ທີ່ເຊື່ອງໄວ້}}:",
 	"nocreatetext": "{{SITENAME}} ໄດ້ຈຳກັດການສ້າງໜ້າໃໝ່.\nທ່ານສາມາດກັບໄປ ດັດແກ້ ໜ້າທີ່ມີແລ້ວ ຫຼື [[Special:UserLogin|ເຊັນເຂົ້າ ຫຼື ສ້າງບັນຊີ]].",
 	"permissionserrors": "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດ",

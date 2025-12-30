@@ -575,8 +575,6 @@
 	"templatesused": "Тайӧ лист боквывса балаяс {{PLURAL:$1|1=Бала}}",
 	"templatesusedpreview": "Тайӧ лист боквывса балаяс {{PLURAL:$1|1=Балаяс}}",
 	"templatesusedsection": "Тайӧ лист бокса {{PLURAL:$1|1=Бала|Балаяс}}",
-	"template-protected": "(дорйӧма)",
-	"template-semiprotected": "(джынвыйӧ дорйӧма)",
 	"hiddencategories": "Тайӧ лист бокыс лоӧ {{PLURAL:$1|$1 сайӧдӧм категория}}ын:",
 	"nocreatetext": "{{SITENAME}} дзескӧдіс выль лист бокъяс лӧсьӧдны позялунсӧ.\nТі верманныд бӧр бергӧдчыны да вежны ӧнія лист боксӧ либӧ [[Special:UserLogin|пырны системаӧ либӧ лӧсьӧдны аккаунт]].",
 	"nocreate-loggedin": "Тіянлы эз сетны позянлун лӧсьӧдны выль лист бокъяс.",

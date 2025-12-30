@@ -345,8 +345,6 @@
 	"templatesused": "{{PLURAL:$1|Stamp|Stampa}} janë përdorë në kët faqe:",
 	"templatesusedpreview": "{{PLURAL:$1|Shabllon|Shabllonet}} e përdoruna në kët parapamje:",
 	"templatesusedsection": "{{PLURAL:$1|Stamp|Stampa}} e përdoruna në këtë sekcion:",
-	"template-protected": "(e mbrojtme)",
-	"template-semiprotected": "(gjysë-mbrojtun)",
 	"hiddencategories": "Kjo faqe bân pjesë në {{PLURAL:$1|1 kategori të msheftë|$1 kategori të mshefta}}:",
 	"nocreatetext": "{{SITENAME}} ka kufizue mundësinë e krijimit të faqeve të reja.\nMundeni me u kthy mbrapa edhe me redaktue faqen ekzistuese, apo [[Special:UserLogin|me u kyçë a me krijue nji llogari]].",
 	"nocreate-loggedin": "Nuk keni tagër me krijue faqe të reja.",

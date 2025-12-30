@@ -482,8 +482,6 @@
 	"templatesused": "{{PLURAL:$1|Template}} pilopohuna to halaman botiye:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Templates}} pilomake to'u mopobilohu.",
 	"templatesusedsection": "{{PLURAL:$1|Template}} pilomake to tayade botiya:",
-	"template-protected": "(hedahalo)",
-	"template-semiprotected": "(dahalo-ngowa)",
 	"hiddencategories": "Halaman botiye woluwo anggota {{PLURAL:$1|1 kategori wanto-wanto'o $1}}:",
 	"nocreatetext": "{{SITENAME}} ma lomubulo mohutu halaman bohu.\nYi'o mowali mohuwalingo wawu momoli'a halaman u woluwo, mwyalo \nYou can go back and edit an existing page, or [[Special:UserLogin|tumuwoto log meyalo mohutu akun bohu]].",
 	"nocreate-loggedin": "Yi'o ja o ijini mohutu halaman bohu.",

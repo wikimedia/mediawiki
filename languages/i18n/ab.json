@@ -161,8 +161,6 @@
 	"creating": "Адаҟьа $1 аԥҵара",
 	"editingsection": "Аредакциазура: $1 (аҟәша)",
 	"templatesused": "{{PLURAL:$1|1=Ашаблон|Ашаблонқәа}} ахархәара змоу адаҟьаҟны:",
-	"template-protected": "(ихьчо)",
-	"template-semiprotected": "(хәҭакала ихьчо)",
 	"content-model-wikitext": "авики-текст",
 	"undo-failure": "Агәыбжьаратә ԥсахрақәа реимарамра ихҟьаны ари арҽеира мап ацәкра залшом.",
 	"currentrev-asof": "Ҳазну аверсиа $1 ала",

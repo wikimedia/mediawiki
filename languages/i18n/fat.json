@@ -204,8 +204,6 @@
 	"editingsection": "Eresesa $1 (ɔfa) mu",
 	"templatesused": "{{PLURAL:$1|Template|Templates}} a wɔdze edzi dwuma wɔ kratafa mu:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Templates}} a wɔdze edzi dwuma wɔ ahwɛkan yi mu:",
-	"template-protected": "bambɔ da do",
-	"template-semiprotected": "(wɔabɔ ho ban kakra)",
 	"hiddencategories": "Dɛm kratafa yi ka {{PLURAL:nkyekyɛmu $1|$1 a wɔdze esuma}} no ho:",
 	"permissionserrors": "Akwasera ho mfomdo",
 	"permissionserrorstext-withaction": "Innyi $2 mu kwan, ɔnam {{PLURAL:siantsir $1}} a odzi do yi ntsi:",

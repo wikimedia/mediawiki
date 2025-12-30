@@ -630,8 +630,6 @@
 	"templatesused": "{{PLURAL:$1|Ang pahina|Mga pahina}} nga nagamit na sa sini nga pahina:",
 	"templatesusedpreview": "{{PLURAL:$1|Ang pahina|Mga pahina}} nga nagamit na sa sini na preview:",
 	"templatesusedsection": "{{PLURAL:$1|Pahina|Mga pahina}} nga nalakip sa sini nga seksyon:",
-	"template-protected": "(protektado)",
-	"template-semiprotected": "(medyo-protektado)",
 	"hiddencategories": "Ini nga pahina ay membro sang {{PLURAL:$1|1 tago nga kategorya|$1 mga tago nga kategorya}}:",
 	"nocreatetext": "Ang {{SITENAME}} nagapuggong sang abilidad nga magtuga sang mga bag-o nga panid.\nMahimo ka nga magbalik kag mag-ilis sang naga-eksister nga panid, ukon[[Special:UserLogin|magsulod ukon maghimo sang akawnt]].",
 	"nocreate-loggedin": "Wala ka sang lisensya sa pagbuhat sang bag-o nga mga panid.",

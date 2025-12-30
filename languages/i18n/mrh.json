@@ -294,8 +294,6 @@
 	"editingsection": "$1 taona (bo)",
 	"templatesused": "He hmia liata hmâpa {{PLURAL:$1|Tepalei|Tepaleizy}}:",
 	"templatesusedpreview": "He mochhilina liata hmâpa {{PLURAL:$1|Template|Templatezy}}:",
-	"template-protected": "(vai hawpa)",
-	"template-semiprotected": "(rakha-vaipa)",
 	"hiddencategories": "He hmia hecha {{PLURAL:$1|nyu hawpa pho sâ kha|nyu hawpa pho sâ $1 zy}} mebâh a châ.",
 	"permissionserrors": "Pasaina pâpa",
 	"permissionserrorstext-withaction": "$2 n'awpa ta pasaina hnei va chi, a ry lia  {{PLURAL:$1|palâsana|palâsanazy}} vâta:",

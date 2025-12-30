@@ -332,8 +332,6 @@
 	"titleprotectedwarning": "'''Czó! Starna ò ti pòzwie òsta zazychrowónô. Dlô ùsadzeniô ti starnë pòtrzébné są [[Special:ListGroupRights|apartné ùdowierzenia]].'''\nNiżi  je widzec slédny wpisënk z registru:",
 	"templatesused": "{{PLURAL:$1|Ùżëtô szablona|Ùżëté szablónë}} w tim artiklu:",
 	"templatesusedpreview": "{{PLURAL:$1|Szablóna ùżëtô|Szablónë użëté}} w tim pòdzérkù:",
-	"template-protected": "(zazychrowónô)",
-	"template-semiprotected": "(dzélowò zazychrowóné)",
 	"hiddencategories": "Na starna przënôleżi do w {{PLURAL:$1|1 zatacony kategòrëji|$1 zataconych kategòrëjów}}:",
 	"permissionserrors": "Fela przistãpù",
 	"permissionserrorstext-withaction": "Ni môsz przëstãpù do $2, z {{PLURAL:$1|nôslédny przëczënë|nôslédnych przëczënów}}:",

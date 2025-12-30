@@ -386,8 +386,6 @@
 	"templatesused": "{{PLURAL:$1|ምሳሌዎች|ምሳሌዎች}} used on this page:",
 	"templatesusedpreview": "ለዚህ ገፅ የሚሆኑ {{PLURAL:$1|ምሳሌ|ምሳሌዎች}} :",
 	"templatesusedsection": "በዚሁ ክፍል የተጠቀሙት መለጠፊያዎች፦",
-	"template-protected": "(የተቆለፈ)",
-	"template-semiprotected": "(በከፊል የተቆለፈ)",
 	"hiddencategories": "ይህ ገጽ በ{{PLURAL:$1|1 የተደበቀ መደብ|$1 የተደበቁ መድቦች}} ውስጥ ይገኛል።",
 	"nocreatetext": "{{SITENAME}} አዳዲስ ገጾችን ለመፍጠር ያሚያስችል ሁኔታ ከለክሏል። ተመልሰው የቆየውን ገጽ ማዘጋጀት ይችላሉ፤ አለዚያ [[Special:UserLogin|በብዕር ስም መግባት]] ይችላሉ።",
 	"nocreate-loggedin": "አዲስ ገጽ በ{{SITENAME}} ለመፍጠር ፈቃድ የለዎም።",

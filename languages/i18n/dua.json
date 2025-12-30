@@ -278,8 +278,6 @@
 	"editingsection": "Betúkwan bá $1 (epasi)",
 	"templatesused": "{{PLURAL:$1|Eyembilan e|Beyembilan be}} ɓolanɛ togwea din dipapá :",
 	"templatesusedpreview": "{{PLURAL:$1|Eyembilan e|Beyembilan be}} ɓolanɛ togwea din dipapá :",
-	"template-protected": "(tátí)",
-	"template-semiprotected": "(dí tátabɛ ɛpasi)",
 	"hiddencategories": "{{PLURAL:$1|Nai ni|Nai i}} wutamɛ nye ná din dipapá:",
 	"permissionserrors": "Diwúse lá wonjá",
 	"permissionserrorstext-withaction": "Ló bɛn wonja ó $2, nyola ná {{PLURAL:$1|janda lá búpɛ|manda ma bupɛ}} :",

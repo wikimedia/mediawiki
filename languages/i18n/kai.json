@@ -229,8 +229,6 @@
 	"yourtext": "Rubutukò",
 	"templatesused": "{{PLURAL:$1|Page|Pages}} à tàfu tà shafi ayam:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Tampileti}} tàfu tà shafi ayam:",
-	"template-protected": "(protected)",
-	"template-semiprotected": "(semi-protected)",
 	"hiddencategories": "Aye shafi kasantako ànkà ma {{PLURAL:$1|a hidden category|$1 hidden categories}}:",
 	"permissionserrors": "Kuskure ma dàyu",
 	"permissionserrorstext-withaction": "Ka ka dayu bai a $2, ka gii {{PLURAL:$1|daliili}}",

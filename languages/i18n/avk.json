@@ -382,8 +382,6 @@
 	"templatesused": "{{PLURAL:$1|Teza|Teza}} favena koe batu bu",
 	"templatesusedpreview": "{{PLURAL:$1|favena teza}} koe bata abdinedira :",
 	"templatesusedsection": "Faven tezeem koe bat gabot :",
-	"template-protected": "( nendanu )",
-	"template-semiprotected": "(nendamana)",
 	"hiddencategories": "Batu bu tir bewafu gu {{PLURAL:$1|1 palsena loma|$1 palsena loma}}:",
 	"nocreatetext": "{{SITENAME}} va roredura va warzafu bu irutar.\nRodimal aze va tisu bu robetal oke [[Special:UserLogin|va int rodogluyal oke ropataredul]].",
 	"nocreate-loggedin": "Rin va warzafu bu me ronoredul.",

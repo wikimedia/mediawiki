@@ -157,8 +157,6 @@
 	"editingsection": "wallakiny $1 (quanyartign)",
 	"templatesused": "{{PLURAL:$1|Birnup}} il nidja bibol:",
 	"templatesusedpreview": "{{PLURAL:$1|Birnup}} nidja kura djinang:",
-	"template-protected": "(nap-nap)",
-	"template-semiprotected": "(bun-ga nap-nap)",
 	"hiddencategories": "Nidja bibol bunga il {{PLURAL:$1|Kopin Warrangan}}:",
 	"permissionserrors": "Kaya warra",
 	"permissionserrorstext-withaction": "Noonook uart kaya ijow $2 ngawaliny-ung {{PLURAL:$1|niat-juk}}",

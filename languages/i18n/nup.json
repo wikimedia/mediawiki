@@ -565,8 +565,6 @@
 	"templatesused": "{{PLURAL:$1|Template |Templates }} nan'a lo kperegi \nnana'o nan:",
 	"templatesusedpreview": "{{PLURAL:$1|Template |Templates }} nan'alo cincinle nana'o nan:",
 	"templatesusedsection": "{{PLURAL:$1|Template| Templates}} de lulo ekpo nana'o:",
-	"template-protected": "(susochi)",
-	"template-semiprotected": "(Gwakan eti)",
 	"hiddencategories": "Kperegi nana dan mini{{PLURAL:$1|a hidden category|\n$1 hidden categories}}:",
 	"nocreatetext": "{{SITENAME}} wun'a dama nyan tswitswa fere woro zhi ke. Wo'e zheban wo da ye fere nan zhi danbo nan jin wo,koma [[Special: Userlogin|gandan koma wo'e kpe gbami]].",
 	"nocreate-loggedin": "Wo'e de ganmin nan wo'e ga kpe kperegi worozhi nan.",

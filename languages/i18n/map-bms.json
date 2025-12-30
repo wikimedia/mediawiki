@@ -447,8 +447,6 @@
 	"templatesused": "{{PLURAL:$1|Cithakan|Cithakan}} sing dienggo nang kaca kiye:",
 	"templatesusedpreview": "{{PLURAL:$1|Cithakan|Cithakan-cithakan}} sing dienggo nang pratayang kiye:",
 	"templatesusedsection": "{{PLURAL:$1|Cithakan|Cithakan-cithakan}} sing dienggo nang bagiyan kiye:",
-	"template-protected": "(direksa)",
-	"template-semiprotected": "(semi-pangreksan)",
 	"hiddencategories": "Kaca kiye kuwe anggota sekang {{PLURAL:$1|1 kategori sing diumpetna|$1 kategori-kategori sing diumpetna}}:",
 	"nocreatetext": "{{SITENAME}} wis mbatesi panggawean kaca anyar.\nRika teyeng mbalik lan nyunting kaca sing wis ana, utawa [[Special:UserLogin|mlebu]] utawa [[Special:CreateAccount|gawe akun]]",
 	"nocreate-loggedin": "Rika ora duwe hak akses nggo gawe kaca anyar.",

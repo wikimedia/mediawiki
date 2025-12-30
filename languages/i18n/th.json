@@ -652,8 +652,6 @@
 	"templatesused": "{{PLURAL:$1|หน้า}}ที่ผนวกรวมในหน้านี้:",
 	"templatesusedpreview": "{{PLURAL:$1|หน้า}}ที่ผนวกในตัวอย่างนี้:",
 	"templatesusedsection": "{{PLURAL:$1|หน้า}}ที่ผนวกในส่วนนี้:",
-	"template-protected": "(ถูกป้องกัน)",
-	"template-semiprotected": "(ถูกกึ่งป้องกัน)",
 	"hiddencategories": "หน้านี้มี {{PLURAL:$1|1 หมวดหมู่ซ่อน|$1 หมวดหมู่ซ่อน}}:",
 	"edittools": "<!-- ข้อความนี้จะแสดงผลใต้ฟอร์มสำหรับการแก้ไขและอัปโหลด -->",
 	"nocreatetext": "{{SITENAME}} ได้จำกัดการสร้างหน้าใหม่\nคุณสามารถย้อนกลับไปแก้ไขหน้าที่มีอยู่เดิม หรือ[[Special:UserLogin|เข้าสู่ระบบหรือสร้างบัญชีผู้ใช้]]",

@@ -500,8 +500,6 @@
 	"templatesused": "{{PLURAL:$1|De Schablohn|De $1 Schablohne|Kein Schablohn}}, di en dä Sigg heh jebruch {{PLURAL:$1|weed|wähde|weed}}, sinn:",
 	"templatesusedpreview": "{{PLURAL:$1|De Schablohn|Schablohne|-nix-}} en dä Vör_Aanseesch heh:",
 	"templatesusedsection": "{{PLURAL:$1|De Schablohn|Schablohne|-nix-}} en däm Avschnedd heh:",
-	"template-protected": "(jeschöz)",
-	"template-semiprotected": "(halfjeschöz - tabu för neu Metmaacher un ohne Enlogge)",
 	"hiddencategories": "Di Sigg heh is en {{PLURAL:$1|dä verschtoche Saachjropp: |dä $1 verschtoche Saachjroppe: |keij verschtoche Saachjroppe dren.}}",
 	"edittools": "<!-- Dä Täx heh zeisch et Wikki onger däm Täxfeld zom „Ändere/Beärbeijde“ un beim Täxfeld vum „Huhlade“ ann. -->",
 	"nocreatetext": "Sigge neu aanläje es nor müjjelich, wann de [[Special:UserLogin|enjelogg]] bes. Der ohne kanns De ävver Sigge ändere, di ald doh sin.",

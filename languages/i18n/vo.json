@@ -609,8 +609,6 @@
 	"templatesused": "{{PLURAL:$1|Samafomot|Samafomots}} su pad at {{PLURAL:$1|pegeböl|pegeböls}}:",
 	"templatesusedpreview": "{{PLURAL:$1|Samafomot|Samafomots}} in büologed at {{PLURAL:$1|pageböl|pageböls}}:",
 	"templatesusedsection": "{{PLURAL:$1|Samafomot|Samafomots}} in diläd at {{PLURAL:$1|pageböl|pageböls}}:",
-	"template-protected": "(pejelon)",
-	"template-semiprotected": "(dilo pejelon)",
 	"hiddencategories": "Pad at duton lü {{PLURAL:$1|klad peklänedöl 1|klads peklänedöl $1}}:",
 	"nocreatetext": "{{SITENAME}} emiedükon mögi ad jafön padis nulik.\nKanol redakön padi dabinöl, u [[Special:UserLogin|nunädön oli u jafön kali]].",
 	"nocreate-loggedin": "No dalol jafön padis nulik.",

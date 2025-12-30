@@ -547,8 +547,6 @@
 	"editingsection": "Tsakemɔ $1 (mlijaa)",
 	"templatesused": "{{PLURAL:$1| Template|Template}} ni akɛtsuɔ nii yɛ baafa nɛɛ nɔ:",
 	"templatesusedpreview": "{{PLURAL:$1| Template|Template}} ni akɛtsu nii yɛ hiɛkpamɔ nɛɛ mli:",
-	"template-protected": "(abaayi)",
-	"template-semiprotected": "(abaayi fa kɛ fa)",
 	"hiddencategories": "Baafa nɛɛ fata{{PLURAL:$1|1 srɔto ni akɛtee|$1 srɔtoi ni akɛtee}}:",
 	"permissionserrors": "Hegbɛ tɔmɔ",
 	"permissionserrorstext-withaction": "Obɛ hegbɛ $2, kɛha {{PLURAL:$1|enɛ hewɔ|enɛmɛi hewɔ}}:",

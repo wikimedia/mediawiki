@@ -508,8 +508,6 @@
 	"templatesused": "{{PLURAL:$1|Detdiar föörlaag woort|Jodiar föörlaagen wurd}} üüb detdiar sidj brükt:",
 	"templatesusedpreview": "{{PLURAL:$1|Detdiar föörlaag woort|Jodiar föörlaagen wurd}} uun detdiar sidjenföörskau brükt:",
 	"templatesusedsection": "{{PLURAL:$1|Detdiar föörlaag woort|Jodiar föörlaagen wurd}} uun didiar kirew brükt:",
-	"template-protected": "(seekert)",
-	"template-semiprotected": "(hualew-seekert)",
 	"hiddencategories": "Detdiar sidj hiart tu {{PLURAL:$1|1 ferbürgen kategorii|$1 ferbürgen kategoriin}}:",
 	"nocreatetext": "Üüb {{SITENAME}} könst dü nian nei sidjen maage, oober dü könst sidjen feranre. [[Special:UserLogin|Melde di uun of racht en brükerkonto iin]].",
 	"nocreate-loggedin": "Dü mutst nian nei sidjen maage.",

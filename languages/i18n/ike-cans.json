@@ -178,8 +178,6 @@
 	"editconflict": "ᓱᖁᓯᖅᐹ ᐊᑲᐅᙱᓕᐅᕈᑎᓂᖅ: $1",
 	"templatesused": "{{PLURAL:$1|ᐋᖅᑭᒃᓯᒪᓂᖓ|ᐋᖅᑭᒃᓯᒪᓂᖏᑦ}} ᑕᒪᑦᓴᐅᕐᕕᖓ ᒪᓕᐅᕐᓗᑕᐅᒃ:",
 	"templatesusedpreview": "{{PLURAL:$1|ᐋᖅᑭᒃᓯᒪᓂᖓ|ᐋᖅᑭᒃᓯᒪᓂᖏᑦ}} ᑕᒪᑦᓴᐅᕐᕕᖓ ᑲᓇᑕᒥᐊᓗᓂᖓᓐᓇᐅᔪᖓ:",
-	"template-protected": "(ᓴᐳᔾᔭᐅᓯᒪᔪᑦ)",
-	"template-semiprotected": "(ᐊᕝᕙᓪᓗᐊᖓ ᓴᐳᔾᔭᐅᓯᒪᔪᖅ)",
 	"hiddencategories": "ᑖᓐᓇ ᒪᒃᐱᒐᖅ ᐃᓚᒋᔭᐅᔪᖅ {{PLURAL:$1|ᓴᐳᑎᓯᓯᐅᑎᖅ ᖁᓛᖅᑐᖅ|$1 ᓴᐳᑎᓯᓯᐅᑎᖅ ᖁᓛᖅᑐᖅ}}:",
 	"permissionserrors": "ᐱᔪᓐᓇᐅᑎ ᑕᒻᒪᖅᓯᒪᔪᖅ",
 	"permissionserrorstext-withaction": "ᐱᔪᓐᓇᐅᑎᖃᙱᓚᑎᑦ $2, ᐅᑯᓄᖓ {{PLURAL:$1|ᐃᑕᕐᒥᒃ|ᐱᔾᔪᑎᖏᑦ}}:",

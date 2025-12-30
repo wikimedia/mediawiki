@@ -206,8 +206,6 @@
 	"editingsection": "Fetogi $1 (vaega)",
 	"templatesused": "{{PLURAL:$1|Kupesi}} e faka'aoga i heni:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Kupesi}} e faka'aoga'i i te sio fakatomu'a 'aeni:",
-	"template-protected": "(puipui)",
-	"template-semiprotected": "(vaelua tona puipui)",
 	"hiddencategories": "Ko te pāsina aeni e kau i te {{PLURAL:$1|fa'ahiga fufū| $1 fa'ahiga fufū}}:",
 	"permissionserrors": "Ne'e mole tali",
 	"permissionserrorstext-withaction": "E tapu tau $2 'uhi {{PLURAL:$1|ko te}}",

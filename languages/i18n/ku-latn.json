@@ -461,8 +461,6 @@
 	"templatesused": "{{PLURAL:$1|Şablona|Şablonên}} ku li ser vê rûpelê {{PLURAL:$1|tê|tên}} bikaranîn:",
 	"templatesusedpreview": "{{PLURAL:$1|Şablona|Şablonên}} di vê pêşdîtinê de {{PLURAL:$1|tê|tên}} bikaranîn:",
 	"templatesusedsection": "{{PLURAL:$1|Şablona ku di vê beşê de tê bikaranîn|Şablonên ku di vê beşê de tên bikaranîn}}:",
-	"template-protected": "(parastî)",
-	"template-semiprotected": "(nîv-parastî)",
 	"hiddencategories": "Ev rûpel endamê {{PLURAL:$1|1 kategoriya veşartî|$1 kategoriyên veşartî}} ye:",
 	"nocreate-loggedin": "Destûra te tune ye ku tu rûpelên nu biafirînî.",
 	"sectioneditnotsupported-title": "Guhartina beşê nayê piştgirîkirin",

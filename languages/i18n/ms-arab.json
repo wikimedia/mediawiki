@@ -242,8 +242,6 @@
 	"yourdiff": "ڤربيذاءن",
 	"templatesused": "{{PLURAL:$1|تيمڤلت}} دݢوناکن دلامن اين:",
 	"templatesusedpreview": "{{PLURAL:$1|تيمڤلت}} يڠ دݢوناکن دالم ڤرا‌‌ليهت اين:",
-	"template-protected": "(دليندوڠي)",
-	"template-semiprotected": "(دليندوڠي سڤارا)",
 	"hiddencategories": "لامن اين ترداڤت دالم {{PLURAL:$1|کاتݢوري ترسمبوڽي|$1 کاتݢوري ترسمبوڽي}}:",
 	"permissionserrors": "رالت کبنرن",
 	"permissionserrorstext-withaction": "اندا تيدق ممڤوڽاءي کأيذينن اونتوق $2، اتس {{PLURAL:$1|سبب}} برايکوت:",

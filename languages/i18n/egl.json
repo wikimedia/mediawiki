@@ -451,8 +451,6 @@
 	"templatesused": "{{PLURAL:$1|Mudèl druvê|Mudē druvê}} in cla pàgina ché:",
 	"templatesusedpreview": "{{PLURAL:$1|Mudèl druvê|Mudē druvê}} in cla pàgina 'd contròl ché:",
 	"templatesusedsection": "{{PLURAL:$1|Mudèl druvê|Mudē druvê}} in cla sesiòun ché:",
-	"template-protected": "(prutèt)",
-	"template-semiprotected": "(mèz-prutèt)",
 	"hiddencategories": "Cla pàgina ché l' é 'd {{PLURAL:$1|'na categoréia lughêda|$1 categoréi lughêdi}}:",
 	"nocreatetext": "La pusibilitê ed fêr dal pàgini nōvi insém a {{SITENAME}} l'é stêda limitêda a sōl j utèint registrê. L'é pusébil turnê indrē e mudifichêr 'na pògina ch la gh'é bèle,opór [[Special:UserLogin|andêr dèinter o registrêres]].",
 	"nocreate-loggedin": "An 's gh'à mìa i permès necesâri per fêr dal pàgini nōvi.",

@@ -176,8 +176,6 @@
 	"editingsection": "Дегиш гьыъын $1 (кьул)",
 	"templatesused": "{{PLURAL:$1|КIалыб|КIалыбыр}} мид джара ишлемишед:",
 	"templatesusedpreview": "{{PLURAL:$1|КIалыб|КIалыбыр}} предпросмотра ишлемишед:",
-	"template-protected": "(мыгъеет)",
-	"template-semiprotected": "(мыгъеет-сур)",
 	"hiddencategories": "Мид джар китIид {{PLURAL:$1|гиркIыд категория|$1 гиркIыд категориябыр}}:",
 	"permissionserrors": "Ихтиярды хата",
 	"permissionserrorstext-withaction": "$2 аIас вас ихтияр адишь, мид {{PLURAL:$1|себеб|себебыр}}:",

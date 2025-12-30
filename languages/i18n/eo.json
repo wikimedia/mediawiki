@@ -634,8 +634,6 @@
 	"templatesused": "{{PLURAL:$1|Ŝablono uzata|Ŝablonoj uzataj}} en ĉi tiu paĝo:",
 	"templatesusedpreview": "{{PLURAL:$1|Ŝablono uzata|Ŝablonoj uzataj}} en ĉi tiu antaŭrigardo:",
 	"templatesusedsection": "{{PLURAL:$1|Ŝablono uzata|Ŝablonoj uzataj}} en ĉi tiu sekcio:",
-	"template-protected": "(protektita)",
-	"template-semiprotected": "(duone protektita)",
 	"hiddencategories": "Ĉi tiu paĝo estas membro de {{PLURAL:$1|1 kaŝita kategorio|$1 kaŝitaj kategorioj}}:",
 	"edittools": "<!-- Teksto ĉi tie estas montrata sub redaktaj kaj alŝutaj formularoj. -->",
 	"nocreatetext": "{{SITENAME}} restriktas la eblecon krei novajn paĝojn. Vi povas reiri kaj redakti faritan paĝon, aŭ [[Special:UserLogin|ensaluti aŭ krei konton]].",

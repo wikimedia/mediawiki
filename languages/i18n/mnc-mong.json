@@ -188,8 +188,6 @@
 	"editingsection": "$1 ᠪᡝ ᠪᠠᠨᠵᡳᠪᡠᠮᡝ ᠠᡵᠠᡵᠠ (ᠮᡝᠶᡝᠨ)",
 	"templatesused": "{{PLURAL:$1|ᡠᠨᡩᡝᡥᡝᠨ}} ᠣᠴᡳ ᡝᡵᡝ ᡶᡳᠶᡝᠯᡝᠨ ᡩᡝ ᠪᠠᡳᡨᠠᠯᠠᠮᠪᡳ᠄",
 	"templatesusedpreview": "{{PLURAL:$1|ᡠᠨᡩᡝᡥᡝᠨ}} ᠣᠴᡳ ᡝᡵᡝ ᠨᡝᠨᡝᡥᡝ ᡨᡠᠸᠠᡵᠠᠩᡤᡝ ᡩᡝ ᠪᠠᡳᡨᠠᠯᠠᠮᠪᡳ᠄",
-	"template-protected": "(ᡴᠠᡵᠮᠠᡵᠠ)",
-	"template-semiprotected": "(ᡩᡠᠯᡳᠨ-ᡴᠠᡵᠮᠠᠨ)",
 	"hiddencategories": "ᡝᡵᡝ ᠵᡠᠰᡨᠠᠨ ᠣᠴᡳ {{PLURAL:$1|ᡩᠠᠯᡩᠠᡥᠠ ᡩᡠᠸᠠᠯᡳᠪᡠᠨ}} ᡳ ᡝᠮᡠ ᡤᠠᡵᡤᠠᠨ᠄",
 	"permissionserrors": "ᠠᠵᠠᡵᠠᠩᡤᠠ ᡠᡶᠠᡵᠠᠴᡠᠨ",
 	"permissionserrorstext-withaction": "ᡩᠠᡥᠠᡵᠠ {{PLURAL:$1|ᡨᡠᡵᡤᡠᠨ}} ᡩᡝ ᠰᡳ $2 ᠠᡵᠠᠴᡳ ᠣᠵᠣᡵᠠᡴᡡ᠄",

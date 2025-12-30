@@ -146,8 +146,6 @@
 	"editing": "Ginailis ang $1",
 	"creating": "Ginahimò ang $1",
 	"editingsection": "Ginailis ang $1 (bahin)",
-	"template-protected": "(ginproteksiyunan)",
-	"template-semiprotected": "(ginsemiproteksiyunan)",
 	"hiddencategories": "Bahin ang diyâ nga pahina kang {{PLURAL:$1|ka nakatagò nga kategoriya|$1 ka nakatagò nga kategoriya}}:",
 	"content-model-wikitext": "wikiteksto",
 	"nextrevision": "Mas bag·o nga rebisyon →",

@@ -489,8 +489,6 @@
 	"templatesused": "uyni kasabelih pisaungay tu isasaay {{PLURAL:$1|taazihan mitudung}}:",
 	"templatesusedpreview": "tina pataayaway miazih pisaungay kya isasa’ay a {{PLURAL:$1|taazihan mitudung}}",
 	"templatesusedsection": "tina kasabelih pisaungay tu isasa’ay a {{PLURAL:$1|taazihan mitudung}}:",
-	"template-protected": "(madiputay)",
-	"template-semiprotected": "(madiputay a kasabelih - satizep mikawaway tu kalumyiti)",
 	"hiddencategories": "kina kasabelih tungusay nu {{PLURAL:$1|1 midimut kakuniza }}mamikawaw:",
 	"nocreatetext": "{{SITENAME}} makelec tuway patizeng baluhayay a kasabelih a sasahicaan. {{GENDER:|kisu|}} taneng tatiku atu mikawaway-kalumyiti izaway a kasabelih, saca [[Special:UserLogin|patalabu saca patizeng baluhay canghaw]].",
 	"nocreate-loggedin": "inayi’ tungus kisu patizeng  baluhayay a kasabelih.",

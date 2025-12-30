@@ -159,8 +159,6 @@
 	"creating": "Biking $1",
 	"editingsection": "Ada marobah $1 (bagian)",
 	"templatesused": "{{PLURAL:$1|Templat}} yang dipake dalang akang kintal:",
-	"template-protected": "(dapa lindung)",
-	"template-semiprotected": "(dilindungi sapanggal)",
 	"hiddencategories": "Akang kintal, anggota dar {{PLURAL:$1|1 kategori tasambunyi|$1 kategori tasambunyi}}:",
 	"permissionserrorstext-withaction": "Ale seng punya hak par akses $2, tagal {{PLURAL:$1|alasan}} akang:",
 	"moveddeleted-notice": "Akang kintal su dihapus.\nLog voor hapus, perlindungan, deng kas pindah dar kintal yang ada di bawah par referensi.",

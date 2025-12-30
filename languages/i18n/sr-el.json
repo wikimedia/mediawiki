@@ -632,8 +632,6 @@
 	"templatesused": "{{PLURAL:$1|Šablon koji se koristi|Šabloni koji se koriste}} na ovoj stranici:",
 	"templatesusedpreview": "{{PLURAL:$1|Šablon|Šabloni}} u ovom pretpregledu:",
 	"templatesusedsection": "{{PLURAL:$1|Šablon|Šabloni}} u ovom odeljku:",
-	"template-protected": "(zaštićeno)",
-	"template-semiprotected": "(poluzaštićeno)",
 	"hiddencategories": "Ova stranica je član {{PLURAL:$1|jedne skrivene kategorije|$1 skrivene kategorije|$1 skrivenih kategorija}}:",
 	"edittools": "<!-- Ovaj tekst će biti prikazan ispod obrasca za uređivanje i otpremanje. -->",
 	"nocreatetext": "Na projektu {{SITENAME}} je ograničena mogućnost pravljenja novih stranica.\nMožete se vratiti i urediti postojeću stranicu ili se [[Special:UserLogin|prijavite ili otvorite nalog]].",

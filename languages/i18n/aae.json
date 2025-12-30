@@ -221,8 +221,6 @@
 	"editingsection": "To ndruar $1 (pjesa)",
 	"templatesused": "{{PLURAL:$1|Template i usarm|Template të usarmë}} te kjo pagina:",
 	"templatesusedpreview": "{{PLURAL:$1|Template}} të usarmë me sta privista:",
-	"template-protected": "(mbruam)",
-	"template-semiprotected": "(semiprotigirtur)",
 	"hiddencategories": "Sta pagina bun pies te {{PLURAL:$1|gnë kategoria  fshihur|$1 kategorie të fshihur}}:",
 	"permissionserrors": "Sgarrate të permisu",
 	"permissionserrorstext-withaction": "Nëng ke permesu ç'e ke mbsogn pë $2, pë atë çë vijën {{PLURAL:$1|motivu|motivi}}:",

@@ -577,8 +577,6 @@
 	"templatesused": "{{PLURAL:$1|Padron|Mga padron}} na ginamit sa pahinang ito:",
 	"templatesusedpreview": "{{PLURAL:$1|Ginamit na padron|Mga ginamit na padron}} sa pasilip na ito:",
 	"templatesusedsection": "{{PLURAL:$1|Suleras|Mga suleras}} na ginamit sa seksyong ito:",
-	"template-protected": "(protektado)",
-	"template-semiprotected": "(medyo protektado)",
 	"hiddencategories": "Miyembro ng {{PLURAL:$1|nakatagong kategorya|$1 (na) nakatagong kategorya}} ang pahinang ito:",
 	"edittools": "<!-- Ang teksto rito ay ipapakita sa ilalim ng mga pormularyo ng pagbabago at pagkarga. -->",
 	"nocreatetext": "Naglagay ng hangganan ang {{SITENAME}} sa kakayahang makalikha ng bagong mga pahina.\nMaaari kang bumalik at magbago ng isang umiiral na pahina, o kaya [[Special:UserLogin|maglogin o lumikha ng account]].",

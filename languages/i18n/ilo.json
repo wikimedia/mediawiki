@@ -518,8 +518,6 @@
 	"templatesused": "{{PLURAL:$1|Ti plantilia|Dagiti plantilia}} a naaramat iti daytoy a panid:",
 	"templatesusedpreview": "{{PLURAL:$1|Ti plantilia|Dagiti plantilia}} a naaramat iti daytoy a panagpadas:",
 	"templatesusedsection": "{{PLURAL:$1|Ti plantilia|Dagiti plantilia}} a naaramat iti daytoy a paset:",
-	"template-protected": "(nasalakniban)",
-	"template-semiprotected": "(nasalakniban-bassit)",
 	"hiddencategories": "Daytoy a panid ket kameng {{PLURAL:$1|ti 1 a nailemmeng a kategoria|dagiti $1 a nailemmeng a kategoria}}:",
 	"nocreatetext": "Ginawidan ti {{SITENAME}} ti abilidad nga agpartuat kadagiti baro a panid.\nMabalinmo ti agsubli ken agurnos ti adda a panid, wenno [[Special:UserLogin|sumrek wenno agapartuat iti pakabilangan]].",
 	"nocreate-loggedin": "Awan ti pammalubosmo nga agpartuat kadagiti baro a panid.",

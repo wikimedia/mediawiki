@@ -568,8 +568,6 @@
 	"templatesused": "Täl sivul {{PLURAL:$1|käytetty šablonu|käytetyt šablonat}}:",
 	"templatesusedpreview": "Ezikaččelus {{PLURAL:$1|käytetty šablonu|käytetyt šablonat}}:",
 	"templatesusedsection": "Täs ozas {{PLURAL:$1|käytettävy šablonu|käytettävät šablonat}}:",
-	"template-protected": "(suojattu)",
-	"template-semiprotected": "(ozittain suojattu)",
 	"hiddencategories": "Tämä sivu kuuluu {{PLURAL:$1|1 peitettyh kategourieh|$1 peitettylöih kategourieloih}}:",
 	"nocreatetext": "Täl verkosivustol ei sua luadie uuzii sivuloi. \nVoit kiändyö järilleh da kohendua olemas olijoi sivuloi libo [[Special:UserLogin|piästä sistiemah, libo luadie käyttäjäntunnus]].",
 	"nocreate-loggedin": "Sinul ei ole oigevuksii luadie uuzii sivuloi.",

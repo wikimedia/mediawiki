@@ -310,8 +310,6 @@
 	"templatesused": "{{PLURAL:$1|Template|Deng template}} a magagamit king bulung a ini:",
 	"templatesusedpreview": "{{PLURAL:$1|Ing template|Deng template}} a megamit kening pasinag/preview:",
 	"templatesusedsection": "Deng modelung (template) magagamit king seksiyon a ini:",
-	"template-protected": "(protektadu)",
-	"template-semiprotected": "(maki dakeng protektadu)",
 	"hiddencategories": "Kayabe ya ing bulung a ini king/karing {{PLURAL:$1|1 makasalikut a kategoriya|$1 makasalikut a kategoriya}}:",
 	"nocreatetext": "Lilimitan ning {{SITENAME}} ing pamangawa kareng bayung bulung.\nMalyari kang magbalik at mag-edit king bulung a atyu na, o makapag[[Special:UserLogin|log in ka at maglalang account]].",
 	"nocreate-loggedin": "Ala kang paintulut a maglalang bayung bulung king {{SITENAME}}.",

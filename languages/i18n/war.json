@@ -489,8 +489,6 @@
 	"templatesused": "{{PLURAL:$1|Batakan|Mga batakan}} nga gingamit dinhi nga pakli:",
 	"templatesusedpreview": "{{PLURAL:$1|Batakan|Mga batakan}} nga gingamit hinin nga pahiuna-nga-pagawas:",
 	"templatesusedsection": "{{PLURAL:$1|Batakan|Mga batakan}} nga gingamit hinin nga seksyon:",
-	"template-protected": "(pinaliporan)",
-	"template-semiprotected": "(katunga nga pinasaliporan)",
 	"hiddencategories": "Ini nga pakli in api han {{PLURAL:$1|1 nakatago nga kaarangay|$1 nakatago nga kaarangay}}:",
 	"nocreate-loggedin": "Diri ka gintutugotan paghimo hin mga bag-o nga pakli.",
 	"sectioneditnotsupported-title": "Diri suportado han pagliwat han seksyon",

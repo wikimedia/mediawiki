@@ -524,8 +524,6 @@
 	"templatesused": "Op dees pagina {{PLURAL:$1|gebroek sjabloon|gebroekde sjablone}}:",
 	"templatesusedpreview": "{{PLURAL:$1|Sjabloon|Sjablone}} gebroek in dees veurvertuining:",
 	"templatesusedsection": "{{PLURAL:$1|Sjabloon|Sjablone}} in dees sectie in gebroek:",
-	"template-protected": "(besjirmp)",
-	"template-semiprotected": "(semi-besjörmp)",
 	"hiddencategories": "Dees pagina vélt in de volgende verborge {{PLURAL:$1|categorie|categorië}}:",
 	"nocreatetext": "{{SITENAME}} haet de mäögelikheid óm nuuj pagina's te make beperk.\nDe kans al besjtaonde pagina's verangere, of de kans [[Special:UserLogin|dich aanmelde of 'n gebroekersaccount aanmake]].",
 	"nocreate-loggedin": "De höbs gein rechte óm nuuj pagina's te make.",

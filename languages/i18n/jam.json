@@ -338,8 +338,6 @@
 	"copyrightwarning": "Begyu nuot se aal kanchribyuushan tu {{SITENAME}} rigyaad az riliis anda di $2 (si $1 fi ditiel).\nEf yu no waant yu raitn fi bi edit kyaahn don ahn ridischribyuut aal bout, den no sobmiti yaso.<br />\nYu de pramis wi alzwel se a yu rait dis yuself, ar kapi'i frahn a poblik domien ar simila frii rizuos.\n'''No sobmit kapiraitid wok widoutn poermishan!'''",
 	"templatesused": "{{PLURAL:$1|Templit|Templitdem}} yuuz pahn dis piej:",
 	"templatesusedpreview": "{{PLURAL:$1|Templit|Templitdem}} yuuz ina dis priivyuu:",
-	"template-protected": "(lock dung)",
-	"template-semiprotected": "(semi-protek)",
 	"hiddencategories": "Dis piej a memb a {{PLURAL:$1|1 idn kiatigari|$1 idn kiatigari}}:",
 	"permissionserrors": "Permishan herro",
 	"permissionserrorstext-withaction": "Yu no ab no poermishan fi $2, fi di falarin {{PLURAL:$1|riizn|riizndem}}:",

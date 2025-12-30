@@ -154,7 +154,6 @@
 	"accmailtext": "Séuwa liwengngada masembarang ku [[User talk:$1|$1]] purai rampé kori $2. Liwengngada weddingngi roba kori lempa <em>[[Special:ChangePassword|séllé liwengngada]]</em> ko mappura tamaqi.",
 	"anontalkpagetext": "----\n<em>Iyaé lempa abbicaranna pagguna anoningngé iya dépa makkébbu akung iyaréga madéq gunai.</em>\nMaqnomoroqkiq alamaq IP ku missengngi iyamaneng nassabari passalengngé.\nAlamaq IP akkuwangngé amma ibagékengngi ku siyaréq-aréq pagguna laing.\nNarékko idiq pagguna maqanoning naiya mappaneddingngi lolongeng madéq sisumpung ku idiq, lalo [[Special:CreateAccount|makkébbu akung]] \nala [[Special:UserLogin|mattamaq loq]] ku niniri rancu imonri sibawa pagguna anoning laing ripappabaja.",
 	"editing": "Mappadécéng $1",
-	"template-protected": "(tallénrung)",
 	"undo-summary": "Balékkengngi répisi [[Special:Diff/$1|$1]] sibawa [[Special:Contributions/$2|$2]] ([[User talk:$2|nennaq]])",
 	"previousrevision": "← Répisi riyoloq",
 	"currentrevisionlink": "Répisi tanappa",

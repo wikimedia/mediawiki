@@ -289,8 +289,6 @@
 	"copyrightwarning": "Bemærk wenlist å åll bidraw te {{SITENAME}} ä å betrakt som utdjøwen unje $2 (se $1 for detalje).\nHwes du ett onske å din tekst skal utsätts for nådesløs redigiirenge å å den kan blyw kopiiirtj ette forgodtbefinjenje, så skal du ett placiir den her.<br />\nDu låwe os åsså, å du siel hår forfatten teksten elle hår kopiiirtj den fra en public domain-tjelj elle en tilswarenje fri tjelj.\n'''Lägg åller material her som ä beskøttetj å anjas ophawsrett uen dæes tillædels!'''",
 	"templatesused": "{{PLURAL:$1|Skabelon|Skabelone}} som ä brugtj på siden:",
 	"templatesusedpreview": "Følgende skablåner bruges åf denne ertikelførhåndsvesnenge:",
-	"template-protected": "(skriiwbeskøttetj)",
-	"template-semiprotected": "(dielwis beskyttetj)",
 	"hiddencategories": "Siden ä i {{PLURAL:$1|en sjulen kategori|$1 sjulen kategorie}}:",
 	"nocreatetext": "Serveri hår begrænstj oprettels å nyj side. Bestoenje side kan øndas elle [[Special:UserLogin|logg på]].",
 	"permissionserrorstext-withaction": "Du hår ett rettihede te å $2 å följenje {{PLURAL:$1|grunj}}:",

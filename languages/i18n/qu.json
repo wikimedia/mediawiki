@@ -450,8 +450,6 @@
 	"templatesused": "Kay p'anqapi llamk'achisqa {{PLURAL:$1|plantilla|plantillakuna}}:",
 	"templatesusedpreview": "Kay qhawariypi llamk'achisqa {{PLURAL:$1|plantilla|plantillakuna}}:",
 	"templatesusedsection": "Kay p'anqa rakipi llamk'achisqa {{PLURAL:$1|plantilla|plantillakuna}}:",
-	"template-protected": "(amachasqa)",
-	"template-semiprotected": "(rakilla amachasqa)",
 	"hiddencategories": "Kay p'anqaqa {{PLURAL:$1|1 pakasqa katiguriya|$1 pakasqa katiguriyakuna}}manmi kapun:",
 	"nocreatetext": "{{SITENAME}}piqa saywachasqam musuq p'anqakunata kamariy. Ñawpaqman kutiytam atinkiman kachkaqña p'anqata llamk'apuspa. Astawantaq, [[Special:UserLogin|yaykuy icha musuq rakiqunata kichariy]].",
 	"nocreate-loggedin": "Manam saqillasunkichu musuq p'anqakunata kamariyta.",

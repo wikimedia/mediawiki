@@ -613,8 +613,6 @@
 	"templatesused": "{{PLURAL:$1|Pâge rapondua|Pâges rapondues}} dedens cela pâge :",
 	"templatesusedpreview": "{{PLURAL:$1|Pâge rapondua|Pâges rapondues}} dedens cél apèrçu :",
 	"templatesusedsection": "{{PLURAL:$1|Pâge rapondua|Pâges rapondues}} dedens cela sèccion :",
-	"template-protected": "(protègiê)",
-	"template-semiprotected": "(mié-protègiê)",
 	"hiddencategories": "Cela pâge est dens {{PLURAL:$1|ceta catègoria cachiêe|cetes $1 catègories cachiêes}} :",
 	"edittools": "<!-- Tot tèxto buchiê ique serat montrâ desot les bouètes d’èdicion ou ben los formulèros de tèlèchargement de fichiér. -->",
 	"nocreatetext": "{{SITENAME}} at rètrent la possibilitât de fâre de pâges novèles.\nVos pouede tornar arriér et pués changiér na pâge ègzistenta ou ben [[Special:UserLogin|vos branchiér ou fâre un comptio]].",

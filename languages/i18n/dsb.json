@@ -469,8 +469,6 @@
 	"templatesused": "Na toś tom boku {{PLURAL:$1|wužywana pśedłoga|wužywanej pśedłoze|wužyane pśedłogi|wužywane pśedłogi}}:",
 	"templatesusedpreview": "W toś tom pśeglěźe {{PLURAL:$1|wužywana pśedłoga|wužywanej pśedłoze|wužywane pśedłogi|wužywane pśedłogi}}:",
 	"templatesusedsection": "W toś tom wótrězku {{PLURAL:$1|wužywana pśedłoga|wužywanej pśedłoze|wužywane pśedłogi|wužywane pśedłogi}}:",
-	"template-protected": "(šćitane)",
-	"template-semiprotected": "(poł šćitane)",
 	"hiddencategories": "Toś ten bok jo jadna z {{PLURAL:$1|1 schowaneje kategorije|$1 schowaneju kategorijow|$1 schowanych kategorijow|$1 schowanych kategorijow}}:",
 	"edittools": "<!-- Tekst how buźo wiźeś pód wobźěłowańskimi a upload-formularami. -->",
 	"nocreatetext": "Na {{GRAMMAR:lokatiw|{{SITENAME}}}} jo se załoženje nowych bokow wót serwera wobgranicowało. Móžoš hyś slědk a eksistěrujucy bok wobźěłaś, abo se [[Special:UserLogin|pśizjawiś]].",

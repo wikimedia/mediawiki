@@ -317,8 +317,6 @@
 	"yourtext": "Tuzo mozkur",
 	"templatesused": "Hea panant upeog {{PLURAL:$1|kel'lo sancho|kel'le sanche}}:",
 	"templatesusedpreview": "{{PLURAL:$1|Sancho|Sanche}} hea purvdekhavant vaporleat:‎",
-	"template-protected": "(rakhlelem)",
-	"template-semiprotected": "(ordhem rakhun dovorlelem)",
 	"hiddencategories": "Hem pan {{PLURAL:$1|1 lipoilelea vorgacho vangddi|$1 lipoileleam vorgancho vangddi}}:",
 	"permissionserrors": "Porvangechi chuk",
 	"permissionserrorstext-withaction": "$2, hem korpak tuka porvangi na, {{PLURAL:$1|hea karnnak lagon|hea karnnank lagun}}:",

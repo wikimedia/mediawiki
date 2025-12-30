@@ -22,7 +22,7 @@
 	"cdx-table-pager-button-last-page": "Ùrtima pàgina",
 	"cdx-table-pager-button-next-page": "Pàgina aprêuvo",
 	"cdx-table-pager-button-prev-page": "Pàgina de prìmma",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 rîga|$1 rîghe}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 eleménto|$1 eleménti}}",
 	"cdx-table-pager-items-per-page-default": "Rizultâti pe pàgina",
 	"cdx-table-pagination-status-message-determinate-long": "Móstra i rizulâti $1-$2 de $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1-$2 de $3",

@@ -417,8 +417,6 @@
 	"templatesused": "{{PLURAL:$1|Modèl|Modèl yo}} ki itilize nan paj sa a :",
 	"templatesusedpreview": "{{PLURAL:$1|Modèl|Modèl yo}} ki itilize nan previzyalizasyon sa a :",
 	"templatesusedsection": "{{PLURAL:$1|Modèl|Modèl yo}} ki itilize nan seksyon sa :",
-	"template-protected": "(pwoteje)",
-	"template-semiprotected": "(semi-pwoteje)",
 	"hiddencategories": "Paj sa ap fè pati {{PLURAL:$1|Kategori kache|Kategori yo ki kache}} :",
 	"nocreatetext": "{{SITENAME}} anpeche kreyasyon nouvo paj sou li. Ou mèt ritounen nan navigatè ou epi modifye yon paj ki deja egziste oubyen [[Special:UserLogin|konekte ou oubyen kreye yon kont]].",
 	"nocreate-loggedin": "Ou pa gen pèmisyon pou ou kapab kreye nouvo paj nan wiki sa.",

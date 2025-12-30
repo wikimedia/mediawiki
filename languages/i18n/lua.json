@@ -220,8 +220,6 @@
 	"editingsection": "Diakaja $1 (tshisumbu)",
 	"templatesused": "{{PLURAL:$1|Tshilejelu tshidi bakuata nashi mudimu|Bilejelu bidi bakuata nabi mudimu}} mu tshiena bualu etshi:",
 	"templatesusedpreview": "{{PLURAL:$1|Tshilejelu tshidi bakuata nashi mudimu|Bilejelu bidi bakuata nabi mudimu}} mu tshiena bualu etshi:",
-	"template-protected": "(tshidi balama)",
-	"template-semiprotected": "(tshitupa tshia dilama)",
 	"hiddencategories": "{{PLURAL:$1|Mushindu musokoka|Mishindu misokoka}} dibeji edi didi momu:",
 	"permissionserrors": "Dilema dia dianyisha",
 	"permissionserrorstext-withaction": "Kuena nyi mpunga wa $2, bua {{PLURAL:$1|bua dijadika edi|bua majadika apa}} :",

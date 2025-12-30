@@ -388,8 +388,6 @@
 	"templatesused": "{{PLURAL:$1|Plantilla emplegada|Plantillas emplegadas}} en ista pachina:",
 	"templatesusedpreview": "{{PLURAL:$1|Plantilla|Plantillas}} emplegadas en ista anvista previa:",
 	"templatesusedsection": "{{PLURAL:$1|Plantilla|Plantillas}} emplegatas en ista sección:",
-	"template-protected": "(protechita)",
-	"template-semiprotected": "(semiprotechida)",
 	"hiddencategories": "Ista pachina fa parte de {{PLURAL:$1|1 categoría amagada|$1 categorías amagadas}}:",
 	"edittools": "<!-- Iste testo amanixerá baxo os formularios d'edizión y carga. -->",
 	"nocreatetext": "{{SITENAME}} ha restrinchito a creyación de nuevas pachinas. Puede tornar enta zaga y editar una pachina ya existent, [[Special:UserLogin|identificarse u creyar una cuenta]].",

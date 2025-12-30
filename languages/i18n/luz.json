@@ -320,8 +320,6 @@
 	"editingsection": "درحال اصلاح $1 (قسمت)",
 	"templatesused": "{{PLURAL:$1|قالب|قالبل}} اسفادھ بیه مئنه ای بلگه:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Templates}} اٛستفاڌٱ ڤابیڌٱ من ای نهاٛینشۊن",
-	"template-protected": "(تأحت حمایت)",
-	"template-semiprotected": "(نیمە حیمایت ڤابیدھ)",
 	"hiddencategories": "ای بلگه عضۉ {{PLURAL:$1|1 دسه بنی قائم|$1 دسه بنی یل قائم}} هیسس :",
 	"permissionserrors": "خٱتاٛی سٱته دٱسرٱسی",
 	"permissionserrorstext-withaction": "ایشا اجازھ ناریت که $2, سی ای {{PLURAL:$1|دلیل|دلیلل}}:",

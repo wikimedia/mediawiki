@@ -214,8 +214,6 @@
 	"editingsection": "编辑“$1”（章节）",
 	"templatesused": "啯页使用亇{{PLURAL:$1|模板}}：",
 	"templatesusedpreview": "啯预览使用亇{{PLURAL:$1|模板}}：",
-	"template-protected": "(被護起來噠)",
-	"template-semiprotected": "（受半保护）",
 	"hiddencategories": "啯页面属于{{PLURAL:$1|$1只隐藏分类}}：",
 	"permissionserrors": "权限错误",
 	"permissionserrorstext-withaction": "因为以下{{PLURAL:$1|原因}}，尔冇权限$2：",

@@ -174,8 +174,6 @@
 	"noarticletext": "Mē famme ḩattā tēkst tawwe fi- iş-şafḩa hēđi.\nTnejjim [[Special:Search/{{PAGENAME}}|tfarkis ģe- il-tītr mtēģ iş-şafḩa]] fi- safḩāt uxrīne, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} tfarkis fi- il-istorīk illī ģandhum ģalēqa], \nwallē [{{fullurl:{{FULLPAGENAME}}|action=edit}} tbaddil iş-şafḩa hēđi]</span>",
 	"editing": "Tabdīl $1",
 	"editingsection": "Tabdīl $1 (Partī)",
-	"template-protected": "(maḩmī)",
-	"template-semiprotected": "(nuş-maḩmī)",
 	"revisionasof": "Vērsyoñ mtēģ $1",
 	"currentrevisionlink": "Exir rēvīsyoñ",
 	"last": "il-fēyit",

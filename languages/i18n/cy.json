@@ -618,8 +618,6 @@
 	"templatesused": "{{PLURAL:$1|Y dudalen sydd wedi'i chynnwys|Y tudalennau sydd wedi'u cynnwys}} yn y dudalen hon:",
 	"templatesusedpreview": "{{PLURAL:$1|Y dudalen sydd wedi'i chynnwys|Y tudalennau sydd wedi'u cynnwys}} yn y rhagolwg hwn:",
 	"templatesusedsection": "{{PLURAL:$1|Y dudalen sydd wedi'i chynnwys|Y tudalennau sydd wedi'u cynnwys}} yn yr adran hon:",
-	"template-protected": "(wedi diogelu)",
-	"template-semiprotected": "(lled-diogelwyd)",
 	"hiddencategories": "Mae'r dudalen hon yn aelod o $1 {{PLURAL:$1|categori|categori|gategori|chategori|chategori|categori}} cuddiedig:",
 	"nocreatetext": "Mae'r safle hwn wedi cyfyngu'r gallu i greu tudalennau newydd. Gallwch olygu tudalen sydd eisoes yn bodoli, neu [[Special:UserLogin|fewngofnodi, neu greu cyfrif]].",
 	"nocreate-loggedin": "Nid yw'r gallu gennych i greu tudalennau.",

@@ -189,8 +189,6 @@
 	"editingsection": "Yasamin $1 (nasha)",
 	"templatesused": "{{PLURAL:$1|Jiri}} shafi adǝlan faidatuna ma:",
 	"templatesusedpreview": "{{PLURAL:$1|Jiri}} suro adelan faidatena:",
-	"template-protected": "(teliuna)",
-	"template-semiprotected": "(təliuna)",
 	"hiddencategories": "Shafi ade suro {{PLURAL:$1|gratǝ nakka|$1 gratǝ nakka ngwu}}:",
 	"permissionserrors": "Permission tedinba",
 	"permissionserrorstext-withaction": "Nyiro izini sadiyi to $2, awowa dero {{PLURAL:$1|dalil|dalilla}}",

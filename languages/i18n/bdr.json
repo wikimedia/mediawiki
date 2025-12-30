@@ -178,8 +178,6 @@
 	"editingsection": "Malap $1 (begian)",
 	"templatesused": "{{PLURAL:$1|Templat}} pinakai ta' laman tu:",
 	"templatesusedpreview": "{{PLURAL:$1|Templat}} pinakai ta' pinetele' tu:",
-	"template-protected": "(nejegoon)",
-	"template-semiprotected": "(nejegoon separu)",
 	"hiddencategories": "Laman tu un diam {{PLURAL:$1|jinis tinapuk|$1 jinis tinapuk}}:",
 	"permissionserrors": "Sala’ pinekebana",
 	"permissionserrorstext-withaction": "Nyaun kebenaran bi $2, sebab tu {{PLURAL:$1|sebab}}:",

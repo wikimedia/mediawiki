@@ -245,8 +245,6 @@
 	"yourtext": "Barreeffama kee",
 	"yourdiff": "Garaagarummaa",
 	"templatesused": "{{PLURAL:$1|Qajojii|Qajojiiwwan}} fuulbarruu kanarratti fayyadan:",
-	"template-protected": "(kan eeggamu)",
-	"template-semiprotected": "(hamma tokko kan eeggamu)",
 	"hiddencategories": "Fuulli kun miseensa {{PLURAL:$1|ramaddii dhokataa|ramaddiiwwan dhokataa}}:",
 	"permissionserrorstext-withaction": "Eeyyama $2 hin qabdu, {{PLURAL:$1|sababa|sababoota}} arman gadiif:",
 	"moveddeleted-notice": "Fuulli kun hin jiru.\nGalmee haqiinsaa, eegumsaa, fi oofuu fuulaa armaan gaditti wabiif dhihaateera.",

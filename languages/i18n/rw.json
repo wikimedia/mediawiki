@@ -176,8 +176,6 @@
 	"continue-editing": "Erekeza mu mwanya wo kwandikiramo",
 	"creating": "Gutangiza $1",
 	"editingsection": "Guhindira $1 (igika)",
-	"template-protected": "(birarinzwe)",
-	"template-semiprotected": "(irinzwe igice kimwe)",
 	"hiddencategories": "Uru rupapuro rubarizwa {{PLURAL:$1|icyiciro gihishe|$1 ibyiciro bihiswe}}:",
 	"permissionserrorstext-withaction": "Nta burenganzira ufite bwo $2, kubera {{PLURAL:$1|impamvu ikurikira|impamvu zikurikira}}:",
 	"recreate-moveddeleted-warn": "<strong>Icyitondderwa: Uri kongera gutangiza urupapuro rwari rwarasibwe.</strong>\n\nUkwiriye kugenzura niba bikwiriye gukomeza gutangiza uru rupapuro.\nGusibwa n'amateka yo kwimurwa kw'uru rupapuro wabibona kugirango ubyifashishe:",

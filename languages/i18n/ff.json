@@ -222,8 +222,6 @@
 	"editingsection": "Taƴtagol $1 (taƴre)",
 	"templatesused": "{{PLURAL:$1|Tiimtorde|Tiimtorɗe}} kuutoraaɗe e ngoo hello:",
 	"templatesusedpreview": "{{PLURAL:$1|Tiimtorde|Tiimtorɗe}} kuutoraango e ngol jiytol:",
-	"template-protected": "(ko-ko hisnaa)",
-	"template-semiprotected": "(ena hisnaa feccere)",
 	"hiddencategories": "Ngoo hello jeyaa ko e {{PLURAL:$1|1 fedde suuɗiinde|$1 pelle cuuɗiiɗe}}:",
 	"permissionserrors": "Juumre yamiroore",
 	"permissionserrorstext-withaction": "A alaa yamiroore $2, sabu {{PLURAL:$1|oo-ɗoo daliilu|ɗii-ɗoo dalillaaji}}",

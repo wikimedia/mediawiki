@@ -589,8 +589,6 @@
 	"templatesused": "{{PLURAL:$1|Template|Templates}} ni'oguna'ö ba nga'örö andre:",
 	"templatesusedpreview": "{{PLURAL:$1|Templat}} ni'oguna'ö ba khala-khala andre:",
 	"templatesusedsection": "{{PLURAL:$1|Templat}} ni'oguna'ö ba waosatö andre:",
-	"template-protected": "(tekusi)",
-	"template-semiprotected": "(matonga tekusi)",
 	"hiddencategories": "Nga'örö andre no si fao ba {{PLURAL:$1|1 hidden category|$1 hidden categories}}:",
 	"nocreatetext": "No iba'agö wamazökhi nga'örö sibohou {{SITENAME}}.\nAngawuli furi ba bulö'ö nga'örö si no so ma zui [[Special:UserLogin|ae bakha ma zui fazökhi akun sibohou]].",
 	"nocreate-loggedin": "Lö tetehegö khöu wamazökhi nga'örö sibohou.",

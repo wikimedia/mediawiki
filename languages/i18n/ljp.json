@@ -591,8 +591,6 @@
 	"templatesused": "{{PLURAL:$1|Citakan}} say tipakai di halaman hinji:",
 	"templatesusedpreview": "{{PLURAL:$1|Citakan}} say tipakai di gambaran hinji:",
 	"templatesusedsection": "{{PLURAL:$1|Citakan}} say tipakay di bagiyan sinji:",
-	"template-protected": "(tilindungi)",
-	"template-semiprotected": "(semi-tilindungi)",
 	"hiddencategories": "Halaman hinji yakdolah bagiyan jak {{PLURAL:$1|1 kaban tisimbin|$1 kaban tisimbin}}:",
 	"nocreatetext": "{{SITENAME}} ghadu ngebatasi penyanikan halaman-halaman ampay. Niku dapok ngedandan luwot halaman say ghadu wat, atawa payu [[Special:UserLogin|kughuk log atawa guway akun]].",
 	"nocreate-loggedin": "Niku mak ngedok ijin ngeguway halaman ampay.",

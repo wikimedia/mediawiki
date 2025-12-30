@@ -365,8 +365,6 @@
 	"editingsection": "Kulemba $1 (chigaŵa)",
 	"templatesused": "{{PLURAL:$1|Nkhwaska yagwiliskika|Nkhwaska zagwiliskika}} apa:",
 	"templatesusedpreview": "{{PLURAL:$1|Nkhwaska iyo yagwiliskika|Nkhwaska izo zagwiliskika}} apa:",
-	"template-protected": "(tchinjilizika)",
-	"template-semiprotected": "(jani lakutetezeka pachoko)",
 	"hiddencategories": "Jani ili ni ndimoza mwa majani {{PLURAL:$1|mtundu wakubisika|$1 mitundu yakubisika}}:",
 	"permissionserrors": "Chizomelezgo chayenda uheni",
 	"permissionserrorstext-withaction": "Mulije chilolezo $2, cha {{PLURAL:$1|chifukwa|vifukwa}}:",

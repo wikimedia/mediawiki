@@ -170,8 +170,6 @@
 	"newarticletext": "O setse morago kgolagano ya tsebe e, ise e nne teng gompieno.\nGo dira tsebe ye, simolola ka go kwala mo lebokosong le le latelang (bona [$1 tsebe ya thuso] go itse thata).\nGa o lefa ka phoso tobetsa <strong>boelamorago</strong>",
 	"noarticletext": "Ga gona ditlhaka mo tseebng ye.\nO ka [[Special:Search/{{PAGENAME}}|batla setlhogo sa tsebe ye]] mo ditsebeng tse dingwe, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|tsebe={{FULLPAGENAMEE}}}} fetleka \"logs\"], goba [{{fullurl:{{FULLPAGENAME}}|action=edit}} wa fetola tsebe ye]</span>.",
 	"templatesused": "{{PLURAL:$1|Tempolete|Ditempolate}} tse di dirisiwang mo tsebeng ye:",
-	"template-protected": "(Sireleditswe)",
-	"template-semiprotected": "(sireleditswe ga nnye)",
 	"postedit-confirmation-saved": "Diphetogo tsa gago di tsene.",
 	"postedit-confirmation-published": "Diphetogo tsa gago di tsene.",
 	"content-model-wikitext": "mokwalowawiki",

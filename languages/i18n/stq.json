@@ -360,8 +360,6 @@
 	"templatesused": "{{PLURAL:$1|Ju foulgjende Foarloage wäd|Do foulgjende Foarloagen wäide}} fon disse Siede ferwoand:",
 	"templatesusedpreview": "{{PLURAL:$1|Ju foulgjende Foarloage wäd|Do foulgjende Foarloagen wäide}} fon dissen Siedefoarbekiek ferwoand:",
 	"templatesusedsection": "{{PLURAL:$1|Ju foulgjende Foarloage wäd|Do foulgjende Foarloagen wäide}} fon disse Oudeelenge ferwoand:",
-	"template-protected": "(skutsed)",
-	"template-semiprotected": "(Siedenskuts foar nit anmäldede un näie Benutsere)",
 	"hiddencategories": "Disse Siede is Meeglid fon {{PLURAL:$1|1 ferstatte Kategorie|$1 ferstatte Kategorien}}:",
 	"edittools": "<!-- Text hier stoant unner Beoarbaidengsfäildere un Hoochleedefäildere. -->",
 	"nocreatetext": "Ap {{SITENAME}} wuude dät Moakjen fon näie Sieden begränsed. Du koast al bestoundene Sieden beoarbaidje of die [[Special:UserLogin|anmäldje]].",

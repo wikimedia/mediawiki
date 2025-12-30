@@ -255,8 +255,6 @@
 	"editingsection": "Manota $1 (ponggol)",
 	"templatesused": "{{PLURAL:$1|Templat|Angka templat}} na diparhaseang di alaman on:",
 	"templatesusedpreview": "{{PLURAL:$1|Templat|Angka templat}} na diparhaseang di alaman on:",
-	"template-protected": "(diramoti)",
-	"template-semiprotected": "(ndang apala sude diramoti)",
 	"hiddencategories": "Alaman on i ma {{PLURAL:$1|sada horong na buni|$1 horong na buni}}:",
 	"permissionserrors": "Hasalaan Parmisi",
 	"permissionserrorstext-withaction": "Ndang adong tohap muna tu $2, tu {{PLURAL:$1|reason|reasons}}:",

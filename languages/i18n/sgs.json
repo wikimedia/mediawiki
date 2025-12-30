@@ -408,8 +408,6 @@
 	"templatesused": "{{PLURAL:$1|Šabluons, katros|Šabluonā, katrėi}}, īr nauduojamė tamė poslapie:",
 	"templatesusedpreview": "{{PLURAL:$1|Šabluons|Šabluonā}}, nauduotė šėtuo parvaizuo:",
 	"templatesusedsection": "Šabluonā, nauduotė šėtom skėrsnelī:",
-	"template-protected": "(apsergiets)",
-	"template-semiprotected": "(posiau apsergiets)",
 	"hiddencategories": "Ons poslapis prėgol $1 {{PLURAL:$1|pakavuotā kateguorėjē|pakavuotoms kateguorėjėms|pakavuotu kateguorėju}}:",
 	"nocreatetext": "{{SITENAME}} aprėbuojė galėmībe kortė naujus poslapius.\nTamsta galėt grīžtė ė redagoutė nūnā esonti poslapi, a [[Special:UserLogin|prėsėjongtė a sokortė paskīra]].",
 	"permissionserrors": "Privėlėju klaida",

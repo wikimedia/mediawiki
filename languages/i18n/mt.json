@@ -561,8 +561,6 @@
 	"templatesused": "{{PLURAL:$1|Mudell użat|Mudelli wżati}} f'din il-paġna:",
 	"templatesusedpreview": "{{PLURAL:$1|Mudell użat|Mudelli wżati}} f'din id-dehra proviżorja.",
 	"templatesusedsection": "{{PLURAL:$1|Mudell użat|Mudelli wżati}} f'din is-sezzjoni:",
-	"template-protected": "(protetta)",
-	"template-semiprotected": "(semi-protetta)",
 	"hiddencategories": "Din il-paġna hija membru ta' {{PLURAL:$1|1 kategorija moħbija|$1 kategoriji moħbija}}:",
 	"edittools": "<!-- Kliem hawnhekk jidher taħt l-formuli tal-modifika u postjar. -->",
 	"nocreatetext": "{{SITENAME}} limitat l-abbilitá tal-ħolqien ta' paġni ġodda.\nTista' tmur lura u tagħmel modifiki ta' paġni eżistenti, inkella [[Special:UserLogin|idħol jew oħloq kont ġdid]].",

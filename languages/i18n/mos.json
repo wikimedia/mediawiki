@@ -562,8 +562,6 @@
 	"templatesused": "{{PLURAL:$1|Sor-wilgda|Sor-wilsi}} tʋmde ni neng kada:",
 	"templatesusedpreview": "{{PLURAL:$1|Sor-wilgda|Sor-wilsi}} tɩmde ni gese-rẽenem:",
 	"templatesusedsection": "{{PLURAL:$1|Sor-wilgda|Sor-wilsi}} tɩmde ni gese-rẽenem:",
-	"template-protected": "(kogle)",
-	"template-semiprotected": "(bila-kogle)",
 	"hiddencategories": "Meng kada ya ned ni {{PLURAL:$1|sull-sull lillri|$1 sull-sulla lillri}}:",
 	"nocreatetext": "{{SITENAME}} kɩtame tɩ ned pa tõe n naan kɩbay ye. Y tõe n leoke n toeem seb-kãngã, wall y tõe n kẽe seb-kãngã pʋgẽ bɩ y naan naan lebg n gʋls seb-kãngã [[Special:UserLogin|log in or create an account]].",
 	"nocreate-loggedin": "Fo ka tar sor n na n leoke CSS seb-kãngã ye.",

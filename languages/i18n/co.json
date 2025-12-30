@@ -215,8 +215,6 @@
 	"yourtext": "U to testu",
 	"yourdiff": "Differenze",
 	"templatesused": "{{PLURAL:$1|Mudellu imprudatu|Mudelli imprudati}} in 'ssa pagina:",
-	"template-protected": "(prutettu)",
-	"template-semiprotected": "(mezu prutettu)",
 	"hiddencategories": "Sta pagina appartene à {{PLURAL:$1|una categuria nascosta|$1 categurie nascoste}}:",
 	"post-expand-template-inclusion-warning": "'''Attenti:''' a dimensione di i mudelli inclusi è troppa maiò.\nParechji mudelli ùn seranu micca inclusi.",
 	"post-expand-template-inclusion-category": "Pagine per e quale a dimensione di i mudelli inclusi supereghja a limita",

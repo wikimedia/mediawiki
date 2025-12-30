@@ -404,8 +404,6 @@
 	"templatesused": "Seo lehe pääl om pruugit {{PLURAL:$1|näüdüst|näüdüssit}}:",
 	"templatesusedpreview": "Proovikaehusõn {{PLURAL:$1|pruugit näüdüs|pruugiduq näüdüseq}}:",
 	"templatesusedsection": "Seon lõigun om pruugit {{PLURAL:$1|näüdüst|näüdüssit}}:",
-	"template-protected": "(ärqkaidsõt)",
-	"template-semiprotected": "(ärqkaidsõduq nimeldä ja vahtsõq pruukjaq)",
 	"hiddencategories": "Seo leht kuulus {{PLURAL:$1|1 käkitühe katõgooriahe|$1 käkitühe katõgooriahe}}:",
 	"nocreatetext": "{{SITENAME}} lupa-i luvvaq vahtsit lehti.\nVõit toimõndaq olõmanolõvit lehti vai [[Special:UserLogin|minnäq nimega sisse]].",
 	"nocreate-loggedin": "Sul olõ-i lupa luvvaq vahtsit lehti.",

@@ -329,8 +329,6 @@
 	"templatesused": "{{PLURAL:$1|De fulgende Vurloage werd|Fulgende Vurloaga warn}} uf dieser Seite verwendet:",
 	"templatesusedpreview": "{{PLURAL:$1|De fulgende Vurloage werd|Fulgende Vurloaga warn}} vu dieser Seitavurschau verwendet:",
 	"templatesusedsection": "{{PLURAL:$1|De fulgende Vurloage werd|Fulgende Vurloaga waan}} vu diesem Obschnitt verwendet:",
-	"template-protected": "(schreibgeschitzt)",
-	"template-semiprotected": "schreibgeschitzt (ock oagemeldete, nee neue Benutzer)",
 	"hiddencategories": "Diese Seite ies ei {{PLURAL:$1|anner versteckta Kategorie|$1 versteckta Kategorien}} enthaala:",
 	"nocreatetext": "Uff {{SITENAME}} wurde doas Erstalla neuer Seyta eengeschränkt. Du koast bestiehende Seyten ändern oder diech [[Special:UserLogin|oamelda]].",
 	"nocreate-loggedin": "Du host kenne Berechtigung, neue Seyta zu erstalla.",

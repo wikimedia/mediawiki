@@ -403,8 +403,6 @@
 	"editingsection": "Tu jel beeta'al $1",
 	"templatesused": "{{PLURAL:$1| Plantilla|Plantillas}} k'abéetkunsa'an ti' le wáalala':",
 	"templatesusedpreview": "{{PLURAL:$1|Plantilla k'abéetkunsa'an|Plantillas k'abéetkunsa'ano'ob}} te' e'esajila':",
-	"template-protected": "(kanáanta'an)",
-	"template-semiprotected": "(masak' kaalanta'an)",
 	"hiddencategories": "Le wáal ju'um je'eláj u ti'al {{PLURAL:$1|júump'el categoría|$1 júump'el categoría}}:",
 	"permissionserrors": "U k'aasil páajtalil",
 	"permissionserrorstext-withaction": "Mina'an teech permiso ti' $2 , uti'al le je'ela' {{PLURAL:$1| o'olal|o'olal}}:",

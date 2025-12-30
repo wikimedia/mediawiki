@@ -198,8 +198,6 @@
 	"editpage-cannot-use-custom-model": "Mòdèl kontni-a pou paj sala pa kapab changé.",
 	"templatesused": "{{PLURAL:$1|Mòdèl|Sé mòdèl}} itilazé asou paj sala:",
 	"templatesusedpreview": "{{PLURAL:$1|Mòdèl|Sé mòdèl}} itilazé asou preview sala:",
-	"template-protected": "(pwotèje)",
-	"template-semiprotected": "(sèmi-pwotéjé)",
 	"hiddencategories": "Paj sala sé yon manm adan {{PLURAL:$1|an katégwi ankachèt|$1 katégwi ankachèt}}:",
 	"modeleditnotsupported-text": "Modifyé kontni mòdèl $1 pa sipòté.",
 	"permissionserrors": "Lèwè épi se pwèmisyon",

@@ -492,8 +492,6 @@
 	"templatesused": "{{PLURAL:$1|Templat|Templat ngaawi}} i gunoon id bolikan diti:",
 	"templatesusedpreview": "{{PLURAL:$1|Pongomitan|Pongo-ngomintan}} gunoon id pongitanan diti:",
 	"templatesusedsection": "{{PLURAL:$1|Pongomitan|Pongo-ngomintan}} gunoon id boogian diti:",
-	"template-protected": "(tingoligan)",
-	"template-semiprotected": "(noumoligan)",
 	"hiddencategories": "Bolikan nopo diti nga haro id suang {{PLURAL:$1|1 kategori poinlisok|$1 kategori poinlisok}}:",
 	"nocreatetext": "{{SITENAME}} tinagal kasagaan momonsoi bobolikon kawawagu.\nMilo ko do gumuli om mongidit di bolikon poinsuang, toi ko [[Special:UserLogin|sumuang log toi momonsoi do takaun]].",
 	"nocreate-loggedin": "Ingaa kasagaannu do momonsoi bobolikon wagu.",

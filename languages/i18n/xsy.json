@@ -168,8 +168,6 @@
 	"editingsection": "mam pienji: $1 ( zhang jie: )",
 	"templatesused": "hini ye:myen matawaw ila hini wahoer ka {{PLURAL:$1| kakSaro:olan }}：",
 	"templatesusedpreview": "hini kaSawaSakan ’anoka hani wahoer ka {{PLURAL:$1| kakSaro:olan }}：",
-	"template-protected": "(kinalahaeng)",
-	"template-semiprotected": "(’inokay kalahaengi saeboeh)",
 	"hiddencategories": "hini ye:myen ’anoka {{PLURAL:$1|1 Sina:il ka’a’apolen |$1 Sina:il ka’a’apolen }}saeboeh ma’iyaeh：",
 	"permissionserrorstext-withaction": "komSa’ hini waehoer {{PLURAL:$1| nak’ino’ ’isa: }}, niSo’ ’oka’ ka qyuenSyen nom ray $2 matawaw ：",
 	"recreate-moveddeleted-warn": "<strong> pati’azem ：So’o mam boloe’ Sa’la’ pinaskayzaeh ka ymien .</strong> So’o ’az’azem nahan ’am pienji: ay ka hini ’aehae’ biyae’. rini hayza’ kaboloe’an ki kapa’inkoraehan ka kina:at kakita’an：",

@@ -282,8 +282,6 @@
 	"copyrightwarning": "Por fabor, bei que todas las tues cuntrebuiçones an {{SITENAME}} son cunsideradas cumo feitas ne ls termos de la licença $2 (bei $1 pa detailhes).\nSe nun quieres que l tou testo seia eiditado sin piedade i reçtribuído cunsante la gana, nun l ambies.<br />\nTu stás, al mesmo tiempo, a garantir-mos que esto ye algo screbido por ti, ó algo copiado dua fuonte de testos an domínio público ó parecido de teor lhibre.\n<strong>Nun ambies trabalho portegido por dreitos de outor sien l debido permisson!</strong>",
 	"templatesused": "{{PLURAL:$1|Modelo ousado|Modelos ousados}} nesta páigina:",
 	"templatesusedpreview": "{{PLURAL:$1|Modelo outelizado|Modelos outelizados}} neste amostra:",
-	"template-protected": "(portegida)",
-	"template-semiprotected": "(semi-protegida)",
 	"hiddencategories": "Esta páigina faç parte {{PLURAL:$1|dua catadorie scundida|$1 duas catadories scundidas}}:",
 	"edittools": "<!-- L testo quelocado eiqui será amostrado ambaixo de ls formulairos de eidiçon i de ambio de fexeiros. -->",
 	"nocreatetext": "{{SITENAME}} restringe la possibilidade de criar nuobas páiginas.\nPuode buoltar atrás i eiditar ua páigina yá eisistente, ó [[Special:UserLogin|outenticar-se ó criar ua cuonta]].",

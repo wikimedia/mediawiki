@@ -309,8 +309,6 @@
 	"editingsection": "Bɛ resesa $1 (ɔfa bi)",
 	"templatesused": "{{PLURAL:$1|Simpie|Simpie ahodoɔ}} a bɛde di dwuma wɔ simpie yi so:",
 	"templatesusedpreview": "{{PLURAL:$1|Simpie|Simpie ahodoɔ}} a bɛde dii dwuma wɔ saa nhwɛsodeɛ yi mu:",
-	"template-protected": "(wɔabɔ ho ban)",
-	"template-semiprotected": "Ɛnni ahobammɔ saa",
 	"hiddencategories": "Saa simpie yi yɛ {{PLURAL:$1|nkyekyɛmu a ahintaw|$1 nkyekyɛmu ahodoɔ a ahintaw}}:",
 	"permissionserrors": "Bɛ nni ho kwan",
 	"permissionserrorstext-withaction": "Bɛ nni ho kwan sɛ bɛ $2, ɛsane sɛ {{PLURAL:$1|nea ɛnti}}:",

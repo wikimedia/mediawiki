@@ -341,8 +341,6 @@
 	"templatesused": "{{PLURAL:$1|anakuhi|mau anakuhi}} e hana ʻia ma kēia ʻaoʻao:",
 	"templatesusedpreview": "Hoʻohana ʻia kēia {{PLURAL:$1|anakuhi|mau anakuhi}} i kēia nāmua:",
 	"templatesusedsection": "{{PLURAL:$1|Ka anakuhi|Nā anakuhi}} e hana ʻia i kēia mahele:",
-	"template-protected": "(ho‘omalu ‘ia)",
-	"template-semiprotected": "(hapa-ho‘omalu ‘ia)",
 	"hiddencategories": "ʻO kēia ʻaoʻao he lālā o {{PLURAL:$1|1 mahele hūnā|$1 mau māhele hūnā}}:",
 	"edittools": "<!-- Eia ka ‘ōlelo e hō‘ike ‘ia malalo o nā palapala ho‘ololi ame nā palapala ho‘ohui. -->",
 	"nocreate-loggedin": "Loaʻa ʻole iā ʻoe nā kūleana no ka haku ʻana o nā ʻaoʻao hou.",

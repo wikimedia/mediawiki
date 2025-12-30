@@ -505,8 +505,6 @@
 	"templatesused": "Bul bette qollanılǵan {{PLURAL:$1|úlgi|úlgiler}}:",
 	"templatesusedpreview": "Bul aldınnan kóriw betinde qollanılǵan {{PLURAL:$1|úlgi|úlgi}}:",
 	"templatesusedsection": "Bul bólimde qollanılǵan {{PLURAL:$1|úlgi|úlgiler}}:",
-	"template-protected": "(qorǵalǵan)",
-	"template-semiprotected": "(yarım-qorǵalǵan)",
 	"hiddencategories": "Bul bet {{PLURAL:$1|1 jasırın kategoriyasınıń|$1 jasırın kategoriyalarınıń}} ag'zası:",
 	"nocreatetext": "{{SITENAME}} saytında taza betlerdi jaratıw sheklengen.\nArtqa qaytıp, bar betti ózgertiwińizge yamasa [[Special:UserLogin|kiriwińizge / akkaunt jaratıwıńızǵa]] boladı.",
 	"nocreate-loggedin": "Taza betler jaratıwǵa ruqsatıńız joq.",

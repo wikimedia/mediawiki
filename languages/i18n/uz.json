@@ -482,8 +482,6 @@
 	"templatesused": "Bu sahifada foydalanilgan {{PLURAL:$1|andoza|andozalar}}:",
 	"templatesusedpreview": "Bu sahifada foydalanilgan {{PLURAL:$1|andoza|andozalar}}:",
 	"templatesusedsection": "Bu boʻlimda foydalanilgan {{PLURAL:$1|andoza|andozalar}}:",
-	"template-protected": "(himoyalangan)",
-	"template-semiprotected": "(yarim himoyalangan)",
 	"hiddencategories": "Ushbu sahifa {{PLURAL:$1|1 yashirin turkum|$1 yashirin turkumlar}}ga kiradi:",
 	"nocreatetext": "Ushbu saytda yangi sahifalar yaratish taʼqiqlagan.\nOrtga qaytib, mavjud sahifani tahrirlashingiz yoki [[Special:UserLogin|tizimga kirishingiz]] mumkin.",
 	"nocreate-loggedin": "Sizda yangi sahifalar yaratishga ruxsat yoʻq.",

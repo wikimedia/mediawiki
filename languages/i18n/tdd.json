@@ -506,8 +506,6 @@
 	"templatesused": "{{PLURAL:$1|Template|ᥗᥦᥛᥰ ᥙᥣ ᥘᥥᥐᥳ ᥓᥫᥰ}}ᥖᥪᥰ ᥝᥭᥳ ᥖᥤ ᥘᥣᥲ ᥘᥤᥐ ᥘᥭᥳ:",
 	"templatesusedpreview": "{{PLURAL:$1|ᥗᥦᥛᥰ ᥙᥣ ᥘᥥᥐᥳ|ᥗᥦᥛᥰ ᥙᥣ ᥘᥥᥐᥳ ᥓᥫᥰ}}ᥖᥪᥰ ᥝᥭᥳ ᥖᥤ ᥘᥬᥰ ᥐᥣᥢ ᥖᥨᥭᥰ ᥝᥨᥒ ᥘᥣᥲ:",
 	"templatesusedsection": "{{PLURAL:$1|Template|ᥗᥦᥛᥰ ᥙᥣ ᥘᥥᥐᥳ ᥓᥫᥰ}}ᥖᥪᥰ ᥝᥭᥳ ᥖᥤ ᥘᥣᥲ ᥘᥤᥐ ᥘᥭᥳ:",
-	"template-protected": "(ᥞᥥᥳ ᥐᥒᥲ ᥝᥭᥳ)",
-	"template-semiprotected": "(ᥞᥥᥳ ᥐᥒᥲ ᥝᥭᥳ-ᥐᥛᥳ ᥑᥩᥒ)",
 	"hiddencategories": "ᥘᥣᥲ ᥘᥤᥐ ᥟᥢ ᥘᥭᥳ ᥛᥢᥰ ᥙᥥᥢ ᥘᥣᥲ ᥘᥤᥐ ᥑᥝᥲ ᥓᥧᥛᥰ {{PLURAL:$1|1 hidden category|$1 ᥐᥢ ᥔᥫᥒᥱ ᥝᥭᥳ}}:",
 	"nocreatetext": "{{SITENAME}} ᥘᥭᥲ ᥗᥧᥐᥴ ᥞᥥᥳ ᥞᥣᥛᥲ ᥖᥣᥱ ᥐᥨᥝᥱ ᥔᥣᥒᥲ ᥘᥣᥲ ᥘᥤᥐ ᥟᥢ ᥛᥬᥱ.\nᥓᥝᥲ ᥐᥝᥱ ᥓᥣᥒ ᥞᥨᥢᥴ ᥘᥒᥴ ᥔᥥᥴ ᥛᥥᥰ ᥗᥖᥴ ᥘᥣᥲ ᥘᥤᥐ ᥛᥤᥰ ᥕᥧᥱ ᥕᥣᥛᥰ ᥘᥥᥝ, ᥟᥛᥱ ᥘᥢᥴ [[Special:UserLogin|ᥘᥩᥐᥳ ᥟᥤᥢᥱ ᥟᥛᥱ ᥘᥢᥴ ᥐᥨᥝᥱ ᥔᥣᥒᥲ ᥟᥣ ᥑᥩᥒᥳ]].",
 	"nocreate-loggedin": "ᥓᥝᥲ ᥐᥝᥱ ᥟᥛᥱ ᥘᥭᥲ ᥛᥤᥰ ᥔᥧᥢᥱ ᥖᥩᥢᥲ ᥖᥣᥱ ᥖᥤᥴ ᥐᥨᥝᥱ ᥔᥣᥒᥲ ᥘᥣᥲ ᥘᥤᥐ ᥟᥢ ᥛᥬᥱ.",

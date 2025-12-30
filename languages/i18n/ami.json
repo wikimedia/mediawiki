@@ -176,8 +176,6 @@
 	"editingsection": "O mamikawit to $1(cefang tosir)",
 	"templatesused": "Macokaymas to ninian a felih i kalaenoay/kaikoray {{PLURAL:$1| ko sampolo}}：",
 	"templatesusedpreview": "Mipa’ayaw a minengneng i, macokaymas i kalaenoay/kaikoray ko {{PLURAL:$1| dado^doan a sampolo }}：",
-	"template-protected": "(madipotay/ma’adipelay)",
-	"template-semiprotected": "(mapangkiway ko pi’adipel)",
 	"hiddencategories": "O no {{PLURAL:$1| a felih konini, cecay ko masimeday to nisilsilan a kasakilac |$cecay ko masimeday to nisilsilan a kasakilac }} i salaoma’ no no tamdaw.",
 	"permissionserrors": "Moraraw ko sakowanan",
 	"permissionserrorstext-withaction": "Itini i kalaeno{{PLURAL:$1| o lalangatan}}，awaay ko king-li no miso a midemak to  $2 a demak:",

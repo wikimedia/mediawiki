@@ -548,8 +548,6 @@
 	"templatesused": "{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta páxina:",
 	"templatesusedpreview": "{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta vista previa:",
 	"templatesusedsection": "{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta seición:",
-	"template-protected": "(protexía)",
-	"template-semiprotected": "(semi-protexida)",
 	"hiddencategories": "Esta páxina pertenez a {{PLURAL:$1|una categoría anubrida|$1 categoríes anubríes}}:",
 	"edittools": "<!-- Esti testu apaecerá baxo los formularios d'edición y xuba. -->",
 	"nocreatetext": "{{SITENAME}} tien torgada la posibilidá de crear páxines nueves.\nPues volver atrás y editar una páxina esistente, o bien [[Special:UserLogin|aniciar sesión o crear una cuenta]].",

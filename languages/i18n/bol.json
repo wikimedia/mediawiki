@@ -172,8 +172,6 @@
 	"editingsection": "Ramu $1 (section)",
 	"templatesused": "{{PLURAL:$1|Page|Pages}} ya zowango ga ko page eme:",
 	"templatesusedpreview": "{{PLURAL:$1|Page|Pages}} zowango ga ko page en emeh:",
-	"template-protected": "(Karani)",
-	"template-semiprotected": "(ga kariya gwargwado)",
 	"hiddencategories": "Aye shafi kasantako anka ma {{PLURAL:$1|bunko panni|$1 bunko panni}}:",
 	"permissionserrors": "Kuskure ona dama",
 	"permissionserrorstext-withaction": "Ba kwa da izinin $2, don saboda {{PLURAL:$1|wannan dalili|waɗannan dalillai}}:",

@@ -408,8 +408,6 @@
 	"templatesused": "{{PLURAL:$1|Seunaleuek}} nyang geungui bak ôn nyoe:",
 	"templatesusedpreview": "{{PLURAL:$1|Templat|Templates}} nyang geungui bak eu dilèë nyoë:",
 	"templatesusedsection": "{{PLURAL:$1|Seunaleuek}} geungui bak bagian nyoe:",
-	"template-protected": "(geulindông)",
-	"template-semiprotected": "(siteungoh-lindông)",
 	"hiddencategories": "Ôn nyoe nakeuh anggèeta nibak {{PLURAL:$1|1 kawan teusom |$1 kawan teusom}}:",
 	"nocreatetext": "{{SITENAME}} ka jitham bak seumeugöt ôn barô. \nDroeneuh jeuet neuriwang ngön neupeusaneut ôn nyang ka na, atawa [[Special:UserLogin|neutamöng atawa neudapeuta]].",
 	"nocreate-loggedin": "Droeneuh hana khut keu neupeugöt laman-laman barô.",

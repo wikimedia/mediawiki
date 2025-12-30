@@ -206,8 +206,6 @@
 	"editingsection": "Mekinen̄e $1 (agba)",
 	"templatesused": "{{PLURAL:$1|Tempulet|Ebi kè Tempulet}} esabe ijeen̄ ikpọkpọ-nu yi:",
 	"templatesusedpreview": "{{PLURAL:$1|Tempulet|Ebi kè Tempulet}} esabe ijeen̄ ikpọkpọ-nu yi:",
-	"template-protected": "(mîgon)",
-	"template-semiprotected": "(mîbem sọnja)",
 	"hiddencategories": "Akpọk yi ìre ge me lek {{PLURAL:$1|ọgbọn̄ òlelet|$1 ebi kè ọgbọn̄ òlelet}}:",
 	"permissionserrors": "Inyinyi unye îlọ",
 	"permissionserrorstext-withaction": "Kpenyi owu unye me lek $2, mije {{PLURAL:$1|ibot keyi|ibot kechi}}",

@@ -426,8 +426,6 @@
 	"templatesused": "{{PLURAL:$1|Template impreadu|Templates impreados}} in custa pàgina:",
 	"templatesusedpreview": "{{PLURAL:$1|Template impreadu|Templates impreados}} in custa antiprima:",
 	"templatesusedsection": "{{PLURAL:$1|Template impreadu|Templates impreados}} in custa setzione:",
-	"template-protected": "(bardadu)",
-	"template-semiprotected": "(mesu-bardadu)",
 	"hiddencategories": "Custa pàgina faghet parte de {{PLURAL:$1|1 categoria cuada|$1 categorias cuadas}}:",
 	"nocreatetext": "{{SITENAME}} at limitadu sa possibilidade de creare pàginas noas a sos impitadores registrados.\nPodes torrare in segus e modificare una pàgina esistente, o puru [[Special:UserLogin|intrare in su contu tuo o creare unu contu nou]].",
 	"nocreate-loggedin": "Non tenes su permissu de creare pàginas noas.",

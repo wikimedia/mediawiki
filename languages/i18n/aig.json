@@ -263,8 +263,6 @@
 	"yourdiff": "Difrens dem",
 	"templatesused": "{{PLURAL:$1|Templet|Templet dem}} min yuuz eena dis piej:",
 	"templatesusedpreview": "{{PLURAL:$1|Templet|Templet dem}} yuuz eena dis pree-luk:",
-	"template-protected": "(min protek)",
-	"template-semiprotected": "(semai-min pratek)",
 	"hiddencategories": "Dis piej a wan memba a {{PLURAL:$1|min haid katagri|$1 min haid katagri dem}}:",
 	"permissionserrors": "Permishan era",
 	"permissionserrorstext-withaction": "Yu no gee pemishan fu $2, bai de folowin {{PLURAL:$1|reezan|reezan dem}}:",

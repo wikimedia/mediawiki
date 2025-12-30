@@ -505,8 +505,6 @@
 	"templatesused": "Tha {{PLURAL:$1|teamplaid 'ga cleachdadh|teamplaidean 'gan cleachdadh}} air an duilleag seo:",
 	"templatesusedpreview": "Tha {{PLURAL:$1|teamplaid 'ga cleachdadh|teamplaidean 'gan cleachdadh}} san ro-shealladh seo:",
 	"templatesusedsection": "Tha {{PLURAL:$1|teamplaid 'ga cleachdadh|teamplaidean 'gan cleachdadh}} san earrann seo:",
-	"template-protected": "(air a dhìon)",
-	"template-semiprotected": "(air a leth-dhìon)",
 	"hiddencategories": "Tha an duilleag seo 'na ball de {{PLURAL:$1|$1 roinn-seòrsa fhalaichte|$1 roinn-seòrsa fhalaichte|$1 roinnean-seòrsa falaichte|$1 roinn-seòrsa fhalaichte}}:",
 	"edittools": "<!-- Nochdaidh an teacsa seo fo fhoirmean deasachaidh 's luchdaidh suas. -->",
 	"nocreatetext": "Chuir {{SITENAME}} bacadh air cruthachadh de dhuilleagan ùra.\n'S urrainn dhut tilleadh is duilleag a tha ann mu thràth a dheasachadh no [[Special:UserLogin|logadh a-steach no cunntas a chruthachadh]].",

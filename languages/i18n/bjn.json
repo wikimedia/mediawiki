@@ -513,8 +513,6 @@
 	"templatesused": "{{PLURAL:$1|Citakan}} nang dipakai di laman ngini:",
 	"templatesusedpreview": "{{PLURAL:$1|Citakan|Cicitakan}} nang dipakai di titilikan ngini:",
 	"templatesusedsection": "{{PLURAL:$1|Citakan|Cicitakan}} nang diguna'akan di hagian ini:",
-	"template-protected": "(dilindungi)",
-	"template-semiprotected": "(semi-dilindungi)",
 	"hiddencategories": "Laman ngini adalah angguta matan {{PLURAL:$1|1 tumbung tatukup|$1 tumbung tatukup}}:",
 	"nocreatetext": "{{SITENAME}} sudah mawatasi paulahan laman hanyar.\nPian kawa babulik wan mambabak laman nang ada, atawa [[Special:UserLogin|babuat log atawa baulah akun]].",
 	"nocreate-loggedin": "Pian kada baisi ijin hagan maulah laman-laman hanyar.",

@@ -527,8 +527,6 @@
 	"templatesused": "{{PLURAL:$1|Template|Templates}} uised oan this page:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Templates}} uised in this luikower:",
 	"templatesusedsection": "{{PLURAL:$1|Template|Templates}} uised in this section:",
-	"template-protected": "(protectit)",
-	"template-semiprotected": "(semi-protectit)",
 	"hiddencategories": "This page is ae memmer o {{PLURAL:$1|ae hidden category|$1 hidden categories}}:",
 	"nocreatetext": "{{SITENAME}} haes restrictit the ability tae mak new pages.\nYe can gang back an edit ae existin page, or [[Special:UserLogin|log in or mak ae account]].",
 	"nocreate-loggedin": "Ye dinnae hae the richts tae mak new pages.",

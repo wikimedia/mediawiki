@@ -196,8 +196,6 @@
 	"editingsection": "Kohennellah $1 (alaluku)",
 	"templatesused": "Tällä šivulla {{PLURAL:$1|käytetty malli|käytetyt mallit}}:",
 	"templatesusedpreview": "{{PLURAL:$1|Käytetty malli|Käytetyt mallit}} käytetty täššä esikaččelušša:",
-	"template-protected": "(šuojattu)",
-	"template-semiprotected": "(ošittain šuojattu)",
 	"hiddencategories": "Tämä šivu kuuluu {{PLURAL:$1|1 peitettyh kategorijah|$1 peitettylöih kategorijoih}}:",
 	"permissionserrors": "Ei oikevukšie",
 	"permissionserrorstext-withaction": "Šiula ei ole oikeutta {{lcfirst:$2}} {{PLURAL:$1|šeuruavašta šyyštä|šeuruavista šyistä}}:",

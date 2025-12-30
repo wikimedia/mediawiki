@@ -609,8 +609,6 @@
 	"templatesused": "اِس صفحہ پر مستعمل {{PLURAL:$1|سانچہ|سانچے}} حسب ذیل {{PLURAL:$1|ہے|ہیں}}:",
 	"templatesusedpreview": "اِس نمائش میں مستعمل {{PLURAL:$1|سانچہ|سانچے}} حسب ذیل {{PLURAL:$1|ہے|ہیں}}:",
 	"templatesusedsection": "اِس قطعہ میں مستعمل {{PLURAL:$1|سانچہ|سانچے}}:",
-	"template-protected": "(محفوظ شدہ)",
-	"template-semiprotected": "(نیم محفوظ)",
 	"hiddencategories": "اس صفحہ میں {{PLURAL:$1|1 پوشیدہ زمرے|$1 پوشیدہ زمرہ جات}} شامل ہیں:",
 	"nocreatetext": "{{SITENAME}} نے نئے صفحات تخلیق کرنے پر پابندی لگا رکھی ہے۔\nتاہم آپ پہلے سے موجود صفحات میں ترمیم کر سکتے ہیں یا [[Special:UserLogin|اپنے کھاتے ميں داخل ہوں یا کھاتہ بنائیں]]۔",
 	"nocreate-loggedin": "آپ کو نئے صفحات تخلیق کرنے کی اجازت نہیں ہے.",

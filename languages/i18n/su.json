@@ -517,8 +517,6 @@
 	"templatesused": "{{PLURAL:$1|Citakan|Citakan}} nu dipaké dina ieu kaca:",
 	"templatesusedpreview": "{{PLURAL:$1|Citakan|Citakan}} nu dipaké dina ieu pramidang:",
 	"templatesusedsection": "{{PLURAL:$1|Citakan|Citakan}} nu dipaké dina ieu bab:",
-	"template-protected": "(dikunci)",
-	"template-semiprotected": "(semi-dikonci)",
 	"hiddencategories": "Ieu kaca kaasup {{PLURAL:$1|1 kategori nyumput|$1 kategori nyumput}}:",
 	"edittools": "<!-- Téks di dieu bakal némbongan di handapeun formulir édit jeung muat.-->",
 	"nocreatetext": "{{SITENAME}} nutup kabisa nyieun kaca anyar.\nMangga édit artikel nu geus aya, atawa [[Special:UserLogin|asup log/daptar heula]].",

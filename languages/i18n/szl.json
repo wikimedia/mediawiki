@@ -440,8 +440,6 @@
 	"templatesused": "{{PLURAL:$1|Muster użyty|Mustry użyte}} na tyj zajtcie:",
 	"templatesusedpreview": "{{PLURAL:$1|Muster użyty|Mustry użyte}} na tym podglōńdzie:",
 	"templatesusedsection": "{{PLURAL:$1|Szablon|Szablůny}} użyte we tyj tajli:",
-	"template-protected": "(chrōniōny)",
-	"template-semiprotected": "(pōłzawarte)",
 	"hiddencategories": "Ta zajta je we {{PLURAL:$1|jednyj skrytyj kategoryji|$1 skrytych kategoryjach}}:",
 	"nocreatetext": "Na {{GRAMMAR:MS.lp|{{SITENAME}}}} tworzyńy nowych zajtůw uograńiczůno.\nMoges sprowjać te co już sům, abo [[Special:UserLogin|zalogować śe, abo śa zaregisztrować]].",
 	"nocreate-loggedin": "Ńy mosz uprowńyń do tworzyńo nowych zajtůw.",

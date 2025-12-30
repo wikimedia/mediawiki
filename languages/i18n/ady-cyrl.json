@@ -343,8 +343,6 @@
 	"yourtext": "Уи текст",
 	"editpage-cannot-use-custom-model": "Мы нэкӀубгъом ыкӀоцӀрытым и модел зэхъокӀын хъущтэп.",
 	"templatesused": "{{PLURAL:$1|Шапхъэ|Шапхъэхэр}} мы нэкIубгъом щагъэфедагъэх:",
-	"template-protected": "(ухъумагъэ)",
-	"template-semiprotected": "(ызныкъокӀэ ухъумагъэ)",
 	"hiddencategories": "Мы нэкIубгъор зыщыщыр мы {{PLURAL:$1|1 категорие гъэбылъыгъэр|$1 категорие гъэбылъыгъэхэр}} ары:",
 	"nocreate-loggedin": "НэкIубгъуакIэ ебгъэжьэ уфитэп.",
 	"permissionserrors": "Фитыныгъэм и къончагъэ",

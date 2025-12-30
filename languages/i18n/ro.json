@@ -662,8 +662,6 @@
 	"templatesused": "{{PLURAL:$1|Pagină inclusă|Pagini incluse}} pe această pagină:",
 	"templatesusedpreview": "{{PLURAL:$1|Pagină inclusă|Pagini incluse}} pe această previzualizare:",
 	"templatesusedsection": "{{PLURAL:$1|Format utilizat|Formate utilizate}} în această secțiune:",
-	"template-protected": "(protejat)",
-	"template-semiprotected": "(semiprotejat)",
 	"hiddencategories": "Această pagină face parte {{PLURAL:$1|dintr-o categorie ascunsă|din $1 categorii ascunse|din $1 de categorii ascunse}}:",
 	"edittools": "<!-- Acest text va apărea după caseta de editare și formularele de trimitere fișier. -->",
 	"nocreatetext": "{{SITENAME}} a restricționat abilitatea de a crea pagini noi.\nPuteți edita o pagină deja existentă sau puteți să vă [[Special:UserLogin|autentificați/creați]] un cont de utilizator.",

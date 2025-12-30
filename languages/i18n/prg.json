@@ -375,8 +375,6 @@
 	"templatesused": "{{PLURAL:$1|Šablōnis tērpautas|Šablōni terpautā|Šablōnis tērpautas}} en šismu pāusan:",
 	"templatesusedpreview": "{{PLURAL:$1|Šablōnis tērpautas|Šablōni terpautā|Šablōnis tērpautas}} en šismu pirmādiran:",
 	"templatesusedsection": "{{PLURAL:$1|Šablōni|Šablōnis}} tērpautas en šissei sekciōnin:",
-	"template-protected": "(pakūnstan)",
-	"template-semiprotected": "(delīkiskai pakūnstan)",
 	"hiddencategories": "Šin pāusan ast en {{PLURAL:$1|$1 kliptans kategōrijans|ainassei kliptan kategōrijan|$1 kliptans kategōrijans}}:",
 	"nocreatetext": "Nāunan pāusan teīksnas mazīngisku en {{SITENAME}} pastāi arāikintan.\nTū mazzi redigītun ekzistīntins pāusans anga [[Special:UserLogin|enēitwei anga teīktun nāunan rekkenan]].",
 	"nocreate-loggedin": "Tū ni turri preiwērpsenin, kāi teīklai nāunans pāusans.",

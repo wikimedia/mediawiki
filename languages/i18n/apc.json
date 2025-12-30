@@ -341,8 +341,6 @@
 	"editingsection": "عم تعدل قسم «$1»",
 	"templatesused": "{{PLURAL:$1||القالب المستخدم|القالبين المستخدمين|القوالب المستخدمة}} بهي الصفحة:",
 	"templatesusedpreview": "{{PLURAL:$1||القالب المستخدم|القالبين المستخدمين|القوالب المستخدمة}} بالمعاينة هي:",
-	"template-protected": "(محمية)",
-	"template-semiprotected": "(محمية جزئيًا)",
 	"hiddencategories": "هي الصفحة عضو ب {{PLURAL:$1|تصنيف مخبى|$1 تصنيفايات مخباية}}:",
 	"permissionserrors": "غلط بالإذن",
 	"permissionserrorstext-withaction": "ما عندك إذن ت$2؛ {{PLURAL:$1|لهيدا السبب|لهيدي الأسباب}}:",

@@ -290,8 +290,6 @@
 	"copyrightwarning": "Palihog hinumdomi nga ang tanang kontribusyon sa {{SITENAME}} giisip nga ubos sa $2 (basaha ang $1 alang sa dugang detalye). Kon dili nimo buot nga ang imong mga sinulat mausab ni bisan kinsa ug maapud-apod bisan dili ka pangayoan og pagtugot, ayaw sila ibutang dinhi.<br />\nNagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gikopya nimo kini gikan sa usa ka publikong rekursos o susamang libreng rekursos.\n'''AYAW PAGBUTANG DINHI OG MGA BINUHAT NGA MAY NANAG-IYA SA KATUNGOD SA PAGPATIK NGA WA KAY PERMISO!'''",
 	"templatesused": "{{PLURAL:$1|Ang plantilya|Ang mga plantilya}} nga gigagamit niining panid:",
 	"templatesusedpreview": "{{PLURAL:$1|Plantilya|Mga plantilya}} nga gigamit niining paunang tan-aw:",
-	"template-protected": "(giprotektahan)",
-	"template-semiprotected": "(medyo giprotektahan)",
 	"hiddencategories": "Ang kining panid nahiapil sa {{PLURAL:$1|1 ka kategoriya nga nakatago|$1 ka mga kategoriya nga nakatago}}:",
 	"permissionserrorstext-withaction": "Wala kay permiso nga $2, tungod sa mosunod nga {{PLURAL:$1|rason|mga rason}}:",
 	"edit-conflict": "Conflict sa pag-usab.",

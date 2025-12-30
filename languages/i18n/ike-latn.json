@@ -177,8 +177,6 @@
 	"editconflict": "suqusiqpaa akaunngiliurutiniq: $1",
 	"templatesused": "{{PLURAL:$1|aaqqiksimaninga|aaqqiksimaningit}} kanatamiutaugama:",
 	"templatesusedpreview": "{{PLURAL:$1|aaqqiksimaninga|aaqqiksimaningit}} kanatamiutaugama:",
-	"template-protected": "(sapujjausimajut)",
-	"template-semiprotected": "(avvalluanga sapujjausimajuq)",
 	"hiddencategories": "taanna makpigaq ilagijaujuq {{PLURAL:$1|sapummijjuti qulaani|$1 sapummijjuti qulaani}}:",
 	"permissionserrors": "pijunnauti tammaqsimajuq",
 	"permissionserrorstext-withaction": "pijunnautiqanngilatit $2, ikunga {{PLURAL:$1|pijjuti|pijjutingit}}:",

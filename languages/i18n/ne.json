@@ -632,8 +632,6 @@
 	"templatesused": "यस पृष्ठमा समावेश गरिएका {{PLURAL:$1|पृष्ठ|पृष्ठहरू}}:",
 	"templatesusedpreview": "यस पूर्वावलोकनमा समावेश गरिएका {{PLURAL:$1|पृष्ठ|पृष्ठहरू}}:",
 	"templatesusedsection": "यस खण्डमा समावेश गरिएका {{PLURAL:$1|पृष्ठ|पृष्ठहरू}}:",
-	"template-protected": "(सुरक्षित)",
-	"template-semiprotected": "(अर्ध-सुरक्षित)",
 	"hiddencategories": "यो पृष्ठ निम्न {{PLURAL:$1|1 लुकाइएको श्रेणी|$1 लुकाइएका श्रेणीहरू}}को सदस्य हो :",
 	"edittools": "<!-- Text here will be shown below edit and upload forms. -->",
 	"nocreatetext": "{{SITENAME}} ले नयाँ पृष्ठ सृजना गर्न सक्ने क्षमतामा रोक लगाएको छ।\nतपाईं पछाडि गएर यहाँ रहेका पृष्ठ सम्पादन गर्नसक्नुहुन्छ , अथवा [[Special:UserLogin|प्रवेश गर्नुहोस या नयाँ खाता खोल्नुहोस्]]।",

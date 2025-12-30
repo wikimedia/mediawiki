@@ -244,8 +244,6 @@
 	"templatesused": "Tällä sivula {{PLURAL:$1|käytetty malli|käytetyt mallit}}:",
 	"templatesusedpreview": "Etukattelussa mukana {{PLURAL:$1|oleva malli|olevat mallit}}:",
 	"templatesusedsection": "Tässä osiossa mukana {{PLURAL:$1|oleva malli|olevat mallit}}:",
-	"template-protected": "(suojattu)",
-	"template-semiprotected": "(osittain suojattu)",
 	"hiddencategories": "Tämä sivu kuuluu {{PLURAL:$1|seuraavhaan piilotethuun katekuurihaan|seuraavhiin piilotethuin katekuurhiin}}:",
 	"edittools": "<!-- Tässä oleva teksti näytethään mookkauskentän alla. -->",
 	"modeleditnotsupported-title": "Mookkausta ei tueta",

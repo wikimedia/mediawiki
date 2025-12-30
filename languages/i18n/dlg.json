@@ -353,8 +353,6 @@
 	"yourdiff": "Уратылар",
 	"templatesused": "Бу һырайга туттуллубут {{PLURAL:$1|Һырай|Һырайдар}}:",
 	"templatesusedpreview": "Бу һырайга туттуллубут {{PLURAL:$1|Һырай|Һырайдар}}:",
-	"template-protected": "(көмүскэммит)",
-	"template-semiprotected": "(аӈарынан көмүскэммит)",
 	"hiddencategories": "Бу һырай маннык кистэммит {{PLURAL:$1|категорияга|категорияларга}} киирэр:",
 	"modeleditnotsupported-title": "Уларытыы өйөммөт",
 	"permissionserrors": "Киирии алгаһа",

@@ -594,8 +594,6 @@
 	"templatesused": "{{PLURAL:$1|Šablon|Šablonad}} oli kävutadud necil lehtpolel:",
 	"templatesusedpreview": "{{PLURAL:$1|Ozutez|Ozutesed}} oli kävutadud neciš ezikacundas",
 	"templatesusedsection": "Neciš erištos kävutadas {{PLURAL:$1|ozutez|ozutesed}}:",
-	"template-protected": "(kaitud)",
-	"template-semiprotected": "(poleks om kaitud)",
 	"hiddencategories": "Necil lehtpolel om {{PLURAL:$1|peittud kategorii|$1 peittuid kategorijad}}:",
 	"edittools": "<!-- Tänna sijatud tekst ozutadas redaktiruindan da jügutoitandan formiden al. -->",
 	"nocreatetext": "{{SITENAME}} om märitadud uziden lehtpoliden tegend.\nSinä void pörttas tagaze da vajehtada nügüdläšt lehtpol't, libo [[Special:UserLogin|tulda sistemaha, libo tehta lehtpol't]].",

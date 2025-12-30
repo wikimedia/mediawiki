@@ -378,8 +378,6 @@
 	"yourtext": "ⴰⴹⵕⵉⵙ ⵏⵏⴽ/ⵎ",
 	"templatesused": "{{PLURAL:$1|ⴰⵍⴱⵓⴹ ⵉⵜⵜⵓⵙⵎⵔⵙⵏ|ⴰⵍⴱⵓⴹⵏ ⵜⵜⵓⵙⵎⵔⵙⵏⵉⵏ}} ⴳ ⵜⴰⵙⵏⴰ ⴰⴷ:",
 	"templatesusedpreview": "{{PLURAL:$1|ⴰⵍⴱⵓⴹ|ⴰⵍⴱⵓⴹⵏ}} {{PLURAL:$1|ⵉⵜⵜⵓⵙⵎⵔⵙⵏ|ⵜⵜⵓⵙⵎⵔⵙⵏⵉⵏ}} ⴳ ⵜⴰⵙⵏⴰ ⴰⴷ:",
-	"template-protected": "(ⵉⵜⵜⵓⴼⵔⴰⴳ)",
-	"template-semiprotected": "(ⵉⵜⵜⵓⴼⵔⴰⴳ ⵙ ⵓⴳⵣⵎⴰⵏ)",
 	"hiddencategories": "ⵜⴰⵙⵏⴰ ⴰ ⴷ ⴰⴳⵎⴰⵎ ⵏ {{PLURAL:$1|1 ⵓⵙⵎⵉⵍ ⵉⵏⵜⵍⵏ|$1 ⵉⵙⵎⵉⵍⵏ ⵏⵜⵍⵏⵉⵏ}}:",
 	"permissionserrors": "ⴰⵙⵙⵓⵔⴳ ⵉⵣⴳⵜ",
 	"permissionserrorstext-withaction": "ⵓⵔ ⴷⴰⵔⴽ ⵜⵓⵔⴰⴳⵜ ⴰⴼⴰⴷ ⴰⴷ $2, ⵙ {{PLURAL:$1|ⵓⵙⵔⴰⴳ|ⵉⵙⵔⴰⴳⵏ}} ⴰⴷ:",

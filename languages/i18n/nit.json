@@ -163,8 +163,6 @@
 	"creating": "$1 తయ్యార్ ఇదర్",
 	"editingsection": "$1 ని సవరిప్సాసర్ (విభాగం)",
 	"templatesused": "ఈ పేజీత్ వాట {{PLURAL:$1|మూస|మూసలు}}:",
-	"template-protected": "(సంరక్షితం)",
-	"template-semiprotected": "(పాక్షిక సంరక్షణత్ అంసాద్)",
 	"hiddencategories": "ఈ పేజీ {{PLURAL:$1|ఒకో డాప్తా వర్గం ఉత్|$1 డాప్తా వర్గాలతి}} అన్సాద్:",
 	"permissionserrors": "పర్మిషన్ తనేదో ఎద్దిన్",
 	"permissionserrorstext-withaction": "ఈ బూడున్{{PLURAL:$1|కారాన్|కారణాలే}}వాలడ్, $2 అనుమతి ఇమ్ముంగ్ తోతేద్:",

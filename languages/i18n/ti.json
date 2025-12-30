@@ -241,8 +241,6 @@
 	"yourtext": "ጽሑፍካ",
 	"yourdiff": "ፍልልያት",
 	"templatesused": "ኣብዚ ገጽ {{PLURAL:$1|ዝተጠቀመ ሞደል|ዝተጠቀሙ ሞደላት}}፦",
-	"template-protected": "(ሕሉው)",
-	"template-semiprotected": "(ፍርቀ-ሕሉው)",
 	"nocreate-loggedin": "ሓደሽቲ ገጻት ክትፈጥር ፍቓድ የብልካን።",
 	"modeleditnotsupported-title": "ኣርትዖት ኣይድገፍን እዩ",
 	"permissionserrorstext": "{{PLURAL:$1|በዚ ዝስዕብ ምኽንያት|በዞም ዝስዕቡ ምኽንያታት}}፣ ነዚ ክትገብር ፍቓድ የብልካን፦",

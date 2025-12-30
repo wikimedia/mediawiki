@@ -188,8 +188,6 @@
 	"editingsection": "Kireerihelaka $1 (opuro)",
 	"templatesused": "{{PLURAL:$1|Template|Templates}} Yoorumeeliwa munikukhuni mu",
 	"templatesusedpreview": "{{PLURAL:$1|Mukexelo|Mikexelo}} Yoorumeeliwa khalayi:",
-	"template-protected": "Yookhoottihiwa",
-	"template-semiprotected": "(yookhapeleliwa vakhaani)",
 	"hiddencategories": "Mapuro ala ta {{PLURAL:$1|muthinto mmosa woottukutthereya|$1 mithinto soottutthereya}}:",
 	"permissionserrors": "Ovonya wootthuna",
 	"permissionserrorstext-withaction": "Khamurina mweemiheryo wa $2, variyari wa mwaha ola onttharelana{{PLURAL:$1|mwaha|myaha}}:",

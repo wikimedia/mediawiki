@@ -484,8 +484,6 @@
 	"templatesused": "{{PLURAL:$1|Leetoo|Leetey}} kaŋ zaandi moɲoo woo se:",
 	"templatesusedpreview": "{{PLURAL:$1|Leetoo|Leetey}} kaŋ cebandi moofuroo woo ra:",
 	"templatesusedsection": "{{PLURAL:$1|Leetoo|Leetey}} kaŋ bangay dunboo woo ra:",
-	"template-protected": "(jejebante)",
-	"template-semiprotected": "(jere-jejebante)",
 	"hiddencategories": "Moɲoo woo {{PLURAL:$1|dumi tugante$ 1}} no m'a may:",
 	"edittools": "<!-- Ne hantumoo ga cebandi fasal nda zijandi takarey cire. -->",
 	"nocreatetext": "{{SITENAME}} na fondaa kaŋ nda moo taagayaaŋ ga tee kankamandi.\nWar ga hin yee banda ka moo barante fasal, wala ka [[Special:UserLogin|huru wala kontu tee]].",

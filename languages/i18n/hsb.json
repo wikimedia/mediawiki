@@ -533,8 +533,6 @@
 	"templatesused": "Na tutej stronje {{PLURAL:$1|wužiwana předłoha|wužiwanej předłoze|wužiwane předłohi|wužiwane předłohi}}:",
 	"templatesusedpreview": "W tutym přehledźe {{PLURAL:$1|wužiwana předłoha|wužiwanej předłoze|wužiwane předłohi|wužiwane předłohi}}:",
 	"templatesusedsection": "W tutym wotrězku {{PLURAL:$1|wužiwana předłoha|wužiwanej předłoze|wužiwane předłohi|wužiwane předłohi}}:",
-	"template-protected": "(škitana)",
-	"template-semiprotected": "(škitana za njepřizjewjenych wužiwarjow a nowačkow)",
 	"hiddencategories": "Tuta strona je čłon w {{PLURAL:$1|1 schowanej kategoriji|$1 schowanymaj kategorijomaj|$1 schowanych kategorijach|$1 schowanych kategorijach}}:",
 	"edittools": "<!-- Tutón tekst so spody wobdźěłowanskich a nahrawanskich formularow pokazuje. -->",
 	"nocreatetext": "Na {{GRAMMAR:lokatiw|{{SITENAME}}}} bu wutworjenje nowych stronow wobmjezowane. Móžeš wobstejace strony wobdźěłać abo [[Special:UserLogin|so přizjewić abo wužiwarske konto wutworić]].",

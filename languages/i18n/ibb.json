@@ -173,8 +173,6 @@
 	"editingsection": "Ukogho $1 (nkan)",
 	"templatesused": "{{PLURAL:$1|Template|Ukpeme}} e kamake ke iwod nwed ami:‎",
 	"templatesusedpreview": "{{PLURAL:$1|Uwam}} ke ukpungo mkpo adam:",
-	"template-protected": "(iniehe si bi nam)",
-	"template-semiprotected": "(efoko-ima)",
 	"hiddencategories": "Iwod nwed ami asine ke {{PLURAL:$1|mme ndibe ekpok|$1 mme ndibe ekpok}}:",
 	"permissionserrors": "Adi no ubok e fonno",
 	"permissionserrorstext-withaction": "Uniehe usong ke $2, si nam {{PLURAL:$1|ndom}}:",

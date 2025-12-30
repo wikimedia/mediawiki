@@ -581,8 +581,6 @@
 	"templatesused": "{{PLURAL:$1|Modèl utilizat|Modèls utilizats}} sus aquesta pagina :",
 	"templatesusedpreview": "{{PLURAL:$1|Modèl utilizat|Modèls utilizats}} dins aquesta previsualizacion :",
 	"templatesusedsection": "{{PLURAL:$1|Modèl utilizat|Modèls utilizats}} dins aquesta seccion :",
-	"template-protected": "(protegit)",
-	"template-semiprotected": "(semiprotegit)",
 	"hiddencategories": "{{PLURAL:$1|Categoria amagada|Categorias amagadas}} qu'aquesta pagina ne fa partida :",
 	"edittools": "<!-- Tot tèxte picat aicí serà afichat jos las bóstias de modificacion o d’impòrt de fichièr. -->",
 	"nocreatetext": "{{SITENAME}} a restrenta la possibilitat de crear de paginas novèlas.\nPodètz tonar en rèire e modificar una pagina existenta, [[Special:UserLogin|vos connectar o crear un compte]].",

@@ -471,8 +471,6 @@
 	"templatesused": "{{PLURAL:$1|Mal|Mallen}} dee up disse syde gebruked wörden:",
 	"templatesusedpreview": "{{PLURAL:$1|Mal|Mallen}} dee in disse bewarking gebruked wördet:",
 	"templatesusedsection": "{{PLURAL:$1|Mal|Mallen}} die in dit subkopjen gebruukt wörden:",
-	"template-protected": "(beveiligd)",
-	"template-semiprotected": "(halv-beveiligd)",
 	"hiddencategories": "Disse syde valt in de volgende verbörgen {{PLURAL:$1|kategory|kategoryen}}:",
 	"edittools": "<!-- Disse tekste steet onder de bewarkings- en bestaandinlaodformulieren. -->",
 	"nocreatetext": "Disse webstee hef de meugelikheid um nieje ziejen an te maken beteund. Je kunnen ziejen die al bestaon wiezigen of je kunnen je [[Special:UserLogin|anmelden of n gebrukerszied anmaken]].",

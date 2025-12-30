@@ -249,8 +249,6 @@
 	"copyrightwarning": "Panumduma nga ang tanan nga nabulig sa {{SITENAME}} ginakonsidera nga i-release sa idalum sang $2 (lantawon ang $1 para sa mga detalye). Kung indi mo gusto ma-ilisan ang imo sinulatan sang wala lu-oy kag ginapalapta sang basta basta, indi na lang pag-ipasa diya.<br />Ginapromisahan mo man kami nga ikaw ang nagsulat mini, ukon ginkopya mo halin sa isa ka pampubliko nga domain ukon sa pareho nga mga libre nga kuluha-an. ' ' 'Indi pag-ipasa ang mga copyrighted nga ubra nga wala sing permiso! ' ' '",
 	"templatesused": "{{PLURAL:$1|Templeyt|Mga templeyt}} nga gina-usar sa mini nga pahina:",
 	"templatesusedpreview": "{{PLURAL:$1|ka templeyt|ka mga templeyt}} ang ginagamit sa mini nga prebyu:",
-	"template-protected": "(protektado)",
-	"template-semiprotected": "(medyo protektado)",
 	"hiddencategories": "Ang mini nga pahina myembro sang {{PLURAL:$1|1 ka nakatago nga kategorya|$1 ka mga nakatago nga kategorya}}:",
 	"permissionserrorstext-withaction": "Wala ka sang permiso para $2, sang mga gasunod {{PLURAL:$1|ka rason|ka mga rason}}:",
 	"post-expand-template-inclusion-warning": "Paandam: Tama kadaku sang takos sang sakop sang templeyt.\nIndi pag-ilakip ang pila ka mga suleras.",

@@ -568,8 +568,6 @@
 	"templatesused": "{{PLURAL:$1|Sablonan}} nyang dipaké di ni halaman:",
 	"templatesusedpreview": "{{PLURAL:$1|Sablonan}} nyang dipaké di ni terawangan:",
 	"templatesusedsection": "{{PLURAL:$1|Sablonan}} nyang dipaké di ni bagèan:",
-	"template-protected": "(dilindungin)",
-	"template-semiprotected": "(separodilindungin)",
 	"hiddencategories": "Ni halaman – bagèan deri {{PLURAL:$1|bangsaan keumpet}}:",
 	"nocreatetext": "{{SITENAME}} udah ngewatesin kegapaan bakal ngeja halaman baru.\nLu bisa balik èn permak halaman nyang udah ada, atawa [[Special:UserLogin|masup atawa keja rèkening]].",
 	"nocreate-loggedin": "Lu kaga' punya ijin ngeja halaman baru.",

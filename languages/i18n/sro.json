@@ -272,8 +272,6 @@
 	"editingcomment": "Ses mudendi $1 (setzioni)",
 	"templatesused": "{{PLURAL:$1|Mòlliu|Mòllius}} imperaus in custa pàgina:",
 	"templatesusedpreview": "{{PLURAL:$1|Mòlliu|Mòllius}} imperaus in cust'anteprima:",
-	"template-protected": "(cadelau)",
-	"template-semiprotected": "(mesu-cadelau)",
 	"hiddencategories": "Custa pàgina fait parti de {{PLURAL:$1|una categoria cuada|$1 categorias cuadas}}:",
 	"permissionserrors": "Farta de permissus",
 	"permissionserrorstext-withaction": "No tenis su permissu de $2, po {{PLURAL:$1|cust'arraxoni|is $1 arraxonis afatantis}}:",

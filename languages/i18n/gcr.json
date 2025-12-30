@@ -449,8 +449,6 @@
 	"yourdiff": "Diférans",
 	"templatesused": "{{PLURAL:$1|Modèl itilizé}} pa sa paj :",
 	"templatesusedpreview": "{{PLURAL:$1|Modèl itilizé}} annan sa prévizwèlizasyon :",
-	"template-protected": "(protéjé)",
-	"template-semiprotected": "(sémi-protéjé)",
 	"hiddencategories": "{{PLURAL:$1|Katégori kaché}} don sa paj ka fè parti :",
 	"permissionserrors": "Lérò di pèrmisyon",
 	"permissionserrorstext-withaction": "Ou pa pouvé $2, pou {{PLURAL:$1|rézon swivant}} :",

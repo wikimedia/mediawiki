@@ -541,8 +541,6 @@
 	"templatesused": "{{PLURAL:$1|Kigezo kinachotumiwa|Vigezo vinavyotumiwa}} kwenye ukurasa huu:",
 	"templatesusedpreview": "{{PLURAL:$1|Kigezo kinachotumiwa|Vigezo vinavyotumiwa}} katika mandhari haya:",
 	"templatesusedsection": "{{PLURAL:$1|Kigezo kinachotumika|Vigezo vinavyotumika}} katika sehemu hii:",
-	"template-protected": "(kulindwa)",
-	"template-semiprotected": "(ulindaji kwa kiasi)",
 	"hiddencategories": "Ukurasa huu uliomo katika jamii $1 {{PLURAL:$1|iliofichwa|zilizofichwa}}:",
 	"nocreatetext": "{{SITENAME}} imebana uwezekano kutengeneza kurasa mpya. Unaweza kurudia na kuhariri kurasa zilizomo, au [[Special:UserLogin|ingia au anza akaunti]].",
 	"nocreate-loggedin": "Huna ruhusa ya kuanzisha ukurasa mpya.",

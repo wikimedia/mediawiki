@@ -631,8 +631,6 @@
 	"templatesused": "{{PLURAL:$1|Šablóna použitá|Šablóny použité}} na tejto stránke:",
 	"templatesusedpreview": "{{PLURAL:$1|Šablóna použitá|Šablóny použité}} použité v tomto náhľade:",
 	"templatesusedsection": "{{PLURAL:$1|Šablóna použitá|Šablóny použité}} použité v tejto sekcii:",
-	"template-protected": "(zamknutá)",
-	"template-semiprotected": "(čiastočne zamknutá)",
 	"hiddencategories": "Táto stránka patrí do {{PLURAL:$1|1 skrytej kategórie|$1 skrytých kategórií}}:",
 	"edittools": "<!-- Tento text sa zobrazí pod upravovacím a nahrávacím formulárom. -->",
 	"nocreatetext": "Na {{GRAMMAR:lokál|{{SITENAME}}}} je tvorba nových stránok obmedzená.\nTeraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Special:UserLogin|sa prihlásiť alebo vytvoriť účet]].",

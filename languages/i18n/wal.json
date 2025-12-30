@@ -366,8 +366,6 @@
 	"editingsection": "$1 (shaahuwaa) goydiiddi",
 	"templatesused": "Ha sinttan go'ettidi {{PLURAL:$1|Templeetiyaa|Templeeteta}}:",
 	"templatesusedpreview": "Ha zaari be'uwaan go'ettido {{PLURAL:$1|Leemisuwaa|Leemisota}}:",
-	"template-protected": "(naagettidaagaa)",
-	"template-semiprotected": "(guuttaa naagettidaagaa)",
 	"hiddencategories": "Ha sinttay {{PLURAL:$1|geemmida moodettaa|$1 geemmida moodettata}} yara:",
 	"permissionserrors": "Eenotaa balaa",
 	"permissionserrorstext-withaction": "Kaalliya {{PLURAL:$1|gaasuwan|gaasotun}} $2ssi neeyyo eenoti baawa:",

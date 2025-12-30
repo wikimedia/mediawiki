@@ -213,8 +213,6 @@
 	"editingsection": "$1 be banjibume aramahabi (fiyelen)",
 	"templatesused": "Ere afaha -i baitalara {{PLURAL:$1|Template}}:",
 	"templatesusedpreview": "Ere doigomšoro tuwabun -i baitalabuha {{PLURAL:$1|Template}}:",
-	"template-protected": "(Tuwakiyaburengge)",
-	"template-semiprotected": "(Dulin karmaburengge)",
 	"hiddencategories": "Ere justan {{PLURAL:$1|somibure duwalibun}} -i harangga:",
 	"permissionserrors": "Tašaraha toose",
 	"permissionserrorstext-withaction": "Ereci fusihūn {{PLURAL:$1|turgun}} de, Sinde $2 be yabure toose akū,",

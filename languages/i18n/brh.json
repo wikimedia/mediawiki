@@ -125,8 +125,6 @@
 	"editingsection": "$1 (vanđ) aŧí radbadal",
 	"templatesused": "Dá panna ŧí aloká {{PLURAL:$1|Kálib|Kálib ák}}:",
 	"templatesusedpreview": "Dá sarí jác aŧí aloká {{PLURAL:$1|Kálib|Kálib ák}}:",
-	"template-protected": "(rakk karok)",
-	"template-semiprotected": "(nem-rakk)",
 	"hiddencategories": "Dá panna {{PLURAL:$1|1 aodemo xáot|$1 aodemo xáot}} ná básk ase:",
 	"permissionserrorstext-withaction": "Ne $2 ná mokal aff, oná {{PLURAL:$1|dalíl dáde|dalíl ák dádo}}:",
 	"viewpagelogs": "Dá panna ná hisáb áte ur",

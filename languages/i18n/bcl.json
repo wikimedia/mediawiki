@@ -525,8 +525,6 @@
 	"templatesused": "{{PLURAL:$1|Padron na|Mga padron na}} ginamit sa pahinang ini:",
 	"templatesusedpreview": "{{PLURAL:$1|Ginamit na padron|Mga ginamit na padron}} sa pasirip na ini:",
 	"templatesusedsection": "{{PLURAL:$1|Template|Mga Panguyog}} na pinaggamit kaining seksyon:",
-	"template-protected": "(protektado)",
-	"template-semiprotected": "(medyo protektado)",
 	"hiddencategories": "Myembro kan {{PLURAL:$1|nakatagong kategorya|$1 (na) nakatagong kategorya}} an pahinang ini:",
 	"edittools": "<!-- An teksto digdi mahihiling sa babâ kan mga pormang pighihirá asin pigkakarga. -->",
 	"nocreatetext": "{{SITENAME}} pinagpupugol an kakayanan na magmukna nin baguhong mga pahina.\nIka makakabalik asin magliwat kan eksistidong nang pahina, o [[Special:UserLogin|maglaog ka o magmukna nin sarong panindog]].",

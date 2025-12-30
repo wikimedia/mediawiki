@@ -341,8 +341,6 @@
 	"yourdiff": "𐌲𐌰𐍃𐌺𐌰𐌹𐌳𐌴𐌹𐌽𐍉𐍃",
 	"templatesused": "{{PLURAL:$1|𐍆𐌰𐌿𐍂𐌰𐌼𐌴𐌻𐌴𐌹𐌽𐍃 𐌱𐍂𐌿𐌷𐍄𐌰|𐍆𐌰𐌿𐍂𐌰𐌼𐌴𐌻𐌴𐌹𐌽𐍉𐍃 𐌱𐍂𐌿𐌷𐍄𐍉𐍃}} 𐌰𐌽𐌽𐌰 𐌸𐌰𐌼𐌼𐌰 𐌻𐌰𐌿𐌱𐌰:",
 	"templatesusedpreview": "{{PLURAL:$1|𐍆𐌰𐌿𐍂𐌰𐌼𐌴𐌻𐌴𐌹𐌽𐍃|𐍆𐌰𐌿𐍂𐌰𐌼𐌴𐌻𐌴𐌹𐌽𐍉𐍃}} 𐌱𐍂𐌿𐌺𐌾𐌰𐌽𐌳𐌰 𐌹𐌽 𐌸𐌹𐌶𐌰𐌹 𐍆𐌰𐌿𐍂𐌰𐍃𐌹𐌿𐌽𐌰𐌹:",
-	"template-protected": "(𐌷𐌰𐌱𐌰𐌹𐌸 𐌼𐌿𐌽𐌳)",
-	"template-semiprotected": "(𐌷𐌰𐌱𐌰𐌹𐌸 𐌷𐌰𐌻𐌱𐌰𐌼𐌿𐌽𐌳)",
 	"hiddencategories": "𐍃𐌰 𐌻𐌰𐌿𐍆𐍃 𐌹𐍃𐍄 𐌲𐌰𐌳𐌰𐌹𐌻𐌰 {{PLURAL:$1|1 𐌰𐌽𐌰𐌻𐌰𐌿𐌲𐌽𐌹𐍃 𐌺𐌿𐌽𐌾𐌹𐍃|$1 𐌰𐌽𐌰𐌻𐌰𐌿𐌲𐌽𐌰𐌹𐌶𐌴 𐌺𐌿𐌽𐌾𐌴}}:‎",
 	"permissionserrors": "𐌰𐌹𐍂𐌶𐌴𐌹 𐌰𐌽𐌳𐌻𐌴𐍄𐌹𐍃",
 	"permissionserrorstext-withaction": "𐌽𐌹 𐌷𐌰𐌱𐌰𐌹𐍃 𐌰𐌽𐌳𐌻𐌴𐍄 𐌳𐌿 $2, 𐌹𐌽 {{PLURAL:$1|𐌹𐍆𐍄𐌿𐌼𐌰𐌹𐌶𐍉𐍃 𐍅𐌰𐌹𐌷𐍄𐌰𐌹𐍃|𐌹𐍆𐍄𐌿𐌼𐌰𐌹𐌶𐍉 𐍅𐌰𐌹𐌷𐍄𐌴}}:",

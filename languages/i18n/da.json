@@ -696,8 +696,6 @@
 	"templatesused": "{{PLURAL:$1|Side|Sider}} der er brugt på denne side:",
 	"templatesusedpreview": "Følgende {{PLURAL:$1|side|sider}} bruges i denne forhåndsvisning:",
 	"templatesusedsection": "Følgende {{PLURAL:$1|side|sider}} bruges i dette afsnit:",
-	"template-protected": "(skrivebeskyttet)",
-	"template-semiprotected": "(delvist beskyttet)",
 	"hiddencategories": "Denne side er i {{PLURAL:$1|en skjult kategori|$1 skjulte kategorier}}:",
 	"edittools": "<!-- Denne tekst vises under formularen \"Redigér\" samt \"Læg en fil op\". -->",
 	"nocreatetext": "{{SITENAME}} har begrænset oprettelse af nye sider. \nDu kan gå tilbage og redigere en eksisterende side, elle [[Special:UserLogin|logge på eller oprette en konto]].",

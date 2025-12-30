@@ -206,8 +206,6 @@
 	"editingsection": "Ruri niru Gororwa $1 (ekyicweka)",
 	"templatesused": "{{PLURAL:$1|Ekyokureberabaho ekyirikukoresibwa|Ebyokureberaho ebirikukoresibwa}} aha orubaju oru",
 	"templatesusedpreview": "{{PLURAL:$1|Ekyokureberaho ekyi|Ebyokureberaho ebi}} ku koresibwa omu kworekwaho oku:",
-	"template-protected": "(hatsibirwe)",
-	"template-semiprotected": "(ebitsibirwe ekyicweka)",
 	"hiddencategories": "Oru Orubaju Ni rumwe aha {{PLURAL:$1| Ekibiina Ekyisherekyirwe|$1 ebibiina ebisherekyirwe}}:",
 	"permissionserrors": "Enshobi ya orusa",
 	"permissionserrorstext-withaction": "Tokwikirizibwa ku $2, ahabwa enshoga {{PLURAL:$1|egyi|ezi}}:",

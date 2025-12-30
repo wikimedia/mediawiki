@@ -215,8 +215,6 @@
 	"yourtext": "Nkomá na yɔ̌",
 	"templatesused": "{{PLURAL:$1|Emekisele esálélí|Bimekisele bisálélí}} o lonkásá óyo:",
 	"templatesusedpreview": "{{PLURAL:$1|Emekisele esálélí|Bimekisele bisálélí}} o botáli boye:",
-	"template-protected": "(na bobáteli)",
-	"template-semiprotected": "(na bobáteli ya ndámbo)",
 	"hiddencategories": "Lokasa oyo ezali mosangani ya {{PLURAL:$1| catégorie moko ya kobombama| $1 biteni oyo ebombami}}:",
 	"permissionserrors": "Libunga ya ndingisa",
 	"permissionserrorstext-withaction": "Ozali na ndingisa te na $2 , mpo na oyo elandi {{PLURAL:$1| ntina|bantina}}:",

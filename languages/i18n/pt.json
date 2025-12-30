@@ -709,8 +709,6 @@
 	"templatesused": "{{PLURAL:$1|Página|Páginas}} incluída(s) nesta página:",
 	"templatesusedpreview": "{{PLURAL:$1|Página|Páginas}} incluída(s) nesta pré-visualização:",
 	"templatesusedsection": "{{PLURAL:$1|Página|Páginas}} incluída(s) nesta secção:",
-	"template-protected": "(protegida)",
-	"template-semiprotected": "(semiprotegida)",
 	"hiddencategories": "Esta página pertence a {{PLURAL:$1|uma categoria oculta|$1 categorias ocultas}}:",
 	"edittools": "<!-- O texto colocado aqui será mostrado abaixo dos formulários de edição e de envio de ficheiros. -->",
 	"nocreatetext": "A wiki {{SITENAME}} restringe a criação de páginas novas por utilizadores anónimos.\nPode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|iniciar uma sessão ou criar uma conta]].",

@@ -175,8 +175,6 @@
 	"editingsection": "«$1» питтә төсәтеү",
 	"templatesused": "Пы питтә ошланылған {{PLURAL:$1|1=ҡалып|ҡалыплар}}:",
 	"templatesusedpreview": "Алттан ҡарау режимта ошланылған {{PLURAL:$1|1=ҡалып|ҡалыплар}}:",
-	"template-protected": "(саҡланҡан)",
-	"template-semiprotected": "(өлөшө пелән саҡланҡан)",
 	"hiddencategories": "Пы пит $1 {{PLURAL:$1|йәшерен төргөнкә|$1 йәшерен төргөннәргә}} керәте:",
 	"permissionserrors": "Кереүнең ҡаҡ ҡатасы",
 	"permissionserrorstext-withaction": "$2 әмәлен ҡыла алмайсыс. {{PLURAL:$1|1=сәбәбе пуйынца|сәбәпләре пуйынца}}:",

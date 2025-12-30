@@ -162,8 +162,6 @@
 	"editingsection": "$1 सम्पादन (अनुभाग)",
 	"templatesused": "इस पृष्ठ पै प्रयुक्त {{PLURAL:$1|साँचा|साँचें}}:",
 	"templatesusedpreview": "इस झलक में प्रयुक्त {{PLURAL:$1|साँचा|साँचें}}:",
-	"template-protected": "(सुरक्षित)",
-	"template-semiprotected": "(अर्ध-सुरक्षित)",
 	"hiddencategories": "यो पृष्ठ निम्नलिखित $1 छिपाए हुए {{PLURAL:$1|श्रेणी|श्रेणियों}} में श्रेणीबद्ध सै:",
 	"permissionserrors": "अधिकार त्रुटि",
 	"permissionserrorstext-withaction": "थमने $2 की अनुमति कोनि, निम्नलिखित {{PLURAL:$1|कारण|कारणों}} की वजह तै:",

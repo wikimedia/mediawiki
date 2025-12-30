@@ -445,8 +445,6 @@
 	"templatesused": "{{PLURAL:$1|Avise|Avises}} usat in ti págine:",
 	"templatesusedpreview": "{{PLURAL:$1|Avise|Avises}} usat in ti prevision:",
 	"templatesusedsection": "{{PLURAL:$1|Avise|Avises}} usat in ti section:",
-	"template-protected": "(protectet)",
-	"template-semiprotected": "(semi-protectet)",
 	"hiddencategories": "Ti págine es un membre de {{PLURAL:$1|1 categorie ocultat|$1 categories ocultat}}:",
 	"permissionserrors": "Errore de permissiones",
 	"permissionserrorstext": "Vu ne have permission por far it, por li sequent {{PLURAL:$1|rason|rasones}}:",

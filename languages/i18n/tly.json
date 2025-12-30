@@ -306,8 +306,6 @@
 	"yourdiff": "Fərǧon",
 	"templatesused": "{{PLURAL:$1|Səhifə|Səhifon}} by səhifədə oko doə bejdən:",
 	"templatesusedpreview": "{{PLURAL:$1|1=Səhifə|Səhifon}} oko dojdən syftənə edijəsejədə:",
-	"template-protected": "(nyǧo doə byə)",
-	"template-semiprotected": "(nimə holədə nyǧo doə byə)",
 	"hiddencategories": "Ym səhifə aidijotyš heste bə {{PLURAL:$1|1 nijoni kategorijə|$1 nijoni kategorijon}}:",
 	"permissionserrors": "Dastrəsi xəto",
 	"permissionserrorstext-withaction": "Šyməku ni izn bə ym hərəkəti $2, bə žygo {{PLURAL:$1|səbəbi|səbəbon}} gornə:",

@@ -214,8 +214,6 @@
 	"templatesused": "{{PLURAL:$1|Orupapura orurumu|Empapura ezirumu}} orupapura runu:",
 	"templatesusedpreview": "{{PLURAL:$1|Orupapura orurumu|Empapura ezirumu}} ensisana y'ebikwija enu:",
 	"templatesusedsection": "{{PLURAL:$1|Orupapura orurumu|Empapura ezirumu}} omugabo gunu:",
-	"template-protected": "(rw'okwigarra)",
-	"template-semiprotected": "(rw'okwigarra kuke)",
 	"hiddencategories": "Runu orupapura ruli memba w'{{PLURAL:$1|omugomo gumu oguserekirwe|emigomo $1 eyeserekirwe}}:",
 	"permissionserrors": "Ensobi y'okuheebwa orusa",
 	"permissionserrorstext-withaction": "Toikirizibwa ku$2, habw'ensonga {{PLURAL:$1|enu|zinu}}:",

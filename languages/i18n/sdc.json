@@ -427,8 +427,6 @@
 	"templatesused": "{{PLURAL:$1|Mudellu utirizaddu|Mudelli utirizaddi}} in chistha pàgina:",
 	"templatesusedpreview": "{{PLURAL:$1|Mudellu utirizaddu|Mudelli utirizaddi}} in kistha pàgina:",
 	"templatesusedsection": "{{PLURAL:$1|Mudellu utirizaddu|Mudelli utirizaddi}} in chistha pàgina:",
-	"template-protected": "(prutiggiddu)",
-	"template-semiprotected": "(mezu-prutiggiddu)",
 	"hiddencategories": "Chistha pagina appartheni a {{PLURAL:$1|una categuria cuadda|$1 categurì cuaddi}}:",
 	"edittools": "<!-- Testhu chi appari in giossu lu mòdulu di mudìfiga e di carriggamentu. -->",
 	"nocreatetext": "{{SITENAME}} à limitaddu la pussibiliddai di crià nobi pagini a li sori utenti registhraddi. È pussìbiri turrà indareddu e mudìfiggà una pàgina esisthenti, oppuru [[Special:UserLogin|intrà o crià una noba registhrazioni]].",

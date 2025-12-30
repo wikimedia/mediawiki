@@ -172,8 +172,6 @@
 	"editingsection": "$1 manyib (kalaŋan)",
 	"templatesused": "{{PLURAL:$1|Tɔniib}} ba zaŋbii wadge jugun:",
 	"templatesusedpreview": "{{PLURAL:$1|Tɔniib}} ba zaŋbii wadge jugun:",
-	"template-protected": "(Jugun kiigb)",
-	"template-semiprotected": "waga jugun kigb",
 	"hiddencategories": "Wadgan kena bana {{PLURAL:$1 reekan| kpɛdr Hawu l $1 kpɛdr hawii}}",
 	"permissionserrors": "Wadsahb titmb",
 	"permissionserrorstext-withaction": "Ba' bah soin wad-n $2, benaŋa kah{{PLURAL:$1|kunah ka'| tnah kah}} :",

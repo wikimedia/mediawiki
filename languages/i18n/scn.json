@@ -521,8 +521,6 @@
 	"templatesused": "{{PLURAL:$1|Template adupiratu|Template adupirati}} nta sta pàggina:",
 	"templatesusedpreview": "{{PLURAL:$1|Template adupiratu|Template adupirati}} nta st'antiprima:",
 	"templatesusedsection": "{{PLURAL:$1|Template adupiratu|Template adupirati}} nta sta sizzioni:",
-	"template-protected": "(prutettu)",
-	"template-semiprotected": "(semiprutettu)",
 	"hiddencategories": "Sta pàggina apparteni a {{PLURAL:$1|na catigurìa ammucciata|$1 catigurìi ammucciati}}:",
 	"edittools": "<!-- Chistu testu cumpari sutta li moduli di canciu e carricamentu. -->",
 	"nocreatetext": "{{SITENAME}} limitau la pussibbilitati di criari pàggini novi.\nPoi turnari n arreri e canciari na pàggina già esistenti, o puru [[Special:UserLogin|tràsiri o criari nu cuntu novu]].",

@@ -238,8 +238,6 @@
 	"editingsection": "De èdit $1 (sèktiòn)",
 	"templatesused": "{{PLURAL:$1|Pej|Pej dɛn}} we dɛn yuz na dis pej:",
 	"templatesusedpreview": "{{PLURAL:$1|Pej|Pej dɛn}} we dɛn yuz na dis prɛviu:",
-	"template-protected": "(thin we dèn protect)",
-	"template-semiprotected": "(we haf-protect)",
 	"hiddencategories": "Dis pej na mɛmba fɔ {{PLURAL:$1| wan kategori we ayd| $1 kategori dɛn we dɛn ayd}}:",
 	"permissionserrors": "Permishɔn mistek",
 	"permissionserrorstext-withaction": "Yu no gèt permisshòn fo $2, bikoz {{PLURAL:$1|rizin|rizin-dem}}:",

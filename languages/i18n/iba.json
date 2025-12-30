@@ -399,8 +399,6 @@
 	"yourdiff": "Pemida",
 	"templatesused": "{{PLURAL:$1|Templat}} ke udah dikena dalam lambar tu:",
 	"templatesusedpreview": "{{PLURAL:$1|Templat}} ke dikena ba pra-peda tu:",
-	"template-protected": "(dilindung)",
-	"template-semiprotected": "(dilindung sekeda)",
 	"hiddencategories": "Laman tu nyadi raban {{PLURAL:$1|kategori ti dilalaika|$1 kategori ti dilalaika}}:",
 	"permissionserrors": "Penyalah pemendar",
 	"permissionserrorstext-withaction": "Nuan nadai pemendar kena $2 {{PLURAL:$1|kebuah}} tu:",

@@ -293,8 +293,6 @@
 	"yourtext": "Bo teksto",
 	"yourdiff": "Diferensianan",
 	"templatesused": "{{PLURAL:$1|Malchi}} uzá na e página akí:",
-	"template-protected": "(protegido)",
-	"template-semiprotected": "(semi en protegido)",
 	"hiddencategories": "E página akí ta parti di {{PLURAL:$1|un kategoria skondí|$1 kategoria skondí}}",
 	"permissionserrors": "Eror di pèrmit",
 	"permissionserrorstext-withaction": "Bo no tin pèrmit pa $2, pa e {{PLURAL:$1|motibu|motibunan}} akí:",

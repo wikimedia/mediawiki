@@ -160,8 +160,6 @@
 	"editingcomment": "Edita $1 (seksaun foun)",
 	"yourtext": "Ó-nia testu",
 	"yourdiff": "Diferensa sira",
-	"template-protected": "(proteje tiha)",
-	"template-semiprotected": "(proteje tiha balun)",
 	"hiddencategories": "Pájina ne'e iha {{PLURAL:$1|kategoria ida-ne'ebé subar|kategoria $1 sira-ne'ebé subar}}:",
 	"nocreatetext": "Ó la bele kria pájina foun iha {{SITENAME}}.\nÓ bele edita pájina sira-ne'ebé {{SITENAME}} iha ona ka [[Special:UserLogin|log in ka kria konta uza-na'in]].",
 	"nocreate-loggedin": "Ó la bele kria pájina foun.",

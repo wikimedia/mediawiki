@@ -422,8 +422,6 @@
 	"copyrightwarning2": "Beþenc la þæt man mæg ealla forðunga to {{SITENAME}}\nadihtan, andwendan, oþþe forniman.\nGif þu ne wille þe man þin gewritu adihte unmildheorte, þonne ne writ þæt her.<br />\nÞu behætst eac þæt þu selfa þis write, oþþe bewrite of sumre\nfolclicum agnunge oþþe gelicum horde and freom (seoh $1 to rædenne towritennesse).\n'''Ne forþsend bewritungrihta geseted weorc leas þafunge!'''",
 	"templatesused": "{{PLURAL:$1|Þeos bysen is|Þas bysna sind}} gebrocen on þissum tramete:",
 	"templatesusedpreview": "{{PLURAL:$1|Þeos bysen is|Þas bysena sind}} gebrocen on þisre forebysene:",
-	"template-protected": "(geborgen)",
-	"template-semiprotected": "(samborgen)",
 	"hiddencategories": "Þes tramet is gesibb {{PLURAL:$1|1 gehydedum flocce|$1 gehydedra flocca}}:",
 	"nocreate-loggedin": "Þu ne hæfst þafunge to scyppenne niwe trametas.",
 	"permissionserrors": "Þafunge woh",

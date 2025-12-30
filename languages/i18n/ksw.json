@@ -156,8 +156,6 @@
 	"editingsection": "အဲၣ်ဒံၣ် $1 (တၢ်နီၤဖး)",
 	"templatesused": "{{PLURAL:$1|Template|Templates}} သူဘၣ်လၢကဘျံးပၤတခါအံၤ:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Templates}} သူဝဲဒၣ်လၢ ဖြံဖၠူ:",
-	"template-protected": "(ဒီသဒၢ)",
-	"template-semiprotected": "(တၢ်ဒီသဒၢ တဝာ်)",
 	"hiddencategories": "ကဘျံးပၤအံၣ်အိၣ်လၢ {{PLURAL:$1|ကရူၢ်ခူၣ်သူၣ်|ကရူၢ်ခူၣ်သူၣ် $1 ခါ }}အကျါ:",
 	"permissionserrors": "အခွဲးကမၣ်",
 	"permissionserrorstext-withaction": "နခွဲးတအိၣ်ဘၣ်လၢ $2, ခီဖျိလၢ {{PLURAL:$1|reason|reasons}}:",

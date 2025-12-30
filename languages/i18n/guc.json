@@ -183,8 +183,6 @@
 	"editingsection": "Anaatawaa $1 (alüjülee)",
 	"templatesused": "{{PLURAL:$1|Akanasio'i|Akanasio'ukana}} aapaanaka sünain ee'iyalayaaka tüü:",
 	"templatesusedpreview": "{{PLURAL:$1|Akanasio'i aapanüipa|Akanasio'ukana aapanaka}} sünain e'rajawaa apülapüna tüü.",
-	"template-protected": "(aa'inmajuushi)",
-	"template-semiprotected": "(Eekü müsü-aa'inmajuushi)",
 	"hiddencategories": "Ee'iyalayaaka tüü sümaajatü wane {{PLURAL:$1|1 akotchiraayanülie ounjulaaüshika|$1 akotchiraayanülieekana ounjulaaüshikana}}:",
 	"permissionserrors": "Ajachitia süka oo'ulaanaka",
 	"permissionserrorstext-withaction": "Nnojotsü süpüla paapaain tü $2, süka jamüin {{PLURAL:$1|aliijaanüsü puulia|aliijaanüsü juulia}}:",

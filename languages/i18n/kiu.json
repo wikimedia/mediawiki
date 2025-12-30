@@ -289,8 +289,6 @@
 	"copyrightwarning": "Diqet ke, iştıraqê ke benê be pela {{SITENAME}}i, pêro bınê $2 de rakerde vêrenê (serba daêna melumati qaytê $1 ke).\nİştırakunê ho, eke nêwazena wa terefê binu ra bıvuriyê ya ki caunê binu ra vıla bê, o taw ita menuse.<br />\nZobina ki ebe ita nustene ra sond wena ke nê iştıraki terefê to ra nuşiyê, ya çımê do rakerdey ra ya ki çımê do serbest ra kopya biyê.\n'''Gurêo ke ebe telifheqiye ra sevekiyo bê destur ita darde meke!'''",
 	"templatesused": "{{PLURAL:$1|Şablono ke na pele de gurenino|Şablonê ke na pele de gureninê}}:",
 	"templatesusedpreview": "{{PLURAL:$1|Şablono ke na verqayt de gureno|Şablonê ke na verqayt de gurenê}}:",
-	"template-protected": "(sevekna)",
-	"template-semiprotected": "(nêm-seveknais)",
 	"hiddencategories": "Na pele mensuba {{PLURAL:$1|1 kategoriya nımıtiya|$1 kategoriunê nımıtuna}}:",
 	"permissionserrors": "Xetê desturi",
 	"permissionserrorstext-withaction": "Desturê to be $2 çino, serba {{PLURAL:$1|na sebebi|nê sebebu}} ra:",

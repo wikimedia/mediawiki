@@ -527,8 +527,6 @@
 	"templatesused": "{{PLURAL:$1|Modeło doparà|Modèłi doparai}} in sta pajina:",
 	"templatesusedpreview": "{{PLURAL:$1|Modeło|Modełi}} doparà in sta anteprima:",
 	"templatesusedsection": "{{PLURAL:$1|Modeło doparà|Modełi doparai}} in sta sesion:",
-	"template-protected": "(protexesto)",
-	"template-semiprotected": "(semi-protexesto)",
 	"hiddencategories": "Sta pajina ła xé drento a {{PLURAL:$1|na categoria sconta|$1 categorie sconte}}:",
 	"nocreatetext": "Ƚa possibilità de crear pàgine nóve su {{SITENAME}} ƚa xe stà ƚimità ai soƚi utenti registrà. Se pol tornar indrìo e modificar na pàgina existente, opure [[Special:UserLogin|entrar o crear un nóvo aceso]].",
 	"nocreate-loggedin": "No te ghè i permessi necessari a crear pagine nove.",

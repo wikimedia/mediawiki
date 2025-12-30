@@ -543,8 +543,6 @@
 	"templatesused": "{{PLURAL:$1|Templat}} nan digunoan di laman ko:",
 	"templatesusedpreview": "{{PLURAL:$1|Templat}} nan digunoan dalam pratinjau ko:",
 	"templatesusedsection": "{{PLURAL:$1|Templat}} nan digunoan di bagian ko:",
-	"template-protected": "(dilinduangi)",
-	"template-semiprotected": "(saparuah dilinduangi)",
 	"hiddencategories": "Laman ko marupokan kalompok dari {{PLURAL:$1|$1 kategori tapandam}}:",
 	"nocreatetext": "{{SITENAME}} lah mambatasi pambuekan laman-laman baru.\nSanak dapek baliak dan manyuntiang laman nan alah ado, atau [[Special:UserLogin|masuak log - mambuek akun]].",
 	"nocreate-loggedin": "Sanak ndak mampunyoi hak akses untuak mambuek laman baharu.",

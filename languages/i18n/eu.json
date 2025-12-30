@@ -627,8 +627,6 @@
 	"templatesused": "Orri honetan erabiltzen {{PLURAL:$1|den txantiloia|diren txantiloiak}}:",
 	"templatesusedpreview": "Aurreikuspen honetan erabiltzen {{PLURAL:$1|den txantiloia|diren txantiloiak}}:",
 	"templatesusedsection": "Atal honetan erabiltzen {{PLURAL:$1|den txantiloia|diren txantiloiak}}:",
-	"template-protected": "(babestua)",
-	"template-semiprotected": "(erdi-babestua)",
 	"hiddencategories": "Orri hau ezkutuko {{PLURAL:$1|kategoria bateko|$1 kategoriatako}} kide da:",
 	"edittools": "<!-- Hemen jarritako testua aldaketa eta igoera formularioen azpian agertuko da. -->",
 	"nocreatetext": "Gune honek orrialde berriak sortzeko gaitasuna mugatu du. Atzera egin dezakezu existitzen den orrialde bat aldatzeko, edo [[Special:UserLogin|saio hasi edo kontua sortu]].",

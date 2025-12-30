@@ -320,8 +320,6 @@
 	"yourdiff": "फरक",
 	"templatesused": "ह्या पानाचेर {{PLURAL:$1|वापरिल्लें}} सांचे",
 	"templatesusedpreview": "{{PLURAL:$1सांचो|सांचे}} ह्या झलकेंत वापरल्यात:‎",
-	"template-protected": "(राखिल्लें)",
-	"template-semiprotected": "(अर्द-सुरक्षीत)",
 	"hiddencategories": "हें पान {{PLURAL:$1|लिपिल्ले वर्गाचें}} आसा",
 	"permissionserrors": "परवांगेची चूक",
 	"permissionserrorstext-withaction": "ह्या {{PLURAL:$1|कारण|कारणां}}: खातीर तुका $2 मान्यताय ना.",

@@ -564,8 +564,6 @@
 	"templatesused": "Šajā lapā {{PLURAL:$1|izmantotās veidnes|izmantotā veidne|izmantotās veidnes}}:",
 	"templatesusedpreview": "Šajā pirmskatā {{PLURAL:$1|izmantotās veidnes|izmanotā veidne|izmantotās veidnes}}:",
 	"templatesusedsection": "Šajā sadaļā {{PLURAL:$1|izmantotās veidnes|izmantotā veidne|izmantotās veidnes}}:",
-	"template-protected": "(aizsargāta)",
-	"template-semiprotected": "(daļēji aizsargāta)",
 	"hiddencategories": "Šī lapa ietilpst {{PLURAL:$1|$1 slēptajās kategorijās|1 slēptajā kategorijā|$1 slēptajās kategorijās}}:",
 	"nocreatetext": "{{grammar:lokatīvs|{{SITENAME}}}} ir atslēgta iespēja izveidot jaunas lapas.\nTu vari atgriezties atpakaļ un izlabot esošu lapu, vai arī [[Special:UserLogin|ielogoties, vai izveidot kontu]].",
 	"nocreate-loggedin": "Tev nav atļaujas veidot jaunas lapas.",

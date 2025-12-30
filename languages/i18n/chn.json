@@ -172,8 +172,6 @@
 	"editingsection": "alta mayka munk-t’səm kʰapa $1 (sitkum)",
 	"templatesused": "{{PLURAL:$1|\"Template\"|kʰanawi \"template\"}} kʰapa ukuk pipa:",
 	"templatesusedpreview": "{{PLURAL:$1|\"Template\"|Kanawi \"template\"}} kopa ukuk pipa:",
-	"template-protected": "(skukum pipa)",
-	"template-semiprotected": "(sitkum-skukum pipa)",
 	"hiddencategories": "ukuk pipa t’uʔan {{PLURAL:$1|$1 ipsət nim-ikta}}:",
 	"permissionserrors": "wiki la-t’sipi",
 	"permissionserrorstext-withaction": "x̣awqal $2 mayka, qʰiwa {{PLURAL:$1|ukuk}}:",

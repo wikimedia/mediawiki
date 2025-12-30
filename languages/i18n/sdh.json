@@ -254,8 +254,6 @@
 	"yourtext": "دەقەگەت",
 	"yourdiff": "جیاوازیەیل",
 	"templatesused": "ئەو {{PLURAL:$1|داڕێژە ک لە ئەی پەڕە ئەوکاربریاێە|داڕێژەیلە ک لە ئەی پەڕە ئەوکاربریانە}}:",
-	"template-protected": "(پیەرێزیاێ)",
-	"template-semiprotected": "(نیوەپیەرێزیاێ)",
 	"hiddencategories": "ئەی پەڕە ئەندام {{PLURAL:$1|١ پۆل شاریاێە|$1 پۆل شاریاێە}}:",
 	"permissionserrors": "هەڵە لە وە دەس هاوردن",
 	"permissionserrorstext-withaction": "لەسەر ئەی {{PLURAL:$1|مدوو|مدووەیل}} خوارەو، دەسەڵات نەێرید ئەڕاێ $2:",

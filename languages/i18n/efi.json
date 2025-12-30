@@ -168,8 +168,6 @@
 	"editingsection": "Kpụhọde $1 (Ikpehe)",
 	"templatesused": "{{PLURAL:$1|Template|Templates}} ẹkeda ẹnam ke page emi:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Templates}} ẹkeda ẹnam ke page emi:",
-	"template-protected": "(ekpeme)",
-	"template-semiprotected": "(ubak-ukpeme)",
 	"hiddencategories": "Page emi esine ke otu {{PLURAL:$1|ndedibe ikpehe|$1 mme ndedibe ikpehe}}:",
 	"permissionserrors": "Iyakke odụk ikpehe oro",
 	"permissionserrorstext-withaction": "Unyeneke unen ndi $2, ke se itienede emi {{PLURAL:$1|ntak|mme ntak}}:",

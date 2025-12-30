@@ -196,8 +196,6 @@
 	"editingsection": "Pikeriben $1 (sekcija)",
 	"templatesused": "{{PLURAL:$1|O šablonos|O šabloni}} so chasňarďam pre kadi sera:",
 	"templatesusedpreview": "{{PLURAL:$1|O šablonos|O šabloni}} so chasňarďam pre kada dikhiben:",
-	"template-protected": "(Tele phanďi)",
-	"template-semiprotected": "kotoral tele phandi",
 	"hiddencategories": "Kadi sera hin {{PLURAL:$1|andale garuďi kategorija|andalo $1 garude kategoriji}}:",
 	"permissionserrors": "Chiba, nane tut čačipen ada te kerel",
 	"permissionserrorstext-withaction": "Nane tut mukhľipen te $2, bijo kada/kala {{PLURAL:$1|dovodos|dovodi}}:",

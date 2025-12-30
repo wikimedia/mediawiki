@@ -646,8 +646,6 @@
 	"templatesused": "{{PLURAL:$1|Àtụ}} hé jịrị rü ihüá:",
 	"templatesusedpreview": "{{PLURAL:$1|Àtụ|Àtụ}} hé jịrị na nlétú nke:",
 	"templatesusedsection": "{{PLURAL:$1|Àtụ|Àtụ}} hé jịrị na nkeji nke:",
-	"template-protected": "(cẹdoluecẹdo)",
-	"template-semiprotected": "(cẹdolu-ntakiri)",
 	"hiddencategories": "Ihü a dị nà nke ótù {{PLURAL:$1|ébéonọr zọnàrì nke 1|ébéonọr zọnàrì nke $1}}:",
 	"nocreatetext": "{{SITENAME}} amachiela ikike imepụta ibe ọhụrụ.\nỊ nwere ike ịlaghachi ma dezie ibe dị adị, ma ọ bụ [[Special:UserLogin|banye ma ọ bụ mepụta akaụntụ]].",
 	"nocreate-loggedin": "Í nwéghi ọdà Í ké ihü ohụrụ.",

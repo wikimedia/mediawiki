@@ -234,8 +234,6 @@
 	"copyrightwarning": "Diabe kamoka go {{SITENAME}} di akanywa go ngwadiwa tlase ga $2 (lebelela $1 go hwetša taba ka bophara). Ge o sa nyake gore mengwalo ya gago e fetolwe ntle le kgaugelo goba e phatlalatšwe ntle le tumello ya gago, o seke wa fana ka mengwalo mo.<br />\nGape o re holofetša  gore mengwalo ye e ngwadile ke wena, goba o e kopiša mothapong wa pepeneneng goba  ke mahala.\n'''O SE TSENYE MEŠOMO YA BATHO BA BANGWE NTLE LE TUMELLO YA BONA!'''",
 	"templatesused": "\"{{PLURAL:$1|Template yeo e|Di-Template tšeo di}}'' šomišitšwego letlakaleng le:",
 	"templatesusedpreview": "{{PLURAL:$1|\"Template\" yeo e|\"DiTemplate\" tšeo di}} šomišitšwego go taetšo ya sebopego sa letlakala:",
-	"template-protected": "(e lotilwe)",
-	"template-semiprotected": "(lota-ka-seripa)",
 	"hiddencategories": "Letlakala le, ke setho sa {{PLURAL:$1|1 sehlopha sago uta|$1 dihlopha tšago uta}}:",
 	"nocreatetext": "{{SITENAME}} e nale dithibelo tše itšego go tlholeng ga matlakala a maphsa.\nO ka boela morago wa felola matlakala a lego gona, goba o [[Special:UserLogin|tsene]].",
 	"nocreate-loggedin": "Ga ona tumello ya go tlhola matlakala a mampsha.",

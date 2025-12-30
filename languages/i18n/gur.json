@@ -336,8 +336,6 @@
 	"editingsection": "Demesa $1 (weleŋo)",
 	"templatesused": "{{PLURAL:$1|Tɛmpileti|Tɛmpileti duma}} bɔna pɛgerɛ wa puan:",
 	"templatesusedpreview": "{{PLURAL:$1|Tɛmpileti|Tɛmpileti duma}} a-iŋɛ bisɛ wa:",
-	"template-protected": "(gu'a)",
-	"template-semiprotected": "(guwɛka)",
 	"hiddencategories": "Pɛgerɛ wa pa’asɛ la {{PLURAL:$1|gunguregɔ buuri buuri|$1 gunguregɔ buuri buuri}}:",
 	"permissionserrors": "Sore nyɔsegerɛ",
 	"permissionserrorstext-withaction": "Fum ka tari yɔ'ɔ  $2, yela wa pua {{PLURAL:$1|vuurɛ |via }}:",

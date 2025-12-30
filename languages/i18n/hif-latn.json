@@ -512,8 +512,6 @@
 	"templatesused": "{{PLURAL:$1|Template|Templates}} ke ii panna me kaam me lawa gais hae:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Templates}} ii jhalak me kaam me lawa gais hae:",
 	"templatesusedsection": "{{PLURAL:$1|Template|Templates}} ii hissa me kaam me lawa gais hae:",
-	"template-protected": "(surakchhit)",
-	"template-semiprotected": "(aadha-surakchhit)",
 	"hiddencategories": "Ii panna {{PLURAL:$1|1 hidden category|$1 hidden categories}} ke member hai:",
 	"edittools": "<!-- Hian ke text edit aur upload forms ke niche dekhai. -->",
 	"nocreatetext": "{{SITENAME}} me nawaa panna banae ke rukawat hai.\nAap pichhe jaae ke, ek panna jon hai, ke sampadan kare sakta hai, nai to [[Special:UserLogin|log in or create an account]].",

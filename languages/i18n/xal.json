@@ -575,8 +575,6 @@
 	"templatesused": "Эн халхд ашглгдсн: {{PLURAL:$1|1= загвр|загврмуд}}",
 	"templatesusedpreview": "Дарук параметр ашглгдад уга: {{PLURAL:$1|1}}",
 	"templatesusedsection": "Эн кесгт ашглсн {{PLURAL:$1|Загвр|Загврмуд}}:",
-	"template-protected": "(хамһалгдсн)",
-	"template-semiprotected": "(хаһс хамһалгдсн)",
 	"hiddencategories": "Эн халхнь {{PLURAL:}}|$1 нуугдсн әңгллд багтҗана:",
 	"nocreatetext": "{{SITENAME}}-нь шин халх үүскх йовдлыг хаасн бәәнә.\nТа буцад, хуучн бәәсн халхсиг ясврлх, эс гиҗ [[Special:UserLogin|невтрҗ орх эс гиҗ бүрткүлҗ болна]].",
 	"nocreate-loggedin": "Танд шин халх үүскх зөвшәрл уга.",

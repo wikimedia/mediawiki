@@ -428,8 +428,6 @@
 	"templatesused": "{{PLURAL:$1|Berjocht|Berjochten}} brûkt op dizze side:",
 	"templatesusedpreview": "{{PLURAL:$1|Sjabloan|Sjabloanen}} dy't yn dizze bewurking brûkt wurde:",
 	"templatesusedsection": "{{PLURAL:$1|Sjabloan|Sjabloanen}} dy't brûkt wurde yn dizze subkop:",
-	"template-protected": "(befeilige)",
-	"template-semiprotected": "(semy-befeilige)",
 	"hiddencategories": "Dizze side falt yn de folgjende ferburgen\n{{PLURAL:$1|kategory|kategoryen}}:",
 	"edittools": "<!-- De tekst hjirre wurdt werjûn ûnder it bewurkingsfjild en oanbiedformulier. -->",
 	"nocreatetext": "{{GRAMMAR:Lidw|{{SITENAME}}}} hat de mûglikheid beheind om nije siden oan te meitsjen.\nJo kinne al weromgean en besteande siden bewurkje, [[Special:UserLogin|jo oanmelde of in akkount oanmeitsje]].",

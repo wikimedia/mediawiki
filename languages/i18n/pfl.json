@@ -283,8 +283,6 @@
 	"copyrightwarning": "Baß uff, dass alli Baidräch fa {{SITENAME}} unna $2 vaeffendlischd werren (gugg $1 fa mea Enzlhaide).\nWonnsda ned basse dud, dass des wu gschriwwe hoschd, gännad un kopiead werre konn, donn duus do ned noischraiwe.<br />\nDu gibbschd do a zu, dasses selwaschd gschriwwe hoschd odda vuna effendlischi, fraiji Gwell ('''public domain''') odda vuna ähnlichi fraiji Gwell hawe duschd.\n'''Du do nix noi schraiwe, wa unnam Uahewareschd gschizd isch!'''",
 	"templatesused": "{{PLURAL:$1|Vorlach wu uffde Said gbrauchd wead|Vorlache wu uffde Saide gbrauchd werren}}:",
 	"templatesusedpreview": "{{PLURAL:$1|Vorlach wu inde Vorschau gbrauchd werd|Vorlache wu inde Vorschau gbrauchd werren}}:",
-	"template-protected": "(gschizd)",
-	"template-semiprotected": "(halwa-gschizd)",
 	"hiddencategories": "Die Said kead zude vaschdeggelde {{PLURAL:$1|1 Sachgrubb|$1 Sachgrubbe}}:",
 	"permissionserrors": "Uugnieschnd Reschde",
 	"permissionserrorstext-withaction": "Du därfschd nedd $2, weesch{{PLURAL:$1|m Grund|ede Grind}}:",

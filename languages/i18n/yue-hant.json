@@ -654,8 +654,6 @@
 	"templatesused": "呢版用嘅{{PLURAL:$1|模}}：",
 	"templatesusedpreview": "呢一次預覽裏面，用咗下面呢啲{{PLURAL:$1|模|模}}：",
 	"templatesusedsection": "呢一節用咗嘅{{PLURAL:$1|模|模}}：",
-	"template-protected": "(保護)",
-	"template-semiprotected": "(半保護)",
 	"hiddencategories": "呢版係屬於{{PLURAL:$1|$1個隱藏類}}嘅成員：",
 	"edittools": "<!-- 喺呢度嘅文字會喺編輯框下面同埋上載表格中顯示。 -->",
 	"nocreatetext": "{{SITENAME}}已經限制咗起新版嘅能力。\n你可以返轉頭去編輯一啲已經存在嘅頁面，或者[[Special:UserLogin|簽到或開個新戶口]]。",

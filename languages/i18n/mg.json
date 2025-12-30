@@ -613,8 +613,6 @@
 	"templatesused": "endrika{{PLURAL:$1||}} miasa eto amin'ity pejy ity:",
 	"templatesusedpreview": "endrika{{PLURAL:$1||}} ampiasaina anatin'ity topi-maso ity :",
 	"templatesusedsection": "Endrika miasa anatin'ity{{PLURAL:$1||}} fizaràna ity :",
-	"template-protected": "(voaaro)",
-	"template-semiprotected": "(voaaro an-tàpany)",
 	"hiddencategories": "{{PLURAL:$1|anaty sokajy|anaty sokajy}} nasitrika $1 ity pejy ity",
 	"nocreatetext": " Voafetra ihany ny fahafahana mamorona pejy eto amin'ity sehatra ity.  Ny pejy efa misy no azonao ovaina, na [[Special:UserLogin|midira na mamoròna kaonty]].",
 	"nocreate-loggedin": "Tsy mahazo ataonao no manamboatra pejy vao.",

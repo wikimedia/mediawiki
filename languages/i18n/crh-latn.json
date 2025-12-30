@@ -411,8 +411,6 @@
 	"templatesused": "Bu saifede qullanılğan {{PLURAL:$1|şablon|şablonlar}}:",
 	"templatesusedpreview": "Siz baqıp çıqqan saifeñizde qullanılğan {{PLURAL:$1|şablon|şablonlar}}:",
 	"templatesusedsection": "Bu bölükte qullanılğan {{PLURAL:$1|şablon|şablonlar}}:",
-	"template-protected": "(qorçalav altında)",
-	"template-semiprotected": "(qısmen qorçalav altında)",
 	"hiddencategories": "Bu saife {{PLURAL:$1|1|$1}} gizli kategoriyağa mensüptir:",
 	"nocreatetext": "{{SITENAME}} saytında yañı saife yaratuv sıñırlıdır.\nKeri qaytıp mevcut olğan saifeni deñiştire, [[Special:UserLogin|oturım aça ya da yañı bir qullanıcı esabı yarata bilesiñiz]].",
 	"nocreate-loggedin": "Yañı saifeler yaratmağa iziniñiz yoqtır.",

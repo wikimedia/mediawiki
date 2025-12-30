@@ -539,8 +539,6 @@
 	"templatesused": "箇頁用著个{{PLURAL:$1|模板}}：",
 	"templatesusedpreview": "箇趟預覽用著个{{PLURAL:$1|模板}}：",
 	"templatesusedsection": "垃拉箇只章節裡向使用个{{PLURAL:$1|模板}}：",
-	"template-protected": "（保護牢）",
-	"template-semiprotected": "（半保牢）",
 	"hiddencategories": "箇頁屬$1个隱藏分類个成員：",
 	"nocreatetext": "{{SITENAME}}限制了建立新頁面功能。儂可以返回並編輯已有个頁面，或者[[Special:UserLogin|登入或建立新帳戶]]。",
 	"nocreate-loggedin": "儂嘸沒權限建立新頁面。",

@@ -634,8 +634,6 @@
 	"templatesused": "{{PLURAL:$1|Stran, vključena na tej strani|Strani, vključene na tej strani}}:",
 	"templatesusedpreview": "{{PLURAL:$1|Stran, vključena|Strani, vključene}} v tem predogledu:",
 	"templatesusedsection": "{{PLURAL:$1|Stran, vključena|Strani, vključene}} v tem razdelku:",
-	"template-protected": "(zaščitena)",
-	"template-semiprotected": "(delno zaščitena)",
 	"hiddencategories": "Stran je vključena v $1 {{PLURAL:$1|skrito kategorijo|skriti kategoriji|skrite kategorije|skritih kategorij}}:",
 	"edittools": "<!-- To besedilo bo prikazano pod urejevalnim poljem in poljem za nalaganje. -->",
 	"nocreatetext": "{{SITENAME}} omejuje ustvarjanje novih strani.\nLahko se vrnete nazaj in uredite že obstoječo stran ali pa se [[Special:UserLogin|prijavite ali si ustvarite račun]].",

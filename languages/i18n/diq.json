@@ -595,8 +595,6 @@
 	"templatesused": "{{PLURAL:$1|Şablono ke na pele de gureyniyeno|Şablonê}} ke na pele de gureyniyenê:",
 	"templatesusedpreview": "{{PLURAL:$1|Şablono ke na verqayt de gureyniyeno|Şablonê}} ke na verqayt de gureyniyenê:",
 	"templatesusedsection": "{{PLURAL:$1|Şablono ke na qısım de gureyniyeno|Şablonê}} ke na qısım de gureyniyenê:",
-	"template-protected": "(şeveknaye)",
-	"template-semiprotected": "(nêm-şeveknaye)",
 	"hiddencategories": "Ena pele de {{PLURAL:$1|1 kategoriyo nımıte|$1 kategoriyê nımıteyi}} muhtewa benê:",
 	"edittools": "<!-- Beno ke no metın bınê formanê vurnayışi û barkerdışi de bımocniyo. -->",
 	"nocreatetext": "{{SITENAME}}, vıraştışê pelanê neweyan rê destur çıniyo.\nŞıma şenê tepiya şorê u eke şıma qeydbiyayeyê, [[Special:UserLogin|şıma şenê yew hesab akerê]], eke şıma niyê [[Special:UserLogin|şıma şenê qeyd bıbê]].",

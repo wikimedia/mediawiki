@@ -373,8 +373,6 @@
 	"templatesused": "{{PLURAL:$1|Teimpléad|Teimpléid}} a úsáidtear ar an leathanach seo:",
 	"templatesusedpreview": "{{PLURAL:$1|Teimpléad|Teimpléid}} a úsáidtear sa réamhamharc seo:",
 	"templatesusedsection": "{{PLURAL:$1|Teimpléad amháin|$1 Teimpléad}} in úsáid sa mhír seo:",
-	"template-protected": "(glasáilte)",
-	"template-semiprotected": "(leathghlasáilte)",
 	"edittools": "<!-- Taispeánfar an téacs seo faoi foirmeacha eagarthóireachta agus uaslódála. -->",
 	"nocreatetext": "Tá srianadh ar {{SITENAME}} faoin leathanaigh nua a cruthaidh.\nIs féidir leat dul ar ais chun leathanach láithreach a athrú, nó [[Special:UserLogin|log isteach nó cruthaigh cuntas nua]].",
 	"nocreate-loggedin": "Níl cead agat leathanaigh nua a chruthú.",

@@ -683,8 +683,6 @@
 	"templatesused": "{{PLURAL:$1|Stránka vložená|Stránky vložené}} do této stránky:",
 	"templatesusedpreview": "{{PLURAL:$1|Stránka vložená|Stránky vložené}} do tohoto náhledu:",
 	"templatesusedsection": "{{PLURAL:$1|Stránka vložená|Stránky vložené}} do této části stránky:",
-	"template-protected": "(zamčena)",
-	"template-semiprotected": "(polozamčena)",
 	"hiddencategories": "Tato stránka je zařazena {{PLURAL:$1|v jedné skryté kategorii|ve $1 skrytých kategoriích|v $1 skrytých kategoriích}}:",
 	"edittools": "<!-- Tento text bude zobrazen pod formuláři pro editaci stránek a načítání souborů. -->",
 	"nocreatetext": "Na {{grammar:6sg|{{SITENAME}}}} je možnost vytváření nových stránek omezena.\nMůžete se vrátit a editovat již existující stránku, nebo [[Special:UserLogin|se přihlásit či se registrovat]].",

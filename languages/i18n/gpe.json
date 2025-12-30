@@ -315,8 +315,6 @@
 	"editingsection": "Editing $1 (section)",
 	"templatesused": "{{PLURAL:$1|Template|Templates}} dem use for dis page top:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Templates}} dem use for dis preview:",
-	"template-protected": "(protected)",
-	"template-semiprotected": "(semi-protected)",
 	"hiddencategories": "Dis page be memba giv {{PLURAL:$1|a hidden category|$1 hidden categories}}:",
 	"permissionserrors": "Permission error",
 	"permissionserrorstext-withaction": "You no get permission to $2, for de following {{PLURAL:$1|reason|reasons}}:",

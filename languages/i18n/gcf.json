@@ -401,8 +401,6 @@
 	"editpage-cannot-use-custom-model": "Nou pé pa chanjé modèl a kontni a paj-lasa.",
 	"templatesused": "{{PLURAL:$1|Modèl|Sé modèl-la}} yo sèvi èvè an paj-lasa :",
 	"templatesusedpreview": "{{PLURAL:$1|Modèl|Sé modèl-la}} yo sèvi èvè an prévizyalizasyon-lasa :",
-	"template-protected": "(pwotéjé)",
-	"template-semiprotected": "(sémi-pwotéjé)",
 	"hiddencategories": "Katégori-lasa sé on manm a {{PLURAL:$1|on katégori kaché|$1 katégori kaché}}:",
 	"nocreate-loggedin": "Ou pa ni dwa pou kréyé on nouvo paj.",
 	"sectioneditnotsupported-title": "Nou pé pa sipòté modifikasyon a sèksyon",
