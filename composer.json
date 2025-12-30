@@ -106,7 +106,7 @@
 		"seld/jsonlint": "1.10.2",
 		"wikimedia/alea": "1.0.0",
 		"wikimedia/langconv": "^0.4.2",
-		"wikimedia/testing-access-wrapper": "^3.0.0",
+		"wikimedia/testing-access-wrapper": "^3.0.0 || ^4.0.0",
 		"wmde/hamcrest-html-matchers": "^1.0.0"
 	},
 	"replace": {
