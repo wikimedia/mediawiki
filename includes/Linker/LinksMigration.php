@@ -104,6 +104,13 @@ class LinksMigration {
 				self::$mapping[$table]['target_id'] => $targetId,
 			];
 		} else {
+			if ( is_int( self::$mapping[$table]['ns'] ) ) {
+				if ( self::$mapping[$table]['ns'] === $linkTarget->getNamespace() ) {
+					return [ self::$mapping[$table]['title'] => $linkTarget->getDBkey() ];
+				}
+				return [ '1=0' ];
+			}
+
 			return [
 				self::$mapping[$table]['ns'] => $linkTarget->getNamespace(),
 				self::$mapping[$table]['title'] => $linkTarget->getDBkey(),
