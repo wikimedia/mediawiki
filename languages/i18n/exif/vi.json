@@ -5,7 +5,8 @@
 			"Prenn",
 			"Quenhitran",
 			"Vinhtantran",
-			"Duongvu"
+			"Duongvu",
+			"Nvdtn19"
 		]
 	},
 	"exif-imagewidth": "Chiều ngang",
@@ -380,19 +381,5 @@
 	"exif-exposurelockused-false": "Không",
 	"exif-poseheadingdegrees": "Hướng tư thế (độ)",
 	"exif-posepitchdegrees": "Độ dốc (độ)",
-	"exif-poserolldegrees": "Độ xoay (độ)",
-	"exif-initialviewheadingdegrees": "Tiêu đề xem ban đầu (độ)",
-	"exif-initialviewpitchdegrees": "Cao độ xem ban đầu (độ)",
-	"exif-initialviewrolldegrees": "Cuộn quan sát ban đầu (độ)",
-	"exif-initialhorizontalfovdegrees": "Cuộn quan sát ban đầu (độ)",
-	"exif-initialverticalfovdegrees": "FOV ban đầu (độ dọc)",
-	"exif-sourcephotoscount": "Số lượng ảnh nguồn",
-	"exif-croppedareaimagewidthpixels": "Độ rộng cắt Panorama",
-	"exif-croppedareaimageheightpixels": "Panorama cao cắt",
-	"exif-fullpanowidthpixels": "Toàn cảnh toàn chiều rộng",
-	"exif-fullpanoheightpixels": "Toàn cảnh chiều cao đầy đủ",
-	"exif-croppedarealeftpixels": "Toàn cảnh cây trồng trái",
-	"exif-croppedareatoppixels": "Toàn cảnh cắt trên cùng",
-	"exif-initialcameradolly": "Initial camera dolly",
-	"exif-stitchingsoftware": "Phần mềm khâu"
+	"exif-poserolldegrees": "Độ xoay (độ)"
 }

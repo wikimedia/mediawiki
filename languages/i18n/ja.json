@@ -1173,7 +1173,7 @@
 	"userrights-expiry-in-past": "「$1」グループに指定された有効期限は過去の時刻です。",
 	"userrights-cannot-shorten-expiry": "「$1」グループの参加資格の有効期限を短縮できません。このグループを与奪できる権限を持つ利用者だけが有効期限を短縮できます。",
 	"userrights-no-tempuser": "仮利用者をグループに入れることができません。",
-	"userrights-no-group": "一時ユーザーにはグループがありません。",
+	"userrights-no-group": "仮利用者には利用者グループを適用できません。",
 	"userrights-cross-wiki-assignment-for-reserved-name": "仮利用者にグループが割り当てられるのを防ぐため、仮アカウントシステムによって予約されたユーザー名に、ローカルでないウィキでグループを割り当てることはできません。",
 	"userrights-conflict": "利用者権限の変更が競合しています！変更内容を確認してください。",
 	"group": "グループ:",

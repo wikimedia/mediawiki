@@ -111,7 +111,8 @@
 			"Gustmd7410",
 			"Bisang",
 			"메지로 아르당",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"Aspere"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|분류}}",
@@ -1102,8 +1103,8 @@
 	"editinguser": "<strong>[[User:$1|$1]]</strong> $2 {{GENDER:$1|사용자}}의 그룹 바꾸기",
 	"viewinguserrights": "<strong>[[User:$1|$1]]</strong> $2 {{GENDER:$1|사용자}}의 그룹 보기",
 	"userrights-editusergroup": "{{GENDER:$1|사용자}} 그룹 편집",
-	"userrights-viewusergroup": "{{GENDER:$1|사용자}} 그룹을 보기",
-	"saveusergroups": "{{GENDER:$1|사용자}} 권한 저장",
+	"userrights-viewusergroup": "{{GENDER:$1|사용자}} 그룹 보기",
+	"saveusergroups": "{{GENDER:$1|사용자}} 그룹 저장",
 	"userrights-groupsmember": "현재 권한:",
 	"userrights-groupsmember-auto": "자동으로 부여된 권한:",
 	"userrights-systemuser": "{{GENDER:$1|이 사용자}}는 시스템 사용자입니다",
