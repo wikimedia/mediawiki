@@ -1322,7 +1322,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-autopromote": "返回自动提升配置。",
 	"apihelp-query+siteinfo-paramvalue-prop-autopromoteonce": "返回仅执行一次的自动提升配置。",
 	"apihelp-query+siteinfo-paramvalue-prop-copyuploaddomains": "返回允许复制上传域的列表",
-	"apihelp-query+siteinfo-param-filteriw": "只返回跨wiki地图中的本地或非本地记录。",
+	"apihelp-query+siteinfo-param-filteriw": "只返回跨wiki映射中的本地或非本地记录。",
 	"apihelp-query+siteinfo-param-showalldb": "列出所有数据库服务器，不只是最落后的那个。",
 	"apihelp-query+siteinfo-param-numberingroup": "列出用户组中的用户数。",
 	"apihelp-query+siteinfo-param-inlanguagecode": "用于本地化语言名称（尽可能）和皮肤名称的语言代码。",
