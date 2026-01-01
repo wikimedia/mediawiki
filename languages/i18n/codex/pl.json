@@ -5,6 +5,8 @@
 			"Msz2001"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Ścieżka",
+	"cdx-breadcrumb-overflow-label": "Więcej opcji nawigacji",
 	"cdx-dialog-close-button-label": "Zamknij",
 	"cdx-label-optional-flag": "(opcjonalne)",
 	"cdx-message-dismiss-button-label": "Zamknij",

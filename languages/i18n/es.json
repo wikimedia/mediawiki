@@ -268,7 +268,8 @@
 			"לערי ריינהארט",
 			"ديفيد",
 			"아라",
-			"SrGarga"
+			"SrGarga",
+			"Tecbs"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoría|Categorías}}",
@@ -871,7 +872,7 @@
 	"titleprotectedwarning": "<strong>Aviso: esta página está protegida de modo que se necesitan [[Special:ListGroupRights|permisos específicos]] para crearla.</strong>\nA continuación se muestra la última entrada del registro como referencia:",
 	"templatesused": "{{PLURAL:$1|Plantilla usada|Plantillas usadas}} en esta página:",
 	"templatesusedpreview": "{{PLURAL:$1| Página|Páginas}} incluidas en esta vista previa:",
-	"templatesusedsection": "{{PLURAL:$1|Plantilla usada|Plantillas usadas}} en esta sección:",
+	"templatesusedsection": "{{PLURAL:$1|Página|Páginas}} incluidas en esta sección:",
 	"template-protected": "(protegida)",
 	"template-semiprotected": "(semiprotegida)",
 	"hiddencategories": "Esta página pertenece a {{PLURAL:$1|1 categoría oculta|$1 categorías ocultas}}:",
@@ -956,6 +957,7 @@
 	"unstrip-size-category-desc": "La página supera el límite de tamaño de extracción.",
 	"bad-language-code-category": "Páginas con códigos inválidos de idioma",
 	"bad-language-code-category-desc": "La página contiene <code><nowiki>{{#dir}}</nowiki></code> con un código de idioma no válido.",
+	"bad-double-underscore-category": "Páginas con modificadores de comportamiento no válidos",
 	"double-px-category": "Páginas con tamaños de imagen que contienen px adicionales",
 	"double-px-category-desc": "La página contiene una imagen cuyo tamaño contiene un sufijo <code>px</code> adicional, como <code>100pxpx</code>.",
 	"undo-success": "Puedes deshacer la edición.\nAntes de deshacer la edición, comprueba la siguiente comparación para verificar que realmente es lo que quieres hacer, y entonces publica los cambios para así efectuar la reversión.",

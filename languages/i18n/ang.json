@@ -1023,6 +1023,7 @@
 	"logentry-newusers-create": "Brucendes wisboc $1 wæs {{GENDER:$2|gescepen}}",
 	"logentry-newusers-autocreate": "Seo brucendwisboc $1 wæs {{GENDER:$2|gescapen}} selffremmendlice",
 	"searchsuggest-search": "Sec {{SITENAME}}",
+	"searchsuggest-containing": "Sec trametas þa fæðmiað",
 	"special-characters-group-latin": "Lǣden",
 	"special-characters-group-latinextended": "Ēacnod Lǣden",
 	"special-characters-group-symbols": "Tacnu",

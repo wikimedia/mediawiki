@@ -8,7 +8,8 @@
 			"Rail",
 			"Railfail536",
 			"Sp5uhe",
-			"Stlmch"
+			"Stlmch",
+			"Woytecr"
 		]
 	},
 	"exif-imagewidth": "Szerokość",
@@ -382,5 +383,7 @@
 	"exif-croppedareaimagewidthpixels": "Przycięta szerokość panoramy",
 	"exif-croppedareaimageheightpixels": "Przycięta wysokość panoramy",
 	"exif-fullpanowidthpixels": "Pełna szerokość panoramy",
-	"exif-fullpanoheightpixels": "Pełna wysokość panoramy"
+	"exif-fullpanoheightpixels": "Pełna wysokość panoramy",
+	"exif-digitalsourcetype-softwareimage": "Stworzone przez oprogramowanie",
+	"exif-digitalsourcetype-screencapture": "Zrzut ekranu"
 }

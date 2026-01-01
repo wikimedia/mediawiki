@@ -248,7 +248,7 @@
 	"prefs-searchmisc": "Tổng quát",
 	"searchlimit-label": "Số lượng kết quả tìm kiếm để hiển thị trên mỗi trang:",
 	"searchlimit-help": "Số lượng tối đa: $1",
-	"search-thumbnail-extra-namespaces-label": "Hiển thị hình thu nhỏ trong Đặc biệt:Tìm kiếm trên máy tính",
+	"search-thumbnail-extra-namespaces-label": "Hiển thị hình thu nhỏ  tại Đặc biệt:Tìm kiếm trên phiên bản máy tính",
 	"search-thumbnail-extra-namespaces-message": "Hiển thị hình thu nhỏ cho các kết quả trong {{PLURAL:$1|không gian tên|các không gian tên}} $1 trên trang {{#special:search}}",
 	"prefs-advancedsearchoptions": "Tùy chọn nâng cao",
 	"prefs-misc": "Khác",
