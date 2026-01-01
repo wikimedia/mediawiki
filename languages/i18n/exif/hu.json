@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Bencemac",
+			"Boro",
 			"BáthoryPéter",
 			"Dani",
 			"Dj",
@@ -390,5 +391,8 @@
 	"exif-croppedarealeftpixels": "Panoráma bal oldali kivágás",
 	"exif-croppedareatoppixels": "Panoráma felső vágás",
 	"exif-initialcameradolly": "Kezdeti kamera helyzet",
-	"exif-stitchingsoftware": "Összefűző szoftver"
+	"exif-stitchingsoftware": "Összefűző szoftver",
+	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "Generatív MI-vel szerkesztett",
+	"exif-digitalsourcetype-algorithmicallyenhanced": "Algoritmikusan módosított média",
+	"exif-digitalsourcetype-softwareimage": "Szoftverrel készített"
 }
