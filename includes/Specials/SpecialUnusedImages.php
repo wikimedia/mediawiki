@@ -7,7 +7,6 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\ImageQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -17,14 +16,15 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup SpecialPage
  */
 class SpecialUnusedImages extends ImageQueryPage {
-	private int $migrationStage;
+
+	private int $fileMigrationStage;
+	private int $imageLinksMigrationStage;
 
 	public function __construct( IConnectionProvider $dbProvider ) {
 		parent::__construct( 'Unusedimages' );
 		$this->setDatabaseProvider( $dbProvider );
-		$this->migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::FileSchemaMigrationStage
-		);
+		$this->fileMigrationStage = $this->getConfig()->get( MainConfigNames::FileSchemaMigrationStage );
+		$this->imageLinksMigrationStage = $this->getConfig()->get( MainConfigNames::ImageLinksSchemaMigrationStage );
 	}
 
 	/** @inheritDoc */
@@ -44,32 +44,44 @@ class SpecialUnusedImages extends ImageQueryPage {
 
 	/** @inheritDoc */
 	public function getQueryInfo() {
-		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+		if ( $this->fileMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
 			$tables = [ 'image' ];
 			$nameField = 'img_name';
 			$timestampField = 'img_timestamp';
-			$extraConds = [];
-			$extraJoins = [];
+			$fileConds = [];
+			$fileJoins = [];
 		} else {
 			$tables = [ 'file', 'filerevision' ];
 			$nameField = 'file_name';
 			$timestampField = 'fr_timestamp';
-			$extraConds = [ 'file_deleted' => 0 ];
-			$extraJoins = [ 'filerevision' => [ 'JOIN', 'file_latest = fr_id' ] ];
+			$fileConds = [ 'file_deleted' => 0 ];
+			$fileJoins = [ 'filerevision' => [ 'JOIN', 'file_latest = fr_id' ] ];
+		}
+
+		if ( $this->imageLinksMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$linksTables = [ 'imagelinks' ];
+			$linksConds = [ 'il_to' => null ];
+			$linksJoins = [
+				'imagelinks' => [ 'LEFT JOIN', 'il_to = ' . $nameField ]
+			];
+		} else {
+			$linksTables = [ 'linktarget', 'imagelinks' ];
+			$linksConds = [ 'il_target_id' => null ];
+			$linksJoins = [
+				'linktarget' => [ 'LEFT JOIN', [ 'lt_title = ' . $nameField, 'lt_namespace' => NS_FILE ] ],
+				'imagelinks' => [ 'LEFT JOIN', 'il_target_id = lt_id' ]
+			];
 		}
 
 		$retval = [
-			'tables' => array_merge( $tables, [ 'imagelinks' ] ),
+			'tables' => array_merge( $tables, $linksTables ),
 			'fields' => [
 				'namespace' => NS_FILE,
 				'title' => $nameField,
 				'value' => $timestampField,
 			],
-			'conds' => array_merge( [ 'il_to' => null ], $extraConds ),
-			'join_conds' => array_merge(
-				[ 'imagelinks' => [ 'LEFT JOIN', 'il_to = ' . $nameField ] ],
-				$extraJoins
-			),
+			'conds' => array_merge( $linksConds, $fileConds ),
+			'join_conds' => array_merge( $fileJoins, $linksJoins ),
 		];
 
 		if ( $this->getConfig()->get( MainConfigNames::CountCategorizedImagesAsUsed ) ) {
