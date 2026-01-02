@@ -26,8 +26,8 @@ class DumpUploads extends Maintenance {
 	/** @var string */
 	private $mBasePath;
 
-	/** @var int file table schema migration stage */
-	private $migrationStage;
+	private int $fileMigrationStage;
+	private int $imageLinksMigrationStage;
 
 	public function __construct() {
 		parent::__construct();
@@ -38,9 +38,8 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 		$this->addOption( 'used', 'Skip local images that are not used' );
 		$this->addOption( 'shared', 'Include images used from shared repository' );
 
-		$this->migrationStage = $this->getServiceContainer()->getMainConfig()->get(
-			MainConfigNames::FileSchemaMigrationStage
-		);
+		$this->fileMigrationStage = $this->getConfig()->get( MainConfigNames::FileSchemaMigrationStage );
+		$this->imageLinksMigrationStage = $this->getConfig()->get( MainConfigNames::ImageLinksSchemaMigrationStage );
 	}
 
 	public function execute() {
@@ -78,17 +77,28 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 	 * @param bool $shared True to pass shared-dir settings to hash func
 	 */
 	private function fetchUsed( $shared ) {
-		$ilToValues = $this->getReplicaDB( ImageLinksTable::VIRTUAL_DOMAIN )
-			->newSelectQueryBuilder()
-			->select( 'il_to' )
-			->distinct()
-			->from( 'imagelinks' )
-			->caller( __METHOD__ )
-			->fetchFieldValues();
+		if ( $this->imageLinksMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$ilToValues = $this->getReplicaDB( ImageLinksTable::VIRTUAL_DOMAIN )
+				->newSelectQueryBuilder()
+				->select( 'il_to' )
+				->distinct()
+				->from( 'imagelinks' )
+				->caller( __METHOD__ )
+				->fetchFieldValues();
+		} else {
+			$ilToValues = $this->getReplicaDB( ImageLinksTable::VIRTUAL_DOMAIN )
+				->newSelectQueryBuilder()
+				->select( 'lt_title' )
+				->distinct()
+				->from( 'imagelinks' )
+				->join( 'linktarget', null, 'il_target_id = lt_id' )
+				->caller( __METHOD__ )
+				->fetchFieldValues();
+		}
 
 		$dbr = $this->getReplicaDB();
 
-		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+		if ( $this->fileMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
 			$result = $dbr->newSelectQueryBuilder()
 				->select( [ 'name' => 'img_name' ] )
 				->from( 'image' )
@@ -120,7 +130,7 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 	private function fetchLocal( $shared ) {
 		$dbr = $this->getReplicaDB();
 
-		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+		if ( $this->fileMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
 			$result = $dbr->newSelectQueryBuilder()
 				->select( 'img_name' )
 				->from( 'image' )

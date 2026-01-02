@@ -16,7 +16,7 @@ use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
@@ -46,8 +46,7 @@ class CleanupInvalidDbKeys extends Maintenance {
 		[ 'pagelinks', 'pl', 'idField' => 'pl_from', 'virtualDomain' => PageLinksTable::VIRTUAL_DOMAIN ],
 		[ 'templatelinks', 'tl', 'idField' => 'tl_from', 'virtualDomain' => TemplateLinksTable::VIRTUAL_DOMAIN ],
 		[ 'categorylinks', 'cl', 'idField' => 'cl_from', 'virtualDomain' => CategoryLinksTable::VIRTUAL_DOMAIN ],
-		[ 'imagelinks', 'il', 'idField' => 'il_from', 'nsField' => 6, 'titleField' => 'il_to',
-			'virtualDomain' => ImageLinksTable::VIRTUAL_DOMAIN ],
+		[ 'imagelinks', 'il', 'idField' => 'il_from', 'virtualDomain' => ImageLinksTable::VIRTUAL_DOMAIN ],
 	];
 
 	public function __construct() {
@@ -305,22 +304,17 @@ TEXT
 				$linksMigration = $this->getServiceContainer()->getLinksMigration();
 				$wikiPageFactory = $services->getWikiPageFactory();
 				foreach ( $res as $row ) {
-					$wp = $wikiPageFactory->newFromID( $row->id );
-					if ( $wp ) {
+					if ( $wikiPageFactory->newFromID( $row->id ) ) {
 						RefreshLinks::fixLinksFromArticle( $row->id );
 					} else {
-						if ( isset( $linksMigration::$mapping[$table] ) ) {
-							$conds = $linksMigration->getLinksConditions(
-								$table,
-								Title::makeTitle( $row->ns, $row->title )
-							);
-						} else {
-							$conds = [ $nsField => $row->ns, $titleField => $row->title ];
-						}
 						// This link entry points to a nonexistent page, so just get rid of it
 						$dbw->newDeleteQueryBuilder()
 							->deleteFrom( $table )
-							->where( array_merge( [ $idField => $row->id ], $conds ) )
+							->where( [ $idField => $row->id ] )
+							->andWhere( $linksMigration->getLinksConditions(
+								$table,
+								new TitleValue( (int)$row->ns, $row->title )
+							) )
 							->caller( __METHOD__ )->execute();
 					}
 				}
