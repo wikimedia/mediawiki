@@ -25,6 +25,103 @@ use Wikimedia\AtEase\AtEase;
  * @ingroup Mime
  */
 class MimeAnalyzer implements LoggerAwareInterface {
+
+	/** Use the full, built-in MIME mapping rather than load from a file */
+	public const USE_INTERNAL = 'internal';
+
+	private const MAGIC_NUMBERS = [
+		// Multimedia...
+		'MThd'             => 'audio/midi',
+		'OggS'             => 'application/ogg',
+		'ID3'              => 'audio/mpeg',
+		"\xff\xfb"         => 'audio/mpeg', // MPEG-1 layer 3
+		"\xff\xf3"         => 'audio/mpeg', // MPEG-2 layer 3 (lower sample rates)
+		"\xff\xe3"         => 'audio/mpeg', // MPEG-2.5 layer 3 (very low sample rates)
+
+		// Image formats...
+		// Note that WMF may have a bare header, no magic number.
+		"\x01\x00\x09\x00" => 'application/x-msmetafile', // Possibly prone to false positives?
+		"\xd7\xcd\xc6\x9a" => 'application/x-msmetafile',
+		'%PDF'             => 'application/pdf',
+		'gimp xcf'         => 'image/x-xcf',
+
+		// 3D
+		'glTF'             => 'model/gltf-binary',
+
+		// archive
+		"PK\x03\x04"       => 'application/epub+zip',
+
+		// Some forbidden fruit...
+		'MZ'               => 'application/octet-stream', // DOS/Windows executable
+		"\xca\xfe\xba\xbe" => 'application/octet-stream', // Mach-O binary
+		"\x7fELF"          => 'application/octet-stream', // ELF binary
+	];
+
+	private const RECOGNIZABLE_EXTENSIONS = [
+		// Types recognized by getimagesize()
+		'gif' => true,
+		'jpeg' => true,
+		'jpg' => true,
+		'png' => true,
+		'swf' => true,
+		'psd' => true,
+		'bmp' => true,
+		'tiff' => true,
+		'tif' => true,
+		'jpc' => true,
+		'jp2' => true,
+		'jpx' => true,
+		'jb2' => true,
+		'swc' => true,
+		'iff' => true,
+		'wbmp' => true,
+		'xbm' => true,
+
+		// Formats we recognize magic numbers for
+		'djvu' => true,
+		'ogx' => true,
+		'ogg' => true,
+		'ogv' => true,
+		'oga' => true,
+		'spx' => true,
+		'opus' => true,
+		'mid' => true,
+		'pdf' => true,
+		'wmf' => true,
+		'xcf' => true,
+		'webm' => true,
+		'mkv' => true,
+		'mka' => true,
+		'webp' => true,
+		'mp3' => true,
+
+		// XML formats we sure hope we recognize reliably
+		'svg' => true,
+
+		// 3D formats
+		'stl' => true,
+		'glb' => true,
+	];
+
+	private const MAJOR_MIME_TYPES = [
+		// See the definition of the `img_major_mime` enum in tables-generated.sql
+		'unknown' => true,
+		'application' => true,
+		'audio => true',
+		'image' => true,
+		'text' => true,
+		'video' => true,
+		'message' => true,
+		'model' => true,
+		'multipart' => true,
+		'chemical' => true,
+	];
+
+	private const PACK_MASKS = [
+		'UTF-16BE' => 'n*',
+		'UTF-16LE' => 'v*',
+	];
+
 	/** @var string */
 	protected $typeFile;
 	/** @var string */
@@ -58,9 +155,6 @@ class MimeAnalyzer implements LoggerAwareInterface {
 
 	/** @var LoggerInterface */
 	private $logger;
-
-	/** @var string Use the full, built-in MIME mapping rather than load from a file */
-	public const USE_INTERNAL = 'internal';
 
 	/**
 	 * @param array $params Configuration map, includes:
@@ -379,25 +473,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * @return bool
 	 */
 	public function isRecognizableExtension( string $extension ): bool {
-		static $types = [
-			// Types recognized by getimagesize()
-			'gif', 'jpeg', 'jpg', 'png', 'swf', 'psd',
-			'bmp', 'tiff', 'tif', 'jpc', 'jp2',
-			'jpx', 'jb2', 'swc', 'iff', 'wbmp',
-			'xbm',
-
-			// Formats we recognize magic numbers for
-			'djvu', 'ogx', 'ogg', 'ogv', 'oga', 'spx', 'opus',
-			'mid', 'pdf', 'wmf', 'xcf', 'webm', 'mkv', 'mka',
-			'webp', 'mp3',
-
-			// XML formats we sure hope we recognize reliably
-			'svg',
-
-			// 3D formats
-			'stl', 'glb',
-		];
-		return in_array( strtolower( $extension ), $types );
+		return isset( self::RECOGNIZABLE_EXTENSIONS[strtolower( $extension )] );
 	}
 
 	/**
@@ -529,35 +605,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			": analyzing head and tail of $file for magic numbers." );
 
 		// Hardcode a few magic number checks...
-		$headers = [
-			// Multimedia...
-			'MThd'             => 'audio/midi',
-			'OggS'             => 'application/ogg',
-			'ID3'              => 'audio/mpeg',
-			"\xff\xfb"         => 'audio/mpeg', // MPEG-1 layer 3
-			"\xff\xf3"         => 'audio/mpeg', // MPEG-2 layer 3 (lower sample rates)
-			"\xff\xe3"         => 'audio/mpeg', // MPEG-2.5 layer 3 (very low sample rates)
-
-			// Image formats...
-			// Note that WMF may have a bare header, no magic number.
-			"\x01\x00\x09\x00" => 'application/x-msmetafile', // Possibly prone to false positives?
-			"\xd7\xcd\xc6\x9a" => 'application/x-msmetafile',
-			'%PDF'             => 'application/pdf',
-			'gimp xcf'         => 'image/x-xcf',
-
-			// 3D
-			"glTF"             => 'model/gltf-binary',
-
-			// archive
-			"PK\x03\x04"       => 'application/epub+zip',
-
-			// Some forbidden fruit...
-			'MZ'               => 'application/octet-stream', // DOS/Windows executable
-			"\xca\xfe\xba\xbe" => 'application/octet-stream', // Mach-O binary
-			"\x7fELF"          => 'application/octet-stream', // ELF binary
-		];
-
-		foreach ( $headers as $magic => $candidate ) {
+		foreach ( self::MAGIC_NUMBERS as $magic => $candidate ) {
 			if ( str_starts_with( $head, $magic ) ) {
 				$this->logger->info( __METHOD__ .
 					": magic header in $file recognized as $candidate" );
@@ -686,8 +734,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		if ( $script_type ) {
 			if ( $script_type !== "UTF-8" && $script_type !== "ASCII" ) {
 				// Quick and dirty fold down to ASCII!
-				$pack = [ 'UTF-16BE' => 'n*', 'UTF-16LE' => 'v*' ];
-				$chars = unpack( $pack[$script_type], substr( $head, 2 ) );
+				$chars = unpack( self::PACK_MASKS[$script_type], substr( $head, 2 ) );
 				$head = '';
 				foreach ( $chars as $codepoint ) {
 					if ( $codepoint < 128 ) {
@@ -1049,21 +1096,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * @return bool
 	 */
 	public function isValidMajorMimeType( string $type ): bool {
-		// See the definition of the `img_major_mime` enum in tables-generated.sql
-		$types = [
-			'unknown',
-			'application',
-			'audio',
-			'image',
-			'text',
-			'video',
-			'message',
-			'model',
-			'multipart',
-			'chemical',
-		];
-
-		return in_array( $type, $types );
+		return isset( self::MAJOR_MIME_TYPES[$type] );
 	}
 }
 
