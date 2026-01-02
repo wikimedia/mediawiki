@@ -7,8 +7,6 @@
 namespace MediaWiki\Config;
 
 use DnsSrvDiscoverer;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerInterface;
 use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -21,7 +19,7 @@ use Wikimedia\WaitConditionLoop;
  *
  * @since 1.29
  */
-class EtcdConfig implements Config, LoggerAwareInterface {
+class EtcdConfig implements Config {
 	/** @var MultiHttpClient */
 	private $http;
 	/** @var BagOStuff */
@@ -31,8 +29,6 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	/** @var DnsSrvDiscoverer */
 	private $dsd;
 
-	/** @var string */
-	private $service;
 	/** @var string */
 	private $host;
 	/** @var ?int */
@@ -71,7 +67,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 			'timeout' => 2
 		];
 
-		$this->service = $params['service'];
+		$service = $params['service'];
 		$this->host = $params['host'];
 		$this->port = $params['port'];
 		$this->protocol = $params['protocol'];
@@ -94,7 +90,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		// Also for backwards compatibility, check for a host in the format of
 		// an SRV record and use the service specified therein
 		if ( preg_match( '/^_([^\.]+)\._tcp\.(.+)$/', $this->host, $m ) ) {
-			$this->service = $m[1];
+			$service = $m[1];
 			$this->host = $m[2];
 		}
 
@@ -110,14 +106,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 			'connTimeout' => $this->timeout,
 			'reqTimeout' => $this->timeout,
 		] );
-		$this->dsd = new DnsSrvDiscoverer( $this->service, 'tcp', $this->host );
-	}
-
-	/**
-	 * @deprecated since 1.41 No longer used and did not work in practice
-	 */
-	public function setLogger( LoggerInterface $logger ): void {
-		trigger_error( __METHOD__ . ' is deprecated since 1.41', E_USER_DEPRECATED );
+		$this->dsd = new DnsSrvDiscoverer( $service, 'tcp', $this->host );
 	}
 
 	/** @inheritDoc */
