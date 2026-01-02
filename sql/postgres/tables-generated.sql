@@ -354,10 +354,10 @@ CREATE INDEX img_media_mime ON image (
 
 CREATE TABLE imagelinks (
   il_from INT DEFAULT 0 NOT NULL,
-  il_to TEXT DEFAULT '' NOT NULL,
+  il_target_id BIGINT NOT NULL,
   il_from_namespace INT DEFAULT 0 NOT NULL,
-  il_target_id BIGINT DEFAULT NULL,
-  PRIMARY KEY(il_from, il_to)
+  il_to TEXT DEFAULT '' NOT NULL,
+  PRIMARY KEY(il_from, il_target_id)
 );
 
 CREATE INDEX il_to ON imagelinks (il_to, il_from);

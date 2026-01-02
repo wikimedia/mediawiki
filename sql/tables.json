@@ -2057,7 +2057,10 @@
 				"name": "il_target_id",
 				"type": "bigint",
 				"comment": "Foreign key to linktarget.lt_id",
-				"options": { "notnull": false, "unsigned": true }
+				"options": {
+					"notnull": true,
+					"unsigned": true
+				}
 			}
 		],
 		"indexes": [
@@ -2102,7 +2105,7 @@
 		],
 		"pk": [
 			"il_from",
-			"il_to"
+			"il_target_id"
 		]
 	},
 	{

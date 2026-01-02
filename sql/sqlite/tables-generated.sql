@@ -315,10 +315,10 @@ CREATE INDEX img_media_mime ON /*_*/image (
 
 CREATE TABLE /*_*/imagelinks (
   il_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-  il_to BLOB DEFAULT '' NOT NULL,
+  il_target_id BIGINT UNSIGNED NOT NULL,
   il_from_namespace INTEGER DEFAULT 0 NOT NULL,
-  il_target_id BIGINT UNSIGNED DEFAULT NULL,
-  PRIMARY KEY(il_from, il_to)
+  il_to BLOB DEFAULT '' NOT NULL,
+  PRIMARY KEY(il_from, il_target_id)
 );
 
 CREATE INDEX il_to ON /*_*/imagelinks (il_to, il_from);

@@ -119,6 +119,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropField', 'objectcache', 'modtoken', 'patch-objectcache-drop-modtoken.sql' ],
 			[ 'addField', 'imagelinks', 'il_target_id', 'patch-imagelinks-add-il_target_id.sql' ],
 			[ 'migrateImagelinks' ],
+			[ 'modifyPrimaryKey', 'imagelinks', [ 'il_from', 'il_target_id' ], 'patch-imagelinks-pk.sql' ],
 		];
 	}
 

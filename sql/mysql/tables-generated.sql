@@ -341,9 +341,9 @@ CREATE TABLE /*_*/image (
 
 CREATE TABLE /*_*/imagelinks (
   il_from INT UNSIGNED DEFAULT 0 NOT NULL,
-  il_to VARBINARY(255) DEFAULT '' NOT NULL,
+  il_target_id BIGINT UNSIGNED NOT NULL,
   il_from_namespace INT DEFAULT 0 NOT NULL,
-  il_target_id BIGINT UNSIGNED DEFAULT NULL,
+  il_to VARBINARY(255) DEFAULT '' NOT NULL,
   INDEX il_to (il_to, il_from),
   INDEX il_backlinks_namespace (
     il_from_namespace, il_to, il_from
@@ -353,7 +353,7 @@ CREATE TABLE /*_*/imagelinks (
     il_from_namespace, il_target_id,
     il_from
   ),
-  PRIMARY KEY(il_from, il_to)
+  PRIMARY KEY(il_from, il_target_id)
 ) /*$wgDBTableOptions*/;
 
 
