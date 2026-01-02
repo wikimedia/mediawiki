@@ -1466,6 +1466,27 @@ abstract class DatabaseUpdater {
 		$this->output( "done.\n" );
 	}
 
+	protected function migrateImagelinks() {
+		if ( $this->updateRowExists( MigrateLinksTable::class . 'imagelinks' ) ) {
+			$this->outputApplied( "...imagelinks table has already been migrated.\n" );
+			return;
+		}
+		/**
+		 * @var MigrateLinksTable $task
+		 */
+		$task = $this->maintenance->createChild(
+			MigrateLinksTable::class, 'migrateLinksTable.php'
+		);
+		'@phan-var MigrateLinksTable $task';
+		$task->loadParamsAndArgs( MigrateLinksTable::class, [
+			'force' => true,
+			'table' => 'imagelinks'
+		] );
+		$this->output( "Running migrateLinksTable.php on imagelinks...\n" );
+		$task->execute();
+		$this->output( "done.\n" );
+	}
+
 	/**
 	 * Only run a function if a table does not exist
 	 *
