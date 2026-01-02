@@ -3,6 +3,7 @@
 		"authors": [
 			"Ignatgg",
 			"METROKOP228 UA",
+			"Movses",
 			"Yasen igra",
 			"Ата"
 		]
@@ -25,7 +26,7 @@
 	"cdx-table-pager-button-last-page": "Остання сторінка",
 	"cdx-table-pager-button-next-page": "Наступна сторінка",
 	"cdx-table-pager-button-prev-page": "Попередня сторінка",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 ряд|$1 ряди|$1 рядів}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 елемент|$1 елементи|$1 елементів}}",
 	"cdx-table-pager-items-per-page-default": "Результатів на сторінку",
 	"cdx-table-pagination-status-message-determinate-long": "Показ результатів $1–$2 з $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 з $3",
