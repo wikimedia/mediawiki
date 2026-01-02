@@ -13,7 +13,6 @@ class IcuCollationTest extends MediaWikiLangTestCase {
 	public function testNumericAttribute( string $collation, int $expected ) {
 		$col = $this->getServiceContainer()->getCollationFactory()->makeCollation( $collation );
 		$reflection = new ReflectionProperty( IcuCollation::class, 'mainCollator' );
-		$reflection->setAccessible( true );
 		$collator = $reflection->getValue( $col );
 		$this->assertEquals( $expected, $collator->getAttribute( Collator::NUMERIC_COLLATION ) );
 	}
