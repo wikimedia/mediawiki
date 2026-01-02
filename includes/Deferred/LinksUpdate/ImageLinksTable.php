@@ -127,7 +127,8 @@ class ImageLinksTable extends TitleLinksTable {
 		];
 		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
 			$insertedLink['il_to'] = $linkId;
-		} else {
+		}
+		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_NEW ) {
 			$insertedLink['il_target_id'] = $this->linkTargetLookup->acquireLinkTargetId(
 				$this->makeTitle( $linkId ),
 				$this->getDB()
