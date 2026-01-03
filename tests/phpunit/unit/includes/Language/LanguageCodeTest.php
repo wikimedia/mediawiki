@@ -49,7 +49,7 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 	public function testReplaceDeprecatedCodes() {
 		$this->assertEquals( 'gsw', LanguageCode::replaceDeprecatedCodes( 'als' ) );
 		$this->assertEquals( 'gsw', LanguageCode::replaceDeprecatedCodes( 'gsw' ) );
-		$this->assertNull( LanguageCode::replaceDeprecatedCodes( null ) );
+		$this->assertEquals( 'ja', LanguageCode::replaceDeprecatedCodes( 'ja' ) );
 	}
 
 	/**
