@@ -3400,14 +3400,12 @@ class OutputPage extends ContextSource {
 		$services = MediaWikiServices::getInstance();
 		$groupPermissionsLookup = $services->getGroupPermissionsLookup();
 
-		// For some actions (read, edit, create and upload), display a "login to do this action"
-		// error if all of the following conditions are met:
+		// Display a "login to do this action" error if all of the following conditions are met:
 		// 1. the user is not logged in as a named user, and so cannot be added to groups
 		// 2. the only error is insufficient permissions (i.e. no block or something else)
 		// 3. the error can be avoided simply by logging in
 
-		if ( in_array( $action, [ 'read', 'edit', 'createpage', 'createtalk', 'upload' ] )
-			&& !$this->getUser()->isNamed() && count( $messages ) == 1
+		if ( !$this->getUser()->isNamed() && count( $messages ) == 1
 			&& ( $messages[0]->getKey() == 'badaccess-groups' || $messages[0]->getKey() == 'badaccess-group0' )
 			&& ( $groupPermissionsLookup->groupHasPermission( 'user', $action )
 				|| $groupPermissionsLookup->groupHasPermission( 'autoconfirmed', $action ) )
@@ -3420,6 +3418,7 @@ class OutputPage extends ContextSource {
 			# from the request instead, if there was one.
 			$request = $this->getRequest();
 			$returnto = Title::newFromText( $request->getText( 'title' ) );
+			$extraParams = [];
 			if ( $action == 'edit' ) {
 				$msg = 'whitelistedittext';
 				$displayReturnto = $returnto;
@@ -3427,10 +3426,13 @@ class OutputPage extends ContextSource {
 				$msg = 'nocreatetext';
 			} elseif ( $action == 'upload' ) {
 				$msg = 'uploadnologintext';
-			} else {
-				# Read
+			} elseif ( $action === 'read' ) {
 				$msg = 'loginreqpagetext';
 				$displayReturnto = Title::newMainPage();
+			} else {
+				$msg = 'permissionerror-login';
+				$action_desc = $this->msg( "action-$action" )->plain();
+				$extraParams = [ $action_desc ];
 			}
 
 			$query = [];
@@ -3459,7 +3461,12 @@ class OutputPage extends ContextSource {
 
 			$this->prepareErrorPage();
 			$this->setPageTitleMsg( $this->msg( 'loginreqtitle' ) );
-			$this->addHTML( $this->msg( $msg )->rawParams( $loginLink )->params( $loginUrl )->parse() );
+			$this->addHTML( $this->msg( $msg )
+				->rawParams( $loginLink )
+				->params( $loginUrl )
+				->params( $extraParams )
+				->parse()
+			);
 
 			# Don't return to a page the user can't read otherwise
 			# we'll end up in a pointless loop
@@ -3503,6 +3510,20 @@ class OutputPage extends ContextSource {
 	public function formatPermissionStatus( PermissionStatus $status, ?string $action = null ): string {
 		if ( $status->isGood() ) {
 			return '';
+		}
+
+		if ( !$status->hasMessagesExcept( 'badaccess-group0' ) ) {
+			// We don't know why you can't do it; admit that rather than saying the circular
+			// "you don't have permission to do this because you are not allowed to do this"
+			if ( $action === null ) {
+				// We don't know what you were trying to do either.
+				// At least say just "You are not allowed to do that" once rather than twice
+				$text = $this->msg( 'badaccess-group0' )->plain();
+			} else {
+				$action_desc = $this->msg( "action-$action" )->plain();
+				$text = $this->msg( 'permissionserrorstext-withaction-noreason', $action_desc )->plain();
+			}
+			return Html::rawElement( 'div', [ 'class' => 'permissions-errors' ], $text );
 		}
 
 		$messages = array_map( fn ( $msg ) => $this->msg( $msg ), $status->getMessages() );

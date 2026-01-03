@@ -3467,17 +3467,39 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $op->userCanPreview() );
 	}
 
-	public static function providePermissionStatus() {
+	public static function provideFormatPermissionStatus() {
 		yield 'no errors' => [
 			PermissionStatus::newEmpty(),
 			'',
+			null
 		];
 
 		yield 'one message' => [
-			PermissionStatus::newEmpty()->fatal( 'badaccess-group0' ),
+			PermissionStatus::newEmpty()->fatal( 'nope' ),
 			'(permissionserrorstext: 1)
 
-<div class="permissions-errors"><div class="mw-permissionerror-badaccess-group0">(badaccess-group0)</div></div>',
+<div class="permissions-errors"><div class="mw-permissionerror-nope">(nope)</div></div>',
+			null
+		];
+
+		yield 'one message with action' => [
+			PermissionStatus::newEmpty()->fatal( 'nope' ),
+			'(permissionserrorstext-withaction: 1, (action-edit))
+
+<div class="permissions-errors"><div class="mw-permissionerror-nope">(nope)</div></div>',
+			'edit'
+		];
+
+		yield 'badaccess-group0' => [
+			PermissionStatus::newEmpty()->fatal( 'badaccess-group0' ),
+			'<div class="permissions-errors">(badaccess-group0)</div>',
+			null
+		];
+
+		yield 'badaccess-group0 with action' => [
+			PermissionStatus::newEmpty()->fatal( 'badaccess-group0' ),
+			'<div class="permissions-errors">(permissionserrorstext-withaction-noreason: (action-edit))</div>',
+			'edit'
 		];
 
 		yield 'two messages' => [
@@ -3485,26 +3507,25 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'(permissionserrorstext: 2)
 
 <ul class="permissions-errors"><li class="mw-permissionerror-badaccess-group0">(badaccess-group0)</li><li class="mw-permissionerror-foobar">(foobar)</li></ul>',
+			null
 		];
-	}
 
-	public static function provideFormatPermissionStatus() {
 		yield 'RawMessage' => [
 			PermissionStatus::newEmpty()->fatal( new RawMessage( 'Foo Bar' ) ),
 			'(permissionserrorstext: 1)
 
 <div class="permissions-errors"><div class="mw-permissionerror-rawmessage">Foo Bar</div></div>',
+			null
 		];
 	}
 
 	/**
-	 * @dataProvider providePermissionStatus
 	 * @dataProvider provideFormatPermissionStatus
 	 */
-	public function testFormatPermissionStatus( PermissionStatus $status, string $expected ) {
+	public function testFormatPermissionStatus( PermissionStatus $status, string $expected, ?string $action ) {
 		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'qqx' );
 
-		$actual = self::newInstance()->formatPermissionStatus( $status );
+		$actual = self::newInstance()->formatPermissionStatus( $status, $action );
 		$this->assertEquals( $expected, $actual );
 	}
 
