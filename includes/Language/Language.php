@@ -3497,7 +3497,7 @@ class Language implements Bcp47Code {
 	/**
 	 * Get special page names, as an associative array
 	 *   canonical name => array of valid names, including aliases
-	 * @return string[][]
+	 * @return array<string,string[]>
 	 */
 	public function getSpecialPageAliases() {
 		// Cache aliases because it may be slow to load them

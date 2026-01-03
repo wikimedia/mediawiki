@@ -1482,6 +1482,7 @@ class SpecialPageFactory {
 	 * Initialise and return the list of special page aliases. Returns an array where
 	 * the key is an alias, and the value is the canonical name of the special page.
 	 * All registered special pages are guaranteed to map to themselves.
+	 * @return array<string,string>
 	 */
 	public function getAliasList(): array {
 		if ( $this->aliases === null ) {
@@ -1492,7 +1493,7 @@ class SpecialPageFactory {
 			$keepAlias = [];
 
 			// Force every canonical name to be an alias for itself.
-			foreach ( $pageList as $name => $stuff ) {
+			foreach ( $pageList as $name => $_ ) {
 				$caseFoldedAlias = $this->contLang->caseFold( $name );
 				$this->aliases[$caseFoldedAlias] = $name;
 				$keepAlias[$caseFoldedAlias] = 'canonical';
@@ -1539,7 +1540,7 @@ class SpecialPageFactory {
 	 * subpage.
 	 *
 	 * @param string $alias
-	 * @return array [ String, String|null ], or [ null, null ] if the page is invalid
+	 * @return array{0:?string,1:?string} [ String, String|null ], or [ null, null ] if the page is invalid
 	 */
 	public function resolveAlias( $alias ) {
 		$bits = explode( '/', $alias, 2 );
@@ -1618,12 +1619,12 @@ class SpecialPageFactory {
 	 *
 	 * @param User $user User object to check permissions provided
 	 * @param IContextSource|null $context Context object, since 1.45
-	 * @return SpecialPage[]
+	 * @return array<string,SpecialPage>
 	 */
 	public function getUsablePages( User $user, ?IContextSource $context = null ): array {
 		$pages = [];
 		$context ??= RequestContext::getMain();
-		foreach ( $this->getPageList() as $name => $rec ) {
+		foreach ( $this->getPageList() as $name => $_ ) {
 			$page = $this->getPage( $name );
 			if ( $page ) { // not null
 				$page->setContext( $context );
@@ -1646,7 +1647,7 @@ class SpecialPageFactory {
 	 */
 	public function getListedPages(): array {
 		$pages = [];
-		foreach ( $this->getPageList() as $name => $rec ) {
+		foreach ( $this->getPageList() as $name => $_ ) {
 			$page = $this->getPage( $name );
 			if ( $page && $page->isListed() ) {
 				$pages[$name] = $page;
@@ -1863,7 +1864,7 @@ class SpecialPageFactory {
 		} else {
 			// Check if someone misspelled the correct casing
 			if ( is_array( $aliases ) ) {
-				foreach ( $aliases as $n => $values ) {
+				foreach ( $aliases as $n => $_ ) {
 					if ( strcasecmp( $name, $n ) === 0 ) {
 						wfWarn( "Found alias defined for $n when searching for " .
 							"special page aliases for $name. Case mismatch?" );
