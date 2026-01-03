@@ -8,6 +8,7 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\Content\CodeHighlighterOptions;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Json\FormatJson;
@@ -313,9 +314,19 @@ abstract class ApiFormatBase extends ApiBase {
 			}
 
 			if ( $this->getHookRunner()->onApiFormatHighlight( $context, $result, $mime, $format ) ) {
-				$out->addHTML(
-					Html::element( 'pre', [ 'class' => 'api-pretty-content' ], $result )
-				);
+				$codeHighlighter = MediaWikiServices::getInstance()->getCodeHighlighter();
+				$codeLang = match ( $mime ) {
+					'text/javascript', 'application/json' => 'javascript',
+					'text/xml' => 'xml',
+					// pass unknown mime type as-is
+					default => $mime,
+				};
+				$highlightOutput = $codeHighlighter->highlight( $result, new CodeHighlighterOptions(
+					language: $codeLang,
+					classes: [ 'api-pretty-content' ],
+				) );
+				$out->addHTML( $highlightOutput->getHtml() );
+				$highlightOutput->getMetadata()->addToOutputPage( $out );
 			}
 
 			if ( $this->getIsWrappedHtml() ) {

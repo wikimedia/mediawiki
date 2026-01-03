@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Api\Format;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiFormatBase;
 use MediaWiki\Api\ApiMain;
+use MediaWiki\Content\CodeHighlighter;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
@@ -25,6 +26,10 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->overrideConfigValue( MainConfigNames::Server, 'http://example.org' );
+
+		// Avoid test being reliant on CodeHighlightProviders added by extenions
+		$codeHighlighter = new CodeHighlighter( $this->getServiceContainer()->getObjectFactory(), [] );
+		$this->setService( 'CodeHighlighter', $codeHighlighter );
 	}
 
 	/**
@@ -55,6 +60,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 			'name' => 'mock',
 			'class' => ApiFormatBase::class,
 			'factory' => function ( ApiMain $main, $format ) use ( $options ) {
+				$main->getContext()->setLanguage( 'qqx' );
 				$mock = $this->getMockFormatter( $main, $format );
 				$mock->expects( $this->once() )->method( 'execute' )
 					->willReturnCallback( static function () use ( $mock ) {
@@ -95,7 +101,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 			$status = null;
 
 			// Strip OutputPage-generated HTML
-			if ( preg_match( '!<pre class="api-pretty-content">.*</pre>!s', $text, $m ) ) {
+			if ( preg_match( '!(<pre\b[^>]*\bapi-pretty-content\b[^>]*>.*</pre>\n?)!s', $text, $m ) ) {
 				$text = $m[0];
 			}
 		}
@@ -126,13 +132,13 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 			],
 			'HTML format' => [
 				[],
-				'<pre class="api-pretty-content">Format MOCK: &lt;b>ok&lt;/b></pre>',
+				"<pre dir=\"ltr\" class=\"mw-code api-pretty-content\">\nFormat MOCK: &lt;b>ok&lt;/b>\n</pre>\n",
 				[],
 				[ 'name' => 'mockfm' ]
 			],
 			'wrapped HTML format' => [
 				[],
-				'{"status":200,"statustext":"OK","html":"<pre class=\"api-pretty-content\">Format MOCK: &lt;b>ok&lt;/b></pre>","modules":["mediawiki.apipretty"],"continue":null,"time":1234}',
+				'{"status":200,"statustext":"OK","html":"<pre dir=\"ltr\" class=\"mw-code api-pretty-content\">\nFormat MOCK: &lt;b>ok&lt;/b>\n</pre>\n","modules":["mediawiki.apipretty"],"continue":null,"time":1234}',
 				[ 'wrappedhtml' => 1 ],
 				[ 'name' => 'mockfm' ]
 			],
@@ -144,13 +150,13 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 			],
 			'HTML format, with set status' => [
 				[],
-				'<pre class="api-pretty-content">Format MOCK: &lt;b>ok&lt;/b></pre>',
+				"<pre dir=\"ltr\" class=\"mw-code api-pretty-content\">\nFormat MOCK: &lt;b>ok&lt;/b>\n</pre>\n",
 				[],
 				[ 'name' => 'mockfm', 'status' => 400 ]
 			],
 			'wrapped HTML format, with set status' => [
 				[],
-				'{"status":400,"statustext":"Bad Request","html":"<pre class=\"api-pretty-content\">Format MOCK: &lt;b>ok&lt;/b></pre>","modules":["mediawiki.apipretty"],"continue":null,"time":1234}',
+				'{"status":400,"statustext":"Bad Request","html":"<pre dir=\"ltr\" class=\"mw-code api-pretty-content\">\nFormat MOCK: &lt;b>ok&lt;/b>\n</pre>\n","modules":["mediawiki.apipretty"],"continue":null,"time":1234}',
 				[ 'wrappedhtml' => 1 ],
 				[ 'name' => 'mockfm', 'status' => 400 ]
 			],
