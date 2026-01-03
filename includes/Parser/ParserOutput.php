@@ -384,6 +384,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Return the ContentHolder storing the HTML/DOM contents of this
 	 * ParserOutput.
 	 * @unstable
+	 * @since 1.45
 	 */
 	public function getContentHolder(): ContentHolder {
 		return $this->contentHolder;
@@ -391,6 +392,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * @internal Use __construct or PageBundleParserOutputConverter.
+	 * @since 1.45
 	 */
 	public function setContentHolder( ContentHolder $contentHolder ) {
 		$this->contentHolder = $contentHolder;
@@ -3392,7 +3394,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Returns the body fragment text of the ParserOutput.
 	 *
 	 * This is a shortcut for `::getContentHolder()->getAsHtmlString( BODY_FRAGMENT )`.
-	 * @return string
+	 *
+	 * @since 1.42
 	 */
 	public function getContentHolderText(): string {
 		$html = $this->contentHolder->getAsHtmlString( ContentHolder::BODY_FRAGMENT );
@@ -3409,6 +3412,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *
 	 * @param ?string $text Content of the body fragment as an HTML string, or
 	 *   null if not generated
+	 * @since 1.42
 	 */
 	public function setContentHolderText( ?string $text ): void {
 		$this->contentHolder->setAsHtmlString( ContentHolder::BODY_FRAGMENT, $text );
