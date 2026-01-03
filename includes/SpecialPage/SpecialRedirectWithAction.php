@@ -9,8 +9,8 @@ namespace MediaWiki\SpecialPage;
 
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\Title\Title;
-use SearchEngineFactory;
 
 /**
  * Abstract to simplify creation of redirect special pages

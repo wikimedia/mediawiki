@@ -12,12 +12,12 @@ use MediaWiki\Language\MessageParser;
 use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
 use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQueryFactory;
 use MediaWiki\RecentChanges\RecentChangeFactory;
+use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
-use SearchEngineFactory;
 
 /**
  * This is to display changes made to all articles linked in an article.

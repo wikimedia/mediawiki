@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Content;
 
-use DummySearchIndexFieldDefinition;
 use MediaWiki\Content\FileContentHandler;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Content\WikitextContentHandler;
@@ -11,11 +10,12 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Search\DummySearchIndexFieldDefinition;
+use MediaWiki\Search\SearchEngine;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWikiLangTestCase;
-use SearchEngine;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\TestingAccessWrapper;
 

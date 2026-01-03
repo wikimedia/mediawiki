@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Search\Hook;
 
-use ResultAugmentor;
-use ResultSetAugmentor;
+use MediaWiki\Search\ResultAugmentor;
+use MediaWiki\Search\ResultSetAugmentor;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

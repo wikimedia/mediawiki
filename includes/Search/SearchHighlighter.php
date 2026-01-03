@@ -7,6 +7,8 @@
  * @ingroup Search
  */
 
+namespace MediaWiki\Search;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
@@ -584,3 +586,6 @@ class SearchHighlighter {
 		return str_replace( "\n", '<br>', $text );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SearchHighlighter::class, 'SearchHighlighter' );

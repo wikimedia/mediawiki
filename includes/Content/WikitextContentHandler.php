@@ -19,10 +19,10 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Search\SearchEngine;
+use MediaWiki\Search\SearchIndexField;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
-use SearchEngine;
-use SearchIndexField;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**

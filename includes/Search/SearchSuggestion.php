@@ -1,11 +1,12 @@
 <?php
 
+namespace MediaWiki\Search;
+
 /**
  * Search suggestion
  *
  * @license GPL-2.0-or-later
  */
-
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
@@ -171,3 +172,6 @@ class SearchSuggestion {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SearchSuggestion::class, 'SearchSuggestion' );

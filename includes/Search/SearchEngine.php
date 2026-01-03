@@ -7,21 +7,23 @@
  * @ingroup Search
  */
 
-/**
- * @defgroup Search Search
- */
+namespace MediaWiki\Search;
 
+use Closure;
+use InvalidArgumentException;
 use MediaWiki\Config\Config;
 use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Search\ISearchResultSet;
-use MediaWiki\Search\TitleMatcher;
-use MediaWiki\Search\TitlePrefixSearch;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use SplObjectStorage;
+
+/**
+ * @defgroup Search Search
+ */
 
 /**
  * Contain a class for special pages
@@ -867,3 +869,6 @@ abstract class SearchEngine {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SearchEngine::class, 'SearchEngine' );

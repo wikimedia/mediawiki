@@ -21,7 +21,9 @@ use MediaWiki\Navigation\CodexPagerNavigationBuilder;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Search\ISearchResultSet;
+use MediaWiki\Search\SearchEngine;
 use MediaWiki\Search\SearchEngineConfig;
+use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\SearchWidgets\BasicSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\DidYouMeanWidget;
@@ -35,8 +37,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsManager;
-use SearchEngine;
-use SearchEngineFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**

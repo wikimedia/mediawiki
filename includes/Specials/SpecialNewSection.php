@@ -7,9 +7,9 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\SpecialPage\RedirectSpecialPage;
 use MediaWiki\Title\Title;
-use SearchEngineFactory;
 
 /**
  * Redirect from Special:NewSection/$1 to index.php?title=$1&action=edit&section=new.

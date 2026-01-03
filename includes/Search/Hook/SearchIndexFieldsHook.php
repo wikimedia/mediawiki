@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Search\Hook;
 
-use SearchEngine;
-use SearchIndexField;
+use MediaWiki\Search\SearchEngine;
+use MediaWiki\Search\SearchIndexField;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

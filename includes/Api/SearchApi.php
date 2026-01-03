@@ -10,9 +10,9 @@ namespace MediaWiki\Api;
 
 use LogicException;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Search\SearchEngine;
 use MediaWiki\Search\SearchEngineConfig;
-use SearchEngine;
-use SearchEngineFactory;
+use MediaWiki\Search\SearchEngineFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 

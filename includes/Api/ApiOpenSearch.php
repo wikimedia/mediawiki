@@ -14,11 +14,11 @@ use InvalidArgumentException;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Search\SearchEngine;
 use MediaWiki\Search\SearchEngineConfig;
+use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
-use SearchEngine;
-use SearchEngineFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

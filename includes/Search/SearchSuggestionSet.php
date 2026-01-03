@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Search;
+
 /**
  * Search suggestion sets
  *
@@ -261,3 +263,6 @@ class SearchSuggestionSet {
 		return new SearchSuggestionSet( [] );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SearchSuggestionSet::class, 'SearchSuggestionSet' );

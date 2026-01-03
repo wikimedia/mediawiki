@@ -548,6 +548,28 @@ because of Phabricator reports.
     - SearchResultSet
     - SearchResultTrait
     - TitlePrefixSearch
+    - PaginatingSearchEngine
+    - SearchHighlighter
+    - StringPrefixSearch
+    - SearchIndexField
+    - PerRowAugmentor
+    - ResultAugmentor
+    - NullIndexField
+    - SearchIndexFieldDefinition
+    - FauxSearchResultSet
+    - SearchSuggestion
+    - SearchEngine
+    - SearchSqlite
+    - SearchResultSetTrait
+    - SearchNearMatchResultSet
+    - ResultSetAugmentor
+    - SearchEngineFactory
+    - SearchSuggestionSet
+    - SearchPostgres
+    - SearchDatabase
+    - DummySearchIndexFieldDefinition
+    - SearchExactMatchRescorer
+    - FauxSearchResult
 * Using an int for the $mode parameter of LanguageFallback::getAll() is now
   deprecated.  Use the new LanguageFallbackMode enumeration instead.
 * LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use

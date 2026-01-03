@@ -1,7 +1,8 @@
 <?php
 
-use MediaWiki\Search\SearchResult;
-use MediaWiki\Search\SearchResultSet;
+namespace MediaWiki\Search;
+
+use InvalidArgumentException;
 use MediaWiki\Title\Title;
 
 /**
@@ -43,3 +44,6 @@ class FauxSearchResultSet extends SearchResultSet {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( FauxSearchResultSet::class, 'FauxSearchResultSet' );

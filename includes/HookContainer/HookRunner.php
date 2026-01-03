@@ -26,12 +26,12 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\RenameUser\RenameuserSQL;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Search\SearchEngine;
 use MediaWiki\Session\Session;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use SearchEngine;
 use StatusValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 

@@ -8,11 +8,11 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
+use MediaWiki\Search\SearchEngine;
+use MediaWiki\Search\SearchIndexField;
+use MediaWiki\Search\SearchIndexFieldDefinition;
 use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
-use SearchEngine;
-use SearchIndexField;
-use SearchIndexFieldDefinition;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**

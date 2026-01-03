@@ -9,12 +9,12 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\Search\ISearchResultSet;
+use MediaWiki\Search\SearchEngine;
 use MediaWiki\Search\SearchEngineConfig;
+use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\Search\SearchResult;
 use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Status\Status;
-use SearchEngine;
-use SearchEngineFactory;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;

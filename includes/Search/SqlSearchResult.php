@@ -12,7 +12,6 @@ namespace MediaWiki\Search;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use SearchHighlighter;
 
 class SqlSearchResult extends RevisionSearchResult {
 	/** @var string[] */

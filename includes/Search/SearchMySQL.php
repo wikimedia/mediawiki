@@ -13,7 +13,6 @@
 namespace MediaWiki\Search;
 
 use MediaWiki\MediaWikiServices;
-use SearchDatabase;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;

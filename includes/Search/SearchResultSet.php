@@ -10,7 +10,6 @@
 namespace MediaWiki\Search;
 
 use MediaWiki\Title\Title;
-use SearchResultSetTrait;
 use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**

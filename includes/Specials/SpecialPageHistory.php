@@ -6,8 +6,8 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\SpecialPage\SpecialRedirectWithAction;
-use SearchEngineFactory;
 
 /**
  * Redirect from Special:History/$1 to index.php?title=$1&action=history.

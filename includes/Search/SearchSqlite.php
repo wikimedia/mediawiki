@@ -7,8 +7,9 @@
  * @ingroup Search
  */
 
+namespace MediaWiki\Search;
+
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Search\SqlSearchResultSet;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -269,3 +270,6 @@ class SearchSqlite extends SearchDatabase {
 			->caller( __METHOD__ )->execute();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SearchSqlite::class, 'SearchSqlite' );

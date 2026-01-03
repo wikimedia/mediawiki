@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Search;
+
 /**
  * Dummy implementation of SearchIndexFieldDefinition for testing purposes.
  *
@@ -28,3 +30,6 @@ class DummySearchIndexFieldDefinition extends SearchIndexFieldDefinition {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DummySearchIndexFieldDefinition::class, 'DummySearchIndexFieldDefinition' );

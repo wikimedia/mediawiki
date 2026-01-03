@@ -7,8 +7,8 @@
  * @ingroup Search
  */
 
-use MediaWiki\Search\ISearchResultSet;
-use MediaWiki\Search\SqlSearchResultSet;
+namespace MediaWiki\Search;
+
 use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -105,3 +105,6 @@ abstract class SearchDatabase extends SearchEngine {
 		return $queryAndNs[0];
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SearchDatabase::class, 'SearchDatabase' );

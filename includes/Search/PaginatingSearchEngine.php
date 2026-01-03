@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Search;
+
 /**
  * Marker class for search engines that can handle their own pagination, by
  * reporting in their ISearchResultSet when a next page is available. This
@@ -12,3 +14,6 @@
  */
 interface PaginatingSearchEngine {
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( PaginatingSearchEngine::class, 'PaginatingSearchEngine' );

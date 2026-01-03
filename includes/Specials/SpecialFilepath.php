@@ -6,10 +6,10 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\SpecialPage\RedirectSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use SearchEngineFactory;
 
 /**
  * Redirects to the URL of a thumbnail for the given file.

@@ -9,8 +9,6 @@
 
 namespace MediaWiki\Search;
 
-use SearchEngine;
-
 /**
  * Dummy class to be used when non-supported Database engine is present.
  * @todo FIXME: Dummy class should probably try something at least mildly useful,
