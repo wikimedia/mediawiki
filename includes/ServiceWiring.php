@@ -69,6 +69,7 @@ use MediaWiki\Config\ConfigException;
 use MediaWiki\Config\ConfigFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\CodeHighlighter;
 use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Content\ContentJsonCodec;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -656,6 +657,13 @@ return [
 			'ChronologyClientId' => $cpPosInfo['clientId'] ?? null,
 		] );
 		return $chronologyProtector;
+	},
+
+	'CodeHighlighter' => static function ( MediaWikiServices $services ): CodeHighlighter {
+		return new CodeHighlighter(
+			$services->getObjectFactory(),
+			ExtensionRegistry::getInstance()->getAttribute( 'CodeHighlightProviders' ),
+		);
 	},
 
 	'CollationFactory' => static function ( MediaWikiServices $services ): CollationFactory {

@@ -583,6 +583,23 @@
 				]
 			}
 		},
+		"CodeHighlightProviders": {
+			"type": "array",
+			"description": "List of code highlighting providers (specs for ObjectFactory). The class should implement the CodeHighlighter interface.",
+			"items": {
+				"type": "object",
+				"properties": {
+					"factory": { "description": "See the ObjectFactorySpec definition" },
+					"class": { "description": "See the ObjectFactorySpec definition" },
+					"args": { "description": "See the ObjectFactorySpec definition" },
+					"services": { "description": "See the ObjectFactorySpec definition" },
+					"optional_services": { "description": "See the ObjectFactorySpec definition" }
+				},
+				"allOf": [
+					{ "$ref": "#/definitions/ObjectFactorySpec" }
+				]
+			}
+		},
 
 		"$comment": "----------------------------------------------------------------------",
 		"$comment": "Localisation",

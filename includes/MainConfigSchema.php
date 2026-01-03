@@ -3382,13 +3382,13 @@ class MainConfigSchema {
 						'ParsoidParserFactory',
 					],
 				],
-				// dumb version, no syntax highlighting
 				CONTENT_MODEL_JAVASCRIPT => [
 					'class' => JavaScriptContentHandler::class,
 					'services' => [
 						'MainConfig',
 						'ParserFactory',
 						'UserOptionsLookup',
+						'CodeHighlighter',
 					],
 				],
 				// simple implementation, for use by extensions, etc.
@@ -3399,13 +3399,13 @@ class MainConfigSchema {
 						'TitleFactory',
 					],
 				],
-				// dumb version, no syntax highlighting
 				CONTENT_MODEL_CSS => [
 					'class' => CssContentHandler::class,
 					'services' => [
 						'MainConfig',
 						'ParserFactory',
 						'UserOptionsLookup',
+						'CodeHighlighter',
 					],
 				],
 				CONTENT_MODEL_VUE => [
@@ -3413,6 +3413,7 @@ class MainConfigSchema {
 					'services' => [
 						'MainConfig',
 						'ParserFactory',
+						'CodeHighlighter',
 					]
 				],
 				// plain text, for use by extensions, etc.

@@ -9,7 +9,6 @@ namespace MediaWiki\Content;
 use MediaWiki\Config\Config;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
-use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserFactory;
@@ -34,6 +33,7 @@ class CssContentHandler extends CodeContentHandler {
 		Config $config,
 		private readonly ParserFactory $parserFactory,
 		private readonly UserOptionsLookup $userOptionsLookup,
+		private readonly CodeHighlighter $codeHighlighter,
 	) {
 		parent::__construct( $modelId, [ CONTENT_FORMAT_CSS ] );
 		$this->textModelsToParse = $config->get( MainConfigNames::TextModelsToParse ) ?? [];
@@ -119,12 +119,14 @@ class CssContentHandler extends CodeContentHandler {
 		}
 
 		if ( $cpoParams->getGenerateHtml() ) {
-			// Return CSS wrapped in a <pre> tag.
-			$html = Html::element(
-				'pre',
-				[ 'class' => [ 'mw-code', 'mw-css' ], 'dir' => 'ltr' ],
-				"\n" . $content->getText() . "\n"
-			) . "\n";
+			$highlightOutput = $this->codeHighlighter->highlight( $content->getText(), new CodeHighlighterOptions(
+				language: 'css',
+				classes: [ 'mw-css' ],
+				includeLineNumbers: true,
+				includeLineLinks: true,
+			) );
+			$html = $highlightOutput->getHtml();
+			$highlightOutput->getMetadata()->addToParserOutput( $output );
 		} else {
 			$html = null;
 		}

@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\ResourceLoader;
 use LinkCacheTestTrait;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Content\CodeHighlighter;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\CssContent;
 use MediaWiki\Content\JavaScriptContent;
@@ -532,7 +533,8 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 					CONTENT_MODEL_JAVASCRIPT,
 					new HashConfig( [ MainConfigNames::TextModelsToParse => [] ] ),
 					$this->createMock( ParserFactory::class ),
-					$this->createMock( UserOptionsLookup::class )
+					$this->createMock( UserOptionsLookup::class ),
+					$this->createMock( CodeHighlighter::class ),
 				);
 				return $handler->makeRedirectContent(
 					Title::makeTitle( NS_MEDIAWIKI, 'Target.js' )

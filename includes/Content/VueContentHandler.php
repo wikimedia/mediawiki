@@ -9,7 +9,6 @@ namespace MediaWiki\Content;
 use InvalidArgumentException;
 use MediaWiki\Config\Config;
 use MediaWiki\Content\Renderer\ContentParseParams;
-use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserFactory;
@@ -34,6 +33,7 @@ class VueContentHandler extends CodeContentHandler {
 		string $modelId,
 		Config $config,
 		private readonly ParserFactory $parserFactory,
+		private readonly CodeHighlighter $codeHighlighter,
 	) {
 		parent::__construct( $modelId, [ CONTENT_FORMAT_VUE ] );
 		$this->textModelsToParse = $config->get( MainConfigNames::TextModelsToParse ) ?? [];
@@ -90,12 +90,14 @@ class VueContentHandler extends CodeContentHandler {
 		}
 
 		if ( $cpoParams->getGenerateHtml() ) {
-			// Return Vue code wrapped in a <pre> tag.
-			$html = Html::element(
-				'pre',
-				[ 'class' => 'mw-code mw-vue', 'dir' => 'ltr' ],
-				"\n" . $content->getText() . "\n"
-			) . "\n";
+			$highlightOutput = $this->codeHighlighter->highlight( $content->getText(), new CodeHighlighterOptions(
+				language: 'vue',
+				classes: [ 'mw-vue' ],
+				includeLineNumbers: true,
+				includeLineLinks: true,
+			) );
+			$html = $highlightOutput->getHtml();
+			$highlightOutput->getMetadata()->addToParserOutput( $output );
 		} else {
 			$html = null;
 		}

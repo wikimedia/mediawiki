@@ -2070,10 +2070,10 @@ config-schema:
     ContentHandlers:
         default:
             wikitext: { class: MediaWiki\Content\WikitextContentHandler, services: [TitleFactory, ParserFactory, GlobalIdGenerator, LanguageNameUtils, LinkRenderer, MagicWordFactory, ParsoidParserFactory] }
-            javascript: { class: MediaWiki\Content\JavaScriptContentHandler, services: [MainConfig, ParserFactory, UserOptionsLookup] }
+            javascript: { class: MediaWiki\Content\JavaScriptContentHandler, services: [MainConfig, ParserFactory, UserOptionsLookup, CodeHighlighter] }
             json: { class: MediaWiki\Content\JsonContentHandler, services: [ParsoidParserFactory, TitleFactory] }
-            css: { class: MediaWiki\Content\CssContentHandler, services: [MainConfig, ParserFactory, UserOptionsLookup] }
-            vue: { class: MediaWiki\Content\VueContentHandler, services: [MainConfig, ParserFactory] }
+            css: { class: MediaWiki\Content\CssContentHandler, services: [MainConfig, ParserFactory, UserOptionsLookup, CodeHighlighter] }
+            vue: { class: MediaWiki\Content\VueContentHandler, services: [MainConfig, ParserFactory, CodeHighlighter] }
             text: MediaWiki\Content\TextContentHandler
             unknown: MediaWiki\Content\FallbackContentHandler
         type: object

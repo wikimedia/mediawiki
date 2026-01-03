@@ -17,7 +17,7 @@ class JavaScriptContentHandlerIntegrationTest extends TextContentHandlerIntegrat
 			'title' => 'MediaWiki:Test.js',
 			'model' => null,
 			'text' => "hello <world>\n",
-			'expectedHtml' => "<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello &lt;world>\n\n</pre>",
+			'expectedHtml' => "<pre dir=\"ltr\" class=\"mw-code mw-js\">\nhello &lt;world>\n\n</pre>",
 			'expectedFields' => [
 				'LinkList!LOCAL' => [
 					'_args_' => [ ParserOutputLinkTypes::LOCAL ],
@@ -30,7 +30,7 @@ class JavaScriptContentHandlerIntegrationTest extends TextContentHandlerIntegrat
 			'title' => 'MediaWiki:Test.js',
 			'model' => null,
 			'text' => "hello(); // [[world]]\n",
-			'expectedHtml' => "<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello(); // [[world]]\n\n</pre>",
+			'expectedHtml' => "<pre dir=\"ltr\" class=\"mw-code mw-js\">\nhello(); // [[world]]\n\n</pre>",
 			'expectedFields' => [
 				'LinkList!LOCAL' => [
 					'_args_' => [ ParserOutputLinkTypes::LOCAL ],
@@ -47,7 +47,7 @@ class JavaScriptContentHandlerIntegrationTest extends TextContentHandlerIntegrat
 			'title' => 'MediaWiki:Test.js',
 			'model' => null,
 			'text' => "==One==\n<h2>Two</h2>",
-			'expectedHtml' => "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n==One==\n&lt;h2>Two&lt;/h2>\n</pre>",
+			'expectedHtml' => "<pre dir=\"ltr\" class=\"mw-code mw-js\">\n==One==\n&lt;h2>Two&lt;/h2>\n</pre>",
 			'expectedFields' => [
 				'LinkList!LOCAL' => [
 					'_args_' => [ ParserOutputLinkTypes::LOCAL ],

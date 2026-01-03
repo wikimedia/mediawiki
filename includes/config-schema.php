@@ -425,6 +425,7 @@ return [
 						'MainConfig',
 						'ParserFactory',
 						'UserOptionsLookup',
+						'CodeHighlighter',
 					],
 				],
 				'json' => [
@@ -440,6 +441,7 @@ return [
 						'MainConfig',
 						'ParserFactory',
 						'UserOptionsLookup',
+						'CodeHighlighter',
 					],
 				],
 				'vue' => [
@@ -447,6 +449,7 @@ return [
 					'services' => [
 						'MainConfig',
 						'ParserFactory',
+						'CodeHighlighter',
 					],
 				],
 				'text' => 'MediaWiki\\Content\\TextContentHandler',

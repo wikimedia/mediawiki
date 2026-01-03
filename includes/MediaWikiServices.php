@@ -42,6 +42,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\GlobalVarConfig;
+use MediaWiki\Content\CodeHighlighter;
 use MediaWiki\Content\ContentJsonCodec;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
@@ -900,6 +901,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getBotPasswordStore(): BotPasswordStore {
 		return $this->getService( 'BotPasswordStore' );
+	}
+
+	/**
+	 * @since 1.47
+	 */
+	public function getCodeHighlighter(): CodeHighlighter {
+		return $this->getService( 'CodeHighlighter' );
 	}
 
 	/**

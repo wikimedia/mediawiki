@@ -77,6 +77,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 						'MainConfig',
 						'ParserFactory',
 						'UserOptionsLookup',
+						'CodeHighlighter',
 					],
 				],
 				CONTENT_MODEL_JSON => [
@@ -92,6 +93,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 						'MainConfig',
 						'ParserFactory',
 						'UserOptionsLookup',
+						'CodeHighlighter',
 					],
 				],
 				CONTENT_MODEL_TEXT => TextContentHandler::class,

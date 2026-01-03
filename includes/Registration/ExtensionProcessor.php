@@ -95,6 +95,7 @@ class ExtensionProcessor implements Processor {
 		'NotificationMiddleware',
 		'RecentChangeSources',
 		'ShadowPageProviders',
+		'CodeHighlightProviders',
 	];
 
 	/**
