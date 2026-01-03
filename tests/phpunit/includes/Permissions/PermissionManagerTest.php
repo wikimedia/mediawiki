@@ -488,10 +488,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'userPerms' => [ 'edit' ],
 			'expectedPermErrors' => [
 				[ 'nocreate-loggedin' ],
-				[ 'badaccess-groups', Message::listParam( [
-					'[[(grouppage-*)|(group-*)]]',
-					'[[(grouppage-user)|(group-user)]]'
-				], ListType::COMMA ), 2 ],
+				[ 'badaccess-group0' ],
 				[ 'titleprotected', 'Useruser', 'test' ]
 			],
 			'expectedUserCan' => false,

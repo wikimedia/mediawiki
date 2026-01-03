@@ -13,7 +13,7 @@ class PermissionsErrorTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setGroupPermissions( '*', 'testpermission', true );
+		$this->setGroupPermissions( 'group', 'testpermission', true );
 	}
 
 	public static function provideConstruction() {
@@ -27,7 +27,7 @@ class PermissionsErrorTest extends MediaWikiIntegrationTestCase {
 		yield [ 'testpermission', $array, $status ];
 
 		yield [ 'testpermission', [],
-			PermissionStatus::newEmpty()->fatal( 'badaccess-groups', Message::listParam( [ '*' ], ListType::COMMA ), 1 )
+			PermissionStatus::newEmpty()->fatal( 'badaccess-groups', Message::listParam( [ 'group' ], ListType::COMMA ), 1 )
 		];
 	}
 

@@ -708,8 +708,9 @@ class PermissionManager {
 	 * @return PermissionStatus
 	 */
 	public function newFatalPermissionDeniedStatus( $permission, IContextSource $context ): StatusValue {
-		$groups = $this->groupPermissionsLookup->getGroupsWithPermission( $permission );
-		if ( !$groups ) {
+		$groupsWithPermission = $this->groupPermissionsLookup->getGroupsWithPermission( $permission );
+		if ( !$groupsWithPermission ) {
+			// Nobody has the right
 			$status = PermissionStatus::newFatal( 'badaccess-group0' );
 			$status->setPermission( $permission );
 			return $status;
@@ -717,27 +718,41 @@ class PermissionManager {
 
 		$groupLinks = array_map(
 			static fn ( $group ) => UserGroupMembership::getLinkWiki( $group, $context ),
-			$groups
+			$groupsWithPermission
 		);
 
 		$userDisabledGroups = $this->userGroupManager->getUserDisabledGroups( $context->getUser() );
-		$groupIntersection = array_intersect( $groups, $userDisabledGroups );
-		if ( $groupIntersection !== [] ) {
-			$groupIntersectionNames = array_map(
+		$disabledGroupsWithPermission = array_intersect( $groupsWithPermission, $userDisabledGroups );
+		if ( $disabledGroupsWithPermission !== [] ) {
+			// One of the groups you are in has the right, however you don't
+			// meet the restrictions to be in that group
+			$disabledGroupsWithPermissionNames = array_map(
 				static fn ( $group ) => $context->getLanguage()->getGroupName( $group ),
-				$groupIntersection
+				$disabledGroupsWithPermission
 			);
 			$status = PermissionStatus::newFatal(
 				'badaccess-groups-disabled',
 				Message::listParam( $groupLinks, ListType::COMMA ),
 				count( $groupLinks ),
-				Message::listParam( $groupIntersectionNames, ListType::COMMA ),
-				count( $groupIntersectionNames )
+				Message::listParam( $disabledGroupsWithPermissionNames, ListType::COMMA ),
+				count( $disabledGroupsWithPermissionNames )
 			);
 			$status->setPermission( $permission );
 			return $status;
 		}
 
+		$user = $context->getUser();
+		$userGroups = $this->userGroupManager->getUserEffectiveGroups( $user );
+		if ( array_intersect( $userGroups, $groupsWithPermission ) ) {
+			// You are in a group that should have this right, but don't for some reason
+			// and we don't know why.
+			// (Possible causes of this include $wgRevokePermissions or an extension hook
+			// that modiied the permission structure)
+			$status = PermissionStatus::newFatal( 'badaccess-group0' );
+			$status->setPermission( $permission );
+			return $status;
+		}
+		// You aren't in any groups that have this right (this is the most commn case)
 		$status = PermissionStatus::newFatal(
 			'badaccess-groups',
 			Message::listParam( $groupLinks, ListType::COMMA ),
