@@ -20,15 +20,6 @@ use Wikimedia\AtEase\AtEase;
  * @ingroup Media
  */
 class GIFMetadataExtractor {
-	/** @var string */
-	private static $gifFrameSep;
-
-	/** @var string */
-	private static $gifExtensionSep;
-
-	/** @var string */
-	private static $gifTerm;
-
 	public const VERSION = 1;
 
 	// Each sub-block is less than or equal to 255 bytes.
@@ -42,10 +33,6 @@ class GIFMetadataExtractor {
 	 * @return array
 	 */
 	public static function getMetadata( $filename ) {
-		self::$gifFrameSep = pack( "C", ord( "," ) ); // 2C
-		self::$gifExtensionSep = pack( "C", ord( "!" ) ); // 21
-		self::$gifTerm = pack( "C", ord( ";" ) ); // 3B
-
 		$frameCount = 0;
 		$duration = 0.0;
 		$isLooped = false;
@@ -99,7 +86,8 @@ class GIFMetadataExtractor {
 		while ( !feof( $fh ) ) {
 			$buf = fread( $fh, 1 );
 
-			if ( $buf === self::$gifFrameSep ) {
+			// 2C = Start of a image Descriptor (character , in ascii)
+			if ( $buf === "\x2C" ) {
 				// Found a frame
 				$frameCount++;
 
@@ -118,7 +106,8 @@ class GIFMetadataExtractor {
 				// @phan-suppress-next-line PhanPluginUseReturnValueInternalKnown
 				fread( $fh, 1 );
 				self::skipBlock( $fh );
-			} elseif ( $buf === self::$gifExtensionSep ) {
+			} elseif ( $buf === "\x21" ) {
+				// 21 = Start of Extension (character ! in ascii)
 				$buf = fread( $fh, 1 );
 				if ( strlen( $buf ) < 1 ) {
 					throw new InvalidArgumentException(
@@ -245,7 +234,8 @@ class GIFMetadataExtractor {
 				} else {
 					self::skipBlock( $fh );
 				}
-			} elseif ( $buf === self::$gifTerm ) {
+			} elseif ( $buf === "\x3B" ) {
+				// 3B = Trailer (character ; in ascii)
 				break;
 			} else {
 				if ( strlen( $buf ) < 1 ) {

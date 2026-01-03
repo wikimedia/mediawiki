@@ -20,9 +20,6 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @ingroup Media
  */
 class PNGMetadataExtractor {
-	/** @var string */
-	private static $pngSig;
-
 	/** @var int */
 	private static $crcSize;
 
@@ -37,7 +34,6 @@ class PNGMetadataExtractor {
 	 * @return array
 	 */
 	public static function getMetadata( $filename ) {
-		self::$pngSig = pack( "C8", 137, 80, 78, 71, 13, 10, 26, 10 );
 		self::$crcSize = 4;
 		/* based on list at http://owl.phy.queensu.ca/~phil/exiftool/TagNames/PNG.html#TextualData
 		 * and https://www.w3.org/TR/PNG/#11keywords
@@ -93,7 +89,7 @@ class PNGMetadataExtractor {
 
 		// Check for the PNG header
 		$buf = self::read( $fh, 8 );
-		if ( $buf !== self::$pngSig ) {
+		if ( $buf !== "\x89PNG\x0d\x0a\x1a\x0a" ) {
 			throw new InvalidArgumentException( __METHOD__ . ": Not a valid PNG file; header: $buf" );
 		}
 

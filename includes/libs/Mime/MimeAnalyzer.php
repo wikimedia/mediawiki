@@ -614,7 +614,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		}
 
 		/* Look for WebM and Matroska files */
-		if ( str_starts_with( $head16k, pack( "C4", 0x1a, 0x45, 0xdf, 0xa3 ) ) ) {
+		if ( str_starts_with( $head16k, "\x1a\x45\xdf\xa3" ) ) {
 			$doctype = strpos( $head16k, "\x42\x82" );
 			if ( $doctype ) {
 				// Next byte is datasize, then data (sizes larger than 1 byte are stupid muxers)
