@@ -58,6 +58,7 @@ const mw = {
 		warn: jest.fn()
 	},
 	config: {
+		set: jest.fn(),
 		get: jest.fn()
 	},
 	hook: jest.fn().mockReturnValue( {

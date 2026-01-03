@@ -272,13 +272,14 @@ module.exports = exports = defineStore( 'block', () => {
 	);
 
 	/**
-	 * Update the URL path with the target user, and set the query string parameters:
+	 * Update wgRelevantUserName and the URL path with the target user, and set the query string parameters:
 	 * - id: The block ID of the block to modify
 	 * - remove: Whether to remove the block (opens the dialog)
 	 */
 	watch(
 		computed( () => [ targetUser.value, blockId.value, removalConfirmationOpen.value ] ),
 		() => {
+			mw.config.set( 'wgRelevantUserName', targetUser.value );
 			const params = new URLSearchParams( window.location.search );
 			if ( blockId.value ) {
 				params.set( 'id', blockId.value );

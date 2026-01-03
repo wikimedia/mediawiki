@@ -92,13 +92,20 @@ describe( 'Block store', () => {
 		expect( store.formVisible ).toBeFalsy();
 	} );
 
-	it( 'should update the URL when the targetUser, blockId or removalConfirmationOpen changes', async () => {
+	it( 'should update the URL + JS vars when the targetUser, blockId or removalConfirmationOpen change', async () => {
+		let wgRelevantUserName = '';
+		mw.config.set = jest.fn( ( key, value ) => {
+			if ( key === 'wgRelevantUserName' ) {
+				wgRelevantUserName = value;
+			}
+		} );
 		// Add extraneous forward slash to ensure it gets stripped.
 		mockMwConfigGet( { wgPageName: 'Special:Block/' } );
 		const store = useBlockStore();
 		store.targetUser = 'ExampleUser';
 		await nextTick();
 		expect( location.pathname ).toStrictEqual( '/wiki/Special:Block/ExampleUser' );
+		expect( wgRelevantUserName ).toStrictEqual( 'ExampleUser' );
 		// Add some extra params to the URL. This also tests that 'title=' is removed.
 		history.replaceState( {}, '', '/wiki/Special:Block/ExampleUser?title=Special:Block&foo=bar' );
 		store.blockId = 1234;
