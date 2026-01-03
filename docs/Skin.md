@@ -69,8 +69,8 @@ $wgDefaultSkin = '<name>';
 Or disable it entirely by removing the `wfLoadSkin` line. (User settings will
 not be lost if it's reenabled later.)
 
-See https://www.mediawiki.org/wiki/Manual:Skinning for more information on
-writing new skins.
+See https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Skinning for more
+information on writing new skins.
 
 ### Legacy custom skins
 
@@ -80,4 +80,4 @@ the `Skin<name>` class. This way has always been discouraged because of its
 limitations (inability to add localisation messages, ResourceLoader modules,
 etc.) and awkwardness in managing such skins. For information on migrating skins
 using this old method, see
-https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery.
+https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Skin_autodiscovery.

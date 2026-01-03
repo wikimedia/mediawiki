@@ -1,7 +1,7 @@
 # MediaWiki Developers
 
 Welcome to the MediaWiki community! Please see [How to become a MediaWiki
-hacker](https://www.mediawiki.org/wiki/How_to_become_a_MediaWiki_hacker) for
+hacker](https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_become_a_MediaWiki_hacker) for
 general information on contributing to MediaWiki.
 
 ## Development environment
@@ -11,12 +11,12 @@ Apache, Xdebug and a SQLite database.
 
 **Do not use the development environment to serve a public website! Bad things would happen!**
 
-More documentation, examples, and configuration recipes are available at [mediawiki.org/wiki/MediaWiki-Docker][mw-docker].
+More documentation, examples, and configuration recipes are available at [mediawiki.org/wiki/Special:MyLanguage/MediaWiki-Docker][mw-docker].
 
 Support is available on the [Libera IRC network][libera-home] in the [#mediawiki channel][libera-webchat], and on
 Phabricator by creating tasks with the [MediaWiki-Docker][mw-docker-phab] tag.
 
-[mw-docker]: https://www.mediawiki.org/wiki/MediaWiki-Docker
+[mw-docker]: https://www.mediawiki.org/wiki/Special:MyLanguage/MediaWiki-Docker
 [mw-docker-phab]: https://phabricator.wikimedia.org/tag/mediawiki-docker/
 [libera-home]: https://libera.chat/
 [libera-webchat]: https://web.libera.chat/#mediawiki
@@ -58,7 +58,7 @@ Download the latest MediaWiki files to your computer. One way to download the la
 Optional: If you plan to submit patches to this repository, you will probably want to [create a Gerrit account](https://wikitech.wikimedia.org/wiki/Help:Create_a_Wikimedia_developer_account),
 then type `git remote set-url origin ssh://YOUR-GERRIT-USERNAME-HERE@gerrit.wikimedia.org:29418/mediawiki/core`,
 replacing YOUR-GERRIT-USERNAME-HERE with your Gerrit username. Please see the official
-[MediaWiki Gerrit tutorial](https://www.mediawiki.org/wiki/Gerrit/Tutorial) for more information.
+[MediaWiki Gerrit tutorial](https://www.mediawiki.org/wiki/Special:MyLanguage/Gerrit/Tutorial) for more information.
 
 ### 3. Prepare `.env` file
 
@@ -161,7 +161,7 @@ instance:/w/tests/phpunit$ composer phpunit -- path/to/my/test/
 
 See [PHPUnit on mediawiki.org][phpunit-testing] for more examples.
 
-[phpunit-testing]: https://www.mediawiki.org/wiki/Manual:PHP_unit_testing/Running_the_tests
+[phpunit-testing]: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:PHP_unit_testing/Running_the_tests
 
 ### Selenium
 
@@ -174,7 +174,7 @@ npm ci
 npm run selenium-test
 ```
 
-[selenium-dedicated]: https://www.mediawiki.org/wiki/Selenium/Getting_Started/Run_tests_using_Fresh
+[selenium-dedicated]: https://www.mediawiki.org/wiki/Special:MyLanguage/Selenium/Getting_Started/Run_tests_using_Fresh
 
 ### API Testing
 
@@ -188,13 +188,13 @@ export MEDIAWIKI_USER=Admin
 export MEDIAWIKI_PASSWORD=dockerpass
 fresh-node -env -net
 # Create .api-testing.config.json as documented on
-# https://www.mediawiki.org/wiki/MediaWiki_API_integration_tests
+# https://www.mediawiki.org/wiki/Special:MyLanguage/MediaWiki_API_integration_tests
 npm ci
 npm run api-testing
 ```
 
 [fresh]: https://github.com/wikimedia/fresh
-[api-dedicated]: https://www.mediawiki.org/wiki/MediaWiki_API_integration_tests
+[api-dedicated]: https://www.mediawiki.org/wiki/Special:MyLanguage/MediaWiki_API_integration_tests
 
 ## Modify the development environment
 

@@ -19,7 +19,7 @@ PostgreSQL schema is automatically generated from the abstract schema.
 You can see the generated schema in sql/postgres/tables-generated.sql
 
 For more information on abstract schema see:
-https://www.mediawiki.org/wiki/Manual:Schema_changes
+https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Schema_changes
 
 == MySQL differences ==
 

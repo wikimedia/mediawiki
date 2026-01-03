@@ -2,7 +2,7 @@
  * SVGO Configuration
  * Compatible to v3.0.0+
  * Recommended options from:
- * https://www.mediawiki.org/wiki/Manual:Coding_conventions/SVG#Exemplified_safe_configuration
+ * https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Coding_conventions/SVG#Exemplified_safe_configuration
  */
 
 'use strict';

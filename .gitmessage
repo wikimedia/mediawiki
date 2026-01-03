@@ -10,7 +10,7 @@ What:
 
 Bug: TXXXXX
 #
-# When in doubt, consult https://www.mediawiki.org/wiki/Gerrit/Commit_message_guidelines
+# When in doubt, consult https://www.mediawiki.org/wiki/Special:MyLanguage/Gerrit/Commit_message_guidelines
 #
 # - Subject should be 50 characters or less
 # - Separate body from subject

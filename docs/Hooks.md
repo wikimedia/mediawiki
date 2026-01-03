@@ -5,7 +5,7 @@ Hooks {#hooks}
 
 Hooks allow MediaWiki Core to call extensions or allow one extension to call
 another extension. For more information and a list of hooks, see
-https://www.mediawiki.org/wiki/Manual:Hooks
+https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Hooks
 
 Starting in MediaWiki 1.35, each hook called by MediaWiki Core has an
 associated interface with a single method. To call the hook, obtain a "hook

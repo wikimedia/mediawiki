@@ -9,4 +9,4 @@ That file has been commented with details of the usage for
 each table and field.
 
 Historical information and some other notes are available at
-<https://www.mediawiki.org/wiki/Manual:Database_layout>.
+<https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Database_layout>.

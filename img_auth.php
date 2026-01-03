@@ -2,7 +2,7 @@
 /**
  * The web entry point for serving non-public images to logged-in users.
  *
- * To use this, see https://www.mediawiki.org/wiki/Manual:Image_authorization
+ * To use this, see https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_authorization
  *
  * - Set $wgUploadDirectory to a non-public directory (not web accessible)
  * - Set $wgUploadPath to point to this file

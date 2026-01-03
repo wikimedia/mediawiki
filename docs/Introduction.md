@@ -7,6 +7,6 @@ If you are looking to use, install or configure your wiki, see the main site: <h
 Helpful resources
 -------------------------------
 - [General information](https://www.mediawiki.org/)
-- [Installation guide](https://www.mediawiki.org/wiki/Manual:Installation_guide)
+- [Installation guide](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Installation_guide)
 - [Configuration](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:System_administration)
-- [New Developers](https://www.mediawiki.org/wiki/New_Developers)
+- [New Developers](https://www.mediawiki.org/wiki/Special:MyLanguage/New_Developers)

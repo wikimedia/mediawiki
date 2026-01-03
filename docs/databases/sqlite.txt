@@ -2,7 +2,7 @@ SQLite schema is automatically generated from the abstract schema.
 You can see the generated schema in sql/sqlite/tables-generated.sql
 
 For more information on abstract schema see:
-https://www.mediawiki.org/wiki/Manual:Schema_changes
+https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Schema_changes
 
 SQLite in MediaWiki also accepts MySQL and there are a set of compatibility
 regexes to convert MySQL syntax to SQLite syntax:

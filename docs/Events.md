@@ -19,7 +19,7 @@ things that can trigger a change to the state of the application you are
 developing".
 
 For more information see the documentation on mediawiki.org:
-https://www.mediawiki.org/wiki/Manual:Domain_events
+https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Domain_events
 
 ## Motivation
 

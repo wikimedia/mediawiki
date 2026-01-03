@@ -19,7 +19,7 @@ RELEASE-NOTES, INSTALL, and UPGRADE.
 * Ready to get started?
   * https://www.mediawiki.org/wiki/Special:MyLanguage/Download
 * Setting up your local development environment?
-  * https://www.mediawiki.org/wiki/Local_development_quickstart
+  * https://www.mediawiki.org/wiki/Special:MyLanguage/Local_development_quickstart
 * Looking for the technical manual?
   * https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents
 * Seeking help from a person?

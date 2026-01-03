@@ -52,7 +52,8 @@ root, is /w (so, e.g., /var/www/w). Rewrite rules can then be used to enable
 is the convention Wikipedia uses.)  In theory, it should be possible to enable
 the appropriate rewrite rules by default, if you can reconfigure the web
 server, but you'd need to alter LocalSettings.php too. See
-<https://www.mediawiki.org/wiki/Manual:Short_URL> for details on short URLs.
+<https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Short_URL> for
+details on short URLs.
 
 If you really must mess around with the directory structure, note that the
 following files *must* all be web-accessible for MediaWiki to function
@@ -141,7 +142,8 @@ MediaWiki is a project hosted and led by the Wikimedia Foundation, the
 not-for-profit charity that operates Wikipedia. Wikimedia employs the lead
 developer and several other paid developers, but commit access is given out
 liberally and there are multiple very active volunteer developers as well. A
-list of developers can be found at <https://www.mediawiki.org/wiki/Developers>.
+list of developers can be found at
+<https://www.mediawiki.org/wiki/Special:MyLanguage/Developers>.
 
 MediaWiki's bug tracker is at <https://phabricator.wikimedia.org>. However, you
 might find that the best place to post if you want to get developers' attention
@@ -152,9 +154,10 @@ developers. There's also an active IRC chat at <irc://irc.libera.chat/mediawiki>
 where there are usually several developers at reasonably busy times of day.
 
 Our Git repositories are hosted at <https://gerrit.wikimedia.org>, see
-<https://www.mediawiki.org/wiki/Gerrit> for more information. Patches should
-be submitted there. If you know which developers are best suited to review your
-patch, add them to it, otherwise ask on IRC to get better review time.
+<https://www.mediawiki.org/wiki/Special:MyLanguage/Gerrit> for more information.
+Patches should be submitted there. If you know which developers are best suited
+to review your patch, add them to it, otherwise ask on IRC to get better review
+time.
 
 All redistributors of MediaWiki should be subscribed to mediawiki-announce
 <https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/>.
@@ -179,8 +182,8 @@ perhaps configure it to use them (see Configuration section of this document):
   * HTTP cache such as Varnish or Squid: can provide a drastic speedup and a
   major cut in resource consumption, but enabling it may interfere with other
   applications. It might be suitable for a separate package. For setup details, see:
-  - <https://www.mediawiki.org/wiki/Manual:Varnish_caching>
-  - <https://www.mediawiki.org/wiki/Manual:Squid_caching>
+  - <https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Varnish_caching>
+  - <https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Squid_caching>
   * rsvg or other SVG rasterizer: ImageMagick can be used for SVG support, but
   is not ideal. Wikipedia (as of the time of this writing) uses rsvg. To
   enable, set "$wgSVGConverter = 'rsvg';" (or other as appropriate).
