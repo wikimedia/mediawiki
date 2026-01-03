@@ -311,7 +311,7 @@ class LogPage {
 			[ $name, $par ] = $services->getSpecialPageFactory()->resolveAlias( $title->getDBkey() );
 
 			if ( $name === 'Log' ) {
-				$logPage = new LogPage( $par );
+				$logPage = new LogPage( $par ?? '' );
 				return wfMessage( 'parentheses' )
 					->rawParams( $linkRenderer->makeLink( $title, $logPage->getName()->text() ) )
 					->inLanguage( $lang )

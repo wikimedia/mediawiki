@@ -92,7 +92,7 @@ class OldChangesList extends ChangesList {
 			[ $name, $htmlubpage ] = MediaWikiServices::getInstance()->getSpecialPageFactory()->
 				resolveAlias( $rc->mAttribs['rc_title'] );
 			if ( $name == 'Log' ) {
-				$this->insertLog( $html, $rc->getTitle(), $htmlubpage, false );
+				$this->insertLog( $html, $rc->getTitle(), $htmlubpage ?? '', false );
 			}
 		// Regular entries
 		} else {
