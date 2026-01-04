@@ -13,10 +13,10 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\RevisionDelete\RevisionDeleteUser;
 use MediaWiki\Status\Status;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
-use RevisionDeleteUser;
 
 /**
  * Backend class for unblocking users

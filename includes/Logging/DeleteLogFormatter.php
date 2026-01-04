@@ -13,8 +13,8 @@ namespace MediaWiki\Logging;
 
 use MediaWiki\Api\ApiResult;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\RevisionDelete\RevisionDeleter;
 use MediaWiki\SpecialPage\SpecialPage;
-use RevisionDeleter;
 
 /**
  * This class formats delete log entries.

@@ -5,6 +5,8 @@
  * @ingroup RevisionDelete
  */
 
+namespace MediaWiki\RevisionDelete;
+
 use MediaWiki\Api\ApiResult;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Html\Html;
@@ -257,3 +259,6 @@ class RevDelRevisionItem extends RevDelItem {
 		return $ret;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RevDelRevisionItem::class, 'RevDelRevisionItem' );

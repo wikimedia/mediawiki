@@ -5,6 +5,8 @@
  * @ingroup RevisionDelete
  */
 
+namespace MediaWiki\RevisionDelete;
+
 use MediaWiki\Api\ApiResult;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\OldLocalFile;
@@ -282,3 +284,6 @@ class RevDelFileItem extends RevDelItem {
 		return $this->file->releaseFileLock();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RevDelFileItem::class, 'RevDelFileItem' );

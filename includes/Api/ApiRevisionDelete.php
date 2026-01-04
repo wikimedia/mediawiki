@@ -11,9 +11,9 @@ namespace MediaWiki\Api;
 
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\RevisionDelete\RevisionDeleter;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use RevisionDeleter;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

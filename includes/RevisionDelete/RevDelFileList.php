@@ -5,6 +5,8 @@
  * @ingroup RevisionDelete
  */
 
+namespace MediaWiki\RevisionDelete;
+
 use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\File;
@@ -157,3 +159,6 @@ class RevDelFileList extends RevDelList {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RevDelFileList::class, 'RevDelFileList' );

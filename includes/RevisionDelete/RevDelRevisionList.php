@@ -5,6 +5,10 @@
  * @ingroup RevisionDelete
  */
 
+namespace MediaWiki\RevisionDelete;
+
+use InvalidArgumentException;
+use LogEntry;
 use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\DomainEvent\DomainEventDispatcher;
@@ -249,3 +253,6 @@ class RevDelRevisionList extends RevDelList {
 		return Status::newGood();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RevDelRevisionList::class, 'RevDelRevisionList' );

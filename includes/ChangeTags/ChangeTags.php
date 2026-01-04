@@ -20,13 +20,13 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\RevisionDelete\RevDelLogList;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
-use RevDelLogList;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IReadableDatabase;
 

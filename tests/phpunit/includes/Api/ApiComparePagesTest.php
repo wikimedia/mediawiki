@@ -6,10 +6,10 @@ use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\RevisionDelete\RevisionDeleter;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
-use RevisionDeleter;
 
 /**
  * @group API

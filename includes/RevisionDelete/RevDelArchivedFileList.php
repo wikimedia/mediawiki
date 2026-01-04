@@ -5,6 +5,8 @@
  * @ingroup RevisionDelete
  */
 
+namespace MediaWiki\RevisionDelete;
+
 use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
@@ -79,3 +81,6 @@ class RevDelArchivedFileList extends RevDelFileList {
 		return new RevDelArchivedFileItem( $this, $row );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RevDelArchivedFileList::class, 'RevDelArchivedFileList' );

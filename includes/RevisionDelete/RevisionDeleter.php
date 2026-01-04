@@ -7,6 +7,9 @@
  * @ingroup RevisionDelete
  */
 
+namespace MediaWiki\RevisionDelete;
+
+use InvalidArgumentException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -281,3 +284,6 @@ class RevisionDeleter {
 		return $newBits;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RevisionDeleter::class, 'RevisionDeleter' );

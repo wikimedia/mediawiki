@@ -5,6 +5,8 @@
  * @ingroup RevisionDelete
  */
 
+namespace MediaWiki\RevisionDelete;
+
 use MediaWiki\Api\ApiResult;
 use MediaWiki\RevisionList\RevisionItemBase;
 use MediaWiki\Status\Status;
@@ -70,3 +72,6 @@ abstract class RevDelItem extends RevisionItemBase {
 		return Status::newGood();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RevDelItem::class, 'RevDelItem' );

@@ -7,6 +7,8 @@
  * @ingroup RevisionDelete
  */
 
+namespace MediaWiki\RevisionDelete;
+
 use MediaWiki\Logging\LogPage;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
@@ -162,3 +164,6 @@ class RevisionDeleteUser {
 		return self::setUsernameBitfields( $name, $userId, '&', $dbw );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RevisionDeleteUser::class, 'RevisionDeleteUser' );

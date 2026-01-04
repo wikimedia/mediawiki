@@ -15,12 +15,12 @@ use MediaWiki\Html\Html;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\RevisionDelete\RevisionDeleter;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Xml\XmlSelect;
-use RevisionDeleter;
 
 /**
  * Add or remove change tags to individual revisions.

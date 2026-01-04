@@ -491,6 +491,22 @@ because of Phabricator reports.
     - IRCLineURLHook
   - RevisionDelete related hook: MediaWiki\Hook => MediaWiki\RevisionDelete\Hook
     - ArticleRevisionVisibilitySetHook
+  - MediaWiki\RevisionDelete:
+    - RevisionDeleter
+    - RevDelFileItem
+    - RevDelRevisionItem
+    - RevDelLogList
+    - RevisionDeleteUser
+    - RevDelList
+    - RevDelFileList
+    - RevDelArchivedFileList
+    - RevDelLogItem
+    - RevDelRevisionList
+    - RevDelArchivedFileItem
+    - RevDelItem
+    - RevDelArchivedRevisionItem
+    - RevDelArchiveList
+    - RevDelArchiveItem
   - Title related hooks: MediaWiki\Hook => MediaWiki\Title\Hook
     - CanonicalNamespacesHook
     - NamespaceIsMovableHook

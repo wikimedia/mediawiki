@@ -5,7 +5,10 @@
  * @ingroup RevisionDelete
  */
 
+namespace MediaWiki\RevisionDelete;
+
 use MediaWiki\RevisionList\RevisionListBase;
+use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -54,3 +57,6 @@ class RevDelArchivedRevisionItem extends RevDelArchiveItem {
 		return (bool)$dbw->affectedRows();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RevDelArchivedRevisionItem::class, 'RevDelArchivedRevisionItem' );

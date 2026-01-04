@@ -5,6 +5,9 @@
  * @ingroup RevisionDelete
  */
 
+namespace MediaWiki\RevisionDelete;
+
+use LogEntry;
 use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\DomainEvent\DomainEventDispatcher;
@@ -118,3 +121,6 @@ class RevDelArchiveList extends RevDelRevisionList {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RevDelArchiveList::class, 'RevDelArchiveList' );

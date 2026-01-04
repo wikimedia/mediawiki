@@ -6,7 +6,7 @@ use GetTextMaint;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use RevisionDeleter;
+use MediaWiki\RevisionDelete\RevisionDeleter;
 
 /**
  * @covers \GetTextMaint

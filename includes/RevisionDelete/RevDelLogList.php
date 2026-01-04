@@ -5,6 +5,8 @@
  * @ingroup RevisionDelete
  */
 
+namespace MediaWiki\RevisionDelete;
+
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Logging\LogFormatterFactory;
@@ -146,3 +148,6 @@ class RevDelLogList extends RevDelList {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RevDelLogList::class, 'RevDelLogList' );

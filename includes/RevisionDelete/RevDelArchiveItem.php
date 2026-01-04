@@ -5,6 +5,8 @@
  * @ingroup RevisionDelete
  */
 
+namespace MediaWiki\RevisionDelete;
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -115,3 +117,6 @@ class RevDelArchiveItem extends RevDelRevisionItem {
 		);
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RevDelArchiveItem::class, 'RevDelArchiveItem' );

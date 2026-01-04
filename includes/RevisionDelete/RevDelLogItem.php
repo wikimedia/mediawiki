@@ -5,6 +5,8 @@
  * @ingroup RevisionDelete
  */
 
+namespace MediaWiki\RevisionDelete;
+
 use MediaWiki\Api\ApiResult;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\CommentStore\CommentStore;
@@ -18,6 +20,7 @@ use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\RevisionList\RevisionListBase;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -193,3 +196,6 @@ class RevDelLogItem extends RevDelItem {
 		return $ret;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RevDelLogItem::class, 'RevDelLogItem' );

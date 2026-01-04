@@ -21,6 +21,7 @@ use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\RevisionDelete\RevisionDeleteUser;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
@@ -29,7 +30,6 @@ use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
-use RevisionDeleteUser;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 

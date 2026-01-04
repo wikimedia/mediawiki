@@ -18,12 +18,12 @@ use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\RevisionDelete\RevDelList;
+use MediaWiki\RevisionDelete\RevisionDeleter;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use RevDelList;
-use RevisionDeleter;
 
 /**
  * Special page allowing users with the appropriate permissions to view
