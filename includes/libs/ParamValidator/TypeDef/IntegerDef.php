@@ -49,7 +49,10 @@ class IntegerDef extends NumericDef {
 			if ( is_array( $value ) || !preg_match( '/^[+-]?\d+$/D', $value ) ) {
 				$this->fatal( 'badinteger', $name, $value, $settings, $options );
 			} else {
-				$ret = intval( $value, 10 );
+				// Value is string and may exceed native int bounds.
+				// Ignore cast warnings, we will check if that happens later.
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				$ret = @intval( $value, 10 );
 			}
 		}
 
