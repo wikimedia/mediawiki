@@ -525,7 +525,7 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 			if ( $title->getDBkey() === 'Redirect.js' ) {
 				$handler = new JavaScriptContentHandler(
 					CONTENT_MODEL_JAVASCRIPT,
-					$this->createMock( Config::class ),
+					new HashConfig( [ MainConfigNames::TextModelsToParse => [] ] ),
 					$this->createMock( ParserFactory::class ),
 					$this->createMock( UserOptionsLookup::class )
 				);
