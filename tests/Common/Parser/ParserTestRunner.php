@@ -1220,7 +1220,6 @@ class ParserTestRunner {
 		$testKnownFailures = [];
 		foreach ( $testFileInfo->testCases as $t ) {
 			if ( $t->knownFailures && $t->testName ) {
-				// @phan-suppress-next-line PhanTypeMismatchDimAssignment False positive
 				$testKnownFailures[$t->testName] = $t->knownFailures;
 				// FIXME: This reduces noise when updateKnownFailures is used
 				// with a subset of test modes. But, this also mixes up the selser
