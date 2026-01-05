@@ -4,6 +4,7 @@
 			"Andac",
 			"Joseph",
 			"Leo",
+			"LisafBia",
 			"Sümeyye",
 			"ToprakM"
 		]
@@ -26,7 +27,7 @@
 	"cdx-table-pager-button-last-page": "Son sayfa",
 	"cdx-table-pager-button-next-page": "Sonraki sayfa",
 	"cdx-table-pager-button-prev-page": "Önceki sayfa",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 satır}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 öğe}}",
 	"cdx-table-pager-items-per-page-default": "Sayfa başına sonuç",
 	"cdx-table-pagination-status-message-determinate-long": "$3 sonuçtan $1-$2 gösteriliyor",
 	"cdx-table-pagination-status-message-determinate-short": "$3 sonuçtan $1-$2",

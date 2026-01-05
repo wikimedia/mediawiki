@@ -250,5 +250,14 @@
 	"exif-iimcategory-wea": "ਮੌਸਮ",
 	"exif-urgency-normal": "ਸਧਾਰਨ ($1)",
 	"exif-urgency-low": "ਨੀਵਾਂ ($1)",
-	"exif-urgency-high": "ਉੱਚਾ ($1)"
+	"exif-urgency-high": "ਉੱਚਾ ($1)",
+	"exif-firstphotodate": "ਪਹਿਲੀ ਤਸਵੀਰ ਦੀ ਮਿਤੀ",
+	"exif-lastphotodate": "ਆਖੀਰਲੀ ਤਸਵੀਰ ਦੀ ਮਿਤੀ",
+	"exif-usepanoramaviewer-true": "ਹਾਂ",
+	"exif-usepanoramaviewer-false": "ਨਹੀਂ",
+	"exif-exposurelockused-true": "ਹਾਂ",
+	"exif-exposurelockused-false": "ਨਹੀਂ",
+	"exif-digitalsourcetype-softwareimage": "software ਵੱਲੋਂ ਸਿਰਜਿਆ",
+	"exif-digitalsourcetype-digitalart": "ਮਨੁੱਖ ਵੱਲੋਂ digital ਸੰਦਾਂ ਨਾਲ ਬਣਾਇਆ",
+	"exif-digitalsourcetype-digitalcreation": "ਮਨੁੱਖ ਵੱਲੋਂ ਗ਼ੈਰ AI ਸੰਦਾਂ ਨਾਲ ਸਿਰਜਿਆ ਮੀਡੀਆ"
 }

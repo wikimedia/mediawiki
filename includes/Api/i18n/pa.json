@@ -5,10 +5,14 @@
 			"Cabal"
 		]
 	},
+	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|ਲਿਖਤਾਂ]]\n* [[mw:Special:MyLanguage/API:Etiquette|ਵਰਤੋਂ ਦੇ ਤਰੀਕੇ ਅਤੇ ਨੇਮ]]\n* [[mw:Special:MyLanguage/API:FAQ|ਆਮ ਪੁੱਛੇ ਜਾਣ ਵਾਲੇ ਸਵਾਲ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Mailing list]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ API Announcements]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & requests]\n</div>\n<strong>ਹਾਲਤ:</strong> ਮੀਡੀਆਵਿਕੀ API ਇੱਕ ਪੱਕਾ-ਪੈਢਾ ਅਤੇ ਸਹਾਇਕ ਮੁਹਾਂਦਰਾ(ਇੰਟਰਫੇਸ) ਏ ਜੋ ਸਰਗਰਮੀ ਨਾਲ ਟਿਕਾਊ ਅਤੇ ਸੁਧਾਰਿਆ ਗਿਆ ਏ। ਹਾਲਾਂਕਿ ਅਸੀਂ ਟਾਲਾ ਲਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹਾਂ, ਪਰ ਕਦੇ-ਕਦਾਈਂ ਸਾਨੂੰ ਵੱਡੀਆਂ ਤਬਦੀਲੀਆਂ ਕਰਨੀਆਂ ਪੈ ਸਕਦੀਆਂ ਨੇ; ਨਵਿਆਓਣ ਦੇ ਸੁਨੇਹੇ ਲਈ [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ the mediawiki-api-announce ਡਾਕ-ਸੂਚੀ] ਦੀ ਗਾਹਕੀ ਲਓ।\n\nstrong>ਗਲਤ ਬੇਨਤੀਆਂ:</strong> ਜਦੋਂ API ਨੂੰ ਗਲਤ ਬੇਨਤੀਆਂ ਭੇਜੀਆਂ ਜਾਂਦੀਆਂ ਨੇ, ਤਾਂ ਇੱਕ HTTP ਸਿਰਲੇਖ \"MediaWiki-API-Error\" ਕੁੰਜੀ ਨਾਲ ਘੱਲਿਆ ਜਾਵੇਗਾ ਅਤੇ ਫਿਰ ਸਿਰਲੇਖ ਦਾ ਮੁੱਲ ਅਤੇ ਵਾਪਸ ਘੱਲੀ ਗਈ ਗਲਤੀ ਦਾ ਕੋਡ, ਦੋਵੇਂ ਇੱਕੋ ਮੁੱਲ 'ਤੇ ਕਾਇਮ ਕੀਤੇ ਜਾਣਗੇ। ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ [[mw:Special:MyLanguage/API:Errors_and_warnings|API: ਗਲਤੀਆਂ ਅਤੇ ਚੇਤਾਵਨੀਆਂ]] ਵੇਖੋ।\n\n<p class=\"mw-apisandbox-link\"><strong>ਪਰਖ:</strong> API ਬੇਨਤੀਆਂ ਨੂੰ ਪਰਖਣ ਲਈ, [[Special:ApiSandbox]]ਵੇਖੋ। </p>",
 	"apihelp-main-param-action": "ਕਿਹਡ਼ੀ ਕਾਰਵਾਈ ਕਰਨੀ ਹੈ।",
+	"apihelp-main-param-format": "ਉਘਾੜ ਦੀ ਰੂਪ-ਰੇਖਾ",
+	"apihelp-main-param-maxlag": "ਵੱਧ ਤੋਂ ਵੱਧ ਪਿਛੇਤ ਉਦੋਂ ਵਰਤੀ ਜਾ ਸਕਦੀ ਏ ਜਦੋਂ ਮੀਡੀਆਵਿਕੀ ਨੂੰ ਤੱਥ-ਅਧਾਰ ਵਰਗੇ ਖਾਤਿਆਂ ਦੇ ਸਮੂਹ ਉੱਤੇ ਥਾਪਿਆ ਜਾ ਰਿਹਾ ਹੋਵੇ। ਵੈੱਬਸਾਈਟ ਦੇ ਕੰਮਾਂ ਵਿੱਚ ਹੋਰ ਪਿਛੇਤ ਨੂੰ ਰੋਕਣ ਲਈ, ਇਹ ਮਾਪਦੰਡ ਵਰਤੋਂਕਾਰ ਨੂੰ ਉਦੋਂ ਤੱਕ ਉਡੀਕ ਕਰਨ ਲਈ ਮਜਬੂਰ ਕਰ ਸਕਦਾ ਏ ਜਦੋਂ ਤੱਕ ਡਾਟਾ ਦੀ ਪਿਛੇਤ ਮਿੱਥੇ ਹੋਈ ਮੁੱਲ ਤੋਂ ਘੱਟ ਨਹੀਂ ਜਾਂਦੀ। ਬਹੁਤ ਜ਼ਿਆਦਾ ਪਿਛੇਤ ਹੋਣ ਦੀ ਸੂਰਤ ਵਿੱਚ, ਗਲਤੀ ਦਾ ਕੋਡ (error code) <samp>maxlag</samp> ਘੱਲਿਆ ਜਾਂਦਾ ਏ ਅਤੇ ਨਾਲ ਹੀ ਇਹ ਸੁਨੇਹਾ ਮਿਲਦਾ ਏ: <samp>Waiting for $host: $lag seconds lagged</samp>।\n\nਵਧੇਰੇ ਜਾਣਕਾਰੀ ਲਈ [[mw:Special:MyLanguage/Manual:Maxlag_parameter|Manual: Maxlag parameter]] ਵੇਖੋ।",
 	"apihelp-main-param-assertuser": "ਤਸਦੀਕ ਕਰੋ ਕਿ ਮੌਜੂਦਾ ਵਰਤੋਂਕਾਰ ਹੀ ਨਾਂ ਵਾਲਾ ਵਰਤੋਂਕਾਰ ਹੈ।",
 	"apihelp-main-param-requestid": "ਇੱਥੇ ਦਿੱਤਾ ਗਿਆ ਕੋਈ ਵੀ ਮੁੱਲ ਜਵਾਬ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਜਾਵੇਗਾ। ਬੇਨਤੀਆਂ ਨੂੰ ਵੱਖ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾ ਸਕਦਾ ਹੈ।",
 	"apihelp-main-param-servedby": "ਨਤੀਜਿਆਂ ਵਿੱਚ ਬੇਨਤੀ ਕਰਨ ਵਾਲੇ ਮੇਜ਼ਬਾਨ ਦਾ ਨਾਂ ਸ਼ਾਮਲ ਕਰੋ।",
+	"apihelp-main-param-curtimestamp": "ਨਤੀਜੇ ਵਿੱਚ ਮੌਜੂਦਾ ਵੇਲੇ ਦੀ ਮੋਹਰ ਸ਼ਾਮਲ ਕਰੋ।",
 	"apihelp-block-summary": "ਵਰਤੋਂਕਾਰ 'ਤੇ ਪਾਬੰਦੀ ਲਾਓ।",
 	"apihelp-block-param-user": "ਪਾਬੰਦੀ ਲਾਉਣ ਲਈ ਵਰਤੋਂਕਾਰ",
 	"apihelp-block-param-reason": "ਪਾਬੰਦੀ ਦਾ ਕਾਰਨ।",
