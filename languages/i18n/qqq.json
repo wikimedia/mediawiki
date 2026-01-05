@@ -2484,7 +2484,7 @@
 	"watchlistlabels-onboarding-filter-title": "Onboarding popover title",
 	"watchlistlabels-onboarding-filter-body": "Onboarding popover body text.",
 	"watchlistlabels-editwatchlist-dialog-button": "Label for the button and dialog with which to assign labels to watchlist items on Special:EditWatchlist.",
-	"watchlistlabels-editwatchlist-dialog-intro": "Introductory text in the label-assigning dialog.\n\nParameter:\n* $1 — Comma-separated list of titles of pages to which the labels will be assigned.",
+	"watchlistlabels-editwatchlist-dialog-intro": "Introductory text in the label-assigning dialog.\n\nParameters:\n* $1 — Comma-separated list of titles of pages to which the labels will be assigned.\n* $2 — Integer number of labels shown with checkboxes below this message.\n* $3 — Integer number of pages listed in $1.",
 	"watchlistlabels-editwatchlist-dialog-intro-more": "Text of the last item in the list in {{msg-mw|watchlistlabels-editwatchlist-dialog-intro}} when there are more than 5 items in the list.\n\nParameters:\n* $1 — Integer number of remaining pages in the list.\n* $2 — Formatted number of remaining pages in the list.",
 	"watchlistlabels-editwatchlist-dialog-assign": "Button text for the submit button in the label-assigning dialog. Appears next to {{msg-mw|cancel}}.",
 	"watchlist-filters-labels-title": "Text for the Labels button in filters on [[Special:Watchlist]]",

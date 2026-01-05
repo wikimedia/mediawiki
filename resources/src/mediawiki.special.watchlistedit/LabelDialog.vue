@@ -18,7 +18,7 @@
 			<p id="watchlistlabels-dialog-checkboxes">
 				<!-- Security note: the raw HTML here is a list of valid page titles wrapped in <strong> elements. -->
 				<!-- eslint-disable vue/no-v-html -->
-				<span v-html="$i18n( 'watchlistlabels-editwatchlist-dialog-intro', selectedPagesList )">
+				<span v-html="$i18n( 'watchlistlabels-editwatchlist-dialog-intro', selectedPagesList, labels.length, selectedPagesList.length )">
 				</span>
 			</p>
 			<cdx-checkbox
