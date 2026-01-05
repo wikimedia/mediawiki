@@ -609,6 +609,7 @@
 	"changeemail-submit": "Cangé l'adrëssa ëd pòsta eletrònica",
 	"changeemail-throttled": "A l'ha fàit tròpi tentativ ëd rintré ant ël sistema.\nPër piasì, ch'a speta $1 prima ëd prové torna.",
 	"changeemail-nochange": "Për piasì ch'a anserissa n'adrëssa ëd pòsta eletrònica neuva.",
+	"changeemail-maxlength": "Soa adrëssa ëd pòsta eletrònica a dev avèj al màssim 255 caràter.",
 	"resettokens": "Riamposté ij geton",
 	"resettokens-text": "Ambelessì a peul riamposté ij geton ch'a permëtto d'acede a chèich dàit privà associà a sò cont.\n\nA dovrìa felo si për asar chiel a l'ha partagiaje con cheidun o si sò cont a l'é stàit compromëttù.",
 	"resettokens-no-tokens": "A-i é gnun geton da riamposté.",

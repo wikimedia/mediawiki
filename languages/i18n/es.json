@@ -267,7 +267,9 @@
 			"Laranxa",
 			"Weritabris16",
 			"Geom",
-			"Jemily1"
+			"Jemily1",
+			"SrGarga",
+			"Tecbs"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -1043,6 +1045,7 @@
 	"unstrip-size-category": "Páginas en que se excede el límite de tamaño de la función «unstrip»",
 	"unstrip-size-category-desc": "La página supera el límite de tamaño de extracción.",
 	"converter-manual-rule-error": "Se ha detectado un error en una regla manual de conversión de idioma",
+	"bad-double-underscore-category": "Páginas con modificadores de comportamiento no válidos",
 	"undo-success": "Puedes deshacer la edición.\nAntes de deshacer la edición, comprueba la siguiente comparación para verificar que realmente es lo que quieres hacer, y entonces publica los cambios para así efectuar la reversión.",
 	"undo-failure": "No se ha podido deshacer la edición ya que otro usuario ha realizado una edición intermedia.",
 	"undo-main-slot-only": "No se ha podido desacer el cámbio porque contiene contenido fuera del slot principal.",

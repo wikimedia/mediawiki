@@ -639,7 +639,7 @@
 	"autocreate-edit-warning": "<strong>Opozorilo:</strong> Niste prijavljeni. Vaša urejanja bodo pripisana <strong>samodejno ustvarjenemu imenu</strong> tako, da bomo v vaš brskalnik dodali piškotek. Uveljavljeni uporabniki bodo videli vaš IP-naslov. Če se boste <strong>[$1 prijavili]</strong> ali če si boste <strong>[$2 ustvarili račun]</strong>, bodo urejanja pripisana imenu, ki si ga boste izbrali, deležni pa boste tudi drugih prednosti.",
 	"anonpreviewwarning": "<em>Niste prijavljeni. Ob objavi strani se bo v zgodovino urejanja te strani zapisal vaš IP-naslov.</em>",
 	"autocreate-preview-warning": "<em>Niste prijavljeni. Vaša urejanja bodo pripisana samodejno ustvarjenemu imenu in administratorjem bo viden vaš IP-naslov.</em>",
-	"missingsummary": "<strong>Opozorilo:</strong> Niste napisali povzetka urejanja. Ob ponovnem kliku gumba »$1« bo vaše urejanje objavljeno brez njega.",
+	"missingsummary": "<strong>Opozorilo:</strong> Niste napisali povzetka urejanja. Ob ponovnem kliku gumba »$1« bo vaše urejanje objavljeno brez tega.",
 	"selfredirect": "<strong>Opozorilo:</strong> Stran preusmerjate samo nase.\nMorda ste za cilj preusmeritve navedli napačen cilj ali pa urejate napačno stran.\nČe boste znova kliknili »$1«, bo preusmeritev vseeno ustvarjena.",
 	"missingcommenttext": "Prosimo, vnesite komentar.",
 	"missingcommentheader": "<strong>Opozorilo:</strong> Niste vnesli zadeve za ta komentar.\nČe boste znova kliknili »$1«, bo vaše urejanje objavljeno brez nje.",

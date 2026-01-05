@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Msz2001",
-			"Rail"
+			"Rail",
+			"Woytecr"
 		]
 	},
 	"paramvalidator-badbool": "Niepoprawna wartość „$2” dla parametru „$1”, który jest typu boolowskiego. Użyj $3 jako „prawda” albo $5 jako „fałsz”.",
@@ -41,7 +42,7 @@
 	"paramvalidator-help-default-empty": "Domyślnie: (pusta)",
 	"paramvalidator-help-deprecated": "Ten parametr jest przestarzały.",
 	"paramvalidator-help-multi-separate": "Rozdzielaj wartości za pomocą znaku „|” lub poprzedź listę U+001F i rozdzielaj wartości również z użyciem U+001F.",
-	"paramvalidator-help-multi-max": "Maksymalna liczba wartości to {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} dla klientów z podwyższonymi limitami).",
+	"paramvalidator-help-multi-max": "Maksymalna liczba wartości to {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} dla klientów mogących korzystać z podwyższonych limitów).",
 	"paramvalidator-help-multi-max-simple": "Maksymalna liczba wartości to {{PLURAL:$1|$1}}.",
 	"paramvalidator-help-multi-all": "Aby wskazać wszystkie wartości, użyj <kbd>$1</kbd>.",
 	"paramvalidator-help-required": "Ten parametr jest wymagany.",

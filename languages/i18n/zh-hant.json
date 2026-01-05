@@ -151,7 +151,8 @@
 			"Nvdtn19",
 			"TeaSummer",
 			"Srapoj",
-			"Peterxy12"
+			"Peterxy12",
+			"臺灣象象"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -2070,7 +2071,7 @@
 	"mimesearch-summary": "本頁面可篩選檔案的 MIME 類型。\n輸入格式：內容類型/子類型 或 內容類型/*，如 <code>image/jpeg</code>。",
 	"mimetype": "MIME 類型：",
 	"download": "下載",
-	"unwatchedpages": "未監視的頁面",
+	"unwatchedpages": "未受監視的頁面",
 	"listredirects": "重新導向清單",
 	"listduplicatedfiles": "重複檔案清單",
 	"listduplicatedfiles-summary": "此清單中包含最新版本的檔案與其他檔案重複的清單，本清單只顯示本地檔案。",

@@ -2510,7 +2510,7 @@
 	"protectlogtext": "Hieronder staan pagina's waarvan de beveiliging recentelijk gewijzigd is.\nZie de [[Special:ProtectedPages|lijst met beveiligde pagina's]] voor alle beveiligde pagina's.",
 	"protectedarticle-comment": "{{GENDER:$2|Beveiligde}} \"[[$1]]\"",
 	"modifiedarticleprotection-comment": "{{GENDER:$2|Heeft de beveiligingsinstellingen voor \"[[$1]]\" gewijzigd}}",
-	"unprotectedarticle-comment": "{{GENDER:$2|Heeft de beveiliging van \"[[$1]]\" opgeheven}}",
+	"unprotectedarticle-comment": "{{GENDER:$2|}}Beveiliging van \"[[$1]]\" opgeheven",
 	"protect-title": "Beveiligingsinstellingen instellen voor \"$1\"",
 	"protect-title-notallowed": "Beveiligingsinstellingen voor \"$1\" bekijken",
 	"prot_1movedto2": "[[$1]] is hernoemd tot [[$2]]",
