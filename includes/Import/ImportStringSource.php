@@ -10,6 +10,8 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Import;
+
 /**
  * Used for importing XML dumps where the content of the dump is in a string.
  * This class is inefficient, and should only be used for small dumps.
@@ -65,3 +67,6 @@ class ImportStringSource implements ImportSource {
 		return 0;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ImportStringSource::class, 'ImportStringSource' );

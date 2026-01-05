@@ -9,10 +9,10 @@
 namespace MediaWiki\Api;
 
 use Exception;
-use ImportStreamSource;
 use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\Import\ImportStreamSource;
+use MediaWiki\Import\WikiImporterFactory;
 use MediaWiki\MainConfigNames;
-use WikiImporterFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

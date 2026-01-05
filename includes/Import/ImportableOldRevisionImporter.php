@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Import;
+
+use InvalidArgumentException;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
@@ -13,6 +16,7 @@ use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -221,3 +225,6 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ImportableOldRevisionImporter::class, 'ImportableOldRevisionImporter' );

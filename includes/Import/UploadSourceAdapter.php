@@ -10,6 +10,8 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Import;
+
 /**
  * This is a horrible hack used to keep source compatibility.
  * @ingroup SpecialPage
@@ -163,3 +165,6 @@ class UploadSourceAdapter {
 		return $result;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadSourceAdapter::class, 'UploadSourceAdapter' );

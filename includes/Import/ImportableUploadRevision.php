@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Import;
+
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
@@ -70,3 +72,6 @@ interface ImportableUploadRevision {
 	public function getComment();
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ImportableUploadRevision::class, 'ImportableUploadRevision' );

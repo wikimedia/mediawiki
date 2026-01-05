@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Import\Hook;
 
-use WikiImporter;
+use MediaWiki\Import\WikiImporter;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

@@ -1,9 +1,12 @@
 <?php
 
+namespace MediaWiki\Import;
+
 use MediaWiki\FileRepo\File\OldLocalFile;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
+use StatusValue;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\Rdbms\IDBAccessObject;
 
@@ -163,3 +166,6 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ImportableUploadRevisionImporter::class, 'ImportableUploadRevisionImporter' );

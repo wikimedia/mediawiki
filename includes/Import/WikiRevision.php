@@ -10,6 +10,8 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Import;
+
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Exception\MWUnknownContentModelException;
@@ -528,7 +530,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 */
 	public function getSha1() {
 		if ( $this->sha1base36 ) {
-			return Wikimedia\base_convert( $this->sha1base36, 36, 16 );
+			return \Wikimedia\base_convert( $this->sha1base36, 36, 16 );
 		}
 		return false;
 	}
@@ -687,3 +689,6 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( WikiRevision::class, 'WikiRevision' );

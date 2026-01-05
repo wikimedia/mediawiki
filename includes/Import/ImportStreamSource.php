@@ -10,6 +10,8 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Import;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
@@ -195,3 +197,6 @@ class ImportStreamSource implements ImportSource {
 		return self::newFromURL( $url, "POST" );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ImportStreamSource::class, 'ImportStreamSource' );

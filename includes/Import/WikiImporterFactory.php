@@ -5,6 +5,8 @@
  * @author Zabe
  */
 
+namespace MediaWiki\Import;
+
 use MediaWiki\Config\Config;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Context\RequestContext;
@@ -86,3 +88,6 @@ class WikiImporterFactory {
 		);
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( WikiImporterFactory::class, 'WikiImporterFactory' );

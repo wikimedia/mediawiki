@@ -10,6 +10,8 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Import;
+
 /**
  * Source interface for XML import.
  *
@@ -50,3 +52,6 @@ interface ImportSource {
 	 */
 	public function seek( int $offset );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ImportSource::class, 'ImportSource' );

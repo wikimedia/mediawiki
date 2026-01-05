@@ -10,6 +10,9 @@
  * @ingroup SpecialPage
  */
 
+namespace MediaWiki\Import;
+
+use InvalidArgumentException;
 use MediaWiki\Config\Config;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -38,11 +41,14 @@ use MediaWiki\Title\SubpageImportTitleFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\ExternalUserNames;
+use RuntimeException;
+use UnexpectedValueException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\NormalizedException\NormalizedException;
 use Wikimedia\Rdbms\IDBAccessObject;
+use XMLReader;
 
 /**
  * XML file reader for the page data importer.
@@ -654,7 +660,7 @@ class WikiImporter {
 
 	/**
 	 * Primary entry point
-	 * @throws Exception
+	 * @throws \Exception
 	 * @return bool
 	 */
 	public function doImport() {
@@ -1331,3 +1337,6 @@ class WikiImporter {
 		$this->openReader();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( WikiImporter::class, 'WikiImporter' );

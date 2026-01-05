@@ -463,6 +463,20 @@ because of Phabricator reports.
     - LocalFile__getHistoryHook
   - Gallery related hook: MediaWiki\Hook => MediaWiki\Gallery\Hook
     - GalleryGetModesHook
+  - MediaWiki\Import:
+    - WikiImporterFactory
+    - ImportableOldRevisionImporter
+    - ImportStreamSource
+    - ImportableUploadRevisionImporter
+    - OldRevisionImporter
+    - WikiRevision
+    - ImportableOldRevision
+    - ImportStringSource
+    - ImportableUploadRevision
+    - ImportSource
+    - UploadRevisionImporter
+    - WikiImporter
+    - UploadSourceAdapter
   - Import related hooks: MediaWiki\Hook => MediaWiki\Import\Hook
     - AfterImportPageHook
     - ImportHandleContentXMLTagHook

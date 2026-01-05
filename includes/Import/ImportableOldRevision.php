@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Import;
+
 use MediaWiki\Content\Content;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -92,3 +94,6 @@ interface ImportableOldRevision {
 	public function getTags();
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ImportableOldRevision::class, 'ImportableOldRevision' );

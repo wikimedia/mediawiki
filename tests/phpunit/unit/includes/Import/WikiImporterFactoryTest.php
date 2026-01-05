@@ -3,14 +3,14 @@
 namespace MediaWiki\Tests\Import;
 
 use FactoryArgTestTrait;
-use ImportSource;
+use MediaWiki\Import\ImportSource;
+use MediaWiki\Import\WikiImporter;
+use MediaWiki\Import\WikiImporterFactory;
 use MediaWikiUnitTestCase;
 use ReflectionParameter;
-use WikiImporter;
-use WikiImporterFactory;
 
 /**
- * @covers \WikiImporterFactory
+ * @covers \MediaWiki\Import\WikiImporterFactory
  */
 class WikiImporterFactoryTest extends MediaWikiUnitTestCase {
 	use FactoryArgTestTrait;
