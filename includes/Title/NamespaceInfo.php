@@ -31,19 +31,16 @@ class NamespaceInfo {
 	 */
 	private const ALWAYS_CAPITALIZED_NAMESPACES = [ NS_SPECIAL, NS_USER, NS_MEDIAWIKI ];
 
-	/** @var string[]|null Canonical namespaces cache */
+	/** @var array<int,string>|null Canonical namespaces cache */
 	private $canonicalNamespaces = null;
 
-	/** @var array|false Canonical namespaces index cache */
+	/** @var array<string,int>|false Canonical namespaces index cache */
 	private $namespaceIndexes = false;
 
 	/** @var int[]|null Valid namespaces cache */
 	private $validNamespaces = null;
 
-	private ServiceOptions $options;
-	private HookRunner $hookRunner;
-	private array $extensionNamespaces;
-	private array $extensionImmovableNamespaces;
+	private readonly HookRunner $hookRunner;
 
 	/**
 	 * Definitions of the NS_ constants are in Defines.php
@@ -86,17 +83,21 @@ class NamespaceInfo {
 		MainConfigNames::NonincludableNamespaces,
 	];
 
+	/**
+	 * @param ServiceOptions $options
+	 * @param HookContainer $hookContainer
+	 * @param array<int,string> $extensionNamespaces From other extension's "ExtensionNamespaces"
+	 *  attributes
+	 * @param int[] $immovableNamespaces From other extension's "ImmovableNamespaces" attributes
+	 */
 	public function __construct(
-		ServiceOptions $options,
+		private readonly ServiceOptions $options,
 		HookContainer $hookContainer,
-		array $extensionNamespaces,
-		array $extensionImmovableNamespaces
+		private readonly array $extensionNamespaces,
+		private readonly array $immovableNamespaces
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->extensionNamespaces = $extensionNamespaces;
-		$this->extensionImmovableNamespaces = $extensionImmovableNamespaces;
 	}
 
 	/**
@@ -107,15 +108,11 @@ class NamespaceInfo {
 	 *
 	 * @param int $index
 	 * @param string $method
-	 *
-	 * @throws MWException
-	 * @return bool
 	 */
-	private function isMethodValidFor( $index, $method ) {
+	private function isMethodValidFor( $index, string $method ): void {
 		if ( $index < NS_MAIN ) {
 			throw new MWException( "$method does not make any sense for given namespace $index" );
 		}
-		return true;
 	}
 
 	/**
@@ -147,10 +144,14 @@ class NamespaceInfo {
 	 * Can pages in the given namespace be moved?
 	 *
 	 * @param int $index Namespace index
-	 * @return bool
 	 */
-	public function isMovable( $index ) {
-		$result = $index >= NS_MAIN && !in_array( $index, $this->extensionImmovableNamespaces );
+	public function isMovable( $index ): bool {
+		// Special and virtual namespaces can never be moved
+		if ( $index < NS_MAIN ) {
+			return false;
+		}
+
+		$result = !in_array( $index, $this->immovableNamespaces );
 
 		/**
 		 * @since 1.20
@@ -164,9 +165,8 @@ class NamespaceInfo {
 	 * Is the given namespace is a subject (non-talk) namespace?
 	 *
 	 * @param int $index Namespace index
-	 * @return bool
 	 */
-	public function isSubject( $index ) {
+	public function isSubject( $index ): bool {
 		return !$this->isTalk( $index );
 	}
 
@@ -174,9 +174,8 @@ class NamespaceInfo {
 	 * Is the given namespace a talk namespace?
 	 *
 	 * @param int $index Namespace index
-	 * @return bool
 	 */
-	public function isTalk( $index ) {
+	public function isTalk( $index ): bool {
 		$index = $this->makeValidNamespace( $index, __METHOD__ );
 
 		return $index > NS_MAIN
@@ -187,11 +186,10 @@ class NamespaceInfo {
 	 * Get the talk namespace index for a given namespace
 	 *
 	 * @param int $index Namespace index
-	 * @return int
 	 * @throws MWException if the given namespace doesn't have an associated talk namespace
 	 *         (e.g. NS_SPECIAL).
 	 */
-	public function getTalk( $index ) {
+	public function getTalk( $index ): int {
 		$index = $this->makeValidNamespace( $index, __METHOD__ );
 
 		$this->isMethodValidFor( $index, __METHOD__ );
@@ -234,10 +232,9 @@ class NamespaceInfo {
 	 *
 	 * @see getTalkPage
 	 *
-	 * @param LinkTarget $target
 	 * @return bool True if this title either is a talk page or can have a talk page associated.
 	 */
-	public function canHaveTalkPage( LinkTarget $target ) {
+	public function canHaveTalkPage( LinkTarget $target ): bool {
 		return $target->getNamespace() >= NS_MAIN &&
 			!$target->isExternal() &&
 			$target->getText() !== '';
@@ -248,9 +245,8 @@ class NamespaceInfo {
 	 * Special namespaces (NS_MEDIA, NS_SPECIAL) are always the subject.
 	 *
 	 * @param int $index Namespace index
-	 * @return int
 	 */
-	public function getSubject( $index ) {
+	public function getSubject( $index ): int {
 		$index = $this->makeValidNamespace( $index, __METHOD__ );
 
 		# Handle special namespaces
@@ -280,10 +276,9 @@ class NamespaceInfo {
 	 * For subject (non-talk) namespaces, returns the talk namespace
 	 *
 	 * @param int $index Namespace index
-	 * @return int
 	 * @throws MWException if called on a namespace that has no talk pages (e.g., NS_SPECIAL)
 	 */
-	public function getAssociated( $index ) {
+	public function getAssociated( $index ): int {
 		$this->isMethodValidFor( $index, __METHOD__ );
 
 		if ( $this->isSubject( $index ) ) {
@@ -315,10 +310,8 @@ class NamespaceInfo {
 	 * Returns whether the specified namespace exists
 	 *
 	 * @param int $index
-	 *
-	 * @return bool
 	 */
-	public function exists( $index ) {
+	public function exists( $index ): bool {
 		$nslist = $this->getCanonicalNamespaces();
 		return isset( $nslist[$index] );
 	}
@@ -333,10 +326,8 @@ class NamespaceInfo {
 	 *
 	 * @param int $ns1 The first namespace index
 	 * @param int $ns2 The second namespace index
-	 *
-	 * @return bool
 	 */
-	public function equals( $ns1, $ns2 ) {
+	public function equals( $ns1, $ns2 ): bool {
 		return $ns1 == $ns2;
 	}
 
@@ -347,10 +338,8 @@ class NamespaceInfo {
 	 *
 	 * @param int $ns1 The first namespace index
 	 * @param int $ns2 The second namespace index
-	 *
-	 * @return bool
 	 */
-	public function subjectEquals( $ns1, $ns2 ) {
+	public function subjectEquals( $ns1, $ns2 ): bool {
 		return $this->getSubject( $ns1 ) == $this->getSubject( $ns2 );
 	}
 
@@ -360,7 +349,7 @@ class NamespaceInfo {
 	 *
 	 * @return array<int,string>
 	 */
-	public function getCanonicalNamespaces() {
+	public function getCanonicalNamespaces(): array {
 		if ( $this->canonicalNamespaces === null ) {
 			$this->canonicalNamespaces =
 				[ NS_MAIN => '' ] + $this->options->get( MainConfigNames::CanonicalNamespaceNames );
@@ -379,7 +368,7 @@ class NamespaceInfo {
 	 * @param int $index Namespace index
 	 * @return string|false If no canonical definition.
 	 */
-	public function getCanonicalName( $index ) {
+	public function getCanonicalName( $index ): string|false {
 		$nslist = $this->getCanonicalNamespaces();
 		return $nslist[$index] ?? false;
 	}
@@ -389,28 +378,23 @@ class NamespaceInfo {
 	 * The input *must* be converted to lower case first
 	 *
 	 * @param string $name Namespace name
-	 * @return int|null
 	 */
-	public function getCanonicalIndex( $name ) {
+	public function getCanonicalIndex( string $name ): ?int {
 		if ( $this->namespaceIndexes === false ) {
 			$this->namespaceIndexes = [];
 			foreach ( $this->getCanonicalNamespaces() as $i => $text ) {
 				$this->namespaceIndexes[strtolower( $text )] = $i;
 			}
 		}
-		if ( array_key_exists( $name, $this->namespaceIndexes ) ) {
-			return $this->namespaceIndexes[$name];
-		} else {
-			return null;
-		}
+		return $this->namespaceIndexes[$name] ?? null;
 	}
 
 	/**
 	 * Returns an array of the namespaces (by integer id) that exist on the wiki. Used primarily by
 	 * the API in help documentation. The array is sorted numerically and omits negative namespaces.
-	 * @return array
+	 * @return int[]
 	 */
-	public function getValidNamespaces() {
+	public function getValidNamespaces(): array {
 		if ( $this->validNamespaces === null ) {
 			$this->validNamespaces = [];
 			foreach ( $this->getCanonicalNamespaces() as $ns => $_ ) {
@@ -431,7 +415,7 @@ class NamespaceInfo {
 	 * @param int $index Namespace ID
 	 * @return bool True if this namespace either is or has a corresponding talk namespace.
 	 */
-	public function hasTalkNamespace( $index ) {
+	public function hasTalkNamespace( $index ): bool {
 		return $index >= NS_MAIN;
 	}
 
@@ -440,9 +424,8 @@ class NamespaceInfo {
 	 * statistics, etc?
 	 *
 	 * @param int $index Index to check
-	 * @return bool
 	 */
-	public function isContent( $index ) {
+	public function isContent( $index ): bool {
 		return $index == NS_MAIN ||
 			in_array( $index, $this->options->get( MainConfigNames::ContentNamespaces ) );
 	}
@@ -452,9 +435,8 @@ class NamespaceInfo {
 	 * the edit toolbar?
 	 *
 	 * @param int $index Index to check
-	 * @return bool
 	 */
-	public function wantSignatures( $index ) {
+	public function wantSignatures( $index ): bool {
 		return $this->isTalk( $index ) ||
 			in_array( $index, $this->options->get( MainConfigNames::ExtraSignatureNamespaces ) );
 	}
@@ -463,9 +445,8 @@ class NamespaceInfo {
 	 * Can pages in a namespace be watched?
 	 *
 	 * @param int $index
-	 * @return bool
 	 */
-	public function isWatchable( $index ) {
+	public function isWatchable( $index ): bool {
 		return $index >= NS_MAIN;
 	}
 
@@ -474,9 +455,8 @@ class NamespaceInfo {
 	 * handling of subpages, and does not include SpecialPage subpage parameters.
 	 *
 	 * @param int $index Index to check
-	 * @return bool
 	 */
-	public function hasSubpages( $index ) {
+	public function hasSubpages( $index ): bool {
 		return !empty( $this->options->get( MainConfigNames::NamespacesWithSubpages )[$index] );
 	}
 
@@ -484,7 +464,7 @@ class NamespaceInfo {
 	 * Get a list of all namespace indices which are considered to contain content
 	 * @return int[] Array of namespace indices
 	 */
-	public function getContentNamespaces() {
+	public function getContentNamespaces(): array {
 		$contentNamespaces = $this->options->get( MainConfigNames::ContentNamespaces );
 		if ( !is_array( $contentNamespaces ) || $contentNamespaces === [] ) {
 			return [ NS_MAIN ];
@@ -501,7 +481,7 @@ class NamespaceInfo {
 	 *
 	 * @return int[] Array of namespace indices
 	 */
-	public function getSubjectNamespaces() {
+	public function getSubjectNamespaces(): array {
 		return array_filter(
 			$this->getValidNamespaces(),
 			$this->isSubject( ... )
@@ -514,7 +494,7 @@ class NamespaceInfo {
 	 *
 	 * @return int[] Array of namespace indices
 	 */
-	public function getTalkNamespaces() {
+	public function getTalkNamespaces(): array {
 		return array_filter(
 			$this->getValidNamespaces(),
 			$this->isTalk( ... )
@@ -525,9 +505,8 @@ class NamespaceInfo {
 	 * Is the namespace first-letter capitalized?
 	 *
 	 * @param int $index Index to check
-	 * @return bool
 	 */
-	public function isCapitalized( $index ) {
+	public function isCapitalized( $index ): bool {
 		// Turn NS_MEDIA into NS_FILE
 		$index = $index === NS_MEDIA ? NS_FILE : $index;
 
@@ -552,9 +531,8 @@ class NamespaceInfo {
 	 * genders. Not all languages make a distinction here.
 	 *
 	 * @param int $index Index to check
-	 * @return bool
 	 */
-	public function hasGenderDistinction( $index ) {
+	public function hasGenderDistinction( $index ): bool {
 		return $index == NS_USER || $index == NS_USER_TALK;
 	}
 
@@ -562,9 +540,8 @@ class NamespaceInfo {
 	 * It is not possible to use pages from this namespace as template?
 	 *
 	 * @param int $index Index to check
-	 * @return bool
 	 */
-	public function isNonincludable( $index ) {
+	public function isNonincludable( $index ): bool {
 		$namespaces = $this->options->get( MainConfigNames::NonincludableNamespaces );
 		return $namespaces && in_array( $index, $namespaces );
 	}
@@ -579,7 +556,7 @@ class NamespaceInfo {
 	 * @param int $index Index to check
 	 * @return null|string Default model name for the given namespace, if set
 	 */
-	public function getNamespaceContentModel( $index ) {
+	public function getNamespaceContentModel( $index ): ?string {
 		return $this->options->get( MainConfigNames::NamespaceContentModels )[$index] ?? null;
 	}
 
@@ -592,16 +569,14 @@ class NamespaceInfo {
 	 * @param int $index Namespace index
 	 * @return string One of 'subcat', 'file', 'page'
 	 */
-	public function getCategoryLinkType( $index ) {
+	public function getCategoryLinkType( $index ): string {
 		$this->isMethodValidFor( $index, __METHOD__ );
 
-		if ( $index == NS_CATEGORY ) {
-			return 'subcat';
-		} elseif ( $index == NS_FILE ) {
-			return 'file';
-		} else {
-			return 'page';
-		}
+		return match ( $index ) {
+			NS_CATEGORY => 'subcat',
+			NS_FILE => 'file',
+			default => 'page',
+		};
 	}
 
 	/**
@@ -611,7 +586,7 @@ class NamespaceInfo {
 	 *
 	 * @return int[]
 	 */
-	public static function getCommonNamespaces() {
+	public static function getCommonNamespaces(): array {
 		return array_keys( self::CANONICAL_NAMES );
 	}
 }

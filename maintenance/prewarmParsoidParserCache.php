@@ -105,9 +105,9 @@ class PrewarmParsoidParserCache extends Maintenance {
 	 * so let's do some normalization and return its canonical index.
 	 *
 	 * @param string $namespace The namespace string from the command line
-	 * @return int The canonical index of the namespace
+	 * @return ?int The canonical index of the namespace
 	 */
-	private function normalizeNamespace( string $namespace ): int {
+	private function normalizeNamespace( string $namespace ): ?int {
 		return $this->getServiceContainer()->getNamespaceInfo()
 			->getCanonicalIndex( strtolower( $namespace ) );
 	}

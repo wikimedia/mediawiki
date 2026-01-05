@@ -150,9 +150,10 @@ class SpecialNamespaceInfo extends SpecialPage {
 			if ( $this->namespaceInfo->isNonincludable( $ns ) ) {
 				$properties[] = $this->msg( 'namespaceinfo-namespace-nonincludable' )->parse();
 			}
-			if ( $this->namespaceInfo->getNamespaceContentModel( $ns ) !== null ) {
+			$contentModel = $this->namespaceInfo->getNamespaceContentModel( $ns );
+			if ( $contentModel !== null ) {
 				$properties[] = $this->msg( 'namespaceinfo-namespace-default-contentmodel' )
-					->params( $this->namespaceInfo->getNamespaceContentModel( $ns ) )
+					->params( $contentModel )
 					->parse();
 			}
 		}

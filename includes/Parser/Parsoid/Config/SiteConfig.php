@@ -347,8 +347,7 @@ class SiteConfig extends ISiteConfig {
 
 	/** @inheritDoc */
 	public function canonicalNamespaceId( string $name ): ?int {
-		$ret = $this->namespaceInfo->getCanonicalIndex( $name );
-		return $ret === false ? null : $ret;
+		return $this->namespaceInfo->getCanonicalIndex( $name );
 	}
 
 	/** @inheritDoc */
