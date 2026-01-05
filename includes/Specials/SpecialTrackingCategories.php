@@ -107,19 +107,17 @@ class SpecialTrackingCategories extends SpecialPage {
 				$descMsg = $this->msg( 'trackingcategories-nodesc' );
 			}
 
-			$this->getOutput()->addHTML(
-				Html::openElement( 'tr' ) .
-				Html::openElement( 'td', [ 'class' => 'mw-trackingcategories-name' ] ) .
-					$this->getLanguage()->commaList( array_unique( $allMsgs ) ) .
-				Html::closeElement( 'td' ) .
-				Html::openElement( 'td', [ 'class' => 'mw-trackingcategories-msg' ] ) .
-					$catMsgTitleText .
-				Html::closeElement( 'td' ) .
-				Html::openElement( 'td', [ 'class' => 'mw-trackingcategories-desc' ] ) .
-					$descMsg->parse() .
-				Html::closeElement( 'td' ) .
-				Html::closeElement( 'tr' )
-			);
+			$this->getOutput()->addHTML( Html::rawElement( 'tr', [],
+				Html::rawElement( 'td', [ 'class' => 'mw-trackingcategories-name' ],
+					$this->getLanguage()->commaList( array_unique( $allMsgs ) )
+				) .
+				Html::rawElement( 'td', [ 'class' => 'mw-trackingcategories-msg' ],
+					$catMsgTitleText
+				) .
+				Html::rawElement( 'td', [ 'class' => 'mw-trackingcategories-desc' ],
+					$descMsg->parse()
+				)
+			) );
 		}
 		$this->getOutput()->addHTML( Html::closeElement( 'table' ) );
 	}

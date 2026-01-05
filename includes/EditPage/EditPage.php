@@ -3862,10 +3862,10 @@ class EditPage implements IEditObject {
 					$valueMsg = $valueMsg->numParams( $value );
 				}
 				if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
-					$limitReport .= Html::openElement( 'tr' ) .
+					$limitReport .= Html::rawElement( 'tr', [],
 						Html::rawElement( 'th', [], $keyMsg->parse() ) .
-						Html::rawElement( 'td', [], $valueMsg->parse() ) .
-						Html::closeElement( 'tr' );
+						Html::rawElement( 'td', [], $valueMsg->parse() )
+					);
 				}
 			}
 		}

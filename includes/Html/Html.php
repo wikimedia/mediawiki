@@ -1009,23 +1009,17 @@ class Html {
 		$selectAttribs['id'] ??= 'namespace';
 		$selectAttribs['name'] ??= 'namespace';
 
-		$ret = '';
+		$label = '';
 		if ( isset( $params['label'] ) ) {
-			$ret .= self::element(
-				'label', [
-					'for' => $selectAttribs['id'],
-				], $params['label']
+			$label = self::element( 'label', [ 'for' => $selectAttribs['id'] ],
+				$params['label']
 			) . "\u{00A0}";
 		}
 
 		// Wrap options in a <select>
-		$ret .= self::openElement( 'select', $selectAttribs )
-			. "\n"
-			. implode( "\n", $optionsHtml )
-			. "\n"
-			. self::closeElement( 'select' );
-
-		return $ret;
+		return $label . self::rawElement( 'select', $selectAttribs,
+			"\n" . implode( "\n", $optionsHtml ) . "\n"
+		);
 	}
 
 	/**

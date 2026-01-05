@@ -413,8 +413,7 @@ class Xml {
 			// the input somehow.
 
 			$form .= self::tags( 'td', [ 'class' => 'mw-label' ], wfMessage( $labelmsg )->parse() );
-			$form .= self::openElement( 'td', [ 'class' => 'mw-input' ] )
-				. $input . self::closeElement( 'td' );
+			$form .= self::tags( 'td', [ 'class' => 'mw-input' ], $input );
 			$form .= self::closeElement( 'tr' );
 		}
 

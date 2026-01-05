@@ -790,7 +790,7 @@ class ChangesList extends ContextSource {
 		);
 		$attribs['class'] = $classes;
 
-		return Html::openElement( 'span', $attribs ) . $html . Html::closeElement( 'span' );
+		return Html::rawElement( 'span', $attribs, $html );
 	}
 
 	/**

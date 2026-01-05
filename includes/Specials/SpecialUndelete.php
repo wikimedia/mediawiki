@@ -1302,15 +1302,11 @@ class SpecialUndelete extends SpecialPage {
 			$history .= $this->formatRevisionHistory( $revisions );
 
 			if ( $showLoadMore ) {
-				$history .=
-					Html::openElement( 'div' ) .
-					Html::element(
-						'span',
-						[ 'id' => 'mw-load-more-revisions' ],
+				$history .= Html::rawElement( 'div', [],
+					Html::element( 'span', [ 'id' => 'mw-load-more-revisions' ],
 						$this->msg( 'undelete-load-more-revisions' )->text()
-					) .
-					Html::closeElement( 'div' ) .
-					"\n";
+					)
+				) . "\n";
 			}
 		} else {
 			$out->addWikiMsg( 'nohistory' );

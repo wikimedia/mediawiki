@@ -66,9 +66,9 @@ abstract class CodexTablePager extends TablePager {
 			Html::openElement( 'div', [ 'class' => 'cdx-table' ] ) . "\n" .
 			$header . "\n" .
 			$navigation . "\n" .
-			Html::openElement( 'div', [ 'class' => 'cdx-table__table-wrapper' ] ) . "\n" .
-			$body . "\n" .
-			Html::closeElement( 'div' ) . "\n" .
+			Html::rawElement( 'div', [ 'class' => 'cdx-table__table-wrapper' ],
+				"\n" . $body . "\n"
+			) . "\n" .
 			// In the future, footer content could go here.
 			$navigation . "\n" .
 			Html::closeElement( 'div' )

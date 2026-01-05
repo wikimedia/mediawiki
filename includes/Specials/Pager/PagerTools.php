@@ -101,16 +101,14 @@ class PagerTools {
 	}
 
 	public function toHTML(): string {
-		$tools = $this->tools;
-		$s2 = '';
-		if ( $tools ) {
-			$s2 .= ' ' . Html::openElement( 'span', [ 'class' => [ 'mw-changeslist-links', 'mw-pager-tools' ] ] );
-			foreach ( $tools as $tool ) {
-				$s2 .= Html::rawElement( 'span', [], $tool );
-			}
-			$s2 .= Html::closeElement( 'span' );
+		$html = '';
+		foreach ( $this->tools as $tool ) {
+			$html .= Html::rawElement( 'span', [], $tool );
 		}
-		return $s2;
+		return $html ? Html::rawElement( 'span',
+			[ 'class' => [ 'mw-changeslist-links', 'mw-pager-tools' ] ],
+			$html
+		) : '';
 	}
 }
 

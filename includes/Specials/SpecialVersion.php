@@ -1337,14 +1337,12 @@ class SpecialVersion extends SpecialPage {
 	 */
 	private function getTableHeaderHtml( $headers ): string {
 		$out = '';
-		$out .= Html::openElement( 'thead' );
-		$out .= Html::openElement( 'tr' );
 		foreach ( $headers as $header ) {
 			$out .= Html::element( 'th', [ 'scope' => 'col' ], $header );
 		}
-		$out .= Html::closeElement( 'tr' );
-		$out .= Html::closeElement( 'thead' );
-		return $out;
+		return Html::rawElement( 'thead', [],
+			Html::rawElement( 'tr', [], $out )
+		);
 	}
 
 	/**

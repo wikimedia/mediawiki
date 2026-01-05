@@ -224,7 +224,7 @@ class SkinComponentFooter implements SkinComponent {
 				// do this the lazy way, just pass icon data as an attribute array
 				$html = Html::element( 'img', $icon );
 				if ( $sources ) {
-					$html = Html::openElement( 'picture' ) . $sources . $html . Html::closeElement( 'picture' );
+					$html = Html::rawElement( 'picture', [], $sources . $html );
 				}
 			} else {
 				$html = htmlspecialchars( $icon['alt'] ?? '' );
