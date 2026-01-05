@@ -10,8 +10,6 @@ use RuntimeException;
 
 class CodexPagerNavigationBuilder extends PagerNavigationBuilder {
 
-	private bool $hideLast = false;
-
 	private ?string $navClass = 'cdx-table-pager';
 
 	private array $queryValues;
@@ -35,16 +33,6 @@ class CodexPagerNavigationBuilder extends PagerNavigationBuilder {
 	public function setNavClass( string $navClass ): self {
 		$this->navClass = $navClass;
 		return $this;
-	}
-
-	/**
-	 * Set to true to hide the "go to last page" item in the pager navigation
-	 *
-	 * @param bool $value
-	 * @return void
-	 */
-	public function setHideLast( bool $value ) {
-		$this->hideLast = $value;
 	}
 
 	/**
@@ -218,11 +206,7 @@ class CodexPagerNavigationBuilder extends PagerNavigationBuilder {
 			$msgKey = 'table_pager_' . $type;
 			$tooltip = $this->msg( $msgKey )->text();
 			$class = 'mw-' . $type . 'link';
-			$buttons[$type] = $this->makeLink( $queries[$type], $class, $tooltip, $tooltip, $type );
-		}
-
-		if ( $this->hideLast ) {
-			unset( $buttons['last'] );
+			$buttons[] = $this->makeLink( $queries[$type], $class, $tooltip, $tooltip, $type );
 		}
 
 		$html = Html::openElement( 'div', [ 'class' => $this->navClass ] ) . "\n";
