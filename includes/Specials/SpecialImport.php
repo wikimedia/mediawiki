@@ -79,13 +79,12 @@ class SpecialImport extends SpecialPage {
 			// message if the checks failed for different reasons.
 			$out->prepareErrorPage();
 			$out->setPageTitleMsg( $this->msg( 'permissionserrors' ) );
-			$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
-			$out->addWikiTextAsInterface( Html::errorBox(
+			$out->addWikiTextAsInterface(
 				$out->formatPermissionStatus( $statusImport, 'import' )
-			) );
-			$out->addWikiTextAsInterface( Html::errorBox(
+			);
+			$out->addWikiTextAsInterface(
 				$out->formatPermissionStatus( $statusImportUpload, 'importupload' )
-			) );
+			);
 			return;
 		}
 
