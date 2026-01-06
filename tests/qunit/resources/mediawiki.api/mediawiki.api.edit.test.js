@@ -17,9 +17,13 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 							title: 'Sandbox',
 							revisions: [ {
 								timestamp: '2016-01-01T12:00:00Z',
-								contentformat: 'text/x-wiki',
-								contentmodel: 'wikitext',
-								content: 'Sand.'
+								slots: {
+									main: {
+										contentmodel: 'wikitext',
+										contentformat: 'text/x-wiki',
+										content: 'Sand.'
+									}
+								}
 							} ]
 						} ]
 					}
@@ -53,9 +57,13 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 							title: 'Sandbox',
 							revisions: [ {
 								timestamp: '2016-01-01T12:00:00Z',
-								contentformat: 'text/x-wiki',
-								contentmodel: 'wikitext',
-								content: 'Sand.'
+								slots: {
+									main: {
+										contentmodel: 'wikitext',
+										contentformat: 'text/x-wiki',
+										content: 'Sand.'
+									}
+								}
 							} ]
 						} ]
 					}
@@ -89,9 +97,13 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 							title: 'Async',
 							revisions: [ {
 								timestamp: '2016-02-01T12:00:00Z',
-								contentformat: 'text/x-wiki',
-								contentmodel: 'wikitext',
-								content: 'Async.'
+								slots: {
+									main: {
+										contentmodel: 'wikitext',
+										contentformat: 'text/x-wiki',
+										content: 'Async.'
+									}
+								}
 							} ]
 						} ]
 					}
@@ -126,9 +138,13 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 							title: 'Param',
 							revisions: [ {
 								timestamp: '2016-03-01T12:00:00Z',
-								contentformat: 'text/x-wiki',
-								contentmodel: 'wikitext',
-								content: '...'
+								slots: {
+									main: {
+										contentmodel: 'wikitext',
+										contentformat: 'text/x-wiki',
+										content: '...'
+									}
+								}
 							} ]
 						} ]
 					}
