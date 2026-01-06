@@ -9,10 +9,9 @@
  * @file
  */
 
-/**
- * @defgroup Dump Dump
- */
+namespace MediaWiki\Export;
 
+use LogicException;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\HookContainer;
@@ -26,8 +25,14 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\TitleParser;
+use RuntimeException;
+use UnexpectedValueException;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+
+/**
+ * @defgroup Dump Dump
+ */
 
 /**
  * @ingroup SpecialPage Dump
@@ -485,8 +490,8 @@ class WikiExporter {
 	 * and be sorted/grouped by page and revision to avoid duplicate page records in the output.
 	 *
 	 * @param IResultWrapper $results
-	 * @param stdClass|null $lastRow the last row output from the previous call (or null if none)
-	 * @return stdClass the last row processed
+	 * @param \stdClass|null $lastRow the last row output from the previous call (or null if none)
+	 * @return \stdClass the last row processed
 	 */
 	protected function outputPageStreamBatch( $results, $lastRow ) {
 		$rowCarry = null;
@@ -544,9 +549,9 @@ class WikiExporter {
 	 * Takes and returns a carry row from the last batch;
 	 *
 	 * @param IResultWrapper|array $results
-	 * @param null|stdClass &$carry A row carried over from the last call to getSlotRowBatch()
+	 * @param null|\stdClass &$carry A row carried over from the last call to getSlotRowBatch()
 	 *
-	 * @return stdClass[]
+	 * @return \stdClass[]
 	 */
 	protected function getSlotRowBatch( $results, &$carry = null ) {
 		$slotRows = [];
@@ -575,7 +580,7 @@ class WikiExporter {
 	/**
 	 * Final page stream output, after all batches are complete
 	 *
-	 * @param stdClass $lastRow the last row output from the last batch (or null if none)
+	 * @param \stdClass $lastRow the last row output from the last batch (or null if none)
 	 */
 	protected function finishPageStreamOutput( $lastRow ) {
 		$output = '';
@@ -610,3 +615,6 @@ class WikiExporter {
 			->autoReconfigure();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( WikiExporter::class, 'WikiExporter' );

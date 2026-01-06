@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use BaseDump;
+use MediaWiki\Export\BaseDump;
+use MediaWiki\Export\WikiExporter;
+use MediaWiki\Export\XmlDumpWriter;
 use MediaWiki\Maintenance\TextPassDumper;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
-use WikiExporter;
-use XmlDumpWriter;
 
 /**
  * Tests for TextPassDumper that rely on the database

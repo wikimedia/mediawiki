@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use BaseDump;
+use MediaWiki\Export\BaseDump;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
 
 /**
  * @group Dump
- * @covers \BaseDump
+ * @covers \MediaWiki\Export\BaseDump
  */
 class BaseDumpTest extends MediaWikiIntegrationTestCase {
 

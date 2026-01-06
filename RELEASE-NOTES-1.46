@@ -449,6 +449,25 @@ because of Phabricator reports.
     - UserEditCountUpdateHook
   - Exception related hook: MediaWiki\Hook => MediaWiki\Exception\Hook
     - LogExceptionHook
+  - MediaWiki\Export:
+    - BaseDump
+    - DumpBZip2Output
+    - DumpNamespaceFilter
+    - Dump7ZipOutput
+    - DumpFileOutput
+    - WikiExporter
+    - DumpLatestFilter
+    - XmlDumpWriter
+    - DumpDBZip2Output
+    - DumpOutput
+    - DumpNotalkFilter
+    - DumpLBZip2Output
+    - DumpMultiWriter
+    - DumpStringOutput
+    - ExportProgressFilter
+    - DumpPipeOutput
+    - DumpGZipOutput
+    - DumpFilter
   - Export related hooks: MediaWiki\Hook => MediaWiki\Export\Hook
     - ModifyExportQueryHook
     - WikiExporter__dumpStableQueryHook

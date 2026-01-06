@@ -9,6 +9,8 @@
  * @file
  */
 
+namespace MediaWiki\Export;
+
 /**
  * @ingroup Dump
  */
@@ -45,7 +47,7 @@ class DumpMultiWriter {
 	}
 
 	/**
-	 * @param stdClass $page
+	 * @param \stdClass $page
 	 * @param string $string
 	 */
 	public function writeOpenPage( $page, $string ) {
@@ -64,7 +66,7 @@ class DumpMultiWriter {
 	}
 
 	/**
-	 * @param stdClass $rev
+	 * @param \stdClass $rev
 	 * @param string $string
 	 */
 	public function writeRevision( $rev, $string ) {
@@ -101,3 +103,6 @@ class DumpMultiWriter {
 		return $filenames;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DumpMultiWriter::class, 'DumpMultiWriter' );

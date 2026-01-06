@@ -18,11 +18,13 @@ require_once __DIR__ . '/BackupDumper.php';
 require_once __DIR__ . '/../../includes/Export/WikiExporter.php';
 // @codeCoverageIgnoreEnd
 
-use BaseDump;
 use Exception;
-use ExportProgressFilter;
 use MediaWiki\Exception\MWException;
 use MediaWiki\Exception\MWUnknownContentModelException;
+use MediaWiki\Export\BaseDump;
+use MediaWiki\Export\ExportProgressFilter;
+use MediaWiki\Export\WikiExporter;
+use MediaWiki\Export\XmlDumpWriter;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Settings\SettingsBuilder;
@@ -33,11 +35,9 @@ use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWiki\Xml\Xml;
 use RuntimeException;
-use WikiExporter;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
-use XmlDumpWriter;
 use XMLParser;
 
 /**

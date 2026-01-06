@@ -9,6 +9,10 @@
  * @file
  */
 
+namespace MediaWiki\Export;
+
+use ErrorException;
+use InvalidArgumentException;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\TextContent;
@@ -30,6 +34,7 @@ use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\Title\Title;
 use MediaWiki\Xml\Xml;
+use RuntimeException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -248,7 +253,7 @@ class XmlDumpWriter {
 	 * Opens a "<page>" section on the output stream, with data
 	 * from the given database row.
 	 *
-	 * @param stdClass $row
+	 * @param \stdClass $row
 	 * @return string
 	 */
 	public function openPage( $row ) {
@@ -318,7 +323,7 @@ class XmlDumpWriter {
 	 * @param string $warning The warning to output in case of a storage related exception.
 	 *
 	 * @return mixed Returns the method's return value, or null in case of an exception.
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	private function invokeLenient( $callback, $warning ) {
 		try {
@@ -335,8 +340,8 @@ class XmlDumpWriter {
 	 * Dumps a "<revision>" section on the output stream, with
 	 * data filled in from the given database row.
 	 *
-	 * @param stdClass $row
-	 * @param null|stdClass[] $slotRows
+	 * @param \stdClass $row
+	 * @param null|\stdClass[] $slotRows
 	 *
 	 * @return string
 	 * @throws RevisionAccessException
@@ -591,7 +596,7 @@ class XmlDumpWriter {
 	 * Dumps a "<logitem>" section on the output stream, with
 	 * data filled in from the given database row.
 	 *
-	 * @param stdClass $row
+	 * @param \stdClass $row
 	 * @return string
 	 */
 	public function writeLogItem( $row ) {
@@ -663,7 +668,7 @@ class XmlDumpWriter {
 
 	/**
 	 * Warning! This data is potentially inconsistent. :(
-	 * @param stdClass $row
+	 * @param \stdClass $row
 	 * @param bool $dumpContents
 	 * @return string
 	 */
@@ -763,3 +768,6 @@ class XmlDumpWriter {
 		return $prefix . $title->getText();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( XmlDumpWriter::class, 'XmlDumpWriter' );

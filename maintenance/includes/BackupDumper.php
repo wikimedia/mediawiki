@@ -18,19 +18,19 @@ require_once __DIR__ . '/../Maintenance.php';
 require_once __DIR__ . '/../../includes/Export/WikiExporter.php';
 // @codeCoverageIgnoreEnd
 
-use DumpFilter;
-use DumpMultiWriter;
-use DumpOutput;
-use ExportProgressFilter;
+use MediaWiki\Export\DumpFilter;
+use MediaWiki\Export\DumpMultiWriter;
+use MediaWiki\Export\DumpOutput;
+use MediaWiki\Export\ExportProgressFilter;
+use MediaWiki\Export\WikiExporter;
+use MediaWiki\Export\XmlDumpWriter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\WikiMap\WikiMap;
-use WikiExporter;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
-use XmlDumpWriter;
 
 /**
  * @ingroup Dump

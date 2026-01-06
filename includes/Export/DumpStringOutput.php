@@ -6,6 +6,10 @@
  * @file
  */
 
+namespace MediaWiki\Export;
+
+use Stringable;
+
 /**
  * @ingroup Dump
  * @since 1.28
@@ -30,3 +34,6 @@ class DumpStringOutput extends DumpOutput implements Stringable {
 		return $this->output;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DumpStringOutput::class, 'DumpStringOutput' );

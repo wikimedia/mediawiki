@@ -9,7 +9,10 @@
  * @file
  */
 
+namespace MediaWiki\Export;
+
 use MediaWiki\Exception\MWException;
+use RuntimeException;
 
 /**
  * @ingroup Dump
@@ -101,3 +104,6 @@ class DumpFileOutput extends DumpOutput {
 		return $this->filename;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DumpFileOutput::class, 'DumpFileOutput' );

@@ -9,24 +9,26 @@
  * @file
  */
 
+namespace MediaWiki\Export;
+
 /**
  * @ingroup Dump
  */
 class DumpLatestFilter extends DumpFilter {
-	/** @var stdClass|null */
+	/** @var \stdClass|null */
 	public $page;
 
 	/** @var string|null */
 	public $pageString;
 
-	/** @var stdClass|null */
+	/** @var \stdClass|null */
 	public $rev;
 
 	/** @var string|null */
 	public $revString;
 
 	/**
-	 * @param stdClass $page
+	 * @param \stdClass $page
 	 * @param string $string
 	 */
 	public function writeOpenPage( $page, $string ) {
@@ -50,7 +52,7 @@ class DumpLatestFilter extends DumpFilter {
 	}
 
 	/**
-	 * @param stdClass $rev
+	 * @param \stdClass $rev
 	 * @param string $string
 	 */
 	public function writeRevision( $rev, $string ) {
@@ -60,3 +62,6 @@ class DumpLatestFilter extends DumpFilter {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DumpLatestFilter::class, 'DumpLatestFilter' );

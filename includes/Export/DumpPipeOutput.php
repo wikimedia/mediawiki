@@ -11,6 +11,8 @@
  * @file
  */
 
+namespace MediaWiki\Export;
+
 use MediaWiki\Shell\Shell;
 
 /**
@@ -91,3 +93,6 @@ class DumpPipeOutput extends DumpFileOutput {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DumpPipeOutput::class, 'DumpPipeOutput' );

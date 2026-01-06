@@ -9,6 +9,8 @@
  * @file
  */
 
+namespace MediaWiki\Export;
+
 /**
  * @ingroup Dump
  */
@@ -29,7 +31,7 @@ class DumpOutput {
 	}
 
 	/**
-	 * @param stdClass|null $page
+	 * @param \stdClass|null $page
 	 * @param string $string
 	 */
 	public function writeOpenPage( $page, $string ) {
@@ -44,7 +46,7 @@ class DumpOutput {
 	}
 
 	/**
-	 * @param stdClass|null $rev
+	 * @param \stdClass|null $rev
 	 * @param string $string
 	 */
 	public function writeRevision( $rev, $string ) {
@@ -52,7 +54,7 @@ class DumpOutput {
 	}
 
 	/**
-	 * @param stdClass $rev
+	 * @param \stdClass $rev
 	 * @param string $string
 	 */
 	public function writeLogItem( $rev, $string ) {
@@ -97,3 +99,6 @@ class DumpOutput {
 		return null;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DumpOutput::class, 'DumpOutput' );

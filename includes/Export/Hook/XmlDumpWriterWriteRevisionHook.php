@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Export\Hook;
 
+use MediaWiki\Export\XmlDumpWriter;
 use MediaWiki\Revision\RevisionRecord;
 use stdClass;
-use XmlDumpWriter;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

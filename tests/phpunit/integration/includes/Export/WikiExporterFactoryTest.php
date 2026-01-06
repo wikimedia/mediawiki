@@ -3,11 +3,11 @@
 namespace MediaWiki\Tests\Export;
 
 use FactoryArgTestTrait;
+use MediaWiki\Export\WikiExporter;
 use MediaWiki\Export\WikiExporterFactory;
+use MediaWiki\Export\XmlDumpWriter;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
-use WikiExporter;
-use XmlDumpWriter;
 
 /**
  * @covers \MediaWiki\Export\WikiExporterFactory

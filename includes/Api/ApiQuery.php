@@ -8,19 +8,19 @@
 
 namespace MediaWiki\Api;
 
-use DumpStringOutput;
+use MediaWiki\Export\DumpStringOutput;
+use MediaWiki\Export\WikiExporter;
 use MediaWiki\Export\WikiExporterFactory;
+use MediaWiki\Export\XmlDumpWriter;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
-use WikiExporter;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ScopedCallback;
-use XmlDumpWriter;
 
 /**
  * This is the main query class. It behaves similar to ApiMain: based on the

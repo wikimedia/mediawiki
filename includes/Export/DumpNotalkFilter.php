@@ -9,6 +9,8 @@
  * @file
  */
 
+namespace MediaWiki\Export;
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -16,7 +18,7 @@ use MediaWiki\MediaWikiServices;
  */
 class DumpNotalkFilter extends DumpFilter {
 	/**
-	 * @param stdClass $page
+	 * @param \stdClass $page
 	 * @return bool
 	 */
 	protected function pass( $page ) {
@@ -24,3 +26,6 @@ class DumpNotalkFilter extends DumpFilter {
 			isTalk( $page->page_namespace );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DumpNotalkFilter::class, 'DumpNotalkFilter' );

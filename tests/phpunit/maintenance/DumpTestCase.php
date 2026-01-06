@@ -6,6 +6,7 @@ use DOMDocument;
 use ExecutableFinder;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
+use MediaWiki\Export\WikiExporter;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Revision\RevisionAccessException;
@@ -13,7 +14,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
 use RuntimeException;
-use WikiExporter;
 
 /**
  * Base TestCase for dumps

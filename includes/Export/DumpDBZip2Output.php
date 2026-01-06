@@ -9,6 +9,8 @@
  * @file
  */
 
+namespace MediaWiki\Export;
+
 /**
  * @ingroup Dump
  */
@@ -20,3 +22,6 @@ class DumpDBZip2Output extends DumpPipeOutput {
 		parent::__construct( "dbzip2", $file );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DumpDBZip2Output::class, 'DumpDBZip2Output' );

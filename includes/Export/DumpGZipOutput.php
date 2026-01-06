@@ -9,6 +9,8 @@
  * @file
  */
 
+namespace MediaWiki\Export;
+
 /**
  * @ingroup Dump
  */
@@ -20,3 +22,6 @@ class DumpGZipOutput extends DumpPipeOutput {
 		parent::__construct( "gzip", $file );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DumpGZipOutput::class, 'DumpGZipOutput' );

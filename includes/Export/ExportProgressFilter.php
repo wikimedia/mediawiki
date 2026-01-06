@@ -7,6 +7,8 @@
  * @file
  */
 
+namespace MediaWiki\Export;
+
 use MediaWiki\Maintenance\BackupDumper;
 
 /**
@@ -39,3 +41,6 @@ class ExportProgressFilter extends DumpFilter {
 		$this->progress->revCount();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ExportProgressFilter::class, 'ExportProgressFilter' );

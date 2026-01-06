@@ -4,11 +4,11 @@ namespace MediaWiki\Tests\Maintenance;
 
 use DumpBackup;
 use Exception;
+use MediaWiki\Export\WikiExporter;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use WikiExporter;
 
 /**
  * Tests for log dumps of BackupDumper

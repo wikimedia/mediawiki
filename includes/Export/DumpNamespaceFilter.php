@@ -9,6 +9,10 @@
  * @file
  */
 
+namespace MediaWiki\Export;
+
+use InvalidArgumentException;
+
 /**
  * @ingroup Dump
  */
@@ -64,7 +68,7 @@ class DumpNamespaceFilter extends DumpFilter {
 	}
 
 	/**
-	 * @param stdClass $page
+	 * @param \stdClass $page
 	 * @return bool
 	 */
 	protected function pass( $page ) {
@@ -72,3 +76,6 @@ class DumpNamespaceFilter extends DumpFilter {
 		return $this->invert xor $match;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DumpNamespaceFilter::class, 'DumpNamespaceFilter' );

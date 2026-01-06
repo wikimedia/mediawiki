@@ -10,7 +10,10 @@
  * @ingroup Maintenance
  */
 
+namespace MediaWiki\Export;
+
 use MediaWiki\Revision\SlotRecord;
+use XMLReader;
 
 /**
  * Readahead helper for making large MediaWiki data dumps;
@@ -224,3 +227,6 @@ class BaseDump {
 		return null;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( BaseDump::class, 'BaseDump' );

@@ -4,12 +4,12 @@ namespace MediaWiki\Tests\Maintenance;
 
 use DumpBackup;
 use MediaWiki\DB\CloneDatabase;
+use MediaWiki\Export\WikiExporter;
+use MediaWiki\Export\XmlDumpWriter;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
-use WikiExporter;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
-use XmlDumpWriter;
 
 /**
  * Tests for page dumps of BackupDumper

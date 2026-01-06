@@ -10,7 +10,6 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\TitleParser;
-use WikiExporter;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**

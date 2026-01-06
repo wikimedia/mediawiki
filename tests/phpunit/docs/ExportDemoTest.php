@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use DOMDocument;
-use WikiExporter;
+use MediaWiki\Export\WikiExporter;
 
 /**
  * Test making sure the demo export xml is valid.

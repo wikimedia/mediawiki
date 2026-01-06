@@ -10,6 +10,8 @@
  * @file
  */
 
+namespace MediaWiki\Export;
+
 /**
  * @ingroup Dump
  * @since 1.33
@@ -23,3 +25,6 @@ class DumpLBZip2Output extends DumpPipeOutput {
 		parent::__construct( "lbzip2 -n 1", $file );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DumpLBZip2Output::class, 'DumpLBZip2Output' );
