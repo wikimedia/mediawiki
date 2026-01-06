@@ -113,6 +113,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 ==== Removed external libraries ====
 
+* Removed symfony/polyfill-php82.
 * …
 
 === Bug fixes in 1.46 ===

@@ -49,7 +49,6 @@
 		"psr/http-message": "1.1",
 		"psr/log": "1.1.4",
 		"ralouphie/getallheaders": "3.0.3",
-		"symfony/polyfill-php82": "1.33.0",
 		"symfony/polyfill-php83": "1.33.0",
 		"symfony/polyfill-php84": "1.33.0",
 		"symfony/polyfill-php85": "1.33.0",
