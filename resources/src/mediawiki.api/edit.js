@@ -122,6 +122,7 @@
 				action: 'query',
 				prop: 'revisions',
 				rvprop: [ 'content', 'timestamp' ],
+				rvslots: 'main',
 				titles: [ title ],
 				formatversion: '2',
 				curtimestamp: true
@@ -142,7 +143,7 @@
 					curtimestamp = data.curtimestamp;
 					return transform( {
 						timestamp: revision.timestamp,
-						content: revision.content
+						content: revision.slots.main.content
 					} );
 				} )
 				.then( ( params ) => {
