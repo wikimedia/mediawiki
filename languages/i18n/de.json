@@ -2320,7 +2320,7 @@
 	"watchlistlabels-onboarding-filter-title": "Nach Label filtern",
 	"watchlistlabels-onboarding-filter-body": "Gehe zu „Labels“, um die Bearbeitungen zu filtern.",
 	"watchlistlabels-editwatchlist-dialog-button": "Labels zuweisen",
-	"watchlistlabels-editwatchlist-dialog-intro": "Wähle die Labels aus, die du $1 zuweisen möchtest:",
+	"watchlistlabels-editwatchlist-dialog-intro": "Wähle {{PLURAL:$2|das Label aus, das du|die Labels aus, die du}} $1 zuweisen möchtest:",
 	"watchlistlabels-editwatchlist-dialog-intro-more": "$2 andere {{PLURAL:$1|Seite|Seiten}}",
 	"watchlistlabels-editwatchlist-dialog-assign": "Zuweisen",
 	"watchlist-filters-labels-title": "Labels",
