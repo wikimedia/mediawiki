@@ -83,9 +83,6 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 ===== New development-only external libraries =====
 
-* Updated mck89/peast from 1.17.2 to 1.17.4.
-* Updated symfony/yaml from 6.4.25 to 6.4.26.
-* Updated wikimedia/ip-utils from 5.0.0 to 6.0.0.
 * …
 
 ==== Changed external libraries ====
@@ -109,6 +106,9 @@ For notes on 1.45.x and older releases, see HISTORY.
 * Updated doctrine/dbal from 3.10.0 to 3.10.3.
 * Updated doctrine/sql-formatter from 1.5.2 to 1.5.3.
 * Updated eslint-config-wikimedia from 0.31.0 to 0.32.3.
+* Updated mck89/peast from 1.17.2 to 1.17.4.
+* Updated symfony/yaml from 6.4.25 to 6.4.26.
+* Updated wikimedia/ip-utils from 5.0.0 to 6.0.0.
 * …
 
 ==== Removed external libraries ====
