@@ -16,7 +16,6 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UserGroupsSpecialPage;
 use MediaWiki\Status\Status;
-use MediaWiki\Status\StatusFormatter;
 use MediaWiki\Title\Title;
 use MediaWiki\User\MultiFormatUserIdentityLookup;
 use MediaWiki\User\UserFactory;
@@ -46,8 +45,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	/** @var list<string> Names of the groups the current target is automatically in */
 	private array $autopromoteGroups = [];
 
-	private StatusFormatter $statusFormatter;
-
 	public function __construct(
 		private readonly UserGroupManagerFactory $userGroupManagerFactory,
 		private readonly UserNameUtils $userNameUtils,
@@ -56,10 +53,9 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		private readonly WatchlistManager $watchlistManager,
 		private readonly UserGroupAssignmentService $userGroupAssignmentService,
 		private readonly MultiFormatUserIdentityLookup $multiFormatUserIdentityLookup,
-		FormatterFactory $formatterFactory,
+		private readonly FormatterFactory $formatterFactory,
 	) {
 		parent::__construct( 'Userrights' );
-		$this->statusFormatter = $formatterFactory->getStatusFormatter( $this->getContext() );
 	}
 
 	/**
@@ -92,7 +88,8 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$fetchedStatus = $this->multiFormatUserIdentityLookup->getUserIdentity( $targetName, $this->getAuthority() );
 		if ( !$fetchedStatus->isOK() ) {
 			$out->addHTML( Html::warningBox(
-				$this->statusFormatter->getMessage( $fetchedStatus )->parse()
+				$this->formatterFactory->getStatusFormatter( $this->getContext() )
+					->getMessage( $fetchedStatus )->parse()
 			) );
 			return;
 		}
