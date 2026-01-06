@@ -43,7 +43,7 @@
 		"oojs/oojs-ui": "0.53.1",
 		"pear/mail": "2.0.0",
 		"pear/mail_mime": "1.10.12",
-		"pear/net_smtp": "1.12.1",
+		"pear/net_smtp": "1.12.2",
 		"php": ">=8.2.0",
 		"psr/container": "2.0.2",
 		"psr/http-message": "1.1",
