@@ -2863,9 +2863,12 @@ return [
 		"messages" => [
 			'cancel',
 			'watchlistlabels-editwatchlist-dialog-button',
+			'watchlistlabels-editwatchlist-dialog-button-unassign',
 			'watchlistlabels-editwatchlist-dialog-intro',
+			'watchlistlabels-editwatchlist-dialog-intro-unassign',
 			'watchlistlabels-editwatchlist-dialog-intro-more',
 			'watchlistlabels-editwatchlist-dialog-assign',
+			'watchlistlabels-editwatchlist-dialog-unassign',
 		],
 		'dependencies' => [
 			'mediawiki.special.watchlistedit.styles',

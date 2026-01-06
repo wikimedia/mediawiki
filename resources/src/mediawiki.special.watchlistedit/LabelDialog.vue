@@ -2,23 +2,32 @@
 	<cdx-button
 		type="button"
 		:disabled="selectedPagesList.length === 0"
-		@click="isOpen = true"
+		@click="isOpen = true; dialogAction = 'assign';"
 	>
 		{{ $i18n( 'watchlistlabels-editwatchlist-dialog-button' ) }}
+	</cdx-button>
+	<cdx-button
+		type="button"
+		:disabled="selectedPagesList.length === 0"
+		@click="isOpen = true; dialogAction = 'unassign';"
+	>
+		{{ $i18n( 'watchlistlabels-editwatchlist-dialog-button-unassign' ) }}
 	</cdx-button>
 
 	<!-- Render in place so that the checkboxe inputs are within the EditWatchlist form. -->
 	<cdx-dialog
 		v-model:open="isOpen"
 		render-in-place
-		:title="$i18n( 'watchlistlabels-editwatchlist-dialog-button' )"
+		:title="dialogAction === 'unassign' ? $i18n( 'watchlistlabels-editwatchlist-dialog-button-unassign' ) : $i18n( 'watchlistlabels-editwatchlist-dialog-button' )"
 		:use-close-button="false"
 	>
 		<div role="group" aria-labelledby="watchlistlabels-dialog-checkboxes">
 			<p id="watchlistlabels-dialog-checkboxes">
 				<!-- Security note: the raw HTML here is a list of valid page titles wrapped in <strong> elements. -->
 				<!-- eslint-disable vue/no-v-html -->
-				<span v-html="$i18n( 'watchlistlabels-editwatchlist-dialog-intro', selectedPagesList, labels.length, selectedPagesList.length )">
+				<span v-if="dialogAction === 'unassign'" v-html="$i18n( 'watchlistlabels-editwatchlist-dialog-intro-unassign', selectedPagesList, labels.length, selectedPagesList.length )">
+				</span>
+				<span v-else v-html="$i18n( 'watchlistlabels-editwatchlist-dialog-intro', selectedPagesList, labels.length, selectedPagesList.length )">
 				</span>
 			</p>
 			<cdx-checkbox
@@ -37,12 +46,15 @@
 				<cdx-button
 					class="cdx-dialog__footer__primary-action"
 					weight="primary"
-					action="progressive"
+					:action="dialogAction === 'unassign' ? 'destructive' : 'progressive'"
 					name="watchlistlabels-action"
-					value="assign"
+					:value="dialogAction === 'unassign' ? 'unassign' : 'assign'"
 					type="submit"
 				>
-					{{ $i18n( 'watchlistlabels-editwatchlist-dialog-assign' ) }}
+					{{ dialogAction === 'unassign' ?
+						$i18n( 'watchlistlabels-editwatchlist-dialog-unassign' ) :
+						$i18n( 'watchlistlabels-editwatchlist-dialog-assign' )
+					}}
 				</cdx-button>
 				<cdx-button
 					class="cdx-dialog__footer__default-action"
@@ -68,6 +80,7 @@ module.exports = defineComponent( {
 		CdxCheckbox
 	},
 	setup() {
+		const dialogAction = ref( 'assign' );
 		const isOpen = ref( false );
 		const selectedPagesList = ref( '' );
 
@@ -99,6 +112,7 @@ module.exports = defineComponent( {
 		selectAllCheckbox.addEventListener( 'change', updateSelectedPagesList );
 
 		return {
+			dialogAction,
 			isOpen,
 			selectedPagesList,
 			labels: mw.config.get( 'watchlistLabels' )
