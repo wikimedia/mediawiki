@@ -2375,7 +2375,7 @@
 	"protect-expiring": "$1 (UTC) tarixində vaxtı bitir",
 	"protect-expiring-local": "$1 tarixində bitir",
 	"protect-expiry-indefinite": "müddətsiz",
-	"protect-cascade": "Kaskad mühafizəsi - bu səhifəyə daxil bütün səhifələri mühafizə et",
+	"protect-cascade": "Kaskad mühafizəsi ilə bu səhifəyə daxil bütün səhifələri mühafizə et",
 	"protect-cantedit": "Bu səhifənin mühafizə parametrlərini dəyişdirə bilməzsiniz, çünki bu dəyişiklik üçün hüququnuz yoxdur.",
 	"protect-othertime": "Başqa vaxt:",
 	"protect-othertime-op": "Başqa vaxt",

@@ -3316,7 +3316,7 @@
 	"watchlistedit-clear-done": "Deine Beobachtungsliste wurde geleert.",
 	"watchlistedit-clear-jobqueue": "Deine Beobachtungsliste wird geleert. Dies kann einige Zeit in Anspruch nehmen!",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|Ein Seitenname wurde|$1 Seitennamen wurden}} entfernt:",
-	"watchlistedit-too-many": "Deine Beobachtungsliste wurde aktualisiert. Es gibt zu viele Seiten, sie hier anzuzeigen.",
+	"watchlistedit-too-many": "Deine Beobachtungsliste wurde aktualisiert. Es gibt zu viele Seiten, um sie hier anzuzeigen.",
 	"watchlisttools-clear": "Beobachtungsliste leeren",
 	"watchlisttools-view": "Änderungen anzeigen",
 	"watchlisttools-edit": "Beobachtungsliste ansehen und bearbeiten",

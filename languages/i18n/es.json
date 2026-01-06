@@ -268,7 +268,8 @@
 			"Weritabris16",
 			"Geom",
 			"Jemily1",
-			"SrGarga"
+			"SrGarga",
+			"Tecbs"
 		]
 	},
 	"sunday": "domingo",
@@ -1027,6 +1028,7 @@
 	"unstrip-size-category-desc": "La página supera el límite de tamaño de extracción.",
 	"bad-language-code-category": "Páginas con códigos inválidos de idioma",
 	"bad-language-code-category-desc": "La página contiene <code><nowiki>{{#dir}}</nowiki></code> con un código de idioma no válido.",
+	"bad-double-underscore-category": "Páginas con modificadores de comportamiento no válidos",
 	"double-px-category": "Páginas con tamaños de imagen que contienen px adicionales",
 	"double-px-category-desc": "La página contiene una imagen cuyo tamaño contiene un sufijo <code>px</code> adicional, como <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Se ha detectado un error en una regla manual de conversión de idioma",

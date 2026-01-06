@@ -191,6 +191,8 @@
 	"exif-photometricinterpretation-0": "Bianch e nèir (Bianch a l'é 0)",
 	"exif-photometricinterpretation-1": "Bianch e nèir (Nèir a l'é 0)",
 	"exif-photometricinterpretation-4": "Mascra 'd trasparensa",
+	"exif-photometricinterpretation-5": "Separà (miraco CMYK)",
+	"exif-photometricinterpretation-9": "CIE L*a*b* (codìfica ICC)",
 	"exif-unknowndate": "Data nen conossùa",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "A specc",

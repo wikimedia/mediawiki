@@ -782,6 +782,8 @@
 	"unstrip-size-category-desc": "Оцу аг\\оно сов доккху бараман доза unstrip.",
 	"bad-language-code-category": "Нийса йоцу меттан кодаш йолу агӀонаш",
 	"bad-language-code-category-desc": "АгӀонан тӀехь <code><nowiki>{{#dir}}</nowiki></code> йу нийса йоцу меттан код йолуш.",
+	"bad-double-underscore-category": "Нийса йоцу леларан хуьйцургаш болу агӀонаш",
+	"bad-double-underscore-category-desc": "АгӀонан тӀехь нийса йоцу локализаци йина [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|леларан хуьйцург]]. Нийса локализацеш дӀайолало а, чекхйовлу а шалха сиз хьакхарца.",
 	"double-px-category": "Суьртийн барамашца совнаха px йолуш агӀонаш",
 	"double-px-category-desc": "АгӀонан тӀехь сурт ду, цуьнан барамехь совнаха <code>px</code> суффикс йолуш, масала <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Мотт хийцаран куьйга бакъонехь гӀалат",

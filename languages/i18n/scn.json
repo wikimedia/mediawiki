@@ -1062,6 +1062,7 @@
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|ura|uri}}",
 	"rcfilters-quickfilters": "Filtra sarbati",
 	"rcfilters-quickfilters-placeholder-title": "Nun ci sunu filtra sarbati appirora",
+	"rcfilters-quickfilters-placeholder-description": "Pi sarbari li mpustazzioni dû tò filtru e riutilizzaàrili addoppu, clicca supra l'icona signalibbru nti l'aria \"Filtri attivi\" ccàssutta.",
 	"rcfilters-savedqueries-defaultlabel": "Filtra sarbati",
 	"rcfilters-savedqueries-remove": "Cancella",
 	"rcfilters-savedqueries-new-name-label": "Nomu",

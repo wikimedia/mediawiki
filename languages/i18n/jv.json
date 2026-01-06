@@ -1600,7 +1600,7 @@
 	"nopagetitle": "Kaca jujugan mangkono ora ana",
 	"nopagetext": "Kaca jujugan kang panjenengan karsakaké ora ana.",
 	"pager-newer-n": "{{PLURAL:$1|$1 luwih anyar}}",
-	"pager-older-n": "{{PLURAL:$1|1 luwih lawas}}",
+	"pager-older-n": "{{PLURAL:$1|$1 luwih lawas}}",
 	"suppress": "Dhelikaké",
 	"querypage-disabled": "Kaca kusus iki dipatèni kanggo alesan kinerja.",
 	"apihelp": "Pitulung API",

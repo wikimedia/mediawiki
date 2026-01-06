@@ -3489,7 +3489,7 @@
 	"logentry-merge-merge": "$1 {{GENDER:$2|bárgidii}} $3 sisa $4 (siidoveršuvnnat gitta, ja oktan $5)",
 	"logentry-move-move": "Geavaheaddji $1 {{GENDER:$2|sirddii}} siiddu $3 ođđa nammii $4",
 	"logentry-move-move-noredirect": "Geavaheaddji $1 {{GENDER:$2|sirddii}} siiddu $3 nammii $4 iige ráhkadan ođđasitstivrema",
-	"logentry-move-move_redir": "$1 {{GENDER:$2|sirddii}} siiddu $3, $4:ii, ođđasitstivremiin",
+	"logentry-move-move_redir": "Geavaheaddji $1 {{GENDER:$2|sirddii}} siiddu $3 siiddu $4 ođđasitstivrema nala",
 	"logentry-move-move_redir-noredirect": "$1 {{GENDER:$2|sirddii}} siiddu $3 nammii $4, vaikko diekko lei jo ođđasitstivren, iige ráhkadan ođđasitstivrema",
 	"logentry-patrol-patrol": "$1 {{GENDER:$2|merkii}} siidoveršuvnna $4 $3-siiddus dárkkistuvvon",
 	"logentry-patrol-patrol-auto": "$1 {{GENDER:$2|merkii}} automáhtalaččat siidoveršuvnna $4 $3-siiddus dárkkistuvvon.",

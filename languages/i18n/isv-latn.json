@@ -763,7 +763,7 @@
 	"bad-language-code-category": "Stranice s nepravilnymi jezyčnymi kodami",
 	"bad-language-code-category-desc": "Stranica sodrživaje <code><nowiki>{{#dir}}</nowiki></code> s nepravilnym jezyčnym kodom.",
 	"bad-double-underscore-category": "Stranice s hybnymi prěključami provodženja",
-	"bad-double-underscore-category-desc": "Stranica sodrživaje hybny prěvedeny [[mw:Special:MyLanguag/Help:Magic_words#Behavior_Switches|prěključ provodženja]]. Popravne prěvody načinajut i končajut s dvojnymi podčrknutjemi.",
+	"bad-double-underscore-category-desc": "Stranica sodrživaje hybny prěvedeny [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|prěključnik povedenja]]. Popravne prěvody načinajut i končet se s dvojnymi podčrknutjami.",
 	"double-px-category": "Stranice s razměrami obrazkov sodrživajučih nadměrny px",
 	"double-px-category-desc": "Stranica sodrživaje obrazok, ktorogo razměr imaje nadměrny sufiks <code>px</code>, napr. <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Odkryta pogrěška v pravilah ručnoj jezyčnoj konversije",

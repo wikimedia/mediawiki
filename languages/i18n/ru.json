@@ -200,7 +200,8 @@
 			"IJzeren Jan",
 			"Vonavy",
 			"Dolbaeb",
-			"EneshTranslates"
+			"EneshTranslates",
+			"Mitte27"
 		]
 	},
 	"sunday": "воскресенье",
@@ -2321,8 +2322,8 @@
 	"hidden-category-category-desc": "В вики-тексте этой категории есть метка <code><nowiki>__HIDDENCAT__</nowiki></code>, из-за чего она не показывается в разделе «Категории:» тех страниц, которые в неё включены.",
 	"trackingcategories-nodesc": "Описание отсутствует.",
 	"trackingcategories-disabled": "Категория отключена",
-	"mailnologin": "Адрес для отправки отсутствует",
-	"mailnologintext": "Вы должны [[Special:UserLogin|представиться системе]] и иметь действительный адрес электронной почты в ваших [[Special:Preferences|настройках]], чтобы иметь возможность отправлять электронную почту другим участникам.",
+	"mailnologin": "Не указан адрес электронной почты",
+	"mailnologintext": "Вы должны [[Special:UserLogin|войти в свой аккаунт]], указать действительный адрес электронной почты в [[Special:Preferences|настройках]], чтобы иметь возможность отправлять письма другим участникам.",
 	"emailuser": "Письмо участнику",
 	"emailuser-title-target": "Написание электронного письма {{GENDER:$1|участнику|участнице}}",
 	"emailuser-title-notarget": "Написание электронного письма участнику",
