@@ -6,6 +6,8 @@
 
 namespace MediaWiki\Config;
 
+use function array_key_exists;
+
 /**
  * Configuration holder, particularly for multi-wiki sites.
  *
@@ -199,7 +201,7 @@ class SiteConfiguration {
 		$params = $this->mergeParams( $wiki, $site, $params, $wikiTags );
 		$overrides = $this->settings[$settingName] ?? null;
 		$value = $overrides ? $this->processSetting( $overrides, $wiki, $params['tags'] ) : null;
-		if ( !\array_key_exists( '@replaceableSettings', $this->settings )
+		if ( !array_key_exists( '@replaceableSettings', $this->settings )
 			|| in_array( $settingName, $this->settings['@replaceableSettings'] )
 		) {
 			$this->doReplacements( $value, $params['replacements'] );
@@ -244,24 +246,24 @@ class SiteConfiguration {
 
 		// Optimization: Fast path for when there is only a default value and no overrides
 		// <https://gerrit.wikimedia.org/r/c/mediawiki/core/+/1220661>
-		if ( count( $thisSetting ) === 1 && \array_key_exists( 'default', $thisSetting ) ) {
+		if ( count( $thisSetting ) === 1 && array_key_exists( 'default', $thisSetting ) ) {
 			return $thisSetting['default'];
 		}
 
 		$retval = null;
 
-		if ( \array_key_exists( $wiki, $thisSetting ) ) {
+		if ( array_key_exists( $wiki, $thisSetting ) ) {
 			// Found override by Wiki ID.
 			$retval = $thisSetting[$wiki];
 		} else {
-			if ( \array_key_exists( "+$wiki", $thisSetting ) ) {
+			if ( array_key_exists( "+$wiki", $thisSetting ) ) {
 				// Found mergable override by Wiki ID.
 				// We continue to look for more merge candidates.
 				$retval = $thisSetting["+$wiki"];
 			}
 
 			foreach ( $tags as $tag ) {
-				if ( \array_key_exists( $tag, $thisSetting ) ) {
+				if ( array_key_exists( $tag, $thisSetting ) ) {
 					if ( is_array( $retval ) && is_array( $thisSetting[$tag] ) ) {
 						// Found a mergable override by Tag, without "+" operator.
 						// Merge it with any "+wiki" match from before, and stop the cascade.
@@ -273,7 +275,7 @@ class SiteConfiguration {
 						$retval = $thisSetting[$tag];
 					}
 					return $retval;
-				} elseif ( \array_key_exists( "+$tag", $thisSetting ) ) {
+				} elseif ( array_key_exists( "+$tag", $thisSetting ) ) {
 					// Found a mergable override by Tag with "+" operator.
 					// Merge it with any "+wiki" or "+tag" matches from before,
 					// and keep looking for more merge candidates.
@@ -281,7 +283,7 @@ class SiteConfiguration {
 				}
 			}
 
-			if ( \array_key_exists( 'default', $thisSetting ) ) {
+			if ( array_key_exists( 'default', $thisSetting ) ) {
 				if ( is_array( $retval ) && is_array( $thisSetting['default'] ) ) {
 					// Found a mergable default
 					// Merge it with any "+wiki" or "+tag" matches from before.
@@ -364,9 +366,9 @@ class SiteConfiguration {
 		}
 
 		$replacements = $params['replacements'];
-		if ( \array_key_exists( '@replaceableSettings', $this->settings ) ) {
+		if ( array_key_exists( '@replaceableSettings', $this->settings ) ) {
 			foreach ( $this->settings['@replaceableSettings'] as $varname ) {
-				if ( \array_key_exists( $varname, $localSettings ) ) {
+				if ( array_key_exists( $varname, $localSettings ) ) {
 					$this->doReplacements( $localSettings[$varname], $replacements );
 				}
 			}
@@ -427,7 +429,7 @@ class SiteConfiguration {
 	private function extractGlobalSetting( $setting, $wiki, $params ) {
 		$overrides = $this->settings[$setting] ?? null;
 		$value = $overrides ? $this->processSetting( $overrides, $wiki, $params['tags'] ) : null;
-		if ( !\array_key_exists( '@replaceableSettings', $this->settings )
+		if ( !array_key_exists( '@replaceableSettings', $this->settings )
 			|| in_array( $setting, $this->settings['@replaceableSettings'] )
 		) {
 			$this->doReplacements( $value, $params['replacements'] );
