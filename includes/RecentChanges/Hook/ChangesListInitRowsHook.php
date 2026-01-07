@@ -19,7 +19,12 @@ interface ChangesListInitRowsHook {
 	 * @since 1.35
 	 *
 	 * @param ChangesList $changesList
-	 * @param IResultWrapper|\stdClass[] $rows Data that will be rendered
+	 * @param IResultWrapper|\stdClass[] $rows SQL query result that will be rendered by one of the
+	 *  - {@link SpecialRecentChanges},
+	 *  - {@link SpecialRecentChangesLinked}, or
+	 *  - {@link SpecialWatchlist} special pages.
+	 *  You can use e.g. {@link RecentChange::newFromRow} if you want a richer interface to access
+	 *  individual rows.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onChangesListInitRows( $changesList, $rows );
