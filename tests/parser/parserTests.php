@@ -188,7 +188,14 @@ class ParserTestsMaintenance extends Maintenance {
 
 		// Default parser tests and any set from extensions or local config
 		$dirs = $this->getOption( 'dir', [] );
-		$files = $this->getOption( 'file', ParserTestRunner::getParserTestFiles( $dirs ) );
+		if ( $this->hasOption( 'file' ) ) {
+			$files = [];
+			foreach ( $this->getOption( 'file' ) as $file ) {
+				array_push( $files, ...glob( $file ) );
+			}
+		} else {
+			$files = ParserTestRunner::getParserTestFiles( $dirs );
+		}
 		$norm = $this->hasOption( 'norm' ) ? explode( ',', $this->getOption( 'norm' ) ) : [];
 
 		$selserOpt = $this->getOption( 'selser', false ); /* can also be 'noauto' */
