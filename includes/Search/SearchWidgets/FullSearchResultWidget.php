@@ -378,7 +378,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 				return $thumb->toHtml( [
 					'desc-link' => true,
 					'loading' => 'lazy',
-					'alt' => $this->specialPage->msg( 'search-thumbnail-alt' )->params( $title->getPrefixedText() ),
+					'alt' => $this->specialPage->msg( 'search-thumbnail-alt', $title->getPrefixedText() ),
 				] );
 			}
 
@@ -388,7 +388,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 				'desc-link' => true,
 				'custom-title-link' => $title,
 				'loading' => 'lazy',
-				'alt' => $this->specialPage->msg( 'search-thumbnail-alt' )->params( $title->getPrefixedText() ),
+				'alt' => $this->specialPage->msg( 'search-thumbnail-alt', $title->getPrefixedText() ),
 			] );
 		}
 

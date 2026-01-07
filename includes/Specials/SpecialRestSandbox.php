@@ -102,7 +102,7 @@ class SpecialRestSandbox extends SpecialPage {
 
 		if ( !$specUrl ) {
 			$out->addHTML( Html::errorBox(
-				$out->msg( 'restsandbox-no-such-api' )->params( $apiId )->parse()
+				$out->msg( 'restsandbox-no-such-api', $apiId )->parse()
 			) );
 			return;
 		}

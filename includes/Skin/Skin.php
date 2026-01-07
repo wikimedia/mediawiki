@@ -1863,14 +1863,14 @@ abstract class Skin extends ContextSource {
 			// "messages".
 			$newMessagesLink = $linkRenderer->makeKnownLink(
 				$uTalkTitle,
-				$this->msg( 'new-messages-link-plural' )->params( $plural )->text(),
+				$this->msg( 'new-messages-link-plural', $plural )->text(),
 				[],
 				$uTalkTitle->isRedirect() ? [ 'redirect' => 'no' ] : []
 			);
 
 			$newMessagesDiffLink = $linkRenderer->makeKnownLink(
 				$uTalkTitle,
-				$this->msg( 'new-messages-diff-link-plural' )->params( $plural )->text(),
+				$this->msg( 'new-messages-diff-link-plural', $plural )->text(),
 				[],
 				$lastSeenRev !== null
 					? [ 'oldid' => $lastSeenRev->getId(), 'diff' => 'cur' ]

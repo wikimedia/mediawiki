@@ -280,13 +280,13 @@ abstract class ApiFormatBase extends ApiBase {
 					if ( !$this->getRequest()->wasPosted() ) {
 						$nonHtmlUrl = strtok( $this->getRequest()->getFullRequestURL(), '?' )
 							. '?' . $this->getRequest()->appendQueryValue( 'format', $lcformat );
-						$msg = $context->msg( 'api-format-prettyprint-header-hyperlinked' )
-							->params( $format, $lcformat, $nonHtmlUrl );
+						$msg = $context->msg( 'api-format-prettyprint-header-hyperlinked',
+							$format, $lcformat, $nonHtmlUrl );
 					} else {
-						$msg = $context->msg( 'api-format-prettyprint-header' )->params( $format, $lcformat );
+						$msg = $context->msg( 'api-format-prettyprint-header', $format, $lcformat );
 					}
 				} else {
-					$msg = $context->msg( 'api-format-prettyprint-header-only-html' )->params( $format );
+					$msg = $context->msg( 'api-format-prettyprint-header-only-html', $format );
 				}
 
 				$header = $msg->parseAsBlock();

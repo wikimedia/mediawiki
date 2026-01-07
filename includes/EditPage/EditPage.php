@@ -4652,9 +4652,7 @@ class EditPage implements IEditObject {
 				$matchText = wfEscapeWikiText( $match );
 			}
 
-			$spamText .= $this->context->msg( 'spamprotectionmatch' )
-				->params( $matchText )
-				->parseAsBlock();
+			$spamText .= $this->context->msg( 'spamprotectionmatch', $matchText )->parseAsBlock();
 		}
 		$out->addHTML( Html::rawElement(
 			'div',

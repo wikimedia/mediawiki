@@ -66,8 +66,7 @@ class SpecialWantedFiles extends WantedQueryPage {
 
 		if ( $category ) {
 			return $this
-				->msg( 'wantedfiletext-cat' . $noForeign )
-				->params( $category->getFullText() )
+				->msg( 'wantedfiletext-cat' . $noForeign, $category->getFullText() )
 				->parseAsBlock();
 		} else {
 			return $this

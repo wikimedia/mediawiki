@@ -110,14 +110,12 @@ class SpecialNamespaceInfo extends SpecialPage {
 					'_',
 					' '
 				);
-				$description = $this->msg( 'namespaceinfo-description-custom-talk' )
-					->params(
-						$subjectName,
-						$subjectNs
-					);
+				$description = $this->msg( 'namespaceinfo-description-custom-talk',
+					$subjectName,
+					$subjectNs
+				);
 			} else {
-				$description = $this->msg( 'namespaceinfo-description-custom' )
-					->params( $localName );
+				$description = $this->msg( 'namespaceinfo-description-custom', $localName );
 			}
 		}
 		$descriptionText = $description->parse();
@@ -132,8 +130,7 @@ class SpecialNamespaceInfo extends SpecialPage {
 					$rightsNeeded = [ $rightsNeeded ];
 				}
 				foreach ( $rightsNeeded as $right ) {
-					$properties[] = $this->msg( 'namespaceinfo-namespace-protection-right' )
-						->params( $right )
+					$properties[] = $this->msg( 'namespaceinfo-namespace-protection-right', $right )
 						->parse();
 				}
 			}

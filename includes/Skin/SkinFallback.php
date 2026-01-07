@@ -84,9 +84,8 @@ class SkinFallback extends SkinMustache {
 					count( $skinsInstalledSnippet )
 			)->parseAsBlock();
 		} else {
-			return $this->msg( 'default-skin-not-found-no-skins' )->params(
-				$defaultSkin
-			)->parseAsBlock();
+			return $this->msg( 'default-skin-not-found-no-skins', $defaultSkin )
+				->parseAsBlock();
 		}
 	}
 

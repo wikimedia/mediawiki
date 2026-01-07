@@ -126,7 +126,7 @@ class SpecialRenameUser extends SpecialPage {
 		}
 		if ( !$newTitle ) {
 			$out->addHTML( Html::errorBox(
-				$out->msg( 'renameusererrorinvalid' )->params( $request->getText( 'newusername' ) )->parse()
+				$out->msg( 'renameusererrorinvalid', $request->getText( 'newusername' ) )->parse()
 			) );
 
 			return;
@@ -144,14 +144,14 @@ class SpecialRenameUser extends SpecialPage {
 		// It won't be an object if for instance "|" is supplied as a value
 		if ( !$oldUser ) {
 			$out->addHTML( Html::errorBox(
-				$out->msg( 'renameusererrorinvalid' )->params( $oldTitle->getText() )->parse()
+				$out->msg( 'renameusererrorinvalid', $oldTitle->getText() )->parse()
 			) );
 
 			return;
 		}
 		if ( !$newUser ) {
 			$out->addHTML( Html::errorBox(
-				$out->msg( 'renameusererrorinvalid' )->params( $newTitle->getText() )->parse()
+				$out->msg( 'renameusererrorinvalid', $newTitle->getText() )->parse()
 			) );
 
 			return;
@@ -177,7 +177,7 @@ class SpecialRenameUser extends SpecialPage {
 					$oldTitle = $this->titleFactory->makeTitleSafe( NS_USER, $oldUser->getName() );
 					if ( !$oldTitle ) {
 						$out->addHTML( Html::errorBox(
-							$out->msg( 'renameusererrorinvalid' )->params( $oldName )->parse()
+							$out->msg( 'renameusererrorinvalid', $oldName )->parse()
 						) );
 						return;
 					}
@@ -191,7 +191,7 @@ class SpecialRenameUser extends SpecialPage {
 
 		if ( $uid === 0 ) {
 			$out->addHTML( Html::errorBox(
-				$out->msg( 'renameusererrordoesnotexist' )->params( $oldName )->parse()
+				$out->msg( 'renameusererrordoesnotexist', $oldName )->parse()
 			) );
 
 			return;
@@ -199,7 +199,7 @@ class SpecialRenameUser extends SpecialPage {
 
 		if ( $newUser->idForName() !== 0 ) {
 			$out->addHTML( Html::errorBox(
-				$out->msg( 'renameusererrorexists' )->params( $newName )->parse()
+				$out->msg( 'renameusererrorexists', $newName )->parse()
 			) );
 
 			return;
@@ -233,8 +233,7 @@ class SpecialRenameUser extends SpecialPage {
 			// Output success message stuff :)
 			$out->addHTML(
 				Html::successBox(
-					$out->msg( 'renameusersuccess' )
-						->params( $oldTitle->getText(), $newTitle->getText() )
+					$out->msg( 'renameusersuccess', $oldTitle->getText(), $newTitle->getText() )
 						->parse()
 				)
 			);
@@ -321,7 +320,7 @@ class SpecialRenameUser extends SpecialPage {
 			$warningsHtml = [];
 			foreach ( $warnings as $warning ) {
 				$warningsHtml[] = is_array( $warning ) ?
-					$this->msg( $warning[0] )->params( array_slice( $warning, 1 ) )->parse() :
+					$this->msg( $warning[0], ...array_slice( $warning, 1 ) )->parse() :
 					$this->msg( $warning )->parse();
 			}
 
