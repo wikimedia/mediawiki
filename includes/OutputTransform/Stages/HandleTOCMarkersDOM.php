@@ -3,7 +3,6 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\OutputTransform\Stages;
 
-use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -59,7 +58,7 @@ class HandleTOCMarkersDOM extends ContentDOMTransformStage {
 		$doc = $marker->ownerDocument;
 		Assert::invariant( $doc !== null, 'marker without document owner' );
 		if ( $tocData !== null ) {
-			$lang = $this->resolveUserLanguage( $popts, $options );
+			$lang = $popts->getUserLangObj();
 			$toc = $this->generateToc( $tocData, $lang, $doc, $maxTocLevel );
 			$marker->replaceWith( $toc );
 		} else {
@@ -192,29 +191,5 @@ class HandleTOCMarkersDOM extends ContentDOMTransformStage {
 			}
 		}
 		return $top;
-	}
-
-	/**
-	 * Extracts the userLanguage from the $options array, with a fallback on skin language and request
-	 * context language
-	 * @param ParserOptions $popts
-	 * @param array $options
-	 * @return Language
-	 */
-	private function resolveUserLanguage( ParserOptions $popts, array $options ): Language {
-		// T413227: mark user interface language as used
-		$popts->getUserLangObj();
-
-		$userLang = $options['userLang'] ?? null;
-		$skin = $options['skin'] ?? null;
-		if ( ( !$userLang ) && $skin ) {
-			// TODO: We probably don't need a full Skin option here
-			$userLang = $skin->getLanguage();
-		}
-		if ( !$userLang ) {
-			// T348853 passing either userLang or skin will be mandatory in the future
-			$userLang = RequestContext::getMain()->getLanguage();
-		}
-		return $userLang;
 	}
 }

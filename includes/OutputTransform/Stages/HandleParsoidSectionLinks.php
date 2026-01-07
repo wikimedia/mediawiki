@@ -213,13 +213,12 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 			( $options['enableSectionEditLinks'] ?? true ) &&
 			!$po->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS )
 		) {
-			// T413227: skin doesn't mark user interface language as used, but
-			// it is used here.
-			$popts->getUserLangObj();
 			$editPage = $this->titleFactory->newFromTextThrow( $fromTitle );
 			$html = $skin->doEditSectionLink(
 				$editPage, $section->index, $h->textContent,
-				$skin->getLanguage()
+				// T413227: skin doesn't mark user interface language as used,
+				// but it is used here.
+				$popts->getUserLangObj()
 			);
 			DOMCompat::setInnerHTML( $div, $html );
 		}

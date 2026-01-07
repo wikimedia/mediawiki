@@ -52,37 +52,13 @@ class HandleTOCMarkersText extends ContentTextTransformStage {
 		if ( $tocData === null || $tocData->getSections() === [] ) {
 			$toc = '';
 		} else {
-			$lang = $this->resolveUserLanguage( $popts, $options );
+			$lang = $popts->getUserLangObj();
 			$toc = self::generateTOC( $tocData, $lang );
 			// TODO: This may no longer be needed since Ic0a805f29c928d0c2edf266ea045b0d29bb45a28
 			$toc = $this->tidy->tidy( $toc, Sanitizer::armorFrenchSpaces( ... ) );
 		}
 
 		return Parser::replaceTableOfContentsMarker( $text, $toc );
-	}
-
-	/**
-	 * Extracts the userLanguage from the $options array, with a fallback on skin language and request
-	 * context language
-	 * @param ParserOptions $popts
-	 * @param array $options
-	 * @return Language
-	 */
-	private function resolveUserLanguage( ParserOptions $popts, array $options ): Language {
-		// T413227: mark user interface language as used
-		$popts->getUserLangObj();
-
-		$userLang = $options['userLang'] ?? null;
-		$skin = $options['skin'] ?? null;
-		if ( ( !$userLang ) && $skin ) {
-			// TODO: We probably don't need a full Skin option here
-			$userLang = $skin->getLanguage();
-		}
-		if ( !$userLang ) {
-			// T348853 passing either userLang or skin will be mandatory in the future
-			$userLang = RequestContext::getMain()->getLanguage();
-		}
-		return $userLang;
 	}
 
 	/**

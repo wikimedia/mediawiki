@@ -183,16 +183,16 @@ class HandleSectionLinks extends ContentTextTransformStage {
 			// Should be unreachable
 			return $text;
 		}
-		// T413227: skin doesn't mark user interface language as used, but
-		// it is used here.
-		$popts->getUserLangObj();
-
-		return preg_replace_callback( self::EDITSECTION_REGEX, function ( $m ) use ( $skin ) {
+		return preg_replace_callback( self::EDITSECTION_REGEX, function ( $m ) use ( $skin, $popts ) {
 			$editsectionPage = $this->titleFactory->newFromTextThrow( htmlspecialchars_decode( $m[1] ) );
 			$editsectionSection = htmlspecialchars_decode( $m[2] );
 			$editsectionContent = Sanitizer::decodeCharReferences( $m[3] );
-			return $skin->doEditSectionLink( $editsectionPage, $editsectionSection, $editsectionContent,
-				$skin->getLanguage() );
+			return $skin->doEditSectionLink(
+				$editsectionPage, $editsectionSection, $editsectionContent,
+				// T413227: skin doesn't mark user interface language as used,
+				// but it is used here.
+				$popts->getUserLangObj()
+			);
 		}, $text );
 	}
 
