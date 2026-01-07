@@ -8,6 +8,8 @@
 
 namespace MediaWiki\Config;
 
+use function array_key_exists;
+
 /**
  * Accesses configuration settings from $GLOBALS
  *

@@ -10,6 +10,7 @@ namespace MediaWiki\Config;
 
 use ArrayIterator;
 use Traversable;
+use function array_key_exists;
 
 /**
  * A Config instance which stores all settings as a member variable
