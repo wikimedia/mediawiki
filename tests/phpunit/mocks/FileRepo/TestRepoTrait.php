@@ -63,13 +63,8 @@ trait TestRepoTrait {
 	 * Should be called in tearDownAfterClass()
 	 */
 	private static function destroyTestRepo() {
-		if ( !self::$mockRepoTraitDir ) {
-			return;
-		}
-
 		$dir = self::$mockRepoTraitDir;
-
-		if ( !is_dir( $dir ) ) {
+		if ( !$dir || !is_dir( $dir ) ) {
 			return;
 		}
 
@@ -77,8 +72,7 @@ trait TestRepoTrait {
 			throw new InvalidArgumentException( "Not in temp dir: $dir" );
 		}
 
-		$name = basename( $dir );
-		if ( !str_starts_with( $name, 'mw-mock-repo-' ) ) {
+		if ( !str_starts_with( basename( $dir ), 'mw-mock-repo-' ) ) {
 			throw new InvalidArgumentException( "Not a mock repo dir: $dir" );
 		}
 
@@ -96,36 +90,24 @@ trait TestRepoTrait {
 
 	private function createTestRepoGroup( array $options = [], ?MediaWikiServices $services = null ): RepoGroup {
 		$services ??= $this->getServiceContainer();
-		$localFileRepo = $this->getLocalFileRepoConfig( $options );
-
-		$mimeAnalyzer = $services->getMimeAnalyzer();
-
-		$repoGroup = new RepoGroup(
-			$localFileRepo,
+		return new RepoGroup(
+			$this->getLocalFileRepoConfig( $options ),
 			[],
 			$services->getMainWANObjectCache(),
-			$mimeAnalyzer
+			$services->getMimeAnalyzer()
 		);
-		return $repoGroup;
 	}
 
-	private function installTestBackendGroup( FileBackend $backend ) {
+	private function installTestBackendGroup( FileBackend $backend ): void {
 		$this->setService( 'FileBackendGroup', $this->createTestBackendGroup( $backend ) );
 	}
 
-	/** @return FileBackend */
-	private function createTestBackendGroup( FileBackend $backend ) {
+	private function createTestBackendGroup( FileBackend $backend ): FileBackendGroup {
 		$expected = "mwstore://{$backend->getName()}/";
 
 		$backendGroup = $this->createNoOpMock( FileBackendGroup::class, [ 'backendFromPath' ] );
 		$backendGroup->method( 'backendFromPath' )->willReturnCallback(
-			static function ( $path ) use ( $expected, $backend ) {
-				if ( str_starts_with( $path, $expected ) ) {
-					return $backend;
-				}
-
-				return null;
-			}
+			static fn ( $path ) => str_starts_with( $path, $expected ) ? $backend : null
 		);
 
 		return $backendGroup;
@@ -170,8 +152,7 @@ trait TestRepoTrait {
 		return $info;
 	}
 
-	/** @return FileBackend */
-	private function createFileBackend( array $info = [] ) {
+	private function createFileBackend( array $info = [] ): FileBackend {
 		$dir = $info['directory'] ?? self::$mockRepoTraitDir;
 		$name = $info['name'] ?? 'test';
 
@@ -249,21 +230,17 @@ trait TestRepoTrait {
 		$backend = $repo->getBackend();
 
 		$zone = strstr( ltrim( $dst, '/' ), '/', true );
-		$name = basename( $dst );
 
-		$dstFile = $repo->newFile( $name );
-		$dst = $dstFile->getRel();
+		$dst = $repo->newFile( basename( $dst ) )->getRel();
 
-		if ( $zone !== null ) {
+		if ( $zone !== false ) {
 			$zonePath = $repo->getZonePath( $zone );
-
 			if ( $zonePath ) {
 				$dst = "$zonePath/$dst";
 			}
 		}
 
 		$dir = dirname( $dst );
-
 		if ( $dir !== '' ) {
 			$status = $backend->prepare(
 				[ 'op' => 'prepare', 'dir' => $dir ]
