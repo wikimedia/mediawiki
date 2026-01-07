@@ -5257,10 +5257,10 @@ class Parser {
 					switch ( $paramName ) {
 						case 'gallery-internal-alt':
 							$hasAlt = true;
-							$alt = $this->stripAltText( $match, false );
+							$alt = $this->stripAltText( $match );
 							break;
 						case 'gallery-internal-link':
-							$linkValue = $this->stripAltText( $match, false );
+							$linkValue = $this->stripAltText( $match );
 							if ( preg_match( '/^-{R\|(.*)}-$/', $linkValue ) ) {
 								// Result of LanguageConverter::markNoConversion
 								// invoked on an external link.
@@ -5290,9 +5290,9 @@ class Parser {
 
 			// Match makeImage when !$hasVisibleCaption
 			if ( !$hasAlt && $label !== '' ) {
-				$alt = $this->stripAltText( $label, false );
+				$alt = $this->stripAltText( $label );
 			}
-			$imageOptions['title'] = $this->stripAltText( $label, false );
+			$imageOptions['title'] = $this->stripAltText( $label );
 
 			// Match makeImage which sets this unconditionally
 			$handlerOptions['targetlang'] = $this->getTargetLanguage()->getCode();
@@ -5409,7 +5409,6 @@ class Parser {
 		?LinkHolderArray $holders = null,
 		bool $shouldReplaceLinkHolders = false
 	): string {
-		$holders ??= false; // old API
 		# Check if the options text is of the form "options|alt text"
 		# Options are:
 		#  * thumbnail  make a thumbnail with enlarge-icon and caption, alignment depends on lang
@@ -5697,16 +5696,11 @@ class Parser {
 		$this->hookRunner->onParserModifyImageHTML( $this, $file, $params, $html );
 	}
 
-	/**
-	 * @param string $caption
-	 * @param LinkHolderArray|false $holders
-	 * @return string
-	 */
-	private function stripAltText( $caption, $holders ) {
+	private function stripAltText( string $caption, ?LinkHolderArray $holders = null ): string {
 		# Strip bad stuff out of the title (tooltip).  We can't just use
 		# replaceLinkHoldersText() here, because if this function is called
 		# from handleInternalLinks2(), mLinkHolders won't be up-to-date.
-		if ( $holders ) {
+		if ( $holders !== null ) {
 			$tooltip = $holders->replaceText( $caption );
 		} else {
 			$tooltip = $this->replaceLinkHoldersText( $caption );
