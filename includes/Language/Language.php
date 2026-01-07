@@ -4369,14 +4369,9 @@ class Language implements Bcp47Code {
 	 *     suggestions
 	 * @return array<string,string>
 	 */
-	public function getBlockDurations( $includeOther = true ): array {
-		$msg = $this->msg( 'ipboptions' )->text();
-
-		if ( $msg == '-' ) {
-			return [];
-		}
-
-		$a = XmlSelect::parseOptionsMessage( $msg );
+	public function getBlockDurations( bool $includeOther = true ): array {
+		$msg = $this->msg( 'ipboptions' );
+		$a = $msg->isDisabled() ? [] : XmlSelect::parseOptionsMessage( $msg->text() );
 
 		if ( $a && $includeOther ) {
 			// If options exist, add other to the end instead of the beginning (which
