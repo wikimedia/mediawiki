@@ -1234,17 +1234,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		// Namespace filtering
 		if ( $opts[ 'namespace' ] !== '' ) {
 			$namespaces = explode( ';', $opts[ 'namespace' ] );
-
 			$namespaces = $this->expandSymbolicNamespaceFilters( $namespaces );
-
-			$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-			$namespaces = array_filter( $namespaces, $namespaceInfo->exists( ... ) );
-
 			if ( $namespaces !== [] ) {
-				// Namespaces are just ints, use them as int when acting with the database
-				$namespaces = array_map( 'intval', $namespaces );
-
 				if ( $opts[ 'associated' ] ) {
+					$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 					$associatedNamespaces = array_map(
 						$namespaceInfo->getAssociated( ... ),
 						array_filter( $namespaces, $namespaceInfo->hasTalkNamespace( ... ) )
@@ -1631,23 +1624,21 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	abstract protected function getCollapsedPreferenceName(): string;
 
 	/**
-	 * @param array $namespaces
-	 * @return array
+	 * @param string[] $inputs
+	 * @return int[]
 	 */
-	private function expandSymbolicNamespaceFilters( array $namespaces ) {
+	private function expandSymbolicNamespaceFilters( array $inputs ): array {
 		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-		$symbolicFilters = [
-			'all-contents' => $nsInfo->getSubjectNamespaces(),
-			'all-discussions' => $nsInfo->getTalkNamespaces(),
-		];
-		$additionalNamespaces = [];
-		foreach ( $symbolicFilters as $name => $values ) {
-			if ( in_array( $name, $namespaces ) ) {
-				$additionalNamespaces = array_merge( $additionalNamespaces, $values );
+		$namespaces = [];
+		foreach ( $inputs as $input ) {
+			if ( $input === 'all-contents' ) {
+				array_push( $namespaces, ...$nsInfo->getSubjectNamespaces() );
+			} elseif ( $input === 'all-discussions' ) {
+				array_push( $namespaces, ...$nsInfo->getTalkNamespaces() );
+			} elseif ( is_numeric( $input ) && $nsInfo->exists( (int)$input ) ) {
+				$namespaces[] = (int)$input;
 			}
 		}
-		$namespaces = array_diff( $namespaces, array_keys( $symbolicFilters ) );
-		$namespaces = array_merge( $namespaces, $additionalNamespaces );
 		return array_unique( $namespaces );
 	}
 }
