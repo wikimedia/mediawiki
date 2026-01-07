@@ -13,6 +13,7 @@ use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\WaitConditionLoop;
+use function array_key_exists;
 
 /**
  * Interface for configuration instances
