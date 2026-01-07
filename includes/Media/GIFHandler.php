@@ -7,6 +7,9 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
+use Exception;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\MainConfigNames;
@@ -197,3 +200,6 @@ class GIFHandler extends BitmapHandler {
 		return (float)$metadata['duration'];
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( GIFHandler::class, 'GIFHandler' );

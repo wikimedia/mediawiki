@@ -7,6 +7,8 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\ForeignAPIRepo;
 use MediaWiki\MainConfigNames;
@@ -100,3 +102,6 @@ class TiffHandler extends ExifBitmapHandler {
 		return $file->getSize() > static::EXPENSIVE_SIZE_LIMIT;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( TiffHandler::class, 'TiffHandler' );

@@ -7,6 +7,8 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
 use MediaWiki\FileRepo\File\File;
 use Wikimedia\AtEase\AtEase;
 
@@ -322,3 +324,6 @@ abstract class ImageHandler extends MediaHandler {
 		return $params;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ImageHandler::class, 'ImageHandler' );

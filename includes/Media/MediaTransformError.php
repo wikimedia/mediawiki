@@ -7,6 +7,8 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
 use MediaWiki\Message\Message;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
@@ -81,3 +83,6 @@ class MediaTransformError extends MediaTransformOutput {
 		return 500;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MediaTransformError::class, 'MediaTransformError' );

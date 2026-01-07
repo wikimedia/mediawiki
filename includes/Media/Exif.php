@@ -11,6 +11,8 @@
  * @file
  */
 
+namespace MediaWiki\Media;
+
 use MediaWiki\Config\ConfigException;
 use Wikimedia\AtEase\AtEase;
 
@@ -585,7 +587,7 @@ class Exif {
 			} else {
 				// if valid utf-8, assume that, otherwise assume windows-1252
 				$valCopy = $val;
-				UtfNormal\Validator::quickIsNFCVerify( $valCopy );
+				\UtfNormal\Validator::quickIsNFCVerify( $valCopy );
 				if ( $valCopy !== $val ) {
 					AtEase::suppressWarnings();
 					$val = iconv( 'Windows-1252', 'UTF-8//IGNORE', $val );
@@ -972,3 +974,6 @@ class Exif {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( Exif::class, 'Exif' );

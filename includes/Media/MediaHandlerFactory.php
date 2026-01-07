@@ -7,6 +7,8 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
 use Psr\Log\LoggerInterface;
 
 /**
@@ -98,3 +100,6 @@ class MediaHandlerFactory {
 		return $handler;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MediaHandlerFactory::class, 'MediaHandlerFactory' );

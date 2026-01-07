@@ -2,8 +2,8 @@
 
 namespace MediaWiki\FileRepo\Hook;
 
-use MediaTransformOutput;
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\Media\MediaTransformOutput;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

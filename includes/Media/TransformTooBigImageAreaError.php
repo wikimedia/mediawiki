@@ -7,6 +7,8 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
 /**
  * Shortcut class for parameter file size errors
  *
@@ -42,3 +44,6 @@ class TransformTooBigImageAreaError extends MediaTransformError {
 		return 400;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( TransformTooBigImageAreaError::class, 'TransformTooBigImageAreaError' );

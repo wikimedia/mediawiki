@@ -7,13 +7,13 @@
 namespace MediaWiki\FileRepo;
 
 use LogicException;
-use MediaTransformError;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\ForeignAPIFile;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Media\MediaTransformError;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;

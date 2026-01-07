@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Media\Hook;
 
-use ThumbnailImage;
+use MediaWiki\Media\ThumbnailImage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

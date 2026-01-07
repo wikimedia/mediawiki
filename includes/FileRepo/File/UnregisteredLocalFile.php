@@ -7,8 +7,8 @@
 namespace MediaWiki\FileRepo\File;
 
 use BadMethodCallException;
-use MediaHandler;
 use MediaWiki\FileRepo\FileRepo;
+use MediaWiki\Media\MediaHandler;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Wikimedia\FileBackend\FSFile\FSFile;

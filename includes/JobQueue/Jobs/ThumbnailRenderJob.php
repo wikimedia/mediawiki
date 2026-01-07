@@ -6,11 +6,11 @@
 
 namespace MediaWiki\JobQueue\Jobs;
 
-use MediaTransformError;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\JobQueue\Job;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Media\MediaTransformError;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;

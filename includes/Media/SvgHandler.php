@@ -7,12 +7,16 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
+use Imagick;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
+use UnexpectedValueException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\ScopedCallback;
 
@@ -661,3 +665,6 @@ class SvgHandler extends ImageHandler {
 		return $stdMetadata;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SvgHandler::class, 'SvgHandler' );

@@ -7,6 +7,8 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -407,3 +409,6 @@ class DjVuHandler extends ImageHandler {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DjVuHandler::class, 'DjVuHandler' );

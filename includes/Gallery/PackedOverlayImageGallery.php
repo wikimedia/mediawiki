@@ -6,7 +6,7 @@
 
 namespace MediaWiki\Gallery;
 
-use MediaTransformOutput;
+use MediaWiki\Media\MediaTransformOutput;
 
 /**
  * Packed overlay image gallery. All images adjusted to be same height and

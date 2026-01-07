@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Media\Hook;
 
-use MediaTransformOutput;
 use MediaWiki\FileRepo\File\File;
-use TransformationalImageHandler;
+use MediaWiki\Media\MediaTransformOutput;
+use MediaWiki\Media\TransformationalImageHandler;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

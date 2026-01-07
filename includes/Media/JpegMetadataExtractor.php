@@ -7,6 +7,8 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\StringUtils\StringUtils;
 use Wikimedia\UnpackFailedException;
@@ -90,7 +92,7 @@ class JpegMetadataExtractor {
 				// First see if valid utf-8,
 				// if not try to convert it to windows-1252.
 				$com = $oldCom = trim( self::jpegExtractMarker( $fh ) );
-				UtfNormal\Validator::quickIsNFCVerify( $com );
+				\UtfNormal\Validator::quickIsNFCVerify( $com );
 				// turns $com to valid utf-8.
 				// thus if no change, it's utf-8, otherwise it's something else.
 				if ( $com !== $oldCom ) {
@@ -100,7 +102,7 @@ class JpegMetadataExtractor {
 				}
 				// Try it again, if it's still not a valid string, then probably
 				// binary junk or some really weird encoding, so don't extract.
-				UtfNormal\Validator::quickIsNFCVerify( $com );
+				\UtfNormal\Validator::quickIsNFCVerify( $com );
 				if ( $com === $oldCom ) {
 					$segments["COM"][] = $oldCom;
 				} else {
@@ -313,3 +315,6 @@ class JpegMetadataExtractor {
 		return 'iptc-bad-hash';
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( JpegMetadataExtractor::class, 'JpegMetadataExtractor' );

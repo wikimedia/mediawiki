@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Media\TransformTooBigImageAreaError;
 
 /**
  * @group Media

@@ -5,11 +5,11 @@ namespace MediaWiki\Tests\Rest\Handler;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\FileRepo\RepoGroup;
+use MediaWiki\Media\ThumbnailImage;
 use MediaWiki\Page\PageReference;
 use MediaWiki\User\UserIdentityValue;
 use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
-use ThumbnailImage;
 
 /**
  * A trait providing utility functions for mocking media-related objects.

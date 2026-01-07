@@ -12,6 +12,9 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
+use InvalidArgumentException;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -28,7 +31,7 @@ class GIFMetadataExtractor {
 	private const MAX_SUBBLOCKS = 262144; // 5 MiB divided by 20.
 
 	/**
-	 * @throws Exception
+	 * @throws \Exception
 	 * @param string $filename
 	 * @return array
 	 */
@@ -155,7 +158,7 @@ class GIFMetadataExtractor {
 					// assume its that, otherwise assume its windows-1252 (iso-8859-1)
 					$dataCopy = $data;
 					// quickIsNFCVerify has the side effect of replacing any invalid characters
-					UtfNormal\Validator::quickIsNFCVerify( $dataCopy );
+					\UtfNormal\Validator::quickIsNFCVerify( $dataCopy );
 
 					if ( $dataCopy !== $data ) {
 						AtEase::suppressWarnings();
@@ -273,7 +276,7 @@ class GIFMetadataExtractor {
 
 	/**
 	 * @param string $data
-	 * @throws Exception
+	 * @throws \Exception
 	 * @return array [ int bits per channel, bool have GCT ]
 	 */
 	private static function decodeBPP( $data ) {
@@ -291,7 +294,7 @@ class GIFMetadataExtractor {
 
 	/**
 	 * @param resource $fh
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	private static function skipBlock( $fh ) {
 		while ( !feof( $fh ) ) {
@@ -319,7 +322,7 @@ class GIFMetadataExtractor {
 	 *  sub-blocks in the returned value. Normally this is false,
 	 *  except XMP is weird and does a hack where you need to keep
 	 *  these length bytes.
-	 * @throws Exception
+	 * @throws \Exception
 	 * @return string The data.
 	 */
 	private static function readBlock( $fh, $includeLengths = false ) {
@@ -346,3 +349,6 @@ class GIFMetadataExtractor {
 		return $data;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( GIFMetadataExtractor::class, 'GIFMetadataExtractor' );

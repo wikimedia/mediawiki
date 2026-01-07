@@ -7,6 +7,8 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -332,3 +334,6 @@ class BitmapMetadataHandler {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( BitmapMetadataHandler::class, 'BitmapMetadataHandler' );

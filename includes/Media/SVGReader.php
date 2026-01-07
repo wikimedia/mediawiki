@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Extraction of SVG image metadata.
  *
@@ -11,11 +10,13 @@
  * @copyright Copyright © 2010-2010 Brooke Vibber, Derk-Jan Hartman
  * @license GPL-2.0-or-later
  */
+namespace MediaWiki\Media;
 
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
+use XMLReader;
 
 /**
  * @ingroup Media
@@ -400,3 +401,6 @@ class SVGReader {
 		return (float)$length;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SVGReader::class, 'SVGReader' );

@@ -7,9 +7,12 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use RiffExtractor;
 use Wikimedia\XMPReader\Reader as XMPReader;
 
 /**
@@ -371,3 +374,6 @@ class WebPHandler extends BitmapHandler {
 		return $this->formatMetadataHelper( $meta, $context );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( WebPHandler::class, 'WebPHandler' );

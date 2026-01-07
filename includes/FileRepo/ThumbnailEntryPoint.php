@@ -18,13 +18,13 @@ namespace MediaWiki\FileRepo;
 
 use Exception;
 use InvalidArgumentException;
-use MediaTransformError;
-use MediaTransformInvalidParametersException;
-use MediaTransformOutput;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\UnregisteredLocalFile;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Media\MediaTransformError;
+use MediaWiki\Media\MediaTransformInvalidParametersException;
+use MediaWiki\Media\MediaTransformOutput;
 use MediaWiki\MediaWikiEntryPoint;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;

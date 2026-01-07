@@ -7,6 +7,8 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
 use MediaWiki\FileRepo\File\File;
 
 /**
@@ -45,3 +47,6 @@ class BitmapHandler_ClientOnly extends BitmapHandler {
 		return new ThumbnailImage( $image, $image->getUrl(), $image->getLocalRefPath(), $params );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( BitmapHandler_ClientOnly::class, 'BitmapHandler_ClientOnly' );

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Media;
+
 /**
  * Trivial implementation of MediaHandlerState.
  *
@@ -19,3 +21,6 @@ class TrivialMediaHandlerState implements MediaHandlerState {
 		$this->state[$key] = $value;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( TrivialMediaHandlerState::class, 'TrivialMediaHandlerState' );

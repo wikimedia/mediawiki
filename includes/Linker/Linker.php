@@ -8,8 +8,6 @@
 
 namespace MediaWiki\Linker;
 
-use MediaTransformError;
-use MediaTransformOutput;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
@@ -19,6 +17,8 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlHelper;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Media\MediaTransformError;
+use MediaWiki\Media\MediaTransformOutput;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\Parser;

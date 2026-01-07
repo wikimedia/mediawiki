@@ -6,9 +6,9 @@
 
 namespace MediaWiki\Gallery;
 
-use MediaTransformOutput;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\Media\MediaTransformOutput;
 
 /**
  * Packed image gallery. All images adjusted to be same height.

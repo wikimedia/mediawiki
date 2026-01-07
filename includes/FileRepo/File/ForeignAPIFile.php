@@ -6,9 +6,9 @@
 
 namespace MediaWiki\FileRepo\File;
 
-use MediaHandler;
-use MediaTransformOutput;
 use MediaWiki\FileRepo\ForeignAPIRepo;
+use MediaWiki\Media\MediaHandler;
+use MediaWiki\Media\MediaTransformOutput;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;

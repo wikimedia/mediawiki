@@ -8,14 +8,14 @@ namespace MediaWiki\ResourceLoader;
 
 use DOMDocument;
 use InvalidArgumentException;
-use InvalidSVGException;
 use MediaWiki\Language\LanguageFallbackMode;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Media\InvalidSVGException;
+use MediaWiki\Media\SvgHandler;
+use MediaWiki\Media\SVGReader;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use RuntimeException;
-use SvgHandler;
-use SVGReader;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\Minify\CSSMin;
 

@@ -14,7 +14,6 @@
 namespace MediaWiki\Tests\Common\Parser;
 
 use BadMethodCallException;
-use MediaHandlerFactory;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -25,6 +24,9 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Media\MediaHandlerFactory;
+use MediaWiki\Media\SvgHandler;
+use MediaWiki\Media\SVGReader;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\Parser;
@@ -54,8 +56,6 @@ use Psr\Log\NullLogger;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RuntimeException;
-use SvgHandler;
-use SVGReader;
 use Wikimedia\Assert\Assert;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFileBackend;

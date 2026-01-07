@@ -520,6 +520,45 @@ because of Phabricator reports.
     - ManualLogEntryBeforePublishHook
   - Logging related pager: MediaWiki\Pager => MediaWiki\Logging\Pager
     - LogPager
+  - MediaWiki\Media
+    - PNGMetadataExtractor
+    - MediaHandlerFactory
+    - MediaTransformInvalidParametersException
+    - DjVuImage
+    - SVGReader
+    - IPTC
+    - BitmapHandler_ClientOnly
+    - TransformationalImageHandler
+    - BmpHandler
+    - JpegMetadataExtractor
+    - GIFMetadataExtractor
+    - ExifBitmapHandler
+    - BitmapHandler
+    - InvalidJpegException
+    - DjVuHandler
+    - ThumbnailImage
+    - JpegHandler
+    - GIFHandler
+    - PNGHandler
+    - MediaHandlerState
+    - TrivialMediaHandlerState
+    - MediaHandler
+    - InvalidSVGException
+    - XCFHandler
+    - TiffHandler
+    - MediaTransformError
+    - BitmapMetadataHandler
+    - FormatMetadata
+    - InvalidTiffException
+    - TransformTooBigImageAreaError
+    - TransformParameterError
+    - SvgHandler
+    - InvalidPSIRException
+    - ImageHandler
+    - WebPHandler
+    - MediaTransformOutput
+    - Jpeg2000Handler
+    - Exif
   - Media related hooks: MediaWiki\Hook => MediaWiki\Media\Hook
     - BitmapHandlerCheckImageAreaHook
     - BitmapHandlerTransformHook

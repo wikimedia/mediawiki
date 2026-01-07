@@ -6,13 +6,13 @@
 
 namespace MediaWiki\Tests\Media;
 
-use BmpHandler;
-use MediaHandlerState;
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\Media\BmpHandler;
+use MediaWiki\Media\MediaHandlerState;
 use MediaWikiMediaTestCase;
 
 /**
- * @covers \BmpHandler
+ * @covers \MediaWiki\Media\BmpHandler
  * @group Media
  */
 class BmpHandlerTest extends MediaWikiMediaTestCase {
@@ -27,21 +27,21 @@ class BmpHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \BmpHandler::mustRender
+	 * @covers \MediaWiki\Media\BmpHandler::mustRender
 	 */
 	public function testMustRender() {
 		$this->assertTrue( $this->handler->mustRender( $this->tempFile ) );
 	}
 
 	/**
-	 * @covers \BmpHandler::getThumbType
+	 * @covers \MediaWiki\Media\BmpHandler::getThumbType
 	 */
 	public function testGetThumbType() {
 		$this->assertEquals( [ 'png', 'image/png' ], $this->handler->getThumbType( 'bmp', 'image/bmp' ) );
 	}
 
 	/**
-	 * @covers \BmpHandler::getSizeAndMetadata
+	 * @covers \MediaWiki\Media\BmpHandler::getSizeAndMetadata
 	 * @dataProvider provideGetSizeAndMetadata
 	 */
 	public function testGetSizeAndMetadata( string $filename, array $expected ) {

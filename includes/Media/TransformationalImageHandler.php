@@ -12,6 +12,9 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
+use InvalidArgumentException;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -641,3 +644,6 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( TransformationalImageHandler::class, 'TransformationalImageHandler' );

@@ -11,6 +11,9 @@
  * @file
  */
 
+namespace MediaWiki\Media;
+
+use InvalidArgumentException;
 use MediaWiki\Api\ApiResult;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
@@ -1676,3 +1679,6 @@ class FormatMetadata extends ContextSource {
 		return $priorityLanguages;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( FormatMetadata::class, 'FormatMetadata' );

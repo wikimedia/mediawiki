@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Media;
+
 /**
  * An interface to support process-local caching of handler data associated
  * with a given file. Intended to replace the previous usage of custom
@@ -24,3 +26,6 @@ interface MediaHandlerState {
 	 */
 	public function setHandlerState( string $key, $value );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MediaHandlerState::class, 'MediaHandlerState' );

@@ -7,6 +7,9 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
+use Exception;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\File;
 use Wikimedia\RequestTimeout\TimeoutException;
@@ -187,3 +190,6 @@ class PNGHandler extends BitmapHandler {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( PNGHandler::class, 'PNGHandler' );

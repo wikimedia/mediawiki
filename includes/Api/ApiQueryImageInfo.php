@@ -8,14 +8,14 @@
 
 namespace MediaWiki\Api;
 
-use FormatMetadata;
-use MediaTransformError;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\OldLocalFile;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Media\FormatMetadata;
+use MediaWiki\Media\MediaTransformError;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Specials\SpecialUpload;

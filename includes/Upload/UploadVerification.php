@@ -9,10 +9,10 @@
 
 namespace MediaWiki\Upload;
 
-use MediaHandler;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Media\MediaHandler;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Shell\Shell;
 use Wikimedia\AtEase\AtEase;

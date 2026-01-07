@@ -7,6 +7,8 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
 use MediaWiki\FileRepo\File\File;
 use Wikimedia\StringUtils\StringUtils;
 use Wikimedia\UnpackFailedException;
@@ -71,3 +73,6 @@ class BmpHandler extends BitmapHandler {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( BmpHandler::class, 'BmpHandler' );

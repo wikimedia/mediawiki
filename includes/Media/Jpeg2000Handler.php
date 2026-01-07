@@ -7,6 +7,8 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
 use MediaWiki\FileRepo\File\File;
 
 /**
@@ -40,3 +42,6 @@ class Jpeg2000Handler extends BitmapHandler {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( Jpeg2000Handler::class, 'Jpeg2000Handler' );

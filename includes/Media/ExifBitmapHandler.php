@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Media;
+
 /**
  * Handler for bitmap images with exif metadata.
  *
@@ -221,3 +223,6 @@ class ExifBitmapHandler extends BitmapHandler {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ExifBitmapHandler::class, 'ExifBitmapHandler' );

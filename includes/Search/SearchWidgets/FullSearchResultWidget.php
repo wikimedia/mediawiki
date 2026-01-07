@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Search\SearchWidgets;
 
-use MediaTransformOutput;
 use MediaWiki\Category\Category;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\RepoGroup;
@@ -11,6 +10,8 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Media\MediaTransformOutput;
+use MediaWiki\Media\ThumbnailImage;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MediaWiki\Search\SearchResult;
@@ -18,7 +19,6 @@ use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsManager;
-use ThumbnailImage;
 use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**

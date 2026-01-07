@@ -7,6 +7,8 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
 /**
  * Shortcut class for parameter validation errors
  *
@@ -33,3 +35,6 @@ class TransformParameterError extends MediaTransformError {
 		return 400;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( TransformParameterError::class, 'TransformParameterError' );

@@ -11,6 +11,9 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
+use InvalidArgumentException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -393,7 +396,7 @@ class PNGMetadataExtractor {
 	 *
 	 * @param resource $fh The file handle
 	 * @param int $size Size in bytes.
-	 * @throws Exception If too big
+	 * @throws \Exception If too big
 	 * @return string The chunk.
 	 */
 	private static function read( $fh, $size ) {
@@ -411,3 +414,6 @@ class PNGMetadataExtractor {
 		return $result;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( PNGMetadataExtractor::class, 'PNGMetadataExtractor' );

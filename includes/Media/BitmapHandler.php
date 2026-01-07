@@ -7,10 +7,16 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
+use Imagick;
+use ImagickException;
+use ImagickPixel;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
+use UnexpectedValueException;
 
 /**
  * Generic handler for bitmap images
@@ -617,3 +623,6 @@ class BitmapHandler extends TransformationalImageHandler {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( BitmapHandler::class, 'BitmapHandler' );

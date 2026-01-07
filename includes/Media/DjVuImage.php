@@ -10,6 +10,8 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
@@ -376,7 +378,7 @@ EOR;
 
 	private function pageTextCallback( string $match ): string {
 		# Get rid of invalid UTF-8
-		$val = UtfNormal\Validator::cleanUp( stripcslashes( $match ) );
+		$val = \UtfNormal\Validator::cleanUp( stripcslashes( $match ) );
 		return str_replace( '�', '', $val );
 	}
 
@@ -473,3 +475,6 @@ EOR;
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DjVuImage::class, 'DjVuImage' );

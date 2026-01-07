@@ -8,7 +8,6 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Parser\Parsoid\Config;
 
-use MediaTransformError;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
@@ -22,6 +21,7 @@ use MediaWiki\Language\LanguageCode;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Media\MediaTransformError;
 use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserFactory;

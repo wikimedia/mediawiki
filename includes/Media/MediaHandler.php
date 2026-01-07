@@ -4,6 +4,9 @@
  * @file
  */
 
+namespace MediaWiki\Media;
+
+use InvalidArgumentException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\LocalFile;
@@ -11,6 +14,8 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Status\Status;
+use ReflectionClass;
+use ReflectionMethod;
 use Wikimedia\FileBackend\FSFile\FSFile;
 
 /**
@@ -1219,3 +1224,6 @@ abstract class MediaHandler {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MediaHandler::class, 'MediaHandler' );

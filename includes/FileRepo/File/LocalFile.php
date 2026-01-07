@@ -7,7 +7,6 @@
 namespace MediaWiki\FileRepo\File;
 
 use InvalidArgumentException;
-use MediaHandler;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\AutoCommitUpdate;
@@ -24,6 +23,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Media\MediaHandler;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\WikiFilePage;

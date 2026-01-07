@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Media;
+
 /**
  * Base class for the output of file transformation methods.
  *
@@ -289,3 +291,6 @@ abstract class MediaTransformOutput {
 		return $attribs;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MediaTransformOutput::class, 'MediaTransformOutput' );

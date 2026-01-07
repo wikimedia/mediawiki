@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Base class for the output of file transformation methods.
  *
@@ -8,6 +7,9 @@
  * @ingroup Media
  */
 
+namespace MediaWiki\Media;
+
+use InvalidArgumentException;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
@@ -206,3 +208,6 @@ class ThumbnailImage extends MediaTransformOutput {
 		return $this->linkWrap( $linkAttribs, Html::element( 'img', $attribs ) );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ThumbnailImage::class, 'ThumbnailImage' );

@@ -7,15 +7,15 @@
 
 namespace MediaWiki\Gallery;
 
-use MediaHandler;
-use MediaTransformError;
-use MediaTransformOutput;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Media\MediaHandler;
+use MediaWiki\Media\MediaTransformError;
+use MediaWiki\Media\MediaTransformOutput;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;

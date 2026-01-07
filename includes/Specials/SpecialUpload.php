@@ -6,7 +6,6 @@
 
 namespace MediaWiki\Specials;
 
-use BitmapHandler;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Config\Config;
 use MediaWiki\Exception\ErrorPageError;
@@ -25,6 +24,7 @@ use MediaWiki\JobQueue\Jobs\UploadFromUrlJob;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Media\BitmapHandler;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiFilePage;
 use MediaWiki\Request\FauxRequest;
