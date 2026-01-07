@@ -7,6 +7,7 @@ use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\RenameUser\RenameUserFactory;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -319,9 +320,7 @@ class SpecialRenameUser extends SpecialPage {
 		if ( $warnings ) {
 			$warningsHtml = [];
 			foreach ( $warnings as $warning ) {
-				$warningsHtml[] = is_array( $warning ) ?
-					$this->msg( $warning[0], ...array_slice( $warning, 1 ) )->parse() :
-					$this->msg( $warning )->parse();
+				$warningsHtml[] = $this->msg( Message::newFromSpecifier( $warning ) )->parse();
 			}
 
 			$formDescriptor['renameuserwarnings'] = [
