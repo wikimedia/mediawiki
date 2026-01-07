@@ -285,10 +285,9 @@ class FullSearchResultWidget implements SearchResultWidget {
 
 		$html = '';
 		if ( $result->isFileMatch() ) {
-			$html = Html::rawElement(
-				'span',
+			$html = Html::element( 'span',
 				[ 'class' => 'searchalttitle' ],
-				$this->specialPage->msg( 'search-file-match' )->escaped()
+				$this->specialPage->msg( 'search-file-match' )->text()
 			);
 		}
 

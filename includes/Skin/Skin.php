@@ -2066,10 +2066,9 @@ abstract class Skin extends ContextSource {
 			$result .= $linksHtml[0];
 		} else {
 			$result .= implode(
-				Html::rawElement(
-					'span',
+				Html::element( 'span',
 					[ 'class' => 'mw-editsection-divider' ],
-					$this->msg( 'pipe-separator' )->inLanguage( $lang )->escaped()
+					$this->msg( 'pipe-separator' )->inLanguage( $lang )->text()
 				),
 				$linksHtml
 			);

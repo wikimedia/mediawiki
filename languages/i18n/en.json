@@ -4062,7 +4062,7 @@
 	"mute-preferences": "Mute preferences",
 	"revid": "revision $1",
 	"pageid": "page ID $1",
-	"rawhtml-notallowed": "&lt;html&gt; tags cannot be used outside of normal pages.",
+	"rawhtml-notallowed": "<html> tags cannot be used outside of normal pages.",
 	"gotointerwiki": "Leaving {{SITENAME}}",
 	"gotointerwiki-invalid": "The specified title is invalid.",
 	"gotointerwiki-external": "You are about to leave {{SITENAME}} to visit [[$2]], which is a separate website.\n\n'''[$1 Continue to $1]'''",

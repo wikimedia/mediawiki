@@ -137,10 +137,9 @@ class ProtectedPagesPager extends TablePager {
 			case 'log_timestamp':
 				// when timestamp is null, this is a old protection row
 				if ( $value === null ) {
-					$formatted = Html::rawElement(
-						'span',
+					$formatted = Html::element( 'span',
 						[ 'class' => 'mw-protectedpages-unknown' ],
-						$this->msg( 'protectedpages-unknown-timestamp' )->escaped()
+						$this->msg( 'protectedpages-unknown-timestamp' )->text()
 					);
 				} else {
 					$formatted = htmlspecialchars( $this->getLanguage()->userTimeAndDate(
@@ -197,10 +196,9 @@ class ProtectedPagesPager extends TablePager {
 			case 'actor_user':
 				// when timestamp is null, this is a old protection row
 				if ( $row->log_timestamp === null ) {
-					$formatted = Html::rawElement(
-						'span',
+					$formatted = Html::element( 'span',
 						[ 'class' => 'mw-protectedpages-unknown' ],
-						$this->msg( 'protectedpages-unknown-performer' )->escaped()
+						$this->msg( 'protectedpages-unknown-performer' )->text()
 					);
 				} else {
 					$username = $row->actor_name;
@@ -233,10 +231,9 @@ class ProtectedPagesPager extends TablePager {
 			case 'log_comment':
 				// when timestamp is null, this is an old protection row
 				if ( $row->log_timestamp === null ) {
-					$formatted = Html::rawElement(
-						'span',
+					$formatted = Html::element( 'span',
 						[ 'class' => 'mw-protectedpages-unknown' ],
-						$this->msg( 'protectedpages-unknown-reason' )->escaped()
+						$this->msg( 'protectedpages-unknown-reason' )->text()
 					);
 				} else {
 					if ( LogEventsList::userCanBitfield(

@@ -723,8 +723,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					);
 				}
 				$benefitsContainer = Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-container' ],
-					Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-heading' ],
-						$this->msg( 'createacct-benefit-heading' )->escaped()
+					Html::element( 'div', [ 'class' => 'mw-createacct-benefits-heading' ],
+						$this->msg( 'createacct-benefit-heading' )->text()
 					)
 					. Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-list' ], $benefitList )
 				);
@@ -764,9 +764,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'div', [ 'class' => 'mw-benefit-list-wrapper' ], $benefitList );
 
 				$headingSubheadingWrapper = Html::rawElement( 'div', [ 'class' => 'mw-heading-subheading-wrapper' ],
-					Html::rawElement( 'h2', [], $this->msg( 'createacct-benefit-heading-temp-user' )->escaped() )
-					. Html::rawElement( 'p', [ 'class' => 'mw-benefit-subheading' ], $this->msg(
-						'createacct-benefit-subheading-temp-user' )->escaped() )
+					Html::element( 'h2', [],
+						$this->msg( 'createacct-benefit-heading-temp-user' )->text()
+					)
+					. Html::element( 'p', [ 'class' => 'mw-benefit-subheading' ],
+						$this->msg( 'createacct-benefit-subheading-temp-user' )->text()
+					)
 				);
 
 				$benefitsContainer = Html::rawElement(

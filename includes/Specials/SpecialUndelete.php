@@ -1573,10 +1573,9 @@ class SpecialUndelete extends SpecialPage {
 	private function getFileUser( $file ) {
 		$uploader = $file->getUploader( File::FOR_THIS_USER, $this->getAuthority() );
 		if ( !$uploader ) {
-			return Html::rawElement(
-				'span',
+			return Html::element( 'span',
 				[ 'class' => 'history-deleted' ],
-				$this->msg( 'rev-deleted-user' )->escaped()
+				$this->msg( 'rev-deleted-user' )->text()
 			);
 		}
 
@@ -1605,10 +1604,9 @@ class SpecialUndelete extends SpecialPage {
 			return Html::rawElement(
 				'span',
 				[ 'class' => 'history-deleted' ],
-				Html::rawElement(
-					'span',
+				Html::element( 'span',
 					[ 'class' => 'comment' ],
-					$this->msg( 'rev-deleted-comment' )->escaped()
+					$this->msg( 'rev-deleted-comment' )->text()
 				)
 			);
 		}

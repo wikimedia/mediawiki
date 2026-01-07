@@ -335,27 +335,29 @@ class SearchFormWidget {
 	}
 
 	private function createNamespaceToggleBoxHtml(): string {
-		$toggleBoxContents = "";
-		$toggleBoxContents .= Html::rawElement( 'label', [],
-				$this->specialSearch->msg( 'powersearch-togglelabel' )->escaped() );
-		$toggleBoxContents .= Html::rawElement( 'input', [
-					'type' => 'button',
-					'id' => 'mw-search-toggleall',
-					'value' => $this->specialSearch->msg( 'powersearch-toggleall' )->text(),
-				] );
-		$toggleBoxContents .= Html::rawElement( 'input', [
-					'type' => 'button',
-					'id' => 'mw-search-togglenone',
-					'value' => $this->specialSearch->msg( 'powersearch-togglenone' )->text(),
-				] );
-
 		// Handled by JavaScript if available
-		return Html::rawElement( 'div', [ 'id' => 'mw-search-togglebox' ], $toggleBoxContents );
+		return Html::rawElement( 'div',
+			[ 'id' => 'mw-search-togglebox' ],
+			Html::element( 'label', [],
+				$this->specialSearch->msg( 'powersearch-togglelabel' )->text()
+			) .
+			Html::element( 'input', [
+				'type' => 'button',
+				'id' => 'mw-search-toggleall',
+				'value' => $this->specialSearch->msg( 'powersearch-toggleall' )->text(),
+			] ) .
+			Html::element( 'input', [
+				'type' => 'button',
+				'id' => 'mw-search-togglenone',
+				'value' => $this->specialSearch->msg( 'powersearch-togglenone' )->text(),
+			] )
+		);
 	}
 
 	private function createSearchBoxHeadHtml(): string {
-		return Html::rawElement( 'legend', [],
-				$this->specialSearch->msg( 'powersearch-legend' )->escaped() ) .
+		return Html::element( 'legend', [],
+				$this->specialSearch->msg( 'powersearch-legend' )->text()
+			) .
 			Html::rawElement( 'h4', [], $this->specialSearch->msg( 'powersearch-ns' )->parse() ) .
 			$this->createNamespaceToggleBoxHtml();
 	}

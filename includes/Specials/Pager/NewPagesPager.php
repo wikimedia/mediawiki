@@ -301,10 +301,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 		if ( !$title->equals( $oldTitle ) ) {
 			$oldTitleText = $oldTitle->getPrefixedText();
-			$oldTitleText = Html::rawElement(
-				'span',
+			$oldTitleText = Html::element( 'span',
 				[ 'class' => 'mw-newpages-oldtitle' ],
-				$this->msg( 'rc-old-title' )->params( $oldTitleText )->escaped()
+				$this->msg( 'rc-old-title', $oldTitleText )->text()
 			);
 		}
 

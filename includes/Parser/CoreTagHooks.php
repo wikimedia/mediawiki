@@ -120,12 +120,9 @@ class CoreTagHooks {
 				// In a system message where raw html is
 				// not allowed (but it is allowed in other
 				// contexts).
-				return Html::rawElement(
-					'span',
+				return Html::element( 'span',
 					[ 'class' => 'error' ],
-					// Using ->text() not ->parse() as
-					// a paranoia measure against a loop.
-					$parser->msg( 'rawhtml-notallowed' )->escaped()
+					$parser->msg( 'rawhtml-notallowed' )->text()
 				);
 			}
 		} else {

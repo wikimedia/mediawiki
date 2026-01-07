@@ -407,7 +407,7 @@ class BlockListPager extends TablePager {
 				case ActionRestriction::TYPE:
 					$actionName = $this->blockActionInfo->getActionFromId( $restriction->getValue() );
 					if ( $actionName ) {
-						$items[$restriction->getType()][] = Html::rawElement(
+						$items[$restriction->getType()][] = Html::element(
 							'li',
 							[],
 							// The following messages may be used here:
@@ -415,7 +415,7 @@ class BlockListPager extends TablePager {
 							// * ipb-action-move
 							// * ipb-action-upload
 							$this->msg( 'ipb-action-' .
-								$this->blockActionInfo->getActionFromId( $restriction->getValue() ) )->escaped()
+								$this->blockActionInfo->getActionFromId( $restriction->getValue() ) )->text()
 						);
 					}
 					break;

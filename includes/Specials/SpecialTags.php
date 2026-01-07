@@ -240,7 +240,7 @@ class SpecialTags extends SpecialPage {
 
 		$isActive = $isExplicit || isset( $this->softwareActivatedTags[$tag] );
 		$activeMsg = ( $isActive ? 'tags-active-yes' : 'tags-active-no' );
-		$newRow .= Html::rawElement( 'td', [], $this->msg( $activeMsg )->escaped() );
+		$newRow .= Html::element( 'td', [], $this->msg( $activeMsg )->text() );
 
 		$hitcountLabelMsg = $this->msg( 'tags-hitcount' )->numParams( $hitcount );
 		if ( $this->getConfig()->get( MainConfigNames::UseTagFilter ) ) {

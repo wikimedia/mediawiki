@@ -243,28 +243,25 @@ class ImagePage extends Article {
 			Html::rawElement(
 				'li',
 				[],
-				Html::rawElement(
-					'a',
+				Html::element( 'a',
 					[ 'href' => '#file' ],
-					$this->getContext()->msg( 'file-anchor-link' )->escaped()
+					$this->getContext()->msg( 'file-anchor-link' )->text()
 				)
 			),
 			Html::rawElement(
 				'li',
 				[],
-				Html::rawElement(
-					'a',
+				Html::element( 'a',
 					[ 'href' => '#filehistory' ],
-					$this->getContext()->msg( 'filehist' )->escaped()
+					$this->getContext()->msg( 'filehist' )->text()
 				)
 			),
 			Html::rawElement(
 				'li',
 				[],
-				Html::rawElement(
-					'a',
+				Html::element( 'a',
 					[ 'href' => '#filelinks' ],
-					$this->getContext()->msg( 'imagelinks' )->escaped()
+					$this->getContext()->msg( 'imagelinks' )->text()
 				)
 			),
 		];
@@ -275,10 +272,9 @@ class ImagePage extends Article {
 			$r[] = Html::rawElement(
 				'li',
 				[],
-				Html::rawElement(
-					'a',
+				Html::element( 'a',
 					[ 'href' => '#metadata' ],
-					$this->getContext()->msg( 'metadata' )->escaped()
+					$this->getContext()->msg( 'metadata' )->text()
 				)
 			);
 		}

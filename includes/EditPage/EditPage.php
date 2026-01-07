@@ -4201,9 +4201,9 @@ class EditPage implements IEditObject {
 
 		$previewhead = Html::rawElement(
 			'div', [ 'class' => 'previewnote' ],
-			Html::rawElement(
+			Html::element(
 				'h2', [ 'id' => 'mw-previewheader' ],
-				$this->context->msg( 'preview' )->escaped()
+				$this->context->msg( 'preview' )->text()
 			) .
 			Html::warningBox(
 				$out->parseAsInterface( $note )
