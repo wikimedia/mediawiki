@@ -19,6 +19,8 @@
 				input.checked = isChecked;
 			} );
 			checkAllChangeOngoing = false;
+			// Dispatch a new `selectall` event after all checkboxes have been changed.
+			$selectAllCheckbox[ 0 ].dispatchEvent( new CustomEvent( 'selectall' ) );
 		} );
 
 		$watchedItemCheckboxes.on( 'change', () => {

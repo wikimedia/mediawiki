@@ -107,9 +107,8 @@ module.exports = defineComponent( {
 		checkboxes.forEach( ( checkbox ) => {
 			checkbox.addEventListener( 'change', updateSelectedPagesList );
 		} );
-		// @todo Fix for select-all.
 		const selectAllCheckbox = document.getElementById( 'select-all-checkbox' );
-		selectAllCheckbox.addEventListener( 'change', updateSelectedPagesList );
+		selectAllCheckbox.addEventListener( 'selectall', updateSelectedPagesList );
 
 		return {
 			dialogAction,
