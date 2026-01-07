@@ -2200,7 +2200,7 @@
 	"watchlistlabels-onboarding-filter-title": "Filtrar per etiquettas",
 	"watchlistlabels-onboarding-filter-body": "Visita ‘Etiquettas’ pro filtrar le modificationes.",
 	"watchlistlabels-editwatchlist-dialog-button": "Assignar etiquettas",
-	"watchlistlabels-editwatchlist-dialog-intro": "Selige le etiquettas que tu vole assignar a $1:",
+	"watchlistlabels-editwatchlist-dialog-intro": "Selige le etiquetta{{PLURAL:$2||s}} que tu vole assignar a $1:",
 	"watchlistlabels-editwatchlist-dialog-intro-more": "$2 altere pagina{{PLURAL:$1||s}}",
 	"watchlistlabels-editwatchlist-dialog-assign": "Assignar",
 	"watchlist-filters-labels-title": "Etiquettas",

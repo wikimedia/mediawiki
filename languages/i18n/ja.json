@@ -2331,6 +2331,8 @@
 	"watchlistlabels-delete-header": "{{PLURAL:$1|このラベル|これらのラベル}}を削除してもよろしいですか?",
 	"watchlistlabels-delete-warning": "以下の$2個のウォッチリスト{{PLURAL:$1|ラベル}}が削除されます。元に戻すことはできません。",
 	"watchlistlabels-delete-unused": "どのウォッチリスト項目でも使用されていません",
+	"watchlistlabels-onboarding-prev": "前へ",
+	"watchlistlabels-onboarding-next": "次へ",
 	"watchlist-filters-labels-title": "ラベル",
 	"watchlist-filters-labels-list-title": "ウォッチリストのラベル",
 	"watchlist-filters-tag-prefix-labels-inverted": "=$1 <strong>でない</strong>",
@@ -3386,6 +3388,10 @@
 	"watchlistedit-clear-jobqueue": "あなたのウォッチリストはクリアされています。これには時間がかかることがあります。",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|$1 件のページ}}を除去しました:",
 	"watchlistedit-too-many": "ウォッチリストを更新しました。ページ数が多すぎるため表示できません。",
+	"watchlistedit-table-title": "ページ",
+	"watchlistedit-table-title-pages": "ページ名",
+	"watchlistedit-table-title-expiry": "期限",
+	"watchlistedit-table-remove-selected": "ウォッチ解除",
 	"watchlisttools-clear": "ウォッチリストの全消去",
 	"watchlisttools-view": "関連する変更を表示",
 	"watchlisttools-edit": "ウォッチリストの表示と編集",
@@ -3905,6 +3911,7 @@
 	"pagelang-unchanged-language": "ページ「$1」の言語は既に$2に設定されています。",
 	"pagelang-unchanged-language-default": "ページ「$1」は既にウィキの既定の言語に設定されています。",
 	"pagelang-db-failed": "データベースがページの言語を変更できませんでした。",
+	"pagelang-invalid-selection": "無効な言語が選択されました",
 	"right-pagelang": "ページの言語を変更",
 	"action-pagelang": "ページの言語の変更",
 	"log-name-pagelang": "言語変更の記録",
@@ -4282,5 +4289,6 @@
 	"temp-user-unable-to-acquire": "仮アカウントの利用者名を取得できませんでした。もう一度お試しください。",
 	"table-of-contents-show-button-aria-label": "目次の表示",
 	"table-of-contents-hide-button-aria-label": "目次の非表示",
-	"diff-usergroups": "$1 {{PLURAL:$1|利用者グループ}}"
+	"diff-usergroups": "$1 {{PLURAL:$1|利用者グループ}}",
+	"languageselector-no-results": "見つかりませんでした。"
 }

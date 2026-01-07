@@ -2323,6 +2323,7 @@
 	"watchlistlabels-editwatchlist-dialog-intro": "Wähle {{PLURAL:$2|das Label aus, das du|die Labels aus, die du}} $1 zuweisen möchtest:",
 	"watchlistlabels-editwatchlist-dialog-intro-more": "$2 andere {{PLURAL:$1|Seite|Seiten}}",
 	"watchlistlabels-editwatchlist-dialog-assign": "Zuweisen",
+	"watchlistlabels-assign-labels-done": "$1 {{PLURAL:$1|Label wurde|Labels wurden}} $2 {{PLURAL:$2|Seite|Seiten}} zugeordnet",
 	"watchlist-filters-labels-title": "Labels",
 	"watchlist-filters-labels-list-title": "Beoachtungsliste-Labels",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>nicht</strong> =$1",
