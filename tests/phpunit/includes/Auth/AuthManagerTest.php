@@ -893,8 +893,11 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	public function testCreateFromLogin() {
 		$user = $this->getTestSysop()->getUser();
 		$req1 = $this->createMock( AuthenticationRequest::class );
+		$req1->method( 'getUniqueId' )->willReturn( __METHOD__ . 1 );
 		$req2 = $this->createMock( AuthenticationRequest::class );
+		$req2->method( 'getUniqueId' )->willReturn( __METHOD__ . 2 );
 		$req3 = $this->createMock( AuthenticationRequest::class );
+		$req3->method( 'getUniqueId' )->willReturn( __METHOD__ . 3 );
 		$userReq = new UsernameAuthenticationRequest;
 		$userReq->username = 'UTDummy';
 
@@ -4490,6 +4493,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$primaryAuthProvider->method( 'testForAccountCreation' )->willReturn( StatusValue::newGood() );
 		$primaryAuthProvider->method( 'beginPrimaryAccountCreation' )->willReturn( AuthenticationResponse::newPass() );
 		$primaryAuthProvider->method( 'testUserForCreation' )->willReturn( StatusValue::newGood() );
+		$primaryAuthProvider->method( 'getUniqueId' )->willReturn( __METHOD__ );
 		$this->primaryauthMocks = [ $primaryAuthProvider ];
 		$this->logger = new TestLogger( true, static function ( $message, $level ) {
 			return $message;
