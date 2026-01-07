@@ -39,12 +39,12 @@ class HistoryBlobCurStub {
 	 */
 	public function getText() {
 		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-		$row = $dbr->newSelectQueryBuilder()
-			->select( [ 'cur_text' ] )
+		return $dbr->newSelectQueryBuilder()
+			->select( 'cur_text' )
 			->from( 'cur' )
 			->where( [ 'cur_id' => $this->mCurId ] )
-			->caller( __METHOD__ )->fetchRow();
-		return $row ? $row->cur_text : false;
+			->caller( __METHOD__ )
+			->fetchField();
 	}
 }
 

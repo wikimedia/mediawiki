@@ -73,15 +73,13 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 		$highestPageId = $dbw->newSelectQueryBuilder()
 			->select( 'page_id' )
 			->from( 'page' )
-			->limit( 1 )
 			->caller( __METHOD__ )
 			->orderBy( 'page_id', 'DESC' )
-			->fetchResultSet()->fetchRow();
+			->fetchField();
 		if ( !$highestPageId ) {
 			$this->output( "Page table is empty.\n" );
 			return true;
 		}
-		$highestPageId = $highestPageId[0];
 		$pageId = 0;
 		while ( $pageId <= $highestPageId ) {
 			// Given the indexes and the structure of links tables,

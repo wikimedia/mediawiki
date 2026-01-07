@@ -326,16 +326,12 @@ class UserGroupManager {
 			return [];
 		}
 
-		$res = $this->getDBConnectionRefForQueryFlags( $queryFlags )->newSelectQueryBuilder()
+		$formerGroups = $this->getDBConnectionRefForQueryFlags( $queryFlags )->newSelectQueryBuilder()
 			->select( 'ufg_group' )
 			->from( 'user_former_groups' )
 			->where( [ 'ufg_user' => $user->getId( $this->wikiId ) ] )
 			->caller( __METHOD__ )
-			->fetchResultSet();
-		$formerGroups = [];
-		foreach ( $res as $row ) {
-			$formerGroups[] = $row->ufg_group;
-		}
+			->fetchFieldValues();
 		$this->setCache( $userKey, self::CACHE_FORMER, $formerGroups, $queryFlags );
 
 		return $this->userGroupCache[$userKey][self::CACHE_FORMER];

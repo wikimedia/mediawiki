@@ -553,17 +553,18 @@ class CheckStorage extends Maintenance {
 
 		// Find text row again
 		$dbr = $this->getReplicaDB();
-		$res = $dbr->newSelectQueryBuilder()
-			->select( [ 'content_address' ] )
+		$address = $dbr->newSelectQueryBuilder()
+			->select( 'content_address' )
 			->from( 'slots' )
 			->join( 'content', null, 'content_id = slot_content_id' )
 			->where( [ 'slot_revision_id' => $id ] )
-			->caller( __METHOD__ )->fetchRow();
+			->caller( __METHOD__ )
+			->fetchField();
 
 		$blobStore = $this->getServiceContainer()
 			->getBlobStoreFactory()
 			->newSqlBlobStore();
-		$oldId = $blobStore->getTextIdFromAddress( $res->content_address );
+		$oldId = $blobStore->getTextIdFromAddress( $address );
 
 		if ( !$oldId ) {
 			echo "Missing revision row for rev_id $id\n";

@@ -57,15 +57,13 @@ class MigrateExternallinks extends LoggedUpdateMaintenance {
 		$highestId = $dbw->newSelectQueryBuilder()
 			->select( 'el_id' )
 			->from( $table )
-			->limit( 1 )
 			->caller( __METHOD__ )
 			->orderBy( 'el_id', 'DESC' )
-			->fetchResultSet()->fetchRow();
+			->fetchField();
 		if ( !$highestId ) {
 			$this->output( "Page table is empty.\n" );
 			return true;
 		}
-		$highestId = $highestId[0];
 		$id = 0;
 		while ( $id <= $highestId ) {
 			$updated += $this->handleBatch( $id );

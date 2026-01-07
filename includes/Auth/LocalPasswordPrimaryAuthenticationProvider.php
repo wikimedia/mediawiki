@@ -161,22 +161,23 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return false;
 		}
 
-		$row = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
+		$password = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( [ 'user_password' ] )
 			->from( 'user' )
 			->where( [ 'user_name' => $username ] )
-			->caller( __METHOD__ )->fetchRow();
-		if ( !$row ) {
+			->caller( __METHOD__ )
+			->fetchField();
+		if ( $password === false ) {
 			return false;
 		}
 
 		// Check for *really* old password hashes that don't even have a type
 		// The old hash format was just an MD5 hex hash, with no type information
-		if ( preg_match( '/^[0-9a-f]{32}$/', $row->user_password ) ) {
+		if ( preg_match( '/^[0-9a-f]{32}$/', $password ) ) {
 			return true;
 		}
 
-		return !$this->getPassword( $row->user_password ) instanceof InvalidPassword;
+		return !$this->getPassword( $password ) instanceof InvalidPassword;
 	}
 
 	/** @inheritDoc */

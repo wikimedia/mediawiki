@@ -658,19 +658,13 @@ class JobQueueDB extends JobQueue {
 		// This is useful so JobQueueGroup::pop() also sees queues that only
 		// have stale jobs. This lets recycleAndDeleteStaleJobs() re-enqueue
 		// failed jobs so that they can be popped again for that edge case.
-		$res = $dbr->newSelectQueryBuilder()
+		return $dbr->newSelectQueryBuilder()
 			->select( 'job_cmd' )
 			->distinct()
 			->from( 'job' )
 			->where( [ 'job_cmd' => $types ] )
-			->caller( __METHOD__ )->fetchResultSet();
-
-		$types = [];
-		foreach ( $res as $row ) {
-			$types[] = $row->job_cmd;
-		}
-
-		return $types;
+			->caller( __METHOD__ )
+			->fetchFieldValues();
 	}
 
 	/** @inheritDoc */
@@ -713,7 +707,7 @@ class JobQueueDB extends JobQueue {
 				// Get the IDs of jobs that have be claimed but not finished after too long.
 				// These jobs can be recycled into the queue by expiring the claim. Selecting
 				// the IDs first means that the UPDATE can be done by primary key (less deadlocks).
-				$res = $dbw->newSelectQueryBuilder()
+				$ids = $dbw->newSelectQueryBuilder()
 					->select( 'job_id' )
 					->from( 'job' )
 					->where(
@@ -724,13 +718,9 @@ class JobQueueDB extends JobQueue {
 							$dbw->expr( 'job_attempts', '<', $this->maxTries ), // retries left
 						]
 					)
-					->caller( __METHOD__ )->fetchResultSet();
-				$ids = array_map(
-					static function ( $o ) {
-						return $o->job_id;
-					}, iterator_to_array( $res )
-				);
-				if ( count( $ids ) ) {
+					->caller( __METHOD__ )
+					->fetchFieldValues();
+				if ( $ids ) {
 					// Reset job_token for these jobs so that other runners will pick them up.
 					// Set the timestamp to the current time, as it is useful to now that the job
 					// was already tried before (the timestamp becomes the "released" time).

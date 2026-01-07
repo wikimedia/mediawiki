@@ -429,33 +429,21 @@ class UploadStash {
 	 * List all files in the stash.
 	 *
 	 * @throws UploadStashNotLoggedInException
-	 * @return array|false
+	 * @return string[]
 	 */
-	public function listFiles() {
+	public function listFiles(): array {
 		if ( !$this->user->isRegistered() ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);
 		}
 
-		$res = $this->repo->getReplicaDB()->newSelectQueryBuilder()
+		return $this->repo->getReplicaDB()->newSelectQueryBuilder()
 			->select( 'us_key' )
 			->from( 'uploadstash' )
 			->where( [ 'us_user' => $this->user->getId() ] )
-			->caller( __METHOD__ )->fetchResultSet();
-
-		if ( $res->numRows() == 0 ) {
-			// nothing to do.
-			return false;
-		}
-
-		// finish the read before starting writes.
-		$keys = [];
-		foreach ( $res as $row ) {
-			$keys[] = $row->us_key;
-		}
-
-		return $keys;
+			->caller( __METHOD__ )
+			->fetchFieldValues();
 	}
 
 	/**
