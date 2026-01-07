@@ -49,7 +49,6 @@ class HandleTOCMarkersDOM extends ContentDOMTransformStage {
 			return;
 		}
 		$tocData = $po->getTOCData();
-		$lang = $this->resolveUserLanguage( $popts, $options );
 		$maxTocLevel = $options['maxtoclevel'] ?? null;
 		if ( $maxTocLevel === null ) {
 			// Use wiki-configured default
@@ -59,18 +58,16 @@ class HandleTOCMarkersDOM extends ContentDOMTransformStage {
 		}
 		$doc = $marker->ownerDocument;
 		Assert::invariant( $doc !== null, 'marker without document owner' );
-		$toc = $this->generateToc( $tocData, $lang, $doc, $maxTocLevel );
-		if ( $toc ) {
+		if ( $tocData !== null ) {
+			$lang = $this->resolveUserLanguage( $popts, $options );
+			$toc = $this->generateToc( $tocData, $lang, $doc, $maxTocLevel );
 			$marker->replaceWith( $toc );
 		} else {
 			$marker->remove();
 		}
 	}
 
-	private function generateToc( ?TocData $tocData, Language $lang, Document $doc, int $maxTocLevel ): ?Element {
-		if ( !$tocData ) {
-			return null;
-		}
+	private function generateToc( TocData $tocData, Language $lang, Document $doc, int $maxTocLevel ): Element {
 		$customTitleKey = $tocData->getExtensionData( 'mw:title' );
 		$customId = $tocData->getExtensionData( 'mw:id' );
 		$customClass = $tocData->getExtensionData( 'mw:class' );

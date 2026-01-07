@@ -48,9 +48,8 @@ class HandleTOCMarkersText extends ContentTextTransformStage {
 	}
 
 	private function injectTOC( string $text, ParserOutput $po, ParserOptions $popts, array $options ): string {
-		$numSections = count( $po->getSections() );
 		$tocData = $po->getTOCData();
-		if ( $numSections === 0 ) {
+		if ( $tocData === null || $tocData->getSections() === [] ) {
 			$toc = '';
 		} else {
 			$lang = $this->resolveUserLanguage( $popts, $options );
@@ -191,7 +190,7 @@ class HandleTOCMarkersText extends ContentTextTransformStage {
 	/**
 	 * Generate a table of contents from a section tree.
 	 *
-	 * @param ?TOCData $tocData Return value of ParserOutput::getSections()
+	 * @param TOCData $tocData Return value of ParserOutput::getTOCData()
 	 * @param Language|null $lang Language for the toc title, defaults to user language
 	 * @param array $options
 	 *   - 'maxtoclevel' Max TOC level to generate
@@ -201,7 +200,7 @@ class HandleTOCMarkersText extends ContentTextTransformStage {
 	 *   - 'id': The ID to use on the TOC, defaults to 'toc'
 	 * @return string HTML fragment
 	 */
-	private static function generateTOC( ?TOCData $tocData, ?Language $lang = null, array $options = [] ): string {
+	private static function generateTOC( TOCData $tocData, ?Language $lang = null, array $options = [] ): string {
 		$toc = '';
 		$lastLevel = 0;
 		$maxTocLevel = $options['maxtoclevel'] ?? null;
@@ -211,7 +210,7 @@ class HandleTOCMarkersText extends ContentTextTransformStage {
 			$config = $services->getMainConfig();
 			$maxTocLevel = $config->get( MainConfigNames::MaxTocLevel );
 		}
-		foreach ( ( $tocData ? $tocData->getSections() : [] ) as $section ) {
+		foreach ( $tocData->getSections() as $section ) {
 			$tocLevel = $section->tocLevel;
 			if ( $tocLevel < $maxTocLevel ) {
 				if ( $tocLevel > $lastLevel ) {
@@ -236,10 +235,10 @@ class HandleTOCMarkersText extends ContentTextTransformStage {
 		if ( $lastLevel < $maxTocLevel && $lastLevel > 0 ) {
 			$toc .= self::tocUnindent( $lastLevel - 1 );
 		}
-		return self::tocList( $toc, $lang, $options + ( $tocData ? [
+		return self::tocList( $toc, $lang, $options + [
 			'title' => $tocData->getExtensionData( 'mw:title' ),
 			'id' => $tocData->getExtensionData( 'mw:id' ),
 			'class' => $tocData->getExtensionData( 'mw:class' ),
-		] : [] ) );
+		] );
 	}
 }
