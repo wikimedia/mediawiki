@@ -161,20 +161,24 @@ class TransactionProfiler implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get whether a given event is currently ignoring expectations.
+	 * Check whether an event currently has its expectations silenced.
 	 *
-	 * An event will be ignoring expectations if {@link self::silenceForScope} has been
-	 * called, the expectation was zero (for {@link self::EXPECTATION_REPLICAS_ONLY}), and
-	 * the returned {@link ScopedCallback} has not gone out of scope.
+	 * This method lets PHPUnit tests observe whether {@link self::silenceForScope}
+	 * was called by the subject under test, and that it is still in-scope.
 	 *
-	 * The use of this method is intended for PHPUnit tests who want to validate if
-	 * the scope returned by {@link self::silenceForScope} is still in scope.
+	 * This returns true if {@link self::silenceForScope} was called,
+	 * the returned {@link ScopedCallback} has not gone out of scope, and
+	 * the expectation was zero (for {@link self::EXPECTATION_REPLICAS_ONLY}.
 	 *
-	 * @param string $event Event name. Valid event names are defined in {@see self::EVENT_NAMES}
+	 * @internal For use in PHPUnit tests
+	 * @param string $event Event name, as defined in {@see self::EVENT_NAMES}
 	 * @return bool Whether the given event is currently ignoring expectations.
-	 * @throws InvalidArgumentException If the provided event name is not one in {@see self::EVENT_NAMES}
+	 * @throws InvalidArgumentException If the event name is not one in {@see self::EVENT_NAMES}
 	 */
 	public function isSilenced( string $event ): bool {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new RuntimeException( 'May only be called in tests' );
+		}
 		if ( !isset( $this->silenced[$event] ) ) {
 			throw new InvalidArgumentException( "Unrecognised event name '$event' provided." );
 		}
