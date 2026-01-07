@@ -4,6 +4,7 @@ namespace MediaWiki\Config;
 
 use InvalidArgumentException;
 use Wikimedia\Assert\Assert;
+use function array_key_exists;
 
 /**
  * A class for passing options to services. It can be constructed from a Config, and in practice
