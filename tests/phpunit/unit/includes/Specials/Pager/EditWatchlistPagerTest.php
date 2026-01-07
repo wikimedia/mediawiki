@@ -13,6 +13,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
+use MediaWiki\Watchlist\WatchlistLabel;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IReadableDatabase;
 
@@ -130,7 +131,15 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $pager->getIndexField() );
 	}
 
-	private function createMockWatchedItem( int $namespace, string $title, ?int $expiry ): WatchedItem {
+	/**
+	 * @param int $namespace
+	 * @param string $title
+	 * @param ?int $expiry
+	 * @param ?WatchlistLabel[] $labels
+	 *
+	 * @return WatchedItem
+	 */
+	private function createMockWatchedItem( int $namespace, string $title, ?int $expiry, ?array $labels = [] ): WatchedItem {
 		$target = $this->createMock( PageIdentity::class );
 		$target->method( 'getNamespace' )->willReturn( $namespace );
 		$target->method( 'getDBkey' )->willReturn( $title );
@@ -138,6 +147,7 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 		$watchedItem->method( 'getTarget' )->willReturn( $target );
 		$watchedItem->method( 'getExpiry' )->willReturn( $expiry );
 		$watchedItem->method( 'getExpiryInDaysText' )->willReturn( $expiry ? $expiry . ' days' : '' );
+		$watchedItem->method( 'getLabels' )->willReturn( $labels );
 		return $watchedItem;
 	}
 
@@ -201,11 +211,11 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 				],
 				'expectedResult' => new FakeResultWrapper( [
 					[ 'wl_namespace' => 777, 'wl_title' => 'Page_1',
-						'expiry' => '20250909180500 days' ],
+						'expiry' => '20250909180500 days', 'labels' => [] ],
 					[ 'wl_namespace' => 999, 'wl_title' => 'Page_2',
-						'expiry' => '20250909180530 days' ],
+						'expiry' => '20250909180530 days', 'labels' => [] ],
 					[ 'wl_namespace' => 666, 'wl_title' => 'Page_X',
-						'expiry' => '' ],
+						'expiry' => '', 'labels' => [] ],
 				] ),
 			],
 			// data set 1: sort, offset, limit specified in request data
@@ -227,14 +237,19 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 					],
 					'response' => [
 						$this->createMockWatchedItem( 999, 'Page_2', 20250909180530 ),
-						$this->createMockWatchedItem( 777, 'Page_1', 20250909180500 ),
+						$this->createMockWatchedItem(
+							777, 'Page_1', 20250909180500,
+							[ new WatchlistLabel( $this->createMock( UserIdentity::class ), 'foo', 1 ) ]
+						),
 					]
 				],
 				'expectedResult' => new FakeResultWrapper( [
 					[ 'wl_namespace' => 999, 'wl_title' => 'Page_2',
-						'expiry' => '20250909180530 days' ],
+						'expiry' => '20250909180530 days', 'labels' => [] ],
 					[ 'wl_namespace' => 777, 'wl_title' => 'Page_1',
-						'expiry' => '20250909180500 days' ],
+						'expiry' => '20250909180500 days',
+						'labels' => [ [ 'id' => 1, 'name' => 'foo' ] ]
+					],
 				] ),
 			],
 		];

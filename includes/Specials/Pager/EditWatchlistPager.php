@@ -10,6 +10,7 @@ namespace MediaWiki\Specials\Pager;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Navigation\CodexPagerNavigationBuilder;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Pager\CodexTablePager;
@@ -18,6 +19,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialEditWatchlist;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use Wikimedia\Codex\Utility\Codex;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -126,7 +128,7 @@ class EditWatchlistPager extends CodexTablePager {
 	}
 
 	/**
-	 * @param array $watchedItems
+	 * @param WatchedItem[] $watchedItems
 	 * @return ResultWrapper
 	 */
 	private function watchedItemArrayToResults( array $watchedItems ): ResultWrapper {
@@ -135,7 +137,11 @@ class EditWatchlistPager extends CodexTablePager {
 			$titles[] = [
 				'wl_namespace' => $watchedItem->getTarget()->getNamespace(),
 				'wl_title' => $watchedItem->getTarget()->getDBkey(),
-				'expiry' => $watchedItem->getExpiryInDaysText( $this->getContext() )
+				'labels' => array_map(
+					static fn ( $l ) => [ 'id' => $l->getId(), 'name' => $l->getName() ],
+					$watchedItem->getLabels()
+				),
+				'expiry' => $watchedItem->getExpiryInDaysText( $this->getContext() ),
 			];
 		}
 		return new FakeResultWrapper( $titles );
@@ -369,6 +375,9 @@ class EditWatchlistPager extends CodexTablePager {
 			'checkbox' => '', // Empty header, buttons will be added separately
 			'page' => $this->msg( 'watchlistedit-table-title-pages' )->text(),
 		];
+		if ( $this->getConfig()->get( MainConfigNames::EnableWatchlistLabels ) ) {
+			$fields['labels'] = $this->msg( 'watchlistlabels-table-header' )->text();
+		}
 		if ( $this->expiryEnabled ) {
 			$fields['expiry'] = $this->msg( 'watchlistedit-table-title-expiry' )->text();
 		}
@@ -418,6 +427,15 @@ class EditWatchlistPager extends CodexTablePager {
 					return $this->formatWatchedItem( $title );
 				}
 				return '';
+
+			case 'labels':
+				if ( !is_array( $value ) ) {
+					return '';
+				}
+				$labels = array_map( static function ( $l ) {
+					return Html::element( 'span', [ 'data-wllabel' => $l['id'] ], $l['name'] );
+				}, $value );
+				return implode( $this->msg( 'comma-separator' ), $labels );
 
 			default:
 				return htmlspecialchars( $value );
