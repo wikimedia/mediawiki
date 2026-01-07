@@ -17,9 +17,9 @@
  *
  * @par Example:
  * @code
- * $memoizedStrrev = new MemoizedCallable( 'range' );
- * $memoizedStrrev->invoke( 5, 8 );  // result: array( 5, 6, 7, 8 )
- * $memoizedStrrev->invokeArgs( array( 5, 8 ) );  // same
+ * $memoizedRange = new MemoizedCallable( 'range' );
+ * $memoizedRange->invoke( 5, 8 );  // result: array( 5, 6, 7, 8 )
+ * $memoizedRange->invokeArgs( array( 5, 8 ) );  // same
  * MemoizedCallable::call( 'range', array( 5, 8 ) );  // same
  * @endcode
  *
@@ -49,7 +49,7 @@ class MemoizedCallable {
 		if ( !is_callable( $callable, false, $this->callableName ) ) {
 			throw new InvalidArgumentException(
 				'Argument 1 passed to MemoizedCallable::__construct() must ' .
-				'be an instance of callable; ' . get_debug_type( $callable ) . ' given'
+				'be a callable; ' . get_debug_type( $callable ) . ' given'
 			);
 		}
 

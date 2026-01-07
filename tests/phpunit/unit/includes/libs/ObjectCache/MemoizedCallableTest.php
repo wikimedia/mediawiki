@@ -92,7 +92,7 @@ class MemoizedCallableTest extends TestCase {
 	}
 
 	/**
-	 * Closure names should be distinct.
+	 * Callable names should be distinct.
 	 */
 	public function testMemoizedClosure() {
 		$a = new MemoizedCallable( [ self::class, 'makeA' ] );
@@ -129,7 +129,7 @@ class MemoizedCallableTest extends TestCase {
 	}
 
 	public function testNotCallable() {
-		$this->expectExceptionMessage( "must be an instance of callable" );
+		$this->expectExceptionMessage( "must be a callable" );
 		$this->expectException( InvalidArgumentException::class );
 		$memoized = new MemoizedCallable( 14 );
 	}
