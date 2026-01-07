@@ -77,7 +77,7 @@ function init( $editForm ) {
 				// Other HTMLInputElements.
 				originalData[ fieldNamePrefix + fieldName ] = field.defaultValue;
 			}
-		} else if ( field.$input !== undefined ) {
+		} else if ( field.$input ) {
 			// OOUI widgets, which may not have been infused by this point.
 			if ( field.$input[ 0 ].type === 'checkbox' ) {
 				// Checkboxes.
@@ -133,7 +133,7 @@ function loadDataSuccess( pageData ) {
 		saveFormData();
 	}
 	// If there is data stored, load it into the form.
-	if ( !wasPosted && pageData !== undefined && !isSameAsOriginal( pageData, true ) ) {
+	if ( !wasPosted && pageData && !isSameAsOriginal( pageData, true ) ) {
 		const loadNotification = new LoadNotification( {
 			differentRev: originalData.field_parentRevId !== pageData.field_parentRevId
 		} );
@@ -165,7 +165,7 @@ function loadDataSuccess( pageData ) {
 	// Add change handlers.
 	for ( const fieldName in inputFields ) {
 		const field = inputFields[ fieldName ];
-		if ( field.nodeName !== undefined && field.nodeName === 'TEXTAREA' ) {
+		if ( field.nodeName === 'TEXTAREA' ) {
 			field.addEventListener( 'input', fieldChangeHandler );
 		} else if ( field instanceof OO.ui.Widget ) {
 			field.on( 'change', fieldChangeHandler );
@@ -243,13 +243,14 @@ function isSameAsOriginal( pageData, ignoreRevIds = false ) {
 		if ( ignoreRevIds && ( fieldName === 'editRevId' || fieldName === 'parentRevId' ) ) {
 			continue;
 		}
-		// Trim trailing whitespace from string fields, to approximate what PHP does when saving.
 		let currentVal = pageData[ fieldNamePrefix + fieldName ];
-		if ( typeof currentVal === 'string' ) {
-			currentVal = currentVal.replace( /\s+$/, '' );
-		}
 		let originalVal = originalData[ fieldNamePrefix + fieldName ];
-		if ( typeof originalVal === 'string' ) {
+		// Trim trailing whitespace from string fields, to approximate what PHP does when saving.
+		// Performance optimization: Pointless when already identical, or when one is not a string
+		if ( currentVal !== originalVal &&
+			typeof currentVal === 'string' && typeof originalVal === 'string'
+		) {
+			currentVal = currentVal.replace( /\s+$/, '' );
 			originalVal = originalVal.replace( /\s+$/, '' );
 		}
 		if ( currentVal !== originalVal ) {
@@ -266,7 +267,7 @@ function isSameAsOriginal( pageData, ignoreRevIds = false ) {
  */
 function saveFormData() {
 	const pageData = getFormData();
-	if ( ( originalData === null || isSameAsOriginal( pageData ) ) && !wasPosted ) {
+	if ( ( !originalData || isSameAsOriginal( pageData ) ) && !wasPosted ) {
 		// Delete the stored data if there's no change,
 		// or if we've flagged originalData as irrelevant,
 		// or if we can't determine this because this page was POSTed.
@@ -290,7 +291,7 @@ function getFormData() {
 	for ( const fieldName in inputFields ) {
 		const field = inputFields[ fieldName ];
 		let newValue = null;
-		if ( !( field instanceof OO.ui.Widget ) && field.nodeName !== undefined && field.nodeName === 'TEXTAREA' ) {
+		if ( !( field instanceof OO.ui.Widget ) && field.nodeName === 'TEXTAREA' ) {
 			// Text areas.
 			newValue = $( field ).textSelection( 'getContents' );
 		} else if ( field instanceof OO.ui.CheckboxInputWidget ) {
