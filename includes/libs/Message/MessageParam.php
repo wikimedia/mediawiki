@@ -7,7 +7,8 @@ use Wikimedia\JsonCodec\JsonCodecable;
 use Wikimedia\JsonCodec\JsonCodecableTrait;
 
 /**
- * Value object representing a message parameter that consists of a list of values.
+ * Value object representing a message parameter with one of the types from {@see ParamType} and a
+ * corresponding value.
  *
  * Message parameter classes are pure value objects and are newable and (de)serializable.
  */
