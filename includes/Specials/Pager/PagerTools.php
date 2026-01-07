@@ -105,7 +105,7 @@ class PagerTools {
 		foreach ( $this->tools as $tool ) {
 			$html .= Html::rawElement( 'span', [], $tool );
 		}
-		return $html ? Html::rawElement( 'span',
+		return $html ? ' ' . Html::rawElement( 'span',
 			[ 'class' => [ 'mw-changeslist-links', 'mw-pager-tools' ] ],
 			$html
 		) : '';
