@@ -249,8 +249,8 @@ class ApiLoginTest extends ApiTestCase {
 			$enableBotPasswords
 		);
 
-		$mockProvider = $this->createMock(
-			AbstractSecondaryAuthenticationProvider::class );
+		$mockProvider = $this->createMock( AbstractSecondaryAuthenticationProvider::class );
+		$mockProvider->method( 'getUniqueId' )->willReturn( __METHOD__ );
 		$mockProvider->method( 'beginSecondaryAuthentication' )->willReturn(
 			AuthenticationResponse::newUI(
 				[ new UsernameAuthenticationRequest ],
