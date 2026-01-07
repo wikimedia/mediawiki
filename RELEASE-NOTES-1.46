@@ -647,6 +647,8 @@ because of Phabricator reports.
   warnings. In most cases (such as for use with UserOptionsManager) calling
   this method is no longer needed. In other cases use getInstanceFromPrimary()
   instead.
+* Language::emphasize() is unused, got deprecated, and will be removed in the
+  next version.
 * …
 
 === Other changes in 1.46 ===

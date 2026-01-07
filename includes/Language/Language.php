@@ -3512,8 +3512,10 @@ class Language implements Bcp47Code {
 	 *
 	 * @param string $text The text to be emphasized.
 	 * @return string
+	 * @deprecated since 1.46, use CSS instead
 	 */
 	public function emphasize( $text ) {
+		wfDeprecated( __METHOD__, '1.46' );
 		return "<em>$text</em>";
 	}
 

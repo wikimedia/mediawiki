@@ -37,8 +37,10 @@ class LanguageJa extends Language {
 	 *
 	 * @param string $text
 	 * @return string
+	 * @deprecated since 1.46, use CSS instead
 	 */
 	public function emphasize( $text ) {
+		wfDeprecated( __METHOD__, '1.46' );
 		return $text;
 	}
 }
