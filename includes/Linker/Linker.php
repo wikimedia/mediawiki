@@ -1113,10 +1113,15 @@ class Linker {
 		if ( $talkable ) {
 			$items[] = self::userTalkLink( $userId, $userText );
 		}
-		if ( $userId ) {
-			// check if the user has an edit
+
+		// (T412013) Do not link to Special:Contributions for temp accounts
+		// since the target for the link in the username itself already links to
+		// Special:Contributions.
+		if ( $userId && !$services->getTempUserConfig()->isTempName( $userText ) ) {
 			$attribs = [];
 			$attribs['class'] = 'mw-usertoollinks-contribs';
+
+			// check if the user has edits
 			if ( $redContribsWhenNoEdits ) {
 				if ( $edits === null ) {
 					$user = UserIdentityValue::newRegistered( $userId, $userText );

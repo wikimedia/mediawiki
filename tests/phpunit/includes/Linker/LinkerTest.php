@@ -171,6 +171,25 @@ class LinkerTest extends MediaWikiLangTestCase {
 			// Empty name (T222529)
 			'Empty username, userid 0' => [ ' (no username available)', 0, '' ],
 			'Empty username, userid > 0' => [ ' (no username available)', 73, '' ],
+			'Non-empty username, userid > 0' => [
+				' <span class="mw-usertoollinks">' .
+				'(<a href="/index.php?title=User_talk:Jane_Doe&amp;action=edit&amp;redlink=1"' .
+				' class="mw-usertoollinks-talk new"' .
+				' title="User talk:Jane Doe (page does not exist)">talk</a> | ' .
+				'<a href="/wiki/Special:Contributions/Jane_Doe"' .
+				' class="mw-usertoollinks-contribs"' .
+				' title="Special:Contributions/Jane Doe">contribs</a>)</span>',
+				123,
+				'Jane Doe',
+			],
+			'Temp user' => [
+				' <span class="mw-usertoollinks">' .
+				'(<a href="/index.php?title=User_talk:~2026-1&amp;action=edit&amp;redlink=1"' .
+				' class="mw-usertoollinks-talk new"' .
+				' title="User talk:~2026-1 (page does not exist)">talk</a>)</span>',
+				123,
+				'~2026-1',
+			],
 		];
 	}
 
