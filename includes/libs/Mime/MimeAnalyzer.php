@@ -107,7 +107,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		// See the definition of the `img_major_mime` enum in tables-generated.sql
 		'unknown' => true,
 		'application' => true,
-		'audio => true',
+		'audio' => true,
 		'image' => true,
 		'text' => true,
 		'video' => true,
