@@ -11,6 +11,7 @@ const MultiselectLookupLanguageSelector = require( './MultiselectLookupLanguageS
  * @property {string|null} [selectedLanguage=null] The language code to select initially.
  * @property {Object} [menuConfig={}] Configuration for the Codex Lookup menu. See https://doc.wikimedia.org/codex/latest/components/types-and-constants.html#menuconfig
  * @property {string|null} [apiUrl=null] The API URL to use for language search. Defaults to the current wiki's API.
+ * @property {string|null} [placeholder=null] Placeholder text for the input field.
  * @property {Function|null} [menuItemSlot=null] Slot function for the menu item. Receives the slot props object `{ menuItem, languageCode, languageName }` as an argument and should return a VNodeChild (see https://vuejs.org/api/options-rendering#render).
  * @property {Function|null} [onLanguageChange=null] Callback function when language is selected. Received the selected language code as an argument.
  *
@@ -23,6 +24,7 @@ function getLookupLanguageSelector( config ) {
 		selectedLanguage = null,
 		menuConfig = {},
 		apiUrl = null,
+		placeholder = null,
 		menuItemSlot = null,
 		onLanguageChange = null
 	} = config;
@@ -33,7 +35,8 @@ function getLookupLanguageSelector( config ) {
 				apiUrl: apiUrl || mw.util.wikiScript( 'api' ),
 				selectedLanguage,
 				selectableLanguages,
-				menuConfig
+				menuConfig,
+				placeholder
 			};
 		},
 		render() {
@@ -41,6 +44,7 @@ function getLookupLanguageSelector( config ) {
 				searchApiUrl: this.apiUrl,
 				selectableLanguages: this.selectableLanguages,
 				selected: this.selectedLanguage,
+				placeholder: this.placeholder,
 				'onUpdate:selected': ( newValue ) => {
 					this.selectedLanguage = newValue;
 					if ( onLanguageChange ) {
@@ -63,6 +67,7 @@ function getLookupLanguageSelector( config ) {
  * @property {Array|null} [selectedLanguage=null] The language code(s) to select initially.
  * @property {Object} [menuConfig={}] Configuration for the Codex Lookup menu.
  * @property {string|null} [apiUrl=null] The API URL to use for language search. Defaults to the current wiki's API.
+ * @property {string|null} [placeholder=null] Placeholder text for the input field.
  * @property {Function|null} [menuItemSlot=null] Slot function for the menu item.
  * @property {Function|null} [onLanguageChange=null] Callback function when language is selected/changed.
  *
@@ -75,6 +80,7 @@ function getMultiselectLookupLanguageSelector( config ) {
 		selectedLanguage = null,
 		menuConfig = {},
 		apiUrl = null,
+		placeholder = null,
 		menuItemSlot = null,
 		onLanguageChange = null
 	} = config;
@@ -85,7 +91,8 @@ function getMultiselectLookupLanguageSelector( config ) {
 				apiUrl: apiUrl || mw.util.wikiScript( 'api' ),
 				selectedLanguage,
 				selectableLanguages,
-				menuConfig
+				menuConfig,
+				placeholder
 			};
 		},
 		render() {
@@ -93,6 +100,7 @@ function getMultiselectLookupLanguageSelector( config ) {
 				searchApiUrl: this.apiUrl,
 				selected: this.selectedLanguage,
 				selectableLanguages: this.selectableLanguages,
+				placeholder: this.placeholder,
 				'onUpdate:selected': ( newValue ) => {
 					this.selectedLanguage = newValue;
 					if ( onLanguageChange ) {

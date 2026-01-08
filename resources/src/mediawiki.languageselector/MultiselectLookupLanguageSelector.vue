@@ -5,6 +5,7 @@
 		:selected="selectedValues"
 		:menu-items="menuItems"
 		:menu-config="menuConfig"
+		:placeholder="placeholder"
 		@input="search"
 		@update:input-value="onUpdateInputValue"
 		@update:selected="onUpdateSelected"
@@ -46,6 +47,10 @@ module.exports = exports = defineComponent( {
 		menuConfig: {
 			type: Object,
 			default: () => ( {} )
+		},
+		placeholder: {
+			type: String,
+			default: null
 		}
 	},
 	emits: [
