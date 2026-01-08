@@ -2228,6 +2228,7 @@
 	"watchlistlabels-editwatchlist-dialog-intro": "Selecciona {{PLURAL:$2|a etiqueta|as etiquetas}} que queres asignarlles a $1:",
 	"watchlistlabels-editwatchlist-dialog-intro-more": "{{PLURAL:$1|outra páxina|outras $2 páxinas}}",
 	"watchlistlabels-editwatchlist-dialog-assign": "Asignar",
+	"watchlistlabels-assign-labels-done": "{{PLURAL:$1|Asignouse unha etiqueta|Asignáronse $1 etiquetas}} a {{PLURAL:$2|unha páxina|$2 páxinas}}",
 	"watchlist-filters-labels-title": "Etiquetas",
 	"watchlist-filters-labels-list-title": "Etiquetas da lista de vixilancia",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>non</strong> =$1",

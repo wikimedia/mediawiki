@@ -785,7 +785,7 @@
 	"undo-main-slot-only": "Redigeringen kunne ikke fortrydes, fordi den involverer indhold uden for hovedområdet.",
 	"undo-norev": "Redigeringen kunne ikke fjernes fordi den ikke findes eller er blevet slettet.",
 	"undo-nochange": "Ændringen ser ud til allerede at være blevet fjernet.",
-	"undo-summary": "Fjerner sideversion [[Special:Diff/$1|$1]] af [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]])",
+	"undo-summary": "Fjerner sideversion [[Special:Diff/$1|$1]] af [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])",
 	"undo-summary-anon": "Fjerner sideversion [[Special:Diff/$1|$1]] af [[Special:Contributions/$2|$2]]",
 	"undo-summary-import": "Fortryd importeret revision [[Special:Diff/$1|$1]] af bruger [[:$2|$3]]",
 	"undo-summary-import2": "Fortryd importeret revision [[Special:Diff/$1|$1]] af bruger $2",

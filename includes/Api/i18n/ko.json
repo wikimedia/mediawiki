@@ -332,6 +332,7 @@
 	"apihelp-parse-paramvalue-prop-wikitext": "변환한 원문 위키텍스트를 제공합니다.",
 	"apihelp-parse-paramvalue-prop-properties": "정의된 다양한 속성을 변환된 위키텍스트로 제공합니다.",
 	"apihelp-parse-param-wrapoutputclass": "파서 출력을 감싸기 위해 사용되는 CSS 클래스입니다.",
+	"apihelp-parse-param-parser": "사용할 위키텍스트 파서:",
 	"apihelp-parse-param-pst": "파싱에 앞서 입력에 대한 저장 직전의 변환을 수행합니다. 텍스트로 사용할 때에만 유효합니다.",
 	"apihelp-parse-param-disablelimitreport": "파서 출력에서 제한 보고서(\"NewPP limit report\")를 제외합니다.",
 	"apihelp-parse-param-disablepp": "<var>$1disablelimitreport</var>를 대신 사용합니다.",

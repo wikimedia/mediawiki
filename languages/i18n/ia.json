@@ -2203,6 +2203,7 @@
 	"watchlistlabels-editwatchlist-dialog-intro": "Selige le etiquetta{{PLURAL:$2||s}} que tu vole assignar a $1:",
 	"watchlistlabels-editwatchlist-dialog-intro-more": "$2 altere pagina{{PLURAL:$1||s}}",
 	"watchlistlabels-editwatchlist-dialog-assign": "Assignar",
+	"watchlistlabels-assign-labels-done": "$1 etiquetta{{PLURAL:$1||s}} assignate a $2 pagina{{PLURAL:$2||s}}",
 	"watchlist-filters-labels-title": "Etiquettas",
 	"watchlist-filters-labels-list-title": "Etiquettas del observatorio",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>non</strong> =$1",
