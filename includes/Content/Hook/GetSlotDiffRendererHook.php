@@ -4,7 +4,7 @@ namespace MediaWiki\Content\Hook;
 
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Context\IContextSource;
-use SlotDiffRenderer;
+use MediaWiki\Diff\SlotDiffRenderer;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

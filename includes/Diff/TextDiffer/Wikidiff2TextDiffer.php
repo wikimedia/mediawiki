@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Diff\TextDiffer;
 
+use MediaWiki\Diff\TextSlotDiffRenderer;
 use MediaWiki\Html\Html;
-use TextSlotDiffRenderer;
 
 /**
  * @since 1.41

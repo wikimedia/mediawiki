@@ -7,12 +7,12 @@
 
 namespace MediaWiki\Actions;
 
-use DifferenceEngine;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Diff\DifferenceEngine;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\MWContentSerializationException;
 use MediaWiki\Exception\PermissionsError;

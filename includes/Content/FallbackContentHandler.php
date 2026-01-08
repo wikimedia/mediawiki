@@ -8,10 +8,10 @@ namespace MediaWiki\Content;
 
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Diff\SlotDiffRenderer;
+use MediaWiki\Diff\UnsupportedSlotDiffRenderer;
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\ParserOutput;
-use SlotDiffRenderer;
-use UnsupportedSlotDiffRenderer;
 
 /**
  * Content handler implementation for unknown content.

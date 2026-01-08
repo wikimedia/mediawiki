@@ -7,6 +7,9 @@
  * @ingroup DifferenceEngine
  */
 
+namespace MediaWiki\Diff;
+
+use InvalidArgumentException;
 use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Output\OutputPage;
@@ -140,3 +143,6 @@ abstract class SlotDiffRenderer {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SlotDiffRenderer::class, 'SlotDiffRenderer' );

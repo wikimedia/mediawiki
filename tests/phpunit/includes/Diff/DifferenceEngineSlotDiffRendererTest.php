@@ -4,7 +4,7 @@ use MediaWiki\Content\ContentHandler;
 use MediaWiki\Output\OutputPage;
 
 /**
- * @covers \DifferenceEngineSlotDiffRenderer
+ * @covers \MediaWiki\Diff\DifferenceEngineSlotDiffRenderer
  */
 class DifferenceEngineSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 

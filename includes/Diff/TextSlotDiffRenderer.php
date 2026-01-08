@@ -7,6 +7,9 @@
  * @ingroup DifferenceEngine
  */
 
+namespace MediaWiki\Diff;
+
+use Exception;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Context\IContextSource;
@@ -22,6 +25,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use OOUI\FieldLayout;
 use OOUI\ToggleSwitchWidget;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
@@ -254,7 +258,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 			unset( $values[ 'title' ] );
 			$parts[self::INLINE_SWITCHER_KEY] = Html::rawElement( 'div',
 				[ 'class' => 'mw-diffPage-inlineToggle-container' ],
-				( new OOUI\FieldLayout(
+				( new FieldLayout(
 					new ToggleSwitchWidget( [
 						'id' => 'mw-diffPage-inline-toggle-switch',
 						'href' => $newTitle->getLocalURL( $values ),
@@ -345,3 +349,6 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( TextSlotDiffRenderer::class, 'TextSlotDiffRenderer' );

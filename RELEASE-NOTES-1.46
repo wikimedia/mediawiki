@@ -204,7 +204,7 @@ because of Phabricator reports.
   names are being left behind as deprecated aliases.
 
   In this release of MediaWiki, XXX classes now have a namespace and XXX do
-  not yet (XXX% done, up from XX% in MediaWiki 1.45.0). The following have newly
+  not yet (XXX% done, up from 89% in MediaWiki 1.45.0). The following have newly
   been moved:
   - MediaWiki\Collation:
     - AbkhazUppercaseCollation
@@ -224,6 +224,13 @@ because of Phabricator reports.
     - MWLBFactory
   - MediaWiki\Debug:
     - MW
+  - MediaWiki\Diff:
+    - DifferenceEngine
+    - DifferenceEngineSlotDiffRenderer
+    - IncompatibleDiffTypesException
+    - SlotDiffRenderer
+    - TextSlotDiffRenderer
+    - UnsupportedSlotDiffRenderer
   - MediaWiki\Gallery:
     - ImageGalleryBase
     - NolinesImageGallery

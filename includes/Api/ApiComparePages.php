@@ -6,12 +6,12 @@
 
 namespace MediaWiki\Api;
 
-use DifferenceEngine;
 use Exception;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Diff\DifferenceEngine;
 use MediaWiki\Exception\MWContentSerializationException;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\ArchivedRevisionLookup;

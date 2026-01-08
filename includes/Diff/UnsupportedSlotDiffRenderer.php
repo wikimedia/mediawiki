@@ -7,8 +7,11 @@
  * @ingroup DifferenceEngine
  */
 
+namespace MediaWiki\Diff;
+
 use MediaWiki\Content\Content;
 use MediaWiki\Html\Html;
+use MessageLocalizer;
 
 /**
  * Produces a warning message about not being able to render a slot diff.
@@ -53,3 +56,6 @@ class UnsupportedSlotDiffRenderer extends SlotDiffRenderer {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UnsupportedSlotDiffRenderer::class, 'UnsupportedSlotDiffRenderer' );

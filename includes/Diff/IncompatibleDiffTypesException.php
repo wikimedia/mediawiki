@@ -7,6 +7,8 @@
  * @ingroup DifferenceEngine
  */
 
+namespace MediaWiki\Diff;
+
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Exception\LocalizedException;
 
@@ -32,3 +34,6 @@ class IncompatibleDiffTypesException extends LocalizedException {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( IncompatibleDiffTypesException::class, 'IncompatibleDiffTypesException' );

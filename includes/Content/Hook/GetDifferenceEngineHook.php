@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Content\Hook;
 
-use DifferenceEngine;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Diff\DifferenceEngine;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

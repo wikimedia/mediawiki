@@ -8,6 +8,12 @@
  * @ingroup DifferenceEngine
  */
 
+namespace MediaWiki\Diff;
+
+use BadMethodCallException;
+use Exception;
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\Content;
@@ -2480,3 +2486,6 @@ class DifferenceEngine extends ContextSource {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DifferenceEngine::class, 'DifferenceEngine' );

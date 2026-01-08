@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Diff\Hook;
 
-use DifferenceEngine;
+use MediaWiki\Diff\DifferenceEngine;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\User\User;
 

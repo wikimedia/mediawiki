@@ -6,6 +6,9 @@
  * @file
  * @ingroup DifferenceEngine
  */
+
+namespace MediaWiki\Diff;
+
 use MediaWiki\Content\Content;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\MediaWikiServices;
@@ -64,3 +67,6 @@ class DifferenceEngineSlotDiffRenderer extends SlotDiffRenderer {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DifferenceEngineSlotDiffRenderer::class, 'DifferenceEngineSlotDiffRenderer' );

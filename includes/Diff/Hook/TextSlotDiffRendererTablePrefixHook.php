@@ -3,7 +3,7 @@
 namespace MediaWiki\Diff\Hook;
 
 use MediaWiki\Context\IContextSource;
-use TextSlotDiffRenderer;
+use MediaWiki\Diff\TextSlotDiffRenderer;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

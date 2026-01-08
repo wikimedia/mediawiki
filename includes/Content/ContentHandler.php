@@ -6,8 +6,6 @@
 
 namespace MediaWiki\Content;
 
-use DifferenceEngine;
-use DifferenceEngineSlotDiffRenderer;
 use InvalidArgumentException;
 use JsonException;
 use LogicException;
@@ -19,7 +17,11 @@ use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferrableUpdate;
+use MediaWiki\Diff\DifferenceEngine;
+use MediaWiki\Diff\DifferenceEngineSlotDiffRenderer;
+use MediaWiki\Diff\SlotDiffRenderer;
 use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
+use MediaWiki\Diff\TextSlotDiffRenderer;
 use MediaWiki\Exception\MWContentSerializationException;
 use MediaWiki\Exception\MWException;
 use MediaWiki\Exception\MWUnknownContentModelException;
@@ -41,9 +43,7 @@ use MediaWiki\Search\ParserOutputSearchDataExtractor;
 use MediaWiki\Search\SearchEngine;
 use MediaWiki\Search\SearchIndexField;
 use MediaWiki\Title\Title;
-use SlotDiffRenderer;
 use StatusValue;
-use TextSlotDiffRenderer;
 use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDBAccessObject;

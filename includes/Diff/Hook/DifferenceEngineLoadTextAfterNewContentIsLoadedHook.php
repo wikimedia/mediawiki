@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Diff\Hook;
 
-use DifferenceEngine;
+use MediaWiki\Diff\DifferenceEngine;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

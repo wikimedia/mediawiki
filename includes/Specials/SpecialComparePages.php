@@ -8,8 +8,8 @@
 
 namespace MediaWiki\Specials;
 
-use DifferenceEngine;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Diff\DifferenceEngine;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;

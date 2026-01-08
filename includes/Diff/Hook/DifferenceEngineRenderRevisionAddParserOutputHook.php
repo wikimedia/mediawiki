@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Diff\Hook;
 
-use DifferenceEngine;
+use MediaWiki\Diff\DifferenceEngine;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOutput;

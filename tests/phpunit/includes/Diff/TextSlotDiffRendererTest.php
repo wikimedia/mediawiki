@@ -12,7 +12,7 @@ use Wikimedia\Assert\ParameterTypeException;
 use Wikimedia\Stats\StatsFactory;
 
 /**
- * @covers \TextSlotDiffRenderer
+ * @covers \MediaWiki\Diff\TextSlotDiffRenderer
  */
 class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 

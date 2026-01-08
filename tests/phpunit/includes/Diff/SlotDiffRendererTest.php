@@ -8,7 +8,7 @@ use Wikimedia\Assert\ParameterTypeException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \SlotDiffRenderer
+ * @covers \MediaWiki\Diff\SlotDiffRenderer
  */
 class SlotDiffRendererTest extends \MediaWikiIntegrationTestCase {
 

@@ -19,7 +19,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 
 /**
- * @covers \DifferenceEngine
+ * @covers \MediaWiki\Diff\DifferenceEngine
  *
  * @todo tests for the rest of DifferenceEngine!
  *
