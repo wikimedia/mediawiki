@@ -1,5 +1,56 @@
 # Changelog
 
+## 6.1.0 / 2026-01-08
+
+The changes in 6.1.0 has a couple of focus areas.
+
+### Performance
+We decrease the overhead of using FFMPEG by following bsest practices. In CI
+this will makes tests 12-13% faster and use 26% less of CPU time.
+
+We also made it possible to disable video recording and run tests as true headless
+in CI using configuration to make it easier to measure performance wins by turning
+off video recordings.
+
+* Add configuration to enable/disable video recording (T410594)
+* Decrease FFmpeg overhead (T408328)
+* Make it possible to configure the --headless flag (T410607)
+
+### Prometheus
+There's been ongoing work to get Promethues metrics from Jenkins CI. The epic for that work
+is T412714. In this release there are a couple of bug fixes and some new metrics.
+
+* Add specific flaky metric for Prometheus (T413062)
+* Make it possible to collect average run time per project (T413064)
+* Cleanup how to handle numbers for duration (T412681)
+* Only write Promethues metrics if test runs (T407831)
+
+### Make our tool better
+There's a change here where we set the screen size. This is good because we never did that before
+and using headdless vs not using headless used different screensizes. We also added logging of
+browser/system information at startup to make it easier to spot differences when we run tests.
+
+* Set browser size to 1280x1024 (T409439)
+* Disable enable automation switch (T403827)
+* Log browser information (T411071)
+* Log system information on startup (T411069)
+
+### Documentation
+We updated documentation and code documentation.
+
+* Make it clear that the API calls do not follow redirects (T408087)
+* Document how dev-shm is used in CI (T408360)
+* Update mwbot update example (T406489)
+* Add documentation link to Chrome cli parameters (T408320)
+
+### Cleanup
+* Remove code from beforeSession() hook that is no longer needed (T355556)
+* Remove daily beta test for webdriver.io (T410889)
+* Remove unused code in Prometheus exporter (T412681)
+
+### Misc
+* Log out via special page T411278
+
 ## 6.0.0 / 2025-10-20
 
 With wdio-mediawiki 6.0 we replaced mwbot with internal code. This is a breaking change if you use any API functionality in your test and use the API from wdio-mediawiki. If you miss API functionality for your test, please create a task in Phabricator with the Test Platform tag.
