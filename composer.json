@@ -56,7 +56,7 @@
 		"wikimedia/assert": "0.5.1",
 		"wikimedia/at-ease": "3.0.0",
 		"wikimedia/base-convert": "2.0.2",
-		"wikimedia/bcp-47-code": "2.0.1",
+		"wikimedia/bcp-47-code": "2.0.2",
 		"wikimedia/cdb": "3.0.0",
 		"wikimedia/cldr-plural-rule-parser": "3.0.0",
 		"wikimedia/codex": "0.7.1",
