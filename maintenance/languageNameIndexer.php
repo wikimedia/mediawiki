@@ -34,8 +34,8 @@ class LanguageNameIndexer extends Maintenance {
 		$this->addDescription( 'Script to create language names index.' );
 
 		$extensionRegistry = ExtensionRegistry::getInstance();
-		if ( !$extensionRegistry->isLoaded( 'CLDR' ) ) {
-			$this->requireExtension( 'CLDR' );
+		if ( !$extensionRegistry->isLoaded( 'cldr' ) ) {
+			$this->requireExtension( 'cldr' );
 		}
 		if ( !$extensionRegistry->isLoaded( 'UniversalLanguageSelector' ) ) {
 			$this->requireExtension( 'UniversalLanguageSelector' );
