@@ -1057,11 +1057,16 @@ class SkinTemplate extends Skin {
 		$userPageLink = [];
 		$this->addPersonalPageItem( $userPageLink, '-2' );
 
+		$userMenu = $this->buildPersonalUrls( false );
+		$requestedMenus = $this->getOptions()['menus'];
+		if ( in_array( 'user-page', $requestedMenus ) ) {
+			unset( $userMenu['userpage' ] );
+		}
 		$content_navigation = $categoriesData + [
 			// Modern keys: Please ensure these get unset inside Skin::prepareQuickTemplate
 			'user-interface-preferences' => [],
 			'user-page' => $userPageLink,
-			'user-menu' => $this->buildPersonalUrls( false ),
+			'user-menu' => $userMenu,
 			'notifications' => [],
 			'associated-pages' => [],
 			// Added in 1.44: a fixed position menu at bottom of page
@@ -1529,9 +1534,15 @@ class SkinTemplate extends Skin {
 		array $contentNavigation
 	): array {
 		$userMenu = $contentNavigation['user-menu'] ?? [];
+		if ( isset( $contentNavigation['user-page']['userpage'] ) ) {
+			$userMenu = [
+				'userpage' => $contentNavigation['user-page']['userpage'],
+			] + $userMenu;
+		}
+
 		// userpage is only defined for logged-in users, and wfArrayInsertAfter requires the
 		// $after parameter to be a known key in the array.
-		if ( isset( $contentNavigation['user-menu']['userpage'] ) && isset( $contentNavigation['notifications'] ) ) {
+		if ( isset( $userMenu['userpage'] ) && isset( $contentNavigation['notifications'] ) ) {
 			$userMenu = wfArrayInsertAfter(
 				$userMenu,
 				$contentNavigation['notifications'],
