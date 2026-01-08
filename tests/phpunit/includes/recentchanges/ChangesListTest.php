@@ -73,7 +73,7 @@ class ChangesListTest extends MediaWikiIntegrationTestCase {
 			$htmlElement, '.mw-changeslist-log-entry.class-added-by-hook'
 		);
 		$this->assertNotNull( $wrappingElement );
-		$lineInnerHtml = $wrappingElement->nodeValue;
+		$lineInnerHtml = DOMCompat::getInnerHTML( $wrappingElement );
 
 		$this->assertStringContainsString( '(logentry-delete-delete', $lineInnerHtml );
 		$this->assertStringContainsString(
