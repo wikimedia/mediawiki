@@ -206,9 +206,14 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 		}
 		[ $html ] = $this->executeSpecialPage( '4.3.2.1', null, null, null, true );
 		$specialPageDocument = DOMUtils::parseHTML( $html );
-		$contentHtml = DOMCompat::querySelector( $specialPageDocument, '#content' )->nodeValue;
-		$this->assertStringNotContainsString( 'mw-pager-body', $contentHtml );
-		$this->assertStringContainsString( "($expectedPageTitleMessageKey: 4.3.2.1", $contentHtml );
+		$contentHtml = DOMCompat::getInnerHTML(
+			DOMCompat::querySelector( $specialPageDocument, '#content' )
+		);
+		$pagerContents = trim( DOMCompat::querySelector(
+			 $specialPageDocument, '#content .mw-pager-body'
+		)->textContent );
+		$this->assertEquals( '(nocontribs)', $pagerContents );
+		$this->assertStringContainsString( "($expectedPageTitleMessageKey: <bdi>4.3.2.1</bdi>", $contentHtml );
 	}
 
 	public static function provideExecuteNoResultsForIPTarget() {
