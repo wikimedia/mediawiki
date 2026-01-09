@@ -102,6 +102,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 * Updated oojs/oojs-ui (OOUI) from v0.53.0 to v0.53.1.
 * Updated symfony/yaml from 6.4.26 to 6.4.30.
 * Updated pear/net_smtp from 1.12.1 to 1.12.2.
+* Updated monolog/monolog from 2.9.3 to 2.11.0.
 * …
 
 ===== Changed development-only external libraries =====

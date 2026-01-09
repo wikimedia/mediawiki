@@ -39,7 +39,7 @@
 		"lcobucci/jwt": "4.1.5",
 		"liuggio/statsd-php-client": "1.0.18",
 		"mck89/peast": "1.17.4",
-		"monolog/monolog": "2.9.3",
+		"monolog/monolog": "2.11.0",
 		"oojs/oojs-ui": "0.53.1",
 		"pear/mail": "2.0.0",
 		"pear/mail_mime": "1.10.12",
