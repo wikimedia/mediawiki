@@ -427,6 +427,9 @@ class ResourceLoader implements LoggerAwareInterface {
 		$depsByEntity = $this->depStore->retrieveMulti(
 			$entitiesByModule
 		);
+
+		$modulesWithMessages = [];
+
 		// Inject the indirect file dependencies for all the modules
 		foreach ( $moduleNames as $moduleName ) {
 			$module = $this->getModule( $moduleName );
@@ -435,25 +438,23 @@ class ResourceLoader implements LoggerAwareInterface {
 				$deps = $depsByEntity[$entity];
 				$paths = $deps['paths'];
 				$module->setFileDependencies( $context, $paths );
+
+				if ( $module->getMessages() ) {
+					$modulesWithMessages[$moduleName] = $module;
+				}
 			}
 		}
 
 		WikiModule::preloadTitleInfo( $context, $moduleNames );
 
 		// Prime in-object cache for message blobs for modules with messages
-		$modulesWithMessages = [];
-		foreach ( $moduleNames as $moduleName ) {
-			$module = $this->getModule( $moduleName );
-			if ( $module && $module->getMessages() ) {
-				$modulesWithMessages[$moduleName] = $module;
+		if ( $modulesWithMessages ) {
+			$lang = $context->getLanguage();
+			$store = $this->getMessageBlobStore();
+			$blobs = $store->getBlobs( $modulesWithMessages, $lang );
+			foreach ( $blobs as $moduleName => $blob ) {
+				$modulesWithMessages[$moduleName]->setMessageBlob( $blob, $lang );
 			}
-		}
-		// Prime in-object cache for message blobs for modules with messages
-		$lang = $context->getLanguage();
-		$store = $this->getMessageBlobStore();
-		$blobs = $store->getBlobs( $modulesWithMessages, $lang );
-		foreach ( $blobs as $moduleName => $blob ) {
-			$modulesWithMessages[$moduleName]->setMessageBlob( $blob, $lang );
 		}
 	}
 
