@@ -6138,24 +6138,6 @@ class Parser {
 		return $this->mRevisionSize;
 	}
 
-	/**
-	 * Accessor for the 'defaultsort' page property.
-	 * Will use the empty string if none is set.
-	 *
-	 * This value is treated as a prefix, so the
-	 * empty string is equivalent to sorting by
-	 * page name.
-	 *
-	 * @return string
-	 * @since 1.9
-	 * @deprecated since 1.38, use
-	 * $parser->getOutput()->getPageProperty('defaultsort') ?? ''
-	 */
-	public function getDefaultSort() {
-		wfDeprecated( __METHOD__, '1.38' );
-		return $this->mOutput->getPageProperty( 'defaultsort' ) ?? '';
-	}
-
 	private static function getSectionNameFromStrippedText( string $text ): string {
 		$text = Sanitizer::normalizeSectionNameWhitespace( $text );
 		$text = Sanitizer::decodeCharReferences( $text );
