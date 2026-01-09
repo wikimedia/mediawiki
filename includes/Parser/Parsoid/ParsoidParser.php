@@ -33,11 +33,6 @@ use Wikimedia\Parsoid\Parsoid;
  * @unstable since 1.41; see T236809 for plan.
  */
 class ParsoidParser /* eventually this will extend \Parser */ {
-	/**
-	 * @deprecated since 1.46, use ParserOutput::getTitle() instead
-	 */
-	public const PARSOID_TITLE_KEY = "parsoid:title-dbkey";
-
 	public function __construct(
 		private Parsoid $parsoid,
 		private readonly PageConfigFactory $pageConfigFactory,
@@ -163,11 +158,6 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		// Record the page title in dbkey form so that post-cache transforms
 		// have access to the title.
 		$parserOutput->setTitle( $pageConfig->getLinkTarget() );
-		// Backward-compatibility w/ MW < 1.46
-		$parserOutput->setExtensionData(
-			self::PARSOID_TITLE_KEY,
-			Title::newFromLinkTarget( $pageConfig->getLinkTarget() )->getPrefixedDBkey()
-		);
 
 		// Register a watcher again because the $parserOutput arg
 		// and $parserOutput return value above are different objects!

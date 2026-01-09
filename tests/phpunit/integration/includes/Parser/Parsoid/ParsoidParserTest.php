@@ -6,7 +6,6 @@ namespace MediaWiki\Tests\Parser\Parsoid;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOptions;
-use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 
@@ -40,10 +39,6 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 		$output = $parsoidParser->parse( ...$args );
 		$html = $output->getRawText();
 		$this->assertStringContainsString( $expected, $html );
-		$this->assertSame(
-			$args[1]->getPrefixedDBkey(),
-			$output->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY )
-		);
 		$this->assertTrue(
 			$output->getTitle()->isSameLinkAs( $args[1] )
 		);
@@ -95,10 +90,6 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 		);
 		$html = $output->getRawText();
 		$this->assertStringContainsString( "Hello, World", $html );
-		$this->assertSame(
-			$pageTitle->getPrefixedDBkey(),
-			$output->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY )
-		);
 		$this->assertTrue(
 			$output->getTitle()->isSameLinkAs( $pageTitle )
 		);
