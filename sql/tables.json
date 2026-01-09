@@ -293,7 +293,7 @@
 			},
 			{
 				"name": "bl_deleted",
-				"comment": "If true, this block causes the username to be hidden, and the expiry must be infinite. This is denormalized into rev_deleted and the other deleted bitfields (T346716).",
+				"comment": "One of 0, 1, or 2. If 0, the the block is not hidden. If 1, this block causes the username and block to be hidden, and the expiry must be infinite. Additionally, for a value of 1 this is denormalized into rev_deleted and the other deleted bitfields (T346716). For a value of 2, this just hides the block and leaves the username unhidden.",
 				"type": "mwtinyint",
 				"options": {
 					"notnull": true,
