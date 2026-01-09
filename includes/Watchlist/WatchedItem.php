@@ -7,10 +7,8 @@
 
 namespace MediaWiki\Watchlist;
 
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
 use MediaWiki\RecentChanges\RecentChange;
-use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use MessageLocalizer;
@@ -111,15 +109,6 @@ class WatchedItem {
 	 */
 	public function getUserIdentity() {
 		return $this->user;
-	}
-
-	/**
-	 * @return LinkTarget
-	 * @deprecated since 1.36, use getTarget() instead
-	 */
-	public function getLinkTarget() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return TitleValue::newFromPage( $this->getTarget() );
 	}
 
 	/**
