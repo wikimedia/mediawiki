@@ -100,15 +100,8 @@ class Linker {
 			return "<!-- ERROR -->$html";
 		}
 
-		$services = MediaWikiServices::getInstance();
 		$options = (array)$options;
-		if ( $options ) {
-			// Custom options, create new LinkRenderer
-			$linkRenderer = $services->getLinkRendererFactory()
-				->createFromLegacyOptions( $options );
-		} else {
-			$linkRenderer = $services->getLinkRenderer();
-		}
+		$linkRenderer = self::getLinkRenderer( $options );
 
 		if ( $html !== null ) {
 			$text = new HtmlArmor( $html );
@@ -528,9 +521,8 @@ class Linker {
 				}
 			}
 		} elseif ( isset( $frameParams['link-title'] ) && $frameParams['link-title'] !== '' ) {
-			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			$mtoParams['custom-title-link'] = Title::newFromLinkTarget(
-				$linkRenderer->normalizeTarget( $frameParams['link-title'] )
+				self::getLinkRenderer()->normalizeTarget( $frameParams['link-title'] )
 			);
 			if ( isset( $frameParams['link-title-query'] ) ) {
 				$mtoParams['custom-title-link-query'] = $frameParams['link-title-query'];
@@ -1042,8 +1034,7 @@ class Linker {
 	) {
 		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
 		global $wgTitle;
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		return $linkRenderer->makeExternalLink(
+		return self::getLinkRenderer()->makeExternalLink(
 			$url,
 			$escape ? $text : new HtmlArmor( $text ),
 			$title ?? $wgTitle ?? SpecialPage::getTitleFor( 'Badtitle' ),
@@ -1078,13 +1069,12 @@ class Linker {
 			return wfMessage( 'empty-username' )->parse();
 		}
 
-		return MediaWikiServices::getInstance()->getLinkRenderer()
-			->makeUserLink(
-				new UserIdentityValue( $userId, (string)$userName ),
-				RequestContext::getMain(),
-				$altUserName === false ? null : (string)$altUserName,
-				$attributes
-			);
+		return self::getLinkRenderer()->makeUserLink(
+			new UserIdentityValue( $userId, (string)$userName ),
+			RequestContext::getMain(),
+			$altUserName === false ? null : (string)$altUserName,
+			$attributes
+		);
 	}
 
 	/**
@@ -2021,6 +2011,24 @@ class Linker {
 		return Html::expandAttributes( [
 			'title' => $tooltip
 		] );
+	}
+
+	/**
+	 * @param array $legacyOptions
+	 * @return LinkRenderer
+	 */
+	private static function getLinkRenderer(
+		array $legacyOptions = []
+	): LinkRenderer {
+		$services = MediaWikiServices::getInstance();
+
+		if ( count( $legacyOptions ) > 0 ) {
+			return $services->getLinkRendererFactory()->createFromLegacyOptions(
+				$legacyOptions
+			);
+		}
+
+		return $services->getLinkRenderer();
 	}
 
 }
