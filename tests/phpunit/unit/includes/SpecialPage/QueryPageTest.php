@@ -10,6 +10,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\Status\Status;
 use MediaWikiUnitTestCase;
+use MWHttpRequest;
 use PHPUnit\Framework\MockObject\MockObject;
 use ReflectionClass;
 use ReflectionProperty;
@@ -72,7 +73,7 @@ class QueryPageTest extends MediaWikiUnitTestCase {
 	}
 
 	private function mockHttpRequest( string $content, bool $isOK = true, string $errorMessage = '' ): void {
-		$request = $this->createMock( 'MWHttpRequest' );
+		$request = $this->createMock( MWHttpRequest::class );
 
 		$status = $this->createMock( Status::class );
 		$status->method( 'isOK' )->willReturn( $isOK );
@@ -106,7 +107,7 @@ class QueryPageTest extends MediaWikiUnitTestCase {
 		$reflection = new ReflectionClass( $this->queryPage );
 		$method = $reflection->getMethod( 'reallyDoQueryExternal' );
 
-		$request = $this->createMock( 'MWHttpRequest' );
+		$request = $this->createMock( MWHttpRequest::class );
 		$message = $this->createMock( Message::class );
 		$message->method( 'text' )->willReturn( 'Empty response' );
 
@@ -164,7 +165,7 @@ class QueryPageTest extends MediaWikiUnitTestCase {
 			[ 'qc_namespace' => 0, 'qc_title' => 'Test', 'qc_value' => 1 ]
 		];
 
-		$request = $this->createMock( 'MWHttpRequest' );
+		$request = $this->createMock( MWHttpRequest::class );
 		$status = $this->createMock( Status::class );
 		$status->method( 'isOK' )->willReturn( true );
 		$request->method( 'execute' )->willReturn( $status );
