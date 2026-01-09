@@ -160,6 +160,8 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 
 		// Record the page title in dbkey form so that post-cache transforms
 		// have access to the title.
+		$parserOutput->setTitle( $pageConfig->getLinkTarget() );
+		// Backward-compatibility w/ MW < 1.46
 		$parserOutput->setExtensionData(
 			self::PARSOID_TITLE_KEY,
 			Title::newFromLinkTarget( $pageConfig->getLinkTarget() )->getPrefixedDBkey()

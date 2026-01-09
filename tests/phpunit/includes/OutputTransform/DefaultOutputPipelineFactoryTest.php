@@ -10,6 +10,7 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
+use MediaWiki\Title\Title;
 use MediaWikiLangTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
@@ -45,6 +46,7 @@ class DefaultOutputPipelineFactoryTest extends MediaWikiLangTestCase {
 		$po = new ParserOutput( $text );
 		if ( $isParsoidContent ) {
 			$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( $text ) );
+			$po->setTitle( Title::newFromText( 'Test page' ) );
 			$po->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, 'Test_page' );
 			$po->setLanguage( new Bcp47CodeValue( 'en' ) );
 				global $IP;
