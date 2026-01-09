@@ -143,8 +143,15 @@ class ImportImages extends Maintenance {
 			$this->fatalError( "Cannot specify both protect and unprotect.  Only 1 is allowed.\n" );
 		}
 
-		if ( $this->hasOption( 'protect' ) && trim( $this->getOption( 'protect' ) ) ) {
-			$this->fatalError( "You must specify a protection option.\n" );
+		if ( $this->hasOption( 'protect' ) ) {
+		    $protectValue = trim( $this->getOption( 'protect' ) );
+		    $allowedValues = ['autoconfirmed', 'sysop'];
+		    
+		    if ( $protectValue === '' ) {
+		        $this->fatalError( "You must specify a protection option.\n" );
+		    } elseif ( !in_array( $protectValue, $allowedValues ) ) {
+		        $this->fatalError( "Invalid protection option. Must be one of: " . implode( ', ', $allowedValues ) . "\n" );
+		    }
 		}
 
 		# Prepare the list of allowed extensions
