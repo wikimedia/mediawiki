@@ -34,6 +34,8 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputLinkTypes;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
+use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -61,6 +63,7 @@ use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFileBackend;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Config\SiteConfig;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\Core\SelserData;
 use Wikimedia\Parsoid\DOM\Document;
@@ -1702,6 +1705,10 @@ class ParserTestRunner {
 		if ( isset( $opts['showflags'] ) ) {
 			$actualFlags = [];
 			foreach ( ParserOutputFlags::cases() as $name ) {
+				if ( $name->value === 'use-parsoid' ) {
+					// This flag is noisy, it appears in all parsoid test cases
+					continue;
+				}
 				if ( $output->getOutputFlag( $name ) ) {
 					$actualFlags[] = $name->value;
 				}
@@ -1877,8 +1884,21 @@ class ParserTestRunner {
 			'body_only' => true,
 			'wrapSections' => $test->options['parsoid']['wrapSections'] ?? false,
 			'traceFlags' => $this->options['traceFlags'],
-			'dumpFlags' => $this->options['dumpFlags']
+			'dumpFlags' => $this->options['dumpFlags'],
 		], $headers, $metadata );
+		$pageBundle = new HtmlPageBundle( $origOut );
+		// See ParsoidParser::genParserOutput
+		$metadata = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+			$pageBundle, $metadata
+		);
+		$metadata->setExtensionData(
+			ParsoidParser::PARSOID_TITLE_KEY,
+			Title::newFromLinkTarget( $pageConfig->getLinkTarget() )->getPrefixedDBkey()
+		);
+		/** @var \MediaWiki\Parser\Parsoid\Config\PageConfig $pageConfig */
+		'@phan-var \MediaWiki\Parser\Parsoid\Config\PageConfig $pageConfig';
+		$metadata->setFromParserOptions( $pageConfig->getParserOptions() );
+		$origOut = $metadata->getContentHolderText();
 
 		if ( isset( $test->options['nohtml'] ) ) {
 			// Suppress HTML (presumably because we want to test the metadata)
