@@ -40,6 +40,7 @@ use MediaWiki\User\UserIdentityLookup;
 use StatusValue;
 use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageSpecifier;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -1091,7 +1092,11 @@ class PermissionManager {
 	): void {
 		// TODO: remove & rework upon further use of LinkTarget
 		$title = Title::newFromLinkTarget( $page );
-		foreach ( $this->restrictionStore->getRestrictions( $title, $action ) as $right ) {
+		foreach ( $this->restrictionStore->getRestrictions( $title, $action ) as $level ) {
+			// Messages: restriction-level-sysop, restriction-level-autoconfirmed
+			$levelMsg = MessageValue::new( "restriction-level-$level" );
+
+			$right = $level;
 			// Backwards compatibility, rewrite sysop -> editprotected
 			if ( $right === 'sysop' ) {
 				$right = 'editprotected';
@@ -1104,11 +1109,11 @@ class PermissionManager {
 				continue;
 			}
 			if ( !$this->userHasRight( $user, $right ) ) {
-				$status->fatal( 'protectedpagetext', $right, $action );
+				$status->fatal( 'protectedpagetext', $right, $action, $levelMsg );
 			} elseif ( $this->restrictionStore->areRestrictionsCascading( $title ) &&
 				!$this->userHasRight( $user, 'protect' )
 			) {
-				$status->fatal( 'protectedpagetext', 'protect', $action );
+				$status->fatal( 'protectedpagetext', 'protect', $action, $levelMsg );
 			}
 		}
 	}

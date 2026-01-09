@@ -625,9 +625,9 @@ class Article implements Page {
 		$formattedProtectionExpiry = $context->getLanguage()
 			->formatExpiry( $protectionExpiry ?? '' );
 
-		$protectionMsg = 'protection-indicator-title';
+		$protectionMsgKey = 'protection-indicator-title';
 		if ( $protectionExpiry === 'infinity' || !$protectionExpiry ) {
-			$protectionMsg .= '-infinity';
+			$protectionMsgKey = 'protection-indicator-title-infinity';
 		}
 
 		// Potential values: 'protection-sysop', 'protection-autoconfirmed',
@@ -635,11 +635,14 @@ class Article implements Page {
 		// If the wiki has more protection levels, the additional ids that get
 		// added take the form 'protection-<protectionLevel>' and
 		// 'protection-<protectionLevel>-cascade'.
-		$protectionIndicatorId = 'protection-' . $protectionLevel;
-		$protectionIndicatorId .= ( $isCascadeProtected ? '-cascade' : '' );
+		$protectionIndicatorId = 'protection-' . $protectionLevel . ( $isCascadeProtected ? '-cascade' : '' );
 
-		// Messages 'protection-indicator-title', 'protection-indicator-title-infinity'
-		$protectionMsg = $outputPage->msg( $protectionMsg, $protectionLevel, $formattedProtectionExpiry )->text();
+		$protectionMsg = $outputPage->msg(
+			$protectionMsgKey,
+			// Messages: restriction-level-sysop, restriction-level-autoconfirmed
+			$outputPage->msg( "restriction-level-$protectionLevel" ),
+			$formattedProtectionExpiry
+		)->text();
 
 		// Use a trick similar to the one used in Action::addHelpLink() to allow wikis
 		// to customize where the help link points to.

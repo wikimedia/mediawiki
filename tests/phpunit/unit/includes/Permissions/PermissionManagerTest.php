@@ -24,6 +24,7 @@ use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWikiUnitTestCase;
 use StatusValue;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -311,14 +312,14 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			[ 'sysop', ],
 			[],
 			false,
-			StatusValue::newFatal( 'protectedpagetext', 'editprotected', 'edit' )
+			StatusValue::newFatal( 'protectedpagetext', 'editprotected', 'edit', MessageValue::new( 'restriction-level-sysop' ) )
 		];
 		yield 'Sysop protected and cascading, no protect' => [
 			'edit',
 			[ 'editprotected' ],
 			[ 'editprotected' ],
 			true,
-			StatusValue::newFatal( 'protectedpagetext', 'protect', 'edit' )
+			StatusValue::newFatal( 'protectedpagetext', 'protect', 'edit', MessageValue::new( 'restriction-level-editprotected' ) )
 		];
 		yield 'Sysop protected and cascading, with rights' => [
 			'edit',
