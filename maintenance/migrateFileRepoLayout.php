@@ -8,6 +8,7 @@
  */
 
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\FileBackendDBRepoWrapper;
 use MediaWiki\FileRepo\LocalRepo;
@@ -69,9 +70,7 @@ class MigrateFileRepoLayout extends Maintenance {
 		$batch = [];
 		$lastName = '';
 		do {
-			$res = $dbw->newSelectQueryBuilder()
-				->select( [ 'img_name', 'img_sha1' ] )
-				->from( 'image' )
+			$res = FileSelectQueryBuilder::newForFile( $dbw )
 				->where( $dbw->expr( 'img_name', '>', $lastName ) )
 				->andWhere( $conds )
 				->orderBy( 'img_name' )
