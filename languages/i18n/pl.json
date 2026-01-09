@@ -935,7 +935,7 @@
 	"mergehistory-from": "Strona źródłowa:",
 	"mergehistory-into": "Strona docelowa:",
 	"mergehistory-list": "Historia zmian możliwa do scalenia",
-	"mergehistory-merge": "Następujące zmiany strony [[:$1]] mogą zostać scalone z [[:$2]].\nOznacz kropeczką, które zmiany mają zostać scalone.\nUwaga - użycie linków nawigacyjnych wyczyści pole powodu.",
+	"mergehistory-merge": "Poniższe wersje strony [[:$1]] mogą zostać scalone z [[:$2]].\nOznacz kropeczkami w kolumnach, które zmiany mają zostać scalone (zakres lub zmianę, od której zmiany wstecz scalać).\nUwaga - użycie linków nawigacyjnych wyczyści pole powodu.",
 	"mergehistory-go": "Pokaż możliwe do scalenia zmiany",
 	"mergehistory-submit": "Scal historię zmian",
 	"mergehistory-empty": "Brak historii zmian do scalenia.",
