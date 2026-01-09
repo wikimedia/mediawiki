@@ -921,12 +921,6 @@ class SpecialMovePage extends UnlistedSpecialPage {
 
 		$ot = $this->oldTitle;
 		$nt = $this->newTitle;
-		$oldTalk = $ot->getTalkPageIfDefined();
-		$newTalk = $nt->getTalkPageIfDefined();
-
-		if ( $ot->isTalkPage() || $nt->isTalkPage() ) {
-			$this->moveTalk = false;
-		}
 
 		# don't allow moving to pages with # in
 		if ( !$nt || $nt->hasFragment() ) {
@@ -934,6 +928,13 @@ class SpecialMovePage extends UnlistedSpecialPage {
 
 			return;
 		}
+
+		if ( $ot->isTalkPage() || $nt->isTalkPage() ) {
+			$this->moveTalk = false;
+		}
+
+		$oldTalk = $ot->getTalkPageIfDefined();
+		$newTalk = $nt->getTalkPageIfDefined();
 
 		# Show a warning if the target file exists on a shared repo
 		if ( $nt->getNamespace() === NS_FILE
