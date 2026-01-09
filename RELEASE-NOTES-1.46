@@ -195,6 +195,8 @@ because of Phabricator reports.
 * The hooks 'UpdateUserMailerFormattedPageStatus' and
   'SendWatchlistEmailNotification' (deprecated in 1.45) have been removed.
 * The related method RecentChangeNotifier::getPageStatus() has been removed.
+* Constructing SpecialRedirectWithAction without a SearchEngineFactory argument
+  will now trigger a PHP type error; omitting this was deprecated in 1.39.
 * …
 
 === Deprecations in 1.46 ===

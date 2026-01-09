@@ -8,7 +8,6 @@
 namespace MediaWiki\SpecialPage;
 
 use MediaWiki\HTMLForm\HTMLForm;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\Title\Title;
 
@@ -35,22 +34,17 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	 * @param string $name
 	 * @param string $action
 	 * @param string $msgPrefix
-	 * @param SearchEngineFactory|null $searchEngineFactory Not providing this param is deprecated since 1.39
+	 * @param SearchEngineFactory $searchEngineFactory
 	 */
 	public function __construct(
 		$name,
 		$action,
 		$msgPrefix,
-		?SearchEngineFactory $searchEngineFactory = null
+		SearchEngineFactory $searchEngineFactory
 	) {
 		parent::__construct( $name );
 		$this->action = $action;
 		$this->msgPrefix = $msgPrefix;
-		if ( !$searchEngineFactory ) {
-			// Fallback to global state if the new parameter was not provided
-			wfDeprecated( __METHOD__ . ' without providing SearchEngineFactory', '1.39' );
-			$searchEngineFactory = MediaWikiServices::getInstance()->getSearchEngineFactory();
-		}
 		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
