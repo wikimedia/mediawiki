@@ -204,6 +204,7 @@ because of Phabricator reports.
 * Parser::getDefaultSort(), deprecated in 1.38, has been removed.
 * WatchedItem::getLinkTarget(), deprecated in 1.36, has been removed. Instead,
   use ::getTarget() (and cast if needed).
+* The AddNewAccount hook, deprecated in 1.27, has been dropped.
 * …
 
 === Deprecations in 1.46 ===
@@ -356,7 +357,6 @@ because of Phabricator reports.
     - ParserPreSaveTransformCompleteHook
     - RejectParserCacheValueHook
   - Specials related hooks: MediaWiki\Hook => MediaWiki\Specials\Hook
-    - AddNewAccountHook
     - AncientPagesQueryHook
     - BeforeWelcomeCreationHook
     - BlockIpCompleteHook

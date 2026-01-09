@@ -119,7 +119,6 @@ class HookRunner implements
 	\MediaWiki\Diff\Hook\NewDifferenceEngineHook,
 	\MediaWiki\Actions\Hook\ActionBeforeFormDisplayHook,
 	\MediaWiki\Actions\Hook\ActionModifyFormFieldsHook,
-	\MediaWiki\Specials\Hook\AddNewAccountHook,
 	\MediaWiki\Output\Hook\AfterBuildFeedLinksHook,
 	\MediaWiki\Output\Hook\AfterFinalPageOutputHook,
 	\MediaWiki\Import\Hook\AfterImportPageHook,
@@ -625,14 +624,6 @@ class HookRunner implements
 		return $this->container->run(
 			'ActionModifyFormFields',
 			[ $name, &$fields, $article ]
-		);
-	}
-
-	/** @inheritDoc */
-	public function onAddNewAccount( $user, $byEmail ) {
-		return $this->container->run(
-			'AddNewAccount',
-			[ $user, $byEmail ]
 		);
 	}
 

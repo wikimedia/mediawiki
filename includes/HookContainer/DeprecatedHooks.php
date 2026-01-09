@@ -21,7 +21,6 @@ class DeprecatedHooks {
 	 * @phpcs-require-sorted-array
 	 */
 	private $deprecatedHooks = [
-		'AddNewAccount' => [ 'deprecatedVersion' => '1.27' ],
 		'ArticleDelete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
 		'ArticleDeleteComplete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
 		'ArticleUndelete' => [ 'deprecatedVersion' => '1.40', 'silent' => true ],

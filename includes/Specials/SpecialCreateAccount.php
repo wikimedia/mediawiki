@@ -119,12 +119,8 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		$injected_html = '';
 		if ( $direct ) {
 			# Only save preferences if the user is not creating an account for someone else.
-			if ( !$this->proxyAccountCreation ) {
-				$this->getHookRunner()->onAddNewAccount( $user, false );
-			} else {
+			if ( $this->proxyAccountCreation ) {
 				$byEmail = false; // FIXME no way to set this
-
-				$this->getHookRunner()->onAddNewAccount( $user, $byEmail );
 
 				$out = $this->getOutput();
 				// @phan-suppress-next-line PhanImpossibleCondition
