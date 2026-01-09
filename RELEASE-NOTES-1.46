@@ -93,6 +93,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 * Updated wikimedia/bcp-47-code from 2.0.1 to 2.0.2.
 * Updated wikimedia/css-sanitizer from 6.1.0 to 6.2.0.
 * Updated wikimedia/less.php from 5.2.2 to 5.5.0.
+* Updated wikimedia/minify from 2.9.0 to 2.10.0.
 * Updated wikimedia/relpath from 4.0.2 to 4.1.0.
 * Updated wikimedia/running-stat from 2.1.0 to 2.2.0.
 * Updated wikimedia/shellbox from 4.3.0 to 4.4.0.
