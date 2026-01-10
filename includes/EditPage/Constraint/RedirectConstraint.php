@@ -125,7 +125,7 @@ class RedirectConstraint implements IEditConstraint {
 				$statusValue->fatal(
 					'edit-constraint-doubleredirect',
 					MessageValue::new( $this->submitButtonLabel ),
-					wfEscapeWikiText( $doubleRedirectTargetTitle->getPrefixedText() ),
+					wfEscapeWikiText( $doubleRedirectTargetTitle->getFullText() ),
 					$suggestedRedirectCode,
 				);
 				break;
