@@ -41,6 +41,7 @@ use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -62,6 +63,7 @@ class MovePage {
 	protected WatchedItemStoreInterface $watchedItems;
 	protected RepoGroup $repoGroup;
 	private IContentHandlerFactory $contentHandlerFactory;
+	private BagOStuff $recentMovesCache;
 	private RevisionStore $revisionStore;
 	private SpamChecker $spamChecker;
 	private HookRunner $hookRunner;
@@ -99,6 +101,7 @@ class MovePage {
 		WatchedItemStoreInterface $watchedItems,
 		RepoGroup $repoGroup,
 		IContentHandlerFactory $contentHandlerFactory,
+		BagOStuff $recentMovesCache,
 		RevisionStore $revisionStore,
 		SpamChecker $spamChecker,
 		HookContainer $hookContainer,
@@ -117,6 +120,7 @@ class MovePage {
 		$this->newTitle = Title::newFromPageIdentity( $newTitle );
 
 		$this->options = $options;
+		$this->recentMovesCache = $recentMovesCache;
 		$this->dbProvider = $dbProvider;
 		$this->nsInfo = $nsInfo;
 		$this->watchedItems = $watchedItems;
@@ -971,6 +975,13 @@ class MovePage {
 				->setUsePageCreationLog( false )
 				->setFlags( EDIT_SILENT | EDIT_INTERNAL | EDIT_IMPLICIT )
 				->saveRevision( $comment );
+		} else {
+			// Show log excerpt on 404 pages rather than just a link
+			$key = $this->recentMovesCache->makeKey(
+				'page-recent-delete',
+				md5( $logTitle->getPrefixedText() )
+			);
+			$this->recentMovesCache->set( $key, 1, BagOStuff::TTL_DAY );
 		}
 
 		// Log the move

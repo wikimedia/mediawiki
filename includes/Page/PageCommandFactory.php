@@ -236,6 +236,7 @@ class PageCommandFactory implements
 			$this->watchedItemStore,
 			$this->repoGroup,
 			$this->contentHandlerFactory,
+			$this->mainStash,
 			$this->revisionStoreFactory->getRevisionStore(),
 			$this->spamChecker,
 			$this->hookContainer,

@@ -23,6 +23,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchedItemStore;
 use PHPUnit\Framework\Assert;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -70,6 +71,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				[ 'Existent.jpg', 'Existent2.jpg', 'Existent-file-no-page.jpg' ]
 			),
 			$this->getServiceContainer()->getContentHandlerFactory(),
+			$this->createMock( BagOStuff::class ),
 			$this->getServiceContainer()->getRevisionStore(),
 			$this->getServiceContainer()->getSpamChecker(),
 			$this->getServiceContainer()->getHookContainer(),
