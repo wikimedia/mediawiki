@@ -14,11 +14,11 @@ specific problems, you should check:
 We provide comprehensive documentation on upgrading to the latest version of the
 software at https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Upgrading.
 
-Important: Upgrading from releases older than two LTS release is not supported anymore.
-If you want to upgrade from an old version, please upgrade to a more recent LTS version first,
-then to this version.
+Important: Upgrading from releases older than two LTS release is not supported
+anymore. If you want to upgrade from an old version, please upgrade to a more
+recent LTS version first, then to this version.
 
-Currently any upgrade from any version older than 1.35 will fail.
+Currently any upgrade from any version older than 1.39 will fail.
 
 === Consult the release notes ===
 

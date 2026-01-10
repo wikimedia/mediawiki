@@ -12,9 +12,7 @@ namespace MediaWiki\Installer;
 use FixInconsistentRedirects;
 use FixWrongPasswordPrefixes;
 use MediaWiki\Maintenance\FixAutoblockLogTitles;
-use MediaWiki\Maintenance\UpdateRestrictions;
 use MigrateExternallinks;
-use MigrateRevisionActorTemp;
 use MigrateRevisionCommentTemp;
 use PopulateUserIsTemp;
 use Wikimedia\Rdbms\DatabasePostgres;
@@ -37,17 +35,6 @@ class PostgresUpdater extends DatabaseUpdater {
 	 */
 	protected function getCoreUpdateList() {
 		return [
-			// 1.39
-			[ 'addTable', 'user_autocreate_serial', 'patch-user_autocreate_serial.sql' ],
-			[ 'runMaintenance', MigrateRevisionActorTemp::class ],
-			[ 'dropTable', 'revision_actor_temp' ],
-			[ 'runMaintenance', UpdateRestrictions::class ],
-			[ 'dropPgField', 'page', 'page_restrictions' ],
-			[ 'migrateTemplatelinks' ],
-			[ 'changeNullableField', 'templatelinks', 'tl_target_id', 'NOT NULL', true ],
-			[ 'changePrimaryKey', 'templatelinks', [ 'tl_from', 'tl_target_id' ] ],
-			[ 'dropField', 'templatelinks', 'tl_title', 'patch-templatelinks-drop-tl_title.sql' ],
-
 			// 1.40
 			[ 'addField', 'externallinks', 'el_to_path', 'patch-externallinks-el_to_path.sql' ],
 

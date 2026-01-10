@@ -1403,27 +1403,6 @@ abstract class DatabaseUpdater {
 		$this->output( "done.\n" );
 	}
 
-	protected function migrateTemplatelinks() {
-		if ( $this->updateRowExists( MigrateLinksTable::class . 'templatelinks' ) ) {
-			$this->outputApplied( "...templatelinks table has already been migrated.\n" );
-			return;
-		}
-		/**
-		 * @var MigrateLinksTable $task
-		 */
-		$task = $this->maintenance->createChild(
-			MigrateLinksTable::class, 'migrateLinksTable.php'
-		);
-		'@phan-var MigrateLinksTable $task';
-		$task->loadParamsAndArgs( MigrateLinksTable::class, [
-			'force' => true,
-			'table' => 'templatelinks'
-		] );
-		$this->output( "Running migrateLinksTable.php on templatelinks...\n" );
-		$task->execute();
-		$this->output( "done.\n" );
-	}
-
 	protected function migratePagelinks() {
 		if ( $this->updateRowExists( MigrateLinksTable::class . 'pagelinks' ) ) {
 			$this->outputApplied( "...pagelinks table has already been migrated.\n" );

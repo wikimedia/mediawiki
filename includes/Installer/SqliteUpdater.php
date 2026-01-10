@@ -13,9 +13,7 @@ namespace MediaWiki\Installer;
 use FixInconsistentRedirects;
 use FixWrongPasswordPrefixes;
 use MediaWiki\Maintenance\FixAutoblockLogTitles;
-use MediaWiki\Maintenance\UpdateRestrictions;
 use MigrateExternallinks;
-use MigrateRevisionActorTemp;
 use MigrateRevisionCommentTemp;
 use PopulateUserIsTemp;
 
@@ -31,19 +29,6 @@ class SqliteUpdater extends DatabaseUpdater {
 	/** @inheritDoc */
 	protected function getCoreUpdateList() {
 		return [
-			// 1.39
-			[ 'addTable', 'user_autocreate_serial', 'patch-user_autocreate_serial.sql' ],
-			[ 'modifyField', 'ipblocks_restrictions', 'ir_ipb_id', 'patch-ipblocks_restrictions-ir_ipb_id.sql' ],
-			[ 'modifyField', 'ipblocks', 'ipb_id', 'patch-ipblocks-ipb_id.sql' ],
-			[ 'modifyField', 'user', 'user_editcount', 'patch-user-user_editcount.sql' ],
-			[ 'runMaintenance', MigrateRevisionActorTemp::class ],
-			[ 'dropTable', 'revision_actor_temp' ],
-			[ 'runMaintenance', UpdateRestrictions::class ],
-			[ 'dropField', 'page', 'page_restrictions', 'patch-page-drop-page_restrictions.sql' ],
-			[ 'migrateTemplatelinks' ],
-			[ 'modifyField', 'templatelinks', 'tl_namespace', 'patch-templatelinks-tl_title-nullable.sql' ],
-			[ 'dropField', 'templatelinks', 'tl_title', 'patch-templatelinks-drop-tl_title.sql' ],
-
 			// 1.40
 			[ 'addField', 'externallinks', 'el_to_path', 'patch-externallinks-el_to_path.sql' ],
 
