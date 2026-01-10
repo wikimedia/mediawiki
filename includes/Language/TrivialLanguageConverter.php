@@ -11,6 +11,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\TitleFormatter;
+use Wikimedia\Parsoid\DOM\Document;
+use Wikimedia\Parsoid\DOM\DocumentFragment;
 
 /**
  * A trivial language converter.
@@ -129,6 +131,11 @@ class TrivialLanguageConverter implements ILanguageConverter {
 	/** @inheritDoc */
 	public function getConvRuleTitle() {
 		return false;
+	}
+
+	/** @inheritDoc */
+	public function getConvRuleTitleFragment( Document $ownerDocument ): ?DocumentFragment {
+		return null;
 	}
 
 	/** @inheritDoc */

@@ -30,6 +30,9 @@ use MediaWiki\User\User;
 use RuntimeException;
 use UnexpectedValueException;
 use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\Parsoid\DOM\Document;
+use Wikimedia\Parsoid\DOM\DocumentFragment;
+use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\ReplacementArray;
 use Wikimedia\StringUtils\StringUtils;
 
@@ -98,8 +101,9 @@ abstract class LanguageConverter implements ILanguageConverter {
 	protected $mTables = [];
 	/** @var Language|StubUserLang */
 	private $mLangObj;
-	/** @var string|false */
-	private $mConvRuleTitle = false;
+
+	private string|DocumentFragment|false $mConvRuleTitle = false;
+
 	/** @var string|null */
 	private $mURLVariant;
 	/** @var string|null */
@@ -266,7 +270,22 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 	/** @inheritDoc */
 	public function getConvRuleTitle() {
-		return $this->mConvRuleTitle;
+		$title = $this->mConvRuleTitle;
+		if ( $title instanceof DocumentFragment ) {
+			return $title->textContent;
+		}
+		return $title;
+	}
+
+	/** @inheritDoc */
+	public function getConvRuleTitleFragment( Document $ownerDocument ): ?DocumentFragment {
+		$title = $this->mConvRuleTitle;
+		if ( $title instanceof DocumentFragment || $title === false ) {
+			return $title ?: null;
+		}
+		$df = $ownerDocument->createDocumentFragment();
+		DOMCompat::replaceChildren( $df, $title );
+		return $df;
 	}
 
 	/** @inheritDoc */
@@ -688,8 +707,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 		// title conversion.
 		// T26072: $mConvRuleTitle was overwritten by other manual
 		// rule(s) not for title, this breaks the title conversion.
-		$newConvRuleTitle = $convRule->getTitle();
-		if ( $newConvRuleTitle !== false ) {
+		$newConvRuleTitle = $convRule->getTitleValue();
+		if ( $newConvRuleTitle !== null ) {
 			// So I add an empty check for getTitle()
 			$this->mConvRuleTitle = $newConvRuleTitle;
 		}

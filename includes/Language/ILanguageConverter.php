@@ -10,6 +10,8 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
+use Wikimedia\Parsoid\DOM\Document;
+use Wikimedia\Parsoid\DOM\DocumentFragment;
 
 /**
  * The shared interface for all language converters.
@@ -46,6 +48,14 @@ interface ILanguageConverter {
 	 * @return string|false The converted title text
 	 */
 	public function getConvRuleTitle();
+
+	/**
+	 * Get the title produced by the conversion rule, as a DocumentFragment
+	 * owned by $ownerDocument.
+	 *
+	 * @return ?DocumentFragment The converted title text
+	 */
+	public function getConvRuleTitleFragment( Document $ownerDocument ): ?DocumentFragment;
 
 	/**
 	 * Get preferred language variant.

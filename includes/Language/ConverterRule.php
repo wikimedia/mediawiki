@@ -9,6 +9,10 @@ namespace MediaWiki\Language;
 
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Parsoid\DOM\Document;
+use Wikimedia\Parsoid\DOM\DocumentFragment;
+use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\WTUtils;
 use Wikimedia\StringUtils\StringUtils;
 
 /**
@@ -20,14 +24,11 @@ use Wikimedia\StringUtils\StringUtils;
 class ConverterRule {
 	use DeprecationHelper;
 
-	/**
-	 * @var LanguageConverter
-	 */
-	private $mConverter;
-	/** @var string|false */
-	private $mRuleDisplay = '';
-	/** @var string|false */
-	private $mRuleTitle = false;
+	private LanguageConverter $mConverter;
+
+	private DocumentFragment|string|false $mRuleDisplay = '';
+
+	private DocumentFragment|string|false $mRuleTitle = false;
 	/**
 	 * @var string the text of the rules
 	 */
@@ -41,11 +42,11 @@ class ConverterRule {
 	/** @var array */
 	private $mConvTable = [];
 	/**
-	 * @var array of the translation in each variant
+	 * @var array<string,DocumentFragment|string> the translation in each variant
 	 */
 	private $mBidtable = [];
 	/**
-	 * @var array of the translation in each variant
+	 * @var array<string,array<string,DocumentFragment|string>> the translation in each variant
 	 */
 	private $mUnidtable = [];
 
@@ -72,17 +73,49 @@ class ConverterRule {
 	 * @param array|string $variants Variant language code
 	 * @return string|false Translated text
 	 */
-	public function getTextInBidtable( $variants ) {
+	public function getTextInBidtable( $variants ): string|false {
+		$val = $this->getValueInBidtable( $variants );
+		if ( $val instanceof DocumentFragment ) {
+			return $val->textContent;
+		} else {
+			return $val ?? false;
+		}
+	}
+
+	/**
+	 * Check if the variant array is in the convert array.
+	 *
+	 * @param Document $ownerDocument An owner document for the returned fragment
+	 * @param array|string $variants Variant language code
+	 * @return ?DocumentFragment Translated text
+	 */
+	public function getFragmentInBidtable( Document $ownerDocument, $variants ): ?DocumentFragment {
+		$val = $this->getValueInBidtable( $variants );
+		if ( $val instanceof DocumentFragment || $val === null ) {
+			return $val;
+		}
+		$df = $ownerDocument->createDocumentFragment();
+		DOMCompat::replaceChildren( $df, $val );
+		return $df;
+	}
+
+	/**
+	 * Check if the variant array is in the convert array.
+	 *
+	 * @param array|string $variants Variant language code
+	 * @return DocumentFragment|string|null Translated contents
+	 */
+	private function getValueInBidtable( $variants ) {
 		$variants = (array)$variants;
 		if ( !$variants ) {
-			return false;
+			return null;
 		}
 		foreach ( $variants as $variant ) {
 			if ( isset( $this->mBidtable[$variant] ) ) {
 				return $this->mBidtable[$variant];
 			}
 		}
-		return false;
+		return null;
 	}
 
 	/**
@@ -214,18 +247,21 @@ class ConverterRule {
 		$this->mUnidtable = $unidtable;
 	}
 
-	/**
-	 * @return string
-	 */
-	private function getRulesDesc() {
+	private function getRulesDesc(): string {
 		$codesep = $this->mConverter->getDescCodeSeparator();
 		$varsep = $this->mConverter->getDescVarSeparator();
 		$text = '';
 		foreach ( $this->mBidtable as $k => $v ) {
+			if ( $v instanceof DocumentFragment ) {
+				$v = $v->textContent;
+			}
 			$text .= $this->mConverter->getVariantNames()[$k] . "$codesep$v$varsep";
 		}
 		foreach ( $this->mUnidtable as $k => $a ) {
 			foreach ( $a as $from => $to ) {
+				if ( $to instanceof DocumentFragment ) {
+					$to = $to->textContent;
+				}
 				$text .= $from . '⇒' . $this->mConverter->getVariantNames()[$k] .
 					"$codesep$to$varsep";
 			}
@@ -233,14 +269,43 @@ class ConverterRule {
 		return $text;
 	}
 
+	private function getRulesDescFragment( Document $ownerDocument ): DocumentFragment {
+		$codesep = $this->mConverter->getDescCodeSeparator();
+		$varsep = $this->mConverter->getDescVarSeparator();
+		$df = $ownerDocument->createDocumentFragment();
+		foreach ( $this->mBidtable as $k => $v ) {
+			DOMCompat::append(
+				$df,
+				$this->mConverter->getVariantNames()[$k],
+				$codesep,
+				$v,
+				$varsep
+			);
+		}
+		foreach ( $this->mUnidtable as $k => $a ) {
+			foreach ( $a as $from => $to ) {
+				DOMCompat::append(
+					$df,
+					$from,
+					'⇒',
+					$this->mConverter->getVariantNames()[$k],
+					$codesep,
+					$to,
+					$varsep
+				);
+			}
+		}
+		return $df;
+	}
+
 	/**
 	 * Parse rules conversion.
 	 *
 	 * @param string $variant
 	 *
-	 * @return string
+	 * @return DocumentFragment|string|null
 	 */
-	private function getRuleConvertedStr( $variant ) {
+	private function getRuleConvertedValue( string $variant ): DocumentFragment|string|null {
 		$bidtable = $this->mBidtable;
 		$unidtable = $this->mUnidtable;
 
@@ -249,18 +314,18 @@ class ConverterRule {
 		}
 
 		// display current variant in bidirectional array
-		$disp = $this->getTextInBidtable( $variant );
+		$disp = $this->getValueInBidtable( $variant );
 		// or display current variant in fallbacks
-		if ( $disp === false ) {
-			$disp = $this->getTextInBidtable(
+		if ( $disp === null ) {
+			$disp = $this->getValueInBidtable(
 				$this->mConverter->getVariantFallbacks( $variant ) );
 		}
 		// or display current variant in unidirectional array
-		if ( $disp === false && array_key_exists( $variant, $unidtable ) ) {
+		if ( $disp === null && array_key_exists( $variant, $unidtable ) ) {
 			$disp = array_values( $unidtable[$variant] )[0];
 		}
 		// or display first text under disable manual convert
-		if ( $disp === false && $this->mConverter->getManualLevel()[$variant] === 'disable' ) {
+		if ( $disp === null && $this->mConverter->getManualLevel()[$variant] === 'disable' ) {
 			if ( count( $bidtable ) > 0 ) {
 				$disp = array_values( $bidtable )[0];
 			} else {
@@ -272,33 +337,33 @@ class ConverterRule {
 	}
 
 	/**
-	 * Similar to getRuleConvertedStr(), but this prefers to use MediaWiki\Title\Title;
-	 * use original page title if $variant === $this->mConverter->getMainCode(),
+	 * Similar to getRuleConvertedValue(), but this prefers to use the
+	 * original page title if $variant === $this->mConverter->getMainCode(),
 	 * and may return false in this case (so this title conversion rule
 	 * will be ignored and the original title is shown).
 	 *
 	 * @since 1.22
 	 * @param string $variant The variant code to display page title in
-	 * @return string|false The converted title or false if just page name
+	 * @return DocumentFragment|string|null The converted title or null if just page name
 	 */
-	private function getRuleConvertedTitle( $variant ) {
+	private function getRuleConvertedValueForTitle( string $variant ): DocumentFragment|string|null {
 		if ( $variant === $this->mConverter->getMainCode() ) {
 			// If a string targeting exactly this variant is set,
 			// use it. Otherwise, just return false, so the real
 			// page name can be shown (and because variant === main,
 			// there'll be no further automatic conversion).
-			$disp = $this->getTextInBidtable( $variant );
+			$disp = $this->getValueInBidtable( $variant );
 			if ( $disp ) {
 				return $disp;
 			}
 			if ( array_key_exists( $variant, $this->mUnidtable ) ) {
 				$disp = array_values( $this->mUnidtable[$variant] )[0];
 			}
-			// Assigned above or still false.
+			// Assigned above or still null.
 			return $disp;
 		}
 
-		return $this->getRuleConvertedStr( $variant );
+		return $this->getRuleConvertedValue( $variant );
 	}
 
 	/**
@@ -449,10 +514,10 @@ class ConverterRule {
 					$this->mRuleDisplay = '';
 					break;
 				case 'S':
-					$this->mRuleDisplay = $this->getRuleConvertedStr( $variant );
+					$this->mRuleDisplay = $this->getRuleConvertedValue( $variant ) ?? false;
 					break;
 				case 'T':
-					$this->mRuleTitle = $this->getRuleConvertedTitle( $variant );
+					$this->mRuleTitle = $this->getRuleConvertedValueForTitle( $variant ) ?? false;
 					$this->mRuleDisplay = '';
 					break;
 				default:
@@ -481,15 +546,73 @@ class ConverterRule {
 	 * @return string
 	 */
 	public function getDisplay() {
-		return $this->mRuleDisplay;
+		$display = $this->mRuleDisplay;
+		if ( $display instanceof DocumentFragment ) {
+			return $display->textContent;
+		} elseif ( $display === false ) {
+			return '<span class="error">'
+				. wfMessage( 'converter-manual-rule-error' )->inContentLanguage()->escaped()
+				. '</span>';
+		}
+		return $display;
+	}
+
+	/**
+	 * Get display text on markup -{...}- as a DocumentFragment
+	 * @param Document $ownerDocument An owner document for the returned fragment
+	 * @return DocumentFragment
+	 */
+	public function getDisplayFragment( Document $ownerDocument ): DocumentFragment {
+		$display = $this->mRuleDisplay;
+		if ( $display instanceof DocumentFragment ) {
+			return $display;
+		} elseif ( $display === false ) {
+			$span = $ownerDocument->createElement( 'span' );
+			$span->setAttribute( 'class', 'error' );
+			$span->appendChild(
+				WTUtils::createPageContentI18nFragment(
+					$ownerDocument, 'converter-manual-rule-error'
+				)
+			);
+			$df = $ownerDocument->createDocumentFragment();
+			$df->appendChild( $span );
+			return $df;
+		}
+		$df = $ownerDocument->createDocumentFragment();
+		DOMCompat::replaceChildren( $df, $display );
+		return $df;
 	}
 
 	/**
 	 * Get converted title.
 	 * @return string|false
 	 */
-	public function getTitle() {
-		return $this->mRuleTitle;
+	public function getTitle(): string|false {
+		$title = $this->mRuleTitle;
+		if ( $title instanceof DocumentFragment ) {
+			return $title->textContent;
+		}
+		return $title;
+	}
+
+	/**
+	 * Get converted title as a DocumentFragment.
+	 * @param Document $ownerDocument An owner document for the returned fragment
+	 * @return ?DocumentFragment
+	 */
+	public function getTitleFragment( Document $ownerDocument ): ?DocumentFragment {
+		$title = $this->mRuleTitle;
+		if ( $title instanceof DocumentFragment || $title === false ) {
+			return $title ?: null;
+		}
+		$df = $ownerDocument->createDocumentFragment();
+		DOMCompat::replaceChildren( $df, $title );
+		return $df;
+	}
+
+	/** @internal */
+	public function getTitleValue(): string|DocumentFragment|null {
+		return $this->mRuleTitle ?: null;
 	}
 
 	/**
