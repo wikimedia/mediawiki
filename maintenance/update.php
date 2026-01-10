@@ -171,8 +171,8 @@ class UpdateMediaWiki extends Maintenance {
 
 		$updater = DatabaseUpdater::newForDB( $db, $shared, $this );
 
-		// Avoid upgrading from versions older than 1.35
-		// Using an implicit marker (rev_actor was introduced in 1.34)
+		// Avoid upgrading from versions older than 1.38
+		// Using an implicit marker (linktarget was introduced in 1.38)
 		// TODO: Use an explicit marker
 		// See T259771
 		if ( !$updater->tableExists( 'linktarget' ) ) {
