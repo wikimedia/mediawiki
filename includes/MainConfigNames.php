@@ -2751,12 +2751,6 @@ class MainConfigNames {
 	public const EnableMultiBlocks = 'EnableMultiBlocks';
 
 	/**
-	 * Name constant for the BlockTargetMigrationStage setting, for use with Config::get()
-	 * @see MainConfigSchema::BlockTargetMigrationStage
-	 */
-	public const BlockTargetMigrationStage = 'BlockTargetMigrationStage';
-
-	/**
 	 * Name constant for the WhitelistRead setting, for use with Config::get()
 	 * @see MainConfigSchema::WhitelistRead
 	 */

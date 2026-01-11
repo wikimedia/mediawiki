@@ -7956,28 +7956,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 *  Ipblocks table schema migration stage, for normalizing ipb_address field and
-	 * 	adding the block_target table.
-	 *
-	 * Use the SCHEMA_COMPAT_XXX flags. Supported values:
-	 *
-	 *   - SCHEMA_COMPAT_OLD
-	 *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
-	 *   - SCHEMA_COMPAT_NEW
-	 *
-	 * History:
-	 *   - 1.42: Added
-	 *   - 1.43: Default changed from SCHEMA_COMPAT_OLD to SCHEMA_COMPAT_NEW
-	 *   - 1.43: Deprecated, ignored, SCHEMA_COMPAT_NEW is implied
-	 *
-	 * @deprecated since 1.43
-	 */
-	public const BlockTargetMigrationStage = [
-		'default' => SCHEMA_COMPAT_NEW,
-		'type' => 'integer',
-	];
-
-	/**
 	 * Pages anonymous user may see, set as an array of pages titles.
 	 *
 	 * **Example:**
