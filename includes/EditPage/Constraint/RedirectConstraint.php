@@ -42,9 +42,9 @@ class RedirectConstraint implements IEditConstraint {
 	public function __construct(
 		private readonly ?Title $allowedProblematicRedirectTarget,
 		private readonly Content $newContent,
-		private readonly Content $originalContent,
+		private readonly ?Content $originalContent,
 		private readonly LinkTarget $title,
-		private readonly string $submitButtonLabel,
+		private readonly MessageValue $errorMessageWrapper,
 		private readonly ?string $contentFormat,
 		private readonly RedirectLookup $redirectLookup,
 	) {
@@ -61,7 +61,9 @@ class RedirectConstraint implements IEditConstraint {
 		// - the last save attempt contained a problematic redirect, and the target is not the same as the one in this
 		//   save attempt (T395767, T395768)
 		if ( $newRedirectTarget !== null && !$this->allowedProblematicRedirectTarget?->equals( $newRedirectTarget ) ) {
-			$currentTarget = $this->getRedirectTarget( $this->originalContent );
+			$currentTarget = $this->originalContent !== null
+				? $this->getRedirectTarget( $this->originalContent )
+				: null;
 
 			// the constraint should only fail if there was no previous content or the previous content contained
 			// a problematic redirect to a different page
@@ -104,15 +106,10 @@ class RedirectConstraint implements IEditConstraint {
 	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood( $this->status );
 
-		if ( $this->status !== null ) {
-			$statusValue->setOK( false );
-		}
+		$errorMessage = null;
 		switch ( $this->status ) {
 			case self::AS_BROKEN_REDIRECT:
-				$statusValue->warning(
-					'edit-constraint-brokenredirect',
-					MessageValue::new( $this->submitButtonLabel )
-				);
+				$errorMessage = MessageValue::new( 'edit-constraint-brokenredirect-warning' );
 				break;
 			case self::AS_DOUBLE_REDIRECT:
 				$doubleRedirectTargetTitle = Title::castFromLinkTarget( $this->doubleRedirectTarget );
@@ -125,31 +122,27 @@ class RedirectConstraint implements IEditConstraint {
 					$suggestedRedirectContent?->serialize( $this->contentFormat ) ?? ''
 				);
 
-				$statusValue->warning(
-					'edit-constraint-doubleredirect',
-					MessageValue::new( $this->submitButtonLabel ),
-					wfEscapeWikiText( $doubleRedirectTargetTitle->getFullText() ),
-					$suggestedRedirectCode,
+				$errorMessage = MessageValue::new(
+					'edit-constraint-doubleredirect-warning',
+					[
+						wfEscapeWikiText( $doubleRedirectTargetTitle->getFullText() ),
+						$suggestedRedirectCode,
+					]
 				);
 				break;
 			case self::AS_DOUBLE_REDIRECT_LOOP:
-				$statusValue->warning(
-					'edit-constraint-doubleredirect-loop',
-					MessageValue::new( $this->submitButtonLabel )
-				);
+				$errorMessage = MessageValue::new( 'edit-constraint-doubleredirect-loop-warning' );
 				break;
 			case self::AS_INVALID_REDIRECT_TARGET:
-				$statusValue->warning(
-					'edit-constraint-invalidredirecttarget',
-					MessageValue::new( $this->submitButtonLabel )
-				);
+				$errorMessage = MessageValue::new( 'edit-constraint-invalidredirecttarget-warning' );
 				break;
 			case self::AS_SELF_REDIRECT:
-				$statusValue->warning(
-					'selfredirect',
-					MessageValue::new( $this->submitButtonLabel )
-				);
+				$errorMessage = MessageValue::new( 'edit-constraint-selfredirect-warning' );
 				break;
+		}
+		if ( $errorMessage !== null ) {
+			$statusValue->warning( $this->errorMessageWrapper->params( $errorMessage ) );
+			$statusValue->setOK( false );
 		}
 
 		return $statusValue;

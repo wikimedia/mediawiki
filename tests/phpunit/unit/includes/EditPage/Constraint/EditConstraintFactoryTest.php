@@ -26,6 +26,7 @@ use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Psr\Log\NullLogger;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
@@ -105,7 +106,7 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 				$this->createMock( Content::class ),
 				$this->createMock( Content::class ),
 				$title,
-				'',
+				MessageValue::new( '' ),
 				''
 			)
 		);

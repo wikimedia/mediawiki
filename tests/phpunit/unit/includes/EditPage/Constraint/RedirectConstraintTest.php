@@ -15,6 +15,7 @@ use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Title\Title;
 use MediaWikiUnitTestCase;
 use StatusValue;
+use Wikimedia\Message\MessageValue;
 
 /**
  * Tests the RedirectConstraint
@@ -73,7 +74,7 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 			$newContent,
 			$originalContent,
 			$title ?? $this->createMock( Title::class ),
-			'',
+			MessageValue::new( '' ),
 			null,
 			$this->createMock( RedirectLookup::class )
 		);

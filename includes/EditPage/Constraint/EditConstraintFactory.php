@@ -22,6 +22,7 @@ use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
@@ -185,9 +186,9 @@ class EditConstraintFactory {
 	public function newRedirectConstraint(
 		?Title $allowedProblematicRedirectTarget,
 		Content $newContent,
-		Content $originalContent,
+		?Content $originalContent,
 		LinkTarget $title,
-		string $submitButtonLabel,
+		MessageValue $errorMessageWrapper,
 		?string $contentFormat,
 	): RedirectConstraint {
 		return new RedirectConstraint(
@@ -195,7 +196,7 @@ class EditConstraintFactory {
 			$newContent,
 			$originalContent,
 			$title,
-			$submitButtonLabel,
+			$errorMessageWrapper,
 			$contentFormat,
 			$this->redirectLookup
 		);

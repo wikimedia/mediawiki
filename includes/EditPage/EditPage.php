@@ -2542,7 +2542,10 @@ class EditPage implements IEditObject {
 					$content,
 					$this->getCurrentContent(),
 					$this->getTitle(),
-					$submitButtonLabel,
+					MessageValue::new(
+						'edit-constraint-warning-wrapper-save',
+						[ MessageValue::new( $submitButtonLabel ) ],
+					),
 					$this->contentFormat,
 				)
 			);
@@ -4089,6 +4092,29 @@ class EditPage implements IEditObject {
 
 			foreach ( $parserOutput->getWarningMsgs() as $mv ) {
 				$note .= "\n\n" . $this->context->msg( $mv )->text();
+			}
+
+			// T394016 - Run some edit constraints on page preview
+			/** @var EditConstraintFactory $constraintFactory */
+			$constraintFactory = MediaWikiServices::getInstance()->getService( '_EditConstraintFactory' );
+			$constraintRunner = new EditConstraintRunner();
+
+			$constraintRunner->addConstraint( $constraintFactory->newRedirectConstraint(
+				null,
+				$content,
+				null,
+				$this->getTitle(),
+				MessageValue::new( 'edit-constraint-warning-wrapper' ),
+				$this->contentFormat,
+			) );
+
+			if ( !$constraintRunner->checkConstraints() ) {
+				$failed = $constraintRunner->getFailedConstraint();
+				$status = $failed->getLegacyStatus();
+
+				foreach ( $status->getMessages() as $message ) {
+					$note .= "\n\n" . $this->context->msg( $message )->text();
+				}
 			}
 
 		} catch ( MWContentSerializationException $ex ) {
