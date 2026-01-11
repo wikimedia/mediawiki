@@ -7,6 +7,7 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use StatusValue;
+use Wikimedia\Message\MessageValue;
 
 /**
  * For a new section, do not allow the user to post with an empty subject (section title) unless they choose to
@@ -17,17 +18,13 @@ use StatusValue;
  */
 class NewSectionMissingSubjectConstraint implements IEditConstraint {
 
-	private string $result;
+	private ?int $status = null;
 
-	/**
-	 * @param string $section
-	 * @param string $subject
-	 * @param bool $allowBlankSubject
-	 */
 	public function __construct(
 		private readonly string $section,
 		private readonly string $subject,
 		private readonly bool $allowBlankSubject,
+		private readonly string $submitButtonLabel,
 	) {
 	}
 
@@ -36,23 +33,24 @@ class NewSectionMissingSubjectConstraint implements IEditConstraint {
 			!$this->allowBlankSubject &&
 			trim( $this->subject ) === ''
 		) {
-			$this->result = self::CONSTRAINT_FAILED;
-		} else {
-			$this->result = self::CONSTRAINT_PASSED;
+			$this->status = self::AS_SUMMARY_NEEDED;
+			return self::CONSTRAINT_FAILED;
 		}
-		return $this->result;
+
+		return self::CONSTRAINT_PASSED;
 	}
 
 	public function getLegacyStatus(): StatusValue {
-		$statusValue = StatusValue::newGood();
-		if ( $this->result === self::CONSTRAINT_FAILED ) {
-			// From EditPage, regarding the fatal:
-			// or 'missingcommentheader' if $section === 'new'. Blegh
-			// For new sections, the subject is also used for the summary,
-			// so we report missing summaries if the section is missing
-			$statusValue->fatal( 'missingsummary' );
-			$statusValue->value = self::AS_SUMMARY_NEEDED;
+		$statusValue = StatusValue::newGood( $this->status );
+
+		if ( $this->status === self::AS_SUMMARY_NEEDED ) {
+			$statusValue->setOK( false );
+			$statusValue->warning(
+				'missingcommentheader',
+				MessageValue::new( $this->submitButtonLabel )
+			);
 		}
+
 		return $statusValue;
 	}
 

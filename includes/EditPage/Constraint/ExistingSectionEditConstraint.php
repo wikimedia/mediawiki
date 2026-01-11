@@ -8,6 +8,7 @@ namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
 use StatusValue;
+use Wikimedia\Message\MessageValue;
 
 /**
  * To simplify the logic in EditPage, this constraint may be created even if the section being
@@ -33,16 +34,8 @@ use StatusValue;
  */
 class ExistingSectionEditConstraint implements IEditConstraint {
 
-	private string $result;
+	private ?int $status = null;
 
-	/**
-	 * @param string $section
-	 * @param string $userSummary
-	 * @param string $autoSummary
-	 * @param bool $allowBlankSummary
-	 * @param Content $newContent
-	 * @param ?Content $originalContent
-	 */
 	public function __construct(
 		private readonly string $section,
 		private readonly string $userSummary,
@@ -50,18 +43,19 @@ class ExistingSectionEditConstraint implements IEditConstraint {
 		private readonly bool $allowBlankSummary,
 		private readonly Content $newContent,
 		private readonly ?Content $originalContent,
+		private readonly string $submitButtonLabel,
 	) {
 	}
 
 	public function checkConstraint(): string {
 		if ( $this->section === 'new' ) {
 			// Constraint is not applicable
-			$this->result = self::CONSTRAINT_PASSED;
 			return self::CONSTRAINT_PASSED;
 		}
+
 		if ( $this->originalContent === null ) {
 			// T301947: User loses access to revision after loading
-			$this->result = self::CONSTRAINT_FAILED;
+			$this->status = self::AS_REVISION_WAS_DELETED;
 			return self::CONSTRAINT_FAILED;
 		}
 		if (
@@ -70,28 +64,30 @@ class ExistingSectionEditConstraint implements IEditConstraint {
 			!$this->newContent->isRedirect() &&
 			md5( $this->userSummary ) === $this->autoSummary
 		) {
-			$this->result = self::CONSTRAINT_FAILED;
-		} else {
-			$this->result = self::CONSTRAINT_PASSED;
+			$this->status = self::AS_SUMMARY_NEEDED;
+			return self::CONSTRAINT_FAILED;
 		}
-		return $this->result;
+
+		return self::CONSTRAINT_PASSED;
 	}
 
 	public function getLegacyStatus(): StatusValue {
-		$statusValue = StatusValue::newGood();
-		if ( $this->result === self::CONSTRAINT_FAILED ) {
-			if ( $this->originalContent === null ) {
-				// T301947: User loses access to revision after loading
-				// The error message, rev-deleted-text-permission, is not
-				// really in use currently. It's added for completeness and in
-				// case any code path wants to know the error.
-				$statusValue->fatal( 'rev-deleted-text-permission' );
-				$statusValue->value = self::AS_REVISION_WAS_DELETED;
-			} else {
-				$statusValue->fatal( 'missingsummary' );
-				$statusValue->value = self::AS_SUMMARY_NEEDED;
-			}
+		$statusValue = StatusValue::newGood( $this->status );
+
+		if ( $this->status === self::AS_REVISION_WAS_DELETED ) {
+			// T301947: User loses access to revision after loading
+			// The error message, rev-deleted-text-permission, is not
+			// really in use currently. It's added for completeness and in
+			// case any code path wants to know the error.
+			$statusValue->fatal( 'rev-deleted-text-permission' );
+		} elseif ( $this->status === self::AS_SUMMARY_NEEDED ) {
+			$statusValue->setOK( false );
+			$statusValue->warning(
+				'missingsummary',
+				MessageValue::new( $this->submitButtonLabel )
+			);
 		}
+
 		return $statusValue;
 	}
 
