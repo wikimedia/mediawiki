@@ -80,8 +80,7 @@ SELECT
   fa_timestamp,
   fa_deleted,
   fa_sha1
-FROM
-  /*_*/__temp__filearchive;
+FROM /*_*/__temp__filearchive;
 
 DROP TABLE /*_*/__temp__filearchive;
 

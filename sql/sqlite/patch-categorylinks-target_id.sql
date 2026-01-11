@@ -41,8 +41,7 @@ SELECT
   cl_timestamp,
   cl_collation,
   cl_type
-FROM
-  /*_*/__temp__categorylinks;
+FROM /*_*/__temp__categorylinks;
 
 DROP TABLE /*_*/__temp__categorylinks;
 

@@ -52,8 +52,7 @@ SELECT
   site_data,
   site_forward,
   site_config
-FROM
-  /*_*/__temp__sites;
+FROM /*_*/__temp__sites;
 
 DROP TABLE /*_*/__temp__sites;
 

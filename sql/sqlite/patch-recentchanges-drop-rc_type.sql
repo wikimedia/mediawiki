@@ -79,8 +79,7 @@ SELECT
   rc_log_type,
   rc_log_action,
   rc_params
-FROM
-  /*_*/__temp__recentchanges;
+FROM /*_*/__temp__recentchanges;
 
 DROP TABLE /*_*/__temp__recentchanges;
 

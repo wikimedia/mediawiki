@@ -53,8 +53,7 @@ SELECT
   ar_len,
   ar_page_id,
   ar_parent_id
-FROM
-  /*_*/__temp__archive;
+FROM /*_*/__temp__archive;
 
 DROP TABLE /*_*/__temp__archive;
 

@@ -26,8 +26,7 @@ SELECT
   pl_from,
   pl_from_namespace,
   pl_target_id
-FROM
-  /*_*/__temp__pagelinks;
+FROM /*_*/__temp__pagelinks;
 
 DROP TABLE /*_*/__temp__pagelinks;
 

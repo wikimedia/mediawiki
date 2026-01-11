@@ -31,8 +31,7 @@ SELECT
   el_to,
   el_index,
   el_index_60
-FROM
-  /*_*/__temp__externallinks;
+FROM /*_*/__temp__externallinks;
 
 DROP TABLE /*_*/__temp__externallinks;
 

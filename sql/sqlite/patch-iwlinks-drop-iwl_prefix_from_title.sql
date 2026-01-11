@@ -24,8 +24,7 @@ SELECT
   iwl_from,
   iwl_prefix,
   iwl_title
-FROM
-  /*_*/__temp__iwlinks;
+FROM /*_*/__temp__iwlinks;
 
 DROP TABLE /*_*/__temp__iwlinks;
 

@@ -62,8 +62,7 @@ SELECT
   oi_minor_mime,
   oi_deleted,
   oi_sha1
-FROM
-  /*_*/__temp__oldimage;
+FROM /*_*/__temp__oldimage;
 
 DROP TABLE /*_*/__temp__oldimage;
 

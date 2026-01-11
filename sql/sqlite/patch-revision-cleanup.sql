@@ -48,8 +48,7 @@ SELECT
   rev_len,
   rev_parent_id,
   rev_sha1
-FROM
-  /*_*/__temp__revision;
+FROM /*_*/__temp__revision;
 
 DROP TABLE /*_*/__temp__revision;
 

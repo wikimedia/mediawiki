@@ -30,8 +30,7 @@ SELECT
   pl_namespace,
   pl_title,
   pl_from_namespace
-FROM
-  /*_*/__temp__pagelinks;
+FROM /*_*/__temp__pagelinks;
 
 DROP TABLE /*_*/__temp__pagelinks;
 

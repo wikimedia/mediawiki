@@ -60,8 +60,7 @@ SELECT
   img_actor,
   img_timestamp,
   img_sha1
-FROM
-  /*_*/__temp__image;
+FROM /*_*/__temp__image;
 
 DROP TABLE /*_*/__temp__image;
 

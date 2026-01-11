@@ -27,8 +27,7 @@ SELECT
   il_from,
   il_to,
   il_from_namespace
-FROM
-  /*_*/__temp__imagelinks;
+FROM /*_*/__temp__imagelinks;
 
 DROP TABLE /*_*/__temp__imagelinks;
 

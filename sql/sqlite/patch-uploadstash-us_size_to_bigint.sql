@@ -72,8 +72,7 @@ SELECT
   us_image_width,
   us_image_height,
   us_image_bits
-FROM
-  /*_*/__temp__uploadstash;
+FROM /*_*/__temp__uploadstash;
 
 DROP TABLE /*_*/__temp__uploadstash;
 

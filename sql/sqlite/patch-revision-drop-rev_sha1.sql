@@ -44,8 +44,7 @@ SELECT
   rev_deleted,
   rev_len,
   rev_parent_id
-FROM
-  /*_*/__temp__revision;
+FROM /*_*/__temp__revision;
 
 DROP TABLE /*_*/__temp__revision;
 

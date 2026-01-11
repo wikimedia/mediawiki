@@ -179,6 +179,7 @@ class SchemaGenerator {
 			// Doctrine prepends __temp__ to the table name and we set the table with the schema prefix causing invalid
 			// sqlite.
 			$sql = preg_replace( '/__temp__\s*\/\*_\*\//', '/*_*/__temp__', $sql );
+			$sql = str_replace( "\n  /*_*/", ' /*_*/', $sql );
 		}
 
 		return $sql;

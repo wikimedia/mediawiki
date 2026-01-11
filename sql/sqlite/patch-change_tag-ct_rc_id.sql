@@ -34,8 +34,7 @@ SELECT
   ct_rev_id,
   ct_params,
   ct_tag_id
-FROM
-  /*_*/__temp__change_tag;
+FROM /*_*/__temp__change_tag;
 
 DROP TABLE /*_*/__temp__change_tag;
 

@@ -46,8 +46,7 @@ SELECT
   cl_type,
   cl_collation_id,
   cl_target_id
-FROM
-  /*_*/__temp__categorylinks;
+FROM /*_*/__temp__categorylinks;
 
 DROP TABLE /*_*/__temp__categorylinks;
 

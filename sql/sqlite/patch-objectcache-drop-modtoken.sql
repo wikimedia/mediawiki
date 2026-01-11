@@ -24,8 +24,7 @@ SELECT
   keyname,
   value,
   exptime
-FROM
-  /*_*/__temp__objectcache;
+FROM /*_*/__temp__objectcache;
 
 DROP TABLE /*_*/__temp__objectcache;
 

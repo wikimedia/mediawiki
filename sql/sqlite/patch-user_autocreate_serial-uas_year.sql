@@ -22,7 +22,6 @@ INSERT INTO /*_*/user_autocreate_serial (uas_shard, uas_value)
 SELECT
   uas_shard,
   uas_value
-FROM
-  /*_*/__temp__user_autocreate_serial;
+FROM /*_*/__temp__user_autocreate_serial;
 
 DROP TABLE /*_*/__temp__user_autocreate_serial;

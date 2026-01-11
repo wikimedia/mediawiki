@@ -37,8 +37,7 @@ SELECT
   el_index_60,
   el_to_domain_index,
   el_to_path
-FROM
-  /*_*/__temp__externallinks;
+FROM /*_*/__temp__externallinks;
 
 DROP TABLE /*_*/__temp__externallinks;
 
