@@ -104,9 +104,12 @@ class RedirectConstraint implements IEditConstraint {
 	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood( $this->status );
 
+		if ( $this->status !== null ) {
+			$statusValue->setOK( false );
+		}
 		switch ( $this->status ) {
 			case self::AS_BROKEN_REDIRECT:
-				$statusValue->fatal(
+				$statusValue->warning(
 					'edit-constraint-brokenredirect',
 					MessageValue::new( $this->submitButtonLabel )
 				);
@@ -122,7 +125,7 @@ class RedirectConstraint implements IEditConstraint {
 					$suggestedRedirectContent?->serialize( $this->contentFormat ) ?? ''
 				);
 
-				$statusValue->fatal(
+				$statusValue->warning(
 					'edit-constraint-doubleredirect',
 					MessageValue::new( $this->submitButtonLabel ),
 					wfEscapeWikiText( $doubleRedirectTargetTitle->getFullText() ),
@@ -130,19 +133,19 @@ class RedirectConstraint implements IEditConstraint {
 				);
 				break;
 			case self::AS_DOUBLE_REDIRECT_LOOP:
-				$statusValue->fatal(
+				$statusValue->warning(
 					'edit-constraint-doubleredirect-loop',
 					MessageValue::new( $this->submitButtonLabel )
 				);
 				break;
 			case self::AS_INVALID_REDIRECT_TARGET:
-				$statusValue->fatal(
+				$statusValue->warning(
 					'edit-constraint-invalidredirecttarget',
 					MessageValue::new( $this->submitButtonLabel )
 				);
 				break;
 			case self::AS_SELF_REDIRECT:
-				$statusValue->fatal(
+				$statusValue->warning(
 					'selfredirect',
 					MessageValue::new( $this->submitButtonLabel )
 				);
