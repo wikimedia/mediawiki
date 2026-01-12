@@ -288,5 +288,6 @@
 	"rest-endpoint-summ-post-page": "Create page",
 	"rest-endpoint-summ-post-transform-wikitext-to-lint": "Return lint errors for wikitext",
 	"rest-endpoint-summ-post-transform-wikitext-to-html": "Convert Wikitext to HTML",
-	"rest-endpoint-summ-post-transform-html-to-wikitext": "Convert HTML to Wikitext"
+	"rest-endpoint-summ-post-transform-html-to-wikitext": "Convert HTML to Wikitext",
+	"rest-requestheader-desc-acceptlanguage": "The natural language and locale that the client prefers"
 }

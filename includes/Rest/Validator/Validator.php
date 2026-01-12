@@ -46,7 +46,7 @@ class Validator {
 	 *
 	 * @since 1.42
 	 */
-	public const KNOWN_PARAM_SOURCES = [ 'path', 'query', 'body', 'post' ];
+	public const KNOWN_PARAM_SOURCES = [ 'path', 'query', 'body', 'post', 'header' ];
 
 	/**
 	 * (string) ParamValidator constant for use as a key in a param settings array
@@ -152,8 +152,10 @@ class Validator {
 					continue;
 				}
 
+				$type = $settings[ParamValidator::PARAM_TYPE] ?? 'unspecified';
 				$validatedParams[$name] = $this->paramValidator->getValue( $name, $settings, [
 					'source' => $source,
+					'type' => $type
 				] );
 			} catch ( ValidationException $e ) {
 				// NOTE: error data structure must match the one used by validateBodyParams

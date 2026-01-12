@@ -418,9 +418,8 @@ abstract class Handler {
 	 * @throws HttpException On validation failure.
 	 */
 	public function validate( Validator $restValidator ) {
-		$this->validatedParams = $restValidator->validateParams(
-			$this->getParamSettings()
-		);
+		$allParamSettings = array_merge( $this->getParamSettings(), $this->getHeaderParamSettings() );
+		$this->validatedParams = $restValidator->validateParams( $allParamSettings );
 
 		$bodyType = $this->request->getBodyType();
 		$legacyBodyValidator = $bodyType === null ? null
@@ -654,6 +653,25 @@ abstract class Handler {
 	}
 
 	/**
+	 * Fetch ParamValidator settings for request headers
+	 *
+	 * Every setting must include self::PARAM_SOURCE as 'header' to specify
+	 * it's a request header for the endpoint.
+	 *
+	 * Subclasses that must use the headers from a request should consider
+	 * having PARAM_REQUIRED setting of "true", Otherwise if the header's existence
+	 * or non-existence doesn't break the code the PARAM_REQUIRED should be set to "false".
+	 *
+	 * @stable to override
+	 *
+	 * @return array[] Associative array mapping header names to
+	 *  ParamValidator settings arrays
+	 */
+	public function getHeaderParamSettings() {
+		return [];
+	}
+
+	/**
 	 * Fetch ParamValidator settings for body fields. Parameters defined
 	 * by this method are used to validate the request body. The parameter
 	 * values will become available through getValidatedBody().
@@ -701,6 +719,22 @@ abstract class Handler {
 
 			if ( $source === 'path' && !isset( $supportedPathParams[$name] ) ) {
 				// Skip optional path param not used in the current path
+				continue;
+			}
+
+			$setting[ Validator::PARAM_DESCRIPTION ] = $this->getJsonLocalizer()->localizeValue(
+				$setting, Validator::PARAM_DESCRIPTION,
+			);
+
+			$param = Validator::getParameterSpec( $name, $setting );
+
+			$parameters[] = $param;
+		}
+
+		foreach ( $this->getHeaderParamSettings() as $name => $setting ) {
+			$source = $setting[ Validator::PARAM_SOURCE ] ?? '';
+
+			if ( $source !== 'header' ) {
 				continue;
 			}
 

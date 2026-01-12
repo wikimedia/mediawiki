@@ -25,7 +25,7 @@ class ParamValidatorCallbacks implements Callbacks {
 
 	/**
 	 * Get the raw parameters from a source in the request
-	 * @param string $source 'path', 'query', or 'post'
+	 * @param string $source 'path', 'query', 'post', 'body' or 'header'
 	 * @return array
 	 */
 	private function getParamsFromSource( $source ) {
@@ -44,6 +44,9 @@ class ParamValidatorCallbacks implements Callbacks {
 			case 'body':
 				return $this->request->getParsedBody() ?? [];
 
+			case 'header':
+				return $this->request->getHeaders() ?? [];
+
 			default:
 				throw new InvalidArgumentException( __METHOD__ . ": Invalid source '$source'" );
 		}
@@ -59,6 +62,13 @@ class ParamValidatorCallbacks implements Callbacks {
 	public function getValue( $name, $default, array $options ) {
 		$params = $this->getParamsFromSource( $options['source'] );
 		$value = $params[$name] ?? $default;
+		if (
+			$options['source'] === 'header' &&
+			$options['type'] === 'string' &&
+			isset( $params[$name] )
+		) {
+			$value = implode( ', ', $value );
+		}
 
 		// Normalisation for body is being handled in Handler::parseBodyData
 		if ( !isset( $options['raw'] ) && $options['source'] !== 'body' ) {

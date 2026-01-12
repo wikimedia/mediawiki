@@ -293,5 +293,6 @@
 	"rest-endpoint-summ-post-page": "{{Experimental}} Create page",
 	"rest-endpoint-summ-post-transform-wikitext-to-lint": "{{Experimental}} Return lint errors for wikitext",
 	"rest-endpoint-summ-post-transform-wikitext-to-html": "{{Experimental}} Convert Wikitext to HTML",
-	"rest-endpoint-summ-post-transform-html-to-wikitext": "{{Experimental}} Convert HTML to Wikitext"
+	"rest-endpoint-summ-post-transform-html-to-wikitext": "{{Experimental}} Convert HTML to Wikitext",
+	"rest-requestheader-desc-acceptlanguage": "The natural language and locale that the client prefers"
 }

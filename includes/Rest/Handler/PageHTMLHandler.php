@@ -3,6 +3,7 @@
 namespace MediaWiki\Rest\Handler;
 
 use LogicException;
+use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputHelper;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Rest\Handler\Helper\PageContentHelper;
@@ -13,6 +14,8 @@ use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\StringStream;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Message\MessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * A handler that returns Parsoid HTML for the following routes:
@@ -173,6 +176,17 @@ class PageHTMLHandler extends SimpleHandler {
 			// for that are a subset of those for HtmlOutputRendererHelper
 			HtmlOutputRendererHelper::getParamSettings()
 		);
+	}
+
+	public function getHeaderParamSettings(): array {
+		return [
+			'Accept-Language' => [
+				self::PARAM_SOURCE => 'header',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-acceptlanguage' ),
+			],
+		];
 	}
 
 	protected function generateResponseSpec( string $method ): array {

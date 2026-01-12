@@ -810,6 +810,44 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 				'expected' => null,
 				'expectedException' => InvalidArgumentException::class
 			],
+
+			// Test case 7: Header params converts headerLists to string
+			[
+				'source' => 'header',
+				'requestData' => new RequestData( [ 'headers' => [ 'param1' => 'en' ] ] ),
+				'options' => [
+					'type' => 'string'
+				],
+				'expected' => 'en'
+			],
+
+			// Test case 8: Multiple header params values return comma separated string
+			[
+				'source' => 'header',
+				'requestData' => new RequestData( [ 'headers' =>
+					[ 'param1' =>
+						[ 'en, tg-latn;q=1', 'tg-latn' ]
+					]
+				] ),
+				'options' => [
+					'type' => 'string'
+				],
+				'expected' => 'en, tg-latn;q=1, tg-latn'
+			],
+
+			// Test case 9: Skip conversion to string if Handler expected type is array
+			[
+				'source' => 'header',
+				'requestData' => new RequestData( [ 'headers' =>
+					[ 'param1' =>
+						[ 'en, tg-latn;q=1', 'tg-latn' ]
+					]
+				] ),
+				'options' => [
+					'type' => 'array'
+				],
+				'expected' => [ 'en, tg-latn;q=1', 'tg-latn' ]
+			],
 		];
 	}
 
