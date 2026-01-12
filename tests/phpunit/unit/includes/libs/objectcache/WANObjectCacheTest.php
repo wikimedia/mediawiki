@@ -62,7 +62,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$cache->set( $key, $value, $ttl );
 
 		$this->assertSame( $value, $cache->get( $key, $curTTL, [], $asOf ) );
-		if ( $ttl === INF ) {
+		if ( $ttl === INF || $ttl === WANObjectCache::TTL_INDEFINITE ) {
 			$this->assertSame( INF, $curTTL, "Current TTL" );
 		} else {
 			$this->assertGreaterThan( 0, $curTTL, "Current TTL" );
@@ -91,7 +91,8 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 			[ (object)[ 'meow' ], 3 ],
 			[ INF, 3 ],
 			[ '', 3 ],
-			[ 'pizzacat', INF ],
+			[ 'pizzacat1', INF ],
+			[ 'pizzacat2', WANObjectCache::TTL_INDEFINITE ],
 			[ null, 80 ],
 			[ $a2, 3 ],
 			[ $o2, 3 ],
