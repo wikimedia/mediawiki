@@ -289,7 +289,7 @@ class IcuCollation extends Collation {
 		$firstChar = mb_substr( $string, 0, 1, 'UTF-8' );
 
 		// If the first character is a CJK character, just return that character.
-		if ( ord( $firstChar ) > 0x7f && self::isCjk( mb_ord( $firstChar ) ) ) {
+		if ( ord( $firstChar[0] ) > 0x7f && self::isCjk( mb_ord( $firstChar ) ) ) {
 			return $firstChar;
 		}
 
@@ -319,7 +319,7 @@ class IcuCollation extends Collation {
 			// ASCII value of 0 is 48. ASCII value of 9 is 57.
 			// Note that this also applies to non-Arabic numerals since they are
 			// mapped to Arabic numeral sort letters. For example, ২ sorts as 2.
-			if ( ord( $sortLetter ) >= 48 && ord( $sortLetter ) <= 57 ) {
+			if ( ord( $sortLetter[0] ) >= 48 && ord( $sortLetter[0] ) <= 57 ) {
 				$sortLetter = wfMessage( 'category-header-numerals' )->numParams( 0, 9 )->text();
 			}
 		}
