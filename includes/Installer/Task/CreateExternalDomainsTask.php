@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Installer\Task;
 
-use ExternalStoreDB;
+use MediaWiki\ExternalStore\ExternalStoreDB;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\DatabaseDomain;

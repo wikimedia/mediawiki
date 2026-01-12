@@ -12,10 +12,10 @@
 namespace MediaWiki\Storage;
 
 use AppendIterator;
-use ExternalStoreAccess;
-use ExternalStoreException;
 use HistoryBlobUtils;
 use InvalidArgumentException;
+use MediaWiki\ExternalStore\ExternalStoreAccess;
+use MediaWiki\ExternalStore\ExternalStoreException;
 use StatusValue;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ObjectCache\BagOStuff;

@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Storage\Unit;
 
-use ExternalStoreAccess;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\ExternalStore\ExternalStoreAccess;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;

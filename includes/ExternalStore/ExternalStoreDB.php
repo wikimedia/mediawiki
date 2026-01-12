@@ -4,6 +4,11 @@
  * @file
  */
 
+namespace MediaWiki\ExternalStore;
+
+use HistoryBlobUtils;
+use InvalidArgumentException;
+use RuntimeException;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -81,7 +86,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$ret = [];
 		foreach ( $batched as $cluster => $batchByCluster ) {
 			$res = $this->batchFetchBlobs( $cluster, $batchByCluster );
-			/** @var HistoryBlob $blob */
+			/** @var \HistoryBlob $blob */
 			foreach ( $res as $id => $blob ) {
 				foreach ( $batchByCluster[$id] as $itemID ) {
 					$url = $inverseUrlMap[$cluster][$id][$itemID];
@@ -267,7 +272,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @param string $cluster
 	 * @param string $id
 	 * @param string $itemID
-	 * @return HistoryBlob|false Returns false if missing
+	 * @return \HistoryBlob|false Returns false if missing
 	 */
 	private function fetchBlob( $cluster, $id, $itemID ) {
 		/**
@@ -432,3 +437,6 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		return $this->getDomainId( $lb->getServerInfo( ServerInfo::WRITER_INDEX ) );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ExternalStoreDB::class, 'ExternalStoreDB' );

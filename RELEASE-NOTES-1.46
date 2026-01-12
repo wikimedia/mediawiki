@@ -688,6 +688,16 @@ because of Phabricator reports.
     - DummySearchIndexFieldDefinition
     - SearchExactMatchRescorer
     - FauxSearchResult
+  - MediaWiki\ExternalStore:
+    - ExternalStoreMedium
+    - ExternalStoreFactory
+    - ExternalStore
+    - ExternalStoreMemory
+    - ExternalStoreMwstore
+    - ExternalStoreHttp
+    - ExternalStoreException
+    - ExternalStoreAccess
+    - ExternalStoreDB
 * Using an int for the $mode parameter of LanguageFallback::getAll() is now
   deprecated.  Use the new LanguageFallbackMode enumeration instead.
 * LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use

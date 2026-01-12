@@ -4,6 +4,9 @@
  * @file
  */
 
+namespace MediaWiki\ExternalStore;
+
+use LogicException;
 use MediaWiki\Exception\ReadOnlyError;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -189,3 +192,6 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 		return true; // all stores are read-only
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ExternalStoreAccess::class, 'ExternalStoreAccess' );

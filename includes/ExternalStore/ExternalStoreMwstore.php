@@ -4,6 +4,9 @@
  * @file
  */
 
+namespace MediaWiki\ExternalStore;
+
+use InvalidArgumentException;
 use MediaWiki\FileBackend\FileBackendGroup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
@@ -84,7 +87,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 	public function store( $backend, $data ) {
 		$be = $this->fbGroup->get( $backend );
 		// Get three random base 36 characters to act as shard directories
-		$rand = Wikimedia\base_convert( (string)mt_rand( 0, 46655 ), 10, 36, 3 );
+		$rand = \Wikimedia\base_convert( (string)mt_rand( 0, 46655 ), 10, 36, 3 );
 		// Make sure ID is roughly lexicographically increasing for performance
 		$gen = MediaWikiServices::getInstance()->getGlobalIdGenerator();
 		$id = str_pad( $gen->newTimestampedUID128( 32 ), 26, '0', STR_PAD_LEFT );
@@ -120,3 +123,6 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 		return $be->isReadOnly();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ExternalStoreMwstore::class, 'ExternalStoreMwstore' );

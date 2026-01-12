@@ -2,14 +2,14 @@
 
 namespace MediaWiki\Tests\ExternalStore;
 
-use ExternalStore;
-use ExternalStoreFactory;
+use MediaWiki\ExternalStore\ExternalStore;
+use MediaWiki\ExternalStore\ExternalStoreFactory;
 use MediaWikiIntegrationTestCase;
 
 class ExternalStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers \ExternalStore::fetchFromURL
+	 * @covers \MediaWiki\ExternalStore\ExternalStore::fetchFromURL
 	 */
 	public function testExternalFetchFromURL_noExternalStores() {
 		$this->setService(
@@ -34,7 +34,7 @@ class ExternalStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ExternalStore::fetchFromURL
+	 * @covers \MediaWiki\ExternalStore\ExternalStore::fetchFromURL
 	 * @dataProvider provideFetchFromURLWithStore
 	 */
 	public function testExternalFetchFromURL_someExternalStore( $expect, $url, $msg ) {

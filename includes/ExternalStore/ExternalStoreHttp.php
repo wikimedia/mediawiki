@@ -4,6 +4,9 @@
  * @file
  */
 
+namespace MediaWiki\ExternalStore;
+
+use LogicException;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -33,3 +36,6 @@ class ExternalStoreHttp extends ExternalStoreMedium {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ExternalStoreHttp::class, 'ExternalStoreHttp' );

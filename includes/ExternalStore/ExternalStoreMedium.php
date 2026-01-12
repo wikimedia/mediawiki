@@ -4,6 +4,9 @@
  * @file
  */
 
+namespace MediaWiki\ExternalStore;
+
+use InvalidArgumentException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -101,3 +104,6 @@ abstract class ExternalStoreMedium implements LoggerAwareInterface {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ExternalStoreMedium::class, 'ExternalStoreMedium' );

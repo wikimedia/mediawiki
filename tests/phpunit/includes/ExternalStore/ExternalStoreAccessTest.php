@@ -2,17 +2,17 @@
 
 namespace MediaWiki\Tests\ExternalStore;
 
-use ExternalStoreAccess;
-use ExternalStoreFactory;
-use ExternalStoreMedium;
-use ExternalStoreMemory;
 use MediaWiki\Exception\ReadOnlyError;
+use MediaWiki\ExternalStore\ExternalStoreAccess;
+use MediaWiki\ExternalStore\ExternalStoreFactory;
+use MediaWiki\ExternalStore\ExternalStoreMedium;
+use MediaWiki\ExternalStore\ExternalStoreMemory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
- * @covers \ExternalStoreAccess
+ * @covers \MediaWiki\ExternalStore\ExternalStoreAccess
  */
 class ExternalStoreAccessTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
@@ -34,7 +34,7 @@ class ExternalStoreAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ExternalStoreAccess::isReadOnly
+	 * @covers \MediaWiki\ExternalStore\ExternalStoreAccess::isReadOnly
 	 */
 	public function testReadOnly() {
 		/** @var  ExternalStoreMedium|MockObject $medium */
@@ -58,9 +58,9 @@ class ExternalStoreAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ExternalStoreAccess::fetchFromURL
-	 * @covers \ExternalStoreAccess::fetchFromURLs
-	 * @covers \ExternalStoreAccess::insert
+	 * @covers \MediaWiki\ExternalStore\ExternalStoreAccess::fetchFromURL
+	 * @covers \MediaWiki\ExternalStore\ExternalStoreAccess::fetchFromURLs
+	 * @covers \MediaWiki\ExternalStore\ExternalStoreAccess::insert
 	 */
 	public function testReadWrite() {
 		$active = [ 'memory' ]; // active store types

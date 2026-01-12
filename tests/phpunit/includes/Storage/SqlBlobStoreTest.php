@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\Storage;
 
 use ConcatenatedGzipHistoryBlob;
-use ExternalStoreFactory;
 use InvalidArgumentException;
+use MediaWiki\ExternalStore\ExternalStoreFactory;
 use MediaWiki\Storage\BadBlobException;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\SqlBlobStore;

@@ -4,6 +4,10 @@
  * @file
  */
 
+namespace MediaWiki\ExternalStore;
+
+use UnexpectedValueException;
+
 /**
  * External storage in PHP process memory for testing.
  *
@@ -85,3 +89,6 @@ class ExternalStoreMemory extends ExternalStoreMedium {
 		return [ $parts[0], $parts[1] ?? null ];
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ExternalStoreMemory::class, 'ExternalStoreMemory' );

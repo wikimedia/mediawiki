@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\ExternalStore;
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -130,3 +132,6 @@ class ExternalStore {
 			->insert( $data, [ 'domain' => $wiki ] );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ExternalStore::class, 'ExternalStore' );

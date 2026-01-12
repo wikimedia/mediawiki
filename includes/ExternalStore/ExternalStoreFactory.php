@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\ExternalStore;
+
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -191,3 +193,6 @@ class ExternalStoreFactory implements LoggerAwareInterface {
 		return $parts;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ExternalStoreFactory::class, 'ExternalStoreFactory' );

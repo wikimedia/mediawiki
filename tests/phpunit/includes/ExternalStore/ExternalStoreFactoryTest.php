@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\ExternalStore;
 
-use ExternalStoreAccess;
-use ExternalStoreException;
-use ExternalStoreFactory;
-use ExternalStoreMemory;
+use MediaWiki\ExternalStore\ExternalStoreAccess;
+use MediaWiki\ExternalStore\ExternalStoreException;
+use MediaWiki\ExternalStore\ExternalStoreFactory;
+use MediaWiki\ExternalStore\ExternalStoreMemory;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\FileBackend\MemoryFileBackend;
@@ -13,8 +13,8 @@ use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
 
 /**
- * @covers \ExternalStoreFactory
- * @covers \ExternalStoreAccess
+ * @covers \MediaWiki\ExternalStore\ExternalStoreFactory
+ * @covers \MediaWiki\ExternalStore\ExternalStoreAccess
  */
 class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 
@@ -56,9 +56,9 @@ class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ExternalStoreFactory::getProtocols
-	 * @covers \ExternalStoreFactory::getWriteBaseUrls
-	 * @covers \ExternalStoreFactory::getStore
+	 * @covers \MediaWiki\ExternalStore\ExternalStoreFactory::getProtocols
+	 * @covers \MediaWiki\ExternalStore\ExternalStoreFactory::getWriteBaseUrls
+	 * @covers \MediaWiki\ExternalStore\ExternalStoreFactory::getStore
 	 */
 	public function testStoreFactoryBasic() {
 		$active = [ 'memory', 'mwstore' ];
@@ -103,8 +103,8 @@ class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ExternalStoreFactory::getStoreForUrl
-	 * @covers \ExternalStoreFactory::getStoreLocationFromUrl
+	 * @covers \MediaWiki\ExternalStore\ExternalStoreFactory::getStoreForUrl
+	 * @covers \MediaWiki\ExternalStore\ExternalStoreFactory::getStoreLocationFromUrl
 	 */
 	public function testStoreFactoryReadWrite() {
 		$active = [ 'memory' ]; // active store types
