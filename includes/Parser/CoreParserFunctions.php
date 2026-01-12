@@ -454,9 +454,9 @@ class CoreParserFunctions {
 			$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?([Ee][-+]?\d+)?';
 			if (
 				!is_numeric( $number ) &&
-				$number !== (string)NAN &&
-				$number !== (string)INF &&
-				$number !== (string)-INF
+				$number !== 'NAN' &&
+				$number !== 'INF' &&
+				$number !== '-INF'
 			) {
 				$parser->addTrackingCategory( 'nonnumeric-formatnum' );
 				// Don't split on NAN/INF in the legacy case since they are
