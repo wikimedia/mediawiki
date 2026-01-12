@@ -14,6 +14,7 @@ use RuntimeException;
 use stdClass;
 use UnexpectedValueException;
 use Wikimedia\Message\ListParam;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -356,6 +357,13 @@ class ApiResult implements ApiSerializable {
 				// HACK Support code that puts $msg->getParams() directly into API responses
 				// (e.g. ApiErrorFormatter::formatRawMessage()).
 				$value = $value->getType() === ParamType::TEXT ? $value->getValue() : $value->toJsonArray();
+				if ( $value instanceof MessageValue ) {
+					$value = $value->toJsonArray();
+				}
+			} elseif ( $value instanceof MessageValue ) {
+				// HACK Support code that puts $msg->getParams() directly into API responses
+				// (e.g. ApiErrorFormatter::formatRawMessage()).
+				$value = $value->toJsonArray();
 			} elseif ( is_callable( [ $value, '__toString' ] ) ) {
 				$value = (string)$value;
 			} else {

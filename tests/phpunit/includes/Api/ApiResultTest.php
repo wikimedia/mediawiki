@@ -249,22 +249,26 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 		ApiResult::setValue( $arr, 'msg', wfMessage( 'foo' )
 			->params( 'bar' )
 			->sizeParams( 123 )
-			->params( Message::listParam( [ 'a', Message::sizeParam( 123 ), 'c' ] ) )
+			->params( wfMessage( 'foo2' ) )
+			->params( Message::listParam( [ 'a', Message::sizeParam( 123 ), wfMessage( 'foo2' ), 'c' ] ) )
 			->getParams() );
 		ApiResult::setValue( $arr, 'msgval', MessageValue::new( 'foo' )
 			->params( 'bar' )
 			->sizeParams( 123 )
-			->textListParams( [ 'a', Message::sizeParam( 123 ), 'c' ] )
+			->params( MessageValue::new( 'foo2' ) )
+			->textListParams( [ 'a', Message::sizeParam( 123 ), MessageValue::new( 'foo2' ), 'c' ] )
 			->getParams() );
 
 		$this->assertSame( [
 			'msg' => [
 				'bar',
 				[ 'size' => 123 ],
+				'⧼foo2⧽',
 				[
 					'list' => [
 						'a',
 						[ 'size' => 123 ],
+						[ 'key' => 'foo2', 'params' => [] ],
 						'c',
 					],
 					'type' => 'text',
@@ -273,10 +277,12 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			'msgval' => [
 				'bar',
 				[ 'size' => 123 ],
+				[ 'key' => 'foo2', 'params' => [] ],
 				[
 					'list' => [
 						'a',
 						[ 'size' => 123 ],
+						[ 'key' => 'foo2', 'params' => [] ],
 						'c',
 					],
 					'type' => 'text',
