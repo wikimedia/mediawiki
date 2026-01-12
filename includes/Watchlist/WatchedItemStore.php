@@ -1876,7 +1876,8 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 				->where( [
 					'wlm_item' => $wlIdsBatch,
 					'wlm_label' => $labelIds
-				] );
+				] )
+			->execute();
 		}
 	}
 

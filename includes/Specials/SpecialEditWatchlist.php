@@ -250,6 +250,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				case 'assign':
 					$this->assignLabelsFromFormSubmission();
 					break;
+				case 'unassign':
+					$this->unassignLabelsFromFormSubmission();
+					break;
 				case 'unwatch':
 					$this->unwatchItemsFromFormSubmission();
 			}
@@ -276,6 +279,32 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	private function assignLabelsFromFormSubmission() {
+		$titlesAndLabels = $this->getTitlesAndLabelsFromRequest();
+		if ( $titlesAndLabels !== null ) {
+			$this->watchedItemStore->addLabels(
+				$this->getUser(), $titlesAndLabels["titles"], $titlesAndLabels["labels"]
+			);
+			$this->displayFormSubmitSuccessMessage(
+				$this->msg( 'watchlistlabels-assign-labels-done' )
+					->numParams( count( $titlesAndLabels["labels"] ), count( $titlesAndLabels["titles"] ) )->parse()
+			);
+		}
+	}
+
+	private function unassignLabelsFromFormSubmission() {
+		$titlesAndLabels = $this->getTitlesAndLabelsFromRequest();
+		if ( $titlesAndLabels !== null ) {
+			$this->watchedItemStore->removeLabels(
+				$this->getUser(), $titlesAndLabels["titles"], $titlesAndLabels["labels"]
+			);
+			$this->displayFormSubmitSuccessMessage(
+				$this->msg( 'watchlistlabels-unassign-labels-done' )
+				->numParams( count( $titlesAndLabels["labels"] ), count( $titlesAndLabels["titles"] ) )->parse()
+			);
+		}
+	}
+
+	private function getTitlesAndLabelsFromRequest(): ?array {
 		$titleStrings = $this->getRequest()->getArray( self::WL_ITEM_CHECKBOX_NAME );
 		$labels = $this->getRequest()->getArray( 'watchlistlabels' );
 		if ( is_array( $titleStrings ) && count( $titleStrings ) > 0 && is_array( $labels ) && count( $labels ) > 0 ) {
@@ -290,11 +319,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					// do nothing
 				}
 			}
-			$this->watchedItemStore->addLabels( $this->getUser(), $titles, $labels );
-			$successMessage = $this->msg( 'watchlistlabels-assign-labels-done' )
-				->numParams( count( $labels ), count( $titles ) )->parse();
-			$this->displayFormSubmitSuccessMessage( $successMessage );
+			if ( count( $titles ) > 0 ) {
+				return [ "titles" => $titles, "labels" => $labels ];
+			}
 		}
+		return null;
 	}
 
 	private function displayFormSubmitSuccessMessage( string $successMessage ) {

@@ -2491,6 +2491,7 @@
 	"watchlistlabels-editwatchlist-dialog-assign": "Button text for the submit button in the label-assigning dialog. Appears next to {{msg-mw|cancel}}.",
 	"watchlistlabels-editwatchlist-dialog-unassign": "Button text for the submit button in the label-removing dialog. Appears next to {{msg-mw|watchlistlabels-editwatchlist-dialog-assign}}.",
 	"watchlistlabels-assign-labels-done": "Message text after assigning labels to watchlist items on Special:EditWatchlist.\n\nParameter:\n* $1 - number of labels assigned.\n* $2 - number of watchlist items the labels have been assigned to.",
+	"watchlistlabels-unassign-labels-done": "Message text after un-assigning labels to watchlist items on Special:EditWatchlist.\n\nParameter:\n* $1 - number of labels unassigned.\n* $2 - number of watchlist items the labels have been unassigned from.",
 	"watchlist-filters-labels-title": "Text for the Labels button in filters on [[Special:Watchlist]]",
 	"watchlist-filters-labels-list-title": "Title for the list of label filters on [[Special:Watchlist]]",
 	"watchlist-filters-tag-prefix-labels-inverted": "Prefix for inverted label tags in [[Special:Watchlist]]. Label tags use an equals sign (=) as prefix. Please keep this format.\n\nParameters:\n* $1 - Filter name.\n{{Identical|Not}}",

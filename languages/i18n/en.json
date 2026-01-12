@@ -2213,6 +2213,7 @@
 	"watchlistlabels-editwatchlist-dialog-assign": "Assign",
 	"watchlistlabels-editwatchlist-dialog-unassign": "Remove",
 	"watchlistlabels-assign-labels-done": "$1 {{PLURAL:$1|label|labels}} assigned to $2 {{PLURAL:$2|page|pages}}",
+	"watchlistlabels-unassign-labels-done": "$1 {{PLURAL:$1|label|labels}} removed from $2 {{PLURAL:$2|page|pages}}",
 	"watchlist-filters-labels-title": "Labels",
 	"watchlist-filters-labels-list-title": "Watchlist labels",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>not</strong> =$1",
