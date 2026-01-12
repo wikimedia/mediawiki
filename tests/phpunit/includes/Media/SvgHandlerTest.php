@@ -312,7 +312,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	public static function provideIsEnabled() {
 		return [
 			[ 'ImageMagick', true ],
-			[ 'sodipodi', true ],
+			[ 'inkscape', true ],
 			[ 'invalid', false ],
 		];
 	}
