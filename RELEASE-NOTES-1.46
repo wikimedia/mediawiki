@@ -76,6 +76,10 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 === New developer features in 1.46 ===
 
+* Various functions are now marked with the #[\NoDiscard] attribute, which will
+  cause PHP 8.5 (and Phan) to emit warnings when their return values are not
+  used, as that is usually a mistake. This has no effect when running on PHP
+  8.4 or earlier.
 * …
 
 === External library changes in 1.46 ===
