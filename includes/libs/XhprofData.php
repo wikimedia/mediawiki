@@ -93,7 +93,7 @@ class XhprofData {
 	 * with no parent (eg 'main()') will return [null, 'function'].
 	 *
 	 * @param string $key
-	 * @return array
+	 * @return array{0:?string,1:string}
 	 */
 	public static function splitKey( $key ) {
 		return array_pad( explode( '==>', $key, 2 ), -2, null );
@@ -117,7 +117,7 @@ class XhprofData {
 		$keep = [];
 		foreach ( $data as $key => $stats ) {
 			[ $parent, $child ] = self::splitKey( $key );
-			if ( isset( $want[$parent] ) || isset( $want[$child] ) ) {
+			if ( ( $parent !== null && isset( $want[$parent] ) ) || isset( $want[$child] ) ) {
 				$keep[$key] = $stats;
 			}
 		}
@@ -255,7 +255,7 @@ class XhprofData {
 					$this->complete[$parent]['subcalls'][$child] = $stats;
 				}
 
-				if ( isset( $this->complete[$parent] ) ) {
+				if ( $parent !== null && isset( $this->complete[$parent] ) ) {
 					// Deduct child inclusive data from exclusive data
 					foreach ( $stats as $stat => $value ) {
 						if ( $stat === 'ct' ) {
