@@ -305,7 +305,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			$status->merge( $mp->probablyCanMove( $this->getAuthority() ) );
 			if ( $this->moveTalk ) {
 				$newTalk = $newTitle->getTalkPageIfDefined();
-				if ( $oldTalk && $newTalk ) {
+				if ( $oldTalk && $newTalk && $oldTalk->exists() ) {
 					$mpTalk = $this->movePageFactory->newMovePage( $oldTalk, $newTalk );
 					$talkStatus = $mpTalk->isValidMove();
 					$talkStatus->merge( $mpTalk->probablyCanMove( $this->getAuthority() ) );
