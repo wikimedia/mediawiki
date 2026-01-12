@@ -15,6 +15,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IExpression;
+use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -39,8 +40,10 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		disableAutoCreateTempUser as _disableAutoCreateTempUser;
 	}
 
+	private ?ScopedCallback $teardownScope = null;
+
 	protected function setUp(): void {
-		ExtensionRegistry::getInstance()->setAttributeForTest(
+		$this->teardownScope = ExtensionRegistry::getInstance()->setAttributeForTest(
 			'RecentChangeSources', [] );
 		$this->overrideConfigValue(
 			MainConfigNames::GroupPermissions,
@@ -49,6 +52,11 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->setFakeTime( '20201231000000' );
 		parent::setUp();
 		$this->clearHooks();
+	}
+
+	protected function tearDown(): void {
+		ScopedCallback::consume( $this->teardownScope );
+		parent::tearDown();
 	}
 
 	private function setFakeTime( $fakeTime ) {

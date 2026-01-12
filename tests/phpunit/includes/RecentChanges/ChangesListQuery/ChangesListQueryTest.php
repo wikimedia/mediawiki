@@ -31,6 +31,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -94,6 +95,8 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 	/** @var int The next content to write to a page */
 	private static $content = 0;
 
+	private ?ScopedCallback $teardownScope = null;
+
 	protected function setup(): void {
 		$this->enableAutoCreateTempUser();
 		$this->overrideConfigValues( [
@@ -103,15 +106,18 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			MainConfigNames::MiserMode => true,
 			MainConfigNames::EnableWatchlistLabels => true
 		] );
-		ExtensionRegistry::getInstance()->setAttributeForTest(
-			'RecentChangeSources',
-			[]
-		);
+		$this->teardownScope = ExtensionRegistry::getInstance()->setAttributeForTest(
+			'RecentChangeSources', [] );
 		ConvertibleTimestamp::setFakeTime( '20250105000000' );
 		$roleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 		if ( !$roleRegistry->isDefinedRole( 'aux' ) ) {
 			$roleRegistry->defineRoleWithModel( 'aux', CONTENT_MODEL_WIKITEXT );
 		}
+	}
+
+	protected function tearDown(): void {
+		ScopedCallback::consume( $this->teardownScope );
+		parent::tearDown();
 	}
 
 	private static function getRcIds() {
