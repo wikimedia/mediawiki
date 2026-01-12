@@ -385,7 +385,7 @@
 	"createacct-continue-submit": "Pritisni za stvaranje računa",
 	"createacct-another-continue-submit": "Nastavi za stvaranje računa",
 	"createacct-benefit-heading": "Projekt {{SITENAME}} stvorili su ljudi poput Vas.",
-	"createacct-benefit-text1": "$2 {{PLURAL:$1|uređivanje|uređivanja}}",
+	"createacct-benefit-text1": "$2 {{PLURAL:$1|uređivanje|uređivanja|uređivanja}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|stranica|stranice|stranica}}",
 	"createacct-benefit-text3": "$2 {{PLURAL:$1|nedavni suradnik|nedavna suradnika|nedavnih suradnika}}",
 	"badretype": "Unesene zaporke nisu istovjetne.",

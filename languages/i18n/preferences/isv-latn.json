@@ -195,6 +195,8 @@
 	"rcfilters-watchlist-preference-label": "Upotrěbjati interfejs bez JavaScript’a",
 	"rcfilters-watchlist-preference-help": "Včityvaje [[{{#special:Watchlist}}|spiska slědovanyh stranic]] bez filtrovanogo iskanja i bez funkcije podsvětljenja.",
 	"prefs-changeswatchlist": "Pokazyvane izměny",
+	"tog-watchstar-expiry": "Standardno časno obdobje v spisku slědovanyh stranic za ručno dodane stranice:",
+	"tog-watch-expiry": "Standardno časno obdobje:",
 	"tog-watchlisthideminor": "Skryvati male pravky v spisku slědovanyh stranic",
 	"tog-watchlisthidebots": "Skryvati botove pravky v spisku slědovanyh stranic",
 	"tog-watchlisthideown": "Skryvati moje pravky v spisku slědovanyh stranic",

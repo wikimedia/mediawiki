@@ -100,6 +100,8 @@
 	"rest-module-specs.v0-desc": "Zelfdocumentatie-module met informatie, specificaties en schema’s voor alle beschikbare modules.",
 	"rest-module-content.v1-title": "Pagina-inhoud",
 	"rest-module-content.v1-desc": "Biedt toegang tot de inhoud en de metagegevens van pagina’s en versies",
+	"rest-module-site.v1-title": "Site-API",
+	"rest-module-site.v1-desc": "Informatie over de site als geheel, zoals sitemaps",
 	"rest-param-desc-mock-desc": "Voorbeeldbeschrijving.",
 	"rest-param-desc-revision-id": "Versie-ID",
 	"rest-param-desc-html-input-title": "HTML-invoer: omzetten titel",

@@ -4066,6 +4066,7 @@
 	"newpages-showhide-patrolled": "$1 ویرایش‌های گشت‌خورده",
 	"newpages-showhide-redirect": "$1 تغییرمسیرها",
 	"newpages-showhide-registered": "$1 کاربران ثبت‌نام‌کرده",
+	"restsandbox": "محیط آزمایش REST",
 	"restsandbox-select-api": "یک واسط برنامه‌نویسی کاربردی انتخاب کنید تا به کاوش آن بپردازید.",
 	"blockedtext-made-by": "این قطع دسترسی توسط $1 اعمال شده است.",
 	"blockedtext-reason-comment": "دلیل ارائه‌شده چنین است: <em>$1</em>",

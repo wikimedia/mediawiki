@@ -4156,6 +4156,7 @@
 	"renameuser-error-unexpected-name": "Целниот корисник го нема очекуваното име.",
 	"renameuser-error-global-detaching": "Корисникот е глобално приврзан. Користете CentralAuth за да ја преименувате оваа сметка.",
 	"renameuser-error-global-rights": "Немате право да преименувате глобални корисници.",
+	"renameuser-error-local-rights": "Го немате правото на преименување на корисници.",
 	"renameusersuccess": "{{GENDER:$2|Корисникот}} „<nowiki>$1</nowiki>“ е преименуван во „<nowiki>$2</nowiki>“",
 	"renameuser-page-exists": "Страницата $1 веќе постои и не може автоматски да се замени со друга содржина.",
 	"renameuser-page-moved": "Страницата $1 е преместена на $2.",

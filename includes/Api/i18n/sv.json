@@ -98,6 +98,8 @@
 	"apihelp-compare-param-fromtitle": "Första titeln att jämföra.",
 	"apihelp-compare-param-fromid": "Första sid-ID att jämföra.",
 	"apihelp-compare-param-fromrev": "Första version att jämföra.",
+	"apihelp-compare-param-frompst": "Gör en transformation före sparning på <var>fromtext-&#x7B;slot}</var>.",
+	"apihelp-compare-param-fromslots": "Åsidosätt innehållet i den revision som anges av <var>fromtitle</var> , <var>fromid</var> eller <var>fromrev</var> .\n\nDenna parameter anger de platser som ska ändras. Använd <var>fromtext-&#x7B;slot}</var>, <var>fromcontentmodel-&#x7B;slot}</var>, och <var>fromcontentformat-&#x7B;slot}</var> för att ange innehåll för varje plats.",
 	"apihelp-compare-param-fromtext": "Ange <kbd>fromslots=main</kbd> och använd <var>fromtext-main</var> istället.",
 	"apihelp-compare-param-fromcontentmodel": "Ange <kbd>fromslots=main</kbd> och använd <var>fromcontentmodel-main</var> istället.",
 	"apihelp-compare-param-totitle": "Andra titeln att jämföra.",
