@@ -405,6 +405,29 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$b->setLanguage( $crhCyrl );
 		yield 'only right language' => [ $a, $b, [ 'getLanguage' => $crhCyrl ] ];
 
+		// cache expirations
+		$a = new ParserOutput();
+		$a->updateCacheExpiry( 20 );
+		$b = new ParserOutput();
+		$b->updateCacheExpiry( 11 );
+		yield 'cacheExpirationLowerSecond' => [ $a, $b, [ 'getCacheExpiry' => 11 ] ];
+
+		$a = new ParserOutput();
+		$a->updateCacheExpiry( 12 );
+		$b = new ParserOutput();
+		$b->updateCacheExpiry( 20 );
+		yield 'cacheExpirationLowerFirst' => [ $a, $b, [ 'getCacheExpiry' => 12 ] ];
+
+		$a = new ParserOutput();
+		$a->updateCacheExpiry( 13 );
+		$b = new ParserOutput();
+		yield 'cacheExpirationOnlyFirst' => [ $a, $b, [ 'getCacheExpiry' => 13 ] ];
+
+		$a = new ParserOutput();
+		$b = new ParserOutput();
+		$b->updateCacheExpiry( 14 );
+		yield 'cacheExpirationOnlySecond' => [ $a, $b, [ 'getCacheExpiry' => 14 ] ];
+
 		// head items and friends ------------
 		$a = new ParserOutput();
 		$a->addHeadItem( '<foo1>' );
