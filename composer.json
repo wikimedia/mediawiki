@@ -181,7 +181,10 @@
 			"@lint",
 			"@phpcs"
 		],
-		"phpunit": "phpunit",
+		"phpunit": [
+			"Composer\\Config::disableProcessTimeout",
+			"phpunit"
+		],
 		"phpunit:unit": "@phpunit --colors=always --testsuite=core:unit,extensions:unit",
 		"phpunit:coverage": "@phpunit --testsuite=core:unit --exclude-group Dump,Broken",
 		"phpunit:coverage-edit": "MediaWiki\\Composer\\ComposerPhpunitXmlCoverageEdit::onEvent",
