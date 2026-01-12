@@ -12,8 +12,10 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Title\Title;
@@ -36,13 +38,6 @@ class EditConstraintFactory {
 		MainConfigNames::MaxArticleSize,
 	];
 
-	private ServiceOptions $options;
-	private Spi $loggerFactory;
-	private HookContainer $hookContainer;
-	private ReadOnlyMode $readOnlyMode;
-	private SpamChecker $spamRegexChecker;
-	private RateLimiter $rateLimiter;
-
 	/**
 	 * Some constraints have dependencies that need to be injected,
 	 * this class serves as a factory for all of the different constraints
@@ -54,39 +49,23 @@ class EditConstraintFactory {
 	 * - SpamRegex (in SpamRegexConstraint)
 	 *
 	 * TODO can they be combined into the same channel?
-	 *
-	 * @param ServiceOptions $options
-	 * @param Spi $loggerFactory
-	 * @param HookContainer $hookContainer
-	 * @param ReadOnlyMode $readOnlyMode
-	 * @param SpamChecker $spamRegexChecker
-	 * @param RateLimiter $rateLimiter
 	 */
 	public function __construct(
-		ServiceOptions $options,
-		Spi $loggerFactory,
-		HookContainer $hookContainer,
-		ReadOnlyMode $readOnlyMode,
-		SpamChecker $spamRegexChecker,
-		RateLimiter $rateLimiter
+		// Multiple
+		private readonly ServiceOptions $options,
+		private readonly Spi $loggerFactory,
+		// EditFilterMergedContentHookConstraint
+		private readonly HookContainer $hookContainer,
+		// ReadOnlyConstraint
+		private readonly ReadOnlyMode $readOnlyMode,
+		// SpamRegexConstraint
+		private readonly SpamChecker $spamRegexChecker,
+		// LinkPurgeRateLimitConstraint
+		private readonly RateLimiter $rateLimiter,
+		// RedirectConstraint
+		private readonly RedirectLookup $redirectLookup,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-
-		// Multiple
-		$this->options = $options;
-		$this->loggerFactory = $loggerFactory;
-
-		// EditFilterMergedContentHookConstraint
-		$this->hookContainer = $hookContainer;
-
-		// ReadOnlyConstraint
-		$this->readOnlyMode = $readOnlyMode;
-
-		// SpamRegexConstraint
-		$this->spamRegexChecker = $spamRegexChecker;
-
-		// LinkPurgeRateLimitConstraint
-		$this->rateLimiter = $rateLimiter;
 	}
 
 	/**
@@ -195,6 +174,25 @@ class EditConstraintFactory {
 			$text,
 			$reqIP,
 			$title
+		);
+	}
+
+	public function newRedirectConstraint(
+		?Title $allowedProblematicRedirectTarget,
+		Content $newContent,
+		Content $originalContent,
+		LinkTarget $title,
+		string $submitButtonLabel,
+		?string $contentFormat,
+	): RedirectConstraint {
+		return new RedirectConstraint(
+			$allowedProblematicRedirectTarget,
+			$newContent,
+			$originalContent,
+			$title,
+			$submitButtonLabel,
+			$contentFormat,
+			$this->redirectLookup
 		);
 	}
 

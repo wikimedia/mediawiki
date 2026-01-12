@@ -11,6 +11,7 @@ use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
 use MediaWiki\EditPage\Constraint\ReadOnlyConstraint;
+use MediaWiki\EditPage\Constraint\RedirectConstraint;
 use MediaWiki\EditPage\Constraint\SimpleAntiSpamConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\SpamChecker;
@@ -18,6 +19,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -49,6 +51,7 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( ReadOnlyMode::class ),
 			$this->createMock( SpamChecker::class ),
 			$this->createMock( RateLimiter::class ),
+			$this->createMock( RedirectLookup::class ),
 		);
 
 		$user = $this->createMock( User::class );
@@ -88,6 +91,17 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 				'Text',
 				'RequestIP',
 				$title
+			)
+		);
+		$this->assertInstanceOf(
+			RedirectConstraint::class,
+			$factory->newRedirectConstraint(
+				null,
+				$this->createMock( Content::class ),
+				$this->createMock( Content::class ),
+				$title,
+				'',
+				''
 			)
 		);
 	}

@@ -61,7 +61,6 @@ use MediaWiki\Page\Article;
 use MediaWiki\Page\CategoryPage;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
-use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
@@ -441,7 +440,6 @@ class EditPage implements IEditObject {
 	private PermissionManager $permManager;
 	private RevisionStore $revisionStore;
 	private WatchlistManager $watchlistManager;
-	private RedirectLookup $redirectLookup;
 	private UserOptionsLookup $userOptionsLookup;
 	private TempUserCreator $tempUserCreator;
 	private UserFactory $userFactory;
@@ -507,7 +505,6 @@ class EditPage implements IEditObject {
 			&& $this->getContext()->getConfig()->get( MainConfigNames::WatchlistExpiry );
 		$this->watchedItemStore = $services->getWatchedItemStore();
 		$this->watchlistManager = $services->getWatchlistManager();
-		$this->redirectLookup = $services->getRedirectLookup();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->tempUserCreator = $services->getTempUserCreator();
 		$this->userFactory = $services->getUserFactory();
@@ -2536,14 +2533,13 @@ class EditPage implements IEditObject {
 		$constraintRunner = new EditConstraintRunner();
 		if ( !$this->ignoreProblematicRedirects ) {
 			$constraintRunner->addConstraint(
-				new RedirectConstraint(
+				$constraintFactory->newRedirectConstraint(
 					$this->allowedProblematicRedirectTarget,
 					$content,
 					$this->getCurrentContent(),
 					$this->getTitle(),
 					$submitButtonLabel,
 					$this->contentFormat,
-					$this->redirectLookup
 				)
 			);
 		}

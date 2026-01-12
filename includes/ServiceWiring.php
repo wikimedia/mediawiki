@@ -3046,7 +3046,10 @@ return [
 			$services->getSpamChecker(),
 
 			// LinkPurgeRateLimitConstraint
-			$services->getRateLimiter()
+			$services->getRateLimiter(),
+
+			// RedirectConstraint
+			$services->getRedirectLookup(),
 		);
 	},
 
