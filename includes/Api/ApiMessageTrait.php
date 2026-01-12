@@ -45,6 +45,8 @@ trait ApiMessageTrait {
 		'delete-toobig' => 'bigdelete',
 		'deleteprotected' => 'cantedit',
 		'edit-conflict' => 'editconflict',
+		'edit-constraint-confirmrecreate' => 'pagedeleted',
+		'edit-constraint-confirmrecreate-noreason' => 'pagedeleted',
 		'imagenocrossnamespace' => 'nonfilenamespace',
 		'imagetypemismatch' => 'filetypemismatch',
 		'import-noarticle' => 'badinterwiki',

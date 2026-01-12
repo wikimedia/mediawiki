@@ -3050,6 +3050,10 @@ return [
 
 			// RedirectConstraint
 			$services->getRedirectLookup(),
+
+			// AccidentalRecreationConstraint
+			$services->getConnectionProvider(),
+			$services->getCommentStore(),
 		);
 	},
 

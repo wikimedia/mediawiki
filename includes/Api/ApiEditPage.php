@@ -636,9 +636,6 @@ class ApiEditPage extends ApiBase {
 						case EditPage::AS_NO_CHANGE_CONTENT_MODEL:
 							$status->fatal( 'apierror-cantchangecontentmodel' );
 							break;
-						case EditPage::AS_ARTICLE_WAS_DELETED:
-							$status->fatal( 'apierror-pagedeleted' );
-							break;
 						case EditPage::AS_CONFLICT_DETECTED:
 							$status->fatal( 'edit-conflict' );
 							break;

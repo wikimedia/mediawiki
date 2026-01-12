@@ -53,11 +53,11 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\Logging\LogPage;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\CategoryPage;
 use MediaWiki\Page\PageIdentity;
@@ -99,13 +99,12 @@ use OOUI\CheckboxInputWidget;
 use OOUI\DropdownInputWidget;
 use OOUI\FieldLayout;
 use RuntimeException;
-use stdClass;
+use StatusValue;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
-use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -212,9 +211,6 @@ class EditPage implements IEditObject {
 	 * with diff, save prompts, etc.
 	 */
 	public $firsttime;
-
-	/** @var stdClass|null */
-	private $lastDelete;
 
 	/** @var bool */
 	private $mTokenOk = false;
@@ -472,7 +468,6 @@ class EditPage implements IEditObject {
 	private LinkRenderer $linkRenderer;
 	private LinkBatchFactory $linkBatchFactory;
 	private RestrictionStore $restrictionStore;
-	private CommentStore $commentStore;
 
 	/**
 	 * @stable to call
@@ -511,7 +506,6 @@ class EditPage implements IEditObject {
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
 		$this->restrictionStore = $services->getRestrictionStore();
-		$this->commentStore = $services->getCommentStore();
 		$this->dbProvider = $services->getConnectionProvider();
 		$this->authManager = $services->getAuthManager();
 		$this->userRegistrationLookup = $services->getUserRegistrationLookup();
@@ -1902,7 +1896,6 @@ class EditPage implements IEditObject {
 			// Status codes for which the error/warning message is generated somewhere else in this class.
 			// They should be refactored to provide their own messages and handled below (T384399).
 			case self::AS_HOOK_ERROR_EXPECTED:
-			case self::AS_ARTICLE_WAS_DELETED:
 			case self::AS_CONFLICT_DETECTED:
 			case self::AS_END:
 			case self::AS_REVISION_WAS_DELETED:
@@ -1913,6 +1906,7 @@ class EditPage implements IEditObject {
 
 			// Status codes that provide their own error/warning messages. Most error scenarios that don't
 			// need custom user interface (e.g. edit conflicts) should be handled here, one day (T384399).
+			case self::AS_ARTICLE_WAS_DELETED:
 			case self::AS_BLANK_ARTICLE:
 			case self::AS_BROKEN_REDIRECT:
 			case self::AS_DOUBLE_REDIRECT:
@@ -1926,16 +1920,7 @@ class EditPage implements IEditObject {
 			case self::AS_TEXTBOX_EMPTY:
 			case self::AS_UNABLE_TO_ACQUIRE_TEMP_ACCOUNT:
 			case self::AS_UNICODE_NOT_SUPPORTED:
-				foreach ( $status->getMessages( 'error' ) as $msg ) {
-					$out->addHTML( Html::errorBox(
-						$this->context->msg( $msg )->parse()
-					) );
-				}
-				foreach ( $status->getMessages( 'warning' ) as $msg ) {
-					$out->addHTML( Html::warningBox(
-						$this->context->msg( $msg )->parse()
-					) );
-				}
+				$this->outputConstraintStatus( $out, $status );
 				return true;
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
@@ -2016,6 +2001,22 @@ class EditPage implements IEditObject {
 					"\n" . $status->getWikiText( false, false, $this->context->getLanguage() )
 				);
 				return true;
+		}
+	}
+
+	/**
+	 * Wrap warning/error messages in styled message boxes and add them to the output.
+	 */
+	private function outputConstraintStatus( OutputPage $out, StatusValue $status ): void {
+		foreach ( $status->getMessages( 'error' ) as $msg ) {
+			$out->addHTML( Html::errorBox(
+				$this->context->msg( $msg )->parse()
+			) );
+		}
+		foreach ( $status->getMessages( 'warning' ) as $msg ) {
+			$out->addHTML( Html::warningBox(
+				$this->context->msg( $msg )->parse()
+			) );
 		}
 	}
 
@@ -2261,9 +2262,12 @@ class EditPage implements IEditObject {
 		// If the article has been deleted while editing, don't save it without
 		// confirmation
 		$constraintRunner->addConstraint(
-			new AccidentalRecreationConstraint(
-				$this->wasDeletedSinceLastEdit(),
-				$this->recreate
+			$constraintFactory->newAccidentalRecreationConstraint(
+				$this->context,
+				$this->mTitle,
+				$this->recreate,
+				$this->starttime,
+				$submitButtonLabel,
 			)
 		);
 
@@ -2664,6 +2668,8 @@ class EditPage implements IEditObject {
 			$this->missingSummary = true;
 		} elseif ( $failed instanceof RedirectConstraint ) {
 			$this->problematicRedirectTarget = $failed->problematicTarget;
+		} elseif ( $failed instanceof AccidentalRecreationConstraint ) {
+			$this->recreate = true;
 		}
 	}
 
@@ -3078,12 +3084,27 @@ class EditPage implements IEditObject {
 
 		$out->addHTML( $this->editFormTextTop );
 
-		if ( $this->formtype !== 'save' && $this->wasDeletedSinceLastEdit() ) {
-			$out->addHTML( Html::errorBox(
-				$out->msg( 'deletedwhileediting' )->parse(),
-				'',
-				'mw-deleted-while-editing'
-			) );
+		if ( $this->formtype !== 'save' ) {
+			/** @var EditConstraintFactory $constraintFactory */
+			$constraintFactory = MediaWikiServices::getInstance()->getService( '_EditConstraintFactory' );
+			$constraintRunner = new EditConstraintRunner();
+
+			$constraintRunner->addConstraint(
+				$constraintFactory->newAccidentalRecreationConstraint(
+					$this->context,
+					$this->mTitle,
+					// Ignore wpRedirect so the warning is still shown after a save attempt
+					false,
+					$this->starttime,
+				)
+			);
+
+			if ( !$constraintRunner->checkConstraints() ) {
+				$failed = $constraintRunner->getFailedConstraint();
+				// No call to $this->handleFailedConstraint() here to avoid setting wpRedirect
+				$status = $failed->getLegacyStatus();
+				$this->outputConstraintStatus( $out, $status );
+			}
 		}
 
 		// @todo add EditForm plugin interface and use it here!
@@ -3129,40 +3150,6 @@ class EditPage implements IEditObject {
 		// Put these up at the top to ensure they aren't lost on early form submission
 		$this->showFormBeforeText();
 
-		if ( $this->formtype === 'save' && $this->wasDeletedSinceLastEdit() ) {
-			$username = $this->lastDelete->actor_name;
-			$comment = $this->commentStore->getComment( 'log_comment', $this->lastDelete )->text;
-
-			// It is better to not parse the comment at all than to have templates expanded in the middle
-			// TODO: can the label be moved outside of the div so that wrapWikiMsg could be used?
-			$key = $comment === ''
-				? 'confirmrecreate-noreason'
-				: 'confirmrecreate';
-			$out->addHTML( Html::rawElement(
-				'div',
-				[ 'class' => 'mw-confirm-recreate' ],
-				$this->context->msg( $key )
-					->params( $username )
-					->plaintextParams( $comment )
-					->parse() .
-					Html::rawElement(
-						'div',
-						[],
-						Html::check(
-							'wpRecreate',
-							false,
-							[ 'title' => Linker::titleAttrib( 'recreate' ), 'tabindex' => 1, 'id' => 'wpRecreate' ]
-						)
-						. "\u{00A0}" .
-						Html::label(
-							$this->context->msg( 'recreate' )->text(),
-							'wpRecreate',
-							[ 'title' => Linker::titleAttrib( 'recreate' ) ]
-						)
-					)
-			) );
-		}
-
 		# When the summary is hidden, also hide them on preview/show changes
 		if ( $this->nosummary ) {
 			$out->addHTML( Html::hidden( 'nosummary', true ) );
@@ -3189,6 +3176,9 @@ class EditPage implements IEditObject {
 		}
 		if ( $this->undoAfter ) {
 			$out->addHTML( Html::hidden( 'wpUndoAfter', $this->undoAfter ) );
+		}
+		if ( $this->recreate ) {
+			$out->addHTML( Html::hidden( 'wpRecreate', $this->recreate ) );
 		}
 
 		if ( $this->problematicRedirectTarget !== null ) {
@@ -3247,9 +3237,7 @@ class EditPage implements IEditObject {
 			// resolved between page source edits and custom ui edits using the
 			// custom edit ui.
 			$conflictTextBoxAttribs = [];
-			if ( $this->wasDeletedSinceLastEdit() ) {
-				$conflictTextBoxAttribs['style'] = 'display:none;';
-			} elseif ( $this->isOldRev ) {
+			if ( $this->isOldRev ) {
 				$conflictTextBoxAttribs['class'] = 'mw-textarea-oldrev';
 			}
 
@@ -3571,23 +3559,19 @@ class EditPage implements IEditObject {
 	}
 
 	private function showTextbox1(): void {
-		if ( $this->formtype === 'save' && $this->wasDeletedSinceLastEdit() ) {
-			$attribs = [ 'style' => 'display:none;' ];
-		} else {
-			$builder = new TextboxBuilder();
-			$classes = $builder->getTextboxProtectionCSSClasses( $this->getTitle() );
+		$builder = new TextboxBuilder();
+		$classes = $builder->getTextboxProtectionCSSClasses( $this->getTitle() );
 
-			# Is an old revision being edited?
-			if ( $this->isOldRev ) {
-				$classes[] = 'mw-textarea-oldrev';
-			}
-
-			$attribs = [
-				'aria-label' => $this->context->msg( 'edit-textarea-aria-label' )->text(),
-				'tabindex' => 1,
-				'class' => $classes,
-			];
+		# Is an old revision being edited?
+		if ( $this->isOldRev ) {
+			$classes[] = 'mw-textarea-oldrev';
 		}
+
+		$attribs = [
+			'aria-label' => $this->context->msg( 'edit-textarea-aria-label' )->text(),
+			'tabindex' => 1,
+			'class' => $classes,
+		];
 
 		$this->showTextbox(
 			$this->textbox1,
@@ -3986,78 +3970,6 @@ class EditPage implements IEditObject {
 		}
 
 		return $title->getLocalURL( $formParams );
-	}
-
-	/**
-	 * Check if a page was deleted while the user was editing it, before submit.
-	 * Note that we rely on the logging table, which hasn't been always there,
-	 * but that doesn't matter, because this only applies to brand new
-	 * deletes.
-	 */
-	private function wasDeletedSinceLastEdit(): bool {
-		if ( $this->deletedSinceEdit !== null ) {
-			return $this->deletedSinceEdit;
-		}
-
-		$this->deletedSinceEdit = false;
-
-		if ( !$this->mTitle->exists() && $this->mTitle->hasDeletedEdits() ) {
-			$this->lastDelete = $this->getLastDelete();
-			if ( $this->lastDelete ) {
-				$deleteTime = wfTimestamp( TS::MW, $this->lastDelete->log_timestamp );
-				if ( $deleteTime > $this->starttime ) {
-					$this->deletedSinceEdit = true;
-				}
-			}
-		}
-
-		return $this->deletedSinceEdit;
-	}
-
-	/**
-	 * Get the last log record of this page being deleted, if ever.  This is
-	 * used to detect whether a delete occurred during editing.
-	 * @return stdClass|null
-	 */
-	private function getLastDelete(): ?stdClass {
-		$dbr = $this->dbProvider->getReplicaDatabase();
-		$commentQuery = $this->commentStore->getJoin( 'log_comment' );
-		$data = $dbr->newSelectQueryBuilder()
-			->select( [
-				'log_type',
-				'log_action',
-				'log_timestamp',
-				'log_namespace',
-				'log_title',
-				'log_params',
-				'log_deleted',
-				'actor_name'
-			] )
-			->from( 'logging' )
-			->join( 'actor', null, 'actor_id=log_actor' )
-			->where( [
-				'log_namespace' => $this->mTitle->getNamespace(),
-				'log_title' => $this->mTitle->getDBkey(),
-				'log_type' => 'delete',
-				'log_action' => 'delete',
-			] )
-			->orderBy( [ 'log_timestamp', 'log_id' ], SelectQueryBuilder::SORT_DESC )
-			->queryInfo( $commentQuery )
-			->caller( __METHOD__ )
-			->fetchRow();
-		// Quick paranoid permission checks...
-		if ( $data !== false ) {
-			if ( $data->log_deleted & LogPage::DELETED_USER ) {
-				$data->actor_name = $this->context->msg( 'rev-deleted-user' )->escaped();
-			}
-
-			if ( $data->log_deleted & LogPage::DELETED_COMMENT ) {
-				$data->log_comment_text = $this->context->msg( 'rev-deleted-comment' )->escaped();
-				$data->log_comment_data = null;
-			}
-		}
-
-		return $data ?: null;
 	}
 
 	/**

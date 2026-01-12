@@ -4,9 +4,11 @@
  * @file
  */
 
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
@@ -24,6 +26,7 @@ use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Psr\Log\NullLogger;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -52,6 +55,8 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( SpamChecker::class ),
 			$this->createMock( RateLimiter::class ),
 			$this->createMock( RedirectLookup::class ),
+			$this->createMock( IConnectionProvider::class ),
+			$this->createMock( CommentStore::class ),
 		);
 
 		$user = $this->createMock( User::class );
@@ -102,6 +107,15 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 				$title,
 				'',
 				''
+			)
+		);
+		$this->assertInstanceOf(
+			AccidentalRecreationConstraint::class,
+			$factory->newAccidentalRecreationConstraint(
+				$context,
+				$title,
+				false,
+				null,
 			)
 		);
 	}
