@@ -1737,7 +1737,7 @@
 	"filehist-user": "Používateľ",
 	"filehist-dimensions": "Rozmery",
 	"filehist-comment": "Komentár",
-	"filehist-missing": "Súbor chýba",
+	"filehist-missing": "žiadny súbor",
 	"imagelinks": "Použitie súboru",
 	"linkstoimage": "Na tento súbor {{PLURAL:$1|odkazuje nasledujúca stránka|odkazujú nasledujúce $1 stránky|odkazuje nasledujúcich $1 stránok}}:",
 	"linkstoimage-more": "Viac ako $1 {{PLURAL:$1|stránka odkazuje|stránky odkazujú|stránok odkazuje}} na tento súbor.\nNasledovný zoznam zobrazuje {{PLURAL:$1|prvú stránku odkazujúcu|prvé $1 stránky odkazujúce|prvých $1 stránok odkazujúcich}} iba na tento súbor.\nK dispozícii je aj [[Special:WhatLinksHere/$2|úplný zoznam]].",

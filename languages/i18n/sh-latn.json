@@ -2468,7 +2468,7 @@
 	"whatlinkshere-title": "Stranice koje vode ovamo: $1",
 	"whatlinkshere-page": "Stranica:",
 	"linkshere": "Do stranice <strong>$2</strong> vode sljedeće stranice:",
-	"nolinkshere": "Nema linkova na <strong>$2</strong>.",
+	"nolinkshere": "Nijedna stranica ne vodi do stranice <strong>$2</strong>.",
 	"nolinkshere-filter": "S trenutačnim postavkama pretrage nijedna stranica ne povezuje na <strong>$2</strong>.",
 	"nolinkshere-ns": "Nijedna stranica nije povezana sa <strong>$2</strong> u izabranom imenskom prostoru.",
 	"isredirect": "preusmjerenje",

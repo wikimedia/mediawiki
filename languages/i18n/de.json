@@ -1906,7 +1906,7 @@
 	"imagelinks": "Dateiverwendung",
 	"linkstoimage": "Die {{PLURAL:$1|folgende Seite verwendet|folgenden $1 Seiten verwenden}} diese Datei:",
 	"linkstoimage-more": "Mehr als {{PLURAL:$1|eine Seite verwendet|$1 Seiten verwenden}} diese Datei.\nDie folgende Liste zeigt nur die {{PLURAL:$1|erste Verwendung|ersten $1 Verwendungen}} dieser Datei.\nEine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.",
-	"nolinkstoimage": "Keine Seiten verwenden diese Datei.",
+	"nolinkstoimage": "Keine Seite verwendet diese Datei.",
 	"morelinkstoimage": "[[Special:WhatLinksHere/$1|Weitere Links]] auf diese Datei.",
 	"linkstoimage-redirect": "$1 (Dateiweiterleitung) $2",
 	"duplicatesoffile": "Die {{PLURAL:$1|folgende Datei ist ein Duplikat|folgenden $1 Dateien sind Duplikate}} dieser Datei ([[Special:FileDuplicateSearch/$2|weitere Details]]):",

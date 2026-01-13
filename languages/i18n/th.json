@@ -117,6 +117,8 @@
 	"index-category": "หน้าที่มีดัชนี",
 	"noindex-category": "หน้าที่ไม่มีดัชนี",
 	"broken-file-category": "หน้าที่มีลิงก์ไฟล์เสีย",
+	"categoryviewer-pagedlinks": "($1) ($2)",
+	"category-header-numerals": "$1–$2",
 	"about": "เกี่ยวกับ",
 	"article": "หน้าเนื้อหา",
 	"newwindow": "(เปิดหน้าต่างใหม่)",

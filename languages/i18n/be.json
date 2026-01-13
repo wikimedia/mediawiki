@@ -48,7 +48,8 @@
 			"Хомелка",
 			"Чаховіч Уладзіслаў",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Ucukor"
 		]
 	},
 	"sunday": "Нядзеля",
@@ -2998,10 +2999,10 @@
 	"pageinfo-user-id": "Ідэнтыфікатар удзельніка",
 	"pageinfo-file-hash": "Хэш-значэнне",
 	"pageinfo-view-protect-log": "Глядзець журнал аховы для гэтай старонкі.",
-	"markaspatrolleddiff": "Пазначыць як ухваленае",
+	"markaspatrolleddiff": "Пазначыць ухваленым",
 	"markaspatrolledtext": "Пазначыць старонку як ухваленую",
 	"markaspatrolledtext-file": "Пазначыць версію файла як ухваленую",
-	"markedaspatrolled": "Пазначана як ухваленае",
+	"markedaspatrolled": "Пазначана ўхваленым",
 	"markedaspatrolledtext": "Азначаная версія [[:$1]] пазначана як ухваленая.",
 	"rcpatroldisabled": "Не працуе Ухваленне Нядаўніх Правак",
 	"rcpatroldisabledtext": "Магчымасць Ухвалення Нядаўніх Правак зараз не працуе.",

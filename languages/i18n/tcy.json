@@ -1805,6 +1805,8 @@
 	"thumbnail_error": "ಮುನ್ನೋಟ ಚಿತ್ರೊನು ಸೃಷ್ಟಿ ಮನ್ಪುನಗ ದೋಷ: $1",
 	"import": "ಪುಟೊಲೆನ್ ಆಮದು ಮಲ್ಪಿ",
 	"import-interwiki-sourcepage": "ಮೂಲ ಪುಟೊ:",
+	"import-interwiki-history": "ಈ ಪುಟೊತ ಮಾತಾ ಪರಿಷ್ಕರಣೆಲೆನ್ ನಕಲು ಮಲ್ಪುಲೆ",
+	"import-interwiki-templates": "ಒಟ್ಟಿಗೆ ಮಾತಾ ಟೆಂಪ್ಲೇಟ್ಸ್ ಬುಕ್ಕೊ ಟ್ರಾನ್ಸ್‌ಕ್ಲೂಡೆಡ್ ಪುಟೊಕುಲೆನು",
 	"import-interwiki-submit": "ಆಮದು",
 	"import-upload-filename": "ಕಡತದ ಪುದರ್:",
 	"import-comment": "ಅಭಿಪ್ರಾಯೊ:",

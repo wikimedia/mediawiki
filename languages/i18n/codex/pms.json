@@ -1,19 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
-			"Dragonòt"
+			"Dragonòt",
+			"Borichèt"
 		]
 	},
 	"cdx-chip-input-chip-added": "Giontà 'l geton $1.",
 	"cdx-chip-input-chip-removed": "Gavà 'l geton $1.",
-	"cdx-input-chip-aria-description": "Sgnaca Enter për modifiché o Canc për gavé.",
+	"cdx-input-chip-aria-description": "Sgnaché A cap për modifiché o Dëscancelé për gavé.",
 	"cdx-dialog-close-button-label": "Saré",
 	"cdx-label-optional-flag": "(opsional)",
 	"cdx-message-dismiss-button-label": "Saré",
 	"cdx-search-input-search-button-label": "Sërché",
 	"cdx-table-select-all-label": "Selession-a tute le righe",
 	"cdx-table-select-row-label": "Selessioné la riga $1 ëd $2",
-	"cdx-table-sort-caption": "$1 (j'intestassion dle colòne con boton a son ordinàbij).",
+	"cdx-table-sort-caption": "$1 (j'intestassion dle colòne con dij boton a son ordinàbij).",
 	"cdx-typeahead-search-search-results-label": "Arzultà dl'arserca",
 	"cdx-table-pager-button-first-page": "Prima pàgina",
 	"cdx-table-pager-button-last-page": "Ùltima pàgina",

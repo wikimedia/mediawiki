@@ -1996,6 +1996,7 @@
 	"apisandbox-request-php-label": "PHP-masiv zapyta:",
 	"apisandbox-request-time": "Čas zapyta: {{PLURAL:$1|$1 milisekunda|$1 milisekundy|$1 milisekund}}",
 	"apisandbox-request-post": "Tutoj zapyt trěba izslati s pomočju HTTP-metody POST.",
+	"apisandbox-request-post2": "Iz pričiny razměra sodržanja tutoj zapyt byl napravjeny posrědstvom metody HTTP POST.",
 	"apisandbox-request-formdata": "Tutoj zapyt trěba izslati v formě dodavanja fajla (to znači: s pomočju <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "Popraviti token i izšljite ponovno",
 	"apisandbox-results-fixtoken-fail": "Dobytje tokena «$1» ne udalo se.",

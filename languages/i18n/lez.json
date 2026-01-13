@@ -17,7 +17,8 @@
 			"Soul Train",
 			"Stjn",
 			"Умар",
-			"아라"
+			"아라",
+			"Matma Rex"
 		]
 	},
 	"sunday": "гьяд",
@@ -679,7 +680,7 @@
 	"restriction-edit": "Дегишарун",
 	"restriction-move": "ТIвар эхцигун",
 	"restriction-upload": "Ппарун",
-	"restriction-level-autoconfirmed": "(са кьадар хвенва)",
+	"restriction-level-autoconfirmed": "са кьадар хвенва",
 	"restriction-level-all": "гьар са дережа",
 	"skin-action-viewdeleted": "$1 килигун?",
 	"undeletebtn": "ТуьхкIуьрун",
