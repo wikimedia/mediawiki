@@ -73,7 +73,7 @@ abstract class Preprocessor {
 		array $options = []
 	) {
 		$this->parser = $parser;
-		$this->wanCache = $wanCache ?: WANObjectCache::newEmpty();
+		$this->wanCache = $wanCache ?? WANObjectCache::newEmpty();
 		$this->disableLangConversion = !empty( $options['disableLangConversion'] );
 	}
 

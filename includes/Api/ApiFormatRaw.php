@@ -25,7 +25,7 @@ class ApiFormatRaw extends ApiFormatBase {
 	 */
 	public function __construct( ApiMain $main, ?ApiFormatBase $errorFallback = null ) {
 		parent::__construct( $main, 'raw' );
-		$this->errorFallback = $errorFallback ?:
+		$this->errorFallback = $errorFallback ??
 			$main->createPrinterByName( $main->getParameter( 'format' ) );
 	}
 

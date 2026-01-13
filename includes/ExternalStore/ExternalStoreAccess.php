@@ -38,7 +38,7 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 	 */
 	public function __construct( ExternalStoreFactory $factory, ?LoggerInterface $logger = null ) {
 		$this->storeFactory = $factory;
-		$this->logger = $logger ?: new NullLogger();
+		$this->logger = $logger ?? new NullLogger();
 	}
 
 	public function setLogger( LoggerInterface $logger ): void {

@@ -156,7 +156,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		$this->maxageUnversioned = $params['maxageUnversioned'] ?? 5 * 60;
 
 		$this->config = $config;
-		$this->logger = $logger ?: new NullLogger();
+		$this->logger = $logger ?? new NullLogger();
 
 		$services = MediaWikiServices::getInstance();
 		$this->hookContainer = $services->getHookContainer();
@@ -174,8 +174,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			new MessageBlobStore( $this, $this->logger, $services->getMainWANObjectCache() )
 		);
 
-		$tracker = $tracker ?: new DependencyStore( new HashBagOStuff() );
-		$this->setDependencyStore( $tracker );
+		$this->setDependencyStore( $tracker ?? new DependencyStore( new HashBagOStuff() ) );
 	}
 
 	/**

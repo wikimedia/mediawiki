@@ -74,7 +74,7 @@ class MagicWord {
 		$this->mId = $id;
 		$this->mSynonyms = (array)$syn;
 		$this->mCaseSensitive = $cs;
-		$this->contLang = $contentLanguage ?: MediaWikiServices::getInstance()->getContentLanguage();
+		$this->contLang = $contentLanguage ?? MediaWikiServices::getInstance()->getContentLanguage();
 	}
 
 	/**

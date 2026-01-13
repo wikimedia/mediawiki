@@ -54,9 +54,9 @@ class ApiAuthManagerHelper {
 
 		$params = $module->extractRequestParams();
 		$this->messageFormat = $params['messageformat'] ?? 'wikitext';
-		$this->authManager = $authManager ?: MediaWikiServices::getInstance()->getAuthManager();
+		$this->authManager = $authManager ?? MediaWikiServices::getInstance()->getAuthManager();
 		// TODO: inject this as currently it's always taken from container
-		$this->identityUtils = $identityUtils ?: MediaWikiServices::getInstance()->getUserIdentityUtils();
+		$this->identityUtils = $identityUtils ?? MediaWikiServices::getInstance()->getUserIdentityUtils();
 	}
 
 	/**

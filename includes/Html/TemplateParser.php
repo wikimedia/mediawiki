@@ -51,7 +51,7 @@ class TemplateParser {
 	 */
 	public function __construct( $templateDir = null, ?BagOStuff $cache = null ) {
 		$this->templateDir = $templateDir ?: __DIR__ . '/../../resources/templates';
-		$this->cache = $cache ?: MediaWikiServices::getInstance()->getObjectCacheFactory()
+		$this->cache = $cache ?? MediaWikiServices::getInstance()->getObjectCacheFactory()
 			->getLocalServerInstance( CACHE_ANYTHING );
 
 		// Do not add more flags here without discussion.

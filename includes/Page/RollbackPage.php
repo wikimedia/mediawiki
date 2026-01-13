@@ -145,7 +145,7 @@ class RollbackPage {
 	 * @return $this
 	 */
 	public function setChangeTags( ?array $tags ): self {
-		$this->tags = $tags ?: [];
+		$this->tags = $tags ?? [];
 		return $this;
 	}
 
