@@ -63,7 +63,7 @@ class MWFileProps {
 			# Logical MIME type
 			$ext = ( $ext === true ) ? FileBackend::extensionFromPath( $path ) : (string)$ext;
 
-			# XXX: MimeAnalyzer::improveTypeFromExtension() may return null (T253483).
+			# XXX: MimeAnalyzer::improveTypeFromExtension() may return null (T253483, T413926).
 			# Unclear if callers of this method expect that.
 			$info['mime'] = $this->magic->improveTypeFromExtension( $info['file-mime'], $ext );
 
@@ -71,8 +71,7 @@ class MWFileProps {
 			$info['media_type'] = $this->magic->getMediaType( $path, $info['mime'] );
 
 			# Height, width and metadata
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable See XXX above
-			$handler = MediaHandler::getHandler( $info['mime'] );
+			$handler = $info['mime'] !== null ? MediaHandler::getHandler( $info['mime'] ) : null;
 			if ( $handler ) {
 				$sizeAndMetadata = $handler->getSizeAndMetadataWithFallback( $fsFile, $path );
 				if ( $sizeAndMetadata ) {
