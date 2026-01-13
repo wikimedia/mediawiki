@@ -42,26 +42,32 @@ class AuthorizationConstraint implements IEditConstraint {
 		return self::CONSTRAINT_PASSED;
 	}
 
+	/**
+	 * @suppress PhanTypeMismatchArgumentProbablyReal While PermissionStatus is documented to never have a
+	 * value, it is still possible to set one, which avoids duplicating error logic to EditPage.php (see
+	 * gerrit change 1226380).
+	 */
 	public function getLegacyStatus(): StatusValue {
-		$statusValue = StatusValue::newGood();
+		$status = $this->status;
 
-		if ( !$this->status->isGood() ) {
-			// Report the most specific errors first
-			if ( $this->status->isBlocked() ) {
-				$statusValue->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
-			} elseif ( $this->status->isRateLimitExceeded() ) {
-				$statusValue->setResult( false, self::AS_RATE_LIMITED );
-			} elseif ( $this->status->getPermission() === 'create' ) {
-				$statusValue->setResult( false, self::AS_NO_CREATE_PERMISSION );
-			} elseif ( !$this->performer->isRegistered() ) {
-				$statusValue->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
-			} else {
-				$statusValue->setResult( false, self::AS_READ_ONLY_PAGE_LOGGED );
-			}
+		if ( $status->isGood() ) {
+			return $status;
 		}
 
-		// TODO: Use error messages from the PermissionStatus ($this->status) here - T384399
-		return $statusValue;
+		// Report the most specific errors first
+		if ( $status->isBlocked() ) {
+			$status->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
+		} elseif ( $status->isRateLimitExceeded() ) {
+			$status->setResult( false, self::AS_RATE_LIMITED );
+		} elseif ( $status->getPermission() === 'create' ) {
+			$status->setResult( false, self::AS_NO_CREATE_PERMISSION );
+		} elseif ( !$this->performer->isRegistered() ) {
+			$status->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
+		} else {
+			$status->setResult( false, self::AS_READ_ONLY_PAGE_LOGGED );
+		}
+
+		return $status;
 	}
 
 }

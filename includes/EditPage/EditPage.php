@@ -7,6 +7,7 @@
 namespace MediaWiki\EditPage;
 
 use BadMethodCallException;
+use LogicException;
 use MediaWiki\Actions\WatchAction;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -1915,6 +1916,7 @@ class EditPage implements IEditObject {
 			case self::AS_INVALID_REDIRECT_TARGET:
 			case self::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case self::AS_PARSE_ERROR:
+			case self::AS_RATE_LIMITED:
 			case self::AS_SELF_REDIRECT:
 			case self::AS_SUMMARY_NEEDED:
 			case self::AS_TEXTBOX_EMPTY:
@@ -1960,34 +1962,21 @@ class EditPage implements IEditObject {
 				return false;
 
 			case self::AS_BLOCKED_PAGE_FOR_USER:
-				throw new UserBlockedError(
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
-					$this->context->getUser()->getBlock(),
-					$this->context->getUser(),
-					$this->context->getLanguage(),
-					$request->getIP()
-				);
+			case self::AS_NO_CREATE_PERMISSION:
+			case self::AS_READ_ONLY_PAGE_ANON:
+			case self::AS_READ_ONLY_PAGE_LOGGED:
+				/** @var PermissionStatus $status */
+				'@phan-var PermissionStatus $status';
+				$status->throwErrorPageError();
+				// This should never happen since AuthorizationConstraint always returns a bad status.
+				throw new LogicException( 'Permission checks failed, but status did not throw an exception!' );
 
 			case self::AS_IMAGE_REDIRECT_ANON:
 			case self::AS_IMAGE_REDIRECT_LOGGED:
 				throw new PermissionsError( 'upload' );
 
-			case self::AS_READ_ONLY_PAGE_ANON:
-			case self::AS_READ_ONLY_PAGE_LOGGED:
-				throw new PermissionsError( 'edit' );
-
 			case self::AS_READ_ONLY_PAGE:
 				throw new ReadOnlyError;
-
-			case self::AS_RATE_LIMITED:
-				$out->addHTML( Html::errorBox(
-					$this->context->msg( 'actionthrottledtext' )->parse()
-				) );
-				return true;
-
-			case self::AS_NO_CREATE_PERMISSION:
-				$permission = $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage';
-				throw new PermissionsError( $permission );
 
 			case self::AS_NO_CHANGE_CONTENT_MODEL:
 				throw new PermissionsError( 'editcontentmodel' );

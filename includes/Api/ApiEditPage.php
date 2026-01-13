@@ -651,9 +651,6 @@ class ApiEditPage extends ApiBase {
 						case EditPage::AS_READ_ONLY_PAGE_LOGGED:
 							$status->fatal( 'apierror-noedit' );
 							break;
-						case EditPage::AS_RATE_LIMITED:
-							$status->fatal( 'apierror-ratelimited' );
-							break;
 						case EditPage::AS_NO_CREATE_PERMISSION:
 							$status->fatal( 'nocreate-loggedin' );
 							break;
