@@ -76,32 +76,14 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	private string $orderBy;
 	private array $parentLens;
 
-	private bool $fld_ids = false;
-	private bool $fld_title = false;
-	private bool $fld_timestamp = false;
-	private bool $fld_comment = false;
-	private bool $fld_parsedcomment = false;
-	private bool $fld_flags = false;
-	private bool $fld_patrolled = false;
-	private bool $fld_tags = false;
-	private bool $fld_size = false;
-	private bool $fld_sizediff = false;
+	/** @var array<string,true> */
+	private array $prop = [];
 
 	public function execute() {
 		// Parse some parameters
 		$this->params = $this->extractRequestParams();
 
-		$prop = array_fill_keys( $this->params['prop'], true );
-		$this->fld_ids = isset( $prop['ids'] );
-		$this->fld_title = isset( $prop['title'] );
-		$this->fld_comment = isset( $prop['comment'] );
-		$this->fld_parsedcomment = isset( $prop['parsedcomment'] );
-		$this->fld_size = isset( $prop['size'] );
-		$this->fld_sizediff = isset( $prop['sizediff'] );
-		$this->fld_flags = isset( $prop['flags'] );
-		$this->fld_timestamp = isset( $prop['timestamp'] );
-		$this->fld_patrolled = isset( $prop['patrolled'] );
-		$this->fld_tags = isset( $prop['tags'] );
+		$this->prop = array_fill_keys( $this->params['prop'], true );
 
 		$dbSecondary = $this->getDB(); // any random replica DB
 
@@ -325,11 +307,11 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$this->prepareQuery( $users, $limit - $count );
 			$res = $this->select( __METHOD__, [], $hookData );
 
-			if ( $this->fld_title ) {
+			if ( isset( $this->prop['title'] ) ) {
 				$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
 			}
 
-			if ( $this->fld_sizediff ) {
+			if ( isset( $this->prop['sizediff'] ) ) {
 				$revIds = [];
 				foreach ( $res as $row ) {
 					if ( $row->rev_parent_id ) {
@@ -444,15 +426,16 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$show[] = 'top';
 		}
 		if ( $show !== null ) {
+			/** @var array<string,true> $show */
 			$show = array_fill_keys( $show, true );
 
-			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
-				|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
-				|| ( isset( $show['autopatrolled'] ) && isset( $show['!autopatrolled'] ) )
-				|| ( isset( $show['autopatrolled'] ) && isset( $show['!patrolled'] ) )
-				|| ( isset( $show['top'] ) && isset( $show['!top'] ) )
-				|| ( isset( $show['new'] ) && isset( $show['!new'] ) )
-			) {
+			foreach ( $show as $key => $_ ) {
+				// If there is a negated and non-negated option the same time
+				if ( str_starts_with( $key, '!' ) && isset( $show[substr( $key, 1 )] ) ) {
+					$this->dieWithError( 'apierror-show' );
+				}
+			}
+			if ( isset( $show['autopatrolled'] ) && isset( $show['!patrolled'] ) ) {
 				$this->dieWithError( 'apierror-show' );
 			}
 
@@ -482,7 +465,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 
 		if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ||
-			isset( $show['autopatrolled'] ) || isset( $show['!autopatrolled'] ) || $this->fld_patrolled
+			isset( $show['autopatrolled'] ) || isset( $show['!autopatrolled'] ) ||
+			isset( $this->prop['patrolled'] )
 		) {
 			$user = $this->getUser();
 			if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
@@ -498,9 +482,9 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			] ] );
 		}
 
-		$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
+		$this->addFieldsIf( 'rc_patrolled', isset( $this->prop['patrolled'] ) );
 
-		if ( $this->fld_tags ) {
+		if ( isset( $this->prop['tags'] ) ) {
 			$this->addFields( [
 				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'revision' )
 			] );
@@ -546,7 +530,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$vals['userhidden'] = true;
 			$anyHidden = true;
 		}
-		if ( $this->fld_ids ) {
+		if ( $this->prop['ids'] ?? false ) {
 			$vals['pageid'] = (int)$row->rev_page;
 			$vals['revid'] = (int)$row->rev_id;
 
@@ -557,21 +541,21 @@ class ApiQueryUserContribs extends ApiQueryBase {
 
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 
-		if ( $this->fld_title ) {
+		if ( isset( $this->prop['title'] ) ) {
 			ApiQueryBase::addTitleInfo( $vals, $title );
 		}
 
-		if ( $this->fld_timestamp ) {
+		if ( isset( $this->prop['timestamp'] ) ) {
 			$vals['timestamp'] = wfTimestamp( TS::ISO_8601, $row->rev_timestamp );
 		}
 
-		if ( $this->fld_flags ) {
+		if ( isset( $this->prop['flags'] ) ) {
 			$vals['new'] = $row->rev_parent_id == 0 && $row->rev_parent_id !== null;
 			$vals['minor'] = (bool)$row->rev_minor_edit;
 			$vals['top'] = $row->page_latest == $row->rev_id;
 		}
 
-		if ( $this->fld_comment || $this->fld_parsedcomment ) {
+		if ( isset( $this->prop['comment'] ) || isset( $this->prop['parsedcomment'] ) ) {
 			if ( $row->rev_deleted & RevisionRecord::DELETED_COMMENT ) {
 				$vals['commenthidden'] = true;
 				$anyHidden = true;
@@ -584,26 +568,26 @@ class ApiQueryUserContribs extends ApiQueryBase {
 
 			if ( $userCanView ) {
 				$comment = $this->commentStore->getComment( 'rev_comment', $row )->text;
-				if ( $this->fld_comment ) {
+				if ( isset( $this->prop['comment'] ) ) {
 					$vals['comment'] = $comment;
 				}
 
-				if ( $this->fld_parsedcomment ) {
+				if ( isset( $this->prop['parsedcomment'] ) ) {
 					$vals['parsedcomment'] = $this->commentFormatter->format( $comment, $title );
 				}
 			}
 		}
 
-		if ( $this->fld_patrolled ) {
+		if ( isset( $this->prop['patrolled'] ) ) {
 			$vals['patrolled'] = $row->rc_patrolled != RecentChange::PRC_UNPATROLLED;
 			$vals['autopatrolled'] = $row->rc_patrolled == RecentChange::PRC_AUTOPATROLLED;
 		}
 
-		if ( $this->fld_size && $row->rev_len !== null ) {
+		if ( isset( $this->prop['size'] ) && $row->rev_len !== null ) {
 			$vals['size'] = (int)$row->rev_len;
 		}
 
-		if ( $this->fld_sizediff
+		if ( isset( $this->prop['sizediff'] )
 			&& $row->rev_len !== null
 			&& $row->rev_parent_id !== null
 		) {
@@ -611,7 +595,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$vals['sizediff'] = (int)$row->rev_len - $parentLen;
 		}
 
-		if ( $this->fld_tags ) {
+		if ( isset( $this->prop['tags'] ) ) {
 			if ( $row->ts_tags ) {
 				$tags = explode( ',', $row->ts_tags );
 				ApiResult::setIndexedTagName( $tags, 'tag' );
