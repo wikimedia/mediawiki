@@ -249,6 +249,23 @@ enum ParserOutputFlags: string {
 	case ASYNC_NOT_READY = 'async-not-ready';
 
 	/**
+	 * Set if this page is unsafe for selective update.
+	 *
+	 * Generally this means a resource limit was reached, and so this
+	 * page does not contain a full representation of the input wikitext.
+	 * An update might resolve the excess resource use, but it wouldn't
+	 * be able to replace the content that was lost when the limit
+	 * was reached. (Duplicate or conflicting definitions constitute
+	 * another form of "resource limit", since uniqueness limits us to
+	 * only one of a given item.)
+	 *
+	 * Triggering other error conditions or the use of other unsafe features
+	 * may also set this flag.
+	 * @since 1.46
+	 */
+	case PREVENT_SELECTIVE_UPDATE = 'prevent-selective-update';
+
+	/**
 	 * Return the ParserOutputFlags, as an array of string flag values.
 	 * @return list<string>
 	 */

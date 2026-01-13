@@ -1213,6 +1213,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		if ( $c instanceof ParsoidLinkTarget ) {
 			$c = $c->getDBkey();
 		}
+		if ( ( $this->mCategories[$c] ?? $sort ) !== $sort ) {
+			// Overwriting a category sort key prevents selective update
+			// [[mw:Parsoid/Internals/Handling_resource_limits]]
+			$this->setOutputFlag( ParserOutputFlags::PREVENT_SELECTIVE_UPDATE );
+		}
 		$this->mCategories[$c] = $sort;
 	}
 
@@ -1222,6 +1227,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @since 1.38
 	 */
 	public function setCategories( array $c ): void {
+		if ( ( $this->mCategories ?: $c ) !== $c ) {
+			// Overwriting categories prevents selective update
+			// [[mw:Parsoid/Internals/Handling_resource_limits]]
+			$this->setOutputFlag( ParserOutputFlags::PREVENT_SELECTIVE_UPDATE );
+		}
 		$this->mCategories = $c;
 	}
 
@@ -1232,6 +1242,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @since 1.25
 	 */
 	public function setIndicator( $id, $content ): void {
+		if ( ( $this->mIndicators[$id] ?? $content ) !== $content ) {
+			// Overwriting an indicator prevents selective update
+			// [[mw:Parsoid/Internals/Handling_resource_limits]]
+			$this->setOutputFlag( ParserOutputFlags::PREVENT_SELECTIVE_UPDATE );
+		}
 		$this->mIndicators[$id] = $content;
 	}
 
@@ -1267,6 +1282,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		if ( $lang === '' ) {
 			throw new InvalidArgumentException( __METHOD__ . ' without prefix' );
 		}
+		if ( ( $this->mLanguageLinkMap[$lang] ?? $title ) !== $title ) {
+			// Overwriting a language link prevents selective update
+			// [[mw:Parsoid/Internals/Handling_resource_limits]]
+			$this->setOutputFlag( ParserOutputFlags::PREVENT_SELECTIVE_UPDATE );
+		}
 		$this->mLanguageLinkMap[$lang] ??= $title;
 	}
 
@@ -1281,6 +1301,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function addWarningMsgVal( MessageSpecifier $mv, ?string $key = null ) {
 		$mv = MessageValue::newFromSpecifier( $mv );
 		$key ??= $mv->getKey();
+		if ( array_key_exists( $key, $this->mWarningMsgs ) ) {
+			// Overwriting a warning message prevents selective update
+			// [[mw:Parsoid/Internals/Handling_resource_limits]]
+			$this->setOutputFlag( ParserOutputFlags::PREVENT_SELECTIVE_UPDATE );
+		}
 		$this->mWarningMsgs[$key] = $mv;
 		// Ensure callers aren't passing nonserializable arguments: T343048.
 		$jsonCodec = MediaWikiServices::getInstance()->getJsonCodec();
@@ -2200,8 +2225,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			array_key_exists( $key, $this->mExtensionData ) &&
 			$this->mExtensionData[$key] !== $value
 		) {
-			// This behavior was deprecated in 1.38.  We will eventually
-			// emit a warning here, then throw an exception.
+			// This is discouraged, as it prevents selective update,
+			// and was deprecated in 1.38.
+			$this->setOutputFlag( ParserOutputFlags::PREVENT_SELECTIVE_UPDATE );
 		}
 		if ( $value === null ) {
 			unset( $this->mExtensionData[$key] );
@@ -2681,7 +2707,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			ParserOutputFlags::HIDE_NEW_SECTION,
 			ParserOutputFlags::NO_GALLERY,
 			ParserOutputFlags::ENABLE_OOUI,
-			ParserOutputFlags::PREVENT_CLICKJACKING ] as $flag ) {
+			ParserOutputFlags::PREVENT_CLICKJACKING,
+			// Selective update
+			ParserOutputFlags::PREVENT_SELECTIVE_UPDATE,
+		] as $flag ) {
 			// logical OR of $this and $source
 			if ( $source->getOutputFlag( $flag ) ) {
 				$this->setOutputFlag( $flag );
@@ -2848,6 +2877,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				// caused by limitations in Parsoid and/or use of
 				// the ParserAfterParse hook: T303015#7770480
 				$metadata->mJsConfigVars[$key] = $value;
+				$metadata->setOutputFlag( ParserOutputFlags::PREVENT_SELECTIVE_UPDATE );
 			} else {
 				$metadata->setJsConfigVar( $key, $value );
 			}
