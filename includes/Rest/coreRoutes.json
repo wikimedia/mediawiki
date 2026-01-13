@@ -341,22 +341,6 @@
 	},
 	{
 		"method": "POST",
-		"path": "/v1/transform/wikitext/to/html/",
-		"class": "MediaWiki\\Rest\\Handler\\TransformWikitextToHtmlHandler",
-		"factory": "MediaWiki\\Rest\\Handler\\TransformWikitextToHtmlHandler::factory",
-		"from": "wikitext",
-		"format": "html",
-		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html",
-			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-html",
-			"deprecationSettings": {
-				"since": 1759795200
-			}
-
-		}
-	},
-	{
-		"method": "POST",
 		"path": "/v1/transform/html/to/wikitext",
 		"class": "MediaWiki\\Rest\\Handler\\TransformHtmlToWikitextHandler",
 		"factory": "MediaWiki\\Rest\\Handler\\TransformHtmlToWikitextHandler::factory",
@@ -365,21 +349,6 @@
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext",
 			"x-i18n-summary": "rest-endpoint-summ-post-transform-html-to-wikitext"
-		}
-	},
-	{
-		"method": "POST",
-		"path": "/v1/transform/html/to/wikitext/",
-		"class": "MediaWiki\\Rest\\Handler\\TransformHtmlToWikitextHandler",
-		"factory": "MediaWiki\\Rest\\Handler\\TransformHtmlToWikitextHandler::factory",
-		"from": "html",
-		"format": "wikitext",
-		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext",
-			"x-i18n-summary": "rest-endpoint-summ-post-transform-html-to-wikitext",
-			"deprecationSettings": {
-				"since": 1759795200
-			}
 		}
 	},
 	{
@@ -396,21 +365,6 @@
 	},
 	{
 		"method": "POST",
-		"path": "/v1/transform/wikitext/to/lint/",
-		"class": "MediaWiki\\Rest\\Handler\\TransformWikitextToLintHandler",
-		"factory": "MediaWiki\\Rest\\Handler\\TransformWikitextToLintHandler::factory",
-		"from": "wikitext",
-		"format": "lint",
-		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint",
-			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-lint",
-			"deprecationSettings": {
-				"since": 1759795200
-			}
-		}
-	},
-	{
-		"method": "POST",
 		"path": "/v1/transform/wikitext/to/html/{title}",
 		"class": "MediaWiki\\Rest\\Handler\\TransformWikitextToHtmlTitleHandler",
 		"factory": "MediaWiki\\Rest\\Handler\\TransformWikitextToHtmlTitleHandler::factory",
@@ -419,21 +373,6 @@
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html",
 			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-html"
-		}
-	},
-	{
-		"method": "POST",
-		"path": "/v1/transform/wikitext/to/html/{title}/",
-		"class": "MediaWiki\\Rest\\Handler\\TransformWikitextToHtmlTitleHandler",
-		"factory": "MediaWiki\\Rest\\Handler\\TransformWikitextToHtmlTitleHandler::factory",
-		"from": "wikitext",
-		"format": "html",
-		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html",
-			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-html",
-			"deprecationSettings": {
-				"since": 1759795200
-			}
 		}
 	},
 	{
@@ -450,21 +389,6 @@
 	},
 	{
 		"method": "POST",
-		"path": "/v1/transform/html/to/wikitext/{title}/",
-		"class": "MediaWiki\\Rest\\Handler\\TransformHtmlToWikitextTitleHandler",
-		"factory": "MediaWiki\\Rest\\Handler\\TransformHtmlToWikitextTitleHandler::factory",
-		"from": "html",
-		"format": "wikitext",
-		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext-title",
-			"x-i18n-summary": "rest-endpoint-summ-post-transform-html-to-wikitext",
-			"deprecationSettings": {
-				"since": 1759795200
-			}
-		}
-	},
-	{
-		"method": "POST",
 		"path": "/v1/transform/wikitext/to/lint/{title}",
 		"class": "MediaWiki\\Rest\\Handler\\TransformWikitextToLintTitleHandler",
 		"factory": "MediaWiki\\Rest\\Handler\\TransformWikitextToLintTitleHandler::factory",
@@ -473,21 +397,6 @@
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint",
 			"x-i18n-summary": "rest-endpoint-desc-post-transform-wikitext-to-lint"
-		}
-	},
-	{
-		"method": "POST",
-		"path": "/v1/transform/wikitext/to/lint/{title}/",
-		"class": "MediaWiki\\Rest\\Handler\\TransformWikitextToLintTitleHandler",
-		"factory": "MediaWiki\\Rest\\Handler\\TransformWikitextToLintTitleHandler::factory",
-		"from": "wikitext",
-		"format": "lint",
-		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint",
-			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-lint",
-			"deprecationSettings": {
-				"since": 1759795200
-			}
 		}
 	}
 ]
