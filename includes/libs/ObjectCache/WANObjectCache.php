@@ -2040,7 +2040,7 @@ class WANObjectCache implements
 	 *             'pcGroup' => 'file-versions:500'
 	 *         ]
 	 *     );
-	 *     $files = array_map( [ self::class, 'newFromRow' ], $rows );
+	 *     $files = array_map( self::newFromRow( ... ), $rows );
 	 * @endcode
 	 *
 	 * @param ArrayIterator $keyedIds Result of WANObjectCache::makeMultiKeys()
@@ -2150,7 +2150,7 @@ class WANObjectCache implements
 	 *         },
 	 *         ]
 	 *     );
-	 *     $files = array_map( [ self::class, 'newFromRow' ], $rows );
+	 *     $files = array_map( self::newFromRow( ... ), $rows );
 	 * @endcode
 	 *
 	 * @param ArrayIterator $keyedIds Result of WANObjectCache::makeMultiKeys()

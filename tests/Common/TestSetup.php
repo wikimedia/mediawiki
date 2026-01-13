@@ -246,14 +246,11 @@ class TestSetup {
 
 	public static function loadSettingsFiles(): void {
 		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.define
-		define( 'MW_SETUP_CALLBACK', [ self::class, 'setupCallback' ] );
+		define( 'MW_SETUP_CALLBACK', self::setupCallback( ... ) );
 		self::requireOnceInGlobalScope( MW_INSTALL_PATH . "/includes/Setup.php" );
 	}
 
-	/**
-	 * @internal Should only be used in self::loadSettingsFiles
-	 */
-	public static function setupCallback() {
+	private static function setupCallback() {
 		global $wgDBadminuser, $wgDBadminpassword;
 		global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
 

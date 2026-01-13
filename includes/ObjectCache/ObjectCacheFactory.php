@@ -190,7 +190,7 @@ class ObjectCacheFactory {
 		$params += [
 			'logger' => $logger,
 			'keyspace' => $this->getDefaultKeyspace(),
-			'asyncHandler' => [ DeferredUpdates::class, 'addCallableUpdate' ],
+			'asyncHandler' => DeferredUpdates::addCallableUpdate( ... ),
 			'reportDupes' => true,
 			'stats' => $this->stats,
 			'telemetry' => $this->telemetry,

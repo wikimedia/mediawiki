@@ -201,7 +201,7 @@ return [
 			'mediawiki.base.js',
 			'log.js',
 			'errorLogger.js',
-			[ 'name' => 'config.json', 'callback' => [ ResourceLoader::class, 'getSiteConfigSettings' ] ],
+			[ 'name' => 'config.json', 'callback' => ResourceLoader::getSiteConfigSettings( ... ) ],
 			[
 				'name' => 'user.json',
 				'callback' => static function ( Context $context ) {
@@ -787,7 +787,7 @@ return [
 			'DateFormatter.js',
 			[
 				'name' => 'config.json',
-				'callback' => [ DateFormatterConfig::class, 'getData' ]
+				'callback' => DateFormatterConfig::getData( ... )
 			]
 		],
 		'dependencies' => [
@@ -1266,7 +1266,7 @@ return [
 				MainConfigNames::ThumbnailSteps,
 				MainConfigNames::ThumbnailStepsRatio,
 			] ],
-			[ 'name' => 'portletLinkOptions.json', 'callback' => [ Skin::class, 'getPortletLinkOptions' ] ],
+			[ 'name' => 'portletLinkOptions.json', 'callback' => Skin::getPortletLinkOptions( ... ) ],
 			[
 				'name' => 'infinityValues.json',
 				'callback' => static function () {
@@ -1927,8 +1927,8 @@ return [
 			'ui/RclToOrFromWidget.js',
 			'ui/WatchlistTopSectionWidget.js',
 			[ 'name' => 'config.json',
-				'versionCallback' => [ ChangesListSpecialPage::class, 'getRcFiltersConfigSummary' ],
-				'callback' => [ ChangesListSpecialPage::class, 'getRcFiltersConfigVars' ],
+				'versionCallback' => ChangesListSpecialPage::getRcFiltersConfigSummary( ... ),
+				'callback' => ChangesListSpecialPage::getRcFiltersConfigVars( ... ),
 			],
 		],
 		'styles' => [

@@ -423,12 +423,12 @@ class BitmapHandler extends TransformationalImageHandler {
 		# input routine for this.
 
 		$typemap = [
-			'image/gif' => [ 'imagecreatefromgif', 'palette', false, 'imagegif' ],
+			'image/gif' => [ 'imagecreatefromgif', 'palette', false, imagegif( ... ) ],
 			'image/jpeg' => [ 'imagecreatefromjpeg', 'truecolor', true,
-				[ self::class, 'imageJpegWrapper' ] ],
-			'image/png' => [ 'imagecreatefrompng', 'bits', false, 'imagepng' ],
-			'image/vnd.wap.wbmp' => [ 'imagecreatefromwbmp', 'palette', false, 'imagewbmp' ],
-			'image/xbm' => [ 'imagecreatefromxbm', 'palette', false, 'imagexbm' ],
+				self::imageJpegWrapper( ... ) ],
+			'image/png' => [ 'imagecreatefrompng', 'bits', false, imagepng( ... ) ],
+			'image/vnd.wap.wbmp' => [ 'imagecreatefromwbmp', 'palette', false, imagewbmp( ... ) ],
+			'image/xbm' => [ 'imagecreatefromxbm', 'palette', false, imagexbm( ... ) ],
 		];
 
 		if ( !isset( $typemap[$params['mimeType']] ) ) {

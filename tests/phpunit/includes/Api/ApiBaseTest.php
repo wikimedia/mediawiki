@@ -752,7 +752,7 @@ class ApiBaseTest extends ApiTestCase {
 					'paramvalidator-badvalue-enumnotmulti',
 					Message::plaintextParam( 'myParam' ),
 					Message::plaintextParam( '-1' ),
-					Message::listParam( array_map( [ Message::class, 'plaintextParam' ], $namespaces ) ),
+					Message::listParam( array_map( Message::plaintextParam( ... ), $namespaces ) ),
 					Message::numParam( count( $namespaces ) ),
 				], 'badvalue' ),
 				[],

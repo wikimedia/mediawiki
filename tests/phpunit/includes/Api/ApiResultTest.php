@@ -1274,7 +1274,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 					ApiResult::META_PRESERVE_KEYS => [ '_dummy2', '_dummy3' ],
 				],
 				[
-					'Custom' => [ self::class, 'customTransform' ],
+					'Custom' => self::customTransform( ... ),
 					'BC' => [],
 					'Types' => [],
 					'Strip' => 'all'

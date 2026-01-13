@@ -46,7 +46,7 @@ class DynamicDefaultValuesTest extends MediaWikiUnitTestCase {
 		yield 'static method callback (string)' => [
 			[
 				'Dynamic' => [
-					'dynamicDefault' => [ 'callback' => [ self::class, 'getDefaultTestValue' ] ]
+					'dynamicDefault' => [ 'callback' => self::getDefaultTestValue( ... ) ]
 				],
 			],
 			[],
@@ -58,7 +58,7 @@ class DynamicDefaultValuesTest extends MediaWikiUnitTestCase {
 		yield 'static method callback (array)' => [
 			[
 				'Dynamic' => [
-					'dynamicDefault' => [ 'callback' => [ self::class, 'getDefaultTestValue' ] ]
+					'dynamicDefault' => [ 'callback' => self::getDefaultTestValue( ... ) ]
 				],
 			],
 			[],
@@ -72,25 +72,25 @@ class DynamicDefaultValuesTest extends MediaWikiUnitTestCase {
 				'A' => [ 'default' => 'a' ],
 				'B' => [
 					'dynamicDefault' => [
-						'callback' => [ self::class, 'identity' ],
+						'callback' => self::identity( ... ),
 						'use' => [ 'A' ]
 					]
 				],
 				'C' => [
 					'dynamicDefault' => [
-						'callback' => [ self::class, 'identity' ],
+						'callback' => self::identity( ... ),
 						'use' => [ 'B' ]
 					]
 				],
 				'D' => [
 					'dynamicDefault' => [
-						'callback' => [ self::class, 'identity' ],
+						'callback' => self::identity( ... ),
 						'use' => [ 'C' ]
 					]
 				],
 				'E' => [
 					'dynamicDefault' => [
-						'callback' => [ self::class, 'identity' ],
+						'callback' => self::identity( ... ),
 						'use' => [ 'D' ]
 					]
 				],
@@ -109,7 +109,7 @@ class DynamicDefaultValuesTest extends MediaWikiUnitTestCase {
 			[
 				'Dynamic' => [
 					'default' => false,
-					'dynamicDefault' => [ 'callback' => [ self::class, 'getDefaultTestValue' ] ]
+					'dynamicDefault' => [ 'callback' => self::getDefaultTestValue( ... ) ]
 				],
 			],
 			[ 'Dynamic' => null ],
@@ -120,7 +120,7 @@ class DynamicDefaultValuesTest extends MediaWikiUnitTestCase {
 			[
 				'Dynamic' => [
 					'default' => 1,
-					'dynamicDefault' => [ 'callback' => [ self::class, 'getDefaultTestValue' ] ]
+					'dynamicDefault' => [ 'callback' => self::getDefaultTestValue( ... ) ]
 				],
 			],
 			[ 'Dynamic' => 1 ],
@@ -158,7 +158,7 @@ class DynamicDefaultValuesTest extends MediaWikiUnitTestCase {
 			[
 				'X' => [
 					'dynamicDefault' => [
-						'callback' => [ self::class, 'identity' ],
+						'callback' => self::identity( ... ),
 						'use' => [ 'X' ]
 					]
 				],
@@ -169,31 +169,31 @@ class DynamicDefaultValuesTest extends MediaWikiUnitTestCase {
 			[
 				'A' => [
 					'dynamicDefault' => [
-						'callback' => [ self::class, 'identity' ],
+						'callback' => self::identity( ... ),
 						'use' => [ 'E' ]
 					]
 				],
 				'B' => [
 					'dynamicDefault' => [
-						'callback' => [ self::class, 'identity' ],
+						'callback' => self::identity( ... ),
 						'use' => [ 'A' ]
 					]
 				],
 				'C' => [
 					'dynamicDefault' => [
-						'callback' => [ self::class, 'identity' ],
+						'callback' => self::identity( ... ),
 						'use' => [ 'B' ]
 					]
 				],
 				'D' => [
 					'dynamicDefault' => [
-						'callback' => [ self::class, 'identity' ],
+						'callback' => self::identity( ... ),
 						'use' => [ 'C' ]
 					]
 				],
 				'E' => [
 					'dynamicDefault' => [
-						'callback' => [ self::class, 'identity' ],
+						'callback' => self::identity( ... ),
 						'use' => [ 'D' ]
 					]
 				],

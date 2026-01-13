@@ -306,7 +306,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 				[],
 				false,
 				[ MainConfigNames::RenderHashAppend => '!wgRenderHashAppend' ],
-				[ self::class, 'onPageRenderingHash' ],
+				self::onPageRenderingHash( ... ),
 			],
 			'Canonical options, postproc, nothing used' => [ [], 'postproc=1', [], true ],
 			'Canonical options, postproc, used some options' => [ $used, 'postproc=1!skin=testskin', [], true ],
@@ -325,7 +325,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 				[],
 				true,
 				[ MainConfigNames::RenderHashAppend => '!wgRenderHashAppend' ],
-				[ self::class, 'onPageRenderingHash' ],
+				self::onPageRenderingHash( ... ),
 			],
 		];
 	}

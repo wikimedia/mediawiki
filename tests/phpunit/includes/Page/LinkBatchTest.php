@@ -165,12 +165,12 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( $nonexisting2->getTitleValue()->__toString(), $bad );
 
 		$expected = array_map(
-			[ CacheKeyHelper::class, 'getKeyForPage' ],
+			CacheKeyHelper::getKeyForPage( ... ),
 			[ $existing1, $existing2, $nonexisting1, $nonexisting2 ]
 		);
 
 		$actual = array_map(
-			[ CacheKeyHelper::class, 'getKeyForPage' ],
+			CacheKeyHelper::getKeyForPage( ... ),
 			$batch->getPageIdentities()
 		);
 

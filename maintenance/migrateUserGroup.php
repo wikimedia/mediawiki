@@ -39,12 +39,12 @@ class MigrateUserGroup extends Maintenance {
 			->select( 'MIN(ug_user)' )
 			->from( 'user_groups' )
 			->where( [ 'ug_group' => $oldGroup ] )
-			->caller( __FUNCTION__ )->fetchField();
+			->caller( __METHOD__ )->fetchField();
 		$end = $dbw->newSelectQueryBuilder()
 			->select( 'MAX(ug_user)' )
 			->from( 'user_groups' )
 			->where( [ 'ug_group' => $oldGroup ] )
-			->caller( __FUNCTION__ )->fetchField();
+			->caller( __METHOD__ )->fetchField();
 		if ( $start === null ) {
 			$this->fatalError( "Nothing to do - no users in the '$oldGroup' group" );
 		}

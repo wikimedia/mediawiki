@@ -21,10 +21,7 @@ class StubObjectTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		global $wgDummy;
-		$wgDummy = new StubObject(
-			'wgDummy',
-			[ self::class, 'factory' ]
-		);
+		$wgDummy = new StubObject( 'wgDummy', self::factory( ... ) );
 	}
 
 	/**

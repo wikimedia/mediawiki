@@ -1400,7 +1400,7 @@ return [
 			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
 			$wanParams['stats'] = $services->getStatsFactory();
 			// Let pre-emptive refreshes happen post-send on HTTP requests
-			$wanParams['asyncHandler'] = [ DeferredUpdates::class, 'addCallableUpdate' ];
+			$wanParams['asyncHandler'] = DeferredUpdates::addCallableUpdate( ... );
 		}
 		return new WANObjectCache( $wanParams );
 	},

@@ -63,14 +63,9 @@ class HTTPFileStreamer {
 	 */
 	public function __construct( $path, array $params = [] ) {
 		$this->path = $path;
-
-		$this->obResetFunc = $params['obResetFunc'] ??
-			[ self::class, 'resetOutputBuffers' ];
-
-		$this->streamMimeFunc = $params['streamMimeFunc'] ??
-			[ self::class, 'contentTypeFromPath' ];
-
-		$this->headerFunc = $params['headerFunc'] ?? 'header';
+		$this->obResetFunc = $params['obResetFunc'] ?? self::resetOutputBuffers( ... );
+		$this->streamMimeFunc = $params['streamMimeFunc'] ?? self::contentTypeFromPath( ... );
+		$this->headerFunc = $params['headerFunc'] ?? header( ... );
 	}
 
 	/**

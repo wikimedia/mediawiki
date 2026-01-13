@@ -67,7 +67,7 @@ class BatchRowIterator implements RecursiveIterator {
 		} else {
 			$this->sqb = $db->newSelectQueryBuilder()
 				->tables( is_array( $sqb ) ? $sqb : [ $sqb ] )
-				->caller( __CLASS__ );
+				->caller( __METHOD__ );
 		}
 		$this->sqb->fields( $this->primaryKey );
 	}

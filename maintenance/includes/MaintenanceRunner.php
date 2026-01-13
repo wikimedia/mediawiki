@@ -577,18 +577,16 @@ class MaintenanceRunner {
 			//       But we only know that once we have instantiated the Maintenance object.
 			//       So go into no-settings mode for now, and fail later of the script doesn't support it.
 			if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
-				define( 'MW_CONFIG_CALLBACK', __CLASS__ . '::emulateConfig' );
+				define( 'MW_CONFIG_CALLBACK', self::emulateConfig( ... ) );
 			}
 			$this->withoutLocalSettings = true;
 		}
 	}
 
 	/**
-	 * @param SettingsBuilder $settings
-	 *
-	 * @internal Handler for MW_CONFIG_CALLBACK, used when no LocalSettings.php was found.
+	 * Handler for MW_CONFIG_CALLBACK, used when no LocalSettings.php was found.
 	 */
-	public static function emulateConfig( SettingsBuilder $settings ) {
+	private static function emulateConfig( SettingsBuilder $settings ) {
 		// NOTE: The config schema is already loaded at this point, so default values are known.
 
 		$settings->overrideConfigValues( [

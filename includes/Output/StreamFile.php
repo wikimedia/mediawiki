@@ -50,22 +50,15 @@ class StreamFile {
 		$streamer = new HTTPFileStreamer(
 			$fname,
 			[
-				'obResetFunc' => 'wfResetOutputBuffers',
-				'streamMimeFunc' => [ self::class, 'contentTypeFromPath' ],
-				'headerFunc' => [ self::class, 'setHeader' ],
+				'obResetFunc' => wfResetOutputBuffers( ... ),
+				'streamMimeFunc' => self::contentTypeFromPath( ... ),
+				'headerFunc' => static function ( string $header ): void {
+					RequestContext::getMain()->getRequest()->response()->header( $header );
+				},
 			]
 		);
 
 		return $streamer->stream( $headers, $sendErrors, $optHeaders, $flags );
-	}
-
-	/**
-	 * @param string $header
-	 *
-	 * @internal
-	 */
-	public static function setHeader( $header ) {
-		RequestContext::getMain()->getRequest()->response()->header( $header );
 	}
 
 	/**

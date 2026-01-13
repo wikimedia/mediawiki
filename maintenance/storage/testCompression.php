@@ -59,7 +59,7 @@ class TestCompression extends Maintenance {
 				$dbr->expr( 'rev_timestamp', '>', $dbr->timestamp( $start ) ),
 			] )
 			->limit( $limit )
-			->caller( __FILE__ )->fetchResultSet();
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$blob = new $type;
 		$hashes = [];

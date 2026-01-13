@@ -4,7 +4,6 @@ declare( strict_types = 1 );
 
 namespace Wikimedia\Tests\FileBackend;
 
-use Closure;
 use InvalidArgumentException;
 use LockManager;
 use MediaWikiUnitTestCase;
@@ -215,20 +214,17 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		string $property, $expected, array $config = []
 	): void {
 		$backend = $this->newMockFileBackend( $config );
-
-		if ( $expected instanceof Closure ) {
-			$expected = $expected( $backend );
-		}
-
-		$assertMethod = isset( $config['inexact'] ) ? 'assertEquals' : 'assertSame';
-		unset( $config['inexact'] );
+		$result = TestingAccessWrapper::newFromObject( $backend )->$property;
 
 		// We need to test this for the sake of subclasses that actually use the property. There
 		// doesn't seem to be any better way to do it. It shouldn't be tested in the subclasses,
 		// because we're testing the behavior of this class' constructor. We could make our own
 		// subclass, but we'd have to stub 26 abstract methods.
-		$this->$assertMethod( $expected,
-			TestingAccessWrapper::newFromObject( $backend )->$property );
+		if ( isset( $config['inexact'] ) ) {
+			$this->assertEquals( $expected, $result );
+		} else {
+			$this->assertSame( $expected, $result );
+		}
 	}
 
 	public static function provideConstruct_properties(): array {
@@ -245,12 +241,15 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 			'concurrency null' => [ 'concurrency', 50, [ 'concurrency' => null ] ],
 			'concurrency cast to int' => [ 'concurrency', 51, [ 'concurrency' => '51x' ] ],
 
-			'obResetFunc default value' =>
-				[ 'obResetFunc', [ FileBackend::class, 'resetOutputBufferTheDefaultWay' ] ],
+			'obResetFunc default value' => [
+				'obResetFunc',
+				FileBackend::resetOutputBufferTheDefaultWay( ... ),
+				[ 'inexact' => true ]
+			],
 			'obResetFunc null' => [
 				'obResetFunc',
-				[ FileBackend::class, 'resetOutputBufferTheDefaultWay' ],
-				[ 'obResetFunc' => null ]
+				FileBackend::resetOutputBufferTheDefaultWay( ... ),
+				[ 'obResetFunc' => null, 'inexact' => true ]
 			],
 			'obResetFunc set' => [
 				'obResetFunc',
@@ -258,7 +257,11 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 				[ 'obResetFunc' => 'wfSomeImaginaryFunction' ]
 			],
 
-			'headerFunc default value' => [ 'headerFunc', 'header' ],
+			'headerFunc default value' => [
+				'headerFunc',
+				header( ... ),
+				[ 'inexact' => true ]
+			],
 			'headerFunc set' => [ 'headerFunc', 'myHeaderFunc', [ 'headerFunc' => 'myHeaderFunc' ] ],
 
 			'profiler default value' => [ 'profiler', null ],

@@ -219,9 +219,8 @@ abstract class FileBackend implements LoggerAwareInterface {
 		$this->concurrency = isset( $config['concurrency'] )
 			? (int)$config['concurrency']
 			: 50;
-		$this->obResetFunc = $config['obResetFunc']
-			?? [ self::class, 'resetOutputBufferTheDefaultWay' ];
-		$this->headerFunc = $config['headerFunc'] ?? 'header';
+		$this->obResetFunc = $config['obResetFunc'] ?? self::resetOutputBufferTheDefaultWay( ... );
+		$this->headerFunc = $config['headerFunc'] ?? header( ... );
 		$this->asyncHandler = $config['asyncHandler'] ?? null;
 		$this->streamerOptions = [
 			'obResetFunc' => $this->obResetFunc,

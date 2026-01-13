@@ -34,7 +34,7 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 			->with( $selectFields['tables'],
 				$selectFields['fields'],
 				$selectFields['conds'],
-				DatabaseLogEntry::class . '::newFromId',
+				$this->isType( 'string' ),
 				$selectFields['options'],
 				$selectFields['join_conds']
 			)

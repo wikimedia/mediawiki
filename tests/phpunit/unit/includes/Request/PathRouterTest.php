@@ -101,7 +101,7 @@ class PathRouterTest extends MediaWikiUnitTestCase {
 				[ [
 					'path' => "/$1",
 					'params' => [ 'a' => 'b', 'data:foo' => 'bar' ],
-					'options' => [ 'callback' => [ self::class, 'callbackForTest' ] ]
+					'options' => [ 'callback' => self::callbackForTest( ... ) ]
 				] ],
 				'/Foo',
 				[

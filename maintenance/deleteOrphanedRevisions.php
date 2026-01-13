@@ -45,7 +45,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 			->from( 'revision' )
 			->leftJoin( 'page', null, 'rev_page = page_id' )
 			->where( [ 'page_namespace' => null ] )
-			->caller( 'deleteOrphanedRevisions' )
+			->caller( __METHOD__ )
 			->fetchFieldValues();
 
 		# Stash 'em all up for deletion (if needed)
