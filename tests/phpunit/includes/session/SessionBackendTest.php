@@ -1020,6 +1020,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testResetIdOfGlobalSession() {
+		$this->hideDeprecated( '$_SESSION' );
 		$scope = $this->ensurePHPSessionHandlerEnabled();
 
 		$backend = $this->getBackend( User::newFromName( 'TestResetIdOfGlobalSession' ) );
