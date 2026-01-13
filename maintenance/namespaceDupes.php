@@ -125,13 +125,12 @@ class NamespaceDupes extends Maintenance {
 	 */
 	private function checkAll( $options ) {
 		$contLang = $this->getServiceContainer()->getContentLanguage();
+		$interwikis = [];
 		$spaces = [];
 
-		// List interwikis first, so they'll be overridden
-		// by any conflicting local namespaces.
 		foreach ( $this->getInterwikiList() as $prefix ) {
 			$name = $contLang->ucfirst( $prefix );
-			$spaces[$name] = 0;
+			$interwikis[$name] = 0;
 		}
 
 		// Now pull in all canonical and alias namespaces...
@@ -177,6 +176,9 @@ class NamespaceDupes extends Maintenance {
 				}
 			}
 		}
+
+		// Add interwikis after all namespaces are set up to make sure namespaces overwrite interwikis
+		$spaces += $interwikis;
 
 		// Sort by namespace index, and if there are two with the same index,
 		// break the tie by sorting by name
