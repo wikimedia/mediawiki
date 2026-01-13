@@ -2,14 +2,14 @@
 	<cdx-button
 		type="button"
 		:disabled="selectedPagesList.length === 0"
-		@click="isOpen = true; dialogAction = 'assign';"
+		@click="openAssignDialog"
 	>
 		{{ $i18n( 'watchlistlabels-editwatchlist-dialog-button' ) }}
 	</cdx-button>
 	<cdx-button
 		type="button"
 		:disabled="selectedPagesList.length === 0"
-		@click="isOpen = true; dialogAction = 'unassign';"
+		@click="openUnassignDialog"
 	>
 		{{ $i18n( 'watchlistlabels-editwatchlist-dialog-button-unassign' ) }}
 	</cdx-button>
@@ -31,12 +31,12 @@
 				</span>
 			</p>
 			<cdx-checkbox
-				v-for="label in labels"
-				:key="label.id"
-				:input-value="label.id"
+				v-for="[ labelId, labelName ] in labels"
+				:key="labelId"
+				:input-value="labelId"
 				name="watchlistlabels[]"
 			>
-				{{ label.name }}
+				{{ labelName }}
 			</cdx-checkbox>
 		</div>
 		<template #footer>
@@ -83,6 +83,8 @@ module.exports = defineComponent( {
 		const dialogAction = ref( 'assign' );
 		const isOpen = ref( false );
 		const selectedPagesList = ref( '' );
+		const allLabels = new Map( Object.values( mw.config.get( 'watchlistLabels' ) ).map( ( l ) => [ l.id, l.name ] ) );
+		const labels = ref( new Map( allLabels ) );
 
 		const checkboxes = document.querySelectorAll( '.watchlist-item-checkbox' );
 
@@ -110,11 +112,32 @@ module.exports = defineComponent( {
 		const selectAllCheckbox = document.getElementById( 'select-all-checkbox' );
 		selectAllCheckbox.addEventListener( 'selectall', updateSelectedPagesList );
 
+		const openAssignDialog = () => {
+			isOpen.value = true;
+			dialogAction.value = 'assign';
+			labels.value = allLabels;
+		};
+
+		const openUnassignDialog = () => {
+			isOpen.value = true;
+			dialogAction.value = 'unassign';
+			labels.value.clear();
+			Array.from( checkboxes )
+				.filter( ( e ) => e.checked )
+				.forEach( ( e ) => {
+					Array.from( e.closest( 'tr' ).querySelectorAll( '[data-wllabel]' ) ).forEach( ( labelEl ) => {
+						labels.value.set( labelEl.dataset.wllabel, labelEl.textContent );
+					} );
+				} );
+		};
+
 		return {
 			dialogAction,
 			isOpen,
 			selectedPagesList,
-			labels: mw.config.get( 'watchlistLabels' )
+			labels,
+			openAssignDialog,
+			openUnassignDialog
 		};
 	}
 } );
