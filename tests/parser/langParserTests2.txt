@@ -643,7 +643,7 @@ language=zh htmlVariantLanguage=zh-Hans-CN
 
 -{N|zh-tw}-
 
--{N|sr-ec}-
+-{N|sr-Cyrl}-
 !! html
 <p>大陆
 </p><p>臺灣

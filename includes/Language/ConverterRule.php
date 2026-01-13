@@ -416,8 +416,8 @@ class ConverterRule {
 					break;
 				case 'N':
 					// process N flag: output current variant name
-					$ruleVar = trim( $rules );
-					$this->mRuleDisplay = $this->mConverter->getVariantNames()[$ruleVar] ?? '';
+					$vv = LanguageCode::bcp47ToInternal( trim( $rules ) );
+					$this->mRuleDisplay = $this->mConverter->getVariantNames()[$vv] ?? '';
 					break;
 				case 'D':
 					// process D flag: output rules description
