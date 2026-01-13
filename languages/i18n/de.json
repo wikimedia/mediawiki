@@ -3352,7 +3352,7 @@
 	"watchlistedit-too-many": "Deine Beobachtungsliste wurde aktualisiert. Es gibt zu viele Seiten, um sie hier anzuzeigen.",
 	"watchlistedit-table-title": "Seiten",
 	"watchlistedit-table-title-pages": "Seitentitel",
-	"watchlistedit-table-title-expiry": "Aktualität",
+	"watchlistedit-table-title-expiry": "Temporär",
 	"watchlistedit-table-remove-selected": "Nicht mehr beobachten",
 	"watchlisttools-clear": "Beobachtungsliste leeren",
 	"watchlisttools-view": "Änderungen anzeigen",

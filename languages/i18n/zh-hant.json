@@ -4211,7 +4211,7 @@
 	"restsandbox-no-specs-configured": "沒有配置可探索的REST API。請使用RestSandboxSpecs設定。",
 	"restsandbox-no-such-api": "給定的API參數不受支援：$1",
 	"restsandbox-jsonly": "請啟用JavaScript以檢視REST規範。",
-	"blockedtext-made-by": "封鎖執行者是$1。",
+	"blockedtext-made-by": "由$1封鎖。",
 	"blockedtext-reason-comment": "原因是<em>$1</em>",
 	"blockedtext-start-time": "封鎖開始時間：$1",
 	"blockedtext-expiration-time": "封鎖結束時間：$1",

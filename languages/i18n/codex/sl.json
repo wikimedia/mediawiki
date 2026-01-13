@@ -22,7 +22,7 @@
 	"cdx-table-pager-button-last-page": "Zadnja stran",
 	"cdx-table-pager-button-next-page": "Naslednja stran",
 	"cdx-table-pager-button-prev-page": "Prejšnja stran",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 vrstica|$1 vrstici|$1 vrstice|$1 vrstic}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 predmet|$1 predmeta|$1 predmeti|$1 predmetov}}",
 	"cdx-table-pager-items-per-page-default": "Zadetkov na stran",
 	"cdx-table-pagination-status-message-determinate-long": "Prikaz zadetkov $1–$2 od $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 od $3",

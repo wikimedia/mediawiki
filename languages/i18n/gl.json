@@ -4147,6 +4147,7 @@
 	"renameuser-error-unexpected-name": "O usuario de destino non ten o nome esperado.",
 	"renameuser-error-global-detaching": "O usuario está unificado globalmente. Utiliza a autenticación central para renomear esta conta.",
 	"renameuser-error-global-rights": "Non tes os permisos necesarios para cambiar o nome dos usuarios globais.",
+	"renameuser-error-local-rights": "Non tes os permisos necesarios para cambiar o nome dos usuarios.",
 	"renameusersuccess": "O nome de {{GENDER:$1|usuario|usuaria}} «<nowiki>$1</nowiki>» cambiou a «<nowiki>$2</nowiki>».",
 	"renameuser-page-exists": "A páxina «$1» xa existe e non pode sobrescribirse automaticamente.",
 	"renameuser-page-moved": "A páxina «$1» trasladouse a «$2».",

@@ -4375,6 +4375,7 @@
 	"renameuser-error-unexpected-name": "L'utilisateur cible n'a pas le nom attendu.",
 	"renameuser-error-global-detaching": "L'utilisateur est rattaché globalement. Utilisez CentralAuth pour renommer ce compte.",
 	"renameuser-error-global-rights": "Vous n'avez pas la permission pour renommer les utilisateurs globaux.",
+	"renameuser-error-local-rights": "Vous n'avez pas la permission de renommer les utilisateurs.",
 	"renameusersuccess": "L’utilisat{{GENDER:$1|eur|rice}} « <nowiki>$1</nowiki> » a été renommé{{GENDER:$1||e}} en « <nowiki>$2</nowiki> ».",
 	"renameuser-page-exists": "La page $1 existe déjà et ne peut pas être automatiquement remplacée.",
 	"renameuser-page-moved": "La page $1 a été déplacée vers $2.",

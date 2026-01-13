@@ -2482,7 +2482,7 @@
 	"blanknamespace": "(일반)",
 	"contributions": "사용자 기여",
 	"tool-link-contributions": "{{GENDER:$1|사용자}} 기여",
-	"contributions-title": "$1님의 {{GENDER:$2|사용자}} 기여",
+	"contributions-title": "$1에 대한 {{GENDER:$2|사용자}} 기여",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "$1의 레거시 IP 기여",
 	"contribute-title": "사용자 기여",
 	"mycontris": "기여",

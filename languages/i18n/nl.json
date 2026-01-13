@@ -823,7 +823,7 @@
 	"undo-summary-import": "Geïmporteerde versie [[Special:Diff/$1|$1]] van gebruiker [[:$2|$3]] ongedaan gemaakt",
 	"undo-summary-import2": "Geïmporteerde versie [[Special:Diff/$1|$1]] van gebruiker $2 ongedaan gemaakt",
 	"undo-summary-multiple": "{{PLURAL:$1|Eén versie|$1 versies}} ongedaan gemaakt (versienummers [[Special:Diff/$2|$2]] tot en met [[Special:Diff/$3|$3]])",
-	"undo-summary-username-hidden": "Versie [[Special:Diff/$1|$1]] door een verborgen gebruiker ongedaan gemaakt",
+	"undo-summary-username-hidden": "Versie [[Special:Diff/$1|$1]] van een verborgen gebruiker ongedaan gemaakt",
 	"viewpagelogs": "Logboek voor deze pagina bekijken",
 	"viewpagelogs-lowercase": "logboek voor deze pagina bekijken",
 	"nohistory": "Er is geen bewerkingsgeschiedenis voor deze pagina.",

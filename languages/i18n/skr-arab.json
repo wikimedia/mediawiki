@@ -1438,6 +1438,7 @@
 	"watching": "پارھا ݙیندے پئے۔۔۔",
 	"unwatching": "پارھے وچوں کڈھیندا پئے۔۔۔",
 	"watchlistlabels-onboarding-next": "اڳلا",
+	"watchlistlabels-editwatchlist-dialog-unassign": "ہٹاؤ",
 	"enotif_reset": "سارے ورقے ڈیکھ گھدن",
 	"enotif_impersonal_salutation": "{{SITENAME}} ورتݨ آلا",
 	"enotif_subject_deleted": "{{SITENAME}} وچ ورقہ $1 ورتݨ آلے $2  {{GENDER:$2|مٹایا}}",

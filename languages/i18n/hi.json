@@ -2163,6 +2163,7 @@
 	"watchlistlabels-form-header-edit": "नाम बदलें",
 	"watchlistlabels-form-submit-new": "बनाएँ",
 	"watchlistlabels-form-submit-edit": "सहेजें",
+	"watchlistlabels-editwatchlist-dialog-unassign": "हटाएँ",
 	"watchlist-filters-labels-title": "लेबल्स",
 	"enotif_reset": "सभी पृष्ठ देखे हुए दर्शाएँ",
 	"enotif_impersonal_salutation": "{{SITENAME}} सदस्य",
