@@ -202,6 +202,7 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 						'sort' => WatchedItemStoreInterface::SORT_ASC,
 						'namespaces' => self::$SUBJECT_NAMESPACES,
 						'offsetConds' => [],
+						'forWrite' => false,
 					],
 					'response' => [
 						$this->createMockWatchedItem( 777, 'Page_1', 20250909180500 ),
@@ -233,7 +234,8 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 						'limit' => 20,
 						'sort' => WatchedItemStoreInterface::SORT_DESC,
 						'namespaces' => self::$SUBJECT_NAMESPACES,
-						'offsetConds' => [ "wl_namespace < 999 OR (wl_namespace = 999 AND (wl_title < 'Page_2'))" ]
+						'offsetConds' => [ "wl_namespace < 999 OR (wl_namespace = 999 AND (wl_title < 'Page_2'))" ],
+						'forWrite' => false,
 					],
 					'response' => [
 						$this->createMockWatchedItem( 999, 'Page_2', 20250909180530 ),

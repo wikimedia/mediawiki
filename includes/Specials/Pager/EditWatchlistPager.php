@@ -120,6 +120,7 @@ class EditWatchlistPager extends CodexTablePager {
 				? WatchedItemStoreInterface::SORT_DESC
 				: WatchedItemStoreInterface::SORT_ASC,
 			'namespaces' => $this->getNamespacesList(),
+			'forWrite' => $this->getRequest()->wasPosted(),
 		];
 		[ $offsetConds, ] = $this->getOffsetCondsAndSortOptions( $offset, $limit, $order );
 		$options['offsetConds'] = is_array( $offsetConds ) ? $offsetConds : [ $offsetConds ];
