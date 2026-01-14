@@ -57,6 +57,10 @@ class MemoizedCallable {
 			throw new InvalidArgumentException( 'Cannot memoize unnamed closure' );
 		}
 
+		if ( is_object( $callable ) || is_object( $callable[ 0 ] ) ) {
+			throw new InvalidArgumentException( 'Cannot memoize object-bound callable' );
+		}
+
 		$this->callable = $callable;
 		$this->ttl = min( max( $ttl, 1 ), 86400 );
 	}

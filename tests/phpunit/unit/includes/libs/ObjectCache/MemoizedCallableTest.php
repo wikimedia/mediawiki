@@ -6,7 +6,6 @@ use InvalidArgumentException;
 use MediaWikiCoversValidator;
 use MemoizedCallable;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -17,17 +16,16 @@ class MemoizedCallableTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 
+	/** For testCallableMemoized() only */
+	private static int $computeCalls = 0;
+
 	/**
 	 * The memoized callable should relate inputs to outputs in the same
 	 * way as the original underlying callable.
 	 */
 	public function testReturnValuePassedThrough() {
-		$mock = $this->getMockBuilder( stdClass::class )
-			->addMethods( [ 'reverse' ] )->getMock();
-		$mock->method( 'reverse' )
-			->willReturnCallback( 'strrev' );
+		$memoized = new MemoizedCallable( [ self::class, 'reverse' ] );
 
-		$memoized = new MemoizedCallable( [ $mock, 'reverse' ] );
 		$this->assertEquals( 'flow', $memoized->invoke( 'wolf' ) );
 	}
 
@@ -38,19 +36,18 @@ class MemoizedCallableTest extends TestCase {
 	 * @requires extension apcu
 	 */
 	public function testCallableMemoized() {
-		$observer = $this->getMockBuilder( stdClass::class )
-			->addMethods( [ 'computeSomething' ] )->getMock();
-		$observer->expects( $this->once() )
-			->method( 'computeSomething' )
-			->willReturn( 'ok' );
+		$memoized = new ArrayBackedMemoizedCallable( [ self::class, 'computeSomething' ] );
 
-		$memoized = new ArrayBackedMemoizedCallable( [ $observer, 'computeSomething' ] );
+		$this->assertSame( 0, self::$computeCalls );
 
-		// First invocation -- delegates to $observer->computeSomething()
+		// First invocation -- delegates to $this->computeSomething()
 		$this->assertEquals( 'ok', $memoized->invoke() );
 
 		// Second invocation -- returns memoized result
 		$this->assertEquals( 'ok', $memoized->invoke() );
+
+		// $this->computeSomething must be called only once
+		$this->assertSame( 1, self::$computeCalls );
 	}
 
 	public function testInvokeVariadic() {
@@ -91,6 +88,19 @@ class MemoizedCallableTest extends TestCase {
 		return rand();
 	}
 
+	public static function reverse( $v ) {
+		return strrev( $v );
+	}
+
+	public function __invoke() {
+		return 'c';
+	}
+
+	public static function computeSomething() {
+		self::$computeCalls++;
+		return 'ok';
+	}
+
 	/**
 	 * Callable names should be distinct.
 	 */
@@ -120,12 +130,26 @@ class MemoizedCallableTest extends TestCase {
 		$memoized->invoke( (object)[] );
 	}
 
-	public function testUnnamedCallable() {
-		$this->expectExceptionMessage( 'Cannot memoize unnamed closure' );
+	/**
+	 * @dataProvider provideInvalidCallables
+	 */
+	public function testInvalidCallables( $exceptionMsg, $callable ) {
+		$this->expectExceptionMessage( $exceptionMsg );
 		$this->expectException( InvalidArgumentException::class );
-		$memoized = new MemoizedCallable( static function () {
-			return 'a';
-		} );
+		$memoized = new MemoizedCallable( $callable );
+	}
+
+	public static function provideInvalidCallables() {
+		$closureMsg = 'Cannot memoize unnamed closure';
+		$objectMsg = 'Cannot memoize object-bound callable';
+
+		yield 'obj' => [ $objectMsg, new self() ];
+		yield 'obj2' => [ $objectMsg, [ new self(), 'makeRand' ] ];
+		yield 'arrow' => [ $closureMsg, static fn ( $a ) => $a * 2 ];
+		yield 'fcc' => [ $closureMsg, strlen( ... ) ];
+		yield 'closure' => [ $closureMsg, static function () { return 'a';
+		}
+		];
 	}
 
 	public function testNotCallable() {
