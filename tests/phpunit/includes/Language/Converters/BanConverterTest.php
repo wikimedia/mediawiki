@@ -7,7 +7,7 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @group Language
- * @covers \BanConverter
+ * @covers \MediaWiki\Language\Converters\BanConverter
  */
 class BanConverterTest extends MediaWikiIntegrationTestCase {
 

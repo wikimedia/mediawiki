@@ -14,7 +14,7 @@ use MediaWiki\Tests\Language\LanguageConverterTestTrait;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \MniConverter
+ * @covers \MediaWiki\Language\Converters\MniConverter
  */
 class MniConverterTest extends MediaWikiIntegrationTestCase {
 

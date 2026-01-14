@@ -4,6 +4,10 @@
  * @file
  */
 
+namespace MediaWiki\Language\Converters;
+
+use LanguageConverterIcu;
+
 /**
  * Balinese specific code.
  *
@@ -1021,3 +1025,6 @@ EOF;
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( BanConverter::class, 'BanConverter' );

@@ -4,6 +4,9 @@
  * @file
  */
 
+namespace MediaWiki\Language\Converters;
+
+use LanguageConverterSpecific;
 use Wikimedia\ReplacementArray;
 
 /**
@@ -94,3 +97,6 @@ class ZghConverter extends LanguageConverterSpecific {
 		return $text;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ZghConverter::class, 'ZghConverter' );

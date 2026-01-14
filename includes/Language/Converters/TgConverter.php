@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language\Converters;
+
 use MediaWiki\Language\LanguageConverter;
 use Wikimedia\ReplacementArray;
 
@@ -109,3 +111,6 @@ class TgConverter extends LanguageConverter {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( TgConverter::class, 'TgConverter' );

@@ -4,6 +4,10 @@
  * @file
  */
 
+namespace MediaWiki\Language\Converters;
+
+use LanguageConverterSpecific;
+use LogicException;
 use Wikimedia\ReplacementArray;
 
 /**
@@ -164,3 +168,6 @@ class KuConverter extends LanguageConverterSpecific {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( KuConverter::class, 'KuConverter' );

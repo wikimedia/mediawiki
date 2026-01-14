@@ -7,7 +7,7 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @group Language
- * @covers \ZghConverter
+ * @covers \MediaWiki\Language\Converters\ZghConverter
  */
 class ZghConverterTest extends MediaWikiIntegrationTestCase {
 

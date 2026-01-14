@@ -7,7 +7,7 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @group Language
- * @covers \GanConverter
+ * @covers \MediaWiki\Language\Converters\GanConverter
  */
 class GanConverterTest extends MediaWikiIntegrationTestCase {
 

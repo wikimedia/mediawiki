@@ -4,6 +4,9 @@
  * @file
  */
 
+namespace MediaWiki\Language\Converters;
+
+use LanguageConverterSpecific;
 use Wikimedia\ReplacementArray;
 
 /**
@@ -115,3 +118,6 @@ class SrConverter extends LanguageConverterSpecific {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SrConverter::class, 'SrConverter' );

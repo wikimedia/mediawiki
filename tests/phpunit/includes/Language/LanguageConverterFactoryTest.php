@@ -2,30 +2,30 @@
 
 namespace MediaWiki\Tests\Language;
 
-use BanConverter;
-use CrhConverter;
-use EnConverter;
-use GanConverter;
-use IuConverter;
-use KuConverter;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Language\Converters\BanConverter;
+use MediaWiki\Language\Converters\CrhConverter;
+use MediaWiki\Language\Converters\EnConverter;
+use MediaWiki\Language\Converters\GanConverter;
+use MediaWiki\Language\Converters\IuConverter;
+use MediaWiki\Language\Converters\KuConverter;
+use MediaWiki\Language\Converters\MniConverter;
+use MediaWiki\Language\Converters\ShConverter;
+use MediaWiki\Language\Converters\ShiConverter;
+use MediaWiki\Language\Converters\SrConverter;
+use MediaWiki\Language\Converters\TgConverter;
+use MediaWiki\Language\Converters\TlyConverter;
+use MediaWiki\Language\Converters\UzConverter;
+use MediaWiki\Language\Converters\WuuConverter;
+use MediaWiki\Language\Converters\ZghConverter;
+use MediaWiki\Language\Converters\ZhConverter;
 use MediaWiki\Language\LanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWikiLangTestCase;
-use MniConverter;
-use ShConverter;
-use ShiConverter;
-use SrConverter;
-use TgConverter;
-use TlyConverter;
 use TrivialLanguageConverter;
-use UzConverter;
 use Wikimedia\TestingAccessWrapper;
-use WuuConverter;
-use ZghConverter;
-use ZhConverter;
 
 /**
  * @group large

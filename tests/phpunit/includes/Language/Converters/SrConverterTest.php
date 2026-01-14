@@ -7,7 +7,7 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @group Language
- * @covers \SrConverter
+ * @covers \MediaWiki\Language\Converters\SrConverter
  */
 class SrConverterTest extends MediaWikiIntegrationTestCase {
 	use LanguageConverterTestTrait;

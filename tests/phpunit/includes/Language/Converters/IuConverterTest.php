@@ -7,7 +7,7 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @group Language
- * @covers \IuConverter
+ * @covers \MediaWiki\Language\Converters\IuConverter
  */
 class IuConverterTest extends MediaWikiIntegrationTestCase {
 

@@ -4,6 +4,10 @@
  * @file
  */
 
+namespace MediaWiki\Language\Converters;
+
+use LanguageConverterSpecific;
+use LogicException;
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\Data\CrhExceptions;
 use MediaWiki\StubObject\StubUserLang;
@@ -272,3 +276,6 @@ class CrhConverter extends LanguageConverterSpecific {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( CrhConverter::class, 'CrhConverter' );

@@ -7,7 +7,7 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @group Language
- * @covers \KuConverter
+ * @covers \MediaWiki\Language\Converters\KuConverter
  */
 class KuConverterTest extends MediaWikiIntegrationTestCase {
 

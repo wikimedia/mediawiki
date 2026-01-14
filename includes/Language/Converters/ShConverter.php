@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language\Converters;
+
 use MediaWiki\Language\LanguageConverter;
 use Wikimedia\ReplacementArray;
 
@@ -119,3 +121,6 @@ class ShConverter extends LanguageConverter {
 		return $this->translateWithoutRomanNumbers( $text, $variant );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ShConverter::class, 'ShConverter' );

@@ -6,6 +6,9 @@
  * @author Haoreima
  */
 
+namespace MediaWiki\Language\Converters;
+
+use LanguageConverterSpecific;
 use Wikimedia\ReplacementArray;
 
 /**
@@ -279,3 +282,6 @@ class MniConverter extends LanguageConverterSpecific {
 		return $text;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MniConverter::class, 'MniConverter' );

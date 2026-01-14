@@ -16,7 +16,7 @@ use MediaWikiIntegrationTestCase;
 /**
  * @group Language
  * @covers \MediaWiki\Language\LanguageConverter
- * @covers \TlyConverter
+ * @covers \MediaWiki\Language\Converters\TlyConverter
  */
 class TlyConverterTest extends MediaWikiIntegrationTestCase {
 	use LanguageConverterTestTrait;

@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language\Converters;
+
 use MediaWiki\Language\LanguageConverter;
 use Wikimedia\ReplacementArray;
 
@@ -127,3 +129,6 @@ class UzConverter extends LanguageConverter {
 		return parent::translate( $text, $toVariant );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UzConverter::class, 'UzConverter' );

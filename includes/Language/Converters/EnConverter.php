@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language\Converters;
+
 use MediaWiki\Language\LanguageConverter;
 use Wikimedia\ReplacementArray;
 
@@ -116,3 +118,6 @@ class EnConverter extends LanguageConverter {
 		}, $text );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( EnConverter::class, 'EnConverter' );

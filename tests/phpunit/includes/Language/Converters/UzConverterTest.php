@@ -23,7 +23,7 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @group Language
- * @covers \UzConverter
+ * @covers \MediaWiki\Language\Converters\UzConverter
  * @covers \MediaWiki\Language\LanguageConverter
  */
 class UzConverterTest extends MediaWikiIntegrationTestCase {

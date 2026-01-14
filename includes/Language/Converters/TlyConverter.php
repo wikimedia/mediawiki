@@ -5,6 +5,8 @@
  * @author Amir E. Aharoni
  */
 
+namespace MediaWiki\Language\Converters;
+
 use MediaWiki\Language\LanguageConverter;
 use Wikimedia\ReplacementArray;
 
@@ -76,3 +78,6 @@ class TlyConverter extends LanguageConverter {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( TlyConverter::class, 'TlyConverter' );

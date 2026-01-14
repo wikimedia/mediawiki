@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language\Converters;
+
 use MediaWiki\Language\LanguageConverter;
 use MediaWiki\Languages\Data\ZhConversion;
 use Wikimedia\ReplacementArray;
@@ -61,3 +63,6 @@ class WuuConverter extends LanguageConverter {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( WuuConverter::class, 'WuuConverter' );

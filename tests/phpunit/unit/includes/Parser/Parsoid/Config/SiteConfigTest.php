@@ -7,6 +7,7 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Language\Converters\ZhConverter;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -30,7 +31,6 @@ use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Stats\NullStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
-use ZhConverter;
 
 /**
  * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig

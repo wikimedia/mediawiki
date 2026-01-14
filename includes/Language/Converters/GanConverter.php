@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language\Converters;
+
 use MediaWiki\Language\LanguageConverter;
 use Wikimedia\ReplacementArray;
 
@@ -55,8 +57,8 @@ class GanConverter extends LanguageConverter {
 
 	protected function loadDefaultTables(): array {
 		return [
-			'gan-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::ZH_TO_HANS ),
-			'gan-hant' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::ZH_TO_HANT ),
+			'gan-hans' => new ReplacementArray( \MediaWiki\Languages\Data\ZhConversion::ZH_TO_HANS ),
+			'gan-hant' => new ReplacementArray( \MediaWiki\Languages\Data\ZhConversion::ZH_TO_HANT ),
 			'gan' => new ReplacementArray
 		];
 	}
@@ -66,3 +68,6 @@ class GanConverter extends LanguageConverter {
 		return $this->autoConvert( $key, 'gan' );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( GanConverter::class, 'GanConverter' );

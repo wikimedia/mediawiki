@@ -7,7 +7,7 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @group Language
- * @covers \CrhConverter
+ * @covers \MediaWiki\Language\Converters\CrhConverter
  * @covers \MediaWiki\Languages\Data\CrhExceptions
  */
 class CrhConverterTest extends MediaWikiIntegrationTestCase {

@@ -4,6 +4,9 @@
  * @file
  */
 
+namespace MediaWiki\Language\Converters;
+
+use LanguageConverterSpecific;
 use Wikimedia\ReplacementArray;
 
 /**
@@ -182,3 +185,6 @@ class ShiConverter extends LanguageConverterSpecific {
 		return $text;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ShiConverter::class, 'ShiConverter' );

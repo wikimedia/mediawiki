@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Language;
 
-use EnConverter;
 use MediaWiki\Language\ConverterRule;
+use MediaWiki\Language\Converters\EnConverter;
 use MediaWikiIntegrationTestCase;
 
 /**

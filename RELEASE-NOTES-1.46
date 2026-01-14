@@ -352,6 +352,23 @@ because of Phabricator reports.
     - ImportHandleUploadXMLTagHook
   - Jobs related hook: MediaWiki\Hook => MediaWiki\JobQueue\Jobs\Hook
     - RecentChangesPurgeRowsHook
+  - MediaWiki\Language\Converters
+    - ShiConverter
+    - EnConverter
+    - BanConverter
+    - CrhConverter
+    - TlyConverter
+    - ZhConverter
+    - MniConverter
+    - TgConverter
+    - IuConverter
+    - GanConverter
+    - ShConverter
+    - WuuConverter
+    - UzConverter
+    - KuConverter
+    - ZghConverter
+    - SrConverter
   - MediaWiki\Skins\Hook => MediaWiki\Language\Skin
     - SkinAfterPortletHook
     - SkinPageReadyConfigHook
