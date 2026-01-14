@@ -1997,7 +1997,8 @@ return [
 		return new ProxyLookup(
 			$mainConfig->get( MainConfigNames::CdnServers ),
 			$mainConfig->get( MainConfigNames::CdnServersNoPurge ),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getLocalServerObjectCache()
 		);
 	},
 

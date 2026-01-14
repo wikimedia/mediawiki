@@ -423,7 +423,12 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 				return true;
 			}
 		] );
-		$this->setService( 'ProxyLookup', new ProxyLookup( [], $cdn, $hookContainer ) );
+		$this->setService( 'ProxyLookup', new ProxyLookup(
+			[],
+			$cdn,
+			$hookContainer,
+			$this->getServiceContainer()->getLocalServerObjectCache()
+		) );
 
 		$request = new WebRequest();
 		$result = $request->getIP();
@@ -607,7 +612,12 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$hookContainer = $this->createHookContainer();
-		$this->setService( 'ProxyLookup', new ProxyLookup( [], [], $hookContainer ) );
+		$this->setService( 'ProxyLookup', new ProxyLookup(
+			[],
+			[],
+			$hookContainer,
+			$this->getServiceContainer()->getLocalServerObjectCache()
+		) );
 
 		$request = new WebRequest();
 		# Next call should throw an exception about lacking an IP

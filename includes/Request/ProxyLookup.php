@@ -7,6 +7,7 @@
 
 namespace MediaWiki\Request;
 
+use BagOStuff;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use Wikimedia\IPSet;
@@ -28,19 +29,46 @@ class ProxyLookup {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var BagOStuff */
+	private $cache;
+
 	/**
 	 * @param string[] $proxyServers Simple list of IPs
 	 * @param string[] $proxyServersComplex Complex list of IPs/ranges
 	 * @param HookContainer $hookContainer
+	 * @param BagOStuff $cache In-process cache for the IPSet object
 	 */
 	public function __construct(
 		$proxyServers,
 		$proxyServersComplex,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		BagOStuff $cache
 	) {
 		$this->proxyServers = $proxyServers;
 		$this->proxyServersComplex = $proxyServersComplex;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->cache = $cache;
+	}
+
+	/**
+	 * Get or create the IPSet object, using cache if available
+	 *
+	 * @return IPSet
+	 */
+	private function getIPSet() {
+		if ( $this->proxyIPSet ) {
+			return $this->proxyIPSet;
+		}
+
+		$this->proxyIPSet = $this->cache->getWithSetCallback(
+			$this->cache->makeGlobalKey( 'ProxyLookup', 'ipset', crc32( json_encode( $this->proxyServersComplex ) ) ),
+			BagOStuff::TTL_INDEFINITE,
+			function () {
+				return new IPSet( $this->proxyServersComplex );
+			}
+		);
+
+		return $this->proxyIPSet;
 	}
 
 	/**
@@ -56,10 +84,7 @@ class ProxyLookup {
 		}
 
 		// Check against addresses and CIDR nets in the complex list
-		if ( !$this->proxyIPSet ) {
-			$this->proxyIPSet = new IPSet( $this->proxyServersComplex );
-		}
-		return $this->proxyIPSet->match( $ip );
+		return $this->getIPSet()->match( $ip );
 	}
 
 	/**

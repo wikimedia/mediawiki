@@ -9,6 +9,7 @@ namespace MediaWiki\Tests\Unit;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Request\ProxyLookup;
 use MediaWikiUnitTestCase;
+use Wikimedia\ObjectCache\HashBagOStuff;
 
 /**
  * @author DannyS712
@@ -20,7 +21,8 @@ class ProxyLookupTest extends MediaWikiUnitTestCase {
 		$proxyLookup = new ProxyLookup(
 			[],
 			[],
-			$this->createNoOpMock( HookContainer::class )
+			$this->createNoOpMock( HookContainer::class ),
+			new HashBagOStuff()
 		);
 		$this->assertInstanceOf( ProxyLookup::class, $proxyLookup, 'No errors' );
 	}
@@ -53,7 +55,8 @@ class ProxyLookupTest extends MediaWikiUnitTestCase {
 				'127.0.0.0/24',
 				'255.0.0.0/24',
 			],
-			$hookContainer
+			$hookContainer,
+			new HashBagOStuff()
 		);
 
 		$this->assertSame( $expected, $proxyLookup->isConfiguredProxy( $ip ) );
@@ -93,11 +96,59 @@ class ProxyLookupTest extends MediaWikiUnitTestCase {
 		$proxyLookup = new ProxyLookup(
 			[ '1.1.1.1' ],
 			[],
-			$hookContainer
+			$hookContainer,
+			new HashBagOStuff()
 		);
 
 		$this->assertSame( $hookResult, $proxyLookup->isTrustedProxy( $ip ) );
 		$this->assertTrue( $hookCalled );
+	}
+
+	public function testCaching() {
+		$hookContainer = $this->createNoOpMock( HookContainer::class );
+
+		$cache = $this->createMock( \BagOStuff::class );
+		$cacheData = [];
+		$cache->method( 'makeGlobalKey' )
+			->willReturn( 'test-key' );
+		$cache->method( 'get' )
+			->willReturnCallback( static function ( $key ) use ( &$cacheData ) {
+				return $cacheData[$key] ?? false;
+			} );
+
+		$cache->expects( $this->once() )
+			->method( 'set' )
+			->willReturnCallback( static function ( $key, $value ) use ( &$cacheData ) {
+				$cacheData[$key] = $value;
+				return true;
+			} );
+
+		// First ProxyLookup instance should create IPSet and cache it
+		$proxyLookup1 = new ProxyLookup(
+			[],
+			[ '127.0.0.0/24' ],
+			$hookContainer,
+			$cache
+		);
+		$this->assertTrue( $proxyLookup1->isConfiguredProxy( '127.0.0.1' ) );
+
+		// Second ProxyLookup instance should use cached IPSet
+		$cache2 = $this->createMock( \BagOStuff::class );
+		$cache2->method( 'makeGlobalKey' )
+			->willReturn( 'test-key' );
+		$cache2->expects( $this->once() )
+			->method( 'get' )
+			->willReturn( $cacheData[array_key_first( $cacheData )] );
+		$cache2->expects( $this->never() )
+			->method( 'set' );
+
+		$proxyLookup2 = new ProxyLookup(
+			[],
+			[ '127.0.0.0/24' ],
+			$hookContainer,
+			$cache2
+		);
+		$this->assertTrue( $proxyLookup2->isConfiguredProxy( '127.0.0.1' ) );
 	}
 
 }
