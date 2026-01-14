@@ -54,9 +54,9 @@
 		const EditWatchlistDialog = require( './EditWatchlistDialog.vue' );
 		const removeButton = document.querySelector( '.mw-editwatchlist-remove-selected' );
 		if ( removeButton ) {
-			const labelButtons = document.createElement( 'span' );
-			removeButton.after( ' ', labelButtons );
-			Vue.createMwApp( EditWatchlistDialog ).mount( labelButtons );
+			const wrapper = document.createElement( 'span' );
+			removeButton.replaceWith( ' ', wrapper );
+			Vue.createMwApp( EditWatchlistDialog ).mount( wrapper );
 		}
 	}
 

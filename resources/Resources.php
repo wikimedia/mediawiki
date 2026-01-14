@@ -2862,6 +2862,11 @@ return [
 		],
 		"messages" => [
 			'cancel',
+			'ok',
+			'watchlistedit-table-remove-selected',
+			'watchlistedit-unwatch-confirmation',
+			'watchlistedit-unwatch-confirmation-empty',
+			'watchlistedit-unwatch-confirmation-accept',
 			'watchlistlabels-editwatchlist-dialog-button',
 			'watchlistlabels-editwatchlist-dialog-button-unassign',
 			'watchlistlabels-editwatchlist-dialog-intro',
