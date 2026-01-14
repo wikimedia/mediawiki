@@ -257,26 +257,17 @@ class HTTPFileStreamer {
 	 * Determine the file type of a file based on the path
 	 *
 	 * @param string $filename Storage path or file system path
-	 * @return null|string
 	 */
-	protected static function contentTypeFromPath( $filename ) {
-		$ext = strrchr( $filename, '.' );
-		$ext = $ext ? strtolower( substr( $ext, 1 ) ) : '';
-
-		switch ( $ext ) {
-			case 'gif':
-				return 'image/gif';
-			case 'png':
-				return 'image/png';
-			case 'jpg':
-			case 'jpeg':
-				return 'image/jpeg';
-			// T366422: Support webp here as well for consistency
-			case 'webp':
-				return 'image/webp';
-		}
-
-		return 'unknown/unknown';
+	protected static function contentTypeFromPath( string $filename ): string {
+		$ext = strtolower( pathinfo( $filename, PATHINFO_EXTENSION ) );
+		return match ( $ext ) {
+			'gif' => 'image/gif',
+			'png' => 'image/png',
+			'jpg',
+			'jpeg' => 'image/jpeg',
+			'webp' => 'image/webp',
+			default => 'unknown/unknown',
+		};
 	}
 
 	/**

@@ -69,45 +69,39 @@ class StreamFile {
 	 * @return null|string
 	 */
 	public static function contentTypeFromPath( $filename, $safe = true ) {
+		$services = MediaWikiServices::getInstance();
 		// NOTE: TrivialMimeDetection is forced by ThumbnailEntryPoint. When this
 		// code is moved to a non-static method in a service object, we can no
 		// longer rely on that.
-		$trivialMimeDetection = MediaWikiServices::getInstance()->getMainConfig()
+		$trivialMimeDetection = $services->getMainConfig()
 			->get( MainConfigNames::TrivialMimeDetection );
 
-		$ext = strrchr( $filename, '.' );
-		$ext = $ext ? strtolower( substr( $ext, 1 ) ) : '';
+		$ext = strtolower( pathinfo( $filename, PATHINFO_EXTENSION ) );
 
 		# trivial detection by file extension,
 		# used for thumbnails (thumb.php)
 		if ( $trivialMimeDetection ) {
-			switch ( $ext ) {
-				case 'gif':
-					return 'image/gif';
-				case 'png':
-					return 'image/png';
-				case 'jpg':
-				case 'jpeg':
-					return 'image/jpeg';
-				case 'webp':
-					return 'image/webp';
-			}
-
-			return self::UNKNOWN_CONTENT_TYPE;
+			return match ( $ext ) {
+				'gif' => 'image/gif',
+				'png' => 'image/png',
+				'jpg',
+				'jpeg' => 'image/jpeg',
+				'webp' => 'image/webp',
+				default => self::UNKNOWN_CONTENT_TYPE,
+			};
 		}
 
-		$magic = MediaWikiServices::getInstance()->getMimeAnalyzer();
 		// Use the extension only, rather than magic numbers, to avoid opening
 		// up vulnerabilities due to uploads of files with allowed extensions
 		// but disallowed types.
-		$type = $magic->getMimeTypeFromExtensionOrNull( $ext );
+		$type = $services->getMimeAnalyzer()->getMimeTypeFromExtensionOrNull( $ext );
 
 		/**
 		 * Double-check some security settings that were done on upload but might
 		 * have changed since.
 		 */
 		if ( $safe ) {
-			$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+			$mainConfig = $services->getMainConfig();
 			$prohibitedFileExtensions = $mainConfig->get( MainConfigNames::ProhibitedFileExtensions );
 			$checkFileExtensions = $mainConfig->get( MainConfigNames::CheckFileExtensions );
 			$strictFileExtensions = $mainConfig->get( MainConfigNames::StrictFileExtensions );
