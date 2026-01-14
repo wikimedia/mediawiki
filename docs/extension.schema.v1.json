@@ -31,7 +31,7 @@
 		},
 		"ExtensionDependenciesBase": {
 			"type": "object",
-			"description": "Defintion of all properties that could be in requires/suggests/dev-requires",
+			"description": "Definition of all properties that could be in requires/suggests/dev-requires",
 			"properties": {
 				"MediaWiki": {
 					"type": "string",
