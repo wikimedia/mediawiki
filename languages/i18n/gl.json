@@ -2232,6 +2232,7 @@
 	"watchlistlabels-editwatchlist-dialog-assign": "Asignar",
 	"watchlistlabels-editwatchlist-dialog-unassign": "Eliminar",
 	"watchlistlabels-assign-labels-done": "{{PLURAL:$1|Asignouse unha etiqueta|Asignáronse $1 etiquetas}} a {{PLURAL:$2|unha páxina|$2 páxinas}}",
+	"watchlistlabels-unassign-labels-done": "{{PLURAL:$1|Eliminouse unha etiqueta|Elimináronse $1 etiquetas}} {{PLURAL:$2|dunha páxina|de $2 páxinas}}",
 	"watchlist-filters-labels-title": "Etiquetas",
 	"watchlist-filters-labels-list-title": "Etiquetas da lista de vixilancia",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>non</strong> =$1",

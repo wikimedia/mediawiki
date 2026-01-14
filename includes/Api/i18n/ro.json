@@ -6,10 +6,16 @@
 			"Michael2101",
 			"NGC 54",
 			"Paloi Sciurala",
+			"Strainu",
 			"Trotinel Iftode",
 			"Wintereu"
 		]
 	},
+	"apihelp-main-param-action": "Ce acțiune să facă.",
+	"apihelp-main-param-format": "Formatul de ieșire.",
+	"apihelp-main-paramvalue-errorformat-wikitext": "Wikitext neparsat.",
+	"apihelp-main-paramvalue-errorformat-raw": "Cheia mesajului și parametrii.",
+	"apihelp-main-paramvalue-errorformat-none": "Nicio ieșire text, doar codurile de eroare.",
 	"apihelp-block-summary": "Blochează un utilizator.",
 	"apihelp-block-param-reason": "Motivul blocării.",
 	"apihelp-delete-summary": "Șterge o pagină.",

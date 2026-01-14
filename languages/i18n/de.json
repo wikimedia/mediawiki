@@ -2327,6 +2327,7 @@
 	"watchlistlabels-editwatchlist-dialog-assign": "Zuweisen",
 	"watchlistlabels-editwatchlist-dialog-unassign": "Entfernen",
 	"watchlistlabels-assign-labels-done": "$1 {{PLURAL:$1|Label wurde|Labels wurden}} $2 {{PLURAL:$2|Seite|Seiten}} zugeordnet",
+	"watchlistlabels-unassign-labels-done": "$1 {{PLURAL:$1|Label wurde|Labels wurden}} von $2 {{PLURAL:$2|Seite|Seiten}} entfernt",
 	"watchlist-filters-labels-title": "Labels",
 	"watchlist-filters-labels-list-title": "Beoachtungsliste-Labels",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>nicht</strong> =$1",

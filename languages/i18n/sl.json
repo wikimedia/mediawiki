@@ -2220,6 +2220,7 @@
 	"watchlistlabels-editwatchlist-dialog-assign": "Dodeli",
 	"watchlistlabels-editwatchlist-dialog-unassign": "Odstrani",
 	"watchlistlabels-assign-labels-done": "$1 {{PLURAL:$1|oznaka je dodeljena|oznaki sta dodeljeni|oznake so dodeljene|oznak je dodeljenih}} $2 {{PLURAL:$2|strani|stranem}}",
+	"watchlistlabels-unassign-labels-done": "$1 {{PLURAL:$1|oznaka odstranjena|oznaki odstranjeni|oznake odstranjene|oznak odstranjenih}} s/z $2 {{PLURAL:$2|strani}}",
 	"watchlist-filters-labels-title": "Oznake",
 	"watchlist-filters-labels-list-title": "Oznake nadzornega seznama",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>ne</strong> =$1",

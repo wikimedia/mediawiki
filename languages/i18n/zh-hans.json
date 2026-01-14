@@ -2425,6 +2425,7 @@
 	"watchlistlabels-editwatchlist-dialog-assign": "分配",
 	"watchlistlabels-editwatchlist-dialog-unassign": "移除",
 	"watchlistlabels-assign-labels-done": "$1个{{PLURAL:$1|标签}}分配给$2个{{PLURAL:$2|页面}}",
+	"watchlistlabels-unassign-labels-done": "从$2个{{PLURAL:$2|页面}}移除掉$1个{{PLURAL:$1|标签}}",
 	"watchlist-filters-labels-title": "标签",
 	"watchlist-filters-labels-list-title": "监视列表标签",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>不是</strong>=$1",

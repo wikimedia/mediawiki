@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Christian List",
+			"Peterleth",
 			"Saederup92",
 			"Sarrus",
 			"Steenth"
@@ -12,7 +13,7 @@
 	"apihelp-main-param-assertuser": "Verificer at den nuværende bruger er den navngivne bruger.",
 	"apihelp-main-param-curtimestamp": "Inkluder det nuværende tidsstempel i resultatet.",
 	"apihelp-block-summary": "Bloker en bruger.",
-	"apihelp-block-param-user": "Bruger der skal blokeres.",
+	"apihelp-block-param-user": "Bruger der skal blokeres. Kan ikke bruges sammen med <var>$1id</var> .",
 	"apihelp-block-param-reason": "Årsag til blokering.",
 	"apihelp-block-param-nocreate": "Forhindre oprettelse af brugerkontoer",
 	"apihelp-block-param-partial": "Bloker bruger fra bestemte sider eller navnerum i stedet for hele siden.",

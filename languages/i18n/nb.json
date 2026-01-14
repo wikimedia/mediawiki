@@ -2257,6 +2257,7 @@
 	"watchlistlabels-editwatchlist-dialog-assign": "Tilordne",
 	"watchlistlabels-editwatchlist-dialog-unassign": "Fjern",
 	"watchlistlabels-assign-labels-done": "$1 {{PLURAL:$1|etikett|etiketter}} tildelt $2 {{PLURAL:$2|side|sider}}",
+	"watchlistlabels-unassign-labels-done": "$1 {{PLURAL:$1|etikett|etiketter}} fjernet fra $2 {{PLURAL:$2|side|sider}}",
 	"watchlist-filters-labels-title": "Etiketter",
 	"watchlist-filters-labels-list-title": "Overvåkningslisteetiketter",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>ikke</strong> =$1",

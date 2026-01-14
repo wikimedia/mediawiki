@@ -2307,6 +2307,7 @@
 	"watchlistlabels-editwatchlist-dialog-assign": "Toewijzen",
 	"watchlistlabels-editwatchlist-dialog-unassign": "Verwijderen",
 	"watchlistlabels-assign-labels-done": "$1 label{{PLURAL:$1||s}} toegewezen aan $2 pagina{{PLURAL:$2||’s}}",
+	"watchlistlabels-unassign-labels-done": "$1 label{{PLURAL:$1||s}} verwijderd van $2 pagina{{PLURAL:$2||’s}}",
 	"watchlist-filters-labels-title": "Labels",
 	"watchlist-filters-labels-list-title": "Volglijstlabels",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>niet</strong> =$1",

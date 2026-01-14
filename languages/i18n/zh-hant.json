@@ -2343,6 +2343,7 @@
 	"watchlistlabels-editwatchlist-dialog-assign": "分配",
 	"watchlistlabels-editwatchlist-dialog-unassign": "移除",
 	"watchlistlabels-assign-labels-done": "$1 個{{PLURAL:$1|標籤}}分配給 $2 個{{PLURAL:$2|頁面}}",
+	"watchlistlabels-unassign-labels-done": "從 $2 個{{PLURAL:$2|頁面}}移除掉 $1 個{{PLURAL:$1|標籤}}",
 	"watchlist-filters-labels-title": "標籤",
 	"watchlist-filters-labels-list-title": "監視清單標籤",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>不是</strong>=$1",

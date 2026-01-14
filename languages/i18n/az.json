@@ -2244,6 +2244,7 @@
 	"watchlistlabels-editwatchlist-dialog-assign": "Təyin et",
 	"watchlistlabels-editwatchlist-dialog-unassign": "Sil",
 	"watchlistlabels-assign-labels-done": "$1 {{PLURAL:$1|etiket}} $2 {{PLURAL:$2|səhifəyə}} təyin edildi.",
+	"watchlistlabels-unassign-labels-done": "$2 {{PLURAL:$2|səhifədən}} $1 {{PLURAL:$1|etiket}} silindi",
 	"watchlist-filters-labels-title": "Etiketlər",
 	"watchlist-filters-labels-list-title": "İzləmə siyahısı etiketləri",
 	"watchlist-filters-tag-prefix-labels-inverted": "=$1 <strong>deyil</strong>",

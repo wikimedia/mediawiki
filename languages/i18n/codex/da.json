@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"JorgeElias2302",
+			"Peterleth",
 			"Steenth"
 		]
 	},
@@ -21,7 +22,7 @@
 	"cdx-table-pager-button-last-page": "Sidste side",
 	"cdx-table-pager-button-next-page": "Næste side",
 	"cdx-table-pager-button-prev-page": "Forrige side",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 række|$1 rækker}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 emne|$1 emner}}",
 	"cdx-table-pager-items-per-page-default": "Resultater pr. side",
 	"cdx-table-pagination-status-message-determinate-long": "Viser resultat $1–$2 af $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1-$2 af $3",
