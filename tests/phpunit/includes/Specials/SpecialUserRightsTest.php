@@ -5,6 +5,7 @@ use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebResponse;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\User;
@@ -622,5 +623,36 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 				],
 			],
 		];
+	}
+
+	public function testRedirectForInterwikiView() {
+		$externalDB = $this->getExternalDBname();
+		if ( $externalDB === null ) {
+			$this->markTestSkipped( 'There is no external DB' );
+		}
+
+		$authority = $this->mockAnonNullAuthority();
+
+		[ $_, $response ] = $this->executeSpecialPage(
+			'User@' . $externalDB,
+			performer: $authority
+		);
+		/** @type $response WebResponse */
+		$this->assertNotNull( $response->getHeader( 'Location' ) );
+	}
+
+	public function testNoRedirectForInterwikiEdit() {
+		$externalDB = $this->getExternalDBname();
+		if ( $externalDB === null ) {
+			$this->markTestSkipped( 'There is no external DB' );
+		}
+
+		$authority = $this->mockAnonAuthorityWithPermissions( [ 'userrights-interwiki' ] );
+		[ $_, $response ] = $this->executeSpecialPage(
+			'User@' . $externalDB,
+			performer: $authority
+		);
+		/** @type $response WebResponse */
+		$this->assertNull( $response->getHeader( 'Location' ) );
 	}
 }

@@ -13,6 +13,7 @@ use MediaWiki\HTMLForm\Field\HTMLUserTextField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Linker\Linker;
+use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UserGroupsSpecialPage;
 use MediaWiki\Status\Status;
@@ -26,6 +27,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
@@ -82,6 +84,13 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		// It prevents from showing "nouserspecified" error message on first view
 		if ( $subPage === null && !$request->getCheck( 'user' ) ) {
 			return;
+		}
+
+		if ( !$this->getAuthority()->isAllowed( 'userrights-interwiki' ) ) {
+			$isRedirected = $this->redirectIfRemoteWikiForView( $targetName );
+			if ( $isRedirected ) {
+				return;
+			}
 		}
 
 		// No need to check if $target is non-empty or non-canonical, this is done in the lookup service
@@ -194,6 +203,42 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 			// User logs, UserRights, etc.
 			$this->getSkin()->setRelevantUser( $user );
 		}
+	}
+
+	/**
+	 * If the special page is used for an interwiki user and the performer
+	 * has no userrights-interwiki permission, redirect them to the remote wiki,
+	 * instead of displaying the groups.
+	 *
+	 * This helps with appropriate listing of implicit groups and ensures that
+	 * the performer has read access to the remote wiki.
+	 *
+	 * Returns a boolean value, indicating whether the redirect occurred.
+	 */
+	private function redirectIfRemoteWikiForView( string $target ): bool {
+		$interwikiDelimiter = $this->getConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter );
+		if ( !str_contains( $target, $interwikiDelimiter ) ) {
+			return false;
+		}
+
+		$targetParts = explode( $interwikiDelimiter, $target );
+		[ $user, $remoteWikiId ] = $targetParts;
+
+		if ( WikiMap::isCurrentWikiId( $remoteWikiId ) ) {
+			// No need for redirect
+			return false;
+		}
+
+		$remoteWiki = WikiMap::getWiki( $remoteWikiId );
+		if ( !$remoteWiki ) {
+			// Nowhere to redirect to
+			return false;
+		}
+
+		$remoteUrl = $remoteWiki->getUrl( 'Special:UserRights' );
+		$remoteUrl = wfAppendQuery( $remoteUrl, [ 'user' => $user ] );
+		$this->getOutput()->redirect( $remoteUrl );
+		return true;
 	}
 
 	private function getSuccessURL( string $target ): string {
