@@ -221,4 +221,35 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 				->fetchField()
 		);
 	}
+
+	public function testRedirectForInterwikiView() {
+		$externalDB = $this->getExternalDBname();
+		if ( $externalDB === null ) {
+			$this->markTestSkipped( 'There is no external DB' );
+		}
+
+		$authority = $this->mockAnonNullAuthority();
+
+		[ $_, $response ] = $this->executeSpecialPage(
+			'User@' . $externalDB,
+			performer: $authority
+		);
+		/** @type $response WebResponse */
+		$this->assertNotNull( $response->getHeader( 'Location' ) );
+	}
+
+	public function testNoRedirectForInterwikiEdit() {
+		$externalDB = $this->getExternalDBname();
+		if ( $externalDB === null ) {
+			$this->markTestSkipped( 'There is no external DB' );
+		}
+
+		$authority = $this->mockAnonAuthorityWithPermissions( [ 'userrights-interwiki' ] );
+		[ $_, $response ] = $this->executeSpecialPage(
+			'User@' . $externalDB,
+			performer: $authority
+		);
+		/** @type $response WebResponse */
+		$this->assertNull( $response->getHeader( 'Location' ) );
+	}
 }
