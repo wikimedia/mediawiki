@@ -6,6 +6,7 @@ use MediaWiki\Title\Title;
 /**
  * @group Search
  * @group Database
+ * @covers \MediaWiki\Search\SearchEngine
  */
 class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 	private SearchEngine $search;
@@ -178,7 +179,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideSearch
-	 * @covers \SearchEngine::defaultPrefixSearch
+	 * @covers \MediaWiki\Search\SearchEngine::defaultPrefixSearch
 	 */
 	public function testSearch( array $case ) {
 		$this->search->setLimitOffset( 3 );
@@ -196,7 +197,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideSearch
-	 * @covers \SearchEngine::defaultPrefixSearch
+	 * @covers \MediaWiki\Search\SearchEngine::defaultPrefixSearch
 	 */
 	public function testSearchWithOffset( array $case ) {
 		$this->search->setLimitOffset( 3, 1 );
@@ -379,7 +380,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider paginationProvider
-	 * @covers \SearchSuggestionSet::hasMoreResults
+	 * @covers \MediaWiki\Search\SearchSuggestionSet::hasMoreResults
 	 */
 	public function testPagination( $hasMoreResults, $provision ) {
 		$search = $this->mockSearchWithResults( $provision );

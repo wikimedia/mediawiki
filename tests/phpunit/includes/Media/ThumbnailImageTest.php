@@ -8,8 +8,8 @@ use Wikimedia\FileBackend\FileBackend;
  * @group Media
  * @group medium
  *
- * @covers \ThumbnailImage
- * @covers \MediaTransformOutput
+ * @covers \MediaWiki\Media\ThumbnailImage
+ * @covers \MediaWiki\Media\MediaTransformOutput
  */
 class ThumbnailImageTest extends MediaWikiMediaTestCase {
 

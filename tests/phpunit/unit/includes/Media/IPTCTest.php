@@ -1,12 +1,13 @@
 <?php
 
 /**
+ * @covers \MediaWiki\Media\IPTC
  * @group Media
  */
 class IPTCTest extends \MediaWikiUnitTestCase {
 
 	/**
-	 * @covers \IPTC::getCharset
+	 * @covers \MediaWiki\Media\IPTC::getCharset
 	 */
 	public function testRecognizeUtf8() {
 		// utf-8 is the only one used in practise.
@@ -62,7 +63,7 @@ class IPTCTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \IPTC::parse
+	 * @covers \MediaWiki\Media\IPTC::parse
 	 * @dataProvider provideParse
 	 */
 	public function testIPTCParseUTF8( $rawData, $expectedKeywords ) {

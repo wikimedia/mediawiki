@@ -39,8 +39,8 @@ class SearchResultSetTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \SearchResultSetTrait::augmentResult
-	 * @covers \SearchResultSetTrait::setAugmentedData
+	 * @covers \MediaWiki\Search\SearchResultSetTrait::augmentResult
+	 * @covers \MediaWiki\Search\SearchResultSetTrait::setAugmentedData
 	 */
 	public function testDelayedResultAugment() {
 		$title = Title::makeTitle( NS_MAIN, __METHOD__ );

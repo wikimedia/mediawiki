@@ -4,7 +4,7 @@ use MediaWiki\MainConfigNames;
 
 /**
  * @group Media
- * @covers \DjVuHandler
+ * @covers \MediaWiki\Media\DjVuHandler
  */
 class DjVuTest extends MediaWikiMediaTestCase {
 

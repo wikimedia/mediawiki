@@ -10,8 +10,8 @@ use MediaWiki\Parser\ParserOutput;
 
 /**
  * @group Database
- * @covers \WikiExporter
- * @covers \XmlDumpWriter
+ * @covers \MediaWiki\Export\WikiExporter
+ * @covers \MediaWiki\Export\XmlDumpWriter
  * @author Isaac Hutt <mhutti1@gmail.com>
  */
 class ExportTest extends MediaWikiLangTestCase {

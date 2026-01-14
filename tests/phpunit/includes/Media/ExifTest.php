@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Media
- * @covers \Exif
+ * @covers \MediaWiki\Media\Exif
  * @requires extension exif
  */
 class ExifTest extends MediaWikiIntegrationTestCase {

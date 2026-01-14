@@ -8,8 +8,8 @@ use MediaWiki\MainConfigNames;
 class MediaHandlerIntegrationTest extends MediaWikiMediaTestCase {
 
 	/**
-	 * @covers \MediaHandler::formatTag
-	 * @covers \MediaHandler::formatMetadataHelper
+	 * @covers \MediaWiki\Media\MediaHandler::formatTag
+	 * @covers \MediaWiki\Media\MediaHandler::formatMetadataHelper
 	 */
 	public function testFormatMetadataHelper() {
 		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );

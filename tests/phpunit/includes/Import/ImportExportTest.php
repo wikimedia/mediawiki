@@ -12,8 +12,8 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * Import/export round trip test.
  *
  * @group Database
- * @covers \WikiExporter
- * @covers \WikiImporter
+ * @covers \MediaWiki\Export\WikiExporter
+ * @covers \MediaWiki\Import\WikiImporter
  */
 class ImportExportTest extends MediaWikiLangTestCase {
 

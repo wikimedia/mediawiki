@@ -7,7 +7,7 @@
  * solely on reading the standard, without any real world test files.
  *
  * @group Media
- * @covers \JpegMetadataExtractor
+ * @covers \MediaWiki\Media\JpegMetadataExtractor
  */
 class JpegMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 	private const FILE_PATH = __DIR__ . '/../../data/media/';

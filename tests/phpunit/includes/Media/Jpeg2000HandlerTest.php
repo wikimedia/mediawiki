@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers \Jpeg2000Handler
+ * @covers \MediaWiki\Media\Jpeg2000Handler
  */
 class Jpeg2000HandlerTest extends MediaWikiIntegrationTestCase {
 

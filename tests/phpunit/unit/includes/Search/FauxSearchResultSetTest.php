@@ -5,7 +5,7 @@ use MediaWiki\Title\Title;
 
 /**
  * @group Search
- * @covers \FauxSearchResultSet
+ * @covers \MediaWiki\Search\FauxSearchResultSet
  */
 class FauxSearchResultSetTest extends MediaWikiUnitTestCase {
 

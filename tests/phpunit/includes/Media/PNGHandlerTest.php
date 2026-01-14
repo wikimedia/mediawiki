@@ -22,7 +22,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \PNGHandler::getSizeAndMetadata
+	 * @covers \MediaWiki\Media\PNGHandler::getSizeAndMetadata
 	 */
 	public function testInvalidFile() {
 		$res = $this->handler->getSizeAndMetadata( null, $this->filePath . '/README' );
@@ -37,7 +37,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $filename Basename of the file to check
 	 * @param bool $expected Expected result.
 	 * @dataProvider provideIsAnimated
-	 * @covers \PNGHandler::isAnimatedImage
+	 * @covers \MediaWiki\Media\PNGHandler::isAnimatedImage
 	 */
 	public function testIsAnimanted( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/png' );
@@ -56,7 +56,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $filename
 	 * @param int $expected Total image area
 	 * @dataProvider provideGetImageArea
-	 * @covers \PNGHandler::getImageArea
+	 * @covers \MediaWiki\Media\PNGHandler::getImageArea
 	 */
 	public function testGetImageArea( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/png' );
@@ -77,7 +77,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $metadata Serialized metadata
 	 * @param int $expected One of the class constants of PNGHandler
 	 * @dataProvider provideIsMetadataValid
-	 * @covers \PNGHandler::isFileMetadataValid
+	 * @covers \MediaWiki\Media\PNGHandler::isFileMetadataValid
 	 */
 	public function testIsFileMetadataValid( $metadata, $expected ) {
 		$actual = $this->handler->isFileMetadataValid( $this->getMockFileWithMetadata( $metadata ) );
@@ -102,7 +102,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $filename
 	 * @param string $expected Serialized array
 	 * @dataProvider provideGetSizeAndMetadata
-	 * @covers \PNGHandler::getSizeAndMetadata
+	 * @covers \MediaWiki\Media\PNGHandler::getSizeAndMetadata
 	 */
 	public function testGetSizeAndMetadata( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/png' );
@@ -156,7 +156,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $filename
 	 * @param array $expected Expected standard metadata
 	 * @dataProvider provideGetIndependentMetaArray
-	 * @covers \PNGHandler::getCommonMetaArray
+	 * @covers \MediaWiki\Media\PNGHandler::getCommonMetaArray
 	 */
 	public function testGetIndependentMetaArray( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/png' );
@@ -179,7 +179,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $filename
 	 * @param float $expectedLength
 	 * @dataProvider provideGetLength
-	 * @covers \PNGHandler::getLength
+	 * @covers \MediaWiki\Media\PNGHandler::getLength
 	 */
 	public function testGetLength( $filename, $expectedLength ) {
 		$file = $this->dataFile( $filename, 'image/png' );

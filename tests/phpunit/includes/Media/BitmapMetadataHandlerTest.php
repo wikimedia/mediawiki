@@ -4,6 +4,7 @@ use MediaWiki\MainConfigNames;
 
 /**
  * @group Media
+ * @covers \MediaWiki\Media\BitmapMetadataHandler
  */
 class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	private const FILE_PATH = __DIR__ . '/../../data/media/';
@@ -21,7 +22,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	 * Basically the file has IPTC and XMP metadata, the
 	 * IPTC should override the XMP, except for the multilingual
 	 * translation (to en) where XMP should win.
-	 * @covers \BitmapMetadataHandler::Jpeg
+	 * @covers \MediaWiki\Media\BitmapMetadataHandler::Jpeg
 	 * @requires extension exif
 	 */
 	public function testMultilingualCascade() {
@@ -48,7 +49,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * There's more extensive tests of comment extraction in
 	 * JpegMetadataExtractorTests.php
-	 * @covers \BitmapMetadataHandler::Jpeg
+	 * @covers \MediaWiki\Media\BitmapMetadataHandler::Jpeg
 	 */
 	public function testJpegComment() {
 		$meta = BitmapMetadataHandler::Jpeg( self::FILE_PATH .
@@ -61,7 +62,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Make sure a bad iptc block doesn't stop the other metadata
 	 * from being extracted.
-	 * @covers \BitmapMetadataHandler::Jpeg
+	 * @covers \MediaWiki\Media\BitmapMetadataHandler::Jpeg
 	 */
 	public function testBadIPTC() {
 		$meta = BitmapMetadataHandler::Jpeg( self::FILE_PATH .
@@ -70,7 +71,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \BitmapMetadataHandler::Jpeg
+	 * @covers \MediaWiki\Media\BitmapMetadataHandler::Jpeg
 	 */
 	public function testIPTCDates() {
 		$meta = BitmapMetadataHandler::Jpeg( self::FILE_PATH .
@@ -94,8 +95,8 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	 * XMP data should take priority over iptc data
 	 * when hash has been updated, but not when
 	 * the hash is wrong.
-	 * @covers \BitmapMetadataHandler::addMetadata
-	 * @covers \BitmapMetadataHandler::getMetadataArray
+	 * @covers \MediaWiki\Media\BitmapMetadataHandler::addMetadata
+	 * @covers \MediaWiki\Media\BitmapMetadataHandler::getMetadataArray
 	 */
 	public function testMerging() {
 		$merger = new BitmapMetadataHandler();
@@ -120,7 +121,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \BitmapMetadataHandler::png
+	 * @covers \MediaWiki\Media\BitmapMetadataHandler::png
 	 */
 	public function testPNGXMP() {
 		$result = BitmapMetadataHandler::PNG( self::FILE_PATH . 'xmp.png' );
@@ -141,7 +142,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \BitmapMetadataHandler::png
+	 * @covers \MediaWiki\Media\BitmapMetadataHandler::png
 	 */
 	public function testPNGNative() {
 		$result = BitmapMetadataHandler::PNG( self::FILE_PATH . 'Png-native-test.png' );
@@ -150,7 +151,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \BitmapMetadataHandler::png
+	 * @covers \MediaWiki\Media\BitmapMetadataHandler::png
 	 */
 	public function testPNGExif() {
 		$this->overrideConfigValue( MainConfigNames::ShowEXIF, true );
@@ -167,7 +168,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \BitmapMetadataHandler::getTiffByteOrder
+	 * @covers \MediaWiki\Media\BitmapMetadataHandler::getTiffByteOrder
 	 */
 	public function testTiffByteOrder() {
 		$res = BitmapMetadataHandler::getTiffByteOrder( self::FILE_PATH . 'test.tiff' );

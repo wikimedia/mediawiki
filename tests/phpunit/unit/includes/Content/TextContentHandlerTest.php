@@ -15,7 +15,7 @@ class TextContentHandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \SearchEngine
+	 * @covers \MediaWiki\Search\SearchEngine
 	 */
 	public function testFieldsForIndex() {
 		$handler = new TextContentHandler();

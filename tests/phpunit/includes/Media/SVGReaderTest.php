@@ -2,7 +2,7 @@
 
 /**
  * @group Media
- * @covers \SVGReader
+ * @covers \MediaWiki\Media\SVGReader
  */
 class SVGReaderTest extends \MediaWikiIntegrationTestCase {
 

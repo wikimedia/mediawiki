@@ -8,7 +8,7 @@ use MediaWiki\MainConfigNames;
 class DifferenceEngineSlotDiffRendererIntegrationTest extends \MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers \DifferenceEngineSlotDiffRenderer::getExtraCacheKeys
+	 * @covers \MediaWiki\Diff\DifferenceEngineSlotDiffRenderer::getExtraCacheKeys
 	 */
 	public function testGetExtraCacheKeys_noExternalDiffEngineConfigured() {
 		$this->overrideConfigValues( [

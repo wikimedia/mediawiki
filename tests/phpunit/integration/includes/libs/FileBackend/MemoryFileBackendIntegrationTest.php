@@ -7,7 +7,7 @@ use Wikimedia\FileBackend\MemoryFileBackend;
  * @group FileBackend
  * @covers \Wikimedia\FileBackend\MemoryFileBackend
  * @covers \Wikimedia\FileBackend\FileBackendStore
- * @covers \NullLockManager
+ * @covers \Wikimedia\LockManager\NullLockManager
  */
 class MemoryFileBackendIntegrationTest extends FileBackendIntegrationTestBase {
 	protected function getBackend() {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers \TrivialMediaHandlerState
+ * @covers \MediaWiki\Media\TrivialMediaHandlerState
  */
 class TrivialMediaHandlerStateTest extends MediaWikiUnitTestCase {
 	public function testSetHandlerState() {

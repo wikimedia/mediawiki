@@ -17,7 +17,7 @@ class XCFHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $filename
 	 * @param array $expected
 	 * @dataProvider provideGetSizeAndMetadata
-	 * @covers \XCFHandler::getSizeAndMetadata
+	 * @covers \MediaWiki\Media\XCFHandler::getSizeAndMetadata
 	 */
 	public function testGetSizeAndMetadata( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/x-xcf' );
@@ -67,7 +67,7 @@ class XCFHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $metadata Serialized metadata
 	 * @param int $expected One of the class constants of XCFHandler
 	 * @dataProvider provideIsFileMetadataValid
-	 * @covers \XCFHandler::isFileMetadataValid
+	 * @covers \MediaWiki\Media\XCFHandler::isFileMetadataValid
 	 */
 	public function testIsFileMetadataValid( $metadata, $expected ) {
 		$actual = $this->handler->isFileMetadataValid( $this->getMockFileWithMetadata( $metadata ) );

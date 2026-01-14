@@ -6,7 +6,7 @@
 class SearchHighlighterTest extends \MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideHighlightSimple
-	 * @covers \SearchHighlighter::highlightSimple
+	 * @covers \MediaWiki\Search\SearchHighlighter::highlightSimple
 	 */
 	public function testHighlightSimple( string $wikiText, string $searchTerm, string $expectedOutput, int $contextChars ) {
 		$highlighter = new \SearchHighlighter( false );

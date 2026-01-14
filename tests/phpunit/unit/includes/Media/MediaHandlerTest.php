@@ -2,11 +2,12 @@
 
 /**
  * @group Media
+ * @covers \MediaWiki\Media\MediaHandler
  */
 class MediaHandlerTest extends \MediaWikiUnitTestCase {
 
 	/**
-	 * @covers \MediaHandler::fitBoxWidth
+	 * @covers \MediaWiki\Media\MediaHandler::fitBoxWidth
 	 *
 	 * @dataProvider provideTestFitBoxWidth
 	 */

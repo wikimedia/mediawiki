@@ -6,7 +6,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Media
  * @requires extension exif
- * @covers \FormatMetadata
+ * @covers \MediaWiki\Media\FormatMetadata
  */
 class FormatMetadataTest extends MediaWikiMediaTestCase {
 

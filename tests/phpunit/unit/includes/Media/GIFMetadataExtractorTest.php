@@ -11,7 +11,7 @@ class GIFMetadataExtractorTest extends \MediaWikiUnitTestCase {
 	 * @param string $filename
 	 * @param array $expected The extracted metadata.
 	 * @dataProvider provideGetMetadata
-	 * @covers \GIFMetadataExtractor::getMetadata
+	 * @covers \MediaWiki\Media\GIFMetadataExtractor::getMetadata
 	 */
 	public function testGetMetadata( $filename, $expected ) {
 		$actual = GIFMetadataExtractor::getMetadata( self::FILE_PATH . $filename );

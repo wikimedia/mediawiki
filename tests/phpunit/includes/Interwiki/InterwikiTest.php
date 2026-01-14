@@ -4,7 +4,7 @@ use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
- * @covers \Interwiki
+ * @covers \MediaWiki\Interwiki\Interwiki
  * @group Database
  */
 class InterwikiTest extends MediaWikiIntegrationTestCase {

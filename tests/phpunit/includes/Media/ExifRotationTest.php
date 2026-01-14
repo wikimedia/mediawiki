@@ -9,7 +9,7 @@ use MediaWiki\MainConfigNames;
  * @group Media
  * @group medium
  *
- * @covers \BitmapHandler
+ * @covers \MediaWiki\Media\BitmapHandler
  * @requires extension exif
  */
 class ExifRotationTest extends MediaWikiMediaTestCase {

@@ -7,7 +7,7 @@ use MediaWiki\Tests\ExpectCallbackTrait;
 use PHPUnit\Framework\Assert;
 
 /**
- * @covers \RevDelRevisionList
+ * @covers \MediaWiki\RevisionDelete\RevDelRevisionList
  * @group Database
  */
 class RevDelRevisionListTest extends MediaWikiIntegrationTestCase {

@@ -11,7 +11,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
  *
  * @group large
  * @group Database
- * @covers \ImportStreamSource
+ * @covers \MediaWiki\Import\ImportStreamSource
  * @covers \ImportReporter
  *
  * @author mwjames

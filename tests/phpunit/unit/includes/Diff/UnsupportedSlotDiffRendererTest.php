@@ -7,7 +7,7 @@ use MediaWiki\Content\TextContentHandler;
 use MediaWiki\Message\Message;
 
 /**
- * @covers \UnsupportedSlotDiffRenderer
+ * @covers \MediaWiki\Diff\UnsupportedSlotDiffRenderer
  */
 class UnsupportedSlotDiffRendererTest extends MediaWikiUnitTestCase {
 

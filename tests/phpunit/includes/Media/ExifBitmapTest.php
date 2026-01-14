@@ -4,7 +4,7 @@ use MediaWiki\MainConfigNames;
 
 /**
  * @group Media
- * @covers \ExifBitmapHandler
+ * @covers \MediaWiki\Media\ExifBitmapHandler
  * @requires extension exif
  */
 class ExifBitmapTest extends MediaWikiMediaTestCase {

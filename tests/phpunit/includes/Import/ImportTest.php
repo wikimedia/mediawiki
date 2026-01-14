@@ -8,13 +8,13 @@ use MediaWiki\User\User;
  * Test class for Import methods.
  *
  * @group Database
+ * @covers \MediaWiki\Import\WikiImporter
  *
  * @author Sebastian Brückner < sebastian.brueckner@student.hpi.uni-potsdam.de >
  */
 class ImportTest extends MediaWikiLangTestCase {
 
 	/**
-	 * @covers \WikiImporter
 	 * @dataProvider provideUnknownTagsXML
 	 * @param string $xml
 	 * @param string $text
@@ -74,7 +74,7 @@ EOF
 	}
 
 	/**
-	 * @covers \WikiImporter::handlePage
+	 * @covers \MediaWiki\Import\WikiImporter::handlePage
 	 * @dataProvider provideRedirectXML
 	 * @param string $xml
 	 * @param string|null $redirectTitle
@@ -158,7 +158,7 @@ EOF
 	}
 
 	/**
-	 * @covers \WikiImporter::handleSiteInfo
+	 * @covers \MediaWiki\Import\WikiImporter::handleSiteInfo
 	 * @dataProvider provideSiteInfoXML
 	 * @param string $xml
 	 * @param array|null $namespaces
@@ -217,7 +217,7 @@ EOF
 
 	/**
 	 * @dataProvider provideUnknownUserHandling
-	 * @covers \WikiImporter::setUsernamePrefix
+	 * @covers \MediaWiki\Import\WikiImporter::setUsernamePrefix
 	 * @covers \MediaWiki\User\ExternalUserNames::addPrefix
 	 * @covers \MediaWiki\User\ExternalUserNames::applyPrefix
 	 * @param bool $assign

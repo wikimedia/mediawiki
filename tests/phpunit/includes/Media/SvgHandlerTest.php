@@ -10,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
 class SvgHandlerTest extends MediaWikiMediaTestCase {
 
 	/**
-	 * @covers \SvgHandler::getCommonMetaArray()
+	 * @covers \MediaWiki\Media\SvgHandler::getCommonMetaArray()
 	 * @dataProvider provideGetIndependentMetaArray
 	 *
 	 * @param string $filename
@@ -39,7 +39,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \SvgHandler::getMatchedLanguage()
+	 * @covers \MediaWiki\Media\SvgHandler::getMatchedLanguage()
 	 * @dataProvider provideGetMatchedLanguage
 	 *
 	 * @param string $userPreferredLanguage
@@ -123,7 +123,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \SvgHandler::makeParamString()
+	 * @covers \MediaWiki\Media\SvgHandler::makeParamString()
 	 * @dataProvider provideMakeParamString
 	 *
 	 * @param array $params
@@ -206,7 +206,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \SvgHandler::normaliseParamsInternal()
+	 * @covers \MediaWiki\Media\SvgHandler::normaliseParamsInternal()
 	 * @dataProvider provideNormaliseParamsInternal
 	 */
 	public function testNormaliseParamsInternal( $message,
@@ -293,7 +293,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \SvgHandler::isEnabled()
+	 * @covers \MediaWiki\Media\SvgHandler::isEnabled()
 	 * @dataProvider provideIsEnabled
 	 *
 	 * @param string $converter
@@ -318,7 +318,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \SvgHandler::getAvailableLanguages()
+	 * @covers \MediaWiki\Media\SvgHandler::getAvailableLanguages()
 	 * @dataProvider provideAvailableLanguages
 	 */
 	public function testGetAvailableLanguages( array $metadata, array $expected ) {
@@ -365,7 +365,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \SvgHandler::getLanguageFromParams()
+	 * @covers \MediaWiki\Media\SvgHandler::getLanguageFromParams()
 	 * @dataProvider provideGetLanguageFromParams
 	 *
 	 * @param array $params
@@ -390,7 +390,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \SvgHandler::parseParamString()
+	 * @covers \MediaWiki\Media\SvgHandler::parseParamString()
 	 * @dataProvider provideParseParamString
 	 *
 	 * @param string $paramString
@@ -429,7 +429,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \SvgHandler::allowRenderingByUserAgent()
+	 * @covers \MediaWiki\Media\SvgHandler::allowRenderingByUserAgent()
 	 * @dataProvider provideNativeSVGDataRendering
 	 *
 	 * @param string $filename of the file to test

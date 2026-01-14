@@ -2,7 +2,7 @@
 
 /**
  * @group Media
- * @covers \PNGMetadataExtractor
+ * @covers \MediaWiki\Media\PNGMetadataExtractor
  */
 class PNGMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 	private const FILE_PATH = __DIR__ . '/../../data/media/';

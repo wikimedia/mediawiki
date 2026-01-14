@@ -5,7 +5,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 
 /**
  * @group Search
- * @covers \FauxSearchResultSet
+ * @covers \MediaWiki\Search\FauxSearchResultSet
  */
 class FauxSearchResultTest extends MediaWikiUnitTestCase {
 	use MockTitleTrait;

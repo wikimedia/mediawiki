@@ -5,6 +5,7 @@ use MediaWiki\Media\TransformTooBigImageAreaError;
 
 /**
  * @group Media
+ * @covers \MediaWiki\Media\BitmapHandler
  */
 class BitmapScalingTest extends MediaWikiIntegrationTestCase {
 
@@ -19,7 +20,7 @@ class BitmapScalingTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideNormaliseParams
-	 * @covers \BitmapHandler::normaliseParams
+	 * @covers \MediaWiki\Media\BitmapHandler::normaliseParams
 	 */
 	public function testNormaliseParams( $fileDimensions, $expectedParams, $params, $msg ) {
 		$file = new FakeDimensionFile( $fileDimensions );
@@ -121,7 +122,7 @@ class BitmapScalingTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \BitmapHandler::doTransform
+	 * @covers \MediaWiki\Media\BitmapHandler::doTransform
 	 */
 	public function testTooBigImage() {
 		$file = new FakeDimensionFile( [ 4000, 4000 ] );
@@ -132,7 +133,7 @@ class BitmapScalingTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \BitmapHandler::doTransform
+	 * @covers \MediaWiki\Media\BitmapHandler::doTransform
 	 */
 	public function testTooBigMustRenderImage() {
 		$file = new FakeDimensionFile( [ 4000, 4000 ] );
@@ -144,7 +145,7 @@ class BitmapScalingTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \BitmapHandler::getImageArea
+	 * @covers \MediaWiki\Media\BitmapHandler::getImageArea
 	 */
 	public function testImageArea() {
 		$file = new FakeDimensionFile( [ 7, 9 ] );

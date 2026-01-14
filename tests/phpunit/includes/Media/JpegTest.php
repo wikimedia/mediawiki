@@ -4,7 +4,7 @@ use MediaWiki\MainConfigNames;
 
 /**
  * @group Media
- * @covers \JpegHandler
+ * @covers \MediaWiki\Media\JpegHandler
  * @requires extension exif
  */
 class JpegTest extends MediaWikiMediaTestCase {
@@ -45,7 +45,7 @@ class JpegTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \JpegHandler::getCommonMetaArray
+	 * @covers \MediaWiki\Media\JpegHandler::getCommonMetaArray
 	 */
 	public function testGetIndependentMetaArray() {
 		$file = $this->dataFile( 'test.jpg', 'image/jpeg' );
@@ -66,7 +66,7 @@ class JpegTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @dataProvider provideSwappingICCProfile
-	 * @covers \JpegHandler::swapICCProfile
+	 * @covers \MediaWiki\Media\JpegHandler::swapICCProfile
 	 */
 	public function testSwappingICCProfile(
 		$sourceFilename, $controlFilename, $newProfileFilename, $oldProfileName
