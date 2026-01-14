@@ -925,7 +925,7 @@
 	"searchrelated": "повезаны",
 	"searchall": "все",
 	"showingresultsinrange": "Ниже {{PLURAL:$1|показаны јест максимално <strong>1</strong> резултат|показане сут максимално <strong>$1</strong> резултаты|показаных јест максимално <strong>$1</strong>резултатов}} в обсегу од #<strong>$2</strong> до #<strong>$3</strong>.",
-	"search-showingresults": "{{PLURAL:$4|Резултат <strong>$1</strong> из <strong>$3</strong>|Резултаты <strong>$1 – $2</strong> из <strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|1=Резултат <strong>$1</strong> из <strong>$3</strong>|Резултаты <strong>$1 – $2</strong> из <strong>$3</strong>}}",
 	"search-nonefound": "Ниједин резултат одповєдајучи запыту не најден.",
 	"search-nonefound-thiswiki": "Ниједин резултат одповєдајучи запыту не најден на тутом сајту.",
 	"powersearch-legend": "Разширјене искање",
