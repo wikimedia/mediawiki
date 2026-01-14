@@ -63,6 +63,7 @@ class ContributionsRangeTraitTest extends MediaWikiIntegrationTestCase {
 			[ '2001:db8::/9999' ],
 			[ '2001:db8::' ],
 			[ '0.17.184.5' ],
+			'IP range in format X.X.X.X - Y.Y.Y.Y' => [ '1.1.1.1 - 2.2.2.2' ],
 			[ 'test' ],
 		];
 	}

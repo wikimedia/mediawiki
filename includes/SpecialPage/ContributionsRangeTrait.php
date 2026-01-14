@@ -29,8 +29,16 @@ trait ContributionsRangeTrait {
 			return false;
 		}
 
+		// IPs in the format `X.X.X.X - Y.Y.Y.Y` are considered valid by IPUtils
+		// but don't have a CIDR we can get from the IP reliably.
+		// Contributions pages don't accept this as a valid input, so just return false.
+		$ipParts = explode( '/', $target, 2 );
+		if ( count( $ipParts ) < 2 ) {
+			return false;
+		}
+		[ $ip, $range ] = $ipParts;
+
 		$CIDRLimit = $this->getQueryableRangeLimit( $config );
-		[ $ip, $range ] = explode( '/', $target, 2 );
 		return (
 			( IPUtils::isIPv4( $ip ) && $range >= $CIDRLimit['IPv4'] ) ||
 			( IPUtils::isIPv6( $ip ) && $range >= $CIDRLimit['IPv6'] )
