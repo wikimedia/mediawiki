@@ -7,6 +7,8 @@
  * @author ToluAyo
  */
 
+$fallback = 'jv';
+
 $namespaceNames = [
 	NS_MEDIA            => 'ꦩꦺꦝꦶꦪꦃ',
 	NS_SPECIAL          => 'ꦩꦶꦫꦸꦁꦒꦤ꧀',
