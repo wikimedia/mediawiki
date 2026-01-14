@@ -221,6 +221,24 @@ because of Phabricator reports.
   In this release of MediaWiki, XXX classes now have a namespace and XXX do
   not yet (XXX% done, up from 89% in MediaWiki 1.45.0). The following have newly
   been moved:
+  - Actions related hooks: MediaWiki\Hook => MediaWiki\Actions\Hook
+    - ActionBeforeFormDisplayHook
+    - ActionModifyFormFieldsHook
+    - CustomEditorHook
+    - HistoryPageToolLinksHook
+    - HistoryToolsHook
+    - InfoActionHook
+    - PageHistoryBeforeListHook
+    - PageHistoryLineEndingHook
+    - PageHistoryPager__doBatchLookupsHook
+    - PageHistoryPager__getQueryInfoHook
+    - RawPageViewBeforeOutputHook
+    - UnwatchArticleCompleteHook
+    - UnwatchArticleHook
+    - WatchArticleCompleteHook
+    - WatchArticleHook
+  - Actions related pager: MediaWiki\Pager => MediaWiki\Actions\Pager
+    - HistoryPager
   - MediaWiki\Collation:
     - AbkhazUppercaseCollation
     - BashkirUppercaseCollation
@@ -234,11 +252,20 @@ because of Phabricator reports.
     - NumericUppercaseCollation
     - RemoteIcuCollation
     - UppercaseCollation
+  - Collation related hook: MediaWiki\Hook => MediaWiki\Collation\Hook
+    - Collation__factoryHook
+  - Context related hooks: MediaWiki\Hook => MediaWiki\Context\Hook
+    - RequestContextCreateSkinHook
+    - UserGetLanguageObjectHook
   - MediaWiki\DB:
     - CloneDatabase
     - MWLBFactory
   - MediaWiki\Debug:
     - MW
+  - Deferred related hooks: MediaWiki\Hook => MediaWiki\Deferred\Hook
+    - LinksUpdateCompleteHook
+    - LinksUpdateHook
+    - UserEditCountUpdateHook
   - MediaWiki\Diff:
     - DifferenceEngine
     - DifferenceEngineSlotDiffRenderer
@@ -246,6 +273,49 @@ because of Phabricator reports.
     - SlotDiffRenderer
     - TextSlotDiffRenderer
     - UnsupportedSlotDiffRenderer
+  - Exception related hook: MediaWiki\Hook => MediaWiki\Exception\Hook
+    - LogExceptionHook
+  - MediaWiki\Export:
+    - BaseDump
+    - DumpBZip2Output
+    - DumpNamespaceFilter
+    - Dump7ZipOutput
+    - DumpFileOutput
+    - WikiExporter
+    - DumpLatestFilter
+    - XmlDumpWriter
+    - DumpDBZip2Output
+    - DumpOutput
+    - DumpNotalkFilter
+    - DumpLBZip2Output
+    - DumpMultiWriter
+    - DumpStringOutput
+    - ExportProgressFilter
+    - DumpPipeOutput
+    - DumpGZipOutput
+    - DumpFilter
+  - Export related hooks: MediaWiki\Hook => MediaWiki\Export\Hook
+    - ModifyExportQueryHook
+    - WikiExporter__dumpStableQueryHook
+    - XmlDumpWriterOpenPageHook
+    - XmlDumpWriterWriteRevisionHook
+  - MediaWiki\ExternalStore:
+    - ExternalStoreMedium
+    - ExternalStoreFactory
+    - ExternalStore
+    - ExternalStoreMemory
+    - ExternalStoreMwstore
+    - ExternalStoreHttp
+    - ExternalStoreException
+    - ExternalStoreAccess
+    - ExternalStoreDB
+  - MediaWiki\FileBackend\LockManager:
+    - LockManagerGroup
+  - FileRepo related hooks: MediaWiki\Hook => MediaWiki\FileRepo\Hook
+    - FileTransformedHook
+    - FileUploadHook
+    - LocalFilePurgeThumbnailsHook
+    - LocalFile__getHistoryHook
   - MediaWiki\Gallery:
     - ImageGalleryBase
     - NolinesImageGallery
@@ -256,9 +326,196 @@ because of Phabricator reports.
     - TraditionalImageGallery
   - MediaWiki\Gallery\Exception:
     - ImageGalleryClassNotFoundException
+  - Gallery related hook: MediaWiki\Hook => MediaWiki\Gallery\Hook
+    - GalleryGetModesHook
+  - MediaWiki\Import:
+    - WikiImporterFactory
+    - ImportableOldRevisionImporter
+    - ImportStreamSource
+    - ImportableUploadRevisionImporter
+    - OldRevisionImporter
+    - WikiRevision
+    - ImportableOldRevision
+    - ImportStringSource
+    - ImportableUploadRevision
+    - ImportSource
+    - UploadRevisionImporter
+    - WikiImporter
+    - UploadSourceAdapter
+  - Import related hooks: MediaWiki\Hook => MediaWiki\Import\Hook
+    - AfterImportPageHook
+    - ImportHandleContentXMLTagHook
+    - ImportHandleLogItemXMLTagHook
+    - ImportHandlePageXMLTagHook
+    - ImportHandleRevisionXMLTagHook
+    - ImportHandleToplevelXMLTagHook
+    - ImportHandleUploadXMLTagHook
+  - Jobs related hook: MediaWiki\Hook => MediaWiki\JobQueue\Jobs\Hook
+    - RecentChangesPurgeRowsHook
   - MediaWiki\Skins\Hook => MediaWiki\Language\Skin
     - SkinAfterPortletHook
     - SkinPageReadyConfigHook
+  - Logging related hooks: MediaWiki\Hook => MediaWiki\Logging\Hook
+    - LogEventsListGetExtraInputsHook
+    - LogEventsListLineEndingHook
+    - LogEventsListShowLogExtractHook
+    - LogLineHook
+    - ManualLogEntryBeforePublishHook
+  - Logging related pager: MediaWiki\Pager => MediaWiki\Logging\Pager
+    - LogPager
+  - Mail related hooks: MediaWiki\Hook => MediaWiki\Mail\Hook
+    - AbortTalkPageEmailNotificationHook
+    - AlternateUserMailerHook
+    - SendWatchlistEmailNotificationHook
+    - UpdateUserMailerFormattedPageStatusHook
+    - UserMailerChangeReturnPathHook
+    - UserMailerSplitToHook
+    - UserMailerTransformContentHook
+    - UserMailerTransformMessageHook
+  - MediaWiki\Media
+    - PNGMetadataExtractor
+    - MediaHandlerFactory
+    - MediaTransformInvalidParametersException
+    - DjVuImage
+    - SVGReader
+    - IPTC
+    - BitmapHandler_ClientOnly
+    - TransformationalImageHandler
+    - BmpHandler
+    - JpegMetadataExtractor
+    - GIFMetadataExtractor
+    - ExifBitmapHandler
+    - BitmapHandler
+    - InvalidJpegException
+    - DjVuHandler
+    - ThumbnailImage
+    - JpegHandler
+    - GIFHandler
+    - PNGHandler
+    - MediaHandlerState
+    - TrivialMediaHandlerState
+    - MediaHandler
+    - InvalidSVGException
+    - XCFHandler
+    - TiffHandler
+    - MediaTransformError
+    - BitmapMetadataHandler
+    - FormatMetadata
+    - InvalidTiffException
+    - TransformTooBigImageAreaError
+    - TransformParameterError
+    - SvgHandler
+    - InvalidPSIRException
+    - ImageHandler
+    - WebPHandler
+    - MediaTransformOutput
+    - Jpeg2000Handler
+    - Exif
+  - Media related hooks: MediaWiki\Hook => MediaWiki\Media\Hook
+    - BitmapHandlerCheckImageAreaHook
+    - BitmapHandlerTransformHook
+    - GetExtendedMetadataHook
+    - GetMetadataVersionHook
+    - ThumbnailBeforeProduceHTMLHook
+    - ValidateExtendedMetadataCacheHook
+  - Parser related hooks: MediaWiki\Hook => MediaWiki\Parser\Hook
+    - AfterParserFetchFileAndTitleHook
+    - BeforeParserFetchFileAndTitleHook
+    - BeforeParserFetchTemplateRevisionRecordHook
+    - GetLinkColoursHook
+    - InternalParseBeforeLinksHook
+    - IsValidEmailAddrHook
+    - PageRenderingHashHook
+    - ParserAfterParseHook
+    - ParserAfterTidyHook
+    - ParserBeforeInternalParseHook
+    - ParserBeforePreprocessHook
+    - ParserCacheSaveCompleteHook
+    - ParserClearStateHook
+    - ParserClonedHook
+    - ParserFetchTemplateDataHook
+    - ParserFirstCallInitHook
+    - ParserGetVariableValueSwitchHook
+    - ParserGetVariableValueTsHook
+    - ParserLimitReportFormatHook
+    - ParserLimitReportPrepareHook
+    - ParserLogLinterDataHook
+    - ParserMakeImageParamsHook
+    - ParserModifyImageHTMLHook
+    - ParserOptionsRegisterHook
+    - ParserOutputPostCacheTransformHook
+    - ParserPreSaveTransformCompleteHook
+    - RejectParserCacheValueHook
+  - Password related hook: MediaWiki\Hook => MediaWiki\Password\Hook
+    - PasswordPoliciesForUserHook
+  - RCFeed related hook: MediaWiki\Hook => MediaWiki\RCFeed\Hook
+    - IRCLineURLHook
+  - RecentChanges related hooks: MediaWiki\Hook => MediaWiki\RecentChanges\Hook
+    - AbortEmailNotificationHook
+    - ChangesListInitRowsHook
+    - ChangesListInsertArticleLinkHook
+    - ChangesListInsertLogEntryHook
+    - EnhancedChangesListModifyBlockLineDataHook
+    - EnhancedChangesListModifyLineDataHook
+    - EnhancedChangesList__getLogTextHook
+    - FetchChangesListHook
+    - MarkPatrolledCompleteHook
+    - MarkPatrolledHook
+    - OldChangesListRecentChangesLineHook
+    - RecentChange_saveHook
+  - MediaWiki\RevisionDelete:
+    - RevisionDeleter
+    - RevDelFileItem
+    - RevDelRevisionItem
+    - RevDelLogList
+    - RevisionDeleteUser
+    - RevDelList
+    - RevDelFileList
+    - RevDelArchivedFileList
+    - RevDelLogItem
+    - RevDelRevisionList
+    - RevDelArchivedFileItem
+    - RevDelItem
+    - RevDelArchivedRevisionItem
+    - RevDelArchiveList
+    - RevDelArchiveItem
+  - RevisionDelete related hook: MediaWiki\Hook => MediaWiki\RevisionDelete\Hook
+    - ArticleRevisionVisibilitySetHook
+  - MediaWiki\Search:
+    - SearchMySQL
+    - SqlSearchResult
+    - SqlSearchResultSet
+    - BaseSearchResultSet
+    - ISearchResultSet
+    - PrefixSearch
+    - RevisionSearchResult
+    - SearchEngineConfig
+    - SearchResult
+    - SearchResultSet
+    - SearchResultTrait
+    - TitlePrefixSearch
+    - PaginatingSearchEngine
+    - SearchHighlighter
+    - StringPrefixSearch
+    - SearchIndexField
+    - PerRowAugmentor
+    - ResultAugmentor
+    - NullIndexField
+    - SearchIndexFieldDefinition
+    - FauxSearchResultSet
+    - SearchSuggestion
+    - SearchEngine
+    - SearchSqlite
+    - SearchResultSetTrait
+    - SearchNearMatchResultSet
+    - ResultSetAugmentor
+    - SearchEngineFactory
+    - SearchSuggestionSet
+    - SearchPostgres
+    - SearchDatabase
+    - DummySearchIndexFieldDefinition
+    - SearchExactMatchRescorer
+    - FauxSearchResult
   - Skin related hooks: MediaWiki\Hook => MediaWiki\Skin\Hook
     - GetNewMessagesAlertHook
     - SidebarBeforeOutputHook
@@ -292,74 +549,6 @@ because of Phabricator reports.
     - SkinComponentTableOfContents
     - SkinComponentTempUserBanner
     - SkinComponentUtils
-  - Actions related hooks: MediaWiki\Hook => MediaWiki\Actions\Hook
-    - ActionBeforeFormDisplayHook
-    - ActionModifyFormFieldsHook
-    - CustomEditorHook
-    - HistoryPageToolLinksHook
-    - HistoryToolsHook
-    - InfoActionHook
-    - PageHistoryBeforeListHook
-    - PageHistoryLineEndingHook
-    - PageHistoryPager__doBatchLookupsHook
-    - PageHistoryPager__getQueryInfoHook
-    - RawPageViewBeforeOutputHook
-    - UnwatchArticleCompleteHook
-    - UnwatchArticleHook
-    - WatchArticleCompleteHook
-    - WatchArticleHook
-  - Actions related pager: MediaWiki\Pager => MediaWiki\Actions\Pager
-    - HistoryPager
-  - Mail related hooks: MediaWiki\Hook => MediaWiki\Mail\Hook
-    - AbortTalkPageEmailNotificationHook
-    - AlternateUserMailerHook
-    - SendWatchlistEmailNotificationHook
-    - UpdateUserMailerFormattedPageStatusHook
-    - UserMailerChangeReturnPathHook
-    - UserMailerSplitToHook
-    - UserMailerTransformContentHook
-    - UserMailerTransformMessageHook
-  - RecentChanges related hooks: MediaWiki\Hook => MediaWiki\RecentChanges\Hook
-    - AbortEmailNotificationHook
-    - ChangesListInitRowsHook
-    - ChangesListInsertArticleLinkHook
-    - ChangesListInsertLogEntryHook
-    - EnhancedChangesListModifyBlockLineDataHook
-    - EnhancedChangesListModifyLineDataHook
-    - EnhancedChangesList__getLogTextHook
-    - FetchChangesListHook
-    - MarkPatrolledCompleteHook
-    - MarkPatrolledHook
-    - OldChangesListRecentChangesLineHook
-    - RecentChange_saveHook
-  - Parser related hooks: MediaWiki\Hook => MediaWiki\Parser\Hook
-    - AfterParserFetchFileAndTitleHook
-    - BeforeParserFetchFileAndTitleHook
-    - BeforeParserFetchTemplateRevisionRecordHook
-    - GetLinkColoursHook
-    - InternalParseBeforeLinksHook
-    - IsValidEmailAddrHook
-    - PageRenderingHashHook
-    - ParserAfterParseHook
-    - ParserAfterTidyHook
-    - ParserBeforeInternalParseHook
-    - ParserBeforePreprocessHook
-    - ParserCacheSaveCompleteHook
-    - ParserClearStateHook
-    - ParserClonedHook
-    - ParserFetchTemplateDataHook
-    - ParserFirstCallInitHook
-    - ParserGetVariableValueSwitchHook
-    - ParserGetVariableValueTsHook
-    - ParserLimitReportFormatHook
-    - ParserLimitReportPrepareHook
-    - ParserLogLinterDataHook
-    - ParserMakeImageParamsHook
-    - ParserModifyImageHTMLHook
-    - ParserOptionsRegisterHook
-    - ParserOutputPostCacheTransformHook
-    - ParserPreSaveTransformCompleteHook
-    - RejectParserCacheValueHook
   - Specials related hooks: MediaWiki\Hook => MediaWiki\Specials\Hook
     - AncientPagesQueryHook
     - BeforeWelcomeCreationHook
@@ -465,150 +654,6 @@ because of Phabricator reports.
     - ProtectedTitlesPager
     - UploadStashPager
     - UsersPager
-  - Collation related hook: MediaWiki\Hook => MediaWiki\Collation\Hook
-    - Collation__factoryHook
-  - Context related hooks: MediaWiki\Hook => MediaWiki\Context\Hook
-    - RequestContextCreateSkinHook
-    - UserGetLanguageObjectHook
-  - Deferred related hooks: MediaWiki\Hook => MediaWiki\Deferred\Hook
-    - LinksUpdateCompleteHook
-    - LinksUpdateHook
-    - UserEditCountUpdateHook
-  - Exception related hook: MediaWiki\Hook => MediaWiki\Exception\Hook
-    - LogExceptionHook
-  - MediaWiki\Export:
-    - BaseDump
-    - DumpBZip2Output
-    - DumpNamespaceFilter
-    - Dump7ZipOutput
-    - DumpFileOutput
-    - WikiExporter
-    - DumpLatestFilter
-    - XmlDumpWriter
-    - DumpDBZip2Output
-    - DumpOutput
-    - DumpNotalkFilter
-    - DumpLBZip2Output
-    - DumpMultiWriter
-    - DumpStringOutput
-    - ExportProgressFilter
-    - DumpPipeOutput
-    - DumpGZipOutput
-    - DumpFilter
-  - Export related hooks: MediaWiki\Hook => MediaWiki\Export\Hook
-    - ModifyExportQueryHook
-    - WikiExporter__dumpStableQueryHook
-    - XmlDumpWriterOpenPageHook
-    - XmlDumpWriterWriteRevisionHook
-  - FileBackend\LockManager:
-    - LockManagerGroup
-  - FileRepo related hooks: MediaWiki\Hook => MediaWiki\FileRepo\Hook
-    - FileTransformedHook
-    - FileUploadHook
-    - LocalFilePurgeThumbnailsHook
-    - LocalFile__getHistoryHook
-  - Gallery related hook: MediaWiki\Hook => MediaWiki\Gallery\Hook
-    - GalleryGetModesHook
-  - MediaWiki\Import:
-    - WikiImporterFactory
-    - ImportableOldRevisionImporter
-    - ImportStreamSource
-    - ImportableUploadRevisionImporter
-    - OldRevisionImporter
-    - WikiRevision
-    - ImportableOldRevision
-    - ImportStringSource
-    - ImportableUploadRevision
-    - ImportSource
-    - UploadRevisionImporter
-    - WikiImporter
-    - UploadSourceAdapter
-  - Import related hooks: MediaWiki\Hook => MediaWiki\Import\Hook
-    - AfterImportPageHook
-    - ImportHandleContentXMLTagHook
-    - ImportHandleLogItemXMLTagHook
-    - ImportHandlePageXMLTagHook
-    - ImportHandleRevisionXMLTagHook
-    - ImportHandleToplevelXMLTagHook
-    - ImportHandleUploadXMLTagHook
-  - Jobs related hook: MediaWiki\Hook => MediaWiki\JobQueue\Jobs\Hook
-    - RecentChangesPurgeRowsHook
-  - Logging related hooks: MediaWiki\Hook => MediaWiki\Logging\Hook
-    - LogEventsListGetExtraInputsHook
-    - LogEventsListLineEndingHook
-    - LogEventsListShowLogExtractHook
-    - LogLineHook
-    - ManualLogEntryBeforePublishHook
-  - Logging related pager: MediaWiki\Pager => MediaWiki\Logging\Pager
-    - LogPager
-  - MediaWiki\Media
-    - PNGMetadataExtractor
-    - MediaHandlerFactory
-    - MediaTransformInvalidParametersException
-    - DjVuImage
-    - SVGReader
-    - IPTC
-    - BitmapHandler_ClientOnly
-    - TransformationalImageHandler
-    - BmpHandler
-    - JpegMetadataExtractor
-    - GIFMetadataExtractor
-    - ExifBitmapHandler
-    - BitmapHandler
-    - InvalidJpegException
-    - DjVuHandler
-    - ThumbnailImage
-    - JpegHandler
-    - GIFHandler
-    - PNGHandler
-    - MediaHandlerState
-    - TrivialMediaHandlerState
-    - MediaHandler
-    - InvalidSVGException
-    - XCFHandler
-    - TiffHandler
-    - MediaTransformError
-    - BitmapMetadataHandler
-    - FormatMetadata
-    - InvalidTiffException
-    - TransformTooBigImageAreaError
-    - TransformParameterError
-    - SvgHandler
-    - InvalidPSIRException
-    - ImageHandler
-    - WebPHandler
-    - MediaTransformOutput
-    - Jpeg2000Handler
-    - Exif
-  - Media related hooks: MediaWiki\Hook => MediaWiki\Media\Hook
-    - BitmapHandlerCheckImageAreaHook
-    - BitmapHandlerTransformHook
-    - GetExtendedMetadataHook
-    - GetMetadataVersionHook
-    - ThumbnailBeforeProduceHTMLHook
-    - ValidateExtendedMetadataCacheHook
-  - Password related hook: MediaWiki\Hook => MediaWiki\Password\Hook
-    - PasswordPoliciesForUserHook
-  - RCFeed related hook: MediaWiki\Hook => MediaWiki\RCFeed\Hook
-    - IRCLineURLHook
-  - RevisionDelete related hook: MediaWiki\Hook => MediaWiki\RevisionDelete\Hook
-    - ArticleRevisionVisibilitySetHook
-  - MediaWiki\RevisionDelete:
-    - RevisionDeleter
-    - RevDelFileItem
-    - RevDelRevisionItem
-    - RevDelLogList
-    - RevisionDeleteUser
-    - RevDelList
-    - RevDelFileList
-    - RevDelArchivedFileList
-    - RevDelLogItem
-    - RevDelRevisionList
-    - RevDelArchivedFileItem
-    - RevDelItem
-    - RevDelArchivedRevisionItem
-    - RevDelArchiveList
-    - RevDelArchiveItem
   - Title related hooks: MediaWiki\Hook => MediaWiki\Title\Hook
     - CanonicalNamespacesHook
     - NamespaceIsMovableHook
@@ -653,51 +698,6 @@ because of Phabricator reports.
     - QuorumLockManager
     - RedisLockManager
     - ScopedLock
-  - MediaWiki\Search:
-    - SearchMySQL
-    - SqlSearchResult
-    - SqlSearchResultSet
-    - BaseSearchResultSet
-    - ISearchResultSet
-    - PrefixSearch
-    - RevisionSearchResult
-    - SearchEngineConfig
-    - SearchResult
-    - SearchResultSet
-    - SearchResultTrait
-    - TitlePrefixSearch
-    - PaginatingSearchEngine
-    - SearchHighlighter
-    - StringPrefixSearch
-    - SearchIndexField
-    - PerRowAugmentor
-    - ResultAugmentor
-    - NullIndexField
-    - SearchIndexFieldDefinition
-    - FauxSearchResultSet
-    - SearchSuggestion
-    - SearchEngine
-    - SearchSqlite
-    - SearchResultSetTrait
-    - SearchNearMatchResultSet
-    - ResultSetAugmentor
-    - SearchEngineFactory
-    - SearchSuggestionSet
-    - SearchPostgres
-    - SearchDatabase
-    - DummySearchIndexFieldDefinition
-    - SearchExactMatchRescorer
-    - FauxSearchResult
-  - MediaWiki\ExternalStore:
-    - ExternalStoreMedium
-    - ExternalStoreFactory
-    - ExternalStore
-    - ExternalStoreMemory
-    - ExternalStoreMwstore
-    - ExternalStoreHttp
-    - ExternalStoreException
-    - ExternalStoreAccess
-    - ExternalStoreDB
 * Using an int for the $mode parameter of LanguageFallback::getAll() is now
   deprecated.  Use the new LanguageFallbackMode enumeration instead.
 * LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use
