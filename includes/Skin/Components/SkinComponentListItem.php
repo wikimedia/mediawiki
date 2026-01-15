@@ -6,7 +6,7 @@
 namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Html\Html;
-use MessageLocalizer;
+use MediaWiki\Language\MessageLocalizer;
 
 class SkinComponentListItem implements SkinComponent {
 	/** @var string */

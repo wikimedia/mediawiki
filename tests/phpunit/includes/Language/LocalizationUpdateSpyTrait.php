@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Language;
 
-use MessageCache;
+use MediaWiki\Language\MessageCache;
 
 /**
  * Trait for asserting that the localization component is getting notified

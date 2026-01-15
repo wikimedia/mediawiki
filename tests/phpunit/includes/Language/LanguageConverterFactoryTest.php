@@ -21,10 +21,10 @@ use MediaWiki\Language\Converters\WuuConverter;
 use MediaWiki\Language\Converters\ZghConverter;
 use MediaWiki\Language\Converters\ZhConverter;
 use MediaWiki\Language\LanguageConverter;
+use MediaWiki\Language\TrivialLanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWikiLangTestCase;
-use TrivialLanguageConverter;
 use Wikimedia\TestingAccessWrapper;
 
 /**

@@ -3,9 +3,9 @@
 // phpcs:disable MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic -- Test traits are not excluded
 namespace MediaWiki\Tests\Unit\Language;
 
-use LocalisationCache;
 use MediaWiki\Language\LanguageFallback;
 use MediaWiki\Language\LanguageFallbackMode;
+use MediaWiki\Language\LocalisationCache;
 use ValueError;
 
 /**

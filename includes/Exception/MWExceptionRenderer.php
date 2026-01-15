@@ -7,9 +7,9 @@
 namespace MediaWiki\Exception;
 
 use Exception;
-use LocalisationCache;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\LocalisationCache;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

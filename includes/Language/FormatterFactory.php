@@ -8,7 +8,6 @@ use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Status\StatusFormatter;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\UserIdentityUtils;
-use MessageLocalizer;
 use Psr\Log\LoggerInterface;
 
 /**

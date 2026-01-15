@@ -4,16 +4,17 @@
  * @file
  */
 
+namespace MediaWiki\Language;
+
+use Exception;
+use InvalidArgumentException;
+use LogicException;
+use MapCacheLRU;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Language\ILanguageConverter;
-use MediaWiki\Language\Language;
-use MediaWiki\Language\MessageCacheUpdate;
-use MediaWiki\Language\MessageInfo;
-use MediaWiki\Language\MessageParser;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -30,6 +31,8 @@ use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
+use Throwable;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
@@ -676,7 +679,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * Separate cacheable from uncacheable rows in a page/revision query result.
 	 *
 	 * @param IResultWrapper $res
-	 * @return array{0:IResultWrapper|stdClass[],1:stdClass[]} An array with the cacheable
+	 * @return array{0:IResultWrapper|\stdClass[],1:\stdClass[]} An array with the cacheable
 	 *    rows in the first element and the uncacheable rows in the second.
 	 */
 	private function separateCacheableRows( $res ) {
@@ -1639,3 +1642,6 @@ class MessageCache implements LoggerAwareInterface {
 		return $this->wanCache->makeKey( 'messages-big', $hash, $title );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MessageCache::class, 'MessageCache' );

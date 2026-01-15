@@ -24,7 +24,6 @@ use DateTimeInterface;
 use DateTimeZone;
 use InvalidArgumentException;
 use Locale;
-use LocalisationCache;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Language;
 
-use LocalisationCache;
+use MediaWiki\Language\LocalisationCache;
 use MediaWiki\Tests\Mocks\Language\MockLocalisationCacheTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWikiIntegrationTestCase;
@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Language
  * @group Database
- * @covers \LocalisationCache
+ * @covers \MediaWiki\Language\LocalisationCache
  * @author Niklas Laxström
  */
 class LocalisationCacheTest extends MediaWikiIntegrationTestCase {

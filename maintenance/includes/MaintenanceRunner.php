@@ -3,11 +3,11 @@
 namespace MediaWiki\Maintenance;
 
 use Exception;
-use LCStoreNull;
 use LogicException;
 use MediaWiki;
 use MediaWiki\Config\Config;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Language\LCStoreNull;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

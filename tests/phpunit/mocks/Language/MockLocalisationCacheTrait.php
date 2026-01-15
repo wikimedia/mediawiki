@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Mocks\Language;
 
-use LCStoreDB;
-use LocalisationCache;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Language\LCStoreDB;
+use MediaWiki\Language\LocalisationCache;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Psr\Log\NullLogger;
 

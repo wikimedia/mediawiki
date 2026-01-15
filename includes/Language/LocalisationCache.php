@@ -4,8 +4,16 @@
  * @file
  */
 
+namespace MediaWiki\Language;
+
+use CacheDependency;
 use CLDRPluralRuleParser\Error as CLDRPluralRuleError;
 use CLDRPluralRuleParser\Evaluator;
+use ConstantDependency;
+use DOMDocument;
+use FileDependency;
+use InvalidArgumentException;
+use MainConfigDependency;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
@@ -15,6 +23,8 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
+use UnexpectedValueException;
 
 /**
  * Caching for the contents of localisation files.
@@ -1435,3 +1445,6 @@ class LocalisationCache {
 		$this->manualRecache = false;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LocalisationCache::class, 'LocalisationCache' );

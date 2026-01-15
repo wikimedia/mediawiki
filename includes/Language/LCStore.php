@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language;
+
 /**
  * Interface for the persistence layer of LocalisationCache.
  *
@@ -71,3 +73,6 @@ interface LCStore {
 	 */
 	public function lateFallback(): bool;
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LCStore::class, 'LCStore' );

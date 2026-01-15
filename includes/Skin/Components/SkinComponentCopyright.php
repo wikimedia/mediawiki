@@ -4,13 +4,13 @@ namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use MessageLocalizer;
 use Wikimedia\HtmlArmor\HtmlArmor;
 
 class SkinComponentCopyright implements SkinComponent {

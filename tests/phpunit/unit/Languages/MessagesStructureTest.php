@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Tests\Unit\Languages;
 
-use LocalisationCache;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
+use MediaWiki\Language\LocalisationCache;
+use MediaWiki\Language\MessageCache;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWikiUnitTestCase;
-use MessageCache;
 use Wikimedia\TestingAccessWrapper;
 
 /**

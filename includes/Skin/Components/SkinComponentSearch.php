@@ -5,11 +5,11 @@ namespace MediaWiki\Skin\Components;
 use InvalidArgumentException;
 use MediaWiki\Config\Config;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
-use MessageLocalizer;
 
 /**
  * @license GPL-2.0-or-later

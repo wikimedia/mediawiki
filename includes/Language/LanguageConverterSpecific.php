@@ -4,7 +4,8 @@
  * @file
  */
 
-use MediaWiki\Language\LanguageConverter;
+namespace MediaWiki\Language;
+
 use MediaWiki\Title\Title;
 
 /**
@@ -39,3 +40,6 @@ abstract class LanguageConverterSpecific extends LanguageConverter {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageConverterSpecific::class, 'LanguageConverterSpecific' );

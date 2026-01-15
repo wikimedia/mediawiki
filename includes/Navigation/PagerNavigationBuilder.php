@@ -3,11 +3,11 @@
 namespace MediaWiki\Navigation;
 
 use MediaWiki\Html\Html;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
-use MessageLocalizer;
 use RuntimeException;
 use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageParam;

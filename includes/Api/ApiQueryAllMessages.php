@@ -8,13 +8,13 @@
 
 namespace MediaWiki\Api;
 
-use LocalisationCache;
 use MediaWiki\Language\Language;
+use MediaWiki\Language\LocalisationCache;
+use MediaWiki\Language\MessageCache;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Pager\AllMessagesTablePager;
 use MediaWiki\Title\Title;
-use MessageCache;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

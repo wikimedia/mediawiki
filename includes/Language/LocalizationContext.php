@@ -6,7 +6,6 @@
 
 namespace MediaWiki\Language;
 
-use MessageLocalizer;
 use Wikimedia\Bcp47Code\Bcp47Code;
 
 /**

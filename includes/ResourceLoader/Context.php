@@ -8,6 +8,7 @@
 
 namespace MediaWiki\ResourceLoader;
 
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -17,7 +18,6 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
-use MessageLocalizer;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;

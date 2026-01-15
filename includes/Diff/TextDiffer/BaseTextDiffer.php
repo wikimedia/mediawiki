@@ -4,8 +4,8 @@ namespace MediaWiki\Diff\TextDiffer;
 
 use InvalidArgumentException;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Output\OutputPage;
-use MessageLocalizer;
 
 /**
  * The base class for specific implementations of TextDiffer, apart from

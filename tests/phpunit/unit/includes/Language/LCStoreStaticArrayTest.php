@@ -3,11 +3,11 @@
 namespace MediaWiki\Tests\Unit\Language;
 
 use DateTimeZone;
-use LCStoreStaticArray;
+use MediaWiki\Language\LCStoreStaticArray;
 use MediaWikiUnitTestCase;
 
 /**
- * @covers \LCStoreStaticArray
+ * @covers \MediaWiki\Language\LCStoreStaticArray
  * @group Language
  */
 class LCStoreStaticArrayTest extends MediaWikiUnitTestCase {

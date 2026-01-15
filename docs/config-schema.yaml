@@ -2743,7 +2743,7 @@ config-schema:
             This option is probably only useful for translatewiki.net.
     LocalisationCacheConf:
         properties:
-            class: { type: string, default: LocalisationCache }
+            class: { type: string, default: MediaWiki\Language\LocalisationCache }
             store: { type: string, default: detect }
             storeClass: { type: [boolean, string], default: false }
             storeDirectory: { type: [boolean, string], default: false }

@@ -7,7 +7,6 @@
 namespace MediaWiki;
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
-use LocalisationCache;
 use LogicException;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Auth\AuthManager;
@@ -82,6 +81,8 @@ use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Language\LanguageNameSearch;
 use MediaWiki\Language\LeximorphFactory;
+use MediaWiki\Language\LocalisationCache;
+use MediaWiki\Language\MessageCache;
 use MediaWiki\Language\MessageParser;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
@@ -215,7 +216,6 @@ use MediaWiki\Watchlist\WatchedItemQueryService;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistManager;
-use MessageCache;
 use ObjectCacheFactory;
 use Wikimedia\EventRelayer\EventRelayerGroup;
 use Wikimedia\FileBackend\FSFile\TempFSFileFactory;

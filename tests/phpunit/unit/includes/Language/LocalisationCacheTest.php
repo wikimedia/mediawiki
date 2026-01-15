@@ -4,12 +4,12 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Tests\Unit\Language;
 
-use LocalisationCache;
+use MediaWiki\Language\LocalisationCache;
 use MediaWikiUnitTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \LocalisationCache
+ * @covers \MediaWiki\Language\LocalisationCache
  * @group Language
  */
 class LocalisationCacheTest extends MediaWikiUnitTestCase {

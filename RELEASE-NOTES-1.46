@@ -352,6 +352,19 @@ because of Phabricator reports.
     - ImportHandleUploadXMLTagHook
   - Jobs related hook: MediaWiki\Hook => MediaWiki\JobQueue\Jobs\Hook
     - RecentChangesPurgeRowsHook
+  - MediaWiki\Language
+    - MessageCache
+    - LanguageConverterSpecific
+    - TrivialLanguageConverter
+    - LCStore
+    - LCStoreStaticArray
+    - LanguageConverterIcu
+    - LocalisationCache
+    - LocalisationCacheBulkLoad
+    - MessageLocalizer
+    - LCStoreCDB
+    - LCStoreNull
+    - LCStoreDB
   - MediaWiki\Language\Converters
     - ShiConverter
     - EnConverter

@@ -8,12 +8,12 @@ namespace MediaWiki\Skin\Components;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Language\Language;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use MessageLocalizer;
 
 /**
  * @internal for use inside Skin and SkinTemplate classes only

@@ -4,6 +4,9 @@
  * @file
  */
 
+namespace MediaWiki\Language;
+
+use Transliterator;
 use Wikimedia\ReplacementArray;
 
 /**
@@ -87,3 +90,6 @@ abstract class LanguageConverterIcu extends LanguageConverterSpecific {
 		return [];
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageConverterIcu::class, 'LanguageConverterIcu' );

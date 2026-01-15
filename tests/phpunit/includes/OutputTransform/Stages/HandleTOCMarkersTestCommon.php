@@ -4,12 +4,12 @@ declare( strict_types = 1 );
 namespace MediaWiki\Tests\OutputTransform\Stages;
 
 use MediaWiki\Language\Language;
+use MediaWiki\Language\MessageCache;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Tests\OutputTransform\TestUtils;
-use MessageCache;
 
 abstract class HandleTOCMarkersTestCommon extends OutputTransformStageTestBase {
 	public function setUp(): void {

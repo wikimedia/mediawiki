@@ -8,11 +8,11 @@
 namespace MediaWiki\Preferences;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserIdentity;
-use MessageLocalizer;
 
 /**
  * @since 1.38

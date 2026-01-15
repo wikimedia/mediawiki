@@ -8,7 +8,6 @@ use MediaWiki\Page\Event\PageDeletedListener;
 use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Page\Event\PageLatestRevisionChangedListener;
 use MediaWiki\Revision\SlotRecord;
-use MessageCache;
 
 /**
  * The ingress adapter for the language component. It updates language related

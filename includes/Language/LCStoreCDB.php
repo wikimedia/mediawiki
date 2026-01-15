@@ -3,9 +3,15 @@
  * @license GPL-2.0-or-later
  * @file
  */
+
+namespace MediaWiki\Language;
+
 use Cdb\Exception as CdbException;
 use Cdb\Reader;
 use Cdb\Writer;
+use InvalidArgumentException;
+use LogicException;
+use RuntimeException;
 
 /**
  * LCStore implementation which stores data as a collection of CDB files.
@@ -118,3 +124,6 @@ class LCStoreCDB implements LCStore {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LCStoreCDB::class, 'LCStoreCDB' );

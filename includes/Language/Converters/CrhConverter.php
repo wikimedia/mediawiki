@@ -6,9 +6,9 @@
 
 namespace MediaWiki\Language\Converters;
 
-use LanguageConverterSpecific;
 use LogicException;
 use MediaWiki\Language\Language;
+use MediaWiki\Language\LanguageConverterSpecific;
 use MediaWiki\Languages\Data\CrhExceptions;
 use MediaWiki\StubObject\StubUserLang;
 use Wikimedia\ReplacementArray;

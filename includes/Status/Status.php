@@ -11,10 +11,10 @@ namespace MediaWiki\Status;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\Language;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\StubObject\StubUserLang;
-use MessageLocalizer;
 use RuntimeException;
 use StatusValue;
 

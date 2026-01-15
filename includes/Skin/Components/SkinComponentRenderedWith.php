@@ -3,7 +3,7 @@
 namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Language\Language;
-use MessageLocalizer;
+use MediaWiki\Language\MessageLocalizer;
 
 class SkinComponentRenderedWith implements SkinComponent {
 	private Language $language;

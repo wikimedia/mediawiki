@@ -8,10 +8,10 @@
 
 namespace MediaWiki\Title;
 
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
-use MessageLocalizer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**

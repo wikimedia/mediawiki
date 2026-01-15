@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language;
+
 /**
  * Null store backend, used to avoid DB errors during MediaWiki installation.
  *
@@ -32,3 +34,6 @@ class LCStoreNull implements LCStore {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LCStoreNull::class, 'LCStoreNull' );

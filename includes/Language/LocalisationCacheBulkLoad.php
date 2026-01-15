@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language;
+
 /**
  * LocalisationCache optimised for loading many languages at once.
  *
@@ -115,3 +117,6 @@ class LocalisationCacheBulkLoad extends LocalisationCache {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LocalisationCacheBulkLoad::class, 'LocalisationCacheBulkLoad' );

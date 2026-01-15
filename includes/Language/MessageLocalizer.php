@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language;
+
 use MediaWiki\Message\Message;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
@@ -34,3 +36,6 @@ interface MessageLocalizer {
 	public function msg( $key, ...$params );
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MessageLocalizer::class, 'MessageLocalizer' );

@@ -6,7 +6,7 @@
 
 namespace MediaWiki\Language\Converters;
 
-use LanguageConverterSpecific;
+use MediaWiki\Language\LanguageConverterSpecific;
 use Wikimedia\ReplacementArray;
 
 /**

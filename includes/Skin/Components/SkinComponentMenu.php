@@ -3,10 +3,10 @@
 namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Html\Html;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
-use MessageLocalizer;
 
 /**
  * @internal for use inside Skin and SkinTemplate classes only

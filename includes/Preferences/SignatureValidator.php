@@ -8,6 +8,7 @@ namespace MediaWiki\Preferences;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserOptions;
@@ -19,7 +20,6 @@ use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
-use MessageLocalizer;
 use OOUI\ButtonWidget;
 
 /**

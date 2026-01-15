@@ -4,7 +4,13 @@
  * @file
  */
 
+namespace MediaWiki\Language;
+
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\MediaWikiServices;
+use Profiler;
+use RuntimeException;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
@@ -147,3 +153,6 @@ class LCStoreDB implements LCStore {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LCStoreDB::class, 'LCStoreDB' );

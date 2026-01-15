@@ -6,8 +6,6 @@
 
 namespace MediaWiki\Language;
 
-use LocalisationCache;
-
 /**
  * @since 1.35
  * @ingroup Language

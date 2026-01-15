@@ -8,6 +8,7 @@ namespace MediaWiki\Specials\Contribute;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -15,7 +16,6 @@ use MediaWiki\Specials\Contribute\Card\ContributeCard;
 use MediaWiki\Specials\Contribute\Card\ContributeCardActionLink;
 use Mediawiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use MessageLocalizer;
 
 class ContributeFactory {
 

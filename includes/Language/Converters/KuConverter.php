@@ -6,8 +6,8 @@
 
 namespace MediaWiki\Language\Converters;
 
-use LanguageConverterSpecific;
 use LogicException;
+use MediaWiki\Language\LanguageConverterSpecific;
 use Wikimedia\ReplacementArray;
 
 /**

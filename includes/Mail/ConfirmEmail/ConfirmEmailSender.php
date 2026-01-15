@@ -6,12 +6,12 @@ use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\Mail\MailAddress;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
-use MessageLocalizer;
 use StatusValue;
 
 /**

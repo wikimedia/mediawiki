@@ -7,7 +7,6 @@
 namespace MediaWiki\Language;
 
 use InvalidArgumentException;
-use LocalisationCache;
 use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;

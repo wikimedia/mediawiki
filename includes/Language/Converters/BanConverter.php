@@ -6,7 +6,7 @@
 
 namespace MediaWiki\Language\Converters;
 
-use LanguageConverterIcu;
+use MediaWiki\Language\LanguageConverterIcu;
 
 /**
  * Balinese specific code.

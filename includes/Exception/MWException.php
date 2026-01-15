@@ -7,8 +7,8 @@
 namespace MediaWiki\Exception;
 
 use Exception;
-use LocalisationCache;
 use MediaWiki\Debug\MWDebug;
+use MediaWiki\Language\LocalisationCache;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 

@@ -3,8 +3,10 @@
  * @license GPL-2.0-or-later
  * @file
  */
-use MediaWiki\Language\ILanguageConverter;
-use MediaWiki\Language\Language;
+
+namespace MediaWiki\Language;
+
+use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\StubObject\StubUserLang;
@@ -194,3 +196,6 @@ class TrivialLanguageConverter implements ILanguageConverter {
 		return htmlspecialchars( $this->convert( $text ) );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( TrivialLanguageConverter::class, 'TrivialLanguageConverter' );

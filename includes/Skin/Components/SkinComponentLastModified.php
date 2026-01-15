@@ -3,9 +3,9 @@
 namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Language\Language;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
-use MessageLocalizer;
 
 class SkinComponentLastModified implements SkinComponent {
 	/** @var Language */

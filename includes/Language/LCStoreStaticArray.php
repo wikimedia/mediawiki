@@ -4,6 +4,9 @@
  * @file
  */
 
+namespace MediaWiki\Language;
+
+use RuntimeException;
 use Wikimedia\StaticArrayWriter;
 
 /**
@@ -259,3 +262,6 @@ class LCStoreStaticArray implements LCStore {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LCStoreStaticArray::class, 'LCStoreStaticArray' );

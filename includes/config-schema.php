@@ -583,7 +583,7 @@ return [
 			'UseLocalMessageCache' => false,
 			'AdaptiveMessageCache' => false,
 			'LocalisationCacheConf' => [
-				'class' => 'LocalisationCache',
+				'class' => 'MediaWiki\\Language\\LocalisationCache',
 				'store' => 'detect',
 				'storeClass' => false,
 				'storeDirectory' => false,

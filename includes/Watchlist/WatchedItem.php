@@ -7,11 +7,11 @@
 
 namespace MediaWiki\Watchlist;
 
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Page\PageReference;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
-use MessageLocalizer;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;

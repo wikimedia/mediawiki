@@ -25,7 +25,6 @@ use MediaWiki\Language\Converters\ZghConverter;
 use MediaWiki\Language\Converters\ZhConverter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\StubObject\StubUserLang;
-use TrivialLanguageConverter;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**

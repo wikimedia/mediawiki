@@ -8,12 +8,12 @@ namespace MediaWiki\Status;
 
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Language\Language;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Language\MessageParser;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\StubObject\StubUserLang;
-use MessageLocalizer;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use StatusValue;

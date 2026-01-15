@@ -6,8 +6,8 @@ namespace MediaWiki\Tests\Unit;
 
 use LanguageQqx;
 use MediaWiki\Language\Language;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Message\Message;
-use MessageLocalizer;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
