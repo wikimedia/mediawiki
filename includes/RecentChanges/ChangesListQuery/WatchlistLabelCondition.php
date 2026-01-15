@@ -14,6 +14,8 @@ use Wikimedia\Rdbms\IReadableDatabase;
  */
 class WatchlistLabelCondition extends ChangesListConditionBase {
 
+	public const LABEL_IDS = 'wlm_label_summary';
+
 	/** @inheritDoc */
 	public function validateValue( $value ) {
 		if ( !is_numeric( $value ) ) {
@@ -37,7 +39,7 @@ class WatchlistLabelCondition extends ChangesListConditionBase {
 			->from( 'watchlist_label_member' )
 			->where( [ 'wlm_item=wl_id' ] )
 			->buildGroupConcatField( ',' );
-		$query->fields( [ 'wlm_label_summary' => $subquery ] );
+		$query->fields( [ self::LABEL_IDS => $subquery ] );
 		$query->joinForFields( 'watchlist' )->weakLeft();
 	}
 

@@ -793,6 +793,10 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		return $this->filterModules['changeTags'];
 	}
 
+	private function getWatchlistLabelFilter(): WatchlistLabelCondition {
+		return $this->filterModules['watchlistLabel'];
+	}
+
 	private function getRedirectFilter(): BooleanJoinFieldCondition {
 		return $this->filterModules['redirect'];
 	}
@@ -854,6 +858,16 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 */
 	public function addChangeTagSummaryField(): self {
 		$this->getChangeTagsFilter()->capture();
+		return $this;
+	}
+
+	/**
+	 * Add the labels summary field wlm_label_summary
+	 *
+	 * @return $this
+	 */
+	public function addWatchlistLabelSummaryField(): self {
+		$this->getWatchlistLabelFilter()->capture();
 		return $this;
 	}
 

@@ -10,6 +10,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialWatchlist;
 use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\StaticUserOptionsLookup;
+use MediaWiki\Watchlist\WatchlistLabelStore;
 use TestUser;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\TestingAccessWrapper;
@@ -244,6 +245,13 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 			'UserRegistrationLookup',
 			$userRegistrationLookup
 		);
+		$watchlistLabelStore = $this->createMock( WatchlistLabelStore::class );
+		$watchlistLabelStore->method( 'loadAllForUser' )
+			->willReturn( [] );
+		$this->setService(
+			'WatchlistLabelStore',
+			$watchlistLabelStore
+		);
 		$page = $this->newSpecialPage();
 		TestingAccessWrapper::newFromObject( $page )->userOptionsLookup
 			= $userOptionsLookup;
@@ -264,6 +272,11 @@ SELECT
 	rc_namespace,
 	rc_title,
 	wl_notificationtimestamp,
+	(
+		SELECT GROUP_CONCAT(wlm_label SEPARATOR ',') 
+		FROM watchlist_label_member 
+		WHERE (wlm_item=wl_id)  
+	) AS wlm_label_summary,
 	(
 		SELECT GROUP_CONCAT(ctd_name SEPARATOR ',') 
 		FROM change_tag JOIN change_tag_def ON ((ct_tag_id=ctd_id)) 

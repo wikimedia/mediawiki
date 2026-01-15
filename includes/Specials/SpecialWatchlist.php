@@ -63,10 +63,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		'Special:EditWatchlist/clear'
 	];
 
+	public const WATCHLIST_LABEL_CSS_CLASS_PREFIX = 'mw-changeslist-label-';
+
 	private WatchedItemStoreInterface $watchedItemStore;
 	private WatchlistManager $watchlistManager;
 	private UserOptionsLookup $userOptionsLookup;
-	private WatchlistLabelStore $watchlistLabelStore;
+	private array $watchlistLabelsForCurrentUser;
 
 	/**
 	 * @var int|false where the value is one of the SpecialEditWatchlist:EDIT_ prefixed
@@ -96,7 +98,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->watchedItemStore = $watchedItemStore;
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
-		$this->watchlistLabelStore = $watchlistLabelStore;
+		$this->watchlistLabelsForCurrentUser = $watchlistLabelStore->loadAllForUser( $this->getUser() );
 	}
 
 	/** @inheritDoc */
@@ -156,10 +158,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 
 		if ( $this->getConfig()->get( MainConfigNames::EnableWatchlistLabels ) ) {
-			$watchlistLabels = $this->getWatchlistLabelsForFiltering( $this->getUser() );
 			$output->addJsConfigVars( [
 				'enableWatchlistLabels' => true,
-				'watchlistLabels' => $watchlistLabels,
+				'watchlistLabels' => $this->getWatchlistLabelsForFiltering( $this->getUser() ),
 				'SpecialWatchlistLabelsUrl' => SpecialPage::getTitleFor( 'WatchlistLabels' )->getLinkURL(),
 				'SpecialEditWatchlistUrl' => SpecialPage::getTitleFor( 'EditWatchlist' )->getLinkURL(),
 			] );
@@ -195,12 +196,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 */
 	private function getWatchlistLabelsForFiltering( User $user ): array {
 		$idAndNames = [];
-		$labels = $this->watchlistLabelStore->loadAllForUser( $user );
-		foreach ( $labels as $label ) {
+		foreach ( $this->watchlistLabelsForCurrentUser as $label ) {
 			$idAndNames[] = [
 				'name' => (string)$label->getId(),
 				'label' => $label->getName(),
-				'cssClass' => 'mw-changeslist-label-' . $label->getId(),
+				'cssClass' => self::WATCHLIST_LABEL_CSS_CLASS_PREFIX . $label->getId(),
 			];
 		}
 		return $idAndNames;
@@ -393,6 +393,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			->watchlistFields( [ 'wl_notificationtimestamp', 'we_expiry' ] );
 
 		if ( $this->getConfig()->get( MainConfigNames::EnableWatchlistLabels ) ) {
+			$query->addWatchlistLabelSummaryField();
 			if ( $opts['wllabel'] ) {
 				$ids = [];
 				foreach ( explode( ';', $opts['wllabel'] ) as $id ) {
@@ -406,7 +407,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					} else {
 						$query->requireWatchlistLabelIds( $ids );
 					}
-
 				}
 			}
 		}
@@ -453,6 +453,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$list = ChangesList::newFromContext( $this->getContext(), $this->filterGroups );
 		$list->setWatchlistDivs();
 		$list->initChangesListRows( $rows );
+		if ( $this->getConfig()->get( MainConfigNames::EnableWatchlistLabels ) ) {
+			$list->setUserLabels( $this->watchlistLabelsForCurrentUser );
+		}
 
 		if ( $this->userOptionsLookup->getBoolOption( $user, 'watchlistunwatchlinks' ) ) {
 			$list->setChangeLinePrefixer( function ( RecentChange $rc, ChangesList $cl, $grouped ) {
@@ -495,6 +498,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 
 		$userShowHiddenCats = $this->userOptionsLookup->getBoolOption( $user, 'showhiddencats' );
+
 		$counter = 1;
 		foreach ( $rows as $obj ) {
 			// Make RC entry

@@ -27,12 +27,15 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\PagerTools;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\RecentChanges\ChangesListQuery\WatchlistLabelCondition;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Specials\SpecialWatchlist;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchedItem;
+use MediaWiki\Watchlist\WatchlistLabel;
 use OOUI\IconWidget;
 use RuntimeException;
 use stdClass;
@@ -107,6 +110,8 @@ class ChangesList extends ContextSource {
 	private LogFormatterFactory $logFormatterFactory;
 
 	protected UserLinkRenderer $userLinkRenderer;
+
+	protected array $userLabels;
 
 	/**
 	 * @param IContextSource $context
@@ -999,6 +1004,30 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * @param RecentChange $rc
+	 * @param string[] &$classes
+	 * @return string
+	 * @since 1.45
+	 */
+	public function getLabels( RecentChange $rc, &$classes ): string {
+		if ( empty( $rc->mAttribs[ WatchlistLabelCondition::LABEL_IDS ] ) ) {
+			return '';
+		}
+		$labelIds = explode( ',', $rc->mAttribs[ WatchlistLabelCondition::LABEL_IDS ] );
+		$labelStrings = [];
+		foreach ( $labelIds as $labelId ) {
+			$classes[] = SpecialWatchlist::WATCHLIST_LABEL_CSS_CLASS_PREFIX . $labelId;
+			$labelStrings[] = $this->userLabels[ $labelId ]->getName();
+		}
+		return $this->message['word-separator'] .
+			$this->msg( 'parentheses' )->rawParams(
+				$this->msg( 'watchlistlabels-list-wrapper' )->params(
+					$this->getLanguage()->commaList( $labelStrings )
+				)->parse()
+			)->escaped();
+	}
+
+	/**
 	 * @param string &$s
 	 * @param RecentChange &$rc
 	 * @param string[] &$classes
@@ -1089,6 +1118,14 @@ class ChangesList extends ContextSource {
 	 */
 	public function setChangeLinePrefixer( callable $prefixer ) {
 		$this->changeLinePrefixer = $prefixer;
+	}
+
+	/**
+	 * @param WatchlistLabel[] $userLabels Array of WatchlistLabel objects, indexed by the label id
+	 * @return void
+	 */
+	public function setUserLabels( array $userLabels ): void {
+		$this->userLabels = $userLabels;
 	}
 }
 

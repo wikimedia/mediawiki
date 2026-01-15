@@ -436,6 +436,9 @@ class EnhancedChangesList extends ChangesList {
 		# Tags
 		$data['tags'] = $this->getTags( $rcObj, $classes );
 
+		# Watchlist labels
+		$data['labels'] = $this->getLabels( $rcObj, $classes );
+
 		$attribs = $this->getDataAttributes( $rcObj );
 
 		// give the hook a chance to modify the data
@@ -681,6 +684,9 @@ class EnhancedChangesList extends ChangesList {
 
 		# Tags
 		$data['tags'] = $this->getTags( $rcObj, $classes );
+
+		# WatchlistLabels
+		$data['labels'] = $this->getLabels( $rcObj, $classes );
 
 		# Show how many people are watching this if enabled
 		$data['watchingUsers'] = $this->numberofWatchingusers( $rcObj->numberofWatchingusers );
