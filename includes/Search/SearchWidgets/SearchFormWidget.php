@@ -2,12 +2,10 @@
 
 namespace MediaWiki\Search\SearchWidgets;
 
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\ILanguageConverter;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Search\SearchEngineConfig;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\NamespaceInfo;
@@ -18,12 +16,6 @@ use OOUI\CheckboxInputWidget;
 use OOUI\FieldLayout;
 
 class SearchFormWidget {
-	/** @internal For use by SpecialSearch only */
-	public const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::CapitalLinks,
-	];
-
-	private ServiceOptions $options;
 	protected SpecialSearch $specialSearch;
 	protected SearchEngineConfig $searchConfig;
 	private HookContainer $hookContainer;
@@ -33,7 +25,6 @@ class SearchFormWidget {
 	protected array $profiles;
 
 	public function __construct(
-		ServiceOptions $options,
 		SpecialSearch $specialSearch,
 		SearchEngineConfig $searchConfig,
 		HookContainer $hookContainer,
@@ -41,8 +32,6 @@ class SearchFormWidget {
 		NamespaceInfo $namespaceInfo,
 		array $profiles
 	) {
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
 		$this->specialSearch = $specialSearch;
 		$this->searchConfig = $searchConfig;
 		$this->hookContainer = $hookContainer;
@@ -122,8 +111,6 @@ class SearchFormWidget {
 		$offset,
 		array $options = []
 	) {
-		$autoCapHint = $this->options->get( MainConfigNames::CapitalLinks );
-
 		$searchWidget = new SearchInputWidget( $options + [
 			'id' => 'searchText',
 			'name' => 'search',
@@ -132,7 +119,8 @@ class SearchFormWidget {
 			'value' => $term,
 			'dataLocation' => 'content',
 			'infusable' => true,
-			'autocapitalize' => $autoCapHint ? 'sentences' : 'none',
+			// T413344: Disable autocapitalization.
+			'autocapitalize' => 'none',
 		] );
 
 		$html = new ActionFieldLayout( $searchWidget, new ButtonInputWidget( [

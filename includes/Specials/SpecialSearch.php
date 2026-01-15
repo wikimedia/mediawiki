@@ -8,7 +8,6 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\FileRepo\RepoGroup;
@@ -360,10 +359,6 @@ class SpecialSearch extends SpecialPage {
 		$out = $this->getOutput();
 		$widgetOptions = $this->getConfig()->get( MainConfigNames::SpecialSearchFormOptions );
 		$formWidget = new SearchFormWidget(
-			new ServiceOptions(
-				SearchFormWidget::CONSTRUCTOR_OPTIONS,
-				$this->getConfig()
-			),
 			$this,
 			$this->searchConfig,
 			$this->getHookContainer(),

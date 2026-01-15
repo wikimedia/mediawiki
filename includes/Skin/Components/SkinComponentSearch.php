@@ -99,15 +99,13 @@ class SkinComponentSearch implements SkinComponent {
 	 * @return array attributes of HTML input
 	 */
 	private function getSearchInputAttributes( array $attrs = [] ) {
-		$autoCapHint = $this->getConfig()->get( MainConfigNames::CapitalLinks );
 		$realAttrs = [
 			'type' => 'search',
 			'name' => 'search',
 			'placeholder' => $this->msg( 'searchsuggest-search' )->text(),
 			'aria-label' => $this->msg( 'searchsuggest-search' )->text(),
-			// T251664: Disable autocapitalization of input
-			// method when using fully case-sensitive titles.
-			'autocapitalize' => $autoCapHint ? 'sentences' : 'none',
+			// T413344: Disable autocapitalization.
+			'autocapitalize' => 'none',
 			// T385525: Disable spellcheck to stop webkit-based browsers from
 			// applying smart quotes, as someone using quotes almost
 			// certainly wants to be searching for a literal phrase, not
