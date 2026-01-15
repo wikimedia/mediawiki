@@ -92,7 +92,6 @@ class ProfilerXhprof extends Profiler {
 	}
 
 	/** @inheritDoc */
-	#[\NoDiscard]
 	public function scopedProfileIn( $section ): ?SectionProfileCallback {
 		$key = 'section.' . ltrim( $section, '.' );
 		return $this->sprofiler->scopedProfileIn( $key );

@@ -660,10 +660,10 @@ class RequestContext implements IContextSource, MutableContext {
 	 * feature is somewhat deprecated.
 	 *
 	 * @param array $params Result of RequestContext::exportSession()
+	 * @return ScopedCallback
 	 * @since 1.21
 	 */
-	#[\NoDiscard]
-	public static function importScopedSession( array $params ): ScopedCallback {
+	public static function importScopedSession( array $params ) {
 		if ( $params['sessionId'] !== '' &&
 			self::getMain()->getRequest()->getSession()->isPersistent()
 		) {
