@@ -478,7 +478,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'allowClone' => true,
 			'allowTOC' => true,
 			'injectTOC' => true,
-			'enableSectionEditLinks' => !$this->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS ),
+			'enableSectionEditLinks' => true,
 			'userLang' => null,
 			'skin' => null,
 			'unwrap' => false,
@@ -2620,11 +2620,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$class = $parserOptions->getWrapOutputClass();
 		if ( $class !== false && !$parserOptions->isMessage() ) {
 			$this->addWrapperDivClass( $class );
-		}
-
-		// Record whether we should suppress section edit links
-		if ( $parserOptions->getSuppressSectionEditLinks() ) {
-			$this->setOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS );
 		}
 
 		// Record whether we should wrap sections for collapsing them

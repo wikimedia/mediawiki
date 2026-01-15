@@ -503,7 +503,6 @@ class ApiParse extends ApiBase {
 				'allowClone' => false,
 				'allowTOC' => !$params['disabletoc'],
 				'injectTOC' => $skinOptions['toc'],
-				'enableSectionEditLinks' => !$params['disableeditsection'],
 				'wrapperDivClass' => $params['wrapoutputclass'],
 				'deduplicateStyles' => !$params['disablestylededuplication'],
 				'userLang' => $context ? $context->getLanguage() : null,
@@ -803,6 +802,9 @@ class ApiParse extends ApiBase {
 		}
 		if ( $params['parser'] === 'legacy' ) {
 			$popts->setUseParsoid( false );
+		}
+		if ( $params['disableeditsection'] ) {
+			$popts->setSuppressSectionEditLinks();
 		}
 
 		$reset = null;

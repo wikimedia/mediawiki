@@ -1418,7 +1418,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$parserOptions0->enablePostproc();
 		$parserOptions0->setUseParsoid();
-		$parserOptions0->setOption( 'enableSectionEditLinks', false );
+		$parserOptions0->setOption( 'wrapperDivClass', 'plop' );
 
 		$calls = [];
 		$access->getParserOutput( $page, $parserOptions0, $page->getRevisionRecord() );
@@ -1437,7 +1437,6 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$parserOptions1 = $this->getParserOptions();
 		$parserOptions1->enablePostproc();
 		$parserOptions1->setUseParsoid();
-		$parserOptions1->setOption( 'enableSectionEditLinks', true );
 
 		$calls = [];
 		$access->getParserOutput( $page, $parserOptions1, $page->getRevisionRecord() );

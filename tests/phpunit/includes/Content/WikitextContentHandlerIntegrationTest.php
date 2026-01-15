@@ -58,7 +58,6 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'isPreview',
 			'isSectionPreview',
 			'maxIncludeSize',
-			'suppressSectionEditLinks',
 			'useParsoid',
 			'isMessage',
 			'wrapclass',
@@ -72,6 +71,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 		$commonLegacyOptions = array_merge( $commonOptions, [
 			'disableTitleConversion',
 			'targetLanguage',
+			'enableSectionEditLinks',
 		] );
 		$parsoidVersion =
 			'data-mw-parsoid-version="' . Parsoid::version() . '" ' .
@@ -132,7 +132,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				],
 				'UsedOptions' => $commonParsoidOptions,
 			],
-			'options' => [ 'useParsoid' => true, 'suppressSectionEditLinks' => true ],
+			'options' => [ 'useParsoid' => true, 'enableSectionEditLinks' => false ],
 		];
 		yield 'Parsoid render (redirect page)' => [
 			'title' => 'WikitextContentTest_testGetParserOutput',
@@ -151,7 +151,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				],
 				'UsedOptions' => $commonParsoidOptions,
 			],
-			'options' => [ 'useParsoid' => true, 'suppressSectionEditLinks' => true ],
+			'options' => [ 'useParsoid' => true, 'enableSectionEditLinks' => false ],
 		];
 		yield 'Parsoid render (section edit links)' => [
 			'title' => 'WikitextContentTest_testGetParserOutput',
@@ -176,7 +176,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 					],
 				],
 				'UsedOptions' => array_merge( $commonParsoidOptions, [
-					'userlang',
+					'userlang', 'enableSectionEditLinks',
 				] ),
 			],
 			'options' => [ 'useParsoid' => true ],

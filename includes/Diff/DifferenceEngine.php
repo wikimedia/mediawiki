@@ -1279,12 +1279,14 @@ class DifferenceEngine extends ContextSource {
 					if ( $this->hookRunner->onDifferenceEngineRenderRevisionAddParserOutput(
 						$this, $out, $parserOutput, $wikiPage )
 					) {
+						$editLinks = $this->mNewRevisionRecord->isCurrent()
+							&& $this->getAuthority()->probablyCan(
+								'edit',
+								$this->mNewRevisionRecord->getPage() );
+						if ( !$editLinks ) {
+							$parserOptions->setSuppressSectionEditLinks();
+						}
 						$out->addParserOutput( $parserOutput, $parserOptions, [
-							'enableSectionEditLinks' => $this->mNewRevisionRecord->isCurrent()
-								&& $this->getAuthority()->probablyCan(
-									'edit',
-									$this->mNewRevisionRecord->getPage()
-								),
 							'absoluteURLs' => $this->slotDiffOptions['expand-url'] ?? false
 						] );
 					}

@@ -4179,6 +4179,7 @@ class EditPage implements IEditObject {
 		$parserOptions->setRenderReason( 'page-preview' );
 		$parserOptions->setIsPreview( true );
 		$parserOptions->setIsSectionPreview( $this->section !== null && $this->section !== '' );
+		$parserOptions->setSuppressSectionEditLinks();
 
 		// XXX: we could call $parserOptions->setCurrentRevisionRecordCallback here to force the
 		// current revision to be null during PST, until setupFakeRevision is called on
@@ -4221,7 +4222,6 @@ class EditPage implements IEditObject {
 			'allowClone' => 'false',
 			'userLang' => $skin->getLanguage(),
 			'injectTOC' => $skinOptions['toc'],
-			'enableSectionEditLinks' => false,
 			'includeDebugInfo' => true,
 		] )->getContentHolderText();
 		$parserOutput->setRawText( $oldHtml );

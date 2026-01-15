@@ -54,28 +54,28 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			'isMessage',
 			'isPreview',
 			'isSectionPreview',
-			'suppressSectionEditLinks',
 			'useParsoid',
 			'wrapclass',
 		];
 		$this->assertEqualsCanonicalizing( $usedOptions, $output->getUsedOptions() );
 
+		$usedOptions = array_merge( $usedOptions, [ 'enableSectionEditLinks', 'userlang' ] );
 		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
-		$pipeline->run( $output, $args[2], [] );
+		$output = $pipeline->run( $output, $args[2], [] );
 		$this->assertArrayEquals( $usedOptions, $output->getUsedOptions() );
 	}
 
 	public static function provideParsoidParserHtml() {
 		return [
-			[ [ 'Hello, World' ], 'Hello, World' ],
-			[ [ '__NOTOC__' ], '<meta property="mw:PageProp/notoc"' ],
+			[ [ "==Heading==\nHello, World" ], 'Hello, World' ],
+			[ [ "__NOTOC__\n==Heading==" ], '<meta property="mw:PageProp/notoc"' ],
 			// Once we support $linestart and other parser options we
 			// can extend these tests.
 		];
 	}
 
 	public function testParsoidParseRevisions() {
-		$helloWorld = 'Hello, World';
+		$helloWorld = "==Heading==\nHello, World";
 
 		$page = $this->getNonexistingTestPage( 'Test' );
 		$this->editPage( $page, $helloWorld );
@@ -93,7 +93,7 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			$page->getRevisionRecord()->getId()
 		);
 		$html = $output->getRawText();
-		$this->assertStringContainsString( $helloWorld, $html );
+		$this->assertStringContainsString( "Hello, World", $html );
 		$this->assertSame(
 			$pageTitle->getPrefixedDBkey(),
 			$output->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY )
@@ -105,14 +105,14 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			'isMessage',
 			'isPreview',
 			'isSectionPreview',
-			'suppressSectionEditLinks',
 			'useParsoid',
 			'wrapclass',
 		];
 		$this->assertArrayEquals( $usedOptions, $output->getUsedOptions() );
 
 		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
-		$pipeline->run( $output, $opts, [] );
+		$usedOptions = array_merge( $usedOptions, [ 'enableSectionEditLinks', 'userlang' ] );
+		$output = $pipeline->run( $output, $opts, [] );
 		$this->assertArrayEquals( $usedOptions, $output->getUsedOptions() );
 	}
 }

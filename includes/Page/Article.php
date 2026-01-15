@@ -496,7 +496,7 @@ class Article implements Page {
 		# Render printable version, use printable version cache
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
-			$poOptions['enableSectionEditLinks'] = false;
+			$parserOptions->setSuppressSectionEditLinks();
 			$this->addMessageBoxStyles( $outputPage );
 			$outputPage->prependHTML(
 				Html::warningBox(
@@ -506,7 +506,7 @@ class Article implements Page {
 		} elseif ( $this->viewIsRenderAction || !$this->isCurrent() ||
 			!$authority->probablyCan( 'edit', $this->getTitle() )
 		) {
-			$poOptions['enableSectionEditLinks'] = false;
+			$parserOptions->setSuppressSectionEditLinks();
 		}
 
 		# Try client and file cache
@@ -725,6 +725,13 @@ class Article implements Page {
 			// allowClone will disappear and should not impact cache
 			// userLang is a duplicate of userlang and should be reconciled with it
 			if ( $key === 'allowClone' || $key === 'userLang' ) {
+				continue;
+			}
+			if ( $key === 'enableSectionEditLinks' ) {
+				if ( $value === false ) {
+					wfDeprecated( __METHOD__ . " with deprecated textOption $key set to false", "1.46" );
+					$parserOptions->setSuppressSectionEditLinks();
+				}
 				continue;
 			}
 			if ( !in_array( $key, ParserOptions::$postprocOptions, true ) ) {
@@ -2000,7 +2007,7 @@ class Article implements Page {
 	public function render() {
 		$this->getContext()->getRequest()->response()->header( 'X-Robots-Tag: noindex' );
 		$this->getContext()->getOutput()->setArticleBodyOnly( true );
-		// We later set 'enableSectionEditLinks=false' based on this; also used by ImagePage
+		// We later set suppress section edit links based on this; also used by ImagePage
 		$this->viewIsRenderAction = true;
 		$this->view();
 	}

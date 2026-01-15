@@ -325,13 +325,13 @@ class McrUndoAction extends FormAction {
 			$parserOptions->setRenderReason( 'page-preview' );
 			$parserOptions->setIsPreview( true );
 			$parserOptions->setIsSectionPreview( false );
+			$parserOptions->setSuppressSectionEditLinks();
 
 			$parserOutput = $this->revisionRenderer
 				->getRenderedRevision( $rev, $parserOptions, $this->getAuthority() )
 				->getRevisionParserOutput();
 			// TODO T371004 move runOutputPipeline out of $parserOutput
 			$previewHTML = $parserOutput->runOutputPipeline( $parserOptions, [
-				'enableSectionEditLinks' => false,
 				'includeDebugInfo' => true,
 			] )->getContentHolderText();
 

@@ -5,7 +5,6 @@ namespace MediaWiki\OutputTransform;
 
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\ParserOutputFlags;
 
 /**
  * @unstable
@@ -62,7 +61,6 @@ class OutputTransformPipeline {
 	public function run( ParserOutput $in, ParserOptions $popts, array $options ): ParserOutput {
 		// Initialize some $options from the ParserOutput
 		$options += [
-			'enableSectionEditLinks' => !$in->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS ),
 			'wrapperDivClass' => $in->getWrapperDivClass(),
 		];
 		$oldWatcher = false;

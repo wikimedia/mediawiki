@@ -50,6 +50,7 @@ class TextContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 		if ( $parserOptions === null ) {
 			$parserOptions = ParserOptions::newFromAnon();
 		}
+		$this->clearHook( 'SkinEditSectionLinks' );
 		$po = $contentRenderer->getParserOutput( $content, $title, null, $parserOptions );
 
 		// TODO T371004

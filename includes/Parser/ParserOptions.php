@@ -108,11 +108,11 @@ class ParserOptions {
 		'printable' => true,
 		'userlang' => true,
 		'useParsoid' => true,
-		'suppressSectionEditLinks' => true,
 		'collapsibleSections' => true,
 		'postproc' => true,
 		'skin' => true,
-		'injectTOC' => true
+		'injectTOC' => true,
+		'enableSectionEditLinks' => true,
 	];
 
 	/**
@@ -865,7 +865,7 @@ class ParserOptions {
 	 * @return bool
 	 */
 	public function getSuppressSectionEditLinks() {
-		return $this->getOption( 'suppressSectionEditLinks' );
+		return !$this->getOption( 'enableSectionEditLinks' );
 	}
 
 	/**
@@ -875,7 +875,7 @@ class ParserOptions {
 	 * @since 1.42
 	 */
 	public function setSuppressSectionEditLinks() {
-		$this->setOption( 'suppressSectionEditLinks', true );
+		$this->setOption( 'enableSectionEditLinks', false );
 	}
 
 	/**
@@ -1300,7 +1300,6 @@ class ParserOptions {
 				'targetLanguage' => null,
 				'removeComments' => true,
 				'suppressTOC' => false,
-				'suppressSectionEditLinks' => false,
 				'collapsibleSections' => false,
 				'enableLimitReport' => false,
 				'preSaveTransform' => true,

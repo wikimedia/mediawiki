@@ -110,7 +110,6 @@ class MessageParser {
 	): ParserOutput {
 		$options = [
 			'allowTOC' => false,
-			'enableSectionEditLinks' => false,
 			// Wrapping messages in an extra <div> is probably not expected. If
 			// they're outside the content area they probably shouldn't be
 			// targeted by CSS that's targeting the parser output, and if
@@ -181,6 +180,7 @@ class MessageParser {
 		}
 		$popts->setInterfaceMessage( $interface );
 		$popts->setTargetLanguage( $this->normalizeTargetLanguage( $targetLanguage ) );
+		$popts->setSuppressSectionEditLinks();
 		return $popts;
 	}
 

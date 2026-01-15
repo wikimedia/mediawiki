@@ -210,8 +210,10 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 		$div = $df->ownerDocument->createElement( 'div' );
 		if (
 			$fromTitle !== null &&
-			( $options['enableSectionEditLinks'] ?? true ) &&
-			!$po->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS )
+			// this should be kept in sync with the legacy implementation in HandleSectionLinks
+			!$po->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS ) &&
+			!$popts->getSuppressSectionEditLinks() &&
+			( $options['enableSectionEditLinks'] ?? true )
 		) {
 			$editPage = $this->titleFactory->newFromTextThrow( $fromTitle );
 			$html = $skin->doEditSectionLink(

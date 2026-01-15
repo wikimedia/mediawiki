@@ -43,8 +43,10 @@ class HandleSectionLinks extends ContentTextTransformStage {
 		$text = $this->replaceHeadings( $text, $options );
 
 		if (
-			( $options['enableSectionEditLinks'] ?? true ) &&
-			!$po->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS )
+			// this should be kept in sync with the legacy implementation in HandleParsoidSectionLinks
+			!$po->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS ) &&
+			!$popts->getSuppressSectionEditLinks() &&
+			( $options['enableSectionEditLinks'] ?? true )
 		) {
 			return $this->addSectionLinks( $text, $po, $popts, $options );
 		} else {

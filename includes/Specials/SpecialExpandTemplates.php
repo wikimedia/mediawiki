@@ -68,6 +68,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			$options = ParserOptions::newFromContext( $this->getContext() );
 			$options->setRemoveComments( $removeComments );
 			$options->setMaxIncludeSize( self::MAX_INCLUDE_SIZE );
+			$options->setSuppressSectionEditLinks();
 
 			$titleStr = $request->getText( 'wpContextTitle' );
 			$title = Title::newFromText( $titleStr );
@@ -116,7 +117,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			$pout = $parser->parse( $output, $title, $options );
 			// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
 			$rawhtml = MediaWikiServices::getInstance()->getDefaultOutputPipeline()
-				->run( $pout, $options, [ 'enableSectionEditLinks' => false ] )->getContentHolderText();
+				->run( $pout, $options, [] )->getContentHolderText();
 			if ( $generateRawHtml && $rawhtml !== '' ) {
 				$out->addHTML( $this->makeOutput( $rawhtml, 'expand_templates_html_output' ) );
 			}
@@ -259,7 +260,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			}
 		}
 
-		$out->addParserOutputContent( $pout, $popts, [ 'enableSectionEditLinks' => false ] );
+		$out->addParserOutputContent( $pout, $popts );
 		$out->addCategoryLinks( $pout->getCategoryMap() );
 	}
 

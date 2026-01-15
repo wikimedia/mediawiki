@@ -413,6 +413,7 @@ abstract class Installer {
 		// Set up ParserOptions
 		$user = RequestContext::getMain()->getUser();
 		$this->parserOptions = new ParserOptions( $user ); // language will be wrong :(
+		$this->parserOptions->setSuppressSectionEditLinks();
 		// Don't try to access DB before user language is initialised
 		$this->setParserLanguage( $services->getLanguageFactory()->getLanguage( 'en' ) );
 
@@ -764,7 +765,6 @@ abstract class Installer {
 			$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
 			// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
 			$html = $pipeline->run( $out, $this->parserOptions, [
-				'enableSectionEditLinks' => false,
 				'unwrap' => true,
 			] )->getContentHolderText();
 			$html = Parser::stripOuterParagraph( $html );
