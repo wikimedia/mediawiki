@@ -10,7 +10,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 /**
  * @group Language
- * @covers \LanguageMl
+ * @covers \MediaWiki\Languages\LanguageMl
  */
 class LanguageMlTest extends LanguageClassesTestCase {
 
@@ -43,7 +43,7 @@ class LanguageMlTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @covers \LanguageMl::normalize
+	 * @covers \MediaWiki\Languages\LanguageMl::normalize
 	 * @covers \MediaWiki\Language\Language::normalize
 	 * @dataProvider provideNormalize
 	 */

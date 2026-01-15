@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Languages;
+
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -37,3 +39,6 @@ class LanguageHsb extends Language {
 		return $word;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageHsb::class, 'LanguageHsb' );

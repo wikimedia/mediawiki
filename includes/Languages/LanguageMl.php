@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Languages;
+
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\Data\NormalizeMl;
 
@@ -32,3 +34,6 @@ class LanguageMl extends Language {
 		return $this->transformUsingPairFile( NormalizeMl::class, $s );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageMl::class, 'LanguageMl' );

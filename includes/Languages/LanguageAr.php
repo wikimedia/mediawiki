@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Languages;
+
 /**
  * @license GPL-2.0-or-later
  * @file
@@ -29,3 +31,6 @@ class LanguageAr extends Language {
 		return $this->transformUsingPairFile( NormalizeAr::class, $s );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageAr::class, 'LanguageAr' );

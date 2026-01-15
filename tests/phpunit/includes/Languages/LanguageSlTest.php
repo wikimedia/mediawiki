@@ -10,7 +10,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 /**
  * @group Language
- * @covers \LanguageSl
+ * @covers \MediaWiki\Languages\LanguageSl
  */
 class LanguageSlTest extends LanguageClassesTestCase {
 	/**

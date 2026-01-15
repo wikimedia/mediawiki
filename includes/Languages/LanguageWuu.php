@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Languages;
+
 /**
  * Wu
  *
@@ -18,3 +20,6 @@ class LanguageWuu extends LanguageZh {
 		return 'wuu-hans';
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageWuu::class, 'LanguageWuu' );

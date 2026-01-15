@@ -12,7 +12,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
  * Tests for Bosnian (bosanski)
  *
  * @group Language
- * @covers \LanguageBs
+ * @covers \MediaWiki\Languages\LanguageBs
  */
 class LanguageBsTest extends LanguageClassesTestCase {
 	/**

@@ -10,7 +10,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 /**
  * @group Language
- * @covers \LanguageHsb
+ * @covers \MediaWiki\Languages\LanguageHsb
  */
 class LanguageHsbTest extends LanguageClassesTestCase {
 	/**

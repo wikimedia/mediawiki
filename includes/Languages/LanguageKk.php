@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Languages;
+
 /**
  * Kazakh (Қазақша) specific code.
  *
@@ -23,3 +25,6 @@ class LanguageKk extends LanguageKk_cyrl {
 		return parent::convertGrammarKk_cyrl( $word, $case );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageKk::class, 'LanguageKk' );

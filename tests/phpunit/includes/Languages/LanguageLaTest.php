@@ -6,7 +6,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 /**
  * @group Language
- * @covers LanguageLa
+ * @covers MediaWiki\Languages\LanguageLa
  */
 class LanguageLaTest extends LanguageClassesTestCase {
 	/**

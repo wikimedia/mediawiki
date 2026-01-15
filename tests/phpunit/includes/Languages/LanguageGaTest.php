@@ -12,7 +12,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
  * Tests for Irish (Gaeilge)
  *
  * @group Language
- * @covers \LanguageGa
+ * @covers \MediaWiki\Languages\LanguageGa
  */
 class LanguageGaTest extends LanguageClassesTestCase {
 	/**

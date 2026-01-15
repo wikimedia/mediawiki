@@ -4,9 +4,9 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Tests\Unit;
 
-use LanguageQqx;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\MessageLocalizer;
+use MediaWiki\Languages\LanguageQqx;
 use MediaWiki\Message\Message;
 use Wikimedia\Message\MessageSpecifier;
 

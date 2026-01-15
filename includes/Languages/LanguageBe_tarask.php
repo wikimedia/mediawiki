@@ -7,6 +7,8 @@
  * @license GFDL-1.3-or-later
  */
 
+namespace MediaWiki\Languages;
+
 use MediaWiki\Language\Language;
 
 /**
@@ -35,3 +37,6 @@ class LanguageBe_tarask extends Language {
 		return parent::normalizeForSearch( $text );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageBe_tarask::class, 'LanguageBe_tarask' );

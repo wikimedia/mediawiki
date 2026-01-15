@@ -772,7 +772,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \LanguageQqx
+	 * @covers \MediaWiki\Languages\LanguageQqx
 	 */
 	public function testQqxPlaceholders() {
 		$this->assertSame(

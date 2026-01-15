@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Languages;
+
 use MediaWiki\Language\Language;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -66,3 +68,6 @@ class LanguageWa extends Language {
 			$this->time( $ts, $adj, $format, $tc );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageWa::class, 'LanguageWa' );

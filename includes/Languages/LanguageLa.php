@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Languages;
+
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -100,3 +102,6 @@ class LanguageLa extends Language {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageLa::class, 'LanguageLa' );

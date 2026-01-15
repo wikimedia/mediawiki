@@ -3,6 +3,8 @@
  * @license GPL-2.0-or-later
  * @file
  */
+
+namespace MediaWiki\Languages;
 // phpcs:ignoreFile Squiz.Classes.ValidClassName.NotCamelCaps
 
 use MediaWiki\Language\Language;
@@ -56,3 +58,7 @@ class LanguageZh_hans extends Language {
 		return implode( '', $segments );
 	}
 }
+
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageZh_hans::class, 'LanguageZh_hans' );

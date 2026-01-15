@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Languages;
+
 /**
  * Chinese-specific code.
  *
@@ -51,3 +53,6 @@ class LanguageZh extends LanguageZh_hans {
 		return array_unique( explode( '|', $terms ) );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageZh::class, 'LanguageZh' );

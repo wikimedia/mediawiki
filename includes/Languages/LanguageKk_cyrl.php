@@ -3,6 +3,8 @@
  * @license GPL-2.0-or-later
  * @file
  */
+
+namespace MediaWiki\Languages;
 // phpcs:ignoreFile Squiz.Classes.ValidClassName.NotCamelCaps
 
 use MediaWiki\MainConfigNames;
@@ -288,3 +290,7 @@ class LanguageKk_cyrl extends Language {
 		return [ $lastLetter, null ];
 	}
 }
+
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageKk_cyrl::class, 'LanguageKk_cyrl' );

@@ -6,7 +6,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
 use TextSlotDiffRenderer;
 
 /**
- * @covers \LanguageZh
+ * @covers \MediaWiki\Languages\LanguageZh
  */
 class LanguageZhTest extends LanguageClassesTestCase {
 	public function testSegmentForDiff() {

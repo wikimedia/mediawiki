@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Languages;
+
 /**
  * Gan Chinese
  *
@@ -18,3 +20,6 @@ class LanguageGan extends LanguageZh {
 		return 'gan-hans';
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageGan::class, 'LanguageGan' );

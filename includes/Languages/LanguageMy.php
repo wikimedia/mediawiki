@@ -5,6 +5,8 @@
  * @author Niklas Laxström, 2008
  */
 
+namespace MediaWiki\Languages;
+
 use MediaWiki\Language\Language;
 
 /**
@@ -26,3 +28,6 @@ class LanguageMy extends Language {
 		return $this->formatNumNoSeparators( $number );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageMy::class, 'LanguageMy' );

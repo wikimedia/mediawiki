@@ -12,7 +12,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
  * Tests for Armenian (Հայերեն)
  *
  * @group Language
- * @covers \LanguageHy
+ * @covers \MediaWiki\Languages\LanguageHy
  */
 class LanguageHyTest extends LanguageClassesTestCase {
 	/**

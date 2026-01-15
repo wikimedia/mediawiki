@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Languages;
+
 use MediaWiki\Language\Language;
 
 /**
@@ -32,3 +34,6 @@ class LanguageYue extends Language {
 		return self::insertSpace( $string, self::WORD_SEGMENTATION_REGEX );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageYue::class, 'LanguageYue' );

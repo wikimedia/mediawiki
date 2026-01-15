@@ -382,6 +382,40 @@ because of Phabricator reports.
     - KuConverter
     - ZghConverter
     - SrConverter
+  - MediaWiki\Languages
+    - LanguageTr
+    - LanguageFi
+    - LanguageSh
+    - LanguageHu
+    - LanguageKm
+    - LanguageAr
+    - LanguageWa
+    - LanguageBe_tarask
+    - LanguageKk_cyrl
+    - LanguageHy
+    - LanguageEn
+    - LanguageMy
+    - LanguageKaa
+    - LanguageDsb
+    - LanguageLa
+    - LanguageBs
+    - LanguageSl
+    - LanguageQqx
+    - LanguageOs
+    - LanguageZh_hans
+    - LanguageKsh
+    - LanguageKk
+    - LanguageWuu
+    - LanguageGa
+    - LanguageTyv
+    - LanguageMl
+    - LanguageAz
+    - LanguageYue
+    - LanguageJa
+    - LanguageCu
+    - LanguageZh
+    - LanguageHsb
+    - LanguageGan
   - MediaWiki\Skins\Hook => MediaWiki\Language\Skin
     - SkinAfterPortletHook
     - SkinPageReadyConfigHook

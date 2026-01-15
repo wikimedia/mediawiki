@@ -5,6 +5,8 @@
  * @author Niklas Laxström
  */
 
+namespace MediaWiki\Languages;
+
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -152,3 +154,6 @@ class LanguageFi extends Language {
 		return trim( $final );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageFi::class, 'LanguageFi' );

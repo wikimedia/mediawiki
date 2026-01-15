@@ -7,7 +7,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 /**
  * @group Language
- * @covers \LanguageBe_tarask
+ * @covers \MediaWiki\Languages\LanguageBe_tarask
  */
 class LanguageBe_taraskTest extends LanguageClassesTestCase {
 	// phpcs:enable

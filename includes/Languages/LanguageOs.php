@@ -5,6 +5,8 @@
  * @author Soslan Khubulov
  */
 
+namespace MediaWiki\Languages;
+
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -113,3 +115,6 @@ class LanguageOs extends Language {
 		return $word . $ending;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageOs::class, 'LanguageOs' );

@@ -10,7 +10,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 /**
  * @group Language
- * @covers \LanguageTr
+ * @covers \MediaWiki\Languages\LanguageTr
  */
 class LanguageTrTest extends LanguageClassesTestCase {
 

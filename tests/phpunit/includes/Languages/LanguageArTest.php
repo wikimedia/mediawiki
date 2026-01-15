@@ -5,7 +5,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 /**
  * @group Language
- * @covers \LanguageAr
+ * @covers \MediaWiki\Languages\LanguageAr
  */
 class LanguageArTest extends LanguageClassesTestCase {
 
@@ -26,7 +26,7 @@ class LanguageArTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @covers \LanguageAr::normalize
+	 * @covers \MediaWiki\Languages\LanguageAr::normalize
 	 * @covers \MediaWiki\Language\Language::normalize
 	 * @dataProvider provideNormalize
 	 */

@@ -10,7 +10,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 /**
  * @group Language
- * @covers \LanguageKsh
+ * @covers \MediaWiki\Languages\LanguageKsh
  */
 class LanguageKshTest extends LanguageClassesTestCase {
 	/**

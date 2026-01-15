@@ -5,6 +5,8 @@
  * @author Niklas Laxström
  */
 
+namespace MediaWiki\Languages;
+
 use MediaWiki\Language\Language;
 
 /**
@@ -29,3 +31,6 @@ class LanguageKm extends Language {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageKm::class, 'LanguageKm' );

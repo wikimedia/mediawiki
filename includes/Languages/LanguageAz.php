@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Languages;
+
 use MediaWiki\Language\Language;
 
 /**
@@ -21,3 +23,6 @@ class LanguageAz extends Language {
 		return parent::ucfirst( $str );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageAz::class, 'LanguageAz' );

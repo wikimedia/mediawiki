@@ -10,7 +10,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 /**
  * @group Language
- * @covers \LanguageWa
+ * @covers \MediaWiki\Languages\LanguageWa
  */
 class LanguageWaTest extends LanguageClassesTestCase {
 	/**
@@ -40,8 +40,8 @@ class LanguageWaTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider provideTimeAndDate
-	 * @covers \LanguageWa::timeanddate
-	 * @covers \LanguageWa::date
+	 * @covers \MediaWiki\Languages\LanguageWa::timeanddate
+	 * @covers \MediaWiki\Languages\LanguageWa::date
 	 */
 	public function testTimeAndDate( $result, $ts, $format ) {
 		$this->assertEquals( $result, $this->getLang()->timeanddate( $ts, false, $format, false ) );

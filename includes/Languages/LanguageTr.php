@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Languages;
+
 use MediaWiki\Language\Language;
 
 /**
@@ -49,3 +51,6 @@ class LanguageTr extends Language {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageTr::class, 'LanguageTr' );
