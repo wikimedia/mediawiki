@@ -102,9 +102,19 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 		$highPageId = $lowPageId + $batchSize - 1;
 		$dbw = $this->getPrimaryDB();
 
+		// Check if 'ns' is an integer constant (like NS_CATEGORY) or a column name
+		$nsColumn = $mapping[$table]['ns'];
+		$nsIsConstant = is_int( $nsColumn );
+		$nsValue = $nsIsConstant ? $nsColumn : null;
+
 		while ( true ) {
+			// Build SELECT clause: if ns is a constant, don't select it; if it's a column, select it
+			$selectFields = $nsIsConstant
+				? [ $mapping[$table]['title'] ]
+				: [ $mapping[$table]['ns'], $mapping[$table]['title'] ];
+
 			$res = $dbw->newSelectQueryBuilder()
-				->select( [ $mapping[$table]['ns'], $mapping[$table]['title'] ] )
+				->select( $selectFields )
 				->from( $table )
 				->where( [
 					$targetColumn => [ null, 0 ],
@@ -118,20 +128,25 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 				break;
 			}
 			$row = $res->fetchRow();
-			$ns = $row[$mapping[$table]['ns']];
+			$ns = $nsIsConstant ? $nsValue : (int)$row[$nsColumn];
 			$titleString = $row[$mapping[$table]['title']];
-			$title = new TitleValue( (int)$ns, $titleString );
+			$title = new TitleValue( $ns, $titleString );
 			$id = $this->getServiceContainer()->getLinkTargetLookup()->acquireLinkTargetId( $title, $dbw );
+			// Build WHERE clause: if ns is a constant, don't add it as a condition
+			$whereConditions = [
+				$targetColumn => [ null, 0 ],
+				$mapping[$table]['title'] => $titleString,
+				$dbw->expr( $pageIdColumn, '>=', $lowPageId ),
+				$dbw->expr( $pageIdColumn, '<=', $highPageId ),
+			];
+			if ( !$nsIsConstant ) {
+				$whereConditions[$nsColumn] = $ns;
+			}
+
 			$dbw->newUpdateQueryBuilder()
 				->update( $table )
 				->set( [ $targetColumn => $id ] )
-				->where( [
-					$targetColumn => [ null, 0 ],
-					$mapping[$table]['ns'] => $ns,
-					$mapping[$table]['title'] => $titleString,
-					$dbw->expr( $pageIdColumn, '>=', $lowPageId ),
-					$dbw->expr( $pageIdColumn, '<=', $highPageId ),
-				] )
+				->where( $whereConditions )
 				->caller( __METHOD__ )->execute();
 			$this->updateProgress( $dbw->affectedRows(), $lowPageId, $highPageId, $ns, $titleString );
 		}
