@@ -1531,7 +1531,6 @@ class ParserOptions {
 	 * @param UserIdentity $user The user that the fake revision is attributed to
 	 * @return ScopedCallback to unset the hook
 	 */
-	#[\NoDiscard]
 	public function setupFakeRevision( $title, $content, $user ) {
 		$oldCallback = $this->setCurrentRevisionRecordCallback(
 			static function (

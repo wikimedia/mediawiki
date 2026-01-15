@@ -200,8 +200,8 @@ class HookContainer implements SalvageableService {
 	 *
 	 * @param string $hook Name of hook
 	 * @param callable|string|array $handler Handler to attach
+	 * @return ScopedCallback
 	 */
-	#[\NoDiscard]
 	public function scopedRegister( string $hook, $handler ): ScopedCallback {
 		$handler = $this->normalizeHandler( $hook, $handler );
 		if ( !$handler ) {

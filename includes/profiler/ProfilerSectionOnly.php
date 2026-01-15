@@ -34,7 +34,6 @@ class ProfilerSectionOnly extends Profiler {
 		$this->sprofiler = new SectionProfiler();
 	}
 
-	#[\NoDiscard]
 	public function scopedProfileIn( $section ): ?SectionProfileCallback {
 		return $this->sprofiler->scopedProfileIn( $section );
 	}

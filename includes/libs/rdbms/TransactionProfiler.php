@@ -148,9 +148,9 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * warnings about getting any primary/replica connections at all.
 	 *
 	 * @param string $type Class EXPECTATION_* constant [default: TransactionProfiler::EXPECTATION_ANY]
+	 * @return ScopedCallback
 	 */
-	#[\NoDiscard]
-	public function silenceForScope( string $type = self::EXPECTATION_ANY ): ScopedCallback {
+	public function silenceForScope( string $type = self::EXPECTATION_ANY ) {
 		if ( $type === self::EXPECTATION_REPLICAS_ONLY ) {
 			$events = [];
 			foreach ( [ 'writes', 'masterConns' ] as $event ) {

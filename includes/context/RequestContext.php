@@ -688,8 +688,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @return ScopedCallback
 	 * @since 1.21
 	 */
-	#[\NoDiscard]
-	public static function importScopedSession( array $params ): ScopedCallback {
+	public static function importScopedSession( array $params ) {
 		if ( strlen( $params['sessionId'] ) &&
 			SessionManager::getGlobalSession()->isPersistent()
 		) {

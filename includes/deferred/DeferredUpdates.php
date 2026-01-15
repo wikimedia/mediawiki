@@ -381,9 +381,10 @@ class DeferredUpdates {
 	/**
 	 * Prevent opportunistic updates until the returned ScopedCallback is
 	 * consumed.
+	 *
+	 * @return ScopedCallback
 	 */
-	#[\NoDiscard]
-	public static function preventOpportunisticUpdates(): ScopedCallback {
+	public static function preventOpportunisticUpdates() {
 		self::$preventOpportunisticUpdates++;
 		return new ScopedCallback( static function () {
 			self::$preventOpportunisticUpdates--;

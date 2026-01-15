@@ -6430,9 +6430,10 @@ class Parser {
 	 *
 	 * This is meant to stop someone from calling the parser
 	 * recursively and messing up all the strip state.
+	 *
+	 * @return ScopedCallback The lock will be released once the return value goes out of scope.
 	 */
-	#[\NoDiscard]
-	protected function lock(): ScopedCallback {
+	protected function lock() {
 		if ( $this->mInParse ) {
 			throw new LogicException( "Parser state cleared while parsing. "
 				. "Did you call Parser::parse recursively? Lock is held by: " . $this->mInParse );

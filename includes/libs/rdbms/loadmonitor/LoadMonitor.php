@@ -313,8 +313,10 @@ class LoadMonitor implements ILoadMonitor {
 		return $this->getCurrentTime() - $state[self::STATE_AS_OF] > self::STATE_TARGET_TTL;
 	}
 
-	#[\NoDiscard]
-	private function acquireServerStatesLoopGuard(): ScopedCallback {
+	/**
+	 * @return ScopedCallback
+	 */
+	private function acquireServerStatesLoopGuard() {
 		if ( $this->serverStatesKeyLocked ) {
 			throw new RuntimeException(
 				"Circular recursion detected while regenerating server states cache. " .
