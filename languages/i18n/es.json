@@ -1091,7 +1091,7 @@
 	"mergehistory-fail-no-change": "La fusión historiales no fusionó ninguna revisión. Vuelve a comprobar los parámetros de página y tiempo.",
 	"mergehistory-fail-permission": "Permisos insuficientes para fusionar el historial.",
 	"mergehistory-fail-self-merge": "Las páginas de origen y destino son la misma.",
-	"mergehistory-fail-timestamps-overlap": "Las revisiones de origen se superponen o vienen después de las de destino.",
+	"mergehistory-fail-timestamps-overlap": "El período de tiempo especificado se superpone a las revisiones preexistentes de la página de destino.",
 	"mergehistory-fail-toobig": "No se puede fusionar el historial ya que más del límite de $1 {{PLURAL:$1|revisión|revisiones}} se moverían.",
 	"mergehistory-no-source": "La página origen $1 no existe.",
 	"mergehistory-no-destination": "La página destino $1 no existe.",

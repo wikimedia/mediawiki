@@ -54,6 +54,7 @@
 	"fri": "pi",
 	"sat": "su",
 	"sun": "pâ",
+	"timezone-local": "Pääiklaž",
 	"years": "{{PLURAL:$1|$1 eeʹǩǩed|1=õhtt eeʹǩǩ|2=2 eeʹjj|3=3 eeʹjj|4=4 eeʹjj|5=5 eeʹjj|6=6 eeʹjj}}",
 	"months": "{{PLURAL:$1|$1 määnpââʹjjed|1=õhtt määnpââʹjj|2=2 määnpââʹj|3=3 määnpââʹj|4=4 määnpââʹj|5=5 määnpââʹj|6=6 määnpââʹj}}",
 	"weeks": "{{PLURAL:$1|$1 neäʹttled|1=õhtt neäʹttel|2=2 neäʹttel|3=3 neäʹttel|4=4 neäʹttel|5=5 neäʹttel|6=6 neäʹttel}}",
