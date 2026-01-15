@@ -324,24 +324,33 @@
 				.append( config.previewHeader )
 			);
 
-		const warningContentElement = $( '<div>' )
-			.append(
-				// TemplateSandbox will insert a jQuery here.
-				config.previewNote,
-				' ',
-				$( '<span>' )
-					.addClass( 'mw-continue-editing' )
-					.append( $( '<a>' )
-						.attr( 'href', '#' + config.$formNode.attr( 'id' ) )
-						.text( arrow + ' ' + mw.msg( 'continue-editing' ) )
-					),
-				response.parse.parsewarningshtml.map( ( warning ) => $( '<p>' ).append( warning ) )
-			)[ 0 ];
-		const warningMessageElement = util.messageBox(
-			warningContentElement,
-			'warning'
-		);
-		$previewHeader.append( warningMessageElement );
+		// util.messageBox takes a Node, so we have to work around this by using a DocumentFragment and a Range
+		const warningsFragment = document.createDocumentFragment();
+		const range = document.createRange();
+
+		response.parse.parsewarningshtml.forEach( ( warningHtml ) => {
+			warningsFragment.appendChild( range.createContextualFragment( warningHtml + '<br>' ) );
+		} );
+		if ( warningsFragment.hasChildNodes() ) {
+			$previewHeader.append( util.messageBox( warningsFragment, 'warning' ) );
+		}
+
+		const previewNoteElement = $( '<div>' ).append(
+			// TemplateSandbox will insert a jQuery here.
+			config.previewNote,
+			' ',
+			$( '<span>' )
+				.addClass( 'mw-continue-editing' )
+				.append( $( '<a>' )
+					.attr( 'href', '#' + config.$formNode.attr( 'id' ) )
+					.text( arrow + ' ' + mw.msg( 'continue-editing' ) )
+				)
+		)[ 0 ];
+		$previewHeader.append( util.messageBox(
+			previewNoteElement,
+			'notice'
+		) );
+
 		config.$previewNode.prepend( $previewHeader );
 	}
 

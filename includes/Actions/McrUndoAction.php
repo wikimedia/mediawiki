@@ -19,6 +19,7 @@ use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Article;
 use MediaWiki\Permissions\PermissionStatus;
@@ -32,6 +33,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdateCauses;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
@@ -68,6 +70,7 @@ class McrUndoAction extends FormAction {
 		private readonly RevisionLookup $revisionLookup,
 		private readonly RevisionRenderer $revisionRenderer,
 		private readonly CommentFormatter $commentFormatter,
+		private readonly LinkRenderer $linkRenderer,
 		Config $config,
 	) {
 		parent::__construct( $article, $context );
@@ -300,14 +303,23 @@ class McrUndoAction extends FormAction {
 		// Mostly copied from EditPage::getPreviewText()
 		$out = $this->getOutput();
 
+		$noteHtml = '';
+		$previewIssuesHtml = '';
+
 		try {
 			# provide a anchor link to the form
-			$continueEditing = '<span class="mw-continue-editing">' .
-				'[[#mw-mcrundo-form|' .
-				$this->context->getLanguage()->getArrow() . ' ' .
-				$this->context->msg( 'continue-editing' )->text() . ']]</span>';
+			$continueEditingHtml = Html::rawElement(
+				'span',
+				[ 'class' => 'mw-continue-editing' ],
+				$this->linkRenderer->makePreloadedLink(
+					new TitleValue( NS_MAIN, '', 'mw-mcrundo-form' ),
+					$this->context->getLanguage()->getArrow() . ' ' . $this->context->msg( 'continue-editing' )->text()
+				)
+			);
 
-			$note = $this->context->msg( 'previewnote' )->plain() . ' ' . $continueEditing;
+			$noteHtml .= Html::noticeBox(
+				$this->context->msg( 'previewnote' )->parse() . ' ' . $continueEditingHtml
+			);
 
 			$parserOptions = $this->getWikiPage()->makeParserOptions( $this->context );
 			$parserOptions->setRenderReason( 'page-preview' );
@@ -324,15 +336,20 @@ class McrUndoAction extends FormAction {
 			] )->getContentHolderText();
 
 			$out->addParserOutputMetadata( $parserOutput );
-			foreach ( $parserOutput->getWarningMsgs() as $mv ) {
-				$note .= "\n\n" . $this->context->msg( $mv )->text();
+			$parserWarnings = $parserOutput->getWarningMsgs();
+			if ( $parserWarnings ) {
+				$warningsHtml = '';
+				foreach ( $parserWarnings as $mv ) {
+					$warningsHtml .= $this->context->msg( $mv )->parse() . "<br>";
+				}
+				$previewIssuesHtml .= Html::warningBox( $warningsHtml );
 			}
 		} catch ( MWContentSerializationException $ex ) {
 			$m = $this->context->msg(
 				'content-failed-to-parse',
 				$ex->getMessage()
 			);
-			$note .= "\n\n" . $m->parse();
+			$previewIssuesHtml .= Html::errorBox( $m->parse() );
 			$previewHTML = '';
 		}
 
@@ -341,10 +358,7 @@ class McrUndoAction extends FormAction {
 			Html::element(
 				'h2', [ 'id' => 'mw-previewheader' ],
 				$this->context->msg( 'preview' )->text()
-			) .
-			Html::warningBox(
-				$out->parseAsInterface( $note )
-			)
+			) . $previewIssuesHtml . $noteHtml
 		);
 
 		$out->addHTML( $previewhead . $previewHTML );

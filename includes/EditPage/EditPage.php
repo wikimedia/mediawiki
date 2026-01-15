@@ -58,7 +58,6 @@ use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
-use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\CategoryPage;
 use MediaWiki\Page\PageIdentity;
@@ -83,6 +82,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\Registration\UserRegistrationLookup;
@@ -1922,7 +1922,7 @@ class EditPage implements IEditObject {
 			case self::AS_TEXTBOX_EMPTY:
 			case self::AS_UNABLE_TO_ACQUIRE_TEMP_ACCOUNT:
 			case self::AS_UNICODE_NOT_SUPPORTED:
-				$this->outputConstraintStatus( $out, $status );
+				$out->addHTML( $this->formatConstraintStatus( $status ) );
 				return true;
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
@@ -1994,19 +1994,18 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Wrap warning/error messages in styled message boxes and add them to the output.
+	 * Wrap warning/error messages in styled message boxes.
+	 * @return string Html
 	 */
-	private function outputConstraintStatus( OutputPage $out, StatusValue $status ): void {
+	private function formatConstraintStatus( StatusValue $status ): string {
+		$html = '';
 		foreach ( $status->getMessages( 'error' ) as $msg ) {
-			$out->addHTML( Html::errorBox(
-				$this->context->msg( $msg )->parse()
-			) );
+			$html .= Html::errorBox( $this->context->msg( $msg )->parse() );
 		}
 		foreach ( $status->getMessages( 'warning' ) as $msg ) {
-			$out->addHTML( Html::warningBox(
-				$this->context->msg( $msg )->parse()
-			) );
+			$html .= Html::warningBox( $this->context->msg( $msg )->parse() );
 		}
+		return $html;
 	}
 
 	/**
@@ -3095,7 +3094,7 @@ class EditPage implements IEditObject {
 				$failed = $constraintRunner->getFailedConstraint();
 				// No call to $this->handleFailedConstraint() here to avoid setting wpRedirect
 				$status = $failed->getLegacyStatus();
-				$this->outputConstraintStatus( $out, $status );
+				$out->addHTML( $this->formatConstraintStatus( $status ) );
 			}
 		}
 
@@ -3990,7 +3989,8 @@ class EditPage implements IEditObject {
 			return $parsedNote;
 		}
 
-		$note = '';
+		$noteHtml = '';
+		$previewIssuesHtml = '';
 
 		try {
 			$content = $this->toEditContent( $this->textbox1 );
@@ -4002,21 +4002,27 @@ class EditPage implements IEditObject {
 				return $previewHTML;
 			}
 
-			# provide a anchor link to the editform
-			$continueEditing = '<span class="mw-continue-editing">' .
-				'[[#' . self::EDITFORM_ID . '|' .
-				$this->context->getLanguage()->getArrow() . ' ' .
-				$this->context->msg( 'continue-editing' )->text() . ']]</span>';
+			$continueEditingHtml = Html::rawElement(
+				'span',
+				[ 'class' => 'mw-continue-editing' ],
+				$this->linkRenderer->makePreloadedLink(
+					new TitleValue( NS_MAIN, '', self::EDITFORM_ID ),
+					$this->context->getLanguage()->getArrow() . ' ' . $this->context->msg( 'continue-editing' )->text()
+				)
+			);
+
 			if ( $this->mTriedSave && !$this->mTokenOk ) {
-				$note = $this->context->msg( 'session_fail_preview' )->plain();
+				$previewIssuesHtml = Html::errorBox( $this->context->msg( 'session_fail_preview' )->parse() );
 				$this->incrementEditFailureStats( 'session_loss' );
 			} elseif ( $this->incompleteForm ) {
-				$note = $this->context->msg( 'edit_form_incomplete' )->plain();
+				$previewIssuesHtml = Html::errorBox( $this->context->msg( 'edit_form_incomplete' )->parse() );
 				if ( $this->mTriedSave ) {
 					$this->incrementEditFailureStats( 'incomplete_form' );
 				}
 			} else {
-				$note = $this->context->msg( 'previewnote' )->plain() . ' ' . $continueEditing;
+				$noteHtml = Html::noticeBox(
+					$this->context->msg( 'previewnote' )->parse() . ' ' . $continueEditingHtml
+				);
 			}
 
 			# don't parse non-wikitext pages, show message about preview
@@ -4057,9 +4063,11 @@ class EditPage implements IEditObject {
 				# Messages: usercsspreview, userjsonpreview, userjspreview,
 				#   sitecsspreview, sitejsonpreview, sitejspreview
 				if ( $level && $format ) {
-					$note = "<div id='mw-{$level}{$format}preview'>" .
-						$this->context->msg( "{$level}{$format}preview" )->plain() .
-						' ' . $continueEditing . "</div>";
+					$noteHtml = Html::noticeBox( Html::rawElement(
+						'div',
+						[ 'id' => "mw-{$level}{$format}preview" ],
+						$this->context->msg( "{$level}{$format}preview" )->parse() . $continueEditingHtml
+					) );
 				}
 			}
 
@@ -4079,8 +4087,13 @@ class EditPage implements IEditObject {
 				$out->addContentOverride( $this->getTitle(), $content );
 			}
 
-			foreach ( $parserOutput->getWarningMsgs() as $mv ) {
-				$note .= "\n\n" . $this->context->msg( $mv )->text();
+			$parserWarnings = $parserOutput->getWarningMsgs();
+			if ( $parserWarnings ) {
+				$warningsHtml = '';
+				foreach ( $parserWarnings as $mv ) {
+					$warningsHtml .= $this->context->msg( $mv )->parse() . "<br>";
+				}
+				$previewIssuesHtml .= Html::warningBox( $warningsHtml );
 			}
 
 			// T394016 - Run some edit constraints on page preview
@@ -4101,9 +4114,7 @@ class EditPage implements IEditObject {
 				$failed = $constraintRunner->getFailedConstraint();
 				$status = $failed->getLegacyStatus();
 
-				foreach ( $status->getMessages() as $message ) {
-					$note .= "\n\n" . $this->context->msg( $message )->text();
-				}
+				$previewIssuesHtml .= $this->formatConstraintStatus( $status );
 			}
 
 		} catch ( MWContentSerializationException $ex ) {
@@ -4113,7 +4124,7 @@ class EditPage implements IEditObject {
 				$this->contentFormat,
 				$ex->getMessage()
 			);
-			$note .= "\n\n" . $m->plain(); # gets parsed down below
+			$previewIssuesHtml .= Html::errorBox( $m->parse() );
 			$previewHTML = '';
 		}
 
@@ -4131,10 +4142,7 @@ class EditPage implements IEditObject {
 			Html::element(
 				'h2', [ 'id' => 'mw-previewheader' ],
 				$this->context->msg( 'preview' )->text()
-			) .
-			Html::warningBox(
-				$out->parseAsInterface( $note )
-			) . $conflict
+			) . $previewIssuesHtml . $noteHtml . $conflict
 		);
 
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;
