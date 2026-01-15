@@ -2858,7 +2858,7 @@ return [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.special.watchlistedit',
 		'packageFiles' => [
 			'init.js',
-			'LabelDialog.vue',
+			'EditWatchlistDialog.vue',
 		],
 		"messages" => [
 			'cancel',

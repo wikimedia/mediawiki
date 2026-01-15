@@ -73,7 +73,7 @@ const { defineComponent, ref } = require( 'vue' );
 const { CdxButton, CdxDialog, CdxCheckbox } = require( '@wikimedia/codex' );
 
 module.exports = defineComponent( {
-	name: 'LabelDialog',
+	name: 'EditWatchlistDialog',
 	components: {
 		CdxButton,
 		CdxDialog,
