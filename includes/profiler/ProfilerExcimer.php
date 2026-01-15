@@ -67,7 +67,6 @@ class ProfilerExcimer extends Profiler {
 		}
 	}
 
-	#[\NoDiscard]
 	public function scopedProfileIn( $section ): ?SectionProfileCallback {
 		return null;
 	}
