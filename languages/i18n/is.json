@@ -4005,7 +4005,7 @@
 	"mute-preferences": "Bæla kjörstillingar",
 	"revid": "útgáfa $1",
 	"pageid": "auðkennisnúmer síðu $1",
-	"rawhtml-notallowed": "&lt;html&gt;-einindi er ekki hægt að nota utan venjulegra síðna.",
+	"rawhtml-notallowed": "<html>-einindi er ekki hægt að nota utan venjulegra síðna.",
 	"gotointerwiki": "Fer af {{SITENAME}}",
 	"gotointerwiki-invalid": "Uppgefinn titill er ógildur.",
 	"gotointerwiki-external": "Þú ert í þann mund að yfirgefa {{SITENAME}} til að fara að skoða [[$2]], sem er aðskilið vefsvæði.\n\n'''[$1 Halda áfram á $1]'''",

@@ -3635,7 +3635,7 @@
 	"mute-preferences": "Искiрiглернi албас иде турғызарға",
 	"revid": "$1 версия",
 	"pageid": "$1 страница ID-зы",
-	"rawhtml-notallowed": "&lt;html&gt; танығларнаң олаңай ла страницаларда тузаланарға чарир.",
+	"rawhtml-notallowed": "<html> танығларнаң олаңай ла страницаларда тузаланарға чарир.",
 	"gotointerwiki": "{{SITENAME}} сайттаң сыхчабыс",
 	"gotointerwiki-invalid": "Саба ат кӧзіділген.",
 	"gotointerwiki-external": "Сiрер {{SITENAME}} сайттаң [[$2]] сайтха кiрер ӱчӱн, сыхчазар. \n\n'''[$1 Парарға $1]'''",

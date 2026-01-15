@@ -4005,7 +4005,7 @@
 	"mute-preferences": "Fravælg kontakt",
 	"revid": "version $1",
 	"pageid": "side id: $1",
-	"rawhtml-notallowed": "&lt;html&gt;-tags kan ikke bruges uden for normale sider.",
+	"rawhtml-notallowed": "<html>-tags kan ikke bruges uden for normale sider.",
 	"gotointerwiki": "Forlader {{SITENAME}}",
 	"gotointerwiki-invalid": "Den angivne titel er ikke gyldig.",
 	"gotointerwiki-external": "Du er ved at forlade {{SITENAME}} for at besøge [[$2]], som er et separat websted.\n\n'''[$1 Fortsæt til $1]'''",

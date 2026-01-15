@@ -4214,7 +4214,7 @@
 	"mute-preferences": "Preferencias de silencio",
 	"revid": "revisión $1",
 	"pageid": "ID de página $1",
-	"rawhtml-notallowed": "No se pueden emplear las etiquetas &lt;html&gt; si no es en las páginas normales.",
+	"rawhtml-notallowed": "No se pueden emplear las etiquetas <html> si no es en las páginas normales.",
 	"gotointerwiki": "Salir de {{SITENAME}}",
 	"gotointerwiki-invalid": "El título especificado no es válido.",
 	"gotointerwiki-external": "Estás a punto de abandonar {{SITENAME}} para visitar [[$2]], un sitio web diferente.\n\n'''[$1 Continuar a $1]'''",

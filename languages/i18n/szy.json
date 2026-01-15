@@ -2962,7 +2962,7 @@
 	"restrictionsfield-help": "cacay IP puenengan saca CIDR tatungus cacay a silsil, amiwawah sacahamin tatungus kapah pisaungay:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "masumad nu ayaway $1",
 	"pageid": "kasabelih ID $1",
-	"rawhtml-notallowed": "&lt;html&gt; aazihen-paya la’cus pisaungay i hekal nu habutud kasabelih.",
+	"rawhtml-notallowed": "<html> aazihen-paya la’cus pisaungay i hekal nu habutud kasabelih.",
 	"skin-view-create-local": "cunusen itiniay a buhci tu kamu",
 	"nstab-mainpage": "saayaway a belih",
 	"skin-view-edit-local": "itiniay buhci tu kamu nu mikawaway tu kalumyiti",

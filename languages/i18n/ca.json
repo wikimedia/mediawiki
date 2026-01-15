@@ -3979,7 +3979,7 @@
 	"mute-preferences": "Preferències de silenciament",
 	"revid": "revisió $1",
 	"pageid": "ID de pàgina $1",
-	"rawhtml-notallowed": "No és possible fer servir les etiquetes &lt;html&gt; fora de les pàgines normals.",
+	"rawhtml-notallowed": "No és possible fer servir les etiquetes <html> fora de les pàgines normals.",
 	"gotointerwiki": "A punt d’abandonar {{SITENAME}}",
 	"gotointerwiki-invalid": "El títol especificat no és vàlid.",
 	"gotointerwiki-external": "Esteu a punt d’abandonar {{SITENAME}} per a visitar [[$2]], un lloc web diferent.\n\n'''[$1 Continua a $1]'''",

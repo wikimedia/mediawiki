@@ -3625,7 +3625,7 @@
 	"mute-preferences": "Iänensammunduazetukset",
 	"revid": "versii $1",
 	"pageid": "sivun ID $1",
-	"rawhtml-notallowed": "&lt;html&gt; tegmerkilöi ei sua käyttiä tavallizien sivuloin ulgopuolel.",
+	"rawhtml-notallowed": "<html> tegmerkilöi ei sua käyttiä tavallizien sivuloin ulgopuolel.",
 	"gotointerwiki": "Iäre lähtemäs {{SITENAME}}",
 	"gotointerwiki-invalid": "On annettu viäry oččikko.",
 	"gotointerwiki-external": "Olet lähtemäs {{SITENAME}} toizele verkosivustole [[$2]].\n\n'''[$1 Siirry $1]'''",

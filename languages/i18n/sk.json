@@ -3618,7 +3618,7 @@
 	"mute-preferences": "Nastavenia stlmenia",
 	"revid": "revízia $1",
 	"pageid": "Stránka s ID $1",
-	"rawhtml-notallowed": "Značky &lt;html&gt; nemožno používať mimo bežné stránky.",
+	"rawhtml-notallowed": "Značky <html> nemožno používať mimo bežné stránky.",
 	"gotointerwiki": "Odísť z {{GRAMMAR:genitív|{{SITENAME}}}}",
 	"gotointerwiki-invalid": "Zadaný názov je neplatný.",
 	"gotointerwiki-external": "Chystáte sa odísť z {{GRAMMAR:genitív|{{SITENAME}}}} a navštíviť [[$2]], čo je iná webová stránka.\n\n'''[$1 Pokračovať na $1].'''",

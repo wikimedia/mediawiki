@@ -3639,7 +3639,7 @@
 	"mute-preferences": "Юӧртӧм ӧтдортан ладмӧдӧмъяс",
 	"revid": "$1 версия",
 	"pageid": "$1 лист боклӧн ID",
-	"rawhtml-notallowed": "&lt;html&gt; тэгъясӧн позьӧ вӧдитчыны сӧмын векджык овлана лист бокъясын.",
+	"rawhtml-notallowed": "<html> тэгъясӧн позьӧ вӧдитчыны сӧмын векджык овлана лист бокъясын.",
 	"gotointerwiki": "Петам {{SITENAME}}-ысь",
 	"gotointerwiki-invalid": "Индӧм юрнимыс абу ина.",
 	"gotointerwiki-external": "Ті петанныд {{SITENAME}}-ысь, медым пырны [[$2]] бокиса сайтӧ.\n\n'''[$1 Вуджны $1-ӧ]'''",

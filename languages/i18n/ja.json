@@ -4157,7 +4157,7 @@
 	"mute-preferences": "ミュート設定",
 	"revid": "版 $1",
 	"pageid": "ページID $1",
-	"rawhtml-notallowed": "&lt;html&gt;タグは通常ページ以外では使用できません。",
+	"rawhtml-notallowed": "<html>タグは通常ページ以外では使用できません。",
 	"gotointerwiki": "{{SITENAME}}を離れる",
 	"gotointerwiki-invalid": "指定したページは無効です。",
 	"gotointerwiki-external": "\"{{SITENAME}}\"を離れ別のウェブサイト\"[[$2]]\"へ移動しようとしています。\n\n'''[$1 $1 へ移動する]'''",

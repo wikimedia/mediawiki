@@ -3920,7 +3920,7 @@
 	"mute-preferences": "Némítási beállítások",
 	"revid": "$1 változat",
 	"pageid": "$1 lapazonosító",
-	"rawhtml-notallowed": "&lt;html&gt; címkék nem használhatók normál lapokon kívül.",
+	"rawhtml-notallowed": "<html> címkék nem használhatók normál lapokon kívül.",
 	"gotointerwiki": "{{SITENAME}} elhagyása",
 	"gotointerwiki-invalid": "A megadott cím érvénytelen.",
 	"gotointerwiki-external": "A(z) {{SITENAME}} elhagyására és a(z) [[$2]] meglátogatására készülsz, ami egy másik webhelyen található.\n\n[$1 Kattints ide a(z) $1 oldalra való továbblépéshez.]",

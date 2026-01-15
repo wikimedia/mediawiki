@@ -3646,7 +3646,7 @@
 	"mute-preferences": "Ладямс сёрматнень лангс мялень аф шарфтомать",
 	"revid": "версия $1",
 	"pageid": "$1 лопань ID",
-	"rawhtml-notallowed": "&lt;html&gt; пряфкс тяштьксне мярьговихть тевс нолдамс аньцек эрь шинь лопатнень эса.",
+	"rawhtml-notallowed": "<html> пряфкс тяштьксне мярьговихть тевс нолдамс аньцек эрь шинь лопатнень эса.",
 	"gotointerwiki": "Тутама {{grammar:accusative|{{SITENAME}}}}…",
 	"gotointerwiki-invalid": "Путф аф прокс виде пряфкс лем.",
 	"gotointerwiki-external": "Тон туят {{grammar:accusative|{{SITENAME}}}} [[$2]] лия сайтонь ваноманкса.\n\n'''[$1 Ётамс $1-с]'''",

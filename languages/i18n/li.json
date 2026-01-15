@@ -3214,7 +3214,7 @@
 	"restrictionsfield-help": "Ein IP-adres of CIDR-bereik per lien. Veur alles toe te staon, gebroek:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "versie $1",
 	"pageid": "paginanómmer $1",
-	"rawhtml-notallowed": "&lt;html&gt; tags kónne allein op normaal pagina's waere geplaats.",
+	"rawhtml-notallowed": "<html> tags kónne allein op normaal pagina's waere geplaats.",
 	"gotointerwiki": "{{SITENAME}} verlaote",
 	"gotointerwiki-invalid": "De opgegaove titel is óngeljig.",
 	"gotointerwiki-external": "Doe steis op 't puntj {{SITENAME}} te verlaote en [[$2]] te bezeuke. [[$2]] is 'n anger website.\n\n'''[$1 Gank door nao $1]'''",

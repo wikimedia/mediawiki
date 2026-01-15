@@ -3844,7 +3844,7 @@
 	"mute-preferences": "Utišaj korisnika",
 	"revid": "izmena br. $1",
 	"pageid": "ID stranice: $1",
-	"rawhtml-notallowed": "&lt;html&gt; tagovi ne mogu da se koriste van normalnih stranica.",
+	"rawhtml-notallowed": "<html> tagovi ne mogu da se koriste van normalnih stranica.",
 	"gotointerwiki": "Napuštanje projekta {{SITENAME}}",
 	"gotointerwiki-invalid": "Navedeni naslov je nevalidan.",
 	"gotointerwiki-external": "Upravo ćete da napustite projekat {{SITENAME}} da biste na zasebnom veb-sajtu posetili [[$2]].\n\n'''[$1 Produži na $1]'''",

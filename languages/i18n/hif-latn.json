@@ -2698,7 +2698,7 @@
 	"restrictionsfield-badip": "IP ke range me galti hai: $1",
 	"revid": "badlao $1",
 	"pageid": "panna ID $1",
-	"rawhtml-notallowed": "&lt;html&gt; tags ke normal panna ke bahaar nai kaam me laawa jaae sake hai.",
+	"rawhtml-notallowed": "<html> tags ke normal panna ke bahaar nai kaam me laawa jaae sake hai.",
 	"gotointerwiki-invalid": "Specified title valid nai hai.",
 	"gotointerwiki-external": "Aap {{SITENAME}} ke chhorr ke [[$2]] pe jaae waala hai, jon ki duusra website hai.\n\n'''[$1 Continue to $1]'''",
 	"undelete-cantedit": "Aap ii panna ke undelete nai kare saktaa hai, kaaheki aap ke ii panna ke badle ke adhikaar nai hai.",

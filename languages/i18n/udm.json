@@ -3647,7 +3647,7 @@
 	"mute-preferences": "Куараез ладъян",
 	"revid": "Версия $1",
 	"pageid": " $1 бамлэн идентификторез",
-	"rawhtml-notallowed": "&lt;html&gt; огшоры бамъёслэн сьӧразы тегъёсты кутыны уг яра.",
+	"rawhtml-notallowed": "<html> огшоры бамъёслэн сьӧразы тегъёсты кутыны уг яра.",
 	"gotointerwiki": "{{SITENAME}}-ысь потон",
 	"gotointerwiki-invalid": "Сётэм йыръян ярантэм луэ.",
 	"gotointerwiki-external": "Тӥ {{SITENAME}}-ысь потыны но нимаз бамвотэсэ [[$2]] пырыны малпаськоды.\n\n'''[$1 выжоно $1]'''",

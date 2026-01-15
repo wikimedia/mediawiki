@@ -4061,7 +4061,7 @@
 	"mute-preferences": "Nastavitve utišanja",
 	"revid": "redakcija $1",
 	"pageid": "ID strani $1",
-	"rawhtml-notallowed": "Značk &lt;html&gt; ni mogoče uporabljati zunaj običajnih strani.",
+	"rawhtml-notallowed": "Značk <html> ni mogoče uporabljati zunaj običajnih strani.",
 	"gotointerwiki": "Zapuščate {{GRAMMAR:tožilnik|{{SITENAME}}}}",
 	"gotointerwiki-invalid": "Naveden naslov je neveljaven.",
 	"gotointerwiki-external": "Zapuščate projekt {{SITENAME}}, da bi obiskali [[$2]], ki je na drugem spletnem mestu.\n\n'''[$1 Nadaljuj na $1]'''",

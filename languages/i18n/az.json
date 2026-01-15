@@ -4025,7 +4025,7 @@
 	"mute-preferences": "İstifadəçini səssizləşdir",
 	"revid": "versiya $1",
 	"pageid": "səhifə nömrəsi $1",
-	"rawhtml-notallowed": "&lt;html&gt; teqləri normal səhifələrdən kənarda istifadə edilə bilməz.",
+	"rawhtml-notallowed": "<html> teqləri normal səhifələrdən kənarda istifadə edilə bilməz.",
 	"gotointerwiki": "{{SITENAME}} saytını tərk edirsiniz",
 	"gotointerwiki-invalid": "Göstərilən başlıq etibarsızdır.",
 	"gotointerwiki-external": "Siz ayrı veb-sayt olan [[$2]] saytına getmək üçün {{SITENAME}} saytını tərk etmək üzrəsiniz.\n\n'''[$1 $1 saytına gedin]'''",

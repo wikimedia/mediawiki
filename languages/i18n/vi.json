@@ -4080,7 +4080,7 @@
 	"mute-preferences": "Tùy chọn không làm phiền",
 	"revid": "phiên bản $1",
 	"pageid": "số trang $1",
-	"rawhtml-notallowed": "Không thể sử dụng thẻ &lt;html&gt; bên ngoài trang bình thường.",
+	"rawhtml-notallowed": "Không thể sử dụng thẻ <html> bên ngoài trang bình thường.",
 	"gotointerwiki": "Rời khỏi {{SITENAME}}",
 	"gotointerwiki-invalid": "Tên trang chỉ định không hợp lệ.",
 	"gotointerwiki-external": "Bạn đang rời khỏi {{SITENAME}} để đi đến [[$2]], một trang web riêng.\n\n'''[$1 Tiếp tục đi đến $1]'''",

@@ -3889,7 +3889,7 @@
 	"mute-preferences": "Amuțire utilizator",
 	"revid": "versiunea $1",
 	"pageid": "ID pagină $1",
-	"rawhtml-notallowed": "Tagurile &lt;html&gt; nu pot fi folosite în afara paginilor normale.",
+	"rawhtml-notallowed": "Tagurile <html> nu pot fi folosite în afara paginilor normale.",
 	"gotointerwiki": "Se părăsește {{SITENAME}}",
 	"gotointerwiki-invalid": "Titlul specificat nu este valid.",
 	"gotointerwiki-external": "Sunteți pe cale să părăsiți {{SITENAME}} pentru a vizita [[$2]], care este un alt site.\n\n'''[$1 Continuați către $1]'''",

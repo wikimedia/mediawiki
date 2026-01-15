@@ -3635,7 +3635,7 @@
 	"mute-preferences": "Медгдл һолхиг тохрулх",
 	"revid": "$1 хүвлвр",
 	"pageid": "$1 халхин ID",
-	"rawhtml-notallowed": "&lt;html&gt; тагмуд зөвкн йирин халхсин күрәд ашглгдх болмҗта.",
+	"rawhtml-notallowed": "<html> тагмуд зөвкн йирин халхсин күрәд ашглгдх болмҗта.",
 	"gotointerwiki": "{{grammar:accusative|{{SITENAME}}}} оркҗанавидн...",
 	"gotointerwiki-invalid": "Тус һарцгнь күчн уга.",
 	"gotointerwiki-external": "Та һазадын [[$2]] сайтд орхин төлә {{SITENAME}} сайтас һарн гиҗәнәт\n\n'''[$1 $1-ур үрглҗлүлх]'''",

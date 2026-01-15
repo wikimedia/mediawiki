@@ -3781,7 +3781,7 @@
 	"mute-preferences": "Систерӳсене курмӑш пулассине ӗнерле",
 	"revid": "$1 верси",
 	"pageid": "$1 страницӑн ID",
-	"rawhtml-notallowed": "&lt;html&gt; тегсемпе ахаль страницӑсенче кӑна усӑ курма май пур.",
+	"rawhtml-notallowed": "<html> тегсемпе ахаль страницӑсенче кӑна усӑ курма май пур.",
 	"gotointerwiki": "{{grammar:accusative|{{SITENAME}}}} проектран каятпӑр…",
 	"gotointerwiki-invalid": "Юрӑхлӑ мар ят кӑтартнӑ.",
 	"gotointerwiki-external": "Эсир {{grammar:accusative|{{SITENAME}}}} проектран [[$2]] тулашри сайта куҫасшӑн.\n\n'''[$1 $1 ҫине куҫ]'''",

@@ -3423,7 +3423,7 @@
 	"specialmute-email-footer": "ਵਰਤੋਂਕਾਰ {{BIDI: $2 }} ਲਈ ਈਮੇਲ ਤਰਜੀਹਾਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰਨ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਹੇਠਾਂ ਦਿੱਤੇ URL 'ਤੇ ਜਾਓ:\n $1",
 	"revid": "ਦੁਹਰਾਅ $1",
 	"pageid": "ਸਫ਼ਾ ਸ਼ਿਨਾਖਤ $1",
-	"rawhtml-notallowed": "&lt;html&gt; ਟੈਗਾਂ ਨੂੰ ਆਮ ਸਫ਼ਿਆਂ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਵਰਤਿਆ ਜਾ ਸਕਦਾ ਏ।",
+	"rawhtml-notallowed": "<html> ਟੈਗਾਂ ਨੂੰ ਆਮ ਸਫ਼ਿਆਂ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਵਰਤਿਆ ਜਾ ਸਕਦਾ ਏ।",
 	"gotointerwiki": "{{SITENAME}} ਨੂੰ ਛੱਡ ਰਹੇ ਹੋ",
 	"gotointerwiki-invalid": "ਦਿੱਤਾ ਸਿਰਲੇਖ ਗਲਤ ਹੈ।",
 	"gotointerwiki-external": "ਤੁਸੀਂ [[$2]] 'ਤੇ ਜਾਣ ਲਈ {{SITENAME}} ਨੂੰ ਛੱਡਣ ਜਾ ਰਹੇ ਹੋ, ਜੋ ਕਿ ਇੱਕ ਵੱਖਰੀ ਵੈੱਬਸਾਈਟ ਏ।\n\n'''[$1 ਤੱਕ ਜਾਰੀ ਰੱਖੋ $1]'''",

@@ -3339,7 +3339,7 @@
 	"restrictionsfield-help": "Un adirije IP o estende CIDR per linia: Per comuta tota, usa:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "revisa $1",
 	"pageid": "numero de paje $1",
-	"rawhtml-notallowed": "Eticetas &lt;html&gt; no pote es usada estra pajes normal.",
+	"rawhtml-notallowed": "Eticetas <html> no pote es usada estra pajes normal.",
 	"gotointerwiki": "Partinte de {{SITENAME}}",
 	"gotointerwiki-invalid": "La titulo spesifada es nonvalida.",
 	"gotointerwiki-external": "Tu es a punto de parti de {{SITENAME}} per visita [[$2]], cual es un pajeria separada.\n\n'''[$1 Continua a $1]'''",

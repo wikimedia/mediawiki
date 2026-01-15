@@ -3674,7 +3674,7 @@
 	"mute-preferences": "Penndibaboù didrouzañ",
 	"revid": "Adweladenn $1",
 	"pageid": "ID ar bajenn $1",
-	"rawhtml-notallowed": "N'hall an tikedennoù &lt;html&gt; bezañ implijet nemet er pajennoù normal.",
+	"rawhtml-notallowed": "N'hall an tikedennoù <html> bezañ implijet nemet er pajennoù normal.",
 	"gotointerwiki": "Kuitaat {{SITENAME}}",
 	"gotointerwiki-invalid": "Direizh eo an titl merket",
 	"gotointerwiki-external": "Emaoc'h war-nes kuitaat {{SITENAME}} evit mont da welet [[$2]], hag a zo ul lec'hienn all a-ziforc'h.\n\n'''[$1 Klikañ amañ evit kenderc'hel war $1].'''",

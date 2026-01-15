@@ -3218,7 +3218,7 @@
 	"restrictionsfield-help": "Maysa nga adres ti IP wenno sakup ti CIDR kada linia. Tapno mapakabaelan amin, usaren ti:<pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "rebision $1",
 	"pageid": "ID ti panid $1",
-	"rawhtml-notallowed": "Saan a mabalin a mausar dagiti etiketa ti &lt;html&gt; iti ruar dagiti kadawyan a panid.",
+	"rawhtml-notallowed": "Saan a mabalin a mausar dagiti etiketa ti <html> iti ruar dagiti kadawyan a panid.",
 	"gotointerwiki": "Pumanpanaw iti {{SITENAME}}",
 	"gotointerwiki-invalid": "Ti nainaganan a titulo ket imbalido.",
 	"pagedata-title": "Datos ti panid",

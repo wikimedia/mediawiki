@@ -2885,7 +2885,7 @@
 	"specialmute-submit": "Konfirmasi",
 	"revid": "révisi $1",
 	"pageid": "ID kaca $1",
-	"rawhtml-notallowed": "Tag &lt;html&gt; teu bisa dipaké di luar kaca normal.",
+	"rawhtml-notallowed": "Tag <html> teu bisa dipaké di luar kaca normal.",
 	"gotointerwiki": "Ninggalkeun{{SITENAME}}",
 	"gotointerwiki-invalid": "Judul nu ditangtukeun teu sah.",
 	"undelete-cantedit": "Anjeun teu bisa ngabolaykeun pamupusan ieu kaca lantaran anjeun teu bisa ngédit ieu kaca.",

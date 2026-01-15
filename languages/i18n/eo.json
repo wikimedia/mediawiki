@@ -3719,7 +3719,7 @@
 	"mute-preferences": "Agordoj pri silentigo",
 	"revid": "revizio $1",
 	"pageid": "Identigilo de paĝo $1",
-	"rawhtml-notallowed": "etikedo &lt;html&gt; ne povas esti uzata ekster ordinaraj paĝoj.",
+	"rawhtml-notallowed": "etikedo <html> ne povas esti uzata ekster ordinaraj paĝoj.",
 	"gotointerwiki": "Elirante retejon {{SITENAME}}",
 	"gotointerwiki-invalid": "La specifita titolo ne estas valida.",
 	"gotointerwiki-external": "Vi estas elironta la retejon {{SITENAME}} por viziti la retpaĝon [[$2]], en alia retejo.\n\n'''[$1 Ek al $1]'''",

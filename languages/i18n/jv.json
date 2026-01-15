@@ -2885,7 +2885,7 @@
 	"mute-preferences": "Pilalan bisu",
 	"revid": "révisi $1",
 	"pageid": "ID kaca $1",
-	"rawhtml-notallowed": "&lt;html&gt; tenger ora bisa dianggo sajabané kaca adaté.",
+	"rawhtml-notallowed": "<html> tenger ora bisa dianggo sajabané kaca adaté.",
 	"gotointerwiki": "Metu {{SITENAME}}",
 	"gotointerwiki-invalid": "Sesirah kang diisèkaké ora trep.",
 	"gotointerwiki-external": "Panjenengan arep metu {{SITENAME}} saperlu marani [[$2]], situs jaringan manca.\n\n'''[$1 Bacutaké menyang $1]'''",

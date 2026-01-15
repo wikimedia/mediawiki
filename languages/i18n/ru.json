@@ -4155,7 +4155,7 @@
 	"mute-preferences": "Настроить игнорирование уведомлений",
 	"revid": "версия $1",
 	"pageid": "ID страницы $1",
-	"rawhtml-notallowed": "&lt;html&gt; теги могут быть использованы только в пределах обычных страниц.",
+	"rawhtml-notallowed": "<html> теги могут быть использованы только в пределах обычных страниц.",
 	"gotointerwiki": "Покидаем {{grammar:accusative|{{SITENAME}}}}…",
 	"gotointerwiki-invalid": "Указан некорректный заголовок.",
 	"gotointerwiki-external": "Вы покидаете {{grammar:accusative|{{SITENAME}}}} для посещения стороннего сайта [[$2]].\n\n'''[$1 Перейти на $1]'''",

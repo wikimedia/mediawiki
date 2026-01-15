@@ -3619,7 +3619,7 @@
 	"mute-preferences": "Tercihê bêvengi",
 	"revid": "Revizyonê $1",
 	"pageid": "IDyê pela $1",
-	"rawhtml-notallowed": "Etiketê &lt;html&gt; teberê pêlane normalan de nêkariyenê.",
+	"rawhtml-notallowed": "Etiketê <html> teberê pêlane normalan de nêkariyenê.",
 	"gotointerwiki": "{{SITENAME}} ra abırriyeno",
 	"gotointerwiki-invalid": "Serameyo spesifiko nêravêrde.",
 	"gotointerwiki-external": "Şımayê kenê ke [[$2]] abıriyê ke şırê sitay {{SITENAME}}.\n\n'''[$1 serê $1 ra dewam kerê ]'''",

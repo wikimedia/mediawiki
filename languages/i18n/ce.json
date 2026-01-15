@@ -3901,7 +3901,7 @@
 	"mute-preferences": "Хаамаш тергалцабар",
 	"revid": "верси $1",
 	"pageid": "ID агӀонан $1",
-	"rawhtml-notallowed": "&lt;html&gt; тегаш лело таро йу агӀонийн билгалчу дозанашкахь.",
+	"rawhtml-notallowed": "<html> тегаш лело таро йу агӀонийн билгалчу дозанашкахь.",
 	"gotointerwiki": "Йуьту {{SITENAME}}",
 	"gotointerwiki-invalid": "Билгалбина нийса боцу корта.",
 	"gotointerwiki-external": "Ахьа йуьту {{grammar:accusative|{{SITENAME}}}} чувалархьама кхин сайтачу [[$2]].\n\n'''[$1 Дехьвала $1]'''",

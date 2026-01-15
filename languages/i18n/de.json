@@ -4117,7 +4117,7 @@
 	"mute-preferences": "Stummschaltungs-Einstellungen",
 	"revid": "Version $1",
 	"pageid": "Seitenkennung $1",
-	"rawhtml-notallowed": "&lt;html&gt;-Tags können nicht außerhalb von normalen Seiten verwendet werden.",
+	"rawhtml-notallowed": "<html>-Tags können nicht außerhalb von normalen Seiten verwendet werden.",
 	"gotointerwiki": "{{SITENAME}} verlassen",
 	"gotointerwiki-invalid": "Der angegebene Titel ist ungültig.",
 	"gotointerwiki-external": "Du bist dabei, {{SITENAME}} zu verlassen, um [[$2]] zu besuchen, was eine externe Website ist.\n\n'''[$1 Auf $1 fortfahren]'''",

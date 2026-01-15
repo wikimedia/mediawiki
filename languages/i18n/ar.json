@@ -4139,7 +4139,7 @@
 	"mute-preferences": "تفضيلات كتم الصوت",
 	"revid": "المراجعة $1",
 	"pageid": "معرف الصفحة $1",
-	"rawhtml-notallowed": "لا يمكن استخدام وسوم &lt;html&gt; خارج الصفحات العادية.",
+	"rawhtml-notallowed": "لا يمكن استخدام وسوم <html> خارج الصفحات العادية.",
 	"gotointerwiki": "ترك {{SITENAME}}",
 	"gotointerwiki-invalid": "العنوان المحدد غير صحيح.",
 	"gotointerwiki-external": "أنت على وشك ترك {{SITENAME}} لزيارة [[$2]]، وهو موقع منفصل.\n\n'''[$1 اضغط هنا للاستمرار إلى $1]'''",

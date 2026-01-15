@@ -3711,7 +3711,7 @@
 	"mute-preferences": "Jietna vuolidan ásahusat",
 	"revid": "siidoveršuvdna $1",
 	"pageid": "Siido-ID $1",
-	"rawhtml-notallowed": "&lt;html&gt; gilkorat eai sáhte dábálaš siidduid olggobealde adnot.",
+	"rawhtml-notallowed": "<html> gilkorat eai sáhte dábálaš siidduid olggobealde adnot.",
 	"gotointerwiki": "Guođđime {{SITENAME}}",
 	"gotointerwiki-invalid": "Addon namahus lea feaillalaš.",
 	"gotointerwiki-external": "Don leat guođđime {{SITENAME}} geahččan dihte [[$2]], mii lea eará neahttasiidu.\n\n'''[$1 Joatkke $1]'''",

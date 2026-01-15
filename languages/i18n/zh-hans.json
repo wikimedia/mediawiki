@@ -4244,7 +4244,7 @@
 	"mute-preferences": "屏蔽设置",
 	"revid": "修订版本$1",
 	"pageid": "页面ID$1",
-	"rawhtml-notallowed": "&lt;html&gt;标签不能在一般页面以外使用。",
+	"rawhtml-notallowed": "<html>标签不能在一般页面以外使用。",
 	"gotointerwiki": "离开{{SITENAME}}",
 	"gotointerwiki-invalid": "指定的标题无效。",
 	"gotointerwiki-external": "您将要离开{{SITENAME}}来访问[[$2]]，这是一个独立网站。\n\n'''[$1 继续访问$1]'''",

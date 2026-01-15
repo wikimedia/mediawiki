@@ -3865,7 +3865,7 @@
 	"mute-preferences": "Nutildymo nuostatos",
 	"revid": "apžvalga $1",
 	"pageid": "puslapio ID $1",
-	"rawhtml-notallowed": "&lt;html&gt; negali būti naudojamos ne normaliuose puslapiuose.",
+	"rawhtml-notallowed": "<html> negali būti naudojamos ne normaliuose puslapiuose.",
 	"gotointerwiki": "Išeinama iš {{SITENAME}}",
 	"gotointerwiki-invalid": "Nurodytas pavadinimas negalimas.",
 	"gotointerwiki-external": "Ketinate palikti {{SITENAME}} ir apsilankyti [[$2]], kuris yra atskira interneto svetainė.\n\n'''[$1 Eiti į $1]'''",

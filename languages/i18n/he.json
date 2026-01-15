@@ -4017,7 +4017,7 @@
 	"mute-preferences": "העדפות השתקה",
 	"revid": "גרסה $1",
 	"pageid": "מזהה דף $1",
-	"rawhtml-notallowed": "לא ניתן להשתמש בתגיות &lt;html&gt; מחוץ לדפים רגילים.",
+	"rawhtml-notallowed": "לא ניתן להשתמש בתגיות <html> מחוץ לדפים רגילים.",
 	"gotointerwiki": "עזיבת {{SITENAME}}",
 	"gotointerwiki-invalid": "הכותרת שצוינה אינה תקינה.",
 	"gotointerwiki-external": "{{GENDER:|אתה עומד|את עומדת|אתם עומדים}} לעזוב את {{SITENAME}} כדי לבקר באתר החיצוני \"[[$2]]\".\n\n'''[$1 להמשיך לכתובת $1]'''",

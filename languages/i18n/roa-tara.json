@@ -3200,7 +3200,7 @@
 	"specialmute-error-invalid-user": "'U nome utende rechieste non g'è state acchiate.",
 	"revid": "revisione $1",
 	"pageid": "ID d'a pàgene $1",
-	"rawhtml-notallowed": "Le tag &lt;html&gt; non ge ponne essere ausate fore da le pàggene normale.",
+	"rawhtml-notallowed": "Le tag <html> non ge ponne essere ausate fore da le pàggene normale.",
 	"gotointerwiki": "Ste lasse {{SITENAME}}",
 	"gotointerwiki-invalid": "'U titole specificate non g'è valide.",
 	"pagedata-title": "Date d'a pàgene",

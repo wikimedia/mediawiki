@@ -4147,7 +4147,7 @@
 	"mute-preferences": "Preferências do silenciador",
 	"revid": "revisão $1",
 	"pageid": "ID da página $1",
-	"rawhtml-notallowed": "As tags &lt;html&gt; não podem ser usadas fora das páginas normais.",
+	"rawhtml-notallowed": "As tags <html> não podem ser usadas fora das páginas normais.",
 	"gotointerwiki": "Saindo {{SITENAME}}",
 	"gotointerwiki-invalid": "O título especificado é inválido.",
 	"gotointerwiki-external": "Você está prestes a sair {{SITENAME}} para visitar [[$2]] que é um website separado.\n\n'''[$1 Continuar para $1]'''",

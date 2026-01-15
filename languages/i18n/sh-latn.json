@@ -3959,7 +3959,7 @@
 	"mute-preferences": "Utišaj",
 	"revid": "izmjena $1",
 	"pageid": "ID stranice $1",
-	"rawhtml-notallowed": "&lt;html&gt;-oznake ne mogu se koristiti van normalnih stranica.",
+	"rawhtml-notallowed": "<html>-oznake ne mogu se koristiti van normalnih stranica.",
 	"gotointerwiki": "Napuštate projekt {{SITENAME}}",
 	"gotointerwiki-invalid": "Navedeni naslov je nevalidan.",
 	"gotointerwiki-external": "Napuštate projekt {{SITENAME}} da biste posjetili zasebni veb-sajt [[$2]].\n\n<strong>[$1 Nastavljate na $1]</strong>",

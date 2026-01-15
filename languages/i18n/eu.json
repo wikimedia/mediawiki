@@ -3524,7 +3524,7 @@
 	"mute-preferences": "ixilarazi lehentasunak",
 	"revid": "$1 berrikusi",
 	"pageid": "$1 orri IDa",
-	"rawhtml-notallowed": "&lt;html&gt; etiketak ezin dira orri arruntetatik kanpo erabili.",
+	"rawhtml-notallowed": "<html> etiketak ezin dira orri arruntetatik kanpo erabili.",
 	"gotointerwiki": "{{SITENAME}}(e)tik irteten",
 	"gotointerwiki-invalid": "Zehaztutako titulua baliogabea da.",
 	"gotointerwiki-external": "{{SITENAME}} ustear zaude [[$2]] bisitatzeko, bananduta dagoen webgunea dena.\n\n'''[$1 Jarraitu hona $1]'''",

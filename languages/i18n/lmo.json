@@ -3603,7 +3603,7 @@
 	"mute-preferences": "Preferenze sora el silenzzi",
 	"revid": "version $1",
 	"pageid": "ID de la pagina $1",
-	"rawhtml-notallowed": "I etichete &lt;html&gt; i poden minga vesser drovate foeura di pagine normai.",
+	"rawhtml-notallowed": "I etichete <html> i poden minga vesser drovate foeura di pagine normai.",
 	"gotointerwiki": "Te seet in sul pont de andà via de {{SITENAME}}",
 	"gotointerwiki-invalid": "El titol specifegad l'è minga valid.",
 	"gotointerwiki-external": "te sset in sul pont de andà via de {{SITENAME}} per visità [[$2]], che l'è un sit web in deperlù.\n\n'''[$1 Va adree in su $1]'''",

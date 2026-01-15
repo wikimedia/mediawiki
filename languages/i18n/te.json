@@ -3718,7 +3718,7 @@
 	"mute-preferences": "నిశ్శబ్ద అభిరుచులు",
 	"revid": "కూర్పు $1",
 	"pageid": "పేజీ ఐడీ $1",
-	"rawhtml-notallowed": "మామూలు పేజీలకు బయట &lt;html&gt; ట్యాగులు ఉండరాదు.",
+	"rawhtml-notallowed": "మామూలు పేజీలకు బయట <html> ట్యాగులు ఉండరాదు.",
 	"gotointerwiki": "{{SITENAME}} ను వీడిపోతున్నారు",
 	"gotointerwiki-invalid": "ఇచ్చిన శీర్షిక సరైనది కాదు.",
 	"gotointerwiki-external": "మీరు {{SITENAME}} ను వదలి [[$2]] కు వెళ్తున్నారు. అది వేరే సైటు.\n\n'''[$1 $1 కు తీసుకుపో]'''",

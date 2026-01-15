@@ -4010,7 +4010,7 @@
 	"mute-preferences": "Vaigistamis­eelistused",
 	"revid": "redaktsioon $1",
 	"pageid": "lehekülje identifikaator $1",
-	"rawhtml-notallowed": "&lt;html&gt;-silte ei saa kasutada mujal kui harilikel lehekülgedel.",
+	"rawhtml-notallowed": "<html>-silte ei saa kasutada mujal kui harilikel lehekülgedel.",
 	"gotointerwiki": "Lahkud {{GRAMMAR:elative|{{SITENAME}}}}",
 	"gotointerwiki-invalid": "Määratud pealkiri on vigane.",
 	"gotointerwiki-external": "Lahkud {{GRAMMAR:elative|{{SITENAME}}}}, et minna asukohta [[$2]], mis on eraldi veebisait.\n\n'''[$1 Mine edasi aadressile $1]'''",

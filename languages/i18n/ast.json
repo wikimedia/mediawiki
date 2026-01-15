@@ -3477,7 +3477,7 @@
 	"mute-preferences": "Preferencies de silenciu",
 	"revid": "revisión $1",
 	"pageid": "ID de páxina $1",
-	"rawhtml-notallowed": "Les etiquetes &lt;html&gt; nun pueden usase fuera de les páxines normales.",
+	"rawhtml-notallowed": "Les etiquetes <html> nun pueden usase fuera de les páxines normales.",
 	"gotointerwiki": "Dexando {{SITENAME}}",
 	"gotointerwiki-invalid": "El títulu especificáu nun ye válidu.",
 	"gotointerwiki-external": "Tas a piques de dexar {{SITENAME}} pa visitar [[$2]], que ye un sitiu web distintu.\n\n'''[$1 Siguir a $1]'''",

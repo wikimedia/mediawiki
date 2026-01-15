@@ -3897,7 +3897,7 @@
 	"mute-preferences": "Mga gusto nga i-mute",
 	"revid": "rebisyon $1",
 	"pageid": "page ID $1",
-	"rawhtml-notallowed": "&lt;html&gt; ang mga tag indi magamit sa guwa sang normal nga mga pahina.",
+	"rawhtml-notallowed": "<html> ang mga tag indi magamit sa guwa sang normal nga mga pahina.",
 	"gotointerwiki": "Nagahalin sa {{SITENAME}}",
 	"gotointerwiki-invalid": "Ang gintalana nga titulo indi balido.",
 	"gotointerwiki-external": "Magahalin ka na sa {{SITENAME}} para magbisita sa [[$2]], nga isa ka separado nga website.\n\n'''[ $1 Padayon sa $1 ]'''",

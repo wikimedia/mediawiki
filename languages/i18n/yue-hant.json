@@ -3899,7 +3899,7 @@
 	"mute-preferences": "靜音設定",
 	"revid": "修訂 $1",
 	"pageid": "版ID $1",
-	"rawhtml-notallowed": "&lt;html&gt; 標籤唔可以喺一般版以外去用。",
+	"rawhtml-notallowed": "<html> 標籤唔可以喺一般版以外去用。",
 	"gotointerwiki": "離開 {{SITENAME}}",
 	"gotointerwiki-invalid": "指定嘅標題無效。",
 	"gotointerwiki-external": "你準備離開{{SITENAME}}去[[$2]]，呢個係另一個網站。\n\n'''[$1 繼續去 $1]'''",

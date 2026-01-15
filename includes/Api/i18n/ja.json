@@ -627,7 +627,7 @@
 	"apihelp-query+categorymembers-param-endsortkey": "代わりに $1endhexsortkey を使用してください。",
 	"apihelp-query+categorymembers-example-simple": "<kbd>Category:Physics</kbd> に含まれる最初の10ページを取得する。",
 	"apihelp-query+categorymembers-example-generator": "<kbd>Category:Physics</kbd> に含まれる最初の10ページのページ情報を取得する。",
-	"apihelp-query+contributors-summary": "ページに対する、ログイン済み投稿者の一覧および非ログイン投稿者の数を取得します。",
+	"apihelp-query+contributors-summary": "ページに関する投稿者について、アカウント登録済み一覧および未登録数を取得します。",
 	"apihelp-query+contributors-param-limit": "返す投稿者の数。",
 	"apihelp-query+contributors-example-simple": "[[{{MediaWiki:Mainpage}}]]の投稿者を表示する。",
 	"apihelp-query+deletedrevisions-summary": "削除された版の情報を取得します。",

@@ -3634,7 +3634,7 @@
 	"mute-preferences": "Ӧтдортан лӧсьӧтаннэз",
 	"revid": "$1 версия",
 	"pageid": "$1 листбоклӧн ID",
-	"rawhtml-notallowed": "&lt;html&gt; тэггез позьӧ пыртны уджӧ дзир пырся листбоккезӧ.",
+	"rawhtml-notallowed": "<html> тэггез позьӧ пыртны уджӧ дзир пырся листбоккезӧ.",
 	"gotointerwiki": "Петам {{SITENAME}}-ись",
 	"gotointerwiki-invalid": "Иньдӧм юрнимыс абу лӧсялана.",
 	"gotointerwiki-external": "Ті петатӧ {{SITENAME}}-ись, медбы пырны [[$2]] бокись везгӧрӧдӧ.\n\n'''[$1 Вуджны $1-ӧ]'''",

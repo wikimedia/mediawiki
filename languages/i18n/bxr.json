@@ -3681,7 +3681,7 @@
 	"mute-preferences": "Мэдээсэлнүүдые тоонгүй байлга тааруулха",
 	"revid": "$1 Хубилбари",
 	"pageid": "$1 хуудаһанай ID",
-	"rawhtml-notallowed": "&lt;html&gt; тегүүд гансал юрын хуудаһануудай заха хизаар соо хэрэглэгдэжэ болохо.",
+	"rawhtml-notallowed": "<html> тегүүд гансал юрын хуудаһануудай заха хизаар соо хэрэглэгдэжэ болохо.",
 	"gotointerwiki": "Орхижо гаранабди {{grammar:accusative|{{SITENAME}}}}…",
 	"gotointerwiki-invalid": "Заагдаһан гаршаг хүсэгүй.",
 	"gotointerwiki-external": "[[$2]] Амяараа веб-сайтда ошохын тула, та {{grammar:accusative|{{SITENAME}}}} орхижо гарабат.\n\n'''[$1 Орохо $1]'''",

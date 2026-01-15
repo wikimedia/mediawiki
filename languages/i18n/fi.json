@@ -4083,7 +4083,7 @@
 	"mute-preferences": "Hiljennysasetukset",
 	"revid": "versio $1",
 	"pageid": "sivun tunnistenumero $1",
-	"rawhtml-notallowed": "&lt;html&gt; komentoa ei voida käyttää normaalien sivujen ulkopuolella.",
+	"rawhtml-notallowed": "<html> komentoa ei voida käyttää normaalien sivujen ulkopuolella.",
 	"gotointerwiki": "Lähdössä {{GRAMMAR:elative|{{SITENAME}}}}",
 	"gotointerwiki-invalid": "Annettu otsikko on virheellinen.",
 	"gotointerwiki-external": "Olet lähdössä {{GRAMMAR:elative|{{SITENAME}}}} toiselle sivustolle [[$2]].\n\n'''[$1 Jatka osoitteeseen $1]'''",

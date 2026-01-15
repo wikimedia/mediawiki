@@ -3606,7 +3606,7 @@
 	"mute-preferences": "Pengaturan meneng",
 	"revid": "perbaèkan $1",
 	"pageid": "ID halaman $1",
-	"rawhtml-notallowed": "&lt;html&gt; tenger kaga' bisa dipaké di luarnya halaman normal.",
+	"rawhtml-notallowed": "<html> tenger kaga' bisa dipaké di luarnya halaman normal.",
 	"gotointerwiki": "Ninggalin {{SITENAME}}",
 	"gotointerwiki-invalid": "Judul nyang dimaksud kaga' aci.",
 	"gotointerwiki-external": "Lu udah mau ninggalin {{SITENAME}} bakal nyabain [[$2]], nyang mengrupa'in laèn pelampang.\n\n'''[$1 Terus ke $1]'''",

@@ -4079,7 +4079,7 @@
 	"mute-preferences": "Preferências de silenciamento",
 	"revid": "revisão $1",
 	"pageid": "identificador de página $1",
-	"rawhtml-notallowed": "As etiquetas &lt;html&gt; não podem ser utilizadas fora de páginas normais.",
+	"rawhtml-notallowed": "As etiquetas <html> não podem ser utilizadas fora de páginas normais.",
 	"gotointerwiki": "A sair da wiki {{SITENAME}}",
 	"gotointerwiki-invalid": "O título especificado é inválido.",
 	"gotointerwiki-external": "Está prestes a sair da wiki {{SITENAME}} para visitar [[$2]], que é um sítio externo.\n\n'''[$1 Continuar para $1]'''",

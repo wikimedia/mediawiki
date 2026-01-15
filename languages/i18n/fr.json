@@ -4266,7 +4266,7 @@
 	"mute-preferences": "Préférences de mise en sourdine",
 	"revid": "version $1",
 	"pageid": "Identifiant de page $1",
-	"rawhtml-notallowed": "Les balises &lt;html&gt; ne peuvent pas être utilisées en dehors des pages normales.",
+	"rawhtml-notallowed": "Les balises <html> ne peuvent pas être utilisées en dehors des pages normales.",
 	"gotointerwiki": "Quitter {{SITENAME}}",
 	"gotointerwiki-invalid": "Le titre spécifié n’est pas valide.",
 	"gotointerwiki-external": "Vous allez quitter {{SITENAME}} pour visiter [[$2]], qui est un site web distinct.\n\n<strong>[$1 Continuer vers $1]</strong>",

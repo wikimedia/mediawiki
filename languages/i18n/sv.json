@@ -4077,7 +4077,7 @@
 	"mute-preferences": "Tystnadsinställningar",
 	"revid": "Version $1",
 	"pageid": "sid-ID $1",
-	"rawhtml-notallowed": "&lt;html&gt;-taggar kan inte användas utanför normala sidor.",
+	"rawhtml-notallowed": "<html>-taggar kan inte användas utanför normala sidor.",
 	"gotointerwiki": "Lämnar {{SITENAME}}",
 	"gotointerwiki-invalid": "Den angivna titeln är ogiltig.",
 	"gotointerwiki-external": "Du håller på att lämna {{SITENAME}} för att besöka [[$2]] som är en separat webbplats.\n\n'''[$1 Fortsätt till $1]'''",

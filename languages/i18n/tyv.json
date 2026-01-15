@@ -3619,7 +3619,7 @@
 	"mute-preferences": "Сагындырыгларны херекке албазын өйлээр",
 	"revid": "$1 янзы",
 	"pageid": "$1 арынның ID-зи",
-	"rawhtml-notallowed": "&lt;html&gt; имнерни чүгле анаа арыннар иштинге ажыглап болур.",
+	"rawhtml-notallowed": "<html> имнерни чүгле анаа арыннар иштинге ажыглап болур.",
 	"gotointerwiki": "{{SITENAME}} сайтыдан үнер",
 	"gotointerwiki-invalid": "Шын эвес ат айыттынган.",
 	"gotointerwiki-external": "Силер {{SITENAME}} төлевилелден үнгеш, өске [[$2]] сайтыже шилчиир деп тур силер.\n\n'''[$1 Шилчиир $1]'''",

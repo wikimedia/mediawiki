@@ -3402,7 +3402,7 @@
 	"mute-preferences": "ترجیحات اغماض",
 	"revid": "نسخہ $1",
 	"pageid": "صفحہ کا شناختی نمبر $1",
-	"rawhtml-notallowed": "\n&lt;html&gt; ٹیگ عام صفحات کے باہر استعمال نہیں کیا جا سکتا۔",
+	"rawhtml-notallowed": "\n<html> ٹیگ عام صفحات کے باہر استعمال نہیں کیا جا سکتا۔",
 	"gotointerwiki": "{{SITENAME}} سے باہر جا رہے ہیں",
 	"gotointerwiki-invalid": "درج کردہ عنوان درست نہیں ہے۔",
 	"gotointerwiki-external": "[[$2]] ایک علاحدہ ویب سائٹ ہے، جس ميں جانے کے لیے آپ {{SITENAME}} کو چھوڑ رہے ہیں۔\n\n''[$1 پر جاری $1]'''",

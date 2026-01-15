@@ -3458,7 +3458,7 @@
 	"mute-preferences": "पसंद सहेजा जाय",
 	"revid": "अवतरण $1",
 	"pageid": "पेज आईडी $1",
-	"rawhtml-notallowed": "&lt;html&gt; टैग का उपयोग सामान्य पन्नों के बाहर नहीं किया जा सकता है।",
+	"rawhtml-notallowed": "<html> टैग का उपयोग सामान्य पन्नों के बाहर नहीं किया जा सकता है।",
 	"gotointerwiki": "आप {{SITENAME}} से बाहर जा रहे हैं।",
 	"gotointerwiki-invalid": "दिया गया शीर्षक अमान्य है।",
 	"gotointerwiki-external": "[[$2]] एक बाहरी वेबसाइट है, जिसमें जाने के लिए आप {{SITENAME}} को छोड़ रहे हैं।\n\n[$1 $1 पर जाने के लिए इस पर क्लिक करें]।",

@@ -3666,7 +3666,7 @@
 	"mute-preferences": "Än'saubatusen valičused",
 	"revid": "vajehtuz $1",
 	"pageid": "ID-lehtpol' $1",
-	"rawhtml-notallowed": "&lt;html&gt; ei sa kävutada tegsanoid jogavuiččiden lehtoliden irdpolel.",
+	"rawhtml-notallowed": "<html> ei sa kävutada tegsanoid jogavuiččiden lehtoliden irdpolel.",
 	"gotointerwiki": "Lähtmas {{SITENAME}}",
 	"gotointerwiki-invalid": "Kirjutadud nimi om vär.",
 	"gotointerwiki-external": "Sinä tahtoid lähtta {{SITENAME}} miše mända [[$2]], mitte om eriži web-sait.\n'''[$1 Mäne edemba $1]'''",

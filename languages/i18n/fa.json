@@ -4002,7 +4002,7 @@
 	"mute-preferences": "ترجیحات بی‌صدا کردن",
 	"revid": "نسخهٔ $1",
 	"pageid": "شناسهٔ صفحهٔ $1",
-	"rawhtml-notallowed": "برچسب‌های &lt;html&gt; را نمی‌توان خارج از صفحه‌های معمولی استفاده کرد.",
+	"rawhtml-notallowed": "برچسب‌های <html> را نمی‌توان خارج از صفحه‌های معمولی استفاده کرد.",
 	"gotointerwiki": "در حال ترک {{SITENAME}}",
 	"gotointerwiki-invalid": "عنوان مشخص شده نامعتبر است.",
 	"gotointerwiki-external": "شما در حال ترک {{SITENAME}} هستید تا [[$2]] را ببینید که یک وب‌گاه مجزا است.\n\n'''[$1 ادامه تا $1]'''",

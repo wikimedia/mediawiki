@@ -4013,7 +4013,7 @@
 	"mute-preferences": "Keutamaan bisu",
 	"revid": "semakan $1",
 	"pageid": "ID laman $1",
-	"rawhtml-notallowed": "Teg &lt;html&gt; tidak boleh digunakan luar laman biasa.",
+	"rawhtml-notallowed": "Teg <html> tidak boleh digunakan luar laman biasa.",
 	"gotointerwiki": "Meninggalkan {{SITENAME}}",
 	"gotointerwiki-invalid": "Tajuk yang ditentukan tidak sah.",
 	"gotointerwiki-external": "Anda akan meninggalkan {{SITENAME}} untuk melawati [[$2]], iaitu tapak web yang berasingan.\n\n'''[$1 Teruskan ke $1]'''",

@@ -3908,7 +3908,7 @@
 	"mute-preferences": "Искәртүләрсез режим көйләнмәләре",
 	"revid": "юрама $1",
 	"pageid": "бит ID $1",
-	"rawhtml-notallowed": "&lt;html&gt; теглары гадәти битләрдә генә кулланыла ала.",
+	"rawhtml-notallowed": "<html> теглары гадәти битләрдә генә кулланыла ала.",
 	"gotointerwiki": "{{SITENAME}} исемле сайттан чыгу",
 	"gotointerwiki-invalid": "Дөрес булмаган башисем күрсәтелгән.",
 	"gotointerwiki-external": "Сез үзгә сайт булган [[$2]] гә күчү өчен {{SITENAME}} исемле сайттан чыгарга җыенасыз.\n\n'''[$1 дән $1 гә күчү]'''",

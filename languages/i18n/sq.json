@@ -3140,7 +3140,7 @@
 	"mute-preferences": "Hesht parapëlqimet",
 	"revid": "versioni $1",
 	"pageid": "ID e faqes $1",
-	"rawhtml-notallowed": "&lt;html&gt; etiketat nuk mund të përdorën jashtë faqeve normale.",
+	"rawhtml-notallowed": "<html> etiketat nuk mund të përdorën jashtë faqeve normale.",
 	"gotointerwiki": "Po largoheni nga {{SITENAME}}",
 	"gotointerwiki-invalid": "Tiulli i dhënë nuk është i rregullt.",
 	"undelete-cantedit": "Nuk mund ta çfshini këtë faqe pasi që nuk lejoheni ta redaktoni këtë faqe.",

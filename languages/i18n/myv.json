@@ -3643,7 +3643,7 @@
 	"mute-preferences": "Ладямс ёвтамотнень аулемачинть",
 	"revid": "версия $1",
 	"pageid": "$1 лопань ID",
-	"rawhtml-notallowed": "&lt;html&gt; прявт тешкстнэ меревить тевс нолдамс ансяк эрьвачинь лопатнесэ.",
+	"rawhtml-notallowed": "<html> прявт тешкстнэ меревить тевс нолдамс ансяк эрьвачинь лопатнесэ.",
 	"gotointerwiki": "Кадтано {{grammar:accusative|{{SITENAME}}}}…",
 	"gotointerwiki-invalid": "Путозь аволь виде прявт лем.",
 	"gotointerwiki-external": "Тон кадат {{grammar:accusative|{{SITENAME}}}} [[$2]] лия сайтэнь ванномга.\n\n'''[$1 Ютамс $1-с]'''",

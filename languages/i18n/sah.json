@@ -3626,7 +3626,7 @@
 	"mute-preferences": "Биллэрии баардылааһына",
 	"revid": "$1 торум",
 	"pageid": "$1 сирэй нүөмэрэ",
-	"rawhtml-notallowed": "&lt;html&gt; тиэктэр көннөрү сирэйдэр эрэ истэригэр туттулаллар.",
+	"rawhtml-notallowed": "<html> тиэктэр көннөрү сирэйдэр эрэ истэригэр туттулаллар.",
 	"gotointerwiki": "{{SITENAME}} сиртэн тахсарга",
 	"gotointerwiki-invalid": "Аат алҕастаах.",
 	"gotointerwiki-external": "[[$2]] диэн сиргэ бараары {{SITENAME}} сиртэн тахсан эрэҕин.\n\n'''[$1 Манна $1 көс]'''",

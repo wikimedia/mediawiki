@@ -3960,7 +3960,7 @@
 	"mute-preferences": "Pustaka bisu",
 	"revid": "révisi $1",
 	"pageid": "ID kaca $1",
-	"rawhtml-notallowed": "Tanda &lt;html&gt; tan prasida kaanggén ring jaba kaca normal.",
+	"rawhtml-notallowed": "Tanda <html> tan prasida kaanggén ring jaba kaca normal.",
 	"gotointerwiki": "Medal {{SITENAME}}",
 	"gotointerwiki-invalid": "Murda sané katentuang tan patut.",
 	"gotointerwiki-external": "Ragané pacang medalin {{SITENAME}} antuk ngarauhin [[$2]], sané marupa situs liyanan.\n\n'''[$1 Lanturang nuju $1]'''",

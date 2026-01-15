@@ -3989,7 +3989,7 @@
 	"mute-preferences": "Preferénse in sciô scilénçio",
 	"revid": "versción $1",
 	"pageid": "ID da pàgina $1",
-	"rawhtml-notallowed": "I etichétte &lt;html&gt; no pêuan êse dêuviæ fêua de pàgine normâle.",
+	"rawhtml-notallowed": "I etichétte <html> no pêuan êse dêuviæ fêua de pàgine normâle.",
 	"gotointerwiki": "T'ê aprêuvo a lasciâ {{SITENAME}}",
 	"gotointerwiki-invalid": "O tìtolo specificòu o no l'é vàlido.",
 	"gotointerwiki-external": "T'ê aprêuvo a lasciâ {{SITENAME}} pe vixitâ [[$2]], ch'o l'é 'n âtro scîto web.\n\n'''[$1 Và avànti in sce $1]'''",

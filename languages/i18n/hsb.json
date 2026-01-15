@@ -1778,6 +1778,7 @@
 	"enotif_lastdiff": "Hlej $1 za tutu změnu.",
 	"enotif_anon_editor": "anonymny wužiwar $1",
 	"enotif_body": "Luby $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\n\nZjeće wobdźěłarja: $PAGESUMMARY $PAGEMINOREDIT\n\nStaj so z wobdźěłarjom do zwiska:\ne-mejl: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nNjebudu žane druhe zdźělenki w padźe dalšeje aktiwity, chibazo wopytaš tutu stronu. mjeztym zo sy přizjewjeny.\nMóžeš tež zdźělenske marki za wšě swoje wobkedźbowane strony we swojich wobkedźbowankach wróćo stajić.\n\nTwój přećelny zdźělenski system {{GRAMMAR:genitiw|{{SITENAME}}}}\n\n--\nZo by swoje nastajenja za e-mejlowe zdźělenja změnił, wopytaj\n{{canonicalurl:{{#special:Preferences}}}}\n\nZo by nastajenja swojich wobkedźbowankow změnił, wopytaj\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nZo by stronu ze swojich wobkedźbowankow zhašał, wopytaj\n$UNWATCHURL\n\n\nWotmołwy a dalša pomoc:\n$HELPPAGE",
+	"enotif_minoredit": "To je snadna změna",
 	"deletepage-submit": "Stronu zhašeć",
 	"confirm": "Wobkrućić",
 	"excontent": "wobsah běše: '$1'",
