@@ -50,10 +50,10 @@ class SpecialRestSandbox extends SpecialPage {
 		return 'wiki';
 	}
 
-	private function getSpecUrl( ?string $apiId ): ?string {
+	private function getSpecUrl( string $apiId ): ?string {
 		$apiSpecs = $this->getApiSpecs();
 
-		if ( $apiId !== null && $apiId !== '' ) {
+		if ( $apiId !== '' ) {
 			$spec = $apiSpecs[$apiId] ?? null;
 		} else {
 			$spec = reset( $apiSpecs ) ?: null;
@@ -72,7 +72,7 @@ class SpecialRestSandbox extends SpecialPage {
 		$out = $this->getOutput();
 		$this->addHelpLink( 'Help:RestSandbox' );
 
-		$apiId = $this->getRequest()->getText( 'api', $sub ?? '' );
+		$apiId = $this->getRequest()->getRawVal( 'api' ) ?? $sub ?? '';
 		$specUrl = $this->getSpecUrl( $apiId );
 
 		$apiSpecs = $this->getApiSpecs();
@@ -98,7 +98,7 @@ class SpecialRestSandbox extends SpecialPage {
 			$out->addHTML( Html::noticeBox( $out->msg( 'restsandbox-disclaimer' )->parse() ) );
 		}
 
-		$this->showForm( $apiSpecs );
+		$this->showForm( $apiSpecs, $apiId );
 
 		if ( !$specUrl ) {
 			$out->addHTML( Html::errorBox(
@@ -137,7 +137,7 @@ class SpecialRestSandbox extends SpecialPage {
 		$out->addHTML( Html::closeElement( 'div' ) ); // #mw-restsandbox
 	}
 
-	private function showForm( array $apiSpecs ) {
+	private function showForm( array $apiSpecs, string $apiId ) {
 		$apis = [];
 
 		foreach ( $apiSpecs as $key => $spec ) {
@@ -162,7 +162,8 @@ class SpecialRestSandbox extends SpecialPage {
 				'type' => 'select',
 				'name' => 'api',
 				'label-message' => 'restsandbox-select-api',
-				'options' => $apis
+				'options' => $apis,
+				'default' => $apiId
 			],
 			'title' => [
 				'type' => 'hidden',
