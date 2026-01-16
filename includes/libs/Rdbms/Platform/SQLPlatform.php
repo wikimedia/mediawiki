@@ -1169,7 +1169,7 @@ class SQLPlatform implements ISQLPlatform {
 	 * This method is useful for TEMPORARY table tracking. In MySQL, temp tables with identical
 	 * names can co-exist on different databases, which can be done via CREATE and USE. Note
 	 * that SQLite/PostgreSQL do not allow changing the database within a session. This method
-	 * omits the schema identifier for several reasons:
+	 * omits the schema identifier and set it to empty string for several reasons:
 	 *   - MySQL/MariaDB do not support schemas at all.
 	 *   - SQLite/PostgreSQL put all TEMPORARY tables in the same schema (TEMP and pgtemp,
 	 *     respectively). When these engines resolve a table reference, they first check for
@@ -1184,13 +1184,13 @@ class SQLPlatform implements ISQLPlatform {
 	 *
 	 * @internal only to be used inside rdbms library
 	 * @param string $table Table name
-	 * @return array{0:string|null,1:string} (unquoted database name, unquoted prefixed table name)
+	 * @return array{0:string,1:string} (unquoted database name, unquoted prefixed table name)
 	 */
 	public function getDatabaseAndTableIdentifier( string $table ) {
 		$components = $this->qualifiedTableComponents( $table );
 		switch ( count( $components ) ) {
 			case 1:
-				return [ $this->currentDomain->getDatabase(), $components[0] ];
+				return [ $this->currentDomain->getDatabase() ?? '', $components[0] ];
 			case 2:
 				return $components;
 			default:
