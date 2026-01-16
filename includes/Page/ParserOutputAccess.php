@@ -591,6 +591,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 		}
 
 		if ( $doSample ) {
+			# Keep these labels in sync with those in RefreshLinksJob
 			$labels = [
 				'source' => 'ParserOutputAccess',
 				'type' => $previousOutput === null ? 'full' : 'selective',

@@ -428,6 +428,7 @@ class RefreshLinksJob extends Job {
 		// feasibility of Parsoid selective update
 		if ( $doSample ) {
 			$content = $revision->getContent( SlotRecord::MAIN );
+			# Keep these labels in sync with those in ParserOutputAccess
 			$labels = [
 				'source' => 'RefreshLinksJob',
 				'type' => $cachedOutput === null ? 'full' : 'selective',
@@ -436,6 +437,7 @@ class RefreshLinksJob extends Job {
 				'opportunistic' => empty( $this->params['isOpportunistic'] ) ? 'false' : 'true',
 				'wiki' => WikiMap::getCurrentWikiId(),
 				'model' => $content ? $content->getModel() : 'unknown',
+				'postproc' => $parserOptions->getPostproc() ? 'true' : 'false',
 			];
 			$stats
 				->getCounter( 'ParserCache_selective_total' )
