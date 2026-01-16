@@ -3141,26 +3141,28 @@ class Language implements Bcp47Code {
 	 * See $separatorTransformTable on MessageIs.php for
 	 * the , => . and . => , implementation.
 	 *
-	 * @param string|int|float $number Expected to be a pre-formatted (e.g. leading zeros, number
-	 *  of decimal places) numeric string. Any non-string will be cast to string.
+	 * @param string|int|float $number The numeric string to be formatted, or integer
+	 *  or a floating point number.
 	 * @return string
 	 */
 	public function formatNum( $number ) {
-		return $this->formatNumInternal( (string)$number, false, false );
+		return $this->formatNumInternal( $number, false, false );
 	}
 
 	/**
 	 * Internal implementation function, shared between formatNum and formatNumNoSeparators.
 	 *
-	 * @param string $number The stringification of a valid PHP number
+	 * @param string|int|float $number Expected to be a pre-formatted (e.g. leading zeros, number
+	 *  of decimal places) numeric string. Any non-string will be cast to string.
 	 * @param bool $noTranslate Whether to translate digits and separators
 	 * @param bool $noSeparators Whether to add separators
 	 * @return string
 	 */
-	private function formatNumInternal(
-		string $number, bool $noTranslate, bool $noSeparators
-	): string {
-		$translateNumerals = $this->config->get( MainConfigNames::TranslateNumerals );
+	private function formatNumInternal( $number, bool $noTranslate, bool $noSeparators ): string {
+		// From PHP 8.5, we can't cast NAN to string, and since the method
+		// accepts float, there's no way to exclude NAN, which is subtype.
+		// So handle it explicitly.
+		$number = is_float( $number ) && is_nan( $number ) ? 'NAN' : (string)$number;
 
 		if ( $number === '' ) {
 			return $number;
@@ -3264,7 +3266,7 @@ class Language implements Bcp47Code {
 		}
 
 		if ( !$noTranslate ) {
-			if ( $translateNumerals ) {
+			if ( $this->config->get( MainConfigNames::TranslateNumerals ) ) {
 				// This is often unnecessary: PHP's NumberFormatter will often
 				// do the digit transform itself (T267614)
 				$s = $this->digitTransformTable();
@@ -3292,13 +3294,13 @@ class Language implements Bcp47Code {
 	/**
 	 * Front-end for non-commafied formatNum
 	 *
-	 * @param string|int|float $number The string to be formatted, should be an integer
+	 * @param string|int|float $number The numeric string to be formatted, or integer
 	 *        or a floating point number.
 	 * @since 1.21
 	 * @return string
 	 */
 	public function formatNumNoSeparators( $number ) {
-		return $this->formatNumInternal( (string)$number, false, true );
+		return $this->formatNumInternal( $number, false, true );
 	}
 
 	/**
