@@ -517,7 +517,7 @@
 	"apihelp-query+categorymembers-param-limit": "Maksymalna liczba zwracanych wyników.",
 	"apihelp-query+categorymembers-param-sort": "Sortowanie według właściwości.",
 	"apihelp-query+categorymembers-param-dir": "W jakim kierunku sortować.",
-	"apihelp-query+contributors-summary": "Pozyskuje listę zalogowanych edytorów i liczbę niezalogowanych edytorów strony.",
+	"apihelp-query+contributors-summary": "Pozyskuje listę zarejestrowanych edytorów i liczbę anonimowych edytorów strony.",
 	"apihelp-query+deletedrevisions-summary": "Pozyskaj informacje o usuniętej wersji.",
 	"apihelp-query+deletedrevisions-param-tag": "Pokazuj tylko zmiany oznaczone tym znacznikiem.",
 	"apihelp-query+deletedrevisions-param-user": "Pokazuj tylko zmiany dokonane przez tego użytkownika.",

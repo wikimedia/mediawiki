@@ -98,7 +98,7 @@
 	"apihelp-feedrecentchanges-param-limit": "Số kết quả lớn nhất để cho ra.",
 	"apihelp-feedrecentchanges-param-hideminor": "Ẩn thay đổi nhỏ.",
 	"apihelp-feedrecentchanges-param-hidebots": "Ẩn thay đổi do bot thực hiện.",
-	"apihelp-feedrecentchanges-param-hideanons": "Ẩn thay đổi do người dùng vô danh thực hiện.",
+	"apihelp-feedrecentchanges-param-hideanons": "Ẩn thay đổi của người dùng chưa đăng nhập.",
 	"apihelp-feedrecentchanges-param-hideliu": "Ẩn thay đổi do người dùng đăng nhập thực hiện.",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "Ẩn thay đổi đã tuần tra.",
 	"apihelp-feedrecentchanges-param-hidemyself": "Ẩn thay đổi do người dùng hiện tại thực hiện.",
