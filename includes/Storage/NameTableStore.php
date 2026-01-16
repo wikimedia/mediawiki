@@ -193,7 +193,7 @@ class NameTableStore {
 
 	/**
 	 * Get the name of the given id.
-	 * If the id doesn't exist this will throw.
+	 * If the id doesn't exist, this will throw.
 	 * This should be used in cases where we believe the id already exists.
 	 *
 	 * Note: Calls to this method will result in a primary DB select for non existing IDs.
@@ -213,13 +213,6 @@ class NameTableStore {
 			$this->getCacheKey(),
 			$this->cacheTTL,
 			function ( $oldValue, &$ttl, &$setOpts ) use ( $id, $fname ) {
-				// Check if cached value is up-to-date enough to have $id
-				if ( is_array( $oldValue ) && array_key_exists( $id, $oldValue ) ) {
-					// Completely leave the cache key alone
-					$ttl = WANObjectCache::TTL_UNCACHEABLE;
-					// Use the old value
-					return $oldValue;
-				}
 				// Regenerate from replica DB, and primary DB if needed
 				foreach ( [ DB_REPLICA, DB_PRIMARY ] as $source ) {
 					// Log a fallback to primary
@@ -241,7 +234,16 @@ class NameTableStore {
 
 				return $table;
 			},
-			[ 'minAsOf' => INF ] // force callback run
+			[ 'touchedCallback' => static function ( $oldValue ) use ( $id ) {
+				// Check if cached value is up-to-date enough to have $id. If the cached
+				// value doesn't have the specified ID, consider it stale.
+				if ( !is_array( $oldValue ) || !array_key_exists( $id, $oldValue ) ) {
+					// force callback run
+					return INF;
+				}
+
+				return null;
+			} ]
 		);
 
 		$this->tableCache = $table;
