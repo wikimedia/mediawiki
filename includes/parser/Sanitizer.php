@@ -1311,7 +1311,9 @@ class Sanitizer {
 		if ( isset( $matches[1] ) ) {
 			return self::decodeEntity( $matches[1] );
 		} elseif ( isset( $matches[2] ) ) {
-			return self::decodeChar( intval( $matches[2] ) );
+			// Value is user provided string and may exceed native int bounds.
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			return self::decodeChar( @intval( $matches[2] ) );
 		} elseif ( isset( $matches[3] ) ) {
 			$point = hexdec( $matches[3] );
 			// hexdec() might return a float if the string is too long
