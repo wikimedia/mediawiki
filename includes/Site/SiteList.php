@@ -150,7 +150,10 @@ class SiteList extends ArrayObject {
 		}
 
 		$this->byGlobalId[$site->getGlobalId()] = $index;
-		$this->byInternalId[$site->getInternalId()] = $index;
+		$internalId = $site->getInternalId();
+		if ( $internalId !== null ) {
+			$this->byInternalId[$internalId] = $index;
+		}
 
 		$ids = $site->getNavigationIds();
 		foreach ( $ids as $navId ) {
@@ -175,7 +178,10 @@ class SiteList extends ArrayObject {
 			$site = $this->offsetGet( $index );
 
 			unset( $this->byGlobalId[$site->getGlobalId()] );
-			unset( $this->byInternalId[$site->getInternalId()] );
+			$internalId = $site->getInternalId();
+			if ( $internalId !== null ) {
+				unset( $this->byInternalId[$internalId] );
+			}
 
 			$ids = $site->getNavigationIds();
 			foreach ( $ids as $navId ) {
