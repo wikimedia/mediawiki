@@ -381,7 +381,7 @@ class JobQueueGroup {
 				$conf['idGenerator'] = $this->globalIdGenerator;
 
 				$queue = JobQueue::factory( $conf );
-				$loc = $queue->getCoalesceLocationInternal();
+				$loc = $queue->getCoalesceLocationInternal() ?? '';
 				if ( !isset( $this->coalescedQueues[$loc] ) ) {
 					$this->coalescedQueues[$loc]['queue'] = $queue;
 					$this->coalescedQueues[$loc]['types'] = [];
