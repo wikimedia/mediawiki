@@ -105,7 +105,7 @@
 		"phpunit/phpunit": "9.6.21",
 		"psy/psysh": "^0.12.3",
 		"seld/jsonlint": "1.11.0",
-		"wikimedia/alea": "1.0.0",
+		"wikimedia/alea": "1.0.1",
 		"wikimedia/langconv": "^0.5.0",
 		"wikimedia/testing-access-wrapper": "^3.0.0 || ^4.0.0",
 		"wmde/hamcrest-html-matchers": "^1.0.0"
