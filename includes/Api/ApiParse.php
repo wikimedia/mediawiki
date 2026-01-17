@@ -597,26 +597,27 @@ class ApiParse extends ApiBase {
 			$result_array['showtoc'] = $p_result->getOutputFlag( ParserOutputFlags::SHOW_TOC );
 		}
 		if ( isset( $prop['parsewarnings'] ) || isset( $prop['parsewarningshtml'] ) ) {
-			$warnings = array_map(
+			$warningMsgs = array_map(
 				static fn ( $mv ) => Message::newFromSpecifier( $mv )
 					->page( $titleObj )
 					// Note that we use ContentLanguage here
-					->inContentLanguage()
-					->text(),
+					->inContentLanguage(),
 				$p_result->getWarningMsgs()
 			);
-			if ( $warnings === [] ) {
+			if ( $warningMsgs === [] ) {
 				// Backward compatibilty with cached ParserOutput from
 				// MW <= 1.45 which didn't store the MessageValues (T343048)
-				$warnings = $p_result->getWarnings();
+				$warningMsgs = array_map(
+					static fn ( $warning ) => new RawMessage( '$1', [ $warning ] ),
+					$p_result->getWarnings()
+				);
 			}
 			if ( isset( $prop['parsewarnings'] ) ) {
+				$warnings = array_map( static fn ( $msg ) => $msg->text(), $warningMsgs );
 				$result_array['parsewarnings'] = $warnings;
 			}
 			if ( isset( $prop['parsewarningshtml'] ) ) {
-				$warningsHtml = array_map( static function ( $warning ) {
-					return ( new RawMessage( '$1', [ $warning ] ) )->parse();
-				}, $warnings );
+				$warningsHtml = array_map( static fn ( $msg ) => $msg->parse(), $warningMsgs );
 				$result_array['parsewarningshtml'] = $warningsHtml;
 			}
 		}
