@@ -5,10 +5,10 @@ namespace MediaWiki\Tests\Integration\JobQueue;
 use MediaWiki\JobQueue\JobQueue;
 use MediaWiki\JobQueue\JobQueueDB;
 use MediaWiki\JobQueue\JobSpecification;
+use MediaWiki\Profiler\Profiler;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWikiIntegrationTestCase;
-use Profiler;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 

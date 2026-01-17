@@ -8,7 +8,7 @@ namespace MediaWiki\Shell;
 
 use Exception;
 use MediaWiki\Exception\ShellDisabledError;
-use Profiler;
+use MediaWiki\Profiler\Profiler;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Shellbox\Command\UnboxedCommand;

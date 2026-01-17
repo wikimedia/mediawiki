@@ -3,6 +3,9 @@
  * @license GPL-2.0-or-later
  * @file
  */
+
+namespace MediaWiki\Profiler;
+
 use Wikimedia\ScopedCallback;
 
 /**
@@ -26,3 +29,6 @@ class SectionProfileCallback extends ScopedCallback {
 		$this->profiler->profileOutInternal( $this->section );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SectionProfileCallback::class, 'SectionProfileCallback' );

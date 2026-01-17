@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Profiler;
+
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
 
@@ -288,3 +290,6 @@ class SectionProfiler {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SectionProfiler::class, 'SectionProfiler' );

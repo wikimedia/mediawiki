@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Profiler;
+
 /**
  * Profiler that only tracks explicit profiling sections
  *
@@ -83,3 +85,6 @@ class ProfilerSectionOnly extends Profiler {
 		return implode( "\n", $out );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ProfilerSectionOnly::class, 'ProfilerSectionOnly' );

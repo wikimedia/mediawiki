@@ -7,7 +7,7 @@
 namespace MediaWiki\ResourceLoader;
 
 use MediaWiki\MediaWikiEntryPoint;
-use Profiler;
+use MediaWiki\Profiler\Profiler;
 
 /**
  * Entry point implementation for @ref ResourceLoader, which serves static CSS/JavaScript

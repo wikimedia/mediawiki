@@ -6,6 +6,11 @@
  * @file
  */
 
+namespace MediaWiki\Profiler;
+
+use RuntimeException;
+use XhprofData;
+
 /**
  * Profiler that captures all function calls from the XHProf PHP extension.
  *
@@ -238,3 +243,6 @@ class ProfilerXhprof extends Profiler {
 		return $this->getXhprofData()->getRawData();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ProfilerXhprof::class, 'ProfilerXhprof' );

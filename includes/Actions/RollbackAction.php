@@ -24,11 +24,11 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\RollbackPageFactory;
+use MediaWiki\Profiler\Profiler;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\Watchlist\WatchlistManager;
-use Profiler;
 
 /**
  * User interface for the rollback action

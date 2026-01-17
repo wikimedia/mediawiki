@@ -10,7 +10,7 @@ use MappedIterator;
 use MediaWiki\JobQueue\Exceptions\JobQueueConnectionError;
 use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\MediaWikiServices;
-use Profiler;
+use MediaWiki\Profiler\Profiler;
 use stdClass;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\DBConnectionError;

@@ -4,9 +4,12 @@
  * @file
  */
 
+namespace MediaWiki\Profiler;
+
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
+use UnexpectedValueException;
 use Wikimedia\Rdbms\TransactionProfiler;
 
 /**
@@ -149,7 +152,7 @@ abstract class Profiler {
 	/**
 	 * Get all usable outputs.
 	 *
-	 * @return ProfilerOutput[]
+	 * @return \ProfilerOutput[]
 	 * @since 1.25
 	 */
 	private function getOutputs() {
@@ -306,3 +309,6 @@ abstract class Profiler {
 	 */
 	abstract public function getOutput();
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( Profiler::class, 'Profiler' );

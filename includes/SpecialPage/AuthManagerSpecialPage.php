@@ -16,12 +16,12 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
+use MediaWiki\Profiler\Profiler;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\Token;
 use MediaWiki\Status\Status;
 use MWCryptRand;
-use Profiler;
 use StatusValue;
 use UnexpectedValueException;
 

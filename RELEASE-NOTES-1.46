@@ -512,6 +512,14 @@ because of Phabricator reports.
     - RejectParserCacheValueHook
   - Password related hook: MediaWiki\Hook => MediaWiki\Password\Hook
     - PasswordPoliciesForUserHook
+  - MediaWiki\Profiler
+    - ProfilerSectionOnly
+    - ProfilerXhprof
+    - Profiler
+    - SectionProfileCallback
+    - ProfilerStub
+    - ProfilerExcimer
+    - SectionProfiler
   - RCFeed related hook: MediaWiki\Hook => MediaWiki\RCFeed\Hook
     - IRCLineURLHook
   - RecentChanges related hooks: MediaWiki\Hook => MediaWiki\RecentChanges\Hook

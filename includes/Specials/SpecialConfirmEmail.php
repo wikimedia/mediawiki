@@ -13,12 +13,12 @@ use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Profiler\Profiler;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
-use Profiler;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\ScopedCallback;
 

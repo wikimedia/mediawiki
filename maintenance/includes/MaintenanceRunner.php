@@ -11,8 +11,8 @@ use MediaWiki\Language\LCStoreNull;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Profiler\Profiler;
 use MediaWiki\Settings\SettingsBuilder;
-use Profiler;
 use ReflectionClass;
 use Throwable;
 

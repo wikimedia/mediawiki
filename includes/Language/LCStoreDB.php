@@ -9,7 +9,7 @@ namespace MediaWiki\Language;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\MediaWikiServices;
-use Profiler;
+use MediaWiki\Profiler\Profiler;
 use RuntimeException;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;

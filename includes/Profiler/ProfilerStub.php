@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Profiler;
+
 /**
  * Stub profiler that does nothing.
  *
@@ -35,3 +37,6 @@ class ProfilerStub extends Profiler {
 	public function logDataPageOutputOnly() {
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ProfilerStub::class, 'ProfilerStub' );

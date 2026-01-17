@@ -7,9 +7,9 @@
 namespace MediaWiki\Specials;
 
 use LogicException;
+use MediaWiki\Profiler\Profiler;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\User\UserFactory;
-use Profiler;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\ScopedCallback;
 

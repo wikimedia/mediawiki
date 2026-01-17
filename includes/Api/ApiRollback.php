@@ -13,12 +13,12 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\Profiler\Profiler;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
-use Profiler;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

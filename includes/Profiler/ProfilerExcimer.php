@@ -4,6 +4,10 @@
  * @file
  */
 
+namespace MediaWiki\Profiler;
+
+use ExcimerProfiler;
+
 /**
  * @ingroup Profiler
  * @since 1.33
@@ -166,3 +170,6 @@ class ProfilerExcimer extends Profiler {
 		return $result;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ProfilerExcimer::class, 'ProfilerExcimer' );
