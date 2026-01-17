@@ -27,7 +27,6 @@ use StatusValue;
 class EditFilterMergedContentHookConstraint implements IEditConstraint {
 
 	private readonly HookRunner $hookRunner;
-	private Status $status;
 	private string $hookError = '';
 
 	/**
@@ -49,60 +48,55 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 		private readonly User $hookUser,
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->status = Status::newGood();
 	}
 
-	public function checkConstraint(): string {
+	public function checkConstraint(): StatusValue {
+		$status = Status::newGood();
+
 		$hookResult = $this->hookRunner->onEditFilterMergedContent(
 			$this->hookContext,
 			$this->content,
-			$this->status,
+			$status,
 			$this->summary,
 			$this->hookUser,
 			$this->minorEdit
 		);
 		if ( !$hookResult ) {
 			// Error messages etc. could be handled within the hook...
-			if ( $this->status->isGood() ) {
-				$this->status->fatal( 'hookaborted' );
+			if ( $status->isGood() ) {
+				$status->fatal( 'hookaborted' );
 				// Not setting $this->hookError here is a hack to allow the hook
 				// to cause a return to the edit page without $this->hookError
 				// being set. This is used by ConfirmEdit to display a captcha
 				// without any error message cruft.
 			} else {
-				if ( !$this->status->getMessages() ) {
+				if ( !$status->getMessages() ) {
 					// Provide a fallback error message if none was set
-					$this->status->fatal( 'hookaborted' );
+					$status->fatal( 'hookaborted' );
 				}
-				$this->hookError = $this->formatStatusErrors( $this->status );
+				$this->hookError = $this->formatStatusErrors( $status );
 			}
 			// Use the existing $status->value if the hook set it
-			if ( !$this->status->value ) {
+			if ( !$status->value ) {
 				// T273354: Should be AS_HOOK_ERROR_EXPECTED to display error message
-				$this->status->value = self::AS_HOOK_ERROR_EXPECTED;
+				$status->value = self::AS_HOOK_ERROR_EXPECTED;
 			}
-			return self::CONSTRAINT_FAILED;
+			return $status;
 		}
 
-		if ( !$this->status->isOK() ) {
+		if ( !$status->isOK() ) {
 			// ...or the hook could be expecting us to produce an error
 			// FIXME this sucks, we should just use the Status object throughout
-			if ( !$this->status->getMessages() ) {
+			if ( !$status->getMessages() ) {
 				// Provide a fallback error message if none was set
-				$this->status->fatal( 'hookaborted' );
+				$status->fatal( 'hookaborted' );
 			}
-			$this->hookError = $this->formatStatusErrors( $this->status );
-			$this->status->value = self::AS_HOOK_ERROR_EXPECTED;
-			return self::CONSTRAINT_FAILED;
+			$this->hookError = $this->formatStatusErrors( $status );
+			$status->value = self::AS_HOOK_ERROR_EXPECTED;
+			return $status;
 		}
 
-		return self::CONSTRAINT_PASSED;
-	}
-
-	public function getLegacyStatus(): StatusValue {
-		// This returns a Status instead of a StatusValue since a Status object is
-		// used in the hook
-		return $this->status;
+		return Status::newGood();
 	}
 
 	/**

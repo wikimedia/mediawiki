@@ -29,20 +29,12 @@ class UnicodeConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): string {
-		if ( $this->input === self::VALID_UNICODE ) {
-			return self::CONSTRAINT_PASSED;
-		}
-		return self::CONSTRAINT_FAILED;
-	}
-
-	public function getLegacyStatus(): StatusValue {
-		$statusValue = StatusValue::newGood();
+	public function checkConstraint(): StatusValue {
 		if ( $this->input !== self::VALID_UNICODE ) {
-			$statusValue->fatal( 'unicode-support-fail' );
-			$statusValue->value = self::AS_UNICODE_NOT_SUPPORTED;
+			return StatusValue::newGood( self::AS_UNICODE_NOT_SUPPORTED )
+				->fatal( 'unicode-support-fail' );
 		}
-		return $statusValue;
+		return StatusValue::newGood();
 	}
 
 }

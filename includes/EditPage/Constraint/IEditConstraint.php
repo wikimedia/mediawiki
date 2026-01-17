@@ -18,26 +18,10 @@ use StatusValue;
  */
 interface IEditConstraint extends IEditObject {
 
-	/** @var string - Constraint passed, no error */
-	public const CONSTRAINT_PASSED = 'constraint-passed';
-
-	/** @var string - Constraint failed, use getLegacyStatus to see the failure */
-	public const CONSTRAINT_FAILED = 'constraint-failed';
-
 	/**
-	 * @return string whether the constraint passed, either CONSTRAINT_PASSED or CONSTRAINT_FAILED
+	 * @return StatusValue A status indicating failure or success. The value is an IEditObject constant. A
+	 * status that is not OK indicates a failure and will prevent saving the page.
 	 */
-	public function checkConstraint(): string;
-
-	/**
-	 * Get the legacy status for failure (or success)
-	 *
-	 * Called "legacy" status because this part of the interface should probably be redone;
-	 * Currently Status objects have a value of an IEditObject constant, as well as a fatal
-	 * message
-	 *
-	 * @return StatusValue
-	 */
-	public function getLegacyStatus(): StatusValue;
+	public function checkConstraint(): StatusValue;
 
 }

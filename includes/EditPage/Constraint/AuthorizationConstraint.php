@@ -19,8 +19,6 @@ use StatusValue;
  */
 class AuthorizationConstraint implements IEditConstraint {
 
-	private PermissionStatus $status;
-
 	public function __construct(
 		private readonly Authority $performer,
 		private readonly PageIdentity $target,
@@ -28,18 +26,18 @@ class AuthorizationConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): string {
-		$this->status = PermissionStatus::newEmpty();
+	public function checkConstraint(): StatusValue {
+		$status = PermissionStatus::newEmpty();
 
-		if ( $this->new && !$this->performer->authorizeWrite( 'create', $this->target, $this->status ) ) {
-			return self::CONSTRAINT_FAILED;
+		if ( $this->new && !$this->performer->authorizeWrite( 'create', $this->target, $status ) ) {
+			return $this->populateStatusValue( $status );
 		}
 
-		if ( !$this->performer->authorizeWrite( 'edit', $this->target, $this->status ) ) {
-			return self::CONSTRAINT_FAILED;
+		if ( !$this->performer->authorizeWrite( 'edit', $this->target, $status ) ) {
+			return $this->populateStatusValue( $status );
 		}
 
-		return self::CONSTRAINT_PASSED;
+		return $status;
 	}
 
 	/**
@@ -47,9 +45,7 @@ class AuthorizationConstraint implements IEditConstraint {
 	 * value, it is still possible to set one, which avoids duplicating error logic to EditPage.php (see
 	 * gerrit change 1226380).
 	 */
-	public function getLegacyStatus(): StatusValue {
-		$status = $this->status;
-
+	private function populateStatusValue( PermissionStatus $status ): PermissionStatus {
 		if ( $status->isGood() ) {
 			return $status;
 		}

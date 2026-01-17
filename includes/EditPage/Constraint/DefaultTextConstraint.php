@@ -21,8 +21,6 @@ use Wikimedia\Message\MessageValue;
  */
 class DefaultTextConstraint implements IEditConstraint {
 
-	private string $result;
-
 	/**
 	 * @param Title $title
 	 * @param bool $allowBlank
@@ -37,7 +35,7 @@ class DefaultTextConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): string {
+	public function checkConstraint(): StatusValue {
 		$defaultMessageText = $this->title->getDefaultMessageText();
 		if ( $this->title->getNamespace() === NS_MEDIAWIKI && $defaultMessageText !== false ) {
 			$defaultText = $defaultMessageText;
@@ -46,23 +44,12 @@ class DefaultTextConstraint implements IEditConstraint {
 		}
 
 		if ( !$this->allowBlank && $this->userProvidedText === $defaultText ) {
-			$this->result = self::CONSTRAINT_FAILED;
-		} else {
-			$this->result = self::CONSTRAINT_PASSED;
-		}
-		return $this->result;
-	}
-
-	public function getLegacyStatus(): StatusValue {
-		$statusValue = StatusValue::newGood();
-		if ( $this->result === self::CONSTRAINT_FAILED ) {
-			$statusValue->fatal(
+			return StatusValue::newGood( self::AS_BLANK_ARTICLE )->fatal(
 				'blankarticle',
 				MessageValue::new( $this->submitButtonLabel ),
 			);
-			$statusValue->value = self::AS_BLANK_ARTICLE;
 		}
-		return $statusValue;
+		return StatusValue::newGood();
 	}
 
 }

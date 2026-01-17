@@ -8,13 +8,12 @@ namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 
 use EditConstraintTestTrait;
 use MediaWiki\Content\Content;
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\EditPage\Constraint\RedirectConstraint;
 use MediaWiki\EditPage\IEditObject;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Title\Title;
 use MediaWikiUnitTestCase;
-use StatusValue;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -26,20 +25,6 @@ use Wikimedia\Message\MessageValue;
  */
 class RedirectConstraintTest extends MediaWikiUnitTestCase {
 	use EditConstraintTestTrait;
-
-	private function assertRedirectConstraintFailed( RedirectConstraint $constraint, int $statusCode ): void {
-		$this->assertSame(
-			IEditConstraint::CONSTRAINT_FAILED,
-			$constraint->checkConstraint()
-		);
-
-		// use status field instead of getLegacyStatus to avoid having to mock more objects used in that function
-		$status = $constraint->status;
-		$statusValue = StatusValue::newGood( $status );
-		$statusValue->fatal( '' );
-		$this->assertStatusNotGood( $statusValue );
-		$this->assertStatusValue( $statusCode, $statusValue );
-	}
 
 	private function getContent( ?Title $target = null ): Content {
 		$content = $this->createMock( Content::class );
@@ -68,7 +53,10 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 		Content $originalContent,
 		Content $newContent,
 		?Title $title = null,
+		?Title $redirectLookupResult = null,
 	): RedirectConstraint {
+		$redirectLookup = $this->createMock( RedirectLookup::class );
+		$redirectLookup->method( 'getRedirectTarget' )->willReturn( $redirectLookupResult );
 		return new RedirectConstraint(
 			null,
 			$newContent,
@@ -76,7 +64,7 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 			$title ?? $this->createMock( Title::class ),
 			MessageValue::new( '' ),
 			null,
-			$this->createMock( RedirectLookup::class )
+			$redirectLookup
 		);
 	}
 
@@ -105,7 +93,7 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 			$this->getContent(),
 			$this->getContent( $this->createTargetTitle( false, false ) )
 		);
-		$this->assertRedirectConstraintFailed(
+		$this->assertConstraintFailed(
 			$constraint,
 			IEditObject::AS_BROKEN_REDIRECT
 		);
@@ -123,11 +111,23 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testDoubleRedirectFailure() {
 		// new content is a double redirect, but existing content is not
+		$newContent = $this->getContent( $this->createTargetTitle( true, true ) );
+
+		$suggestedRedirectContent = $this->createMock( Content::class );
+		$contentHandler = $this->createMock( ContentHandler::class );
+		$contentHandler->method( 'makeRedirectContent' )->willReturn( $suggestedRedirectContent );
+		$newContent->method( 'getContentHandler' )->willReturn( $contentHandler );
+
+		// wfEscapeWikiText relies on this option
+		global $wgEnableMagicLinks;
+		$wgEnableMagicLinks = [];
+
 		$constraint = $this->createRedirectConstraint(
 			$this->getContent(),
-			$this->getContent( $this->createTargetTitle( true, true ) )
+			$newContent,
+			redirectLookupResult: $this->createMock( Title::class ),
 		);
-		$this->assertRedirectConstraintFailed(
+		$this->assertConstraintFailed(
 			$constraint,
 			IEditObject::AS_DOUBLE_REDIRECT
 		);
@@ -152,7 +152,7 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 			$this->getContent( $target ),
 			$target
 		);
-		$this->assertRedirectConstraintFailed(
+		$this->assertConstraintFailed(
 			$constraint,
 			IEditObject::AS_SELF_REDIRECT
 		);
@@ -174,7 +174,7 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 			$this->getContent(),
 			$this->getContent( $this->createTargetTitle( true, false, false ) )
 		);
-		$this->assertRedirectConstraintFailed(
+		$this->assertConstraintFailed(
 			$constraint,
 			IEditObject::AS_INVALID_REDIRECT_TARGET
 		);

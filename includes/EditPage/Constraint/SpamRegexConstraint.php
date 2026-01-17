@@ -42,7 +42,7 @@ class SpamRegexConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): string {
+	public function checkConstraint(): StatusValue {
 		$match = $this->spamChecker->checkSummary( $this->summary );
 		if ( $match === false && $this->sectionHeading !== null ) {
 			// If the section isn't new, the $this->sectionHeading is null
@@ -52,30 +52,22 @@ class SpamRegexConstraint implements IEditConstraint {
 			$match = $this->spamChecker->checkContent( $this->text );
 		}
 
-		if ( $match === false ) {
-			return self::CONSTRAINT_PASSED;
+		if ( $match !== false ) {
+			$this->match = $match;
+			$match = str_replace( "\n", '', $match );
+			$this->logger->debug(
+				'{ip} spam regex hit [[{title}]]: "{match}"',
+				[
+					'ip' => $this->reqIP,
+					'title' => $this->title->getPrefixedDBkey(),
+					'match' => $match
+				]
+			);
+			return StatusValue::newGood( self::AS_SPAM_ERROR )
+				->fatal( 'spamprotectionmatch', $match );
 		}
 
-		$this->match = $match;
-		$this->logger->debug(
-			'{ip} spam regex hit [[{title}]]: "{match}"',
-			[
-				'ip' => $this->reqIP,
-				'title' => $this->title->getPrefixedDBkey(),
-				'match' => str_replace( "\n", '', $match )
-			]
-		);
-		return self::CONSTRAINT_FAILED;
-	}
-
-	public function getLegacyStatus(): StatusValue {
-		$statusValue = StatusValue::newGood();
-		if ( $this->match !== '' ) {
-			$match = str_replace( "\n", '', $this->match );
-			$statusValue->fatal( 'spamprotectionmatch', $match );
-			$statusValue->value = self::AS_SPAM_ERROR;
-		}
-		return $statusValue;
+		return StatusValue::newGood();
 	}
 
 	public function getMatch(): string {

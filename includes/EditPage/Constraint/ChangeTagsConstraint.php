@@ -19,9 +19,6 @@ use StatusValue;
  */
 class ChangeTagsConstraint implements IEditConstraint {
 
-	/** @var StatusValue|string */
-	private $result;
-
 	/**
 	 * @param Authority $performer
 	 * @param string[] $tags
@@ -32,10 +29,9 @@ class ChangeTagsConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): string {
+	public function checkConstraint(): StatusValue {
 		if ( !$this->tags ) {
-			$this->result = self::CONSTRAINT_PASSED;
-			return self::CONSTRAINT_PASSED;
+			return StatusValue::newGood();
 		}
 
 		// TODO inject a service once canAddTagsAccompanyingChange is moved to a
@@ -46,23 +42,11 @@ class ChangeTagsConstraint implements IEditConstraint {
 			false
 		);
 
-		if ( $changeTagStatus->isOK() ) {
-			$this->result = self::CONSTRAINT_PASSED;
-			return self::CONSTRAINT_PASSED;
+		if ( !$changeTagStatus->isOK() ) {
+			$changeTagStatus->value = self::AS_CHANGE_TAG_ERROR;
 		}
 
-		$this->result = $changeTagStatus; // The same status object is returned
-		return self::CONSTRAINT_FAILED;
-	}
-
-	public function getLegacyStatus(): StatusValue {
-		if ( $this->result === self::CONSTRAINT_PASSED ) {
-			$statusValue = StatusValue::newGood();
-		} else {
-			$statusValue = $this->result;
-			$statusValue->value = self::AS_CHANGE_TAG_ERROR;
-		}
-		return $statusValue;
+		return $changeTagStatus;
 	}
 
 }

@@ -21,8 +21,6 @@ use StatusValue;
  */
 class ImageRedirectConstraint implements IEditConstraint {
 
-	private string $result;
-
 	/**
 	 * @param Content $newContent
 	 * @param LinkTarget $title
@@ -35,31 +33,20 @@ class ImageRedirectConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): string {
+	public function checkConstraint(): StatusValue {
 		// Check isn't simple enough to just repeat when getting the status
 		if ( $this->title->getNamespace() === NS_FILE &&
 			$this->newContent->isRedirect() &&
 			!$this->performer->isAllowed( 'upload' )
 		) {
-			$this->result = self::CONSTRAINT_FAILED;
-			return self::CONSTRAINT_FAILED;
-		}
-
-		$this->result = self::CONSTRAINT_PASSED;
-		return self::CONSTRAINT_PASSED;
-	}
-
-	public function getLegacyStatus(): StatusValue {
-		$statusValue = StatusValue::newGood();
-
-		if ( $this->result === self::CONSTRAINT_FAILED ) {
 			$errorCode = $this->performer->getUser()->isRegistered() ?
 				self::AS_IMAGE_REDIRECT_LOGGED :
 				self::AS_IMAGE_REDIRECT_ANON;
-			$statusValue->setResult( false, $errorCode );
+			return StatusValue::newGood( $errorCode )
+				->setOK( false );
 		}
 
-		return $statusValue;
+		return StatusValue::newGood();
 	}
 
 }

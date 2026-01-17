@@ -23,8 +23,6 @@ use StatusValue;
  */
 class ContentModelChangeConstraint implements IEditConstraint {
 
-	private PermissionStatus $status;
-
 	/**
 	 * @param Authority $performer
 	 * @param Title $title
@@ -37,16 +35,15 @@ class ContentModelChangeConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): string {
-		$this->status = PermissionStatus::newEmpty();
-
+	public function checkConstraint(): StatusValue {
 		if ( $this->newContentModel === $this->title->getContentModel() ) {
-			// No change
-			return self::CONSTRAINT_PASSED;
+			return StatusValue::newGood();
 		}
 
-		if ( !$this->performer->authorizeWrite( 'editcontentmodel', $this->title, $this->status ) ) {
-			return self::CONSTRAINT_FAILED;
+		$status = PermissionStatus::newEmpty();
+
+		if ( !$this->performer->authorizeWrite( 'editcontentmodel', $this->title, $status ) ) {
+			return $this->wrapPermissionStatus( $status );
 		}
 
 		// Make sure the user can edit the page under the new content model too.
@@ -54,20 +51,20 @@ class ContentModelChangeConstraint implements IEditConstraint {
 		$titleWithNewContentModel = clone $this->title;
 		$titleWithNewContentModel->setContentModel( $this->newContentModel );
 		if (
-			!$this->performer->authorizeWrite( 'editcontentmodel', $titleWithNewContentModel, $this->status )
-			|| !$this->performer->authorizeWrite( 'edit', $titleWithNewContentModel, $this->status )
+			!$this->performer->authorizeWrite( 'editcontentmodel', $titleWithNewContentModel, $status )
+			|| !$this->performer->authorizeWrite( 'edit', $titleWithNewContentModel, $status )
 		) {
-			return self::CONSTRAINT_FAILED;
+			return $this->wrapPermissionStatus( $status );
 		}
 
-		return self::CONSTRAINT_PASSED;
+		return StatusValue::newGood();
 	}
 
-	public function getLegacyStatus(): StatusValue {
+	private function wrapPermissionStatus( PermissionStatus $status ): StatusValue {
 		$statusValue = StatusValue::newGood();
 
-		if ( !$this->status->isGood() ) {
-			if ( $this->status->isRateLimitExceeded() ) {
+		if ( !$status->isGood() ) {
+			if ( $status->isRateLimitExceeded() ) {
 				$statusValue->setResult( false, self::AS_RATE_LIMITED );
 			} else {
 				$statusValue->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );

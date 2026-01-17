@@ -18,8 +18,6 @@ use Wikimedia\Message\MessageValue;
  */
 class NewSectionMissingSubjectConstraint implements IEditConstraint {
 
-	private ?int $status = null;
-
 	public function __construct(
 		private readonly string $section,
 		private readonly string $subject,
@@ -28,30 +26,20 @@ class NewSectionMissingSubjectConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): string {
+	public function checkConstraint(): StatusValue {
 		if ( $this->section === 'new' &&
 			!$this->allowBlankSubject &&
 			trim( $this->subject ) === ''
 		) {
-			$this->status = self::AS_SUMMARY_NEEDED;
-			return self::CONSTRAINT_FAILED;
+			return StatusValue::newGood( self::AS_SUMMARY_NEEDED )
+				->setOK( false )
+				->warning(
+					'missingcommentheader',
+					MessageValue::new( $this->submitButtonLabel )
+				);
 		}
 
-		return self::CONSTRAINT_PASSED;
-	}
-
-	public function getLegacyStatus(): StatusValue {
-		$statusValue = StatusValue::newGood( $this->status );
-
-		if ( $this->status === self::AS_SUMMARY_NEEDED ) {
-			$statusValue->setOK( false );
-			$statusValue->warning(
-				'missingcommentheader',
-				MessageValue::new( $this->submitButtonLabel )
-			);
-		}
-
-		return $statusValue;
+		return StatusValue::newGood();
 	}
 
 }

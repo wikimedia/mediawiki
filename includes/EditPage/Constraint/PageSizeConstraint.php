@@ -53,23 +53,16 @@ class PageSizeConstraint implements IEditConstraint {
 		}
 	}
 
-	public function checkConstraint(): string {
-		return $this->contentSize > $this->maxSize ?
-			self::CONSTRAINT_FAILED :
-			self::CONSTRAINT_PASSED;
-	}
-
-	public function getLegacyStatus(): StatusValue {
-		$statusValue = StatusValue::newGood();
+	public function checkConstraint(): StatusValue {
 		if ( $this->contentSize > $this->maxSize ) {
-			// Either self::AS_CONTENT_TOO_BIG, if it was too big before merging,
+			// The result is either self::AS_CONTENT_TOO_BIG, if it was too big before merging,
 			// or self::AS_MAX_ARTICLE_SIZE_EXCEEDED, if it was too big after merging
-			$statusValue->setResult( false, $this->errorCode );
-			$statusValue->fatal( MessageValue::new( 'longpageerror' )
-				->numParams( round( $this->contentSize / 1024, 3 ), $this->maxSize / 1024 )
-			);
+			return StatusValue::newGood( $this->errorCode )
+				->fatal( MessageValue::new( 'longpageerror' )
+					->numParams( round( $this->contentSize / 1024, 3 ), $this->maxSize / 1024 )
+				);
 		}
-		return $statusValue;
+		return StatusValue::newGood();
 	}
 
 	/**

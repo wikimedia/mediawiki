@@ -87,7 +87,6 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 				return false;
 			}
 			$this->fail( "Unexpected permission check $permission" );
-			return false;
 		} );
 
 		$constraint = new ContentModelChangeConstraint(

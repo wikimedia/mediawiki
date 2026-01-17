@@ -34,8 +34,6 @@ use Wikimedia\Message\MessageValue;
  */
 class ExistingSectionEditConstraint implements IEditConstraint {
 
-	private ?int $status = null;
-
 	public function __construct(
 		private readonly string $section,
 		private readonly string $userSummary,
@@ -47,16 +45,19 @@ class ExistingSectionEditConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): string {
+	public function checkConstraint(): StatusValue {
 		if ( $this->section === 'new' ) {
 			// Constraint is not applicable
-			return self::CONSTRAINT_PASSED;
+			return StatusValue::newGood();
 		}
 
 		if ( $this->originalContent === null ) {
 			// T301947: User loses access to revision after loading
-			$this->status = self::AS_REVISION_WAS_DELETED;
-			return self::CONSTRAINT_FAILED;
+			// The error message, rev-deleted-text-permission, is not
+			// really in use currently. It's added for completeness and in
+			// case any code path wants to know the error.
+			return StatusValue::newGood( self::AS_REVISION_WAS_DELETED )
+				->fatal( 'rev-deleted-text-permission' );
 		}
 		if (
 			!$this->allowBlankSummary &&
@@ -64,31 +65,15 @@ class ExistingSectionEditConstraint implements IEditConstraint {
 			!$this->newContent->isRedirect() &&
 			md5( $this->userSummary ) === $this->autoSummary
 		) {
-			$this->status = self::AS_SUMMARY_NEEDED;
-			return self::CONSTRAINT_FAILED;
+			return StatusValue::newGood()
+				->setResult( false, self::AS_SUMMARY_NEEDED )
+				->warning(
+					'missingsummary',
+					MessageValue::new( $this->submitButtonLabel )
+				);
 		}
 
-		return self::CONSTRAINT_PASSED;
-	}
-
-	public function getLegacyStatus(): StatusValue {
-		$statusValue = StatusValue::newGood( $this->status );
-
-		if ( $this->status === self::AS_REVISION_WAS_DELETED ) {
-			// T301947: User loses access to revision after loading
-			// The error message, rev-deleted-text-permission, is not
-			// really in use currently. It's added for completeness and in
-			// case any code path wants to know the error.
-			$statusValue->fatal( 'rev-deleted-text-permission' );
-		} elseif ( $this->status === self::AS_SUMMARY_NEEDED ) {
-			$statusValue->setOK( false );
-			$statusValue->warning(
-				'missingsummary',
-				MessageValue::new( $this->submitButtonLabel )
-			);
-		}
-
-		return $statusValue;
+		return StatusValue::newGood();
 	}
 
 }

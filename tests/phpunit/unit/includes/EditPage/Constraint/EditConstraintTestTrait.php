@@ -17,13 +17,7 @@ trait EditConstraintTestTrait {
 	 * Assert that the constraint passes and that the status is good
 	 */
 	public function assertConstraintPassed( IEditConstraint $constraint ) {
-		$this->assertSame(
-			IEditConstraint::CONSTRAINT_PASSED,
-			$constraint->checkConstraint()
-		);
-
-		$status = $constraint->getLegacyStatus();
-		$this->assertStatusGood( $status );
+		$this->assertStatusGood( $constraint->checkConstraint() );
 	}
 
 	/**
@@ -32,13 +26,8 @@ trait EditConstraintTestTrait {
 	 * @param int $statusCode
 	 */
 	public function assertConstraintFailed( IEditConstraint $constraint, int $statusCode ) {
-		$this->assertSame(
-			IEditConstraint::CONSTRAINT_FAILED,
-			$constraint->checkConstraint()
-		);
-
-		$status = $constraint->getLegacyStatus();
-		$this->assertStatusNotGood( $status );
+		$status = $constraint->checkConstraint();
+		$this->assertStatusNotOK( $status );
 		$this->assertStatusValue( $statusCode, $status );
 	}
 

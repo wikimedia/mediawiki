@@ -30,12 +30,6 @@ use Wikimedia\Message\MessageValue;
  */
 class RedirectConstraint implements IEditConstraint {
 
-	/** @var int|null the problem affecting the redirect, or null if the constraint passed */
-	public ?int $status = null;
-
-	/** @var Title|null the target page of the redirect the page is pointing to */
-	private ?Title $doubleRedirectTarget = null;
-
 	/** @var Title|null the title the problematic redirect is pointing to */
 	public ?Title $problematicTarget = null;
 
@@ -53,7 +47,7 @@ class RedirectConstraint implements IEditConstraint {
 	/**
 	 * @inheritDoc
 	 */
-	public function checkConstraint(): string {
+	public function checkConstraint(): StatusValue {
 		$newRedirectTarget = $this->getRedirectTarget( $this->newContent );
 
 		// the constraint should only be checked if there is a redirect in the new content, and either
@@ -68,84 +62,69 @@ class RedirectConstraint implements IEditConstraint {
 			// the constraint should only fail if there was no previous content or the previous content contained
 			// a problematic redirect to a different page
 			if ( !$currentTarget?->equals( $newRedirectTarget ) ) {
-
 				$this->problematicTarget = $newRedirectTarget;
+
 				if ( $newRedirectTarget->equals( $this->title ) ) {
 					// redirect pointing to itself - self redirect
-					$this->status = self::AS_SELF_REDIRECT;
-					return self::CONSTRAINT_FAILED;
+					return $this->wrapResult(
+						self::AS_SELF_REDIRECT,
+						MessageValue::new( 'edit-constraint-selfredirect-warning' )
+					);
 				} elseif ( !$newRedirectTarget->isKnown() ) {
 					// redirect target unknown - broken redirect
-					$this->status = self::AS_BROKEN_REDIRECT;
-					return self::CONSTRAINT_FAILED;
+					return $this->wrapResult(
+						self::AS_BROKEN_REDIRECT,
+						MessageValue::new( 'edit-constraint-brokenredirect-warning' )
+					);
 				} elseif ( $newRedirectTarget->isRedirect() ) {
-					// redirect target is a redirect - double redirect
-					$this->status = self::AS_DOUBLE_REDIRECT;
-
-					$this->doubleRedirectTarget = Title::castFromLinkTarget(
+					$doubleRedirectTarget = Title::castFromLinkTarget(
 						$this->redirectLookup->getRedirectTarget( $newRedirectTarget )
 					);
-					if ( $this->doubleRedirectTarget?->isSameLinkAs( $this->title ) ) {
+
+					if ( $doubleRedirectTarget?->isSameLinkAs( $this->title ) ) {
 						// the double redirect is pointing to the current page, so it's a loop
-						$this->status = self::AS_DOUBLE_REDIRECT_LOOP;
+						return $this->wrapResult(
+							self::AS_DOUBLE_REDIRECT_LOOP,
+							MessageValue::new( 'edit-constraint-doubleredirect-loop-warning' )
+						);
 					}
 
-					return self::CONSTRAINT_FAILED;
+					// redirect target is a redirect - double redirect
+					$doubleRedirectTargetTitle = Title::castFromLinkTarget( $doubleRedirectTarget );
+
+					$suggestedRedirectContent = $this->newContent->getContentHandler()
+						->makeRedirectContent( $doubleRedirectTargetTitle );
+					$suggestedRedirectCode = Html::element(
+						'pre',
+						[],
+						$suggestedRedirectContent?->serialize( $this->contentFormat ) ?? ''
+					);
+
+					return $this->wrapResult( self::AS_DOUBLE_REDIRECT, MessageValue::new(
+						'edit-constraint-doubleredirect-warning',
+						[
+							wfEscapeWikiText( $doubleRedirectTargetTitle->getFullText() ),
+							$suggestedRedirectCode,
+						]
+					) );
 				} elseif ( !$newRedirectTarget->isValidRedirectTarget() ) {
 					// redirect target is not a valid redirect target
-					$this->status = self::AS_INVALID_REDIRECT_TARGET;
-					return self::CONSTRAINT_FAILED;
+					return $this->wrapResult(
+						self::AS_INVALID_REDIRECT_TARGET,
+						MessageValue::new( 'edit-constraint-invalidredirecttarget-warning' )
+					);
 				}
 			}
 
 		}
 
-		return self::CONSTRAINT_PASSED;
+		return StatusValue::newGood();
 	}
 
-	public function getLegacyStatus(): StatusValue {
-		$statusValue = StatusValue::newGood( $this->status );
-
-		$errorMessage = null;
-		switch ( $this->status ) {
-			case self::AS_BROKEN_REDIRECT:
-				$errorMessage = MessageValue::new( 'edit-constraint-brokenredirect-warning' );
-				break;
-			case self::AS_DOUBLE_REDIRECT:
-				$doubleRedirectTargetTitle = Title::castFromLinkTarget( $this->doubleRedirectTarget );
-
-				$suggestedRedirectContent = $this->newContent->getContentHandler()
-					->makeRedirectContent( $doubleRedirectTargetTitle );
-				$suggestedRedirectCode = Html::element(
-					'pre',
-					[],
-					$suggestedRedirectContent?->serialize( $this->contentFormat ) ?? ''
-				);
-
-				$errorMessage = MessageValue::new(
-					'edit-constraint-doubleredirect-warning',
-					[
-						wfEscapeWikiText( $doubleRedirectTargetTitle->getFullText() ),
-						$suggestedRedirectCode,
-					]
-				);
-				break;
-			case self::AS_DOUBLE_REDIRECT_LOOP:
-				$errorMessage = MessageValue::new( 'edit-constraint-doubleredirect-loop-warning' );
-				break;
-			case self::AS_INVALID_REDIRECT_TARGET:
-				$errorMessage = MessageValue::new( 'edit-constraint-invalidredirecttarget-warning' );
-				break;
-			case self::AS_SELF_REDIRECT:
-				$errorMessage = MessageValue::new( 'edit-constraint-selfredirect-warning' );
-				break;
-		}
-		if ( $errorMessage !== null ) {
-			$statusValue->warning( $this->errorMessageWrapper->params( $errorMessage ) );
-			$statusValue->setOK( false );
-		}
-
-		return $statusValue;
+	private function wrapResult( int $result, MessageValue $errorMessage ): StatusValue {
+		return StatusValue::newGood( $result )
+			->warning( $this->errorMessageWrapper->params( $errorMessage ) )
+			->setOK( false );
 	}
 
 	private function getRedirectTarget( Content $content ): ?Title {

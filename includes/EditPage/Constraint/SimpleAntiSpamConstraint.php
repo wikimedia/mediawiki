@@ -33,28 +33,20 @@ class SimpleAntiSpamConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): string {
-		if ( $this->input === '' ) {
-			return self::CONSTRAINT_PASSED;
-		}
-		$this->logger->debug(
-			'{name} editing "{title}" submitted bogus field "{input}"',
-			[
-				'name' => $this->user->getName(),
-				'title' => $this->title->getPrefixedText(),
-				'input' => $this->input
-			]
-		);
-		return self::CONSTRAINT_FAILED;
-	}
-
-	public function getLegacyStatus(): StatusValue {
-		$statusValue = StatusValue::newGood();
+	public function checkConstraint(): StatusValue {
 		if ( $this->input !== '' ) {
-			$statusValue->fatal( 'spamprotectionmatch', '' );
-			$statusValue->value = self::AS_SPAM_ERROR;
+			$this->logger->debug(
+				'{name} editing "{title}" submitted bogus field "{input}"',
+				[
+					'name' => $this->user->getName(),
+					'title' => $this->title->getPrefixedText(),
+					'input' => $this->input
+				]
+			);
+			return StatusValue::newGood( self::AS_SPAM_ERROR )
+				->fatal( 'spamprotectionmatch', '' );
 		}
-		return $statusValue;
+		return StatusValue::newGood();
 	}
 
 }

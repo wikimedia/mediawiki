@@ -28,9 +28,6 @@ use Wikimedia\Timestamp\TimestampFormat;
  */
 class AccidentalRecreationConstraint implements IEditConstraint {
 
-	private ?int $status = null;
-	private ?stdClass $lastDelete = null;
-
 	public function __construct(
 		private readonly IConnectionProvider $connectionProvider,
 		private readonly CommentStore $commentStore,
@@ -42,54 +39,48 @@ class AccidentalRecreationConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): string {
-		if ( !$this->allowRecreation && $this->wasDeletedSinceLastEdit() ) {
-			$this->status = self::AS_ARTICLE_WAS_DELETED;
-			return self::CONSTRAINT_FAILED;
+	public function checkConstraint(): StatusValue {
+		if ( $this->allowRecreation ) {
+			return StatusValue::newGood();
 		}
-		return self::CONSTRAINT_PASSED;
-	}
+		$deletion = $this->getDeletionSinceLastEdit();
+		if ( $deletion ) {
+			if ( $this->submitButtonLabel ) {
+				$username = $deletion->actor_name;
+				$comment = $this->commentStore->getComment( 'log_comment', $deletion )->text;
 
-	public function getLegacyStatus(): StatusValue {
-		$statusValue = StatusValue::newGood( $this->status );
-		if ( $this->status === self::AS_ARTICLE_WAS_DELETED ) {
-			// If $submitButtonLabel is non-null, the user is trying to save the edit
-			if ( $this->submitButtonLabel !== null ) {
-				$username = $this->lastDelete->actor_name;
-				$comment = $this->commentStore->getComment( 'log_comment', $this->lastDelete )->text;
-
-				$statusValue->fatal(
-					$comment === ''
-						? 'edit-constraint-confirmrecreate-noreason'
-						: 'edit-constraint-confirmrecreate',
-					$username,
-					new ScalarParam( ParamType::PLAINTEXT, $comment ),
-					new MessageValue( $this->submitButtonLabel ),
-				);
+				return StatusValue::newGood( self::AS_ARTICLE_WAS_DELETED )
+					->fatal(
+						$comment === ''
+							? 'edit-constraint-confirmrecreate-noreason'
+							: 'edit-constraint-confirmrecreate',
+						$username,
+						new ScalarParam( ParamType::PLAINTEXT, $comment ),
+						new MessageValue( $this->submitButtonLabel ),
+					);
 			} else {
-				$statusValue->fatal( 'deletedwhileediting' );
+				return StatusValue::newGood( self::AS_ARTICLE_WAS_DELETED )
+					->fatal( 'deletedwhileediting' );
 			}
 		}
-		return $statusValue;
+		return StatusValue::newGood();
 	}
 
 	/**
 	 * Check if a page was deleted while the user was editing it.
-	 * Note that we rely on the logging table, which hasn't been always there,
-	 * but that doesn't matter, because this only applies to brand new
-	 * deletes.
+	 * @return ?stdClass The deletion object, or null if the page wasn't deleted.
 	 */
-	private function wasDeletedSinceLastEdit(): bool {
+	private function getDeletionSinceLastEdit(): ?stdClass {
 		if ( !$this->title->exists() && $this->title->hasDeletedEdits() ) {
-			$this->lastDelete = $this->getLastDelete();
-			if ( $this->lastDelete ) {
-				$deleteTime = wfTimestamp( TimestampFormat::MW, $this->lastDelete->log_timestamp );
+			$lastDelete = $this->getLastDelete();
+			if ( $lastDelete ) {
+				$deleteTime = wfTimestamp( TimestampFormat::MW, $lastDelete->log_timestamp );
 				if ( $deleteTime > $this->startTime ) {
-					return true;
+					return $lastDelete;
 				}
 			}
 		}
-		return false;
+		return null;
 	}
 
 	/**

@@ -2260,7 +2260,8 @@ class EditPage implements IEditObject {
 		);
 
 		// Check the constraints
-		if ( !$constraintRunner->checkConstraints() ) {
+		$constraintStatus = $constraintRunner->checkConstraints();
+		if ( !$constraintStatus->isOK() ) {
 			$failed = $constraintRunner->getFailedConstraint();
 
 			// Need to check SpamRegexConstraint here, to avoid needing to pass
@@ -2268,10 +2269,10 @@ class EditPage implements IEditObject {
 			if ( $failed instanceof SpamRegexConstraint ) {
 				$result['spam'] = $failed->getMatch();
 			} else {
-				$this->handleFailedConstraint( $failed );
+				$this->handleFailedConstraint( $failed, $constraintStatus );
 			}
 
-			return Status::wrap( $failed->getLegacyStatus() );
+			return Status::wrap( $constraintStatus );
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
@@ -2325,10 +2326,11 @@ class EditPage implements IEditObject {
 			);
 
 			// Check the constraints
-			if ( !$constraintRunner->checkConstraints() ) {
+			$constraintStatus = $constraintRunner->checkConstraints();
+			if ( !$constraintStatus->isOK() ) {
 				$failed = $constraintRunner->getFailedConstraint();
-				$this->handleFailedConstraint( $failed );
-				return Status::wrap( $failed->getLegacyStatus() );
+				$this->handleFailedConstraint( $failed, $constraintStatus );
+				return Status::wrap( $constraintStatus );
 			}
 			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 		} else { # not $new
@@ -2484,10 +2486,11 @@ class EditPage implements IEditObject {
 				)
 			);
 			// Check the constraints
-			if ( !$constraintRunner->checkConstraints() ) {
+			$constraintStatus = $constraintRunner->checkConstraints();
+			if ( !$constraintStatus->isOK() ) {
 				$failed = $constraintRunner->getFailedConstraint();
-				$this->handleFailedConstraint( $failed );
-				return Status::wrap( $failed->getLegacyStatus() );
+				$this->handleFailedConstraint( $failed, $constraintStatus );
+				return Status::wrap( $constraintStatus );
 			}
 			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
@@ -2547,10 +2550,11 @@ class EditPage implements IEditObject {
 			)
 		);
 		// Check the constraints
-		if ( !$constraintRunner->checkConstraints() ) {
+		$constraintStatus = $constraintRunner->checkConstraints();
+		if ( !$constraintStatus->isOK() ) {
 			$failed = $constraintRunner->getFailedConstraint();
-			$this->handleFailedConstraint( $failed );
-			return Status::wrap( $failed->getLegacyStatus() );
+			$this->handleFailedConstraint( $failed, $constraintStatus );
+			return Status::wrap( $constraintStatus );
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM
 
@@ -2634,12 +2638,12 @@ class EditPage implements IEditObject {
 	 * each of the points the constraints are checked. Eventually, this will act on the
 	 * result from the backend.
 	 */
-	private function handleFailedConstraint( IEditConstraint $failed ): void {
+	private function handleFailedConstraint( IEditConstraint $failed, StatusValue $statusValue ): void {
 		if ( $failed instanceof AuthorizationConstraint ) {
 			// Auto-block user's IP if the account was "hard" blocked
 			if (
 				!MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly()
-				&& $failed->getLegacyStatus()->value === self::AS_BLOCKED_PAGE_FOR_USER
+				&& $statusValue->value === self::AS_BLOCKED_PAGE_FOR_USER
 			) {
 				$this->context->getUser()->spreadAnyEditBlock();
 			}
@@ -2652,7 +2656,7 @@ class EditPage implements IEditObject {
 			// since the edit was loaded, which doesn't indicate a missing summary
 			(
 				$failed instanceof ExistingSectionEditConstraint
-				&& $failed->getLegacyStatus()->value === self::AS_SUMMARY_NEEDED
+				&& $statusValue->value === self::AS_SUMMARY_NEEDED
 			) ||
 			$failed instanceof NewSectionMissingSubjectConstraint
 		) {
@@ -3090,11 +3094,11 @@ class EditPage implements IEditObject {
 				)
 			);
 
-			if ( !$constraintRunner->checkConstraints() ) {
+			$constraintStatus = $constraintRunner->checkConstraints();
+			if ( !$constraintStatus->isOK() ) {
 				$failed = $constraintRunner->getFailedConstraint();
 				// No call to $this->handleFailedConstraint() here to avoid setting wpRedirect
-				$status = $failed->getLegacyStatus();
-				$out->addHTML( $this->formatConstraintStatus( $status ) );
+				$out->addHTML( $this->formatConstraintStatus( $constraintStatus ) );
 			}
 		}
 
@@ -4110,11 +4114,9 @@ class EditPage implements IEditObject {
 				$this->contentFormat,
 			) );
 
-			if ( !$constraintRunner->checkConstraints() ) {
-				$failed = $constraintRunner->getFailedConstraint();
-				$status = $failed->getLegacyStatus();
-
-				$previewIssuesHtml .= $this->formatConstraintStatus( $status );
+			$constraintStatus = $constraintRunner->checkConstraints();
+			if ( !$constraintStatus->isOK() ) {
+				$previewIssuesHtml .= $this->formatConstraintStatus( $constraintStatus );
 			}
 
 		} catch ( MWContentSerializationException $ex ) {

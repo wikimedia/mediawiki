@@ -20,8 +20,6 @@ use StatusValue;
  */
 class LinkPurgeRateLimitConstraint implements IEditConstraint {
 
-	private string $result;
-
 	public function __construct(
 		private readonly RateLimiter $limiter,
 		private readonly RateLimitSubject $subject,
@@ -32,28 +30,16 @@ class LinkPurgeRateLimitConstraint implements IEditConstraint {
 		return $this->limiter->limit( $this->subject, $action, $inc );
 	}
 
-	public function checkConstraint(): string {
+	public function checkConstraint(): StatusValue {
 		// TODO inject and use a ThrottleStore once available, see T261744
 		// Checking if the user is rate limited increments the counts, so we cannot perform
 		// the check again when getting the status; thus, store the result
 		if ( $this->limit( 'linkpurge', /* only counted after the fact */ 0 ) ) {
-			$this->result = self::CONSTRAINT_FAILED;
-		} else {
-			$this->result = self::CONSTRAINT_PASSED;
+			return StatusValue::newGood( self::AS_RATE_LIMITED )
+				->fatal( 'actionthrottledtext' );
 		}
 
-		return $this->result;
-	}
-
-	public function getLegacyStatus(): StatusValue {
-		$statusValue = StatusValue::newGood();
-
-		if ( $this->result === self::CONSTRAINT_FAILED ) {
-			$statusValue->fatal( 'actionthrottledtext' );
-			$statusValue->value = self::AS_RATE_LIMITED;
-		}
-
-		return $statusValue;
+		return StatusValue::newGood();
 	}
 
 }
