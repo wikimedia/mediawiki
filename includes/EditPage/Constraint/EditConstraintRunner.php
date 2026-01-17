@@ -60,35 +60,62 @@ class EditConstraintRunner {
 	}
 
 	/**
-	 * Run constraint checks
+	 * Run constraint checks until one fails.
 	 *
 	 * @return StatusValue Good if all constraints pass, otherwise the status returned by the constraint that failed.
 	 */
 	public function checkConstraints(): StatusValue {
 		foreach ( $this->constraints as $constraint ) {
 			$status = $constraint->checkConstraint();
-			if ( !$status->isOK() ) {
-				// Use `info` instead of `debug` for the one constraint that failed
-				$this->logger->info(
-					'Check for {name} failed',
-					[
-						'name' => $this->getConstraintName( $constraint ),
-					]
-				);
+			$this->logConstraintCheck( $constraint, $status );
 
+			if ( !$status->isOK() ) {
 				$this->failedConstraint = $constraint;
 				return $status;
 			}
+		}
 
-			// Pass, log at `debug` level
+		return StatusValue::newGood();
+	}
+
+	/**
+	 * Run all constraint checks and merge the returned statuses.
+	 *
+	 * @return StatusValue Good if all constraints pass, otherwise a StatusValue that was merged with all
+	 * statuses that were returned by constraint checks.
+	 */
+	public function checkAllConstraints(): StatusValue {
+		$statusValue = StatusValue::newGood();
+
+		foreach ( $this->constraints as $constraint ) {
+			$constraintStatus = $constraint->checkConstraint();
+			$this->logConstraintCheck( $constraint, $constraintStatus );
+			$statusValue->merge( $constraintStatus );
+		}
+
+		return $statusValue;
+	}
+
+	/**
+	 * Log the result of a constraint check.
+	 * Passes use the `debug` level; failures use `info`.
+	 */
+	private function logConstraintCheck( IEditConstraint $constraint, StatusValue $statusValue ): void {
+		if ( $statusValue->isOK() ) {
 			$this->logger->debug(
 				'Check for {name} succeeded',
 				[
 					'name' => $this->getConstraintName( $constraint ),
 				]
 			);
+		} else {
+			$this->logger->info(
+				'Check for {name} failed',
+				[
+					'name' => $this->getConstraintName( $constraint ),
+				]
+			);
 		}
-		return StatusValue::newGood();
 	}
 
 	private function getConstraintName( IEditConstraint $constraint ): string {

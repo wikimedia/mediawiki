@@ -102,6 +102,7 @@ use OOUI\FieldLayout;
 use RuntimeException;
 use StatusValue;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -1998,14 +1999,30 @@ class EditPage implements IEditObject {
 	 * @return string Html
 	 */
 	private function formatConstraintStatus( StatusValue $status ): string {
-		$html = '';
-		foreach ( $status->getMessages( 'error' ) as $msg ) {
-			$html .= Html::errorBox( $this->context->msg( $msg )->parse() );
+		return $this->createMessageBox( $status->getMessages( 'error' ), 'error' ) .
+			$this->createMessageBox( $status->getMessages( 'warning' ), 'warning' );
+	}
+
+	/**
+	 * Create a message box containing multiple messages.
+	 * @param MessageSpecifier[] $messages
+	 * @param string $type `warning` or `error`
+	 */
+	private function createMessageBox( array $messages, string $type ): string {
+		if ( !$messages ) {
+			// Don't create a box if there are no messages
+			return '';
 		}
-		foreach ( $status->getMessages( 'warning' ) as $msg ) {
-			$html .= Html::warningBox( $this->context->msg( $msg )->parse() );
+
+		$html = implode(
+			Html::openElement( 'br' ),
+			array_map( fn ( $msg ) => $this->context->msg( $msg )->parse(), $messages )
+		);
+
+		if ( $type === 'warning' ) {
+			return Html::warningBox( $html );
 		}
-		return $html;
+		return Html::errorBox( $html );
 	}
 
 	/**
@@ -3993,8 +4010,8 @@ class EditPage implements IEditObject {
 			return $parsedNote;
 		}
 
-		$noteHtml = '';
-		$previewIssuesHtml = '';
+		$previewStatus = StatusValue::newGood();
+		$previewNoteHtml = '';
 
 		try {
 			$content = $this->toEditContent( $this->textbox1 );
@@ -4016,15 +4033,15 @@ class EditPage implements IEditObject {
 			);
 
 			if ( $this->mTriedSave && !$this->mTokenOk ) {
-				$previewIssuesHtml = Html::errorBox( $this->context->msg( 'session_fail_preview' )->parse() );
+				$previewStatus->fatal( 'session_fail_preview' );
 				$this->incrementEditFailureStats( 'session_loss' );
 			} elseif ( $this->incompleteForm ) {
-				$previewIssuesHtml = Html::errorBox( $this->context->msg( 'edit_form_incomplete' )->parse() );
+				$previewStatus->fatal( 'edit_form_incomplete' );
 				if ( $this->mTriedSave ) {
 					$this->incrementEditFailureStats( 'incomplete_form' );
 				}
 			} else {
-				$noteHtml = Html::noticeBox(
+				$previewNoteHtml = Html::noticeBox(
 					$this->context->msg( 'previewnote' )->parse() . ' ' . $continueEditingHtml
 				);
 			}
@@ -4067,7 +4084,7 @@ class EditPage implements IEditObject {
 				# Messages: usercsspreview, userjsonpreview, userjspreview,
 				#   sitecsspreview, sitejsonpreview, sitejspreview
 				if ( $level && $format ) {
-					$noteHtml = Html::noticeBox( Html::rawElement(
+					$previewNoteHtml = Html::noticeBox( Html::rawElement(
 						'div',
 						[ 'id' => "mw-{$level}{$format}preview" ],
 						$this->context->msg( "{$level}{$format}preview" )->parse() . $continueEditingHtml
@@ -4091,15 +4108,6 @@ class EditPage implements IEditObject {
 				$out->addContentOverride( $this->getTitle(), $content );
 			}
 
-			$parserWarnings = $parserOutput->getWarningMsgs();
-			if ( $parserWarnings ) {
-				$warningsHtml = '';
-				foreach ( $parserWarnings as $mv ) {
-					$warningsHtml .= $this->context->msg( $mv )->parse() . "<br>";
-				}
-				$previewIssuesHtml .= Html::warningBox( $warningsHtml );
-			}
-
 			// T394016 - Run some edit constraints on page preview
 			/** @var EditConstraintFactory $constraintFactory */
 			$constraintFactory = MediaWikiServices::getInstance()->getService( '_EditConstraintFactory' );
@@ -4114,19 +4122,18 @@ class EditPage implements IEditObject {
 				$this->contentFormat,
 			) );
 
-			$constraintStatus = $constraintRunner->checkConstraints();
-			if ( !$constraintStatus->isOK() ) {
-				$previewIssuesHtml .= $this->formatConstraintStatus( $constraintStatus );
-			}
+			$previewStatus->merge( $constraintRunner->checkAllConstraints() );
 
+			foreach ( $parserOutput->getWarningMsgs() as $warning ) {
+				$previewStatus->warning( $warning );
+			}
 		} catch ( MWContentSerializationException $ex ) {
-			$m = $this->context->msg(
+			$previewStatus->fatal(
 				'content-failed-to-parse',
 				$this->contentModel,
 				$this->contentFormat,
 				$ex->getMessage()
 			);
-			$previewIssuesHtml .= Html::errorBox( $m->parse() );
 			$previewHTML = '';
 		}
 
@@ -4144,7 +4151,7 @@ class EditPage implements IEditObject {
 			Html::element(
 				'h2', [ 'id' => 'mw-previewheader' ],
 				$this->context->msg( 'preview' )->text()
-			) . $previewIssuesHtml . $noteHtml . $conflict
+			) . $this->formatConstraintStatus( $previewStatus ) . $previewNoteHtml . $conflict
 		);
 
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;

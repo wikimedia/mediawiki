@@ -64,6 +64,26 @@ class EditConstraintRunnerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
+	public function testCheckAllConstraints_pass() {
+		$runner = new EditConstraintRunner();
+		$runner->addConstraint( $this->getConstraint( StatusValue::newGood() ) );
+		$runner->addConstraint( $this->getConstraint( StatusValue::newGood() ) );
+
+		$this->assertStatusGood( $runner->checkAllConstraints() );
+	}
+
+	public function testCheckAllConstraints_fail() {
+		$runner = new EditConstraintRunner();
+		$runner->addConstraint( $this->getConstraint( StatusValue::newGood()->warning( 'testwarning' ) ) );
+		$runner->addConstraint( $this->getConstraint( StatusValue::newFatal( 'testerror' ) ) );
+		$runner->addConstraint( $this->getConstraint( StatusValue::newGood() ) );
+
+		$status = $runner->checkAllConstraints();
+		$this->assertStatusNotOK( $status );
+		$this->assertStatusError( 'testerror', $status );
+		$this->assertStatusMessage( 'testwarning', $status );
+	}
+
 	public function testGetFailedConstraint_exception() {
 		$this->expectException( PreconditionException::class );
 		$this->expectExceptionMessage( 'getFailedConstraint called with no failed constraint' );
