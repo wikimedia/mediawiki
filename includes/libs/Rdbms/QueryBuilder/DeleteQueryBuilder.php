@@ -17,7 +17,7 @@ use UnexpectedValueException;
  * @since 1.41
  * @ingroup Database
  */
-class DeleteQueryBuilder {
+class DeleteQueryBuilder implements IWriteQueryBuilder {
 	/**
 	 * The table name to be passed to IDatabase::delete()
 	 */
@@ -44,11 +44,7 @@ class DeleteQueryBuilder {
 	}
 
 	/**
-	 * Change the IDatabase object the query builder is bound to. The specified
-	 * IDatabase will subsequently be used to execute the query.
-	 *
-	 * @param IDatabase $db
-	 * @return $this
+	 * @inheritDoc
 	 */
 	public function connection( IDatabase $db ): DeleteQueryBuilder {
 		if ( $this->db->getType() !== $db->getType() ) {
@@ -61,20 +57,9 @@ class DeleteQueryBuilder {
 	}
 
 	/**
-	 * Set the query parameters to the given values, appending to the values
-	 * which were already set. This can be used to interface with legacy code.
-	 * If a key is omitted, the previous value will be retained.
-	 *
-	 * The parameters must be formatted as required by Database::delete.
-	 *
-	 * @param array $info Associative array of query info, with keys:
-	 *   - table: The table name to be passed to IDatabase::delete()
-	 *   - conds: The conditions
-	 *   - caller: The caller signature
-	 *
-	 * @return $this
+	 * @inheritDoc
 	 */
-	public function queryInfo( array $info ): DeleteQueryBuilder {
+	public function queryInfo( $info ): DeleteQueryBuilder {
 		if ( isset( $info['table'] ) ) {
 			$this->table( $info['table'] );
 		}
@@ -204,19 +189,15 @@ class DeleteQueryBuilder {
 	}
 
 	/**
-	 * Set the method name to be included in an SQL comment.
-	 *
-	 * @param string $fname
-	 * @param-taint $fname exec_sql
-	 * @return $this
+	 * @inheritDoc
 	 */
-	public function caller( string $fname ): DeleteQueryBuilder {
+	public function caller( $fname ): DeleteQueryBuilder {
 		$this->caller = $fname;
 		return $this;
 	}
 
 	/**
-	 * Run the constructed DELETE query.
+	 * @inheritDoc
 	 */
 	public function execute(): void {
 		if ( !$this->conds ) {
@@ -231,13 +212,7 @@ class DeleteQueryBuilder {
 	}
 
 	/**
-	 * Get an associative array describing the query in terms of its raw parameters to
-	 * IDatabase::delete(). This can be used to interface with legacy code.
-	 *
-	 * @return array The query info array, with keys:
-	 *   - table: The table name
-	 *   - conds: The conditions
-	 *   - caller: The caller signature
+	 * @inheritDoc
 	 */
 	public function getQueryInfo(): array {
 		$info = [

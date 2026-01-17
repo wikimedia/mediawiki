@@ -4475,6 +4475,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\IMaintainableDatabase' => __DIR__ . '/includes/libs/Rdbms/Database/IMaintainableDatabase.php',
 	'Wikimedia\\Rdbms\\IReadableDatabase' => __DIR__ . '/includes/libs/Rdbms/Database/IReadableDatabase.php',
 	'Wikimedia\\Rdbms\\IResultWrapper' => __DIR__ . '/includes/libs/Rdbms/Database/ResultWrapper/IResultWrapper.php',
+	'Wikimedia\\Rdbms\\IWriteQueryBuilder' => __DIR__ . '/includes/libs/Rdbms/QueryBuilder/IWriteQueryBuilder.php',
 	'Wikimedia\\Rdbms\\InsertQueryBuilder' => __DIR__ . '/includes/libs/Rdbms/QueryBuilder/InsertQueryBuilder.php',
 	'Wikimedia\\Rdbms\\JoinGroup' => __DIR__ . '/includes/libs/Rdbms/QueryBuilder/JoinGroup.php',
 	'Wikimedia\\Rdbms\\JoinGroupBase' => __DIR__ . '/includes/libs/Rdbms/QueryBuilder/JoinGroupBase.php',

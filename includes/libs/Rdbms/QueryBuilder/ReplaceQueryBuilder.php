@@ -18,7 +18,7 @@ use UnexpectedValueException;
  * @stable to extend
  * @ingroup Database
  */
-class ReplaceQueryBuilder {
+class ReplaceQueryBuilder implements IWriteQueryBuilder {
 	/**
 	 * @var string The table name to be passed to IDatabase::replace()
 	 */
@@ -50,11 +50,7 @@ class ReplaceQueryBuilder {
 	}
 
 	/**
-	 * Change the IDatabase object the query builder is bound to. The specified
-	 * IDatabase will subsequently be used to execute the query.
-	 *
-	 * @param IDatabase $db
-	 * @return $this
+	 * @inheritDoc
 	 */
 	public function connection( IDatabase $db ) {
 		if ( $this->db->getType() !== $db->getType() ) {
@@ -67,19 +63,7 @@ class ReplaceQueryBuilder {
 	}
 
 	/**
-	 * Set the query parameters to the given values, appending to the values
-	 * which were already set. This can be used to interface with legacy code.
-	 * If a key is omitted, the previous value will be retained.
-	 *
-	 * The parameters must be formatted as required by Database::replace.
-	 *
-	 * @param array $info Associative array of query info, with keys:
-	 *   - table: The table name to be passed to Database::replace()
-	 *   - rows: The rows to be inserted
-	 *   - options: The query options
-	 *   - caller: The caller signature
-	 *
-	 * @return $this
+	 * @inheritDoc
 	 */
 	public function queryInfo( $info ) {
 		if ( isset( $info['table'] ) ) {
@@ -164,11 +148,7 @@ class ReplaceQueryBuilder {
 	}
 
 	/**
-	 * Set the method name to be included in an SQL comment.
-	 *
-	 * @param string $fname
-	 * @param-taint $fname exec_sql
-	 * @return $this
+	 * @inheritDoc
 	 */
 	public function caller( $fname ) {
 		$this->caller = $fname;
@@ -176,9 +156,9 @@ class ReplaceQueryBuilder {
 	}
 
 	/**
-	 * Run the constructed REPLACE query and return the result.
+	 * @inheritDoc
 	 */
-	public function execute() {
+	public function execute(): void {
 		if ( !$this->rows ) {
 			throw new UnexpectedValueException(
 				__METHOD__ . ' can\'t have empty $rows value' );
@@ -195,14 +175,7 @@ class ReplaceQueryBuilder {
 	}
 
 	/**
-	 * Get an associative array describing the query in terms of its raw parameters to
-	 * Database::replace(). This can be used to interface with legacy code.
-	 *
-	 * @return array The query info array, with keys:
-	 *   - table: The table name
-	 *   - rows: The rows array
-	 *   - options: The query options
-	 *   - caller: The caller signature
+	 * @inheritDoc
 	 */
 	public function getQueryInfo() {
 		$info = [
