@@ -1745,17 +1745,25 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$arrayReturningMethods = [
+			'getCategoryNames',
 			'getCategoryMap',
 			'getFileSearchOptions',
 			'getHeadItems',
 			'getImages',
 			'getIndicators',
 			'getSections',
+			'getModules',
+			'getModuleStyles',
+			'getWarningMsgs',
+			'getJsConfigVars',
 			'getLanguageLinks',
+			'getLinkList',
 			'getTemplateIds',
 			'getExtraCSPDefaultSrcs',
 			'getExtraCSPStyleSrcs',
 			'getExtraCSPScriptSrcs',
+			'getLimitReportJSData',
+			'getAllFlags',
 		];
 
 		foreach ( $arrayReturningMethods as $method ) {
