@@ -69,7 +69,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 		return new LinkBatch(
 			$objects,
 			$this->createMock( LinkCache::class ),
-			$this->createMock( TitleFormatter::class ),
+			$this->getServiceContainer()->getTitleFormatter(),
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
 			$this->getServiceContainer()->getConnectionProvider(),
