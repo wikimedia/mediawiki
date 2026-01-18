@@ -144,6 +144,9 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	 * @inheritDoc
 	 */
 	protected function getFooter(): string {
+		if ( !$this->mGroupByDate ) {
+			return '';
+		}
 		return $this->getEndGroup();
 	}
 
