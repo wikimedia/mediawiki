@@ -325,12 +325,14 @@ class LBFactoryMulti extends LBFactory {
 	}
 
 	/**
-	 * @param string $database
+	 * @param string|null $database
 	 * @return string Main section name
 	 */
 	private function getSectionFromDatabase( $database ) {
-		return $this->sectionsByDB[$database]
-			?? $this->sectionsByDB[self::CLUSTER_MAIN_DEFAULT]
+		if ( $database !== null && isset( $this->sectionsByDB[$database] ) ) {
+			return $this->sectionsByDB[$database];
+		}
+		return $this->sectionsByDB[self::CLUSTER_MAIN_DEFAULT]
 			?? self::CLUSTER_MAIN_DEFAULT;
 	}
 
