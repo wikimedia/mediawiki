@@ -35,7 +35,6 @@ use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWiki\Xml\Xml;
 use RuntimeException;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 use XMLParser;
@@ -707,15 +706,13 @@ TEXT
 	 * @return string|false
 	 */
 	private function getTextSpawned( $address ) {
-		AtEase::suppressWarnings();
 		if ( !$this->spawnProc ) {
 			// First time?
-			$this->openSpawn();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@$this->openSpawn();
 		}
-		$text = $this->getTextSpawnedOnce( $address );
-		AtEase::restoreWarnings();
-
-		return $text;
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		return @$this->getTextSpawnedOnce( $address );
 	}
 
 	protected function openSpawn(): bool {
@@ -765,24 +762,26 @@ TEXT
 	}
 
 	private function closeSpawn() {
-		AtEase::suppressWarnings();
 		if ( $this->spawnRead ) {
-			fclose( $this->spawnRead );
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@fclose( $this->spawnRead );
 		}
 		$this->spawnRead = null;
 		if ( $this->spawnWrite ) {
-			fclose( $this->spawnWrite );
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@fclose( $this->spawnWrite );
 		}
 		$this->spawnWrite = null;
 		if ( $this->spawnErr ) {
-			fclose( $this->spawnErr );
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@fclose( $this->spawnErr );
 		}
 		$this->spawnErr = false;
 		if ( $this->spawnProc ) {
-			proc_close( $this->spawnProc );
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@proc_close( $this->spawnProc );
 		}
 		$this->spawnProc = false;
-		AtEase::restoreWarnings();
 	}
 
 	/**

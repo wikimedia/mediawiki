@@ -9,7 +9,6 @@
 
 namespace MediaWiki\Media;
 
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -419,9 +418,8 @@ class IPTC {
 	 */
 	private static function convIPTCHelper( $data, $charset ) {
 		if ( $charset ) {
-			AtEase::suppressWarnings();
-			$data = iconv( $charset, "UTF-8//IGNORE", $data );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$data = @iconv( $charset, "UTF-8//IGNORE", $data );
 			if ( $data === false ) {
 				$data = "";
 				wfDebugLog( 'iptc', __METHOD__ . " Error converting iptc data charset $charset to utf-8" );

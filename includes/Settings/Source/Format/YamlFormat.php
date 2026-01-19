@@ -8,7 +8,6 @@ use Stringable;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 use UnexpectedValueException;
-use Wikimedia\AtEase\AtEase;
 
 class YamlFormat implements Stringable, SettingsFormat {
 
@@ -72,8 +71,8 @@ class YamlFormat implements Stringable, SettingsFormat {
 		$previousValue = ini_set( 'yaml.decode_php', false );
 		try {
 			$ndocs = 0;
-			$result = AtEase::quietCall(
-				'yaml_parse',
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$result = @yaml_parse(
 				$data,
 				0,
 				$ndocs,

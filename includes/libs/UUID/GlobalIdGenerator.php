@@ -9,7 +9,6 @@ namespace Wikimedia\UUID;
 use InvalidArgumentException;
 use RuntimeException;
 use Wikimedia\Assert\Assert;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -644,23 +643,24 @@ class GlobalIdGenerator {
 		$nodeId = @file_get_contents( $this->nodeIdFile ) ?: '';
 		// Try to get some ID that uniquely identifies this machine (RFC 4122)...
 		if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
-			AtEase::suppressWarnings();
 			if ( PHP_OS_FAMILY === 'Windows' ) {
 				// https://technet.microsoft.com/en-us/library/bb490913.aspx
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 				$csv = trim( ( $this->shellCallback )( 'getmac /NH /FO CSV' ) );
 				$line = substr( $csv, 0, strcspn( $csv, "\n" ) );
 				$info = str_getcsv( $line, ",", "\"", "\\" );
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal False positive
 				$nodeId = isset( $info[0] ) ? str_replace( '-', '', $info[0] ) : '';
-			} elseif ( is_executable( '/sbin/ifconfig' ) ) {
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			} elseif ( @is_executable( '/sbin/ifconfig' ) ) {
 				// Linux/BSD/Solaris/OS X
 				// See https://linux.die.net/man/8/ifconfig
 				$m = [];
 				preg_match( '/\s([0-9a-f]{2}(?::[0-9a-f]{2}){5})\s/',
+					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 					( $this->shellCallback )( '/sbin/ifconfig -a' ), $m );
 				$nodeId = isset( $m[1] ) ? str_replace( ':', '', $m[1] ) : '';
 			}
-			AtEase::restoreWarnings();
 			if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
 				$nodeId = bin2hex( random_bytes( 12 / 2 ) );
 				// set multicast bit

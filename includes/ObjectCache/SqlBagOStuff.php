@@ -9,7 +9,6 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ArrayUtils\ArrayUtils;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\ObjectCache\MediumSpecificBagOStuff;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database;
@@ -1515,9 +1514,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		if ( $this->hasZlib ) {
-			AtEase::suppressWarnings();
-			$decompressed = gzinflate( $value );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$decompressed = @gzinflate( $value );
 
 			if ( $decompressed !== false ) {
 				$value = $decompressed;

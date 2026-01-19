@@ -9,7 +9,6 @@
 
 namespace Wikimedia\FileBackend;
 
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -66,9 +65,8 @@ class MemoryFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		AtEase::suppressWarnings();
-		$data = file_get_contents( $params['src'] );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$data = @file_get_contents( $params['src'] );
 		if ( $data === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 

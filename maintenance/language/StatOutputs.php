@@ -10,7 +10,6 @@
  */
 
 use MediaWiki\Specials\SpecialVersion;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * A general output object. Need to be overridden
@@ -24,9 +23,8 @@ class StatsOutput {
 	 * @return string
 	 */
 	public function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
-		AtEase::suppressWarnings();
-		$return = sprintf( '%.' . $accuracy . 'f%%', 100 * $subset / $total );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$return = @sprintf( '%.' . $accuracy . 'f%%', 100 * $subset / $total );
 
 		return $return;
 	}
@@ -94,9 +92,8 @@ class WikiStatsOutput extends StatsOutput {
 
 	/** @inheritDoc */
 	public function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
-		AtEase::suppressWarnings();
-		$v = round( 255 * $subset / $total );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$v = @round( 255 * $subset / $total );
 
 		if ( $revert ) {
 			# Weigh reverse with factor 20 so coloring takes effect more quickly as

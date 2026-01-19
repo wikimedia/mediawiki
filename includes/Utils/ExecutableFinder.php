@@ -6,7 +6,6 @@
  */
 
 use MediaWiki\Shell\Shell;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Utility class to find executables in likely places
@@ -50,9 +49,8 @@ class ExecutableFinder {
 	protected static function findExecutable( $path, $name, $versionInfo = false ) {
 		$command = $path . DIRECTORY_SEPARATOR . $name;
 
-		AtEase::suppressWarnings();
-		$file_exists = is_executable( $command );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$file_exists = @is_executable( $command );
 
 		if ( $file_exists ) {
 			if ( !$versionInfo ) {

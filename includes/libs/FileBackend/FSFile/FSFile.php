@@ -9,7 +9,6 @@
 
 namespace Wikimedia\FileBackend\FSFile;
 
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -58,11 +57,8 @@ class FSFile {
 	 * @return int|bool
 	 */
 	public function getSize() {
-		AtEase::suppressWarnings();
-		$size = filesize( $this->path );
-		AtEase::restoreWarnings();
-
-		return $size;
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		return @filesize( $this->path );
 	}
 
 	/**
@@ -71,9 +67,8 @@ class FSFile {
 	 * @return string|bool TS::MW timestamp or false on failure
 	 */
 	public function getTimestamp() {
-		AtEase::suppressWarnings();
-		$timestamp = filemtime( $this->path );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$timestamp = @filemtime( $this->path );
 		if ( $timestamp !== false ) {
 			$timestamp = ConvertibleTimestamp::convert( TS::MW, $timestamp );
 		}
@@ -163,9 +158,8 @@ class FSFile {
 			return $this->sha1Base36;
 		}
 
-		AtEase::suppressWarnings();
-		$this->sha1Base36 = sha1_file( $this->path );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$this->sha1Base36 = @sha1_file( $this->path );
 
 		if ( $this->sha1Base36 !== false ) {
 			$this->sha1Base36 = \Wikimedia\base_convert( $this->sha1Base36, 16, 36, 31 );

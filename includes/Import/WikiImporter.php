@@ -43,7 +43,6 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\ExternalUserNames;
 use RuntimeException;
 use UnexpectedValueException;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\NormalizedException\NormalizedException;
@@ -1316,10 +1315,11 @@ class WikiImporter {
 		if ( !UploadSourceAdapter::isSeekableSource( $this->sourceAdapterId ) ) {
 			return;
 		}
-		AtEase::suppressWarnings();
-		$oldDisable = libxml_disable_entity_loader( false );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$oldDisable = @libxml_disable_entity_loader( false );
 		try {
-			while ( $this->reader->read() );
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			while ( @$this->reader->read() );
 			$error = libxml_get_last_error();
 			if ( $error ) {
 				$errorMessage = 'XML error at line ' . $error->line . ': ' . $error->message;
@@ -1327,8 +1327,8 @@ class WikiImporter {
 				throw new RuntimeException( $errorMessage );
 			}
 		} finally {
-			libxml_disable_entity_loader( $oldDisable );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@libxml_disable_entity_loader( $oldDisable );
 			$this->reader->close();
 		}
 

@@ -10,7 +10,6 @@
 namespace MediaWiki\Search;
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -45,9 +44,8 @@ class SearchSqlite extends SearchDatabase {
 		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 				$filteredText, $m, PREG_SET_ORDER ) ) {
 			foreach ( $m as $bits ) {
-				AtEase::suppressWarnings();
-				[ /* all */, $modifier, $term, $nonQuoted, $wildcard ] = $bits;
-				AtEase::restoreWarnings();
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				@[ /* all */, $modifier, $term, $nonQuoted, $wildcard ] = $bits;
 
 				if ( $nonQuoted != '' ) {
 					$term = $nonQuoted;

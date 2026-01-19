@@ -35,7 +35,6 @@ use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Request\HeaderCallback;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -724,9 +723,8 @@ EOT;
 			);
 
 			// Calculate time
-			AtEase::suppressWarnings();
-			$imsUnix = strtotime( $imsString );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$imsUnix = @strtotime( $imsString );
 			if ( wfTimestamp( TS::UNIX, $img->getTimestamp() ) <= $imsUnix ) {
 				$this->status( 304 );
 

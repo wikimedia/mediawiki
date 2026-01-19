@@ -13,7 +13,6 @@ use MediaWiki\Logging\NewUsersLogFormatter;
 use MediaWiki\Logging\PageLangLogFormatter;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Title\NamespaceInfo;
-use Wikimedia\AtEase\AtEase;
 
 // For backwards compatibility, the value of wgLogos is copied to wgLogo.
 // This is because some extensions/skins may be using $config->get('Logo')
@@ -327,9 +326,8 @@ if ( isset( $wgSlaveLagCritical ) ) {
 }
 
 if ( $wgInvalidateCacheOnLocalSettingsChange && defined( 'MW_CONFIG_FILE' ) ) {
-	AtEase::suppressWarnings();
-	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', filemtime( MW_CONFIG_FILE ) ) );
-	AtEase::restoreWarnings();
+	// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', @filemtime( MW_CONFIG_FILE ) ) );
 }
 
 if ( $wgNewUserLog ) {

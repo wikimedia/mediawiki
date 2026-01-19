@@ -10,7 +10,6 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use UnexpectedValueException;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * @defgroup Mime Mime
@@ -579,9 +578,8 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 */
 	private function doGuessMimeType( string $file ) {
 		// Read a chunk of the file
-		AtEase::suppressWarnings();
-		$f = fopen( $file, 'rb' );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$f = @fopen( $file, 'rb' );
 
 		if ( !$f ) {
 			return 'unknown/unknown';
@@ -706,9 +704,8 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		/**
 		 * look for XML formats (XHTML and SVG)
 		 */
-		AtEase::suppressWarnings();
-		$xml = new XmlTypeCheck( $file );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$xml = @new XmlTypeCheck( $file );
 		if ( $xml->wellFormed ) {
 			$xmlTypes = $this->xmlTypes;
 			// @phan-suppress-next-line PhanTypeMismatchDimFetch False positive
@@ -784,9 +781,8 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			}
 		}
 
-		AtEase::suppressWarnings();
-		$gis = getimagesize( $file );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$gis = @getimagesize( $file );
 
 		if ( $gis && isset( $gis['mime'] ) ) {
 			$mime = $gis['mime'];

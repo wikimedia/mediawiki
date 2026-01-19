@@ -8,7 +8,6 @@ namespace Wikimedia\Rdbms;
 use mysqli;
 use mysqli_result;
 use RuntimeException;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
@@ -688,9 +687,8 @@ class DatabaseMySQL extends Database {
 		$conn = $this->getBindingHandle();
 
 		// Hide packet warnings caused by things like dropped connections
-		AtEase::suppressWarnings();
-		$res = $conn->query( $sql );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$res = @$conn->query( $sql );
 		// Note that mysqli::insert_id only reflects the last query statement
 		$insertId = (int)$conn->insert_id;
 		$this->lastQueryInsertId = $insertId;

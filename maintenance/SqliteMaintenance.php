@@ -8,7 +8,6 @@
  */
 
 use MediaWiki\Maintenance\Maintenance;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
@@ -100,12 +99,11 @@ class SqliteMaintenance extends Maintenance {
 		$dbw->query( 'BEGIN IMMEDIATE TRANSACTION', __METHOD__ );
 		$ourFile = $dbw->__call( 'getDbFilePath', [] );
 		$this->output( "   Copying database file $ourFile to $fileName..." );
-		AtEase::suppressWarnings();
-		if ( !copy( $ourFile, $fileName ) ) {
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		if ( !@copy( $ourFile, $fileName ) ) {
 			$err = error_get_last();
 			$this->error( "      {$err['message']}" );
 		}
-		AtEase::restoreWarnings();
 		$this->output( "   Releasing lock...\n" );
 		$dbw->query( 'COMMIT TRANSACTION', __METHOD__ );
 	}

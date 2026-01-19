@@ -19,7 +19,6 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
 use MWRestrictions;
 use Psr\Log\LoggerInterface;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\CachedBagOStuff;
 
@@ -308,7 +307,8 @@ final class SessionBackend {
 
 			if ( $restart ) {
 				session_id( (string)$this->id );
-				AtEase::quietCall( 'session_start' );
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				@session_start();
 			}
 
 			$this->autosave();
@@ -898,7 +898,8 @@ final class SessionBackend {
 						'session' => $this->id->__toString(),
 					] );
 				session_id( (string)$this->id );
-				AtEase::quietCall( 'session_start' );
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				@session_start();
 			}
 		}
 	}

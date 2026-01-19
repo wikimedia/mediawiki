@@ -12,7 +12,6 @@ use MediaWiki\Installer\InstallerOverrides;
 use MediaWiki\Installer\InstallException;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Settings\SettingsBuilder;
-use Wikimedia\AtEase\AtEase;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -236,9 +235,8 @@ class CommandLineInstaller extends Maintenance {
 				$this->error( 'WARNING: You have provided the options "dbpass" and "dbpassfile". '
 					. 'The content of "dbpassfile" overrides "dbpass".' );
 			}
-			AtEase::suppressWarnings();
-			$dbpass = file_get_contents( $dbpassfile ); // returns false on failure
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$dbpass = @file_get_contents( $dbpassfile ); // returns false on failure
 			if ( $dbpass === false ) {
 				$this->fatalError( "Couldn't open $dbpassfile" );
 			}
@@ -253,9 +251,8 @@ class CommandLineInstaller extends Maintenance {
 				$this->error( 'WARNING: You have provided the option --pass or --passfile. '
 					. 'The content of "passfile" overrides "pass".' );
 			}
-			AtEase::suppressWarnings();
-			$pass = file_get_contents( $passfile ); // returns false on failure
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$pass = @file_get_contents( $passfile ); // returns false on failure
 			if ( $pass === false ) {
 				$this->fatalError( "Couldn't open $passfile" );
 			}

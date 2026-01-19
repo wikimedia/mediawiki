@@ -8,7 +8,6 @@
 
 namespace Wikimedia\FileBackend;
 
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Http\HttpStatus;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -96,9 +95,8 @@ class HTTPFileStreamer {
 			}
 			: $this->header( ... );
 
-		AtEase::suppressWarnings();
-		$info = stat( $this->path );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$info = @stat( $this->path );
 
 		if ( !is_array( $info ) ) {
 			if ( $sendErrors ) {

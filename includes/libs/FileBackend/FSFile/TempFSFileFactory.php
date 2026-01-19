@@ -2,8 +2,6 @@
 
 namespace Wikimedia\FileBackend\FSFile;
 
-use Wikimedia\AtEase\AtEase;
-
 /**
  * @ingroup FileBackend
  */
@@ -38,9 +36,8 @@ class TempFSFileFactory {
 		while ( $attempts-- ) {
 			$hex = sprintf( '%06x%06x', mt_rand( 0, 0xffffff ), mt_rand( 0, 0xffffff ) );
 			$path = "$tmpDirectory/$prefix$hex$ext";
-			AtEase::suppressWarnings();
-			$newFileHandle = fopen( $path, 'x' );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$newFileHandle = @fopen( $path, 'x' );
 			if ( $newFileHandle ) {
 				fclose( $newFileHandle );
 				$tmpFile = new TempFSFile( $path );

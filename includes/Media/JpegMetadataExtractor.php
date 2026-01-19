@@ -9,7 +9,6 @@
 
 namespace MediaWiki\Media;
 
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\StringUtils\StringUtils;
 use Wikimedia\UnpackFailedException;
 use Wikimedia\XMPReader\Reader as XMPReader;
@@ -96,9 +95,8 @@ class JpegMetadataExtractor {
 				// turns $com to valid utf-8.
 				// thus if no change, it's utf-8, otherwise it's something else.
 				if ( $com !== $oldCom ) {
-					AtEase::suppressWarnings();
-					$com = $oldCom = iconv( 'windows-1252', 'UTF-8//IGNORE', $oldCom );
-					AtEase::restoreWarnings();
+					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+					$com = $oldCom = @iconv( 'windows-1252', 'UTF-8//IGNORE', $oldCom );
 				}
 				// Try it again, if it's still not a valid string, then probably
 				// binary junk or some really weird encoding, so don't extract.

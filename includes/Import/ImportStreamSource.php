@@ -15,7 +15,6 @@ namespace MediaWiki\Import;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Imports a XML dump from a file (either from file upload, files on disk, or HTTP)
@@ -66,9 +65,8 @@ class ImportStreamSource implements ImportSource {
 	 * @return Status
 	 */
 	public static function newFromFile( $filename ) {
-		AtEase::suppressWarnings();
-		$file = fopen( $filename, 'rt' );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$file = @fopen( $filename, 'rt' );
 		if ( !$file ) {
 			return Status::newFatal( "importcantopen" );
 		}

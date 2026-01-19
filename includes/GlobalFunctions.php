@@ -19,7 +19,6 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\Http\HttpStatus;
@@ -1628,9 +1627,8 @@ function wfMerge(
 
 	# This check may also protect against code injection in
 	# case of broken installations.
-	AtEase::suppressWarnings();
-	$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
-	AtEase::restoreWarnings();
+	// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+	$haveDiff3 = $wgDiff3 && @file_exists( $wgDiff3 );
 
 	if ( !$haveDiff3 ) {
 		wfDebug( "diff3 not found" );
@@ -1841,14 +1839,12 @@ function wfMemoryLimit( $newLimit ) {
 		$newLimit = wfShorthandToInteger( (string)$newLimit );
 		if ( $newLimit == -1 ) {
 			wfDebug( "Removing PHP's memory limit" );
-			AtEase::suppressWarnings();
-			ini_set( 'memory_limit', $newLimit );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@ini_set( 'memory_limit', $newLimit );
 		} elseif ( $newLimit > $oldLimit ) {
 			wfDebug( "Raising PHP's memory limit to $newLimit bytes" );
-			AtEase::suppressWarnings();
-			ini_set( 'memory_limit', $newLimit );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@ini_set( 'memory_limit', $newLimit );
 		}
 	}
 }

@@ -17,7 +17,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use UnexpectedValueException;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -317,10 +316,10 @@ class SvgHandler extends ImageHandler {
 		$ok = @symlink( $srcPath, $lnPath );
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$cleaner = new ScopedCallback( static function () use ( $tmpDir, $lnPath ) {
-			AtEase::suppressWarnings();
-			unlink( $lnPath );
-			rmdir( $tmpDir );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@unlink( $lnPath );
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@rmdir( $tmpDir );
 		} );
 		if ( !$ok ) {
 			// Fallback because symlink often fails on Windows

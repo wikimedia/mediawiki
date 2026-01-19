@@ -12,7 +12,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * A form to make the database read-only (eg for maintenance purposes).
@@ -75,9 +74,8 @@ class SpecialLockdb extends FormSpecialPage {
 			return Status::newFatal( 'locknoconfirm' );
 		}
 
-		AtEase::suppressWarnings();
-		$fp = fopen( $this->getConfig()->get( MainConfigNames::ReadOnlyFile ), 'w' );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$fp = @fopen( $this->getConfig()->get( MainConfigNames::ReadOnlyFile ), 'w' );
 
 		if ( $fp === false ) {
 			# This used to show a file not found error, but the likeliest reason for fopen()

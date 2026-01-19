@@ -15,7 +15,6 @@ namespace MediaWiki\Media;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\AtEase\AtEase;
 use XMLReader;
 
 /**
@@ -95,14 +94,14 @@ class SVGReader {
 		// Because we cut off the end of the svg making an invalid one. Complicated
 		// try catch thing to make sure warnings get restored. Seems like there should
 		// be a better way.
-		AtEase::suppressWarnings();
 		try {
 			// Note: if this throws, the width/height will be taken to be 0x0.
 			// Should we consider it the default 512x512 instead?
-			$this->read();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@$this->read();
 		} finally {
-			libxml_disable_entity_loader( $oldDisable );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@libxml_disable_entity_loader( $oldDisable );
 		}
 	}
 

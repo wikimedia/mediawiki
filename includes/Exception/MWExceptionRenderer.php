@@ -17,7 +17,6 @@ use MediaWiki\Message\Message;
 use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Request\WebRequest;
 use Throwable;
-use Wikimedia\AtEase;
 use Wikimedia\Http\HttpStatus;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
@@ -83,9 +82,8 @@ class MWExceptionRenderer {
 			// The client should not be blocked on "post-send" updates. If apache decides that
 			// a response should be gzipped, it will wait for PHP to finish since it cannot gzip
 			// anything until it has the full response (even with "Transfer-Encoding: chunked").
-			AtEase\AtEase::suppressWarnings();
-			apache_setenv( 'no-gzip', '1' );
-			AtEase\AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@apache_setenv( 'no-gzip', '1' );
 		}
 
 		if ( defined( 'MW_API' ) ) {

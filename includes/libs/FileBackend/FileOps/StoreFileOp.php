@@ -10,7 +10,6 @@
 namespace Wikimedia\FileBackend\FileOps;
 
 use StatusValue;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Store a file into the backend from a file on the file system.
@@ -77,17 +76,13 @@ class StoreFileOp extends FileOp {
 	}
 
 	protected function getSourceSize(): int {
-		AtEase::suppressWarnings();
-		$size = filesize( $this->params['src'] );
-		AtEase::restoreWarnings();
-
-		return $size;
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		return @filesize( $this->params['src'] );
 	}
 
 	protected function getSourceSha1Base36(): string {
-		AtEase::suppressWarnings();
-		$hash = sha1_file( $this->params['src'] );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$hash = @sha1_file( $this->params['src'] );
 		if ( $hash !== false ) {
 			$hash = \Wikimedia\base_convert( $hash, 16, 36, 31 );
 		}

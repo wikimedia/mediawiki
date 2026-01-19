@@ -4,7 +4,6 @@ namespace MediaWiki\Settings\Source;
 
 use MediaWiki\Settings\SettingsBuilderException;
 use Stringable;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Settings loaded from a PHP file path as an array structure.
@@ -34,9 +33,10 @@ class PhpSettingsSource implements Stringable, SettingsSource, SettingsIncludeLo
 		//       use the opcode cache, and will not touch the file system at all.
 		//       So we should only go and look at the file system if the include fails.
 
-		$source = AtEase::quietCall( static function ( $path ) {
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$source = @( static function ( $path ) {
 			return include $path;
-		}, $this->path );
+		} )( $this->path );
 
 		if ( $source === false ) {
 			if ( !file_exists( $this->path ) ) {

@@ -9,7 +9,6 @@ use MediaWiki\Settings\Source\Format\SettingsFormat;
 use MediaWiki\Settings\Source\Format\YamlFormat;
 use Stringable;
 use UnexpectedValueException;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Settings loaded from a local file path.
@@ -177,7 +176,8 @@ class FileSource implements Stringable, CacheableSource, SettingsIncludeLocator 
 	 * @throws SettingsBuilderException
 	 */
 	private function readAndDecode( SettingsFormat $format ): array {
-		$contents = AtEase::quietCall( 'file_get_contents', $this->path );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$contents = @file_get_contents( $this->path );
 
 		if ( $contents === false ) {
 			if ( !is_readable( $this->path ) ) {

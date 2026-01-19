@@ -16,7 +16,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use stdClass;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -177,9 +176,8 @@ class DatabaseLogEntry extends LogEntryBase {
 	public function getParameters() {
 		if ( $this->params === null ) {
 			$blob = $this->getRawParameters();
-			AtEase::suppressWarnings();
-			$params = LogEntryBase::extractParams( $blob );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$params = @LogEntryBase::extractParams( $blob );
 			if ( $params !== false ) {
 				$this->params = $params;
 				$this->legacy = false;

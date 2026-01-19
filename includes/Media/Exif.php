@@ -14,7 +14,6 @@
 namespace MediaWiki\Media;
 
 use MediaWiki\Config\ConfigException;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Class to extract and validate Exif data from jpeg (and possibly tiff) files.
@@ -407,9 +406,8 @@ class Exif {
 
 		$this->debugFile( __FUNCTION__, true );
 
-		AtEase::suppressWarnings();
-		$data = exif_read_data( $this->file, '', true );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$data = @exif_read_data( $this->file, '', true );
 
 		/**
 		 * exif_read_data() will return false on invalid input, such as
@@ -581,17 +579,15 @@ class Exif {
 				default => null
 			};
 			if ( $charset ) {
-				AtEase::suppressWarnings();
-				$val = iconv( $charset, 'UTF-8//IGNORE', $val );
-				AtEase::restoreWarnings();
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				$val = @iconv( $charset, 'UTF-8//IGNORE', $val );
 			} else {
 				// if valid utf-8, assume that, otherwise assume windows-1252
 				$valCopy = $val;
 				\UtfNormal\Validator::quickIsNFCVerify( $valCopy );
 				if ( $valCopy !== $val ) {
-					AtEase::suppressWarnings();
-					$val = iconv( 'Windows-1252', 'UTF-8//IGNORE', $val );
-					AtEase::restoreWarnings();
+					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+					$val = @iconv( 'Windows-1252', 'UTF-8//IGNORE', $val );
 				}
 			}
 

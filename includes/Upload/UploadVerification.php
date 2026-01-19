@@ -15,7 +15,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Media\MediaHandler;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Shell\Shell;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\Mime\XmlTypeCheck;
 
@@ -309,9 +308,8 @@ class UploadVerification {
 		}
 
 		if ( $enc !== null ) {
-			AtEase::suppressWarnings();
-			$chunk = iconv( $enc, "ASCII//IGNORE", $chunk );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$chunk = @iconv( $enc, "ASCII//IGNORE", $chunk );
 		}
 
 		$chunk = trim( $chunk );
@@ -426,9 +424,8 @@ class UploadVerification {
 		// detect the encoding in case it specifies an encoding not allowed in self::SAFE_XML_ENCODINGS
 		$attemptEncodings = [ 'UTF-16', 'UTF-16BE', 'UTF-32', 'UTF-32BE' ];
 		foreach ( $attemptEncodings as $encoding ) {
-			AtEase::suppressWarnings();
-			$str = iconv( $encoding, 'UTF-8', $contents );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$str = @iconv( $encoding, 'UTF-8', $contents );
 			if ( $str != '' && preg_match( "!<\?xml\b(.*?)\?>!si", $str, $matches ) ) {
 				if ( preg_match( $encodingRegex, $matches[1], $encMatch )
 					&& !in_array( strtoupper( $encMatch[1] ), self::SAFE_XML_ENCODINGS )

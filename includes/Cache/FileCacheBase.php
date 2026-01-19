@@ -13,7 +13,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -190,9 +189,8 @@ abstract class FileCacheBase {
 	 * @return void
 	 */
 	public function clearCache() {
-		AtEase::suppressWarnings();
-		unlink( $this->cachePath() );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		@unlink( $this->cachePath() );
 		$this->mCached = false;
 	}
 

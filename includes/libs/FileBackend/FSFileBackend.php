@@ -20,7 +20,6 @@ namespace Wikimedia\FileBackend;
 use Shellbox\Command\BoxedCommand;
 use Shellbox\Shellbox;
 use StatusValue;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileIteration\FSFileBackendDirList;
 use Wikimedia\FileBackend\FileIteration\FSFileBackendFileList;
 use Wikimedia\FileBackend\FileOpHandle\FSFileOpHandle;
@@ -203,9 +202,8 @@ class FSFileBackend extends FileBackendStore {
 		$fsDirectory = dirname( $fsPath );
 		$usable = $this->usableDirCache->get( $fsDirectory, MapCacheLRU::TTL_PROC_SHORT );
 		if ( $usable === null ) {
-			AtEase::suppressWarnings();
-			$usable = is_dir( $fsDirectory ) && is_writable( $fsDirectory );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$usable = @is_dir( $fsDirectory ) && @is_writable( $fsDirectory );
 			$this->usableDirCache->set( $fsDirectory, $usable ? 1 : 0 );
 		}
 
@@ -483,16 +481,18 @@ class FSFileBackend extends FileBackendStore {
 		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		// Create the directory and its parents as needed...
 		$created = false;
-		AtEase::suppressWarnings();
-		$alreadyExisted = is_dir( $fsDirectory ); // already there?
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$alreadyExisted = @is_dir( $fsDirectory ); // already there?
 		if ( !$alreadyExisted ) {
-			$created = mkdir( $fsDirectory, $this->dirMode, true );
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$created = @mkdir( $fsDirectory, $this->dirMode, true );
 			if ( !$created ) {
-				$alreadyExisted = is_dir( $fsDirectory ); // another thread made it?
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				$alreadyExisted = @is_dir( $fsDirectory ); // another thread made it?
 			}
 		}
-		$isWritable = $created ?: is_writable( $fsDirectory ); // assume writable if created here
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$isWritable = $created ?: @is_writable( $fsDirectory ); // assume writable if created here
 		if ( !$alreadyExisted && !$created ) {
 			$this->logger->error( __METHOD__ . ": cannot create directory $fsDirectory" );
 			$status->fatal( 'directorycreateerror', $params['dir'] ); // fails on races
@@ -529,9 +529,8 @@ class FSFileBackend extends FileBackendStore {
 		}
 		// Add a .htaccess file to the root of the container...
 		if ( !empty( $params['noAccess'] ) && !is_file( "{$contRoot}/.htaccess" ) ) {
-			AtEase::suppressWarnings();
-			$bytes = file_put_contents( "{$contRoot}/.htaccess", $this->htaccessPrivate() );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$bytes = @file_put_contents( "{$contRoot}/.htaccess", $this->htaccessPrivate() );
 			if ( $bytes === false ) {
 				$storeDir = "mwstore://{$this->name}/{$shortCont}";
 				$status->fatal( 'backend-fail-create', "{$storeDir}/.htaccess" );
@@ -909,9 +908,8 @@ class FSFileBackend extends FileBackendStore {
 			return true;
 		}
 
-		AtEase::suppressWarnings();
-		$ok = chmod( $fsPath, $this->fileMode );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$ok = @chmod( $fsPath, $this->fileMode );
 
 		return $ok;
 	}
@@ -923,9 +921,8 @@ class FSFileBackend extends FileBackendStore {
 	 * @return bool Success
 	 */
 	protected function unlink( $fsPath ) {
-		AtEase::suppressWarnings();
-		$ok = unlink( $fsPath );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$ok = @unlink( $fsPath );
 		clearstatcache( true, $fsPath );
 
 		return $ok;
@@ -938,9 +935,8 @@ class FSFileBackend extends FileBackendStore {
 	 * @return bool Success
 	 */
 	protected function rmdir( $fsDirectory ) {
-		AtEase::suppressWarnings();
-		$ok = rmdir( $fsDirectory ); // remove directory if empty
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$ok = @rmdir( $fsDirectory ); // remove directory if empty
 		clearstatcache( true, $fsDirectory );
 
 		return $ok;
@@ -956,11 +952,10 @@ class FSFileBackend extends FileBackendStore {
 			return null;
 		}
 
-		AtEase::suppressWarnings();
-		if ( file_put_contents( $tempFile->getPath(), $params['content'] ) === false ) {
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		if ( @file_put_contents( $tempFile->getPath(), $params['content'] ) === false ) {
 			$tempFile = null;
 		}
-		AtEase::restoreWarnings();
 
 		return $tempFile;
 	}

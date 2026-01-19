@@ -12,7 +12,6 @@ namespace Wikimedia\FileBackend\FSFile;
 
 use RuntimeException;
 use WeakMap;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * This class is used to hold the location and do limited manipulation
@@ -110,9 +109,8 @@ class TempFSFile extends FSFile {
 	 */
 	public function purge() {
 		$this->canDelete = false; // done
-		AtEase::suppressWarnings();
-		$ok = unlink( $this->path );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$ok = @unlink( $this->path );
 
 		unset( self::$pathsCollect[$this->path] );
 
@@ -172,9 +170,8 @@ class TempFSFile extends FSFile {
 	 */
 	public static function purgeAllOnShutdown() {
 		foreach ( self::$pathsCollect as $path => $unused ) {
-			AtEase::suppressWarnings();
-			unlink( $path );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@unlink( $path );
 		}
 	}
 

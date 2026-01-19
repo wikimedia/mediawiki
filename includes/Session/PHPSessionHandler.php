@@ -11,7 +11,6 @@ use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use SessionHandlerInterface;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\PhpSessionSerializer;
 
 /**
@@ -110,27 +109,24 @@ class PHPSessionHandler implements SessionHandlerInterface {
 		// Close any auto-started session, before we replace it
 		session_write_close();
 
-		try {
-			AtEase::suppressWarnings();
+		// Tell PHP not to mess with cookies itself
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		@ini_set( 'session.use_cookies', 0 );
 
-			// Tell PHP not to mess with cookies itself
-			ini_set( 'session.use_cookies', 0 );
+		// T124510: Disable automatic PHP session related cache headers.
+		// MediaWiki adds its own headers and the default PHP behavior may
+		// set headers such as 'Pragma: no-cache' that cause problems with
+		// some user agents.
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		@session_cache_limiter( '' );
 
-			// T124510: Disable automatic PHP session related cache headers.
-			// MediaWiki adds its own headers and the default PHP behavior may
-			// set headers such as 'Pragma: no-cache' that cause problems with
-			// some user agents.
-			session_cache_limiter( '' );
+		// Also set a serialization handler
+		PhpSessionSerializer::setSerializeHandler();
 
-			// Also set a serialization handler
-			PhpSessionSerializer::setSerializeHandler();
-
-			// Register this as the save handler, and register an appropriate
-			// shutdown function.
-			session_set_save_handler( self::$instance, true );
-		} finally {
-			AtEase::restoreWarnings();
-		}
+		// Register this as the save handler, and register an appropriate
+		// shutdown function.
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		@session_set_save_handler( self::$instance, true );
 	}
 
 	private function getSessionManager(): SessionManagerInterface {

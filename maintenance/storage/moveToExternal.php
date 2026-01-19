@@ -11,7 +11,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Maintenance\UndoLog;
 use MediaWiki\Storage\SqlBlobStore;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\LikeValue;
@@ -266,9 +265,8 @@ class MoveToExternal extends Maintenance {
 				}
 				$text = $newText;
 			}
-			AtEase::suppressWarnings();
-			$newText = iconv( $this->legacyEncoding, 'UTF-8//IGNORE', $text );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$newText = @iconv( $this->legacyEncoding, 'UTF-8//IGNORE', $text );
 			if ( $newText === false ) {
 				return [ false, $flags ];
 			}

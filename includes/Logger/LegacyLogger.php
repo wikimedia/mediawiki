@@ -16,7 +16,6 @@ use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 use Throwable;
 use UDPTransport;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -502,15 +501,16 @@ class LegacyLogger extends AbstractLogger {
 			$transport = UDPTransport::newFromString( $file );
 			$transport->emit( $text );
 		} else {
-			AtEase::suppressWarnings();
-			$exists = file_exists( $file );
-			$size = $exists ? filesize( $file ) : false;
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$exists = @file_exists( $file );
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$size = $exists ? @filesize( $file ) : false;
 			if ( !$exists ||
 				( $size !== false && $size + strlen( $text ) < 0x7fffffff )
 			) {
-				file_put_contents( $file, $text, FILE_APPEND );
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				@file_put_contents( $file, $text, FILE_APPEND );
 			}
-			AtEase::restoreWarnings();
 		}
 	}
 

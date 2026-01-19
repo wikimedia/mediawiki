@@ -15,7 +15,6 @@ use Psr\Log\LoggerInterface;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
 use stdClass;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileIteration\SwiftFileBackendDirList;
 use Wikimedia\FileBackend\FileIteration\SwiftFileBackendFileList;
 use Wikimedia\FileBackend\FileOpHandle\SwiftFileOpHandle;
@@ -360,9 +359,8 @@ class SwiftFileBackend extends FileBackendStore {
 		// Open a handle to the source file so that it can be streamed. The size and hash
 		// will be computed using the handle. In the off chance that the source file changes
 		// during this operation, the PUT will fail due to an ETag mismatch and be aborted.
-		AtEase::suppressWarnings();
-		$srcHandle = fopen( $params['src'], 'rb' );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$srcHandle = @fopen( $params['src'], 'rb' );
 		if ( $srcHandle === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-notexists', $params['src'] );
 

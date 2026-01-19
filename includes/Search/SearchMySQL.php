@@ -13,7 +13,6 @@
 namespace MediaWiki\Search;
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -52,9 +51,8 @@ class SearchMySQL extends SearchDatabase {
 			$contLang = $services->getContentLanguage();
 			$langConverter = $services->getLanguageConverterFactory()->getLanguageConverter( $contLang );
 			foreach ( $m as $bits ) {
-				AtEase::suppressWarnings();
-				[ /* all */, $modifier, $term, $nonQuoted, $wildcard ] = $bits;
-				AtEase::restoreWarnings();
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				@[ /* all */, $modifier, $term, $nonQuoted, $wildcard ] = $bits;
 
 				if ( $nonQuoted != '' ) {
 					$term = $nonQuoted;

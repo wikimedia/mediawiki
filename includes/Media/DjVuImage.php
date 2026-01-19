@@ -15,7 +15,6 @@ namespace MediaWiki\Media;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Support for detecting/validating DjVu image files and getting
@@ -118,9 +117,8 @@ class DjVuImage {
 
 	/** @return array|false */
 	private function getInfo() {
-		AtEase::suppressWarnings();
-		$file = fopen( $this->mFilename, 'rb' );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$file = @fopen( $this->mFilename, 'rb' );
 		if ( $file === false ) {
 			wfDebug( __METHOD__ . ": missing or failed file read" );
 

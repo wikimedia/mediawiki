@@ -36,7 +36,6 @@ use MediaWiki\User\UserRigorOptions;
 use MediaWiki\WikiMap\WikiMap;
 use Throwable;
 use UnexpectedValueException;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -1838,9 +1837,8 @@ class ApiMain extends ApiBase {
 			$this->getRequest()->response()->statusHeader( 304 );
 
 			// Avoid outputting the compressed representation of a zero-length body
-			AtEase::suppressWarnings();
-			ini_set( 'zlib.output_compression', 0 );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@ini_set( 'zlib.output_compression', 0 );
 			wfResetOutputBuffers( false );
 
 			return false;

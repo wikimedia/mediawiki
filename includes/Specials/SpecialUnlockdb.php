@@ -12,7 +12,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Implements Special:Unlockdb
@@ -67,9 +66,8 @@ class SpecialUnlockdb extends FormSpecialPage {
 		}
 
 		$readOnlyFile = $this->getConfig()->get( MainConfigNames::ReadOnlyFile );
-		AtEase::suppressWarnings();
-		$res = unlink( $readOnlyFile );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$res = @unlink( $readOnlyFile );
 
 		if ( $res ) {
 			return Status::newGood();

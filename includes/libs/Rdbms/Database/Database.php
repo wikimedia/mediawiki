@@ -14,7 +14,6 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use Stringable;
 use Throwable;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database\DatabaseFlags;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\Replication\ReplicationReporter;
@@ -2776,9 +2775,8 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$fname = false,
 		?callable $inputCallback = null
 	) {
-		AtEase::suppressWarnings();
-		$fp = fopen( $filename, 'r' );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$fp = @fopen( $filename, 'r' );
 
 		if ( $fp === false ) {
 			throw new RuntimeException( "Could not open \"{$filename}\"" );
@@ -3279,9 +3277,8 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		if ( $this->conn ) {
 			// Avoid connection leaks. Normally, resources close at script completion.
 			// The connection might already be closed in PHP by now, so suppress warnings.
-			AtEase::suppressWarnings();
-			$this->closeConnection();
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@$this->closeConnection();
 			$this->conn = null;
 		}
 	}

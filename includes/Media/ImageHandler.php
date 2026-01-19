@@ -10,7 +10,6 @@
 namespace MediaWiki\Media;
 
 use MediaWiki\FileRepo\File\File;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Media handler abstract base class for images
@@ -213,11 +212,8 @@ abstract class ImageHandler extends MediaHandler {
 
 	/** @inheritDoc */
 	public function getImageSize( $image, $path ) {
-		AtEase::suppressWarnings();
-		$gis = getimagesize( $path );
-		AtEase::restoreWarnings();
-
-		return $gis;
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		return @getimagesize( $path );
 	}
 
 	/** @inheritDoc */

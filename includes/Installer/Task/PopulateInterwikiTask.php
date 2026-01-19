@@ -3,7 +3,6 @@
 namespace MediaWiki\Installer\Task;
 
 use MediaWiki\Status\Status;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Populate the interwiki table from maintenance/interwiki.list
@@ -37,10 +36,9 @@ class PopulateInterwikiTask extends Task {
 			return $status;
 		}
 
-		AtEase::suppressWarnings();
-		$rows = file( MW_INSTALL_PATH . '/maintenance/interwiki.list',
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$rows = @file( MW_INSTALL_PATH . '/maintenance/interwiki.list',
 			FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
-		AtEase::restoreWarnings();
 		if ( !$rows ) {
 			return Status::newFatal( 'config-install-interwiki-list' );
 		}

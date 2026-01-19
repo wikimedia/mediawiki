@@ -7,7 +7,6 @@
 namespace MediaWiki\Sparql;
 
 use MediaWiki\Http\HttpRequestFactory;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Simple SPARQL client
@@ -150,9 +149,8 @@ class SparqlClient {
 			throw new SparqlException( 'HTTP error: ' . $status->getWikiText( false, false, 'en' ) );
 		}
 		$result = $request->getContent();
-		AtEase::suppressWarnings();
-		$data = json_decode( $result, true );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$data = @json_decode( $result, true );
 		if ( $data === null || $data === false ) {
 			throw new SparqlException( "HTTP request failed, response:\n" .
 				substr( $result, 1024 ) );

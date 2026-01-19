@@ -27,7 +27,6 @@ use MWFileProps;
 use RuntimeException;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
@@ -1375,9 +1374,8 @@ class FileRepo {
 		}
 		// Cleanup for disk source files...
 		foreach ( $sourceFSFilesToDelete as $file ) {
-			AtEase::suppressWarnings();
-			unlink( $file ); // FS cleanup
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@unlink( $file ); // FS cleanup
 		}
 
 		return $status;

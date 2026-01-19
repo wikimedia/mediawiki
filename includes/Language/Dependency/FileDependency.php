@@ -4,8 +4,6 @@
  * @file
  */
 
-use Wikimedia\AtEase\AtEase;
-
 /**
  * Depend on a file.
  *
@@ -48,19 +46,17 @@ class FileDependency extends CacheDependency {
 
 	public function loadDependencyValues() {
 		if ( $this->timestamp === null ) {
-			AtEase::suppressWarnings();
 			# Dependency on a non-existent file stores "false"
 			# This is a valid concept!
-			$this->timestamp = filemtime( $this->filename );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$this->timestamp = @filemtime( $this->filename );
 		}
 	}
 
 	/** @inheritDoc */
 	public function isExpired() {
-		AtEase::suppressWarnings();
-		$lastmod = filemtime( $this->filename );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$lastmod = @filemtime( $this->filename );
 		if ( $lastmod === false ) {
 			if ( $this->timestamp === false ) {
 				# Still nonexistent

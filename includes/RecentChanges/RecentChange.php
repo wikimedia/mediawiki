@@ -21,7 +21,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use RuntimeException;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -797,11 +796,8 @@ class RecentChange implements Taggable {
 	public function parseParams() {
 		$rcParams = $this->getAttribute( 'rc_params' );
 
-		AtEase::suppressWarnings();
-		$unserializedParams = unserialize( $rcParams );
-		AtEase::restoreWarnings();
-
-		return $unserializedParams;
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		return @unserialize( $rcParams );
 	}
 
 	/**

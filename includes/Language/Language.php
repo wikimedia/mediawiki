@@ -49,7 +49,6 @@ use MediaWiki\Xml\XmlSelect;
 use NumberFormatter;
 use RuntimeException;
 use UtfNormal\Validator as UtfNormalValidator;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\DebugInfo\DebugInfoTrait;
 use Wikimedia\Message\MessageParam;
@@ -2965,10 +2964,8 @@ class Language implements Bcp47Code {
 		# *input* string. We just ignore those too.
 		# REF: https://bugs.php.net/bug.php?id=37166
 		# REF: https://phabricator.wikimedia.org/T18885
-		AtEase::suppressWarnings();
-		$text = iconv( $in, $out . '//IGNORE', $string );
-		AtEase::restoreWarnings();
-		return $text;
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		return @iconv( $in, $out . '//IGNORE', $string );
 	}
 
 	/**

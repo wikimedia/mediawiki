@@ -5,7 +5,6 @@ namespace Wikimedia\StringUtils;
 use ArrayIterator;
 use InvalidArgumentException;
 use Wikimedia\Assert\Assert;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\UnpackFailedException;
 
 /**
@@ -288,11 +287,8 @@ class StringUtils {
 	 * @return bool
 	 */
 	public static function isValidPCRERegex( $string ) {
-		AtEase::suppressWarnings();
 		// @phan-suppress-next-line PhanParamSuspiciousOrder False positive
-		$isValid = preg_match( $string, '' );
-		AtEase::restoreWarnings();
-		return $isValid !== false;
+		return @preg_match( $string, '' ) !== false; // phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 	}
 
 	/**
@@ -349,9 +345,8 @@ class StringUtils {
 			}
 		}
 
-		AtEase::suppressWarnings();
-		$result = unpack( $format, $data );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$result = @unpack( $format, $data );
 
 		if ( $result === false ) {
 			// If it cannot extract the packed data.

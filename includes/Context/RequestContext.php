@@ -34,7 +34,6 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
 use RuntimeException;
 use Wikimedia\Assert\Assert;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageParam;
@@ -745,7 +744,8 @@ class RequestContext implements IContextSource, MutableContext {
 			StubGlobalUser::setUser( $context->getUser() ); // b/c
 			if ( $session && PHPSessionHandler::isEnabled() ) {
 				session_id( $session->getId() );
-				AtEase::quietCall( 'session_start' );
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				@session_start();
 			}
 			$request = new FauxRequest( [], false, $session );
 			$request->setIP( $params['ip'] );

@@ -14,7 +14,6 @@
 namespace MediaWiki\Media;
 
 use InvalidArgumentException;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -184,9 +183,8 @@ class PNGMetadataExtractor {
 					// if compressed
 					if ( $items[2] === "\x01" ) {
 						if ( function_exists( 'gzuncompress' ) && $items[4] === "\x00" ) {
-							AtEase::suppressWarnings();
-							$items[5] = gzuncompress( $items[5] );
-							AtEase::restoreWarnings();
+							// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+							$items[5] = @gzuncompress( $items[5] );
 
 							if ( $items[5] === false ) {
 								// decompression failed
@@ -225,9 +223,8 @@ class PNGMetadataExtractor {
 					// Don't recognize chunk, so skip.
 					continue;
 				}
-				AtEase::suppressWarnings();
-				$content = iconv( 'ISO-8859-1', 'UTF-8', $content );
-				AtEase::restoreWarnings();
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				$content = @iconv( 'ISO-8859-1', 'UTF-8', $content );
 
 				if ( $content === false ) {
 					wfDebug( __METHOD__ . ": Read error (error with iconv)" );
@@ -264,9 +261,8 @@ class PNGMetadataExtractor {
 						continue;
 					}
 
-					AtEase::suppressWarnings();
-					$content = gzuncompress( $content );
-					AtEase::restoreWarnings();
+					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+					$content = @gzuncompress( $content );
 
 					if ( $content === false ) {
 						// decompression failed
@@ -274,9 +270,8 @@ class PNGMetadataExtractor {
 						continue;
 					}
 
-					AtEase::suppressWarnings();
-					$content = iconv( 'ISO-8859-1', 'UTF-8', $content );
-					AtEase::restoreWarnings();
+					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+					$content = @iconv( 'ISO-8859-1', 'UTF-8', $content );
 
 					if ( $content === false ) {
 						wfDebug( __METHOD__ . ": iconv error in zTXt chunk" );

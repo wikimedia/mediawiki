@@ -13,7 +13,6 @@ use InvalidArgumentException;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
 use Traversable;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileIteration\FileBackendStoreShardDirIterator;
 use Wikimedia\FileBackend\FileIteration\FileBackendStoreShardFileIterator;
 use Wikimedia\FileBackend\FileOpHandle\FileBackendStoreOpHandle;
@@ -414,9 +413,8 @@ abstract class FileBackendStore extends FileBackend {
 		unset( $params['latest'] );
 
 		// Check that the specified temp file is valid...
-		AtEase::suppressWarnings();
-		$ok = ( is_file( $tmpPath ) && filesize( $tmpPath ) == 0 );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$ok = ( @is_file( $tmpPath ) && @filesize( $tmpPath ) == 0 );
 		if ( !$ok ) { // not present or not empty
 			$status->fatal( 'backend-fail-opentemp', $tmpPath );
 
@@ -853,9 +851,8 @@ abstract class FileBackendStore extends FileBackend {
 		$contents = [];
 		foreach ( $this->doGetLocalReferenceMulti( $params ) as $path => $fsFile ) {
 			if ( $fsFile instanceof FSFile ) {
-				AtEase::suppressWarnings();
-				$content = file_get_contents( $fsFile->getPath() );
-				AtEase::restoreWarnings();
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				$content = @file_get_contents( $fsFile->getPath() );
 				$contents[$path] = is_string( $content ) ? $content : self::RES_ERROR;
 			} else {
 				// self::RES_ERROR or self::RES_ABSENT

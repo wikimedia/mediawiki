@@ -15,7 +15,6 @@
 namespace MediaWiki\Media;
 
 use InvalidArgumentException;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * GIF frame counter.
@@ -161,9 +160,8 @@ class GIFMetadataExtractor {
 					\UtfNormal\Validator::quickIsNFCVerify( $dataCopy );
 
 					if ( $dataCopy !== $data ) {
-						AtEase::suppressWarnings();
-						$data = iconv( 'windows-1252', 'UTF-8', $data );
-						AtEase::restoreWarnings();
+						// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+						$data = @iconv( 'windows-1252', 'UTF-8', $data );
 					}
 
 					$commentCount = count( $comment );

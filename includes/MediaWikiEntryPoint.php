@@ -28,7 +28,6 @@ use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Throwable;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Http\HttpStatus;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\LBFactory;
@@ -736,8 +735,8 @@ abstract class MediaWikiEntryPoint {
 		$host = $info['host'] ?? null;
 		$port = $info['port'] ?? ( $https ? 443 : 80 );
 
-		AtEase::suppressWarnings();
-		$sock = $host ? fsockopen(
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$sock = $host ? @fsockopen(
 			$https ? 'tls://' . $host : $host,
 			$port,
 			$errno,
@@ -745,7 +744,6 @@ abstract class MediaWikiEntryPoint {
 			// If it takes more than 100ms to connect to ourselves there is a problem...
 			0.100
 		) : false;
-		AtEase::restoreWarnings();
 
 		$invokedWithSuccess = true;
 		if ( $sock ) {

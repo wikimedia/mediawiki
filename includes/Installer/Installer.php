@@ -41,7 +41,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MWCryptRand;
 use RuntimeException;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\Services\ServiceDisabledException;
@@ -1113,13 +1112,12 @@ abstract class Installer {
 
 		$httpRequestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
 
-		AtEase::suppressWarnings();
-
 		foreach ( $scriptTypes as $ext => $contents ) {
 			foreach ( $contents as $source ) {
 				$file = 'exectest.' . $ext;
 
-				if ( !file_put_contents( $dir . $file, $source ) ) {
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				if ( !@file_put_contents( $dir . $file, $source ) ) {
 					break;
 				}
 
@@ -1134,17 +1132,14 @@ abstract class Installer {
 					// extension.
 					$text = null;
 				}
-				unlink( $dir . $file );
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				@unlink( $dir . $file );
 
 				if ( $text == 'exec' ) {
-					AtEase::restoreWarnings();
-
 					return $ext;
 				}
 			}
 		}
-
-		AtEase::restoreWarnings();
 
 		return false;
 	}
@@ -1552,8 +1547,7 @@ abstract class Installer {
 	 * Some long-running pages (Install, Upgrade) will want to do this
 	 */
 	protected function disableTimeLimit() {
-		AtEase::suppressWarnings();
-		set_time_limit( 0 );
-		AtEase::restoreWarnings();
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		@set_time_limit( 0 );
 	}
 }

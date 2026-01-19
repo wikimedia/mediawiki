@@ -14,7 +14,6 @@ use MediaWiki\Shell\Shell;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
-use Wikimedia\AtEase\AtEase;
 
 $optionsWithArgs = RecompressTracked::getOptionsWithArgs();
 require __DIR__ . '/../CommandLineInc.php';
@@ -256,9 +255,8 @@ class RecompressTracked {
 				[ 'file', 'php://stdout', 'w' ],
 				[ 'file', 'php://stderr', 'w' ]
 			];
-			AtEase::suppressWarnings();
-			$proc = proc_open( "$cmd --child-id $i", $spec, $pipes );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$proc = @proc_open( "$cmd --child-id $i", $spec, $pipes );
 			if ( !$proc ) {
 				$this->critical( "Error opening child process: $cmd" );
 				exit( 1 );
