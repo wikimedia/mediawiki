@@ -11,6 +11,7 @@
 let ffmpeg;
 import path from 'path';
 import { getChromeOptions } from './chromeOptions.js';
+import { setupProcessHandlers } from './processHandlers.js';
 import { PrometheusFileReporter, writeAllProjectMetrics } from './PrometheusFileReporter.js';
 const logPath = process.env.LOG_DIR || path.join( process.cwd(), 'tests/selenium/log' );
 import { makeFilenameDate, saveScreenshot, startVideo, stopVideo, logSystemInformation, logBrowserInformation } from 'wdio-mediawiki';
@@ -19,21 +20,7 @@ if ( !process.env.MW_SERVER || !process.env.MW_SCRIPT_PATH ) {
 	throw new Error( 'MW_SERVER or MW_SCRIPT_PATH not defined.\nSee https://www.mediawiki.org/wiki/Selenium/How-to/Set_environment_variables\n' );
 }
 
-process.on( 'uncaughtException', ( error ) => {
-	console.error( 'Caught uncaughtException: ', error );
-	// eslint-disable-next-line n/no-process-exit
-	process.exit( 1 );
-} );
-
-process.on( 'unhandledRejection', ( reason, promise ) => {
-	console.log( 'Unhandled Rejection at:', promise, 'reason:', reason );
-} );
-
-[ 'SIGINT', 'SIGTERM' ].forEach( ( signal ) => process.on( signal, () => {
-	// eslint-disable-next-line no-underscore-dangle
-	console.log( `Received ${ signal }. Active handles:`, process._getActiveHandles() );
-} )
-);
+setupProcessHandlers();
 
 /**
  * For more details documentation and available options:
