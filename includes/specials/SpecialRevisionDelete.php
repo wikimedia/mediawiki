@@ -169,7 +169,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// $this->ids = array_map( 'intval', $this->ids );
 		$this->ids = array_unique( array_filter( $this->ids ) );
 
-		$this->typeName = $request->getVal( 'type' );
+		$this->typeName = $request->getVal( 'type' ) ?? '';
 		$this->targetObj = Title::newFromText( $request->getText( 'target' ) );
 
 		# For reviewing deleted files...
