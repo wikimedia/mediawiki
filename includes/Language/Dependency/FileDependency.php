@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language\Dependency;
+
 /**
  * Depend on a file.
  *
@@ -80,3 +82,6 @@ class FileDependency extends CacheDependency {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( FileDependency::class, 'FileDependency' );

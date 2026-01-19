@@ -392,6 +392,13 @@ because of Phabricator reports.
     - KuConverter
     - ZghConverter
     - SrConverter
+  - MediaWiki\Language\Dependency
+    - CacheDependency
+    - ConstantDependency
+    - FileDependency
+    - DependencyWrapper
+    - MainConfigDependency
+    - GlobalDependency
   - MediaWiki\Languages
     - LanguageTr
     - LanguageFi

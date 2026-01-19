@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language\Dependency;
+
 /**
  * Depend on a PHP global variable.
  *
@@ -30,3 +32,6 @@ class GlobalDependency extends CacheDependency {
 		return $GLOBALS[$this->name] != $this->value;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( GlobalDependency::class, 'GlobalDependency' );

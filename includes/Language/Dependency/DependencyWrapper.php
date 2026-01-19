@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language\Dependency;
+
 use Wikimedia\ObjectCache\BagOStuff;
 
 /**
@@ -116,3 +118,6 @@ class DependencyWrapper {
 		return $value;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DependencyWrapper::class, 'DependencyWrapper' );

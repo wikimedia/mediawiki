@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language\Dependency;
+
 /**
  * Base class to represent dependencies for LocalisationCache entries.
  *
@@ -25,3 +27,6 @@ abstract class CacheDependency {
 	public function loadDependencyValues() {
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( CacheDependency::class, 'CacheDependency' );
