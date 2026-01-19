@@ -194,4 +194,41 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 10, $tracker->getUserEditCount( $userLocal ) );
 		$this->assertSame( 20, $tracker->getUserEditCount( $userRemote ) );
 	}
+
+	public function testReadsFromCacheAfterPreloadForMultipleUsers(): void {
+		$user1 = $this->getMutableTestUser()->getUser();
+		$user2 = $this->getMutableTestUser()->getUser();
+
+		$this->assertTrue(
+			$user1->getId() !== $user2->getId(),
+			'getTestUser should provide a different user on each call'
+		);
+
+		$tracker = $this->getServiceContainer()->getUserEditTracker();
+
+		$tracker->clearUserEditCache( $user1 );
+		$tracker->clearUserEditCache( $user2 );
+
+		// Update the user table with known values, then make the service read
+		// them into the cache.
+		$this->setDbEditCount( $user1, 1 );
+		$this->setDbEditCount( $user2, 2 );
+
+		$tracker->preloadUserEditCountCache( [
+			$user1,
+			$user2
+		] );
+
+		$this->assertSame( 1, $tracker->getUserEditCount( $user1 ) );
+		$this->assertSame( 2, $tracker->getUserEditCount( $user2 ) );
+
+		// Change the values in the DB and assert than the service still returns
+		// the previously-cached values, which means it does not perform
+		// additional queries.
+		$this->setDbEditCount( $user1, 3 );
+		$this->setDbEditCount( $user2, 4 );
+
+		$this->assertSame( 1, $tracker->getUserEditCount( $user1 ) );
+		$this->assertSame( 2, $tracker->getUserEditCount( $user2 ) );
+	}
 }

@@ -4,6 +4,7 @@ namespace MediaWiki\User;
 
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\UserEditCountUpdate;
 use MediaWiki\JobQueue\JobQueueGroup;
@@ -86,6 +87,55 @@ class UserEditTracker {
 
 		$this->userEditCountCache[ $cacheKey ] = $count;
 		return $count;
+	}
+
+	/**
+	 * Preloads the internal edit count cache for the given users.
+	 *
+	 * Use this when calls to {@link self::getUserEditCount()} are expected for
+	 * multiple users, so that the queries can be batched instead of performing
+	 * one query per user.
+	 *
+	 * Unlike {@link self::getUserEditCount()}, this will not try to update the
+	 * edit counts stored in user_editcount for users for which the count was
+	 * not previously initialized.
+	 *
+	 * @param UserIdentity[] $users
+	 * @since 1.46
+	 * @return void
+	 */
+	public function preloadUserEditCountCache( array $users ): void {
+		$userIds = [];
+
+		foreach ( $users as $user ) {
+			if (
+				$user->isRegistered() &&
+				$user->getWikiId() === UserIdentity::LOCAL
+			) {
+				$userIds[] = $user->getId();
+			}
+		}
+
+		$userIds = array_unique( $userIds );
+
+		$dbr = $this->dbProvider->getReplicaDatabase();
+
+		foreach ( array_chunk( $userIds, 500 ) as $batch ) {
+			$rows = $dbr->newSelectQueryBuilder()
+				->select( [ 'user_id', 'user_editcount' ] )
+				->from( 'user' )
+				->where( [ 'user_id' => $batch ] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
+
+			foreach ( $rows as $row ) {
+				if ( $row->user_editcount !== null ) {
+					$key = $this->getCacheKeyByUserId( (int)$row->user_id );
+
+					$this->userEditCountCache[$key] = (int)$row->user_editcount;
+				}
+			}
+		}
 	}
 
 	/**
@@ -220,13 +270,36 @@ class UserEditTracker {
 		$this->userEditCountCache[ $cacheKey ] = $editCount;
 	}
 
+	/**
+	 * Returns the cache key to be used for reading from or updating the edit
+	 * count cache for a given user, provided as a UserIdentity instance.
+	 *
+	 * @param UserIdentity $user User to get the cache key for.
+	 * @return string
+	 */
 	private function getCacheKey( UserIdentity $user ): string {
 		if ( !$user->isRegistered() ) {
 			throw new InvalidArgumentException( 'Cannot prepare cache key for an anonymous user' );
 		}
 
 		$wikiId = $user->getWikiId();
-		$userId = $user->getId( $wikiId );
+
+		return $this->getCacheKeyByUserId( $user->getId( $wikiId ), $wikiId );
+	}
+
+	/**
+	 * Returns the cache key to be used for reading from or updating the edit
+	 * count cache for a given user, identified by its user ID and the ID of the
+	 * wiki it belongs to.
+	 *
+	 * @param int $userId ID of the user to get the cache key for.
+	 * @param string|false $wikiId ID of the wiki the user belongs to.
+	 * @return string
+	 */
+	private function getCacheKeyByUserId(
+		int $userId,
+		string|bool $wikiId = WikiAwareEntity::LOCAL
+	): string {
 		$isRemoteWiki = ( $wikiId !== UserIdentity::LOCAL ) && !WikiMap::isCurrentWikiId( $wikiId );
 		if ( $isRemoteWiki ) {
 			return $wikiId . ':u' . $userId;

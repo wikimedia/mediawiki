@@ -22,6 +22,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorNormalization;
+use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
@@ -465,16 +466,31 @@ class LogPager extends ReverseChronologicalPager {
 	}
 
 	protected function doBatchLookups() {
+		$users = [];
 		$lb = $this->linkBatchFactory->newLinkBatch()->setCaller( __METHOD__ );
+
 		foreach ( $this->mResult as $row ) {
+			$user = new UserIdentityValue( (int)$row->log_user, $row->log_user_text );
+
+			// If using LogEventList::logline() to render the rows,
+			// then LogFormatter::makeUserLink() will use the
+			// edit count of a user to know if the "contribs" link
+			// text should be red.
+			// Therefore, preload the user edit count to save individual
+			// queries for each user.
+			$users[] = $user;
+
 			$lb->add( $row->log_namespace, $row->log_title );
-			$lb->addUser( new UserIdentityValue( (int)$row->log_user, $row->log_user_text ) );
+			$lb->addUser( $user );
 			$formatter = $this->logFormatterFactory->newFromRow( $row );
 			foreach ( $formatter->getPreloadTitles() as $title ) {
 				$lb->addObj( $title );
 			}
 		}
+
 		$lb->execute();
+
+		$this->getUserEditTracker()->preloadUserEditCountCache( $users );
 	}
 
 	/** @inheritDoc */
@@ -602,6 +618,10 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_USER ) .
 				' != ' . LogPage::SUPPRESSED_USER;
 		}
+	}
+
+	private function getUserEditTracker(): UserEditTracker {
+		return MediaWikiServices::getInstance()->getUserEditTracker();
 	}
 }
 
