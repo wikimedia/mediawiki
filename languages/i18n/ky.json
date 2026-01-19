@@ -1510,7 +1510,6 @@
 	"confirmemail_needlogin": "Электрондук почтаңызды ырастоо үчүн $1 керек.",
 	"confirmemail_loggedin": "Электрондук дарегиңиз аныкталды.",
 	"confirmemail_subject": "{{SITENAME}}: электрондук почтаны ырастоо",
-	"recreate": "Кайрадан түзүү",
 	"confirm_purge_button": "Макул",
 	"confirm-watch-button": "Макул",
 	"confirm-unwatch-button": "Макул",

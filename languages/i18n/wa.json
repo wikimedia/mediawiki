@@ -1355,8 +1355,6 @@
 	"confirmemail_body": "Ene sakî, probåblumint vos-minme, avou l' adresse IP $1,\na-st ahivé on conte so {{SITENAME}} avou ciste adresse\nemile ci eyet come no d' elodjaedje «$2».\n\nPo-z acertiner ki ç' conte ci est bén da vosse eyet mete\nen alaedje les fonccions d' emilaedje so {{SITENAME}},\nalez drovî avou vosse betchteu waibe li hårdêye ki shût:\n\n$3\n\nSi c' est *nén* vos k' a-st ahivé l' conte, adon shuvoz\nl' hårdêye shuvante po fé rnoncî l' acertinaedje d' emile:\n\n$5\n\nCi côde d' acertinaedje ci va-st espirer po l' $4.",
 	"scarytranscludetoolong": "[Li hårdêye est pår trop longue]",
 	"deletedwhileediting": "'''Asteme''': Cisse pådje ci a stî disfacêye sol tins ki vos scrijhîz!",
-	"confirmrecreate": "L' uzeu [[User:$1|$1]] ([[User talk:$1|copene]]) a disfacé cisse pådje ci après ki vos avoz cmincî a scrire, li råjhon k' il a dné c' est:\n: ''$2''.\nAcertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
-	"recreate": "Rifé",
 	"confirm_purge_button": "'l est bon",
 	"confirm-purge-top": "Netyî l' muchete di cisse pådje ci?",
 	"imgmultipageprev": "← pådje di dvant",

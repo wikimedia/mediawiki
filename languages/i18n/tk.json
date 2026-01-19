@@ -2362,8 +2362,6 @@
 	"scarytranscludefailed": "[$1 üçin şablon äkelmeklik başa barmady]",
 	"scarytranscludetoolong": "[URL örän uzyn]",
 	"deletedwhileediting": "'''Duýduryş''': Bu sahypa siz redaktirläp başlanyňyzdan soňra öçürildi!",
-	"confirmrecreate": "Bu sahypany [[User:$1|$1]] ([[User talk:$1|çekişme]]) ulanyjysy siz sahypany redaktirläp otyrkaňyz öçürdi, sebäbi:\n: ''$2''\nSahypany gaýtadan döretmek isleýän bolsaňyz, tassyklamagyňyzy haýyş edýäris.",
-	"recreate": "Gaýtadan döret",
 	"confirm-purge-title": "Bu sahypany arassalaň",
 	"confirm_purge_button": "Bolýar",
 	"confirm-purge-top": "Bu sahypanyň keşini boşatmalymy?",

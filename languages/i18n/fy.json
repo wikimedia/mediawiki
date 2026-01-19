@@ -1809,7 +1809,6 @@
 	"confirmemail_body_set": "Immen, nei alle gedachten jo, mei it YP-adres $1,\nhat it e-mailadres fan it akkount \"$2\" op {{GRAMMAR:lidw|{{SITENAME}}}} ynsteld op dit adres.\n\nOm te befêstigjen dat dat akkount wier jowes is en de e-mailfunksjes\nfan {{GRAMMAR:l|{{SITENAME}}}} beskikber makke wurde kinne, iepenje dan dizze\nferwizing yn jo webblêder:\n\n$3\n\nAt it akkount *net* jowes is, folgje dan dizze ferwizing\nom it befêstigjen fan it e-mailadres ôf te sizzen:\n\n$5\n\nDe befêstigingskoade ferrint op $4.",
 	"invalidateemail": "Befêstigjen e-mail ôfsizze",
 	"scarytranscludetoolong": "[URL-adres is te lang]",
-	"confirmrecreate": "Sûnt jo begûn binne dizze side te bewurkjen, hat meidogger [[User:$1|$1]] ([[User talk:$1|oerlis]]) de side {{GENDER:$1|wiske}}. De reden dy't derfoar jûn waard wie:\n: <em>$2</em>\nWolle jo de side wier op 'e nij skriuwe?",
 	"unit-pixel": "px",
 	"confirm_purge_button": "OK",
 	"confirm-watch-button": "OK",

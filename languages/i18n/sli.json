@@ -1397,8 +1397,6 @@
 	"scarytranscludefailed": "[Vorloageneinbindung fier $1 ies gescheitert]",
 	"scarytranscludetoolong": "[URL ies zu lang]",
 	"deletedwhileediting": "Ochtiche: Diese Seite wurde gelescht, noachdem du oagefanga hoast se zu beoarbeeta!\nEim [{{fullurl:{{#special:Log}}|type=delete&page={{FULLPAGENAMEE}}}} Lesch-Logbuch] findest du dan Grund fer de Leschung. Wenn du de Seite speicherst, werd se neu oagelegt.",
-	"confirmrecreate": "{{GENDER:$1|Der Benutzer|De Benutzerin}} [[User:$1|$1]] ([[User talk:$1|Dischkur]]) hoat diese Seite gelescht, noachdem du oagefanga hoast, se zu beoarbeeta. De Begrindung lautete:\n: <em>$2</em>\nBitte bestätige, dass du diese Seite wirklich neu erstella mechtest.",
-	"recreate": "Erneut oalähn",
 	"confirm-purge-top": "Diese Seite aus'm Cache lescha?",
 	"confirm-purge-bottom": "Laart dan Cache anner Seite und erzwingt de Oazeige der aktuella Version.",
 	"imgmultipageprev": "← vurherige Seite",

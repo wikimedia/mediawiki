@@ -526,7 +526,6 @@
 	"metadata-fields": "在本信息肚所列出嘅EXIF元數據域將包含在圖片顯示頁面，當元數據表損壞時單淨顯示下背信息。\n其他嘅元數據默認做隱藏。\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname\n* digitalsourcetype",
 	"confirmemail": "確認電郵地址",
 	"confirmemail_noemail": "汝還吂在汝嘅[[Special:Preferences|用戶偏好設定]]肚輸入一隻有效嘅電郵地址。",
-	"recreate": "重建",
 	"confirm_purge_button": "做得",
 	"imgmultigo": "確定！",
 	"autosumm-replace": "用“$1”替換內容",

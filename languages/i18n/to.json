@@ -646,8 +646,6 @@
 	"confirmemail_body": "Ko e tokotaha, mahalo pē ko koe mei he tuʻasila IP $1, naʻe lēsisita ia ha tohi kau-ki-ai \"$2\" mo e tuʻasila tohilá ni ʻi {{SITENAME}}.\n\nʻE fakamoʻoniʻi ʻa e tohí ni mo e fakamoʻui ʻene tohila ʻi {{SITENAME}}, kapau ʻoku moʻoni ʻene ʻave meiate koe, ʻe fakaava ʻa e fehokotakí ni ʻi hoʻo palausa:\n\n$3\n\nKapau ʻoku ʻikai ko koe, ʻoua ʻe fakaava ia. ʻE mate ʻa e lea fakapulipulí ni he $4.",
 	"scarytranscludefailed": "[Fakamolemole, naʻe movete maʻu he sīpinga maʻa e $1]",
 	"deletedwhileediting": "Tokanga: Naʻe tāmateʻi he pēsí ni ʻosi hoʻo kamataʻanga tohi!",
-	"confirmrecreate": "Naʻe tāmateʻi ʻa e kupu ko ʻeni ʻe he ngāue [[User:$1|$1]] ([[User talk:$1|alea]]) hili hoʻo kamataʻanga fatu.\n: Ko e ʻuhinga: ''$2''\nKātaki fakapapauʻi te ke fie toe fatu ʻa e kupu ni.",
-	"recreate": "Toe fakatupu",
 	"confirm_purge_button": "Fai ā",
 	"confirm-purge-top": "Fakaʻatā ko e fafaʻo ʻo e pēsí ni?",
 	"imgmultipageprev": "← Ki muʻa peesi",

@@ -508,8 +508,6 @@
 	"anonpreviewwarning": "<em>Lö si möi'ö bakha. Tefasura'ö dania nomoro IP-mö ba waö-waö nga'örö andre.</em>",
 	"autocreate-preview-warning": "<em>Lö si möi'ö bakha. Na öbulö'ö zura, tefazökhi dania akun gasa-gasa khöu. [[{{MediaWiki:tempuser-helppage}}|Baso nasa]].</em>",
 	"missingsummary": "<strong>Nitöngöni:</strong> Lö nisuramö wuru-furu wamulö'ö zura (arutua zura).\nNa öfuli öhöndrögö \"$1\", lö dania arutua ba mbua halöŵömö.",
-	"selfredirect": "<strong>Faigi ua:</strong> Edöna ö'aekhugö nga'örö andre ba da'a ya'i göi.\nTe fasala nga'örö ogamöta ma zui öbabaya nga'örö si tenga ya'ia.\nNa öfuli öhöndrögö \"$1\", ba tefazökhi wangaekhugö andrö.",
-	"edit-constraint-brokenredirect": "<strong>Töngöni:</strong> Edöna ö'aekhugö nga'örö andre ba nga'örö si lö hadöi nasa.\nTe no fasala wanuramö gaekhula zinura andrö.\nHeŵa'ae simanö edöna tefazökhi manö wangaekhugö andrö na öhöndrögö mangawuli \"$1\".",
 	"missingcommenttext": "Sura bakha komentar.",
 	"missingcommentheader": "<strong>Nitöngöni:</strong> Lö nibe'eu subjek komentar andre.\nNa öfuli öhöndrögö \"$1\", tefazökhi nisuramö ba hiza lö subjek-nia.",
 	"summary-preview": "Khala-khala garutua wamulö'ö:",

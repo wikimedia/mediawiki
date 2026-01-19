@@ -661,7 +661,6 @@
 	"confirmemail_loggedin": "汝其電批地址現在已經確定去了。",
 	"confirmemail_body": "有人（可能是汝）敆IP地址$1𡅏已經使茲蜀萆電子郵件地址來註冊蜀萆賬戶「$2」去了。\n\n卜想確認茲蜀萆賬戶當真是汝其，固加敆{{SITENAME}}激活電子郵件特點，許敆汝其瀏覽器𡅏拍開茲蜀萆鏈接：\n\n$3\n\n如果汝*無*註冊茲賬戶，單擊茲蜀萆鏈接來取消電子郵件確認：\n\n$5\n\n茲蜀萆確認代碼會敆$4時候過期。",
 	"deletedwhileediting": "<strong>警告：</strong>茲蜀頁敆汝編輯以前已經乞刪唻了！",
-	"recreate": "重新開",
 	"confirm-purge-title": "刷新茲頁",
 	"confirm_purge_button": "好",
 	"confirm-purge-top": "卜想清除茲頁其缓存無？",

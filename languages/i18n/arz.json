@@ -1779,8 +1779,6 @@
 	"scarytranscludefailed": "[التدوير على القالب فشل ل$1]",
 	"scarytranscludetoolong": "[عنوان طويل جدا]",
 	"deletedwhileediting": "<strong>تحذير:</strong> الصفحة دى اتمسحت بعد ما بدأت أنت  فى تحريرها!",
-	"confirmrecreate": "اليوزر [[User:$1|$1]] ([[User talk:$1|مناقشه]]) {{GENDER:$1|مسح}} المقالة دى بعد ما انت بدأت فى تحريرها علشان:\n: <em>$2</em>\nلو سمحت تتأكد من أنك عايز تبتدى المقالة دى تانى.",
-	"recreate": "ابتدى تاني",
 	"unit-pixel": "بيكس",
 	"confirm_purge_button": "طيب",
 	"confirm-purge-top": "امسح الكاش بتاع الصفحة دى؟",

@@ -1403,8 +1403,6 @@
 	"invalidateemail": "የኢ-ሜል ማረጋገጫ መሠረዝ",
 	"scarytranscludetoolong": "[URL ከመጠን በላይ የረዘመ ነው]",
 	"deletedwhileediting": "'''ማስጠንቀቂያ'''፦ መዘጋጀት ከጀመሩ በኋላ ገጹ ጠፍቷል!",
-	"confirmrecreate": "መዘጋጀት ከጀመሩ በኋላ፣ ተጠቃሚው [[User:$1|$1]] ([[User talk:$1|ውይይት]]) ገጹን አጠፍተው ይህን ምክንያት አቀረቡ፦\n: ''$2''\nእባክዎ ገጹን እንደገና ለመፍጠር በውኑ እንደ ፈለጉ ያረጋግጡ።",
-	"recreate": "እንደገና ይፈጠር",
 	"confirm_purge_button": "እሺ",
 	"confirm-purge-top": "የዚሁ ገጽ ካሽ (cache) ይጠረግ?",
 	"imgmultipageprev": "← ፊተኛው ገጽ",

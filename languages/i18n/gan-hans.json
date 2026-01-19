@@ -1171,8 +1171,6 @@
 	"scarytranscludefailed": "[对伓住，提取$1失败]",
 	"scarytranscludetoolong": "[对伓住，URL 太长]",
 	"deletedwhileediting": "警告: 倷编辑𠮶时间有人删卟嘞个页！",
-	"confirmrecreate": "倷编辑𠮶时间，用户[[User:$1|$1]]（[[User talk:$1|对话]]）因为下底原因删卟嘞个页:\n: ''$2''\n请想正后再重建页面。",
-	"recreate": "重建",
 	"confirm_purge_button": "做得",
 	"confirm-purge-top": "想清卟个页𠮶缓存?",
 	"comma-separator": "、",

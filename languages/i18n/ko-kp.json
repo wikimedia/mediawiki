@@ -458,7 +458,6 @@
 	"anoneditwarning": "<strong>경고:</strong> 가입하지 않았습니다. 편집을 하면 IP 주소가 공개되게 됩니다. <strong>[$1 가입]</strong>하거나 <strong>[$2 계산자리를 생성하면]</strong> 편집자가 사용자 이름으로 기록되고, 다른 장점도 있습니다.",
 	"anonpreviewwarning": "<em>가입하고있지 않습니다. 문서를 보관하면 당신의 IP 주소가 문서의 편집 력사에 남게 됩니다.</em>",
 	"missingsummary": "'''알림:''' 편집 요약을 적지 않았습니다.\n《$1》 단추를 다시 찰칵하면 편집 요약 없이 편집이 보관됩니다.",
-	"selfredirect": "<strong>경고:</strong> 자기 자신으로 문서를 넘겨주고있습니다.\n넘겨줄 대상을 잘못 입력했거나, 잘못된 문서를 편집하고 있을수 있습니다.\n《$1》 단추를 다시 찰칵하면, 넘겨주기 문서가 생성됩니다.",
 	"missingcommenttext": "대답을 입력해주십시오.",
 	"missingcommentheader": "<strong>알림:</strong> 이 소견에 제목을 입력하지 않았습니다.\n《$1》 단추를 다시 찰칵하면 제목 없이 편집이 보관됩니다.",
 	"summary-preview": "편집 요약 미리 보기:",

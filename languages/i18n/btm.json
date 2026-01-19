@@ -487,8 +487,6 @@
 	"anonpreviewwarning": "<em>Anda belum masuk. Jika Anda menerbitkan suntinga, maka alamat IP Anda akan tercatat dalam riwayat suntingan halaman ini.</em>",
 	"autocreate-preview-warning": "<em>Anda belum masuk log. Setelah Anda melakukan penyuntingan, akun sementara untuk Anda akan dibuatkan. [[{{MediaWiki:tempuser-helppage}}|Pelajari lebih lanjut]].</em>",
 	"missingsummary": "<strong>Peringatan:</strong> Ho indape mamasukkon ringkasan panyuntingan. pula ho ro mulakan mamisat tombol ni \"$1\", suntingan mon akan itorbitkon tai inda dong ringkasan ni panyuntingan nai.",
-	"selfredirect": "<strong>Peringatan:</strong> Ho mangalihkon alaman on so ro songkonon na lewatan.\nHo bisa jadi mangalehen tujuan na sala, sangape mandung manyunting alaman na sala.\nPula ho mangklik \"$1\" sakali nai, alaman pangalihan ni akun ibaen.",
-	"edit-constraint-brokenredirect": "<strong>Warning:</strong> Homangarahkon alaman on tu alaman na inda adong.\nHo ampot mandung manontuon target pangalihan na sala.\nPula ho mangklik \"$1\" sakali nai, pangalihan nai les totop ibaen.",
 	"summary-preview": "Parnidaan samantaro pature:",
 	"previewerrortext": "Tarjadi sega hatiha manyungka tu parnidaan samantaro parubaan mu.",
 	"blockedtitle": "Ni pamake i blokir",

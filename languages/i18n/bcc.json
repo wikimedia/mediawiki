@@ -1899,8 +1899,6 @@
 	"scarytranscludefailed": "[تَھر آرگ نہ بیت پہ $1 ئا]",
 	"scarytranscludetoolong": "[URL باز مزننت]",
 	"deletedwhileediting": "'''هوژاری''': ای صفحه حذف بوتت رند چه شمی اصلاح کتن شروه بیگ!",
-	"confirmrecreate": "کاربر [[User:$1|$1]] ([[User talk:$1|گپ]]) ای صفحهء حذف کتت بعد چه شی که شما اصلاح شروع کتت گون ای دلیل:\n: ''$2''\nلطفا تایید کنیت که واقعا شما لوٹیت ای صفحه دگه شرکنیت.",
-	"recreate": "دگ شرکن",
 	"unit-pixel": "پیکس",
 	"confirm_purge_button": "هوبنت",
 	"confirm-purge-top": "ذخیره ای صفحه پهک کنت؟",

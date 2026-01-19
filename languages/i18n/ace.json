@@ -1090,7 +1090,6 @@
 	"metadata-fields": "Bideuëng mètadata gamba nyang na lam peusan nyoë keuneuk geupasoë bak tampilan halaman gamba 'oh watèë tabel mètadata geutôp.\nData nyang la'én eunteuk teupeusom keudroë.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname\n* digitalsourcetype",
 	"namespacesall": "ban dum",
 	"monthsall": "ban dum",
-	"recreate": "Peugöt ulang",
 	"confirm_purge_button": "Ka göt",
 	"confirm-purge-top": "Sampôh peuniyôh laman nyoë?",
 	"confirm-watch-button": "Ka göt",

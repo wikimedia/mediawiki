@@ -1182,8 +1182,6 @@
 	"scarytranscludedisabled": "[Ƣunçoişi bajnivikijona fa'ol nest]",
 	"scarytranscludefailed": "[Faroxoniji şablon baroi $1 mujassar naşud]",
 	"deletedwhileediting": "'''Ogohī''': In sahifa ba'di ba viroiş şurū' kardani şumo hazf şuda bud!",
-	"confirmrecreate": "Korbar [[User:$1|$1]] ([[User talk:$1|bahs]]) in maqolaro pas az on ki ogoz ba viroişi on namudaed bo daleli zerin hazf kardaast:\n: ''$2''\nLutfan ta'jid kuned, ki muçaddadan mexohed in maqolaro eçod kuned.",
-	"recreate": "Az nav sozed",
 	"confirm_purge_button": "Ta'jid",
 	"confirm-purge-top": "Pok karadni nusxai hofizai nihoniji (Cache) in sahifaro ta'jid mekuned?",
 	"imgmultipageprev": "← sahifai peşin",

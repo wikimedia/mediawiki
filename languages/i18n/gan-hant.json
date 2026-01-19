@@ -1296,8 +1296,6 @@
 	"scarytranscludefailed": "[對伓住，提取$1失敗]",
 	"scarytranscludetoolong": "[對伓住，URL 太長]",
 	"deletedwhileediting": "警告: 汝編輯嗰時間有人刪吥哩箇頁！",
-	"confirmrecreate": "汝編輯嗰時間，用戶[[User:$1|$1]]（[[User talk:$1|對話]]）因為下底原因刪吥哩箇頁:\n: ''$2''\n請想正後再建過頁面。",
-	"recreate": "建過",
 	"confirm_purge_button": "做得",
 	"confirm-purge-top": "想清卟箇頁嗰緩存?",
 	"comma-separator": "、",

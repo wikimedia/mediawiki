@@ -1521,8 +1521,6 @@
 	"scarytranscludefailed": "[Šablōnis augausnā iz $1 ni izpalla]",
 	"scarytranscludetoolong": "[per ilgā URL adressi]",
 	"deletedwhileediting": "'''Ēmpirsergīsenis''': Šin pāusan pastāi āupausintan panzdau tū pagaūwa redigītun!",
-	"confirmrecreate": "Tērpautajs [[User:$1|$1]] ([[User talk:$1|diskusiōni]]) ast aupausīnuns(si) šin pāusan, enkērdai tū pagaūwa redigītun din sen brewīnslin:\n:  \"$2\"\nMadli padrūktinais, anga tū perarwi kwaitēi etteīktun šin pāusan.",
-	"recreate": "Etteīkeis",
 	"confirm_purge_button": "Skistinnais",
 	"confirm-purge-top": "Skistīntun šisse pāusan rānkas minīsnan?",
 	"confirm-purge-bottom": "Pāusas etnaunīnsna skistinna pāusas rānkas minīsnan be kīnina ukaaktuālin wersiōnin waidīnsnan.",

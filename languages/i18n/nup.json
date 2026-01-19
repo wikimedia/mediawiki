@@ -504,7 +504,6 @@
 	"anonpreviewwarning": "<em>wo'e la gandan'a . Publishing ga IP address wo'e so dan etan ebanzhe fere nana'o.</em>‎",
 	"autocreate-preview-warning": "<em>wo'e la gandan'a . Wo'e ga enyan zheban , ah ga gbami eka tetengi kpe ya wo'e . [[{{MediaWiki:tempuser-helppage}}|Learn more]].</em>‎",
 	"missingsummary": "<strong>Reminder:</strong> You have not provided an edit summary. Wo'e ga yi\"$1\" be, ebanzhe wo'e ga de lila tinya.‎",
-	"selfredirect": "<strong>Warning:</strong> wo'e la fere nana zheti lo eba eti tacin'u. wun jin wo bichicin'o , koma fere ndoci wo'e zhe nyan ban dan'o . Wo'e ga yi \"$1\" gwa be, ah ga fere nan zheti nan ye tswa.‎",
 	"missingcommenttext": "Jin'ankuri gandan egan'o.‎",
 	"missingcommentheader": "<strong>Reminder:</strong> wo'e la eti gan ya egan nan. Wo'e ga yi \"$1\" gwa be, ebanzhe wo'e ga tinya babu ndondo .‎",
 	"summary-preview": "Cicinle kukudan dozhi yiyejin:‎",

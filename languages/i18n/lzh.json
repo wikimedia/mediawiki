@@ -1774,8 +1774,6 @@
 	"scarytranscludefailed": "[$1模不得]",
 	"scarytranscludetoolong": "[網址過長]",
 	"deletedwhileediting": "警：纂中見刪。",
-	"confirmrecreate": "[[User:$1|$1]]（[[User talk:$1|議]]）刪之有由：\n''$2''\n請爾審視之。",
-	"recreate": "復",
 	"confirm_purge_button": "准",
 	"confirm-purge-top": "清謄本？",
 	"confirm-purge-bottom": "清頁會清謄本以迫示近審。",

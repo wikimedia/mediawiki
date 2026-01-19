@@ -1713,8 +1713,6 @@
 	"scarytranscludefailed": "[Vörlaag halen för $1 hett nich klappt]",
 	"scarytranscludetoolong": "[URL is to lang]",
 	"deletedwhileediting": "'''Wohrschau''': Disse Siet is wegsmeten worrn, wieldes du ehr graad ännert hest!",
-	"confirmrecreate": "De Bruker [[User:$1|$1]] ([[User talk:$1|talk]]) hett disse Siet wegsmeten, nadem du dat Ännern anfungen hest. He hett as Grund schreven:\n: ''$2''\nWist du de Siet würklich nee anleggen?",
-	"recreate": "wedder nee anleggen",
 	"confirm_purge_button": "Jo",
 	"confirm-purge-top": "Den Cache vun disse Siet leddig maken?",
 	"confirm-purge-bottom": "Maakt den Cache vun en Siet leddig un sorgt dor för dat de aktuelle Version wiest warrt.",

@@ -1033,7 +1033,6 @@
 	"confirmemail_subject": "ܫܘܪܪܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ ܡܢ {{SITENAME}}",
 	"confirmemail_invalidated": "ܫܘܪܪܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ ܐܬܒܛܠ",
 	"invalidateemail": "ܒܛܘܠ ܫܘܪܪܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ",
-	"recreate": "ܒܪܝ ܙܒܢܬܐ ܐܚܪܬܐ",
 	"confirm_purge_button": "ܛܒ",
 	"imgmultipageprev": "← ܫܘܚܠܦܐ ܕܩܕܡ",
 	"imgmultipagenext": "← ܫܘܚܠܦܐ ܕܒܬܪ",

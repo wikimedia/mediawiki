@@ -1457,8 +1457,6 @@
 	"scarytranscludefailed": "[$1 şablonına irişilip olamadı]",
 	"scarytranscludetoolong": "[URL adresi çoq uzun]",
 	"deletedwhileediting": "'''Tenbi''': Bu saife siz deñişiklik yapmağa başlağandan soñ yoq etildi!",
-	"confirmrecreate": "Siz bu saifeni deñiştirgen vaqıtta [[User:$1|$1]] ([[User talk:$1|muzakere]]) qullanıcısı onı yoq etkendir, sebebi:\n:''$2''\nSaifeni yañıdan yaratmağa isteseñiz, lütfen, bunı tasdıqlañız.",
-	"recreate": "Saifeni yañıdan yarat",
 	"confirm_purge_button": "Ok",
 	"confirm-purge-top": "Bu saifeniñ keşi temizlensinmi?",
 	"watchlist-expiry-options": "daimiy:infinite,1 afta:1 week,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year",

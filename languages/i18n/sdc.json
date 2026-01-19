@@ -1440,8 +1440,6 @@
 	"scarytranscludefailed": "[Errori: Impussìbiri uttinì lu mudellu $1]",
 	"scarytranscludetoolong": "[L'URL è troppu longu]",
 	"deletedwhileediting": "Attinzioni: Chistha pàgina è isthadda canzilladda daboi ch'ài ischuminzaddu a mudìfiggarla!",
-	"confirmrecreate": "L'utenti [[User:$1|$1]] ([[User talk:$1|dischussioni]]) à canzilladdu chistha pàgina daboi ch'ài ischuminzaddu a mudìfiggarla, pa lu sighenti mutibu: ''$2''\n\nPa piazeri, cunfèimma chi vòi ricrià avveru chistha pàgina.",
-	"recreate": "Ricrea",
 	"confirm_purge_button": "Cunfèimma",
 	"confirm-purge-top": "Vói pulì la mimória cache di chistha pàgina?",
 	"quotation-marks": "«$1»",

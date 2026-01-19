@@ -1651,8 +1651,6 @@
 	"invalidateemail": "ಇ-ಅಂಚೆ ಧೃಡೀಕರಣವನ್ನು ರದ್ದು ಮಾಡಿ",
 	"scarytranscludetoolong": "[URL ತುಂಬ ಉದ್ದವಾಗಿದೆ]",
 	"deletedwhileediting": "'''ಸೂಚನೆ''': ನೀವು ಸಂಪಾದನೆ ಪ್ರಾರಂಭಿಸಿದ ನಂತರ ಈ ಪುಟವನ್ನು ಅಳಿಸಲಾಗಿದೆ!",
-	"confirmrecreate": "ಸದಸ್ಯ [[User:$1|$1]] ([[User talk:$1|ಚರ್ಚೆ]]) ನೀವು ಸಂಪಾದನೆ ಶುರು ಮಾಡಿದ ಮೇಲೆ ಕೆಳಗಿನ ಕಾರಣ ನೀಡಿ ಈ ಪುಟವನ್ನು ಅಳಿಸಿದ್ದಾರೆ:\n: ''$2''\nದಯವಿಟ್ಟು ಈ ಪುಟವನ್ನು ನೀವು ಪುನಃ ಸೃಷ್ಟಿಸಬೇಕೆಂದಿರುವಿರಿ ಎಂದು ಧೃಡೀಕರಿಸಿ.",
-	"recreate": "ಪುನಃ ಸೃಷ್ಟಿಸು",
 	"confirm_purge_button": "ಸರಿ",
 	"confirm-watch-button": "ಸರಿ",
 	"confirm-unwatch-button": "ಸರಿ",

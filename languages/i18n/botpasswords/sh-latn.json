@@ -40,5 +40,5 @@
 	"botpasswords-invalid-name": "Navedeno korisničko ime ne sadrži rastavni znak za lozinke botova (\"$1\").",
 	"botpasswords-not-exist": "Korisnik \"$1\" nema lozinku bota \"$2\".",
 	"botpasswords-needs-reset": "Lozinka za bota \"$2\" {{GENDER:$1|korisnika|korisnice}} \"$2\" mora se obnoviti.",
-	"botpasswords-locked": "Ne možete da se prijavite s botovskim lozinkom jer je vaš nalog zaključan."
+	"botpasswords-locked": "Ne možete se prijaviti botovskom lozinkom jer je račun zaključan."
 }

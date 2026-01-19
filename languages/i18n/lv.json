@@ -2390,8 +2390,6 @@
 	"scarytranscludefailed": "[Neizdevās ienest veidni $1.]",
 	"scarytranscludetoolong": "[URL adrese ir pārāk gara.]",
 	"deletedwhileediting": "'''Brīdinājums:''' Šī lapa tika izdzēsta, pēc tam, kad tu to sāki izmainīt!",
-	"confirmrecreate": "Lietotājs [[User:$1|$1]] ([[User talk:$1|diskusija]]) izdzēsa šo lapu, pēc tam, kad tu to biji sācis rediģēt, ar iemeslu:\n: ''$2''\nLūdzu apstiprini, ka tiešām gribi izveidot šo lapu no jauna.",
-	"recreate": "Izveidot no jauna",
 	"confirm-purge-title": "Atjaunināt šo lapu",
 	"confirm_purge_button": "Labi",
 	"confirm-purge-top": "Iztīrīt šīs lapas kešu (''cache'')?",

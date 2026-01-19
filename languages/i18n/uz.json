@@ -1748,8 +1748,6 @@
 	"metadata-collapse": "Batafsil axborotni yashirish",
 	"namespacesall": "Barchasi",
 	"monthsall": "barchasi",
-	"confirmrecreate": "Ushbu sahifa, Siz uni tahrir qilayotganingizda, foydalanuvchi [[User:$1|$1]] ([[User talk:$1|munozara]]) tomonidan quyidagi sababga binoan oʻchirilgan:\n: <em>$2</em>\nIltimos, sahifani qaytadan yaratmoqchi ekanligingizni tasdiqlang.",
-	"confirmrecreate-noreason": "Ushbu sahifa, Siz uni tahrir qilayotganingizda, foydalanuvchi [[User:$1|$1]] ([[User talk:$1|munozara]]) tomonidan oʻchirgan. Iltimos, sahifani qaytadan yaratmoqchi ekanligingizni tasdiqlang.",
 	"unit-pixel": " piksel",
 	"confirm-purge-title": "Bu sahifani tozalash",
 	"confirm_purge_button": "OK",

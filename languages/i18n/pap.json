@@ -631,7 +631,6 @@
 	"confirmemail_loggedin": "Bo e-mail adrès ta konfirmá.",
 	"confirmemail_subject": "{{SITENAME}}: Konfirmashon di e-mail adrès",
 	"confirmemail_body": "Un hende, probablemente abo, di IP adrès $1, a registrá e\nkuenta \"$2\" ku e e-mail adrès aki riba {{SITENAME}}.\n\nPa konfirmá ku e kuenta aki en berdat ta di bo i pa aktivá\nfunkshonnan di e-mail riba {{SITENAME}}, por fabor habri e link aki:\n\n$3\n\nSi esaki *no* ta abo, por fabor no habri e link.\nFollow this link to cancel the e-mail address confirmation:\n\n$5\n\nE kódigo di konfirmashon aki lo kaduká riba $4.",
-	"confirmrecreate": "[[User:$1|$1]] ([[User talk:$1|diskushon]]) a kita e artíkulo aki despues ku bo ta kuminsá editá. E rason ta:\n: ''$2''\nPor fabor konfirmá ku bo ke traha e artíkulo aki di nobo.",
 	"imgmultipageprev": "← página anterior",
 	"imgmultipagenext": "próksimo página →",
 	"imgmultigo": "OK!",

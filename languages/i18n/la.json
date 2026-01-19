@@ -1359,8 +1359,6 @@
 	"confirmemail_invalidated": "Adfirmatio inscriptionis electronicae abrogata est",
 	"invalidateemail": "Adfimationem inscriptionis electronicae abrogare",
 	"deletedwhileediting": "'''Monitio:''' Haec pagina deleta est postquam inceperis eam recensere!",
-	"confirmrecreate": "Usor [[User:$1|$1]] ([[User talk:$1|disputatio]]) delevit hanc paginam postquam eam emendare inceperis cum ratione:\n: ''$2''\nQuaesumus, adfirma ut iterum hanc paginam crees.",
-	"recreate": "Recreare",
 	"confirm_purge_button": "Licet",
 	"imgmultipageprev": "← pagina superior",
 	"imgmultipagenext": "pagina proxima →",

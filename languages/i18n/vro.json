@@ -1335,8 +1335,6 @@
 	"scarytranscludefailed": "[Saa-s näüdüst kätte: $1]",
 	"scarytranscludetoolong": "[Võrgoaadrõs om pall'o pikk]",
 	"deletedwhileediting": "'''Hoiatus''': taa leht om ärq kistutõt päält tuud, ku sa taad toimõndama naksit!",
-	"confirmrecreate": "Pruukja '''[[User:$1|$1]]''' ([[User talk:$1|arotus]]) kistut' taa lehe ärq päält tuud, ku sa naksit taad toimõndama. Põhjus oll':\n: ''$2''\nOlõq hää, kinnüdäq, et tahat taad lehte vahtsõst luvvaq.",
-	"recreate": "Luuq vahtsõst",
 	"confirm_purge_button": "Hää külh",
 	"confirm-purge-top": "Kas taa lehe vaihõmälokujoq tulõvaq ärq kistutaq?",
 	"imgmultipageprev": "← mineväne leht",
