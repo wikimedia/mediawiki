@@ -9,8 +9,8 @@
  */
 
 let ffmpeg;
-import fs from 'fs';
 import path from 'path';
+import { getChromeOptions } from './chromeOptions.js';
 import { PrometheusFileReporter, writeAllProjectMetrics } from './PrometheusFileReporter.js';
 const logPath = process.env.LOG_DIR || path.join( process.cwd(), 'tests/selenium/log' );
 import { makeFilenameDate, saveScreenshot, startVideo, stopVideo, logSystemInformation, logBrowserInformation } from 'wdio-mediawiki';
@@ -89,61 +89,7 @@ export const config = {
 		// Can be changed when we update to newer browser versions
 		// Bidi is still under development in Chrome/Firefox
 		'wdio:enforceWebDriverClassic': true,
-		'goog:chromeOptions': {
-			...( process.env.CI && {
-				binary: '/usr/bin/chromium'
-			} ),
-			// If DISPLAY is set, assume developer asked non-headless or CI with Xvfb.
-			// Otherwise, use --headless.
-			args: [
-				// Chrome sandbox does not work in Docker. Disable GPU to prevent crashes (T389536#10677201)
-				// For disable-dev-shm-usage: We map /tmp to tmpfs for the container in CI
-				...( fs.existsSync( '/.dockerenv' ) ? [ '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage' ] : [] ),
-				// Disable as much as possible to make Chrome clean
-				// https://github.com/GoogleChrome/chrome-launcher/blob/main/docs/chrome-flags-for-tools.md
-				// https://peter.sh/experiments/chromium-command-line-switches/
-				'--ash-no-nudges',
-				'--disable-background-networking',
-				'--disable-background-timer-throttling',
-				'--disable-backgrounding-occluded-windows',
-				'--disable-breakpad',
-				'--disable-client-side-phishing-detection',
-				'--disable-component-extensions-with-background-page',
-				'--disable-component-update',
-				'--disable-default-apps',
-				'--disable-domain-reliability',
-				'--disable-features=InterestFeedContentSuggestions',
-				'--disable-features=Translate',
-				'--disable-fetching-hints-at-navigation-start',
-				'--disable-hang-monitor',
-				'--disable-infobars',
-				'--disable-ipc-flooding-protection',
-				'--disable-prompt-on-repost',
-				'--disable-renderer-backgrounding',
-				'--disable-sync',
-				'--disable-search-engine-choice-screen',
-				'--disable-site-isolation-trials',
-				'--mute-audio',
-				'--no-default-browser-check',
-				'--no-first-run',
-				'--propagate-iph-for-testing',
-				// Workaround inputs not working consistently post-navigation on Chrome 90
-				// https://issuetracker.google.com/issues/42322798
-				'--allow-pre-commit-input',
-				// To disable save password popup together with prefs
-				'--password-store=basic'
-			],
-			prefs: {
-				// These setting disable the password save popup together
-				// with --password-store=basic.
-				// eslint-disable-next-line camelcase
-				credentials_enable_service: false,
-				'profile.password_manager_enabled': false
-			},
-			excludeSwitches: [
-				'enable-automation'
-			]
-		}
+		'goog:chromeOptions': getChromeOptions( Boolean( process.env.CI ) )
 	} ],
 
 	// ===================
