@@ -54,23 +54,21 @@ class DeduplicateStylesDOMTest extends OutputTransformStageTestBase {
 <style>.Duplicate1 {}</style>
 EOF
 			],
-// phpcs:disable MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment
-// 			'parsoid content with encoded style tags in data-mw attribute' => [
-// 				<<<EOF
-// <style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
-// <span data-mw="{&quot;name&quot;:&quot;ref&quot;,&quot;attrs&quot;:{&quot;name&quot;:&quot;blank&quot;},
-// &quot;body&quot;:{&quot;html&quot;:&quot;<style data-mw-deduplicate=\&quot;duplicate1\&quot;>.Duplicate1 {}</style>&quot;}}"></span>
-// <style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
-// EOF
-// 				,
-// 				true,
-// 				<<<EOF
-// <style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
-// <span data-mw='{"name":"ref","attrs":{"name":"blank"},"body":{"html":"&lt;style data-mw-deduplicate=\"duplicate1\">.Duplicate1 {}&lt;/style>"}}'></span>
-// <link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1"/>
-// EOF
-// 			]
-// phpcs:enable MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment
+			'parsoid content with encoded style tags in data-mw attribute' => [
+				<<<EOF
+<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
+<span data-mw="{&quot;name&quot;:&quot;ref&quot;,&quot;attrs&quot;:{&quot;name&quot;:&quot;blank&quot;},
+&quot;body&quot;:{&quot;html&quot;:&quot;<style data-mw-deduplicate=\&quot;duplicate1\&quot;>.Duplicate1 {}</style>&quot;}}"></span>
+<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
+EOF
+				,
+				true,
+				<<<EOF
+<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
+<span data-mw='{"name":"ref","attrs":{"name":"blank"},"body":{"html":"&lt;style data-mw-deduplicate=\"duplicate1\">.Duplicate1 {}&lt;/style>"}}'></span>
+<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1"/>
+EOF
+			]
 		];
 
 		foreach ( $testCases as $name => [ $input, $isParsoid, $expected ] ) {
