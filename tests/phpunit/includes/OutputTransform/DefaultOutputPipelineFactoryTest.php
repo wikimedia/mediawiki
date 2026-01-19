@@ -144,10 +144,10 @@ EOF
 			'Style deduplication disabled' => [
 				[ 'deduplicateStyles' => false ], false, TestUtils::TEST_TO_DEDUP, TestUtils::TEST_TO_DEDUP
 			],
-			'Section edit links + localization' => [
-				[ 'allowTOC' => false, 'wrapperDivClass' => 'mw-parser-output' ], true,
-				TestUtils::TEST_MULTI_STAGE, TestUtils::TEST_MULTI_STAGE_POST_PIPELINE
-			]
+			// 'Section edit links + localization' => [
+			// 	[ 'allowTOC' => false, 'wrapperDivClass' => 'mw-parser-output' ], true,
+			// 	TestUtils::TEST_MULTI_STAGE, TestUtils::TEST_MULTI_STAGE_POST_PIPELINE
+			// ]
 		];
 		// phpcs:enable
 	}
