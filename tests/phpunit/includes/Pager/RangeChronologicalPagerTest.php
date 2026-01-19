@@ -47,7 +47,10 @@ class RangeChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider getDateRangeCondProvider
 	 */
 	public function testGetDateRangeCond( $start, $end, $expected ) {
-		$pager = $this->getMockForAbstractClass( RangeChronologicalPager::class );
+		$pager = $this->getMockBuilder( RangeChronologicalPager::class )
+			->onlyMethods( [ 'getTimestampField' ] )
+			->getMockForAbstractClass();
+		$pager->method( 'getTimestampField' )->willReturn( 'timestampfield' );
 		$this->assertArrayEquals( $expected, $pager->getDateRangeCond( $start, $end ) );
 	}
 
@@ -62,22 +65,22 @@ class RangeChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 				'20161201000000',
 				'20161202235959',
 				[
-					$dbw->buildComparison( '>=', [ '' => $dbw->timestamp( '20161201000000' ) ] ),
-					$dbw->buildComparison( '<', [ '' => $dbw->timestamp( '20161203000000' ) ] ),
+					$dbw->buildComparison( '>=', [ 'timestampfield' => $dbw->timestamp( '20161201000000' ) ] ),
+					$dbw->buildComparison( '<', [ 'timestampfield' => $dbw->timestamp( '20161203000000' ) ] ),
 				],
 			],
 			[
 				'',
 				'20161202235959',
 				[
-					$dbw->buildComparison( '<', [ '' => $dbw->timestamp( '20161203000000' ) ] ),
+					$dbw->buildComparison( '<', [ 'timestampfield' => $dbw->timestamp( '20161203000000' ) ] ),
 				],
 			],
 			[
 				'20161201000000',
 				'',
 				[
-					$dbw->buildComparison( '>=', [ '' => $dbw->timestamp( '20161201000000' ) ] ),
+					$dbw->buildComparison( '>=', [ 'timestampfield' => $dbw->timestamp( '20161201000000' ) ] ),
 				],
 			],
 			[ '', '', [] ],
