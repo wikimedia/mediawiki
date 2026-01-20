@@ -15,6 +15,7 @@ use ErrorException;
 use InvalidArgumentException;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\Content;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Exception\MWException;
@@ -519,7 +520,7 @@ class XmlDumpWriter {
 			if ( $content === null ) {
 				$out .= $indent . Xml::element( 'text', $textAttributes ) . "\n";
 			} else {
-				$out .= $this->writeText( $content, $textAttributes, $indent );
+				$out .= $this->writeText( $content, $textAttributes, $indent, $contentHandler, $contentFormat );
 			}
 		} elseif ( $contentMode === self::WRITE_STUB_DELETED ) {
 			// write <text> placeholder tag
@@ -570,13 +571,21 @@ class XmlDumpWriter {
 	 * @param Content $content
 	 * @param string[] $textAttributes
 	 * @param string $indent
+	 * @param ContentHandler $contentHandler Content handler for the content to be written. The content model may be
+	 * invalid due to a removed extension and cause an exception (T415128), so we need to gracefully fall back to
+	 * CONTENT_MODEL_UNKNOWN for invalid content models. Since the caller already does that, we simply let it pass
+	 * the content handler as an argument.
+	 * @param string $contentFormat Passed from the caller function just like the content handler.
 	 *
 	 * @return string
 	 */
-	private function writeText( Content $content, $textAttributes, $indent ) {
-		$contentHandler = $content->getContentHandler();
-		$contentFormat = $contentHandler->getDefaultFormat();
-
+	private function writeText(
+		Content $content,
+		$textAttributes,
+		string $indent,
+		ContentHandler $contentHandler,
+		string $contentFormat
+	) {
 		if ( $content instanceof TextContent ) {
 			// HACK: For text based models, bypass the serialization step. This allows extensions (like Flow)
 			// that use incompatible combinations of serialization format and content model.
