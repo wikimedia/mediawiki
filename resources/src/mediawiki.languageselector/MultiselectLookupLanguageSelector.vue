@@ -11,6 +11,20 @@
 		@update:selected="onUpdateSelected"
 		@update:input-chips="onUpdateInputChips"
 	>
+		<template #menu-item="{ menuItem }">
+			<slot
+				name="menu-item"
+				:menu-item="menuItem"
+				:language-code="menuItem.value"
+				:language-name="menuItem.label">
+				{{ menuItem.label }}
+			</slot>
+		</template>
+		<template #no-results>
+			<slot name="no-results" :search-query="searchQuery">
+				{{ $i18n( 'languageselector-no-results' ).text() }}
+			</slot>
+		</template>
 	</cdx-multiselect-lookup>
 </template>
 
@@ -61,6 +75,7 @@ module.exports = exports = defineComponent( {
 
 		const {
 			languages,
+			searchQuery,
 			searchResults,
 			search,
 			selection,
@@ -109,6 +124,7 @@ module.exports = exports = defineComponent( {
 		} );
 
 		return {
+			searchQuery,
 			inputValue,
 			search,
 			selection,

@@ -4,7 +4,16 @@ const VueTestUtils = require( '@vue/test-utils' );
 jest.mock( '../../../resources/src/mediawiki.languageselector/codex.js', () => ( {
 	CdxMultiselectLookup: {
 		name: 'CdxMultiselectLookup',
-		template: '<div class="cdx-multiselect-lookup"></div>',
+		template: `
+			<div class="cdx-multiselect-lookup">
+				<div v-for="element in menuItems" :key="element.value" class="mock-menu-item">
+					<slot name="menu-item" :menu-item="element"></slot>
+				</div>
+				<div class="mock-no-results">
+					<slot name="no-results"></slot>
+				</div>
+			</div>
+		`,
 		props: [ 'selected', 'inputValue', 'inputChips', 'menuItems', 'menuConfig' ]
 	}
 } ), { virtual: true } );
@@ -22,8 +31,9 @@ const defaultProps = {
 	searchApiUrl: 'https://en.wikipedia.org/w/api.php'
 };
 
-const mount = ( customProps ) => VueTestUtils.mount( MultiselectLookupLanguageSelector, {
-	props: Object.assign( {}, defaultProps, customProps )
+const mount = ( customProps, options = {} ) => VueTestUtils.mount( MultiselectLookupLanguageSelector, {
+	props: Object.assign( {}, defaultProps, customProps ),
+	...options
 } );
 
 describe( 'MultiselectLookupLanguageSelector', () => {
@@ -99,5 +109,36 @@ describe( 'MultiselectLookupLanguageSelector', () => {
 
 		expect( wrapper.emitted( 'update:selected' ) ).toBeTruthy();
 		expect( wrapper.emitted( 'update:selected' )[ 0 ] ).toEqual( [ [ 'fr' ] ] );
+	} );
+
+	it( 'renders the #menu-item slot with correct data', () => {
+		const wrapper = mount( {}, {
+			slots: {
+				'menu-item': `
+					<template #menu-item="{ menuItem, languageCode, languageName }">
+						<div class="custom-menu-item">
+							{{ menuItem.label }} ({{ languageCode }}) - {{ languageName }}
+						</div>
+					</template>
+				`
+			}
+		} );
+
+		const items = wrapper.findAll( '.custom-menu-item' );
+		expect( items.length ).toBe( 3 );
+		expect( items[ 0 ].text() ).toBe( 'English (en) - English' );
+		expect( items[ 1 ].text() ).toBe( 'Français (fr) - Français' );
+		expect( items[ 2 ].text() ).toBe( 'Deutsch (de) - Deutsch' );
+	} );
+
+	it( 'renders the #no-results slot', () => {
+		const wrapper = mount( {}, {
+			slots: {
+				'no-results': '<div class="custom-no-results">No results found</div>'
+			}
+		} );
+
+		expect( wrapper.find( '.custom-no-results' ).exists() ).toBe( true );
+		expect( wrapper.find( '.custom-no-results' ).text() ).toBe( 'No results found' );
 	} );
 } );
