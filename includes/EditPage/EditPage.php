@@ -1453,7 +1453,7 @@ class EditPage implements IEditObject {
 				$this->page,
 				$this->context->getUser(),
 				$request->getVal( 'preload' ),
-				$request->getArray( 'preloadparams', [] ),
+				array_filter( $request->getArray( 'preloadparams', [] ), is_string( ... ) ),
 				$request->getVal( 'section' )
 			);
 		// For existing pages, get text based on "undo" or section parameters.
