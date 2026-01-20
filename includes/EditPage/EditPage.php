@@ -1899,7 +1899,6 @@ class EditPage implements IEditObject {
 			// They should be refactored to provide their own messages and handled below (T384399).
 			case self::AS_HOOK_ERROR_EXPECTED:
 			case self::AS_CONFLICT_DETECTED:
-			case self::AS_END:
 			case self::AS_REVISION_WAS_DELETED:
 				return true;
 
@@ -1911,9 +1910,10 @@ class EditPage implements IEditObject {
 			case self::AS_ARTICLE_WAS_DELETED:
 			case self::AS_BLANK_ARTICLE:
 			case self::AS_BROKEN_REDIRECT:
+			case self::AS_CONTENT_TOO_BIG:
 			case self::AS_DOUBLE_REDIRECT:
 			case self::AS_DOUBLE_REDIRECT_LOOP:
-			case self::AS_CONTENT_TOO_BIG:
+			case self::AS_END:
 			case self::AS_INVALID_REDIRECT_TARGET:
 			case self::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case self::AS_PARSE_ERROR:
@@ -2612,10 +2612,11 @@ class EditPage implements IEditObject {
 				$doEditStatus->failedBecauseOfConflict()
 			) {
 				$this->isConflict = true;
-				// Destroys data doEdit() put in $status->value but who cares
-				// TODO: We should care, this puts an `int` value into a `Status<array>`
-				// @phan-suppress-next-line PhanTypeMismatchPropertyProbablyReal
-				$doEditStatus->value = self::AS_END;
+				// Create a new status since doEditStatus returns a Status<array>, but we want to return a Status<int>
+				$status = Status::newGood();
+				$status->merge( $doEditStatus );
+				$status->value = self::AS_END;
+				return $status;
 			}
 			return $doEditStatus;
 		}
