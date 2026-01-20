@@ -15336,6 +15336,44 @@ parsoid={
 [[Foo]] , placeholder
 !! end
 
+!! test
+8. T409669 Regression test: Manual edit test to move format tags outside wikilinks with spaces in target
+!! options
+parsoid={
+  "modes": ["selser"],
+  "changes": [
+    ["a", "html", "<i>Foo bar baz</i>"]
+  ]
+}
+!! wikitext
+[[Foo bar baz]]
+!! wikitext/edited
+''[[Foo bar baz]]''
+!! end
+
+!! test
+9. T409669 Regression test: Don't move out format tags when originating as piped
+!! wikitext
+[[Foo bar baz|''Foo bar baz'']]
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Foo_bar_baz" title="Foo bar baz" data-parsoid='{"stx":"piped"}'><i>Foo bar baz</i></a></p>
+!! end
+
+!! test
+10. T409669 Regression test: Don't move out format tags when originating as piped unless in edited content
+!! options
+parsoid={
+  "modes": ["selser"],
+  "changes": [
+    ["a", "html", "<i>Foo bar baz</i>"]
+  ]
+}
+!! wikitext
+[[Foo bar baz|Something else]]
+!! wikitext/edited
+''[[Foo bar baz]]''
+!! end
+
 ## No sort-key or templated sort-key
 !! test
 T192913 Regression test: 1. html2wt of links should not trip on parser functions found in target
