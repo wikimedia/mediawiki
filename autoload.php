@@ -3063,6 +3063,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Session\\Hook\\SessionCheckInfoHook' => __DIR__ . '/includes/Session/Hook/SessionCheckInfoHook.php',
 	'MediaWiki\\Session\\Hook\\SessionMetadataHook' => __DIR__ . '/includes/Session/Hook/SessionMetadataHook.php',
 	'MediaWiki\\Session\\ImmutableSessionProviderWithCookie' => __DIR__ . '/includes/Session/ImmutableSessionProviderWithCookie.php',
+	'MediaWiki\\Session\\JwtSessionCookieHelper' => __DIR__ . '/includes/Session/JwtSessionCookieHelper.php',
 	'MediaWiki\\Session\\MetadataMergeException' => __DIR__ . '/includes/Session/MetadataMergeException.php',
 	'MediaWiki\\Session\\MultiBackendSessionStore' => __DIR__ . '/includes/Session/MultiBackendSessionStore.php',
 	'MediaWiki\\Session\\PHPSessionHandler' => __DIR__ . '/includes/Session/PHPSessionHandler.php',

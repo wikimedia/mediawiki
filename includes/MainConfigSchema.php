@@ -82,6 +82,7 @@ use MediaWiki\RecentChanges\RecentChangesUpdateJob;
 use MediaWiki\RenameUser\Job\RenameUserDerivedJob;
 use MediaWiki\RenameUser\Job\RenameUserTableJob;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Settings\Source\JsonSchemaTrait;
 use MediaWiki\Site\MediaWikiSite;
@@ -4364,6 +4365,30 @@ class MainConfigSchema {
 	 */
 	public const UseSessionCookieJwt = [
 		'default' => false,
+	];
+
+	/**
+	 * TEMPORARY feature flag.
+	 *
+	 * Used in conjunction with `UseSessionCookieJwt` above to enable JWT session
+	 * cookie for bot passwords. Will be removed once it's enabled everywhere in
+	 * production.
+	 *
+	 * @since 1.46
+	 * @see BotPasswordSessionProvider::provideSessionInfo()
+	 */
+	public const UseSessionCookieForBotPasswords = [
+		'default' => false,
+	];
+
+	/**
+	 * The wiki's URL that would create, sign and issue JWTs using the configured
+	 * private key. The entity is identified by the `iss` claim in the JWT payload.
+	 *
+	 * @since 1.46
+	 */
+	public const JwtSessionCookieIssuer = [
+		'default' => null,
 	];
 
 	/**

@@ -258,6 +258,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		);
 		$config = $this->getConfig();
 		$config->set( MainConfigNames::UseSessionCookieJwt, $useSessionCookieJwt );
+		$config->set( MainConfigNames::JwtSessionCookieIssuer, 'http://example.org' );
 		$this->initProvider(
 			$provider, $logger, $config, $this->getServiceContainer()->getSessionManager()
 		);
@@ -713,6 +714,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$config = $this->getConfig();
 		$config->set( MainConfigNames::ForceHTTPS, $forceHTTPS );
 		$config->set( MainConfigNames::UseSessionCookieJwt, $useSessionCookieJwt );
+		$config->set( MainConfigNames::JwtSessionCookieIssuer, 'http://example.org' );
 		$this->initProvider( $provider, new TestLogger(), $config, SessionManager::singleton(), $hookContainer );
 
 		$jwtDefaults = [
@@ -885,6 +887,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$config->set( MainConfigNames::CookieSecure, $secure );
 		$config->set( MainConfigNames::ForceHTTPS, $forceHTTPS );
 		$config->set( MainConfigNames::UseSessionCookieJwt, $useSessionCookieJwt );
+		$config->set( MainConfigNames::JwtSessionCookieIssuer, 'http://example.org' );
 		$hookContainer = $this->createHookContainer();
 		$this->initProvider( $provider, new TestLogger(), $config, SessionManager::singleton(), $hookContainer );
 
