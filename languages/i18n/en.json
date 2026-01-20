@@ -532,6 +532,7 @@
 	"edit-constraint-doubleredirect-warning": "You are trying to redirect this page to a second redirect page, creating a double redirect.\nYour target page currently redirects to [[$1]].\n\nPlease consider revising the content of this redirect as follows:\n$2",
 	"edit-constraint-doubleredirect-loop-warning": "You are trying to redirect this page to a redirect back to itself, thus creating a non-functioning redirect loop. Please reconsider what you are doing.",
 	"edit-constraint-invalidredirecttarget-warning": "You are trying to redirect this page to a page which is not a valid redirect target. Please reconsider what you are doing.",
+	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Warning:</strong> $2\n\nIf you want to continue anyway, click \"$1\" again, but this will publish the contents of the deleted revision.",
 	"missingcommenttext": "Please enter a comment.",
 	"missingcommentheader": "<strong>Reminder:</strong> You have not provided a subject for this comment.\nIf you click \"$1\" again, your edit will be published without one.",
 	"summary-preview": "Preview of edit summary:",

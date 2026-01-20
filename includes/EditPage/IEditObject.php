@@ -115,4 +115,7 @@ interface IEditObject {
 
 	/** Status: user tried to create a redirect to an invalid redirect target */
 	public const AS_INVALID_REDIRECT_TARGET = 247;
+
+	/** Status: user tried to edit a revision that went missing */
+	public const AS_REVISION_MISSING = 248;
 }

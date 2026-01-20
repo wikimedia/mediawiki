@@ -7,6 +7,7 @@
 use MediaWiki\Content\Content;
 use MediaWiki\EditPage\Constraint\ExistingSectionEditConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\Title\Title;
 
 /**
  * Tests the ExistingSectionEditConstraint
@@ -35,6 +36,7 @@ class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 			false,
 			$newContent,
 			$originalContent,
+			$this->createMock( Title::class ),
 			''
 		);
 		$this->assertConstraintPassed( $constraint );
@@ -48,6 +50,7 @@ class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 			false,
 			$this->createNoOpMock( Content::class ),
 			null,
+			$this->createMock( Title::class ),
 			''
 		);
 		$this->assertConstraintPassed( $constraint );
@@ -70,22 +73,10 @@ class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 			false,
 			$newContent,
 			$originalContent,
+			$this->createMock( Title::class ),
 			''
 		);
 		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_SUMMARY_NEEDED );
-	}
-
-	public function testFailure_revisionDeleted() {
-		$constraint = new ExistingSectionEditConstraint(
-			'notnew',
-			'UserSummary',
-			md5( 'UserSummary' ),
-			false,
-			$this->createNoOpMock( Content::class ),
-			null,
-			''
-		);
-		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_REVISION_WAS_DELETED );
 	}
 
 }

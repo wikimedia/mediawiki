@@ -35,6 +35,7 @@ use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
 use MediaWiki\EditPage\Constraint\NewSectionMissingSubjectConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
 use MediaWiki\EditPage\Constraint\RedirectConstraint;
+use MediaWiki\EditPage\Constraint\RevisionDeletedConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
 use MediaWiki\Exception\ErrorPageError;
@@ -290,6 +291,9 @@ class EditPage implements IEditObject {
 
 	/** @var bool */
 	private $recreate = false;
+
+	/** @var bool */
+	private $ignoreRevisionDeletedWarning = false;
 
 	/** @var string
 	 * Page content input field.
@@ -1307,6 +1311,8 @@ class EditPage implements IEditObject {
 
 		$this->recreate = $request->getCheck( 'wpRecreate' );
 
+		$this->ignoreRevisionDeletedWarning = $request->getCheck( 'wpIgnoreRevisionDeleted' );
+
 		$user = $this->context->getUser();
 
 		$this->minoredit = $request->getCheck( 'wpMinoredit' );
@@ -1899,7 +1905,6 @@ class EditPage implements IEditObject {
 			// They should be refactored to provide their own messages and handled below (T384399).
 			case self::AS_HOOK_ERROR_EXPECTED:
 			case self::AS_CONFLICT_DETECTED:
-			case self::AS_REVISION_WAS_DELETED:
 				return true;
 
 			case self::AS_HOOK_ERROR:
@@ -1918,6 +1923,8 @@ class EditPage implements IEditObject {
 			case self::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case self::AS_PARSE_ERROR:
 			case self::AS_RATE_LIMITED:
+			case self::AS_REVISION_MISSING:
+			case self::AS_REVISION_WAS_DELETED:
 			case self::AS_SELF_REDIRECT:
 			case self::AS_SUMMARY_NEEDED:
 			case self::AS_TEXTBOX_EMPTY:
@@ -2502,6 +2509,21 @@ class EditPage implements IEditObject {
 					$submitButtonLabel
 				)
 			);
+			$constraintRunner->addConstraint(
+				new RevisionDeletedConstraint(
+					$this->mArticle,
+					$this->ignoreRevisionDeletedWarning,
+					$this->oldid,
+					$this->section,
+					$this->mTitle,
+					$pstUser,
+					MessageValue::new(
+						'edit-constraint-warning-wrapper-save-deleted-revision',
+						[ MessageValue::new( $submitButtonLabel ) ],
+					),
+				)
+			);
+
 			// Check the constraints
 			$constraintStatus = $constraintRunner->checkConstraints();
 			if ( !$constraintStatus->isOK() ) {
@@ -2683,6 +2705,8 @@ class EditPage implements IEditObject {
 			$this->problematicRedirectTarget = $failed->problematicTarget;
 		} elseif ( $failed instanceof AccidentalRecreationConstraint ) {
 			$this->recreate = true;
+		} elseif ( $failed instanceof RevisionDeletedConstraint ) {
+			$this->ignoreRevisionDeletedWarning = true;
 		}
 	}
 
@@ -3097,29 +3121,6 @@ class EditPage implements IEditObject {
 
 		$out->addHTML( $this->editFormTextTop );
 
-		if ( $this->formtype !== 'save' ) {
-			/** @var EditConstraintFactory $constraintFactory */
-			$constraintFactory = MediaWikiServices::getInstance()->getService( '_EditConstraintFactory' );
-			$constraintRunner = new EditConstraintRunner();
-
-			$constraintRunner->addConstraint(
-				$constraintFactory->newAccidentalRecreationConstraint(
-					$this->context,
-					$this->mTitle,
-					// Ignore wpRedirect so the warning is still shown after a save attempt
-					false,
-					$this->starttime,
-				)
-			);
-
-			$constraintStatus = $constraintRunner->checkConstraints();
-			if ( !$constraintStatus->isOK() ) {
-				$failed = $constraintRunner->getFailedConstraint();
-				// No call to $this->handleFailedConstraint() here to avoid setting wpRedirect
-				$out->addHTML( $this->formatConstraintStatus( $constraintStatus ) );
-			}
-		}
-
 		// @todo add EditForm plugin interface and use it here!
 		//       search for textarea1 and textarea2, and allow EditForm to override all uses.
 		$out->addHTML( Html::openElement(
@@ -3192,6 +3193,9 @@ class EditPage implements IEditObject {
 		}
 		if ( $this->recreate ) {
 			$out->addHTML( Html::hidden( 'wpRecreate', $this->recreate ) );
+		}
+		if ( $this->ignoreRevisionDeletedWarning ) {
+			$out->addHTML( Html::hidden( 'wpIgnoreRevisionDeleted', $this->ignoreRevisionDeletedWarning ) );
 		}
 
 		if ( $this->problematicRedirectTarget !== null ) {
@@ -3369,7 +3373,6 @@ class EditPage implements IEditObject {
 
 	private function showHeader(): void {
 		$out = $this->context->getOutput();
-		$user = $this->context->getUser();
 		if ( $this->isConflict ) {
 			$this->addExplainConflictHeader();
 			$this->editRevId = $this->page->getLatest();
@@ -3389,40 +3392,40 @@ class EditPage implements IEditObject {
 
 			if ( $this->section != 'new' ) {
 				$revRecord = $this->mArticle->fetchRevisionRecord();
-				if ( $revRecord && $revRecord instanceof RevisionStoreRecord ) {
-					// Let sysop know that this will make private content public if saved
-
-					if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
-						$out->addHTML(
-							Html::warningBox(
-								$out->msg( 'rev-deleted-text-permission', $this->mTitle->getPrefixedURL() )->parse(),
-								'plainlinks'
-							)
-						);
-					} elseif ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-						$out->addHTML(
-							Html::warningBox(
-								// title used in wikilinks, should not contain whitespaces
-								$out->msg( 'rev-deleted-text-view', $this->mTitle->getPrefixedURL() )->parse(),
-								'plainlinks'
-							)
-						);
-					}
-
-					if ( !$revRecord->isCurrent() ) {
-						$this->mArticle->setOldSubtitle( $revRecord->getId() );
-						$this->isOldRev = true;
-					}
-				} elseif ( $this->mTitle->exists() ) {
-					// Something went wrong
-
-					$out->addHTML(
-						Html::errorBox(
-							$out->msg( 'missing-revision', $this->oldid )->parse()
-						)
-					);
+				if ( $revRecord instanceof RevisionStoreRecord && !$revRecord->isCurrent() ) {
+					$this->mArticle->setOldSubtitle( $revRecord->getId() );
+					$this->isOldRev = true;
 				}
 			}
+		}
+
+		if ( $this->formtype !== 'save' ) {
+			/** @var EditConstraintFactory $constraintFactory */
+			$constraintFactory = MediaWikiServices::getInstance()->getService( '_EditConstraintFactory' );
+			$constraintRunner = new EditConstraintRunner();
+
+			$constraintRunner->addConstraint(
+				$constraintFactory->newAccidentalRecreationConstraint(
+					$this->context,
+					$this->mTitle,
+					// Ignore wpRedirect so the warning is still shown after a save attempt
+					false,
+					$this->starttime,
+				)
+			);
+			$constraintRunner->addConstraint(
+				new RevisionDeletedConstraint(
+					$this->mArticle,
+					false,
+					$this->oldid,
+					$this->section,
+					$this->mTitle,
+					$this->context->getUser(),
+				)
+			);
+
+			// No call to $this->handleFailedConstraint() here to avoid setting wpRedirect
+			$out->addHTML( $this->formatConstraintStatus( $constraintRunner->checkAllConstraints() ) );
 		}
 
 		$this->addLongPageWarningHeader();

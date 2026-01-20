@@ -1364,6 +1364,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\EditPage\\Constraint\\PageSizeConstraint' => __DIR__ . '/includes/EditPage/Constraint/PageSizeConstraint.php',
 	'MediaWiki\\EditPage\\Constraint\\ReadOnlyConstraint' => __DIR__ . '/includes/EditPage/Constraint/ReadOnlyConstraint.php',
 	'MediaWiki\\EditPage\\Constraint\\RedirectConstraint' => __DIR__ . '/includes/EditPage/Constraint/RedirectConstraint.php',
+	'MediaWiki\\EditPage\\Constraint\\RevisionDeletedConstraint' => __DIR__ . '/includes/EditPage/Constraint/RevisionDeletedConstraint.php',
 	'MediaWiki\\EditPage\\Constraint\\SimpleAntiSpamConstraint' => __DIR__ . '/includes/EditPage/Constraint/SimpleAntiSpamConstraint.php',
 	'MediaWiki\\EditPage\\Constraint\\SpamRegexConstraint' => __DIR__ . '/includes/EditPage/Constraint/SpamRegexConstraint.php',
 	'MediaWiki\\EditPage\\Constraint\\UnicodeConstraint' => __DIR__ . '/includes/EditPage/Constraint/UnicodeConstraint.php',

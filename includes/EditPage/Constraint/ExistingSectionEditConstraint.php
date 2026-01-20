@@ -51,14 +51,6 @@ class ExistingSectionEditConstraint implements IEditConstraint {
 			return StatusValue::newGood();
 		}
 
-		if ( $this->originalContent === null ) {
-			// T301947: User loses access to revision after loading
-			// The error message, rev-deleted-text-permission, is not
-			// really in use currently. It's added for completeness and in
-			// case any code path wants to know the error.
-			return StatusValue::newGood( self::AS_REVISION_WAS_DELETED )
-				->fatal( 'rev-deleted-text-permission' );
-		}
 		if (
 			!$this->allowBlankSummary &&
 			!$this->newContent->equals( $this->originalContent ) &&
