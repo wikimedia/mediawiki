@@ -359,7 +359,11 @@ class EnhancedChangesList extends ChangesList {
 
 		$type = $rcObj->mAttribs['rc_type'];
 		$data = [];
-		$lineParams = [ 'targetTitle' => $rcObj->getTitle() ];
+		$titleText = $rcObj->getTitle();
+		if ( !ChangesList::userCan( $rcObj, RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
+			$titleText = $this->msg( 'rev-deleted-event' );
+		}
+		$lineParams = [ 'targetTitle' => $titleText ];
 
 		$classes = [ 'mw-enhanced-rc' ];
 		if ( $rcObj->watched ) {
@@ -730,11 +734,16 @@ class EnhancedChangesList extends ChangesList {
 			$line .= "\u{00A0}" . $data['timestampLink'];
 			unset( $data['timestampLink'] );
 		}
+
+		$titleText = $rcObj->getTitle();
+		if ( !ChangesList::userCan( $rcObj, RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
+			$titleText = $this->msg( 'rev-deleted-event' )->escaped();
+		}
 		$line .= "\u{00A0}</td>";
 		$line .= Html::openElement( 'td', [
 			'class' => 'mw-changeslist-line-inner',
 			// Used for reliable determination of the affiliated page
-			'data-target-page' => $rcObj->getTitle(),
+			'data-target-page' => $titleText,
 		] );
 
 		// everything else: makes it easier for extensions to add or remove data
