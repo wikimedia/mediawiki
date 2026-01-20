@@ -1,10 +1,4 @@
 <?php
-/**
- * Skin file for the fallback skin.
- *
- * @since 1.24
- * @file
- */
 
 namespace MediaWiki\Skin;
 
@@ -14,7 +8,15 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 
 /**
- * SkinTemplate class for the fallback skin
+ * Skin implementation for the "Fallback" skin.
+ *
+ * This skin is used as a last resort when the configured default skin
+ * (wgDefaultSkin) is not available for some reason.
+ *
+ * It is not intended to be used by regular users, but can be useful for
+ * debugging or recovery (e.g. add ?useskin=fallback to a URL).
+ *
+ * @since 1.24
  */
 class SkinFallback extends SkinMustache {
 	/** @inheritDoc */
