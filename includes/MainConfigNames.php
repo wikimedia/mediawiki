@@ -1592,6 +1592,18 @@ class MainConfigNames {
 	public const UseSessionCookieJwt = 'UseSessionCookieJwt';
 
 	/**
+	 * Name constant for the UseSessionCookieForBotPasswords setting, for use with Config::get()
+	 * @see MainConfigSchema::UseSessionCookieForBotPasswords
+	 */
+	public const UseSessionCookieForBotPasswords = 'UseSessionCookieForBotPasswords';
+
+	/**
+	 * Name constant for the JwtSessionCookieIssuer setting, for use with Config::get()
+	 * @see MainConfigSchema::JwtSessionCookieIssuer
+	 */
+	public const JwtSessionCookieIssuer = 'JwtSessionCookieIssuer';
+
+	/**
 	 * Name constant for the MemCachedServers setting, for use with Config::get()
 	 * @see MainConfigSchema::MemCachedServers
 	 */

@@ -5,20 +5,32 @@ namespace MediaWiki\Tests\Session;
 use InvalidArgumentException;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
+use MediaWiki\Request\WebResponse;
 use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\CookieSessionProvider;
 use MediaWiki\Session\Session;
+use MediaWiki\Session\SessionBackend;
+use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Session\SingleBackendSessionStore;
 use MediaWiki\Session\UserInfo;
+use MediaWiki\Tests\Mocks\Json\PlainJsonJwtCodec;
 use MediaWiki\User\BotPassword;
+use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 use TestLogger;
+use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group Session
@@ -32,6 +44,13 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 	private $config;
 	/** @var string */
 	private $configHash;
+
+	public static function provideUseSessionCookieJwt() {
+		return [
+			'no JWT' => [ false ],
+			'JWT' => [ true ],
+		];
+	}
 
 	private function getProvider( $name = null, $prefix = null, $isApiRequest = true ) {
 		global $wgSessionProviders;
@@ -64,6 +83,8 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 				MainConfigNames::CookiePrefix => 'wgCookiePrefix',
 				MainConfigNames::EnableBotPasswords => true,
 				MainConfigNames::SessionProviders => $sessionProviders,
+				MainConfigNames::SessionCookieJwtExpiration => 10,
+				MainConfigNames::JwtSessionCookieIssuer => 'http://example.org',
 			] );
 			$this->configHash = $configHash;
 		}
@@ -81,6 +102,8 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->setService( 'SessionManager', $manager );
+		// Use PlainJsonJwtCodec mock so we don't run into JWT handling errors
+		$this->setService( 'JwtCodec', new PlainJsonJwtCodec() );
 
 		return $manager->getProvider( BotPasswordSessionProvider::class );
 	}
@@ -211,24 +234,368 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $provider->newSessionInfo( 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ) );
 	}
 
-	public function testProvideSessionInfo() {
+	/**
+	 * Create a CentralIdLookup with mocked lookupOwnedUserNames / getScope / getProviderId methods.
+	 * @return array A reference to the username => ID map.
+	 */
+	private function &mockCentralIdLookup(): array {
+		$centralIdMap = [];
+		// the class is abstract but the mocked methods aren't and that apparently breaks createNoOpAbstractMock
+		$lookup = $this->createNoOpMock( CentralIdLookup::class,
+			[ 'lookupOwnedUserNames', 'getScope', 'getProviderId', 'nameFromCentralId', 'centralIdFromLocalUser' ] );
+		$lookup->method( 'lookupOwnedUserNames' )->willReturnCallback(
+			static function ( $nameToId ) use ( &$centralIdMap ) {
+				return array_intersect_key( $centralIdMap, $nameToId ) + $centralIdMap;
+			}
+		);
+		$lookup->method( 'nameFromCentralId' )->willReturnCallback(
+			static function ( $centralId ) use ( &$centralIdMap ) {
+				return array_flip( $centralIdMap )[$centralId] ?? null;
+			}
+		);
+		$lookup->method( 'centralIdFromLocalUser' )->willReturnCallback(
+			static function ( UserIdentity $user ) use ( &$centralIdMap ) {
+				return $centralIdMap[$user->getName()] ?? 0;
+			}
+		);
+		$lookup->method( 'getScope' )->willReturn( 'mock:' );
+		$lookup->method( 'getProviderId' )->willReturn( 'mock' );
+		$this->setService( 'CentralIdLookup', $lookup );
+		return $centralIdMap;
+	}
+
+	/**
+	 * @dataProvider provideUseSessionCookieJwt
+	 */
+	public function testProvideSessionInfo( bool $useSessionCookieJwt ) {
+		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+		$user = $this->getMutableTestUser( [], 'Expected' )->getUser();
+		$otherUser = $this->getMutableTestUser( [], 'Unexpected' )->getUser();
+		$centralIdMap = &$this->mockCentralIdLookup();
 		$request = new FauxRequest;
-		$request->setCookie( '_BPsession', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'wgCookiePrefix' );
+		$request->setCookie( '_BPsession', $sessionId, 'wgCookiePrefix' );
 
 		$provider = $this->getProvider( null, null, false );
 		$this->assertNull( $provider->provideSessionInfo( $request ) );
 
-		$provider = $this->getProvider();
-
-		$info = $provider->provideSessionInfo( $request );
-		$this->assertInstanceOf( SessionInfo::class, $info );
-		$this->assertSame( 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', $info->getId() );
+		$centralIdMap = [ $user->getName() => 123, $otherUser->getName() => 456 ];
+		$logger = new TestLogger( true );
+		$logger2 = new TestLogger( true, static function ( string $message ) {
+			if ( str_starts_with( $message, 'Session store:' ) ) {
+				return null;
+			}
+			return $message;
+		} );
+		$this->setLogger( 'session-sampled', $logger2 );
 
 		$this->config->set( MainConfigNames::EnableBotPasswords, false );
 		$this->assertNull( $provider->provideSessionInfo( $request ) );
 		$this->config->set( MainConfigNames::EnableBotPasswords, true );
-
 		$this->assertNull( $provider->provideSessionInfo( new FauxRequest ) );
+
+		$provider = $this->getProvider( null, '' );
+		$this->initProvider( $provider, $logger, $this->config, $this->getServiceContainer()->getSessionManager() );
+		if ( $useSessionCookieJwt ) {
+			$this->config->set( MainConfigNames::UseSessionCookieJwt, true );
+			$this->config->set( MainConfigNames::UseSessionCookieForBotPasswords, true );
+			$startTime = 1_000_000;
+			ConvertibleTimestamp::setFakeTime( $startTime );
+			$jwtExpiry = $this->config->get( MainConfigNames::SessionCookieJwtExpiration );
+			$codec = new PlainJsonJwtCodec();
+			$defaultClaims = [
+				'jti' => 'random123',
+				'iss' => 'http://example.org',
+				'sxp' => $startTime + $jwtExpiry,
+				'sub' => 'mw:mock::123',
+			];
+
+			// User with mismatching issuer
+			$request = new FauxRequest();
+			$request->setCookies( [
+				'_BPsession' => $sessionId,
+				'sessionJwt' => $codec->create( [ 'iss' => 'http://evil.com' ] + $defaultClaims ),
+			], prefix: '' );
+			$info = $provider->provideSessionInfo( $request );
+			// avoid printing a hundred-line diff when this assertion fails
+			$this->assertNull( $info?->__toString() );
+			$this->assertSame( [ [ LogLevel::INFO, 'JWT validation failed: JWT error: wrong issuer' ] ],
+				$logger->getBuffer() );
+			$logger->clearBuffer();
+
+			// Anon JWT for non-anon user
+			$request = new FauxRequest();
+			$request->setCookies( [
+				'_BPsession' => $sessionId,
+				'sessionJwt' => $codec->create( [ 'sub' => 'mw:' . SessionManager::JWT_SUB_ANON ] + $defaultClaims ),
+			], prefix: '' );
+			$info = $provider->provideSessionInfo( $request );
+			$this->assertInstanceOf( SessionInfo::class, $info );
+			$this->assertNotNull( $info?->__toString() );
+
+			// User with valid JWT
+			$request = new FauxRequest();
+			$request->setCookies( [
+				'_BPsession' => $sessionId,
+				'sessionJwt' => $codec->create( $defaultClaims ),
+			], prefix: '' );
+			$info = $provider->provideSessionInfo( $request );
+			$this->assertNotNull( $info?->__toString() );
+			$this->assertSame( $sessionId, $info->getId() );
+			$this->assertFalse( $info->getUserInfo()?->isVerified() );
+			$this->assertSame( $user->getName(), $info->getUserInfo()->getName() );
+			$this->assertFalse( $info->needsRefresh() );
+			$this->assertFalse( $info->forceHTTPS() );
+			$this->assertSame( [], $logger->getBuffer() );
+			$logger->clearBuffer();
+
+			// Different user with valid JWT
+			$request = new FauxRequest();
+			$request->setCookies( [
+				'_BPsession' => $sessionId,
+				'sessionJwt' => $codec->create( [ 'sub' => 'mw:mock::456' ] + $defaultClaims ),
+			], prefix: '' );
+			$info = $provider->provideSessionInfo( $request );
+			$this->assertNotNull( $info?->__toString() );
+			$this->assertSame( $otherUser->getName(), $info->getUserInfo()?->getName() );
+			$this->assertSame( [], $logger->getBuffer() );
+			$logger->clearBuffer();
+
+			// User with JWT only
+			$request = new FauxRequest();
+			$request->setCookies( [
+				'sessionJwt' => $codec->create( $defaultClaims ),
+			], prefix: '' );
+			$info = $provider->provideSessionInfo( $request );
+			$this->assertNull( $info?->__toString() );
+			$this->assertSame( [], $logger->getBuffer() );
+			$logger->clearBuffer();
+
+			// Anon JWT
+			// Should not happen, but just in case something somewhere sets one, make sure it is
+			// handled gracefully.
+			$request = new FauxRequest();
+			$request->setCookies( [
+				'_BPsession' => $sessionId,
+				'sessionJwt' => $codec->create( [ 'sub' => 'mw:' . SessionManager::JWT_SUB_ANON ] + $defaultClaims ),
+			], prefix: '' );
+			$info = $provider->provideSessionInfo( $request );
+			$this->assertNotNull( $info?->__toString() );
+			$this->assertSame( $sessionId, $info->getId() );
+			$this->assertTrue( $info->getUserInfo()?->isAnon() );
+			$this->assertFalse( $info->needsRefresh() );
+			$this->assertSame( [], $logger->getBuffer() );
+			$logger->clearBuffer();
+
+			$this->assertSame( [], $logger2->getBuffer() );
+			$logger2->clearBuffer();
+
+			// (soft-)expired JWT
+			ConvertibleTimestamp::setFakeTime( $startTime + $jwtExpiry + ExpirationAwareness::TTL_MINUTE + 1 );
+			$request = new FauxRequest();
+			$request->setCookies( [
+				'_BPsession' => $sessionId,
+				'sessionJwt' => $codec->create( $defaultClaims ),
+			], prefix: '' );
+			$info = $provider->provideSessionInfo( $request );
+			$this->assertNotNull( $info?->__toString() );
+			$this->assertSame( $sessionId, $info->getId() );
+			$this->assertFalse( $info->getUserInfo()?->isVerified() );
+			$this->assertSame( $user->getName(), $info->getUserInfo()?->getName() );
+			$this->assertTrue( $info->needsRefresh() );
+			$this->assertSame( [], $logger->getBuffer() );
+			$logger->clearBuffer();
+			$this->assertSame( [ [ LogLevel::WARNING, 'Soft-expired JWT cookie' ] ], $logger2->getBuffer() );
+			$logger2->clearBuffer();
+
+			// near-expired JWT
+			ConvertibleTimestamp::setFakeTime( $startTime + $jwtExpiry - 1 );
+			$request = new FauxRequest();
+			$request->setCookies( [
+				'_BPsession' => $sessionId,
+				'sessionJwt' => $codec->create( $defaultClaims ),
+			], prefix: '' );
+			$info = $provider->provideSessionInfo( $request );
+			$this->assertNotNull( $info?->__toString() );
+			$this->assertSame( $sessionId, $info->getId() );
+			$this->assertFalse( $info->getUserInfo()?->isVerified() );
+			$this->assertSame( $user->getName(), $info->getUserInfo()?->getName() );
+			$this->assertTrue( $info->needsRefresh() );
+			$this->assertSame( [], $logger->getBuffer() );
+			$logger->clearBuffer();
+
+			// JWT with valid hard-expiry
+			ConvertibleTimestamp::setFakeTime( $startTime );
+			$request = new FauxRequest();
+			$request->setCookies( [
+				'_BPsession' => $sessionId,
+				'sessionJwt' => $codec->create( $defaultClaims + [
+						'exp' => $startTime + $jwtExpiry + ExpirationAwareness::TTL_MINUTE,
+					] ),
+			], prefix: '' );
+			$info = $provider->provideSessionInfo( $request );
+			$this->assertNotNull( $info?->__toString() );
+			$this->assertSame( $sessionId, $info->getId() );
+			$this->assertFalse( $info->getUserInfo()?->isVerified() );
+			$this->assertSame( $user->getName(), $info->getUserInfo()?->getName() );
+			$this->assertFalse( $info->needsRefresh() );
+			$this->assertFalse( $info->forceHTTPS() );
+			$this->assertSame( [], $logger->getBuffer() );
+			$logger->clearBuffer();
+
+			// JWT with expired hard-expiry
+			ConvertibleTimestamp::setFakeTime( $startTime + $jwtExpiry + ExpirationAwareness::TTL_MINUTE + 1 );
+			$request = new FauxRequest();
+			$request->setCookies( [
+				'_BPsession' => $sessionId,
+				'sessionJwt' => $codec->create( $defaultClaims + [
+						'exp' => $startTime + $jwtExpiry + ExpirationAwareness::TTL_MINUTE,
+					] ),
+			], prefix: '' );
+			$info = $provider->provideSessionInfo( $request );
+			$this->assertNull( $info?->__toString() );
+			$this->assertSame( [ [ LogLevel::INFO, 'JWT validation failed: JWT error: hard-expired' ] ], $logger->getBuffer() );
+			$logger->clearBuffer();
+
+			$this->assertSame( [], $logger2->getBuffer() );
+			$logger2->clearBuffer();
+		}
+	}
+
+	/**
+	 * Integration test for provideSessionInfo() + SessionManager::loadSessionInfoFromStore())
+	 */
+	public function testGetSessionForRequest() {
+		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+		$user = $this->getMutableTestUser( [], 'Expected' )->getUser();
+		$otherUser = $this->getMutableTestUser( [], 'Unexpected' )->getUser();
+		$centralIdMap = &$this->mockCentralIdLookup();
+		$centralIdMap = [ $user->getName() => 123, $otherUser->getName() => 456 ];
+
+		$logger = new TestLogger( true );
+		$logger2 = new TestLogger( true, static function ( string $message ) {
+			if ( str_starts_with( $message, 'Session store:' ) ) {
+				return null;
+			}
+			return $message;
+		} );
+		$this->setLogger( 'session-sampled', $logger2 );
+
+		$store = new TestBagOStuff();
+		$this->setService( 'SessionStore', new SingleBackendSessionStore(
+				$store, new NullLogger(), $this->getServiceContainer()->getStatsFactory() )
+		);
+
+		$bp = BotPassword::newUnsaved( [
+			'user' => $user,
+			'appId' => 'bot',
+		] );
+		$status = $bp->save( 'insert' );
+		$this->assertStatusGood( $status );
+
+		$provider = $this->getProvider( null, '', true );
+		$this->initProvider( $provider, $logger, $this->config, $this->getServiceContainer()->getSessionManager() );
+		$this->config->set( MainConfigNames::EnableBotPasswords, true );
+		$this->config->set( MainConfigNames::UseSessionCookieJwt, true );
+		$this->config->set( MainConfigNames::UseSessionCookieForBotPasswords, true );
+		$this->config->set( MainConfigNames::ForceHTTPS, false );
+
+		$setUserInStore = static function ( $sessionId, User $user, $bp ) use ( $store, $provider ) {
+			$store->setUser( $sessionId, $user, [
+				'metadata' => [
+					'provider' => (string)$provider,
+					'providerMetadata' => [
+						'centralId' => $bp->getUserCentralId(),
+						'appId' => $bp->getAppId(),
+						'token' => $bp->getToken(),
+					],
+				],
+			] );
+		};
+
+		$startTime = 1_000_000;
+		ConvertibleTimestamp::setFakeTime( $startTime );
+		$jwtExpiry = $this->config->get( MainConfigNames::SessionCookieJwtExpiration );
+		$codec = new PlainJsonJwtCodec();
+		$defaultClaims = [
+			'jti' => 'random123',
+			'iss' => 'http://example.org',
+			'sxp' => $startTime + $jwtExpiry,
+			'sub' => 'mw:mock::123',
+		];
+
+		// No stored data
+		$sessionId++;
+		$store->clear();
+		$request = new FauxRequest();
+		$request->setIP( '1.2.3.4' );
+		$request->setCookies( [
+			'_BPsession' => $sessionId,
+			'sessionJwt' => $codec->create( $defaultClaims ),
+		], prefix: '' );
+		RequestContext::getMain()->setRequest( $request );
+		$manager = $this->getServiceContainer()->getSessionManager();
+		$session = $manager->getSessionForRequest( $request );
+		$this->assertNotSame( $sessionId, $session->getId() );
+		$this->assertSame( '1.2.3.4', $session->getUser()->getName() );
+		$this->assertFalse( $session->isPersistent() );
+		$this->assertNotInstanceOf( BotPasswordSessionProvider::class, $session->getProvider() );
+		$this->assertSame( [], $logger->getBuffer() );
+
+		// Stored data matches
+		$sessionId++;
+		$store->clear();
+		$setUserInStore( $sessionId, $user, $bp );
+		$request = new FauxRequest();
+		$request->setIP( '1.2.3.4' );
+		$request->setCookies( [
+			'_BPsession' => $sessionId,
+			'sessionJwt' => $codec->create( $defaultClaims ),
+		], prefix: '' );
+		RequestContext::getMain()->setRequest( $request );
+		$manager = $this->getServiceContainer()->getSessionManager();
+		$session = $manager->getSessionForRequest( $request );
+		$this->assertSame( $sessionId, $session->getId() );
+		$this->assertSame( $user->getName(), $session->getUser()->getName() );
+		$this->assertTrue( $session->isPersistent() );
+		$this->assertInstanceOf( BotPasswordSessionProvider::class, $session->getProvider() );
+		$this->assertSame( [], $logger->getBuffer() );
+
+		// Stored data mismatches
+		$sessionId++;
+		$store->clear();
+		$setUserInStore( $sessionId, $user, $bp );
+		$request = new FauxRequest();
+		$request->setIP( '1.2.3.4' );
+		$request->setCookies( [
+			'_BPsession' => $sessionId,
+			'sessionJwt' => $codec->create( [ 'sub' => 'mw:mock::456' ] + $defaultClaims ),
+		], prefix: '' );
+		RequestContext::getMain()->setRequest( $request );
+		$manager = $this->getServiceContainer()->getSessionManager();
+		$session = $manager->getSessionForRequest( $request );
+		$this->assertNotSame( $sessionId, $session->getId() );
+		$this->assertSame( '1.2.3.4', $session->getUser()->getName() );
+		$this->assertFalse( $session->isPersistent() );
+		$this->assertNotInstanceOf( BotPasswordSessionProvider::class, $session->getProvider() );
+		$this->assertSame( [], $logger->getBuffer() );
+
+		// no JWT
+		$sessionId++;
+		$store->clear();
+		$setUserInStore( $sessionId, $user, $bp );
+		$request = new FauxRequest();
+		$request->setIP( '1.2.3.4' );
+		$request->setCookies( [
+			'_BPsession' => $sessionId,
+		], prefix: '' );
+		RequestContext::getMain()->setRequest( $request );
+		$manager = $this->getServiceContainer()->getSessionManager();
+		$session = $manager->getSessionForRequest( $request );
+		$this->assertSame( $sessionId, $session->getId() );
+		$this->assertSame( $user->getName(), $session->getUser()->getName() );
+		$this->assertTrue( $session->isPersistent() );
+		$this->assertInstanceOf( BotPasswordSessionProvider::class, $session->getProvider() );
+		$this->assertSame( [], $logger->getBuffer() );
 	}
 
 	public function testNewSessionInfoForRequest() {
@@ -381,5 +748,116 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			]
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
+	}
+
+	/**
+	 * @dataProvider provideUseSessionCookieJwt
+	 */
+	public function testGetVaryCookies( bool $useSessionCookieJwt ) {
+		$logger = new TestLogger( true );
+		$provider = $this->getProvider();
+		$this->initProvider( $provider, $logger, $this->config );
+
+		$this->config->set( MainConfigNames::UseSessionCookieJwt, $useSessionCookieJwt );
+		$this->config->set( MainConfigNames::UseSessionCookieForBotPasswords, true );
+		$this->initProvider( $provider, null, $this->config );
+
+		$expectedCookies = [
+			'wgCookiePrefix_BPsession',
+		];
+		if ( $useSessionCookieJwt ) {
+			$expectedCookies[] = 'sessionJwt';
+		}
+		$this->assertArrayEquals( $expectedCookies, $provider->getVaryCookies() );
+	}
+
+	public static function providePersistSession() {
+		return [
+			'default' => [ false ],
+			'force HTTPS' => [ true ],
+		];
+	}
+
+	/**
+	 * @dataProvider providePersistSession
+	 */
+	public function testPersistSession( $forceHTTPS ) {
+		$startTime = 1_000_000;
+		ConvertibleTimestamp::setFakeTime( $startTime );
+
+		$provider = $this->getProvider();
+		$hookContainer = $this->createHookContainer();
+		$config = $this->config;
+		$config->set( MainConfigNames::ForceHTTPS, $forceHTTPS );
+		$config->set( MainConfigNames::UseSessionCookieJwt, true );
+		$config->set( MainConfigNames::UseSessionCookieForBotPasswords, true );
+		$config->set( MainConfigNames::JwtSessionCookieIssuer, 'http://example.org' );
+		$this->initProvider(
+			$provider,
+			new TestLogger(),
+			$config,
+			$this->getServiceContainer()->getSessionManager(),
+			$hookContainer
+		);
+
+		$user = $this->getTestSysop()->getUser();
+		$userInfo = UserInfo::newFromUser( $user, true );
+
+		$this->overrideConfigValue( MainConfigNames::ForceHTTPS, $forceHTTPS );
+		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+		$backend = new SessionBackend(
+			new SessionId( $sessionId ),
+			new SessionInfo( SessionInfo::MIN_PRIORITY, [
+				'provider' => $provider,
+				'id' => $sessionId,
+				'persisted' => true,
+				'metaDirty' => true,
+				'idIsSafe' => true,
+				'userInfo' => $userInfo,
+			] ),
+			$this->getServiceContainer()->getSessionStore(),
+			new NullLogger(),
+			$hookContainer,
+			10
+		);
+		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
+
+		// Logged-in user, no remember
+		$backend->setRememberUser( false );
+		$backend->setForceHTTPS( false );
+		$request = new FauxRequest();
+		$provider->persistSession( $backend, $request );
+		$this->assertNotEmpty( $request->response()->getCookie( 'sessionJwt' ) );
+		$this->assertSame( [], $backend->getData() );
+
+		// Logged-in user, remember
+		$backend->setRememberUser( true );
+		$backend->setForceHTTPS( true );
+		$request = new FauxRequest();
+		$provider->persistSession( $backend, $request );
+		$this->assertNotEmpty( $request->response()->getCookie( 'sessionJwt' ) );
+		$this->assertSame( [], $backend->getData() );
+
+		// Multiple persists should not result in duplicated Set-Cookie headers
+		$cookies = [];
+		WebResponse::resetCookieCache();
+		$expectedCookies[] = 'sessionJwt';
+		$backend->setRememberUser( true );
+		$backend->setForceHTTPS( true );
+		$response = $this->createPartialMock( WebResponse::class, [ 'actuallySetCookie' ] );
+		$response->method( 'actuallySetCookie' )->willReturnCallback(
+			function ( string $func, string $prefixedName, string $value, array $setOptions ) use ( &$cookies ): void {
+				if ( array_key_exists( $prefixedName, $cookies ) ) {
+					$this->fail( 'Cookie set twice: ' . $prefixedName );
+				}
+				$cookies[$prefixedName] = true;
+			}
+		);
+		$request = $this->createPartialMock( WebRequest::class, [ 'response' ] );
+		$request->method( 'response' )->willReturn( $response );
+		$provider->persistSession( $backend, $request );
+		$provider->persistSession( $backend, $request );
+		$provider->persistSession( $backend, $request );
+		$this->assertArrayContains( $expectedCookies, array_keys( $cookies ) );
 	}
 }

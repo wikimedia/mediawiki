@@ -14,6 +14,7 @@ use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
+use MediaWiki\Tests\Mocks\Json\PlainJsonJwtCodec;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use TestLogger;
@@ -32,6 +33,8 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 		$config = new HashConfig();
 		$config->set( MainConfigNames::CookiePrefix, 'wgCookiePrefix' );
 		$config->set( MainConfigNames::ForceHTTPS, $forceHTTPS );
+		$config->set( MainConfigNames::UseSessionCookieJwt, false );
+		$config->set( MainConfigNames::JwtSessionCookieIssuer, 'http://example.org' );
 
 		$params = [
 			'sessionCookieName' => $name,
@@ -41,6 +44,8 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 			$params['sessionCookieOptions']['prefix'] = $prefix;
 		}
 
+		// Use PlainJsonJwtCodec mock so we don't run into JWT handling errors
+		$this->setService( 'JwtCodec', new PlainJsonJwtCodec() );
 		$provider = $this->getMockBuilder( ImmutableSessionProviderWithCookie::class )
 			->setConstructorArgs( [ $params ] )
 			->getMockForAbstractClass();
@@ -200,6 +205,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 			MainConfigNames::CookieExpiration => 100,
 			MainConfigNames::SecureLogin => false,
 			MainConfigNames::ForceHTTPS => $forceHTTPS,
+			MainConfigNames::JwtSessionCookieIssuer => 'http://example.org',
 		] );
 
 		$provider = $this->getProvider( 'session', null, $forceHTTPS, new NullLogger() );
