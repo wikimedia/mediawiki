@@ -1,16 +1,8 @@
 <template>
-	<cdx-button
-		type="button"
-		:disabled="selectedPagesList.length === 0"
-		@click="openAssignDialog"
-	>
+	<cdx-button type="button" @click="openAssignDialog">
 		{{ $i18n( 'watchlistlabels-editwatchlist-dialog-button' ) }}
 	</cdx-button>
-	<cdx-button
-		type="button"
-		:disabled="selectedPagesList.length === 0"
-		@click="openUnassignDialog"
-	>
+	<cdx-button type="button" @click="openUnassignDialog">
 		{{ $i18n( 'watchlistlabels-editwatchlist-dialog-button-unassign' ) }}
 	</cdx-button>
 	<cdx-button type="button" @click="openRemoveDialog">
@@ -30,7 +22,7 @@
 				<!-- eslint-disable vue/no-v-html -->
 				<span v-html="dialogBody"></span>
 			</p>
-			<div v-if="dialogAction !== 'remove'">
+			<div v-if="showLabels">
 				<cdx-checkbox
 					v-for="[ labelId, labelName ] in labels"
 					:key="labelId"
@@ -46,7 +38,7 @@
 				<!-- Manually create the action buttons in order to add type and other attributes
 				so that they work as part of the <form>. -->
 				<cdx-button
-					v-if="selectedPages.length"
+					v-if="selectedPages.length && ( showLabels || dialogAction === 'remove' )"
 					class="cdx-dialog__footer__primary-action"
 					weight="primary"
 					:action="dialogAction === 'assign' ? 'progressive' : 'destructive'"
@@ -61,7 +53,7 @@
 					type="button"
 					@click="isOpen = false"
 				>
-					{{ selectedPages.length > 0 ? $i18n( 'cancel' ) : $i18n( 'ok' ) }}
+					{{ selectedPages.length && ( showLabels || dialogAction === 'remove' ) ? $i18n( 'cancel' ) : $i18n( 'ok' ) }}
 				</cdx-button>
 			</div>
 		</template>
@@ -82,6 +74,7 @@ module.exports = defineComponent( {
 	setup() {
 		const dialogAction = ref( 'assign' );
 		const isOpen = ref( false );
+		const showLabels = ref( false );
 		const selectedPages = ref( [] );
 		const selectedPagesList = ref( '' );
 		const allLabels = new Map( Object.values( mw.config.get( 'watchlistLabels' ) ).map( ( l ) => [ l.id, l.name ] ) );
@@ -98,10 +91,25 @@ module.exports = defineComponent( {
 		} );
 		const dialogBody = computed( () => {
 			if ( dialogAction.value === 'assign' ) {
+				showLabels.value = false;
+				if ( allLabels.size === 0 ) {
+					return mw.message( 'watchlistlabels-editwatchlist-dialog-intro-nolabels' ).parse();
+				} else if ( selectedPages.value.length === 0 ) {
+					return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro-noitems' );
+				}
+				showLabels.value = true;
 				return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro', selectedPagesList.value, labels.value.length, labels.value.length );
 			} else if ( dialogAction.value === 'unassign' ) {
+				showLabels.value = false;
+				if ( selectedPages.value.length > 0 && labels.value.size === 0 ) {
+					return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro-unassign-noitemlabels' );
+				} else if ( selectedPages.value.length === 0 ) {
+					return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro-unassign-noitems' );
+				}
+				showLabels.value = true;
 				return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro-unassign', selectedPagesList.value, labels.value.length, labels.value.length );
 			} else {
+				showLabels.value = false;
 				return selectedPages.value.length > 0 ?
 					mw.msg( 'watchlistedit-unwatch-confirmation', selectedPagesList.value, selectedPages.value.length ) :
 					mw.msg( 'watchlistedit-unwatch-confirmation-empty' );
@@ -173,8 +181,8 @@ module.exports = defineComponent( {
 			dialogBody,
 			dialogAction,
 			selectedPages,
-			selectedPagesList,
 			labels,
+			showLabels,
 			openRemoveDialog,
 			openAssignDialog,
 			openUnassignDialog,
