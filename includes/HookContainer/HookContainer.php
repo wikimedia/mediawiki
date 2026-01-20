@@ -16,6 +16,7 @@ use Error;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Debug\MWDebug;
+use ReflectionFunction;
 use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\NonSerializable\NonSerializableTrait;
@@ -558,8 +559,15 @@ class HookContainer implements SalvageableService {
 		}
 
 		if ( $callable instanceof Closure ) {
-			$hash = spl_object_hash( $callable );
-			return "*closure#$hash*";
+			$func = new ReflectionFunction( $callable );
+			$cls = $func->getClosureCalledClass();
+			if ( $func->getClosureThis() && $cls ) {
+				return "({$cls->getName()})->{$func->getName()}(...)";
+			} elseif ( $cls ) {
+				return "{$cls->getName()}::{$func->getName()}(...)";
+			} else {
+				return "{$func->getName()}(...)";
+			}
 		}
 
 		if ( is_array( $callable ) ) {
