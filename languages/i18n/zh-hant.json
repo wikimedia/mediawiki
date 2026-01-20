@@ -4152,7 +4152,7 @@
 	"newpages-showhide-patrolled": "$1已巡查的編輯",
 	"newpages-showhide-redirect": "$1重新導向",
 	"newpages-showhide-registered": "$1已註冊的使用者",
-	"blockedtext-made-by": "封鎖執行者是$1。",
+	"blockedtext-made-by": "由$1封鎖。",
 	"blockedtext-reason-comment": "給予原因是<em>$1</em>。",
 	"blockedtext-start-time": "封鎖開始時間：$1",
 	"blockedtext-expiration-time": "封鎖結束時間：$1",

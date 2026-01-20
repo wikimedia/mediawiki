@@ -156,7 +156,8 @@
 			"かしわのはみん",
 			"Winston Sung",
 			"Yaakiyu.jp",
-			"Shulmj"
+			"Shulmj",
+			"YeBoy371"
 		]
 	},
 	"sunday": "日曜日",
@@ -583,7 +584,7 @@
 	"noemail": "利用者「$1」のメールアドレスは登録されていません。",
 	"noemailcreate": "有効なメールアドレスを入力する必要があります。",
 	"passwordsent": "新しいパスワードを「$1」に登録されたメールアドレスにお送りしました。\nメールが届いたら、再度ログインしてください。",
-	"blocked-mailpassword": "ご使用の IP アドレスからの編集はブロックされております。不正利用防止のため、この IP アドレスからはパスワードの再発行をリクエストできません。",
+	"blocked-mailpassword": "ご利用の IP アドレスがブロックされています。不正利用防止のため、この IP アドレスからはパスワードの回復機能を使用できません。",
 	"eauthentsent": "指定したメールアドレスに、アドレス確認のためのメールをお送りしました。\nメールに記載された手順に従って、このアカウントの所有者であることの確認が取れると、このアカウント宛のメールを受け取れるようになります。",
 	"throttled-mailpassword": "パスワード再設定メールを過去 {{PLURAL:$1|$1 時間}}に送信済みです。\n悪用防止のため、パスワードの再設定は {{PLURAL:$1|$1 時間}}に 1 回のみです。",
 	"mailerror": "メールを送信する際にエラーが発生しました: $1",
@@ -3993,7 +3994,7 @@
 	"mediastatistics-table-totalbytes": "合計サイズ",
 	"mediastatistics-header-unknown": "不明",
 	"mediastatistics-header-bitmap": "ビットマップ画像",
-	"mediastatistics-header-drawing": "線画 (ベクターイメージ)",
+	"mediastatistics-header-drawing": "ベクター画像",
 	"mediastatistics-header-audio": "音声",
 	"mediastatistics-header-video": "動画",
 	"mediastatistics-header-multimedia": "リッチメディア",

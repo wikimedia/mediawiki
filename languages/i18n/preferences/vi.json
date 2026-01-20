@@ -225,7 +225,7 @@
 	"tog-watchlisthideminor": "Ẩn các sửa đổi nhỏ khỏi danh sách theo dõi",
 	"tog-watchlisthidebots": "Ẩn các sửa đổi của bot khỏi danh sách theo dõi",
 	"tog-watchlisthideown": "Ẩn các sửa đổi của tôi khỏi danh sách theo dõi",
-	"tog-watchlisthideanons": "Ẩn sửa đổi của người dùng vô danh khỏi danh sách theo dõi",
+	"tog-watchlisthideanons": "Ẩn sửa đổi của người dùng chưa đăng nhập khỏi danh sách theo dõi",
 	"tog-watchlisthideliu": "Ẩn sửa đổi của người dùng đã đăng nhập khỏi danh sách theo dõi",
 	"tog-watchlistreloadautomatically": "Tự động tải lại danh sách theo dõi mỗi khi thay đổi bộ lọc (cần JavaScript)",
 	"tog-watchlisthidecategorization": "Ẩn việc xếp thể loại",

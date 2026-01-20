@@ -2750,7 +2750,7 @@
 	"fix-double-redirects": "Posodobi vse preusmeritve, ki kažejo na prvotni naslov",
 	"move-leave-redirect": "Na prejšnji strani ustvari preusmeritev",
 	"protectedpagemovewarning": "<strong>Opozorilo:</strong> Stran je zaklenjena in jo lahko prestavljajo samo uporabniki z administratorskimi pravicami.\nZa sklicevanje je naveden zadnji dnevniški zapis:",
-	"semiprotectedpagemovewarning": "<strong>Opomba:</strong> Stran je zaklenjena in jo lahko prestavljajo le samodejno potrjeni uporabniki.\nZa sklicevanje je naveden zadnji vnos v dnevniku:",
+	"semiprotectedpagemovewarning": "<strong>Opomba:</strong> Stran je zaklenjena in jo lahko prestavljajo le samodejno potrjeni uporabniki.\nZa sklicevanje je naveden zadnji dnevniški zapis:",
 	"move-over-sharedrepo": "[[:$1]] obstaja v skupni shrambi. Prestavitev datoteke na ta naslov bo preglasila skupno datoteko.",
 	"file-exists-sharedrepo": "Izbrano ime datoteke je že uporabljeno v skupni shrambi.\nProsimo, izberite drugo ime.",
 	"export": "Izvoz strani",

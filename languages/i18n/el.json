@@ -2491,7 +2491,7 @@
 	"contribute": "Συνεισφέρετε",
 	"contributions-subtitle": "Αποτελέσματα για {{GENDER:$2|τον|την}} $1",
 	"contributions-edit-count": "{{GENDER:$1|Χρήστη|Χρήστρια}} με $2 {{PLURAL:$2|επεξεργασία|επεξεργασίες}}.",
-	"contributions-account-creation-date": "Ο λογαριασμός δημιουργήθηκε στις $1 .",
+	"contributions-account-creation-date": "Ο λογαριασμός δημιουργήθηκε στις $1.",
 	"contributions-userdoesnotexist": "Ο λογαριασμός χρήστη «$1» δεν είναι εγγεγραμμένος.",
 	"negative-namespace-not-supported": "Δεν υποστηρίζονται ονοματοχώροι με αρνητικές τιμές.",
 	"nocontribs": "Δεν βρέθηκαν αλλαγές με αυτά τα κριτήρια.",

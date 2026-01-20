@@ -4028,7 +4028,7 @@
 	"parsoid-resource-limit-exceeded": "parsoid’ ресурслары лимиты артып китте: $1",
 	"parsoid-revision-access": "Parsoid $1 юрамасына керә алмый",
 	"parsoid-client-error": "Кулланылмый торган parsoid-кереш: $1",
-	"newpages-showhide-bots": "Ботларныкын $1",
+	"newpages-showhide-bots": "Роботларныкын $1",
 	"newpages-showhide-patrolled": "Тикшерелгән төзәтмәләрне $1",
 	"newpages-showhide-redirect": "Юнәлтүләрне $1",
 	"newpages-showhide-registered": "Теркәлгән кулланучыларныкын  $1",
