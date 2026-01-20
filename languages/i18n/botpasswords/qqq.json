@@ -20,6 +20,7 @@
 	"botpasswords-createnew": "Form section label for the part of the form related to creating a new bot password.",
 	"botpasswords-editexisting": "Form section label for the part of the form related to editing an existing bot password.",
 	"botpasswords-label-needsreset": "Indicator for when an existing bot password is invalid and needs to be reset.",
+	"botpasswords-reset-instructions": "Explanatory text shown on [[Special:BotPasswords]] explaining how to reset an existing bot password.\n\nParameters:\n* $1 - the label of the checkbox to reset the password, {{msg-mw|botpasswords-label-resetpassword}}\n* $2 - the label of the button to save the changes, {{msg-mw|botpasswords-label-update}}",
 	"botpasswords-label-appid": "Form field label for the \"bot name\", internally known as the \"application ID\".",
 	"botpasswords-label-create": "Button label for the button to create a new bot password.\n{{Identical|Create}}",
 	"botpasswords-label-update": "Button label for the button to save changes to a bot password.\n{{Identical|Update}}",
