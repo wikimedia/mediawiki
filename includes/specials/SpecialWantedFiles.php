@@ -170,6 +170,10 @@ class SpecialWantedFiles extends WantedQueryPage {
 	protected function getGroupName() {
 		return 'maintenance';
 	}
+
+	protected function getMaxResults() {
+		return 40000;
+	}
 }
 
 /**
