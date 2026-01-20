@@ -1365,6 +1365,8 @@ return [
 			],
 			'RestrictedGroups' => [
 			],
+			'UserRequirementsPrivateConditions' => [
+			],
 			'RestrictionTypes' => [
 				'create',
 				'edit',
@@ -3040,6 +3042,7 @@ return [
 			'GroupsAddToSelf' => 'object',
 			'GroupsRemoveFromSelf' => 'object',
 			'RestrictedGroups' => 'object',
+			'UserRequirementsPrivateConditions' => 'array',
 			'RestrictionTypes' => 'array',
 			'RestrictionLevels' => 'array',
 			'CascadingRestrictionLevels' => 'array',

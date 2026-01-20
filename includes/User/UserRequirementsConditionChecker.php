@@ -39,6 +39,7 @@ class UserRequirementsConditionChecker {
 		MainConfigNames::AutoConfirmAge,
 		MainConfigNames::AutoConfirmCount,
 		MainConfigNames::EmailAuthentication,
+		MainConfigNames::UserRequirementsPrivateConditions,
 	];
 
 	/**
@@ -63,6 +64,7 @@ class UserRequirementsConditionChecker {
 		private readonly string|false $wikiId = UserIdentity::LOCAL,
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 	}
 
 	/**
@@ -72,13 +74,19 @@ class UserRequirementsConditionChecker {
 	 *
 	 * @param array $cond A condition, which must not contain other conditions
 	 * @param UserIdentity $user The user to check the condition against
-	 * @return bool Whether the condition is true for the user
+	 * @param array<string,bool> $skippedConditions Array whose keys tell which conditions to skip while evaluating
+	 * @return ?bool Whether the condition is true for the user. Null if it's a private condition
+	 *     and we're not supposed to evaluate these.
 	 * @throws InvalidArgumentException if autopromote condition was not recognized.
 	 * @throws LogicException if APCOND_BLOCKED is checked again before returning a result.
 	 */
-	private function checkCondition( array $cond, UserIdentity $user ): bool {
+	private function checkCondition( array $cond, UserIdentity $user, array $skippedConditions ): ?bool {
 		if ( count( $cond ) < 1 ) {
 			return false;
+		}
+
+		if ( isset( $skippedConditions[$cond[0]] ) ) {
+			return null;
 		}
 
 		$isPerformingRequest = !defined( 'MW_NO_SESSION' ) && $user->equals( $this->context->getUser() );
@@ -206,56 +214,93 @@ class UserRequirementsConditionChecker {
 	 *
 	 * @param mixed $cond A condition, possibly containing other conditions
 	 * @param UserIdentity $user The user to check the conditions against
+	 * @param bool $usePrivateConditions Whether to evaluate private conditions
 	 *
-	 * @return bool Whether the condition is true
+	 * @return ?bool Whether the condition is true; will be null if the condition value depends on any of the
+	 *      unevaluated private conditions. Non-null value means that the skipped conditions have no effect
+	 *      on the result. Null can be returned only if $usePrivateConditions is false.
 	 */
-	public function recursivelyCheckCondition( $cond, UserIdentity $user ): bool {
+	public function recursivelyCheckCondition( $cond, UserIdentity $user, bool $usePrivateConditions = true ): ?bool {
+		$skippedConditions = [];
+		if ( !$usePrivateConditions ) {
+			$skippedConditions = $this->options->get( MainConfigNames::UserRequirementsPrivateConditions );
+			$skippedConditions = array_fill_keys( $skippedConditions, true );
+		}
+
+		return $this->recursivelyCheckConditionInternal( $cond, $user, $skippedConditions );
+	}
+
+	/**
+	 * Internal version of recursivelyCheckCondition, which operates on three-valued logic, for
+	 * the purpose of supporting private conditions. The third state, beyond false and true, is
+	 * null, which is recognized as an unknown value (e.g., false | null = null, true | null = true).
+	 *
+	 * @param mixed $cond A condition, possibly containing other conditions
+	 * @param UserIdentity $user The user to check the conditions against
+	 * @param array<string,bool> $skippedConditions Array whose keys tell which conditions to skip while evaluating
+	 * @return ?bool Whether the condition is true; will be null if the condition value depends on any of
+	 *     $skippedConditions. Non-null value means that the skipped conditions have no effect on the result.
+	 */
+	private function recursivelyCheckConditionInternal( $cond, UserIdentity $user, array $skippedConditions ): ?bool {
 		if ( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], self::VALID_OPS ) ) {
 			// Recursive condition
 
 			// AND (all conditions pass)
 			if ( $cond[0] === '&' ) {
+				$hasNulls = false;
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
-					if ( !$this->recursivelyCheckCondition( $subcond, $user ) ) {
+					$result = $this->recursivelyCheckConditionInternal( $subcond, $user, $skippedConditions );
+					if ( $result === false ) {
 						return false;
 					}
+					$hasNulls = $hasNulls || $result === null;
 				}
 
-				return true;
+				return $hasNulls ? null : true;
 			}
 
 			// OR (at least one condition passes)
 			if ( $cond[0] === '|' ) {
+				$hasNulls = false;
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
-					if ( $this->recursivelyCheckCondition( $subcond, $user ) ) {
+					$result = $this->recursivelyCheckConditionInternal( $subcond, $user, $skippedConditions );
+					if ( $result === true ) {
 						return true;
 					}
+					$hasNulls = $hasNulls || $result === null;
 				}
 
-				return false;
+				return $hasNulls ? null : false;
 			}
 
 			// XOR (exactly one condition passes)
 			if ( $cond[0] === '^' ) {
 				if ( count( $cond ) > 3 ) {
 					$this->logger->warning(
-						'recCheckCondition() given XOR ("^") condition on three or more conditions.' .
-						' Check your $wgAutopromote and $wgAutopromoteOnce settings.'
+						'recursivelyCheckCondition() given XOR ("^") condition on three or more conditions.' .
+						' Check your $wgRestrictedGroups, $wgAutopromote and $wgAutopromoteOnce settings.'
 					);
 				}
-				return $this->recursivelyCheckCondition( $cond[1], $user )
-					xor $this->recursivelyCheckCondition( $cond[2], $user );
+				$result1 = $this->recursivelyCheckConditionInternal( $cond[1], $user, $skippedConditions );
+				$result2 = $this->recursivelyCheckConditionInternal( $cond[2], $user, $skippedConditions );
+				if ( $result1 === null || $result2 === null ) {
+					return null;
+				}
+				return $result1 xor $result2;
 			}
 
 			// NOT (no conditions pass)
 			if ( $cond[0] === '!' ) {
+				$hasNulls = false;
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
-					if ( $this->recursivelyCheckCondition( $subcond, $user ) ) {
+					$result = $this->recursivelyCheckConditionInternal( $subcond, $user, $skippedConditions );
+					if ( $result === true ) {
 						return false;
 					}
+					$hasNulls = $hasNulls || $result === null;
 				}
 
-				return true;
+				return $hasNulls ? null : true;
 			}
 		}
 		// If we got here, the array presumably does not contain other conditions;
@@ -264,7 +309,7 @@ class UserRequirementsConditionChecker {
 			$cond = [ $cond ];
 		}
 
-		return $this->checkCondition( $cond, $user );
+		return $this->checkCondition( $cond, $user, $skippedConditions );
 	}
 
 	/**

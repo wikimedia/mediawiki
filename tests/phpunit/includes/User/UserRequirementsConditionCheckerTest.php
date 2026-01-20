@@ -7,6 +7,7 @@
 namespace MediaWiki\Tests\User;
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\User;
@@ -195,6 +196,60 @@ class UserRequirementsConditionCheckerTest extends MediaWikiIntegrationTestCase 
 		return [
 			'Local user' => [ false ],
 			'Remote user' => [ true ],
+		];
+	}
+
+	/** @dataProvider providePrivateConditionsNotInUse */
+	public function testPrivateConditionsNotInUse( array $conditions, ?bool $expected ): void {
+		$this->overrideConfigValue(
+			MainConfigNames::UserRequirementsPrivateConditions, [ 'private' ]
+		);
+
+		$this->setTemporaryHook(
+			'UserRequirementsCondition',
+			static function ( $type, array $arg, UserIdentity $hookUser, $isPerformer, &$result ) {
+				if ( $type === 'true' ) {
+					$result = true;
+				} elseif ( $type === 'false' ) {
+					$result = false;
+				}
+				// The private condition is intentionally unsupported, so that trying to evaluate it will
+				// throw an exception
+			}
+		);
+
+		$conditionCheckerFactory = $this->getServiceContainer()->getUserRequirementsConditionCheckerFactory();
+		$conditionChecker = $conditionCheckerFactory->getUserRequirementsConditionChecker(
+			$this->getServiceContainer()->getUserGroupManager()
+		);
+
+		$user = UserIdentityValue::newRegistered( 1, 'Test User' );
+		$result = $conditionChecker->recursivelyCheckCondition( $conditions, $user, false );
+		$this->assertSame( $expected, $result );
+	}
+
+	public static function providePrivateConditionsNotInUse(): array {
+		return [
+			'Condition is true, regardless of the private cond' => [
+				'conditions' => [ '|', 'private', 'true' ],
+				'expected' => true,
+			],
+			'Condition is false, regardless of the private cond' => [
+				'conditions' => [ '&', 'private', 'false' ],
+				'expected' => false,
+			],
+			'Condition can be true, depending on the private cond (AND)' => [
+				'conditions' => [ '&', 'private', 'true' ],
+				'expected' => null,
+			],
+			'Condition can be true, depending on the private cond (OR)' => [
+				'conditions' => [ '|', 'private', 'false' ],
+				'expected' => null,
+			],
+			'Not with private condition' => [
+				'conditions' => [ '!', 'private' ],
+				'expected' => null,
+			]
 		];
 	}
 }

@@ -2808,6 +2808,12 @@ $wgGroupsRemoveFromSelf = null;
 $wgRestrictedGroups = null;
 
 /**
+ * Config variable stub for the UserRequirementsPrivateConditions setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UserRequirementsPrivateConditions
+ */
+$wgUserRequirementsPrivateConditions = null;
+
+/**
  * Config variable stub for the RestrictionTypes setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::RestrictionTypes
  */

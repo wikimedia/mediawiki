@@ -8298,6 +8298,23 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * A list of user requirement conditions, which are considered private and therefore
+	 * shouldn't be used in computations before they are really needed. This helps to reduce
+	 * visibility of protected information about users.
+	 *
+	 * Using this setting does not fully prevent other users from inferring what is the result
+	 * of condition computation. For instance, a user rights log entry can still reveal that
+	 * the restrictions for the relevant group must have been satisfied.
+	 *
+	 * An example use of this setting is the Special:UserRights form, where all conditions
+	 * are evaluated on submission, but on viewing only the non-private ones are used.
+	 */
+	public const UserRequirementsPrivateConditions = [
+		'default' => [],
+		'type' => 'list',
+	];
+
+	/**
 	 * Set of available actions that can be restricted via action=protect
 	 * You probably shouldn't change this.
 	 *

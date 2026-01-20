@@ -2823,6 +2823,12 @@ class MainConfigNames {
 	public const RestrictedGroups = 'RestrictedGroups';
 
 	/**
+	 * Name constant for the UserRequirementsPrivateConditions setting, for use with Config::get()
+	 * @see MainConfigSchema::UserRequirementsPrivateConditions
+	 */
+	public const UserRequirementsPrivateConditions = 'UserRequirementsPrivateConditions';
+
+	/**
 	 * Name constant for the RestrictionTypes setting, for use with Config::get()
 	 * @see MainConfigSchema::RestrictionTypes
 	 */
