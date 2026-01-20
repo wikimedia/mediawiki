@@ -2702,6 +2702,21 @@ config-schema:
               appropriate $wgCookieDomain settings, enabling this will break session handling.
             @since 1.45
             @see SessionManager::getJwtData()
+    UseSessionCookieForBotPasswords:
+        default: false
+        description: |-
+            TEMPORARY feature flag.
+            Used in conjunction with `UseSessionCookieJwt` above to enable JWT session
+            cookie for bot passwords. Will be removed once it's enabled everywhere in
+            production.
+            @since 1.46
+            @see BotPasswordSessionProvider::provideSessionInfo()
+    JwtSessionCookieIssuer:
+        default: null
+        description: |-
+            The wiki's URL that would create, sign and issue JWTs using the configured
+            private key. The entity is identified by the `iss` claim in the JWT payload.
+            @since 1.46
     MemCachedServers:
         default:
             - '127.0.0.1:11211'

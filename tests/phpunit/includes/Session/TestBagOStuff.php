@@ -4,6 +4,8 @@ namespace MediaWiki\Tests\Session;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\User;
+use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\CachedBagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 
@@ -53,6 +55,26 @@ class TestBagOStuff extends CachedBagOStuff {
 
 	/**
 	 * @param string $id Session ID
+	 * @param User $user
+	 * @param array $blob Session metadata and data
+	 */
+	public function setUser( $id, User $user, array $blob ) {
+		$blob += [
+			'data' => [],
+			'metadata' => [],
+		];
+		$blob['metadata'] += [
+			'userId' => $user->isAnon() ? 0 : $user->getId(),
+			'userName' => IPUtils::isIPAddress( $user->getName() ) ? null : $user->getName(),
+			'userToken' => $user->isAnon() ? null : $user->getToken(),
+			'providerMetadata' => [],
+			'persisted' => true,
+		];
+		$this->setSession( $id, $blob );
+	}
+
+	/**
+	 * @param string $id Session ID
 	 * @param array|mixed $blob Session metadata and data
 	 */
 	public function setRawSession( $id, $blob ) {
@@ -81,6 +103,11 @@ class TestBagOStuff extends CachedBagOStuff {
 	 */
 	public function deleteSession( $id ) {
 		$this->delete( $this->makeKey( 'MWSession', $id ) );
+	}
+
+	public function clear() {
+		$this->store->clear();
+		$this->procCache->clear();
 	}
 
 }

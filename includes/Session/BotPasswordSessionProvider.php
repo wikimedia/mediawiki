@@ -7,6 +7,7 @@
 namespace MediaWiki\Session;
 
 use InvalidArgumentException;
+use MediaWiki\Json\JwtException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Request\WebRequest;
@@ -75,11 +76,27 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 			return null;
 		}
 
-		return new SessionInfo( $this->priority, [
+		$sessionInfo = new SessionInfo( $this->priority, [
 			'provider' => $this,
 			'id' => $id,
-			'persisted' => true
+			'persisted' => true,
 		] );
+
+		if ( $this->useJwtCookie() ) {
+			$jwtCookieOptions = $this->getJwtCookieOptions();
+			$jwtClaimOverrides = $this->getJwtClaimOverrides(
+				$this->jwtSessionCookieHelper->getJwtCookieSessionExpiration()
+			);
+
+			try {
+				$this->verifyJwtCookie( $request, $sessionInfo, $jwtCookieOptions, $jwtClaimOverrides );
+			} catch ( JwtException $e ) {
+				$this->logger->info( 'JWT validation failed: ' . $e->getNormalizedMessage(), $e->getMessageContext() );
+				return null;
+			}
+		}
+
+		return $sessionInfo;
 	}
 
 	/** @inheritDoc */
@@ -207,5 +224,10 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 			}
 		}
 		return null;
+	}
+
+	protected function useJwtCookie(): bool {
+		return $this->jwtSessionCookieHelper->useJwtCookie() &&
+			$this->config->get( MainConfigNames::UseSessionCookieForBotPasswords );
 	}
 }
