@@ -16,6 +16,7 @@
 	"botpasswords-createnew": "Create a new bot password",
 	"botpasswords-editexisting": "Edit an existing bot password",
 	"botpasswords-label-needsreset": "(password needs reset)",
+	"botpasswords-reset-instructions": "To reset a bot password: click on the relevant entry below, check \"$1\", and click \"$2\". For more information, see [[mw:Manual:Bot_passwords|the documentation]].",
 	"botpasswords-label-appid": "Bot name:",
 	"botpasswords-label-create": "Create",
 	"botpasswords-label-update": "Update",

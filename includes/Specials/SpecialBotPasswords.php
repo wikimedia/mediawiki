@@ -192,6 +192,18 @@ class SpecialBotPasswords extends FormSpecialPage {
 		} else {
 			$linkRenderer = $this->getLinkRenderer();
 
+			$fields[] = [
+				'section' => 'existing',
+				'type' => 'info',
+				'raw' => true,
+				'default' => $this->msg( 'botpasswords-reset-instructions' )
+					->plaintextParams(
+						$this->msg( 'botpasswords-label-resetpassword' )->text(),
+						$this->msg( 'botpasswords-label-update' )->text()
+					)
+					->parse(),
+			];
+
 			$dbr = BotPassword::getReplicaDatabase();
 			$res = $dbr->newSelectQueryBuilder()
 				->select( [ 'bp_app_id', 'bp_password' ] )
