@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Papuass",
+			"Rusjanis",
 			"Silraks"
 		]
 	},
@@ -20,6 +21,6 @@
 	"apihelp-languagesearch-example-1": "Meklēt \"Te\"",
 	"apihelp-languagesearch-example-2": "Meklēt \"ഫി\"",
 	"apihelp-languagesearch-example-3": "Meklēt \"ഫി\", atļaujot vienu kļūdu",
-	"apihelp-userrights-param-userid": "Lietotāja ID:",
+	"apihelp-userrights-param-userid": "Norādiet <kbd>$1 user=# <var>ID</var></kbd> tā vietā.",
 	"apierror-nosuchuserid": "Nav lietotāja ar ID $1."
 }

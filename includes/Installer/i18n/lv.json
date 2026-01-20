@@ -3,6 +3,7 @@
 		"authors": [
 			"GreenZeb",
 			"Papuass",
+			"Rusjanis",
 			"Silraks"
 		]
 	},
@@ -26,7 +27,7 @@
 	"config-restart": "Jā, restartēt",
 	"config-env-php": "PHP $1 ir uzstādīts.",
 	"config-apcu": "[https://www.php.net/apcu APCu] ir uzstādīts",
-	"config-diff3-bad": "GNU diff3 nav atrasts.",
+	"config-diff3-bad": "GNU diff3 teksta salīdzināšanas utilīta nav atrasta. Pagaidām varat to ignorēt, taču biežāk var rasties rediģēšanas konflikti.",
 	"config-db-name": "Datubāzes nosaukums:",
 	"config-db-username": "Datubāzes lietotājvārds:",
 	"config-db-password": "Datubāzes parole:",
@@ -37,7 +38,7 @@
 	"config-header-mysql": "MySQL iestatījumi",
 	"config-header-postgres": "PostgreSQL iestatījumi",
 	"config-header-sqlite": "SQLite iestatījumi",
-	"config-mysql-innodb": "InnoDB",
+	"config-mysql-innodb": "InnoDB (ieteicams)",
 	"config-ns-generic": "Projekts",
 	"config-ns-site-name": "Tāds pats kā viki nosaukums: $1",
 	"config-ns-other": "Cits (jānorāda)",
