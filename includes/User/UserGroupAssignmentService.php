@@ -83,8 +83,11 @@ class UserGroupAssignmentService {
 			return false;
 		}
 
-		// changeableGroups already checks for self-assignments, so no need to do that here.
-		$available = $this->getChangeableGroups( $performer, $target );
+		// Don't evaluate private conditions for this check, as it could leak the underlying value of these
+		// conditions through the "View groups" / "Change groups" toolbox links.
+		$available = $this->getChangeableGroups( $performer, $target, false );
+
+		// getChangeableGroups already checks for self-assignments, so no need to do that here.
 		if ( $available['add'] || $available['remove'] ) {
 			return true;
 		}
@@ -105,13 +108,19 @@ class UserGroupAssignmentService {
 	 *  ]
 	 * @phan-return array{add:list<string>,remove:list<string>,restricted:array<string,array>}
 	 */
-	public function getChangeableGroups( Authority $performer, UserIdentity $target ): array {
+	public function getChangeableGroups(
+		Authority $performer,
+		UserIdentity $target,
+		bool $evaluatePrivateConditionsForRestrictedGroups = true
+	): array {
 		// In order not to run multiple hooks every time this method is called in a request,
 		// we cache the result based on performer and target.
-		$cacheKey = $performer->getUser()->getName() . ':' . $target->getName() . ':' . $target->getWikiId();
+		$cacheKey = $performer->getUser()->getName() . ':' . $target->getName() . ':' . $target->getWikiId() .
+			':' . ( $evaluatePrivateConditionsForRestrictedGroups ? 'private' : 'public' );
 
 		if ( !isset( $this->changeableGroupsCache[$cacheKey] ) ) {
-			$this->changeableGroupsCache[$cacheKey] = $this->computeChangeableGroups( $performer, $target );
+			$this->changeableGroupsCache[$cacheKey] = $this->computeChangeableGroups(
+				$performer, $target, $evaluatePrivateConditionsForRestrictedGroups );
 		}
 		return $this->changeableGroupsCache[$cacheKey];
 	}
@@ -119,7 +128,11 @@ class UserGroupAssignmentService {
 	/**
 	 * Backend for {@see getChangeableGroups}, does actual computation without caching.
 	 */
-	private function computeChangeableGroups( Authority $performer, UserIdentity $target ): array {
+	private function computeChangeableGroups(
+		Authority $performer,
+		UserIdentity $target,
+		bool $evaluatePrivateConditionsForRestrictedGroups
+	): array {
 		// If the target is an interwiki user, ensure that the performer is entitled to such changes
 		// It assumes that the target wiki exists at all
 		if (
@@ -133,16 +146,16 @@ class UserGroupAssignmentService {
 		$groups = $localUserGroupManager->getGroupsChangeableBy( $performer );
 		$groups['restricted'] = [];
 
-		$checker = $this->restrictedGroupChecker;
 		$cannotAdd = [];
 		foreach ( $groups['add'] as $group ) {
-			if ( $checker->isGroupRestricted( $group ) ) {
+			if ( $this->restrictedGroupChecker->isGroupRestricted( $group ) ) {
 				$groups['restricted'][$group] = [
 					'condition-met' => $this->restrictedGroupChecker
 						->doPerformerAndTargetMeetConditionsForAddingToGroup(
 							$performer->getUser(),
 							$target,
-							$group
+							$group,
+							$evaluatePrivateConditionsForRestrictedGroups
 						),
 					'ignore-condition' => $this->restrictedGroupChecker
 						->canPerformerIgnoreGroupRestrictions(
@@ -150,7 +163,12 @@ class UserGroupAssignmentService {
 							$group
 						),
 				];
-				if ( !$checker->canPerformerAddTargetToGroup( $performer, $target, $group ) ) {
+				$canPerformerAdd = $this->restrictedGroupChecker->canPerformerAddTargetToGroup(
+					$performer, $target, $group, $evaluatePrivateConditionsForRestrictedGroups );
+				// If null was returned, keep the group in addable, as it's potentially addable
+				// Caller will be able to differentiate between true and null through the 'condition-met'
+				// value in $groups['restricted'][$group]
+				if ( $canPerformerAdd === false ) {
 					$cannotAdd[] = $group;
 				}
 			}

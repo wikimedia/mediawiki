@@ -538,4 +538,36 @@ class UserGroupAssignmentServiceTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $hookBeforeCalled, 'ChangeUserGroups hook was not called' );
 		$this->assertTrue( $hookAfterCalled, 'UserGroupsChanged hook was not called' );
 	}
+
+	public function testPrivateRestrictedGroupConditions(): void {
+		$this->overrideConfigValue( MainConfigNames::AddGroups, [ 'sysop' => [ 'test-group' ] ] );
+		$this->overrideConfigValue( MainConfigNames::RemoveGroups, [] );
+
+		// Only blocked users can be added to 'test-group'
+		$this->overrideConfigValue( MainConfigNames::UserRequirementsPrivateConditions, [ APCOND_BLOCKED ] );
+		$this->overrideConfigValue( MainConfigNames::RestrictedGroups, [
+			'test-group' => [
+				'memberConditions' => APCOND_BLOCKED
+			]
+		] );
+
+		$performer = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$target = $this->getTestUser()->getUser();
+
+		$service = $this->getServiceContainer()->getUserGroupAssignmentService();
+
+		// The two subsequent assertions ensure that the cache is partitioned by evaluatePrivateConditions
+		$changeableGroups = $service->getChangeableGroups( $performer, $target, false );
+		$this->assertSame( [ 'test-group' ], $changeableGroups['add'] );
+
+		$changeableGroups = $service->getChangeableGroups( $performer, $target );
+		$this->assertSame( [], $changeableGroups['add'] );
+
+		// Make sure that attempt to add the user to 'test-group' fails
+		[ $added, $removed ] = $service->saveChangesToUserGroups(
+			$performer, $target, [ 'test-group' ], [], []
+		);
+		$this->assertSame( [], $added );
+		$this->assertSame( [], $removed );
+	}
 }

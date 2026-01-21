@@ -47,19 +47,28 @@ class RestrictedUserGroupChecker {
 	 *
 	 * Note: This method only tests against the restrictions defined for the group. It doesn't take into account
 	 * other permission checks that may apply (e.g., whether the performer has the right to edit user groups at all).
+	 *
+	 * This method will return null if $evaluatePrivateConditions is set to false and the result depends on the
+	 * private conditions.
 	 */
 	public function canPerformerAddTargetToGroup(
 		Authority $performer,
 		UserIdentity $target,
-		string $groupName
-	): bool {
+		string $groupName,
+		bool $evaluatePrivateConditions = true
+	): ?bool {
 		if ( !$this->isGroupRestricted( $groupName ) ) {
 			return true;
 		}
 		if ( $this->canPerformerIgnoreGroupRestrictions( $performer, $groupName ) ) {
 			return true;
 		}
-		return $this->doPerformerAndTargetMeetConditionsForAddingToGroup( $performer->getUser(), $target, $groupName );
+		return $this->doPerformerAndTargetMeetConditionsForAddingToGroup(
+			$performer->getUser(),
+			$target,
+			$groupName,
+			$evaluatePrivateConditions
+		);
 	}
 
 	/**
@@ -69,17 +78,21 @@ class RestrictedUserGroupChecker {
 	 * Note: Even if this method returns false, the performer may still be allowed to add the target to the group
 	 * if they can ignore group restrictions (use {@see canPerformerAddTargetToGroup()} for that). Calling this
 	 * method may be useful to inform the performer when they ignore the restrictions.
+	 *
+	 * This method will return null if $evaluatePrivateConditions is set to false and the result depends on the
+	 * private conditions.
 	 */
 	public function doPerformerAndTargetMeetConditionsForAddingToGroup(
 		UserIdentity $performer,
 		UserIdentity $target,
-		string $groupName
-	): bool {
+		string $groupName,
+		bool $evaluatePrivateConditions = true
+	): ?bool {
 		$groupRestrictions = $this->getGroupRestrictions( $groupName );
 		if ( !$this->doesPerformerMeetConditions( $performer, $groupRestrictions ) ) {
 			return false;
 		}
-		return $this->doesTargetMeetConditions( $target, $groupRestrictions );
+		return $this->doesTargetMeetConditions( $target, $groupRestrictions, $evaluatePrivateConditions );
 	}
 
 	/**
@@ -102,22 +115,29 @@ class RestrictedUserGroupChecker {
 			return true;
 		}
 
+		// Here, we assume that the private conditions are always evaluated. There's no point in hiding
+		// data about the current request performer, as it doesn't leak anything to a third party.
 		return (bool)$this->userRequirementsConditionChecker->recursivelyCheckCondition(
 			$performerRestrictions,
 			$performer
 		);
 	}
 
-	private function doesTargetMeetConditions( UserIdentity $target, array $groupRestrictions ): bool {
+	private function doesTargetMeetConditions(
+		UserIdentity $target,
+		array $groupRestrictions,
+		bool $evaluatePrivateConditions
+	): ?bool {
 		$targetRestrictions = $groupRestrictions['memberConditions'];
 		if ( !$targetRestrictions ) {
 			// No restrictions, so automatically meets them
 			return true;
 		}
 
-		return (bool)$this->userRequirementsConditionChecker->recursivelyCheckCondition(
+		return $this->userRequirementsConditionChecker->recursivelyCheckCondition(
 			$targetRestrictions,
-			$target
+			$target,
+			$evaluatePrivateConditions
 		);
 	}
 
