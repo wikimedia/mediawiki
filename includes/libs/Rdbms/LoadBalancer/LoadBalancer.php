@@ -1610,9 +1610,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 					return "'$v'";
 				}, $stages )
 			);
+			$transactionName = $this->trxRoundFname ?? '<unknown>';
 			throw new DBTransactionError(
 				null,
-				"Transaction round stage must be $stageList (not '{$this->trxRoundStage}')"
+				"Transaction '$transactionName' round stage must be '$stageList' (not '{$this->trxRoundStage}')"
 			);
 		}
 	}
