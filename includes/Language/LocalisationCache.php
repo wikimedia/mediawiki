@@ -289,25 +289,35 @@ class LocalisationCache {
 	 * @return LCStore
 	 */
 	public static function getStoreFromConf( array $conf, $fallbackCacheDir ): LCStore {
-		$storeArg = [];
-		$storeArg['directory'] =
-			$conf['storeDirectory'] ?: $fallbackCacheDir;
+		$storeArg = [
+			'directory' => $conf['storeDirectory'] ?: $fallbackCacheDir,
+		];
 
-		if ( !empty( $conf['storeClass'] ) ) {
-			$storeClass = $conf['storeClass'];
-		} elseif ( $conf['store'] === 'files' || $conf['store'] === 'file' ||
-			( $conf['store'] === 'detect' && $storeArg['directory'] )
-		) {
-			$storeClass = LCStoreCDB::class;
-		} elseif ( $conf['store'] === 'db' || $conf['store'] === 'detect' ) {
-			$storeClass = LCStoreDB::class;
-			$storeArg['server'] = $conf['storeServer'] ?? [];
-		} elseif ( $conf['store'] === 'array' ) {
-			$storeClass = LCStoreStaticArray::class;
-		} else {
-			throw new ConfigException(
-				'Please set $wgLocalisationCacheConf[\'store\'] to something sensible.'
-			);
+		// Custom classes are supported. For core builtins, short names are stable (since 1.23).
+		$storeClass = match ( $conf['storeClass'] ) {
+			'LCStoreCDB' => LCStoreCDB::class,
+			'LCStoreDB' => LCStoreDB::class,
+			'LCStoreNull' => LCStoreNull::class,
+			'LCStoreStaticArray' => LCStoreStaticArray::class,
+			default => $conf['storeClass'],
+		};
+		if ( !$storeClass ) {
+			if (
+				$conf['store'] === 'files'
+				|| $conf['store'] === 'file'
+				|| ( $conf['store'] === 'detect' && $storeArg['directory'] )
+			) {
+				$storeClass = LCStoreCDB::class;
+			} elseif ( $conf['store'] === 'db' || $conf['store'] === 'detect' ) {
+				$storeClass = LCStoreDB::class;
+				$storeArg['server'] = $conf['storeServer'] ?? [];
+			} elseif ( $conf['store'] === 'array' ) {
+				$storeClass = LCStoreStaticArray::class;
+			} else {
+				throw new ConfigException(
+					'Please set $wgLocalisationCacheConf[\'store\'] to something sensible.'
+				);
+			}
 		}
 
 		return new $storeClass( $storeArg );
