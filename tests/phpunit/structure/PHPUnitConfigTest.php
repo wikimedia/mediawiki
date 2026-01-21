@@ -1,21 +1,18 @@
 <?php
 
 /**
- * The tests here verify that phpunit/suite.xml covers all of the tests under /tests/phpunit
+ * The tests here verify that the PHPUnit config file covers all of the tests under /tests/phpunit
  * @group medium
  * @coversNothing
  */
 class PHPUnitConfigTest extends PHPUnit\Framework\TestCase {
 
-	/**
-	 * @dataProvider provideConfigFiles
-	 */
-	public function testConfigDirectories( string $configPath ) {
+	public function testConfigDirectories() {
 		// realpath() also normalizes directory separator on windows for prefix compares
 		$testRootDir = realpath( __DIR__ . '/..' );
 
 		$dom = new DOMDocument();
-		$dom->load( $configPath );
+		$dom->load( __DIR__ . '/../../../phpunit.xml.dist' );
 		/** @var DOMElement $suites */
 		$suites = $dom->documentElement->getElementsByTagName( 'testsuites' )[0];
 
@@ -70,13 +67,6 @@ class PHPUnitConfigTest extends PHPUnit\Framework\TestCase {
 			$directoriesIncluded,
 			"All suites included"
 		);
-	}
-
-	public static function provideConfigFiles(): array {
-		return [
-			'suite.xml' => [ __DIR__ . '/../suite.xml' ],
-			'phpunit.xml.dist' => [ __DIR__ . '/../../../phpunit.xml.dist' ],
-		];
 	}
 
 	private function isDirectoryIncluded( $dir, array $suiteInfos ) {

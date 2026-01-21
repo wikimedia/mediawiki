@@ -199,6 +199,11 @@ because of Phabricator reports.
   SpecialUserRights::canProcessExpiries), deprecated in 1.45, has been removed.
   There's no replacement; the special page always assumes it can process
   expiries.
+* The tests/phpunit/phpunit.php entrypoint, deprecated in 1.41, has been
+  removed. Use `composer phpunit` instead.
+* The tests/phpunit/suite.xml configuration file and
+  tests/phpunit/bootstrap.integration.php bootstrap, deprecated in 1.42, have
+  been removed. Use phpunit.xml.dist and bootstrap.php instead.
 * The tables represented by subclasses of TitleLinksTable are now expected to
   be normalized to use the linktarget table. If they are not, they should
   override the linksTargetNormalizationStage method to return MIGRATION_OLD.
