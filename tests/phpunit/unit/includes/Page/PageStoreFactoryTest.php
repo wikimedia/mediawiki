@@ -1,9 +1,9 @@
 <?php
 namespace MediaWiki\Tests\Page;
 
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Title\NamespaceInfo;

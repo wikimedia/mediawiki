@@ -1,9 +1,9 @@
 <?php
 namespace MediaWiki\Tests\Logging;
 
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Page\LinkCache;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;

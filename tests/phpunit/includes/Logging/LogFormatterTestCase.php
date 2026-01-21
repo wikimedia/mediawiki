@@ -2,7 +2,6 @@
 namespace MediaWiki\Tests\Logging;
 
 use MediaWiki\Cache\GenderCache;
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkRenderer;
@@ -11,6 +10,7 @@ use MediaWiki\Linker\UserLinkRenderer;
 use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\Page\ExistingPageRecord;
+use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserFactory;

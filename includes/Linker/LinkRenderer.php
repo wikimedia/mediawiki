@@ -6,7 +6,6 @@
  */
 namespace MediaWiki\Linker;
 
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
@@ -15,6 +14,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget as MWLinkTarget;
 use MediaWiki\Message\Message;
+use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\Parser;
 use MediaWiki\SpecialPage\SpecialPageFactory;

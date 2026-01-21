@@ -9,13 +9,13 @@
 
 namespace MediaWiki\Parser;
 
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\LinkCache;
 use MediaWiki\Title\Title;
 use Wikimedia\HtmlArmor\HtmlArmor;
 

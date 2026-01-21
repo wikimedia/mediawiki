@@ -7,7 +7,6 @@
 namespace MediaWiki\JobQueue;
 
 use LogicException;
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Exception\MWExceptionHandler;
@@ -16,6 +15,7 @@ use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\JobQueue\Jobs\DuplicateJob;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\LinkCache;
 use Psr\Log\LoggerInterface;
 use Throwable;
 use Wikimedia\Rdbms\DBConnectionError;

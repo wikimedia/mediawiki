@@ -10,7 +10,6 @@ namespace MediaWiki\Category;
 
 use Collation;
 use InvalidArgumentException;
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Debug\DeprecationHelper;
@@ -22,6 +21,7 @@ use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;

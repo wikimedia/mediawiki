@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Integration\Permissions;
 
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
@@ -11,6 +10,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\CacheKeyHelper;
+use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Permissions\RestrictionStore;

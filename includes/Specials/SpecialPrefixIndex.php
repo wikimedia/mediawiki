@@ -6,10 +6,10 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLCheckField;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Page\LinkCache;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;

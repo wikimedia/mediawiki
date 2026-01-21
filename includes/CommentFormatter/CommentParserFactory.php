@@ -2,13 +2,13 @@
 
 namespace MediaWiki\CommentFormatter;
 
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Page\LinkBatchFactory;
+use MediaWiki\Page\LinkCache;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleParser;
 
