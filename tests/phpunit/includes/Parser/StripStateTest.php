@@ -171,9 +171,7 @@ class StripStateTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $ss->unstripGeneral( $strippedText ), $strippedText );
 		$this->assertSame( $ss->unstripNoWiki( $strippedText ), $unstrippedText );
 
-		$out1 = $ss->replaceNoWikis( $strippedText, static function ( $s ) {
-			return $s;
-		} );
+		$out1 = $ss->replaceNoWikis( $strippedText, static fn ( $s ) => $s );
 		$this->assertSame( $out1, $unstrippedText );
 
 		// Simulate Scribunto lua modules use of unstripNowiki

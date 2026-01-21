@@ -2459,7 +2459,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			NS_HELP,
 			NS_PROJECT,
 			// prefer non-talk pages
-			...array_filter( $nsInfo->getValidNamespaces(), static fn ( $i ) => !$nsInfo->isTalk( $i ) ),
+			...array_filter( $nsInfo->getValidNamespaces(), $nsInfo->isSubject( ... ) ),
 			...$nsInfo->getValidNamespaces(),
 		] );
 

@@ -538,9 +538,7 @@ class ParserTestRunner {
 		// correctly.
 		$teardown[] = $this->registerHook(
 			'ParserFirstCallInit',
-			static function ( $parser ) {
-				ParserTestParserHook::setup( $parser );
-			}
+			ParserTestParserHook::setup( ... )
 		);
 
 		$this->appendNamespaceSetup( $setup, $teardown );

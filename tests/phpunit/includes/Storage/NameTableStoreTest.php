@@ -176,8 +176,8 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideTestGetAndAcquireIdNameNormalization() {
-		yield [ 'A', 'a', 'strtolower' ];
-		yield [ 'b', 'B', 'strtoupper' ];
+		yield [ 'A', 'a', strtolower( ... ) ];
+		yield [ 'b', 'B', strtoupper( ... ) ];
 		yield [ 'X', 'X', static fn ( $name ) => $name ];
 		yield [ 'ZZ', 'ZZ-a', static fn ( $name ) => "$name-a" ];
 	}
@@ -186,9 +186,9 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideTestGetAndAcquireIdNameNormalization
 	 */
 	public function testGetAndAcquireIdNameNormalization(
-		$nameIn,
-		$nameOut,
-		$normalizationCallback
+		string $nameIn,
+		string $nameOut,
+		callable $normalizationCallback
 	) {
 		$store = $this->getNameTableSqlStore(
 			new EmptyBagOStuff(),

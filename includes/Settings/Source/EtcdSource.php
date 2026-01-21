@@ -109,9 +109,7 @@ class EtcdSource implements Stringable, CacheableSource {
 			? 'etcd-client-ssl'
 			: 'etcd-client';
 
-		$this->mapper = $mapper ?? static function ( $settings ) {
-			return $settings;
-		};
+		$this->mapper = $mapper ?? static fn ( $settings ) => $settings;
 
 		$this->client = $client ?? new Client( [
 			'timeout' => self::TIMEOUT,

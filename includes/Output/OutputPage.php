@@ -3526,7 +3526,7 @@ class OutputPage extends ContextSource {
 			return Html::rawElement( 'div', [ 'class' => 'permissions-errors' ], $text );
 		}
 
-		$messages = array_map( fn ( $msg ) => $this->msg( $msg ), $status->getMessages() );
+		$messages = array_map( $this->msg( ... ), $status->getMessages() );
 
 		if ( $action == null ) {
 			$text = $this->msg( 'permissionserrorstext', count( $messages ) )->plain() . "\n\n";

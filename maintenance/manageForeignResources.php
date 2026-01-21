@@ -76,12 +76,8 @@ TEXT
 		$frm = new ForeignResourceManager(
 			$foreignResourcesFile,
 			dirname( $foreignResourcesFile ),
-			function ( $text ) {
-				$this->output( $text );
-			},
-			function ( $text ) {
-				$this->error( $text );
-			},
+			$this->output( ... ),
+			$this->error( ... ),
 			function ( $text ) {
 				if ( $this->hasOption( 'verbose' ) ) {
 					$this->output( $text );

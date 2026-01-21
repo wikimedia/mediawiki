@@ -67,9 +67,7 @@ class DatabaseTestHelper extends Database {
 			'errorLogger' => static function ( Exception $e ) {
 				wfWarn( get_class( $e ) . ': ' . $e->getMessage() );
 			},
-			'deprecationLogger' => static function ( $msg ) {
-				wfWarn( $msg );
-			},
+			'deprecationLogger' => wfWarn( ... ),
 			'criticalSectionProvider' =>
 				RequestTimeout::singleton()->createCriticalSectionProvider( 120 )
 		];

@@ -20,9 +20,7 @@ class ExtensionJsonValidatorTest extends MediaWikiUnitTestCase {
 	 */
 	public function testValidate( $file, $expected ) {
 		// If a dependency is missing, skip this test.
-		$validator = new ExtensionJsonValidator( function ( $msg ) {
-			$this->markTestSkipped( $msg );
-		} );
+		$validator = new ExtensionJsonValidator( $this->markTestSkipped( ... ) );
 
 		if ( is_string( $expected ) ) {
 			$this->expectException( ExtensionJsonValidationError::class );
