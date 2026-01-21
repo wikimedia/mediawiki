@@ -6,9 +6,8 @@
 
 $cfg = require __DIR__ . '/../vendor/mediawiki/mediawiki-phan-config/src/config.php';
 
-// This value should match the PHP version specified in composer.json,
-// PHPVersionCheck.php, and ScopeStructureTest.php
-$cfg['minimum_target_php_version'] = '8.2.0';
+// Unset the default value to make sure we use that from composer.json.
+unset( $cfg['minimum_target_php_version'] );
 
 // TODO Fix these issues, suppressed to allow upgrading
 $cfg['suppress_issue_types'][] = 'PhanUnusedPrivateMethodParameter';
