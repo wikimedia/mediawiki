@@ -11,13 +11,13 @@
 
 namespace MediaWiki\Logging\Pager;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Title\Title;
