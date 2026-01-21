@@ -51,7 +51,7 @@ class ExternalLinksTable extends LinksTable {
 		if ( $this->existingLinks === null ) {
 			$this->existingLinks = [];
 			foreach ( $this->fetchExistingRows() as $row ) {
-				$this->existingLinks[$row->el_to_domain_index][$row->el_to_path] = true;
+				$this->existingLinks[$row->el_to_domain_index][$row->el_to_path ?? ''] = true;
 			}
 		}
 		return $this->existingLinks;
