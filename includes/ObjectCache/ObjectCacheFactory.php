@@ -190,7 +190,8 @@ class ObjectCacheFactory {
 		$params += [
 			'logger' => $logger,
 			'keyspace' => $this->getDefaultKeyspace(),
-			'asyncHandler' => DeferredUpdates::addCallableUpdate( ... ),
+			// T415142: Must be serializable and cannot use the ( ... ) syntax!
+			'asyncHandler' => [ DeferredUpdates::class, 'addCallableUpdate' ],
 			'reportDupes' => true,
 			'stats' => $this->stats,
 			'telemetry' => $this->telemetry,
