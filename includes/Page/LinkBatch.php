@@ -88,7 +88,7 @@ class LinkBatch {
 	private $logger;
 
 	/**
-	 * @see \MediaWiki\Cache\LinkBatchFactory
+	 * @see \MediaWiki\Page\LinkBatchFactory
 	 *
 	 * @internal
 	 * @param iterable<LinkTarget>|iterable<PageReference> $arr Initial titles to be added to the batch

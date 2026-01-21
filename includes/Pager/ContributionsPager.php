@@ -8,7 +8,6 @@
 namespace MediaWiki\Pager;
 
 use InvalidArgumentException;
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Context\IContextSource;
@@ -20,6 +19,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\Revision\RevisionRecord;

@@ -3,7 +3,6 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Tests\Parser\Parsoid\Config;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Transform\ContentTransformer;
@@ -11,6 +10,7 @@ use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\File\BadFileLookup;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig;
