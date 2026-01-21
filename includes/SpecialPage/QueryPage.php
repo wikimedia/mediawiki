@@ -10,7 +10,6 @@
 namespace MediaWiki\SpecialPage;
 
 use Exception;
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
@@ -19,6 +18,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Specials\SpecialAncientPages;
 use MediaWiki\Specials\SpecialBrokenRedirects;

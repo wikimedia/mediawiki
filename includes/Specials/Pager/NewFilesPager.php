@@ -7,13 +7,13 @@
 
 namespace MediaWiki\Specials\Pager;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Gallery\Exception\ImageGalleryClassNotFoundException;
 use MediaWiki\Gallery\ImageGalleryBase;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Pager\RangeChronologicalPager;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\RecentChanges\RecentChange;

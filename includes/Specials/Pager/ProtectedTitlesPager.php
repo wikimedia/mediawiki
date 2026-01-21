@@ -7,11 +7,11 @@
 
 namespace MediaWiki\Specials\Pager;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Pager\AlphabeticPager;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;

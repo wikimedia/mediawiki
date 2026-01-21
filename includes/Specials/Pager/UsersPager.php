@@ -12,7 +12,6 @@
 namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Block\HideUserUtils;
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -26,6 +25,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Pager\AlphabeticPager;
 use MediaWiki\Pager\IndexPager;
 use MediaWiki\Title\Title;

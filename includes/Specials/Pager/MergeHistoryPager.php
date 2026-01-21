@@ -7,7 +7,6 @@
 
 namespace MediaWiki\Specials\Pager;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
@@ -15,6 +14,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Revision\RevisionRecord;
