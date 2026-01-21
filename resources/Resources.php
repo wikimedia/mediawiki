@@ -3418,6 +3418,14 @@ return [
 			'mediawiki.widgets',
 		],
 	],
+	'mediawiki.widgets.LanguageSelectWidget' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/mw.widgets.LanguageSelectWidget.js',
+		],
+		'dependencies' => [
+			'mediawiki.languageselector',
+		],
+	],
 	'mediawiki.widgets.TagMultiselectWidget.styles' => [
 		'styles' => 'resources/src/mediawiki.widgets/mw.widgets.TagMultiselectWidget.base.css',
 	],
