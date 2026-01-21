@@ -8,7 +8,6 @@
 
 namespace MediaWiki\Api;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\EditPage\IntroMessageBuilder;
@@ -21,6 +20,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;

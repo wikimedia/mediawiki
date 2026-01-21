@@ -11,9 +11,9 @@
 namespace MediaWiki\Api;
 
 use InvalidArgumentException;
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Search\SearchEngine;
 use MediaWiki\Search\SearchEngineConfig;
 use MediaWiki\Search\SearchEngineFactory;

@@ -8,7 +8,6 @@
 
 namespace MediaWiki\Api;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\Content;
@@ -25,6 +24,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\Article;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;

@@ -11,12 +11,12 @@
 
 namespace MediaWiki\Api;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Revision\RevisionRecord;

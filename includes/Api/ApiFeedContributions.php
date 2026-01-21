@@ -8,7 +8,6 @@
 
 namespace MediaWiki\Api;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Feed\ChannelFeed;
@@ -17,6 +16,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionAccessException;

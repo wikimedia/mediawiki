@@ -8,10 +8,10 @@
 
 namespace MediaWiki\Api;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinksMigration;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
