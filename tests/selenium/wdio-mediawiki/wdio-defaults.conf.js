@@ -75,17 +75,9 @@ export const config = {
 		// It is also used by afterTest for capturing screenshots.
 		'mw:screenshotPath': logPath,
 
-		// Setting that enables video recording of the test.
-		// Recording videos is currently supported only on Linux,
-		// and is triggered by the DISPLAY value starting with a colon.
-		// https://www.mediawiki.org/wiki/Selenium/How-to/Record_videos_of_test_runs
-		'mw:recordVideo': true,
-
 		// Browser width and height
 		'mw:width': 1280,
 		'mw:height': 1024,
-		// If DISPLAY is setup, default usage is to not use browser headless
-		'mw:useBrowserHeadless': !process.env.DISPLAY,
 		// For Chrome/Chromium https://www.w3.org/TR/webdriver
 		browserName: 'chrome',
 		// Use correct browser and driver in CI
@@ -179,6 +171,13 @@ export const config = {
 		ui: 'bdd',
 		timeout: process.env.DEBUG ? ( 60 * 60 * 1000 ) : ( 60 * 1000 )
 	},
+	// Setting that enables video recording of the test.
+	// Recording videos is currently supported only on Linux,
+	// and is triggered by the DISPLAY value starting with a colon.
+	// https://www.mediawiki.org/wiki/Selenium/How-to/Record_videos_of_test_runs
+	recordVideo: true,
+	// If DISPLAY is setup, default usage is to not use browser headless
+	useBrowserHeadless: !process.env.DISPLAY,
 	// See also: https://webdriver.io/docs/dot-reporter
 	reporters: [
 		// See also: https://webdriver.io/docs/spec-reporter
@@ -226,7 +225,7 @@ export const config = {
 	 * @param {Array.<Object>} capabilities list of capabilities details
 	 */
 	beforeSession: function ( configuration, capabilities ) {
-		const useBrowserHeadless = capabilities[ 'mw:useBrowserHeadless' ];
+		const useBrowserHeadless = configuration.useBrowserHeadless;
 		if ( useBrowserHeadless === true ) {
 			capabilities[ 'goog:chromeOptions' ].args.push( '--headless' );
 		}
@@ -251,7 +250,7 @@ export const config = {
 	 * @param {Object} test Mocha Test object
 	 */
 	beforeTest: async function ( test ) {
-		if ( browser.options.capabilities[ 'mw:recordVideo' ] === true ) {
+		if ( browser.options.recordVideo === true ) {
 			ffmpeg = await startVideo( ffmpeg, `${ test.parent }-${ test.title }` );
 		}
 	},
@@ -267,7 +266,7 @@ export const config = {
 		try {
 			await saveScreenshot( `${ test.parent }-${ test.title }${ result.passed ? '' : '-failed' }` );
 		} finally {
-			if ( browser.options.capabilities[ 'mw:recordVideo' ] === true ) {
+			if ( browser.options.recordVideo === true ) {
 				stopVideo( ffmpeg );
 			}
 		}
