@@ -10,7 +10,8 @@
 			"Joedalton",
 			"Jorn Ari",
 			"Peter Alberti",
-			"JorgeElias2302"
+			"JorgeElias2302",
+			"Peterleth"
 		]
 	},
 	"january": "januar",
@@ -78,7 +79,7 @@
 	"duration-millennia": "$1 {{PLURAL:$1|årtusind|årtusinder}}",
 	"duration-centuries": "$1 {{PLURAL:$1|århundrede|århundreder}}",
 	"duration-decades": "$1 {{PLURAL:$1|årti|årtier}}",
-	"duration-years": "$1 år",
+	"duration-years": "$1 {{PLURAL:$1|år}}",
 	"duration-months": "$1 {{PLURAL:$1|måned|måneder}}",
 	"duration-weeks": "$1 {{PLURAL:$1|uge|uger}}",
 	"duration-days": "$1 {{PLURAL:$1|dag|dage}}",
