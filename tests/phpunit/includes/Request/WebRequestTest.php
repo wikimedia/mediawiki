@@ -267,7 +267,10 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetIntArray() {
-		$req = $this->mockWebRequest( [ 'x' => [ 'Value' ], 'y' => [ '0', '4.2', '-2' ] ] );
+		$req = $this->mockWebRequest( [
+			'x' => [ 'string', [], [ 'non-empty array' ] ],
+			'y' => [ '0', '4.2', '-2' ],
+		] );
 		$this->assertSame( [ 0 ], $req->getIntArray( 'x' ), 'Text becomes 0' );
 		$this->assertNull( $req->getIntArray( 'z' ), 'Not found' );
 		$this->assertSame( [ 0, 4, -2 ], $req->getIntArray( 'y' ) );

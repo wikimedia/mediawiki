@@ -607,7 +607,8 @@ class WebRequest {
 	public function getIntArray( $name, $default = null ) {
 		$val = $this->getArray( $name, $default );
 		if ( is_array( $val ) ) {
-			$val = array_map( 'intval', $val );
+			// Drop multi-dimensional array elements
+			$val = array_map( intval( ... ), array_filter( $val, is_string( ... ) ) );
 		}
 		return $val;
 	}
