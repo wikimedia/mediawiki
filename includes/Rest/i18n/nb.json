@@ -98,6 +98,7 @@
 	"rest-param-desc-mock-desc": "Testbeskrivelse.",
 	"rest-param-desc-revision-id": "Sideversjonsidentifikator",
 	"rest-param-desc-page-content-title": "Sidetittel i lesevennlig format",
+	"rest-param-desc-page-content-redirect": "Omdirigering av sideinnhold",
 	"rest-param-desc-compare-from-section-level": "Avsnittsnivå",
 	"rest-param-desc-compare-from-section-heading": "Avsnittsoverskrift, f.eks. 1 for <h1>",
 	"rest-param-desc-compare-to-section-level": "Seksjonsnivå",
