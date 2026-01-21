@@ -493,9 +493,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		}
 
 		if ( $rotation % 360 !== 0 && $rotation % 90 === 0 ) {
-			$rot_image = imagerotate( $dst_image, $rotation, 0 );
-			imagedestroy( $dst_image );
-			$dst_image = $rot_image;
+			$dst_image = imagerotate( $dst_image, $rotation, 0 );
 		}
 
 		imagesavealpha( $dst_image, true );
@@ -506,9 +504,6 @@ class BitmapHandler extends TransformationalImageHandler {
 		}
 		// @phan-suppress-next-line PhanParamTooFewInternalUnpack,PhanParamTooFewUnpack There are at least 2 args
 		$saveType( ...$funcParams );
-
-		imagedestroy( $dst_image );
-		imagedestroy( $src_image );
 
 		return false; # No error
 	}
