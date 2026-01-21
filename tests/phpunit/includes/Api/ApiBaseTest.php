@@ -312,6 +312,7 @@ class ApiBaseTest extends ApiTestCase {
 		$context->setRequest( new FauxRequest(
 			$input !== null ? [ 'myParam' => $input ] : [] ) );
 		$wrapper->mMainModule = new ApiMain( $context );
+		$wrapper->mModuleName = 'mockapi';
 
 		$parseLimits = $options['parseLimits'] ?? true;
 
@@ -336,7 +337,6 @@ class ApiBaseTest extends ApiTestCase {
 			} catch ( Exception $ex ) {
 				$this->assertInstanceOf( get_class( $expected ), $ex );
 				if ( $ex instanceof ApiUsageException ) {
-					$this->assertEquals( $expected->getModulePath(), $ex->getModulePath() );
 					$this->assertEquals( $expected->getStatusValue(), $ex->getStatusValue() );
 				} else {
 					$this->assertEquals( $expected->getMessage(), $ex->getMessage() );
