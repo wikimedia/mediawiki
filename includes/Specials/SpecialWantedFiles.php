@@ -8,9 +8,9 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\SpecialPage\WantedQueryPage;
 use MediaWiki\Title\Title;

@@ -10,9 +10,9 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinksMigration;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\SpecialPage\WantedQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 

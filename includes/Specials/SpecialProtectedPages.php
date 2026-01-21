@@ -6,7 +6,6 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
@@ -14,6 +13,7 @@ use MediaWiki\HTMLForm\Field\HTMLSelectNamespace;
 use MediaWiki\HTMLForm\Field\HTMLSizeFilterField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Pager\ProtectedPagesPager;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\RestrictionStore;

@@ -6,9 +6,9 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Html\Html;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\SpecialPage\SpecialPage;
 
 /**

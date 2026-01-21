@@ -7,7 +7,6 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Actions\WatchAction;
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Exception\ErrorPageError;
@@ -21,6 +20,7 @@ use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePageFactory;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;

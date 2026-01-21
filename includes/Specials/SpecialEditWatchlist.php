@@ -8,7 +8,6 @@ namespace MediaWiki\Specials;
 
 use LogicException;
 use MediaWiki\Cache\GenderCache;
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\Html\Html;
@@ -16,6 +15,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\OOUIHTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\WikiPageFactory;

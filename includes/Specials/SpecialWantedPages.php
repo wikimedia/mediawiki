@@ -6,10 +6,10 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\SpecialPage\WantedQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 

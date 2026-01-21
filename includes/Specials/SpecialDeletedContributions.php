@@ -7,8 +7,8 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Block\DatabaseBlockStore;
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Pager\DeletedContribsPager;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;

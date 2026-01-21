@@ -7,11 +7,11 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Block\HideUserUtils;
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Pager\ActiveUsersPager;
 use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\SpecialPage\SpecialPage;

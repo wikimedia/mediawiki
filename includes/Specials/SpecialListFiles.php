@@ -6,10 +6,10 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\FileRepo\RepoGroup;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Pager\ImageListPager;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\SpecialPage\IncludableSpecialPage;

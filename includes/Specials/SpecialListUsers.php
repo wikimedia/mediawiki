@@ -11,8 +11,8 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Block\HideUserUtils;
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Pager\UsersPager;
 use MediaWiki\SpecialPage\IncludableSpecialPage;
 use MediaWiki\User\TempUser\TempUserConfig;

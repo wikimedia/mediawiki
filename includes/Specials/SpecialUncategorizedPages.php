@@ -6,9 +6,9 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\SpecialPage\PageQueryPage;
 use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Rdbms\IConnectionProvider;
