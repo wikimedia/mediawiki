@@ -38,7 +38,7 @@ class ComposerLaunchParallel extends ForkController {
 
 	private const DEFAULT_SPLIT_GROUP_COUNT = 8;
 
-	private const ALWAYS_EXCLUDE = [ 'Broken', 'ParserFuzz', 'Stub' ];
+	private const ALWAYS_EXCLUDE = [ 'Broken' ];
 	public const DATABASELESS_GROUPS = [];
 	public const DATABASE_GROUPS = [ 'Database' ];
 	private array $groups = [];
@@ -196,7 +196,7 @@ class ComposerLaunchParallel extends ForkController {
 		if ( array_key_exists( 'exclude-group', $options ) ) {
 			$excludeGroups = explode( ',', $options['exclude-group'] );
 		} else {
-			$excludeGroups = [ 'Broken', 'ParserFuzz', 'Stub', 'Standalone', 'Database' ];
+			$excludeGroups = [ 'Broken', 'Standalone', 'Database' ];
 		}
 		if ( array_key_exists( 'group', $options ) ) {
 			$groups = explode( ',', $options['group'] );
