@@ -90,7 +90,8 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 		$this->addableGroups = $changeableGroups['add'];
 		$this->removableGroups = $changeableGroups['remove'];
 		foreach ( $changeableGroups['restricted'] as $group => $details ) {
-			if ( !$details['condition-met'] ) {
+			$isConditionMet = $details['condition-met'];
+			if ( $isConditionMet === false ) {
 				if ( isset( $details['message'] ) ) {
 					$messageKey = $details['message'];
 				} else {
@@ -99,6 +100,12 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 						$customMessageKey :
 						'userrights-restricted-group-warning';
 				}
+				$this->addGroupAnnotation( $group, $messageKey );
+			} elseif ( $isConditionMet === null ) {
+				$customMessageKey = 'userrights-restricted-group-' . $group . '-private-conditions';
+				$messageKey = $this->msg( $customMessageKey )->exists() ?
+					$customMessageKey :
+					'userrights-restricted-group-warning-private-conditions';
 				$this->addGroupAnnotation( $group, $messageKey );
 			}
 		}

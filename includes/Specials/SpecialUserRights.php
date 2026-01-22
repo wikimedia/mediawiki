@@ -176,8 +176,13 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$this->groupMemberships = $userGroupManager->getUserGroupMemberships( $user );
 		$this->userGroupManager = $userGroupManager;
 
+		// Don't evaluate private conditions for restricted groups here, so that we don't leak
+		// information about them through the checkboxes being disabled or enabled
+		// An exception is if a user tries to change their own groups - it doesn't leak anything
+		$evaluatePrivateConditions = $user->equals( $this->getAuthority()->getUser() );
+
 		$changeableGroups = $this->userGroupAssignmentService->getChangeableGroups(
-			$this->getAuthority(), $user );
+			$this->getAuthority(), $user, $evaluatePrivateConditions );
 		$this->setChangeableGroups( $changeableGroups );
 
 		$isLocalWiki = $wikiId === UserIdentity::LOCAL;

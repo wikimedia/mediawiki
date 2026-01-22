@@ -998,6 +998,7 @@
 	"userrights-no-interwiki": "You do not have permission to edit user rights on other wikis.",
 	"userrights-nodatabase": "Database $1 does not exist or is not local.",
 	"userrights-restricted-group-warning": "This group has restrictions",
+	"userrights-restricted-group-warning-private-conditions": "This group has restrictions that will be checked only after submitting the form",
 	"userrights-changeable-col": "Groups you can change",
 	"userrights-unchangeable-col": "Groups you cannot change",
 	"userrights-irreversible-marker": "$1*",

@@ -81,7 +81,8 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 			'No input fields should be present in the view mode, apart from the user select form' );
 	}
 
-	public function testShowFormWithRestrictedGroup() {
+	/** @dataProvider provideShowFormWithRestrictedGroup */
+	public function testShowFormWithRestrictedGroup( array $privateConditions, bool $expectPrivateCondsNotice ) {
 		$this->overrideConfigValue(
 			MainConfigNames::RestrictedGroups,
 			[
@@ -95,6 +96,7 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 				],
 			]
 		);
+		$this->overrideConfigValue( MainConfigNames::UserRequirementsPrivateConditions, $privateConditions );
 
 		$target = $this->getTestUser()->getUser();
 		$performer = $this->getTestSysop()->getUser();
@@ -109,7 +111,59 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		$this->performBasicFormAssertions( $html, $target );
 
 		// The custom message exists because we are in qqx
+		$noticeMessage = '(userrights-restricted-group-sysop)';
+		$noticeMessagePrivateConditions = '(userrights-restricted-group-sysop-private-conditions)';
+		if ( $expectPrivateCondsNotice ) {
+			$this->assertStringNotContainsString( $noticeMessage, $html );
+			$this->assertStringContainsString( $noticeMessagePrivateConditions, $html );
+		} else {
+			$this->assertStringContainsString( $noticeMessage, $html );
+			$this->assertStringNotContainsString( $noticeMessagePrivateConditions, $html );
+		}
+	}
+
+	public static function provideShowFormWithRestrictedGroup() {
+		return [
+			'No private conditions' => [
+				'privateConditions' => [],
+				'expectPrivateCondsNotice' => false,
+			],
+			'One of two conditions is private; other is false' => [
+				'privateConditions' => [ APCOND_AGE ],
+				'expectPrivateCondsNotice' => false,
+			],
+			'All conditions are private' => [
+				'privateConditions' => [ APCOND_AGE, APCOND_EDITCOUNT ],
+				'expectPrivateCondsNotice' => true,
+			]
+		];
+	}
+
+	public function testShowFormWithRestrictedGroupForSelf() {
+		$this->overrideConfigValue(
+			MainConfigNames::RestrictedGroups,
+			[
+				'sysop' => [
+					'memberConditions' => [ APCOND_EDITCOUNT, 300 ],
+				],
+			]
+		);
+		$this->overrideConfigValue( MainConfigNames::UserRequirementsPrivateConditions, [ APCOND_EDITCOUNT ] );
+
+		$performer = $this->getTestSysop()->getUser();
+
+		[ $html ] = $this->executeSpecialPage(
+			$performer->getName(),
+			null,
+			'qqx',
+			$performer
+		);
+
+		$this->performBasicFormAssertions( $html, $performer );
+
+		// The custom message exists because we are in qqx
 		$this->assertStringContainsString( '(userrights-restricted-group-sysop)', $html );
+		$this->assertStringNotContainsString( '(userrights-restricted-group-sysop-private-conditions)', $html );
 	}
 
 	public function testSaveUserGroups() {
