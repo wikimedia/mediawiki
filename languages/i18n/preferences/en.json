@@ -182,6 +182,8 @@
 	"prefs-description-watchlist": "Manage and personalize the list of pages you track.",
 	"prefs-editwatchlist": "Edit watchlist",
 	"prefs-editwatchlist-label": "Edit entries on your watchlist:",
+	"prefs-editwatchlistlabels-label": "Edit watchlist labels:",
+	"prefs-managewatchlistlabels": "View and manage your watchlist labels",
 	"prefs-editwatchlist-edit": "View and remove titles on your watchlist",
 	"prefs-editwatchlist-raw": "Edit raw watchlist",
 	"prefs-editwatchlist-clear": "Clear your watchlist",

@@ -445,6 +445,8 @@
 	"prefs-description-watchlist": "Used in [[Special:Preferences]] for mobile to describe the Watchlist section.",
 	"prefs-editwatchlist": "Used in [[Special:Preferences]], tab \"Watchlist\".",
 	"prefs-editwatchlist-label": "Used in [[Special:Preferences]], tab \"Watchlist\".",
+	"prefs-editwatchlistlabels-label": "Used in [[Special:Preferences]], tab \"Watchlist\".",
+	"prefs-managewatchlistlabels": "Used in [[Special:Preferences]], tab \"Watchlist\". Link to [[Special:WatchlistLabels]].",
 	"prefs-editwatchlist-edit": "Used in [[Special:Preferences]], tab \"Watchlist\". Link to [[Special:EditWatchlist]]\n\nSee also:\n* {{msg-mw|prefs-editwatchlist-clear}}\n* {{msg-mw|prefs-editwatchlist-raw}}",
 	"prefs-editwatchlist-raw": "Used in [[Special:Preferences]], tab \"Watchlist\". Link to [[Special:EditWatchlist/raw]].\n\nSee also:\n* {{msg-mw|prefs-editwatchlist-edit}}\n* {{msg-mw|prefs-editwatchlist-clear}}\n{{Identical|Edit raw watchlist}}",
 	"prefs-editwatchlist-clear": "Used in [[Special:Preferences]], tab \"Watchlist\". Link to [[Special:EditWatchlist/clear]].\n\nSee also:\n* {{msg-mw|prefs-editwatchlist-edit}}\n* {{msg-mw|prefs-editwatchlist-raw}}\n{{Identical|Clear watchlist}}",

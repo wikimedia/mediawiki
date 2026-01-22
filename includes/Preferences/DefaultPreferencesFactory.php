@@ -125,6 +125,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		MainConfigNames::EnableEmail,
 		MainConfigNames::EnableUserEmail,
 		MainConfigNames::EnableUserEmailMuteList,
+		MainConfigNames::EnableWatchlistLabels,
 		MainConfigNames::EnotifMinorEdits,
 		MainConfigNames::EnotifRevealEditorAddress,
 		MainConfigNames::EnotifUserTalk,
@@ -1364,7 +1365,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$editWatchlistModes = [
 				'edit' => [ 'subpage' => false, 'flags' => [] ],
 				'raw' => [ 'subpage' => 'raw', 'flags' => [] ],
-				'clear' => [ 'subpage' => 'clear', 'flags' => [ 'destructive' ] ],
+				'clear' => [ 'subpage' => 'clear', 'flags' => [] ],
 			];
 			foreach ( $editWatchlistModes as $mode => $options ) {
 				// Messages: prefs-editwatchlist-edit, prefs-editwatchlist-raw, prefs-editwatchlist-clear
@@ -1386,6 +1387,25 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'label-message' => 'prefs-editwatchlist-label',
 				'section' => 'watchlist/editwatchlist',
 			];
+
+			// If watchlist labels are enabled, show WatchlistLabels button
+			if ( $this->options->get( MainConfigNames::EnableWatchlistLabels ) ) {
+				$watchlistLabelsLink = new ButtonWidget( [
+					'href' => SpecialPage::getTitleFor( 'WatchlistLabels' )->getLinkURL(),
+					'label' => new HtmlSnippet(
+						$context->msg( 'prefs-managewatchlistlabels' )->parse()
+					),
+				] );
+
+				$defaultPreferences['editwatchlistlabels'] = [
+					'type' => 'info',
+					'raw' => true,
+					'default' => (string)$watchlistLabelsLink,
+					'label-message' => 'prefs-editwatchlistlabels-label',
+					'section' => 'watchlist/editwatchlist',
+				];
+			}
+
 		}
 
 		$defaultPreferences['watchlistdays'] = [
