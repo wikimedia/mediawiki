@@ -18,6 +18,7 @@ use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\EditPage\TemplatesOnThisPageFormatter;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Html\Html;
+use MediaWiki\Html\TocGeneratorTrait;
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\Linker;
@@ -56,6 +57,8 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @ingroup Actions
  */
 class InfoAction extends FormlessAction {
+	use TocGeneratorTrait;
+
 	private const VERSION = 1;
 
 	public function __construct(
@@ -156,6 +159,7 @@ class InfoAction extends FormlessAction {
 			// Messages:
 			// pageinfo-header-basic, pageinfo-header-edits, pageinfo-header-restrictions,
 			// pageinfo-header-properties, pageinfo-category-info
+			$this->addTocSection( id: "mw-pageinfo-$header", msg: "pageinfo-$header" );
 			$content .= $this->makeHeader(
 				$this->msg( "pageinfo-$header" )->text(),
 				"mw-pageinfo-$header"
@@ -178,6 +182,10 @@ class InfoAction extends FormlessAction {
 			}
 			$content .= "\n" . $below;
 		}
+
+		// Add TOC (this must be done after the addTocSection() calls for compatibility
+		// with old TOC style, e.g. on Minerva or Monobook).
+		$this->getOutput()->addTOCPlaceholder( $this->getTocData() );
 
 		// Page footer
 		if ( !$this->msg( 'pageinfo-footer' )->isDisabled() ) {
