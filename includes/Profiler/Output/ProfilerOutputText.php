@@ -4,6 +4,10 @@
  * @file
  */
 
+namespace MediaWiki\Profiler\Output;
+
+use MediaWiki\Profiler\Profiler;
+
 /**
  * Adds profiler output to the HTTP response.
  *
@@ -75,3 +79,6 @@ class ProfilerOutputText extends ProfilerOutput {
 		return "/*\n$encText\n*/";
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ProfilerOutputText::class, 'ProfilerOutputText' );

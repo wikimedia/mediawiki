@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Profiler\Output;
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -39,3 +41,6 @@ class ProfilerOutputStats extends ProfilerOutput {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ProfilerOutputStats::class, 'ProfilerOutputStats' );

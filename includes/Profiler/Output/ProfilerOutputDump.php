@@ -4,6 +4,10 @@
  * @file
  */
 
+namespace MediaWiki\Profiler\Output;
+
+use MediaWiki\Profiler\ProfilerXhprof;
+
 /**
  * Dump profiler data in a ".xhprof" file.
  *
@@ -40,3 +44,6 @@ class ProfilerOutputDump extends ProfilerOutput {
 		file_put_contents( $filename, serialize( $data ) );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ProfilerOutputDump::class, 'ProfilerOutputDump' );

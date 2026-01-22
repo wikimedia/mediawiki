@@ -537,6 +537,11 @@ because of Phabricator reports.
     - ProfilerStub
     - ProfilerExcimer
     - SectionProfiler
+  - MediaWiki\Profiler\Output
+    - ProfilerOutputText
+    - ProfilerOutput
+    - ProfilerOutputStats
+    - ProfilerOutputDump
   - RCFeed related hook: MediaWiki\Hook => MediaWiki\RCFeed\Hook
     - IRCLineURLHook
   - RecentChanges related hooks: MediaWiki\Hook => MediaWiki\RecentChanges\Hook

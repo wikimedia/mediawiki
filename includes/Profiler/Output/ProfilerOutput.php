@@ -4,7 +4,10 @@
  * @file
  */
 
+namespace MediaWiki\Profiler\Output;
+
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Profiler\Profiler;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -58,3 +61,6 @@ abstract class ProfilerOutput {
 	 */
 	abstract public function log( array $stats );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ProfilerOutput::class, 'ProfilerOutput' );
