@@ -18,10 +18,23 @@ use UnexpectedValueException;
  */
 
 /**
- * Detect MIME types of a file by mapping file extensions or parsing file contents.
+ * MIME type analyzer for MediaWiki.
+ *
+ * This class prioritizes built-in MIME type guesses over external detection
+ * (e.g., PHP's finfo or OS-level tools) for security reasons.
+ *
+ * Public wikis accept file uploads from untrusted users. Some file types
+ * (like .docx or .xlsx) are valid ZIP archives and may be misidentified
+ * by general-purpose detectors as "application/zip". Serving them as ZIP
+ * could enable unexpected behavior or security risks.
+ *
+ * MediaWiki’s internal mapping ensures consistent, secure handling of known
+ * file types across all platforms. External detection is used only as a fallback
+ * when no built-in rule matches.
  *
  * @since 1.28
  * @ingroup Mime
+ * @see https://www.mediawiki.org/wiki/Manual:MIME_type_detection
  */
 class MimeAnalyzer implements LoggerAwareInterface {
 
