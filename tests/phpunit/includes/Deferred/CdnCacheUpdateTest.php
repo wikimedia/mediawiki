@@ -1,8 +1,8 @@
 <?php
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Deferred\CdnCacheUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Title\Title;
 
 /**
