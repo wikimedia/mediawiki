@@ -32,7 +32,7 @@ trait MockTitleTrait {
 	 * @return Title&MockObject
 	 */
 	private function makeMockTitle( string $text, array $props = [] ): Title&MockObject {
-		$ns = $props['namespace'] ?? 0;
+		$ns = $props['namespace'] ?? NS_MAIN;
 		if ( $ns < 0 ) {
 			$id = 0;
 		} else {
@@ -131,7 +131,8 @@ trait MockTitleTrait {
 	private function makeMockTitleFactory(): TitleFactory {
 		$factory = $this->createNoOpMock( TitleFactory::class, [ 'newFromText' ] );
 		$factory->method( 'newFromText' )->willReturnCallback(
-			fn ( $text ) => $this->makeMockTitle( $text )
+			fn ( $text, $defaultNamespace = NS_MAIN ) =>
+				$this->makeMockTitle( $text, [ 'namespace' => $defaultNamespace ] )
 		);
 		return $factory;
 	}
