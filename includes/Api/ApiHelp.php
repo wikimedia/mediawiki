@@ -17,12 +17,14 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Skin\SkinFactory;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialVersion;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\ExtensionInfo;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
 
@@ -175,7 +177,7 @@ class ApiHelp extends ApiBase {
 		$haveModules = [];
 		$html = self::getHelpInternal( $context, $modules, $options, $haveModules );
 		if ( !empty( $options['toc'] ) && $haveModules ) {
-			$out->addTOCPlaceholder( TOCData::fromLegacy( array_values( $haveModules ) ) );
+			$out->addTOCPlaceholder( new TOCData( ...array_values( $haveModules ) ) );
 		}
 		$out->addHTML( $html );
 
@@ -317,15 +319,15 @@ class ApiHelp extends ApiBase {
 
 				$headerAttr['id'] = $anchor;
 
-				// T326687: Maybe transition to using a SectionMetadata object?
-				$haveModules[$anchor] = [
-					'toclevel' => count( $tocnumber ),
-					'level' => $level,
-					'anchor' => $anchor,
-					'line' => $headerContent,
-					'number' => implode( '.', $tocnumber ),
-					'index' => '',
-				];
+				$haveModules[$anchor] = new SectionMetadata(
+					tocLevel: count( $tocnumber ),
+					hLevel: $level,
+					line: $headerContent,
+					number: implode( '.', $tocnumber ),
+					index: (string)( 1 + count( $haveModules ) ),
+					anchor: $anchor,
+					linkAnchor: Sanitizer::escapeIdForLink( $anchor ),
+				);
 				if ( empty( $options['noheader'] ) ) {
 					$help['header'] .= Html::rawElement(
 						'h' . min( 6, $level ),
@@ -661,8 +663,23 @@ class ApiHelp extends ApiBase {
 
 			$module->modifyHelp( $help, $suboptions, $haveModules );
 
-			$module->getHookRunner()->onAPIHelpModifyOutput( $module, $help,
-				$suboptions, $haveModules );
+			if ( $module->getHookContainer()->isRegistered( 'APIHelpModifyOutput' ) ) {
+				// XXX: we should probably deprecate this hook so that we can
+				// migrate the $haveModules format.
+				if ( !empty( $suboptions['toc'] ) ) {
+					$haveModules = array_map(
+						static fn ( $s )=>$s->toLegacy(), $haveModules
+					);
+				}
+				$module->getHookRunner()->onAPIHelpModifyOutput(
+					$module, $help, $suboptions, $haveModules
+				);
+				if ( !empty( $suboptions['toc'] ) ) {
+					$haveModules = array_map(
+						static fn ( $s )=>SectionMetadata::fromLegacy( $s ), $haveModules
+					);
+				}
+			}
 
 			$out .= implode( "\n", $help );
 		}

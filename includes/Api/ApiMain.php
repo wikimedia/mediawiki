@@ -25,6 +25,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Profiler\Profiler;
 use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\FauxRequest;
@@ -40,6 +41,7 @@ use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -2477,14 +2479,16 @@ class ApiMain extends ApiBase {
 			$help['datatypes'] .= '</dl>';
 			if ( !isset( $tocData['main/datatypes'] ) ) {
 				$tocnumber[$level]++;
-				$tocData['main/datatypes'] = [
-					'toclevel' => count( $tocnumber ),
-					'level' => $level,
-					'anchor' => 'main/datatypes',
-					'line' => $header,
-					'number' => implode( '.', $tocnumber ),
-					'index' => '',
-				];
+				$anchor = 'main/datatypes';
+				$tocData['main/datatypes'] = new SectionMetadata(
+					tocLevel: count( $tocnumber ),
+					hLevel: $level,
+					line: $header,
+					number: implode( '.', $tocnumber ),
+					index: '',
+					anchor: $anchor,
+					linkAnchor: Sanitizer::escapeIdForLink( $anchor ),
+				);
 			}
 
 			$header = $this->msg( 'api-help-templatedparams-header' )->parse();
@@ -2497,14 +2501,16 @@ class ApiMain extends ApiBase {
 			$help['templatedparams'] .= $this->msg( 'api-help-templatedparams' )->parseAsBlock();
 			if ( !isset( $tocData['main/templatedparams'] ) ) {
 				$tocnumber[$level]++;
-				$tocData['main/templatedparams'] = [
-					'toclevel' => count( $tocnumber ),
-					'level' => $level,
-					'anchor' => 'main/templatedparams',
-					'line' => $header,
-					'number' => implode( '.', $tocnumber ),
-					'index' => '',
-				];
+				$anchor = 'main/templatedparams';
+				$tocData['main/templatedparams'] = new SectionMetadata(
+					tocLevel: count( $tocnumber ),
+					hLevel: $level,
+					line: $header,
+					number: implode( '.', $tocnumber ),
+					index: '',
+					anchor: $anchor,
+					linkAnchor: Sanitizer::escapeIdForLink( $anchor ),
+				);
 			}
 
 			$header = $this->msg( 'api-credits-header' )->parse();
@@ -2517,14 +2523,16 @@ class ApiMain extends ApiBase {
 			$help['credits'] .= $this->msg( 'api-credits' )->useDatabase( false )->parseAsBlock();
 			if ( !isset( $tocData['main/credits'] ) ) {
 				$tocnumber[$level]++;
-				$tocData['main/credits'] = [
-					'toclevel' => count( $tocnumber ),
-					'level' => $level,
-					'anchor' => 'main/credits',
-					'line' => $header,
-					'number' => implode( '.', $tocnumber ),
-					'index' => '',
-				];
+				$anchor = 'main/credits';
+				$tocData['main/credits'] = new SectionMetadata(
+					tocLevel: count( $tocnumber ),
+					hLevel: $level,
+					line: $header,
+					number: implode( '.', $tocnumber ),
+					index: '',
+					anchor: $anchor,
+					linkAnchor: Sanitizer::escapeIdForLink( $anchor ),
+				);
 			}
 		}
 	}
