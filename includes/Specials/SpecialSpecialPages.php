@@ -7,12 +7,11 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Html\Html;
+use MediaWiki\Html\TocGeneratorTrait;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Title\Title;
 use OOUI\FieldLayout;
 use OOUI\SearchInputWidget;
-use Wikimedia\Parsoid\Core\SectionMetadata;
-use Wikimedia\Parsoid\Core\TOCData;
 
 /**
  * A special page that lists special pages
@@ -20,6 +19,7 @@ use Wikimedia\Parsoid\Core\TOCData;
  * @ingroup SpecialPage
  */
 class SpecialSpecialPages extends UnlistedSpecialPage {
+	use TocGeneratorTrait;
 
 	public function __construct() {
 		parent::__construct( 'Specialpages' );
@@ -141,26 +141,15 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 		) )->toString() );
 
 		// Format table of contents
-		$tocData = new TOCData();
-		$tocLength = 0;
 		foreach ( $groups as $group => $sortedPages ) {
 			if ( !str_contains( $group, '/' ) ) {
-				++$tocLength;
-				$tocData->addSection( new SectionMetadata(
-					1,
-					2,
-					$this->msg( "specialpages-group-$group" )->escaped(),
-					$this->getLanguage()->formatNum( $tocLength ),
-					(string)$tocLength,
-					null,
-					null,
-					"mw-specialpagesgroup-$group",
-					"mw-specialpagesgroup-$group"
-				) );
+				$this->addTocSection(
+					id: "mw-specialpagesgroup-$group",
+					msg: "specialpages-group-$group"
+				);
 			}
 		}
-
-		$out->addTOCPlaceholder( $tocData );
+		$out->addTOCPlaceholder( $this->getTocData() );
 
 		// Format contents
 		$language = $this->getLanguage();
