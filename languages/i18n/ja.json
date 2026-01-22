@@ -156,7 +156,8 @@
 			"赤城。",
 			"青子守歌",
 			"고솜",
-			"아라"
+			"아라",
+			"YeBoy371"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|カテゴリ}}",
@@ -536,7 +537,7 @@
 	"passwordremindertext": "誰かが IP アドレス $1 から {{SITENAME}} ($4) のログイン用パスワードの再発行を申請しました。\n利用者「$2」の仮パスワードが作成され「$3」に設定されました。\nもしあなたがこの申請をしたのであれば、ログインして新しいパスワードを決めてください。\nこの仮パスワードは {{PLURAL:$5|$5日|$5日間}}で無効になります。\n\nこの申請をしたのが他人の場合、あるいはパスワードを思い出してパスワード変更が不要になった場合は、\nこのメッセージを無視して、引き続き以前のパスワードを使用し続けることができます。",
 	"noemailcreate": "有効なメールアドレスを入力する必要があります。",
 	"passwordsent": "新しいパスワードを「$1」に登録されたメールアドレスにお送りしました。\nメールが届いたら、再度ログインしてください。",
-	"blocked-mailpassword": "ご使用の IP アドレスからの編集はブロックされております。不正利用防止のため、この IP アドレスからはパスワードの再発行をリクエストできません。",
+	"blocked-mailpassword": "ご利用の IP アドレスがブロックされています。不正利用防止のため、この IP アドレスからはパスワードの回復機能を使用できません。",
 	"eauthentsent": "指定したメールアドレスに、アドレス確認のためのメールをお送りしました。\nメールに記載された手順に従って、このアカウントの所有者であることの確認が取れると、このアカウント宛のメールを受け取れるようになります。",
 	"throttled-mailpassword": "パスワード再設定メールを過去 {{PLURAL:$1|$1 時間}}に送信済みです。\n悪用防止のため、パスワードの再設定は {{PLURAL:$1|$1 時間}}に 1 回のみです。",
 	"mailerror": "メールを送信する際にエラーが発生しました: $1",
@@ -3859,7 +3860,7 @@
 	"mediastatistics-table-totalbytes": "合計サイズ",
 	"mediastatistics-header-unknown": "不明",
 	"mediastatistics-header-bitmap": "ビットマップ画像",
-	"mediastatistics-header-drawing": "線画 (ベクターイメージ)",
+	"mediastatistics-header-drawing": "ベクター画像",
 	"mediastatistics-header-audio": "音声",
 	"mediastatistics-header-video": "動画",
 	"mediastatistics-header-multimedia": "リッチメディア",

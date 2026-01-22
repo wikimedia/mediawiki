@@ -1884,6 +1884,7 @@
 	"uploadstash-header-thumb": "Miniatura",
 	"uploadstash-header-dimensions": "Dimensiones",
 	"uploadstash-pager-submit": "Mostrar lista de archivos",
+	"uploadstash-pager-tryagain": "Comience a cargar con este archivo",
 	"uploadstash-bad-path": "La ruta no existe.",
 	"uploadstash-bad-path-invalid": "La ruta no es válida.",
 	"uploadstash-bad-path-unknown-type": "El tipo «$1» es desconocido.",

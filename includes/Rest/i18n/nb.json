@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"EdoAug",
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"Laaknor"
 		]
 	},
 	"rest-prefix-mismatch": "Den forespurte stien ($1) var ikke i REST-API-ets grunnsti ($2)",
@@ -95,6 +96,7 @@
 	"rest-param-desc-mock-desc": "Testbeskrivelse.",
 	"rest-param-desc-revision-id": "Sideversjonsidentifikator",
 	"rest-param-desc-page-content-title": "Sidetittel i lesevennlig format",
+	"rest-param-desc-page-content-redirect": "Omdirigering av sideinnhold",
 	"rest-param-desc-compare-from-section-level": "Avsnittsnivå",
 	"rest-param-desc-compare-from-section-heading": "Avsnittsoverskrift, f.eks. 1 for <h1>",
 	"rest-param-desc-compare-to-section-level": "Seksjonsnivå",
@@ -158,10 +160,12 @@
 	"rest-endpoint-desc-get-page-title": "Returnerer informasjon om en side, inkludert sidekilden, vanligvis i wikitekst.",
 	"rest-endpoint-desc-get-page-title-html": "Returnerer sideinnholdet i HTML.",
 	"rest-endpoint-desc-get-page-title-with-html": "Returnerer informasjon om ei side, inkludert sideinnholdet i HTML.",
+	"rest-endpoint-desc-get-page-title-lint": "Returner lint-feilene for en side.",
 	"rest-endpoint-desc-get-page-title-bare": "Returnerer informasjon om ei side.",
 	"rest-endpoint-desc-get-revision-id": "Returnerer informasjon om en sideversjon, inkludert sideversjonskilden, vanligvis i wikitekst.",
 	"rest-endpoint-desc-get-revision-id-html": "Returnerer innholdet til en sideversjon i HTML.",
 	"rest-endpoint-desc-get-revision-id-with-html": "Returnerer informasjon om en sideversjon, inkludert sideversjonsinnholdet i HTML.",
+	"rest-endpoint-desc-get-revision-id-lint": "Returnerer lint-feilene for en revisjon.",
 	"rest-endpoint-desc-get-revision-id-bare": "Returnerer informasjon om en sideversjon.",
 	"rest-endpoint-desc-post-transform-wikitext-to-html": "Konverterer wikitekst til HTML.",
 	"rest-endpoint-desc-post-transform-html-to-wikitext": "Konverterer HTML til wikitekst.",
