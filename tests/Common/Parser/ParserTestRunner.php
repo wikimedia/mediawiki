@@ -1138,14 +1138,30 @@ class ParserTestRunner {
 			$test->sections['metadata/php'] ??
 			// specific results for legacy parser and parsoid integrated mode
 			$test->sections['metadata/integrated'] ??
+			// Legacy parser always uses language converter
+			$test->sections['metadata/integrated+langconv'] ??
+			$test->sections['metadata+langconv'] ??
 			// generic for all parsers (even standalone)
 			$test->sections['metadata'] ??
 			// missing (== use legacy combined output format)
 			null;
 	}
 
-	public static function getParsoidMetadataSection( ParserTest $test ): ?string {
-		return // specific results for parsoid integrated mode
+	public static function getParsoidMetadataSection(
+		ParserTest $test, ?bool $useLangConv = null
+	): ?string {
+		$metadata = null;
+		$useLangConv ??= $test->options['langconv'] ?? false;
+		if ( $useLangConv ) {
+			$metadata =
+				$test->sections['metadata/parsoid+integrated+langconv'] ??
+				$test->sections['metadata/parsoid+langconv'] ??
+				$test->sections['metadata/integrated+langconv'] ??
+				$test->sections['metadata+langconv'] ??
+				null;
+		}
+		return $metadata ??
+			// specific results for parsoid integrated mode
 			$test->sections['metadata/parsoid+integrated'] ??
 			// specific results for parsoid
 			$test->sections['metadata/parsoid'] ??
@@ -1906,10 +1922,18 @@ class ParserTestRunner {
 		$metadataExpected = self::getParsoidMetadataSection( $test );
 		$metadataActual = null;
 		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
+		// If the test has metadata, but only `!! metadata+langconv` and
+		// we're currently running in !langconv mode, pretend that we have
+		// a `!! metadata` section (with the contents 'ignore') in order to
+		// avoid prepending the metadata for this test case to $origOut.
+		$skipMetadata = (
+			$metadataExpected === null &&
+			self::getParsoidMetadataSection( $test, true ) !== null
+		);
 		$this->addParserOutputInfo(
 			$origOut, $metadata, $test->options,
 			$pageConfig->getLinkTarget(),
-			$metadataExpected, $metadataActual
+			$skipMetadata ? 'ignore' : $metadataExpected, $metadataActual
 		);
 
 		$test->cachedBODYstr = $origOut;

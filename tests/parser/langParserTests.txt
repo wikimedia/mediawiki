@@ -658,7 +658,6 @@ COUNTRY is Taiwan or China.
 <p>COUNTRY is Taiwan or China.</p>
 !! end
 
-## Note that parsoid test runner does not support 'showtitle' option.
 !! test
 Adding explicit conversion rule for title (T flag)
 !! options
@@ -667,8 +666,9 @@ language=zh htmlVariantLanguage=zh-Hant-TW showtitle
 Should be stripped-{T|zh:China;zh-tw:Taiwan}-!
 
 Taiwan is China.
-!! html/php
+!! metadata+langconv
 Taiwan
+!! html/php
 <p>Should be stripped!
 </p><p>Taiwan is China.
 </p>
@@ -685,8 +685,9 @@ language=zh htmlVariantLanguage=zh-Hant-TW showtitle
 Should be stripped-{T;H|zh:China; zh-tw:Taiwan}-!
 
 Taiwan is China.
-!! html/php
+!! metadata+langconv
 Taiwan
+!! html/php
 <p>Should be stripped!
 </p><p>Taiwan is Taiwan.
 </p>
@@ -702,8 +703,9 @@ language=zh htmlVariantLanguage=zh-Hant-TW showtitle
 !! wikitext
 -{H|zh:China; zh-tw:Taiwan}-
 Taiwan is China.-{T|Taiwan is China}-
-!! html/php
+!! metadata+langconv
 Taiwan is China
+!! html/php
 <p>
 Taiwan is Taiwan.
 </p>
@@ -814,8 +816,9 @@ Testing that changing the language variant here in the tests actually works
 language=zh htmlVariantLanguage=zh showtitle
 !! wikitext
 Should be stripped-{T|zh:China; zh-tw:Taiwan}-!
-!! html/php
+!! metadata+langconv
 China
+!! html/php
 <p>Should be stripped!
 </p>
 !! html/parsoid
@@ -829,8 +832,9 @@ language=zh htmlVariantLanguage=zh showtitle
 !! wikitext
 -{T|zh:Title <i style="color:red">with</i> HTML&amp;Entities}-
 Should be stripped!
-!! html/php
+!! metadata/php
 Title <i style="color:red">with</i> HTML&amp;Entities
+!! html/php
 <p>
 Should be stripped!
 </p>
@@ -843,8 +847,9 @@ language=zh htmlVariantLanguage=zh showtitle
 !! wikitext
 -{T|zh:Title ''with'' Wiki's s&uuml;ntax&copy}-
 Should be stripped!
-!! html/php
+!! metadata/php
 Title <i>with</i> Wiki's süntax&amp;copy
+!! html/php
 <p>
 Should be stripped!
 </p>
@@ -857,8 +862,9 @@ language=zh htmlVariantLanguage=zh showtitle
 !! wikitext
 -{T|zh:Title <i onclick="alert(42)">click me</i> <script>alert(43)</script>}-
 Should be stripped!
-!! html/php
+!! metadata+langconv
 Title <i>click me</i> &lt;script&gt;alert(43)&lt;/script&gt;
+!! html/php
 <p>
 Should be stripped!
 </p>
@@ -871,8 +877,9 @@ language=zh htmlVariantLanguage=zh showtitle
 !! wikitext
 -{T|zh:Title <script>a</script>&amp;<i>b</i>}-
 Should be stripped!
-!! html/php
+!! metadata/php
 Title &lt;script&gt;a&lt;/script&gt;&amp;<i>b</i>
+!! html/php
 <p>
 Should be stripped!
 </p>
@@ -885,8 +892,9 @@ language=zh htmlVariantLanguage=zh showtitle
 !! wikitext
 -{T|zh:Title <code style="display:none">}-
 Should be stripped!
-!! html/php
+!! metadata+langconv
 Title <code style="display:none"></code>
+!! html/php
 <p>
 Should be stripped!
 </p>
@@ -899,8 +907,9 @@ language=zh htmlVariantLanguage=zh showtitle
 !! wikitext
 -{T|zh:Title <b>Foo bar<b>}-
 Should be stripped!
-!! html/php
+!! metadata+langconv
 Title <b>Foo bar<b></b></b>
+!! html/php
 <p>
 Should be stripped!
 </p>
@@ -914,8 +923,9 @@ showtitle
 !! wikitext
 -{H|zh-cn:Exclamation; zh-tw:exclamation}-
 Should be stripped-{T|zh-cn:China; zh-tw:Taiwan}-<span title="exclamation">!</span>
-!! html/php
+!! metadata+langconv
 China
+!! html/php
 <p>
 Should be stripped<span title="Exclamation">!</span>
 </p>
@@ -932,8 +942,9 @@ language=zh htmlVariantLanguage=zh-Hant-TW showtitle
 This should be stripped-{T|zh:China; zh-tw:Taiwan}-!
 
 This won't take interferes with the title rule-{H|zh:Beijing; zh-tw:Taipei}-.
-!! html/php
+!! metadata+langconv
 Taiwan
+!! html/php
 <p>This should be stripped!
 </p><p>This won't take interferes with the title rule.
 </p>
@@ -948,8 +959,9 @@ Partly disable title conversion if variant == main language code
 language=zh htmlVariantLanguage=zh title=[[ZH]] showtitle
 !! wikitext
 -{T|zh-cn:CN;zh-tw:TW}-
-!! html/php
+!! metadata+langconv
 <span class="mw-page-title-main">ZH</span>
+!! html/php
 <p class="mw-empty-elt">
 </p>
 !! html/parsoid
@@ -962,8 +974,9 @@ Partly disable title conversion if variant == main language code, more
 language=zh htmlVariantLanguage=zh title=[[ZH]] showtitle
 !! wikitext
 -{T|TW}-
-!! html/php
+!! metadata+langconv
 <span class="mw-page-title-main">ZH</span>
+!! html/php
 <p class="mw-empty-elt">
 </p>
 !! html/parsoid
