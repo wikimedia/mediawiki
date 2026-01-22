@@ -12,6 +12,7 @@ use Closure;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\Html\TocGeneratorTrait;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
@@ -28,8 +29,6 @@ use MediaWiki\Utils\UrlUtils;
 use Symfony\Component\Yaml\Yaml;
 use Wikimedia\Composer\ComposerInstalled;
 use Wikimedia\HtmlArmor\HtmlArmor;
-use Wikimedia\Parsoid\Core\SectionMetadata;
-use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -38,6 +37,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup SpecialPage
  */
 class SpecialVersion extends SpecialPage {
+	use TocGeneratorTrait;
 
 	/**
 	 * @var string The current rev id/SHA hash of MediaWiki core
@@ -48,18 +48,6 @@ class SpecialVersion extends SpecialPage {
 	 * @var string[]|false Lazy initialized key/value with message content
 	 */
 	protected static $extensionTypes = false;
-
-	/** @var TOCData */
-	protected $tocData;
-
-	/** @var int */
-	protected $tocIndex;
-
-	/** @var int */
-	protected $tocSection;
-
-	/** @var int */
-	protected $tocSubSection;
 
 	private ParserFactory $parserFactory;
 	private UrlUtils $urlUtils;
@@ -197,11 +185,6 @@ class SpecialVersion extends SpecialPage {
 
 				$out->addHTML( $this->getMediaWikiCredits() );
 
-				$this->tocData = new TOCData();
-				$this->tocIndex = 0;
-				$this->tocSection = 0;
-				$this->tocSubSection = 0;
-
 				// Build the page contents (this also fills in TOCData)
 				$sections = [
 					$this->softwareInformation(),
@@ -217,7 +200,7 @@ class SpecialVersion extends SpecialPage {
 				];
 
 				// Insert TOC first
-				$out->addTOCPlaceholder( $this->tocData );
+				$out->addTOCPlaceholder( $this->getTocData() );
 
 				// Insert contents
 				foreach ( $sections as $content ) {
@@ -226,55 +209,6 @@ class SpecialVersion extends SpecialPage {
 
 				break;
 		}
-	}
-
-	/**
-	 * Add a section to the table of contents. This doesn't add the heading to the actual page.
-	 * Assumes the IDs don't use non-ASCII characters.
-	 *
-	 * @param string $labelMsg Message key to use for the label
-	 * @param string $id
-	 */
-	private function addTocSection( $labelMsg, $id ) {
-		$this->tocIndex++;
-		$this->tocSection++;
-		$this->tocSubSection = 0;
-		$this->tocData->addSection( new SectionMetadata(
-			1,
-			2,
-			$this->msg( $labelMsg )->escaped(),
-			$this->getLanguage()->formatNum( $this->tocSection ),
-			(string)$this->tocIndex,
-			null,
-			null,
-			$id,
-			$id
-		) );
-	}
-
-	/**
-	 * Add a sub-section to the table of contents. This doesn't add the heading to the actual page.
-	 * Assumes the IDs don't use non-ASCII characters.
-	 *
-	 * @param string $label Text of the label
-	 * @param string $id
-	 */
-	private function addTocSubSection( $label, $id ) {
-		$this->tocIndex++;
-		$this->tocSubSection++;
-		$this->tocData->addSection( new SectionMetadata(
-			2,
-			3,
-			htmlspecialchars( $label ),
-			// See Parser::localizeTOC
-			$this->getLanguage()->formatNum( $this->tocSection ) . '.' .
-				$this->getLanguage()->formatNum( $this->tocSubSection ),
-			(string)$this->tocIndex,
-			null,
-			null,
-			$id,
-			$id
-		) );
 	}
 
 	/**
@@ -376,7 +310,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML
 	 */
 	private function softwareInformation() {
-		$this->addTocSection( 'version-software', 'mw-version-software' );
+		$this->addTocSection( id: 'mw-version-software', msg: 'version-software' );
 
 		$out = Html::element(
 			'h2',
@@ -543,7 +477,7 @@ class SpecialVersion extends SpecialPage {
 	private function getExtensionCredits( array $credits ) {
 		$extensionTypes = self::getExtensionTypes();
 
-		$this->addTocSection( 'version-extensions', 'mw-version-ext' );
+		$this->addTocSection( id: 'mw-version-ext', msg: 'version-extensions' );
 
 		$out = Html::element(
 			'h2',
@@ -594,7 +528,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML
 	 */
 	private function getSkinCredits( array $credits ) {
-		$this->addTocSection( 'version-skins', 'mw-version-skin' );
+		$this->addTocSection( id: 'mw-version-skin', msg: 'version-skins' );
 
 		$out = Html::element(
 			'h2',
@@ -623,7 +557,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	protected function getLibraries( array $credits ) {
-		$this->addTocSection( 'version-libraries', 'mw-version-libraries' );
+		$this->addTocSection( id: 'mw-version-libraries', msg: 'version-libraries' );
 
 		$out = Html::element(
 			'h2',
@@ -688,7 +622,7 @@ class SpecialVersion extends SpecialPage {
 			return '';
 		}
 
-		$this->addTocSubSection( $this->msg( 'version-libraries-server' )->text(), 'mw-version-libraries-server' );
+		$this->addTocSubSection( id: 'mw-version-libraries-server', msg: 'version-libraries-server' );
 
 		$out = Html::element(
 			'h3',
@@ -785,7 +719,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML output
 	 */
 	private function getClientSideLibraries() {
-		$this->addTocSubSection( $this->msg( 'version-libraries-client' )->text(), 'mw-version-libraries-client' );
+		$this->addTocSubSection( id: 'mw-version-libraries-client', msg: 'version-libraries-client' );
 
 		$out = Html::element(
 			'h3',
@@ -849,7 +783,7 @@ class SpecialVersion extends SpecialPage {
 			return '';
 		}
 
-		$this->addTocSection( 'version-parser-extensiontags', 'mw-version-parser-extensiontags' );
+		$this->addTocSection( id: 'mw-version-parser-extensiontags', msg: 'version-parser-extensiontags' );
 
 		$out = Html::rawElement(
 			'h2',
@@ -893,7 +827,7 @@ class SpecialVersion extends SpecialPage {
 			return '';
 		}
 
-		$this->addTocSection( 'version-parser-function-hooks', 'mw-version-parser-function-hooks' );
+		$this->addTocSection( id: 'mw-version-parser-function-hooks', msg: 'version-parser-function-hooks' );
 
 		$out = Html::rawElement(
 			'h2',
@@ -990,7 +924,7 @@ class SpecialVersion extends SpecialPage {
 			return '';
 		}
 
-		$this->addTocSection( 'version-parsoid-modules', 'mw-version-parsoid-modules' );
+		$this->addTocSection( id: 'mw-version-parsoid-modules', msg: 'version-parsoid-modules' );
 
 		$out = Html::rawElement(
 			'h2',
@@ -1266,7 +1200,7 @@ class SpecialVersion extends SpecialPage {
 		sort( $hookNames );
 
 		$ret = [];
-		$this->addTocSection( 'version-hooks', 'mw-version-hooks' );
+		$this->addTocSection( id: 'mw-version-hooks', msg: 'version-hooks' );
 		$ret[] = Html::element(
 			'h2',
 			[ 'id' => 'mw-version-hooks' ],
@@ -1309,7 +1243,7 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		if ( $name && $text !== null ) {
-			$this->addTocSubSection( $text, "sv-$name" );
+			$this->addTocSubSection( "sv-$name", 'rawmessage', $text );
 		}
 
 		$firstHeadingMsg = ( $name === 'credits-skin' )
@@ -1521,7 +1455,7 @@ class SpecialVersion extends SpecialPage {
 			'scope' => 'col'
 		];
 
-		$this->addTocSection( 'version-entrypoints', 'mw-version-entrypoints' );
+		$this->addTocSection( id: 'mw-version-entrypoints', msg: 'version-entrypoints' );
 
 		$out = Html::element(
 				'h2',

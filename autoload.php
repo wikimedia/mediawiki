@@ -1881,6 +1881,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Html\\HtmlJsCode' => __DIR__ . '/includes/Html/HtmlJsCode.php',
 	'MediaWiki\\Html\\ListToggle' => __DIR__ . '/includes/Html/ListToggle.php',
 	'MediaWiki\\Html\\TemplateParser' => __DIR__ . '/includes/Html/TemplateParser.php',
+	'MediaWiki\\Html\\TocGeneratorTrait' => __DIR__ . '/includes/Html/TocGeneratorTrait.php',
 	'MediaWiki\\Http\\HttpRequestFactory' => __DIR__ . '/includes/Http/HttpRequestFactory.php',
 	'MediaWiki\\Http\\MwHttpRequestToResponseInterfaceAdapter' => __DIR__ . '/includes/Http/MwHttpRequestToResponseInterfaceAdapter.php',
 	'MediaWiki\\Http\\Telemetry' => __DIR__ . '/includes/Http/Telemetry.php',
