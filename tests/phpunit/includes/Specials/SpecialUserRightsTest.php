@@ -278,6 +278,87 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		}
 	}
 
+	public function testSaveUserGroup_keepsDisabled() {
+		$this->overrideConfigValue( MainConfigNames::AddGroups, [ 'sysop' => [ 'suppress' ] ] );
+		$this->overrideConfigValue( MainConfigNames::RemoveGroups, [ 'sysop' => [] ] );
+
+		$target = $this->getTestUser( [ 'bot' ] )->getUser();
+		$performer = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$request = new FauxRequest(
+			[
+				'saveusergroups' => true,
+				'conflictcheck-originalgroups' => 'bot',
+				'wpGroup-suppress' => true,
+				'wpExpiry-suppress' => 'infinity',
+				'wpEditToken' => $performer->getEditToken( $target->getName() ),
+			],
+			true
+		);
+
+		$this->executeSpecialPage(
+			$target->getName(),
+			$request,
+			'qqx',
+			$performer
+		);
+
+		$this->assertSame( 1, $request->getSession()->get( 'specialUserrightsSaveSuccess' ) );
+		$result = $this->getServiceContainer()->getUserGroupManager()->getUserGroups( $target );
+		sort( $result );
+		$this->assertSame(
+			[ 'bot', 'suppress' ],
+			$result
+		);
+	}
+
+	public function testSaveUserGroups_invalid() {
+		$this->overrideConfigValue( MainConfigNames::AddGroups, [ 'sysop' => [ 'suppress', 'interface-admin' ] ] );
+
+		$this->overrideConfigValue( MainConfigNames::UserRequirementsPrivateConditions, [ APCOND_BLOCKED ] );
+		$this->overrideConfigValue( MainConfigNames::RestrictedGroups, [
+			'suppress' => [
+				'memberConditions' => [ APCOND_EDITCOUNT, 100 ]
+			],
+			'interface-admin' => [
+				'memberConditions' => APCOND_BLOCKED
+			]
+		] );
+
+		$target = $this->getTestUser()->getUser();
+		$performer = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$request = new FauxRequest(
+			[
+				'saveusergroups' => true,
+				'conflictcheck-originalgroups' => '',
+				'wpGroup-bot' => true,
+				'wpExpiry-bot' => 'infinity',
+				'wpGroup-suppress' => true,
+				'wpExpiry-suppress' => 'infinity',
+				'wpGroup-interface-admin' => true,
+				'wpExpiry-interface-admin' => 'infinity',
+				'wpEditToken' => $performer->getEditToken( $target->getName() ),
+			],
+			true
+		);
+
+		[ $html ] = $this->executeSpecialPage( $target->getName(), $request, 'qqx', $performer );
+
+		$this->assertNull( $request->getSession()->get( 'specialUserrightsSaveSuccess' ) );
+		$this->assertSame( [], $this->getServiceContainer()->getUserGroupManager()->getUserGroups( $target ) );
+
+		$errorBox = DOMCompat::querySelector(
+			DOMUtils::parseHTML( $html ),
+			'.cdx-message--error'
+		);
+		$this->assertNotNull( $errorBox );
+
+		$errorHtml = DOMCompat::getInnerHTML( $errorBox );
+		$this->assertStringContainsString( 'userrights-unable-to-change', $errorHtml );
+		$this->assertStringContainsString( 'userrights-insufficient-rights', $errorHtml );
+		$this->assertStringContainsString( 'userrights-restricted-group-suppress', $errorHtml );
+		$this->assertStringContainsString( 'userrights-restricted-group-interface-admin', $errorHtml );
+	}
+
 	private function getExternalDBname(): ?string {
 		$availableDatabases = array_diff(
 			$this->getConfVar( MainConfigNames::LocalDatabases ),

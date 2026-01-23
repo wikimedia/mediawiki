@@ -540,7 +540,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 
 		foreach ( $allGroups as $group ) {
 			// We'll tell it to remove all unchecked groups, and add all checked groups.
-			// Later on, this gets filtered for what can actually be removed
+			// For disabled checkboxes, the state is propagated from the current memberships.
 			if ( $this->getRequest()->getCheck( "wpGroup-$group" ) ) {
 				// Default expiry is infinity, may be changed below
 				$newGroups[$group] = null;
@@ -571,6 +571,10 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 				}
 
 				$newGroups[$group] = $expiry;
+			} elseif ( !$this->canRemove( $group ) && isset( $this->groupMemberships[$group] ) ) {
+				// If the checkbox is absent from the request, it's either unchecked or disabled.
+				// If it's the latter, pretend that its state hasn't changed from the current group membership.
+				$newGroups[$group] = 'existing';
 			}
 		}
 

@@ -570,4 +570,67 @@ class UserGroupAssignmentServiceTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [], $added );
 		$this->assertSame( [], $removed );
 	}
+
+	public function testValidateUserGroups() {
+		$this->overrideConfigValue( MainConfigNames::AddGroups,
+			[ 'sysop' => [
+				'addable-group', 'restricted-group', 'restricted-group-private1', 'restricted-group-private2'
+			] ] );
+		$this->overrideConfigValue( MainConfigNames::RemoveGroups,
+			[ 'sysop' => [ 'removable-group' ] ] );
+
+		// Groups are considered known only if they are given or revoked some permissions (empty array counts as well)
+		$this->overrideConfigValue(
+			MainConfigNames::RevokePermissions,
+			[
+				'addable-group' => [],
+				'restricted-group' => [],
+				'restricted-group-private1' => [],
+				'restricted-group-private2' => [],
+				'removable-group' => [],
+				'insufficient-rights-group' => [],
+			]
+		);
+
+		$this->overrideConfigValue( MainConfigNames::UserRequirementsPrivateConditions, [ APCOND_BLOCKED ] );
+		$this->overrideConfigValue( MainConfigNames::RestrictedGroups, [
+			'restricted-group' => [
+				'memberConditions' => [ APCOND_EDITCOUNT, 100 ]
+			],
+			'restricted-group-private1' => [
+				'memberConditions' => APCOND_BLOCKED
+			],
+			// Even though it uses a private condition, the target doesn't meet APCOND_EDITCOUNT, so it fails due to
+			// 'restricted', as it can be publicly determined that the user is not eligible for the group
+			'restricted-group-private2' => [
+				'memberConditions' => [ '&', APCOND_BLOCKED, [ APCOND_EDITCOUNT, 100 ] ]
+			]
+		] );
+
+		$service = $this->getServiceContainer()->getUserGroupAssignmentService();
+
+		$currentTargetGroups = [ 'unknown-group1', 'removable-group' ];
+		$performer = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$target = $this->getTestUser()->getUser();
+
+		$currentTargetUGMs = [];
+		foreach ( $currentTargetGroups as $group ) {
+			$currentTargetUGMs[$group] = new UserGroupMembership( $target->getId(), $group );
+		}
+
+		$removeGroups = [ 'unknown-group1', 'removable-group' ];
+		$addGroups = [ 'unknown-group2', 'addable-group', 'restricted-group', 'restricted-group-private1',
+			'restricted-group-private2', 'insufficient-rights-group' ];
+		$expected = [
+			'insufficient-rights-group' => 'rights',
+			'restricted-group' => 'restricted',
+			'restricted-group-private1' => 'private-condition',
+			'restricted-group-private2' => 'restricted',
+		];
+
+		$result = $service->validateUserGroups(
+			$performer, $target, $addGroups, $removeGroups, [], $currentTargetUGMs );
+
+		$this->assertArrayEquals( $expected, $result, named: true );
+	}
 }

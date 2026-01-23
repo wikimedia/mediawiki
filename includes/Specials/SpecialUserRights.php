@@ -226,6 +226,14 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		// addgroup contains also existing groups with changed expiry
 		[ $addgroup, $removegroup, $groupExpiries ] = $this->splitGroupsIntoAddRemove(
 			$newGroups, $this->groupMemberships );
+
+		$invalidGroups = $this->userGroupAssignmentService->validateUserGroups(
+			$this->getAuthority(), $user, $addgroup, $removegroup, $groupExpiries, $this->groupMemberships );
+		if ( $invalidGroups ) {
+			// TODO: Add logging here, if private conditions were read (T414913)
+			return $this->formatInvalidGroupsStatus( $invalidGroups, $user->getName() );
+		}
+
 		$this->userGroupAssignmentService->saveChangesToUserGroups( $this->getAuthority(), $user, $addgroup,
 			$removegroup, $groupExpiries, $reason );
 
@@ -237,6 +245,37 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		}
 
 		return Status::newGood();
+	}
+
+	/**
+	 * When there's an attempt to change user's groups in a way that the performer shouldn't do,
+	 * this function formats the Status result telling what and why happened.
+	 * @param array<string,string> $invalidGroups
+	 * @param string $targetUserName Name of the target user, for use in {{GENDER:}}
+	 */
+	private function formatInvalidGroupsStatus( array $invalidGroups, string $targetUserName ): Status {
+		$listItems = '';
+		foreach ( $invalidGroups as $group => $reason ) {
+			$groupName = $this->getLanguage()->getGroupName( $group );
+
+			if ( $reason === 'rights' ) {
+				$reasonMessage = $this->msg( 'userrights-insufficient-rights' );
+			} else {
+				// Use the same message as for annotation next to the group checkbox
+				$customMessageKey = 'userrights-restricted-group-' . $group;
+				$messageKey = $this->msg( $customMessageKey )->exists() ?
+					$customMessageKey :
+					'userrights-restricted-group-warning';
+				$reasonMessage = $this->msg( $messageKey );
+			}
+
+			$message = $this->msg( 'userrights-unable-to-change-row', $groupName, $reasonMessage )->parse();
+			$listItems .= Html::rawElement( 'li', [], $message );
+		}
+
+		$formattedList = Html::rawElement( 'ul', [], $listItems );
+		return Status::newFatal(
+			'userrights-unable-to-change', $formattedList, $targetUserName, count( $invalidGroups ) );
 	}
 
 	/**

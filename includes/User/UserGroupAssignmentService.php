@@ -263,6 +263,64 @@ class UserGroupAssignmentService {
 	}
 
 	/**
+	 * Validates the requested changes to user groups and returns an array, specifying if some groups are unchangeable
+	 * and for what reasons.
+	 * @param Authority $performer
+	 * @param UserIdentity $target
+	 * @param list<string> $addGroups
+	 * @param list<string> $removeGroups
+	 * @param array<string, ?string> $newExpiries
+	 * @param array<string, UserGroupMembership> $groupMemberships
+	 * @return array<string, string> Map of user groups to the reason why they cannot be given, removed or updated,
+	 *     keyed by the group names. The supported reasons are: 'rights', 'restricted', 'private-condition'.
+	 */
+	public function validateUserGroups(
+		Authority $performer,
+		UserIdentity $target,
+		array $addGroups,
+		array $removeGroups,
+		array $newExpiries,
+		array $groupMemberships,
+	) {
+		// We have to find out which groups the user is unable to change and also whether it's due to
+		// private conditions or not. In the former case, we need to be able to log access to the conditions.
+		$permittedChangesNoPrivate = $this->getChangeableGroups( $performer, $target, false );
+		$permittedChangesWithPrivate = $this->getChangeableGroups( $performer, $target );
+
+		[ $unaddableNoPrivate, $irremovableNoPrivate ] = self::getDisallowedGroupChanges(
+			$addGroups, $removeGroups, $newExpiries, $groupMemberships, $permittedChangesNoPrivate );
+		[ $unaddableWithPrivate, $irremovableWithPrivate ] = self::getDisallowedGroupChanges(
+			$addGroups, $removeGroups, $newExpiries, $groupMemberships, $permittedChangesWithPrivate );
+
+		$unchangeableGroupsNoPrivate = array_merge( $unaddableNoPrivate, $irremovableNoPrivate );
+		$unchangeableGroupsWithPrivate = array_merge( $unaddableWithPrivate, $irremovableWithPrivate );
+
+		$unchangeableGroupsDueToPrivate = array_diff( $unchangeableGroupsWithPrivate, $unchangeableGroupsNoPrivate );
+
+		$restrictedGroups = $permittedChangesWithPrivate['restricted'];
+
+		$userGroupManager = $this->userGroupManagerFactory->getUserGroupManager( $target->getWikiId() );
+		$knownGroups = $userGroupManager->listAllGroups();
+
+		$result = [];
+		foreach ( $unchangeableGroupsWithPrivate as $group ) {
+			// Sometimes people are assigned to groups that no longer are defined. Let's ignore them for validation
+			if ( !in_array( $group, $knownGroups ) ) {
+				continue;
+			}
+
+			if ( in_array( $group, $unchangeableGroupsDueToPrivate ) ) {
+				$result[$group] = 'private-condition';
+			} elseif ( isset( $restrictedGroups[$group] ) ) {
+				$result[$group] = 'restricted';
+			} else {
+				$result[$group] = 'rights';
+			}
+		}
+		return $result;
+	}
+
+	/**
 	 * Add a rights log entry for an action.
 	 * @param UserIdentity $performer
 	 * @param UserIdentity $target
@@ -337,6 +395,33 @@ class UserGroupAssignmentService {
 		array $existingUGMs,
 		array $permittedChanges
 	): void {
+		[ $unaddableGroups, $irremovableGroups ] = self::getDisallowedGroupChanges(
+			$addGroups, $removeGroups, $newExpiries, $existingUGMs, $permittedChanges
+		);
+
+		$addGroups = array_diff( $addGroups, $unaddableGroups );
+		$removeGroups = array_diff( $removeGroups, $irremovableGroups );
+		foreach ( $unaddableGroups as $group ) {
+			unset( $newExpiries[$group] );
+		}
+	}
+
+	/**
+	 * Returns which of the attempted group changed are not allowed, given $permittedChanges.
+	 * @param list<string> $addGroups
+	 * @param list<string> $removeGroups
+	 * @param array<string, ?string> $newExpiries
+	 * @param array<string, UserGroupMembership> $existingUGMs
+	 * @param array{add:list<string>,remove:list<string>} $permittedChanges
+	 * @return array{0:list<string>,1:list<string>} List of unaddable groups and list of irremovable groups
+	 */
+	private static function getDisallowedGroupChanges(
+		array $addGroups,
+		array $removeGroups,
+		array $newExpiries,
+		array $existingUGMs,
+		array $permittedChanges
+	): array {
 		$canAdd = $permittedChanges['add'];
 		$canRemove = $permittedChanges['remove'];
 		$involvedGroups = array_unique( array_merge( array_keys( $existingUGMs ), $addGroups, $removeGroups ) );
@@ -395,11 +480,7 @@ class UserGroupAssignmentService {
 			}
 		}
 
-		$addGroups = array_diff( $addGroups, $unaddableGroups );
-		$removeGroups = array_diff( $removeGroups, $irremovableGroups );
-		foreach ( $unaddableGroups as $group ) {
-			unset( $newExpiries[$group] );
-		}
+		return [ $unaddableGroups, $irremovableGroups ];
 	}
 
 	/**
