@@ -161,9 +161,8 @@ class RebuildFileCache extends Maintenance {
 					// Be sure to reset the mocked request time (T24852)
 					$_SERVER['REQUEST_TIME_FLOAT'] = microtime( true );
 					ob_start();
-					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-					@$article->view();
-					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+					$article->view();
+					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged -- causes "header already sent" notices
 					@$context->getOutput()->output();
 					$context->getOutput()->clearHTML();
 					$viewHtml = ob_get_clean();
@@ -173,9 +172,8 @@ class RebuildFileCache extends Maintenance {
 					// Be sure to reset the mocked request time (T24852)
 					$_SERVER['REQUEST_TIME_FLOAT'] = microtime( true );
 					ob_start();
-					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-					@Action::factory( 'history', $article, $context )->show();
-					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+					Action::factory( 'history', $article, $context )->show();
+					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged -- causes "header already sent" notices
 					@$context->getOutput()->output();
 					$context->getOutput()->clearHTML();
 					$historyHtml = ob_get_clean();

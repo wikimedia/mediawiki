@@ -645,7 +645,6 @@ class GlobalIdGenerator {
 		if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
 			if ( PHP_OS_FAMILY === 'Windows' ) {
 				// https://technet.microsoft.com/en-us/library/bb490913.aspx
-				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 				$csv = trim( ( $this->shellCallback )( 'getmac /NH /FO CSV' ) );
 				$line = substr( $csv, 0, strcspn( $csv, "\n" ) );
 				$info = str_getcsv( $line, ",", "\"", "\\" );
@@ -657,7 +656,6 @@ class GlobalIdGenerator {
 				// See https://linux.die.net/man/8/ifconfig
 				$m = [];
 				preg_match( '/\s([0-9a-f]{2}(?::[0-9a-f]{2}){5})\s/',
-					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 					( $this->shellCallback )( '/sbin/ifconfig -a' ), $m );
 				$nodeId = isset( $m[1] ) ? str_replace( ':', '', $m[1] ) : '';
 			}
