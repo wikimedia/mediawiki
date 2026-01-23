@@ -3,32 +3,28 @@
  */
 ( function () {
 	$( () => {
-		const $languageSelector = $( '#mw-pl-languageselector' );
-		if ( !$languageSelector.length ) {
+		const languageSelector = document.getElementById( 'mw-pl-languageselector' );
+		if ( !languageSelector ) {
 			return;
 		}
 
 		const pageLanguageOptions = OO.ui.infuse( $( '#mw-pl-options' ) );
 		pageLanguageOptions.setValue( '1' );
 
-		mw.loader.using( 'mediawiki.languageselector' ).then( () => {
-			let isValidSelection = true;
-			const languageSelectorWidget = OO.ui.infuse( $languageSelector );
-
-			const initialLanguageCode = languageSelectorWidget.getValue();
-			replaceOOUILanguageSelector( $languageSelector, initialLanguageCode, ( languageCode ) => {
+		// Wait for the widget to replace the native select with Vue component
+		mw.loader.using( 'mediawiki.widgets.LanguageSelectWidget' ).then( () => {
+			languageSelector.addEventListener( 'change', () => {
+				const languageCode = languageSelector.value;
 				if ( languageCode ) {
-					isValidSelection = true;
-					languageSelectorWidget.setValue( languageCode );
 					// Select the 'Language select' option if the user is trying to select a language
 					pageLanguageOptions.setValue( '2' );
-				} else {
-					isValidSelection = false;
 				}
 			} );
 
 			$( '#mw-pagelanguage-form' ).on( 'submit', ( e ) => {
-				if ( !isValidSelection ) {
+				const selectedOption = pageLanguageOptions.getValue();
+				const languageCode = languageSelector.value;
+				if ( selectedOption === '2' && !languageCode ) {
 					e.preventDefault();
 					mw.notify( mw.msg( 'pagelang-invalid-selection' ), { type: 'error' } );
 					return false;
@@ -36,25 +32,4 @@
 			} );
 		} );
 	} );
-
-	function replaceOOUILanguageSelector( $languageSelector, selectedLanguage, onLanguageChange ) {
-		$languageSelector.hide();
-
-		const { getLookupLanguageSelector } = require( 'mediawiki.languageselector' );
-		const languageSelectorApp = getLookupLanguageSelector(
-			{
-				selectedLanguage,
-				menuConfig: { visibleItemLimit: 8 },
-				menuItemSlot: ( { languageCode, languageName } ) => [
-					languageName + ' (' + languageCode + ')'
-				],
-				onLanguageChange
-			}
-		);
-
-		// Mount the Vue app after the hidden OOUI selector
-		const container = document.createElement( 'div' );
-		$languageSelector.after( container );
-		languageSelectorApp.mount( container );
-	}
 }() );

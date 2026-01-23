@@ -105,20 +105,13 @@ class SpecialPageLanguage extends FormSpecialPage {
 		];
 
 		// Building a language selector
-		$userLang = $this->getLanguage()->getCode();
-		$languages = $this->languageNameUtils->getLanguageNames( $userLang, LanguageNameUtils::SUPPORTED );
-		$options = [];
-		foreach ( $languages as $code => $name ) {
-			$options["$code - $name"] = $code;
-		}
-
 		$page['language'] = [
 			'id' => 'mw-pl-languageselector',
 			'cssclass' => 'mw-languageselector',
-			'type' => 'select',
-			'options' => $options,
+			'type' => 'language',
+			'useCodex' => true,
 			'label-message' => 'pagelang-language',
-			'default' => $title ?
+			'value' => $title ?
 				$title->getPageLanguage()->getCode() :
 				$this->getConfig()->get( MainConfigNames::LanguageCode ),
 		];
