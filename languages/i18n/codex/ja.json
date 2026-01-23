@@ -5,6 +5,7 @@
 			"Foomin10",
 			"Kokage si",
 			"Müller857",
+			"Shirayuki",
 			"Waki285",
 			"もなー(偽物)"
 		]
@@ -27,7 +28,7 @@
 	"cdx-table-pager-button-last-page": "最後のページ",
 	"cdx-table-pager-button-next-page": "次のページ",
 	"cdx-table-pager-button-prev-page": "前のページ",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1項目}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 件}}",
 	"cdx-table-pager-items-per-page-default": "各ページの結果",
 	"cdx-table-pagination-status-message-determinate-long": "$3行中$1から$2行の結果を表示中",
 	"cdx-table-pagination-status-message-determinate-short": "$3行中$1から$2行目",

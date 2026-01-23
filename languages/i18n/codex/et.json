@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pikne"
+		]
+	},
+	"cdx-popover-close-button-label": "Sule",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 üksus|$1 üksust}}",
+	"cdx-table-pagination-status-message-pending": "Tulemuste laadimine...",
+	"cdx-table-no-data-message": "Andmed puuduvad."
+}
