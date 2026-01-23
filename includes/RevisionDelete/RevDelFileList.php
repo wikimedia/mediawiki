@@ -138,7 +138,13 @@ class RevDelFileList extends RevDelList {
 
 	/** @inheritDoc */
 	public function doPostCommitUpdates( array $visibilityChangeMap ) {
+		$status = Status::newGood();
+
 		$file = $this->repoGroup->getLocalRepo()->newFile( $this->page );
+		if ( !$file ) {
+			return $status;
+		}
+
 		$file->purgeCache();
 		$file->purgeDescription();
 
@@ -155,7 +161,7 @@ class RevDelFileList extends RevDelList {
 			HTMLCacheUpdater::PURGE_INTENT_TXROUND_REFLECTED
 		);
 
-		return Status::newGood();
+		return $status;
 	}
 
 }
