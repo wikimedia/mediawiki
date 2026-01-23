@@ -10,7 +10,6 @@
 namespace MediaWiki\Specials;
 
 use Exception;
-use ImportReporter;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
@@ -19,6 +18,7 @@ use MediaWiki\Import\WikiImporterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Specials\Helpers\ImportReporter;
 use MediaWiki\Status\Status;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\DBError;

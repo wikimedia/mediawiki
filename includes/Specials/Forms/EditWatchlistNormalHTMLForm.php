@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Specials\Forms;
+
 use MediaWiki\HTMLForm\OOUIHTMLForm;
 
 /**
@@ -25,3 +27,6 @@ class EditWatchlistNormalHTMLForm extends OOUIHTMLForm {
 		return parent::displaySection( $fields, $sectionName, 'editwatchlist-', $hasUserVisibleFields );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( EditWatchlistNormalHTMLForm::class, 'EditWatchlistNormalHTMLForm' );

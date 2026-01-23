@@ -6,12 +6,12 @@
 
 namespace MediaWiki\Specials;
 
-use LoginHelper;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\LoginSignupSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Specials\Helpers\LoginHelper;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use StatusValue;

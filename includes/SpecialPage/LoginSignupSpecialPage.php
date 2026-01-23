@@ -11,7 +11,6 @@ namespace MediaWiki\SpecialPage;
 
 use Exception;
 use LogicException;
-use LoginHelper;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
@@ -31,6 +30,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Skin\Skin;
+use MediaWiki\Specials\Helpers\LoginHelper;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

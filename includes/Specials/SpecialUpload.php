@@ -30,6 +30,7 @@ use MediaWiki\Page\WikiFilePage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Specials\Forms\UploadForm;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
@@ -41,7 +42,6 @@ use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchlistManager;
 use Psr\Log\LoggerInterface;
 use UnexpectedValueException;
-use UploadForm;
 
 /**
  * Form for uploading media files.

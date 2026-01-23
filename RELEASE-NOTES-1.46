@@ -643,6 +643,18 @@ because of Phabricator reports.
     - SkinComponentTableOfContents
     - SkinComponentTempUserBanner
     - SkinComponentUtils
+  - MediaWiki\Specials\Exception
+    - SpecialUploadStashTooLargeException
+  - MediaWiki\Specials\FormFields
+    - Licenses
+  - MediaWiki\Specials\Forms
+    - MediaWiki\Specials\Forms\EditWatchlistNormalHTMLForm
+    - MediaWiki\Specials\Forms\PreferencesFormOOUI
+    - MediaWiki\Specials\Forms\UploadForm
+  - MediaWiki\Specials\Helpers
+    - License
+    - LoginHelper
+    - ImportReporter
   - Specials related hooks: MediaWiki\Hook => MediaWiki\Specials\Hook
     - AncientPagesQueryHook
     - BeforeWelcomeCreationHook

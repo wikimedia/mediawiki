@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Specials\Helpers;
+
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
@@ -42,7 +44,7 @@ class ImportReporter extends ContextSource {
 	private $mInterwiki;
 
 	/**
-	 * @param WikiImporter $importer
+	 * @param \MediaWiki\Import\WikiImporter $importer
 	 * @param bool $upload
 	 * @param string $interwiki
 	 * @param string|bool $reason
@@ -192,3 +194,6 @@ class ImportReporter extends ContextSource {
 		return Status::newGood( $this->mPageCount );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ImportReporter::class, 'ImportReporter' );

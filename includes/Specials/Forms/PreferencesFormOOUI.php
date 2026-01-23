@@ -4,12 +4,23 @@
  * @file
  */
 
+namespace MediaWiki\Specials\Forms;
+
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLCheckField;
 use MediaWiki\HTMLForm\Field\HTMLToggleSwitchField;
 use MediaWiki\HTMLForm\HTMLNestedFilterable;
 use MediaWiki\HTMLForm\OOUIHTMLForm;
 use MediaWiki\User\User;
+use OOUI\ButtonGroupWidget;
+use OOUI\ButtonWidget;
+use OOUI\FieldsetLayout;
+use OOUI\HtmlSnippet;
+use OOUI\IndexLayout;
+use OOUI\PanelLayout;
+use OOUI\TabPanelLayout;
+use OOUI\Tag;
+use OOUI\Widget;
 
 /**
  * Form to edit user preferences.
@@ -212,7 +223,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 
 	/**
 	 * Create the preferences form for a mobile layout.
-	 * @return OOUI\Tag
+	 * @return Tag
 	 */
 	private function createMobilePreferencesForm() {
 		$sectionButtons = [];
@@ -235,16 +246,16 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 				$this->getFooterHtml( $key );
 
 			// Creating the header section
-			$label = ( new OOUI\Tag( 'div' ) )->appendContent(
-				( new OOUI\Tag( 'h5' ) )->appendContent( $label )->addClasses( [ 'mw-prefs-title' ] ),
+			$label = ( new Tag( 'div' ) )->appendContent(
+				( new Tag( 'h5' ) )->appendContent( $label )->addClasses( [ 'mw-prefs-title' ] ),
 				$this->createMobileDescription( $key )
 			);
 			$contentDiv = $this->createContentMobile( $key, $label, $content );
 
-			$sectionButton = new OOUI\ButtonWidget( [
+			$sectionButton = new ButtonWidget( [
 				'id' => 'mw-mobile-prefs-' . $key,
 				'icon' => $iconNames[ $key ] ?? 'settings',
-				'label' => new OOUI\HtmlSnippet( $label->toString() ),
+				'label' => new HtmlSnippet( $label->toString() ),
 				'data' => $key,
 				'classes' => [ 'mw-mobile-prefsection' ],
 				'framed' => false,
@@ -253,12 +264,12 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 			$sectionContents[] = $contentDiv;
 		}
 
-		$buttonGroup = new OOUI\ButtonGroupWidget( [
+		$buttonGroup = new ButtonGroupWidget( [
 			'classes' => [ 'mw-mobile-prefs-sections' ],
 			'infusable' => true,
 		] );
 		$buttonGroup->addItems( $sectionButtons );
-		$form = ( new OOUI\Tag( 'div' ) )
+		$form = ( new Tag( 'div' ) )
 			->setAttributes( [ 'id' => 'mw-prefs-container' ] )
 			->addClasses( [ 'mw-mobile-prefs-container' ] )
 			->appendContent( $buttonGroup )
@@ -292,12 +303,12 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	/**
 	 * Creates a description tag for each section of the mobile layout.
 	 * @param string $key
-	 * @return OOUI\Tag
+	 * @return Tag
 	 */
 	private function createMobileDescription( $key ) {
 		$prefDescriptionMsg = $this->msg( "prefs-description-" . $key );
 		$prefDescription = $prefDescriptionMsg->exists() ? $prefDescriptionMsg->text() : "";
-		$prefDescriptionElement = ( new OOUI\Tag( 'p' ) )
+		$prefDescriptionElement = ( new Tag( 'p' ) )
 			->appendContent( $prefDescription )
 			->addClasses( [ 'mw-prefs-description' ] );
 
@@ -307,12 +318,12 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	/**
 	 * Creates the contents for each section of the mobile layout.
 	 * @param string $key
-	 * @param string|OOUI\Tag $label
+	 * @param string|Tag $label
 	 * @param string $content
-	 * @return OOUI\Tag
+	 * @return Tag
 	 */
 	private function createContentMobile( $key, $label, $content ) {
-		$contentDiv = ( new OOUI\Tag( 'div' ) );
+		$contentDiv = ( new Tag( 'div' ) );
 		$contentDiv->addClasses( [
 			'mw-prefs-content-page',
 			'mw-prefs-section-fieldset',
@@ -320,23 +331,23 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 		$contentDiv->setAttributes( [
 			'id' => 'mw-mobile-prefs-' . $key
 		] );
-		$contentBody = ( new OOUI\Tag( 'div' ) )
+		$contentBody = ( new Tag( 'div' ) )
 			->addClasses( [ 'mw-htmlform-autoinfuse-lazy' ] )
 			->setAttributes( [
 				'id' => 'mw-mobile-prefs-' . $key . '-content'
 			] );
-		$contentHeader = ( new OOUI\Tag( 'div' ) )->setAttributes( [
+		$contentHeader = ( new Tag( 'div' ) )->setAttributes( [
 			'id' => 'mw-mobile-prefs-' . $key . '-head'
 		] );
 		$contentHeader->addClasses( [ 'mw-prefs-content-head' ] );
-		$contentHeaderTitle = ( new OOUI\Tag( 'h5' ) )->setAttributes( [
+		$contentHeaderTitle = ( new Tag( 'h5' ) )->setAttributes( [
 			'id' => 'mw-mobile-prefs-' . $key . '-title',
 		] );
 		$contentHeaderTitle->appendContent( $label )->addClasses( [ 'mw-prefs-header-title' ] );
-		$formContent = new OOUI\Widget( [
-			'content' => new OOUI\HtmlSnippet( $content )
+		$formContent = new Widget( [
+			'content' => new HtmlSnippet( $content )
 		] );
-		$hiddenForm = ( new OOUI\Tag( 'div' ) )->appendContent( $formContent );
+		$hiddenForm = ( new Tag( 'div' ) )->appendContent( $formContent );
 		$contentHeader->appendContent( $contentHeaderTitle );
 		$contentBody->appendContent( $contentHeader );
 		$contentBody->appendContent( $hiddenForm );
@@ -347,7 +358,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 
 	/**
 	 * Create the preferences form for a desktop layout.
-	 * @return OOUI\PanelLayout
+	 * @return PanelLayout
 	 */
 	private function createDesktopPreferencesForm() {
 		$tabPanels = [];
@@ -366,16 +377,16 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 				) .
 				$this->getFooterHtml( $key );
 
-			$tabPanels[] = new OOUI\TabPanelLayout( 'mw-prefsection-' . $key, [
+			$tabPanels[] = new TabPanelLayout( 'mw-prefsection-' . $key, [
 				'classes' => [ 'mw-htmlform-autoinfuse-lazy' ],
 				'label' => $label,
-				'content' => new OOUI\FieldsetLayout( [
+				'content' => new FieldsetLayout( [
 					'classes' => [ 'mw-prefs-section-fieldset' ],
 					'id' => "mw-prefsection-$key",
 					'label' => $label,
 					'items' => [
-						new OOUI\Widget( [
-							'content' => new OOUI\HtmlSnippet( $content )
+						new Widget( [
+							'content' => new HtmlSnippet( $content )
 						] ),
 					],
 				] ),
@@ -384,7 +395,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 			] );
 		}
 
-		$indexLayout = new OOUI\IndexLayout( [
+		$indexLayout = new IndexLayout( [
 			'infusable' => true,
 			'expanded' => false,
 			'autoFocus' => false,
@@ -392,7 +403,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 		] );
 		$indexLayout->addTabPanels( $tabPanels );
 
-		$form = new OOUI\PanelLayout( [
+		$form = new PanelLayout( [
 			'framed' => true,
 			'expanded' => false,
 			'classes' => [ 'mw-prefs-tabs-wrapper' ],
@@ -402,3 +413,6 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 		return $form;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( PreferencesFormOOUI::class, 'PreferencesFormOOUI' );

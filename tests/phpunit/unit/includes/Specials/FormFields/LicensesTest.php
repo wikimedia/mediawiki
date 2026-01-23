@@ -3,7 +3,7 @@
 use MediaWiki\HTMLForm\HTMLForm;
 
 /**
- * @covers \Licenses
+ * @covers \MediaWiki\Specials\FormFields\Licenses
  */
 class LicensesTest extends MediaWikiUnitTestCase {
 

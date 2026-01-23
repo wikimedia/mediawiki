@@ -9,6 +9,9 @@
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  */
 
+namespace MediaWiki\Specials\FormFields;
+
+use License;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\MediaWikiServices;
@@ -217,3 +220,6 @@ class Licenses extends HTMLFormField {
 		return $html;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( Licenses::class, 'Licenses' );

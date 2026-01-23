@@ -13,11 +13,11 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Specials\Forms\PreferencesFormOOUI;
 use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\User;
 use OOUI\FieldLayout;
 use OOUI\SearchInputWidget;
-use PreferencesFormOOUI;
 
 /**
  * A special page that allows users to change their preferences

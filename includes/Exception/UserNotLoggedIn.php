@@ -6,9 +6,9 @@
 
 namespace MediaWiki\Exception;
 
-use LoginHelper;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Specials\Helpers\LoginHelper;
 
 /**
  * Redirect a user to the login page or account creation page

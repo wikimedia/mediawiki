@@ -10,6 +10,8 @@
  * @license GPL-2.0-or-later
  */
 
+namespace MediaWiki\Specials\Helpers;
+
 /**
  * A License class for use on Special:Upload (represents a single type of license).
  */
@@ -39,3 +41,6 @@ class License {
 		return [ strrev( $template ), strrev( $text ) ];
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( License::class, 'License' );

@@ -4,6 +4,9 @@
  * @file
  */
 
+namespace MediaWiki\Specials\Forms;
+
+use Exception;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\HookContainer\HookContainer;
@@ -14,11 +17,13 @@ use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Specials\FormFields\Licenses;
 use MediaWiki\Specials\SpecialUpload;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Upload\UploadBase;
 use MediaWiki\Upload\UploadFromUrl;
+use UploadSourceField;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -472,3 +477,6 @@ class UploadForm extends HTMLForm {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadForm::class, 'UploadForm' );

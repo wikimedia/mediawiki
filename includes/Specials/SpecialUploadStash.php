@@ -19,12 +19,12 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\UploadStashPager;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
+use MediaWiki\Specials\Exception\SpecialUploadStashTooLargeException;
 use MediaWiki\Status\Status;
 use MediaWiki\Upload\Exception\UploadStashBadPathException;
 use MediaWiki\Upload\Exception\UploadStashFileNotFoundException;
 use MediaWiki\Upload\UploadStash;
 use MediaWiki\Utils\UrlUtils;
-use SpecialUploadStashTooLargeException;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

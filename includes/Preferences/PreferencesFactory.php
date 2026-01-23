@@ -8,8 +8,8 @@ namespace MediaWiki\Preferences;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Specials\Forms\PreferencesFormOOUI;
 use MediaWiki\User\User;
-use PreferencesFormOOUI;
 
 /**
  * A PreferencesFactory is a MediaWiki service that provides the definitions of preferences for a

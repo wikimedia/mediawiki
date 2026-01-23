@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Tests\Integration\Specials\Helpers;
 
-use LoginHelper;
+use MediaWiki\Specials\Helpers\LoginHelper;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers LoginHelper
+ * @covers MediaWiki\Specials\Helpers\LoginHelper
  */
 class LoginHelperTest extends MediaWikiIntegrationTestCase {
 

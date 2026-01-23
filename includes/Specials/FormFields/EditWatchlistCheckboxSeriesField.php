@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Specials\FormFields;
+
 use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
 use MediaWiki\HTMLForm\HTMLFormField;
 
@@ -24,3 +26,6 @@ class EditWatchlistCheckboxSeriesField extends HTMLMultiSelectField {
 		return HTMLFormField::validate( $value, $alldata );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( EditWatchlistCheckboxSeriesField::class, 'EditWatchlistCheckboxSeriesField' );

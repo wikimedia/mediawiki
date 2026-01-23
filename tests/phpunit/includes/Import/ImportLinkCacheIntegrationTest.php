@@ -12,7 +12,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
  * @group large
  * @group Database
  * @covers \MediaWiki\Import\ImportStreamSource
- * @covers \ImportReporter
+ * @covers \MediaWiki\Specials\Helpers\ImportReporter
  *
  * @author mwjames
  */

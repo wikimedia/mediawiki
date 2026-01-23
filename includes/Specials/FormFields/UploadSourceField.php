@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Specials\FormFields;
+
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLTextField;
 
@@ -50,3 +52,6 @@ class UploadSourceField extends HTMLTextField {
 		return $this->mParams['size'] ?? 60;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadSourceField::class, 'UploadSourceField' );

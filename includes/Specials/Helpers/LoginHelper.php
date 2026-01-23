@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Specials\Helpers;
+
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookRunner;
@@ -131,3 +133,6 @@ class LoginHelper extends ContextSource {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LoginHelper::class, 'LoginHelper' );

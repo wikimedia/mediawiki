@@ -8,9 +8,9 @@
 
 namespace MediaWiki\Api;
 
-use ImportReporter;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Specials\Helpers\ImportReporter;
 use MediaWiki\Title\ForeignTitle;
 
 /**
