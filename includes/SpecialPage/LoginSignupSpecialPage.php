@@ -594,6 +594,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$submitStatus->warning( $msg );
 		} elseif ( $msg && $msgtype === 'error' ) {
 			$submitStatus->fatal( $msg );
+
+			// T409431 Pass information about the error to the frontend to
+			//         be logged by Javascript instrumentation handlers.
+			$this->getOutput()->addJsConfigVars(
+				'wgErrorPageMessageKey',
+				is_string( $msg ) ? $msg : $msg->getKey()
+			);
 		}
 
 		// warning header for non-standard workflows (e.g. security reauthentication)
