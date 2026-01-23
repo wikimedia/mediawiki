@@ -521,6 +521,7 @@ class LocalFile extends File {
 			$this->loadFromRow( $row );
 		} else {
 			$this->fileExists = false;
+			$this->mime = 'unknown/unknown';
 		}
 	}
 
