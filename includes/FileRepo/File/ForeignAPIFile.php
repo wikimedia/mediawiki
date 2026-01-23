@@ -310,7 +310,7 @@ class ForeignAPIFile extends File {
 	public function getMimeType() {
 		if ( !isset( $this->mInfo['mime'] ) ) {
 			$magic = MediaWikiServices::getInstance()->getMimeAnalyzer();
-			$this->mInfo['mime'] = $magic->getMimeTypeFromExtensionOrNull( $this->getExtension() );
+			$this->mInfo['mime'] = $magic->getMimeTypeFromExtensionOrNull( $this->getExtension() ) ?? 'unknown/unknown';
 		}
 
 		return $this->mInfo['mime'];

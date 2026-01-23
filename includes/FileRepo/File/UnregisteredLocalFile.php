@@ -34,7 +34,7 @@ class UnregisteredLocalFile extends File {
 	/** @var string */
 	protected $path;
 
-	/** @var string|false|null */
+	/** @var string|null */
 	protected $mime;
 
 	/** @var array[]|bool[] Dimension data */
@@ -146,7 +146,7 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	 * @return string|false
+	 * @return string
 	 */
 	public function getMimeType() {
 		if ( $this->mime === null ) {
@@ -155,7 +155,7 @@ class UnregisteredLocalFile extends File {
 				$magic = MediaWikiServices::getInstance()->getMimeAnalyzer();
 				$this->mime = $magic->guessMimeType( $refPath );
 			} else {
-				$this->mime = false;
+				$this->mime = 'unknown/unknown';
 			}
 		}
 
