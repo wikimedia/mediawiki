@@ -120,7 +120,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * EditPage cares about two distinct titles:
  * - $this->mContextTitle is the page that forms submit to, links point to,
  *   redirects go to, etc.
- * - $this->mTitle (as well as $mArticle) is the page in the database that is
+ * - $this->page->getTitle() (as well as $mArticle) is the page in the database that is
  *   actually being edited.
  *
  * These are usually the same, but they are now allowed to be different.
@@ -180,11 +180,6 @@ class EditPage implements IEditObject {
 	/** @var WikiPage */
 	private $page;
 
-	/**
-	 * @var Title
-	 */
-	private $mTitle;
-
 	/** @var null|Title */
 	private $mContextTitle = null;
 
@@ -202,9 +197,6 @@ class EditPage implements IEditObject {
 
 	/** @var bool New page or new section */
 	private $isNew = false;
-
-	/** @var bool */
-	private $deletedSinceEdit;
 
 	/** @var string */
 	public $formtype;
@@ -408,9 +400,6 @@ class EditPage implements IEditObject {
 	/** @var bool */
 	public $suppressIntro = false;
 
-	/** @var bool */
-	private $edit;
-
 	/** @var int|false */
 	private $contentLength = false;
 
@@ -482,7 +471,6 @@ class EditPage implements IEditObject {
 	public function __construct( Article $article ) {
 		$this->mArticle = $article;
 		$this->page = $article->getPage(); // model object
-		$this->mTitle = $article->getTitle();
 
 		// Make sure the local context is in sync with other member variables.
 		// Particularly make sure everything is using the same WikiPage instance.
@@ -491,9 +479,8 @@ class EditPage implements IEditObject {
 		// facility in WikiPage::prepareContentForEdit.
 		$this->context = new DerivativeContext( $article->getContext() );
 		$this->context->setWikiPage( $this->page );
-		$this->context->setTitle( $this->mTitle );
 
-		$this->contentModel = $this->mTitle->getContentModel();
+		$this->contentModel = $this->getTitle()->getContentModel();
 
 		$services = MediaWikiServices::getInstance();
 		$this->contentHandlerFactory = $services->getContentHandlerFactory();
@@ -541,7 +528,7 @@ class EditPage implements IEditObject {
 	 * @return Title
 	 */
 	public function getTitle() {
-		return $this->mTitle;
+		return $this->page->getTitle();
 	}
 
 	/**
@@ -607,8 +594,8 @@ class EditPage implements IEditObject {
 
 		$request = $this->context->getRequest();
 		// If they used redlink=1 and the page exists, redirect to the main article
-		if ( $request->getBool( 'redlink' ) && $this->mTitle->exists() ) {
-			$this->context->getOutput()->redirect( $this->mTitle->getFullURL() );
+		if ( $request->getBool( 'redlink' ) && $this->page->exists() ) {
+			$this->context->getOutput()->redirect( $this->getTitle()->getFullURL() );
 			return;
 		}
 
@@ -718,7 +705,7 @@ class EditPage implements IEditObject {
 				return;
 			}
 
-			if ( $this->mTitle->getArticleID() ) {
+			if ( $this->page->getId() ) {
 				$this->getHookRunner()->onEditFormInitialText( $this );
 			}
 		}
@@ -743,7 +730,7 @@ class EditPage implements IEditObject {
 					)->getModel()
 				) )
 		) {
-			$restoreLink = $this->mTitle->getFullURL(
+			$restoreLink = $this->getTitle()->getFullURL(
 				[
 					'action' => 'mcrrestore',
 					'restore' => $revRecord->getId(),
@@ -944,7 +931,7 @@ class EditPage implements IEditObject {
 		return $this->permManager->getPermissionStatus(
 			'edit',
 			$user,
-			$this->mTitle,
+			$this->getTitle(),
 			$rigor
 		);
 	}
@@ -966,7 +953,7 @@ class EditPage implements IEditObject {
 			// The edit page was reached via a red link.
 			// Redirect to the article page and let them click the edit tab if
 			// they really want a permission error.
-			$out->redirect( $this->mTitle->getFullURL() );
+			$out->redirect( $this->getTitle()->getFullURL() );
 			return;
 		}
 
@@ -974,9 +961,9 @@ class EditPage implements IEditObject {
 
 		// Use the normal message if there's nothing to display:
 		// page or section does not exist (T249978), and the user isn't in the middle of an edit
-		if ( !$content || ( $this->firsttime && !$this->mTitle->exists() && $content->isEmpty() ) ) {
-			$action = $this->mTitle->exists() ? 'edit' :
-				( $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage' );
+		if ( !$content || ( $this->firsttime && !$this->page->exists() && $content->isEmpty() ) ) {
+			$action = $this->page->exists() ? 'edit' :
+				( $this->getTitle()->isTalkPage() ? 'createtalk' : 'createpage' );
 			throw new PermissionsError( $action, $status );
 		}
 
@@ -1035,8 +1022,8 @@ class EditPage implements IEditObject {
 		$out->addModules( 'mediawiki.action.edit.collapsibleFooter' );
 
 		$out->addHTML( $this->editFormTextBottom );
-		if ( $this->mTitle->exists() ) {
-			$out->returnToMain( null, $this->mTitle );
+		if ( $this->page->exists() ) {
+			$out->returnToMain( null, $this->page );
 		}
 	}
 
@@ -1065,14 +1052,14 @@ class EditPage implements IEditObject {
 		} elseif ( $this->section === 'new' ) {
 			// Nothing *to* preview for new sections
 			return false;
-		} elseif ( ( $request->getCheck( 'preload' ) || $this->mTitle->exists() )
+		} elseif ( ( $request->getCheck( 'preload' ) || $this->page->exists() )
 			&& $this->userOptionsLookup->getOption( $this->context->getUser(), 'previewonfirst' )
 		) {
 			// Standard preference behavior
 			return true;
-		} elseif ( !$this->mTitle->exists()
-			&& isset( $previewOnOpenNamespaces[$this->mTitle->getNamespace()] )
-			&& $previewOnOpenNamespaces[$this->mTitle->getNamespace()]
+		} elseif ( !$this->page->exists()
+			&& isset( $previewOnOpenNamespaces[$this->page->getNamespace()] )
+			&& $previewOnOpenNamespaces[$this->page->getNamespace()]
 		) {
 			// Categories are special
 			return true;
@@ -1114,7 +1101,7 @@ class EditPage implements IEditObject {
 			throw new ErrorPageError( 'sectioneditnotsupported-title', 'sectioneditnotsupported-text' );
 		}
 
-		$this->isNew = !$this->mTitle->exists() || $this->section === 'new';
+		$this->isNew = !$this->page->exists() || $this->section === 'new';
 
 		if ( $request->wasPosted() ) {
 			$this->importFormDataPosted( $request );
@@ -1127,7 +1114,6 @@ class EditPage implements IEditObject {
 			$this->edittime = '';
 			$this->editRevId = null;
 			$this->starttime = wfTimestampNow();
-			$this->edit = false;
 			$this->preview = false;
 			$this->save = false;
 			$this->diff = false;
@@ -1330,8 +1316,8 @@ class EditPage implements IEditObject {
 		}
 
 		# Don't force edit summaries when a user is editing their own user or talk page
-		if ( ( $this->mTitle->getNamespace() === NS_USER || $this->mTitle->getNamespace() === NS_USER_TALK )
-			&& $this->mTitle->getText() === $user->getName()
+		if ( ( $this->page->getNamespace() === NS_USER || $this->page->getNamespace() === NS_USER_TALK )
+			&& $this->getTitle()->getText() === $user->getName()
 		) {
 			$this->allowBlankSummary = true;
 		} else {
@@ -1406,7 +1392,7 @@ class EditPage implements IEditObject {
 			$this->editFormPageTop .= Html::errorBox(
 				$out->parseAsInterface( $this->context->msg( 'missing-revision-content',
 					$this->oldid,
-					Message::plaintextParam( $this->mTitle->getPrefixedText() )
+					Message::plaintextParam( $this->getTitle()->getPrefixedText() )
 				)->parse() )
 			);
 		} elseif ( !$this->isSupportedContentModel( $content->getModel() ) ) {
@@ -1430,10 +1416,10 @@ class EditPage implements IEditObject {
 		if ( $this->userOptionsLookup->getOption( $user, 'watchdefault' ) ) {
 			# Watch all edits
 			$this->watchthis = true;
-		} elseif ( $this->userOptionsLookup->getOption( $user, 'watchcreations' ) && !$this->mTitle->exists() ) {
+		} elseif ( $this->userOptionsLookup->getOption( $user, 'watchcreations' ) && !$this->page->exists() ) {
 			# Watch creations
 			$this->watchthis = true;
-		} elseif ( $this->watchlistManager->isWatched( $user, $this->mTitle ) ) {
+		} elseif ( $this->watchlistManager->isWatched( $user, $this->page ) ) {
 			# Already watched
 			$this->watchthis = true;
 		}
@@ -1462,9 +1448,9 @@ class EditPage implements IEditObject {
 		$content = false;
 
 		// For non-existent articles and new sections, use preload text if any.
-		if ( !$this->mTitle->exists() || $this->section === 'new' ) {
+		if ( !$this->page->exists() || $this->section === 'new' ) {
 			$content = $services->getPreloadedContentBuilder()->getPreloadedContent(
-				$this->mTitle->toPageIdentity(),
+				$this->page,
 				$this->context->getUser(),
 				$request->getVal( 'preload' ),
 				$request->getArray( 'preloadparams', [] ),
@@ -1486,8 +1472,8 @@ class EditPage implements IEditObject {
 			if ( $undo > 0 && $undoafter > 0 ) {
 				// The use of getRevisionByTitle() is intentional, as allowing access to
 				// arbitrary revisions on arbitrary pages bypass partial visibility restrictions (T297322).
-				$undorev = $this->revisionStore->getRevisionByTitle( $this->mTitle, $undo );
-				$oldrev = $this->revisionStore->getRevisionByTitle( $this->mTitle, $undoafter );
+				$undorev = $this->revisionStore->getRevisionByTitle( $this->page, $undo );
+				$oldrev = $this->revisionStore->getRevisionByTitle( $this->page, $undoafter );
 				$undoMsg = null;
 
 				# Make sure it's the right page,
@@ -1503,7 +1489,7 @@ class EditPage implements IEditObject {
 						)
 					) {
 						// Hack for undo while EditPage can't handle multi-slot editing
-						$this->context->getOutput()->redirect( $this->mTitle->getFullURL( [
+						$this->context->getOutput()->redirect( $this->getTitle()->getFullURL( [
 							'action' => 'mcrundo',
 							'undo' => $undo,
 							'undoafter' => $undoafter,
@@ -1521,7 +1507,7 @@ class EditPage implements IEditObject {
 						);
 						$contentTransformer = $services->getContentTransformer();
 						$newContent = $contentTransformer->preSaveTransform(
-							$content, $this->mTitle, $this->getUserForPreview(), $parserOptions
+							$content, $this->page, $this->getUserForPreview(), $parserOptions
 						);
 
 						if ( $newContent->getModel() !== $oldContent->getModel() ) {
@@ -2041,7 +2027,7 @@ class EditPage implements IEditObject {
 	 */
 	private function doPostEditRedirect( $query, $anchor ) {
 		$out = $this->context->getOutput();
-		$url = $this->mTitle->getFullURL( $query ) . $anchor;
+		$url = $this->getTitle()->getFullURL( $query ) . $anchor;
 		$user = $this->getUserForSave();
 		// If the temporary account was created in this request,
 		// or if the temporary account has zero edits (implying
@@ -2057,7 +2043,7 @@ class EditPage implements IEditObject {
 			$this->getHookRunner()->onTempUserCreatedRedirect(
 				$this->context->getRequest()->getSession(),
 				$user,
-				$this->mTitle->getPrefixedDBkey(),
+				$this->getTitle()->getPrefixedDBkey(),
 				$query,
 				$anchor,
 				$url
@@ -2185,9 +2171,9 @@ class EditPage implements IEditObject {
 		$pstUser = $this->getUserForPreview();
 
 		$changingContentModel = false;
-		if ( $this->contentModel !== $this->mTitle->getContentModel() ) {
+		if ( $this->contentModel !== $this->getTitle()->getContentModel() ) {
 			$changingContentModel = true;
-			$oldContentModel = $this->mTitle->getContentModel();
+			$oldContentModel = $this->getTitle()->getContentModel();
 		}
 
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
@@ -2210,7 +2196,7 @@ class EditPage implements IEditObject {
 			$constraintFactory->newSimpleAntiSpamConstraint(
 				$this->context->getRequest()->getText( 'wpAntispam' ),
 				$requestUser,
-				$this->mTitle
+				$this->getTitle()
 			)
 		);
 
@@ -2221,13 +2207,13 @@ class EditPage implements IEditObject {
 				$this->sectiontitle,
 				$this->textbox1,
 				$this->context->getRequest()->getIP(),
-				$this->mTitle
+				$this->getTitle()
 			)
 		);
 		$constraintRunner->addConstraint(
 			new ImageRedirectConstraint(
 				$textbox_content,
-				$this->mTitle,
+				$this->getTitle(),
 				$authority
 			)
 		);
@@ -2243,14 +2229,14 @@ class EditPage implements IEditObject {
 		$constraintRunner->addConstraint(
 			new AuthorizationConstraint(
 				$authority,
-				$this->mTitle,
+				$this->page,
 				$new
 			)
 		);
 		$constraintRunner->addConstraint(
 			new ContentModelChangeConstraint(
 				$authority,
-				$this->mTitle,
+				$this->getTitle(),
 				$this->contentModel
 			)
 		);
@@ -2276,7 +2262,7 @@ class EditPage implements IEditObject {
 		$constraintRunner->addConstraint(
 			$constraintFactory->newAccidentalRecreationConstraint(
 				$this->context,
-				$this->mTitle,
+				$this->getTitle(),
 				$this->recreate,
 				$this->starttime,
 				$submitButtonLabel,
@@ -2331,7 +2317,7 @@ class EditPage implements IEditObject {
 			// in this case to disable messages, see T52124)
 			$constraintRunner->addConstraint(
 				new DefaultTextConstraint(
-					$this->mTitle,
+					$this->getTitle(),
 					$this->allowBlankArticle,
 					$this->textbox1,
 					$submitButtonLabel
@@ -2395,7 +2381,7 @@ class EditPage implements IEditObject {
 					&& $this->edittime
 					&& $this->revisionStore->userWasLastToEdit(
 						$this->dbProvider->getPrimaryDatabase(),
-						$this->mTitle->getArticleID(),
+						$this->getTitle()->getArticleID(),
 						$requestUser->getId(),
 						$this->edittime
 					)
@@ -2515,7 +2501,7 @@ class EditPage implements IEditObject {
 					$this->ignoreRevisionDeletedWarning,
 					$this->oldid,
 					$this->section,
-					$this->mTitle,
+					$this->getTitle(),
 					$pstUser,
 					MessageValue::new(
 						'edit-constraint-warning-wrapper-save-deleted-revision',
@@ -2752,7 +2738,7 @@ class EditPage implements IEditObject {
 		$user = $this->getUserForPreview();
 		$parserOptions = ParserOptions::newFromUserAndLang( $user, $contentLanguage );
 		$contentTransformer = $services->getContentTransformer();
-		$undoContent = $contentTransformer->preSaveTransform( $undoContent, $this->mTitle, $user, $parserOptions );
+		$undoContent = $contentTransformer->preSaveTransform( $undoContent, $this->page, $user, $parserOptions );
 
 		if ( $undoContent->equals( $content ) ) {
 			return true;
@@ -2770,7 +2756,7 @@ class EditPage implements IEditObject {
 		$new = $oldModel === false;
 		$log = new ManualLogEntry( 'contentmodel', $new ? 'new' : 'change' );
 		$log->setPerformer( $user );
-		$log->setTarget( $this->mTitle );
+		$log->setTarget( $this->page );
 		$log->setComment( is_string( $reason ) ? $reason : "" );
 		$log->setParameters( [
 			'4::oldmodel' => $oldModel,
@@ -2792,14 +2778,13 @@ class EditPage implements IEditObject {
 			return;
 		}
 
-		$title = $this->mTitle;
 		$watch = $this->watchthis;
 		$watchlistExpiry = $this->watchlistExpiry;
 
 		// This can't run as a DeferredUpdate due to a possible race condition
 		// when the post-edit redirect happens if the pendingUpdates queue is
 		// too large to finish in time (T259564)
-		$this->watchlistManager->setWatch( $watch, $user, $title, $watchlistExpiry );
+		$this->watchlistManager->setWatch( $watch, $user, $this->page, $watchlistExpiry );
 
 		$this->watchedItemStore->maybeEnqueueWatchlistExpiryJob();
 	}
@@ -2832,7 +2817,7 @@ class EditPage implements IEditObject {
 
 		// The current state, we want to merge updates into it
 		$currentRevisionRecord = $this->revisionStore->getRevisionByTitle(
-			$this->mTitle,
+			$this->page,
 			0,
 			IDBAccessObject::READ_LATEST
 		);
@@ -2993,7 +2978,7 @@ class EditPage implements IEditObject {
 			IntroMessageBuilder::MORE_FRAMES,
 			$skip,
 			$this->context,
-			$this->mTitle->toPageIdentity(),
+			$this->page,
 			$this->mArticle->fetchRevisionRecord(),
 			$this->context->getUser(),
 			$this->context->getRequest()->getVal( 'editintro' ),
@@ -3240,7 +3225,7 @@ class EditPage implements IEditObject {
 			$this->textbox1 = $currentText;
 		}
 
-		if ( !$this->mTitle->isUserConfigPage() ) {
+		if ( !$this->getTitle()->isUserConfigPage() ) {
 			$out->addHTML( self::getEditToolbar() );
 		}
 
@@ -3407,7 +3392,7 @@ class EditPage implements IEditObject {
 			$constraintRunner->addConstraint(
 				$constraintFactory->newAccidentalRecreationConstraint(
 					$this->context,
-					$this->mTitle,
+					$this->getTitle(),
 					// Ignore wpRedirect so the warning is still shown after a save attempt
 					false,
 					$this->starttime,
@@ -3419,7 +3404,7 @@ class EditPage implements IEditObject {
 					false,
 					$this->oldid,
 					$this->section,
-					$this->mTitle,
+					$this->getTitle(),
 					$this->context->getUser(),
 				)
 			);
@@ -3529,7 +3514,7 @@ class EditPage implements IEditObject {
 
 		$commentFormatter = MediaWikiServices::getInstance()->getCommentFormatter();
 		$summary = $this->context->msg( 'summary-preview' )->parse()
-			. $commentFormatter->formatBlock( $summary, $this->mTitle, $isSubjectPreview );
+			. $commentFormatter->formatBlock( $summary, $this->getTitle(), $isSubjectPreview );
 		return Html::rawElement( 'div', [ 'class' => 'mw-summary-preview' ], $summary );
 	}
 
@@ -3602,7 +3587,7 @@ class EditPage implements IEditObject {
 			$name,
 			$customAttribs,
 			$this->context->getUser(),
-			$this->mTitle
+			$this->page
 		);
 
 		$this->context->getOutput()->addHTML(
@@ -3674,8 +3659,8 @@ class EditPage implements IEditObject {
 	public function showDiff() {
 		$oldtitlemsg = 'currentrev';
 		# if message does not exist, show diff against the preloaded default
-		if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && !$this->mTitle->exists() ) {
-			$oldtext = $this->mTitle->getDefaultMessageText();
+		if ( $this->page->getNamespace() === NS_MEDIAWIKI && !$this->page->exists() ) {
+			$oldtext = $this->getTitle()->getDefaultMessageText();
 			if ( $oldtext !== false ) {
 				$oldtitlemsg = 'defaultmessagetext';
 				$oldContent = $this->toEditContent( $oldtext );
@@ -3705,7 +3690,7 @@ class EditPage implements IEditObject {
 				MediaWikiServices::getInstance()->getContentLanguage() );
 			$services = MediaWikiServices::getInstance();
 			$contentTransformer = $services->getContentTransformer();
-			$newContent = $contentTransformer->preSaveTransform( $newContent, $this->mTitle, $user, $parserOptions );
+			$newContent = $contentTransformer->preSaveTransform( $newContent, $this->page, $user, $parserOptions );
 		}
 
 		if ( ( $oldContent && !$oldContent->isEmpty() ) || ( $newContent && !$newContent->isEmpty() ) ) {
@@ -3742,7 +3727,7 @@ class EditPage implements IEditObject {
 	 */
 	private function showTosSummary(): void {
 		$msgKey = 'editpage-tos-summary';
-		$this->getHookRunner()->onEditPageTosSummary( $this->mTitle, $msgKey );
+		$this->getHookRunner()->onEditPageTosSummary( $this->getTitle(), $msgKey );
 		$msg = $this->context->msg( $msgKey );
 		if ( !$msg->isDisabled() ) {
 			$this->context->getOutput()->addHTML( Html::rawElement(
@@ -3890,7 +3875,7 @@ class EditPage implements IEditObject {
 		$out->addHTML( "<div class='editCheckboxes'>" . $checkboxesHTML . "</div>\n" );
 
 		// Show copyright warning.
-		$out->addHTML( self::getCopyrightWarning( $this->mTitle, 'parse', $this->context ) );
+		$out->addHTML( self::getCopyrightWarning( $this->page, 'parse', $this->context ) );
 		$out->addHTML( $this->editFormTextAfterWarn );
 
 		$out->addHTML( "<div class='editButtons'>\n" );
@@ -4051,10 +4036,10 @@ class EditPage implements IEditObject {
 			}
 
 			# don't parse non-wikitext pages, show message about preview
-			if ( $this->mTitle->isUserConfigPage() || $this->mTitle->isSiteConfigPage() ) {
-				if ( $this->mTitle->isUserConfigPage() ) {
+			if ( $this->getTitle()->isUserConfigPage() || $this->getTitle()->isSiteConfigPage() ) {
+				if ( $this->getTitle()->isUserConfigPage() ) {
 					$level = 'user';
-				} elseif ( $this->mTitle->isSiteConfigPage() ) {
+				} elseif ( $this->getTitle()->isSiteConfigPage() ) {
 					$level = 'site';
 				} else {
 					$level = false;
@@ -4210,8 +4195,8 @@ class EditPage implements IEditObject {
 		$services = MediaWikiServices::getInstance();
 		$contentTransformer = $services->getContentTransformer();
 		$contentRenderer = $services->getContentRenderer();
-		$pstContent = $contentTransformer->preSaveTransform( $content, $this->mTitle, $user, $parserOptions );
-		$parserOutput = $contentRenderer->getParserOutput( $pstContent, $this->mTitle, null, $parserOptions );
+		$pstContent = $contentTransformer->preSaveTransform( $content, $this->page, $user, $parserOptions );
+		$parserOutput = $contentRenderer->getParserOutput( $pstContent, $this->page, null, $parserOptions );
 		$out = $this->context->getOutput();
 		$skin = $out->getSkin();
 		$skinOptions = $skin->getOptions();
@@ -4248,7 +4233,7 @@ class EditPage implements IEditObject {
 			}
 			return $templates;
 		} else {
-			return $this->mTitle->getTemplateLinksFrom();
+			return $this->getTitle()->getTemplateLinksFrom();
 		}
 	}
 
@@ -4459,7 +4444,7 @@ class EditPage implements IEditObject {
 			$this->context->getConfig()->get( MainConfigNames::EditSubmitButtonLabelPublish );
 
 		// Can't use $this->isNew as that's also true if we're adding a new section to an extant page
-		$newPage = !$this->mTitle->exists();
+		$newPage = !$this->page->exists();
 
 		if ( $labelAsPublish ) {
 			$buttonLabelKey = $newPage ? 'publishpage' : 'publishchanges';
@@ -4561,7 +4546,7 @@ class EditPage implements IEditObject {
 		$this->getHookRunner()->onEditPageNoSuchSection( $this, $res );
 		$out->addHTML( $res );
 
-		$out->returnToMain( false, $this->mTitle );
+		$out->returnToMain( false, $this->page );
 	}
 
 	/**
