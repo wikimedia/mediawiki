@@ -561,6 +561,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	public function provideParserOptionsWithLanguageOverride() {
 		$parserOptions = $this->createMock( ParserOptions::class );
 		$parserOptions->method( 'optionsHash' )->willReturn( '' );
+		$parserOptions->method( 'getWrapOutputClass' )->willReturn( false );
 		$parserOptions->method( 'getUseParsoid' )->willReturn( true );
 		$parserOptions->method( 'getTargetLanguage' )
 			->willReturn( null );
@@ -569,6 +570,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$langCode = 'de';
 		$parserOptions = $this->createMock( ParserOptions::class );
 		$parserOptions->method( 'optionsHash' )->willReturn( '' );
+		$parserOptions->method( 'getWrapOutputClass' )->willReturn( false );
 		$parserOptions->method( 'getUseParsoid' )->willReturn( true );
 		$parserOptions->method( 'getTargetLanguage' )
 			->willReturn( $this->getLanguageMock( $langCode ) );
@@ -577,6 +579,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$langCode = 'ar';
 		$parserOptions = $this->createMock( ParserOptions::class );
 		$parserOptions->method( 'optionsHash' )->willReturn( '' );
+		$parserOptions->method( 'getWrapOutputClass' )->willReturn( false );
 		$parserOptions->method( 'getUseParsoid' )->willReturn( true );
 		$parserOptions->method( 'getTargetLanguage' )
 			->willReturn( $this->getLanguageMock( $langCode ) );
