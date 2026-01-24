@@ -12,6 +12,7 @@ use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
+use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -35,11 +36,11 @@ class TitleFactory {
 
 	/**
 	 * @see Title::newFromLinkTarget
-	 * @param LinkTarget $linkTarget
+	 * @param ParsoidLinkTarget $linkTarget
 	 * @param string $forceClone
 	 * @return Title
 	 */
-	public function newFromLinkTarget( LinkTarget $linkTarget, $forceClone = '' ): Title {
+	public function newFromLinkTarget( ParsoidLinkTarget $linkTarget, $forceClone = '' ): Title {
 		return Title::newFromLinkTarget( $linkTarget, $forceClone );
 	}
 
@@ -48,7 +49,7 @@ class TitleFactory {
 	 * @param LinkTarget|null $linkTarget
 	 * @return Title|null
 	 */
-	public function castFromLinkTarget( ?LinkTarget $linkTarget ): ?Title {
+	public function castFromLinkTarget( ?ParsoidLinkTarget $linkTarget ): ?Title {
 		return Title::castFromLinkTarget( $linkTarget );
 	}
 
