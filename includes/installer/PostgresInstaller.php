@@ -156,7 +156,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	public function openConnectionToAnyDB( string $user, string $password ): ConnectionStatus {
+	public function openConnectionToAnyDB( string $user, ?string $password ): ConnectionStatus {
 		$dbs = [
 			'template1',
 			'postgres',
@@ -172,7 +172,7 @@ class PostgresInstaller extends DatabaseInstaller {
 					'host' => $this->getVar( 'wgDBserver' ),
 					'port' => $this->getVar( 'wgDBport' ),
 					'user' => $user,
-					'password' => $password,
+					'password' => $password ?? '',
 					'ssl' => $this->getVar( 'wgDBssl' ),
 					'dbname' => $db
 				];
