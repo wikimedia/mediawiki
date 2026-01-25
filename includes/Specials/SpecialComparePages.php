@@ -24,19 +24,14 @@ use MediaWiki\Title\Title;
  */
 class SpecialComparePages extends SpecialPage {
 
-	private RevisionLookup $revisionLookup;
-	private IContentHandlerFactory $contentHandlerFactory;
-
 	/** @var DifferenceEngine */
 	private $differenceEngine;
 
 	public function __construct(
-		RevisionLookup $revisionLookup,
-		IContentHandlerFactory $contentHandlerFactory
+		private readonly RevisionLookup $revisionLookup,
+		private readonly IContentHandlerFactory $contentHandlerFactory
 	) {
 		parent::__construct( 'ComparePages' );
-		$this->revisionLookup = $revisionLookup;
-		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	/**

@@ -35,26 +35,21 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class SpecialDeletedContributions extends ContributionsSpecialPage {
 	private ?DeletedContribsPager $pager = null;
 
-	private RevisionStore $revisionStore;
-	private CommentFormatter $commentFormatter;
-	private LinkBatchFactory $linkBatchFactory;
-	private TempUserConfig $tempUserConfig;
-
 	public function __construct(
 		PermissionManager $permissionManager,
 		IConnectionProvider $dbProvider,
-		RevisionStore $revisionStore,
+		private readonly RevisionStore $revisionStore,
 		NamespaceInfo $namespaceInfo,
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch,
 		UserOptionsLookup $userOptionsLookup,
-		CommentFormatter $commentFormatter,
-		LinkBatchFactory $linkBatchFactory,
+		private readonly CommentFormatter $commentFormatter,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		UserFactory $userFactory,
 		UserIdentityLookup $userIdentityLookup,
 		DatabaseBlockStore $blockStore,
 		UserGroupAssignmentService $userGroupAssignmentService,
-		TempUserConfig $tempUserConfig
+		private readonly TempUserConfig $tempUserConfig
 	) {
 		parent::__construct(
 			$permissionManager,
@@ -70,10 +65,6 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 			'DeletedContributions',
 			'deletedhistory'
 		);
-		$this->revisionStore = $revisionStore;
-		$this->commentFormatter = $commentFormatter;
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**

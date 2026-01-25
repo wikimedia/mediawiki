@@ -20,17 +20,14 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialWantedPages extends WantedQueryPage {
 
-	private LinksMigration $linksMigration;
-
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,
-		LinksMigration $linksMigration
+		private readonly LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Wantedpages' );
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
-		$this->linksMigration = $linksMigration;
 	}
 
 	/** @inheritDoc */

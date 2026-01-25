@@ -23,16 +23,11 @@ use MediaWiki\SpecialPage\SpecialPage;
  */
 class SpecialTrackingCategories extends SpecialPage {
 
-	private LinkBatchFactory $linkBatchFactory;
-	private TrackingCategories $trackingCategories;
-
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory,
-		TrackingCategories $trackingCategories
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly TrackingCategories $trackingCategories
 	) {
 		parent::__construct( 'TrackingCategories' );
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->trackingCategories = $trackingCategories;
 	}
 
 	/** @inheritDoc */

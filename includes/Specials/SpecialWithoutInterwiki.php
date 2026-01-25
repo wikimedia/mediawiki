@@ -26,16 +26,13 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 	/** @var string */
 	private $prefix = '';
 
-	private NamespaceInfo $namespaceInfo;
-
 	public function __construct(
-		NamespaceInfo $namespaceInfo,
+		private readonly NamespaceInfo $namespaceInfo,
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,
 		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'Withoutinterwiki' );
-		$this->namespaceInfo = $namespaceInfo;
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
 		$this->setLanguageConverter( $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() ) );

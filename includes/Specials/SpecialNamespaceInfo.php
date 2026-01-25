@@ -21,12 +21,10 @@ use MediaWiki\Title\NamespaceInfo;
  */
 class SpecialNamespaceInfo extends SpecialPage {
 
-	private NamespaceInfo $namespaceInfo;
-
-	public function __construct( NamespaceInfo $namespaceInfo ) {
+	public function __construct(
+		private readonly NamespaceInfo $namespaceInfo
+	) {
 		parent::__construct( 'NamespaceInfo' );
-
-		$this->namespaceInfo = $namespaceInfo;
 	}
 
 	/**

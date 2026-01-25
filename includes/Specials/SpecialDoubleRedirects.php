@@ -27,17 +27,12 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialDoubleRedirects extends QueryPage {
 
-	private IContentHandlerFactory $contentHandlerFactory;
-	private LinkBatchFactory $linkBatchFactory;
-
 	public function __construct(
-		IContentHandlerFactory $contentHandlerFactory,
-		LinkBatchFactory $linkBatchFactory,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider
 	) {
 		parent::__construct( 'DoubleRedirects' );
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->linkBatchFactory = $linkBatchFactory;
 		$this->setDatabaseProvider( $dbProvider );
 	}
 

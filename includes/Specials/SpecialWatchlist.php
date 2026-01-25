@@ -65,9 +65,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	public const WATCHLIST_LABEL_CSS_CLASS_PREFIX = 'mw-changeslist-label-';
 
-	private WatchedItemStoreInterface $watchedItemStore;
-	private WatchlistManager $watchlistManager;
-	private UserOptionsLookup $userOptionsLookup;
 	private array $watchlistLabelsForCurrentUser;
 
 	/**
@@ -77,9 +74,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	private $currentMode;
 
 	public function __construct(
-		WatchedItemStoreInterface $watchedItemStore,
-		WatchlistManager $watchlistManager,
-		UserOptionsLookup $userOptionsLookup,
+		private readonly WatchedItemStoreInterface $watchedItemStore,
+		private readonly WatchlistManager $watchlistManager,
+		private UserOptionsLookup $userOptionsLookup,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserConfig $tempUserConfig,
 		RecentChangeFactory $recentChangeFactory,
@@ -95,9 +92,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$changesListQueryFactory,
 		);
 
-		$this->watchedItemStore = $watchedItemStore;
-		$this->watchlistManager = $watchlistManager;
-		$this->userOptionsLookup = $userOptionsLookup;
 		$this->watchlistLabelsForCurrentUser = $watchlistLabelStore->loadAllForUser( $this->getUser() );
 	}
 

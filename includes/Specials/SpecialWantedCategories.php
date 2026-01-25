@@ -30,19 +30,17 @@ class SpecialWantedCategories extends WantedQueryPage {
 	private $currentCategoryCounts;
 
 	private ILanguageConverter $languageConverter;
-	private LinksMigration $linksMigration;
 
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,
 		LanguageConverterFactory $languageConverterFactory,
-		LinksMigration $linksMigration
+		private readonly LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Wantedcategories' );
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
-		$this->linksMigration = $linksMigration;
 	}
 
 	/** @inheritDoc */

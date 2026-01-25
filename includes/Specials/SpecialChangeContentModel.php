@@ -28,32 +28,16 @@ use MediaWiki\Title\Title;
  */
 class SpecialChangeContentModel extends FormSpecialPage {
 
-	private IContentHandlerFactory $contentHandlerFactory;
-	private ContentModelChangeFactory $contentModelChangeFactory;
-	private SpamChecker $spamChecker;
-	private RevisionLookup $revisionLookup;
-	private WikiPageFactory $wikiPageFactory;
-	private SearchEngineFactory $searchEngineFactory;
-	private CollationFactory $collationFactory;
-
 	public function __construct(
-		IContentHandlerFactory $contentHandlerFactory,
-		ContentModelChangeFactory $contentModelChangeFactory,
-		SpamChecker $spamChecker,
-		RevisionLookup $revisionLookup,
-		WikiPageFactory $wikiPageFactory,
-		SearchEngineFactory $searchEngineFactory,
-		CollationFactory $collationFactory
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly ContentModelChangeFactory $contentModelChangeFactory,
+		private readonly SpamChecker $spamChecker,
+		private readonly RevisionLookup $revisionLookup,
+		private readonly WikiPageFactory $wikiPageFactory,
+		private readonly SearchEngineFactory $searchEngineFactory,
+		private readonly CollationFactory $collationFactory
 	) {
 		parent::__construct( 'ChangeContentModel', 'editcontentmodel' );
-
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->contentModelChangeFactory = $contentModelChangeFactory;
-		$this->spamChecker = $spamChecker;
-		$this->revisionLookup = $revisionLookup;
-		$this->wikiPageFactory = $wikiPageFactory;
-		$this->searchEngineFactory = $searchEngineFactory;
-		$this->collationFactory = $collationFactory;
 	}
 
 	/** @inheritDoc */

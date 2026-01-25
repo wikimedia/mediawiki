@@ -45,34 +45,20 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	 * the form is processed (or if no form was submitted).
 	 */
 	private array $formData;
-	private IConnectionProvider $dbProvider;
-	private LinkBatchFactory $linkBatchFactory;
-	private IContentHandlerFactory $contentHandlerFactory;
-	private SearchEngineFactory $searchEngineFactory;
-	private NamespaceInfo $namespaceInfo;
-	private TitleFactory $titleFactory;
-	private LinksMigration $linksMigration;
 
 	private const LIMITS = [ 20, 50, 100, 250, 500 ];
 
 	public function __construct(
-		IConnectionProvider $dbProvider,
-		LinkBatchFactory $linkBatchFactory,
-		IContentHandlerFactory $contentHandlerFactory,
-		SearchEngineFactory $searchEngineFactory,
-		NamespaceInfo $namespaceInfo,
-		TitleFactory $titleFactory,
-		LinksMigration $linksMigration
+		private readonly IConnectionProvider $dbProvider,
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly SearchEngineFactory $searchEngineFactory,
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly TitleFactory $titleFactory,
+		private readonly LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Whatlinkshere' );
 		$this->mIncludable = true;
-		$this->dbProvider = $dbProvider;
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->searchEngineFactory = $searchEngineFactory;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->titleFactory = $titleFactory;
-		$this->linksMigration = $linksMigration;
 	}
 
 	/**

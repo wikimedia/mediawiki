@@ -36,11 +36,11 @@ class SpecialTags extends SpecialPage {
 	 * @var array List of software activated tags
 	 */
 	protected $softwareActivatedTags;
-	private ChangeTagsStore $changeTagsStore;
 
-	public function __construct( ChangeTagsStore $changeTagsStore ) {
+	public function __construct(
+		private readonly ChangeTagsStore $changeTagsStore
+	) {
 		parent::__construct( 'Tags' );
-		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	/** @inheritDoc */

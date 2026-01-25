@@ -37,12 +37,10 @@ use Wikimedia\ScopedCallback;
  */
 class SpecialConfirmEmail extends UnlistedSpecialPage {
 
-	private UserFactory $userFactory;
-
-	public function __construct( UserFactory $userFactory ) {
+	public function __construct(
+		private readonly UserFactory $userFactory
+	) {
 		parent::__construct( 'Confirmemail', 'editmyprivateinfo' );
-
-		$this->userFactory = $userFactory;
 	}
 
 	/** @inheritDoc */

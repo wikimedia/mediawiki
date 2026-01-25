@@ -38,36 +38,18 @@ use Wikimedia\Timestamp\TimestampException;
  */
 class SpecialLog extends SpecialPage {
 
-	private LinkBatchFactory $linkBatchFactory;
-
-	private IConnectionProvider $dbProvider;
-
-	private ActorNormalization $actorNormalization;
-
-	private UserIdentityLookup $userIdentityLookup;
-
-	private UserNameUtils $userNameUtils;
-
-	private LogFormatterFactory $logFormatterFactory;
-
 	private TempUserConfig $tempUserConfig;
 
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory,
-		IConnectionProvider $dbProvider,
-		ActorNormalization $actorNormalization,
-		UserIdentityLookup $userIdentityLookup,
-		UserNameUtils $userNameUtils,
-		LogFormatterFactory $logFormatterFactory,
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly ActorNormalization $actorNormalization,
+		private readonly UserIdentityLookup $userIdentityLookup,
+		private readonly UserNameUtils $userNameUtils,
+		private readonly LogFormatterFactory $logFormatterFactory,
 		?TempUserConfig $tempUserConfig = null
 	) {
 		parent::__construct( 'Log' );
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->dbProvider = $dbProvider;
-		$this->actorNormalization = $actorNormalization;
-		$this->userIdentityLookup = $userIdentityLookup;
-		$this->userNameUtils = $userNameUtils;
-		$this->logFormatterFactory = $logFormatterFactory;
 		if ( $tempUserConfig instanceof TempUserConfig ) {
 			$this->tempUserConfig = $tempUserConfig;
 		} else {
