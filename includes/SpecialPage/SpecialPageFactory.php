@@ -519,7 +519,6 @@ class SpecialPageFactory {
 				'BlockActionInfo',
 				'TitleFormatter',
 				'NamespaceInfo',
-				'UserOptionsLookup',
 				'WatchlistManager'
 			]
 		],

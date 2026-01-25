@@ -47,17 +47,15 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialBrokenRedirects extends QueryPage {
 
-	private IContentHandlerFactory $contentHandlerFactory;
 	/** @var array<int,array<string,Title>> namespace and title map to redirect targets */
 	private array $redirectTargets = [];
 
 	public function __construct(
-		IContentHandlerFactory $contentHandlerFactory,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( 'BrokenRedirects' );
-		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
 	}

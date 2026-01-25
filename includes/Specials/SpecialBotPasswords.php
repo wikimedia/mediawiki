@@ -45,25 +45,17 @@ class SpecialBotPasswords extends FormSpecialPage {
 	private $password = null;
 
 	private LoggerInterface $logger;
-	private PasswordFactory $passwordFactory;
-	private CentralIdLookup $centralIdLookup;
-	private GrantsInfo $grantsInfo;
-	private GrantsLocalization $grantsLocalization;
 
 	public function __construct(
-		PasswordFactory $passwordFactory,
+		private readonly PasswordFactory $passwordFactory,
 		AuthManager $authManager,
-		CentralIdLookup $centralIdLookup,
-		GrantsInfo $grantsInfo,
-		GrantsLocalization $grantsLocalization
+		private readonly CentralIdLookup $centralIdLookup,
+		private readonly GrantsInfo $grantsInfo,
+		private readonly GrantsLocalization $grantsLocalization
 	) {
 		parent::__construct( 'BotPasswords', 'editmyprivateinfo' );
 		$this->logger = LoggerFactory::getInstance( 'authentication' );
-		$this->passwordFactory = $passwordFactory;
-		$this->centralIdLookup = $centralIdLookup;
 		$this->setAuthManager( $authManager );
-		$this->grantsInfo = $grantsInfo;
-		$this->grantsLocalization = $grantsLocalization;
 	}
 
 	/**

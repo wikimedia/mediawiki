@@ -47,19 +47,13 @@ class SpecialRedirect extends FormSpecialPage {
 	 */
 	protected $mValue;
 
-	private RepoGroup $repoGroup;
-	private UserFactory $userFactory;
-
 	public function __construct(
-		RepoGroup $repoGroup,
-		UserFactory $userFactory
+		private readonly RepoGroup $repoGroup,
+		private readonly UserFactory $userFactory
 	) {
 		parent::__construct( 'Redirect' );
 		$this->mType = null;
 		$this->mValue = null;
-
-		$this->repoGroup = $repoGroup;
-		$this->userFactory = $userFactory;
 	}
 
 	/**

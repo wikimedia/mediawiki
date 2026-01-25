@@ -24,13 +24,10 @@ use MediaWiki\Utils\UrlUtils;
  */
 class SpecialApiHelp extends UnlistedSpecialPage {
 
-	private UrlUtils $urlUtils;
-
 	public function __construct(
-		UrlUtils $urlUtils
+		private readonly UrlUtils $urlUtils
 	) {
 		parent::__construct( 'ApiHelp' );
-		$this->urlUtils = $urlUtils;
 	}
 
 	/** @inheritDoc */

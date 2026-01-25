@@ -36,7 +36,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
-use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
@@ -56,18 +55,6 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @ingroup SpecialPage
  */
 class SpecialBlock extends FormSpecialPage {
-
-	private BlockTargetFactory $blockTargetFactory;
-	private BlockPermissionCheckerFactory $blockPermissionCheckerFactory;
-	private BlockUserFactory $blockUserFactory;
-	private DatabaseBlockStore $blockStore;
-	private UserNameUtils $userNameUtils;
-	private UserNamePrefixSearch $userNamePrefixSearch;
-	private BlockActionInfo $blockActionInfo;
-	private TitleFormatter $titleFormatter;
-	private NamespaceInfo $namespaceInfo;
-	private UserOptionsLookup $userOptionsLookup;
-	private WatchlistManager $watchlistManager;
 
 	/** @var BlockTarget|null User to be blocked, as passed either by parameter
 	 * (url?wpTarget=Foo) or as subpage (Special:Block/Foo)
@@ -94,31 +81,18 @@ class SpecialBlock extends FormSpecialPage {
 	protected array $codexFormData = [];
 
 	public function __construct(
-		BlockTargetFactory $blockTargetFactory,
-		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
-		BlockUserFactory $blockUserFactory,
-		DatabaseBlockStore $blockStore,
-		UserNameUtils $userNameUtils,
-		UserNamePrefixSearch $userNamePrefixSearch,
-		BlockActionInfo $blockActionInfo,
-		TitleFormatter $titleFormatter,
-		NamespaceInfo $namespaceInfo,
-		UserOptionsLookup $userOptionsLookup,
-		WatchlistManager $watchlistManager
+		private readonly BlockTargetFactory $blockTargetFactory,
+		private readonly BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
+		private readonly BlockUserFactory $blockUserFactory,
+		private readonly DatabaseBlockStore $blockStore,
+		private readonly UserNameUtils $userNameUtils,
+		private readonly UserNamePrefixSearch $userNamePrefixSearch,
+		private readonly BlockActionInfo $blockActionInfo,
+		private readonly TitleFormatter $titleFormatter,
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly WatchlistManager $watchlistManager
 	) {
 		parent::__construct( 'Block', 'block' );
-
-		$this->blockTargetFactory = $blockTargetFactory;
-		$this->blockPermissionCheckerFactory = $blockPermissionCheckerFactory;
-		$this->blockUserFactory = $blockUserFactory;
-		$this->blockStore = $blockStore;
-		$this->userNameUtils = $userNameUtils;
-		$this->userNamePrefixSearch = $userNamePrefixSearch;
-		$this->blockActionInfo = $blockActionInfo;
-		$this->titleFormatter = $titleFormatter;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->watchlistManager = $watchlistManager;
 	}
 
 	public function getDescription(): Message {

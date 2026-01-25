@@ -46,41 +46,19 @@ class SpecialBlockList extends SpecialPage {
 	/** @var string|null */
 	protected $blockType;
 
-	private LinkBatchFactory $linkBatchFactory;
-	private DatabaseBlockStore $blockStore;
-	private BlockRestrictionStore $blockRestrictionStore;
-	private IConnectionProvider $dbProvider;
-	private CommentStore $commentStore;
-	private BlockTargetFactory $blockTargetFactory;
-	private HideUserUtils $hideUserUtils;
-	private BlockActionInfo $blockActionInfo;
-	private RowCommentFormatter $rowCommentFormatter;
-	private TempUserConfig $tempUserConfig;
-
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory,
-		DatabaseBlockStore $blockStore,
-		BlockRestrictionStore $blockRestrictionStore,
-		IConnectionProvider $dbProvider,
-		CommentStore $commentStore,
-		BlockTargetFactory $blockTargetFactory,
-		HideUserUtils $hideUserUtils,
-		BlockActionInfo $blockActionInfo,
-		RowCommentFormatter $rowCommentFormatter,
-		TempUserConfig $tempUserConfig
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly DatabaseBlockStore $blockStore,
+		private readonly BlockRestrictionStore $blockRestrictionStore,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly CommentStore $commentStore,
+		private readonly BlockTargetFactory $blockTargetFactory,
+		private readonly HideUserUtils $hideUserUtils,
+		private readonly BlockActionInfo $blockActionInfo,
+		private readonly RowCommentFormatter $rowCommentFormatter,
+		private readonly TempUserConfig $tempUserConfig
 	) {
 		parent::__construct( 'BlockList' );
-
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->blockStore = $blockStore;
-		$this->blockRestrictionStore = $blockRestrictionStore;
-		$this->dbProvider = $dbProvider;
-		$this->commentStore = $commentStore;
-		$this->blockTargetFactory = $blockTargetFactory;
-		$this->hideUserUtils = $hideUserUtils;
-		$this->blockActionInfo = $blockActionInfo;
-		$this->rowCommentFormatter = $rowCommentFormatter;
-		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**

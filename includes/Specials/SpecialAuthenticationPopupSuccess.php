@@ -19,13 +19,10 @@ use MediaWiki\SpecialPage\UnlistedSpecialPage;
  * @ingroup SpecialPage
  */
 class SpecialAuthenticationPopupSuccess extends UnlistedSpecialPage {
-	private SkinFactory $skinFactory;
-
 	public function __construct(
-		SkinFactory $skinFactory
+		private readonly SkinFactory $skinFactory
 	) {
 		parent::__construct( 'AuthenticationPopupSuccess' );
-		$this->skinFactory = $skinFactory;
 	}
 
 	/** @inheritDoc */

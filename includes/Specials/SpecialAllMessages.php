@@ -25,22 +25,13 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialAllMessages extends SpecialPage {
 
-	private LanguageFactory $languageFactory;
-	private LanguageNameUtils $languageNameUtils;
-	private IConnectionProvider $dbProvider;
-	private LocalisationCache $localisationCache;
-
 	public function __construct(
-		LanguageFactory $languageFactory,
-		LanguageNameUtils $languageNameUtils,
-		LocalisationCache $localisationCache,
-		IConnectionProvider $dbProvider
+		private readonly LanguageFactory $languageFactory,
+		private readonly LanguageNameUtils $languageNameUtils,
+		private readonly LocalisationCache $localisationCache,
+		private readonly IConnectionProvider $dbProvider
 	) {
 		parent::__construct( 'Allmessages' );
-		$this->languageFactory = $languageFactory;
-		$this->languageNameUtils = $languageNameUtils;
-		$this->localisationCache = $localisationCache;
-		$this->dbProvider = $dbProvider;
 	}
 
 	/**

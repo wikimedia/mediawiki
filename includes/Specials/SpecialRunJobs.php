@@ -25,16 +25,11 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  */
 class SpecialRunJobs extends UnlistedSpecialPage {
 
-	private JobRunner $jobRunner;
-	private ReadOnlyMode $readOnlyMode;
-
 	public function __construct(
-		JobRunner $jobRunner,
-		ReadOnlyMode $readOnlyMode
+		private readonly JobRunner $jobRunner,
+		private readonly ReadOnlyMode $readOnlyMode
 	) {
 		parent::__construct( 'RunJobs' );
-		$this->jobRunner = $jobRunner;
-		$this->readOnlyMode = $readOnlyMode;
 	}
 
 	/** @inheritDoc */

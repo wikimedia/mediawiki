@@ -49,19 +49,12 @@ class SpecialVersion extends SpecialPage {
 	 */
 	protected static $extensionTypes = false;
 
-	private ParserFactory $parserFactory;
-	private UrlUtils $urlUtils;
-	private IConnectionProvider $dbProvider;
-
 	public function __construct(
-		ParserFactory $parserFactory,
-		UrlUtils $urlUtils,
-		IConnectionProvider $dbProvider
+		private readonly ParserFactory $parserFactory,
+		private readonly UrlUtils $urlUtils,
+		private readonly IConnectionProvider $dbProvider
 	) {
 		parent::__construct( 'Version' );
-		$this->parserFactory = $parserFactory;
-		$this->urlUtils = $urlUtils;
-		$this->dbProvider = $dbProvider;
 	}
 
 	/**
@@ -305,7 +298,7 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Returns HTML showing the third party software versions (apache, php, mysql).
+	 * Returns HTML showing the third-party software versions (apache, php, mysql).
 	 *
 	 * @return string HTML
 	 */

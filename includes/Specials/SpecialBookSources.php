@@ -26,16 +26,11 @@ use UnexpectedValueException;
  */
 class SpecialBookSources extends SpecialPage {
 
-	private RevisionLookup $revisionLookup;
-	private TitleFactory $titleFactory;
-
 	public function __construct(
-		RevisionLookup $revisionLookup,
-		TitleFactory $titleFactory
+		private readonly RevisionLookup $revisionLookup,
+		private readonly TitleFactory $titleFactory
 	) {
 		parent::__construct( 'Booksources' );
-		$this->revisionLookup = $revisionLookup;
-		$this->titleFactory = $titleFactory;
 	}
 
 	/**

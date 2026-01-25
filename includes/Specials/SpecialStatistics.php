@@ -29,11 +29,10 @@ class SpecialStatistics extends SpecialPage {
 	private int $users;
 	private int $activeUsers;
 
-	private UserGroupManager $userGroupManager;
-
-	public function __construct( UserGroupManager $userGroupManager ) {
+	public function __construct(
+		private readonly UserGroupManager $userGroupManager
+	) {
 		parent::__construct( 'Statistics' );
-		$this->userGroupManager = $userGroupManager;
 	}
 
 	/** @inheritDoc */

@@ -28,35 +28,17 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialAutoblockList extends SpecialPage {
 
-	private LinkBatchFactory $linkBatchFactory;
-	private BlockRestrictionStore $blockRestrictionStore;
-	private IConnectionProvider $dbProvider;
-	private CommentStore $commentStore;
-	private BlockTargetFactory $blockTargetFactory;
-	private HideUserUtils $hideUserUtils;
-	private BlockActionInfo $blockActionInfo;
-	private RowCommentFormatter $rowCommentFormatter;
-
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory,
-		BlockRestrictionStore $blockRestrictionStore,
-		IConnectionProvider $dbProvider,
-		CommentStore $commentStore,
-		BlockTargetFactory $blockTargetFactory,
-		HideUserUtils $hideUserUtils,
-		BlockActionInfo $blockActionInfo,
-		RowCommentFormatter $rowCommentFormatter
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly BlockRestrictionStore $blockRestrictionStore,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly CommentStore $commentStore,
+		private readonly BlockTargetFactory $blockTargetFactory,
+		private readonly HideUserUtils $hideUserUtils,
+		private readonly BlockActionInfo $blockActionInfo,
+		private readonly RowCommentFormatter $rowCommentFormatter
 	) {
 		parent::__construct( 'AutoblockList' );
-
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->blockRestrictionStore = $blockRestrictionStore;
-		$this->dbProvider = $dbProvider;
-		$this->commentStore = $commentStore;
-		$this->blockTargetFactory = $blockTargetFactory;
-		$this->hideUserUtils = $hideUserUtils;
-		$this->blockActionInfo = $blockActionInfo;
-		$this->rowCommentFormatter = $rowCommentFormatter;
 	}
 
 	/**
