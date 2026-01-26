@@ -157,4 +157,19 @@ class RestrictedUserGroupChecker {
 		$groupRestrictions['canBeIgnored'] ??= false;
 		return $groupRestrictions;
 	}
+
+	/**
+	 * Returns a list of private conditions that apply to members of the specified group.
+	 * @param string $groupName
+	 * @return list<mixed>
+	 */
+	public function getPrivateConditionsForGroup( string $groupName ): array {
+		if ( !$this->isGroupRestricted( $groupName ) ) {
+			return [];
+		}
+
+		$groupRestrictions = $this->getGroupRestrictions( $groupName );
+		return $this->userRequirementsConditionChecker->extractPrivateConditions(
+			$groupRestrictions['memberConditions'] );
+	}
 }

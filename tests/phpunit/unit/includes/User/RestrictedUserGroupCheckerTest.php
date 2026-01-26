@@ -225,4 +225,53 @@ class RestrictedUserGroupCheckerTest extends MediaWikiUnitTestCase {
 			],
 		];
 	}
+
+	/** @dataProvider provideGetPrivateConditionsForGroup */
+	public function testGetPrivateConditionsForGroup( string $group, array $expected ): void {
+		$restrictions = [
+			'interface-admin' => [
+				'memberConditions' => [ 'cond1' ]
+			],
+			'suppress' => [
+				'memberConditions' => [ 'cond1' ],
+				'updaterConditions' => [ 'cond2' ],
+			],
+			'bureaucrat' => [
+				'updaterConditions' => [ 'cond2' ],
+			]
+		];
+		$options = $this->createOptions( $restrictions );
+
+		// This mock assumes all conditions are private and returns them as provided in the input
+		$conditionCheckerMock = $this->createMock( UserRequirementsConditionChecker::class );
+		$conditionCheckerMock->method( 'extractPrivateConditions' )
+			->willReturnCallback( static fn ( $cond ) => $cond );
+
+		$groupChecker = new RestrictedUserGroupChecker( $options, $conditionCheckerMock );
+
+		$result = $groupChecker->getPrivateConditionsForGroup( $group );
+		$this->assertSame( $expected, $result );
+	}
+
+	public static function provideGetPrivateConditionsForGroup(): array {
+		// Updater restrictions are not considered private, so they are absent from the expected state
+		return [
+			'Unrestricted group' => [
+				'group' => 'sysop',
+				'expected' => [],
+			],
+			'Group with only member restrictions' => [
+				'group' => 'interface-admin',
+				'expected' => [ 'cond1' ],
+			],
+			'Group with member and updater restrictions' => [
+				'group' => 'suppress',
+				'expected' => [ 'cond1' ],
+			],
+			'Group with only updater restrictions' => [
+				'group' => 'bureaucrat',
+				'expected' => [],
+			],
+		];
+	}
 }

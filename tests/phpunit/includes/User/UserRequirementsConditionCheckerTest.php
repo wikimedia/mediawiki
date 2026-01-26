@@ -252,4 +252,38 @@ class UserRequirementsConditionCheckerTest extends MediaWikiIntegrationTestCase 
 			]
 		];
 	}
+
+	/** @dataProvider provideExtractPrivateConditions */
+	public function testExtractPrivateConditions(
+		array $privateConditions,
+		array $checkedCondition,
+		array $expectedResult
+	): void {
+		$this->overrideConfigValue( MainConfigNames::UserRequirementsPrivateConditions, $privateConditions );
+
+		$conditionChecker = $this->getServiceContainer()->getUserRequirementsConditionChecker();
+		$result = $conditionChecker->extractPrivateConditions( $checkedCondition );
+		$this->assertArrayEquals( $expectedResult, $result );
+	}
+
+	public static function provideExtractPrivateConditions(): array {
+		return [
+			'No private conditions used' => [
+				'privateConditions' => [ 'priv1' ],
+				'checkedCondition' => [ '&', 'publ1', 'publ2', [ '|', 'publ3', 'publ4' ] ],
+				'expectedResult' => [],
+			],
+			'Complex condition with private' => [
+				'privateConditions' => [ 'priv1', 'priv2', 'priv3' ],
+				// 'priv3' below serves as an argument; we want to ensure it's not treated as condition name
+				'checkedCondition' => [ '&', 'publ1', 'priv1', [ '|', 'publ2', [ 'priv2', 'priv3' ] ] ],
+				'expectedResult' => [ 'priv1', 'priv2' ],
+			],
+			'The same condition occuring multiple times' => [
+				'privateConditions' => [ 'priv1' ],
+				'checkedCondition' => [ '&', 'priv1', 'priv1' ],
+				'expectedResult' => [ 'priv1' ],
+			],
+		];
+	}
 }

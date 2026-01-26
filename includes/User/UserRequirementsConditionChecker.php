@@ -313,6 +313,42 @@ class UserRequirementsConditionChecker {
 	}
 
 	/**
+	 * Goes through a condition passed as the input and extracts all private conditions that are used within it.
+	 * @param mixed $cond A condition, possibly containing other conditions.
+	 * @return list<mixed> A list of unique private conditions present in $cond
+	 */
+	public function extractPrivateConditions( $cond ): array {
+		$privateConditions = $this->options->get( MainConfigNames::UserRequirementsPrivateConditions );
+		$result = $this->extractPrivateConditionsInternal( $cond, $privateConditions );
+		return array_values( array_unique( $result ) );
+	}
+
+	/**
+	 * Internal backend for {@see extractPrivateConditions}. It returns a list of all private conditions found
+	 * in the input conditions. The result may contain duplicates.
+	 * @param mixed $cond
+	 * @param list<string> $privateConditions
+	 * @return list<mixed>
+	 */
+	private function extractPrivateConditionsInternal( $cond, array $privateConditions ): array {
+		$result = [];
+		if ( is_array( $cond ) ) {
+			$op = $cond[0];
+			if ( in_array( $op, self::VALID_OPS ) ) {
+				foreach ( array_slice( $cond, 1 ) as $subcond ) {
+					$result = array_merge(
+						$result, $this->extractPrivateConditionsInternal( $subcond, $privateConditions ) );
+				}
+			} elseif ( in_array( $op, $privateConditions ) ) {
+				$result[] = $op;
+			}
+		} elseif ( in_array( $cond, $privateConditions ) ) {
+			$result[] = $cond;
+		}
+		return $result;
+	}
+
+	/**
 	 * Gets a unique key for various caches.
 	 */
 	private function getCacheKey( UserIdentity $user ): string {
