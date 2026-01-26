@@ -186,6 +186,8 @@
 	"prefs-description-watchlist": "Упраување со и лично прилагодување на списокот на страници што ги следите.",
 	"prefs-editwatchlist": "Уреди набљудувани",
 	"prefs-editwatchlist-label": "Уреди ставки во набљудуваните:",
+	"prefs-editwatchlistlabels-label": "Уреди натписи на набљудуваните:",
+	"prefs-managewatchlistlabels": "Преглед на и управување со натписи на набљудувани",
 	"prefs-editwatchlist-edit": "Прегл. и отстрани наслови во набљудуваните",
 	"prefs-editwatchlist-raw": "Уреди сирови набљудувани",
 	"prefs-editwatchlist-clear": "Исчисти набљудувани",

@@ -6,6 +6,7 @@
 			"MGA73",
 			"Mads Haupt",
 			"Peter Alberti",
+			"Peterleth",
 			"Saederup92",
 			"Thomsen",
 			"Tjernobyl"
@@ -101,7 +102,7 @@
 	"config-install-user": "Opretter databasebruger",
 	"config-install-user-alreadyexists": "Brugeren \"$1\" findes allerede",
 	"config-install-user-create-failed": "Oprettelse af brugeren \"$1\" mislykkedes: $2",
-	"config-install-tables": "Opretter tabeller, trin et",
+	"config-install-tables": "Opretter tabeller",
 	"config-install-mainpage-exists": "Forsiden findes allerede, springer over",
 	"config-install-mainpage-failed": "Kunne ikke indsætte forside: $1",
 	"config-install-db-success": "Databasen blev sat op",

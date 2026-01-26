@@ -210,6 +210,8 @@
 	"prefs-description-watchlist": "Hallitse ja personoi listaa tarkkailemistasi sivuista.",
 	"prefs-editwatchlist": "Muokkaa tarkkailulistaa",
 	"prefs-editwatchlist-label": "Muokkaa tarkkailulistasi merkintöjä:",
+	"prefs-editwatchlistlabels-label": "Muokkaa tarkkailulistan tunnisteita:",
+	"prefs-managewatchlistlabels": "Katso ja muokkaa tarkkailulistan tunnisteitasi",
 	"prefs-editwatchlist-edit": "Näytä ja poista kohteita tarkkailulistallasi",
 	"prefs-editwatchlist-raw": "Muokkaa tarkkailulistan raakaversiota",
 	"prefs-editwatchlist-clear": "Tyhjennä tarkkailulistasi",

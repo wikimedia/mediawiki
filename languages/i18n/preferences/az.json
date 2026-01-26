@@ -197,6 +197,8 @@
 	"prefs-description-watchlist": "İzlədiyiniz səhifələrin siyahısını idarə edin və fərdiləşdirin.",
 	"prefs-editwatchlist": "İzləmə siyahısını redaktə et",
 	"prefs-editwatchlist-label": "İzləmə siyahısındakıları redaktə et",
+	"prefs-editwatchlistlabels-label": "İzləmə siyahısı etiketlərini redaktə et:",
+	"prefs-managewatchlistlabels": "İzləmə siyahınızın etiketlərinə baxın və idarə edin",
 	"prefs-editwatchlist-edit": "İzləmə siyahısındakı başlıqlara bax və ləğv et",
 	"prefs-editwatchlist-raw": "Mətn kimi redaktə et",
 	"prefs-editwatchlist-clear": "İzləmə siyahısını təmizlə",

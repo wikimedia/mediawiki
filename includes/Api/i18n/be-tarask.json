@@ -3,6 +3,7 @@
 		"authors": [
 			"Red Winged Duck",
 			"Renessaince",
+			"Ucukor",
 			"Vlad5250",
 			"W"
 		]
@@ -36,7 +37,7 @@
 	"apihelp-block-param-userid": "Замест гэтага пазначце <kbd>$1user=#<var>ID</var></kbd>.",
 	"apihelp-block-param-expiry": "Час заканчэньня. Можа быць адносным (напрыклад, <kbd>5 months</kbd> або <kbd>2 weeks</kbd>) ці абсалютным (напрыклад, <kbd>2014-09-18T12:34:56Z</kbd>). Калі выстаўлены на <kbd>infinite</kbd>, <kbd>indefinite</kbd> ці <kbd>never</kbd>, блякаваньне будзе бестэрміновым.",
 	"apihelp-block-param-reason": "Прычына блякаваньня.",
-	"apihelp-block-param-anononly": "Заблякаваць толькі ананімных удзельнікаў (напрыклад, забараніць ананімныя праўкі з гэтага IP-адрасу, у тым ліку з часовых уліковых запісаў).",
+	"apihelp-block-param-anononly": "Заблякаваць толькі ананімных удзельнікаў (напрыклад, забараніць ананімныя праўкі з гэтага IP-адрасу, у тым ліку з часовых рахункаў).",
 	"apihelp-block-param-nocreate": "Забарона стварэньня рахункаў.",
 	"apihelp-block-param-autoblock": "Аўтаматычна блякаваць апошні ўжыты IP-адрас, а таксама ўсе наступныя IP-адрасы, зь якіх будуць спробы ўваходу.",
 	"apihelp-block-param-noemail": "Забараняе ўдзельніку дасылаць лісты электроннай пошты празь вікі (трэба мець права <code>blockemail</code>).",
@@ -100,7 +101,7 @@
 	"apihelp-move-param-noredirect": "Не ствараць перанакіраваньне.",
 	"apihelp-protect-example-protect": "Абараніць старонку.",
 	"apihelp-query+allusers-paramvalue-prop-rights": "Пералічвае правы, якія мае ўдзельнік.",
-	"apihelp-query+fileusage-summary": "Знайсьці ўсе старонкі, што выкарыстоўваюць дадзеныя файлы.",
+	"apihelp-query+fileusage-summary": "Знайсьці ўсе старонкі, што ўжываюць зададзеныя файлы.",
 	"apihelp-query+imageinfo-param-prop": "Якую інфармацыю пра файл атрымаць:",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "Дадае MIME-тып файлу. Калі ў файла была выдаленая рэвізія, будзе вернутая ўласьцівасьць <samp>filehidden</samp>.",
 	"apihelp-query+transcludedin-paramvalue-prop-title": "Назва кожнай старонкі.",

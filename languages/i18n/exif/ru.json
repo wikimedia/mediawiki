@@ -14,6 +14,7 @@
 			"Okras",
 			"Pacha Tchernof",
 			"Putnik",
+			"Yurina Tatiana",
 			"Александр Сигачёв"
 		]
 	},
@@ -408,8 +409,14 @@
 	"exif-digitalsourcetype-negativefilm": "Оцифровано с прозрачного негатива",
 	"exif-digitalsourcetype-positivefilm": "Оцифровано с прозрачного позитива",
 	"exif-digitalsourcetype-print": "Оцифровано с непрозрачного носителя",
+	"exif-digitalsourcetype-minorhumanedits": "Оригинальное медиа с небольшими изменениями, сделанными человеком",
+	"exif-digitalsourcetype-humanedits": "Отредактированное человеком медиа",
 	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "Отредактировано с использованием генеративного ИИ",
 	"exif-digitalsourcetype-softwareimage": "Создано программным обеспечением",
+	"exif-digitalsourcetype-digitalart": "Создано человеком, используя цифровые инструменты",
+	"exif-digitalsourcetype-digitalcreation": "Медиафайл создан человеком, используя не-ИИ инструменты",
 	"exif-digitalsourcetype-trainedalgorithmicmedia": "Создано с использованием генеративного ИИ",
-	"exif-digitalsourcetype-screencapture": "Снимок экрана"
+	"exif-digitalsourcetype-algorithmicmedia": "Медиафайл создан исключительно с помощью не-ИИ алгоритма",
+	"exif-digitalsourcetype-screencapture": "Снимок экрана",
+	"exif-digitalsourcetype-compositesynthetic": "Сочетание или комбинация нескольких элементов, по крайней мере один из которых создан генеративным ИИ"
 }

@@ -435,7 +435,7 @@
 	"apihelp-query+categorymembers-param-endsortkey": "Använd $1endhexsortkey istället.",
 	"apihelp-query+categorymembers-example-simple": "Hämta de tio första sidorna i <kbd>Category:Physics</kbd>.",
 	"apihelp-query+categorymembers-example-generator": "Hämta sidinformation om de tio första sidorna i <kbd>Category:Physics</kbd>.",
-	"apihelp-query+contributors-summary": "Hämta listan över inloggade bidragsgivare och antalet utloggade bidragsgivare till en sida.",
+	"apihelp-query+contributors-summary": "Hämta listan över registrerade bidragsgivare och antalet anonyma bidragsgivare till en sida.",
 	"apihelp-query+contributors-param-limit": "Hur många bidragsgivare att returnera.",
 	"apihelp-query+deletedrevisions-summary": "Hämta information om raderad sidversion.",
 	"apihelp-query+deletedrevisions-param-user": "Lista endast sidversioner av denna användare.",

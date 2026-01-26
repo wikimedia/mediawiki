@@ -181,6 +181,8 @@
 	"prefs-description-watchlist": "Upravite i prisposobite sobě spisok stranic, ktore vy slědujete.",
 	"prefs-editwatchlist": "Praviti spisok slědovanyh stranic",
 	"prefs-editwatchlist-label": "Izměniti elementy vašego spiska slědovanyh stranic:",
+	"prefs-editwatchlistlabels-label": "Praviti etiketky spiska slědovanyh stranic:",
+	"prefs-managewatchlistlabels": "Prěgleděti i upraviti vašimi etikatkami spiska slědovanyh stranic",
 	"prefs-editwatchlist-edit": "Prěgleděti i odstraniti elementy iz vašego spiska slědovanyh stranic",
 	"prefs-editwatchlist-raw": "Praviti spisok slědovanyh stranic v formě teksta",
 	"prefs-editwatchlist-clear": "Izprazdniti spisok slědovanyh stranic",

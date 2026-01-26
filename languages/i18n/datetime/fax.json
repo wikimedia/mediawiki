@@ -53,5 +53,6 @@
 	"thu": "jov",
 	"fri": "ver",
 	"sat": "sab",
-	"sun": "dom"
+	"sun": "dom",
+	"duration-days": "$1 {{PLURAL:$1|día|días}}"
 }

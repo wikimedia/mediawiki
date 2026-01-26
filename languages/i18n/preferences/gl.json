@@ -187,6 +187,8 @@
 	"prefs-description-watchlist": "Xestiona e personaliza a lista das páxinas que sigues.",
 	"prefs-editwatchlist": "Editar a lista de vixilancia",
 	"prefs-editwatchlist-label": "Editar as entradas da túa lista de vixilancia:",
+	"prefs-editwatchlistlabels-label": "Editar as etiquetas da lista de vixilancia:",
+	"prefs-managewatchlistlabels": "Ver e xestionar as etiquetas da túa lista de vixilancia",
 	"prefs-editwatchlist-edit": "Ver e eliminar títulos da túa lista de vixilancia",
 	"prefs-editwatchlist-raw": "Editar a lista de vixilancia simple",
 	"prefs-editwatchlist-clear": "Limpar a túa lista de vixilancia",

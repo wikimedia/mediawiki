@@ -181,6 +181,8 @@
 	"prefs-description-watchlist": "Gere e personalisa le lista del paginas que tu observa.",
 	"prefs-editwatchlist": "Modificar observatorio",
 	"prefs-editwatchlist-label": "Modificar entratas in tu observatorio:",
+	"prefs-editwatchlistlabels-label": "Modificar etiquettas de observatorio:",
+	"prefs-managewatchlistlabels": "Vider e gerer tu etiquettas de observatorio",
 	"prefs-editwatchlist-edit": "Vider e remover titulos in tu observatorio",
 	"prefs-editwatchlist-raw": "Modificar observatorio brute",
 	"prefs-editwatchlist-clear": "Rader tu observatorio",

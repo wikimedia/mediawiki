@@ -208,6 +208,8 @@
 	"prefs-description-watchlist": "Quản lý và tùy chỉnh danh sách trang bạn theo dõi.",
 	"prefs-editwatchlist": "Sửa các trang tôi theo dõi",
 	"prefs-editwatchlist-label": "Sửa đổi các mục trong danh sách theo dõi của bạn:",
+	"prefs-editwatchlistlabels-label": "Sửa nhãn danh sách theo dõi:",
+	"prefs-managewatchlistlabels": "Xem và quản lý nhãn danh sách theo dõi của bạn",
 	"prefs-editwatchlist-edit": "Xem và xóa các tiêu đề trong danh sách theo dõi của bạn",
 	"prefs-editwatchlist-raw": "Sửa danh sách theo dõi dạng thô",
 	"prefs-editwatchlist-clear": "Tẩy trống danh sách theo dõi của bạn",

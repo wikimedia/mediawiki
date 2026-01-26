@@ -206,6 +206,8 @@
 	"prefs-description-watchlist": "Verwaltung und Personalisierung der Liste der von {{#FORMAL:dir|Ihnen}} verfolgten Seiten",
 	"prefs-editwatchlist": "Beobachtungsliste bearbeiten",
 	"prefs-editwatchlist-label": "Einträge auf der Beobachtungsliste:",
+	"prefs-editwatchlistlabels-label": "Beobachtunglisten-Labels bearbeiten",
+	"prefs-managewatchlistlabels": "Beobachtunglisten-Labels ansehen und verwalten",
 	"prefs-editwatchlist-edit": "ansehen und selektiv entfernen",
 	"prefs-editwatchlist-raw": "ansehen und unformatiert entfernen",
 	"prefs-editwatchlist-clear": "vollständig entfernen",
