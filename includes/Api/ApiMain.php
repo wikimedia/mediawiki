@@ -956,7 +956,7 @@ class ApiMain extends ApiBase {
 
 			if ( !$this->mModule || $this->mModule->getModuleName() !== 'query' ) {
 				// Skip query module metrics; we will record them in the query module itself.
-				$this->recordUnifiedMetrics( $runTime );
+				$this->recordUnifiedMetrics();
 			}
 		} catch ( Throwable $e ) {
 			// If executeAction threw before the time was set, reset it
@@ -1052,7 +1052,6 @@ class ApiMain extends ApiBase {
 		if ( !$this->mModule || $this->mModule->getModuleName() !== 'query' ) {
 			// Skip query module metrics; we will record them in the query module itself.
 			$this->recordUnifiedMetrics(
-				$latency,
 				[
 					'status' => implode( '_', $errCodes ), // Failure codes
 				]

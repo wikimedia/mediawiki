@@ -733,13 +733,10 @@ class ApiQuery extends ApiBase {
 			// Wrap the execution in a try/catch to record metrics for success and errors
 			try {
 				$module->execute();
-				$module->recordUnifiedMetrics(
-					microtime( true ) - $t // Run time
-				);
+				$module->recordUnifiedMetrics();
 			} catch ( \Throwable $e ) {
 				// Unified metrics for errors
 				$module->recordUnifiedMetrics(
-					microtime( true ) - $t, // Run time
 					[
 						'status' => 'error_' . $e->getCode(), // Failure codes
 					]

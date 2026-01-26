@@ -2203,10 +2203,9 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Record unified metrics for the API
 	 *
-	 * @param float $latency Optional value for process runtime, in microseconds, for metrics
 	 * @param array $detailLabels Additional or override labels for the metrics
 	 */
-	protected function recordUnifiedMetrics( $latency = 0, $detailLabels = [] ) {
+	protected function recordUnifiedMetrics( $detailLabels = [] ) {
 		// The concept of "module" is different in Action API and REST API
 		// in REST API, it represents the "collection" of endpoints
 		// in Action API, it represents the "module" of the API (or an endpoint)
@@ -2262,22 +2261,6 @@ abstract class ApiBase extends ContextSource {
 			$metricHitStats->setLabel( $label, $value );
 		}
 		$metricHitStats->increment();
-
-		// Latency metrics
-		$metricLatencyStats = $this->getMain()->getStatsFactory()->getTiming( 'action_api_modules_latency' )
-			->setLabel( 'api_type', 'ACTION_API' );
-		// Iterate over the approved labels and set the labels for the metric
-		foreach ( $approvedLabels as $label ) {
-			// Set a fallback value for empty strings
-			$value = (
-				array_key_exists( $label, $metricsLabels ) &&
-				is_string( $metricsLabels[$label] ) &&
-				trim( $metricsLabels[$label] ) !== ''
-			) ? $metricsLabels[$label] : 'EMPTY_VALUE';
-
-			$metricLatencyStats->setLabel( $label, $value );
-		}
-		$metricLatencyStats->observeNanoseconds( $latency );
 	}
 
 	// endregion -- end of Unified metrics methods
