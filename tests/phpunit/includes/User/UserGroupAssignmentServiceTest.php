@@ -674,4 +674,128 @@ class UserGroupAssignmentServiceTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertArrayEquals( $expected, $result, named: true );
 	}
+
+	/** @dataProvider provideLogAccessToPrivateConditions */
+	public function testLogAccessToPrivateConditions( array $oldGroups, array $newGroups, array $expectedConditions ) {
+		$this->overrideConfigValue( MainConfigNames::AddGroups,
+			[ 'sysop' => [
+				'addable-group', 'restricted-group', 'restricted-group-private1', 'restricted-group-private2',
+				'restricted-group-private3',
+			] ] );
+		$this->overrideConfigValue( MainConfigNames::RemoveGroups,
+			[ 'sysop' => [ 'restricted-group-private2' ] ] );
+
+		$this->overrideConfigValue( MainConfigNames::UserRequirementsPrivateConditions, [ APCOND_BLOCKED ] );
+		$this->overrideConfigValue( MainConfigNames::RestrictedGroups, [
+			'restricted-group' => [
+				'memberConditions' => [ APCOND_EDITCOUNT, 100 ]
+			],
+			'restricted-group-private1' => [
+				'memberConditions' => APCOND_BLOCKED
+			],
+			// Even though it uses a private condition, the target doesn't meet APCOND_EDITCOUNT, so it's certainly
+			// known without evaluating private conditions
+			'restricted-group-private2' => [
+				'memberConditions' => [ '&', APCOND_BLOCKED, [ APCOND_EDITCOUNT, 100 ] ]
+			],
+			'restricted-group-private3' => [
+				'memberConditions' => [ '|', APCOND_BLOCKED, [ APCOND_EDITCOUNT, 0 ] ]
+			]
+		] );
+
+		$hookCalled = false;
+		$this->setTemporaryHook(
+			'ReadPrivateUserRequirementsCondition',
+			function ( $performer, $target, $conditions ) use ( $expectedConditions, &$hookCalled ) {
+				$this->assertArrayEquals( $expectedConditions, $conditions );
+				$hookCalled = true;
+			}
+		);
+
+		$performer = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$target = $this->getTestUser( array_keys( $oldGroups ) )->getUser();
+
+		$addGroups = array_keys( $newGroups );
+		$currentUGMs = [];
+		foreach ( $oldGroups as $group => $expiry ) {
+			$currentUGMs[$group] = new UserGroupMembership( $target->getId(), $group, $expiry );
+		}
+
+		$service = $this->getServiceContainer()->getUserGroupAssignmentService();
+		$service->logAccessToPrivateConditions( $performer, $target, $addGroups, $newGroups, $currentUGMs );
+
+		// Hook should be called if and only if there are some private conditions to report
+		$this->assertSame( count( $expectedConditions ) > 0, $hookCalled );
+	}
+
+	public static function provideLogAccessToPrivateConditions(): array {
+		return [
+			'Unrestricted group' => [
+				'oldGroups' => [],
+				'newGroups' => [ 'addable-group' => null ],
+				'expectedConditions' => [],
+			],
+			'Restricted group with public condition' => [
+				'oldGroups' => [],
+				'newGroups' => [ 'restricted-group' => null ],
+				'expectedConditions' => [],
+			],
+			'Restricted group with private condition' => [
+				'oldGroups' => [],
+				'newGroups' => [ 'restricted-group-private1' => null ],
+				'expectedConditions' => [ APCOND_BLOCKED ],
+			],
+			'Restricted group with private condition, which does not impact final decision (unaddable group)' => [
+				'oldGroups' => [],
+				'newGroups' => [ 'restricted-group-private2' => null ],
+				'expectedConditions' => [],
+			],
+			'Restricted group with private condition, which does not impact final decision (addable group)' => [
+				'oldGroups' => [],
+				'newGroups' => [ 'restricted-group-private3' => null ],
+				'expectedConditions' => [],
+			],
+			'Otherwise unassignable group can be revoked without logging condition checks' => [
+				'oldGroups' => [ 'restricted-group-private2' => '21000101000000' ],
+				'newGroups' => [],
+				'expectedConditions' => [],
+			],
+			'Otherwise unassignable group can be shortened without logging condition checks' => [
+				'oldGroups' => [ 'restricted-group-private2' => '21000101000000' ],
+				'newGroups' => [ 'restricted-group-private2' => '20990101000000' ],
+				'expectedConditions' => [],
+			],
+			'Not changing existing restricted group does not trigger a log entry' => [
+				'oldGroups' => [ 'restricted-group-private1' => null ],
+				'newGroups' => [ 'restricted-group-private1' => null, 'addable-group' => null ],
+				'expectedConditions' => [],
+			],
+		];
+	}
+
+	public function testLogAccessToPrivateConditions_ignorableGroup() {
+		$this->overrideConfigValue( MainConfigNames::AddGroups, [ 'sysop' => [ 'restricted-group-private' ] ] );
+		$this->overrideConfigValue( MainConfigNames::UserRequirementsPrivateConditions, [ APCOND_BLOCKED ] );
+		$this->overrideConfigValue( MainConfigNames::RestrictedGroups, [
+			'restricted-group-private' => [
+				'memberConditions' => APCOND_BLOCKED,
+				'canBeIgnored' => true
+			],
+		] );
+
+		$hookCalled = false;
+		$this->setTemporaryHook(
+			'ReadPrivateUserRequirementsCondition',
+			static function () use ( &$hookCalled ) {
+				$hookCalled = true;
+			}
+		);
+
+		$performer = $this->mockAnonUltimateAuthority();
+		$target = $this->getTestUser()->getUser();
+
+		$service = $this->getServiceContainer()->getUserGroupAssignmentService();
+		$service->logAccessToPrivateConditions( $performer, $target, [ 'restricted-group-private' ], [], [] );
+		$this->assertFalse( $hookCalled );
+	}
 }

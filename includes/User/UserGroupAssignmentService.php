@@ -209,8 +209,10 @@ class UserGroupAssignmentService {
 		array $tags = []
 	): array {
 		$userGroupManager = $this->userGroupManagerFactory->getUserGroupManager( $target->getWikiId() );
-
 		$oldGroupMemberships = $userGroupManager->getUserGroupMemberships( $target );
+
+		$this->logAccessToPrivateConditions( $performer, $target, $addGroups, $newExpiries, $oldGroupMemberships );
+
 		$changeable = $this->getChangeableGroups( $performer, $target );
 		self::enforceChangeGroupPermissions( $addGroups, $removeGroups, $newExpiries,
 			$oldGroupMemberships, $changeable );
@@ -316,6 +318,93 @@ class UserGroupAssignmentService {
 			}
 		}
 		return $result;
+	}
+
+	/**
+	 * Triggers a hook that allows extensions to log when user read some private conditions.
+	 * @param Authority $performer The user who submitted request to change the user groups
+	 * @param UserIdentity $target The user whose groups are changed
+	 * @param list<string> $addGroups A list of groups that were attempted to be added (or have expiry changed)
+	 * @param array<string, ?string> $newExpiries New expiration times for the groups (null or missing means infinity)
+	 * @param array<string, UserGroupMembership> $existingUGMs Existing group memberships for the target user
+	 * @return void
+	 */
+	public function logAccessToPrivateConditions(
+		Authority $performer,
+		UserIdentity $target,
+		array $addGroups,
+		array $newExpiries,
+		array $existingUGMs,
+	): void {
+		// Potentially changeable - groups that might be changed if it weren't for private conditions
+		$potentiallyChangeable = $this->getChangeableGroups( $performer, $target, false );
+		$conditions = $this->getPrivateConditionsInvolvedInChange(
+			$addGroups,
+			$newExpiries,
+			$existingUGMs,
+			$potentiallyChangeable
+		);
+
+		if ( !$conditions ) {
+			return;
+		}
+
+		$this->hookRunner->onReadPrivateUserRequirementsCondition( $performer->getUser(), $target, $conditions );
+	}
+
+	/**
+	 * For added or prolonged groups, returns a list of private conditions that the groups depends on.
+	 * @param list<string> $addGroups
+	 * @param array<string, ?string> $newExpiries
+	 * @param array<string, UserGroupMembership> $existingUGMs
+	 * @param array $potentiallyChangeableGroups Information about changeable groups without evaluating private
+	 *     conditions.
+	 * @return list<mixed>
+	 */
+	private function getPrivateConditionsInvolvedInChange(
+		array $addGroups,
+		array $newExpiries,
+		array $existingUGMs,
+		array $potentiallyChangeableGroups,
+	): array {
+		$restrictedGroups = $potentiallyChangeableGroups['restricted'];
+		$groupsWithPrivateConditionsInvolved = [];
+		foreach ( $restrictedGroups as $group => $groupData ) {
+			if ( $groupData['condition-met'] === null && !$groupData['ignore-condition'] ) {
+				$groupsWithPrivateConditionsInvolved[] = $group;
+			}
+		}
+
+		$groupsToCheck = [];
+		foreach ( $addGroups as $group ) {
+			// If a group is for sure unaddable or addable, private conditions don't matter, so we don't
+			// consider them as involved into the change
+			if ( !in_array( $group, $groupsWithPrivateConditionsInvolved ) ) {
+				continue;
+			}
+
+			// Ensure that we only test groups that are added or prolonged (conditions don't apply for
+			// removals from groups)
+			if ( !isset( $existingUGMs[$group] ) ) {
+				$groupsToCheck[] = $group;
+				continue;
+			}
+			$currentExpiry = $existingUGMs[$group]->getExpiry() ?? 'infinity';
+			$newExpiry = $newExpiries[$group] ?? 'infinity';
+
+			if ( $newExpiry > $currentExpiry ) {
+				$groupsToCheck[] = $group;
+			}
+		}
+
+		$privateConditions = [];
+		foreach ( $groupsToCheck as $group ) {
+			$privateConditions = array_merge(
+				$privateConditions,
+				$this->restrictedGroupChecker->getPrivateConditionsForGroup( $group )
+			);
+		}
+		return array_values( array_unique( $privateConditions ) );
 	}
 
 	/**

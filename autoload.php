@@ -3576,6 +3576,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\User\\Hook\\InvalidateEmailCompleteHook' => __DIR__ . '/includes/User/Hook/InvalidateEmailCompleteHook.php',
 	'MediaWiki\\User\\Hook\\IsValidPasswordHook' => __DIR__ . '/includes/User/Hook/IsValidPasswordHook.php',
 	'MediaWiki\\User\\Hook\\PingLimiterHook' => __DIR__ . '/includes/User/Hook/PingLimiterHook.php',
+	'MediaWiki\\User\\Hook\\ReadPrivateUserRequirementsConditionHook' => __DIR__ . '/includes/User/Hook/ReadPrivateUserRequirementsConditionHook.php',
 	'MediaWiki\\User\\Hook\\SpecialPasswordResetOnSubmitHook' => __DIR__ . '/includes/User/Hook/SpecialPasswordResetOnSubmitHook.php',
 	'MediaWiki\\User\\Hook\\UserAddGroupHook' => __DIR__ . '/includes/User/Hook/UserAddGroupHook.php',
 	'MediaWiki\\User\\Hook\\UserArrayFromResultHook' => __DIR__ . '/includes/User/Hook/UserArrayFromResultHook.php',

@@ -558,6 +558,7 @@ class HookRunner implements
 	\MediaWiki\User\Hook\InvalidateEmailCompleteHook,
 	\MediaWiki\User\Hook\IsValidPasswordHook,
 	\MediaWiki\User\Hook\PingLimiterHook,
+	\MediaWiki\User\Hook\ReadPrivateUserRequirementsConditionHook,
 	\MediaWiki\User\Hook\SpecialPasswordResetOnSubmitHook,
 	\MediaWiki\User\Hook\UserAddGroupHook,
 	\MediaWiki\User\Hook\UserArrayFromResultHook,
@@ -3602,6 +3603,19 @@ class HookRunner implements
 		return $this->container->run(
 			'RawPageViewBeforeOutput',
 			[ $obj, &$text ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onReadPrivateUserRequirementsCondition(
+		UserIdentity $performer,
+		UserIdentity $target,
+		array $conditions
+	): void {
+		$this->container->run(
+			'ReadPrivateUserRequirementsCondition',
+			[ $performer, $target, $conditions ],
+			[ 'abortable' => false ]
 		);
 	}
 

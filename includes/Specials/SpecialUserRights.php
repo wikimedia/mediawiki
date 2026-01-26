@@ -230,7 +230,10 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$invalidGroups = $this->userGroupAssignmentService->validateUserGroups(
 			$this->getAuthority(), $user, $addgroup, $removegroup, $groupExpiries, $this->groupMemberships );
 		if ( $invalidGroups ) {
-			// TODO: Add logging here, if private conditions were read (T414913)
+			// We cannot simply use $invalidGroups for logging, as it doesn't contain groups with satisfied conditions
+			// (and lack of error may be an information itself, which should be logged)
+			$this->userGroupAssignmentService->logAccessToPrivateConditions(
+				$this->getAuthority(), $user, $addgroup, $groupExpiries, $this->groupMemberships );
 			return $this->formatInvalidGroupsStatus( $invalidGroups, $user->getName() );
 		}
 

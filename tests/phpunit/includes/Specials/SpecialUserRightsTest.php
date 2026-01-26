@@ -324,6 +324,15 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 			]
 		] );
 
+		$hookCalled = false;
+		$this->setTemporaryHook(
+			'ReadPrivateUserRequirementsCondition',
+			function ( $performer, $target, $conditions ) use ( &$hookCalled ) {
+				$this->assertSame( [ APCOND_BLOCKED ], $conditions );
+				$hookCalled = true;
+			}
+		);
+
 		$target = $this->getTestUser()->getUser();
 		$performer = $this->getTestUser( [ 'sysop' ] )->getUser();
 		$request = new FauxRequest(
@@ -345,6 +354,7 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 
 		$this->assertNull( $request->getSession()->get( 'specialUserrightsSaveSuccess' ) );
 		$this->assertSame( [], $this->getServiceContainer()->getUserGroupManager()->getUserGroups( $target ) );
+		$this->assertTrue( $hookCalled );
 
 		$errorBox = DOMCompat::querySelector(
 			DOMUtils::parseHTML( $html ),
