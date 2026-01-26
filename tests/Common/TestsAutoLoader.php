@@ -63,6 +63,7 @@ $wgAutoloadClasses += [
 	'MediaWikiLangTestCase' => "$testDir/phpunit/MediaWikiLangTestCase.php",
 	'MediaWikiLoggerPHPUnitExtension' => "$testDir/phpunit/MediaWikiLoggerPHPUnitExtension.php",
 	'MediaWikiTeardownPHPUnitExtension' => "$testDir/phpunit/MediaWikiTeardownPHPUnitExtension.php",
+	'MediaWikiDeprecatedConfigPHPUnitExtension' => "$testDir/phpunit/MediaWikiDeprecatedConfigPHPUnitExtension.php",
 	'MediaWikiPHPUnitResultPrinter' => "$testDir/phpunit/MediaWikiPHPUnitResultPrinter.php",
 	'MediaWikiTestCaseTrait' => "$testDir/phpunit/MediaWikiTestCaseTrait.php",
 	'MediaWikiUnitTestCase' => "$testDir/phpunit/MediaWikiUnitTestCase.php",

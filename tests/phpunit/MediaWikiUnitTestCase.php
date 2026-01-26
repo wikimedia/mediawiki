@@ -91,7 +91,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 			// Stash current values
 			self::$originalGlobals[$key] =& $GLOBALS[$key];
 
-			// Remove globals not part of the snapshot (see bootstrap.php).
+			// Remove globals not part of the snapshot (see bootstrap.php, phpunit.php).
 			if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$unitGlobals ) ) {
 				unset( $GLOBALS[$key] );
 			}

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+************** DEPRECATED! ****************
+This configuration file has been deprecated in favour of phpunit.xml.dist.
+-->
+<phpunit bootstrap="./bootstrap.integration.php"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+	colors="true"
+	backupGlobals="false"
+	convertDeprecationsToExceptions="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	forceCoversAnnotation="true"
+	failOnWarning="true"
+	stopOnFailure="false"
+	failOnRisky="true"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	beStrictAboutOutputDuringTests="true"
+	verbose="false"
+	printerClass="MediaWikiPHPUnitResultPrinter"
+	stderr="true">
+	<!-- Output only to stderr to avoid "Headers already sent" problems -->
+	<php>
+		<ini name="memory_limit" value="-1" />
+		<ini name="max_execution_time" value="0" />
+	</php>
+	<testsuites>
+		<testsuite name="includes">
+			<directory>includes</directory>
+		</testsuite>
+		<testsuite name="parsertests">
+			<file>suites/CoreParserTestSuite.php</file>
+			<file>suites/ExtensionsParserTestSuite.php</file>
+		</testsuite>
+		<testsuite name="skins">
+			<directory>structure</directory>
+			<file>suites/ExtensionsTestSuite.php</file>
+		</testsuite>
+		<!-- As there is a class Maintenance, we cannot use the name "maintenance" directly -->
+		<testsuite name="maintenance_suite">
+			<directory>maintenance</directory>
+		</testsuite>
+		<testsuite name="structure">
+			<directory>structure</directory>
+		</testsuite>
+		<testsuite name="tests">
+			<directory>tests</directory>
+		</testsuite>
+		<testsuite name="extensions">
+			<directory>structure</directory>
+			<file>suites/ExtensionsTestSuite.php</file>
+			<file>suites/ExtensionsParserTestSuite.php</file>
+		</testsuite>
+		<testsuite name="unit">
+			<directory>unit</directory>
+		</testsuite>
+		<testsuite name="integration">
+			<directory>integration</directory>
+		</testsuite>
+		<testsuite name="docs">
+			<directory>docs</directory>
+		</testsuite>
+	</testsuites>
+	<groups>
+		<exclude>
+			<group>Broken</group>
+		</exclude>
+	</groups>
+	<coverage includeUncoveredFiles="true">
+		<include>
+			<directory suffix=".php">../../includes</directory>
+			<directory suffix=".php">../../maintenance</directory>
+		</include>
+		<exclude>
+			<directory suffix=".php">../../maintenance/benchmarks</directory>
+		</exclude>
+	</coverage>
+	<listeners>
+		<listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener">
+			<arguments>
+				<array>
+					<element key="slowThreshold">
+						<integer>50</integer>
+					</element>
+					<element key="reportLength">
+						<integer>10</integer>
+					</element>
+				</array>
+			</arguments>
+		</listener>
+	</listeners>
+	<extensions>
+		<extension class="MediaWikiLoggerPHPUnitExtension" />
+		<extension class="MediaWikiTeardownPHPUnitExtension" />
+		<extension class="MediaWikiDeprecatedConfigPHPUnitExtension" />
+	</extensions>
+</phpunit>

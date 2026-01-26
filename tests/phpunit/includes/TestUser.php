@@ -125,7 +125,7 @@ class TestUser {
 	 * Set the password on a testing user
 	 *
 	 * This assumes we're still using the generic AuthManager config from
-	 * {@link TestSetup::applyInitialConfig()}, and just sets the password in the
+	 * PHPUnitMaintClass::finalSetup(), and just sets the password in the
 	 * database directly.
 	 * @param User $user
 	 * @param string $password
