@@ -2270,6 +2270,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Maintenance\\FixAutoblockLogTitles' => __DIR__ . '/maintenance/fixAutoblockLogTitles.php',
 	'MediaWiki\\Maintenance\\ForkController' => __DIR__ . '/maintenance/includes/ForkController.php',
 	'MediaWiki\\Maintenance\\LoggedUpdateMaintenance' => __DIR__ . '/maintenance/includes/LoggedUpdateMaintenance.php',
+	'MediaWiki\\Maintenance\\LoggedUpdateOutcome' => __DIR__ . '/maintenance/includes/LoggedUpdateOutcome.php',
 	'MediaWiki\\Maintenance\\MWDoxygenFilter' => __DIR__ . '/maintenance/includes/MWDoxygenFilter.php',
 	'MediaWiki\\Maintenance\\Maintenance' => __DIR__ . '/maintenance/includes/Maintenance.php',
 	'MediaWiki\\Maintenance\\MaintenanceFatalError' => __DIR__ . '/maintenance/includes/MaintenanceFatalError.php',
