@@ -1066,6 +1066,12 @@ because of Phabricator reports.
   - Xml::listDropdown(),
   - Xml::listDropdownOptions() & Xml::listDropdownOptionsOoui(), and
   - Xml::option().
+* Returning a boolean from LoggedUpdateMaintenance::doDbUpdates() is now
+  deprecated. Maintenance scripts that extend LoggedUpdateMaintenance
+  should return a LoggedUpdateOutcome value from doDbUpdates() and
+  advertise this fact using a return type declaration.
+  This allows doDbUpdates() to signal a dry run explicitly, removing the need
+  to treat dry runs as failures (T411104).
 * Language::emphasize() is unused, got deprecated, and will be removed in the
   next version.
 * RevisionLookup::getKnownCurrentRevision() is now deprecated in favor of

@@ -12,6 +12,7 @@ namespace MediaWiki\Maintenance;
  * @ingroup Maintenance
  */
 abstract class LoggedUpdateMaintenance extends Maintenance {
+
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'force', 'Run the update even if it was completed already' );
@@ -25,16 +26,27 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 			return true;
 		}
 
-		if ( !$this->doDBUpdates() ) {
+		$result = $this->doDBUpdates();
+
+		if ( is_bool( $result ) ) {
+			// NOTE: returning a boolean value from doDBUpdates() is deprecated
+			// since 1.46, but a lot of subclasses still do.
+			// TODO: make this emit a deprecation warning.
+			$result = $result ? LoggedUpdateOutcome::COMPLETE : LoggedUpdateOutcome::FAILED;
+		}
+
+		if ( $result === LoggedUpdateOutcome::FAILED ) {
 			return false;
 		}
 
-		$db = $this->getPrimaryDB();
-		$db->newInsertQueryBuilder()
-			->insertInto( 'updatelog' )
-			->ignore()
-			->row( [ 'ul_key' => $this->getUpdateKey() ] )
-			->caller( __METHOD__ )->execute();
+		if ( $result !== LoggedUpdateOutcome::SIMULATED ) {
+			$db = $this->getPrimaryDB();
+			$db->newInsertQueryBuilder()
+				->insertInto( 'updatelog' )
+				->ignore()
+				->row( [ 'ul_key' => $this->getUpdateKey() ] )
+				->caller( __METHOD__ )->execute();
+		}
 
 		return true;
 	}
@@ -69,8 +81,12 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 
 	/**
 	 * Do the actual work. All child classes will need to implement this.
-	 * Return true to log the update as done or false (usually on failure).
-	 * @return bool
+	 *
+	 * @return LoggedUpdateOutcome|bool The outcome of the update.
+	 * Returning boolean true for success and false for
+	 * failure is also supported but deprecated since 1.46 (T411104).
+	 * Implementations that return a LoggedUpdateOutcome should indicate
+	 * this fact by declaring a return type.
 	 */
 	abstract protected function doDBUpdates();
 

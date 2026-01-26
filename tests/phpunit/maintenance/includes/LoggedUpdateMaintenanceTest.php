@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Maintenance\Includes;
 
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateOutcome;
 use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
@@ -56,12 +57,20 @@ class LoggedUpdateMaintenanceTest extends MaintenanceBaseTestCase {
 				->row( [ 'ul_key' => 'test' ] )
 				->execute();
 		}
-		// Set if --force is specified and also mock the return value of ::doDBUpdates
-		$this->maintenance->setForce( $force );
-		$this->maintenance->method( 'doDBUpdates' )
+
+		// mock the return value of ::doDBUpdates
+		$this->maintenance
+			->expects( $doDBUpdatesReturnValue === null ? $this->never() : $this->once() )
+			->method( 'doDBUpdates' )
 			->willReturn( $doDBUpdatesReturnValue );
+
+		// Set if --force is specified
+		$this->maintenance->setForce( $force );
+
+		// mock key value
 		$this->maintenance->method( 'getUpdateKey' )
 			->willReturn( 'test' );
+
 		// Run the maintenance script and then assert that the updatelog table is as expected
 		$this->assertSame( $expectedReturnValueFromExecute, $this->maintenance->execute() );
 		$this->newSelectQueryBuilder()
@@ -79,7 +88,7 @@ class LoggedUpdateMaintenanceTest extends MaintenanceBaseTestCase {
 	public static function provideExecute() {
 		return [
 			'Update has been run before' => [
-				'doDBUpdatesReturnValue' => false,
+				'doDBUpdatesReturnValue' => null,
 				'markedAsCompleteBeforeRun' => true,
 				'shouldBeMarkedAsCompleteAfterExecution' => true,
 				'force' => null,
@@ -87,13 +96,20 @@ class LoggedUpdateMaintenanceTest extends MaintenanceBaseTestCase {
 				'expectedOutputRegex' => "/Update 'test' already logged as completed/"
 			],
 			'Update has been run before, but force provided and update fails' => [
-				'doDBUpdatesReturnValue' => false,
+				'doDBUpdatesReturnValue' => LoggedUpdateOutcome::FAILED,
 				'markedAsCompleteBeforeRun' => true,
 				'shouldBeMarkedAsCompleteAfterExecution' => true,
 				'force' => true,
 				'expectedReturnValueFromExecute' => false,
 			],
 			'Update has never been run before and update succeeds' => [
+				'doDBUpdatesReturnValue' => LoggedUpdateOutcome::COMPLETE,
+				'markedAsCompleteBeforeRun' => false,
+				'shouldBeMarkedAsCompleteAfterExecution' => true,
+				'force' => null,
+				'expectedReturnValueFromExecute' => true,
+			],
+			'Update has never been run before and update succeeds (return true)' => [
 				'doDBUpdatesReturnValue' => true,
 				'markedAsCompleteBeforeRun' => false,
 				'shouldBeMarkedAsCompleteAfterExecution' => true,
@@ -101,11 +117,25 @@ class LoggedUpdateMaintenanceTest extends MaintenanceBaseTestCase {
 				'expectedReturnValueFromExecute' => true,
 			],
 			'Update has never been run before and update fails' => [
+				'doDBUpdatesReturnValue' => LoggedUpdateOutcome::FAILED,
+				'markedAsCompleteBeforeRun' => false,
+				'shouldBeMarkedAsCompleteAfterExecution' => false,
+				'force' => false,
+				'expectedReturnValueFromExecute' => false,
+			],
+			'Update has never been run before and update fails (return false)' => [
 				'doDBUpdatesReturnValue' => false,
 				'markedAsCompleteBeforeRun' => false,
 				'shouldBeMarkedAsCompleteAfterExecution' => false,
 				'force' => false,
 				'expectedReturnValueFromExecute' => false,
+			],
+			'Update has never been run before and performs a dry run' => [
+				'doDBUpdatesReturnValue' => LoggedUpdateOutcome::SIMULATED,
+				'markedAsCompleteBeforeRun' => false,
+				'shouldBeMarkedAsCompleteAfterExecution' => false,
+				'force' => null,
+				'expectedReturnValueFromExecute' => true,
 			],
 		];
 	}
