@@ -8384,6 +8384,21 @@ config-schema:
         description: |-
             Whether to use the post-OutputTransform cache
             @unstable Temporary feature flag, T348255
+            @deprecated replaced by UsePostprocCacheLegacy and UsePostprocCacheParsoid
+            @since 1.46
+    UsePostprocCacheLegacy:
+        default: false
+        type: boolean
+        description: |-
+            Whether to use the post-OutputTransform cache for legacy parses
+            @unstable Temporary feature flag, T348255
+            @since 1.46
+    UsePostprocCacheParsoid:
+        default: false
+        type: boolean
+        description: |-
+            Whether to use the post-OutputTransform cache for Parsoid parses
+            @unstable Temporary feature flag, T348255
             @since 1.46
     ParserOptionsLogUnsafeSampleRate:
         default: 0

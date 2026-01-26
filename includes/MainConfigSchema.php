@@ -13468,11 +13468,34 @@ class MainConfigSchema {
 	 * Whether to use the post-OutputTransform cache
 	 *
 	 * @unstable Temporary feature flag, T348255
+	 * @deprecated replaced by UsePostprocCacheLegacy and UsePostprocCacheParsoid
 	 * @since 1.46
 	 */
 	public const UsePostprocCache = [
 		'default' => false,
 		'type' => 'boolean',
+	];
+
+	/**
+	 * Whether to use the post-OutputTransform cache for legacy parses
+	 *
+	 * @unstable Temporary feature flag, T348255
+	 * @since 1.46
+	 */
+	public const UsePostprocCacheLegacy = [
+		'default' => false,
+		'type' => 'boolean'
+	];
+
+	/**
+	 * Whether to use the post-OutputTransform cache for Parsoid parses
+	 *
+	 * @unstable Temporary feature flag, T348255
+	 * @since 1.46
+	 */
+	public const UsePostprocCacheParsoid = [
+		'default' => false,
+		'type' => 'boolean'
 	];
 
 	/**

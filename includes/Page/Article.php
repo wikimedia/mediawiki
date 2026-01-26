@@ -119,7 +119,7 @@ class Article implements Page {
 	protected IConnectionProvider $dbProvider;
 	protected DatabaseBlockStore $blockStore;
 	protected RestrictionStore $restrictionStore;
-	private bool $usePostprocessCache;
+	private bool $useLegacyPostprocCache;
 
 	/**
 	 * @var RevisionRecord|null Revision to be shown
@@ -128,6 +128,9 @@ class Article implements Page {
 	 * Article::view is typically based on this revision, it may be replaced by extensions.
 	 */
 	private $mRevisionRecord = null;
+
+	private bool $parsoidPostprocCacheAvailable;
+	private bool $legacyPostprocCacheAvailable;
 
 	/**
 	 * @param Title $title
@@ -150,7 +153,13 @@ class Article implements Page {
 		$this->dbProvider = $services->getConnectionProvider();
 		$this->blockStore = $services->getDatabaseBlockStore();
 		$this->restrictionStore = $services->getRestrictionStore();
-		$this->usePostprocessCache = $services->getMainConfig()->get( MainConfigNames::UsePostprocCache );
+		$this->parsoidPostprocCacheAvailable =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UsePostprocCacheParsoid ) ||
+				// TODO remove when the config has been switched to UsePostprocCacheParsoid
+				MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UsePostprocCache );
+		$this->legacyPostprocCacheAvailable =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UsePostprocCacheLegacy );
+		$this->useLegacyPostprocCache = false;
 	}
 
 	/**
@@ -740,7 +749,7 @@ class Article implements Page {
 				$parserOptions->setOption( $key, $value );
 			}
 		}
-		if ( $this->usePostprocessCache ) {
+		if ( $this->usePostProcessingCache( $parserOptions ) ) {
 			$parserOptions->enablePostproc();
 		}
 
@@ -758,7 +767,7 @@ class Article implements Page {
 			);
 
 			if ( $pOutput ) {
-				if ( !$this->usePostprocessCache ) {
+				if ( !$this->usePostProcessingCache( $parserOptions ) ) {
 					$pOutput = $this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $skin );
 				}
 				$this->doOutputFromPostProcessedParserCache( $pOutput, $outputPage );
@@ -799,7 +808,7 @@ class Article implements Page {
 				);
 
 				if ( $pOutput ) {
-					if ( !$this->usePostprocessCache ) {
+					if ( !$this->usePostProcessingCache( $parserOptions ) ) {
 						$pOutput = $this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $skin );
 					}
 					$this->doOutputFromPostProcessedParserCache( $pOutput, $outputPage );
@@ -845,7 +854,7 @@ class Article implements Page {
 
 		// we already checked the cache in case 2, don't check again; but if we're using postproc,
 		// we still want to check if we have a main parser cache entry.
-		if ( $this->usePostprocessCache ) {
+		if ( $this->usePostProcessingCache( $parserOptions ) ) {
 			$opt[ ParserOutputAccess::OPT_NO_POSTPROC_CACHE ] = true;
 		} else {
 			$opt[ ParserOutputAccess::OPT_NO_CHECK_CACHE ] = true;
@@ -1019,7 +1028,7 @@ class Article implements Page {
 
 		// TODO this will probably need to be conditional on cache access and/or hoisted one level above but for
 		// now let's keep things in the same place and avoid editing StatusValues.
-		if ( !$this->usePostprocessCache ) {
+		if ( !$this->usePostProcessingCache( $parserOptions ) ) {
 			$pOutput = $this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $outputPage->getSkin() );
 		}
 
@@ -2171,6 +2180,22 @@ class Article implements Page {
 			);
 		}
 		return $context->msg( 'missing-revision', $oldid );
+	}
+
+	private function usePostProcessingCache( ParserOptions $poptions ): bool {
+		if ( $poptions->getUseParsoid() ) {
+			return $this->parsoidPostprocCacheAvailable;
+		}
+		return $this->legacyPostprocCacheAvailable && $this->useLegacyPostprocCache;
+	}
+
+	/**
+	 * By default, we do not use the postprocessing cache for legacy parses; however, we want to be able to
+	 * override this for some cases (e.g. legacy parses of DiscussionTools, as long as Parsoid Read Views is not
+	 * the default everywhere.)
+	 */
+	public function setUseLegacyPostprocCache( bool $val = true ): void {
+		$this->useLegacyPostprocCache = $val;
 	}
 }
 

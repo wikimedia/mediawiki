@@ -4569,6 +4569,18 @@ $wgUseLeximorph = null;
 $wgUsePostprocCache = null;
 
 /**
+ * Config variable stub for the UsePostprocCacheLegacy setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UsePostprocCacheLegacy
+ */
+$wgUsePostprocCacheLegacy = null;
+
+/**
+ * Config variable stub for the UsePostprocCacheParsoid setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UsePostprocCacheParsoid
+ */
+$wgUsePostprocCacheParsoid = null;
+
+/**
  * Config variable stub for the ParserOptionsLogUnsafeSampleRate setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ParserOptionsLogUnsafeSampleRate
  */

@@ -1629,7 +1629,16 @@ class ParserOptions {
 		$defaults = self::getDefaults();
 		$inCacheKey = self::getCacheVaryingOptionsHash();
 		$usedOptions ??= array_keys( $this->options );
-		$usePostprocCache = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UsePostprocCache );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		if ( $this->getUseParsoid() ) {
+			$usePostprocCache =
+				$config->get( MainConfigNames::UsePostprocCacheParsoid ) ||
+				$config->get( MainConfigNames::UsePostprocCache );
+		} else {
+			$usePostprocCache =
+				$config->get( MainConfigNames::UsePostprocCacheLegacy ) ||
+				$config->get( MainConfigNames::UsePostprocCache );
+		}
 		if ( !$usePostprocCache && $this->shouldIncludePostproc() ) {
 			return false;
 		}

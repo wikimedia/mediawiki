@@ -2734,6 +2734,8 @@ return [
 			'CloneArticleParserOutput' => true,
 			'UseLeximorph' => false,
 			'UsePostprocCache' => false,
+			'UsePostprocCacheLegacy' => false,
+			'UsePostprocCacheParsoid' => false,
 			'ParserOptionsLogUnsafeSampleRate' => 0,
 		],
 		'type' => [
@@ -3248,6 +3250,8 @@ return [
 			'CloneArticleParserOutput' => 'boolean',
 			'UseLeximorph' => 'boolean',
 			'UsePostprocCache' => 'boolean',
+			'UsePostprocCacheLegacy' => 'boolean',
+			'UsePostprocCacheParsoid' => 'boolean',
 			'ParserOptionsLogUnsafeSampleRate' => 'integer',
 		],
 		'mergeStrategy' => [

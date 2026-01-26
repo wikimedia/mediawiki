@@ -308,7 +308,9 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 
 	/** @covers \MediaWiki\Page\Article::view */
 	public function testPostprocFeatureflagFalse(): void {
-		$this->overrideConfigValue( 'UsePostprocCache', false );
+		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheLegacy, false );
+		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheParsoid, false );
+		$this->overrideConfigValue( MainConfigNames::UsePostprocCache, false );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
 			$this->getParserCache( new HashBagOStuff() ),
@@ -352,11 +354,12 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 
 	/** @covers \MediaWiki\Page\Article::view */
 	public function testPostprocFeatureflagTrue(): void {
-		$this->overrideConfigValue( 'UsePostprocCache', true );
+		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheParsoid, true );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
 			$this->getParserCache( new HashBagOStuff() ),
 			$this->getParserCache( new HashBagOStuff() ),
+			$this->getParserCache( new HashBagOStuff() )
 		];
 		$calls = [];
 		$parserCacheFactory
@@ -376,20 +379,31 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 				return $parserCacheFactory;
 			}
 		] );
+		$this->setTemporaryHook(
+			'ParserOptionsRegister',
+			static function ( &$defaults, &$inCacheKey, &$lazyLoad ) {
+				$defaults['useParsoid'] = true;
+			}
+		);
 		$title = $this->getExistingTestPage()->getTitle();
 		$article = $this->newArticle( $title );
 		$this->editPage( $title, '== Hello ==' );
-		// here we only hit the main parser cache for now
+		// here we only hit the main parser cache for now.
+		// TODO PageUpdaterFactory (which is used for the edit here) hardwires the legacy cache, should this
+		// adjusted?
 		$this->assertArrayEquals( [ 'pcache' ], $calls, true );
 
 		$calls = [];
 		$article->view();
 		$this->assertArrayEquals( [
-			'postproc-pcache', // first view, get postproc, miss
-			'postproc-pcache', // creates worker to render the page
-			'pcache', // first view, get pcache, hit
-			'postproc-pcache', // first view, store postproc
-			'postproc-pcache', // postprocess, compute cache key for report
+			'postproc-parsoid-pcache', // first view, get postproc, miss
+			'postproc-parsoid-pcache', // creates worker to render the page
+			'parsoid-pcache', // first view, get pcache, miss
+			'parsoid-pcache', // first view, get pcache, check outdated cache (parsoid selective update)
+			'parsoid-pcache', // first view, get pcache, save to cache
+			'parsoid-pcache', // postproc, get primary from pcache, hit
+			'postproc-parsoid-pcache', // first view, store postproc
+			'postproc-parsoid-pcache', // postprocess, compute cache key for report
 		], $calls, true );
 		$html = $article->getContext()->getOutput()->getHTML();
 		// check that we're running postprocessing (if the headers are wrapped then that's a good sign)
@@ -404,7 +418,7 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		$html2 = $article->getContext()->getOutput()->getHTML();
 		// second run, we're cached, we hit the postproc cache once
 		$this->assertArrayEquals( [
-			'postproc-pcache'
+			'postproc-parsoid-pcache'
 		], $calls, true );
 		$this->assertEquals( $html, $html2 );
 	}

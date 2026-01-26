@@ -4584,6 +4584,18 @@ class MainConfigNames {
 	public const UsePostprocCache = 'UsePostprocCache';
 
 	/**
+	 * Name constant for the UsePostprocCacheLegacy setting, for use with Config::get()
+	 * @see MainConfigSchema::UsePostprocCacheLegacy
+	 */
+	public const UsePostprocCacheLegacy = 'UsePostprocCacheLegacy';
+
+	/**
+	 * Name constant for the UsePostprocCacheParsoid setting, for use with Config::get()
+	 * @see MainConfigSchema::UsePostprocCacheParsoid
+	 */
+	public const UsePostprocCacheParsoid = 'UsePostprocCacheParsoid';
+
+	/**
 	 * Name constant for the ParserOptionsLogUnsafeSampleRate setting, for use with Config::get()
 	 * @see MainConfigSchema::ParserOptionsLogUnsafeSampleRate
 	 */
