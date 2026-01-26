@@ -190,12 +190,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Renders a subheader on the watchlist page.
 	 */
 	protected function outputSubtitle() {
-		$subtitle = $this->getWatchlistOwnerHtml();
 		if ( !$this->getSkin()->supportsMenu( 'associated-pages' ) ) {
+			$subtitle = $this->getWatchlistOwnerHtml();
 			// For legacy skins render the tabs in the subtitle
 			$subtitle .= ' ' . $this->buildTools( $this->currentMode );
+			$this->getOutput()->addSubtitle( $subtitle );
 		}
-		$this->getOutput()->addSubtitle( $subtitle );
 	}
 
 	/**

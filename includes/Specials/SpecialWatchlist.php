@@ -553,12 +553,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$user = $this->getUser();
 		$out = $this->getOutput();
 
-		$subtitle = $this->getWatchlistOwnerHtml();
 		if ( !$this->getSkin()->supportsMenu( 'associated-pages' ) ) {
 			// For legacy skins render the tabs in the subtitle
+			$subtitle = $this->getWatchlistOwnerHtml();
 			$subtitle .= ' ' . $this->buildTools( $this->currentMode );
+			$out->addSubtitle( $subtitle );
 		}
-		$out->addSubtitle( $subtitle );
 
 		$this->setTopText( $opts );
 
