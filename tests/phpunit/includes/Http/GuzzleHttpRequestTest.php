@@ -14,9 +14,9 @@ use GuzzleHttp\Psr7\Response;
  *
  * No actual requests are made herein - all external communications are mocked
  *
- * @covers \GuzzleHttpRequest
- * @covers \MWHttpRequest
- * @covers \MWCallbackStream
+ * @covers \MediaWiki\Http\GuzzleHttpRequest
+ * @covers \MediaWiki\Http\MWHttpRequest
+ * @covers \MediaWiki\Http\MWCallbackStream
  */
 class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 	/** @var int[] */

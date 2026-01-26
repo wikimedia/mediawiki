@@ -3,11 +3,11 @@ namespace MediaWiki\Tests\Unit\Installer;
 
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Http\MWHttpRequest;
 use MediaWiki\Installer\Pingback;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use MediaWikiUnitTestCase;
-use MWHttpRequest;
 use Psr\Log\NullLogger;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;

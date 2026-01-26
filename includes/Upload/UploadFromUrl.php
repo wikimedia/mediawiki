@@ -11,12 +11,12 @@ namespace MediaWiki\Upload;
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Http\MWHttpRequest;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
-use MWHttpRequest;
 
 /**
  * Implements uploading from a HTTP resource.

@@ -6,14 +6,12 @@
 namespace MediaWiki\Http;
 
 use GuzzleHttp\Client;
-use GuzzleHttpRequest;
 use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Profiler\Profiler;
 use MediaWiki\Status\Status;
-use MWHttpRequest;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\Http\TelemetryHeadersInterface;

@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Http;
+
 use GuzzleHttp\Psr7\StreamDecoratorTrait;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\StreamInterface;
@@ -38,3 +40,6 @@ class MWCallbackStream implements StreamInterface {
 		return ( $this->callback )( $this, $string );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MWCallbackStream::class, 'MWCallbackStream' );

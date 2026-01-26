@@ -3,9 +3,9 @@
 namespace MediaWiki\Tests\Sparql;
 
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Http\MWHttpRequest;
 use MediaWiki\Sparql\SparqlClient;
 use MediaWikiCoversValidator;
-use MWHttpRequest;
 
 /**
  * @covers \MediaWiki\Sparql\SparqlClient

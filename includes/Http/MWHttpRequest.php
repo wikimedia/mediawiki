@@ -4,14 +4,21 @@
  * @file
  */
 
+namespace MediaWiki\Http;
+
+use CookieJar;
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Utils\UrlUtils;
+use Profiler;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use StatusValue;
 use Wikimedia\Http\TelemetryHeadersInterface;
 
 /**
@@ -103,7 +110,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:array,proxy?:string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,logger?:LoggerInterface,username?:string,password?:string,originalRequest?:WebRequest|array{ip:string,userAgent:string},method?:string} $options
 	 * @param string $caller The method making this request, for profiling @phan-mandatory-param
 	 * @param Profiler|null $profiler An instance of the profiler for profiling, or null
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	public function __construct(
 		$url, array $options, $caller = __METHOD__, ?Profiler $profiler = null
@@ -700,3 +707,6 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		);
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MWHttpRequest::class, 'MWHttpRequest' );

@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Http;
+
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\GuzzleException;
@@ -14,6 +16,7 @@ use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
 use MediaWiki\Status\Status;
+use Profiler;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Log\NullLogger;
@@ -47,7 +50,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 	 * @param array $options (optional) extra params to pass (see HttpRequestFactory::create())
 	 * @param string $caller The method making this request, for profiling @phan-mandatory-param
 	 * @param Profiler|null $profiler An instance of the profiler for profiling, or null
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	public function __construct(
 		$url, array $options = [], $caller = __METHOD__, ?Profiler $profiler = null
@@ -283,3 +286,6 @@ class GuzzleHttpRequest extends MWHttpRequest {
 		$this->parseCookies();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( GuzzleHttpRequest::class, 'GuzzleHttpRequest' );

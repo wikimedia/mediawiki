@@ -347,6 +347,10 @@ because of Phabricator reports.
     - ImageGalleryClassNotFoundException
   - Gallery related hook: MediaWiki\Hook => MediaWiki\Gallery\Hook
     - GalleryGetModesHook
+  - MediaWiki\Http:
+    - MWCallbackStream
+    - MWHttpRequest
+    - GuzzleHttpRequest
   - MediaWiki\Import:
     - WikiImporterFactory
     - ImportableOldRevisionImporter

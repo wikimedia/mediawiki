@@ -5,7 +5,6 @@ namespace MediaWiki\Http;
 
 use GuzzleHttp\Psr7\Utils;
 use LogicException;
-use MWHttpRequest;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
