@@ -32,9 +32,23 @@ class ExecutePostCacheTransformHooks extends ContentTextTransformStage {
 		return $this->hookContainer->isRegistered( 'ParserOutputPostCacheTransform' );
 	}
 
+	/**
+	 * @note 1.46 It is currently expected that $options does not contain a 'parserOptions' key or that the
+	 * associated value is of type ParserOptions (it will be overwritten and later unset otherwise).
+	 */
 	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options
 	): string {
+		// TODO This is only to be used by DiscussionTools, as a stopgap before we alter the hook signature of
+		// onParserOutputPostCacheTransform
+		$setPopts = !isset( $options['parserOptions'] ) || !( $options[ 'parserOptions' ] instanceof ParserOptions );
+		if ( $setPopts ) {
+			$options['parserOptions'] = $popts;
+		}
+
 		$this->hookRunner->onParserOutputPostCacheTransform( $po, $text, $options );
+		if ( $setPopts ) {
+			unset( $options['parserOptions'] );
+		}
 		return $text;
 	}
 }
