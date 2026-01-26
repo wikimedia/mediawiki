@@ -16,7 +16,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use MWFileProps;
+use MediaWiki\Utils\MWFileProps;
 use RuntimeException;
 use stdClass;
 use Wikimedia\Rdbms\IDBAccessObject;

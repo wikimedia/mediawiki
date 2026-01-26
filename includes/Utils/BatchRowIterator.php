@@ -1,5 +1,11 @@
 <?php
 
+namespace MediaWiki\Utils;
+
+use ArrayIterator;
+use InvalidArgumentException;
+use NotRecursiveIterator;
+use RecursiveIterator;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -135,7 +141,7 @@ class BatchRowIterator implements RecursiveIterator {
 	/**
 	 * Extracts the primary key(s) from a database row.
 	 *
-	 * @param stdClass $row An individual database row from this iterator
+	 * @param \stdClass $row An individual database row from this iterator
 	 * @return array Map of primary key column to value within the row
 	 */
 	public function extractPrimaryKeys( $row ) {
@@ -228,3 +234,6 @@ class BatchRowIterator implements RecursiveIterator {
 		return [ $this->db->buildComparison( '>', $maximumValues ) ];
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( BatchRowIterator::class, 'BatchRowIterator' );

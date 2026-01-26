@@ -12,7 +12,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
-use MWRestrictions;
+use MediaWiki\Utils\MWRestrictions;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 

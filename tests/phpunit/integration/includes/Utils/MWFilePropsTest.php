@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Tests\Integration\Utils;
 
+use MediaWiki\Utils\MWFileProps;
 use MediaWikiIntegrationTestCase;
-use MWFileProps;
 use Wikimedia\FileBackend\FileBackend;
 
 /**
- * @covers \MWFileProps
+ * @covers \MediaWiki\Utils\MWFileProps
  */
 class MWFilePropsTest extends MediaWikiIntegrationTestCase {
 	public static function provideGetPropsFromPath() {

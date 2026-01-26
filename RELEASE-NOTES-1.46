@@ -787,6 +787,16 @@ because of Phabricator reports.
     - UserEditCountInitJob
     - UserGroupExpiryJob
     - Options/UserOptionsUpdateJob
+  - MediaWiki\Utils:
+    - BatchRowUpdate
+    - MWCryptRand
+    - BatchRowWriter
+    - BatchRowIterator
+    - RowUpdateGenerator
+    - MWRestrictions
+    - MWFileProps
+    - ExecutableFinder
+    - FileContentsHasher
   - Watchlist related hook: MediaWiki\Hook => MediaWiki\Watchlist\Hook
     - WatchedItemQueryServiceExtensionsHook
   - The LockManager library: Wikimedia\LockManager

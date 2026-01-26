@@ -8,13 +8,13 @@
 
 namespace MediaWiki\ResourceLoader;
 
-use FileContentsHasher;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Utils\FileContentsHasher;
 use Peast\Peast;
 use Peast\Syntax\Exception as PeastSyntaxException;
 use Psr\Log\LoggerAwareInterface;

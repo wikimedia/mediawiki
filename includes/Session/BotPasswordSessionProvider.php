@@ -12,7 +12,7 @@ use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\User;
-use MWRestrictions;
+use MediaWiki\Utils\MWRestrictions;
 
 /**
  * Session provider for bot passwords

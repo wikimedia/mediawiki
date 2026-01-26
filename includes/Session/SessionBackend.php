@@ -17,7 +17,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
-use MWRestrictions;
+use MediaWiki\Utils\MWRestrictions;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\CachedBagOStuff;

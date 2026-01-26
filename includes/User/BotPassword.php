@@ -19,7 +19,7 @@ use MediaWiki\Password\PasswordFactory;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Status\Status;
-use MWRestrictions;
+use MediaWiki\Utils\MWRestrictions;
 use stdClass;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\IDatabase;

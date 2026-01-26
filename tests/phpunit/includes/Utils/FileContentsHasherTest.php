@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\Utils;
 
-use FileContentsHasher;
+use MediaWiki\Utils\FileContentsHasher;
 use MediaWikiCoversValidator;
 
 /**
- * @covers \FileContentsHasher
+ * @covers \MediaWiki\Utils\FileContentsHasher
  */
 class FileContentsHasherTest extends \PHPUnit\Framework\TestCase {
 

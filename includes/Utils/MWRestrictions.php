@@ -5,11 +5,16 @@
  * @license GPL-2.0-or-later
  */
 
+namespace MediaWiki\Utils;
+
+use InvalidArgumentException;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use StatusValue;
+use Stringable;
 use Wikimedia\IPSet;
 use Wikimedia\IPUtils;
 
@@ -180,3 +185,6 @@ class MWRestrictions implements Stringable {
 		return in_array( Title::newFromLinkTarget( $target )->getPrefixedText(), $pagesNormalized, true );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MWRestrictions::class, 'MWRestrictions' );

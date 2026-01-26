@@ -7,7 +7,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
-use MWCryptRand;
+use MediaWiki\Utils\MWCryptRand;
 
 /**
  * Tests for action=revisiondelete

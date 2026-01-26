@@ -10,7 +10,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Password;
 
-use MWCryptRand;
+use MediaWiki\Utils\MWCryptRand;
 
 /**
  * The old style of MediaWiki password hashing, with a salt. It involves

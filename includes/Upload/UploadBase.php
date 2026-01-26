@@ -33,7 +33,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Upload\Exception\UploadStashException;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
-use MWFileProps;
+use MediaWiki\Utils\MWFileProps;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;

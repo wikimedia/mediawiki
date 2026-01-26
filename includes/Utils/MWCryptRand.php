@@ -4,6 +4,8 @@
  * @author Daniel Friesen
  */
 
+namespace MediaWiki\Utils;
+
 /**
  * A cryptographic random generator class used for generating secret keys
  *
@@ -37,3 +39,6 @@ class MWCryptRand {
 		return substr( $hex, 0, $chars );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MWCryptRand::class, 'MWCryptRand' );

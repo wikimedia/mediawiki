@@ -7,6 +7,8 @@
  * @ingroup Maintenance
  */
 
+namespace MediaWiki\Utils;
+
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -82,3 +84,6 @@ class BatchRowWriter {
 		$dbProvider->commitAndWaitForReplication( __METHOD__, $ticket );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( BatchRowWriter::class, 'BatchRowWriter' );

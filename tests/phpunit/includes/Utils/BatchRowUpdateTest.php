@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Utils;
 
-use BatchRowIterator;
-use BatchRowWriter;
+use MediaWiki\Utils\BatchRowIterator;
+use MediaWiki\Utils\BatchRowWriter;
 use MediaWikiIntegrationTestCase;
 use ReflectionClass;
 use ReflectionMethod;
@@ -16,9 +16,9 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  *
  * @group db
  *
- * @covers \BatchRowUpdate
- * @covers \BatchRowIterator
- * @covers \BatchRowWriter
+ * @covers \MediaWiki\Utils\BatchRowUpdate
+ * @covers \MediaWiki\Utils\BatchRowIterator
+ * @covers \MediaWiki\Utils\BatchRowWriter
  */
 class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 

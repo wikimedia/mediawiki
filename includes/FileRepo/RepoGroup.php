@@ -11,7 +11,7 @@ use MediaWiki\FileRepo\File\File;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
-use MWFileProps;
+use MediaWiki\Utils\MWFileProps;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Mime\MimeAnalyzer;

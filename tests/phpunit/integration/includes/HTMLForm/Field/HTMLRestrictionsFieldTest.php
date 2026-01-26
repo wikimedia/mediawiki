@@ -12,9 +12,9 @@ use MediaWiki\Page\PageSelectQueryBuilder;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\MWRestrictions;
 use MediaWikiCoversValidator;
 use MediaWikiIntegrationTestCase;
-use MWRestrictions;
 use StatusValue;
 
 /**

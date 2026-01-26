@@ -9,7 +9,6 @@
 namespace MediaWiki\ResourceLoader;
 
 use CSSJanus;
-use FileContentsHasher;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Language\LanguageFallbackMode;
@@ -17,6 +16,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\Utils\FileContentsHasher;
 use RuntimeException;
 use Wikimedia\Minify\CSSMin;
 

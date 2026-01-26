@@ -11,7 +11,7 @@ declare( strict_types = 1 );
 namespace MediaWiki\Password;
 
 use InvalidArgumentException;
-use MWCryptRand;
+use MediaWiki\Utils\MWCryptRand;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**

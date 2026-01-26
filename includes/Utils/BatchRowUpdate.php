@@ -3,6 +3,8 @@
  * @license GPL-2.0-or-later
  */
 
+namespace MediaWiki\Utils;
+
 /**
  * Ties together the batch update components to provide a composable
  * method of batch updating rows in a database. To use create a class
@@ -114,3 +116,6 @@ class BatchRowUpdate {
 		( $this->output )( $text );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( BatchRowUpdate::class, 'BatchRowUpdate' );

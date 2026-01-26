@@ -13,7 +13,6 @@
 namespace MediaWiki\Installer;
 
 use Exception;
-use ExecutableFinder;
 use GuzzleHttp\Psr7\Header;
 use IntlChar;
 use InvalidArgumentException;
@@ -39,7 +38,8 @@ use MediaWiki\Status\Status;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use MWCryptRand;
+use MediaWiki\Utils\ExecutableFinder;
+use MediaWiki\Utils\MWCryptRand;
 use RuntimeException;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ObjectCache\EmptyBagOStuff;

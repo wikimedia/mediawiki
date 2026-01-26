@@ -14,7 +14,7 @@ use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\Token;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\User;
-use MWRestrictions;
+use MediaWiki\Utils\MWRestrictions;
 use Wikimedia\TestingAccessWrapper;
 
 /**

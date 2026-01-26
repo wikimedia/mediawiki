@@ -7,7 +7,6 @@
 namespace MediaWiki\Maintenance;
 
 use Closure;
-use ExecutableFinder;
 use Generator;
 use MediaWiki;
 use MediaWiki\Config\Config;
@@ -23,6 +22,7 @@ use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
 use MediaWiki\User\User;
+use MediaWiki\Utils\ExecutableFinder;
 use StatusValue;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;

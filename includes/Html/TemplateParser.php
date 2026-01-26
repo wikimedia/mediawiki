@@ -7,10 +7,10 @@
 namespace MediaWiki\Html;
 
 use Exception;
-use FileContentsHasher;
 use LightnCandy\LightnCandy;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Utils\FileContentsHasher;
 use RuntimeException;
 use UnexpectedValueException;
 use Wikimedia\ObjectCache\BagOStuff;

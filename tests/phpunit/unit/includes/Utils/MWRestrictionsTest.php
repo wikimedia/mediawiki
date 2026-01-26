@@ -6,8 +6,8 @@ use InvalidArgumentException;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Status\Status;
+use MediaWiki\Utils\MWRestrictions;
 use MediaWikiUnitTestCase;
-use MWRestrictions;
 use StatusValue;
 
 class MWRestrictionsTest extends MediaWikiUnitTestCase {
@@ -27,8 +27,8 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MWRestrictions::newDefault
-	 * @covers \MWRestrictions::__construct
+	 * @covers \MediaWiki\Utils\MWRestrictions::newDefault
+	 * @covers \MediaWiki\Utils\MWRestrictions::__construct
 	 */
 	public function testNewDefault() {
 		$ret = MWRestrictions::newDefault();
@@ -40,10 +40,10 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MWRestrictions::newFromArray
-	 * @covers \MWRestrictions::__construct
-	 * @covers \MWRestrictions::loadFromArray
-	 * @covers \MWRestrictions::toArray
+	 * @covers \MediaWiki\Utils\MWRestrictions::newFromArray
+	 * @covers \MediaWiki\Utils\MWRestrictions::__construct
+	 * @covers \MediaWiki\Utils\MWRestrictions::loadFromArray
+	 * @covers \MediaWiki\Utils\MWRestrictions::toArray
 	 * @dataProvider provideArray
 	 * @param array $data
 	 * @param StatusValue|InvalidArgumentException $expect StatusValue if the call succeeds,
@@ -89,11 +89,11 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MWRestrictions::newFromJson
-	 * @covers \MWRestrictions::__construct
-	 * @covers \MWRestrictions::loadFromArray
-	 * @covers \MWRestrictions::toJson
-	 * @covers \MWRestrictions::__toString
+	 * @covers \MediaWiki\Utils\MWRestrictions::newFromJson
+	 * @covers \MediaWiki\Utils\MWRestrictions::__construct
+	 * @covers \MediaWiki\Utils\MWRestrictions::loadFromArray
+	 * @covers \MediaWiki\Utils\MWRestrictions::toJson
+	 * @covers \MediaWiki\Utils\MWRestrictions::__toString
 	 * @dataProvider provideJson
 	 * @param string $json
 	 * @param array|null $restrictions
@@ -169,7 +169,7 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MWRestrictions::checkIP
+	 * @covers \MediaWiki\Utils\MWRestrictions::checkIP
 	 * @dataProvider provideCheckIP
 	 * @param string $ip
 	 * @param bool $pass
@@ -190,7 +190,7 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MWRestrictions::check
+	 * @covers \MediaWiki\Utils\MWRestrictions::check
 	 * @dataProvider provideCheckIP
 	 */
 	public function testCheck( $ip, $pass ) {

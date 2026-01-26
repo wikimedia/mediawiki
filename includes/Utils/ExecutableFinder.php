@@ -5,6 +5,8 @@
  * @license GPL-2.0-or-later
  */
 
+namespace MediaWiki\Utils;
+
 use MediaWiki\Shell\Shell;
 
 /**
@@ -99,3 +101,6 @@ class ExecutableFinder {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ExecutableFinder::class, 'ExecutableFinder' );

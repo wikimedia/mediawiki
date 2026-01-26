@@ -6,6 +6,9 @@
  * @file
  */
 
+namespace MediaWiki\Utils;
+
+use MediaHandler;
 use MediaWiki\FileRepo\File\File;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\FSFile;
@@ -113,3 +116,6 @@ class MWFileProps {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MWFileProps::class, 'MWFileProps' );

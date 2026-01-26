@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Utils;
+
 /**
  * @license GPL-2.0-or-later
  */
@@ -98,3 +100,6 @@ class FileContentsHasher {
 		return $hashes ? hash( self::ALGO, $hashes ) : false;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( FileContentsHasher::class, 'FileContentsHasher' );

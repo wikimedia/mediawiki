@@ -21,7 +21,7 @@ use MediaWiki\Upload\Exception\UploadStashNotLoggedInException;
 use MediaWiki\Upload\Exception\UploadStashWrongOwnerException;
 use MediaWiki\Upload\Exception\UploadStashZeroLengthFileException;
 use MediaWiki\User\UserIdentity;
-use MWFileProps;
+use MediaWiki\Utils\MWFileProps;
 
 /**
  * UploadStash is intended to accomplish a few things:

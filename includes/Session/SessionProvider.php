@@ -24,7 +24,7 @@ use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
-use MWRestrictions;
+use MediaWiki\Utils\MWRestrictions;
 use Psr\Log\LoggerInterface;
 use Stringable;
 use Wikimedia\Message\MessageParam;

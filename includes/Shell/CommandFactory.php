@@ -6,7 +6,7 @@
 
 namespace MediaWiki\Shell;
 
-use ExecutableFinder;
+use MediaWiki\Utils\ExecutableFinder;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use Shellbox\Command\BoxedCommand;

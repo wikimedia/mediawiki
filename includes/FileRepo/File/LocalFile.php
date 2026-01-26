@@ -35,7 +35,7 @@ use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use MWFileProps;
+use MediaWiki\Utils\MWFileProps;
 use RuntimeException;
 use stdClass;
 use UnexpectedValueException;

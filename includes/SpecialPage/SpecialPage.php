@@ -34,7 +34,7 @@ use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
-use MWCryptRand;
+use MediaWiki\Utils\MWCryptRand;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 

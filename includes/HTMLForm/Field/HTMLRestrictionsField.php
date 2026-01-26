@@ -6,7 +6,7 @@ use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
-use MWRestrictions;
+use MediaWiki\Utils\MWRestrictions;
 
 /**
  * Class for updating an MWRestrictions value (which is, currently, basically just an IP address

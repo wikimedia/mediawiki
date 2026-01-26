@@ -21,7 +21,7 @@ use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\Token;
 use MediaWiki\Status\Status;
-use MWCryptRand;
+use MediaWiki\Utils\MWCryptRand;
 use StatusValue;
 use UnexpectedValueException;
 
