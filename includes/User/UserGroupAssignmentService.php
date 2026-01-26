@@ -146,6 +146,13 @@ class UserGroupAssignmentService {
 		$groups = $localUserGroupManager->getGroupsChangeableBy( $performer );
 		$groups['restricted'] = [];
 
+		$isSelf = $performer->getUser()->equals( $target );
+		if ( $isSelf ) {
+			$groups['add'] = array_unique( array_merge( $groups['add'], $groups['add-self'] ) );
+			$groups['remove'] = array_unique( array_merge( $groups['remove'], $groups['remove-self'] ) );
+		}
+		unset( $groups['add-self'], $groups['remove-self'] );
+
 		$cannotAdd = [];
 		foreach ( $groups['add'] as $group ) {
 			if ( $this->restrictedGroupChecker->isGroupRestricted( $group ) ) {
@@ -174,15 +181,6 @@ class UserGroupAssignmentService {
 			}
 		}
 		$groups['add'] = array_diff( $groups['add'], $cannotAdd );
-
-		$isSelf = $performer->getUser()->equals( $target );
-		if ( $isSelf ) {
-			// This block is placed after the hook, which means that handlers cannot restrict self-assignments.
-			// It could be changed once a proper handling of restricted groups is introduced.
-			$groups['add'] = array_unique( array_merge( $groups['add'], $groups['add-self'] ) );
-			$groups['remove'] = array_unique( array_merge( $groups['remove'], $groups['remove-self'] ) );
-		}
-		unset( $groups['add-self'], $groups['remove-self'] );
 
 		return $groups;
 	}

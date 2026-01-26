@@ -482,6 +482,47 @@ class UserGroupAssignmentServiceTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	public function testCannotAddSelfToRestrictedGroup() {
+		$ugmMock = $this->createMock( UserGroupManager::class );
+		$ugmMock->method( 'getGroupsChangeableBy' )
+			->willReturn( [
+				'add' => [],
+				'remove' => [],
+				'add-self' => [ 'interface-admin' ],
+				'remove-self' => [],
+			] );
+
+		$ugmFactoryMock = $this->createMock( UserGroupManagerFactory::class );
+		$ugmFactoryMock->method( 'getUserGroupManager' )
+			->willReturn( $ugmMock );
+
+		$this->setService( 'UserGroupManagerFactory', $ugmFactoryMock );
+
+		$this->overrideConfigValue( MainConfigNames::RestrictedGroups, [
+			'interface-admin' => [
+				'memberConditions' => [ APCOND_EDITCOUNT, 100 ],
+			],
+		] );
+
+		$service = $this->getServiceContainer()->getUserGroupAssignmentService();
+
+		$performer = $this->mockAnonNullAuthority();
+		$target = $performer->getUser();
+
+		$groups = $service->getChangeableGroups( $performer, $target );
+		$expected = [
+			'add' => [],
+			'remove' => [],
+			'restricted' => [
+				'interface-admin' => [
+					'condition-met' => false,
+					'ignore-condition' => false
+				]
+			],
+		];
+		$this->assertSame( $expected, $groups );
+	}
+
 	public function testSaveUserGroups(): void {
 		$add = [ 'added-group1', 'added-group2' ];
 		$remove = [ 'removed-group' ];
