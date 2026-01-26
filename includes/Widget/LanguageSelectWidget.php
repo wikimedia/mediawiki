@@ -48,12 +48,16 @@ class LanguageSelectWidget {
 			'class' => $cssclass !== '' ? $defaultClass . ' ' . $cssclass : $defaultClass,
 		];
 
-		if ( isset( $this->config['name'] ) && $this->config['name'] !== null ) {
+		if ( isset( $this->config['name'] ) ) {
 			$selectAttribs['name'] = $this->config['name'];
 		}
 
-		if ( isset( $this->config['id'] ) && $this->config['id'] !== null ) {
+		if ( isset( $this->config['id'] ) ) {
 			$selectAttribs['id'] = $this->config['id'];
+		}
+
+		if ( isset( $this->config['size'] ) ) {
+			$selectAttribs['size'] = $this->config['size'];
 		}
 
 		// These are standard HTML attributes that can be passed from HTMLFormField
@@ -71,10 +75,11 @@ class LanguageSelectWidget {
 
 		// Add options (empty for non-JS fallback when languages is null, JS will handle it)
 		if ( $languages !== null ) {
+			$value = $this->config['value'] ?? null;
+			$selectedValues = is_array( $value ) ? $value : [ $value ];
 			foreach ( $languages as $code => $name ) {
 				$optionAttribs = [ 'value' => $code ];
-				$value = $this->config['value'] ?? null;
-				if ( $value === $code ) {
+				if ( in_array( $code, $selectedValues, true ) ) {
 					$optionAttribs['selected'] = 'selected';
 				}
 

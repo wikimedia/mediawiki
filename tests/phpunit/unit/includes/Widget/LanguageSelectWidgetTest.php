@@ -106,7 +106,58 @@ class LanguageSelectWidgetTest extends MediaWikiUnitTestCase {
 		$widget = new LanguageSelectWidget( $config );
 		$html = $widget->toString();
 
+		$this->assertStringContainsString( '<select', $html );
 		$this->assertStringContainsString( 'multiple', $html );
+		$this->assertStringContainsString( 'mw-widgets-languageSelectWidget', $html );
+		$this->assertStringContainsString( 'data-mw-languages', $html );
+		$this->assertStringContainsString( '<option value="en">', $html );
+		$this->assertStringContainsString( '<option value="de">', $html );
+	}
+
+	public function testToStringWithMultipleAndArrayValue() {
+		$config = [
+			'languages' => [ 'en' => 'English', 'de' => 'German', 'fr' => 'French' ],
+			'multiple' => true,
+			'value' => [ 'en', 'de' ],
+		];
+		$widget = new LanguageSelectWidget( $config );
+		$html = $widget->toString();
+
+		$this->assertStringContainsString( '<select', $html );
+		$this->assertStringContainsString( 'multiple', $html );
+		// Both en and de should be selected
+		$this->assertStringContainsString( '<option value="en" selected="">', $html );
+		$this->assertStringContainsString( '<option value="de" selected="">', $html );
+		$this->assertStringNotContainsString( '<option value="fr" selected="">', $html );
+	}
+
+	public function testToStringWithMultipleAndSingleValue() {
+		$config = [
+			'languages' => [ 'en' => 'English', 'de' => 'German' ],
+			'multiple' => true,
+			'value' => 'en',
+		];
+		$widget = new LanguageSelectWidget( $config );
+		$html = $widget->toString();
+
+		$this->assertStringContainsString( '<select', $html );
+		$this->assertStringContainsString( 'multiple', $html );
+		$this->assertStringContainsString( '<option value="en" selected="">', $html );
+		$this->assertStringNotContainsString( '<option value="de" selected="">', $html );
+	}
+
+	public function testToStringWithMultipleAndEmptyValue() {
+		$config = [
+			'languages' => [ 'en' => 'English', 'de' => 'German' ],
+			'multiple' => true,
+		];
+		$widget = new LanguageSelectWidget( $config );
+		$html = $widget->toString();
+
+		$this->assertStringContainsString( '<select', $html );
+		$this->assertStringContainsString( 'multiple', $html );
+		// No option should be selected
+		$this->assertStringNotContainsString( 'selected', $html );
 	}
 
 	public function testToStringWithCssClass() {

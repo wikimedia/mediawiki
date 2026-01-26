@@ -5,17 +5,29 @@
  */
 ( function () {
 
+	// Replace a native HTML select element with Vue component.
 	function replaceWithVue( nativeSelect ) {
-		const { getLookupLanguageSelector } = require( 'mediawiki.languageselector' );
+		const isMultiple = nativeSelect.hasAttribute( 'multiple' );
+		const {
+			getLookupLanguageSelector,
+			getMultiselectLookupLanguageSelector
+		} = require( 'mediawiki.languageselector' );
+
 		// Get configuration from data attributes
 		const languagesAttr = nativeSelect.getAttribute( 'data-mw-languages' );
 		const languages = languagesAttr && languagesAttr !== 'null' ? JSON.parse( languagesAttr ) : null;
-		// Get the selected value from the select element (or from the selected option)
-		const selectedOption = nativeSelect.querySelector( 'option[selected]' );
-		const selectedValue = selectedOption ? selectedOption.value : ( nativeSelect.value || null );
+
+		let selectedLanguage;
 
 		// Hide the native select (but keep it for form submission)
 		nativeSelect.style.display = 'none';
+
+		if ( isMultiple ) {
+			selectedLanguage = Array.from( nativeSelect.selectedOptions ).map( ( option ) => option.value );
+		} else {
+			const selectedOption = nativeSelect.querySelector( 'option[selected]' );
+			selectedLanguage = selectedOption.value;
+		}
 
 		// Create container for Vue component and insert it after the select element
 		const vueContainer = document.createElement( 'div' );
@@ -23,15 +35,23 @@
 		nativeSelect.parentNode.insertBefore( vueContainer, nativeSelect.nextSibling );
 
 		// Create Vue app using the factory function
-		const vueApp = getLookupLanguageSelector( {
+		const factory = isMultiple ? getMultiselectLookupLanguageSelector : getLookupLanguageSelector;
+		const vueApp = factory( {
 			selectableLanguages: languages,
-			selectedLanguage: selectedValue,
+			selectedLanguage: selectedLanguage,
 			// FIXME: the language labels will changed based on
 			// https://phabricator.wikimedia.org/T414468
 			menuItemSlot: ( { languageCode, languageName } ) => languageCode + ' - ' + languageName,
 			onLanguageChange: ( newValue ) => {
-				// Update native select for form submission
-				nativeSelect.value = newValue || '';
+				if ( isMultiple ) {
+					// Iterate over the options and set the 'selected' property for multiple select
+					Array.from( nativeSelect.options ).forEach( ( option ) => {
+						option.selected = newValue.includes( option.value );
+					} );
+				} else {
+					// the value is single value (en)
+					nativeSelect.value = newValue || '';
+				}
 				// Trigger change event on native select for compatibility
 				nativeSelect.dispatchEvent( new Event( 'change', { bubbles: true } ) );
 			}
