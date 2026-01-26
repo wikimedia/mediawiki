@@ -2,7 +2,7 @@
 
 /**
  * @group Autoload
- * @covers \ClassCollector
+ * @covers \MediaWiki\Autoload\ClassCollector
  */
 class ClassCollectorTest extends MediaWikiUnitTestCase {
 

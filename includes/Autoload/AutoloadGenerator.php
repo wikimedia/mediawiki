@@ -4,7 +4,12 @@
  * @file
  */
 
+namespace MediaWiki\Autoload;
+
+use InvalidArgumentException;
 use MediaWiki\Json\FormatJson;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
 /**
  * Scan given directories and files and create an autoload class map.
@@ -371,3 +376,6 @@ EOD;
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( AutoloadGenerator::class, 'AutoloadGenerator' );

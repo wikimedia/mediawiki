@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Autoload;
+
 /**
  * Read a PHP file and return the FQCN of every class defined within it.
  *
@@ -235,3 +237,6 @@ class ClassCollector {
 		return trim( implode( '', $content ), " \n\t" );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ClassCollector::class, 'ClassCollector' );

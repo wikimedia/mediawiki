@@ -249,6 +249,9 @@ because of Phabricator reports.
     - WatchArticleHook
   - Actions related pager: MediaWiki\Pager => MediaWiki\Actions\Pager
     - HistoryPager
+  - MediaWiki\Autoload:
+    - ClassCollector
+    - AutoloadGenerator
   - MediaWiki\Collation:
     - AbkhazUppercaseCollation
     - BashkirUppercaseCollation
