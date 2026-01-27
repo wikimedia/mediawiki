@@ -17,7 +17,8 @@
 			"Urhixidur",
 			"Vlad5250",
 			"아라",
-			"Jp2593"
+			"Jp2593",
+			"Neriah"
 		]
 	},
 	"sunday": "Domingo",
@@ -1825,7 +1826,7 @@
 	"editcomment": "An sumaryo kan pagliwat: <em>$1</em>.",
 	"revertpage": "Ibinalik na mga pagliwat ni [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) sagkod sa huring rebisyon ni [[User:$1|$1]]",
 	"revertpage-nouser": "Binalikwat na mga pagliliwat kan sarong nakatagong paragamit sa huring rebisyon ni {{GENDER:$1|[[User:$1|$1]]}}",
-	"rollback-success": "Binawî na mga paghirá ni {{GENDER:$3|$1}};; pigbalik sa dating bersyón ni {{GENDER:$4|$2}}.",
+	"rollback-success": "Binawî na mga paghirá ni {{GENDER:$3|$1}}; pigbalik sa dating bersyón ni {{GENDER:$4|$2}}.",
 	"sessionfailure-title": "Nagpalyang sesyon",
 	"sessionfailure": "Garo may problema sa paglaog mo;\nkinanselár ining aksyón bilang sarong paglikay kontra sa ''session hijacking''.\nPindotón tabî an \"back\" asin ikarga giraray an páhinang ginikanan mo, dangan probarán giraray.",
 	"changecontentmodel-legend": "baguhon an modelo nin kalamnan",

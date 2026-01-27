@@ -32,7 +32,8 @@
 			"Vlad5250",
 			"לערי ריינהארט",
 			"아라",
-			"Pppery"
+			"Pppery",
+			"Neriah"
 		]
 	},
 	"sunday": "Domenega",
@@ -1656,7 +1657,7 @@
 	"editcomment": "El comento a la modifica el xera: <em>$1</em>.",
 	"revertpage": "Desfà el cànbio de [[Special:Contributions/$2|$2]] ([[User talk:$2|discusion]]) e riportà a ła version antesedente de [[User:$1|$1]]",
 	"revertpage-nouser": "Anulà le modìfeghe de (nome utente cavà), riportà a la version precedente de [[User:$1|$1]]",
-	"rollback-success": "Anuƚà ƚe modifighe de {{GENDER:$3|$1}};; pàgina riportà a ƚa ùltima version de {{GENDER:$4|$2}}.",
+	"rollback-success": "Anuƚà ƚe modifighe de {{GENDER:$3|$1}}; pàgina riportà a ƚa ùltima version de {{GENDER:$4|$2}}.",
 	"sessionfailure-title": "Eròr de session",
 	"sessionfailure": "Se gà verificà un problema ne la session che identifica l'acesso; el sistema, par precauzion, no'l gà mìa eseguìo el comando che te ghè dato. Torna a la pagina precedente col boton 'Indrìo' del to browser, ricarica la pagina e ripróa da novo.",
 	"changecontentmodel": "Cànbia el modeło de contegnuo de na voxe",

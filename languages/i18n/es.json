@@ -2598,7 +2598,7 @@
 	"protect-existing-expiry-infinity": "Tiempo de caducidad existente: infinito",
 	"protect-otherreason": "Otra razón:",
 	"protect-otherreason-op": "Otro motivo",
-	"protect-dropdown": "*Razones de protección habituales\n**Vandalismo excesivo\n**Spam excesivo\n**Guerra de ediciones\n**Página muy visitada",
+	"protect-dropdown": "*Motivos de protección comúnes\n** Vandalismo excesivo\n** Spam excesivo\n** Guerra de ediciones\n** Página muy visitada",
 	"protect-edit-reasonlist": "Editar motivos de protección",
 	"protect-expiry-options": "1 hora:1 hour,1 día:1 day,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,para siempre:infinite",
 	"restriction-type": "Permiso:",

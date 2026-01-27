@@ -156,7 +156,8 @@
 			"JorgeElias2302",
 			"9Aaron3",
 			"Giorgx12",
-			"GseSro"
+			"GseSro",
+			"Amedeo463"
 		]
 	},
 	"sunday": "domenica",
@@ -3396,6 +3397,7 @@
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Percorso script]",
 	"version-libraries": "Librerie installate",
 	"version-libraries-server": "Librerie lato server installate",
+	"version-libraries-client": "Librerie lato client installate",
 	"version-libraries-library": "Libreria",
 	"version-libraries-version": "Versione",
 	"version-libraries-license": "Licenza",

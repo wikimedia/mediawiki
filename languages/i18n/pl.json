@@ -190,6 +190,8 @@
 	"index-category": "Strony indeksowane",
 	"noindex-category": "Strony nieindeksowane",
 	"broken-file-category": "Strony z odwołaniami do nieistniejących plików",
+	"categoryviewer-pagedlinks": "($1) ($2)",
+	"category-header-numerals": "$1–$2",
 	"about": "O {{GRAMMAR:MS.lp|{{SITENAME}}}}",
 	"article": "artykuł",
 	"newwindow": "(otwiera się w nowym oknie)",

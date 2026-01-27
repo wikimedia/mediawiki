@@ -2670,7 +2670,7 @@
 	"unblocked": "رُفِع المنع عن [[User:$1|$1]].",
 	"unblocked-range": "تم إلغاء منع $1",
 	"unblocked-id": "منع $1 تم رفعه",
-	"unblocked-ip": "تم رفع المنع عن [[Special:Contributions/$1|$1]].",
+	"unblocked-ip": "رُفِعَ المنع عن [[Special:Contributions/$1|$1]].",
 	"blocklist": "المستخدمون الممنوعون",
 	"autoblocklist": "منع تلقائي",
 	"autoblocklist-submit": "بحث",
