@@ -4,8 +4,6 @@
  * @file
  */
 
-namespace MediaWiki\Language\Dependency;
-
 /**
  * Depend on a PHP constant.
  *
@@ -29,6 +27,3 @@ class ConstantDependency extends CacheDependency {
 		return constant( $this->name ) != $this->value;
 	}
 }
-
-/** @deprecated class alias since 1.46 */
-class_alias( ConstantDependency::class, 'ConstantDependency' );
