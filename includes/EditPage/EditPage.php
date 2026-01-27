@@ -2179,87 +2179,68 @@ class EditPage implements IEditObject {
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 		/** @var EditConstraintFactory $constraintFactory */
 		$constraintFactory = MediaWikiServices::getInstance()->getService( '_EditConstraintFactory' );
-		$constraintRunner = new EditConstraintRunner();
 
 		// Message key of the label of the submit button - used by some constraint error messages
 		$submitButtonLabel = $this->getSubmitButtonLabel();
-
-		// UnicodeConstraint: ensure that `$this->unicodeCheck` is the correct unicode
-		$constraintRunner->addConstraint(
-			new UnicodeConstraint( $this->unicodeCheck )
-		);
-
-		// SimpleAntiSpamConstraint: ensure that the context request does not have
-		// `wpAntispam` set
-		// Use $user since there is no permissions aspect
-		$constraintRunner->addConstraint(
-			$constraintFactory->newSimpleAntiSpamConstraint(
-				$this->context->getRequest()->getText( 'wpAntispam' ),
-				$requestUser,
-				$this->getTitle()
-			)
-		);
-
-		// SpamRegexConstraint: ensure that the summary and text don't match the spam regex
-		$constraintRunner->addConstraint(
-			$constraintFactory->newSpamRegexConstraint(
-				$this->summary,
-				$this->sectiontitle,
-				$this->textbox1,
-				$this->context->getRequest()->getIP(),
-				$this->getTitle()
-			)
-		);
-		$constraintRunner->addConstraint(
-			new ImageRedirectConstraint(
-				$textbox_content,
-				$this->getTitle(),
-				$authority
-			)
-		);
-		$constraintRunner->addConstraint(
-			$constraintFactory->newReadOnlyConstraint()
-		);
 
 		// Load the page data from the primary DB. If anything changes in the meantime,
 		// we detect it by using page_latest like a token in a 1 try compare-and-swap.
 		$this->page->loadPageData( IDBAccessObject::READ_LATEST );
 		$new = !$this->page->exists();
 
-		$constraintRunner->addConstraint(
+		$constraintRunner = new EditConstraintRunner(
+			// Ensure that `$this->unicodeCheck` is the correct unicode
+			new UnicodeConstraint( $this->unicodeCheck ),
+
+			// Ensure that the context request does not have `wpAntispam` set
+			// Use $user since there is no permissions aspect
+			$constraintFactory->newSimpleAntiSpamConstraint(
+				$this->context->getRequest()->getText( 'wpAntispam' ),
+				$requestUser,
+				$this->getTitle()
+			),
+
+			// Ensure that the summary and text don't match the spam regex
+			$constraintFactory->newSpamRegexConstraint(
+				$this->summary,
+				$this->sectiontitle,
+				$this->textbox1,
+				$this->context->getRequest()->getIP(),
+				$this->getTitle()
+			),
+
+			new ImageRedirectConstraint(
+				$textbox_content,
+				$this->getTitle(),
+				$authority
+			),
+
+			$constraintFactory->newReadOnlyConstraint(),
+
 			new AuthorizationConstraint(
 				$authority,
 				$this->page,
 				$new
-			)
-		);
-		$constraintRunner->addConstraint(
+			),
+
 			new ContentModelChangeConstraint(
 				$authority,
 				$this->getTitle(),
 				$this->contentModel
-			)
-		);
-		$constraintRunner->addConstraint(
-			$constraintFactory->newLinkPurgeRateLimitConstraint(
-				$requestUser->toRateLimitSubject()
-			)
-		);
-		$constraintRunner->addConstraint(
+			),
+
+			$constraintFactory->newLinkPurgeRateLimitConstraint( $requestUser->toRateLimitSubject() ),
+
 			// Same constraint is used to check size before and after merging the
 			// edits, which use different failure codes
 			$constraintFactory->newPageSizeConstraint(
 				$this->contentLength,
 				PageSizeConstraint::BEFORE_MERGE
-			)
-		);
-		$constraintRunner->addConstraint(
-			new ChangeTagsConstraint( $authority, $this->changeTags )
-		);
+			),
 
-		// If the article has been deleted while editing, don't save it without
-		// confirmation
-		$constraintRunner->addConstraint(
+			new ChangeTagsConstraint( $authority, $this->changeTags ),
+
+			// If the article has been deleted while editing, don't save it without confirmation
 			$constraintFactory->newAccidentalRecreationConstraint(
 				$this->context,
 				$this->getTitle(),
@@ -2310,21 +2291,17 @@ class EditPage implements IEditObject {
 
 			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 			// Create a new runner to avoid rechecking the prior constraints, use the same factory
-			$constraintRunner = new EditConstraintRunner();
-
-			// Don't save a new page if it's blank or if it's a MediaWiki:
-			// message with content equivalent to default (allow empty pages
-			// in this case to disable messages, see T52124)
-			$constraintRunner->addConstraint(
+			$constraintRunner = new EditConstraintRunner(
+				// Don't save a new page if it's blank or if it's a MediaWiki:
+				// message with content equivalent to default (allow empty pages
+				// in this case to disable messages, see T52124)
 				new DefaultTextConstraint(
 					$this->getTitle(),
 					$this->allowBlankArticle,
 					$this->textbox1,
 					$submitButtonLabel
-				)
-			);
+				),
 
-			$constraintRunner->addConstraint(
 				$constraintFactory->newEditFilterMergedContentHookConstraint(
 					$content,
 					$this->context,
@@ -2332,7 +2309,7 @@ class EditPage implements IEditObject {
 					$markAsMinor,
 					$this->context->getLanguage(),
 					$pstUser
-				)
+				),
 			);
 
 			// Check the constraints
@@ -2462,8 +2439,7 @@ class EditPage implements IEditObject {
 
 			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 			// Create a new runner to avoid rechecking the prior constraints, use the same factory
-			$constraintRunner = new EditConstraintRunner();
-			$constraintRunner->addConstraint(
+			$constraintRunner = new EditConstraintRunner(
 				$constraintFactory->newEditFilterMergedContentHookConstraint(
 					$content,
 					$this->context,
@@ -2471,20 +2447,14 @@ class EditPage implements IEditObject {
 					$markAsMinor,
 					$this->context->getLanguage(),
 					$pstUser
-				)
-			);
-			$constraintRunner->addConstraint(
+				),
 				new NewSectionMissingSubjectConstraint(
 					$this->section,
 					$this->sectiontitle ?? '',
 					$this->allowBlankSummary,
 					$submitButtonLabel
-				)
-			);
-			$constraintRunner->addConstraint(
-				new MissingCommentConstraint( $this->section, $this->textbox1 )
-			);
-			$constraintRunner->addConstraint(
+				),
+				new MissingCommentConstraint( $this->section, $this->textbox1 ),
 				new ExistingSectionEditConstraint(
 					$this->section,
 					$this->summary,
@@ -2493,9 +2463,7 @@ class EditPage implements IEditObject {
 					$content,
 					$this->getOriginalContent( $authority ),
 					$submitButtonLabel
-				)
-			);
-			$constraintRunner->addConstraint(
+				),
 				new RevisionDeletedConstraint(
 					$this->mArticle,
 					$this->ignoreRevisionDeletedWarning,
@@ -2507,7 +2475,7 @@ class EditPage implements IEditObject {
 						'edit-constraint-warning-wrapper-save-deleted-revision',
 						[ MessageValue::new( $submitButtonLabel ) ],
 					),
-				)
+				),
 			);
 
 			// Check the constraints
@@ -3387,18 +3355,14 @@ class EditPage implements IEditObject {
 		if ( $this->formtype !== 'save' ) {
 			/** @var EditConstraintFactory $constraintFactory */
 			$constraintFactory = MediaWikiServices::getInstance()->getService( '_EditConstraintFactory' );
-			$constraintRunner = new EditConstraintRunner();
-
-			$constraintRunner->addConstraint(
+			$constraintRunner = new EditConstraintRunner(
 				$constraintFactory->newAccidentalRecreationConstraint(
 					$this->context,
 					$this->getTitle(),
 					// Ignore wpRedirect so the warning is still shown after a save attempt
 					false,
 					$this->starttime,
-				)
-			);
-			$constraintRunner->addConstraint(
+				),
 				new RevisionDeletedConstraint(
 					$this->mArticle,
 					false,
@@ -3406,7 +3370,7 @@ class EditPage implements IEditObject {
 					$this->section,
 					$this->getTitle(),
 					$this->context->getUser(),
-				)
+				),
 			);
 
 			// No call to $this->handleFailedConstraint() here to avoid setting wpRedirect

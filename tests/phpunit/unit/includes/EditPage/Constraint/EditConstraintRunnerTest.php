@@ -105,4 +105,12 @@ class EditConstraintRunnerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
+	public function testConstructor() {
+		$runner = TestingAccessWrapper::newFromObject( new EditConstraintRunner(
+			$this->createMock( IEditConstraint::class ),
+			$this->createMock( IEditConstraint::class ),
+		) );
+		$this->assertCount( 2, $runner->constraints );
+	}
+
 }

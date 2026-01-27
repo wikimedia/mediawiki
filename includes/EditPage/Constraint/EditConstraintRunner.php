@@ -41,10 +41,10 @@ class EditConstraintRunner {
 	/**
 	 * Create a new runner
 	 */
-	public function __construct() {
-		// TODO allow passing an array here as the starting constraints?
+	public function __construct( IEditConstraint ...$constraints ) {
 		// TODO consider injecting this?
 		$this->logger = LoggerFactory::getInstance( 'EditConstraintRunner' );
+		$this->addConstraints( ...$constraints );
 	}
 
 	/**
@@ -57,6 +57,16 @@ class EditConstraintRunner {
 	 */
 	public function addConstraint( IEditConstraint $constraint ) {
 		$this->constraints[] = $constraint;
+	}
+
+	/**
+	 * Add multiple edit constraints to check.
+	 * @see addConstraint()
+	 */
+	public function addConstraints( IEditConstraint ...$constraints ) {
+		foreach ( $constraints as $constraint ) {
+			$this->addConstraint( $constraint );
+		}
 	}
 
 	/**
