@@ -373,6 +373,7 @@ $wgAutoloadClasses += [
 	# tests/phpunit/structure
 	'MediaWiki\\Tests\\Structure\\AbstractSchemaTestBase' => "$testDir/phpunit/structure/AbstractSchemaTestBase.php",
 	'MediaWiki\\Tests\\Structure\\BundleSizeTestBase' => "$testDir/phpunit/structure/BundleSizeTestBase.php",
+	'MediaWiki\\Tests\\Structure\\OwnersStructureTestBase' => "$testDir/phpunit/structure/OwnersStructureTestBase.php",
 
 	# tests/phpunit/unit/includes/Rest
 	'MediaWiki\Tests\Rest\MockHandlerFactory' => "$testDir/phpunit/unit/includes/Rest/MockHandlerFactory.php",
