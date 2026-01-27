@@ -378,6 +378,7 @@ abstract class TablePager extends IndexPager {
 	public function getHiddenFields( $noResubmit = [] ) {
 		$noResubmit = (array)$noResubmit;
 		$query = $this->getRequest()->getQueryValues();
+		$query += $this->getDefaultQuery();
 		foreach ( $noResubmit as $name ) {
 			unset( $query[$name] );
 		}

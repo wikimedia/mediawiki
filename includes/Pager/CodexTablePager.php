@@ -288,7 +288,10 @@ abstract class CodexTablePager extends TablePager {
 	 * @inheritDoc
 	 */
 	protected function createNavigationBuilder(): CodexPagerNavigationBuilder {
-		$builder = new CodexPagerNavigationBuilder( $this->getContext(), $this->getRequest()->getQueryValues() );
+		$query = $this->getRequest()->getQueryValues();
+		$query += $this->getDefaultQuery();
+
+		$builder = new CodexPagerNavigationBuilder( $this->getContext(), $query );
 		$builder->setNavClass( $this->getNavClass() );
 		return $builder;
 	}
