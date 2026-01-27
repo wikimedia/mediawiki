@@ -7,6 +7,7 @@
 
 namespace MediaWiki\Language;
 
+use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\StringUtils\StringUtils;
 
@@ -17,40 +18,52 @@ use Wikimedia\StringUtils\StringUtils;
  * @ingroup Language
  */
 class ConverterRule {
+	use DeprecationHelper;
+
 	/**
 	 * @var LanguageConverter
 	 */
-	public $mConverter;
+	private $mConverter;
 	/** @var string|false */
-	public $mRuleDisplay = '';
+	private $mRuleDisplay = '';
 	/** @var string|false */
-	public $mRuleTitle = false;
+	private $mRuleTitle = false;
 	/**
 	 * @var string the text of the rules
 	 */
-	public $mRules = '';
+	private $mRules = '';
 	/** @var string */
-	public $mRulesAction = 'none';
+	private $mRulesAction = 'none';
 	/** @var array */
-	public $mFlags = [];
+	private $mFlags = [];
 	/** @var array */
-	public $mVariantFlags = [];
+	private $mVariantFlags = [];
 	/** @var array */
-	public $mConvTable = [];
+	private $mConvTable = [];
 	/**
 	 * @var array of the translation in each variant
 	 */
-	public $mBidtable = [];
+	private $mBidtable = [];
 	/**
 	 * @var array of the translation in each variant
 	 */
-	public $mUnidtable = [];
+	private $mUnidtable = [];
 
 	/**
 	 * @param LanguageConverter $converter
 	 */
 	public function __construct( LanguageConverter $converter ) {
 		$this->mConverter = $converter;
+		$this->deprecatePublicProperty( 'mConverter', '1.46', __CLASS__ );
+		$this->deprecatePublicProperty( 'mRuleDisplay', '1.46', __CLASS__ );
+		$this->deprecatePublicProperty( 'mRuleTitle', '1.46', __CLASS__ );
+		$this->deprecatePublicProperty( 'mRules', '1.46', __CLASS__ );
+		$this->deprecatePublicProperty( 'mRulesAction', '1.46', __CLASS__ );
+		$this->deprecatePublicProperty( 'mFlags', '1.46', __CLASS__ );
+		$this->deprecatePublicProperty( 'mVariantFlags', '1.46', __CLASS__ );
+		$this->deprecatePublicProperty( 'mConvTable', '1.46', __CLASS__ );
+		$this->deprecatePublicProperty( 'mBidtable', '1.46', __CLASS__ );
+		$this->deprecatePublicProperty( 'mUnidtable', '1.46', __CLASS__ );
 	}
 
 	/**
