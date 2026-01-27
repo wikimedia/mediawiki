@@ -203,6 +203,8 @@
 	"prefs-description-watchlist": "管理和個人化您正在監視的頁面的清單。",
 	"prefs-editwatchlist": "編輯監視清單",
 	"prefs-editwatchlist-label": "編輯在您監視清單上的項目：",
+	"prefs-editwatchlistlabels-label": "編輯監視清單標籤：",
+	"prefs-managewatchlistlabels": "查看並管理您的監視清單標籤",
 	"prefs-editwatchlist-edit": "檢視與移除在您監視清單上的標題",
 	"prefs-editwatchlist-raw": "編輯原始監視清單",
 	"prefs-editwatchlist-clear": "清除您的監視清單",

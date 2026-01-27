@@ -2,12 +2,35 @@
 	"@metadata": {
 		"authors": [
 			"Abijeet Patro",
-			"AnupamM"
+			"AnupamM",
+			"Saurmandal"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "ब्रेडक्रम्ब",
+	"cdx-breadcrumb-overflow-label": "नैविगेशन के अधिक विकल्प",
 	"cdx-chip-input-chip-added": "चिप $1 जोड़ा गया।",
-	"cdx-chip-input-chip-removed": "चिप $1 को हटा दिया गया।",
+	"cdx-chip-input-chip-removed": "चिप $1 हटा दिया गया।",
+	"cdx-input-chip-aria-description": "सम्पादित करने के लिए Enter दबाएँ या फिर हटाने के लिए Delete।",
+	"cdx-dialog-close-button-label": "बंद करें",
+	"cdx-label-optional-flag": "(वैकल्पिक)",
+	"cdx-message-dismiss-button-label": "बंद करें",
+	"cdx-popover-close-button-label": "बंद करें",
+	"cdx-search-input-search-button-label": "खोजें",
+	"cdx-table-select-all-label": "सभी पंक्तियों का चयन करें",
+	"cdx-table-select-row-label": "कुल $2 में से $1 नं. पंक्ति चुनें",
+	"cdx-table-sort-caption": "$1 (बटन वाले कॉलम हेडर छाँटे जा सकते हैं)।",
+	"cdx-typeahead-search-search-results-label": "खोज परिणाम",
 	"cdx-table-pager-button-first-page": "पहला पृष्ठ",
 	"cdx-table-pager-button-last-page": "अंतिम पृष्ठ",
-	"cdx-table-pager-button-next-page": "अगला पृष्ठ"
+	"cdx-table-pager-button-next-page": "अगला पृष्ठ",
+	"cdx-table-pager-button-prev-page": "पिछला पृष्ठ",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 प्रविष्टि|$1 प्रविष्टियाँ}}",
+	"cdx-table-pager-items-per-page-default": "प्रति पृष्ठ परिणाम",
+	"cdx-table-pagination-status-message-determinate-long": "कुल $3 में से $1 से $2 तक प्रदर्शित",
+	"cdx-table-pagination-status-message-determinate-short": "कुल $3 में से $1 से $2",
+	"cdx-table-pagination-status-message-indeterminate-long": "कई परिणामों में से $1 से $2 तक प्रदर्शित",
+	"cdx-table-pagination-status-message-indeterminate-short": "कई में से $1 से $2 तक",
+	"cdx-table-pagination-status-message-indeterminate-final": "अंतिम $1 परिणाम {{PLURAL:$1|दर्शाया जा रहा है|दर्शाए जा रहे हैं}}",
+	"cdx-table-pagination-status-message-pending": "परिणाम लोड हो रहे हैं...",
+	"cdx-table-no-data-message": "कोई डेटा उपलब्ध नहीं है।"
 }
