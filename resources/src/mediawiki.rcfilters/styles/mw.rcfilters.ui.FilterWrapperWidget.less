@@ -3,7 +3,9 @@
 
 .mw-rcfilters-collapsed {
 	.mw-rcfilters-ui-filterWrapperWidget-bottom {
-		display: none;
+		> :not( .mw-rcfilters-ui-filterWrapperWidget-showNewChanges ) {
+			display: none;
+		}
 	}
 }
 
