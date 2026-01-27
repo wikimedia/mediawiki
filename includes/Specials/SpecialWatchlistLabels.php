@@ -320,10 +320,11 @@ class SpecialWatchlistLabels extends SpecialPage {
 				'title' => $this->msg( 'watchlistlabels-table-edit' )->text(),
 			];
 			$checkboxId = self::PARAM_IDS . '_' . $id;
+			$labelVal = Html::element( 'bdi', [], $label->getName() );
 			// The sortable columns must have matching '*-sort' elements containing unformatted data for sorting.
 			$data[] = [
 				'select' => $this->getCheckbox( $checkboxId, (string)$id ),
-				'name' => Html::label( $label->getName(), $checkboxId ),
+				'name' => Html::rawElement( 'label', [ 'for' => $checkboxId ], $labelVal ),
 				'name-sort' => mb_strtolower( $label->getName() ),
 				'count' => $this->getLanguage()->formatNum( $labelCounts[ $id ] ),
 				'count-sort' => $labelCounts[ $id ],

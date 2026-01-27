@@ -89,9 +89,9 @@ TagItemWidget.prototype.updateUiBasedOnState = function () {
 	const labelMsg = this.itemModel.getLabelMessageKey( this.invertModel && this.invertModel.isSelected() );
 	if ( labelMsg ) {
 		this.setLabel(
-			$( '<bdi>' ).append(
+			$( '<bdi>' ).text(
 				// eslint-disable-next-line mediawiki/msg-doc
-				mw.message( labelMsg, mw.html.escape( this.itemModel.getLabel() ) ).parseDom()
+				mw.msg( labelMsg, this.itemModel.getLabel() )
 			)
 		);
 	} else {
