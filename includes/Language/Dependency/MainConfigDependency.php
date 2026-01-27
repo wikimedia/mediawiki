@@ -4,8 +4,6 @@
  * @file
  */
 
-namespace MediaWiki\Language\Dependency;
-
 use MediaWiki\Config\Config;
 use MediaWiki\MediaWikiServices;
 
@@ -38,6 +36,3 @@ class MainConfigDependency extends CacheDependency {
 		return $this->getConfig()->get( $this->name ) != $this->value;
 	}
 }
-
-/** @deprecated class alias since 1.46 */
-class_alias( MainConfigDependency::class, 'MainConfigDependency' );
