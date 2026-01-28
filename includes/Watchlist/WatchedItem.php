@@ -191,7 +191,7 @@ class WatchedItem {
 			return 0;
 		}
 
-		return (int)ceil( $diffInDays );
+		return (int)floor( $diffInDays );
 	}
 
 	/**

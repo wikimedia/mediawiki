@@ -88,7 +88,7 @@ class SpecialMovePageTest extends SpecialPageTestBase {
 		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 		$user = $this->getTestSysop()->getUser();
 		$testPage = $this->getExistingTestPage( Title::newFromText( 'Test page for watchlist expiry' ) );
-		$this->getServiceContainer()->getWatchlistManager()->setWatch( true, $user, $testPage->getTitle(), '7 days' );
+		$this->getServiceContainer()->getWatchlistManager()->setWatch( true, $user, $testPage->getTitle(), '7 days 1 hour' );
 		[ $html ] = $this->executeSpecialPage( $testPage->getTitle()->getPrefixedDBkey(), null, 'qqx', $user );
 		$this->assertStringContainsString( 'watchlist-expiry-days-left: 7', $html );
 	}

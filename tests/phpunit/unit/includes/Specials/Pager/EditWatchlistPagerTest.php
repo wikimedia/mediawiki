@@ -46,6 +46,11 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 		$output->method( 'addModuleStyles' );
 		$output->method( 'addModules' );
 		$title = $this->createMock( Title::class );
+		$language = $this->createMock( Language::class );
+		$language->method( 'formatDurationBetweenTimestamps' )
+			->willReturnCallback( static function ( $expiryTimestamp, $nowTimestamp, $precision ) {
+				return (string)$expiryTimestamp;
+			} );
 		$context = $this->createMock( RequestContext::class );
 		$context->method( 'getUser' )
 			->willReturn( $options['user'] );
@@ -53,6 +58,8 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 			->willReturn( $title );
 		$context->method( 'getOutput' )
 			->willReturn( $output );
+		$context->method( 'getLanguage' )
+			->willReturn( $language );
 		// need to mock the request because FauxRequest uses MediaWikiServices
 		$request = new class(
 			$options['request']['data'],
@@ -69,6 +76,10 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 		};
 		$context->method( 'getRequest' )
 			->willReturn( $request );
+		$context->method( 'msg' )
+			->willReturnCallback( static function ( $key, ...$params ) {
+				return implode( '|', array_merge( [ $key ], $params ) );
+			} );
 
 		$db = $this->createMock( IReadableDatabase::class );
 		$db->method( 'buildComparison' )
@@ -146,7 +157,6 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 		$watchedItem = $this->createMock( WatchedItem::class );
 		$watchedItem->method( 'getTarget' )->willReturn( $target );
 		$watchedItem->method( 'getExpiry' )->willReturn( $expiry );
-		$watchedItem->method( 'getExpiryInDaysText' )->willReturn( $expiry ? $expiry . ' days' : '' );
 		$watchedItem->method( 'getLabels' )->willReturn( $labels );
 		return $watchedItem;
 	}
@@ -165,7 +175,7 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 			->willReturnCallback(
 				function (
 					UserIdentity $user, array $options
-				) use ( $watchedItemsCallAndResponse, $mockUser, $request ) {
+				) use ( $watchedItemsCallAndResponse, $mockUser ) {
 					$this->assertEquals( $user, $mockUser );
 					$this->assertEquals( $watchedItemsCallAndResponse['call'], $options );
 					return $watchedItemsCallAndResponse['response'];
@@ -212,11 +222,11 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 				],
 				'expectedResult' => new FakeResultWrapper( [
 					[ 'wl_namespace' => 777, 'wl_title' => 'Page_1',
-						'expiry' => '20250909180500 days', 'labels' => [] ],
+						'expiry' => 'watchlist-expires-in|20250909180500', 'labels' => [] ],
 					[ 'wl_namespace' => 999, 'wl_title' => 'Page_2',
-						'expiry' => '20250909180530 days', 'labels' => [] ],
+						'expiry' => 'watchlist-expires-in|20250909180530', 'labels' => [] ],
 					[ 'wl_namespace' => 666, 'wl_title' => 'Page_X',
-						'expiry' => '', 'labels' => [] ],
+						'expiry' => 'watchlist-expires-never', 'labels' => [] ],
 				] ),
 			],
 			// data set 1: sort, offset, limit specified in request data
@@ -247,9 +257,9 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 				],
 				'expectedResult' => new FakeResultWrapper( [
 					[ 'wl_namespace' => 999, 'wl_title' => 'Page_2',
-						'expiry' => '20250909180530 days', 'labels' => [] ],
+						'expiry' => 'watchlist-expires-in|20250909180530', 'labels' => [] ],
 					[ 'wl_namespace' => 777, 'wl_title' => 'Page_1',
-						'expiry' => '20250909180500 days',
+						'expiry' => 'watchlist-expires-in|20250909180500',
 						'labels' => [ [ 'id' => 1, 'name' => 'foo' ] ]
 					],
 				] ),

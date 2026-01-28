@@ -19,12 +19,14 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialEditWatchlist;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use Wikimedia\Codex\Utility\Codex;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Timestamp\TimestampFormat;
 
 /**
  * @ingroup Pager
@@ -135,6 +137,28 @@ class EditWatchlistPager extends CodexTablePager {
 	private function watchedItemArrayToResults( array $watchedItems ): ResultWrapper {
 		$titles = [];
 		foreach ( $watchedItems as $watchedItem ) {
+			$expiryTimestamp = $watchedItem->getExpiry( TimestampFormat::UNIX );
+			if ( $expiryTimestamp ) {
+				$expiryTimestamp = (int)$expiryTimestamp;
+				$now = MWTimestamp::time();
+				if ( $expiryTimestamp - $now > 60 * 60 * 24 * 365 ) {
+					$precision = 3;
+				} elseif ( $expiryTimestamp - $now > 60 * 60 * 24 * 31 ) {
+					$precision = 2;
+				} else {
+					$precision = 1;
+				}
+				$expiryString = $this->msg(
+					'watchlist-expires-in',
+					$this->getLanguage()->formatDurationBetweenTimestamps(
+						$expiryTimestamp,
+						$now,
+						$precision
+					)
+				);
+			} else {
+				$expiryString = $this->msg( 'watchlist-expires-never' );
+			}
 			$titles[] = [
 				'wl_namespace' => $watchedItem->getTarget()->getNamespace(),
 				'wl_title' => $watchedItem->getTarget()->getDBkey(),
@@ -142,7 +166,7 @@ class EditWatchlistPager extends CodexTablePager {
 					static fn ( $l ) => [ 'id' => $l->getId(), 'name' => $l->getName() ],
 					$watchedItem->getLabels()
 				),
-				'expiry' => $watchedItem->getExpiryInDaysText( $this->getContext() ),
+				'expiry' => $expiryString,
 			];
 		}
 		return new FakeResultWrapper( $titles );
