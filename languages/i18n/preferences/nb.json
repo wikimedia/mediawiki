@@ -199,6 +199,8 @@
 	"prefs-description-watchlist": "Behandle og tilpass lista over sider du følger.",
 	"prefs-editwatchlist": "Rediger overvåkningsliste",
 	"prefs-editwatchlist-label": "Rediger elementer på overvåkningslista di:",
+	"prefs-editwatchlistlabels-label": "Rediger etiketter for overvåkningsliste:",
+	"prefs-managewatchlistlabels": "Se og administrer etikettene på overvåkningslisten din",
 	"prefs-editwatchlist-edit": "Vis og fjern titler fra overvåkningslista di",
 	"prefs-editwatchlist-raw": "Rediger rå overvåkningsliste",
 	"prefs-editwatchlist-clear": "Slett overvåkningslista di",

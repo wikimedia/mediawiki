@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Tynnoel",
 			"Yupik"
 		]
 	},
@@ -123,6 +124,7 @@
 	"collapsible-collapse-all-text": "Čiõǥǥ puk",
 	"collapsible-expand": "Čuäʹjet",
 	"collapsible-expand-all-text": "Čuäʹjet puk",
+	"confirmable-confirm": "Leäk-a {{GENDER:$1|ton}} snäätnai?",
 	"confirmable-yes": "Naa",
 	"confirmable-no": "Jiõm leäkku",
 	"thisisdeleted": "Haaʹlääk-a ton čuäʹjted leʹbe maaccted $1?",

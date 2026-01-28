@@ -198,6 +198,8 @@
 	"prefs-description-watchlist": "आपके द्वारा ट्रैक किए जाने वाले पृष्ठों की सूची को प्रबंधित और अनुकूलित करें।",
 	"prefs-editwatchlist": "ध्यानसूची सम्पादित करें",
 	"prefs-editwatchlist-label": "अपनी ध्यानसूची की प्रविष्टियाँ सम्पादित करें:",
+	"prefs-editwatchlistlabels-label": "ध्यानसूची लेबल्स सम्पादित करें:",
+	"prefs-managewatchlistlabels": "अपने ध्यानसूची लेबल्स देखें और सम्पादित करें",
 	"prefs-editwatchlist-edit": "अपनी ध्यानसूची पर शीर्षक देखें और हटाएँ",
 	"prefs-editwatchlist-raw": "रॉ ध्यानसूची सम्पादित करें",
 	"prefs-editwatchlist-clear": "अपनी ध्यानसूची साफ़ करें",

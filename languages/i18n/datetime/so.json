@@ -59,5 +59,6 @@
 	"sun": "Axa",
 	"days": "{{PLURAL:$1|$1 maalin|$1 maalmood}}",
 	"ago": "$1 kahor",
-	"duration-days": "$1 {{PLURAL:$1|maalin|maalmood}}"
+	"duration-days": "$1 {{PLURAL:$1|maalin|maalmood}}",
+	"just-now": "hadda"
 }

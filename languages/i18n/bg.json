@@ -2286,6 +2286,8 @@
 	"undeleteinvert": "Обръщане на избора",
 	"undeletecomment": "Причина:",
 	"undeleteothercomment": "Друга/допълнителна причина:",
+	"undeletecommentotherlist": "Друга причина",
+	"undelete-comment-dropdown": "* Често срещани причини за възстановяване\n** Заявка от авторa",
 	"undeletedpage": "<strong>Страницата $1 беше възстановена</strong>\n\nМожете да видите последните изтрити и възстановени страници в [[Special:Log/delete|дневника на изтриванията]].",
 	"undelete-header": "Прегледайте [[Special:Log/delete|дневника на изтриванията]] за текущо изтритите страници.",
 	"undelete-search-title": "Търсене на изтрити страници",

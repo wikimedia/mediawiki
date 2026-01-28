@@ -531,6 +531,7 @@
 	"missingcommenttext": "Gitt wgl. eng Bemierkung an.",
 	"missingcommentheader": "<strong>Denkt drun:</strong> Dir hutt kee Sujet fir dës Bemierkung aginn.\nWann Dir nach en Kéier op \"$1\" klickt da gëtt Är Ännerung ouni Titel verëffentlecht.",
 	"summary-preview": "Resümmee vun der Ännerung kucken ouni ze späicheren:",
+	"autocomment-top": "(Ufank)",
 	"previewerrortext": "Beim Versuch fir Är Ännerungen ze weisen, ass e Feeler geschitt.",
 	"blockedtitle": "Benotzer ass gespaart",
 	"blockedtext": "<strong>Äre Benotzernumm oder Är IP-Adress gouf gespaart.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nDir kënnt d'Funktioun \"{{int:emailuser}}\" benotzen, wann Dir eng gülteg E-Mail-Adress an Ären [[Special:Preferences|Astellungen]] uginn hutt a wann dës Funktioun net fir Iech gespaart gouf.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

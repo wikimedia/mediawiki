@@ -565,6 +565,7 @@
 	"missingcommenttext": "Внесете коментар.",
 	"missingcommentheader": "<strong>Потсетување:</strong> Не внесовте наслов за овој коментар.\nАко повторно стиснете на „$1“, уредувањето ќе биде објавено без наслов.",
 	"summary-preview": "Преглед на описот:",
+	"autocomment-top": "(најгоре)",
 	"previewerrortext": "Се појави грешка при обидот да се прегледаат промените.",
 	"blockedtitle": "Корисникот е блокиран",
 	"blockedtext": "<strong>Вашето корисничко име или IP-адреса е блокирано.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nМожете да ја искористите можноста „{{int:emailuser}}“ ако е назначена важечка е-поштенска адреса во [[Special:Preferences|вашите нагодувања]] и не ви е забрането да ја користите.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

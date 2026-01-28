@@ -1293,7 +1293,7 @@
 	"userrights-no-group": "Used as error message on [[Special:UserRights]] when the user is temporary user.",
 	"userrights-conflict": "Shown on [[Special:UserRights]] if the target's rights have been changed since the form was loaded.",
 	"userrights-unable-to-change": "Error message on [[Special:UserRights]] when performer attempted to change some groups they are unable to change.\n\nParameters:\n* $1 - List of groups that cannot be changed, together with a reason\n* $2 - Name of the target user (for GENDER)\n* $3 - number of list entries in parameter $1",
-	"userrights-unable-to-change-row": "A message used for making list items in {{msg-mw|userrights-unable-to-change}}.\n\nParameters:\n* $1 - Name of a user group\n* $2 - Reason why user cannot be added to or removed from the group",
+	"userrights-unable-to-change-row": "{{optional}}\nA message used for making list items in {{msg-mw|userrights-unable-to-change}}.\n\nParameters:\n* $1 - Name of a user group\n* $2 - Reason why user cannot be added to or removed from the group",
 	"userrights-insufficient-rights": "One of the possible reasons in {{msg-mw|userrights-unable-to-change}}, stating that the performer does not have sufficient rights to change target's membership in a given group",
 	"group": "{{Identical|Group}}",
 	"group-user": "{{doc-group|user}}\n{{Identical|User}}",

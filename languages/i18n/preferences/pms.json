@@ -185,6 +185,8 @@
 	"prefs-description-watchlist": "Gestì e përsonalisé la lista dle pàgine ch'it ten-e sot euj.",
 	"prefs-editwatchlist": "Modifiché la lista ëd lòn ch'as ten sot-euj",
 	"prefs-editwatchlist-label": "Modifiché dle vos ëd la lista ëd lòn ch'as ten sot-euj:",
+	"prefs-editwatchlistlabels-label": "Modifiché le tichëtte dla lista 'd contròl:",
+	"prefs-managewatchlistlabels": "Vardé e gestì le tichëtte 'd toa lista 'd contròl",
 	"prefs-editwatchlist-edit": "Vëdde e gavé dle vos ëd la lista ëd lòn ch'as ten sot-euj",
 	"prefs-editwatchlist-raw": "Modìfica lesta ëd la lista ëd lòn ch'as ten sot-euj",
 	"prefs-editwatchlist-clear": "Dësvujdé la lista ëd lòn ch'as ten sot-euj",

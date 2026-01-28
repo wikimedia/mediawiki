@@ -685,6 +685,7 @@
 	"missingcommenttext": "請輸入一段評論。",
 	"missingcommentheader": "<strong>提醒：</strong>您未填寫此評論的主旨。\n若您再點選 \"$1\" 一次，將略過主旨/標題直接發布您的評論。",
 	"summary-preview": "編輯摘要預覽：",
+	"autocomment-top": "（首段）",
 	"previewerrortext": "嘗試預覽您的變更時發生錯誤。",
 	"blockedtitle": "使用者已被封鎖",
 	"blockedtext": "<strong>您的使用者名稱或IP位址已被封鎖。</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n若您已在[[Special:Preferences|偏好設定]]中設定了一個有效的電子郵件地址，且尚未被封鎖郵件功能，則您可透過「{{int:emailuser}}」的功能來聯絡相關管理員。{{int:blockedtext-block-ip|$3}}\n{{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
