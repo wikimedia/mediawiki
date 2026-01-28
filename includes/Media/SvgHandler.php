@@ -443,10 +443,10 @@ class SvgHandler extends ImageHandler {
 			$url = $image->getFilePageThumbUrl( $url );
 		}
 
-		$actualParams = [
-			'width' => $params['clientWidth'],
-			'height' => $params['clientHeight'],
-		] + $params;
+		$actualParams = $params;
+
+		$actualParams['width']  ??= $params['clientWidth'];
+		$actualParams['height'] ??= $params['clientHeight'];
 
 		return new ThumbnailImage( $image, $url, null, $actualParams );
 	}
