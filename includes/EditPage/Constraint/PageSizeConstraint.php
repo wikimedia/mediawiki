@@ -7,7 +7,7 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use InvalidArgumentException;
-use StatusValue;
+use MediaWiki\EditPage\EditPageStatus;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -53,16 +53,15 @@ class PageSizeConstraint implements IEditConstraint {
 		}
 	}
 
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		if ( $this->contentSize > $this->maxSize ) {
 			// The result is either self::AS_CONTENT_TOO_BIG, if it was too big before merging,
 			// or self::AS_MAX_ARTICLE_SIZE_EXCEEDED, if it was too big after merging
-			return StatusValue::newGood( $this->errorCode )
-				->fatal( MessageValue::new( 'longpageerror' )
-					->numParams( round( $this->contentSize / 1024, 3 ), $this->maxSize / 1024 )
-				);
+			return EditPageStatus::newFatal( MessageValue::new( 'longpageerror' )
+				->numParams( round( $this->contentSize / 1024, 3 ), $this->maxSize / 1024 )
+			)->setValue( $this->errorCode );
 		}
-		return StatusValue::newGood();
+		return EditPageStatus::newGood();
 	}
 
 	/**

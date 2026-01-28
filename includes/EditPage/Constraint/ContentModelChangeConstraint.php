@@ -6,10 +6,10 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Title\Title;
-use StatusValue;
 
 /**
  * Verify user permissions if changing content model:
@@ -35,9 +35,9 @@ class ContentModelChangeConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		if ( $this->newContentModel === $this->title->getContentModel() ) {
-			return StatusValue::newGood();
+			return EditPageStatus::newGood();
 		}
 
 		$status = PermissionStatus::newEmpty();
@@ -57,11 +57,11 @@ class ContentModelChangeConstraint implements IEditConstraint {
 			return $this->wrapPermissionStatus( $status );
 		}
 
-		return StatusValue::newGood();
+		return EditPageStatus::newGood();
 	}
 
-	private function wrapPermissionStatus( PermissionStatus $status ): StatusValue {
-		$statusValue = StatusValue::newGood();
+	private function wrapPermissionStatus( PermissionStatus $status ): EditPageStatus {
+		$statusValue = EditPageStatus::newGood();
 
 		if ( !$status->isGood() ) {
 			if ( $status->isRateLimitExceeded() ) {

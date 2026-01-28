@@ -6,8 +6,8 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\EditPage\IEditObject;
-use StatusValue;
 
 /**
  * Interface for all constraints that can prevent edits
@@ -19,9 +19,9 @@ use StatusValue;
 interface IEditConstraint extends IEditObject {
 
 	/**
-	 * @return StatusValue A status indicating failure or success. The value is an IEditObject constant. A
-	 * status that is not OK indicates a failure and will prevent saving the page.
+	 * @return EditPageStatus A status indicating failure or success. A status that is not OK indicates a
+	 * failure and will prevent saving the page.
 	 */
-	public function checkConstraint(): StatusValue;
+	public function checkConstraint(): EditPageStatus;
 
 }

@@ -2,12 +2,12 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Page\Article;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use StatusValue;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -33,19 +33,19 @@ class RevisionDeletedConstraint implements IEditConstraint {
 	/**
 	 * @inheritDoc
 	 */
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		if ( $this->section === 'new' ) {
-			return StatusValue::newGood();
+			return EditPageStatus::newGood();
 		}
 
 		$revRecord = $this->article->fetchRevisionRecord();
 		if ( $revRecord instanceof RevisionStoreRecord ) {
 			if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->user ) ) {
-				return StatusValue::newGood( self::AS_REVISION_WAS_DELETED )
-					->fatal( 'rev-deleted-text-permission', $this->title->getPrefixedURL() );
+				return EditPageStatus::newFatal( 'rev-deleted-text-permission', $this->title->getPrefixedURL() )
+					->setValue( self::AS_REVISION_WAS_DELETED );
 			} elseif ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				// Let sysop know that this will make private content public if saved
-				$statusValue = StatusValue::newGood( self::AS_REVISION_WAS_DELETED );
+				$status = EditPageStatus::newGood( self::AS_REVISION_WAS_DELETED );
 				$warningMessage = MessageValue::new(
 					'rev-deleted-text-view',
 					[ $this->title->getPrefixedURL() ]
@@ -54,14 +54,14 @@ class RevisionDeletedConstraint implements IEditConstraint {
 				if ( $this->warningMessageWrapper !== null ) {
 					$warningMessage = $this->warningMessageWrapper->params( $warningMessage );
 				}
-				return $statusValue->warning( $warningMessage )->setOK( $this->ignoreWarning );
+				return $status->warning( $warningMessage )->setOK( $this->ignoreWarning );
 			}
 		} elseif ( $this->title->exists() ) {
 			// Something went wrong, and the revision is missing
-			return StatusValue::newGood( self::AS_REVISION_MISSING )
-				->fatal( 'missing-revision', $this->oldId );
+			return EditPageStatus::newFatal( 'missing-revision', $this->oldId )
+				->setValue( self::AS_REVISION_MISSING );
 		}
 
-		return StatusValue::newGood();
+		return EditPageStatus::newGood();
 	}
 }

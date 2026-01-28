@@ -7,9 +7,9 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
+use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
-use StatusValue;
 
 /**
  * Verify user permissions:
@@ -33,7 +33,7 @@ class ImageRedirectConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		// Check isn't simple enough to just repeat when getting the status
 		if ( $this->title->getNamespace() === NS_FILE &&
 			$this->newContent->isRedirect() &&
@@ -42,11 +42,11 @@ class ImageRedirectConstraint implements IEditConstraint {
 			$errorCode = $this->performer->getUser()->isRegistered() ?
 				self::AS_IMAGE_REDIRECT_LOGGED :
 				self::AS_IMAGE_REDIRECT_ANON;
-			return StatusValue::newGood( $errorCode )
+			return EditPageStatus::newGood( $errorCode )
 				->setOK( false );
 		}
 
-		return StatusValue::newGood();
+		return EditPageStatus::newGood();
 	}
 
 }

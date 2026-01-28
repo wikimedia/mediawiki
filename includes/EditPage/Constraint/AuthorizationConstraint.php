@@ -6,10 +6,10 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
-use StatusValue;
 
 /**
  * Verify authorization to edit the page (user rights, rate limits, blocks).
@@ -26,44 +26,41 @@ class AuthorizationConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		$status = PermissionStatus::newEmpty();
 
 		if ( $this->new && !$this->performer->authorizeWrite( 'create', $this->target, $status ) ) {
-			return $this->populateStatusValue( $status );
+			return $this->wrapPermissionStatus( $status );
 		}
 
 		if ( !$this->performer->authorizeWrite( 'edit', $this->target, $status ) ) {
-			return $this->populateStatusValue( $status );
+			return $this->wrapPermissionStatus( $status );
 		}
 
-		return $status;
+		return $this->wrapPermissionStatus( $status );
 	}
 
-	/**
-	 * @suppress PhanTypeMismatchArgumentProbablyReal While PermissionStatus is documented to never have a
-	 * value, it is still possible to set one, which avoids duplicating error logic to EditPage.php (see
-	 * gerrit change 1226380).
-	 */
-	private function populateStatusValue( PermissionStatus $status ): PermissionStatus {
+	private function wrapPermissionStatus( PermissionStatus $status ): EditPageStatus {
 		if ( $status->isGood() ) {
-			return $status;
+			return EditPageStatus::wrap( $status );
 		}
 
 		// Report the most specific errors first
 		if ( $status->isBlocked() ) {
-			$status->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
+			$value = self::AS_BLOCKED_PAGE_FOR_USER;
 		} elseif ( $status->isRateLimitExceeded() ) {
-			$status->setResult( false, self::AS_RATE_LIMITED );
+			$value = self::AS_RATE_LIMITED;
 		} elseif ( $status->getPermission() === 'create' ) {
-			$status->setResult( false, self::AS_NO_CREATE_PERMISSION );
+			$value = self::AS_NO_CREATE_PERMISSION;
 		} elseif ( !$this->performer->isRegistered() ) {
-			$status->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
+			$value = self::AS_READ_ONLY_PAGE_ANON;
 		} else {
-			$status->setResult( false, self::AS_READ_ONLY_PAGE_LOGGED );
+			$value = self::AS_READ_ONLY_PAGE_LOGGED;
 		}
 
-		return $status;
+		return EditPageStatus::wrap( $status )
+			->setErrorFunction( $status->throwErrorPageError( ... ) )
+			->setResult( false, $value );
 	}
 
 }

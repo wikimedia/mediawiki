@@ -6,10 +6,10 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Title\Title;
 use Psr\Log\LoggerInterface;
-use StatusValue;
 
 /**
  * Verify summary and text do not match spam regexes
@@ -42,7 +42,7 @@ class SpamRegexConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		$match = $this->spamChecker->checkSummary( $this->summary );
 		if ( $match === false && $this->sectionHeading !== null ) {
 			// If the section isn't new, the $this->sectionHeading is null
@@ -63,11 +63,11 @@ class SpamRegexConstraint implements IEditConstraint {
 					'match' => $match
 				]
 			);
-			return StatusValue::newGood( self::AS_SPAM_ERROR )
-				->fatal( 'spamprotectionmatch', $match );
+			return EditPageStatus::newFatal( 'spamprotectionmatch', $match )
+				->setValue( self::AS_SPAM_ERROR );
 		}
 
-		return StatusValue::newGood();
+		return EditPageStatus::newGood();
 	}
 
 	public function getMatch(): string {

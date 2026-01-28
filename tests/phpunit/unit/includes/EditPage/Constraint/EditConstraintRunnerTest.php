@@ -7,7 +7,7 @@
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
-use Wikimedia\Assert\PreconditionException;
+use MediaWiki\EditPage\EditPageStatus;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -19,7 +19,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class EditConstraintRunnerTest extends MediaWikiUnitTestCase {
 
-	private function getConstraint( StatusValue $result ) {
+	private function getConstraint( EditPageStatus $result ) {
 		$constraint = $this->getMockBuilder( IEditConstraint::class )
 			->onlyMethods( [ 'checkConstraint' ] )
 			->getMockForAbstractClass();
@@ -31,7 +31,7 @@ class EditConstraintRunnerTest extends MediaWikiUnitTestCase {
 
 	public function testCheckConstraint_pass() {
 		$runner = new EditConstraintRunner();
-		$constraint = $this->getConstraint( StatusValue::newGood() );
+		$constraint = $this->getConstraint( EditPageStatus::newGood() );
 
 		$runner->addConstraint( $constraint );
 		$this->assertStatusGood( $runner->checkConstraints() );
@@ -39,57 +39,51 @@ class EditConstraintRunnerTest extends MediaWikiUnitTestCase {
 
 	public function testCheckConstraint_fail() {
 		$runner = new EditConstraintRunner();
-		$status = StatusValue::newFatal( 'test-error' );
-		$constraint = $this->getConstraint( $status );
+		$testStatus = EditPageStatus::newFatal( 'test-error' );
+		$constraint = $this->getConstraint( $testStatus );
 
 		$runner->addConstraint( $constraint );
-		$this->assertEquals( $status, $runner->checkConstraints() );
+		$status = $runner->checkConstraints();
+		$this->assertEquals( $testStatus, $status );
 		$this->assertSame(
 			$constraint,
-			$runner->getFailedConstraint()
+			$status->getFailedConstraint()
 		);
 	}
 
 	public function testCheckConstraint_multi() {
 		$runner = new EditConstraintRunner();
-		$constraintPass = $this->getConstraint( StatusValue::newGood() );
-		$constraintFail = $this->getConstraint( StatusValue::newFatal( 'test-error' ) );
+		$constraintPass = $this->getConstraint( EditPageStatus::newGood() );
+		$constraintFail = $this->getConstraint( EditPageStatus::newFatal( 'test-error' ) );
 
 		$runner->addConstraint( $constraintPass );
 		$runner->addConstraint( $constraintFail );
-		$this->assertStatusError( 'test-error', $runner->checkConstraints() );
+		$status = $runner->checkConstraints();
+		$this->assertStatusError( 'test-error', $status );
 		$this->assertSame(
 			$constraintFail,
-			$runner->getFailedConstraint()
+			$status->getFailedConstraint()
 		);
 	}
 
 	public function testCheckAllConstraints_pass() {
 		$runner = new EditConstraintRunner();
-		$runner->addConstraint( $this->getConstraint( StatusValue::newGood() ) );
-		$runner->addConstraint( $this->getConstraint( StatusValue::newGood() ) );
+		$runner->addConstraint( $this->getConstraint( EditPageStatus::newGood() ) );
+		$runner->addConstraint( $this->getConstraint( EditPageStatus::newGood() ) );
 
 		$this->assertStatusGood( $runner->checkAllConstraints() );
 	}
 
 	public function testCheckAllConstraints_fail() {
 		$runner = new EditConstraintRunner();
-		$runner->addConstraint( $this->getConstraint( StatusValue::newGood()->warning( 'testwarning' ) ) );
-		$runner->addConstraint( $this->getConstraint( StatusValue::newFatal( 'testerror' ) ) );
-		$runner->addConstraint( $this->getConstraint( StatusValue::newGood() ) );
+		$runner->addConstraint( $this->getConstraint( EditPageStatus::newGood()->warning( 'testwarning' ) ) );
+		$runner->addConstraint( $this->getConstraint( EditPageStatus::newFatal( 'testerror' ) ) );
+		$runner->addConstraint( $this->getConstraint( EditPageStatus::newGood() ) );
 
 		$status = $runner->checkAllConstraints();
 		$this->assertStatusNotOK( $status );
 		$this->assertStatusError( 'testerror', $status );
 		$this->assertStatusMessage( 'testwarning', $status );
-	}
-
-	public function testGetFailedConstraint_exception() {
-		$this->expectException( PreconditionException::class );
-		$this->expectExceptionMessage( 'getFailedConstraint called with no failed constraint' );
-
-		$runner = new EditConstraintRunner();
-		$runner->getFailedConstraint();
 	}
 
 	public function testGetConstraintName() {

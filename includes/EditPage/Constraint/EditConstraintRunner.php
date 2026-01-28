@@ -6,10 +6,9 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
-use StatusValue;
-use Wikimedia\Assert\Assert;
 
 /**
  * Back end to process the edit constraints
@@ -30,13 +29,6 @@ class EditConstraintRunner {
 	 * Constraints to check.
 	 */
 	private $constraints = [];
-
-	/**
-	 * @var IEditConstraint|false
-	 *
-	 * The constraint that failed, so that its status can be fetched, or false if none failed.
-	 */
-	private $failedConstraint = false;
 
 	/**
 	 * Create a new runner
@@ -72,30 +64,31 @@ class EditConstraintRunner {
 	/**
 	 * Run constraint checks until one fails.
 	 *
-	 * @return StatusValue Good if all constraints pass, otherwise the status returned by the constraint that failed.
+	 * @return EditPageStatus Good if all constraints pass, otherwise the status returned by the constraint that failed.
 	 */
-	public function checkConstraints(): StatusValue {
+	public function checkConstraints(): EditPageStatus {
 		foreach ( $this->constraints as $constraint ) {
 			$status = $constraint->checkConstraint();
 			$this->logConstraintCheck( $constraint, $status );
 
 			if ( !$status->isOK() ) {
-				$this->failedConstraint = $constraint;
+				$status->setFailedConstraint( $constraint );
 				return $status;
 			}
 		}
 
-		return StatusValue::newGood();
+		return EditPageStatus::newGood();
 	}
 
 	/**
 	 * Run all constraint checks and merge the returned statuses.
 	 *
-	 * @return StatusValue Good if all constraints pass, otherwise a StatusValue that was merged with all
+	 * @return EditPageStatus Good if all constraints pass, otherwise a status that was merged with all
 	 * statuses that were returned by constraint checks.
+	 * Note: This status does not have the failed constraint set, since multiple constraints may have failed.
 	 */
-	public function checkAllConstraints(): StatusValue {
-		$statusValue = StatusValue::newGood();
+	public function checkAllConstraints(): EditPageStatus {
+		$statusValue = EditPageStatus::newGood();
 
 		foreach ( $this->constraints as $constraint ) {
 			$constraintStatus = $constraint->checkConstraint();
@@ -110,8 +103,8 @@ class EditConstraintRunner {
 	 * Log the result of a constraint check.
 	 * Passes use the `debug` level; failures use `info`.
 	 */
-	private function logConstraintCheck( IEditConstraint $constraint, StatusValue $statusValue ): void {
-		if ( $statusValue->isOK() ) {
+	private function logConstraintCheck( IEditConstraint $constraint, EditPageStatus $status ): void {
+		if ( $status->isOK() ) {
 			$this->logger->debug(
 				'Check for {name} succeeded',
 				[
@@ -140,17 +133,6 @@ class EditConstraintRunner {
 			$constraintName .= ' ' . $constraint->getType();
 		}
 		return $constraintName;
-	}
-
-	/**
-	 * Get the constraint that failed
-	 */
-	public function getFailedConstraint(): IEditConstraint {
-		Assert::precondition(
-			$this->failedConstraint !== false,
-			'getFailedConstraint called with no failed constraint'
-		);
-		return $this->failedConstraint;
 	}
 
 }

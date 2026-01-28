@@ -8,11 +8,11 @@ namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Title\Title;
-use StatusValue;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -47,7 +47,7 @@ class RedirectConstraint implements IEditConstraint {
 	/**
 	 * @inheritDoc
 	 */
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		$newRedirectTarget = $this->getRedirectTarget( $this->newContent );
 
 		// the constraint should only be checked if there is a redirect in the new content, and either
@@ -118,11 +118,11 @@ class RedirectConstraint implements IEditConstraint {
 
 		}
 
-		return StatusValue::newGood();
+		return EditPageStatus::newGood();
 	}
 
-	private function wrapResult( int $result, MessageValue $errorMessage ): StatusValue {
-		return StatusValue::newGood( $result )
+	private function wrapResult( int $result, MessageValue $errorMessage ): EditPageStatus {
+		return EditPageStatus::newGood( $result )
 			->warning( $this->errorMessageWrapper->params( $errorMessage ) )
 			->setOK( false );
 	}

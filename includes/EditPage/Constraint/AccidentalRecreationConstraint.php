@@ -8,9 +8,9 @@ namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\Title\Title;
-use StatusValue;
 use stdClass;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
@@ -39,9 +39,9 @@ class AccidentalRecreationConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		if ( $this->allowRecreation ) {
-			return StatusValue::newGood();
+			return EditPageStatus::newGood();
 		}
 		$deletion = $this->getDeletionSinceLastEdit();
 		if ( $deletion ) {
@@ -49,21 +49,20 @@ class AccidentalRecreationConstraint implements IEditConstraint {
 				$username = $deletion->actor_name;
 				$comment = $this->commentStore->getComment( 'log_comment', $deletion )->text;
 
-				return StatusValue::newGood( self::AS_ARTICLE_WAS_DELETED )
-					->fatal(
-						$comment === ''
-							? 'edit-constraint-confirmrecreate-noreason'
-							: 'edit-constraint-confirmrecreate',
-						$username,
-						new ScalarParam( ParamType::PLAINTEXT, $comment ),
-						new MessageValue( $this->submitButtonLabel ),
-					);
+				return EditPageStatus::newFatal(
+					$comment === ''
+						? 'edit-constraint-confirmrecreate-noreason'
+						: 'edit-constraint-confirmrecreate',
+					$username,
+					new ScalarParam( ParamType::PLAINTEXT, $comment ),
+					new MessageValue( $this->submitButtonLabel ),
+				)->setValue( self::AS_ARTICLE_WAS_DELETED );
 			} else {
-				return StatusValue::newGood( self::AS_ARTICLE_WAS_DELETED )
-					->fatal( 'deletedwhileediting' );
+				return EditPageStatus::newFatal( 'deletedwhileediting' )
+					->setValue( self::AS_ARTICLE_WAS_DELETED );
 			}
 		}
-		return StatusValue::newGood();
+		return EditPageStatus::newGood();
 	}
 
 	/**

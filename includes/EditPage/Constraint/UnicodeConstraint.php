@@ -6,7 +6,7 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use StatusValue;
+use MediaWiki\EditPage\EditPageStatus;
 
 /**
  * Verify unicode constraint
@@ -29,12 +29,12 @@ class UnicodeConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		if ( $this->input !== self::VALID_UNICODE ) {
-			return StatusValue::newGood( self::AS_UNICODE_NOT_SUPPORTED )
-				->fatal( 'unicode-support-fail' );
+			return EditPageStatus::newFatal( 'unicode-support-fail' )
+				->setValue( self::AS_UNICODE_NOT_SUPPORTED );
 		}
-		return StatusValue::newGood();
+		return EditPageStatus::newGood();
 	}
 
 }

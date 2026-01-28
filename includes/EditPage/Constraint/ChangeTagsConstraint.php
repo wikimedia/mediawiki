@@ -7,8 +7,8 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Permissions\Authority;
-use StatusValue;
 
 /**
  * Verify user can add change tags
@@ -29,9 +29,9 @@ class ChangeTagsConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		if ( !$this->tags ) {
-			return StatusValue::newGood();
+			return EditPageStatus::newGood();
 		}
 
 		// TODO inject a service once canAddTagsAccompanyingChange is moved to a
@@ -42,11 +42,8 @@ class ChangeTagsConstraint implements IEditConstraint {
 			false
 		);
 
-		if ( !$changeTagStatus->isOK() ) {
-			$changeTagStatus->value = self::AS_CHANGE_TAG_ERROR;
-		}
-
-		return $changeTagStatus;
+		return EditPageStatus::wrap( $changeTagStatus )
+			->setValue( self::AS_CHANGE_TAG_ERROR );
 	}
 
 }

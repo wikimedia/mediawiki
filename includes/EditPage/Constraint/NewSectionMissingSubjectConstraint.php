@@ -6,7 +6,7 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use StatusValue;
+use MediaWiki\EditPage\EditPageStatus;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -26,12 +26,12 @@ class NewSectionMissingSubjectConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		if ( $this->section === 'new' &&
 			!$this->allowBlankSubject &&
 			trim( $this->subject ) === ''
 		) {
-			return StatusValue::newGood( self::AS_SUMMARY_NEEDED )
+			return EditPageStatus::newGood( self::AS_SUMMARY_NEEDED )
 				->setOK( false )
 				->warning(
 					'missingcommentheader',
@@ -39,7 +39,7 @@ class NewSectionMissingSubjectConstraint implements IEditConstraint {
 				);
 		}
 
-		return StatusValue::newGood();
+		return EditPageStatus::newGood();
 	}
 
 }

@@ -6,7 +6,7 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use StatusValue;
+use MediaWiki\EditPage\EditPageStatus;
 
 /**
  * Do not allow the user to post an empty comment (only used for new section)
@@ -23,12 +23,12 @@ class MissingCommentConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		if ( $this->section === 'new' && $this->userComment === '' ) {
-			return StatusValue::newGood( self::AS_TEXTBOX_EMPTY )
-				->fatal( 'missingcommenttext' );
+			return EditPageStatus::newFatal( 'missingcommenttext' )
+				->setValue( self::AS_TEXTBOX_EMPTY );
 		}
-		return StatusValue::newGood();
+		return EditPageStatus::newGood();
 	}
 
 }

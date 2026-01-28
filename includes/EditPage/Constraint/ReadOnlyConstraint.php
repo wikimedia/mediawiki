@@ -6,7 +6,7 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use StatusValue;
+use MediaWiki\EditPage\EditPageStatus;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -23,12 +23,12 @@ class ReadOnlyConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		if ( $this->readOnlyMode->isReadOnly() ) {
-			return StatusValue::newGood( self::AS_READ_ONLY_PAGE )
-				->fatal( 'readonlytext' );
+			return EditPageStatus::newFatal( 'readonlytext' )
+				->setValue( self::AS_READ_ONLY_PAGE );
 		}
-		return StatusValue::newGood();
+		return EditPageStatus::newGood();
 	}
 
 }

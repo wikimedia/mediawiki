@@ -6,10 +6,10 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
-use StatusValue;
 
 /**
  * Verify simple anti spam measure of an extra hidden text field
@@ -33,7 +33,7 @@ class SimpleAntiSpamConstraint implements IEditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		if ( $this->input !== '' ) {
 			$this->logger->debug(
 				'{name} editing "{title}" submitted bogus field "{input}"',
@@ -43,10 +43,10 @@ class SimpleAntiSpamConstraint implements IEditConstraint {
 					'input' => $this->input
 				]
 			);
-			return StatusValue::newGood( self::AS_SPAM_ERROR )
-				->fatal( 'spamprotectionmatch', '' );
+			return EditPageStatus::newFatal( 'spamprotectionmatch', '' )
+				->setValue( self::AS_SPAM_ERROR );
 		}
-		return StatusValue::newGood();
+		return EditPageStatus::newGood();
 	}
 
 }

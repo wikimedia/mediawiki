@@ -8,6 +8,7 @@ namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
@@ -15,7 +16,6 @@ use MediaWiki\Language\Language;
 use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
-use StatusValue;
 
 /**
  * Verify `EditFilterMergedContent` hook
@@ -50,7 +50,7 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
-	public function checkConstraint(): StatusValue {
+	public function checkConstraint(): EditPageStatus {
 		$status = Status::newGood();
 
 		$hookResult = $this->hookRunner->onEditFilterMergedContent(
@@ -81,7 +81,7 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 				// T273354: Should be AS_HOOK_ERROR_EXPECTED to display error message
 				$status->value = self::AS_HOOK_ERROR_EXPECTED;
 			}
-			return $status;
+			return EditPageStatus::wrap( $status );
 		}
 
 		if ( !$status->isOK() ) {
@@ -93,10 +93,10 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 			}
 			$this->hookError = $this->formatStatusErrors( $status );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
-			return $status;
+			return EditPageStatus::wrap( $status );
 		}
 
-		return Status::newGood();
+		return EditPageStatus::newGood();
 	}
 
 	/**
