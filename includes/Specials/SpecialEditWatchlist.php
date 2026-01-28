@@ -72,9 +72,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private WatchlistManager $watchlistManager;
 	protected EditWatchlistPager $pager;
 
-	/** @var int|false where the value is one of the EDIT constants (e.g. EDIT_RAW) */
-	private $currentMode;
-
 	public function __construct(
 		?WatchedItemStoreInterface $watchedItemStore = null,
 		?WatchlistLabelStore $watchlistLabelStore = null,
@@ -183,18 +180,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			default:
 				$this->executeViewEditWatchlist();
 				break;
-		}
-	}
-
-	/**
-	 * Renders a subheader on the watchlist page.
-	 */
-	protected function outputSubtitle() {
-		if ( !$this->getSkin()->supportsMenu( 'associated-pages' ) ) {
-			$subtitle = $this->getWatchlistOwnerHtml();
-			// For legacy skins render the tabs in the subtitle
-			$subtitle .= ' ' . $this->buildTools( $this->currentMode );
-			$this->getOutput()->addSubtitle( $subtitle );
 		}
 	}
 

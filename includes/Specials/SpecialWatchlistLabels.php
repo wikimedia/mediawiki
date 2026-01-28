@@ -75,12 +75,7 @@ class SpecialWatchlistLabels extends SpecialPage {
 			return;
 		}
 
-		$subtitle = $this->getWatchlistOwnerHtml();
-		if ( !$this->getSkin()->supportsMenu( 'associated-pages' ) ) {
-			// For legacy skins render the tabs in the subtitle
-			$subtitle .= ' ' . $this->buildTools( null );
-		}
-		$output->addSubtitle( $subtitle );
+		$this->outputSubtitle();
 
 		if ( $subPage === self::SUBPAGE_EDIT ) {
 			$this->showEditForm();

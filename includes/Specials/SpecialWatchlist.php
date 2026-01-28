@@ -67,12 +67,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	private array $watchlistLabelsForCurrentUser;
 
-	/**
-	 * @var int|false where the value is one of the SpecialEditWatchlist:EDIT_ prefixed
-	 * constants (e.g. EDIT_RAW)
-	 */
-	private $currentMode;
-
 	public function __construct(
 		private readonly WatchedItemStoreInterface $watchedItemStore,
 		private readonly WatchlistManager $watchlistManager,
@@ -547,12 +541,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$user = $this->getUser();
 		$out = $this->getOutput();
 
-		if ( !$this->getSkin()->supportsMenu( 'associated-pages' ) ) {
-			// For legacy skins render the tabs in the subtitle
-			$subtitle = $this->getWatchlistOwnerHtml();
-			$subtitle .= ' ' . $this->buildTools( $this->currentMode );
-			$out->addSubtitle( $subtitle );
-		}
+		$this->outputSubtitle();
 
 		$this->setTopText( $opts );
 

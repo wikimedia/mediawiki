@@ -15,6 +15,9 @@ use MediaWiki\Specials\SpecialWatchlist;
  */
 trait WatchlistSpecialPage {
 
+	/** @var int|false where the value is one of the SpecialEditWatchlist::EDIT_* constants (e.g. EDIT_RAW) */
+	protected $currentMode;
+
 	/** @inheritDoc */
 	abstract public function getConfig();
 
@@ -26,6 +29,9 @@ trait WatchlistSpecialPage {
 
 	/** @inheritDoc */
 	abstract public function getUser();
+
+	/** @inheritDoc */
+	abstract public function getSkin();
 
 	/** @inheritDoc */
 	abstract public function msg( $key, ...$params );
@@ -74,6 +80,17 @@ trait WatchlistSpecialPage {
 			// are updated to not use $2
 			$this->msg( 'watchlistfor2', $this->getUser()->getName(), '' )->text()
 		);
+	}
+
+	/**
+	 * For legacy skins, render the watchlist navigation link in the subtitle.
+	 */
+	protected function outputSubtitle(): void {
+		if ( !$this->getSkin()->supportsMenu( 'associated-pages' ) ) {
+			$subtitle = $this->getWatchlistOwnerHtml()
+				. ' ' . $this->buildTools( $this->currentMode );
+			$this->getOutput()->addSubtitle( $subtitle );
+		}
 	}
 
 	/**
