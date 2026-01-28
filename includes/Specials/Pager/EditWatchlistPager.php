@@ -434,9 +434,13 @@ class EditWatchlistPager extends CodexTablePager {
 					return '';
 				}
 				$labels = array_map( static function ( $l ) {
-					return Html::element( 'span', [ 'data-wllabel' => $l['id'] ], $l['name'] );
+					return Html::rawElement(
+						'bdi',
+						[ 'data-wllabel' => $l['id'] ],
+						$l['name']
+					);
 				}, $value );
-				return implode( $this->msg( 'comma-separator' ), $labels );
+				return $this->getLanguage()->commaList( $labels );
 
 			default:
 				return htmlspecialchars( $value );
