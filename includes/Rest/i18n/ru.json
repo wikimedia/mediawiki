@@ -109,6 +109,12 @@
 	"rest-property-desc-page-contentmodel": "Тип содержимого страницы",
 	"rest-property-desc-revision-size": "Размер этой версии в байтах",
 	"rest-property-desc-revision-content-model": "Тип содержания",
+	"rest-schema-desc-bare-page": "Страница без содержимого",
+	"rest-schema-desc-existing-revision": "Версия с HTML-содержимым",
+	"rest-schema-desc-existing-page-html": "Страница с HTML-содержимым",
+	"rest-schema-desc-media-file": "Информация о файле",
+	"rest-schema-desc-page-history": "История версий страницы",
+	"rest-schema-desc-page-history-count": "Количество правок в истории страницы",
 	"rest-schema-desc-page-language-links": "Межъязыковые ссылки для страницы",
 	"rest-schema-desc-search-results": "Результаты поиска",
 	"rest-schema-desc-revision-compare": "Сравнение версий"

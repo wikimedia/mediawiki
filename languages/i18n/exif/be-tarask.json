@@ -7,7 +7,8 @@
 			"Red Winged Duck",
 			"W",
 			"Wizardist",
-			"Zedlik"
+			"Zedlik",
+			"Ucukor"
 		]
 	},
 	"exif-imagewidth": "Шырыня",
@@ -154,7 +155,7 @@
 	"exif-iimversion": "Вэрсія IIM",
 	"exif-iimcategory": "Катэгорыя",
 	"exif-iimsupplementalcategory": "Дадатковыя катэгорыі",
-	"exif-datetimeexpires": "Не выкарыстоўваць пасьля",
+	"exif-datetimeexpires": "Не ўжываць пасьля",
 	"exif-datetimereleased": "Апублікаванае",
 	"exif-originaltransmissionref": "Код месца пачатковай перадачы",
 	"exif-identifier": "Ідэнтыфікатар",
@@ -363,7 +364,7 @@
 	"exif-firstphotodate": "Дата першага здымка",
 	"exif-lastphotodate": "Дата апошняга здымка",
 	"exif-projectiontype": "Від праекцыі",
-	"exif-usepanoramaviewer": "Скарыстаць прагляднік панарамы",
+	"exif-usepanoramaviewer": "Ужыць прагляднік панарамы",
 	"exif-usepanoramaviewer-true": "Так",
 	"exif-usepanoramaviewer-false": "Не",
 	"exif-exposurelockused-true": "Так",
