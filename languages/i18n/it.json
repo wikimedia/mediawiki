@@ -156,7 +156,8 @@
 			"ZioNicco",
 			"לערי ריינהארט",
 			"아라",
-			"GseSro"
+			"GseSro",
+			"Amedeo463"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoria|Categorie}}",
@@ -3309,6 +3310,7 @@
 	"version-parser-extensiontags": "Tag riconosciuti dal parser introdotti da estensioni",
 	"version-parser-function-hooks": "Hook per funzioni del parser",
 	"version-parser-function-hooks-parsoid": "Solo Parsoid",
+	"version-parsoid-modules": "Moduli di estensione Parsoid",
 	"version-hook-name": "Nome dell'hook",
 	"version-hook-subscribedby": "Sottoscrizioni",
 	"version-no-ext-name": "[senza nome]",
@@ -3340,6 +3342,7 @@
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Percorso script]",
 	"version-libraries": "Librerie installate",
 	"version-libraries-server": "Librerie lato server installate",
+	"version-libraries-client": "Librerie lato client installate",
 	"version-libraries-library": "Libreria",
 	"version-libraries-version": "Versione",
 	"version-libraries-license": "Licenza",

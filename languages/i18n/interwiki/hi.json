@@ -34,6 +34,7 @@
 	"interwiki_deleting": "आप \"$1\" उपसर्ग हटा रहे हैं।",
 	"interwiki_deleted": "\"$1\" उपसर्ग अंतरविकि तालिका से हटा दिया गया है।",
 	"interwiki_delfailed": "\"$1\" उपसर्ग अंतरविकि तालिका से हटाया नहीं जा सका।",
+	"interwiki-logtext": "लॉग देखें",
 	"interwiki_addtext": "भाषा अथवा अंतरविकि उपसर्ग जोड़ें",
 	"interwiki-addtext-local": "एक लोकल अंतरविकि अथवा भाषा उपसर्ग जोड़ें",
 	"interwiki-addtext-nolang": "एक अंतरविकि उपसर्ग जोड़ें",
