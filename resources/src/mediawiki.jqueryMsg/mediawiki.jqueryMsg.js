@@ -104,7 +104,7 @@ function appendWithoutParsing( $parent, children ) {
 	}
 
 	for ( i = 0, len = children.length; i < len; i++ ) {
-		if ( typeof children[ i ] !== 'object' ) {
+		if ( children[ i ] !== Object( children[ i ] ) ) {
 			children[ i ] = document.createTextNode( children[ i ] );
 		}
 		if ( children[ i ] instanceof $ && children[ i ].hasClass( 'mediaWiki_htmlEmitter' ) ) {
@@ -1517,8 +1517,8 @@ mw.Message.prototype.parser = function ( format ) {
 		(
 			// jqueryMsg parser is needed for messages containing wikitext
 			!/\{\{|[<>[&]/.test( this.map.get( this.key ) ) &&
-			// jqueryMsg parser is needed when jQuery objects or DOM nodes are passed in as parameters
-			!this.parameters.some( ( param ) => param instanceof $ || ( param && param.nodeType !== undefined ) )
+			// jqueryMsg parser is needed when objects (e.g. jQuery objects or DOM nodes) are passed in as parameters
+			!this.parameters.some( ( param ) => param === Object( param ) )
 		)
 	) {
 		return oldParser.call( this, format );

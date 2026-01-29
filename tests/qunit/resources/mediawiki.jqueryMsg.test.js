@@ -1515,4 +1515,12 @@
 			'setParserDefaults updates the parser defaults'
 		);
 	} );
+
+	QUnit.test( 'Parse messages if one of the params is an object (T415939)', ( assert ) => {
+		mw.messages.set( 'non-wikitext-message', 'Test: $1' );
+		assert.strictEqual(
+			mw.message( 'non-wikitext-message', Object.assign( '<a href="/">Link</a>' ) ).parse(),
+			'Test: <a href="/">Link</a>'
+		);
+	} );
 }() );
