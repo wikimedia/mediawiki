@@ -38,7 +38,7 @@
 				<!-- Manually create the action buttons in order to add type and other attributes
 				so that they work as part of the <form>. -->
 				<cdx-button
-					v-if="selectedPages.length && ( showLabels || dialogAction === 'remove' )"
+					v-if="primaryActionEnabled"
 					class="cdx-dialog__footer__primary-action"
 					weight="primary"
 					:action="dialogAction === 'assign' ? 'progressive' : 'destructive'"
@@ -53,7 +53,7 @@
 					type="button"
 					@click="isOpen = false"
 				>
-					{{ selectedPages.length && ( showLabels || dialogAction === 'remove' ) ? $i18n( 'cancel' ) : $i18n( 'ok' ) }}
+					{{ primaryActionEnabled ? $i18n( 'cancel' ) : $i18n( 'ok' ) }}
 				</cdx-button>
 			</div>
 		</template>
@@ -80,11 +80,18 @@ module.exports = defineComponent( {
 		const allLabels = new Map( Object.values( mw.config.get( 'watchlistLabels' ) ).map( ( l ) => [ l.id, l.name ] ) );
 		const labels = ref( new Map( allLabels ) );
 
+		const primaryActionEnabled = computed(
+			() => selectedPages.value.length && ( showLabels.value || dialogAction.value === 'remove' )
+		);
 		const dialogTitle = computed( () => {
 			if ( dialogAction.value === 'assign' ) {
-				return mw.msg( 'watchlistlabels-editwatchlist-dialog-button' );
+				return primaryActionEnabled.value ?
+					mw.msg( 'watchlistlabels-editwatchlist-dialog-button' ) :
+					mw.msg( 'watchlistlabels-editwatchlist-dialog-assign-error' );
 			} else if ( dialogAction.value === 'unassign' ) {
-				return mw.msg( 'watchlistlabels-editwatchlist-dialog-button-unassign' );
+				return primaryActionEnabled.value ?
+					mw.msg( 'watchlistlabels-editwatchlist-dialog-button-unassign' ) :
+					mw.msg( 'watchlistlabels-editwatchlist-dialog-unassign-error' );
 			} else {
 				return mw.msg( 'watchlistedit-table-remove-selected', selectedPages.value.length );
 			}
@@ -154,7 +161,7 @@ module.exports = defineComponent( {
 		const openAssignDialog = () => {
 			isOpen.value = true;
 			dialogAction.value = 'assign';
-			labels.value = allLabels;
+			labels.value = new Map( allLabels );
 		};
 
 		const openUnassignDialog = () => {
@@ -186,7 +193,8 @@ module.exports = defineComponent( {
 			openRemoveDialog,
 			openAssignDialog,
 			openUnassignDialog,
-			primaryAction
+			primaryAction,
+			primaryActionEnabled
 		};
 	}
 } );
