@@ -20,7 +20,6 @@ class ModuleManager {
 	// These modules will be enabled. No config entry is needed.
 	private const CORE_ROUTE_FILES = [
 		'includes/Rest/coreRoutes.json',
-		'includes/Rest/site.v1.json',
 	];
 
 	// These specs will be available in the Rest Sandbox. No config change is needed.

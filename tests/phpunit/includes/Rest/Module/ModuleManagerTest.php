@@ -36,7 +36,6 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideCoreRouteFiles() {
 		yield 'coreRoutes' => [ 'includes/Rest/coreRoutes.json' ];
-		yield 'site.v1' => [ 'includes/Rest/site.v1.json' ];
 	}
 
 	/**
