@@ -4,6 +4,7 @@
 			"Bennylin",
 			"Borgx",
 			"Daud I.F. Argana",
+			"HyperAnd",
 			"IvanLanin",
 			"Iwan Novirion",
 			"J Subhi",
@@ -406,6 +407,8 @@
 	"exif-exposurelockused-true": "Ya",
 	"exif-exposurelockused-false": "Tidak",
 	"exif-poseheadingdegrees": "Kepala pose (derajat)",
+	"exif-posepitchdegrees": "Anggul (derajat)",
+	"exif-poserolldegrees": "Guling (derajat)",
 	"exif-initialhorizontalfovdegrees": "Ruang pandang awal (derajat horizontal)",
 	"exif-initialverticalfovdegrees": "Ruang pandang awal (derajat vertikal)",
 	"exif-sourcephotoscount": "Banyak foto sumber",
@@ -416,5 +419,8 @@
 	"exif-croppedarealeftpixels": "Pemotong kiri panorama",
 	"exif-croppedareatoppixels": "Pemotong atas panorama",
 	"exif-initialcameradolly": "Doli kamera awal",
-	"exif-stitchingsoftware": "Perangkat lunak penjahit"
+	"exif-stitchingsoftware": "Perangkat lunak penjahit",
+	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "Disunting menggunakan AI generatif",
+	"exif-digitalsourcetype-softwareimage": "Dibuat oleh perangkat lunak",
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "Dibuat menggunakan AI Generatif"
 }

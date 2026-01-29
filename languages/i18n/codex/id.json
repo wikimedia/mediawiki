@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Hidayatsrf",
+			"HyperAnd",
 			"Rebeccayoga"
 		]
 	},
@@ -10,5 +11,10 @@
 	"cdx-popover-close-button-label": "Tutup",
 	"cdx-search-input-search-button-label": "Cari",
 	"cdx-table-select-all-label": "Pilih semua baris",
-	"cdx-typeahead-search-search-results-label": "Hasil pencarian"
+	"cdx-typeahead-search-search-results-label": "Hasil pencarian",
+	"cdx-table-pager-button-first-page": "Halaman pertama",
+	"cdx-table-pager-button-last-page": "Halaman terakhir",
+	"cdx-table-pager-button-prev-page": "Halaman sebelumnya",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 butir}}",
+	"cdx-table-pagination-status-message-pending": "Memuat hasil..."
 }
