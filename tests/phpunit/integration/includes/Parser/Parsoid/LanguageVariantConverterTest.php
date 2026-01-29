@@ -170,9 +170,9 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 
 		$outputPageBundle = $languageVariantConverter->convertPageBundleVariant( $pageBundle, $target, $source );
 
-		$html = $outputPageBundle->toInlineAttributeHtml( [
-			'siteConfig' => $this->getServiceContainer()->getParsoidSiteConfig(),
-		] );
+		$html = $outputPageBundle->toInlineAttributeHtml(
+			siteConfig: $this->getServiceContainer()->getParsoidSiteConfig(),
+		);
 		$stripped = preg_replace( ':</?span[^>]*>:', '', $html );
 		$this->assertStringContainsString( $expected, $stripped );
 

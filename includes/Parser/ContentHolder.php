@@ -296,9 +296,11 @@ class ContentHolder {
 				);
 			}
 			$pb = HtmlPageBundle::fromDomPageBundle(
-				DomPageBundle::fromLoadedDocument( $this->ownerDocument, [
-					'pageBundle' => $this->pageBundle,
-				], $this->domMap, $siteConfig ), [
+				DomPageBundle::fromLoadedDocument(
+					$this->ownerDocument, siteConfig: $siteConfig,
+					options: [ 'pageBundle' => $this->pageBundle, ],
+					fragments: $this->domMap,
+				), [
 					'body_only' => true,
 				]
 			);

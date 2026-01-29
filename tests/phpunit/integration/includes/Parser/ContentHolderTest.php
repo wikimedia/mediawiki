@@ -109,9 +109,9 @@ EOD;
 	 * @dataProvider parsoidContentProvider
 	 */
 	public function testShouldSetDomParsoid( array $parsoidData ): void {
-		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
-		'siteConfig' => new MockSiteConfig( [] ),
-		] );
+		$dpb = DomPageBundle::fromLoadedDocument(
+			$parsoidData['dom'], siteConfig: new MockSiteConfig( [] )
+		);
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 
@@ -136,9 +136,9 @@ EOD;
 	 * @dataProvider parsoidContentProvider
 	 */
 	public function testShouldHandleTextOnlyOperationsParsoidFullDocBundle( array $parsoidData ): void {
-		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
-		'siteConfig' => new MockSiteConfig( [] ),
-		] );
+		$dpb = DomPageBundle::fromLoadedDocument(
+			$parsoidData['dom'], siteConfig: new MockSiteConfig( [] )
+		);
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 		self::assertEquals( $parsoidData['htmlFiltered'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
@@ -148,9 +148,9 @@ EOD;
 	 * @dataProvider parsoidContentProvider
 	 */
 	public function testShouldHandleTextOnlyOperationsParsoidBodyBundle( array $parsoidData ): void {
-		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
-		'siteConfig' => new MockSiteConfig( [] ),
-		] );
+		$dpb = DomPageBundle::fromLoadedDocument(
+			$parsoidData['dom'], siteConfig: new MockSiteConfig( [] )
+		);
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb, [ 'body_only' => true ] );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 		self::assertEquals( $parsoidData['bodyFiltered'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
@@ -186,9 +186,9 @@ EOD;
 	 * @dataProvider parsoidDomProvider
 	 */
 	public function testShouldConvertHtmlStringToDomParsoid( Document $input, string $expected ): void {
-		$dpb = DomPageBundle::fromLoadedDocument( $input, [
-		'siteConfig' => new MockSiteConfig( [] ),
-		] );
+		$dpb = DomPageBundle::fromLoadedDocument(
+			$input, siteConfig: new MockSiteConfig( [] )
+		);
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 
@@ -200,9 +200,9 @@ EOD;
 	 * @dataProvider parsoidContentProvider
 	 */
 	public function testShouldConvertHtmlDocToDomToHtmlBodyParsoid( array $parsoidData ): void {
-		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData[ 'dom' ], [
-		'siteConfig' => new MockSiteConfig( [] ),
-		] );
+		$dpb = DomPageBundle::fromLoadedDocument(
+			$parsoidData['dom'], siteConfig: new MockSiteConfig( [] )
+		);
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 		$ch->getAsDom( ContentHolder::BODY_FRAGMENT );
@@ -215,9 +215,9 @@ EOD;
 	 * @dataProvider parsoidContentProvider
 	 */
 	public function testShouldConvertHtmlBodyToDomToHtmlBodyParsoid( array $parsoidData ): void {
-		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
-		'siteConfig' => new MockSiteConfig( [] ),
-		] );
+		$dpb = DomPageBundle::fromLoadedDocument(
+			$parsoidData['dom'], siteConfig: new MockSiteConfig( [] )
+		);
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb, [ 'body_only', true ] );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 		$ch->getAsDom( ContentHolder::BODY_FRAGMENT );
