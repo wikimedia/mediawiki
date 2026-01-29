@@ -33,7 +33,8 @@ const FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( con
 	this.backButton = new OO.ui.ButtonWidget( {
 		icon: 'previous',
 		framed: false,
-		title: mw.msg( 'rcfilters-view-return-to-default-tooltip' ),
+		invisibleLabel: true,
+		label: mw.msg( 'rcfilters-view-return-to-default-tooltip' ),
 		classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-backButton' ]
 	} );
 	this.backButton.toggle( this.model.getCurrentView() !== 'default' );
@@ -42,7 +43,8 @@ const FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( con
 	this.helpIcon = new OO.ui.ButtonWidget( {
 		icon: 'helpNotice',
 		framed: false,
-		title: mw.msg( 'rcfilters-view-tags-help-icon-tooltip' ),
+		invisibleLabel: true,
+		label: mw.msg( 'rcfilters-view-tags-help-icon-tooltip' ),
 		classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-helpIcon' ],
 		href: mw.util.getUrl( 'Special:Tags' ),
 		target: '_blank'
@@ -59,16 +61,19 @@ const FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( con
 	}
 
 	// Invert buttons
+	// eslint-disable-next-line mediawiki/no-unlabeled-buttonwidget
 	this.invertTagsButton = new OO.ui.ToggleButtonWidget( {
 		icon: '',
 		classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-invertTagsButton' ]
 	} );
 	this.invertTagsButton.toggle( this.model.getCurrentView() === 'tags' );
+	// eslint-disable-next-line mediawiki/no-unlabeled-buttonwidget
 	this.invertNamespacesButton = new OO.ui.ToggleButtonWidget( {
 		icon: '',
 		classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-invertNamespacesButton' ]
 	} );
 	this.invertNamespacesButton.toggle( this.model.getCurrentView() === 'namespaces' );
+	// eslint-disable-next-line mediawiki/no-unlabeled-buttonwidget
 	this.invertWLLabelsButton = new OO.ui.ToggleButtonWidget( {
 		icon: '',
 		classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-invertWLLabelsButton' ]
