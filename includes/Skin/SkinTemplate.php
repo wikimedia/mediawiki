@@ -1001,6 +1001,11 @@ class SkinTemplate extends Skin {
 		$namespacesChanged = count( array_diff( $afterHookNamespaces, $beforeHookNamespaces ) ) > 0;
 		// If some change occurred to namespaces via the hook, revert back to namespaces.
 		if ( !$associatedPagesChanged && $namespacesChanged ) {
+			wfDeprecatedMsg(
+				'Modification of the `namespaces` menu using SkinTemplateNavigation__Universal is ' .
+					'now deprecated. Please use `associated-pages` instead.',
+				'1.46'
+			);
 			$content_navigation['associated-pages'] = $content_navigation['namespaces'];
 		}
 	}

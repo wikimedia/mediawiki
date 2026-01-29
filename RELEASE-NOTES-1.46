@@ -855,6 +855,8 @@ because of Phabricator reports.
   next version.
 * All public properties of ConverterRule have been deprecated and now emit
   deprecation warnings.  They will be made private in a future release.
+* Modification of the namespaces key will no longer modify associated pages
+  in the SkinTemplateNavigation::Universal hook (T412238).
 * …
 
 === Other changes in 1.46 ===
