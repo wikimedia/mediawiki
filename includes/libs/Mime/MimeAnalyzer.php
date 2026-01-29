@@ -43,6 +43,8 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		"\xd7\xcd\xc6\x9a" => 'application/x-msmetafile',
 		'%PDF'             => 'application/pdf',
 		'gimp xcf'         => 'image/x-xcf',
+		"\xff\x0a"         => 'image/jxl',
+		"\x00\x00\x00\x0C\x4A\x58\x4C\x20\x0D\x0A\x87\x0A" => 'image/jxl',
 
 		// 3D
 		'glTF'             => 'model/gltf-binary',
@@ -93,6 +95,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		'mka' => true,
 		'webp' => true,
 		'mp3' => true,
+		'jxl' => true,
 
 		// XML formats we sure hope we recognize reliably
 		'svg' => true,

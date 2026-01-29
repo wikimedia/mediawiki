@@ -126,6 +126,10 @@ class MimeAnalyzerTest extends TestCase {
 		yield 'Jpeg2000, lossless' => [ 'jpeg2000-lossless.jp2', 'jp2', 'image/jp2' ];
 
 		yield 'Jpeg2000, part 2' => [ 'jpeg2000-profile.jpf', 'jpf', 'image/jpx' ];
+
+		yield 'JPEG XL bitstream' => [ 'jpegxl-bitstream.jxl', 'jxl', 'image/jxl' ];
+
+		yield 'JPEG XL iso' => [ 'jpegxl-iso.jxl', 'jxl', 'image/jxl' ];
 	}
 
 	/**

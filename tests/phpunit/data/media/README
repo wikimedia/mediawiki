@@ -59,3 +59,7 @@ Bishonen
 say-test.ogg
 Public domain
 Brian Wolff
+
+jpegxl-bitstream.jxl, jpegxl-iso.jxl
+https://github.com/libjxl/conformance/tree/master/testcases
+CC0
