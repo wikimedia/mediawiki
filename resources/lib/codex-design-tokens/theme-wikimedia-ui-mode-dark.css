@@ -1,5 +1,5 @@
 /**
- * Codex Design Tokens v2.3.3
+ * Codex Design Tokens v2.3.4
  * Design System for Wikimedia
  * See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
  */
@@ -70,6 +70,7 @@
   --background-color-notice-subtle: #27292d;
   --background-color-content-added: #233566;
   --background-color-content-removed: #453217;
+  --background-color-target-text: #572c19;
   --background-color-backdrop-light: rgba( 0, 0, 0, 0.65 ); /* Backdrop is the term used by CSS Fullscreen API and is used to dim the background when a modal Dialog is open. Also known as overlay mask. */
   --background-color-backdrop-dark: rgba( 255, 255, 255, 0.65 );
   --border-color-base: #72777d;

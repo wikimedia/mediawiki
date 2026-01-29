@@ -307,7 +307,7 @@
     "src": "src/components/menu-button/MenuButton.vue",
     "isEntry": true,
     "imports": [
-      "src/components/toggle-button/ToggleButton.vue",
+      "src/components/button/Button.vue",
       "src/components/menu/Menu.vue",
       "src/composables/useFieldData.ts",
       "src/composables/useFloatingMenu.ts",

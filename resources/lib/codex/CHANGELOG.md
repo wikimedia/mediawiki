@@ -1,3 +1,22 @@
+# 2.3.4 / 2026-01-27
+
+## Features
+- MenuButton: replace internal toggle button with button (Lauralyn Watson)
+
+## Styles
+- Fix semicolon inside @supports condition (Simon Legner)
+
+## Code
+- Table: Span empty state across selection column (Doğu Abaris)
+- TAHS: add composition events to SearchInput and TextInput (bernardwang)
+- MenuButton: Fix styling when Menu is teleported (Roan Kattouw)
+
+## Tokens
+- tokens: Add new background highlight target text color token (Derek Torsani)
+
+## Documentation
+- docs: Improve button size descriptions (Volker E.)
+
 # 2.3.3 / 2025-11-25
 
 ## Features

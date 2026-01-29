@@ -104,7 +104,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 ==== Changed external libraries ====
 
 * Updated codex, codex-design-tokens and codex-icons
-  from v2.3.2 to v2.3.3.
+  from v2.3.2 to v2.3.4.
 * Updated jsonrainbow/json-schema from 5.3.0 to 5.3.1.
 * Updated lcobucci/jwt from 4.1.5 to 4.3.0.
 * Updated monolog/monolog from 2.9.3 to 2.11.0.
