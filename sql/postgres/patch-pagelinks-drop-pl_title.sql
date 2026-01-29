@@ -2,18 +2,18 @@
 -- Source: sql/abstractSchemaChanges/patch-pagelinks-drop-pl_title.json
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
-DROP INDEX pl_namespace;
+DROP INDEX IF EXISTS pl_namespace;
 
-DROP INDEX pl_backlinks_namespace;
-
-ALTER TABLE pagelinks
-  DROP CONSTRAINT pagelinks_pkey;
+DROP INDEX IF EXISTS pl_backlinks_namespace;
 
 ALTER TABLE pagelinks
-  DROP pl_namespace;
+  DROP CONSTRAINT IF EXISTS pagelinks_pkey;
 
 ALTER TABLE pagelinks
-  DROP pl_title;
+  DROP IF EXISTS pl_namespace;
+
+ALTER TABLE pagelinks
+  DROP IF EXISTS pl_title;
 
 ALTER TABLE pagelinks
   ALTER pl_target_id
