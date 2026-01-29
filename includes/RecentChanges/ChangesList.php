@@ -1032,6 +1032,15 @@ class ChangesList extends ContextSource {
 	 * @param RecentChange &$rc
 	 * @param string[] &$classes
 	 */
+	public function insertLabels( &$s, &$rc, &$classes ) {
+		$s .= $this->getLabels( $rc, $classes );
+	}
+
+	/**
+	 * @param string &$s
+	 * @param RecentChange &$rc
+	 * @param string[] &$classes
+	 */
 	public function insertExtra( &$s, &$rc, &$classes ) {
 		// Empty, used for subclasses to add anything special.
 	}
