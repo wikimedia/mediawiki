@@ -11,6 +11,7 @@ namespace MediaWiki\Parser\Parsoid\Config;
 use InvalidArgumentException;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Parsoid\Config\PageContent as IPageContent;
+use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 
 /**
  * PageContent implementation for MediaWiki
@@ -19,6 +20,11 @@ use Wikimedia\Parsoid\Config\PageContent as IPageContent;
  */
 class PageContent extends IPageContent {
 	public function __construct( private readonly RevisionRecord $rev ) {
+	}
+
+	/** @inheritDoc */
+	public function getLinkTarget(): ParsoidLinkTarget {
+		return $this->rev->getPageAsLinkTarget();
 	}
 
 	/** @inheritDoc */
