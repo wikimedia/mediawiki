@@ -7,6 +7,7 @@
 namespace MediaWiki\User;
 
 use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\Throttler;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Json\FormatJson;
@@ -368,10 +369,17 @@ class BotPassword {
 
 		// Find the named user
 		$user = User::newFromName( $name );
-		if ( !$user || $user->isAnon() ) {
-			return self::loginHook( $user ?: $name, null, $performer, Status::newFatal( 'nosuchuser', $name ) );
+		if ( !$user ) {
+			return self::loginHook( $name, null, $performer, Status::newFatal( 'noname' ) );
 		}
 
+		$centralIdLookup = $services->getCentralIdLookup();
+		// Since bot passwords may be shared within a wiki farm, only allow them for globally owned accounts
+		[ $user->getName() => $centralId ] = $centralIdLookup->lookupOwnedUserNames(
+			[ $user->getName() => 0 ], $centralIdLookup::AUDIENCE_RAW );
+		if ( !$centralId ) {
+			return self::loginHook( $user, null, $performer, Status::newFatal( 'nosuchuser', $name ) );
+		}
 		if ( $user->isLocked() ) {
 			return Status::newFatal( 'botpasswords-locked' );
 		}
@@ -390,7 +398,7 @@ class BotPassword {
 		}
 
 		// Get the bot password
-		$bp = self::newFromUser( $user, $appId );
+		$bp = self::newFromCentralId( $centralId, $appId );
 		if ( !$bp ) {
 			return self::loginHook( $user, $bp, $performer,
 				Status::newFatal( 'botpasswords-not-exist', $name, $appId ) );
@@ -416,6 +424,17 @@ class BotPassword {
 		// Ok! Create the session.
 		if ( $throttle ) {
 			$throttle->clear( $user->getName(), $request->getIP() );
+		}
+
+		if ( !$user->isRegistered() ) {
+			$status = $services->getAuthManager()->autoCreateUser(
+				$user,
+				AuthManager::AUTOCREATE_SOURCE_SESSION,
+				false
+			);
+			if ( !$status->isOK() ) {
+				return self::loginHook( $user, $bp, $performer, $status );
+			}
 		}
 		return self::loginHook( $user, $bp, $performer,
 			Status::newGood( $provider->newSessionForRequest( $user, $bp, $request ) ) );

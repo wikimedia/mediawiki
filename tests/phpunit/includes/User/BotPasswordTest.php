@@ -42,20 +42,26 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 
 		$this->mergeMwGlobalArrayValue( 'wgCentralIdLookupProviders', [
 			'BotPasswordTest OkMock' => [ 'factory' => function () {
-				$mock1 = $this->getMockForAbstractClass( CentralIdLookup::class );
-				$mock1->method( 'isAttached' )
-					->willReturn( true );
+				$mock1 = $this->getMockForAbstractClass( CentralIdLookup::class, mockedMethods: [ 'isOwned' ] );
 				$mock1->method( 'lookupUserNamesWithFilter' )
-					->willReturn( [ $this->testUserName => 42, 'UTDummy' => 43, 'UTInvalid' => 0 ] );
+					->willReturnCallback( fn ( $nameToId, $filter ) => [
+						$this->testUserName => 42, // Exists, attached
+						'UTDummy' => $filter === CentralIdLookup::FILTER_ATTACHED ? 0 : 43, // Exists globally, owned but not attached locally
+						'UTInvalid' => 0 // Does not exist
+					] + $nameToId );
+				// Methods not used by the current implementation - may need to be mocked in the future:
+				$mock1->expects( $this->never() )->method( 'isOwned' );
+				$mock1->expects( $this->never() )->method( 'isAttached' );
 				$mock1->expects( $this->never() )->method( 'lookupCentralIds' );
 				return $mock1;
 			} ],
 			'BotPasswordTest FailMock' => [ 'factory' => function () {
-				$mock2 = $this->getMockForAbstractClass( CentralIdLookup::class );
-				$mock2->method( 'isAttached' )
-					->willReturn( false );
+				$mock2 = $this->getMockForAbstractClass( CentralIdLookup::class, mockedMethods: [ 'isOwned' ] );
 				$mock2->method( 'lookupUserNamesWithFilter' )
 					->willReturnArgument( 0 );
+				// Methods not used by the current implementation - may need to be mocked in the future:
+				$mock2->expects( $this->never() )->method( 'isOwned' );
+				$mock2->expects( $this->never() )->method( 'isAttached' );
 				$mock2->expects( $this->never() )->method( 'lookupCentralIds' );
 				return $mock2;
 			} ],
@@ -314,9 +320,25 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$status = BotPassword::login( $this->testUserName, 'foobaz', new FauxRequest );
 		$this->assertStatusError( 'botpasswords-invalid-name', $status );
 
+		// Invalid username
+		$status = BotPassword::login( '<invalid>@BotPassword', 'foobaz', new FauxRequest );
+		$this->assertStatusError( 'noname', $status );
+
 		// No base user
-		$status = BotPassword::login( 'UTDummy@BotPassword', 'foobaz', new FauxRequest );
+		$status = BotPassword::login( 'UTInvalid@BotPassword', 'foobaz', new FauxRequest );
 		$this->assertStatusError( 'nosuchuser', $status );
+
+		// Auto-create local user on successful login
+		$this->assertFalse(
+			User::newFromName( 'UTDummy' )->isRegistered(),
+			'User does not exist locally before login'
+		);
+		$status = BotPassword::login( 'UTDummy@BotPassword', 'foobaz', new FauxRequest );
+		$this->assertStatusGood( $status );
+		$this->assertTrue(
+			User::newFromName( 'UTDummy' )->isRegistered(),
+			'User should have been auto-created locally upon successful login'
+		);
 
 		// No bot password
 		$status = BotPassword::login( "{$this->testUserName}@DoesNotExist", 'foobaz', new FauxRequest );
