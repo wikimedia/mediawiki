@@ -100,6 +100,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$allContribsPager = $this->getContribsPager( [] );
 		$allContribsResults = $allContribsPager->reallyDoQuery( '', 2, IndexPager::QUERY_DESCENDING );
 		$this->assertSame( 1, $allContribsResults->numRows() );
+		$this->assertStringNotContainsString( 'mw-userlink', $allContribsPager->getBody() );
 
 		$revOnlyPager = $this->getContribsPager( [ 'revisionsOnly' => true ] );
 		$revOnlyResults = $revOnlyPager->reallyDoQuery( '', 2, IndexPager::QUERY_DESCENDING );
@@ -331,7 +332,9 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$this->editPage( $title, '', '', NS_MAIN, $user );
 		$this->editPage( $title, 'Test content.', '', NS_MAIN, $user );
 		$pager = $this->getContribsPager( [ 'target' => '127.0.0.1/16' ] );
-		$this->assertIsString( $pager->getBody() );
+		$body = $pager->getBody();
+		$this->assertIsString( $body );
+		$this->assertStringContainsString( 'mw-userlink', $body );
 		$this->assertSame( 2, $pager->getNumRows() );
 	}
 

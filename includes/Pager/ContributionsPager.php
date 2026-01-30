@@ -132,6 +132,13 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	protected $targetUser;
 
 	/**
+	 * @var bool If the results are by multiple contributors, we should show the user link in
+	 *  the revision row. This may happen e.g. if the target is an IP range or if an extension
+	 *  modifies the query.
+	 */
+	private $hasMultipleContributors;
+
+	/**
 	 * Set to protected to allow subclasses access for overrides
 	 */
 	protected TemplateParser $templateParser;
@@ -335,6 +342,9 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 
 		$result = [];
 
+		// Keep track of contributors, to check for multiple contributors
+		$previousContributor = null;
+
 		// loop all results and collect them in an array
 		foreach ( $data as $query ) {
 			foreach ( $query as $i => $row ) {
@@ -348,6 +358,11 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 					(array)$this->mIndexField
 				);
 				$result[implode( '-', $indexFieldValues ) . "-$index"] = $row;
+				// Check for multiple contributors
+				if ( !$this->hasMultipleContributors && isset( $row->rev_user_text ) ) {
+					$previousContributor ??= $row->rev_user_text;
+					$this->hasMultipleContributors = $previousContributor !== $row->rev_user_text;
+				}
 			}
 		}
 
@@ -918,12 +933,13 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		}
 		$dir = $this->getLanguage()->getDir();
 
-		// When the author is different from the target, always show user and user talk links
+		// When the author is different from the target, or there are multiple contributors,
+		// always show user and user talk links
 		$userlink = '';
 		$revUser = $this->currentRevRecord->getUser();
 		$revUserId = $revUser ? $revUser->getId() : 0;
 		$revUserText = $revUser ? $revUser->getName() : '';
-		if ( $this->target !== $revUserText ) {
+		if ( $this->hasMultipleContributors || $this->target !== $revUserText ) {
 			$userPageLink = Linker::userLink( $revUserId, $revUserText );
 			$userTalkLink = Linker::userTalkLink( $revUserId, $revUserText );
 
