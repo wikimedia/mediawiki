@@ -2200,7 +2200,7 @@
 	"watchlistlabels-form-submit-edit": "Save",
 	"watchlistlabels-limit-reached": "Cannot save label: you have reached the maximum number ($1) of watchlist labels allowed.",
 	"watchlistlabels-delete-header": "Delete {{PLURAL:$1|this label|these labels}}?",
-	"watchlistlabels-delete-warning": "The following $2 watchlist {{PLURAL:$1|label|labels}} will be deleted. There is no way to undo this.",
+	"watchlistlabels-delete-warning": "The following {{PLURAL:$1|watchlist label|$2 watchlist labels}} will be deleted. There is no way to undo this.",
 	"watchlistlabels-delete-unused": "not used on any watchlist items",
 	"watchlistlabels-delete-count": "used on $1 watchlist {{PLURAL:$2|item|items}}",
 	"watchlistlabels-onboarding-progress": "$1 of $2",
