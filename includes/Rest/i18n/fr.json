@@ -13,6 +13,7 @@
 			"McDutchie",
 			"Méthodes Bulebe Hangi",
 			"Thibaut120094",
+			"Urhixidur",
 			"Verdy p",
 			"Wladek92"
 		]
@@ -104,9 +105,9 @@
 	"rest-module-default": "Module par défaut",
 	"rest-module-extra-routes-title": "API REST de MédiaWiki",
 	"rest-module-extra-routes-desc": "Points de terminaison REST non associés à un module",
-	"rest-module-specs.v0-title": "Spécifications",
+	"rest-module-specs.v0-title": "Interface de programmation (API) des spécifications",
 	"rest-module-specs.v0-desc": "Module d’auto-documentation fournissant la découverte, les spécifications et les schémas de tous les modules disponibles.",
-	"rest-module-content.v1-title": "Contenu de la page",
+	"rest-module-content.v1-title": "Interface de programmation (API) de contenu",
 	"rest-module-content.v1-desc": "Donne accès au contenu et aux métadonnées des pages et des révisions",
 	"rest-module-site.v1-title": "API du site",
 	"rest-module-site.v1-desc": "Informations concernant le site dans son ensemble, telles que les sitemaps du site",

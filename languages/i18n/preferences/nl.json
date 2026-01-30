@@ -205,6 +205,8 @@
 	"prefs-description-watchlist": "Beheer en personaliseer de lijst met pagina's die u bijhoudt.",
 	"prefs-editwatchlist": "Volglijst bewerken",
 	"prefs-editwatchlist-label": "Items op uw volglijst bewerken:",
+	"prefs-editwatchlistlabels-label": "Labels van de volglijst bewerken:",
+	"prefs-managewatchlistlabels": "De labels van uw volglijst bekijken en beheren",
 	"prefs-editwatchlist-edit": "Titels op uw volglijst bekijken en verwijderen",
 	"prefs-editwatchlist-raw": "Ruwe volglijst bewerken",
 	"prefs-editwatchlist-clear": "Volglijst wissen",
