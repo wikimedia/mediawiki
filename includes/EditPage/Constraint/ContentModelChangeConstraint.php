@@ -43,7 +43,7 @@ class ContentModelChangeConstraint implements IEditConstraint {
 		$status = PermissionStatus::newEmpty();
 
 		if ( !$this->performer->authorizeWrite( 'editcontentmodel', $this->title, $status ) ) {
-			return $this->wrapPermissionStatus( $status );
+			return $this->castPermissionStatus( $status );
 		}
 
 		// Make sure the user can edit the page under the new content model too.
@@ -54,13 +54,13 @@ class ContentModelChangeConstraint implements IEditConstraint {
 			!$this->performer->authorizeWrite( 'editcontentmodel', $titleWithNewContentModel, $status )
 			|| !$this->performer->authorizeWrite( 'edit', $titleWithNewContentModel, $status )
 		) {
-			return $this->wrapPermissionStatus( $status );
+			return $this->castPermissionStatus( $status );
 		}
 
 		return EditPageStatus::newGood();
 	}
 
-	private function wrapPermissionStatus( PermissionStatus $status ): EditPageStatus {
+	private function castPermissionStatus( PermissionStatus $status ): EditPageStatus {
 		$statusValue = EditPageStatus::newGood();
 
 		if ( !$status->isGood() ) {
@@ -71,7 +71,7 @@ class ContentModelChangeConstraint implements IEditConstraint {
 			}
 		}
 
-		// TODO: Use error messages from the PermissionStatus ($this->status) here - T384399
+		// TODO: Use error messages from the PermissionStatus ($status) here - T384399
 		return $statusValue;
 	}
 

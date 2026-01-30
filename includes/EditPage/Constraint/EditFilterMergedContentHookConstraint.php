@@ -51,12 +51,14 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 	}
 
 	public function checkConstraint(): EditPageStatus {
-		$status = Status::newGood();
+		$status = EditPageStatus::newGood();
 
 		$hookResult = $this->hookRunner->onEditFilterMergedContent(
 			$this->hookContext,
 			$this->content,
-			$status,
+			// Status::wrap() takes references to all internal variables, allowing hook handlers to modify
+			// the $status, without changing the hook interface to use the EditPageStatus type.
+			Status::wrap( $status ),
 			$this->summary,
 			$this->hookUser,
 			$this->minorEdit
@@ -81,7 +83,7 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 				// T273354: Should be AS_HOOK_ERROR_EXPECTED to display error message
 				$status->value = self::AS_HOOK_ERROR_EXPECTED;
 			}
-			return EditPageStatus::wrap( $status );
+			return $status;
 		}
 
 		if ( !$status->isOK() ) {
@@ -93,7 +95,7 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 			}
 			$this->hookError = $this->formatStatusErrors( $status );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
-			return EditPageStatus::wrap( $status );
+			return $status;
 		}
 
 		return EditPageStatus::newGood();
@@ -114,10 +116,8 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 
 	/**
 	 * Wrap status errors in error boxes for increased visibility.
-	 * @param Status $status
-	 * @return string
 	 */
-	private function formatStatusErrors( Status $status ): string {
+	private function formatStatusErrors( EditPageStatus $status ): string {
 		$ret = '';
 		foreach ( $status->getMessages() as $msg ) {
 			$msg = Message::newFromSpecifier( $msg );

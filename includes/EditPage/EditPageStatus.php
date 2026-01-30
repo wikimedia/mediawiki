@@ -5,7 +5,7 @@ namespace MediaWiki\EditPage;
 use Closure;
 use LogicException;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
-use MediaWiki\Status\Status;
+use StatusValue;
 use Throwable;
 
 /**
@@ -14,9 +14,9 @@ use Throwable;
  * @since 1.46
  * @internal
  *
- * @extends Status<int>
+ * @extends StatusValue<int>
  */
-class EditPageStatus extends Status {
+class EditPageStatus extends StatusValue {
 
 	private ?Closure $errorFunction = null;
 	private ?IEditConstraint $failedConstraint = null;

@@ -30,19 +30,19 @@ class AuthorizationConstraint implements IEditConstraint {
 		$status = PermissionStatus::newEmpty();
 
 		if ( $this->new && !$this->performer->authorizeWrite( 'create', $this->target, $status ) ) {
-			return $this->wrapPermissionStatus( $status );
+			return $this->castPermissionStatus( $status );
 		}
 
 		if ( !$this->performer->authorizeWrite( 'edit', $this->target, $status ) ) {
-			return $this->wrapPermissionStatus( $status );
+			return $this->castPermissionStatus( $status );
 		}
 
-		return $this->wrapPermissionStatus( $status );
+		return $this->castPermissionStatus( $status );
 	}
 
-	private function wrapPermissionStatus( PermissionStatus $status ): EditPageStatus {
+	private function castPermissionStatus( PermissionStatus $status ): EditPageStatus {
 		if ( $status->isGood() ) {
-			return EditPageStatus::wrap( $status );
+			return EditPageStatus::cast( $status );
 		}
 
 		// Report the most specific errors first
@@ -58,7 +58,7 @@ class AuthorizationConstraint implements IEditConstraint {
 			$value = self::AS_READ_ONLY_PAGE_LOGGED;
 		}
 
-		return EditPageStatus::wrap( $status )
+		return EditPageStatus::cast( $status )
 			->setErrorFunction( $status->throwErrorPageError( ... ) )
 			->setResult( false, $value );
 	}

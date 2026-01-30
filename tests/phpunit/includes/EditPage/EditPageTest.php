@@ -5,6 +5,7 @@ use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\EditPage\EditPage;
+use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\MWException;
 use MediaWiki\MainConfigNames;
@@ -14,7 +15,6 @@ use MediaWiki\Page\WikiPage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Tests\Mocks\Content\DummyContentHandlerForTesting;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -950,7 +950,7 @@ hello
 		$this->assertStatusValue( EditPage::AS_NO_CHANGE_CONTENT_MODEL, $status );
 	}
 
-	private function doEditDummyNonTextPage( array $edit ): Status {
+	private function doEditDummyNonTextPage( array $edit ): EditPageStatus {
 		$title = Title::newFromText( 'Dummy:NonTextPageForEditPage' );
 
 		$article = new Article( $title );

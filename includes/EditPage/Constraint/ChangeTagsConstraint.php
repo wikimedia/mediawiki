@@ -42,7 +42,7 @@ class ChangeTagsConstraint implements IEditConstraint {
 			false
 		);
 
-		return EditPageStatus::wrap( $changeTagStatus )
+		return EditPageStatus::cast( $changeTagStatus )
 			->setValue( self::AS_CHANGE_TAG_ERROR );
 	}
 

@@ -694,8 +694,8 @@ class EditPage implements IEditObject {
 			$resultDetails = null;
 			$status = $this->attemptSave( $resultDetails );
 			if ( !( $status instanceof EditPageStatus ) ) {
-				// Hooks and subclasses can cause attemptSave to return a normal Status, so wrap it if necessary
-				$status = EditPageStatus::wrap( $status );
+				// Hooks and subclasses can cause attemptSave to return a normal Status, so cast it if necessary
+				$status = EditPageStatus::cast( $status );
 			}
 			if ( !$this->handleStatus( $status, $resultDetails ) ) {
 				return;
@@ -1827,7 +1827,7 @@ class EditPage implements IEditObject {
 	 * Attempt submission
 	 * @param array|false &$resultDetails See docs for $result in internalAttemptSave @phan-output-reference
 	 * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public function attemptSave( &$resultDetails = false ) {
 		// Allow bots to exempt some edits from bot flagging
@@ -1843,7 +1843,9 @@ class EditPage implements IEditObject {
 			$this->handleFailedConstraint( $status );
 		}
 
-		$this->getHookRunner()->onEditPage__attemptSave_after( $this, $status, $resultDetails );
+		// Status::wrap() takes references to all internal variables, allowing hook handlers to modify
+		// the $status, without changing the hook interface to use the EditPageStatus type.
+		$this->getHookRunner()->onEditPage__attemptSave_after( $this, Status::wrap( $status ), $resultDetails );
 
 		return $status;
 	}
@@ -1985,7 +1987,7 @@ class EditPage implements IEditObject {
 				// Render the status object into $this->hookError
 				// FIXME this sucks, we should just use the Status object throughout
 				$this->hookError = Html::errorBox(
-					"\n" . $status->getWikiText( false, false, $this->context->getLanguage() )
+					"\n" . Status::cast( $status )->getWikiText( false, false, $this->context->getLanguage() )
 				);
 				return true;
 		}
@@ -2124,7 +2126,7 @@ class EditPage implements IEditObject {
 		// eventually successful account creation)
 		$tempAccountStatus = $this->createTempUser();
 		if ( !$tempAccountStatus->isOK() ) {
-			return EditPageStatus::wrap( $tempAccountStatus );
+			return EditPageStatus::cast( $tempAccountStatus );
 		}
 		if ( $tempAccountStatus instanceof CreateStatus ) {
 			$result['savedTempUser'] = $tempAccountStatus->getUser();
@@ -2438,10 +2440,10 @@ class EditPage implements IEditObject {
 				$doEditStatus->failedBecauseOfConflict()
 			) {
 				$this->isConflict = true;
-				return EditPageStatus::wrap( $doEditStatus )
+				return EditPageStatus::cast( $doEditStatus )
 					->setValue( self::AS_END );
 			}
-			return EditPageStatus::wrap( $doEditStatus );
+			return EditPageStatus::cast( $doEditStatus );
 		}
 
 		$result['nullEdit'] = !$doEditStatus->wasRevisionCreated();
