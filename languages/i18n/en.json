@@ -2217,7 +2217,7 @@
 	"watchlistlabels-onboarding-filter-body": "Go to 'Labels' to filter the edits.",
 	"watchlistlabels-editwatchlist-dialog-button": "Assign labels",
 	"watchlistlabels-editwatchlist-dialog-assign-error": "Unable to assign labels",
-	"watchlistlabels-editwatchlist-dialog-intro": "Select the {{PLURAL:$2|label|labels}} you want to assign to $1:",
+	"watchlistlabels-editwatchlist-dialog-intro": "Select the {{PLURAL:$2|label|labels}} you want to {{PLURAL:$3|assign}} to $1:",
 	"watchlistlabels-editwatchlist-dialog-intro-nolabels": "You cannot assign labels to these watchlist items, because you have no labels defined. Go to [[Special:WatchlistLabels]] to create some.",
 	"watchlistlabels-editwatchlist-dialog-intro-noitems": "Please select the pages to which you would like to assign labels.",
 	"watchlistlabels-editwatchlist-dialog-button-unassign": "Remove labels",
