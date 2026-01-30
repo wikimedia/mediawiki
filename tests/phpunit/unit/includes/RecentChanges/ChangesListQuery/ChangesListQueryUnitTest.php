@@ -48,7 +48,22 @@ class ChangesListQueryUnitTest extends \MediaWikiUnitTestCase {
 	 * @param int[] $expected
 	 */
 	public function testSortAndTruncate( $limit, $rows, $expected ) {
-		$query = $this->newServiceInstance( ChangesListQuery::class, [] );
+		$config = $this->createMock( \MediaWiki\Config\ServiceOptions::class );
+		$config->method( 'get' )->willReturnMap( [
+			[ 'WatchlistExpiry', true ],
+			[ 'MiserMode', false ],
+			[ 'RCMaxAge', 7776000 ],
+			[ 'EnableChangesListQueryPartitioning', false ],
+			[ 'VirtualDomainsMapping', [] ],
+			[ 'LearnerMemberSince', 0 ],
+			[ 'ExperiencedUserMemberSince', 0 ],
+			[ 'LearnerEdits', 0 ],
+			[ 'ExperiencedUserEdits', 0 ],
+		] );
+
+		$query = $this->newServiceInstance( ChangesListQuery::class, [
+			'config' => $config
+		] );
 		$finalRows = [];
 		$query->sortAndTruncate( $rows, $limit, $finalRows );
 		$result = [];

@@ -6,6 +6,10 @@ use InvalidArgumentException;
 use LogicException;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
+use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Logging\LogPage;
@@ -48,6 +52,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		MainConfigNames::MiserMode,
 		MainConfigNames::RCMaxAge,
 		MainConfigNames::EnableChangesListQueryPartitioning,
+		MainConfigNames::VirtualDomainsMapping,
 		...ExperienceCondition::CONSTRUCTOR_OPTIONS
 	];
 
@@ -61,6 +66,13 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		'imagelinks' => 'il'
 	];
 
+	private const LINK_TABLE_VIRTUAL_DOMAINS = [
+		'pagelinks' => PageLinksTable::VIRTUAL_DOMAIN,
+		'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,
+		'categorylinks' => CategoryLinksTable::VIRTUAL_DOMAIN,
+		'imagelinks' => ImageLinksTable::VIRTUAL_DOMAIN
+	];
+
 	/** Minimum number of estimated rows before timestamp partitioning is considered */
 	public const PARTITION_THRESHOLD = 10000;
 
@@ -70,6 +82,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	private int|float $rcMaxAge;
 	private bool $enablePartitioning;
 	private bool $forcePartitioning = false;
+	private array $virtualDomainsMapping;
 
 	private array $densityTunables = [
 		self::DENSITY_LINKS => 0.1,
@@ -244,6 +257,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 
 		$this->rcMaxAge = (int)$config->get( MainConfigNames::RCMaxAge );
 		$this->enablePartitioning = (bool)$config->get( MainConfigNames::EnableChangesListQueryPartitioning );
+		$this->virtualDomainsMapping = $config->get( MainConfigNames::VirtualDomainsMapping );
 	}
 
 	/**
@@ -1286,7 +1300,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 * @param SelectQueryBuilder $mainQueryBuilder
 	 * @return SelectQueryBuilder[]
 	 */
-	private function applyLinkTarget( SelectQueryBuilder $mainQueryBuilder ) {
+	private function applyLinkTarget( SelectQueryBuilder $mainQueryBuilder ): array {
 		if ( !$this->linkTarget ) {
 			return [ $mainQueryBuilder ];
 		}
@@ -1294,11 +1308,18 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		$queries = [];
 		foreach ( $this->linkTables as $linkTable ) {
 			$queryBuilder = clone $mainQueryBuilder;
+			$useVirtualDomains = $this->shouldUseVirtualDomains( $linkTable );
+
 			if ( $this->linkDirection === self::LINKS_TO ) {
-				$ok = $this->applyLinksToCondition( $queryBuilder, $this->linkTarget, $linkTable );
+				$ok = $useVirtualDomains
+					? $this->applyLinksToFilter( $queryBuilder, $this->linkTarget, $linkTable )
+					: $this->applyLinksToCondition( $queryBuilder, $this->linkTarget, $linkTable );
 			} else {
-				$ok = $this->applyLinksFromCondition( $queryBuilder, $this->linkTarget, $linkTable );
+				$ok = $useVirtualDomains
+					? $this->applyLinksFromFilter( $queryBuilder, $this->linkTarget, $linkTable )
+					: $this->applyLinksFromCondition( $queryBuilder, $this->linkTarget, $linkTable );
 			}
+
 			if ( $ok ) {
 				$queries[] = $queryBuilder;
 			}
@@ -1307,18 +1328,36 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	}
 
 	/**
+	 * Determines if link queries should use virtual database domains.
+	 *
+	 * Virtual database domains allow separating link data into different database
+	 * clusters for scalability.
+	 *
+	 * When virtual domains are enabled, link queries will use separate database
+	 * connections for different link types.
+	 *
+	 * See T411577.
+	 *
+	 * @param string $linkTable The link table to check virtual domain usage for.
+	 * @return bool True if virtual domains should be used
+	 */
+	private function shouldUseVirtualDomains( string $linkTable ): bool {
+		return isset( $this->virtualDomainsMapping[self::LINK_TABLE_VIRTUAL_DOMAINS[$linkTable]] );
+	}
+
+	/**
 	 * Add joins and conditions for links to a page.
 	 *
-	 * @param SelectQueryBuilder $queryBuilder
-	 * @param PageIdentity $page
-	 * @param string $linkTable
+	 * @param SelectQueryBuilder $queryBuilder The query builder to add conditions to
+	 * @param PageIdentity $page The target page to find links to
+	 * @param string $linkTable The link table to query (pagelinks, templatelinks, etc.)
 	 * @return bool True for OK, false to force an empty result set
 	 */
 	private function applyLinksToCondition(
 		SelectQueryBuilder $queryBuilder,
 		PageIdentity $page,
 		string $linkTable
-	) {
+	): bool {
 		$prefix = self::LINK_TABLE_PREFIXES[$linkTable];
 		$queryBuilder->join( $linkTable, null, "rc_cur_id = {$prefix}_from" );
 		if ( $linkTable === 'imagelinks' ) {
@@ -1342,18 +1381,64 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	}
 
 	/**
+	 * Add conditions for pages that link to a target page using virtual domains.
+	 *
+	 * This method queries the link tables in their virtual domains to find pages
+	 * that link to the specified target page, then filters the recentchanges query
+	 * to only include changes to those pages.
+	 *
+	 * This is limited to 5000 pages to prevent performance issues.
+	 *
+	 * @param SelectQueryBuilder $queryBuilder The query builder to add conditions to
+	 * @param PageIdentity $page The target page to find links to
+	 * @param string $linkTable The link table to query (pagelinks, templatelinks, etc.)
+	 * @return bool True for OK, false to force an empty result set
+	 */
+	private function applyLinksToFilter(
+		SelectQueryBuilder $queryBuilder,
+		PageIdentity $page,
+		string $linkTable
+	): bool {
+		$linkTarget = $page instanceof LinkTarget ? $page : TitleValue::newFromPage( $page );
+		$targetId = $this->linkTargetLookup->getLinkTargetId( $linkTarget );
+		if ( !$targetId ) {
+			return false;
+		}
+
+		$connProvider = MediaWikiServices::getInstance()->getConnectionProvider();
+		$dbr = $connProvider->getReplicaDatabase( self::LINK_TABLE_VIRTUAL_DOMAINS[$linkTable] );
+		$prefix = self::LINK_TABLE_PREFIXES[$linkTable];
+
+		$res = $dbr->newSelectQuerybuilder()
+			->select( "{$prefix}_from" )
+			->from( $linkTable )
+			->where( [ "{$prefix}_target_id" => $targetId ] )
+			->limit( 5000 )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
+
+		if ( $res === [] ) {
+			return false;
+		}
+
+		$queryBuilder->where( [ 'rc_cur_id' => $res ] );
+
+		return true;
+	}
+
+	/**
 	 * Add joins and conditions for links from a page.
 	 *
-	 * @param SelectQueryBuilder $queryBuilder
-	 * @param PageIdentity $page
-	 * @param string $linkTable
+	 * @param SelectQueryBuilder $queryBuilder The query builder to add conditions to
+	 * @param PageIdentity $page The source page to find links from
+	 * @param string $linkTable The link table to query (pagelinks, templatelinks, etc.)
 	 * @return bool True for OK, false to force an empty result set
 	 */
 	private function applyLinksFromCondition(
 		SelectQueryBuilder $queryBuilder,
 		PageIdentity $page,
 		string $linkTable
-	) {
+	): bool {
 		if ( !$page->getId() ) {
 			// No links from a non-existent page
 			return false;
@@ -1363,6 +1448,53 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			->where( [ "{$prefix}_from" => $page->getId() ] )
 			->join( 'linktarget', null, [ 'rc_namespace = lt_namespace', 'rc_title = lt_title' ] )
 			->join( $linkTable, null, "{$prefix}_target_id = lt_id" );
+		return true;
+	}
+
+	/**
+	 * Add conditions for pages that link from a source page using virtual domains.
+	 *
+	 * This method queries the link tables in their virtual domains to find pages
+	 * that link from the specified source page, then filters the recentchanges query
+	 * to only include changes to those pages.
+	 *
+	 * This is limited to 5000 pages to prevent performance issues.
+	 *
+	 * @param SelectQueryBuilder $queryBuilder The query builder to add conditions to
+	 * @param PageIdentity $page The source page to find links from
+	 * @param string $linkTable The link table to query (pagelinks, templatelinks, etc.)
+	 * @return bool True for OK, false to force an empty result set
+	 */
+	private function applyLinksFromFilter(
+		SelectQueryBuilder $queryBuilder,
+		PageIdentity $page,
+		string $linkTable
+	): bool {
+		if ( !$page->getId() ) {
+			// No links from a non-existent page
+			return false;
+		}
+
+		$connProvider = MediaWikiServices::getInstance()->getConnectionProvider();
+		$dbr = $connProvider->getReplicaDatabase( self::LINK_TABLE_VIRTUAL_DOMAINS[$linkTable] );
+		$prefix = self::LINK_TABLE_PREFIXES[$linkTable];
+
+		$res = $dbr->newSelectQuerybuilder()
+			->select( 'page_id' )
+			->from( 'linktarget' )
+			->join( $linkTable, null, "{$prefix}_target_id = lt_id" )
+			->join( 'page', null, [ 'lt_namespace = page_namespace', 'lt_title = page_title' ] )
+			->where( [ "{$prefix}_from" => $page->getId() ] )
+			->limit( 5000 )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
+
+		if ( $res === [] ) {
+			return false;
+		}
+
+		$queryBuilder->where( [ 'rc_cur_id' => $res ] );
+
 		return true;
 	}
 
