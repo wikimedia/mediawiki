@@ -369,11 +369,11 @@ class HtmlInputTransformHelper {
 			// NOTE: We might have an incomplete HtmlPageBundle here, with no HTML but with data-parsoid!
 			// XXX: Do we need to support that, or can that just be a 400?
 			$originalRendering = new HtmlPageBundle(
-				$original['html']['body'] ?? '',
-				$original['data-parsoid']['body'] ?? null,
-				$original['data-mw']['body'] ?? null,
-				null, // will be derived from $original['html']['headers']['content-type']
-				$original['html']['headers'] ?? []
+				html: $original['html']['body'] ?? '',
+				parsoid: $original['data-parsoid']['body'] ?? null,
+				mw: $original['data-mw']['body'] ?? null,
+				version: null, // will be derived from $original['html']['headers']['content-type']
+				headers: $original['html']['headers'] ?? []
 			);
 		}
 

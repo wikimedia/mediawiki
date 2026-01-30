@@ -152,7 +152,8 @@ class LanguageVariantConverter {
 			$docHtml = DOMCompat::getOuterHTML( $docElt );
 			$convertedHtml = preg_replace( "#</body>#", $docHtml, "$convertedHtml</body>" );
 			return new HtmlPageBundle(
-				$convertedHtml, [], [], $pageBundle->version, $headers
+				html: $convertedHtml, parsoid: [], mw: [],
+				version: $pageBundle->version, headers: $headers
 			);
 		}
 	}

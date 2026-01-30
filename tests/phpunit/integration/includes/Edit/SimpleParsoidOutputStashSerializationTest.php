@@ -34,24 +34,24 @@ class SimpleParsoidOutputStashSerializationTest extends MediaWikiIntegrationTest
 			'basic' => [
 				'instance' => new SelserContext(
 					new HtmlPageBundle(
-						'<b>html</b>',
-						[
+						html: '<b>html</b>',
+						parsoid: [
 							'counter' => 1234,
 							'offsetType' => 'byte',
 							'ids' => [
 								'mwAA' => [ 'parsoid' => true ],
 							],
 						],
-						[
+						mw: [
 							'ids' => [
 								'mwAA' => [ 'mw' => true ],
 							],
 						],
-						'1.2.3.4',
-						[
+						version: '1.2.3.4',
+						headers: [
 							'X-Header-Test' => 'header test',
 						],
-						CONTENT_MODEL_WIKITEXT,
+						contentmodel: CONTENT_MODEL_WIKITEXT,
 					),
 					5678, /* revision */
 					new WikitextContent( 'wiki wiki wiki' )

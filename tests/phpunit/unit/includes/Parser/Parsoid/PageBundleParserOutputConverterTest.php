@@ -66,22 +66,22 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 	public static function provideParserOutputFromPageBundle() {
 		yield 'should convert HtmlPageBundle containing data-parsoid and data-mw' => [
 			new HtmlPageBundle(
-				'html content',
-				[ 'ids' => '1.33' ],
-				[ 'ids' => '1.33' ],
-				'1.x',
-				[ 'content-language' => 'abc' ],
-				'testing'
+				html: 'html content',
+				parsoid: [ 'ids' => '1.33' ],
+				mw: [ 'ids' => '1.33' ], // looks bogus
+				version: '1.x',
+				headers: [ 'content-language' => 'abc' ],
+				contentmodel: 'testing'
 			)
 		];
 
 		yield 'should convert HtmlPageBundle that contains no data-parsoid or data-mw' => [
 			new HtmlPageBundle(
-				'html content',
-				[],
-				[],
-				'1.x',
-				[ 'content-language' => null ]
+				html: 'html content',
+				parsoid: [],
+				mw: [],
+				version: '1.x',
+				headers: [ 'content-language' => null ]
 			)
 		];
 	}

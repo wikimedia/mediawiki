@@ -743,10 +743,9 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideOriginal() {
 		$unchangedPB = new HtmlPageBundle(
-			self::getTextFromFile( 'MainPage-original.html' ),
-			self::getJsonFromFile( 'MainPage-original.data-parsoid' ),
-			null,
-			Parsoid::defaultHTMLVersion()
+			html: self::getTextFromFile( 'MainPage-original.html' ),
+			parsoid: self::getJsonFromFile( 'MainPage-original.data-parsoid' ),
+			version: Parsoid::defaultHTMLVersion()
 		);
 
 		$originalContent = new WikitextContent( 'Goats are great!' );
@@ -949,12 +948,12 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$dataParsoid = self::getJsonFromFile( 'MainPage-original.data-parsoid' );
 
 		$pb = new HtmlPageBundle(
-			$html,
-			$dataParsoid,
-			[],
-			$profileVersion,
-			$htmlHeaders,
-			CONTENT_MODEL_WIKITEXT
+			html: $html,
+			parsoid: $dataParsoid,
+			mw: [],
+			version: $profileVersion,
+			headers: $htmlHeaders,
+			contentmodel: CONTENT_MODEL_WIKITEXT
 		);
 
 		$eTag = '"' . $page->getLatest() . '/just-a-test/edit"';
@@ -996,12 +995,12 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 		$content = new WikitextContent( $oldWikitext );
 		$pb = new HtmlPageBundle(
-			$html,
-			$dataParsoid,
-			[],
-			$profileVersion,
-			$htmlHeaders,
-			CONTENT_MODEL_WIKITEXT
+			html: $html,
+			parsoid: $dataParsoid,
+			mw: [],
+			version: $profileVersion,
+			headers: $htmlHeaders,
+			contentmodel: CONTENT_MODEL_WIKITEXT
 		);
 
 		// NOTE: Using 0 as the prefix in the ETag indicates that the content does

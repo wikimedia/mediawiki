@@ -15,11 +15,11 @@ use Wikimedia\Parsoid\Core\HtmlPageBundle;
 class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testParserOutputFromPageBundleShouldPreserveMetadata() {
 		$pageBundle = new HtmlPageBundle(
-			'html content',
-			[],
-			[],
-			'1.x',
-			[ 'content-language' => null ]
+			html: 'html content',
+			parsoid: [],
+			mw: [],
+			version: '1.x',
+			headers: [ 'content-language' => null ]
 		);
 
 		$defaultExpiration = $this->getServiceContainer()->getMainConfig()->get(

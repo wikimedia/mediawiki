@@ -26,11 +26,11 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 	public static function provideConvertPageBundleVariant() {
 		yield 'No source or base, rely on page language (en)' => [
 			new HtmlPageBundle(
-				'<p>test language conversion</p>',
-				[ 'parsoid-data' ],
-				[ 'mw-data' ],
-				Parsoid::defaultHTMLVersion(),
-				[]
+				html: '<p>test language conversion</p>',
+				parsoid: [ 'parsoid-data' ],
+				mw: [ 'mw-data' ],
+				version: Parsoid::defaultHTMLVersion(),
+				headers: []
 			),
 			null,
 			'en-x-piglatin',
@@ -39,11 +39,11 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		];
 		yield 'Source variant is base language' => [
 			new HtmlPageBundle(
-				'<p>test language conversion</p>',
-				[ 'parsoid-data' ],
-				[ 'mw-data' ],
-				Parsoid::defaultHTMLVersion(),
-				[ 'content-language' => 'en' ]
+				html: '<p>test language conversion</p>',
+				parsoid: [ 'parsoid-data' ],
+				mw: [ 'mw-data' ],
+				version: Parsoid::defaultHTMLVersion(),
+				headers:[ 'content-language' => 'en' ]
 			),
 			null,
 			'en-x-piglatin',
@@ -52,11 +52,11 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		];
 		yield 'Source language is null' => [
 			new HtmlPageBundle(
-				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
-				[ 'parsoid-data' ],
-				[ 'mw-data' ],
-				Parsoid::defaultHTMLVersion(),
-				[ 'content-language' => 'crh' ]
+				html: '<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
+				parsoid: [ 'parsoid-data' ],
+				mw: [ 'mw-data' ],
+				version: Parsoid::defaultHTMLVersion(),
+				headers: [ 'content-language' => 'crh' ]
 			),
 			null,
 			'crh-Latn',
@@ -65,11 +65,11 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		];
 		yield 'Source language is explicit' => [
 			new HtmlPageBundle(
-				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
-				[ 'parsoid-data' ],
-				[ 'mw-data' ],
-				Parsoid::defaultHTMLVersion(),
-				[ 'content-language' => 'crh' ]
+				html: '<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
+				parsoid: [ 'parsoid-data' ],
+				mw: [ 'mw-data' ],
+				version: Parsoid::defaultHTMLVersion(),
+				headers: [ 'content-language' => 'crh' ]
 			),
 			null,
 			'crh-Latn',
@@ -78,11 +78,11 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		];
 		yield 'Content language is provided via HTTP header' => [
 			new HtmlPageBundle(
-				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
-				[ 'parsoid-data' ],
-				[ 'mw-data' ],
-				Parsoid::defaultHTMLVersion(),
-				[ 'content-language' => 'crh-Cyrl' ]
+				html: '<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
+				parsoid: [ 'parsoid-data' ],
+				mw: [ 'mw-data' ],
+				version: Parsoid::defaultHTMLVersion(),
+				headers:[ 'content-language' => 'crh-Cyrl' ]
 			),
 			'crh',
 			'crh-Latn',
@@ -91,11 +91,11 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		];
 		yield 'Content language is variant' => [
 			new HtmlPageBundle(
-				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
-				[ 'parsoid-data' ],
-				[ 'mw-data' ],
-				Parsoid::defaultHTMLVersion(),
-				[]
+				html:'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
+				parsoid: [ 'parsoid-data' ],
+				mw: [ 'mw-data' ],
+				version: Parsoid::defaultHTMLVersion(),
+				headers:[]
 			),
 			'crh-Cyrl',
 			'crh-Latn',
@@ -104,11 +104,11 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		];
 		yield 'No content-language, but source variant provided' => [
 			new HtmlPageBundle(
-				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
-				[ 'parsoid-data' ],
-				[ 'mw-data' ],
-				Parsoid::defaultHTMLVersion(),
-				[]
+				html:'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
+				parsoid: [ 'parsoid-data' ],
+				mw: [ 'mw-data' ],
+				version: Parsoid::defaultHTMLVersion(),
+				headers: []
 			),
 			null,
 			'crh-Latn',
@@ -117,11 +117,11 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		];
 		yield 'Source variant is a base language code' => [
 			new HtmlPageBundle(
-				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
-				[ 'parsoid-data' ],
-				[ 'mw-data' ],
-				Parsoid::defaultHTMLVersion(),
-				[]
+				html: '<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
+				parsoid: [ 'parsoid-data' ],
+				mw: [ 'mw-data' ],
+				version: Parsoid::defaultHTMLVersion(),
+				headers: []
 			),
 			null,
 			'crh-Latn',
@@ -130,11 +130,11 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		];
 		yield 'Base language does not support variants' => [
 			new HtmlPageBundle(
-				'<p>Hallo Wereld</p>',
-				[ 'parsoid-data' ],
-				[ 'mw-data' ],
-				Parsoid::defaultHTMLVersion(),
-				[]
+				html: '<p>Hallo Wereld</p>',
+				parsoid: [ 'parsoid-data' ],
+				mw: [ 'mw-data' ],
+				version: Parsoid::defaultHTMLVersion(),
+				headers:[]
 			),
 			'nl',
 			'nl-be',

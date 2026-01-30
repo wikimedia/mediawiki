@@ -985,12 +985,12 @@ abstract class ParsoidHandler extends Handler {
 		$parsoid = $this->newParsoid();
 
 		$pb = new HtmlPageBundle(
-			$revision['html']['body'],
-			$revision['data-parsoid']['body'] ?? null,
-			$revision['data-mw']['body'] ?? null,
-			$attribs['envOptions']['inputContentVersion'],
-			$revision['html']['headers'] ?? null,
-			$revision['contentmodel'] ?? null
+			html: $revision['html']['body'],
+			parsoid: $revision['data-parsoid']['body'] ?? null,
+			mw: $revision['data-mw']['body'] ?? null,
+			version: $attribs['envOptions']['inputContentVersion'],
+			headers: $revision['html']['headers'] ?? null,
+			contentmodel: $revision['contentmodel'] ?? null
 		);
 
 		$out = $parsoid->pb2pb( $pageConfig, 'redlinks', $pb, [] );
@@ -1030,12 +1030,12 @@ abstract class ParsoidHandler extends Handler {
 		$pageIdentity = $this->tryToCreatePageIdentity( $attribs );
 
 		$pb = new HtmlPageBundle(
-			$revision['html']['body'],
-			$revision['data-parsoid']['body'] ?? null,
-			$revision['data-mw']['body'] ?? null,
-			$attribs['envOptions']['inputContentVersion'],
-			$revision['html']['headers'] ?? null,
-			$revision['contentmodel'] ?? null
+			html: $revision['html']['body'],
+			parsoid: $revision['data-parsoid']['body'] ?? null,
+			mw: $revision['data-mw']['body'] ?? null,
+			version: $attribs['envOptions']['inputContentVersion'],
+			headers: $revision['html']['headers'] ?? null,
+			contentmodel: $revision['contentmodel'] ?? null
 		);
 
 		// XXX: DI should inject HtmlTransformFactory
