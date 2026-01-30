@@ -30,6 +30,8 @@ interface ReadPrivateUserRequirementsConditionHook {
 	 * For instance, in case of Special:UserRights, it may happen that a public 'rights' log is added and another
 	 * extension-managed log entry is created for the same action.
 	 *
+	 * @since 1.46
+	 *
 	 * @param UserIdentity $performer The user who performed the action revealing the condition value
 	 * @param UserIdentity $target The user for whom the condition was evaluated
 	 * @param list<mixed> $conditions A list of values, referring to private conditions that were evaluated.
