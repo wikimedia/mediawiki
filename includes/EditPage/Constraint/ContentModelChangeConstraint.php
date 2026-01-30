@@ -67,7 +67,9 @@ class ContentModelChangeConstraint implements IEditConstraint {
 			if ( $status->isRateLimitExceeded() ) {
 				$statusValue->setResult( false, self::AS_RATE_LIMITED );
 			} else {
-				$statusValue->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
+				$statusValue
+					->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL )
+					->setErrorFunction( $status->throwErrorPageError( ... ) );
 			}
 		}
 

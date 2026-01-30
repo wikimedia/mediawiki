@@ -1965,21 +1965,15 @@ class EditPage implements IEditObject {
 				return false;
 
 			case self::AS_BLOCKED_PAGE_FOR_USER:
+			case self::AS_IMAGE_REDIRECT_ANON:
+			case self::AS_IMAGE_REDIRECT_LOGGED:
+			case self::AS_NO_CHANGE_CONTENT_MODEL:
 			case self::AS_NO_CREATE_PERMISSION:
+			case self::AS_READ_ONLY_PAGE:
 			case self::AS_READ_ONLY_PAGE_ANON:
 			case self::AS_READ_ONLY_PAGE_LOGGED:
 				$status->throwError();
 				// No break statement here as throwError() will always throw an exception
-
-			case self::AS_IMAGE_REDIRECT_ANON:
-			case self::AS_IMAGE_REDIRECT_LOGGED:
-				throw new PermissionsError( 'upload' );
-
-			case self::AS_READ_ONLY_PAGE:
-				throw new ReadOnlyError;
-
-			case self::AS_NO_CHANGE_CONTENT_MODEL:
-				throw new PermissionsError( 'editcontentmodel' );
 
 			default:
 				// We don't recognize $statusValue. The only way that can happen

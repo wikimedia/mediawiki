@@ -8,6 +8,7 @@ namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
 use MediaWiki\EditPage\EditPageStatus;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 
@@ -43,7 +44,8 @@ class ImageRedirectConstraint implements IEditConstraint {
 				self::AS_IMAGE_REDIRECT_LOGGED :
 				self::AS_IMAGE_REDIRECT_ANON;
 			return EditPageStatus::newGood( $errorCode )
-				->setOK( false );
+				->setOK( false )
+				->setErrorFunction( static fn () => throw new PermissionsError( 'upload' ) );
 		}
 
 		return EditPageStatus::newGood();

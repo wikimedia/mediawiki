@@ -9,6 +9,7 @@ use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * Tests the ContentModelChangeConstraint
@@ -94,10 +95,12 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 			$title,
 			$newContentModel
 		);
-		$this->assertConstraintFailed(
+		$status = $this->assertConstraintFailed(
 			$constraint,
 			IEditConstraint::AS_NO_CHANGE_CONTENT_MODEL
 		);
+
+		$this->assertNotNull( TestingAccessWrapper::newFromObject( $status )->errorFunction );
 	}
 
 	public function testFailure_quick() {

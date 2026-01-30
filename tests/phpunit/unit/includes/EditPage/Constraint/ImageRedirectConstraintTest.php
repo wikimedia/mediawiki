@@ -10,6 +10,7 @@ use MediaWiki\EditPage\Constraint\ImageRedirectConstraint;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * Tests the ImageRedirectConstraint
@@ -53,7 +54,8 @@ class ImageRedirectConstraintTest extends MediaWikiUnitTestCase {
 			? $this->mockAnonAuthorityWithoutPermissions( [ 'upload' ] )
 			: $this->mockRegisteredAuthorityWithoutPermissions( [ 'upload' ] );
 		$constraint = $this->getConstraint( $performer );
-		$this->assertConstraintFailed( $constraint, $expectedValue );
+		$status = $this->assertConstraintFailed( $constraint, $expectedValue );
+		$this->assertNotNull( TestingAccessWrapper::newFromObject( $status )->errorFunction );
 	}
 
 	public static function provideTestFailure() {
