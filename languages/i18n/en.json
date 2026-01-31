@@ -2222,7 +2222,7 @@
 	"watchlistlabels-editwatchlist-dialog-intro-noitems": "Please select the pages to which you would like to assign labels.",
 	"watchlistlabels-editwatchlist-dialog-button-unassign": "Remove labels",
 	"watchlistlabels-editwatchlist-dialog-unassign-error": "Unable to remove labels",
-	"watchlistlabels-editwatchlist-dialog-intro-unassign": "Select the {{PLURAL:$2|label|labels}} you want to remove from $1:",
+	"watchlistlabels-editwatchlist-dialog-intro-unassign": "Select the {{PLURAL:$2|label|labels}} you want to {{PLURAL:$3|remove}} from $1:",
 	"watchlistlabels-editwatchlist-dialog-intro-unassign-noitems": "Please select the pages from which you would like to remove labels.",
 	"watchlistlabels-editwatchlist-dialog-intro-unassign-noitemlabels": "There are no labels assigned to the pages that you have selected.",
 	"watchlistlabels-editwatchlist-dialog-intro-more": "$2 other {{PLURAL:$1|page|pages}}",
