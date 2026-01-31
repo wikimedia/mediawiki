@@ -866,7 +866,6 @@
 	"sitejspreview": "Text displayed on preview of .js pages in MediaWiki namespace",
 	"userinvalidconfigtitle": "Parameters:\n* $1 - skin name",
 	"updated": "{{Identical|Updated}}",
-	"note": "{{Identical|Note}}",
 	"previewnote": "Note displayed when clicking on Show preview",
 	"continue-editing": "{{doc-actionlink}}\nA link to the beginning of the editing textarea on the same page.\n\nDisplayed after {{msg-mw|previewnote}}.",
 	"previewconflict": "Used in Preview page.",
