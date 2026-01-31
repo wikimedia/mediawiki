@@ -11,7 +11,6 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\ReadOnlyError;
@@ -50,7 +49,6 @@ use Wikimedia\Message\MessageSpecifier;
  * @ingroup SpecialPage
  */
 abstract class SpecialPage implements MessageLocalizer {
-	use DeprecationHelper;
 
 	/**
 	 * @var string The canonical name of this special page
@@ -62,24 +60,8 @@ abstract class SpecialPage implements MessageLocalizer {
 	/** @var string The local name of this special page */
 	private $mLocalName;
 
-	/**
-	 * @var string Minimum user level required to access this page, or "" for anyone.
-	 * @deprecated since 1.46, use or override getRestriction() instead.
-	 * Also used to categorise the pages in Special:Specialpages
-	 */
-	private $mRestriction;
-
-	/** @var bool Listed in Special:Specialpages? */
-	private $mListed;
-
 	/** @var bool Whether or not this special page is being included from an article */
 	protected $mIncluding;
-
-	/**
-	 * @var bool Whether the special page can be included in an article
-	 * @deprecated since 1.46, use or override isIncludable() instead.
-	 */
-	protected $mIncludable;
 
 	/**
 	 * Current request context
@@ -185,38 +167,12 @@ abstract class SpecialPage implements MessageLocalizer {
 	/**
 	 * Default constructor for special pages
 	 * Derivative classes should call this from their constructor
-	 *     Note that if the user does not have the required level, an error message will
-	 *     be displayed by the default execute() method, without the global function ever
-	 *     being called.
-	 *
-	 *     If you override execute(), you can recover the default behavior with userCanExecute()
-	 *     and displayRestrictionError()
-	 *
 	 * @stable to call
 	 *
 	 * @param string $name Name of the special page, as seen in links and URLs
-	 * @param string $restriction User right required, e.g. "block" or "delete".
-	 *  Deprecated since 1.46, override the method getRestriction() instead.
-	 * @param bool $listed Whether the page is listed in Special:SpecialPages
-	 *  Deprecated since 1.46, override the method isListed() instead.
-	 * @param callable|bool $function Unused. Deprecated since 1.46.
-	 * @param string $file Unused. Deprecated since 1.46.
-	 * @param bool $includable Whether the page can be included in normal pages
-	 *  Deprecated since 1.46, override the method isIncludable() instead.
 	 */
-	public function __construct(
-		$name = '', $restriction = '', $listed = true,
-		$function = false, $file = '', $includable = false
-	) {
-		if ( func_num_args() > 1 ) {
-			wfDeprecated( __CLASS__ . ' constructor parameters $restriction, ' .
-				'$listed, $function, $file and $includable', '1.46' );
-		}
+	public function __construct( $name = '' ) {
 		$this->mName = $name;
-		$this->mRestriction = $restriction;
-		$this->deprecatePublicProperty( 'mRestriction', '1.46', __CLASS__ );
-		$this->mListed = $listed;
-		$this->mIncludable = $includable;
 	}
 
 	/**
@@ -228,11 +184,13 @@ abstract class SpecialPage implements MessageLocalizer {
 	}
 
 	/**
-	 * Get the permission that a user must have to execute this page
+	 * Get the permission that a user must have to execute this page,
+	 * e.g. `block` or `delete`, or empty string to signal anyone can execute it.
+	 * Also used to categorise the pages in Special:Specialpages
 	 * @stable to override
 	 */
 	public function getRestriction(): string {
-		return (string)$this->mRestriction;
+		return '';
 	}
 
 	/**
@@ -242,7 +200,7 @@ abstract class SpecialPage implements MessageLocalizer {
 	 * @return bool
 	 */
 	public function isListed() {
-		return $this->mListed;
+		return true;
 	}
 
 	/**
@@ -251,10 +209,7 @@ abstract class SpecialPage implements MessageLocalizer {
 	 * @return bool
 	 */
 	public function isIncludable() {
-		if ( $this->mIncludable ) {
-			wfDeprecated( __CLASS__ . ' property $mIncludable', '1.46' );
-		}
-		return $this->mIncludable;
+		return false;
 	}
 
 	/**
@@ -761,6 +716,13 @@ abstract class SpecialPage implements MessageLocalizer {
 	 * Checks user permissions
 	 *
 	 * This must be overridden by subclasses; it will be made abstract in a future version
+	 *
+	 * Note that if the user does not have the required permission (as specified
+	 * by {@link #getRestriction()}), an error message will be displayed by the
+	 * default implementation, without the global function ever being called.
+	 *
+	 * If you override this method, you can recover the default behavior with
+	 * userCanExecute() and displayRestrictionError().
 	 *
 	 * @stable to override
 	 *

@@ -13,22 +13,6 @@ namespace MediaWiki\SpecialPage;
  * @ingroup SpecialPage
  */
 abstract class IncludableSpecialPage extends SpecialPage {
-	/**
-	 * @stable to call
-	 *
-	 * @param string $name
-	 * @param string $restriction
-	 * @param bool $listed
-	 *  Deprecated since 1.46, override the method isListed() instead.
-	 * @param callable|bool $function Unused. Deprecated since 1.46.
-	 * @param string $file Unused. Deprecated since 1.46.
-	 */
-	public function __construct(
-		$name, $restriction = '', $listed = true, $function = false, $file = 'default'
-	) {
-		parent::__construct( ...func_get_args() );
-		$this->mIncludable = true;
-	}
 
 	/**
 	 * @codeCoverageIgnore Merely declarative

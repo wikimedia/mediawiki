@@ -517,6 +517,8 @@ because of Phabricator reports.
   execution.
 * Less mixin 'mediawiki.mixins.rotation.less', deprecated in 1.46, was removed.
   Use standard CSS transform and @keyframes instead.
+* The SpecialPage constructor parameters $restriction, $listed, $function,
+  $file and $includable and the property $mRestricted have been removed.
 * …
 
 === Deprecations in 1.47 ===

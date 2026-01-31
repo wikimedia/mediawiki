@@ -74,8 +74,6 @@ abstract class ContributionsSpecialPage extends IncludableSpecialPage {
 	 * @param DatabaseBlockStore $blockStore
 	 * @param UserGroupAssignmentService $userGroupAssignmentService
 	 * @param string $name
-	 * @param string $restriction
-	 *  Deprecated since 1.46, override the method getRestriction() instead.
 	 */
 	public function __construct(
 		protected readonly PermissionManager $permissionManager,
@@ -89,14 +87,8 @@ abstract class ContributionsSpecialPage extends IncludableSpecialPage {
 		protected readonly DatabaseBlockStore $blockStore,
 		protected readonly UserGroupAssignmentService $userGroupAssignmentService,
 		$name,
-		$restriction = ''
 	) {
-		$parentParams = [ $name ];
-		if ( func_num_args() > 11 ) {
-			wfDeprecated( __CLASS__ . ' constructor parameter $restriction', '1.46' );
-			$parentParams[] = $restriction;
-		}
-		parent::__construct( ...$parentParams );
+		parent::__construct( $name );
 	}
 
 	/**
