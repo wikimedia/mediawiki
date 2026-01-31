@@ -164,6 +164,7 @@ $specialPageAliases = [
 	'Wantedpages'               => [ 'דפים_מבוקשים' ],
 	'Wantedtemplates'           => [ 'תבניות_מבוקשות' ],
 	'Watchlist'                 => [ 'רשימת_המעקב', 'רשימת_מעקב', 'רשימת_המעקב_שלי' ],
+	'WatchlistLabels'           => [ 'תוויות_רשימת_מעקב' ],
 	'Whatlinkshere'             => [ 'דפים_המקושרים_לכאן' ],
 	'Withoutinterwiki'          => [ 'דפים_ללא_קישורי_שפה' ],
 ];
