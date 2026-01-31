@@ -3310,7 +3310,7 @@
 	"watchlistedit-table-title-pages": "Page title",
 	"watchlistedit-table-title-expiry": "Expiry",
 	"watchlistedit-table-remove-selected": "Remove {{PLURAL:$1|page|pages}}",
-	"watchlistedit-unwatch-confirmation": "Remove $1 from your watchlist?",
+	"watchlistedit-unwatch-confirmation": "{{PLURAL:$2|Remove}} $1 from your watchlist?",
 	"watchlistedit-unwatch-confirmation-empty": "Please select the pages to remove from your watchlist.",
 	"watchlistedit-unwatch-confirmation-accept": "Remove",
 	"watchlisttools-clear": "Clear watchlist",
