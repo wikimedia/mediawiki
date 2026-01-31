@@ -2801,7 +2801,7 @@
 	"imageinvalidfilename": "The target filename is invalid.",
 	"fix-double-redirects": "Update any redirects that point to the original title",
 	"move-leave-redirect": "Leave a redirect behind",
-	"movetalk-unselect": "If you really want to leave the talk page behind, unselect the \"{{int:movetalk}}\" button.",
+	"movetalk-unselect": "If you really want to leave the talk page behind, unselect \"{{int:movetalk}}\".",
 	"protectedpagemovewarning": "<strong>Warning:</strong> This page has been protected so that only administrators can move it.\nThe latest log entry is provided below for reference:",
 	"semiprotectedpagemovewarning": "<strong>Note:</strong> This page has been protected so that only autoconfirmed users can move it.\nThe latest log entry is provided below for reference:",
 	"protectedpagemovecreatewarning": "<strong>Warning:</strong> The title you are trying to move to has been protected so that only administrators can create it. Do you want to move the page anyway?\nThe latest log entry is provided below for reference:",
