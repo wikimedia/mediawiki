@@ -33,9 +33,7 @@ class LintErrorCheckerTest extends MediaWikiIntegrationTestCase {
 	protected function getLintErrorChecker() {
 		$services = $this->getServiceContainer();
 		$extReg = $this->createMock( ExtensionRegistry::class );
-		$extReg->method( 'isLoaded' )->willReturnCallback( static function ( string $which ) {
-			return $which == 'Linter';
-		} );
+		$extReg->method( 'isLoaded' )->willReturn( true );
 
 		return new LintErrorChecker(
 			$services->get( '_Parsoid' ),

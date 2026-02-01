@@ -184,11 +184,7 @@ class ParamValidatorTest extends TestCase {
 			}
 		);
 		$mock2 = $mb->getMockForAbstractClass();
-		$mock2->method( 'checkSettings' )->willReturnCallback(
-			static function ( string $name, $settings, array $options, array $ret ) {
-				return $ret;
-			}
-		);
+		$mock2->method( 'checkSettings' )->willReturnArgument( 3 );
 
 		$validator = new ParamValidator(
 			$callbacks,

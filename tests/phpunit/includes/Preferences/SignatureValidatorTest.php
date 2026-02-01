@@ -36,9 +36,7 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 			// No hidden categories in default set up
 		] );
 		$extReg = $this->createMock( ExtensionRegistry::class );
-		$extReg->method( 'isLoaded' )->willReturnCallback( static function ( string $which ) {
-			return $which == 'Linter';
-		} );
+		$extReg->method( 'isLoaded' )->willReturn( true );
 		$this->setService( 'ExtensionRegistry', $extReg );
 		$this->validator = $this->getSignatureValidator();
 	}

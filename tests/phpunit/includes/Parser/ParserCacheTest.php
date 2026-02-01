@@ -9,7 +9,6 @@ use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
-use MediaWiki\Parser\CacheTime;
 use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserCacheFilter;
 use MediaWiki\Parser\ParserOptions;
@@ -1176,11 +1175,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		// Note that backwards compatibility of the actual serialization is covered
 		// by ParserOutputTest which uses various versions of serialized data
 		// under tests/phpunit/data/ParserCache.
-		$cache->method( 'convertForCache' )->willReturnCallback(
-			static function ( CacheTime $obj, string $key ) {
-				return $obj;
-			}
-		);
+		$cache->method( 'convertForCache' )->willReturnArgument( 0 );
 
 		$parserOutput1 = new ParserOutput( 'Lorem Ipsum' );
 

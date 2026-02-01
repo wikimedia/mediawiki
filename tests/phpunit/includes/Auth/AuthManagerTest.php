@@ -1506,9 +1506,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 		$updateManager();
 		$hook = $this->hook( 'AuthManagerVerifyAuthentication', AuthManagerVerifyAuthenticationHook::class, $this->once() );
-		$hook->willReturnCallback( static function ( $user, &$response, $authManager, $info ) {
-			return false;
-		} );
+		$hook->willReturn( false );
 		try {
 			$this->manager->beginAuthentication( [ $req ], 'http://localhost/' );
 			$this->fail( 'Expected exception not thrown' );

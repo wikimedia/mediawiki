@@ -469,6 +469,7 @@ class DatabaseTest extends TestCase {
 				$methods
 			) ) ) )
 			->getMock();
+		/** @var Database $wdb */
 		$wdb = TestingAccessWrapper::newFromObject( $db );
 		$wdb->logger = new NullLogger();
 		$wdb->errorLogger = static function ( Throwable $e ) {

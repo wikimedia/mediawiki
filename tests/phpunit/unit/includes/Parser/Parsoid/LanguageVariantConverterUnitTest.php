@@ -521,13 +521,9 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		$languageConverterFactoryMock = $this->createMock( LanguageConverterFactory::class );
 		$languageConverter = $this->createMock( LanguageConverter::class );
 		$languageConverter->method( 'convertTo' )
-			->willReturnCallback( static function ( $text, $code ) {
-				return $text;
-			} );
+			->willReturnArgument( 0 );
 		$languageConverter->method( 'hasVariant' )
-			->willReturnCallback( static function ( $code ) {
-				return true;
-			} );
+			->willReturn( true );
 		$languageConverterFactoryMock->method( 'getLanguageConverter' )
 			->willReturn( $languageConverter );
 
