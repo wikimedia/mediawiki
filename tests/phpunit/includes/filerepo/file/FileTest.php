@@ -499,12 +499,10 @@ class FileTest extends MediaWikiMediaTestCase {
 		$jpeg = [
 			'filename' => 'test.jpg',
 			'type' => 'image/jpeg',
-			'thumbname' => 'test.jpg',
 		];
 		$svg = [
-			'filename' => 'test.svg',
+			'filename' => 'Wikimedia-logo.svg',
 			'type' => 'image/svg+xml',
-			'thumbname' => 'test.svg.png',
 		];
 
 		$disabled = [
@@ -561,24 +559,14 @@ class FileTest extends MediaWikiMediaTestCase {
 		yield 'unchanged when beyond available steps svg' => $svg + $beyondSteps;
 	}
 
-	/**
-	 * @covers \File::thumbName
-	 * @covers \File::generateThumbName
-	 * @covers \File::adjustThumbWidthForSteps
-	 * @dataProvider provideThumbNameSteps
-	 */
-	public function testThumbNameSteps(
+	private function assertThumbNameEquals(
 		string $filename,
 		string $type,
-		string $thumbname,
-		bool $enabled,
 		int $originalWidth,
-		int $thumbWidth,
-		int $expected
+		array $params,
+		int $expected,
+		bool $nativeSvg = false
 	) {
-		$this->overrideConfigValue( MainConfigNames::ThumbnailSteps, [ 100, 200 ] );
-		$this->overrideConfigValue( MainConfigNames::ThumbnailStepsRatio, $enabled ? 1 : 0 );
-
 		$file = $this->dataFile( $filename, $type );
 		$fileObj = TestingAccessWrapper::newFromObject( $file );
 		$fileObj->sizeAndMetadata = [
@@ -586,13 +574,56 @@ class FileTest extends MediaWikiMediaTestCase {
 			'height' => $originalWidth,
 			'metadata' => []
 		];
-		$actual = $fileObj->thumbName( [
+
+		$file->getHandler()->normaliseParams( $file, $params );
+		$thumbName = $file->thumbName( $params );
+		$thumbUrl = $file->getThumbUrl( $thumbName );
+		$thumbPath = $file->getThumbPath( $thumbName );
+		$thumb = $file->getHandler()->getTransform( $file, $thumbPath, $thumbUrl, $params );
+		$actual = array_last( explode( '/', $thumb->getUrl() ) );
+
+		if ( ( $expected >= $originalWidth && $type !== 'image/svg+xml' ) || $nativeSvg ) {
+			$this->assertEquals( $filename, $actual );
+		} else {
+			$expectedThumb = $expected . 'px-' . $filename;
+			if ( $type === 'image/svg+xml' ) {
+				$expectedThumb .= '.png';
+			}
+			$this->assertEquals( $expectedThumb, $actual );
+		}
+	}
+
+	/**
+	 * @covers \File::thumbName
+	 * @covers \File::generateThumbName
+	 * @covers \ImageHandler::getSteppedThumbWidth
+	 * @dataProvider provideThumbNameSteps
+	 */
+	public function testThumbNameSteps(
+		string $filename,
+		string $type,
+		bool $enabled,
+		int $originalWidth,
+		int $thumbWidth,
+		int $expected
+	) {
+		$this->overrideConfigValues( [
+			MainConfigNames::ThumbnailSteps => [ 100, 200 ],
+			MainConfigNames::ThumbnailStepsRatio => $enabled ? 1.0 : 0.0,
+			MainConfigNames::SVGNativeRendering => false,
+		] );
+
+		$params = [
 			'width' => $thumbWidth,
 			'height' => $thumbWidth,
 			'physicalWidth' => $thumbWidth,
 			'physicalHeight' => $thumbWidth
-		] );
-		$this->assertEquals( $expected . 'px-' . $thumbname, $actual );
+		];
+		$this->assertThumbNameEquals( $filename, $type, $originalWidth, $params, $expected );
+		if ( $type === 'image/svg+xml' ) {
+			$this->overrideConfigValue( MainConfigNames::SVGNativeRendering, true );
+			$this->assertThumbNameEquals( $filename, $type, $originalWidth, $params, $expected, true );
+		}
 	}
 
 	/**
@@ -600,23 +631,16 @@ class FileTest extends MediaWikiMediaTestCase {
 	 * @covers \File::generateThumbName
 	 */
 	public function testThumbNameStepsRatio() {
-		$this->overrideConfigValue( MainConfigNames::ThumbnailSteps, [ 10, 100, 200 ] );
-		$this->overrideConfigValue( MainConfigNames::ThumbnailStepsRatio, 0.5 );
+		$this->overrideConfigValues( [
+			MainConfigNames::ThumbnailSteps => [ 10, 100, 200 ],
+			// Enable for 50%
+			MainConfigNames::ThumbnailStepsRatio => 0.5,
+		] );
 
-		$file = $this->dataFile( 'test1.jpg', 'image/jpeg' );
-		$fileObj = TestingAccessWrapper::newFromObject( $file );
-		$fileObj->sizeAndMetadata = [ 'width' => 500, 'height' => 500, 'metadata' => [] ];
-		$actual = $fileObj->thumbName(
-			[ 'width' => 90, 'height' => 90, 'physicalWidth' => 90, 'physicalHeight' => 90 ],
-		);
-		$this->assertEquals( '100px-test1.jpg', $actual );
+		$params = [ 'width' => 90, 'height' => 90, 'physicalWidth' => 90, 'physicalHeight' => 90 ];
+		$this->assertThumbNameEquals( 'test1.jpg', 'image/jpeg', 500, $params, 100 );
 
-		$file = $this->dataFile( 'test2.jpg', 'image/jpeg' );
-		$fileObj = TestingAccessWrapper::newFromObject( $file );
-		$fileObj->sizeAndMetadata = [ 'width' => 500, 'height' => 500, 'metadata' => [] ];
-		$actual = $fileObj->thumbName(
-			[ 'width' => 90, 'height' => 90, 'physicalWidth' => 90, 'physicalHeight' => 90 ],
-		);
-		$this->assertEquals( '90px-test2.jpg', $actual );
+		$params = [ 'width' => 90, 'height' => 90, 'physicalWidth' => 90, 'physicalHeight' => 90 ];
+		$this->assertThumbNameEquals( 'test2.jpg', 'image/jpeg', 500, $params, 90 );
 	}
 }
