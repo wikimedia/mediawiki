@@ -24,13 +24,18 @@ class HeaderCallback {
 	 * @since 1.29
 	 */
 	public static function register() {
-		// T261260 load some classes which will be needed in callback().
-		// Autoloading seems unreliable in header callbacks, and in the case of a web
-		// request (ie. in all cases where the request might be performance-sensitive)
-		// these classes will have to be loaded at some point anyway.
-		class_exists( WebRequest::class );
-		class_exists( LoggerFactory::class );
-		class_exists( Telemetry::class );
+		if ( version_compare( PHP_VERSION, '8.6', '<' ) ) {
+			// This bug has been fixed in PHP 8.6:
+			// https://github.com/php/php-src/issues/20619#issuecomment-3828242097
+
+			// T261260 load some classes which will be needed in callback().
+			// Autoloading seems unreliable in header callbacks, and in the case of a web
+			// request (ie. in all cases where the request might be performance-sensitive)
+			// these classes will have to be loaded at some point anyway.
+			class_exists( WebRequest::class );
+			class_exists( LoggerFactory::class );
+			class_exists( Telemetry::class );
+		}
 
 		header_register_callback( self::callback( ... ) );
 	}
