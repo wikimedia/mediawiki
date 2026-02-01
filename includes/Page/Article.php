@@ -46,6 +46,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
+use StatusValue;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\IPUtils;
 use Wikimedia\NonSerializable\NonSerializableTrait;
@@ -88,7 +89,7 @@ class Article implements Page {
 	public $mRedirectUrl = false;
 
 	/**
-	 * @var Status|null represents the outcome of fetchRevisionRecord().
+	 * @var StatusValue|null represents the outcome of fetchRevisionRecord().
 	 * $fetchResult->value is the RevisionRecord object, if the operation was successful.
 	 */
 	private $fetchResult = null;
@@ -373,7 +374,7 @@ class Article implements Page {
 						$this->getTitle()->getPrefixedText() );
 
 					// Output for this case is done by showMissingArticle().
-					$this->fetchResult = Status::newFatal( 'noarticletext' );
+					$this->fetchResult = StatusValue::newFatal( 'noarticletext' );
 					return null;
 				}
 			} else {
@@ -382,7 +383,7 @@ class Article implements Page {
 				if ( !$this->mRevisionRecord ) {
 					wfDebug( __METHOD__ . " failed to load revision, rev_id $oldid" );
 
-					$this->fetchResult = Status::newFatal( $this->getMissingRevisionMsg( $oldid ) );
+					$this->fetchResult = StatusValue::newFatal( $this->getMissingRevisionMsg( $oldid ) );
 					return null;
 				}
 			}
@@ -393,7 +394,7 @@ class Article implements Page {
 
 			// Output for this case is done by showDeletedRevisionHeader().
 			// title used in wikilinks, should not contain whitespaces
-			$this->fetchResult = new Status;
+			$this->fetchResult = new StatusValue();
 			$title = $this->getTitle()->getPrefixedDBkey();
 
 			if ( $this->mRevisionRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ) {
@@ -405,7 +406,7 @@ class Article implements Page {
 			return null;
 		}
 
-		$this->fetchResult = Status::newGood( $this->mRevisionRecord );
+		$this->fetchResult = StatusValue::newGood( $this->mRevisionRecord );
 		return $this->mRevisionRecord;
 	}
 
@@ -790,7 +791,7 @@ class Article implements Page {
 
 		$rev = $this->fetchRevisionRecord();
 		if ( !$this->fetchResult->isOK() ) {
-			$this->showViewError( $this->fetchResult->getWikiText(
+			$this->showViewError( Status::wrap( $this->fetchResult )->getWikiText(
 				false, false, $this->getContext()->getLanguage()
 			) );
 			return true;
@@ -1010,14 +1011,14 @@ class Article implements Page {
 
 	private function doOutputFromRenderStatus(
 		RevisionRecord $rev,
-		Status $renderStatus,
+		StatusValue $renderStatus,
 		OutputPage $outputPage,
 		ParserOptions $parserOptions,
 		array $textOptions,
 	) {
 		$context = $this->getContext();
 		if ( !$renderStatus->isOK() ) {
-			$this->showViewError( $renderStatus->getWikiText(
+			$this->showViewError( Status::wrap( $renderStatus )->getWikiText(
 				false, 'view-pool-error', $context->getLanguage()
 			) );
 			return;

@@ -16,12 +16,6 @@ namespace MediaWiki\Page;
  */
 interface MergeHistoryFactory {
 
-	/**
-	 * @param PageIdentity $source
-	 * @param PageIdentity $destination
-	 * @param string|null $timestamp
-	 * @return MergeHistory
-	 */
 	public function newMergeHistory(
 		PageIdentity $source,
 		PageIdentity $destination,

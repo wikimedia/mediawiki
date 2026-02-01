@@ -565,7 +565,7 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'Good Status' => [ Status::newGood(), true ],
 			'Fatal Status' => [ Status::newFatal( 'test-fatal' ), "<p>⧼test-fatal⧽\n</p>" ],
 			'Good StatusValue' => [ StatusValue::newGood(), true ],
-			'Fatal StatusValue' => [ Status::newFatal( 'test-fatal' ), "<p>⧼test-fatal⧽\n</p>" ],
+			'Fatal StatusValue' => [ StatusValue::newFatal( 'test-fatal' ), "<p>⧼test-fatal⧽\n</p>" ],
 			'String' => [ '<strong>Invalid input</strong>', '<strong>Invalid input</strong>' ],
 			'True' => [ true, true ],
 			'False' => [ false, false ]

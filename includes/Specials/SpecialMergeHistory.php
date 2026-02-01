@@ -365,7 +365,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$mergeStatus = $mh->merge( $this->getAuthority(), $this->mComment );
 		if ( !$mergeStatus->isOK() ) {
 			// Failed merge
-			$this->getOutput()->addWikiMsg( $mergeStatus->getMessage() );
+			$this->getOutput()->addWikiMsg( Status::wrap( $mergeStatus )->getMessage() );
 			return false;
 		}
 

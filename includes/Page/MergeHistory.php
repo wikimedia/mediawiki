@@ -21,7 +21,6 @@ use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Status\Status;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Title\Title;
@@ -29,6 +28,7 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
+use StatusValue;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
@@ -268,10 +268,10 @@ class MergeHistory {
 	 * valid. Only things based on the two pages
 	 * should be checked here.
 	 *
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public function isValidMerge() {
-		$status = new Status();
+		$status = new StatusValue();
 
 		// If either article ID is 0, then revisions cannot be reliably selected
 		if ( $this->source->getId() === 0 ) {
@@ -388,10 +388,10 @@ class MergeHistory {
 	 *
 	 * @param Authority $performer
 	 * @param string $reason
-	 * @return Status status of the history merge
+	 * @return StatusValue status of the history merge
 	 */
 	public function merge( Authority $performer, $reason = '' ) {
-		$status = new Status();
+		$status = new StatusValue();
 
 		// Check validity and permissions required for merge
 		$validCheck = $this->isValidMerge(); // Check this first to check for null pages
@@ -400,7 +400,7 @@ class MergeHistory {
 		}
 		$permCheck = $this->authorizeMerge( $performer, $reason );
 		if ( !$permCheck->isOK() ) {
-			return Status::wrap( $permCheck );
+			return $permCheck;
 		}
 
 		$updater = $this->pageUpdaterFactory->newPageUpdater(
@@ -513,7 +513,7 @@ class MergeHistory {
 	 * At the end, there would be either a redirect page or a deleted page,
 	 * depending on whether the content model of the page supports redirects or not.
 	 *
-	 * @param Status $status
+	 * @param StatusValue $status
 	 * @param Authority $performer
 	 * @param string $revisionComment Edit summary for the redirect or empty revision
 	 *   to be created in place of the source page

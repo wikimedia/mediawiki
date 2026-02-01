@@ -36,6 +36,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsManager;
+use StatusValue;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -94,7 +95,7 @@ class SpecialSearch extends SpecialPage {
 	protected $runSuggestion = true;
 
 	/**
-	 * @var Status Holds any parameter validation errors that should
+	 * @var StatusValue Holds any parameter validation errors that should
 	 *  be displayed back to the user.
 	 */
 	private $loadStatus;
@@ -203,7 +204,7 @@ class SpecialSearch extends SpecialPage {
 	 * @see tests/phpunit/includes/specials/SpecialSearchTest.php
 	 */
 	public function load() {
-		$this->loadStatus = new Status();
+		$this->loadStatus = new StatusValue();
 
 		$request = $this->getRequest();
 		$this->searchEngineType = $request->getVal( 'srbackend' );
@@ -386,7 +387,7 @@ class SpecialSearch extends SpecialPage {
 		$textMatches = $engine->searchText( $term );
 
 		$textStatus = null;
-		if ( $textMatches instanceof Status ) {
+		if ( $textMatches instanceof StatusValue ) {
 			$textStatus = $textMatches;
 			$textMatches = $textStatus->getValue();
 		}
@@ -452,12 +453,12 @@ class SpecialSearch extends SpecialPage {
 			[ $error, $warning ] = $textStatus->splitByErrorType();
 			if ( $error->getMessages() ) {
 				$out->addHTML( Html::errorBox(
-					$error->getHTML( 'search-error' )
+					Status::wrap( $error )->getHTML( 'search-error' )
 				) );
 			}
 			if ( $warning->getMessages() ) {
 				$out->addHTML( Html::warningBox(
-					$warning->getHTML( 'search-warning' )
+					Status::wrap( $warning )->getHTML( 'search-warning' )
 				) );
 			}
 		}

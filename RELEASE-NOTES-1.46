@@ -268,6 +268,8 @@ because of Phabricator reports.
 * wfMergeErrorArrays(), deprecated in 1.43, has been dropped.
 * Article::getRedirectHeaderHtml(), deprecated in 1.41, has been dropped.
   Instead, use LinkRenderer::makeRedirectHeader().
+* MergeHistory::isValidMerge() and MergeHistory::merge() now return StatusValue
+  instead of Status. There are no known callers outside of core.
 * …
 
 === Deprecations in 1.46 ===

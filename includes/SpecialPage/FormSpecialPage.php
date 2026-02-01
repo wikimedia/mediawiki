@@ -15,6 +15,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
+use StatusValue;
 
 /**
  * Special page which uses an HTMLForm to handle processing.  This is mostly a
@@ -196,7 +197,7 @@ abstract class FormSpecialPage extends SpecialPage {
 		} else {
 			$result = $form->prepareForm()->tryAuthorizedSubmit();
 		}
-		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
+		if ( $result === true || ( $result instanceof StatusValue && $result->isGood() ) ) {
 			$this->onSuccess();
 		}
 	}
