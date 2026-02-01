@@ -1103,8 +1103,13 @@ abstract class File implements MediaHandlerState {
 	 * Return the file name of a thumbnail with the specified parameters.
 	 * Use File::THUMB_FULL_NAME to always get a name like "<params>-<source>".
 	 * Otherwise, the format may be "<params>-<source>" or "<params>-thumbnail.<ext>".
-	 * @stable to override
 	 *
+	 * The parameters used here must be the same as those used by media handlers'
+	 * implementation of {@link MediaHandler::doTransform}. Otherwise, the decision
+	 * of whether thumbnailing is needed may be wrong, and the actual size of the
+	 * thumbnail generated may not match the name (T415598).
+	 *
+	 * @stable to override
 	 * @param array $params Handler-specific parameters
 	 * @param int $flags Bitfield that supports THUMB_* constants
 	 * @return string|null
@@ -1132,7 +1137,7 @@ abstract class File implements MediaHandlerState {
 		$extension = $this->getExtension();
 		[ $thumbExt, ] = $this->getHandler()->getThumbType(
 			$extension, $this->getMimeType(), $params );
-		$thumbName = $this->getHandler()->makeParamString( $this->adjustThumbWidthForSteps( $params ) );
+		$thumbName = $this->getHandler()->makeParamString( $params );
 
 		if ( $this->repo->supportsSha1URLs() ) {
 			$thumbName .= '-' . $this->getSha1() . '.' . $thumbExt;
@@ -1145,68 +1150,6 @@ abstract class File implements MediaHandlerState {
 		}
 
 		return $thumbName;
-	}
-
-	/**
-	 * Adjust the thumbnail size to fit the width steps defined in config via
-	 * $wgThumbnailSteps, according to whether $wgThumbnailStepsRatio is set.
-	 *
-	 * This logic is duplicated client-side in mw.util.adjustThumbWidthForSteps.
-	 */
-	private function adjustThumbWidthForSteps( array $params ): array {
-		$thumbnailSteps = MediaWikiServices::getInstance()
-			->getMainConfig()->get( MainConfigNames::ThumbnailSteps );
-		$thumbnailStepsRatio = MediaWikiServices::getInstance()
-			->getMainConfig()->get( MainConfigNames::ThumbnailStepsRatio );
-
-		if ( !$thumbnailSteps || !$thumbnailStepsRatio ) {
-			return $params;
-		}
-		if ( !isset( $params['physicalWidth'] ) || !$params['physicalWidth'] ) {
-			return $params;
-		}
-
-		if ( $thumbnailStepsRatio < 1 ) {
-			// If thumbnail ratio is below 100%, build a random number
-			// out of the file name and decide whether to apply adjustments
-			// based on that. This way, we get a good uniformity while not going
-			// back and forth between old and new in different requests.
-			// Also this way, ramping up (e.g. from 0.1 to 0.2) would also
-			// cover the previous values too which would reduce the scale of changes.
-			$hash = hexdec( substr( md5( $this->name ), 0, 8 ) ) & 0x7fffffff;
-			if ( ( $hash % 1000 ) > ( $thumbnailStepsRatio * 1000 ) ) {
-				return $params;
-			}
-		}
-
-		$newThumbSize = null;
-		foreach ( $thumbnailSteps as $widthStep ) {
-			if ( ( $widthStep > $this->getWidth() ) && !$this->isVectorized() ) {
-				// Round up to original width if there is no step between
-				// desired thumb width & original file width
-				$newThumbSize = $this->getWidth();
-				break;
-			}
-			if ( $widthStep == $params['physicalWidth'] ) {
-				return $params;
-			}
-			if ( $widthStep > $params['physicalWidth'] ) {
-				$newThumbSize = $widthStep;
-				break;
-			}
-		}
-		if ( !$newThumbSize ) {
-			return $params;
-		}
-
-		if ( isset( $params['physicalHeight'] ) ) {
-			$params['physicalHeight'] = intval(
-				$params['physicalHeight'] *
-				( $newThumbSize / $params['physicalWidth'] )
-			);
-		}
-		$params['physicalWidth'] = $newThumbSize;
-		return $params;
 	}
 
 	/**
@@ -1302,7 +1245,8 @@ abstract class File implements MediaHandlerState {
 
 			$thumbName = $this->thumbName( $normalisedParams );
 			$thumbUrl = $this->getThumbUrl( $thumbName );
-			$thumbPath = $this->getThumbPath( $thumbName ); // final thumb path
+			// final thumb path, if the media handler decides to use a thumbnail for the given params
+			$thumbPath = $this->getThumbPath( $thumbName );
 			if ( isset( $normalisedParams['isFilePageThumb'] ) && $normalisedParams['isFilePageThumb'] ) {
 				// Use a versioned URL on file description pages
 				$thumbUrl = $this->getFilePageThumbUrl( $thumbUrl );
@@ -1401,7 +1345,8 @@ abstract class File implements MediaHandlerState {
 
 		$thumbName = $this->thumbName( $normalisedParams );
 		$thumbUrl = $this->getThumbUrl( $thumbName );
-		$thumbPath = $this->getThumbPath( $thumbName ); // final thumb path
+		// final thumb path, if the media handler decides to use a thumbnail for the given params
+		$thumbPath = $this->getThumbPath( $thumbName );
 		if ( isset( $normalisedParams['isFilePageThumb'] ) && $normalisedParams['isFilePageThumb'] ) {
 			// Use a versioned URL on file description pages
 			$thumbUrl = $this->getFilePageThumbUrl( $thumbUrl );

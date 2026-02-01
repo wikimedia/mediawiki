@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -170,6 +172,55 @@ abstract class ImageHandler extends MediaHandler {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Adjust the thumbnail size to fit the width steps defined in config via
+	 * $wgThumbnailSteps, according to whether $wgThumbnailStepsRatio is set.
+	 *
+	 * This logic is duplicated client-side in mw.util.adjustThumbWidthForSteps.
+	 *
+	 * @since 1.46
+	 */
+	protected function getSteppedThumbWidth(
+		File $image, int $requestWidth, int $srcWidth, int $srcHeight
+	): int {
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$thumbnailSteps = $mainConfig->get( MainConfigNames::ThumbnailSteps );
+		$thumbnailStepsRatio = $mainConfig->get( MainConfigNames::ThumbnailStepsRatio );
+
+		if ( !$thumbnailSteps || !$thumbnailStepsRatio ) {
+			return $requestWidth;
+		}
+
+		if ( $thumbnailStepsRatio < 1 ) {
+			// If thumbnail ratio is below 100%, build a random number
+			// out of the file name and decide whether to apply adjustments
+			// based on that. This way, we get a good uniformity while not going
+			// back and forth between old and new in different requests.
+			// Also this way, ramping up (e.g. from 0.1 to 0.2) would also
+			// cover the previous values too which would reduce the scale of changes.
+			$hash = hexdec( substr( md5( $image->getName() ), 0, 8 ) ) & 0x7fffffff;
+			if ( ( $hash % 1000 ) > ( $thumbnailStepsRatio * 1000 ) ) {
+				return $requestWidth;
+			}
+		}
+
+		foreach ( $thumbnailSteps as $widthStep ) {
+			if ( ( $widthStep > $srcWidth ) && !$image->isVectorized() ) {
+				// Round up to original width if there is no step between
+				// desired thumb width & original file width
+				return $srcWidth;
+			}
+			if ( $widthStep == $requestWidth ) {
+				return $requestWidth;
+			}
+			if ( $widthStep > $requestWidth ) {
+				return $widthStep;
+			}
+		}
+
+		return $requestWidth;
 	}
 
 	/**
