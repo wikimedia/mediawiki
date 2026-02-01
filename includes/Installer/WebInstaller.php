@@ -21,6 +21,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
+use StatusValue;
 use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
@@ -682,7 +683,7 @@ class WebInstaller extends Installer {
 	}
 
 	/** @inheritDoc */
-	public function showStatusMessage( Status $status ) {
+	public function showStatusMessage( StatusValue $status ) {
 		// Show errors at the top in web installer to make them easier to notice
 		foreach ( $status->getMessages( 'error' ) as $msg ) {
 			$this->showWarning( $msg );
@@ -1022,11 +1023,11 @@ class WebInstaller extends Installer {
 	/**
 	 * Output an error or warning box using a Status object.
 	 *
-	 * @param Status $status
+	 * @param StatusValue $status
 	 */
 	public function showStatusBox( $status ) {
 		if ( !$status->isGood() ) {
-			$html = $status->getHTML();
+			$html = Status::wrap( $status )->getHTML();
 
 			if ( $status->isOK() ) {
 				$box = Html::warningBox( $html, 'config-warning-box' );

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Installer\Task;
 
-use MediaWiki\Status\Status;
+use StatusValue;
 
 /**
  * @internal For use by the installer
@@ -34,10 +34,10 @@ class TaskRunner {
 	/**
 	 * Run all non-skipped tasks and return a merged Status
 	 *
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public function execute() {
-		$overallStatus = Status::newGood();
+		$overallStatus = StatusValue::newGood();
 		$overallStatus->merge( $this->loadExtensions() );
 		if ( !$overallStatus->isOK() ) {
 			return $overallStatus;
@@ -65,7 +65,7 @@ class TaskRunner {
 	 * Run a single specified task (and its scheduled providers)
 	 *
 	 * @param string $name
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public function runNamedTask( string $name ) {
 		$mainTask = $this->findNamedTask( $name );
@@ -74,7 +74,7 @@ class TaskRunner {
 		}
 		$deps = (array)$mainTask->getDependencies();
 
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		foreach ( $this->tasks as $subTask ) {
 			if ( array_intersect( (array)$subTask->getProvidedNames(), $deps ) ) {
 				$status->merge( $this->runTask( $subTask ) );
@@ -88,7 +88,7 @@ class TaskRunner {
 	/**
 	 * Run the extensions provider (if it is registered) and load any extension tasks.
 	 *
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public function loadExtensions() {
 		$task = $this->findNamedTask( 'extensions' );
@@ -98,7 +98,7 @@ class TaskRunner {
 				$this->taskFactory->registerExtensionTasks( $this->tasks, $this->profile );
 			}
 		} else {
-			$status = Status::newGood();
+			$status = StatusValue::newGood();
 		}
 		return $status;
 	}
@@ -144,7 +144,7 @@ class TaskRunner {
 	 * Run a task and call the listeners
 	 *
 	 * @param Task $task
-	 * @return Status
+	 * @return StatusValue
 	 */
 	private function runTask( Task $task ) {
 		$this->currentTaskName = $task->getName();

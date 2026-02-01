@@ -41,6 +41,7 @@ use MediaWiki\User\User;
 use MediaWiki\Utils\ExecutableFinder;
 use MediaWiki\Utils\MWCryptRand;
 use RuntimeException;
+use StatusValue;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\Services\ServiceDisabledException;
@@ -358,7 +359,7 @@ abstract class Installer {
 	/**
 	 * Show a message to the installing user by using a Status object
 	 */
-	abstract public function showStatusMessage( Status $status );
+	abstract public function showStatusMessage( StatusValue $status );
 
 	/**
 	 * Constructs a Config object that contains configuration settings that should be
@@ -560,7 +561,7 @@ abstract class Installer {
 	 * It can already be assumed that a supported PHP version is in use. Under
 	 * the web subclass, it can also be assumed that sessions are working.
 	 *
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public function doEnvironmentChecks() {
 		// PHP version has already been checked by entry scripts
@@ -577,7 +578,7 @@ abstract class Installer {
 
 		$this->setVar( '_Environment', $good );
 
-		return $good ? Status::newGood() : Status::newFatal( 'config-env-bad' );
+		return $good ? StatusValue::newGood() : StatusValue::newFatal( 'config-env-bad' );
 	}
 
 	/**
@@ -1187,7 +1188,7 @@ abstract class Installer {
 	 *
 	 * @param string $directory Directory to search in, relative to $IP, must be either "extensions"
 	 *     or "skins"
-	 * @return Status An object containing an error list. If there were no errors, an associative
+	 * @return StatusValue An object containing an error list. If there were no errors, an associative
 	 *     array of information about the extension can be found in $status->value.
 	 */
 	public function findExtensions( $directory = 'extensions' ) {
@@ -1207,22 +1208,22 @@ abstract class Installer {
 	 *
 	 * @param string $type Either "extension" or "skin"
 	 * @param string $directory Directory to search in, relative to $IP
-	 * @return Status An object containing an error list. If there were no errors, an associative
+	 * @return StatusValue An object containing an error list. If there were no errors, an associative
 	 *     array of information about the extension can be found in $status->value.
 	 */
 	protected function findExtensionsByType( $type = 'extension', $directory = 'extensions' ) {
 		if ( $this->getVar( 'IP' ) === null ) {
-			return Status::newGood( [] );
+			return StatusValue::newGood( [] );
 		}
 
 		$extDir = $this->getVar( 'IP' ) . '/' . $directory;
 		if ( !is_readable( $extDir ) || !is_dir( $extDir ) ) {
-			return Status::newGood( [] );
+			return StatusValue::newGood( [] );
 		}
 
 		$dh = opendir( $extDir );
 		$exts = [];
-		$status = new Status;
+		$status = new StatusValue();
 		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( ( $file = readdir( $dh ) ) !== false ) {
 			// skip non-dirs and hidden directories
@@ -1251,7 +1252,7 @@ abstract class Installer {
 	 * @param string $type Either "extension" or "skin"
 	 * @param string $parentRelPath The parent directory relative to $IP
 	 * @param string $name The extension or skin name
-	 * @return Status An object containing an error list. If there were no errors, an associative
+	 * @return StatusValue An object containing an error list. If there were no errors, an associative
 	 *     array of information about the extension can be found in $status->value.
 	 */
 	protected function getExtensionInfo( $type, $parentRelPath, $name ) {
@@ -1264,7 +1265,7 @@ abstract class Installer {
 		$absDir = $this->getVar( 'IP' ) . "/$parentRelPath/$name";
 		$relDir = "../$parentRelPath/$name";
 		if ( !is_dir( $absDir ) ) {
-			return Status::newFatal( 'config-extension-not-found', $name );
+			return StatusValue::newFatal( 'config-extension-not-found', $name );
 		}
 		$jsonFile = $type . '.json';
 		$fullJsonFile = "$absDir/$jsonFile";
@@ -1276,7 +1277,7 @@ abstract class Installer {
 			$isPhp = file_exists( $fullPhpFile );
 		}
 		if ( !$isJson && !$isPhp ) {
-			return Status::newFatal( 'config-extension-not-found', $name );
+			return StatusValue::newFatal( 'config-extension-not-found', $name );
 		}
 
 		// Extension exists. Now see if there are screenshots
@@ -1296,7 +1297,7 @@ abstract class Installer {
 			$info += $jsonStatus->value;
 		}
 
-		return Status::newGood( $info );
+		return StatusValue::newGood( $info );
 	}
 
 	/**
@@ -1304,7 +1305,7 @@ abstract class Installer {
 	 * @param array $extDeps
 	 * @param array $skinDeps
 	 *
-	 * @return Status On success, an array of extension information is in $status->value. On
+	 * @return StatusValue On success, an array of extension information is in $status->value. On
 	 *    failure, the Status object will have an error list.
 	 */
 	private function readExtension( $fullJsonFile, $extDeps = [], $skinDeps = [] ) {
@@ -1316,7 +1317,7 @@ abstract class Installer {
 			foreach ( $extDeps as $dep ) {
 				$fname = "$extDir/$dep/extension.json";
 				if ( !file_exists( $fname ) ) {
-					return Status::newFatal( 'config-extension-not-found', $dep );
+					return StatusValue::newFatal( 'config-extension-not-found', $dep );
 				}
 				$load[$fname] = 1;
 			}
@@ -1326,7 +1327,7 @@ abstract class Installer {
 			foreach ( $skinDeps as $dep ) {
 				$fname = "$skinDir/$dep/skin.json";
 				if ( !file_exists( $fname ) ) {
-					return Status::newFatal( 'config-extension-not-found', $dep );
+					return StatusValue::newFatal( 'config-extension-not-found', $dep );
 				}
 				$load[$fname] = 1;
 			}
@@ -1340,7 +1341,7 @@ abstract class Installer {
 			) {
 				// If something is incompatible with a dependency, we have no real
 				// option besides skipping it
-				return Status::newFatal( 'config-extension-dependency',
+				return StatusValue::newFatal( 'config-extension-dependency',
 					basename( dirname( $fullJsonFile ) ), $e->getMessage() );
 			} elseif ( $e->missingExtensions || $e->missingSkins ) {
 				// There's an extension missing in the dependency tree,
@@ -1351,13 +1352,13 @@ abstract class Installer {
 					array_merge( $skinDeps, $e->missingSkins )
 				);
 				if ( !$status->isOK() && !$status->hasMessage( 'config-extension-dependency' ) ) {
-					$status = Status::newFatal( 'config-extension-dependency',
-						basename( dirname( $fullJsonFile ) ), $status->getMessage() );
+					$status = StatusValue::newFatal( 'config-extension-dependency',
+						basename( dirname( $fullJsonFile ) ), Status::wrap( $status )->getMessage() );
 				}
 				return $status;
 			}
 			// Some other kind of dependency error?
-			return Status::newFatal( 'config-extension-dependency',
+			return StatusValue::newFatal( 'config-extension-dependency',
 				basename( dirname( $fullJsonFile ) ), $e->getMessage() );
 		}
 		$ret = [];
@@ -1380,7 +1381,7 @@ abstract class Installer {
 		}
 		$ret['type'] = $credits['type'];
 
-		return Status::newGood( $ret );
+		return StatusValue::newGood( $ret );
 	}
 
 	/**
@@ -1453,7 +1454,7 @@ abstract class Installer {
 	 * @param callable $startCB A callback array for the beginning of each step
 	 * @param callable $endCB A callback array for the end of each step
 	 *
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public function performInstallation( $startCB, $endCB ) {
 		$tasks = $this->getTaskList();

@@ -14,8 +14,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Password\UserPasswordPolicy;
-use MediaWiki\Status\Status;
 use MediaWiki\User\User;
+use StatusValue;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -105,7 +105,7 @@ class CliInstaller extends Installer {
 			if ( isset( $options['pass'] ) ) {
 				$adminUser = User::newFromName( $admin );
 				if ( !$adminUser ) {
-					throw new InstallException( Status::newFatal( 'config-admin-name-invalid' ) );
+					throw new InstallException( StatusValue::newFatal( 'config-admin-name-invalid' ) );
 				}
 				$upp = new UserPasswordPolicy(
 					$wgPasswordPolicy['policies'],
@@ -114,7 +114,7 @@ class CliInstaller extends Installer {
 				$status = $upp->checkUserPasswordForGroups( $adminUser, $options['pass'],
 					[ 'bureaucrat', 'sysop', 'interface-admin' ] ); // per Installer::createSysop()
 				if ( !$status->isGood() ) {
-					throw new InstallException( Status::newFatal(
+					throw new InstallException( StatusValue::newFatal(
 						$status->getMessage( 'config-admin-error-password-invalid' ) ) );
 				}
 				$this->setVar( '_AdminPassword', $options['pass'] );
@@ -166,9 +166,9 @@ class CliInstaller extends Installer {
 	 * @param string $directory
 	 * @param string|string[] $nameLists
 	 */
-	private function validateExtensions( string $type, string $directory, $nameLists ): Status {
+	private function validateExtensions( string $type, string $directory, $nameLists ): StatusValue {
 		$extensions = [];
-		$status = new Status;
+		$status = new StatusValue();
 		foreach ( (array)$nameLists as $nameList ) {
 			foreach ( explode( ',', $nameList ) as $name ) {
 				$name = trim( $name );
@@ -190,7 +190,7 @@ class CliInstaller extends Installer {
 
 	/**
 	 * Main entry point.
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public function execute() {
 		// If APC is available, use that as the MainCacheType, instead of nothing.
@@ -204,7 +204,7 @@ class CliInstaller extends Installer {
 
 		$vars = Installer::getExistingLocalSettings();
 		if ( $vars ) {
-			$status = Status::newFatal( "config-localsettings-cli-upgrade" );
+			$status = StatusValue::newFatal( "config-localsettings-cli-upgrade" );
 			$this->showStatusMessage( $status );
 			return $status;
 		}
@@ -214,7 +214,7 @@ class CliInstaller extends Installer {
 			$this->endStage( ... )
 		);
 		if ( $status->isOK() ) {
-			return Status::newGood();
+			return StatusValue::newGood();
 		} else {
 			return $status;
 		}
@@ -240,7 +240,7 @@ class CliInstaller extends Installer {
 
 	/**
 	 * @param Task $task
-	 * @param Status $status
+	 * @param StatusValue $status
 	 */
 	public function endStage( $task, $status ) {
 		$this->showStatusMessage( $status );
@@ -298,7 +298,7 @@ class CliInstaller extends Installer {
 		return Sanitizer::stripAllTags( $text );
 	}
 
-	public function showStatusMessage( Status $status ) {
+	public function showStatusMessage( StatusValue $status ) {
 		// Show errors at the end in CLI installer to make them easier to notice
 		foreach ( $status->getMessages( 'warning' ) as $msg ) {
 			$this->showMessage( $msg );

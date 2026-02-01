@@ -7,7 +7,7 @@
 namespace MediaWiki\Installer;
 
 use MediaWiki\Exception\MWException;
-use MediaWiki\Status\Status;
+use StatusValue;
 use Throwable;
 
 /**
@@ -16,23 +16,23 @@ use Throwable;
  */
 class InstallException extends MWException {
 	/**
-	 * @var Status The state when an exception occurs
+	 * @var StatusValue The state when an exception occurs
 	 */
 	private $status;
 
 	/**
-	 * @param Status $status The state when an exception occurs
+	 * @param StatusValue $status The state when an exception occurs
 	 * @param string $message The Exception message to throw
 	 * @param int $code The Exception code
 	 * @param Throwable|null $previous The previous throwable used for the exception chaining
 	 */
-	public function __construct( Status $status, $message = '', $code = 0,
+	public function __construct( StatusValue $status, $message = '', $code = 0,
 		?Throwable $previous = null ) {
 		parent::__construct( $message, $code, $previous );
 		$this->status = $status;
 	}
 
-	public function getStatus(): Status {
+	public function getStatus(): StatusValue {
 		return $this->status;
 	}
 }
