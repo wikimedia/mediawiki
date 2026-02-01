@@ -44,6 +44,11 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		$srcWidth = $image->getWidth( $params['page'] );
 		$srcHeight = $image->getHeight( $params['page'] );
 
+		$params['physicalWidth'] = $this->getSteppedThumbWidth(
+			$image, $params['physicalWidth'], $srcWidth, $srcHeight
+		);
+		$params['physicalHeight'] = File::scaleHeight( $srcWidth, $srcHeight, $params['physicalWidth'] );
+
 		# Don't make an image bigger than the source
 		if ( $params['physicalWidth'] >= $srcWidth ) {
 			$params['physicalWidth'] = $srcWidth;
