@@ -1678,6 +1678,10 @@ class Parser {
 		$text = $this->tidy->tidy( $text, Sanitizer::armorFrenchSpaces( ... ) );
 
 		if ( $isMain ) {
+			$title = $this->getPage();
+			if ( $title ) {
+				$this->mOutput->setTitle( $title );
+			}
 			$this->hookRunner->onParserAfterTidy( $this, $text );
 		}
 
