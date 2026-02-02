@@ -2184,6 +2184,7 @@
 	"watchlistlabels-table-description": "Your saved labels are shown below.",
 	"watchlistlabels-table-header": "Labels",
 	"watchlistlabels-table-new-link": "+ New label",
+	"watchlistlabels-table-delete-link": "Delete",
 	"watchlistlabels-table-col-name": "Name",
 	"watchlistlabels-table-col-count": "Items",
 	"watchlistlabels-table-col-actions": "Actions",

@@ -289,7 +289,7 @@ class SpecialWatchlistLabels extends SpecialPage {
 		$createButton = Html::element( 'a', $params, $this->msg( 'watchlistlabels-table-new-link' )->text() );
 		$deleteButton = $codex->button()
 			->setAttributes( [ 'class' => 'mw-specialwatchlistlabels-delete-button' ] )
-			->setLabel( $this->msg( 'delete' )->text() )
+			->setLabel( $this->msg( 'watchlistlabels-table-delete-link' )->text() )
 			->setIconClass( 'mw-specialwatchlistlabels-icon--trash' )
 			->setType( 'submit' )
 			->setAction( 'destructive' )
