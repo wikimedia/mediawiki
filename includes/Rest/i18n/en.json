@@ -289,5 +289,11 @@
 	"rest-endpoint-summ-post-transform-wikitext-to-lint": "Return lint errors for wikitext",
 	"rest-endpoint-summ-post-transform-wikitext-to-html": "Convert Wikitext to HTML",
 	"rest-endpoint-summ-post-transform-html-to-wikitext": "Convert HTML to Wikitext",
-	"rest-requestheader-desc-acceptlanguage": "The natural language and locale that the client prefers"
+	"rest-requestheader-desc-acceptlanguage": "The natural language and locale that the client prefers.",
+	"rest-requestheader-desc-contenttype": "Indicates the original media type of a resource before any content encoding is applied.",
+	"rest-requestheader-desc-cookie": "Allow servers to store state information on the client's browser, enabling features like session management, personalization, and tracking.",
+	"rest-requestheader-desc-authorization": "Provides credentials that authenticate a user agent with a server, allowing access to protected resources.",
+	"rest-requestheader-desc-xrequestid": "Enables tracing and correlating individual HTTP requests as they flow through distributed systems, such as microservices, API gateways, and load balancer.",
+	"rest-requestheader-desc-useragent": "Sends a characteristic string to web servers, allowing them to identify the application, operating system, vendor, and/or version of the requesting client software.",
+	"rest-requestheader-desc-ifmatch": "Makes a request conditional, ensuring the requested action (like an update or deletion) is only performed if the resource on the server matches a specific version (identified by its ETag) provided by the client."
 }

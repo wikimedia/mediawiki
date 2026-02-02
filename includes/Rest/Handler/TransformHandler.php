@@ -149,6 +149,59 @@ class TransformHandler extends ParsoidHandler {
 	}
 
 	/**
+	 * @inheritDoc
+	 * @return array
+	 */
+	public function getHeaderParamSettings(): array {
+		return [
+			'Content-Type' => [
+				self::PARAM_SOURCE => 'header',
+				ParamValidator::PARAM_TYPE => 'string',
+				// RFC 7231 § 3.1.1.5 allows no content-type, but
+				// a 400 still gets returned so request will error out
+				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-contenttype' ),
+			],
+			'Accept-Language' => [
+				self::PARAM_SOURCE => 'header',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-acceptlanguage' ),
+			],
+			'Cookie' => [
+				self::PARAM_SOURCE => 'header',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-cookie' ),
+			],
+			'Authorization' => [
+				self::PARAM_SOURCE => 'header',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-authorization' ),
+			],
+			'X-Request-Id' => [
+				self::PARAM_SOURCE => 'header',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-xrequestid' ),
+			],
+			'User-Agent' => [
+				self::PARAM_SOURCE => 'header',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-useragent' ),
+			],
+			'If-Match' => [
+				self::PARAM_SOURCE => 'header',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-ifmatch' ),
+			]
+		];
+	}
+
+	/**
 	 * Transform content given in the request from or to wikitext.
 	 *
 	 * @return Response

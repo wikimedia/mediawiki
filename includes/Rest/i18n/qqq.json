@@ -294,5 +294,11 @@
 	"rest-endpoint-summ-post-transform-wikitext-to-lint": "{{Experimental}} Return lint errors for wikitext",
 	"rest-endpoint-summ-post-transform-wikitext-to-html": "{{Experimental}} Convert Wikitext to HTML",
 	"rest-endpoint-summ-post-transform-html-to-wikitext": "{{Experimental}} Convert HTML to Wikitext",
-	"rest-requestheader-desc-acceptlanguage": "The natural language and locale that the client prefers"
+	"rest-requestheader-desc-acceptlanguage": "The natural language and locale that the client prefers",
+	"rest-requestheader-desc-contenttype": "Description of tha Content-Type request header",
+	"rest-requestheader-desc-cookie": "Description of tha Cookie request header",
+	"rest-requestheader-desc-authorization": "Description of tha Authorization request header",
+	"rest-requestheader-desc-xrequestid": "Description of tha X-Request-Id request header",
+	"rest-requestheader-desc-useragent": "Description of tha User-Agent request header",
+	"rest-requestheader-desc-ifmatch": "Description of tha If-Match request header"
 }
