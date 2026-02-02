@@ -753,6 +753,34 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			'select', [ 'size' => 1, 'multiple' => false ],
 		];
 
+		# <select> with invalid size values should be preserved in output
+		$cases[] = [ '<select size="0"></select>',
+			'select', [ 'size' => '0' ],
+			'Invalid size value (zero) is preserved in output',
+		];
+		$cases[] = [ '<select size="-1"></select>',
+			'select', [ 'size' => '-1' ],
+			'Invalid size value (negative) is preserved in output',
+		];
+		$cases[] = [ '<select size="abc"></select>',
+			'select', [ 'size' => 'abc' ],
+			'Invalid size value (non-numeric) is preserved in output',
+		];
+		$cases[] = [ '<select size="3.5"></select>',
+			'select', [ 'size' => '3.5' ],
+			'Invalid size value (float) is preserved in output',
+		];
+
+		# <select> with valid non-default size values should be preserved
+		$cases[] = [ '<select size="2"></select>',
+			'select', [ 'size' => '2' ],
+			'Valid non-default size value is preserved',
+		];
+		$cases[] = [ '<select size="2"></select>',
+			'select', [ 'size' => 2 ],
+			'Valid non-default size value (numeric) is preserved',
+		];
+
 		# Passing an array as value
 		$cases[] = [ '<a class="css-class-one css-class-two"></a>',
 			'a', [ 'class' => [ 'css-class-one', 'css-class-two' ] ],

@@ -432,12 +432,29 @@ class Html {
 			}
 		}
 		if ( $element === 'select' && isset( $attribs['size'] ) ) {
-			$multiple = ( $attribs['multiple'] ?? false ) !== false ||
-				in_array( 'multiple', $attribs );
-			$default = $multiple ? 4 : 1;
-			if ( (int)$attribs['size'] === $default ) {
-				unset( $attribs['size'] );
+			// Validate that size is a valid positive integer before processing.
+			// Per HTML5 spec, size must be a non-negative integer greater than zero.
+			// Similar to validation in namespaceSelector() for numeric parameters.
+			$sizeValue = $attribs['size'];
+			if ( is_int( $sizeValue ) && $sizeValue > 0 ) {
+				$isValidSize = true;
+			} elseif ( is_string( $sizeValue ) && ctype_digit( $sizeValue ) && (int)$sizeValue > 0 ) {
+				$isValidSize = true;
+				$sizeValue = (int)$sizeValue;
+			} else {
+				$isValidSize = false;
 			}
+
+			if ( $isValidSize ) {
+				$multiple = ( $attribs['multiple'] ?? false ) !== false ||
+					in_array( 'multiple', $attribs );
+				$default = $multiple ? 4 : 1;
+				if ( $sizeValue === $default ) {
+					unset( $attribs['size'] );
+				}
+			}
+			// If size is invalid, leave it as-is in the attributes array.
+			// The browser will handle invalid values according to HTML5 spec.
 		}
 
 		return $attribs;
