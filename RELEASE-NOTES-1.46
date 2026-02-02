@@ -1033,6 +1033,12 @@ because of Phabricator reports.
 * ResourceLoader::makeConfigSetScript(), deprecated in 1.44, now emits
   deprecation warnings.
 * SpecialVersion::getVersionLinked() is unused and has been deprecated.
+* Direct instantiations of the SpecialPage root and intermediate classes are
+  deprecated and emit deprecation warnings:
+  - SpecialPage
+  - ContributionsSpecialPage
+  - IncludableSpecialPage
+  - UnlistedSpecialPage
 * …
 
 === Other changes in 1.46 ===

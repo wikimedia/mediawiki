@@ -27,6 +27,9 @@ class UnlistedSpecialPage extends SpecialPage {
 	 * @param string $file
 	 */
 	public function __construct( $name, $restriction = '', $function = false, $file = 'default' ) {
+		if ( static::class === self::class ) {
+			wfDeprecated( 'direct instantiation of ' . __CLASS__, '1.46' );
+		}
 		parent::__construct( $name, $restriction, false, $function, $file );
 	}
 

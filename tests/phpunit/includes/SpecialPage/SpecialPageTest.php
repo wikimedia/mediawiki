@@ -31,6 +31,14 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
+	private function newSpecialPage(): SpecialPage {
+		return new class() extends SpecialPage {
+			public function __construct() {
+				parent::__construct( 'Watchlist', 'viewmywatchlist' );
+			}
+		};
+	}
+
 	/**
 	 * @dataProvider getTitleForProvider
 	 */
@@ -80,7 +88,7 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider requireLoginAnonProvider
 	 */
 	public function testRequireLoginAnon( $expected, ...$params ) {
-		$specialPage = new SpecialPage( 'Watchlist', 'viewmywatchlist' );
+		$specialPage = $this->newSpecialPage();
 
 		$user = User::newFromId( 0 );
 		$specialPage->getContext()->setUser( $user );
@@ -107,7 +115,7 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRequireLoginNotAnon() {
-		$specialPage = new SpecialPage( 'Watchlist', 'viewmywatchlist' );
+		$specialPage = $this->newSpecialPage();
 
 		$user = $this->getTestSysop()->getUser();
 		$specialPage->getContext()->setUser( $user );
@@ -122,7 +130,7 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideRequireNamedUserAnon
 	 */
 	public function testRequireNamedUserAnon( $expected, ...$params ) {
-		$specialPage = new SpecialPage( 'Watchlist', 'viewmywatchlist' );
+		$specialPage = $this->newSpecialPage();
 
 		$user = User::newFromId( 0 );
 		$specialPage->getContext()->setUser( $user );
@@ -150,7 +158,7 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 
 	public function testRequireNamedUserForTempUser() {
 		$this->enableAutoCreateTempUser();
-		$specialPage = new SpecialPage( 'Watchlist', 'viewmywatchlist' );
+		$specialPage = $this->newSpecialPage();
 
 		$user = $this->getServiceContainer()->getTempUserCreator()->create( null, new FauxRequest() )->getUser();
 		$specialPage->getContext()->setUser( $user );
@@ -160,7 +168,7 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRequireNamedUserForNamedUser() {
-		$specialPage = new SpecialPage( 'Watchlist', 'viewmywatchlist' );
+		$specialPage = $this->newSpecialPage();
 
 		$user = $this->getTestSysop()->getUser();
 		$specialPage->getContext()->setUser( $user );

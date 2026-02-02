@@ -90,6 +90,9 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		$name,
 		$restriction = ''
 	) {
+		if ( static::class === self::class ) {
+			wfDeprecated( 'direct instantiation of ' . __CLASS__, '1.46' );
+		}
 		parent::__construct( $name, $restriction );
 	}
 
