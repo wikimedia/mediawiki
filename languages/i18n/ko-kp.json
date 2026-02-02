@@ -1029,7 +1029,7 @@
 	"watchlistedit-raw-submit": "감시문서목록 갱신",
 	"watchlistedit-clear-title": "감시문서목록 지우기",
 	"watchlistedit-clear-explain": "모든 문서가 감시문서목록에서 제거됩니다",
-	"watchlistedit-clear-submit": "감시목록문서 지우기 (이는 영구적입니다!)",
+	"watchlistedit-clear-submit": "감시문서목록 지우기",
 	"watchlisttools-clear": "감시문서목록 비우기",
 	"watchlisttools-view": "감시문서 최근 바뀜",
 	"watchlisttools-edit": "감시문서목록 보기/편집하기",

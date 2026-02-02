@@ -185,6 +185,8 @@
 	"prefs-description-watchlist": "Upravljajte in prilagodite seznam strani, ki jim sledite.",
 	"prefs-editwatchlist": "Uredi nadzorni seznam",
 	"prefs-editwatchlist-label": "Uredite vnose na svojem nadzornem seznamu:",
+	"prefs-editwatchlistlabels-label": "Urejanje oznak nadzornega seznama:",
+	"prefs-managewatchlistlabels": "Ogled in upravljanje oznak nadzornega seznama",
 	"prefs-editwatchlist-edit": "Preglej in odstrani naslove s svojega nadzornega seznama",
 	"prefs-editwatchlist-raw": "Uredi goli nadzorni seznam",
 	"prefs-editwatchlist-clear": "Počisti nadzorni seznam",

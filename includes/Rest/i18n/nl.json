@@ -6,7 +6,8 @@
 			"LongJohn nl",
 			"Mainframe98",
 			"McDutchie",
-			"Romaine"
+			"Romaine",
+			"Siebrand"
 		]
 	},
 	"rest-prefix-mismatch": "Het gevraagde pad ($1) bevind zich niet in het basispad van de REST API ($2)",
@@ -96,9 +97,9 @@
 	"rest-module-default": "Standaardmodule",
 	"rest-module-extra-routes-title": "MediaWiki REST-API",
 	"rest-module-extra-routes-desc": "REST-eindpunten die niet met een module in verband staan",
-	"rest-module-specs.v0-title": "Specificaties",
+	"rest-module-specs.v0-title": "Specs-API",
 	"rest-module-specs.v0-desc": "Zelfdocumentatie-module met informatie, specificaties en schema’s voor alle beschikbare modules.",
-	"rest-module-content.v1-title": "Pagina-inhoud",
+	"rest-module-content.v1-title": "Content API",
 	"rest-module-content.v1-desc": "Biedt toegang tot de inhoud en de metagegevens van pagina’s en versies",
 	"rest-module-site.v1-title": "Site-API",
 	"rest-module-site.v1-desc": "Informatie over de site als geheel, zoals sitemaps",

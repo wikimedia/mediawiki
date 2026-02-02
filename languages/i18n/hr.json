@@ -584,6 +584,7 @@
 	"userpage-userdoesnotexist": "Suradničko ime \"$1\" nije prijavljeno. Jeste li sigurni da želite stvoriti/uređivati ovu stranicu?",
 	"userpage-userdoesnotexist-view": "Suradnički račun \"$1\" nije registriran.",
 	"blocked-notice-logextract": "{{GENDER:$1|Ovaj suradnik|Ova suradnica}} trenutačno je {{GENDER:$1|blokiran|blokirana}}.\nPosljednja stavka evidencije blokiranja:",
+	"blocked-notice-logextract-partial": "{{GENDER:$1|Ovaj je suradnik|Ova je suradnica}} trenutačno djelomično {{GENDER:$1|blokiran|blokirana}}.\nPosljednja stavka evidencije blokiranja navedena je kao referenca:",
 	"blocked-notice-logextract-anon-partial": "Ova je internetska adresa trenutačno djelomično blokirana.\nPosljednja stavka evidencije blokiranja:",
 	"blocked-notice-list-link": "Prikaži popis blokiranja",
 	"clearyourcache": "<strong>Napomena:</strong> Nakon objave možda ćete trebati očistiti međuspremnik svog preglednika kako biste vidjeli promjene.\n* <strong>Firefox / Safari:</strong> držite <em>Shift</em> i pritisnite <em>Reload</em>, ili pritisnite bilo <em>Ctrl-F5</em> ili <em>Ctrl-R</em> (<em>⌘-R</em> na Macu)\n* <strong>Google Chrome:</strong> pritisnite <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> na Macu)\n* <strong>Internet Explorer / Edge:</strong> držite <em>Ctrl</em> i kliknite <em>Refresh</em>, ili pritisnite <em>Ctrl-F5</em>\n* <strong>Opera:</strong> pritisnite <em>Ctrl-F5</em>.",

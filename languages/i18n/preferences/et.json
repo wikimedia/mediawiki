@@ -189,6 +189,8 @@
 	"prefs-description-watchlist": "Halda isiklikku loendit lehekülgedest, mida jälgid.",
 	"prefs-editwatchlist": "Jälgimisloendi redigeerimine",
 	"prefs-editwatchlist-label": "Redigeeri jälgimisloendi sissekandeid:",
+	"prefs-editwatchlistlabels-label": "Redigeeri jälgimisloendi silte:",
+	"prefs-managewatchlistlabels": "Vaata ja halda jälgimisloendi silte",
 	"prefs-editwatchlist-edit": "Vaata ja eemalda jälgimisloendi linke",
 	"prefs-editwatchlist-raw": "Redigeeri toorandmeid",
 	"prefs-editwatchlist-clear": "Tühjenda jälgimisloend",

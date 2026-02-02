@@ -189,6 +189,8 @@
 	"prefs-description-watchlist": "ניהול והתאמה אישית את רשימת הדפים {{GENDER:|שאתה עוקב|שאת עוקבת}} אחריהם.",
 	"prefs-editwatchlist": "עריכת רשימת המעקב",
 	"prefs-editwatchlist-label": "עריכת דפים ברשימת המעקב שלך:",
+	"prefs-editwatchlistlabels-label": "עריכת תוויות רשימת מעקב:",
+	"prefs-managewatchlistlabels": "הצגה וניהול של תוויות רשימת המעקב שלך",
 	"prefs-editwatchlist-edit": "הצגה או הסרה של דפים מרשימת המעקב",
 	"prefs-editwatchlist-raw": "עריכת רשימת המעקב הגולמית",
 	"prefs-editwatchlist-clear": "ניקוי רשימת המעקב",

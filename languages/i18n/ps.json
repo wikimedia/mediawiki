@@ -1555,7 +1555,7 @@
 	"mimesearch": "MIME پلټنه",
 	"mimesearch-summary": "دا مخ د ميمې ډول لپاره د دوتنو چاڼول چارنوي.\nننوتنه: contenttype/subtype يا contenttype/*، د بېلگې په توگه <code>image/jpeg</code>.",
 	"mimetype": "MIME بڼه:",
-	"download": "ښکته کول",
+	"download": "راکښته‌کول",
 	"unwatchedpages": "ناکتلي مخونه",
 	"listredirects": "مخگرځو لړليک",
 	"listduplicatedfiles": "د دوه گونو دوتنو لړليک",

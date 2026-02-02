@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lookruk"
+		]
+	},
+	"cdx-breadcrumb-navigation-label": "ເຂົ້າຈີ່ປັ້ນ",
+	"cdx-breadcrumb-overflow-label": "ຕົວເລືອກການນຳທາງເພີ່ມເຕີມ",
+	"cdx-chip-input-chip-added": "ຊິບ $1 ໄດ້ຖືກເພີ່ມເຂົ້າແລ້ວ",
+	"cdx-chip-input-chip-removed": "ຊິບ $1 ໄດ້ຖືກຖອນອອກແລ້ວ",
+	"cdx-input-chip-aria-description": "ກົດ Enter ເພື່ອແກ້ໄຂ ຫຼື Delete ເພື່ອລຶບອອກ",
+	"cdx-dialog-close-button-label": "ປິດ",
+	"cdx-label-optional-flag": "(ບໍ່ຈຳເປັນ)",
+	"cdx-message-dismiss-button-label": "ປິດ",
+	"cdx-popover-close-button-label": "ປິດ",
+	"cdx-search-input-search-button-label": "ຊອກຫາ",
+	"cdx-table-select-all-label": "ເລືອກແຖວທັງໝົດ",
+	"cdx-table-select-row-label": "ເລືອກແຖວ $1 ຈາກ $2",
+	"cdx-table-sort-caption": "$1 (ຫົວຂໍ້ຖັນທີ່ມີປຸ່ມສາມາດຈັດຮຽງໄດ້)",
+	"cdx-typeahead-search-search-results-label": "ຜົນການຊອກຫາ",
+	"cdx-table-pager-button-first-page": "ໜ້າທໍາອິດ",
+	"cdx-table-pager-button-last-page": "ໜ້າສຸດທ້າຍ",
+	"cdx-table-pager-button-next-page": "ໜ້າຕໍ່ໄປ",
+	"cdx-table-pager-button-prev-page": "ໜ້າທີ່ຜ່ານມາ",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 ລາຍການ}}",
+	"cdx-table-pager-items-per-page-default": "ຜົນຕໍ່ໜ້າ",
+	"cdx-table-pagination-status-message-determinate-long": "ສະແດງຜົນໄດ້ຮັບ $1–$2 ຂອງທັງໝົດ $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 ຂອງ $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "ສະແດງຜົນໄດ້ຮັບ $1–$2 ຂອງຫຼາຍໆ",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 ຂອງຫຼາຍໆ",
+	"cdx-table-pagination-status-message-indeterminate-final": "ກຳລັງສະແດງສຸດທ້າຍ {{PLURAL:$1|$1 ຜົນ}}",
+	"cdx-table-pagination-status-message-pending": "ກຳລັງໂຫຼດຜົນ...",
+	"cdx-table-no-data-message": "ບໍ່ມີຂໍ້ມູນໃດໆ"
+}

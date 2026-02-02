@@ -409,6 +409,8 @@
 	"exif-poseheadingdegrees": "Kepala pose (derajat)",
 	"exif-posepitchdegrees": "Anggul (derajat)",
 	"exif-poserolldegrees": "Guling (derajat)",
+	"exif-initialviewpitchdegrees": "Anggul tampilan awal (derajat)",
+	"exif-initialviewrolldegrees": "Guling tampilan awal (derajat)",
 	"exif-initialhorizontalfovdegrees": "Ruang pandang awal (derajat horizontal)",
 	"exif-initialverticalfovdegrees": "Ruang pandang awal (derajat vertikal)",
 	"exif-sourcephotoscount": "Banyak foto sumber",
@@ -420,7 +422,9 @@
 	"exif-croppedareatoppixels": "Pemotong atas panorama",
 	"exif-initialcameradolly": "Doli kamera awal",
 	"exif-stitchingsoftware": "Perangkat lunak penjahit",
+	"exif-digitalsourcetype-humanedits": "Media yang disunting oleh manusia",
 	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "Disunting menggunakan AI generatif",
 	"exif-digitalsourcetype-softwareimage": "Dibuat oleh perangkat lunak",
-	"exif-digitalsourcetype-trainedalgorithmicmedia": "Dibuat menggunakan AI Generatif"
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "Dibuat menggunakan AI Generatif",
+	"exif-digitalsourcetype-algorithmicmedia": "Media yang dibuat secara murni oleh algoritma non-AI"
 }

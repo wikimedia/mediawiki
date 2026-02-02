@@ -2498,6 +2498,7 @@
 	"rollback-missingrevision": "No se pueden cargar datos de la revisión.",
 	"cantrollback": "No se puede revertir la edición.\nEl último colaborador es el único autor de esta página.",
 	"alreadyrolled": "No se puede revertir la última edición de [[:$1]] hecha por [[User:$2|$2]] ([[User talk:$2|discusión]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nalguien más ya ha editado o revertido esa página.\n\nLa última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+	"rollback-nochange": "Revertir las últimas ediciones en [[:$1]] por [[User:$2|$2]] ([[User talk:$2|discusión]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) no resultaría en ningún cambio en el texto, ya sea porque {{GENDER:$2|él|ella}} ya revirtió sus propias ediciones o porque {{GENDER:$2|él|ella}} solo hizo revisiones ficticias.",
 	"editcomment": "El resumen de la edición fue: <em>$1</em>.",
 	"revertpage": "{{PLURAL:$7|Revertido el cambio|Revertidos los cambios}} de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc.]]) a la última edición de [[User:$1|$1]]",
 	"revertpage-anon": "{{PLURAL:$7|Revertido el cambio|Revertidos los cambios}} de [[Special:Contributions/$2|$2]] a la última edición de [[User:$1|$1]]",
