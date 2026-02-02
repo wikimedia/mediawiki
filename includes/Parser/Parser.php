@@ -1679,7 +1679,7 @@ class Parser {
 		$space = self::SPACE_NOT_NL; #  non-newline space
 		$spdash = "(?:-|$space)"; # a dash or a non-newline space
 		$spaces = "$space++"; # possessive match of 1 or more spaces
-		$text = preg_replace_callback(
+		$resultText = preg_replace_callback(
 			'!(?:                        # Start cases
 				(<a[ \t\r\n>].*?</a>) |    # m[1]: Skip link text
 				(<.*?>) |                  # m[2]: Skip stuff inside HTML elements' . "
@@ -1698,7 +1698,12 @@ class Parser {
 			$this->magicLinkCallback( ... ),
 			$text
 		);
-		return $text;
+		// preg_replace_callback in "u" mode returns null, when a non-valid utf-8 character is discovered in the input
+		if ( $resultText === null ) {
+			$this->logger->warning( "Input text contains non-valid UTF-8 characters (" . __METHOD__ . ")" );
+			return $text;
+		}
+		return $resultText;
 	}
 
 	/**
