@@ -1777,7 +1777,6 @@
 	"badfilename": "Parameters:\n* $1 - filename",
 	"filetype-mime-mismatch": "Upload error. Parameters:\n* $1 - the extension of the uploaded file\n* $2 - the MIME type of the uploaded file",
 	"filetype-badmime": "Parameters:\n* $1 - string representing the MIME type",
-	"filetype-bad-ie-mime": "Parameters:\n* $1 - a mime type like <code>image/jpeg</code> or <code>application/zip</code>",
 	"filetype-unwanted-type": "Parameters:\n* $1 - the extension of the file which cannot be uploaded\n* $2 - the list of file extensions that can be uploaded (Example: ''png, gif, jpg, jpeg, ogg, pdf, svg.'')\n* $3 - the number of allowed file formats (to be used for the PLURAL function)",
 	"filetype-banned-type": "Parameters:\n* $1 - the extension(s) of the file which cannot be uploaded\n* $2 - the list of file extensions that can be uploaded (Example: ''png, gif, jpg, jpeg, ogg, pdf, svg.'')\n* $3 - the number of allowed file formats (to be used for the PLURAL function)\n* $4 - the number of extensions that could not be uploaded (to be used for the PLURAL function)",
 	"filetype-missing": "Used as error message when uploading a file.\n\nSee also:\n* {{msg-mw|empty-file}}\n* {{msg-mw|file-too-large}}\n* {{msg-mw|filetype-banned}}\n* {{msg-mw|filename-tooshort}}\n* {{msg-mw|illegal-filename}}\n* {{msg-mw|overwrite}}\n* {{msg-mw|verification-error}}\n* {{msg-mw|hookaborted}}\n* {{msg-mw|windows-nonascii-filename}}\n* {{msg-mw|filename-toolong}}\n* {{msg-mw|unknown-error}}",

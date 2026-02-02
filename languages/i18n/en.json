@@ -1499,7 +1499,6 @@
 	"badfilename": "Filename has been changed to \"$1\".",
 	"filetype-mime-mismatch": "File extension \".$1\" does not match the detected MIME type of the file ($2).",
 	"filetype-badmime": "Files of the MIME type \"$1\" are not allowed to be uploaded.",
-	"filetype-bad-ie-mime": "Cannot upload this file because Internet Explorer would detect it as \"$1\", which is a disallowed and potentially dangerous file type.",
 	"filetype-unwanted-type": "<strong>\".$1\"</strong> is an unwanted file type.\nPreferred {{PLURAL:$3|file type is|file types are}} $2.",
 	"filetype-banned-type": "<strong>\".$1\"</strong> {{PLURAL:$4|is not a permitted file type|are not permitted file types}}.\nPermitted {{PLURAL:$3|file type is|file types are}} $2.",
 	"filetype-missing": "The file has no extension (like \".jpg\").",
