@@ -173,7 +173,6 @@ class MergeHistory {
 	 */
 	public function getRevisionCount() {
 		$count = $this->dbw->newSelectQueryBuilder()
-			->select( '1' )
 			->from( 'revision' )
 			->where( [ 'rev_page' => $this->source->getId(), ...$this->getTimeWhere() ] )
 			->limit( self::REVISION_LIMIT + 1 )

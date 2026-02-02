@@ -395,7 +395,6 @@ class Category {
 			->acquireRowLocks();
 
 		$rowCount = $categoryLinksDbw->newSelectQueryBuilder()
-			->select( '*' )
 			->from( 'categorylinks' )
 			->join( 'page', null, 'page_id = cl_from' )
 			->join( 'linktarget', null, 'cl_target_id = lt_id' )

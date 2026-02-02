@@ -416,7 +416,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 	protected function getAnonCount( $pageId, ?RevisionRecord $fromRev = null ) {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder()
-			->select( '1' )
 			->from( 'revision' )
 			->join( 'actor', null, 'rev_actor = actor_id' )
 			->where( [
@@ -449,7 +448,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder()
-			->select( '1' )
 			->from( 'revision' )
 			->join( 'actor', null, 'rev_actor = actor_id' )
 			->where( [
@@ -487,7 +485,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 
 		$queryBuilder = $dbr->newSelectQueryBuilder()
-			->select( '1' )
 			->from( 'revision' )
 			->join( 'actor', 'actor_rev_user', 'actor_rev_user.actor_id = rev_actor' )
 			->where( [ 'rev_page' => intval( $pageId ) ] )
@@ -554,7 +551,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder()
-			->select( '1' )
 			->from( 'revision' )
 			->join( 'change_tag', null, 'ct_rev_id = rev_id' )
 			->where( [
@@ -583,7 +579,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 	protected function getMinorCount( $pageId, ?RevisionRecord $fromRev = null ) {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder()
-			->select( '1' )
 			->from( 'revision' )
 			->where( [
 				'rev_page' => $pageId,

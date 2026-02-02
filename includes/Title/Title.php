@@ -2997,7 +2997,6 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 		if ( $this->mIsBigDeletion === null ) {
 			$dbr = $this->getDbProvider()->getReplicaDatabase();
 			$revCount = $dbr->newSelectQueryBuilder()
-				->select( '1' )
 				->from( 'revision' )
 				->where( [ 'rev_page' => $this->getArticleID() ] )
 				->limit( $wgDeleteRevisionsLimit + 1 )

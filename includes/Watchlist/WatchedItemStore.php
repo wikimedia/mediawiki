@@ -1533,7 +1533,6 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 	 */
 	public function countUnreadNotifications( UserIdentity $user, $unreadLimit = null ) {
 		$queryBuilder = $this->lbFactory->getReplicaDatabase()->newSelectQueryBuilder()
-			->select( '1' )
 			->from( 'watchlist' )
 			->where( [
 				'wl_user' => $user->getId(),
@@ -1764,7 +1763,6 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 	public function countExpired(): int {
 		$dbr = $this->lbFactory->getReplicaDatabase();
 		return $dbr->newSelectQueryBuilder()
-			->select( '*' )
 			->from( 'watchlist_expiry' )
 			->where( $dbr->expr( 'we_expiry', '<=', $dbr->timestamp() ) )
 			->caller( __METHOD__ )

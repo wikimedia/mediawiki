@@ -36,8 +36,8 @@ use MediaWiki\Export\XmlDumpWriter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\WikiMap\WikiMap;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -131,11 +131,9 @@ abstract class BackupDumper extends Maintenance {
 	/**
 	 * The dependency-injected database to use.
 	 *
-	 * @var IMaintainableDatabase|null
-	 *
 	 * @see self::setDB
 	 */
-	protected $forcedDb = null;
+	private ?IReadableDatabase $forcedDb = null;
 
 	/**
 	 * @param array|null $args For backward compatibility
@@ -379,10 +377,7 @@ abstract class BackupDumper extends Maintenance {
 		$table = ( $history == WikiExporter::CURRENT ) ? 'page' : 'revision';
 		$field = ( $history == WikiExporter::CURRENT ) ? 'page_id' : 'rev_id';
 
-		$dbr = $this->forcedDb;
-		if ( $this->forcedDb === null ) {
-			$dbr = $this->getAnalyticsReplica();
-		}
+		$dbr = $this->forcedDb ?? $this->getAnalyticsReplica();
 		$this->maxCount = $dbr->newSelectQueryBuilder()
 			->select( "MAX($field)" )
 			->from( $table )
@@ -393,11 +388,8 @@ abstract class BackupDumper extends Maintenance {
 		$this->ID = getmypid();
 	}
 
-	/**
-	 * @return IDatabase
-	 */
-	protected function getBackupDatabase() {
-		if ( $this->forcedDb !== null ) {
+	protected function getBackupDatabase(): IReadableDatabase {
+		if ( $this->forcedDb ) {
 			return $this->forcedDb;
 		}
 

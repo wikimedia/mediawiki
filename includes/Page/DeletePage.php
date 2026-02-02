@@ -551,7 +551,6 @@ class DeletePage {
 		// Number of archived revisions cannot be known beforehand, because edits can be made
 		// while deletion operations are being processed, changing the number of archivals.
 		$archivedRevisionCount = $dbw->newSelectQueryBuilder()
-			->select( '*' )
 			->from( 'archive' )
 			->where( [
 				'ar_namespace' => $title->getNamespace(),

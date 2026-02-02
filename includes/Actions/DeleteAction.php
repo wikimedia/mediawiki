@@ -785,7 +785,6 @@ class DeleteAction extends FormAction {
 	private function pageHasHistory(): bool {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$res = $dbr->newSelectQueryBuilder()
-			->select( '*' )
 			->from( 'revision' )
 			->where( [ 'rev_page' => $this->getTitle()->getArticleID() ] )
 			->andWhere(

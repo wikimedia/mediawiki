@@ -793,7 +793,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			->method( 'selectRowCount' )
 			->with(
 				[ 'watchlist' ],
-				'1',
+				'*',
 				[
 					"wl_notificationtimestamp IS NOT NULL",
 					'wl_user' => 1,
@@ -820,7 +820,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			->method( 'selectRowCount' )
 			->with(
 				[ 'watchlist' ],
-				'1',
+				'*',
 				[
 					"wl_notificationtimestamp IS NOT NULL",
 					'wl_user' => 1,
@@ -851,7 +851,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			->method( 'selectRowCount' )
 			->with(
 				[ 'watchlist' ],
-				'1',
+				'*',
 				[
 					"wl_notificationtimestamp IS NOT NULL",
 					'wl_user' => 1,

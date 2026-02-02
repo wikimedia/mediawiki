@@ -2868,15 +2868,11 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	public function countRevisionsByPageId( IReadableDatabase $db, $id ) {
 		$this->checkDatabaseDomain( $db );
 
-		$row = $db->newSelectQueryBuilder()
-			->select( [ 'revCount' => 'COUNT(*)' ] )
+		return $db->newSelectQueryBuilder()
 			->from( 'revision' )
 			->where( [ 'rev_page' => $id ] )
-			->caller( __METHOD__ )->fetchRow();
-		if ( $row ) {
-			return intval( $row->revCount );
-		}
-		return 0;
+			->caller( __METHOD__ )
+			->fetchRowCount();
 	}
 
 	/**
@@ -3401,29 +3397,22 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 
 		$options = (array)$options;
 		$dbr = $this->getReplicaConnection();
-		$where = [ 'rev_page' => $pageId ];
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->from( 'revision' )
+			->where( [ 'rev_page' => $pageId ] )
+			->andWhere( $this->getRevisionLimitConditions( $dbr, $old, $new, $options ) )
+			->caller( __METHOD__ );
+
 		if ( !in_array( self::INCLUDE_DELETED_REVISIONS, $options ) ) {
-			$where[] = $dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . " = 0";
+			$queryBuilder->andWhere( $dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . ' = 0' );
 		}
-		$conds = array_merge(
-			$where,
-			$this->getRevisionLimitConditions( $dbr, $old, $new, $options )
-		);
+
 		if ( $max !== null ) {
-			return $dbr->newSelectQueryBuilder()
-				->select( '1' )
-				->from( 'revision' )
-				->where( $conds )
-				->caller( __METHOD__ )
-				->limit( $max + 1 ) // extra to detect truncation
-				->fetchRowCount();
-		} else {
-			return (int)$dbr->newSelectQueryBuilder()
-				->select( 'count(*)' )
-				->from( 'revision' )
-				->where( $conds )
-				->caller( __METHOD__ )->fetchField();
+			// extra to detect truncation
+			$queryBuilder->limit( $max + 1 );
 		}
+
+		return $queryBuilder->fetchRowCount();
 	}
 
 	/**

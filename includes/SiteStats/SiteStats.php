@@ -12,7 +12,6 @@ use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use stdClass;
-use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
@@ -37,17 +36,20 @@ class SiteStats {
 	 * @return stdClass
 	 */
 	protected static function loadAndLazyInit() {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
+		$dbProvider = $services->getConnectionProvider();
 
-		$lbFactory = self::getLBFactory();
-		$dbr = $lbFactory->getReplicaDatabase();
+		$dbr = $dbProvider->getReplicaDatabase();
 		wfDebug( __METHOD__ . ": reading site_stats from replica DB" );
 		$row = self::doLoadFromDB( $dbr );
 
-		if ( !self::isRowSensible( $row ) && $lbFactory->hasOrMadeRecentPrimaryChanges() ) {
+		if ( !self::isRowSensible( $row ) &&
+			$services->getDBLoadBalancer()->hasOrMadeRecentPrimaryChanges()
+		) {
 			// Might have just been initialized during this request? Underflow?
 			wfDebug( __METHOD__ . ": site_stats damaged or missing on replica DB" );
-			$row = self::doLoadFromDB( $lbFactory->getPrimaryDatabase() );
+			$row = self::doLoadFromDB( $dbProvider->getPrimaryDatabase() );
 		}
 
 		if ( !self::isRowSensible( $row ) ) {
@@ -64,7 +66,7 @@ class SiteStats {
 				SiteStatsInit::doAllAndCommit( $dbr );
 			}
 
-			$row = self::doLoadFromDB( $lbFactory->getPrimaryDatabase() );
+			$row = self::doLoadFromDB( $dbProvider->getPrimaryDatabase() );
 		}
 
 		return $row;
@@ -130,26 +132,23 @@ class SiteStats {
 	 * @return int
 	 */
 	public static function numberingroup( $group ) {
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$services = MediaWikiServices::getInstance();
+		$cache = $services->getMainWANObjectCache();
+		$dbr = $services->getConnectionProvider()->getReplicaDatabase();
 		$fname = __METHOD__;
 
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'SiteStats', 'groupcounts', $group ),
 			$cache::TTL_HOUR,
-			static function () use ( $group, $fname ) {
-				$dbr = self::getLBFactory()->getReplicaDatabase();
-				return (int)$dbr->newSelectQueryBuilder()
-					->select( 'COUNT(*)' )
-					->from( 'user_groups' )
-					->where(
-						[
-							'ug_group' => $group,
-							$dbr->expr( 'ug_expiry', '=', null )->or( 'ug_expiry', '>=', $dbr->timestamp() )
-						]
-					)
-					->caller( $fname )
-					->fetchField();
-			},
+			static fn () => $dbr->newSelectQueryBuilder()
+				->from( 'user_groups' )
+				->where( [
+					'ug_group' => $group,
+					$dbr->expr( 'ug_expiry', '=', null )
+						->or( 'ug_expiry', '>=', $dbr->timestamp() ),
+				] )
+				->caller( $fname )
+				->fetchRowCount(),
 			[ 'pcTTL' => $cache::TTL_PROC_LONG ]
 		);
 	}
@@ -181,20 +180,19 @@ class SiteStats {
 	 * @return int
 	 */
 	public static function pagesInNs( $ns ) {
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$services = MediaWikiServices::getInstance();
+		$cache = $services->getMainWANObjectCache();
+		$dbr = $services->getConnectionProvider()->getReplicaDatabase();
 		$fname = __METHOD__;
 
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'SiteStats', 'page-in-namespace', $ns ),
 			$cache::TTL_HOUR,
-			static function () use ( $ns, $fname ) {
-				$dbr = self::getLBFactory()->getReplicaDatabase();
-				return (int)$dbr->newSelectQueryBuilder()
-					->select( 'COUNT(*)' )
-					->from( 'page' )
-					->where( [ 'page_namespace' => $ns ] )
-					->caller( $fname )->fetchField();
-			},
+			static fn () => $dbr->newSelectQueryBuilder()
+				->from( 'page' )
+				->where( [ 'page_namespace' => $ns ] )
+				->caller( $fname )
+				->fetchRowCount(),
 			[ 'pcTTL' => $cache::TTL_PROC_LONG ]
 		);
 	}
@@ -271,9 +269,6 @@ class SiteStats {
 		return true;
 	}
 
-	private static function getLBFactory(): ILBFactory {
-		return MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-	}
 }
 
 /** @deprecated class alias since 1.41 */
