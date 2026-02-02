@@ -127,6 +127,8 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testListDropdown() {
+		$this->hideDeprecated( Xml::class . '::listDropdown' );
+		$this->hideDeprecated( Xml::class . '::listDropdownOptions' );
 		$this->assertEquals(
 			'<select name="test-name" id="test-name" class="test-css" tabindex="2">' .
 				'<option value="other">other reasons</option>' . "\n" .
@@ -156,6 +158,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testListDropdownOptions() {
+		$this->hideDeprecated( Xml::class . '::listDropdownOptions' );
 		$this->assertEquals(
 			[
 				'other reasons' => 'other',
@@ -176,6 +179,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testListDropdownOptionsOthers() {
+		$this->hideDeprecated( Xml::class . '::listDropdownOptions' );
 		// Do not use the value for 'other' as option group - T251351
 		$this->assertEquals(
 			[
@@ -194,6 +198,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testListDropdownOptionsOoui() {
+		$this->hideDeprecated( Xml::class . '::listDropdownOptionsOoui' );
 		$this->assertEquals(
 			[
 				[ 'data' => 'other', 'label' => 'other reasons' ],

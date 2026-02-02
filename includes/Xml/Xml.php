@@ -203,11 +203,13 @@ class Xml {
 	 * @param int|null $tabindex Value of the tabindex attribute
 	 * @return string
 	 *
-	 * @deprecated since 1.42; use the equivalent methods in Html without a wrapper
+	 * @deprecated since 1.42; use the equivalent methods in Html without a wrapper; emiting warnings since 1.46
 	 */
 	public static function listDropdown( $name = '', $list = '', $other = '',
 		$selected = '', $class = '', $tabindex = null
 	) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		$options = self::listDropdownOptions( $list, [ 'other' => $other ] );
 
 		$xmlSelect = new XmlSelect( $name, $name, $selected );
@@ -236,9 +238,11 @@ class Xml {
 	 *   - string $params['other'] If set, add an option with this as text and a value of 'other'
 	 * @return array Array keys are textual labels, values are internal values
 	 *
-	 * @deprecated since 1.42; use the equivalent method in Html
+	 * @deprecated since 1.42; use the equivalent method in Html; emiting warnings since 1.46
 	 */
 	public static function listDropdownOptions( $list, $params = [] ) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		$options = [];
 
 		if ( isset( $params['other'] ) ) {
@@ -288,9 +292,11 @@ class Xml {
 	 * @param array $options Options, as returned e.g. by Xml::listDropdownOptions()
 	 * @return array
 	 *
-	 * @deprecated since 1.42; use the equivalent method in Html
+	 * @deprecated since 1.42; use the equivalent method in Html; emiting warnings since 1.46
 	 */
 	public static function listDropdownOptionsOoui( $options ) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		$optionsOoui = [];
 
 		foreach ( $options as $text => $value ) {

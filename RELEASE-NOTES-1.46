@@ -846,8 +846,10 @@ because of Phabricator reports.
   warnings. In most cases (such as for use with UserOptionsManager) calling
   this method is no longer needed. In other cases use getInstanceFromPrimary()
   instead.
-* Xml::label(), deprecated in 1.42, now emits deprecation warnings. You should
-  use Html::label() instead.
+* Some static methods in Xml, deprecated in 1.42, now emit deprecation warnings:
+  - Xml::label() — use Html::label() instead,
+  - Xml::listDropdown(), and
+  - Xml::listDropdownOptions() & Xml::listDropdownOptionsOoui().
 * Language::emphasize() is unused, got deprecated, and will be removed in the
   next version.
 * All public properties of ConverterRule have been deprecated and now emit
