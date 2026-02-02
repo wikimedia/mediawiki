@@ -2500,7 +2500,7 @@
 	"watchlistlabels-editwatchlist-dialog-intro-noitems": "Message shown in the label-assigning dialog when no pages are selected.",
 	"watchlistlabels-editwatchlist-dialog-button-unassign": "Label for the button and dialog with which to remove labels from watchlist items on Special:EditWatchlist.",
 	"watchlistlabels-editwatchlist-dialog-unassign-error": "Dialog title text used when it's not possible to unassign labels",
-	"watchlistlabels-editwatchlist-dialog-intro-unassign": "Introductory text in the label-removing dialog.\n\nParameters:\n* $1 — Comma-separated list of titles of pages from which the labels will be removed.\n* $2 — Integer number of labels shown with checkboxes below this message.\n* $3 — Integer number of labels shown with checkboxes below this message.",
+	"watchlistlabels-editwatchlist-dialog-intro-unassign": "Introductory text in the label-removing dialog.\n\nParameters:\n* $1 — Comma-separated list of titles of pages from which the labels will be removed.\n* $2 — Integer number of labels shown with checkboxes below this message.\n* $3 — Integer number of pages listed in $1.",
 	"watchlistlabels-editwatchlist-dialog-intro-unassign-noitems": "Message shown in the label-unassigning dialog when no pages are selected.",
 	"watchlistlabels-editwatchlist-dialog-intro-unassign-noitemlabels": "Message shown in the label-unassigning dialog when none of the selected pages have labels.",
 	"watchlistlabels-editwatchlist-dialog-intro-more": "Text of the last item in the list in {{msg-mw|watchlistlabels-editwatchlist-dialog-intro}} when there are more than 5 items in the list.\n\nParameters:\n* $1 — Integer number of remaining pages in the list.\n* $2 — Formatted number of remaining pages in the list.",

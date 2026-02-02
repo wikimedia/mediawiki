@@ -105,7 +105,7 @@ module.exports = defineComponent( {
 					return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro-noitems' );
 				}
 				showLabels.value = true;
-				return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro', selectedPagesList.value, labels.value.length, labels.value.length );
+				return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro', selectedPagesList.value, labels.value.length, selectedPages.value.length );
 			} else if ( dialogAction.value === 'unassign' ) {
 				showLabels.value = false;
 				if ( selectedPages.value.length > 0 && labels.value.size === 0 ) {
@@ -114,7 +114,7 @@ module.exports = defineComponent( {
 					return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro-unassign-noitems' );
 				}
 				showLabels.value = true;
-				return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro-unassign', selectedPagesList.value, labels.value.length, labels.value.length );
+				return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro-unassign', selectedPagesList.value, labels.value.length, selectedPages.value.length );
 			} else {
 				showLabels.value = false;
 				return selectedPages.value.length > 0 ?
