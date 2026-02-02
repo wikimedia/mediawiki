@@ -13,6 +13,7 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Logging\LogPage;
+use Mediawiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\RecentChanges\ChangesList;
@@ -25,6 +26,7 @@ use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchedItem;
+use MediaWiki\Watchlist\WatchlistLabelStore;
 use stdClass;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -47,6 +49,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	private ChangesListQueryFactory $changesListQueryFactory;
 	private RecentChangeLookup $recentChangeLookup;
 	private TitleFormatter $titleFormatter;
+	private WatchlistLabelStore $watchlistLabelStore;
 
 	/** @var string[] */
 	private $formattedComments = [];
@@ -61,6 +64,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		LogFormatterFactory $logFormatterFactory,
 		RecentChangeLookup $recentChangeLookup,
 		TitleFormatter $titleFormatter,
+		WatchlistLabelStore $watchlistLabelStore
 	) {
 		parent::__construct( $query, $moduleName, 'wl' );
 		$this->commentStore = $commentStore;
@@ -70,6 +74,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->logFormatterFactory = $logFormatterFactory;
 		$this->recentChangeLookup = $recentChangeLookup;
 		$this->titleFormatter = $titleFormatter;
+		$this->watchlistLabelStore = $watchlistLabelStore;
 	}
 
 	public function execute() {
@@ -95,6 +100,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	private bool $fld_loginfo = false;
 	private bool $fld_tags = false;
 	private bool $fld_expiry = false;
+	private bool $fld_labels = false;
+	private bool $watchlistLabelsEnabled = false;
+	private array $userWatchlistLabels = [];
 
 	/**
 	 * @param ApiPageSet|null $resultPageSet
@@ -127,10 +135,19 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->fld_loginfo = isset( $prop['loginfo'] );
 			$this->fld_tags = isset( $prop['tags'] );
 			$this->fld_expiry = isset( $prop['expiry'] );
+			$this->fld_labels = isset( $prop['labels'] );
+
+			// Check if watchlist labels are enabled
+			$this->watchlistLabelsEnabled = $this->getConfig()->get( MainConfigNames::EnableWatchlistLabels );
 
 			if ( $this->fld_patrol && !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'patrol' );
 			}
+		}
+
+		// Get user's watchlist labels in advance
+		if ( $this->fld_labels && $this->watchlistLabelsEnabled ) {
+			$this->userWatchlistLabels = $this->watchlistLabelStore->loadAllForUser( $wlowner );
 		}
 
 		$query->orderBy(
@@ -320,6 +337,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	private function addFieldsToQuery( ChangesListQuery $query ) {
 		$fields = [];
+		if ( $this->fld_labels && $this->watchlistLabelsEnabled ) {
+			$query->addWatchlistLabelSummaryField();
+		}
 		if ( $this->fld_expiry ) {
 			$query->maybeAddWatchlistExpiryField();
 		}
@@ -513,6 +533,28 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			}
 		}
 
+		// T416154
+		if ( $this->fld_labels && $this->watchlistLabelsEnabled ) {
+			if ( isset( $row->wlm_label_summary ) && $row->wlm_label_summary ) {
+				$labelIds = array_map( 'intval', explode( ',', $row->wlm_label_summary ) );
+				$labelArray = [];
+				foreach ( $labelIds as $labelId ) {
+					if ( isset( $this->userWatchlistLabels[$labelId] ) ) {
+						$label = $this->userWatchlistLabels[$labelId];
+						$labelArray[] = [
+							'id' => $label->getId(),
+							'name' => $label->getName(),
+						];
+					}
+				}
+				ApiResult::setArrayType( $labelArray, 'array' );
+				ApiResult::setIndexedTagName( $labelArray, 'label' );
+				$vals['labels'] = $labelArray;
+			} else {
+				$vals['labels'] = [];
+			}
+		}
+
 		if ( $this->fld_expiry ) {
 			// Add expiration, T263796
 			$expiryString = $row->we_expiry ?? null;
@@ -604,6 +646,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'loginfo',
 					'tags',
 					'expiry',
+					'labels',
 				]
 			],
 			'show' => [

@@ -1429,6 +1429,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "{{doc-apihelp-paramvalue|query+watchlist|prop|loginfo}}",
 	"apihelp-query+watchlist-paramvalue-prop-tags": "{{doc-apihelp-paramvalue|query+watchlist|prop|tags}}",
 	"apihelp-query+watchlist-paramvalue-prop-expiry": "{{doc-apihelp-paramvalue|query+watchlist|prop|expiry}}",
+	"apihelp-query+watchlist-paramvalue-prop-labels": "{{doc-apihelp-paramvalue|query+watchlist|prop|labels}}",
 	"apihelp-query+watchlist-param-show": "{{doc-apihelp-param|query+watchlist|show}}",
 	"apihelp-query+watchlist-param-type": "{{doc-apihelp-param|query+watchlist|type}}",
 	"apihelp-query+watchlist-paramvalue-type-edit": "{{doc-apihelp-paramvalue|query+watchlist|type|edit}}",

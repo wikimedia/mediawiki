@@ -498,6 +498,7 @@ class ApiQuery extends ApiBase {
 				'LogFormatterFactory',
 				'RecentChangeLookup',
 				'TitleFormatter',
+				'WatchlistLabelStore',
 			],
 		],
 		'watchlistraw' => [
