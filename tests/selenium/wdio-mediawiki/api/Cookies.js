@@ -3,8 +3,8 @@
  */
 export class Cookies {
 
-	constructor() {
-		this.pairs = {};
+	constructor( defaultCookies = {} ) {
+		this.pairs = { ...defaultCookies };
 	}
 
 	/**
