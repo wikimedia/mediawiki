@@ -13640,6 +13640,7 @@ Using {{=}} when it expands to "=" should not create a tracking category (cat)
 cat
 !! wikitext
 This uses {{=}} and {{Template:=}}.
+!! metadata
 !! html/php
 <p>This uses = and =.
 </p>

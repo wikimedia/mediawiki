@@ -671,6 +671,7 @@ cat
 pst
 !! wikitext
 [[Category:MediaWiki User's Guide|]]
+!! metadata
 !! html/php
 [[Category:MediaWiki User's Guide|MediaWiki User's Guide]]
 !! end
@@ -682,6 +683,7 @@ cat
 pst
 !! wikitext
 [[Category:Foo (bar)|]]
+!! metadata
 !! html/php
 [[Category:Foo (bar)|Foo]]
 !! end
@@ -693,6 +695,7 @@ cat
 pst
 !! wikitext
 123[[Category:Foo]]456
+!! metadata
 !! html/php
 123[[Category:Foo]]456
 !! end
@@ -704,6 +707,7 @@ cat
 pst
 !! wikitext
 [[Category:{{1x|Foo}}]]
+!! metadata
 !! html/php
 [[Category:{{1x|Foo}}]]
 !! end
@@ -715,6 +719,7 @@ cat
 pst
 !! wikitext
 [[Category:Foo|{{1x|Bar}}]]
+!! metadata
 !! html/php
 [[Category:Foo|{{1x|Bar}}]]
 !! end
@@ -726,6 +731,7 @@ cat
 pst
 !! wikitext
 [[Category:{{1x|Foo}}|{{1x|Bar}}]]
+!! metadata
 !! html/php
 [[Category:{{1x|Foo}}|{{1x|Bar}}]]
 !! end

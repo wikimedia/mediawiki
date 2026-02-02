@@ -1630,8 +1630,10 @@ class ParserTestRunner {
 		$before = [];
 		$after = [];
 		$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
+		$metadataOptionsSeen = [];
 		// The "before" entries may contain HTML.
 		if ( isset( $opts['showtitle'] ) ) {
+			$metadataOptionsSeen[] = 'showtitle';
 			if ( $output->getTitleText() ) {
 				$titleText = $output->getTitleText();
 			} else {
@@ -1646,6 +1648,7 @@ class ParserTestRunner {
 		}
 
 		if ( isset( $opts['showindicators'] ) ) {
+			$metadataOptionsSeen[] = 'showindicators';
 			foreach ( $output->getIndicators() as $id => $content ) {
 				$before[] = "$id=$content";
 			}
@@ -1653,6 +1656,7 @@ class ParserTestRunner {
 
 		// unlike other link types, this dumps the 'sort' property as well
 		if ( isset( $opts['cat'] ) ) {
+			$metadataOptionsSeen[] = 'cat';
 			$defaultSortKey = $output->getPageProperty( 'defaultsort' ) ?? '';
 			foreach (
 				$output->getLinkList( ParserOutputLinkTypes::CATEGORY )
@@ -1665,6 +1669,7 @@ class ParserTestRunner {
 		}
 
 		if ( isset( $opts['extlinks'] ) ) {
+			$metadataOptionsSeen[] = 'extlinks';
 			foreach ( $output->getExternalLinks() as $url => $ignore ) {
 				$after[] = "extlink=$url";
 			}
@@ -1672,6 +1677,7 @@ class ParserTestRunner {
 
 		// Unlike other link types, this is stored as text, not dbkey
 		if ( isset( $opts['ill'] ) ) {
+			$metadataOptionsSeen[] = 'ill';
 			foreach (
 				$output->getLinkList( ParserOutputLinkTypes::LANGUAGE )
 				as [ 'link' => $ll ]
@@ -1688,6 +1694,7 @@ class ParserTestRunner {
 		];
 		foreach ( $linkoptions as [ $optName, $prefix, $type ] ) {
 			if ( isset( $opts[$optName] ) ) {
+				$metadataOptionsSeen[] = $optName;
 				foreach ( $output->getLinkList( $type ) as [ 'link' => $ll ] ) {
 					$after[] = $prefix . Title::newFromLinkTarget( $ll )->getPrefixedDBkey();
 				}
@@ -1695,6 +1702,7 @@ class ParserTestRunner {
 		}
 
 		if ( isset( $opts['extension'] ) ) {
+			$metadataOptionsSeen[] = 'extension';
 			$extList = $opts['extension'];
 			if ( !is_array( $extList ) ) {
 				$extList = [ $extList ];
@@ -1715,6 +1723,7 @@ class ParserTestRunner {
 		}
 
 		if ( isset( $opts['property'] ) ) {
+			$metadataOptionsSeen[] = 'property';
 			$propList = $opts['property'];
 			if ( !is_array( $propList ) ) {
 				$propList = [ $propList ];
@@ -1725,6 +1734,7 @@ class ParserTestRunner {
 			}
 		}
 		if ( isset( $opts['showflags'] ) ) {
+			$metadataOptionsSeen[] = 'showflags';
 			$actualFlags = [];
 			foreach ( ParserOutputFlags::cases() as $name ) {
 				if ( $name->value === 'use-parsoid' ) {
@@ -1749,12 +1759,14 @@ class ParserTestRunner {
 			}
 		}
 		if ( isset( $opts['showtocdata'] ) ) {
+			$metadataOptionsSeen[] = 'showtocdata';
 			$tocData = $output->getTOCData();
 			if ( $tocData !== null ) {
 				$after[] = $tocData->prettyPrint();
 			}
 		}
 		if ( isset( $opts['showmedia'] ) ) {
+			$metadataOptionsSeen[] = 'showmedia';
 			$images = array_map(
 				static fn ( $item ) => $item['link']->getDBkey(),
 				$output->getLinkList( ParserOutputLinkTypes::MEDIA )
@@ -1772,6 +1784,14 @@ class ParserTestRunner {
 					$out .= "\n";
 				}
 				$out .= implode( "\n", $after );
+			}
+			if ( $metadataOptionsSeen ) {
+				wfDeprecated(
+					'metadata option (' .
+						implode( ', ', $metadataOptionsSeen ) .
+						') without !!metadata section',
+					'1.46'
+				);
 			}
 		} else {
 			$metadataActual = implode( "\n", array_merge( $before, $after ) );

@@ -18,6 +18,7 @@ parsoid=wt2html
 !! wikitext
 <indicator name=" "></indicator>
 <indicator></indicator>
+!! metadata
 !! html/php
 <p><span class="error"><strong>Error:</strong> Page status indicators' <code>name</code> attribute must not be empty.</span>
 <span class="error"><strong>Error:</strong> Page status indicators' <code>name</code> attribute must not be empty.</span>
