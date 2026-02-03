@@ -62,17 +62,6 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	/** @var bool */
 	protected $formErrors = false;
 
-	protected IConnectionProvider $dbProvider;
-	protected NamespaceInfo $namespaceInfo;
-	protected PermissionManager $permissionManager;
-	protected UserNameUtils $userNameUtils;
-	protected UserNamePrefixSearch $userNamePrefixSearch;
-	protected UserOptionsLookup $userOptionsLookup;
-	protected UserFactory $userFactory;
-	protected UserIdentityLookup $userIdentityLookup;
-	protected DatabaseBlockStore $blockStore;
-	protected UserGroupAssignmentService $userGroupAssignmentService;
-
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param IConnectionProvider $dbProvider
@@ -88,30 +77,20 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	 * @param string $restriction
 	 */
 	public function __construct(
-		PermissionManager $permissionManager,
-		IConnectionProvider $dbProvider,
-		NamespaceInfo $namespaceInfo,
-		UserNameUtils $userNameUtils,
-		UserNamePrefixSearch $userNamePrefixSearch,
-		UserOptionsLookup $userOptionsLookup,
-		UserFactory $userFactory,
-		UserIdentityLookup $userIdentityLookup,
-		DatabaseBlockStore $blockStore,
-		UserGroupAssignmentService $userGroupAssignmentService,
+		protected readonly PermissionManager $permissionManager,
+		protected readonly IConnectionProvider $dbProvider,
+		protected readonly NamespaceInfo $namespaceInfo,
+		protected readonly UserNameUtils $userNameUtils,
+		protected readonly UserNamePrefixSearch $userNamePrefixSearch,
+		protected readonly UserOptionsLookup $userOptionsLookup,
+		protected readonly UserFactory $userFactory,
+		protected readonly UserIdentityLookup $userIdentityLookup,
+		protected readonly DatabaseBlockStore $blockStore,
+		protected readonly UserGroupAssignmentService $userGroupAssignmentService,
 		$name,
 		$restriction = ''
 	) {
 		parent::__construct( $name, $restriction );
-		$this->permissionManager = $permissionManager;
-		$this->dbProvider = $dbProvider;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->userNameUtils = $userNameUtils;
-		$this->userNamePrefixSearch = $userNamePrefixSearch;
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->userFactory = $userFactory;
-		$this->userIdentityLookup = $userIdentityLookup;
-		$this->blockStore = $blockStore;
-		$this->userGroupAssignmentService = $userGroupAssignmentService;
 	}
 
 	/**

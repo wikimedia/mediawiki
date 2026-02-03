@@ -24,9 +24,6 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	/** @var string */
 	protected $msgPrefix;
 
-	/** @var SearchEngineFactory */
-	private $searchEngineFactory;
-
 	/**
 	 * @stable to call
 	 * @since 1.39 SearchEngineFactory added
@@ -40,12 +37,11 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 		$name,
 		$action,
 		$msgPrefix,
-		SearchEngineFactory $searchEngineFactory
+		private readonly SearchEngineFactory $searchEngineFactory,
 	) {
 		parent::__construct( $name );
 		$this->action = $action;
 		$this->msgPrefix = $msgPrefix;
-		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	/**

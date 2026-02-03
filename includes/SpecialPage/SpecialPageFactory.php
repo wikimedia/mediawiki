@@ -1298,36 +1298,14 @@ class SpecialPageFactory {
 	/** @var array */
 	private $aliases;
 
-	/** @var ServiceOptions */
-	private $options;
+	/** @noVarDump */
+	private readonly ObjectFactory $objectFactory;
 
-	/** @var Language */
-	private $contLang;
+	/** @noVarDump */
+	private readonly HookContainer $hookContainer;
 
-	/**
-	 * @var ObjectFactory
-	 * @noVarDump
-	 */
-	private $objectFactory;
-
-	/**
-	 * @var HookContainer
-	 * @noVarDump
-	 */
-	private $hookContainer;
-
-	/**
-	 * @var HookRunner
-	 * @noVarDump
-	 */
-	private $hookRunner;
-
-	/**
-	 * @var TitleFactory
-	 */
-	private $titleFactory;
-
-	private StatsFactory $statsFactory;
+	/** @noVarDump */
+	private readonly HookRunner $hookRunner;
 
 	/**
 	 * @internal For use by ServiceWiring
@@ -1342,30 +1320,18 @@ class SpecialPageFactory {
 		MainConfigNames::SpecialPages,
 	];
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param Language $contLang
-	 * @param ObjectFactory $objectFactory
-	 * @param TitleFactory $titleFactory
-	 * @param HookContainer $hookContainer
-	 * @param StatsFactory $statsFactory
-	 */
 	public function __construct(
-		ServiceOptions $options,
-		Language $contLang,
+		private readonly ServiceOptions $options,
+		private readonly Language $contLang,
 		ObjectFactory $objectFactory,
-		TitleFactory $titleFactory,
+		private readonly TitleFactory $titleFactory,
 		HookContainer $hookContainer,
-		StatsFactory $statsFactory,
+		private readonly StatsFactory $statsFactory,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
-		$this->contLang = $contLang;
 		$this->objectFactory = $objectFactory;
-		$this->titleFactory = $titleFactory;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->statsFactory = $statsFactory;
 	}
 
 	/**
