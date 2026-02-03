@@ -1493,7 +1493,7 @@
 	"action-autoconfirmed": "不受基于IP的速率限制",
 	"action-bigdelete": "删除有大型历史的页面",
 	"action-blockemail": "阻止或取消阻止用户发送电子邮件",
-	"action-bot": "被视为自动程序",
+	"action-bot": "被视为自动化程序",
 	"action-editprotected": "编辑保护等级为“︁{{int:protect-level-sysop}}”︁的页面",
 	"action-editsemiprotected": "编辑保护等级为“︁{{int:protect-level-autoconfirmed}}”︁的页面",
 	"action-editinterface": "编辑用户界面",

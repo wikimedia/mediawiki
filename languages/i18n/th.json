@@ -46,7 +46,8 @@
 			"วรากร อึ้งวิเชียร (Varakorn Ungvichian)",
 			"아라",
 			"Prem4826",
-			"Wutkh"
+			"Wutkh",
+			"YUMANEKO"
 		]
 	},
 	"sunday": "วันอาทิตย์",
@@ -1052,6 +1053,7 @@
 	"default": "ค่าเริ่มต้น",
 	"linterror-bogus-image-options": "ตัวเลือกไฟล์ที่ไม่สมบูรณ์",
 	"linterror-deletable-table-tag": "แท็กตารางที่ควรลบ",
+	"linterror-fostered": "เนื้อหาที่ถูกจัดวางใหม่",
 	"linterror-html5-misnesting": "Misnesting (ขณะนี้ไม่สามารถใช้ได้อีกแล้ว)",
 	"linterror-inline-media-caption": "คำบรรยายที่มองไม่เห็น",
 	"linterror-large-tables": "ตารางขนาดใหญ่ที่ทำให้การแสดงผลบนอุปกรณ์เคลื่อนที่เสียหาย",
@@ -1063,6 +1065,7 @@
 	"linterror-multi-colon-escape": "การหลีกเครื่องหมายทวิภาคหลายตัว",
 	"linterror-multiline-html-table-in-list": "ตาราง HTML5 แบบหลายบรรทัดภายในรายการ",
 	"linterror-multiple-unclosed-formatting-tags": "มีแท็กจัดรูปแบบหลายแท็กยังไม่ถูกปิดในหน้า",
+	"linterror-night-mode-unaware-background-color": "สไตล์ inline สำหรับสีพื้นหลังต้องระบุสีข้อความ",
 	"linterror-obsolete-tag": "แท็ก HTML ที่เลิกใช้",
 	"linterror-pwrap-bug-workaround": "บั๊กการถูกคลุมด้วยแท็กย่อหน้า",
 	"linterror-self-closed-tag": "แท็กปิดตัวเอง",

@@ -338,7 +338,7 @@
 	"viewsourcetext": "Makikita at makokopya mo ang wikitext ng pahinang ito.",
 	"viewyourtext": "Makikita at makokopya mo ang source ng <strong>mga binago mo</strong> sa pahinang ito.",
 	"protectedinterface": "Nagbibigay ang pahinang ito ng interface text para sa software na nasa wiki na ito, at protektado ito para mapigilan ang mga abuso.\nPara magdagdag o magbago ng mga salin para sa lahat ng wiki, pakigamit po ang [https://translatewiki.net/ translatewiki.net], ang proyekto para sa lokalisasyon ng MediaWiki.",
-	"editinginterface": "<strong>Babala:</strong> Binabago mo angnisang pahina na ginagamit upang magbigay ng interface text para sa software.\nMakakaapekto ang mga pagbabago sa pahinang ito sa itsura ng user interface para sa ibang mga tagagamit ng wiki na ito.",
+	"editinginterface": "<strong>Babala:</strong> Binabago mo ang isang pahina na ginagamit upang magbigay ng interface text para sa software.\nMakakaapekto ang mga pagbabago sa pahinang ito sa itsura ng user interface para sa ibang mga tagagamit ng wiki na ito.",
 	"translateinterface": "Para magdagdag o magbago ng mga pagsasalin sa lahat ng mga wiki, maaaring gamitin ang [https://translatewiki.net/ translatewiki.net], ang proyekto para sa lokalisasyon ng MediaWiki.",
 	"cascadeprotected": "Protektado ang pahinang ito mula sa pagbabago dahil naka-transclude ito sa mga sumusunod na {{PLURAL:$1|pahina|mga pahina}}, na protektado dahil sa nakabukas na \"cascading\" option:\n$2",
 	"namespaceprotected": "Wala kang permiso na magbago ng mga pahinang nasa namespace na '''$1'''.",

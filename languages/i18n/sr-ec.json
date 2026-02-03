@@ -4059,7 +4059,7 @@
 	"blockedtext-expiration-time": "Истек блокаде: $1",
 	"blockedtext-expiration-longest-block": "Истек најдуже блокаде: $1",
 	"blockedtext-intended-blockee": "Блокада је намењена за: $1",
-	"blockedtext-contact-blocker-admin": "Можете контактирати $1 или неког другог [[{{MediaWiki:Grouppage-sysop}}|администратора]] за појашњењ блокаде.",
+	"blockedtext-contact-blocker-admin": "Можете контактирати $1 или неког другог [[{{MediaWiki:Grouppage-sysop}}|администратора]] за појашњење блокаде.",
 	"blockedtext-block-ip": "Ваша тренутна IP адреса је $1.",
 	"blockedtext-block-id": "ID блока #$1.",
 	"blockedtext-include-details-queries": "Наведите све горње податке при захтеву за деблокаду.",
