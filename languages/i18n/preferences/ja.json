@@ -224,6 +224,8 @@
 	"prefs-description-watchlist": "ウォッチしているページを管理・パーソナライズします。",
 	"prefs-editwatchlist": "ウォッチリストの編集",
 	"prefs-editwatchlist-label": "自分のウォッチリストの項目を編集:",
+	"prefs-editwatchlistlabels-label": "ウォッチリストのラベルを編集:",
+	"prefs-managewatchlistlabels": "ウォッチリストのラベルを表示して管理",
 	"prefs-editwatchlist-edit": "ウォッチリストの表示と除去",
 	"prefs-editwatchlist-raw": "ウォッチリストをテキストで編集",
 	"prefs-editwatchlist-clear": "ウォッチリストの全消去",

@@ -188,7 +188,7 @@
 	"rest-property-desc-page-language-title": "Vertaalde paginatitel in leesvriendelijke opmaak",
 	"rest-property-desc-page-latest": "Informatie over de laatste versie",
 	"rest-property-desc-page-latest-id": "Versie-identificatie voor de laatste versie",
-	"rest-property-desc-page-timestamp": "Tijdstip van de laatste revisie",
+	"rest-property-desc-page-timestamp": "Tijdstip van de laatste versie",
 	"rest-property-desc-page-timestamp-html": "Tijdstip van de laatste versie in ISO 8601-indeling",
 	"rest-property-desc-page-license": "Informatie over de licentie van de wiki",
 	"rest-property-desc-page-license-url": "URL van de toepasselijke licentie",

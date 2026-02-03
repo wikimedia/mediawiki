@@ -357,7 +357,7 @@
 	"nocreate-loggedin": "No hay tu permiso para hace con el maga nuevo pagina.",
 	"permissionserrors": "Error de permiso",
 	"permissionserrorstext-withaction": "No hay tu permiso para na $2, para na siguiente {{PLURAL:$1|razon|maga razon}}:",
-	"recreate-moveddeleted-warn": "<strong>Aviso: Ta crea tu un pagina que del otro pa ya borra.</strong>\n\nyou should consider dapat mong isaalang-alang kung angkop na ipagpatuloy ang pag-edit ng pahinang ito\n\nDebe tu consider si propio ba continua hace edita con este pagina.\nEl borrada y move log para con este pagina muestrao aqui para conveniencia:",
+	"recreate-moveddeleted-warn": "<strong>Aviso: Ta crea tu un pagina que del otro pa ya borra.</strong>\n\nDebe tu consider si propio ba continua hace edita con este pagina.\nEl borrada y move log para con este pagina muestrao aqui para conveniencia:",
 	"moveddeleted-notice": "Este pagina hende ta existi. Ya dale el log de borrada, protegida, y movida para con el pagina abajo para referencia.",
 	"log-fulllog": "Mira con el entero log",
 	"postedit-confirmation-created": "[[Special:Diff/$2|Ya hace]] ya con este pagina.",

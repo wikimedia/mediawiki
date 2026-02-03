@@ -197,6 +197,8 @@
 	"prefs-description-watchlist": "Spravujte a přizpůsobujte si seznam stránek, které vás zajímají.",
 	"prefs-editwatchlist": "Editovat seznam sledovaných stránek",
 	"prefs-editwatchlist-label": "Editovat položky vašeho seznamu sledovaných stránek:",
+	"prefs-editwatchlistlabels-label": "Editace štítků sledovaných stránek:",
+	"prefs-managewatchlistlabels": "Zobrazit a spravovat vaše štítky sledovaných stránek",
 	"prefs-editwatchlist-edit": "Zobrazit a odebrat položky vašeho seznamu sledovaných stránek",
 	"prefs-editwatchlist-raw": "Editovat textový soubor sledovaných stránek",
 	"prefs-editwatchlist-clear": "Vyprázdnit seznam sledovaných stránek",
