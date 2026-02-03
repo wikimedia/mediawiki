@@ -3,32 +3,33 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\Rest\Handler\SitemapIndexHandler;
+use MediaWiki\Rest\Handler\SitemapPageHandler;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * @covers \MediaWiki\Rest\Handler\SitemapIndexHandler
+ * @covers \MediaWiki\Rest\Handler\SitemapPageHandler
  * @group Database
  */
-class SitemapIndexHandlerTest extends MediaWikiIntegrationTestCase {
+class SitemapPageHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerIntegrationTestTrait;
 
-	private function createHandler(): SitemapIndexHandler {
-		return new SitemapIndexHandler(
+	private function createHandler(): SitemapPageHandler {
+		return new SitemapPageHandler(
 			$this->getServiceContainer()->getMainConfig(),
 			$this->getServiceContainer()->getLanguageConverterFactory(),
 			$this->getServiceContainer()->getContentLanguage(),
 			$this->getServiceContainer()->getPermissionManager(),
-			$this->getServiceContainer()->getConnectionProvider()
+			$this->getServiceContainer()->getConnectionProvider(),
+			$this->getServiceContainer()->getGenderCache(),
+			$this->getServiceContainer()->getMainWANObjectCache()
 		);
 	}
 
 	public function addDBDataOnce() {
+		ConvertibleTimestamp::setFakeTime( '2025-01-01T00:00:00' );
 		$this->editPage( 'Page', '.' );
-		$this->editPage( 'Page2', '.' );
-		$this->editPage( 'Page3', '.' );
 	}
 
 	public function testGetResponseExample() {
@@ -36,8 +37,8 @@ class SitemapIndexHandlerTest extends MediaWikiIntegrationTestCase {
 		$wrapper = TestingAccessWrapper::newFromObject( $handler );
 		$example = $wrapper->getResponseExample();
 		$this->assertStringContainsString( '<?xml version="1.0"', $example );
-		$this->assertStringContainsString( '<sitemapindex', $example );
-		$this->assertStringContainsString( '</sitemapindex>', $example );
+		$this->assertStringContainsString( '<urlset', $example );
+		$this->assertStringContainsString( '</urlset>', $example );
 	}
 
 	public function testGenerateResponseSpec() {
@@ -49,54 +50,7 @@ class SitemapIndexHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayNotHasKey( 'application/json', $spec['200']['content'] );
 	}
 
-	public static function provideExecute() {
-		return [
-			'non-empty' => [
-				'0',
-				<<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap><loc>https://mediawiki.test/rest.php/site/v1/sitemap/0/page/0</loc></sitemap>
-</sitemapindex>
-
-XML
-			],
-			'empty' => [
-				'1',
-				<<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-</sitemapindex>
-
-XML
-			],
-		];
-	}
-
-	public function testExecuteMaxIndexSizeExceeded() {
-		ConvertibleTimestamp::setFakeTime( '2025-01-01T00:00:00' );
-		$this->overrideConfigValues( [
-			MainConfigNames::SitemapApiConfig => [
-				'enabled' => true,
-				'sitemapsPerIndex' => 1,
-				'pagesPerSitemap' => 2,
-				'expiry' => 3600,
-			]
-		] );
-		$response = $this->execute( [ 'path' => '/rest.php/site/v1/sitemap/0' ] );
-		$body = $response->getBody()->getContents();
-		$this->assertStringContainsString( 'maximum index size exceeded', $body );
-		$this->assertStringContainsString( 'sitemap/1', $body );
-	}
-
-	/**
-	 * @dataProvider provideExecute
-	 *
-	 * @param string $id
-	 * @param string $expected
-	 * @return void
-	 */
-	public function testExecute( $id, $expected ) {
+	public function testExecute() {
 		ConvertibleTimestamp::setFakeTime( '2025-01-01T00:00:00' );
 		$this->overrideConfigValues( [
 			MainConfigNames::SitemapApiConfig => [
@@ -106,8 +60,17 @@ XML
 				'expiry' => 3600,
 			],
 			MainConfigNames::CanonicalServer => 'https://mediawiki.test',
+			MainConfigNames::UsePigLatinVariant => false,
 		] );
-		$response = $this->execute( [ 'path' => "/rest.php/site/v1/sitemap/$id" ] );
+		$response = $this->execute( [ 'path' => '/rest.php/site/v1/sitemap/0/page/0' ] );
+		$expected = <<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://mediawiki.test/wiki/Page</loc><lastmod>2025-01-01T00:00:00Z</lastmod></url>
+</urlset>
+
+XML;
+
 		$this->assertSame( $expected, $response->getBody()->getContents() );
 		$this->assertSame(
 			'application/xml; charset=utf-8',
@@ -122,5 +85,4 @@ XML
 			$response->getHeaderLine( 'Expires' )
 		);
 	}
-
 }

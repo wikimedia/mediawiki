@@ -300,5 +300,12 @@
 	"rest-requestheader-desc-authorization": "Description of tha Authorization request header",
 	"rest-requestheader-desc-xrequestid": "Description of tha X-Request-Id request header",
 	"rest-requestheader-desc-useragent": "Description of tha User-Agent request header",
-	"rest-requestheader-desc-ifmatch": "Description of tha If-Match request header"
+	"rest-requestheader-desc-ifmatch": "Description of tha If-Match request header",
+	"rest-endpoint-desc-get-sitemap-index": "{{Experimental}} REST API endpoint description for getting the sitemap index, which lists available sitemap pages",
+	"rest-endpoint-summ-get-sitemap-index": "{{Experimental}} Short summary for the sitemap index endpoint",
+	"rest-endpoint-desc-get-sitemap-page": "{{Experimental}} REST API endpoint description for getting a sitemap page, which lists article URLs",
+	"rest-endpoint-summ-get-sitemap-page": "{{Experimental}} Short summary for the sitemap page endpoint",
+	"rest-param-desc-sitemap-index-id": "{{Experimental}} REST API parameter description for the sitemap index ID",
+	"rest-param-desc-sitemap-page-id": "{{Experimental}} REST API parameter description for the sitemap page ID",
+	"rest-param-desc-sitemap-include-namespace": "{{Experimental}} REST API parameter description for the namespace filter in sitemap requests"
 }

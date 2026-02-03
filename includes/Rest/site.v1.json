@@ -10,6 +10,8 @@
 	"paths": {
 		"/sitemap/{indexId}": {
 			"get": {
+				"x-i18n-description": "rest-endpoint-desc-get-sitemap-index",
+				"x-i18n-summary": "rest-endpoint-summ-get-sitemap-index",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\SitemapIndexHandler",
 					"services": [
@@ -22,10 +24,12 @@
 				}
 			}
 		},
-		"/sitemap/{indexId}/page/{fileId}": {
+		"/sitemap/{indexId}/page/{pageId}": {
 			"get": {
+				"x-i18n-description": "rest-endpoint-desc-get-sitemap-page",
+				"x-i18n-summary": "rest-endpoint-summ-get-sitemap-page",
 				"handler": {
-					"class": "MediaWiki\\Rest\\Handler\\SitemapFileHandler",
+					"class": "MediaWiki\\Rest\\Handler\\SitemapPageHandler",
 					"services": [
 						"MainConfig",
 						"LanguageConverterFactory",

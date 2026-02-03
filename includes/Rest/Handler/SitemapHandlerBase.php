@@ -38,11 +38,22 @@ abstract class SitemapHandlerBase extends Handler {
 
 	/**
 	 * @param int $indexId
-	 * @param int $fileId
+	 * @param int $pageId
 	 * @return int
 	 */
-	protected function getOffset( $indexId, $fileId ) {
-		return $this->sitemapSize * ( $indexId * $this->indexSize + $fileId );
+	protected function getOffset( $indexId, $pageId ) {
+		return $this->sitemapSize * ( $indexId * $this->indexSize + $pageId );
+	}
+
+	protected function generateResponseSpec( string $method ): array {
+		$spec = parent::generateResponseSpec( $method );
+
+		$spec['200']['content']['application/xml'] = [
+			'schema' => $this->getResponseSchema(),
+			'example' => $this->getResponseExample(),
+		];
+
+		return $spec;
 	}
 
 	/** @inheritDoc */
@@ -70,4 +81,8 @@ abstract class SitemapHandlerBase extends Handler {
 	}
 
 	abstract protected function getXml(): string;
+
+	abstract protected function getResponseSchema(): array;
+
+	abstract protected function getResponseExample(): string;
 }

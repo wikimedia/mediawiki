@@ -6,6 +6,8 @@ use MediaWiki\Config\Config;
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Rest\Handler;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -32,6 +34,7 @@ class SitemapIndexHandler extends SitemapHandlerBase {
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'integer',
 				ParamValidator::PARAM_REQUIRED => true,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-sitemap-index-id' ),
 			],
 		];
 	}
@@ -70,5 +73,41 @@ class SitemapIndexHandler extends SitemapHandlerBase {
 		}
 		$xml .= "</sitemapindex>\n";
 		return $xml;
+	}
+
+	protected function getResponseSchema(): array {
+		return [
+			'type' => 'object',
+			'xml' => [
+				'name' => 'sitemapindex',
+				'namespace' => 'http://www.sitemaps.org/schemas/sitemap/0.9',
+			],
+			'properties' => [
+				'sitemap' => [
+					'type' => 'array',
+					'xml' => [ 'wrapped' => false ],
+					'items' => [
+						'type' => 'object',
+						'xml' => [ 'name' => 'sitemap' ],
+						'properties' => [
+							'loc' => [
+								'type' => 'string',
+								'format' => 'uri',
+								'xml' => [ 'name' => 'loc' ],
+								'description' => 'URL of a sitemap page',
+							],
+						],
+					],
+				],
+			],
+		];
+	}
+
+	protected function getResponseExample(): string {
+		return '<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap><loc>https://example.org/sitemap/0/page/0</loc></sitemap>
+  <sitemap><loc>https://example.org/sitemap/0/page/1</loc></sitemap>
+</sitemapindex>';
 	}
 }

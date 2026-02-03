@@ -295,5 +295,12 @@
 	"rest-requestheader-desc-authorization": "Provides credentials that authenticate a user agent with a server, allowing access to protected resources.",
 	"rest-requestheader-desc-xrequestid": "Enables tracing and correlating individual HTTP requests as they flow through distributed systems, such as microservices, API gateways, and load balancer.",
 	"rest-requestheader-desc-useragent": "Sends a characteristic string to web servers, allowing them to identify the application, operating system, vendor, and/or version of the requesting client software.",
-	"rest-requestheader-desc-ifmatch": "Makes a request conditional, ensuring the requested action (like an update or deletion) is only performed if the resource on the server matches a specific version (identified by its ETag) provided by the client."
+	"rest-requestheader-desc-ifmatch": "Makes a request conditional, ensuring the requested action (like an update or deletion) is only performed if the resource on the server matches a specific version (identified by its ETag) provided by the client.",
+	"rest-endpoint-desc-get-sitemap-index": "Returns an XML list of available pages within the sitemap. The index default is 0; the presence of additional indices will be listed in robots.txt. Up to 10,000 pages are associated with each index.",
+	"rest-endpoint-summ-get-sitemap-index": "Get a list of sitemap pages",
+	"rest-endpoint-desc-get-sitemap-page": "Returns an XML list of articles present on the site. Each entry contains a URL to the page and the last modified date. Each page contains up to 10,000 URL entries.",
+	"rest-endpoint-summ-get-sitemap-page": "Get a list of article locations per page",
+	"rest-param-desc-sitemap-index-id": "The sitemap index, starting at 0. Additional available indices are specified in robots.txt.",
+	"rest-param-desc-sitemap-page-id": "The desired page of articles.",
+	"rest-param-desc-sitemap-include-namespace": "Namespace IDs to include in the sitemap. If not specified, uses the site default."
 }
