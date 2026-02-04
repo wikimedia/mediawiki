@@ -1019,12 +1019,15 @@ class ChangesList extends ContextSource {
 			$classes[] = SpecialWatchlist::WATCHLIST_LABEL_CSS_CLASS_PREFIX . $labelId;
 			$labelStrings[] = $this->userLabels[ $labelId ]->getName();
 		}
+		$labelsList = $this->msg( 'watchlistlabels-list-wrapper' )->params(
+			$this->getLanguage()->commaList( $labelStrings )
+		)->parse();
 		return $this->message['word-separator'] .
-			$this->msg( 'parentheses' )->rawParams(
-				$this->msg( 'watchlistlabels-list-wrapper' )->params(
-					$this->getLanguage()->commaList( $labelStrings )
-				)->parse()
-			)->escaped();
+			Html::rawElement(
+				'span',
+				[ 'class' => 'mw-changeslist-watchlistlabels' ],
+				$this->msg( 'parentheses' )->rawParams( $labelsList )->escaped()
+			);
 	}
 
 	/**
