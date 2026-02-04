@@ -9,7 +9,6 @@ use Psr\Container\ContainerInterface;
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionNamedType;
-use ReflectionProperty;
 use ReflectionType;
 
 /**
@@ -36,7 +35,7 @@ abstract class ExtensionServicesTestBase extends MediaWikiIntegrationTestCase {
 	 * @var string The name of the ExtensionServices class.
 	 * (A fully qualified name, usually specified via ::class syntax.)
 	 */
-	// protected static string $className;
+	protected static string $className;
 
 	/**
 	 * @var string The prefix of the services in the service wiring.
@@ -73,7 +72,7 @@ abstract class ExtensionServicesTestBase extends MediaWikiIntegrationTestCase {
 		$expectedService = $this->createValue( $method->getReturnType() );
 		$this->setService( $serviceName, $expectedService );
 
-		$actualService = self::getClassName()::$methodName();
+		$actualService = static::$className::$methodName();
 
 		$this->assertSame( $expectedService, $actualService,
 			'should return service from MediaWikiServices' );
@@ -90,14 +89,14 @@ abstract class ExtensionServicesTestBase extends MediaWikiIntegrationTestCase {
 			->with( $serviceName )
 			->willReturn( $expectedService );
 
-		$actualService = self::getClassName()::$methodName( $services );
+		$actualService = static::$className::$methodName( $services );
 
 		$this->assertSame( $expectedService, $actualService,
 			'should return service from injected container' );
 	}
 
 	public static function provideMethods(): iterable {
-		$reflectionClass = new ReflectionClass( self::getClassName() );
+		$reflectionClass = new ReflectionClass( static::$className );
 		$methods = $reflectionClass->getMethods();
 
 		foreach ( $methods as $method ) {
@@ -142,7 +141,7 @@ abstract class ExtensionServicesTestBase extends MediaWikiIntegrationTestCase {
 			return;
 		}
 
-		$reflectionClass = new ReflectionClass( self::getClassName() );
+		$reflectionClass = new ReflectionClass( static::$className );
 		foreach ( $this->getServiceContainer()->getServiceNames() as $serviceName ) {
 			if ( in_array( $serviceName, $this->serviceNamesWithoutMethods, true ) ) {
 				continue;
@@ -154,19 +153,5 @@ abstract class ExtensionServicesTestBase extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->assertTrue( true, 'test did not throw' );
-	}
-
-	private static function getClassName(): string {
-		// Temporary get the path depending of the property state - T393207
-		static $cache = [];
-		if ( !isset( $cache[static::class] ) ) {
-			$reflectionProperty = new ReflectionProperty( static::class, 'className' );
-			$invokeObject = null;
-			if ( !$reflectionProperty->isStatic() ) {
-				$invokeObject = new static();
-			}
-			$cache[static::class] = $reflectionProperty->getValue( $invokeObject );
-		}
-		return $cache[static::class];
 	}
 }
