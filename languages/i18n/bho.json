@@ -493,7 +493,6 @@
 	"sitejspreview": "<strong>याद रहे की आप ए जावास्क्रिप्ट कोड क खाली नमूना देखत बानी।\nई अबहिन ले सहेजल ना गइल बा!</strong>",
 	"userinvalidconfigtitle": "<strong>चेतावनी:</strong> कौनों skin \"$1\"नइखे।\nCustom .css, ,json, आ .js पन्ना सभ छोटका अक्षर में टाइटिल इस्तेमाल करे लें जइसे की, {{ns:user}}:Foo/vector.css ना की {{ns:user}}:Foo/Vector.css",
 	"updated": "(अपडेट करल गईल)",
-	"note": "'''सूचना:'''",
 	"previewnote": "<strong>याद रखीं, इ एगो झलक भर हवे।</strong>\nराउर बदलाव अभिन प्रकाशित ना भइल बा!",
 	"continue-editing": "संपादन क्षेत्र में जाईं",
 	"previewconflict": "ई नमूना ई देखावत बा की अगर रउआँ ए संपादन बक्सा में मौजूद पाठ के सहेजब त ऊ कइसन देखाई पड़ी।",

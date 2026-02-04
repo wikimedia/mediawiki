@@ -263,7 +263,6 @@
 	"noarticletext": "In custu momentu sa pàgina est sbuida.\nPodis [[Special:Search/{{PAGENAME}}|circai custu tìtulu]] in àteras pàginas,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} circai is arregistrus arrelataus],\no sinuncas [{{fullurl:{{FULLPAGENAME}}|action=edit}} criai custa pàgina]</span>.",
 	"noarticletext-nopermission": "In custu momentu sa pàgina est sbuida.\nPodis [[Special:Search/{{PAGENAME}}|circai custu tìtulu]] in àteras pàginas, o sinuncas\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} circai is arregistrus arrelataus]</span>, ma no tenis su permissu de criai custa pàgina.",
 	"userpage-userdoesnotexist-view": "S'impreadori \"$1\" no est arregistrau in custa wiki.",
-	"note": "<strong>Legenda:</strong>",
 	"previewnote": "<strong>La' ca custa est un'anteprima scéti.</strong>\nNo as ancora pubricau is  mudàntzias tuas!",
 	"continue-editing": "Bai a su logu po is mudàntzias",
 	"editing": "Mudendi $1",

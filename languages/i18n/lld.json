@@ -344,7 +344,6 @@
 	"blocked-notice-logextract": "{{GENDER:$1|Chësc utënt|Chësta utënta|Chësc utënt o utënta}} ie al mumënt {{GENDER:$1|blocà|blocheda|blocà}}.\nLa ultima nota tl register di utënc blochei ie chësta:",
 	"clearyourcache": "<strong>Nota:</strong> Do avëi salvé, podessla jí debojëgn da puzené la cache dl browser por odëi les mudaziuns.\n* <strong>Firefox / Safari:</strong> tigní druché le botun da scrí gran <em>Shift</em> y cliché sön <em>Ciarié danü</em>, o druché  <em>Ctrl-F5</em> o <em>Ctrl-R</em> (<em>⌘-R</em> sön n Mac)\n* <strong>Google Chrome:</strong> druché <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> sön n Mac)\n* <strong>Internet Explorer:</strong> tigní druché le botun <em>Ctrl</em> y cliché sön <em>Ajorné</em>, o druché <em>Ctrl-F5</em>\n* <strong>Opera:</strong> vá tl <em>Menu → Impostaziuns</em> (<em>Opera → Preferënzes</em> sön n Mac) y spo te <em>Privacy & secgurëza  → Puzené i dac dl browser → Imajes y file tla cache</em>.",
 	"updated": "(Ajurnà)",
-	"note": "<strong>Nota:</strong>",
 	"previewnote": "<strong>Recorda che chësta é ma na odüda danfora.</strong>\nTües mudaziuns ne é NIA ciamó stades salvades!",
 	"continue-editing": "Vá ala lerch de mudaziun",
 	"editing": "Mudaziun de $1",

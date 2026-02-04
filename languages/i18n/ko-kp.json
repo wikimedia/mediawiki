@@ -498,7 +498,6 @@
 	"sitejspreview": "'''이것은 쟈바각본 코드의 미리 보기에 불과합니다.'''\n'''아직 보관하지 않았습니다!'''",
 	"userinvalidconfigtitle": "<strong>경고:</strong> 《$1》 표면은 없습니다.\n.css와 .js 문서의 제목은 {{ns:user}}:Foo/vector.css 처럼 소문자로 써야 합니다. {{ns:user}}:Foo/Vector.css 와 같이 대문자로 쓸 경우 작동하지 않습니다.",
 	"updated": "(바뀜)",
-	"note": "<strong>참고:</strong>",
 	"previewnote": "'''이 화면은 미리보기입니다.'''\n편집한 내용은 아직 보관하지 않았습니다!",
 	"continue-editing": "편집 령역으로 가기",
 	"previewconflict": "이 미리 보기는 보관할 때의 모습으로, 위쪽 편집 령역의 본문을 반영합니다.",

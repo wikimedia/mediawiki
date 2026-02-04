@@ -533,7 +533,6 @@
 	"sitejspreview": "<strong>Pa gan wo'e de ye JavaScript wo'e ye cinle kawayin. Wun la de lila tinya!</strong>",
 	"userinvalidconfigtitle": "<strong>Tukpapa:</strong> ah de epa \"$1\" dan bo'a. Custom, fere.css be .js wun'e lo sunna lowercase, e.g {{ns:user}}:Foo/vecto.css zhe zuman ta {{ns:user}}:foo/Vector.css.",
 	"updated": "(La zhe woro)",
-	"note": "<strong>Note:</strong>",
 	"previewnote": "<strong>pa gan yiyecinle yi nana gba'ugi'o.</strong>ebanzhe wo'e zhi la de lilatinya!",
 	"continue-editing": "Lo dana yiyejin",
 	"previewconflict": "Yiyecinle wugwa nyan enyanka be uppercase eba yiyejin'o, wunga tinya wo'e ga de niyan gan wo'a la'u tinya nan.",

@@ -321,7 +321,6 @@
 	"userjspreview": "'''Memba se yu onggl a tes/priivyuu yu yuuza JavaScript.'''\n'''Ino sieb yet!'''",
 	"userinvalidconfigtitle": "'''Waanin:''' No skin \"$1\" no de.\nMemba se kostom .css ahn .js piej yuuz a luwakies taikl, e.g. {{ns:user}}:Foo/vector.css az opuoz tu {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Opdiet)",
-	"note": "'''Nuot:'''",
 	"previewnote": "'''Memb se dis a onggl priivyuu.'''\nYu chienjdem no sieb yet!",
 	"previewconflict": "Dis priivyuu riflek di tex ina di opa editin ieria az iwi apier ef yu chuuz fi siebi.",
 	"session_fail_preview": "'''Sari! Wi kudn pruoses yu edit juu tu a laas a seshan dieta.'''\nBegyu chrai agen.\nEf istil no wok, chrai [[Special:UserLogout|lag out]] ahn lag bak iin.",

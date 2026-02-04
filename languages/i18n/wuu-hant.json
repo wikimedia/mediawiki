@@ -507,7 +507,6 @@
 	"sitejspreview": "<strong>注意儂現在只是來上預覽該JavaScript代碼，還弗曾保存！</strong>",
 	"userinvalidconfigtitle": "<strong>警告：</strong>弗存在皮膚「$1」。自定義个.css、.json搭.js頁要使用小寫標題，譬如{{ns:user}}:Foo/vector.css弗同於{{ns:user}}:Foo/Vector.css。",
 	"updated": "（已更新）",
-	"note": "<strong>注意：</strong>",
 	"previewnote": "<strong>該个還只是預覽。</strong>儂个修改還朆保存！",
 	"continue-editing": "到編輯區去",
 	"previewconflict": "箇个預覽顯示了上頭文字編輯區裡向个內容。伊會得垃拉儂保存之後出現。",

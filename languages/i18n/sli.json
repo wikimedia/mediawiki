@@ -664,7 +664,6 @@
 	"illegalfilename": "Der Dateinoame „$1“ enthält mindestens a nee erlaubtes Zeicha. Bitte benenne de Datei im und versuche se erneut huchzuloada.",
 	"badfilename": "Der Dateinoame wourde ei „$1“ geändert.",
 	"filetype-badmime": "Dateien mi'm MIME-Typ „$1“ dirfa ne huchgeloada waan.",
-	"filetype-bad-ie-mime": "Diese Datei koan nee huchgeloada warn, doo der Internet Explorer se oals „$1“ erkennt, welcher a nee erlaubter potentiell gefährlicher Dateityp ies.",
 	"filetype-unwanted-type": "'''„.$1“''' ies a unerwinschtes Dateifurmat. Erloobt {{PLURAL:$3|ies doas Dateifurmat|sein de Dateifurmate}}: $2.",
 	"filetype-banned-type": "'''„.$1“''' {{PLURAL:$4|ies a nee erlaubter Dateityp|sein nee erlaubte Dateitypen}}.\n{{PLURAL:$3|Erlaubter Dateityp ist|Erlaubte Dateitypen sein}} $2.",
 	"filetype-missing": "Due hochzuloadende Datei hoot kenne Erweiterung (z. B. „.jpg“).",

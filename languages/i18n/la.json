@@ -344,7 +344,6 @@
 	"noarticletext-nopermission": "Hac in pagina non sunt litterae.\nPotes [[Special:Search/{{PAGENAME}}|hanc rem in aliis paginis quaerere]] aut <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} acta huius paginae videre], sed tibi non licet hanc paginam creare.",
 	"userpage-userdoesnotexist": "Usor \"<nowiki>$1</nowiki>\" non est. Visne re vera hanc paginam creare vel recensere?",
 	"updated": "(Novata)",
-	"note": "'''Nota:'''",
 	"previewnote": "<strong>Memento istud nihil esse nisi prospectum!</strong>\nMutationes tuae nondum servatae sunt!",
 	"editing": "Recensetur $1",
 	"creating": "Creabitur $1",

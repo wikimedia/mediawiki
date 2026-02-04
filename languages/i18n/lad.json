@@ -316,7 +316,6 @@
 	"userpage-userdoesnotexist-view": "El cuento del usador $1 no está enrejistrado.",
 	"clearyourcache": "<strong>Nota:</strong> Antes de publikar, tal ves nesesites aktualisar la caché de su navegador para ver los nuevos trokamientos.\n* <strong>Firefox / Safari:</strong> Mantenga presionada la tekla <em>Shift</em> mientras pulsa el botón <em>Reload</em>, o presione <em>Ctrl-F5</em> o <em>Ctrl-R</em> (<em>⌘-R</em> en Mac)\n* <strong>Google Chrome:</strong> Presione <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> en Mac)\n* <strong>Internet Explorer / Edge:</strong> Mantenga presionada la tekla <em>Ctrl</em> mientras pulsa el botón <em>Refresh</em>, o presione <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Presione <em>Ctrl-F5</em>.",
 	"updated": "(Aktualizado)",
-	"note": "'''Nota:'''",
 	"previewnote": "¡Akórdate ke esto es sólo una previsualizasion i aínda no se enrejistró!'''\n¡Los tus trokamientos no se tienen guadrados!",
 	"continue-editing": "Ir al area de trocamiento",
 	"editing": "Trocando $1",

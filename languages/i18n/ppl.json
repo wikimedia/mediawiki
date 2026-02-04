@@ -330,7 +330,6 @@
 	"noarticletext": "Anhan ini amat teuk kanaj tajtaketzalis.\nWeli [[Special:Search/{{PAGENAME}}|tiktemua ne itukey pal ini amat]] tik ne ukseuk ajamat,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} shiktemu tik ne tajtaanalis sajsanse],\nush [{{fullurl:{{FULLPAGENAME}}|action=edit}} titajkwilua ini amat]</span>.",
 	"noarticletext-nopermission": "Anhan ini amat teuk kanaj tajtaketzalis.\nWeli [[Special:Search/{{PAGENAME}}|tiktemua ne itukey pal ini amat]] tik ne ukseuk ajamat,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} shiktemu tik ne tajtaanalis sajsanse]</span>, peroj tesu tiweli tikchiwa ini amat",
 	"userpage-userdoesnotexist-view": "Ne itakutuchin  \"$1\" tesu nemi tik ini wiki.",
-	"note": "'''Pal tikmati:'''",
 	"previewnote": "'''Shikelnamiki ka ini semaya se achtutachialis.'''\nNe mutajtapatalis teuk muantiwit.",
 	"continue-editing": "Shu tik ne tentzin pal titajkwilua",
 	"previewconflict": "Ini achtutachialis kilwitia ne textoj tik ne tentzin pal ikajku ijkiunisan ken yawi naka su tikana ashan.",

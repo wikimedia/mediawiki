@@ -313,7 +313,6 @@
 	"noarticletext-nopermission": "እግል አዜ ዲብ እሊ ገጽ ክቱብ የሀላኒ።\nእግል አርእስ እላ ገጽ [[Special:Search/{{PAGENAME}}| እግል ትብሐሶ ትቀድሮ።]] ዲብ ብዕድ ገጽ፡ አው<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} እሉ ለመስል ተስጂላት በሕሶ]</span>፡ ላኪን እሊ ገጽ እግል ትክሎቆ እጃዘት አለብኩምኒ።",
 	"userpage-userdoesnotexist-view": "ሕሳብ መትነፍዓይ \"$1\" ስጁል ኢኮኒ ዲብ እሊ ዊኪ",
 	"updated": "(ተሐደሳ)",
-	"note": "<strong>እንትበህ:</strong>",
 	"continue-editing": "አካን አትሳነዮት ክታበት ጊስ",
 	"editing": "አስነዮት $1",
 	"creating": "$1 ለትከለቅ ሀላ",

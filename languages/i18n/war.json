@@ -471,7 +471,6 @@
 	"blocked-notice-logextract": "Ini nga gumaramit in nakapugong yana.\nAn pinakaurhi nga log entry han mga pinugong in ginhatag ha ubos para hit reperensya:",
 	"clearyourcache": "<strong>Tigamni:</strong> Katapos hit pagtipig, bangin ka kinahanglan nga lumaktaw han cache hit imo pandalikyat o broswer basi makita an mga pagbabag-o.\n* <strong>Firefox / Safari:</strong> Igduon it <em>Shift</em> samtang na-klik hit <em>Reload</em>, o kundi man pidlita iton <em>Ctrl-F5</em> o kundi man <em>Ctrl-R</em> (<em>⌘-R</em> dida hin Mac)\n* <strong>Google Chrome:</strong> Pidlita it <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> dida hin Mac)\n* <strong>Internet Explorer:</strong> Igduon it <em>Ctrl</em> samtang na-klik ht <em>Refresh</em>, o kundi man pidlita it <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Kadto hit <em>Menu → Settings</em> (<em>Opera → Preferences</em> dida hin Mac) ngan sunod kadto hit <em>Privacy & security → Clear browsing data → Cached images and files</em>.",
 	"updated": "(Ginbag-ohan)",
-	"note": "'''Pahibaro:'''",
 	"previewnote": "'''Hinumdumi nga pahiuna-nga-paggawas pa la ini.'''\n¡Waray pa katipig an imo mga ginbag-o!",
 	"continue-editing": "Pakadto han lugar hin panliwat",
 	"edit_form_incomplete": "<strong>An iba nga parte han imo pagliwat nga porma in waray umabot ha serbidor; alayon kitaa utro kun an imo mga pagliwat in aada pa ngan utroha pa.</strong>",

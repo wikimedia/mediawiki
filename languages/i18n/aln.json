@@ -320,7 +320,6 @@
 	"userjspreview": "<strong>Vini re, jeni duke testuar/parë vetëm parapamjen e JavaScriptit tuaj.\nEnde nuk e keni ruajtur!</strong>",
 	"userinvalidconfigtitle": "'''Kujdes:''' Nuk ka pâmje me emën \"$1\".\nVini re që faqet .css dhe .js përdorin vetëm titull me germa të vogla, psh. {{ns:user}}:Foo/vector.css për dallim prej {{ns:user}}:Foo/Vector.css.",
 	"updated": "(E ndryshueme)",
-	"note": "'''Shenim:'''",
 	"previewnote": "'''Kjo asht vetëm parapamje.'''\nNdryshimet e tua nuk janë ruejtë ende!",
 	"previewconflict": "Kjo parapâmje pasqyron tekstin në kutinë e sipërme të redaktimit, njashtu si do të duket nëse e rueni.",
 	"session_fail_preview": "'''Na vjen keq! Nuk mujtëm me ruejtë redaktimin tuej për shkak të hupjes së sesionit.'''\nJu lutemi provoni prap.\nNëse prap nuk funksionon, provoni me u [[Special:UserLogout|çkyçë]] dhe me u kyçë prap.",

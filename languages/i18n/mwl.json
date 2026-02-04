@@ -270,7 +270,6 @@
 	"userpage-userdoesnotexist-view": "La cuonta de outelizador \"$1\" nun stá registrada.",
 	"clearyourcache": "<strong>Ousserbaçon:</strong> Açpuis grabar, terá de lhimpar la mimória ''cache'' de l sou nabegador pa ber las altaraçones.\n* <strong>Firefox / Safari:</strong> Pressione <em>Shift</em> anquanto clica an <em>Recargar</em>, ó pressione <em>Ctrl-F5</em> ó <em>Ctrl-R</em> (<em>⌘-R</em> ne l Mac)\n* <strong>Google Chrome:</strong> Pressione <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> ne l Mac)\n* <strong>Internet Explorer:</strong> Pressione <em>Ctrl</em> anquanto clica an <em>Recargar</em>, ó pressione <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Nabegar pa <em>Menu → Cunfiguraçones</em> (<em>Opera → Perfréncias</em> ne l Mac) i, an seguida, <em>Pribacidade i sigurança → Lhimpar dados de nabegaçon → Eimaiges i fexeiros an cache</em>.",
 	"updated": "(Atualizado)",
-	"note": "'''Abiso:'''",
 	"previewnote": "<strong>Lhembra-te qu'esto ye solo ua amostra.</strong>\nLas altaraçones inda nun fúrun grabadas!",
 	"continue-editing": "Nabegar pa la ária d'eidiçon",
 	"editing": "A eiditar $1",

@@ -406,7 +406,6 @@
 	"noarticletext-nopermission": "अखनि ई पन्नापर कौनो सामग्री न हे ।\nअपने दोसरो पन्नामे [[Special:Search/{{PAGENAME}}|ई शीर्षकके खोज]] कर सकही,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} सम्बन्धित लॉग खोज सकही]</span>, किन्तु अपनेके ई बनावेके अनुमति न हे ।",
 	"userpage-userdoesnotexist-view": "सदस्यखाता \"$1\" ई विकिपर पञ्जीकृत न हे ।",
 	"updated": "(अद्यतनीत)",
-	"note": "<strong>सूचना::</strong>",
 	"previewnote": "<strong>याद रखी जे ई एगो झलक हे ।</strong>\nअपनेके परिवर्तनके प्रकाशित न कैल गेलीहे !",
 	"continue-editing": "सम्पादन क्षेत्रमे जायी",
 	"editing": "$1 सम्पादित होइत",

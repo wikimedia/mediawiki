@@ -437,7 +437,6 @@
 	"blocked-notice-logextract": "ᱱᱩᱭ ᱵᱮᱵᱦᱟᱨᱤᱡ ᱫᱚ ᱱᱮᱛᱚᱜ ᱮ ᱥᱮᱥᱫᱜᱮᱭᱟ᱾\nᱨᱮᱯᱷᱟᱨᱮᱱᱥ ᱞᱟᱹᱜᱤᱛᱛᱮ ᱱᱟᱣᱟᱱᱟᱜ ᱵᱚᱞᱚᱜ ᱠᱩᱨᱩᱢᱩᱴᱩ ᱞᱟᱛᱟᱨᱨᱮ ᱮᱢ ᱦᱩᱭᱱᱟ:",
 	"clearyourcache": "<strong>ᱧᱮᱛᱮᱞ:</strong> ᱨᱩᱠᱷᱤᱭᱟᱹ ᱦᱩᱭ ᱠᱟᱛᱮ, ᱟᱢᱟᱜ ᱵᱨᱟᱣᱡᱚᱨ ᱠᱮᱪ ᱵᱟᱭᱯᱟᱥ ᱦᱩᱭᱩᱜ ᱛᱟᱢᱟ ᱚᱫᱚᱞ ᱠᱚ ᱧᱮᱞ ᱞᱟᱹᱜᱤᱫ ᱾\n* <strong>ᱯᱷᱟᱭᱟᱨᱯᱷᱚᱠᱥ / ᱥᱟᱯᱷᱟᱨᱤ:</strong> Hold <em>Shift</em> while clicking <em>Reload</em>, or press either <em>Ctrl-F5</em> or <em>Ctrl-R</em> (<em>⌘-R</em> on a Mac)\n* <strong>Google Chrome:</strong> Press <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> on a Mac)\n* <strong>Internet Explorer:</strong> Hold <em>Ctrl</em> while clicking <em>Refresh</em>, or press <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Go to <em>Menu → Settings</em> (<em>Opera → Preferences</em> on a Mac) and then to <em>Privacy & security → Clear browsing data → Cached images and files</em>.",
 	"updated": "(ᱩᱛᱷᱱᱟᱣ ᱜᱮᱭᱟ)",
-	"note": "<strong>ᱱᱳᱴ:</strong>",
 	"previewnote": "<strong>ᱩᱭᱦᱟᱨ ᱢᱮ, ᱱᱚᱣᱟ ᱫᱚ ᱮᱠᱮᱱ ᱧᱮᱞᱚᱜ ᱞᱟᱹᱜᱤᱫ </strong>\nᱟᱢᱟᱜ ᱵᱚᱫᱚᱞ ᱠᱚᱫᱚ ᱱᱤᱛ ᱫᱷᱟᱹᱵᱤᱡ ᱵᱟᱝ ᱨᱩᱠᱷᱤᱭᱟᱹᱣᱠᱟᱱᱟ!",
 	"continue-editing": "ᱥᱟᱯᱲᱟᱣ ᱡᱟᱜᱟ ᱪᱟᱞᱟᱜ ᱢᱮ",
 	"editing": "ᱥᱟᱯᱲᱟᱣ ᱪᱟᱞᱟᱜᱠᱟᱱᱟ $1",

@@ -358,7 +358,6 @@
 	"userpage-userdoesnotexist-view": "Il profîl utent \"$1'' nol è regjistrât su cheste wiki.",
 	"clearyourcache": "'''Ocjo: dopo vê salvât, tu podaressis scugnî netâ la cache dal to sgarfadôr par viodi i cambiaments.''' Par '''Mozilla / Firefox / Safari''': frache ''Torne a cjamâ'' tignint jù ancje il tast des maiusculis, o se no frache ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac); par '''Konqueror''': frache ''Reload'' o il tast ''F5''; par '''Opera''' al pues jessi necessari disvuedâ dal dut la cache doprant il menù ''Tools → Preferencis''; par '''Internet Explorer:''' ten fracât il tast ''Ctrl'' cuant che tu cjalcjis su ''Aggiorna'' o frache ''Ctrl-F5''.",
 	"updated": "(Inzornât)",
-	"note": "'''Note:'''",
 	"previewnote": "<strong>Visiti che cheste e je dome une anteprime.</strong>\nI tiei cambiaments no son stâts ancjemò publicâts!",
 	"continue-editing": "Va ae aree di modifiche",
 	"editing": "Cambiament di $1",

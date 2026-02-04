@@ -543,7 +543,6 @@
 	"sitejspreview": "<strong>Teemi ni ni a yuuni la a ŋun su kpɛbu JavaScript koodi.\nDi na pala din be zaŋ' wuhi salo sheep!</strong>",
 	"userinvalidconfigtitle": "<strong>Warning:</strong> There is no skin \"$1\".\nCustom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.css as opposed to {{ns:user}}:Foo/Vector.css.",
 	"updated": "Malizali",
-	"note": "<strong>Note:</strong>",
 	"previewnote": "<strong>Di ti tam ni ŋɔ maa kuli nyɛla daŋ yuli.</strong>\nTi nabi zaŋ a taɣibu ŋɔ n-wuhi salo!",
 	"continue-editing": "Chami mali niŋ yaɣili",
 	"previewconflict": "Lala yuligu nyarila sabbu din be zuɣusaa sabbu maliniŋ yaɣili ka di ni yina wuhiri a yi bɔri ni a zaŋ wuhi salo.",

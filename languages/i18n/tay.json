@@ -242,7 +242,6 @@
 	"userpage-userdoesnotexist-view": "Canghaw na pptzyuwaw \"$1\" ini’ pbiru’ lalu’ na’.",
 	"clearyourcache": "<strong>pinbaqiy: </strong> suqun su’ cucun lga siyga ’nblayqun su’ kmagaw kwara’ sawn ini’ kznga’ magal sa kikay na zzyangay ga musa’ su’ baqun mita’ kya quw giqas balay na sinbah su’ *\n<strong>Firefox / Safari: </strong> phtun <em>Shift</em>lga wazyaw <em>t’aring smr’zyut</em>，ini’ ga phut <em>Ctrl-F5</em> ini’ ga <em>Ctrl-R</em> (Mac musa’ maha<em>⌘-R</em>) *\n<strong>Google Chrome: </strong>phut<em>Ctrl-Shift-R</em> (Mac musa’ maha <em>⌘-Shift-R</em>) * \n<strong>Internet Explorer: </strong>phtun <em>Ctrl</em> lga wazyaw <em>t’aring smr’zyut</em>, ini’ ga phut <em>Ctrl-F5</em> * <strong>Opera：</strong>usa’ squw <em>wzyagan→syaniy</em> (cyux sa Mac maha <em>Opera → pzyang sawyan</em>) ruw usa’ lawziy sa <em>lnqing nanak & sk’anzeng → kwagiy cryaw na zzyangay → wal skhaylaw magal na zga’ ruw Tang’an</em>.",
 	"updated": "(Sinbahan)",
-	"note": "<strong> pinkita’ niya’ sa pinzga’ ：</strong>",
 	"previewnote": "<strong>Misuw qaniy ga cyuw su’ tmrang pnama’ mita’ zmangay, ini’ su’ aniy cucun na’ quw sinbah su’!</strong>",
 	"continue-editing": "Usa’ squw hhalan smr’zyut miru’",
 	"editing": "Nyuw smr’zyut miru’ $1",

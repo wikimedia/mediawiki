@@ -359,7 +359,6 @@
 	"noarticletext": "Ec y traa t’ayn, cha nel teks erbee ‘sy duillag shoh.\nFoddee oo [[Special:Search/{{PAGENAME}}|ronsaghey yn enmys shoh]] ayns duillagyn elley,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ronsee ny lioaryn cooishyn ta bentyn r’ee],\nny [{{fullurl:{{FULLPAGENAME}}|action=edit}} croo yn duillag shoh]</span>.",
 	"noarticletext-nopermission": "Ec y traa t’ayn, cha nel teks erbee ‘sy duillag shoh.\nFoddee oo [[Special:Search/{{PAGENAME}}|ronsaghey yn enmys shoh]] ayns duillagyn elley,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ronsee ny lioaryn cooishyn ta bentyn r’ee],\nagh cha nel kied ayd yn duillag shoh dy chroo.",
 	"userpage-userdoesnotexist-view": "Cha nel y coontys ymmydeyr \"$1\" recortyssit er y wiki shoh.",
-	"note": "<strong>Note:</strong>",
 	"previewnote": "<strong>Cooinnee nagh nee agh roie-haishbynys eh shoh.\n</strong>\nCha nel dty chaghlaaghyn sauailt foast!",
 	"continue-editing": "Gow dys yn ard reaghee",
 	"editing": "Reaghey $1",

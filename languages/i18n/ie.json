@@ -426,7 +426,6 @@
 	"userjspreview": "<strong>Memora que vu es solmen provant/prevident tui JavaScript de usator.\nIt ha ne ancor esset publicat!</strong>",
 	"userinvalidconfigtitle": "<strong>Advertiment:</strong> Ne vi pelle \"$1\".\nCustomisa págines .css, .json, e .js usant titul minuscul, por exemple {{ns:user}}:Foo/vector.css quam oposit por {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Actualisat)",
-	"note": "<strong>Note:</strong>",
 	"previewnote": "<strong>Memora se que ti es solmen un prevision.</strong>\nTui changes ancor ne ha esset conservat!",
 	"continue-editing": "Ear al spacie de redaction",
 	"editing": "Redactent $1",

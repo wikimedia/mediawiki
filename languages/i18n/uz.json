@@ -458,7 +458,6 @@
 	"blocked-notice-logextract": "Ushbu {{GENDER:$1|foydalanuvchi}} hozirda '''chetlatilgan'''.\nQuyida chetlatish jurnalidan soʻnggi qaydni koʻrishingiz mumkin:",
 	"clearyourcache": "<strong>Eslatma:<strong> Saqlaganingizdan soʻng, oʻzgarishlarni koʻrish uchun brauzeringiz keshini tozalashingizga toʻgri kelishi mumkin.\n* <strong>Firefox / Safari:</strong> <em>Shift</em> tugmasini bosgan holda, <em>Yangilash</em> unsurlar darchasini bosing, yoki <em>Ctrl-F5</em> yoki <em>Ctrl-R</em> (Macda <em>⌘-R</em>) ni bosing\n* <strong>Google Chrome:</strong> <em>Ctrl-Shift-R</em> (Macda <em>⌘-Shift-R</em>) ni bosing\n* <strong>Internet Explorer / Edge:</strong> <em>Ctrl</em>ni bosgan holda, <em>Yangilash</em>ni bosing, yoki <em>Ctrl-F5</em>ni bosing\n* <strong>Opera:</strong> <em>Ctrl-F5</em>ni bosing.",
 	"updated": "(Yangilandi)",
-	"note": "'''Izoh:'''",
 	"previewnote": "'''Bu shunchaki koʻrib chiqish.''' Oʻzgartirishlar hali saqlangani yoʻq!",
 	"continue-editing": "tahrirlashni davom ettirish",
 	"session_fail_preview": "<strong>Afsuski, sizning tahriringiz texnik nosozlik yuzaga kelgani sabab saqlanmadi.</strong>\nIltimos, yana bir bor urinib koʻring.\nAgar shu xato yana takrorlansa, hisob yozuvingizdan [[Special:UserLogout|chiqishni amalga oshiring]] va qaytadan kiring.",

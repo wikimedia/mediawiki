@@ -287,7 +287,6 @@
 	"noarticletext": "Ij lä nágan täkksta dán bielen.\nDån máhtá [[Special:Search/{{PAGENAME}}|dán biellenammaj åhtsåt]] mubbe belijn,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} berulatj låggåjn åhtsåt],\nvaj [{{fullurl:{{FULLPAGENAME}}|action=edit}} állget dáv bielev]</span>.",
 	"noarticletext-nopermission": "Ij lä nágan täkksta dán bielen.\nDån máhtá [[Special:Search/{{PAGENAME}}|dán biellenammaj åhtsåt]] mubbe belijn,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} berulatj låggåjn åhtsåt], män ij lä låbálatj dunji állget dáv bielev.",
 	"userpage-userdoesnotexist-view": "Adnejkånntå «$1» ij lä registreriduvvum dán wiki sinne.",
-	"note": "<strong>Giehtja:</strong>",
 	"previewnote": "<strong>Mujte gula dát lä bär åvvdåvuosedibme.</strong>\nDuv rävvdadime ij lä änj pusstiduvvum!",
 	"continue-editing": "Mana rävvdadimsajjáj",
 	"editing": "Rävvdadimen $1",

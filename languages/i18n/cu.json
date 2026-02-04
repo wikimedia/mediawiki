@@ -223,7 +223,6 @@
 	"userpage-userdoesnotexist-view": "польꙃєватєльско мѣсто ⁖ $1 ⁖ сътворєно нѣстъ",
 	"clearyourcache": "<strong>НАРОЧИТО</strong>: По съхранѥнии можєши обити своѥго съмотрила съхранъ да видѣлъ би мѣнꙑ\n* <strong>Mozilla ли Firefox ли Safari</strong>''' ли жьмꙑи <em>Shift</em>'' а мꙑшиѭ жьми <em>Reload</em> или жьми <em>Ctrl-F5</em> ꙗко жє <em>Ctrl-R</em> (<em>⌘-R</em> вън Apple Mac)\n* <strong>Google Chrome:</strong> ли жьмꙑи <em>Ctrl-Shift-R</em>'' (<em>⌘-Shift-R</em> въ Mac)\n* <strong>Internet Explorer</strong>''' ли жьмꙑи <em>Ctrl</em> а мꙑшиѭ жьми <em>Refresh</em> или жьми <em>Ctrl-F5</em> \n* <strong>Опєрꙑ</strong> польꙃєватєльмъ можєть бꙑти ноужда пльнѣ поничьжити ихъ съмотрила съхранъ въ <em>Tools → Preferences</em> (<em>Opera → Preferences</em> вън Apple Mac) ⁙",
 	"updated": "(оновлѥно ѥстъ)",
-	"note": "'''НАРОЧИТО:'''",
 	"editing": "исправлѥниѥ: $1",
 	"creating": "сътворѥниѥ ⁖ $1 ⁖",
 	"editingsection": "исправлѥниѥ ⁖ $1 ⁖ (чѧсть)",

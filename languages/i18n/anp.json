@@ -429,7 +429,6 @@
 	"blocked-notice-list-link": "अवरोध सूची देखौ",
 	"clearyourcache": "<strong>ध्यान दहो:</strong> प्रकाशित करला के बाद बदलाव देखै लेली आपनै क अपनो ब्राउज़र के कैशे क हटाबै ल पड़ै सकै छै।\n* <strong>Firefox/Safari:</strong> <em>Reload</em> क्लिक करतँ समय <em>Shift</em> दबाबौ, या फेरू <em>Ctrl-F5</em> या <em>Ctrl-R</em> दबाबौ (Mac प <em>⌘-R</em>)\n* <strong>Google Chrome:</strong> <em>Ctrl-Shift-R</em> दबाबौ (Mac प <em>⌘-Shift-R</em>)\n* <strong>Internet Explorer/Edge:</strong> <em>Refresh</em> प क्लिक करतँ समय <em>Ctrl</em> दबाबौ, या फेरू <em>Ctrl-F5</em> दबाबो\n* <strong>Opera:</strong> <em>Ctrl-F5</em> दबाबौ।",
 	"updated": "(अद्यतनीत)",
-	"note": "<strong>विवरण:</strong>",
 	"previewnote": "<strong>याद रखौ, ई खाली एगो झलक छेकै।</strong> तोरौ बदलाव अखनी तलक सहेजलोौ नै गेलौ छै!",
 	"continue-editing": "संपादन क्षेत्र मँ जा",
 	"editing": "$1 केरौ सम्पादन चली रहलौ छै",

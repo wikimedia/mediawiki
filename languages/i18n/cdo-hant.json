@@ -299,7 +299,6 @@
 	"anontalkpagetext": "<em>茲是未登錄其用戶討論頁面。</em>\n故此儂家著使數字IP來確定伊。\n總款其IP地址會乞雅価用戶共享。\n如果蜀隻未登錄其用戶見覺無關係其評論指向汝，起動[[Special:CreateAccount|開賬戶]]或者[[Special:UserLogin|登錄]]來避免以後共其它未登錄其用戶混蜀堆。",
 	"noarticletext": "現在敆茲蜀頁𡅏無文字。汝會使敆其它其頁面𡅏[[Special:Search/{{PAGENAME}}|討蜀討茲蜀萆標題]]，<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 討相關其記錄]，或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 創建茲蜀頁]</span>。",
 	"clearyourcache": "<strong>注意：</strong>保存以後，汝可能固著刷新汝其瀏覽器緩存來看遘變化。\n* <strong>火狐/Safari：</strong>擪下<em>Shift</em>篤蜀篤<em>重新載入</em>，或者擪蜀擪<em>Ctrl+F5</em>或者<em>Ctrl+R</em>（<em>⌘-R</em>敆Mac懸頂）\n* <strong>Google Chrome：</strong>擪<em>Ctrl+Shift+R</em>（敆Mac𡅏使<em>⌘-Shift-R</em>）\n* <strong>Internet Explorer：</strong>擪<em>Ctrl</em>其時候篤蜀篤<em>刷新</em>，或者擪<em>Ctrl+F5</em>\n* <strong>Opera：</strong>去<em>菜單→設定</em>（Mac是<em>Opera→偏好設定</em>）再去<em>隱私&安全性→清除瀏覽資料→已緩存其圖片共檔案</em>。",
-	"note": "<strong>注意：</strong>",
 	"previewnote": "'''記定茲若是蜀萆預覽。'''\n汝其改變固𡅏未保存！",
 	"continue-editing": "繼續修改",
 	"editing": "修改$1",

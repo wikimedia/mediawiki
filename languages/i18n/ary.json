@@ -435,7 +435,6 @@
 	"sitejspreview": "<strong>ماتنساش باللي راك غي تاتجرب فجاڤاسكريپت ديالك.\nراه مازال ماتسجل!</strong>",
 	"userinvalidconfigtitle": "<strong>عنداك:</strong> T ماكايناش واجهة \"$1\".\nصفحات Custom .css و.json و.js تاتخدًم حروف صغيرة فلعنوان، بحال {{ns:user}}:Foo/vector.css ماشي بحال {{ns:user}}:Foo/Vector.css.",
 	"updated": "(محدثة)",
-	"note": "<strong>ملاحظة:</strong>",
 	"previewnote": "<strong>دير فبالك بلي هادا غير پريڤيو.</strong>\nالتعديلات ديالك را مازال ما تسجلوش!",
 	"continue-editing": "سير ل صندوق لكتابة",
 	"previewconflict": "هاد لپريڤيو تيبين النص اللي فوق منطقة تحرير النصوص كيما غادي يبان إلا ختاريتي تسجلو.",

@@ -228,7 +228,6 @@
 	"userpage-userdoesnotexist": "Ti marehistra i kuenata muna'sesetbi \"<nowiki>$1</nowiki>\". Pot fabot chek kao malago' hao un fa'tinas/tulaika este na påhina.",
 	"usercsspreview": "'''Hasso fan na un ripapasa iyo-mu CSS muna'sesetbi, trabiha ti masåtba ha'!'''",
 	"userjspreview": "'''Hasso fan na un chachagi/ripapasa iyo-mu JavaScript muna'sesetbi, trabiha ti masåtba ha'!'''",
-	"note": "'''Fanapunta:'''",
 	"previewnote": "'''Annok este para manripasa;\nti masåtba trabiha i tinilaika-mu!'''",
 	"previewconflict": "Este na ripasu ha na'annok i tinige' gi i kahon tumulaika gi sanhilo' kumu para u annok an un såtba ha'.",
 	"session_fail_preview": "'''Dispensa! Ti siña in na'fo'na i tinilaika-mu sa' guåha fina'lingun infotmasion sesion.\nPot fabot chagi ta'lo. Yanggen ti siña u såtba ta'lo, chagi muna'logout yan na'login ta'lo.'''",

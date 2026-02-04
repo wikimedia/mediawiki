@@ -273,7 +273,6 @@
 	"sitejspreview": "<strong>تذكر أنك فقط في وضع المعاينة لكود JavaScript هذا.\nلم يتم حفظه بعد!</strong>",
 	"userinvalidconfigtitle": "<strong>تحذير:</strong> T لا توجد واجهة \"$1\".\nصفحات Custom .css و.json و.js تستخدم حروفا صغيرة في العنوان، مثل {{ns:user}}:Foo/vector.css على عكس {{ns:user}}:Foo/Vector.css.",
 	"updated": "(محدثة)",
-	"note": "<strong>ملاحظة:</strong>",
 	"previewnote": "<strong>تذكر أن هذه مجرد معاينة أولية.</strong>\nلم تحفظ تغييراتك إلى الآن!",
 	"continue-editing": "أكمل التحرير",
 	"previewconflict": "هذا العرض يوضح النص الموجود في صندوق التحرير العلوي والذي سيظهر إذا اخترت الحفظ.",

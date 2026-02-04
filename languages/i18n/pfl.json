@@ -270,7 +270,6 @@
 	"noarticletext": "Uffde Said hodds noch kän Tegschd. Konnschd uff oannare Saide nochm [[Special:Search/{{PAGENAME}}|Oidrach gugge]], <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} Logbuchoidrach gugge, wu dzu kead],\nodda [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Said b'awaide]</span>.",
 	"noarticletext-nopermission": "Do hodds känn Tegschd.\nDu konschd uff oannare Saide [[Special:Search/{{PAGENAME}}|faden Tidl gugge]], odda <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} in alle Logs gugge]</span>, awwa hoschd kä Ealauwbnis die Said zu mache.",
 	"updated": "(Gännad)",
-	"note": "'''Hiwes:'''",
 	"previewnote": "'''Deng'g drõõ, dasses nua e Vorschau isch.'''\nDoi Ännarunge sinn noch nedd gschbaischadd worre!",
 	"editing": "An de Said $1 schaffe",
 	"creating": "$1 aaleche",

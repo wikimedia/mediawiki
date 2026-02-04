@@ -542,7 +542,6 @@
 	"sitejspreview": "<strong>注意侬现在只是来上预览该JavaScript代码，还弗曾保存！</strong>",
 	"userinvalidconfigtitle": "<strong>警告：</strong>弗存在皮肤“$1”。自定义个.css、.json搭.js页要使用小写标题，譬如{{ns:user}}:Foo/vector.css弗同于{{ns:user}}:Foo/Vector.css。",
 	"updated": "（已更新）",
-	"note": "<strong>注意：</strong>",
 	"previewnote": "<strong>该个还只是预览。</strong>侬个修改还朆保存！",
 	"continue-editing": "到编辑区去",
 	"previewconflict": "箇个预览显示了上头文字编辑区里向个内容。伊会得垃拉侬保存之后出现。",

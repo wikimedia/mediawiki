@@ -188,7 +188,6 @@
 	"newarticletext": "Bye petulo ni sa, tiguki zwa ling'ki.\nDi hloli, seltisize kwa sisebelisoni (kamukile [$1 likitisize]).\nA sa nca di bufosi, tampi '''back'''.",
 	"noarticletext": "Sa no selt kwa petulo, a sa [[Special:Search/{{PAGENAME}}|fatukile di petulonom]] kwa xete petulo/[{{fullurl:{{FULLPAGENAME}}|action=edit}} petulo kenki].",
 	"updated": "(sa updeti)",
-	"note": "'''Lyangutukezi:'''",
 	"previewnote": "'''A sa in kamukile PendiBe; petuho ni sa bulukezi!'''",
 	"editing": "Hloli ye ng'i $1",
 	"editingsection": "Hloli ye ng'i $1 (lyangutukezi)",

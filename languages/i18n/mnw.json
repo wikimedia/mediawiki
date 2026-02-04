@@ -540,7 +540,6 @@
 	"blocked-notice-logextract": "{{GENDER:$1|ညးလွပ်}}ဏအ်ဂှ် လၟုဟ် ဒးဒုင်ကၟာတ်လဝ်။\nစရင်စၟတ်သမ္တီ မဒးဒုင်ကၟာတ်လဝ်ဂှ် နဒဒှ်နိဿဲဂှ် ဗၟံက်ထ္ၜးဝ် ဗွဲသၟဝ်ဝွံ-",
 	"clearyourcache": "<strong>တၚ်စၟတ်:</strong> ကြဴနူ မသီဂိုၚ်တုဲ တၞဟ်နမဂွံညာတ် အပြံၚ်အလှာဲ မၞးသ္ဒးကၟာတ်ထောအ် မုက်လိက်ဗြောဝ်သာဂှ်ရောၚ်။ \n* <strong>Firefox / Safari:</strong> မ္ဂး ဍဵုလဝ် <em>Shift</em> အဃောမဍဵု <em>Reload</em>၊ ဟွံသေၚ်မ္ဂး ဍဵု either <em>Ctrl-F5</em> ဟွံသေၚ်မ္ဂး <em>Ctrl-R</em> (<em>⌘-R</em> လ္တူ Mac မွဲသာ်)\n* <strong>Google Chrome:</strong> မ္ဂး ဍဵု <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> လ္တူ Mac မွဲသာ်)\n* <strong>Edge:</strong> မ္ဂး ဍဵုလဝ် <em>Ctrl</em> အဃော မဍဵု <em>Refresh</em>၊ ဟွံသေၚ်မ္ဂး ဍဵု <em>Ctrl-F5</em>။",
 	"updated": "(တၟိလဝ်တုဲ)",
-	"note": "<strong>စၟတ်သမ္တီ:</strong>",
 	"previewnote": "<strong>သမ္တီ ဣဏအ်ဂှ် ဒှ် ဆ နမူနာဟေင်ရ။</strong>\nအရာမၞး မပြံင်လှာဲလဝ်တအ်ဂှ် ဟွံဂွံတြးပ္တိတ်ဏီရ!",
 	"continue-editing": "အာ ဇရေင် ဒၞာဲမပလေဝ်ဒါန်",
 	"editing": " $1 ပလေဝ်ဒါန်ဒၟံင်",

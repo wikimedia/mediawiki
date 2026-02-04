@@ -325,7 +325,6 @@
 	"noarticletext-nopermission": "ʻAʻohe kikokikona a kēia ʻaoʻao.\nHiki iā ʻoe ke [[Special:Search/{{PAGENAME}}|huli no kēia inoa ʻaoʻao]] i nā ʻaoʻao ʻē aʻe aiʻole <span class=\"plainlinks\">[{{fullurl:SpecialLog|page={{urlencode:{{FULLPAGENAME}}}}}} huli i nā moʻolelo pili]</span>, akā hiki ʻole iā ʻoe ke hoʻololi i kēia ʻaoʻao.",
 	"userpage-userdoesnotexist-view": "ʻAʻole kāinoa ʻia ka moʻokāki mea hoʻohana ʻo \"$1\".",
 	"updated": "(Hoʻopuka hou ʻia)",
-	"note": "<strong>E noka:</strong>",
 	"previewnote": "<strong>ʻO kēia ka nāmua wale nō.</strong>\n‘A‘ole mālama ‘ia nā ho‘ololi!",
 	"continue-editing": "Kele i kahi hoʻololi",
 	"editing": "Ke ho‘ololi nei iā $1",

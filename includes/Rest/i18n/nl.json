@@ -292,5 +292,6 @@
 	"rest-endpoint-summ-post-page": "Pagina aanmaken",
 	"rest-endpoint-summ-post-transform-wikitext-to-lint": "Lint-foutmeldingen teruggeven voor wikitekst",
 	"rest-endpoint-summ-post-transform-wikitext-to-html": "Wikitekst in HTML omzetten",
-	"rest-endpoint-summ-post-transform-html-to-wikitext": "HTML in wikitekst omzetten"
+	"rest-endpoint-summ-post-transform-html-to-wikitext": "HTML in wikitekst omzetten",
+	"rest-requestheader-desc-acceptlanguage": "De natuurlijke taal en locatie die de voorkeur van de client heeft"
 }

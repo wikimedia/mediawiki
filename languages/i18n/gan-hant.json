@@ -385,7 +385,6 @@
 	"userjspreview": "'''注意倷單係到測試／預覽倷個人嗰 JavaScript，內容哈冇保存！'''",
 	"userinvalidconfigtitle": "'''警告:''' 冇\"$1\"嗰皮膚。請記到自定義嗰 .css 同 .js 頁要用小寫。就話，{{ns:user}}:Foo/vector.css 伓等同 {{ns:user}}:Foo/Vector.css。",
 	"updated": "（更新正哩）",
-	"note": "'''注意:'''",
 	"previewnote": "'''請記到箇光係預覽，內容哈冇保存！'''",
 	"previewconflict": "箇隻預覽係上首文字編輯區嗰內容。倷選擇保存嗰話佢才會保存到。",
 	"session_fail_preview": "'''伓過意！箇隻段落嗰資料跌吥嘞，我俚處理伓正倷嗰編輯。請較過吖。哈係扤伓正嗰話，試得[[Special:UserLogout|退出]]後登入過。'''",

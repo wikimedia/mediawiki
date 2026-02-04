@@ -439,7 +439,6 @@
 	"userpage-userdoesnotexist-view": "Kont itilizatò-a « $1 » pa anréjistré.",
 	"clearyourcache": "<strong>Nòt :</strong> apré zòt anréjistré zòt modifikasyon, zòt divèt fòrsé roucharjman konplè di kach di zòt navigatò pou wè chanjman-yan.\n* <strong>Firefox / Safari :</strong> mentni touch-a <em>Maj</em> (<em>Shift</em>) an klikan asou bouton-an <em>Atchwalizé</em> oben présé <em>Ctrl-F5</em> oben <em>Ctrl-R</em> (<em>⌘-R</em> asou roun Mac) \n* <strong>Google Chrome :</strong> apiyé asou <em>Ctrl-Maj-R</em> (<em>⌘-Shift-R</em> asou roun Mac) \n* <strong>Internet Explorer :</strong> mentni touch-a <em>Ctrl</em> an klikan asou bouton-an <em>Atchwalizé</em> oben présé <em>Ctrl-F5</em> \n* <strong>Opera :</strong> alé annan <em>Menu → Settings</em> (<em>Opera → Préférences</em> asou roun Mac) é answit à <em>Konfidansyalité & sékrité → Éfasé data di lésplorasyon-yan → Zimaj ké fiché an kach</em>.",
 	"updated": "(Mizajou)",
-	"note": "<strong>Nòt :</strong>",
 	"previewnote": "<strong>Pa bliyé ki a jis roun prévizwèlizasyon.</strong>\nOu modifikasyon pa òkò fika anréjistré !",
 	"continue-editing": "Alé bò zonn-an di modifikasyon",
 	"editing": "Chanjman di $1",

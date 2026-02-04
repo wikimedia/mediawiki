@@ -277,7 +277,6 @@
 	"userpage-userdoesnotexist-view": "Hesabê karberi \"$1\" qeyd nêbiyo.",
 	"userinvalidconfigtitle": "'''Teme:''' Mewzuyê \"$1\" çino.\nDosyunê ebe namê .css u .js'y de herfa hurdiye bıgurêne, mesela hurêndia {{ns:user}}:Foo/Vector.css'i de {{ns:user}}:Foo/vector.css bınuse.",
 	"updated": "(Bi rozane)",
-	"note": "'''Not:'''",
 	"previewnote": "Teme! ena teyna verqeyda.'''\nVurnayışê tu hama qeyd nıbiyo!",
 	"editing": "$1 vurino",
 	"editingsection": "Vurnaena $1 (qısım)",

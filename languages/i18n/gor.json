@@ -465,7 +465,6 @@
 	"userpage-userdoesnotexist-view": "Ta ohu'uwo lo akun \"$1\" diya'a to daputari lo wiki botiya.",
 	"clearyourcache": "<strong>Tuladu:</strong>Yilapato tilahu, yi'o musti lumawode to cache browser web bolo mo'oonto u yiloboli'a.\n* <strong>Firefox/Safari:</strong> Tahan <em>Shift</em> to'u yiloduto <em>Reload</em>, meyalo woduta <em>Ctrl-F5</em> meyalo <em>Ctrl-R</em> (<em>⌘-R</em> di Mac)\n* <strong>Google Chrome:</strong> Woduta <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> di Mac)\n* <strong>Internet Explorer:</strong> Woduta <em>Ctrl</em> to'u yiloduto <em>Refresh</em>, meyalo woduta <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Pergi ke <em>Menu → Settings </em> (<em>Opera → Preferences</em> di Mac) lalu ke <em>Privacy & security → Clear browsing data → Cached images and files</em>.",
 	"updated": "(Pilopobohu)",
-	"note": "<strong>Tuladu:</strong>",
 	"previewnote": "<strong>Elayi utiye bo mopobilohu.</strong>\nU biloli'umu diipo tilahu!",
 	"continue-editing": "Ntali ode area momoli'o",
 	"editing": "Momoli'o $1",

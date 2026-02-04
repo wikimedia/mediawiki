@@ -198,7 +198,6 @@
 	"noarticletext": "Ko e pēsi ni, ʻoku ʻikai haʻane tohi ʻi ai he taimi ni. \nʻE lava koe ʻo [[Special:Search/{{PAGENAME}}|kumi ki heʻene hingoa]] ʻi ha ngaahi peesi ʻe taha,<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} kumi ʻa e fekauʻaki tohinoa], pe [{{fullurl:{{FULLPAGENAME}}|action=edit}} ʻetita ʻi ai.]",
 	"clearyourcache": "'''Tokanga''', ʻosi he haofaki e peesi, mahalo pē ʻoku pau te ke fakaʻatā ʻa e fafaʻo ʻo ho palausa, naʻa ʻikai te ke sio ʻa e paaki foʻou.",
 	"updated": "(Fakafoʻou)",
-	"note": "'''Tohi nounou:'''",
 	"previewnote": "<strong>Manatuʻi ko ha tomuʻa vakaiʻi pe ʻeni.</strong>\nKo e vakai pē ia, teʻeki haofakiʻi ʻa e ngaahi liliu!",
 	"session_fail_preview": "'''Kātaki, naʻe ʻikai fai hoʻo fatu ko e ʻuhinga ia ai naʻe mole ʻa e meʻaʻilo. Kātaki toki feinga. Kapau e toe hala, mahalo pē te ke ʻalu mamaʻo pea te ke toki kau ki ai.'''",
 	"editing": "ʻOku fatuʻi $1",

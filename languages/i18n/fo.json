@@ -425,7 +425,6 @@
 	"sitejspreview": "'''Minst til at hetta bert er ein royndar vísing av hesi JavaScript kotuni.'''\n'''Tað er ikki goymt enn!'''",
 	"userinvalidconfigtitle": "'''Ávaring:''' Tað er onki skinn \"$1\".\nTilevnaðar .css og .js síður brúka heiti sum byrja við lítlum bókstavi, t.d.  {{ns:user}}:Foo/vector.css í mun til {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Dagført)",
-	"note": "'''Viðmerking:'''",
 	"previewnote": "<strong>Minst til at hetta bara er ein forskoðan.</strong>\nTínar broytingar eru ikki goymdar enn!",
 	"continue-editing": "Far til økið har ið tú kanst gera rættingar",
 	"previewconflict": "Henda forskoðanin vísir tekstin í erva soleiðis sum hann sær út, um tú velur at goyma.",

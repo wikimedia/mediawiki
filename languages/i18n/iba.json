@@ -399,7 +399,6 @@
 	"noarticletext": "Diatu nadai teks ba lambar tu.\nNuan ulih [[Special:Search/{{PAGENAME}}|ngiga tajuk lambar tu]] ba lambar bukai,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ngiga log ti bekait],\ntauka [{{fullurl:{{FULLPAGENAME}}|action=edit}} ngaga lambar tu]</span>.",
 	"noarticletext-nopermission": "Diatu nadai teks ba lambar tu.\nNuan ulih [[Special:Search/{{PAGENAME}}|search for this page title]] ba lambar bukai, tauka <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ngiga log ti bekaul]</span>, tang nuan nadai pemendar ngaga lambar tu.",
 	"userpage-userdoesnotexist-view": "Akaun user \"$1\" enda direjista ba wiki tu.",
-	"note": "<strong>Nota:</strong>",
 	"previewnote": "<strong>Ingat meh tu semina pra-peda aja.</strong>\nUbah nuan bedau dipansutka!",
 	"continue-editing": "Ngagai endur edit",
 	"editing": "Ngedit $1",

@@ -376,7 +376,6 @@
 	"newarticle": "(Foforo)",
 	"noarticletext": "Akyɛrɛsɛm biara nni krataa yi mu.\nWobɛtumi [[Special:Search/{{PAGENAME}}|hwehwɛ saa krataa tiasɛm]] wɔ krataa foforɔ mu,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],\nanaa [{{fullurl:{{FULLPAGENAME}}|action=sesa}} yɛ saa krataa yi]</span>.",
 	"userpage-userdoesnotexist-view": "Din ahyɛnsode yi \"$1\" nni nwuma mu.",
-	"note": "<strong>Fa to wo tirim:</strong>",
 	"previewnote": "<strong>Kae hunu sɛ wei yɛ nea worehwɛ ansa. \n</strong>\nWonnya nna wo nsesaeɛ no adi!",
 	"continue-editing": "Kɔ sesa",
 	"editing": "Sesa $1",

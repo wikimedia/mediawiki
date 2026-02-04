@@ -326,7 +326,6 @@
 	"sitejspreview": "'''Jukira nti JavaScript ono omulozakobulozi.'''<br />\n'''Tannakazibwa.'''",
 	"userinvalidconfigtitle": "'''Kulabula:''' Tewali endabika eyitibwa \"$1\".<br />\nEmpapula eza .css ne .js bamemba ze b'ekoledde, amannya ga zo ennukuta za mu<br />\nzonna ziteekwa okuba ntono, okugeza ''{{ns:user}}:Foo/vector.css'' so ssi ''{{ns:user}}:Foo/Vector.css''.",
 	"updated": "(Ebituukanisidwa)",
-	"note": "'''Okunnyonyola:'''",
 	"previewnote": "'''Kuno kugezaamubugeza; by'okoze tebinnakazibwa!'''",
 	"continue-editing": "Genda mu kifo ky'okulongoosa",
 	"previewconflict": "Okulagako kuno y'engeri ebiri w'owandikira gye binaafaananamu singa oba obikazizza.",

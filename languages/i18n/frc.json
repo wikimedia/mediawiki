@@ -323,7 +323,6 @@
 	"userjspreview": "'''Rappelez-vous que vous êtes juste après regarder ou tester votre code JavaScript qu'a pas encore été sauvé!'''",
 	"userinvalidconfigtitle": "'''Attention:''' Y a pas de style \"$1\".  Rappelez-vous qu'il faut user les petites lettres dans le sujet des pages personnelles avec les extensions .css et .js.\nExemple:  {{ns:user}}:Foo/vector.css (bon)  {{ns:user}}:Foo/Vector.css (mauvais)",
 	"updated": "(Renouvelé)",
-	"note": "'''Notez:'''",
 	"previewnote": "'''Ça ici, c'est juste une vue d'avance; les changements ont pas encore été sauvés!'''",
 	"previewconflict": "Cette vue d'avance montre le texte qu'est dans la boëte de changements en haut comme ça serait si vous choisirait de le sauver.",
 	"session_fail_preview": "'''Ça fait de la peine!  Votre changement pouvait pas être sauvé à cause d'une perte d'information de la session.  Assayez donc encore.  Si ça travaille pas toujours, assayez de déconnecter et reconnecter.'''",

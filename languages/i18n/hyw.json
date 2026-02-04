@@ -361,7 +361,6 @@
 	"userpage-userdoesnotexist-view": "«$1» անունով գրանցուած մասնակից չկայ։",
 	"clearyourcache": "<strong>Նշում՝</strong> Պահելէ ետք կրնայ ըլլալ որ պէտք ունենաք մաքրելու դիտարկիչին պաշարը (cache) փոփոխութիւնները կարենալ տեսնելու համար։\n* <strong>Firefox / Safari:</strong> Սեղմած պահել <em>Shiftը</em> մինչ կը սեղմէք <em>Reload</em>, կամ ալ սեղմել <em>Ctrl-F5</em> կամ <em>Ctrl-R</em> (<em>⌘-R</em> Macի վրայ)\n* <strong>Google Chrome:</strong> Սեղմել <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> Macի վրայ)\n* <strong>Internet Explorer:</strong> Սեղմած պահել<em>Ctrl</em> մինչ կը սեղմէք <em>Refresh</em>, կամ ալ սեղմել <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Երթալ <em>Menu → Settings</em> (<em>Opera → Preferences</em> Macի վրայ) եւ ապա <em>Privacy & security → մաքրել թերթատման տեղեկութիւնները → Պաշարի մէջ դրուած նկարներ եւ նիշքեր</em>.",
 	"updated": "(Թարմացուած)",
-	"note": "<strong>Ծանօթ.՝</strong>",
 	"previewnote": "<strong>Յիշել որ ասիկա միայն կանխաստուգում է. ձեր կատարած փոփոխութիւնները տակաւին չեն պահուած։<strong>",
 	"continue-editing": "Շարունակել խմբագրել",
 	"editing": "Կը խմբագրուի՝ $1 էջը",

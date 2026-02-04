@@ -323,7 +323,6 @@
 	"userpage-userdoesnotexist-view": "Amiḍan n unsmras \"$1\" ur ittuzmmim ɣ wiki ad.",
 	"clearyourcache": "<strong>Tinẓi:</strong> Dffir n ufsar n isnfal nnun, iml ad kʷn id iqqan ad tkʷmum i umaywul n uwib ad issugu turgist nns afad ad tẓrm isnfal.\n* <strong>Firefox / Safari:</strong> Ajj aḍaḍ nnk yudd i <em>Shift</em> taddt i <em>Reload</em>, nɣ tuddt i <em>Ctrl-F5</em> nɣ <em>Ctrl-R</em> (<em>⌘-R</em> ɣ Mac)\n* <strong>Google Chrome:</strong> Add i <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> ɣ Mac)\n* <strong>Edge:</strong> Ajj aḍaḍ nnk yudd i <em>Ctrl</em> taddt i <em>Refresh</em> dɣ nttat, nɣ tuddt i <em>Ctrl-F5</em>.",
 	"updated": "(Ittusdɣa)",
-	"note": "'''inẓi:'''",
 	"previewnote": "<strong>Ad ur tettut mas ɣayad iga ɣar yan usmaqql bac ad ẓrt manik ayga.</strong>\nIsnfiln nnk/m ur ta ttyuzmmimn!",
 	"continue-editing": "Ddu s udɣar n usnfl",
 	"editing": "Asnfl n $1",

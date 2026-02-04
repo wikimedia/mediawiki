@@ -347,7 +347,6 @@
 	"noarticletext-nopermission": "ꠅꠈꠘꠇꠥ ꠁ ꠚꠣꠔꠣꠔ ꠇꠥꠘꠥ ꠟꠦꠈꠣ ꠘꠣꠁ ⁕\nꠀꠚꠘꠦ ꠅꠁꠘ꠆ꠘ ꠚꠣꠔꠣꠞ ꠝꠣꠏꠦ [[Special:Search/{{PAGENAME}}|ꠁ ꠚꠣꠔꠣꠞ ꠡꠤꠞꠥꠘꠣꠝꠞꠦ ꠔꠥꠇꠣꠅꠇꠣ]] ꠨ ꠘꠣꠄ <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ꠅꠎꠣꠔꠤ ꠟꠉ ꠖꠦꠈꠇꠣ]</span> ꠨ ꠇꠤꠘꠔꠥꠇ ꠁ ꠚꠣꠔꠣ ꠔꠣꠁꠀꠞ ꠈꠞꠣꠞ ꠙꠣꠞꠝꠤꠡꠘ ꠀꠚꠘꠣꠞ ꠘꠣꠁ ⁕",
 	"userpage-userdoesnotexist-view": "ꠛꠦꠛꠀꠞꠇꠞ꠆ꠞꠣ ꠄꠇꠣꠃꠘ꠆ꠐ \"$1\" ꠢꠣꠞꠣꠁꠟ ꠘꠣꠄ",
 	"updated": "( ꠢꠦꠡꠤꠝꠦꠡꠤ )",
-	"note": "<strong>ꠘꠥꠐ ꠪</strong>",
 	"previewnote": "<strong>ꠁꠖ ꠞꠣꠈꠛꠣ ꠁꠇꠣꠘ ꠈꠣꠟꠤ ꠖꠦꠈꠣꠁꠛꠣꠞ ꠖꠣꠄ</strong>\nꠀꠙꠘꠣꠞ ꠛꠖꠟꠣꠁꠟ ꠁꠔꠣ ꠀꠛꠧ ꠛꠣꠞꠂꠍꠦꠘꠣ!",
 	"continue-editing": "ꠟꠦꠈꠣꠞ ꠎꠣꠉꠣꠔ ꠎꠣꠁꠘ",
 	"editing": "$1 ꠟꠦꠇꠤꠀꠞ",

@@ -393,7 +393,6 @@
 	"userpage-userdoesnotexist-view": "Akun ureueng ngui \"$1\" hana teudapeuta bak wiki nyoe.",
 	"clearyourcache": "<strong>Ceunatat:</strong> Lheueh geukeubah, droeneuh mungkén peureulèe neuliwat cache browser web keu neukalon nyang meuubah.\n* <strong>Firefox/Safari:</strong> Teugön ngön theun <em>Shift</em> sira neuteugön <em>Reload</em>, atawa teugön <em>Ctrl-F5</em> atawa <em>Ctrl-R</em> (<em>⌘-R</em> di Mac)\n* <strong>Google Chrome:</strong> Teugön <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> di Mac)\n* <strong>Internet Explorer / Edge:</strong> Theun <em>Ctrl</em> sira neuteugon <em>Refresh</em>, atawa teugön <em>Ctrl-F5</em>.\n* <strong>Opera:</strong> Teugon <em>Ctrl-F5</em>.",
 	"updated": "(Seubarô)",
-	"note": "'''Hareutoë:'''",
 	"previewnote": "'''Beu neuingat meunyo ôn nyoe goh lom neukeubah!'''",
 	"continue-editing": "Lanjut teumuléh",
 	"editing": "Peusaneut $1",

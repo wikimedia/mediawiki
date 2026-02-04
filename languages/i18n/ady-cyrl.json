@@ -333,7 +333,6 @@
 	"noarticletext": "Текст пари итыгоп мы нэкIубгъом.\n[[Special:Search/{{PAGENAME}}|Мы нэкIубгъом ыцIэ улъыхъун]] плъэкIыщт нэмыкI нэкIубгъомэ,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ехьылIэгъэ журналхэм къащыбгъотын],\nе [{{fullurl:{{FULLPAGENAME}}|action=edit}} мы нэкIубгъом уеIэзэн]</span>.",
 	"noarticletext-nopermission": "Текст пари итыгоп мы нэкIубгъом.\n[[Special:Search/{{PAGENAME}}|Мы нэкIубгъом ыцIэ улъыхъун]] плъэкIыщт нэмыкI нэкIубгъомэ, е\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ехьылIэгъэ журналхэм къащыбгъотын]</span>. Ау мы нэкIубгъор уублэнэу фитыныгъэ уиIэп.",
 	"userpage-userdoesnotexist-view": "Аккаунтэу \"$1\" регистрацие ыкIугъэп.",
-	"note": "<strong>Еплъ:</strong>",
 	"previewnote": "<strong>Зыщымыгъэгъупш, мыр ыпэтеплъэ къодый.</strong>\nУи еIэзэнхэр джыри дэгъэпытыхьагъэхэп.",
 	"continue-editing": "ЕIэзалъэ плIэмыем кIо",
 	"editing": "$1 и еӀэзэн",

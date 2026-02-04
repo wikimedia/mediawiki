@@ -380,7 +380,6 @@
 	"userjspreview": "'''Cuimhnigh nach bhfuil seo ach réamhamharc do JavaScript úsáideora\n- níor sábháladh é go fóill!'''",
 	"userinvalidconfigtitle": "'''Rabhadh:''' Níl an craiceann \"$1\" ann.\nCuimhnigh go n-úsáideann leathanaigh shaincheaptha .css agus .js teideal i gcás íochtar, m.sh. {{ns:user}}:Foo/vector.css i leapa {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Leasaithe)",
-	"note": "'''Tabhair faoi deara:'''",
 	"previewnote": "'''Cuimhnigh nach bhfuil ach réamhamharc sa leathanach seo.'''\nNíl do chuid athruithe sábháilte fós!",
 	"continue-editing": "Téigh go dtí an limistéar eagarthóireachta",
 	"previewconflict": "San réamhamharc seo, feachann tú an téacs dé réir an eagarbhosca\nthuas mar a taispeáinfear é má sábháilfear é.",

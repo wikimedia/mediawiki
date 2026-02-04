@@ -389,7 +389,6 @@
 	"sitejspreview": "<strong>Sonje ke w ap fè yon previzyalizasyon sou kòd JavaScript sa a.\nLi poko pibliye !</strong>",
 	"userinvalidconfigtitle": "<strong>Atansyon :</strong> estil « $1 » pa egziste.\nPaj pèsonalize ak ekstansyon .css epi .js yo ap gen tit nan lèt miniskil, pa egzanp {{ns:user}}:Foo/vector.css men pa {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Li gen dènye vèsyon sou li)",
-	"note": "'''Nòt :'''",
 	"previewnote": "<strong>Sonje ke sa se yon previzyalizasyon.</strong>\nChanjman ou yo poko pibliye !",
 	"continue-editing": "Ale nan zòn modifikasyon",
 	"previewconflict": "Previzyalizasyon sa a ap montre tèks ki nan bwat modifikasyon anwo a pou ou wè l jan l ap parèt si ou chwazi pibliye l.",

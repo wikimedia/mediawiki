@@ -342,7 +342,6 @@
 	"userjsyoucanpreview": "'''Ogeysiis:''' Isticmaal batoonka \"{{int:showpreview}}\" si aad u baroobeeso JavaScriptigaaga cusub intii aadan kaydin.",
 	"userjspreview": "'''Waa in aad ogaataa waxaa baroobeynoosaa/fiirinoysaa kaliya JavaScript'ka isticmaalahaaga.'''\n'''wali lama keydin!'''",
 	"updated": "(waa la opdate gareeyay)",
-	"note": "'''fiiro gaar ah:'''",
 	"previewnote": "'''Ogaaw kan waa horfiirin oo kaliya.'''\nBedelyadaada wali lama keydin!",
 	"session_fail_preview": "'''Waan ka xunahay! Kama hawlgalin karin wax ka badalkaaga sabab la xiriita luminta xogta kalfadhiga.\n\nWaxaa laga yaabaa in lagaa saaray. <strong> Fadlan xaqiiji inaad wali kujirto oo iskuday mar labaad </strong>.\nHadday wali shaqeyn weydo, isku day [[Special:UserLogout| ka bixida]] oo dib u soo gal, oo iska hubi in browsahaaga oggolaanayo cookies-ka boggan.",
 	"session_fail_preview_html": "Waan ka xunahay! Kama hawlgalin karin wax ka badalkaaga sabab la xiriita luminta xogta kalfadhiga.\n\n<em>Sababtoo ah {{SITENAME}} ayaa leh HTML ceyriin ah, muuqaallada horudhaca ah ayaa loo qariyey sidii looga digtoonaado weerarada JavaScript.</em>\n\n<strong>Hadii wax ka bedlkaan uu yahay mid xaq ah, fadlan markale isku day.</strong> Hadii aysan weli shaqaynin, is kuday inaad [[Special:UserLogout|ka baxdo]] oo markale soo gal, oo iska hubi in oo browsahaaga ogolaanaayo cookies ka boggaan.",
