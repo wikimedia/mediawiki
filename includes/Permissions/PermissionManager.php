@@ -1109,10 +1109,14 @@ class PermissionManager {
 				continue;
 			}
 			if ( !$this->userHasRight( $user, $right ) ) {
+				// The parameters are not used by the default message text,
+				// but they're available to be used in on-wiki overrides
 				$status->fatal( 'protectedpagetext', $right, $action, $levelMsg );
 			} elseif ( $this->restrictionStore->areRestrictionsCascading( $title ) &&
 				!$this->userHasRight( $user, 'protect' )
 			) {
+				// The parameters are not used by the default message text,
+				// but they're available to be used in on-wiki overrides
 				$status->fatal( 'protectedpagetext', 'protect', $action, $levelMsg );
 			}
 		}

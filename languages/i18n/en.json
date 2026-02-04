@@ -256,7 +256,7 @@
 	"viewsource-title": "View source for $1",
 	"actionthrottled": "Action throttled",
 	"actionthrottledtext": "As an anti-abuse measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit.\nPlease try again in a few minutes.",
-	"protectedpagetext": "This page has been protected ($3) to prevent editing or other actions.",
+	"protectedpagetext": "This page has been protected to prevent editing or other actions.",
 	"viewsourcetext": "You can view and copy the source of this page.",
 	"viewyourtext": "You can view and copy the source of <strong>your edits</strong> to this page.",
 	"protectedinterface": "This page provides interface text for the software on this wiki, and is protected to prevent abuse.\nTo add or change translations for all wikis, please use [https://translatewiki.net/ translatewiki.net], the MediaWiki localisation project.",
