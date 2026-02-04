@@ -49,17 +49,20 @@ class AccidentalRecreationConstraint implements IEditConstraint {
 				$username = $deletion->actor_name;
 				$comment = $this->commentStore->getComment( 'log_comment', $deletion )->text;
 
-				return EditPageStatus::newFatal(
-					$comment === ''
-						? 'edit-constraint-confirmrecreate-noreason'
-						: 'edit-constraint-confirmrecreate',
-					$username,
-					new ScalarParam( ParamType::PLAINTEXT, $comment ),
-					new MessageValue( $this->submitButtonLabel ),
-				)->setValue( self::AS_ARTICLE_WAS_DELETED );
+				return EditPageStatus::newGood( self::AS_ARTICLE_WAS_DELETED )
+					->setOK( false )
+					->warning(
+						$comment === ''
+							? 'edit-constraint-confirmrecreate-noreason'
+							: 'edit-constraint-confirmrecreate',
+						$username,
+						new ScalarParam( ParamType::PLAINTEXT, $comment ),
+						new MessageValue( $this->submitButtonLabel ),
+					);
 			} else {
-				return EditPageStatus::newFatal( 'deletedwhileediting' )
-					->setValue( self::AS_ARTICLE_WAS_DELETED );
+				return EditPageStatus::newGood( self::AS_ARTICLE_WAS_DELETED )
+					->setOK( false )
+					->warning( 'deletedwhileediting' );
 			}
 		}
 		return EditPageStatus::newGood();

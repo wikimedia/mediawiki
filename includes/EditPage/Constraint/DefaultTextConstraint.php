@@ -44,10 +44,9 @@ class DefaultTextConstraint implements IEditConstraint {
 		}
 
 		if ( !$this->allowBlank && $this->userProvidedText === $defaultText ) {
-			return EditPageStatus::newFatal(
-				'blankarticle',
-				MessageValue::new( $this->submitButtonLabel ),
-			)->setValue( self::AS_BLANK_ARTICLE );
+			return EditPageStatus::newGood( self::AS_BLANK_ARTICLE )
+				->setOK( false )
+				->warning( 'blankarticle', MessageValue::new( $this->submitButtonLabel ) );
 		}
 		return EditPageStatus::newGood();
 	}
