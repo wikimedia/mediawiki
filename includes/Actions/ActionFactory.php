@@ -94,6 +94,8 @@ class ActionFactory {
 				'CommentFormatter',
 				'LinkRenderer',
 				'MainConfig',
+				'TempUserCreator',
+				'AuthManager',
 			],
 		],
 		'mcrrestore' => [
@@ -106,6 +108,8 @@ class ActionFactory {
 				'CommentFormatter',
 				'LinkRenderer',
 				'MainConfig',
+				'TempUserCreator',
+				'AuthManager',
 			],
 		],
 		'raw' => [

@@ -18,6 +18,7 @@ use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Tests\ExpectCallbackTrait;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
@@ -35,6 +36,7 @@ use MediaWikiIntegrationTestCase;
  */
 class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 	use ExpectCallbackTrait;
+	use TempUserTestTrait;
 
 	private const PAGE_NAME = 'McrUndoTestPage';
 
@@ -67,6 +69,8 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		$commentFormatter = $services->getCommentFormatter();
 		$linkRenderer = $services->getLinkRenderer();
 		$config = $services->getMainConfig();
+		$tempUserCreator = $services->getTempUserCreator();
+		$authManager = $services->getAuthManager();
 		return new class(
 			$article,
 			$context,
@@ -75,7 +79,9 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			$revisionRenderer,
 			$commentFormatter,
 			$linkRenderer,
-			$config
+			$config,
+			$tempUserCreator,
+			$authManager
 		) extends McrUndoAction {
 			public function show() {
 				// Instead of trying to actually display anything, just initialize the class.
@@ -633,5 +639,60 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		$editPage = new EditPage( $article );
 		$editPage->importFormData( $request );
 		$editPage->attemptSave( $result );
+	}
+
+	/**
+	 * Test that McrUndoAction creates a temporary account when temp accounts are enabled
+	 * and the user is anonymous.
+	 */
+	public function testMcrUndoActionWithTempUser() {
+		$this->enableAutoCreateTempUser();
+
+		$revisionIds = $this->setUpPageForTesting( [ '1', '2' ] );
+
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $this->getServiceContainer()->getUserFactory()->newAnonymous() );
+		$article = Article::newFromTitle( Title::newFromText( self::PAGE_NAME ), $context );
+
+		$request = new FauxRequest( [
+			'undoafter' => $revisionIds[0],
+			'undo' => $revisionIds[1],
+			'wpSave' => '',
+		] );
+		$context->setRequest( $request );
+		$context->setTitle( $article->getTitle() );
+
+		$outputPage = $this->createMock( OutputPage::class );
+		$context->setOutput( $outputPage );
+
+		$services = $this->getServiceContainer();
+		$mcrUndoAction = new class(
+			$article,
+			$context,
+			$services->getReadOnlyMode(),
+			$services->getRevisionLookup(),
+			$services->getRevisionRenderer(),
+			$services->getCommentFormatter(),
+			$services->getLinkRenderer(),
+			$services->getMainConfig(),
+			$services->getTempUserCreator(),
+			$services->getAuthManager()
+		) extends McrUndoAction {
+			public function show() {
+				$this->checkCanExecute( $this->getUser() );
+			}
+		};
+
+		$mcrUndoAction->show();
+		$status = $mcrUndoAction->onSubmit( [] );
+
+		$this->assertStatusOK( $status, 'Undo should succeed' );
+
+		$title = Title::newFromText( self::PAGE_NAME );
+		$revisionLookup = $services->getRevisionLookup();
+		$latestRev = $revisionLookup->getRevisionByTitle( $title );
+		$revisionUserIdentity = $latestRev->getUser();
+		$revisionUser = $services->getUserFactory()->newFromUserIdentity( $revisionUserIdentity );
+		$this->assertTrue( $revisionUser->isTemp(), 'Revision should be made by a temp user' );
 	}
 }

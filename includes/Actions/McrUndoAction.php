@@ -7,6 +7,7 @@
 
 namespace MediaWiki\Actions;
 
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\CommentStore\CommentStoreComment;
@@ -34,6 +35,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
@@ -72,6 +74,8 @@ class McrUndoAction extends FormAction {
 		private readonly CommentFormatter $commentFormatter,
 		private readonly LinkRenderer $linkRenderer,
 		Config $config,
+		private readonly TempUserCreator $tempUserCreator,
+		private readonly AuthManager $authManager,
 	) {
 		parent::__construct( $article, $context );
 		$this->useRCPatrol = $config->get( MainConfigNames::UseRCPatrol );
@@ -113,13 +117,14 @@ class McrUndoAction extends FormAction {
 				[ 'readonlywarning', $this->readOnlyMode->getReason() ]
 			);
 		} elseif ( $this->context->getUser()->isAnon() ) {
-			// Note: EditPage has a special message for temp user creation intent here.
-			// But McrUndoAction doesn't support user creation.
+			$shouldAutoCreateTempUser = $this->tempUserCreator->shouldAutoCreate(
+				$this->getAuthority(), 'edit'
+			);
 			if ( !$this->getRequest()->getCheck( 'wpPreview' ) ) {
 				$out->addHTML(
 					Html::warningBox(
 						$out->msg(
-							'anoneditwarning',
+							$shouldAutoCreateTempUser ? 'autocreate-edit-warning' : 'anoneditwarning',
 							// Log-in link
 							SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
 								'returnto' => $this->getTitle()->getPrefixedDBkey()
@@ -135,7 +140,9 @@ class McrUndoAction extends FormAction {
 			} else {
 				$out->addHTML(
 					Html::warningBox(
-						$out->msg( 'anonpreviewwarning' )->parse(),
+						$out->msg(
+							$shouldAutoCreateTempUser ? 'autocreate-preview-warning' : 'anonpreviewwarning'
+						)->parse(),
 						'mw-anon-preview-warning'
 					)
 				);
@@ -371,7 +378,19 @@ class McrUndoAction extends FormAction {
 			return false;
 		}
 
-		$updater = $this->getWikiPage()->newPageUpdater( $this->context->getUser() );
+		$user = $this->context->getUser();
+		$request = $this->context->getRequest();
+
+		if ( $this->tempUserCreator->shouldAutoCreate( $user, 'edit' ) ) {
+			$status = $this->tempUserCreator->create( null, $request );
+			if ( !$status->isOK() ) {
+				return $status;
+			}
+			$user = $status->getUser();
+			$this->authManager->setRequestContextUserFromSessionUser();
+		}
+
+		$updater = $this->getWikiPage()->newPageUpdater( $user );
 		$curRev = $updater->grabParentRevision();
 		if ( !$curRev ) {
 			throw new ErrorPageError( 'mcrundofailed', 'nopagetext' );
