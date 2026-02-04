@@ -10,7 +10,7 @@ use Wikimedia\ParamValidator\TypeDef;
 use Wikimedia\ParamValidator\ValidationException;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampException;
-use Wikimedia\Timestamp\TimestampFormat as TS;
+use Wikimedia\Timestamp\TimestampFormat;
 
 /**
  * Type definition for timestamp types
@@ -33,36 +33,37 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
 class TimestampDef extends TypeDef {
 
 	/**
-	 * (string|int) Timestamp format to return from validate()
+	 * (TimestampFormat|string|int) Timestamp format to return from validate()
 	 *
 	 * Values include:
 	 *  - 'ConvertibleTimestamp': A ConvertibleTimestamp object.
 	 *  - 'DateTime': A PHP DateTime object
-	 *  - One of ConvertibleTimestamp's TS::* constants.
+	 *  - A value from the {@link TimestampFormat} enum.
+	 *  - (deprecated) One of ConvertibleTimestamp's TS_* constants.
 	 *
 	 * This does not affect the format returned by stringifyValue().
 	 */
 	public const PARAM_TIMESTAMP_FORMAT = 'param-timestamp-format';
 
-	/** @var string|int */
+	/** @var TimestampFormat|string|int */
 	protected $defaultFormat;
 
-	/** @var int */
+	/** @var TimestampFormat|int */
 	protected $stringifyFormat;
 
 	/**
 	 * @param Callbacks $callbacks
 	 * @param array $options Options:
-	 *  - defaultFormat: (string|int) Default for PARAM_TIMESTAMP_FORMAT.
+	 *  - defaultFormat: (TimestampFormat|string|int) Default for PARAM_TIMESTAMP_FORMAT.
 	 *    Default if not specified is 'ConvertibleTimestamp'.
-	 *  - stringifyFormat: (int) Format to use for stringifyValue().
-	 *    Default is TS::ISO_8601.
+	 *  - stringifyFormat: (TimestampFormat|int) Format to use for stringifyValue().
+	 *    Default is TimestampFormat::ISO_8601.
 	 */
 	public function __construct( Callbacks $callbacks, array $options = [] ) {
 		parent::__construct( $callbacks );
 
 		$this->defaultFormat = $options['defaultFormat'] ?? 'ConvertibleTimestamp';
-		$this->stringifyFormat = $options['stringifyFormat'] ?? TS::ISO_8601;
+		$this->stringifyFormat = $options['stringifyFormat'] ?? TimestampFormat::ISO_8601;
 
 		if ( !$this->isSpecialFormat( $this->defaultFormat ) && !$this->isValidFormat( $this->defaultFormat ) ) {
 			throw new InvalidArgumentException( 'Invalid value for $options[\'defaultFormat\']' );
@@ -81,8 +82,7 @@ class TimestampDef extends TypeDef {
 		$ts = new ConvertibleTimestamp();
 		try {
 			$ts->getTimestamp( $format );
-		} catch ( TimestampException | InvalidArgumentException ) {
-			// Throws on invalid format. TimestampException up to 4.x, InvalidArgumentException from 5.x
+		} catch ( InvalidArgumentException ) {
 			return false;
 		}
 		return true;
@@ -96,6 +96,7 @@ class TimestampDef extends TypeDef {
 			$value = 'now';
 		}
 
+		/** @var TimestampFormat|string|int $format */
 		$format = $settings[self::PARAM_TIMESTAMP_FORMAT] ?? $this->defaultFormat;
 
 		try {
@@ -110,17 +111,12 @@ class TimestampDef extends TypeDef {
 			);
 		}
 
-		switch ( $format ) {
-			case 'ConvertibleTimestamp':
-				return $timestampObj;
-
-			case 'DateTime':
-				// Eew, no getter.
-				return $timestampObj->timestamp;
-
-			default:
-				return $timestamp;
-		}
+		return match ( $format ) {
+			'ConvertibleTimestamp' => $timestampObj,
+			// Eew, no getter.
+			'DateTime' => $timestampObj->timestamp,
+			default => $timestamp,
+		};
 	}
 
 	/** @inheritDoc */
