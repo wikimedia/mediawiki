@@ -213,6 +213,9 @@
 			"wikimedia/composer-merge-plugin": true,
 			"composer/installers": true,
 			"dealerdirect/phpcodesniffer-composer-installer": true
+		},
+		"audit": {
+			"block-insecure": false
 		}
 	},
 	"extra": {
