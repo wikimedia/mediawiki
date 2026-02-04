@@ -12,7 +12,8 @@
 			"Rachmat04",
 			"Rex",
 			"Veracious",
-			"Penyuwangi"
+			"Penyuwangi",
+			"HyperAnd"
 		]
 	},
 	"exif-imagewidth": "Lebar",
@@ -406,6 +407,10 @@
 	"exif-exposurelockused-true": "Ya",
 	"exif-exposurelockused-false": "Tidak",
 	"exif-poseheadingdegrees": "Kepala pose (derajat)",
+	"exif-posepitchdegrees": "Anggul (derajat)",
+	"exif-poserolldegrees": "Guling (derajat)",
+	"exif-initialviewpitchdegrees": "Anggul tampilan awal (derajat)",
+	"exif-initialviewrolldegrees": "Guling tampilan awal (derajat)",
 	"exif-initialhorizontalfovdegrees": "Ruang pandang awal (derajat horizontal)",
 	"exif-initialverticalfovdegrees": "Ruang pandang awal (derajat vertikal)",
 	"exif-sourcephotoscount": "Banyak foto sumber",

@@ -8,7 +8,8 @@
 			"捍粵者",
 			"Peterxy12",
 			"Taiwania Justo",
-			"臺灣象象"
+			"臺灣象象",
+			"LowensteinYang"
 		]
 	},
 	"rest-prefix-mismatch": "請求的路徑（$1）不在REST API的基本路徑（$2）內",

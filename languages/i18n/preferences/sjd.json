@@ -70,6 +70,7 @@
 	"underline-default": "Оаннӭ браузэр оа̄ссмужэтҍ",
 	"underline-never": "Никуэссь",
 	"underline-always": "Пай",
+	"tog-showhiddencats": "Вӯзьхэ пя̄ҋҋтма категорьятҍ",
 	"prefs-editing": "Воа̄йхэмушш",
 	"prefs-advancedediting": "Э̄ххтса оа̄ссмуж",
 	"prefs-editor": "Воа̄йхэмка̄ввьн",
@@ -97,6 +98,7 @@
 	"tog-watchlisthideliu": "Пе̄ҋҋтэ суаӈӈма оаннҍе воа̄йхэзэтҍ кӣчнэм лыстэсьт",
 	"prefs-searchoptions": "Озант",
 	"prefs-searchmisc": "Э̄ххтса",
+	"prefs-advancedsearchoptions": "Коамьтна оа̄ссмуж",
 	"prefs-misc": "Мудта оа̄ссмуж",
 	"prefs-reset-confirm": "Ныдтҍ, мунн та̄та мӯн оа̄ссмужэтҍ вуэлльктэ."
 }

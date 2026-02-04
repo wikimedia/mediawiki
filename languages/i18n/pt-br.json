@@ -163,7 +163,8 @@
 			"ACheJu",
 			"Rkieferbaum",
 			"Sixaxis",
-			"Erol"
+			"Erol",
+			"AJurno (WMB)"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoria|Categorias}}",
@@ -1598,7 +1599,7 @@
 	"rcshowhidecategorization-hide": "Esconder",
 	"rclinks": "Exibir as $1 mudanças recentes feitas nos últimos $2 dias",
 	"diff": "dif",
-	"hist": "hist",
+	"hist": "histórico",
 	"hide": "Ocultar",
 	"show": "Exibir",
 	"minoreditletter": "m",

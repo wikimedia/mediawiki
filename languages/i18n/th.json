@@ -46,7 +46,8 @@
 			"จักรกฤช วงศ์สระหลวง (Jakkrit Vongsraluang) / PaePae",
 			"วรากร อึ้งวิเชียร (Varakorn Ungvichian)",
 			"아라",
-			"Wutkh"
+			"Wutkh",
+			"YUMANEKO"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|หมวดหมู่}}",
@@ -1010,6 +1011,8 @@
 	"linterror-deletable-table-tag": "แท็กตารางที่ควรลบ",
 	"linterror-duplicate-ids": "ID ซ้ำกัน",
 	"linterror-empty-heading": "ส่วนหัวว่างเปล่า",
+	"linterror-fostered": "เนื้อหาที่ถูกจัดวางใหม่",
+	"linterror-fostered-transparent": "เนื้อหาขึ้นกับโครงสร้างบริบทที่ถูกจัดวางใหม่",
 	"linterror-html5-misnesting": "Misnesting (ขณะนี้ไม่สามารถใช้ได้อีกแล้ว)",
 	"linterror-inline-media-caption": "คำบรรยายที่มองไม่เห็น",
 	"linterror-large-tables": "ตารางขนาดใหญ่ที่ทำให้การแสดงผลบนอุปกรณ์เคลื่อนที่เสียหาย",
@@ -1021,6 +1024,7 @@
 	"linterror-multi-colon-escape": "การหลีกเครื่องหมายทวิภาคหลายตัว",
 	"linterror-multiline-html-table-in-list": "ตาราง HTML5 แบบหลายบรรทัดภายในรายการ",
 	"linterror-multiple-unclosed-formatting-tags": "มีแท็กจัดรูปแบบหลายแท็กยังไม่ถูกปิดในหน้า",
+	"linterror-night-mode-unaware-background-color": "สไตล์ inline สำหรับสีพื้นหลังต้องระบุสีข้อความ",
 	"linterror-obsolete-tag": "แท็ก HTML ที่เลิกใช้",
 	"linterror-pwrap-bug-workaround": "บั๊กการถูกคลุมด้วยแท็กย่อหน้า",
 	"linterror-self-closed-tag": "แท็กปิดตัวเอง",
@@ -3238,6 +3242,8 @@
 	"version-hooks": "ฮุก",
 	"version-parser-extensiontags": "ป้ายระบุส่วนขยายตัวแจงส่วน",
 	"version-parser-function-hooks": "ฮุกที่มีฟังก์ชันตัวแจงส่วน",
+	"version-parser-function-hooks-parsoid": "พาร์ซอยด์เท่านั้น",
+	"version-parsoid-modules": "โมดูลส่วนขยายพาร์ซอยด์",
 	"version-hook-name": "ชื่อฮุก",
 	"version-hook-subscribedby": "สนับสนุนโดย",
 	"version-no-ext-name": "[ไม่มีชื่อ]",

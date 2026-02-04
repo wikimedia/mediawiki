@@ -87,7 +87,7 @@
 	"prefs-user-restoreprefs-info": "すべての初期設定を復元する（すぺてのセクションが対象です）",
 	"prefs-i18n": "国際化",
 	"yourlanguage": "使用言語:",
-	"yourgender": "表示に使用する性別",
+	"yourgender": "言及にはどの性別を選べばよいですか？",
 	"gender-notknown": "この人はウィキページを編集します （性別不詳）",
 	"gender-unknown": "このソフトウェアがあなたに言及するときは、できるだけ性別に依存しない言葉を使用します。",
 	"gender-female": "この女性はウィキページを編集します",

@@ -1268,7 +1268,7 @@
 	"statistics-header-users": "واپرائيندڙن جا انگ-اکر",
 	"statistics-header-hooks": "ٻيا انگ-اکر",
 	"statistics-articles": "موادي صفحا",
-	"statistics-articles-desc": "وڌيڪ تفصيل لاءِ [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethodمضمونن جي ڳڻپ دستاويزسازي] ڏانھن وڃو",
+	"statistics-articles-desc": "تفصيل لاءِ [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod مضمون ڳڻپ دستاويزسازي] ڏانھن وڃو.",
 	"statistics-pages": "صفحا",
 	"statistics-pages-desc": "وڪيءَ ۾ سڀ صفحا، بشمول بحث صفحا، چوريل، وغيره.",
 	"statistics-files": "چاڙھيل فائيل",
