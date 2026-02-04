@@ -454,10 +454,7 @@ because of Phabricator reports.
   - Logging related pager: MediaWiki\Pager => MediaWiki\Logging\Pager
     - LogPager
   - Mail related hooks: MediaWiki\Hook => MediaWiki\Mail\Hook
-    - AbortTalkPageEmailNotificationHook
     - AlternateUserMailerHook
-    - SendWatchlistEmailNotificationHook
-    - UpdateUserMailerFormattedPageStatusHook
     - UserMailerChangeReturnPathHook
     - UserMailerSplitToHook
     - UserMailerTransformContentHook
@@ -554,7 +551,6 @@ because of Phabricator reports.
   - RCFeed related hook: MediaWiki\Hook => MediaWiki\RCFeed\Hook
     - IRCLineURLHook
   - RecentChanges related hooks: MediaWiki\Hook => MediaWiki\RecentChanges\Hook
-    - AbortEmailNotificationHook
     - ChangesListInitRowsHook
     - ChangesListInsertArticleLinkHook
     - ChangesListInsertLogEntryHook
