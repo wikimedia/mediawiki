@@ -22,13 +22,19 @@
 	.mw-rcfilters-ui-filterTagMultiselectWidget-mobile-view {
 		width: 100%;
 		margin-top: -1px;
+		display: flex;
 
 		& .oo-ui-buttonWidget {
-			width: 50%;
+			flex: 1;
 
 			& .oo-ui-buttonElement-button {
 				width: 100%;
 				text-align: initial;
+				border-right-width: 0;
+			}
+
+			&:last-child .oo-ui-buttonElement-button {
+				border-right-width: @border-width-base;
 			}
 		}
 	}
