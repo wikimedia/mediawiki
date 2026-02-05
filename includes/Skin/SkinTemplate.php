@@ -428,7 +428,9 @@ class SkinTemplate extends Skin {
 			if ( $includeNotifications ) {
 				$contentNavigation = $this->buildContentNavigationUrlsInternal();
 
-				$personal_urls += $contentNavigation['notifications'];
+				if ( isset( $contentNavigation['notifications'] ) ) {
+					$personal_urls += $contentNavigation['notifications'];
+				}
 			}
 
 			$usertalkUrlDetails = $this->makeTalkUrlDetails( $this->userpage );
