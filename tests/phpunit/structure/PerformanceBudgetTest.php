@@ -125,7 +125,7 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 		$warning = "Total size of $moduleType modules is " . $sizeKb . "kB ( $sizeKbUncompressed kB uncompressed).\n" .
 			"If you are adding code on page load, please reduce $moduleType that you are loading on page load.\n" .
 			"Read https://www.mediawiki.org/wiki/Performance_budgeting for more context on this number.\n\n";
-		print( $warning );
+		$this->addEndOfRunTestWarning( $warning );
 	}
 
 	/**

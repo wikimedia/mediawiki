@@ -216,6 +216,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private static WeakMap $curTestClasses;
 	private static WeakMap $activeSchemaOverrides;
 
+	/** @var string[] */
+	private array $warningsToPrint = [];
+
 	/**
 	 * @stable to call
 	 * @param string|null $name
@@ -819,6 +822,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// This has to happen after restoreMwServices(), as it depends on various services actually
 		// working and not being poorly mocked, e.g. SessionManager.
 		$user->clearInstanceCache( $user->mFrom );
+
+		// Output any test warnings at the end of the run, so they're visible but not disruptive.
+		if ( $this->warningsToPrint ) {
+			print( "Some tests raised warnings:\n" );
+			foreach ( $this->warningsToPrint as $warning ) {
+				print( $warning );
+			}
+		}
 	}
 
 	/**
@@ -2769,5 +2780,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 					"Error for job of type {$jobStatus['type']}" );
 			}
 		}
+	}
+
+	protected function addEndOfRunTestWarning( string $message ): void {
+		$this->warningsToPrint[] = $message;
 	}
 }
