@@ -2190,6 +2190,8 @@
 	"watchlist-expiring-days-full-text": "{{PLURAL:$1|$1 gün}} sonra izləmə siyahınızdan çıxarılacaq",
 	"watchlist-expiry-hours-left": "Bir neçə saat qalıb",
 	"watchlist-expiring-hours-full-text": "İzləmə siyahınızda bir neçə saat qalıb",
+	"watchlist-expires-in": "$1 qalıb",
+	"watchlist-expires-never": "heç vaxt",
 	"wlheader-enotif": "E-poçt bildirişi aktivdir.",
 	"wlheader-showupdated": "Sizin son ziyarətinizdən sonra edilən dəyişikliklər '''qalın şriftlə''' göstərilmişdir.",
 	"wlnote": "Aşağıda $3 tarixi və saat $4 üçün olan son {{PLURAL:$2|bir saatda|<strong>$2</strong> saatda}} edilmiş {{PLURAL:$1|son bir dəyişiklik|son <strong>$1</strong> dəyişiklik}} göstərilmişdir.",

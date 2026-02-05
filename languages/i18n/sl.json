@@ -2166,6 +2166,7 @@
 	"watchlist-expiring-days-full-text": "Še $1 {{PLURAL:$1|dan|dneva|dni}} na vašem nadzornem seznamu",
 	"watchlist-expiry-hours-left": "Še nekaj ur",
 	"watchlist-expiring-hours-full-text": "Še nekaj ur na vašem nadzornem seznamu",
+	"watchlist-expires-in": "Še $1 {{PLURAL:$1|dan|dneva|dni}} na tvojem spisku nadzorov",
 	"wlheader-enotif": "Obveščanje po e-pošti je omogočeno.",
 	"wlheader-showupdated": "Strani, spremenjene od vašega zadnjega obiska, so prikazane <strong>krepko</strong>.",
 	"wlnote": "{{PLURAL:$1|Navedena je zadnja|Navedeni sta zadnji|Navedene so zadnje|Navedenih je zadnjih}} <strong>$1</strong> {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb}} v {{PLURAL:$2|zadnji <strong>$2</strong> uri|zadnjih <strong>$2</strong> urah}}, od $3, $4.",

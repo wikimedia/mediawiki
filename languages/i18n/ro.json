@@ -2168,6 +2168,7 @@
 	"watchlist-expiring-days-full-text": "{{PLURAL:$1|o zi|$1 zile|$1 de zile}} rămase până la scoaterea din lista de pagini urmărite",
 	"watchlist-expiry-hours-left": "Câteva ore rămase",
 	"watchlist-expiring-hours-full-text": "Câteva ore rămase în lista de pagini urmărite",
+	"watchlist-expires-in": "{{PLURAL:$1|o zi|$1 zile|$1 de zile}} rămase până la scoaterea din lista de pagini urmărite",
 	"wlheader-enotif": "Notificarea prin e-mail este activată.",
 	"wlheader-showupdated": "Paginile care au fost modificate după ultima dumneavoastră vizită sunt afișate '''îngroșat'''.",
 	"wlnote": "Mai jos se află {{PLURAL:$1|ultima schimbare|ultimele <strong>$1</strong> schimbări|ultimele <strong>$1</strong> de schimbări}} din {{PLURAL:$2|ultima oră|ultimele <strong>$2</strong> ore|ultimele <strong>$2</strong> de ore}}, așa cum era situația la $3, $4.",

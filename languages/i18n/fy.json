@@ -1307,6 +1307,7 @@
 	"watchlist-details": "Op jo Folchlist {{PLURAL:$1|stiet $1 side|steane $1 siden}} (plus oerlissiden).",
 	"watchlist-expiring-days-full-text": "Noch {{PLURAL:$1|1 dei|$1 dagen}} op jo folchlist",
 	"watchlist-expiring-hours-full-text": "Noch in pear oeren op jo folchlist",
+	"watchlist-expires-in": "Noch {{PLURAL:$1|$1 dei|$1 dagen}} op jo folchlist",
 	"wlheader-enotif": "Melding oer de e-mail is ynskeakele.",
 	"wlheader-showupdated": "Siden dy't wizige binne nei't jo dy it lêst besocht hawwe, wurde <strong>fet</strong> werjûn.",
 	"wlnote": "Hjirûnder {{PLURAL:$1|stiet de lêste feroaring|steane de lêste <strong>$1</strong> feroarings}} fan 'e lêste {{PLURAL:$2|oere|<strong>$2</strong> oeren}}, sûnt $3, $4.",

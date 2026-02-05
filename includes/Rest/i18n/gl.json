@@ -288,5 +288,6 @@
 	"rest-endpoint-summ-post-page": "Crear a páxina",
 	"rest-endpoint-summ-post-transform-wikitext-to-lint": "Devolver os erros do analizador sintáctico do texto wiki",
 	"rest-endpoint-summ-post-transform-wikitext-to-html": "Converter o texto wiki en HTML",
-	"rest-endpoint-summ-post-transform-html-to-wikitext": "Converter o HTML en texto wiki"
+	"rest-endpoint-summ-post-transform-html-to-wikitext": "Converter o HTML en texto wiki",
+	"rest-requestheader-desc-acceptlanguage": "A lingua natural e a configuración rexional de preferencia do cliente"
 }

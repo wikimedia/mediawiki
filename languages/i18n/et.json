@@ -2173,6 +2173,7 @@
 	"watchlist-expiring-days-full-text": "Veel {{PLURAL:$1|1 päev|$1 päeva}} jälgimisloendis",
 	"watchlist-expiry-hours-left": "Mõni tund jäänud",
 	"watchlist-expiring-hours-full-text": "Veel mõni tund jälgimisloendis",
+	"watchlist-expires-in": "Veel {{PLURAL:$1|$1 päev|$1 päeva}} sinu jälgimisloendis",
 	"wlheader-enotif": "E-posti teel teavitamine on lubatud.",
 	"wlheader-showupdated": "Leheküljed, mida on muudetud peale sinu viimast külastust, on '''rasvases kirjas'''.",
 	"wlnote": "Allpool on {{PLURAL:$1|viimane muudatus|viimased <strong>$1</strong> muudatust}} viimase {{PLURAL:$2|tunni|<strong>$2</strong> tunni}} jooksul seisuga $3, kell $4.",

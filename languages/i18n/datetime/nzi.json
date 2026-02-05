@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Valentine Badu"
+			"Valentine Badu",
+			"Yaw tuba"
 		]
 	},
 	"january": "Siane Gyɛne",
@@ -47,12 +48,12 @@
 	"friday": "Yalɛ",
 	"saturday": "Folɛ",
 	"sunday": "Molɛ",
-	"mon": "Mon",
-	"tue": "Tue",
-	"wed": "Wed",
-	"thu": "Thu",
-	"fri": "Fri",
+	"mon": "Kenlezile",
+	"tue": "Dwɛkɛ",
+	"wed": "Maanle",
+	"thu": "Kule",
+	"fri": "Yalɛ",
 	"sat": "Sat",
-	"sun": "Sun",
+	"sun": "Molɛ",
 	"duration-days": "$1 {{PLURAL:$1|kenle}}"
 }

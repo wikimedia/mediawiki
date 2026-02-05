@@ -2223,6 +2223,7 @@
 	"watchlist-expiring-days-full-text": "Còn $1 ngày nữa trong danh sách theo dõi của bạn",
 	"watchlist-expiry-hours-left": "Còn vài tiếng nữa",
 	"watchlist-expiring-hours-full-text": "Một vài giờ còn lại trong danh sách theo dõi của bạn",
+	"watchlist-expires-in": "Còn $1 ngày nữa trong danh sách theo dõi của bạn",
 	"wlheader-enotif": "Đã bật thông báo qua thư điện tử.",
 	"wlheader-showupdated": "Các trang đã được thay đổi kể từ lần cuối bạn xem được in <strong>đậm</strong>.",
 	"wlnote": "Dưới đây là {{PLURAL:$1|thay đổi duy nhất|<strong>$1</strong> thay đổi gần nhất}} trong {{PLURAL:$2|giờ|<strong>$2</strong> giờ}} qua, tính tới $3, $4.",

@@ -2202,6 +2202,7 @@
 	"watchlistlabels-table-description": "As etiquetas gardadas móstranse a continuación.",
 	"watchlistlabels-table-header": "Etiquetas",
 	"watchlistlabels-table-new-link": "+ Etiqueta nova",
+	"watchlistlabels-table-delete-link": "Eliminar",
 	"watchlistlabels-table-col-name": "Nome",
 	"watchlistlabels-table-col-count": "Elementos",
 	"watchlistlabels-table-col-actions": "Accións",

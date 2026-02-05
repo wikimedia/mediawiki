@@ -109,6 +109,7 @@
 	"rest-param-desc-source": "Seiteninhalt im durch die Eigenschaft content_model angegebenen Format",
 	"rest-param-desc-comment": "Grund für die Bearbeitung der Seite. Um den Kommentar vom Server ausfüllen zu lassen, verwende „comment: null“.",
 	"rest-param-desc-contentmodel": "Seiteninhaltsformat: Wikitext (Standard), CSS, JavaScript, JSON oder Text.",
+	"rest-param-desc-create-title": "Seitentitel. Besuche die einzelnen Wikis, um Informationen zu Richtlinien bezüglich des Formats und der Zeichen von Seitentiteln zu erhalten.",
 	"rest-param-desc-update-source": "Seiteninhalt im durch die Eigenschaft content_model angegebenen Format",
 	"rest-param-desc-compare-from": "Versionskennung, die als Basis für den Vergleich verwendet wird",
 	"rest-param-desc-compare-from-sections": "Präprozessorabschnitte für die Version, ohne Template-Erweiterung",
@@ -218,6 +219,7 @@
 	"rest-endpoint-desc-get-revision-id": "Gibt Informationen zu einer Version zurück, einschließlich der Versionsquelle, normalerweise im Wikitext.",
 	"rest-endpoint-desc-get-revision-id-html": "Gibt den Inhalt einer Version in HTML zurück.",
 	"rest-endpoint-desc-get-revision-id-with-html": "Gibt Informationen zu einer Version zurück, einschließlich des Versionsinhalts in HTML.",
+	"rest-endpoint-desc-get-revision-id-lint": "Gibt die Lint-Fehler einer Version zurück.",
 	"rest-endpoint-desc-get-revision-id-bare": "Gibt Informationen zu einer Version zurück.",
 	"rest-endpoint-desc-get-page-history": "Informationen über die letzten Versionen auf einer Seite, in Segmenten von 20 Versionen, angefangen mit der letzten Version, zurückgeben. Die Antwort enthält URLs, um die nächsten ältesten, nächsten neuesten und neuesten Versionssegmente zu erhalten, sodass duu durch die Versionsgeschichte scrollen können.",
 	"rest-endpoint-desc-get-page-history-counts": "Gibt Daten zur Versionsgeschichte einer Seite zurück, z. B. die Anzahl der Bearbeitungen durch verschiedene Benutzertypen. Weitere Daten zur Interaktion von Lesern und Benutzern mit Wikimedia-Projekten findest du in der [Analytics-API](https://doc.wikimedia.org/generated-data-platform/aqs/analytics-api/).",
@@ -239,6 +241,8 @@
 	"rest-property-desc-linterror-params": "Zusätzliche Informationen speziell zum Lint-Fehlertyp",
 	"rest-endpoint-summ-get-page-history": "Versionsgeschichte der Seite abrufen",
 	"rest-endpoint-summ-get-revision-compare": "Versionen vergleichen",
+	"rest-endpoint-summ-get-revision-id-html": "Holt HTML der Version",
+	"rest-endpoint-summ-get-revision-id-lint": "Holt Lint-Fehler der Version",
 	"rest-endpoint-summ-get-revision-id-bare": "Version abrufen",
 	"rest-endpoint-summ-get-search-page": "Seiten suchen",
 	"rest-endpoint-summ-get-search-title": "Seitentitel automatisch vervollständigen",
@@ -255,5 +259,5 @@
 	"rest-endpoint-summ-post-transform-wikitext-to-lint": "Gibt Lint-Fehler für Wikitext zurück",
 	"rest-endpoint-summ-post-transform-wikitext-to-html": "Konvertiert Wikitext in HTML",
 	"rest-endpoint-summ-post-transform-html-to-wikitext": "Konvertiert HTML in Wikitext",
-	"rest-requestheader-desc-acceptlanguage": "Die vom Client bevorzugte natürliche Sprache und Ländereinstellung"
+	"rest-requestheader-desc-acceptlanguage": "Die vom Client bevorzugte natürliche Sprache und Ländereinstellung."
 }

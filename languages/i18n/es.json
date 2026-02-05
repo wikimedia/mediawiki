@@ -2391,6 +2391,7 @@
 	"watchlist-expiring-days-full-text": "Le {{PLURAL:$1|queda 1 día|quedan $1 días}} en tu lista de seguimiento",
 	"watchlist-expiry-hours-left": "Faltan unas horas",
 	"watchlist-expiring-hours-full-text": "Le quedan unas horas en tu lista de seguimiento",
+	"watchlist-expires-in": "Queda{{plural:$1|&#32;$1 día|n $1 días}} en tu lista de seguimiento",
 	"wlheader-enotif": "La notificación por correo está activada.",
 	"wlheader-showupdated": "Las páginas modificadas desde tu última visita aparecen en <strong>negrita</strong>.",
 	"wlnote": "A continuación {{PLURAL:$1|se muestra el último cambio|se muestran los últimos <strong>$1</strong> cambios}} en {{PLURAL:$2|la última hora|las últimas <strong>$2</strong> horas}} desde las $4 del $3.",

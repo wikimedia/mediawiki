@@ -738,6 +738,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-comment": "Dodaje komentarz do edycji. Jeśli komentarz został trwale usunięty (revision delete), zwrócona zostanie właściwość <samp>commenthidden</samp>.",
 	"apihelp-query+watchlist-paramvalue-prop-timestamp": "Dodaje znacznik czasu edycji.",
 	"apihelp-query+watchlist-paramvalue-prop-sizes": "Dodaje starą i nową długość strony.",
+	"apihelp-query+watchlist-paramvalue-prop-labels": "Zwraca etykiety listy obserwowanych przypisane do strony.",
 	"apihelp-query+watchlist-paramvalue-type-external": "Zmiany zewnętrzne.",
 	"apihelp-query+watchlistraw-summary": "Pozyskaj wszystkie strony na liście obserwowanych obecnego użytkownika.",
 	"apihelp-removeauthenticationdata-summary": "Usuń dane poświadczeń obecnego użytkownika.",

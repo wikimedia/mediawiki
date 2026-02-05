@@ -2203,6 +2203,7 @@
 	"watchlist-expiring-days-full-text": "{{PLURAL:$1|Én dag|$1 dager}} igjen på overvåkningslista di",
 	"watchlist-expiry-hours-left": "Noen timer igjen",
 	"watchlist-expiring-hours-full-text": "Noen timer igjen på overvåkningslisten din.",
+	"watchlist-expires-in": "{{PLURAL:$1|$1 dag|$1 dager}} igjen i overvåkningslista di",
 	"wlheader-enotif": "E-postvarsling er slått på.",
 	"wlheader-showupdated": "Sider som har blitt endret siden du besøkte dem sist vises med <strong>fet skrift</strong>.",
 	"wlnote": "Nedenfor er {{PLURAL:$1|den siste endringen|de siste <strong>$1</strong> endringene}} {{PLURAL:$2|den siste timen|de siste <strong>$2</strong> timene}}, per $3 kl. $4",

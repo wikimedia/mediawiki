@@ -440,6 +440,7 @@
 	"apihelp-query+transcludedin-paramvalue-prop-title": "عنوان هر صفحه.",
 	"apihelp-query+usercontribs-paramvalue-prop-parsedcomment": "خلاصهٔ تجزیه‌شدهٔ ویرایش را اضافه می‌کند. در صورتی که نسخهٔ مرتبط با خلاصه حذف شده باشد، یک ویژگی <samp>commenthidden</samp> برگردانده خواهد شد.",
 	"apihelp-query+watchlist-paramvalue-prop-tags": "برچسب‌‌های یک مدخل را لیست می‌کند",
+	"apihelp-query+watchlist-paramvalue-prop-labels": "افزودن برچسب‌های فهرست پیگیری مرتبط با مدخل.",
 	"apihelp-query+watchlist-paramvalue-type-log": "مدخل‌های سیاهه.",
 	"apihelp-rollback-param-title": "عنوان صفحه برای واگردانی. نمی‌تواند همزمان با <var>$1pageid</var> استفاده شود.",
 	"apihelp-rollback-param-pageid": "شناسهٔ صفحه برای واگردانی. نمی‌تواند همزمان با <var>$1title</var> استفاده شود.",

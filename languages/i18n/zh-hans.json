@@ -2395,6 +2395,7 @@
 	"watchlistlabels-table-description": "您已保存的标签如下所示。",
 	"watchlistlabels-table-header": "标签",
 	"watchlistlabels-table-new-link": "+ 新标签",
+	"watchlistlabels-table-delete-link": "删除",
 	"watchlistlabels-table-col-name": "名称",
 	"watchlistlabels-table-col-count": "项目",
 	"watchlistlabels-table-col-actions": "操作",
