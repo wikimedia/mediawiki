@@ -45,7 +45,7 @@ mw.hook( 'wikipage.content' ).add( () => {
 			Array.prototype.forEach.call( collapsed, ( collapsible ) => {
 				$( collapsible ).data( 'mw-collapsible' ).expand();
 			} );
-			toggleAll.textContent = mw.msg( 'collapsible-collapse-all-text' );
+			toggleAll.children[0].textContent = mw.msg( 'collapsible-collapse-all-text' );
 			toggleAll.title = mw.msg( 'collapsible-collapse-all-tooltip' );
 			toggleAll.setAttribute( 'aria-expanded', 'true' );
 			allExpanded = true;
@@ -55,7 +55,7 @@ mw.hook( 'wikipage.content' ).add( () => {
 			Array.prototype.forEach.call( expanded, ( collapsible ) => {
 				$( collapsible ).data( 'mw-collapsible' ).collapse();
 			} );
-			toggleAll.textContent = mw.msg( 'collapsible-expand-all-text' );
+			toggleAll.children[0].textContent = mw.msg( 'collapsible-expand-all-text' );
 			toggleAll.title = mw.msg( 'collapsible-expand-all-tooltip' );
 			toggleAll.setAttribute( 'aria-expanded', 'false' );
 			allExpanded = false;
