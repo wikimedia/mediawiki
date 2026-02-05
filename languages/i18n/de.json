@@ -4047,7 +4047,7 @@
 	"unprotected-js": "Aus Sicherheitsgründen kann JavaScript-Code nicht mehr von ungeschützten Seiten geladen werden. Erstelle die JavaScript-Seite bitte ausschließlich im Namensraum „MediaWiki“ oder als Benutzerunterseite.",
 	"userlogout-submit": "Abmelden",
 	"userlogout-continue": "{{#FORMAL:Möchtest du dich|Möchten Sie sich}} abmelden?",
-	"userlogout-temp": "Wenn du auf einem gemeinsam genutzten Gerät wie einem Bibliotheks- oder Schulcomputer arbeitest, könnest du diese Sitzung beenden, um zu verhindern, dass andere Personen dieses temporäre Konto verwenden.",
+	"userlogout-temp": "Wenn du auf einem gemeinsam genutzten Gerät wie einem Bibliotheks- oder Schulcomputer arbeitest, könntest du diese Sitzung beenden, um zu verhindern, dass andere Personen dieses temporäre Konto verwenden.",
 	"userlogout-temp-moreinfo": "Bitte beachte, dass das Bearbeiten mit mehreren temporären Konten möglicherweise gegen die Regeln dieses Wikis verstößt und du gesperrt werden könntest, wenn dies häufig vorkommt.",
 	"userlogout-temp-messagebox-title": "Möchtest du die Sitzung wirklich beenden und dich abmelden?",
 	"userlogout-temp-messagebox-body": "Sobald du dich abmeldest, kannst du nicht mehr auf dieses temporäre Konto zugreifen.",

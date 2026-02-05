@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lookruk"
+		]
+	},
+	"converter-manual-rule-error": "ກວດພົບຂໍ້ຜິດພາດໃນກົດລະບຽບການປ່ຽນພາສາດ້ວຍຕົນເອງ",
+	"language-converter-depth-warning": "ເກີນຂີດຈຳກັດຄວາມເລິກຂອງຕົວແປງພາສາແລ້ວ ($1)"
+}

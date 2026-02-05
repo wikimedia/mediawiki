@@ -23,7 +23,7 @@
 	"interwiki_local_1_intro": "इस अंतरविकि उपसर्ग के माध्यम से URL में किए गए बाहरी HTTP अनुरोधों को अंतरविकि के लक्ष्य URL पर अनुप्रेषित कर दिया जाएगा (यानी यह लोकल पृष्ठ की कड़ी माना जाएगा)।",
 	"interwiki_trans": "ट्रांसक्लूड",
 	"interwiki-trans-label": "ट्रांसक्लूड",
-	"interwiki_trans_1_intro": "अगर विकिटेक्स्ट सिनटैक्स <code>{<nowiki />{prefix:<em>pagename</em>}}</code> का प्रयोग किया जाए तो इंटरविकि ट्रांसक्लूशन सामान्यतः सक्षम होने पर बाहरी विकियों से साँचा/पृष्ठ ट्रांसक्लूड किय जाएगा ([https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgEnableScaryTranscluding डरावना ट्रांसक्लूशन])।",
+	"interwiki_trans_1_intro": "अगर विकिटेक्स्ट सिनटैक्स <code>{<nowiki />{prefix:<em>pagename</em>}}</code> का प्रयोग किया जाए तो अंतरविकि ट्रांसक्लूशन सामान्यतः सक्षम होने पर बाहरी विकियों से साँचा/पृष्ठ ट्रांसक्लूड किय जाएगा ([https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgEnableScaryTranscluding डरावना ट्रांसक्लूशन])।",
 	"interwiki_trans_0_intro": "<code>{<nowiki />{prefix:<em>pagename</em>}}</code>  को बाहरी साँचें/पृष्ठ ट्रांसक्लूड करने नहीं करेगा, और इसके बजाय साँचा नामस्थान में एक लोकल पृष्ठ खोजेगा।",
 	"interwiki_1": "हाँ",
 	"interwiki_0": "नहीं",

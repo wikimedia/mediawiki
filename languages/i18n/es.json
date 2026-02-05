@@ -2527,7 +2527,7 @@
 	"protect-othertime-op": "en otro momento",
 	"protect-existing-expiry": "Fecha de caducidad actual: $2 a las $3",
 	"protect-existing-expiry-infinity": "Tiempo de caducidad existente: infinito",
-	"protect-otherreason": "Otra razón:",
+	"protect-otherreason": "Otro motivo:",
 	"protect-otherreason-op": "Otro motivo",
 	"protect-dropdown": "*Motivos de protección comúnes\n** Vandalismo excesivo\n** Spam excesivo\n** Guerra de ediciones\n** Página muy visitada",
 	"protect-edit-reasonlist": "Editar motivos de protección",

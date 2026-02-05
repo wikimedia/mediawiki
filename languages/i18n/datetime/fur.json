@@ -57,5 +57,19 @@
 	"sun": "dom",
 	"period-am": "AM",
 	"period-pm": "PM",
-	"duration-days": "$1 {{PLURAL:$1|zornade|zornadis}}"
+	"timezone-local": "Locâl",
+	"years": "{{PLURAL:$1|$1 an|$1 agns}}",
+	"months": "{{PLURAL:$1|$1 mês}}",
+	"weeks": "{{PLURAL:$1|$1 setemane|$1 setemanis}}",
+	"hours": "{{PLURAL:$1|ore|oris}}",
+	"minutes": "{{PLURAL:$1|minût|minûts}}",
+	"seconds": "{{PLURAL:$1|secont|seconts}}",
+	"duration-months": "$1 {{PLURAL:$1|mês}}",
+	"duration-weeks": "$1 {{PLURAL:$1|setemane|setemanis}}",
+	"duration-days": "$1 {{PLURAL:$1|zornade|zornadis}}",
+	"duration-hours": "$1 {{PLURAL:$1|ore|oris}}",
+	"duration-minutes": "$1 {{PLURAL:$1|minût|minûts}}",
+	"duration-seconds": "$1 {{PLURAL:$1|secont|seconts}}",
+	"yesterday-at": "Îr aes $1",
+	"just-now": "propite cumò"
 }
