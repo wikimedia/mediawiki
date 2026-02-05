@@ -53,7 +53,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	 * @return string
 	 */
 	private function getCanonicalUserName( $name ) {
-		$name = $this->contentLanguage->ucfirst( $name );
+		// T416297 Ignore leading whitespaces when looking up a username
+		$name = $this->contentLanguage->ucfirst( ltrim( $name ) );
 		return strtr( $name, '_', ' ' );
 	}
 

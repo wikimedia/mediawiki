@@ -50,18 +50,43 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 		self::$usersAdded = [ $userA, $userB, $userC, $userD ];
 	}
 
-	public function testPrefix() {
+	/**
+	 * @dataProvider prefixDataProvider
+	 */
+	public function testPrefix( callable $expected, string $prefix ): void {
 		$result = $this->doApiRequest( [
 			'action' => 'query',
 			'list' => 'allusers',
-			'auprefix' => self::USER_PREFIX
+			'auprefix' => $prefix
 		] );
 
 		$this->assertArrayHasKey( 'query', $result[0] );
 		$this->assertArrayHasKey( 'allusers', $result[0]['query'] );
-		$this->assertApiResultsHasUser( self::$usersAdded[0]->getName(), $result );
-		$this->assertApiResultsHasUser( self::$usersAdded[1]->getName(), $result );
-		$this->assertApiResultsHasUser( self::$usersAdded[2]->getName(), $result );
+
+		foreach ( $expected() as $username ) {
+			$this->assertApiResultsHasUser( $username, $result );
+		}
+	}
+
+	public static function prefixDataProvider(): array {
+		return [
+			'Prefix containing trailing whitespaces' => [
+				'expected' => static fn () => [
+					self::$usersAdded[0]->getName(),
+					self::$usersAdded[1]->getName(),
+					self::$usersAdded[2]->getName(),
+				],
+				'prefix' => self::USER_PREFIX,
+			],
+			'Prefix containing both leading and trailing whitespaces' => [
+				'expected' => static fn () => [
+					self::$usersAdded[0]->getName(),
+					self::$usersAdded[1]->getName(),
+					self::$usersAdded[2]->getName(),
+				],
+				'prefix' => ' ' . self::USER_PREFIX,
+			],
+		];
 	}
 
 	public function testImplicitRights() {
