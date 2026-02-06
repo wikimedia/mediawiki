@@ -355,7 +355,7 @@
 	"viewsource-title": "Visa källa för $1",
 	"actionthrottled": "Åtgärden stoppades",
 	"actionthrottledtext": "Som skydd mot missbruk finns det en begränsning av hur många gånger du kan utföra den här åtgärden under en viss tid. Du har överskridit den gränsen.\nFörsök igen om några minuter.",
-	"protectedpagetext": "Den här sidan har skyddats ($3) för att förhindra redigering eller andra åtgärder.",
+	"protectedpagetext": "Den här sidan har skyddats  för att förhindra redigering eller andra åtgärder.",
 	"viewsourcetext": "Du kan se och kopiera denna sidas källtext.",
 	"viewyourtext": "Du kan se och kopiera källtexten för <strong>dina redigeringar</strong> av denna sida.",
 	"protectedinterface": "Denna sida innehåller text för mjukvarans gränssnitt på denna wiki, och är skrivskyddad för att förebygga missbruk.\nFör att lägga till eller ändra översättningar för alla wikier, var god använd [https://translatewiki.net/ translatewiki.net], lokaliseringsprojektet för MediaWiki.",

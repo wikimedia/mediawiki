@@ -293,5 +293,11 @@
 	"rest-endpoint-summ-post-transform-wikitext-to-lint": "Lint-foutmeldingen teruggeven voor wikitekst",
 	"rest-endpoint-summ-post-transform-wikitext-to-html": "Wikitekst in HTML omzetten",
 	"rest-endpoint-summ-post-transform-html-to-wikitext": "HTML in wikitekst omzetten",
-	"rest-requestheader-desc-acceptlanguage": "De natuurlijke taal en locatie die de voorkeur van de client heeft"
+	"rest-requestheader-desc-acceptlanguage": "De natuurlijke taal en de landinstellingen waaraan de cliënt de voorkeur geeft.",
+	"rest-requestheader-desc-contenttype": "Geeft het oorspronkelijke mediatype van een bron aan voordat er inhoudscodering op wordt toegepast.",
+	"rest-requestheader-desc-cookie": "Sta servers toe om statusinformatie in de browser van de cliënt op te slaan, waardoor functies zoals sessiebeheer, personalisatie en volgen mogelijk worden.",
+	"rest-requestheader-desc-authorization": "Biedt aanmeldgegevens waarmee een gebruikersagent zich kan authenticeren bij een server, waardoor toegang tot beveiligde bronnen mogelijk wordt.",
+	"rest-requestheader-desc-xrequestid": "Maakt het mogelijk om individuele HTTP-verzoeken te traceren en te correleren terwijl ze door gedistribueerde systemen stromen, zoals microservices, API-gateways en loadbalancers.",
+	"rest-requestheader-desc-useragent": "Verstuurt een karakteristieke tekenreeks naar webservers, waardoor deze de applicatie, het besturingssysteem, de leverancier en/of de versie van de aanvragende clientsoftware kunnen identificeren.",
+	"rest-requestheader-desc-ifmatch": "Hiermee wordt een verzoek voorwaardelijk gemaakt, zodat de gevraagde actie (zoals een update of verwijdering) alleen wordt uitgevoerd als de bron op de server overeenkomt met een specifieke versie (geïdentificeerd door de ETag) die door de client is verstrekt."
 }

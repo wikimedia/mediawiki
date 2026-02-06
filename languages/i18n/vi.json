@@ -333,7 +333,7 @@
 	"viewsource-title": "Xem mã nguồn của $1",
 	"actionthrottled": "Thao tác bị giới hạn",
 	"actionthrottledtext": "Để nhằm tránh spam, bạn không thể thực hiện thao tác này quá nhiều lần trong một thời gian ngắn. Xin hãy chờ vài phút trước khi thực hiện lại.",
-	"protectedpagetext": "Trang này đã bị khóa ($3) hoặc do các tác động khác.",
+	"protectedpagetext": "Trang này đã bị khóa  hoặc do các tác động khác.",
 	"viewsourcetext": "Bạn vẫn có thể xem và sao chép mã nguồn của trang này.",
 	"viewyourtext": "Bạn vẫn có thể xem và sao chép mã nguồn <strong>các sửa đổi của bạn</strong> tại trang này.",
 	"protectedinterface": "Trang này cung cấp một thông điệp trong giao diện phần mềm, nó có thể là tài liệu thuộc MediaWiki.org hoặc translatewiki.net. Chỉ có bảo quản viên hoặc bảo quản viên giao diện mới có thể sửa đổi trang. Để bổ sung hoặc thay đổi bản dịch ở bất cứ wiki nào, xin vui lòng đóng góp vào [https://translatewiki.net/wiki/Main_Page?setlang=vi translatewiki.net], dự án bản địa hóa của MediaWiki.",

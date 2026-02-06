@@ -286,5 +286,12 @@
 	"rest-endpoint-summ-post-page": "Crear un pagina",
 	"rest-endpoint-summ-post-transform-wikitext-to-lint": "Restituer errores de Lint pro wikitexto",
 	"rest-endpoint-summ-post-transform-wikitext-to-html": "Converter wikitexto in HTML",
-	"rest-endpoint-summ-post-transform-html-to-wikitext": "Converter HTML in wikitexto"
+	"rest-endpoint-summ-post-transform-html-to-wikitext": "Converter HTML in wikitexto",
+	"rest-requestheader-desc-acceptlanguage": "Le lingua natural e le parametros regional que le cliente prefere.",
+	"rest-requestheader-desc-contenttype": "Indica le typo multimedial original de un ressource ante que alcun codification de contento es applicate.",
+	"rest-requestheader-desc-cookie": "Permitte que servitores immagazina information de stato in le navigator del cliente. Isto permitte functionalitate como le gestion de sessiones, personalisation, e traciamento.",
+	"rest-requestheader-desc-authorization": "Forni credentiales que authentica un agente de usator sur un servitor, permittente le accesso a ressources protegite.",
+	"rest-requestheader-desc-xrequestid": "Permitte traciar e correlatar requestas HTTP individual a mesura que illos flue per systemas distribuite, tales como microservicios, passarellas de API, e equilibratores de carga.",
+	"rest-requestheader-desc-useragent": "Invia un catena characteristic a servitores web, permittente que illos identifica le application, systema operative, venditor, e/o version del software cliente requestante.",
+	"rest-requestheader-desc-ifmatch": "Rende un requesta conditional, assecurante que le action requestate (como un actualisation o deletion) es solmente executate si le ressource sur le servitor corresponde a un version specific (identificate per su ETag) fornite per le cliente."
 }

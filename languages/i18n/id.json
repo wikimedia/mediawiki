@@ -359,7 +359,7 @@
 	"viewsource-title": "Lihat sumber $1",
 	"actionthrottled": "Tindakan dibatasi",
 	"actionthrottledtext": "Anda dibatasi untuk melakukan tindakan ini terlalu banyak dalam waktu pendek, dan Anda telah melebihi batas yang diberikan. Silakan mencoba lagi setelah beberapa menit.",
-	"protectedpagetext": "Halaman ini telah dilindungi ($3) untuk menghindari penyuntingan atau tindakan lain.",
+	"protectedpagetext": "Halaman ini telah dilindungi  untuk menghindari penyuntingan atau tindakan lain.",
 	"viewsourcetext": "Anda dapat melihat atau menyalin sumber halaman ini.",
 	"viewyourtext": "Anda dapat melihat dan menyalin sumber dari '''suntingan Anda''' ke halaman ini.",
 	"protectedinterface": "Halaman ini memuat teks antarmuka untuk perangkat lunak pada wiki ini, dan dilindungi terhadap penyalahgunaan. Untuk menambah atau mengubah terjemahan pada semua wiki, harap gunakan [https://translatewiki.net/ translatewiki.net], proyek pelokalan MediaWiki.",

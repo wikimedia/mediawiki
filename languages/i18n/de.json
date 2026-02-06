@@ -386,7 +386,7 @@
 	"viewsource-title": "Quelltext der Seite $1",
 	"actionthrottled": "Aktionsanzahl limitiert",
 	"actionthrottledtext": "Im Rahmen einer Anti-Missbrauchs-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze {{#FORMAL:hast du|haben Sie}} überschritten.\nBitte {{#FORMAL:versuche|versuchen Sie}} es in ein paar Minuten erneut.",
-	"protectedpagetext": "Diese Seite wurde geschützt ($3), um Bearbeitungen sowie andere Aktionen zu verhindern.",
+	"protectedpagetext": "Diese Seite wurde geschützt, um Bearbeitungen sowie andere Aktionen zu verhindern.",
 	"viewsourcetext": "{{#FORMAL:Du kannst|Sie können}} den Quelltext dieser Seite betrachten und kopieren.",
 	"viewyourtext": "{{#FORMAL:Du kannst|Sie können}} den Quelltext <strong>{{#FORMAL:deiner|Ihrer}} Bearbeitungen</strong> auf dieser Seite betrachten und kopieren.",
 	"protectedinterface": "Diese Seite enthält Text für die Benutzeroberfläche der Software auf diesem Wiki und ist geschützt, um Missbrauch vorzubeugen.\n{{#FORMAL:Nutze|Nutzen Sie}} bitte [https://translatewiki.net/ translatewiki.net], das Lokalisierungsprojekt von MediaWiki, um Übersetzungen für alle Wikis hinzuzufügen oder zu ändern.",

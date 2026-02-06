@@ -300,7 +300,7 @@
 	"viewsource-title": "$1 üçün vikimətnə bax",
 	"actionthrottled": "Sürət məhdudiyyəti",
 	"actionthrottledtext": "Spamla mübarizə məqsədilə qısa vaxt kəsiyi ərzində bu hərəkətlərin təkrarlanma sayı məhdudlaşdırılıb və siz qoyulan həddi aşmısınız.\nLütfən bir neçə dəqiqə sonra yenidən yoxlayın.",
-	"protectedpagetext": "Bu səhifə redaktə və ya digər fəaliyyətlərin qarşısını almaq üçün mühafizə edilib ($3).",
+	"protectedpagetext": "Bu səhifə redaktə və ya digər fəaliyyətlərin qarşısını almaq üçün mühafizə edilib.",
 	"viewsourcetext": "Siz bu səhifənin məzmununu görə və köçürə bilərsiniz.",
 	"viewyourtext": "Bu səhifəyə <strong>etdiyiniz dəyişikliklərin</strong> mənbəyinə baxa və köçürə bilərsiniz.",
 	"protectedinterface": "Bu səhifə bu vikidəki proqram təminatı üçün interfeys mətnini təqdim edir və sui-istifadənin qarşısını almaq üçün mühafizə olunur.\nTərcümə etmək üçün, MediaWiki tərcümə layihəsi olan [https://translatewiki.net/ translatewiki.net] saytını istifadə edin.",

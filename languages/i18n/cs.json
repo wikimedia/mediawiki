@@ -324,7 +324,7 @@
 	"viewsource-title": "Zobrazení zdroje stránky $1",
 	"actionthrottled": "Akce byla pozastavena",
 	"actionthrottledtext": "Vzhledem k opatřením proti zneužití nemůžete požadovanou akci provádět příliš často v krátkém časovém rozmezí.\nZkuste to znovu za několik minut.",
-	"protectedpagetext": "Tato stránka byla zamčena ($3), aby se předešlo jejímu editování a dalším akcím.",
+	"protectedpagetext": "Tato stránka byla zamčena , aby se předešlo jejímu editování a dalším akcím.",
 	"viewsourcetext": "Můžete si prohlédnout a zkopírovat zdrojový kód této stránky.",
 	"viewyourtext": "Můžete si prohlédnout a zkopírovat zdrojový kód <strong>vašich změn</strong> této stránky.",
 	"protectedinterface": "Tato stránka obsahuje text softwarového rozhraní a je zamčena kvůli prevenci zneužití.\nPro přidávání a změny překladů pro všechny wiki použijte [https://translatewiki.net/ translatewiki.net], projekt pro lokalizaci MediaWiki.",

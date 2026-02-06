@@ -2438,7 +2438,7 @@
 	"watchlist-expiring-days-full-text": "Used on [[Special:Watchlist]] to indicate when a watchlist is expiring.\n\nParameters:\n* $1 - number of days left in your watchlist",
 	"watchlist-expiry-hours-left": "Used on [[Special:Watchlist]] to indicate when a watchlist is expiring in a few hours.",
 	"watchlist-expiring-hours-full-text": "Used as label for clock icon in [[Special:Watchlist]] to show when a watchlist is expiring in a few hours.",
-	"watchlist-expires-in": "Used in the 'Expires' column in [[Special:EditWatchlist]]. Parameters:\n** $1 - string showing how much time before expiry",
+	"watchlist-expires-in": "Used in the 'Expires' column in [[Special:EditWatchlist]]. Parameters:\n* $1 - string showing how much time before expiry using messages such as {{msg-mw|duration-days}}, {{msg-mw|duration-months}}, etc.",
 	"watchlist-expires-never": "Used in the 'Expires' column in [[Special:EditWatchlist]] when the watchlist item has no expiry set",
 	"wlheader-enotif": "Message at the top of  [[Special:Watchlist]], after {{msg-mw|watchlist-details}}. Has to be a full sentence.\n\nSee also:\n* {{msg-mw|Watchlist-options|fieldset}}\n* {{msg-mw|enotif reset|Submit button text}}",
 	"wlheader-showupdated": "Message at the top of [[Special:Watchlist]], after {{msg-mw|watchlist-details}}. Has to be a full sentence.",

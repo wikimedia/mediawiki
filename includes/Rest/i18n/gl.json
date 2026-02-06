@@ -289,5 +289,11 @@
 	"rest-endpoint-summ-post-transform-wikitext-to-lint": "Devolver os erros do analizador sintáctico do texto wiki",
 	"rest-endpoint-summ-post-transform-wikitext-to-html": "Converter o texto wiki en HTML",
 	"rest-endpoint-summ-post-transform-html-to-wikitext": "Converter o HTML en texto wiki",
-	"rest-requestheader-desc-acceptlanguage": "A lingua natural e a configuración rexional de preferencia do cliente"
+	"rest-requestheader-desc-acceptlanguage": "A lingua natural e a configuración rexional de preferencia do cliente.",
+	"rest-requestheader-desc-contenttype": "Indica o tipo multimedia orixinal dun recurso antes de aplicar calquera codificación de contido.",
+	"rest-requestheader-desc-cookie": "Permite que os servidores almacenen información de estado no navegador do cliente, o que activa funcións como a xestión de sesións, a personalización e o seguimento.",
+	"rest-requestheader-desc-authorization": "Proporciona credenciais que autentican un axente de usuario cun servidor, o que permite o acceso a recursos protexidos.",
+	"rest-requestheader-desc-xrequestid": "Permite o seguimento e a correlación de solicitudes HTTP individuais a medida que flúen a través de sistemas distribuídos, como microservizos, pasarelas de API e balanceadores de carga.",
+	"rest-requestheader-desc-useragent": "Envía unha cadea característica aos servidores web, o que lles permite identificar a aplicación, o sistema operativo, o provedor e/ou a versión do software do cliente solicitante.",
+	"rest-requestheader-desc-ifmatch": "Fai que unha solicitude sexa condicional, garantindo que a acción solicitada (como unha actualización ou eliminación) só se realice se o recurso do servidor coincide cunha versión específica (identificada polo seu ETag) proporcionada polo cliente."
 }

@@ -337,7 +337,7 @@
 	"viewsource-title": "Se kilde til $1",
 	"actionthrottled": "Begrænsning af handling",
 	"actionthrottledtext": "For at modvirke spam er det ikke muligt at udføre denne handling mange gange på kort tid. Du har overskredet grænsen, hvorfor handlingen er blevet afbrudt. Du kan forsøge igen om et par minutter.",
-	"protectedpagetext": "Denne side er blevet beskyttet ($3) for at forhindre redigering eller andre handlinger.",
+	"protectedpagetext": "Denne side er blevet beskyttet  for at forhindre redigering eller andre handlinger.",
 	"viewsourcetext": "Du kan se og kopiere kilden til denne side:",
 	"viewyourtext": "Du kan se og kopiere kilden for <strong>dine redigeringer</strong> til denne side.",
 	"protectedinterface": "Denne side leverer teksten i brugergrænsefladen til softwaren på denne wiki, og er beskyttet for at forhindre misbrug.\nHvis du vil tilføje eller ændre oversættelser for alle wiki-websteder, så brug venligst [https://translatewiki.net/ translatewiki.net], projektet for oversættelse af MediaWiki.",

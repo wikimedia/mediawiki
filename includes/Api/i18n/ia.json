@@ -1406,6 +1406,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "Adde le information del registro ubi es appropriate.",
 	"apihelp-query+watchlist-paramvalue-prop-tags": "Listar le etiquettas del entrata.",
 	"apihelp-query+watchlist-paramvalue-prop-expiry": "Adde le hora de expiration.",
+	"apihelp-query+watchlist-paramvalue-prop-labels": "Adde etiquettas de observatorio associate al entrata.",
 	"apihelp-query+watchlist-param-show": "Monstra solmente elementos que satisface iste criterios. Per exemplo, pro vider solmente modificationes minor facite per usatores registrate, defini $1show=minor|!anon.",
 	"apihelp-query+watchlist-param-type": "Qual typos de cambiamento monstrar:",
 	"apihelp-query+watchlist-paramvalue-type-edit": "Modificationes normal de paginas.",

@@ -1432,6 +1432,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "Voegt logboekgegevens toe waar van toepassing.",
 	"apihelp-query+watchlist-paramvalue-prop-tags": "Geeft de labels van de vermelding weer.",
 	"apihelp-query+watchlist-paramvalue-prop-expiry": "Voegt de vervaltijd toe.",
+	"apihelp-query+watchlist-paramvalue-prop-labels": "Voegt de aan de vermelding gekoppelde volglijstlabels toe.",
 	"apihelp-query+watchlist-param-show": "Toon alleen vermeldingen die aan deze voorwaarden voldoen. Om bijvoorbeeld alleen kleine bewerkingen te zien die zijn aangebracht door aangemelde gebruikers, stelt u $1show=minor|!anon in.",
 	"apihelp-query+watchlist-param-type": "Welke typen wijzigingen weer te geven:",
 	"apihelp-query+watchlist-paramvalue-type-edit": "Gewone paginabewerkingen.",

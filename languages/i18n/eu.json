@@ -841,7 +841,7 @@
 	"revertmerge": "Desegin batzea",
 	"mergelogpagetext": "Jarraian dagoen zerrendak orrialde baten historiatik beste batera egindako azken bateratzeak erakusten ditu.",
 	"history-title": "$1: orriaren historia berrikuspena",
-	"difference-title": "$1: berrikuspenen arteko aldeak",
+	"difference-title": "«$1»: berrikuspenen arteko aldeak",
 	"difference-title-multipage": "«$1» eta «$2» orrien arteko aldeak",
 	"difference-multipage": "(Orrien arteko aldeak)",
 	"lineno": "$1. lerroa:",

@@ -342,7 +342,7 @@
 	"viewsource-title": "Lähdekoodi sivulle $1",
 	"actionthrottled": "Toiminnon useaa suorittamista on rajoitettu",
 	"actionthrottledtext": "Häiriköinnin estämiseksi tämän toiminnon suorittamista on rajoitettu niin, että sitä ei voi tehdä useita kertoja lyhyen ajan sisällä. Olet suorittanut toiminnon nyt liian monta kertaa. \nYritä uudelleen muutaman minuutin kuluttua.",
-	"protectedpagetext": "Tämä sivu on suojattu muutoksilta ($3) ja muilta toiminnoilta.",
+	"protectedpagetext": "Tämä sivu on suojattu muutoksilta ja muilta toiminnoilta.",
 	"viewsourcetext": "Voit katsoa ja kopioida tämän sivun lähdetekstiä.",
 	"viewyourtext": "Voit nähdä ja kopioida tähän sivuun <strong>tekemistäsi muutoksista</strong> syntyneen lähdetekstin.",
 	"protectedinterface": "Tämä sivu sisältää ohjelmiston käyttöliittymätekstiä ja on suojattu häiriköinnin estämiseksi.\nViestien kääntäminen tulisi tehdä [https://translatewiki.net/ translatewiki.netissä] – MediaWikin kotoistusprojektissa.",

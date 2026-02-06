@@ -1163,7 +1163,7 @@
 	"right-unblockself": "자신을 차단 해제하기",
 	"right-protect": "보호 설정 바꾸기 및 연쇄 보호된 문서 편집",
 	"right-editprotected": "\"{{int:restriction-level-sysop}}\" 단계로 보호된 문서 편집",
-	"right-editsemiprotected": "\"{{int:restriction-level-autoconfirmed}}\" 단계로 보호된 문서 편집",
+	"right-editsemiprotected": "\"{{int:restriction-level-autoconfirmed}}\" 보호된 문서 편집",
 	"right-editcontentmodel": "문서의 콘텐츠 모델을 편집",
 	"right-editinterface": "사용자 인터페이스를 편집",
 	"right-editusercss": "다른 사용자의 CSS 문서를 편집",

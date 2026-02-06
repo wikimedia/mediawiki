@@ -317,7 +317,7 @@
 	"viewsource-title": "Vis kilden til $1",
 	"actionthrottled": "Handlingsgrense overskredet",
 	"actionthrottledtext": "For å beskytte mot spam, kan du ikke utføre denne handlingen for mange ganger i løpet av et kort tidssrom, og du har overskredet denne grensen. Prøv igjen om noen minutter.",
-	"protectedpagetext": "Denne siden er beskyttet ($3) for å forhindre redigering eller andre handlinger.",
+	"protectedpagetext": "Denne siden er beskyttet  for å forhindre redigering eller andre handlinger.",
 	"viewsourcetext": "Du kan se og kopiere kildekoden til denne siden:",
 	"viewyourtext": "Du kan se og kopiere kilden til <strong>dine endringer</strong> på denne siden.",
 	"protectedinterface": "Denne siden kontrollerer brukergrensesnittekst for programvaren, og er låst for å hindre misbruk.\nFor å legge til eller endre oversettelser for alle wikier, bruk [https://translatewiki.net/ translatewiki.net], prosjektet for lokalisering av MediaWiki.",
