@@ -328,6 +328,11 @@ when testing how changes in Codex affect Codex-based features in MediaWiki.
    have to rerun Codex's build process for these changes to take effect. To do this, run
    `npm run build-all` in the Codex directory.
 
+**Note:** if your local changes only affect `.vue` or `.ts` files, you can run `npm run quick-build`
+instead of the full build, which will be much faster. This won't rebuild TypeScript definitions or
+design token values, icons or i18n messages but can be handy for re-building small changes. If it
+is the first time you build Codex locally, running `npm run build-all` is still necessary.
+
 ### Stop or recreate environment
 
 Stop the environment, perhaps to reduce the load when working on something
