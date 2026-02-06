@@ -92,6 +92,9 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	/** @var string */
 	private $mApiBase;
 
+	/** @var string */
+	private $userAgent;
+
 	/**
 	 * @param array|null $info
 	 */
@@ -111,6 +114,9 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 		}
 		if ( isset( $info['apiMetadataExpiry'] ) ) {
 			$this->apiMetadataExpiry = $info['apiMetadataExpiry'];
+		}
+		if ( isset( $info['userAgent'] ) ) {
+			$this->userAgent = $info['userAgent'];
 		}
 		if ( !$this->scriptDirUrl ) {
 			// hack for description fetches
@@ -425,7 +431,7 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 			/* There is a new Commons file, or existing thumbnail older than a month */
 		}
 
-		$thumb = self::httpGet( $foreignUrl, 'default', [], $mtime );
+		$thumb = $this->httpGet( $foreignUrl, 'default', [], $mtime );
 		if ( !$thumb ) {
 			wfDebug( __METHOD__ . " Could not download thumb" );
 
@@ -494,11 +500,12 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 * The user agent the ForeignAPIRepo will use.
 	 * @return string
 	 */
-	public static function getUserAgent() {
+	public function getUserAgent() {
 		$mediaWikiVersion = MediaWikiServices::getInstance()->getHttpRequestFactory()->getUserAgent();
 		$classVersion = self::VERSION;
 		$contactUrl = MediaWikiServices::getInstance()->getUrlUtils()->getCanonicalServer();
-		return "$mediaWikiVersion ($contactUrl) ForeignAPIRepo/$classVersion";
+		$extra = $this->userAgent !== null ? ' ' . $this->userAgent : '';
+		return "$mediaWikiVersion ($contactUrl) ForeignAPIRepo/$classVersion" . $extra;
 	}
 
 	/**
@@ -541,7 +548,7 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 * @param int|false &$mtime Resulting Last-Modified UNIX timestamp if received
 	 * @return string|false
 	 */
-	public static function httpGet(
+	public function httpGet(
 		$url, $timeout = 'default', $options = [], &$mtime = false
 	) {
 		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
@@ -559,7 +566,7 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 			$options['timeout'] = 'default';
 		}
 
-		$options['userAgent'] = self::getUserAgent();
+		$options['userAgent'] = $this->getUserAgent();
 
 		$req = $requestFactory->create( $url, $options, __METHOD__ );
 		$req->setHeader( 'Referer', $urlUtils->getCanonicalServer() );
@@ -574,7 +581,7 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 			$logger = LoggerFactory::getInstance( 'http' );
 			$logger->warning(
 				$status->getWikiText( false, false, 'en' ),
-				[ 'caller' => 'ForeignAPIRepo::httpGet' ]
+				[ 'caller' => __METHOD__ ]
 			);
 
 			return false;
@@ -610,7 +617,7 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 			$this->wanCache->makeGlobalKey( "filerepo-$attribute", sha1( $url ) ),
 			$cacheTTL,
 			function ( $curValue, &$ttl ) use ( $url ) {
-				$html = self::httpGet( $url, 'default', [], $mtime );
+				$html = $this->httpGet( $url, 'default', [], $mtime );
 				// FIXME: This should use the mtime from the api response body
 				// not the mtime from the last-modified header which usually is not set.
 				if ( $html !== false ) {
