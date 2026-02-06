@@ -45,13 +45,13 @@ class SpecialUnusedImages extends ImageQueryPage {
 	/** @inheritDoc */
 	public function getQueryInfo() {
 		if ( $this->fileMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$tables = [ 'image' ];
+			$imageTables = [ 'image' ];
 			$nameField = 'img_name';
 			$timestampField = 'img_timestamp';
 			$fileConds = [];
 			$fileJoins = [];
 		} else {
-			$tables = [ 'file', 'filerevision' ];
+			$imageTables = [ 'file', 'filerevision' ];
 			$nameField = 'file_name';
 			$timestampField = 'fr_timestamp';
 			$fileConds = [ 'file_deleted' => 0 ];
@@ -74,7 +74,7 @@ class SpecialUnusedImages extends ImageQueryPage {
 		}
 
 		$retval = [
-			'tables' => array_merge( $tables, $linksTables ),
+			'tables' => array_merge( $imageTables, $linksTables ),
 			'fields' => [
 				'namespace' => NS_FILE,
 				'title' => $nameField,
@@ -86,15 +86,11 @@ class SpecialUnusedImages extends ImageQueryPage {
 
 		if ( $this->getConfig()->get( MainConfigNames::CountCategorizedImagesAsUsed ) ) {
 			// Order is significant
-			$retval['tables'] = [ 'image', 'page', 'categorylinks',
-				'imagelinks' ];
+			$retval['tables'] = [ ...$imageTables, 'page', 'categorylinks', ...$linksTables ];
 			$retval['conds']['page_namespace'] = NS_FILE;
 			$retval['conds']['cl_from'] = null;
-			$retval['conds'][] = $nameField . ' = page_title';
-			$retval['join_conds']['categorylinks'] = [
-				'LEFT JOIN', 'cl_from = page_id' ];
-			$retval['join_conds']['imagelinks'] = [
-				'LEFT JOIN', 'il_to = page_title' ];
+			$retval['join_conds']['page'] = [ 'JOIN', $nameField . ' = page_title' ];
+			$retval['join_conds']['categorylinks'] = [ 'LEFT JOIN', 'cl_from = page_id' ];
 		}
 
 		return $retval;
