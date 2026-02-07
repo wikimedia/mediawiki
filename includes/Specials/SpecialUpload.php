@@ -460,7 +460,7 @@ class SpecialUpload extends SpecialPage {
 				'default' => $destName,
 			],
 		], $this->getContext(), 'uploadProgress' );
-		$form->setSubmitText( $this->msg( 'upload-refresh' )->escaped() );
+		$form->setSubmitText( $this->msg( 'upload-refresh' )->text() );
 		// TODO: use codex, add a progress bar
 		//$preHtml = "<cdx-progress-bar aria--label='upload progressbar' $progressBarProperty />";
 		$preHtml = "<div id='upload-progress-message'>$message</div>";
@@ -604,7 +604,7 @@ class SpecialUpload extends SpecialPage {
 
 		$this->addMessageBoxStyling();
 		$form = $this->getUploadForm( $message, $sessionKey );
-		$form->setSubmitText( $this->msg( $uploadWarning )->escaped() );
+		$form->setSubmitText( $this->msg( $uploadWarning )->text() );
 		$this->showUploadForm( $form );
 	}
 
