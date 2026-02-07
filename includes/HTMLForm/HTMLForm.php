@@ -1516,6 +1516,7 @@ class HTMLForm extends ContextSource {
 	 * Set the text for the submit button
 	 *
 	 * @param string $t Plaintext
+	 * @param-taint $t escapes_html
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -1723,6 +1724,7 @@ class HTMLForm extends ContextSource {
 	 *     If true, a wrapper will be displayed, but no legend.
 	 *     If a string, a wrapper will be displayed with that string as a legend.
 	 *     The string will be escaped before being output (this doesn't support HTML).
+	 * @param-taint $legend escapes_html
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
