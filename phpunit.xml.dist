@@ -82,21 +82,19 @@
 			<directory suffix=".php">skins/*/tests</directory>
 		</exclude>
 	</coverage>
-	<listeners>
-		<listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener">
+	<extensions>
+		<extension class="Ergebnis\PHPUnit\SlowTestDetector\Extension">
 			<arguments>
 				<array>
-					<element key="slowThreshold">
+					<element key="maximum-duration">
 						<integer>100</integer>
 					</element>
-					<element key="reportLength">
+					<element key="maximum-count">
 						<integer>10</integer>
 					</element>
 				</array>
 			</arguments>
-		</listener>
-	</listeners>
-	<extensions>
+		</extension>
 		<extension class="MediaWikiLoggerPHPUnitExtension" />
 		<extension class="MediaWikiTeardownPHPUnitExtension" />
 	</extensions>
