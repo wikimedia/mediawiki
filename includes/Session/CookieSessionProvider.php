@@ -30,7 +30,7 @@ class CookieSessionProvider extends SessionProvider {
 	/** @var mixed[] */
 	protected $cookieOptions = [];
 
-	private JwtSessionCookieHelper $jwtSessionCookieHelper;
+	protected JwtSessionCookieHelper $jwtSessionCookieHelper;
 
 	/**
 	 * @param JwtCodec $jwtCodec
