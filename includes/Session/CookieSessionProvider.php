@@ -462,22 +462,6 @@ class CookieSessionProvider extends SessionProvider {
 	}
 
 	/**
-	 * @see JwtSessionCookieHelper::useJwtCookie()
-	 */
-	protected function useJwtCookie(): bool {
-		return $this->jwtSessionCookieHelper->useJwtCookie();
-	}
-
-	/**
-	 * @see JwtSessionCookieHelper::verifyJwtCookie()
-	 */
-	protected function verifyJwtCookie( WebRequest $request, SessionInfo &$sessionInfo ): void {
-		$this->jwtSessionCookieHelper->verifyJwtCookie(
-			$request, $sessionInfo, $this->getJwtCookieOptions(), $this->getJwtClaimOverrides( 0 )
-		);
-	}
-
-	/**
 	 * @see JwtSessionCookieHelper::getJwtClaimOverrides()
 	 * @param int $expirationDuration Session lifetime in seconds.
 	 */
