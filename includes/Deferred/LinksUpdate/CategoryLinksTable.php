@@ -388,7 +388,7 @@ class CategoryLinksTable extends TitleLinksTable {
 	}
 
 	protected function fetchExistingRows(): IResultWrapper {
-		return $this->getDB()->newSelectQueryBuilder()
+		return $this->getReplicaDB()->newSelectQueryBuilder()
 			->select( $this->getExistingFields() )
 			->from( $this->getTableName() )
 			->join( 'linktarget', null, [ 'cl_target_id=lt_id' ] )
