@@ -90,7 +90,7 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 	}
 
 	protected function fetchExistingRows(): IResultWrapper {
-		$queryBuilder = $this->getDB()->newSelectQueryBuilder()
+		$queryBuilder = $this->getReplicaDB()->newSelectQueryBuilder()
 			->select( $this->getExistingFields() )
 			->from( $this->getTableName() )
 			->where( $this->getFromConds() );

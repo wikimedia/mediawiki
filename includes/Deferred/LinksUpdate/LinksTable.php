@@ -9,6 +9,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
 
@@ -87,6 +88,9 @@ abstract class LinksTable {
 	/** @var IDatabase */
 	private $db;
 
+	/** @var IReadableDatabase */
+	private $replicaDb;
+
 	/** @var PageIdentity */
 	private $sourcePage;
 
@@ -123,6 +127,7 @@ abstract class LinksTable {
 	) {
 		$this->lbFactory = $lbFactory;
 		$this->db = $this->lbFactory->getPrimaryDatabase( $this->virtualDomain() );
+		$this->replicaDb = $this->lbFactory->getReplicaDatabase( $this->virtualDomain() );
 		$this->sourcePage = $sourcePage;
 		$this->batchSize = $batchSize;
 		$this->linkTargetLookup = $linkTargetLookup;
@@ -256,6 +261,10 @@ abstract class LinksTable {
 		return $this->db;
 	}
 
+	protected function getReplicaDB(): IReadableDatabase {
+		return $this->replicaDb;
+	}
+
 	protected function getLBFactory(): LBFactory {
 		return $this->lbFactory;
 	}
@@ -343,7 +352,7 @@ abstract class LinksTable {
 	 * subclasses.
 	 */
 	protected function fetchExistingRows(): IResultWrapper {
-		return $this->getDB()->newSelectQueryBuilder()
+		return $this->getReplicaDB()->newSelectQueryBuilder()
 			->select( $this->getExistingFields() )
 			->from( $this->getTableName() )
 			->where( $this->getFromConds() )
