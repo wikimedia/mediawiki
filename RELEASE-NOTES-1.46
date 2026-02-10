@@ -1054,7 +1054,6 @@ MediaWiki 1.46 requires PHP 8.2.0 or later and the following PHP extensions:
 * fileinfo
 * iconv
 * intl
-* json
 * mbstring
 * xml
 

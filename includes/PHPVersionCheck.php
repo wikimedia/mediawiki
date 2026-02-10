@@ -27,7 +27,6 @@ class PHPVersionCheck {
 		'mb_substr'   => 'mbstring',
 		'xml_parser_create' => 'xml',
 		'ctype_digit' => 'ctype',
-		'json_decode' => 'json',
 		'iconv'       => 'iconv',
 		'mime_content_type' => 'fileinfo',
 		'intl_is_failure' => 'intl',

@@ -13,7 +13,6 @@ Required software as of MediaWiki 1.46.0:
 ** fileinfo
 ** iconv
 ** intl
-** json
 ** libxml
 ** mbstring
 ** openssl
