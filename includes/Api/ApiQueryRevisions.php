@@ -39,28 +39,22 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
-	private RevisionStore $revisionStore;
-	private NameTableStore $changeTagDefStore;
-	private ChangeTagsStore $changeTagsStore;
-	private ActorMigration $actorMigration;
-	private TitleFormatter $titleFormatter;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		RevisionStore $revisionStore,
+		private readonly RevisionStore $revisionStore,
 		IContentHandlerFactory $contentHandlerFactory,
 		ParserFactory $parserFactory,
 		SlotRoleRegistry $slotRoleRegistry,
-		NameTableStore $changeTagDefStore,
-		ChangeTagsStore $changeTagsStore,
-		ActorMigration $actorMigration,
+		private readonly NameTableStore $changeTagDefStore,
+		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly ActorMigration $actorMigration,
 		ContentRenderer $contentRenderer,
 		ContentTransformer $contentTransformer,
 		CommentFormatter $commentFormatter,
 		TempUserCreator $tempUserCreator,
 		UserFactory $userFactory,
-		TitleFormatter $titleFormatter
+		private readonly TitleFormatter $titleFormatter,
 	) {
 		parent::__construct(
 			$query,
@@ -76,11 +70,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$tempUserCreator,
 			$userFactory
 		);
-		$this->revisionStore = $revisionStore;
-		$this->changeTagDefStore = $changeTagDefStore;
-		$this->changeTagsStore = $changeTagsStore;
-		$this->actorMigration = $actorMigration;
-		$this->titleFormatter = $titleFormatter;
 	}
 
 	protected function run( ?ApiPageSet $resultPageSet = null ) {

@@ -22,15 +22,12 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryFileRepoInfo extends ApiQueryBase {
 
-	private RepoGroup $repoGroup;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		RepoGroup $repoGroup
+		private readonly RepoGroup $repoGroup,
 	) {
 		parent::__construct( $query, $moduleName, 'fri' );
-		$this->repoGroup = $repoGroup;
 	}
 
 	public function execute() {

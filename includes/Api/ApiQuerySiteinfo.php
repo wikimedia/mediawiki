@@ -52,66 +52,29 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class ApiQuerySiteinfo extends ApiQueryBase {
 
-	private UserOptionsLookup $userOptionsLookup;
-	private UserGroupManager $userGroupManager;
-	private HookContainer $hookContainer;
-	private LanguageConverterFactory $languageConverterFactory;
-	private LanguageFactory $languageFactory;
-	private LanguageNameUtils $languageNameUtils;
-	private Language $contentLanguage;
-	private NamespaceInfo $namespaceInfo;
-	private InterwikiLookup $interwikiLookup;
-	private ParserFactory $parserFactory;
-	private MagicWordFactory $magicWordFactory;
-	private SpecialPageFactory $specialPageFactory;
-	private SkinFactory $skinFactory;
-	private ILoadBalancer $loadBalancer;
-	private ReadOnlyMode $readOnlyMode;
-	private UrlUtils $urlUtils;
-	private TempUserConfig $tempUserConfig;
-	private GroupPermissionsLookup $groupPermissionsLookup;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		UserOptionsLookup $userOptionsLookup,
-		UserGroupManager $userGroupManager,
-		HookContainer $hookContainer,
-		LanguageConverterFactory $languageConverterFactory,
-		LanguageFactory $languageFactory,
-		LanguageNameUtils $languageNameUtils,
-		Language $contentLanguage,
-		NamespaceInfo $namespaceInfo,
-		InterwikiLookup $interwikiLookup,
-		ParserFactory $parserFactory,
-		MagicWordFactory $magicWordFactory,
-		SpecialPageFactory $specialPageFactory,
-		SkinFactory $skinFactory,
-		ILoadBalancer $loadBalancer,
-		ReadOnlyMode $readOnlyMode,
-		UrlUtils $urlUtils,
-		TempUserConfig $tempUserConfig,
-		GroupPermissionsLookup $groupPermissionsLookup
+		private readonly UserOptionsLookup $userOptionsLookup,
+		private readonly UserGroupManager $userGroupManager,
+		private readonly HookContainer $hookContainer,
+		private readonly LanguageConverterFactory $languageConverterFactory,
+		private readonly LanguageFactory $languageFactory,
+		private readonly LanguageNameUtils $languageNameUtils,
+		private readonly Language $contentLanguage,
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly InterwikiLookup $interwikiLookup,
+		private readonly ParserFactory $parserFactory,
+		private readonly MagicWordFactory $magicWordFactory,
+		private readonly SpecialPageFactory $specialPageFactory,
+		private readonly SkinFactory $skinFactory,
+		private readonly ILoadBalancer $loadBalancer,
+		private readonly ReadOnlyMode $readOnlyMode,
+		private readonly UrlUtils $urlUtils,
+		private readonly TempUserConfig $tempUserConfig,
+		private readonly GroupPermissionsLookup $groupPermissionsLookup,
 	) {
 		parent::__construct( $query, $moduleName, 'si' );
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->userGroupManager = $userGroupManager;
-		$this->hookContainer = $hookContainer;
-		$this->languageConverterFactory = $languageConverterFactory;
-		$this->languageFactory = $languageFactory;
-		$this->languageNameUtils = $languageNameUtils;
-		$this->contentLanguage = $contentLanguage;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->interwikiLookup = $interwikiLookup;
-		$this->parserFactory = $parserFactory;
-		$this->magicWordFactory = $magicWordFactory;
-		$this->specialPageFactory = $specialPageFactory;
-		$this->skinFactory = $skinFactory;
-		$this->loadBalancer = $loadBalancer;
-		$this->readOnlyMode = $readOnlyMode;
-		$this->urlUtils = $urlUtils;
-		$this->tempUserConfig = $tempUserConfig;
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
 	}
 
 	public function execute() {

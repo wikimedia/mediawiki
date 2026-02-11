@@ -24,27 +24,16 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryAllMessages extends ApiQueryBase {
 
-	private Language $contentLanguage;
-	private LanguageFactory $languageFactory;
-	private LanguageNameUtils $languageNameUtils;
-	private LocalisationCache $localisationCache;
-	private MessageCache $messageCache;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		Language $contentLanguage,
-		LanguageFactory $languageFactory,
-		LanguageNameUtils $languageNameUtils,
-		LocalisationCache $localisationCache,
-		MessageCache $messageCache
+		private readonly Language $contentLanguage,
+		private readonly LanguageFactory $languageFactory,
+		private readonly LanguageNameUtils $languageNameUtils,
+		private readonly LocalisationCache $localisationCache,
+		private readonly MessageCache $messageCache,
 	) {
 		parent::__construct( $query, $moduleName, 'am' );
-		$this->contentLanguage = $contentLanguage;
-		$this->languageFactory = $languageFactory;
-		$this->languageNameUtils = $languageNameUtils;
-		$this->localisationCache = $localisationCache;
-		$this->messageCache = $messageCache;
 	}
 
 	public function execute() {

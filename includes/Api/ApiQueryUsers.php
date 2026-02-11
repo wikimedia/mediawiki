@@ -61,7 +61,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		private readonly GenderCache $genderCache,
 		private readonly AuthManager $authManager,
 		private readonly TempUserConfig $tempUserConfig,
-		private readonly TempUserDetailsLookup $tempUserDetailsLookup
+		private readonly TempUserDetailsLookup $tempUserDetailsLookup,
 	) {
 		parent::__construct( $query, $moduleName, 'us' );
 	}

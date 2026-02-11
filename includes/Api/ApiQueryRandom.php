@@ -21,15 +21,12 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryRandom extends ApiQueryGeneratorBase {
 
-	private ContentHandlerFactory $contentHandlerFactory;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		ContentHandlerFactory $contentHandlerFactory
+		private readonly ContentHandlerFactory $contentHandlerFactory,
 	) {
 		parent::__construct( $query, $moduleName, 'rn' );
-		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	public function execute() {

@@ -25,21 +25,14 @@ use Wikimedia\Rdbms\LikeValue;
  */
 class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
-	private NamespaceInfo $namespaceInfo;
-	private GenderCache $genderCache;
-	private RestrictionStore $restrictionStore;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		NamespaceInfo $namespaceInfo,
-		GenderCache $genderCache,
-		RestrictionStore $restrictionStore
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly GenderCache $genderCache,
+		private readonly RestrictionStore $restrictionStore,
 	) {
 		parent::__construct( $query, $moduleName, 'ap' );
-		$this->namespaceInfo = $namespaceInfo;
-		$this->genderCache = $genderCache;
-		$this->restrictionStore = $restrictionStore;
 	}
 
 	public function execute() {

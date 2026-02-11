@@ -25,16 +25,12 @@ use Wikimedia\Rdbms\LikeValue;
  */
 class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
-	private UrlUtils $urlUtils;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		UrlUtils $urlUtils
+		private readonly UrlUtils $urlUtils,
 	) {
 		parent::__construct( $query, $moduleName, 'eu' );
-
-		$this->urlUtils = $urlUtils;
 	}
 
 	public function execute() {

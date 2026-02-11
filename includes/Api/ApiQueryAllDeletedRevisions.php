@@ -39,26 +39,21 @@ use Wikimedia\Rdbms\LikeValue;
  */
 class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 
-	private RevisionStore $revisionStore;
-	private NameTableStore $changeTagDefStore;
-	private ChangeTagsStore $changeTagsStore;
-	private NamespaceInfo $namespaceInfo;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		RevisionStore $revisionStore,
+		private readonly RevisionStore $revisionStore,
 		IContentHandlerFactory $contentHandlerFactory,
 		ParserFactory $parserFactory,
 		SlotRoleRegistry $slotRoleRegistry,
-		NameTableStore $changeTagDefStore,
-		ChangeTagsStore $changeTagsStore,
-		NamespaceInfo $namespaceInfo,
+		private readonly NameTableStore $changeTagDefStore,
+		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly NamespaceInfo $namespaceInfo,
 		ContentRenderer $contentRenderer,
 		ContentTransformer $contentTransformer,
 		CommentFormatter $commentFormatter,
 		TempUserCreator $tempUserCreator,
-		UserFactory $userFactory
+		UserFactory $userFactory,
 	) {
 		parent::__construct(
 			$query,
@@ -74,10 +69,6 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			$tempUserCreator,
 			$userFactory
 		);
-		$this->revisionStore = $revisionStore;
-		$this->changeTagDefStore = $changeTagDefStore;
-		$this->changeTagsStore = $changeTagsStore;
-		$this->namespaceInfo = $namespaceInfo;
 	}
 
 	/**

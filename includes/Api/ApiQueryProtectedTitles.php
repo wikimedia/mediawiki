@@ -23,18 +23,13 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
-	private CommentStore $commentStore;
-	private RowCommentFormatter $commentFormatter;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		CommentStore $commentStore,
-		RowCommentFormatter $commentFormatter
+		private readonly CommentStore $commentStore,
+		private readonly RowCommentFormatter $commentFormatter,
 	) {
 		parent::__construct( $query, $moduleName, 'pt' );
-		$this->commentStore = $commentStore;
-		$this->commentFormatter = $commentFormatter;
 	}
 
 	public function execute() {

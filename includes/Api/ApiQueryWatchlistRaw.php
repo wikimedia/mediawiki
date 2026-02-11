@@ -28,24 +28,15 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 
-	private WatchedItemQueryService $watchedItemQueryService;
-	private Language $contentLanguage;
-	private NamespaceInfo $namespaceInfo;
-	private GenderCache $genderCache;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		WatchedItemQueryService $watchedItemQueryService,
-		Language $contentLanguage,
-		NamespaceInfo $namespaceInfo,
-		GenderCache $genderCache
+		private readonly WatchedItemQueryService $watchedItemQueryService,
+		private readonly Language $contentLanguage,
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly GenderCache $genderCache,
 	) {
 		parent::__construct( $query, $moduleName, 'wr' );
-		$this->watchedItemQueryService = $watchedItemQueryService;
-		$this->contentLanguage = $contentLanguage;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->genderCache = $genderCache;
 	}
 
 	public function execute() {

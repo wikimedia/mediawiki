@@ -33,14 +33,11 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	private string $helpUrl;
 	private ?string $virtualdomain;
 
-	private LinkBatchFactory $linkBatchFactory;
-	private LinksMigration $linksMigration;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		LinkBatchFactory $linkBatchFactory,
-		LinksMigration $linksMigration
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly LinksMigration $linksMigration,
 	) {
 		switch ( $moduleName ) {
 			case self::LINKS:
@@ -62,8 +59,6 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		}
 
 		parent::__construct( $query, $moduleName, $this->prefix );
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->linksMigration = $linksMigration;
 	}
 
 	public function execute() {

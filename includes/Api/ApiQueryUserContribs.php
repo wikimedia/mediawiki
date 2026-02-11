@@ -39,36 +39,19 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class ApiQueryUserContribs extends ApiQueryBase {
 
-	private CommentStore $commentStore;
-	private UserIdentityLookup $userIdentityLookup;
-	private UserNameUtils $userNameUtils;
-	private RevisionStore $revisionStore;
-	private NameTableStore $changeTagDefStore;
-	private ChangeTagsStore $changeTagsStore;
-	private ActorMigration $actorMigration;
-	private CommentFormatter $commentFormatter;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		CommentStore $commentStore,
-		UserIdentityLookup $userIdentityLookup,
-		UserNameUtils $userNameUtils,
-		RevisionStore $revisionStore,
-		NameTableStore $changeTagDefStore,
-		ChangeTagsStore $changeTagsStore,
-		ActorMigration $actorMigration,
-		CommentFormatter $commentFormatter
+		private readonly CommentStore $commentStore,
+		private readonly UserIdentityLookup $userIdentityLookup,
+		private readonly UserNameUtils $userNameUtils,
+		private readonly RevisionStore $revisionStore,
+		private readonly NameTableStore $changeTagDefStore,
+		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly ActorMigration $actorMigration,
+		private readonly CommentFormatter $commentFormatter,
 	) {
 		parent::__construct( $query, $moduleName, 'uc' );
-		$this->commentStore = $commentStore;
-		$this->userIdentityLookup = $userIdentityLookup;
-		$this->userNameUtils = $userNameUtils;
-		$this->revisionStore = $revisionStore;
-		$this->changeTagDefStore = $changeTagDefStore;
-		$this->changeTagsStore = $changeTagsStore;
-		$this->actorMigration = $actorMigration;
-		$this->commentFormatter = $commentFormatter;
 	}
 
 	private array $params;

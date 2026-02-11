@@ -42,39 +42,22 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
-	private CommentStore $commentStore;
-	private RowCommentFormatter $commentFormatter;
-	private TempUserConfig $tempUserConfig;
-	private LogFormatterFactory $logFormatterFactory;
-	private ChangesListQueryFactory $changesListQueryFactory;
-	private RecentChangeLookup $recentChangeLookup;
-	private TitleFormatter $titleFormatter;
-	private WatchlistLabelStore $watchlistLabelStore;
-
 	/** @var string[] */
 	private $formattedComments = [];
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		CommentStore $commentStore,
-		ChangesListQueryFactory $changesListQueryFactory,
-		RowCommentFormatter $commentFormatter,
-		TempUserConfig $tempUserConfig,
-		LogFormatterFactory $logFormatterFactory,
-		RecentChangeLookup $recentChangeLookup,
-		TitleFormatter $titleFormatter,
-		WatchlistLabelStore $watchlistLabelStore
+		private readonly CommentStore $commentStore,
+		private readonly ChangesListQueryFactory $changesListQueryFactory,
+		private readonly RowCommentFormatter $commentFormatter,
+		private readonly TempUserConfig $tempUserConfig,
+		private readonly LogFormatterFactory $logFormatterFactory,
+		private readonly RecentChangeLookup $recentChangeLookup,
+		private readonly TitleFormatter $titleFormatter,
+		private readonly WatchlistLabelStore $watchlistLabelStore,
 	) {
 		parent::__construct( $query, $moduleName, 'wl' );
-		$this->commentStore = $commentStore;
-		$this->changesListQueryFactory = $changesListQueryFactory;
-		$this->commentFormatter = $commentFormatter;
-		$this->tempUserConfig = $tempUserConfig;
-		$this->logFormatterFactory = $logFormatterFactory;
-		$this->recentChangeLookup = $recentChangeLookup;
-		$this->titleFormatter = $titleFormatter;
-		$this->watchlistLabelStore = $watchlistLabelStore;
 	}
 
 	public function execute() {

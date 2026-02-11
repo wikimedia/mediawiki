@@ -40,16 +40,12 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	/** @var string|bool */
 	private $virtualDomain = false;
 
-	private NamespaceInfo $namespaceInfo;
-	private GenderCache $genderCache;
-	private LinksMigration $linksMigration;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		NamespaceInfo $namespaceInfo,
-		GenderCache $genderCache,
-		LinksMigration $linksMigration
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly GenderCache $genderCache,
+		private readonly LinksMigration $linksMigration,
 	) {
 		switch ( $moduleName ) {
 			case 'alllinks':
@@ -91,9 +87,6 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		}
 
 		parent::__construct( $query, $moduleName, $prefix );
-		$this->namespaceInfo = $namespaceInfo;
-		$this->genderCache = $genderCache;
-		$this->linksMigration = $linksMigration;
 	}
 
 	public function execute() {

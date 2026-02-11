@@ -24,16 +24,12 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryIWLinks extends ApiQueryBase {
 
-	private UrlUtils $urlUtils;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		UrlUtils $urlUtils
+		private readonly UrlUtils $urlUtils,
 	) {
 		parent::__construct( $query, $moduleName, 'iw' );
-
-		$this->urlUtils = $urlUtils;
 	}
 
 	public function execute() {

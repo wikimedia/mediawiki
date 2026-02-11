@@ -23,21 +23,14 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryLangLinks extends ApiQueryBase {
 
-	private LanguageNameUtils $languageNameUtils;
-	private Language $contentLanguage;
-	private UrlUtils $urlUtils;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		LanguageNameUtils $languageNameUtils,
-		Language $contentLanguage,
-		UrlUtils $urlUtils
+		private readonly LanguageNameUtils $languageNameUtils,
+		private readonly Language $contentLanguage,
+		private readonly UrlUtils $urlUtils,
 	) {
 		parent::__construct( $query, $moduleName, 'll' );
-		$this->languageNameUtils = $languageNameUtils;
-		$this->contentLanguage = $contentLanguage;
-		$this->urlUtils = $urlUtils;
 	}
 
 	public function execute() {

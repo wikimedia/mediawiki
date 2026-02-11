@@ -73,15 +73,12 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		],
 	];
 
-	private LinksMigration $linksMigration;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		LinksMigration $linksMigration
+		private readonly LinksMigration $linksMigration,
 	) {
 		parent::__construct( $query, $moduleName, self::$settings[$moduleName]['code'] );
-		$this->linksMigration = $linksMigration;
 	}
 
 	public function execute() {

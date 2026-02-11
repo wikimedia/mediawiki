@@ -34,29 +34,18 @@ class ApiQueryContributors extends ApiQueryBase {
 	 */
 	private const MAX_PAGES = 100;
 
-	private RevisionStore $revisionStore;
-	private ActorMigration $actorMigration;
-	private UserGroupManager $userGroupManager;
-	private GroupPermissionsLookup $groupPermissionsLookup;
-	private TempUserConfig $tempUserConfig;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		RevisionStore $revisionStore,
-		ActorMigration $actorMigration,
-		UserGroupManager $userGroupManager,
-		GroupPermissionsLookup $groupPermissionsLookup,
-		TempUserConfig $tempUserConfig
+		private readonly RevisionStore $revisionStore,
+		private readonly ActorMigration $actorMigration,
+		private readonly UserGroupManager $userGroupManager,
+		private readonly GroupPermissionsLookup $groupPermissionsLookup,
+		private readonly TempUserConfig $tempUserConfig,
 	) {
 		// "pc" is short for "page contributors", "co" was already taken by the
 		// GeoData extension's prop=coordinates.
 		parent::__construct( $query, $moduleName, 'pc' );
-		$this->revisionStore = $revisionStore;
-		$this->actorMigration = $actorMigration;
-		$this->userGroupManager = $userGroupManager;
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
-		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	public function execute() {

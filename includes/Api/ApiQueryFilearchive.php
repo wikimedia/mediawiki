@@ -33,18 +33,13 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class ApiQueryFilearchive extends ApiQueryBase {
 
-	private CommentStore $commentStore;
-	private CommentFormatter $commentFormatter;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		CommentStore $commentStore,
-		CommentFormatter $commentFormatter
+		private readonly CommentStore $commentStore,
+		private readonly CommentFormatter $commentFormatter,
 	) {
 		parent::__construct( $query, $moduleName, 'fa' );
-		$this->commentStore = $commentStore;
-		$this->commentFormatter = $commentFormatter;
 	}
 
 	public function execute() {

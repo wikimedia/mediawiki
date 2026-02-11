@@ -22,11 +22,12 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryImages extends ApiQueryGeneratorBase {
 
-	private LinksMigration $linksMigration;
-
-	public function __construct( ApiQuery $query, string $moduleName, LinksMigration $linksMigration ) {
+	public function __construct(
+		ApiQuery $query,
+		string $moduleName,
+		private readonly LinksMigration $linksMigration,
+	) {
 		parent::__construct( $query, $moduleName, 'im' );
-		$this->linksMigration = $linksMigration;
 	}
 
 	public function execute() {

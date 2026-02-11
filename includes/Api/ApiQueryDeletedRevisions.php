@@ -36,26 +36,21 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 
-	private RevisionStore $revisionStore;
-	private NameTableStore $changeTagDefStore;
-	private ChangeTagsStore $changeTagsStore;
-	private LinkBatchFactory $linkBatchFactory;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		RevisionStore $revisionStore,
+		private readonly RevisionStore $revisionStore,
 		IContentHandlerFactory $contentHandlerFactory,
 		ParserFactory $parserFactory,
 		SlotRoleRegistry $slotRoleRegistry,
-		NameTableStore $changeTagDefStore,
-		ChangeTagsStore $changeTagsStore,
-		LinkBatchFactory $linkBatchFactory,
+		private readonly NameTableStore $changeTagDefStore,
+		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		ContentRenderer $contentRenderer,
 		ContentTransformer $contentTransformer,
 		CommentFormatter $commentFormatter,
 		TempUserCreator $tempUserCreator,
-		UserFactory $userFactory
+		UserFactory $userFactory,
 	) {
 		parent::__construct(
 			$query,
@@ -71,10 +66,6 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 			$tempUserCreator,
 			$userFactory
 		);
-		$this->revisionStore = $revisionStore;
-		$this->changeTagDefStore = $changeTagDefStore;
-		$this->changeTagsStore = $changeTagsStore;
-		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	protected function run( ?ApiPageSet $resultPageSet = null ) {

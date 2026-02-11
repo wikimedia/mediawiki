@@ -36,7 +36,6 @@ use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\Watchlist\WatchedItemStore;
-use MediaWiki\Watchlist\WatchlistLabelStore;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -49,21 +48,6 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
 class ApiQueryInfo extends ApiQueryBase {
 
 	private ILanguageConverter $languageConverter;
-	private LinkBatchFactory $linkBatchFactory;
-	private NamespaceInfo $namespaceInfo;
-	private TitleFactory $titleFactory;
-	private TitleFormatter $titleFormatter;
-	private WatchedItemStore $watchedItemStore;
-	private WatchlistLabelStore $watchlistLabelStore;
-	private RestrictionStore $restrictionStore;
-	private LinksMigration $linksMigration;
-	private TempUserCreator $tempUserCreator;
-	private UserFactory $userFactory;
-	private IntroMessageBuilder $introMessageBuilder;
-	private PreloadedContentBuilder $preloadedContentBuilder;
-	private RevisionLookup $revisionLookup;
-	private UrlUtils $urlUtils;
-	private LinkRenderer $linkRenderer;
 
 	private bool $fld_protection = false;
 	private bool $fld_talkid = false;
@@ -173,40 +157,24 @@ class ApiQueryInfo extends ApiQueryBase {
 		ApiQuery $queryModule,
 		string $moduleName,
 		Language $contentLanguage,
-		LinkBatchFactory $linkBatchFactory,
-		NamespaceInfo $namespaceInfo,
-		TitleFactory $titleFactory,
-		TitleFormatter $titleFormatter,
-		WatchedItemStore $watchedItemStore,
-		WatchlistLabelStore $watchlistLabelStore,
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly TitleFactory $titleFactory,
+		private readonly TitleFormatter $titleFormatter,
+		private readonly WatchedItemStore $watchedItemStore,
 		LanguageConverterFactory $languageConverterFactory,
-		RestrictionStore $restrictionStore,
-		LinksMigration $linksMigration,
-		TempUserCreator $tempUserCreator,
-		UserFactory $userFactory,
-		IntroMessageBuilder $introMessageBuilder,
-		PreloadedContentBuilder $preloadedContentBuilder,
-		RevisionLookup $revisionLookup,
-		UrlUtils $urlUtils,
-		LinkRenderer $linkRenderer
+		private readonly RestrictionStore $restrictionStore,
+		private readonly LinksMigration $linksMigration,
+		private readonly TempUserCreator $tempUserCreator,
+		private readonly UserFactory $userFactory,
+		private readonly IntroMessageBuilder $introMessageBuilder,
+		private readonly PreloadedContentBuilder $preloadedContentBuilder,
+		private readonly RevisionLookup $revisionLookup,
+		private readonly UrlUtils $urlUtils,
+		private readonly LinkRenderer $linkRenderer,
 	) {
 		parent::__construct( $queryModule, $moduleName, 'in' );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $contentLanguage );
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->titleFactory = $titleFactory;
-		$this->titleFormatter = $titleFormatter;
-		$this->watchedItemStore = $watchedItemStore;
-		$this->watchlistLabelStore = $watchlistLabelStore;
-		$this->restrictionStore = $restrictionStore;
-		$this->linksMigration = $linksMigration;
-		$this->tempUserCreator = $tempUserCreator;
-		$this->userFactory = $userFactory;
-		$this->introMessageBuilder = $introMessageBuilder;
-		$this->preloadedContentBuilder = $preloadedContentBuilder;
-		$this->revisionLookup = $revisionLookup;
-		$this->urlUtils = $urlUtils;
-		$this->linkRenderer = $linkRenderer;
 	}
 
 	/**

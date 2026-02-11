@@ -22,14 +22,12 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
-	private RepoGroup $repoGroup;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		RepoGroup $repoGroup,
+		private readonly RepoGroup $repoGroup,
 		Language $contentLanguage,
-		BadFileLookup $badFileLookup
+		BadFileLookup $badFileLookup,
 	) {
 		parent::__construct(
 			$query,
@@ -39,7 +37,6 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 			$contentLanguage,
 			$badFileLookup
 		);
-		$this->repoGroup = $repoGroup;
 	}
 
 	public function execute() {

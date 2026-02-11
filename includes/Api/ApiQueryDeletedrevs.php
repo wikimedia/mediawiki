@@ -35,30 +35,17 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class ApiQueryDeletedrevs extends ApiQueryBase {
 
-	private CommentStore $commentStore;
-	private RowCommentFormatter $commentFormatter;
-	private RevisionStore $revisionStore;
-	private NameTableStore $changeTagDefStore;
-	private ChangeTagsStore $changeTagsStore;
-	private LinkBatchFactory $linkBatchFactory;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		CommentStore $commentStore,
-		RowCommentFormatter $commentFormatter,
-		RevisionStore $revisionStore,
-		NameTableStore $changeTagDefStore,
-		ChangeTagsStore $changeTagsStore,
-		LinkBatchFactory $linkBatchFactory
+		private readonly CommentStore $commentStore,
+		private readonly RowCommentFormatter $commentFormatter,
+		private readonly RevisionStore $revisionStore,
+		private readonly NameTableStore $changeTagDefStore,
+		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly LinkBatchFactory $linkBatchFactory,
 	) {
 		parent::__construct( $query, $moduleName, 'dr' );
-		$this->commentStore = $commentStore;
-		$this->commentFormatter = $commentFormatter;
-		$this->revisionStore = $revisionStore;
-		$this->changeTagDefStore = $changeTagDefStore;
-		$this->changeTagsStore = $changeTagsStore;
-		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	public function execute() {

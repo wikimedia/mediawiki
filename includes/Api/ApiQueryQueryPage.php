@@ -28,19 +28,16 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	 */
 	private $queryPages;
 
-	private SpecialPageFactory $specialPageFactory;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		SpecialPageFactory $specialPageFactory
+		private readonly SpecialPageFactory $specialPageFactory,
 	) {
 		parent::__construct( $query, $moduleName, 'qp' );
 		$this->queryPages = array_values( array_diff(
 			array_column( QueryPage::getPages(), 1 ), // [ class, name ]
 			$this->getConfig()->get( MainConfigNames::APIUselessQueryPages )
 		) );
-		$this->specialPageFactory = $specialPageFactory;
 	}
 
 	public function execute() {

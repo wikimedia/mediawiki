@@ -31,7 +31,6 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 abstract class ApiQueryBase extends ApiBase {
 	use ApiQueryBlockInfoTrait;
 
-	private ApiQuery $mQueryModule;
 	private ?IReadableDatabase $mDb;
 	/** @var array<string,IReadableDatabase> */
 	private array $virtualDBs;
@@ -44,13 +43,16 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * @stable to call
-	 * @param ApiQuery $queryModule
+	 * @param ApiQuery $mQueryModule
 	 * @param string $moduleName
 	 * @param string $paramPrefix
 	 */
-	public function __construct( ApiQuery $queryModule, string $moduleName, $paramPrefix = '' ) {
-		parent::__construct( $queryModule->getMain(), $moduleName, $paramPrefix );
-		$this->mQueryModule = $queryModule;
+	public function __construct(
+		private readonly ApiQuery $mQueryModule,
+		string $moduleName,
+		$paramPrefix = '',
+	) {
+		parent::__construct( $mQueryModule->getMain(), $moduleName, $paramPrefix );
 		$this->mDb = null;
 		$this->virtualDBs = [];
 		$this->currentDomain = false;

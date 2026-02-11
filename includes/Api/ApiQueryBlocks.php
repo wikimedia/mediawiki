@@ -31,30 +31,17 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class ApiQueryBlocks extends ApiQueryBase {
 
-	private DatabaseBlockStore $blockStore;
-	private BlockActionInfo $blockActionInfo;
-	private BlockRestrictionStore $blockRestrictionStore;
-	private CommentStore $commentStore;
-	private HideUserUtils $hideUserUtils;
-	private CommentFormatter $commentFormatter;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		DatabaseBlockStore $blockStore,
-		BlockActionInfo $blockActionInfo,
-		BlockRestrictionStore $blockRestrictionStore,
-		CommentStore $commentStore,
-		HideUserUtils $hideUserUtils,
-		CommentFormatter $commentFormatter
+		private readonly DatabaseBlockStore $blockStore,
+		private readonly BlockActionInfo $blockActionInfo,
+		private readonly BlockRestrictionStore $blockRestrictionStore,
+		private readonly CommentStore $commentStore,
+		private readonly HideUserUtils $hideUserUtils,
+		private readonly CommentFormatter $commentFormatter,
 	) {
 		parent::__construct( $query, $moduleName, 'bk' );
-		$this->blockStore = $blockStore;
-		$this->blockActionInfo = $blockActionInfo;
-		$this->blockRestrictionStore = $blockRestrictionStore;
-		$this->commentStore = $commentStore;
-		$this->hideUserUtils = $hideUserUtils;
-		$this->commentFormatter = $commentFormatter;
 	}
 
 	public function execute() {

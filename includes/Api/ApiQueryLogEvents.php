@@ -9,7 +9,6 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\ChangeTags\ChangeTagsStore;
-use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Logging\DatabaseLogEntry;
@@ -36,33 +35,20 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class ApiQueryLogEvents extends ApiQueryBase {
 
-	private CommentStore $commentStore;
-	private CommentFormatter $commentFormatter;
-	private NameTableStore $changeTagDefStore;
-	private ChangeTagsStore $changeTagsStore;
-	private UserNameUtils $userNameUtils;
-	private LogFormatterFactory $logFormatterFactory;
-
 	/** @var string[]|null */
 	private $formattedComments;
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		CommentStore $commentStore,
-		RowCommentFormatter $commentFormatter,
-		NameTableStore $changeTagDefStore,
-		ChangeTagsStore $changeTagsStore,
-		UserNameUtils $userNameUtils,
-		LogFormatterFactory $logFormatterFactory
+		private readonly CommentStore $commentStore,
+		private readonly RowCommentFormatter $commentFormatter,
+		private readonly NameTableStore $changeTagDefStore,
+		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly UserNameUtils $userNameUtils,
+		private readonly LogFormatterFactory $logFormatterFactory,
 	) {
 		parent::__construct( $query, $moduleName, 'le' );
-		$this->commentStore = $commentStore;
-		$this->commentFormatter = $commentFormatter;
-		$this->changeTagDefStore = $changeTagDefStore;
-		$this->changeTagsStore = $changeTagsStore;
-		$this->userNameUtils = $userNameUtils;
-		$this->logFormatterFactory = $logFormatterFactory;
 	}
 
 	private bool $fld_ids = false;

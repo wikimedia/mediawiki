@@ -19,15 +19,12 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryPageProps extends ApiQueryBase {
 
-	private PageProps $pageProps;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		PageProps $pageProps
+		private readonly PageProps $pageProps,
 	) {
 		parent::__construct( $query, $moduleName, 'pp' );
-		$this->pageProps = $pageProps;
 	}
 
 	public function execute() {

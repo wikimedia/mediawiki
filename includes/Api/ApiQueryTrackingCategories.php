@@ -20,11 +20,13 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * @ingroup API
  */
 class ApiQueryTrackingCategories extends ApiQueryCategoryList {
-	private TrackingCategories $trackingCategoriesService;
 
-	public function __construct( ApiQuery $query, string $moduleName, TrackingCategories $tc ) {
+	public function __construct(
+		ApiQuery $query,
+		string $moduleName,
+		private readonly TrackingCategories $trackingCategoriesService,
+	) {
 		parent::__construct( $query, $moduleName, 'tc' );
-		$this->trackingCategoriesService = $tc;
 	}
 
 	public function execute() {

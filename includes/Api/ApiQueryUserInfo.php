@@ -41,30 +41,17 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	/** @var array */
 	private $prop = [];
 
-	private TalkPageNotificationManager $talkPageNotificationManager;
-	private WatchedItemStore $watchedItemStore;
-	private UserEditTracker $userEditTracker;
-	private UserOptionsLookup $userOptionsLookup;
-	private UserGroupManager $userGroupManager;
-	private WatchlistLabelStore $watchlistLabelStore;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		TalkPageNotificationManager $talkPageNotificationManager,
-		WatchedItemStore $watchedItemStore,
-		UserEditTracker $userEditTracker,
-		UserOptionsLookup $userOptionsLookup,
-		UserGroupManager $userGroupManager,
-		WatchlistLabelStore $watchlistLabelStore
+		private readonly TalkPageNotificationManager $talkPageNotificationManager,
+		private readonly WatchedItemStore $watchedItemStore,
+		private readonly UserEditTracker $userEditTracker,
+		private readonly UserOptionsLookup $userOptionsLookup,
+		private readonly UserGroupManager $userGroupManager,
+		private readonly WatchlistLabelStore $watchlistLabelStore,
 	) {
 		parent::__construct( $query, $moduleName, 'ui' );
-		$this->talkPageNotificationManager = $talkPageNotificationManager;
-		$this->watchedItemStore = $watchedItemStore;
-		$this->userEditTracker = $userEditTracker;
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->userGroupManager = $userGroupManager;
-		$this->watchlistLabelStore = $watchlistLabelStore;
 	}
 
 	public function execute() {

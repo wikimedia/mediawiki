@@ -16,13 +16,13 @@ use MediaWiki\Search\SearchEngineFactory;
  * @ingroup API
  */
 class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
-	use \MediaWiki\Api\SearchApi;
+	use SearchApi;
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
 		SearchEngineConfig $searchEngineConfig,
-		SearchEngineFactory $searchEngineFactory
+		SearchEngineFactory $searchEngineFactory,
 	) {
 		parent::__construct( $query, $moduleName, 'ps' );
 		// Services needed in SearchApi trait

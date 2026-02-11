@@ -41,7 +41,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		private readonly Language $contentLanguage,
 		private readonly TempUserConfig $tempUserConfig,
 		private readonly RecentChangeLookup $recentChangeLookup,
-		private readonly TempUserDetailsLookup $tempUserDetailsLookup
+		private readonly TempUserDetailsLookup $tempUserDetailsLookup,
 	) {
 		parent::__construct( $query, $moduleName, 'au' );
 	}

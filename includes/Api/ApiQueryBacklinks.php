@@ -31,8 +31,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	 */
 	private $rootTitle;
 
-	private LinksMigration $linksMigration;
-
 	/** @var array */
 	private $params;
 	/** @var array */
@@ -95,7 +93,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		LinksMigration $linksMigration
+		private readonly LinksMigration $linksMigration,
 	) {
 		$settings = $this->backlinksSettings[$moduleName];
 		$prefix = $settings['prefix'];
@@ -105,7 +103,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		parent::__construct( $query, $moduleName, $code );
 		$this->bl_table = $settings['linktbl'];
 		$this->hasNS = $moduleName !== 'imageusage';
-		$this->linksMigration = $linksMigration;
 		[ $this->bl_ns, $this->bl_title ] = $this->linksMigration->getTitleFields( $this->bl_table );
 		$this->bl_from = $prefix . '_from';
 		$this->bl_from_ns = $prefix . '_from_namespace';

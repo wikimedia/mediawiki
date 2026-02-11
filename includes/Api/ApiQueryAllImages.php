@@ -38,17 +38,14 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	 */
 	protected $mRepo;
 
-	private GroupPermissionsLookup $groupPermissionsLookup;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
 		RepoGroup $repoGroup,
-		GroupPermissionsLookup $groupPermissionsLookup
+		private readonly GroupPermissionsLookup $groupPermissionsLookup,
 	) {
 		parent::__construct( $query, $moduleName, 'ai' );
 		$this->mRepo = $repoGroup->getLocalRepo();
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
 	}
 
 	/**

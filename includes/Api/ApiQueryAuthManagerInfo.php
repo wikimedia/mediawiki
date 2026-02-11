@@ -20,15 +20,12 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiQueryAuthManagerInfo extends ApiQueryBase {
 
-	private AuthManager $authManager;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		AuthManager $authManager
+		private readonly AuthManager $authManager,
 	) {
 		parent::__construct( $query, $moduleName, 'ami' );
-		$this->authManager = $authManager;
 	}
 
 	public function execute() {

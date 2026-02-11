@@ -42,36 +42,21 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
-	private CommentStore $commentStore;
-	private RowCommentFormatter $commentFormatter;
-	private SlotRoleRegistry $slotRoleRegistry;
-	private UserNameUtils $userNameUtils;
-	private LogFormatterFactory $logFormatterFactory;
-	private ChangesListQueryFactory $changesListQueryFactory;
-	private RecentChangeLookup $recentChangeLookup;
-
 	/** @var string[] */
 	private $formattedComments = [];
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		CommentStore $commentStore,
-		RowCommentFormatter $commentFormatter,
-		SlotRoleRegistry $slotRoleRegistry,
-		UserNameUtils $userNameUtils,
-		LogFormatterFactory $logFormatterFactory,
-		ChangesListQueryFactory $changesListQueryFactory,
-		RecentChangeLookup $recentChangeLookup,
+		private readonly CommentStore $commentStore,
+		private readonly RowCommentFormatter $commentFormatter,
+		private readonly SlotRoleRegistry $slotRoleRegistry,
+		private readonly UserNameUtils $userNameUtils,
+		private readonly LogFormatterFactory $logFormatterFactory,
+		private readonly ChangesListQueryFactory $changesListQueryFactory,
+		private readonly RecentChangeLookup $recentChangeLookup,
 	) {
 		parent::__construct( $query, $moduleName, 'rc' );
-		$this->commentStore = $commentStore;
-		$this->commentFormatter = $commentFormatter;
-		$this->slotRoleRegistry = $slotRoleRegistry;
-		$this->userNameUtils = $userNameUtils;
-		$this->logFormatterFactory = $logFormatterFactory;
-		$this->changesListQueryFactory = $changesListQueryFactory;
-		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
 	private bool $fld_comment = false;

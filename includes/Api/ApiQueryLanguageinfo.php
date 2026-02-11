@@ -35,24 +35,15 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 	 */
 	private const MAX_EXECUTE_SECONDS = 3;
 
-	private LanguageFactory $languageFactory;
-	private LanguageNameUtils $languageNameUtils;
-	private LanguageFallback $languageFallback;
-	private LanguageConverterFactory $languageConverterFactory;
-
 	public function __construct(
 		ApiQuery $queryModule,
 		string $moduleName,
-		LanguageFactory $languageFactory,
-		LanguageNameUtils $languageNameUtils,
-		LanguageFallback $languageFallback,
-		LanguageConverterFactory $languageConverterFactory
+		private readonly LanguageFactory $languageFactory,
+		private readonly LanguageNameUtils $languageNameUtils,
+		private readonly LanguageFallback $languageFallback,
+		private readonly LanguageConverterFactory $languageConverterFactory,
 	) {
 		parent::__construct( $queryModule, $moduleName, 'li' );
-		$this->languageFactory = $languageFactory;
-		$this->languageNameUtils = $languageNameUtils;
-		$this->languageFallback = $languageFallback;
-		$this->languageConverterFactory = $languageConverterFactory;
 	}
 
 	public function execute() {

@@ -26,22 +26,19 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @ingroup API
  */
 class ApiQuerySearch extends ApiQueryGeneratorBase {
-	use \MediaWiki\Api\SearchApi;
-
-	private TitleMatcher $titleMatcher;
+	use SearchApi;
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
 		SearchEngineConfig $searchEngineConfig,
 		SearchEngineFactory $searchEngineFactory,
-		TitleMatcher $titleMatcher
+		private readonly TitleMatcher $titleMatcher,
 	) {
 		parent::__construct( $query, $moduleName, 'sr' );
 		// Services also needed in SearchApi trait
 		$this->searchEngineConfig = $searchEngineConfig;
 		$this->searchEngineFactory = $searchEngineFactory;
-		$this->titleMatcher = $titleMatcher;
 	}
 
 	public function execute() {

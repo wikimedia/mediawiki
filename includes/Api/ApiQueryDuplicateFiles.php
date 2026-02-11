@@ -21,15 +21,12 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 
-	private RepoGroup $repoGroup;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		RepoGroup $repoGroup
+		private readonly RepoGroup $repoGroup,
 	) {
 		parent::__construct( $query, $moduleName, 'df' );
-		$this->repoGroup = $repoGroup;
 	}
 
 	public function execute() {
