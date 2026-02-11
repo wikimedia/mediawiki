@@ -507,6 +507,31 @@ class SkinModule extends FileModule {
 		if ( $isLogoFeatureEnabled ) {
 			$featureStyles = $this->generateAndAppendLogoStyles( $featureStyles, $context );
 		}
+		$isAccessibilityEnabled = in_array( 'accessibility', $this->features );
+
+		$config = $this->getConfig();
+		$limits = $config->get( 'ThumbLimits' );
+		$thumbnailOptionsCount = count( $limits );
+
+		// Note this is currently restricted to Parsoid.
+		// @todo: Pending feedback on T375981 it can be extended to legacy parser as well.
+		// @todo: these may be converted to em units at later point in project (pending feedback)
+		// @todo: This may be moved to a dedicated module later on to group user customizations
+		// (for example the underline user preference currently residing in `content-links` feature.
+		if ( $isAccessibilityEnabled ) {
+			$smallSize = max( 180, min( $limits ) );
+			$defaultSize = $config->get( 'DefaultUserOptions' )[ 'thumbsize' ];
+			$largeSize = max( $limits );
+			$imgSelector = '.mw-parser-output[data-mw-parsoid-version] .mw-default-size img';
+			// Restrict to width='$defaultSize' to prevent upscaling images which were
+			// originally smaller than the default thumbnail size (T417828)
+			$featureStyles['all'][] = $imgSelector .
+				'[ width="' . $defaultSize . '" ] { height: auto; width: ' . $defaultSize . 'px; }';
+			$featureStyles['all'][] = 'html.skin-theme-clientpref-thumb-small ' .
+				$imgSelector . ' { width: ' . $smallSize . 'px; }';
+			$featureStyles['all'][] = 'html.skin-theme-clientpref-thumb-large ' .
+				$imgSelector . ' { width: ' . $largeSize . 'px; }';
+		}
 
 		return $this->combineFeatureAndParentStyles( $featureStyles, $parentStyles );
 	}
