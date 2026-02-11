@@ -3316,6 +3316,8 @@
 	"watchlistedit-normal-title": "Edit watchlist",
 	"watchlistedit-normal-check-all": "Check all",
 	"watchlistedit-normal-done": "{{PLURAL:$1|A single page was|$1 pages were}} removed from your watchlist:",
+	"watchlistedit-search-label": "Search:",
+	"watchlistedit-search-placeholder": "Search pages in your watchlist",
 	"watchlistedit-raw-title": "Edit raw watchlist",
 	"watchlistedit-raw-legend": "Edit raw watchlist",
 	"watchlistedit-raw-explain": "Titles on your watchlist are shown below, and can be edited by adding to and removing from the list;\none title per line.\nWhen finished, click \"{{int:Watchlistedit-raw-submit}}\".\nYou can also [[Special:EditWatchlist|use the standard editor]].",

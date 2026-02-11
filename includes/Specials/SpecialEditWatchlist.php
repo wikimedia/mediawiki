@@ -191,8 +191,16 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/**
 	 * @return HTMLForm
 	 */
-	private function createNamespaceSelectForm(): HTMLForm {
-		$namespaceFormDescriptor = [
+	private function createWatchlistFilterForm(): HTMLForm {
+		$filterFormDescriptor = [
+			'search' => [
+				'type' => 'text',
+				'name' => 'search',
+				'id' => 'watchlist-search',
+				'label-message' => 'watchlistedit-search-label',
+				'placeholder-message' => 'watchlistedit-search-placeholder',
+				'default' => '',
+			],
 			'namespace' => [
 				'type' => 'namespaceselect',
 				'name' => 'namespace',
@@ -203,16 +211,16 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				'include' => array_merge( array_values( $this->nsInfo->getSubjectNamespaces() ) ),
 			],
 		];
-		$namespaceSelectForm = HTMLForm::factory( 'codex', $namespaceFormDescriptor, $this->getContext() );
-		$namespaceSelectForm
+		$filterForm = HTMLForm::factory( 'codex', $filterFormDescriptor, $this->getContext() );
+		$filterForm
 			->setMethod( 'get' )
-			->setId( 'namespace-selector-form' )
+			->setId( 'watchlist-filter-form' )
 			->setTitle( $this->getPageTitle() )
 			->setSubmitTextMsg( 'allpagessubmit' );
 		if ( $this->getRequest()->getInt( 'limit' ) ) {
-			$namespaceSelectForm->addHiddenField( 'limit', $this->getRequest()->getInt( 'limit' ) );
+			$filterForm->addHiddenField( 'limit', $this->getRequest()->getInt( 'limit' ) );
 		}
-		return $namespaceSelectForm->prepareForm();
+		return $filterForm->prepareForm();
 	}
 
 	/**
@@ -226,7 +234,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$this->handleEditWatchlistFormSubmission();
 		}
 
-		$this->createNamespaceSelectForm()->displayForm( '' );
+		$this->createWatchlistFilterForm()->displayForm( '' );
 		$output->addHTML( $this->pager->getBody() );
 	}
 

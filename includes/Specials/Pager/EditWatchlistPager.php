@@ -124,8 +124,30 @@ class EditWatchlistPager extends CodexTablePager {
 		];
 		[ $offsetConds, ] = $this->getOffsetCondsAndSortOptions( $offset, $limit, $order );
 		$options['offsetConds'] = is_array( $offsetConds ) ? $offsetConds : [ $offsetConds ];
+		$searchCond = $this->getSearchCond();
+		if ( $searchCond !== null ) {
+			$options['offsetConds'][] = $searchCond;
+		}
 		$watchedItems = $this->wis->getWatchedItemsForUser( $this->getUser(), $options );
 		return $this->watchedItemArrayToResults( $watchedItems );
+	}
+
+	/**
+	 * Create SQL search condition for title filtering.
+	 *
+	 * @return string|null
+	 */
+	private function getSearchCond(): ?string {
+		$search = trim( $this->getRequest()->getText( 'search', '' ) );
+		if ( $search === '' ) {
+			return null;
+		}
+
+		$search = str_replace( ' ', '_', $search );
+		return $this->mDb->addIdentifierQuotes( 'wl_title' ) . ' ' . $this->mDb->buildLike(
+			$search,
+			$this->mDb->anyString()
+		);
 	}
 
 	/**

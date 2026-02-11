@@ -39,6 +39,7 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 			'namespaceInfo' => $namespaceInfo,
 			'user' => $user,
 			'request' => [ 'method' => 'GET', 'data' => [] ],
+			'dbType' => 'mysql',
 		];
 		$options = array_merge( $defaultOptions, $options );
 
@@ -102,6 +103,16 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 				}
 				return $sql;
 			} );
+		$db->method( 'anyString' )
+			->willReturn( '%' );
+		$db->method( 'buildLike' )
+			->willReturnCallback( static function ( $param, ...$params ) {
+				return "LIKE '" . $param . implode( '', $params ) . "'";
+			} );
+		$db->method( 'getType' )
+			->willReturn( $options['dbType'] );
+		$db->method( 'addIdentifierQuotes' )
+			->willReturnCallback( static fn ( $field ) => '`' . $field . '`' );
 
 		// Parent class constructor uses MediaWikiServices singleton which is not available here, so work around it
 		$pager = new class(
@@ -165,7 +176,10 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 	 * * @dataProvider provideTestReallyDoQuery
 	 */
 	public function testReallyDoQuery(
-		array $request, array $watchedItemsCallAndResponse, FakeResultWrapper $expectedResult
+		array $request,
+		array $watchedItemsCallAndResponse,
+		FakeResultWrapper $expectedResult,
+		string $dbType = 'mysql'
 	) {
 		$mockUser = $this->createMock( UserIdentity::class );
 		$mockUser->method( 'getId' )->willReturn( self::$USER_ID );
@@ -182,7 +196,10 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 				}
 			);
 		$pager = $this->instantiatePager( [
-			'request' => $request, 'watchedItemStore' => $watchedItemStore, 'user' => $mockUser
+			'request' => $request,
+			'watchedItemStore' => $watchedItemStore,
+			'user' => $mockUser,
+			'dbType' => $dbType,
 		] );
 		[ $offset, $limit, $order ] = $this->getReallyDoQueryArgsFromRequest( $pager->getRequest() );
 		$this->assertEquals( $expectedResult, $pager->reallyDoQuery(
@@ -263,6 +280,57 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 						'labels' => [ [ 'id' => 1, 'name' => 'foo' ] ]
 					],
 				] ),
+			],
+			// data set 2: search specified in request data
+			[
+				'request' => [
+					'method' => 'GET',
+					'data' => [
+						'search' => 'page 2',
+					]
+				],
+				'watchedItemsCallAndResponse' => [
+					'call' => [
+						'limit' => 50,
+						'sort' => WatchedItemStoreInterface::SORT_ASC,
+						'namespaces' => self::$SUBJECT_NAMESPACES,
+						'offsetConds' => [ "`wl_title` LIKE 'page_2%'" ],
+						'forWrite' => false,
+					],
+					'response' => static fn ( $testCase ) => [
+						$testCase->createMockWatchedItem( 999, 'Page_2', 20250909180530 ),
+					]
+				],
+				'expectedResult' => new FakeResultWrapper( [
+					[ 'wl_namespace' => 999, 'wl_title' => 'Page_2',
+						'expiry' => 'watchlist-expires-in|20250909180530', 'labels' => [] ],
+				] ),
+			],
+			// data set 3: search specified in request data for non-MySQL backend
+			[
+				'request' => [
+					'method' => 'GET',
+					'data' => [
+						'search' => 'page 2',
+					]
+				],
+				'watchedItemsCallAndResponse' => [
+					'call' => [
+						'limit' => 50,
+						'sort' => WatchedItemStoreInterface::SORT_ASC,
+						'namespaces' => self::$SUBJECT_NAMESPACES,
+						'offsetConds' => [ "`wl_title` LIKE 'page_2%'" ],
+						'forWrite' => false,
+					],
+					'response' => static fn ( $testCase ) => [
+						$testCase->createMockWatchedItem( 999, 'Page_2', 20250909180530 ),
+					]
+				],
+				'expectedResult' => new FakeResultWrapper( [
+					[ 'wl_namespace' => 999, 'wl_title' => 'Page_2',
+						'expiry' => 'watchlist-expires-in|20250909180530', 'labels' => [] ],
+				] ),
+				'dbType' => 'postgres',
 			],
 		];
 	}

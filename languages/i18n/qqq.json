@@ -3595,6 +3595,8 @@
 	"lag-warn-high": "Used as warning about replica lag. Parameters:\n* $1 - number of seconds\nSee also:\n* {{msg-mw|Lag-warn-normal}}",
 	"watchlistedit-normal-title": "Title of the [[Special:EditWatchlist]] special page.",
 	"watchlistedit-normal-check-all": "'''\"Check\" refers to checking a ☑️ box, not to testing.'''\n\nLabel for checkbox to select all items in a namespace.",
+	"watchlistedit-search-label": "Label for search input field on [[Special:EditWatchlist]] that allows users to search for pages in their watchlist.",
+	"watchlistedit-search-placeholder": "Placeholder text for search input field on [[Special:EditWatchlist]] that shows example usage of the search functionality.",
 	"watchlistedit-normal-done": "Message on [[Special:EditWatchlist]] after pages are removed from the watchlist.\n\nFollowed by list of page titles which are removed.\n\nParameters:\n* $1 - number of page titles which are removed\nSee also:\n* {{msg-mw|Watchlistedit-raw-added}}\n* {{msg-mw|Watchlistedit-raw-removed}}",
 	"watchlistedit-raw-title": "Title of [[Special:Watchlist/raw|Special page]].\n\n{{Identical|Edit raw watchlist}}",
 	"watchlistedit-raw-legend": "Heading of the dialog box on [[Special:Watchlist/raw]].\n\n{{Identical|Edit raw watchlist}}",
