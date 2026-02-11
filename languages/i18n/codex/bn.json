@@ -25,5 +25,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "অনেকগুলির মধ্যে $1–$2টি ফলাফল দেখানো হচ্ছে",
 	"cdx-table-pagination-status-message-indeterminate-short": "অনেকগুলির মধ্যে $1–$2",
 	"cdx-table-pagination-status-message-indeterminate-final": "শেষ {{PLURAL:$1|$1টি ফলাফল}} দেখানো হচ্ছে",
-	"cdx-table-pagination-status-message-pending": "ফলাফল লোড হচ্ছে..."
+	"cdx-table-pagination-status-message-pending": "ফলাফল লোড হচ্ছে...",
+	"cdx-table-no-data-message": "কোনো উপাত্ত উপলব্ধ নেই।"
 }

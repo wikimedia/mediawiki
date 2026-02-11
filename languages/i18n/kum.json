@@ -128,7 +128,7 @@
 	"sort-descending": "Кемивюне гёре тизмек",
 	"sort-ascending": "Артывуна гёре тизмек",
 	"nstab-main": "Макъала",
-	"nstab-user": "{{ПОЛ\n:$1|Къоллавчу сагьифа}}",
+	"nstab-user": "{{GENDER\n:$1|Сагьифаны къоллавчусу}}",
 	"nstab-media": "СМИ сагьифа",
 	"nstab-special": "Хас сагьифа",
 	"nstab-project": "Проектни сагьифасы",
