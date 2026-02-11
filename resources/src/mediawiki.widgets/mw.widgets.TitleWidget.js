@@ -79,7 +79,7 @@
 
 	/* Static properties */
 
-	mw.widgets.TitleWidget.static.interwikiPrefixesPromiseCache = {};
+	mw.widgets.TitleWidget.static.interwikiMapPromiseCache = {};
 
 	/* Methods */
 
@@ -110,16 +110,16 @@
 		this.namespace = namespace;
 	};
 
-	mw.widgets.TitleWidget.prototype.getInterwikiPrefixesPromise = function () {
+	mw.widgets.TitleWidget.prototype.getInterwikiMapPromise = function () {
 		if ( !this.showInterwikis ) {
 			return $.Deferred().resolve( [] ).promise();
 		}
 
 		const api = this.getApi();
-		const cache = this.constructor.static.interwikiPrefixesPromiseCache;
+		const cache = this.constructor.static.interwikiMapPromiseCache;
 		const key = api.defaults.ajax.url;
 
-		if ( !Object.prototype.hasOwnProperty.call( cache, key ) ) {
+		if ( !hasOwn.call( cache, key ) ) {
 			// Cache client-side for a day since this info is mostly static
 			const oneDay = 60 * 60 * 24;
 			cache[ key ] = api.get( {
@@ -130,7 +130,7 @@
 				smaxage: oneDay,
 				// Workaround T97096 by setting uselang=content
 				uselang: 'content'
-			} ).then( ( data ) => data.query.interwikimap.map( ( iw ) => iw.prefix ) );
+			} ).then( ( data ) => data.query.interwikimap );
 			// Do not cache errors
 			cache[ key ].catch( () => {
 				delete cache[ key ];
@@ -142,32 +142,35 @@
 	/**
 	 * Suggest link fragments from the sections API.
 	 *
+	 * @param {mw.Api} api API to use for the request
 	 * @param {string} title Title, extracted form the user input
 	 * @param {string} fragmentQuery Partial link fragment, from the user input
+	 * @param {Object} ajaxOptions Ajax options to use for the request, including abort signal
+	 * @param {Object} [wiki] Interwiki map entry for the wiki to search, or undefined for the current wiki
 	 * @return {jQuery.Promise} Suggestions promise
 	 */
-	mw.widgets.TitleWidget.prototype.getSectionSuggestions = function ( title, fragmentQuery ) {
+	mw.widgets.TitleWidget.prototype.getSectionSuggestions = function ( api, title, fragmentQuery, ajaxOptions, wiki ) {
 		const normalizedTitle = mw.Title.newFromText( title || mw.config.get( 'wgRelevantPageName' ) );
 		if ( !normalizedTitle ) {
 			return $.Deferred().resolve( [] ).promise();
 		}
 		const normalizedTitleText = normalizedTitle.getPrefixedText();
-		this.sectionsCache[ normalizedTitleText ] = this.sectionsCache[ normalizedTitleText ] || this.getApi().get( {
+		const cacheKey = api.defaults.ajax.url + '|' + normalizedTitleText;
+		this.sectionsCache[ cacheKey ] = this.sectionsCache[ cacheKey ] || api.get( {
 			action: 'parse',
 			page: normalizedTitleText,
 			prop: 'sections'
-		} );
+		}, ajaxOptions );
 
 		function normalizeFragment( fragment ) {
 			return fragment.toLowerCase().replace( /_/g, ' ' );
 		}
 
-		return this.sectionsCache[ normalizedTitleText ].then( ( response ) => {
+		return this.sectionsCache[ cacheKey ].then( ( response ) => {
 			const sections = OO.getProp( response, 'parse', 'sections' ) || [];
 			const normalizedFragmentQuery = normalizeFragment( fragmentQuery );
 			const results = sections.filter( ( section ) => normalizeFragment( section.line ).includes( normalizedFragmentQuery ) ).map( ( section ) => {
 				const fragment = section.linkAnchor.replace( /_/g, ' ' );
-				// TODO: Make promise abortable
 				return {
 					title: title + '#' + fragment,
 					// `title`` could be empty for a relative fragment, so store the normalized
@@ -180,12 +183,12 @@
 			} );
 			// Sorting also happens later, but we need to do it now before we truncate
 			results.sort( ( a, b ) => a.index - b.index );
+			const pages = results.slice( 0, this.limit );
+			if ( wiki ) {
+				this.processInterwikiResults( pages, wiki );
+			}
 			// Fake query result
-			return {
-				query: {
-					pages: results.slice( 0, this.limit )
-				}
-			};
+			return { query: { pages } };
 		} ).promise( { abort: function () {} } );
 	};
 
@@ -201,71 +204,112 @@
 		const ajaxOptions = {};
 		const abortable = api.makeAbortablePromise( ajaxOptions );
 
-		if ( this.searchFragments ) {
-			const hashIndex = query.indexOf( '#' );
-			if ( hashIndex !== -1 ) {
-				return this.getSectionSuggestions( query.slice( 0, hashIndex ), query.slice( hashIndex + 1 ) );
-			}
-		}
-
 		if ( !mw.Title.newFromText( query ) ) {
 			// Don't send invalid titles to the API.
 			// Just pretend it returned nothing so we can show the 'invalid title' section
 			return $.Deferred().resolve( {} ).promise( abortable );
 		}
 
-		return this.getInterwikiPrefixesPromise().then( ( interwikiPrefixes ) => {
+		return this.getInterwikiMapPromise().then( ( interwikiMap ) => {
 			// Optimization: check we have any prefixes.
-			if ( interwikiPrefixes.length ) {
-				const interwiki = query.slice( 0, Math.max( 0, query.indexOf( ':' ) ) );
-				if (
-					interwiki !== '' &&
-					interwikiPrefixes.includes( interwiki )
-				) {
-					// Interwiki prefix is valid: return the original query as a valid title
-					// NB: This doesn't check if the title actually exists on the other wiki
-					return { query: {
-						pages: [ {
-							title: query
-						} ]
-					} };
+			if ( interwikiMap.length ) {
+				const splitIndex = Math.max( 0, query.indexOf( ':' ) );
+				const interwiki = query.slice( 0, splitIndex ).toLowerCase();
+				if ( interwiki !== '' ) {
+					const wiki = interwikiMap.find( ( iw ) => iw.prefix === interwiki );
+					if ( wiki ) {
+						// If iw_api is not set, try to guess from the URL.
+						if ( wiki.api || wiki.url.endsWith( '/wiki/$1' ) ) {
+							// Make a foregin API request
+							const interwikiApi = new mw.ForeignApi( wiki.api || wiki.url.replace( '/wiki/$1', '/w/api.php' ), { anonymous: true, parameters: { origin: '*' } } );
+							const normalizedQuery = query.slice( splitIndex + 1 ).trim();
+							return this.getPrefixSearchRequest( interwikiApi, normalizedQuery, ajaxOptions, wiki );
+						}
+						// Interwiki prefix is valid but API not found: return the original query as a valid title
+						return { query: {
+							pages: [ {
+								title: query
+							} ]
+						} };
+					}
 				}
 			}
+
 			// Not a interwiki: do a prefix-search API lookup of the query.
-			const prefixSearchRequest = api.get( this.getApiParams( query ), ajaxOptions );
-			return prefixSearchRequest.then( ( prefixSearchResponse ) => {
-				if ( !this.showMissing ) {
-					return prefixSearchResponse;
-				}
-				const title = this.namespace && this.getMWTitle( query );
-				// Add the query title as the first result, after looking up its details.
-				const queryTitleRequest = api.get( {
-					action: 'query',
-					titles: title ? title.getPrefixedDb() : query
-				}, ajaxOptions );
-				return queryTitleRequest.then( ( queryTitleResponse ) => {
-					// By default, return the prefix-search result.
-					const result = prefixSearchResponse;
-					if ( prefixSearchResponse.query === undefined ) {
-						// There are no prefix-search results, so make the only result the query title.
-						// The API response structures are identical because both API calls are action=query.
-						result.query = queryTitleResponse.query;
-					} else if ( queryTitleResponse.query.pages && queryTitleResponse.query.pages[ -1 ] !== undefined &&
-						!this.responseContainsNonExistingTitle( prefixSearchResponse, queryTitleResponse.query.pages[ -1 ].title )
-					) {
-						// There are prefix-search results, but the query title isn't in them,
-						// so add it as a new result. It's under the new key 'queryTitle', because
-						// all other results will be under their page ID or a negative integer ID,
-						// and the keys aren't actually used for anything.
-						result.query.pages.queryTitle = queryTitleResponse.query.pages[ -1 ];
-						// Give it the lowest possible sort-index (the API only returns index > 0)
-						// to make this result be sorted at the top.
-						result.query.pages.queryTitle.index = 0;
-					}
-					return result;
-				} );
-			} );
+			return this.getPrefixSearchRequest( api, query, ajaxOptions );
 		} ).promise( abortable );
+	};
+
+	/**
+	 * Get a promise which resolves with an API response for a prefix search of the query,
+	 * or section suggestions if the query contains a hash fragment and searchFragments is enabled.
+	 *
+	 * @param {mw.Api} api API to use for the request
+	 * @param {string} query User query
+	 * @param {Object} ajaxOptions Ajax options to use for the request, including abort signal
+	 * @param {Object} [wiki] Interwiki map entry for the wiki to search, or undefined for the current wiki
+	 * @return {jQuery.Promise} Suggestions promise
+	 */
+	mw.widgets.TitleWidget.prototype.getPrefixSearchRequest = function ( api, query, ajaxOptions, wiki ) {
+		if ( this.searchFragments ) {
+			const hashIndex = query.indexOf( '#' );
+			if ( hashIndex !== -1 ) {
+				return this.getSectionSuggestions( api, query.slice( 0, hashIndex ), query.slice( hashIndex + 1 ), ajaxOptions, wiki );
+			}
+		}
+
+		const prefixSearchRequest = api.get( this.getApiParams( query ), ajaxOptions );
+		return prefixSearchRequest.then( ( prefixSearchResponse ) => {
+			if ( !this.showMissing ) {
+				return prefixSearchResponse;
+			}
+			const title = this.namespace && this.getMWTitle( query );
+			// Add the query title as the first result, after looking up its details.
+			const queryTitleRequest = api.get( {
+				action: 'query',
+				titles: title ? title.getPrefixedDb() : query
+			}, ajaxOptions );
+			return queryTitleRequest.then( ( queryTitleResponse ) => {
+				// By default, return the prefix-search result.
+				const result = prefixSearchResponse;
+				if ( prefixSearchResponse.query === undefined ) {
+					// There are no prefix-search results, so make the only result the query title.
+					// The API response structures are identical because both API calls are action=query.
+					result.query = queryTitleResponse.query;
+				} else if ( queryTitleResponse.query.pages && queryTitleResponse.query.pages[ -1 ] !== undefined &&
+					!this.responseContainsNonExistingTitle( prefixSearchResponse, queryTitleResponse.query.pages[ -1 ].title )
+				) {
+					// There are prefix-search results, but the query title isn't in them,
+					// so add it as a new result. It's under the new key 'queryTitle', because
+					// all other results will be under their page ID or a negative integer ID,
+					// and the keys aren't actually used for anything.
+					result.query.pages.queryTitle = queryTitleResponse.query.pages[ -1 ];
+					// Give it the lowest possible sort-index (the API only returns index > 0)
+					// to make this result be sorted at the top.
+					result.query.pages.queryTitle.index = 0;
+				}
+				if ( wiki && result.query.pages ) {
+					this.processInterwikiResults( result.query.pages, wiki );
+				}
+				return result;
+			} );
+		} );
+	};
+
+	/**
+	 * Process API results from an interwiki prefix search, adding URL and normalized title for each result.
+	 *
+	 * @param {Object} pages API response query.pages object to process
+	 * @param {Object} wiki Interwiki map entry for the wiki searched
+	 */
+	mw.widgets.TitleWidget.prototype.processInterwikiResults = function ( pages, wiki ) {
+		for ( const pageId in pages ) {
+			if ( hasOwn.call( pages, pageId ) ) {
+				pages[ pageId ].url = wiki.url.replace( '$1', encodeURIComponent( pages[ pageId ].title ) );
+				pages[ pageId ].normalizedTitle = wiki.prefix + ':' + pages[ pageId ].title;
+				pages[ pageId ].isInterwiki = true;
+			}
+		}
 	};
 
 	/**
@@ -488,12 +532,25 @@
 		if ( !description && ( data.missing && !data.known ) ) {
 			description = mw.msg( 'mw-widgets-titleinput-description-new-page' );
 		}
-		const mwTitle = new mw.Title( OO.getProp( data, 'originalData', 'normalizedTitle' ) || title );
-		return {
-			data: this.namespace !== null && this.relative ?
+		const originalData = data.originalData || {};
+		let optionData, label, url;
+		if ( originalData.isInterwiki ) {
+			// Title with interwiki prefix
+			optionData = originalData.normalizedTitle;
+			label = title;
+			url = originalData.url;
+		} else {
+			const mwTitle = new mw.Title( title );
+			optionData = this.namespace !== null && this.relative ?
 				mwTitle.getRelativeText( this.namespace ) :
-				title,
-			url: mwTitle.getUrl(),
+				title;
+			label = optionData;
+			url = mwTitle.getUrl();
+		}
+		return {
+			data: optionData,
+			label,
+			url,
 			showImages: this.showImages,
 			imageUrl: this.showImages ? data.imageUrl : null,
 			description: this.showDescriptions ? description : null,
