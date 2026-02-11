@@ -286,7 +286,12 @@ class SpecialWatchlistLabels extends SpecialPage {
 			'class' => 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled'
 				. ' cdx-button--action-progressive cdx-button--weight-primary'
 		];
-		$createButton = Html::element( 'a', $params, $this->msg( 'watchlistlabels-table-new-link' )->text() );
+		$newIcon = Html::element( 'span', [
+			'class' => 'cdx-button__icon mw-specialwatchlistlabels-icon--add',
+			'aria-hidden' => 'true',
+		] );
+		$createLabel = $newIcon . ' ' . $this->msg( 'watchlistlabels-table-new-link' )->escaped();
+		$createButton = Html::rawElement( 'a', $params, $createLabel );
 		$deleteButton = $codex->button()
 			->setAttributes( [ 'class' => 'mw-specialwatchlistlabels-delete-button' ] )
 			->setLabel( $this->msg( 'watchlistlabels-table-delete-link' )->text() )
