@@ -66,7 +66,6 @@ class ApiUpload extends ApiBase {
 	/** @var array */
 	protected $mParams;
 
-	private JobQueueGroup $jobQueueGroup;
 	private readonly LocalRepo $localRepo;
 
 	private LoggerInterface $log;
@@ -74,14 +73,13 @@ class ApiUpload extends ApiBase {
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,
-		JobQueueGroup $jobQueueGroup,
+		private readonly JobQueueGroup $jobQueueGroup,
 		WatchlistManager $watchlistManager,
 		WatchedItemStoreInterface $watchedItemStore,
 		UserOptionsLookup $userOptionsLookup,
 		RepoGroup $repoGroup,
 	) {
 		parent::__construct( $mainModule, $moduleName );
-		$this->jobQueueGroup = $jobQueueGroup;
 		$this->localRepo = $repoGroup->getLocalRepo();
 
 		// Variables needed in ApiWatchlistTrait trait

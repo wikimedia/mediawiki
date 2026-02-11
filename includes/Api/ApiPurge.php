@@ -22,18 +22,13 @@ class ApiPurge extends ApiBase {
 	/** @var ApiPageSet|null */
 	private $mPageSet = null;
 
-	private WikiPageFactory $wikiPageFactory;
-	private TitleFormatter $titleFormatter;
-
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,
-		WikiPageFactory $wikiPageFactory,
-		TitleFormatter $titleFormatter
+		private readonly WikiPageFactory $wikiPageFactory,
+		private readonly TitleFormatter $titleFormatter,
 	) {
 		parent::__construct( $mainModule, $moduleName );
-		$this->wikiPageFactory = $wikiPageFactory;
-		$this->titleFormatter = $titleFormatter;
 	}
 
 	/**

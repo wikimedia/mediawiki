@@ -35,30 +35,20 @@ class ApiUnblock extends ApiBase {
 	use ApiBlockInfoTrait;
 	use ApiWatchlistTrait;
 
-	private BlockPermissionCheckerFactory $permissionCheckerFactory;
-	private UnblockUserFactory $unblockUserFactory;
-	private UserIdentityLookup $userIdentityLookup;
-	private WatchedItemStoreInterface $watchedItemStore;
-	private DatabaseBlockStore $blockStore;
-	private BlockTargetFactory $blockTargetFactory;
-
 	public function __construct(
 		ApiMain $main,
 		string $action,
-		BlockPermissionCheckerFactory $permissionCheckerFactory,
-		UnblockUserFactory $unblockUserFactory,
-		UserIdentityLookup $userIdentityLookup,
+		private readonly BlockPermissionCheckerFactory $permissionCheckerFactory,
+		private readonly UnblockUserFactory $unblockUserFactory,
+		private readonly UserIdentityLookup $userIdentityLookup,
 		WatchedItemStoreInterface $watchedItemStore,
 		WatchlistManager $watchlistManager,
 		UserOptionsLookup $userOptionsLookup,
-		DatabaseBlockStore $blockStore,
-		BlockTargetFactory $blockTargetFactory
+		private readonly DatabaseBlockStore $blockStore,
+		private readonly BlockTargetFactory $blockTargetFactory,
 	) {
 		parent::__construct( $main, $action );
 
-		$this->permissionCheckerFactory = $permissionCheckerFactory;
-		$this->unblockUserFactory = $unblockUserFactory;
-		$this->userIdentityLookup = $userIdentityLookup;
 		$this->watchedItemStore = $watchedItemStore;
 
 		// Variables needed in ApiWatchlistTrait trait
@@ -67,8 +57,6 @@ class ApiUnblock extends ApiBase {
 			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
-		$this->blockStore = $blockStore;
-		$this->blockTargetFactory = $blockTargetFactory;
 	}
 
 	/**

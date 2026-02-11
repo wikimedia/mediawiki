@@ -25,18 +25,13 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class ApiSetPageLanguage extends ApiBase {
 
-	private IConnectionProvider $dbProvider;
-	private LanguageNameUtils $languageNameUtils;
-
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,
-		IConnectionProvider $dbProvider,
-		LanguageNameUtils $languageNameUtils
+		private readonly IConnectionProvider $dbProvider,
+		private readonly LanguageNameUtils $languageNameUtils,
 	) {
 		parent::__construct( $mainModule, $moduleName );
-		$this->dbProvider = $dbProvider;
-		$this->languageNameUtils = $languageNameUtils;
 	}
 
 	/** @inheritDoc */

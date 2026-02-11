@@ -36,23 +36,17 @@ class ApiUserrights extends ApiBase {
 	/** @var UserIdentity|null */
 	private $mUser = null;
 
-	private UserGroupManager $userGroupManager;
-	private WatchedItemStoreInterface $watchedItemStore;
-	private UserGroupAssignmentService $userGroupAssignmentService;
-	private MultiFormatUserIdentityLookup $multiFormatUserIdentityLookup;
-
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,
-		UserGroupManager $userGroupManager,
+		private readonly UserGroupManager $userGroupManager,
 		WatchedItemStoreInterface $watchedItemStore,
 		WatchlistManager $watchlistManager,
 		UserOptionsLookup $userOptionsLookup,
-		UserGroupAssignmentService $userGroupAssignmentService,
-		MultiFormatUserIdentityLookup $multiFormatUserIdentityLookup,
+		private readonly UserGroupAssignmentService $userGroupAssignmentService,
+		private readonly MultiFormatUserIdentityLookup $multiFormatUserIdentityLookup,
 	) {
 		parent::__construct( $mainModule, $moduleName );
-		$this->userGroupManager = $userGroupManager;
 		$this->watchedItemStore = $watchedItemStore;
 
 		// Variables needed in ApiWatchlistTrait trait
@@ -61,8 +55,6 @@ class ApiUserrights extends ApiBase {
 			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
-		$this->userGroupAssignmentService = $userGroupAssignmentService;
-		$this->multiFormatUserIdentityLookup = $multiFormatUserIdentityLookup;
 	}
 
 	public function execute() {

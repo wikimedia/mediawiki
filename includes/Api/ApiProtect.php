@@ -28,18 +28,15 @@ class ApiProtect extends ApiBase {
 
 	use ApiWatchlistTrait;
 
-	private RestrictionStore $restrictionStore;
-
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,
 		WatchlistManager $watchlistManager,
 		WatchedItemStoreInterface $watchedItemStore,
 		UserOptionsLookup $userOptionsLookup,
-		RestrictionStore $restrictionStore
+		private readonly RestrictionStore $restrictionStore,
 	) {
 		parent::__construct( $mainModule, $moduleName );
-		$this->restrictionStore = $restrictionStore;
 
 		// Variables needed in ApiWatchlistTrait trait
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( MainConfigNames::WatchlistExpiry );

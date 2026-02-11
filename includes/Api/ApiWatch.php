@@ -40,28 +40,17 @@ class ApiWatch extends ApiBase {
 	/** @var bool Whether watchlist labels are enabled. */
 	private $labelsEnabled;
 
-	protected WatchlistManager $watchlistManager;
-	private TitleFormatter $titleFormatter;
-	private WatchlistLabelStore $watchlistLabelStore;
-	private WatchedItemStoreInterface $watchedItemStore;
-	private NamespaceInfo $namespaceInfo;
-
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,
-		WatchlistManager $watchlistManager,
-		TitleFormatter $titleFormatter,
-		WatchlistLabelStore $watchlistLabelStore,
-		WatchedItemStoreInterface $watchedItemStore,
-		NamespaceInfo $namespaceInfo
+		private readonly WatchlistManager $watchlistManager,
+		private readonly TitleFormatter $titleFormatter,
+		private readonly WatchlistLabelStore $watchlistLabelStore,
+		private readonly WatchedItemStoreInterface $watchedItemStore,
+		private readonly NamespaceInfo $namespaceInfo,
 	) {
 		parent::__construct( $mainModule, $moduleName );
 
-		$this->watchlistManager = $watchlistManager;
-		$this->titleFormatter = $titleFormatter;
-		$this->watchlistLabelStore = $watchlistLabelStore;
-		$this->watchedItemStore = $watchedItemStore;
-		$this->namespaceInfo = $namespaceInfo;
 		$this->expiryEnabled = $this->getConfig()->get( MainConfigNames::WatchlistExpiry );
 		$this->maxDuration = $this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->labelsEnabled = $this->getConfig()->get( MainConfigNames::EnableWatchlistLabels );

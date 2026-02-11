@@ -25,25 +25,20 @@ use Wikimedia\ParamValidator\ParamValidator;
  * @ingroup API
  */
 class ApiOpenSearch extends ApiBase {
-	use \MediaWiki\Api\SearchApi;
-
-	private LinkBatchFactory $linkBatchFactory;
-	private UrlUtils $urlUtils;
+	use SearchApi;
 
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,
-		LinkBatchFactory $linkBatchFactory,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		SearchEngineConfig $searchEngineConfig,
 		SearchEngineFactory $searchEngineFactory,
-		UrlUtils $urlUtils
+		private readonly UrlUtils $urlUtils,
 	) {
 		parent::__construct( $mainModule, $moduleName );
-		$this->linkBatchFactory = $linkBatchFactory;
 		// Services needed in SearchApi trait
 		$this->searchEngineConfig = $searchEngineConfig;
 		$this->searchEngineFactory = $searchEngineFactory;
-		$this->urlUtils = $urlUtils;
 	}
 
 	private function getFormat(): string {

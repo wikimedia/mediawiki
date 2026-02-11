@@ -33,34 +33,18 @@ use Wikimedia\Stats\StatsFactory;
  */
 class ApiStashEdit extends ApiBase {
 
-	private IContentHandlerFactory $contentHandlerFactory;
-	private PageEditStash $pageEditStash;
-	private RevisionLookup $revisionLookup;
-	private StatsFactory $stats;
-	private WikiPageFactory $wikiPageFactory;
-	private TempUserCreator $tempUserCreator;
-	private UserFactory $userFactory;
-
 	public function __construct(
 		ApiMain $main,
 		string $action,
-		IContentHandlerFactory $contentHandlerFactory,
-		PageEditStash $pageEditStash,
-		RevisionLookup $revisionLookup,
-		StatsFactory $statsFactory,
-		WikiPageFactory $wikiPageFactory,
-		TempUserCreator $tempUserCreator,
-		UserFactory $userFactory
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly PageEditStash $pageEditStash,
+		private readonly RevisionLookup $revisionLookup,
+		private readonly StatsFactory $statsFactory,
+		private readonly WikiPageFactory $wikiPageFactory,
+		private readonly TempUserCreator $tempUserCreator,
+		private readonly UserFactory $userFactory,
 	) {
 		parent::__construct( $main, $action );
-
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->pageEditStash = $pageEditStash;
-		$this->revisionLookup = $revisionLookup;
-		$this->stats = $statsFactory;
-		$this->wikiPageFactory = $wikiPageFactory;
-		$this->tempUserCreator = $tempUserCreator;
-		$this->userFactory = $userFactory;
 	}
 
 	public function execute() {
@@ -181,7 +165,7 @@ class ApiStashEdit extends ApiBase {
 			$this->pageEditStash->stashInputText( $text, $textHash );
 		}
 
-		$this->stats->getCounter( 'editstash_cache_stores_total' )
+		$this->statsFactory->getCounter( 'editstash_cache_stores_total' )
 			->setLabel( 'status', $status )
 			->increment();
 

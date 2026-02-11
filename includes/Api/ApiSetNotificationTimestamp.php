@@ -30,28 +30,16 @@ class ApiSetNotificationTimestamp extends ApiBase {
 	/** @var ApiPageSet|null */
 	private $mPageSet = null;
 
-	private RevisionStore $revisionStore;
-	private IConnectionProvider $dbProvider;
-	private WatchedItemStoreInterface $watchedItemStore;
-	private TitleFormatter $titleFormatter;
-	private TitleFactory $titleFactory;
-
 	public function __construct(
 		ApiMain $main,
 		string $action,
-		IConnectionProvider $dbProvider,
-		RevisionStore $revisionStore,
-		WatchedItemStoreInterface $watchedItemStore,
-		TitleFormatter $titleFormatter,
-		TitleFactory $titleFactory
+		private readonly IConnectionProvider $dbProvider,
+		private readonly RevisionStore $revisionStore,
+		private readonly WatchedItemStoreInterface $watchedItemStore,
+		private readonly TitleFormatter $titleFormatter,
+		private readonly TitleFactory $titleFactory,
 	) {
 		parent::__construct( $main, $action );
-
-		$this->dbProvider = $dbProvider;
-		$this->revisionStore = $revisionStore;
-		$this->watchedItemStore = $watchedItemStore;
-		$this->titleFormatter = $titleFormatter;
-		$this->titleFactory = $titleFactory;
 	}
 
 	public function execute() {

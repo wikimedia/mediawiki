@@ -21,16 +21,12 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiResetPassword extends ApiBase {
 
-	private PasswordReset $passwordReset;
-
 	public function __construct(
 		ApiMain $main,
 		string $action,
-		PasswordReset $passwordReset
+		private readonly PasswordReset $passwordReset,
 	) {
 		parent::__construct( $main, $action );
-
-		$this->passwordReset = $passwordReset;
 	}
 
 	/** @var bool */

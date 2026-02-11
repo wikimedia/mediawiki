@@ -57,9 +57,6 @@ class ApiPageSet extends ApiBase {
 	 */
 	private const DISABLE_GENERATORS = 1;
 
-	/** @var ApiBase used for getDb() call */
-	private $mDbSource;
-
 	/** @var array */
 	private $mParams;
 
@@ -150,9 +147,6 @@ class ApiPageSet extends ApiBase {
 	/** @var array<string,array<int,mixed>> [fieldName][pageId] => value */
 	private $mRequestedPageFields = [];
 
-	/** @var int */
-	private $mDefaultNamespace;
-
 	/** @var callable|null */
 	private $mRedirectMergePolicy;
 
@@ -193,17 +187,19 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
-	 * @param ApiBase $dbSource Module implementing getDB().
+	 * @param ApiBase $mDbSource Module implementing getDB().
 	 *        Allows PageSet to reuse existing db connection from the shared state like ApiQuery.
 	 * @param int $flags Zero or more flags like DISABLE_GENERATORS
-	 * @param int $defaultNamespace The namespace to use if none is specified by a prefix.
+	 * @param int $mDefaultNamespace The namespace to use if none is specified by a prefix.
 	 * @since 1.21 accepts $flags instead of two boolean values
 	 */
-	public function __construct( ApiBase $dbSource, $flags = 0, $defaultNamespace = NS_MAIN ) {
-		parent::__construct( $dbSource->getMain(), $dbSource->getModuleName() );
-		$this->mDbSource = $dbSource;
+	public function __construct(
+		private readonly ApiBase $mDbSource,
+		$flags = 0,
+		private readonly int $mDefaultNamespace = NS_MAIN,
+	) {
+		parent::__construct( $mDbSource->getMain(), $mDbSource->getModuleName() );
 		$this->mAllowGenerator = ( $flags & self::DISABLE_GENERATORS ) == 0;
-		$this->mDefaultNamespace = $defaultNamespace;
 
 		$this->mParams = $this->extractRequestParams();
 		$this->mResolveRedirects = $this->mParams['redirects'];

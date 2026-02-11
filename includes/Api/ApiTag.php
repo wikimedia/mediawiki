@@ -24,23 +24,17 @@ class ApiTag extends ApiBase {
 	use ApiBlockInfoTrait;
 
 	private IReadableDatabase $dbr;
-	private RevisionStore $revisionStore;
-	private ChangeTagsStore $changeTagsStore;
-	private RecentChangeLookup $recentChangeLookup;
 
 	public function __construct(
 		ApiMain $main,
 		string $action,
 		IConnectionProvider $dbProvider,
-		RevisionStore $revisionStore,
-		ChangeTagsStore $changeTagsStore,
-		RecentChangeLookup $recentChangeLookup
+		private readonly RevisionStore $revisionStore,
+		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly RecentChangeLookup $recentChangeLookup,
 	) {
 		parent::__construct( $main, $action );
 		$this->dbr = $dbProvider->getReplicaDatabase();
-		$this->revisionStore = $revisionStore;
-		$this->changeTagsStore = $changeTagsStore;
-		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
 	public function execute() {

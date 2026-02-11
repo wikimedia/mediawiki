@@ -15,11 +15,12 @@ namespace MediaWiki\Api;
  */
 class ApiOpenSearchFormatJson extends ApiFormatJson {
 
-	private bool $warningsAsError;
-
-	public function __construct( ApiMain $main, string $format, bool $warningsAsError ) {
+	public function __construct(
+		ApiMain $main,
+		string $format,
+		private readonly bool $warningsAsError,
+	) {
 		parent::__construct( $main, $format );
-		$this->warningsAsError = $warningsAsError;
 	}
 
 	public function execute() {

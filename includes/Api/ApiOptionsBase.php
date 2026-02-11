@@ -29,9 +29,6 @@ abstract class ApiOptionsBase extends ApiBase {
 	/** @var User|null User account to modify */
 	private ?User $userFromPrimary = null;
 
-	private UserOptionsManager $userOptionsManager;
-	private PreferencesFactory $preferencesFactory;
-
 	/** @var mixed[][]|null */
 	private $preferences;
 
@@ -45,12 +42,10 @@ abstract class ApiOptionsBase extends ApiBase {
 	public function __construct(
 		ApiMain $main,
 		string $action,
-		UserOptionsManager $userOptionsManager,
-		PreferencesFactory $preferencesFactory
+		private readonly UserOptionsManager $userOptionsManager,
+		private readonly PreferencesFactory $preferencesFactory,
 	) {
 		parent::__construct( $main, $action );
-		$this->userOptionsManager = $userOptionsManager;
-		$this->preferencesFactory = $preferencesFactory;
 		$this->userJsLimit = $this->getConfig()->get( MainConfigNames::UserJsPrefLimit );
 	}
 

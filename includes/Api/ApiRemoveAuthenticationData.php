@@ -24,12 +24,10 @@ class ApiRemoveAuthenticationData extends ApiBase {
 	/** @var string */
 	private $operation;
 
-	private AuthManager $authManager;
-
 	public function __construct(
 		ApiMain $main,
 		string $action,
-		AuthManager $authManager
+		private readonly AuthManager $authManager
 	) {
 		parent::__construct( $main, $action );
 
@@ -39,8 +37,6 @@ class ApiRemoveAuthenticationData extends ApiBase {
 		$this->operation = $action === 'unlinkaccount'
 			? 'UnlinkAccount'
 			: 'RemoveCredentials';
-
-		$this->authManager = $authManager;
 	}
 
 	public function execute() {

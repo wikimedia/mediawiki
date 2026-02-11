@@ -13,18 +13,13 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiValidatePassword extends ApiBase {
 
-	private AuthManager $authManager;
-	private UserFactory $userFactory;
-
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,
-		AuthManager $authManager,
-		UserFactory $userFactory
+		private readonly AuthManager $authManager,
+		private readonly UserFactory $userFactory,
 	) {
 		parent::__construct( $mainModule, $moduleName );
-		$this->authManager = $authManager;
-		$this->userFactory = $userFactory;
 	}
 
 	public function execute() {

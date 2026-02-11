@@ -21,22 +21,15 @@ use Wikimedia\ParamValidator\ParamValidator;
  * @ingroup API
  */
 class ApiPatrol extends ApiBase {
-	private RevisionStore $revisionStore;
-	private PatrolManager $patrolManager;
-	private RecentChangeLookup $recentChangeLookup;
 
 	public function __construct(
 		ApiMain $main,
 		string $action,
-		RevisionStore $revisionStore,
-		PatrolManager $patrolManager,
-		RecentChangeLookup $recentChangeLookup
+		private readonly RevisionStore $revisionStore,
+		private readonly PatrolManager $patrolManager,
+		private readonly RecentChangeLookup $recentChangeLookup,
 	) {
 		parent::__construct( $main, $action );
-
-		$this->revisionStore = $revisionStore;
-		$this->patrolManager = $patrolManager;
-		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
 	/**

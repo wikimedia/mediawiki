@@ -28,19 +28,15 @@ class ApiRollback extends ApiBase {
 
 	use ApiWatchlistTrait;
 
-	private RollbackPageFactory $rollbackPageFactory;
-
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,
-		RollbackPageFactory $rollbackPageFactory,
+		private readonly RollbackPageFactory $rollbackPageFactory,
 		WatchlistManager $watchlistManager,
 		WatchedItemStoreInterface $watchedItemStore,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
 	) {
 		parent::__construct( $mainModule, $moduleName );
-		$this->rollbackPageFactory = $rollbackPageFactory;
-
 		// Variables needed in ApiWatchlistTrait trait
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( MainConfigNames::WatchlistExpiry );
 		$this->watchlistMaxDuration =

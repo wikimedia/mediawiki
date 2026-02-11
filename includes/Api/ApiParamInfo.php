@@ -27,16 +27,12 @@ class ApiParamInfo extends ApiBase {
 	/** @var RequestContext */
 	private $context;
 
-	/** @var UserFactory */
-	private $userFactory;
-
 	public function __construct(
 		ApiMain $main,
 		string $action,
-		UserFactory $userFactory
+		private readonly UserFactory $userFactory,
 	) {
 		parent::__construct( $main, $action );
-		$this->userFactory = $userFactory;
 	}
 
 	public function execute() {

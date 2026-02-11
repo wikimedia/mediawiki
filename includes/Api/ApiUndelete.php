@@ -27,17 +27,14 @@ class ApiUndelete extends ApiBase {
 
 	use ApiWatchlistTrait;
 
-	private UndeletePageFactory $undeletePageFactory;
-	private WikiPageFactory $wikiPageFactory;
-
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,
 		WatchlistManager $watchlistManager,
 		WatchedItemStoreInterface $watchedItemStore,
 		UserOptionsLookup $userOptionsLookup,
-		UndeletePageFactory $undeletePageFactory,
-		WikiPageFactory $wikiPageFactory
+		private readonly UndeletePageFactory $undeletePageFactory,
+		private readonly WikiPageFactory $wikiPageFactory,
 	) {
 		parent::__construct( $mainModule, $moduleName );
 
@@ -48,8 +45,6 @@ class ApiUndelete extends ApiBase {
 		$this->watchlistManager = $watchlistManager;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->userOptionsLookup = $userOptionsLookup;
-		$this->undeletePageFactory = $undeletePageFactory;
-		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	public function execute() {

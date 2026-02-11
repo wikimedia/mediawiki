@@ -27,8 +27,6 @@ class ApiUsageException extends MWException implements Stringable, ILocalizedExc
 
 	/** @var string|null */
 	protected $modulePath;
-	/** @var StatusValue */
-	protected $status;
 
 	/**
 	 * @stable to call
@@ -38,14 +36,16 @@ class ApiUsageException extends MWException implements Stringable, ILocalizedExc
 	 * @param Throwable|null $previous Previous exception
 	 */
 	public function __construct(
-		?ApiBase $module, StatusValue $status, $httpCode = 0, ?Throwable $previous = null
+		?ApiBase $module,
+		protected readonly StatusValue $status,
+		$httpCode = 0,
+		?Throwable $previous = null,
 	) {
 		if ( $status->isOK() ) {
 			throw new InvalidArgumentException( __METHOD__ . ' requires a fatal Status' );
 		}
 
-		$this->modulePath = $module ? $module->getModulePath() : null;
-		$this->status = $status;
+		$this->modulePath = $module?->getModulePath();
 
 		// Bug T46111: Messages in the log files should be in English and not
 		// customized by the local wiki.
