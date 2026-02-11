@@ -255,7 +255,7 @@ abstract class Handler {
 						"rest-request-body-expected",
 						[ $requestMethod ]
 					),
-					411
+					400
 				);
 			}
 		}

@@ -1229,7 +1229,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$handler = new EchoHandler();
 		$this->initHandlerPartially( $handler );
 
-		$this->expectExceptionCode( 411 );
+		$this->expectExceptionCode( 400 );
 		$handler->initForExecute( $request );
 	}
 

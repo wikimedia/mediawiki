@@ -696,7 +696,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		] );
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
-		$this->assertSame( 411, $response->getStatusCode() );
+		$this->assertSame( 400, $response->getStatusCode() );
 	}
 
 	public function testEmptyBodyWithoutContentTypePasses() {
