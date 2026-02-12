@@ -566,15 +566,15 @@ class LocalFile extends File {
 	private function loadExtraFieldsWithTimestamp( IReadableDatabase $dbr, $fname ) {
 		$fieldMap = false;
 
-		$queryBuilder = FileSelectQueryBuilder::newForFile( $dbr, [ 'omit-nonlazy' ] );
+		$queryBuilder = FileSelectQueryBuilder::newForFile( $dbr );
 		$queryBuilder->where( [ 'img_name' => $this->getName() ] )
 			->andWhere( [ 'img_timestamp' => $dbr->timestamp( $this->getTimestamp() ) ] );
 		$row = $queryBuilder->caller( $fname )->fetchRow();
 		if ( $row ) {
 			$fieldMap = $this->unprefixRow( $row, 'img_' );
 		} else {
-			# File may have been uploaded over in the meantime; check the old versions
-			$queryBuilder = FileSelectQueryBuilder::newForOldFile( $dbr, [ 'omit-nonlazy' ] );
+			// File may have been uploaded over in the meantime; check the old versions
+			$queryBuilder = FileSelectQueryBuilder::newForOldFile( $dbr );
 			$row = $queryBuilder->where( [ 'oi_name' => $this->getName() ] )
 				->andWhere( [ 'oi_timestamp' => $dbr->timestamp( $this->getTimestamp() ) ] )
 				->caller( __METHOD__ )->fetchRow();
