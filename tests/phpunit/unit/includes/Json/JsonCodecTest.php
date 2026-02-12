@@ -314,12 +314,11 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		yield 'array' => [ [ 'a' => 'b' ], '{"a":"b"}' ];
 		yield 'JsonSerializable' => [
 			$serializableInstance,
-			json_encode( [ "c" => "d", "_type_" => get_class( $serializableInstance ), "_complex_" => true ], JSON_UNESCAPED_SLASHES )
+			json_encode( [ "c" => "d", "_type_" => get_class( $serializableInstance ) ], JSON_UNESCAPED_SLASHES )
 		];
 		yield 'JsonCodecable' => [ new SampleObject( 'a' ), json_encode( [
 			'property' => 'a',
 			'_type_' => SampleObject::class,
-			'_complex_' => true,
 		] ) ];
 	}
 
@@ -345,7 +344,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		$codec = $this->getCodec();
 		// Note that the class name in _type_ is an *alias*, not the
 		// *actual* class name.
-		$json = '{"property":"alias!","_type_":"MediaWiki\\\\Tests\\\\Mocks\\\\Json\\\\SampleObjectAlias","_complex_":true}';
+		$json = '{"property":"alias!","_type_":"MediaWiki\\\\Tests\\\\Mocks\\\\Json\\\\SampleObjectAlias"}';
 		$v = $codec->deserialize( $json, SampleObject::class );
 		$this->assertInstanceOf( SampleObject::class, $v );
 	}
@@ -354,7 +353,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		$codec = $this->getCodec();
 		// Note that the class name in _type_ is an *alias*, not the
 		// *actual* class name.
-		$json = '{"super_class_field":1,"sub_class_field":"2","_type_":"MediaWiki\\\\Tests\\\\Mocks\\\\Json\\\\JsonDeserializableSubClassAlias","_complex_":true}';
+		$json = '{"super_class_field":1,"sub_class_field":"2","_type_":"MediaWiki\\\\Tests\\\\Mocks\\\\Json\\\\JsonDeserializableSubClassAlias"}';
 		$v = $codec->deserialize( $json, JsonDeserializableSubClass::class );
 		$this->assertInstanceOf( JsonDeserializableSubClass::class, $v );
 	}

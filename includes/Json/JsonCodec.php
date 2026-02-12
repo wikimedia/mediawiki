@@ -32,10 +32,11 @@ class JsonCodec
 
 	/**
 	 * When true, encode extra properties in the serialized output for
-	 * backwards compatibility. This will eventually be turned off
-	 * when rollback compatibility is no longer required. (T367584)
+	 * backwards compatibility. This was turned off in MW 1.46 since
+	 * rollback compatibility to MW 1.39 is no longer required (T367584)
+	 * and will be removed completely in a future release.
 	 */
-	private bool $writeBackCompat = true;
+	private bool $writeBackCompat = false;
 
 	/**
 	 * When true, decode extra properties which may be present in
