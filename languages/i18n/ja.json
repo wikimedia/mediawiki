@@ -3329,7 +3329,7 @@
 	"watchlisttools-edit": "ウォッチリストの表示と編集",
 	"watchlisttools-raw": "ウォッチリストをテキストで編集",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|トーク]])",
-	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|会話]])",
+	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|トーク]])",
 	"duplicate-defaultsort": "<strong>警告:</strong> 既定のソートキー「$2」が、その前に書かれている既定のソートキー「$1」を上書きしています。",
 	"duplicate-displaytitle": "<strong>警告:</strong> DISPLAYTITLE「$2」が、その前に書かれているDISPLAYTITLE「$1」を上書きしています。",
 	"restricted-displaytitle": "<strong>警告:</strong> 実際のページ名と同じではないため、「$1」の表示名は無視されました。",
