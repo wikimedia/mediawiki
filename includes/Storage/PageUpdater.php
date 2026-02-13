@@ -20,6 +20,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPage;
@@ -344,7 +345,8 @@ class PageUpdater implements PageUpdateCauses {
 	 * @return User
 	 */
 	private static function toLegacyUser( UserIdentity $user ) {
-		return User::newFromIdentity( $user );
+		$userFactory = MediaWikiServices::getInstance()->getUserFactory();
+		return $userFactory->newFromUserIdentity( $user );
 	}
 
 	/**
@@ -953,7 +955,7 @@ class PageUpdater implements PageUpdateCauses {
 			}
 
 			$this->status = $hookStatus;
-			$this->logger->info( "Hook prevented page save", [ 'status' => $hookStatus ] );
+			$this->logger->info( 'Hook prevented page save', [ 'status' => $hookStatus ] );
 			return null;
 		}
 
@@ -1385,12 +1387,12 @@ class PageUpdater implements PageUpdateCauses {
 		if ( $changed ) {
 			if ( $this->forceEmptyRevision ) {
 				throw new LogicException(
-					"Content was changed even though forceEmptyRevision() was called."
+					'Content has been changed even though setForceEmptyRevision( true ) was called.'
 				);
 			}
 			if ( $this->preventChange ) {
 				throw new LogicException(
-					"Content was changed even though preventChange() was called."
+					'Content has been changed even though preventChange() was called.'
 				);
 			}
 		}
@@ -1435,7 +1437,7 @@ class PageUpdater implements PageUpdateCauses {
 			// TODO: move to storage service
 			$wasRedirect = $this->derivedDataUpdater->wasRedirect();
 			if ( !$wikiPage->updateRevisionOn( $dbw, $newRevisionRecord, null, $wasRedirect ) ) {
-				throw new PageUpdateException( "Failed to update page row to use new revision." );
+				throw new PageUpdateException( 'Failed to update page row to use new revision.' );
 			}
 
 			$editResult = $this->getEditResult();
@@ -1518,7 +1520,7 @@ class PageUpdater implements PageUpdateCauses {
 	private function doCreate( CommentStoreComment $summary ): PageUpdateStatus {
 		if ( $this->preventChange ) {
 			throw new LogicException(
-				"Content was changed even though preventChange() was called."
+				'Content was changed even though preventChange is true.'
 			);
 		}
 		$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
@@ -1564,7 +1566,7 @@ class PageUpdater implements PageUpdateCauses {
 		// Update the page record with revision data
 		// TODO: move to storage service
 		if ( !$wikiPage->updateRevisionOn( $dbw, $newRevisionRecord, 0, false ) ) {
-			throw new PageUpdateException( "Failed to update page row to use new revision." );
+			throw new PageUpdateException( 'Failed to update page row to use new revision.' );
 		}
 
 		$tags = $this->computeEffectiveTags();
