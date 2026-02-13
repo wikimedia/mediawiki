@@ -23,8 +23,7 @@
 				class="mw-block-success"
 			>
 				<p><strong>{{ blockSavedMessage }}</strong></p>
-				<!-- eslint-disable-next-line vue/no-v-html -->
-				<p v-html="$i18n( 'block-success', store.targetUser ).parse()"></p>
+				<p v-i18n-html:block-success="[ store.targetUser ]"></p>
 			</cdx-message>
 			<cdx-message
 				v-if="blockRemoved"
