@@ -144,6 +144,8 @@ class DataAccess extends IDataAccess {
 			$pageConfig->getPageLanguageBcp47()
 		);
 
+		$hp['requestProvenance'] = 'parser';
+
 		return $hp;
 	}
 

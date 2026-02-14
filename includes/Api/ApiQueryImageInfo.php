@@ -561,6 +561,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 			if ( $exists ) {
 				if ( $thumbParams !== null ) {
+					$thumbParams['requestProvenance'] = 'imageinfo';
 					$mto = $file->transform( $thumbParams );
 					self::$transformCount++;
 					if ( $mto && !$mto->isError() ) {
@@ -595,7 +596,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						$vals['thumberror'] = $mto->toText();
 					}
 				}
-				$vals['url'] = (string)$urlUtils->expand( $file->getFullUrl(), PROTO_CURRENT );
+				$vals['url'] = (string)$urlUtils->expand( $file->appendRequestProvenance( $file->getFullUrl(), [
+					'format' => 'original',
+					'generator' => 'imageinfo',
+				] ), PROTO_CURRENT );
 			}
 			$vals['descriptionurl'] = (string)$urlUtils->expand( $file->getDescriptionUrl(), PROTO_CURRENT );
 

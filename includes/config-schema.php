@@ -333,6 +333,7 @@ return [
 			'DirectoryMode' => 511,
 			'ResponsiveImages' => true,
 			'ImagePreconnect' => false,
+			'TrackMediaRequestProvenance' => false,
 			'DjvuUseBoxedCommand' => false,
 			'DjvuDump' => null,
 			'DjvuRenderer' => null,

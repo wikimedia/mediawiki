@@ -2492,6 +2492,23 @@ class MainConfigSchema {
 		'default' => false,
 	];
 
+	/**
+	 * Add tracking query parameters to URLs for media thumbnails and originals.
+	 *
+	 * The values include the site requesting the image (e.g. 'www.mediawiki.org'),
+	 * the software component involved (e.g. 'parser' or 'imageinfo') and the
+	 * format of the requested image ('original', 'thumbnail' or 'thumbnail_unscaled').
+	 *
+	 * These values are not used by MediaWiki, but they may be used by the server
+	 * hosting the files. The intended use case is applying different rate limits
+	 * depending on how and where the file is used.
+	 *
+	 * @since 1.46
+	 */
+	public const TrackMediaRequestProvenance = [
+		'default' => false,
+	];
+
 	/***************************************************************************/
 	// region   DJVU settings
 	/** @name   DJVU settings */

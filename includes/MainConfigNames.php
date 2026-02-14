@@ -876,6 +876,12 @@ class MainConfigNames {
 	public const ImagePreconnect = 'ImagePreconnect';
 
 	/**
+	 * Name constant for the TrackMediaRequestProvenance setting, for use with Config::get()
+	 * @see MainConfigSchema::TrackMediaRequestProvenance
+	 */
+	public const TrackMediaRequestProvenance = 'TrackMediaRequestProvenance';
+
+	/**
 	 * Name constant for the DjvuUseBoxedCommand setting, for use with Config::get()
 	 * @see MainConfigSchema::DjvuUseBoxedCommand
 	 */

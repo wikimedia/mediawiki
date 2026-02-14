@@ -90,7 +90,13 @@ abstract class MediaTransformOutput {
 	 * @return string|false The thumbnail URL
 	 */
 	public function getUrl() {
-		return $this->url;
+		if ( $this->url === false ) {
+			return false;
+		}
+
+		return $this->getFile()->appendRequestProvenance( $this->url, [
+			'format' => 'thumbnail',
+		] );
 	}
 
 	/**

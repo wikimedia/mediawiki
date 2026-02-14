@@ -1524,6 +1524,17 @@ config-schema:
             This may cause unneeded HTTP connections in browsers on wikis where a foreign repo is
             enabled but where a local repo is more commonly used.
             @since 1.35
+    TrackMediaRequestProvenance:
+        default: false
+        description: |-
+            Add tracking query parameters to URLs for media thumbnails and originals.
+            The values include the site requesting the image (e.g. 'www.mediawiki.org'),
+            the software component involved (e.g. 'parser' or 'imageinfo') and the
+            format of the requested image ('original', 'thumbnail' or 'thumbnail_unscaled').
+            These values are not used by MediaWiki, but they may be used by the server
+            hosting the files. The intended use case is applying different rate limits
+            depending on how and where the file is used.
+            @since 1.46
     DjvuUseBoxedCommand:
         default: false
         description: |-

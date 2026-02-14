@@ -404,7 +404,57 @@ abstract class File implements MediaHandlerState {
 			$this->url = $this->repo->getZoneUrl( 'public', $ext ) . '/' . $this->getUrlRel();
 		}
 
-		return $this->url;
+		return $this->appendRequestProvenance( $this->url, [
+			'format' => 'original',
+		] );
+	}
+
+	/**
+	 * Add information about where a URL to an image was generated.
+	 *
+	 * @param string $url URL for this original file or its thumbnail
+	 * @param array{generator?:string, format?:string} $provenance
+	 * @return string URL, possibly with additional query parameters
+	 */
+	final public function appendRequestProvenance( string $url, array $provenance ) {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		if ( !$config->get( MainConfigNames::TrackMediaRequestProvenance ) ) {
+			return $url;
+		}
+
+		if ( str_contains( $url, '?' ) ) {
+			[ $url, $queryString ] = explode( '?', $url, 2 );
+			$query = wfCgiToArray( $queryString );
+		} else {
+			$query = [];
+		}
+
+		$site = $config->get( MainConfigNames::ServerName );
+		$entryPoint = defined( 'MEDIAWIKI_JOB_RUNNER' ) ? 'job' : MW_ENTRY_POINT;
+		if (
+			( $query['utm_content'] ?? null ) === 'original' &&
+			( $provenance['format'] ?? null ) === 'thumbnail'
+		) {
+			// Special case for when an original file is used as a thumbnail in a page
+			$provenance['format'] = 'thumbnail_unscaled';
+		}
+
+		// We use UTM parameters, because they're likely to be stripped by search engines and other
+		// places that we don't want to pollute with this information.
+		$lesserEvil = [
+			// Site which is requesting the image, e.g. 'www.mediawiki.org'
+			'utm_source' => $query['utm_source'] ?? $site,
+			// Software component involved, e.g. 'parser' or 'imageinfo'
+			// Entry point is used as fallback if not specified, e.g. 'index', 'api', 'rest'
+			'utm_campaign' => $provenance['generator'] ?? $query['utm_campaign'] ?? $entryPoint,
+			// Format of the requested image, 'original', 'thumbnail' or 'thumbnail_unscaled'
+			'utm_content' => $provenance['format'] ?? $query['utm_content'] ?? null,
+		];
+
+		// Append like this for consistent order of query params:
+		// tracking params first in this order, anything else at the end.
+		// Values defined above override the original query.
+		return wfAppendQuery( $url, array_filter( $lesserEvil ) + $query );
 	}
 
 	/**
@@ -1916,6 +1966,10 @@ abstract class File implements MediaHandlerState {
 		if ( $this->repo->isLocal() && ( $handlerParams['isFilePageThumb'] ?? null ) ) {
 			// Use a versioned URL on file description pages
 			return wfAppendQuery( $url, [ '_' => $this->getTimestamp() ] );
+		} elseif ( $handlerParams['requestProvenance'] ?? null ) {
+			return $this->appendRequestProvenance( $url, [
+				'generator' => $handlerParams['requestProvenance'],
+			] );
 		} else {
 			return $url;
 		}

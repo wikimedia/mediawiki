@@ -136,7 +136,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		}
 
 		$attribs += [
-			'src' => $this->url,
+			'src' => $this->getUrl(),
 			'decoding' => 'async',
 		];
 
@@ -197,7 +197,7 @@ class ThumbnailImage extends MediaTransformOutput {
 
 		// Additional densities for responsive images, if specified.
 		// If any of these urls is the same as src url, it'll be excluded.
-		$responsiveUrls = array_diff( $this->responsiveUrls, [ $this->url ] );
+		$responsiveUrls = array_diff( $this->responsiveUrls, [ $this->getUrl() ] );
 		if ( $responsiveUrls ) {
 			$attribs['srcset'] = Html::srcSet( $responsiveUrls );
 		}

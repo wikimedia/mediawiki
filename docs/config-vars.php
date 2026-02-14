@@ -861,6 +861,12 @@ $wgResponsiveImages = null;
 $wgImagePreconnect = null;
 
 /**
+ * Config variable stub for the TrackMediaRequestProvenance setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::TrackMediaRequestProvenance
+ */
+$wgTrackMediaRequestProvenance = null;
+
+/**
  * Config variable stub for the DjvuUseBoxedCommand setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::DjvuUseBoxedCommand
  */

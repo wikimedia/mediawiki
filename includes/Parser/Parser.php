@@ -5571,6 +5571,7 @@ class Parser {
 
 		# Linker does the rest
 		$time = $options['time'] ?? false;
+		$params['handler']['requestProvenance'] = 'parser';
 		$ret = Linker::makeImageLink( $this, $link, $file, $params['frame'], $params['handler'],
 			$time, $descQuery, $this->mOptions->getThumbSize() );
 

@@ -105,6 +105,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			}
 
 			$transformOptions = $this->getThumbParams( $img ) + $handlerOpts;
+			$transformOptions['requestProvenance'] = $resolveFilesViaParser ? 'parser' : 'gallery';
 			$thumb = $img ? $img->transform( $transformOptions ) : false;
 
 			$rdfaType = 'mw:File';
