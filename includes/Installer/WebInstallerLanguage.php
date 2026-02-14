@@ -8,6 +8,7 @@
 
 namespace MediaWiki\Installer;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
@@ -19,7 +20,7 @@ class WebInstallerLanguage extends WebInstallerPage {
 	 * @return string|null
 	 */
 	public function execute() {
-		global $wgLang;
+		$lang = RequestContext::getMain()->getLanguage();
 		$r = $this->parent->request;
 		$userLang = $r->getVal( 'uselang', '' );
 		$contLang = $r->getVal( 'ContLang', '' );
@@ -45,7 +46,7 @@ class WebInstallerLanguage extends WebInstallerPage {
 				} else {
 					$msg = 'config-no-session';
 				}
-				$this->parent->showError( $msg, $wgLang->formatTimePeriod( $lifetime ) );
+				$this->parent->showError( $msg, $lang->formatTimePeriod( $lifetime ) );
 			} else {
 				if ( isset( $languages[$userLang] ) ) {
 					$this->setVar( '_UserLang', $userLang );
@@ -60,7 +61,7 @@ class WebInstallerLanguage extends WebInstallerPage {
 			# The user was knocked back from another page to the start
 			# This probably indicates a session expiry
 			$this->parent->showError( 'config-session-expired',
-				$wgLang->formatTimePeriod( $lifetime ) );
+				$lang->formatTimePeriod( $lifetime ) );
 		}
 
 		$this->parent->setSession( 'test', true );

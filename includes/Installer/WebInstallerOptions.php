@@ -8,6 +8,7 @@
 
 namespace MediaWiki\Installer;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Specials\SpecialVersion;
 use Wikimedia\IPUtils;
@@ -215,7 +216,7 @@ class WebInstallerOptions extends WebInstallerPage {
 	 * Opt-in for bundled extensions.
 	 */
 	private function addExtensionOptions(): void {
-		global $wgLang;
+		$lang = RequestContext::getMain()->getLanguage();
 
 		$extensions = $this->parent->findExtensions()->value;
 		'@phan-var array[] $extensions';
@@ -281,7 +282,7 @@ class WebInstallerOptions extends WebInstallerPage {
 						}
 
 						$text = wfMessage( 'config-extensions-requires', $ext )
-							->rawParams( $wgLang->commaList( $links ) )
+							->rawParams( $lang->commaList( $links ) )
 							->escaped();
 					} else {
 						$text = htmlspecialchars( $ext );
@@ -401,7 +402,7 @@ class WebInstallerOptions extends WebInstallerPage {
 	 * @return string HTML
 	 */
 	private function makeScreenshotsLink( $name, $screenshots ) {
-		global $wgLang;
+		$lang = RequestContext::getMain()->getLanguage();
 		if ( count( $screenshots ) > 1 ) {
 			$links = [];
 			$counter = 1;
@@ -410,11 +411,11 @@ class WebInstallerOptions extends WebInstallerPage {
 				$links[] = Html::element(
 					'a',
 					[ 'href' => $shot, 'target' => '_blank' ],
-					$wgLang->formatNum( $counter++ )
+					$lang->formatNum( $counter++ )
 				);
 			}
 			return wfMessage( 'config-skins-screenshots', $name )
-				->rawParams( $wgLang->commaList( $links ) )
+				->rawParams( $lang->commaList( $links ) )
 				->escaped();
 		} else {
 			$link = Html::element(

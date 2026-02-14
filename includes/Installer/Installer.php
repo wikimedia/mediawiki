@@ -801,7 +801,6 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckDB() {
-		global $wgLang;
 		/** @var string|null $dbType The user-specified database type */
 		$dbType = $this->getVar( 'wgDBtype' );
 
@@ -832,7 +831,8 @@ abstract class Installer {
 		}
 		$databases = array_flip( $databases );
 		if ( !$databases ) {
-			$this->showError( 'config-no-db', $wgLang->commaList( $allNames ), count( $allNames ) );
+			$lang = RequestContext::getMain()->getLanguage();
+			$this->showError( 'config-no-db', $lang->commaList( $allNames ), count( $allNames ) );
 			return false;
 		}
 		return $ok;

@@ -9,6 +9,7 @@
 namespace MediaWiki\Installer;
 
 use LogicException;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
@@ -159,10 +160,7 @@ class WebInstallerOutput {
 	 * @return Language
 	 */
 	private function getLanguage() {
-		global $wgLang;
-
-		return is_object( $wgLang ) ? $wgLang
-			: MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		return RequestContext::getMain()->getLanguage();
 	}
 
 	/**
