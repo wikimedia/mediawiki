@@ -302,6 +302,8 @@ because of Phabricator reports.
   In a future release this will be a type hint on the argument.
 * The ParserOptionsRegister hook has been deprecated and replaced by
   ParserOptionsDefaults.
+* The PagerTools class has been deprecated and emits deprecation warnings. Use
+  the new ChangeToolsFactory service instead.
 * MediaWikiIntegrationTestCase::assertSelect() has been deprecated,
   use MediaWikiIntegrationTestCase::newSelectQueryBuilder() instead.
 * MediaWikiIntegrationTestCase::assertArraySubmapSame() has been deprecated,

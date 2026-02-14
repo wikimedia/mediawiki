@@ -145,6 +145,7 @@ use MediaWiki\PoolCounter\PoolCounterFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQueryFactory;
+use MediaWiki\RecentChanges\ChangeTools\ChangeToolsFactory;
 use MediaWiki\RecentChanges\PatrolManager;
 use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\RecentChanges\RecentChangeLookup;
@@ -951,6 +952,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getChangeTagsStoreFactory(): ChangeTagsStoreFactory {
 		return $this->getService( 'ChangeTagsStoreFactory' );
+	}
+
+	/**
+	 * @since 1.47
+	 */
+	public function getChangeToolsFactory(): ChangeToolsFactory {
+		return $this->getService( 'ChangeToolsFactory' );
 	}
 
 	/**

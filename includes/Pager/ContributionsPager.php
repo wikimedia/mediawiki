@@ -22,6 +22,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\RecentChanges\ChangesList;
+use MediaWiki\RecentChanges\ChangeTools\ChangeToolsFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -148,6 +149,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	private LinkBatchFactory $linkBatchFactory;
 	protected NamespaceInfo $namespaceInfo;
 	protected RevisionStore $revisionStore;
+	protected readonly ChangeToolsFactory $changeToolsFactory;
 
 	/** @var string[] */
 	private $formattedComments = [];
@@ -172,18 +174,6 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	protected string $pageNamespaceField = 'page_namespace';
 	protected string $pageTitleField = 'page_title';
 
-	/**
-	 * @param LinkRenderer $linkRenderer
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param HookContainer $hookContainer
-	 * @param RevisionStore $revisionStore
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param CommentFormatter $commentFormatter
-	 * @param UserFactory $userFactory
-	 * @param IContextSource $context
-	 * @param array $options
-	 * @param UserIdentity|null $targetUser
-	 */
 	public function __construct(
 		LinkRenderer $linkRenderer,
 		LinkBatchFactory $linkBatchFactory,
@@ -194,7 +184,8 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		UserFactory $userFactory,
 		IContextSource $context,
 		array $options,
-		?UserIdentity $targetUser
+		?UserIdentity $targetUser,
+		?ChangeToolsFactory $changeToolsFactory = null,
 	) {
 		$this->isArchive = $options['isArchive'] ?? false;
 		$this->runHooks = $options['runHooks'] ?? true;
@@ -268,6 +259,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->revisionStore = $revisionStore;
+		$this->changeToolsFactory = $changeToolsFactory ?? MediaWikiServices::getInstance()->getChangeToolsFactory();
 		$this->namespaceInfo = $namespaceInfo;
 		$this->commentFormatter = $commentFormatter;
 		$this->tagsCache = new MapCacheLRU( 50 );
@@ -849,23 +841,20 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		}
 		$topmarktext = '';
 		if ( !$this->isArchive ) {
-			$pagerTools = new PagerTools(
+			$changeTools = $this->changeToolsFactory->buildChangeTools(
 				$this->currentRevRecord,
 				null,
 				$row->{$this->revisionIdField} === $row->page_latest && !$row->page_is_new,
-				$this->hookRunner,
-				$this->currentPage,
 				$this->getContext(),
-				$this->getLinkRenderer()
 			);
 			if ( $row->{$this->revisionIdField} === $row->page_latest ) {
 				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 				$classes[] = 'mw-contributions-current';
 			}
-			if ( $pagerTools->shouldPreventClickjacking() ) {
+			if ( $changeTools->shouldPreventClickjacking() ) {
 				$this->setPreventClickjacking( true );
 			}
-			$topmarktext .= $pagerTools->toHTML();
+			$topmarktext .= $changeTools->toHTML();
 		}
 		return $topmarktext;
 	}

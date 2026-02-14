@@ -25,10 +25,10 @@ use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\RecentChanges\ChangesList;
+use MediaWiki\RecentChanges\ChangeTools\ChangeToolsFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\Specials\Pager\PagerTools;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchlistManager;
 use stdClass;
@@ -70,6 +70,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	private readonly CommentFormatter $commentFormatter;
 	private readonly HookRunner $hookRunner;
 	private readonly ChangeTagsStore $changeTagsStore;
+	private readonly ChangeToolsFactory $changeToolsFactory;
 
 	/**
 	 * @var RevisionRecord[] Revisions, with the key being their result offset
@@ -94,6 +95,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @param CommentFormatter|null $commentFormatter
 	 * @param HookContainer|null $hookContainer
 	 * @param ChangeTagsStore|null $changeTagsStore
+	 * @param ChangeToolsFactory|null $changeToolsFactory
 	 */
 	public function __construct(
 		public readonly HistoryAction $historyPage,
@@ -107,7 +109,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		?WatchlistManager $watchlistManager = null,
 		?CommentFormatter $commentFormatter = null,
 		?HookContainer $hookContainer = null,
-		?ChangeTagsStore $changeTagsStore = null
+		?ChangeTagsStore $changeTagsStore = null,
+		?ChangeToolsFactory $changeToolsFactory = null,
 	) {
 		parent::__construct( $historyPage->getContext() );
 		$this->getDateCond( $year, $month, $day );
@@ -123,6 +126,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			? $watchlistManager->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
 			: false;
 		$this->changeTagsStore = $changeTagsStore ?? $services->getChangeTagsStore();
+		$this->changeToolsFactory = $changeToolsFactory ?? $services->getChangeToolsFactory();
 
 		$this->fixQueryOffset();
 	}
@@ -488,19 +492,16 @@ class HistoryPager extends ReverseChronologicalPager {
 			$classes[] = 'mw-history-line-updated';
 		}
 
-		$pagerTools = new PagerTools(
+		$changeTools = $this->changeToolsFactory->buildChangeTools(
 			$revRecord,
 			$previousRevRecord,
 			$latest && $previousRevRecord,
-			$this->hookRunner,
-			$this->getTitle(),
 			$this->getContext(),
-			$this->getLinkRenderer()
 		);
-		if ( $pagerTools->shouldPreventClickjacking() ) {
+		if ( $changeTools->shouldPreventClickjacking() ) {
 			$this->preventClickjacking = true;
 		}
-		$s .= $pagerTools->toHTML();
+		$s .= $changeTools->toHTML();
 
 		# Tags
 		[ $tagSummary, $newClasses ] = $this->tagsCache->getWithSetCallback(

@@ -205,6 +205,7 @@ use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQueryFactory;
+use MediaWiki\RecentChanges\ChangeTools\ChangeToolsFactory;
 use MediaWiki\RecentChanges\ChangeTrackingEventIngress;
 use MediaWiki\RecentChanges\PatrolManager;
 use MediaWiki\RecentChanges\RecentChangeFactory;
@@ -615,6 +616,13 @@ return [
 				ChangeTagsStore::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			)
+		);
+	},
+
+	'ChangeToolsFactory' => static function ( MediaWikiServices $services ): ChangeToolsFactory {
+		return new ChangeToolsFactory(
+			new HookRunner( $services->getHookContainer() ),
+			$services->getLinkRenderer(),
 		);
 	},
 

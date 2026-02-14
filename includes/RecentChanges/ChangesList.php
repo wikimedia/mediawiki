@@ -27,9 +27,9 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\RecentChanges\ChangesListQuery\WatchlistLabelCondition;
+use MediaWiki\RecentChanges\ChangeTools\ChangeToolsFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Specials\Pager\PagerTools;
 use MediaWiki\Specials\SpecialWatchlist;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -111,13 +111,20 @@ class ChangesList extends ContextSource {
 
 	protected UserLinkRenderer $userLinkRenderer;
 
+	private ChangeToolsFactory $changeToolsFactory;
+
 	protected array $userLabels;
 
 	/**
 	 * @param IContextSource $context
 	 * @param ChangesListFilterGroupContainer|null $filterGroups
+	 * @param ChangeToolsFactory|null $changeToolsFactory
 	 */
-	public function __construct( $context, ?ChangesListFilterGroupContainer $filterGroups = null ) {
+	public function __construct(
+		$context,
+		?ChangesListFilterGroupContainer $filterGroups = null,
+		?ChangeToolsFactory $changeToolsFactory = null,
+	) {
 		$this->setContext( $context );
 		$this->preCacheMessages();
 		$this->watchMsgCache = new MapCacheLRU( 50 );
@@ -128,6 +135,7 @@ class ChangesList extends ContextSource {
 		$this->commentFormatter = $services->getRowCommentFormatter();
 		$this->logFormatterFactory = $services->getLogFormatterFactory();
 		$this->userLinkRenderer = $services->getUserLinkRenderer();
+		$this->changeToolsFactory = $changeToolsFactory ?? $services->getChangeToolsFactory();
 		$this->tagsCache = new MapCacheLRU( 50 );
 		$this->userLinkCache = new MapCacheLRU( 50 );
 	}
@@ -938,7 +946,7 @@ class ChangesList extends ContextSource {
 			return;
 		}
 
-		// Construct a fake revision for PagerTools. FIXME can't we just obtain the real one?
+		// Construct a fake revision for ChangeTools. FIXME can't we just obtain the real one?
 		$title = $rc->getTitle();
 		$revRecord = new MutableRevisionRecord( $title );
 		$revRecord->setId( (int)$rc->mAttribs['rc_this_oldid'] );
@@ -949,17 +957,13 @@ class ChangesList extends ContextSource {
 		);
 		$revRecord->setUser( $user );
 
-		$tools = new PagerTools(
+		$tools = $this->changeToolsFactory->buildChangeTools(
 			$revRecord,
 			null,
 			// only show a rollback link on the top-most revision
 			$rc->getAttribute( 'page_latest' ) == $rc->mAttribs['rc_this_oldid']
-				&& $rc->mAttribs['rc_source'] !== RecentChange::SRC_NEW,
-			$this->getHookRunner(),
-			$title,
+			&& $rc->mAttribs['rc_source'] !== RecentChange::SRC_NEW,
 			$this->getContext(),
-			// @todo: Inject
-			MediaWikiServices::getInstance()->getLinkRenderer()
 		);
 
 		$s .= $tools->toHTML();
