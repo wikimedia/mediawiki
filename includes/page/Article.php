@@ -41,6 +41,7 @@ use MediaWiki\Revision\BadRevisionException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Skin\Skin;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -649,7 +650,7 @@ class Article implements Page {
 		if ( $protectionHelpLink->isDisabled() ) {
 			$protectionHelpLink = 'https://mediawiki.org/wiki/Special:MyLanguage/Help:Protection';
 		} else {
-			$protectionHelpLink = $protectionHelpLink->text();
+			$protectionHelpLink = Skin::makeInternalOrExternalUrl( $protectionHelpLink->text() );
 		}
 
 		$outputPage->setIndicators( [
