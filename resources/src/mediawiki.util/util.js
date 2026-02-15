@@ -548,18 +548,19 @@ const util = {
 	 * Add content to the subtitle of the skin.
 	 *
 	 * @param {HTMLElement|string} nodeOrHTMLString
+	 * @return {boolean} Whether the subtitle was updated
 	 */
 	addSubtitle( nodeOrHTMLString ) {
 		const subtitle = document.getElementById( 'mw-content-subtitle' );
-		if ( subtitle ) {
-			if ( typeof nodeOrHTMLString === 'string' ) {
-				subtitle.innerHTML += nodeOrHTMLString;
-			} else {
-				subtitle.appendChild( nodeOrHTMLString );
-			}
-		} else {
-			throw new Error( 'This skin does not support additions to the subtitle.' );
+		if ( !subtitle ) {
+			return false;
 		}
+		if ( typeof nodeOrHTMLString === 'string' ) {
+			subtitle.innerHTML += nodeOrHTMLString;
+		} else {
+			subtitle.appendChild( nodeOrHTMLString );
+		}
+		return true;
 	},
 
 	/**
