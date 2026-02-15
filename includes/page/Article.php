@@ -656,7 +656,7 @@ class Article implements Page {
 		if ( $protectionHelpLink->isDisabled() ) {
 			$protectionHelpLink = 'https://mediawiki.org/wiki/Special:MyLanguage/Help:Protection';
 		} else {
-			$protectionHelpLink = $protectionHelpLink->text();
+			$protectionHelpLink = Skin::makeInternalOrExternalUrl( $protectionHelpLink->text() );
 		}
 
 		$outputPage->setIndicators( [
