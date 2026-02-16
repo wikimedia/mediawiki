@@ -166,16 +166,24 @@ class WatchlistManager {
 	 *
 	 * @param Authority $performer
 	 * @param PageReference $title
-	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
-	 * @param RevisionRecord|null $oldRev The revision record associated with $oldid, or null if
-	 *   the latest revision is used
+	 * @param RevisionRecord|null|int $oldRev The revision record, or null if
+	 *   the latest revision is used. Passing integer for $oldid is deprecated since 1.46
+	 * @param RevisionRecord|null $oldRevDeprecated Deprecated since 1.46
 	 */
 	public function clearTitleUserNotifications(
 		Authority $performer,
 		PageReference $title,
-		int $oldid = 0,
-		?RevisionRecord $oldRev = null
+		$oldRev = null,
+		$oldRevDeprecated = null
 	) {
+		if ( func_num_args() > 3 ) {
+			wfDeprecatedMsg( 'Passing $oldid to ' . __METHOD__ . ' is deprecated since 1.46.' );
+			$oldid = $oldRev ?? 0;
+			$oldRev = $oldRevDeprecated;
+		} else {
+			$oldid = $oldRev?->getId() ?? 0;
+		}
+
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			// Cannot change anything in read only
 			return;

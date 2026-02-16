@@ -1169,7 +1169,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		// Update newtalk and watchlist notification status
 		MediaWikiServices::getInstance()
 			->getWatchlistManager()
-			->clearTitleUserNotifications( $performer, $this, $oldid, $oldRev );
+			->clearTitleUserNotifications( $performer, $this, $oldRev );
 	}
 
 	/**
