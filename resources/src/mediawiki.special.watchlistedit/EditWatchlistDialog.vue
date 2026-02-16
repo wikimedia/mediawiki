@@ -24,9 +24,7 @@
 	>
 		<div role="group" aria-labelledby="watchlistlabels-dialog-checkboxes">
 			<p id="watchlistlabels-dialog-checkboxes">
-				<!-- Security note: the raw HTML here is a list of valid page titles wrapped in <strong> elements. -->
-				<!-- eslint-disable vue/no-v-html -->
-				<span v-html="dialogBody"></span>
+				<span v-i18n-html="dialogBody"></span>
 			</p>
 			<div v-if="showLabels">
 				<cdx-checkbox
@@ -83,7 +81,7 @@ module.exports = defineComponent( {
 		const isOpen = ref( false );
 		const showLabels = ref( false );
 		const selectedPages = ref( [] );
-		const selectedPagesList = ref( '' );
+		const selectedPagesListHtml = ref( '' );
 		const allLabels = new Map( Object.values( mw.config.get( 'watchlistLabels' ) ).map( ( l ) => [ l.id, l.name ] ) );
 		const labels = ref( new Map( allLabels ) );
 
@@ -117,26 +115,43 @@ module.exports = defineComponent( {
 				showLabels.value = false;
 				if ( allLabels.size === 0 ) {
 					const specialWatchlistLabelsLink = mw.config.get( 'SpecialWatchlistLabelsTitle' );
-					return mw.message( 'watchlistlabels-editwatchlist-dialog-intro-nolabels', specialWatchlistLabelsLink ).parse();
+					return mw.message( 'watchlistlabels-editwatchlist-dialog-intro-nolabels', specialWatchlistLabelsLink );
 				} else if ( selectedPages.value.length === 0 ) {
-					return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro-noitems' );
+					return mw.message( 'watchlistlabels-editwatchlist-dialog-intro-noitems' );
 				}
 				showLabels.value = true;
-				return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro', selectedPagesList.value, labels.value.length, selectedPages.value.length );
+				return mw.message(
+					'watchlistlabels-editwatchlist-dialog-intro',
+					document.createRange().createContextualFragment( selectedPagesListHtml.value ),
+					labels.value.length,
+					selectedPages.value.length
+				);
 			} else if ( dialogAction.value === 'unassign' ) {
 				showLabels.value = false;
 				if ( selectedPages.value.length > 0 && labels.value.size === 0 ) {
-					return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro-unassign-noitemlabels', selectedPages.value.length );
+					return mw.message(
+						'watchlistlabels-editwatchlist-dialog-intro-unassign-noitemlabels',
+						selectedPages.value.length
+					);
 				} else if ( selectedPages.value.length === 0 ) {
-					return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro-unassign-noitems' );
+					return mw.message( 'watchlistlabels-editwatchlist-dialog-intro-unassign-noitems' );
 				}
 				showLabels.value = true;
-				return mw.msg( 'watchlistlabels-editwatchlist-dialog-intro-unassign', selectedPagesList.value, labels.value.length, selectedPages.value.length );
+				return mw.message(
+					'watchlistlabels-editwatchlist-dialog-intro-unassign',
+					document.createRange().createContextualFragment( selectedPagesListHtml.value ),
+					labels.value.length,
+					selectedPages.value.length
+				);
 			} else {
 				showLabels.value = false;
 				return selectedPages.value.length > 0 ?
-					mw.msg( 'watchlistedit-unwatch-confirmation', selectedPagesList.value, selectedPages.value.length ) :
-					mw.msg( 'watchlistedit-unwatch-confirmation-empty' );
+					mw.message(
+						'watchlistedit-unwatch-confirmation',
+						document.createRange().createContextualFragment( selectedPagesListHtml.value ),
+						selectedPages.value.length
+					) :
+					mw.message( 'watchlistedit-unwatch-confirmation-empty' );
 			}
 		} );
 		const primaryAction = computed( () => {
@@ -151,7 +166,7 @@ module.exports = defineComponent( {
 
 		const checkboxes = document.querySelectorAll( '.watchlist-item-checkbox' );
 
-		const updateSelectedPagesList = () => {
+		const updateSelectedPagesListHtml = () => {
 			selectedPages.value = Array.from( checkboxes )
 				.filter( ( e ) => e.checked )
 				.map( ( e ) => e.value );
@@ -165,16 +180,16 @@ module.exports = defineComponent( {
 					mw.language.convertNumber( remaining )
 				) );
 			}
-			selectedPagesList.value = mw.language.listToText(
-				selectedPages.value.map( ( t ) => '<strong>' + t + '</strong>' )
+			selectedPagesListHtml.value = mw.language.listToText(
+				selectedPages.value.map( ( t ) => mw.html.element( 'strong', {}, t ) )
 			);
 		};
 		checkboxes.forEach( ( checkbox ) => {
-			checkbox.addEventListener( 'change', updateSelectedPagesList );
+			checkbox.addEventListener( 'change', updateSelectedPagesListHtml );
 		} );
 		const selectAllCheckbox = document.getElementById( 'select-all-checkbox' );
-		selectAllCheckbox.addEventListener( 'selectall', updateSelectedPagesList );
-		updateSelectedPagesList();
+		selectAllCheckbox.addEventListener( 'selectall', updateSelectedPagesListHtml );
+		updateSelectedPagesListHtml();
 
 		const openAssignDialog = () => {
 			isOpen.value = true;
