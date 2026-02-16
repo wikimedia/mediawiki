@@ -2283,18 +2283,22 @@ abstract class File implements MediaHandlerState {
 	 * Get the HTML text of the description page, if available
 	 * @stable to override
 	 *
-	 * @param Language|null $lang Optional language to fetch description in
+	 * @param Language|null $lang Language to fetch description in. Passing null
+	 *   for the language is deprecated since 1.46.
 	 * @return string|false HTML
 	 * @return-taint escaped
 	 */
 	public function getDescriptionText( ?Language $lang = null ) {
-		global $wgLang;
-
 		if ( !$this->repo || !$this->repo->fetchDescription ) {
 			return false;
 		}
 
-		$lang ??= $wgLang;
+		if ( $lang === null ) {
+			wfDeprecatedMsg( 'Calling File::getDescriptionText without a lang parameter ' .
+				'was deprecated in MediaWiki 1.46', '1.46' );
+			global $wgLang;
+			$lang = $wgLang;
+		}
 
 		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $lang->getCode() );
 		if ( $renderUrl ) {
