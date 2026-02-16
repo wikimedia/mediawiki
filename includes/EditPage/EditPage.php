@@ -62,6 +62,7 @@ use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPage;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputLinkTypes;
@@ -2787,8 +2788,11 @@ class EditPage implements IEditObject {
 		#       and pass as a "raw" parameter to ::setPageTitleMsg().
 		$displayTitle = $this->mParserOutput ? $this->mParserOutput->getDisplayTitle() : false;
 		if ( $displayTitle === false ) {
-			$displayTitle = htmlspecialchars(
-				$contextTitle->getPrefixedText(), ENT_QUOTES, 'UTF-8', false
+			$displayTitle = Parser::formatPageTitle(
+				str_replace( '_', ' ', $contextTitle->getNsText() ),
+				':',
+				$contextTitle->getText(),
+				$contextTitle->getPageLanguage()
 			);
 		} else {
 			$out->setDisplayTitle( $displayTitle );
