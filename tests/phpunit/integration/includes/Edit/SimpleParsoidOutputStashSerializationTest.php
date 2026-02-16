@@ -36,7 +36,6 @@ class SimpleParsoidOutputStashSerializationTest extends MediaWikiIntegrationTest
 					HtmlPageBundle::newFromJsonArray( [
 						'html' => '<b>html</b>',
 						'parsoid' => [
-							'counter' => 1234,
 							'offsetType' => 'byte',
 							'ids' => [
 								'mwAA' => [ 'parsoid' => true ],
@@ -46,6 +45,11 @@ class SimpleParsoidOutputStashSerializationTest extends MediaWikiIntegrationTest
 							'ids' => [
 								'mwAA' => [ 'mw' => true ],
 							],
+						],
+						'counters' => [
+							'nodedata' => 1234,
+							'annotation' => -1,
+							'transclusion' => -1,
 						],
 						'version' => '1.2.3.4',
 						'headers' => [
@@ -59,8 +63,6 @@ class SimpleParsoidOutputStashSerializationTest extends MediaWikiIntegrationTest
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, SelserContext $ss ) {
 					$pb = $ss->getPageBundle();
 					$testCase->assertSame( '<b>html</b>', $pb->html );
-					// Temporarily work around format migration
-					unset( $pb->parsoid['counter'] );
 					$testCase->assertSame( [
 						'offsetType' => 'byte',
 						'ids' => [
@@ -72,6 +74,11 @@ class SimpleParsoidOutputStashSerializationTest extends MediaWikiIntegrationTest
 							'mwAA' => [ 'mw' => true ],
 						],
 					], $pb->mw );
+					$testCase->assertSame( [
+						'nodedata' => 1234,
+						'annotation' => -1,
+						'transclusion' => -1,
+					], $pb->counters );
 					$testCase->assertSame( '1.2.3.4', $pb->version );
 					$testCase->assertSame( [
 						'X-Header-Test' => 'header test',
