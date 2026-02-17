@@ -10,7 +10,6 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -146,18 +145,13 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 	 * @return PageReference
 	 */
 	private function getPageReference( ParserOutput $po ): PageReference {
-		$titleDbKey = $po->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY );
-		if ( !$titleDbKey ) {
-			// We don't think this should ever trigger, but being conservative
-			$this->logger->error( __METHOD__ . ": Missing title information in ParserOutput" );
-			$titleDbKey = 'Special:BadTitle/Localization';
-		}
-		// TODO split PARSOID_TITLE_KEY into ns + title & use PageReferenceValue directly
-		$pageRef = $this->titleFactory->newFromDBkey( $titleDbKey );
-		if ( !$pageRef ) {
+		$title = $po->getTitle();
+		if ( $title === null ) {
 			$this->logger->error( __METHOD__ . ": Bad title information in ParserOutput" );
-			$pageRef = PageReferenceValue::localReference( NS_SPECIAL, 'BadTitle/Localization' );
+			return PageReferenceValue::localReference( NS_SPECIAL, 'BadTitle/Localization' );
 		}
-		return $pageRef;
+		return PageReferenceValue::localReference(
+			$title->getNamespace(), $title->getDBkey()
+		);
 	}
 }
