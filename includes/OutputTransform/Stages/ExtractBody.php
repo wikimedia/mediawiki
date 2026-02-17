@@ -4,11 +4,12 @@ namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\HtmlHelper;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\Parsoid\ParsoidParser;
+use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerInterface;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
@@ -93,11 +94,14 @@ class ExtractBody extends ContentTextTransformStage {
 				}
 			}
 		}
-		$title = $po->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY );
-		if ( !$title ) {
+		$title = $po->getTitle();
+		if ( $title === null ) {
 			// We don't think this should ever trigger, but being conservative
 			$this->logger->error( __METHOD__ . ": Missing title information in ParserOutput" );
+			$title = Title::newMainPage();
 		}
+		$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
+		$title = $titleFormatter->getPrefixedDBkey( $title );
 		$pageFragmentPrefix = "./" . $title . "#";
 		foreach ( $po->getIndicators() as $name => $html ) {
 			$po->setIndicator(

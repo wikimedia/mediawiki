@@ -4,6 +4,8 @@ namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\Message\Message;
 use MediaWiki\OutputTransform\ContentDOMTransformStage;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -106,5 +108,20 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 		}
 		$txt = $inline ? $msg->parse() : $msg->parseAsBlock();
 		return DOMUtils::parseHTMLToFragment( $doc, $txt );
+	}
+
+	/**
+	 * @param ParserOutput $po
+	 * @return PageReference
+	 */
+	private function getPageReference( ParserOutput $po ): PageReference {
+		$title = $po->getTitle();
+		if ( $title === null ) {
+			$this->logger->error( __METHOD__ . ": Bad title information in ParserOutput" );
+			return PageReferenceValue::localReference( NS_SPECIAL, 'BadTitle/Localization' );
+		}
+		return PageReferenceValue::localReference(
+			$title->getNamespace(), $title->getDBkey()
+		);
 	}
 }
