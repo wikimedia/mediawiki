@@ -2,7 +2,7 @@
 
 namespace Wikimedia\Message;
 
-use MediaWiki\Json\JsonDeserializer;
+use Wikimedia\JsonCodec\JsonCodecableTrait;
 
 /**
  * Value object representing a message for i18n with alternative
@@ -23,6 +23,8 @@ use MediaWiki\Json\JsonDeserializer;
  * @newable
  */
 class DataMessageValue extends MessageValue {
+	use JsonCodecableTrait;
+
 	/** @var string */
 	private $code;
 
@@ -94,7 +96,7 @@ class DataMessageValue extends MessageValue {
 			. '</datamessage>';
 	}
 
-	protected function toJsonArray(): array {
+	public function toJsonArray(): array {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		return parent::toJsonArray() + [
@@ -103,7 +105,7 @@ class DataMessageValue extends MessageValue {
 		];
 	}
 
-	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ) {
+	public static function newFromJsonArray( array $json ) {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		return new self( $json['key'], $json['params'], $json['code'], $json['data'] );

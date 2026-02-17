@@ -7,11 +7,13 @@ use Exception;
 use InvalidArgumentException;
 use MediaWiki\Api\ApiErrorFormatter;
 use MediaWiki\Api\ApiResult;
+use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use RuntimeException;
 use Stringable;
 use UnexpectedValueException;
+use Wikimedia\Message\MessageValue;
 
 /**
  * @covers \MediaWiki\Api\ApiResult
@@ -242,6 +244,45 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 				ApiResult::META_TYPE => 'assoc',
 			]
 		], $arr );
+
+		$arr = [];
+		ApiResult::setValue( $arr, 'msg', wfMessage( 'foo' )
+			->params( 'bar' )
+			->sizeParams( 123 )
+			->params( Message::listParam( [ 'a', Message::sizeParam( 123 ), 'c' ] ) )
+			->getParams() );
+		ApiResult::setValue( $arr, 'msgval', MessageValue::new( 'foo' )
+			->params( 'bar' )
+			->sizeParams( 123 )
+			->textListParams( [ 'a', Message::sizeParam( 123 ), 'c' ] )
+			->getParams() );
+
+		$this->assertSame( [
+			'msg' => [
+				'bar',
+				[ 'size' => 123 ],
+				[
+					'list' => [
+						'a',
+						[ 'size' => 123 ],
+						'c',
+					],
+					'type' => 'text',
+				],
+			],
+			'msgval' => [
+				'bar',
+				[ 'size' => 123 ],
+				[
+					'list' => [
+						'a',
+						[ 'size' => 123 ],
+						'c',
+					],
+					'type' => 'text',
+				],
+			],
+		], $arr, "MessageParam objects are converted to the legacy array format" );
 	}
 
 	/**
