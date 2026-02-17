@@ -775,9 +775,9 @@ class Linker {
 	}
 
 	/**
-	 * Process responsive images: add 1.5x and 2x subimages to the thumbnail, where
-	 * applicable.
+	 * Add 2x variant for srcset, if $wgResponsiveImages is enabled.
 	 *
+	 * @see $wgResponsiveImages
 	 * @param File $file
 	 * @param MediaTransformOutput|null $thumb
 	 * @param array $hp Image parameters
@@ -785,20 +785,12 @@ class Linker {
 	public static function processResponsiveImages( $file, $thumb, $hp ) {
 		$responsiveImages = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::ResponsiveImages );
 		if ( $responsiveImages && $thumb && !$thumb->isError() ) {
-			$hp15 = $hp;
-			$hp15['width'] = round( $hp['width'] * 1.5 );
 			$hp20 = $hp;
 			$hp20['width'] = $hp['width'] * 2;
 			if ( isset( $hp['height'] ) ) {
-				$hp15['height'] = round( $hp['height'] * 1.5 );
 				$hp20['height'] = $hp['height'] * 2;
 			}
-
-			$thumb15 = $file->transform( $hp15 );
 			$thumb20 = $file->transform( $hp20 );
-			if ( $thumb15 && !$thumb15->isError() && $thumb15->getUrl() !== $thumb->getUrl() ) {
-				$thumb->responsiveUrls['1.5'] = $thumb15->getUrl();
-			}
 			if ( $thumb20 && !$thumb20->isError() && $thumb20->getUrl() !== $thumb->getUrl() ) {
 				$thumb->responsiveUrls['2'] = $thumb20->getUrl();
 			}

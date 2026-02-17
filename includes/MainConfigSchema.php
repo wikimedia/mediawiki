@@ -2461,10 +2461,13 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Generate and use thumbnails suitable for screens with 1.5 and 2.0 pixel densities.
+	 * Generate and use thumbnails suitable for High DPI screens with 2x pixel densities.
 	 *
-	 * This means a 320x240 use of an image on the wiki will also generate 480x360 and 640x480
-	 * thumbnails, output via the srcset attribute.
+	 * This means a 320x240 thumbnail on the wiki will also generate a 640x480
+	 * thumbnail, linked via the srcset attribute.
+	 *
+	 * @see MediaWiki\Linker\Linker::processResponsiveImages
+	 * @see wfThumbIsStandard
 	 */
 	public const ResponsiveImages = [
 		'default' => true,

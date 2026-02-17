@@ -1723,7 +1723,6 @@ function wfThumbIsStandard( File $file, array $params ) {
 	if ( $wgResponsiveImages ) {
 		// These available sizes are hardcoded currently elsewhere in MediaWiki.
 		// @see Linker::processResponsiveImages
-		$multipliers[] = 1.5;
 		$multipliers[] = 2;
 	}
 

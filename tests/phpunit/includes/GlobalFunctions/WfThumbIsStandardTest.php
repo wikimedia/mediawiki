@@ -40,16 +40,6 @@ class WfThumbIsStandardTest extends MediaWikiIntegrationTestCase {
 			// wfThumbIsStandard should match Linker::processResponsiveImages
 			// in its rounding behaviour.
 			[
-				'Standard thumb width (HiDPI 1.5x) - incorrect rounding',
-				false,
-				[ 'width' => 601 ],
-			],
-			[
-				'Standard thumb width (HiDPI 1.5x)',
-				true,
-				[ 'width' => 602 ],
-			],
-			[
 				'Standard thumb width (HiDPI 2x)',
 				true,
 				[ 'width' => 802 ],
@@ -58,6 +48,16 @@ class WfThumbIsStandardTest extends MediaWikiIntegrationTestCase {
 				'Non-standard thumb width',
 				false,
 				[ 'width' => 300 ],
+			],
+			[
+				'Non-standard thumb width',
+				false,
+				[ 'width' => 601 ],
+			],
+			[
+				'Non-standard thumb width',
+				false,
+				[ 'width' => 602 ],
 			],
 			// Image limits
 			// Note: Image limits are measured as pairs. Individual values
