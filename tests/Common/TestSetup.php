@@ -59,6 +59,7 @@ class TestSetup {
 		global $wgOpenTelemetryConfig;
 		global $wgVirtualDomainsMapping;
 		global $wgAutoCreateTempUser;
+		global $wgForeignFileRepos, $wgUseInstantCommons;
 
 		$wgShowExceptionDetails = true;
 		$wgShowHostnames = true;
@@ -178,6 +179,11 @@ class TestSetup {
 		// Ensure code using virtual domains uses the local database for integration tests,
 		// since most test code isn't aware of virtual domains (T384238).
 		$wgVirtualDomainsMapping = [];
+
+		// Avoid "HTTP request blocked" error from NullHttpRequestFactory in tests,
+		// when LocalSettings contains a foreign FileRepo (T277470)
+		$wgUseInstantCommons = false;
+		$wgForeignFileRepos = [];
 
 		$wgAutoCreateTempUser['enabled'] = true;
 
