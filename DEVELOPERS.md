@@ -248,13 +248,23 @@ To install the EventLogging extension:
     `docker-compose.override.yml`. This is comparable to a symlink, but those are not well-supported in Docker.
 
     ```yaml
-   services:
-     mediawiki:
-       volumes:
-         - ~/Code/EventLogging:/var/www/html/w/extensions/EventLogging:cached
-     mediawiki-jobrunner:
-       volumes:
-         - ~/Code/EventLogging:/var/www/html/w/extensions/EventLogging:cached
+    services:
+      mediawiki:
+        volumes:
+          - ~/Code/EventLogging:/var/www/html/w/extensions/EventLogging:cached
+      mediawiki-jobrunner:
+        volumes:
+          - ~/Code/EventLogging:/var/www/html/w/extensions/EventLogging:cached
+    ```
+
+    Note: If the extension serves static assets directly (e.g., images, fonts), you may also
+    need to mount the volume to the `mediawiki-web` service:
+
+    ```yaml
+    services:
+      mediawiki-web:
+        volumes:
+          - ~/Code/EventLogging:/var/www/html/w/extensions/EventLogging:cached
     ```
 
 2. Enable the extension, by adding the following to `LocalSettings.php`:
