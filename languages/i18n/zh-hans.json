@@ -226,7 +226,8 @@
 			"ExoHyper2026",
 			"Wilf233",
 			"Pawsdt",
-			"BoredYukolin"
+			"BoredYukolin",
+			"0x48fe75df30"
 		]
 	},
 	"sunday": "星期日",
@@ -524,7 +525,7 @@
 	"viewsource-title": "查看“︁$1”︁的源代码",
 	"actionthrottled": "操作受限",
 	"actionthrottledtext": "作为反滥用措施，您在短时间段内执行该操作的次数有一个限制，并且您已超过此限制。请在数分钟后重试。",
-	"protectedpagetext": "此页面已受到保护（$3），以防止编辑或其他操作。",
+	"protectedpagetext": "此页面已受到保护，以防止编辑或其他操作。",
 	"viewsourcetext": "您可以查看和复制此页面的源代码。",
 	"viewyourtext": "您可以查看和复制<strong>您对此页面作出编辑后</strong>的源代码。",
 	"protectedinterface": "此页面为本wiki上的软件提供界面文本，并受到保护以防止滥用。如欲修改所有wiki的翻译，请访问[https://translatewiki.net/ translatewiki.net]上的MediaWiki本地化项目。",

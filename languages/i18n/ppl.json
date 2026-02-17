@@ -13,7 +13,8 @@
 			"Taty Flores de Constante",
 			"TimumachtikanNawat",
 			"Valery",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"TMg"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Datka|Dajdatka}}",
@@ -533,7 +534,7 @@
 	"restriction-edit": "Shikekchiwa",
 	"restriction-move": "Shikijkwani",
 	"namespace": "Takutun mutukey",
-	"blanknamespace": "Achtu",
+	"blanknamespace": "(Achtu)",
 	"contributions": "Tiujikniwn ka tipalewijket",
 	"mycontris": "Tay kichiwtuk",
 	"anoncontribs": "Tay kichiwtuk",

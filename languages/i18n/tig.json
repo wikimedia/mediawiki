@@ -7,7 +7,8 @@
 			"Mr. Lechkar",
 			"Shekdin mensur",
 			"Mensur shekadin",
-			"Osman Omera"
+			"Osman Omera",
+			"TMg"
 		]
 	},
 	"sunday": "ሰምበት ዓባይ",
@@ -676,7 +677,7 @@
 	"undelete-search-box": "ለትመሳሓ ገጻት ሕዘወ",
 	"undelete-show-file-submit": "ዓቤ",
 	"namespace": "አካን-ስሜት",
-	"blanknamespace": "መበገስ",
+	"blanknamespace": "(መበገስ)",
 	"contributions": "ሙሳሃማት ራኣው",
 	"contributions-title": "መሻረከት ምስተክድማይ ናይ $1",
 	"mycontris": "ሙሳሃማት",

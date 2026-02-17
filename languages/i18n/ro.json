@@ -60,7 +60,8 @@
 			"Michael2101",
 			"Valentin JJ.",
 			"Dimitrie569",
-			"SZ475"
+			"SZ475",
+			"TMg"
 		]
 	},
 	"sunday": "duminică",
@@ -2462,7 +2463,7 @@
 	"tooltip-whatlinkshere-invert": "Bifați această casetă pentru a ascunde legăturile din paginile aparținând spațiilor de nume selectate.",
 	"namespace_association": "Spații de nume asociate",
 	"tooltip-namespace_association": "Bifați această căsuță pentru a include și spațiul de nume destinat discuțiilor care este asociat cu spațiul de nume deja selectat",
-	"blanknamespace": "Articole",
+	"blanknamespace": "(Articole)",
 	"contributions": "Contribuțiile utilizatorului",
 	"tool-link-contributions": "Contribuțiile {{GENDER:$1|utilizatorului|utilizatoarei}}",
 	"contributions-title": "Contribuțiile utilizatorului $1",

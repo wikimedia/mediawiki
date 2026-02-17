@@ -427,7 +427,7 @@
 	"viewsource-title": "$1 sayfasının kaynağını görüntüle",
 	"actionthrottled": "Eylem kısılmıştır",
 	"actionthrottledtext": "Suistimallere karşı alınan önlemler dahilinde belirli bir süre aralığında bu eylemin gerçekleştirilmesine izin verilen miktarı aştınız.\nLütfen birkaç dakika sonra yeniden deneyin.",
-	"protectedpagetext": "Bu sayfa değişiklik ya da diğer eylemlerin yapılmasını engellemek için koruma altına alınmıştır .",
+	"protectedpagetext": "Bu sayfa değişiklik ya da diğer eylemlerin yapılmasını engellemek için koruma altına alınmıştır.",
 	"viewsourcetext": "Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz.",
 	"viewyourtext": "Bu sayfada <strong>yaptığınız değişikliklerin</strong> kaynağını görünteleyip kopyalayabilirsiniz.",
 	"protectedinterface": "Bu sayfa yazılım için arayüz metni sağlamaktadır ve kötüye kullanımı önlemek için korumaya alınmıştır.\nBütün vikilere dair çeviri eklemek veya bunları değiştirmek için lütfen MediaWiki yerelleştirme projesi [https://translatewiki.net/ translatewiki.net]'i kullanın.",

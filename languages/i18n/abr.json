@@ -4,7 +4,8 @@
 			"Alicia Agyeiwaa",
 			"Obed554",
 			"Yaw tuba",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"TMg"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Nkyekyɛmu|Nkyekyɛmu ahorow}}",
@@ -467,7 +468,7 @@
 	"restriction-edit": "Siesie",
 	"restriction-move": "Kɔ",
 	"namespace": "Beaeɛ a din ahodoɔ wɔ",
-	"blanknamespace": "Ne titire",
+	"blanknamespace": "(Ne titire)",
 	"contributions": "Wo mmoa",
 	"mycontris": "Mmoa ahodoɔ",
 	"anoncontribs": "Mmoa ahodoɔ",

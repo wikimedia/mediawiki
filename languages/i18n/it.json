@@ -157,7 +157,8 @@
 			"9Aaron3",
 			"Giorgx12",
 			"GseSro",
-			"Amedeo463"
+			"Amedeo463",
+			"Asteralee"
 		]
 	},
 	"sunday": "domenica",
@@ -781,7 +782,7 @@
 	"accmailtext": "Una password generata casualmente per [[User talk:$1|$1]] è stata inviata a $2. Questa password può essere modificata nella pagina per ''[[Special:ChangePassword|cambiare la password]]'' subito dopo l'accesso.",
 	"newarticle": "(Nuovo)",
 	"newarticletext": "Il collegamento appena seguito corrisponde ad una pagina non ancora esistente.\nSe vuoi creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto (vedi la [$1 pagina di aiuto] per maggiori informazioni).\nSe il collegamento è stato aperto per errore, è sufficiente fare clic sul pulsante <strong>Indietro</strong> del proprio browser.",
-	"anontalkpagetext": "----\n<em>Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un'utenza o comunque non la sta usando.</em>\nPer identificarlo è quindi necessario usare il numero del suo indirizzo IP.\nGli indirizzi IP possono però essere condivisi da più utenti.\nSe sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:CreateAccount|crea una nuova utenza]] o [[Special:UserLogin|entra con quella che già hai]] per evitare di essere confuso con altri utenti anonimi in futuro.",
+	"anontalkpagetext": "----\n<em>Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un'utenza o comunque non la sta usando.</em>\nPer identificare questa persona è quindi necessario usare il numero del suo indirizzo IP.\nGli indirizzi IP possono però essere condivisi da più utenti.\nSe sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:CreateAccount|crea una nuova utenza]] o [[Special:UserLogin|entra con quella che hai già]] per evitare che gli altri ti confondano con altri utenti anonimi in futuro.",
 	"noarticletext": "In questo momento la pagina richiesta è vuota.\nPuoi [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} creare questa pagina]</span>.",
 	"noarticletext-nopermission": "In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati]</span>, ma non hai i permessi per creare questa pagina.",
 	"missing-revision-permission": "La revisione #$1 appartiene a una pagina cancellata. Puoi [{{fullurl:{{#Special:Undelete}}|target=$3&timestamp=$2&diff=prev}} vederla qui]; maggiori dettagli nel  [{{fullurl:{{#Special:Log}}/delete|page=$3}} registro delle cancellazioni].",
@@ -1280,7 +1281,7 @@
 	"right-blockemail": "Blocca o sblocca un utente dall'invio di email",
 	"right-hideuser": "Blocca o sblocca un nome utente, nascondendolo o mostrandolo al pubblico",
 	"right-ipblock-exempt": "Ignora i blocchi degli IP, i blocchi automatici e i blocchi di range di IP",
-	"right-unblockself": "Sblocca sé stesso",
+	"right-unblockself": "Sblocca sé stessa/o",
 	"right-protect": "Cambia le impostazioni di protezione e modifica pagine protette ricorsivamente",
 	"right-editprotected": "Modifica pagine protette con \"{{int:protect-level-sysop}}\"",
 	"right-editsemiprotected": "Modifica pagine protette con \"{{int:protect-level-autoconfirmed}}\"",

@@ -3,7 +3,8 @@
 		"authors": [
 			"CapitainAfrika",
 			"Chrisdanielkazadi",
-			"Shayi ngolu"
+			"Shayi ngolu",
+			"TMg"
 		]
 	},
 	"sunday": "mudialubingu",
@@ -462,7 +463,7 @@
 	"undeletecomment": "Bua tshinyi:",
 	"undelete-search-submit": "Kukebulula",
 	"namespace": "Tshibuashi bua diina",
-	"blanknamespace": "Udi wa mushinga",
+	"blanknamespace": "(Udi wa mushinga)",
 	"contributions": "Malu adibu bafila kudi bena mudimu",
 	"contributions-title": "Malu adibu bafila kudi bena mudimu bua $1",
 	"mycontris": "Kusangisha",

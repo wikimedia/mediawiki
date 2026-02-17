@@ -299,7 +299,7 @@
 	"viewsource-title": "Izvorny kod stranice «$1»",
 	"actionthrottled": "Dějanje spomaljeno.",
 	"actionthrottledtext": "V ramkah borby s zloupotrěbjanjem jest ograničena kolikost razov, že možete povtarjati tuto dějanje v kratkom času, a vy jeste prěvysili to ograničenje. \nProsimo, poprobujte ponovno za několiko minut.",
-	"protectedpagetext": "Tuta stranica jest zaščičena  od pravjenja ili drugyh dějanij.",
+	"protectedpagetext": "Tuta stranica jest zaščičena od pravjenja ili drugyh dějanij.",
 	"viewsourcetext": "Vy možete uviděti i kopirovati izvorny kod tutoj stranice.",
 	"viewyourtext": "Vy možete prěgleděti i kopirovati izvorny kod <strong>svojih pravok</strong> na ovu stranicu.",
 	"protectedinterface": "Tuta stranica sodrživaje tekst interfejsa tutoj viki. Da by izběglo se zloupotrěbjanje, ona jest zaščičena. \nAko hočete dodati ili izměniti prěvody za vse viki, koristajte [https://translatewiki.net/ translatewiki.net], projekt za lokalizaciju MediaWiki-softvera.",

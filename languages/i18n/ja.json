@@ -158,7 +158,8 @@
 			"Yaakiyu.jp",
 			"Shulmj",
 			"YeBoy371",
-			"X200b"
+			"X200b",
+			"Gurio318"
 		]
 	},
 	"sunday": "日曜日",
@@ -455,7 +456,7 @@
 	"viewsource-title": "$1のソースを表示",
 	"actionthrottled": "許容されている時間当たりの操作数の上限に達しました",
 	"actionthrottledtext": "短時間にこの操作を大量に行ったため、スパム対策として設定されている制限を超えました。\n少し時間をおいてからもう一度操作してください。",
-	"protectedpagetext": "このページは編集や他の操作ができないように保護（$3）されています。",
+	"protectedpagetext": "このページは編集や他の操作ができないように保護されています。",
 	"viewsourcetext": "このページのソースの閲覧やコピーができます。",
 	"viewyourtext": "このページへの<strong>あなたの編集</strong>のソースの閲覧やコピーができます。",
 	"protectedinterface": "このページにはこのウィキのソフトウェアのインターフェイスに使用されるテキストが保存されており、いたずらなどの防止のために保護されています。\nすべてのウィキに対して翻訳を追加/変更する場合は、MediaWiki の地域化プロジェクト [https://translatewiki.net/wiki/Main_Page?setlang=ja translatewiki.net] を使用してください。",
@@ -3476,7 +3477,7 @@
 	"hebrew-calendar-m11-gen": "アブ",
 	"hebrew-calendar-m12-gen": "エルール",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|トーク]])",
-	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|会話]])",
+	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|トーク]])",
 	"timezone-utc": "UTC",
 	"timezone-local": "ローカル",
 	"duplicate-defaultsort": "<strong>警告:</strong> 既定のソートキー「$2」が、その前に書かれている既定のソートキー「$1」を上書きしています。",

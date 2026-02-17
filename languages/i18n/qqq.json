@@ -277,7 +277,9 @@
 			"Tamzin",
 			"E75ti",
 			"Ильгиз",
-			"Albertoleoncio"
+			"Albertoleoncio",
+			"NguoiDungKhongDinhDanh",
+			"Warudo"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1839,7 +1841,7 @@
 	"rcshowhidecategorization-hide": "{{doc-actionlink}}\nOption text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhidecategorization}}.\n\nSee also:\n* {{msg-mw|rcshowhidecategorization-show}}\n{{Identical|Hide}}",
 	"rclinks": "Used on [[Special:RecentChanges]].\n* $1 - a list of different choices with number of pages to be shown.<br />&nbsp;Example: \"''50{{int:pipe-separator}}100{{int:pipe-separator}}250{{int:pipe-separator}}500\".\n* $2 - a list of clickable links with a number of days for which recent changes are to be displayed.<br />&nbsp;Example: \"''1{{int:pipe-separator}}3{{int:pipe-separator}}7{{int:pipe-separator}}14{{int:pipe-separator}}30''\".",
 	"diff": "Short form of \"differences\". Used on [[Special:RecentChanges]], [[Special:Watchlist]], ...\n{{Identical|Diff}}",
-	"hist": "Used on [[Special:RecentChanges]], [[Special:Watchlist]], ...",
+	"hist": "Short form of \"history\". Used on [[Special:RecentChanges]], [[Special:Watchlist]], ...",
 	"hide": "{{doc-actionlink}}\nOption text in [[Special:RecentChanges]], and in [[Special:WhatLinksHere]].\n\nSee also:\n* {{msg-mw|Show}}\n{{Identical|Hide}}",
 	"show": "{{doc-actionlink}}\nOption text in [[Special:RecentChanges]], and in [[Special:WhatLinksHere]].\n\nSee also:\n* {{msg-mw|Hide}}\n{{Identical|Show}}",
 	"minoreditletter": "Very short form of \"'''minor edit'''\". As in {{msg-mw|Recentchanges-label-minor}}\n\nUsed in [[Special:RecentChanges]], [[Special:Watchlist]], [[Special:Contributions]] and history pages.\n\n{{Rc single letters}}",
@@ -2844,7 +2846,7 @@
 	"tooltip-whatlinkshere-invert": "Used in [[Special:Whatlinkshere]] as a tooltip for the invert checkbox.\n\nSee also:\n* {{msg-mw|tooltip-invert}}\n* {{msg-mw|invert}}",
 	"namespace_association": "Used in [[Special:Recentchanges]] with a checkbox which selects the associated namespace to be added to the selected namespace, so that both are searched (or excluded depending on another checkbox selection). The association is between a namespace and its talk namespace.\n\nThis message has a tooltip {{msg-mw|tooltip-namespace association}}",
 	"tooltip-namespace_association": "Used in [[Special:Recentchanges]] as a tooltip for the associated namespace checkbox.\n\nSee also:\n* {{msg-mw|Namespace association}}",
-	"blanknamespace": "Name for main namespace (blank namespace) in drop-down menus at [[Special:RecentChanges]] and other special pages.\n{{Identical|Main}}",
+	"blanknamespace": "Name for main namespace (blank namespace) in drop-down menus at [[Special:RecentChanges]] and other special pages. Surrounded by brackets to signal that it's only a symbolic label and not an actual namespace prefix.\n{{Identical|Main}}",
 	"contributions": "The page name of the target page.\n\nThe target page shows an overview of the most recent contributions by a user.\n\nSee also:\n* {{msg-mw|Contributions}}\n* {{msg-mw|Accesskey-t-contributions}}\n* {{msg-mw|Tooltip-t-contributions}}",
 	"tool-link-contributions": "Display name for the 'User contributions', shown in the sidebar menu of all user pages and user talk pages.\n\nParameters:\n* $1 - username\n\nSee also:\n* {{msg-mw|Contributions}}\n* {{msg-mw|Accesskey-t-contributions}}\n* {{msg-mw|Tooltip-t-contributions}}",
 	"contributions-summary": "{{doc-specialpagesummary|contributions}}",
@@ -3834,7 +3836,7 @@
 	"lag-warn-normal": "Used as warning about replica lag. Parameters:\n* $1 - number of seconds\nSee also:\n* {{msg-mw|Lag-warn-high}}",
 	"lag-warn-high": "Used as warning about replica lag. Parameters:\n* $1 - number of seconds\nSee also:\n* {{msg-mw|Lag-warn-normal}}",
 	"editwatchlist-summary": "{{doc-specialpagesummary|editwatchlist}}",
-	"watchlistedit-normal-title": "Title of [[Special:Watchlist/edit|special page]].",
+	"watchlistedit-normal-title": "Title of the [[Special:EditWatchlist]] special page.",
 	"watchlistedit-normal-legend": "Heading of dialog box on [[Special:Watchlist/edit]].",
 	"watchlistedit-normal-explain": "An introduction/explanation about the [[Special:Watchlist/edit|normal edit watchlist function]].\n\nRefers to {{msg-mw|Watchlistedit-normal-submit}}.",
 	"watchlistedit-normal-submit": "Text of submit button on [[Special:Watchlist/edit]].\n\nSee also:\n* {{msg-mw|Watchlistedit-normal-submit}}\n* {{msg-mw|Accesskey-watchlistedit-normal-submit}}\n* {{msg-mw|Tooltip-watchlistedit-normal-submit}}",

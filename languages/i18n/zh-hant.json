@@ -152,7 +152,8 @@
 			"Srapoj",
 			"TeaSummer",
 			"Peterxy12",
-			"臺灣象象"
+			"臺灣象象",
+			"Leo768"
 		]
 	},
 	"sunday": "星期日",
@@ -449,7 +450,7 @@
 	"viewsource-title": "檢視$1的原始碼",
 	"actionthrottled": "操作頻率受限",
 	"actionthrottledtext": "您在短時間內執行此動作太多次，已超出系統上限，基於反濫用的考量，將限制您的動作。\n請稍後數分鐘後再試。",
-	"protectedpagetext": "此頁面已設為保護（$3）防止編輯或其他操作。",
+	"protectedpagetext": "此頁面已設為保護，以防止編輯或其他操作。",
 	"viewsourcetext": "您可以檢視並複製此頁面的原始碼。",
 	"viewyourtext": "您可以檢視並複製此頁面中<strong>您編輯</strong>的原始碼。",
 	"protectedinterface": "本頁用來提供此 Wiki 軟體介面上的文字，並且已被設為保護以防止惡意修改。\n如欲增加或修改 Wiki 的翻譯，請至 [https://translatewiki.net/ translatewiki.net] 上的 MediaWiki 在地化專案。",
@@ -4198,9 +4199,9 @@
 	"log-unknown-action": "於[[$1]]上執行未知操作“$2”",
 	"createacct-benefit-heading-temp-user": "感謝您對 {{SITENAME}} 的貢獻。\n請建立帳號以使用更多功能。",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}}是由像您這樣的人創建的。擁有帳號後，您可以獲得永久且安全的身份，並可以使用以下功能：",
-	"benefit-1-description": "監視列表，可讓您監視您感興趣的頁面。",
-	"benefit-2-description": "您對該專案所做貢獻的永久記錄。",
-	"benefit-3-description": "參數設置，讓您自訂使用體驗。",
+	"benefit-1-description": "監視清單，可讓您監視您感興趣的頁面。",
+	"benefit-2-description": "您對該專案所做貢獻的永久紀錄。",
+	"benefit-3-description": "偏好設定，讓您自訂使用體驗。",
 	"temp-user-unable-to-acquire": "無法取得臨時帳號的使用者名稱，請再試一次。",
 	"table-of-contents-show-button-aria-label": "顯示目次",
 	"table-of-contents-hide-button-aria-label": "隱藏目次"
