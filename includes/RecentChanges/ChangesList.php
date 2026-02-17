@@ -1020,7 +1020,7 @@ class ChangesList extends ContextSource {
 		$labelStrings = [];
 		foreach ( $labelIds as $labelId ) {
 			$classes[] = SpecialWatchlist::WATCHLIST_LABEL_CSS_CLASS_PREFIX . $labelId;
-			$labelStrings[] = $this->userLabels[ $labelId ]->getName();
+			$labelStrings[] = wfEscapeWikiText( $this->userLabels[ $labelId ]->getName() );
 		}
 		$labelsList = $this->msg( 'watchlistlabels-list-wrapper' )->params(
 			$this->getLanguage()->commaList( $labelStrings )
