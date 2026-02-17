@@ -296,6 +296,11 @@ because of Phabricator reports.
   Instead, use LinkRenderer::makeRedirectHeader().
 * MergeHistory::isValidMerge() and MergeHistory::merge() now return StatusValue
   instead of Status. There are no known callers outside of core.
+* Various deprecated global functions for handling URLs have been dropped.
+  - wfParseUrl(), deprecated in 1.39, has been dropped. Instead, use
+    UrlUtils::parse().
+  - wfExpandUrl(), deprecated in 1.39, has been dropped. Instead, use
+    UrlUtils::expand().
 * …
 
 === Deprecations in 1.46 ===

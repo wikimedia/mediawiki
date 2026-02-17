@@ -391,39 +391,6 @@ function wfGetUrlUtils(): UrlUtils {
 }
 
 /**
- * Expand a potentially local URL to a fully-qualified URL using $wgServer
- * (or one of its alternatives).
- *
- * The meaning of the PROTO_* constants is as follows:
- * PROTO_HTTP: Output a URL starting with http://
- * PROTO_HTTPS: Output a URL starting with https://
- * PROTO_RELATIVE: Output a URL starting with // (protocol-relative URL)
- * PROTO_CURRENT: Output a URL starting with either http:// or https:// , depending
- *    on which protocol was used for the current incoming request
- * PROTO_CANONICAL: For URLs without a domain, like /w/index.php , use $wgCanonicalServer.
- *    For protocol-relative URLs, use the protocol of $wgCanonicalServer
- * PROTO_INTERNAL: Like PROTO_CANONICAL, but uses $wgInternalServer instead of $wgCanonicalServer
- *
- * If $url specifies a protocol, or $url is domain-relative and $wgServer
- * specifies a protocol, PROTO_HTTP, PROTO_HTTPS, PROTO_RELATIVE and
- * PROTO_CURRENT do not change that.
- *
- * Parent references (/../) in the path are resolved (as in UrlUtils::removeDotSegments()).
- *
- * @deprecated since 1.39, use UrlUtils::expand(); hard-deprecated since 1.45
- * @param string $url An URL; can be absolute (e.g. http://example.com/foo/bar),
- *    protocol-relative (//example.com/foo/bar) or domain-relative (/foo/bar).
- * @param string|int|null $defaultProto One of the PROTO_* constants, as described above.
- * @return string|false Fully-qualified URL, current-path-relative URL or false if
- *    no valid URL can be constructed
- */
-function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
-	wfDeprecated( __FUNCTION__, '1.39' );
-
-	return wfGetUrlUtils()->expand( (string)$url, $defaultProto ) ?? false;
-}
-
-/**
  * Returns a partial regular expression of recognized URL protocols, e.g. "http:\/\/|https:\/\/"
  *
  * @deprecated since 1.39, use UrlUtils::validProtocols(); hard-deprecated since 1.43
@@ -449,38 +416,6 @@ function wfUrlProtocolsWithoutProtRel() {
 	wfDeprecated( __FUNCTION__, '1.39' );
 
 	return wfGetUrlUtils()->validAbsoluteProtocols();
-}
-
-/**
- * parse_url() work-alike, but non-broken.  Differences:
- *
- * 1) Handles protocols that don't use :// (e.g., mailto: and news:, as well as
- *    protocol-relative URLs) correctly.
- * 2) Adds a "delimiter" element to the array (see (2)).
- * 3) Verifies that the protocol is on the $wgUrlProtocols allowed list.
- * 4) Rejects some invalid URLs that parse_url doesn't, e.g. the empty string or URLs starting with
- *    a line feed character.
- *
- * @deprecated since 1.39, use UrlUtils::parse(); hard-deprecated since 1.45
- * @param string $url A URL to parse
- * @return string[]|false Bits of the URL in an associative array, or false on failure.
- *   Possible fields:
- *   - scheme: URI scheme (protocol), e.g. 'http', 'mailto'. Lowercase, always present, but can
- *       be an empty string for protocol-relative URLs.
- *   - delimiter: either '://', ':' or '//'. Always present.
- *   - host: domain name / IP. Always present, but could be an empty string, e.g. for file: URLs.
- *   - port: port number. Will be missing when port is not explicitly specified.
- *   - user: user name, e.g. for HTTP Basic auth URLs such as http://user:pass@example.com/
- *       Missing when there is no username.
- *   - pass: password, same as above.
- *   - path: path including the leading /. Will be missing when empty (e.g. 'http://example.com')
- *   - query: query string (as a string; see wfCgiToArray() for parsing it), can be missing.
- *   - fragment: the part after #, can be missing.
- */
-function wfParseUrl( $url ) {
-	wfDeprecated( __FUNCTION__, '1.39' );
-
-	return wfGetUrlUtils()->parse( (string)$url ) ?? false;
 }
 
 /**

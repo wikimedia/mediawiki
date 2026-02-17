@@ -59,7 +59,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		'wgMWLoggerDefaultSpi',
 		'wgLegalTitleChars',
 		'wgDevelopmentWarnings',
-		// Dependency of wfParseUrl()
+		// Needed for wfEscapeWikiText()
 		'wgUrlProtocols',
 		// For LegacyLogger, injected by DevelopmentSettings.php
 		'wgDebugLogFile',
