@@ -583,7 +583,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 *   Parameters as strings or MessageParam values (from Message::numParam() and the like),
 	 *   may also be passed as a single array instead of variadic parameters.
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function params( ...$params ) {
 		if ( count( $params ) === 1 && isset( $params[0] ) && is_array( $params[0] ) ) {
@@ -614,7 +614,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * Raw parameters as strings, or a single argument that is an array of raw parameters.
 	 * @param-taint ...$params html,exec_html
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function rawParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
@@ -635,7 +635,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @param string|int|float|list<string|int|float> ...$params Numeric parameters, or a single argument that is
 	 * an array of numeric parameters.
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function numParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
@@ -656,7 +656,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @param int|int[] ...$params Duration parameters, or a single argument that is
 	 * an array of duration parameters.
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function durationParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
@@ -677,7 +677,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @param string|string[] ...$params Expiry parameters, or a single argument that is
 	 * an array of expiry parameters.
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function expiryParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
@@ -698,7 +698,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @param string|string[] ...$params Date-time parameters, or a single argument that is
 	 * an array of date-time parameters.
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function dateTimeParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
@@ -719,7 +719,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @param string|string[] ...$params Date parameters, or a single argument that is
 	 * an array of date parameters.
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function dateParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
@@ -739,7 +739,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @param string|string[] ...$params User Group parameters, or a single argument that is
 	 * an array of user group parameters.
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function userGroupParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
@@ -760,7 +760,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @param string|string[] ...$params Time parameters, or a single argument that is
 	 * an array of time parameters.
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function timeParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
@@ -781,7 +781,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @param int|float|(int|float)[] ...$params Time period parameters, or a single argument that is
 	 * an array of time period parameters.
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function timeperiodParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
@@ -802,7 +802,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @param int|int[] ...$params Size parameters, or a single argument that is
 	 * an array of size parameters.
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function sizeParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
@@ -823,7 +823,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @param int|int[] ...$params Bit rate parameters, or a single argument that is
 	 * an array of bit rate parameters.
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function bitrateParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
@@ -846,7 +846,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @param string|string[] ...$params plaintext parameters, or a single argument that is
 	 * an array of plaintext parameters.
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function plaintextParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
@@ -865,7 +865,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 *
 	 * @param IContextSource $context
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function setContext( IContextSource $context ) {
 		$this->userLangCallback = static function () use ( $context ) {
@@ -885,7 +885,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 *
 	 * @since 1.17
 	 * @param Bcp47Code|StubUserLang|string $lang Language code or language object.
-	 * @return self $this
+	 * @return $this
 	 */
 	public function inLanguage( $lang ) {
 		$previousLanguage = $this->language;
@@ -942,7 +942,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @since 1.17
 	 * @see $wgForceUIMsgAsContentMsg
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function inContentLanguage(): self {
 		$forceUIMsgAsContentMsg = MediaWikiServices::getInstance()->getMainConfig()->get(
@@ -963,7 +963,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 *
 	 * @param bool $interface
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function setInterfaceMessageFlag( $interface ) {
 		$this->isInterface = (bool)$interface;
@@ -976,7 +976,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @param bool $useDatabase If messages in the local MediaWiki namespace should be loaded; false
 	 *  to use only the compiled LocalisationCache
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function useDatabase( $useDatabase ) {
 		$this->useDatabase = (bool)$useDatabase;
@@ -992,7 +992,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 *
 	 * @param Title $title
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function title( $title ) {
 		return $this->page( $title );
@@ -1005,7 +1005,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 *
 	 * @param ?PageReference $page
 	 *
-	 * @return self $this
+	 * @return $this
 	 */
 	public function page( ?PageReference $page ) {
 		if ( $page ) {

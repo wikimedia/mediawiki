@@ -33,9 +33,7 @@ class FallbackContent extends AbstractContent {
 		$this->data = $data;
 	}
 
-	/**
-	 * @return Content $this
-	 */
+	/** @inheritDoc */
 	public function copy() {
 		// FallbackContent is immutable, so no need to copy.
 		return $this;

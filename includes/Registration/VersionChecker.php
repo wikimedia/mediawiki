@@ -78,7 +78,7 @@ class VersionChecker {
 	 *
 	 * @param array $credits An array of installed extensions with credits of them
 	 *
-	 * @return VersionChecker $this
+	 * @return $this
 	 */
 	public function setLoadedExtensionsAndSkins( array $credits ) {
 		$this->loaded = $credits;

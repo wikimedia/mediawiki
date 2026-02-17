@@ -54,9 +54,8 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
+	 * @inheritDoc
 	 * @note Mutable subclasses MUST override this to return a copy!
-	 *
-	 * @return Content $this
 	 */
 	public function copy() {
 		return $this; # NOTE: this is ok since TextContent are immutable.

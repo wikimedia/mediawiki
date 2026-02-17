@@ -3269,7 +3269,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	/**
 	 * @note This is only here for compatibility with the Authority interface.
 	 * @since 1.36
-	 * @return UserIdentity $this
+	 * @return $this
 	 */
 	public function getUser(): UserIdentity {
 		return $this;

@@ -479,7 +479,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @param array $descriptor Array of Field constructs, as described
 	 * 	in the class documentation
-	 * @return self
+	 * @return $this
 	 */
 	public function addFields( $descriptor ) {
 		$loadedDescriptor = [];
