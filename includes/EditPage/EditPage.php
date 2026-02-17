@@ -93,10 +93,13 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
+use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistManager;
+use MediaWiki\Widget\MenuTagMultiselectWidget;
 use OOUI;
 use OOUI\ButtonWidget;
 use OOUI\CheckboxInputWidget;
+use OOUI\CheckboxMultiselectInputWidget;
 use OOUI\DropdownInputWidget;
 use OOUI\FieldLayout;
 use RuntimeException;
@@ -262,10 +265,17 @@ class EditPage implements IEditObject {
 	/** @var bool Corresponds to $wgWatchlistExpiry */
 	private $watchlistExpiryEnabled;
 
-	private WatchedItemStoreInterface $watchedItemStore;
-
 	/** The expiry time of the watch item, or null if it is not watched temporarily. */
 	private ?string $watchlistExpiry = null;
+
+	/** @var bool Corresponds to $wgEnableWatchlistLabels */
+	private bool $watchlistLabelsEnabled;
+
+	/** @var int[] Watchlist label IDs submitted in the form */
+	private array $watchlistLabels = [];
+
+	/** @var array|null Cached watchlist labels for the current user */
+	private ?array $userWatchlistLabels = null;
 
 	private bool $recreate = false;
 
@@ -404,6 +414,8 @@ class EditPage implements IEditObject {
 	private PermissionManager $permManager;
 	private RevisionStore $revisionStore;
 	private WatchlistManager $watchlistManager;
+	private WatchedItemStoreInterface $watchedItemStore;
+	private WatchlistLabelStore $watchlistLabelStore;
 	private UserOptionsLookup $userOptionsLookup;
 	private TempUserCreator $tempUserCreator;
 	private UserFactory $userFactory;
@@ -466,8 +478,11 @@ class EditPage implements IEditObject {
 		$this->revisionStore = $services->getRevisionStore();
 		$this->watchlistExpiryEnabled = $this->getContext()->getConfig() instanceof Config
 			&& $this->getContext()->getConfig()->get( MainConfigNames::WatchlistExpiry );
+		$this->watchlistLabelsEnabled = $this->getContext()->getConfig() instanceof Config
+			&& $this->getContext()->getConfig()->get( MainConfigNames::EnableWatchlistLabels );
 		$this->watchedItemStore = $services->getWatchedItemStore();
 		$this->watchlistManager = $services->getWatchlistManager();
+		$this->watchlistLabelStore = $services->getWatchlistLabelStore();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->tempUserCreator = $services->getTempUserCreator();
 		$this->userFactory = $services->getUserFactory();
@@ -1278,6 +1293,9 @@ class EditPage implements IEditObject {
 			if ( $submittedExpiry !== false ) {
 				$this->watchlistExpiry = $submittedExpiry;
 			}
+		}
+		if ( $this->watchlistLabelsEnabled ) {
+			$this->watchlistLabels = $request->getIntArray( 'wpWatchlistLabels', [] );
 		}
 
 		# Don't force edit summaries when a user is editing their own user or talk page
@@ -2666,6 +2684,51 @@ class EditPage implements IEditObject {
 		$this->watchlistManager->setWatch( $watch, $user, $this->page, $watchlistExpiry );
 
 		$this->watchedItemStore->maybeEnqueueWatchlistExpiryJob();
+
+		// Sync watchlist labels if the feature is enabled and the page is being watched.
+		if ( $this->watchlistLabelsEnabled && $watch ) {
+			$watchedItem = $this->watchedItemStore->getWatchedItem( $user, $this->page );
+			$currentLabelIds = [];
+			// WatchlistLabel::getId() is nullable; normalize to int[] for add/removeLabels().
+			if ( $watchedItem instanceof WatchedItem ) {
+				foreach ( $watchedItem->getLabels() as $label ) {
+					$labelId = $label->getId();
+					if ( $labelId !== null ) {
+						$currentLabelIds[] = $labelId;
+					}
+				}
+			}
+			$submittedLabelIds = $this->watchlistLabels;
+			$userLabelIds = array_keys( $this->loadWatchlistLabelsForUser( $user ) );
+			$submittedLabelIds = array_values( array_intersect( $submittedLabelIds, $userLabelIds ) );
+
+			/** @var int[] $currentLabelIds */
+			/** @var int[] $submittedLabelIds */
+
+			$toAdd = array_values( array_diff( $submittedLabelIds, $currentLabelIds ) );
+			$toRemove = array_values( array_diff( $currentLabelIds, $submittedLabelIds ) );
+
+			if ( $toAdd ) {
+				$this->watchedItemStore->addLabels( $user, [ $this->page ], $toAdd );
+			}
+			if ( $toRemove ) {
+				$this->watchedItemStore->removeLabels( $user, [ $this->page ], $toRemove );
+			}
+		}
+	}
+
+	/**
+	 * Load all watchlist labels for the given user, cached for the lifetime of this EditPage instance.
+	 *
+	 * @param UserIdentity $user
+	 * @return array
+	 */
+	private function loadWatchlistLabelsForUser( UserIdentity $user ): array {
+		if ( $this->userWatchlistLabels === null ) {
+			$this->userWatchlistLabels = $this->watchlistLabelStore->loadAllForUser( $user );
+		}
+
+		return $this->userWatchlistLabels;
 	}
 
 	/**
@@ -3705,9 +3768,18 @@ class EditPage implements IEditObject {
 			$tabindex,
 			[ 'minor' => $this->minoredit, 'watch' => $this->watchthis, 'wpWatchlistExpiry' => $expiryFromRequest ]
 		);
+		$watchlistLabelsWidget = $this->getWatchlistLabelsWidget( $tabindex );
+
 		$checkboxesHTML = new OOUI\HorizontalLayout( [ 'items' => array_values( $checkboxes ) ] );
 
-		$out->addHTML( "<div class='editCheckboxes'>" . $checkboxesHTML . "</div>\n" );
+		$out->addHTML( Html::rawElement( 'div', [ 'class' => 'editCheckboxes' ], (string)$checkboxesHTML ) . "\n" );
+		if ( $watchlistLabelsWidget ) {
+			$out->addHTML( Html::rawElement(
+				'div',
+				[ 'class' => 'mw-editpage-watchlistLabels' ],
+				(string)$watchlistLabelsWidget
+			) . "\n" );
+		}
 
 		// Show copyright warning.
 		$out->addHTML( self::getCopyrightWarning( $this->page, 'parse', $this->context ) );
@@ -4168,7 +4240,7 @@ class EditPage implements IEditObject {
 				// Not temporarily watched, so we always default to infinite.
 				$userPreferredExpiry = 'infinite';
 			} else {
-				$userPreferredExpiryOption = !$this->getTitle()->exists()
+				$userPreferredExpiryOption = !$this->page->exists()
 					? 'watchcreations-expiry'
 					: 'watchdefault-expiry';
 				$userPreferredExpiry = $this->userOptionsLookup->getOption(
@@ -4269,6 +4341,94 @@ class EditPage implements IEditObject {
 		}
 
 		return $checkboxes;
+	}
+
+	/**
+	 * Build the watchlist labels MenuTagMultiselectWidget for the edit form.
+	 *
+	 * @param int &$tabindex Current tabindex
+	 * @return FieldLayout|null Widget layout for watchlist labels, or null if not applicable
+	 */
+	private function getWatchlistLabelsWidget( int &$tabindex ): ?FieldLayout {
+		if ( !$this->watchlistLabelsEnabled ) {
+			return null;
+		}
+
+		$user = $this->context->getUser();
+		if ( !$user->isNamed() ) {
+			return null;
+		}
+
+		$userLabels = $this->loadWatchlistLabelsForUser( $user );
+		if ( !$userLabels ) {
+			return null;
+		}
+
+		$this->context->getOutput()->addModuleStyles( 'mediawiki.widgets.TagMultiselectWidget.styles' );
+		$this->context->getOutput()->addModules( 'mediawiki.widgets.MenuTagMultiselectWidget' );
+
+		// Determine which labels are currently selected.
+		// After the initial render, use submitted values to preserve state across retries.
+		if ( !$this->firsttime ) {
+			// getIntArray() should already return int[], but keep this non-null for static analysis.
+			$selectedLabelIds = (array)$this->getContext()->getRequest()->getIntArray( 'wpWatchlistLabels', [] );
+		} else {
+			// Use the labels currently assigned to this watched item.
+			$watchedItem = $this->watchedItemStore->getWatchedItem( $user, $this->page );
+			$selectedLabelIds = [];
+			// Keep this as int[] so array_map( strval(...) ) is always called with an array.
+			if ( $watchedItem instanceof WatchedItem ) {
+				foreach ( $watchedItem->getLabels() as $label ) {
+					$labelId = $label->getId();
+					if ( $labelId !== null ) {
+						$selectedLabelIds[] = $labelId;
+					}
+				}
+			}
+		}
+
+		// Build options for MenuTagMultiselectWidget (flat list, no group header).
+		$options = [];
+		foreach ( $userLabels as $label ) {
+			$options[] = [ 'data' => (string)$label->getId(), 'label' => $label->getName() ];
+		}
+
+		$selectedStrings = array_map( strval( ... ), $selectedLabelIds );
+
+		// Build no-JS fallback: a CheckboxMultiselectInputWidget
+		$noJsFallback = [ new CheckboxMultiselectInputWidget( [
+			'name' => 'wpWatchlistLabels[]',
+			'value' => $selectedStrings,
+			'options' => $options,
+		] ) ];
+
+		$widget = new MenuTagMultiselectWidget( [
+			'name' => 'wpWatchlistLabels',
+			'options' => [ '' => $options ],
+			'default' => $selectedStrings,
+			'noJsFallback' => $noJsFallback,
+			'infusable' => true,
+			'id' => 'wpWatchlistLabelsWidget',
+			'tabIndex' => ++$tabindex,
+			'allowReordering' => false,
+			'placeholder' => $this->context->msg( 'watchlistlabels-editpage-placeholder' )->text(),
+		] );
+
+		return new FieldLayout(
+			$widget,
+			[
+				'label' => new OOUI\HtmlSnippet(
+					$this->context->msg( 'watchlistlabels-editpage-label' )->parse()
+				),
+				'help' => new OOUI\HtmlSnippet(
+					$this->context->msg( 'watchlistlabels-editpage-help' )->parse()
+				),
+				'helpInline' => true,
+				'align' => 'top',
+				'id' => 'mw-editpage-watchlist-labels',
+				'classes' => [ 'mw-editpage-watchlistLabels' ],
+			]
+		);
 	}
 
 	/**

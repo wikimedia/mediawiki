@@ -23,6 +23,7 @@ use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
+use MediaWiki\Watchlist\WatchlistLabel;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -1149,6 +1150,158 @@ hello
 				'expectedOptions' => [ '2020-05-05T12:00:06Z', ...$standardOptions ],
 			]
 		];
+	}
+
+	/**
+	 * @covers \MediaWiki\EditPage\EditPage::updateWatchlist
+	 */
+	public function testWatchlistLabelsAreReadAsIntArrayFromRequest(): void {
+		$this->overrideConfigValue( MainConfigNames::EnableWatchlistLabels, true );
+		$user = self::$editUsers['user'];
+		$title = Title::newFromText( __METHOD__, $this->getDefaultWikitextNS() );
+
+		$labelA = $this->createWatchlistLabel( $user, 'sanitized-a' );
+		$labelB = $this->createWatchlistLabel( $user, 'sanitized-b' );
+
+		$this->assertEdit(
+			$title,
+			null,
+			'user',
+			[
+				'wpTextbox1' => 'Updated text',
+				'wpSummary' => 'test summary',
+				'wpWatchthis' => 1,
+				'wpWatchlistLabels' => [
+					(string)$labelA->getId(),
+					'not-an-int',
+					'',
+					(string)$labelB->getId(),
+				],
+			],
+			EditPage::AS_SUCCESS_NEW_ARTICLE,
+			'Updated text'
+		);
+
+		$assignedIds = $this->getAssignedWatchlistLabelIds( $user, $title );
+
+		$expectedIds = [ $labelA->getId(), $labelB->getId() ];
+		sort( $expectedIds );
+
+		$this->assertSame( $expectedIds, $assignedIds );
+	}
+
+	/**
+	 * @covers \MediaWiki\EditPage\EditPage::updateWatchlist
+	 */
+	public function testWatchlistLabelsAreAddedOnSave(): void {
+		$this->overrideConfigValue( MainConfigNames::EnableWatchlistLabels, true );
+		$user = self::$editUsers['user'];
+		$title = Title::newFromText( __METHOD__, $this->getDefaultWikitextNS() );
+
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$page->doUserEditContent( ContentHandler::makeContent( 'base', $title ), $user, 'base text for test' );
+
+		$labelA = $this->createWatchlistLabel( $user, 'sync-a' );
+		$labelB = $this->createWatchlistLabel( $user, 'sync-b' );
+		$labelC = $this->createWatchlistLabel( $user, 'sync-c' );
+
+		$this->getServiceContainer()->getWatchlistManager()->setWatch( true, $user, $title );
+		$this->getServiceContainer()->getWatchedItemStore()->addLabels(
+			$user,
+			[ $title ],
+			[ $labelA->getId(), $labelB->getId() ]
+		);
+		$this->assertSame(
+			[ $labelA->getId(), $labelB->getId() ],
+			$this->getAssignedWatchlistLabelIds( $user, $title )
+		);
+		$this->getServiceContainer()->getWatchedItemStore()->getWatchedItem( $user, $title );
+
+		$this->assertEdit(
+			$title,
+			null,
+			'user',
+			[
+				'wpTextbox1' => 'Updated text',
+				'wpSummary' => 'test summary',
+				'wpWatchthis' => 1,
+				'wpWatchlistLabels' => [
+					(string)$labelB->getId(),
+					(string)$labelC->getId(),
+				],
+			],
+			EditPage::AS_SUCCESS_UPDATE,
+			'Updated text'
+		);
+
+		$assignedIds = $this->getAssignedWatchlistLabelIds( $user, $title );
+
+		$expectedIds = [ $labelA->getId(), $labelB->getId(), $labelC->getId() ];
+		sort( $expectedIds );
+
+		$this->assertSame( $expectedIds, $assignedIds );
+	}
+
+	/**
+	 * @covers \MediaWiki\EditPage\EditPage::updateWatchlist
+	 */
+	public function testWatchlistLabelsFromOtherUsersAreIgnoredOnSave(): void {
+		$this->overrideConfigValue( MainConfigNames::EnableWatchlistLabels, true );
+		$user = self::$editUsers['user'];
+		$otherUser = self::$editUsers['Adam'];
+		$title = Title::newFromText( __METHOD__, $this->getDefaultWikitextNS() );
+
+		$ownLabel = $this->createWatchlistLabel( $user, 'own-label' );
+		$otherUsersLabel = $this->createWatchlistLabel( $otherUser, 'other-users-label' );
+
+		$this->assertEdit(
+			$title,
+			null,
+			'user',
+			[
+				'wpTextbox1' => 'Updated text',
+				'wpSummary' => 'test summary',
+				'wpWatchthis' => 1,
+				'wpWatchlistLabels' => [
+					(string)$ownLabel->getId(),
+					(string)$otherUsersLabel->getId(),
+				],
+			],
+			EditPage::AS_SUCCESS_NEW_ARTICLE,
+			'Updated text'
+		);
+
+		$this->assertSame(
+			[ $ownLabel->getId() ],
+			$this->getAssignedWatchlistLabelIds( $user, $title )
+		);
+	}
+
+	private function createWatchlistLabel( UserIdentity $user, string $name ): WatchlistLabel {
+		$label = new WatchlistLabel( $user, $name );
+		$this->getServiceContainer()->getWatchlistLabelStore()->save( $label );
+		return $label;
+	}
+
+	/**
+	 * @return int[]
+	 */
+	private function getAssignedWatchlistLabelIds( UserIdentity $user, Title $title ): array {
+		$labelIds = $this->getDb()->newSelectQueryBuilder()
+			->select( 'wlm_label' )
+			->from( 'watchlist' )
+			->join( 'watchlist_label_member', null, 'wlm_item = wl_id' )
+			->where( [
+				'wl_user' => $user->getId(),
+				'wl_namespace' => $title->getNamespace(),
+				'wl_title' => $title->getDBkey(),
+			] )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
+
+		$labelIds = array_map( 'intval', $labelIds );
+		sort( $labelIds );
+		return $labelIds;
 	}
 
 	/**
