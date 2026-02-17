@@ -477,15 +477,6 @@ class SkinModule extends FileModule {
 				$featureStyles['all'][] = '.mw-wiki-logo { ' .
 					'background-size: 135px auto; }';
 			} else {
-				if ( isset( $logo['1.5x'] ) ) {
-					$featureStyles[
-						'(-webkit-min-device-pixel-ratio: 1.5), ' .
-						'(min-resolution: 1.5dppx), ' .
-						'(min-resolution: 144dpi)'
-					][] = '.mw-wiki-logo { background-image: ' .
-						CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
-						'background-size: 135px auto; }';
-				}
 				if ( isset( $logo['2x'] ) ) {
 					$featureStyles[
 						'(-webkit-min-device-pixel-ratio: 2), ' .
@@ -540,7 +531,7 @@ class SkinModule extends FileModule {
 
 		$logosPerDppx = [];
 		foreach ( $logo as $dppx => $src ) {
-			// Keys are in this format: "1.5x"
+			// Keys are in this format: "2x"
 			$dppx = substr( $dppx, 0, -1 );
 			$logosPerDppx[$dppx] = $src;
 		}
@@ -549,7 +540,7 @@ class SkinModule extends FileModule {
 		uksort( $logosPerDppx, static function ( $a, $b ) {
 			$a = floatval( $a );
 			$b = floatval( $b );
-			// Sort from smallest to largest (e.g. 1x, 1.5x, 2x)
+			// Sort from smallest to largest (e.g. 1x, 2x)
 			return $a <=> $b;
 		} );
 
@@ -564,8 +555,7 @@ class SkinModule extends FileModule {
 		$logosCount = count( $logos );
 		$preloadLinks = [];
 		// Logic must match SkinModule:
-		// - 1x applies to resolution < 1.5dppx
-		// - 1.5x applies to resolution >= 1.5dppx && < 2dppx
+		// - 1x applies to resolution < 2dppx
 		// - 2x applies to resolution >= 2dppx
 		// Note that min-resolution and max-resolution are both inclusive.
 		for ( $i = 0; $i < $logosCount; $i++ ) {
@@ -700,20 +690,11 @@ class SkinModule extends FileModule {
 				$conf,
 				$logoHD['svg']
 			);
-		} elseif ( isset( $logoHD['1.5x'] ) || isset( $logoHD['2x'] ) ) {
-			// Only 1.5x and 2x are supported
-			if ( isset( $logoHD['1.5x'] ) ) {
-				$logoUrls['1.5x'] = OutputPage::transformResourcePath(
-					$conf,
-					$logoHD['1.5x']
-				);
-			}
-			if ( isset( $logoHD['2x'] ) ) {
-				$logoUrls['2x'] = OutputPage::transformResourcePath(
-					$conf,
-					$logoHD['2x']
-				);
-			}
+		} elseif ( isset( $logoHD['2x'] ) ) {
+			$logoUrls['2x'] = OutputPage::transformResourcePath(
+				$conf,
+				$logoHD['2x']
+			);
 		} else {
 			// Return a string rather than a one-element array, getLogoPreloadlinks depends on this
 			return $logo1Url;

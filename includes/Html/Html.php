@@ -1091,11 +1091,10 @@ class Html {
 	 * @par Example:
 	 * @code
 	 *     Html::srcSet( [
-	 *         '1x'   => 'standard.jpeg',
-	 *         '1.5x' => 'large.jpeg',
-	 *         '3x'   => 'extra-large.jpeg',
+	 *         '1x' => 'standard.jpg',
+	 *         '2x' => 'large.jpeg',
 	 *     ] );
-	 *     // gives 'standard.jpeg 1x, large.jpeg 1.5x, extra-large.jpeg 2x'
+	 *     // gives 'standard.jpg 1x, large.jpg 2x'
 	 * @endcode
 	 *
 	 * @param string[] $urls

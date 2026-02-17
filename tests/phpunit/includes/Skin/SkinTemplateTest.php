@@ -76,8 +76,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 								'src' => '/w/resources/assets/poweredby_mediawiki_88x31.png',
 								'url' => 'https://www.mediawiki.org/',
 								'alt' => 'Powered by MediaWiki',
-								'srcset' => '/w/resources/assets/poweredby_mediawiki_132x47.png 1.5x,' .
-									' /w/resources/assets/poweredby_mediawiki_176x62.png 2x',
+								'srcset' => '/w/resources/assets/poweredby_mediawiki_176x62.png 2x',
 							]
 						]
 					],
@@ -88,8 +87,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 							'src' => '/w/resources/assets/poweredby_mediawiki_88x31.png',
 							'url' => 'https://www.mediawiki.org/',
 							'alt' => 'Powered by MediaWiki',
-							'srcset' => '/w/resources/assets/poweredby_mediawiki_132x47.png 1.5x,' .
-								' /w/resources/assets/poweredby_mediawiki_176x62.png 2x',
+							'srcset' => '/w/resources/assets/poweredby_mediawiki_176x62.png 2x',
 							'width' => 88,
 							'height' => 31,
 						]

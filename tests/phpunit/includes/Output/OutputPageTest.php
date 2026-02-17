@@ -3113,14 +3113,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					MainConfigNames::ResourceBasePath => '/w',
 					MainConfigNames::Logo => '/img/default.png',
 					MainConfigNames::Logos => [
-						'1.5x' => '/img/one-point-five.png',
 						'2x' => '/img/two-x.png',
 					],
 				],
 				'Link: </img/default.png>;rel=preload;as=image;media=' .
-				'not all and (min-resolution: 1.5dppx),' .
-				'</img/one-point-five.png>;rel=preload;as=image;media=' .
-				'(min-resolution: 1.5dppx) and (max-resolution: 1.999999dppx),' .
+				'not all and (min-resolution: 2dppx),' .
 				'</img/two-x.png>;rel=preload;as=image;media=(min-resolution: 2dppx)'
 			],
 			[

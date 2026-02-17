@@ -642,7 +642,6 @@ class MainConfigSchema {
 	 * All path values can be either absolute or relative URIs
 	 *
 	 * The `1x` key is a path to the 1x version of square logo (should be 135x135 pixels)
-	 * The `1.5x` key is a path to the 1.5x version of square logo
 	 * The `2x` key is a path to the 2x version of square logo
 	 * The `svg` key is a path to the svg version of square logo
 	 * The `icon` key is a path to the version of the logo without wordmark and tagline
@@ -662,7 +661,6 @@ class MainConfigSchema {
 	 * @code
 	 * $wgLogos = [
 	 *    '1x' => 'path/to/1x_version.png',
-	 *    '1.5x' => 'path/to/1.5x_version.png',
 	 *    '2x' => 'path/to/2x_version.png',
 	 *    'svg' => 'path/to/svg_version.svg',
 	 *    'icon' => 'path/to/icon.png',
@@ -5491,7 +5489,7 @@ class MainConfigSchema {
 				"mediawiki" => [
 					// Defaults to point at
 					// "$wgResourceBasePath/resources/assets/poweredby_mediawiki_88x31.png"
-					// plus srcset for 1.5x, 2x resolution variants.
+					// plus srcset for 2x resolution variant.
 					"src" => null,
 					"url" => "https://www.mediawiki.org/",
 					"alt" => "Powered by MediaWiki",
