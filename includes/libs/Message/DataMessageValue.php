@@ -105,7 +105,15 @@ class DataMessageValue extends MessageValue {
 		];
 	}
 
-	public static function newFromJsonArray( array $json ) {
+	/** @inheritDoc */
+	public static function jsonClassHintFor( string $keyName ) {
+		// JsonStaticClassCodec invokes $className::jsonClassHintFor() so
+		// we need to have an explicit definition in DataMessageValue, we
+		// can't simply inherit the static method from MessageValue.
+		return parent::jsonClassHintFor( $keyName );
+	}
+
+	public static function newFromJsonArray( array $json ): DataMessageValue {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		return new self( $json['key'], $json['params'], $json['code'], $json['data'] );
