@@ -554,6 +554,7 @@ class ApiParse extends ApiBase {
 					}
 					$langlinks = $compat;
 					$linkFlags = [];
+					sort( $langlinks );
 					$this->getHookRunner()->onLanguageLinks( $titleObj, $langlinks, $linkFlags );
 				}
 			}

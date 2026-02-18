@@ -1208,7 +1208,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			},
 		] );
 		$op->addParserOutputMetadata( $pOut1 );
-		$this->assertSame( [ 'pt:E', 'he:F', 'ar:G#y' ], $op->getLanguageLinks() );
+		$this->assertSame( [ 'ar:G#y', 'he:F', 'pt:E' ], $op->getLanguageLinks() );
 
 		# Duplicates are removed in OutputPage (T26502)
 		$pOut2 = $this->createParserOutputStub( [
@@ -1223,7 +1223,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			},
 		] );
 		$op->addParserOutput( $pOut2, ParserOptions::newFromAnon() );
-		$this->assertSame( [ 'pt:E', 'he:F', 'ar:G#y' ], $op->getLanguageLinks() );
+		$this->assertSame( [ 'ar:G#y', 'he:F', 'pt:E' ], $op->getLanguageLinks() );
 	}
 
 	// @todo Are these category links tests too abstract and complicated for what they test?  Would

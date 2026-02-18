@@ -2529,6 +2529,7 @@ class OutputPage extends ContextSource {
 		// used to mark individual language links.
 		$linkFlags = [];
 		$languageLinks = $this->getLanguageLinks();
+		sort( $languageLinks );
 		// This hook can be used to remove/replace language links
 		$this->getHookRunner()->onLanguageLinks( $this->getTitle(), $languageLinks, $linkFlags );
 		$this->metadata->clearLanguageLinks();
