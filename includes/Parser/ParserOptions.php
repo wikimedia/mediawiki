@@ -1384,8 +1384,6 @@ class ParserOptions {
 			'magicISBNLinks' => $enableMagicLinks['ISBN'] ?? false,
 			'magicPMIDLinks' => $enableMagicLinks['PMID'] ?? false,
 			'magicRFCLinks' => $enableMagicLinks['RFC'] ?? false,
-			// FIXME: [[T417514]] this can be removed once we've shown users find
-			// the CSS/JS thumbsize solution meets their needs.
 			'thumbsize' => $userOptionsLookup->getDefaultOption( 'thumbsize' ),
 			'userlang' => $contentLanguage,
 		];

@@ -10,7 +10,7 @@
  * elements like `button`s and we don't feature `fixed` anywhere in deployed
  * skins or extensions.
  */
-/* stylelint-disable declaration-no-important, time-min-milliseconds, plugin/no-unsupported-browser-features, selector-class-pattern */
+/* stylelint-disable declaration-no-important, time-min-milliseconds, plugin/no-unsupported-browser-features */
 @media ( prefers-reduced-motion: reduce ) {
 	*,
 	::before,
@@ -22,26 +22,5 @@
 		// Set to `0ms` even though it implicates not firing `transitionend` in certain browsers.
 		// Do not set this to non-zero value, as it results in infinite motion on iOS. See T308979.
 		transition-duration: 0ms !important;
-	}
-}
-
-// Note this is currently restricted to Parsoid.
-// @todo: Pending feedback on T375981 it can be extended to legacy parser as well.
-// @todo: these may be converted to em units at later point in project (pending feedback)
-// @todo: This may be moved to a dedicated module later on to group user customizations
-// (for example the underline user preference currently residing in `content-links` feature.
-// @todo: these sizes should be made configurable (T417516)
-.mw-parser-output[ data-mw-parsoid-version ] {
-	.mw-default-size img {
-		width: 250px;
-		height: auto;
-
-		html.skin-theme-clientpref-thumb-large & {
-			width: 400px;
-		}
-
-		html.skin-theme-clientpref-thumb-small & {
-			width: 180px;
-		}
 	}
 }
