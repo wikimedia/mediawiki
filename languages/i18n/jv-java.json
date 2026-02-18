@@ -3,7 +3,8 @@
 		"authors": [
 			"Bennylin",
 			"SaldırganSincap",
-			"Sumbukompor"
+			"Sumbukompor",
+			"TMg"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|ꦏꦠꦺꦒꦺꦴꦫꦶ}}",
@@ -484,7 +485,7 @@
 	"restriction-edit": "ꦧꦼꦱꦸꦠ꧀",
 	"restriction-move": "ꦭꦶꦃ",
 	"namespace": "ꦩꦤ꧀ꦝꦭ​ꦲꦫꦤ꧀꧇",
-	"blanknamespace": "ꦩꦤ꧀ꦝꦭꦥꦺꦴꦏꦺꦴꦏ꧀",
+	"blanknamespace": "(ꦩꦤ꧀ꦝꦭꦥꦺꦴꦏꦺꦴꦏ꧀)",
 	"contributions": "ꦥꦱꦸꦩ꧀ꦧꦁꦔꦶꦁ​ꦤꦫꦒꦸꦤ",
 	"contributions-title": "ꦥꦱꦸꦩ꧀ꦧꦁꦔꦶꦁ​{{GENDER:$2|ꦤꦫꦒꦸꦤ}}​$1",
 	"mycontris": "ꦥꦱꦸꦩ꧀ꦧꦁ",

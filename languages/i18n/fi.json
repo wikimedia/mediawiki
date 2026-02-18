@@ -90,7 +90,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Hdicu",
-			"Taavi"
+			"Taavi",
+			"Ejs-80"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Luokka|Luokat}}",
@@ -1111,7 +1112,7 @@
 	"group-sysop": "ylläpitäjät",
 	"group-interface-admin": "käyttöliittymän ylläpitäjät",
 	"group-bureaucrat": "byrokraatit",
-	"group-suppress": "häivyttäjät (suppressors)",
+	"group-suppress": "häivyttäjät",
 	"group-all": "(kaikki)",
 	"group-user-member": "{{GENDER:$1|käyttäjä}}",
 	"group-named-member": "{{GENDER:$1|rekisteröitynyt käyttäjä}}",
@@ -1121,7 +1122,7 @@
 	"group-sysop-member": "{{GENDER:$1|ylläpitäjä}}",
 	"group-interface-admin-member": "{{GENDER:$1|käyttöliittymän ylläpitäjä}}",
 	"group-bureaucrat-member": "{{GENDER:$1|byrokraatti}}",
-	"group-suppress-member": "{{GENDER:$1|häivyttäjä (suppressor)}}",
+	"group-suppress-member": "{{GENDER:$1|häivyttäjä}}",
 	"grouppage-user": "{{ns:project}}:Käyttäjät",
 	"grouppage-temp": "{{ns:project}}:Tilapäiset käyttäjät",
 	"grouppage-autoconfirmed": "{{ns:project}}:Automaattisesti hyväksytyt käyttäjät",

@@ -3,7 +3,8 @@
 		"authors": [
 			"CapitainAfrika",
 			"Chrisdanielkazadi",
-			"Shayi ngolu"
+			"Shayi ngolu",
+			"TMg"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Mushindu|Mishindu}}",
@@ -411,7 +412,7 @@
 	"undeletecomment": "Bua tshinyi:",
 	"undelete-search-submit": "Kukebulula",
 	"namespace": "Tshibuashi bua diina",
-	"blanknamespace": "Udi wa mushinga",
+	"blanknamespace": "(Udi wa mushinga)",
 	"contributions": "Malu adibu bafila kudi bena mudimu",
 	"contributions-title": "{{GENDER:$2|mukuashi wa mudimu}} disangisha dia $1",
 	"mycontris": "Kusangisha",

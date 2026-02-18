@@ -1926,7 +1926,7 @@
 	"listusers-creationsort": "Sortiraj po datumu pravljenja",
 	"listusers-desc": "Sortiraj u opadajućem redoslijedu",
 	"usereditcount": "$1 {{PLURAL:$1|izmjena|izmjene}}",
-	"usercreated": "račun {{GENDER:$3|izrađen}} na datum $1 u $2",
+	"usercreated": "račun {{GENDER:$3|izrađen}} $1 u $2",
 	"newpages": "Nove stranice",
 	"newpages-submit": "Prikaži",
 	"newpages-username": "Korisničko ime:",

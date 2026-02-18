@@ -157,7 +157,8 @@
 			"9Aaron3",
 			"Giorgx12",
 			"GseSro",
-			"Amedeo463"
+			"Amedeo463",
+			"Asteralee"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoria|Categorie}}",
@@ -736,7 +737,7 @@
 	"accmailtext": "Una password generata casualmente per [[User talk:$1|$1]] è stata inviata a $2. Questa password può essere modificata nella pagina per ''[[Special:ChangePassword|cambiare la password]]'' subito dopo l'accesso.",
 	"newarticle": "(Nuovo)",
 	"newarticletext": "Il collegamento appena seguito corrisponde ad una pagina non ancora esistente.\nSe vuoi creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto (vedi la [$1 pagina di aiuto] per maggiori informazioni).\nSe il collegamento è stato aperto per errore, è sufficiente fare clic sul pulsante <strong>Indietro</strong> del proprio browser.",
-	"anontalkpagetext": "----\n<em>Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un'utenza o comunque non la sta usando.</em>\nPer identificarlo è quindi necessario usare il numero del suo indirizzo IP.\nGli indirizzi IP possono però essere condivisi da più utenti.\nSe sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:CreateAccount|crea una nuova utenza]] o [[Special:UserLogin|entra con quella che già hai]] per evitare di essere confuso con altri utenti anonimi in futuro.",
+	"anontalkpagetext": "----\n<em>Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un'utenza o comunque non la sta usando.</em>\nPer identificare questa persona è quindi necessario usare il numero del suo indirizzo IP.\nGli indirizzi IP possono però essere condivisi da più utenti.\nSe sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:CreateAccount|crea una nuova utenza]] o [[Special:UserLogin|entra con quella che hai già]] per evitare che gli altri ti confondano con altri utenti anonimi in futuro.",
 	"noarticletext": "In questo momento la pagina richiesta è vuota.\nPuoi [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} creare questa pagina]</span>.",
 	"noarticletext-nopermission": "In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati]</span>, ma non hai i permessi per creare questa pagina.",
 	"missing-revision-permission": "La revisione #$1 appartiene a una pagina cancellata. Puoi [{{fullurl:{{#Special:Undelete}}|target=$3&timestamp=$2&diff=prev}} vederla qui]; maggiori dettagli nel  [{{fullurl:{{#Special:Log}}/delete|page=$3}} registro delle cancellazioni].",
@@ -3311,7 +3312,7 @@
 	"watchlisttools-clear": "svuota la lista degli osservati speciali",
 	"watchlisttools-view": "visualizza le modifiche pertinenti",
 	"watchlisttools-edit": "visualizza e modifica la lista degli osservati speciali",
-	"watchlisttools-raw": "modifica la lista in formato testo",
+	"watchlisttools-raw": "Modifica la lista in formato testo",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discussioni]])",
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|discussione]])",
 	"duplicate-defaultsort": "Attenzione: la chiave di ordinamento predefinita \"$2\" sostituisce la precedente \"$1\".",
@@ -3481,7 +3482,7 @@
 	"tags-create-already-exists": "Il tag \"$1\" esiste già.",
 	"tags-create-warnings-above": "{{PLURAl:$2|È stato rilevato il seguente pericolo|Sono stati rilevati i seguenti pericoli}} mentre si cercava di creare l'etichetta \"$1\":",
 	"tags-create-warnings-below": "Desideri continuare a creare il tag?",
-	"tags-delete-title": "Elimina tag",
+	"tags-delete-title": "Cancella etichetta",
 	"tags-delete-explanation-initial": "Stai per eliminare il tag \"$1\" dal database.",
 	"tags-delete-explanation-in-use": "Verrà rimossa da {{PLURAL:$2|$2 versioni o voce di registro| tutte le $2 versioni e voci di registro}} dove si trova attualmente.",
 	"tags-delete-explanation-warning": "Questa azione è <strong>irreversibile</strong> e <strong>non può essere annullata</strong>, nemmeno da amministratori di database. Accertati che questo sia davvero il tag che intendi eliminare.",
