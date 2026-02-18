@@ -97,6 +97,7 @@ use MediaWiki\Mail\ConfirmEmail\ConfirmEmailBuilderFactory;
 use MediaWiki\Mail\ConfirmEmail\ConfirmEmailSender;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\Mail\IEmailer;
+use MediaWiki\Mail\NotificationEmail\NotificationEmailSender;
 use MediaWiki\Media\MediaHandlerFactory;
 use MediaWiki\Notification\NotificationService;
 use MediaWiki\ObjectCache\ObjectCacheFactory;
@@ -1002,6 +1003,10 @@ class MediaWikiServices extends ServiceContainer {
 
 	public function getConfirmEmailSender(): ConfirmEmailSender {
 		return $this->getService( 'ConfirmEmailSender' );
+	}
+
+	public function getNotificationEmailSender(): NotificationEmailSender {
+		return $this->getService( 'NotificationEmailSender' );
 	}
 
 	/**

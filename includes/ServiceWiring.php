@@ -136,6 +136,7 @@ use MediaWiki\Mail\Emailer;
 use MediaWiki\Mail\EmailUser;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\Mail\IEmailer;
+use MediaWiki\Mail\NotificationEmail\NotificationEmailSender;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -1572,6 +1573,18 @@ return [
 			$services->getDBLoadBalancerFactory(),
 			$services->getMainWANObjectCache(),
 			LoggerFactory::getInstance( 'NameTableSqlStore' )
+		);
+	},
+
+	'NotificationEmailSender' => static function ( MediaWikiServices $services ): NotificationEmailSender {
+		return new NotificationEmailSender(
+			new ServiceOptions(
+				NotificationEmailSender::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			$services->getEmailer(),
+			$services->getLocalServerObjectCache(),
+			$services->getUrlUtils()
 		);
 	},
 

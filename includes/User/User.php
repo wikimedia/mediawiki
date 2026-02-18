@@ -1918,15 +1918,14 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		$emailAuthentication = $config->get( MainConfigNames::EmailAuthentication );
 
 		if ( $emailAuthentication && $type === 'changed' && $this->isEmailConfirmed() ) {
-			// Send the user an email notifying the user of the change in registered
-			// email address on their previous verified email address
 			$change = $str != '' ? 'changed' : 'removed';
-			$notificationResult = $this->sendMail(
-				wfMessage( 'notificationemail_subject_' . $change )->text(),
-				wfMessage( 'notificationemail_body_' . $change,
-					$this->getRequest()->getIP(),
-					$this->getName(),
-					$str )->text()
+			$notificationResult = Status::wrap(
+				MediaWikiServices::getInstance()->getNotificationEmailSender()->sendNotificationMail(
+					RequestContext::getMain(),
+					$this,
+					$change,
+					$str
+				)
 			);
 		}
 
