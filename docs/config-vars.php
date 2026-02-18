@@ -1239,12 +1239,6 @@ $wgVirtualDomainsMapping = null;
 $wgFileSchemaMigrationStage = null;
 
 /**
- * Config variable stub for the ImageLinksSchemaMigrationStage setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ImageLinksSchemaMigrationStage
- */
-$wgImageLinksSchemaMigrationStage = null;
-
-/**
  * Config variable stub for the ExternalLinksDomainGaps setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ExternalLinksDomainGaps
  */

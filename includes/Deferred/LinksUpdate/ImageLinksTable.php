@@ -2,9 +2,7 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\JobQueue\Utils\PurgeJobUtils;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputLinkTypes;
@@ -21,12 +19,6 @@ use Wikimedia\Rdbms\IResultWrapper;
 class ImageLinksTable extends TitleLinksTable {
 	public const VIRTUAL_DOMAIN = 'virtual-imagelinks';
 
-	public const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::ImageLinksSchemaMigrationStage
-	];
-
-	private int $migrationStage;
-
 	/**
 	 * @var array New links with the name in the key, value arbitrary
 	 */
@@ -36,12 +28,6 @@ class ImageLinksTable extends TitleLinksTable {
 	 * @var array Existing links with the name in the key, value arbitrary
 	 */
 	private $existingLinks;
-
-	public function __construct( ServiceOptions $options ) {
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-
-		$this->migrationStage = $options->get( MainConfigNames::ImageLinksSchemaMigrationStage );
-	}
 
 	public function setParserOutput( ParserOutput $parserOutput ) {
 		// Convert the format of the local links
@@ -66,11 +52,7 @@ class ImageLinksTable extends TitleLinksTable {
 
 	/** @inheritDoc */
 	protected function getExistingFields() {
-		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
-			return [ 'il_to' ];
-		} else {
-			return [ 'lt_title' ];
-		}
+		return [ 'lt_title' ];
 	}
 
 	/** @inheritDoc */
@@ -89,11 +71,7 @@ class ImageLinksTable extends TitleLinksTable {
 		if ( $this->existingLinks === null ) {
 			$this->existingLinks = [];
 			foreach ( $this->fetchExistingRows() as $row ) {
-				if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
-					$this->existingLinks[$row->il_to] = true;
-				} else {
-					$this->existingLinks[$row->lt_title] = true;
-				}
+				$this->existingLinks[$row->lt_title] = true;
 			}
 		}
 		return $this->existingLinks;
@@ -123,33 +101,23 @@ class ImageLinksTable extends TitleLinksTable {
 
 	/** @inheritDoc */
 	protected function insertLink( $linkId ) {
-		$insertedLink = [
+		$this->insertRow( [
 			'il_from_namespace' => $this->getSourcePage()->getNamespace(),
-		];
-		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
-			$insertedLink['il_to'] = $linkId;
-		}
-		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_NEW ) {
-			$insertedLink['il_target_id'] = $this->linkTargetLookup->acquireLinkTargetId(
+			'il_target_id' => $this->linkTargetLookup->acquireLinkTargetId(
 				$this->makeTitle( $linkId ),
 				$this->getDB()
-			);
-		}
-		$this->insertRow( $insertedLink );
+			),
+		] );
 	}
 
 	/** @inheritDoc */
 	protected function deleteLink( $linkId ) {
-		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
-			$this->deleteRow( [ 'il_to' => $linkId ] );
-		} else {
-			$this->deleteRow( [
-				'il_target_id' => $this->linkTargetLookup->acquireLinkTargetId(
-					$this->makeTitle( $linkId ),
-					$this->getDB()
-				)
-			] );
-		}
+		$this->deleteRow( [
+			'il_target_id' => $this->linkTargetLookup->acquireLinkTargetId(
+				$this->makeTitle( $linkId ),
+				$this->getDB()
+			)
+		] );
 	}
 
 	/** @inheritDoc */
@@ -192,27 +160,17 @@ class ImageLinksTable extends TitleLinksTable {
 			array_merge( $insertedLinks, $deletedLinks ) );
 	}
 
-	protected function linksTargetNormalizationStage(): int {
-		return $this->migrationStage;
-	}
-
 	/** @inheritDoc */
 	protected function virtualDomain() {
 		return self::VIRTUAL_DOMAIN;
 	}
 
 	protected function fetchExistingRows(): IResultWrapper {
-		$queryBuilder = $this->getReplicaDB()->newSelectQueryBuilder()
+		return $this->getReplicaDB()->newSelectQueryBuilder()
 			->select( $this->getExistingFields() )
 			->from( $this->getTableName() )
-			->where( $this->getFromConds() );
-
-		// This read is for updating, it's conceptually better to use the write config
-		if ( !( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) ) {
-			$queryBuilder->join( 'linktarget', null, [ 'il_target_id=lt_id' ] );
-		}
-
-		return $queryBuilder
+			->join( 'linktarget', null, [ 'il_target_id=lt_id' ] )
+			->where( $this->getFromConds() )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 	}

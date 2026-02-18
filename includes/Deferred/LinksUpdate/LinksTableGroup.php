@@ -51,7 +51,6 @@ class LinksTableGroup {
 		],
 		'imagelinks' => [
 			'class' => ImageLinksTable::class,
-			'serviceOptions' => ImageLinksTable::CONSTRUCTOR_OPTIONS
 		],
 		'iwlinks' => [
 			'class' => InterwikiLinksTable::class
