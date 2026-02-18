@@ -147,7 +147,7 @@ class DatabasePostgres extends Database {
 			// Postgres doesn't support selectDB in the same way MySQL does.
 			// So if the DB name doesn't match the open connection, open a new one
 			$this->open(
-				$this->connectionParams[self::CONN_HOST],
+				$this->connectionParams[self::CONN_SERVER],
 				$this->connectionParams[self::CONN_USER],
 				$this->connectionParams[self::CONN_PASSWORD],
 				$database,

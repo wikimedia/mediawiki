@@ -155,8 +155,8 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	/** Dummy SQL query */
 	private const PING_QUERY = 'SELECT 1 AS ping';
 
-	/** Hostname or IP address to use on all connections */
-	protected const CONN_HOST = 'host';
+	/** Hostname/address and optional port to use on all connections */
+	protected const CONN_SERVER = 'server';
 	/** Database server username to use on all connections */
 	protected const CONN_USER = 'user';
 	/** Database server password to use on all connections */
@@ -167,6 +167,9 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	protected const CONN_INITIAL_SCHEMA = 'schema';
 	/** Table prefix to use on initial connection */
 	protected const CONN_INITIAL_TABLE_PREFIX = 'tablePrefix';
+
+	/** @deprecated Since 1.46 */
+	protected const CONN_HOST = self::CONN_SERVER;
 
 	/** @var SQLPlatform */
 	protected $platform;
@@ -185,7 +188,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 			$params['trxProfiler']
 		);
 		$this->connectionParams = [
-			self::CONN_HOST => ( isset( $params['host'] ) && $params['host'] !== '' )
+			self::CONN_SERVER => ( isset( $params['host'] ) && $params['host'] !== '' )
 				? $params['host']
 				: null,
 			self::CONN_USER => ( isset( $params['user'] ) && $params['user'] !== '' )
@@ -254,7 +257,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		}
 		// Establish the connection
 		$this->open(
-			$this->connectionParams[self::CONN_HOST],
+			$this->connectionParams[self::CONN_SERVER],
 			$this->connectionParams[self::CONN_USER],
 			$this->connectionParams[self::CONN_PASSWORD],
 			$this->connectionParams[self::CONN_INITIAL_DB],
@@ -1567,7 +1570,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 	/** @inheritDoc */
 	public function getServer() {
-		return $this->connectionParams[self::CONN_HOST] ?? null;
+		return $this->connectionParams[self::CONN_SERVER] ?? null;
 	}
 
 	/** @inheritDoc */
@@ -2665,7 +2668,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 		try {
 			$this->open(
-				$this->connectionParams[self::CONN_HOST],
+				$this->connectionParams[self::CONN_SERVER],
 				$this->connectionParams[self::CONN_USER],
 				$this->connectionParams[self::CONN_PASSWORD],
 				$this->currentDomain->getDatabase(),
@@ -3238,7 +3241,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 			$this->transactionManager->clearEndCallbacks();
 			$this->handleSessionLossPreconnect(); // no trx or locks anymore
 			$this->open(
-				$this->connectionParams[self::CONN_HOST],
+				$this->connectionParams[self::CONN_SERVER],
 				$this->connectionParams[self::CONN_USER],
 				$this->connectionParams[self::CONN_PASSWORD],
 				$this->currentDomain->getDatabase(),
