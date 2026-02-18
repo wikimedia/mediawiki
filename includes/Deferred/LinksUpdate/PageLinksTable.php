@@ -33,16 +33,6 @@ class PageLinksTable extends GenericPageLinksTable {
 	}
 
 	/** @inheritDoc */
-	protected function getNamespaceField() {
-		return 'pl_namespace';
-	}
-
-	/** @inheritDoc */
-	protected function getTitleField() {
-		return 'pl_title';
-	}
-
-	/** @inheritDoc */
 	protected function getFromNamespaceField() {
 		return 'pl_from_namespace';
 	}

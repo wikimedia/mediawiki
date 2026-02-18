@@ -525,13 +525,6 @@ abstract class LinksTable {
 	}
 
 	/**
-	 * Normalization stage of the links table (see T222224)
-	 */
-	protected function linksTargetNormalizationStage(): int {
-		return SCHEMA_COMPAT_OLD;
-	}
-
-	/**
 	 * What virtual domain should be used to read/write from the table
 	 * @return string|bool
 	 */

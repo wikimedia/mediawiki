@@ -23,7 +23,6 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * categorylinks
@@ -191,6 +190,11 @@ class CategoryLinksTable extends TitleLinksTable {
 	/** @inheritDoc */
 	protected function getFromField() {
 		return 'cl_from';
+	}
+
+	/** @inheritDoc */
+	protected function getTargetIdField() {
+		return 'cl_target_id';
 	}
 
 	/** @inheritDoc */
@@ -385,15 +389,5 @@ class CategoryLinksTable extends TitleLinksTable {
 	/** @inheritDoc */
 	protected function virtualDomain(): string {
 		return self::VIRTUAL_DOMAIN;
-	}
-
-	protected function fetchExistingRows(): IResultWrapper {
-		return $this->getReplicaDB()->newSelectQueryBuilder()
-			->select( $this->getExistingFields() )
-			->from( $this->getTableName() )
-			->join( 'linktarget', null, [ 'cl_target_id=lt_id' ] )
-			->where( $this->getFromConds() )
-			->caller( __METHOD__ )
-			->fetchResultSet();
 	}
 }

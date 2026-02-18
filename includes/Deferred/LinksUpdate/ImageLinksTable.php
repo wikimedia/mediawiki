@@ -7,7 +7,6 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * imagelinks
@@ -48,6 +47,11 @@ class ImageLinksTable extends TitleLinksTable {
 	/** @inheritDoc */
 	protected function getFromField() {
 		return 'il_from';
+	}
+
+	/** @inheritDoc */
+	protected function getTargetIdField() {
+		return 'il_target_id';
 	}
 
 	/** @inheritDoc */
@@ -163,15 +167,5 @@ class ImageLinksTable extends TitleLinksTable {
 	/** @inheritDoc */
 	protected function virtualDomain() {
 		return self::VIRTUAL_DOMAIN;
-	}
-
-	protected function fetchExistingRows(): IResultWrapper {
-		return $this->getReplicaDB()->newSelectQueryBuilder()
-			->select( $this->getExistingFields() )
-			->from( $this->getTableName() )
-			->join( 'linktarget', null, [ 'il_target_id=lt_id' ] )
-			->where( $this->getFromConds() )
-			->caller( __METHOD__ )
-			->fetchResultSet();
 	}
 }

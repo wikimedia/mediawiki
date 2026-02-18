@@ -4,6 +4,7 @@ namespace MediaWiki\Deferred\LinksUpdate;
 
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * An abstract base class for tables that link to local titles.
@@ -19,6 +20,13 @@ abstract class TitleLinksTable extends LinksTable {
 	 * @return PageReferenceValue
 	 */
 	abstract protected function makePageReferenceValue( $linkId ): PageReferenceValue;
+
+	/**
+	 * Get the link target id (DB key) field name
+	 *
+	 * @return string
+	 */
+	abstract protected function getTargetIdField();
 
 	/**
 	 * Convert a link ID to a Title
@@ -88,7 +96,13 @@ abstract class TitleLinksTable extends LinksTable {
 	}
 
 	/** @inheritDoc */
-	protected function linksTargetNormalizationStage(): int {
-		return SCHEMA_COMPAT_NEW;
+	protected function fetchExistingRows(): IResultWrapper {
+		return $this->getReplicaDB()->newSelectQueryBuilder()
+			->select( $this->getExistingFields() )
+			->from( $this->getTableName() )
+			->join( 'linktarget', null, [ $this->getTargetIdField() . '=lt_id' ] )
+			->where( $this->getFromConds() )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 	}
 }

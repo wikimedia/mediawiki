@@ -453,10 +453,6 @@ class NamespaceDupes extends Maintenance {
 		if ( isset( $linksMigration::$mapping[$table] ) ) {
 			$sqb->queryInfo( $linksMigration->getQueryInfo( $table ) );
 			[ $namespaceField, $titleField ] = $linksMigration->getTitleFields( $table );
-			$schemaMigrationStage = $linksMigration::$mapping[$table]['config'] === -1
-				? MIGRATION_NEW
-				// @phan-suppress-next-line PhanTypeMismatchArgument
-				: $this->getConfig()->get( $linksMigration::$mapping[$table]['config'] );
 			$linkTargetLookup = $this->getServiceContainer()->getLinkTargetLookup();
 			$targetIdField = $linksMigration::$mapping[$table]['target_id'];
 		} else {
@@ -465,7 +461,6 @@ class NamespaceDupes extends Maintenance {
 			$titleField = "{$fieldPrefix}_title";
 			$sqb->fields( [ $namespaceField, $titleField ] );
 			// Variables only used for links migration, init only
-			$schemaMigrationStage = -1;
 			$linkTargetLookup = null;
 			$targetIdField = '';
 		}
@@ -505,14 +500,9 @@ class NamespaceDupes extends Maintenance {
 				}
 
 				if ( isset( $linksMigration::$mapping[$table] ) ) {
-					$setValue = [];
-					if ( $schemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-						$setValue[$targetIdField] = $linkTargetLookup->acquireLinkTargetId( $destTitle, $dbw );
-					}
-					if ( $schemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
-						$setValue["{$fieldPrefix}_namespace"] = $destTitle->getNamespace();
-						$setValue["{$fieldPrefix}_title"] = $destTitle->getDBkey();
-					}
+					$setValue = [
+						$targetIdField => $linkTargetLookup->acquireLinkTargetId( $destTitle, $dbw )
+					];
 					$whereCondition = $linksMigration->getLinksConditions(
 						$table,
 						new TitleValue( 0, $row->$titleField )
@@ -732,11 +722,7 @@ class NamespaceDupes extends Maintenance {
 				'pagelinks' => PageLinksTable::VIRTUAL_DOMAIN,
 			];
 
-			if ( isset( $domainMap[$table] ) ) {
-				$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase( $domainMap[$table] );
-			} else {
-				$dbw = $this->getPrimaryDB();
-			}
+			$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase( $domainMap[$table] );
 
 			$fromField = "{$fieldPrefix}_from";
 			$fromNamespaceField = "{$fieldPrefix}_from_namespace";

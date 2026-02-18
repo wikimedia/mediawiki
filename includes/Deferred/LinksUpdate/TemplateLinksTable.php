@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
-use LogicException;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputLinkTypes;
 
@@ -33,18 +32,6 @@ class TemplateLinksTable extends GenericPageLinksTable {
 	/** @inheritDoc */
 	protected function getFromField() {
 		return 'tl_from';
-	}
-
-	/** @inheritDoc */
-	protected function getNamespaceField() {
-		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		throw new LogicException( 'not supported' );
-	}
-
-	/** @inheritDoc */
-	protected function getTitleField() {
-		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		throw new LogicException( 'not supported' );
 	}
 
 	/** @inheritDoc */

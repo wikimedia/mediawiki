@@ -4,7 +4,6 @@ namespace MediaWiki\Deferred\LinksUpdate;
 
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Shared code for pagelinks, templatelinks and existencelinks. These tables
@@ -34,39 +33,12 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 	private $existingLinks;
 
 	/**
-	 * Get the namespace field name
-	 *
-	 * @return string
-	 */
-	abstract protected function getNamespaceField();
-
-	/**
-	 * Get the title (DB key) field name
-	 *
-	 * @return string
-	 */
-	abstract protected function getTitleField();
-
-	/**
-	 * Get the link target id (DB key) field name
-	 *
-	 * @return string
-	 */
-	abstract protected function getTargetIdField();
-
-	/**
 	 * @return string|null
 	 */
 	abstract protected function getFromNamespaceField();
 
 	/** @inheritDoc */
 	protected function getExistingFields() {
-		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
-			return [
-				'ns' => $this->getNamespaceField(),
-				'title' => $this->getTitleField()
-			];
-		}
 		return [
 			'ns' => 'lt_namespace',
 			'title' => 'lt_title',
@@ -87,22 +59,6 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 		}
 
 		return $this->existingLinks;
-	}
-
-	protected function fetchExistingRows(): IResultWrapper {
-		$queryBuilder = $this->getReplicaDB()->newSelectQueryBuilder()
-			->select( $this->getExistingFields() )
-			->from( $this->getTableName() )
-			->where( $this->getFromConds() );
-
-		// This read is for updating, it's conceptually better to use the write config
-		if ( !( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) ) {
-			$queryBuilder->join( 'linktarget', null, [ $this->getTargetIdField() . '=lt_id' ] );
-		}
-
-		return $queryBuilder
-			->caller( __METHOD__ )
-			->fetchResultSet();
 	}
 
 	/** @inheritDoc */
@@ -142,34 +98,21 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 		if ( $fromNamespaceField !== null ) {
 			$row[$fromNamespaceField] = $this->getSourcePage()->getNamespace();
 		}
-		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
-			$row[$this->getNamespaceField()] = $linkId[0];
-			$row[$this->getTitleField()] = $linkId[1];
-		}
-		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_NEW ) {
-			$row[$this->getTargetIdField()] = $this->linkTargetLookup->acquireLinkTargetId(
-				$this->makeTitle( $linkId ),
-				$this->getDB()
-			);
-		}
+		$row[$this->getTargetIdField()] = $this->linkTargetLookup->acquireLinkTargetId(
+			$this->makeTitle( $linkId ),
+			$this->getDB()
+		);
 		$this->insertRow( $row );
 	}
 
 	/** @inheritDoc */
 	protected function deleteLink( $linkId ) {
-		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
-			$this->deleteRow( [
-				$this->getNamespaceField() => $linkId[0],
-				$this->getTitleField() => $linkId[1]
-			] );
-		} elseif ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_NEW ) {
-			$this->deleteRow( [
-				$this->getTargetIdField() => $this->linkTargetLookup->acquireLinkTargetId(
-					$this->makeTitle( $linkId ),
-					$this->getDB()
-				)
-			] );
-		}
+		$this->deleteRow( [
+			$this->getTargetIdField() => $this->linkTargetLookup->acquireLinkTargetId(
+				$this->makeTitle( $linkId ),
+				$this->getDB()
+			)
+		] );
 	}
 
 	/** @inheritDoc */
