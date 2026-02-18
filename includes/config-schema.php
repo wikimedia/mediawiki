@@ -404,7 +404,7 @@ return [
 			'VirtualDomainsMapping' => [
 			],
 			'FileSchemaMigrationStage' => 3,
-			'ImageLinksSchemaMigrationStage' => 769,
+			'ImageLinksSchemaMigrationStage' => 768,
 			'ExternalLinksDomainGaps' => [
 			],
 			'ContentHandlers' => [

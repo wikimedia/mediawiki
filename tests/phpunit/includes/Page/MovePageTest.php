@@ -6,7 +6,6 @@ use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Event\PageCreatedEvent;
 use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Page\Event\PageMovedEvent;
@@ -585,6 +584,10 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $pageId, $new->getId() );
 		$this->assertNotSame( $pageId, $old->getId() );
 
+		$linkTargetLookup = $this->getServiceContainer()->getLinkTargetLookup();
+		$targetId = $linkTargetLookup->getLinkTargetId( $title );
+		$imageTargetId = $linkTargetLookup->getLinkTargetId( Title::makeTitle( NS_FILE, 'Existent.jpg' ) );
+
 		// ensure links tables where updated
 		$this->newSelectQueryBuilder()
 			->select( [ 'lt_namespace', 'lt_title', 'pl_from_namespace' ] )
@@ -594,7 +597,6 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			->assertResultSet( [
 				[ NS_MAIN, 'Test', NS_PROJECT ]
 			] );
-		$targetId = MediaWikiServices::getInstance()->getLinkTargetLookup()->getLinkTargetId( $title );
 		$this->newSelectQueryBuilder()
 			->select( [ 'tl_target_id', 'tl_from_namespace' ] )
 			->from( 'templatelinks' )
@@ -603,11 +605,11 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				[ $targetId, NS_PROJECT ]
 			] );
 		$this->newSelectQueryBuilder()
-			->select( [ 'il_to', 'il_from_namespace' ] )
+			->select( [ 'il_target_id', 'il_from_namespace' ] )
 			->from( 'imagelinks' )
 			->where( [ 'il_from' => $pageId ] )
 			->assertResultSet( [
-				[ 'Existent.jpg', NS_PROJECT ]
+				[ $imageTargetId, NS_PROJECT ]
 			] );
 	}
 

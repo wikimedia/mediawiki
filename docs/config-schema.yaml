@@ -2033,7 +2033,7 @@ config-schema:
             History:
               - 1.44: Added
     ImageLinksSchemaMigrationStage:
-        default: 769
+        default: 768
         type: integer
         description: |-
             Migration stage for imagelinks tables

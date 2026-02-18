@@ -6,7 +6,6 @@ use MediaWiki\Deferred\LinksUpdate\LinksTableGroup;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutput;
@@ -588,7 +587,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	public function testUpdate_templatelinks() {
 		/** @var ParserOutput $po */
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
-		$linkTargetLookup = MediaWikiServices::getInstance()->getLinkTargetLookup();
+		$linkTargetLookup = $this->getServiceContainer()->getLinkTargetLookup();
 
 		$target1 = Title::newFromText( "Template:T1" );
 		$target2 = Title::newFromText( "Template:T2" );
@@ -635,6 +634,8 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		/** @var ParserOutput $po */
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
+		$linkTargetLookup = $this->getServiceContainer()->getLinkTargetLookup();
+
 		$po->addImage( new TitleValue( NS_FILE, "1.png" ) );
 		$po->addImage( new TitleValue( NS_FILE, "2.png" ) );
 
@@ -642,9 +643,12 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'imagelinks',
-			'il_to',
+			'il_target_id',
 			[ 'il_from' => self::$testingPageId ],
-			[ [ '1.png' ], [ '2.png' ] ]
+			[
+				[ $linkTargetLookup->acquireLinkTargetId( new TitleValue( NS_FILE, "1.png" ), $this->getDb() ) ],
+				[ $linkTargetLookup->acquireLinkTargetId( new TitleValue( NS_FILE, "2.png" ), $this->getDb() ) ],
+			]
 		);
 
 		/** @var ParserOutput $po */
@@ -657,14 +661,19 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'imagelinks',
-			'il_to',
+			'il_target_id',
 			[ 'il_from' => self::$testingPageId ],
-			[ [ '2.png' ], [ '3.png' ] ]
+			[
+				[ $linkTargetLookup->acquireLinkTargetId( new TitleValue( NS_FILE, "2.png" ), $this->getDb() ) ],
+				[ $linkTargetLookup->acquireLinkTargetId( new TitleValue( NS_FILE, "3.png" ), $this->getDb() ) ],
+			]
 		);
 	}
 
 	public function testUpdate_imagelinks_move() {
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+
+		$linkTargetLookup = $this->getServiceContainer()->getLinkTargetLookup();
 
 		$po->addImage( new TitleValue( NS_FILE, "1.png" ) );
 		$po->addImage( new TitleValue( NS_FILE, "2.png" ) );
@@ -674,9 +683,12 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'imagelinks',
-			[ 'il_to', 'il_from_namespace' ],
+			[ 'il_target_id', 'il_from_namespace' ],
 			[ 'il_from' => self::$testingPageId ],
-			[ [ '1.png', $fromNamespace ], [ '2.png', $fromNamespace ] ]
+			[
+				[ $linkTargetLookup->acquireLinkTargetId( new TitleValue( NS_FILE, "1.png" ), $this->getDb() ), $fromNamespace ],
+				[ $linkTargetLookup->acquireLinkTargetId( new TitleValue( NS_FILE, "2.png" ), $this->getDb() ), $fromNamespace ],
+			]
 		);
 
 		$oldT = $t;
@@ -690,9 +702,12 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$oldT->toPageIdentity(),
 			$po,
 			'imagelinks',
-			[ 'il_to', 'il_from_namespace' ],
+			[ 'il_target_id', 'il_from_namespace' ],
 			[ 'il_from' => self::$testingPageId ],
-			[ [ '1.png', $fromNamespace ], [ '2.png', $fromNamespace ] ]
+			[
+				[ $linkTargetLookup->acquireLinkTargetId( new TitleValue( NS_FILE, "1.png" ), $this->getDb() ), $fromNamespace ],
+				[ $linkTargetLookup->acquireLinkTargetId( new TitleValue( NS_FILE, "2.png" ), $this->getDb() ), $fromNamespace ],
+			]
 		);
 	}
 

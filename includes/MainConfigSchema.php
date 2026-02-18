@@ -3316,7 +3316,7 @@ class MainConfigSchema {
 	 *   - 1.46: Added
 	 */
 	public const ImageLinksSchemaMigrationStage = [
-		'default' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW,
+		'default' => SCHEMA_COMPAT_NEW,
 		'type' => 'integer',
 	];
 
