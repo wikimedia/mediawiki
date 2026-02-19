@@ -34,6 +34,13 @@ class SpecialWatchlistLabels extends SpecialPage {
 	private const PARAM_ID = 'wll_id';
 	private const PARAM_IDS = 'wll_ids';
 	private const PARAM_NAME = 'wll_name';
+	private const SESSION_SUCCESS_TYPE = 'watchlistLabelsSuccessType';
+	private const SESSION_SUCCESS_COUNT = 'watchlistLabelsSuccessCount';
+	private const SESSION_SUCCESS_LABEL_NAME = 'watchlistLabelsSuccessLabelName';
+	private const SESSION_SUCCESS_OLD_LABEL_NAME = 'watchlistLabelsSuccessOldLabelName';
+	private const SUCCESS_CREATE = 'create';
+	private const SUCCESS_EDIT = 'edit';
+	private const SUCCESS_DELETE = 'delete';
 
 	use WatchlistSpecialPage;
 
@@ -69,6 +76,7 @@ class SpecialWatchlistLabels extends SpecialPage {
 
 		$output = $this->getOutput();
 		$output->setPageTitleMsg( $this->msg( 'watchlistlabels-title' ) );
+		$output->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 		$this->addHelpLink( 'Help:Watchlist labels' );
 		if ( !$this->getConfig()->get( MainConfigNames::EnableWatchlistLabels ) ) {
 			$output->addHTML( Html::errorBox( $this->msg( 'watchlistlabels-not-enabled' )->escaped() ) );
@@ -176,6 +184,12 @@ class SpecialWatchlistLabels extends SpecialPage {
 		if ( !isset( $data[self::PARAM_NAME] ) ) {
 			throw new InvalidArgumentException( 'No name data submitted.' );
 		}
+		$successType = self::SUCCESS_CREATE;
+		$oldName = null;
+		if ( $this->watchlistLabel && $this->watchlistLabel->getId() ) {
+			$successType = self::SUCCESS_EDIT;
+			$oldName = $this->watchlistLabel->getName();
+		}
 		if ( !$this->watchlistLabel ) {
 			$this->watchlistLabel = new WatchlistLabel( $this->getUser(), $data[self::PARAM_NAME] );
 		} else {
@@ -183,7 +197,13 @@ class SpecialWatchlistLabels extends SpecialPage {
 		}
 		$saved = $this->labelStore->save( $this->watchlistLabel );
 		if ( $saved->isOK() ) {
-			$this->getOutput()->redirect( $this->getPageTitle()->getLocalURL() );
+			$session = $this->getRequest()->getSession();
+			$session->set( self::SESSION_SUCCESS_TYPE, $successType );
+			$session->set( self::SESSION_SUCCESS_LABEL_NAME, $this->watchlistLabel->getName() );
+			if ( $successType === self::SUCCESS_EDIT && $oldName !== null ) {
+				$session->set( self::SESSION_SUCCESS_OLD_LABEL_NAME, $oldName );
+			}
+			$this->getOutput()->redirect( $this->getPageTitle()->getFullUrlForRedirect() );
 		}
 		return Status::cast( $saved );
 	}
@@ -258,8 +278,21 @@ class SpecialWatchlistLabels extends SpecialPage {
 			throw new InvalidArgumentException( 'No name data submitted.' );
 		}
 		$ids = array_map( 'intval', array_filter( explode( ',', $data[self::PARAM_IDS] ) ) );
+		$labels = $this->labelStore->loadAllForUser( $this->getUser() );
+		$deletedLabelNames = [];
+		foreach ( $ids as $id ) {
+			if ( isset( $labels[$id] ) ) {
+				$deletedLabelNames[] = $labels[$id]->getName();
+			}
+		}
 		if ( $this->labelStore->delete( $this->getUser(), $ids ) ) {
-			$this->getOutput()->redirect( $this->getPageTitle()->getLocalURL() );
+			$session = $this->getRequest()->getSession();
+			$session->set( self::SESSION_SUCCESS_TYPE, self::SUCCESS_DELETE );
+			$session->set( self::SESSION_SUCCESS_COUNT, count( $ids ) );
+			if ( count( $deletedLabelNames ) === 1 ) {
+				$session->set( self::SESSION_SUCCESS_LABEL_NAME, $deletedLabelNames[0] );
+			}
+			$this->getOutput()->redirect( $this->getPageTitle()->getFullUrlForRedirect() );
 			return Status::newGood();
 		}
 		return Status::newFatal( 'watchlistlabels-delete-failed' );
@@ -272,6 +305,7 @@ class SpecialWatchlistLabels extends SpecialPage {
 		$codex = new Codex();
 		$this->getOutput()->addModules( 'mediawiki.special.watchlistlabels' );
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.watchlistlabels.styles' );
+		$this->showSuccessMessage();
 
 		// Page title and description.
 		$this->getOutput()->addHTML(
@@ -386,6 +420,55 @@ class SpecialWatchlistLabels extends SpecialPage {
 		$deleteUrl = $this->getPageTitle( self::SUBPAGE_DELETE )->getLocalURL();
 		$form = Html::rawElement( 'form', [ 'action' => $deleteUrl ], $table->getHtml() );
 		$this->getOutput()->addHTML( $form );
+	}
+
+	/**
+	 * Show a success message after create/edit/delete actions.
+	 * Reads from session storage and clears after display.
+	 */
+	private function showSuccessMessage(): void {
+		$session = $this->getRequest()->getSession();
+		$successType = $session->get( self::SESSION_SUCCESS_TYPE );
+		if ( !$successType ) {
+			return;
+		}
+		$successCount = $session->get( self::SESSION_SUCCESS_COUNT );
+		$successLabelName = $session->get( self::SESSION_SUCCESS_LABEL_NAME );
+		$successOldLabelName = $session->get( self::SESSION_SUCCESS_OLD_LABEL_NAME );
+
+		// Clear session data after reading
+		$session->remove( self::SESSION_SUCCESS_TYPE );
+		$session->remove( self::SESSION_SUCCESS_COUNT );
+		$session->remove( self::SESSION_SUCCESS_LABEL_NAME );
+		$session->remove( self::SESSION_SUCCESS_OLD_LABEL_NAME );
+
+		$message = null;
+		switch ( $successType ) {
+			case self::SUCCESS_CREATE:
+				$message = $this->msg( 'watchlistlabels-success-created', $successLabelName )->escaped();
+				break;
+			case self::SUCCESS_EDIT:
+				if ( !$successOldLabelName || !$successLabelName ) {
+					return;
+				}
+				$message = $this->msg(
+					'watchlistlabels-success-edited',
+					$successOldLabelName,
+					$successLabelName
+				)->escaped();
+				break;
+			case self::SUCCESS_DELETE:
+				$count = max( 0, (int)$successCount );
+				if ( $count === 0 ) {
+					return;
+				}
+				$message = $this->msg( 'watchlistlabels-success-deleted', $successLabelName, $count )->escaped();
+				break;
+		}
+
+		if ( $message !== null ) {
+			$this->getOutput()->addHTML( Html::successBox( $message ) );
+		}
 	}
 
 	/**

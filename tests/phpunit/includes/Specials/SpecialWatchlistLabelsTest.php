@@ -168,6 +168,45 @@ class SpecialWatchlistLabelsTest extends SpecialPageTestBase {
 		$this->assertStringNotContainsString( 'Lorem updated label', $html );
 	}
 
+	public function testSuccessMessagesAfterCreateAndEdit(): void {
+		$user = $this->getTestUser()->getUser();
+
+		$createRequest = new FauxRequest( [ 'wll_name' => 'Label A' ], true );
+		$this->executeSpecialPage( 'edit', $createRequest, 'qqx', $user );
+		$followCreateRequest = new FauxRequest( [], false, $createRequest->getSession() );
+		[ $html, ] = $this->executeSpecialPage( null, $followCreateRequest, 'qqx', $user );
+		$this->assertStringContainsString( '(watchlistlabels-success-created: Label A)', $html );
+
+		$labelStore = $this->getServiceContainer()->getWatchlistLabelStore();
+		$label = $labelStore->loadByName( $user, 'Label A' );
+		$this->assertNotNull( $label );
+		$labelId = $label->getId();
+
+		$editRequest = new FauxRequest(
+			[ 'wll_name' => 'Label B', 'wll_id' => (string)$labelId ],
+			true
+		);
+		$this->executeSpecialPage( 'edit', $editRequest, 'qqx', $user );
+		$followEditRequest = new FauxRequest( [], false, $editRequest->getSession() );
+		[ $html, ] = $this->executeSpecialPage( null, $followEditRequest, 'qqx', $user );
+		$this->assertStringContainsString( '(watchlistlabels-success-edited: Label A, Label B)', $html );
+	}
+
+	public function testSuccessMessageAfterDelete(): void {
+		$user = $this->getTestUser()->getUser();
+		$labelStore = $this->getServiceContainer()->getWatchlistLabelStore();
+		$labelStore->save( new WatchlistLabel( $user, 'Label to delete' ) );
+		$label = $labelStore->loadByName( $user, 'Label to delete' );
+		$this->assertNotNull( $label );
+		$labelId = $label->getId();
+
+		$deleteRequest = new FauxRequest( [ 'wll_ids' => [ (string)$labelId ] ], true );
+		$this->executeSpecialPage( 'delete', $deleteRequest, 'qqx', $user );
+		$followDeleteRequest = new FauxRequest( [], false, $deleteRequest->getSession() );
+		[ $html, ] = $this->executeSpecialPage( null, $followDeleteRequest, 'qqx', $user );
+		$this->assertStringContainsString( '(watchlistlabels-success-deleted: Label to delete, 1)', $html );
+	}
+
 	/**
 	 * Labels can be sorted by name or count.
 	 * @dataProvider provideSorting
