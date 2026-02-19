@@ -993,6 +993,11 @@ class Article implements Page {
 
 		$outputPage->addPostProcessedParserOutput( $pOutput );
 
+		if ( $pOutput->getRedirectHeader() !== null ) {
+			$outputPage->addSubtitle( "<span id=\"redirectsub\">" .
+				$this->getContext()->msg( 'redirectpagesub' )->parse() . "</span>" );
+		}
+
 		# Preload timestamp to avoid a DB hit
 		$cachedTimestamp = $pOutput->getRevisionTimestamp();
 		if ( $cachedTimestamp !== null ) {
