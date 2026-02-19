@@ -115,7 +115,7 @@
 	"rest-param-desc-html-output-flavor": "HTML 輸出渲染器樣式",
 	"rest-param-desc-compare-from": "用作比較基礎的修訂識別碼",
 	"rest-param-desc-compare-from-id": "「from」版本的修訂識別碼",
-	"rest-param-desc-compare-from-slotrole": "被比較插槽的角色（目前始終是「main」）",
+	"rest-param-desc-compare-from-slotrole": "被比較插槽的角色（目前始終是\"main\"）",
 	"rest-param-desc-compare-from-sections": "修訂版的前處理器區段，不含模板的擴展",
 	"rest-param-desc-compare-from-section-level": "章節層級",
 	"rest-param-desc-compare-from-section-heading": "章節標題，例如:1對應<h1>",

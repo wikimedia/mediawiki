@@ -22,7 +22,8 @@
 			"Stam.nikos",
 			"SucreRouge",
 			"ZaDiak",
-			"Αντιγόνη"
+			"Αντιγόνη",
+			"Warudo"
 		]
 	},
 	"preferences": "Προτιμήσεις",
@@ -40,8 +41,8 @@
 	"prefs-personal": "Στοιχεία χρήστη",
 	"prefs-description-personal": "Ελέγξτε τον τρόπο εμφάνισης, σύνδεσης και επικοινωνίας σας.",
 	"prefs-info": "Βασικές πληροφορίες",
-	"username": "{{GENDER:$1|Όνομα χρήστη}}:",
-	"prefs-memberingroups": "{{GENDER:$2|Μέλος}} της {{PLURAL:$1|ομάδας|ομάδων}}:",
+	"username": "Όνομα {{GENDER:$1|χρήστη|χρήστριας}}:",
+	"prefs-memberingroups": "{{GENDER:$2|Μέλος}} {{PLURAL:$1|της ομάδας|των ομάδων}}:",
 	"group-membership-link-with-expiry": "$1 (μέχρι τις $2)",
 	"prefs-edits": "Αριθμός επεξεργασιών:",
 	"prefs-registration": "Χρόνος εγγραφής:",

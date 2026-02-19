@@ -673,7 +673,7 @@
 	"log-fulllog": "Bütün jurnallara bax",
 	"edit-hook-aborted": "Düzəlişlər qarmaq-prosedur tərəfindən geri qaytarılıb.\nƏlavə izahat verilməyib.",
 	"edit-gone-missing": "Səhifəni yeniləmək mümkün deyil.\nÇox güman ki, səhifə silinmişdir.",
-	"edit-conflict": "Düzəlişlər münaqişəsi",
+	"edit-conflict": "Redaktə toqquşması.",
 	"edit-no-change": "Sizin redaktələr qeydə alınmamışdır. Belə ki, mətndə heç bir düzəliş edilməmişdir.",
 	"edit-slots-cannot-add": "Aşağıda göstərilən {{PLURAL:$1|yuva|yuvalar}} burada dəstəklənmir: $2.",
 	"edit-slots-cannot-remove": "Aşağıda göstərilən {{PLURAL:$1|yuva|yuvalar}} məcburidir və silinə bilməz: $2.",

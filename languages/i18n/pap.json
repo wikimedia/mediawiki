@@ -10,7 +10,8 @@
 			"ObaTango",
 			"Sdm1985",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Letra.berdi"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategoria|Kategorianan}}",
@@ -610,7 +611,7 @@
 	"pageinfo-toolboxlink": "Informashon di e página",
 	"patrol-log-page": "Registro di revishon",
 	"previousdiff": "← Mas grandi editá",
-	"nextdiff": "Mas recent edison →",
+	"nextdiff": "Idison más rasenti →",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|página}}",
 	"file-info-size": "$1 × $2 pixel, tamaño di fail: $3, MIME type: $4",
 	"file-nohires": "No tin resolushon mas mihó.",

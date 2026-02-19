@@ -7,7 +7,8 @@
 			"Mensur shekadin",
 			"Mr. Lechkar",
 			"Osman Omera",
-			"Shekdin mensur"
+			"Shekdin mensur",
+			"TMg"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|ሐሽም|ሐሽምት}}",
@@ -614,7 +615,7 @@
 	"undelete-search-box": "ለትመሳሓ ገጻት ሕዘወ",
 	"undelete-show-file-submit": "ዓቤ",
 	"namespace": "አካን-ስሜት",
-	"blanknamespace": "መበገስ",
+	"blanknamespace": "(መበገስ)",
 	"contributions": "ሙሳሃማት ራኣው",
 	"contributions-title": "መሻረከት ምስተክድማይ ናይ $1",
 	"mycontris": "ሙሳሃማት",

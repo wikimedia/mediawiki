@@ -253,6 +253,7 @@
 	"rest-endpoint-summ-get-revision-id": "Ревизин йуьхьанцара код схьаэца",
 	"rest-endpoint-summ-get-revision-id-html": "HTML верси схьаэца",
 	"rest-endpoint-summ-get-revision-id-with-html": "HTML -ца ревизин хаамаш схьаэца",
+	"rest-endpoint-summ-get-revision-id-lint": "Версин линт-гIалаташ схьаэца",
 	"rest-endpoint-summ-get-revision-id-bare": "Йухахьажар схьаэца",
 	"rest-endpoint-summ-get-search": "OpenSearch дийцаран документ схьаэца",
 	"rest-endpoint-summ-get-search-page": "АгӀонаш леха",

@@ -636,7 +636,7 @@
 	"cascadeprotectedwarning": "<strong>హెచ్చరిక:</strong> ఈ పేజీ కాస్కేడింగు రక్షణలో ఉన్న కింది {{PLURAL:$1|పేజీ|పేజీల్లో}} ట్రాన్స్‌క్లూడు అయి ఉంది కాబట్టి రక్షణలో ఉంది. [[Special:ListGroupRights|ప్రత్యేకించిన అనుమతులు]] ఉన్న వాడుకరులు మాత్రమే దీనిలో దిద్దుబాటు చెయ్యగలరు:",
 	"titleprotectedwarning": "<strong>హెచ్చరిక: ఈ పేజీని సంరక్షించారు కాబట్టి దీన్ని సృష్టించడానికి [[Special:ListGroupRights|ప్రత్యేక హక్కులు]] ఉండాలి.</strong>\nమీ సమాచారం కోసం చివరి చిట్టా పద్దుని ఇక్కడ ఇస్తున్నాం:",
 	"templatesused": "ఈ పేజీలో వాడిన {{PLURAL:$1|మూస|మూసలు}}:",
-	"templatesusedpreview": "ఈ మునుజూపులో వాడిన {{PLURAL:$1|మూస|మూసలు}}:",
+	"templatesusedpreview": "ఈ మునుజూపులో వాడిన {{PLURAL:$1|పేజీ|పేజీలు}}:",
 	"templatesusedsection": "ఈ విభాగంలో వాడిన {{PLURAL:$1|మూస|మూసలు}}:",
 	"template-protected": "(సంరక్షితం)",
 	"template-semiprotected": "(పాక్షిక సంరక్షణలో ఉంది)",

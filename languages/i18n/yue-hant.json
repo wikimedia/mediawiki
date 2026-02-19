@@ -54,7 +54,8 @@
 			"Z423x5c6",
 			"捍粵者",
 			"沈澄心",
-			"아라"
+			"아라",
+			"ShuQizhe"
 		]
 	},
 	"pagecategories": "屬於$1類",
@@ -608,7 +609,8 @@
 	"missing-revision-content": "載入唔到「$2」頁面嘅修訂版本#$1嘅內容。",
 	"userpage-userdoesnotexist": "用戶戶口「$1」喺呢個 wiki 度仲未開。開／改呢版之前請檢查一下先。",
 	"userpage-userdoesnotexist-view": "用戶戶口「$1」重未喺呢個wiki開。",
-	"blocked-notice-logextract": "呢位用戶而家封咗。\n下邊有最近一次封鎖紀錄以供參考：",
+	"blocked-notice-logextract": "呢位用戶而家封咗。\n下邊有最新生效嘅封鎖紀錄以供參考：",
+	"blocked-notice-logextract-anon": "呢個互聯網址而家封咗。\n下邊有最新生效嘅封鎖紀錄以供參考：",
 	"blocked-notice-logextract-multi": "呢個{{GENDER:$1|用戶}}家陣已經被封鎖咗{{PLURAL:$2|$2次}}。下面係最新嘅封鎖日誌畀人參考：",
 	"blocked-notice-list-link": "睇返封鎖清單",
 	"clearyourcache": "<strong>注意：</strong>喺發布之後，你可能要先略過你嘅瀏覽器快取去睇到更改。\n* <strong>Firefox / Safari：</strong>㩒住<em>Shift</em>掣再撳<em>重新載入</em>，又或者㩒<em>Ctrl-F5</em>或者<em>Ctrl-R</em>（喺Mac㩒<em>Command-R</em>掣）\n* <strong>Google Chrome：</strong>㩒<em>Ctrl-Shift-R</em>（喺Mac㩒<em>Command-R</em>掣）\n* <strong>Edge：</strong>㩒住<em>Ctrl</em>掣再撳<em>重新整理</em>，又或者㩒<em>Ctrl-F5</em>。",
@@ -2554,7 +2556,7 @@
 	"blocklist-tempblocks": "收埋臨時封鎖",
 	"blocklist-indefblocks": "收埋永久封鎖",
 	"blocklist-addressblocks": "收埋單一IP封鎖",
-	"blocklist-tempuserblocks": "隱藏封鎖咗嘅臨時戶口",
+	"blocklist-tempuserblocks": "收埋封鎖咗嘅臨時戶口",
 	"blocklist-type": "類：",
 	"blocklist-type-header": "類型",
 	"blocklist-actions-header": "動作",
