@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Cache\Hook;
+namespace MediaWiki\Language\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
@@ -24,3 +24,6 @@ interface MessageCache__getHook {
 	 */
 	public function onMessageCache__get( &$key );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MessageCache__getHook::class, 'MediaWiki\\Cache\\Hook\\MessageCache__getHook' );

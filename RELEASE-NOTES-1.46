@@ -865,6 +865,14 @@ because of Phabricator reports.
     - ScopedLock
 * Wikimedia\MapCacheLRU\MapCacheLRU renamed to
   Wikimedia\ObjectCache\MapCacheLRU.
+* MediaWiki\Cache\Hook\MessageCacheFetchOverridesHook renamed to
+  MediaWiki\Language\Hook\MessageCacheFetchOverridesHook.
+* MediaWiki\Cache\Hook\MessageCacheReplaceHook renamed to
+  MediaWiki\Language\Hook\MessageCacheReplaceHook.
+* MediaWiki\Cache\Hook\MessageCache__getHook renamed to
+  MediaWiki\Language\Hook\MessageCache__getHook.
+* MediaWiki\Cache\Hook\MessagesPreLoadHook renamed to
+  MediaWiki\Language\Hook\MessagesPreLoadHook.
 * Using an int for the $mode parameter of LanguageFallback::getAll() is now
   deprecated.  Use the new LanguageFallbackMode enumeration instead.
 * LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use

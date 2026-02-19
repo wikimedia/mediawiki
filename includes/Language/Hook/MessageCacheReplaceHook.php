@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Cache\Hook;
+namespace MediaWiki\Language\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -21,3 +21,6 @@ interface MessageCacheReplaceHook {
 	 */
 	public function onMessageCacheReplace( $title, $text );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MessageCacheReplaceHook::class, 'MediaWiki\\Cache\\Hook\\MessageCacheReplaceHook' );

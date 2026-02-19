@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Cache\Hook;
+namespace MediaWiki\Language\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -26,3 +26,6 @@ interface MessageCacheFetchOverridesHook {
 	 */
 	public function onMessageCacheFetchOverrides( array &$keys ): void;
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MessageCacheFetchOverridesHook::class, 'MediaWiki\\Cache\\Hook\\MessageCacheFetchOverridesHook' );
