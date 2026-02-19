@@ -87,4 +87,16 @@ abstract class HTMLFormFieldTestCase extends MediaWikiIntegrationTestCase {
 		$this->assertHTMLEqualStrippingWhitespace( $expected, $field->getInputCodex( $value, $hasError ) );
 	}
 
+	public static function provideCodex(): iterable {
+		return [];
+	}
+
+	/**
+	 * @dataProvider provideCodex
+	 */
+	public function testGetCodex( $params, $value, $expected ): void {
+		$field = $this->constructField( $params );
+		$this->assertHTMLEqualStrippingWhitespace( $expected, $field->getCodex( $value ) );
+	}
+
 }

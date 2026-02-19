@@ -756,6 +756,11 @@ abstract class HTMLFormField {
 	 * @return \OOUI\FieldLayout
 	 */
 	public function getOOUI( $value ) {
+		if ( $this->getDescriptionMessages() !== [] ) {
+			throw new InvalidArgumentException(
+				"OOUIHTMLForm does not support the descriptions for fields. Please use Codex"
+			);
+		}
 		$inputField = $this->getInputOOUI( $value );
 
 		if ( !$inputField ) {
@@ -852,6 +857,10 @@ abstract class HTMLFormField {
 			if ( $isDisabled ) {
 				$labelClasses[] = 'cdx-label--disabled';
 			}
+			$descriptionHtml = $this->getDescriptionHtmlSpan(
+				$this->getDescriptionText(),
+				[ 'cdx-label__description' ]
+			);
 			// <div class="cdx-label">
 			$labelDiv = Html::rawElement( 'div', [ 'class' => $labelClasses ],
 				// <label class="cdx-label__label" for="ID">
@@ -860,7 +869,7 @@ abstract class HTMLFormField {
 					Html::rawElement( 'span', [ 'class' => 'cdx-label__label__text' ],
 						$labelValue
 					)
-				)
+				) . $descriptionHtml
 			);
 		}
 
@@ -1074,6 +1083,14 @@ abstract class HTMLFormField {
 		return Html::rawElement( 'div', $wrapperAttributes, $helptext );
 	}
 
+	public function getDescriptionHtmlSpan( ?string $descriptionHtml, array $cssClasses = [] ): string {
+		if ( $descriptionHtml === null ) {
+			return '';
+		}
+
+		return Html::rawElement( 'span', [ 'class' => $cssClasses ], $descriptionHtml );
+	}
+
 	/**
 	 * Generate help text HTML formatted for raw output
 	 * @since 1.20
@@ -1110,6 +1127,45 @@ abstract class HTMLFormField {
 		$html = [];
 
 		foreach ( $this->getHelpMessages() as $msg ) {
+			if ( $msg instanceof HtmlArmor ) {
+				$html[] = HtmlArmor::getHtml( $msg );
+			} else {
+				$msg = $this->getMessage( $msg );
+				if ( $msg->exists() ) {
+					$html[] = $msg->parse();
+				}
+			}
+		}
+
+		return $html ? implode( $this->msg( 'word-separator' )->escaped(), $html ) : null;
+	}
+
+	private function getDescriptionMessages(): array {
+		if ( isset( $this->mParams['description-message'] ) ) {
+			return [ $this->mParams['description-message'] ];
+		}
+
+		if ( isset( $this->mParams['description-messages'] ) ) {
+			return $this->mParams['description-messages'];
+		}
+
+		if ( isset( $this->mParams['description-raw'] ) ) {
+			return [ new HtmlArmor( $this->mParams['description-raw'] ) ];
+		}
+
+		return [];
+	}
+
+	/**
+	 * Determine the help text to display
+	 * @stable to override
+	 * @since 1.47
+	 * @return string|null HTML
+	 */
+	public function getDescriptionText(): ?string {
+		$html = [];
+
+		foreach ( $this->getDescriptionMessages() as $msg ) {
 			if ( $msg instanceof HtmlArmor ) {
 				$html[] = HtmlArmor::getHtml( $msg );
 			} else {

@@ -116,6 +116,14 @@ use Wikimedia\Message\MessageSpecifier;
  *                             the message.
  *    'label'               -- alternatively, a raw text message. Overridden by
  *                             label-message
+ *    'description-raw'     -- message text for a message to use as a description text.
+ *    'description-message' -- message key or object for a message to use as a description text.
+ *                             can be an array of msg key and then parameters to
+ *                             the message.
+ *                             Overwrites 'description-messages' and 'description-raw'.
+ *    'description-messages'-- array of message keys/objects. As above, each item can
+ *                             be an array of msg key and then parameters.
+ *                             Overwrites 'description-raw'.
  *    'help-raw'            -- message text for a message to use as a help text.
  *    'help-message'        -- message key or object for a message to use as a help text.
  *                             can be an array of msg key and then parameters to
