@@ -31,13 +31,18 @@ class ExtensionTablesTask extends Task {
 			return $status;
 		}
 
+		$whatUpdatesToApply = [ 'extensions' ];
+		if ( $this->getOption( 'SkipExtensionSchemaAlters' ) ) {
+			$whatUpdatesToApply[] = 'noschema-alters';
+		}
+
 		// Now run updates to create tables for old extensions
 		$updater = DatabaseUpdater::newForDB(
 			$status->getDB(),
 			(bool)$this->getOption( 'Shared' )
 		);
 		$updater->setAutoExtensionHookContainer( $this->getHookContainer() );
-		$updater->doUpdates( [ 'extensions' ] );
+		$updater->doUpdates( $whatUpdatesToApply );
 
 		return $status;
 	}

@@ -108,6 +108,11 @@ abstract class DatabaseUpdater {
 	protected $skipSchema = false;
 
 	/**
+	 * @var bool Flag specifying whether to skip alter schema updates
+	 */
+	protected bool $skipSchemaAlters = false;
+
+	/**
 	 * The virtual domain currently being acted on
 	 * @var string|null
 	 */
@@ -506,13 +511,23 @@ abstract class DatabaseUpdater {
 	/**
 	 * Do all the updates
 	 *
-	 * @param array $what What updates to perform
+	 * @param array $what What updates to perform. Supports:
+	 *   * 'core' - Run updates for MediaWiki core
+	 *   * 'extensions' - Run updates for extensions and skins
+	 *   * 'stats' - Check that the site_stats table is populated correctly
+	 *   * 'initial' - Inserts the initial update keys from MediaWiki core
+	 *   * 'noschema' - Skips all schema updates
+	 *   * 'noschema-alters' - Skips all schema updates that involve an ALTER TABLE command,
+	 *       intended for use during install.php where the application of schema updates is
+	 *       not necessary and may cause permission errors when executing the statements in
+	 *       the database
 	 */
 	public function doUpdates( array $what = [ 'core', 'extensions', 'stats' ] ) {
 		$this->db->setSchemaVars( $this->getSchemaVars() );
 
 		$what = array_fill_keys( $what, true );
 		$this->skipSchema = isset( $what['noschema'] ) || $this->fileHandle !== null;
+		$this->skipSchemaAlters = isset( $what['noschema-alters'] ) || $this->skipSchema;
 
 		if ( isset( $what['initial'] ) ) {
 			$this->output( 'Inserting initial update keys...' );
@@ -693,6 +708,22 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Checks whether the DatabaseUpdater is allowed to attempt to apply
+	 * ALTER TABLE commands on the database. If not, then a message
+	 * is printed to say that the schema update is skipped.
+	 *
+	 * @param string $schemaAlterMessage A string describing what the ALTER TABLE command is doing
+	 * @return bool Whether to continue with the ALTER TABLE command
+	 */
+	protected function checkSchemaAltersAllowed( string $schemaAlterMessage ): bool {
+		if ( $this->skipSchemaAlters ) {
+			$this->output( "...skipping schema change ($schemaAlterMessage).\n" );
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Get an array of updates to perform on the database. Should return a
 	 * multidimensional array. The main key is the MediaWiki version (1.12,
 	 * 1.13...) with the values being arrays of updates.
@@ -845,12 +876,17 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
+		$updateMsg = "Adding $field field to table $table";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return false;
+		}
+
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->outputApplied( "...$table table does not exist, skipping new field patch.\n" );
 		} elseif ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
 			$this->outputApplied( "...have $field field in $table table.\n" );
 		} else {
-			return $this->applyPatch( $patch, $fullpath, "Adding $field field to table $table" );
+			return $this->applyPatch( $patch, $fullpath, $updateMsg );
 		}
 
 		return true;
@@ -873,12 +909,17 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
+		$updateMsg = "Adding index $index to table $table";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return false;
+		}
+
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
 		} elseif ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->outputApplied( "...index $index already set on $table table.\n" );
 		} else {
-			return $this->applyPatch( $patch, $fullpath, "Adding index $index to table $table" );
+			return $this->applyPatch( $patch, $fullpath, $updateMsg );
 		}
 
 		return true;
@@ -899,6 +940,10 @@ abstract class DatabaseUpdater {
 	protected function dropField( $table, $field, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
 			return true;
+		}
+
+		if ( !$this->checkSchemaAltersAllowed( "Dropping $field from table $table" ) ) {
+			return false;
 		}
 
 		if ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
@@ -926,8 +971,13 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
+		$updateMsg = "Dropping $index index from table $table";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return false;
+		}
+
 		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
-			return $this->applyPatch( $patch, $fullpath, "Dropping $index index from table $table" );
+			return $this->applyPatch( $patch, $fullpath, $updateMsg );
 		}
 
 		$this->outputApplied( "...$index key doesn't exist.\n" );
@@ -953,6 +1003,11 @@ abstract class DatabaseUpdater {
 	) {
 		if ( !$this->doTable( $table ) ) {
 			return true;
+		}
+
+		$updateMsg = "Renaming index $oldIndex to $newIndex in table $table";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return false;
 		}
 
 		// First requirement: the table must exist
@@ -987,7 +1042,7 @@ abstract class DatabaseUpdater {
 		return $this->applyPatch(
 			$patch,
 			$fullpath,
-			"Renaming index $oldIndex into $newIndex to table $table"
+			$updateMsg
 		);
 	}
 
@@ -1067,6 +1122,11 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
+		$updateMsg = "Modifying primary key on table $table";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return false;
+		}
+
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->outputApplied( "...skipping: '$table' table doesn't exist yet.\n" );
 			return true;
@@ -1079,7 +1139,7 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
-		return $this->applyPatch( $patch, $fullpath, "Modifying primary key on table $table" );
+		return $this->applyPatch( $patch, $fullpath, $updateMsg );
 	}
 
 	/**
@@ -1101,13 +1161,18 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
+		$updateMsg = "Modifying table $table with patch $patch";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return false;
+		}
+
 		$updateKey = "$table-$patch";
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->outputApplied( "...$table table does not exist, skipping modify table patch.\n" );
 		} elseif ( $this->updateRowExists( $updateKey ) ) {
 			$this->outputApplied( "...table $table already modified by patch $patch.\n" );
 		} else {
-			$apply = $this->applyPatch( $patch, $fullpath, "Modifying table $table with patch $patch" );
+			$apply = $this->applyPatch( $patch, $fullpath, $updateMsg );
 			if ( $apply ) {
 				$this->insertUpdateRow( $updateKey );
 			}
@@ -1145,6 +1210,10 @@ abstract class DatabaseUpdater {
 			$updateKey = "$table-$patch";
 		} else {
 			$updateKey = "$table-$fieldBeingModified-$patch";
+		}
+
+		if ( !$this->checkSchemaAltersAllowed( "Modifying table $table with patch $patch" ) ) {
+			return false;
 		}
 
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
@@ -1210,6 +1279,11 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
+		$updateMsg = "Modifying $field field of table $table";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return false;
+		}
+
 		$updateKey = "$table-$field-$patch";
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->outputApplied( "...$table table does not exist, skipping modify field patch.\n" );
@@ -1230,7 +1304,7 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
-		$apply = $this->applyPatch( $patch, $fullpath, "Modifying $field field of table $table" );
+		$apply = $this->applyPatch( $patch, $fullpath, $updateMsg );
 		if ( $apply ) {
 			$this->insertUpdateRow( $updateKey );
 		}

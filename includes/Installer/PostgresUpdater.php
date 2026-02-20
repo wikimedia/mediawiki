@@ -342,8 +342,13 @@ END;
 	 * @param string|false $patch
 	 */
 	protected function renameTable( $old, $new, $patch = false ) {
+		$updateMsg = "Renaming table $old to $new";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return;
+		}
+
 		if ( $this->db->tableExists( $old, __METHOD__ ) ) {
-			$this->output( "Renaming table $old to $new\n" );
+			$this->output( "$updateMsg\n" );
 			$old = $this->db->addIdentifierQuotes( $old );
 			$new = $this->db->addIdentifierQuotes( $new );
 			$this->db->query( "ALTER TABLE $old RENAME TO $new", __METHOD__ );
@@ -365,6 +370,12 @@ END;
 	protected function renameIndex(
 		$table, $old, $new, $skipBothIndexExistWarning = false, $a = false, $b = false
 	) {
+		if ( !$this->checkSchemaAltersAllowed(
+			"Renaming index $old to $new in table $table"
+		) ) {
+			return false;
+		}
+
 		// First requirement: the table must exist
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
@@ -402,11 +413,16 @@ END;
 	 * @param string $field
 	 */
 	protected function dropPgField( $table, $field ) {
+		$updateMsg = "Dropping column '$table.$field'";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return;
+		}
+
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( $fi === null ) {
 			$this->output( "...$table table does not contain $field field.\n" );
 		} else {
-			$this->output( "Dropping column '$table.$field'\n" );
+			$this->output( "$updateMsg\n" );
 			$table = $this->db->addIdentifierQuotes( $table );
 			$this->db->query( "ALTER TABLE $table DROP COLUMN $field", __METHOD__ );
 		}
@@ -418,11 +434,16 @@ END;
 	 * @param string $type
 	 */
 	protected function addPgField( $table, $field, $type ) {
+		$updateMsg = "Adding column '$table.$field'";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return;
+		}
+
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( $fi !== null ) {
 			$this->output( "...column '$table.$field' already exists\n" );
 		} else {
-			$this->output( "Adding column '$table.$field'\n" );
+			$this->output( "$updateMsg'\n" );
 			$table = $this->db->addIdentifierQuotes( $table );
 			$this->db->query( "ALTER TABLE $table ADD $field $type", __METHOD__ );
 		}
@@ -435,6 +456,10 @@ END;
 	 * @param string $default
 	 */
 	protected function changeField( $table, $field, $newtype, $default ) {
+		if ( !$this->checkSchemaAltersAllowed( "Changing column type of '$table.$field' to '$newtype'" ) ) {
+			return;
+		}
+
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping default change.\n" );
 			return;
@@ -471,6 +496,12 @@ END;
 	 * @param string $default
 	 */
 	protected function changeFieldPurgeTable( $table, $field, $newtype, $default ) {
+		if ( !$this->checkSchemaAltersAllowed(
+			"Changing column type of '$table.$field' to '$newtype'"
+		) ) {
+			return;
+		}
+
 		# # For a cache table, empty it if the field needs to be changed, because the old contents
 		# # may be corrupted.  If the column is already the desired type, refrain from purging.
 		$fi = $this->db->fieldInfo( $table, $field );
@@ -506,13 +537,18 @@ END;
 	 * @param string $default
 	 */
 	protected function setDefault( $table, $field, $default ) {
+		$updateMsg = "Changing '$table.$field' default value";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return;
+		}
+
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping default change.\n" );
 			return;
 		}
 		$info = $this->db->fieldInfo( $table, $field );
 		if ( $info && $info->defaultValue() !== $default ) {
-			$this->output( "Changing '$table.$field' default value\n" );
+			$this->output( "$updateMsg\n" );
 			$table = $this->db->addIdentifierQuotes( $table );
 			$this->db->query( "ALTER TABLE $table ALTER $field SET DEFAULT "
 				. $this->db->addQuotes( $default ), __METHOD__ );
@@ -526,9 +562,14 @@ END;
 	 * @param string $field
 	 */
 	protected function dropDefault( $table, $field ) {
+		$updateMsg = "Dropping '$table.$field' default value";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return;
+		}
+
 		$info = $this->db->fieldInfo( $table, $field );
 		if ( $info && $info->defaultValue() !== false ) {
-			$this->output( "Removing '$table.$field' default value\n" );
+			$this->output( "$updateMsg\n" );
 			$table = $this->db->addIdentifierQuotes( $table );
 			$this->db->query( "ALTER TABLE $table ALTER $field DROP DEFAULT", __METHOD__ );
 		}
@@ -541,6 +582,16 @@ END;
 	 * @param bool $update
 	 */
 	protected function changeNullableField( $table, $field, $null, $update = false ) {
+		$updateMsg = "Changing field '$table.$field' to ";
+		if ( $null === 'NOT NULL' ) {
+			$updateMsg .= 'not allow NULLs';
+		} else {
+			$updateMsg .= 'allow NULLs';
+		}
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return;
+		}
+
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( $fi === null ) {
 			return;
@@ -548,7 +599,7 @@ END;
 		if ( $fi->isNullable() ) {
 			# # It's NULL - does it need to be NOT NULL?
 			if ( $null === 'NOT NULL' ) {
-				$this->output( "Changing '$table.$field' to not allow NULLs\n" );
+				$this->output( "$updateMsg\n" );
 				$table = $this->db->addIdentifierQuotes( $table );
 				if ( $update ) {
 					$this->db->query( "UPDATE $table SET $field = DEFAULT WHERE $field IS NULL", __METHOD__ );
@@ -560,7 +611,7 @@ END;
 		} else {
 			# # It's NOT NULL - does it need to be NULL?
 			if ( $null === 'NULL' ) {
-				$this->output( "Changing '$table.$field' to allow NULLs\n" );
+				$this->output( "$updateMsg\n" );
 				$table = $this->db->addIdentifierQuotes( $table );
 				$this->db->query( "ALTER TABLE $table ALTER $field DROP NOT NULL", __METHOD__ );
 			} else {
@@ -576,12 +627,17 @@ END;
 	 * @param bool $unique
 	 */
 	protected function addPgIndex( $table, $index, $type, $unique = false ) {
+		$updateMsg = "Creating index '$index' on table '$table' $type";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return;
+		}
+
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping index.\n" );
 		} elseif ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "...index '$index' on table '$table' already exists\n" );
 		} else {
-			$this->output( "Creating index '$index' on table '$table' $type\n" );
+			$this->output( "$updateMsg\n" );
 			$table = $this->db->addIdentifierQuotes( $table );
 			$unique = $unique ? 'UNIQUE' : '';
 			$this->db->query( "CREATE $unique INDEX $index ON $table $type", __METHOD__ );
@@ -594,6 +650,11 @@ END;
 	 * @param string $type
 	 */
 	protected function addPgExtIndex( $table, $index, $type ) {
+		$updateMsg = "Creating index '$index' on table '$table'";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return;
+		}
+
 		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "...index '$index' on table '$table' already exists\n" );
 		} elseif ( preg_match( '/^\(/', $type ) ) {
@@ -601,7 +662,7 @@ END;
 			$table = $this->db->addIdentifierQuotes( $table );
 			$this->db->query( "CREATE INDEX $index ON $table $type", __METHOD__ );
 		} else {
-			$this->applyPatch( $type, true, "Creating index '$index' on table '$table'" );
+			$this->applyPatch( $type, true, $updateMsg );
 		}
 	}
 
@@ -610,6 +671,11 @@ END;
 	 * @param string $field
 	 */
 	protected function dropFkey( $table, $field ) {
+		$updateMsg = "Dropping foreign key constraint on '$table.$field'";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return;
+		}
+
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping constraint change.\n" );
 			return;
@@ -622,7 +688,7 @@ END;
 		}
 
 		if ( $this->dropConstraint( $table, $field, 'foreignkey', $fi->conname() ) ) {
-			$this->output( "Dropping foreign key constraint on '$table.$field'\n" );
+			$this->output( "$updateMsg\n" );
 		} else {
 			$this->output( "...foreign key constraint on '$table.$field' already does not exist\n" );
 		}
@@ -634,6 +700,11 @@ END;
 	 * @param string $clause
 	 */
 	protected function changeFkeyDeferrable( $table, $field, $clause ) {
+		$updateMsg = "Altering column '$table.$field' to be DEFERRABLE INITIALLY DEFERRED";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return;
+		}
+
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( $fi === null ) {
 			$this->output( "WARNING! Column '$table.$field' does not exist but it should! " .
@@ -644,7 +715,7 @@ END;
 		if ( $fi->is_deferred() && $fi->is_deferrable() ) {
 			return;
 		}
-		$this->output( "Altering column '$table.$field' to be DEFERRABLE INITIALLY DEFERRED\n" );
+		$this->output( "$updateMsg\n" );
 
 		$conname = $fi->conname();
 		$conclause = "CONSTRAINT \"$conname\"";
@@ -666,8 +737,13 @@ END;
 	 * @param string $index
 	 */
 	protected function dropPgIndex( $table, $index ) {
+		$updateMsg = "Dropping obsolete index '$index'";
+		if ( !$this->checkSchemaAltersAllowed( $updateMsg ) ) {
+			return;
+		}
+
 		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
-			$this->output( "Dropping obsolete index '$index'\n" );
+			$this->output( "$updateMsg\n" );
 			$this->db->query( "DROP INDEX \"" . $index . "\"", __METHOD__ );
 		}
 	}
@@ -678,6 +754,12 @@ END;
 	 * @param string $good_def
 	 */
 	protected function checkIndex( $index, $should_be, $good_def ) {
+		if ( !$this->checkSchemaAltersAllowed(
+			"Checking if index '$index' is up to date"
+		) ) {
+			return;
+		}
+
 		$pu = $this->db->indexAttributes( $index );
 		if ( $pu && $pu != $should_be ) {
 			$this->output( "Dropping obsolete version of index '$index'\n" );
@@ -701,6 +783,10 @@ END;
 	 * @param string|null $constraintName
 	 */
 	protected function changePrimaryKey( $table, $shouldBe, $constraintName = null ) {
+		if ( !$this->checkSchemaAltersAllowed( "Changing primary key on $table" ) ) {
+			return;
+		}
+
 		// https://wiki.postgresql.org/wiki/Retrieve_primary_key_columns
 		$result = $this->db->query(
 			"SELECT a.attname as column " .
@@ -743,6 +829,10 @@ END;
 	 * @return bool
 	 */
 	protected function dropConstraint( $table, $field, $type, $conname = null ) {
+		if ( !$this->checkSchemaAltersAllowed( "Dropping constraint on $table for $field" ) ) {
+			return false;
+		}
+
 		if ( $conname === null ) {
 			if ( $type == 'primary' ) {
 				$conname = "{$table}_pkey";
