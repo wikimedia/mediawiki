@@ -40,13 +40,17 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals(
 			[
 				[
-					'[report-only] Received CSP report: ' .
-						'<https://blocked.test> blocked from being loaded on <https://doc.test/path>:4',
+					'[{flags}] Received CSP report: ' .
+						'<{blockedOrigin}> blocked from being loaded on <{documentUri}>:{line}',
 					[
 						'method' => ApiCSPReport::class . '::execute',
 						'user_id' => 'logged-out',
 						'user-agent' => 'Test/0.0',
-						'source' => 'internal'
+						'source' => 'internal',
+						'flags' => 'report-only',
+						'blockedOrigin' => 'https://blocked.test',
+						'documentUri' => 'https://doc.test/path',
+						'line' => 4
 					]
 				],
 			],
