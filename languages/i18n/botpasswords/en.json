@@ -28,6 +28,7 @@
 	"botpasswords-bad-appid": "The bot name \"$1\" is not valid.",
 	"botpasswords-toolong-restrictions": "There are too many IP addresses or ranges entered.",
 	"botpasswords-toolong-grants": "There are too many grants selected.",
+	"botpasswords-too-many": "You have reached the maximum limit of $1 {{PLURAL:$1|bot password|bot passwords}}. Please delete some existing bot passwords before creating new ones.",
 	"botpasswords-insert-failed": "Failed to add bot name \"$1\". Was it already added?",
 	"botpasswords-update-failed": "Failed to update bot name \"$1\". Was it deleted?",
 	"botpasswords-created-title": "Bot password created",

@@ -40,6 +40,8 @@ For notes on 1.45.x and older releases, see HISTORY.
 * $wgUserJsPrefLimit – (T408733) This setting lets you limit the maximum number
   of supported custom JS preferences each user can have, to reduce load. The
   default value is 100.
+* $wgBotPasswordsLimit - This setting allows administrators to configure the
+  maximum number of bot passwords a user can create. The default value is 100.
 * …
 
 ==== Changed configuration ====

@@ -3054,6 +3054,12 @@ $wgBotPasswordsCluster = null;
 $wgBotPasswordsDatabase = null;
 
 /**
+ * Config variable stub for the BotPasswordsLimit setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::BotPasswordsLimit
+ */
+$wgBotPasswordsLimit = null;
+
+/**
  * Config variable stub for the SecretKey setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::SecretKey
  */

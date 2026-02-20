@@ -3069,6 +3069,12 @@ class MainConfigNames {
 	public const BotPasswordsDatabase = 'BotPasswordsDatabase';
 
 	/**
+	 * Name constant for the BotPasswordsLimit setting, for use with Config::get()
+	 * @see MainConfigSchema::BotPasswordsLimit
+	 */
+	public const BotPasswordsLimit = 'BotPasswordsLimit';
+
+	/**
 	 * Name constant for the SecretKey setting, for use with Config::get()
 	 * @see MainConfigSchema::SecretKey
 	 */

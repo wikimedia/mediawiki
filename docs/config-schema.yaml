@@ -5901,6 +5901,12 @@ config-schema:
             "{$database}-{$prefix}".
             @since 1.27
             @deprecated since 1.42 Use $wgVirtualDomainsMapping instead.
+    BotPasswordsLimit:
+        default: 100
+        type: integer
+        description: |-
+            Maximum number of bot passwords a user can create.
+            @since 1.46
     SecretKey:
         default: false
         description: 'This should always be customised in LocalSettings.php'

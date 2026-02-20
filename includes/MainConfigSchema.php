@@ -9418,6 +9418,16 @@ class MainConfigSchema {
 		'type' => 'string|false',
 	];
 
+	/**
+	 * Maximum number of bot passwords a user can create.
+	 *
+	 * @since 1.46
+	 */
+	public const BotPasswordsLimit = [
+		'default' => 100,
+		'type' => 'int',
+	];
+
 	// endregion -- end of user rights settings
 
 	/***************************************************************************/

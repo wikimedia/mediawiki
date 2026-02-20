@@ -1867,6 +1867,7 @@ return [
 			'EnableBotPasswords' => true,
 			'BotPasswordsCluster' => false,
 			'BotPasswordsDatabase' => false,
+			'BotPasswordsLimit' => 100,
 			'SecretKey' => false,
 			'JwtPrivateKey' => false,
 			'JwtPublicKey' => false,
@@ -3089,6 +3090,7 @@ return [
 				'string',
 				'boolean',
 			],
+			'BotPasswordsLimit' => 'integer',
 			'CSPHeader' => [
 				'boolean',
 				'object',
