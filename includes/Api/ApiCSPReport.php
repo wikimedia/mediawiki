@@ -51,25 +51,33 @@ class ApiCSPReport extends ApiBase {
 		$report = $this->getReport();
 		$flags = $this->getFlags( $report, $userAgent );
 
-		$warningText = $this->generateLogLine( $flags, $report );
-		$this->logReport( $flags, $warningText, [
-			// XXX Is it ok to put untrusted data into log??
-			'csp-report' => $report,
-			'method' => __METHOD__,
-			'user_id' => $this->getUser()->getId() ?: 'logged-out',
-			'user-agent' => $userAgent,
-			'source' => $this->getParameter( 'source' ),
-		] );
+		$this->logReport(
+			'[{flags}] Received CSP report: <{blockedOrigin}> blocked from being loaded on <{documentUri}>:{line}',
+			[
+				'flags' => implode( ', ', $flags ),
+				'blockedOrigin' => isset( $report['blocked-uri'] ) ?
+					$this->originFromUrl( $report['blocked-uri'] ) : 'n/a',
+				'documentUri' => $report['document-uri'] ?? 'n/a',
+				'line' => $report['line-number'] ?? '',
+				// XXX Is it ok to put untrusted data into log??
+				'csp-report' => $report,
+				'method' => __METHOD__,
+				'user_id' => $this->getUser()->getId() ?: 'logged-out',
+				'user-agent' => $userAgent,
+				'source' => $this->getParameter( 'source' ),
+			],
+			$flags
+		);
 		$this->getResult()->addValue( null, $this->getModuleName(), 'success' );
 	}
 
 	/**
 	 * Log CSP report, with a different severity depending on $flags
-	 * @param array $flags Flags for this report
 	 * @param string $logLine text of log entry
 	 * @param array $context logging context
+	 * @param array $flags Flags for this report
 	 */
-	private function logReport( $flags, $logLine, $context ) {
+	private function logReport( $logLine, $context, $flags ) {
 		if ( in_array( 'false-positive', $flags ) ) {
 			// These reports probably don't matter much
 			$this->log->debug( $logLine, $context );
@@ -197,31 +205,6 @@ class ApiCSPReport extends ApiBase {
 			$this->error( 'missingkey', __METHOD__ );
 		}
 		return $report['csp-report'];
-	}
-
-	/**
-	 * Get text of log line.
-	 *
-	 * @param array $flags of additional markers for this report
-	 * @param array $report the csp report
-	 * @return string Text to put in log
-	 */
-	private function generateLogLine( $flags, $report ) {
-		$flagText = '';
-		if ( $flags ) {
-			$flagText = '[' . implode( ', ', $flags ) . ']';
-		}
-
-		$blockedOrigin = isset( $report['blocked-uri'] )
-			? $this->originFromUrl( $report['blocked-uri'] )
-			: 'n/a';
-		$page = $report['document-uri'] ?? 'n/a';
-		$line = isset( $report['line-number'] )
-			? ':' . $report['line-number']
-			: '';
-		return $flagText .
-			' Received CSP report: <' . $blockedOrigin . '>' .
-			' blocked from being loaded on <' . $page . '>' . $line;
 	}
 
 	/**
