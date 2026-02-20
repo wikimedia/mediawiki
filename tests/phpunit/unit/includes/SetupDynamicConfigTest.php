@@ -899,7 +899,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * Test that if the variables $test are set after DefaultSettings.php is loaded, then
+	 * Test that if the variables $test are set after MainConfigSchema.php is loaded, then
 	 * DynamicDefaultValues and SetupDynamicConfig.php will result in the variables
 	 * in $expected being set to the given values.
 	 * (This does not test that other variables aren't also set.)

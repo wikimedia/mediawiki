@@ -8,11 +8,8 @@ use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\SettingsBuilder;
-use MediaWiki\Settings\Source\FileSource;
 use MediaWiki\Settings\Source\JsonSchemaTrait;
-use MediaWiki\Settings\Source\PhpSettingsSource;
 use MediaWiki\Settings\Source\ReflectionSchemaSource;
-use MediaWiki\Settings\Source\SettingsSource;
 use MediaWiki\Shell\Shell;
 use MediaWikiIntegrationTestCase;
 
@@ -136,55 +133,6 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			$result->getStdout(),
 			"Configuration schema was changed. Rerun $relativePath script!"
 		);
-	}
-
-	public static function provideDefaultSettingsConsistency() {
-		yield 'YAML' => [ new FileSource( MW_INSTALL_PATH . '/docs/config-schema.yaml' ) ];
-		yield 'PHP' => [ new PhpSettingsSource( MW_INSTALL_PATH . '/includes/config-schema.php' ) ];
-	}
-
-	/**
-	 * Check that the result of loading config-schema.yaml is the same as DefaultSettings.php
-	 * This test can be removed when DefaultSettings.php is removed.
-	 * @dataProvider provideDefaultSettingsConsistency
-	 */
-	public function testDefaultSettingsConsistency( SettingsSource $source ) {
-		$this->expectDeprecationAndContinue( '/DefaultSettings\\.php/' );
-		$defaultSettingsProps = ( static function () {
-			require MW_INSTALL_PATH . '/includes/DefaultSettings.php';
-			$vars = get_defined_vars();
-			unset( $vars['input'] );
-			$result = [];
-			foreach ( $vars as $key => $value ) {
-				$result[substr( $key, 2 )] = $value;
-			}
-			return $result;
-		} )();
-
-		$configBuilder = new ArrayConfigBuilder();
-		$settingsBuilder = new SettingsBuilder(
-			__DIR__ . '/../../..',
-			$this->createNoOpMock( ExtensionRegistry::class ),
-			$configBuilder,
-			$this->createNoOpMock( PhpIniSink::class )
-		);
-		$settingsBuilder->load( $source );
-		$defaults = iterator_to_array( $settingsBuilder->getDefaultConfig() );
-
-		foreach ( $defaultSettingsProps as $key => $value ) {
-			if ( in_array( $key, [
-				'Version', // deprecated alias to MW_VERSION
-				'Conf', // instance of SiteConfiguration
-				'AutoloadClasses', // conditionally initialized
-			] ) ) {
-				continue;
-			}
-			$this->assertArrayHasKey( $key, $defaults, "Missing $key from $source" );
-			$this->assertEquals( $value, $defaults[ $key ], "Wrong value for $key\n" );
-		}
-
-		$missingKeys = array_diff_key( $defaults, $defaultSettingsProps );
-		$this->assertSame( [], $missingKeys, 'Keys missing from DefaultSettings.php' );
 	}
 
 	public static function provideArraysHaveMergeStrategy() {

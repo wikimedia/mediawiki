@@ -52,16 +52,6 @@ class BenchmarkSettings extends Benchmarker {
 			}
 		}
 
-		$benches['DefaultSettings.php'] = [
-			'setup' => static function () {
-				// do this once beforehand
-				include MW_INSTALL_PATH . '/includes/DefaultSettings.php';
-			},
-			'function' => static function () {
-				include MW_INSTALL_PATH . '/includes/DefaultSettings.php';
-			}
-		];
-
 		$benches['config-schema.php'] = [
 			'function' => function () {
 				$settingsBuilder = $this->newSettingsBuilder();
@@ -90,17 +80,6 @@ class BenchmarkSettings extends Benchmarker {
 				$settingsBuilder = $this->newSettingsBuilder();
 				$settingsBuilder->load( new ReflectionSchemaSource( MainConfigSchema::class ) );
 				$settingsBuilder->apply();
-			}
-		];
-
-		$benches['DefaultSettings.php + SetupDynamicConfig.php'] = [
-			'function' => static function () {
-				$IP = MW_INSTALL_PATH;
-				include MW_INSTALL_PATH . '/includes/DefaultSettings.php';
-
-				// phpcs:ignore MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgLocaltimezone
-				$wgLocaltimezone = 'utc';
-				include MW_INSTALL_PATH . '/includes/SetupDynamicConfig.php';
 			}
 		];
 
