@@ -22,19 +22,16 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class CategoryPager extends AlphabeticPager {
 
-	private LinkBatchFactory $linkBatchFactory;
-
 	public function __construct(
 		IContextSource $context,
-		LinkBatchFactory $linkBatchFactory,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		LinkRenderer $linkRenderer,
 		IConnectionProvider $dbProvider,
-		string $from
+		string $from,
 	) {
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
 		parent::__construct( $context, $linkRenderer );
-		$this->linkBatchFactory = $linkBatchFactory;
 		$from = str_replace( ' ', '_', $from );
 		if ( $from !== '' ) {
 			$from = Title::capitalize( $from, NS_CATEGORY );

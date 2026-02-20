@@ -18,12 +18,8 @@ use MediaWiki\User\TempUser\TempUserConfig;
  */
 class SpecialMycontributions extends RedirectSpecialPage {
 
-	private TempUserConfig $tempUserConfig;
-
-	public function __construct( TempUserConfig $tempUserConfig ) {
+	public function __construct( private readonly TempUserConfig $tempUserConfig ) {
 		parent::__construct( 'Mycontributions' );
-
-		$this->tempUserConfig = $tempUserConfig;
 
 		$this->mAllowedRedirectParams = [ 'limit', 'namespace', 'tagfilter',
 			'offset', 'dir', 'year', 'month', 'feed', 'deletedOnly',

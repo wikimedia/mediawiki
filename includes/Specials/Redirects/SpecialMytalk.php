@@ -31,21 +31,14 @@ use MediaWiki\User\TempUser\TempUserCreator;
  */
 class SpecialMytalk extends RedirectSpecialArticle {
 
-	private TempUserConfig $tempUserConfig;
-	private TempUserCreator $tempUserCreator;
-	private AuthManager $authManager;
 	private bool $shouldRedirect = true;
 
 	public function __construct(
-		TempUserConfig $tempUserConfig,
-		TempUserCreator $tempUserCreator,
-		AuthManager $authManager
+		private readonly TempUserConfig $tempUserConfig,
+		private readonly TempUserCreator $tempUserCreator,
+		private readonly AuthManager $authManager,
 	) {
 		parent::__construct( 'Mytalk' );
-
-		$this->tempUserConfig = $tempUserConfig;
-		$this->tempUserCreator = $tempUserCreator;
-		$this->authManager = $authManager;
 	}
 
 	/** @inheritDoc */

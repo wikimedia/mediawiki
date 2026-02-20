@@ -7,16 +7,13 @@
 namespace MediaWiki\Specials\Contribute\Card;
 
 class ContributeCard {
-	private string $title;
-	private string $icon;
-	private string $description;
-	private ContributeCardAction $action;
 
-	public function __construct( string $title, string $description, string $icon, ContributeCardAction $action ) {
-		$this->title = $title;
-		$this->icon = $icon;
-		$this->description = $description;
-		$this->action = $action;
+	public function __construct(
+		private string $title,
+		private string $description,
+		private string $icon,
+		private ContributeCardAction $action,
+	) {
 	}
 
 	public function getTitle(): string {

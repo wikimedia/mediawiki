@@ -22,25 +22,17 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class ProtectedTitlesPager extends AlphabeticPager {
 
-	private ?string $level;
-	private ?int $namespace;
-
-	private LinkBatchFactory $linkBatchFactory;
-
 	public function __construct(
 		IContextSource $context,
 		LinkRenderer $linkRenderer,
-		LinkBatchFactory $linkBatchFactory,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,
-		?string $level,
-		?int $namespace
+		private readonly ?string $level,
+		private readonly ?int $namespace,
 	) {
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
-		$this->level = $level;
-		$this->namespace = $namespace;
 		parent::__construct( $context, $linkRenderer );
-		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	/** @inheritDoc */

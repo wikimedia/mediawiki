@@ -34,7 +34,6 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @ingroup Pager
  */
 class ActiveUsersPager extends UsersPager {
-	private RecentChangeLookup $recentChangeLookup;
 
 	/**
 	 * @var FormOptions
@@ -66,8 +65,8 @@ class ActiveUsersPager extends UsersPager {
 		UserIdentityLookup $userIdentityLookup,
 		HideUserUtils $hideUserUtils,
 		TempUserConfig $tempUserConfig,
-		RecentChangeLookup $recentChangeLookup,
-		FormOptions $opts
+		private readonly RecentChangeLookup $recentChangeLookup,
+		FormOptions $opts,
 	) {
 		parent::__construct(
 			$context,
@@ -82,7 +81,6 @@ class ActiveUsersPager extends UsersPager {
 			null
 		);
 
-		$this->recentChangeLookup = $recentChangeLookup;
 		$this->RCMaxAge = $this->getConfig()->get( MainConfigNames::ActiveUserDays );
 		$this->requestedUser = '';
 

@@ -19,16 +19,14 @@ use MediaWiki\User\UserIdentity;
 
 class ContributeFactory {
 
-	private MessageLocalizer $localizer;
-	private HookRunner $hookRunner;
 	public const CONSTRUCTOR_OPTIONS = [ MainConfigNames::SpecialContributeNewPageTarget ];
-	private ServiceOptions $serviceOptions;
 
-	public function __construct( MessageLocalizer $localizer, HookRunner $hookRunner, ServiceOptions $serviceOptions ) {
-		$this->localizer = $localizer;
-		$this->hookRunner = $hookRunner;
+	public function __construct(
+		private readonly MessageLocalizer $localizer,
+		private readonly HookRunner $hookRunner,
+		private readonly ServiceOptions $serviceOptions,
+	) {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->serviceOptions = $serviceOptions;
 	}
 
 	public function getCards(): array {

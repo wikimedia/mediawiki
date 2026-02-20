@@ -59,21 +59,18 @@ class AllMessagesTablePager extends TablePager {
 	 */
 	public $custom;
 
-	private LocalisationCache $localisationCache;
-
 	public function __construct(
 		IContextSource $context,
 		Language $contentLanguage,
 		LanguageFactory $languageFactory,
 		LinkRenderer $linkRenderer,
 		IConnectionProvider $dbProvider,
-		LocalisationCache $localisationCache,
-		FormOptions $opts
+		private readonly LocalisationCache $localisationCache,
+		FormOptions $opts,
 	) {
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
 		parent::__construct( $context, $linkRenderer );
-		$this->localisationCache = $localisationCache;
 
 		$this->mIndexField = 'am_title';
 		// FIXME: Why does this need to be set to DIR_DESCENDING to produce ascending ordering?

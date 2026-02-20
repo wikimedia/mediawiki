@@ -25,8 +25,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup Pager
  */
 class UploadStashPager extends TablePager {
-	private UploadStash $stash;
-	private LocalRepo $localRepo;
 
 	/** @var string[]|null */
 	protected $mFieldNames = null;
@@ -38,8 +36,8 @@ class UploadStashPager extends TablePager {
 		IContextSource $context,
 		LinkRenderer $linkRenderer,
 		IConnectionProvider $dbProvider,
-		UploadStash $stash,
-		LocalRepo $localRepo
+		private readonly UploadStash $stash,
+		private readonly LocalRepo $localRepo,
 	) {
 		$this->setContext( $context );
 
@@ -48,9 +46,6 @@ class UploadStashPager extends TablePager {
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 
 		parent::__construct( $context, $linkRenderer );
-
-		$this->stash = $stash;
-		$this->localRepo = $localRepo;
 	}
 
 	/** @inheritDoc */

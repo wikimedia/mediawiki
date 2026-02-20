@@ -215,7 +215,6 @@ class SpecialImport extends SpecialPage {
 			$reporter = new ImportReporter(
 				$importer,
 				$isUpload,
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 				$fullInterwikiPrefix,
 				$logcomment,
 				$this->getContext()

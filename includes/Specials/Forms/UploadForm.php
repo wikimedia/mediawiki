@@ -56,17 +56,15 @@ class UploadForm extends HTMLForm {
 	/** @var array */
 	protected $mMaxUploadSize = [];
 
-	private LocalRepo $localRepo;
-	private NamespaceInfo $nsInfo;
 	private HookRunner $hookRunner;
 
 	public function __construct(
 		array $options = [],
 		?IContextSource $context = null,
 		?LinkRenderer $linkRenderer = null,
-		?LocalRepo $localRepo = null,
+		private ?LocalRepo $localRepo = null,
 		?Language $unused = null,
-		?NamespaceInfo $nsInfo = null,
+		private ?NamespaceInfo $nsInfo = null,
 		?HookContainer $hookContainer = null
 	) {
 		if ( $context instanceof IContextSource ) {
@@ -83,8 +81,7 @@ class UploadForm extends HTMLForm {
 		if ( !$nsInfo ) {
 			$nsInfo = $services->getNamespaceInfo();
 		}
-		$this->localRepo = $localRepo;
-		$this->nsInfo = $nsInfo;
+
 		$this->hookRunner = new HookRunner( $hookContainer ?? $services->getHookContainer() );
 
 		$this->mWatch = !empty( $options['watch'] );

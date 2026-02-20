@@ -18,12 +18,8 @@ use MediaWiki\User\TempUser\TempUserConfig;
  */
 class SpecialMypage extends RedirectSpecialArticle {
 
-	private TempUserConfig $tempUserConfig;
-
-	public function __construct( TempUserConfig $tempUserConfig ) {
+	public function __construct( private readonly TempUserConfig $tempUserConfig ) {
 		parent::__construct( 'Mypage' );
-
-		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/** @inheritDoc */

@@ -7,19 +7,17 @@
 namespace MediaWiki\Specials\Contribute\Card;
 
 class ContributeCardAction {
-	private string $action;
-	private string $actionText;
-	private string $actionType;
 
 	/**
 	 * @param string $action the action's url or command to be attached to card element
 	 * @param string $actionText the action's text to be shown on the bottom of the card element
 	 * @param string $actionType the action's type, specifying if it is a url or a function, ...
 	 */
-	public function __construct( string $action, string $actionText, string $actionType ) {
-		$this->action = $action;
-		$this->actionText = $actionText;
-		$this->actionType = $actionType;
+	public function __construct(
+		private string $action,
+		private string $actionText,
+		private string $actionType,
+	) {
 	}
 
 	public function getActionType(): string {

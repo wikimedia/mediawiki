@@ -52,11 +52,10 @@ class ContribsPager extends ContributionsPager {
 		?RevisionStore $revisionStore = null,
 		?NamespaceInfo $namespaceInfo = null,
 		?UserIdentity $targetUser = null,
-		?CommentFormatter $commentFormatter = null
+		?CommentFormatter $commentFormatter = null,
 	) {
 		// Class is used directly in extensions - T266484
 		$services = MediaWikiServices::getInstance();
-		$dbProvider ??= $services->getConnectionProvider();
 
 		parent::__construct(
 			$linkRenderer ?? $services->getLinkRenderer(),

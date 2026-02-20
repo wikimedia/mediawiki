@@ -21,11 +21,8 @@ use MediaWiki\Title\TitleParser;
  */
 class SpecialTalkPage extends FormSpecialPage {
 
-	private TitleParser $titleParser;
-
-	public function __construct( TitleParser $titleParser ) {
+	public function __construct( private readonly TitleParser $titleParser ) {
 		parent::__construct( 'TalkPage' );
-		$this->titleParser = $titleParser;
 	}
 
 	/** @inheritDoc */

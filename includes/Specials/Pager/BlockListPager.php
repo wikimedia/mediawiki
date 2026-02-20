@@ -40,23 +40,12 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class BlockListPager extends TablePager {
 
-	protected array $conds;
-
 	/**
 	 * Array of restrictions.
 	 *
 	 * @var Restriction[]
 	 */
 	protected array $restrictions = [];
-
-	private BlockActionInfo $blockActionInfo;
-	private BlockRestrictionStore $blockRestrictionStore;
-	private BlockTargetFactory $blockTargetFactory;
-	private HideUserUtils $hideUserUtils;
-	private CommentStore $commentStore;
-	private LinkBatchFactory $linkBatchFactory;
-	private RowCommentFormatter $rowCommentFormatter;
-	private SpecialPageFactory $specialPageFactory;
 
 	/** @var string[] */
 	private array $formattedComments = [];
@@ -66,32 +55,23 @@ class BlockListPager extends TablePager {
 
 	public function __construct(
 		IContextSource $context,
-		BlockActionInfo $blockActionInfo,
-		BlockRestrictionStore $blockRestrictionStore,
-		BlockTargetFactory $blockTargetFactory,
-		HideUserUtils $hideUserUtils,
-		CommentStore $commentStore,
-		LinkBatchFactory $linkBatchFactory,
+		private readonly BlockActionInfo $blockActionInfo,
+		private readonly BlockRestrictionStore $blockRestrictionStore,
+		private readonly BlockTargetFactory $blockTargetFactory,
+		private readonly HideUserUtils $hideUserUtils,
+		private readonly CommentStore $commentStore,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		LinkRenderer $linkRenderer,
 		IConnectionProvider $dbProvider,
-		RowCommentFormatter $rowCommentFormatter,
-		SpecialPageFactory $specialPageFactory,
-		array $conds
+		private readonly RowCommentFormatter $rowCommentFormatter,
+		private readonly SpecialPageFactory $specialPageFactory,
+		protected array $conds,
 	) {
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
 
 		parent::__construct( $context, $linkRenderer );
 
-		$this->blockActionInfo = $blockActionInfo;
-		$this->blockRestrictionStore = $blockRestrictionStore;
-		$this->blockTargetFactory = $blockTargetFactory;
-		$this->hideUserUtils = $hideUserUtils;
-		$this->commentStore = $commentStore;
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->rowCommentFormatter = $rowCommentFormatter;
-		$this->specialPageFactory = $specialPageFactory;
-		$this->conds = $conds;
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 	}
 

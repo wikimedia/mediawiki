@@ -61,22 +61,17 @@ class UsersPager extends AlphabeticPager {
 	protected ?bool $including;
 	protected ?string $requestedUser;
 
-	protected HideUserUtils $hideUserUtils;
 	private HookRunner $hookRunner;
-	private LinkBatchFactory $linkBatchFactory;
-	private UserGroupManager $userGroupManager;
-	private UserIdentityLookup $userIdentityLookup;
-	private TempUserConfig $tempUserConfig;
 
 	public function __construct(
 		IContextSource $context,
 		HookContainer $hookContainer,
-		LinkBatchFactory $linkBatchFactory,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,
-		UserGroupManager $userGroupManager,
-		UserIdentityLookup $userIdentityLookup,
-		HideUserUtils $hideUserUtils,
-		TempUserConfig $tempUserConfig,
+		private readonly UserGroupManager $userGroupManager,
+		private readonly UserIdentityLookup $userIdentityLookup,
+		protected readonly HideUserUtils $hideUserUtils,
+		private readonly TempUserConfig $tempUserConfig,
 		?string $par,
 		?bool $including
 	) {
@@ -125,12 +120,7 @@ class UsersPager extends AlphabeticPager {
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
 		parent::__construct();
-		$this->userGroupManager = $userGroupManager;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->userIdentityLookup = $userIdentityLookup;
-		$this->hideUserUtils = $hideUserUtils;
-		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**

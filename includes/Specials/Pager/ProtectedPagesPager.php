@@ -26,51 +26,32 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class ProtectedPagesPager extends TablePager {
 
 	private string $type;
-	private ?string $level;
-	private ?int $namespace;
-	private ?string $sizetype;
 	private int $size;
-	private bool $indefonly;
-	private bool $cascadeonly;
-	private bool $noredirect;
-
-	private CommentStore $commentStore;
-	private LinkBatchFactory $linkBatchFactory;
-	private RowCommentFormatter $rowCommentFormatter;
 
 	/** @var string[] */
 	private array $formattedComments = [];
 
 	public function __construct(
 		IContextSource $context,
-		CommentStore $commentStore,
-		LinkBatchFactory $linkBatchFactory,
+		private readonly CommentStore $commentStore,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		LinkRenderer $linkRenderer,
 		IConnectionProvider $dbProvider,
-		RowCommentFormatter $rowCommentFormatter,
+		private readonly RowCommentFormatter $rowCommentFormatter,
 		?string $type,
-		?string $level,
-		?int $namespace,
-		?string $sizetype,
+		private readonly ?string $level,
+		private readonly ?int $namespace,
+		private readonly ?string $sizetype,
 		?int $size,
-		bool $indefonly,
-		bool $cascadeonly,
-		bool $noredirect
+		private readonly bool $indefonly,
+		private readonly bool $cascadeonly,
+		private readonly bool $noredirect,
 	) {
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
 		parent::__construct( $context, $linkRenderer );
-		$this->commentStore = $commentStore;
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->rowCommentFormatter = $rowCommentFormatter;
 		$this->type = $type ?? 'edit';
-		$this->level = $level;
-		$this->namespace = $namespace;
-		$this->sizetype = $sizetype;
 		$this->size = $size ?? 0;
-		$this->indefonly = $indefonly;
-		$this->cascadeonly = $cascadeonly;
-		$this->noredirect = $noredirect;
 	}
 
 	/** @inheritDoc */

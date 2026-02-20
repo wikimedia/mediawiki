@@ -36,18 +36,15 @@ class EditWatchlistPager extends CodexTablePager {
 
 	/**
 	 * @codeCoverageIgnore
-	 * @param IContextSource $context
-	 * @param Title $title
-	 * @param WatchedItemStoreInterface $wis
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param HookRunner $hookRunner
-	 * @param bool $expiryEnabled
 	 */
 	public function __construct(
-		IContextSource $context, protected Title $title, protected WatchedItemStoreInterface $wis,
-		protected NamespaceInfo $namespaceInfo, protected LinkBatchFactory $linkBatchFactory,
-		protected HookRunner $hookRunner, protected bool $expiryEnabled
+		IContextSource $context,
+		protected Title $title,
+		protected WatchedItemStoreInterface $wis,
+		protected NamespaceInfo $namespaceInfo,
+		protected LinkBatchFactory $linkBatchFactory,
+		protected HookRunner $hookRunner,
+		protected bool $expiryEnabled,
 	) {
 		parent::__construct( $this->msg( 'watchlistedit-table-title' )->text(), $context, null );
 	}

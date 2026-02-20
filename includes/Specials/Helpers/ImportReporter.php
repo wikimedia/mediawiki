@@ -10,6 +10,7 @@ use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
+use MediaWiki\Import\WikiImporter;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -38,19 +39,14 @@ class ImportReporter extends ContextSource {
 	private $mLogItemCount = 0;
 	/** @var int */
 	private $mPageCount = 0;
-	/** @var bool */
-	private $mIsUpload;
-	/** @var string */
-	private $mInterwiki;
 
-	/**
-	 * @param \MediaWiki\Import\WikiImporter $importer
-	 * @param bool $upload
-	 * @param string $interwiki
-	 * @param string|bool $reason
-	 * @param IContextSource|null $context
-	 */
-	public function __construct( $importer, $upload, $interwiki, $reason = "", ?IContextSource $context = null ) {
+	public function __construct(
+		WikiImporter $importer,
+		private readonly bool $mIsUpload,
+		private readonly ?string $mInterwiki,
+		string|bool|null $reason = "",
+		?IContextSource $context = null,
+	) {
 		if ( $context ) {
 			$this->setContext( $context );
 		} else {
@@ -61,8 +57,6 @@ class ImportReporter extends ContextSource {
 		$this->mOriginalLogCallback =
 			$importer->setLogItemCallback( $this->reportLogItem( ... ) );
 		$importer->setNoticeCallback( $this->reportNotice( ... ) );
-		$this->mIsUpload = $upload;
-		$this->mInterwiki = $interwiki;
 		$this->reason = is_string( $reason ) ? $reason : "";
 	}
 
@@ -139,7 +133,7 @@ class ImportReporter extends ContextSource {
 				$action = 'upload';
 			} else {
 				$pageTitle = $foreignTitle->getFullText();
-				$fullInterwikiPrefix = $this->mInterwiki;
+				$fullInterwikiPrefix = (string)$this->mInterwiki;
 				$this->getHookRunner()->onImportLogInterwikiLink(
 					$fullInterwikiPrefix, $pageTitle );
 

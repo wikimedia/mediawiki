@@ -28,28 +28,22 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class NewFilesPager extends RangeChronologicalPager {
 
 	protected ?ImageGalleryBase $gallery = null;
-	protected FormOptions $opts;
 
-	private GroupPermissionsLookup $groupPermissionsLookup;
-	private LinkBatchFactory $linkBatchFactory;
 	private int $migrationStage;
 
 	public function __construct(
 		IContextSource $context,
-		GroupPermissionsLookup $groupPermissionsLookup,
-		LinkBatchFactory $linkBatchFactory,
+		private readonly GroupPermissionsLookup $groupPermissionsLookup,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		LinkRenderer $linkRenderer,
 		IConnectionProvider $dbProvider,
-		FormOptions $opts
+		protected readonly FormOptions $opts,
 	) {
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
 
 		parent::__construct( $context, $linkRenderer );
 
-		$this->opts = $opts;
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
-		$this->linkBatchFactory = $linkBatchFactory;
 		$this->setLimit( $opts->getValue( 'limit' ) );
 
 		$startTimestamp = '';

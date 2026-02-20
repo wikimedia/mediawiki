@@ -40,8 +40,6 @@ use Wikimedia\Rdbms\IExpression;
  * @ingroup Pager
  */
 class NewPagesPager extends ReverseChronologicalPager {
-
-	protected FormOptions $opts;
 	protected MapCacheLRU $tagsCache;
 
 	/** @var string[] */
@@ -51,38 +49,23 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 */
 	public $mGroupByDate = true;
 
-	private GroupPermissionsLookup $groupPermissionsLookup;
 	private HookRunner $hookRunner;
-	private LinkBatchFactory $linkBatchFactory;
-	private NamespaceInfo $namespaceInfo;
-	private ChangeTagsStore $changeTagsStore;
-	private RowCommentFormatter $rowCommentFormatter;
-	private IContentHandlerFactory $contentHandlerFactory;
-	private TempUserConfig $tempUserConfig;
 
 	public function __construct(
 		IContextSource $context,
 		LinkRenderer $linkRenderer,
-		GroupPermissionsLookup $groupPermissionsLookup,
+		private readonly GroupPermissionsLookup $groupPermissionsLookup,
 		HookContainer $hookContainer,
-		LinkBatchFactory $linkBatchFactory,
-		NamespaceInfo $namespaceInfo,
-		ChangeTagsStore $changeTagsStore,
-		RowCommentFormatter $rowCommentFormatter,
-		IContentHandlerFactory $contentHandlerFactory,
-		TempUserConfig $tempUserConfig,
-		FormOptions $opts
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly RowCommentFormatter $rowCommentFormatter,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly TempUserConfig $tempUserConfig,
+		protected readonly FormOptions $opts,
 	) {
 		parent::__construct( $context, $linkRenderer );
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->changeTagsStore = $changeTagsStore;
-		$this->rowCommentFormatter = $rowCommentFormatter;
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->tempUserConfig = $tempUserConfig;
-		$this->opts = $opts;
 		$this->tagsCache = new MapCacheLRU( 50 );
 	}
 

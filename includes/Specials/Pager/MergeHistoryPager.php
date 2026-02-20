@@ -31,47 +31,32 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	/** @inheritDoc */
 	public $mGroupByDate = true;
 
-	public array $mConds;
 	private int $articleID;
-	private string $mergePointTimestamp;
-	private string $mergePointTimestampOld;
 
 	/** @var int[] */
 	public array $prevId;
 
-	private LinkBatchFactory $linkBatchFactory;
-	private RevisionStore $revisionStore;
-	private CommentFormatter $commentFormatter;
-	private ChangeTagsStore $changeTagsStore;
-
 	public function __construct(
 		IContextSource $context,
 		LinkRenderer $linkRenderer,
-		LinkBatchFactory $linkBatchFactory,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,
-		RevisionStore $revisionStore,
-		CommentFormatter $commentFormatter,
-		ChangeTagsStore $changeTagsStore,
-		array $conds,
+		private readonly RevisionStore $revisionStore,
+		private readonly CommentFormatter $commentFormatter,
+		private readonly ChangeTagsStore $changeTagsStore,
+		public array $mConds,
 		PageIdentity $source,
 		PageIdentity $dest,
-		string $mergePointTimestamp,
-		string $mergePointTimestampOld
+		private readonly string $mergePointTimestamp,
+		private readonly string $mergePointTimestampOld,
 	) {
-		$this->mConds = $conds;
 		$this->articleID = $source->getId();
 
 		$dbr = $dbProvider->getReplicaDatabase();
-		$this->mergePointTimestamp = $mergePointTimestamp;
-		$this->mergePointTimestampOld = $mergePointTimestampOld;
 
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbr;
 		parent::__construct( $context, $linkRenderer );
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->revisionStore = $revisionStore;
-		$this->commentFormatter = $commentFormatter;
-		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	/** @inheritDoc */

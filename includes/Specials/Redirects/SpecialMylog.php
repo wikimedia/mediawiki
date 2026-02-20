@@ -18,12 +18,8 @@ use MediaWiki\User\TempUser\TempUserConfig;
  */
 class SpecialMylog extends RedirectSpecialPage {
 
-	private TempUserConfig $tempUserConfig;
-
-	public function __construct( TempUserConfig $tempUserConfig ) {
+	public function __construct( private readonly TempUserConfig $tempUserConfig ) {
 		parent::__construct( 'Mylog' );
-
-		$this->tempUserConfig = $tempUserConfig;
 
 		$this->mAllowedRedirectParams = [ 'type', 'subtype', 'page', 'pattern',
 			'tagfilter', 'tagInvert', 'offset', 'dir', 'offender',

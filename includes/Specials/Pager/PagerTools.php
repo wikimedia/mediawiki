@@ -42,7 +42,7 @@ class PagerTools {
 		HookRunner $hookRunner,
 		PageIdentity $title,
 		IContextSource $context,
-		LinkRenderer $linkRenderer
+		LinkRenderer $linkRenderer,
 	) {
 		$tools = [];
 		$authority = $context->getAuthority();

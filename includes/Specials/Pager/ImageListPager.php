@@ -82,7 +82,7 @@ class ImageListPager extends TablePager {
 		?string $userName,
 		string $search,
 		?bool $including,
-		bool $showAll
+		bool $showAll,
 	) {
 		$this->setContext( $context );
 
