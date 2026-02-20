@@ -144,11 +144,11 @@ class ConfirmLinkSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 				$descriptionInfo['provider']->text(), $descriptionInfo['account']->text()
 			)->text();
 			if ( $status->isGood() ) {
-				$combinedStatus->error( wfMessage( 'authprovider-confirmlink-success-line', $description ) );
+				$combinedStatus->error( 'authprovider-confirmlink-success-line', $description );
 			} else {
-				$combinedStatus->error( wfMessage(
+				$combinedStatus->error(
 					'authprovider-confirmlink-failed-line', $description, $status->getMessage()->text()
-				) );
+				);
 			}
 		}
 		return AuthenticationResponse::newUI(

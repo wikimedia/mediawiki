@@ -8,6 +8,7 @@
 
 namespace MediaWiki\Json;
 
+use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
 
 /**
@@ -166,9 +167,10 @@ class FormatJson {
 				$result = json_decode( $value, $assoc );
 				if ( json_last_error() === JSON_ERROR_NONE ) {
 					// Report warning
-					$st = Status::newGood( $result );
-					$st->warning( wfMessage( 'json-warn-trailing-comma' )->numParams( $count ) );
-					return $st;
+					return Status::newGood( $result )->warning(
+						'json-warn-trailing-comma',
+						Message::numParam( $count )
+					);
 				}
 			}
 		}
@@ -179,7 +181,7 @@ class FormatJson {
 			case JSON_ERROR_NONE:
 				return Status::newGood( $result );
 			default:
-				return Status::newFatal( wfMessage( 'json-error-unknown' )->numParams( $code ) );
+				return Status::newFatal( 'json-error-unknown', Message::numParam( $code ) );
 			case JSON_ERROR_DEPTH:
 				$msg = 'json-error-depth';
 				break;

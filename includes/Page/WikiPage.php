@@ -1923,7 +1923,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		$services = MediaWikiServices::getInstance();
 		$readOnlyMode = $services->getReadOnlyMode();
 		if ( $readOnlyMode->isReadOnly() ) {
-			return Status::newFatal( wfMessage( 'readonlytext', $readOnlyMode->getReason() ) );
+			return Status::newFatal( 'readonlytext', $readOnlyMode->getReason() );
 		}
 
 		$this->loadPageData( 'fromdbmaster' );

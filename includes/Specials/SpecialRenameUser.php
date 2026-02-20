@@ -331,7 +331,7 @@ class SpecialRenameUser extends SpecialPage {
 			$status = Status::newGood();
 
 			foreach ( $warnings as $warning ) {
-				$status->warning( $this->msg( Message::newFromSpecifier( $warning ) ) );
+				$status->warning( Message::newFromSpecifier( $warning ) );
 			}
 
 			$formDescriptor['renameuserwarnings'] = [

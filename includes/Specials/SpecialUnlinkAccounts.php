@@ -91,7 +91,7 @@ class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 		}
 
 		$status = StatusValue::newGood();
-		$status->warning( $this->msg( 'unlinkaccounts-success' ) );
+		$status->warning( 'unlinkaccounts-success' );
 		$this->loadAuth( $subPage, null, true ); // update requests so the unlinked one doesn't show up
 
 		// Reset sessions - if the user unlinked an account because it was compromised,

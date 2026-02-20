@@ -1733,7 +1733,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$readOnlyMode = $this->getServiceContainer()->getReadOnlyMode();
 		$readOnlyMode->setReason( 'Because' );
 		$this->assertEquals(
-			StatusValue::newFatal( wfMessage( 'readonlytext', 'Because' ) ),
+			StatusValue::newFatal( 'readonlytext', 'Because' ),
 			$this->manager->authorizeCreateAccount( new User )
 		);
 		$readOnlyMode->setReason( false );
@@ -2978,7 +2978,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			$user, AuthManager::AUTOCREATE_SOURCE_SESSION, true, true
 		);
 		$this->unhook( 'LocalUserCreated' );
-		$this->assertEquals( Status::newFatal( wfMessage( 'readonlytext', 'Because' ) ), $ret );
+		$this->assertEquals( Status::newFatal( 'readonlytext', 'Because' ), $ret );
 		$this->assertSame( 0, $user->getId() );
 		$this->assertNotEquals( $username, $user->getName() );
 		$this->assertSame( 0, $session->getUser()->getId() );

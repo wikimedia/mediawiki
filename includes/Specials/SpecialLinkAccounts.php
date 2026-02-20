@@ -122,7 +122,7 @@ class SpecialLinkAccounts extends AuthManagerSpecialPage {
 	 */
 	protected function success() {
 		$this->loadAuth( '', AuthManager::ACTION_LINK, true );
-		$this->displayForm( StatusValue::newFatal( $this->msg( 'linkaccounts-success-text' ) ) );
+		$this->displayForm( StatusValue::newFatal( 'linkaccounts-success-text' ) );
 	}
 }
 
