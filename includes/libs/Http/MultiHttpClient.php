@@ -487,7 +487,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		curl_setopt( $ch, CURLOPT_WRITEFUNCTION,
 			static function ( $ch, $data ) use ( &$req, $hasOutputStream ) {
 				if ( $hasOutputStream ) {
-					return fwrite( $req['stream'], $data );
+					return (int)fwrite( $req['stream'], $data );
 				} else {
 					$req['response']['body'] .= $data;
 
