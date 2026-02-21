@@ -2687,26 +2687,43 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * @return Title[]
 	 */
 	public function getHiddenCategories() {
-		$result = [];
 		$id = $this->getId();
 
 		if ( $id == 0 ) {
 			return [];
 		}
 
-		$dbr = $this->getConnectionProvider()->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
-		$res = $dbr->newSelectQueryBuilder()
+		$categoryLinksDb = $this->getConnectionProvider()->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
+		$categoryTitles = $categoryLinksDb->newSelectQueryBuilder()
 			->select( 'lt_title' )
 			->from( 'categorylinks' )
 			->join( 'linktarget', null, 'cl_target_id = lt_id' )
-			->join( 'page', null, [ 'page_title = lt_title', 'page_namespace = lt_namespace' ] )
-			->join( 'page_props', null, 'pp_page=page_id' )
-			->where( [ 'cl_from' => $id, 'pp_propname' => 'hiddencat', 'page_namespace' => NS_CATEGORY ] )
+			->where( [ 'cl_from' => $id, 'lt_namespace' => NS_CATEGORY ] )
 			->caller( __METHOD__ )
-			->fetchResultSet();
+			->fetchFieldValues();
 
-		foreach ( $res as $row ) {
-			$result[] = Title::makeTitle( NS_CATEGORY, $row->lt_title );
+		if ( $categoryTitles === [] ) {
+			return [];
+		}
+
+		$dbr = $this->getConnectionProvider()->getReplicaDatabase();
+		$hiddenTitles = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_title' ] )
+			->from( 'page_props' )
+			->join( 'page', null, 'page_id = pp_page' )
+			->where( [
+				'pp_propname' => 'hiddencat',
+				'page_namespace' => NS_CATEGORY,
+				'page_title' => $categoryTitles
+			] )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
+
+		$result = [];
+		foreach ( $categoryTitles as $title ) {
+			if ( in_array( $title, $hiddenTitles ) ) {
+				$result[] = Title::makeTitle( NS_CATEGORY, $title );
+			}
 		}
 
 		return $result;
