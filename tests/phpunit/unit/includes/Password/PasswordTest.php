@@ -6,6 +6,8 @@
  * @file
  */
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Tests\Unit\Password;
 
 use Exception;

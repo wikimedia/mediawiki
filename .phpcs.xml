@@ -15,6 +15,7 @@
 	</rule>
 	<rule ref="Generic.PHP.RequireStrictTypes">
 		<include-pattern>*/OutputTransform/*</include-pattern>
+		<include-pattern>*/Password/*</include-pattern>
 		<include-pattern>*/Parsoid/*</include-pattern>
 	</rule>
 	<rule ref="Generic.Files.LineLength">

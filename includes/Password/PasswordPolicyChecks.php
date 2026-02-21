@@ -6,6 +6,8 @@
  * @file
  */
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Password;
 
 use MediaWiki\Status\Status;
@@ -32,7 +34,7 @@ class PasswordPolicyChecks {
 	 * @param string $password
 	 * @return Status error if $password is shorter than $policyVal
 	 */
-	public static function checkMinimalPasswordLength( $policyVal, UserIdentity $user, $password ) {
+	public static function checkMinimalPasswordLength( int $policyVal, UserIdentity $user, string $password ): Status {
 		$status = Status::newGood();
 		if ( $policyVal > strlen( $password ) ) {
 			$status->error( 'passwordtooshort', $policyVal );
@@ -49,7 +51,11 @@ class PasswordPolicyChecks {
 	 * @param string $password
 	 * @return Status fatal if $password is shorter than $policyVal
 	 */
-	public static function checkMinimumPasswordLengthToLogin( $policyVal, UserIdentity $user, $password ) {
+	public static function checkMinimumPasswordLengthToLogin(
+		int $policyVal,
+		UserIdentity $user,
+		string $password
+	): Status {
 		$status = Status::newGood();
 		if ( $policyVal > strlen( $password ) ) {
 			$status->fatal( 'passwordtooshort', $policyVal );
@@ -65,7 +71,11 @@ class PasswordPolicyChecks {
 	 * @param string $password
 	 * @return Status fatal if $password is shorter than $policyVal
 	 */
-	public static function checkMaximalPasswordLength( $policyVal, UserIdentity $user, $password ) {
+	public static function checkMaximalPasswordLength(
+		int $policyVal,
+		UserIdentity $user,
+		string $password
+	): Status {
 		$status = Status::newGood();
 		if ( $policyVal < strlen( $password ) ) {
 			$status->fatal( 'passwordtoolong', $policyVal );
@@ -81,10 +91,10 @@ class PasswordPolicyChecks {
 	 * @return Status error if the password is a substring within username, and the policy is true
 	 */
 	public static function checkPasswordCannotBeSubstringInUsername(
-		$policyVal,
+		bool $policyVal,
 		UserIdentity $user,
-		$password
-	) {
+		string $password
+	): Status {
 		$status = Status::newGood();
 		$username = $user->getName();
 		if ( $policyVal && stripos( $username, $password ) !== false ) {
@@ -100,7 +110,11 @@ class PasswordPolicyChecks {
 	 * @param string $password
 	 * @return Status error if the username and password match, and policy is true
 	 */
-	public static function checkPasswordCannotMatchDefaults( $policyVal, UserIdentity $user, $password ) {
+	public static function checkPasswordCannotMatchDefaults(
+		bool $policyVal,
+		UserIdentity $user,
+		string $password
+	): Status {
 		static $blockedLogins = [
 			// r75589
 			'Useruser' => 'Passpass',
@@ -142,7 +156,11 @@ class PasswordPolicyChecks {
 	 *
 	 * @return Status
 	 */
-	public static function checkPasswordNotInCommonList( $policyVal, UserIdentity $user, $password ) {
+	public static function checkPasswordNotInCommonList(
+		bool $policyVal,
+		UserIdentity $user,
+		string $password
+	): Status {
 		$status = Status::newGood();
 		if ( $policyVal && CommonPasswords::isCommon( $password ) ) {
 			$status->error( 'passwordincommonlist' );

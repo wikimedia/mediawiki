@@ -7,6 +7,8 @@
  * @file
  */
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Tests\Unit\Password;
 
 use MediaWiki\Password\PasswordPolicyChecks;
@@ -84,13 +86,13 @@ class PasswordPolicyChecksTest extends MediaWikiUnitTestCase {
 
 	public function testCheckPasswordCannotBeSubstringInUsername() {
 		$statusOK = PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername(
-			1,
+			true,
 			$this->getUser(),
 			'password'
 		);
 		$this->assertStatusGood( $statusOK, 'Password is not a substring of username' );
 		$statusLong = PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername(
-			1,
+			true,
 			$this->getUser( '123user123' ),
 			'user'
 		);

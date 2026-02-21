@@ -6,6 +6,8 @@
  * @file
  */
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Password;
 
 use DomainException;
@@ -26,7 +28,7 @@ class UserPasswordPolicy {
 	/**
 	 * @var array[]
 	 */
-	private $policies;
+	private array $policies;
 
 	/**
 	 * Mapping of statements to the function that will test the password for compliance. The
@@ -34,7 +36,7 @@ class UserPasswordPolicy {
 	 * object indicating compliance.
 	 * @var callable[]
 	 */
-	private $policyCheckFunctions;
+	private array $policyCheckFunctions;
 
 	/**
 	 * @param array[] $policies List of policies per user group
@@ -69,7 +71,7 @@ class UserPasswordPolicy {
 	 *   - forceChange: do not allow the user to login without changing the password if invalid.
 	 *   - suggestChangeOnLogin: prompt for a password change on login if the password is invalid.
 	 */
-	public function checkUserPassword( UserIdentity $user, $password ) {
+	public function checkUserPassword( UserIdentity $user, string $password ): Status {
 		$effectivePolicy = $this->getPoliciesForUser( $user );
 		return $this->checkPolicies(
 			$user,
@@ -92,7 +94,7 @@ class UserPasswordPolicy {
 	 *   - forceChange: do not allow the user to login without changing the password if invalid.
 	 *   - suggestChangeOnLogin: prompt for a password change on login if the password is invalid.
 	 */
-	public function checkUserPasswordForGroups( UserIdentity $user, $password, array $groups ) {
+	public function checkUserPasswordForGroups( UserIdentity $user, string $password, array $groups ): Status {
 		$effectivePolicy = self::getPoliciesForGroups(
 			$this->policies,
 			$groups,
@@ -113,7 +115,12 @@ class UserPasswordPolicy {
 	 * @param callable[] $policyCheckFunctions
 	 * @return Status
 	 */
-	private function checkPolicies( UserIdentity $user, $password, $policies, $policyCheckFunctions ) {
+	private function checkPolicies(
+		UserIdentity $user,
+		string $password,
+		array $policies,
+		array $policyCheckFunctions
+	): Status {
 		$status = Status::newGood( [] );
 		$forceChange = false;
 		$suggestChangeOnLogin = false;
@@ -168,7 +175,7 @@ class UserPasswordPolicy {
 	 * @param UserIdentity $user
 	 * @return array the effective policy for $user
 	 */
-	public function getPoliciesForUser( UserIdentity $user ) {
+	public function getPoliciesForUser( UserIdentity $user ): array {
 		$services = MediaWikiServices::getInstance();
 		$effectivePolicy = self::getPoliciesForGroups(
 			$this->policies,
@@ -194,7 +201,7 @@ class UserPasswordPolicy {
 	 */
 	public static function getPoliciesForGroups( array $policies, array $userGroups,
 		array $defaultPolicy
-	) {
+	): array {
 		$effectivePolicy = $defaultPolicy;
 		foreach ( $policies as $group => $policy ) {
 			if ( in_array( $group, $userGroups ) ) {
@@ -216,7 +223,7 @@ class UserPasswordPolicy {
 	 * @param array $p2
 	 * @return array containing the more restrictive values of $p1 and $p2
 	 */
-	public static function maxOfPolicies( array $p1, array $p2 ) {
+	public static function maxOfPolicies( array $p1, array $p2 ): array {
 		$ret = [];
 		$keys = array_merge( array_keys( $p1 ), array_keys( $p2 ) );
 		foreach ( $keys as $key ) {
