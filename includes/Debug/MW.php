@@ -60,5 +60,8 @@ class MW {
 
 }
 
-/** @deprecated class alias since 1.46 */
+/**
+ * Non-namespaced class alias used to provide a shorter syntax
+ * (e.g. `MW::srv()` instead of `\MediaWiki\Debug\MW::srv()`)
+ */
 class_alias( MW::class, 'MW' );
