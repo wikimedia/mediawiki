@@ -8,6 +8,7 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -51,12 +52,10 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		$prop = array_fill_keys( (array)$params['prop'], true );
 		$show = array_fill_keys( (array)$params['show'], true );
 
+		$this->addTables( [ 'categorylinks', 'linktarget' ] );
 		$this->addFields( [ 'cl_from', 'lt_title' ] );
 		$this->addFieldsIf( [ 'cl_sortkey', 'cl_sortkey_prefix' ], isset( $prop['sortkey'] ) );
 		$this->addFieldsIf( 'cl_timestamp', isset( $prop['timestamp'] ) );
-
-		$this->addTables( 'categorylinks' );
-		$this->addTables( 'linktarget' );
 		$this->addJoinConds( [ 'linktarget' => [ 'JOIN', 'cl_target_id = lt_id ' ] ] );
 		$this->addWhere( [ 'lt_namespace' => NS_CATEGORY ] );
 		$this->addWhereFld( 'cl_from', array_keys( $pages ) );
@@ -91,24 +90,6 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		if ( isset( $show['hidden'] ) && isset( $show['!hidden'] ) ) {
 			$this->dieWithError( 'apierror-show' );
 		}
-		if ( isset( $show['hidden'] ) || isset( $show['!hidden'] ) || isset( $prop['hidden'] ) ) {
-			$this->addOption( 'STRAIGHT_JOIN' );
-			$this->addTables( [ 'page', 'page_props' ] );
-			$this->addFieldsIf( 'pp_propname', isset( $prop['hidden'] ) );
-			$this->addJoinConds( [
-				'page' => [ 'LEFT JOIN', [
-					'page_namespace' => NS_CATEGORY,
-					'page_title = lt_title' ] ],
-				'page_props' => [ 'LEFT JOIN', [
-					'pp_page=page_id',
-					'pp_propname' => 'hiddencat' ] ]
-			] );
-			if ( isset( $show['hidden'] ) ) {
-				$this->addWhere( $this->getDB()->expr( 'pp_propname', '!=', null ) );
-			} elseif ( isset( $show['!hidden'] ) ) {
-				$this->addWhere( [ 'pp_propname' => null ] );
-			}
-		}
 
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		// Don't order by cl_from if it's constant in the WHERE clause
@@ -122,7 +103,48 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
+		$this->setVirtualDomain( CategoryLinksTable::VIRTUAL_DOMAIN );
 		$res = $this->select( __METHOD__ );
+		$this->resetVirtualDomain();
+
+		$hiddenCategories = [];
+		if ( isset( $prop['hidden'] ) || isset( $show['!hidden'] ) || isset( $show['hidden'] ) ) {
+			$categories = [];
+			foreach ( $res as $row ) {
+				$categories[] = $row->lt_title;
+			}
+
+			if ( $categories !== [] ) {
+				$hiddenQueryBuilder = $this->getDB()->newSelectQueryBuilder()
+					->select( [ 'pp_page', 'pp_propname', 'page_title' ] )
+					->from( 'page_props' )
+					->join( 'page', null, 'page_id = pp_page' )
+					->where( [
+						'pp_propname' => 'hiddencat',
+						'page_namespace' => NS_CATEGORY,
+						'page_title' => $categories
+					] )
+					->caller( __METHOD__ );
+
+				$hiddenRes = $hiddenQueryBuilder->fetchResultSet();
+
+				foreach ( $hiddenRes as $hiddenRow ) {
+					$hiddenCategories[$hiddenRow->page_title] = true;
+				}
+
+				// Apply hidden/!hidden filtering if needed
+				if ( isset( $show['hidden'] ) || isset( $show['!hidden'] ) ) {
+					$filteredRows = [];
+					$res->seek( 0 );
+					foreach ( $res as $row ) {
+						if ( isset( $show['hidden'] ) === isset( $hiddenCategories[$row->lt_title] ) ) {
+							$filteredRows[] = $row;
+						}
+					}
+					$res = $filteredRows;
+				}
+			}
+		}
 
 		$count = 0;
 		if ( $resultPageSet === null ) {
@@ -145,7 +167,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 					$vals['timestamp'] = wfTimestamp( TS::ISO_8601, $row->cl_timestamp );
 				}
 				if ( isset( $prop['hidden'] ) ) {
-					$vals['hidden'] = $row->pp_propname !== null;
+					$vals['hidden'] = isset( $hiddenCategories[$row->lt_title] );
 				}
 
 				$fit = $this->addPageSubItem( $row->cl_from, $vals );
