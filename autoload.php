@@ -1157,6 +1157,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Collation\\IdentityCollation' => __DIR__ . '/includes/Collation/IdentityCollation.php',
 	'MediaWiki\\Collation\\InariSaamiUppercaseCollation' => __DIR__ . '/includes/Collation/InariSaamiUppercaseCollation.php',
 	'MediaWiki\\Collation\\NumericUppercaseCollation' => __DIR__ . '/includes/Collation/NumericUppercaseCollation.php',
+	'MediaWiki\\Collation\\PinyinCollation' => __DIR__ . '/includes/Collation/PinyinCollation.php',
 	'MediaWiki\\Collation\\RemoteIcuCollation' => __DIR__ . '/includes/Collation/RemoteIcuCollation.php',
 	'MediaWiki\\Collation\\UppercaseCollation' => __DIR__ . '/includes/Collation/UppercaseCollation.php',
 	'MediaWiki\\CommentFormatter\\CommentBatch' => __DIR__ . '/includes/CommentFormatter/CommentBatch.php',
