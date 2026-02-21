@@ -158,6 +158,8 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 			$savedOutput->getRawText() );
 		$this->assertSame( $this->cacheTime, $savedOutput->getCacheTime() );
 		$this->assertSame( $this->revision->getId(), $savedOutput->getCacheRevisionId() );
+		$this->assertSame( '$wgOldRevisionParserCacheExpireTime',
+			$savedOutput->getCacheExpirySource() );
 	}
 
 	/**

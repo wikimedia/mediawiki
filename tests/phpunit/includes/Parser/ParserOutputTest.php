@@ -1518,6 +1518,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'test-wrapper', $pOutput->getWrapperDivClass() );
 		$this->assertTrue( $pOutput->getOutputFlag( ParserOutputFlags::IS_PREVIEW ) );
 		$this->assertFalse( $pOutput->isCacheable() );
+		$this->assertSame( 'preview', $pOutput->getCacheExpirySource() );
 		$this->assertTrue( $pOutput->getOutputFlag( ParserOutputFlags::COLLAPSIBLE_SECTIONS ) );
 	}
 }

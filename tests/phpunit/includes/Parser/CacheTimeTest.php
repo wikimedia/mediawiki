@@ -107,4 +107,23 @@ class CacheTimeTest extends MediaWikiIntegrationTestCase {
 		$cacheTime->recordOptions( $options );
 		$this->assertArrayEquals( $options, $cacheTime->getUsedOptions() );
 	}
+
+	public function testCacheExpirySource() {
+		$cacheTime = new CacheTime();
+		$this->assertNull( $cacheTime->getCacheExpirySource() );
+
+		$cacheTime->updateCacheExpiry( 10, 'source1' );
+		$this->assertSame( 10, $cacheTime->getCacheExpiry() );
+		$this->assertSame( 'source1', $cacheTime->getCacheExpirySource() );
+
+		// Should update if ttl is lower
+		$cacheTime->updateCacheExpiry( 5, 'source2' );
+		$this->assertSame( 5, $cacheTime->getCacheExpiry() );
+		$this->assertSame( 'source2', $cacheTime->getCacheExpirySource() );
+
+		// Should NOT update if ttl is higher
+		$cacheTime->updateCacheExpiry( 8, 'source3' );
+		$this->assertSame( 5, $cacheTime->getCacheExpiry() );
+		$this->assertSame( 'source2', $cacheTime->getCacheExpirySource() );
+	}
 }

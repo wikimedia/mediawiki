@@ -764,6 +764,10 @@ class Parser {
 			$parserOutput->getCacheExpiry() );
 		$parserOutput->setLimitReportData( 'cachereport-transientcontent',
 			$parserOutput->hasReducedExpiry() );
+		if ( $parserOutput->getCacheExpirySource() !== null ) {
+			$parserOutput->setLimitReportData( 'cachereport-expiry-source',
+				$parserOutput->getCacheExpirySource() );
+		}
 	}
 
 	/**
@@ -2752,7 +2756,7 @@ class Parser {
 
 		$value = CoreMagicVariables::expand(
 			$this, $index, new MWTimestamp( $this->getParseTime() ),
-			$this->svcOptions, $this->logger
+			$this->svcOptions, $this->logger, $frame
 		);
 
 		if ( $value === null ) {

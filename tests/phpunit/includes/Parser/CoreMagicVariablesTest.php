@@ -281,6 +281,16 @@ class CoreMagicVariablesTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'x-target', $res );
 	}
 
+	public function testCacheExpirySourceIsSet() {
+		$parser = $this->getParser();
+		$title = Title::makeTitle( NS_MAIN, 'Tests' );
+		$parser->preprocess( '{{CURRENTMONTH}}', $title, $this->getParserOptions() );
+
+		$source = $parser->getOutput()->getCacheExpirySource();
+		$this->assertNotNull( $source );
+		$this->assertStringContainsString( 'currentmonth', $source );
+	}
+
 	# ############## HELPERS ############################################
 
 	/**

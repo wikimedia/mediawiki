@@ -544,7 +544,7 @@ class ParserCache {
 		// Transfer cache properties to the cache metadata
 		$metadata = new CacheTime;
 		$metadata->recordOptions( $parserOutput->getUsedOptions() );
-		$metadata->updateCacheExpiry( $expire );
+		$metadata->updateCacheExpiry( $expire, $parserOutput->getCacheExpirySource() );
 		$metadata->setCacheTime( $cacheTime );
 		$metadata->setCacheRevisionId( $revId );
 

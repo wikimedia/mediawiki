@@ -275,7 +275,7 @@ class RevisionOutputCache {
 		$output->addCacheMessage( $msg );
 
 		// The ParserOutput might be dynamic and have been marked uncacheable by the parser.
-		$output->updateCacheExpiry( $this->cacheExpiry );
+		$output->updateCacheExpiry( $this->cacheExpiry, '$wgOldRevisionParserCacheExpireTime' );
 
 		$expiry = $output->getCacheExpiry();
 		if ( $expiry <= 0 ) {

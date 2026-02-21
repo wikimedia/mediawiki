@@ -57,6 +57,10 @@ class RenderDebugInfo extends ContentTextTransformStage {
 				$limitReport .= "Cache expiry: {$limitReportData['cachereport-ttl']}\n";
 			}
 
+			if ( array_key_exists( 'cachereport-expiry-source', $limitReportData ) ) {
+				$limitReport .= "Cache expiry source: {$limitReportData['cachereport-expiry-source']}\n";
+			}
+
 			if ( array_key_exists( 'cachereport-transientcontent', $limitReportData ) ) {
 				$transient = $limitReportData['cachereport-transientcontent'] ? 'true' : 'false';
 				$limitReport .= "Reduced expiry: $transient\n";
@@ -70,6 +74,7 @@ class RenderDebugInfo extends ContentTextTransformStage {
 					'cachereport-origin',
 					'cachereport-timestamp',
 					'cachereport-ttl',
+					'cachereport-expiry-source',
 					'cachereport-transientcontent',
 					'limitreport-timingprofile',
 				] ) ) {

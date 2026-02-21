@@ -979,7 +979,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			}
 			$parserOutput = $renderedRev->getRevisionParserOutput();
 			// Ensure this isn't accidentally cached
-			$parserOutput->updateCacheExpiry( 0 );
+			$parserOutput->updateCacheExpiry( 0, 'uncacheable-render' );
 			return Status::newGood( $parserOutput );
 		} catch ( ClientError $e ) {
 			return Status::newFatal( 'parsoid-client-error', $e->getMessage() );

@@ -48,6 +48,13 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	protected ?int $mCacheRevisionId = null;
 
 	/**
+	 * @var string|null Human-readable label identifying what caused the
+	 * current cache expiry value (e.g. "Template:Foo (currentday)").
+	 * Updated only when updateCacheExpiry() actually lowers the TTL.
+	 */
+	protected ?string $mCacheExpirySource = null;
+
+	/**
 	 * @return string|int TS::MW timestamp
 	 */
 	public function getCacheTime() {
@@ -116,12 +123,17 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	 * See also WikiPage::triggerOpportunisticLinksUpdate.
 	 *
 	 * @param int $seconds
+	 * @param string|null $source Human-readable label identifying what is
+	 *   responsible for this TTL (e.g. a magic word or template name).
+	 *   Recorded only when the expiry is actually lowered. @since 1.46
+	 * @deprecated since 1.46 Calling this method without $source.
 	 */
-	public function updateCacheExpiry( $seconds ) {
+	public function updateCacheExpiry( $seconds, ?string $source = null ) {
 		$seconds = (int)$seconds;
 
 		if ( $this->mCacheExpiry === null || $this->mCacheExpiry > $seconds ) {
 			$this->mCacheExpiry = $seconds;
+			$this->mCacheExpirySource = $source;
 		}
 	}
 
@@ -144,6 +156,16 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 
 		$expire = min( $this->mCacheExpiry ?? $parserCacheExpireTime, $parserCacheExpireTime );
 		return $expire > 0 ? $expire : 0;
+	}
+
+	/**
+	 * @return string|null Human-readable label identifying what caused the
+	 *   current cache expiry, or null if no source was recorded.
+	 * @see updateCacheExpiry()
+	 * @since 1.46
+	 */
+	public function getCacheExpirySource(): ?string {
+		return $this->mCacheExpirySource;
 	}
 
 	/**
@@ -243,6 +265,7 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 			'CacheExpiry' => $this->mCacheExpiry,
 			'CacheTime' => $this->mCacheTime,
 			'CacheRevisionId' => $this->mCacheRevisionId,
+			'CacheExpirySource' => $this->mCacheExpirySource,
 		];
 	}
 
@@ -264,6 +287,7 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 		$this->mCacheExpiry = $jsonData['CacheExpiry'] ?? null;
 		$this->mCacheTime = $jsonData['CacheTime'] ?? '';
 		$this->mCacheRevisionId = $jsonData['CacheRevisionId'] ?? null;
+		$this->mCacheExpirySource = $jsonData['CacheExpirySource'] ?? null;
 	}
 }
 

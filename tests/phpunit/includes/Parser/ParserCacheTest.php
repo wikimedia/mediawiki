@@ -121,7 +121,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		foreach ( $this->getDummyUsedOptions() as $option ) {
 			$parserOutput->recordOption( $option );
 		}
-		$parserOutput->updateCacheExpiry( 4242 );
+		$parserOutput->updateCacheExpiry( 4242, 'test-source' );
 		$parserOutput->setRenderId( 'dummy-render-id' );
 		$parserOutput->setCacheRevisionId( 0 );
 		// ParserOutput::getCacheTime() also sets it as a side effect
@@ -162,6 +162,10 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			4242,
 			$metadataFromCache->getCacheExpiry()
+		);
+		$this->assertSame(
+			'test-source',
+			$metadataFromCache->getCacheExpirySource()
 		);
 		$this->assertSame(
 			$this->page->getLatest(),

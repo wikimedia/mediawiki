@@ -122,6 +122,9 @@ abstract class ParserCacheSerializationTestCases {
 		$cacheTimeWithRevId = new CacheTime();
 		$cacheTimeWithRevId->setCacheRevisionId( $cacheRevisionId );
 
+		$cacheTimeWithExpirySource = new CacheTime();
+		$cacheTimeWithExpirySource->updateCacheExpiry( 10, 'source_test' );
+
 		return [
 			'empty' => [
 				'instance' => new CacheTime(),
@@ -162,6 +165,15 @@ abstract class ParserCacheSerializationTestCases {
 					MediaWikiIntegrationTestCase $testCase, CacheTime $object
 				) use ( $cacheExpiry ) {
 					$testCase->assertSame( $cacheExpiry, $object->getCacheExpiry() );
+				}
+			],
+			'cacheExpiryWithSource' => [
+				'instance' => $cacheTimeWithExpirySource,
+				'assertions' => static function (
+					MediaWikiIntegrationTestCase $testCase, CacheTime $object
+				) {
+					$testCase->assertSame( 10, $object->getCacheExpiry() );
+					$testCase->assertSame( 'source_test', $object->getCacheExpirySource() );
 				}
 			],
 			'cacheRevisionId' => [

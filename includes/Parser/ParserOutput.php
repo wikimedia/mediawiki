@@ -2498,12 +2498,15 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Lower the runtime adaptive TTL to at most this value
 	 *
 	 * @param int $ttl
+	 * @param string|null $source Cache-expiry attribution label @since 1.46
+	 *   @see CacheTime::updateCacheExpiry()
+	 * @deprecated since 1.46 Calling this method without $source.
 	 * @since 1.28
 	 */
-	public function updateRuntimeAdaptiveExpiry( int $ttl ): void {
+	public function updateRuntimeAdaptiveExpiry( int $ttl, ?string $source = null ): void {
 		$this->mMaxAdaptiveExpiry ??= $ttl;
 		$this->mMaxAdaptiveExpiry = min( $ttl, $this->mMaxAdaptiveExpiry );
-		$this->updateCacheExpiry( $ttl );
+		$this->updateCacheExpiry( $ttl, $source );
 	}
 
 	/**
@@ -2561,7 +2564,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$adaptiveTTL = intval( $slope * $runtime + $point );
 			$adaptiveTTL = max( $adaptiveTTL, self::MIN_AR_TTL );
 			$adaptiveTTL = min( $adaptiveTTL, $this->mMaxAdaptiveExpiry );
-			$this->updateCacheExpiry( $adaptiveTTL );
+			$this->updateCacheExpiry( $adaptiveTTL, 'adaptive-ttl' );
 		}
 	}
 
@@ -2588,7 +2591,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		if ( $parserOptions->getIsPreview() ) {
 			$this->setOutputFlag( ParserOutputFlags::IS_PREVIEW, true );
 			// Ensure that previews aren't cacheable, just to be safe.
-			$this->updateCacheExpiry( 0 );
+			$this->updateCacheExpiry( 0, 'preview' );
 		}
 
 		// Record whether this was parsed with the legacy parser
@@ -2683,7 +2686,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->addModuleStyles( $source->getModuleStyles() );
 		$this->mJsConfigVars = self::mergeMapStrategy( $this->mJsConfigVars, $source->mJsConfigVars );
 		if ( $source->mMaxAdaptiveExpiry !== null ) {
-			$this->updateRuntimeAdaptiveExpiry( $source->mMaxAdaptiveExpiry );
+			$this->updateRuntimeAdaptiveExpiry( $source->mMaxAdaptiveExpiry, $source->getCacheExpirySource() );
 		}
 		$this->mExtraStyleSrcs = self::mergeList(
 			$this->mExtraStyleSrcs,
@@ -2757,7 +2760,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		);
 
 		if ( $source->mCacheExpiry !== null ) {
-			$this->updateCacheExpiry( $source->mCacheExpiry );
+			$this->updateCacheExpiry( $source->mCacheExpiry, $source->getCacheExpirySource() );
 		}
 	}
 
@@ -2944,10 +2947,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				$metadata->recordOption( $opt );
 			}
 			if ( $this->mMaxAdaptiveExpiry !== null ) {
-				$metadata->updateRuntimeAdaptiveExpiry( $this->mMaxAdaptiveExpiry );
+				$metadata->updateRuntimeAdaptiveExpiry( $this->mMaxAdaptiveExpiry, $this->getCacheExpirySource() );
 			}
 			if ( $this->mCacheExpiry !== null ) {
-				$metadata->updateCacheExpiry( $this->mCacheExpiry );
+				$metadata->updateCacheExpiry( $this->mCacheExpiry, $this->getCacheExpirySource() );
 			}
 			if ( $this->mCacheTime !== '' ) {
 				$metadata->setCacheTime( $this->mCacheTime );

@@ -52,8 +52,19 @@ EOF;
 		$po->setLimitReportData( 'test', 'limit' );
 		$expected = new ParserOutput( $expectedText );
 		$expected->setLimitReportData( 'test', 'limit' );
+
+		$expectedTextWithSource = $text .
+			"\n<!-- \nNewPP limit report\nCache expiry source: somesource\nComplications: []\n-->\n";
+		$poWithSource = new ParserOutput( $text );
+		$poWithSource->setLimitReportData( 'test', 'limit' );
+		$poWithSource->setLimitReportData( 'cachereport-expiry-source', 'somesource' );
+		$expectedWithSource = new ParserOutput( $expectedTextWithSource );
+		$expectedWithSource->setLimitReportData( 'test', 'limit' );
+		$expectedWithSource->setLimitReportData( 'cachereport-expiry-source', 'somesource' );
+
 		return [
 			[ $po, ParserOptions::newFromAnon(), [], $expected ],
+			[ $poWithSource, ParserOptions::newFromAnon(), [], $expectedWithSource ],
 		];
 	}
 }
