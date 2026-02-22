@@ -13,7 +13,7 @@ use MediaWiki\User\UserRigorOptions;
 use Stringable;
 
 /**
- * Object holding data about a session's user
+ * Immutable object holding data about a session's user, used within SessionInfo.
  *
  * In general, this class exists for two purposes:
  * - User doesn't distinguish between "anonymous user" and "non-anonymous user
@@ -28,9 +28,11 @@ use Stringable;
  * token available from cookies.
  *
  * An "unverified" UserInfo should be used when it's not possible to
- * authenticate the user, e.g. the user ID cookie is set but the user Token
- * cookie isn't. If the Token is available but doesn't match, don't return a
- * UserInfo at all.
+ * authenticate the user without a session store lookup, e.g. the user ID cookie
+ * is set but the user Token cookie isn't.
+ *
+ * If the information in the request is contradictory (e.g. the token is available
+ * but doesn't match), return a SessionInfo with no UserInfo instead.
  *
  * @since 1.27
  * @ingroup Session
@@ -118,7 +120,9 @@ final class UserInfo implements Stringable {
 	}
 
 	/**
-	 * Return whether this represents a verified user
+	 * Return whether this represents a verified user.
+	 * Unverified means this UserInfo is based on some information that's easy to forge
+	 * (such as a username cookie) and will be verified in a later step.
 	 * @return bool
 	 */
 	public function isVerified() {
@@ -127,7 +131,8 @@ final class UserInfo implements Stringable {
 
 	/**
 	 * Return the user ID
-	 * @note Do not use this to test for anonymous users!
+	 * @note Do not use this to test for anonymous users! A user can be authenticated without
+	 * having an account on the current wiki.
 	 * @return int
 	 */
 	public function getId() {
@@ -145,6 +150,7 @@ final class UserInfo implements Stringable {
 	/**
 	 * Return the user token
 	 * @return string
+	 * @see User::getToken()
 	 */
 	public function getToken() {
 		return $this->user === null || $this->user->getId() === 0 ? '' : $this->user->getToken( false );
