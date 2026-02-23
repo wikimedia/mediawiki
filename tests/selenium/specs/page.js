@@ -73,7 +73,8 @@ describe( 'Page', () => {
 
 		// check
 		await expect( EditPage.heading ).toHaveText( name );
-		await expect( EditPage.displayedContent ).toHaveText( expect.stringContaining( editContent ) );
+		await expect( EditPage.displayedContent )
+			.toHaveText( expect.stringContaining( editContent ) );
 	} );
 
 	it( 'should have history', async () => {

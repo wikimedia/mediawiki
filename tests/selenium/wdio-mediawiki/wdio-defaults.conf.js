@@ -150,7 +150,7 @@ export const config = {
 	 * Gets executed once before all workers get launched.
 	 *
 	 * @param {Object} wdioConfig wdio configuration object
-	 * @param capabilities
+	 * @param {Object[]} capabilities
 	 */
 	onPrepare: function ( wdioConfig, capabilities ) {
 		console.log( `Run test targeting ${ wdioConfig.baseUrl }` );

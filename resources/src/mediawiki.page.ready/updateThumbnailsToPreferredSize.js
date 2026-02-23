@@ -63,7 +63,7 @@ const updateThumbnailToPreferredSize = ( img ) => {
  * to sharpen images.
  *
  * @ignore
- * @param $element
+ * @param {jQuery} $element
  */
 function updateThumbnailsToPreferredSize( $element ) {
 	if ( !$element.closest( '[data-mw-parsoid-version]' ).length ) {

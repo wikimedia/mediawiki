@@ -148,7 +148,8 @@
 		const toggleButton = new OO.ui.ButtonWidget( {
 			framed: false,
 			icon: 'imageGallery',
-			title: mw.msg( 'gallery-slideshow-toggle' )
+			label: mw.msg( 'gallery-slideshow-toggle' ),
+			invisibleLabel: true
 		} ).connect( this, { click: 'toggleThumbnails' } );
 
 		const interfaceElements = new OO.ui.PanelLayout( {

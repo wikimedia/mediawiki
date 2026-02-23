@@ -342,7 +342,7 @@ Parser.prototype = {
 	 * n.b. We want to move this functionality to the server. Nothing here is required to be on the client.
 	 *
 	 * @param {string} input Message string wikitext
-	 * @throws Error
+	 * @throws {Error} Parse error
 	 * @return {any} abstract syntax tree
 	 */
 	wikiTextToAst: function ( input ) {

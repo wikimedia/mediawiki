@@ -265,7 +265,7 @@
 	 * @abstract
 	 * @param {string} tag
 	 * @param {string[]} params
-	 * @return {FieldSpecificationObject} Field specification object, or null if the tag+params are unrecognized.
+	 * @return {mw.widgets.datetime.DateTimeFormatter~FieldSpecificationObject} Field specification object, or null if the tag+params are unrecognized.
 	 */
 	mw.widgets.datetime.DateTimeFormatter.prototype.getFieldForTag = function ( tag, params ) {
 		let c, spec = null;
@@ -629,7 +629,7 @@
 	 *
 	 * @abstract
 	 * @param {Date|null} current Current date
-	 * @return {CalendarGridData} Data
+	 * @return {mw.widgets.datetime.DateTimeFormatter~CalendarGridData} Data
 	 */
 	mw.widgets.datetime.DateTimeFormatter.prototype.getCalendarData = function ( /* components */ ) {
 		// Should be overridden by subclass

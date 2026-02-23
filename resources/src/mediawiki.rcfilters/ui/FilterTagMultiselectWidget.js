@@ -275,6 +275,7 @@ FilterTagMultiselectWidget.prototype.createViewsSelectWidget = function () {
 	];
 	if ( mw.config.get( 'enableWatchlistLabels' ) && this.specialPage === 'Watchlist' ) {
 		items.push(
+			// eslint-disable-next-line mediawiki/class-doc
 			new OO.ui.ButtonWidget( {
 				framed: !!this.isMobile,
 				data: 'wllabels',

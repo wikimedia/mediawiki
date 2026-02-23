@@ -190,8 +190,8 @@ export function setDisplay( instances ) {
  * NodeJS instances.
  *
  * @param {number} instances The number of parallel Xvfb servers to launch.
- * @param width The screen width
- * @param height The screen height
+ * @param {number} width The screen width
+ * @param {number} height The screen height
  * @return {object[]} An array of Xvfb child processes.
  */
 export function startXvfb( instances, width, height ) {

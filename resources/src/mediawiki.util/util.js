@@ -1083,8 +1083,9 @@ const util = {
 	 *
 	 * This logic is duplicated server-side in File::adjustThumbWidthForSteps.
 	 *
-	 * @param {number} thumbWidth target width in pixels
-	 * @param {number} originalWidth original file width
+	 * @param {number} thumbWidth Target width in pixels
+	 * @param {number} originalWidth Original file width
+	 * @return {number} Adjusted thumbnail width in pixels
 	 */
 	adjustThumbWidthForSteps(
 		thumbWidth,

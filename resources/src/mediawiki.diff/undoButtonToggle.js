@@ -2,7 +2,7 @@
  * Add classes to the undo button to 1. Display if the user is logged in and
  * 2. Change the styling of the undo link into a Codex fake button
  *
- * @param $undoButton
+ * @param {jQuery} $undoButton
  */
 module.exports = function ( $undoButton ) {
 	const UNDO_LINK_FAKE_BUTTON_CLASS =

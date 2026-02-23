@@ -111,7 +111,9 @@ class PrometheusFileReporter extends WDIOReporter {
 		const testDurationInSeconds = ( test.end - test.start ) / 1000;
 		const myTest = this.testMetrics[ test.uid ];
 		myTest.passed++;
-		myTest.testDurationSecondsMax = Math.max( myTest.testDurationSecondsMax, testDurationInSeconds );
+		myTest.testDurationSecondsMax = Math.max(
+			myTest.testDurationSecondsMax, testDurationInSeconds
+		);
 		myTest.testDurationSecondsSum += testDurationInSeconds;
 		myTest.testDurationSecondsCount += 1;
 		this.spec.passed++;
@@ -121,7 +123,9 @@ class PrometheusFileReporter extends WDIOReporter {
 		const testDurationInSeconds = ( test.end - test.start ) / 1000;
 		const myTest = this.testMetrics[ test.uid ];
 		myTest.failed++;
-		myTest.testDurationSecondsMax = Math.max( myTest.testDurationSecondsMax, testDurationInSeconds );
+		myTest.testDurationSecondsMax = Math.max(
+			myTest.testDurationSecondsMax, testDurationInSeconds
+		);
 		myTest.testDurationSecondsSum += testDurationInSeconds;
 		myTest.testDurationSecondsCount += 1;
 		this.spec.failed++;
@@ -164,6 +168,7 @@ class PrometheusFileReporter extends WDIOReporter {
 		specMetrics.labels = labels;
 		specMetrics.tests = Object.values( this.testMetrics );
 		const outputPath = path.join( this.outputDir, 'specs-' + workerId + '.json' );
+		// eslint-disable-next-line security/detect-non-literal-fs-filename
 		writeFileSync( outputPath, JSON.stringify( specMetrics ), { encoding: 'utf-8' } );
 	}
 }
@@ -181,11 +186,13 @@ function writeAllProjectMetrics( metricsDir, fileName ) {
 	};
 	const tests = [];
 
+	// eslint-disable-next-line security/detect-non-literal-fs-filename
 	for ( const file of readdirSync( metricsDir ) ) {
 		if ( !file.startsWith( 'specs-' ) || !file.endsWith( '.json' ) ) {
 			continue;
 		}
 		const filePath = path.join( metricsDir, file );
+		// eslint-disable-next-line security/detect-non-literal-fs-filename
 		const data = JSON.parse( readFileSync( filePath, 'utf-8' ) );
 
 		// We have read the raw data, renmove it since we only need the .prom
@@ -298,6 +305,7 @@ function writeAllProjectMetrics( metricsDir, fileName ) {
 	// Only write the file if we have any tests https://phabricator.wikimedia.org/T407831
 	if ( projectMetrics.totalTests > 0 ) {
 		const projectName = projectMetrics.labels.project;
+		// eslint-disable-next-line security/detect-non-literal-fs-filename
 		writeFileSync( path.join( metricsDir, `${ projectName }-${ fileName }.prom` ), `${ lines.join( '\n' ) }\n`, 'utf-8' );
 	}
 }

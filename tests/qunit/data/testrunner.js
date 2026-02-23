@@ -128,6 +128,7 @@
 	 * @param {Object} [localEnv]
 	 * @param {Object} [localEnv.config]
 	 * @param {Object} [localEnv.messages]
+	 * @return {Object} QUnit hooks
 	 */
 	QUnit.newMwEnvironment = function newMwEnvironment( localEnv ) {
 		localEnv = localEnv || {};

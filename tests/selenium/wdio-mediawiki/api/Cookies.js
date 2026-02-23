@@ -10,7 +10,7 @@ export class Cookies {
 	/**
 	 * Add cookies from Set-Cookie header lines.
 	 *
-	 * @param {Iterable<string>} setCookies - Iterable of `Set-Cookie` header lines.
+	 * @param {string[]} setCookies `Set-Cookie` header lines.
 	 */
 	getCookiesFromHeaders( setCookies ) {
 		for ( const line of setCookies ) {

@@ -38,7 +38,7 @@ const loginFallbackUrl = loginTitle.getUrl( {
  * Exposes an instance of {@link AuthPopup} configured to display a login dialog for the local
  * instance of MediaWiki.
  *
- * The promises returned by `AuthPopup` methods will be resolved with a {@link userinfo} object.
+ * The promises returned by `AuthPopup` methods will be resolved with a {@link mediawiki.authenticationPopup~userinfo} object.
  *
  * **This library is not stable yet (as of May 2024). We're still testing which of the
  * methods work from the technical side, and which methods are understandable for users.

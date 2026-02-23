@@ -59,7 +59,8 @@ const ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
 		this.helpLink = new OO.ui.ButtonWidget( {
 			icon: 'helpNotice',
 			framed: false,
-			title: mw.msg( 'rcfilters-tag-help', this.itemModel.getLabel() ),
+			label: mw.msg( 'rcfilters-tag-help', this.itemModel.getLabel() ),
+			invisibleLabel: true,
 			href: this.itemModel.getHelpLink(),
 			target: '_blank'
 		} );

@@ -41,6 +41,8 @@
  */
 'use strict';
 
+/* eslint-disable mediawiki/no-storage */
+
 // Catch exceptions to avoid fatal in Chrome's "Block data storage" mode
 // which throws when accessing the localStorage property itself, as opposed
 // to the standard behaviour of throwing on getItem/setItem. (T148998)

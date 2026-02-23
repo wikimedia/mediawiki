@@ -16,6 +16,7 @@ function addRoutes( router, trigger ) {
 		searchOpen = true;
 		const searchModuleName = config.searchModule;
 		mw.loader.using( searchModuleName ).then( () => {
+			// eslint-disable-next-line security/detect-non-literal-require
 			const { init } = require( searchModuleName );
 			// If it exports an init function execute that immediately.
 			if ( init ) {

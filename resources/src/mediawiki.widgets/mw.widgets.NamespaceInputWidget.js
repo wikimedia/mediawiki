@@ -47,7 +47,7 @@
 	 *
 	 * @method getNamespaceDropdownOptions
 	 * @param {Object} [config] Configuration options
-	 * @return {DropdownOptions[]} Dropdown options
+	 * @return {Object[]} Dropdown options, with data and label
 	 * @memberof mw.widgets.NamespaceInputWidget
 	 */
 	mw.widgets.NamespaceInputWidget.static.getNamespaceDropdownOptions = function ( config ) {

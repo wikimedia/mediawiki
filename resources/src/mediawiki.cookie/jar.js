@@ -1,3 +1,4 @@
+/* eslint-disable mediawiki/no-cookie */
 /**
  * Cookie Plugin
  * Based on https://github.com/carhartl/jquery-cookie

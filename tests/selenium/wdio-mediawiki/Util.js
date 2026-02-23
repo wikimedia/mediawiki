@@ -42,7 +42,7 @@ export async function isTargetNotWikitext( target ) {
 				action: 'query', prop: 'info', titles: target_,
 				format: 'json', formatversion: 2
 			} ).then( ( result ) => {
-				// Finally, return whether said page is wikitext (or would be, if it doesn't yet exist)
+				// Finally, check if the page is wikitext (or would be, if it doesn't yet exist)
 				done( result.query.pages[ 0 ].contentmodel !== 'wikitext' );
 			} );
 		} );

@@ -303,7 +303,7 @@
 	 * @protected
 	 * @param {string} tag
 	 * @param {string[]} params
-	 * @return {FieldSpecificationObject} Field specification object, or null if the tag+params are unrecognized.
+	 * @return {mw.widgets.datetime.DateTimeFormatter~FieldSpecificationObject} Field specification object, or null if the tag+params are unrecognized.
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.prototype.getFieldForTag = function ( tag, params ) {
 		let spec = null;

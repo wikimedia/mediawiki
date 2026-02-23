@@ -33,14 +33,14 @@
 		/**
 		 * @callback mw.searchSuggest~ResponseFunction
 		 * @param {string[]} titles titles of pages that match search
-		 * @param {ResponseMetaData} meta meta data relating to search.
+		 * @param {mw.searchSuggest~ResponseMetaData} meta meta data relating to search.
 		 */
 		/**
 		 * Queries the wiki and calls response with the result.
 		 *
 		 * @param {mw.Api} api
 		 * @param {string} query
-		 * @param {ResponseFunction} response
+		 * @param {mw.searchSuggest~ResponseFunction} response
 		 * @param {string|number} [limit]
 		 * @param {string|number|string[]|number[]} [namespace]
 		 * @return {jQuery.Deferred}

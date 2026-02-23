@@ -294,6 +294,7 @@ function isSearchInput( element ) {
 function loadSearchModule( moduleName ) {
 	function requestSearchModule() {
 		mw.loader.using( moduleName ).then( () => {
+			// eslint-disable-next-line security/detect-non-literal-require
 			const { init } = require( moduleName );
 			// If it exports an init function execute that immediately.
 			if ( init ) {

@@ -62,7 +62,7 @@ class Api {
 	 * Do a request with custom parameters to the API. If you
 	 * use this function maybe something is missing in core?
 	 *
-	 * @param params
+	 * @param {Object} params
 	 * @return {Promise<Object>} The JSON response from the API
 	 * @throws {Error} If the request fails
 	 */

@@ -23,7 +23,7 @@
  *
  * @typedef {Function} mw.template~TemplateCompileFunction
  * @param {string} src source of the template
- * @return {TemplateRenderer} for rendering
+ * @return {mw.template~TemplateRenderer} for rendering
  */
 
 /**
@@ -37,12 +37,12 @@
 
 /**
  * @typedef {Object} mw.template~TemplateRenderer
- * @property {TemplateRenderFunction} render
+ * @property {mw.template~TemplateRenderFunction} render
  */
 
 /**
  * @typedef {Object} mw.template~TemplateCompiler
- * @property {TemplateCompileFunction} compile
+ * @property {mw.template~TemplateCompileFunction} compile
  */
 ( function () {
 	const compiledTemplates = {},
@@ -58,7 +58,7 @@
 		 * The compiler name must correspond with the name suffix of templates that use this compiler.
 		 *
 		 * @param {string} name Compiler name
-		 * @param {TemplateCompiler} compiler
+		 * @param {mw.template~TemplateCompiler} compiler
 		 */
 		registerCompiler: function ( name, compiler ) {
 			if ( !compiler.compile ) {
@@ -85,7 +85,7 @@
 		 * Get a compiler via its name.
 		 *
 		 * @param {string} name Name of a compiler
-		 * @return {TemplateCompiler} The compiler
+		 * @return {mw.template~TemplateCompiler} The compiler
 		 * @throws {Error} when unknown compiler provided
 		 */
 		getCompiler: function ( name ) {
@@ -104,7 +104,7 @@
 		 * @param {string} moduleName Name of the ResourceLoader module the template is associated with
 		 * @param {string} templateName Name of the template (including suffix)
 		 * @param {string} templateBody Contents of the template (e.g. html markup)
-		 * @return {TemplateRenderer} Compiled template
+		 * @return {mw.template~TemplateRenderer} Compiled template
 		 */
 		add: function ( moduleName, templateName, templateBody ) {
 			// Precompile and add to cache
@@ -122,7 +122,7 @@
 		 *
 		 * @param {string} moduleName Name of the module to retrieve the template from
 		 * @param {string} templateName Name of template to be retrieved
-		 * @return {TemplateRenderer} Compiled template
+		 * @return {mw.template~TemplateRenderer} Compiled template
 		 */
 		get: function ( moduleName, templateName ) {
 			// Try cache first
@@ -144,7 +144,7 @@
 		 *
 		 * @param {string} templateBody Template body
 		 * @param {string} compilerName The name of a registered compiler.
-		 * @return {TemplateRenderer} Compiled template
+		 * @return {mw.template~TemplateRenderer} Compiled template
 		 * @throws {Error} when unknown compiler name provided.
 		 */
 		compile: function ( templateBody, compilerName ) {

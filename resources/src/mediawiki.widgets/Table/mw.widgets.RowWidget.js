@@ -48,7 +48,8 @@ mw.widgets.RowWidget = function MwWidgetsRowWidget( config = {} ) {
 			icon: 'trash',
 			classes: [ 'mw-widgets-rowWidget-delete-button' ],
 			flags: 'destructive',
-			title: mw.msg( 'mw-widgets-table-row-delete' )
+			label: mw.msg( 'mw-widgets-table-row-delete' ),
+			invisibleLabel: true
 		} );
 	}
 

@@ -65,7 +65,6 @@ QUnit.module( 'mediawiki.deflate', () => {
 
 		for ( const method of methods ) {
 			await ( async () => {
-				// eslint-disable-next-line qunit/no-async-in-loops
 				const done = assert.async();
 				let promise;
 				let platform;
