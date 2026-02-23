@@ -16,15 +16,12 @@ class MemoizedCallableTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 
-	/** For testCallableMemoized() only */
-	private static int $computeCalls = 0;
-
 	/**
 	 * The memoized callable should relate inputs to outputs in the same
 	 * way as the original underlying callable.
 	 */
 	public function testReturnValuePassedThrough() {
-		$memoized = new MemoizedCallable( [ self::class, 'reverse' ] );
+		$memoized = new MemoizedCallable( [ MemoizedCallableCallObject::class, 'reverse' ] );
 
 		$this->assertEquals( 'flow', $memoized->invoke( 'wolf' ) );
 	}
@@ -32,13 +29,11 @@ class MemoizedCallableTest extends TestCase {
 	/**
 	 * Consecutive calls to the memoized callable with the same arguments
 	 * should result in just one invocation of the underlying callable.
-	 *
-	 * @requires extension apcu
 	 */
 	public function testCallableMemoized() {
-		$memoized = new ArrayBackedMemoizedCallable( [ self::class, 'computeSomething' ] );
+		$memoized = new ArrayBackedMemoizedCallable( [ MemoizedCallableCallObject::class, 'computeSomething' ] );
 
-		$this->assertSame( 0, self::$computeCalls );
+		$this->assertSame( 0, MemoizedCallableCallObject::$computeCalls );
 
 		// First invocation -- delegates to $this->computeSomething()
 		$this->assertEquals( 'ok', $memoized->invoke() );
@@ -47,7 +42,7 @@ class MemoizedCallableTest extends TestCase {
 		$this->assertEquals( 'ok', $memoized->invoke() );
 
 		// $this->computeSomething must be called only once
-		$this->assertSame( 1, self::$computeCalls );
+		$this->assertSame( 1, MemoizedCallableCallObject::$computeCalls );
 	}
 
 	public function testInvokeVariadic() {
@@ -76,37 +71,12 @@ class MemoizedCallableTest extends TestCase {
 		$this->assertSame( 1, $memoized->ttl );
 	}
 
-	public static function makeA() {
-		return 'a';
-	}
-
-	public static function makeB() {
-		return 'b';
-	}
-
-	public static function makeRand() {
-		return rand();
-	}
-
-	public static function reverse( $v ) {
-		return strrev( $v );
-	}
-
-	public function __invoke() {
-		return 'c';
-	}
-
-	public static function computeSomething() {
-		self::$computeCalls++;
-		return 'ok';
-	}
-
 	/**
 	 * Callable names should be distinct.
 	 */
 	public function testMemoizedClosure() {
-		$a = new MemoizedCallable( [ self::class, 'makeA' ] );
-		$b = new MemoizedCallable( [ self::class, 'makeB' ] );
+		$a = new MemoizedCallable( [ MemoizedCallableCallObject::class, 'makeA' ] );
+		$b = new MemoizedCallable( [ MemoizedCallableCallObject::class, 'makeB' ] );
 
 		$this->assertEquals( 'a', $a->invokeArgs() );
 		$this->assertEquals( 'b', $b->invokeArgs() );
@@ -119,7 +89,7 @@ class MemoizedCallableTest extends TestCase {
 			$b->callableName
 		);
 
-		$c = new ArrayBackedMemoizedCallable( [ self::class, 'makeRand' ] );
+		$c = new ArrayBackedMemoizedCallable( [ MemoizedCallableCallObject::class, 'makeRand' ] );
 		$this->assertEquals( $c->invokeArgs(), $c->invokeArgs(), 'memoized random' );
 	}
 
@@ -143,8 +113,8 @@ class MemoizedCallableTest extends TestCase {
 		$closureMsg = 'Cannot memoize unnamed closure';
 		$objectMsg = 'Cannot memoize object-bound callable';
 
-		yield 'obj' => [ $objectMsg, new self() ];
-		yield 'obj2' => [ $objectMsg, [ new self(), 'makeRand' ] ];
+		yield 'obj' => [ $objectMsg, new MemoizedCallableCallObject() ];
+		yield 'obj2' => [ $objectMsg, [ new MemoizedCallableCallObject(), 'makeRand' ] ];
 		yield 'arrow' => [ $closureMsg, static fn ( $a ) => $a * 2 ];
 		yield 'fcc' => [ $closureMsg, strlen( ... ) ];
 		yield 'closure' => [ $closureMsg, static fn () => 'a'
@@ -178,4 +148,36 @@ class ArrayBackedMemoizedCallable extends MemoizedCallable {
 	protected function storeResult( $key, $result ) {
 		$this->cache[$key] = $result;
 	}
+}
+
+class MemoizedCallableCallObject {
+
+	/** For testCallableMemoized() only */
+	public static int $computeCalls = 0;
+
+	public static function makeA() {
+		return 'a';
+	}
+
+	public static function makeB() {
+		return 'b';
+	}
+
+	public static function makeRand() {
+		return rand();
+	}
+
+	public static function reverse( $v ) {
+		return strrev( $v );
+	}
+
+	public function __invoke() {
+		return 'c';
+	}
+
+	public static function computeSomething() {
+		self::$computeCalls++;
+		return 'ok';
+	}
+
 }
