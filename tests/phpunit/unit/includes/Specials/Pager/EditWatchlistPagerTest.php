@@ -178,7 +178,7 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 				) use ( $watchedItemsCallAndResponse, $mockUser ) {
 					$this->assertEquals( $user, $mockUser );
 					$this->assertEquals( $watchedItemsCallAndResponse['call'], $options );
-					return $watchedItemsCallAndResponse['response'];
+					return ( $watchedItemsCallAndResponse['response'] )( $this );
 				}
 			);
 		$pager = $this->instantiatePager( [
@@ -201,7 +201,7 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 		return [ $offset, $limit, $order ];
 	}
 
-	public function provideTestReallyDoQuery(): array {
+	public static function provideTestReallyDoQuery(): array {
 		return [
 			// data set 0: request empty
 			[
@@ -214,10 +214,10 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 						'offsetConds' => [],
 						'forWrite' => false,
 					],
-					'response' => [
-						$this->createMockWatchedItem( 777, 'Page_1', 20250909180500 ),
-						$this->createMockWatchedItem( 999, 'Page_2', 20250909180530 ),
-						$this->createMockWatchedItem( 666, 'Page_X', null ),
+					'response' => static fn ( $testCase ) => [
+						$testCase->createMockWatchedItem( 777, 'Page_1', 20250909180500 ),
+						$testCase->createMockWatchedItem( 999, 'Page_2', 20250909180530 ),
+						$testCase->createMockWatchedItem( 666, 'Page_X', null ),
 					]
 				],
 				'expectedResult' => new FakeResultWrapper( [
@@ -247,11 +247,11 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 						'offsetConds' => [ "wl_namespace < 999 OR (wl_namespace = 999 AND (wl_title < 'Page_2'))" ],
 						'forWrite' => false,
 					],
-					'response' => [
-						$this->createMockWatchedItem( 999, 'Page_2', 20250909180530 ),
-						$this->createMockWatchedItem(
+					'response' => static fn ( $testCase ) => [
+						$testCase->createMockWatchedItem( 999, 'Page_2', 20250909180530 ),
+						$testCase->createMockWatchedItem(
 							777, 'Page_1', 20250909180500,
-							[ new WatchlistLabel( $this->createMock( UserIdentity::class ), 'foo', 1 ) ]
+							[ new WatchlistLabel( $testCase->createMock( UserIdentity::class ), 'foo', 1 ) ]
 						),
 					]
 				],
