@@ -112,7 +112,8 @@ class SchemaMaintenanceTest extends MaintenanceBaseTestCase {
 
 			// Check that the filename is expected to be present.
 			$this->assertTrue( str_starts_with( $path, $directoryPath ) );
-			$relativePath = substr( $path, strlen( $directoryPath ) );
+			// Convert windows path back to match expected input
+			$relativePath = strtr( substr( $path, strlen( $directoryPath ) ), '\\', '/' );
 			// The expected file may be an array key or an array value. First check for the key, and if not
 			// present then check for array values as long as they key for the value is an integer.
 			if ( array_key_exists( $relativePath, $expectedFilePathsToFileContentPath ) ) {
