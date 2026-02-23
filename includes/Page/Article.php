@@ -13,6 +13,7 @@ use MediaWiki\Cache\HTMLFileCache;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\HookContainer\HookRunner;
@@ -62,13 +63,14 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class Article implements Page {
 	use ProtectedHookAccessorTrait;
 	use NonSerializableTrait;
+	use DeprecationHelper;
 
 	/**
 	 * @var IContextSource|null The context this Article is executed in.
 	 * If null, RequestContext::getMain() is used.
 	 * @deprecated since 1.35, must be private, use {@link getContext}
 	 */
-	protected $mContext;
+	private $mContext;
 
 	/** @var WikiPage The WikiPage object of this instance */
 	protected $mPage;
@@ -135,6 +137,8 @@ class Article implements Page {
 	 * @param int|null $oldId Revision ID, null to fetch from request, zero for current
 	 */
 	public function __construct( Title $title, $oldId = null ) {
+		$this->deprecatePublicProperty( 'mContext', '1.35', __CLASS__ );
+
 		$this->mOldId = $oldId;
 		$this->mPage = $this->newPage( $title );
 
