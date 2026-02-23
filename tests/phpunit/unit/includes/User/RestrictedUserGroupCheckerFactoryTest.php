@@ -6,12 +6,10 @@
 
 namespace MediaWiki\Tests\User;
 
-use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Config\SiteConfiguration;
-use MediaWiki\MainConfigNames;
 use MediaWiki\User\RestrictedUserGroupCheckerFactory;
+use MediaWiki\User\RestrictedUserGroupConfigReader;
+use MediaWiki\User\UserGroupRestrictions;
 use MediaWiki\User\UserRequirementsConditionChecker;
-use MediaWiki\WikiMap\WikiMap;
 use MediaWikiUnitTestCase;
 
 /**
@@ -20,54 +18,29 @@ use MediaWikiUnitTestCase;
 class RestrictedUserGroupCheckerFactoryTest extends MediaWikiUnitTestCase {
 
 	private function createFactory(): RestrictedUserGroupCheckerFactory {
-		$options = new ServiceOptions(
-			RestrictedUserGroupCheckerFactory::CONSTRUCTOR_OPTIONS,
-			[
-				MainConfigNames::RestrictedGroups => [
-					'interface-admin' => [],
-				],
-			]
-		);
+		$configReader = $this->createMock( RestrictedUserGroupConfigReader::class );
+		$configReader->method( 'getConfig' )
+			->willReturn( [
+				'interface-admin' => new UserGroupRestrictions( [] ),
+			] );
 		$conditionChecker = $this->createStub( UserRequirementsConditionChecker::class );
 
-		return new RestrictedUserGroupCheckerFactory( $options, $conditionChecker );
+		return new RestrictedUserGroupCheckerFactory( $configReader, $conditionChecker );
 	}
 
-	public function testLocalCheckerIsCreatedWithOptions() {
+	public function testCheckerIsCached() {
 		$factory = $this->createFactory();
-		$checker = $factory->getRestrictedUserGroupChecker();
+		$checker1 = $factory->getRestrictedUserGroupChecker();
+		$checker2 = $factory->getRestrictedUserGroupChecker();
 
-		$this->assertTrue( $checker->isGroupRestricted( 'interface-admin' ) );
+		$this->assertSame( $checker1, $checker2 );
 	}
 
-	public function testRemoteCheckerIsCreated() {
-		$mockSiteConfiguration = $this->createMock( SiteConfiguration::class );
-		$mockSiteConfiguration->method( 'get' )
-			->willReturnCallback( static function ( $setting, $wiki ) {
-				if ( $setting !== 'wgRestrictedGroups' ) {
-					return null;
-				}
-
-				$settingsPerWiki = [
-					WikiMap::getCurrentWikiId() => [ 'interface-admin' => [] ],
-					'wiki1' => [ 'sysop' => [] ],
-					'wiki2' => [ 'bureaucrat' => [] ],
-				];
-
-				if ( isset( $settingsPerWiki[$wiki] ) ) {
-					return $settingsPerWiki[$wiki];
-				}
-				return null;
-			} );
-
-		global $wgConf;
-		$wgConf = $mockSiteConfiguration;
-
+	public function testCheckerIsCachedPerWiki() {
 		$factory = $this->createFactory();
-		$checker = $factory->getRestrictedUserGroupChecker( 'wiki1' );
+		$checker1 = $factory->getRestrictedUserGroupChecker( 'wiki1' );
+		$checker2 = $factory->getRestrictedUserGroupChecker( 'wiki2' );
 
-		$this->assertFalse( $checker->isGroupRestricted( 'interface-admin' ) );
-		$this->assertTrue( $checker->isGroupRestricted( 'sysop' ) );
-		$this->assertFalse( $checker->isGroupRestricted( 'bureaucrat' ) );
+		$this->assertNotSame( $checker1, $checker2 );
 	}
 }

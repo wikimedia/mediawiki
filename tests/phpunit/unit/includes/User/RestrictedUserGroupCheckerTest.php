@@ -8,6 +8,7 @@ namespace MediaWiki\Tests\User;
 
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\RestrictedUserGroupChecker;
+use MediaWiki\User\UserGroupRestrictions;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserRequirementsConditionChecker;
 use MediaWikiUnitTestCase;
@@ -26,7 +27,7 @@ class RestrictedUserGroupCheckerTest extends MediaWikiUnitTestCase {
 	public function testIsGroupRestricted( array $restrictedGroups, string $groupName, bool $expected ) {
 		$conditionCheckerMock = $this->createMock( UserRequirementsConditionChecker::class );
 
-		$groupChecker = new RestrictedUserGroupChecker( $restrictedGroups, $conditionCheckerMock );
+		$groupChecker = $this->createRestrictedUserGroupChecker( $restrictedGroups, $conditionCheckerMock );
 		$this->assertSame( $expected, $groupChecker->isGroupRestricted( $groupName ) );
 	}
 
@@ -85,7 +86,7 @@ class RestrictedUserGroupCheckerTest extends MediaWikiUnitTestCase {
 				return true;
 			} );
 
-		$groupChecker = new RestrictedUserGroupChecker( $restrictions, $conditionCheckerMock );
+		$groupChecker = $this->createRestrictedUserGroupChecker( $restrictions, $conditionCheckerMock );
 		$result = $groupChecker->canPerformerAddTargetToGroup( $performer, $target, 'sysop' );
 		$this->assertTrue( $result );
 	}
@@ -145,7 +146,7 @@ class RestrictedUserGroupCheckerTest extends MediaWikiUnitTestCase {
 				static fn ( $cond, $user ) => $target->equals( $user ) ? $targetMeets : $performerMeets
 			);
 
-		$groupChecker = new RestrictedUserGroupChecker( $restrictions, $conditionCheckerMock );
+		$groupChecker = $this->createRestrictedUserGroupChecker( $restrictions, $conditionCheckerMock );
 
 		$result = $groupChecker->canPerformerAddTargetToGroup( $performer, $target, 'sysop' );
 		$this->assertSame( $expected, $result );
@@ -232,7 +233,7 @@ class RestrictedUserGroupCheckerTest extends MediaWikiUnitTestCase {
 		$conditionCheckerMock->method( 'extractPrivateConditions' )
 			->willReturnCallback( static fn ( $cond ) => $cond );
 
-		$groupChecker = new RestrictedUserGroupChecker( $restrictions, $conditionCheckerMock );
+		$groupChecker = $this->createRestrictedUserGroupChecker( $restrictions, $conditionCheckerMock );
 
 		$result = $groupChecker->getPrivateConditionsForGroup( $group );
 		$this->assertSame( $expected, $result );
@@ -258,5 +259,16 @@ class RestrictedUserGroupCheckerTest extends MediaWikiUnitTestCase {
 				'expected' => [],
 			],
 		];
+	}
+
+	private function createRestrictedUserGroupChecker(
+		array $restrictions,
+		UserRequirementsConditionChecker $conditionChecker
+	): RestrictedUserGroupChecker {
+		$restrictions = array_map(
+			static fn ( $restrictionSpec ) => new UserGroupRestrictions( $restrictionSpec ),
+			$restrictions
+		);
+		return new RestrictedUserGroupChecker( $restrictions, $conditionChecker );
 	}
 }

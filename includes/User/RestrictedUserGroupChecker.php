@@ -17,11 +17,11 @@ use MediaWiki\Permissions\Authority;
 class RestrictedUserGroupChecker {
 
 	/**
-	 * @param array<string,array> $restrictedGroups Value of $wgRestrictedGroups
+	 * @param array<string,UserGroupRestrictions> $groupRestrictions
 	 * @param UserRequirementsConditionChecker $userRequirementsConditionChecker
 	 */
 	public function __construct(
-		private readonly array $restrictedGroups,
+		private readonly array $groupRestrictions,
 		private readonly UserRequirementsConditionChecker $userRequirementsConditionChecker,
 	) {
 	}
@@ -31,7 +31,7 @@ class RestrictedUserGroupChecker {
 	 * defined in $wgRestrictedGroups (even if its value would be an empty array).
 	 */
 	public function isGroupRestricted( string $groupName ): bool {
-		return isset( $this->restrictedGroups[ $groupName ] );
+		return isset( $this->groupRestrictions[ $groupName ] );
 	}
 
 	/**
@@ -140,8 +140,7 @@ class RestrictedUserGroupChecker {
 	 * Get the restrictions defined for a given group.
 	 */
 	public function getGroupRestrictions( string $groupName ): UserGroupRestrictions {
-		$groupRestrictions = $this->restrictedGroups[$groupName] ?? [];
-		return new UserGroupRestrictions( $groupRestrictions );
+		return $this->groupRestrictions[$groupName] ?? new UserGroupRestrictions( [] );
 	}
 
 	/**

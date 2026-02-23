@@ -198,6 +198,7 @@ use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\PasswordReset;
 use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\RestrictedUserGroupCheckerFactory;
+use MediaWiki\User\RestrictedUserGroupConfigReader;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\TempUser\TempUserCreator;
@@ -1934,6 +1935,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getRestrictedUserGroupCheckerFactory(): RestrictedUserGroupCheckerFactory {
 		return $this->getService( 'RestrictedUserGroupCheckerFactory' );
+	}
+
+	/**
+	 * @since 1.46
+	 */
+	public function getRestrictedUserGroupConfigReader(): RestrictedUserGroupConfigReader {
+		return $this->getService( 'RestrictedUserGroupConfigReader' );
 	}
 
 	/**
