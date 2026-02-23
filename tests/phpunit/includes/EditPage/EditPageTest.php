@@ -1032,7 +1032,7 @@ hello
 		$this->assertSame( $expectedOptions, $dropdownOptions );
 	}
 
-	public function provideWatchlistExpiry(): array {
+	public static function provideWatchlistExpiry(): array {
 		$standardOptions = [ 'infinite', '1 week', '1 month', '3 months', '6 months', '1 year' ];
 		return [
 			'preference infinite, nonexistent page, request nothing' => [

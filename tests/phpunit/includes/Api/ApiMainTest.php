@@ -1342,7 +1342,7 @@ class ApiMainTest extends ApiTestCase {
 		$this->assertArrayContainsSubstring( 'module:test', $stats );
 	}
 
-	public function provideErrorReporting() {
+	public static function provideErrorReporting() {
 		yield 'RuntimeException: server_error' => [
 			static function ( ApiBase $base ) {
 				throw new RuntimeException();

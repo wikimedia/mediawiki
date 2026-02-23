@@ -51,7 +51,7 @@ class ConverterRuleTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected['display'] ?? '', $rule->getDisplayFragment( $doc )?->textContent, 'display 2' );
 	}
 
-	public function provideRules() {
+	public static function provideRules() {
 		yield 'Empty' => [ [
 			'text' => '',
 			'dmwv' => '{"disabled":{"t":""}}',

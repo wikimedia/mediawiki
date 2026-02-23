@@ -19,7 +19,7 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
  */
 class ContentHolderTest extends MediaWikiIntegrationTestCase {
 
-	private function legacyHtmlProvider() {
+	public static function legacyHtmlProvider() {
 		yield "Basic legacy test case" => [
 		<<<EOD
 <h2 data-mw-anchor="Test">Test<mw:editsection page="test" section="1">Test</mw:editsection></h2>
@@ -29,7 +29,7 @@ EOD
 		];
 	}
 
-	private function parsoidContentProvider() {
+	public static function parsoidContentProvider() {
 		$body = <<<EOD
 <section data-mw-section-id="0" id="mwAQ" data-parsoid="{}"></section><section data-mw-section-id="1" id="mwAg" data-parsoid="{}"><h2 id="Test" data-parsoid='{"dsr":[0,10,2,2,1,1]}'>Test</h2>
 <p id="mwAw" data-parsoid='{"dsr":[11,30,0,0]}'>some basic wikitext</p></section>
@@ -156,8 +156,8 @@ EOD;
 		self::assertEquals( $parsoidData['bodyFiltered'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
 	}
 
-	private function legacyDomProvider() {
-		foreach ( $this->legacyHtmlProvider() as $k => $legacyHtml ) {
+	public static function legacyDomProvider() {
+		foreach ( self::legacyHtmlProvider() as $k => $legacyHtml ) {
 			$expected = DOMUtils::parseHTMLToFragment( DOMCompat::newDocument( true ), $legacyHtml[0] );
 			yield $k => [ $legacyHtml[0], $expected ];
 		}
@@ -172,8 +172,8 @@ EOD;
 		$this->assertEquals( ContentUtils::dumpDOM( $expected ), ContentUtils::dumpDOM( $res ) );
 	}
 
-	private function parsoidDomProvider() {
-		foreach ( $this->parsoidContentProvider() as $k => $parsoidData ) {
+	public static function parsoidDomProvider() {
+		foreach ( self::parsoidContentProvider() as $k => $parsoidData ) {
 			$input = $parsoidData[0][ 'dom' ];
 			$doc = ContentUtils::createAndLoadDocument( $parsoidData[0]['html'] );
 			$expected = $doc->createDocumentFragment();

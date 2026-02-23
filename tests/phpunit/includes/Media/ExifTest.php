@@ -61,7 +61,7 @@ class ExifTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Data provider for GPS coordinate conversion tests
 	 */
-	public function provideGPSCoordinates() {
+	public static function provideGPSCoordinates() {
 		return [
 			'North latitude' => [
 				[

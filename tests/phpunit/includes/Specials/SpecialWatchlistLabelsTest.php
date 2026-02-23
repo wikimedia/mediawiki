@@ -194,7 +194,7 @@ class SpecialWatchlistLabelsTest extends SpecialPageTestBase {
 		$this->assertArrayEquals( $expected, $values, true );
 	}
 
-	private function provideSorting(): array {
+	private static function provideSorting(): array {
 		return [
 			[
 				// Default is by descending count:

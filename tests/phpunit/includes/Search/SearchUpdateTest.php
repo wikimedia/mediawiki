@@ -29,7 +29,7 @@ class SearchUpdateTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $result, $message );
 	}
 
-	public function provideUpdateTextCases(): array {
+	public static function provideUpdateTextCases(): array {
 		return [
 			[ '<div>TeSt</div>', 'test', 'HTML stripped, text lowercased' ],
 			[ <<<EOT

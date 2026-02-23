@@ -492,7 +492,7 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expected, $classes );
 	}
 
-	public function provideGetLinkClasses(): iterable {
+	public static function provideGetLinkClasses(): iterable {
 		yield 'Link to a permanent account page, non-default caption' => [
 			'ns' => NS_USER,
 			'title' => 'ExampleUser',
