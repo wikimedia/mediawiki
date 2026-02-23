@@ -40,7 +40,6 @@ use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\BadRevisionException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -1049,22 +1048,10 @@ class Article implements Page {
 
 		$outputPage->addPostProcessedParserOutput( $pOutput );
 
-		if ( $this->getRevisionRedirectTarget( $rev ) ) {
+		if ( $pOutput->getRedirectHeader() !== null ) {
 			$outputPage->addSubtitle( "<span id=\"redirectsub\">" .
 				$context->msg( 'redirectpagesub' )->parse() . "</span>" );
 		}
-	}
-
-	/**
-	 * @param RevisionRecord $revision
-	 * @return null|Title
-	 */
-	private function getRevisionRedirectTarget( RevisionRecord $revision ) {
-		// TODO: find a *good* place for the code that determines the redirect target for
-		// a given revision!
-		// NOTE: Use main slot content. Compare code in DerivedPageDataUpdater::revisionIsRedirect.
-		$content = $revision->getContent( SlotRecord::MAIN );
-		return $content ? $content->getRedirectTarget() : null;
 	}
 
 	/**
