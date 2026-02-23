@@ -20,7 +20,6 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
-use MediaWiki\Language\Language;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logging\LogEventsList;
@@ -1969,25 +1968,6 @@ class Article implements Page {
 				'mw-revision'
 			)
 		);
-	}
-
-	/**
-	 * Return the HTML for the top of a redirect page
-	 *
-	 * Chances are you should just be using the ParserOutput from
-	 * WikitextContent::getParserOutput instead of calling this for redirects.
-	 *
-	 * @since 1.23
-	 * @param Language $lang
-	 * @param Title $target Destination to redirect
-	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
-	 * @return string Containing HTML with redirect link
-	 * @deprecated since 1.41, use LinkRenderer::makeRedirectHeader() instead
-	 */
-	public static function getRedirectHeaderHtml( Language $lang, Title $target, $forceKnown = false ) {
-		wfDeprecated( __METHOD__, '1.41' );
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		return $linkRenderer->makeRedirectHeader( $lang, $target, $forceKnown );
 	}
 
 	/**
