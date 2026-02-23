@@ -20,27 +20,10 @@
 		$summaryPreview.append(
 			mw.message( 'summary-preview' ).parseDom(),
 			' ',
-			$( '<span>' ).addClass( 'comment' ).html( parenthesesWrap( parse.parsedsummary ) )
+			$( '<span>' ).addClass( 'comment' ).append(
+				mw.message( 'parentheses', $( $.parseHTML( parse.parsedsummary ) ) ).parseDom()
+			)
 		);
-	}
-
-	/**
-	 * Wrap a string in parentheses.
-	 *
-	 * @private
-	 * @param {string} str
-	 * @param {mw.Message} [wrapperMsg] Message to wrap in, if other than `parentheses`
-	 * @return {string}
-	 */
-	function parenthesesWrap( str, wrapperMsg = mw.message( 'parentheses' ) ) {
-		if ( str === '' ) {
-			return str;
-		}
-		// There is no equivalent to rawParams
-		return wrapperMsg.escaped()
-			// Specify a function as the replacement,
-			// so that "$" characters in str are not interpreted.
-			.replace( '$1', () => str );
 	}
 
 	/**
@@ -217,20 +200,21 @@
 
 			const wordSep = mw.message( 'word-separator' ).escaped();
 			return getRestrictionsText( template.apiData.protection || [] )
-				.then( ( restrictionsList ) => {
-					// restrictionsList is a comma-separated parentheses-wrapped localized list of restriction level names.
-					const editLinkParens = parenthesesWrap( $editLink[ 0 ].outerHTML );
-					const $li = $( '<li>' ).append( $link, wordSep, editLinkParens, wordSep, restrictionsList );
-					$list.append( $li );
+				.then( ( $restrictionsList ) => {
+					// $restrictionsList is a comma-separated parentheses-wrapped localized list of restriction level names.
+					const $editLinkParens = mw.message( 'parentheses', $editLink ).parseDom();
+					$list.append(
+						$( '<li>' ).append( $link, wordSep, $editLinkParens, wordSep, $restrictionsList )
+					);
 				} );
 		} else {
 			$list.append( $( '<li>' ).append( $link ) );
-			return $.Deferred().resolve( '' );
+			return $.Deferred().resolve( $() );
 		}
 	}
 
 	/**
-	 * Get a localized string listing the restriction levels for a template.
+	 * Get a jQuery object listing the localized restriction levels for a template.
 	 *
 	 * This should match the logic from TemplatesOnThisPageFormatter::getRestrictionsText().
 	 *
@@ -275,7 +259,9 @@
 				( m ) => mw.message( m ).parse()
 			);
 			// There's no commaList in JS, so just join with commas (doesn't handle the last item).
-			return parenthesesWrap( localizedMessages.join( mw.message( 'comma-separator' ).escaped() ), msg );
+			return msg.params(
+				$( $.parseHTML( localizedMessages.join( mw.message( 'comma-separator' ).escaped() ) ) )
+			).parseDom();
 		} );
 	}
 
