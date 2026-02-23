@@ -861,15 +861,24 @@ abstract class HTMLFormField {
 				$this->getDescriptionText(),
 				[ 'cdx-label__description' ]
 			);
+			$optionalHtml = '';
+			if ( $this->showOptionalFlag() ) {
+				$messageKey = $this->mParams['optional-message'] ?? 'htmlform-optional-flag';
+				$optionalHtml = Html::rawElement(
+					'span',
+					[ 'class' => 'cdx-label__label__optional-flag' ],
+					' ' . $this->getMessage( $messageKey )->parse(),
+				);
+			}
 			// <div class="cdx-label">
 			$labelDiv = Html::rawElement( 'div', [ 'class' => $labelClasses ],
 				// <label class="cdx-label__label" for="ID">
 				Html::rawElement( 'label', [ 'class' => 'cdx-label__label' ] + $labelFor,
 					// <span class="cdx-label__label__text">
 					Html::rawElement( 'span', [ 'class' => 'cdx-label__label__text' ],
-						$labelValue
-					)
-				) . $descriptionHtml
+						$labelValue,
+					) . $optionalHtml,
+				) . $descriptionHtml,
 			);
 		}
 
@@ -921,6 +930,20 @@ abstract class HTMLFormField {
 		return Html::rawElement( 'div', [ 'class' => $fieldClasses ] + $fieldAttributes,
 			$labelDiv . $control . $helptext . $validationMessage
 		);
+	}
+
+	private function showOptionalFlag(): bool {
+		$shouldShowOptionalFlag = $this->mParams['show-optional-flag'] ?? false;
+		if ( !$shouldShowOptionalFlag ) {
+			return false;
+		}
+
+		$isRequired = $this->mParams['required'] ?? false;
+		if ( $isRequired ) {
+			// field is both required AND set to show a label-suffix "(optional)". Something is wrong
+			throw new \InvalidArgumentException( 'A field cannot be both optional and required.' );
+		}
+		return true;
 	}
 
 	/**

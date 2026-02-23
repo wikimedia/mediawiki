@@ -41,5 +41,58 @@ class HTMLTextFieldTest extends HTMLFormFieldTestCase {
 				</div>
 			HTML
 		];
+
+		yield 'basic field, optional, with raw label, description, and help-text' => [
+			[
+				'label-raw' => 'literal <em>label</em>',
+				'description-raw' => 'literal <a href="https://example.com">description</a>',
+				'help-raw' => 'literal <s>verbose</s> help text',
+				'show-optional-flag' => true,
+			],
+			'',
+			<<<HTML
+				<div class="mw-htmlform-field-HTMLTextField cdx-field">
+					<div class="cdx-label">
+						<label class="cdx-label__label" for="mw-input-testfield">
+							<span class="cdx-label__label__text">literal <em>label</em></span>
+							<span class="cdx-label__label__optional-flag"> (htmlform-optional-flag)</span>
+						</label>
+						<span class="cdx-label__description">
+							literal <a href="https://example.com">description</a>
+						</span>
+					</div>
+					<div class="cdx-field__control cdx-field__control--has-help-text">
+						<div class="cdx-text-input">
+							<input id="mw-input-testfield" name="testfield" size="45" class="cdx-text-input__input">
+						</div>
+					</div>
+					<div class="cdx-field__help-text htmlform-tip">literal <s>verbose</s> help text</div>
+				</div>
+			HTML
+		];
+
+		yield 'basic field, optional with overridden optional-message' => [
+			[
+				'label-message' => 'label-key',
+				'show-optional-flag' => true,
+				'optional-message' => 'recommended-key',
+			],
+			'',
+			<<<HTML
+				<div class="mw-htmlform-field-HTMLTextField cdx-field">
+					<div class="cdx-label">
+						<label class="cdx-label__label" for="mw-input-testfield">
+							<span class="cdx-label__label__text">(label-key)</span>
+							<span class="cdx-label__label__optional-flag"> (recommended-key)</span>
+						</label>
+					</div>
+					<div class="cdx-field__control">
+						<div class="cdx-text-input">
+							<input id="mw-input-testfield" name="testfield" size="45" class="cdx-text-input__input">
+						</div>
+					</div>
+				</div>
+			HTML
+		];
 	}
 }

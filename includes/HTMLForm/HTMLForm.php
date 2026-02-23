@@ -139,6 +139,10 @@ use Wikimedia\Message\MessageSpecifier;
  *                             Only used by OOUI form fields.
  *    'required'            -- passed through to the object, indicating that it
  *                             is a required field.
+ *    'show-optional-flag'  -- (Codex-only) adds an "(optional)" flag to the title to indicate
+ *                             that a field is not required. Must not have `required=true`.
+ *    'optional-message'    -- alternative message key to use for the flag shown
+ *                             with `show-optional-flag`
  *    'size'                -- the length of text fields
  *    'filter-callback'     -- a function name to give you the chance to
  *                             massage the inputted value before it's processed.
