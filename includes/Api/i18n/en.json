@@ -168,7 +168,7 @@
 	"apihelp-edit-param-basetimestamp": "Timestamp of the base revision, used to detect edit conflicts. May be obtained through [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]]. Self-conflicts are ignored.",
 	"apihelp-edit-param-starttimestamp": "Timestamp when the editing process began, used to detect edit conflicts. An appropriate value may be obtained using <var>[[Special:ApiHelp/main|curtimestamp]]</var> when beginning the edit process (e.g. when loading the page content to edit).",
 	"apihelp-edit-param-recreate": "Override any errors about the page having been deleted in the meantime.",
-	"apihelp-edit-param-createonly": "Don't edit the page if it exists already.",
+	"apihelp-edit-param-createonly": "Don't edit the page if it already exists.",
 	"apihelp-edit-param-nocreate": "Throw an error if the page doesn't exist.",
 	"apihelp-edit-param-watch": "Add the page to the current user's watchlist.",
 	"apihelp-edit-param-unwatch": "Remove the page from the current user's watchlist.",
