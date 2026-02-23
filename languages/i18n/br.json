@@ -1696,7 +1696,7 @@
 	"nimagelinks": "Implijet e $1 {{PLURAL:$1|pajenn|pajenn}}",
 	"ntransclusions": "implijet e $1 {{PLURAL:$1|pajenn|pajenn}}",
 	"specialpage-empty": "Goullo eo ar bajenn-mañ.",
-	"lonelypages": "Pajennoù hep liamm daveto",
+	"lonelypages": "Pajennoù hep liamm war o du",
 	"lonelypagestext": "N'eo ket liammet pe enframmet ar pajennoù da-heul ouzh pajenn all ebet eus {{SITENAME}}.",
 	"uncategorizedpages": "Pajennoù dirumm",
 	"uncategorizedcategories": "Rummadoù dirumm",
@@ -2952,7 +2952,7 @@
 	"lag-warn-high": "Dre m'eo soulgarget ar bankoù roadennoù, marteze ne vo ket gwelet er roll-mañ ar c'hemmoù deuet $1 {{PLURAL:$1|eilenn|eilenn}} zo hepken.",
 	"watchlistedit-normal-title": "Kemmañ ar roll evezhiañ",
 	"watchlistedit-normal-check-all": "Askañ pep tra",
-	"watchlistedit-normal-done": "Tennet ez eus bet {{PLURAL:$1|1 pajenn|$1 pajenn}} a-ziwar ho roll evezhiañ :",
+	"watchlistedit-normal-done": "Tennet ez eus bet {{PLURAL:$1|ur pajenn|$1 pajenn}} a-ziwar ho roll evezhiañ:",
 	"watchlistedit-raw-title": "Kemmañ ar roll evezhiañ (mod diginkl)",
 	"watchlistedit-raw-legend": "Kemmañ ar roll evezhiañ (mod diginkl)",
 	"watchlistedit-raw-explain": "Dindan emañ titloù ar pajennoù zo war ho roll evezhiañ; gallout a rit kemmañ anezho en ur ouzhpennañ pe tennañ pajennoù a-ziwar ar roll; un titl dre linenn. Ur wech graet, klikañ war \"{{int:Watchlistedit-raw-submit}}\".\nGallout a rit [[Special:EditWatchlist|implijout an aozer boutin ivez]].",
@@ -3756,5 +3756,6 @@
 	"benefit-1-description": "Rolloù evezhiañ a ro deoc’h tu da heuliañ ar pajennoù a blij deoc'h.",
 	"benefit-2-description": "Roll peurbadus ar c'hemmoù hoc'h eus degaset d'ar raktres.",
 	"benefit-3-description": "Dibaboù a ro deoc’h tu da bersonelaat hoc’h implij eus al lec’hienn",
-	"temp-user-unable-to-acquire": "N'haller ket tapout un anv implijer evit ur gont berrbad. Klaskit en-dro mar plij."
+	"temp-user-unable-to-acquire": "N'haller ket tapout un anv implijer evit ur gont berrbad. Klaskit en-dro mar plij.",
+	"diff-usergroups": "$1 {{PLURAL:$1|strollad implijerien}}"
 }

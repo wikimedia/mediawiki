@@ -3297,6 +3297,8 @@
 	"confirmemail_html_logo_alttext": "Logo {{SITENAME}}",
 	"confirmemail_html_par1": "Benvenuto $1,",
 	"confirmemail_html_par2": "'''Il tuo account su {{SITENAME}} è quasi completo.''' Termina confermando la tua email qui sotto.",
+	"confirmemail_html_par1_set": "Ciao $1,",
+	"confirmemail_html_par1_changed": "Ciao $1,",
 	"confirmemail_html_button_label": "Conferma {{GENDER:$1|la tua}} email",
 	"confirmemail_plaintext_button_label": "Conferma {{GENDER:$1|la tua}} email: $2",
 	"confirmemail_html_footer": "Se non fossi stato tu, {{GENDER:$1|puoi}} ignorare questo messaggio o [$2 rimuovere questo indirizzo email] dall'account.",

@@ -2907,6 +2907,8 @@
 	"confirmemail_html_subject": "Confirméiert Är E-Mail-Adress",
 	"confirmemail_html_logo_alttext": "{{SITENAME}}-Logo",
 	"confirmemail_html_par1": "Wëllkomm $1,",
+	"confirmemail_html_par1_set": "Moie(n) $1,",
+	"confirmemail_html_par1_changed": "Moie(n) $1,",
 	"confirmemail_html_button_label": "Confirméiert {{GENDER:$1|Är}} E-Mail-Adress",
 	"confirmemail_plaintext_button_label": "Confirméiert {{GENDER:$1|Är}} E-Mail-Adress: $2",
 	"invalidateemail": "Annulléier d'E-Mailconfirmation",

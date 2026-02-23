@@ -2170,6 +2170,7 @@
 	"watchlistlabels-onboarding-manage-title": "Прављење ознака",
 	"watchlistlabels-onboarding-edit-title": "Додела ознака",
 	"watchlistlabels-onboarding-editmanage-title": "Прављење и додељивање ознака",
+	"watchlistlabels-onboarding-filter-title": "Филтрирање по ознакама",
 	"watchlistlabels-editwatchlist-dialog-button": "Додели ознаке",
 	"watchlistlabels-editwatchlist-dialog-assign-error": "Није могуће доделити ознаке",
 	"watchlistlabels-editwatchlist-dialog-intro": "Означите {{PLURAL:$2|ознаке}} које желите {{PLURAL:$3|да}} додате на $1:",

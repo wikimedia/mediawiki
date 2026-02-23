@@ -1837,6 +1837,7 @@
 	"apierror-invaliduser": "無效的使用者名稱「$1」。",
 	"apierror-invaliduserid": "使用者 ID <var>$1</var> 無效。",
 	"apierror-ipoutofrange": "請求的 CIDR 範圍「$1」不能大於 /$2 的 CIDR 限制。",
+	"apierror-labels-disabled": "此維基未啟用觀察清單標籤功能。",
 	"apierror-maxbytes": "參數 <var>$1</var> 不能大於 $2 {{PLURAL:$2|位元組|位元組}}",
 	"apierror-maxchars": "參數 <var>$1</var> 不能多於 $2 個{{PLURAL:$2|字元|字元}}",
 	"apierror-maxlag-generic": "正等待資料庫伺服器：已延遲 $1 {{PLURAL:$1|秒|秒}}。",

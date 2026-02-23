@@ -12,6 +12,7 @@
 			"The Evil IP address",
 			"Urhixidur",
 			"Vlad5250",
+			"Əkrəm",
 			"לערי ריינהארט",
 			"아라"
 		]
@@ -2510,7 +2511,7 @@
 	"movepage-max-pages": "Efa tratra ny isam-pejy farafahabetsany izay azo ovaina anarana (pejy $1){{PLURAL:}}, ka tsy ho voaova anarana ho azy intsony ny pejy hafa.",
 	"movelogpage": "Ny laogim-panisahana",
 	"movelogpagetext": "Lisitry ny pejy nafindra toerana.",
-	"movesubpage": "Zana-pejy{{PLURAL:$1||}} $1",
+	"movesubpage": "{{PLURAL:$1|Zana-pejy}}",
 	"movesubpagetext": "Ity pejy ity dia manana zanapejy $1 miseho eo ambany. {{PLURAL:$1||}}",
 	"movenosubpage": "Tsy manana zana-pejy ity pejy ity.",
 	"movereason": "Antony :",

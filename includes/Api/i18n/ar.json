@@ -1616,6 +1616,7 @@
 	"apihelp-watch-param-unwatch": "إذا تم التعيين فستتم إزالة الصفحة من قائمة المراقبة بدلا من مراقبتها.",
 	"apihelp-watch-example-watch": "شاهد الصفحة [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-watch-example-watch-expiry": "راقب الصفحات [[{{MediaWiki:Mainpage}}]]، و <kbd>Foo</kbd> ، و <kbd>Bar</kbd> لمدة شهر.",
+	"apihelp-watch-example-watch-labels": "راقب الصفحة [[{{MediaWiki:Mainpage}}]] التي تحمل التسميتين 1 و2.",
 	"apihelp-watch-example-unwatch": "قم بإلغاء مشاهدة الصفحة [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-watch-example-generator": "راقب الصفحات القليلة الأولى في النطاق الرئيسي.",
 	"apihelp-format-example-generic": "إرجاع نتيجة الاستعلام بتنسيق $1.",
