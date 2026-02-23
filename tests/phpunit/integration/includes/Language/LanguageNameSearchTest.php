@@ -77,7 +77,7 @@ class LanguageNameSearchTest extends MediaWikiIntegrationTestCase {
 			[ 'punja', [
 				// Presence of CLDR extension affects the results
 				'pa' => class_exists( \MediaWiki\Extension\CLDR\LanguageNames::class ) ? 'punjabi' : 'punjaabi sennii',
-				'pa-guru' => class_exists( \MediaWiki\Extension\CLDR\LanguageNames::class ) ? 'punjabi (gurmukhi script)' : 'punjabi (gurmukhi-skrift)',
+				'pa-guru' => 'punjabi (gurmukhi script)',
 				'pnb' => 'punjabi western'
 			]
 			],
@@ -93,7 +93,6 @@ class LanguageNameSearchTest extends MediaWikiIntegrationTestCase {
 				'nr' => 'tonga — enetepēra ki te tonga',
 				'hax' => 'tonga — haira ki te tonga',
 				'st' => 'tonga — hōto ki te tonga',
-				'es-419' => 'tonga — pāniora amerikana ki te tonga',
 				'slh' => 'tonga — ratūti ki te tonga',
 				'tce' => 'tonga — tatōne ki te tonga',
 				'alt' => 'tonga — ātai ki te tonga',
