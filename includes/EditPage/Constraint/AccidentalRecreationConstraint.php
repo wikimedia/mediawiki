@@ -6,18 +6,15 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\CommentStore\CommentStore;
-use MediaWiki\Context\IContextSource;
 use MediaWiki\EditPage\EditPageStatus;
+use MediaWiki\Logging\DatabaseLogEntry;
+use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Logging\LogPage;
+use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
-use stdClass;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Message\ParamType;
-use Wikimedia\Message\ScalarParam;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;
-use Wikimedia\Timestamp\TimestampFormat;
 
 /**
  * Make sure user doesn't accidentally recreate a page deleted after they started editing
@@ -30,8 +27,7 @@ class AccidentalRecreationConstraint implements IEditConstraint {
 
 	public function __construct(
 		private readonly IConnectionProvider $connectionProvider,
-		private readonly CommentStore $commentStore,
-		private readonly IContextSource $context,
+		private readonly LogFormatterFactory $logFormatterFactory,
 		private readonly Title $title,
 		private readonly bool $allowRecreation,
 		private readonly ?string $startTime,
@@ -46,17 +42,20 @@ class AccidentalRecreationConstraint implements IEditConstraint {
 		$deletion = $this->getDeletionSinceLastEdit();
 		if ( $deletion ) {
 			if ( $this->submitButtonLabel ) {
-				$username = $deletion->actor_name;
-				$comment = $this->commentStore->getComment( 'log_comment', $deletion )->text;
+				$logFormatter = $this->logFormatterFactory->newFromEntry( $deletion );
+				$username = $deletion->isDeleted( LogPage::DELETED_USER )
+					? MessageValue::new( 'rev-deleted-user' )
+					: $deletion->getPerformerIdentity()->getName();
+				$commentHtml = $logFormatter->getComment();
 
 				return EditPageStatus::newGood( self::AS_ARTICLE_WAS_DELETED )
 					->setOK( false )
 					->warning(
-						$comment === ''
+						$commentHtml === ''
 							? 'edit-constraint-confirmrecreate-noreason'
 							: 'edit-constraint-confirmrecreate',
 						$username,
-						new ScalarParam( ParamType::PLAINTEXT, $comment ),
+						Message::rawParam( $commentHtml ),
 						new MessageValue( $this->submitButtonLabel ),
 					);
 			} else {
@@ -70,42 +69,25 @@ class AccidentalRecreationConstraint implements IEditConstraint {
 
 	/**
 	 * Check if a page was deleted while the user was editing it.
-	 * @return ?stdClass The deletion object, or null if the page wasn't deleted.
+	 * @return ?DatabaseLogEntry The log entry of the deletion, or null if the page wasn't deleted.
 	 */
-	private function getDeletionSinceLastEdit(): ?stdClass {
+	private function getDeletionSinceLastEdit(): ?DatabaseLogEntry {
 		if ( !$this->title->exists() && $this->title->hasDeletedEdits() ) {
 			$lastDelete = $this->getLastDelete();
-			if ( $lastDelete ) {
-				$deleteTime = wfTimestamp( TimestampFormat::MW, $lastDelete->log_timestamp );
-				if ( $deleteTime > $this->startTime ) {
-					return $lastDelete;
-				}
+			if ( $lastDelete && $lastDelete->getTimestamp() > $this->startTime ) {
+				return $lastDelete;
 			}
 		}
 		return null;
 	}
 
 	/**
-	 * Get the last log record of this page being deleted, if ever.  This is
+	 * Get the last log record of this page being deleted, if ever. This is
 	 * used to detect whether a delete occurred during editing.
-	 * @return stdClass|null
 	 */
-	private function getLastDelete(): ?stdClass {
+	private function getLastDelete(): ?DatabaseLogEntry {
 		$dbr = $this->connectionProvider->getReplicaDatabase();
-		$commentQuery = $this->commentStore->getJoin( 'log_comment' );
-		$data = $dbr->newSelectQueryBuilder()
-			->select( [
-				'log_type',
-				'log_action',
-				'log_timestamp',
-				'log_namespace',
-				'log_title',
-				'log_params',
-				'log_deleted',
-				'actor_name'
-			] )
-			->from( 'logging' )
-			->join( 'actor', null, 'actor_id=log_actor' )
+		$row = DatabaseLogEntry::newSelectQueryBuilder( $dbr )
 			->where( [
 				'log_namespace' => $this->title->getNamespace(),
 				'log_title' => $this->title->getDBkey(),
@@ -113,23 +95,10 @@ class AccidentalRecreationConstraint implements IEditConstraint {
 				'log_action' => 'delete',
 			] )
 			->orderBy( [ 'log_timestamp', 'log_id' ], SelectQueryBuilder::SORT_DESC )
-			->queryInfo( $commentQuery )
 			->caller( __METHOD__ )
 			->fetchRow();
 
-		// Quick paranoid permission checks...
-		if ( $data !== false ) {
-			if ( $data->log_deleted & LogPage::DELETED_USER ) {
-				$data->actor_name = $this->context->msg( 'rev-deleted-user' )->escaped();
-			}
-
-			if ( $data->log_deleted & LogPage::DELETED_COMMENT ) {
-				$data->log_comment_text = $this->context->msg( 'rev-deleted-comment' )->escaped();
-				$data->log_comment_data = null;
-			}
-		}
-
-		return $data ?: null;
+		return $row ? DatabaseLogEntry::newFromRow( $row ) : null;
 	}
 
 }

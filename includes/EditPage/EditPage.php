@@ -2447,7 +2447,6 @@ class EditPage implements IEditObject {
 
 			// If the article has been deleted while editing, don't save it without confirmation
 			$this->constraintFactory->newAccidentalRecreationConstraint(
-				$this->context,
 				$this->getTitle(),
 				$this->recreate,
 				$this->starttime,
@@ -3257,7 +3256,6 @@ class EditPage implements IEditObject {
 			$constraintFactory = MediaWikiServices::getInstance()->getService( '_EditConstraintFactory' );
 			$constraintRunner = new EditConstraintRunner(
 				$constraintFactory->newAccidentalRecreationConstraint(
-					$this->context,
 					$this->getTitle(),
 					// Ignore wpRedirect so the warning is still shown after a save attempt
 					false,

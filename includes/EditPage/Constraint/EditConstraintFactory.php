@@ -6,7 +6,6 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
@@ -15,6 +14,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\Spi;
+use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Permissions\RateLimiter;
@@ -69,7 +69,7 @@ class EditConstraintFactory {
 		private readonly RedirectLookup $redirectLookup,
 		// AccidentalRecreationConstraint
 		private readonly IConnectionProvider $connectionProvider,
-		private readonly CommentStore $commentStore,
+		private readonly LogFormatterFactory $logFormatterFactory,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 	}
@@ -203,7 +203,6 @@ class EditConstraintFactory {
 	}
 
 	public function newAccidentalRecreationConstraint(
-		IContextSource $context,
 		Title $title,
 		bool $allowRecreation,
 		?string $startTime,
@@ -211,8 +210,7 @@ class EditConstraintFactory {
 	): AccidentalRecreationConstraint {
 		return new AccidentalRecreationConstraint(
 			$this->connectionProvider,
-			$this->commentStore,
-			$context,
+			$this->logFormatterFactory,
 			$title,
 			$allowRecreation,
 			$startTime,

@@ -4,13 +4,11 @@
  * @file
  */
 
-use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
-use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Tests the AccidentalRecreationConstraint
@@ -25,8 +23,7 @@ class AccidentalRecreationConstraintTest extends MediaWikiUnitTestCase {
 	public function testPass() {
 		$constraint = new AccidentalRecreationConstraint(
 			$this->createMock( IConnectionProvider::class ),
-			$this->createMock( CommentStore::class ),
-			$this->createMock( IContextSource::class ),
+			$this->createMock( LogFormatterFactory::class ),
 			$this->createMock( Title::class ),
 			false,
 			null,
@@ -36,25 +33,16 @@ class AccidentalRecreationConstraintTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFailure() {
-		$commentStore = $this->createMock( CommentStore::class );
-		$commentStore->method( 'getComment' )->willReturn(
-			(object)[
-				'text' => ''
-			]
-		);
-
-		$queryBuilder = $this->createMock( SelectQueryBuilder::class );
-		$queryBuilder->method( 'fetchRow' )->willReturn(
-			(object)[
-				'actor_name' => '',
-				'log_deleted' => false,
-				'log_timestamp' => '20260113104445',
-			],
-		);
-		$queryBuilder->method( $this->anythingBut( 'fetchRow' ) )->willReturn( $queryBuilder );
+		// We don't need the full row since the formatting code won't be called if we pass null
+		// as $submitButtonLabel
+		$row = (object)[
+			'actor_name' => '',
+			'log_deleted' => false,
+			'log_timestamp' => '20260113104445',
+		];
 
 		$replicaDatabase = $this->createMock( IReadableDatabase::class );
-		$replicaDatabase->method( 'newSelectQueryBuilder' )->willReturn( $queryBuilder );
+		$replicaDatabase->method( 'selectRow' )->willReturn( $row );
 		$connectionProvider = $this->createMock( IConnectionProvider::class );
 		$connectionProvider->method( 'getReplicaDatabase' )->willReturn( $replicaDatabase );
 
@@ -64,13 +52,12 @@ class AccidentalRecreationConstraintTest extends MediaWikiUnitTestCase {
 
 		$constraint = new AccidentalRecreationConstraint(
 			$connectionProvider,
-			$commentStore,
-			$this->createMock( IContextSource::class ),
+			$this->createMock( LogFormatterFactory::class ),
 			$title,
 			false,
 			// must be less than log_timestamp
 			'20260113100000',
-			''
+			null
 		);
 		$this->assertConstraintFailed(
 			$constraint,

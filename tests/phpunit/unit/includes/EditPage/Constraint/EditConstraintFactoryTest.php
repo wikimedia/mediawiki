@@ -4,7 +4,6 @@
  * @file
  */
 
-use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
@@ -57,7 +56,7 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( RateLimiter::class ),
 			$this->createMock( RedirectLookup::class ),
 			$this->createMock( IConnectionProvider::class ),
-			$this->createMock( CommentStore::class ),
+			$this->createMock( LogFormatterFactory::class ),
 		);
 
 		$user = $this->createMock( User::class );
@@ -113,7 +112,6 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf(
 			AccidentalRecreationConstraint::class,
 			$factory->newAccidentalRecreationConstraint(
-				$context,
 				$title,
 				false,
 				null,

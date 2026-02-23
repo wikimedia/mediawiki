@@ -3100,7 +3100,7 @@ return [
 
 			// AccidentalRecreationConstraint
 			$services->getConnectionProvider(),
-			$services->getCommentStore(),
+			$services->getLogFormatterFactory(),
 		);
 	},
 
