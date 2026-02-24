@@ -10,6 +10,7 @@ use LogicException;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\ReadOnlyError;
 use MediaWiki\Exception\UserNotLoggedIn;
+use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Parser\Sanitizer;
@@ -91,6 +92,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 	private function showRequestForm() {
 		$user = $this->getUser();
 		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 
 		if ( !$user->isEmailConfirmed() ) {
 			$descriptor = [];
@@ -99,17 +101,18 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 					'pending' => [
 						'type' => 'info',
 						'raw' => true,
-						'default' => "<div class=\"error mw-confirmemail-pending\">\n" .
-							$this->msg( 'confirmemail_pending' )->escaped() .
-							"\n</div>",
+						'default' => Html::warningBox(
+							$this->msg( 'confirmemail_pending' )->escaped(),
+							'mw-confirmemail-pending'
+						),
 					],
 				];
 			}
 
-			$out->addWikiMsg( 'confirmemail_text' );
 			$form = HTMLForm::factory( 'ooui', $descriptor, $this->getContext() );
 			$form
 				->setAction( $this->getPageTitle()->getLocalURL() )
+				->setHeaderHtml( $this->msg( 'confirmemail_text' )->parse() )
 				->setSubmitTextMsg( 'confirmemail_send' )
 				->setSubmitCallback( $this->submitSend( ... ) );
 
