@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Dhondup",
 			"Freeyak",
 			"Pecha-Tsewang",
 			"Phurbutsering",
@@ -56,5 +57,6 @@
 	"thu": "རེས་གཟའ་ཕུར་བུ།",
 	"fri": "རེས་གཟའ་པ་སངས།",
 	"sat": "རེས་གཟའ་སྤེན་པ།",
-	"sun": "རེས་གཟའ་ཉི་མ།"
+	"sun": "རེས་གཟའ་ཉི་མ།",
+	"duration-days": "$1 {{PLURAL:$1|ཉི་མ།|days}}"
 }

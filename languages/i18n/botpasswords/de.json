@@ -26,6 +26,7 @@
 	"botpasswords-bad-appid": "Der Botname „$1“ ist nicht gültig.",
 	"botpasswords-toolong-restrictions": "Es sind zu viele IP-Adressen oder -Bereiche angegeben.",
 	"botpasswords-toolong-grants": "Es wurden zu viele Grants ausgewählt.",
+	"botpasswords-too-many": "{{#FORMAL:Du hast|Sie haben}} das Limit von $1 {{PLURAL:$1|Bot-Passwort|Bot-Passwörtern}} erreicht. Bitte {{#FORMAL:lösche|löschen Sie}} einige bestehende Bot-Passwörter, bevor {{#FORMAL:du neue erstellst|Sie neue erstellen}}.",
 	"botpasswords-insert-failed": "Der Botname „$1“ konnte nicht hinzugefügt werden. Wurde er bereits hinzugefügt?",
 	"botpasswords-update-failed": "Der Botname „$1“ konnte nicht aktualisiert werden. Wurde der Bot gelöscht?",
 	"botpasswords-created-title": "Botpasswort erstellt",

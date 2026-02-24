@@ -24,6 +24,7 @@
 	"botpasswords-bad-appid": "Le nomine del robot “$1” non es valide.",
 	"botpasswords-toolong-restrictions": "Ha essite entrate troppo de adresses o intervallos IP.",
 	"botpasswords-toolong-grants": "Troppo de concessiones ha essite seligite.",
+	"botpasswords-too-many": "Tu ha attingite le maximo de $1 contrasigno{{PLURAL:$1||s}} de robot. Per favor elimina alcun contrasignos de robot existente ante de crear noves.",
 	"botpasswords-insert-failed": "Le addition del nomine de robot “$1” ha fallite. Esque illo ha jam essite addite?",
 	"botpasswords-update-failed": "Le actualisation del nomine de robot “$1” ha fallite. Esque illo ha essite delite?",
 	"botpasswords-created-title": "Contrasigno de robot create",

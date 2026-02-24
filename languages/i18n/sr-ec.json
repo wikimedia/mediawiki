@@ -3109,6 +3109,8 @@
 	"confirmemail_html_logo_alttext": "Логотип {{SITENAME}}",
 	"confirmemail_html_par1": "Добро дошли, $1,",
 	"confirmemail_html_par2": "'''Ваш {{SITENAME}} налог је скоро готов.''' Само потврдите имејл.",
+	"confirmemail_html_par1_set": "Здраво $1,",
+	"confirmemail_html_par1_changed": "Здраво $1,",
 	"confirmemail_html_button_label": "{{GENDER:$1|Потврдите}} Ваш имејл",
 	"confirmemail_plaintext_button_label": "{{GENDER:$1|Потврдите}} Ваш имејл: $2",
 	"confirmemail_html_footer": "Ако ово нисте били {{GENDER:$1|ви}}, можете занемарити ову поруку или [$2 уклонити ову имејл адресу] са овог налога.",
