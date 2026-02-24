@@ -199,15 +199,6 @@ class JwtSessionCookieHelper {
 			] );
 		}
 
-		if ( $hardExpiry < ConvertibleTimestamp::time() ) {
-			throw new JwtException( 'JWT error: hard-expired', [
-					'jti' => $data['jti'],
-					'expiry' => $hardExpiry,
-					'expired_by' => ConvertibleTimestamp::time() - $hardExpiry,
-					'session_provider_type' => $this->sessionProviderType,
-				] + $request->getSecurityLogContext( $expectedUser ) );
-		}
-
 		// Valid JWT. We could use this to make the UserInfo in the SessionInfo verified if it
 		// isn't already, or to make a SessionInfo in the first place if the other cookies weren't
 		// sufficient for a valid session, but for now we avoid using the JWT to make a session
