@@ -112,6 +112,7 @@ class UserGroupManager {
 	 * @param HookContainer $hookContainer
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param TempUserConfig $tempUserConfig
+	 * @param UserFactory $userFactory
 	 * @param UserRequirementsConditionCheckerFactory $userRequirementsConditionCheckerFactory
 	 * @param RestrictedUserGroupConfigReader $restrictedUserGroupConfigReader
 	 * @param callable[] $clearCacheCallbacks
@@ -124,6 +125,7 @@ class UserGroupManager {
 		private readonly HookContainer $hookContainer,
 		private readonly JobQueueGroup $jobQueueGroup,
 		private readonly TempUserConfig $tempUserConfig,
+		private readonly UserFactory $userFactory,
 		private readonly UserRequirementsConditionCheckerFactory $userRequirementsConditionCheckerFactory,
 		private readonly RestrictedUserGroupConfigReader $restrictedUserGroupConfigReader,
 		private readonly array $clearCacheCallbacks = [],
@@ -310,6 +312,13 @@ class UserGroupManager {
 	 * @return array
 	 */
 	public function getUserDisabledGroups( UserIdentity $user ): array {
+		// Check if the user is system user. Given that such accounts cannot be logged in to and are controlled by
+		// software, we can keep all their user groups enabled. These accounts may also ignore permission checks,
+		// so in some cases the group membership is only declarative.
+		if ( $this->userFactory->newFromUserIdentity( $user )->isSystemUser() ) {
+			return [];
+		}
+
 		$groups = $this->getUserGroups( $user );
 
 		$restrictedGroups = $this->restrictedUserGroupConfigReader->getConfig( $this->wikiId );

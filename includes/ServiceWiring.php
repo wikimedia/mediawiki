@@ -2799,6 +2799,7 @@ return [
 			$services->getHookContainer(),
 			$services->getJobQueueGroupFactory(),
 			$services->getTempUserConfig(),
+			$services->getUserFactory(),
 			$services->getUserRequirementsConditionCheckerFactory(),
 			$services->getRestrictedUserGroupConfigReader(),
 			[ static function ( UserIdentity $user ) use ( $services ) {

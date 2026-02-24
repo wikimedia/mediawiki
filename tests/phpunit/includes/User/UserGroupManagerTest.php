@@ -25,6 +25,7 @@ use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserEditTracker;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -100,6 +101,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 				'matchPattern' => '*Unregistered $1',
 				'genPattern' => '*Unregistered $1'
 			] ),
+			$services->getUserFactory(),
 			$userRequirementsConditionCheckerFactory,
 			$services->getRestrictedUserGroupConfigReader(),
 			$callback ? [ $callback ] : []
@@ -309,6 +311,29 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser( [ 'bureaucrat', 'interface-admin', 'suppress', 'sysop' ] )->getUser();
 		$this->assertCount( 1, $manager->getUserDisabledGroups( $user ) );
 		$this->assertSame( [ 'interface-admin' ], $manager->getUserDisabledGroups( $user ) );
+	}
+
+	public function testSystemUserHasNoDisabledGroups() {
+		$this->overrideConfigValue( MainConfigNames::RestrictedGroups, [
+			'sysop' => [
+				'memberConditions' => [ APCOND_EDITCOUNT, 1000 ]
+			],
+		] );
+		$user = $this->getTestUser( [ 'sysop' ] )->getUser();
+
+		$userFactoryMock = $this->createMock( UserFactory::class );
+		$userFactoryMock->method( 'newFromUserIdentity' )
+			->willReturnCallback( function ( UserIdentity $userIdentity ) {
+				$userMock = $this->createMock( User::class );
+				$userMock->method( 'isSystemUser' )->willReturn( true );
+				$userMock->method( 'isRegistered' )->willReturn( true );
+				$userMock->method( 'getId' )->willReturn( $userIdentity->getId() );
+				return $userMock;
+			} );
+		$this->setService( 'UserFactory', $userFactoryMock );
+
+		$manager = $this->getManager();
+		$this->assertCount( 0, $manager->getUserDisabledGroups( $user ) );
 	}
 
 	public function testAddUserToGroup() {
