@@ -16,6 +16,7 @@ const MultiselectLookupLanguageSelector = require( './MultiselectLookupLanguageS
  * @property {boolean|false} [required=false] Whether the lookup is required.
  * @property {Function|null} [menuItemSlot=null] Slot function for the menu item. Receives the slot props object `{ menuItem, languageCode, languageName }` as an argument and should return a VNodeChild (see https://vuejs.org/api/options-rendering#render).
  * @property {Function|null} [onLanguageChange=null] Callback function when language is selected. Received the selected language code as an argument.
+ * @property {string} [inputId=''] The id attribute for the input element of the selector
  *
  * @param {LookupLanguageSelectorConfig} config The configuration object for the selector.
  * @return {Object} The Vue application instance.
@@ -30,12 +31,14 @@ function getLookupLanguageSelector( config ) {
 		disabled = false,
 		required = false,
 		menuItemSlot = null,
-		onLanguageChange = null
+		onLanguageChange = null,
+		inputId = ''
 	} = config;
 
 	return Vue.createMwApp( {
 		data() {
 			return {
+				inputId,
 				apiUrl: apiUrl || mw.util.wikiScript( 'api' ),
 				selectedLanguage,
 				selectableLanguages,
@@ -50,6 +53,7 @@ function getLookupLanguageSelector( config ) {
 				searchApiUrl: this.apiUrl,
 				selectableLanguages: this.selectableLanguages,
 				selected: this.selectedLanguage,
+				inputId: this.inputId,
 				placeholder: this.placeholder,
 				disabled: this.disabled,
 				required: this.required,
@@ -80,6 +84,7 @@ function getLookupLanguageSelector( config ) {
  * @property {boolean|false} [required=false] Whether the lookup is required.
  * @property {Function|null} [menuItemSlot=null] Slot function for the menu item.
  * @property {Function|null} [onLanguageChange=null] Callback function when language is selected/changed.
+ * @property {string} [inputId=''] The id attribute for the input element of the selector
  *
  * @param {MultiselectLookupLanguageSelectorConfig} config The configuration object for the selector.
  * @return {Object} The Vue application instance
@@ -94,12 +99,14 @@ function getMultiselectLookupLanguageSelector( config ) {
 		disabled = false,
 		required = false,
 		menuItemSlot = null,
-		onLanguageChange = null
+		onLanguageChange = null,
+		inputId = ''
 	} = config;
 
 	return Vue.createMwApp( {
 		data() {
 			return {
+				inputId,
 				apiUrl: apiUrl || mw.util.wikiScript( 'api' ),
 				selectedLanguage,
 				selectableLanguages,
@@ -114,6 +121,7 @@ function getMultiselectLookupLanguageSelector( config ) {
 				searchApiUrl: this.apiUrl,
 				selected: this.selectedLanguage,
 				selectableLanguages: this.selectableLanguages,
+				inputId: this.inputId,
 				placeholder: this.placeholder,
 				disabled: this.disabled,
 				required: this.required,

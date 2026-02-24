@@ -5,6 +5,7 @@
 		:selected="selectedValues"
 		:menu-items="menuItems"
 		:menu-config="menuConfig"
+		:id="inputId"
 		@input="search"
 		@update:input-value="onUpdateInputValue"
 		@update:selected="onUpdateSelected"
@@ -60,6 +61,10 @@ module.exports = exports = defineComponent( {
 		menuConfig: {
 			type: Object,
 			default: () => ( {} )
+		},
+		inputId: {
+			type: String,
+			default: ''
 		}
 	},
 	emits: [
