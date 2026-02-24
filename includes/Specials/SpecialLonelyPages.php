@@ -6,7 +6,7 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\SpecialPage\PageQueryPage;

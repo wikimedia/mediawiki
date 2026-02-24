@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Unit\Language;
 
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWikiUnitTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;

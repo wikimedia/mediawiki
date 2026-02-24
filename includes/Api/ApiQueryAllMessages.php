@@ -9,10 +9,10 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\Language\Language;
+use MediaWiki\Language\LanguageFactory;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Language\LocalisationCache;
 use MediaWiki\Language\MessageCache;
-use MediaWiki\Languages\LanguageFactory;
-use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Pager\AllMessagesTablePager;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;

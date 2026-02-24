@@ -15,7 +15,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Installer\Task\TaskFactory;
 use MediaWiki\Installer\Task\TaskList;
 use MediaWiki\Installer\Task\TaskRunner;
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Request\ContentSecurityPolicy;

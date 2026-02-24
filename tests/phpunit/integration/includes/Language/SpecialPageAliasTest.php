@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use UtfNormal\Validator;
 
 /**

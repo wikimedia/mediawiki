@@ -1,7 +1,7 @@
 <?php
 namespace MediaWiki\Tests\Unit\Language;
 
-use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Language\LanguageFallback;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWikiUnitTestCase;
 

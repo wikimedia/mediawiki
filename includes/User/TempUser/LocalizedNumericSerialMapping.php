@@ -3,7 +3,7 @@
 namespace MediaWiki\User\TempUser;
 
 use MediaWiki\Language\Language;
-use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Language\LanguageFactory;
 
 /**
  * Serial mapping which uses a Language object to format serial numbers.

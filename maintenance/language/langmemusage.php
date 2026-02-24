@@ -7,7 +7,7 @@
  * @ingroup MaintenanceLanguage
  */
 
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Maintenance\Maintenance;
 
 // @codeCoverageIgnoreStart

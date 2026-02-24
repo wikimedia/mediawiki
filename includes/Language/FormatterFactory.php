@@ -4,7 +4,6 @@ namespace MediaWiki\Language;
 
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Status\StatusFormatter;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\UserIdentityUtils;

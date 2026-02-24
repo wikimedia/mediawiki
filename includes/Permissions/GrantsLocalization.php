@@ -8,7 +8,7 @@ namespace MediaWiki\Permissions;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
-use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\HtmlArmor\HtmlArmor;

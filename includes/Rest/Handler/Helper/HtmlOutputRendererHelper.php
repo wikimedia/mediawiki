@@ -14,7 +14,7 @@ use MediaWiki\Edit\SelserContext;
 use MediaWiki\Exception\HttpError;
 use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\Language\LanguageCode;
-use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;

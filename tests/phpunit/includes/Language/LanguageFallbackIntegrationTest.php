@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Language;
 
-use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Language\LanguageFallback;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Language\LanguageFallbackTestTrait;
 use MediaWikiIntegrationTestCase;

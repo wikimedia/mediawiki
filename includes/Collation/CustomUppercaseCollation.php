@@ -9,7 +9,7 @@
 namespace MediaWiki\Collation;
 
 use MediaWiki\Language\Language;
-use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Language\LanguageFactory;
 use UnexpectedValueException;
 
 /**

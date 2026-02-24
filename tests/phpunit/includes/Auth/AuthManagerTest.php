@@ -41,7 +41,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Language\Language;
-use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\MainConfigNames;

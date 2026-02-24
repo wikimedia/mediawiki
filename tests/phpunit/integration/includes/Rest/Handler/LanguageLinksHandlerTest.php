@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Rest\Handler\LanguageLinksHandler;

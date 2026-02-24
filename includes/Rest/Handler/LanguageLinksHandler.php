@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Rest\Handler;

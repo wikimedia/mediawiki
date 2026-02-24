@@ -7,7 +7,7 @@
 namespace MediaWiki\Collation;
 
 use MediaWiki\Language\Language;
-use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Language\LanguageFactory;
 
 /**
  * Collation that orders text with numbers "naturally", so that 'Foo 1' < 'Foo 2' < 'Foo 12'.

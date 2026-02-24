@@ -5,7 +5,7 @@ namespace MediaWiki\Rest\Handler;
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\Config\Config;
 use MediaWiki\Language\Language;
-use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Page\SitemapGenerator;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler;

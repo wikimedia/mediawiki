@@ -13,7 +13,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Navigation\CodexPagerNavigationBuilder;

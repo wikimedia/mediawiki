@@ -4,8 +4,8 @@ declare( strict_types = 1 );
 namespace MediaWiki\Parser\Parsoid;
 
 use MediaWiki\Language\LanguageCode;
-use MediaWiki\Languages\LanguageConverterFactory;
-use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Language\LanguageConverterFactory;
+use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;

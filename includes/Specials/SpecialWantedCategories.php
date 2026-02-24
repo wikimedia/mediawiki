@@ -10,7 +10,7 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Language\ILanguageConverter;
-use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Skin\Skin;

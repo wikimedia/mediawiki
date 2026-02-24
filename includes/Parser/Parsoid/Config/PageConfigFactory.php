@@ -8,7 +8,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Parser\Parsoid\Config;
 
-use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserOptions;

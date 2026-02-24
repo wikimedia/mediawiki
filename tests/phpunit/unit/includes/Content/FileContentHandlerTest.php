@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Unit;
 
 use MediaWiki\Content\FileContentHandler;
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\ParserFactory;

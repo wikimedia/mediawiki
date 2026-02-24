@@ -16,7 +16,7 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;

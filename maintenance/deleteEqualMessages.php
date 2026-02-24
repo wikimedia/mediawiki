@@ -5,7 +5,7 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Pager\AllMessagesTablePager;
 use MediaWiki\StubObject\StubGlobalUser;

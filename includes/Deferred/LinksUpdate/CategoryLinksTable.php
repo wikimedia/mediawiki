@@ -11,7 +11,7 @@ use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\JobQueue\Jobs\CategoryCountUpdateJob;
 use MediaWiki\JobQueue\Utils\PurgeJobUtils;
 use MediaWiki\Language\ILanguageConverter;
-use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\WikiPageFactory;

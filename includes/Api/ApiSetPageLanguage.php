@@ -9,7 +9,7 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\ChangeTags\ChangeTags;
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialPageLanguage;
 use MediaWiki\Title\Title;

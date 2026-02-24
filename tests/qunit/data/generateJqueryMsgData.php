@@ -8,7 +8,7 @@
  */
 
 use MediaWiki\Json\FormatJson;
-use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Maintenance\Maintenance;
 
 require __DIR__ . '/../../../maintenance/Maintenance.php';

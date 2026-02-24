@@ -10,7 +10,7 @@ use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\ILanguageConverter;
-use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

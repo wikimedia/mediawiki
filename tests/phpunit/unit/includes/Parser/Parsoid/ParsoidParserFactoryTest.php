@@ -7,7 +7,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Tests\Parser\Parsoid;
 
-use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\Parsoid\Config\DataAccess;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;

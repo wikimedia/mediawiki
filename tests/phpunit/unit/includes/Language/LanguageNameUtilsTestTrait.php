@@ -5,7 +5,7 @@
 namespace MediaWiki\Tests\Unit\Language;
 
 use InvalidArgumentException;
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 
 const AUTONYMS = LanguageNameUtils::AUTONYMS;

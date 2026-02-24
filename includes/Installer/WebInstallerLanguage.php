@@ -9,7 +9,7 @@
 namespace MediaWiki\Installer;
 
 use MediaWiki\Html\Html;
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Xml\XmlSelect;
 

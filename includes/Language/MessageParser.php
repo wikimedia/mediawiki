@@ -4,7 +4,6 @@ namespace MediaWiki\Language;
 
 use LogicException;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;

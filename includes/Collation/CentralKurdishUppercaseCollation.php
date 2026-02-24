@@ -8,7 +8,7 @@
 
 namespace MediaWiki\Collation;
 
-use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Language\LanguageFactory;
 
 /**
  * Custom collation for ckb.

@@ -6,7 +6,7 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\NamespaceInfo;

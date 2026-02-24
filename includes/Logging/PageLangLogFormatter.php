@@ -11,7 +11,7 @@
 
 namespace MediaWiki\Logging;
 
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 
 /**
  * This class formats language change log entries.

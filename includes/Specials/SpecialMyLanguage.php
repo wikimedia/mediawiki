@@ -6,7 +6,7 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\SpecialPage\RedirectSpecialArticle;
 use MediaWiki\Title\Title;

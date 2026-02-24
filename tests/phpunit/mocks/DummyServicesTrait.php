@@ -17,7 +17,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Interwiki\Interwiki;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Language\Language;
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\CacheKeyHelper;

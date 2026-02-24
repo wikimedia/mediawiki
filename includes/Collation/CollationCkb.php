@@ -6,7 +6,7 @@
 
 namespace MediaWiki\Collation;
 
-use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Language\LanguageFactory;
 
 /**
  * Workaround for the lack of support of Sorani Kurdish / Central Kurdish language ('ckb') in ICU.
