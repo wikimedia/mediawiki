@@ -596,6 +596,28 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $session->isPersistent() );
 		$this->assertInstanceOf( BotPasswordSessionProvider::class, $session->getProvider() );
 		$this->assertSame( [], $logger->getBuffer() );
+
+		// Stored data matches but user is anon
+		str_increment( $sessionId );
+		$store->clear();
+		$setUserInStore( $sessionId, new User(), $bp );
+		$request = new FauxRequest();
+		$request->setIP( '1.2.3.4' );
+		$request->setCookies( [
+			'_BPsession' => $sessionId,
+			'sessionJwt' => $codec->create( [ 'sub' => 'mw:' . SessionManager::JWT_SUB_ANON ] + $defaultClaims ),
+		], prefix: '' );
+		RequestContext::getMain()->setRequest( $request );
+		$manager = $this->getServiceContainer()->getSessionManager();
+		$session = $manager->getSessionForRequest( $request );
+		$this->assertNotSame( $sessionId, $session->getId() );
+		$this->assertSame( '1.2.3.4', $session->getUser()->getName() );
+		$this->assertFalse( $session->isPersistent() );
+		$this->assertNotInstanceOf( BotPasswordSessionProvider::class, $session->getProvider() );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Session "{session}": Bot password sessions cannot be anonymous' ]
+		], $logger->getBuffer() );
+		$logger->clearBuffer();
 	}
 
 	public function testNewSessionInfoForRequest() {

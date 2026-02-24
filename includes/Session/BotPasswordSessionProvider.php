@@ -138,6 +138,14 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 	 * @phan-param array &$metadata
 	 */
 	public function refreshSessionInfo( SessionInfo $info, WebRequest $request, &$metadata ) {
+		// sanity check
+		if ( $info->getUserInfo()->isAnon() ) {
+			$this->logger->warning( 'Session "{session}": Bot password sessions cannot be anonymous', [
+				'session' => $info->__toString(),
+			] );
+			return false;
+		}
+
 		$missingKeys = array_diff(
 			[ 'centralId', 'appId', 'token' ],
 			array_keys( $metadata )
