@@ -1913,7 +1913,9 @@ class ParserTestRunner {
 			"All tests include a wikitext section"
 		);
 
-		if ( $html === null && !$mode->isCachingMode() && !isset( $test->options['nohtml'] ) ) {
+		if ( $html === null && !$mode->isCachingMode() &&
+			 !( isset( $test->options['nohtml'] ) && $this->getParsoidMetadataSection( $test ) !== null )
+		) {
 			// Nothing to test, but if mode is 'cache' we're executing this
 			// in order to set cachedBODYstr (say, for a wt2wt test)
 			// If the 'nohtml' option is set, we're executing this in order
