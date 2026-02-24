@@ -14,7 +14,8 @@
 			"Vlad5250",
 			"Warszk",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Sanderpel713"
 		]
 	},
 	"sunday": "niedzela",
@@ -268,6 +269,7 @@
 	"badtitle": "Lëchi titel",
 	"badtitletext": "Pòdóny titel starnë nie je pòprôwny. Gwësno je òn pùsti, abò zamëkô w se mërczi chtërnëch brëkòwanié je zakôzané.",
 	"viewsource": "Zdrojowi tekst",
+	"skin-action-viewsource": "Zdrojowi kòd",
 	"viewsource-title": "Zdrojowi tekst starnë $1",
 	"viewsourcetext": "Zdrojowi tekst starnë mòże przezérac ë kòpiérowac.",
 	"editinginterface": "'''ÒSTRZÉGA:''' Editëjesz starnã, jakô zamëkô w se tekst interfejsu softwôrë. Wszëtczé zmianë tu zrobioné bãdze widzec na interfejse jinszëch brëkòwników.\nPrzemëszlë dolmaczënié na [https://translatewiki.net/wiki/Main_Page?setlang=csb translatewiki.net], ekstra ùdbie lokalizacëji softwôrë MediaWiki.",

@@ -592,6 +592,8 @@
 	"edit-recovery-special-delete": "حذف",
 	"edit-recovery-loaded-title": "بازیاب تبدیلیاں",
 	"edit-recovery-loaded-message": "آپ کی غیر محفوظ تبدیلیاں خودکار طور پر بازیاب کی جاسکتی ہیں۔",
+	"edit-recovery-loaded-message-different-rev": "<em>توجہ فرمائیں: اس صفحے میں آپ کے ترمیم شروع کرنے کے بعد کچھ تبدیلیاں ہو سکتی ہیں۔</em>",
+	"edit-recovery-loaded-message-different-rev-publish": "<em>اپنی ترامیم شائع کرنے سے قبل صفحہ ایک بار پھر دیکھ لیں تاکہ کوئی تازہ تبدیلی ضائع نہ ہو جائے۔</em>",
 	"edit-recovery-loaded-recover": "بازیاب",
 	"edit-recovery-loaded-discard": "مسترد کریں",
 	"summary": "خلاصہ:",

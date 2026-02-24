@@ -164,7 +164,8 @@
 			"Rkieferbaum",
 			"Sixaxis",
 			"Erol",
-			"AJurno (WMB)"
+			"AJurno (WMB)",
+			"Jawaloso"
 		]
 	},
 	"sunday": "domingo",
@@ -1640,7 +1641,7 @@
 	"rcshowhidecategorization-hide": "Esconder",
 	"rclinks": "Exibir as $1 mudanças recentes feitas nos últimos $2 dias",
 	"diff": "dif",
-	"hist": "histórico",
+	"hist": "hist",
 	"hide": "Ocultar",
 	"show": "Exibir",
 	"minoreditletter": "m",
