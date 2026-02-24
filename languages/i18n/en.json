@@ -2095,7 +2095,7 @@
 	"trackingcategories-nodesc": "No description available.",
 	"trackingcategories-disabled": "Category is disabled",
 	"mailnologin": "No send address",
-	"mailnologintext": "You must be [[Special:UserLogin|logged in]] and have a valid email address in your [[Special:Preferences|preferences]] to send email to other users.",
+	"mailnologintext": "You must be [[Special:UserLogin|logged in]] and have a confirmed email address in your [[Special:Preferences|preferences]] to send email to other users.",
 	"emailuser": "Email this user",
 	"emailuser-title-target": "Email this {{GENDER:$1|user}}",
 	"emailuser-title-notarget": "Email user",
