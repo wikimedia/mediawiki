@@ -474,6 +474,22 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'section' => 'personal/info',
 		];
 
+		$userDisabledGroups = $this->userGroupManager->getUserDisabledGroups( $user );
+		if ( $userDisabledGroups ) {
+			$defaultPreferences['usergroups-disabled'] = [
+				'type' => 'info',
+				'label-message' => [ 'prefs-memberingroupsdisabled',
+					Message::numParam( count( $userDisabledGroups ) ), $userName ],
+				'default' => function () use ( $user, $userDisabledGroups, $context ) {
+					return $this->renderUserGroupList( $user, $userDisabledGroups, $context );
+				},
+				'help-message' => [ 'prefs-memberingroupsdisabled-help',
+					Message::numParam( count( $userDisabledGroups ) ), $user->getName() ],
+				'raw' => true,
+				'section' => 'personal/info',
+			];
+		}
+
 		$contribTitle = SpecialPage::getTitleFor( "Contributions", $userName );
 		$formattedEditCount = $lang->formatNum( $user->getEditCount() );
 		$editCount = $this->linkRenderer->makeLink( $contribTitle, $formattedEditCount );

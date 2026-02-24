@@ -113,6 +113,7 @@ class UserGroupManager {
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param TempUserConfig $tempUserConfig
 	 * @param UserRequirementsConditionCheckerFactory $userRequirementsConditionCheckerFactory
+	 * @param RestrictedUserGroupConfigReader $restrictedUserGroupConfigReader
 	 * @param callable[] $clearCacheCallbacks
 	 * @param string|false $wikiId
 	 */
@@ -124,6 +125,7 @@ class UserGroupManager {
 		private readonly JobQueueGroup $jobQueueGroup,
 		private readonly TempUserConfig $tempUserConfig,
 		private readonly UserRequirementsConditionCheckerFactory $userRequirementsConditionCheckerFactory,
+		private readonly RestrictedUserGroupConfigReader $restrictedUserGroupConfigReader,
 		private readonly array $clearCacheCallbacks = [],
 		private readonly string|false $wikiId = UserIdentity::LOCAL
 	) {
@@ -253,7 +255,8 @@ class UserGroupManager {
 	 * Get the list of implicit group memberships the user has.
 	 *
 	 * This includes all explicit groups, plus 'user' if logged in,
-	 * '*' for all accounts, and autopromoted groups
+	 * '*' for all accounts, and autopromoted groups, but it doesn't
+	 * include disabled groups.
 	 *
 	 * @param UserIdentity $user
 	 * @param int $queryFlags
@@ -288,11 +291,46 @@ class UserGroupManager {
 				// Hook for additional groups
 				$this->hookRunner->onUserEffectiveGroups( $userObj, $groups );
 			}
+			$groups = array_diff( $groups, $this->getUserDisabledGroups( $user ) );
 			// Force re-indexing of groups when a hook has unset one of them
 			$effectiveGroups = array_values( array_unique( $groups ) );
 			$this->setCache( $userKey, self::CACHE_EFFECTIVE, $effectiveGroups, $queryFlags );
 		}
 		return $this->userGroupCache[$userKey][self::CACHE_EFFECTIVE];
+	}
+
+	/**
+	 * Returns a list of groups that the user belongs to but for some reason
+	 * are currently disabled.
+	 *
+	 * This is used to stop people using group they no longer meet conditions for,
+	 * as configured by $wgRestrictedGroups.
+	 *
+	 * @param UserIdentity $user
+	 * @return array
+	 */
+	public function getUserDisabledGroups( UserIdentity $user ): array {
+		$groups = $this->getUserGroups( $user );
+
+		$restrictedGroups = $this->restrictedUserGroupConfigReader->getConfig( $this->wikiId );
+		$disabledGroups = [];
+		foreach ( $groups as $group ) {
+			if ( !array_key_exists( $group, $restrictedGroups ) ) {
+				continue;
+			}
+			$restrictions = $restrictedGroups[$group];
+			if ( !$restrictions->continuouslyEnforced() ) {
+				continue;
+			}
+
+			$checker = $this->userRequirementsConditionCheckerFactory->getUserRequirementsConditionChecker(
+				$this, $this->wikiId
+			);
+			if ( !$checker->recursivelyCheckCondition( $restrictions->getMemberConditions(), $user ) ) {
+				$disabledGroups[] = $group;
+			}
+		}
+		return $disabledGroups;
 	}
 
 	/**

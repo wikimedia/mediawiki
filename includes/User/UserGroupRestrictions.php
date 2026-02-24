@@ -51,4 +51,12 @@ class UserGroupRestrictions {
 	public function canBeIgnored(): bool {
 		return $this->canBeIgnored;
 	}
+
+	/**
+	 * Checks if this group restrictions can be continuously enforced. This is the case if conditions for member
+	 * are specified, and it's impossible to ignore the restrictions.
+	 */
+	public function continuouslyEnforced(): bool {
+		return !$this->canBeIgnored() && $this->getMemberConditions() !== [];
+	}
 }

@@ -101,6 +101,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 				'genPattern' => '*Unregistered $1'
 			] ),
 			$userRequirementsConditionCheckerFactory,
+			$services->getRestrictedUserGroupConfigReader(),
 			$callback ? [ $callback ] : []
 		);
 
@@ -133,6 +134,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 
 		$this->expiryTime = wfTimestamp( TS::MW, time() + 100500 );
 		$this->clearHooks();
+		$this->overrideConfigValue( MainConfigNames::RestrictedGroups, [] );
 	}
 
 	/**
@@ -274,6 +276,39 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			}
 		);
 		$this->assertContains( 'from_hook', $manager->getUserEffectiveGroups( $user ) );
+	}
+
+	public function testGetEffectiveGroups_disabled() {
+		$this->overrideConfigValue( MainConfigNames::RestrictedGroups, [
+			'interface-admin' => [
+				'memberConditions' => [ APCOND_EDITCOUNT, 1000 ]
+			],
+		] );
+		$manager = $this->getManager();
+		$user = $this->getTestUser( [ 'interface-admin', 'sysop' ] )->getUser();
+		$this->assertArrayEquals(
+			[ '*', 'user', 'autoconfirmed', 'sysop' ],
+			$manager->getUserEffectiveGroups( $user )
+		);
+	}
+
+	public function testGetDisabledGroups() {
+		$this->overrideConfigValue( MainConfigNames::RestrictedGroups, [
+			'bureaucrat' => [
+				'memberConditions' => [ APCOND_EDITCOUNT, 1000 ],
+				'canBeIgnored' => true,
+			],
+			'interface-admin' => [
+				'memberConditions' => [ APCOND_EDITCOUNT, 1000 ]
+			],
+			'suppress' => [
+				'memberConditions' => [ APCOND_EDITCOUNT, 0 ]
+			],
+		] );
+		$manager = $this->getManager();
+		$user = $this->getTestUser( [ 'bureaucrat', 'interface-admin', 'suppress', 'sysop' ] )->getUser();
+		$this->assertCount( 1, $manager->getUserDisabledGroups( $user ) );
+		$this->assertSame( [ 'interface-admin' ], $manager->getUserDisabledGroups( $user ) );
 	}
 
 	public function testAddUserToGroup() {

@@ -12,6 +12,7 @@ use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
@@ -25,6 +26,7 @@ use MediaWiki\Tests\Unit\MockBlockTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
@@ -91,7 +93,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				'undelete',
 				'deletedhistory',
 				'deletedtext',
-			]
+			],
+			MainConfigNames::RestrictedGroups => [],
 		] );
 
 		$this->setGroupPermissions( [
@@ -1787,6 +1790,36 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$this->assertSame( [ 'edit' ], $permissions );
 		$this->assertTrue( $hookRan );
+	}
+
+	public function testFatalStatusWithDisabledGroups() {
+		$groupPermissions = $this->getConfVar( MainConfigNames::GroupPermissions );
+		$groupPermissions['sysop']['loremipsum'] = true;
+		$groupPermissions['interface-admin']['loremipsum'] = true;
+		$this->overrideConfigValues( [
+			MainConfigNames::GroupPermissions => $groupPermissions,
+			MainConfigNames::RestrictedGroups => [
+				'sysop' => [
+					'memberConditions' => [ APCOND_EDITCOUNT, 1000 ],
+				],
+			]
+		] );
+
+		$user = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setLanguage( 'qqx' );
+		$context->setUser( $user );
+		$status = $this->getServiceContainer()->getPermissionManager()
+			->newFatalPermissionDeniedStatus( 'loremipsum', $context );
+
+		$this->assertStatusMessage( 'badaccess-groups-disabled', $status );
+		$messageText = Message::newFromSpecifier( $status->getMessages()[0] )->inLanguage( 'qqx' )->text();
+		$linkSysop = UserGroupMembership::getLinkWiki( 'sysop', $context );
+		$linkIntAdmin = UserGroupMembership::getLinkWiki( 'interface-admin', $context );
+		$this->assertSame(
+			"(badaccess-groups-disabled: $linkSysop(comma-separator)$linkIntAdmin, 2, (group-sysop), 1)",
+			$messageText
+		);
 	}
 
 	/**

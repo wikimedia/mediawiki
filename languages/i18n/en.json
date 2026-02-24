@@ -135,6 +135,7 @@
 	"badaccess": "Permission error",
 	"badaccess-group0": "You are not allowed to execute the action you have requested.",
 	"badaccess-groups": "The action you have requested is limited to users in {{PLURAL:$2|the group|one of the groups}}: $1.",
+	"badaccess-groups-disabled": "The action you have requested is limited to users in {{PLURAL:$2|the group|one of the groups}}: $1. Although you are member of $3, your membership in {{PLURAL:$4|this group|these groups}} is currently disabled.",
 	"versionrequired": "Version $1 of MediaWiki required",
 	"versionrequiredtext": "Version $1 of MediaWiki is required to use this page.\nSee [[Special:Version|version page]].",
 	"ok": "OK",

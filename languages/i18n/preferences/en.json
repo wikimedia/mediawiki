@@ -22,6 +22,8 @@
 	"prefs-memberingroups": "{{GENDER:$2|Member}} of {{PLURAL:$1|group|groups}}:",
 	"prefs-memberingroups-type": "$1",
 	"group-membership-link-with-expiry": "$1 (until $2)",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|Disabled}} {{PLURAL:$1|group|groups}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|You}} no longer meet conditions for being member of {{PLURAL:$1|this group|these groups}} and therefore you cannot use rights granted by {{PLURAL:$1|it|them}}. Unless it changes, you may be removed from {{PLURAL:$1|this group|these groups}} in future.",
 	"prefs-edits": "Number of edits:",
 	"prefs-registration": "Registration time:",
 	"prefs-registration-date-time": "$1",

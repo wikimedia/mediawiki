@@ -731,20 +731,41 @@ class PermissionManager {
 	 * @return PermissionStatus
 	 */
 	public function newFatalPermissionDeniedStatus( $permission, IContextSource $context ): StatusValue {
-		$groups = [];
-		foreach ( $this->groupPermissionsLookup->getGroupsWithPermission( $permission ) as $group ) {
-			$groups[] = UserGroupMembership::getLinkWiki( $group, $context );
+		$groups = $this->groupPermissionsLookup->getGroupsWithPermission( $permission );
+		if ( !$groups ) {
+			$status = PermissionStatus::newFatal( 'badaccess-group0' );
+			$status->setPermission( $permission );
+			return $status;
 		}
 
-		if ( $groups ) {
-			return PermissionStatus::newFatal(
-				'badaccess-groups',
-				Message::listParam( $groups, ListType::COMMA ),
-				count( $groups )
+		$groupLinks = array_map(
+			static fn ( $group ) => UserGroupMembership::getLinkWiki( $group, $context ),
+			$groups
+		);
+
+		$userDisabledGroups = $this->userGroupManager->getUserDisabledGroups( $context->getUser() );
+		$groupIntersection = array_intersect( $groups, $userDisabledGroups );
+		if ( $groupIntersection !== [] ) {
+			$groupIntersectionNames = array_map(
+				static fn ( $group ) => $context->getLanguage()->getGroupName( $group ),
+				$groupIntersection
 			);
+			$status = PermissionStatus::newFatal(
+				'badaccess-groups-disabled',
+				Message::listParam( $groupLinks, ListType::COMMA ),
+				count( $groupLinks ),
+				Message::listParam( $groupIntersectionNames, ListType::COMMA ),
+				count( $groupIntersectionNames )
+			);
+			$status->setPermission( $permission );
+			return $status;
 		}
 
-		$status = PermissionStatus::newFatal( 'badaccess-group0' );
+		$status = PermissionStatus::newFatal(
+			'badaccess-groups',
+			Message::listParam( $groupLinks, ListType::COMMA ),
+			count( $groupLinks )
+		);
 		$status->setPermission( $permission );
 		return $status;
 	}

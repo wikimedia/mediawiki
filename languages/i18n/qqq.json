@@ -415,6 +415,7 @@
 	"badaccess": "Title shown within page indicating unauthorized access.\n{{Identical|Permission error}}",
 	"badaccess-group0": "Shown when you are not allowed to do something.",
 	"badaccess-groups": "Error message when you aren't allowed to do something. Parameters:\n* $1 - a list of groups\n* $2 - the number of groups",
+	"badaccess-groups-disabled": "Error message when you aren't allowed to do something, because the groups that would allow you to do it are disabled. Parameters:\n* $1 - a list of groups which give permission to perform the action\n* $2 - the number of groups in $1\n* $3 - a subset of groups in $1 that you have but are disabled\n* $4 - the number of groups in $3",
 	"versionrequired": "This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions.\n\nParameters:\n* $1 - MediaWiki version number\nSee also:\n* {{msg-mw|Versionrequiredtext}}",
 	"versionrequiredtext": "This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions.\n\nParameters:\n* $1 - MediaWiki version number\nSee also:\n* {{msg-mw|Versionrequired}}",
 	"ok": "{{Identical|OK}}",

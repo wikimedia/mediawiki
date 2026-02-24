@@ -2800,6 +2800,7 @@ return [
 			$services->getJobQueueGroupFactory(),
 			$services->getTempUserConfig(),
 			$services->getUserRequirementsConditionCheckerFactory(),
+			$services->getRestrictedUserGroupConfigReader(),
 			[ static function ( UserIdentity $user ) use ( $services ) {
 				if ( $user->getWikiId() === UserIdentity::LOCAL ) {
 					$services->getPermissionManager()->invalidateUsersRightsCache( $user );
