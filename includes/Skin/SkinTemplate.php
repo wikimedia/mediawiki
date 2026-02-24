@@ -62,9 +62,6 @@ class SkinTemplate extends Skin {
 	private $isTempUser;
 
 	/** @var bool */
-	private $isNamedUser;
-
-	/** @var bool */
 	private $isAnonUser;
 
 	/** @var bool */
@@ -126,10 +123,9 @@ class SkinTemplate extends Skin {
 		$this->loggedin = $user->isRegistered();
 		$this->username = $user->getName();
 		$this->isTempUser = $user->isTemp();
-		$this->isNamedUser = $this->loggedin && !$this->isTempUser;
 		$this->isAnonUser = $user->isAnon();
 
-		if ( $this->isNamedUser ) {
+		if ( $this->loggedin ) {
 			$this->userpageUrlDetails = self::makeUrlDetails( $userpageTitle );
 		} else {
 			# This won't be used in the standard skins, but we define it to preserve the interface
@@ -746,7 +742,7 @@ class SkinTemplate extends Skin {
 	 * @param string $idSuffix Something to add to the IDs to make them unique
 	 */
 	private function addPersonalPageItem( &$links, $idSuffix ) {
-		if ( $this->isNamedUser ) { // T340152
+		if ( $this->loggedin ) {
 			$links['userpage'] = $this->buildPersonalPageItem( 'pt-userpage' . $idSuffix );
 		}
 	}
@@ -762,6 +758,9 @@ class SkinTemplate extends Skin {
 		// T335440 Temp accounts dont show a user page link
 		// But we still need to update the user icon, as its used by other UI elements
 		$icon = $this->isTempUser ? 'userTemporary' : 'userAvatar';
+		if ( $this->isTempUser ) {
+			$linkClasses[] = 'mw-temp-user-link';
+		}
 		$href = &$this->userpageUrlDetails['href'];
 		return [
 			'id' => $id,
