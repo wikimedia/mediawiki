@@ -1511,6 +1511,7 @@
 	"undeleteviewlink": "kóriw",
 	"undeleteinvert": "Ketekshe belgisin ózgertiw",
 	"undeletecomment": "Sebep:",
+	"undeleteothercomment": "Basqa/qosımsha sebep:",
 	"undelete-edit-commentlist": "Óshiriwdi biykarlaw sebeplerin ózgertiw",
 	"undeletedpage": "<strong>Aldın óshirilgen $1 beti qayta tiklendi.</strong>\nEń sońǵı óshirilgen hám qayta tiklengen betler haqqında maǵlıwmat alıw ushın [[Special:Log/delete|óshiriwler jurnalı]]n kórińiz.",
 	"undelete-search-title": "Óshirilgen betlerdi izlew",

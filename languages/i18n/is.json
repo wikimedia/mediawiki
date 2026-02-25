@@ -745,6 +745,7 @@
 	"unstrip-size-category-desc": "Síðan fer út fyrir stærðartakmörk afstrípunar.",
 	"bad-language-code-category": "Síður með ógildum tungumálakóðum",
 	"bad-language-code-category-desc": "Á síðunni er <code><nowiki>{{#dir}}</nowiki></code> með ógildum tungumálakóða.",
+	"bad-double-underscore-category": "Síður með ógildar hegðunarbreytur",
 	"double-px-category": "Síður með myndastærðum sem innihalda aukalegt px",
 	"double-px-category-desc": "Á síðunni er mynd sem skilgreind er með auka <code>px</code> viðskeyti, eins og <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Villa greindist í handvirkri tungumálaumbreytingarreglu",

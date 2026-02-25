@@ -153,7 +153,8 @@
 			"TeaSummer",
 			"Peterxy12",
 			"臺灣象象",
-			"Leo768"
+			"Leo768",
+			"ShuQizhe"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|分類}}",
@@ -1677,7 +1678,7 @@
 	"uploadwarning-text-nostash": "請重新上傳檔案，在下方修改說明並重試。",
 	"savefile": "儲存檔案",
 	"uploaddisabled": "已停用上傳。",
-	"copyuploaddisabled": "已停止使用 URL 上傳。",
+	"copyuploaddisabled": "已停用 URL 上傳。",
 	"uploaddisabledtext": "已停用檔案上傳。",
 	"php-uploaddisabledtext": "PHP 已停用檔案上傳。\n請檢查 file_uploads 設定。",
 	"uploadscripted": "此檔案包含可能會被網頁瀏覽器錯誤執行的 HTML 或 Script。",
@@ -2739,7 +2740,7 @@
 	"emaillink": "傳送電子郵件",
 	"autoblocker": "您的IP位址因最近被「[[User:$1|$1]]」使用過而被自動封鎖。封鎖$1的原因為「$2」",
 	"blocklogpage": "封鎖日誌",
-	"blocklog-showlog": "此{{GENDER:$1|使用者}}先前被封鎖過。以下提供用於參考的封鎖日誌項目：",
+	"blocklog-showlog": "此{{GENDER:$1|使用者}}曾被封鎖。以下提供封鎖日誌供參考：",
 	"blocklog-showsuppresslog": "此{{GENDER:$1|使用者}}先前被封鎖並且隱藏過。\n以下為監督日誌以供參考：",
 	"unblocklog-showlog": "此{{GENDER:$1|使用者}}的封鎖日誌項目在下方提供，用於參考：",
 	"unblocklog-showsuppresslog": "此{{GENDER:$1|使用者}}的監督日誌項目在下方提供，用於參考：",

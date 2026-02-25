@@ -41,7 +41,7 @@
 	"password-name-match": "Beassansátni ferte leat eará go geavaheaddjinamma.",
 	"password-login-forbidden": "Dán geavaheaddjinama ja beassansáni geavaheapmi lea gildojuvvon.",
 	"passwordincommonlist": "Čoavddasátni maid don čállet lea hui dábálaš čoavddasániid listtus. Vállje mat čoavddasáni mii lea eambbo earenoamáš.",
-	"prefs-help-yourpassword": "Geavaheaddjidovddaldaga ođđasitásaheapmi lea biddjojuvvon johtui. Eanet heivehusaid oainnát $1:s.",
+	"prefs-help-yourpassword": "Geavaheaddjidovddaldaga ođđasitásaheapmi lea biddjojuvvon johtui. Eanet ásahusaid oainnát $1:s.",
 	"tog-prefershttps": "Ane álo suddjejuvvon oktavuođa, go leat čálihuvvon sisa.",
 	"prefs-help-prefershttps": "Dán ásahus boahtá fápmui čuovvovaš geardde go čálihat sisa.",
 	"prefs-user-downloaddata-label": "Vuoigatvuohta geavaheaddjidovddaldatdieđuide:",
@@ -81,7 +81,7 @@
 	"prefs-help-email": "Epoastačujuhus lea eaktodáhtolaš, muhto dat dárbbašuvvá ođđa beassansáni oažžumii, jus de vajálduhtát beassansáni.",
 	"prefs-help-email-required": "E-poastačujuhus dárbbašuvvo.",
 	"prefs-help-email-others": "Sáhtát maid diktit eará geavaheddjiid váldit oktavuođa duinna iežat geavaheaddjisiiddu bokte almmá iežat identitehta almmuhemiin.",
-	"tog-requireemail": "Sádde e-poastta beassansáni ođasmahttima várás dušše dalle go sihke e-poastačujuhus ja geavaheaddjinamma addojuvvojit.",
+	"tog-requireemail": "Sádde e-poastta beassansáni ođasmahttima várás dušše dalle go sihke e-poastačujuhus ja geavaheaddjinamma addojuvvojit",
 	"prefs-help-requireemail": "Dát buorida personsuodjalusa ja veahkeha eastit sávakeahtes e-poastta.",
 	"noemailprefs": "Čále e-poastačujuhusa iežat ásahusaide vai dat doaimmat doibmet.",
 	"emailnotauthenticated": "E-poastačujuhus ii leat vel sihkarastojuvvon. \nE-poasta ii sáddejuvvo guđege čuvvovaš doaimmaide.",
@@ -228,7 +228,7 @@
 	"search-thumbnail-extra-namespaces-message": "Čájeha miniatyragovaid bohtosiin: {{PLURAL:$2|nammagomuvuođas|nammagomuvuođain}} $1 ohcansiiddus",
 	"prefs-advancedsearchoptions": "Lasseásahusat",
 	"prefs-misc": "Eará",
-	"prefs-reset-intro": "Sáhtát geavahit dán siiddu rievdadit iežat heivehusaid fas standárdaheivehussan.Dát ii sáhte šat rievdaduvvot.",
+	"prefs-reset-intro": "Sáhtát geavahit dán siiddu rievdadit iežat ásahusaid fas standárdaásahussan.\nDát ii sáhte šat rievdaduvvot.",
 	"prefs-reset-confirm": "Jua, mun háliidan ođđasit álgit ásahusaid divvut.",
 	"restoreprefs": "Máhcat fas buot vuođđoheivehusaide"
 }

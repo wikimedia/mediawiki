@@ -2653,7 +2653,7 @@
 	"ipb-confirm": "Подтвердить блокировку",
 	"ipb-sitewide": "Во всём проекте",
 	"ipb-partial": "Частичная",
-	"ipb-sitewide-help": "Блокирует редактирование на всех страницах и пространствах имён, а также действия по умолчанию ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked help См. Справку])",
+	"ipb-sitewide-help": "Блокирует редактирование на всех страницах, во всех пространствах имён, а также действия по умолчанию ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked см. справку])",
 	"ipb-partial-help": "Блокирует редактирование на определённых страницах и пространствах имён, а также блокирует определённые действия.",
 	"ipb-action-create": "Создание новых страниц и загрузка новых файлов",
 	"ipb-action-move": "Переименование страниц и файлов",

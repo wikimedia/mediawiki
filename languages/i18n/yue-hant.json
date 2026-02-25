@@ -54,7 +54,8 @@
 			"沈澄心",
 			"아라",
 			"1F616EMO",
-			"JeffreyKim"
+			"JeffreyKim",
+			"ShuQizhe"
 		]
 	},
 	"pagecategories": "屬於$1類",
@@ -2593,7 +2594,7 @@
 	"blocklist-tempblocks": "收埋臨時封鎖",
 	"blocklist-indefblocks": "收埋永久封鎖",
 	"blocklist-addressblocks": "收埋單一IP封鎖",
-	"blocklist-tempuserblocks": "隱藏封鎖咗嘅臨時戶口",
+	"blocklist-tempuserblocks": "收埋封鎖咗嘅臨時戶口",
 	"blocklist-type": "類：",
 	"blocklist-type-header": "類型",
 	"blocklist-actions-header": "動作",

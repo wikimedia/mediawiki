@@ -37,7 +37,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Edgarsdna",
-			"Rusjanis"
+			"Rusjanis",
+			"Turaids"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategorijas|Kategorija|Kategorijas}}",
@@ -175,7 +176,7 @@
 	"new-messages-from-many-users": "Jums ir $1 no daudziem dalībniekiem ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|999=jauni vēstījumi|jauns vēstījums|999=jauni vēstījumi}}",
 	"new-messages-diff-link-plural": "{{PLURAL:$1|pēdējā izmaiņa|999=pēdējās izmaiņas}}",
-	"editsection": "rediģēt",
+	"editsection": "labot",
 	"editold": "labot",
 	"viewsourceold": "aplūkot kodu",
 	"editlink": "labot",
@@ -2038,7 +2039,7 @@
 	"unblocklink": "atbloķēt",
 	"change-blocklink": "izmainīt bloku",
 	"empty-username": "(dalībnieka vārds nav pieejams)",
-	"contribslink": "ieguldījums",
+	"contribslink": "devums",
 	"emaillink": "nosūtīt e-pastu",
 	"autoblocker": "Tava IP ir nobloķēta automātiski, tāpēc, ka to nesen lietojis \"[[User:$1|$1]]\".\nViņa bloķēšanas iemesls bija: \"$2\"",
 	"blocklogpage": "Bloķēšanas reģistrs",
