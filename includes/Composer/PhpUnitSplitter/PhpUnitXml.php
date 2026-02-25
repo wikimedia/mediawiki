@@ -72,19 +72,12 @@ class PhpUnitXml {
 	 * cases are generated dynamically. For this special cases, we need to add the classes
 	 * manually back into the suites list to ensure that they get included in a test run.
 	 * @see T345481
-	 * @see T358394
 	 * @throws SuiteGenerationException
 	 */
 	public function addSpecialCaseTests( int $groupCount ) {
 		$suite = $this->xml->testsuites->addChild( "testsuite" );
 		$suite->addAttribute( "name", "split_group_" . ( $groupCount - 1 ) );
 		$suite->addChild( "file", "tests/phpunit/suites/ExtensionsParserTestSuite.php" );
-
-		$sandboxTest = "extensions/Scribunto/tests/phpunit/Engines/LuaSandbox/SandboxTest.php";
-		if ( file_exists( $sandboxTest ) ) {
-			$suite = $this->getSplitGroupSuite( 0 );
-			$suite->addChild( "file", $sandboxTest );
-		}
 	}
 
 	public function saveToDisk( string $targetXml ) {
