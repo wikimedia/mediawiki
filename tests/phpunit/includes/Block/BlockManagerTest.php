@@ -1114,7 +1114,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider providerXff
 	 */
-	public function testBlocksOnXff( $xff, $exCount, $exResult ) {
+	public function testBlocksOnXff( $xff, $count, $result ) {
 		$this->setupForXff();
 		$this->getServiceContainer()->getDatabaseBlockStore()
 			->insertBlockWithParams( [
@@ -1125,7 +1125,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$list = array_map( 'trim', explode( ',', $xff ) );
 		$manager = $this->getBlockManager( [] );
 		$xffblocks = $manager->getBlocksForIPList( $list, true, false );
-		$this->assertCount( $exCount, $xffblocks, 'Number of blocks for ' . $xff );
+		$this->assertCount( $count, $xffblocks, 'Number of blocks for ' . $xff );
 	}
 
 	private function setupForXff() {

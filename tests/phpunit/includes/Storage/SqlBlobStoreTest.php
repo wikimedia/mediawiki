@@ -388,9 +388,9 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideExpandBlob() {
 		yield 'Generic test' => [
-			'This is a goat of revision text.',
-			'old_flags' => '',
-			'old_text' => 'This is a goat of revision text.',
+			'expected' => 'This is a goat of revision text.',
+			'flags' => '',
+			'raw' => 'This is a goat of revision text.',
 		];
 	}
 
@@ -407,9 +407,9 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideExpandBlobWithZlibExtension() {
 		yield 'Generic gzip test' => [
-			'This is a small goat of revision text.',
-			'old_flags' => 'gzip',
-			'old_text' => gzdeflate( 'This is a small goat of revision text.' ),
+			'expected' => 'This is a small goat of revision text.',
+			'flags' => 'gzip',
+			'raw' => gzdeflate( 'This is a small goat of revision text.' ),
 		];
 	}
 
@@ -427,8 +427,8 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideExpandBlobWithZlibExtension_badData() {
 		yield 'Generic gzip test' => [
-			'old_flags' => 'gzip',
-			'old_text' => 'DEAD BEEF',
+			'flags' => 'gzip',
+			'raw' => 'DEAD BEEF',
 		];
 	}
 
@@ -446,16 +446,16 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideExpandBlobWithLegacyEncoding() {
 		yield 'Utf8Native' => [
-			"Wiki est l'\xc3\xa9cole superieur !",
-			'iso-8859-1',
-			'old_flags' => 'utf-8',
-			'old_text' => "Wiki est l'\xc3\xa9cole superieur !",
+			'expected' => "Wiki est l'\xc3\xa9cole superieur !",
+			'encoding' => 'iso-8859-1',
+			'flags' => 'utf-8',
+			'raw' => "Wiki est l'\xc3\xa9cole superieur !",
 		];
 		yield 'Utf8Legacy' => [
-			"Wiki est l'\xc3\xa9cole superieur !",
-			'iso-8859-1',
-			'old_flags' => '',
-			'old_text' => "Wiki est l'\xe9cole superieur !",
+			'expected' => "Wiki est l'\xc3\xa9cole superieur !",
+			'encoding' => 'iso-8859-1',
+			'flags' => '',
+			'raw' => "Wiki est l'\xe9cole superieur !",
 		];
 	}
 
@@ -479,16 +479,16 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		 * Otherwise, getRevisionText will hit the live database (if ExternalStore is enabled)!
 		 */
 		yield 'Utf8NativeGzip' => [
-			"Wiki est l'\xc3\xa9cole superieur !",
-			'iso-8859-1',
-			'old_flags' => 'gzip,utf-8',
-			'old_text' => gzdeflate( "Wiki est l'\xc3\xa9cole superieur !" ),
+			'expected' => "Wiki est l'\xc3\xa9cole superieur !",
+			'encoding' => 'iso-8859-1',
+			'flags' => 'gzip,utf-8',
+			'raw' => gzdeflate( "Wiki est l'\xc3\xa9cole superieur !" ),
 		];
 		yield 'Utf8LegacyGzip' => [
-			"Wiki est l'\xc3\xa9cole superieur !",
-			'iso-8859-1',
-			'old_flags' => 'gzip',
-			'old_text' => gzdeflate( "Wiki est l'\xe9cole superieur !" ),
+			'expected' => "Wiki est l'\xc3\xa9cole superieur !",
+			'encoding' => 'iso-8859-1',
+			'flags' => 'gzip',
+			'raw' => gzdeflate( "Wiki est l'\xe9cole superieur !" ),
 		];
 	}
 
@@ -508,15 +508,15 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideTestGetRevisionText_returnsDecompressedTextFieldWhenNotExternal() {
 		yield 'Just text' => [
-			'old_flags' => '',
-			'old_text' => 'SomeText',
-			'SomeText'
+			'flags' => '',
+			'raw' => 'SomeText',
+			'expected' => 'SomeText',
 		];
 		// gzip string below generated with gzdeflate( 'AAAABBAAA' )
 		yield 'gzip text' => [
-			'old_flags' => 'gzip',
-			'old_text' => "sttttr\002\022\000",
-			'AAAABBAAA'
+			'flags' => 'gzip',
+			'raw' => "sttttr\002\022\000",
+			'expected' => 'AAAABBAAA',
 		];
 	}
 

@@ -239,7 +239,7 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 						'offset' => '999|Page_2'
 					]
 				],
-				'watchedItems' => [
+				'watchedItemsCallAndResponse' => [
 					'call' => [
 						'limit' => 20,
 						'sort' => WatchedItemStoreInterface::SORT_DESC,

@@ -65,9 +65,9 @@ class PatternTest extends TestCase {
 	}
 
 	/** @dataProvider provideIsMatch */
-	public function testIsMatch( $stringPattern, $name, $expected ) {
-		$pattern = new Pattern( 'test', $stringPattern );
-		$this->assertSame( $expected, $pattern->isMatch( $name ) );
+	public function testIsMatch( $pattern, $name, $expected ) {
+		$patternObj = new Pattern( 'test', $pattern );
+		$this->assertSame( $expected, $patternObj->isMatch( $name ) );
 	}
 
 	public static function provideGenerate() {
@@ -91,9 +91,9 @@ class PatternTest extends TestCase {
 	}
 
 	/** @dataProvider provideGenerate */
-	public function testGenerate( $stringPattern, $serial, $expected ) {
-		$pattern = new Pattern( 'test', $stringPattern );
-		$this->assertSame( $expected, $pattern->generate( $serial ) );
+	public function testGenerate( $pattern, $serial, $expected ) {
+		$patternObj = new Pattern( 'test', $pattern );
+		$this->assertSame( $expected, $patternObj->generate( $serial ) );
 	}
 
 	public function testGenerateWithYear() {

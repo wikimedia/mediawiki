@@ -904,114 +904,114 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$rev2y = [ $title, $update2, $user1, 'rev2', 122 ];
 
 		yield 'any' => [
-			'$prepUser' => null,
-			'$prepRevision' => null,
-			'$prepUpdate' => null,
-			'$forUser' => null,
-			'$forRevision' => null,
-			'$forUpdate' => null,
-			'$forParent' => null,
-			'$isReusable' => true,
+			'prepUser' => null,
+			'prepRevision' => null,
+			'prepUpdate' => null,
+			'forUser' => null,
+			'forRevision' => null,
+			'forUpdate' => null,
+			'forParent' => null,
+			'isReusable' => true,
 		];
 		yield 'for any' => [
-			'$prepUser' => $user1,
-			'$prepRevision' => $rev1,
-			'$prepUpdate' => $update1,
-			'$forUser' => null,
-			'$forRevision' => null,
-			'$forUpdate' => null,
-			'$forParent' => null,
-			'$isReusable' => true,
+			'prepUser' => $user1,
+			'prepRevision' => $rev1,
+			'prepUpdate' => $update1,
+			'forUser' => null,
+			'forRevision' => null,
+			'forUpdate' => null,
+			'forParent' => null,
+			'isReusable' => true,
 		];
 		yield 'unprepared' => [
-			'$prepUser' => null,
-			'$prepRevision' => null,
-			'$prepUpdate' => null,
-			'$forUser' => $user1,
-			'$forRevision' => $rev1,
-			'$forUpdate' => $update1,
-			'$forParent' => 0,
-			'$isReusable' => true,
+			'prepUser' => null,
+			'prepRevision' => null,
+			'prepUpdate' => null,
+			'forUser' => $user1,
+			'forRevision' => $rev1,
+			'forUpdate' => $update1,
+			'forParent' => 0,
+			'isReusable' => true,
 		];
 		yield 'match prepareContent' => [
-			'$prepUser' => $user1,
-			'$prepRevision' => null,
-			'$prepUpdate' => $update1,
-			'$forUser' => $user1,
-			'$forRevision' => null,
-			'$forUpdate' => $update1,
-			'$forParent' => 0,
-			'$isReusable' => true,
+			'prepUser' => $user1,
+			'prepRevision' => null,
+			'prepUpdate' => $update1,
+			'forUser' => $user1,
+			'forRevision' => null,
+			'forUpdate' => $update1,
+			'forParent' => 0,
+			'isReusable' => true,
 		];
 		yield 'match prepareUpdate' => [
-			'$prepUser' => null,
-			'$prepRevision' => $rev1,
-			'$prepUpdate' => null,
-			'$forUser' => $user1,
-			'$forRevision' => $rev1,
-			'$forUpdate' => null,
-			'$forParent' => 0,
-			'$isReusable' => true,
+			'prepUser' => null,
+			'prepRevision' => $rev1,
+			'prepUpdate' => null,
+			'forUser' => $user1,
+			'forRevision' => $rev1,
+			'forUpdate' => null,
+			'forParent' => 0,
+			'isReusable' => true,
 		];
 		yield 'match all' => [
-			'$prepUser' => $user1,
-			'$prepRevision' => $rev1,
-			'$prepUpdate' => $update1,
-			'$forUser' => $user1,
-			'$forRevision' => $rev1,
-			'$forUpdate' => $update1,
-			'$forParent' => 0,
-			'$isReusable' => true,
+			'prepUser' => $user1,
+			'prepRevision' => $rev1,
+			'prepUpdate' => $update1,
+			'forUser' => $user1,
+			'forRevision' => $rev1,
+			'forUpdate' => $update1,
+			'forParent' => 0,
+			'isReusable' => true,
 		];
 		yield 'mismatch prepareContent update' => [
-			'$prepUser' => $user1,
-			'$prepRevision' => null,
-			'$prepUpdate' => $update1,
-			'$forUser' => $user1,
-			'$forRevision' => null,
-			'$forUpdate' => $update1b,
-			'$forParent' => 0,
-			'$isReusable' => false,
+			'prepUser' => $user1,
+			'prepRevision' => null,
+			'prepUpdate' => $update1,
+			'forUser' => $user1,
+			'forRevision' => null,
+			'forUpdate' => $update1b,
+			'forParent' => 0,
+			'isReusable' => false,
 		];
 		yield 'mismatch prepareContent user' => [
-			'$prepUser' => $user1,
-			'$prepRevision' => null,
-			'$prepUpdate' => $update1,
-			'$forUser' => $user2,
-			'$forRevision' => null,
-			'$forUpdate' => $update1,
-			'$forParent' => 0,
-			'$isReusable' => false,
+			'prepUser' => $user1,
+			'prepRevision' => null,
+			'prepUpdate' => $update1,
+			'forUser' => $user2,
+			'forRevision' => null,
+			'forUpdate' => $update1,
+			'forParent' => 0,
+			'isReusable' => false,
 		];
 		yield 'mismatch prepareContent parent' => [
-			'$prepUser' => $user1,
-			'$prepRevision' => null,
-			'$prepUpdate' => $update1,
-			'$forUser' => $user1,
-			'$forRevision' => null,
-			'$forUpdate' => $update1,
-			'$forParent' => 7,
-			'$isReusable' => false,
+			'prepUser' => $user1,
+			'prepRevision' => null,
+			'prepUpdate' => $update1,
+			'forUser' => $user1,
+			'forRevision' => null,
+			'forUpdate' => $update1,
+			'forParent' => 7,
+			'isReusable' => false,
 		];
 		yield 'mismatch prepareUpdate revision update' => [
-			'$prepUser' => null,
-			'$prepRevision' => $rev1,
-			'$prepUpdate' => null,
-			'$forUser' => null,
-			'$forRevision' => $rev1b,
-			'$forUpdate' => null,
-			'$forParent' => 0,
-			'$isReusable' => false,
+			'prepUser' => null,
+			'prepRevision' => $rev1,
+			'prepUpdate' => null,
+			'forUser' => null,
+			'forRevision' => $rev1b,
+			'forUpdate' => null,
+			'forParent' => 0,
+			'isReusable' => false,
 		];
 		yield 'mismatch prepareUpdate revision id' => [
-			'$prepUser' => null,
-			'$prepRevision' => $rev2,
-			'$prepUpdate' => null,
-			'$forUser' => null,
-			'$forRevision' => $rev2y,
-			'$forUpdate' => null,
-			'$forParent' => 0,
-			'$isReusable' => false,
+			'prepUser' => null,
+			'prepRevision' => $rev2,
+			'prepUpdate' => null,
+			'forUser' => null,
+			'forRevision' => $rev2y,
+			'forUpdate' => null,
+			'forParent' => 0,
+			'isReusable' => false,
 		];
 	}
 
@@ -1060,34 +1060,34 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideIsCountable() {
 		yield 'deleted revision' => [
-			'$articleCountMethod' => 'any',
-			'$wikitextContent' => 'Test',
-			'$revisionVisibility' => RevisionRecord::SUPPRESSED_ALL,
-			'$isCountable' => false
+			'articleCountMethod' => 'any',
+			'wikitextContent' => 'Test',
+			'revisionVisibility' => RevisionRecord::SUPPRESSED_ALL,
+			'isCountable' => false
 		];
 		yield 'redirect' => [
-			'$articleCountMethod' => 'any',
-			'$wikitextContent' => '#REDIRECT [[Main_Page]]',
-			'$revisionVisibility' => 0,
-			'$isCountable' => false
+			'articleCountMethod' => 'any',
+			'wikitextContent' => '#REDIRECT [[Main_Page]]',
+			'revisionVisibility' => 0,
+			'isCountable' => false
 		];
 		yield 'no links count method any' => [
-			'$articleCountMethod' => 'any',
-			'$wikitextContent' => 'Test',
-			'$revisionVisibility' => 0,
-			'$isCountable' => true
+			'articleCountMethod' => 'any',
+			'wikitextContent' => 'Test',
+			'revisionVisibility' => 0,
+			'isCountable' => true
 		];
 		yield 'no links count method link' => [
-			'$articleCountMethod' => 'link',
-			'$wikitextContent' => 'Test',
-			'$revisionVisibility' => 0,
-			'$isCountable' => false
+			'articleCountMethod' => 'link',
+			'wikitextContent' => 'Test',
+			'revisionVisibility' => 0,
+			'isCountable' => false
 		];
 		yield 'with links count method link' => [
-			'$articleCountMethod' => 'link',
-			'$wikitextContent' => '[[Test]]',
-			'$revisionVisibility' => 0,
-			'$isCountable' => true
+			'articleCountMethod' => 'link',
+			'wikitextContent' => '[[Test]]',
+			'revisionVisibility' => 0,
+			'isCountable' => true
 		];
 	}
 

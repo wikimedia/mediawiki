@@ -200,7 +200,7 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideTryNormaliseRedirect
 	 */
-	public function testTryNormaliseRedirect( $url, $query, $title, $expectedRedirect = false ) {
+	public function testTryNormaliseRedirect( $url, $query, $title, $redirect = false ) {
 		$environment = new MockEnvironment();
 		$environment->setRequestInfo( $url, $query );
 
@@ -216,13 +216,13 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		$ret = $mw->tryNormaliseRedirect( $titleObj );
 
 		$this->assertEquals(
-			$expectedRedirect !== false,
+			$redirect !== false,
 			$ret,
 			'Return true only when redirecting'
 		);
 
 		$this->assertEquals(
-			$expectedRedirect ?: '',
+			$redirect ?: '',
 			$context->getOutput()->getRedirect()
 		);
 	}

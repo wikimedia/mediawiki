@@ -791,38 +791,38 @@ namespace MediaWiki\Tests\HookContainer {
 
 		public static function provideEmitDeprecationWarnings() {
 			yield 'Deprecated extension hook' => [
-				'$oldHooks' => [],
-				'$newHooks' => [ self::HANDLER_REGISTRATION ],
-				'$deprecationInfo' => [ 'deprecatedVersion' => '1.35' ],
-				'$expectWarning' => true,
+				'oldHooks' => [],
+				'newHooks' => [ self::HANDLER_REGISTRATION ],
+				'deprecationInfo' => [ 'deprecatedVersion' => '1.35' ],
+				'expectWarning' => true,
 			];
 
 			yield 'Deprecated extension hook, silent' => [
-				'$oldHooks' => [],
-				'$newHooks' => [ self::HANDLER_REGISTRATION ],
-				'$deprecationInfo' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
-				'$expectWarning' => false,
+				'oldHooks' => [],
+				'newHooks' => [ self::HANDLER_REGISTRATION ],
+				'deprecationInfo' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
+				'expectWarning' => false,
 			];
 
 			yield 'Deprecated extension hook, acknowledged' => [
-				'$oldHooks' => [],
-				'$newHooks' => [ self::HANDLER_REGISTRATION + [ 'deprecated' => true ] ],
-				'$deprecationInfo' => [ 'deprecatedVersion' => '1.35' ],
-				'$expectWarning' => false,
+				'oldHooks' => [],
+				'newHooks' => [ self::HANDLER_REGISTRATION + [ 'deprecated' => true ] ],
+				'deprecationInfo' => [ 'deprecatedVersion' => '1.35' ],
+				'expectWarning' => false,
 			];
 
 			yield 'Deprecated configured hook' => [
-				'$oldHooks' => [ self::HANDLER_FUNCTION ],
-				'$newHooks' => [],
-				'$deprecationInfo' => [ 'deprecatedVersion' => '1.35' ],
-				'$expectWarning' => false, // NOTE: Currently expected to be ignored. This may change.
+				'oldHooks' => [ self::HANDLER_FUNCTION ],
+				'newHooks' => [],
+				'deprecationInfo' => [ 'deprecatedVersion' => '1.35' ],
+				'expectWarning' => false, // NOTE: Currently expected to be ignored. This may change.
 			];
 
 			yield 'Deprecated configured hook, silent' => [
-				'$oldHooks' => [ self::HANDLER_FUNCTION ],
-				'$newHooks' => [],
-				'$deprecationInfo' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
-				'$expectWarning' => false,
+				'oldHooks' => [ self::HANDLER_FUNCTION ],
+				'newHooks' => [],
+				'deprecationInfo' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
+				'expectWarning' => false,
 			];
 		}
 
@@ -830,10 +830,10 @@ namespace MediaWiki\Tests\HookContainer {
 		 * @covers \MediaWiki\HookContainer\HookContainer::emitDeprecationWarnings
 		 * @dataProvider provideEmitDeprecationWarnings
 		 */
-		public function testEmitDeprecationWarnings( $oldHandlers, $newHandlers, $deprecationInfo, $expectWarning ) {
+		public function testEmitDeprecationWarnings( $oldHooks, $newHooks, $deprecationInfo, $expectWarning ) {
 			$hookContainer = $this->newHookContainer(
-				[ 'FooActionComplete' => $oldHandlers ],
-				[ 'FooActionComplete' => $newHandlers ],
+				[ 'FooActionComplete' => $oldHooks ],
+				[ 'FooActionComplete' => $newHooks ],
 				[ 'FooActionComplete' => $deprecationInfo ]
 			);
 

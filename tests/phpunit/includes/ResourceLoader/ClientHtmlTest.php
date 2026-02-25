@@ -318,16 +318,16 @@ class ClientHtmlTest extends TestCase {
 	 * @covers \MediaWiki\ResourceLoader\ResourceLoader
 	 */
 	public function testMakeLoad(
-		array $contextQuery,
+		array $context,
 		array $modules,
-		$type,
-		array $extraQuery,
-		$expected
+		$only,
+		array $extra,
+		$output
 	) {
-		$context = self::makeContext( $contextQuery );
-		$context->getResourceLoader()->register( self::makeSampleModules() );
-		$actual = ClientHtml::makeLoad( $context, $modules, $type, $extraQuery, false );
-		$expected = self::expandVariables( $expected );
+		$contextObj = self::makeContext( $context );
+		$contextObj->getResourceLoader()->register( self::makeSampleModules() );
+		$actual = ClientHtml::makeLoad( $contextObj, $modules, $only, $extra, false );
+		$expected = self::expandVariables( $output );
 		$this->assertSame( $expected, (string)$actual );
 	}
 

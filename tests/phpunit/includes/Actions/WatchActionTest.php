@@ -261,59 +261,59 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	public static function provideOnSuccessDifferentMessages() {
 		return [
 			[
-				'wgWatchlistExpiry' => false,
-				'msg' => MessageValue::new( 'addedwatchtext' )
+				'watchlistExpiry' => false,
+				'expectedMessage' => MessageValue::new( 'addedwatchtext' )
 					->params( 'Foo' ),
 				'prefixedTitle' => 'Foo',
 				'submittedExpiry' => '',
 			],
 			[
-				'wgWatchlistExpiry' => false,
-				'msg' => MessageValue::new( 'addedwatchtext-talk' )
+				'watchlistExpiry' => false,
+				'expectedMessage' => MessageValue::new( 'addedwatchtext-talk' )
 					->params( 'Talk:Foo' ),
 				'prefixedTitle' => 'Talk:Foo',
 				'submittedExpiry' => '',
 			],
 			[
-				'wgWatchlistExpiry' => true,
-				'msg' => MessageValue::new( 'addedwatchindefinitelytext' )
+				'watchlistExpiry' => true,
+				'expectedMessage' => MessageValue::new( 'addedwatchindefinitelytext' )
 					->params( 'Foo' ),
 				'prefixedTitle' => 'Foo',
 				'submittedExpiry' => 'infinite',
 			],
 			[
-				'wgWatchlistExpiry' => true,
-				'msg' => MessageValue::new( 'addedwatchindefinitelytext-talk' )
+				'watchlistExpiry' => true,
+				'expectedMessage' => MessageValue::new( 'addedwatchindefinitelytext-talk' )
 					->params( 'Talk:Foo' ),
 				'prefixedTitle' => 'Talk:Foo',
 				'submittedExpiry' => 'infinite',
 			],
 			[
-				'wgWatchlistExpiry' => true,
-				'msg' => MessageValue::new( 'addedwatchexpirytext' )
+				'watchlistExpiry' => true,
+				'expectedMessage' => MessageValue::new( 'addedwatchexpirytext' )
 					->params( 'Foo' )
 					->params( '1 Woche' ),
 				'prefixedTitle' => 'Foo',
 				'submittedExpiry' => '1 week',
 			],
 			[
-				'wgWatchlistExpiry' => true,
-				'msg' => MessageValue::new( 'addedwatchexpirytext-talk' )
+				'watchlistExpiry' => true,
+				'expectedMessage' => MessageValue::new( 'addedwatchexpirytext-talk' )
 					->params( 'Talk:Foo' )
 					->params( '1 Woche' ),
 				'prefixedTitle' => 'Talk:Foo',
 				'submittedExpiry' => '1 week',
 			],
 			[
-				'wgWatchlistExpiry' => true,
-				'msg' => MessageValue::new( 'addedwatchexpiryhours' )
+				'watchlistExpiry' => true,
+				'expectedMessage' => MessageValue::new( 'addedwatchexpiryhours' )
 					->params( 'Foo' ),
 				'prefixedTitle' => 'Foo',
 				'submittedExpiry' => '2020-09-17T14:00:00Z',
 			],
 			[
-				'wgWatchlistExpiry' => true,
-				'msg' => MessageValue::new( 'addedwatchexpiryhours-talk' )
+				'watchlistExpiry' => true,
+				'expectedMessage' => MessageValue::new( 'addedwatchexpiryhours-talk' )
 					->params( 'Talk:Foo' ),
 				'prefixedTitle' => 'Talk:Foo',
 				'submittedExpiry' => '2020-09-17T14:00:00Z',
@@ -330,16 +330,16 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		string $defaultExpiry,
 		array $expectedOptions,
 		string $expectedDefault,
-		bool $createWatchedItem = true
+		bool $watchedItem = true
 	): void {
 		// Fake current time to be 2020-06-10T00:00:00Z
 		ConvertibleTimestamp::setFakeTime( '20200610000000' );
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		$target = PageReferenceValue::localReference( 0, 'SomeDbKey' );
-		$watchedItem = $createWatchedItem
+		$targetWatchedItem = $watchedItem
 			? new WatchedItem( $userIdentity, $target, null, $expiry )
 			: false;
-		$res = WatchAction::getExpiryOptions( $this->context, $watchedItem, $defaultExpiry );
+		$res = WatchAction::getExpiryOptions( $this->context, $targetWatchedItem, $defaultExpiry );
 		$this->assertSame( [
 			'options' => $expectedOptions,
 			'default' => $expectedDefault,

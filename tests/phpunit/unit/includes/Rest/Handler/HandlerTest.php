@@ -1371,16 +1371,16 @@ class HandlerTest extends MediaWikiUnitTestCase {
 
 	public static function provideGetOpenApiSpec() {
 		yield 'defaults' => [
-			'$paramSettings' => [],
-			'$headerParamSettings' => [],
-			'$bodySettings' => [],
-			'$requestTypes' => [ 'application/json' ],
-			'$responseBodySchema' => null,
-			'$responseHeaderSettings' => [],
-			'$routeConfig' => [ 'path' => '/test' ],
-			'$openApiSpec' => [],
-			'$method' => 'GET',
-			'$assertions' =>
+			'paramSettings' => [],
+			'headerParamSettings' => [],
+			'bodySettings' => [],
+			'requestTypes' => [ 'application/json' ],
+			'responseBodySchema' => null,
+			'responseHeaderSettings' => [],
+			'routeConfig' => [ 'path' => '/test' ],
+			'openApiSpec' => [],
+			'method' => 'GET',
+			'assertions' =>
 				static function ( array $spec ) {
 					self::assertWellFormedOAS( $spec, [ 'responses' ] );
 					$resp = $spec['responses'];
@@ -1391,7 +1391,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'path parameters' => [
-			'$paramSettings' => [
+			'paramSettings' => [
 				'a' => [
 					Handler::PARAM_SOURCE => 'path',
 					ParamValidator::PARAM_TYPE => 'integer',
@@ -1415,15 +1415,15 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-mock-desc' )
 				],
 			],
-			'$headerParamSettings' => [],
-			'$bodySettings' => [],
-			'$requestTypes' => [ 'application/json' ],
-			'$responseBodySchema' => null,
-			'$responseHeaderSettings' => [],
-			'$routeConfig' => [ 'path' => '/test/{a}/{b}/{d}' ],
-			'$openApiSpec' => [],
-			'$method' => 'GET',
-			'$assertions' =>
+			'headerParamSettings' => [],
+			'bodySettings' => [],
+			'requestTypes' => [ 'application/json' ],
+			'responseBodySchema' => null,
+			'responseHeaderSettings' => [],
+			'routeConfig' => [ 'path' => '/test/{a}/{b}/{d}' ],
+			'openApiSpec' => [],
+			'method' => 'GET',
+			'assertions' =>
 				static function ( array $spec ) {
 					self::assertWellFormedOAS( $spec, [ 'parameters' ] );
 					$params = self::makeMap( $spec['parameters'], 'name' );
@@ -1454,7 +1454,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'query parameters' => [
-			'$paramSettings' => [
+			'paramSettings' => [
 				'a' => [
 					Handler::PARAM_SOURCE => 'query',
 					ParamValidator::PARAM_TYPE => 'integer',
@@ -1473,15 +1473,15 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-mock-desc' )
 				],
 			],
-			'$headerParamSettings' => [],
-			'$bodySettings' => [],
-			'$requestTypes' => [ 'application/json' ],
-			'$responseBodySchema' => null,
-			'$responseHeaderSettings' => [],
-			'$routeConfig' => [ 'path' => '/test' ],
-			'$openApiSpec' => [],
-			'$method' => 'GET',
-			'$assertions' =>
+			'headerParamSettings' => [],
+			'bodySettings' => [],
+			'requestTypes' => [ 'application/json' ],
+			'responseBodySchema' => null,
+			'responseHeaderSettings' => [],
+			'routeConfig' => [ 'path' => '/test' ],
+			'openApiSpec' => [],
+			'method' => 'GET',
+			'assertions' =>
 				static function ( array $spec ) {
 					self::assertWellFormedOAS( $spec, [ 'parameters' ] );
 					$params = self::makeMap( $spec['parameters'], 'name' );
@@ -1508,8 +1508,8 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'header parameters' => [
-			'$paramSettings' => [],
-			'$headerParamSettings' => [
+			'paramSettings' => [],
+			'headerParamSettings' => [
 				'Accept-Language' => [
 					Handler::PARAM_SOURCE => 'header',
 					ParamValidator::PARAM_TYPE => 'string',
@@ -1528,14 +1528,14 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-mock-desc' )
 				],
 			],
-			'$bodySettings' => [],
-			'$requestTypes' => [ 'application/json' ],
-			'$responseBodySchema' => null,
-			'$responseHeaderSettings' => [],
-			'$routeConfig' => [ 'path' => '/test/{a}/{b}/{d}' ],
-			'$openApiSpec' => [],
-			'$method' => 'GET',
-			'$assertions' =>
+			'bodySettings' => [],
+			'requestTypes' => [ 'application/json' ],
+			'responseBodySchema' => null,
+			'responseHeaderSettings' => [],
+			'routeConfig' => [ 'path' => '/test/{a}/{b}/{d}' ],
+			'openApiSpec' => [],
+			'method' => 'GET',
+			'assertions' =>
 				static function ( array $spec ) {
 					self::assertWellFormedOAS( $spec, [ 'parameters' ] );
 					$params = self::makeMap( $spec['parameters'], 'name' );
@@ -1562,9 +1562,9 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			];
 
 		yield 'request body' => [
-			'$paramSettings' => [],
-			'$headerParamSettings' => [],
-			'$bodySettings' => [
+			'paramSettings' => [],
+			'headerParamSettings' => [],
+			'bodySettings' => [
 				'a' => [
 					Handler::PARAM_SOURCE => 'body',
 					ParamValidator::PARAM_TYPE => 'array',
@@ -1588,13 +1588,13 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					Handler::PARAM_SOURCE => 'post',
 				],
 			],
-			'$requestTypes' => [ 'application/foo+json', 'application/bar+json' ],
-			'$responseBodySchema' => null,
-			'$responseHeaderSettings' => [],
-			'$routeConfig' => [ 'path' => '/test' ],
-			'$openApiSpec' => [],
-			'$method' => 'PUT',
-			'$assertions' =>
+			'requestTypes' => [ 'application/foo+json', 'application/bar+json' ],
+			'responseBodySchema' => null,
+			'responseHeaderSettings' => [],
+			'routeConfig' => [ 'path' => '/test' ],
+			'openApiSpec' => [],
+			'method' => 'PUT',
+			'assertions' =>
 				static function ( array $spec ) {
 					self::assertWellFormedOAS( $spec, [ 'requestBody' ] );
 					Assert::assertTrue( $spec['requestBody']['required'] );
@@ -1637,9 +1637,9 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'form data' => [
-			'$paramSettings' => [],
-			'$headerParamSettings' => [],
-			'$bodySettings' => [
+			'paramSettings' => [],
+			'headerParamSettings' => [],
+			'bodySettings' => [
 				'a' => [
 					Handler::PARAM_SOURCE => 'body',
 				],
@@ -1647,13 +1647,13 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					Handler::PARAM_SOURCE => 'post',
 				],
 			],
-			'$requestTypes' => [ 'application/x-www-form-urlencoded' ],
-			'$responseBodySchema' => null,
-			'$responseHeaderSettings' => [],
-			'$routeConfig' => [ 'path' => '/test' ],
-			'$openApiSpec' => [],
-			'$method' => 'POST',
-			'$assertions' =>
+			'requestTypes' => [ 'application/x-www-form-urlencoded' ],
+			'responseBodySchema' => null,
+			'responseHeaderSettings' => [],
+			'routeConfig' => [ 'path' => '/test' ],
+			'openApiSpec' => [],
+			'method' => 'POST',
+			'assertions' =>
 				static function ( array $spec ) {
 					self::assertWellFormedOAS( $spec, [ 'requestBody' ] );
 					Assert::assertTrue( $spec['requestBody']['required'] );
@@ -1675,22 +1675,22 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'no request body for GET' => [
-			'$paramSettings' => [],
-			'$headerParamSettings' => [],
-			'$bodySettings' => [
+			'paramSettings' => [],
+			'headerParamSettings' => [],
+			'bodySettings' => [
 				'a' => [
 					Handler::PARAM_SOURCE => 'body',
 					ParamValidator::PARAM_TYPE => 'integer',
 					ParamValidator::PARAM_REQUIRED => true,
 				],
 			],
-			'$requestTypes' => [ 'application/json' ],
-			'$responseBodySchema' => null,
-			'$responseHeaderSettings' => [],
-			'$routeConfig' => [ 'path' => '/test' ],
-			'$openApiSpec' => [],
-			'$method' => 'GET',
-			'$assertions' =>
+			'requestTypes' => [ 'application/json' ],
+			'responseBodySchema' => null,
+			'responseHeaderSettings' => [],
+			'routeConfig' => [ 'path' => '/test' ],
+			'openApiSpec' => [],
+			'method' => 'GET',
+			'assertions' =>
 				static function ( array $spec ) {
 					self::assertWellFormedOAS( $spec, [] );
 
@@ -1700,22 +1700,22 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'optional body for DELETE' => [
-			'$paramSettings' => [],
-			'$headerParamSettings' => [],
-			'$bodySettings' => [
+			'paramSettings' => [],
+			'headerParamSettings' => [],
+			'bodySettings' => [
 				'a' => [
 					Handler::PARAM_SOURCE => 'body',
 					ParamValidator::PARAM_TYPE => 'integer',
 					ParamValidator::PARAM_REQUIRED => false,
 				],
 			],
-			'$requestTypes' => [ 'application/json' ],
-			'$responseBodySchema' => null,
-			'$responseHeaderSettings' => [],
-			'$routeConfig' => [ 'path' => '/test' ],
-			'$openApiSpec' => [],
-			'$method' => 'DELETE',
-			'$assertions' =>
+			'requestTypes' => [ 'application/json' ],
+			'responseBodySchema' => null,
+			'responseHeaderSettings' => [],
+			'routeConfig' => [ 'path' => '/test' ],
+			'openApiSpec' => [],
+			'method' => 'DELETE',
+			'assertions' =>
 				static function ( array $spec ) {
 					self::assertWellFormedOAS( $spec, [ 'requestBody' ] );
 
@@ -1726,7 +1726,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'optional path params' => [
-			'$paramSettings' => [
+			'paramSettings' => [
 				'p' => [
 					Handler::PARAM_SOURCE => 'path',
 					ParamValidator::PARAM_REQUIRED => false,
@@ -1736,15 +1736,15 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					ParamValidator::PARAM_REQUIRED => false,
 				],
 			],
-			'$headerParamSettings' => [],
-			'$bodySettings' => [],
-			'$requestTypes' => [ 'application/json' ],
-			'$responseBodySchema' => null,
-			'$responseHeaderSettings' => [],
-			'$routeConfig' => [ 'path' => '/test/{p}' ],
-			'$openApiSpec' => [],
-			'$method' => 'GET',
-			'$assertions' =>
+			'headerParamSettings' => [],
+			'bodySettings' => [],
+			'requestTypes' => [ 'application/json' ],
+			'responseBodySchema' => null,
+			'responseHeaderSettings' => [],
+			'routeConfig' => [ 'path' => '/test/{p}' ],
+			'openApiSpec' => [],
+			'method' => 'GET',
+			'assertions' =>
 				static function ( array $spec ) {
 					self::assertWellFormedOAS( $spec, [ 'parameters' ] );
 					$params = self::makeMap( $spec['parameters'], 'name' );
@@ -1769,11 +1769,11 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'response body schema' => [
-			'$paramSettings' => [],
-			'$headerParamSettings' => [],
-			'$bodySettings' => [],
-			'$requestTypes' => [ 'application/json' ],
-			'$responseBodySchema' => [
+			'paramSettings' => [],
+			'headerParamSettings' => [],
+			'bodySettings' => [],
+			'requestTypes' => [ 'application/json' ],
+			'responseBodySchema' => [
 				'x-i18n-description' => 'rest-schema-desc-mock-desc',
 				'properties' => [
 					'a' => [
@@ -1799,11 +1799,11 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					],
 				]
 			],
-			'$responseHeaderSettings' => [],
-			'$routeConfig' => [ 'path' => 'test' ],
-			'$openApiSpec' => [],
-			'$method' => 'GET',
-			'$assertions' =>
+			'responseHeaderSettings' => [],
+			'routeConfig' => [ 'path' => 'test' ],
+			'openApiSpec' => [],
+			'method' => 'GET',
+			'assertions' =>
 				static function ( array $spec ) {
 					self::assertWellFormedOAS( $spec, [ 'responses' ] );
 
@@ -1833,12 +1833,12 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'response headers' => [
-			'$paramSettings' => [],
-			'$headerParamSettings' => [],
-			'$bodySettings' => [],
-			'$requestTypes' => [ 'application/json' ],
-			'$responseBodySchema' => null,
-			'$responseHeaderSettings' => [
+			'paramSettings' => [],
+			'headerParamSettings' => [],
+			'bodySettings' => [],
+			'requestTypes' => [ 'application/json' ],
+			'responseBodySchema' => null,
+			'responseHeaderSettings' => [
 				ResponseHeaders::CACHE_CONTROL => [
 					'schema' => [
 						ParamValidator::PARAM_TYPE => 'string'
@@ -1846,10 +1846,10 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					'messageKey' => 'rest-responseheader-desc-contenttype'
 				]
 			],
-			'$routeConfig' => [ 'path' => 'test' ],
-			'$openApiSpec' => [],
-			'$method' => 'GET',
-			'$assertions' =>
+			'routeConfig' => [ 'path' => 'test' ],
+			'openApiSpec' => [],
+			'method' => 'GET',
+			'assertions' =>
 				static function ( array $spec ) {
 					self::assertWellFormedOAS( $spec, [ 'responses' ] );
 
@@ -1860,25 +1860,25 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'OAS info' => [
-			'$paramSettings' => [
+			'paramSettings' => [
 				'p' => [
 					Handler::PARAM_SOURCE => 'path',
 				],
 			],
-			'$headerParamSettings' => [],
-			'$bodySettings' => [],
-			'$requestTypes' => [ 'application/json' ],
-			'$responseBodySchema' => null,
-			'$responseHeaderSettings' => [],
-			'$routeConfig' => [
+			'headerParamSettings' => [],
+			'bodySettings' => [],
+			'requestTypes' => [ 'application/json' ],
+			'responseBodySchema' => null,
+			'responseHeaderSettings' => [],
+			'routeConfig' => [
 				'path' => 'test/{p}',
 			],
-			'$openApiSpec' => [
+			'openApiSpec' => [
 				'summary' => 'just a test',
 				'parameters' => 'will be ignored',
 			],
-			'$method' => 'GET',
-			'$assertions' =>
+			'method' => 'GET',
+			'assertions' =>
 				static function ( array $spec ) {
 					self::assertWellFormedOAS( $spec, [ 'summary', 'parameters' ] );
 					Assert::assertArrayHasKey( 'summary', $spec );

@@ -1330,22 +1330,22 @@ class ApiBaseTest extends ApiTestCase {
 	/**
 	 * @dataProvider provideGetFinalParamDescription
 	 */
-	public function testGetFinalParamDescription( $paramSettings, $expectedMessages ) {
+	public function testGetFinalParamDescription( $settings, $messages ) {
 		$mock = $this->getMockBuilder( MockApi::class )
 			->onlyMethods( [ 'getAllowedParams', 'getModulePath' ] )
 			->getMock();
 		$mock->method( 'getAllowedParams' )->willReturn( [
-			'param' => $paramSettings,
+			'param' => $settings,
 		] );
 		$mock->method( 'getModulePath' )->willReturn( 'test' );
-		if ( $expectedMessages instanceof Exception ) {
-			$this->expectExceptionObject( $expectedMessages );
+		if ( $messages instanceof Exception ) {
+			$this->expectExceptionObject( $messages );
 		}
 		$paramDescription = $mock->getFinalParamDescription();
 		$this->assertArrayHasKey( 'param', $paramDescription );
-		$messages = $paramDescription['param'];
-		$messageKeys = array_map( static fn ( MessageSpecifier $m ) => $m->getKey(), $messages );
-		$this->assertSame( $expectedMessages, $messageKeys );
+		$paramMessages = $paramDescription['param'];
+		$messageKeys = array_map( static fn ( MessageSpecifier $m ) => $m->getKey(), $paramMessages );
+		$this->assertSame( $messages, $messageKeys );
 	}
 
 	public static function provideGetFinalParamDescription() {

@@ -296,7 +296,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	public static function provideFetchFromServer() {
 		return [
 			'200 OK - Success' => [
-				'http' => [
+				'httpResponse' => [
 					'code' => 200,
 					'reason' => 'OK',
 					'headers' => [],
@@ -309,13 +309,13 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 					] ] ] ),
 					'error' => '',
 				],
-				'expect' => self::createEtcdResponse( [
+				'expected' => self::createEtcdResponse( [
 					'config' => [ 'foo' => true ], // data
 					'modifiedIndex' => 123
 				] ),
 			],
 			'200 OK - Empty dir' => [
-				'http' => [
+				'httpResponse' => [
 					'code' => 200,
 					'reason' => 'OK',
 					'headers' => [],
@@ -339,13 +339,13 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 					] ] ] ),
 					'error' => '',
 				],
-				'expect' => self::createEtcdResponse( [
+				'expected' => self::createEtcdResponse( [
 					'config' => [ 'foo' => true, 'bar' => false ], // data
 					'modifiedIndex' => 125 // largest modified index
 				] ),
 			],
 			'200 OK - Recursive' => [
-				'http' => [
+				'httpResponse' => [
 					'code' => 200,
 					'reason' => 'OK',
 					'headers' => [],
@@ -371,13 +371,13 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 					] ] ] ),
 					'error' => '',
 				],
-				'expect' => self::createEtcdResponse( [
+				'expected' => self::createEtcdResponse( [
 					'config' => [ 'a/b' => true, 'a/c' => false ], // data
 					'modifiedIndex' => 123 // largest modified index
 				] ),
 			],
 			'200 OK - Missing nodes at second level' => [
-				'http' => [
+				'httpResponse' => [
 					'code' => 200,
 					'reason' => 'OK',
 					'headers' => [],
@@ -390,12 +390,12 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 					] ] ] ),
 					'error' => '',
 				],
-				'expect' => self::createEtcdResponse( [
+				'expected' => self::createEtcdResponse( [
 					'error' => "Unexpected JSON response in dir 'a'; missing 'nodes' list.",
 				] ),
 			],
 			'200 OK - Directory with non-array "nodes" key' => [
-				'http' => [
+				'httpResponse' => [
 					'code' => 200,
 					'reason' => 'OK',
 					'headers' => [],
@@ -408,24 +408,24 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 					] ] ] ),
 					'error' => '',
 				],
-				'expect' => self::createEtcdResponse( [
+				'expected' => self::createEtcdResponse( [
 					'error' => "Unexpected JSON response in dir 'a'; 'nodes' is not an array.",
 				] ),
 			],
 			'200 OK - Correctly encoded garbage response' => [
-				'http' => [
+				'httpResponse' => [
 					'code' => 200,
 					'reason' => 'OK',
 					'headers' => [],
 					'body' => json_encode( [ 'foo' => 'bar' ] ),
 					'error' => '',
 				],
-				'expect' => self::createEtcdResponse( [
+				'expected' => self::createEtcdResponse( [
 					'error' => "Unexpected JSON response: Missing or invalid node at top level.",
 				] ),
 			],
 			'200 OK - Bad value' => [
-				'http' => [
+				'httpResponse' => [
 					'code' => 200,
 					'reason' => 'OK',
 					'headers' => [],
@@ -438,55 +438,55 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 					] ] ] ),
 					'error' => '',
 				],
-				'expect' => self::createEtcdResponse( [
+				'expected' => self::createEtcdResponse( [
 					'error' => "Failed to parse value for 'foo'.",
 				] ),
 			],
 			'200 OK - Empty node list' => [
-				'http' => [
+				'httpResponse' => [
 					'code' => 200,
 					'reason' => 'OK',
 					'headers' => [],
 					'body' => '{"node":{"nodes":[], "modifiedIndex": 12 }}',
 					'error' => '',
 				],
-				'expect' => self::createEtcdResponse( [
+				'expected' => self::createEtcdResponse( [
 					'config' => [], // data
 				] ),
 			],
 			'200 OK - Invalid JSON' => [
-				'http' => [
+				'httpResponse' => [
 					'code' => 200,
 					'reason' => 'OK',
 					'headers' => [ 'content-length' => 0 ],
 					'body' => '',
 					'error' => '(curl error: no status set)',
 				],
-				'expect' => self::createEtcdResponse( [
+				'expected' => self::createEtcdResponse( [
 					'error' => "Error unserializing JSON response.",
 				] ),
 			],
 			'404 Not Found' => [
-				'http' => [
+				'httpResponse' => [
 					'code' => 404,
 					'reason' => 'Not Found',
 					'headers' => [ 'content-length' => 0 ],
 					'body' => '',
 					'error' => '',
 				],
-				'expect' => self::createEtcdResponse( [
+				'expected' => self::createEtcdResponse( [
 					'error' => 'HTTP 404 (Not Found)',
 				] ),
 			],
 			'400 Bad Request - custom error' => [
-				'http' => [
+				'httpResponse' => [
 					'code' => 400,
 					'reason' => 'Bad Request',
 					'headers' => [ 'content-length' => 0 ],
 					'body' => '',
 					'error' => 'No good reason',
 				],
-				'expect' => self::createEtcdResponse( [
+				'expected' => self::createEtcdResponse( [
 					'error' => 'No good reason',
 					'retry' => true, // retry
 				] ),

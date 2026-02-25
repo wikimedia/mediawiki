@@ -244,42 +244,42 @@ class ConfigSchemaAggregatorTest extends TestCase {
 
 	public static function provideValidate() {
 		yield 'invalid config' => [
-			'config-schema' => [ 'foo' => [ 'type' => 'string', ], ],
+			'schemas' => [ 'foo' => [ 'type' => 'string', ], ],
 			'config' => [ 'foo' => 1 ],
 			'valid' => false,
 		];
 		yield 'all good' => [
-			'config-schema' => [ 'foo' => [ 'type' => 'string', ], ],
+			'schemas' => [ 'foo' => [ 'type' => 'string', ], ],
 			'config' => [ 'foo' => 'bar', ],
 			'valid' => true,
 		];
 		yield 'missing key' => [
-			'config-schema' => [ 'foo' => [ 'type' => 'string', ], ],
+			'schemas' => [ 'foo' => [ 'type' => 'string', ], ],
 			'config' => [ 'bar' => 'bar' ],
 			'valid' => false,
 		];
 		yield 'no schema was added' => [
-			'config-schema' => [],
+			'schemas' => [],
 			'config' => [ 'foo' => 'bar', ],
 			'valid' => true,
 		];
 		yield 'key is in config but has no schema' => [
-			'config-schema' => [ 'foo' => [ 'type' => 'array', 'mergeStrategy' => MergeStrategy::ARRAY_MERGE ], ],
+			'schemas' => [ 'foo' => [ 'type' => 'array', 'mergeStrategy' => MergeStrategy::ARRAY_MERGE ], ],
 			'config' => [ 'foo' => [], 'baz' => false, ],
 			'valid' => true,
 		];
 		yield 'assoc array where list is expected (string key)' => [
-			'config-schema' => [ 'foo' => [ 'type' => 'array', ], ],
+			'schemas' => [ 'foo' => [ 'type' => 'array', ], ],
 			'config' => [ 'foo' => [ 'x' => 1 ] ],
 			'valid' => false,
 		];
 		yield 'assoc array where list is expected (numeric key)' => [
-			'config-schema' => [ 'foo' => [ 'type' => 'array', ], ],
+			'schemas' => [ 'foo' => [ 'type' => 'array', ], ],
 			'config' => [ 'foo' => [ 2 => 'x' ] ],
 			'valid' => true,
 		];
 		yield 'map with numeric keys' => [
-			'config-schema' => [ 'foo' => [ 'type' => 'object', ], ],
+			'schemas' => [ 'foo' => [ 'type' => 'object', ], ],
 			'config' => [ 'foo' => [ 0 => 'x', 1 => 'y' ] ],
 			'valid' => true,
 		];

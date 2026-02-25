@@ -99,7 +99,7 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 	 */
 	public function testUserLink(
 		string $expected,
-		UserIdentity $user,
+		UserIdentity $userIdentity,
 		?bool $isTemp,
 		?string $altUserName = null,
 		array $attributes = []
@@ -114,16 +114,16 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 		// For temp users, UserLinkRenderer checks if they belong to the local
 		// wiki before trying to render the actual link.
 		if ( $isTemp ) {
-			if ( $user->getWikiId() === WikiAwareEntity::LOCAL ) {
+			if ( $userIdentity->getWikiId() === WikiAwareEntity::LOCAL ) {
 				$this->userIdentityLookup
 					->expects( $this->never() )
 					->method( 'getUserIdentityByName' )
-					->with( $user->getName() );
+					->with( $userIdentity->getName() );
 				$this->tempUserDetailsLookup
 					->method( 'isExpired' )
-					->with( $user )
+					->with( $userIdentity )
 					->willReturn(
-						$user->getName() === self::EXPIRED_TEMP_USER_NAME
+						$userIdentity->getName() === self::EXPIRED_TEMP_USER_NAME
 					);
 			} else {
 				$localUserMock = $this->createMock( UserIdentity::class );
@@ -131,20 +131,20 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 				$this->userIdentityLookup
 					->expects( $this->once() )
 					->method( 'getUserIdentityByName' )
-					->with( $user->getName() )
+					->with( $userIdentity->getName() )
 					->willReturn( $localUserMock );
 				$this->tempUserDetailsLookup
 					->expects( $isTemp ? $this->once() : $this->never() )
 					->method( 'isExpired' )
 					->with( $localUserMock )
 					->willReturn(
-						$user->getName() === self::EXPIRED_TEMP_USER_NAME
+						$userIdentity->getName() === self::EXPIRED_TEMP_USER_NAME
 					);
 			}
 		}
 
 		$actual = $this->userLinkRenderer->userLink(
-			$user,
+			$userIdentity,
 			$this->context,
 			$altUserName,
 			$attributes
@@ -288,7 +288,7 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 				. 'data-mw-target="~2025-1"><bdi>~2025-1</bdi></a>',
 				'userIdentity' => new UserIdentityValue( 2, '~2025-1' ),
 				'isTemp' => true,
-				'altUsername' => null,
+				'altUserName' => null,
 				[ 'class' => 'custom-class' ]
 			],
 			'Expired temporary user link' => [

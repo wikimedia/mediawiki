@@ -140,7 +140,7 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideGetPerformerIdentity() {
 		yield 'registered actor' => [
-			'actor_row_fields' => [
+			'actorRowFields' => [
 				'user_id' => 42,
 				'log_user_text' => 'Testing',
 				'log_actor' => 24,
@@ -148,14 +148,14 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 			UserIdentityValue::newRegistered( 42, 'Testing' ),
 		];
 		yield 'anon actor' => [
-			'actor_row_fields' => [
+			'actorRowFields' => [
 				'log_user_text' => '127.0.0.1',
 				'log_actor' => 24,
 			],
 			UserIdentityValue::newAnonymous( '127.0.0.1' ),
 		];
 		yield 'unknown actor' => [
-			'actor_row_fields' => [],
+			'actorRowFields' => [],
 			new UserIdentityValue( 0, ActorStore::UNKNOWN_USER_NAME ),
 		];
 	}

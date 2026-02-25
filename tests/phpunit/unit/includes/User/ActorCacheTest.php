@@ -67,16 +67,16 @@ class ActorCacheTest extends MediaWikiUnitTestCase {
 
 	public static function provideRemove() {
 		yield 'Same actor' => [
-			'addedActor' => new UserIdentityValue( 10, 'Hello' ),
-			'removedActor' => new UserIdentityValue( 10, 'Hello' )
+			'added' => new UserIdentityValue( 10, 'Hello' ),
+			'removed' => new UserIdentityValue( 10, 'Hello' )
 		];
 		yield 'Different name' => [
-			'addedActor' => new UserIdentityValue( 10, 'Hello' ),
-			'removedActor' => new UserIdentityValue( 10, 'Goodbye' )
+			'added' => new UserIdentityValue( 10, 'Hello' ),
+			'removed' => new UserIdentityValue( 10, 'Goodbye' )
 		];
 		yield 'Different user ID' => [
-			'addedActor' => new UserIdentityValue( 10, 'Hello' ),
-			'removedActor' => new UserIdentityValue( 11, 'Hello' )
+			'added' => new UserIdentityValue( 10, 'Hello' ),
+			'removed' => new UserIdentityValue( 11, 'Hello' )
 		];
 	}
 

@@ -323,7 +323,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	/**
 	 * @dataProvider provideMediaWikiVariablesCases
 	 */
-	public function testMediaWikiVariablesDefault( array $config, array $importPaths, $skin, $expectedFile ) {
+	public function testMediaWikiVariablesDefault( array $config, array $importPaths, $skin, $expected ) {
 		$this->overrideConfigValues( $config );
 		$reset = ExtensionRegistry::getInstance()->setAttributeForTest( 'SkinLessImportPaths', $importPaths );
 
@@ -335,7 +335,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$module->setConfig( $context->getResourceLoader()->getConfig() );
 		$module->setName( 'test.less' );
 		$styles = $module->getStyles( $context );
-		$this->assertStringEqualsFile( $expectedFile, $styles['all'] );
+		$this->assertStringEqualsFile( $expected, $styles['all'] );
 	}
 
 	public static function providePackedModules() {

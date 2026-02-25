@@ -1428,49 +1428,49 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			'attribs' => [ 'oldid' => 1, 'pageName' => 'Test', 'pagelanguage' => $en ],
 			'wikitext' => null,
 			'html2WtMode' => false,
-			'expectedPageLanguage' => $en,
+			'expectedLanguage' => $en,
 		];
 
 		yield 'tryToCreatePageConfig with wikitext' => [
 			'attribs' => [ 'oldid' => 1, 'pageName' => 'Test', 'pagelanguage' => $en ],
 			'wikitext' => "=test=",
 			'html2WtMode' => false,
-			'expected page language' => $en,
+			'expectedLanguage' => $en,
 		];
 
 		yield 'tryToCreatePageConfig with html2WtMode set to true' => [
 			'attribs' => [ 'oldid' => 1, 'pageName' => 'Test', 'pagelanguage' => null ],
 			'wikitext' => null,
 			'html2WtMode' => true,
-			'expected page language' => $en,
+			'expectedLanguage' => $en,
 		];
 
 		yield 'tryToCreatePageConfig with both wikitext and html2WtMode' => [
 			'attribs' => [ 'oldid' => 1, 'pageName' => 'Test', 'pagelanguage' => $ar ],
 			'wikitext' => "=header=",
 			'html2WtMode' => true,
-			'expected page language' => $ar,
+			'expectedLanguage' => $ar,
 		];
 
 		yield 'Try to create a page config with pageName set to empty string' => [
 			'attribs' => [ 'oldid' => 1, 'pageName' => '', 'pagelanguage' => $de ],
 			'wikitext' => null,
 			'html2WtMode' => false,
-			'expected page language' => $de,
+			'expectedLanguage' => $de,
 		];
 
 		yield 'Try to create a page config with pageName set to zero string' => [
 			'attribs' => [ 'oldid' => 1, 'pageName' => '0', 'pagelanguage' => $de ],
 			'wikitext' => null,
 			'html2WtMode' => false,
-			'expected page language' => $de,
+			'expectedLanguage' => $de,
 		];
 
 		yield 'Try to create a page config with no page language' => [
 			'attribs' => [ 'oldid' => 1, 'pageName' => '', 'pagelanguage' => null ],
 			'wikitext' => null,
-			false,
-			'expected page language' => $en,
+			'html2WtMode' => false,
+			'expectedLanguage' => $en,
 		];
 	}
 

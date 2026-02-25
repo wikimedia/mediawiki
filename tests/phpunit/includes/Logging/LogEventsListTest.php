@@ -245,9 +245,9 @@ class LogEventsListTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideMultiIpBlockData
 	 */
-	public function testBlockNoticeForMultiIpBlocks( array $rawIps, string $rawIpForLog, int $blockId ) {
+	public function testBlockNoticeForMultiIpBlocks( array $targets, string $expected, int $blockId ) {
 		$blockUserFactory = $this->getServiceContainer()->getBlockUserFactory();
-		foreach ( $rawIps as $i => $ipStr ) {
+		foreach ( $targets as $i => $ipStr ) {
 			$id = $i + 1;
 			$block = $blockUserFactory->newBlockUser(
 				$ipStr,
@@ -258,15 +258,15 @@ class LogEventsListTest extends MediaWikiIntegrationTestCase {
 			$this->assertStatusGood( $block, "Block #$id for $ipStr was not placed" );
 		}
 
-		$html = $this->getBlockNotice( UserIdentityValue::newAnonymous( $rawIpForLog ) );
+		$html = $this->getBlockNotice( UserIdentityValue::newAnonymous( $expected ) );
 		$this->assertNotNull( $html, 'Expected a block notice' );
-		if ( count( $rawIps ) > 1 ) {
+		if ( count( $targets ) > 1 ) {
 			$this->assertStringContainsString( 'blocked-notice-logextract-anon-multi', $html );
 		} else {
 			$this->assertMatchesRegularExpression( '/blocked-notice-logextract-anon(?!-)/', $html );
 		}
-		$this->assertStringContainsString( $rawIpForLog, $html,
-			'The block notice does not contain a log for ' . $rawIpForLog
+		$this->assertStringContainsString( $expected, $html,
+			'The block notice does not contain a log for ' . $expected
 		);
 		$this->assertStringContainsString( "(parentheses: $blockId)", $html,
 			"Block log for ID: $blockId not shown"

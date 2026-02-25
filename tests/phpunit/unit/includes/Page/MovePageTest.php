@@ -22,11 +22,11 @@ class MovePageTest extends MediaWikiUnitTestCase {
 
 	public static function provideCheckPermissions() {
 		yield 'all good and allowed' => [
-			'authority' => 'ultimate',
+			'authoritySpec' => 'ultimate',
 			'good' => true,
 		];
 		yield 'cannot move' => [
-			'authority' => static function (
+			'authoritySpec' => static function (
 				string $permission,
 				PageIdentity $page,
 				PermissionStatus $status
@@ -41,7 +41,7 @@ class MovePageTest extends MediaWikiUnitTestCase {
 			'good' => false,
 		];
 		yield 'cannot edit old page' => [
-			'authority' => static function (
+			'authoritySpec' => static function (
 				string $permission,
 				PageIdentity $page,
 				PermissionStatus $status
@@ -55,7 +55,7 @@ class MovePageTest extends MediaWikiUnitTestCase {
 			'good' => false,
 		];
 		yield 'cannot move-target' => [
-			'authority' => static function (
+			'authoritySpec' => static function (
 				string $permission,
 				PageIdentity $page,
 				PermissionStatus $status
@@ -70,7 +70,7 @@ class MovePageTest extends MediaWikiUnitTestCase {
 			'good' => false,
 		];
 		yield 'cannot edit new page' => [
-			'authority' => static function (
+			'authoritySpec' => static function (
 				string $permission,
 				PageIdentity $page,
 				PermissionStatus $status
