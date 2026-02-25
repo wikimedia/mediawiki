@@ -2271,7 +2271,7 @@
 	"watchlistlabels-editwatchlist-dialog-intro-noitems": "Будь ласка, виберіть сторінки, на які ви хочете поставити позначки",
 	"watchlistlabels-editwatchlist-dialog-button-unassign": "Зняти позначки",
 	"watchlistlabels-editwatchlist-dialog-unassign-error": "Неможливо вилучити позначки",
-	"watchlistlabels-editwatchlist-dialog-intro-unassign": "Виберіть {{PLURAL:$2|позначку|позначки}} які ви хочете вилучити з $1:",
+	"watchlistlabels-editwatchlist-dialog-intro-unassign": "Виберіть {{PLURAL:$2|позначку, яку|позначки, які}} ви хочете {{PLURAL:$3|вилучити}} з $1:",
 	"watchlistlabels-editwatchlist-dialog-intro-unassign-noitems": "Будь ласка виберіть сторінки з яких ви хочете зняти позначки.",
 	"watchlistlabels-editwatchlist-dialog-intro-unassign-noitemlabels": "Немає жодної призначеної позначки до вибраних сторінок.",
 	"watchlistlabels-editwatchlist-dialog-intro-more": "$2 {{PLURAL:$1|інша сторінка|інші сторінки|інших сторінок}}",

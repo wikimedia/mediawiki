@@ -2574,7 +2574,7 @@
 	"year": "bis Jahr:",
 	"date": "Von Datum (und früher):",
 	"sp-contributions-blocklog": "Sperr-Logbuch",
-	"sp-contributions-suppresslog": "Unterdrückte {{GENDER:$1|Benutzerbeiträge}}",
+	"sp-contributions-suppresslog": "unterdrückte {{GENDER:$1|Benutzerbeiträge}}",
 	"sp-contributions-deleted": "gelöschte {{GENDER:$1|Benutzerbeiträge}}",
 	"sp-contributions-uploads": "hochgeladene Dateien",
 	"sp-contributions-logs": "Logbücher",

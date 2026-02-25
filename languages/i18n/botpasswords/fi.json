@@ -30,6 +30,7 @@
 	"botpasswords-bad-appid": "Botin nimi ”$1” ei kelpaa.",
 	"botpasswords-toolong-restrictions": "Liian monta IP-osoitetta tai aluetta on syötetty.",
 	"botpasswords-toolong-grants": "Liian monta toimintaoikeutta on valittu.",
+	"botpasswords-too-many": "Olet saavuttanut {{PLURAL:$1|bottisalasanan|bottisalasanojen}} enimmäismäärän ($1). Poista joitakin olemassa olevia bottisalasanoja ennen uusien luomista.",
 	"botpasswords-insert-failed": "Botin nimen ”$1” lisääminen epäonnistui. Onko se jo lisätty?",
 	"botpasswords-update-failed": "Botin nimen ”$1” päivittäminen epäonnistui. Onko se poistettu?",
 	"botpasswords-created-title": "Bottisalasana luotu",

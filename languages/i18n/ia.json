@@ -2090,7 +2090,7 @@
 	"trackingcategories-nodesc": "Nulle description disponibile.",
 	"trackingcategories-disabled": "Le categoria es disactivate",
 	"mailnologin": "Necun adresse de invio",
-	"mailnologintext": "Tu debe [[Special:UserLogin|aperir un session]]\ne haber un adresse de e-mail valide in tu [[Special:Preferences|preferentias]]\npro inviar e-mail a altere usatores.",
+	"mailnologintext": "Tu debe [[Special:UserLogin|aperir session]]\ne haber un adresse de e-mail confirmate in tu [[Special:Preferences|preferentias]]\npro inviar e-mail a altere usatores.",
 	"emailuser": "Inviar e-mail a iste usator",
 	"emailuser-title-target": "Inviar e-mail a iste {{GENDER:$1|usator|usatrice}}",
 	"emailuser-title-notarget": "Inviar e-mail al usator",
