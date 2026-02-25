@@ -318,7 +318,7 @@
 	"APIListModules": {
 		"list1": "ListClass"
 	},
-	"RestModuleFiles": [ "rest1.php", "rest2.php" ],
+	"RestModuleFiles": [ "rest1.json", "rest2.json" ],
 	"RestRoutes": [
 		{
 			"method": "GET",
