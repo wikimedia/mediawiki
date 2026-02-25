@@ -109,15 +109,24 @@ class UserRequirementsConditionChecker {
 				return (int)$this->userEditTracker->getUserEditCount( $user ) >= $reqEditCount;
 			case APCOND_AGE:
 				$reqAge = $cond[1] ?? $this->options->get( MainConfigNames::AutoConfirmAge );
+				if ( $reqAge <= 0 ) {
+					return true;
+				}
 				$registration = $this->userRegistrationLookup->getRegistration( $user );
 				$age = time() - (int)wfTimestampOrNull( TS::UNIX, $registration );
 				return $age >= $reqAge;
 			case APCOND_AGE_FROM_EDIT:
-				$age = time() - (int)wfTimestampOrNull(
-					TS::UNIX,
-					$this->userEditTracker->getFirstEditTimestamp( $user )
-				);
-				return $age >= $cond[1];
+				$reqAge = $cond[1] ?? $this->options->get( MainConfigNames::AutoConfirmAge );
+				if ( $reqAge <= 0 ) {
+					return true;
+				}
+				$firstEdit = $this->userEditTracker->getFirstEditTimestamp( $user );
+				if ( $firstEdit === false ) {
+					// If the user has no edits, then they don't meet the requirement.
+					return false;
+				}
+				$age = time() - (int)wfTimestampOrNull( TS::UNIX, $firstEdit );
+				return $age >= $reqAge;
 			case APCOND_INGROUPS:
 				if ( !$isCurrentWiki ) {
 					return false;

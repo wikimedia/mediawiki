@@ -662,6 +662,12 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		yield 'Not old enough' => [
 			[ APCOND_AGE_FROM_EDIT, 10000000 ], MWTimestamp::now(), []
 		];
+		yield 'Not old enough, using AutoConfirmAge via unset' => [
+			[ APCOND_AGE_FROM_EDIT ], MWTimestamp::now(), []
+		];
+		yield 'Not old enough, using AutoConfirmAge via null' => [
+			[ APCOND_AGE_FROM_EDIT, null ], MWTimestamp::now(), []
+		];
 	}
 
 	/**
@@ -679,6 +685,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			->with( $user )
 			->willReturn( $firstEditTs );
 		$manager = $this->getManager( [
+			MainConfigNames::AutoConfirmAge => 10000000,
 			MainConfigNames::Autopromote => [ 'test_autoconfirmed' => $requiredCondition ]
 		], $mockUserEditTracker );
 		$this->assertArrayEquals( $expected, $manager->getUserAutopromoteGroups( $user ) );
