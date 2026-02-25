@@ -39,6 +39,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Skin\SkinFactory;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\Forms\PreferencesFormOOUI;
+use MediaWiki\Specials\SpecialListGroupRights;
 use MediaWiki\Specials\SpecialWatchlist;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
@@ -476,6 +477,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$userDisabledGroups = $this->userGroupManager->getUserDisabledGroups( $user );
 		if ( $userDisabledGroups ) {
+			$conditionsLink = SpecialPage::getTitleFor(
+				'Listgrouprights', false,
+				SpecialListGroupRights::RESTRICTED_GROUPS_SECTION_ID
+			)->getFullText();
 			$defaultPreferences['usergroups-disabled'] = [
 				'type' => 'info',
 				'label-message' => [ 'prefs-memberingroupsdisabled',
@@ -484,7 +489,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					return $this->renderUserGroupList( $user, $userDisabledGroups, $context );
 				},
 				'help-message' => [ 'prefs-memberingroupsdisabled-help',
-					Message::numParam( count( $userDisabledGroups ) ), $user->getName() ],
+					Message::numParam( count( $userDisabledGroups ) ), $user->getName(), $conditionsLink ],
 				'raw' => true,
 				'section' => 'personal/info',
 			];

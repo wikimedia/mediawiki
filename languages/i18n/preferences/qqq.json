@@ -286,7 +286,7 @@
 	"prefs-memberingroups-type": "{{optional}}\nParameters:\n* $1 - list of group names\n* $2 - list of group member names. Label for these is {{msg-mw|Prefs-memberingroups}}",
 	"group-membership-link-with-expiry": "Used as part of a list of user groups, to show the time and date when a user's membership of a group expires. That is, they are a member of that group \"until\" the specified date and time.\n\nParameters:\n* $1 - group name\n* $2 - time and date of expiry\n* $3 - date of expiry\n* $4 - time of expiry",
 	"prefs-memberingroupsdisabled": "Label for a list of user's groups that were disabled due to user not meeting conditions for being member of those groups.\n\nParameters:\n* $1 - number of disabled user groups\n* $2 - the username for GENDER",
-	"prefs-memberingroupsdisabled-help": "Help text for the list of disabled user groups\n\nParameters:\n* $1 - number of disabled user groups\n* $2 - the username for GENDER",
+	"prefs-memberingroupsdisabled-help": "Help text for the list of disabled user groups\n\nParameters:\n* $1 - number of disabled user groups\n* $2 - the username for GENDER\n* $3 - page where users can see the conditions for belonging to user groups",
 	"prefs-edits": "In user preferences.\n{{Identical|Number of edits}}",
 	"prefs-registration": "Used in [[Special:Preferences]].",
 	"prefs-registration-date-time": "{{optional}}\nUsed in [[Special:Preferences]]. Parameters are:\n* $1 date and time of registration\n* $2 date of registration\n* $3 time of registration",

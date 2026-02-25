@@ -25,6 +25,7 @@ class UserGroupRestrictionsTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [ 'cond3' ], $restrictions->getUpdaterConditions() );
 		$this->assertTrue( $restrictions->canBeIgnored() );
 		$this->assertFalse( $restrictions->continuouslyEnforced() );
+		$this->assertTrue( $restrictions->hasAnyConditions() );
 	}
 
 	public function testFromFullSpecWithScalarConditions() {
@@ -38,6 +39,7 @@ class UserGroupRestrictionsTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [ 'cond3' ], $restrictions->getUpdaterConditions() );
 		$this->assertTrue( $restrictions->canBeIgnored() );
 		$this->assertFalse( $restrictions->continuouslyEnforced() );
+		$this->assertTrue( $restrictions->hasAnyConditions() );
 	}
 
 	public function testFromEmptySpec() {
@@ -46,6 +48,7 @@ class UserGroupRestrictionsTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [], $restrictions->getUpdaterConditions() );
 		$this->assertFalse( $restrictions->canBeIgnored() );
 		$this->assertFalse( $restrictions->continuouslyEnforced() );
+		$this->assertFalse( $restrictions->hasAnyConditions() );
 	}
 
 	public function testContinuouslyEnforced() {

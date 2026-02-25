@@ -59,4 +59,12 @@ class UserGroupRestrictions {
 	public function continuouslyEnforced(): bool {
 		return !$this->canBeIgnored() && $this->getMemberConditions() !== [];
 	}
+
+	/**
+	 * Checks if there are conditions defined for this group, either for members or updaters.
+	 * If there are no conditions, then the group is effectively not restricted.
+	 */
+	public function hasAnyConditions(): bool {
+		return $this->getMemberConditions() !== [] || $this->getUpdaterConditions() !== [];
+	}
 }

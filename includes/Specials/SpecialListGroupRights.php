@@ -15,9 +15,12 @@ use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
+use MediaWiki\User\RestrictedUserGroupConfigReader;
 use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupMembership;
+use MediaWiki\User\UserRequirementsConditionChecker;
 
 /**
  * List all defined user groups and the associated rights.
@@ -29,6 +32,9 @@ use MediaWiki\User\UserGroupMembership;
  */
 class SpecialListGroupRights extends SpecialPage {
 
+	public const RESTRICTED_GROUPS_SECTION_ID = 'restricted_groups';
+	private const RESTRICTED_GROUPS_ID_PREFIX = 'group_restrictions-';
+
 	private readonly ILanguageConverter $languageConverter;
 
 	public function __construct(
@@ -36,6 +42,7 @@ class SpecialListGroupRights extends SpecialPage {
 		private readonly UserGroupManager $userGroupManager,
 		LanguageConverterFactory $languageConverterFactory,
 		private readonly GroupPermissionsLookup $groupPermissionsLookup,
+		private readonly RestrictedUserGroupConfigReader $restrictedUserGroupConfigReader,
 	) {
 		parent::__construct( 'Listgrouprights' );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
@@ -76,6 +83,7 @@ class SpecialListGroupRights extends SpecialPage {
 
 		$linkRenderer = $this->getLinkRenderer();
 		$lang = $this->getLanguage();
+		$restrictedGroups = $this->restrictedUserGroupConfigReader->getConfig();
 
 		foreach ( $allGroups as $group ) {
 			$permissions = $this->groupPermissionsLookup->getGrantedPermissions( $group );
@@ -119,6 +127,16 @@ class SpecialListGroupRights extends SpecialPage {
 				$grouplink = '';
 			}
 
+			$restrictionsLink = '';
+			if ( array_key_exists( $group, $restrictedGroups ) && $restrictedGroups[$group]->hasAnyConditions() ) {
+				$restrictionsSection = Sanitizer::escapeIdForAttribute( self::RESTRICTED_GROUPS_ID_PREFIX . $group );
+				$restrictionsLink = Html::rawElement( 'p', [],
+					$this->msg( 'listgrouprights-restricted' )
+						->params( '#' . $restrictionsSection )
+						->parse()
+				);
+			}
+
 			$revoke = $this->groupPermissionsLookup->getRevokedPermissions( $group );
 			$addgroups = $addGroups[$group] ?? [];
 			$removegroups = $removeGroups[$group] ?? [];
@@ -127,7 +145,7 @@ class SpecialListGroupRights extends SpecialPage {
 
 			$id = $group == '*' ? false : Sanitizer::escapeIdForAttribute( $group );
 			$out->addHTML( Html::rawElement( 'tr', [ 'id' => $id ], "
-				<td>$grouppage$groupname$grouplink</td>
+				<td>$grouppage$groupname$grouplink$restrictionsLink</td>
 					<td>" .
 					$this->formatPermissions( $permissions, $revoke, $addgroups, $removegroups,
 						$addgroupsSelf, $removegroupsSelf ) .
@@ -136,6 +154,7 @@ class SpecialListGroupRights extends SpecialPage {
 			) );
 		}
 		$out->addHTML( Html::closeElement( 'table' ) );
+		$this->outputRestrictedGroupsConfig();
 		$this->outputNamespaceProtectionInfo();
 	}
 
@@ -218,6 +237,93 @@ class SpecialListGroupRights extends SpecialPage {
 		$out->addHTML( Html::closeElement( 'table' ) );
 	}
 
+	private function outputRestrictedGroupsConfig() {
+		$out = $this->getOutput();
+		$restrictedGroups = $this->restrictedUserGroupConfigReader->getConfig();
+
+		if ( !$restrictedGroups ) {
+			return;
+		}
+
+		$header = $this->msg( 'listgrouprights-restrictedgroups-header' )->text();
+		$out->addHTML(
+			Html::element( 'h2', [
+				'id' => Sanitizer::escapeIdForAttribute( self::RESTRICTED_GROUPS_SECTION_ID )
+			], $header ) .
+			Html::openElement( 'table', [ 'class' => 'wikitable mw-listgrouprights-table' ] ) .
+			Html::element(
+				'th',
+				[],
+				$this->msg( 'listgrouprights-group' )->text()
+			) .
+			Html::element(
+				'th',
+				[],
+				$this->msg( 'listgrouprights-restrictedgroups-config' )->text()
+			)
+		);
+		ksort( $restrictedGroups );
+
+		$lang = $this->getLanguage();
+		$linkRenderer = $this->getLinkRenderer();
+		$allGroups = array_merge(
+			$this->userGroupManager->listAllGroups(),
+			$this->userGroupManager->listAllImplicitGroups()
+		);
+		foreach ( $restrictedGroups as $group => $groupConfig ) {
+			if ( !$groupConfig->hasAnyConditions() || !in_array( $group, $allGroups ) ) {
+				continue;
+			}
+
+			$out->addHTML(
+				Html::openElement(
+					'tr',
+					[ 'id' => Sanitizer::escapeIdForAttribute( self::RESTRICTED_GROUPS_ID_PREFIX . $group ) ]
+				) .
+				Html::rawElement(
+					'td',
+					[],
+					$linkRenderer->makeKnownLink(
+						new TitleValue( NS_SPECIAL, $this->getLocalName(), $group ),
+						$lang->getGroupName( $group )
+					)
+				) .
+				Html::openElement( 'td' )
+			);
+
+			$conditionsParts = [];
+			$memberConditions = $groupConfig->getMemberConditions();
+			if ( $memberConditions ) {
+				$memberHtml = $this->msg( 'listgrouprights-restrictedgroups-memberconditions' )->parse();
+				$memberHtml .= Html::rawElement( 'ul', [],
+					Html::rawElement( 'li', [], $this->formatCondition( $memberConditions ) )
+				);
+				$conditionsParts[] = $memberHtml;
+			}
+			$updaterConditions = $groupConfig->getUpdaterConditions();
+			if ( $updaterConditions ) {
+				$updaterHtml = $this->msg( 'listgrouprights-restrictedgroups-updaterconditions' )->parse();
+				$updaterHtml .= Html::rawElement( 'ul', [],
+					Html::rawElement( 'li', [], $this->formatCondition( $updaterConditions ) )
+				);
+				$conditionsParts[] = $updaterHtml;
+			}
+			if ( $groupConfig->canBeIgnored() ) {
+				$conditionsParts[] = $this->msg( 'listgrouprights-restrictedgroups-bypassable' )
+					->params( User::getRightDescription( 'ignore-restricted-groups' ) )
+					->rawParams( Html::element( 'code', [], '(ignore-restricted-groups)' ) )
+					->parse();
+			}
+			$out->addHTML( implode( '', $conditionsParts ) );
+
+			$out->addHTML(
+				Html::closeElement( 'td' ) .
+				Html::closeElement( 'tr' )
+			);
+		}
+		$out->addHTML( Html::closeElement( 'table' ) );
+	}
+
 	/**
 	 * Create a user-readable list of permissions from the given array.
 	 *
@@ -291,6 +397,81 @@ class SpecialListGroupRights extends SpecialPage {
 		} else {
 			return '<ul><li>' . implode( "</li>\n<li>", $r ) . '</li></ul>';
 		}
+	}
+
+	/**
+	 * Create a user-readable tree describing the given condition
+	 * and format it as a HTML list (potentially nested).
+	 * @param mixed $condition
+	 */
+	private function formatCondition( $condition ): string {
+		if ( is_array( $condition ) && count( $condition ) > 0 ) {
+			$condName = array_shift( $condition );
+			if ( in_array( $condName, UserRequirementsConditionChecker::VALID_OPS ) ) {
+				$listItems = '';
+				foreach ( $condition as $subcond ) {
+					$listItems .= Html::rawElement( 'li', [], $this->formatCondition( $subcond ) );
+				}
+				$htmlList = Html::rawElement( 'ul', [], $listItems );
+				$condName = match ( $condName ) {
+					'&' => 'listgrouprights-restrictedgroups-op-and',
+					'|' => 'listgrouprights-restrictedgroups-op-or',
+					'^' => 'listgrouprights-restrictedgroups-op-xor',
+					// Even though '!' is usually understood as 'NOT', in fact it's 'NAND' as it can accept
+					// multiple arguments
+					'!' => 'listgrouprights-restrictedgroups-op-nand',
+				};
+				return $this->msg( $condName )
+					->rawParams( $htmlList )
+					->parse();
+			} else {
+				return $this->formatAtomicCondition( $condName, $condition );
+			}
+		} elseif ( is_array( $condition ) ) {
+			return '';
+		} else {
+			return $this->formatAtomicCondition( $condition, [] );
+		}
+	}
+
+	/**
+	 * Prepares a message for atomic condition and its arguments.
+	 * Atomic conditions are conditions that do not contain any other conditions.
+	 * @param mixed $condName
+	 * @param array $args
+	 */
+	private function formatAtomicCondition( $condName, array $args ): string {
+		$msgKey = match ( $condName ) {
+			APCOND_EDITCOUNT => 'listgrouprights-restrictedgroups-cond-editcount',
+			APCOND_AGE => 'listgrouprights-restrictedgroups-cond-age',
+			APCOND_EMAILCONFIRMED => 'listgrouprights-restrictedgroups-cond-emailconfirmed',
+			APCOND_INGROUPS => 'listgrouprights-restrictedgroups-cond-ingroups',
+			APCOND_ISIP => 'listgrouprights-restrictedgroups-cond-isip',
+			APCOND_IPINRANGE => 'listgrouprights-restrictedgroups-cond-ipinrange',
+			APCOND_AGE_FROM_EDIT => 'listgrouprights-restrictedgroups-cond-age-from-edit',
+			APCOND_BLOCKED => 'listgrouprights-restrictedgroups-cond-blocked',
+			APCOND_ISBOT => 'listgrouprights-restrictedgroups-cond-isbot',
+			default => 'listgrouprights-restrictedgroups-cond-' . $condName,
+		};
+		$msg = $this->msg( $msgKey );
+
+		if ( $condName === APCOND_AGE || $condName === APCOND_AGE_FROM_EDIT ) {
+			$minAge = $args[0] ?? $this->getConfig()->get( MainConfigNames::AutoConfirmAge );
+			$msg->durationParams( $minAge );
+		} elseif ( $condName === APCOND_INGROUPS ) {
+			$groupNames = [];
+			foreach ( $args as $group ) {
+				$groupNames[] = $this->getLanguage()->getGroupName( $group );
+			}
+			$msg->params( count( $args ), $this->getLanguage()->listToText( $groupNames ) );
+		} elseif ( $condName === APCOND_EDITCOUNT ) {
+			$minEdits = $args[0] ?? $this->getConfig()->get( MainConfigNames::AutoConfirmCount );
+			$msg->numParams( $minEdits );
+		} else {
+			$msg->params( ...$args );
+		}
+
+		return $msg->parse();
 	}
 
 	/** @inheritDoc */

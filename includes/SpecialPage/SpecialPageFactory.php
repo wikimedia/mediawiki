@@ -635,6 +635,7 @@ class SpecialPageFactory {
 				'UserGroupManager',
 				'LanguageConverterFactory',
 				'GroupPermissionsLookup',
+				'RestrictedUserGroupConfigReader',
 			]
 		],
 		'Listgrants' => [
