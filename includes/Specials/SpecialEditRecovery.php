@@ -11,12 +11,10 @@ use MediaWiki\User\Options\UserOptionsLookup;
  */
 class SpecialEditRecovery extends SpecialPage {
 
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	public function __construct( UserOptionsLookup $userOptionsLookup ) {
+	public function __construct(
+		private readonly UserOptionsLookup $userOptionsLookup,
+	) {
 		parent::__construct( 'EditRecovery' );
-		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	/** @inheritDoc */

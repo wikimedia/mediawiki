@@ -129,55 +129,27 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	private $mSearchPrefix;
 
-	private PermissionManager $permissionManager;
-	private RevisionStore $revisionStore;
-	private RevisionRenderer $revisionRenderer;
-	private IContentHandlerFactory $contentHandlerFactory;
-	private NameTableStore $changeTagDefStore;
-	private LinkBatchFactory $linkBatchFactory;
 	private LocalRepo $localRepo;
-	private IConnectionProvider $dbProvider;
-	private UserOptionsLookup $userOptionsLookup;
-	private WikiPageFactory $wikiPageFactory;
-	private SearchEngineFactory $searchEngineFactory;
-	private UndeletePageFactory $undeletePageFactory;
-	private ArchivedRevisionLookup $archivedRevisionLookup;
-	private CommentFormatter $commentFormatter;
-	private WatchlistManager $watchlistManager;
 
 	public function __construct(
-		PermissionManager $permissionManager,
-		RevisionStore $revisionStore,
-		RevisionRenderer $revisionRenderer,
-		IContentHandlerFactory $contentHandlerFactory,
-		NameTableStore $changeTagDefStore,
-		LinkBatchFactory $linkBatchFactory,
+		private readonly PermissionManager $permissionManager,
+		private readonly RevisionStore $revisionStore,
+		private readonly RevisionRenderer $revisionRenderer,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly NameTableStore $changeTagDefStore,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		RepoGroup $repoGroup,
-		IConnectionProvider $dbProvider,
-		UserOptionsLookup $userOptionsLookup,
-		WikiPageFactory $wikiPageFactory,
-		SearchEngineFactory $searchEngineFactory,
-		UndeletePageFactory $undeletePageFactory,
-		ArchivedRevisionLookup $archivedRevisionLookup,
-		CommentFormatter $commentFormatter,
-		WatchlistManager $watchlistManager
+		private readonly IConnectionProvider $dbProvider,
+		private readonly UserOptionsLookup $userOptionsLookup,
+		private readonly WikiPageFactory $wikiPageFactory,
+		private readonly SearchEngineFactory $searchEngineFactory,
+		private readonly UndeletePageFactory $undeletePageFactory,
+		private readonly ArchivedRevisionLookup $archivedRevisionLookup,
+		private readonly CommentFormatter $commentFormatter,
+		private readonly WatchlistManager $watchlistManager,
 	) {
 		parent::__construct( 'Undelete', 'deletedhistory' );
-		$this->permissionManager = $permissionManager;
-		$this->revisionStore = $revisionStore;
-		$this->revisionRenderer = $revisionRenderer;
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->changeTagDefStore = $changeTagDefStore;
-		$this->linkBatchFactory = $linkBatchFactory;
 		$this->localRepo = $repoGroup->getLocalRepo();
-		$this->dbProvider = $dbProvider;
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->wikiPageFactory = $wikiPageFactory;
-		$this->searchEngineFactory = $searchEngineFactory;
-		$this->undeletePageFactory = $undeletePageFactory;
-		$this->archivedRevisionLookup = $archivedRevisionLookup;
-		$this->commentFormatter = $commentFormatter;
-		$this->watchlistManager = $watchlistManager;
 	}
 
 	/** @inheritDoc */

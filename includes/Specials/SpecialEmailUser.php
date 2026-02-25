@@ -31,25 +31,14 @@ use StatusValue;
  */
 class SpecialEmailUser extends SpecialPage {
 
-	private UserNameUtils $userNameUtils;
-	private UserNamePrefixSearch $userNamePrefixSearch;
-	private UserOptionsLookup $userOptionsLookup;
-	private EmailUserFactory $emailUserFactory;
-	private UserFactory $userFactory;
-
 	public function __construct(
-		UserNameUtils $userNameUtils,
-		UserNamePrefixSearch $userNamePrefixSearch,
-		UserOptionsLookup $userOptionsLookup,
-		EmailUserFactory $emailUserFactory,
-		UserFactory $userFactory
+		private readonly UserNameUtils $userNameUtils,
+		private readonly UserNamePrefixSearch $userNamePrefixSearch,
+		private readonly UserOptionsLookup $userOptionsLookup,
+		private readonly EmailUserFactory $emailUserFactory,
+		private readonly UserFactory $userFactory,
 	) {
 		parent::__construct( 'Emailuser' );
-		$this->userNameUtils = $userNameUtils;
-		$this->userNamePrefixSearch = $userNamePrefixSearch;
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->emailUserFactory = $emailUserFactory;
-		$this->userFactory = $userFactory;
 	}
 
 	/** @inheritDoc */

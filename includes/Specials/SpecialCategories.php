@@ -19,16 +19,11 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialCategories extends SpecialPage {
 
-	private LinkBatchFactory $linkBatchFactory;
-	private IConnectionProvider $dbProvider;
-
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory,
-		IConnectionProvider $dbProvider
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly IConnectionProvider $dbProvider,
 	) {
 		parent::__construct( 'Categories' );
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->dbProvider = $dbProvider;
 	}
 
 	/** @inheritDoc */

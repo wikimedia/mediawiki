@@ -26,15 +26,12 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialUnusedTemplates extends QueryPage {
 
-	private LinksMigration $linksMigration;
-
 	public function __construct(
 		IConnectionProvider $dbProvider,
-		LinksMigration $linksMigration
+		private readonly LinksMigration $linksMigration,
 	) {
 		parent::__construct( 'Unusedtemplates' );
 		$this->setDatabaseProvider( $dbProvider );
-		$this->linksMigration = $linksMigration;
 	}
 
 	/** @inheritDoc */

@@ -46,37 +46,18 @@ class SpecialNewPages extends IncludableSpecialPage {
 	/** @var bool */
 	protected $showNavigation = false;
 
-	private LinkBatchFactory $linkBatchFactory;
-	private IContentHandlerFactory $contentHandlerFactory;
-	private GroupPermissionsLookup $groupPermissionsLookup;
-	private RevisionLookup $revisionLookup;
-	private NamespaceInfo $namespaceInfo;
-	private UserOptionsLookup $userOptionsLookup;
-	private RowCommentFormatter $rowCommentFormatter;
-	private ChangeTagsStore $changeTagsStore;
-	private TempUserConfig $tempUserConfig;
-
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory,
-		IContentHandlerFactory $contentHandlerFactory,
-		GroupPermissionsLookup $groupPermissionsLookup,
-		RevisionLookup $revisionLookup,
-		NamespaceInfo $namespaceInfo,
-		UserOptionsLookup $userOptionsLookup,
-		RowCommentFormatter $rowCommentFormatter,
-		ChangeTagsStore $changeTagsStore,
-		TempUserConfig $tempUserConfig
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly GroupPermissionsLookup $groupPermissionsLookup,
+		private readonly RevisionLookup $revisionLookup,
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly UserOptionsLookup $userOptionsLookup,
+		private readonly RowCommentFormatter $rowCommentFormatter,
+		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly TempUserConfig $tempUserConfig
 	) {
 		parent::__construct( 'Newpages' );
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
-		$this->revisionLookup = $revisionLookup;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->rowCommentFormatter = $rowCommentFormatter;
-		$this->changeTagsStore = $changeTagsStore;
-		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**

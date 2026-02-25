@@ -32,21 +32,14 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	/** @var string[] */
 	protected $mediaTypes;
 
-	private GroupPermissionsLookup $groupPermissionsLookup;
-	private IConnectionProvider $dbProvider;
-	private LinkBatchFactory $linkBatchFactory;
-
 	public function __construct(
 		MimeAnalyzer $mimeAnalyzer,
-		GroupPermissionsLookup $groupPermissionsLookup,
-		IConnectionProvider $dbProvider,
-		LinkBatchFactory $linkBatchFactory
+		private readonly GroupPermissionsLookup $groupPermissionsLookup,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly LinkBatchFactory $linkBatchFactory,
 	) {
 		parent::__construct( 'Newimages' );
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
-		$this->dbProvider = $dbProvider;
 		$this->mediaTypes = $mimeAnalyzer->getMediaTypes();
-		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	/** @inheritDoc */

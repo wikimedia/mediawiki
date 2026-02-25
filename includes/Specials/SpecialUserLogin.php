@@ -36,12 +36,12 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 		'authform-wrongtoken' => 'sessionfailure',
 	];
 
-	private UserIdentityUtils $identityUtils;
-
-	public function __construct( AuthManager $authManager, UserIdentityUtils $identityUtils ) {
+	public function __construct(
+		AuthManager $authManager,
+		private readonly UserIdentityUtils $identityUtils,
+	) {
 		parent::__construct( 'Userlogin' );
 		$this->setAuthManager( $authManager );
-		$this->identityUtils = $identityUtils;
 	}
 
 	/** @inheritDoc */

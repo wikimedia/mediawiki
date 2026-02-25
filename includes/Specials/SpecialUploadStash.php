@@ -45,9 +45,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	private $stash;
 
 	private LocalRepo $localRepo;
-	private HttpRequestFactory $httpRequestFactory;
-	private UrlUtils $urlUtils;
-	private IConnectionProvider $dbProvider;
 
 	/**
 	 * Since we are directly writing the file to STDOUT,
@@ -63,15 +60,12 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 	public function __construct(
 		RepoGroup $repoGroup,
-		HttpRequestFactory $httpRequestFactory,
-		UrlUtils $urlUtils,
-		IConnectionProvider $dbProvider
+		private readonly HttpRequestFactory $httpRequestFactory,
+		private readonly UrlUtils $urlUtils,
+		private readonly IConnectionProvider $dbProvider,
 	) {
 		parent::__construct( 'UploadStash', 'upload' );
 		$this->localRepo = $repoGroup->getLocalRepo();
-		$this->httpRequestFactory = $httpRequestFactory;
-		$this->urlUtils = $urlUtils;
-		$this->dbProvider = $dbProvider;
 	}
 
 	/** @inheritDoc */

@@ -21,22 +21,17 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialLonelyPages extends PageQueryPage {
 
-	private NamespaceInfo $namespaceInfo;
-	private LinksMigration $linksMigration;
-
 	public function __construct(
-		NamespaceInfo $namespaceInfo,
+		private readonly NamespaceInfo $namespaceInfo,
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,
 		LanguageConverterFactory $languageConverterFactory,
-		LinksMigration $linksMigration
+		private readonly LinksMigration $linksMigration,
 	) {
 		parent::__construct( 'Lonelypages' );
-		$this->namespaceInfo = $namespaceInfo;
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
 		$this->setLanguageConverter( $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() ) );
-		$this->linksMigration = $linksMigration;
 	}
 
 	/** @inheritDoc */

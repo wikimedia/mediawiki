@@ -19,15 +19,12 @@ use MediaWiki\Title\Title;
  */
 class SpecialNewSection extends RedirectSpecialPage {
 
-	private SearchEngineFactory $searchEngineFactory;
-
 	public function __construct(
-		SearchEngineFactory $searchEngineFactory
+		private readonly SearchEngineFactory $searchEngineFactory,
 	) {
 		parent::__construct( 'NewSection' );
 		$this->mAllowedRedirectParams = [ 'preloadtitle', 'nosummary', 'editintro',
 			'preload', 'preloadparams', 'summary' ];
-		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	/**

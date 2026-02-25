@@ -45,14 +45,14 @@ class SpecialBotPasswords extends FormSpecialPage {
 	/** @var string|null New password set, for communication between onSubmit() and onSuccess() */
 	private $password = null;
 
-	private LoggerInterface $logger;
+	private readonly LoggerInterface $logger;
 
 	public function __construct(
 		private readonly PasswordFactory $passwordFactory,
 		AuthManager $authManager,
 		private readonly CentralIdLookup $centralIdLookup,
 		private readonly GrantsInfo $grantsInfo,
-		private readonly GrantsLocalization $grantsLocalization
+		private readonly GrantsLocalization $grantsLocalization,
 	) {
 		parent::__construct( 'BotPasswords', 'editmyprivateinfo' );
 		$this->logger = LoggerFactory::getInstance( 'authentication' );

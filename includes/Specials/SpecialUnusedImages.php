@@ -17,7 +17,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialUnusedImages extends ImageQueryPage {
 
-	private int $fileMigrationStage;
+	private readonly int $fileMigrationStage;
 
 	public function __construct( IConnectionProvider $dbProvider ) {
 		parent::__construct( 'Unusedimages' );

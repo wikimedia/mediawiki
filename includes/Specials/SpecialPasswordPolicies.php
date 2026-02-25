@@ -27,11 +27,10 @@ use Wikimedia\Message\ListType;
  */
 class SpecialPasswordPolicies extends SpecialPage {
 
-	private UserGroupManager $userGroupManager;
-
-	public function __construct( UserGroupManager $userGroupManager ) {
+	public function __construct(
+		private readonly UserGroupManager $userGroupManager,
+	) {
 		parent::__construct( 'PasswordPolicies' );
-		$this->userGroupManager = $userGroupManager;
 	}
 
 	/**

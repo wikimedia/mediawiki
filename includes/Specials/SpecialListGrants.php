@@ -21,11 +21,10 @@ use MediaWiki\User\User;
  * @ingroup SpecialPage
  */
 class SpecialListGrants extends SpecialPage {
-	private GrantsLocalization $grantsLocalization;
-
-	public function __construct( GrantsLocalization $grantsLocalization ) {
+	public function __construct(
+		private readonly GrantsLocalization $grantsLocalization,
+	) {
 		parent::__construct( 'Listgrants' );
-		$this->grantsLocalization = $grantsLocalization;
 	}
 
 	/**

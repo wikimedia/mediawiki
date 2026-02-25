@@ -40,22 +40,13 @@ class SpecialPageLanguage extends FormSpecialPage {
 	 */
 	private $goToUrl;
 
-	private IContentHandlerFactory $contentHandlerFactory;
-	private LanguageNameUtils $languageNameUtils;
-	private IConnectionProvider $dbProvider;
-	private SearchEngineFactory $searchEngineFactory;
-
 	public function __construct(
-		IContentHandlerFactory $contentHandlerFactory,
-		LanguageNameUtils $languageNameUtils,
-		IConnectionProvider $dbProvider,
-		SearchEngineFactory $searchEngineFactory
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly LanguageNameUtils $languageNameUtils,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly SearchEngineFactory $searchEngineFactory,
 	) {
 		parent::__construct( 'PageLanguage', 'pagelang' );
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->languageNameUtils = $languageNameUtils;
-		$this->dbProvider = $dbProvider;
-		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	/** @inheritDoc */

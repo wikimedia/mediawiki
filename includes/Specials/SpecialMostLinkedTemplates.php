@@ -29,17 +29,14 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialMostLinkedTemplates extends QueryPage {
 
-	private LinksMigration $linksMigration;
-
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,
-		LinksMigration $linksMigration
+		private readonly LinksMigration $linksMigration,
 	) {
 		parent::__construct( 'Mostlinkedtemplates' );
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
-		$this->linksMigration = $linksMigration;
 	}
 
 	/**

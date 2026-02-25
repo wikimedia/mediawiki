@@ -65,7 +65,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	public const WATCHLIST_LABEL_CSS_CLASS_PREFIX = 'mw-changeslist-label-';
 
-	private array $watchlistLabelsForCurrentUser;
+	private readonly array $watchlistLabelsForCurrentUser;
 
 	public function __construct(
 		private readonly WatchedItemStoreInterface $watchedItemStore,

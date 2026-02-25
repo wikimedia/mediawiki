@@ -25,12 +25,10 @@ use MediaWiki\User\User;
  * @ingroup SpecialPage
  */
 class SpecialPasswordReset extends FormSpecialPage {
-	private PasswordReset $passwordReset;
-
-	public function __construct( PasswordReset $passwordReset ) {
+	public function __construct(
+		private readonly PasswordReset $passwordReset,
+	) {
 		parent::__construct( 'PasswordReset', 'editmyprivateinfo' );
-
-		$this->passwordReset = $passwordReset;
 	}
 
 	/** @inheritDoc */

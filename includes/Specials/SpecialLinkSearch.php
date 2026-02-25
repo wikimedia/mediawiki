@@ -39,8 +39,6 @@ class SpecialLinkSearch extends QueryPage {
 	/** @var string|null */
 	private $mProt;
 
-	private UrlUtils $urlUtils;
-
 	private function setParams( array $params ) {
 		$this->mQuery = $params['query'];
 		$this->mNs = $params['namespace'];
@@ -50,12 +48,11 @@ class SpecialLinkSearch extends QueryPage {
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,
-		UrlUtils $urlUtils
+		private readonly UrlUtils $urlUtils,
 	) {
 		parent::__construct( 'LinkSearch' );
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
-		$this->urlUtils = $urlUtils;
 	}
 
 	/** @inheritDoc */

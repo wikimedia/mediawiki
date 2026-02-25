@@ -23,12 +23,12 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @author Soxred93 <soxred93@gmail.com>
  */
 class SpecialWantedFiles extends WantedQueryPage {
-	private int $fileMigrationStage;
+	private readonly int $fileMigrationStage;
 
 	public function __construct(
 		private readonly RepoGroup $repoGroup,
 		IConnectionProvider $dbProvider,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
 	) {
 		parent::__construct( 'Wantedfiles' );
 		$this->setDatabaseProvider( $dbProvider );

@@ -28,21 +28,14 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialListRedirects extends QueryPage {
 
-	private LinkBatchFactory $linkBatchFactory;
-	private WikiPageFactory $wikiPageFactory;
-	private RedirectLookup $redirectLookup;
-
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,
-		WikiPageFactory $wikiPageFactory,
-		RedirectLookup $redirectLookup
+		private readonly WikiPageFactory $wikiPageFactory,
+		private readonly RedirectLookup $redirectLookup,
 	) {
 		parent::__construct( 'Listredirects' );
-		$this->linkBatchFactory = $linkBatchFactory;
 		$this->setDatabaseProvider( $dbProvider );
-		$this->wikiPageFactory = $wikiPageFactory;
-		$this->redirectLookup = $redirectLookup;
 	}
 
 	/** @inheritDoc */

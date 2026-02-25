@@ -33,19 +33,12 @@ class SpecialExpandTemplates extends SpecialPage {
 	/** @var int Maximum size in bytes to include. 50 MB allows fixing those huge pages */
 	private const MAX_INCLUDE_SIZE = 50_000_000;
 
-	private ParserFactory $parserFactory;
-	private UserOptionsLookup $userOptionsLookup;
-	private TidyDriverBase $tidy;
-
 	public function __construct(
-		ParserFactory $parserFactory,
-		UserOptionsLookup $userOptionsLookup,
-		TidyDriverBase $tidy
+		private readonly ParserFactory $parserFactory,
+		private readonly UserOptionsLookup $userOptionsLookup,
+		private readonly TidyDriverBase $tidy,
 	) {
 		parent::__construct( 'ExpandTemplates' );
-		$this->parserFactory = $parserFactory;
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->tidy = $tidy;
 	}
 
 	/**

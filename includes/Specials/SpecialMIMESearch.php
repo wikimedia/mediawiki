@@ -37,12 +37,12 @@ class SpecialMIMESearch extends QueryPage {
 	/** @var string */
 	protected $mime;
 
-	private ILanguageConverter $languageConverter;
+	private readonly ILanguageConverter $languageConverter;
 
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,
-		LanguageConverterFactory $languageConverterFactory
+		LanguageConverterFactory $languageConverterFactory,
 	) {
 		parent::__construct( 'MIMEsearch' );
 		$this->setDatabaseProvider( $dbProvider );

@@ -22,12 +22,10 @@ use Wikimedia\ScopedCallback;
  */
 class SpecialEmailInvalidate extends UnlistedSpecialPage {
 
-	private UserFactory $userFactory;
-
-	public function __construct( UserFactory $userFactory ) {
+	public function __construct(
+		private readonly UserFactory $userFactory,
+	) {
 		parent::__construct( 'Invalidateemail', 'editmyprivateinfo' );
-
-		$this->userFactory = $userFactory;
 	}
 
 	/** @inheritDoc */

@@ -33,22 +33,13 @@ class SpecialMute extends FormSpecialPage {
 	/** @var int */
 	private $targetCentralId;
 
-	private CentralIdLookup $centralIdLookup;
-	private UserOptionsManager $userOptionsManager;
-	private UserIdentityLookup $userIdentityLookup;
-	private UserIdentityUtils $userIdentityUtils;
-
 	public function __construct(
-		CentralIdLookup $centralIdLookup,
-		UserOptionsManager $userOptionsManager,
-		UserIdentityLookup $userIdentityLookup,
-		UserIdentityUtils $userIdentityUtils
+		private readonly CentralIdLookup $centralIdLookup,
+		private readonly UserOptionsManager $userOptionsManager,
+		private readonly UserIdentityLookup $userIdentityLookup,
+		private readonly UserIdentityUtils $userIdentityUtils,
 	) {
 		parent::__construct( self::PAGE_NAME, '', false );
-		$this->centralIdLookup = $centralIdLookup;
-		$this->userOptionsManager = $userOptionsManager;
-		$this->userIdentityLookup = $userIdentityLookup;
-		$this->userIdentityUtils = $userIdentityUtils;
 	}
 
 	/**

@@ -24,15 +24,14 @@ use Wikimedia\ObjectCache\BagOStuff;
  */
 class SpecialRestSandbox extends SpecialPage {
 
-	private UrlUtils $urlUtils;
-	private ModuleManager $moduleManager;
+	private readonly ModuleManager $moduleManager;
 
 	public function __construct(
-		UrlUtils $urlUtils, MessageFormatterFactory $messageFormatterFactory, BagOStuff $srvCache
+		private readonly UrlUtils $urlUtils,
+		MessageFormatterFactory $messageFormatterFactory,
+		BagOStuff $srvCache,
 	) {
 		parent::__construct( 'RestSandbox' );
-
-		$this->urlUtils = $urlUtils;
 
 		$textFormatter = $messageFormatterFactory->getTextFormatter(
 			$this->getContentLanguage()->getCode()

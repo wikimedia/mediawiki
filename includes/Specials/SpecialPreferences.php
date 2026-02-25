@@ -26,8 +26,8 @@ use OOUI\SearchInputWidget;
  */
 class SpecialPreferences extends SpecialPage {
 
-	private PreferencesFactory $preferencesFactory;
-	private UserOptionsManager $userOptionsManager;
+	private readonly PreferencesFactory $preferencesFactory;
+	private readonly UserOptionsManager $userOptionsManager;
 
 	public function __construct(
 		?PreferencesFactory $preferencesFactory = null,

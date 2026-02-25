@@ -39,22 +39,13 @@ class SpecialExport extends SpecialPage {
 	protected int $pageLinkDepth;
 	protected bool $templates;
 
-	private IConnectionProvider $dbProvider;
-	private WikiExporterFactory $wikiExporterFactory;
-	private TitleFormatter $titleFormatter;
-	private LinksMigration $linksMigration;
-
 	public function __construct(
-		IConnectionProvider $dbProvider,
-		WikiExporterFactory $wikiExporterFactory,
-		TitleFormatter $titleFormatter,
-		LinksMigration $linksMigration
+		private readonly IConnectionProvider $dbProvider,
+		private readonly WikiExporterFactory $wikiExporterFactory,
+		private readonly TitleFormatter $titleFormatter,
+		private readonly LinksMigration $linksMigration,
 	) {
 		parent::__construct( 'Export' );
-		$this->dbProvider = $dbProvider;
-		$this->wikiExporterFactory = $wikiExporterFactory;
-		$this->titleFormatter = $titleFormatter;
-		$this->linksMigration = $linksMigration;
 	}
 
 	/** @inheritDoc */

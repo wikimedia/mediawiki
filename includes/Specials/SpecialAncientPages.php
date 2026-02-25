@@ -23,13 +23,13 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialAncientPages extends QueryPage {
 
-	private ILanguageConverter $languageConverter;
+	private readonly ILanguageConverter $languageConverter;
 
 	public function __construct(
 		private readonly NamespaceInfo $namespaceInfo,
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,
-		LanguageConverterFactory $languageConverterFactory
+		LanguageConverterFactory $languageConverterFactory,
 	) {
 		parent::__construct( 'Ancientpages' );
 		$this->setDatabaseProvider( $dbProvider );

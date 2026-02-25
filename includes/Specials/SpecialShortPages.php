@@ -26,15 +26,12 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialShortPages extends QueryPage {
 
-	private NamespaceInfo $namespaceInfo;
-
 	public function __construct(
-		NamespaceInfo $namespaceInfo,
+		private readonly NamespaceInfo $namespaceInfo,
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( 'Shortpages' );
-		$this->namespaceInfo = $namespaceInfo;
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
 	}

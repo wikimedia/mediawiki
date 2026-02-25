@@ -36,17 +36,13 @@ class SpecialPrefixIndex extends SpecialAllPages {
 	// Inherit $maxPerPage
 
 	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
-	private IConnectionProvider $dbProvider;
-	private LinkCache $linkCache;
 
 	public function __construct(
-		IConnectionProvider $dbProvider,
-		LinkCache $linkCache
+		private readonly IConnectionProvider $dbProvider,
+		private readonly LinkCache $linkCache,
 	) {
 		parent::__construct( $dbProvider );
 		$this->mName = 'Prefixindex';
-		$this->dbProvider = $dbProvider;
-		$this->linkCache = $linkCache;
 	}
 
 	/**

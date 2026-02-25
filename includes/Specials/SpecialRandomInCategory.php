@@ -54,11 +54,10 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	/** @var int|null */
 	private $minTimestamp = null;
 
-	private IConnectionProvider $dbProvider;
-
-	public function __construct( IConnectionProvider $dbProvider ) {
+	public function __construct(
+		private readonly IConnectionProvider $dbProvider,
+	) {
 		parent::__construct( 'RandomInCategory' );
-		$this->dbProvider = $dbProvider;
 	}
 
 	/**

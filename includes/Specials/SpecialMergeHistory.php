@@ -66,31 +66,18 @@ class SpecialMergeHistory extends SpecialPage {
 	/** @var Title|null */
 	protected $mDestObj;
 
-	private MergeHistoryFactory $mergeHistoryFactory;
-	private LinkBatchFactory $linkBatchFactory;
-	private IConnectionProvider $dbProvider;
-	private RevisionStore $revisionStore;
-	private CommentFormatter $commentFormatter;
-	private ChangeTagsStore $changeTagsStore;
-
 	/** @var Status */
 	private $mStatus;
 
 	public function __construct(
-		MergeHistoryFactory $mergeHistoryFactory,
-		LinkBatchFactory $linkBatchFactory,
-		IConnectionProvider $dbProvider,
-		RevisionStore $revisionStore,
-		CommentFormatter $commentFormatter,
-		ChangeTagsStore $changeTagsStore
+		private readonly MergeHistoryFactory $mergeHistoryFactory,
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly RevisionStore $revisionStore,
+		private readonly CommentFormatter $commentFormatter,
+		private readonly ChangeTagsStore $changeTagsStore,
 	) {
 		parent::__construct( 'MergeHistory', 'mergehistory' );
-		$this->mergeHistoryFactory = $mergeHistoryFactory;
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->dbProvider = $dbProvider;
-		$this->revisionStore = $revisionStore;
-		$this->commentFormatter = $commentFormatter;
-		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	/** @inheritDoc */

@@ -28,31 +28,19 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup SpecialPage
  */
 class SpecialRenameUser extends SpecialPage {
-	private IConnectionProvider $dbConns;
-	private PermissionManager $permissionManager;
-	private TitleFactory $titleFactory;
-	private UserFactory $userFactory;
-	private UserNamePrefixSearch $userNamePrefixSearch;
-	private RenameUserFactory $renameUserFactory;
-	private StatusFormatter $statusFormatter;
+	private readonly StatusFormatter $statusFormatter;
 
 	public function __construct(
-		IConnectionProvider $dbConns,
-		PermissionManager $permissionManager,
-		TitleFactory $titleFactory,
-		UserFactory $userFactory,
-		UserNamePrefixSearch $userNamePrefixSearch,
-		RenameUserFactory $renameUserFactory,
+		private readonly IConnectionProvider $dbConns,
+		private readonly PermissionManager $permissionManager,
+		private readonly TitleFactory $titleFactory,
+		private readonly UserFactory $userFactory,
+		private readonly UserNamePrefixSearch $userNamePrefixSearch,
+		private readonly RenameUserFactory $renameUserFactory,
 		FormatterFactory $formatterFactory,
 	) {
 		parent::__construct( 'Renameuser', $userFactory->isUserTableShared() ? 'renameuser-global' : 'renameuser' );
 
-		$this->dbConns = $dbConns;
-		$this->permissionManager = $permissionManager;
-		$this->titleFactory = $titleFactory;
-		$this->userFactory = $userFactory;
-		$this->userNamePrefixSearch = $userNamePrefixSearch;
-		$this->renameUserFactory = $renameUserFactory;
 		$this->statusFormatter = $formatterFactory->getStatusFormatter( $this );
 	}
 

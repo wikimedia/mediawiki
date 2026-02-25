@@ -29,13 +29,11 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	/** @var bool|Title */
 	protected $rclTargetTitle;
 
-	private SearchEngineFactory $searchEngineFactory;
-
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore,
 		MessageParser $messageParser,
 		UserOptionsLookup $userOptionsLookup,
-		SearchEngineFactory $searchEngineFactory,
+		private readonly SearchEngineFactory $searchEngineFactory,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserConfig $tempUserConfig,
 		RecentChangeFactory $recentChangeFactory,
@@ -51,7 +49,6 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$changesListQueryFactory,
 		);
 		$this->mName = 'Recentchangeslinked';
-		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	/** @inheritDoc */

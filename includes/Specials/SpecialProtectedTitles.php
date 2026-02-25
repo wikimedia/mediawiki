@@ -21,16 +21,11 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialProtectedTitles extends SpecialPage {
 
-	private LinkBatchFactory $linkBatchFactory;
-	private IConnectionProvider $dbProvider;
-
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory,
-		IConnectionProvider $dbProvider
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly IConnectionProvider $dbProvider,
 	) {
 		parent::__construct( 'Protectedtitles' );
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->dbProvider = $dbProvider;
 	}
 
 	/** @inheritDoc */

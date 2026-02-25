@@ -30,16 +30,14 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialUnwatchedPages extends QueryPage {
 
-	private LinkBatchFactory $linkBatchFactory;
-	private ILanguageConverter $languageConverter;
+	private readonly ILanguageConverter $languageConverter;
 
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,
 		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'Unwatchedpages', 'unwatchedpages' );
-		$this->linkBatchFactory = $linkBatchFactory;
 		$this->setDatabaseProvider( $dbProvider );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}

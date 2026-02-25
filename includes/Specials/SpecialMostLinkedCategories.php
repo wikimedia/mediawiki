@@ -30,12 +30,12 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialMostLinkedCategories extends QueryPage {
 
-	private ILanguageConverter $languageConverter;
+	private readonly ILanguageConverter $languageConverter;
 
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,
-		LanguageConverterFactory $languageConverterFactory
+		LanguageConverterFactory $languageConverterFactory,
 	) {
 		parent::__construct( 'Mostlinkedcategories' );
 		$this->setDatabaseProvider( $dbProvider );

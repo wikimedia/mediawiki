@@ -25,31 +25,16 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialListFiles extends IncludableSpecialPage {
 
-	private RepoGroup $repoGroup;
-	private IConnectionProvider $dbProvider;
-	private CommentStore $commentStore;
-	private UserNameUtils $userNameUtils;
-	private UserNamePrefixSearch $userNamePrefixSearch;
-	private RowCommentFormatter $rowCommentFormatter;
-	private LinkBatchFactory $linkBatchFactory;
-
 	public function __construct(
-		RepoGroup $repoGroup,
-		IConnectionProvider $dbProvider,
-		CommentStore $commentStore,
-		UserNameUtils $userNameUtils,
-		UserNamePrefixSearch $userNamePrefixSearch,
-		RowCommentFormatter $rowCommentFormatter,
-		LinkBatchFactory $linkBatchFactory
+		private readonly RepoGroup $repoGroup,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly CommentStore $commentStore,
+		private readonly UserNameUtils $userNameUtils,
+		private readonly UserNamePrefixSearch $userNamePrefixSearch,
+		private readonly RowCommentFormatter $rowCommentFormatter,
+		private readonly LinkBatchFactory $linkBatchFactory,
 	) {
 		parent::__construct( 'Listfiles' );
-		$this->repoGroup = $repoGroup;
-		$this->dbProvider = $dbProvider;
-		$this->commentStore = $commentStore;
-		$this->userNameUtils = $userNameUtils;
-		$this->userNamePrefixSearch = $userNamePrefixSearch;
-		$this->rowCommentFormatter = $rowCommentFormatter;
-		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	/** @inheritDoc */

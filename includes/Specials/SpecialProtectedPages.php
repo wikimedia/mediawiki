@@ -26,25 +26,14 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup SpecialPage
  */
 class SpecialProtectedPages extends SpecialPage {
-	private LinkBatchFactory $linkBatchFactory;
-	private IConnectionProvider $dbProvider;
-	private CommentStore $commentStore;
-	private RowCommentFormatter $rowCommentFormatter;
-	private RestrictionStore $restrictionStore;
-
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory,
-		IConnectionProvider $dbProvider,
-		CommentStore $commentStore,
-		RowCommentFormatter $rowCommentFormatter,
-		RestrictionStore $restrictionStore
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly CommentStore $commentStore,
+		private readonly RowCommentFormatter $rowCommentFormatter,
+		private readonly RestrictionStore $restrictionStore,
 	) {
 		parent::__construct( 'Protectedpages' );
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->dbProvider = $dbProvider;
-		$this->commentStore = $commentStore;
-		$this->rowCommentFormatter = $rowCommentFormatter;
-		$this->restrictionStore = $restrictionStore;
 	}
 
 	/** @inheritDoc */

@@ -40,21 +40,15 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 	 */
 	private $file = null;
 
-	private LinkBatchFactory $linkBatchFactory;
-	private RepoGroup $repoGroup;
-	private SearchEngineFactory $searchEngineFactory;
-	private ILanguageConverter $languageConverter;
+	private readonly ILanguageConverter $languageConverter;
 
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory,
-		RepoGroup $repoGroup,
-		SearchEngineFactory $searchEngineFactory,
-		LanguageConverterFactory $languageConverterFactory
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly RepoGroup $repoGroup,
+		private readonly SearchEngineFactory $searchEngineFactory,
+		LanguageConverterFactory $languageConverterFactory,
 	) {
 		parent::__construct( 'FileDuplicateSearch' );
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->repoGroup = $repoGroup;
-		$this->searchEngineFactory = $searchEngineFactory;
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 

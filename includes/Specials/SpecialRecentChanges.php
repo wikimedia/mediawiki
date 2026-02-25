@@ -39,9 +39,9 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class SpecialRecentChanges extends ChangesListSpecialPage {
 
-	private WatchedItemStoreInterface $watchedItemStore;
-	private MessageParser $messageParser;
-	private UserOptionsLookup $userOptionsLookup;
+	private readonly WatchedItemStoreInterface $watchedItemStore;
+	private readonly MessageParser $messageParser;
+	private readonly UserOptionsLookup $userOptionsLookup;
 
 	public function __construct(
 		?WatchedItemStoreInterface $watchedItemStore = null,

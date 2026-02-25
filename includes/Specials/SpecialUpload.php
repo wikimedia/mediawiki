@@ -51,18 +51,18 @@ use UnexpectedValueException;
  */
 class SpecialUpload extends SpecialPage {
 
-	private LocalRepo $localRepo;
-	private UserOptionsLookup $userOptionsLookup;
-	private NamespaceInfo $nsInfo;
-	private WatchlistManager $watchlistManager;
-	private JobQueueGroup $jobQueueGroup;
-	private LoggerInterface $log;
+	private readonly LocalRepo $localRepo;
+	private readonly UserOptionsLookup $userOptionsLookup;
+	private readonly NamespaceInfo $nsInfo;
+	private readonly WatchlistManager $watchlistManager;
+	private readonly JobQueueGroup $jobQueueGroup;
+	private readonly LoggerInterface $log;
 
 	public function __construct(
 		?RepoGroup $repoGroup = null,
 		?UserOptionsLookup $userOptionsLookup = null,
 		?NamespaceInfo $nsInfo = null,
-		?WatchlistManager $watchlistManager = null
+		?WatchlistManager $watchlistManager = null,
 	) {
 		parent::__construct( 'Upload', 'upload' );
 		// This class is extended and therefor fallback to global state - T265300

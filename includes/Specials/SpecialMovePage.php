@@ -91,55 +91,24 @@ class SpecialMovePage extends UnlistedSpecialPage {
 	/** @var bool */
 	private $watch = false;
 
-	private MovePageFactory $movePageFactory;
-	private PermissionManager $permManager;
-	private UserOptionsLookup $userOptionsLookup;
-	private IConnectionProvider $dbProvider;
-	private IContentHandlerFactory $contentHandlerFactory;
-	private NamespaceInfo $nsInfo;
-	private LinkBatchFactory $linkBatchFactory;
-	private RepoGroup $repoGroup;
-	private WikiPageFactory $wikiPageFactory;
-	private SearchEngineFactory $searchEngineFactory;
-	private WatchlistManager $watchlistManager;
-	private WatchedItemStore $watchedItemStore;
-	private RestrictionStore $restrictionStore;
-	private TitleFactory $titleFactory;
-	private DeletePageFactory $deletePageFactory;
-
 	public function __construct(
-		MovePageFactory $movePageFactory,
-		PermissionManager $permManager,
-		UserOptionsLookup $userOptionsLookup,
-		IConnectionProvider $dbProvider,
-		IContentHandlerFactory $contentHandlerFactory,
-		NamespaceInfo $nsInfo,
-		LinkBatchFactory $linkBatchFactory,
-		RepoGroup $repoGroup,
-		WikiPageFactory $wikiPageFactory,
-		SearchEngineFactory $searchEngineFactory,
-		WatchlistManager $watchlistManager,
-		WatchedItemStore $watchedItemStore,
-		RestrictionStore $restrictionStore,
-		TitleFactory $titleFactory,
-		DeletePageFactory $deletePageFactory
+		private readonly MovePageFactory $movePageFactory,
+		private readonly PermissionManager $permManager,
+		private readonly UserOptionsLookup $userOptionsLookup,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly NamespaceInfo $nsInfo,
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly RepoGroup $repoGroup,
+		private readonly WikiPageFactory $wikiPageFactory,
+		private readonly SearchEngineFactory $searchEngineFactory,
+		private readonly WatchlistManager $watchlistManager,
+		private readonly WatchedItemStore $watchedItemStore,
+		private readonly RestrictionStore $restrictionStore,
+		private readonly TitleFactory $titleFactory,
+		private readonly DeletePageFactory $deletePageFactory,
 	) {
 		parent::__construct( 'Movepage' );
-		$this->movePageFactory = $movePageFactory;
-		$this->permManager = $permManager;
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->dbProvider = $dbProvider;
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->nsInfo = $nsInfo;
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->repoGroup = $repoGroup;
-		$this->wikiPageFactory = $wikiPageFactory;
-		$this->searchEngineFactory = $searchEngineFactory;
-		$this->watchlistManager = $watchlistManager;
-		$this->watchedItemStore = $watchedItemStore;
-		$this->restrictionStore = $restrictionStore;
-		$this->titleFactory = $titleFactory;
-		$this->deletePageFactory = $deletePageFactory;
 	}
 
 	/** @inheritDoc */

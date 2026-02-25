@@ -27,28 +27,15 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialListUsers extends IncludableSpecialPage {
 
-	private LinkBatchFactory $linkBatchFactory;
-	private IConnectionProvider $dbProvider;
-	private UserGroupManager $userGroupManager;
-	private UserIdentityLookup $userIdentityLookup;
-	private HideUserUtils $hideUserUtils;
-	private TempUserConfig $tempUserConfig;
-
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory,
-		IConnectionProvider $dbProvider,
-		UserGroupManager $userGroupManager,
-		UserIdentityLookup $userIdentityLookup,
-		HideUserUtils $hideUserUtils,
-		TempUserConfig $tempUserConfig
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly UserGroupManager $userGroupManager,
+		private readonly UserIdentityLookup $userIdentityLookup,
+		private readonly HideUserUtils $hideUserUtils,
+		private readonly TempUserConfig $tempUserConfig,
 	) {
 		parent::__construct( 'Listusers' );
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->dbProvider = $dbProvider;
-		$this->userGroupManager = $userGroupManager;
-		$this->userIdentityLookup = $userIdentityLookup;
-		$this->hideUserUtils = $hideUserUtils;
-		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**

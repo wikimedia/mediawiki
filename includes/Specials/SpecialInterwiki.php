@@ -27,26 +27,14 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup SpecialPage
  */
 class SpecialInterwiki extends SpecialPage {
-	private Language $contLang;
-	private InterwikiLookup $interwikiLookup;
-	private LanguageNameUtils $languageNameUtils;
-	private UrlUtils $urlUtils;
-	private IConnectionProvider $dbProvider;
-
 	public function __construct(
-		Language $contLang,
-		InterwikiLookup $interwikiLookup,
-		LanguageNameUtils $languageNameUtils,
-		UrlUtils $urlUtils,
-		IConnectionProvider $dbProvider
+		private readonly Language $contLang,
+		private readonly InterwikiLookup $interwikiLookup,
+		private readonly LanguageNameUtils $languageNameUtils,
+		private readonly UrlUtils $urlUtils,
+		private readonly IConnectionProvider $dbProvider,
 	) {
 		parent::__construct( 'Interwiki' );
-
-		$this->contLang = $contLang;
-		$this->interwikiLookup = $interwikiLookup;
-		$this->languageNameUtils = $languageNameUtils;
-		$this->urlUtils = $urlUtils;
-		$this->dbProvider = $dbProvider;
 	}
 
 	/** @inheritDoc */

@@ -38,7 +38,7 @@ use Wikimedia\Timestamp\TimestampException;
  */
 class SpecialLog extends SpecialPage {
 
-	private TempUserConfig $tempUserConfig;
+	private readonly TempUserConfig $tempUserConfig;
 
 	public function __construct(
 		private readonly LinkBatchFactory $linkBatchFactory,

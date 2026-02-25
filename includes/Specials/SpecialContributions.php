@@ -33,27 +33,23 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup SpecialPage
  */
 class SpecialContributions extends ContributionsSpecialPage {
-	private LinkBatchFactory $linkBatchFactory;
-	private RevisionStore $revisionStore;
-	private CommentFormatter $commentFormatter;
-	private TempUserConfig $tempUserConfig;
 	private ?ContribsPager $pager = null;
 
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory,
+		private readonly LinkBatchFactory $linkBatchFactory,
 		PermissionManager $permissionManager,
 		IConnectionProvider $dbProvider,
-		RevisionStore $revisionStore,
+		private readonly RevisionStore $revisionStore,
 		NamespaceInfo $namespaceInfo,
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch,
 		UserOptionsLookup $userOptionsLookup,
-		CommentFormatter $commentFormatter,
+		private readonly CommentFormatter $commentFormatter,
 		UserFactory $userFactory,
 		UserIdentityLookup $userIdentityLookup,
 		DatabaseBlockStore $blockStore,
 		UserGroupAssignmentService $userGroupAssignmentService,
-		TempUserConfig $tempUserConfig
+		private readonly TempUserConfig $tempUserConfig,
 	) {
 		parent::__construct(
 			$permissionManager,
@@ -69,10 +65,6 @@ class SpecialContributions extends ContributionsSpecialPage {
 			'Contributions',
 			''
 		);
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->revisionStore = $revisionStore;
-		$this->commentFormatter = $commentFormatter;
-		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**

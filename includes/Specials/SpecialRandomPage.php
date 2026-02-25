@@ -25,14 +25,11 @@ class SpecialRandomPage extends SpecialPage {
 	/** @var array Extra SQL statements */
 	protected $extra = [];
 
-	private IConnectionProvider $dbProvider;
-
 	public function __construct(
-		IConnectionProvider $dbProvider,
-		NamespaceInfo $nsInfo
+		private readonly IConnectionProvider $dbProvider,
+		NamespaceInfo $nsInfo,
 	) {
 		parent::__construct( 'Randompage' );
-		$this->dbProvider = $dbProvider;
 		$this->namespaces = $nsInfo->getContentNamespaces();
 	}
 

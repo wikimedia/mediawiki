@@ -29,22 +29,16 @@ use MediaWiki\User\UserGroupMembership;
  */
 class SpecialListGroupRights extends SpecialPage {
 
-	private NamespaceInfo $nsInfo;
-	private UserGroupManager $userGroupManager;
-	private ILanguageConverter $languageConverter;
-	private GroupPermissionsLookup $groupPermissionsLookup;
+	private readonly ILanguageConverter $languageConverter;
 
 	public function __construct(
-		NamespaceInfo $nsInfo,
-		UserGroupManager $userGroupManager,
+		private readonly NamespaceInfo $nsInfo,
+		private readonly UserGroupManager $userGroupManager,
 		LanguageConverterFactory $languageConverterFactory,
-		GroupPermissionsLookup $groupPermissionsLookup
+		private readonly GroupPermissionsLookup $groupPermissionsLookup,
 	) {
 		parent::__construct( 'Listgrouprights' );
-		$this->nsInfo = $nsInfo;
-		$this->userGroupManager = $userGroupManager;
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
 	}
 
 	/**

@@ -47,11 +47,10 @@ class SpecialMediaStatistics extends QueryPage {
 	 */
 	protected $totalSize = 0;
 
-	private MimeAnalyzer $mimeAnalyzer;
-	private int $migrationStage;
+	private readonly int $migrationStage;
 
 	public function __construct(
-		MimeAnalyzer $mimeAnalyzer,
+		private readonly MimeAnalyzer $mimeAnalyzer,
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory
 	) {
@@ -60,7 +59,6 @@ class SpecialMediaStatistics extends QueryPage {
 		// so just show all of them.
 		$this->limit = self::MAX_LIMIT;
 		$this->shownavigation = false;
-		$this->mimeAnalyzer = $mimeAnalyzer;
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
 		$this->migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(

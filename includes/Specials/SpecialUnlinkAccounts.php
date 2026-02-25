@@ -18,12 +18,13 @@ use StatusValue;
 class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 	/** @inheritDoc */
 	protected static $allowedActions = [ AuthManager::ACTION_UNLINK ];
-	private SessionManager $sessionManager;
 
-	public function __construct( AuthManager $authManager, SessionManager $sessionManager ) {
+	public function __construct(
+		AuthManager $authManager,
+		private readonly SessionManager $sessionManager,
+	) {
 		parent::__construct( 'UnlinkAccounts' );
 		$this->setAuthManager( $authManager );
-		$this->sessionManager = $sessionManager;
 	}
 
 	/** @inheritDoc */

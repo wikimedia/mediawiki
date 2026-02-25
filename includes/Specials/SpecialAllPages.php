@@ -41,14 +41,14 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 */
 	protected $nsfromMsg = 'allpagesfrom';
 
-	private IConnectionProvider $dbProvider;
-	private SearchEngineFactory $searchEngineFactory;
-	private PageStore $pageStore;
+	private readonly IConnectionProvider $dbProvider;
+	private readonly SearchEngineFactory $searchEngineFactory;
+	private readonly PageStore $pageStore;
 
 	public function __construct(
 		?IConnectionProvider $dbProvider = null,
 		?SearchEngineFactory $searchEngineFactory = null,
-		?PageStore $pageStore = null
+		?PageStore $pageStore = null,
 	) {
 		parent::__construct( 'Allpages' );
 		// This class is extended and therefore falls back to global state - T265309

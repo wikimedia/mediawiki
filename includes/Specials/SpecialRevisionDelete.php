@@ -68,9 +68,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	/** @var string */
 	private $otherReason;
 
-	private PermissionManager $permissionManager;
-	private RepoGroup $repoGroup;
-
 	/**
 	 * UI labels for each type.
 	 */
@@ -112,11 +109,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		],
 	];
 
-	public function __construct( PermissionManager $permissionManager, RepoGroup $repoGroup ) {
+	public function __construct(
+		private readonly PermissionManager $permissionManager,
+		private readonly RepoGroup $repoGroup,
+	) {
 		parent::__construct( 'Revisiondelete' );
-
-		$this->permissionManager = $permissionManager;
-		$this->repoGroup = $repoGroup;
 	}
 
 	/** @inheritDoc */

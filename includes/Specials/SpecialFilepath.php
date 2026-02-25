@@ -18,14 +18,11 @@ use MediaWiki\Title\Title;
  */
 class SpecialFilepath extends RedirectSpecialPage {
 
-	private SearchEngineFactory $searchEngineFactory;
-
 	public function __construct(
-		SearchEngineFactory $searchEngineFactory
+		private readonly SearchEngineFactory $searchEngineFactory,
 	) {
 		parent::__construct( 'Filepath' );
 		$this->mAllowedRedirectParams = [ 'width', 'height' ];
-		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	/**

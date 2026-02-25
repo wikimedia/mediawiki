@@ -37,20 +37,14 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		'authform-wrongtoken' => 'sessionfailure',
 	];
 
-	private FormatterFactory $formatterFactory;
-
-	private UserIdentityUtils $identityUtils;
-
 	public function __construct(
 		AuthManager $authManager,
-		FormatterFactory $formatterFactory,
-		UserIdentityUtils $identityUtils
+		private readonly FormatterFactory $formatterFactory,
+		private readonly UserIdentityUtils $identityUtils,
 	) {
 		parent::__construct( 'CreateAccount', 'createaccount' );
 
 		$this->setAuthManager( $authManager );
-		$this->formatterFactory = $formatterFactory;
-		$this->identityUtils = $identityUtils;
 	}
 
 	/** @inheritDoc */

@@ -28,7 +28,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @author Brian Wolff
  */
 class SpecialListDuplicatedFiles extends QueryPage {
-	private int $migrationStage;
+	private readonly int $migrationStage;
 
 	public function __construct(
 		IConnectionProvider $dbProvider,

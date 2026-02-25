@@ -37,28 +37,15 @@ class SpecialUnblock extends SpecialPage {
 	/** @var DatabaseBlock|null */
 	protected $block;
 
-	private UnblockUserFactory $unblockUserFactory;
-	private BlockTargetFactory $blockTargetFactory;
-	private DatabaseBlockStore $blockStore;
-	private UserNameUtils $userNameUtils;
-	private UserNamePrefixSearch $userNamePrefixSearch;
-	private WatchlistManager $watchlistManager;
-
 	public function __construct(
-		UnblockUserFactory $unblockUserFactory,
-		BlockTargetFactory $blockTargetFactory,
-		DatabaseBlockStore $blockStore,
-		UserNameUtils $userNameUtils,
-		UserNamePrefixSearch $userNamePrefixSearch,
-		WatchlistManager $watchlistManager
+		private readonly UnblockUserFactory $unblockUserFactory,
+		private readonly BlockTargetFactory $blockTargetFactory,
+		private readonly DatabaseBlockStore $blockStore,
+		private readonly UserNameUtils $userNameUtils,
+		private readonly UserNamePrefixSearch $userNamePrefixSearch,
+		private readonly WatchlistManager $watchlistManager,
 	) {
 		parent::__construct( 'Unblock', 'block' );
-		$this->unblockUserFactory = $unblockUserFactory;
-		$this->blockTargetFactory = $blockTargetFactory;
-		$this->blockStore = $blockStore;
-		$this->userNameUtils = $userNameUtils;
-		$this->userNamePrefixSearch = $userNamePrefixSearch;
-		$this->watchlistManager = $watchlistManager;
 	}
 
 	/** @inheritDoc */

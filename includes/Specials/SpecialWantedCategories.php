@@ -29,7 +29,7 @@ class SpecialWantedCategories extends WantedQueryPage {
 	/** @var int[] */
 	private $currentCategoryCounts;
 
-	private ILanguageConverter $languageConverter;
+	private readonly ILanguageConverter $languageConverter;
 
 	public function __construct(
 		IConnectionProvider $dbProvider,
