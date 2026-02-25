@@ -298,6 +298,8 @@ class HookRunner implements
 	\MediaWiki\Output\Hook\OutputPageCheckLastModifiedHook,
 	\MediaWiki\Output\Hook\OutputPageParserOutputHook,
 	\MediaWiki\Output\Hook\OutputPageRenderCategoryLinkHook,
+	\MediaWiki\OutputTransform\Hook\OutputTransformFirstStageHook,
+	\MediaWiki\OutputTransform\Hook\OutputTransformLastStageHook,
 	\MediaWiki\Page\Hook\Article__MissingArticleConditionsHook,
 	\MediaWiki\Page\Hook\ArticleConfirmDeleteHook,
 	\MediaWiki\Page\Hook\ArticleDeleteAfterSuccessHook,
@@ -3108,6 +3110,28 @@ class HookRunner implements
 		$this->container->run(
 			'OutputPageRenderCategoryLink',
 			[ $outputPage, $categoryTitle, $text, &$link ],
+			[ 'abortable' => false ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onOutputTransformFirstStage(
+		ParserOutput &$parserOutput, ParserOptions $parserOptions
+	): void {
+		$this->container->run(
+			'OutputTransformFirstStage',
+			[ &$parserOutput, $parserOptions ],
+			[ 'abortable' => false ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onOutputTransformLastStage(
+		ParserOutput &$parserOutput, ParserOptions $parserOptions
+	): void {
+		$this->container->run(
+			'OutputTransformLastStage',
+			[ &$parserOutput, $parserOptions ],
 			[ 'abortable' => false ]
 		);
 	}

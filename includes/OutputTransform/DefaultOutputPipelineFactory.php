@@ -10,6 +10,8 @@ use MediaWiki\OutputTransform\Stages\AddRedirectHeader;
 use MediaWiki\OutputTransform\Stages\AddWrapperDivClass;
 use MediaWiki\OutputTransform\Stages\DeduplicateStylesDOM;
 use MediaWiki\OutputTransform\Stages\DeduplicateStylesText;
+use MediaWiki\OutputTransform\Stages\ExecuteFirstStageTransformHooks;
+use MediaWiki\OutputTransform\Stages\ExecuteLastStageTransformHooks;
 use MediaWiki\OutputTransform\Stages\ExecutePostCacheTransformHooks;
 use MediaWiki\OutputTransform\Stages\ExpandRelativeAttrs;
 use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrlsDOM;
@@ -50,10 +52,15 @@ class DefaultOutputPipelineFactory {
 				'UrlUtils',
 			],
 		],
+		'ExecuteFirstStageTransformHooks' => [
+			'class' => ExecuteFirstStageTransformHooks::class,
+			'services' => [
+				'HookContainer',
+			],
+		],
 		'AddRedirectHeader' => [
 			'class' => AddRedirectHeader::class,
 		],
-
 		'RenderDebugInfo' => [
 			'class' => RenderDebugInfo::class,
 			'services' => [
@@ -168,6 +175,13 @@ class DefaultOutputPipelineFactory {
 
 		'HydrateHeaderPlaceholders' => [
 			'class' => HydrateHeaderPlaceholders::class,
+		],
+
+		'ExecuteLastStageTransformHooks' => [
+			'class' => ExecuteLastStageTransformHooks::class,
+			'services' => [
+				'HookContainer',
+			],
 		],
 
 		# This should be last, in order to ensure final output is hardened

@@ -15,6 +15,7 @@ use Psr\Log\LoggerInterface;
  * @unstable
  */
 abstract class OutputTransformStage {
+
 	protected ServiceOptions $options;
 	protected LoggerInterface $logger;
 
@@ -40,7 +41,10 @@ abstract class OutputTransformStage {
 	 * @param array $options
 	 * @return bool
 	 */
-	abstract public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool;
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
+		// A simple default implementation.
+		return true;
+	}
 
 	/**
 	 * Transforms the input ParserOutput into the returned ParserOutput.
