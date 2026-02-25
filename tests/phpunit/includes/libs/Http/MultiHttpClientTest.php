@@ -538,14 +538,16 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		$randomPort = self::randomPort();
 
 		// Start a mock server locally for testing.
+		$unwantedOutputFile = wfIsWindows() ? 'NUL:' : '/dev/null';
 		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.proc_open
 		$phpServerProc = proc_open(
 			[ PHP_BINARY, '-S', "127.0.0.1:$randomPort" ],
 			// Silence unwanted output.
-			[ 1 => [ 'file', '/dev/null', 'w' ], 2 => [ 'file', '/dev/null', 'w' ] ],
+			[ 1 => [ 'file', $unwantedOutputFile, 'w' ], 2 => [ 'file', $unwantedOutputFile, 'w' ] ],
 			$pipes,
 			__DIR__
 		);
+		$this->assertNotFalse( $phpServerProc, 'Could not start server' );
 		$scope = new ScopedCallback( static function () use ( $phpServerProc ) {
 			proc_terminate( $phpServerProc );
 			proc_close( $phpServerProc );
