@@ -508,8 +508,10 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	public static function provideInsertBlockSuccess() {
 		return [
 			'No conflicting block, not autoblocking' => [
-				'block' => [
-					'autoblock' => false,
+				[
+					'block' => [
+						'autoblock' => false,
+					],
 				],
 			],
 			'No conflicting block, autoblocking but IP not in recent changes' => [
@@ -523,14 +525,18 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 				],
 			],
 			'No conflicting block, autoblocking but no recent edits' => [
-				'block' => [
-					'autoblock' => true,
+				[
+					'block' => [
+						'autoblock' => true,
+					],
 				],
 			],
 			'Conflicting block, expired' => [
-				'block' => [
-					// Blocked with expired block in addDBData
-					'target' => '1.1.1.1',
+				[
+					'block' => [
+						// Blocked with expired block in addDBData
+						'target' => '1.1.1.1',
+					],
 				],
 			],
 		];
