@@ -61,7 +61,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	public function __destruct() {
-		$this->backend->deregisterSession( $this->index );
+		$this->backend?->deregisterSession( $this->index );
 	}
 
 	/**
