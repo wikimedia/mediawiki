@@ -83,18 +83,24 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 	 * This test asserts from LegacyLogger down.
 	 */
 	public function testMessagesFromErrorChannel() {
-		// Turn off to keep mw-error.log file empty in CI (and thus avoid build failure)
-		$this->overrideConfigValue( MainConfigNames::DebugLogGroups, [] );
+		$oldErrorReporting = error_reporting();
+		error_reporting( $oldErrorReporting | E_USER_DEPRECATED );
+		try {
+			// Turn off to keep mw-error.log file empty in CI (and thus avoid build failure)
+			$this->overrideConfigValue( MainConfigNames::DebugLogGroups, [] );
 
-		MWExceptionHandler::handleError( E_USER_DEPRECATED, 'Warning message' );
-		$this->assertEquals(
-			[ [
-				'msg' => 'PHP Deprecated: Warning message',
-				'type' => 'warn',
-				'caller' => 'MWDebugTest::testMessagesFromErrorChannel',
-			] ],
-			MWDebug::getLog()
-		);
+			MWExceptionHandler::handleError( E_USER_DEPRECATED, 'Warning message' );
+			$this->assertEquals(
+				[ [
+					'msg' => 'PHP Deprecated: Warning message',
+					'type' => 'warn',
+					'caller' => 'MWDebugTest::testMessagesFromErrorChannel',
+				] ],
+				MWDebug::getLog()
+			);
+		} finally {
+			error_reporting( $oldErrorReporting );
+		}
 	}
 
 	public function testDetectDeprecatedOverride() {
