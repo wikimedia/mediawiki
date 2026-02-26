@@ -16,7 +16,6 @@ use MediaWiki\Content\ContentHandler;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Language\LanguageNameUtils;
-use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionAccessException;
@@ -27,6 +26,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\RemexHtml\Tokenizer\Attributes;
 use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -2036,16 +2036,21 @@ class CoreParserFunctions {
 			$target = self::getTitleValueSafe( $title, $prefix );
 
 			if ( $target !== null ) {
+				$displayText = null;
 				if ( $linkText !== null ) {
 					$linkText = Parser::stripOuterParagraph(
 						# FIXME T382287: when using Parsoid this may leave
 						# strip markers behind for embedded extension tags.
 						$parser->recursiveTagParseFully( $linkText )
 					);
+					$displayText = new HTMLArmor( $linkText );
 				}
 				$parser->getOutput()->addInterwikiLink( $target );
 				return [
-					'text' => Linker::link( $target, $linkText ),
+					'text' => $services->getLinkRenderer()->makeLink(
+						$target,
+						$displayText
+					),
 					'isHTML' => true,
 				];
 			}
