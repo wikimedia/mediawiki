@@ -182,7 +182,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	}
 
 	/**
-	 * Convert 'fromdb', 'fromdbmaster' and 'forupdate' to READ_* constants.
+	 * Convert deprecated 'fromdb', 'fromdbmaster' and 'forupdate' to READ_* constants.
 	 *
 	 * @param stdClass|string|int $type
 	 * @return mixed
@@ -400,14 +400,16 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 *
 	 * @param stdClass|string|int $from One of the following:
 	 *   - A DB query result object.
-	 *   - "fromdb" or IDBAccessObject::READ_NORMAL to get from a replica DB.
-	 *   - "fromdbmaster" or IDBAccessObject::READ_LATEST to get from the primary DB.
-	 *   - "forupdate"  or IDBAccessObject::READ_LOCKING to get from the primary DB
-	 *     using SELECT FOR UPDATE.
+	 *   - IDBAccessObject::READ_NORMAL to get from a replica DB.
+	 *   - IDBAccessObject::READ_LATEST to get from the primary DB.
+	 *   - IDBAccessObject::READ_LOCKING to get from the primary DB using SELECT FOR UPDATE.
+	 *   - "fromdb", alias for IDBAccessObject::READ_NORMAL (deprecated Since 1.46)
+	 *   - "fromdbmaster", alias for IDBAccessObject::READ_LATEST (deprecated Since 1.46)
+	 *   - "forupdate", alias for IDBAccessObject::READ_LOCKING (deprecated Since 1.46)
 	 *
 	 * @return void
 	 */
-	public function loadPageData( $from = 'fromdb' ) {
+	public function loadPageData( $from = IDBAccessObject::READ_NORMAL ) {
 		$from = self::convertSelectType( $from );
 		if ( is_int( $from ) && $from <= $this->mDataLoadedFrom ) {
 			// We already have the data from the correct location, no need to load it twice.
@@ -445,15 +447,16 @@ class WikiPage implements Stringable, Page, PageRecord {
 	/**
 	 * Checks whether the page data was loaded using the given database access mode (or better).
 	 *
-	 * @since 1.32
-	 *
 	 * @param string|int $from One of the following:
-	 *   - "fromdb" or IDBAccessObject::READ_NORMAL to get from a replica DB.
-	 *   - "fromdbmaster" or IDBAccessObject::READ_LATEST to get from the primary DB.
-	 *   - "forupdate"  or IDBAccessObject::READ_LOCKING to get from the primary DB
-	 *     using SELECT FOR UPDATE.
+	 *   - IDBAccessObject::READ_NORMAL to get from a replica DB.
+	 *   - IDBAccessObject::READ_LATEST to get from the primary DB.
+	 *   - IDBAccessObject::READ_LOCKING to get from the primary DB using SELECT FOR UPDATE.
+	 *   - "fromdb", alias for IDBAccessObject::READ_NORMAL (deprecated Since 1.46)
+	 *   - "fromdbmaster", alias for IDBAccessObject::READ_LATEST (deprecated Since 1.46)
+	 *   - "forupdate", alias for IDBAccessObject::READ_LOCKING (deprecated Since 1.46)
 	 *
 	 * @return bool
+	 * @since 1.32
 	 */
 	public function wasLoadedFrom( $from ) {
 		$from = self::convertSelectType( $from );
@@ -473,13 +476,15 @@ class WikiPage implements Stringable, Page, PageRecord {
 	/**
 	 * Load the object from a database row
 	 *
-	 * @since 1.20
 	 * @param stdClass|false $data DB row containing fields returned by getQueryInfo() or false
 	 * @param string|int $from One of the following:
-	 *   - "fromdb" or IDBAccessObject::READ_NORMAL if the data comes from a replica DB
-	 *   - "fromdbmaster" or IDBAccessObject::READ_LATEST if the data comes from the primary DB
-	 *   - "forupdate"  or IDBAccessObject::READ_LOCKING if the data comes from
-	 *     the primary DB using SELECT FOR UPDATE
+	 *   - IDBAccessObject::READ_NORMAL if the data was from a replica DB
+	 *   - IDBAccessObject::READ_LATEST if the data was from the primary DB
+	 *   - IDBAccessObject::READ_LOCKING if the data was from the primary DB using SELECT FOR UPDATE
+	 *   - "fromdb", alias for IDBAccessObject::READ_NORMAL (deprecated Since 1.46)
+	 *   - "fromdbmaster", alias for IDBAccessObject::READ_LATEST (deprecated Since 1.46)
+	 *   - "forupdate", alias for IDBAccessObject::READ_LOCKING (deprecated Since 1.46)
+	 * @since 1.20
 	 */
 	public function loadFromRow( $data, $from ) {
 		$lc = MediaWikiServices::getInstance()->getLinkCache();
@@ -1926,7 +1931,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			return Status::newFatal( 'readonlytext', $readOnlyMode->getReason() );
 		}
 
-		$this->loadPageData( 'fromdbmaster' );
+		$this->loadPageData( IDBAccessObject::READ_LATEST );
 		$restrictionStore = $services->getRestrictionStore();
 		$restrictionStore->loadRestrictions( $this->mTitle, IDBAccessObject::READ_LATEST );
 		$restrictionTypes = $restrictionStore->listApplicableRestrictionTypes( $this->mTitle );

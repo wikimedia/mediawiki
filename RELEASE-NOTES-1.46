@@ -920,6 +920,9 @@ because of Phabricator reports.
   warnings. In most cases (such as for use with UserOptionsManager) calling
   this method is no longer needed. In other cases use getInstanceFromPrimary()
   instead.
+* The use of "fromdb", "fromdbmaster", "forupdate" constants in WikiPage methods
+  has been deprecated. Effected methods include loadFromRow(), wasLoadedFrom(),
+  and loadPageData().
 * Some static methods in Xml, deprecated in 1.42, now emit deprecation warnings:
   - Xml::attrib(),
   - Xml::buildForm(),
