@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Api\Format;
 
+use LogicException;
 use MediaWiki\Api\ApiFormatJson;
 use MediaWiki\Api\ApiFormatRaw;
 use MediaWiki\Api\ApiMain;
-use MediaWiki\Exception\MWException;
 
 /**
  * @group API
@@ -43,13 +43,13 @@ class ApiFormatRawTest extends ApiFormatTestBase {
 			],
 			[
 				[ 'text' => 'some text' ],
-				new MWException( 'No MIME type set for raw formatter' ),
+				new LogicException( 'No MIME type set for raw formatter' ),
 				[],
 				$options
 			],
 			[
 				[ 'mime' => 'text/plain' ],
-				new MWException( 'No text given for raw formatter' ),
+				new LogicException( 'No text given for raw formatter' ),
 				[],
 				$options
 			],

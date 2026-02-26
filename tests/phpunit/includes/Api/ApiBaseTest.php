@@ -4,13 +4,13 @@ namespace MediaWiki\Tests\Api;
 
 use DomainException;
 use Exception;
+use LogicException;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Exception\MWException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\WikiPage;
@@ -1403,7 +1403,7 @@ class ApiBaseTest extends ApiTestCase {
 					ParamValidator::PARAM_TYPE => 'string',
 					ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 				],
-				'messages' => new MWException(
+				'messages' => new LogicException(
 					'Internal error in ' . ApiBase::class . '::getFinalParamDescription: '
 					. 'ApiBase::PARAM_HELP_MSG_PER_VALUE may only be used when '
 					. "ParamValidator::PARAM_TYPE is an array or it is 'string' "

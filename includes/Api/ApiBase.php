@@ -14,7 +14,6 @@ use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Block\Block;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
@@ -1742,7 +1741,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return never
 	 */
 	protected static function dieDebug( $method, $message ): never {
-		throw new MWException( "Internal error in $method: $message" );
+		throw new LogicException( "Internal error in $method: $message" );
 	}
 
 	/**
