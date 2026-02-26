@@ -79,6 +79,7 @@ $specialPageAliases = [
 	'Listbots'                  => [ 'Bots' ],
 	'ListDuplicatedFiles'       => [ 'Dateiduplikate' ],
 	'Listfiles'                 => [ 'Dateien', 'Dateiliste' ],
+	'Listgrants'                => [ 'Berechtigungen' ],
 	'Listgrouprights'           => [ 'Gruppenrechte' ],
 	'Listredirects'             => [ 'Weiterleitungen' ],
 	'Listusers'                 => [ 'Benutzer', 'Benutzerliste' ],
