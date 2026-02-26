@@ -524,7 +524,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		];
 
 		// No stored data
-		$sessionId++;
+		str_increment( $sessionId );
 		$store->clear();
 		$request = new FauxRequest();
 		$request->setIP( '1.2.3.4' );
@@ -542,7 +542,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [], $logger->getBuffer() );
 
 		// Stored data matches
-		$sessionId++;
+		str_increment( $sessionId );
 		$store->clear();
 		$setUserInStore( $sessionId, $user, $bp );
 		$request = new FauxRequest();
@@ -561,7 +561,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [], $logger->getBuffer() );
 
 		// Stored data mismatches
-		$sessionId++;
+		str_increment( $sessionId );
 		$store->clear();
 		$setUserInStore( $sessionId, $user, $bp );
 		$request = new FauxRequest();
@@ -580,7 +580,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [], $logger->getBuffer() );
 
 		// no JWT
-		$sessionId++;
+		str_increment( $sessionId );
 		$store->clear();
 		$setUserInStore( $sessionId, $user, $bp );
 		$request = new FauxRequest();
