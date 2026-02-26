@@ -27,6 +27,7 @@
 	"botpasswords-bad-appid": "O nome de bot \"$1\" non é válido.",
 	"botpasswords-toolong-restrictions": "Introducíronse demasiados enderezos ou rangos de IP.",
 	"botpasswords-toolong-grants": "Hai demasiados permisos seleccionados.",
+	"botpasswords-too-many": "Acadaches o límite máximo {{PLURAL:$1|dun contrasinal|de $1 contrasinais}} de bot. Elimina algúns contrasinais de bot existentes antes de creares un novo.",
 	"botpasswords-insert-failed": "Houbo un erro ao engadir o nome de bot \"$1\". Comproba que non fose xa engadido previamente.",
 	"botpasswords-update-failed": "Houbo un erro ao actualizar o nome de bot \"$1\". Revisa que non se borrase.",
 	"botpasswords-created-title": "Creouse o contrasinal de bot",

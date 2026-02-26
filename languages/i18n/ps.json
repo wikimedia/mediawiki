@@ -3259,6 +3259,8 @@
 	"restrictionsfield-badip": "ناباوره آي پي  آدرس او حدود د : $1",
 	"restrictionsfield-label": "اجازه ورکړل شوي آي پي لړۍ:",
 	"restrictionsfield-help": "په هره کرښه کې يوه وېب‌پته يا سي‌آی‌ډي‌آر بريد. د هرڅه چارنولو لپاره دا ارزښت وکاروئ:<pre>0.0.0.0/0\n::/0</pre>",
+	"specialmute-label-mute-email": "د دې {{GENDER:$1|کارن}} برېښليکونه چوپول",
+	"specialmute-header": "مهرباني وکړئ د <b>{{BIDI:[[User:$1|$1]]}}</b> لپاره د چوپ کولو غوره‌توبونه وټاکئ.",
 	"revid": "بیاکتنه $1",
 	"pageid": "د مخ پېژند$1",
 	"rawhtml-notallowed": "لیبلونه <html> د منظمو ليکنو څخه بهر نشي کارول کیدی.",

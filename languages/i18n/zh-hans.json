@@ -2308,7 +2308,7 @@
 	"trackingcategories-nodesc": "没有可用说明。",
 	"trackingcategories-disabled": "分类被禁用",
 	"mailnologin": "无电子邮件地址",
-	"mailnologintext": "您必须[[Special:UserLogin|登录]]并在您的[[Special:Preferences|参数设置]]中拥有有效的电子邮件地址才能向其他用户发送电子邮件。",
+	"mailnologintext": "您必须[[Special:UserLogin|登录]]并在您的[[Special:Preferences|参数设置]]中拥有已确认的电子邮件地址才能向其他用户发送电子邮件。",
 	"emailuser": "邮件联系",
 	"emailuser-title-target": "发邮件给该{{GENDER:$1|用户}}",
 	"emailuser-title-notarget": "电邮联系",

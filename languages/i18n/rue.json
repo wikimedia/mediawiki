@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"1233qwer1234qwer4",
+			"Cevioch",
 			"Constraque",
 			"Dicto23456",
 			"Engelseziekte",
@@ -2414,7 +2415,7 @@
 	"feedback-submit": "Одослати",
 	"feedback-thanks": "Дякуєме! Ваш коментарь быв приданый на сторінку „[$2 $1]“.",
 	"searchsuggest-search": "Глядати {{SITENAME}}",
-	"searchsuggest-containing": "обсягуючій...",
+	"searchsuggest-containing": "Гляданя сторінок обсягуючіх",
 	"api-clientside-error-timeout": "Сервер не одповідав в очекаванім часї.",
 	"api-error-badtoken": "Внутрїшня хыба: планый знак.",
 	"api-error-emptypage": "Створїня новых, порожнїх сторінк неслободно.",
