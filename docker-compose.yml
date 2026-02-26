@@ -24,6 +24,7 @@ services:
       MW_PASS: '${MEDIAWIKI_PASSWORD:-dockerpass}'
       MW_SITENAME: 'MediaWiki'
       MW_LOG_DIR: /var/www/html/w/cache
+      HISTFILE: /var/www/html/w/cache/.bash_history
       XDEBUG_CONFIG: '${XDEBUG_CONFIG}'
       XDEBUG_ENABLE: '${XDEBUG_ENABLE:-true}'
       XHPROF_ENABLE: '${XHPROF_ENABLE:-true}'
