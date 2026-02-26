@@ -977,7 +977,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideAuthentication
 	 */
 	public function testAuthentication(
-		StatusValue $preResponse, $responses, $link = false
+		StatusValue $preResponse, $responses, $link = false, $classPrefix = null
 	) {
 		$this->initializeManager();
 		$user = $this->getTestSysop()->getUser();
@@ -987,13 +987,15 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		[ $primaryResponses, $secondaryResponses, $managerResponses ] = $responses( $this, $req, $name );
 
 		// Set up lots of mocks...
+		static $count = 0;
+		$classPrefix ??= 'Authentication' . $count++;
 		$req = new RememberMeAuthenticationRequest;
 		$req->rememberMe = (bool)rand( 0, 1 );
 		$mocks = [];
 		foreach ( [ 'pre', 'primary', 'secondary' ] as $key ) {
 			$class = ucfirst( $key ) . 'AuthenticationProvider';
 			$mocks[$key] = $this->getMockBuilder( "MediaWiki\\Auth\\Abstract$class" )
-				->setMockClassName( "MockAbstract$class" )
+				->setMockClassName( $classPrefix . "Abstract$class" )
 				->getMock();
 			$mocks[$key]->method( 'getUniqueId' )
 				->willReturn( $key );
@@ -1144,7 +1146,11 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				if ( !$response instanceof Exception ) {
 					throw $ex;
 				}
-				$this->assertEquals( $response->getMessage(), $ex->getMessage(), "Response $i, exception" );
+				$this->assertEquals(
+					str_replace( '{classPrefix}', $classPrefix, $response->getMessage() ),
+					$ex->getMessage(),
+					"Response $i, exception"
+				);
 				$this->assertNull( $session->getSecret( AuthManager::AUTHN_STATE ),
 					"Response $i, exception, session state" );
 				$this->unhook( 'UserLoggedIn' );
@@ -1279,11 +1285,12 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 						[
 							$tmp,
 							new DomainException(
-								'MockAbstractPrimaryAuthenticationProvider::continuePrimaryAuthentication() returned ABSTAIN'
+								'{classPrefix}AbstractPrimaryAuthenticationProvider::continuePrimaryAuthentication() returned ABSTAIN'
 							)
 						]
 					];
 				},
+				'AuthenticationRedirect',
 			],
 			'Primary UI, then pass with no local user' => [
 				StatusValue::newGood(),
@@ -1351,11 +1358,12 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 						[],
 						[
 							new DomainException(
-								'MockAbstractPrimaryAuthenticationProvider returned an invalid username: <>'
+								'{classPrefix}AbstractPrimaryAuthenticationProvider returned an invalid username: <>'
 							),
 						]
 					];
 				},
+				'AuthenticationInvalid',
 			],
 			'Secondary fail' => [
 				StatusValue::newGood(),
@@ -2226,7 +2234,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAccountCreation(
 		StatusValue $preTest, $primaryTest, $secondaryTest,
-		$responses
+		$responses, $classPrefix = null
 	) {
 		$creator = $this->getTestSysop()->getUser();
 		$username = self::usernameForCreation();
@@ -2236,11 +2244,13 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		[ $primaryResponses, $secondaryResponses, $managerResponses ] = $responses( $this, $req );
 
 		// Set up lots of mocks...
+		static $count = 0;
+		$classPrefix ??= 'AccountCreation' . $count++;
 		$mocks = [];
 		foreach ( [ 'pre', 'primary', 'secondary' ] as $key ) {
 			$class = ucfirst( $key ) . 'AuthenticationProvider';
 			$mocks[$key] = $this->getMockBuilder( "MediaWiki\\Auth\\Abstract$class" )
-				->setMockClassName( "MockAbstract$class" )
+				->setMockClassName( $classPrefix . "Abstract$class" )
 				->getMock();
 			$mocks[$key]->method( 'getUniqueId' )
 				->willReturn( $key );
@@ -2435,7 +2445,11 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				if ( !$response instanceof Exception ) {
 					throw $ex;
 				}
-				$this->assertEquals( $response->getMessage(), $ex->getMessage(), "Response $i, exception" );
+				$this->assertEquals(
+					str_replace( '{classPrefix}', $classPrefix, $response->getMessage() ),
+					$ex->getMessage(),
+					"Response $i, exception"
+				);
 				$this->assertNull(
 					$this->request->getSession()->getSecret( AuthManager::ACCOUNT_CREATION_STATE ),
 					"Response $i, exception, session state"
@@ -2606,11 +2620,12 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 						[
 							$tmp,
 							new DomainException(
-								'MockAbstractPrimaryAuthenticationProvider::continuePrimaryAccountCreation() returned ABSTAIN'
+								'{classPrefix}AbstractPrimaryAuthenticationProvider::continuePrimaryAccountCreation() returned ABSTAIN'
 							)
 						]
 					];
 				},
+				'AccountCreationRedirect',
 			],
 			'Primary UI, then pass; secondary abstain' => [
 				$good, $good, $good,
@@ -2662,13 +2677,14 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 						],
 						[
 							'created' => new DomainException(
-								'MockAbstractSecondaryAuthenticationProvider::beginSecondaryAccountCreation() returned FAIL. ' .
+								'{classPrefix}AbstractSecondaryAuthenticationProvider::beginSecondaryAccountCreation() returned FAIL. ' .
 									'Secondary providers are not allowed to fail account creation, ' .
 									'that should have been done via testForAccountCreation().'
 							)
 						]
 					];
 				},
+				'AccountCreationFail',
 			],
 		];
 	}
@@ -4087,7 +4103,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideAccountLink
 	 */
 	public function testAccountLink(
-		StatusValue $preTest, $responses
+		StatusValue $preTest, $responses, $classPrefix = null
 	) {
 		$user = $this->getTestSysop()->getUser();
 
@@ -4096,20 +4112,22 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		[ $primaryResponses, $managerResponses ] = $responses( $this, $req );
 
 		// Set up lots of mocks...
+		static $count = 0;
+		$classPrefix ??= 'AccountLink' . $count++;
 		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
 		$mocks = [];
 
 		foreach ( [ 'pre', 'primary' ] as $key ) {
 			$class = ucfirst( $key ) . 'AuthenticationProvider';
 			$mocks[$key] = $this->getMockBuilder( "MediaWiki\\Auth\\Abstract$class" )
-				->setMockClassName( "MockAbstract$class" )
+				->setMockClassName( $classPrefix . "Abstract$class" )
 				->getMock();
 			$mocks[$key]->method( 'getUniqueId' )
 				->willReturn( $key );
 
 			for ( $i = 2; $i <= 3; $i++ ) {
 				$mocks[$key . $i] = $this->getMockBuilder( "MediaWiki\\Auth\\Abstract$class" )
-					->setMockClassName( "MockAbstract$class" )
+					->setMockClassName( $classPrefix . $i . "Abstract$class" )
 					->getMock();
 				$mocks[$key . $i]->method( 'getUniqueId' )
 					->willReturn( $key . $i );
@@ -4220,7 +4238,11 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				if ( !$response instanceof Exception ) {
 					throw $ex;
 				}
-				$this->assertEquals( $response->getMessage(), $ex->getMessage(), "Response $i, exception" );
+				$this->assertEquals(
+					str_replace( '{classPrefix}', $classPrefix, $response->getMessage() ),
+					$ex->getMessage(),
+					"Response $i, exception"
+				);
 				$this->assertNull( $this->request->getSession()->getSecret( AuthManager::ACCOUNT_LINK_STATE ),
 					"Response $i, exception, session state" );
 				return;
@@ -4325,11 +4347,12 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 						[
 							$tmp,
 							new DomainException(
-								'MockAbstractPrimaryAuthenticationProvider::continuePrimaryAccountLink() returned ABSTAIN'
+								'{classPrefix}AbstractPrimaryAuthenticationProvider::continuePrimaryAccountLink() returned ABSTAIN'
 							)
 						]
 					];
 				},
+				'AccountLinkRedirect',
 			],
 			'Primary UI, then pass' => [
 				$good,

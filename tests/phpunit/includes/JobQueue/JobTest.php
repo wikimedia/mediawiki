@@ -94,10 +94,11 @@ class JobTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function getMockJob( $params ) {
+		static $count = 0;
 		$mock = $this->getMockForAbstractClass(
 			Job::class,
 			[ 'someCommand', $params ],
-			'SomeJob'
+			'SomeJob' . $count++
 		);
 
 		return $mock;

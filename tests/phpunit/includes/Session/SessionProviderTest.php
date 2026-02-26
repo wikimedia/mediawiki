@@ -197,10 +197,10 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
 	public function testDescribe() {
 		$provider = $this->getMockForAbstractClass( SessionProvider::class,
-			[], 'MockSessionProvider' );
+			[], 'MockDescribeSessionProvider' );
 
 		$this->assertSame(
-			'MockSessionProvider sessions',
+			'MockDescribeSessionProvider sessions',
 			$provider->describe(
 				$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ) )
 		);

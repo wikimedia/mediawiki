@@ -32,10 +32,11 @@ class SpecBasedFactoryTraitTest extends TestCase {
 	 * @return MockObject
 	 */
 	private function getTraitMock(): MockObject {
+		static $count = 0;
 		return $this->getMockForTrait(
 			SpecBasedFactoryTrait::class,
 			[],
-			'Some',
+			'Some' . $count++,
 			true,
 			true,
 			true,
