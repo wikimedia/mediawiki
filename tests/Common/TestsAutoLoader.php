@@ -170,6 +170,8 @@ $wgAutoloadClasses += [
 	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",
 	'MediaWiki\\Tests\\Parser\\ParserCacheSerializationTestCases' =>
 		"$testDir/phpunit/includes/Parser/ParserCacheSerializationTestCases.php",
+	'MediaWiki\\Tests\\Parser\\TrackerWrapper' => "$testDir/phpunit/includes/Parser/TrackerWrapper.php",
+	'MediaWiki\\Tests\\Parser\\TrackingParserCache' => "$testDir/phpunit/includes/Parser/TrackingParserCache.php",
 	'Wikimedia\\Tests\\SerializationTestTrait' =>
 		"$testDir/phpunit/includes/libs/Serialization/SerializationTestTrait.php",
 	'Wikimedia\\Tests\\SerializationTestUtils' =>
