@@ -2915,6 +2915,7 @@ return [
 	],
 	'mediawiki.special.watchlistlabels.onboarding' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.special.watchlistlabels',
+		'remoteBasePath' => $wgResourceBasePath . '/resources/src/mediawiki.special.watchlistlabels',
 		'packageFiles' => [
 			'label-onboarding.js',
 			'LabelOnboarding.vue',

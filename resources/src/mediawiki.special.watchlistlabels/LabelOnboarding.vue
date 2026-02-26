@@ -196,17 +196,17 @@ module.exports = defineComponent( {
 
 .mw-special-watchlistlabels-onboarding-image-manage {
 	/* @embed */
-	background-image: url( ./images/label-onboarding-manage.svg );
+	background-image: url( images/label-onboarding-manage.svg );
 }
 
 .mw-special-watchlistlabels-onboarding-image-edit,
 .mw-special-watchlistlabels-onboarding-image-editmanage {
 	/* @embed */
-	background-image: url( ./images/label-onboarding-assign.svg );
+	background-image: url( images/label-onboarding-assign.svg );
 }
 
 .mw-special-watchlistlabels-onboarding-image-filter {
 	/* @embed */
-	background-image: url( ./images/label-onboarding-filter.svg );
+	background-image: url( images/label-onboarding-filter.svg );
 }
 </style>
