@@ -153,7 +153,7 @@ class UserTimeCorrection implements Stringable {
 		$data = explode( '|', $timeCorrection, 3 );
 
 		// First handle the case of an actual timezone being specified.
-		if ( $data[0] === self::ZONEINFO ) {
+		if ( $data[0] === self::ZONEINFO && isset( $data[2] ) ) {
 			try {
 				$this->correctionType = self::ZONEINFO;
 				$this->timeZone = new DateTimeZone( $data[2] );
