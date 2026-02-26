@@ -91,7 +91,8 @@
 			"ZeiP",
 			"לערי ריינהארט",
 			"아라",
-			"Ejs-80"
+			"Ejs-80",
+			"Papukaijo1"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Luokka|Luokat}}",
@@ -780,6 +781,8 @@
 	"unstrip-size-category-desc": "Sivu ylittää kokorajoituksen.",
 	"bad-language-code-category": "Sivut, joissa on virheellisiä kielikoodeja",
 	"bad-language-code-category-desc": "Sivu sisältää <code><nowiki>{{#dir}}</nowiki></code>-elementin, jossa on virheellinen kielikoodi.",
+	"bad-double-underscore-category": "Sivut, joilla on virheellisiä toimintakytkimiä",
+	"bad-double-underscore-category-desc": "Sivu sisältää virheellisen kielikohtaisen [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|toimintakytkimen]]. Kelvollisten toimintakytkinten alussa ja lopussa on kaksi alaviivaa.",
 	"double-px-category": "Sivut, joiden kuvako’oissa on ylimääräinen px",
 	"double-px-category-desc": "Sivu sisältää kuvan, jonka koko sisältää ylimääräisen <code>px</code>-loppuliitteen, esimerkiksi <code>100pxpx</code>.",
 	"undo-success": "Kumoaminen voidaan suorittaa.\nVarmista alla olevasta vertailusta, että haluat saada aikaan tämän lopputuloksen, ja sen jälkeen julkaise alla näkyvät muutokset.",

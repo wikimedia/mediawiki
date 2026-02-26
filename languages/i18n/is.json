@@ -723,6 +723,7 @@
 	"unstrip-size-category-desc": "Síðan fer út fyrir stærðartakmörk afstrípunar.",
 	"bad-language-code-category": "Síður með ógildum tungumálakóðum",
 	"bad-language-code-category-desc": "Á síðunni er <code><nowiki>{{#dir}}</nowiki></code> með ógildum tungumálakóða.",
+	"bad-double-underscore-category": "Síður með ógildar hegðunarbreytur",
 	"double-px-category": "Síður með myndastærðum sem innihalda aukalegt px",
 	"double-px-category-desc": "Á síðunni er mynd sem skilgreind er með auka <code>px</code> viðskeyti, eins og <code>100pxpx</code>.",
 	"undo-success": "Það er hægt að afturkalla breytinguna.\nAthugaðu vel samanburðinn hér fyrir neðan til að sannreyna að það sé það sem þú vilt gera, gefðu út svo breytingarnar hér fyrir neðan til að ljúka afturköllun breytinganna.",

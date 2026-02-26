@@ -3,7 +3,8 @@
 		"authors": [
 			"Quintino Lopes Castro Tavares",
 			"Waldyrious",
-			"Letra.berdi"
+			"Letra.berdi",
+			"GrogeXaKaba"
 		]
 	},
 	"january": "Janer",
@@ -58,5 +59,35 @@
 	"sun": "Dim",
 	"period-am": "AM",
 	"period-pm": "PM",
-	"duration-days": "$1 {{PLURAL:$1|dia|dias}}"
+	"timezone-local": "Lukal",
+	"years": "{{PLURAL:$1|$1 anu}}",
+	"months": "{{PLURAL:$1|$1 mes}}",
+	"weeks": "{{PLURAL:$1|$1 sumana}}",
+	"days": "{{PLURAL:$1|$1 dia}}",
+	"hours": "{{PLURAL:$1|$1 óra}}",
+	"minutes": "{{PLURAL:$1|$1 minutu}}",
+	"seconds": "{{PLURAL:$1|$1 sugundu}}",
+	"ago": "$1 dipatrás",
+	"duration-millennia": "$1 {{PLURAL:$1|miléni}}",
+	"duration-centuries": "$1 {{PLURAL:$1|séklu}}",
+	"duration-decades": "$1 {{PLURAL:$1|dékada}}",
+	"duration-years": "$1 {{PLURAL:$1|anu}}",
+	"duration-months": "$1 {{PLURAL:$1|mes}}",
+	"duration-weeks": "$1 {{PLURAL:$1|sumana}}",
+	"duration-days": "$1 {{PLURAL:$1|dia|dias}}",
+	"duration-hours": "$1 {{PLURAL:$1|óra}}",
+	"duration-minutes": "$1 {{PLURAL:$1|minutu}}",
+	"duration-seconds": "$1 {{PLURAL:$1|sugundu}}",
+	"monday-at": "Sugunda-fera na $1",
+	"tuesday-at": "Térsa-fera na $1",
+	"wednesday-at": "Kuarta-fera na $1",
+	"thursday-at": "Kinta-fera na $1",
+	"friday-at": "Sésta-fera na $1",
+	"saturday-at": "Sabru na $1",
+	"sunday-at": "Dimingu na $1",
+	"yesterday-at": "Ónti na $1",
+	"hours-ago": "$1 {{PLURAL:$1|óra}} dipatrás",
+	"minutes-ago": "$1 {{PLURAL:$1|minutu}} dipatrás",
+	"seconds-ago": "$1 {{PLURAL:$1|sugundu}} dipatrás",
+	"just-now": "Grinhasin"
 }
