@@ -451,8 +451,19 @@ class SpecialListGroupRights extends SpecialPage {
 			APCOND_AGE_FROM_EDIT => 'listgrouprights-restrictedgroups-cond-age-from-edit',
 			APCOND_BLOCKED => 'listgrouprights-restrictedgroups-cond-blocked',
 			APCOND_ISBOT => 'listgrouprights-restrictedgroups-cond-isbot',
-			default => 'listgrouprights-restrictedgroups-cond-' . $condName,
+			default => null,
 		};
+
+		if ( $msgKey === null ) {
+			$messageSpec = null;
+			$context = $this->getContext();
+			$this->getHookRunner()->onUserRequirementsConditionDisplay( $condName, $args, $context, $messageSpec );
+			if ( $messageSpec !== null ) {
+				return $this->msg( $messageSpec )->parse();
+			} else {
+				$msgKey = 'listgrouprights-restrictedgroups-cond-' . $condName;
+			}
+		}
 		$msg = $this->msg( $msgKey );
 
 		if ( $condName === APCOND_AGE || $condName === APCOND_AGE_FROM_EDIT ) {

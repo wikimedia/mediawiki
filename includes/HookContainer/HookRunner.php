@@ -33,6 +33,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use StatusValue;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -578,6 +579,7 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserPrivilegedGroupsHook,
 	\MediaWiki\User\Hook\UserRemoveGroupHook,
 	\MediaWiki\User\Hook\UserRequirementsConditionHook,
+	\MediaWiki\User\Hook\UserRequirementsConditionDisplayHook,
 	\MediaWiki\User\Hook\UserSaveSettingsHook,
 	\MediaWiki\User\Hook\UserSendConfirmationMailHook,
 	\MediaWiki\User\Hook\UserSetEmailAuthenticationTimestampHook,
@@ -5032,6 +5034,17 @@ class HookRunner implements
 		$this->container->run(
 			'UserRequirementsCondition',
 			[ $type, $args, $user, $isPerformingRequest, &$result ],
+			[ 'abortable' => false ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onUserRequirementsConditionDisplay( $type, array $args, IContextSource $context,
+		?MessageSpecifier &$messageSpec
+	): void {
+		$this->container->run(
+			'UserRequirementsConditionDisplay',
+			[ $type, $args, $context, &$messageSpec ],
 			[ 'abortable' => false ]
 		);
 	}
