@@ -589,11 +589,10 @@ class HookRunner implements
 	\MediaWiki\User\Options\Hook\SaveUserOptionsHook,
 	\MediaWiki\Watchlist\Hook\WatchedItemQueryServiceExtensionsHook
 {
-	/** @var HookContainer */
-	private $container;
 
-	public function __construct( HookContainer $container ) {
-		$this->container = $container;
+	public function __construct(
+		private readonly HookContainer $container,
+	) {
 	}
 
 	/** @inheritDoc */
