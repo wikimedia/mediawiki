@@ -712,7 +712,8 @@ return [
 			new HookRunner( $services->getHookContainer() ),
 			$services->getUserFactory(),
 			$services->getEmailer(),
-			$services->getConfirmEmailBuilderFactory()
+			$services->getConfirmEmailBuilderFactory(),
+			LoggerFactory::getInstance( 'confirmemail' )
 		);
 	},
 

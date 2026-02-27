@@ -12,6 +12,7 @@ use MediaWiki\Mail\MailAddress;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
+use Psr\Log\LoggerInterface;
 use StatusValue;
 
 /**
@@ -32,7 +33,8 @@ class ConfirmEmailSender {
 		private readonly HookRunner $hookRunner,
 		private readonly UserFactory $userFactory,
 		private readonly IEmailer $emailer,
-		private readonly ConfirmEmailBuilderFactory $confirmEmailBuilderFactory
+		private readonly ConfirmEmailBuilderFactory $confirmEmailBuilderFactory,
+		private readonly LoggerInterface $logger,
 	) {
 		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 	}
@@ -107,6 +109,20 @@ class ConfirmEmailSender {
 		);
 		$emailContent = ConfirmEmailContent::newFromArray( $emailAsArray );
 
-		return $this->sendEmailToRecipient( $ctx, $recipientUser, $emailContent );
+		$status = $this->sendEmailToRecipient( $ctx, $recipientUser, $emailContent );
+
+		if ( $status->isGood() ) {
+			$this->logger->info( 'Confirmation email sent', [
+				'event' => 'email_confirmation_sent',
+				'type'  => $type,
+			] );
+		} else {
+			$this->logger->warning( 'Confirmation email failed', [
+				'event' => 'email_confirmation_send_failed',
+				'type'  => $type,
+			] );
+		}
+
+		return $status;
 	}
 }

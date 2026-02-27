@@ -20,6 +20,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
+use Psr\Log\NullLogger;
 use StatusValue;
 
 /**
@@ -118,7 +119,8 @@ class ConfirmEmailSenderTest extends MediaWikiUnitTestCase {
 			$hookRunner,
 			$userFactory,
 			$emailer,
-			$builderFactory
+			$builderFactory,
+			new NullLogger()
 		);
 		$status = $sender->sendConfirmationMail( $ctx, $emailType, $data );
 		$this->assertStatusOK( $status );
@@ -137,7 +139,8 @@ class ConfirmEmailSenderTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( HookRunner::class ),
 			$this->createNoOpMock( UserFactory::class ),
 			$this->createNoOpMock( IEmailer::class ),
-			$builderFactory
+			$builderFactory,
+			new NullLogger()
 		);
 
 		$this->expectException( LogicException::class );
