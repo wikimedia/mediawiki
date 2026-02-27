@@ -12,7 +12,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWikiUnitTestCase;
 
 /**
- * @covers MediaWiki\Notification\Middleware\FilterMiddleware
+ * @covers \MediaWiki\Notification\Middleware\FilterMiddleware
  */
 class FilterMiddlewareTest extends MediaWikiUnitTestCase {
 

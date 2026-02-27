@@ -346,7 +346,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint
+	 * @covers \MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint
 	 * @dataProvider provideTestEditFilterMergedContentHookConstraint
 	 */
 	public function testEditFilterMergedContentHookConstraint(

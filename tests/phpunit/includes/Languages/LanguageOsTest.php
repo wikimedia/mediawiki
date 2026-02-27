@@ -7,7 +7,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 /**
  * @group Language
- * @covers MediaWiki\Languages\LanguageOs
+ * @covers \MediaWiki\Languages\LanguageOs
  */
 class LanguageOsTest extends LanguageClassesTestCase {
 	/**

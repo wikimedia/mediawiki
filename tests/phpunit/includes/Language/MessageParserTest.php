@@ -5,7 +5,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\Parser;
 
 /**
- * @covers MediaWiki\Language\MessageParser
+ * @covers \MediaWiki\Language\MessageParser
  */
 class MessageParserTest extends MediaWikiIntegrationTestCase {
 

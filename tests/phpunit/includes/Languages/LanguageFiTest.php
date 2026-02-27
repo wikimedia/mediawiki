@@ -6,7 +6,7 @@ use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 /**
  * @group Language
- * @covers MediaWiki\Languages\LanguageFi
+ * @covers \MediaWiki\Languages\LanguageFi
  */
 class LanguageFiTest extends LanguageClassesTestCase {
 	/**

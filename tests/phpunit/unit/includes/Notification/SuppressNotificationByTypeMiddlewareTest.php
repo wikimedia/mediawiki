@@ -10,7 +10,7 @@ use MediaWiki\Notification\RecipientSet;
 use MediaWikiUnitTestCase;
 
 /**
- * @covers MediaWiki\Notification\Middleware\SuppressNotificationByTypeMiddleware
+ * @covers \MediaWiki\Notification\Middleware\SuppressNotificationByTypeMiddleware
  */
 class SuppressNotificationByTypeMiddlewareTest extends MediaWikiUnitTestCase {
 

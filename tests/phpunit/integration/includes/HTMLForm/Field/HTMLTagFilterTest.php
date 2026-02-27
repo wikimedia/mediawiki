@@ -10,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
- * @covers MediaWiki\HTMLForm\Field\HTMLTagFilter
+ * @covers \MediaWiki\HTMLForm\Field\HTMLTagFilter
  */
 class HTMLTagFilterTest extends HTMLFormFieldTestCase {
 	/** @inheritDoc */

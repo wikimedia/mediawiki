@@ -32,7 +32,7 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Page\ImagePage::getThumbSizes
+	 * @covers \MediaWiki\Page\ImagePage::getThumbSizes
 	 * @dataProvider providerGetThumbSizes
 	 * @param string $filename
 	 * @param int $expectedNumberThumbs How many thumbnails to show

@@ -6,7 +6,7 @@ use FixMergeHistoryCorruption;
 use MediaWiki\Title\Title;
 
 /**
- * @covers FixMergeHistoryCorruption
+ * @covers \FixMergeHistoryCorruption
  * @group Database
  * @author Dreamy Jazz
  */

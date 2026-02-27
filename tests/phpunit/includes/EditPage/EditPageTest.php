@@ -975,7 +975,7 @@ hello
 	 * @param string $expectedSelection Expiry that should be selected by default after preview.
 	 * @param array $expectedOptions List of values that should be in the expiry dropdown.
 	 * @covers \MediaWiki\EditPage\EditPage::getCheckboxesDefinition()
-	 * @covers WatchAction::getExpiryOptions()
+	 * @covers \MediaWiki\Actions\WatchAction::getExpiryOptions()
 	 * @dataProvider provideWatchlistExpiry
 	 */
 	public function testWatchlistExpiry(

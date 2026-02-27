@@ -46,8 +46,8 @@ class UploadVerificationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Upload\UploadVerification::stripXmlNamespace
-	 * @covers MediaWiki\Upload\UploadVerification::splitXmlNamespace
+	 * @covers \MediaWiki\Upload\UploadVerification::stripXmlNamespace
+	 * @covers \MediaWiki\Upload\UploadVerification::splitXmlNamespace
 	 * @dataProvider provideNamespace
 	 */
 	public function testNamespace( $element, $ns, $name ) {
@@ -66,10 +66,10 @@ class UploadVerificationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Upload\UploadVerification::checkSvgScriptCallback
-	 * @covers MediaWiki\Upload\SVGCSSChecker
-	 * @covers MediaWiki\Upload\UploadVerification::checkSvgExternalDTD
-	 * @covers MediaWiki\Upload\UploadVerification::checkSvgPICallback
+	 * @covers \MediaWiki\Upload\UploadVerification::checkSvgScriptCallback
+	 * @covers \MediaWiki\Upload\SVGCSSChecker
+	 * @covers \MediaWiki\Upload\UploadVerification::checkSvgExternalDTD
+	 * @covers \MediaWiki\Upload\UploadVerification::checkSvgPICallback
 	 * @dataProvider provideCheckSvgScriptCallback
 	 */
 	public function testCheckSvgScriptCallback( $svg, $wellFormed, $filterMatch, $message ) {
@@ -617,7 +617,7 @@ text {
 	}
 
 	/**
-	 * @covers MediaWiki\Upload\UploadVerification::detectScriptInSvg
+	 * @covers \MediaWiki\Upload\UploadVerification::detectScriptInSvg
 	 * @dataProvider provideDetectScriptInSvg
 	 */
 	public function testDetectScriptInSvg( $svg, $expected, $message ) {
@@ -682,7 +682,7 @@ text {
 	}
 
 	/**
-	 * @covers MediaWiki\Upload\UploadVerification::detectScript
+	 * @covers \MediaWiki\Upload\UploadVerification::detectScript
 	 * @dataProvider provideDetectScript
 	 */
 	public function testDetectScript( $filename, $mime, $extension, $expected, $message ) {
@@ -728,7 +728,7 @@ text {
 	/**
 	 * Make sure that invalid config leads to exception
 	 *
-	 * @covers MediaWiki\Upload\UploadVerification::detectVirus
+	 * @covers \MediaWiki\Upload\UploadVerification::detectVirus
 	 */
 	public function testDetectVirusException() {
 		$sc = $this->getServiceContainer();
@@ -752,7 +752,7 @@ text {
 	}
 
 	/**
-	 * @covers MediaWiki\Upload\UploadVerification::detectVirus
+	 * @covers \MediaWiki\Upload\UploadVerification::detectVirus
 	 * @dataProvider provideDetectVirus
 	 */
 	public function testDetectVirus( $avSetup, $avRequired, $expected ) {
@@ -867,7 +867,7 @@ text {
 	}
 
 	/**
-	 * @covers MediaWiki\Upload\UploadVerification::verifyExtension
+	 * @covers \MediaWiki\Upload\UploadVerification::verifyExtension
 	 * @dataProvider provideVerifyExtension
 	 */
 	public function testVerifyExtension( $expected, $mime, $extension ) {
@@ -930,7 +930,7 @@ text {
 	}
 
 	/**
-	 * @covers MediaWiki\Upload\UploadVerification::verifyMimeType
+	 * @covers \MediaWiki\Upload\UploadVerification::verifyMimeType
 	 */
 	public function testVerifyMimeType() {
 		$this->assertSame(

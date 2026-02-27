@@ -332,7 +332,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	 * refers to the same almost-latest revision ID, and not the "latest" rev ID
 	 * from the replica DB that we tried first.
 	 *
-	 * @covers MediaWiki\Output\OutputPage
+	 * @covers \MediaWiki\Output\OutputPage
 	 * @see T339164
 	 * @see T341013
 	 */

@@ -7,7 +7,7 @@ use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers MediaWiki\Specials\Helpers\LoginHelper
+ * @covers \MediaWiki\Specials\Helpers\LoginHelper
  */
 class LoginHelperTest extends MediaWikiIntegrationTestCase {
 

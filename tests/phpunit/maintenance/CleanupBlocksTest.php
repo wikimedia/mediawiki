@@ -9,7 +9,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentityValue;
 
 /**
- * @covers CleanupBlocks
+ * @covers \CleanupBlocks
  * @group Database
  */
 class CleanupBlocksTest extends MaintenanceBaseTestCase {
