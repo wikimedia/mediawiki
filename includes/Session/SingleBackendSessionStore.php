@@ -7,7 +7,6 @@
 
 namespace MediaWiki\Session;
 
-use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -60,9 +59,7 @@ class SingleBackendSessionStore implements SessionStore {
 		$stats = $this->statsFactory->getCounter( 'sessionstore_get_total' );
 
 		if ( !$this->store->wasLastGetCached() ) {
-			$stats->setLabel( 'type', 'singlebackend' )
-				->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
-				->increment();
+			$stats->setLabel( 'type', 'singlebackend' )->increment();
 		}
 
 		return $value;
@@ -84,7 +81,6 @@ class SingleBackendSessionStore implements SessionStore {
 		if ( ( $flags & BagOStuff::WRITE_CACHE_ONLY ) === 0 ) {
 			$this->statsFactory->getCounter( 'sessionstore_set_total' )
 				->setLabel( 'type', 'singlebackend' )
-				->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
 				->increment();
 		}
 	}
@@ -100,7 +96,6 @@ class SingleBackendSessionStore implements SessionStore {
 
 		$this->statsFactory->getCounter( 'sessionstore_delete_total' )
 			->setLabel( 'type', 'singlebackend' )
-			->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
 			->increment();
 	}
 

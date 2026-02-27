@@ -7,7 +7,6 @@
 
 namespace MediaWiki\Session;
 
-use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -117,7 +116,6 @@ class MultiBackendSessionStore implements SessionStore {
 			$authData = $this->authenticatedSessionStore->get( $authKey );
 			if ( !$this->authenticatedSessionStore->wasLastGetCached() ) {
 				$this->statsFactory->getCounter( 'sessionstore_nouserinfo_get_total' )
-					->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
 					->setLabel( 'type', 'authenticated' )
 					->setLabel( 'status', $authData ? 'hit' : 'miss' )
 					->increment();
@@ -126,7 +124,6 @@ class MultiBackendSessionStore implements SessionStore {
 				$anonData = $this->anonSessionStore->get( $anonKey );
 				if ( !$this->anonSessionStore->wasLastGetCached() ) {
 					$this->statsFactory->getCounter( 'sessionstore_nouserinfo_get_total' )
-						->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
 						->setLabel( 'type', 'anonymous' )
 						->setLabel( 'status', $anonData ? 'hit' : 'miss' )
 						->increment();
@@ -222,7 +219,6 @@ class MultiBackendSessionStore implements SessionStore {
 		if ( !$store->wasLastGetCached() ) {
 			$this->statsFactory->getCounter( 'sessionstore_get_total' )
 				->setLabel( 'type', $isAuthenticated ? self::STATS_LABEL_AUTH : self::STATS_LABEL_ANON )
-				->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
 				->increment();
 		}
 
@@ -289,7 +285,6 @@ class MultiBackendSessionStore implements SessionStore {
 		if ( ( $flags & BagOStuff::WRITE_CACHE_ONLY ) === 0 ) {
 			$this->statsFactory->getCounter( 'sessionstore_set_total' )
 				->setLabel( 'type', $isAuthenticated ? self::STATS_LABEL_AUTH : self::STATS_LABEL_ANON )
-				->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
 				->increment();
 		}
 	}
@@ -309,7 +304,6 @@ class MultiBackendSessionStore implements SessionStore {
 
 		$this->statsFactory->getCounter( 'sessionstore_delete_total' )
 			->setLabel( 'type', $isAuthenticated ? self::STATS_LABEL_AUTH : self::STATS_LABEL_ANON )
-			->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
 			->increment();
 	}
 
