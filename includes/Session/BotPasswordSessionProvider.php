@@ -91,7 +91,8 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 			try {
 				$this->verifyJwtCookie( $request, $sessionInfo, $jwtCookieOptions, $jwtClaimOverrides );
 			} catch ( JwtException $e ) {
-				$this->logger->info( 'JWT validation failed: ' . $e->getNormalizedMessage(), $e->getMessageContext() );
+				$this->logger->info( 'JWT validation failed: ' . $e->getNormalizedMessage(),
+					$e->getMessageContext() + [ 'exception' => $e ] );
 				return null;
 			}
 		}

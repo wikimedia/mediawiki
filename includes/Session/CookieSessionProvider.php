@@ -193,7 +193,8 @@ class CookieSessionProvider extends SessionProvider {
 					$this->getJwtClaimOverrides( $this->jwtSessionCookieHelper->getJwtCookieSessionExpiration() )
 				);
 			} catch ( JwtException $e ) {
-				$this->logger->info( 'JWT validation failed: ' . $e->getNormalizedMessage(), $e->getMessageContext() );
+				$this->logger->info( 'JWT validation failed: ' . $e->getNormalizedMessage(),
+					$e->getMessageContext() + [ 'exception' => $e ] );
 				return null;
 			}
 		}
