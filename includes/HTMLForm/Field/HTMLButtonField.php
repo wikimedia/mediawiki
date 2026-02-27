@@ -125,7 +125,7 @@ class HTMLButtonField extends HTMLFormField {
 
 	/** @inheritDoc */
 	public function getInputCodex( $value, $hasErrors ) {
-		$buttonClasses = [ 'mw-htmlform-submit', 'cdx-button', $this->mClass ];
+		$buttonClasses = [ 'mw-htmlform-submit', 'cdx-button' ];
 		if ( isset( $this->mParams['size'] ) ) {
 			$codexSizeKeywords = [ 'small', 'medium', 'large' ];
 			if ( !in_array( $this->mParams['size'], $codexSizeKeywords, true ) ) {

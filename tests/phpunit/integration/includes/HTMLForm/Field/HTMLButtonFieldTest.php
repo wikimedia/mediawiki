@@ -78,6 +78,7 @@ class HTMLButtonFieldTest extends HTMLFormFieldTestCase {
 			'<button class="mw-htmlform-submit cdx-button" id="mw-input-testfield" type="button" name="testfield">Click me</button>'
 		];
 
+		// the css class is applied to the surrounding field, not to the button itself
 		yield 'Button with CSS class' => [
 			[
 				'buttonlabel' => 'Click me',
@@ -85,7 +86,7 @@ class HTMLButtonFieldTest extends HTMLFormFieldTestCase {
 			],
 			'',
 			false,
-			'<button class="mw-htmlform-submit cdx-button my-button" id="mw-input-testfield" type="button" name="testfield">Click me</button>'
+			'<button class="mw-htmlform-submit cdx-button" id="mw-input-testfield" type="button" name="testfield">Click me</button>'
 		];
 
 		yield 'Primary progressive button' => [
@@ -108,6 +109,7 @@ class HTMLButtonFieldTest extends HTMLFormFieldTestCase {
 			'<button class="mw-htmlform-submit cdx-button cdx-button--action-destructive" id="mw-input-testfield" type="button" name="testfield">Click me</button>'
 		];
 
+		// the css class is applied to the surrounding field, not to the button itself
 		yield 'Quiet button with CSS class' => [
 			[
 				'buttonlabel' => 'Click me',
@@ -116,7 +118,7 @@ class HTMLButtonFieldTest extends HTMLFormFieldTestCase {
 			],
 			'',
 			false,
-			'<button class="mw-htmlform-submit cdx-button my-button cdx-button--weight-quiet" id="mw-input-testfield" type="button" name="testfield">Click me</button>'
+			'<button class="mw-htmlform-submit cdx-button cdx-button--weight-quiet" id="mw-input-testfield" type="button" name="testfield">Click me</button>'
 		];
 
 		yield 'Disabled button' => [
@@ -195,6 +197,17 @@ class HTMLButtonFieldTest extends HTMLFormFieldTestCase {
 			],
 			'',
 			"<span id='mw-input-testfield' aria-disabled='true' class='mw-htmlform-submit  oo-ui-widget oo-ui-widget-disabled oo-ui-inputWidget oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-buttonInputWidget'><button type='button' tabindex='-1' aria-disabled='true' name='testfield' disabled='disabled' value='' class='oo-ui-inputWidget-input oo-ui-buttonElement-button'><span class='oo-ui-iconElement-icon oo-ui-iconElement-noIcon'></span><span class='oo-ui-labelElement-label'>Click me</span><span class='oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator'></span></button></span>"
+		];
+	}
+
+	public static function provideCodex(): iterable {
+		yield 'Button with CSS class' => [
+			[
+				'buttonlabel' => 'Click me',
+				'cssclass' => 'my-button',
+			],
+			'',
+			'<div class="mw-htmlform-field-HTMLButtonField my-button cdx-field"><div class="cdx-field__control"><button class="mw-htmlform-submit cdx-button" id="mw-input-testfield" type="button" name="testfield">Click me</button></div></div>',
 		];
 	}
 }
