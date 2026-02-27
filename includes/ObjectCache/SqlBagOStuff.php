@@ -383,34 +383,23 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @return int[] list of shard indexes
 	 */
 	private function getShardIndexesForKey( $key, $fallback = false ) {
+		if ( $this->useLB || count( $this->serverTags ) === 1 ) {
+			return [ 0 ];
+		}
+
 		// Pick the same shard for sister keys
 		// Using the same hash stop as mc-router for consistency
-		if ( str_contains( $key, '|#|' ) ) {
-			$key = explode( '|#|', $key )[0];
-		}
-		if ( $this->useLB ) {
-			// LoadBalancer based configuration
-			return [ 0 ];
-		} else {
-			// Striped array of database servers
-			if ( count( $this->serverTags ) == 1 ) {
-				return [ 0 ];
-			} else {
-				$sortedServers = $this->serverTags;
-				// shuffle the servers based on hashing of the keys
-				ArrayUtils::consistentHashSort( $sortedServers, $key );
-				$shardIndexes = array_keys( $sortedServers );
-				if ( $this->dataRedundancy === 1 ) {
-					if ( $fallback ) {
-						return [ $shardIndexes[1] ];
-					} else {
-						return [ $shardIndexes[0] ];
-					}
-				} else {
-					return array_slice( $shardIndexes, 0, $this->dataRedundancy );
-				}
-			}
-		}
+		[ $key ] = explode( '|#|', $key, 2 );
+
+		$sortedServers = $this->serverTags;
+		// shuffle the servers based on hashing of the keys
+		ArrayUtils::consistentHashSort( $sortedServers, $key );
+		$shardIndexes = array_keys( $sortedServers );
+		return array_slice(
+			$shardIndexes,
+			$fallback && $this->dataRedundancy === 1 ? 1 : 0,
+			$this->dataRedundancy
+		);
 	}
 
 	/**
@@ -419,13 +408,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @return string table name
 	 */
 	private function getTableNameForKey( $key ) {
-		// Pick the same shard for sister keys
-		// Using the same hash stop as mc-router for consistency
-		if ( str_contains( $key, '|#|' ) ) {
-			$key = explode( '|#|', $key )[0];
-		}
-
 		if ( $this->numTableShards > 1 ) {
+			// Pick the same shard for sister keys
+			// Using the same hash stop as mc-router for consistency
+			[ $key ] = explode( '|#|', $key, 2 );
+
 			$hash = hexdec( substr( md5( $key ), 0, 8 ) ) & 0x7fffffff;
 			$tableIndex = $hash % $this->numTableShards;
 		} else {
@@ -466,7 +453,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$silenceScope = $this->silenceTransactionProfiler();
 
 		// Initialize order-preserved per-key results; set values for live keys below
+		/** @var array<string,array|null> $dataByKey */
 		$dataByKey = array_fill_keys( $keys, null );
+		/** @var array<string,array<int,stdClass>> $dataByKeyAndShard */
 		$dataByKeyAndShard = [];
 
 		$readTime = (int)$this->getCurrentTime();
@@ -513,22 +502,14 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			}
 		}
 		foreach ( $keys as $key ) {
-			$rowsByShard = $dataByKeyAndShard[$key] ?? null;
-			if ( !$rowsByShard ) {
-				continue;
+			$row = null;
+			foreach ( $dataByKeyAndShard[$key] ?? [] as $r ) {
+				if ( !$row || $r->exptime > $row->exptime ) {
+					$row = $r;
+				}
 			}
-
-			// One response, no point of consistency checks
-			if ( count( $rowsByShard ) == 1 ) {
-				$row = array_values( $rowsByShard )[0];
-			} else {
-				usort( $rowsByShard, static function ( $a, $b ) {
-					if ( $a->exptime == $b->exptime ) {
-						return 0;
-					}
-					return ( $a->exptime < $b->exptime ) ? 1 : -1;
-				} );
-				$row = array_values( $rowsByShard )[0];
+			if ( !$row ) {
+				continue;
 			}
 
 			$this->debug( __METHOD__ . ": retrieved $key; expiry time is {$row->exptime}" );
