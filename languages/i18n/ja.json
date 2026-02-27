@@ -2238,7 +2238,7 @@
 	"trackingcategories-nodesc": "説明はありません。",
 	"trackingcategories-disabled": "このカテゴリは無効化されています",
 	"mailnologin": "送信アドレスがありません",
-	"mailnologintext": "他の利用者宛にメールを送信するためには、[[Special:UserLogin|ログイン]]し、[[Special:Preferences|個人設定]]で有効なメールアドレスを設定する必要があります。",
+	"mailnologintext": "他の利用者宛にメールを送信するためには、[[Special:UserLogin|ログイン]]し、[[Special:Preferences|個人設定]]で確認済みのメールアドレスを設定する必要があります。",
 	"emailuser": "この利用者にメールを送信",
 	"emailuser-title-target": "この{{GENDER:$1|利用者}}にメールを送信",
 	"emailuser-title-notarget": "利用者にメールを送信",

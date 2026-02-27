@@ -2194,7 +2194,7 @@
 	"trackingcategories-nodesc": "Opis nie jest dostępny.",
 	"trackingcategories-disabled": "Kategoria jest wyłączona",
 	"mailnologin": "Brak adresu",
-	"mailnologintext": "Musisz się [[Special:UserLogin|zalogować]] i mieć wpisany aktualny adres e‐mailowy w swoich [[Special:Preferences|preferencjach]], aby móc wysłać e‐mail do innego użytkownika.",
+	"mailnologintext": "Musisz się [[Special:UserLogin|zalogować]] i mieć wpisany aktualny i potwierdzony adres e‐mailowy w swoich [[Special:Preferences|preferencjach]], aby móc wysłać e‐mail do innego użytkownika.",
 	"emailuser": "Wyślij e‐mail do tego użytkownika",
 	"emailuser-title-target": "Wyślij e-mail do {{GENDER:$1|tego użytkownika|tej użytkowniczki|tego użytkownika}}",
 	"emailuser-title-notarget": "Wyślij wiadomość e‐mail",

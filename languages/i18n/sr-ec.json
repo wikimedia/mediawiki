@@ -2062,7 +2062,7 @@
 	"trackingcategories-nodesc": "Опис није доступан.",
 	"trackingcategories-disabled": "Категорија је онемогућена",
 	"mailnologin": "Нема адресе за слање",
-	"mailnologintext": "Морате да се [[Special:UserLogin|пријавите]] и имате важећу имејл-адресу у [[Special:Preferences|подешавањима]] да бисте слали имејлове другим корисницима.",
+	"mailnologintext": "Морате да се [[Special:UserLogin|пријавите]] и имате потврђену имејл-адресу у [[Special:Preferences|подешавањима]] да бисте слали имејлове другим корисницима.",
 	"emailuser": "Пошаљи имејл",
 	"emailuser-title-target": "Слање имејла {{GENDER:$1|кориснику|корисници}}",
 	"emailuser-title-notarget": "Слање имејла кориснику",
