@@ -278,7 +278,11 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 		$formattedList = Html::rawElement( 'ul', [], $listItems );
 		return Status::newFatal(
-			'userrights-unable-to-change', $formattedList, $targetUserName, count( $invalidGroups ) );
+			$this->msg( 'userrights-unable-to-change' )
+				->rawParams( $formattedList )
+				->params( $targetUserName )
+				->numParams( count( $invalidGroups ) )
+		);
 	}
 
 	/**
