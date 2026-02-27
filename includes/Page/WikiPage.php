@@ -487,6 +487,8 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * @since 1.20
 	 */
 	public function loadFromRow( $data, $from ) {
+		$from = self::convertSelectType( $from );
+
 		$lc = MediaWikiServices::getInstance()->getLinkCache();
 		$lc->clearLink( $this->mTitle );
 
@@ -505,7 +507,14 @@ class WikiPage implements Stringable, Page, PageRecord {
 			$this->mLatest = intval( $data->page_latest );
 			// T39225: $latest may no longer match the cached latest RevisionRecord object.
 			// Double-check the ID of any cached latest RevisionRecord object for consistency.
-			if ( $this->mLastRevision && $this->mLastRevision->getId() != $this->mLatest ) {
+			// T400380: since a DB row had to be loaded in, clear the latest RevisionRecord
+			// object if it can from object cache (e.g. it is RevisionStoreCacheRecord).
+			if (
+				$this->mLastRevision && (
+					$from > $this->mDataLoadedFrom ||
+					$this->mLastRevision->getId() != $this->mLatest
+				)
+			) {
 				$this->mLastRevision = null;
 				$this->mTimestamp = '';
 			}
@@ -520,7 +529,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		}
 
 		$this->mDataLoaded = true;
-		$this->mDataLoadedFrom = self::convertSelectType( $from );
+		$this->mDataLoadedFrom = $from;
 	}
 
 	/**
