@@ -87,4 +87,42 @@ class SpecialPasswordResetTest extends FormSpecialPageTestCase {
 		yield 'matching email' => [ 'test@example.com' ];
 		yield 'different email' => [ 'other@example.com' ];
 	}
+
+	public function testPopupModePreservesDisplayParam() {
+		$request = new FauxRequest( [ 'display' => 'popup' ] );
+		[ $html ] = $this->executeSpecialPage( '', $request );
+
+		$this->assertMatchesRegularExpression( '/form.*action="[^"]*display=popup/', $html );
+	}
+
+	public function testPopupModeShowsReturnToLoginLink() {
+		$user = $this->getMutableTestUser()->getUser();
+		$user->setEmail( 'test@example.com' );
+		$user->saveSettings();
+
+		$request = new FauxRequest( [
+			'display' => 'popup',
+			'wpUsername' => $user->getName(),
+			'wpEmail' => 'test@example.com',
+		], true );
+
+		[ $html ] = $this->executeSpecialPage( '', $request );
+
+		$this->assertStringContainsString( 'mw-authentication-popup-return-to-login', $html );
+	}
+
+	public function testNonPopupModeUsesReturnToMain() {
+		$user = $this->getMutableTestUser()->getUser();
+		$user->setEmail( 'test@example.com' );
+		$user->saveSettings();
+
+		$request = new FauxRequest( [
+			'wpUsername' => $user->getName(),
+			'wpEmail' => 'test@example.com',
+		], true );
+
+		[ $html ] = $this->executeSpecialPage( '', $request );
+
+		$this->assertStringNotContainsString( 'mw-authentication-popup-return-to-login', $html );
+	}
 }

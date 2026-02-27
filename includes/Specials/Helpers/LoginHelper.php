@@ -17,6 +17,21 @@ use MediaWiki\Title\Title;
 class LoginHelper extends ContextSource {
 	use ProtectedHookAccessorTrait;
 
+	/** Display mode for popup window */
+	public const DISPLAY_MODE_POPUP = 'popup';
+
+	/** Display mode for full page */
+	public const DISPLAY_MODE_PAGE = 'page';
+
+	/** Default display mode */
+	public const DISPLAY_MODE_DEFAULT = self::DISPLAY_MODE_PAGE;
+
+	/** URL parameter for display mode */
+	public const DISPLAY_MODE_PARAM_NAME = 'display';
+
+	/** @var string|null Call `getDisplayMode` to compute and access */
+	private ?string $displayMode = null;
+
 	/**
 	 * Returns an array of all error and warning messages that can be displayed on Special:UserLogin or
 	 * Special:CreateAccount through the ?error or ?warning GET parameters.
@@ -102,6 +117,48 @@ class LoginHelper extends ContextSource {
 		} else {
 			$this->getOutput()->addReturnTo( $returnToTitle, $returnToQuery, null, $options );
 		}
+	}
+
+	/**
+	 * Get the display mode for the login form.
+	 *
+	 * The display mode is determined by the 'display' request parameter.
+	 * If not set or invalid, defaults to page mode.
+	 *
+	 * @return string 'page' or 'popup'
+	 */
+	public function getDisplayMode(): string {
+		if ( $this->displayMode === null ) {
+			$this->displayMode = $this->computeDisplayMode();
+		}
+		return $this->displayMode;
+	}
+
+	/**
+	 * Check if the current display mode is popup.
+	 *
+	 * @return bool True if display mode is popup
+	 */
+	public function isDisplayModePopup(): bool {
+		return $this->getDisplayMode() === self::DISPLAY_MODE_POPUP;
+	}
+
+	/**
+	 * Compute the display mode from the request.
+	 *
+	 * @return string 'page' or 'popup'
+	 */
+	private function computeDisplayMode(): string {
+		$validDisplayModes = [
+			self::DISPLAY_MODE_PAGE,
+			self::DISPLAY_MODE_POPUP,
+		];
+		$displayParam = $this->getRequest()->getRawVal( self::DISPLAY_MODE_PARAM_NAME );
+		if ( in_array( $displayParam, $validDisplayModes, true ) ) {
+			return $displayParam;
+		}
+
+		return self::DISPLAY_MODE_DEFAULT;
 	}
 }
 

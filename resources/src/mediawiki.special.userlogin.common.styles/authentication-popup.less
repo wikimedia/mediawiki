@@ -1,18 +1,21 @@
+@import 'mediawiki.skin.variables.less';
+
 body.mw-authentication-popup {
 	font-family: sans-serif;
 	font-size: 0.875rem;
 	line-height: 1.4;
 
 	header,
+	h1,
 	main,
 	footer {
+		max-width: 28rem;
 		margin: 2em auto;
 	}
 
 	/* Flexbox gap not supported by all browsers */
 	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	header {
-		max-width: 28rem;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
@@ -36,29 +39,76 @@ body.mw-authentication-popup {
 				margin: 5px auto 0;
 			}
 		}
+	}
 
-		h1 {
-			font-family: 'Linux Libertine', 'Georgia', 'Times', 'Source Serif Pro', serif;
-			border: 0;
-			margin: 0;
-			padding: 0;
-		}
+	h1 {
+		font-family: 'Linux Libertine', 'Georgia', 'Times', 'Source Serif Pro', serif;
+		margin: 0 auto;
+		padding: 0;
 	}
 
 	main {
-		max-width: 28rem;
+		margin-top: 0;
+		border-bottom: @border-width-base @border-style-base @border-color-base;
 
-		#userloginForm {
+		.mw-ui-container {
+			display: block;
+		}
+
+		.mw-htmlform {
 			width: 100%;
+			padding-bottom: 2em;
+
+			.cdx-button {
+				width: 100%;
+			}
 		}
 
 		.mw-createacct-benefits-container {
 			display: none;
 		}
 
+		.mw-form-related-link-container {
+			text-align: left;
+		}
+
 		#mw-createaccount-cta {
 			background-image: none;
+			max-width: 100%;
+			font-weight: normal;
 			padding-top: 0;
+			padding-bottom: 1.5em;
+			border-bottom: @border-width-base @border-style-base @border-color-base;
+
+			#mw-createaccount-join {
+				color: @color-base;
+				border-color: @color-base;
+				background-color: @background-color-interactive-subtle;
+				margin-top: 1em;
+			}
+		}
+
+		.mw-createacct-redirect-notice {
+			margin-bottom: 1rem;
+		}
+
+		.mw-body-content {
+			margin-top: 1rem;
+
+			p,
+			ul {
+				margin-bottom: 1rem;
+				font-size: 1rem;
+			}
+
+			ul {
+				list-style: disc;
+			}
+		}
+
+		.mw-authentication-popup-return-to-login {
+			width: 100%;
+			margin-bottom: 1rem;
 		}
 	}
 

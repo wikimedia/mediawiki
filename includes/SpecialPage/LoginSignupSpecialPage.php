@@ -89,8 +89,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected $mEntryError = '';
 	/** @var string */
 	protected $mEntryErrorType = 'error';
-	/** @var string */
-	protected $mDisplay = 'page';
+	/** @var LoginHelper */
+	protected $loginHelper = null;
 
 	/** @var bool */
 	protected $mLoaded = false;
@@ -142,6 +142,17 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	}
 
 	/**
+	 * Get the login helper.
+	 * @return LoginHelper
+	 */
+	private function getLoginHelper(): LoginHelper {
+		if ( $this->loginHelper === null ) {
+			$this->loginHelper = new LoginHelper( $this->getContext() );
+		}
+		return $this->loginHelper;
+	}
+
+	/**
 	 * Load basic request parameters for this Special page.
 	 */
 	private function loadRequestParameters() {
@@ -161,9 +172,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$this->mReturnTo = $request->getVal( 'returnto', '' );
 		$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
 		$this->mReturnToAnchor = $request->getVal( 'returntoanchor', '' );
-		if ( $request->getRawVal( 'display' ) === 'popup' ) {
-			$this->mDisplay = 'popup';
-		}
 		$this->mAlwaysShowLogin = $request->getBool( 'alwaysShowLogin' );
 	}
 
@@ -266,8 +274,10 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if ( $this->getConfig()->get( MainConfigNames::SecureLogin ) && !$this->isSignup() ) {
 			$params['fromhttp'] = $this->mFromHTTP ? '1' : null;
 		}
-		if ( $this->mDisplay !== 'page' ) {
-			$params['display'] = $this->mDisplay;
+
+		$displayMode = $this->getLoginHelper()->getDisplayMode();
+		if ( $displayMode !== LoginHelper::DISPLAY_MODE_DEFAULT ) {
+			$params[ LoginHelper::DISPLAY_MODE_PARAM_NAME ] = $displayMode;
 		}
 
 		return array_filter( $params, static fn ( $val ) => $val !== null );
@@ -311,7 +321,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$this->load( $subPage );
 
 		// Do this early, so that it affects how error pages are rendered too
-		if ( $this->mDisplay === 'popup' ) {
+		if ( $this->getLoginHelper()->isDisplayModePopup() ) {
 			// Replace the default skin with a "micro-skin" that omits most of the interface. (T362706)
 			// In the future, we might allow normal skins to serve this mode too, if they advise that
 			// they support it by setting a skin option, so that colors and fonts could stay consistent.
@@ -633,7 +643,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					Html::element( 'a',
 						[
 							'class' => 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled ' .
-								'cdx-button--action-progressive cdx-button--weight-primary mw-htmlform-submit',
+								'cdx-button--action-progressive cdx-button--weight-primary mw-htmlform-submit ' .
+								( $this->getLoginHelper()->isDisplayModePopup() ? 'mw-authentication-popup-link' : '' ),
 							'href' => ( Title::newFromText( $this->mReturnTo ) ?: Title::newMainPage() )
 								->createFragmentTarget( $this->mReturnToAnchor )->getLinkURL( $this->mReturnToQuery ),
 						],
@@ -665,8 +676,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return string
 	 */
 	protected function getPageHtml( $formHtml ) {
-		$loginPrompt = $this->isSignup() ? '' : Html::rawElement( 'div',
-			[ 'id' => 'userloginprompt' ], $this->msg( 'loginprompt' )->parseAsBlock() );
+		$loginPrompt = $this->isSignup() || $this->getLoginHelper()->isDisplayModePopup()
+			? ''
+			: Html::rawElement( 'div', [ 'id' => 'userloginprompt' ], $this->msg( 'loginprompt' )->parseAsBlock() );
 		$languageLinks = $this->getConfig()->get( MainConfigNames::LoginLanguageSelector )
 			? $this->makeLanguageSelector() : '';
 		$signupStartMsg = $this->msg( 'signupstart' );
@@ -1039,8 +1051,18 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'weight' => 100,
 				],
 			];
+
 			if ( !$this->msg( 'createacct-username-help' )->isDisabled() ) {
 				$fieldDefinitions['username']['help-message'] = 'createacct-username-help';
+			}
+
+			if ( $this->loginHelper->isDisplayModePopup() ) {
+				$fieldDefinitions['redirectnotice'] = [
+					'type' => 'info',
+					'default' => $this->msg( 'createacct-popup-redirect-notice' )->text(),
+					'cssclass' => 'mw-createacct-redirect-notice',
+					'weight' => -1,
+				];
 			}
 		} else {
 			// When the user's password is too weak, they might be asked to provide a stronger one
@@ -1193,7 +1215,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'cssclass' => 'mw-form-related-link-container',
 					'default' => $this->getLinkRenderer()->makeLink(
 						SpecialPage::getTitleFor( 'PasswordReset' ),
-						$this->msg( 'userlogin-resetpassword-link' )->text()
+						$this->msg( 'userlogin-resetpassword-link' )->text(),
+						[ 'class' => 'mw-authentication-popup-link' ],
+						$this->getPreservedParams()
 					),
 					'weight' => 230,
 				];
@@ -1206,6 +1230,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				$linkq = wfArrayToCgi( $this->getPreservedParams( [ 'reset' => true ] ) );
 				$isLoggedIn = $this->getUser()->isRegistered()
 					&& !$this->getUser()->isTemp();
+				$popupMode = $this->getLoginHelper()->isDisplayModePopup();
 
 				$fieldDefinitions['createOrLogin'] = [
 					'type' => 'info',
@@ -1237,7 +1262,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 							)
 						);
 					},
-					'weight' => 235,
+					'weight' => $popupMode ? -1 : 235,
 				];
 			}
 		}

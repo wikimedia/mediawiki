@@ -1,27 +1,18 @@
 <div class="mw-body">
 	<header>
 		{{#data-logos}}
-			<a href="{{link-mainpage}}" target="_blank" class="mw-logo">
-				{{#icon}}
-				{{! alt is provided for valid HTML but given aria-hidden not needed. }}
-				<img class="mw-logo-icon" src="{{.}}" alt="" aria-hidden="true" height="50" width="50">
-				{{/icon}}
-				<span class="mw-logo-container">
-					{{#wordmark}}
-					<img class="mw-logo-wordmark" alt="{{msg-sitetitle}}" src="{{src}}" style="{{style}}">
-					{{/wordmark}}
-					{{^wordmark}}
-					<strong class="mw-logo-wordmark">{{msg-sitetitle}}</strong>
-					{{/wordmark}}
-					{{#tagline}}
-					<img class="mw-logo-tagline" alt="{{msg-sitesubtitle}}" src="{{src}}" width="{{width}}" height="{{height}}" style="{{style}}">
-					{{/tagline}}
-				</span>
-			</a>
+			<span class="mw-logo-container">
+				{{#wordmark}}
+				<img class="mw-logo-wordmark" alt="{{msg-sitetitle}}" src="{{src}}" style="{{style}}">
+				{{/wordmark}}
+				{{^wordmark}}
+				<strong class="mw-logo-wordmark">{{msg-sitetitle}}</strong>
+				{{/wordmark}}
+			</span>
 		{{/data-logos}}
-
-		<h1>{{{html-title}}}</h1>
 	</header>
+
+	<h1>{{{html-title}}}</h1>
 
 	<main>
 		{{{html-body-content}}}

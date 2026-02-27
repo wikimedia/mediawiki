@@ -10,7 +10,10 @@ use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\ThrottledError;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\FormSpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Specials\Helpers\LoginHelper;
 use MediaWiki\Status\Status;
 use MediaWiki\User\PasswordReset;
 use MediaWiki\User\User;
@@ -25,6 +28,9 @@ use MediaWiki\User\User;
  * @ingroup SpecialPage
  */
 class SpecialPasswordReset extends FormSpecialPage {
+	/** @var LoginHelper */
+	protected $loginHelper = null;
+
 	public function __construct(
 		private readonly PasswordReset $passwordReset,
 	) {
@@ -51,9 +57,26 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	/**
+	 * Get the login helper.
+	 * @return LoginHelper
+	 */
+	private function getLoginHelper(): LoginHelper {
+		if ( $this->loginHelper === null ) {
+			$this->loginHelper = new LoginHelper( $this->getContext() );
+		}
+		return $this->loginHelper;
+	}
+
+	/**
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
+		// Use the authentication-popup skin in popup mode.
+		if ( $this->getLoginHelper()->isDisplayModePopup() ) {
+			$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+			$this->getContext()->setSkin( $skinFactory->makeSkin( 'authentication-popup' ) );
+		}
+
 		$out = $this->getOutput();
 		$out->disallowUserJs();
 		parent::execute( $par );
@@ -86,15 +109,44 @@ class SpecialPasswordReset extends FormSpecialPage {
 		return $a;
 	}
 
+	/**
+	 * Get preserved URL parameters.
+	 * @return array
+	 */
+	private function getPreservedParams(): array {
+		$params = [];
+
+		$request = $this->getRequest();
+		$value = $request->getRawVal( 'display' );
+		if ( $value !== null ) {
+			$params['display'] = $value;
+		}
+
+		return $params;
+	}
+
+	/** @inheritDoc */
+	protected function getForm() {
+		$form = parent::getForm();
+		$form->setAction( $this->getFullTitle()->getFullURL( $this->getPreservedParams() ) );
+		return $form;
+	}
+
 	/** @inheritDoc */
 	protected function getDisplayFormat() {
+		if ( $this->getLoginHelper()->isDisplayModePopup() ) {
+			return 'codex';
+		}
+
 		return 'ooui';
 	}
 
 	public function alterForm( HTMLForm $form ) {
 		$resetRoutes = $this->getConfig()->get( MainConfigNames::PasswordResetRoutes );
 
-		$form->setSubmitDestructive();
+		if ( !$this->getLoginHelper()->isDisplayModePopup() ) {
+			$form->setSubmitDestructive();
+		}
 
 		$form->addHiddenFields( $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
 
@@ -153,8 +205,28 @@ class SpecialPasswordReset extends FormSpecialPage {
 			}
 			$output->addWikiMsg( 'passwordreset-success-info', $info );
 
-			// Add a return to link to the main page.
-			$output->returnToMain();
+			if ( $this->getLoginHelper()->isDisplayModePopup() ) {
+				$linkRenderer = MediaWikiServices::getInstance()->getLinkRendererFactory()->create();
+				$linkClasses = [
+					'mw-authentication-popup-return-to-login',
+					'mw-authentication-popup-link',
+					'cdx-button',
+					'cdx-button--fake-button',
+					'cdx-button--fake-button--enabled',
+					'cdx-button--weight-primary',
+					'cdx-button--action-progressive',
+				];
+				$link = $linkRenderer->makeLink(
+					SpecialPage::getTitleFor( 'Userlogin' ),
+					$this->msg( 'returnto-login' )->text(),
+					[ 'class' => $linkClasses ],
+					$this->getPreservedParams()
+				);
+				$output->addHTML( $link );
+			} else {
+				// Add a return to link to the main page.
+				$output->returnToMain();
+			}
 		}
 
 		return $result;
