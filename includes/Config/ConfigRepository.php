@@ -107,8 +107,6 @@ class ConfigRepository implements SalvageableService {
 	 * @param string $name the name of the config
 	 * @param array $config Options of this config. Values are:
 	 *  - value: The default value of this configuration, required
-	 *  - providedby: The name of the provider of this config (an extension, core, ...), required
-	 *  - configregistry: The name of the config to retrieve the value with, required
 	 *  - public: whether this option is public or not, if not set, the option is considered as
 	 *    "private", optional
 	 *  - description: the not localized description of this config option, optional
@@ -119,8 +117,7 @@ class ConfigRepository implements SalvageableService {
 	public function add( $name, array $config ) {
 		if ( $this->has( $name ) ) {
 			throw new ConfigException( 'A configuration with the name ' . $name .
-				'does already exist. It is provided by: ' .
-				$this->get( $name )['providedby'] );
+				'does already exist.' );
 		}
 		if ( isset( $config['public'] ) && $config['public'] ) {
 			$this->configItems['public'][$name] = $config;

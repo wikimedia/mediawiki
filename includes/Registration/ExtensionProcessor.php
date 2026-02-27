@@ -928,10 +928,6 @@ class ExtensionProcessor implements Processor {
 					$value[ExtensionRegistry::MERGE_STRATEGY] = $data['merge_strategy'];
 				}
 				$this->addConfigGlobal( "$prefix$key", $value, $info['name'] );
-				$data['providedby'] = $info['name'];
-				if ( isset( $info['ConfigRegistry'][0] ) ) {
-					$data['configregistry'] = array_keys( $info['ConfigRegistry'] )[0];
-				}
 			}
 		}
 	}
