@@ -1361,17 +1361,11 @@ abstract class Installer {
 		// The order of credits will be the order of $load,
 		// so the first extension is the one we want to load,
 		// everything else is a dependency
-		$i = 0;
+		$credits = array_shift( $info['credits'] ) ?? [];
 		foreach ( $info['credits'] as $credit ) {
-			$i++;
-			if ( $i == 1 ) {
-				// Extension we want to load
-				continue;
-			}
 			$type = basename( $credit['path'] ) === 'skin.json' ? 'skins' : 'extensions';
 			$ret['requires'][$type][] = $credit['name'];
 		}
-		$credits = array_values( $info['credits'] )[0];
 		if ( isset( $credits['url'] ) ) {
 			$ret['url'] = $credits['url'];
 		}

@@ -331,14 +331,14 @@ class ConverterRule {
 		}
 		// or display current variant in unidirectional array
 		if ( $disp === null && array_key_exists( $variant, $unidtable ) ) {
-			$disp = array_values( $unidtable[$variant] )[0];
+			$disp = array_first( $unidtable[$variant] );
 		}
 		// or display first text under disable manual convert
 		if ( $disp === null && $this->mConverter->getManualLevel()[$variant] === 'disable' ) {
 			if ( count( $bidtable ) > 0 ) {
-				$disp = array_values( $bidtable )[0];
+				$disp = array_first( $bidtable );
 			} else {
-				$disp = array_values( array_values( $unidtable )[0] )[0];
+				$disp = array_first( array_first( $unidtable ) );
 			}
 		}
 
@@ -366,7 +366,7 @@ class ConverterRule {
 				return $disp;
 			}
 			if ( array_key_exists( $variant, $this->mUnidtable ) ) {
-				$disp = array_values( $this->mUnidtable[$variant] )[0];
+				$disp = array_first( $this->mUnidtable[$variant] );
 			}
 			// Assigned above or still null.
 			return $disp;

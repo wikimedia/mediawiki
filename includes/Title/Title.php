@@ -1306,13 +1306,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 			$namespaces = $namespaces[0];
 		}
 
-		foreach ( $namespaces as $ns ) {
-			if ( $this->inNamespace( $ns ) ) {
-				return true;
-			}
-		}
-
-		return false;
+		return array_any( $namespaces, $this->inNamespace( ... ) );
 	}
 
 	/**

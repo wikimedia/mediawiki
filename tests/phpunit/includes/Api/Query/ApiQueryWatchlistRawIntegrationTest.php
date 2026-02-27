@@ -551,10 +551,10 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$this->assertCount( 1, $result[0]['query']['pages'] );
 
 		// $result[0]['query']['pages'] uses page ids as keys
-		$item = array_values( $result[0]['query']['pages'] )[0];
+		$page = array_first( $result[0]['query']['pages'] );
 
-		$this->assertSame( NS_MAIN, $item['ns'] );
-		$this->assertEquals( 'ApiQueryWatchlistRawIntegrationTestPage', $item['title'] );
+		$this->assertSame( NS_MAIN, $page['ns'] );
+		$this->assertEquals( 'ApiQueryWatchlistRawIntegrationTestPage', $page['title'] );
 	}
 
 }
