@@ -17,6 +17,7 @@ use MediaWiki\Language\LanguageCode;
 use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\PageRecord;
@@ -627,19 +628,34 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		return $title->getPageLanguage();
 	}
 
+	// See ParserOptions::optionsHash
+	private function getDefaultVariant(): Bcp47Code {
+		$services = MediaWikiServices::getInstance();
+		$lang = Title::castFromPageIdentity( $this->page )->getPageLanguage();
+		$converter = $services->getLanguageConverterFactory()->getLanguageConverter( $lang );
+		return $this->languageFactory->getLanguage(
+			$converter->getPreferredVariant()
+		);
+	}
+
 	private function getParserOutput(): ParserOutput {
 		if ( !$this->parserOutput ) {
 			$this->parserOptions->setRenderReason( __METHOD__ );
 
 			$defaultLanguage = $this->getDefaultPageLanguage();
+			$defaultVariant = $this->getDefaultVariant();
 
 			if ( $this->pageLanguage
-				&& $this->pageLanguage->toBcp47Code() !== $defaultLanguage->toBcp47Code()
+				 && ( !$this->pageLanguage->isSameCodeAs( $defaultLanguage ) ||
+					 // T418549: if we're asking for the base but the URL
+					 // specifies a variant, we need to fork the cache
+					 // T267067 should fix this properly.
+					 !$this->pageLanguage->isSameCodeAs( $defaultVariant ) )
 			) {
 				$languageObj = $this->languageFactory->getLanguage( $this->pageLanguage );
 				$this->parserOptions->setTargetLanguage( $languageObj );
 				// Ensure target language splits the parser cache, when
-				// non-default; targetLangauge is not in
+				// non-default; targetLanguage is not in
 				// ParserOptions::$cacheVaryingOptionsHash for the legacy
 				// parser.
 				$this->parserOptions->addExtraKey( 'target=' . $languageObj->getCode() );
