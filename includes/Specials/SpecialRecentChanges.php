@@ -262,6 +262,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param FormOptions $opts
 	 */
 	public function outputChangesList( $rows, $opts ) {
+		$dbr = $this->getDB();
+		$lag = $dbr->getSessionLagStatus()['lag'];
+		if ( $lag > 0 ) {
+			$this->getOutput()->showLagWarning( $lag );
+		}
+
 		$limit = $opts['limit'];
 
 		$showWatcherCount = $this->getConfig()->get( MainConfigNames::RCShowWatchingUsers )
