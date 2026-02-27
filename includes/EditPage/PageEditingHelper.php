@@ -4,7 +4,6 @@ namespace MediaWiki\EditPage;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Exception\MWException;
 use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\WikiPage;
@@ -100,16 +99,15 @@ class PageEditingHelper {
 	 * $enableApiEditOverride to true to allow editing of non-textual
 	 * content.
 	 *
-	 * @return string The editable text form of the content.
-	 *
-	 * @throws MWException If $content is not an instance of TextContent and
-	 *   $enableApiEditOverride is not true.
+	 * @return string|null The editable text form of the content, or null if
+	 * $content is not an instance of TextContent and $enableApiEditOverride
+	 * is not true.
 	 */
 	public function toEditText(
 		Content|null|false|string $content,
 		?string $contentFormat,
 		bool $enableApiEditOverride,
-	): string {
+	): ?string {
 		if ( $content === null || $content === false ) {
 			return '';
 		}
@@ -118,7 +116,7 @@ class PageEditingHelper {
 		}
 
 		if ( !$this->isSupportedContentModel( $content->getModel(), $enableApiEditOverride ) ) {
-			throw new MWException( 'This content model is not supported: ' . $content->getModel() );
+			return null;
 		}
 
 		return $content->serialize( $contentFormat );

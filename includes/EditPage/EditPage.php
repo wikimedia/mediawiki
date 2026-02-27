@@ -970,15 +970,11 @@ class EditPage implements IEditObject {
 			$text = $this->textbox1;
 			$out->addWikiMsg( 'viewyourtext' );
 		} else {
-			try {
-				$text = $this->pageEditingHelper->toEditText(
-					$content, $this->contentFormat, $this->enableApiEditOverride
-				);
-			} catch ( MWException ) {
-				# Serialize using the default format if the content model is not supported
-				# (e.g. for an old revision with a different model)
-				$text = $content->serialize();
-			}
+			// Convert the content to editable text, or serialize using the default format if the content model is not
+			// supported (e.g. for an old revision with a different model)
+			$text = $this->pageEditingHelper->toEditText(
+				$content, $this->contentFormat, $this->enableApiEditOverride
+			) ?? $content->serialize();
 			$out->addWikiMsg( 'viewsourcetext' );
 		}
 
@@ -2282,7 +2278,7 @@ class EditPage implements IEditObject {
 		// Check for length errors again now that the section is merged in
 		$this->contentLength = strlen( $this->pageEditingHelper->toEditText(
 			$content, $this->contentFormat, $this->enableApiEditOverride
-		) );
+		) ?? '' );
 
 		$postMergeChecksRunner = $this->getPostMergeChecksRunner(
 			$content,
@@ -3059,7 +3055,7 @@ class EditPage implements IEditObject {
 		if ( $this->isConflict ) {
 			$currentText = $this->pageEditingHelper->toEditText(
 				$this->getCurrentContent(), $this->contentFormat, $this->enableApiEditOverride
-			);
+			) ?? '';
 
 			$editConflictHelper = $this->getEditConflictHelper();
 			$editConflictHelper->setTextboxes( $this->textbox1, $currentText );
