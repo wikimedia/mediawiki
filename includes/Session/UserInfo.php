@@ -131,8 +131,9 @@ final class UserInfo implements Stringable {
 
 	/**
 	 * Return the user ID
-	 * @note Do not use this to test for anonymous users! A user can be authenticated without
-	 * having an account on the current wiki.
+	 * @note Do not use this to test for anonymous users! A user can have valid session credentials
+	 *   without having a local user account (the user account will be autocreated, but UserInfo is
+	 *   needed before that).
 	 * @return int
 	 */
 	public function getId() {
