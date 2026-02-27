@@ -1035,7 +1035,7 @@ class CoreParserFunctions {
 		if ( $t === null || !$t->canHaveTalkPage() ) {
 			return '';
 		}
-		return wfEscapeWikiText( $t->getTalkPage()->getPrefixedText() );
+		return wfEscapeWikiText( $t->getTalkPageIfDefined()->getPrefixedText() ?? '' );
 	}
 
 	/**
@@ -1048,7 +1048,7 @@ class CoreParserFunctions {
 		if ( $t === null || !$t->canHaveTalkPage() ) {
 			return '';
 		}
-		return wfEscapeWikiText( $t->getTalkPage()->getPrefixedURL() );
+		return wfEscapeWikiText( $t->getTalkPageIfDefined()->getPrefixedURL() );
 	}
 
 	/**
@@ -1057,11 +1057,12 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function subjectpagename( $parser, $title = null ) {
+		$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
-		return wfEscapeWikiText( $t->getSubjectPage()->getPrefixedText() );
+		return wfEscapeWikiText( Title::newFromLinkTarget( $namespaceInfo->getSubjectPage( $t ) )->getPrefixedText() );
 	}
 
 	/**
@@ -1070,11 +1071,12 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function subjectpagenamee( $parser, $title = null ) {
+		$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
-		return wfEscapeWikiText( $t->getSubjectPage()->getPrefixedURL() );
+		return wfEscapeWikiText( Title::newFromLinkTarget( $namespaceInfo->getSubjectPage( $t ) )->getPrefixedURL() );
 	}
 
 	/**
