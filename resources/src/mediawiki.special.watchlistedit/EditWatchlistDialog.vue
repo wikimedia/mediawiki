@@ -33,7 +33,7 @@
 					:input-value="labelId"
 					name="watchlistlabels[]"
 				>
-					{{ labelName }}
+					<bdi>{{ labelName }}</bdi>
 				</cdx-checkbox>
 			</div>
 		</div>
