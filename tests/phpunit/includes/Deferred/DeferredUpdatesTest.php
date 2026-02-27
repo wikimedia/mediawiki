@@ -58,9 +58,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		$post = DeferredUpdates::POSTSEND;
 		$all = DeferredUpdates::ALL;
 
-		$update = $this->createMock( DeferrableUpdate::class );
-		$update->expects( $this->never() )
-			->method( 'doUpdate' );
+		$update = $this->createNoOpMock( DeferrableUpdate::class );
 
 		DeferredUpdates::addUpdate( $update, $pre );
 		$this->assertCount( 1, DeferredUpdates::getPendingUpdates( $pre ) );

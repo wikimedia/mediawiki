@@ -38,20 +38,14 @@ class SpamRegexConstraintTest extends MediaWikiUnitTestCase {
 				[ $text, false ],
 			] );
 
-		$title = $this->createMock( Title::class );
-		$title->expects( $this->never() )
-			->method( 'getPrefixedDBkey' );
-
-		$logger = new NullLogger();
-
 		$constraint = new SpamRegexConstraint(
-			$logger,
+			new NullLogger(),
 			$spamChecker,
 			$summary,
 			$sectionHeading,
 			$text,
 			'Request-IP',
-			$title
+			$this->createNoOpMock( Title::class )
 		);
 		$this->assertConstraintPassed( $constraint );
 	}

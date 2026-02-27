@@ -142,8 +142,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			MainConfigNames::CopyUploadAllowOnWikiDomainConfig => false,
 		] );
 
-		$mock = $this->createMock( MessageCache::class );
-		$mock->expects( $this->never() )->method( 'get' );
+		$mock = $this->createNoOpMock( MessageCache::class );
 		$this->setService( 'MessageCache', $mock );
 
 		$this->assertEquals(

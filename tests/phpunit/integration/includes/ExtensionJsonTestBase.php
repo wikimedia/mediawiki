@@ -431,22 +431,16 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$this->setService(
 			'DBLoadBalancerFactory',
 			function () {
-				$lb = $this->createMock( ILoadBalancer::class );
-				$lb->expects( $this->never() )
-					->method( 'getMaintenanceConnectionRef' );
-				$lb->method( 'getLocalDomainID' )
-					->willReturn( 'banana' );
+				$lb = $this->createNoOpMock( ILoadBalancer::class, [ 'getConnection' ] );
 
 				// This IDatabase will fail when actually trying to do database actions
-				$db = $this->createNoOpMock( IDatabase::class );
 				$lb->method( 'getConnection' )
-					->willReturn( $db );
+					->willReturn( $this->createNoOpMock( IDatabase::class ) );
 
+				// All calls on this LBFactory service will return null, except for getMainLB
 				$lbFactory = $this->createMock( LBFactory::class );
 				$lbFactory->method( 'getMainLB' )
 					->willReturn( $lb );
-				$lbFactory->method( 'getLocalDomainID' )
-					->willReturn( 'banana' );
 
 				return $lbFactory;
 			}
@@ -457,17 +451,11 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$this->setService(
 			'HttpRequestFactory',
 			function () {
-				$factory = $this->createMock( HttpRequestFactory::class );
-				$factory->expects( $this->never() )
-					->method( 'create' );
-				$factory->expects( $this->never() )
-					->method( 'request' );
-				$factory->expects( $this->never() )
-					->method( 'get' );
-				$factory->expects( $this->never() )
-					->method( 'post' );
+				$factory = $this->createNoOpMock( HttpRequestFactory::class,
+					[ 'createMultiClient', 'getUserAgent' ]
+				);
 				$factory->method( 'createMultiClient' )
-					->willReturn( $this->createMock( MultiHttpClient::class ) );
+					->willReturn( $this->createNoOpMock( MultiHttpClient::class ) );
 				return $factory;
 			}
 		);

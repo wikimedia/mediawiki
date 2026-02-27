@@ -219,10 +219,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Context\RequestContext
 	 */
 	public function testSetActionName() {
-		$factory = $this->createMock( ActionFactory::class );
-		$factory
-			->expects( $this->never() )
-			->method( 'getActionName' );
+		$factory = $this->createNoOpMock( ActionFactory::class );
 		$this->setService( 'ActionFactory', $factory );
 
 		$context = new RequestContext();

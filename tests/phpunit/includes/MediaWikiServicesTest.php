@@ -86,9 +86,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		$newServices = $this->newMediaWikiServices();
 		$oldServices = MediaWikiServices::forceGlobalInstance( $newServices );
 
-		$service1 = $this->createMock( SalvageableService::class );
-		$service1->expects( $this->never() )
-			->method( 'salvage' );
+		$service1 = $this->createNoOpMock( SalvageableService::class );
 
 		$newServices->defineService(
 			'Test',
@@ -119,9 +117,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		$newServices = $this->newMediaWikiServices();
 		$oldServices = MediaWikiServices::forceGlobalInstance( $newServices );
 
-		$service1 = $this->createMock( SalvageableService::class );
-		$service1->expects( $this->never() )
-			->method( 'salvage' );
+		$service1 = $this->createNoOpMock( SalvageableService::class );
 
 		$service2 = $this->createMock( SalvageableService::class );
 		$service2->expects( $this->once() )
@@ -240,9 +236,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		$service1->expects( $this->once() )
 			->method( 'destroy' );
 
-		$service2 = $this->createMock( DestructibleService::class );
-		$service2->expects( $this->never() )
-			->method( 'destroy' );
+		$service2 = $this->createNoOpMock( DestructibleService::class );
 
 		// sequence of values the instantiator will return
 		$instantiatorReturnValues = [
