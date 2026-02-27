@@ -25,8 +25,7 @@
 		if ( isMultiple ) {
 			selectedLanguage = Array.from( nativeSelect.selectedOptions ).map( ( option ) => option.value );
 		} else {
-			const selectedOption = nativeSelect.querySelector( 'option[selected]' );
-			selectedLanguage = selectedOption.value;
+			selectedLanguage = nativeSelect.value;
 		}
 
 		// Create container for Vue component and insert it after the select element
