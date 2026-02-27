@@ -20,7 +20,7 @@ interface ContentHandlerForModelIDHook {
 	 * @since 1.35
 	 *
 	 * @param string $modelName Requested content model name
-	 * @param ContentHandler &$handler Set this to a ContentHandler object, if desired
+	 * @param ContentHandler|null &$handler Set this to a ContentHandler object, if desired
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onContentHandlerForModelID( $modelName, &$handler );

@@ -45,7 +45,7 @@ class TitleMatcher {
 	 * return the title. If no match, returns NULL.
 	 *
 	 * @param string $searchterm
-	 * @return Title
+	 * @return Title|null
 	 */
 	public function getNearMatch( $searchterm ) {
 		$title = $this->getNearMatchInternal( $searchterm );

@@ -150,7 +150,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 
 	/**
 	 * @param string $modelID
-	 * @param ContentHandler $contentHandler
+	 * @param ContentHandler|null $contentHandler
 	 *
 	 * @throws UnknownContentModelException
 	 */
@@ -209,7 +209,6 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 */
 	private function createContentHandlerFromHook( string $modelID ): ContentHandler {
 		$contentHandler = null;
-		// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 		$this->hookRunner->onContentHandlerForModelID( $modelID, $contentHandler );
 		$this->validateContentHandler( $modelID, $contentHandler );
 

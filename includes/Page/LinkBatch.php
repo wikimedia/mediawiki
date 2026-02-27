@@ -223,7 +223,7 @@ class LinkBatch {
 	/**
 	 * Do the query and add the results to the LinkCache
 	 *
-	 * @return int[] Remaining unknown titles from PDBK to ID
+	 * @return array<string,int> Remaining unknown titles from PDBK to ID
 	 */
 	public function execute() {
 		return $this->executeInto( $this->linkCache );
@@ -248,7 +248,7 @@ class LinkBatch {
 	 * Do the query and add the results to a given LinkCache object
 	 *
 	 * @param LinkCache $cache
-	 * @return int[] Remaining unknown titles from PDBK to ID
+	 * @return array<string,int> Remaining unknown titles from PDBK to ID
 	 */
 	protected function executeInto( $cache ) {
 		$res = $this->doQuery();
@@ -272,7 +272,7 @@ class LinkBatch {
 	 *
 	 * @param LinkCache $cache
 	 * @param IResultWrapper $res
-	 * @return int[] Remaining unknown titles from PDBK to ID
+	 * @return array<string,int> Remaining unknown titles from PDBK to ID
 	 */
 	public function addResultToCache( $cache, $res ) {
 		if ( !$res ) {
