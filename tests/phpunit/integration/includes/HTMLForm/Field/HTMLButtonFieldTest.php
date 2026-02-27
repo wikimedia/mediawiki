@@ -6,6 +6,7 @@ use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
 
 /**
  * @covers \MediaWiki\HTMLForm\Field\HTMLButtonField
+ * @covers \MediaWiki\HTMLForm\HTMLFormField
  */
 class HTMLButtonFieldTest extends HTMLFormFieldTestCase {
 	/** @inheritDoc */
@@ -126,6 +127,16 @@ class HTMLButtonFieldTest extends HTMLFormFieldTestCase {
 			'',
 			false,
 			'<button class="mw-htmlform-submit cdx-button" id="mw-input-testfield" type="button" name="testfield" disabled="">Click me</button>'
+		];
+
+		yield 'large button' => [
+			[
+				'buttonlabel' => 'Click me',
+				'size' => 'large',
+			],
+			'',
+			false,
+			'<button class="mw-htmlform-submit cdx-button cdx-button--size-large" id="mw-input-testfield" type="button" name="testfield">Click me</button>',
 		];
 	}
 

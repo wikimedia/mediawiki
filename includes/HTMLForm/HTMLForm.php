@@ -143,7 +143,7 @@ use Wikimedia\Message\MessageSpecifier;
  *                             that a field is not required. Must not have `required=true`.
  *    'optional-message'    -- alternative message key to use for the flag shown
  *                             with `show-optional-flag`
- *    'size'                -- the length of text fields
+ *    'size'                -- the length of text fields; (Codex-only) use large/medium/small for buttons
  *    'filter-callback'     -- a function name to give you the chance to
  *                             massage the inputted value before it's processed.
  *                             See {@link HTMLFormField::filter}

@@ -23,6 +23,8 @@ use MediaWiki\Message\Message;
  * - formnovalidate: Set to true if clicking this button should suppress
  *   client-side form validation. Used in HTMLFormFieldCloner for add/remove
  *   buttons.
+ * - size: if rendering as Codex, then you can use the codex keywords
+ *   "small", "medium", and "large" to affect the button's size.
  *
  * @stable to extend
  * @since 1.22
@@ -123,9 +125,20 @@ class HTMLButtonField extends HTMLFormField {
 
 	/** @inheritDoc */
 	public function getInputCodex( $value, $hasErrors ) {
+		$buttonClasses = [ 'mw-htmlform-submit', 'cdx-button', $this->mClass ];
+		if ( isset( $this->mParams['size'] ) ) {
+			$codexSizeKeywords = [ 'small', 'medium', 'large' ];
+			if ( !in_array( $this->mParams['size'], $codexSizeKeywords, true ) ) {
+				throw new \InvalidArgumentException(
+					'Invalid size for button: "' . $this->mParams['size'] . '". Please use one of the Codex keywords.'
+				);
+			}
+
+			$sizeClass = 'cdx-button--size-' . $this->mParams['size'];
+			$buttonClasses[] = $sizeClass;
+		}
 		$flags = $this->mFlags;
 		$buttonLabel = $this->buttonLabel ?: htmlspecialchars( $this->getDefault() );
-		$buttonClasses = [ 'mw-htmlform-submit', 'cdx-button', $this->mClass ];
 		$buttonAttribs = [
 			'class' => $buttonClasses,
 			'id' => $this->mID,
