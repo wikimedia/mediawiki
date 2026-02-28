@@ -68,6 +68,11 @@ class SpecialMute extends FormSpecialPage {
 		return false;
 	}
 
+	/** @inheritDoc */
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * @inheritDoc
 	 */
