@@ -39,7 +39,7 @@ class GenerateAutoload extends Maintenance {
 		$fileinfo = $generator->getTargetFileinfo();
 		file_put_contents(
 			$fileinfo['filename'],
-			$generator->getAutoload( 'maintenance/generateLocalAutoload.php' )
+			$generator->getAutoload( 'maintenance/generateAutoload.php' )
 		);
 	}
 }

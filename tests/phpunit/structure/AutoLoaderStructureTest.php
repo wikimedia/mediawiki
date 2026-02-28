@@ -135,10 +135,10 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 		$oldAutoload = file_get_contents( $path . '/autoload.php' );
 		$generator = new AutoloadGenerator( $path, 'local' );
 		$generator->initMediaWikiDefault();
-		$newAutoload = $generator->getAutoload( 'maintenance/generateLocalAutoload.php' );
+		$newAutoload = $generator->getAutoload( 'maintenance/generateAutoload.php' );
 
 		$this->assertEquals( $oldAutoload, $newAutoload, 'autoload.php does not match' .
-			' output of generateLocalAutoload.php script.' );
+			' output of generateAutoload.php script.' );
 	}
 
 	/**

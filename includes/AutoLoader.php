@@ -23,7 +23,7 @@ require_once __DIR__ . '/../autoload.php';
  * MediaWiki core does not use PSR-4 autoloading due to performance issues
  * but enforces the mapping to be maintained for future use. Instead of using
  * PSR-0, a class map stored in autoload.php generated via a script:
- * php maintenance/run.php generateLocalAutoload
+ * php maintenance/run.php generateAutoload
  *
  * @see <https://www.php-fig.org/psr/psr-4/>
  * @see <https://techblog.wikimedia.org/2024/01/16/web-perf-hero-mate-szabo/>
