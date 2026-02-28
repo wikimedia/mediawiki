@@ -561,9 +561,10 @@ class MWDebug {
 	 * @param string $function
 	 * @param float $runTime Query run time
 	 * @param string $dbhost
+	 * @param int $rows
 	 * @return bool True if debugger is enabled, false otherwise
 	 */
-	public static function query( $sql, $function, $runTime, $dbhost ) {
+	public static function query( $sql, $function, $runTime, $dbhost, $rows ) {
 		if ( !self::$enabled ) {
 			return false;
 		}
@@ -597,6 +598,7 @@ class MWDebug {
 			'sql' => "$dbhost: $sql",
 			'function' => $function,
 			'time' => $runTime,
+			'rows' => $rows,
 		];
 
 		return true;
