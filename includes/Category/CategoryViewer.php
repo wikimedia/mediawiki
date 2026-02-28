@@ -13,6 +13,7 @@ use InvalidArgumentException;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Debug\DeprecationHelper;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Gallery\Exception\ImageGalleryClassNotFoundException;
 use MediaWiki\Gallery\ImageGalleryBase;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
@@ -28,6 +29,7 @@ use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use Wikimedia\HtmlArmor\HtmlArmor;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class CategoryViewer extends ContextSource {
@@ -332,7 +334,9 @@ class CategoryViewer extends ContextSource {
 	}
 
 	protected function doCategoryQuery() {
-		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+		$connProvider = MediaWikiServices::getInstance()->getConnectionProvider();
+		$dbr = $connProvider->getReplicaDatabase();
+		$categoryLinksDbr = $connProvider->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
 
 		$this->nextPage = [
 			'page' => null,
@@ -353,13 +357,13 @@ class CategoryViewer extends ContextSource {
 			# set in $wgCategoryCollation, pagination might go totally haywire.
 			$extraConds = [ 'cl_type' => $type ];
 			if ( isset( $this->from[$type] ) ) {
-				$extraConds[] = $dbr->expr(
+				$extraConds[] = $categoryLinksDbr->expr(
 					'cl_sortkey',
 					'>=',
 					$this->collation->getSortKey( $this->from[$type] )
 				);
 			} elseif ( isset( $this->until[$type] ) ) {
-				$extraConds[] = $dbr->expr(
+				$extraConds[] = $categoryLinksDbr->expr(
 					'cl_sortkey',
 					'<',
 					$this->collation->getSortKey( $this->until[$type] )
@@ -367,16 +371,11 @@ class CategoryViewer extends ContextSource {
 				$this->flip[$type] = true;
 			}
 
-			$queryBuilder = $dbr->newSelectQueryBuilder();
+			$queryBuilder = $categoryLinksDbr->newSelectQueryBuilder();
 			$queryBuilder->select( array_merge(
 					LinkCache::getSelectFields(),
 					[
 						'cl_sortkey',
-						'cat_id',
-						'cat_title',
-						'cat_subcats',
-						'cat_pages',
-						'cat_files',
 						'cl_sortkey_prefix',
 						'collation_name',
 					]
@@ -395,20 +394,54 @@ class CategoryViewer extends ContextSource {
 				->join( 'linktarget', null, 'cl_target_id = lt_id' )
 				->straightJoin( 'collation', null, 'cl_collation_id = collation_id' )
 				->where( [ 'lt_title' => $this->page->getDBkey(), 'lt_namespace' => NS_CATEGORY ] )
-				->leftJoin( 'category', null, [
-					'cat_title = page_title',
-					'page_namespace' => NS_CATEGORY
-				] )
 				->useIndex( [ 'categorylinks' => 'cl_sortkey_id' ] )
 				->limit( $this->limit + 1 );
 
 			$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
+			$categoryTitles = [];
+			$pageRows = [];
+
+			foreach ( $res as $row ) {
+				$pageRows[] = $row;
+				if ( (int)$row->page_namespace === NS_CATEGORY ) {
+					$categoryTitles[] = $row->page_title;
+				}
+			}
+
+			$categoryData = [];
+			if ( $categoryTitles !== [] ) {
+				$categoryRes = $dbr->newSelectQueryBuilder()
+					->select( [ 'cat_id', 'cat_title', 'cat_subcats', 'cat_pages', 'cat_files' ] )
+					->from( 'category' )
+					->where( [ 'cat_title' => $categoryTitles ] )
+					->caller( __METHOD__ )
+					->fetchResultSet();
+
+				foreach ( $categoryRes as $catRow ) {
+					$categoryData[$catRow->cat_title] = $catRow;
+				}
+			}
+
+			foreach ( $pageRows as $row ) {
+				if ( (int)$row->page_namespace === NS_CATEGORY ) {
+					$catTitle = $row->page_title;
+					$catRow = $categoryData[$catTitle] ?? null;
+					if ( $catRow ) {
+						foreach ( [ 'cat_id', 'cat_title', 'cat_subcats', 'cat_pages', 'cat_files' ] as $field ) {
+							$row->$field = $catRow->$field;
+						}
+					}
+				}
+			}
+
+			// Convert modified pageRows back to result wrapper for hook
+			$res = new FakeResultWrapper( $pageRows );
 			$this->getHookRunner()->onCategoryViewer__doCategoryQuery( $type, $res );
 			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 
 			$count = 0;
-			foreach ( $res as $row ) {
+			foreach ( $pageRows as $row ) {
 				$title = Title::newFromRow( $row );
 				$linkCache->addGoodLinkObjFromRow( $title, $row );
 				$humanSortkey = $title->getCategorySortkey( $row->cl_sortkey_prefix );
