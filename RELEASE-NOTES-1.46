@@ -126,7 +126,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 * Updated oojs/oojs-ui (OOUI) from v0.53.0 to v0.53.1.
 * Updated pear/net_smtp from 1.12.1 to 1.12.2.
 * Updated psy/psysh from ^0.12.3 to 0.12.19.
-* Updated symfony/yaml from 6.4.26 to 7.4.1.
+* Updated symfony/yaml from 6.4.26 to 7.4.6.
 * Updated wikimedia/bcp-47-code from 2.0.1 to 2.0.3.
 * Updated wikimedia/css-sanitizer from 6.1.0 to 6.2.0.
 * Updated wikimedia/ip-utils from 5.0.0 to 6.0.1.
