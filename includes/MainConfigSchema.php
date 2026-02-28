@@ -3318,9 +3318,11 @@ class MainConfigSchema {
 	 *
 	 *   - SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_OLD (SCHEMA_COMPAT_OLD)
 	 *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+	 *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
 	 *
 	 * History:
 	 *   - 1.44: Added
+	 *   - 1.47: Added support for reading new schema
 	 */
 	public const FileSchemaMigrationStage = [
 		'default' => SCHEMA_COMPAT_OLD,
