@@ -158,7 +158,7 @@ class SpecialDoubleRedirects extends QueryPage {
 		) {
 			$edit = $linkRenderer->makeKnownLink(
 				$titleA,
-				$this->msg( 'parentheses', $this->msg( 'editlink' )->text() )->text(),
+				$this->msg( 'parentheses', $this->msg( 'editlink' ) )->text(),
 				[],
 				[ 'action' => 'edit' ]
 			);

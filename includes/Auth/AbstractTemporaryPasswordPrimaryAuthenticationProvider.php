@@ -455,7 +455,7 @@ abstract class AbstractTemporaryPasswordPrimaryAuthenticationProvider
 			$req->password )->inLanguage( $userLanguage );
 		$emailMessage = wfMessage( $callerIsAnon ? 'passwordreset-emailtext-ip'
 			: 'passwordreset-emailtext-user' )->inLanguage( $userLanguage );
-		$body = $emailMessage->params( $callerName, $passwordMessage->text(), 1,
+		$body = $emailMessage->params( $callerName, $passwordMessage, 1,
 			'<' . Title::newMainPage()->getCanonicalURL() . '>',
 			round( $this->newPasswordExpiry / 86400 ) )->text();
 

@@ -216,7 +216,7 @@ class TextConflictHelper {
 		return Html::rawElement(
 			'div',
 			[ 'class' => 'mw-explainconflict' ],
-			$this->out->msg( 'explainconflict', $this->out->msg( $this->submitLabel )->text() )->parse()
+			$this->out->msg( 'explainconflict', $this->out->msg( $this->submitLabel ) )->parse()
 		);
 	}
 
