@@ -120,7 +120,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 * Updated codex, codex-design-tokens and codex-icons
   from v2.3.2 to v2.3.4.
-* Updated jsonrainbow/json-schema from 5.3.0 to 5.3.1.
+* Updated jsonrainbow/json-schema from 5.3.0 to 5.3.2.
 * Updated lcobucci/jwt from 4.1.5 to 5.6.0.
 * Updated monolog/monolog from 2.9.3 to 2.11.0.
 * Updated oojs/oojs-ui (OOUI) from v0.53.0 to v0.53.1.
