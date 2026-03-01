@@ -40,10 +40,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @ingroup Page
  */
 class PageEditStash {
-	/** @var ParserOutputStashForEditHook */
-	private $hookRunner;
-	/** @var int */
-	private $initiator;
+	private readonly ParserOutputStashForEditHook $hookRunner;
 
 	public const ERROR_NONE = 'stashed';
 	public const ERROR_PARSE = 'error_parse';
@@ -92,10 +89,9 @@ class PageEditStash {
 		private WikiPageFactory $wikiPageFactory,
 		private JsonCodec $jsonCodec,
 		HookContainer $hookContainer,
-		$initiator
+		private readonly int $initiator,
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->initiator = $initiator;
 	}
 
 	/**

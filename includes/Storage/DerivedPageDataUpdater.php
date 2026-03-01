@@ -90,70 +90,24 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
-	/**
-	 * @var UserIdentity|null
-	 */
-	private $user = null;
+	private ?UserIdentity $user = null;
+	private readonly WikiPage $wikiPage;
+	private readonly HookRunner $hookRunner;
+	private LoggerInterface $logger;
 
 	/**
-	 * @var WikiPage
+	 * @var string|null see $wgArticleCountMethod
 	 */
-	private $wikiPage;
-
-	/**
-	 * @var ParserCache
-	 */
-	private $parserCache;
-
-	/**
-	 * @var RevisionStore
-	 */
-	private $revisionStore;
-
-	/**
-	 * @var Language
-	 */
-	private $contLang;
-
-	/**
-	 * @var JobQueueGroup
-	 */
-	private $jobQueueGroup;
-
-	/**
-	 * @var ILBFactory
-	 */
-	private $loadbalancerFactory;
-
-	/**
-	 * @var HookRunner
-	 */
-	private $hookRunner;
-
-	/**
-	 * @var DomainEventDispatcher
-	 */
-	private $eventDispatcher;
-
-	/**
-	 * @var LoggerInterface
-	 */
-	private $logger;
-
-	/**
-	 * @var string see $wgArticleCountMethod
-	 */
-	private $articleCountMethod;
+	private ?string $articleCountMethod;
 
 	/**
 	 * Stores (most of) the $options parameter of prepareUpdate().
 	 * @see prepareUpdate()
 	 *
-	 * @var array
 	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-var array{changed:bool,created:bool,cause:string,oldrevision:null|RevisionRecord,triggeringUser:null|UserIdentity,oldredirect:bool|null|string,oldcountable:bool|null|string,causeAction:null|string,causeAgent:null|string,editResult:null|EditResult,newrev:bool,oldtitle:null|PageIdentity,rcPatrolStatus:int,tags:array<string>,reason:null|string,emitEvents:bool}
 	 */
-	private $options = [
+	private array $options = [
 		'changed' => true,
 		// newrev is true if prepareUpdate is handling the creation of a new revision,
 		// as opposed to a null edit or a forced update.
@@ -198,52 +152,24 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * @var array
 	 */
 	private $pageState = null;
-
-	/**
-	 * @var RevisionSlotsUpdate|null
-	 */
-	private $slotsUpdate = null;
-
-	/**
-	 * @var RevisionRecord|null
-	 */
-	private $parentRevision = null;
-
-	/**
-	 * @var RevisionRecord|null
-	 */
-	private $revision = null;
-
-	/**
-	 * @var RenderedRevision
-	 */
-	private $renderedRevision = null;
-
-	/** @var ?PageLatestRevisionChangedEvent */
-	private $pageLatestRevisionChangedEvent = null;
-
-	/**
-	 * @var RevisionRenderer
-	 */
-	private $revisionRenderer;
-
-	/** @var SlotRoleRegistry */
-	private $slotRoleRegistry;
+	private ?RevisionSlotsUpdate $slotsUpdate = null;
+	private ?RevisionRecord $parentRevision = null;
+	private ?RevisionRecord $revision = null;
+	private ?RenderedRevision $renderedRevision = null;
+	private ?PageLatestRevisionChangedEvent $pageLatestRevisionChangedEvent = null;
 
 	/**
 	 * @var bool Whether null-edits create a revision.
 	 */
-	private $forceEmptyRevision = false;
+	private bool $forceEmptyRevision = false;
 
 	/**
 	 * A stage identifier for managing the life cycle of this instance.
 	 * Possible stages are 'new', 'knows-current', 'has-content', 'has-revision', and 'done'.
 	 *
 	 * @see docs/pageupdater.md for documentation of the life cycle.
-	 *
-	 * @var string
 	 */
-	private $stage = 'new';
+	private string $stage = 'new';
 
 	/**
 	 * Transition table for managing the life cycle of DerivedPageDateUpdater instances.
@@ -275,76 +201,40 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		],
 	];
 
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var EditResultCache */
-	private $editResultCache;
-
-	/** @var ContentTransformer */
-	private $contentTransformer;
-
-	/** @var PageEditStash */
-	private $pageEditStash;
-
-	/** @var WANObjectCache */
-	private $mainWANObjectCache;
-
-	/** @var bool */
-	private $warmParsoidParserCache;
-
-	/** @var bool */
-	private $useRcPatrol;
-
-	private ChangeTagsStore $changeTagsStore;
+	private readonly bool $warmParsoidParserCache;
+	private readonly bool $useRcPatrol;
 
 	public function __construct(
 		ServiceOptions $options,
 		PageIdentity $page,
-		RevisionStore $revisionStore,
-		RevisionRenderer $revisionRenderer,
-		SlotRoleRegistry $slotRoleRegistry,
-		ParserCache $parserCache,
-		JobQueueGroup $jobQueueGroup,
-		Language $contLang,
-		ILBFactory $loadbalancerFactory,
-		IContentHandlerFactory $contentHandlerFactory,
+		private readonly RevisionStore $revisionStore,
+		private readonly RevisionRenderer $revisionRenderer,
+		private readonly SlotRoleRegistry $slotRoleRegistry,
+		private readonly ParserCache $parserCache,
+		private readonly JobQueueGroup $jobQueueGroup,
+		private readonly Language $contLang,
+		private readonly ILBFactory $loadbalancerFactory,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
 		HookContainer $hookContainer,
-		DomainEventDispatcher $eventDispatcher,
-		EditResultCache $editResultCache,
-		ContentTransformer $contentTransformer,
-		PageEditStash $pageEditStash,
-		WANObjectCache $mainWANObjectCache,
+		private readonly DomainEventDispatcher $eventDispatcher,
+		private readonly EditResultCache $editResultCache,
+		private readonly ContentTransformer $contentTransformer,
+		private readonly PageEditStash $pageEditStash,
+		private readonly WANObjectCache $mainWANObjectCache,
 		WikiPageFactory $wikiPageFactory,
-		ChangeTagsStore $changeTagsStore
+		private readonly ChangeTagsStore $changeTagsStore,
 	) {
 		// TODO: Remove this cast eventually
 		$this->wikiPage = $wikiPageFactory->newFromTitle( $page );
 
-		$this->parserCache = $parserCache;
-		$this->revisionStore = $revisionStore;
-		$this->revisionRenderer = $revisionRenderer;
-		$this->slotRoleRegistry = $slotRoleRegistry;
-		$this->jobQueueGroup = $jobQueueGroup;
-		$this->contLang = $contLang;
-		// XXX only needed for waiting for replicas to catch up; there should be a narrower
-		// interface for that.
-		$this->loadbalancerFactory = $loadbalancerFactory;
-		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->eventDispatcher = $eventDispatcher;
-		$this->editResultCache = $editResultCache;
-		$this->contentTransformer = $contentTransformer;
-		$this->pageEditStash = $pageEditStash;
-		$this->mainWANObjectCache = $mainWANObjectCache;
-		$this->changeTagsStore = $changeTagsStore;
 
 		$this->logger = new NullLogger();
 
 		$this->warmParsoidParserCache = $options
 			->get( MainConfigNames::ParsoidCacheConfig )['WarmParsoidParserCache'];
 		$this->useRcPatrol = $options
-			->get( MainConfigNames::UseRCPatrol );
+			->get( MainConfigNames::UseRCPatrol ) ?? false;
 	}
 
 	public function setLogger( LoggerInterface $logger ): void {
@@ -509,10 +399,10 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	}
 
 	/**
-	 * @param string $articleCountMethod "any" or "link".
+	 * @param string|null $articleCountMethod "any" or "link".
 	 * @see $wgArticleCountMethod
 	 */
-	public function setArticleCountMethod( $articleCountMethod ) {
+	public function setArticleCountMethod( ?string $articleCountMethod ) {
 		$this->articleCountMethod = $articleCountMethod;
 	}
 
@@ -1776,6 +1666,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	private function triggerParserCacheUpdate() {
 		$this->assertHasRevision( __METHOD__ );
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 		$userParserOptions = ParserOptions::newFromUser( $this->user );
 
 		// Decide whether to save the final canonical parser output based on the fact that

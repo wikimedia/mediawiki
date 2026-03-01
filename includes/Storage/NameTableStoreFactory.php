@@ -17,15 +17,6 @@ class NameTableStoreFactory {
 	/** @var array<string,array<string,NameTableStore>> */
 	private $stores = [];
 
-	/** @var ILBFactory */
-	private $lbFactory;
-
-	/** @var WANObjectCache */
-	private $cache;
-
-	/** @var LoggerInterface */
-	private $logger;
-
 	private static function getTableInfo(): array {
 		if ( self::$info ) {
 			return self::$info;
@@ -63,13 +54,10 @@ class NameTableStoreFactory {
 	}
 
 	public function __construct(
-		ILBFactory $lbFactory,
-		WANObjectCache $cache,
-		LoggerInterface $logger
+		private readonly ILBFactory $lbFactory,
+		private readonly WANObjectCache $cache,
+		private readonly LoggerInterface $logger,
 	) {
-		$this->lbFactory = $lbFactory;
-		$this->cache = $cache;
-		$this->logger = $logger;
 	}
 
 	/**

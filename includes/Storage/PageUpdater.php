@@ -72,61 +72,10 @@ class PageUpdater implements PageUpdateCauses {
 	];
 
 	/**
-	 * @var UserIdentity
-	 */
-	private $author;
-
-	/**
 	 * TODO Remove this eventually.
-	 * @var WikiPage
 	 */
-	private $wikiPage;
-
-	/**
-	 * @var PageIdentity
-	 */
-	private $pageIdentity;
-
-	/**
-	 * @var DerivedPageDataUpdater
-	 */
-	private $derivedDataUpdater;
-
-	/**
-	 * @var IConnectionProvider
-	 */
-	private $dbProvider;
-
-	/**
-	 * @var RevisionStore
-	 */
-	private $revisionStore;
-
-	/**
-	 * @var SlotRoleRegistry
-	 */
-	private $slotRoleRegistry;
-
-	/**
-	 * @var IContentHandlerFactory
-	 */
-	private $contentHandlerFactory;
-
-	/**
-	 * @var HookRunner
-	 */
-	private $hookRunner;
-
-	/**
-	 * @var HookContainer
-	 */
-	private $hookContainer;
-
-	/** @var UserGroupManager */
-	private $userGroupManager;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
+	private readonly WikiPage $wikiPage;
+	private readonly HookRunner $hookRunner;
 
 	/**
 	 * @var bool see $wgUseAutomaticEditSummaries
@@ -160,30 +109,19 @@ class PageUpdater implements PageUpdateCauses {
 	 */
 	private $tags = [];
 
-	/**
-	 * @var RevisionSlotsUpdate
-	 */
-	private $slotsUpdate;
+	private readonly RevisionSlotsUpdate $slotsUpdate;
 
 	/**
 	 * @var PageUpdateStatus|null
 	 */
 	private $status = null;
 
-	/**
-	 * @var EditResultBuilder
-	 */
-	private $editResultBuilder;
+	private readonly EditResultBuilder $editResultBuilder;
 
 	/**
 	 * @var EditResult|null
 	 */
 	private $editResult = null;
-
-	/**
-	 * @var ServiceOptions
-	 */
-	private $serviceOptions;
 
 	/**
 	 * @var int
@@ -195,15 +133,9 @@ class PageUpdater implements PageUpdateCauses {
 	 */
 	private array $hints = [];
 
-	/** @var string[] */
-	private $softwareTags = [];
-
-	/** @var LoggerInterface */
-	private $logger;
-
 	/**
 	 * @param UserIdentity $author
-	 * @param PageIdentity $page
+	 * @param PageIdentity $pageIdentity
 	 * @param DerivedPageDataUpdater $derivedDataUpdater
 	 * @param IConnectionProvider $dbProvider
 	 * @param RevisionStore $revisionStore
@@ -219,38 +151,27 @@ class PageUpdater implements PageUpdateCauses {
 	 * @param WikiPageFactory $wikiPageFactory
 	 */
 	public function __construct(
-		UserIdentity $author,
-		PageIdentity $page,
-		DerivedPageDataUpdater $derivedDataUpdater,
-		IConnectionProvider $dbProvider,
-		RevisionStore $revisionStore,
-		SlotRoleRegistry $slotRoleRegistry,
-		IContentHandlerFactory $contentHandlerFactory,
-		HookContainer $hookContainer,
-		UserGroupManager $userGroupManager,
-		TitleFormatter $titleFormatter,
-		ServiceOptions $serviceOptions,
-		array $softwareTags,
-		LoggerInterface $logger,
-		WikiPageFactory $wikiPageFactory
+		private UserIdentity $author,
+		private readonly PageIdentity $pageIdentity,
+		private readonly DerivedPageDataUpdater $derivedDataUpdater,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly RevisionStore $revisionStore,
+		private readonly SlotRoleRegistry $slotRoleRegistry,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly HookContainer $hookContainer,
+		private readonly UserGroupManager $userGroupManager,
+		private readonly TitleFormatter $titleFormatter,
+		private readonly ServiceOptions $serviceOptions,
+		private readonly array $softwareTags,
+		private readonly LoggerInterface $logger,
+		WikiPageFactory $wikiPageFactory,
 	) {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->serviceOptions = $serviceOptions;
 
-		$this->author = $author;
-		$this->pageIdentity = $page;
-		$this->wikiPage = $wikiPageFactory->newFromTitle( $page );
-		$this->derivedDataUpdater = $derivedDataUpdater;
+		$this->wikiPage = $wikiPageFactory->newFromTitle( $pageIdentity );
 		$this->derivedDataUpdater->setCause( self::CAUSE_EDIT );
 
-		$this->dbProvider = $dbProvider;
-		$this->revisionStore = $revisionStore;
-		$this->slotRoleRegistry = $slotRoleRegistry;
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->userGroupManager = $userGroupManager;
-		$this->titleFormatter = $titleFormatter;
 
 		$this->slotsUpdate = new RevisionSlotsUpdate();
 		$this->editResultBuilder = new EditResultBuilder(
@@ -264,8 +185,6 @@ class PageUpdater implements PageUpdateCauses {
 				]
 			)
 		);
-		$this->softwareTags = $softwareTags;
-		$this->logger = $logger;
 	}
 
 	/**

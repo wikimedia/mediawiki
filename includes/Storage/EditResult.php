@@ -27,36 +27,15 @@ class EditResult implements JsonSerializable {
 
 	private const SERIALIZATION_FORMAT_VERSION = '1';
 
-	/** @var bool */
-	private $isNew;
-
 	/** @var bool|int */
 	private $originalRevisionId;
-
-	/** @var int|null */
-	private $revertMethod;
-
-	/** @var int|null */
-	private $newestRevertedRevId;
-
-	/** @var int|null */
-	private $oldestRevertedRevId;
-
-	/** @var bool */
-	private $isExactRevert;
-
-	/** @var bool */
-	private $isNullEdit;
-
-	/** @var string[] */
-	private $revertTags;
 
 	/**
 	 * @param bool $isNew
 	 * @param bool|int $originalRevisionId
 	 * @param int|null $revertMethod
-	 * @param int|null $oldestReverted
-	 * @param int|null $newestReverted
+	 * @param int|null $oldestRevertedRevId
+	 * @param int|null $newestRevertedRevId
 	 * @param bool $isExactRevert
 	 * @param bool $isNullEdit
 	 * @param string[] $revertTags
@@ -64,23 +43,16 @@ class EditResult implements JsonSerializable {
 	 * @internal Use EditResultBuilder for constructing EditResults.
 	 */
 	public function __construct(
-		bool $isNew,
+		private readonly bool $isNew,
 		$originalRevisionId,
-		?int $revertMethod,
-		?int $oldestReverted,
-		?int $newestReverted,
-		bool $isExactRevert,
-		bool $isNullEdit,
-		array $revertTags
+		private readonly ?int $revertMethod,
+		private readonly ?int $oldestRevertedRevId,
+		private readonly ?int $newestRevertedRevId,
+		private readonly bool $isExactRevert,
+		private readonly bool $isNullEdit,
+		private readonly array $revertTags,
 	) {
-		$this->isNew = $isNew;
 		$this->originalRevisionId = $originalRevisionId;
-		$this->revertMethod = $revertMethod;
-		$this->oldestRevertedRevId = $oldestReverted;
-		$this->newestRevertedRevId = $newestReverted;
-		$this->isExactRevert = $isExactRevert;
-		$this->isNullEdit = $isNullEdit;
-		$this->revertTags = $revertTags;
 	}
 
 	/**

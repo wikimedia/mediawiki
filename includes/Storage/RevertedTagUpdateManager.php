@@ -20,18 +20,10 @@ use MediaWiki\JobQueue\Jobs\RevertedTagUpdateJob;
  */
 class RevertedTagUpdateManager {
 
-	/** @var JobQueueGroup */
-	private $jobQueueGroup;
-
-	/** @var EditResultCache */
-	private $editResultCache;
-
 	public function __construct(
-		EditResultCache $editResultCache,
-		JobQueueGroup $jobQueueGroup
+		private readonly EditResultCache $editResultCache,
+		private readonly JobQueueGroup $jobQueueGroup,
 	) {
-		$this->jobQueueGroup = $jobQueueGroup;
-		$this->editResultCache = $editResultCache;
 	}
 
 	/**

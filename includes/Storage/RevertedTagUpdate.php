@@ -32,24 +32,6 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 */
 	public const CONSTRUCTOR_OPTIONS = [ MainConfigNames::RevertedTagMaxDepth ];
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var int */
-	private $revertId;
-
-	/** @var EditResult */
-	private $editResult;
-
 	/** @var RevisionRecord|null */
 	private $revertRevision;
 
@@ -58,35 +40,26 @@ class RevertedTagUpdate implements DeferrableUpdate {
 
 	/** @var RevisionRecord|null */
 	private $oldestRevertedRevision;
-	private ChangeTagsStore $changeTagsStore;
 
 	/**
 	 * @param RevisionStore $revisionStore
 	 * @param LoggerInterface $logger
 	 * @param ChangeTagsStore $changeTagsStore
 	 * @param IConnectionProvider $dbProvider
-	 * @param ServiceOptions $serviceOptions
+	 * @param ServiceOptions $options
 	 * @param int $revertId ID of the revert
 	 * @param EditResult $editResult EditResult object of this revert
 	 */
 	public function __construct(
-		RevisionStore $revisionStore,
-		LoggerInterface $logger,
-		ChangeTagsStore $changeTagsStore,
-		IConnectionProvider $dbProvider,
-		ServiceOptions $serviceOptions,
-		int $revertId,
-		EditResult $editResult
+		private readonly RevisionStore $revisionStore,
+		private readonly LoggerInterface $logger,
+		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly ServiceOptions $options,
+		private readonly int $revertId,
+		private readonly EditResult $editResult,
 	) {
-		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-
-		$this->revisionStore = $revisionStore;
-		$this->logger = $logger;
-		$this->dbProvider = $dbProvider;
-		$this->options = $serviceOptions;
-		$this->revertId = $revertId;
-		$this->editResult = $editResult;
-		$this->changeTagsStore = $changeTagsStore;
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 	}
 
 	/**

@@ -51,68 +51,6 @@ class PageUpdaterFactory {
 		MainConfigNames::PageCreationLog,
 	];
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var RevisionRenderer */
-	private $revisionRenderer;
-
-	/** @var SlotRoleRegistry */
-	private $slotRoleRegistry;
-
-	/** @var ParserCache */
-	private $parserCache;
-
-	/** @var JobQueueGroup */
-	private $jobQueueGroup;
-
-	/** @var Language */
-	private $contLang;
-
-	/** @var ILBFactory */
-	private $loadbalancerFactory;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var DomainEventDispatcher */
-	private $eventDispatcher;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var EditResultCache */
-	private $editResultCache;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var UserGroupManager */
-	private $userGroupManager;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
-
-	/** @var ContentTransformer */
-	private $contentTransformer;
-
-	/** @var PageEditStash */
-	private $pageEditStash;
-
-	/** @var WANObjectCache */
-	private $mainWANObjectCache;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var string[] */
-	private $softwareTags;
-
-	private ChangeTagsStore $changeTagsStore;
-
 	/**
 	 * @param RevisionStore $revisionStore
 	 * @param RevisionRenderer $revisionRenderer
@@ -137,51 +75,29 @@ class PageUpdaterFactory {
 	 * @param string[] $softwareTags
 	 */
 	public function __construct(
-		RevisionStore $revisionStore,
-		RevisionRenderer $revisionRenderer,
-		SlotRoleRegistry $slotRoleRegistry,
-		ParserCache $parserCache,
-		JobQueueGroup $jobQueueGroup,
-		Language $contLang,
-		ILBFactory $loadbalancerFactory,
-		IContentHandlerFactory $contentHandlerFactory,
-		DomainEventDispatcher $eventDispatcher,
-		HookContainer $hookContainer,
-		EditResultCache $editResultCache,
-		LoggerInterface $logger,
-		ServiceOptions $options,
-		UserGroupManager $userGroupManager,
-		TitleFormatter $titleFormatter,
-		ContentTransformer $contentTransformer,
-		PageEditStash $pageEditStash,
-		WANObjectCache $mainWANObjectCache,
-		WikiPageFactory $wikiPageFactory,
-		ChangeTagsStore $changeTagsStore,
-		array $softwareTags
+		private readonly RevisionStore $revisionStore,
+		private readonly RevisionRenderer $revisionRenderer,
+		private readonly SlotRoleRegistry $slotRoleRegistry,
+		private readonly ParserCache $parserCache,
+		private readonly JobQueueGroup $jobQueueGroup,
+		private readonly Language $contLang,
+		private readonly ILBFactory $loadbalancerFactory,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly DomainEventDispatcher $eventDispatcher,
+		private readonly HookContainer $hookContainer,
+		private readonly EditResultCache $editResultCache,
+		private readonly LoggerInterface $logger,
+		private readonly ServiceOptions $options,
+		private readonly UserGroupManager $userGroupManager,
+		private readonly TitleFormatter $titleFormatter,
+		private readonly ContentTransformer $contentTransformer,
+		private readonly PageEditStash $pageEditStash,
+		private readonly WANObjectCache $mainWANObjectCache,
+		private readonly WikiPageFactory $wikiPageFactory,
+		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly array $softwareTags,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-
-		$this->revisionStore = $revisionStore;
-		$this->revisionRenderer = $revisionRenderer;
-		$this->slotRoleRegistry = $slotRoleRegistry;
-		$this->parserCache = $parserCache;
-		$this->jobQueueGroup = $jobQueueGroup;
-		$this->contLang = $contLang;
-		$this->loadbalancerFactory = $loadbalancerFactory;
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->eventDispatcher = $eventDispatcher;
-		$this->hookContainer = $hookContainer;
-		$this->editResultCache = $editResultCache;
-		$this->logger = $logger;
-		$this->options = $options;
-		$this->userGroupManager = $userGroupManager;
-		$this->titleFormatter = $titleFormatter;
-		$this->contentTransformer = $contentTransformer;
-		$this->pageEditStash = $pageEditStash;
-		$this->mainWANObjectCache = $mainWANObjectCache;
-		$this->softwareTags = $softwareTags;
-		$this->wikiPageFactory = $wikiPageFactory;
-		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	/**

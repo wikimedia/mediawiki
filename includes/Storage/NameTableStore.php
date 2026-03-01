@@ -21,37 +21,18 @@ use Wikimedia\Rdbms\IReadableDatabase;
  */
 class NameTableStore {
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
-	/** @var WANObjectCache */
-	private $cache;
-
-	/** @var LoggerInterface */
-	private $logger;
-
 	/** @var array<int,string>|null */
 	private $tableCache = null;
 
-	/** @var bool|string */
-	private $domain;
+	private readonly int $cacheTTL;
 
-	/** @var int */
-	private $cacheTTL;
-
-	/** @var string */
-	private $table;
-	/** @var string */
-	private $idField;
-	/** @var string */
-	private $nameField;
 	/** @var null|callable */
 	private $normalizationCallback;
 	/** @var null|callable */
 	private $insertCallback;
 
 	/**
-	 * @param ILoadBalancer $dbLoadBalancer A load balancer for acquiring database connections
+	 * @param ILoadBalancer $loadBalancer A load balancer for acquiring database connections
 	 * @param WANObjectCache $cache A cache manager for caching data. This can be the local
 	 *        wiki's default instance even if $dbDomain refers to a different wiki, since
 	 *        makeGlobalKey() is used to constructed a key that allows cached names from
@@ -64,29 +45,22 @@ class NameTableStore {
 	 * @param string $nameField
 	 * @param callable|null $normalizationCallback Normalization to be applied to names before being
 	 * saved or queried. This should be a callback that accepts and returns a single string.
-	 * @param bool|string $dbDomain Database domain ID. Use false for the local database domain.
+	 * @param bool|string $domain Database domain ID. Use false for the local database domain.
 	 * @param callable|null $insertCallback Callback to change insert fields accordingly.
 	 * This parameter was introduced in 1.32
 	 */
 	public function __construct(
-		ILoadBalancer $dbLoadBalancer,
-		WANObjectCache $cache,
-		LoggerInterface $logger,
-		$table,
-		$idField,
-		$nameField,
+		private readonly ILoadBalancer $loadBalancer,
+		private readonly WANObjectCache $cache,
+		private readonly LoggerInterface $logger,
+		private readonly string $table,
+		private readonly string $idField,
+		private readonly string $nameField,
 		?callable $normalizationCallback = null,
-		$dbDomain = false,
-		?callable $insertCallback = null
+		private readonly bool|string $domain = false,
+		?callable $insertCallback = null,
 	) {
-		$this->loadBalancer = $dbLoadBalancer;
-		$this->cache = $cache;
-		$this->logger = $logger;
-		$this->table = $table;
-		$this->idField = $idField;
-		$this->nameField = $nameField;
 		$this->normalizationCallback = $normalizationCallback;
-		$this->domain = $dbDomain;
 		$this->cacheTTL = BagOStuff::TTL_MONTH;
 		$this->insertCallback = $insertCallback;
 	}

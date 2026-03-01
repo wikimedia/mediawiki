@@ -32,15 +32,6 @@ class EditResultCache {
 
 	private const CACHE_KEY_PREFIX = 'EditResult';
 
-	/** @var BagOStuff */
-	private $mainObjectStash;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var ServiceOptions */
-	private $options;
-
 	/**
 	 * @param BagOStuff $mainObjectStash Main object stash, see
 	 *  MediaWikiServices::getMainObjectStash()
@@ -48,15 +39,11 @@ class EditResultCache {
 	 * @param ServiceOptions $options
 	 */
 	public function __construct(
-		BagOStuff $mainObjectStash,
-		IConnectionProvider $dbProvider,
-		ServiceOptions $options
+		private readonly BagOStuff $mainObjectStash,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly ServiceOptions $options,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-
-		$this->mainObjectStash = $mainObjectStash;
-		$this->dbProvider = $dbProvider;
-		$this->options = $options;
 	}
 
 	/**

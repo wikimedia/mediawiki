@@ -22,26 +22,6 @@ use Wikimedia\Rdbms\ILBFactory;
 class BlobStoreFactory {
 
 	/**
-	 * @var ILBFactory
-	 */
-	private $lbFactory;
-
-	/**
-	 * @var ExternalStoreAccess
-	 */
-	private $extStoreAccess;
-
-	/**
-	 * @var WANObjectCache
-	 */
-	private $cache;
-
-	/**
-	 * @var ServiceOptions
-	 */
-	private $options;
-
-	/**
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
@@ -52,17 +32,12 @@ class BlobStoreFactory {
 	];
 
 	public function __construct(
-		ILBFactory $lbFactory,
-		ExternalStoreAccess $extStoreAccess,
-		WANObjectCache $cache,
-		ServiceOptions $options
+		private readonly ILBFactory $lbFactory,
+		private readonly ExternalStoreAccess $extStoreAccess,
+		private readonly WANObjectCache $cache,
+		private readonly ServiceOptions $options,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-
-		$this->lbFactory = $lbFactory;
-		$this->extStoreAccess = $extStoreAccess;
-		$this->cache = $cache;
-		$this->options = $options;
 	}
 
 	/**
