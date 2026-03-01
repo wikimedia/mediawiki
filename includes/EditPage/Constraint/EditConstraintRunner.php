@@ -24,7 +24,7 @@ class EditConstraintRunner {
 	private LoggerInterface $logger;
 
 	/**
-	 * @var IEditConstraint[]
+	 * @var EditConstraint[]
 	 *
 	 * Constraints to check.
 	 */
@@ -33,7 +33,7 @@ class EditConstraintRunner {
 	/**
 	 * Create a new runner
 	 */
-	public function __construct( IEditConstraint ...$constraints ) {
+	public function __construct( EditConstraint ...$constraints ) {
 		// TODO consider injecting this?
 		$this->logger = LoggerFactory::getInstance( 'EditConstraintRunner' );
 		$this->addConstraints( ...$constraints );
@@ -47,7 +47,7 @@ class EditConstraintRunner {
 	 *
 	 * For constraints that have dependencies, use the EditConstraintFactory.
 	 */
-	public function addConstraint( IEditConstraint $constraint ) {
+	public function addConstraint( EditConstraint $constraint ) {
 		$this->constraints[] = $constraint;
 	}
 
@@ -55,7 +55,7 @@ class EditConstraintRunner {
 	 * Add multiple edit constraints to check.
 	 * @see addConstraint()
 	 */
-	public function addConstraints( IEditConstraint ...$constraints ) {
+	public function addConstraints( EditConstraint ...$constraints ) {
 		foreach ( $constraints as $constraint ) {
 			$this->addConstraint( $constraint );
 		}
@@ -103,36 +103,22 @@ class EditConstraintRunner {
 	 * Log the result of a constraint check.
 	 * Passes use the `debug` level; failures use `info`.
 	 */
-	private function logConstraintCheck( IEditConstraint $constraint, EditPageStatus $status ): void {
+	private function logConstraintCheck( EditConstraint $constraint, EditPageStatus $status ): void {
 		if ( $status->isOK() ) {
 			$this->logger->debug(
 				'Check for {name} succeeded',
 				[
-					'name' => $this->getConstraintName( $constraint ),
+					'name' => $constraint->getName(),
 				]
 			);
 		} else {
 			$this->logger->info(
 				'Check for {name} failed',
 				[
-					'name' => $this->getConstraintName( $constraint ),
+					'name' => $constraint->getName(),
 				]
 			);
 		}
-	}
-
-	private function getConstraintName( IEditConstraint $constraint ): string {
-		// Used for debug logging
-		$fullClassName = explode( '\\', get_class( $constraint ) );
-		$constraintName = end( $fullClassName );
-		if ( $constraint instanceof PageSizeConstraint ) {
-			// TODO "When you need to do this instanceof, it's a code smell"
-			// Convert IEditConstraint to abstract class with a getName method
-			// once the initial migration to edit constraints is complete
-			// PageSizeConstraint is used twice, make sure they can be told apart
-			$constraintName .= ' ' . $constraint->getType();
-		}
-		return $constraintName;
 	}
 
 }

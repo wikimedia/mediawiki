@@ -20,7 +20,7 @@ use MediaWiki\Permissions\Authority;
  * @internal
  * @author DannyS712
  */
-class ImageRedirectConstraint implements IEditConstraint {
+class ImageRedirectConstraint extends EditConstraint {
 
 	/**
 	 * @param Content $newContent

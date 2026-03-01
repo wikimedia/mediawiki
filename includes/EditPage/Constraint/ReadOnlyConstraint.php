@@ -17,7 +17,7 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  * @internal
  * @author DannyS712
  */
-class ReadOnlyConstraint implements IEditConstraint {
+class ReadOnlyConstraint extends EditConstraint {
 
 	public function __construct(
 		private readonly ReadOnlyMode $readOnlyMode,

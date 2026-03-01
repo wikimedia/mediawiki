@@ -4,7 +4,7 @@
  * @file
  */
 
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\EditPageStatus;
 
 /**
@@ -17,7 +17,7 @@ trait EditConstraintTestTrait {
 	/**
 	 * Assert that the constraint passes and that the status is good
 	 */
-	public function assertConstraintPassed( IEditConstraint $constraint ): EditPageStatus {
+	public function assertConstraintPassed( EditConstraint $constraint ): EditPageStatus {
 		$status = $constraint->checkConstraint();
 		$this->assertStatusGood( $status );
 		return $status;
@@ -26,7 +26,7 @@ trait EditConstraintTestTrait {
 	/**
 	 * Assert that the constraint fails with the specified status code
 	 */
-	public function assertConstraintFailed( IEditConstraint $constraint, int $statusCode ): EditPageStatus {
+	public function assertConstraintFailed( EditConstraint $constraint, int $statusCode ): EditPageStatus {
 		$status = $constraint->checkConstraint();
 		$this->assertStatusNotOK( $status );
 		$this->assertStatusValue( $statusCode, $status );

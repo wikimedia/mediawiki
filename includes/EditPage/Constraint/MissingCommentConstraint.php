@@ -15,7 +15,7 @@ use MediaWiki\EditPage\EditPageStatus;
  * @internal
  * @author DannyS712
  */
-class MissingCommentConstraint implements IEditConstraint {
+class MissingCommentConstraint extends EditConstraint {
 
 	public function __construct(
 		private readonly string $section,

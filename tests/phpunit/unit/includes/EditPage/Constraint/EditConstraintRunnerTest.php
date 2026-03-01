@@ -4,9 +4,8 @@
  * @file
  */
 
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
-use MediaWiki\EditPage\Constraint\IEditConstraint;
-use MediaWiki\EditPage\Constraint\PageSizeConstraint;
 use MediaWiki\EditPage\EditPageStatus;
 use Wikimedia\TestingAccessWrapper;
 
@@ -20,7 +19,7 @@ use Wikimedia\TestingAccessWrapper;
 class EditConstraintRunnerTest extends MediaWikiUnitTestCase {
 
 	private function getConstraint( EditPageStatus $result ) {
-		$constraint = $this->getMockBuilder( IEditConstraint::class )
+		$constraint = $this->getMockBuilder( EditConstraint::class )
 			->onlyMethods( [ 'checkConstraint' ] )
 			->getMockForAbstractClass();
 		$constraint->expects( $this->once() )
@@ -86,23 +85,10 @@ class EditConstraintRunnerTest extends MediaWikiUnitTestCase {
 		$this->assertStatusMessage( 'testwarning', $status );
 	}
 
-	public function testGetConstraintName() {
-		$runner = TestingAccessWrapper::newFromObject( new EditConstraintRunner() );
-		$pageSizeConstraint = new PageSizeConstraint(
-			1,
-			512,
-			PageSizeConstraint::BEFORE_MERGE
-		);
-		$this->assertSame(
-			'PageSizeConstraint ' . PageSizeConstraint::BEFORE_MERGE,
-			$runner->getConstraintName( $pageSizeConstraint )
-		);
-	}
-
 	public function testConstructor() {
 		$runner = TestingAccessWrapper::newFromObject( new EditConstraintRunner(
-			$this->createMock( IEditConstraint::class ),
-			$this->createMock( IEditConstraint::class ),
+			$this->createMock( EditConstraint::class ),
+			$this->createMock( EditConstraint::class ),
 		) );
 		$this->assertCount( 2, $runner->constraints );
 	}

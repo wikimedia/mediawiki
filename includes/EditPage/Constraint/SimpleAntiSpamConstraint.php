@@ -17,7 +17,7 @@ use Psr\Log\LoggerInterface;
  * @since 1.36
  * @internal
  */
-class SimpleAntiSpamConstraint implements IEditConstraint {
+class SimpleAntiSpamConstraint extends EditConstraint {
 
 	/**
 	 * @param LoggerInterface $logger for logging hits

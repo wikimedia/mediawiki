@@ -5,7 +5,7 @@
  */
 
 use MediaWiki\Content\Content;
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\ImageRedirectConstraint;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -61,11 +61,11 @@ class ImageRedirectConstraintTest extends MediaWikiUnitTestCase {
 	public static function provideTestFailure() {
 		yield 'Anonymous user' => [
 			'performerSpec' => 'anon',
-			'expectedValue' => IEditConstraint::AS_IMAGE_REDIRECT_ANON
+			'expectedValue' => EditConstraint::AS_IMAGE_REDIRECT_ANON
 		];
 		yield 'Registered user' => [
 			'performerSpec' => 'registered',
-			'expectedValue' => IEditConstraint::AS_IMAGE_REDIRECT_LOGGED
+			'expectedValue' => EditConstraint::AS_IMAGE_REDIRECT_LOGGED
 		];
 	}
 

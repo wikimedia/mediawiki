@@ -4,7 +4,7 @@
  * @file
  */
 
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\LinkPurgeRateLimitConstraint;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RateLimitSubject;
@@ -50,7 +50,7 @@ class LinkPurgeRateLimitConstraintTest extends MediaWikiUnitTestCase {
 		$subject = new RateLimitSubject( new UserIdentityValue( 1, 'test' ), null, [] );
 
 		$constraint = new LinkPurgeRateLimitConstraint( $limiter, $subject );
-		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_RATE_LIMITED );
+		$this->assertConstraintFailed( $constraint, EditConstraint::AS_RATE_LIMITED );
 	}
 
 }

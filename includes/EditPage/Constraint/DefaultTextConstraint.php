@@ -19,7 +19,7 @@ use Wikimedia\Message\MessageValue;
  * @internal
  * @author DannyS712
  */
-class DefaultTextConstraint implements IEditConstraint {
+class DefaultTextConstraint extends EditConstraint {
 
 	/**
 	 * @param Title $title

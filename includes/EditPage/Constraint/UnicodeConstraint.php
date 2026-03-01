@@ -14,7 +14,7 @@ use MediaWiki\EditPage\EditPageStatus;
  * @since 1.36
  * @internal
  */
-class UnicodeConstraint implements IEditConstraint {
+class UnicodeConstraint extends EditConstraint {
 
 	/**
 	 * Correct unicode

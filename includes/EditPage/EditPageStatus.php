@@ -4,7 +4,7 @@ namespace MediaWiki\EditPage;
 
 use Closure;
 use LogicException;
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use StatusValue;
 use Throwable;
 
@@ -19,7 +19,7 @@ use Throwable;
 class EditPageStatus extends StatusValue {
 
 	private ?Closure $errorFunction = null;
-	private ?IEditConstraint $failedConstraint = null;
+	private ?EditConstraint $failedConstraint = null;
 
 	/**
 	 * @param Closure|null $errorFunction A function that can be called to produce an error.
@@ -30,17 +30,17 @@ class EditPageStatus extends StatusValue {
 	}
 
 	/**
-	 * @return ?IEditConstraint The constraint that failed, or null if no constraint failed.
+	 * @return ?EditConstraint The constraint that failed, or null if no constraint failed.
 	 */
-	public function getFailedConstraint(): ?IEditConstraint {
+	public function getFailedConstraint(): ?EditConstraint {
 		return $this->failedConstraint;
 	}
 
 	/**
-	 * @param ?IEditConstraint $failedConstraint The constraint that failed and produced this status, or null if no
+	 * @param ?EditConstraint $failedConstraint The constraint that failed and produced this status, or null if no
 	 * constraint failed.
 	 */
-	public function setFailedConstraint( ?IEditConstraint $failedConstraint ): self {
+	public function setFailedConstraint( ?EditConstraint $failedConstraint ): self {
 		$this->failedConstraint = $failedConstraint;
 		return $this;
 	}

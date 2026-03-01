@@ -17,7 +17,7 @@ use MediaWiki\Permissions\Authority;
  * @internal
  * @author DannyS712
  */
-class ChangeTagsConstraint implements IEditConstraint {
+class ChangeTagsConstraint extends EditConstraint {
 
 	/**
 	 * @param Authority $performer

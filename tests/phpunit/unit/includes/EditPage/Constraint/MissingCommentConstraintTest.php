@@ -4,7 +4,7 @@
  * @file
  */
 
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
 
 /**
@@ -24,7 +24,7 @@ class MissingCommentConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testFailure() {
 		$constraint = new MissingCommentConstraint( 'new', '' );
-		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_TEXTBOX_EMPTY );
+		$this->assertConstraintFailed( $constraint, EditConstraint::AS_TEXTBOX_EMPTY );
 	}
 
 	public function testNonNew() {

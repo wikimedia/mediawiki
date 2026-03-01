@@ -4,7 +4,7 @@
  * @file
  */
 
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\RevisionDeletedConstraint;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Title\Title;
@@ -52,7 +52,7 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 			$title,
 			$this->createMock( User::class ),
 		);
-		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_REVISION_WAS_DELETED );
+		$this->assertConstraintFailed( $constraint, EditConstraint::AS_REVISION_WAS_DELETED );
 	}
 
 	public function testWarning_revisionDeletedCanSeeIgnored() {
@@ -80,7 +80,7 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 			$this->createMock( Title::class ),
 			$this->createMock( User::class ),
 		);
-		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_REVISION_WAS_DELETED );
+		$this->assertConstraintFailed( $constraint, EditConstraint::AS_REVISION_WAS_DELETED );
 	}
 
 	public function testFailure_revisionMissing() {
@@ -95,7 +95,7 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 			$title,
 			$this->createMock( User::class ),
 		);
-		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_REVISION_MISSING );
+		$this->assertConstraintFailed( $constraint, EditConstraint::AS_REVISION_MISSING );
 	}
 
 	private function createMockArticle( bool $isDeleted, bool $canSeeRevision ): Article {

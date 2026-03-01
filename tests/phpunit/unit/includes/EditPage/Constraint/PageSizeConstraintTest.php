@@ -4,7 +4,7 @@
  * @file
  */
 
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
 
 /**
@@ -47,18 +47,30 @@ class PageSizeConstraintTest extends MediaWikiUnitTestCase {
 		return [
 			'Before merge - CONTENT_TOO_BIG' => [
 				PageSizeConstraint::BEFORE_MERGE,
-				IEditConstraint::AS_CONTENT_TOO_BIG
+				EditConstraint::AS_CONTENT_TOO_BIG,
 			],
 			'After merge - MAX_ARTICLE_SIZE' => [
 				PageSizeConstraint::AFTER_MERGE,
-				IEditConstraint::AS_MAX_ARTICLE_SIZE_EXCEEDED
-			]
+				EditConstraint::AS_MAX_ARTICLE_SIZE_EXCEEDED,
+			],
 		];
 	}
 
 	public function testInvalidType() {
 		$this->expectException( InvalidArgumentException::class );
 		new PageSizeConstraint( 1, 1023, 'FooBar' );
+	}
+
+	public function testGetName() {
+		$pageSizeConstraint = new PageSizeConstraint(
+			1,
+			512,
+			PageSizeConstraint::BEFORE_MERGE
+		);
+		$this->assertSame(
+			'PageSizeConstraint ' . PageSizeConstraint::BEFORE_MERGE,
+			$pageSizeConstraint->getName()
+		);
 	}
 
 }

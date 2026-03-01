@@ -20,7 +20,7 @@ use Wikimedia\Message\MessageValue;
  * @internal
  * @author DannyS712
  */
-class PageSizeConstraint implements IEditConstraint {
+class PageSizeConstraint extends EditConstraint {
 
 	/**
 	 * Same constraint is used for two different errors, use these
@@ -64,15 +64,9 @@ class PageSizeConstraint implements IEditConstraint {
 		return EditPageStatus::newGood();
 	}
 
-	/**
-	 * Get the type, so that the two different uses of this constraint can be told
-	 * apart in debug logs.
-	 * @internal
-	 * @codeCoverageIgnore
-	 * @return string
-	 */
-	public function getType(): string {
-		return $this->type;
+	/** @inheritDoc */
+	public function getName(): string {
+		return parent::getName() . ' ' . $this->type;
 	}
 
 }

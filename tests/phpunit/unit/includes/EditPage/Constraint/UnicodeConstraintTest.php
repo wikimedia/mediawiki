@@ -4,7 +4,7 @@
  * @file
  */
 
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
 
 /**
@@ -26,7 +26,7 @@ class UnicodeConstraintTest extends MediaWikiUnitTestCase {
 		$constraint = new UnicodeConstraint( 'NotTheCorrectUnicode' );
 		$this->assertConstraintFailed(
 			$constraint,
-			IEditConstraint::AS_UNICODE_NOT_SUPPORTED
+			EditConstraint::AS_UNICODE_NOT_SUPPORTED
 		);
 	}
 

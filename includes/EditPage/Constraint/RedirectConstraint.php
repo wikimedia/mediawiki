@@ -28,7 +28,7 @@ use Wikimedia\Message\MessageValue;
  * @since 1.45
  * @internal
  */
-class RedirectConstraint implements IEditConstraint {
+class RedirectConstraint extends EditConstraint {
 
 	/** @var Title|null the title the problematic redirect is pointing to */
 	public ?Title $problematicTarget = null;

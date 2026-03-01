@@ -17,7 +17,7 @@ use MediaWiki\Permissions\PermissionStatus;
  * @since 1.44
  * @internal
  */
-class AuthorizationConstraint implements IEditConstraint {
+class AuthorizationConstraint extends EditConstraint {
 
 	public function __construct(
 		private readonly Authority $performer,

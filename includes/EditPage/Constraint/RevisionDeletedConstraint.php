@@ -17,7 +17,7 @@ use Wikimedia\Message\MessageValue;
  * @since 1.46
  * @internal
  */
-class RevisionDeletedConstraint implements IEditConstraint {
+class RevisionDeletedConstraint extends EditConstraint {
 
 	public function __construct(
 		private readonly Article $article,

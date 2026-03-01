@@ -32,7 +32,7 @@ use Wikimedia\Message\MessageValue;
  * @internal
  * @author DannyS712
  */
-class ExistingSectionEditConstraint implements IEditConstraint {
+class ExistingSectionEditConstraint extends EditConstraint {
 
 	public function __construct(
 		private readonly string $section,

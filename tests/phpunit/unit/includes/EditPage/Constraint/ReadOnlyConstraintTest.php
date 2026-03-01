@@ -4,7 +4,7 @@
  * @file
  */
 
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\ReadOnlyConstraint;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\TestingAccessWrapper;
@@ -30,7 +30,7 @@ class ReadOnlyConstraintTest extends MediaWikiUnitTestCase {
 		$readOnlyMode = $this->createMock( ReadOnlyMode::class );
 		$readOnlyMode->method( 'isReadOnly' )->willReturn( true );
 		$constraint = new ReadOnlyConstraint( $readOnlyMode );
-		$status = $this->assertConstraintFailed( $constraint, IEditConstraint::AS_READ_ONLY_PAGE );
+		$status = $this->assertConstraintFailed( $constraint, EditConstraint::AS_READ_ONLY_PAGE );
 		$this->assertNotNull( TestingAccessWrapper::newFromObject( $status )->errorFunction );
 	}
 

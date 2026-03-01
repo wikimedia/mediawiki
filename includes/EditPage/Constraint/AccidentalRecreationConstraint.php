@@ -23,7 +23,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * @internal
  * @author DannyS712
  */
-class AccidentalRecreationConstraint implements IEditConstraint {
+class AccidentalRecreationConstraint extends EditConstraint {
 
 	public function __construct(
 		private readonly IConnectionProvider $connectionProvider,

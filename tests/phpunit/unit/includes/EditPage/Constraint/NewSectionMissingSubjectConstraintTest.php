@@ -4,7 +4,7 @@
  * @file
  */
 
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\NewSectionMissingSubjectConstraint;
 
 /**
@@ -24,7 +24,7 @@ class NewSectionMissingSubjectConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testFailure() {
 		$constraint = new NewSectionMissingSubjectConstraint( 'new', '', false, '' );
-		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_SUMMARY_NEEDED );
+		$this->assertConstraintFailed( $constraint, EditConstraint::AS_SUMMARY_NEEDED );
 	}
 
 	public function testNonNew() {

@@ -5,7 +5,7 @@
  */
 
 use MediaWiki\EditPage\Constraint\AuthorizationConstraint;
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Tests\Unit\MockBlockTrait;
@@ -79,25 +79,25 @@ class AuthorizationConstraintTest extends MediaWikiUnitTestCase {
 			'performerSpec' => [ 'edit' ],
 			'page' => PageIdentityValue::localIdentity( 123, NS_MAIN, 'AuthorizationConstraintTest' ),
 			'new' => false,
-			'expectedValue' => IEditConstraint::AS_READ_ONLY_PAGE_ANON,
+			'expectedValue' => EditConstraint::AS_READ_ONLY_PAGE_ANON,
 		];
 		yield 'Registered user' => [
 			'performerSpec' => 'registered',
 			'page' => PageIdentityValue::localIdentity( 123, NS_MAIN, 'AuthorizationConstraintTest' ),
 			'new' => false,
-			'expectedValue' => IEditConstraint::AS_READ_ONLY_PAGE_LOGGED,
+			'expectedValue' => EditConstraint::AS_READ_ONLY_PAGE_LOGGED,
 		];
 		yield 'User without create permission creates a page' => [
 			'performerSpec' => [ 'create' ],
 			'page' => PageIdentityValue::localIdentity( 0, NS_MAIN, 'AuthorizationConstraintTest' ),
 			'new' => true,
-			'expectedValue' => IEditConstraint::AS_NO_CREATE_PERMISSION,
+			'expectedValue' => EditConstraint::AS_NO_CREATE_PERMISSION,
 		];
 		yield 'Blocked user' => [
 			'performerSpec' => 'blocked',
 			'page' => PageIdentityValue::localIdentity( 123, NS_MAIN, 'AuthorizationConstraintTest' ),
 			'new' => false,
-			'expectedValue' => IEditConstraint::AS_BLOCKED_PAGE_FOR_USER,
+			'expectedValue' => EditConstraint::AS_BLOCKED_PAGE_FOR_USER,
 		];
 	}
 

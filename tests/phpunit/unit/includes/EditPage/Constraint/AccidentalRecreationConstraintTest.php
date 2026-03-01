@@ -5,7 +5,7 @@
  */
 
 use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -61,7 +61,7 @@ class AccidentalRecreationConstraintTest extends MediaWikiUnitTestCase {
 		);
 		$this->assertConstraintFailed(
 			$constraint,
-			IEditConstraint::AS_ARTICLE_WAS_DELETED
+			EditConstraint::AS_ARTICLE_WAS_DELETED
 		);
 	}
 

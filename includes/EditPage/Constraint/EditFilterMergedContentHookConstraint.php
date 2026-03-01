@@ -24,7 +24,7 @@ use MediaWiki\User\User;
  * @author DannyS712
  * @internal
  */
-class EditFilterMergedContentHookConstraint implements IEditConstraint {
+class EditFilterMergedContentHookConstraint extends EditConstraint {
 
 	private readonly HookRunner $hookRunner;
 	private string $hookError = '';

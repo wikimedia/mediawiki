@@ -5,7 +5,7 @@
  */
 
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
@@ -50,7 +50,7 @@ class ChangeTagsConstraintTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertConstraintFailed(
 			$constraint,
-			IEditConstraint::AS_CHANGE_TAG_ERROR
+			EditConstraint::AS_CHANGE_TAG_ERROR
 		);
 	}
 

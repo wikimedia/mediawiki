@@ -18,7 +18,7 @@ use MediaWiki\Permissions\RateLimitSubject;
  * @internal
  * @author DannyS712
  */
-class LinkPurgeRateLimitConstraint implements IEditConstraint {
+class LinkPurgeRateLimitConstraint extends EditConstraint {
 
 	public function __construct(
 		private readonly RateLimiter $limiter,

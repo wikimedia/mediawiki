@@ -21,7 +21,7 @@ use MediaWiki\Title\Title;
  * @internal
  * @author DannyS712
  */
-class ContentModelChangeConstraint implements IEditConstraint {
+class ContentModelChangeConstraint extends EditConstraint {
 
 	/**
 	 * @param Authority $performer

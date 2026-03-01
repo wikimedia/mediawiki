@@ -4,7 +4,7 @@
  * @file
  */
 
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\SimpleAntiSpamConstraint;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
@@ -49,7 +49,7 @@ class SimpleAntiSpamConstraintTest extends MediaWikiUnitTestCase {
 			$user,
 			$title
 		);
-		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_SPAM_ERROR );
+		$this->assertConstraintFailed( $constraint, EditConstraint::AS_SPAM_ERROR );
 
 		$this->assertSame( [
 			[

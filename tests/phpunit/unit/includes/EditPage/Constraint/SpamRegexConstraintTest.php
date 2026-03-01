@@ -4,7 +4,7 @@
  * @file
  */
 
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Title\Title;
@@ -85,7 +85,7 @@ class SpamRegexConstraintTest extends MediaWikiUnitTestCase {
 			'Request-IP',
 			$title
 		);
-		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_SPAM_ERROR );
+		$this->assertConstraintFailed( $constraint, EditConstraint::AS_SPAM_ERROR );
 
 		$this->assertSame( [
 			[

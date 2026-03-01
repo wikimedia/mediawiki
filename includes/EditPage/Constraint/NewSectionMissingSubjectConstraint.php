@@ -16,7 +16,7 @@ use Wikimedia\Message\MessageValue;
  * @internal
  * @author DannyS712
  */
-class NewSectionMissingSubjectConstraint implements IEditConstraint {
+class NewSectionMissingSubjectConstraint extends EditConstraint {
 
 	public function __construct(
 		private readonly string $section,

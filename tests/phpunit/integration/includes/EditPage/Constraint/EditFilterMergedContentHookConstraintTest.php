@@ -6,8 +6,8 @@
 
 use MediaWiki\Content\Content;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
-use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\User\User;
@@ -61,7 +61,7 @@ class EditFilterMergedContentHookConstraintTest extends MediaWikiIntegrationTest
 		// Code path 1: Hook returns false, but status is still good
 		// Status has no value set, falls back to AS_HOOK_ERROR_EXPECTED
 		$constraint = $this->getConstraint( false );
-		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_HOOK_ERROR_EXPECTED );
+		$this->assertConstraintFailed( $constraint, EditConstraint::AS_HOOK_ERROR_EXPECTED );
 	}
 
 	public function testFailure_badStatus() {
@@ -88,7 +88,7 @@ class EditFilterMergedContentHookConstraintTest extends MediaWikiIntegrationTest
 
 		$this->assertConstraintFailed(
 			$constraint,
-			IEditConstraint::AS_HOOK_ERROR_EXPECTED
+			EditConstraint::AS_HOOK_ERROR_EXPECTED
 		);
 	}
 

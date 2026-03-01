@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Unit\EditPage;
 
 use Exception;
 use LogicException;
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\EditPage\IEditObject;
 use MediaWikiUnitTestCase;
@@ -19,7 +19,7 @@ class EditPageStatusTest extends MediaWikiUnitTestCase {
 
 		$this->assertNull( $status->getFailedConstraint() );
 
-		$mockConstraint = $this->createMock( IEditConstraint::class );
+		$mockConstraint = $this->createMock( EditConstraint::class );
 		$status->setFailedConstraint( $mockConstraint );
 
 		$this->assertSame( $mockConstraint, $status->getFailedConstraint() );

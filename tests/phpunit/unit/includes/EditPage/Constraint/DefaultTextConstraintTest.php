@@ -5,7 +5,7 @@
  */
 
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
-use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\Title\Title;
 
 /**
@@ -47,7 +47,7 @@ class DefaultTextConstraintTest extends MediaWikiUnitTestCase {
 			$userInput,
 			''
 		);
-		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_BLANK_ARTICLE );
+		$this->assertConstraintFailed( $constraint, EditConstraint::AS_BLANK_ARTICLE );
 	}
 
 	public static function provideTestFailure() {

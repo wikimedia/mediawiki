@@ -18,7 +18,7 @@ use Psr\Log\LoggerInterface;
  * @internal
  * @author DannyS712
  */
-class SpamRegexConstraint implements IEditConstraint {
+class SpamRegexConstraint extends EditConstraint {
 
 	private string $match = '';
 
