@@ -30,8 +30,7 @@ SELECT
   il_to,
   il_from_namespace,
   il_target_id
-FROM
-  /*_*/__temp__imagelinks;
+FROM /*_*/__temp__imagelinks;
 
 DROP TABLE /*_*/__temp__imagelinks;
 
