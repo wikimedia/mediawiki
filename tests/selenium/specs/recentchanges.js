@@ -26,17 +26,8 @@ describe( 'Special:RecentChanges', () => {
 		}
 
 		await apiClient.edit( name, content );
-		await browser.waitUntil( async () => {
-			const result = await apiClient.request( {
-				action: 'query',
-				list: 'recentchanges',
-				rctitle: name
-			} );
-			return result.query.recentchanges.length > 0;
-		} );
 
 		await RecentChangesPage.open();
-		await RecentChangesPage.liveUpdates.waitForDisplayed();
 		await RecentChangesPage.liveUpdates.click();
 		await expect( RecentChangesPage.title( name ) ).toExist();
 	} );
