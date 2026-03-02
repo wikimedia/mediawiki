@@ -20,7 +20,7 @@ class ParserTestMockParser extends Parser {
 	/** @inheritDoc */
 	public function preSaveTransform( $text, PageReference $page, UserIdentity $user,
 		ParserOptions $options, $clearState = true
-	) {
+	): string {
 		return $text;
 	}
 

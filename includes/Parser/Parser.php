@@ -795,7 +795,7 @@ class Parser {
 	 * @return-taint escaped
 	 * @since 1.8
 	 */
-	public function recursiveTagParse( $text, $frame = false ) {
+	public function recursiveTagParse( $text, $frame = false ): string {
 		$text = $this->internalParse( $text, false, $frame );
 		return $text;
 	}
@@ -819,7 +819,7 @@ class Parser {
 	 * @return string Fully parsed HTML
 	 * @return-taint escaped
 	 */
-	public function recursiveTagParseFully( $text, $frame = false ) {
+	public function recursiveTagParseFully( $text, $frame = false ): string {
 		$text = $this->recursiveTagParse( $text, $frame );
 		$text = $this->internalParseHalfParsed( $text, false );
 		return $text;
@@ -890,7 +890,7 @@ class Parser {
 	 * @return string
 	 * @since 1.19
 	 */
-	public function recursivePreprocess( $text, $frame = false ) {
+	public function recursivePreprocess( $text, $frame = false ): string {
 		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
 		return $text;
@@ -910,7 +910,7 @@ class Parser {
 	 * @return string
 	 * @since 1.17
 	 */
-	public function getPreloadText( $text, PageReference $page, ParserOptions $options, $params = [] ) {
+	public function getPreloadText( $text, PageReference $page, ParserOptions $options, $params = [] ): string {
 		$msg = new RawMessage( $text );
 		$text = $msg->params( $params )->plain();
 
@@ -1175,7 +1175,7 @@ class Parser {
 	 * @param array[] &$matches Out parameter, Array: extracted tags
 	 * @return string Stripped text
 	 */
-	public static function extractTagsAndParams( array $elements, $text, &$matches ) {
+	public static function extractTagsAndParams( array $elements, $text, &$matches ): string {
 		static $n = 1;
 		$stripped = '';
 		$matches = [];
@@ -1259,7 +1259,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	public function insertStripItem( $text ) {
+	public function insertStripItem( $text ): string {
 		$marker = self::MARKER_PREFIX . "-item-{$this->mMarkerIndex}-" . self::MARKER_SUFFIX;
 		$this->mMarkerIndex++;
 		$this->mStripState->addGeneral( $marker, $text );
@@ -1272,7 +1272,7 @@ class Parser {
 	 * @param string $text
 	 * @return string
 	 */
-	private function handleTables( $text ) {
+	private function handleTables( string $text ): string {
 		$lines = StringUtils::explode( "\n", $text );
 		$out = '';
 		$td_history = []; # Is currently a td tag open?
@@ -1482,7 +1482,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	public function internalParse( $text, $isMain = true, $frame = false ) {
+	public function internalParse( $text, $isMain = true, $frame = false ): string {
 		$origText = $text;
 
 		# Hook to suspend the parser in this state
@@ -1614,7 +1614,7 @@ class Parser {
 	 * @param bool $linestart
 	 * @return string
 	 */
-	private function internalParseHalfParsed( $text, $isMain = true, $linestart = true ) {
+	private function internalParseHalfParsed( string $text, bool $isMain = true, bool $linestart = true ): string {
 		$text = $this->mStripState->unstripGeneral( $text );
 
 		$text = BlockLevelPass::doBlockLevels( $text, $linestart );
@@ -1683,7 +1683,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	private function handleMagicLinks( $text ) {
+	private function handleMagicLinks( string $text ): string {
 		$prots = $this->urlUtils->validAbsoluteProtocols();
 		$urlChar = self::EXT_LINK_URL_CLASS;
 		$addr = self::EXT_LINK_ADDR;
@@ -1716,7 +1716,7 @@ class Parser {
 	 * @param array $m
 	 * @return string HTML
 	 */
-	private function magicLinkCallback( array $m ) {
+	private function magicLinkCallback( array $m ): string {
 		if ( isset( $m[1] ) && $m[1] !== '' ) {
 			# Skip anchor
 			return $m[0];
@@ -1795,7 +1795,7 @@ class Parser {
 	 * @return string HTML
 	 * @internal
 	 */
-	private function makeFreeExternalLink( $url, $numPostProto ) {
+	private function makeFreeExternalLink( string $url, int $numPostProto ): string {
 		$trail = '';
 
 		# The characters '<' and '>' (which were escaped by
@@ -1870,7 +1870,7 @@ class Parser {
 	 * @param string $text
 	 * @return string
 	 */
-	private function handleHeadings( $text ) {
+	private function handleHeadings( string $text ): string {
 		for ( $i = 6; $i >= 1; --$i ) {
 			$h = str_repeat( '=', $i );
 			// Trim non-newline whitespace from headings
@@ -1887,7 +1887,7 @@ class Parser {
 	 *
 	 * @return string The altered text
 	 */
-	private function handleAllQuotes( $text ) {
+	private function handleAllQuotes( string $text ): string {
 		$outtext = '';
 		$lines = StringUtils::explode( "\n", $text );
 		foreach ( $lines as $line ) {
@@ -1905,7 +1905,7 @@ class Parser {
 	 * @return string
 	 * @internal
 	 */
-	public function doQuotes( $text ) {
+	public function doQuotes( $text ): string {
 		$arr = preg_split( "/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		$countarr = count( $arr );
 		if ( $countarr == 1 ) {
@@ -2090,7 +2090,7 @@ class Parser {
 	 * @param string $text
 	 * @return string
 	 */
-	private function handleExternalLinks( $text ) {
+	private function handleExternalLinks( string $text ): string {
 		$bits = preg_split( $this->mExtLinkBracketedRegex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		if ( $bits === false ) {
 			// T321234: Don't try to fix old revisions with broken UTF-8, just return $text as is
@@ -2175,7 +2175,7 @@ class Parser {
 	 * @param LinkTarget|PageReference|null $title Optional page, for wgNoFollowNsExceptions lookups
 	 * @return string|null Rel attribute for $url
 	 */
-	public static function getExternalLinkRel( $url = false, $title = null ) {
+	public static function getExternalLinkRel( $url = false, $title = null ): ?string {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$noFollowLinks = $mainConfig->get( MainConfigNames::NoFollowLinks );
 		$noFollowNsExceptions = $mainConfig->get( MainConfigNames::NoFollowNsExceptions );
@@ -2234,7 +2234,7 @@ class Parser {
 	 * @param string $url
 	 * @return string
 	 */
-	public static function normalizeLinkUrl( $url ) {
+	public static function normalizeLinkUrl( $url ): string {
 		# Test for RFC 3986 IPv6 syntax
 		$scheme = '[a-z][a-z0-9+.-]*:';
 		$userinfo = '(?:[a-z0-9\-._~!$&\'()*+,;=:]|%[0-9a-f]{2})*';
@@ -2322,9 +2322,9 @@ class Parser {
 	 *
 	 * @param string $url
 	 *
-	 * @return string
+	 * @return string|false the image html, or false if not allowed
 	 */
-	private function maybeMakeExternalImage( $url ) {
+	private function maybeMakeExternalImage( string $url ): string|false {
 		$imagesfrom = $this->mOptions->getAllowExternalImagesFrom();
 		$imagesexception = (bool)$imagesfrom;
 		$text = false;
@@ -2382,7 +2382,7 @@ class Parser {
 	 *
 	 * @return string Processed text
 	 */
-	private function handleInternalLinks( $text ) {
+	private function handleInternalLinks( string $text ): string {
 		$this->mLinkHolders->merge( $this->handleInternalLinks2( $text ) );
 		return $text;
 	}
@@ -2708,7 +2708,10 @@ class Parser {
 	 * @param string $prefix
 	 * @return string HTML-wikitext mix oh yuck
 	 */
-	private function makeKnownLinkHolder( LinkTarget $nt, $text = '', $trail = '', $prefix = '' ) {
+	private function makeKnownLinkHolder(
+		LinkTarget $nt, string $text = '',
+		string $trail = '', string $prefix = ''
+	): string {
 		[ $inside, $trail ] = Linker::splitTrail( $trail );
 
 		if ( $text == '' ) {
@@ -2732,7 +2735,7 @@ class Parser {
 	 * @param string $text More-or-less HTML
 	 * @return string Less-or-more HTML with NOPARSE bits
 	 */
-	private function armorLinks( $text ) {
+	private function armorLinks( string $text ): string {
 		return preg_replace( '/\b((?i)' . $this->urlUtils->validProtocols() . ')/',
 			self::MARKER_PREFIX . "NOPARSE$1", $text );
 	}
@@ -2745,7 +2748,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	private function expandMagicVariable( $index, $frame = false ) {
+	private function expandMagicVariable( string $index, $frame = false ): string {
 		/**
 		 * Some of these require message or data lookups and can be
 		 * expensive to check many times.
@@ -2839,7 +2842,7 @@ class Parser {
 	 */
 	public function replaceVariables(
 		$text, $frame = false, $argsOnly = false, array $options = []
-	) {
+	): string {
 		# Is there any text? Also, Prevent too big inclusions!
 		$textSize = strlen( $text );
 		if ( $textSize < 1 || $textSize > $this->mOptions->getMaxIncludeSize() ) {
@@ -2928,7 +2931,7 @@ class Parser {
 	 * @return string|array The text of the template
 	 * @internal
 	 */
-	public function braceSubstitution( array $piece, PPFrame $frame ) {
+	public function braceSubstitution( array $piece, PPFrame $frame ): string|array {
 		// Flags
 
 		// $text has been filled
@@ -3802,7 +3805,7 @@ class Parser {
 	 * @return string
 	 * @internal
 	 */
-	public function interwikiTransclude( LinkTarget $link, $action ) {
+	public function interwikiTransclude( LinkTarget $link, $action ): string {
 		if ( !$this->svcOptions->get( MainConfigNames::EnableScaryTranscluding ) ) {
 			return wfMessage( 'scarytranscludedisabled' )->inContentLanguage()->text();
 		}
@@ -3934,7 +3937,7 @@ class Parser {
 	 * @internal
 	 * @since 1.12
 	 */
-	public function extensionSubstitution( array $params, PPFrame $frame, bool $processNowiki = false ) {
+	public function extensionSubstitution( array $params, PPFrame $frame, bool $processNowiki = false ): string {
 		static $errorStr = '<span class="error">';
 
 		$name = $frame->expand( $params['name'] );
@@ -4063,7 +4066,7 @@ class Parser {
 	 * @param string $text
 	 * @return string
 	 */
-	private function handleDoubleUnderscore( $text ) {
+	private function handleDoubleUnderscore( string $text ): string {
 		# The position of __TOC__ needs to be recorded
 		$mw = $this->magicWordFactory->get( 'toc' );
 		$tocAlias = null;
@@ -4237,7 +4240,7 @@ class Parser {
 	 * @param bool $isMain
 	 * @return string
 	 */
-	private function finalizeHeadings( $text, $origText, $isMain = true ) {
+	private function finalizeHeadings( string $text, string $origText, bool $isMain = true ): string {
 		# Inhibit editsection links if requested in the page
 		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
 			$maybeShowEditLink = false;
@@ -4592,7 +4595,7 @@ class Parser {
 		UserIdentity $user,
 		ParserOptions $options,
 		$clearState = true
-	) {
+	): string {
 		if ( $clearState ) {
 			$magicScopeVariable = $this->lock();
 		}
@@ -4630,7 +4633,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	private function pstPass2( $text, UserIdentity $user ) {
+	private function pstPass2( string $text, UserIdentity $user ): string {
 		# Note: This is the timestamp saved as hardcoded wikitext to the database, we use
 		# $this->contLang here in order to give everyone the same signature and use the default one
 		# rather than the one selected in each user's preferences.  (see also T14815)
@@ -4707,7 +4710,7 @@ class Parser {
 	 * @return string
 	 * @since 1.6
 	 */
-	public function getUserSig( UserIdentity $user, $nickname = false, $fancySig = null ) {
+	public function getUserSig( UserIdentity $user, $nickname = false, $fancySig = null ): string {
 		$username = $user->getName();
 
 		# If not given, retrieve from the user object.
@@ -4774,7 +4777,7 @@ class Parser {
 	 * @return string|false An expanded string, or false if invalid.
 	 * @since 1.6
 	 */
-	public function validateSig( $text ) {
+	public function validateSig( $text ): string|false {
 		return Xml::isWellFormedXmlFragment( $text ) ? $text : false;
 	}
 
@@ -4789,7 +4792,7 @@ class Parser {
 	 * @return string Signature text
 	 * @since 1.6
 	 */
-	public function cleanSig( $text, $parsing = false ) {
+	public function cleanSig( $text, $parsing = false ): string {
 		if ( !$parsing ) {
 			$magicScopeVariable = $this->lock();
 			$this->startParse(
@@ -4831,7 +4834,7 @@ class Parser {
 	 * @return string Signature text with /~{3,5}/ removed
 	 * @since 1.7
 	 */
-	public static function cleanSigInSig( $text ) {
+	public static function cleanSigInSig( $text ): string {
 		$text = preg_replace( '/~{3,5}/', '', $text );
 		return $text;
 	}
@@ -4852,7 +4855,7 @@ class Parser {
 	 *   string to remove the marker.
 	 * @return string Result HTML
 	 */
-	public static function replaceTableOfContentsMarker( $text, $toc ) {
+	public static function replaceTableOfContentsMarker( $text, $toc ): string {
 		// Optimization: Avoid a potentially expensive Remex tokenization and reserialization
 		// if the content does not contain a TOC placeholder, such as during message parsing,
 		// which may occur hundreds of times per request (T394059).
@@ -4927,7 +4930,7 @@ class Parser {
 	 * @return string
 	 * @since 1.3
 	 */
-	public function transformMsg( $text, ParserOptions $options, ?PageReference $page = null ) {
+	public function transformMsg( $text, ParserOptions $options, ?PageReference $page = null ): string {
 		static $executing = false;
 
 		# Guard against infinite recursion
@@ -5029,10 +5032,10 @@ class Parser {
 	 *     Please read the documentation in includes/parser/Preprocessor.php for more information
 	 *     about the methods available in PPFrame and PPNode.
 	 *
-	 * @return string|callable|null The old callback function for this name, if any
+	 * @return ?callable The old callback function for this name, if any
 	 * @since 1.6
 	 */
-	public function setFunctionHook( $id, callable $callback, $flags = 0 ) {
+	public function setFunctionHook( $id, callable $callback, $flags = 0 ): ?callable {
 		$oldVal = $this->mFunctionHooks[$id][0] ?? null;
 		$this->mFunctionHooks[$id] = [ $callback, $flags ];
 
@@ -5088,7 +5091,7 @@ class Parser {
 	 *
 	 * @param string &$text
 	 */
-	private function replaceLinkHoldersPrivate( &$text ) {
+	private function replaceLinkHoldersPrivate( string &$text ): void {
 		$this->mLinkHolders->replace( $text );
 	}
 
@@ -5099,7 +5102,7 @@ class Parser {
 	 * @param string $text
 	 * @return string
 	 */
-	private function replaceLinkHoldersText( $text ) {
+	private function replaceLinkHoldersText( string $text ): string {
 		return $this->mLinkHolders->replaceText( $text );
 	}
 
@@ -5117,7 +5120,7 @@ class Parser {
 	 * @return string HTML
 	 * @internal
 	 */
-	public function renderImageGallery( $text, array $params ) {
+	public function renderImageGallery( $text, array $params ): string {
 		$mode = $params['mode'] ?? false;
 
 		try {
@@ -5364,7 +5367,7 @@ class Parser {
 	 * @since 1.5
 	 * @deprecated since 1.46; use ::makeImageHtml() instead
 	 */
-	public function makeImage( LinkTarget $link, $options, $holders = false ) {
+	public function makeImage( LinkTarget $link, $options, $holders = false ): string {
 		wfDeprecated( __METHOD__, '1.46' );
 		return $this->makeImageInternal(
 			$link, $options, $holders ?: null, shouldReplaceLinkHolders: false
@@ -5735,7 +5738,7 @@ class Parser {
 	 * @return string
 	 * @deprecated since 1.35, internal callback should not have been public
 	 */
-	public function attributeStripCallback( &$text, $frame = false ) {
+	public function attributeStripCallback( &$text, $frame = false ): string {
 		wfDeprecated( __METHOD__, '1.35' );
 		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
@@ -5764,7 +5767,7 @@ class Parser {
 	 * @since 1.32
 	 * @return string
 	 */
-	public function getUrlProtocols() {
+	public function getUrlProtocols(): string {
 		return $this->urlUtils->validProtocols();
 	}
 
@@ -5795,10 +5798,14 @@ class Parser {
 	 * @param string $mode One of "get" or "replace"
 	 * @param string|false $newText Replacement text for section data.
 	 * @param PageReference|null $page
-	 * @return string For "get", the extracted section text.
-	 *   for "replace", the whole page with the section replaced.
+	 * @return string|false For "get", the extracted section text or $newText
+	 *   if not found; for "replace", the whole page with the section
+	 *   (if found) replaced with $newText.
 	 */
-	private function extractSections( $text, $sectionId, $mode, $newText, ?PageReference $page = null ) {
+	private function extractSections(
+		string $text, string|int $sectionId, string $mode,
+		string|false $newText, ?PageReference $page = null
+	): string|false {
 		$magicScopeVariable = $this->lock();
 		$this->startParse(
 			$page,
@@ -5823,7 +5830,7 @@ class Parser {
 		}
 
 		# Check for empty input
-		if ( strval( $text ) === '' ) {
+		if ( $text === '' ) {
 			# Only sections 0 and T-0 exist in an empty document
 			if ( $sectionIndex === 0 ) {
 				return $mode === 'get' ? '' : $newText;
@@ -5914,10 +5921,11 @@ class Parser {
 	 * (e.g. 0, 1 or 'T-1').
 	 * @param string|false $defaultText Default to return if section is not found
 	 *
-	 * @return string Text of the requested section
+	 * @return string|false Text of the requested section, or else
+	 *  $defaultText if not found.
 	 * @since 1.7
 	 */
-	public function getSection( $text, $sectionId, $defaultText = '' ) {
+	public function getSection( $text, $sectionId, $defaultText = '' ): string|false {
 		return $this->extractSections( $text, $sectionId, 'get', $defaultText );
 	}
 
@@ -5931,10 +5939,10 @@ class Parser {
 	 * (e.g. 0, 1 or 'T-1').
 	 * @param string|false $newText Replacing text
 	 *
-	 * @return string Modified text
+	 * @return string|false Modified text
 	 * @since 1.7
 	 */
-	public function replaceSection( $oldText, $sectionId, $newText ) {
+	public function replaceSection( $oldText, $sectionId, $newText ): string|false {
 		return $this->extractSections( $oldText, $sectionId, 'replace', $newText );
 	}
 
@@ -6088,7 +6096,7 @@ class Parser {
 	 * @return string TS::MW timestamp
 	 * @since 1.9
 	 */
-	public function getRevisionTimestamp() {
+	public function getRevisionTimestamp(): string {
 		if ( $this->mRevisionTimestamp !== null ) {
 			return $this->mRevisionTimestamp;
 		}
@@ -6184,7 +6192,7 @@ class Parser {
 	 * @return string Anchor (starting with '#')
 	 * @since 1.12
 	 */
-	public function guessSectionNameFromWikiText( $text ) {
+	public function guessSectionNameFromWikiText( $text ): string {
 		# Strip out wikitext links(they break the anchor)
 		$text = $this->stripSectionName( $text );
 		$sectionName = self::getSectionNameFromStrippedText( $text );
@@ -6202,7 +6210,7 @@ class Parser {
 	 * @since 1.17
 	 * @deprecated since 1.45
 	 */
-	public function guessLegacySectionNameFromWikiText( $text ) {
+	public function guessLegacySectionNameFromWikiText( $text ): string {
 		wfDeprecated( __METHOD__, '1.45' );
 		# Strip out wikitext links(they break the anchor)
 		$text = $this->stripSectionName( $text );
@@ -6216,7 +6224,7 @@ class Parser {
 	 * @return string Anchor (starting with '#')
 	 * @since 1.31
 	 */
-	public static function guessSectionNameFromStrippedText( $text ) {
+	public static function guessSectionNameFromStrippedText( $text ): string {
 		$sectionName = self::getSectionNameFromStrippedText( $text );
 		return self::makeAnchor( $sectionName );
 	}
@@ -6227,7 +6235,7 @@ class Parser {
 	 * @param string $text
 	 * @return string
 	 */
-	private static function normalizeSectionName( $text ) {
+	private static function normalizeSectionName( string $text ): string {
 		# T90902: ensure the same normalization is applied for IDs as to links
 		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
 		try {
@@ -6253,7 +6261,7 @@ class Parser {
 	 * @return string Filtered text string
 	 * @since 1.12
 	 */
-	public function stripSectionName( $text ) {
+	public function stripSectionName( $text ): string {
 		# Strip internal link markup
 		$text = preg_replace( '/\[\[:?([^[|]+)\|([^[]+)\]\]/', '$2', $text );
 		$text = preg_replace( '/\[\[:?([^[]+)\|?\]\]/', '$1', $text );
@@ -6291,7 +6299,7 @@ class Parser {
 	 * @internal
 	 * @since 1.12
 	 */
-	public function markerSkipCallback( $s, callable $callback ) {
+	public function markerSkipCallback( $s, callable $callback ): string {
 		$i = 0;
 		$out = '';
 		while ( $i < strlen( $s ) ) {
@@ -6322,7 +6330,7 @@ class Parser {
 	 * @return string
 	 * @since 1.19
 	 */
-	public function killMarkers( $text ) {
+	public function killMarkers( $text ): string {
 		return $this->mStripState->killMarkers( $text );
 	}
 
@@ -6415,7 +6423,7 @@ class Parser {
 	 * @return string
 	 * @since 1.24
 	 */
-	public static function stripOuterParagraph( $html ) {
+	public static function stripOuterParagraph( $html ): string {
 		$m = [];
 		if ( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $html, $m ) && !str_contains( $m[1], '</p>' ) ) {
 			$html = $m[1];
