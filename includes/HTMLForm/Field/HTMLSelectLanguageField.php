@@ -17,6 +17,7 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 	private bool $useCodex = false;
 	/** @var array<string, string> Language code => language name */
 	private array $languages = [];
+	private ?HTMLMultiSelectField $multiSelectProxy = null;
 
 	/**
 	 * @stable to call
@@ -97,16 +98,69 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 		$this->mParent->getOutput()->addModules( 'mediawiki.widgets.LanguageSelectWidget' );
 
 		$standardAttribs = $this->getAttributes( [ 'disabled', 'required', 'multiple', 'size' ] );
+		$isMultiple = $this->mParams['multiple'] ?? false;
+		$defaultValue = $isMultiple ? [] : null;
 
 		$widget = new LanguageSelectWidget( [
 			'languages' => $this->languages,
 			'name' => $this->mName,
-			'value' => $value !== null && $value !== '' ? $value : ( $this->mParams['default'] ?? null ),
+			'value' => $value ?: ( $this->mParams['default'] ?? $defaultValue ),
 			'id' => $this->mID,
 			'cssclass' => trim( $this->mClass . ' cdx-text-input__input' ),
 		] + $standardAttribs );
 
 		return $widget->toString();
+	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function loadDataFromRequest( $request ) {
+		if ( $this->isCodexAndMulti() ) {
+			return $this->getMultiSelectProxy()->loadDataFromRequest( $request );
+		}
+
+		return parent::loadDataFromRequest( $request );
+	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function validate( $value, $alldata ) {
+		if ( $this->isCodexAndMulti() ) {
+			return $this->getMultiSelectProxy()->validate( $value, $alldata );
+		}
+
+		return parent::validate( $value, $alldata );
+	}
+
+	private function isCodexAndMulti(): bool {
+		return $this->useCodex && ( $this->mParams['multiple'] ?? false );
+	}
+
+	private function getMultiSelectProxy(): HTMLMultiSelectField {
+		if ( $this->multiSelectProxy === null ) {
+			$name = $this->mParams['fieldname'];
+
+			// Since the HTMLSelectLanguageField didn't traditionally know how to handle multi-select,
+			// we hack it here by delegating to HTMLMultiSelectField, it natively does not include the []
+			// in the fieldname, and HTMLRequest::getArray() doesn't support the [] syntax, so we need to remove it
+			if ( str_ends_with( $name, '[]' ) ) {
+				$name = substr( $name, 0, -2 );
+			}
+			$this->multiSelectProxy = new HTMLMultiSelectField( [
+				'fieldname' => $name,
+				'type' => 'multiselect',
+				'parent' => $this->mParent,
+				'options' => $this->mParams['options'] ?? [],
+				'required' => $this->mParams['required'] ?? false,
+				'default' => $this->getDefault()
+			] );
+		}
+
+		return $this->multiSelectProxy;
 	}
 }
 
