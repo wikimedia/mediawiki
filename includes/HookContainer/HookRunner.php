@@ -539,7 +539,6 @@ class HookRunner implements
 	\MediaWiki\Storage\Hook\ArticlePrepareTextForEditHook,
 	\MediaWiki\Storage\Hook\BeforeRevertedTagUpdateHook,
 	\MediaWiki\Storage\Hook\MultiContentSaveHook,
-	\MediaWiki\Storage\Hook\PageContentSaveHook,
 	\MediaWiki\Storage\Hook\PageSaveCompleteHook,
 	\MediaWiki\Storage\Hook\ParserOutputStashForEditHook,
 	\MediaWiki\Storage\Hook\RevisionDataUpdatesHook,
@@ -3102,17 +3101,6 @@ class HookRunner implements
 		return $this->container->run(
 			'PageContentLanguage',
 			[ $title, &$pageLang, $userLang ]
-		);
-	}
-
-	/** @inheritDoc */
-	public function onPageContentSave( $wikiPage, $user, $content, &$summary,
-		$isminor, $iswatch, $section, $flags, $status
-	) {
-		return $this->container->run(
-			'PageContentSave',
-			[ $wikiPage, $user, $content, &$summary, $isminor, $iswatch,
-				$section, $flags, $status ]
 		);
 	}
 

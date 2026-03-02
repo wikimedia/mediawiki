@@ -20,7 +20,6 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPage;
@@ -34,7 +33,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
-use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
@@ -337,16 +335,6 @@ class PageUpdater implements PageUpdateCauses {
 		}
 
 		return $this->derivedDataUpdater;
-	}
-
-	/**
-	 * @param UserIdentity $user
-	 *
-	 * @return User
-	 */
-	private static function toLegacyUser( UserIdentity $user ) {
-		$userFactory = MediaWikiServices::getInstance()->getUserFactory();
-		return $userFactory->newFromUserIdentity( $user );
 	}
 
 	/**
@@ -932,20 +920,6 @@ class PageUpdater implements PageUpdateCauses {
 		$allowedByHook = $this->hookRunner->onMultiContentSave(
 			$renderedRevision, $this->author, $summary, $this->flags, $hookStatus
 		);
-		if ( $allowedByHook && $this->hookContainer->isRegistered( 'PageContentSave' ) ) {
-			// Also run the legacy hook.
-			// NOTE: WikiPage should only be used for the legacy hook,
-			// and only if something uses the legacy hook.
-			$mainContent = $this->derivedDataUpdater->getSlots()->getContent( SlotRecord::MAIN );
-
-			$legacyUser = self::toLegacyUser( $this->author );
-
-			// Deprecated since 1.35.
-			$allowedByHook = $this->hookRunner->onPageContentSave(
-				$this->getWikiPage(), $legacyUser, $mainContent, $summary,
-				(bool)( $this->flags & EDIT_MINOR ), null, null, $this->flags, $hookStatus
-			);
-		}
 
 		if ( !$allowedByHook ) {
 			// The hook has prevented this change from being saved.

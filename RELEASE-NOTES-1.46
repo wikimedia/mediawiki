@@ -237,6 +237,7 @@ because of Phabricator reports.
 * EtcdConfig::setLogger(), deprecated in 1.41, has been removed.
 * DatabaseBlock::delete, deprecated in 1.36, has been removed. Please use
   DatabaseBlockStore::deleteBlock instead.
+* The PageContentSave hook, deprecated in 1.35, has been removed.
 * The UserIsBlockedGlobally hook, deprecated in 1.40, has been removed
 * The hooks 'AbortTalkPageEmailNotification' and 'AbortEmailNotification'
   (deprecated in 1.44 and 1.45) have been removed.

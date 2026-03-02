@@ -3498,7 +3498,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Storage\\Hook\\ArticlePrepareTextForEditHook' => __DIR__ . '/includes/Storage/Hook/ArticlePrepareTextForEditHook.php',
 	'MediaWiki\\Storage\\Hook\\BeforeRevertedTagUpdateHook' => __DIR__ . '/includes/Storage/Hook/BeforeRevertedTagUpdateHook.php',
 	'MediaWiki\\Storage\\Hook\\MultiContentSaveHook' => __DIR__ . '/includes/Storage/Hook/MultiContentSaveHook.php',
-	'MediaWiki\\Storage\\Hook\\PageContentSaveHook' => __DIR__ . '/includes/Storage/Hook/PageContentSaveHook.php',
 	'MediaWiki\\Storage\\Hook\\PageSaveCompleteHook' => __DIR__ . '/includes/Storage/Hook/PageSaveCompleteHook.php',
 	'MediaWiki\\Storage\\Hook\\ParserOutputStashForEditHook' => __DIR__ . '/includes/Storage/Hook/ParserOutputStashForEditHook.php',
 	'MediaWiki\\Storage\\Hook\\RevisionDataUpdatesHook' => __DIR__ . '/includes/Storage/Hook/RevisionDataUpdatesHook.php',

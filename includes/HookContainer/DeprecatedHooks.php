@@ -32,7 +32,6 @@ class DeprecatedHooks {
 		'LocalFile::getHistory' => [ 'deprecatedVersion' => '1.37' ],
 		'MagicWordwgVariableIDs' => [ 'deprecatedVersion' => '1.35' ],
 		'MessageCache::get' => [ 'deprecatedVersion' => '1.41' ],
-		'PageContentSave' => [ 'deprecatedVersion' => '1.35' ],
 		'PrefixSearchBackend' => [ 'deprecatedVersion' => '1.27' ],
 		'ProtectionForm::buildForm' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
 		'RecentChangesPurgeRows' => [ 'deprecatedVersion' => '1.45', 'silent' => true ],
