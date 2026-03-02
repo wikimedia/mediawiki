@@ -2980,6 +2980,9 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		if ( !$this->isEmailConfirmed() ) {
 			$this->setEmailAuthenticationTimestamp( wfTimestampNow() );
 			$this->getHookRunner()->onConfirmEmailComplete( $this );
+			LoggerFactory::getInstance( 'confirmemail' )->info( 'Email address confirmed', [
+				'event' => 'email_confirmed',
+			] );
 		}
 		return true;
 	}
