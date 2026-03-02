@@ -311,7 +311,7 @@ class SpecialListGroupRights extends SpecialPage {
 			if ( $groupConfig->canBeIgnored() ) {
 				$conditionsParts[] = $this->msg( 'listgrouprights-restrictedgroups-bypassable' )
 					->params( User::getRightDescription( 'ignore-restricted-groups' ) )
-					->rawParams( Html::element( 'code', [], '(ignore-restricted-groups)' ) )
+					->rawParams( Html::element( 'code', [], 'ignore-restricted-groups' ) )
 					->parse();
 			}
 			$out->addHTML( implode( '', $conditionsParts ) );
