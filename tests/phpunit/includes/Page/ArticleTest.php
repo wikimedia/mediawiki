@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Message;
@@ -12,21 +11,17 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Status\Status;
+use MediaWiki\Tests\Parser\ParserCacheTestBase;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use Psr\Log\NullLogger;
-use Wikimedia\Stats\UnitTestingHelper;
 
 /**
  * @group Database
  */
-class ArticleTest extends \MediaWikiIntegrationTestCase {
-	private UnitTestingHelper $statsHelper;
+class ArticleTest extends ParserCacheTestBase {
 
 	public function setUp(): void {
 		parent::setUp();
-
-		$this->statsHelper = new UnitTestingHelper();
 	}
 
 	/**
@@ -290,23 +285,6 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		);
 	}
 
-	private function getParserCache( $bag = null ) {
-		$parserCache = new ParserCache(
-			'test',
-			$bag ?: new HashBagOStuff(),
-			'19900220000000',
-			$this->getServiceContainer()->getHookContainer(),
-			new JsonCodec( $this->getServiceContainer() ),
-			$this->statsHelper->getStatsFactory(),
-			new NullLogger(),
-			$this->getServiceContainer()->getTitleFactory(),
-			$this->getServiceContainer()->getWikiPageFactory(),
-			$this->getServiceContainer()->getGlobalIdGenerator()
-		);
-
-		return $parserCache;
-	}
-
 	/** @covers \MediaWiki\Page\Article::view */
 	public function testPostprocFeatureflagFalse(): void {
 		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheLegacy, false );
@@ -314,8 +292,8 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::UsePostprocCache, false );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
-			$this->getParserCache( new HashBagOStuff() ),
-			$this->getParserCache( new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
 		];
 		$calls = [];
 		$parserCacheFactory
@@ -358,9 +336,9 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheParsoid, true );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
-			$this->getParserCache( new HashBagOStuff() ),
-			$this->getParserCache( new HashBagOStuff() ),
-			$this->getParserCache( new HashBagOStuff() )
+			$this->getParserCache( 'test', new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
 		];
 		$calls = [];
 		$parserCacheFactory
@@ -429,9 +407,9 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheParsoid, true );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
-			$this->getParserCache( new HashBagOStuff() ),
-			$this->getParserCache( new HashBagOStuff() ),
-			$this->getParserCache( new HashBagOStuff() )
+			$this->getParserCache( 'test', new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
 		];
 		$calls = [];
 		$parserCacheFactory

@@ -17,7 +17,6 @@ use MediaWiki\Tests\Mocks\Json\JsonDeserializableSuperClass;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\User;
-use MediaWikiIntegrationTestCase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
@@ -34,7 +33,7 @@ use Wikimedia\UUID\GlobalIdGenerator;
 /**
  * @covers \MediaWiki\Parser\ParserCache
  */
-class ParserCacheTest extends MediaWikiIntegrationTestCase {
+class ParserCacheTest extends ParserCacheTestBase {
 
 	/** @var int */
 	private $time;
@@ -71,17 +70,10 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @param HookContainer|null $hookContainer
-	 * @param BagOStuff|null $storage
-	 * @param LoggerInterface|null $logger
-	 * @param WikiPageFactory|null $wikiPageFactory
-	 * @return ParserCache
-	 */
-	private function createParserCache(
-		?HookContainer $hookContainer = null,
+	private function makeParserCache(
 		?BagOStuff $storage = null,
 		?LoggerInterface $logger = null,
+		?HookContainer $hookContainer = null,
 		?WikiPageFactory $wikiPageFactory = null
 	): ParserCache {
 		if ( !$wikiPageFactory ) {
@@ -93,17 +85,14 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$globalIdGenerator = $this->createMock( GlobalIdGenerator::class );
 		$globalIdGenerator->method( 'newUUIDv1' )->willReturn( 'uuid-uuid' );
 
-		return new ParserCache(
+		return $this->getParserCache(
 			'test',
-			$storage ?: new HashBagOStuff(),
-			'19900220000000',
-			$hookContainer ?: $this->createHookContainer( [] ),
-			new JsonCodec(),
-			StatsFactory::newNull(),
-			$logger ?: new NullLogger(),
-			$this->createMock( TitleFactory::class ),
-			$wikiPageFactory,
-			$globalIdGenerator
+			storage: $storage,
+			logger: $logger,
+			titleFactory: $this->createMock( TitleFactory::class ),
+			hookContainer: $hookContainer,
+			wikiPageFactory: $wikiPageFactory,
+			globalIdGenerator: $globalIdGenerator,
 		);
 	}
 
@@ -131,7 +120,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetMetadataMissing() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$metadataFromCache = $cache->getMetadata(
 			$this->page,
 			ParserCache::USE_CURRENT_ONLY
@@ -140,7 +129,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetMetadataAllGood() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$parserOutput = $this->createDummyParserOutput();
 
 		$cache->save(
@@ -178,7 +167,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetMetadataExpired() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$parserOutput = $this->createDummyParserOutput();
 		$cache->save(
 			$parserOutput,
@@ -218,7 +207,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetMetadataOutdated() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$parserOutput = $this->createDummyParserOutput();
 		$cache->save(
 			$parserOutput,
@@ -263,7 +252,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testMakeParserOutputKey() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 
 		$options1 = ParserOptions::newFromAnon();
 		$options1->setOption(
@@ -298,7 +287,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * Test that fetching without storing first returns false.
 	 */
 	public function testGetEmpty() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$options = ParserOptions::newFromAnon();
 
 		$this->assertFalse(
@@ -313,7 +302,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * Test that fetching with the same options return the saved value.
 	 */
 	public function testSaveGetSameOptions() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 
 		$options1 = ParserOptions::newFromAnon();
@@ -355,7 +344,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * Test that fetching with different unused option returns a value.
 	 */
 	public function testSaveGetDifferentUnusedOption() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$optionName = $this->getDummyUsedOptions()[0];
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 
@@ -403,7 +392,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * Test that non-cacheable output is not stored
 	 */
 	public function testDoesNotStoreNonCacheable() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 		$parserOutput->updateCacheExpiry( 0 );
 
@@ -440,7 +429,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * Allow ParserCacheFilter hook to prevent content from being cached
 	 */
 	public function testDoesNotStoreFiltered() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 		$parserOutput->resetParseStartTime();
 		$parserOutput->recordTimeProfile();
@@ -483,7 +472,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * ParserCache::save must respect ParserOptions::isSafeToCache
 	 */
 	public function testDoesNotStoreNotSafeToCacheAndUsed() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 		$parserOutput->recordOption( 'wrapclass' );
 
@@ -525,7 +514,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * get() must respect ParserOptions::isSafeToCache.
 	 */
 	public function testDoesNotGetNotSafeToCache() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 		$parserOutput->recordOption( 'wrapclass' );
 
@@ -567,7 +556,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * save() must respect ParserOptions::isSafeToCache
 	 */
 	public function testStoresNotSafeToCacheAndUnused() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 
 		$options = ParserOptions::newFromAnon();
@@ -595,7 +584,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * get() with an option should not return a saved match for a different option.
 	 */
 	public function testSaveGetDifferentUsedOption() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 		$optionName = $this->getDummyUsedOptions()[0];
 		$parserOutput->recordOption( $optionName );
@@ -629,7 +618,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * Allow retrieval of expired metadata via getDirty()
 	 */
 	public function testGetExpiredMetadata() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 		$parserOutput->updateCacheExpiry( 10 );
 
@@ -669,7 +658,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * Allow retrieval of expired output with good metadata via getDirty()
 	 */
 	public function testGetExpiredContent() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$optionName = $this->getDummyUsedOptions()[0];
 
 		$parserOutput1 = new ParserOutput( 'TEST_TEXT1' );
@@ -730,7 +719,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * Allow retrieval of expired output with expired metadata via getDirty()
 	 */
 	public function testGetOutdatedMetadata() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 
 		$options1 = ParserOptions::newFromAnon();
@@ -776,7 +765,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * Allow retrieval of outdated output with good metadata via getDirty()
 	 */
 	public function testGetOutdatedContent() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$optionName = $this->getDummyUsedOptions()[0];
 
 		$parserOutput1 = new ParserOutput( 'TEST_TEXT' );
@@ -835,7 +824,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * get() must return false after deleting a key.
 	 */
 	public function testDeleteOptionsKey() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 
 		$options1 = ParserOptions::newFromAnon();
@@ -879,8 +868,10 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$wikiPageFactory->method( 'newFromTitle' )->with( $this->page )->willReturn(
 				$wikiPageMock
 			);
+
 		$hookContainer = $this->createHookContainer( [
-			'RejectParserCacheValue' => function (
+			'RejectParserCacheValue' =>
+			function (
 				ParserOutput $value,
 				WikiPage $hookPage,
 				ParserOptions $popts
@@ -901,13 +892,11 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 				);
 
 				return false;
-			},
+			}
 		] );
-		$cache = $this->createParserCache(
-			$hookContainer,
-			null,
-			null,
-			$wikiPageFactory
+		$cache = $this->makeParserCache(
+			hookContainer: $hookContainer,
+			wikiPageFactory: $wikiPageFactory
 		);
 		$cache->save(
 			$parserOutput,
@@ -933,9 +922,9 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			$this->getDummyUsedOptions()[0],
 			'value1'
 		);
-
 		$hookContainer = $this->createHookContainer( [
-			'ParserCacheSaveComplete' => function (
+			'ParserCacheSaveComplete' =>
+			function (
 				ParserCache $hookCache,
 				ParserOutput $value,
 				Title $hookTitle,
@@ -954,9 +943,9 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 					42,
 					$revId
 				);
-			},
+			}
 		] );
-		$cache = $this->createParserCache( $hookContainer );
+		$cache = $this->makeParserCache( hookContainer: $hookContainer );
 		$cache->save(
 			$parserOutput,
 			$this->page,
@@ -984,7 +973,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$wikiPageFactoryMock->method( 'newFromTitle' )->with( $mockPage )->willReturn(
 				$wikiPageMock
 			);
-		$cache = $this->createParserCache(
+		$cache = $this->makeParserCache(
 			null,
 			null,
 			null,
@@ -1003,7 +992,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * Regression test for T389591.
 	 */
 	public function testGet_redirect() {
-		$cache = $this->createParserCache();
+		$cache = $this->makeParserCache();
 		$popt = ParserOptions::newFromAnon();
 		$pout = $this->createDummyParserOutput();
 		$page = $this->createPageRecord( [
@@ -1023,8 +1012,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetCacheStorage() {
 		$storage = new EmptyBagOStuff();
-		$cache = $this->createParserCache(
-			null,
+		$cache = $this->makeParserCache(
 			$storage
 		);
 		$this->assertSame(
@@ -1038,7 +1026,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSaveNoText() {
 		$this->expectException( InvalidArgumentException::class );
-		$this->createParserCache()->save(
+		$this->makeParserCache()->save(
 			new ParserOutput( null ),
 			$this->page,
 			ParserOptions::newFromAnon()
@@ -1070,8 +1058,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * @param string $data
 	 */
 	public function testCorruptData( string $data ) {
-		$cache = $this->createParserCache(
-			null,
+		$cache = $this->makeParserCache(
 			new HashBagOStuff()
 		);
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
@@ -1114,8 +1101,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testCorruptMetadata() {
 		$cacheStorage = new HashBagOStuff();
-		$cache = $this->createParserCache(
-			null,
+		$cache = $this->makeParserCache(
 			$cacheStorage
 		);
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
@@ -1138,8 +1124,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// Recreate the cache to drop in-memory cached metadata.
-		$cache = $this->createParserCache(
-			null,
+		$cache = $this->makeParserCache(
 			$cacheStorage
 		);
 
@@ -1192,8 +1177,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// emulate migration to JSON
-		$cache = $this->createParserCache(
-			null,
+		$cache = $this->makeParserCache(
 			$bagOStuff
 		);
 
@@ -1234,8 +1218,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNonSerializableJsonIsReported() {
 		$testLogger = new TestLogger( true );
-		$cache = $this->createParserCache(
-			null,
+		$cache = $this->makeParserCache(
 			null,
 			$testLogger
 		);
@@ -1267,8 +1250,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	public function testCyclicStructuresDoNotBlowUpInJson() {
 		$this->markTestSkipped( 'Temporarily disabled: T314338' );
 		$testLogger = new TestLogger( true );
-		$cache = $this->createParserCache(
-			null,
+		$cache = $this->makeParserCache(
 			null,
 			$testLogger
 		);
@@ -1306,7 +1288,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$unicodeCharacter = "Э";
 
 		$bag = new HashBagOStuff();
-		$parserCache = $this->createParserCache( null, $bag );
+		$parserCache = $this->makeParserCache( $bag );
 		$parserOutput = $this->createDummyParserOutput();
 		$parserOutput->setRawText( $unicodeCharacter );
 		$parserCache->save(

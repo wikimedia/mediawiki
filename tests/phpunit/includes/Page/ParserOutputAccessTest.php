@@ -23,6 +23,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Mocks\PoolCounter\MockPoolCounterFailing;
+use MediaWiki\Tests\Parser\ParserCacheTestBase;
 use MediaWiki\Utils\MWTimestamp;
 use Psr\Log\NullLogger;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
@@ -31,7 +32,6 @@ use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Stats\StatsFactory;
-use Wikimedia\Stats\UnitTestingHelper;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -39,15 +39,10 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @covers \MediaWiki\Page\ParserOutputAccess
  * @group Database
  */
-class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
-
-	private UnitTestingHelper $statsHelper;
+class ParserOutputAccessTest extends ParserCacheTestBase {
 
 	public function setUp(): void {
 		parent::setUp();
-
-		$this->statsHelper = new UnitTestingHelper();
-
 		$this->overrideConfigValues( [
 			// always hit the sample code
 			MainConfigNames::ParsoidSelectiveUpdateSampleRate => 1,
@@ -103,23 +98,6 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->assertNotSame( $this->getHtml( $expected, $postproc ), $this->getHtml( $actual, $postproc ), $msg );
-	}
-
-	private function getParserCache( $bag = null ) {
-		$parserCache = new ParserCache(
-			'test',
-			$bag ?: new HashBagOStuff(),
-			'19900220000000',
-			$this->getServiceContainer()->getHookContainer(),
-			new JsonCodec( $this->getServiceContainer() ),
-			$this->statsHelper->getStatsFactory(),
-			new NullLogger(),
-			$this->getServiceContainer()->getTitleFactory(),
-			$this->getServiceContainer()->getWikiPageFactory(),
-			$this->getServiceContainer()->getGlobalIdGenerator()
-		);
-
-		return $parserCache;
 	}
 
 	private function getRevisionOutputCache( $bag = null, $expiry = 3600 ) {
@@ -252,9 +230,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		if ( !$parserCacheFactory ) {
 			if ( !$parserCache instanceof ParserCache ) {
-				$parserCache = $this->getParserCache(
-					$parserCache ?? new EmptyBagOStuff()
-				);
+				$parserCache = $this->getParserCache( 'test', $parserCache ?? new EmptyBagOStuff() );
 			}
 
 			if ( !$revisionOutputCache instanceof RevisionOutputCache ) {
@@ -544,7 +520,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * for the latest revision if the FORCE_PARSE option is given.
 	 */
 	public function testLatestRevisionForceParse() {
-		$parserCache = $this->getParserCache( new HashBagOStuff() );
+		$parserCache = $this->getParserCache( 'test', new HashBagOStuff() );
 		$access = $this->getParserOutputAccessWithCache( $parserCache );
 
 		$parserOptions = ParserOptions::newFromAnon();
@@ -1176,8 +1152,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$revisionOutputCache = $this->getRevisionOutputCache( new HashBagOStuff() );
 		$caches = [
-			$this->getParserCache( new HashBagOStuff() ),
-			$this->getParserCache( new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
 		];
 		$calls = [];
 		$parserCacheFactory
@@ -1226,7 +1202,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 	public function testParsoidRevisionCacheSplit() {
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
-		$parserCache = $this->getParserCache( new HashBagOStuff() );
+		$parserCache = $this->getParserCache( 'test', new HashBagOStuff() );
 		$caches = [
 			$this->getRevisionOutputCache( new HashBagOStuff() ),
 			$this->getRevisionOutputCache( new HashBagOStuff() ),
@@ -1279,8 +1255,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$revisionOutputCache = $this->getRevisionOutputCache( new HashBagOStuff() );
 		$caches = [
-			$this->getParserCache( new HashBagOStuff() ),
-			$this->getParserCache( new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
 		];
 		$calls = [];
 		$parserCacheFactory
@@ -1330,8 +1306,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	public function testPostprocOptionsCacheSplit() {
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
-			$this->getParserCache( new HashBagOStuff() ),
-			$this->getParserCache( new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
 		];
 		$calls = [];
 		$parserCacheFactory
@@ -1392,8 +1368,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	public function testPostprocOptionsUnsafeCache() {
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
-			$this->getParserCache( new HashBagOStuff() ),
-			$this->getParserCache( new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
 		];
 		$calls = [];
 		$parserCacheFactory
@@ -1455,7 +1431,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 	public function testPostprocRevisionCacheSplit() {
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
-		$parserCache = $this->getParserCache( new HashBagOStuff() );
+		$parserCache = $this->getParserCache( 'test', new HashBagOStuff() );
 		$caches = [
 			$this->getRevisionOutputCache( new HashBagOStuff() ),
 			$this->getRevisionOutputCache( new HashBagOStuff() ),
@@ -1761,9 +1737,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	public function testInvalidate() {
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
-			$this->getParserCache( new HashBagOStuff() ),
-			$this->getParserCache( new HashBagOStuff() ),
-			$this->getParserCache( new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
+			$this->getParserCache( 'test', new HashBagOStuff() ),
 		];
 		$parserCacheFactory
 			->method( 'getParserCache' )

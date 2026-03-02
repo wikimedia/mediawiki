@@ -166,6 +166,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/Parser
 	'MediaWiki\\Tests\\Parser\\CacheTimeTest' => "$testDir/phpunit/includes/Parser/CacheTimeTest.php",
+	'MediaWiki\\Tests\\Parser\\ParserCacheTestBase' => "$testDir/phpunit/includes/Parser/ParserCacheTestBase.php",
 	'MediaWiki\\Tests\\Parser\\ParserOutputTest' => "$testDir/phpunit/includes/Parser/ParserOutputTest.php",
 	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",
 	'MediaWiki\\Tests\\Parser\\ParserCacheSerializationTestCases' =>
