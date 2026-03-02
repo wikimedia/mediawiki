@@ -194,7 +194,7 @@
 	"currentrevisionlink": "Pindaan betiru",
 	"cur": "betiru",
 	"last": "demburi",
-	"histlegend": "Pinene' debagi; tinanda' penekonon ro rediu ta' bersi-bersi ingin pinekedero engko' butan \"enter\" atau pan butang media'. <br />Penunduk: <strong>({{int:cur}})</strong> = pinekederoon engko' bersi bau, <strong>({{int:last}})</strong> = pinekederoon engko' bersi beta, <strong>{{int:minoreditletter}}</strong> = ubaan diki'.",
+	"histlegend": "Pinene' debagi; tinanda' penekonon ro rediu ta' bersi-bersi ingin pinekedero engko' butan \"enter\" atau pan butang media'. <br />\nPenunduk: <strong>({{int:cur}})</strong> = pinekederoon engko' bersi bau, <strong>({{int:last}})</strong> = pinekederoon engko' bersi beta, <strong>{{int:minoreditletter}}</strong> = ubaan diki'.",
 	"history-fieldset-title": "Sinaring pindaan",
 	"histfirst": "paling beta",
 	"histlast": "paling bau",

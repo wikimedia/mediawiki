@@ -24,6 +24,7 @@
 	"botpasswords-bad-appid": "Името на ботот „$1“ е неважечко.",
 	"botpasswords-toolong-restrictions": "Внесовте премногу IP-адреси или опсези.",
 	"botpasswords-toolong-grants": "Внесовте премногу доделби.",
+	"botpasswords-too-many": "Го достигнавте ограничувањето од $1 {{PLURAL:$1|ботовска лозинка|ботовски лозинки}}. Избришете некои од постоечките пред да создавате нови.",
 	"botpasswords-insert-failed": "Не успеав да го додадам името на ботот „$1“. Да не е веќе додадено?",
 	"botpasswords-update-failed": "Не успеав да го подновам името на ботот „$1“. Да не е избришано?",
 	"botpasswords-created-title": "Лозинката на ботот е создадена",

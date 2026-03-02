@@ -2281,6 +2281,7 @@
 	"watchlistlabels-unassign-labels-done": "$1 {{PLURAL:$1|позначка|позначки|позначок}} знято з $2 {{PLURAL:$2|сторінки|сторінок}}",
 	"watchlistlabels-list-wrapper": "[[Special:WatchlistLabels|Позначки]]: $1",
 	"watchlist-filters-labels-title": "Позначки",
+	"watchlist-filters-labels-list-title": "Позначки списку спостереження",
 	"enotif_reset": "Позначити всі сторінки як переглянуті",
 	"enotif_impersonal_salutation": "Користувач {{grammar:genitive|{{SITENAME}}}}",
 	"enotif_subject_deleted": "Сторінку {{GRAMMAR:genitive|{{SITENAME}}}} «$1» було вилучено {{GENDER:$2|користувачем|користувачкою}} $2",

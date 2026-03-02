@@ -579,7 +579,7 @@
 	"last": "vorane",
 	"page_first": "Afang",
 	"page_last": "Ändi",
-	"histlegend": "Du chasch zwei Versionen uswähle und verglyche. Due d Radiobutton vu dr Versione, wu wettsch verglyche, markiere, un druck uf Enter oder d Schaltflechi am untere Rand.<br>\n\nLegänd: <strong>({{int:cur}})</strong> = Unterschid zue dr aktuälle Version, <strong>({{int:last}})</strong> = Unterschid zue dr vorige Version, <strong>{{int:minoreditletter}}</strong> = Chlaini Änderig",
+	"histlegend": "Du chasch zwei Versionen uswähle und verglyche. Due d Radiobutton vu dr Versione, wu wettsch verglyche, markiere, un druck uf Enter oder d Schaltflechi am untere Rand.<br />\nLegänd: <strong>({{int:cur}})</strong> = Unterschid zue dr aktuälle Version, <strong>({{int:last}})</strong> = Unterschid zue dr vorige Version, <strong>{{int:minoreditletter}}</strong> = Chlaini Änderig",
 	"history-fieldset-title": "Versione filtere",
 	"history-show-deleted": "Nume gleschti Versione",
 	"histfirst": "eltischti",

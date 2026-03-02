@@ -514,7 +514,7 @@
 	"last": "قبل",
 	"page_first": "اللًول",
 	"page_last": "اللًخر",
-	"histlegend": "ختيار لفرق: عزل النسخات لي باغي تقارن و ورك على لبوطونة لتحت.</br>\nساروت: <strong>({{int:cur}})</strong> = لفرق معا نّسخة لحالية، <strong>({{int:last}})</strong> = لفرق معا نّسخة لفايتة، <strong>{{int:minoreditletter}}</strong> = تبديل صغير.",
+	"histlegend": "ختيار لفرق: عزل النسخات لي باغي تقارن و ورك على لبوطونة لتحت.<br />\nساروت: <strong>({{int:cur}})</strong> = لفرق معا نّسخة لحالية، <strong>({{int:last}})</strong> = لفرق معا نّسخة لفايتة، <strong>{{int:minoreditletter}}</strong> = تبديل صغير.",
 	"history-fieldset-title": "تصفية المراجعات",
 	"history-show-deleted": "غي لمحذوفة",
 	"histfirst": "لأقدم",

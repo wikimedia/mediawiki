@@ -5,7 +5,8 @@
 			"Goombiis",
 			"JLTRY",
 			"Mahabarata",
-			"SleaY"
+			"SleaY",
+			"VIGNERON"
 		]
 	},
 	"cdx-breadcrumb-navigation-label": "Fil d’Ariane",
@@ -26,7 +27,7 @@
 	"cdx-table-pager-button-last-page": "Dernière page",
 	"cdx-table-pager-button-next-page": "Page suivante",
 	"cdx-table-pager-button-prev-page": "Page précédente",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 élément|$1 éléments}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 résultat par page|$1 résultats par page}}",
 	"cdx-table-pager-items-per-page-default": "Résultats par page",
 	"cdx-table-pagination-status-message-determinate-long": "Affichage des résultats $1 à $2 sur $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 sur $3",

@@ -457,7 +457,7 @@
 	"last": "anvan",
 	"page_first": "premye",
 	"page_last": "dènye",
-	"histlegend": "Seleksyon diferans : make bouton yo pou revizyon nou vle konpare epi apiye sou enter oubyen klike sou bouton ki anba.\nLejand : <strong>({{int:cur}})</strong> = diferans ak revizyon kounye a, <strong>{{int:last}}</strong> = diferans ak revizyon anvan, <strong>{{int:minoreditletter}}</strong> = modifikasyon ki tou piti.",
+	"histlegend": "Seleksyon diferans : make bouton yo pou revizyon nou vle konpare epi apiye sou enter oubyen klike sou bouton ki anba.<br />\nLejand : <strong>({{int:cur}})</strong> = diferans ak revizyon kounye a, <strong>{{int:last}}</strong> = diferans ak revizyon anvan, <strong>{{int:minoreditletter}}</strong> = modifikasyon ki tou piti.",
 	"history-fieldset-title": "Filtre revizyon yo",
 	"histfirst": "anpil vye",
 	"histlast": "anpil resan",

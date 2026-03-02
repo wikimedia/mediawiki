@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Diskdance",
+			"GuoPC",
 			"Lakejason0",
 			"Liuxinyu970226",
 			"Phenolla",
@@ -30,6 +31,7 @@
 	"botpasswords-bad-appid": "机器人名“$1”无效。",
 	"botpasswords-toolong-restrictions": "输入了太多的IP地址或范围。",
 	"botpasswords-toolong-grants": "选择的授权过多。",
+	"botpasswords-too-many": "您已达到最多$1个{{PLURAL:$1|机器人密码}}的限额。请先删除一些现有的机器人密码，然后再创建新的密码。",
 	"botpasswords-insert-failed": "无法添加机器人名“$1”。它是否已添加？",
 	"botpasswords-update-failed": "无法更新机器人名“$1”。它是否已删除？",
 	"botpasswords-created-title": "机器人密码已创建",

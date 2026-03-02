@@ -639,7 +639,7 @@
 	"currentrevisionlink": "Sawena mubulö'ö",
 	"cur": "iada'a",
 	"last": "oföna",
-	"histlegend": "Diff nifili: Fili tombol radio revisi sedöna lafaomagö ba höndrögö Enter ma zui tombol ba gahe zura.<br />Tandra: <strong>({{int:cur}})</strong> = si fabö'ö ba versi iada'a, <strong>({{int:last}})</strong> = si fabö'ö ba versi si föföna, <strong>{{int:minoreditletter}}</strong> = nibulö'ö side-ide.",
+	"histlegend": "Diff nifili: Fili tombol radio revisi sedöna lafaomagö ba höndrögö Enter ma zui tombol ba gahe zura.<br />\nTandra: <strong>({{int:cur}})</strong> = si fabö'ö ba versi iada'a, <strong>({{int:last}})</strong> = si fabö'ö ba versi si föföna, <strong>{{int:minoreditletter}}</strong> = nibulö'ö side-ide.",
 	"history-fieldset-title": "Tafi'ö nibulö'ö",
 	"histfirst": "fondrege atua",
 	"histlast": "fondrege bohou",

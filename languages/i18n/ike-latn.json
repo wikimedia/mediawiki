@@ -194,7 +194,7 @@
 	"cur": "maannaujuq",
 	"next": "tagga",
 	"last": "qujannamiik",
-	"histlegend": "ajjigiinnginningit niruaqtauningit: nalunairlugit naalautikkut naqittagait aaqqigiaqtausimajut nalimugiiliqtittinirmut ammalu naqillugu Enter uvvaluunniit naqittagaq ataani.\n<br />\nunikkaaqtuaq: <strong>({{int:cur}})</strong> = ajjigiinnginningit kingulliqpaami aaqqigiaqtausimajut, <strong>({{int:last}})</strong> = ajjigiinnginningit kingulliqpaami aaqqigiarutaujut, <strong>{{int:minoreditletter}}</strong> = \nmikijumik aaqqigiariniq.",
+	"histlegend": "ajjigiinnginningit niruaqtauningit: nalunairlugit naalautikkut naqittagait aaqqigiaqtausimajut nalimugiiliqtittinirmut ammalu naqillugu Enter uvvaluunniit naqittagaq ataani.<br />\nunikkaaqtuaq: <strong>({{int:cur}})</strong> = ajjigiinnginningit kingulliqpaami aaqqigiaqtausimajut, <strong>({{int:last}})</strong> = ajjigiinnginningit kingulliqpaami aaqqigiarutaujut, <strong>{{int:minoreditletter}}</strong> = \nmikijumik aaqqigiariniq.",
 	"history-fieldset-title": "salummaqsainiq aaqqigiarutinik",
 	"histfirst": "innauniqpaaq",
 	"histlast": "nutaanguniqpaaq",

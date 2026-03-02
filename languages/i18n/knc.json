@@ -205,7 +205,7 @@
 	"currentrevisionlink": "Revision kurma ye",
 	"cur": "kərma",
 	"last": "ngawotu",
-	"histlegend": "Awo redio ye manumiya ade ranne.bottom.<br />Legend: <strong>({{int:cur}})</strong> = Kǝrmaye ya gade , <strong>({{int:last}})</strong> = ngawo ye ya gade\n, <strong>{{int:minoreditletter}}</strong> = yasa gana",
+	"histlegend": "Awo redio ye manumiya ade ranne.bottom.<br />\nLegend: <strong>({{int:cur}})</strong> = Kǝrmaye ya gade , <strong>({{int:last}})</strong> = ngawo ye ya gade, <strong>{{int:minoreditletter}}</strong> = yasa gana",
 	"history-fieldset-title": "Awo kozuna gnata",
 	"histfirst": "dena",
 	"histlast": "burin",
