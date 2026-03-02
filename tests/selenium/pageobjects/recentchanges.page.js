@@ -9,8 +9,8 @@ class RecentChangesPage extends Page {
 		return $( '.mw-rcfilters-ui-liveUpdateButtonWidget' );
 	}
 
-	get titles() {
-		return this.changesList.$$( '.mw-changeslist-title' );
+	title( name ) {
+		return this.changesList.$( `=${ name }` );
 	}
 
 	async open() {

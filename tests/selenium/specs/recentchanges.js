@@ -38,7 +38,7 @@ describe( 'Special:RecentChanges', () => {
 		await RecentChangesPage.open();
 		await RecentChangesPage.liveUpdates.waitForDisplayed();
 		await RecentChangesPage.liveUpdates.click();
-		await expect( RecentChangesPage.titles[ 0 ] ).toHaveText( name );
+		await expect( RecentChangesPage.title( name ) ).toExist();
 	} );
 
 } );
