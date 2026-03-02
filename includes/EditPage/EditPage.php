@@ -1551,29 +1551,30 @@ class EditPage implements IEditObject {
 	 * When using the "undo" action, generate a default edit summary and save it
 	 * to $this->summary
 	 *
-	 * @param RevisionRecord|null $oldrev The revision in the URI "undoafter" field
+	 * @param RevisionRecord|null $oldRev The revision in the URI "undoafter" field
 	 * @param int $undo The integer in the URI "undo" field
-	 * @param RevisionRecord|null $undorev The revision in the URI "undo" field
+	 * @param RevisionRecord|null $undoRev The revision in the URI "undo" field
 	 * @param MediaWikiServices $services Service container
-	 * @return void
 	 */
-	private function generateUndoEditSummary( ?RevisionRecord $oldrev, int $undo,
-		?RevisionRecord $undorev, MediaWikiServices $services
-	) {
+	private function generateUndoEditSummary(
+		?RevisionRecord $oldRev,
+		int $undo,
+		?RevisionRecord $undoRev,
+		MediaWikiServices $services
+	): void {
 		// Generate an autosummary
-		$firstrev = $this->revisionStore->getNextRevision( $oldrev );
-		// Undid just one revision
-		if ( $firstrev && $firstrev->getId() == $undo ) {
-			$userText = $undorev->getUser() ?
-				$undorev->getUser()->getName() :
-				'';
-			if ( $userText === '' ) {
+		$firstRev = $this->revisionStore->getNextRevision( $oldRev );
+		if ( $firstRev && $firstRev->getId() == $undo ) {
+			// Undid just one revision
+			$userText = $undoRev->getUser()?->getName();
+			// @phan-suppress-next-line PhanImpossibleTypeComparison T418946
+			if ( $userText === null ) {
 				$undoSummary = $this->context->msg(
 					'undo-summary-username-hidden',
 					$undo
 				)->inContentLanguage()->text();
-			// Handle external users (imported revisions)
 			} elseif ( ExternalUserNames::isExternal( $userText ) ) {
+				// Handle external users (imported revisions)
 				$userLinkTitle = ExternalUserNames::getUserLinkTitle( $userText );
 				if ( $userLinkTitle ) {
 					$userLink = $userLinkTitle->getPrefixedText();
@@ -1592,8 +1593,8 @@ class EditPage implements IEditObject {
 				}
 			} else {
 				$undoIsAnon =
-					!$undorev->getUser() ||
-					!$undorev->getUser()->isRegistered();
+					!$undoRev->getUser() ||
+					!$undoRev->getUser()->isRegistered();
 				$disableAnonTalk = $services->getMainConfig()->get( MainConfigNames::DisableAnonTalk );
 				$undoMessage = ( $undoIsAnon && $disableAnonTalk ) ?
 					'undo-summary-anon' :
@@ -1604,20 +1605,14 @@ class EditPage implements IEditObject {
 					$userText
 				)->inContentLanguage()->text();
 			}
-			if ( $this->summary === '' ) {
-				$this->summary = $undoSummary;
-			} else {
-				$this->summary = $undoSummary . $this->context->msg( 'colon-separator' )
-					->inContentLanguage()->text() . $this->summary;
-			}
-		// Undid multiple revisions
 		} else {
-			$firstRevisionId = $firstrev->getId();
-			$lastRevisionId = $undorev->getId();
+			// Undid multiple revisions
+			$firstRevisionId = $firstRev->getId();
+			$lastRevisionId = $undoRev->getId();
 			$revisionCount = $services->getRevisionStore()->countRevisionsBetween(
-				$firstrev->getPageId(),
-				$firstrev,
-				$undorev,
+				$firstRev->getPageId(),
+				$firstRev,
+				$undoRev,
 				null,
 				[ RevisionStore::INCLUDE_BOTH, RevisionStore::INCLUDE_DELETED_REVISIONS ]
 			);
@@ -1626,12 +1621,12 @@ class EditPage implements IEditObject {
 				->params( $firstRevisionId, $lastRevisionId )
 				->inContentLanguage()
 				->text();
-			if ( $this->summary === '' ) {
-				$this->summary = $undoSummary;
-			} else {
-				$this->summary = $undoSummary . $this->context->msg( 'colon-separator' )
-					->inContentLanguage()->text() . $this->summary;
-			}
+		}
+		if ( $this->summary === '' ) {
+			$this->summary = $undoSummary;
+		} else {
+			$this->summary = $undoSummary . $this->context->msg( 'colon-separator' )
+				->inContentLanguage()->text() . $this->summary;
 		}
 	}
 
