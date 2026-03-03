@@ -96,6 +96,9 @@ class DataAccess extends IDataAccess {
 	 * @return array
 	 */
 	private function makeTransformOptions( IPageConfig $pageConfig, $file, array $hp ): array {
+		$isDefault = ( $hp['isDefault'] ?? false );
+		unset( $hp['isDefault'] );
+
 		// Validate the input parameters like Parser::makeImage()
 		$handler = $file->getHandler();
 		if ( !$handler ) {
@@ -110,18 +113,30 @@ class DataAccess extends IDataAccess {
 		// This part is similar to Linker::makeImageLink(). If there is no width,
 		// set one based on the source file size.
 		$page = $hp['page'] ?? 0;
+		$width = $file->getWidth( $page );
+
 		if ( !isset( $hp['width'] ) ) {
 			if ( isset( $hp['height'] ) && $file->isVectorized() ) {
 				// If it's a vector image, and user only specifies height
 				// we don't want it to be limited by its "normal" width.
 				$hp['width'] = $this->config->get( MainConfigNames::SVGMaxSize );
 			} else {
-				$hp['width'] = $file->getWidth( $page );
+				$hp['width'] = $width;
 			}
 
+			// The legacy implementation provides a default width here
+			// for dimensionless files, ie. !$hp['width'], but Parsoid handles
+			// that case after the fact.
+			//
 			// We don't need to fill in a default thumbnail width here, since
 			// that is done by Parsoid. Parsoid always sets the width parameter
 			// for thumbnails.
+		} else {
+			// If a default width is provided by Parsoid, use the width which is smaller:
+			// file width or default width, unless it's a scalable vector
+			if ( $isDefault && !$file->isVectorized() && ( $hp['width'] > $width ) ) {
+				$hp['width'] = $width;
+			}
 		}
 
 		// Parser::makeImage() always sets this
