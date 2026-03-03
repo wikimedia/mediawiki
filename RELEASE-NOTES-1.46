@@ -277,6 +277,9 @@ because of Phabricator reports.
   - Parser::getPage() never returns null.  Calling ::getPage() without
     a title set was deprecated in 1.34 and has emitted warnings when
     returning null since 1.41.
+  - Parser::getOutput() never returns null.  Calling ::getOutput() before
+    the initialization of ParserOutput has been deprecated with warnings
+    since 1.43.
 * wfMergeErrorArrays(), deprecated in 1.43, has been dropped.
 * Article::getRedirectHeaderHtml(), deprecated in 1.41, has been dropped.
   Instead, use LinkRenderer::makeRedirectHeader().

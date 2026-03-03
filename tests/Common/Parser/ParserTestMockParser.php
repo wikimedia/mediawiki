@@ -33,7 +33,7 @@ class ParserTestMockParser extends Parser {
 	}
 
 	/** @inheritDoc */
-	public function getOutput() {
+	public function getOutput(): ParserOutput {
 		return new ParserOutput;
 	}
 }

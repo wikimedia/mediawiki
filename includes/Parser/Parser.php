@@ -1025,13 +1025,7 @@ class Parser {
 	 * @return ParserOutput
 	 * @since 1.14
 	 */
-	public function getOutput() {
-		// @phan-suppress-next-line PhanRedundantCondition False positive, see https://github.com/phan/phan/issues/4720
-		if ( !isset( $this->mOutput ) ) {
-			wfDeprecated( __METHOD__ . ' before initialization', '1.42' );
-			// @phan-suppress-next-line PhanTypeMismatchReturnProbablyReal We don’t want to tell anyone we’re doing this
-			return null;
-		}
+	public function getOutput(): ParserOutput {
 		return $this->mOutput;
 	}
 
