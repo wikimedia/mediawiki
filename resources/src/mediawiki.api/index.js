@@ -546,6 +546,13 @@
 		 * Given an API response indicating an error, get a jQuery object containing a human-readable
 		 * error message that you can display somewhere on the page.
 		 *
+		 * This method handles the different error formats returned by the action API itself, and some
+		 * error conditions that may occur at other layers, e.g. user losing their network connection,
+		 * server being down, rate limits enforced by a proxy in front of MediaWiki, etc.
+		 *
+		 * Error messages, particularly for editing pages, may consist of multiple paragraphs of text.
+		 * Your user interface should have enough space for that.
+		 *
 		 * For better quality of error messages, it's recommended to use the following options in your
 		 * API queries:
 		 *
@@ -554,9 +561,6 @@
 		 * errorlang: mw.config.get( 'wgUserLanguage' ),
 		 * errorsuselocal: true,
 		 * ```
-		 *
-		 * Error messages, particularly for editing pages, may consist of multiple paragraphs of text.
-		 * Your user interface should have enough space for that.
 		 *
 		 * @example
 		 * var api = new mw.Api();
@@ -602,6 +606,29 @@
 					// Server returned invalid JSON
 					// data.exception is probably a SyntaxError exception
 					return $( '<div>' ).append( mw.message( 'api-clientside-error-invalidresponse' ).parseDom() );
+				} else if ( data.xhr.status === 429 ) {
+					// Server HTTP error: 429 Too Many Requests
+					const retryAfter = data.xhr.getResponseHeader( 'Retry-After' );
+					if ( retryAfter ) {
+						// Simplified from Language::formatDuration()
+						const segments = [];
+						if ( Math.floor( retryAfter / 3600 ) > 0 ) {
+							segments.push( mw.msg( 'duration-hours', mw.language.convertNumber( Math.floor( retryAfter / 3600 ) ) ) );
+						}
+						if ( Math.floor( retryAfter % 3600 / 60 ) > 0 ) {
+							segments.push( mw.msg( 'duration-minutes', mw.language.convertNumber( Math.floor( retryAfter % 3600 / 60 ) ) ) );
+						}
+						if ( Math.floor( retryAfter % 60 ) > 0 ) {
+							segments.push( mw.msg( 'duration-seconds', mw.language.convertNumber( Math.floor( retryAfter % 60 ) ) ) );
+						}
+						if ( segments.length === 0 ) {
+							segments.push( mw.msg( 'duration-seconds', mw.language.convertNumber( 0 ) ) );
+						}
+						const formattedDuration = mw.language.listToText( segments );
+						return $( '<div>' ).append( mw.message( 'api-clientside-error-http-429-retry', formattedDuration ).parseDom() );
+					} else {
+						return $( '<div>' ).append( mw.message( 'api-clientside-error-http-429' ).parseDom() );
+					}
 				} else if ( data.xhr.status ) {
 					// Server HTTP error
 					// data.exception is probably the HTTP "reason phrase", e.g. "Internal Server Error"

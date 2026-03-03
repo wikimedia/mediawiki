@@ -756,6 +756,7 @@ return [
 			'resources/src/mediawiki.api/watch.js',
 		],
 		'dependencies' => [
+			'mediawiki.language',
 			'mediawiki.Title',
 			'mediawiki.util',
 			'mediawiki.jqueryMsg',
@@ -767,6 +768,11 @@ return [
 			'api-clientside-error-timeout',
 			'api-clientside-error-aborted',
 			'api-clientside-error-invalidresponse',
+			'api-clientside-error-http-429',
+			'api-clientside-error-http-429-retry',
+			'duration-hours',
+			'duration-minutes',
+			'duration-seconds',
 		],
 	],
 	'mediawiki.content.json' => [

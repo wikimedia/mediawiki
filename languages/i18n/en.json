@@ -3811,6 +3811,8 @@
 	"search-match-redirect-help": "Select this to go to a page when that page title matches what you have searched for",
 	"api-clientside-error-noconnect": "Could not connect to the server. Make sure you have a working internet connection and try again.",
 	"api-clientside-error-http": "Server returned error: HTTP $1.",
+	"api-clientside-error-http-429": "You have performed too many actions in a short period of time. Try again later.",
+	"api-clientside-error-http-429-retry": "You have performed too many actions in a short period of time. You can try again in $1.",
 	"api-clientside-error-timeout": "The server did not respond within the expected time.",
 	"api-clientside-error-aborted": "The request was aborted.",
 	"api-clientside-error-invalidresponse": "Invalid response from server.",

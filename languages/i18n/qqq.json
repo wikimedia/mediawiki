@@ -4091,6 +4091,8 @@
 	"search-match-redirect-help": "Help text for user preference to force redirect to a page during search if the page's title matches a search term",
 	"api-clientside-error-noconnect": "Error shown when an API response fails to load due to a connection issue.",
 	"api-clientside-error-http": "Error shown when an API response fails to load due to a HTTP error.",
+	"api-clientside-error-http-429": "Error shown when an API response fails to load due to a HTTP 429 error (Too Many Requests).",
+	"api-clientside-error-http-429-retry": "Error shown when an API response fails to load due to a HTTP 429 error (Too Many Requests), and a wait time is available. Parameter: $1 - duration, e.g. '2 minutes and 30 seconds', formatted using {{msg-mw|duration-hours}}, {{msg-mw|duration-minutes}}, {{msg-mw|duration-seconds}}.",
 	"api-clientside-error-timeout": "Error shown when an API request takes longer than the limit (it times out).",
 	"api-clientside-error-aborted": "Error shown when an API request is cancelled before the response is received.",
 	"api-clientside-error-invalidresponse": "Error shown when an API response contains invalid data.",

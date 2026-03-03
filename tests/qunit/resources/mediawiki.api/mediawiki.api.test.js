@@ -528,4 +528,34 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 		assert.strictEqual( this.server.requests[ 0 ].requestHeaders[ 'Api-User-Agent' ], 'MediaWiki-JS/VERSION', 'Default user agent' );
 		assert.strictEqual( this.server.requests[ 1 ].requestHeaders[ 'Api-User-Agent' ], 'foo', 'Custom user agent' );
 	} );
+
+	QUnit.test( 'getErrorMessage()', async function ( assert ) {
+		// This method should have more tests :)
+
+		const api = new mw.Api();
+
+		this.server.respondWith( /action=query/, [
+			429,
+			{
+				'Retry-After': 1234,
+				'Content-Type': 'application/json'
+			},
+			// Request body is not used by #getErrorMessage. This is a possible error response from
+			// <https://wikitech.wikimedia.org/wiki/REST_Gateway/Rate_limiting>.
+			'{"httpCode":429,"httpReason":"Too Many Requests"}'
+		] );
+
+		const promise = api.get( {} );
+		await assert.rejects( promise, /^http$/, 'HTTP error should reject the deferred' );
+		await promise.catch( ( code, data ) => {
+			const $message = api.getErrorMessage( data );
+			assert.strictEqual(
+				$message.text(),
+				'(api-clientside-error-http-429-retry: (duration-minutes: 20)(and)(word-separator)(duration-seconds: 34))',
+				'Expected error message'
+			);
+		} );
+
+		assert.strictEqual( this.server.requests.length, 1, 'Requests made' );
+	} );
 } );
