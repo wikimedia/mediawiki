@@ -53,29 +53,13 @@ use Wikimedia\Message\MessageSpecifier;
 abstract class Action implements MessageLocalizer {
 
 	/**
-	 * @var Article
-	 * @since 1.35
-	 */
-	private $article;
-
-	/**
-	 * IContextSource if specified; otherwise we'll use the Context from the Page
-	 * @since 1.17
-	 * @var IContextSource|null
-	 */
-	protected $context;
-
-	/**
 	 * The fields used to create the HTMLForm
 	 * @since 1.17
-	 * @var array
 	 */
-	protected $fields;
+	protected array $fields;
 
-	/** @var HookContainer|null */
-	private $hookContainer;
-	/** @var HookRunner|null */
-	private $hookRunner;
+	private ?HookContainer $hookContainer = null;
+	private ?HookRunner $hookRunner = null;
 
 	/**
 	 * Get an appropriate Action subclass for the given action
@@ -106,7 +90,7 @@ abstract class Action implements MessageLocalizer {
 	 * @param IContextSource $context
 	 * @return string Action name
 	 */
-	final public static function getActionName( IContextSource $context ) {
+	final public static function getActionName( IContextSource $context ): string {
 		// Optimisation: Reuse/prime the cached value of RequestContext
 		return $context->getActionName();
 	}
@@ -114,14 +98,9 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Get the IContextSource in use here
 	 * @since 1.17
-	 * @return IContextSource
 	 */
-	final public function getContext() {
-		if ( $this->context instanceof IContextSource ) {
-			return $this->context;
-		}
-		wfDebug( __METHOD__ . ": no context known, falling back to Article's context." );
-		return $this->getArticle()->getContext();
+	final public function getContext(): IContextSource {
+		return $this->context;
 	}
 
 	/**
@@ -224,14 +203,13 @@ abstract class Action implements MessageLocalizer {
 	 *   See Message::params()
 	 * @return Message
 	 */
-	final public function msg( $key, ...$params ) {
+	final public function msg( $key, ...$params ): Message {
 		return $this->getContext()->msg( $key, ...$params );
 	}
 
 	/**
 	 * @since 1.40
 	 * @internal For use by ActionFactory
-	 * @param HookContainer $hookContainer
 	 */
 	public function setHookContainer( HookContainer $hookContainer ) {
 		$this->hookContainer = $hookContainer;
@@ -241,9 +219,8 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * @since 1.35
 	 * @internal since 1.37
-	 * @return HookContainer
 	 */
-	protected function getHookContainer() {
+	protected function getHookContainer(): HookContainer {
 		if ( !$this->hookContainer ) {
 			$this->hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		}
@@ -254,9 +231,8 @@ abstract class Action implements MessageLocalizer {
 	 * @since 1.35
 	 * @internal This is for use by core only. Hook interfaces may be removed
 	 *   without notice.
-	 * @return HookRunner
 	 */
-	protected function getHookRunner() {
+	protected function getHookRunner(): HookRunner {
 		if ( !$this->hookRunner ) {
 			$this->hookRunner = new HookRunner( $this->getHookContainer() );
 		}
@@ -267,13 +243,11 @@ abstract class Action implements MessageLocalizer {
 	 * Only public since 1.21
 	 *
 	 * @stable to call
-	 *
-	 * @param Article $article
-	 * @param IContextSource $context
 	 */
-	public function __construct( Article $article, IContextSource $context ) {
-		$this->article = $article;
-		$this->context = $context;
+	public function __construct(
+		private readonly Article $article,
+		protected readonly IContextSource $context,
+	) {
 	}
 
 	/**
