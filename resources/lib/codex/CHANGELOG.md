@@ -1,3 +1,26 @@
+# 2.4.0 / 2026-03-03
+
+## Features
+- Toast: Add Toast component with ToastContainer and useToast (Daphne Smit)
+- Toast: Standardize actionButtonLabel prop name (Anne Tomasevich)
+- TypeaheadSearch: Fix composition event overriding input value (bernardwang)
+- MultiselectLookup: Add support for search query highlighting (Eileen M)
+- Message: change font weight in inline Messages (Derek Torsani)
+- Field: update responsive spacing on Fields (Derek Torsani)
+
+## Tokens
+- Token, Button: Add new token for update default button label color (Derek Torsani)
+
+## Icons
+- icons: Add 'userBlocked' icon (Kosta Harlan)
+
+## Build
+- build: npm quick-build, provide an alias for build:vite in codex workspace (Sergio Gimeno)
+- build: update browserslist-db to v1.0.30001770 (Volker E.)
+
+## Documentation
+- docs: Fix typo in colors.md (Lauralyn Watson)
+
 # 2.3.4 / 2026-01-27
 
 ## Features

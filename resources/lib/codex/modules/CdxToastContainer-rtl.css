@@ -1,0 +1,1 @@
+.cdx-toast-container{position:fixed;left:0;bottom:16px;right:50%;z-index:900;width:100%;pointer-events:none}@media screen and (min-width: 640px){.cdx-toast-container{bottom:24px}}.cdx-toast-container__stack{display:flex;flex-direction:column-reverse;justify-content:flex-start;gap:8px}.cdx-toast-container .cdx-toast{position:relative;bottom:auto;right:0;pointer-events:auto}

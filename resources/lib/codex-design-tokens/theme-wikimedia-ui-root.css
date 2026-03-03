@@ -1,5 +1,5 @@
 /**
- * Codex Design Tokens v2.3.4
+ * Codex Design Tokens v2.4.0
  * Design System for Wikimedia
  * See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
  */
@@ -9,6 +9,7 @@
   --color-base-fixed: #202122;
   --color-base--hover: #404244;
   --color-emphasized: #101418;
+  --color-neutral: #404244;
   --color-subtle: #54595d;
   --color-placeholder: #72777d;
   --color-disabled: #a2a9b1;
