@@ -508,7 +508,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 				'sessionJwt' => $codec->create( $defaultClaims ),
 			], prefix: '' );
 			$info = $provider->provideSessionInfo( $request );
-			$this->assertNotNull( $info );
+			$this->assertNotNull( $info?->__toString() );
 			$this->assertSame( $sessionId, $info->getId() );
 			$this->assertNotNull( $info->getUserInfo() );
 			$this->assertFalse( $info->getUserInfo()->isVerified() );
@@ -536,12 +536,19 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 				'sessionJwt' => $codec->create( $defaultClaims ),
 			], prefix: '' );
 			$info = $provider->provideSessionInfo( $request );
-			$this->assertNull( $info?->__toString() );
+			$this->assertNotNull( $info?->__toString() );
+			$this->assertSame( $sessionId, $info->getId() );
+			$this->assertNotNull( $info->getUserInfo() );
+			$this->assertTrue( $info->getUserInfo()->isAnon() );
+			$this->assertTrue( $info->needsRefresh() );
 			$this->assertSame( [
 				[ LogLevel::DEBUG, 'Session "{session}" requested without UserID cookie' ],
-				[ LogLevel::INFO, 'JWT validation failed: JWT error: wrong subject' ],
 			], $logger->getBuffer() );
 			$logger->clearBuffer();
+			$this->assertSame( [
+				[ LogLevel::WARNING, 'Non-anon JWT cookie for anon session' ],
+			], $logger2->getBuffer() );
+			$logger2->clearBuffer();
 
 			// Anon user, anon JWT
 			// Note that we don't actually set JWT cookies for anon users. But it's conceptually
