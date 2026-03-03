@@ -2372,6 +2372,7 @@
 	"listgrouprights-namespaceprotection-header": "Shown on [[Special:ListGroupRights]] as the header for the namespace restrictions table.",
 	"listgrouprights-namespaceprotection-namespace": "Shown on [[Special:ListGroupRights]] as the 'namespace' column header for the namespace restrictions table.\n{{Identical|Namespace}}",
 	"listgrouprights-namespaceprotection-restrictedto": "Shown on [[Special:ListGroupRights]] as the \"right(s) allowing user to edit\" column header for the namespace restrictions table.",
+	"restrictedgroups-autodemotion-log-reason": "Reason used in a log entry for automatic removal of groups that the user is no longer eligible for.\n\nParameters:\n* $1 - user name (for GENDER)\n* $2 - number of user's groups that are being removed",
 	"listgrants": "The name of the special page [[Special:ListGrants]].\n{{Identical|Grant}}",
 	"listgrants-summary": "Explanatory text shown at the top of the grant/rights mapping table.\n\nRefers to {{msg-mw|Listgrouprights-helppage}}.",
 	"listgrants-grant": "Used as table header for the grant/rights mapping table.\n{{Identical|Grant}}",

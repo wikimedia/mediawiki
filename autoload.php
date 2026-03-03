@@ -338,6 +338,7 @@ $wgAutoloadLocalClasses = [
 	'DeleteTag' => __DIR__ . '/maintenance/deleteTag.php',
 	'DeleteUserEmail' => __DIR__ . '/maintenance/deleteUserEmail.php',
 	'DeletedContribsPager' => __DIR__ . '/includes/Specials/Pager/DeletedContribsPager.php',
+	'DemoteIneligibleUsers' => __DIR__ . '/maintenance/demoteIneligibleUsers.php',
 	'DependencyWrapper' => __DIR__ . '/includes/Language/Dependency/DependencyWrapper.php',
 	'DeprecatedInterfaceFinder' => __DIR__ . '/maintenance/findDeprecated.php',
 	'DeprecationHelper' => __DIR__ . '/includes/Debug/DeprecationHelper.php',
