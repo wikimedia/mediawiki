@@ -561,13 +561,13 @@ class FileTest extends MediaWikiMediaTestCase {
 			'enabled' => true,
 			'originalWidth' => 180,
 			'thumbWidth' => 130,
-			'expected' => 180 // test.jpg
+			'expected' => 100 // 100px-test.jpg
 		];
 		yield 'thumb between penultimate step and original for tiff transforms original' => $tiff + [
 			'enabled' => true,
 			'originalWidth' => 180,
 			'thumbWidth' => 130,
-			'expected' => 180 // 180px-doc.tiff.png FIXME: non-standard thumbnail T418745
+			'expected' => 100 // 100px-doc.tiff.png
 		];
 		yield 'thumb between penultimate step and original for svg scales up' => $svg + [
 			'enabled' => true,
@@ -580,14 +580,14 @@ class FileTest extends MediaWikiMediaTestCase {
 			'enabled' => true,
 			'originalWidth' => 2345,
 			'thumbWidth' => 1252,
-			'expected' => 1252
+			'expected' => 1000
 		];
-		// 1252px-test.jpg FIXME: T418745
-		yield 'thumb beyond last step for jpeg creates non-standard' => $jpeg + $beyondSteps;
-		// 1252px-doc.tiff.png FIXME: T418745
-		yield 'thumb beyond last step for tiff creates non-standard' => $tiff + $beyondSteps;
-		// 1252px-logo.svg.png FIXME: T418745
-		yield 'thumb beyond last step for svg creates non-standard' => $svg + $beyondSteps;
+		// 1000px-test.jpg
+		yield 'thumb beyond last step for jpeg returns last step' => $jpeg + $beyondSteps;
+		// 1000px-doc.tiff.png
+		yield 'thumb beyond last step for tiff returns last step' => $tiff + $beyondSteps;
+		// 1000px-logo.svg.png
+		yield 'thumb beyond last step for svg returns last step' => $svg + $beyondSteps;
 	}
 
 	private function assertThumbNameEquals(
