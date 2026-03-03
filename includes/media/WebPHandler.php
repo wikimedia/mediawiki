@@ -303,14 +303,6 @@ class WebPHandler extends BitmapHandler {
 
 	/**
 	 * @param File $file
-	 * @return bool True, not all browsers support WebP
-	 */
-	public function mustRender( $file ) {
-		return true;
-	}
-
-	/**
-	 * @param File $file
 	 * @return bool False if we are unable to render this image
 	 */
 	public function canRender( $file ) {
