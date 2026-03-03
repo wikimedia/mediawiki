@@ -87,7 +87,7 @@ $indirectDeps = [
 	'doctrine/dbal',
 	'doctrine/sql-formatter',
 	'guzzlehttp/psr7',
-	'lcobucci/clock',
+	'okvpn/clock-lts',
 	'pear/net_url2',
 	'pear/pear-core-minimal',
 	'phpunit/phpunit',
