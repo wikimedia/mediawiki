@@ -420,7 +420,9 @@ class SkinTemplate extends Skin {
 
 		if ( $this->loggedin ) {
 			$this->addPersonalPageItem( $personal_urls, '' );
-
+			if ( $this->isTempUser ) {
+				$this->addAccountLinks( $personal_urls, $returnto );
+			}
 			// Merge notifications into the personal menu for older skins.
 			if ( $includeNotifications ) {
 				$contentNavigation = $this->buildContentNavigationUrlsInternal();
@@ -509,28 +511,39 @@ class SkinTemplate extends Skin {
 		}
 
 		if ( !$this->loggedin ) {
-			$useCombinedLoginLink = $this->useCombinedLoginLink();
-			$login_url = $this->buildLoginData( $returnto, $useCombinedLoginLink );
-			$createaccount_url = $this->buildCreateAccountData( $returnto );
-
-			if (
-				$authManager->canCreateAccounts()
-				&& $authority->isAllowed( 'createaccount' )
-				&& !$useCombinedLoginLink
-			) {
-				$personal_urls['createaccount'] = $createaccount_url;
-			}
-
-			if ( $authManager->canAuthenticateNow() ) {
-				// TODO: easy way to get anon authority
-				$key = $groupPermissionsLookup->groupHasPermission( '*', 'read' )
-					? 'login'
-					: 'login-private';
-				$personal_urls[$key] = $login_url;
-			}
+			$this->addAccountLinks( $personal_urls, $returnto );
 		}
 
 		return $personal_urls;
+	}
+
+	/**
+	 * Add links like create account/log in based on user type
+	 */
+	private function addAccountLinks( array &$personal_urls, array $returnto ): void {
+		$services = MediaWikiServices::getInstance();
+		$authority = $this->getAuthority();
+		$authManager = $services->getAuthManager();
+		$groupPermissionsLookup = $services->getGroupPermissionsLookup();
+		$useCombinedLoginLink = $this->useCombinedLoginLink();
+		$login_url = $this->buildLoginData( $returnto, $useCombinedLoginLink );
+		$createaccount_url = $this->buildCreateAccountData( $returnto );
+
+		if (
+			$authManager->canCreateAccounts()
+			&& $authority->isAllowed( 'createaccount' )
+			&& !$useCombinedLoginLink
+		) {
+			$personal_urls['createaccount'] = $createaccount_url;
+		}
+
+		if ( $authManager->canAuthenticateNow() ) {
+			// TODO: easy way to get anon authority
+			$key = $groupPermissionsLookup->groupHasPermission( '*', 'read' )
+				? 'login'
+				: 'login-private';
+			$personal_urls[$key] = $login_url;
+		}
 	}
 
 	/**
@@ -756,8 +769,6 @@ class SkinTemplate extends Skin {
 	 */
 	protected function buildPersonalPageItem( $id = 'pt-userpage' ): array {
 		$linkClasses = $this->userpageUrlDetails['exists'] ? [] : [ 'new' ];
-		// T335440 Temp accounts dont show a user page link
-		// But we still need to update the user icon, as its used by other UI elements
 		$icon = $this->isTempUser ? 'userTemporary' : 'userAvatar';
 		if ( $this->isTempUser ) {
 			$linkClasses[] = 'mw-temp-user-link';

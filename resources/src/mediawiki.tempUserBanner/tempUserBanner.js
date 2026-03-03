@@ -9,8 +9,7 @@ $( () => {
 
 	const config = require( './config.json' ),
 		local = require( 'mediawiki.storage' ).local,
-		$tempUserBannerEl = $( '.mw-temp-user-banner ' ),
-		$tempUserBannerTooltipEl = $( '.mw-temp-user-banner-tooltip ' ),
+		$tempUserBannerTooltipEl = $( '.mw-temp-user-banner-tooltip' ),
 		$tempUserBannerTooltipButtonEl = $( '#mw-temp-user-banner-tooltip-button' ),
 		TTL_DAY_MS = 86400000;
 
@@ -110,15 +109,16 @@ $( () => {
 	 * Builds a tooltip which is part of a banner for temporary account (IP masking) users.
 	 *
 	 * @ignore
-	 * @param {jQuery} $bannerEl
 	 * @param {jQuery} $tooltipEl
 	 * @param {jQuery} $buttonEl
 	 */
-	function initTempUserBannerTooltip( $bannerEl, $tooltipEl, $buttonEl ) {
-		if ( !$bannerEl.length || !$tooltipEl.length || !$buttonEl.length ) {
+	function initTempUserBannerTooltip( $tooltipEl, $buttonEl ) {
+		if ( !$tooltipEl.length || !$buttonEl.length ) {
 			return;
 		}
 
+		$tooltipEl.addClass( 'mw-temp-user-banner-tooltip-loaded' );
+		$tooltipEl.appendTo( '#pt-userpage-2' );
 		let popup;
 
 		/**
@@ -168,6 +168,6 @@ $( () => {
 		}
 	}
 
-	initTempUserBannerTooltip( $tempUserBannerEl, $tempUserBannerTooltipEl, $tempUserBannerTooltipButtonEl );
+	initTempUserBannerTooltip( $tempUserBannerTooltipEl, $tempUserBannerTooltipButtonEl );
 
 } );

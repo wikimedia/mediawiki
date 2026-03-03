@@ -67,27 +67,15 @@ class SkinComponentTempUserBanner implements SkinComponent {
 	}
 
 	private function renderBannerHTML(): string {
-		return Html::rawElement( 'div', [ 'class' => 'mw-temp-user-banner' ],
-			Html::rawElement( 'p', [],
-				$this->localizer->msg( 'temp-user-banner-description' )->escaped() .
-				$this->localizer->msg( 'colon-separator' )->escaped() .
-				Html::element( 'span', [ 'class' => 'mw-temp-user-banner-username' ], $this->username )
-			) .
-			Html::rawElement( 'div', [ 'class' => 'mw-temp-user-banner-tooltip' ],
-				Html::rawElement( 'button', [
-					'id' => 'mw-temp-user-banner-tooltip-button',
-					'class' => 'mw-temp-user-banner-tooltip-summary cdx-button '
-						. 'cdx-button--icon-only cdx-button--weight-quiet',
-					'aria-label' => $this->localizer->msg( 'temp-user-banner-tooltip-label' )->text(),
-					'data-event-name' => 'temp-user-banner.info',
-					],
-					Html::element( 'span', [ 'class' => 'mw-temp-user-banner-tooltip-icon ' ] )
-				)
-
-			) .
-			Html::rawElement( 'div', [ 'class' => 'mw-temp-user-banner-buttons' ],
-				$this->createLoginLink() .
-				$this->createAccountLink()
+		return Html::rawElement( 'div', [ 'class' => 'mw-temp-user-banner-tooltip' ],
+			Html::rawElement( 'button', [
+				'id' => 'mw-temp-user-banner-tooltip-button',
+				'class' => 'mw-temp-user-banner-tooltip-summary cdx-button '
+					. 'cdx-button--icon-only cdx-button--weight-quiet',
+				'aria-label' => $this->localizer->msg( 'temp-user-banner-tooltip-label' )->text(),
+				'data-event-name' => 'temp-user-banner.info',
+				],
+				Html::element( 'span', [ 'class' => 'mw-temp-user-banner-tooltip-icon ' ] )
 			)
 		);
 	}

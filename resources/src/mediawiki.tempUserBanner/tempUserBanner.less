@@ -1,55 +1,32 @@
 /**
- * Temporary-user banner
- * (a.k.a. the gray banner that shows up for IP masking user)
- * per https://phabricator.wikimedia.org/T330510
+ * Temporary account specific styles in the navigation bar
+ * See T418478
  **/
 
 @import 'mediawiki.skin.variables.less';
 
-/* Flexbox gap not supported by all browsers */
-/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-.mw-temp-user-banner {
+// Override conditional styles
+#pt-userpage-2#pt-userpage-2 {
+	// Allow the tooltip to be visible
+	overflow: initial;
+
+	// Vertically align the text and the tooltip button
 	display: flex;
-	flex-wrap: wrap;
 	align-items: center;
-	justify-content: flex-end;
-	gap: @spacing-50;
-	// Set apart from `static` for `z-index` to work.
-	position: relative;
-	padding: @spacing-50;
-	font-size: @font-size-small;
-	background-color: @background-color-backdrop-dark;
-	color: @color-inverted;
-	// Put temporary user banner above `.mw-notification-area`, which currently
-	// features non-design-system `z-index: 10000;`.
-	// Create a new stacking context for selected DOM children on body:
-	// - 3. Temporary user banner: `( @z-index-top + 2 )`.
-	// - 2. `.mw-notification-area-overlay`, the container: `@z-index-top`.
-	// - 2.1. `.mw-notification-area` – the actual notification area:
-	// 		  Inherited`z-index: 10000`: now `( @z-index-top + 1 )`.
-	// - 1. `#teleport-target`: `@z-index-overlay` equal to 450.
-	// Refer to T404122.
-	// TODO: Consider lowering the `z-index` of `.mw-notification-area` and its children instead.
-	// 		 And rely on named Codex `@z-index-*` tokens instead.
-	z-index: ( @z-index-top + 2 );
-}
-
-.mw-temp-user-banner-username {
-	font-weight: bold;
-}
-
-/* Flexbox gap not supported by all browsers */
-/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-.mw-temp-user-banner-buttons {
-	display: flex;
-	gap: @spacing-50;
 }
 
 .mw-temp-user-banner-tooltip {
 	position: relative;
 
+	// Prevent FOUC by hiding the tooltip until its instantiated
+	display: none;
+
+	&.mw-temp-user-banner-tooltip-loaded {
+		display: initial;
+	}
+
 	.mw-temp-user-banner-tooltip-icon {
-		.cdx-mixin-css-icon(@cdx-icon-info, @color-inverted);
+		.cdx-mixin-css-icon(@cdx-icon-info, @color-base);
 	}
 
 	& .oo-ui-widget {
@@ -58,6 +35,9 @@
 	}
 }
 
-.client-nojs .mw-temp-user-banner-tooltip-icon {
-	display: none;
+.client-nojs {
+	.mw-temp-user-banner-tooltip,
+	.mw-temp-user-banner-tooltip-icon {
+		display: none;
+	}
 }
