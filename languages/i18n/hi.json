@@ -2232,7 +2232,7 @@
 	"hidden-category-category-desc": "इस श्रेणी की पृष्ठ सामग्री में <code><nowiki>__HIDDENCAT__</nowiki></code> शामिल है, जो इसे डिफ़ॉल्ट से पृष्ठों पर श्रेणी कड़ियों के संदूक में दिखाई देने से उसे रोकती है।",
 	"trackingcategories-nodesc": "कोई वर्णन उपलब्ध नहीं।",
 	"trackingcategories-disabled": "श्रेणी अक्षम है",
-	"mailnologin": "पाने वाले का एड्रेस दिया नहीं",
+	"mailnologin": "प्रापक का पता नहीं दिया गया है",
 	"mailnologintext": "अन्य सदस्यों को ईमेल भेजने के लिए [[Special:UserLogin|लॉग-इन]] करना आवश्यक है और आपकी [[Special:Preferences|वरीयताओं]] में मान्य ईमेल पता होना आवश्यक है।",
 	"emailuser": "इस सदस्य को ईमेल भेजें",
 	"emailuser-title-target": "इस {{GENDER:$1|सदस्य}} को ईमेल करें",

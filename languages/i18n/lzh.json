@@ -52,7 +52,8 @@
 			"Kizule",
 			"Honoka55",
 			"Leo768",
-			"Ouclie"
+			"Ouclie",
+			"Koolhaas"
 		]
 	},
 	"sunday": "週日",
@@ -304,7 +305,7 @@
 	"cannotdelete-title": "刪「$1」也不能。",
 	"delete-hook-aborted": "鈎纂消矣。\n無解也。",
 	"badtitle": "無此題",
-	"badtitletext": "或別、或缺、或違、或他山謬鏈，此題不存也。",
+	"badtitletext": "或別、或缺、或違、或他山謬鏈、或含禁字，此題不存也。",
 	"title-invalid": "所求䈎不格",
 	"title-invalid-empty": "所求䈎亡題，或特有名集之首",
 	"title-invalid-interwiki": "需䈎之名，有站間渡，不可爲也。",
@@ -567,6 +568,7 @@
 	"edit-already-exists": "不建新頁。\n已存也。",
 	"defaultmessagetext": "慣話文",
 	"slot-name-main": "主",
+	"content-model-wikitext": "維基之文",
 	"content-model-text": "純文本",
 	"content-model-css": "層疊樣式表",
 	"expensive-parserfunction-warning": "警：頁有多貴功呼。\n\n其須少$2呼，現有$1呼。",
@@ -588,7 +590,7 @@
 	"currentrev": "今審",
 	"currentrev-asof": "$1之今審",
 	"revisionasof": "$1審",
-	"revision-info": "本版日期︰$1；作者︰$2",
+	"revision-info": "{{GENDER:$6|$2}}$1之繕本$7",
 	"previousrevision": "←舊",
 	"nextrevision": "新→",
 	"currentrevisionlink": "今審",

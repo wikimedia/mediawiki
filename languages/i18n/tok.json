@@ -32,7 +32,8 @@
 			"SaldırganSincap",
 			"Amphidromus Cantaloupe",
 			"Natroute",
-			"AtTheTownHouse"
+			"AtTheTownHouse",
+			"Palinasin"
 		]
 	},
 	"sunday": "tenpo suno #7 pi tenpo esun",
@@ -784,7 +785,7 @@
 	"tooltip-last": "ante pi tenpo pini poka",
 	"page_first": "nanpa wan",
 	"page_last": "nanpa pini",
-	"histlegend": "alasa ante la o luka e nena sike wile e nena \"{{int:compareselectedrevisions}}\" anu nena sina \"Enter\".<br/>\nkon: <strong>({{int:cur}})</strong> = lipu pi tenpo ni la ante, <strong>({{int:last}})</strong> = ante pini la ante, <strong>{{int:minoreditletter}}</strong> = pali lili.",
+	"histlegend": "alasa ante la o luka e nena sike wile e nena \"{{int:compareselectedrevisions}}\" anu nena sina \"Enter\".<br />\nkon: <strong>({{int:cur}})</strong> = lipu pi tenpo ni la ante, <strong>({{int:last}})</strong> = ante pini la ante, <strong>{{int:minoreditletter}}</strong> = pali lili.",
 	"history-fieldset-title": "o alasa e ante",
 	"history-show-deleted": "ante len taso",
 	"histfirst": "pini taso",
