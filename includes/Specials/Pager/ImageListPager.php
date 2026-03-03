@@ -70,12 +70,6 @@ class ImageListPager extends TablePager {
 		'img_size' => [ 'img_size', 'img_name' ],
 	];
 
-	private const INDEX_FIELDS_NEW = [
-		'fr_timestamp' => [ 'fr_timestamp', 'file_name' ],
-		'file_name' => [ 'file_name' ],
-		'fr_size' => [ 'fr_size', 'file_name' ],
-	];
-
 	public function __construct(
 		IContextSource $context,
 		CommentStore $commentStore,
@@ -120,15 +114,15 @@ class ImageListPager extends TablePager {
 		}
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
-		$this->migrationStage = $this->getConfig()->get(
-			MainConfigNames::FileSchemaMigrationStage
-		);
 
 		parent::__construct( $context, $linkRenderer );
 		$this->commentStore = $commentStore;
 		$this->localRepo = $repoGroup->getLocalRepo();
 		$this->rowCommentFormatter = $rowCommentFormatter;
 		$this->linkBatchFactory = $linkBatchFactory;
+		$this->migrationStage = $this->getConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
 	}
 
 	/**
@@ -203,15 +197,6 @@ class ImageListPager extends TablePager {
 
 	/** @inheritDoc */
 	protected function getFieldNames() {
-		if ( $this->migrationStage & SCHEMA_COMPAT_READ_NEW ) {
-			$this->initializeFieldNamesNew();
-		} else {
-			$this->initializeFieldNamesOld();
-		}
-		return $this->mFieldNames;
-	}
-
-	private function initializeFieldNamesOld() {
 		if ( !$this->mFieldNames ) {
 			$this->mFieldNames = [
 				'img_timestamp' => $this->msg( 'listfiles_date' )->text(),
@@ -232,29 +217,8 @@ class ImageListPager extends TablePager {
 				$this->mFieldNames['count'] = $this->msg( 'listfiles_count' )->text();
 			}
 		}
-	}
 
-	private function initializeFieldNamesNew() {
-		if ( !$this->mFieldNames ) {
-			$this->mFieldNames = [
-				'fr_timestamp' => $this->msg( 'listfiles_date' )->text(),
-				'file_name' => $this->msg( 'listfiles_name' )->text(),
-				'thumb' => $this->msg( 'listfiles_thumb' )->text(),
-				'fr_size' => $this->msg( 'listfiles_size' )->text(),
-			];
-			if ( $this->mUserName === null ) {
-				// Do not show username if filtering by username
-				$this->mFieldNames['actor_name'] = $this->msg( 'listfiles_user' )->text();
-			}
-			// fr_description down here, in order so that its still after the username field.
-			$this->mFieldNames['fr_description'] = $this->msg( 'listfiles_description' )->text();
-
-			if ( $this->mShowAll ) {
-				$this->mFieldNames['top'] = $this->msg( 'listfiles-latestversion' )->text();
-			} elseif ( !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
-				$this->mFieldNames['count'] = $this->msg( 'listfiles_count' )->text();
-			}
-		}
+		return $this->mFieldNames;
 	}
 
 	/** @inheritDoc */
@@ -272,10 +236,10 @@ class ImageListPager extends TablePager {
 		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			if ( $this->mUserName !== null ) {
 				// If we're sorting by user, the index only supports sorting by time.
-				return $field === ( $this->migrationStage & SCHEMA_COMPAT_READ_NEW ? 'fr_timestamp' : 'img_timestamp' );
+				return $field === 'img_timestamp';
 			} elseif ( $this->mShowAll ) {
 				// no oi_timestamp index, so only alphabetical sorting in this case.
-				return $field === ( $this->migrationStage & SCHEMA_COMPAT_READ_NEW ? 'file_name' : 'img_name' );
+				return $field === 'img_name';
 			}
 		}
 
@@ -293,9 +257,9 @@ class ImageListPager extends TablePager {
 		$dbr = $this->getDatabase();
 		$tables = [ 'filerevision', 'file', 'actor' ];
 		$fields = [
-			'fr_timestamp',
-			'file_name',
-			'fr_size',
+			'img_timestamp' => 'fr_timestamp',
+			'img_name' => 'file_name',
+			'img_size' => 'fr_size',
 			'top' => 'CASE WHEN file_latest = fr_id THEN \'yes\' ELSE \'no\' END',
 		];
 		$join_conds = [
@@ -518,10 +482,6 @@ class ImageListPager extends TablePager {
 
 	/** @inheritDoc */
 	public function getIndexField() {
-		if ( $this->migrationStage & SCHEMA_COMPAT_READ_NEW ) {
-			return [ self::INDEX_FIELDS_NEW[$this->mSort] ];
-		}
-
 		return [ self::INDEX_FIELDS[$this->mSort] ];
 	}
 
@@ -532,9 +492,9 @@ class ImageListPager extends TablePager {
 			$this->mUserName === null
 		) {
 			// Unfortunately no index on oi_timestamp.
-			return $this->migrationStage & SCHEMA_COMPAT_READ_NEW ? 'file_name' : 'img_name';
+			return 'img_name';
 		} else {
-			return $this->migrationStage & SCHEMA_COMPAT_READ_NEW ? 'fr_timestamp' : 'img_timestamp';
+			return 'img_timestamp';
 		}
 	}
 
@@ -579,15 +539,8 @@ class ImageListPager extends TablePager {
 		$linkRenderer = $this->getLinkRenderer();
 		switch ( $field ) {
 			case 'thumb':
-				$timestamp = $this->migrationStage & SCHEMA_COMPAT_READ_NEW
-					? $this->mCurrentRow->fr_timestamp
-					: $this->mCurrentRow->img_timestamp;
-				$fileName = $this->migrationStage & SCHEMA_COMPAT_READ_NEW
-					? $this->mCurrentRow->file_name
-					: $this->mCurrentRow->img_name;
-
-				$opt = [ 'time' => wfTimestamp( TS::MW, $timestamp ) ];
-				$file = $this->localRepo->findFile( $fileName, $opt );
+				$opt = [ 'time' => wfTimestamp( TS::MW, $this->mCurrentRow->img_timestamp ) ];
+				$file = $this->localRepo->findFile( $this->getCurrentRow()->img_name, $opt );
 				// If statement for paranoia
 				if ( $file ) {
 					$thumb = $file->transform( [ 'width' => 180, 'height' => 360 ] );
@@ -596,14 +549,12 @@ class ImageListPager extends TablePager {
 					}
 					return $this->msg( 'thumbnail_error', '' )->escaped();
 				} else {
-					return htmlspecialchars( $fileName );
+					return htmlspecialchars( $this->getCurrentRow()->img_name );
 				}
 			case 'img_timestamp':
-			case 'fr_timestamp':
 				// We may want to make this a link to the "old" version when displaying old files
 				return htmlspecialchars( $this->getLanguage()->userTimeAndDate( $value, $this->getUser() ) );
 			case 'img_name':
-			case 'file_name':
 				static $imgfile = null;
 				$imgfile ??= $this->msg( 'imgfile' )->text();
 
@@ -614,10 +565,7 @@ class ImageListPager extends TablePager {
 						$filePage,
 						$filePage->getText()
 					);
-					$timestamp = $this->migrationStage & SCHEMA_COMPAT_READ_NEW
-						? $this->mCurrentRow->fr_timestamp
-						: $this->mCurrentRow->img_timestamp;
-					$opt = [ 'time' => wfTimestamp( TS::MW, $timestamp ) ];
+					$opt = [ 'time' => wfTimestamp( TS::MW, $this->mCurrentRow->img_timestamp ) ];
 					$file = $this->localRepo->findFile( $value, $opt );
 					if ( $file ) {
 						$download = Html::element(
@@ -644,16 +592,13 @@ class ImageListPager extends TablePager {
 					return htmlspecialchars( $value );
 				}
 			case 'img_actor':
-			case 'actor_name':
 				$userId = (int)$this->mCurrentRow->actor_user;
 				$userName = $this->mCurrentRow->actor_name;
 				return Linker::userLink( $userId, $userName )
 					. Linker::userToolLinks( $userId, $userName );
 			case 'img_size':
-			case 'fr_size':
 				return htmlspecialchars( $this->getLanguage()->formatSize( (int)$value ) );
 			case 'img_description':
-			case 'fr_description':
 				return $this->formattedComments[$this->getResultOffset()];
 			case 'count':
 				if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
