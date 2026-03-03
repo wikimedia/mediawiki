@@ -14,6 +14,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Page\Article;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchedItemStore;
+use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistManager;
 
 /**
@@ -28,9 +29,11 @@ class UnwatchAction extends WatchAction {
 		IContextSource $context,
 		private readonly WatchlistManager $watchlistManager,
 		WatchedItemStore $watchedItemStore,
+		WatchlistLabelStore $watchlistLabelStore,
 		UserOptionsLookup $userOptionsLookup,
 	) {
-		parent::__construct( $article, $context, $watchlistManager, $watchedItemStore, $userOptionsLookup );
+		parent::__construct( $article, $context, $watchlistManager, $watchedItemStore, $watchlistLabelStore,
+			$userOptionsLookup );
 	}
 
 	/** @inheritDoc */

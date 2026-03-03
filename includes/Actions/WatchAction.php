@@ -18,11 +18,13 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Article;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
+use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Xml\XmlSelect;
 use Wikimedia\Message\MessageValue;
@@ -39,6 +41,8 @@ class WatchAction extends FormAction {
 	/** @var bool The value of the $wgWatchlistExpiry configuration variable. */
 	protected $watchlistExpiry;
 
+	private bool $enableWatchlistLabels;
+
 	/** @var string */
 	protected $expiryFormFieldName = 'expiry';
 
@@ -52,12 +56,14 @@ class WatchAction extends FormAction {
 		Article $article,
 		IContextSource $context,
 		private readonly WatchlistManager $watchlistManager,
-		WatchedItemStoreInterface $watchedItemStore,
+		private readonly WatchedItemStoreInterface $watchedItemStore,
+		protected readonly WatchlistLabelStore $watchlistLabelStore,
 		private readonly UserOptionsLookup $userOptionsLookup,
 	) {
 		parent::__construct( $article, $context );
 		$this->watchlistExpiry = $this->getContext()->getConfig()->get( MainConfigNames::WatchlistExpiry );
-		if ( $this->watchlistExpiry ) {
+		$this->enableWatchlistLabels = $this->getContext()->getConfig()->get( MainConfigNames::EnableWatchlistLabels );
+		if ( $this->watchlistExpiry || $this->enableWatchlistLabels ) {
 			// The watchedItem is only used in this action's form if $wgWatchlistExpiry is enabled.
 			$this->watchedItem = $watchedItemStore->getWatchedItem(
 				$this->getUser(),
@@ -92,6 +98,11 @@ class WatchAction extends FormAction {
 			$this->getRequest()->getVal( 'wp' . $this->expiryFormFieldName )
 		);
 
+		$labelIds = $this->getRequest()->getArray( 'wplabels' );
+		if ( $labelIds ) {
+			$this->watchedItemStore->addLabels( $this->getUser(), [ $this->getTitle() ], $labelIds );
+		}
+
 		return Status::wrap( $result );
 	}
 
@@ -123,8 +134,8 @@ class WatchAction extends FormAction {
 
 	/** @inheritDoc */
 	protected function getFormFields() {
-		// If watchlist expiry is not enabled, return a simple confirmation message.
-		if ( !$this->watchlistExpiry ) {
+		// If neither expiries or labels are enabled, return a simple confirmation message.
+		if ( !$this->watchlistExpiry && !$this->enableWatchlistLabels ) {
 			return [
 				'intro' => [
 					'type' => 'info',
@@ -134,18 +145,35 @@ class WatchAction extends FormAction {
 			];
 		}
 
-		// Otherwise, use a select-list of expiries, where the default is the user's
+		$fields = [];
+
+		// Use a select-list of expiries, where the default is the user's
 		// preferred expiry time (or the existing watch duration if already temporarily watched).
-		$default = $this->userOptionsLookup->getOption( $this->getUser(), 'watchstar-expiry' );
-		$expiryOptions = static::getExpiryOptions( $this->getContext(), $this->watchedItem, $default );
-		return [
-			$this->expiryFormFieldName => [
+		if ( $this->watchlistExpiry ) {
+			$default = $this->userOptionsLookup->getOption( $this->getUser(), 'watchstar-expiry' );
+			$expiryOptions = static::getExpiryOptions( $this->getContext(), $this->watchedItem, $default );
+			$fields[ $this->expiryFormFieldName] = [
 				'type' => 'select',
 				'label-message' => 'confirm-watch-label',
 				'options' => $expiryOptions['options'],
 				'default' => $expiryOptions['default'],
-			]
-		];
+			];
+		}
+
+		// Show all of a user's labels as checkboxes.
+		if ( $this->enableWatchlistLabels ) {
+			$options = [];
+			foreach ( $this->watchlistLabelStore->loadAllForUser( $this->getUser() ) as $label ) {
+				$options[ htmlspecialchars( $label->getName() ) ] = $label->getId();
+			}
+			$fields[ 'labels' ] = [
+				'label-message' => 'watchlistlabels-watchaction-label',
+				'type' => 'multiselect',
+				'options' => $options,
+			];
+		}
+
+		return $fields;
 	}
 
 	/**
@@ -242,8 +270,18 @@ class WatchAction extends FormAction {
 	 * 8. addedwatchexpiryhours-talk
 	 */
 	public function onSuccess() {
+		// Add success message for watching and (optionally) expiry.
 		$submittedExpiry = $this->getContext()->getRequest()->getText( 'wp' . $this->expiryFormFieldName );
 		$this->getOutput()->addWikiMsg( $this->makeSuccessMessage( $submittedExpiry ) );
+		// Also add a line for labels if any were saved.
+		$labelIds = $this->getRequest()->getArray( 'wplabels' );
+		if ( $labelIds ) {
+			$this->getOutput()->addWikiMsg(
+				'watchlistlabels-watchaction-success',
+				count( $labelIds ),
+				SpecialPage::getTitleFor( 'WatchlistLabels' )->getFullText()
+			);
+		}
 	}
 
 	protected function makeSuccessMessage( string $submittedExpiry ): MessageValue {

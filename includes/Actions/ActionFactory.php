@@ -147,6 +147,7 @@ class ActionFactory {
 			'services' => [
 				'WatchlistManager',
 				'WatchedItemStore',
+				'WatchlistLabelStore',
 				'UserOptionsLookup',
 			],
 		],
@@ -155,6 +156,7 @@ class ActionFactory {
 			'services' => [
 				'WatchlistManager',
 				'WatchedItemStore',
+				'WatchlistLabelStore',
 				'UserOptionsLookup',
 			],
 		],

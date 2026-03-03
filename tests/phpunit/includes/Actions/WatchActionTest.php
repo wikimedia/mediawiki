@@ -70,6 +70,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 			$context,
 			$mwServices->getWatchlistManager(),
 			$mwServices->getWatchedItemStore(),
+			$mwServices->getWatchlistLabelStore(),
 			$mwServices->getUserOptionsLookup()
 		);
 	}
