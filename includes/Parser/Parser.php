@@ -41,7 +41,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Media\MediaHandler;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
-use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\CacheKeyHelper;
 use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Page\PageIdentity;
@@ -5081,7 +5080,7 @@ class Parser {
 	 * @deprecated since 1.34; should not be used outside parser class.
 	 */
 	public function replaceLinkHolders( &$text ) {
-		wfDeprecated( __METHOD__, '1.46' );
+		wfDeprecated( __METHOD__, '1.34' ); // warnings since 1.46
 		$this->replaceLinkHoldersPrivate( $text );
 	}
 
@@ -5368,7 +5367,7 @@ class Parser {
 	 * @deprecated since 1.46; use ::makeImageHtml() instead
 	 */
 	public function makeImage( LinkTarget $link, $options, $holders = false ): string {
-		wfDeprecated( __METHOD__, '1.46' );
+		wfDeprecated( __METHOD__, '1.46' ); // warnings since 1.46
 		return $this->makeImageInternal(
 			$link, $options, $holders ?: null, shouldReplaceLinkHolders: false
 		);
@@ -5727,22 +5726,6 @@ class Parser {
 		$tooltip = Sanitizer::stripAllTags( $tooltip );
 
 		return $tooltip;
-	}
-
-	/**
-	 * Callback from the Sanitizer for expanding items found in HTML attribute
-	 * values, so they can be safely tested and escaped.
-	 *
-	 * @param string &$text
-	 * @param PPFrame|false $frame
-	 * @return string
-	 * @deprecated since 1.35, internal callback should not have been public
-	 */
-	public function attributeStripCallback( &$text, $frame = false ): string {
-		wfDeprecated( __METHOD__, '1.35' );
-		$text = $this->replaceVariables( $text, $frame );
-		$text = $this->mStripState->unstripBoth( $text );
-		return $text;
 	}
 
 	/**
@@ -6211,7 +6194,7 @@ class Parser {
 	 * @deprecated since 1.45
 	 */
 	public function guessLegacySectionNameFromWikiText( $text ): string {
-		wfDeprecated( __METHOD__, '1.45' );
+		wfDeprecated( __METHOD__, '1.45' ); // warnings since 1.45
 		# Strip out wikitext links(they break the anchor)
 		$text = $this->stripSectionName( $text );
 		$sectionName = self::getSectionNameFromStrippedText( $text );
@@ -6484,19 +6467,6 @@ class Parser {
 		} else {
 			return substr( $text, $posStart, $posEnd - $posStart );
 		}
-	}
-
-	/**
-	 * Set's up the PHP implementation of OOUI for use in this request
-	 * and instructs OutputPage to enable OOUI for itself.
-	 *
-	 * @since 1.26
-	 * @deprecated since 1.35, use $parser->getOutput()->setEnableOOUI() instead.
-	 */
-	public function enableOOUI() {
-		wfDeprecated( __METHOD__, '1.35' );
-		OutputPage::setupOOUI();
-		$this->mOutput->setEnableOOUI( true );
 	}
 
 	/**
