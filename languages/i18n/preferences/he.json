@@ -31,6 +31,8 @@
 	"username": "שם {{GENDER:$1|המשתמש|המשתמשת}}:",
 	"prefs-memberingroups": "{{GENDER:$2|חבר|חברה}} {{PLURAL:$1|בקבוצה|בקבוצות}}:",
 	"group-membership-link-with-expiry": "$1 (עד $2)",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|{{PLURAL:$1|קבוצה כבויה|קבוצות כבויות}}}}",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|אתה כבר לא עומד|את כבר לא עומדת}} [[$3|בתנאים]] לחברות {{PLURAL:$1|בקבוצה הזאת|בקבוצות האלו}} ולכן אין לך אפשרות להשתמש בהרשאות {{PLURAL:$1|שהיא מעניקה|שהן מעניקות}}.",
 	"prefs-edits": "מספר העריכות:",
 	"prefs-registration": "זמן ההרשמה:",
 	"yourrealname": "שם אמיתי:",

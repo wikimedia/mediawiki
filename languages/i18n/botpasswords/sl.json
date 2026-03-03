@@ -25,6 +25,7 @@
 	"botpasswords-bad-appid": "Ime bota »$1« ni veljavno.",
 	"botpasswords-toolong-restrictions": "Vnesenih je preveč IP-naslovov ali razponov.",
 	"botpasswords-toolong-grants": "Izbranih je preveč podelitev.",
+	"botpasswords-too-many": "Dosegli ste največjo dovoljeno vrednost $1 {{PLURAL:$1|gesla za bote|gesel za bote}}. Preden ustvarite nova gesla za bote, izbrišite nekaj obstoječih.",
 	"botpasswords-insert-failed": "Dodajanje imena bota »$1« ni uspelo. Ste ga že dodali?",
 	"botpasswords-update-failed": "Posodobitev imena bota »$1« je spodletelo. Ste ga izbrisali?",
 	"botpasswords-created-title": "Geslo bota ustvarjeno",

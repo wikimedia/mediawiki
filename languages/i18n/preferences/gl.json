@@ -29,6 +29,8 @@
 	"username": "Nome de {{GENDER:$1|usuario|usuaria}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Membro}} {{PLURAL:$1|do grupo|dos grupos}}:",
 	"group-membership-link-with-expiry": "$1 (ata $2)",
+	"prefs-memberingroupsdisabled": "{{PLURAL:$1|Grupo desactivado|Grupos {{GENDER:$2|desactivados}}}}:",
+	"prefs-memberingroupsdisabled-help": "Xa non {{GENDER:$2|cumpres}} as [[$3|condicións]] para pertencer a {{PLURAL:$1|este grupo|estes grupos}} e, polo tanto, non podes usar os dereitos outorgados por {{PLURAL:$1|el|eles}}.",
 	"prefs-edits": "Número de edicións:",
 	"prefs-registration": "Data e hora de rexistro:",
 	"yourrealname": "Nome real:",

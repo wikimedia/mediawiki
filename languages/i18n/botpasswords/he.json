@@ -26,6 +26,7 @@
 	"botpasswords-bad-appid": "שם הבוט \"$1\" אינו תקין.",
 	"botpasswords-toolong-restrictions": "הוזנו יותר מדי כתובות IP או טווחים.",
 	"botpasswords-toolong-grants": "נבחרו יותר מדי זיכיונות.",
+	"botpasswords-too-many": "הגעת למגבלה של אחזקה {{PLURAL:$1|בסיסמת בוט אחת|ב־$1 סיסמאות בוט}}. נא למחוק כמה סיסמאות בוט קיימות לפני יצירת חדשות.",
 	"botpasswords-insert-failed": "הוספת שם הבוט \"$1\" נכשלה. האם הוא כבר נוסף?",
 	"botpasswords-update-failed": "לא היה אפשר לעדכן את שם הבוט \"$1\". האם הוא נמחק?",
 	"botpasswords-created-title": "סיסמת הבוט נוצרה",

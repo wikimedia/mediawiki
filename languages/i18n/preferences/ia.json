@@ -23,6 +23,8 @@
 	"username": "{{GENDER:$1|Nomine de usator}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Membro}} de {{PLURAL:$1|gruppo|gruppos}}:",
 	"group-membership-link-with-expiry": "$1 (usque a $2)",
+	"prefs-memberingroupsdisabled": "Gruppo{{PLURAL:$1||s}} {{GENDER:$2|disactivate}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|Tu}} non satisface plus le [[$3|conditiones]] pro esser membro de iste gruppo{{PLURAL:$1||s}} e dunque tu non pote usar le derectos concedite per illo{{PLURAL:$1||s}}.",
 	"prefs-edits": "Numero de modificationes:",
 	"prefs-registration": "Data de registration:",
 	"yourrealname": "Nomine real:",

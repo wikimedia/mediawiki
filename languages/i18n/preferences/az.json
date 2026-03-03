@@ -39,6 +39,8 @@
 	"username": "{{GENDER:$1|İstifadəçi adı}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Üzv}} olduğu {{PLURAL:$1|qrup|qruplar}}:",
 	"group-membership-link-with-expiry": "$1 ($2 tarixinə qədər)",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|Deaktiv edilmiş}} {{PLURAL:$1|qrup|qruplar}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|Siz}} artıq bu {{PLURAL:$1|qrupun|qrupların}} [[$3|üzv olma kriteriyalarına]] cavab vermədiyinizə görə həmin {{PLURAL:$1|qrupun|qrupların}} verdiyi hüquqları istifadə edə bilməyəcəksiniz.",
 	"prefs-edits": "Redaktə sayı:",
 	"prefs-registration": "Qeydiyyatdan keçdiyi tarix:",
 	"yourrealname": "Əsl adı:",

@@ -3226,6 +3226,7 @@
 	"notificationemail_subject_removed": "Registrovaný e-mail na {{grammar:6sg|{{SITENAME}}}} byl odebrán",
 	"notificationemail_body_changed": "Někdo (patrně vy, z IP adresy $1) na {{grammar:6sg|{{SITENAME}}}} změnil\ne-mailovou adresu k účtu „$2“ na „$3“.\n\nPokud jste to nebyli vy, okamžitě kontaktujte správce.",
 	"notificationemail_body_removed": "Někdo (patrně vy, z IP adresy $1) na {{grammar:6sg|{{SITENAME}}}} odebral\ne-mailovou adresu z účtu „$2“.\n\nPokud jste to nebyli vy, okamžitě kontaktujte správce.",
+	"notificationemail_html_footer": "Pokud jste to nebyli vy, okamžitě kontaktujte správce serveru.",
 	"scarytranscludedisabled": "[Vkládání šablon mezi wiki je vypnuto]",
 	"scarytranscludefailed": "[Nepodařilo se načíst šablonu pro $1]",
 	"scarytranscludefailed-httpstatus": "[Nepodařilo se načíst šablonu pro $1: HTTP $2]",

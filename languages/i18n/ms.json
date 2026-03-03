@@ -3192,7 +3192,7 @@
 	"notificationemail_subject_changed": "E-mel anda telah diubah",
 	"notificationemail_subject_removed": "E-mel anda telah dialih keluar",
 	"notificationemail_body_changed": "Salam sejahtera $2,\n\nAnda baru-baru ini telah menukar e-mel anda di {{SITENAME}}. E-mel baharu tersebut ialah $3.\n\nJika anda tidak melakukan tindakan ini, sila hubungi penyelia tapak dengan segera.",
-	"notificationemail_body_removed": "Salam sejahtera $2,\n\nAnda baru-baru ini telah mengalih keluar e-mel anda di {{SITENAME}}. E-mel baharu tersebut ialah $3.\n\nJika anda tidak melakukan tindakan ini, sila hubungi penyelia tapak dengan segera.",
+	"notificationemail_body_removed": "Salam $2,\n\nAnda baru-baru ini telah mengalih keluar e-mel anda di {{SITENAME}}.\n\nJika ini bukan anda, hubungi penyelia tapak segera.",
 	"notificationemail_html_par1": "Salam sejahtera, $1",
 	"notificationemail_html_par2_changed": "'''Anda baru-baru ini telah menukar e-mel anda di {{SITENAME}}.''' E-mel baharu itu ialah [mailto:$1 $1].",
 	"notificationemail_html_par2_removed": "'''Anda baru-baru ini mengalih keluar e-mel anda di {{SITENAME}}.'''",

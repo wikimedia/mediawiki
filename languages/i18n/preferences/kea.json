@@ -43,9 +43,9 @@
 	"tog-forceeditsummary": "Abiza-m kantu N txa razumu di idison baziu (o igual razumu padron di disfasi idison)",
 	"tog-useeditwarning": "Biza-m óra ki N sai di un pájina di idison sin garda alterasons",
 	"prefs-preview": "Privizualizason",
-	"tog-previewonfirst": "Mustra privizon na purmeru idison",
+	"tog-previewonfirst": "Mustra privizualizason na purmeru idison",
 	"tog-previewontop": "Mustra privizualizason antis di kaxa di idison",
-	"tog-uselivepreview": "Mustra privizons sin rakaraga pájina",
+	"tog-uselivepreview": "Mustra privizualizason sin rakaraga pájina",
 	"tog-usenewrc": "Djunta alterasons pa pájina na alterasons rasenti i na lista di pájinas biziadu",
 	"tog-hideminor": "Sukundi idisons pikénu di alterasons rasenti",
 	"tog-hidecategorization": "Sukundi katigurizason di pájinas",
@@ -65,7 +65,7 @@
 	"tog-watchdefault": "Pui pájinas ku fixerus ki N idita na nha lista di pájinas biziadu",
 	"tog-watchmoves": "Pui pájinas ku fixerus ki N ranumia na nha lista di pájinas biziadu",
 	"tog-watchdeletion": "Pui pájinas ku fixerus ki N paga na nha lista di pájinas biziadu",
-	"tog-watchcreations": "Pui pájinas ki N kiria i fixerus ki N nvia na nha lista di pájinas biziadu",
-	"tog-watchuploads": "Pui fixerus nobu ki N nvia na nha lista di pájinas biziadu",
+	"tog-watchcreations": "Pui pájinas ki N ta kiria i fixerus ki N ta nvia na nha lista di pájinas biziadu",
+	"tog-watchuploads": "Pui fixerus nobu ki N ta nvia na nha lista di pájinas biziadu",
 	"tog-watchrollback": "Pui pájinas na kas N fasi un raverson na nha lista di pájinas biziadu"
 }

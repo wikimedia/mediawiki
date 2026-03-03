@@ -52,6 +52,8 @@
 	"username": "{{GENDER:$1|Käyttäjänimi}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Jäsenenä}} {{PLURAL:$1|ryhmässä|ryhmissä}}:",
 	"group-membership-link-with-expiry": "$1 ($2 asti)",
+	"prefs-memberingroupsdisabled": "Pois käytöstä {{GENDER:$2|oleva ryhmä|olevat ryhmät}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|Et}} enää täytä {{PLURAL:$1|tämän ryhmän|näiden ryhmien}} [[$3|jäsenyysehtoja]] ja siksi et voi käyttää {{PLURAL:$1|tämän ryhmän|näiden ryhmien}} käyttöoikeuksia.",
 	"prefs-edits": "Muokkauksia:",
 	"prefs-registration": "Rekisteröintiaika:",
 	"yourrealname": "Oikea nimi:",
