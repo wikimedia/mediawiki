@@ -100,49 +100,6 @@ function wfLoadSkins( array $skins ) {
 }
 
 /**
- * Like array_diff( $arr1, $arr2 ) except that it works with two-dimensional arrays.
- * @deprecated since 1.43 Use StatusValue::merge() instead
- * @param string[]|array[] $arr1
- * @param string[]|array[] $arr2
- * @return array
- */
-function wfArrayDiff2( $arr1, $arr2 ) {
-	wfDeprecated( __FUNCTION__, '1.43' );
-	/**
-	 * @param string|array $a
-	 * @param string|array $b
-	 */
-	$comparator = static function ( $a, $b ): int {
-		if ( is_string( $a ) && is_string( $b ) ) {
-			return strcmp( $a, $b );
-		}
-		if ( !is_array( $a ) && !is_array( $b ) ) {
-			throw new InvalidArgumentException(
-				'This function assumes that array elements are all strings or all arrays'
-			);
-		}
-		if ( count( $a ) !== count( $b ) ) {
-			return count( $a ) <=> count( $b );
-		} else {
-			reset( $a );
-			reset( $b );
-			while ( key( $a ) !== null && key( $b ) !== null ) {
-				$valueA = current( $a );
-				$valueB = current( $b );
-				$cmp = strcmp( $valueA, $valueB );
-				if ( $cmp !== 0 ) {
-					return $cmp;
-				}
-				next( $a );
-				next( $b );
-			}
-			return 0;
-		}
-	};
-	return array_udiff( $arr1, $arr2, $comparator );
-}
-
-/**
  * Insert an array into another array after the specified key. If the key is
  * not present in the input array, it is returned without modification.
  *

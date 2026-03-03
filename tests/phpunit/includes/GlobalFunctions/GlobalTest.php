@@ -22,34 +22,6 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	/**
-	 * @dataProvider provideForWfArrayDiff2
-	 * @covers ::wfArrayDiff2
-	 */
-	public function testWfArrayDiff2( $a, $b, $expected ) {
-		$this->expectDeprecationAndContinue( '/wfArrayDiff2/' );
-		$this->assertEquals(
-			$expected, wfArrayDiff2( $a, $b )
-		);
-	}
-
-	// @todo Provide more tests
-	public static function provideForWfArrayDiff2() {
-		// $a $b $expected
-		return [
-			[
-				[ 'a', 'b' ],
-				[ 'a', 'b' ],
-				[],
-			],
-			[
-				[ [ 'a' ], [ 'a', 'b', 'c' ] ],
-				[ [ 'a' ], [ 'a', 'b' ] ],
-				[ 1 => [ 'a', 'b', 'c' ] ],
-			],
-		];
-	}
-
 	/*
 	 * Test cases for random functions could hypothetically fail,
 	 * even though they shouldn't.
