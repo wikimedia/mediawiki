@@ -982,15 +982,14 @@ class Parser {
 	/**
 	 * Returns the page used as context for parsing, e.g. when resolving relative subpage links.
 	 * @since 1.37
-	 * @return ?PageReference Null if no page is set (deprecated since 1.34)
+	 * @return PageReference
 	 */
-	public function getPage(): ?PageReference {
+	public function getPage(): PageReference {
 		if ( $this->mTitle->isSpecial( 'Badtitle' ) ) {
 			[ , $subPage ] = $this->specialPageFactory->resolveAlias( $this->mTitle->getDBkey() );
 
 			if ( $subPage === 'Missing' ) {
 				wfDeprecated( __METHOD__ . ' without a Title set', '1.34' );
-				return null;
 			}
 		}
 
@@ -1662,10 +1661,7 @@ class Parser {
 		$text = $this->tidy->tidy( $text, Sanitizer::armorFrenchSpaces( ... ) );
 
 		if ( $isMain ) {
-			$title = $this->getPage();
-			if ( $title ) {
-				$this->mOutput->setTitle( $title );
-			}
+			$this->mOutput->setTitle( $this->getPage() );
 			$this->hookRunner->onParserAfterTidy( $this, $text );
 		}
 
