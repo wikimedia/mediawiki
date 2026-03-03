@@ -17,5 +17,8 @@ interface PageRecordChangedListener {
 
 }
 
-// @deprecated temporary alias, remove before 1.45 release
+/**
+ * @deprecated since 1.44; use PageRecordChangedListener instead
+ * @warning Removal planned in 1.47
+ */
 class_alias( PageRecordChangedListener::class, 'MediaWiki\Page\Event\PageStateListener' );

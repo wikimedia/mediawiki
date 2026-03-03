@@ -371,5 +371,8 @@ class PageLatestRevisionChangedEvent extends PageRecordChangedEvent implements P
 
 }
 
-// @deprecated temporary alias, remove before 1.45 release
+/**
+ * @deprecated since 1.44; use PageLatestRevisionChangedEvent instead
+ * @warning Removal planned in 1.47
+ */
 class_alias( PageLatestRevisionChangedEvent::class, 'MediaWiki\Page\Event\PageRevisionUpdatedEvent' );
