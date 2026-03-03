@@ -10308,6 +10308,18 @@ class MainConfigSchema {
 		'default' => false,
 	];
 
+	/**
+	 * Fraction of HTTP errors received by mw.Api to log client-side using mw.errorLogger.logError().
+	 * Additional setup is required to record these logs somewhere.
+	 *
+	 * Currently only logs HTTP 429 errors, but this may be extended in the future.
+	 *
+	 * @since 1.46
+	 */
+	public const ApiClientErrorSampleRate = [
+		'default' => 1.0,
+	];
+
 	// endregion -- end of profiling, testing and debugging
 
 	/***************************************************************************/

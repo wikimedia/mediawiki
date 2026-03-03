@@ -739,7 +739,7 @@ return [
 		],
 	],
 	'mediawiki.api' => [
-		'scripts' => [
+		'packageFiles' => [
 			'resources/src/mediawiki.api/index.js',
 			'resources/src/mediawiki.api/AbortablePromise.js',
 			'resources/src/mediawiki.api/AbortController.js',
@@ -754,6 +754,10 @@ return [
 			'resources/src/mediawiki.api/upload.js',
 			'resources/src/mediawiki.api/user.js',
 			'resources/src/mediawiki.api/watch.js',
+			[
+				'name' => 'resources/src/mediawiki.api/config.json',
+				'config' => [ MainConfigNames::ApiClientErrorSampleRate ]
+			],
 		],
 		'dependencies' => [
 			'mediawiki.language',

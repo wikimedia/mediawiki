@@ -3432,6 +3432,12 @@ $wgCachePrefix = null;
 $wgDebugToolbar = null;
 
 /**
+ * Config variable stub for the ApiClientErrorSampleRate setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ApiClientErrorSampleRate
+ */
+$wgApiClientErrorSampleRate = null;
+
+/**
  * Config variable stub for the DisableTextSearch setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::DisableTextSearch
  */

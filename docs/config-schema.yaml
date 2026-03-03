@@ -6448,6 +6448,13 @@ config-schema:
             queries and other useful output.
             Will be ignored if $wgUseFileCache or $wgUseCdn is enabled.
             @since 1.19
+    ApiClientErrorSampleRate:
+        default: 1.0
+        description: |-
+            Fraction of HTTP errors received by mw.Api to log client-side using mw.errorLogger.logError().
+            Additional setup is required to record these logs somewhere.
+            Currently only logs HTTP 429 errors, but this may be extended in the future.
+            @since 1.46
     DisableTextSearch:
         default: false
         description: 'Set this to true to disable the full text search feature.'

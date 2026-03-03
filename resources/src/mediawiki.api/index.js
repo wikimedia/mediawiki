@@ -359,6 +359,21 @@
 					( details instanceof DOMException && details.name === 'AbortError' )
 				) ) {
 					mw.log( 'mw.Api error: ', code, details );
+
+					const inSample = Math.random() < require( './config.json' ).ApiClientErrorSampleRate;
+					if ( code === 'http' && details.xhr.status === 429 && inSample ) {
+						// Abbreviate the query parameters into something that can be logged publicly,
+						// but can still indicate which component is making too many API requests.
+						let logParameters = `action=${ parameters.action }`;
+						if ( parameters.action === 'query' ) {
+							for ( const param of [ 'prop', 'list', 'meta' ] ) {
+								if ( parameters[ param ] ) {
+									logParameters += `&${ param }=${ parameters[ param ] }`;
+								}
+							}
+						}
+						mw.errorLogger.logError( new Error( `HTTP 429 ${ logParameters }` ), 'error.mw-api' );
+					}
 				}
 			} );
 		},
@@ -703,3 +718,17 @@
 		};
 	}
 }() );
+
+require( './AbortablePromise.js' );
+require( './AbortController.js' );
+require( './rest.js' );
+require( './category.js' );
+require( './edit.js' );
+require( './login.js' );
+require( './messages.js' );
+require( './options.js' );
+require( './parse.js' );
+require( './rollback.js' );
+require( './upload.js' );
+require( './user.js' );
+require( './watch.js' );

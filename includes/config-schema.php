@@ -1993,6 +1993,7 @@ return [
 			'EnableJavaScriptTest' => false,
 			'CachePrefix' => false,
 			'DebugToolbar' => false,
+			'ApiClientErrorSampleRate' => 1.0,
 			'DisableTextSearch' => false,
 			'AdvancedSearchHighlighting' => false,
 			'SearchHighlightBoundaries' => '[\\p{Z}\\p{P}\\p{C}]',

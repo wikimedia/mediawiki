@@ -3447,6 +3447,12 @@ class MainConfigNames {
 	public const DebugToolbar = 'DebugToolbar';
 
 	/**
+	 * Name constant for the ApiClientErrorSampleRate setting, for use with Config::get()
+	 * @see MainConfigSchema::ApiClientErrorSampleRate
+	 */
+	public const ApiClientErrorSampleRate = 'ApiClientErrorSampleRate';
+
+	/**
 	 * Name constant for the DisableTextSearch setting, for use with Config::get()
 	 * @see MainConfigSchema::DisableTextSearch
 	 */
