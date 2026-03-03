@@ -542,9 +542,10 @@ class ImageListPager extends TablePager {
 		$this->mResult->seek( 0 );
 		$batch = $this->linkBatchFactory->newLinkBatch()->setCaller( __METHOD__ );
 		$rowsWithComments = [ 'img_description' => [], 'oi_description' => [], 'fr_description' => [] ];
+		$fileNameField = $this->migrationStage & SCHEMA_COMPAT_READ_NEW ? 'file_name' : 'img_name';
 		foreach ( $this->mResult as $i => $row ) {
 			$batch->addUser( new UserIdentityValue( $row->actor_user ?? 0, $row->actor_name ) );
-			$batch->add( NS_FILE, $row->img_name );
+			$batch->add( NS_FILE, $row->$fileNameField );
 			$rowsWithComments[$row->description_field][$i] = $row;
 		}
 		$batch->execute();
