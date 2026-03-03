@@ -16,6 +16,7 @@ class UserGroupRestrictions {
 	private readonly array $memberConditions;
 	private readonly array $updaterConditions;
 	private readonly bool $canBeIgnored;
+	private readonly bool $demote;
 
 	/**
 	 * @param array $restrictionSpec The restriction specification for a group, typically coming from values
@@ -23,6 +24,7 @@ class UserGroupRestrictions {
 	 *   - memberConditions: empty array (meaning no restrictions)
 	 *   - updaterConditions: empty array (meaning no restrictions)
 	 *   - canBeIgnored: false
+	 *   - demote: false
 	 */
 	public function __construct( array $restrictionSpec ) {
 		$memberConditions = $restrictionSpec['memberConditions'] ?? [];
@@ -38,6 +40,7 @@ class UserGroupRestrictions {
 		$this->updaterConditions = $updaterConditions;
 
 		$this->canBeIgnored = $restrictionSpec['canBeIgnored'] ?? false;
+		$this->demote = $restrictionSpec['demote'] ?? false;
 	}
 
 	public function getMemberConditions(): array {
@@ -66,5 +69,13 @@ class UserGroupRestrictions {
 	 */
 	public function hasAnyConditions(): bool {
 		return $this->getMemberConditions() !== [] || $this->getUpdaterConditions() !== [];
+	}
+
+	/**
+	 * Checks if this group allows for automatic demotion of its members if they no longer meet the conditions
+	 * for membership.
+	 */
+	public function allowsAutomaticDemotion(): bool {
+		return $this->continuouslyEnforced() && $this->demote;
 	}
 }

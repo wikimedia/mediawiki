@@ -26,6 +26,7 @@ class UserGroupRestrictionsTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $restrictions->canBeIgnored() );
 		$this->assertFalse( $restrictions->continuouslyEnforced() );
 		$this->assertTrue( $restrictions->hasAnyConditions() );
+		$this->assertFalse( $restrictions->allowsAutomaticDemotion() );
 	}
 
 	public function testFromFullSpecWithScalarConditions() {
@@ -57,5 +58,27 @@ class UserGroupRestrictionsTest extends MediaWikiUnitTestCase {
 		];
 		$restrictions = new UserGroupRestrictions( $spec );
 		$this->assertTrue( $restrictions->continuouslyEnforced() );
+		$this->assertFalse( $restrictions->allowsAutomaticDemotion() );
+	}
+
+	public function testAllowsAutomaticDemotion() {
+		$spec = [
+			'memberConditions' => [ 'cond1' ],
+			'demote' => true,
+		];
+		$restrictions = new UserGroupRestrictions( $spec );
+		$this->assertTrue( $restrictions->continuouslyEnforced() );
+		$this->assertTrue( $restrictions->allowsAutomaticDemotion() );
+	}
+
+	public function testAllowsAutomaticDemotion_ignorable() {
+		$spec = [
+			'memberConditions' => [ 'cond1' ],
+			'canBeIgnored' => true,
+			'demote' => true,
+		];
+		$restrictions = new UserGroupRestrictions( $spec );
+		$this->assertFalse( $restrictions->continuouslyEnforced() );
+		$this->assertFalse( $restrictions->allowsAutomaticDemotion() );
 	}
 }

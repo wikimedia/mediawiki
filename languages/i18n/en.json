@@ -2075,6 +2075,7 @@
 	"listgrouprights-restrictedgroups-memberconditions": "Conditions for members:",
 	"listgrouprights-restrictedgroups-updaterconditions": "Conditions for users granting this group:",
 	"listgrouprights-restrictedgroups-bypassable": "Users who have the \"$1\" ($2) right can grant this group bypassing the above conditions.",
+	"listgrouprights-restrictedgroups-autodemotion": "Users who no longer meet the above conditions will be automatically removed from this group.",
 	"listgrouprights-restrictedgroups-op-and": "Must meet all of the following: $1",
 	"listgrouprights-restrictedgroups-op-or": "Must meet at least one of the following: $1",
 	"listgrouprights-restrictedgroups-op-xor": "Must meet exactly one of the following: $1",

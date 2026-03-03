@@ -314,6 +314,9 @@ class SpecialListGroupRights extends SpecialPage {
 					->rawParams( Html::element( 'code', [], 'ignore-restricted-groups' ) )
 					->parse();
 			}
+			if ( $groupConfig->allowsAutomaticDemotion() ) {
+				$conditionsParts[] = $this->msg( 'listgrouprights-restrictedgroups-autodemotion' )->parse();
+			}
 			$out->addHTML( implode( '', $conditionsParts ) );
 
 			$out->addHTML(
