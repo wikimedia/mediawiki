@@ -19,32 +19,22 @@ echo "Generating PHPUnit config\n";
 
 TestSetup::loadSettingsFiles();
 
-$extensionsAndSkinPaths = array_map( 'dirname', array_keys( ExtensionRegistry::getInstance()->getQueue() ) );
+$extRegistry = ExtensionRegistry::getInstance();
+
 // Build a list of extension tests, based on autodiscovered tests as well as tests added with the
 // UnitTestsList hook.
-$rawTestPaths = [];
-$extRegistry = ExtensionRegistry::getInstance();
+$extTestPaths = [];
 foreach ( $extRegistry->getAllThings() as $extInfo ) {
-	$rawTestPaths[] = dirname( $extInfo['path'] ) . '/tests/phpunit';
+	$extTestPaths[] = dirname( $extInfo['path'] ) . '/tests/phpunit';
 }
 // Extensions can return a list of files or directories
-( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onUnitTestsList( $rawTestPaths );
-$rawTestPaths = array_unique( $rawTestPaths );
+( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onUnitTestsList( $extTestPaths );
+$extTestPaths = array_unique( $extTestPaths );
 
-// Note: unit tests make no distinction between extensions and skins.
 $extUnitTestPaths = [];
-foreach ( $extensionsAndSkinPaths as $componentPath ) {
+$extensionsPaths = array_map( 'dirname', array_keys( $extRegistry->getQueue() ) );
+foreach ( $extensionsPaths as $componentPath ) {
 	$extUnitTestPaths[] = "$componentPath/tests/phpunit/unit";
-}
-
-$extTestPaths = [];
-$skinTestPaths = [];
-foreach ( $rawTestPaths as $path ) {
-	if ( str_contains( strtr( $path, '\\', '/' ), '/extensions/' ) ) {
-		$extTestPaths[] = $path;
-	} else {
-		$skinTestPaths[] = $path;
-	}
 }
 
 $baseConfigPath = __DIR__ . '/../../phpunit.xml.dist';
@@ -75,11 +65,6 @@ $addNodeFromPath = static function ( DOMNode $parent, string $path ) use ( $conf
 $extensionsSuite = $xpath->query( '//testsuite[@name="extensions"]' )->item( 0 );
 foreach ( $extTestPaths as $extPath ) {
 	$addNodeFromPath( $extensionsSuite, $extPath );
-}
-
-$skinsSuite = $xpath->query( '//testsuite[@name="skins"]' )->item( 0 );
-foreach ( $skinTestPaths as $skinPath ) {
-	$addNodeFromPath( $skinsSuite, $skinPath );
 }
 
 $extensionsUnitSuite = $xpath->query( '//testsuite[@name="extensions:unit"]' )->item( 0 );
