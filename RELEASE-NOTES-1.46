@@ -921,6 +921,7 @@ because of Phabricator reports.
   deprecation warnings.  They will be made private in a future release.
 * Modification of the namespaces key will no longer modify associated pages
   in the SkinTemplateNavigation::Universal hook (T412238).
+* The global function wfArrayPlus2d() has been deprecated.
 * All skins are now required to declare the menus they render in their
   skin definition (per T409774). In future this will allow for
   skin optimizations.

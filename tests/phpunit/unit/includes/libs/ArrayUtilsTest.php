@@ -470,4 +470,80 @@ class ArrayUtilsTest extends TestCase {
 
 		$this->assertSame( $expected, $actual );
 	}
+
+	/**
+	 * @dataProvider provideArrayPlus2d
+	 */
+	public function testArrayPlus2d( array $baseArray, array $newValues, array $expected ): void {
+		$this->assertSame(
+			$expected,
+			ArrayUtils::arrayPlus2d( $baseArray, $newValues )
+		);
+	}
+
+	public static function provideArrayPlus2d(): array {
+		return [
+			// target array, new values array, expected result
+			'Simple union of two arrays with different keys' => [
+				[ 0 => '1dArray' ],
+				[ 1 => '1dArray' ],
+				[ 0 => '1dArray', 1 => '1dArray' ],
+			],
+			'Union of 2d arrays with different keys in the value array' => [
+				[
+					0 => [ 0 => '2dArray' ],
+				],
+				[
+					0 => [ 1 => '2dArray' ],
+				],
+				[
+					0 => [ 0 => '2dArray', 1 => '2dArray' ],
+				],
+			],
+			'Union of 2d arrays with same keys in the value array' => [
+				[
+					0 => [ 0 => '2dArray' ],
+				],
+				[
+					0 => [ 0 => '1dArray' ],
+				],
+				[
+					0 => [ 0 => '2dArray' ],
+				],
+			],
+			'Union of 3d array with different keys' => [
+				[
+					0 => [ 0 => [ 0 => '3dArray' ] ],
+				],
+				[
+					0 => [ 0 => [ 1 => '2dArray' ] ],
+				],
+				[
+					0 => [ 0 => [ 0 => '3dArray' ] ],
+				],
+			],
+			'Union of 3d array with different keys in the value array' => [
+				[
+					0 => [ 0 => [ 0 => '3dArray' ] ],
+				],
+				[
+					0 => [ 1 => [ 0 => '2dArray' ] ],
+				],
+				[
+					0 => [ 0 => [ 0 => '3dArray' ], 1 => [ 0 => '2dArray' ] ],
+				],
+			],
+			'Union of 3d array with same keys in the value array' => [
+				[
+					0 => [ 0 => [ 0 => '3dArray' ] ],
+				],
+				[
+					0 => [ 0 => [ 0 => '2dArray' ] ],
+				],
+				[
+					0 => [ 0 => [ 0 => '3dArray' ] ],
+				],
+			],
+		];
+	}
 }

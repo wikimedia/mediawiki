@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Specials;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialInterwiki;
+use Wikimedia\ArrayUtils\ArrayUtils;
 
 /**
  * @group Database
@@ -95,7 +96,7 @@ class SpecialInterwikiTest extends SpecialPageTestBase {
 	) {
 		$this->overrideConfigValue(
 			MainConfigNames::GroupPermissions,
-			wfArrayPlus2d(
+			ArrayUtils::arrayPlus2d(
 				$this->getServiceContainer()->getMainConfig()->get( MainConfigNames::GroupPermissions ),
 				[
 					'sysop' => [

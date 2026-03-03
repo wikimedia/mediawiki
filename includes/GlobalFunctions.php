@@ -19,6 +19,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
+use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\Http\HttpStatus;
@@ -1907,16 +1908,8 @@ function wfThumbIsStandard( File $file, array $params ) {
  * @param array $newValues An array with new values
  * @return array The combined array
  * @since 1.26
+ * @deprecated since 1.46, use ArrayUtils::arrayPlus2d
  */
 function wfArrayPlus2d( array $baseArray, array $newValues ) {
-	// First merge items that are in both arrays
-	foreach ( $baseArray as $name => &$groupVal ) {
-		if ( isset( $newValues[$name] ) ) {
-			$groupVal += $newValues[$name];
-		}
-	}
-	// Now add items that didn't exist yet
-	$baseArray += $newValues;
-
-	return $baseArray;
+	return ArrayUtils::arrayPlus2d( $baseArray, $newValues );
 }

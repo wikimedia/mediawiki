@@ -6,6 +6,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\User\ExternalUserNames;
 use MediaWiki\Widget\UserInputWidget;
+use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\IPUtils;
 
 /**
@@ -32,7 +33,7 @@ class HTMLUserTextField extends HTMLTextField {
 	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
-		$params = wfArrayPlus2d( $params, [
+		$params = ArrayUtils::arrayPlus2d( $params, [
 				'exists' => false,
 				'external' => false,
 				'ipallowed' => false,

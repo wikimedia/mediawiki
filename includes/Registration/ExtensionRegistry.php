@@ -15,6 +15,7 @@ use MediaWiki\Shell\Shell;
 use MediaWiki\WikiMap\WikiMap;
 use RuntimeException;
 use UnexpectedValueException;
+use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ScopedCallback;
 
@@ -528,7 +529,7 @@ class ExtensionRegistry implements DomainEventSubscriber {
 						$GLOBALS[$key] = array_replace_recursive( $val, $GLOBALS[$key] );
 						break;
 					case 'array_plus_2d':
-						$GLOBALS[$key] = wfArrayPlus2d( $GLOBALS[$key], $val );
+						$GLOBALS[$key] = ArrayUtils::arrayPlus2d( $GLOBALS[$key], $val );
 						break;
 					case 'array_plus':
 						$GLOBALS[$key] += $val;
