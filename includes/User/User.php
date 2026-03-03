@@ -2980,9 +2980,18 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		if ( !$this->isEmailConfirmed() ) {
 			$this->setEmailAuthenticationTimestamp( wfTimestampNow() );
 			$this->getHookRunner()->onConfirmEmailComplete( $this );
-			LoggerFactory::getInstance( 'confirmemail' )->info( 'Email address confirmed', [
-				'event' => 'email_confirmed',
-			] );
+			$logContext = [ 'event' => 'email_confirmed' ];
+			if ( $this->mEmailTokenExpires !== null ) {
+				$tokenLifetime = MediaWikiServices::getInstance()->getMainConfig()
+					->get( MainConfigNames::UserEmailConfirmationTokenExpiry );
+				$tokenExpiry = wfTimestamp( TS_UNIX, $this->mEmailTokenExpires );
+				if ( is_numeric( $tokenLifetime ) && $tokenExpiry !== false ) {
+					$emailSentAt = (int)$tokenExpiry - (int)$tokenLifetime;
+					$delaySec = max( 0, (int)ConvertibleTimestamp::time() - $emailSentAt );
+					$logContext['confirmation_delay_seconds'] = $delaySec;
+				}
+			}
+			LoggerFactory::getInstance( 'confirmemail' )->info( 'Email address confirmed', $logContext );
 		}
 		return true;
 	}
