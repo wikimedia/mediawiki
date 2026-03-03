@@ -2651,8 +2651,7 @@ class Language implements Bcp47Code {
 
 		$intervals = array_intersect_key( self::DURATION_INTERVALS,
 			array_fill_keys( $chosenIntervals, true ) );
-		$sortedNames = array_keys( $intervals );
-		$smallestInterval = array_pop( $sortedNames );
+		$smallestInterval = array_key_last( $intervals );
 
 		$segments = [];
 
