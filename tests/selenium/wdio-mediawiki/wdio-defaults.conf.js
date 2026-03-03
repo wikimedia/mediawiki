@@ -51,6 +51,8 @@ export const config = {
 	// ============
 
 	maxInstances: process.env.CI ? 6 : 1,
+	// Make sure wdio do not try to start XVFB (we do that ourselves when needed)
+	autoXvfb: false,
 	capabilities: [ {
 		// ======
 		// Custom conf keys for MediaWiki
@@ -110,9 +112,11 @@ export const config = {
 	// By default we do not record videos and you can turn it on in CI
 	// Make sure to add it to true and change useBrowserHeadless to false
 	recordVideo: false,
-	// If you do not want to use browser headless, you need to export DISPLAY
-	// and have a display for the tests to work
-	useBrowserHeadless: Boolean( process.env.CI ),
+	// Always use headless in CI (if you do not override it),
+	// DISPLAY= forces headless and DISPLAY=<anything> forces non headless.
+	// When DISPLAY is not set locally, defaults to headless.
+	useBrowserHeadless: Boolean( process.env.CI ) ||
+		!process.env.DISPLAY,
 	// Only take screenshots on test failures. Setting this to false will take screenshots
 	// independently if a test works or fail
 	screenshotsOnFailureOnly: true,
