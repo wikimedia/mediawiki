@@ -25,6 +25,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -724,7 +725,7 @@ class ApiComparePages extends ApiBase {
 			$ret["to$k"] = $v;
 		}
 
-		$ret = wfArrayInsertAfter(
+		$ret = ArrayUtils::insertAfter(
 			$ret,
 			[ 'torelative' => [ ParamValidator::PARAM_TYPE => [ 'prev', 'next', 'cur' ], ] ],
 			'torev'

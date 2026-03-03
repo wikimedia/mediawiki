@@ -546,4 +546,38 @@ class ArrayUtilsTest extends TestCase {
 			],
 		];
 	}
+
+	/**
+	 * @dataProvider provideInsertAfter
+	 */
+	public function testInsertAfter( array $array, array $insert, string|int $after, array $expected ): void {
+		$this->assertSame(
+			$expected,
+			ArrayUtils::insertAfter( $array, $insert, $after )
+		);
+	}
+
+	public static function provideInsertAfter(): array {
+		return [
+			// target array, insert value, insert key, expected result
+			'between arrays' => [
+				[ 'a' => [ 1, 2 ], 'c' => [ 3, 4 ] ],
+				[ 'b' => [ 5, 6 ] ],
+				'a',
+				[ 'a' => [ 1, 2 ], 'b' => [ 5, 6 ], 'c' => [ 3, 4 ] ],
+			],
+			'key not known' => [
+				[ 'c' => [ 3, 4 ] ],
+				[ 'b' => [ 5, 6 ] ],
+				'a',
+				[ 'c' => [ 3, 4 ] ],
+			],
+			'last position' => [
+				[ 'a' => [ 1, 2 ], 'b' => [ 5, 6 ] ],
+				[ 'c' => [ 3, 4 ] ],
+				'b',
+				[ 'a' => [ 1, 2 ], 'b' => [ 5, 6 ], 'c' => [ 3, 4 ] ],
+			],
+		];
+	}
 }

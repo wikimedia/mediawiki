@@ -24,6 +24,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
+use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -116,7 +117,7 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 		);
 		if ( isset( $tools['deletedcontribs'] ) ) {
 			// Swap out the deletedcontribs link for our contribs one
-			$tools = wfArrayInsertAfter(
+			$tools = ArrayUtils::insertAfter(
 				$tools, [ 'contribs' => $contributionsLink ], 'deletedcontribs' );
 			unset( $tools['deletedcontribs'] );
 		} else {

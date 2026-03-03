@@ -4,6 +4,7 @@ use Composer\Semver\VersionParser;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Registration\ExtensionRegistry;
+use Wikimedia\ArrayUtils\ArrayUtils;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -89,7 +90,7 @@ class UpdateExtensionJsonSchema extends Maintenance {
 			$config = $json['config'];
 			$json['config'] = [];
 			if ( isset( $config['_prefix'] ) ) {
-				$json = wfArrayInsertAfter( $json, [
+				$json = ArrayUtils::insertAfter( $json, [
 					'config_prefix' => $config['_prefix']
 				], 'config' );
 				unset( $config['_prefix'] );

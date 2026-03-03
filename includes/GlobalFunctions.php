@@ -108,24 +108,10 @@ function wfLoadSkins( array $skins ) {
  * @param array $insert The array to insert.
  * @param mixed $after The key to insert after.
  * @return array
+ * @deprecated since 1.46, use ArrayUtils::insertAfter
  */
 function wfArrayInsertAfter( array $array, array $insert, $after ) {
-	// Find the offset of the element to insert after.
-	$keys = array_keys( $array );
-	$offsetByKey = array_flip( $keys );
-
-	if ( !\array_key_exists( $after, $offsetByKey ) ) {
-		return $array;
-	}
-	$offset = $offsetByKey[$after];
-
-	// Insert at the specified offset
-	$before = array_slice( $array, 0, $offset + 1, true );
-	$after = array_slice( $array, $offset + 1, count( $array ) - $offset, true );
-
-	$output = $before + $insert + $after;
-
-	return $output;
+	return ArrayUtils::insertAfter( $array, $insert, $after );
 }
 
 /**

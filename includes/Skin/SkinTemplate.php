@@ -26,6 +26,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\Contribute\ContributeFactory;
 use MediaWiki\Title\Title;
 use RuntimeException;
+use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -1576,10 +1577,10 @@ class SkinTemplate extends Skin {
 			] + $userMenu;
 		}
 
-		// userpage is only defined for logged-in users, and wfArrayInsertAfter requires the
+		// userpage is only defined for logged-in users, and ArrayUtils::insertAfter requires the
 		// $after parameter to be a known key in the array.
 		if ( isset( $userMenu['userpage'] ) && isset( $contentNavigation['notifications'] ) ) {
-			$userMenu = wfArrayInsertAfter(
+			$userMenu = ArrayUtils::insertAfter(
 				$userMenu,
 				$contentNavigation['notifications'],
 				'userpage'
