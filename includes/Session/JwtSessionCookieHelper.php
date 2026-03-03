@@ -154,7 +154,31 @@ class JwtSessionCookieHelper {
 
 		$data = $this->jwtCodec->parse( $jwt );
 		$expectedUser = $sessionInfo->getUserInfo()?->getUser();
-		if ( $expectedUser ) {
+		// note this is not the same as $expectedUser->isAnon() - we might be dealing with a
+		// centrally-existing, locally-not-existing user
+		$expectedUserIsAnon = $sessionInfo->getUserInfo()?->isAnon() ?? false;
+		if ( $expectedUserIsAnon ) {
+			// Anonymous sessions should not have a JWT cookie; we refresh the session to delete the
+			// cookie. We do not invalidate the session; there is no security risk with an anonymous
+			// session, cookies can easily bleed over from other sessions, and anonymous sessions
+			// are required for logging in, so breaking them might trap API clients with weird
+			// cookie handling in a doom loop.
+			try {
+				$this->sessionManager->validateJwtSubject( $data, $expectedUser );
+			} catch ( JwtException $e ) {
+				LoggerFactory::getInstance( 'session-sampled' )->warning( 'Non-anon JWT cookie for anon session', [
+					'jwt_error' => $e->getNormalizedMessage(),
+					'jti' => $data['jti'],
+					'subject' => $data['sub'],
+					'session_provider_type' => $this->sessionProviderType,
+				] + $e->getMessageContext() + $request->getSecurityLogContext() );
+				$sessionInfo = new SessionInfo( $sessionInfo->getPriority(), [
+					'needsRefresh' => true,
+					'copyFrom' => $sessionInfo,
+				] );
+				return;
+			}
+		} elseif ( $expectedUser ) {
 			$this->sessionManager->validateJwtSubject( $data, $expectedUser );
 		} else {
 			$sessionInfo = new SessionInfo( $sessionInfo->getPriority(), [
