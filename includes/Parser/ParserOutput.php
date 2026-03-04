@@ -8,6 +8,8 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Parser;
 
+use DateTimeImmutable;
+use DateTimeZone;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\DAO\WikiAwareEntity;
@@ -19,6 +21,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\Utils\MWTimestamp;
 use UnhandledMatchError;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -2451,13 +2454,63 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$parserCacheExpireTime = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::ParserCacheExpireTime );
 
-		return $this->getCacheExpiry() < $parserCacheExpireTime;
+		// Deliberately not using ::getCacheExpiry() here, which can get
+		// quantized in MiserMode.
+		return ( $this->mCacheExpiry ?? $parserCacheExpireTime ) < $parserCacheExpireTime;
 	}
 
+	/** @inheritDoc */
 	public function getCacheExpiry(): int {
 		$expiry = parent::getCacheExpiry();
+		if ( $expiry <= 0 ) {
+			// Uncacheable.
+			// Note that this function should return 0 if and only if
+			// ::isCacheable() returns false.
+			return 0;
+		}
+		// Raise the minimum to ~24 hrs for content pages on large
+		// wiki farms when MiserMode is enabled. (T416616)
+		// Implemented as expiring around the next midnight.  We take
+		// both UTC midnight and midnight in a wiki-configured
+		// timezone into account.  On English-language and
+		// multilingual wikis we get 24 hours (given UTC is the
+		// timezone), and other wikis split as 1h/23h or down to
+		// 12h/12h.
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
+		if (
+			$config->get( MainConfigNames::MiserMode ) &&
+			$services->getNamespaceInfo()->isContent(
+				$this->getTitle()?->getNamespace() ?? NS_MAIN
+			)
+		) {
+			$date = DateTimeImmutable::createFromInterface(
+				MWTimestamp::fromMW( $this->getCacheTime() )->timestamp
+			);
+			// T419439: the deadline, skew, and stagger here should probably
+			// be configurable.
+			$utcMidnight = $date
+				->modify( 'next day midnight' )
+				->getTimestamp();
+			$localMidnight = $date
+				->setTimeZone( new DateTimeZone(
+					$config->get( MainConfigNames::Localtimezone )
+				) )
+				->modify( 'next day midnight' )
+				->getTimestamp();
+			// Whichever comes first: UTC midnight, local midnight, or expiry
+			$timeToNextMidnight = min( $utcMidnight, $localMidnight ) - $date->getTimestamp();
+			// Account for clock skew and unlucky parses just before midnight
+			// by ensuring our "midnight" deadline is at least 30min away.
+			$timeToNextMidnight = max( $timeToNextMidnight, 30 * 60 );
+			// "Randomly" stagger expiry across a 1-hour window to avoid cache
+			// stampedes. (Function of parse time, which should be random-ish.)
+			$timeToNextMidnight += ( $date->getTimestamp() % ( 60 * 60 ) );
+			$expiry = max( $expiry, $timeToNextMidnight );
+		}
+
 		if ( $this->getOutputFlag( ParserOutputFlags::ASYNC_NOT_READY ) ) {
-			$asyncExpireTime = MediaWikiServices::getInstance()->getMainConfig()->get(
+			$asyncExpireTime = $config->get(
 				MainConfigNames::ParserCacheAsyncExpireTime
 			);
 			$expiry = min( $expiry, $asyncExpireTime );
@@ -2760,6 +2813,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		);
 
 		if ( $source->mCacheExpiry !== null ) {
+			// Deliberately not using ::getCacheExpiry() here, which can get
+			// quantized in MiserMode.
 			$this->updateCacheExpiry( $source->mCacheExpiry, $source->getCacheExpirySource() );
 		}
 	}
@@ -2950,6 +3005,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				$metadata->updateRuntimeAdaptiveExpiry( $this->mMaxAdaptiveExpiry, $this->getCacheExpirySource() );
 			}
 			if ( $this->mCacheExpiry !== null ) {
+				// Deliberately not using ::getCacheExpiry() here, which can get
+				// quantized in MiserMode.
 				$metadata->updateCacheExpiry( $this->mCacheExpiry, $this->getCacheExpirySource() );
 			}
 			if ( $this->mCacheTime !== '' ) {

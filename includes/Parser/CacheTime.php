@@ -38,8 +38,10 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	protected string $mCacheTime = '';
 
 	/**
-	 * @var int|null Seconds after which the object should expire, use 0 for not cacheable. Used in
-	 * ParserCache.
+	 * @var int|null Seconds after which the object should expire, use 0
+	 *  for not cacheable and null for "the default cache expiration time"
+	 *  (which is assumed to be greater than zero).
+	 *  Used in ParserCache.
 	 */
 	protected ?int $mCacheExpiry = null;
 
@@ -108,13 +110,11 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	}
 
 	/**
-	 * Sets the number of seconds after which this object should expire.
+	 * Reduce the number of seconds after which this object should expire.
 	 *
 	 * This value is used with the ParserCache.
 	 * If called with a value greater than the value provided at any previous call,
-	 * the new call has no effect. The value returned by getCacheExpiry is smaller
-	 * or equal to the smallest number that was provided as an argument to
-	 * updateCacheExpiry().
+	 * the new call has no effect.
 	 *
 	 * Avoid using 0 if at all possible. Consider JavaScript for highly dynamic content.
 	 *
@@ -141,9 +141,18 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	 * Returns the number of seconds after which this object should expire.
 	 * This method is used by ParserCache to determine how long the ParserOutput can be cached.
 	 * The timestamp of expiry can be calculated by adding getCacheExpiry() to getCacheTime().
-	 * The value returned by getCacheExpiry is smaller or equal to the smallest number
-	 * that was provided to a call of updateCacheExpiry(), and smaller or equal to the
-	 * value of $wgParserCacheExpireTime.
+	 * The value returned by getCacheExpiry() is smaller or equal to the
+	 * value of $wgParserCacheExpireTime and influenced by the values provided
+	 * to calls to updateCacheExpiry(), but child classes may adjust the raw
+	 * value: for example, to add minimums, dynamic adjustments, or reductions
+	 * to the default expiry based on output properties.
+	 *
+	 * @note Use the protected $mCacheExpiry property to access the "real"
+	 * minimum value provided to `updateCacheExpiry`, but as this should
+	 * generally not be accessed outside this class no public getter method
+	 * has been provided.
+	 * @note This method should return 0 if and only if ::isCacheable()
+	 *   returns false.
 	 */
 	public function getCacheExpiry(): int {
 		$parserCacheExpireTime = MediaWikiServices::getInstance()->getMainConfig()
@@ -167,7 +176,9 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	 * @return bool
 	 */
 	public function isCacheable() {
-		return $this->getCacheExpiry() > 0;
+		// Must return false if $mCacheExpiry is 0, but may return false
+		// in other cases as well, if subclasses wish to extend this.
+		return $this->mCacheExpiry === null || $this->mCacheExpiry > 0;
 	}
 
 	/**
