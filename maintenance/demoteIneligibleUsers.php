@@ -26,10 +26,23 @@ class DemoteIneligibleUsers extends Maintenance {
 		parent::__construct();
 		$this->addDescription( 'Demote users who no longer meet conditions for group membership' );
 		$this->addOption( 'dry-run', 'Perform a dry run' );
+		$this->addOption(
+			'relay-log',
+			'Groups for which the rights changes should be logged on designated remote wikis. ' .
+			'Use syntax group=wiki. This setting can be specified many times.',
+			false,
+			true,
+			false,
+			true
+		);
 	}
 
 	public function execute() {
 		$dryRun = $this->hasOption( 'dry-run' );
+
+		// Keyed by group name, value is array of wikis to relay the logs to
+		$relayLog = $this->readRelayLog();
+
 		$services = $this->getServiceContainer();
 		$restrictedGroups = $services->getRestrictedUserGroupConfigReader()->getConfig();
 
@@ -98,13 +111,41 @@ class DemoteIneligibleUsers extends Maintenance {
 					->params( $userName )
 					->numParams( count( $removeUserGroups ) )
 					->text();
+				$additionalWikis = [];
+				foreach ( $removeUserGroups as $group ) {
+					if ( isset( $relayLog[$group] ) ) {
+						$additionalWikis = array_merge( $additionalWikis, $relayLog[$group] );
+					}
+				}
 				$groupAssignmentService->saveChangesToUserGroups(
-					$performingAuthority, $userIdentity, [], $removeUserGroups, [], $logReason );
+					$performingAuthority, $userIdentity, [], $removeUserGroups, [], $logReason, [], $additionalWikis );
 			}
 			$groupsList = implode( ', ', $removeUserGroups );
 			$this->output( "$removedText groups from $userName: $groupsList\n" );
 		}
 		$this->output( "Finished processing. $removedText groups from $numUsers users\n" );
+	}
+
+	/**
+	 * Reads the relay-log options and returns an array keyed by group name, with values being arrays of
+	 * wikis to relay the logs to.
+	 * @return array<string, list<string>>
+	 */
+	private function readRelayLog(): array {
+		if ( !$this->hasOption( 'relay-log' ) ) {
+			return [];
+		}
+		$additionalWikis = [];
+		foreach ( $this->getOption( 'relay-log' ) as $relayOption ) {
+			$parts = explode( '=', $relayOption );
+			if ( count( $parts ) !== 2 ) {
+				$this->output( "Invalid relay-log option: $relayOption, skipping.\n" );
+				continue;
+			}
+			[ $group, $wiki ] = $parts;
+			$additionalWikis[$group][] = $wiki;
+		}
+		return $additionalWikis;
 	}
 }
 

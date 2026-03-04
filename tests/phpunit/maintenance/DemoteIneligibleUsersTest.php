@@ -6,6 +6,7 @@ use DemoteIneligibleUsers;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -180,5 +181,75 @@ class DemoteIneligibleUsersTest extends MaintenanceBaseTestCase {
 			->getUserGroupManager()
 			->getUserGroups( $user );
 		$this->assertContains( 'sysop', $groups );
+	}
+
+	/** @dataProvider provideLogRelaying */
+	public function testLogRelaying( array $userGroups, array $relayLog, array $expectedWikis ): void {
+		$groupAssignmentServiceMock = $this->createMock( UserGroupAssignmentService::class );
+		$groupAssignmentServiceMock->expects( $this->once() )
+			->method( 'saveChangesToUserGroups' )
+			->willReturnCallback(
+				function ( $perf, $target, $add, $remove, $expiries, $reason, $tags, $wikis ) use ( $expectedWikis ) {
+					$this->assertArrayEquals( $expectedWikis, $wikis );
+					return [];
+				} );
+		$this->setService( 'UserGroupAssignmentService', $groupAssignmentServiceMock );
+
+		$this->overrideConfigValue( MainConfigNames::RestrictedGroups, [
+			'sysop' => [
+				'memberConditions' => [ APCOND_EDITCOUNT, 9999 ],
+				'demote' => true,
+			],
+			'bureaucrat' => [
+				'memberConditions' => [ APCOND_EDITCOUNT, 9999 ],
+				'demote' => true,
+			],
+		] );
+
+		$this->createUserInGroups( $userGroups );
+		if ( $relayLog ) {
+			$this->maintenance->setOption( 'relay-log', $relayLog );
+		}
+		$this->maintenance->execute();
+	}
+
+	public static function provideLogRelaying(): array {
+		return [
+			'No log relaying' => [
+				'userGroups' => [ 'sysop' ],
+				'relayLog' => [],
+				'expectedWikis' => [],
+			],
+			'Sysop is relayed to otherwiki' => [
+				'userGroups' => [ 'sysop' ],
+				'relayLog' => [ 'sysop=otherwiki' ],
+				'expectedWikis' => [ 'otherwiki' ],
+			],
+			'Bureaucrat is relayed to otherwiki, but user is only a sysop' => [
+				'userGroups' => [ 'sysop' ],
+				'relayLog' => [ 'bureaucrat=otherwiki' ],
+				'expectedWikis' => [],
+			],
+			'Sysop is relayed to otherwiki and anotherwiki' => [
+				'userGroups' => [ 'sysop' ],
+				'relayLog' => [ 'sysop=otherwiki', 'sysop=anotherwiki' ],
+				'expectedWikis' => [ 'otherwiki', 'anotherwiki' ],
+			],
+			'Sysop is relayed to otherwiki and bureaucrat to anotherwiki' => [
+				'userGroups' => [ 'sysop', 'bureaucrat' ],
+				'relayLog' => [ 'sysop=otherwiki', 'bureaucrat=anotherwiki' ],
+				'expectedWikis' => [ 'otherwiki', 'anotherwiki' ],
+			],
+			'Sysop is relayed to otherwiki and bureaucrat to anotherwiki, but user is not a \'crat' => [
+				'userGroups' => [ 'sysop' ],
+				'relayLog' => [ 'sysop=otherwiki', 'bureaucrat=anotherwiki' ],
+				'expectedWikis' => [ 'otherwiki' ],
+			],
+			'Bad format of options has no impact on result' => [
+				'userGroups' => [ 'sysop', 'bureaucrat' ],
+				'relayLog' => [ 'sysop=otherwiki=test', 'bureaucrat' ],
+				'expectedWikis' => [],
+			],
+		];
 	}
 }
