@@ -52,7 +52,8 @@
 			"아라",
 			"Honoka55",
 			"Leo768",
-			"Ouclie"
+			"Ouclie",
+			"Koolhaas"
 		]
 	},
 	"pagecategories": "$1類",
@@ -516,6 +517,7 @@
 	"edit-already-exists": "不建新頁。\n已存也。",
 	"defaultmessagetext": "慣話文",
 	"slot-name-main": "主",
+	"content-model-wikitext": "維基之文",
 	"content-model-text": "純文本",
 	"content-model-css": "層疊樣式表",
 	"expensive-parserfunction-warning": "警：頁有多貴功呼。\n\n其須少$2呼，現有$1呼。",
@@ -537,7 +539,7 @@
 	"currentrev": "今審",
 	"currentrev-asof": "$1之今審",
 	"revisionasof": "$1審",
-	"revision-info": "本版日期︰$1；作者︰$2",
+	"revision-info": "{{GENDER:$6|$2}}$1之繕本$7",
 	"previousrevision": "←舊",
 	"nextrevision": "新→",
 	"currentrevisionlink": "今審",
@@ -691,6 +693,7 @@
 	"search-relatedarticle": "關",
 	"searchrelated": "關",
 	"searchall": "全",
+	"search-showingresults": "{{PLURAL:$4|1=第<strong>$1</strong>果，共<strong>$3</strong>|第<strong>$1-$2</strong>果，共<strong>$3</strong>}}",
 	"search-nonefound": "無所獲。",
 	"powersearch-legend": "尋",
 	"powersearch-ns": "尋名集：",
@@ -1436,7 +1439,7 @@
 	"blanknamespace": "（主）",
 	"contributions": "子之編纂",
 	"tool-link-contributions": "功績",
-	"contributions-title": "$1之功績",
+	"contributions-title": "$1之{{GENDER:$2|用戶}}功績",
 	"mycontris": "吾績",
 	"anoncontribs": "績",
 	"contributions-edit-count": "此{{GENDER:$1|簿}}已{{PLURAL:$2|纂}}$2回，",

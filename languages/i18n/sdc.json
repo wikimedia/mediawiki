@@ -491,7 +491,7 @@
 	"last": "priz",
 	"page_first": "primma",
 	"page_last": "ulthima",
-	"histlegend": "Cunfrontu i li versioni: isciubarà li caselli curripundenti a li versioni disizaddi e incalchà Inviu o lu buttoni in giossu.<br />\n\nIppiegazioni: <strong>({{int:cur}})</strong> = diffarènzi cu la versioni currenti. <strong>({{int:last}})</strong> = diffarènzi cu la versioni prizzidenti.  <strong>{{int:minoreditletter}}</strong> = mudìfigga minori",
+	"histlegend": "Cunfrontu i li versioni: isciubarà li caselli curripundenti a li versioni disizaddi e incalchà Inviu o lu buttoni in giossu.<br />\nIppiegazioni: <strong>({{int:cur}})</strong> = diffarènzi cu la versioni currenti. <strong>({{int:last}})</strong> = diffarènzi cu la versioni prizzidenti.  <strong>{{int:minoreditletter}}</strong> = mudìfigga minori",
 	"history-fieldset-title": "Ischurri i' la cronologia",
 	"history-show-deleted": "Soru versioni annulladdi",
 	"histfirst": "primma",

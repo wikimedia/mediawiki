@@ -74,7 +74,7 @@
 	"duration-years": "$1 {{PLURAL:$1|anu}}",
 	"duration-months": "$1 {{PLURAL:$1|mes}}",
 	"duration-weeks": "$1 {{PLURAL:$1|sumana}}",
-	"duration-days": "$1 {{PLURAL:$1|dia|dias}}",
+	"duration-days": "$1 {{PLURAL:$1|dia}}",
 	"duration-hours": "$1 {{PLURAL:$1|óra}}",
 	"duration-minutes": "$1 {{PLURAL:$1|minutu}}",
 	"duration-seconds": "$1 {{PLURAL:$1|sugundu}}",

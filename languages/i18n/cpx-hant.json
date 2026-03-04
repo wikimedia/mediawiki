@@ -262,7 +262,7 @@
 	"currentrevisionlink": "最新兮版本",
 	"cur": "今",
 	"last": "前",
-	"histlegend": "差異選擇：選擇卜比較兮版本兮單選按鍵，再扼Enter鍵或者點下底兮許個按鍵。<br/>\n說明：<strong>（{{int:cur}}）</strong> = 合最新兮修改版本比較，<strong>（{{int:last}}）</strong> = 合前蜀個修改版本比較，<strong>（{{int:minoreditletter}}）</strong> = 細兮修改",
+	"histlegend": "差異選擇：選擇卜比較兮版本兮單選按鍵，再扼Enter鍵或者點下底兮許個按鍵。<br />\n說明：<strong>（{{int:cur}}）</strong> = 合最新兮修改版本比較，<strong>（{{int:last}}）</strong> = 合前蜀個修改版本比較，<strong>（{{int:minoreditletter}}）</strong> = 細兮修改",
 	"history-fieldset-title": "過濾修改版本",
 	"histfirst": "最舊兮",
 	"histlast": "最新兮",

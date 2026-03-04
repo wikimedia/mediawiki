@@ -6,7 +6,8 @@
 			"Ericliu1912",
 			"StephDC",
 			"Super Wang",
-			"WhitePhosphorus"
+			"WhitePhosphorus",
+			"Ouclie"
 		]
 	},
 	"january": "一月",
@@ -64,6 +65,7 @@
 	"hours-abbrev": "$1小時",
 	"minutes-abbrev": "$1分",
 	"seconds-abbrev": "$1秒",
+	"duration-days": "$1{{PLURAL:$1|日}}",
 	"yesterday-at": "昨日於$1",
 	"hours-ago": "$1時前",
 	"just-now": "方"

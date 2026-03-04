@@ -787,7 +787,7 @@
 	"tooltip-last": "Ọdịiche na ntughari bu ụzọ",
 	"page_first": "nke buzọr",
 	"page_last": "nke lara azu",
-	"histlegend": "Nhọrọ dị iche: Kaa akara redio nke ndegharị iji tụọ wee pịa tinye ma ọ bụ bọtịnụ dị na ala.<br/>\n<strong>({{int:cur}})</strong> = ihe dị iche na ndezigharị kachasị ọhụrụ,  <strong>({{int:last}})</strong> = ihe dị iche na ndegharị gara aga,<strong> {{int: minoreditletter}} </strong> </strong> = obere ndezi.",
+	"histlegend": "Nhọrọ dị iche: Kaa akara redio nke ndegharị iji tụọ wee pịa tinye ma ọ bụ bọtịnụ dị na ala.<br />\n<strong>({{int:cur}})</strong> = ihe dị iche na ndezigharị kachasị ọhụrụ,  <strong>({{int:last}})</strong> = ihe dị iche na ndegharị gara aga,<strong> {{int: minoreditletter}} </strong> </strong> = obere ndezi.",
 	"history-fieldset-title": "Nyochaa mmeghari",
 	"history-show-deleted": "Nanị mmeghari ehichapụrụ",
 	"histfirst": "nke kacha ochie",

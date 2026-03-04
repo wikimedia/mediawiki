@@ -2493,7 +2493,7 @@
 	"blocklist-timestamp": "కాలముద్ర",
 	"blocklist-target": "గమ్యం",
 	"blocklist-expiry": "ముగింపు",
-	"blocklist-by": "నిర్వాహకుని నిరోధం",
+	"blocklist-by": "నిరోధించిన నిర్వాహకులు",
 	"blocklist-params": "నిరోధపు పరామితులు",
 	"blocklist-reason": "కారణం",
 	"ipblocklist-submit": "వెతుకు",

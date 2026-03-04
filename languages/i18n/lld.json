@@ -401,7 +401,7 @@
 	"last": "ultima",
 	"page_first": "prim",
 	"page_last": "ultim",
-	"histlegend": "Confrunt danter verjiuns: chirí fora i chedri che corespogn ales verjiuns de chëres che an ó fá le confrunt y druché le botun enter o le botun dessot.\n\nLegenda: <strong>({{int:cur}})</strong> = desfarënzia respet ala verjiun atuala, <strong>({{int:last}})</strong> = desfarënzia respet ala verjiun da denant, <strong>{{int:minoreditletter}}</strong> = mudaziun mëndra.",
+	"histlegend": "Confrunt danter verjiuns: chirí fora i chedri che corespogn ales verjiuns de chëres che an ó fá le confrunt y druché le botun enter o le botun dessot.<br />\nLegenda: <strong>({{int:cur}})</strong> = desfarënzia respet ala verjiun atuala, <strong>({{int:last}})</strong> = desfarënzia respet ala verjiun da denant, <strong>{{int:minoreditletter}}</strong> = mudaziun mëndra.",
 	"history-fieldset-title": "Filtrëia verjiuns",
 	"histfirst": "la plü vedla",
 	"histlast": "la plü nöia",
