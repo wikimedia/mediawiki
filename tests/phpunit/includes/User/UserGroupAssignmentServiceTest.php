@@ -4,15 +4,28 @@
  * @file
  */
 
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\ExistingPageRecord;
+use MediaWiki\Page\PageStore;
+use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
+use MediaWiki\User\ActorStore;
+use MediaWiki\User\ActorStoreFactory;
+use MediaWiki\User\RestrictedUserGroupChecker;
+use MediaWiki\User\RestrictedUserGroupCheckerFactory;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @covers \MediaWiki\User\UserGroupAssignmentService
@@ -312,17 +325,43 @@ class UserGroupAssignmentServiceTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/** @dataProvider provideGetPageTitleForTargetUser */
-	public function testGetPageTitleForTargetUser( UserIdentity $target, string $expected ): void {
+	public function testGetPageTitleForTargetUser(
+		UserIdentity $target, string|false $referenceWiki, string $expected
+	): void {
+		$expected = str_replace( '(local)', WikiMap::getCurrentWikiId(), $expected );
 		$service = $this->getServiceContainer()->getUserGroupAssignmentService();
 
-		$title = $service->getPageTitleForTargetUser( $target );
+		$title = $service->getPageTitleForTargetUser( $target, $referenceWiki );
 		$this->assertSame( $expected, $title );
 	}
 
 	public static function provideGetPageTitleForTargetUser(): array {
 		return [
-			'Local user' => [ new UserIdentityValue( 1, 'LocalUser' ), 'LocalUser' ],
-			'Remote user' => [ new UserIdentityValue( 2, 'RemoteUser', 'otherwiki' ), 'RemoteUser@otherwiki' ],
+			'Local user from local wiki' => [
+				'target' => new UserIdentityValue( 1, 'LocalUser' ),
+				'referenceWiki' => false,
+				'expected' => 'LocalUser'
+			],
+			'Remote user from local wiki' => [
+				'target' => new UserIdentityValue( 2, 'RemoteUser', 'otherwiki' ),
+				'referenceWiki' => false,
+				'expected' => 'RemoteUser@otherwiki'
+			],
+			'Remote user from the same remote wiki' => [
+				'target' => new UserIdentityValue( 3, 'RemoteUser', 'otherwiki' ),
+				'referenceWiki' => 'otherwiki',
+				'expected' => 'RemoteUser'
+			],
+			'Remote user from a different remote wiki' => [
+				'target' => new UserIdentityValue( 4, 'RemoteUser', 'otherwiki' ),
+				'referenceWiki' => 'anotherwiki',
+				'expected' => 'RemoteUser@otherwiki'
+			],
+			'Local user from remote wiki' => [
+				'target' => new UserIdentityValue( 5, 'LocalUser' ),
+				'referenceWiki' => 'otherwiki',
+				'expected' => 'LocalUser@(local)'
+			],
 		];
 	}
 
@@ -797,5 +836,117 @@ class UserGroupAssignmentServiceTest extends MediaWikiIntegrationTestCase {
 		$service = $this->getServiceContainer()->getUserGroupAssignmentService();
 		$service->logAccessToPrivateConditions( $performer, $target, [ 'restricted-group-private' ], [], [] );
 		$this->assertFalse( $hookCalled );
+	}
+
+	public function testLogOnRemoteWiki() {
+		$services = $this->getServiceContainer();
+		$targetId = 1;
+		$dbw = $this->getDb();
+
+		// First, we have to set up some logs, so that we're able to pretend that we have two wikis
+		// even though in practice we're connected to only one database.
+		$userGroupManagerMock = $this->createMock( UserGroupManager::class );
+		$userGroupManagerMock->method( 'getUserGroupMemberships' )
+			->willReturn( [], [ 'sysop' => new UserGroupMembership( $targetId, 'sysop' ) ] );
+		$userGroupManagerMock->method( 'addUserToGroup' )
+			->willReturn( true );
+
+		$userGroupManagerFactoryMock = $this->createMock( UserGroupManagerFactory::class );
+		$userGroupManagerFactoryMock->method( 'getUserGroupManager' )
+			->willReturnCallback( static fn ( $wiki = false ) =>
+				$wiki ? $userGroupManagerMock : $services->getUserGroupManager()
+			);
+
+		$actorStore = $services->getActorStore();
+		$actorStoreMock = $this->createMock( ActorStore::class );
+		$actorStoreMock->method( 'getUserIdentityByName' )
+			->willReturn( null );
+		$actorStoreMock->method( 'acquireActorId' )
+			->willReturnCallback( static function ( $user, $db ) use ( $actorStore ) {
+				// Change to local wiki, so that acquireActorId passes validation
+				$user = new UserIdentityValue( $user->getId( $user->getWikiId() ), $user->getName() );
+				return $actorStore->acquireActorId( $user, $db );
+			} );
+		$actorStoreFactoryMock = $this->createMock( ActorStoreFactory::class );
+		$actorStoreFactoryMock->method( 'getActorStore' )
+			->willReturn( $actorStoreMock );
+		$this->setService( 'ActorStoreFactory', $actorStoreFactoryMock );
+
+		$pageStoreMock = $this->createMock( PageStore::class );
+		$pageStoreMock->method( 'getPageByName' )
+			->willReturnCallback( function ( $ns, $title ) {
+				$pageMock = $this->createMock( ExistingPageRecord::class );
+				$pageMock->method( 'getId' )
+					->willReturn( 0 );
+				$pageMock->method( 'getNamespace' )
+					->willReturn( $ns );
+				$pageMock->method( 'getDBkey' )
+					->willReturn( $title );
+				return $pageMock;
+			} );
+		$pageStoreFactoryMock = $this->createMock( PageStoreFactory::class );
+		$pageStoreFactoryMock->method( 'getPageStore' )
+			->willReturn( $pageStoreMock );
+
+		// Add everything to the same local database, even though on prod it would be two different DBs
+		$connectionProviderMock = $this->createMock( IConnectionProvider::class );
+		$connectionProviderMock->method( 'getPrimaryDatabase' )
+			->willReturn( $dbw );
+
+		$userFactory = $services->getUserFactory();
+		$userFactoryMock = $this->createMock( UserFactory::class );
+		$userFactoryMock->method( 'newFromUserIdentity' )
+			->willReturnCallback( $userFactory->newFromUserIdentity( ... ) );
+
+		$restrictedGroupCheckerMock = $this->createMock( RestrictedUserGroupChecker::class );
+		$restrictedGroupCheckerMock->method( 'isGroupRestricted' )
+			->willReturn( false );
+		$restrictedGroupCheckerFactoryMock = $this->createMock( RestrictedUserGroupCheckerFactory::class );
+		$restrictedGroupCheckerFactoryMock->method( 'getRestrictedUserGroupChecker' )
+			->willReturn( $restrictedGroupCheckerMock );
+
+		$service = new UserGroupAssignmentService(
+			$userGroupManagerFactoryMock,
+			$services->getUserNameUtils(),
+			$userFactoryMock,
+			$restrictedGroupCheckerFactoryMock,
+			new HookRunner( $services->getHookContainer() ),
+			new ServiceOptions(
+				UserGroupAssignmentService::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+			),
+			$services->getTempUserConfig(),
+			$connectionProviderMock,
+			$pageStoreFactoryMock,
+			$actorStoreFactoryMock
+		);
+
+		$performer = $this->mockRegisteredUltimateAuthority();
+		$target = new UserIdentityValue( $targetId, 'Test user', 'otherwiki' );
+
+		$service->saveChangesToUserGroups( $performer, $target, [ 'sysop' ], [], [] );
+
+		$logs = DatabaseLogEntry::newSelectQueryBuilder( $dbw )
+			->where( [ 'log_type' => 'rights' ] )
+			->fetchResultSet();
+
+		// There should be exactly two entries: one for the local wiki and one for the remote wiki
+		$this->assertSame( 2, $logs->numRows() );
+
+		$localWikiId = WikiMap::getCurrentWikiId();
+		$performerName = $performer->getUser()->getName();
+		$localPresent = false;
+		$remotePresent = false;
+		foreach ( $logs as $log ) {
+			$logTitle = $log->log_title;
+			$logPerformer = $log->log_user_text;
+			if ( $logTitle === 'Test_user' && $logPerformer === $localWikiId . '>' . $performerName ) {
+				$localPresent = true;
+			}
+			if ( $logTitle === 'Test_user@otherwiki' && $logPerformer === $performerName ) {
+				$remotePresent = true;
+			}
+		}
+		$this->assertTrue( $localPresent, 'Local wiki log entry is missing' );
+		$this->assertTrue( $remotePresent, 'Remote wiki log entry is missing' );
 	}
 }

@@ -2781,7 +2781,10 @@ return [
 			new ServiceOptions(
 				UserGroupAssignmentService::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
-			$services->getTempUserConfig()
+			$services->getTempUserConfig(),
+			$services->getConnectionProvider(),
+			$services->getPageStoreFactory(),
+			$services->getActorStoreFactory(),
 		);
 	},
 

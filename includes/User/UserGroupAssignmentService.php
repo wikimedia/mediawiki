@@ -10,9 +10,14 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserConfig;
+use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -44,6 +49,9 @@ class UserGroupAssignmentService {
 		private readonly HookRunner $hookRunner,
 		private readonly ServiceOptions $options,
 		private readonly TempUserConfig $tempUserConfig,
+		private readonly IConnectionProvider $connectionProvider,
+		private readonly PageStoreFactory $pageStoreFactory,
+		private readonly ActorStoreFactory $actorStoreFactory,
 	) {
 		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->restrictedGroupChecker = $restrictedGroupCheckerFactory->getRestrictedUserGroupChecker();
@@ -199,6 +207,9 @@ class UserGroupAssignmentService {
 	 *   for infinite). If a group is in $addGroups but not in this array, it won't expire.
 	 * @param string $reason
 	 * @param array $tags
+	 * @param list<string> $logAtAdditionalWikis List of wiki IDs where the log entry should be added, in addition
+	 *   to the current wiki and the target user's wiki. Wikis to which the log entry will be added are deduplicated,
+	 *   so no double logging will happen.
 	 * @return array{0:string[],1:string[]} The groups actually added and removed
 	 */
 	public function saveChangesToUserGroups(
@@ -208,7 +219,8 @@ class UserGroupAssignmentService {
 		array $removeGroups,
 		array $newExpiries,
 		string $reason = '',
-		array $tags = []
+		array $tags = [],
+		array $logAtAdditionalWikis = []
 	): array {
 		$userGroupManager = $this->userGroupManagerFactory->getUserGroupManager( $target->getWikiId() );
 		$oldGroupMemberships = $userGroupManager->getUserGroupMemberships( $target );
@@ -257,8 +269,8 @@ class UserGroupAssignmentService {
 
 		// Only add a log entry if something actually changed
 		if ( $newGroupMemberships != $oldGroupMemberships ) {
-			$this->addLogEntry( $performer->getUser(), $target, $reason, $tags, $oldGroupMemberships,
-				$newGroupMemberships );
+			$this->addRightsLogEntry( $performer->getUser(), $target, $reason, $tags, $oldGroupMemberships,
+				$newGroupMemberships, $logAtAdditionalWikis );
 		}
 
 		return [ $addGroups, $removeGroups ];
@@ -410,6 +422,47 @@ class UserGroupAssignmentService {
 	}
 
 	/**
+	 * Add a rights log entry for rights change on all relevant wikis.
+	 * The relevant wikis are: the current wiki and the wiki where user's rights are changed.
+	 * @param UserIdentity $performer
+	 * @param UserIdentity $target
+	 * @param string $reason
+	 * @param string[] $tags Change tags for the log entry
+	 * @param array<string,UserGroupMembership> $oldUGMs Associative array of (group name => UserGroupMembership)
+	 * @param array<string,UserGroupMembership> $newUGMs Associative array of (group name => UserGroupMembership)
+	 * @param list<string> $additionalWikis List of additional wiki IDs where the log entry should be added
+	 *   Values in this array are deduplicated; no double logging will happen
+	 */
+	private function addRightsLogEntry( UserIdentity $performer, UserIdentity $target, string $reason,
+		array $tags, array $oldUGMs, array $newUGMs, array $additionalWikis = []
+	) {
+		$wikis = array_merge(
+			[ UserIdentity::LOCAL, $target->getWikiId() ],
+			$additionalWikis
+		);
+		// Deduplicate wikis, ensure that explicit and implicit references to the current wiki are treated the same
+		$wikis = array_unique( array_map(
+			static fn ( $wiki ) => WikiMap::isCurrentWikiId( $wiki ) ? UserIdentity::LOCAL : $wiki,
+			$wikis
+		) );
+
+		foreach ( $wikis as $wiki ) {
+			$logPerformer = $performer;
+			if ( $wiki !== UserIdentity::LOCAL ) {
+				// If a user with the same name exists on a remote wiki, assign the log entry to them. Otherwise,
+				// use an external user, pointing to the current wiki
+				$userIdentityLookup = $this->actorStoreFactory->getUserIdentityLookup( $wiki );
+				$logPerformer = $userIdentityLookup->getUserIdentityByName( $performer->getName() );
+				if ( !$logPerformer ) {
+					$logPerformer = UserIdentityValue::newExternal(
+						WikiMap::getCurrentWikiId(), $performer->getName(), $wiki );
+				}
+			}
+			$this->addRightsLogEntryOnWiki( $logPerformer, $target, $reason, $tags, $oldUGMs, $newUGMs, $wiki );
+		}
+	}
+
+	/**
 	 * Add a rights log entry for an action.
 	 * @param UserIdentity $performer
 	 * @param UserIdentity $target
@@ -417,9 +470,10 @@ class UserGroupAssignmentService {
 	 * @param string[] $tags Change tags for the log entry
 	 * @param array<string,UserGroupMembership> $oldUGMs Associative array of (group name => UserGroupMembership)
 	 * @param array<string,UserGroupMembership> $newUGMs Associative array of (group name => UserGroupMembership)
+	 * @param string|false $wiki The wiki to add the log entry to.
 	 */
-	private function addLogEntry( UserIdentity $performer, UserIdentity $target, string $reason,
-		array $tags, array $oldUGMs, array $newUGMs
+	private function addRightsLogEntryOnWiki( UserIdentity $performer, UserIdentity $target, string $reason,
+		array $tags, array $oldUGMs, array $newUGMs, string|false $wiki = UserIdentity::LOCAL
 	) {
 		ksort( $oldUGMs );
 		ksort( $newUGMs );
@@ -432,7 +486,7 @@ class UserGroupAssignmentService {
 
 		$logEntry = new ManualLogEntry( 'rights', 'rights' );
 		$logEntry->setPerformer( $performer );
-		$logEntry->setTarget( Title::makeTitle( NS_USER, $this->getPageTitleForTargetUser( $target ) ) );
+		$logEntry->setTarget( $this->getPageForTargetUser( $target, $wiki ) );
 		$logEntry->setComment( $reason );
 		$logEntry->setParameters( [
 			'4::oldgroups' => $oldGroups,
@@ -440,22 +494,51 @@ class UserGroupAssignmentService {
 			'oldmetadata' => $oldUGMs,
 			'newmetadata' => $newUGMs,
 		] );
-		$logId = $logEntry->insert();
-		$logEntry->addTags( $tags );
-		$logEntry->publish( $logId );
+		$logId = $logEntry->insert(
+			$this->connectionProvider->getPrimaryDatabase( $wiki )
+		);
+		if ( $wiki === UserIdentity::LOCAL || WikiMap::isCurrentWikiId( $wiki ) ) {
+			// These methods are supported only on the local wiki
+			$logEntry->addTags( $tags );
+			$logEntry->publish( $logId );
+		}
+	}
+
+	/**
+	 * Returns a PageIdentity referring to the target user page. The title is created from the perspective of the
+	 * reference wiki. If target is from reference wiki, this function will try to match an actual page.
+	 */
+	private function getPageForTargetUser( UserIdentity $target, string|false $referenceWiki ): PageIdentity {
+		$pageTitle = $this->getPageTitleForTargetUser( $target, $referenceWiki );
+		if ( $referenceWiki === UserIdentity::LOCAL || WikiMap::isCurrentWikiId( $referenceWiki ) ) {
+			return Title::makeTitle( NS_USER, $pageTitle );
+		}
+		$pageStore = $this->pageStoreFactory->getPageStore( $referenceWiki );
+		$pageTitle = strtr( $pageTitle, ' ', '_' );
+		$page = $pageStore->getPageByName( NS_USER, $pageTitle );
+		return $page ?? new PageIdentityValue( 0, NS_USER, $pageTitle, $referenceWiki );
 	}
 
 	/**
 	 * Returns the title of page representing the target user, suitable for use in log entries.
 	 * The returned value doesn't include the namespace.
+	 *
+	 * Interwiki suffix will be added to the title only if the target user's wiki is different from the reference wiki.
+	 * @param UserIdentity $target The target user (only name and wiki ID are relevant for this method)
+	 * @param string|false $referenceWiki The wiki to use as a reference for formatting the title.
+	 *     If the wiki is different from the target user's wiki, the returned title will include the interwiki suffix.
 	 */
-	public function getPageTitleForTargetUser( UserIdentity $target ): string {
+	public function getPageTitleForTargetUser(
+		UserIdentity $target, string|false $referenceWiki = UserIdentity::LOCAL
+	): string {
 		$targetName = $target->getName();
-		if ( $target->getWikiId() !== UserIdentity::LOCAL ) {
-			$targetName .= $this->options->get( MainConfigNames::UserrightsInterwikiDelimiter )
-				. $target->getWikiId();
+		$targetWiki = $target->getWikiId() === UserIdentity::LOCAL ? WikiMap::getCurrentWikiId() : $target->getWikiId();
+		$referenceWiki = $referenceWiki === UserIdentity::LOCAL ? WikiMap::getCurrentWikiId() : $referenceWiki;
+		if ( $referenceWiki === $targetWiki ) {
+			return $targetName;
 		}
-		return $targetName;
+		$delimiter = $this->options->get( MainConfigNames::UserrightsInterwikiDelimiter );
+		return $targetName . $delimiter . $targetWiki;
 	}
 
 	/**
