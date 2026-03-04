@@ -36,6 +36,8 @@
 	"username": "{{GENDER:$1|Nama pengguna}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Ahli}} {{PLURAL:$1|kumpulan|kumpulan-kumpulan}}:",
 	"group-membership-link-with-expiry": "$1 (hingga $2)",
+	"prefs-memberingroupsdisabled": "{{PLURAL:$1|Kumpulan|Kumpulan-kumpulan}} yang {{GENDER:$2|dinyahdayakan}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|Anda}} tidak lagi memenuhi [[$3|syarat]] untuk menjadi ahli {{PLURAL:$1|kumpulan ini|kumpulan-kumpulan ini}} dan oleh itu anda tidak boleh menggunakan hak yang diberikan {{PLURAL:$1|olehnya}}.",
 	"prefs-edits": "Jumlah suntingan:",
 	"prefs-registration": "Waktu pendaftaran:",
 	"yourrealname": "Nama sebenar:",

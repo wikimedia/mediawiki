@@ -1681,6 +1681,7 @@
 	"watchlist-options": "Opsi daptar awaseun",
 	"watching": "Ngawaskeun...",
 	"unwatching": "Eureun ngawaskeun...",
+	"watchlistlabels-table-new-link": "Labél anyar",
 	"enotif_reset": "Tandaan sadaya kaca nu geus dilongok",
 	"enotif_impersonal_salutation": "Pamaké {{SITENAME}}",
 	"enotif_subject_deleted": "Kaca {{SITENAME}} $1 geus {{GENDER:$2|dihapus}} ku $2",

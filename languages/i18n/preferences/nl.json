@@ -47,6 +47,8 @@
 	"username": "{{GENDER:$1|Gebruikersnaam}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Lid}} van {{PLURAL:$1|groep|groepen}}:",
 	"group-membership-link-with-expiry": "$1 (tot $2)",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|Uitgeschakelde}} {{PLURAL:$1|groep|groepen}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|U}} voldoet niet langer aan [[$3|voorwaarden]] om lid te zijn van {{PLURAL:$1|deze groep|deze groepen}} en daarom kunt u geen gebruik maken van de rechten die door {{PLURAL:$1| het lidmaatschap wordt|de lidmaatschappen worden}} verleend.",
 	"prefs-edits": "Aantal bewerkingen:",
 	"prefs-registration": "Registratiedatum:",
 	"yourrealname": "Echte naam:",

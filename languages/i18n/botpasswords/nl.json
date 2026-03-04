@@ -29,6 +29,7 @@
 	"botpasswords-bad-appid": "De botnaam \"$1\" is niet geldig.",
 	"botpasswords-toolong-restrictions": "Er zijn te veel IP-adressen of bereiken ingevoerd.",
 	"botpasswords-toolong-grants": "Er zijn te veel rechten geselecteerd.",
+	"botpasswords-too-many": "U hebt de maximale limiet van $1 {{PLURAL:$1|botwachtwoord|botwachtwoorden}} bereikt. Verwijder eerst enkele bestaande botwachtwoorden voordat u nieuwe aanmaakt.",
 	"botpasswords-insert-failed": "Toevoegen van botnaam \"$1\" mislukt. Is deze misschien al toegevoegd?",
 	"botpasswords-update-failed": "Bijwerken van botnaam \"$1\" mislukt. Is deze misschien verwijderd?",
 	"botpasswords-created-title": "Botwachtwoord aangemaakt",
