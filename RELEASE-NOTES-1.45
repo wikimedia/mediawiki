@@ -12,6 +12,7 @@ THIS IS NOT A RELEASE YET
 
 === Changes since 1.45.1 ===
 * Localisation updates.
+* Upgrade wikimedia/css-sanitizer from 6.1.0 to 6.2.1.
 * Upgrade wikimedia/less.php from 5.2.2 to 5.5.0.
 
 == MediaWiki 1.45.1 ==
