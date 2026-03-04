@@ -44,6 +44,9 @@ class NewFilesPager extends RangeChronologicalPager {
 	) {
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
+		$this->migrationStage = $context->getConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
 
 		parent::__construct( $context, $linkRenderer );
 
@@ -61,9 +64,6 @@ class NewFilesPager extends RangeChronologicalPager {
 			$endTimestamp = $opts->getValue( 'end' ) . ' 23:59:59';
 		}
 		$this->getDateRangeCond( $startTimestamp, $endTimestamp );
-		$this->migrationStage = $context->getConfig()->get(
-			MainConfigNames::FileSchemaMigrationStage
-		);
 	}
 
 	/** @inheritDoc */
@@ -76,6 +76,12 @@ class NewFilesPager extends RangeChronologicalPager {
 			$nameField = 'img_name';
 			$actorField = 'img_actor';
 			$timestampField = 'img_timestamp';
+			$fields = [
+				$nameField,
+				$timestampField,
+				'actor_user',
+				'actor_name'
+			];
 			$jconds = [];
 
 		} else {
@@ -83,10 +89,15 @@ class NewFilesPager extends RangeChronologicalPager {
 			$nameField = 'file_name';
 			$actorField = 'fr_actor';
 			$timestampField = 'fr_timestamp';
+			$fields = [
+				$nameField,
+				$timestampField,
+				'actor_user',
+				'actor_name'
+			];
 			$jconds = [ 'filerevision' => [ 'JOIN', 'file_latest=fr_id' ] ];
 		}
 		$tables[] = 'actor';
-		$fields = [ 'img_name' => $nameField, 'img_timestamp' => $timestampField, 'actor_user', 'actor_name' ];
 		$options = [];
 		$jconds['actor'] = [ 'JOIN', 'actor_id=' . $actorField ];
 
@@ -160,7 +171,11 @@ class NewFilesPager extends RangeChronologicalPager {
 
 	/** @inheritDoc */
 	public function getIndexField() {
-		return [ [ 'img_timestamp', 'img_name' ] ];
+		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			return [ [ 'img_timestamp', 'img_name' ] ];
+		} else {
+			return [ [ 'fr_timestamp', 'file_name' ] ];
+		}
 	}
 
 	/** @inheritDoc */
@@ -208,10 +223,13 @@ class NewFilesPager extends RangeChronologicalPager {
 				$username
 			);
 		}
-		$time = $this->getLanguage()->userTimeAndDate( $row->img_timestamp, $this->getUser() );
 
+		$timestamp = $this->migrationStage & SCHEMA_COMPAT_READ_OLD ? $row->img_timestamp : $row->fr_timestamp;
+		$time = $this->getLanguage()->userTimeAndDate( $timestamp, $this->getUser() );
+
+		$fileName = $this->migrationStage & SCHEMA_COMPAT_READ_OLD ? $row->img_name : $row->file_name;
 		$this->gallery->add(
-			Title::makeTitle( NS_FILE, $row->img_name ),
+			Title::makeTitle( NS_FILE, $fileName ),
 			"$ul<br />\n<i>"
 				. htmlspecialchars( $time )
 				. "</i><br />\n",
