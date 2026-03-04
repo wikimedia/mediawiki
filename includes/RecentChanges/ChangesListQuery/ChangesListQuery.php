@@ -1547,13 +1547,10 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 * @param stdClass[] &$outRows
 	 */
 	public function sortAndTruncate( array $inRows, ?int $limit, &$outRows ) {
-		usort( $inRows, static function ( $a, $b ) {
-			if ( $a->rc_timestamp === $b->rc_timestamp ) {
-				return $b->rc_id <=> $a->rc_id;
-			} else {
-				return $b->rc_timestamp <=> $a->rc_timestamp;
-			}
-		} );
+		usort( $inRows, static fn ( $a, $b ) =>
+			$b->rc_timestamp <=> $a->rc_timestamp ?:
+			$b->rc_id <=> $a->rc_id
+		);
 		// Remove duplicates and slice
 		$prevId = null;
 		$numOut = 0;

@@ -94,18 +94,15 @@ class DnsSrvDiscoverer {
 	 * list of resolved server name/ip and port number pairs sorted by each
 	 * record's priority, with servers of the same priority randomly shuffled.
 	 *
-	 * @return array
+	 * @return array[]
 	 */
 	public function getServers() {
 		$records = $this->getRecords();
 
-		usort( $records, static function ( $a, $b ) {
-			if ( $a['pri'] === $b['pri'] ) {
-				return mt_rand( 0, 1 ) ? 1 : -1;
-			}
-
-			return $a['pri'] - $b['pri'];
-		} );
+		usort( $records, static fn ( $a, $b ) =>
+			$a['pri'] <=> $b['pri'] ?:
+			( mt_rand( 0, 1 ) ? 1 : -1 )
+		);
 
 		$serversAndPorts = [];
 

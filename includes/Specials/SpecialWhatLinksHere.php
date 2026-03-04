@@ -369,15 +369,10 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		}
 
 		// Sort by namespace + page ID, changing the keys to 0-based indices
-		usort( $rows, static function ( $rowA, $rowB ) {
-			if ( $rowA->page_namespace !== $rowB->page_namespace ) {
-				return $rowA->page_namespace < $rowB->page_namespace ? -1 : 1;
-			}
-			if ( $rowA->page_id !== $rowB->page_id ) {
-				return $rowA->page_id < $rowB->page_id ? -1 : 1;
-			}
-			return 0;
-		} );
+		usort( $rows, static fn ( $rowA, $rowB ) =>
+			$rowA->page_namespace <=> $rowB->page_namespace ?:
+			$rowA->page_id <=> $rowB->page_id
+		);
 
 		$numRows = count( $rows );
 

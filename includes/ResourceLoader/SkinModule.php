@@ -540,7 +540,7 @@ class SkinModule extends FileModule {
 		uksort( $logosPerDppx, static function ( $a, $b ) {
 			$a = floatval( $a );
 			$b = floatval( $b );
-			// Sort from smallest to largest (e.g. 1x, 2x)
+		// Sort from smallest to largest (e.g. 1x, 2x)
 			return $a <=> $b;
 		} );
 

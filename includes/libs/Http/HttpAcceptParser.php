@@ -70,15 +70,10 @@ class HttpAcceptParser {
 		}
 
 		// Sort list. First by q values, then by order
-		usort( $ret, static function ( $a, $b ) {
-			if ( $b['q'] > $a['q'] ) {
-				return 1;
-			} elseif ( $b['q'] === $a['q'] ) {
-				return $a['i'] - $b['i'];
-			} else {
-				return -1;
-			}
-		} );
+		usort( $ret, static fn ( $a, $b ) =>
+			$b['q'] <=> $a['q'] ?:
+			$a['i'] <=> $b['i']
+		);
 
 		return $ret;
 	}

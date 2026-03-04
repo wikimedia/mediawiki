@@ -151,12 +151,8 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 			$sort = null;
 			foreach ( $newResult as $key => $value ) {
 				if ( !$numericIds && $sort === null ) {
-					if ( !is_array( $value ) ) {
-						$sort = false;
-					} elseif ( array_key_exists( 'title', $value ) ) {
-						$sort = static function ( $a, $b ) {
-							return strcmp( $a['title'], $b['title'] );
-						};
+					if ( is_array( $value ) && array_key_exists( 'title', $value ) ) {
+						$sort = static fn ( $a, $b ) => $a['title'] <=> $b['title'];
 					} else {
 						$sort = false;
 					}
@@ -180,7 +176,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 			}
 			if ( $numericIds ) {
 				ksort( $results, SORT_NUMERIC );
-			} elseif ( $sort !== null && $sort !== false ) {
+			} elseif ( $sort ) {
 				usort( $results, $sort );
 			}
 		}
