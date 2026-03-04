@@ -230,6 +230,11 @@ because of Phabricator reports.
 * The tests/phpunit/suite.xml configuration file and
   tests/phpunit/bootstrap.integration.php bootstrap, deprecated in 1.42, have
   been removed. Use phpunit.xml.dist and bootstrap.php instead.
+* The phpunit.xml.dist configuration file has been removed. MediaWiki now
+  provides a phpunit.xml.template file that will be used to generate a local
+  configuration file dependent on the wiki config. The local configuration
+  can be generated manually by running `composer phpunit:config`, or
+  automatically when running tests via `composer phpunit`.
 * The tables represented by subclasses of TitleLinksTable are now expected to
   be normalized to use the linktarget table. If they are not, they should
   override the linksTargetNormalizationStage method to return MIGRATION_OLD.

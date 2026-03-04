@@ -14,7 +14,7 @@ class PHPUnitConfigTest extends PHPUnit\Framework\TestCase {
 		$testRootDir = realpath( __DIR__ . '/..' );
 
 		$dom = new DOMDocument();
-		$dom->load( __DIR__ . '/../../../phpunit.xml.dist' );
+		$dom->load( __DIR__ . '/../../../phpunit.xml.template' );
 		/** @var DOMElement $suites */
 		$suites = $dom->documentElement->getElementsByTagName( 'testsuites' )[0];
 

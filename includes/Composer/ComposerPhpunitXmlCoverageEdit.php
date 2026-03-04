@@ -33,7 +33,7 @@ class ComposerPhpunitXmlCoverageEdit {
 		}
 		$project = current( $args );
 		$phpunitXml = new DomDocument();
-		$phpunitXml->load( $IP . '/phpunit.xml.dist' );
+		$phpunitXml->load( $IP . '/phpunit.xml' );
 		$include = iterator_to_array( $phpunitXml->getElementsByTagName( 'include' ) );
 		/** @var DOMNode $childNode */
 		foreach ( $include as $childNode ) {

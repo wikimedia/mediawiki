@@ -60,16 +60,16 @@ class PhpUnitXmlManager {
 		return $this->rootDir . DIRECTORY_SEPARATOR . $this->phpunitConfigFile;
 	}
 
-	public static function getPhpUnitXmlDist( string $rootDir ): string {
-		return $rootDir . DIRECTORY_SEPARATOR . "phpunit.xml.dist";
+	public static function getPhpUnitConfig( string $rootDir ): string {
+		return $rootDir . DIRECTORY_SEPARATOR . "phpunit.xml";
 	}
 
 	private function getTestsList(): string {
 		return $this->rootDir . DIRECTORY_SEPARATOR . $this->testsListFile;
 	}
 
-	private function loadPhpUnitXmlDist(): PhpUnitXml {
-		return $this->loadPhpUnitXml( self::getPhpUnitXmlDist( $this->rootDir ) );
+	private function loadPhpUnitConfig(): PhpUnitXml {
+		return $this->loadPhpUnitXml( self::getPhpUnitConfig( $this->rootDir ) );
 	}
 
 	private function loadPhpUnitXml( string $targetFile ): PhpUnitXml {
@@ -158,7 +158,7 @@ class PhpUnitXmlManager {
 	 * @throws PhpUnitResultsCachingException
 	 */
 	public function createPhpUnitXml( int $groups ) {
-		$unitFile = $this->loadPhpUnitXmlDist();
+		$unitFile = $this->loadPhpUnitConfig();
 		$testFiles = $this->scanForTestFiles();
 		$testClasses = $this->loadTestClasses();
 		$seenFiles = [];
@@ -327,7 +327,7 @@ class PhpUnitXmlManager {
 		IOInterface $io, ComposerSystemInterface $system
 	): SplitGroupExecutor {
 		return new SplitGroupExecutor(
-			self::getPhpUnitXmlDist( $system->getcwd() ),
+			self::getPhpUnitConfig( $system->getcwd() ),
 			Shellbox::createUnboxedExecutor(),
 			$io
 		);
@@ -384,7 +384,7 @@ class PhpUnitXmlManager {
 				$io->error( $tce->getMessage() );
 			}
 			copy(
-				self::getPhpUnitXmlDist( $system->getcwd() ),
+				self::getPhpUnitConfig( $system->getcwd() ),
 				$system->getcwd() . DIRECTORY_SEPARATOR . 'phpunit.xml'
 			);
 			if ( $testSuite !== null ) {

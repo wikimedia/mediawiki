@@ -37,16 +37,16 @@ class PhpUnitXmlManagerTest extends TestCase {
 		$this->setupTestFolder();
 	}
 
-	private static function getSourcePhpUnitDistXml(): string {
+	private static function getSourcePhpUnitConfig(): string {
 		return __DIR__ . DIRECTORY_SEPARATOR . implode(
-		DIRECTORY_SEPARATOR, [ '..', '..', '..', '..', '..', '..', 'phpunit.xml.dist' ]
+		DIRECTORY_SEPARATOR, [ '..', '..', '..', '..', '..', '..', 'phpunit.xml' ]
 		);
 	}
 
 	private function setupTestFolder() {
 		copy(
-			self::getSourcePhpUnitDistXml(),
-			$this->testDir . DIRECTORY_SEPARATOR . 'phpunit.xml.dist'
+			self::getSourcePhpUnitConfig(),
+			$this->testDir . DIRECTORY_SEPARATOR . 'phpunit.xml'
 		);
 		mkdir( $this->testDir . DIRECTORY_SEPARATOR . "tests" );
 		foreach ( glob( __DIR__ . DIRECTORY_SEPARATOR . "*Test.php" ) as $file ) {
@@ -58,7 +58,7 @@ class PhpUnitXmlManagerTest extends TestCase {
 	}
 
 	private function tearDownTestFolder() {
-		foreach ( [ 'phpunit.xml', 'phpunit-test.xml', 'phpunit.xml.dist', 'tests-list.xml' ] as $file ) {
+		foreach ( [ 'phpunit.xml', 'phpunit-test.xml', 'tests-list.xml' ] as $file ) {
 			$path = $this->testDir . DIRECTORY_SEPARATOR . $file;
 			if ( file_exists( $path ) ) {
 				unlink( $path );
@@ -99,16 +99,16 @@ class PhpUnitXmlManagerTest extends TestCase {
 
 	public function testPhpUnitXmlDistNotPrepared() {
 		$this->assertFalse( $this->manager->isPhpUnitXmlPrepared(), "Expected no PHPUnit Xml to be present" );
-		copy( self::getSourcePhpUnitDistXml(), implode( DIRECTORY_SEPARATOR, [ $this->testDir, "phpunit-test.xml" ] ) );
+		copy( self::getSourcePhpUnitConfig(), implode( DIRECTORY_SEPARATOR, [ $this->testDir, "phpunit-test.xml" ] ) );
 		$this->copyTestListIntoPlace();
 		$this->manager->createPhpUnitXml( 4 );
-		copy( self::getSourcePhpUnitDistXml(), implode( DIRECTORY_SEPARATOR, [ $this->testDir, "phpunit-test.xml" ] ) );
-		$this->assertFalse( $this->manager->isPhpUnitXmlPrepared(), "Expected phpunit.dist.xml to be treated as unprepared" );
+		copy( self::getSourcePhpUnitConfig(), implode( DIRECTORY_SEPARATOR, [ $this->testDir, "phpunit-test.xml" ] ) );
+		$this->assertFalse( $this->manager->isPhpUnitXmlPrepared(), "Expected default config to be treated as unprepared" );
 	}
 
 	public function testFailWithInformativeErrorIfErrorTestCaseFound() {
 		$this->assertFalse( $this->manager->isPhpUnitXmlPrepared(), "Expected no PHPUnit Xml to be present" );
-		copy( self::getSourcePhpUnitDistXml(), implode( DIRECTORY_SEPARATOR, [ $this->testDir, "phpunit-test.xml" ] ) );
+		copy( self::getSourcePhpUnitConfig(), implode( DIRECTORY_SEPARATOR, [ $this->testDir, "phpunit-test.xml" ] ) );
 		$this->copyTestListIntoPlace( 'tests-list-with-error.xml' );
 		$this->expectException( PhpUnitErrorTestCaseFoundException::class );
 		$this->manager->createPhpUnitXml( 4 );

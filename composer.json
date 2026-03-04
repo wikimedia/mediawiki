@@ -190,7 +190,10 @@
 		"phpunit:config": "@php tests/phpunit/generatePHPUnitConfig.php",
 		"phpunit:unit": "@phpunit --colors=always --testsuite=core:unit,extensions:unit",
 		"phpunit:coverage": "@phpunit --testsuite=core:unit --exclude-group Dump,Broken",
-		"phpunit:coverage-edit": "MediaWiki\\Composer\\ComposerPhpunitXmlCoverageEdit::onEvent",
+		"phpunit:coverage-edit": [
+			"@phpunit:config",
+			"MediaWiki\\Composer\\ComposerPhpunitXmlCoverageEdit::onEvent"
+		],
 		"phpunit:entrypoint": "@phpunit",
 		"phpunit:prepare-parallel:extensions": [
 			"MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitXmlManager::fetchResultsCache",

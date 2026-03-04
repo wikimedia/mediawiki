@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+This is a template PHPUnit config file. It is not meant to be used directly.
+Generate a local configuration by running `composer phpunit:config`
+-->
 <phpunit bootstrap="tests/phpunit/bootstrap.php"
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
