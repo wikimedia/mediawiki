@@ -154,3 +154,18 @@ if ( !$hasIntegrationTests ) {
 }
 
 TestSetup::maybeCheckComposerLockUpToDate();
+
+// Quick check for phpunit.xml. A more thorough test is in PHPUnitConfigTest
+$localConfigPath = __DIR__ . '/../../phpunit.xml';
+if ( !file_exists( $localConfigPath ) ) {
+	throw new RuntimeException(
+		'No PHPUnit config override found. Generate it manually by running `composer phpunit:config`, or ' .
+			'automatically by running tests via `composer phpunit`.'
+	);
+}
+if ( !str_contains( file_get_contents( $localConfigPath ), 'generatePHPUnitConfig' ) ) {
+	throw new RuntimeException(
+		'The PHPUnit config override does not appear to be auto-generated. Generate it manually by running ' .
+		'`composer phpunit:config`, or automatically by running tests via `composer phpunit`.'
+	);
+}

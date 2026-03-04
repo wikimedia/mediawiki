@@ -106,6 +106,7 @@ class PHPUnitConfigTest extends PHPUnit\Framework\TestCase {
 		$localCfgPath = __DIR__ . '/../../../phpunit.xml';
 		$instructions = 'Generate it manually by running `composer phpunit:config`, or ' .
 			'automatically by running tests via `composer phpunit`.';
+		// The file should be guaranteed to exist thanks to the check in bootstrap.php, but double-check that.
 		$this->assertFileExists( $localCfgPath, "No local PHPUnit config found. $instructions" );
 
 		// Temporarily move the config out of the way to run the test. Obviously we could modify the script, e.g. by
