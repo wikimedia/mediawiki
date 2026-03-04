@@ -30,6 +30,9 @@ class LanguageSelectWidget {
 	 *   - bool $config['required'] Whether the select is required
 	 *   - bool $config['multiple'] multi select language selector
 	 *   - string $config['cssclass'] Additional CSS classes for the select element
+	 *   - callable $config['labelFormat'] Callback to format option labels.
+	 *     Receives the language code, and name as parameters, should return a string.
+	 *     Default is "code · name".
 	 */
 	public function __construct( array $config = [] ) {
 		$this->config = $config;
@@ -77,15 +80,17 @@ class LanguageSelectWidget {
 		if ( $languages !== null ) {
 			$value = $this->config['value'] ?? null;
 			$selectedValues = is_array( $value ) ? $value : [ $value ];
+			$labelFormat = $this->config['labelFormat'] ?? static function ( string $code, string $name ): string {
+				return $code . ' · ' . $name;
+			};
+
 			foreach ( $languages as $code => $name ) {
 				$optionAttribs = [ 'value' => $code ];
 				if ( in_array( $code, $selectedValues, true ) ) {
 					$optionAttribs['selected'] = 'selected';
 				}
 
-				// FIXME: the language labels will changed based on
-				// https://phabricator.wikimedia.org/T414468
-				$selectHtml .= Html::element( 'option', $optionAttribs, $code . ' - ' . $name );
+				$selectHtml .= Html::element( 'option', $optionAttribs, $labelFormat( $code, $name ) );
 			}
 		}
 

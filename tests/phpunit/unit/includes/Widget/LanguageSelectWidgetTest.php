@@ -206,9 +206,9 @@ class LanguageSelectWidgetTest extends MediaWikiUnitTestCase {
 		$this->assertStringContainsString( '<option value="en">', $html );
 		$this->assertStringContainsString( '<option value="de">', $html );
 		$this->assertStringContainsString( '<option value="fr">', $html );
-		$this->assertStringContainsString( 'en - English', $html );
-		$this->assertStringContainsString( 'de - German', $html );
-		$this->assertStringContainsString( 'fr - French', $html );
+		$this->assertStringContainsString( 'en · English', $html );
+		$this->assertStringContainsString( 'de · German', $html );
+		$this->assertStringContainsString( 'fr · French', $html );
 	}
 
 	public function testToStringWithAllAttributes() {
@@ -255,6 +255,22 @@ class LanguageSelectWidgetTest extends MediaWikiUnitTestCase {
 		$html = $widget->toString();
 
 		$this->assertStringNotContainsString( 'id=', $html );
+	}
+
+	public function testToStringWithLabelFormat() {
+		$config = [
+			'languages' => [ 'en' => 'English', 'de' => 'German' ],
+			'labelFormat' => static function ( string $code, string $name ): string {
+				return "$name ($code)";
+			},
+		];
+		$widget = new LanguageSelectWidget( $config );
+		$html = $widget->toString();
+
+		$this->assertStringContainsString( 'English (en)', $html );
+		$this->assertStringContainsString( 'German (de)', $html );
+		$this->assertStringNotContainsString( 'en · English', $html );
+		$this->assertStringNotContainsString( 'de · German', $html );
 	}
 
 	public function testMagicToString() {

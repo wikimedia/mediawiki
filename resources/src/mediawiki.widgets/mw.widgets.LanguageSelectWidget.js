@@ -19,6 +19,11 @@
 
 		let selectedLanguage;
 
+		const optionLabels = {};
+		Array.from( nativeSelect.options ).forEach( ( option ) => {
+			optionLabels[ option.value ] = option.textContent;
+		} );
+
 		// Hide the native select (but keep it for form submission)
 		nativeSelect.style.display = 'none';
 
@@ -38,9 +43,7 @@
 		const vueApp = factory( {
 			selectableLanguages: languages,
 			selectedLanguage: selectedLanguage,
-			// FIXME: the language labels will changed based on
-			// https://phabricator.wikimedia.org/T414468
-			menuItemSlot: ( { languageCode, languageName } ) => languageCode + ' - ' + languageName,
+			menuItemSlot: ( { languageCode } ) => optionLabels[ languageCode ],
 			onLanguageChange: ( newValue ) => {
 				if ( isMultiple ) {
 					// Iterate over the options and set the 'selected' property for multiple select
