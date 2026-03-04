@@ -44,7 +44,7 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 		$this->timestamp = $timestamp ?: wfTimestampNow();
 
 		$fakePO = new ParserOutput();
-		$fakePO->setCacheTime( $timestamp );
+		$fakePO->setCacheTime( $this->timestamp );
 		// Use an immutable page identity to keep reference to the page id at time of deletion - T299244
 		$immutablePageIdentity = new PageIdentityValue(
 			$page->getId(),

@@ -12,6 +12,7 @@ namespace MediaWiki\Parser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\Assert\Assert;
 use Wikimedia\JsonCodec\JsonCodecable;
 use Wikimedia\JsonCodec\JsonCodecableTrait;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -31,10 +32,10 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	protected array $mParseUsedOptions = [];
 
 	/**
-	 * @var string|int TS::MW timestamp when this object was generated, or -1 for not cacheable. Used
-	 * in ParserCache.
+	 * @var string TS::MW timestamp when this object was generated, or
+	 *  '' if not yet set. Used in ParserCache.
 	 */
-	protected string|int $mCacheTime = '';
+	protected string $mCacheTime = '';
 
 	/**
 	 * @var int|null Seconds after which the object should expire, use 0 for not cacheable. Used in
@@ -55,10 +56,9 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	protected ?string $mCacheExpirySource = null;
 
 	/**
-	 * @return string|int TS::MW timestamp
+	 * @return string TS::MW timestamp
 	 */
 	public function getCacheTime() {
-		// NOTE: keep support for undocumented used of -1 to mean "not cacheable".
 		if ( $this->mCacheTime === '' ) {
 			$this->mCacheTime = MWTimestamp::now();
 		}
@@ -78,17 +78,17 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	 * @param string $t TS::MW timestamp
 	 * @return string
 	 */
-	public function setCacheTime( $t ) {
-		// NOTE: keep support for undocumented used of -1 to mean "not cacheable".
-		if ( is_string( $t ) && $t !== '-1' ) {
-			$t = MWTimestamp::convert( TS::MW, $t );
+	public function setCacheTime( $t ): string {
+		if ( !is_string( $t ) ) {
+			wfDeprecated( __METHOD__ . ": with non-string argument (" . get_debug_type( $t ) . ")", "1.46" );
+			$t = (string)$t;
 		}
+		// A long time ago we used to use -1 to mean "not cacheable"
+		Assert::invariant( $t !== '-1', "not a TS::MW timestamp" );
 
-		if ( $t === -1 || $t === '-1' ) {
-			wfDeprecatedMsg( __METHOD__ . ' called with -1 as an argument', '1.36' );
-		}
-
-		return wfSetVar( $this->mCacheTime, $t );
+		$old = $this->mCacheTime;
+		$this->mCacheTime = MWTimestamp::convert( TS::MW, $t );
+		return $old;
 	}
 
 	/**
@@ -148,11 +148,6 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	public function getCacheExpiry(): int {
 		$parserCacheExpireTime = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::ParserCacheExpireTime );
-
-		// NOTE: keep support for undocumented used of -1 to mean "not cacheable".
-		if ( $this->mCacheTime !== '' && $this->mCacheTime < 0 ) {
-			return 0;
-		}
 
 		$expire = min( $this->mCacheExpiry ?? $parserCacheExpireTime, $parserCacheExpireTime );
 		return $expire > 0 ? $expire : 0;
@@ -288,6 +283,12 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 		$this->mCacheTime = $jsonData['CacheTime'] ?? '';
 		$this->mCacheRevisionId = $jsonData['CacheRevisionId'] ?? null;
 		$this->mCacheExpirySource = $jsonData['CacheExpirySource'] ?? null;
+
+		// Backward compatibility
+		if ( $this->mCacheTime === '-1' ) {
+			$this->mCacheExpiry = 0;
+			$this->mCacheTime = '';
+		}
 	}
 }
 

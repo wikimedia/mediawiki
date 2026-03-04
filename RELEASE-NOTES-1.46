@@ -285,6 +285,8 @@ because of Phabricator reports.
   - Parser::getOutput() never returns null.  Calling ::getOutput() before
     the initialization of ParserOutput has been deprecated with warnings
     since 1.43.
+  - Parser::setCacheTime() no longer accepts -1 to mean "not cacheable".
+    This has emitted deprecation warnings since 1.36.
 * wfMergeErrorArrays(), deprecated in 1.43, has been dropped.
 * Article::getRedirectHeaderHtml(), deprecated in 1.41, has been dropped.
   Instead, use LinkRenderer::makeRedirectHeader().
@@ -909,6 +911,8 @@ because of Phabricator reports.
   ::makeImageHtml() instead, which doesn't expose the internal LinkHolderArray.
 * Parser::replaceLinkHolders() now emits deprecation warnings; it was
   deprecated in 1.34.
+* Parser::setCacheTime() now requires its argument to be a non-null string;
+  passing other values triggers a deprecation warning.
 * The WatchedItemQueryServiceExtensions hook is deprecated and is no longer
   called. Use ApiQueryBaseBeforeQuery, ApiQueryBaseAfterQuery,
   ApiQueryBaseProcessRow and ApiQueryWatchlistExtractOutputData.

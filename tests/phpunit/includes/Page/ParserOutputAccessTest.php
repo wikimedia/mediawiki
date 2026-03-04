@@ -33,6 +33,7 @@ use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Stats\UnitTestingHelper;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\Page\ParserOutputAccess
@@ -1564,10 +1565,10 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	public function testFallbackFromOutdatedParserCache( $options, $expectedOk, $expectedMessage ) {
 		// Fake Unix timestamps
 		$lastWrite = 10;
-		$outdated = $lastWrite;
+		$outdated = MWTimestamp::convert( TS::MW, $lastWrite );
 
 		$chronologyProtector = $this->createNoOpMock( ChronologyProtector::class, [ 'getTouched' ] );
-		$chronologyProtector->method( 'getTouched' )->willReturn( $lastWrite );
+		$chronologyProtector->method( 'getTouched' )->willReturn( true );
 
 		$output = new ParserOutput( 'cached content' );
 		$output->setCacheTime( $outdated );
@@ -1602,7 +1603,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 	public function testFallbackFromMoreRecentParserCache() {
 		// Fake Unix timestamp
-		$cacheTime = 1301648400;
+		$cacheTime = MWTimestamp::convert( TS::MW, 1301648400 );
 
 		$chronologyProtector = $this->createNoOpMock( ChronologyProtector::class, [ 'getTouched' ] );
 		$chronologyProtector->method( 'getTouched' )->willReturn( false );

@@ -1034,22 +1034,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		];
 		yield 'right has later cache time' => [ $a, $b, [ 'getCacheTime' => $someLaterTime ] ];
 
-		$a = [
-			'cacheTime' => -1,
-		];
-		$b = [
-			'cacheTime' => $someTime,
-		];
-		yield 'left is uncacheable' => [ $a, $b, [ 'getCacheTime' => "-1" ] ];
-
-		$a = [
-			'cacheTime' => $someTime,
-		];
-		$b = [
-			'cacheTime' => -1,
-		];
-		yield 'right is uncacheable' => [ $a, $b, [ 'getCacheTime' => "-1" ] ];
-
 		// timestamp ------------
 		$a = [
 			'revisionTimestamp' => '20180101000011',
