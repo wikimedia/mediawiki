@@ -133,7 +133,7 @@ class SpecialWantedFiles extends WantedQueryPage {
 			],
 			'fields' => [
 				'namespace' => NS_FILE,
-				'title' => 'il_to',
+				'title' => 'lt_title',
 				'value' => 'COUNT(*)'
 			],
 			'conds' => [
@@ -141,7 +141,7 @@ class SpecialWantedFiles extends WantedQueryPage {
 				// We also need to exclude file redirects
 				'img2.' . $nameField => null,
 			],
-			'options' => [ 'GROUP BY' => 'il_to' ],
+			'options' => [ 'GROUP BY' => 'lt_title' ],
 			'join_conds' => [
 				'linktarget' => [ 'JOIN', [ 'il_target_id = lt_id' ] ],
 				'img1' => [ 'LEFT JOIN',
