@@ -2233,7 +2233,7 @@
 	"watchlistlabels-table-title": "Створити та зняти позначки",
 	"watchlistlabels-table-description": "Ваші збережені позначки показано нижче.",
 	"watchlistlabels-table-header": "Позначки",
-	"watchlistlabels-table-new-link": "+ Нова позначка",
+	"watchlistlabels-table-new-link": "Нова позначка",
 	"watchlistlabels-table-delete-link": "Вилучити",
 	"watchlistlabels-table-col-name": "Назва",
 	"watchlistlabels-table-col-count": "Елементи",

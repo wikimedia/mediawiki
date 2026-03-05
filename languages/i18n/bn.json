@@ -2200,7 +2200,7 @@
 	"watchlistlabels-table-title": "লেবেল তৈরি করুন ও সরিয়ে ফেলুন",
 	"watchlistlabels-table-description": "আপনার সংরক্ষিত লেবেলগুলি নিচে দেখানো হয়েছে।",
 	"watchlistlabels-table-header": "লেবেল",
-	"watchlistlabels-table-new-link": "+ নতুন লেবেল",
+	"watchlistlabels-table-new-link": "নতুন লেবেল",
 	"watchlistlabels-table-delete-link": "মুছে ফেলুন",
 	"watchlistlabels-table-col-name": "নাম",
 	"watchlistlabels-table-col-count": "আইটেম",

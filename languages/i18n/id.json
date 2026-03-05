@@ -2269,7 +2269,7 @@
 	"watchlistlabels-not-logged-in": "Harap masuk log untuk mengelola label daftar pantauan.",
 	"watchlistlabels-not-logged-in-for-temp-user": "Harap buat sebuah akun untuk mengelola label daftar pantauan.",
 	"watchlistlabels-table-header": "Label",
-	"watchlistlabels-table-new-link": "+ Label baru",
+	"watchlistlabels-table-new-link": "Label baru",
 	"watchlistlabels-table-delete-link": "Hapus",
 	"watchlistlabels-table-col-name": "Nama",
 	"watchlistlabels-table-col-count": "Butir",

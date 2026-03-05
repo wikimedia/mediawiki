@@ -2253,7 +2253,7 @@
 	"watchlistlabels-table-title": "레이블 만들기 및 제거",
 	"watchlistlabels-table-description": "저장된 레이블은 아래에 표시됩니다.",
 	"watchlistlabels-table-header": "레이블",
-	"watchlistlabels-table-new-link": "+ 새 레이블",
+	"watchlistlabels-table-new-link": "새 레이블",
 	"watchlistlabels-table-delete-link": "삭제",
 	"watchlistlabels-table-col-name": "이름",
 	"watchlistlabels-table-col-count": "항목",

@@ -2245,7 +2245,7 @@
 	"watchlistlabels-table-title": "Opret og fjern etiketter",
 	"watchlistlabels-table-description": "Dine gemte etiketter vises nedenfor.",
 	"watchlistlabels-table-header": "Etiketter",
-	"watchlistlabels-table-new-link": "+ Ny etiket",
+	"watchlistlabels-table-new-link": "Ny etiket",
 	"watchlistlabels-table-delete-link": "Slet",
 	"watchlistlabels-table-col-name": "Navn",
 	"watchlistlabels-table-col-count": "Emner",

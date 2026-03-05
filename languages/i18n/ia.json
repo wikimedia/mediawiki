@@ -2199,7 +2199,7 @@
 	"watchlistlabels-table-title": "Crear e remover etiquettas",
 	"watchlistlabels-table-description": "Tu etiquettas salveguardate appare infra.",
 	"watchlistlabels-table-header": "Etiquettas",
-	"watchlistlabels-table-new-link": "+ Nove etiquetta",
+	"watchlistlabels-table-new-link": "Nove etiquetta",
 	"watchlistlabels-table-delete-link": "Deler",
 	"watchlistlabels-table-col-name": "Nomine",
 	"watchlistlabels-table-col-count": "Elementos",

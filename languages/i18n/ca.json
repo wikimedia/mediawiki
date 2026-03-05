@@ -2220,7 +2220,7 @@
 	"watchlistlabels-table-title": "Crear i eliminar etiquetes",
 	"watchlistlabels-table-description": "Les etiquetes desades es mostren a continuació.",
 	"watchlistlabels-table-header": "Etiquetes",
-	"watchlistlabels-table-new-link": "+ Nova etiqueta",
+	"watchlistlabels-table-new-link": "Nova etiqueta",
 	"watchlistlabels-table-col-name": "Nom",
 	"watchlistlabels-form-header-new": "Nova etiqueta",
 	"watchlistlabels-form-header-edit": "Reanomena",

@@ -72,5 +72,5 @@
 	"rest-endpoint-summ-get-file-title": "Ottieni file",
 	"rest-endpoint-summ-post-page": "Crea pagina",
 	"rest-endpoint-summ-post-transform-html-to-wikitext": "Converti HTML in wikitesto",
-	"rest-responseheader-desc-deprecation": "Determina il comportamento di memorizzazione nella cache per un browser, consentendogli di sapere con quale frequenza aggiornare le risorse memorizzate localmente."
+	"rest-responseheader-desc-deprecation": "Determina il comportamento di memorizzazione nella cache per un browser, comunicandogli la frequenza con cui aggiornare le risorse memorizzate localmente."
 }

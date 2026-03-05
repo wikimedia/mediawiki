@@ -2200,7 +2200,7 @@
 	"watchlistlabels-not-logged-in-for-temp-user": "โปรดสร้างบัญชีเพื่อจัดการป้ายกำกับรายการเฝ้าดูของคุณ",
 	"watchlistlabels-table-title": "สร้างและลบป้ายกำกับออก",
 	"watchlistlabels-table-header": "ป้ายกำกับ",
-	"watchlistlabels-table-new-link": "+ สร้างป้ายกำกับ",
+	"watchlistlabels-table-new-link": "สร้างป้ายกำกับ",
 	"watchlistlabels-table-col-name": "ชื่อ",
 	"watchlistlabels-table-edit": "แก้ไข",
 	"watchlistlabels-form-header-new": "สร้างป้ายกำกับ",

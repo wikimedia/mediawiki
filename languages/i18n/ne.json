@@ -1968,7 +1968,7 @@
 	"watchlistlabels-table-title": "लेबलहरू सिर्जना गर्नुहोस् र हटाउनुहोस्",
 	"watchlistlabels-table-description": "तपाईंका सुरक्षित गरिएका लेबलहरू तल देखाइएका छन्।",
 	"watchlistlabels-table-header": "लेबलहरू",
-	"watchlistlabels-table-new-link": "+ नयाँ लेबल",
+	"watchlistlabels-table-new-link": "नयाँ लेबल",
 	"watchlistlabels-table-col-name": "नाम",
 	"watchlistlabels-table-col-count": "वस्तुहरू",
 	"watchlistlabels-table-col-actions": "कार्यहरू",

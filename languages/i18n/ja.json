@@ -2328,7 +2328,7 @@
 	"watchlistlabels-table-title": "ラベルの作成と除去",
 	"watchlistlabels-table-description": "以下のラベルを保存しました。",
 	"watchlistlabels-table-header": "ラベル",
-	"watchlistlabels-table-new-link": "+ ラベルを追加",
+	"watchlistlabels-table-new-link": "ラベルを追加",
 	"watchlistlabels-table-delete-link": "削除",
 	"watchlistlabels-table-col-name": "名前",
 	"watchlistlabels-table-col-count": "項目目",

@@ -2162,7 +2162,7 @@
 	"watchlistlabels-table-title": "Stvorjenje i odstranjenje etiketok",
 	"watchlistlabels-table-description": "Vaše zapisane etiketky sut pokazane niže.",
 	"watchlistlabels-table-header": "Etiketky",
-	"watchlistlabels-table-new-link": "+ Nova etiketka",
+	"watchlistlabels-table-new-link": "Nova etiketka",
 	"watchlistlabels-table-delete-link": "Odstraniti",
 	"watchlistlabels-table-col-name": "Nazva",
 	"watchlistlabels-table-col-count": "Elementy",

@@ -2248,7 +2248,7 @@
 	"watchlistlabels-table-title": "Opprett og fjern etiketter",
 	"watchlistlabels-table-description": "De lagrede etikettene dine vises nedenfor.",
 	"watchlistlabels-table-header": "Etiketter",
-	"watchlistlabels-table-new-link": "+ Ny etikett",
+	"watchlistlabels-table-new-link": "Ny etikett",
 	"watchlistlabels-table-delete-link": "Slett",
 	"watchlistlabels-table-col-name": "Navn",
 	"watchlistlabels-table-col-count": "Elementer",

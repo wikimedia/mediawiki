@@ -2298,7 +2298,7 @@
 	"watchlistlabels-table-title": "Etiketleri oluşturun ve kaldırın",
 	"watchlistlabels-table-description": "Sakladığınız etiketler aşağıda gösterilmektedir.",
 	"watchlistlabels-table-header": "Etiketler",
-	"watchlistlabels-table-new-link": "+ Yeni etiket",
+	"watchlistlabels-table-new-link": "Yeni etiket",
 	"watchlistlabels-table-delete-link": "Sil",
 	"watchlistlabels-table-col-name": "Ad",
 	"watchlistlabels-table-col-count": "Ögeler",

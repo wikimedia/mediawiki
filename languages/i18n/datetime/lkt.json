@@ -59,6 +59,7 @@
 	"period-am": "AM",
 	"period-pm": "PM",
 	"duration-years": "{{PLURAL:$1|ómakȟa}} $1",
+	"duration-months": "$1 {{PLURAL:$1|wi}}",
 	"monday-at": "Aŋpétu Tȟokáhe $1 he eháƞ",
 	"tuesday-at": "Aŋpétu Núŋpa $1 he eháƞ",
 	"wednesday-at": "Aŋpétu Yámni $1 he eháƞ",

@@ -2251,7 +2251,7 @@
 	"watchlistlabels-table-title": "Skapa och ta bort etiketter",
 	"watchlistlabels-table-description": "Dina sparade etiketter visas nedan.",
 	"watchlistlabels-table-header": "Etiketter",
-	"watchlistlabels-table-new-link": "+ Ny etikett",
+	"watchlistlabels-table-new-link": "Ny etikett",
 	"watchlistlabels-table-col-name": "Namn",
 	"watchlistlabels-table-col-count": "Artiklar",
 	"watchlistlabels-table-col-actions": "Åtgärder",

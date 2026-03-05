@@ -2372,7 +2372,7 @@
 	"watchlistlabels-table-title": "Создание и удаление меток",
 	"watchlistlabels-table-description": "Ваши сохранённые метки показаны ниже.",
 	"watchlistlabels-table-header": "Метки",
-	"watchlistlabels-table-new-link": "+ Новая метка",
+	"watchlistlabels-table-new-link": "Новая метка",
 	"watchlistlabels-table-delete-link": "Удалить",
 	"watchlistlabels-table-col-name": "Имя",
 	"watchlistlabels-table-col-count": "Элементы",

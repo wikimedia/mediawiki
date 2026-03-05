@@ -2277,7 +2277,7 @@
 	"watchlistlabels-table-title": "ایجاد و حذف برچسب‌ها",
 	"watchlistlabels-table-description": "برچسب‌های ذخیره‌شدهٔ شما در زیر نمایش یافته‌اند.",
 	"watchlistlabels-table-header": "برچسب‌ها",
-	"watchlistlabels-table-new-link": "+برچسب تازه",
+	"watchlistlabels-table-new-link": "برچسب تازه",
 	"watchlistlabels-table-delete-link": "حذف",
 	"watchlistlabels-table-col-name": "نام",
 	"watchlistlabels-table-col-count": "آیتم‌ها",

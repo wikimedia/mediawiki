@@ -2322,7 +2322,7 @@
 	"watchlistlabels-table-title": "Crea e rimuovi etichette",
 	"watchlistlabels-table-description": "Le etichette salvate sono mostrate qui sotto.",
 	"watchlistlabels-table-header": "Etichette",
-	"watchlistlabels-table-new-link": "+ Nuova etichetta",
+	"watchlistlabels-table-new-link": "Nuova etichetta",
 	"watchlistlabels-table-delete-link": "Cancella",
 	"watchlistlabels-table-col-name": "Nome",
 	"watchlistlabels-table-col-count": "Elementi",
