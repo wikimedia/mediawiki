@@ -78,7 +78,7 @@ class CoreMagicVariables {
 		$pageLang = $parser->getTargetLanguage();
 
 		$title = $frame ? $frame->getTitle() : $parser->getTitle();
-		$source = $title->getPrefixedText() . " ($id)";
+		$source = $title->getPrefixedDBkey() . " ($id)";
 
 		$cacheTTL = self::CACHE_TTL_BY_ID[$id] ?? -1;
 		if ( $cacheTTL > -1 ) {
