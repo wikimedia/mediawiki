@@ -115,7 +115,6 @@
 	"post-expand-template-inclusion-warning": "Warnung: Die Grösse eingebundener Vorlagen ist zu gross, einige Vorlagen können nicht eingebunden werden.",
 	"post-expand-template-inclusion-category": "Seiten, in denen die maximale Grösse eingebundener Vorlagen überschritten ist",
 	"post-expand-template-argument-warning": "'''Warnung:''' Diese Seite enthält mindestens einen Parameter in einer Vorlage, der expandiert zu gross ist. Diese Parameter werden ignoriert.",
-	"histlegend": "Auswahl des Versionsunterschieds: Markiere die Radiobuttons der zu vergleichenden Versionen und drücke die Eingabetaste oder die Schaltfläche am unteren Rand.<br>\nLegende: <strong>({{int:cur}})</strong> = Unterschied zur aktuellen Version, <strong>({{int:last}})</strong> = Unterschied zur vorherigen Version, <strong>{{int:minoreditletter}}</strong> = Kleine Änderung",
 	"revdelete-show-file-confirm": "Bist du sicher, dass du die gelöschte Version der Datei «<nowiki>$1</nowiki>» vom $2 um $3 Uhr ansehen willst?",
 	"revdelete-show-no-access": "Fehler beim Anzeigen des Eintrags vom $1, $2 Uhr: Dieser Eintrag wurde als «eingeschränkt» markiert.\nDu hast darauf keinen Zugriff.",
 	"revdelete-modify-no-access": "Fehler beim Bearbeiten des Eintrags vom $1, $2 Uhr: Dieser Eintrag wurde als «eingeschränkt» markiert.\nDu hast darauf keinen Zugriff.",

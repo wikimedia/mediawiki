@@ -275,7 +275,7 @@
 	"viewsource-title": "Ogled vira $1",
 	"actionthrottled": "Dejanje zaustavljeno",
 	"actionthrottledtext": "Kot ukrep proti zlorabam je število izvajanj tega dejanja v časovnem obdobju omejeno, vi pa ste to omejitev presegli.\nProsimo, poskusite znova čez nekaj minut.",
-	"protectedpagetext": "Ta stran je zaščitena ($1) za preprečitev urejanja ali drugih dejanj.",
+	"protectedpagetext": "Ta stran je zaščitena za preprečitev urejanja ali drugih dejanj.",
 	"viewsourcetext": "Vsebino te strani si lahko ogledate in jo kopirate.",
 	"viewyourtext": "Lahko si ogledate in kopirate vsebino <strong>vaših urejanj</strong> te strani.",
 	"protectedinterface": "Prikazana stran vsebuje besedilo vmesnika programja na tem vikiju in je zaradi preprečevanja zlorab zaščitena.\n\nZa dodajanje ali spreminjanje prevodov vseh vikijev uporabite [https://translatewiki.net/ translatewiki.net], projekt za lokalizacijo programja MediaWiki.",

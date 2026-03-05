@@ -289,7 +289,7 @@
 	"last": "laas",
 	"page_first": "firs",
 	"page_last": "laas",
-	"histlegend": "Dife selexhan: Mak de radiyo batn dem pan de chienj dem fu kompah an tekan enta or de batn pan de baat'm.\nLegen: ({{int:cur}}) = diffren wid de nyuuis chienj, ({{int:last}}) = diffren wid de laas chienj, {{int:minoreditletter}} = likl chienj.",
+	"histlegend": "Dife selexhan: Mak de radiyo batn dem pan de chienj dem fu kompah an tekan enta or de batn pan de baat'm.<br />\nLegen: ({{int:cur}}) = diffren wid de nyuuis chienj, ({{int:last}}) = diffren wid de laas chienj, {{int:minoreditletter}} = likl chienj.",
 	"history-fieldset-title": "Filta chienj dem",
 	"histfirst": "oldis",
 	"histlast": "nyuuis",

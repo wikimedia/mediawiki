@@ -704,7 +704,7 @@
 	"tooltip-last": "Ndryshimi me versionin e mëparshëm",
 	"page_first": "I parë",
 	"page_last": "Së fundmi",
-	"histlegend": "Përzgjedhje për diff: U vini shenjë butonave rrethorë të rishikimeve për t’u krahasuar dhe shtypni tastin Enter ose butonin në fund.<br />\n\t\n\t\nLegjendë: <strong>({{int:cur}})</strong> = dallime me rishikimin e fundit, <strong>({{int:last}})</strong> = dallime me rishikimin pararendës, <strong>{{int:minoreditletter}}</strong> = redaktim i vockël.",
+	"histlegend": "Përzgjedhje për diff: U vini shenjë butonave rrethorë të rishikimeve për t’u krahasuar dhe shtypni tastin Enter ose butonin në fund.<br />\nLegjendë: <strong>({{int:cur}})</strong> = dallime me rishikimin e fundit, <strong>({{int:last}})</strong> = dallime me rishikimin pararendës, <strong>{{int:minoreditletter}}</strong> = redaktim i vockël.",
 	"history-fieldset-title": "Filtro versionet",
 	"history-show-deleted": "Vetëm versionet e grisura",
 	"histfirst": "më të vjetrit",

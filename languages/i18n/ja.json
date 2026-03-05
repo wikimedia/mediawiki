@@ -159,7 +159,8 @@
 			"아라",
 			"YeBoy371",
 			"X200b",
-			"Gurio318"
+			"Gurio318",
+			"RhAnish"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|カテゴリ}}",
@@ -1169,7 +1170,7 @@
 	"group-bureaucrat-member": "{{GENDER:$1|ビューロクラット}}",
 	"group-suppress-member": "{{GENDER:$1|秘匿者}}",
 	"grouppage-user": "{{ns:project}}:登録利用者",
-	"grouppage-temp": "{{ns:project}}:臨時使用者",
+	"grouppage-temp": "{{ns:project}}:仮アカウント",
 	"grouppage-autoconfirmed": "{{ns:project}}:自動承認された利用者",
 	"grouppage-bot": "{{ns:project}}:ボット",
 	"grouppage-sysop": "{{ns:project}}:管理者",

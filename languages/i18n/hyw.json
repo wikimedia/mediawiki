@@ -411,7 +411,7 @@
 	"last": "նախ.",
 	"page_first": "առաջին",
 	"page_last": "վերջին",
-	"histlegend": "Տարբերութիւններու համեմատում. դրէ՛ք նշման կէտեր այն տարբերակներու կողքին, որոնք կ՚ուզէք համեմատել եւ սեղմեցէ՛ք վարը գտնուող կոճակը։<br />\nԾանօթ.՝ <br />\nLegend: <strong>({{int:cur}})</strong> = difference with latest revision, <strong>({{int:last}})</strong> = difference with preceding revision, <strong>{{int:minoreditletter}}</strong> = minor edit.",
+	"histlegend": "Տարբերութիւններու համեմատում. դրէ՛ք նշման կէտեր այն տարբերակներու կողքին, որոնք կ՚ուզէք համեմատել եւ սեղմեցէ՛ք վարը գտնուող կոճակը։<br />\nԾանօթ.՝\nLegend: <strong>({{int:cur}})</strong> = difference with latest revision, <strong>({{int:last}})</strong> = difference with preceding revision, <strong>{{int:minoreditletter}}</strong> = minor edit.",
 	"history-fieldset-title": "Զտել խմբագրումները",
 	"histfirst": "հնագոյն",
 	"histlast": "նորագոյն",

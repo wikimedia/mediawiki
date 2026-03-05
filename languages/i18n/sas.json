@@ -369,7 +369,7 @@
 	"currentrevisionlink": "Kerisaqan haq paling baru",
 	"cur": "nani",
 	"last": "sblm",
-	"histlegend": "Piléqan béde: Tandaq tombol bulet kerisaqan haq em mélé bandingan trus teken ''enter'' ato tombol léq bawaq.<br/>\nLégénda: <strong>({{int:cur}})</strong> = perbédean kance kerisaqan haq terakhir, <strong>({{int:last}})</strong> = perbédean siq kerisaqan sebelumn, <strong>{{int:minoreditletter}}</strong> = kerisaqan kodèq.",
+	"histlegend": "Piléqan béde: Tandaq tombol bulet kerisaqan haq em mélé bandingan trus teken ''enter'' ato tombol léq bawaq.<br />\nLégénda: <strong>({{int:cur}})</strong> = perbédean kance kerisaqan haq terakhir, <strong>({{int:last}})</strong> = perbédean siq kerisaqan sebelumn, <strong>{{int:minoreditletter}}</strong> = kerisaqan kodèq.",
 	"history-fieldset-title": "Saring kerisaqan",
 	"histfirst": "paling laéq",
 	"histlast": "paling baruq",

@@ -312,7 +312,7 @@
 	"currentrevisionlink": "Pathiehna hnôh chaipa",
 	"cur": "tahm",
 	"last": "hnôh",
-	"histlegend": "Atlyna nanopa: pakho n'awpa ta mopadona radio button kha pazâhsa la, enter acv ry lia botton kha hmie teh. </br>\nLegend: <strong>({{int:cur}})</strong> = mopadona hnôh chaipa nah ânanona, <strong>({{int:last}})</strong> = hmiatua mopadona nah ânanona, <strong>{{int:minoreditletter}}</strong> = peimawh lei taopathipa.",
+	"histlegend": "Atlyna nanopa: pakho n'awpa ta mopadona radio button kha pazâhsa la, enter acv ry lia botton kha hmie teh.<br />\nLegend: <strong>({{int:cur}})</strong> = mopadona hnôh chaipa nah ânanona, <strong>({{int:last}})</strong> = hmiatua mopadona nah ânanona, <strong>{{int:minoreditletter}}</strong> = peimawh lei taopathipa.",
 	"history-fieldset-title": "Revisions a thlina",
 	"histfirst": "paroh chaipa",
 	"histlast": "thieh chaipa",

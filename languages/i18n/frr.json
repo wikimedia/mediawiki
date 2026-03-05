@@ -581,7 +581,7 @@
 	"last": "Leetst",
 	"page_first": "Began",
 	"page_last": "Aanj",
-	"histlegend": "Am a feranrangen uuntuwisin, markiare jodiar tau ütjfeerangen, diar dü ferglik wel, an do trak oner üüb 'Uunwise'.<br>\nFerklaarang: <strong>({{int:cur}})</strong> = Ferskeel tu't aktuel ütjfeerang, <strong>({{int:last}})</strong> = Ferskeel tu't leetst ütjfeerang, <strong>{{int:minoreditletter}}</strong> = Letj feranrang",
+	"histlegend": "Am a feranrangen uuntuwisin, markiare jodiar tau ütjfeerangen, diar dü ferglik wel, an do trak oner üüb 'Uunwise'.<br />\nFerklaarang: <strong>({{int:cur}})</strong> = Ferskeel tu't aktuel ütjfeerang, <strong>({{int:last}})</strong> = Ferskeel tu't leetst ütjfeerang, <strong>{{int:minoreditletter}}</strong> = Letj feranrang",
 	"history-fieldset-title": "Schük efter wersioonen",
 	"history-show-deleted": "Bluas stregen wersioonen wise",
 	"histfirst": "Äälst",

@@ -283,7 +283,7 @@
 	"last": "tay glaing",
 	"page_first": "t’ringan balay na llpgan",
 	"page_last": "pucing balay llpgan",
-	"histlegend": "Pspung sa kin’ini’ ptnaq nabniru’ sabiru’：mwazyaw sa musa’ pspngun binzyagan qutux balay na xwakway ka bniru’ ka sinbah qasa, \nruw phtun quw cyux maki’ sa kyahu’niya’ ka pphtan musa’ pspung. <br/> \nInblayqan kmayal:<strong>({{int:cur}})</strong> = pspngun squw giqas balay na sinbah biru’, <strong>({{int:last}})</strong> = pspngun squwbiru’ sinbah tay glaing, <strong>{{int:minoreditletter}}</strong> = iyat tqs’un smbah.",
+	"histlegend": "Pspung sa kin’ini’ ptnaq nabniru’ sabiru’：mwazyaw sa musa’ pspngun binzyagan qutux balay na xwakway ka bniru’ ka sinbah qasa, ruw phtun quw cyux maki’ sa kyahu’niya’ ka pphtan musa’ pspung.<br />\nInblayqan kmayal:<strong>({{int:cur}})</strong> = pspngun squw giqas balay na sinbah biru’, <strong>({{int:last}})</strong> = pspngun squwbiru’ sinbah tay glaing, <strong>{{int:minoreditletter}}</strong> = iyat tqs’un smbah.",
 	"history-fieldset-title": "Hkangi’ sinbah",
 	"histfirst": "spzyang smural",
 	"histlast": "giqas balay",

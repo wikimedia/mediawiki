@@ -618,7 +618,7 @@
 	"tooltip-last": "အရာတၞဟ်ခြာ ကုမူမတုဲကၠုင်",
 	"page_first": "ကိုပ်ကၠာ",
 	"page_last": "ကြဴ",
-	"histlegend": "တၞဟ်န မဂွံပတောအ်ၜတ် အကြာ မူမပလေဝ်ဒါန်လဝ်တအ်ဂှ် ကဵုစၟတ် ပ္ဍဲ ခံက်အင်ရေဒဳယော radio boxes တုဲ ဍဵု enter ဟွံသေင်မ္ဂး ဍဵု ကောန်ဍေင် သၟဝ်ဂှ်ညိ၊၊ <br />Legend: <strong>({{int:cur}})</strong> = အရာမတၞဟ်ခြာ ကုမူလက်ကြဴအိုတ် <strong>({{int:last}})</strong> = အရာမတၞဟ်ခြာ ကုမူကၠာနူဂှ်၊၊ <strong>{{int:minoreditletter}}</strong> = မပလေဝ်ဒါန်လဝ် ညိည၊၊",
+	"histlegend": "တၞဟ်န မဂွံပတောအ်ၜတ် အကြာ မူမပလေဝ်ဒါန်လဝ်တအ်ဂှ် ကဵုစၟတ် ပ္ဍဲ ခံက်အင်ရေဒဳယော radio boxes တုဲ ဍဵု enter ဟွံသေင်မ္ဂး ဍဵု ကောန်ဍေင် သၟဝ်ဂှ်ညိ၊၊<br />\nLegend: <strong>({{int:cur}})</strong> = အရာမတၞဟ်ခြာ ကုမူလက်ကြဴအိုတ် <strong>({{int:last}})</strong> = အရာမတၞဟ်ခြာ ကုမူကၠာနူဂှ်၊၊ <strong>{{int:minoreditletter}}</strong> = မပလေဝ်ဒါန်လဝ် ညိည၊၊",
 	"history-fieldset-title": "ဖဍိုဟ် အရာမပလေဝ်လဝ်ဂမၠိုင်",
 	"history-show-deleted": "မုက်လိက် မပလီုလဝ် ဟေင်",
 	"histfirst": "တြေံအိုတ်",

@@ -52,7 +52,8 @@
 			"飞舞回堂前",
 			"아라",
 			"Leo768",
-			"Ouclie"
+			"Ouclie",
+			"Koolhaas"
 		]
 	},
 	"pagecategories": "$1類",
@@ -530,7 +531,7 @@
 	"currentrev": "今審",
 	"currentrev-asof": "$1之今審",
 	"revisionasof": "$1審",
-	"revision-info": "本版日期︰$1；作者︰$2",
+	"revision-info": "{{GENDER:$6|$2}}$1之繕本$7",
 	"previousrevision": "←舊",
 	"nextrevision": "新→",
 	"currentrevisionlink": "今審",
@@ -1430,7 +1431,7 @@
 	"blanknamespace": "（主）",
 	"contributions": "子之編纂",
 	"tool-link-contributions": "功績",
-	"contributions-title": "$1之功績",
+	"contributions-title": "$1之{{GENDER:$2|用戶}}功績",
 	"mycontris": "吾績",
 	"anoncontribs": "績",
 	"contributions-edit-count": "此{{GENDER:$1|簿}}已{{PLURAL:$2|纂}}$2回，",

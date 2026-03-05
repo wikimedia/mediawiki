@@ -768,7 +768,7 @@
 	"tooltip-last": "Əvvəlki versiya ilə fərq",
 	"page_first": "birinci",
 	"page_last": "sonuncu",
-	"histlegend": "Fərqlərin seçilməsi: müqayisə etmək istədiyiniz versiyaların yanındakı dairəyə işarə qoyun və Enter və ya '''{{int:compare-submit}}''' düyməsinə basın.<br />Legenda: <strong>({{int:cur}})</strong> = hal-hazırkı versiya ilə olan fərqlər, <strong>({{int:last}})</strong> = əvvəlki versiya ilə olan fərqlər, <strong>{{int:minoreditletter}}</strong> = kiçik redaktələr.",
+	"histlegend": "Fərqlərin seçilməsi: müqayisə etmək istədiyiniz versiyaların yanındakı dairəyə işarə qoyun və Enter və ya '''{{int:compare-submit}}''' düyməsinə basın.<br />\nLegenda: <strong>({{int:cur}})</strong> = hal-hazırkı versiya ilə olan fərqlər, <strong>({{int:last}})</strong> = əvvəlki versiya ilə olan fərqlər, <strong>{{int:minoreditletter}}</strong> = kiçik redaktələr.",
 	"history-fieldset-title": "Versiyaları filtrlə",
 	"history-show-deleted": "Yalnız silinən redaktələr",
 	"histfirst": "ən əvvəlki",

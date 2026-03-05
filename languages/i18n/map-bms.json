@@ -487,7 +487,7 @@
 	"last": "sedurunge",
 	"page_first": "kapisan",
 	"page_last": "pungkasan",
-	"histlegend": "Pilihen rong tombol radhio banjur pencèt tombol ''bandhingna'' kanggo mbandhingna versi. Klik sawijining tanggal kanggo ndeleng versi kaca nang tanggal kuwe.<br />(sky) = prabédan karo vèrsi sekiye, (akir) = prabédan karo vèrsi sadurungé, '''c''' = suntingan cilik, '''b''' = suntingan bot, → = suntingan bagiyan, ← = ringkesan otomatis.",
+	"histlegend": "Pilihen rong tombol radhio banjur pencèt tombol ''bandhingna'' kanggo mbandhingna versi. Klik sawijining tanggal kanggo ndeleng versi kaca nang tanggal kuwe.<br />\n(sky) = prabédan karo vèrsi sekiye, (akir) = prabédan karo vèrsi sadurungé, '''c''' = suntingan cilik, '''b''' = suntingan bot, → = suntingan bagiyan, ← = ringkesan otomatis.",
 	"history-fieldset-title": "Njlajah sajarah vèrsi sadhurungé",
 	"history-show-deleted": "Sing dibusak thok",
 	"histfirst": "paling lawas",

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Peter57770",
-			"R12ntech"
+			"R12ntech",
+			"Tuwewanzi"
 		]
 	},
 	"january": "Wiótheȟika Wí",
@@ -55,5 +56,16 @@
 	"fri": "Z",
 	"sat": "O",
 	"sun": "A",
-	"duration-years": "{{PLURAL:$1|ómakȟa}} $1"
+	"period-am": "AM",
+	"period-pm": "PM",
+	"duration-years": "{{PLURAL:$1|ómakȟa}} $1",
+	"monday-at": "Aŋpétu Tȟokáhe $1 he eháƞ",
+	"tuesday-at": "Aŋpétu Núŋpa $1 he eháƞ",
+	"wednesday-at": "Aŋpétu Yámni $1 he eháƞ",
+	"thursday-at": "Aŋpétu Tópa $1 he eháƞ",
+	"friday-at": "Aŋpétu Záptaŋ $1 he eháƞ",
+	"saturday-at": "Owáŋka Yužážapi $1 he eháƞ",
+	"sunday-at": "Aŋpétu Wakȟáŋ $1 he eháƞ",
+	"yesterday-at": "Ȟtálehaƞ $1 he eháƞ",
+	"just-now": "Waƞná"
 }

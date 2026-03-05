@@ -369,7 +369,7 @@
 	"cur": "Aktuell",
 	"last": "Vurherige",
 	"page_first": "Oafang",
-	"histlegend": "Auswoahl des Versionsunderschieds: Markiere die Radiobuttons der zu vergleichenden Versionen und dricke de Eingabetaste oder de Schaltfläche oam undera Rand.<br>\nLegende: <strong>({{int:cur}})</strong> = Unterschied zur aktuella Version, <strong>({{int:last}})</strong> = Unterschied zur vurheriga Version, <strong>{{int:minoreditletter}}</strong> = Kleene Änderung",
+	"histlegend": "Auswoahl des Versionsunderschieds: Markiere die Radiobuttons der zu vergleichenden Versionen und dricke de Eingabetaste oder de Schaltfläche oam undera Rand.<br />\nLegende: <strong>({{int:cur}})</strong> = Unterschied zur aktuella Version, <strong>({{int:last}})</strong> = Unterschied zur vurheriga Version, <strong>{{int:minoreditletter}}</strong> = Kleene Änderung",
 	"history-fieldset-title": "Versionen filtern",
 	"history-show-deleted": "ock geläschte Versiona",
 	"histfirst": "aalteste",
