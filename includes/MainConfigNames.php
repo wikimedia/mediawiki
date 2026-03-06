@@ -4446,6 +4446,12 @@ class MainConfigNames {
 	public const AllowExternalReqID = 'AllowExternalReqID';
 
 	/**
+	 * Name constant for the GenerateReqIDFormat setting, for use with Config::get()
+	 * @see MainConfigSchema::GenerateReqIDFormat
+	 */
+	public const GenerateReqIDFormat = 'GenerateReqIDFormat';
+
+	/**
 	 * Name constant for the JobRunRate setting, for use with Config::get()
 	 * @see MainConfigSchema::JobRunRate
 	 */

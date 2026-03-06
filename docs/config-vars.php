@@ -4431,6 +4431,12 @@ $wgLocalHTTPProxy = null;
 $wgAllowExternalReqID = null;
 
 /**
+ * Config variable stub for the GenerateReqIDFormat setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::GenerateReqIDFormat
+ */
+$wgGenerateReqIDFormat = null;
+
+/**
  * Config variable stub for the JobRunRate setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::JobRunRate
  */

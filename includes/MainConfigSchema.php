@@ -13134,6 +13134,19 @@ class MainConfigSchema {
 		'default' => false,
 	];
 
+	/**
+	 * How to generate the request ID when MediaWiki generates it internally.
+	 * Must be one of: 'rand24', 'uuid4'
+	 *
+	 * Default: 'rand24'
+	 *
+	 * @since 1.46
+	 */
+	public const GenerateReqIDFormat = [
+		'default' => 'rand24',
+		'type' => 'string',
+	];
+
 	// endregion -- End HTTP client
 
 	/***************************************************************************/

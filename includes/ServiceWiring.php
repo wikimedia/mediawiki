@@ -2672,6 +2672,9 @@ return [
 		$xReqIdPropagator = new MediaWikiPropagator( Telemetry::getInstance() );
 		$otelConfig = $services->getMainConfig()->get( MainConfigNames::OpenTelemetryConfig );
 		if ( $otelConfig === null || ( wfIsCLI() && !defined( 'MW_PHPUNIT_TEST' ) ) ) {
+			if ( $services->getMainConfig()->get( MainConfigNames::GenerateReqIDFormat ) === 'uuid4' ) {
+				Telemetry::getInstance()->overrideRequestId( $services->getGlobalIdGenerator()->newUUIDv4() );
+			}
 			return new NoopTracer( $xReqIdPropagator );
 		}
 

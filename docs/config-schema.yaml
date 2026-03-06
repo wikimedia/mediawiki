@@ -8164,6 +8164,14 @@ config-schema:
              - trace context provided by the incoming request via the `tracestate` and `traceparent`
             Set to `true` if the entity sitting in front of MediaWiki sanitises external requests.
             Default: `false`.
+    GenerateReqIDFormat:
+        default: rand24
+        type: string
+        description: |-
+            How to generate the request ID when MediaWiki generates it internally.
+            Must be one of: 'rand24', 'uuid4'
+            Default: 'rand24'
+            @since 1.46
     JobRunRate:
         default: 1
         description: |-
