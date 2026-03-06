@@ -92,6 +92,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'migrateImagelinks' ],
 			[ 'modifyPrimaryKey', 'imagelinks', [ 'il_from', 'il_target_id' ], 'patch-imagelinks-pk.sql' ],
 			[ 'addMissingTalkPageWatchlistLabels' ],
+			[ 'dropField', 'imagelinks', 'il_to', 'patch-imagelinks-drop-il_to.sql' ],
 		];
 	}
 
