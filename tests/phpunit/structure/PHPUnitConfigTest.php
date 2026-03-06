@@ -8,7 +8,7 @@ use MediaWiki\Tests\Common\Parser\ParserTestRunner;
  * @group medium
  * @coversNothing
  */
-class PHPUnitConfigTest extends PHPUnit\Framework\TestCase {
+class PHPUnitConfigTest extends MediaWikiIntegrationTestCase {
 
 	public function testConfigDirectories() {
 		// realpath() also normalizes directory separator on windows for prefix compares
@@ -133,34 +133,24 @@ class PHPUnitConfigTest extends PHPUnit\Framework\TestCase {
 	 * extensions.
 	 */
 	public function testConfigUpToDate() {
-		$this->markTestSkipped(
-			'Causing problems with phpunit parallel runs - we should not move `phpunit.xml` out of the way - T419107'
-		);
 		$localCfgPath = __DIR__ . '/../../../phpunit.xml';
 		$instructions = 'Generate it manually by running `composer phpunit:config`, or ' .
 			'automatically by running tests via `composer phpunit`.';
 		// The file should be guaranteed to exist thanks to the check in bootstrap.php, but double-check that.
 		$this->assertFileExists( $localCfgPath, "No local PHPUnit config found. $instructions" );
 
-		// Temporarily move the config out of the way to run the test. Obviously we could modify the script, e.g. by
-		// adding an option to print to stdout instead of the cfg file, but that seems unnecessary for the time being.
-		$tmpPath = $localCfgPath . '-tmp_move';
-		rename( $localCfgPath, $tmpPath );
-
-		try {
-			// Run this in a child process to avoid any possible side effects.
-			$res = Shell::command( [ PHP_BINARY, __DIR__ . '/../generatePHPUnitConfig.php' ] )->execute();
-			if ( $res->getExitCode() !== 0 ) {
-				$this->fail( "Cannot generate PHPUnit config. Stderr:\n" . $res->getStderr() );
-			}
-			$this->assertXmlFileEqualsXmlFile(
-				// Note, $localCfgPath now points to the config we just generated.
-				$localCfgPath,
-				$tmpPath,
-				"PHPUnit config is not up-to-date. $instructions"
-			);
-		} finally {
-			rename( $tmpPath, $localCfgPath );
+		$scriptOutFile = $this->getNewTempFile();
+		// Run this in a child process to avoid any possible side effects.
+		$res = Shell::command( [ PHP_BINARY, __DIR__ . '/../generatePHPUnitConfig.php' ] )
+			->params( [ '--test-output-path', $scriptOutFile ] )
+			->execute();
+		if ( $res->getExitCode() !== 0 ) {
+			$this->fail( "Cannot generate PHPUnit config. Stderr:\n" . $res->getStderr() );
 		}
+		$this->assertXmlFileEqualsXmlFile(
+			$scriptOutFile,
+			$localCfgPath,
+			"PHPUnit config is not up-to-date. $instructions"
+		);
 	}
 }

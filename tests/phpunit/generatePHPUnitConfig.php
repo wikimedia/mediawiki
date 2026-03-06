@@ -42,7 +42,10 @@ foreach ( $extensionsPaths as $componentPath ) {
 $parserTestFiles = ParserTestRunner::getParserTestFiles();
 
 $baseConfigPath = __DIR__ . '/../../phpunit.xml.template';
-$outConfigPath = __DIR__ . '/../../phpunit.xml';
+// Allow overriding the output path for PHPUnitConfigTest. This option is internal and must not be used elsewhere,
+// as it may be removed without notice.
+$testOutPath = getopt( '', [ 'test-output-path:' ] )['test-output-path'] ?? null;
+$outConfigPath = $testOutPath ?: __DIR__ . '/../../phpunit.xml';
 
 $parserTestDir = __DIR__ . '/gen/';
 $parserTestTemplate = __DIR__ . '/ParserTest.php.template';
