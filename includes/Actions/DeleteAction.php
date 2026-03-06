@@ -575,13 +575,17 @@ class DeleteAction extends FormAction {
 	}
 
 	/**
-	 * Show deletion log fragments pertaining to the current page
+	 * Show deletion and creation log fragments pertaining to the current page
 	 */
 	protected function showLogEntries(): void {
 		$deleteLogPage = new LogPage( 'delete' );
 		$outputPage = $this->getContext()->getOutput();
 		$outputPage->addHTML( Html::element( 'h2', [], $deleteLogPage->getName()->text() ) );
 		LogEventsList::showLogExtract( $outputPage, 'delete', $this->getTitle() );
+
+		$createLogPage = new LogPage( 'create' );
+		$outputPage->addHTML( Html::element( 'h2', [], $createLogPage->getName()->text() ) );
+		LogEventsList::showLogExtract( $outputPage, 'create', $this->getTitle() );
 	}
 
 	protected function prepareOutputForForm(): void {
