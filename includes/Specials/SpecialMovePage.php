@@ -968,7 +968,9 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			// This is done before the deletion (in order to minimize the impact of T265792)
 			// so ignore "it already exists" checks (they will be repeated after the deletion)
 			if ( $permStatusMain->hasMessagesExcept( 'redirectexists', 'articleexists' ) ||
-				$permStatusTalk->hasMessagesExcept( 'redirectexists', 'articleexists' ) ) {
+				( !$onlyMovingTalkSubpages &&
+				  $permStatusTalk->hasMessagesExcept( 'redirectexists', 'articleexists' ) )
+			) {
 				$this->showForm( $permStatusMain, $permStatusTalk );
 				return;
 			}
