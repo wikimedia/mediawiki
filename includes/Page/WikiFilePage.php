@@ -239,7 +239,13 @@ class WikiFilePage extends WikiPage {
 		$file = $this->getFile();
 		if ( $file->exists() && $file->isLocal() && !$file->getRedirected() ) {
 			// Would be an actual file deletion
-			return [ 'delete' => FileDeleteAction::class ] + parent::getActionOverrides();
+			return [ 'delete' => [
+				'class' => FileDeleteAction::class,
+				'services' => [
+					'RepoGroup',
+					'UrlUtils',
+				],
+			] ] + parent::getActionOverrides();
 		}
 		// It should use the normal article deletion interface
 		return parent::getActionOverrides();

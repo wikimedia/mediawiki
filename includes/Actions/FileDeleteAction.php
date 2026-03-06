@@ -13,14 +13,15 @@ use MediaWiki\Exception\PermissionsError;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\File\OldLocalFile;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\File\FileDeleteForm;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\Utils\UrlUtils;
 
 /**
  * Handle file deletion
@@ -38,13 +39,17 @@ class FileDeleteAction extends DeleteAction {
 	/**
 	 * @inheritDoc
 	 */
-	public function __construct( Article $article, IContextSource $context ) {
+	public function __construct(
+		Article $article,
+		IContextSource $context,
+		RepoGroup $repoGroup,
+		private readonly UrlUtils $urlUtils,
+	) {
 		parent::__construct( $article, $context );
-		$services = MediaWikiServices::getInstance();
 		$this->file = $this->getArticle()->getFile();
 		$this->oldImage = $this->getRequest()->getText( 'oldimage', '' );
 		if ( $this->oldImage !== '' ) {
-			$this->oldFile = $services->getRepoGroup()->getLocalRepo()->newFromArchiveName(
+			$this->oldFile = $repoGroup->getLocalRepo()->newFromArchiveName(
 				$this->getTitle(),
 				$this->oldImage
 			);
@@ -192,7 +197,7 @@ class FileDeleteAction extends DeleteAction {
 				wfEscapeWikiText( $this->getTitle()->getText() ),
 				$lang->date( $this->oldFile->getTimestamp(), true ),
 				$lang->time( $this->oldFile->getTimestamp(), true ),
-				(string)MediaWikiServices::getInstance()->getUrlUtils()->expand(
+				(string)$this->urlUtils->expand(
 					$this->file->getArchiveUrl( $this->oldImage ),
 					PROTO_CURRENT
 				)
