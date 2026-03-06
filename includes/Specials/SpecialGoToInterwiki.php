@@ -62,7 +62,7 @@ class SpecialGoToInterwiki extends UnlistedSpecialPage {
 			return;
 		}
 
-		$url = $target->getFullURL();
+		$url = $target->getFullURL( proto: PROTO_FALLBACK );
 		if ( !$target->isExternal() || ( $target->isLocal() && !$force ) ) {
 			// Either a normal page, or a local interwiki.
 			// Just redirect.
