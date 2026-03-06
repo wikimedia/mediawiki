@@ -1,9 +1,22 @@
 import { mkdir } from 'fs/promises';
+import { readFileSync } from 'fs';
 import os from 'node:os';
 import process from 'node:process';
+import { resolve } from 'path';
 import { spawn } from 'child_process';
 
 const DISPLAY_BASE = 100;
+
+// eslint-disable-next-line security/detect-non-literal-fs-filename
+export const version = JSON.parse( readFileSync( new URL( './package.json', import.meta.url ), 'utf8' ) ).version;
+
+function getPackageVersion( packageName ) {
+	try {
+		// eslint-disable-next-line security/detect-non-literal-fs-filename
+		return JSON.parse( readFileSync( resolve( process.cwd(), 'node_modules', packageName, 'package.json' ), 'utf8' ) ).version;
+	} catch {}
+	return 'unknown';
+}
 
 /**
  * @since 1.1.0
@@ -160,6 +173,8 @@ export function logSystemInformation() {
 	console.log( `[System information] Memory (host): ${ formatMegabytesAndGigabytes( freeBytes ) } free` );
 	console.log( `[System information] RAM used by NodeJS ${ formatMegabytesAndGigabytes( rss ) }` );
 	console.log( `[System information] CPU: ${ cores } cores` );
+	console.log( `[Package information] WebdriverIO: ${ getPackageVersion( 'webdriverio' ) }` );
+	console.log( `[Package information] wdio-mediawiki: ${ version }` );
 }
 
 /**
