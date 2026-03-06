@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tuwewanzi"
+		]
+	},
+	"cdx-search-input-search-button-label": "Wóle {{GENDER:|yo|ye|yo/ye}}",
+	"cdx-table-pager-button-first-page": "Oyúblaye tȟokáheya",
+	"cdx-table-pager-button-last-page": "Oyúblaye ehákela",
+	"cdx-table-pager-button-next-page": "Oyúblaye íyokhihe",
+	"cdx-table-pager-button-prev-page": "Oyúblaye hékta",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 táku waŋ|$1 táku kiŋ}}",
+	"cdx-table-pagination-status-message-determinate-short": "$3 etáƞhaƞ $1–$2",
+	"cdx-table-pagination-status-message-indeterminate-short": "óta etáƞhaƞ $1–$2",
+	"cdx-table-no-data-message": "Wíhoši waníča."
+}

@@ -56,6 +56,8 @@
 	"username": "{{GENDER:$1|用户名}}：",
 	"prefs-memberingroups": "{{GENDER:$2|用户}}{{PLURAL:$1|组}}：",
 	"group-membership-link-with-expiry": "$1（直到$2）",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|已禁用}}的{{PLURAL:$1|用户组}}：",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|您}}不再满足成为{{PLURAL:$1|此用户组|这些用户组}}成员的[[$3|条件]]，因此您不再能使用{{PLURAL:$1|此用户组|这些用户组}}授予的权限。",
 	"prefs-edits": "编辑数：",
 	"prefs-registration": "注册时间：",
 	"yourrealname": "真实姓名：",

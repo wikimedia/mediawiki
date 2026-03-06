@@ -1249,6 +1249,7 @@
 	"apierror-compare-nofromrevision": "Nincs „from” változat. Add meg a <var>fromrev</var>, <var>fromtitle</var> vagy <var>fromid</var> paramétert.",
 	"apierror-compare-notext": "A(z) <var>$1</var> paraméter nem használható a(z) <var>$2</var> nélkül.",
 	"apierror-compare-notorevision": "Nincs „to” változat. Add meg a <var>torev</var>, <var>totitle</var> vagy <var>toid</var> paramétert.",
+	"apierror-readonly": "A wiki jelenleg csak olvasható módban van.",
 	"apiwarn-validationfailed-keytoolong": "a kulcs túl hosszú (legfeljebb $1 {{PLURAL:$1|bájt}} engedélyezett).",
 	"apiwarn-validationfailed-valuetoolong": "az érték túl hosszú (legfeljebb $1 {{PLURAL:$1|bájt}} engedélyezett).",
 	"api-credits-header": "Készítők",
