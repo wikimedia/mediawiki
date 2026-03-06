@@ -103,6 +103,9 @@ class PHPUnitConfigTest extends PHPUnit\Framework\TestCase {
 	 * extensions.
 	 */
 	public function testConfigUpToDate() {
+		$this->markTestSkipped(
+			'Causing problems with phpunit parallel runs - we should not move `phpunit.xml` out of the way - T419107'
+		);
 		$localCfgPath = __DIR__ . '/../../../phpunit.xml';
 		$instructions = 'Generate it manually by running `composer phpunit:config`, or ' .
 			'automatically by running tests via `composer phpunit`.';
