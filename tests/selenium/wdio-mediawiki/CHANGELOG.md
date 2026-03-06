@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.3.3 / 2026-03-06
+In 6.3.0 how you run tests locally on your machine was changed so it always use a browser window. That
+change was unintentional and with this release we bring back the old behavoir check if DISPLAY is exported.
+
+* Bring back DISPLAY to enable/disable headless local (T418833)
+
 ## 6.3.2 / 2026-02-20
 
 * Make it possible for users to wait for RunJobs.run() (T415658)
