@@ -20,6 +20,7 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Profiler\Profiler;
 use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\DerivativeRequest;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\RedirectSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -515,6 +516,19 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 						. " returned neither an object nor a URL" );
 				}
 			}
+
+			$request = $context->getRequest();
+			if ( $request instanceof FauxRequest ) {
+				$fauxResponse = $request->response();
+				if ( $fauxResponse->getStatusCode() ) {
+					$request->response()->statusHeader( $fauxResponse->getStatusCode() );
+				}
+
+				foreach ( $fauxResponse->getHeaders() as $key => $value ) {
+					$request->response()->header( "$key: $value" );
+				}
+			}
+
 			$output->considerCacheSettingsFinal();
 		}
 	}

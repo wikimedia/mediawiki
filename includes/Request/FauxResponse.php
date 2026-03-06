@@ -80,6 +80,11 @@ class FauxResponse extends WebResponse {
 		return $this->headers[$key] ?? null;
 	}
 
+	/** @return string[] All set headers */
+	public function getHeaders(): array {
+		return $this->headers ?? [];
+	}
+
 	/**
 	 * Get the HTTP response code, null if not set
 	 *
