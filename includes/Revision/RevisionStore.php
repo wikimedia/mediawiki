@@ -1199,6 +1199,83 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	}
 
 	/**
+	 * Load page revisions by revision ID.
+	 *
+	 * Unless $flags has READ_LATEST set, this method will first try to find revisions
+	 * on a replica before looking up any missing revisions on the primary database.
+	 *
+	 * @since 1.46
+	 *
+	 * @param (int|string)[] $ids Revision IDs to load. Passing numbers as strings is allowed
+	 *        for convenient passing of results from DB queries.
+	 * @param int $flags Supports IDBAccessObject::READ_LATEST to use the primary DB.
+	 * @param PageIdentity|null $page The page all revisions belong to.
+	 *        Providing the page may improve performance.
+	 *
+	 * @return array<int,RevisionRecord|null> Map keyed by revision ID.
+	 *         Missing or failed revisions have null values.
+	 */
+	public function getRevisionsByIds( array $ids, int $flags = 0, ?PageIdentity $page = null ): array {
+		$ids = array_values( array_unique( array_map( 'intval', $ids ) ) );
+		if ( !$ids ) {
+			return [];
+		}
+
+		$db = $this->getDBConnectionRefForQueryFlags( $flags );
+		$revisions = $this->loadRevisionsFromIds( $db, $ids, $flags, $page );
+		$missingIds = array_diff( $ids, array_keys( $revisions ) );
+
+		// Make sure new pending/committed revisions are visible later on within web
+		// requests, similar to newRevisionFromConds().
+		if ( $missingIds
+			&& !( $flags & IDBAccessObject::READ_LATEST )
+			&& $this->loadBalancer->hasStreamingReplicaServers()
+			&& $this->loadBalancer->hasOrMadeRecentPrimaryChanges()
+		) {
+			$primaryFlags = $flags | IDBAccessObject::READ_LATEST;
+			$dbw = $this->getPrimaryConnection();
+			$primaryRevisions = $this->loadRevisionsFromIds( $dbw, $missingIds, $primaryFlags, $page );
+			$revisions += $primaryRevisions;
+		}
+
+		return array_replace( array_fill_keys( $ids, null ), $revisions );
+	}
+
+	/**
+	 * @param IReadableDatabase $db
+	 * @param int[] $ids
+	 * @param int $flags Supports IDBAccessObject::READ_LATEST to use the primary DB. $db must match.
+	 * @param PageIdentity|null $page
+	 *
+	 * @return array<int,RevisionRecord|null>
+	 */
+	private function loadRevisionsFromIds(
+		IReadableDatabase $db,
+		array $ids,
+		int $flags,
+		?PageIdentity $page = null
+	): array {
+		$this->checkDatabaseDomain( $db );
+
+		$rows = $this->newSelectQueryBuilder( $db )
+			->joinComment()
+			->joinPage()
+			->joinUser()
+			->where( [ 'rev_id' => $ids ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
+
+		try {
+			$status = $this->newRevisionsFromBatch( $rows, [], $flags, $page );
+		} catch ( InvalidArgumentException ) {
+			// Keep behavior close to getRevisionById(): tolerate an incorrect page hint.
+			$status = $this->newRevisionsFromBatch( $rows, [], $flags );
+		}
+		$revisions = $status->isOK() ? $status->getValue() : [];
+		return is_array( $revisions ) ? $revisions : [];
+	}
+
+	/**
 	 * Load either the current, or a specified, revision
 	 * that's attached to a given link target. If not attached
 	 * to that link target, will return null.

@@ -95,11 +95,12 @@ class RevertedTagUpdate implements DeferrableUpdate {
 			return;
 		}
 
-		$revertedRevision = null;
-		foreach ( $revertedRevisionIds as $revId ) {
-			$previousRevision = $revertedRevision;
+		$revertedRevisions = $this->revisionStore->getRevisionsByIds( $revertedRevisionIds );
 
-			$revertedRevision = $this->revisionStore->getRevisionById( $revId );
+		$currentRevision = null;
+		foreach ( $revertedRevisions as $revId => $revertedRevision ) {
+			$previousRevision = $currentRevision;
+			$currentRevision = $revertedRevision;
 			if ( $revertedRevision === null ) {
 				// Shouldn't happen, but necessary for static analysis
 				continue;

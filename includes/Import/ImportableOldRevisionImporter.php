@@ -88,8 +88,9 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 					->caller( __METHOD__ )
 					->fetchFieldValues();
 
-				foreach ( $revIds as $revId ) {
-					$revision = $this->revisionStore->getRevisionById( $revId );
+				$revisions = $this->revisionStore->getRevisionsByIds( $revIds );
+
+				foreach ( $revisions as $revId => $revision ) {
 					if ( !$revision ) {
 						throw new RuntimeException( "Revision $revId not found" );
 					}

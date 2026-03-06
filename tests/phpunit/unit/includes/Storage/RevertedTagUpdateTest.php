@@ -564,6 +564,22 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 				);
 			} );
 		$revisionStore->expects( $this->once() )
+			->method( 'getRevisionsByIds' )
+			->willReturnCallback( function ( array $ids ) {
+				$revisions = [];
+				foreach ( $ids as $id ) {
+					$id = (int)$id;
+					$revisions[$id] = $this->getDummyRevision(
+						100,
+						$id,
+						'20100101202020',
+						// Make it appear as though rev 125 has the same content as 124
+						$id === 125 ? 124 : $id
+					);
+				}
+				return $revisions;
+			} );
+		$revisionStore->expects( $this->once() )
 			->method( 'getRevisionIdsBetween' )
 			->willReturn( [ 123, 124, 125, 126 ] );
 

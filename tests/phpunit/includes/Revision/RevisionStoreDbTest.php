@@ -817,6 +817,33 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( __METHOD__, $actualContent->serialize() );
 	}
 
+	public function testGetRevisionsByIds() {
+		$page = $this->getTestPage();
+		$status1 = $this->editPage( $page, __METHOD__ . ' 1' );
+		$this->assertStatusGood( $status1, 'must create first revision' );
+		$revRecord1 = $status1->getNewRevision();
+
+		$status2 = $this->editPage( $page, __METHOD__ . ' 2' );
+		$this->assertStatusGood( $status2, 'must create second revision' );
+		$revRecord2 = $status2->getNewRevision();
+
+		$missingRevId = max( $revRecord1->getId(), $revRecord2->getId() ) + 100000;
+		$store = $this->getServiceContainer()->getRevisionStore();
+		$records = $store->getRevisionsByIds(
+			[ $revRecord1->getId(), $revRecord2->getId(), $missingRevId ],
+			0,
+			$page->getTitle()
+		);
+
+		$this->assertCount( 3, $records );
+		$this->assertArrayHasKey( $revRecord1->getId(), $records );
+		$this->assertArrayHasKey( $revRecord2->getId(), $records );
+		$this->assertArrayHasKey( $missingRevId, $records );
+		$this->assertInstanceOf( RevisionRecord::class, $records[$revRecord1->getId()] );
+		$this->assertInstanceOf( RevisionRecord::class, $records[$revRecord2->getId()] );
+		$this->assertNull( $records[$missingRevId] );
+	}
+
 	/**
 	 * @dataProvider provideRevisionByPageReference
 	 *

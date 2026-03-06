@@ -1839,9 +1839,9 @@ class DifferenceEngine extends ContextSource {
 			1000
 		);
 		// only count revisions that are visible
-		if ( count( $revisionIdList ) > 0 ) {
-			foreach ( $revisionIdList as $revisionId ) {
-				$revision = $this->revisionStore->getRevisionById( $revisionId );
+		if ( $revisionIdList ) {
+			$revisions = $this->revisionStore->getRevisionsByIds( $revisionIdList, 0, $this->mNewPage );
+			foreach ( $revisions as $revision ) {
 				if ( $revision && $revision->getUser( RevisionRecord::FOR_THIS_USER, $this->getAuthority() ) ) {
 					$nEdits++;
 				}
@@ -2230,16 +2230,20 @@ class DifferenceEngine extends ContextSource {
 
 		$this->loadRevisionIds();
 
-		// Load the new RevisionRecord object
-		if ( $this->mNewid ) {
+		$this->mOldRevisionRecord = false;
+
+		if ( $this->mNewid && $this->mOldid ) {
+			$revisions = $this->revisionStore->getRevisionsByIds( [ $this->mNewid, $this->mOldid ] );
+			$this->mNewRevisionRecord = $revisions[$this->mNewid] ?? null;
+			$this->mOldRevisionRecord = $revisions[$this->mOldid] ?? null;
+		} elseif ( $this->mNewid ) {
 			$this->mNewRevisionRecord = $this->revisionStore->getRevisionById( $this->mNewid );
 		} else {
 			$this->mNewRevisionRecord = $this->revisionStore->getRevisionByTitle( $this->getTitle() );
 		}
 
-		// Load the old RevisionRecord object
-		$this->mOldRevisionRecord = false;
-		if ( $this->mOldid ) {
+		// Load the old RevisionRecord object if it has not been loaded in the batched path above.
+		if ( $this->mOldid && $this->mOldRevisionRecord === false ) {
 			$this->mOldRevisionRecord = $this->revisionStore->getRevisionById( $this->mOldid );
 		} elseif ( $this->mOldid === 0 && $this->mNewRevisionRecord instanceof RevisionRecord ) {
 			$revRecord = $this->revisionStore->getPreviousRevision( $this->mNewRevisionRecord );
