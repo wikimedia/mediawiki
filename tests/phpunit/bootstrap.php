@@ -163,9 +163,13 @@ if ( !file_exists( $localConfigPath ) ) {
 			'automatically by running tests via `composer phpunit`.'
 	);
 }
-if ( !str_contains( file_get_contents( $localConfigPath ), 'generatePHPUnitConfig' ) ) {
-	throw new RuntimeException(
-		'The PHPUnit config override does not appear to be auto-generated. Generate it manually by running ' .
-		'`composer phpunit:config`, or automatically by running tests via `composer phpunit`.'
-	);
+$localConfigContent = file_get_contents( $localConfigPath );
+if ( !str_contains( $localConfigContent, 'generatePHPUnitConfig' ) ) {
+	$msg = 'The PHPUnit config override does not appear to be auto-generated. Generate it manually by ' .
+		'running `composer phpunit:config`, or automatically by running tests via `composer phpunit`.';
+	if ( getenv( 'QUIBBLE_PHPUNIT_PARALLEL' ) ) {
+		// Include the full content to ease debugging of (issues like) T419107.
+		$msg .= "\nFull content:\n$localConfigContent";
+	}
+	throw new RuntimeException( $msg );
 }
