@@ -13,19 +13,14 @@ namespace MediaWiki\EditPage;
  */
 class SpamChecker {
 
-	/** @var string[] */
-	private $spamRegex;
-
-	/** @var string[] */
-	private $summaryRegex;
-
 	/**
 	 * @param string[] $spamRegex
 	 * @param string[] $summaryRegex
 	 */
-	public function __construct( $spamRegex, $summaryRegex ) {
-		$this->spamRegex = $spamRegex;
-		$this->summaryRegex = $summaryRegex;
+	public function __construct(
+		private readonly array $spamRegex,
+		private readonly array $summaryRegex
+	) {
 	}
 
 	/**

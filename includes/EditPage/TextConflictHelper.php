@@ -26,11 +26,6 @@ use Wikimedia\Stats\StatsFactory;
 class TextConflictHelper {
 
 	/**
-	 * @var Title
-	 */
-	protected $title;
-
-	/**
 	 * @var null|string
 	 */
 	public $contentModel;
@@ -39,21 +34,6 @@ class TextConflictHelper {
 	 * @var null|string
 	 */
 	public $contentFormat;
-
-	/**
-	 * @var OutputPage
-	 */
-	protected $out;
-
-	/**
-	 * @var IBufferingStatsdDataFactory|StatsFactory
-	 */
-	protected $stats;
-
-	/**
-	 * @var string Message key for submit button's label
-	 */
-	protected $submitLabel;
 
 	/**
 	 * @var string
@@ -66,29 +46,22 @@ class TextConflictHelper {
 	protected $storedversion = '';
 
 	/**
-	 * @var IContentHandlerFactory
-	 */
-	private $contentHandlerFactory;
-
-	/**
 	 * @param Title $title
 	 * @param OutputPage $out
 	 * @param IBufferingStatsdDataFactory|StatsFactory $stats
-	 * @param string $submitLabel
+	 * @param string $submitLabel Message key for the label of the submit button
 	 * @param IContentHandlerFactory $contentHandlerFactory Required param with legacy support
 	 *
 	 * @throws MWUnknownContentModelException
 	 */
 	public function __construct(
-		Title $title, OutputPage $out, $stats, $submitLabel,
-		IContentHandlerFactory $contentHandlerFactory
+		protected readonly Title $title,
+		protected readonly OutputPage $out,
+		protected readonly IBufferingStatsdDataFactory|StatsFactory $stats,
+		protected readonly string $submitLabel,
+		private readonly IContentHandlerFactory $contentHandlerFactory
 	) {
-		$this->title = $title;
-		$this->out = $out;
-		$this->stats = $stats;
-		$this->submitLabel = $submitLabel;
 		$this->contentModel = $title->getContentModel();
-		$this->contentHandlerFactory = $contentHandlerFactory;
 
 		$this->contentFormat = $this->contentHandlerFactory
 			->getContentHandler( $this->contentModel )

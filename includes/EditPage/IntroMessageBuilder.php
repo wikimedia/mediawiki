@@ -47,54 +47,23 @@ class IntroMessageBuilder {
 	public const MORE_FRAMES = 1;
 	public const LESS_FRAMES = 2;
 
-	private Config $config;
-	private LinkRenderer $linkRenderer;
-	private PermissionManager $permManager;
-	private UserNameUtils $userNameUtils;
-	private TempUserCreator $tempUserCreator;
-	private UserFactory $userFactory;
-	private RestrictionStore $restrictionStore;
-	private DatabaseBlockStore $blockStore;
-	private ReadOnlyMode $readOnlyMode;
-	private SpecialPageFactory $specialPageFactory;
-	private RepoGroup $repoGroup;
-	private NamespaceInfo $namespaceInfo;
-	private SkinFactory $skinFactory;
-	private IConnectionProvider $dbProvider;
-	private UrlUtils $urlUtils;
-
 	public function __construct(
-		Config $config,
-		LinkRenderer $linkRenderer,
-		PermissionManager $permManager,
-		UserNameUtils $userNameUtils,
-		TempUserCreator $tempUserCreator,
-		UserFactory $userFactory,
-		RestrictionStore $restrictionStore,
-		DatabaseBlockStore $blockStore,
-		ReadOnlyMode $readOnlyMode,
-		SpecialPageFactory $specialPageFactory,
-		RepoGroup $repoGroup,
-		NamespaceInfo $namespaceInfo,
-		SkinFactory $skinFactory,
-		IConnectionProvider $dbProvider,
-		UrlUtils $urlUtils
+		private readonly Config $config,
+		private readonly LinkRenderer $linkRenderer,
+		private readonly PermissionManager $permManager,
+		private readonly UserNameUtils $userNameUtils,
+		private readonly TempUserCreator $tempUserCreator,
+		private readonly UserFactory $userFactory,
+		private readonly RestrictionStore $restrictionStore,
+		private readonly DatabaseBlockStore $blockStore,
+		private readonly ReadOnlyMode $readOnlyMode,
+		private readonly SpecialPageFactory $specialPageFactory,
+		private readonly RepoGroup $repoGroup,
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly SkinFactory $skinFactory,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly UrlUtils $urlUtils
 	) {
-		$this->config = $config;
-		$this->linkRenderer = $linkRenderer;
-		$this->permManager = $permManager;
-		$this->userNameUtils = $userNameUtils;
-		$this->tempUserCreator = $tempUserCreator;
-		$this->userFactory = $userFactory;
-		$this->restrictionStore = $restrictionStore;
-		$this->blockStore = $blockStore;
-		$this->readOnlyMode = $readOnlyMode;
-		$this->specialPageFactory = $specialPageFactory;
-		$this->repoGroup = $repoGroup;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->skinFactory = $skinFactory;
-		$this->dbProvider = $dbProvider;
-		$this->urlUtils = $urlUtils;
 	}
 
 	/**

@@ -26,41 +26,17 @@ use Wikimedia\Message\ListType;
 class TemplatesOnThisPageFormatter {
 
 	/**
-	 * @var IContextSource
-	 */
-	private $context;
-
-	/**
-	 * @var LinkRenderer
-	 */
-	private $linkRenderer;
-
-	/**
-	 * @var LinkBatchFactory
-	 */
-	private $linkBatchFactory;
-
-	/**
-	 * @var RestrictionStore
-	 */
-	private $restrictionStore;
-
-	/**
 	 * @param IContextSource $context
 	 * @param LinkRenderer $linkRenderer
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param RestrictionStore $restrictionStore
 	 */
 	public function __construct(
-		IContextSource $context,
-		LinkRenderer $linkRenderer,
-		LinkBatchFactory $linkBatchFactory,
-		RestrictionStore $restrictionStore
+		private readonly IContextSource $context,
+		private readonly LinkRenderer $linkRenderer,
+		private readonly LinkBatchFactory $linkBatchFactory,
+		private readonly RestrictionStore $restrictionStore
 	) {
-		$this->context = $context;
-		$this->linkRenderer = $linkRenderer;
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->restrictionStore = $restrictionStore;
 	}
 
 	/**

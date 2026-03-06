@@ -13,8 +13,6 @@ use MediaWiki\Message\Message;
 class IntroMessageList {
 	/** @var array<string,string> */
 	public array $list = [];
-	/** @var int IntroMessageBuilder::MORE_FRAMES or IntroMessageBuilder::LESS_FRAMES */
-	private int $frames;
 	/** @var array<string,true> */
 	private array $skip;
 
@@ -24,11 +22,13 @@ class IntroMessageList {
 	 *   or IntroMessageBuilder::LESS_FRAMES to omit them whenever possible.
 	 * @param string[] $skip Identifiers of messages not to generate
 	 */
-	public function __construct( int $frames, array $skip = [] ) {
+	public function __construct(
+		private readonly int $frames,
+		array $skip = []
+	) {
 		if ( !in_array( $frames, [ IntroMessageBuilder::MORE_FRAMES, IntroMessageBuilder::LESS_FRAMES ], true ) ) {
 			throw new InvalidArgumentException( "Expected MORE_FRAMES or LESS_FRAMES" );
 		}
-		$this->frames = $frames;
 		$this->skip = array_fill_keys( $skip, true );
 	}
 

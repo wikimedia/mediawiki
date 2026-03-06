@@ -30,27 +30,16 @@ class PreloadedContentBuilder {
 
 	use ParametersHelper;
 
-	private IContentHandlerFactory $contentHandlerFactory;
-	private WikiPageFactory $wikiPageFactory;
-	private RedirectLookup $redirectLookup;
-	private SpecialPageFactory $specialPageFactory;
-	private ContentTransformer $contentTransformer;
 	private HookRunner $hookRunner;
 
 	public function __construct(
-		IContentHandlerFactory $contentHandlerFactory,
-		WikiPageFactory $wikiPageFactory,
-		RedirectLookup $redirectLookup,
-		SpecialPageFactory $specialPageFactory,
-		ContentTransformer $contentTransformer,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly WikiPageFactory $wikiPageFactory,
+		private readonly RedirectLookup $redirectLookup,
+		private readonly SpecialPageFactory $specialPageFactory,
+		private readonly ContentTransformer $contentTransformer,
 		HookContainer $hookContainer
 	) {
-		// Services
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->wikiPageFactory = $wikiPageFactory;
-		$this->redirectLookup = $redirectLookup;
-		$this->specialPageFactory = $specialPageFactory;
-		$this->contentTransformer = $contentTransformer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
