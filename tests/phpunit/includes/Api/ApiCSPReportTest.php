@@ -88,6 +88,57 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public function testChromeExtensionUrl() {
+		$params = [
+			'reportonly' => '1',
+			'source' => 'internal',
+		];
+		$cspReport = [
+			'document-uri' => 'https://doc.test/path',
+			'referrer' => 'https://referrer.test/path',
+			'violated-directive' => 'script-src',
+			'disposition' => 'report',
+			'blocked-uri' => 'chrome-extension://example-extension/script.js',
+			'line-number' => 10,
+			'column-number' => 5,
+			'source-file' => 'https://doc.test/path',
+		];
+
+		$log = $this->doExecute( $params, $cspReport );
+		$this->assertNotEmpty( $log, 'should have log entry' );
+		$this->assertEquals(
+			'chrome-extension://example-extension',
+			$log[0][1]['blockedOrigin'],
+			'should show extension ID, not blank'
+		);
+	}
+
+	public function testChromeExtensionFalsePositive() {
+		$params = [
+			'reportonly' => '1',
+			'source' => 'internal',
+		];
+		$cspReport = [
+			'document-uri' => 'https://doc.test/path',
+			'referrer' => 'https://referrer.test/path',
+			'violated-directive' => 'script-src',
+			'disposition' => 'report',
+			'blocked-uri' => 'chrome-extension://example-extension/script.js',
+			'line-number' => 10,
+			'column-number' => 5,
+			'source-file' => 'https://doc.test/path',
+		];
+
+		$this->overrideConfigValue(
+			MainConfigNames::CSPFalsePositiveUrls,
+			[ 'chrome-extension://example-extension' => true ]
+		);
+
+		$log = $this->doExecute( $params, $cspReport );
+
+		$this->assertSame( [], $log, 'should not log warning when chrome-extension matches false positive pattern' );
+	}
+
 	private function doExecute( array $params, array $cspReport ) {
 		$log = [];
 		$logger = $this->createMock( AbstractLogger::class );
@@ -115,7 +166,7 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 		$context->setRequest( $req );
 		$main = new ApiMain( $context );
 		$api = $this->getMockBuilder( ApiCSPReport::class )
-			->setConstructorArgs( [ $main, 'mock', $services->getUrlUtils() ] )
+			->setConstructorArgs( [ $main, 'mock' ] )
 			->onlyMethods( [ 'getParameter', 'getRequest', 'getResult' ] )
 			->getMock();
 		$api->method( 'getParameter' )->willReturnCallback(

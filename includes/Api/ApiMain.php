@@ -251,9 +251,6 @@ class ApiMain extends ApiBase {
 		],
 		'cspreport' => [
 			'class' => ApiCSPReport::class,
-			'services' => [
-				'UrlUtils',
-			]
 		],
 		'validatepassword' => [
 			'class' => ApiValidatePassword::class,

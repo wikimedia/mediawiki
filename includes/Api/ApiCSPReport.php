@@ -33,7 +33,6 @@ class ApiCSPReport extends ApiBase {
 	public function __construct(
 		ApiMain $main,
 		string $action,
-		private readonly UrlUtils $urlUtils,
 	) {
 		parent::__construct( $main, $action );
 	}
@@ -139,14 +138,8 @@ class ApiCSPReport extends ApiBase {
 			return true;
 		}
 
-		$bits = $this->urlUtils->parse( $url );
-		if ( !$bits ) {
-			return false;
-		}
+		$serverUrl = $this->originFromUrl( $url );
 
-		unset( $bits['user'], $bits['pass'], $bits['query'], $bits['fragment'] );
-		$bits['path'] = '';
-		$serverUrl = UrlUtils::assemble( $bits );
 		if ( isset( $patterns[$serverUrl] ) ) {
 			// The origin of the url matches a pattern,
 			// e.g. "https://example.org" matches "https://example.org/foo/b?a#r"
@@ -208,13 +201,29 @@ class ApiCSPReport extends ApiBase {
 	}
 
 	/**
+	 * Extract the origin (scheme and host) from a URL.
+	 *
+	 * Uses parse_url() instead of UrlUtils->parse() to handle URLs with protocols
+	 * not in $wgUrlProtocols (e.g., chrome-extension://). This is safe because
+	 * we only use the result for logging CSP reports.
+	 *
 	 * @param string $url
-	 * @return string
+	 * @return string Origin URL, or the original URL if parsing fails
 	 */
 	private function originFromUrl( $url ) {
-		$bits = $this->urlUtils->parse( $url ) ?? [];
+		$bits = parse_url( $url );
+
+		if ( !$bits || !isset( $bits['scheme'] ) ) {
+			return $url;
+		}
+
 		unset( $bits['user'], $bits['pass'], $bits['query'], $bits['fragment'] );
 		$bits['path'] = '';
+
+		if ( !isset( $bits['delimiter'] ) ) {
+			$bits['delimiter'] = '://';
+		}
+
 		// e.g. "https://example.org" from "https://example.org/foo/b?a#r"
 		return UrlUtils::assemble( $bits );
 	}
