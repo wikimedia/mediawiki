@@ -1001,12 +1001,17 @@ class SpecialUndelete extends SpecialPage {
 		$firstRev = $this->revisionStore->getFirstRevision( $this->mTargetObj );
 		$earliestLiveTime = $firstRev ? $firstRev->getTimestamp() : null;
 
+		$sizes = [];
+		foreach ( $revisions as $rev ) {
+			$sizes[$rev->ar_rev_id] = $rev->ar_len;
+		}
+
 		$revisions->rewind();
 		for ( $i = 0; $i < $displayCount; $i++ ) {
 			$row = $revisions->fetchObject();
 			// The $remaining parameter controls diff links and so must
 			// include the undisplayed row beyond the display limit.
-			$history .= $this->formatRevisionRow( $row, $earliestLiveTime, $numRevisions - $i );
+			$history .= $this->formatRevisionRow( $row, $earliestLiveTime, $numRevisions - $i, $sizes );
 		}
 		$history .= Html::closeElement( 'ul' );
 		return $history;
@@ -1021,6 +1026,8 @@ class SpecialUndelete extends SpecialPage {
 			$out->addModuleStyles( 'mediawiki.special' );
 		}
 		$out->addModuleStyles( 'mediawiki.interface.helpers.styles' );
+		$out->addModuleStyles( 'mediawiki.special.changeslist' );
+
 		$out->wrapWikiMsg(
 			"<div class='mw-undelete-pagetitle'>\n$1\n</div>\n",
 			[ 'undeletepagetitle', wfEscapeWikiText( $this->mTargetObj->getPrefixedText() ) ]
@@ -1312,9 +1319,10 @@ class SpecialUndelete extends SpecialPage {
 	 * @param \stdClass $row
 	 * @param string $earliestLiveTime
 	 * @param int $remaining
+	 * @param array<int,int> $sizes
 	 * @return string
 	 */
-	protected function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
+	protected function formatRevisionRow( $row, $earliestLiveTime, $remaining, $sizes ) {
 		$revRecord = $this->revisionStore->newRevisionFromArchiveRow(
 				$row,
 				IDBAccessObject::READ_NORMAL,
@@ -1377,6 +1385,9 @@ class SpecialUndelete extends SpecialPage {
 		$size = $row->ar_len;
 		if ( $size !== null ) {
 			$revTextSize = Linker::formatRevisionSize( $size );
+			$prevSize = $sizes[$row->ar_parent_id ?? 0] ?? 0;
+			$sDiff = ChangesList::showCharacterDifference( $prevSize, $size );
+			$revTextSize = "$revTextSize $sDiff";
 		}
 
 		// Edit summary
