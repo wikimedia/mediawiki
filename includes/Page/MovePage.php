@@ -887,7 +887,7 @@ class MovePage {
 					->getContentHandler( $this->oldTitle->getContentModel() )
 					->makeRedirectContent(
 						$nt,
-						wfMessage( 'move-redirect-text' )->inContentLanguage()->plain()
+						wfMessage( 'move-redirect-text', $nt->getPrefixedText() )->inContentLanguage()->plain()
 					);
 			}
 

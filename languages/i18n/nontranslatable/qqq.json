@@ -200,7 +200,7 @@
 	"mostlinkedcategories-summary": "{{doc-specialpagesummary|mostlinkedcategories}}",
 	"mostlinkedtemplates-summary": "{{doc-specialpagesummary|mostlinkedtemplates}}",
 	"mostrevisions-summary": "{{notranslate}}\nThe summary displayed at the top of [[Special:Mostrevisions]]. [[mw:Manual:Interface/Special pages summary|mw manual]].",
-	"move-redirect-text": "{{ignored}}The text that's added to a redirected page when that redirect is created.",
+	"move-redirect-text": "{{ignored}}The text that's added to a redirected page when that redirect is created. Parameters:\n* $1 - the destination that the page was moved to",
 	"movedarticleprotection": "{{MW legacy IRC logentry}}\n\nIt appears in the log if a protected page is renamed.\n\nExample:\n<code>00:51, 16 September 2010 Siebrand +(Talk • contribs • block) moved protection settings from \"User:Siebrand/prot-move\" to \"User:Siebrand/prot-moved\" (User:Siebrand/prot-move moved to User:Siebrand/prot-moved: prot_move test.)</code>\n\nParameters:\n* $1 - target page title\n* $2 - source page title",
 	"movepage-summary": "{{doc-specialpagesummary|movepage}}",
 	"newarticletextanon": "{{notranslate}}\nDefault:\n* {{msg-mw|Newarticletext}}",
