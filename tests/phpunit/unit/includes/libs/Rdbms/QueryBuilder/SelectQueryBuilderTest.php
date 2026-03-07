@@ -169,6 +169,28 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 			->field( 'y', 'f' );
 	}
 
+	public function testFieldWithSubquery() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
+		$this->sqb
+			->table( 't' )
+			->fields( [
+				'f' => new Subquery( 'SELECT x2 from t2 WHERE f2 = x' ),
+				'g' => 'y',
+			] );
+		$this->assertSQL( 'SELECT (SELECT x2 from t2 WHERE f2 = x) AS f,y AS g FROM t' );
+	}
+
+	public function testSelectWithSubquery() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
+		$this->sqb
+			->table( 't' )
+			->field( new Subquery( 'SELECT x2 from t2 WHERE f2 = x' ), 'f' )
+			->field( 'y', 'g' );
+		$this->assertSQL( 'SELECT (SELECT x2 from t2 WHERE f2 = x) AS f,y AS g FROM t' );
+	}
+
 	public function testRawTables() {
 		$this->db = new DatabaseTestHelper( __METHOD__ );
 		$this->sqb = $this->db->newSelectQueryBuilder();

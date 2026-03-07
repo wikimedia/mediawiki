@@ -231,7 +231,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 *
 	 * @see IReadableDatabase::select()
 	 *
-	 * @param string|string[] $fields
+	 * @param string|string[]|array<string,string|Subquery> $fields
 	 * @param-taint $fields exec_sql
 	 * @return $this
 	 */
@@ -250,7 +250,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	/**
 	 * Add a field or an array of fields to the query. Alias for fields().
 	 *
-	 * @param string|string[] $fields
+	 * @param string|string[]|array<string,string|Subquery> $fields
 	 * @param-taint $fields exec_sql
 	 * @return $this
 	 */
@@ -262,7 +262,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * Add a single field to the query, optionally with an alias. The field is
 	 * an SQL fragment. It is unsafe to pass user input to this function.
 	 *
-	 * @param string $field
+	 * @param string|Subquery $field
 	 * @param-taint $field exec_sql
 	 * @param string|null $alias
 	 * @param-taint $alias exec_sql
