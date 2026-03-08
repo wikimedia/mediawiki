@@ -701,7 +701,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 
 		$actionName = $this->getAction();
 		$services = $this->getServiceContainer();
-		// To avoid gargage in the data we do not submit this timer when:
+		// To avoid garbage in the data we do not submit this timer when:
 		// * nosuchaction: The action is not defined in the code, e.g. action=blabla.
 		// * PermissionsError: The action handler Action::show is not even called,
 		//   and these fast errors should not influence the latency graph.
