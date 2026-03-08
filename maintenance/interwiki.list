@@ -4,9 +4,7 @@ acronym|https://www.acronymfinder.com/~/search/af.aspx?string=exact&Acronym=$1|0
 arxiv|https://www.arxiv.org/abs/$1|0|
 c2|https://wiki.c2.com/?$1|0|
 commons|https://commons.wikimedia.org/wiki/$1|0|https://commons.wikimedia.org/w/api.php
-dictionary|https://www.dict.org/bin/Dict?Database=*&Form=Dict1&Strategy=*&Query=$1|0|
 doi|https://dx.doi.org/$1|0|
-elibre|http://enciclopedia.us.es/index.php/$1|0|http://enciclopedia.us.es/api.php
 emacswiki|https://www.emacswiki.org/emacs/$1|0|
 fandom|https://community.fandom.com/wiki/w:c:$1|0|
 foldoc|https://foldoc.org/?$1|0|
@@ -25,7 +23,7 @@ mozillawiki|https://wiki.mozilla.org/$1|0|https://wiki.mozilla.org/api.php
 mw|https://www.mediawiki.org/wiki/$1|0|https://www.mediawiki.org/w/api.php
 oeis|https://oeis.org/$1|0|
 pmid|https://www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract|0|
-pythoninfo|https://wiki.python.org/moin/$1|0|
+pythoninfo|https://wiki.python.org/python/$1|0|
 rfc|https://datatracker.ietf.org/doc/html/rfc$1|0|
 senseislibrary|https://senseis.xmp.net/?$1|0|
 shoutwiki|https://www.shoutwiki.com/wiki/$1|0|https://www.shoutwiki.com/w/api.php
