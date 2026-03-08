@@ -68,6 +68,7 @@ module.exports = function ( grunt ) {
 			nontranslatable: 'languages/i18n/nontranslatable/',
 			interwiki: 'languages/i18n/interwiki/',
 			preferences: 'languages/i18n/preferences/',
+			userrights: 'languages/i18n/userrights/',
 			languageconverter: 'languages/i18n/languageconverter/',
 			api: 'includes/Api/i18n/',
 			rest: 'includes/Rest/i18n/',

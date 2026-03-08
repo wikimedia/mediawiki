@@ -1031,6 +1031,7 @@ class LocalisationCache {
 			'languageconverter' => "$IP/languages/i18n/languageconverter",
 			'interwiki' => "$IP/languages/i18n/interwiki",
 			'preferences' => "$IP/languages/i18n/preferences",
+			'userrights' => "$IP/languages/i18n/userrights",
 
 			'nontranslatable' => "$IP/languages/i18n/nontranslatable",
 
