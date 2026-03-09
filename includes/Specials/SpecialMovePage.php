@@ -417,6 +417,10 @@ class SpecialMovePage extends UnlistedSpecialPage {
 						$errStr[] = $this->msg( $msg )->parse();
 					}
 
+					// Duplicate errors can easily arise since MovePage checks for both "edit" and "move" against
+					// the target page, and lots of things that block one also block the other
+					$errStr = array_unique( $errStr );
+
 					$errMsgHtml .= '<ul><li>' . implode( "</li>\n<li>", $errStr ) . "</li></ul>\n";
 				}
 				$out->addHTML( Html::errorBox( $errMsgHtml ) );
@@ -488,7 +492,9 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		}
 
 		$moveOverProtection = false;
-		if ( $this->newTitle ) {
+		if ( $this->newTitle && $mainOK ) {
+			// If you can't move the page anyway then don't bother displaying warnings
+			// about it being protected
 			if ( $this->restrictionStore->isProtected( $this->newTitle, 'create' ) ) {
 				# Is the title semi-protected?
 				if ( $this->restrictionStore->isSemiProtected( $this->newTitle, 'create' ) ) {
