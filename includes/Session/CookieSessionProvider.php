@@ -10,6 +10,7 @@ use InvalidArgumentException;
 use MediaWiki\Json\JwtCodec;
 use MediaWiki\Json\JwtException;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
@@ -101,12 +102,15 @@ class CookieSessionProvider extends SessionProvider {
 			'sameSite' => $sameSite,
 		];
 
+		$services = MediaWikiServices::getInstance();
 		$this->jwtSessionCookieHelper = new JwtSessionCookieHelper(
 			$this->urlUtils,
 			$this->getConfig(),
 			$this->jwtCodec,
 			$this->manager,
-			get_class( $this )
+			get_class( $this ),
+			$services->getCentralIdLookup(),
+			$services->getUserFactory(),
 		);
 	}
 

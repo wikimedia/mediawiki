@@ -65,7 +65,9 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 			$this->getConfig(),
 			$services->getJwtCodec(),
 			$this->manager,
-			get_class( $this )
+			get_class( $this ),
+			$services->getCentralIdLookup(),
+			$services->getUserFactory(),
 		);
 	}
 

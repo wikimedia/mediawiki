@@ -12,10 +12,10 @@ use MediaWiki\Json\JwtCodec;
 use MediaWiki\Json\JwtException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
+use MediaWiki\User\UserFactory;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\IPUtils;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
@@ -42,13 +42,17 @@ class JwtSessionCookieHelper {
 	 * @param JwtCodec $jwtCodec
 	 * @param SessionManager $sessionManager
 	 * @param string $sessionProviderType
+	 * @param CentralIdLookup $centralIdLookup
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		private readonly UrlUtils $urlUtils,
 		private readonly Config $config,
 		protected JwtCodec $jwtCodec,
 		private readonly SessionManager $sessionManager,
-		private readonly string $sessionProviderType
+		private readonly string $sessionProviderType,
+		private readonly CentralIdLookup $centralIdLookup,
+		private readonly UserFactory $userFactory
 	) {
 	}
 
@@ -98,14 +102,18 @@ class JwtSessionCookieHelper {
 			$user = new User();
 		} else {
 			$centralId = array_last( explode( ':', $subUser ) );
-			// TODO: Dependency inject this appropriately.
-			$userName = MediaWikiServices::getInstance()->getCentralIdLookup()
-				->nameFromCentralId( (int)$centralId, CentralIdLookup::AUDIENCE_RAW );
+			$userName = $this->centralIdLookup->nameFromCentralId(
+				(int)$centralId, CentralIdLookup::AUDIENCE_RAW
+			);
+
+			$user = null;
 			// No need to directly handle $userName === null, validateJwtSubject() will throw
-			$user = $userName === null ? new User() : User::newFromName( $userName );
+			if ( $userName !== null ) {
+				$user = $this->userFactory->newFromName( $userName );
+			}
 		}
-		// TODO: Dependency inject this appropriately.
-		SessionManager::singleton()->validateJwtSubject( $jwtData, $user );
+		$user ??= new User();
+		$this->sessionManager->validateJwtSubject( $jwtData, $user );
 		return $user;
 	}
 
