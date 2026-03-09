@@ -51,7 +51,7 @@ class RevisionSearchResult extends SearchResult {
 	 */
 	protected function initFromTitle( $title ) {
 		$this->mTitle = $title;
-		if ( $title !== null ) {
+		if ( $title !== null && $title->canExist() ) {
 			$services = MediaWikiServices::getInstance();
 			$id = false;
 			( new HookRunner( $services->getHookContainer() ) )->onSearchResultInitFromTitle( $title, $id );
