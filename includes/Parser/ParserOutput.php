@@ -2500,12 +2500,19 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				->getTimestamp();
 			// Whichever comes first: UTC midnight, local midnight, or expiry
 			$timeToNextMidnight = min( $utcMidnight, $localMidnight ) - $date->getTimestamp();
-			// Account for clock skew and unlucky parses just before midnight
-			// by ensuring our "midnight" deadline is at least 30min away.
-			$timeToNextMidnight = max( $timeToNextMidnight, 30 * 60 );
-			// "Randomly" stagger expiry across a 1-hour window to avoid cache
-			// stampedes. (Function of parse time, which should be random-ish.)
-			$timeToNextMidnight += ( $date->getTimestamp() % ( 60 * 60 ) );
+			// "Randomly" stagger expiry across a window to avoid cache
+			// stampedes.
+			$stagger = 60 * 60; // 1 hour
+			if ( $timeToNextMidnight < ( $stagger / 2 ) ) {
+				// Account for clock skew and unlucky parses just before
+				// midnight by ensuring our "midnight" deadline is at least
+				// half-a-stagger away (but halve the stagger in that case
+				// so we never spread the expiry past midnight+stagger).
+				$stagger /= 2;
+				$timeToNextMidnight = $stagger;
+			}
+			// Stagger is a function of parse time, which should be random-ish.
+			$timeToNextMidnight += ( $date->getTimestamp() % $stagger );
 			$expiry = max( $expiry, $timeToNextMidnight );
 		}
 
