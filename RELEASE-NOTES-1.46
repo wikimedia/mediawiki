@@ -28,8 +28,8 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 * $wgSVGConverter inkscape now requires Inkscape 1.0 or newer
 * $wgSVGConverter presets sodipodi and imgserv were removed
-* $wgLogos['1.5x'] is no longer used. Devices that previously
-  displayed the 1.5x logo will use $wgLogos['2x'] instead.
+* (T246054) $wgLogos['1.5x'] is no longer used. Devices that previously
+  displayed the 1.5x logo will use $wgLogos['1x'] instead.
 * …
 
 ==== New configuration ====
