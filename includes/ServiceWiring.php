@@ -1066,6 +1066,11 @@ return [
 	},
 
 	'HtmlCacheUpdater' => static function ( MediaWikiServices $services ): HTMLCacheUpdater {
+		// TODO emit a deprecation warning here after all extensions use "HTMLCacheUpdater" instead
+		return $services->getHTMLCacheUpdater();
+	},
+
+	'HTMLCacheUpdater' => static function ( MediaWikiServices $services ): HTMLCacheUpdater {
 		$config = $services->getMainConfig();
 
 		return new HTMLCacheUpdater(

@@ -33,7 +33,7 @@ class RevisionDeleter {
 			'services' => [
 				'DBLoadBalancerFactory',
 				'HookContainer',
-				'HtmlCacheUpdater',
+				'HTMLCacheUpdater',
 				'RevisionStore',
 				'DomainEventDispatcher'
 			],
@@ -43,7 +43,7 @@ class RevisionDeleter {
 			'services' => [
 				'DBLoadBalancerFactory',
 				'HookContainer',
-				'HtmlCacheUpdater',
+				'HTMLCacheUpdater',
 				'RevisionStore',
 				'DomainEventDispatcher'
 			],
@@ -52,7 +52,7 @@ class RevisionDeleter {
 			'class' => RevDelFileList::class,
 			'services' => [
 				'DBLoadBalancerFactory',
-				'HtmlCacheUpdater',
+				'HTMLCacheUpdater',
 				'RepoGroup',
 			],
 		],
@@ -60,7 +60,7 @@ class RevisionDeleter {
 			'class' => RevDelArchivedFileList::class,
 			'services' => [
 				'DBLoadBalancerFactory',
-				'HtmlCacheUpdater',
+				'HTMLCacheUpdater',
 				'RepoGroup',
 			],
 		],
