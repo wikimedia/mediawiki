@@ -1066,7 +1066,7 @@ return [
 	},
 
 	'HtmlCacheUpdater' => static function ( MediaWikiServices $services ): HTMLCacheUpdater {
-		// TODO emit a deprecation warning here after all extensions use "HTMLCacheUpdater" instead
+		wfDeprecatedMsg( 'The "HtmlCacheUpdater" service alias was deprecated in 1.46', '1.46' );
 		return $services->getHTMLCacheUpdater();
 	},
 

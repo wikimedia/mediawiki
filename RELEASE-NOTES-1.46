@@ -957,7 +957,7 @@ because of Phabricator reports.
 * Passing null to the $output parameter of FeedUtils::checkFeedOutput is now
   deprecated and emits deprecation warnings.
 * The HtmlCacheUpdater service has been renamed to HTMLCacheUpdater (T419427).
-  Using the old name is now deprecated.
+  Using the old name is now deprecated and emits deprecation warnings.
 * …
 
 === Other changes in 1.46 ===

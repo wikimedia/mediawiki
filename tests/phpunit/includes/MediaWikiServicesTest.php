@@ -384,6 +384,11 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		// Test against the default instance, since the dummy will not know the default services.
 		$services = MediaWikiServices::getInstance();
 
+		// TODO Remove this when the HtmlCacheUpdater alias is removed (T419427)
+		if ( $name === 'HtmlCacheUpdater' ) {
+			$this->expectDeprecationAndContinue( '/The "HtmlCacheUpdater" service alias was deprecated/' );
+		}
+
 		$service = $services->getService( $name );
 		$this->assertInstanceOf( $type, $service );
 	}
@@ -397,6 +402,11 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 
 		foreach ( $names as $name ) {
 			$this->assertTrue( $services->hasService( $name ) );
+
+			// TODO Remove this when the HtmlCacheUpdater alias is removed (T419427)
+			if ( $name === 'HtmlCacheUpdater' ) {
+				$this->expectDeprecationAndContinue( '/The "HtmlCacheUpdater" service alias was deprecated/' );
+			}
 
 			// Check that the service can be instantiated without errors.
 			// Make no assumption about the value returned by the instantiator
