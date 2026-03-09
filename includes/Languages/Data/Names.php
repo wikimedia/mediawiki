@@ -258,6 +258,7 @@ class Names {
 		'inh' => 'гӀалгӀай', # Ingush
 		'io' => 'Ido', # Ido
 		'is' => 'íslenska', # Icelandic
+		'isv' => 'medžuslovjansky', # Interslavic
 		'isv-cyrl' => 'меджусловјанскы', # Interslavic (Cyrillic)
 		'isv-latn' => 'medžuslovjansky', # Interslavic (Latin)
 		'it' => 'italiano', # Italian

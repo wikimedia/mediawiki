@@ -7,6 +7,8 @@
  * @author IJzeren Jan
  */
 
+$fallback = 'isv, isv-cyrl';
+
 $namespaceNames = [
 	NS_TALK             => 'Besěda',
 	NS_USER             => 'Koristnik',

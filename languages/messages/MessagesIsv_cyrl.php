@@ -7,6 +7,8 @@
  * @author IJzeren Jan
  */
 
+$fallback = 'isv, isv-latn';
+
 $namespaceNames = [
 	NS_TALK             => 'Бесєда',
 	NS_USER             => 'Користник',
