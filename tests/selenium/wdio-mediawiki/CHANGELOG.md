@@ -1,5 +1,14 @@
 # Changelog
 
+## 6.4.0 / 2026-03-09
+There are two additions to this release. First we add the abilitry to add a cookie when talking to the
+MediaWiki API to make it easier to upgrade wdio-wikibase to later version. Then we also added logging
+of wdio-mediawiki and webdriver.io version to make it easier to see in the CI what versions are actually
+used.
+
+* Add option to set extra cookies for the API (T416128)
+* Log wdio and wdio-mediawiki version (T419201)
+
 ## 6.3.3 / 2026-03-06
 In 6.3.0 how you run tests locally on your machine was changed so it always use a browser window. That
 change was unintentional and with this release we bring back the old behavoir check if DISPLAY is exported.
