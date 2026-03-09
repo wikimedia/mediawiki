@@ -567,7 +567,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			$this->assertNull( $info->getUserInfo()->getName() );
 			$this->assertFalse( $info->needsRefresh() );
 			$this->assertFalse( $info->forceHTTPS() );
-			$this->assertFalse( $info->forceHTTPS() );
 			$this->assertSame( [ [ LogLevel::DEBUG, 'Session "{session}" requested without UserID cookie' ] ],
 				$logger->getBuffer() );
 			$logger->clearBuffer();
