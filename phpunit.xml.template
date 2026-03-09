@@ -31,7 +31,7 @@ Generate a local configuration by running `composer phpunit:config`
 			<directory>tests/phpunit/unit</directory>
 		</testsuite>
 		<testsuite name="extensions:unit">
-			<!-- The actual extension unit tests are added in generatePHPUnitConfig.php -->
+			<!-- PLACEHOLDER FOR AUTOMATIC TEST INSERTION -->
 		</testsuite>
 		<testsuite name="includes">
 			<directory>tests/phpunit/includes</directory>
@@ -53,7 +53,7 @@ Generate a local configuration by running `composer phpunit:config`
 		<testsuite name="extensions">
 			<directory>tests/phpunit/structure</directory>
 			<file>tests/phpunit/suites/ExtensionsParserTestSuite.php</file>
-			<!-- The actual extension tests are added in generatePHPUnitConfig.php -->
+			<!-- PLACEHOLDER FOR AUTOMATIC TEST INSERTION -->
 		</testsuite>
 		<testsuite name="integration">
 			<directory>tests/phpunit/integration</directory>
