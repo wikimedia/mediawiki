@@ -517,7 +517,7 @@
 				"name": "pl_target_id",
 				"type": "bigint",
 				"comment": "Foreign key to linktarget.lt_id",
-				"options": { "notnull": false, "unsigned": true }
+				"options": { "notnull": true, "unsigned": true }
 			}
 		],
 		"indexes": [
