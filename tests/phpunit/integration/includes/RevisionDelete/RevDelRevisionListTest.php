@@ -62,7 +62,7 @@ class RevDelRevisionListTest extends MediaWikiIntegrationTestCase {
 						);
 
 						Assert::assertNotContains(
-							$event->getCurrentRevisionId(),
+							$event->getLatestRevisionId(),
 							$affectedRevisionIds,
 							"Current revision should not be in affected rev ids " .
 							"as visibility of current revision has not been changed."
@@ -107,7 +107,7 @@ class RevDelRevisionListTest extends MediaWikiIntegrationTestCase {
 						);
 
 						Assert::assertContains(
-							$event->getCurrentRevisionId(),
+							$event->getLatestRevisionId(),
 							$affectedRevisionIds,
 							"Current revision should be in affected rev ids " .
 							"as visibility of current revision has been changed."

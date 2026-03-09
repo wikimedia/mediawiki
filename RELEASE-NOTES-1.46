@@ -936,6 +936,13 @@ because of Phabricator reports.
 * The use of "fromdb", "fromdbmaster", "forupdate" constants in WikiPage methods
   has been deprecated. Effected methods include loadFromRow(), wasLoadedFrom(),
   and loadPageData().
+* The following PageHistoryVisibilityChangedEvent methods were deprecated:
+  - wasCurrentRevisionAffected(); use wasLatestRevisionAffected() instead.
+  - getCurrentRevisionId(); getLatestRevisionId() instead.
+  - getCurrentRevisionVisibilityBefore(); use
+    getLatestRevisionVisibilityBefore() instead.
+  - getCurrentRevisionVisibilityAfter(); use
+    getLatestRevisionVisibilityAfter() instead.
 * Some static methods in Xml, deprecated in 1.42, now emit deprecation warnings:
   - Xml::attrib(),
   - Xml::buildForm(),

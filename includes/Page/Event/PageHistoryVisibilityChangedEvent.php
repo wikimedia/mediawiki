@@ -25,7 +25,7 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 
 	private array $visibilityChangeMap;
 	private string $reason;
-	private int $currentRevisionId;
+	private int $latestRevisionId;
 	private ProperPageIdentity $page;
 	private int $bitsSet;
 	private int $bitsUnset;
@@ -33,8 +33,8 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 	/**
 	 * @param ProperPageIdentity $page The page affected by the update.
 	 * @param UserIdentity $performer The user performing the update.
-	 * @param int $currentRevisionId
-	 *        The current rev id at the time of the visibility change event.
+	 * @param int $latestRevisionId
+	 *        The latest rev id at the time of the visibility change event.
 	 * @param int $bitsSet Bitmap indicating which bits got set by the change
 	 * @param int $bitsUnset Bitmap indicating which bits got unset by the change
 	 * @param array<int,array> $visibilityChangeMap a map from revision IDs to visibility changes,
@@ -47,7 +47,7 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 	public function __construct(
 		ProperPageIdentity $page,
 		UserIdentity $performer,
-		int $currentRevisionId,
+		int $latestRevisionId,
 		int $bitsSet,
 		int $bitsUnset,
 		array $visibilityChangeMap,
@@ -71,7 +71,7 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 		$this->bitsSet = $bitsSet;
 		$this->bitsUnset = $bitsUnset;
 		$this->visibilityChangeMap = $visibilityChangeMap;
-		$this->currentRevisionId = $currentRevisionId;
+		$this->latestRevisionId = $latestRevisionId;
 		$this->reason = $reason;
 	}
 
@@ -121,27 +121,69 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 
 	/**
 	 * @return bool
+	 * @since 1.46
 	 */
-	public function wasCurrentRevisionAffected(): bool {
-		return isset( $this->visibilityChangeMap[$this->currentRevisionId] );
+	public function wasLatestRevisionAffected(): bool {
+		return isset( $this->visibilityChangeMap[$this->latestRevisionId] );
 	}
 
 	/**
-	 * Returns the current revision ID of the page at
+	 * @return bool
+	 * @deprecated Since 1.46; use wasLatestRevisionAffected()
+	 */
+	public function wasCurrentRevisionAffected(): bool {
+		return $this->wasLatestRevisionAffected();
+	}
+
+	/**
+	 * Returns the latest revision ID of the page at
 	 * the time of the visibilty change event.
 	 *
 	 * @return int
+	 * @since 1.46
 	 */
-	public function getCurrentRevisionId(): int {
-		return $this->currentRevisionId;
+	public function getLatestRevisionId(): int {
+		return $this->latestRevisionId;
 	}
 
+	/**
+	 * @return int
+	 * @deprecated Since 1.46; use getLatestRevisionId()
+	 */
+	public function getCurrentRevisionId() {
+		return $this->getLatestRevisionId();
+	}
+
+	/**
+	 * @return int
+	 * @since 1.46
+	 */
+	public function getLatestRevisionVisibilityBefore(): int {
+		return $this->getVisibilityBefore( $this->latestRevisionId );
+	}
+
+	/**
+	 * @return int
+	 * @deprecated Since 1.46; use getLatestRevisionVisibilityBefore()
+	 */
 	public function getCurrentRevisionVisibilityBefore(): int {
-		return $this->getVisibilityBefore( $this->currentRevisionId );
+		return $this->getLatestRevisionVisibilityBefore();
 	}
 
+	/**
+	 * @return int
+	 * @since 1.46
+	 */
+	public function getLatestRevisionVisibilityAfter(): int {
+		return $this->getVisibilityAfter( $this->latestRevisionId );
+	}
+
+	/**
+	 * @return int
+	 * @deprecated Since 1.46; use getLatestRevisionVisibilityAfter()
+	 */
 	public function getCurrentRevisionVisibilityAfter(): int {
-		return $this->getVisibilityAfter( $this->currentRevisionId );
+		return $this->getLatestRevisionVisibilityAfter();
 	}
 
 	public function getVisibilityBefore( int $revId ): int {
