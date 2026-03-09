@@ -2513,7 +2513,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$asyncExpireTime = $config->get(
 				MainConfigNames::ParserCacheAsyncExpireTime
 			);
-			$expiry = min( $expiry, $asyncExpireTime );
+			$expiry = max( 1, min( $expiry, $asyncExpireTime ) );
 		}
 		return $expiry;
 	}
