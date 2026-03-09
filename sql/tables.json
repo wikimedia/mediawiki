@@ -3451,7 +3451,7 @@
 				"type": "bigint",
 				"comment": "Foreign key to linktarget.lt_id",
 				"options": {
-					"notnull": false,
+					"notnull": true,
 					"unsigned": true
 				}
 			}
