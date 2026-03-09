@@ -40,6 +40,8 @@
 	"username": "{{GENDER:$1|सदस्यनाम}}:",
 	"prefs-memberingroups": "इन {{PLURAL:$1|समूह|समूहों}} {{GENDER:$2|के|की}} सदस्य:",
 	"group-membership-link-with-expiry": "$1 ($2 तक)",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|अक्षम}} {{PLURAL:$1|समूह}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|आप}} अब {{PLURAL:$1|इस समूह|इन समूहों}} की सदस्यता की [[$3|शर्तों]] को पूरा नहीं करते हैं अतः {{PLURAL:$1|इसके|इनके}} द्वारा प्रदान किए जाने वाले किसी भी अधिकार का उपयोग नहीं कर सकते।",
 	"prefs-edits": "सम्पादनों की संख्या:",
 	"prefs-registration": "पंजीकरण का समय:",
 	"yourrealname": "वास्तविक नाम:",

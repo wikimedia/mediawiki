@@ -87,7 +87,7 @@
 	"apihelp-parse-param-disablepp": "Benotzt an där Plaz <var>$1disablelimitreport</var>.",
 	"apihelp-patrol-example-rcid": "Eng rezent Ännerung nokucken.",
 	"apihelp-patrol-example-revid": "Eng Versioun nokucken.",
-	"apihelp-protect-example-protect": "Eng Säit spären",
+	"apihelp-protect-example-protect": "Eng Säit protegéieren.",
 	"apihelp-query+allcategories-summary": "All Kategorien opzielen.",
 	"apihelp-query+alldeletedrevisions-paraminfo-useronly": "Kann nëmme mam <var>$3user</var> benotzt ginn.",
 	"apihelp-query+alldeletedrevisions-param-user": "Nëmme Versioune vun dësem Benotzer opzielen.",

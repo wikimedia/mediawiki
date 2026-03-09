@@ -65,6 +65,8 @@
 	"hours-abbrev": "$1小時",
 	"minutes-abbrev": "$1分",
 	"seconds-abbrev": "$1秒",
+	"duration-centuries": "$1{{PLURAL:$1|稘}}",
+	"duration-decades": "$1{{PLURAL:$1|秩}}",
 	"duration-days": "$1{{PLURAL:$1|日}}",
 	"yesterday-at": "昨日於$1",
 	"hours-ago": "$1時前",

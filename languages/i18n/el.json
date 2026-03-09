@@ -1319,7 +1319,7 @@
 	"nchanges": "$1 {{PLURAL:$1|αλλαγή|αλλαγές}}",
 	"ntimes": "$1×",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|από την τελευταία επίσκεψη}}",
-	"enhancedrc-history": "ιστορικό",
+	"enhancedrc-history": "ιστ",
 	"recentchanges": "Πρόσφατες αλλαγές",
 	"recentchanges-legend": "Επιλογές πρόσφατων αλλαγών",
 	"recentchanges-summary": "Παρακολουθήστε τις πιο πρόσφατες αλλαγές στο wiki σε αυτή τη σελίδα.",

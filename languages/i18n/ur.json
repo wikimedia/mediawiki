@@ -147,6 +147,7 @@
 	"redirectpagesub": "رجوع مکرر",
 	"redirectto": "رجوعِ مکرر از:",
 	"lastmodifiedat": "اس صفحہ میں آخری بار مورخہ $1 کو $2 بجے ترمیم کی گئی۔",
+	"renderedwith-parsoid": "صفحہ کو [[mw:Special:MyLanguage/Parsoid|Parsoid]] کی مدد سے رینڈر کیا گیا ہے۔",
 	"viewcount": "اِس صفحہ تک {{PLURAL:$1|ایک‌بار|$1 مرتبہ}} رسائی کی گئی",
 	"protectedpage": "محفوظ شدہ صفحہ",
 	"jumpto": "یہاں جائیں:",

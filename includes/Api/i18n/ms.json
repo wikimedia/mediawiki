@@ -13,6 +13,8 @@
 	"apihelp-main-param-uselang": "Bahasa yang digunakan untuk terjemahan mesej. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]]</kbd> mengembalikan senarai kod bahasa. Anda boleh menetapkan <kbd>user</kbd> untuk menggunakan pilihan bahasa pengguna semasa atau <kbd>content</kbd> untuk menggunakan bahasa kandungan wiki ini.",
 	"apihelp-block-summary": "Sekat pengguna.",
 	"apihelp-block-param-reason": "Sebab sekatan.",
+	"apihelp-block-param-nocreate": "Cegah pembukaan akaun.",
+	"apihelp-changecontentmodel-summary": "Ubah model kandungan laman",
 	"apihelp-createaccount-summary": "Buka akaun pengguna baharu.",
 	"apihelp-edit-summary": "Cipta dan sunting laman.",
 	"apihelp-emailuser-summary": "E-mel pengguna.",
