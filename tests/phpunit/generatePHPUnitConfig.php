@@ -74,6 +74,8 @@ foreach ( $extUnitTestPaths as $extUnitPath ) {
 }
 
 $config->formatOutput = true;
-file_put_contents( $outConfigPath, $config->saveXML() );
+// Acquire an exclusive lock to make this safer in case multiple processes use this script
+// at the same time, so that nothing will read the file while it's empty (see T419107#11691698).
+file_put_contents( $outConfigPath, $config->saveXML(), LOCK_EX );
 
 echo "Config written to " . realpath( $outConfigPath ) . "\n";
