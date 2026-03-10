@@ -76,7 +76,7 @@
 		"wikimedia/php-session-serializer": "3.0.2",
 		"wikimedia/purtle": "2.0.0",
 		"wikimedia/relpath": "4.1.1",
-		"wikimedia/remex-html": "5.1.0",
+		"wikimedia/remex-html": "6.0.0",
 		"wikimedia/request-timeout": "3.0.0",
 		"wikimedia/running-stat": "2.2.0",
 		"wikimedia/scoped-callback": "5.0.0",
