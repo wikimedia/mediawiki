@@ -1063,7 +1063,7 @@ class EditPage implements IEditObject {
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section', '' ) );
 
-		if ( $this->section !== null && $this->section !== '' && !$this->isSectionEditSupported() ) {
+		if ( $this->section !== '' && !$this->isSectionEditSupported() ) {
 			throw new ErrorPageError( 'sectioneditnotsupported-title', 'sectioneditnotsupported-text' );
 		}
 
@@ -1568,7 +1568,6 @@ class EditPage implements IEditObject {
 		if ( $firstRev && $firstRev->getId() == $undo ) {
 			// Undid just one revision
 			$userText = $undoRev->getUser()?->getName();
-			// @phan-suppress-next-line PhanImpossibleTypeComparison T418946
 			if ( $userText === null ) {
 				$undoSummary = $this->context->msg(
 					'undo-summary-username-hidden',

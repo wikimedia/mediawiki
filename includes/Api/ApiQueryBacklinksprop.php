@@ -185,14 +185,11 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		}
 
 		// Populate the rest of the query
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		if ( isset( $this->linksMigration::$mapping[$settings['linktable']] ) ) {
-			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$queryInfo = $this->linksMigration->getQueryInfo( $settings['linktable'] );
 			$this->addTables( [ 'page', ...$queryInfo['tables'] ] );
 			$this->addJoinConds( $queryInfo['joins'] );
 		} else {
-			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$this->addTables( [ $settings['linktable'], 'page' ] );
 		}
 		$this->addWhere( "$bl_from = page_id" );
@@ -260,7 +257,6 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			count( $params['namespace'] ) == 1 &&
 			!empty( $settings['from_namespace'] )
 		) {
-			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$this->addOption( 'USE INDEX', [ $settings['linktable'] => $settings['index'] ] );
 		}
 

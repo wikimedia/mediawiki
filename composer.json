@@ -98,7 +98,7 @@
 		"giorgiosironi/eris": "^0.14.0",
 		"hamcrest/hamcrest-php": "^2.0",
 		"mediawiki/mediawiki-codesniffer": "50.0.0",
-		"mediawiki/mediawiki-phan-config": "0.19.0",
+		"mediawiki/mediawiki-phan-config": "0.20.0",
 		"mediawiki/minus-x": "2.0.1",
 		"nikic/php-parser": "^5.5.0",
 		"php-parallel-lint/php-console-highlighter": "1.0.0",

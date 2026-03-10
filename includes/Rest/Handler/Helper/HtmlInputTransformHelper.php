@@ -237,14 +237,12 @@ class HtmlInputTransformHelper {
 
 		// If an etag is given in the body, use it as the render ID.
 		// Note that we support ETag format in the renderid field.
-		// @phan-suppress-next-line PhanRedundantCondition False positive
 		if ( !empty( $body['original']['etag'] ) ) {
 			// @phan-suppress-next-line PhanTypeInvalidDimOffset false positive
 			$body['original']['renderid'] = $body['original']['etag'];
 		}
 
 		// Accept 'wikitext' as an alias for 'source'.
-		// @phan-suppress-next-line PhanImpossibleCondition False positive
 		if ( isset( $body['original']['wikitext'] ) ) {
 			// @phan-suppress-next-line PhanTypeInvalidDimOffset false positive
 			$body['original']['source'] = $body['original']['wikitext'];

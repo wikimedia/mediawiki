@@ -640,7 +640,7 @@ abstract class SearchEngine {
 		if ( $diff > 0 ) {
 			$statsFactory = MediaWikiServices::getInstance()->getStatsFactory();
 			$statsFactory->getCounter( 'search_completion_missing_total' )
-				->incrementBy( $diff );
+				->incrementBy( (float)$diff );
 		}
 
 		// SearchExactMatchRescorer should probably be refactored to work directly on top of a SearchSuggestionSet

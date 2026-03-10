@@ -164,7 +164,9 @@ class JwtSessionCookieHelper {
 			// are required for logging in, so breaking them might trap API clients with weird
 			// cookie handling in a doom loop.
 			try {
-				$this->sessionManager->validateJwtSubject( $data, $expectedUser );
+				if ( $expectedUser !== null ) {
+					$this->sessionManager->validateJwtSubject( $data, $expectedUser );
+				}
 			} catch ( JwtException $e ) {
 				LoggerFactory::getInstance( 'session-sampled' )->warning( 'Non-anon JWT cookie for anon session', [
 					'jwt_error' => $e->getNormalizedMessage(),

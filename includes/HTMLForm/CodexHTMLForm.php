@@ -218,7 +218,6 @@ class CodexHTMLForm extends HTMLForm {
 				$label = htmlspecialchars( $button['value'] );
 			}
 
-			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Always set in self::addButton
 			if ( $button['attribs'] ) {
 				$attrs += $button['attribs'];
 			}

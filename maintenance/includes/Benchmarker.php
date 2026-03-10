@@ -59,7 +59,6 @@ abstract class Benchmarker extends Maintenance {
 			if ( is_string( $key ) ) {
 				$name = $key;
 			} else {
-				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				if ( is_array( $bench['function'] ) ) {
 					$class = $bench['function'][0];
 					if ( is_object( $class ) ) {
@@ -67,14 +66,12 @@ abstract class Benchmarker extends Maintenance {
 					}
 					$name = $class . '::' . $bench['function'][1];
 				} else {
-					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 					$name = strval( $bench['function'] );
 				}
 				$argsText = implode(
 					', ',
 					array_map(
 						static fn ( $a ) => var_export( $a, true ),
-						// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 						$bench['args']
 					)
 				);
@@ -105,7 +102,6 @@ abstract class Benchmarker extends Maintenance {
 					$bench['setupEach']();
 				}
 				$t = microtime( true );
-				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				$bench['function']( ...$bench['args'] );
 				$t = ( microtime( true ) - $t ) * 1000;
 				if ( $verbose ) {
