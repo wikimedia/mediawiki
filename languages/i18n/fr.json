@@ -230,7 +230,8 @@
 			"HenriCab",
 			"Pa2chant.bis",
 			"Muisha wiki hke",
-			"Raveloaritiana Mamisoa"
+			"Raveloaritiana Mamisoa",
+			"Antimuonium"
 		]
 	},
 	"sunday": "dimanche",
@@ -1226,7 +1227,7 @@
 	"search-external": "Recherche externe",
 	"searchdisabled": "La recherche sur {{SITENAME}} est désactivée.\nEn attendant la réactivation, vous pouvez effectuer une recherche via Google.\nNotez que leur indexation du contenu de {{SITENAME}} peut ne pas être à jour.",
 	"search-error": "Une erreur s’est produite en recherchant : $1",
-	"search-warning": "Un avertissement s’est produit en recherchant : $1",
+	"search-warning": "Avertissement : $1",
 	"mypreferences": "Préférences",
 	"prefs-labs": "Fonctionnalités « Labs »",
 	"prefs-misc": "Préférences diverses",
