@@ -510,7 +510,6 @@ class SessionManager implements SessionManagerInterface {
 					$this->userNameUtils
 				);
 				if ( isset( $this->sessionProviders[(string)$provider] ) ) {
-					// @phan-suppress-next-line PhanTypeSuspiciousStringExpression
 					throw new \UnexpectedValueException( "Duplicate provider name \"$provider\"" );
 				}
 				$this->sessionProviders[(string)$provider] = $provider;

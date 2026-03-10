@@ -266,6 +266,7 @@ class MonologSpi implements Spi {
 				);
 			}
 			if ( isset( $spec['buffer'] ) && $spec['buffer'] ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgument Gets confused by FormattableHandlerInterface
 				$handler = new BufferHandler( $handler );
 			}
 			$this->singletons['handlers'][$name] = $handler;

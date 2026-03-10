@@ -2800,7 +2800,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		$ret = [];
 		foreach ( $specs as $spec ) {
-			/** @var AbstractAuthenticationProvider $provider */
+			/** @var AuthenticationProvider $provider */
 			$provider = $this->objectFactory->createObject( $spec, [ 'assertClass' => $class ] );
 			$provider->init( $this->logger, $this, $this->getHookContainer(), $this->config, $this->userNameUtils );
 			$id = $provider->getUniqueId();
@@ -2811,6 +2811,7 @@ class AuthManager implements LoggerAwareInterface {
 					get_class( $this->allAuthenticationProviders[$id] ) . ')'
 				);
 			}
+			// @phan-suppress-next-line PhanTypeMismatchProperty
 			$this->allAuthenticationProviders[$id] = $provider;
 			$ret[$id] = $provider;
 		}
