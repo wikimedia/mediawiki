@@ -74,8 +74,31 @@ foreach ( $extUnitTestPaths as $extUnitPath ) {
 }
 
 $config->formatOutput = true;
-// Acquire an exclusive lock to make this safer in case multiple processes use this script
-// at the same time, so that nothing will read the file while it's empty (see T419107#11691698).
-file_put_contents( $outConfigPath, $config->saveXML(), LOCK_EX );
+$newContent = $config->saveXML();
 
-echo "Config written to " . realpath( $outConfigPath ) . "\n";
+$file = fopen( $outConfigPath, 'cb+' );
+// Acquire an exclusive lock and avoid unnecessary writes to prevent race conditions where this script is run by
+// multiple processes. `file_put_contents` with LOCK_EX would be equivalent, except for the "unnecessary writes" part,
+// but it would requires us to call `flock` for all readers, which may be impossible considering that PHPUnit itself
+// will need to open the file. (T419107)
+flock( $file, LOCK_EX );
+
+// Avoid pointless read of empty file
+$fileSize = filesize( $outConfigPath );
+if ( $fileSize === 0 ) {
+	$needsWrite = true;
+} else {
+	$oldContent = fread( $file, $fileSize );
+	$needsWrite = $newContent !== $oldContent;
+}
+
+if ( $needsWrite ) {
+	ftruncate( $file, 0 );
+	rewind( $file );
+	fwrite( $file, $newContent );
+	fflush( $file );
+	echo "Config written to " . realpath( $outConfigPath ) . "\n";
+} else {
+	echo "Config already up-to-date.\n";
+}
+fclose( $file );
