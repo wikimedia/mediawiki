@@ -70,7 +70,7 @@ class PurgeList extends Maintenance {
 	private function doPurge() {
 		$stdin = $this->getStdin();
 		$urls = [];
-		$htmlCacheUpdater = $this->getServiceContainer()->getHtmlCacheUpdater();
+		$htmlCacheUpdater = $this->getServiceContainer()->getHTMLCacheUpdater();
 
 		while ( !feof( $stdin ) ) {
 			$page = trim( fgets( $stdin ) );
@@ -113,7 +113,7 @@ class PurgeList extends Maintenance {
 		}
 
 		$dbr = $this->getReplicaDB();
-		$htmlCacheUpdater = $this->getServiceContainer()->getHtmlCacheUpdater();
+		$htmlCacheUpdater = $this->getServiceContainer()->getHTMLCacheUpdater();
 		$startId = 0;
 		if ( $namespace === false ) {
 			$conds = [];
@@ -147,7 +147,7 @@ class PurgeList extends Maintenance {
 	 * @param array $urls List of URLS to purge from CDNs
 	 */
 	private function sendPurgeRequest( $urls ) {
-		$hcu = $this->getServiceContainer()->getHtmlCacheUpdater();
+		$hcu = $this->getServiceContainer()->getHTMLCacheUpdater();
 		if ( $this->delay > 0 ) {
 			foreach ( $urls as $url ) {
 				if ( $this->hasOption( 'verbose' ) ) {

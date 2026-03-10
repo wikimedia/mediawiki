@@ -85,7 +85,7 @@ class HTMLCacheUpdater {
 	 * @param bool $useFileCache $wgUseFileCache
 	 * @param int $cdnMaxAge $wgCdnMaxAge
 	 *
-	 * @internal For use with MediaWikiServices->getHtmlCacheUpdater()
+	 * @internal For use with MediaWikiServices->getHTMLCacheUpdater()
 	 */
 	public function __construct(
 		HookContainer $hookContainer,

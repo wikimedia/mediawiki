@@ -121,7 +121,7 @@ class PurgeChangedPages extends Maintenance {
 			}
 
 			// Send batch of purge requests out to CDN servers
-			$hcu = $this->getServiceContainer()->getHtmlCacheUpdater();
+			$hcu = $this->getServiceContainer()->getHTMLCacheUpdater();
 			$hcu->purgeUrls( $urls, $hcu::PURGE_NAIVE );
 
 			if ( $this->hasOption( 'sleep-per-batch' ) ) {

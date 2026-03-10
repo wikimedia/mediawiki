@@ -728,7 +728,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 			// Let CDN cache things if we can purge them.
 			// Also unconditionally cache page views.
 			if ( $this->getConfig( MainConfigNames::UseCdn ) ) {
-				$htmlCacheUpdater = $services->getHtmlCacheUpdater();
+				$htmlCacheUpdater = $services->getHTMLCacheUpdater();
 				if ( $request->matchURLForCDN( $htmlCacheUpdater->getUrls( $requestTitle ) ) ) {
 					$output->setCdnMaxage( $this->getConfig( MainConfigNames::CdnMaxAge ) );
 				} elseif ( $action instanceof ViewAction ) {

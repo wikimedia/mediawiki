@@ -1197,7 +1197,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		$this->mTitle->invalidateCache();
 
 		// Clear file cache and send purge after above page_touched update was committed
-		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 		$hcu->purgeTitleUrls( $this->mTitle, $hcu::PURGE_PRESEND );
 
 		if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI ) {
@@ -2478,7 +2478,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		$other = $title->getOtherPage();
 
 		$services = MediaWikiServices::getInstance();
-		$hcu = $services->getHtmlCacheUpdater();
+		$hcu = $services->getHTMLCacheUpdater();
 		$hcu->purgeTitleUrls( [ $title, $other ], $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		$title->touchLinks();
@@ -2515,7 +2515,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
-		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 		$hcu->purgeTitleUrls( [ $title, $other ], $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		$title->touchLinks();
@@ -2584,7 +2584,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		$services = MediaWikiServices::getInstance();
 		$services->getLinkCache()->invalidateTitle( $title );
 
-		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 		$hcu->purgeTitleUrls( $title, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		// Purge ?action=info cache

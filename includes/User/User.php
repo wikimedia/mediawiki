@@ -2399,7 +2399,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 		$this->getHookRunner()->onUserSaveSettings( $this );
 		$this->clearSharedCache( 'changed' );
-		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 		$hcu->purgeTitleUrls( $this->getUserPage(), $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 	}
 

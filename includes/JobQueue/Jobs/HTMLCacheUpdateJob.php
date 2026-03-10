@@ -164,7 +164,7 @@ class HTMLCacheUpdateJob extends Job {
 		);
 
 		// Update CDN and file caches
-		$htmlCache = $services->getHtmlCacheUpdater();
+		$htmlCache = $services->getHTMLCacheUpdater();
 		$htmlCache->purgeTitleUrls(
 			$titleArray,
 			$htmlCache::PURGE_NAIVE | $htmlCache::PURGE_URLS_LINKSUPDATE_ONLY,

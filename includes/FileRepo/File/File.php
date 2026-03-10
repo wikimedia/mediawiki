@@ -1674,7 +1674,7 @@ abstract class File implements MediaHandlerState {
 		$title = $this->getTitle();
 		if ( $title ) {
 			$title->invalidateCache();
-			$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+			$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 			$hcu->purgeTitleUrls( $title, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 		}
 	}

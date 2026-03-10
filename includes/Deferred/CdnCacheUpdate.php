@@ -156,7 +156,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		$reboundDelayByUrl = [];
 
 		// Resolve the titles into CDN URLs
-		$htmlCacheUpdater = $services->getHtmlCacheUpdater();
+		$htmlCacheUpdater = $services->getHTMLCacheUpdater();
 		foreach ( $this->pageTuples as [ $page, $delay ] ) {
 			foreach ( $htmlCacheUpdater->getUrls( $page ) as $url ) {
 				// Use the highest rebound for duplicate URLs in order to handle the most lag

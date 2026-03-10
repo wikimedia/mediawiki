@@ -1468,7 +1468,7 @@ class LocalFile extends File {
 		$this->purgeThumbnails( $options );
 
 		// Purge CDN cache for this file
-		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 		$hcu->purgeUrls(
 			$this->getUrl(),
 			!empty( $options['forThumbRefresh'] )
@@ -1499,7 +1499,7 @@ class LocalFile extends File {
 		$this->getHookRunner()->onLocalFilePurgeThumbnails( $this, $archiveName, $urls );
 
 		// Purge the CDN
-		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 		$hcu->purgeUrls( $urls, $hcu::PURGE_PRESEND );
 	}
 
@@ -1534,7 +1534,7 @@ class LocalFile extends File {
 		$this->getHookRunner()->onLocalFilePurgeThumbnails( $this, false, $urls );
 
 		// Purge the CDN
-		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 		$hcu->purgeUrls(
 			$urls,
 			!empty( $options['forThumbRefresh'] )
@@ -2169,7 +2169,7 @@ class LocalFile extends File {
 					# Existing file page: invalidate description page cache
 					$title = $wikiPage->getTitle();
 					$title->invalidateCache();
-					$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+					$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 					$hcu->purgeTitleUrls( $title, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 					# Allow the new file version to be patrolled from the page footer
 					Article::purgePatrolFooterCache( $descId );
@@ -2217,7 +2217,7 @@ class LocalFile extends File {
 					# Delete old thumbnails
 					$this->purgeThumbnails();
 					# Remove the old file from the CDN cache
-					$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+					$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 					$hcu->purgeUrls( $this->getUrl(), $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 				} else {
 					# Update backlink pages pointing to this title if created
@@ -2469,7 +2469,7 @@ class LocalFile extends File {
 			$purgeUrls[] = $this->getArchiveUrl( $archiveName );
 		}
 
-		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 		$hcu->purgeUrls( $purgeUrls, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		return $status;
@@ -2508,7 +2508,7 @@ class LocalFile extends File {
 		}
 
 		$url = $this->getArchiveUrl( $archiveName );
-		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 		$hcu->purgeUrls( $url, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		return $status;
