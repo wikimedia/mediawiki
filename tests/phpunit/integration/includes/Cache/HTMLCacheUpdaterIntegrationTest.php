@@ -13,13 +13,13 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 /**
  * @group Cache
  */
-class HtmlCacheUpdaterIntegrationTest extends MediaWikiIntegrationTestCase {
+class HTMLCacheUpdaterIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @return HTMLCacheUpdater
 	 * @throws Exception
 	 */
-	private function newHtmlCacheUpdater(): HTMLCacheUpdater {
+	private function newHTMLCacheUpdater(): HTMLCacheUpdater {
 		$updater = new HTMLCacheUpdater(
 			new HookContainer(
 				new StaticHookRegistry(),
@@ -102,7 +102,7 @@ class HtmlCacheUpdaterIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testPurgeTitleUrls( $pages, $expected ) {
 		$this->setService( 'EventRelayerGroup', $this->getEventRelayGroup( $expected ) );
 
-		$updater = $this->newHtmlCacheUpdater();
+		$updater = $this->newHTMLCacheUpdater();
 		$updater->purgeTitleUrls( $pages );
 	}
 
@@ -113,7 +113,7 @@ class HtmlCacheUpdaterIntegrationTest extends MediaWikiIntegrationTestCase {
 		$urls = [ 'https://acme.test/wiki/Foo', 'https://acme.test/wiki/Bar', ];
 		$this->setService( 'EventRelayerGroup', $this->getEventRelayGroup( $urls ) );
 
-		$updater = $this->newHtmlCacheUpdater();
+		$updater = $this->newHTMLCacheUpdater();
 		$updater->purgeUrls( $urls );
 	}
 
