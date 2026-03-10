@@ -240,7 +240,7 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideGetOptionDefaultForUser__usergroup
-	 * @param array[string] $usergroups the user groups the user has
+	 * @param string[] $usergroups the user groups the user has
 	 * @param string|null $expected the default option or null if none apply
 	 */
 	public function testGetOptionDefaultForUser__usergroup( array $usergroups, ?string $expected ) {
