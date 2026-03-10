@@ -3843,6 +3843,8 @@
 	"search-match-redirect-help": "Valitse tämä siirtyäksesi sivulle silloin, kun sivun otsikko vastaa hakemaasi",
 	"api-clientside-error-noconnect": "Palvelimeen ei saatu yhteyttä. Varmista internet-yhteytesi toimivuus ja yritä uudelleen.",
 	"api-clientside-error-http": "Palvelin palautti virheen: HTTP $1.",
+	"api-clientside-error-http-429": "Olet suorittanut liian monta toimintoa lyhyessä ajassa. Yritä myöhemmin uudelleen.",
+	"api-clientside-error-http-429-retry": "Olet suorittanut liian monta toimintoa lyhyessä ajassa. Voit yrittää uudelleen seuraavan ajan kuluttua: $1.",
 	"api-clientside-error-timeout": "Palvelin ei vastannut odotetun ajan kuluessa.",
 	"api-clientside-error-aborted": "Pyyntö keskeytettiin.",
 	"api-clientside-error-invalidresponse": "Virheellinen vastaus palvelimelta.",

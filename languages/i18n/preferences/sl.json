@@ -27,6 +27,8 @@
 	"username": "{{GENDER:$1|Uporabniško}} ime:",
 	"prefs-memberingroups": "{{GENDER:$2|Član|Članica|Član_ica}} {{PLURAL:$1|naslednje skupine|naslednjih skupin}}:",
 	"group-membership-link-with-expiry": "$1 (do $2)",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|Onemogočena|Onemogočene}} {{PLURAL:$1|skupina|skupine}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|Ne izpolnjujete več [[$3|pogojev]] za članstvo v {{PLURAL:$1|tej skupini|teh skupinah}} in zato ne morete uporabljati pravic, ki {{PLURAL:$1|vam jih je podelila|ki so vam jih podelile}}.",
 	"prefs-edits": "Število urejanj:",
 	"prefs-registration": "Registriran od:",
 	"yourrealname": "Pravo ime:",

@@ -47,7 +47,7 @@
 	"username": "{{GENDER:$1|使用者名稱}}：",
 	"prefs-memberingroups": "{{GENDER:$2|所屬}}{{PLURAL:$1|群組}}：",
 	"group-membership-link-with-expiry": "$1（直到 $2）",
-	"prefs-memberingroupsdisabled": "{{GENDER:$2|已停用}} {{PLURAL:$1|群組|群組}}:",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|已停用}}{{PLURAL:$1|群組}}:",
 	"prefs-edits": "編輯次數：",
 	"prefs-registration": "註冊時間：",
 	"yourrealname": "真實姓名：",

@@ -44,7 +44,7 @@
 	"apihelp-block-param-noemail": "A wiki e-mail-küldő rendszerének letiltása a felhasználó számára (<code>blockemail</code> jogosultság szükséges hozzá).",
 	"apihelp-block-param-hidename": "A felhasználónév elrejtése a blokknaplóból (<code>hideuser</code> jog szükséges hozzá).",
 	"apihelp-block-param-allowusertalk": "A felhasználó szerkeszthesse a saját vitalapját (a <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var> beállítástól függ).",
-	"apihelp-block-param-reblock": "Jelenlegi blokk felülírása, ha a felhasználónak már van pontosan egy blokkja. Ha a felhasználónak egynél több aktív blokkja, van ez a paraméter hibát fog okozni – helyette használd az <var>id</var> paramétert a felülírandó blokk megadásához. Nem használható együtt az <var>id</var> vagy <var>newblock</var> paraméterrel.",
+	"apihelp-block-param-reblock": "Jelenlegi blokk felülírása, ha a felhasználónak már van pontosan egy blokkja. Ha a felhasználónak egynél több aktív blokkja van, ez a paraméter hibát fog okozni – helyette használd az <var>id</var> paramétert a felülírandó blokk megadásához. Nem használható együtt az <var>id</var> vagy <var>newblock</var> paraméterrel.",
 	"apihelp-block-param-newblock": "Újabb blokk hozzáadása, ha a felhasználó már blokkolva van. Nem használható együtt az <var>id</var> vagy <var>reblock</var> paraméterrel.",
 	"apihelp-block-param-watchuser": "A felhasználó vagy IP-cím felhasználói és vitalapjának figyelése.",
 	"apihelp-block-param-tags": "A blokknapló naplóbejegyzésére érvényesítendő változtatáscímkék.",
