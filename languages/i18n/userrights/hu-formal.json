@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"action-move": "Átnevezés",
+	"action-delete": "Törlés",
+	"action-undelete": "Visszaállítás",
+	"action-protect": "Lapvédelem"
+}

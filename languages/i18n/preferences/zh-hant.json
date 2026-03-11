@@ -48,6 +48,7 @@
 	"prefs-memberingroups": "{{GENDER:$2|所屬}}{{PLURAL:$1|群組}}：",
 	"group-membership-link-with-expiry": "$1（直到 $2）",
 	"prefs-memberingroupsdisabled": "{{GENDER:$2|已停用}}{{PLURAL:$1|群組}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|您}}不再符合成為{{PLURAL:$1|此群組|這些群組}}成員的[[$3|條件]]，因此您不能使用{{PLURAL:$1|它|它們}}授予的權利。",
 	"prefs-edits": "編輯次數：",
 	"prefs-registration": "註冊時間：",
 	"yourrealname": "真實姓名：",

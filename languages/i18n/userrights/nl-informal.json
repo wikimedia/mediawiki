@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"MarkvA",
+			"McDutchie"
+		]
+	},
+	"userrights-groups-help": "Je kunt de groepen wijzigen waar {{GENDER:$1|deze gebruiker}} lid van is:\n* Een aangekruist vakje betekent dat de gebruiker lid is van de groep.\n* Een niet aangekruist vakje betekent dat de gebruiker geen lid is van de groep.\n* Een \"*\" betekent dat je een gebruiker niet uit een groep kunt verwijderen nadat je die hebt toegevoegd of andersom.\n* Een \"#\" betekent dat je dit groepslidmaatschap alleen kan verlengen en het niet kan verkorten.",
+	"userrights-no-interwiki": "Je hebt geen rechten om gebruikersrechten op andere wiki's te wijzigen.",
+	"userrights-changeable-col": "Groepen die je kunt beheren",
+	"userrights-unchangeable-col": "Groepen die je niet kunt beheren",
+	"userrights-conflict": "Bewerkingsconflict bij het aanpassen van gebruikersrechten! Controleer en bevestig je wijzigingen.",
+	"right-editmyusercss": "Je eigen CSS-pagina's bewerken",
+	"right-editmyuserjs": "Je eigen JavaScriptpagina's bewerken",
+	"right-viewmywatchlist": "Je eigen volglijst bekijken",
+	"right-viewmyprivateinfo": "Je eigen privégegevens bekijken (bijvoorbeeld e-mailadres, echte naam)",
+	"right-editmyoptions": "Je eigen voorkeuren bewerken",
+	"grant-group-watchlist-interaction": "Werken met je volglijst",
+	"grant-group-private-information": "Persoonlijke gegevens over jou bekijken",
+	"action-editmyoptions": "je voorkeuren te bewerken",
+	"action-viewmywatchlist": "je volglijst te bekijken",
+	"action-editmyprivateinfo": "je privégegevens te bewerken",
+	"action-applychangetags": "labels aan je bewerkingen toe te voegen",
+	"action-editmyusercss": "je eigen CSS-pagina's te bewerken",
+	"action-editmyuserjs": "je eigen JavaScriptpagina's te bewerken"
+}

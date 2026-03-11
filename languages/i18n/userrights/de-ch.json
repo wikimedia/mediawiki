@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Filzstift",
+			"SVG",
+			"The Evil IP address"
+		]
+	},
+	"right-createpage": "Seiten erstellen (ausser Diskussionsseiten)",
+	"right-nominornewtalk": "Kleine Bearbeitungen an Diskussionsseiten führen zu keiner «Neue Nachrichten»-Anzeige",
+	"right-bigdelete": "Seiten mit grosser Versionsgeschichte löschen",
+	"right-viewmyprivateinfo": "Eigene private Daten ansehen (beispielsweise E-Mail-Adresse, richtiger Name)",
+	"right-editmyprivateinfo": "Eigene private Daten bearbeiten (beispielsweise E-Mail-Adresse, richtiger Name)",
+	"right-override-export-depth": "Exportiere Seiten einschliesslich verlinkter Seiten bis zu einer Tiefe von 5"
+}

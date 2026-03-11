@@ -221,7 +221,6 @@
 	"search-section": "(sección $1)",
 	"search-suggest": "¿Quiso decir: $1?",
 	"prefs-help-watchlist-token2": "Esta es la clave secreta del suministro web de su lista de seguimiento.\nCualquiera que la conozca podrá consultar la lista, así que no la comparta.\n[[Special:ResetTokens|Puede restablecerla si lo necesita]].",
-	"userrights-no-interwiki": "No tiene permiso para editar permisos de usuario en otros wikis.",
 	"newuserlogpage": "Altas de usuarios",
 	"rightslog": "Registro de cambios de permisos de usuarios",
 	"recentchanges": "Cambios recientes",

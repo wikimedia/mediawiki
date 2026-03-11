@@ -120,8 +120,6 @@
 	"search-result-size": "$1 ({{PLURAL:$2|1 vorde|$2 vordes}})",
 	"mypreferences": "Men preferos",
 	"searchresultshead": "Sercha",
-	"action-delete": "Ekarta",
-	"action-protect": "Protekte",
 	"nchanges": "$1 {{PLURAL:$1|chanjo|chanjos}}",
 	"recentchanges": "Resenti chanjos",
 	"rcshowhideminor": "$1 minori modifikos",

@@ -302,7 +302,7 @@
 	"rest-endpoint-desc-get-sitemap-index": "מחזירה רשימת XML של דפים זמינים בתוך מפת האתר. ערך ברירת המחדל של המפתח הוא 0; הנוכחות של מפתחות נוספים תופיע בקובץ robots.txt. עד 10,000 דפים משויכים לכל מפתח.",
 	"rest-endpoint-summ-get-sitemap-index": "קבלת רשימה של דפי מפת אתר",
 	"rest-endpoint-desc-get-sitemap-page": "מחזירה רשימת XML של הערכים הקיימים באתר. כל ערך מכיל כתובת URL לדף ותאריך של השינוי האחרון. כל דף מכיל עד 10,000 רשומות URL.",
-	"rest-endpoint-summ-get-sitemap-page": "קתבל רשימת של מיקומי ערכים בכל דף",
+	"rest-endpoint-summ-get-sitemap-page": "קבלת רשימת מיקומי ערכים בכל דף",
 	"rest-param-desc-sitemap-index-id": "מפתח מפת האתר, החל מ־0. מפתחות זמינים נוספים מצוינים בקובץ robots.txt.",
 	"rest-param-desc-sitemap-page-id": "דף הערכים הרצוי.",
 	"rest-param-desc-sitemap-include-namespace": "מזהי מרחב שמות שיש לכלול במפת האתר. אם לא צוין, ייעשה שימוש בברירת המחדל של האתר.",

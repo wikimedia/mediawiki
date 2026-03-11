@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"SamanthaNguyen"
+		]
+	},
+	"grant-group-customization": "Customisation and preferences",
+	"listgrants-summary": "The following is a list of grants with their associated access to user rights. Users can authorise applications to use their account, but with limited permissions based on the grants the user gave to the application. An application acting on behalf of a user cannot actually use rights that the user does not have however.\nThere may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] about individual rights."
+}

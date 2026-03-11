@@ -239,8 +239,6 @@
 	"searchresultshead": "Fatukile",
 	"default": "auto",
 	"email": "Imeli",
-	"group-all": "(xete)",
-	"grouppage-sysop": "{{ns:project}}:Sesop",
 	"rightslog": "Desu di petuhoni kwa sebelu",
 	"nchanges": "$1 {{PLURAL:$1|petuho|petuho}}",
 	"recentchanges": "Petuho nca",
