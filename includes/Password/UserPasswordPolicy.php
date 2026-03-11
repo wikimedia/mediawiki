@@ -36,7 +36,7 @@ class UserPasswordPolicy {
 	 * object indicating compliance.
 	 * @var callable[]
 	 */
-	private array $policyCheckFunctions;
+	private array $policyCheckFunctions = [];
 
 	/**
 	 * @param array[] $policies List of policies per user group
