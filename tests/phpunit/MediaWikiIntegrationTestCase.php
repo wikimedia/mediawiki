@@ -1413,6 +1413,18 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			}
 		);
 
+		// Prevent CDN cache purge side effects from tests
+		$newServices->resetServiceForTesting( 'HTMLCacheUpdater' );
+		$newServices->redefineService(
+			'HTMLCacheUpdater',
+			static function ( MediaWikiServices $services ) {
+				return new NullHTMLCacheUpdater(
+					$services->getHookContainer(),
+					$services->getTitleFactory()
+				);
+			}
+		);
+
 		MediaWikiServices::forceGlobalInstance( $newServices );
 
 		self::resetLegacyGlobals( $newServices );

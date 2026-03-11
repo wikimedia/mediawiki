@@ -26,7 +26,10 @@ class NullMultiHttpClient extends MultiHttpClient {
 	 */
 	public function runMulti( array $reqs, array $opts = [], string $caller = __METHOD__ ) {
 		$urls = implode( ', ', array_column( $reqs, 'url' ) );
-		Assert::fail( "HTTP requests to {$urls} blocked. Use MockHttpTrait." );
+		$trace = NullHttpUtil::getFormattedTrace();
+		Assert::fail(
+			"HTTP requests to {$urls} blocked. Use MockHttpTrait.\n$trace"
+		);
 	}
 
 }

@@ -12,26 +12,31 @@ class NullGuzzleClient extends \GuzzleHttp\Client {
 
 	public function send( RequestInterface $request, array $options = [] ): ResponseInterface {
 		$url = $request->getUri();
-		Assert::fail( "HTTP request blocked: $url. Use MockHttpTrait." );
+		$trace = NullHttpUtil::getFormattedTrace();
+		Assert::fail( "HTTP request blocked: $url. Use MockHttpTrait.\n$trace" );
 	}
 
 	public function sendAsync( RequestInterface $request, array $options = [] ): PromiseInterface {
 		$url = $request->getUri();
-		Assert::fail( "HTTP request blocked: $url. Use MockHttpTrait." );
+		$trace = NullHttpUtil::getFormattedTrace();
+		Assert::fail( "HTTP request blocked: $url. Use MockHttpTrait.\n$trace" );
 	}
 
 	public function sendRequest( RequestInterface $request ): ResponseInterface {
 		$url = $request->getUri();
-		Assert::fail( "HTTP request blocked: $url. Use MockHttpTrait." );
+		$trace = NullHttpUtil::getFormattedTrace();
+		Assert::fail( "HTTP request blocked: $url. Use MockHttpTrait.\n$trace" );
 	}
 
 	/** @inheritDoc */
 	public function request( string $method, $uri = '', array $options = [] ): ResponseInterface {
-		Assert::fail( "HTTP request blocked: $uri. Use MockHttpTrait." );
+		$trace = NullHttpUtil::getFormattedTrace();
+		Assert::fail( "HTTP request blocked: $uri. Use MockHttpTrait.\n$trace" );
 	}
 
 	/** @inheritDoc */
 	public function requestAsync( string $method, $uri = '', array $options = [] ): PromiseInterface {
-		Assert::fail( "HTTP request blocked: $uri. Use MockHttpTrait." );
+		$trace = NullHttpUtil::getFormattedTrace();
+		Assert::fail( "HTTP request blocked: $uri. Use MockHttpTrait.\n$trace" );
 	}
 }
