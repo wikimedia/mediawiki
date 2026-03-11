@@ -11,10 +11,11 @@ describe( 'Page', () => {
 
 	before( async () => {
 		apiClient = await createApiClient();
+
+		await LoginPage.loginAdmin();
 	} );
 
 	beforeEach( async function () {
-		await browser.deleteAllCookies();
 		content = getTestString( 'beforeEach-content-' );
 		name = getTestString( 'BeforeEach-name-' );
 
@@ -27,7 +28,6 @@ describe( 'Page', () => {
 	} );
 
 	it( 'should be previewable', async () => {
-		await LoginPage.loginAdmin();
 		await EditPage.preview( name, content );
 
 		await expect( EditPage.heading ).toHaveText( `Creating ${ name }` );
@@ -39,7 +39,6 @@ describe( 'Page', () => {
 
 	it( 'should be creatable', async () => {
 		// create
-		await LoginPage.loginAdmin();
 		await EditPage.edit( name, content );
 
 		// check
@@ -55,7 +54,6 @@ describe( 'Page', () => {
 		await apiClient.delete( name, 'delete prior to recreate' );
 
 		// re-create
-		await LoginPage.loginAdmin();
 		await EditPage.edit( name, content );
 
 		// check
@@ -87,7 +85,6 @@ describe( 'Page', () => {
 	} );
 
 	it( 'should be undoable', async () => {
-
 		// create
 		await apiClient.edit( name, content, 'create to edit and undo' );
 
