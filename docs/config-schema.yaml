@@ -1690,6 +1690,12 @@ config-schema:
             Require email authentication before sending mail to an email address.
             This is highly recommended. It prevents MediaWiki from being used as an open
             spam relay.
+    EmailConfirmationBanner:
+        default: false
+        type: boolean
+        description: |-
+            Whether to show a banner to logged-in users who have not yet confirmed their email address.
+            Requires {@link MainConfigSchema::EmailAuthentication} to be enabled.
     EnotifWatchlist:
         default: false
         description: 'Allow users to enable email notification ("enotif") on watchlist changes.'

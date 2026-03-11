@@ -132,6 +132,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Mail\ConfirmEmail\ConfirmEmailBuilderFactory;
 use MediaWiki\Mail\ConfirmEmail\ConfirmEmailSender;
+use MediaWiki\Mail\ConfirmEmail\EmailConfirmationBannerHandler;
 use MediaWiki\Mail\Emailer;
 use MediaWiki\Mail\EmailUser;
 use MediaWiki\Mail\EmailUserFactory;
@@ -894,6 +895,16 @@ return [
 	'DomainEventSource' => static function ( MediaWikiServices $services ): DomainEventSource {
 		return $services->getService( '_DomainEventDispatcher' );
 	},
+
+	'EmailConfirmationBannerHandler' =>
+		static function ( MediaWikiServices $services ): EmailConfirmationBannerHandler {
+			return new EmailConfirmationBannerHandler(
+				new ServiceOptions(
+					EmailConfirmationBannerHandler::CONSTRUCTOR_OPTIONS,
+					$services->getMainConfig()
+				)
+			);
+		},
 
 	'Emailer' => static function ( MediaWikiServices $services ): IEmailer {
 		return new Emailer();

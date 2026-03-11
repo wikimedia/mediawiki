@@ -357,6 +357,7 @@ return [
 			'AllowHTMLEmail' => false,
 			'EnotifFromEditor' => false,
 			'EmailAuthentication' => true,
+			'EmailConfirmationBanner' => false,
 			'EnotifWatchlist' => false,
 			'EnotifUserTalk' => false,
 			'EnotifRevealEditorAddress' => false,
@@ -2874,6 +2875,7 @@ return [
 				'object',
 			],
 			'EnotifFromEditor' => 'boolean',
+			'EmailConfirmationBanner' => 'boolean',
 			'EnotifRevealEditorAddress' => 'boolean',
 			'UsersNotifiedOnAllChanges' => 'object',
 			'DBmwschema' => [

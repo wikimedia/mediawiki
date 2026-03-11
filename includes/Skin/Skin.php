@@ -18,6 +18,7 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Skin\Components\SkinComponent;
+use MediaWiki\Skin\Components\SkinComponentEmailConfirmationBanner;
 use MediaWiki\Skin\Components\SkinComponentFooter;
 use MediaWiki\Skin\Components\SkinComponentLink;
 use MediaWiki\Skin\Components\SkinComponentListItem;
@@ -1895,6 +1896,21 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Return HTML for an email confirmation notice banner if the current user
+	 * has a registered but unconfirmed email address.
+	 *
+	 * @return string HTML, or empty string
+	 */
+	protected function getEmailConfirmationNotice(): string {
+		$services = MediaWikiServices::getInstance();
+		$component = new SkinComponentEmailConfirmationBanner(
+			$services->getEmailConfirmationBannerHandler(),
+			$this->getContext()
+		);
+		return $component->getTemplateData()['html'];
+	}
+
+	/**
 	 * Get a cached notice
 	 *
 	 * @param string $name Message name, or 'default' for $wgSiteNotice
@@ -1979,6 +1995,7 @@ abstract class Skin extends ContextSource {
 		}
 
 		$this->getHookRunner()->onSiteNoticeAfter( $siteNotice, $this );
+		$siteNotice = $this->getEmailConfirmationNotice() . $siteNotice;
 		if ( $this->getOptions()[ 'wrapSiteNotice' ] ) {
 			$siteNotice = Html::rawElement( 'div', [ 'id' => 'siteNotice' ], $siteNotice );
 		}

@@ -1020,6 +1020,12 @@ class MainConfigNames {
 	public const EmailAuthentication = 'EmailAuthentication';
 
 	/**
+	 * Name constant for the EmailConfirmationBanner setting, for use with Config::get()
+	 * @see MainConfigSchema::EmailConfirmationBanner
+	 */
+	public const EmailConfirmationBanner = 'EmailConfirmationBanner';
+
+	/**
 	 * Name constant for the EnotifWatchlist setting, for use with Config::get()
 	 * @see MainConfigSchema::EnotifWatchlist
 	 */

@@ -95,6 +95,7 @@ use MediaWiki\Linker\UserLinkRenderer;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Mail\ConfirmEmail\ConfirmEmailBuilderFactory;
 use MediaWiki\Mail\ConfirmEmail\ConfirmEmailSender;
+use MediaWiki\Mail\ConfirmEmail\EmailConfirmationBannerHandler;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\Mail\NotificationEmail\NotificationEmailSender;
@@ -1193,6 +1194,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getEmailUserFactory(): EmailUserFactory {
 		return $this->getService( 'EmailUserFactory' );
+	}
+
+	/**
+	 * @since 1.46
+	 */
+	public function getEmailConfirmationBannerHandler(): EmailConfirmationBannerHandler {
+		return $this->getService( 'EmailConfirmationBannerHandler' );
 	}
 
 	/**

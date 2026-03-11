@@ -2753,6 +2753,16 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Whether to show a banner to logged-in users who have not yet confirmed their email address.
+	 *
+	 * Requires {@link MainConfigSchema::EmailAuthentication} to be enabled.
+	 */
+	public const EmailConfirmationBanner = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+
+	/**
 	 * Allow users to enable email notification ("enotif") on watchlist changes.
 	 */
 	public const EnotifWatchlist = [

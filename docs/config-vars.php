@@ -1005,6 +1005,12 @@ $wgEnotifFromEditor = null;
 $wgEmailAuthentication = null;
 
 /**
+ * Config variable stub for the EmailConfirmationBanner setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::EmailConfirmationBanner
+ */
+$wgEmailConfirmationBanner = null;
+
+/**
  * Config variable stub for the EnotifWatchlist setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::EnotifWatchlist
  */
