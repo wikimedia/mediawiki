@@ -785,7 +785,7 @@
 	"watchlisttools-view": "mira maga cambio relevante",
 	"watchlisttools-edit": "Vicia y edita viciada",
 	"watchlisttools-raw": "Edita raw watchlist",
-	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|cuento]])",
+	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|man cuento]])",
 	"version-hook-subscribedby": "Suscribido si",
 	"redirect-page": "ID del pagina",
 	"redirect-logid": "Log ID",

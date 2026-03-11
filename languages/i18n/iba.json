@@ -104,7 +104,7 @@
 	"jumptonavigation": "navigasyen",
 	"jumptosearch": "giga",
 	"view-pool-error": "Minta ampun, server benung kisuk maya tu.\nKelalu mayuh pengena nguji deka meda lambar tu.\nAnti enda lama sebedau nuan deka nguji agi ngakses lambar tu.\n\n$1",
-	"generic-pool-error": "Minta ampun, semua server benung kisuk maya tu.\nKelalu rami pengena ke benung nguji ngakses penerang tu.\nMinta nganti enda lama sebedau nuan deka nguji agi ngakses penerang tu.",
+	"generic-pool-error": "Minta ampun, semua penginta benung kisuk maya tu.\nKelalu rami pengena ke benung nguji ngakses penerang tu.\nMinta nganti enda lama sebedau nuan deka nguji agi ngakses penerang tu.",
 	"pool-timeout": "Nganti enda lama deka dikunchi",
 	"pool-queuefull": "Gintir kulam udah penuh",
 	"pool-errorunknown": "Penyalah enda ditemu",

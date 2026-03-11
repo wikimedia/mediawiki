@@ -891,7 +891,7 @@
 	"nextn-title": "{{PLURAL:$1|lipu $1 sin}}",
 	"shown-title": "o pana e {{PLURAL:$1|ijo}} $1 lon lipu wan",
 	"viewprevnext": "o lukin e ($1 {{int:pipe-separator}} $2) ($3).",
-	"searchmenu-exists": "<strong>lipu \"[[:$1]]\" li lon.</strong> {{PLURAL:$2|0=|o lukin e lipu sama.}}",
+	"searchmenu-exists": "<strong>lipu \"[[:$1]]\" li lon.</strong> {{PLURAL:$2|0=|o lukin e lipu ante kin pi alasa sina.}}",
 	"searchmenu-new": "o pali e lipu \"[[:$1]]\" a! {{PLURAL:$2|0=|ante la o lukin e lipu tan alasa.}}",
 	"searchmenu-new-external": "tawa mi la lipu \"[[:$1]]\" li lon ma ante. sina ken lukin e ona. {{PLURAL:$2|0=|kin alasa sina li pana e lipu ni:}}",
 	"searchprofile-articles": "lipu sona",

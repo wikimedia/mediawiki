@@ -66,7 +66,8 @@
 			"আফতাবুজ্জামান",
 			"এম আবু সাঈদ",
 			"খাত্তাব হাসান",
-			"মোঃ মারুফ হাসান24"
+			"মোঃ মারুফ হাসান24",
+			"Saurmandal"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|বিষয়শ্রেণী|বিষয়শ্রেণীসমূহ}}",
@@ -1046,7 +1047,7 @@
 	"linterror-pwrap-bug-workaround": "অনুচ্ছেদ মোড়ানো বা লাইন ভাঙা জনীত ত্রুটি সমাধান",
 	"linterror-self-closed-tag": "স্ব-বন্ধকৃত ট্যাগ",
 	"linterror-stripped-tag": "অবৈধ বা অপ্রচলিত HTML ট্যাগ",
-	"linterror-tidy-font-bug": "ফন্ট ট্যাগ লিঙ্কের রঙ পরিবর্তন করার চেষ্টা করে",
+	"linterror-tidy-font-bug": "Font ট্যাগ লিঙ্কের রঙ পরিবর্তন করার চেষ্টা করছে",
 	"linterror-tidy-whitespace-bug": "হোয়াইটস্পেস পার্সিং বাগ",
 	"linterror-unclosed-quotes-in-heading": "অবন্ধকৃত উদ্ধৃতি যা বিষয়বস্তুর টেবিল থেকে বেরিয়ে আসছে",
 	"linterror-wikilink-in-extlink": "লিঙ্কের মধ্যে লিঙ্ক",

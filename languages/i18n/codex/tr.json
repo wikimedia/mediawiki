@@ -4,7 +4,9 @@
 			"Andac",
 			"Joseph",
 			"Sümeyye",
-			"ToprakM"
+			"ToprakM",
+			"Leo",
+			"LisafBia"
 		]
 	},
 	"cdx-chip-input-chip-added": "$1 fiş eklendi.",
@@ -31,5 +33,5 @@
 	"cdx-table-pagination-status-message-indeterminate-short": "Birçok sonuçtan $1-$2",
 	"cdx-table-pagination-status-message-indeterminate-final": "Son {{PLURAL:$1|$1 sonuç}} gösteriliyor",
 	"cdx-table-pagination-status-message-pending": "Sonuçlar yükleniyor...",
-	"cdx-table-no-data-message": "Veri bulunmamaktadır."
+	"cdx-table-no-data-message": "Mevcut veri yok."
 }
