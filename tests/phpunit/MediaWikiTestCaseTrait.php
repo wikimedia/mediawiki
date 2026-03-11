@@ -45,7 +45,7 @@ trait MediaWikiTestCaseTrait {
 			$values[] = '__destruct';
 		}
 		return $this->logicalNot( $this->logicalOr(
-			...array_map( [ $this, 'identicalTo' ], $values )
+			...array_map( $this->identicalTo( ... ), $values )
 		) );
 	}
 
@@ -420,7 +420,7 @@ trait MediaWikiTestCaseTrait {
 	protected function getMockMessage( string $text = '', array $params = [] ) {
 		// Warning, don't use PHPUnit's logicalOr with strings as that's extremely slow!
 		$oneOf = fn ( string ...$methods ) => $this->logicalOr(
-			...array_map( [ $this, 'identicalTo' ], $methods )
+			...array_map( $this->identicalTo( ... ), $methods )
 		);
 
 		$msg = $this->createMock( Message::class );

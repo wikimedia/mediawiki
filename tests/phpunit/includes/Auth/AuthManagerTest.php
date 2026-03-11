@@ -64,7 +64,6 @@ use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWikiIntegrationTestCase;
-use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\Builder\InvocationMocker;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
@@ -1070,9 +1069,9 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->initializeManager( true );
 		$this->logger->setCollect( true );
 
-		$constraint = Assert::logicalOr(
-			$this->equalTo( AuthenticationResponse::PASS ),
-			$this->equalTo( AuthenticationResponse::FAIL )
+		$constraint = $this->logicalOr(
+			$this->identicalTo( AuthenticationResponse::PASS ),
+			$this->identicalTo( AuthenticationResponse::FAIL )
 		);
 		$providers = array_filter(
 			array_merge(
@@ -2368,9 +2367,9 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$expectLog = [];
 		$this->initializeManager( true );
 
-		$constraint = Assert::logicalOr(
-			$this->equalTo( AuthenticationResponse::PASS ),
-			$this->equalTo( AuthenticationResponse::FAIL )
+		$constraint = $this->logicalOr(
+			$this->identicalTo( AuthenticationResponse::PASS ),
+			$this->identicalTo( AuthenticationResponse::FAIL )
 		);
 		$providers = array_merge(
 			$this->preauthMocks, $this->primaryauthMocks, $this->secondaryauthMocks
@@ -4187,9 +4186,9 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		} );
 		$this->initializeManager( true );
 
-		$constraint = Assert::logicalOr(
-			$this->equalTo( AuthenticationResponse::PASS ),
-			$this->equalTo( AuthenticationResponse::FAIL )
+		$constraint = $this->logicalOr(
+			$this->identicalTo( AuthenticationResponse::PASS ),
+			$this->identicalTo( AuthenticationResponse::FAIL )
 		);
 		$providers = array_merge( $this->preauthMocks, $this->primaryauthMocks );
 		$shouldInvokePostCalled = array_any(

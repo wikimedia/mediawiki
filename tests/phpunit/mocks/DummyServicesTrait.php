@@ -605,7 +605,11 @@ trait DummyServicesTrait {
 	private function getDummyCommentStore(): CommentStore {
 		$mockLang = $this->createNoOpMock( Language::class,
 			[ 'truncateForVisual', 'truncateForDatabase' ] );
-		$mockLang->method( $this->logicalOr( 'truncateForDatabase', 'truncateForVisual' ) )
+		$mockLang
+			->method( $this->logicalOr(
+				$this->identicalTo( 'truncateForDatabase' ),
+				$this->identicalTo( 'truncateForVisual' )
+			) )
 			->willReturnCallback(
 				static function ( string $text, int $limit ): string {
 					if ( strlen( $text ) > $limit - 3 ) {

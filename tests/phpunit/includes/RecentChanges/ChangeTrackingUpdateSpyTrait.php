@@ -88,7 +88,11 @@ trait ChangeTrackingUpdateSpyTrait {
 			->method( 'setOK' );
 
 		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
-		$jobQueueGroup->method( $this->logicalOr( 'push', 'lazyPush' ) )
+		$jobQueueGroup
+			->method( $this->logicalOr(
+				$this->identicalTo( 'push' ),
+				$this->identicalTo( 'lazyPush' )
+			) )
 			->willReturnCallback(
 				static function ( $specs ) use ( $categoryMembershipChangeJobStatus ): void {
 					$specs = is_array( $specs ) ? $specs : [ $specs ];

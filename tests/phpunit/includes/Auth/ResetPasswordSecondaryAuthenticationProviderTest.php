@@ -404,8 +404,8 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 		$authManager->expects( $this->never() )
 			->method( $this->logicalNot(
 				$this->logicalOr(
-					$this->equalTo( 'getAuthenticationSessionData' ),
-					$this->equalTo( 'removeAuthenticationSessionData' )
+					$this->identicalTo( 'getAuthenticationSessionData' ),
+					$this->identicalTo( 'removeAuthenticationSessionData' )
 				)
 			) );
 
@@ -448,8 +448,8 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 
 		$authManager->expects( $this->never() )
 			->method( $this->logicalOr(
-				$this->equalTo( 'changeAuthenticationData' ),
-				$this->equalTo( 'removeAuthenticationSessionData' )
+				$this->identicalTo( 'changeAuthenticationData' ),
+				$this->identicalTo( 'removeAuthenticationSessionData' )
 			) );
 
 		$provider = new ResetPasswordSecondaryAuthenticationProvider();

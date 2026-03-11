@@ -30,8 +30,13 @@ trait LanguageFallbackTestTrait {
 	protected function getMockLocalisationCache( $expectedGets, $map ) {
 		$mockLocCache = $this->createNoOpMock( LocalisationCache::class, [ 'getItem' ] );
 		$mockLocCache->expects( $this->exactly( $expectedGets ) )->method( 'getItem' )
-			->with( $this->anything(),
-				$this->logicalOr( 'fallbackSequence', 'originalFallbackSequence' ) )
+			->with(
+				$this->anything(),
+				$this->logicalOr(
+					$this->identicalTo( 'fallbackSequence' ),
+					$this->identicalTo( 'originalFallbackSequence' )
+				)
+			)
 			->willReturnCallback( static function ( $code, $key ) use ( $map ) {
 				if ( $key === 'originalFallbackSequence' || $code === 'en' ) {
 					return $map[$code];
