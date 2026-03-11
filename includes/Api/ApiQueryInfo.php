@@ -723,6 +723,9 @@ class ApiQueryInfo extends ApiQueryBase {
 					->where( [ 'il_from' => array_keys( $protectedPages ) ] )
 					->joinConds( $queryInfo['joins'] )
 					->andWhere( [ 'lt_title' => $images, 'lt_namespace' => NS_FILE ] )
+					// Prevent RDBMS from picking the il_target_id index here, which can cause
+					// massive table scans in the case of linking to a highly used image.
+					->useIndex( [ 'imagelinks' => 'PRIMARY' ] )
 					->caller( __METHOD__ )
 					->fetchResultSet();
 
