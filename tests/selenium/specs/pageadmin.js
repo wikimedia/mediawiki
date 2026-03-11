@@ -5,7 +5,6 @@ import RestorePage from '../pageobjects/restore.page.js';
 import EditPage from '../pageobjects/edit.page.js';
 import ProtectPage from '../pageobjects/protect.page.js';
 import LoginPage from 'wdio-mediawiki/LoginPage.js';
-import LogoutPage from 'wdio-mediawiki/LogoutPage.js';
 import { getTestString, isTargetNotWikitext } from 'wdio-mediawiki/Util.js';
 
 describe( 'Page admin actions', () => {
@@ -13,10 +12,11 @@ describe( 'Page admin actions', () => {
 
 	before( async () => {
 		apiClient = await createApiClient();
+
+		await LoginPage.loginAdmin();
 	} );
 
 	beforeEach( async function () {
-		await browser.deleteAllCookies();
 		content = getTestString( 'beforeEach-content-' );
 		name = getTestString( 'BeforeEach-name-' );
 
@@ -32,8 +32,6 @@ describe( 'Page admin actions', () => {
 		// create
 		await apiClient.edit( name, content, 'create for delete' );
 
-		// login
-		await LoginPage.loginAdmin();
 		// delete
 		await DeletePage.delete( name, 'delete reason' );
 
@@ -46,9 +44,6 @@ describe( 'Page admin actions', () => {
 		await apiClient.edit( name, content, 'create for delete' );
 		await apiClient.delete( name, 'delete for restore' );
 
-		// login
-		await LoginPage.loginAdmin();
-
 		// restore
 		await RestorePage.restore( name, 'restore reason' );
 
@@ -57,11 +52,7 @@ describe( 'Page admin actions', () => {
 	} );
 
 	it( 'should be protectable', async () => {
-
 		await apiClient.edit( name, content, 'create for protect' );
-
-		// login
-		await LoginPage.loginAdmin();
 
 		await ProtectPage.protect(
 			name,
@@ -69,8 +60,8 @@ describe( 'Page admin actions', () => {
 			'Allow only administrators'
 		);
 
-		// Logout
-		await LogoutPage.logout();
+		// Log out the user
+		await browser.deleteAllCookies();
 
 		// Check that we can't edit the page anymore
 		await EditPage.openForEditing( name );
