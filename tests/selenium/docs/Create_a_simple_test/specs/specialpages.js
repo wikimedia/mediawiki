@@ -6,6 +6,6 @@ import SpecialPages from '../pageobjects/specialpages.page.js';
 describe( 'Special:SpecialPages', () => {
 	it( 'should not have Edit link', async () => {
 		await SpecialPages.open();
-		await expect( SpecialPages.edit ).not.toExist();
+		expect( await SpecialPages.edit.isExisting() ).toBe( false );
 	} );
 } );

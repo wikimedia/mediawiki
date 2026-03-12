@@ -74,7 +74,7 @@ describe( 'Page admin actions', () => {
 
 		// Check that we can't edit the page anymore
 		await EditPage.openForEditing( name );
-		await expect( EditPage.save ).not.toExist();
+		expect( await EditPage.save.isExisting() ).toBe( false );
 		await expect( EditPage.heading ).toHaveText( `View source for ${ name }` );
 	} );
 

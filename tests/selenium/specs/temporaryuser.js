@@ -20,10 +20,10 @@ describe( 'Temporary user', () => {
 
 		await expect( CreateAccountPage.username ).toExist();
 		await expect( CreateAccountPage.password ).toExist();
-		await expect( CreateAccountPage.tempPasswordInput ).not.toExist(
+		expect( await CreateAccountPage.tempPasswordInput.isExisting() ).toBe( false,
 			{ message: 'Temporary users should not have the option to have a temporary password sent on signup (T328718)' }
 		);
-		await expect( CreateAccountPage.reasonInput ).not.toExist(
+		expect( await CreateAccountPage.reasonInput.isExisting() ).toBe( false,
 			{ message: 'Temporary users should not have to provide a reason for their account creation (T328718)' }
 		);
 	} );
