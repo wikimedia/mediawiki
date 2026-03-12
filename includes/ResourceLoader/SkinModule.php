@@ -529,28 +529,13 @@ class SkinModule extends FileModule {
 			return [ $logo['svg'] => [ 'as' => 'image' ] ];
 		}
 
-		$logosPerDppx = [];
+		$logos = [];
 		foreach ( $logo as $dppx => $src ) {
 			// Keys are in this format: "2x"
-			$dppx = substr( $dppx, 0, -1 );
-			$logosPerDppx[$dppx] = $src;
+			$logos[] = [ 'dppx' => (float)$dppx, 'src' => $src ];
 		}
-
-		// Because PHP can't have floats as array keys
-		uksort( $logosPerDppx, static function ( $a, $b ) {
-			$a = floatval( $a );
-			$b = floatval( $b );
 		// Sort from smallest to largest (e.g. 1x, 2x)
-			return $a <=> $b;
-		} );
-
-		$logos = [];
-		foreach ( $logosPerDppx as $dppx => $src ) {
-			$logos[] = [
-				'dppx' => $dppx,
-				'src' => $src
-			];
-		}
+		usort( $logos, static fn ( $a, $b ) => $a['dppx'] <=> $b['dppx'] );
 
 		$logosCount = count( $logos );
 		$preloadLinks = [];
