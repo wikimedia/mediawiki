@@ -67,6 +67,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @var string
 	 */
 	protected string $mReturnToAnchor;
+	/**
+	 * Value of the 'alwaysShowLogin' URL parameter. When true, the login form will be shown
+	 * even if the user is already logged in. When false, the user might be redirected if we
+	 * know (from the 'returnto' parameter) where to redirect them to (although there are
+	 * other conditions which can also prevent that).
+	 */
+	protected bool $mAlwaysShowLogin;
 
 	/** @var bool */
 	protected $mPosted;
@@ -157,6 +164,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if ( $request->getRawVal( 'display' ) === 'popup' ) {
 			$this->mDisplay = 'popup';
 		}
+		$this->mAlwaysShowLogin = $request->getBool( 'alwaysShowLogin' );
 	}
 
 	/**
@@ -252,6 +260,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			}
 		}
 
+		if ( $this->mAlwaysShowLogin ) {
+			$params['alwaysShowLogin'] = '1';
+		}
 		if ( $this->getConfig()->get( MainConfigNames::SecureLogin ) && !$this->isSignup() ) {
 			$params['fromhttp'] = $this->mFromHTTP ? '1' : null;
 		}
@@ -339,10 +350,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		 * account by logging in.
 		 *
 		 * Also make an exception when force=<level> is set in the URL, which means the user must
-		 * reauthenticate for security reasons.
+		 * reauthenticate for security reasons; for POST (although it shouldn't really happen);
+		 * and allow an explicit URL parameter override.
 		 */
 		if ( !$this->isSignup() && !$this->mPosted && !$this->securityLevel &&
 			( $this->mReturnTo !== '' || $this->mReturnToQuery !== '' ) &&
+			!$this->mAlwaysShowLogin &&
 			!$this->getUser()->isTemp() && $this->getUser()->isRegistered()
 		) {
 			$this->successfulAction();
