@@ -972,9 +972,14 @@ class EditPage implements IEditObject {
 		} else {
 			// Convert the content to editable text, or serialize using the default format if the content model is not
 			// supported (e.g. for an old revision with a different model)
-			$text = $this->pageEditingHelper->toEditText(
-				$content, $this->contentFormat, $this->enableApiEditOverride
-			) ?? $content->serialize();
+			try {
+				$text = $this->pageEditingHelper->toEditText(
+					$content, $this->contentFormat, $this->enableApiEditOverride
+				) ?? $content->serialize();
+			} catch ( MWException ) {
+				// T419883: If the content format isn't supported, Content::serialize throws an exception
+				$text = $content->serialize();
+			}
 			$out->addWikiMsg( 'viewsourcetext' );
 		}
 
