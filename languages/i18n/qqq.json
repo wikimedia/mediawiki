@@ -2121,6 +2121,7 @@
 	"watchlistfor2": "Subtitle on [[Special:Watchlist]].\nParameters:\n* $1 - Username of current user\n\n{{Identical|For $1}}",
 	"nowatchlist": "Displayed when there is no pages in the watchlist.",
 	"nowatchlistnamespace": "Displayed when there are no pages in a particular namespace in the watchlist.",
+	"watchlistedit-noitemsfound": "Displayed on [[Special:EditWatchlist]] when a search query is active but returns no results.",
 	"watchlistanontext": "Shown on Special:Userlogin when user tries to access their watchlist before logging in",
 	"watchlistanontext-for-temp-user": "Shown on Special:CreateAccount when a temporary account tries to access their watchlist and temporary accounts cannot edit their watchlist.",
 	"watchnologin": "Used as error page title.\n\nThe error message for this title is:\n* {{msg-mw|Watchnologintext}}\n{{Identical|Not logged in}}",

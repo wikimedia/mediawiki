@@ -401,7 +401,9 @@ class EditWatchlistPager extends CodexTablePager {
 	 * @inheritDoc
 	 */
 	public function getEmptyBody(): string {
-		if ( $this->getContext()->getRequest()->getIntOrNull( 'namespace' ) ) {
+		if ( trim( $this->getContext()->getRequest()->getText( 'search', '' ) ) !== '' ) {
+			$msgEmpty = $this->msg( 'watchlistedit-noitemsfound' )->text();
+		} elseif ( $this->getContext()->getRequest()->getIntOrNull( 'namespace' ) ) {
 			$msgEmpty = $this->msg( 'nowatchlistnamespace' )->text();
 		} else {
 			$msgEmpty = $this->msg( 'nowatchlist' )->text();

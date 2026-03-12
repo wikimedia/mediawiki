@@ -1841,6 +1841,7 @@
 	"watchlistfor2": "For $1",
 	"nowatchlist": "You have no items on your watchlist.",
 	"nowatchlistnamespace": "You have no items in this namespace on your watchlist.",
+	"watchlistedit-noitemsfound": "No items were found.",
 	"watchlistanontext": "Please log in to view or edit items on your watchlist.",
 	"watchlistanontext-for-temp-user": "Please create an account to view or edit watchlist items.",
 	"watchnologin": "Not logged in",
