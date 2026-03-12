@@ -117,8 +117,6 @@ $( () => {
 			return;
 		}
 
-		$tooltipEl.addClass( 'mw-temp-user-banner-tooltip-loaded' );
-		$tooltipEl.appendTo( '#pt-userpage-2' );
 		let popup;
 
 		/**

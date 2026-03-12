@@ -309,12 +309,6 @@ abstract class Skin extends ContextSource {
 	 *
 	 *     Default: `[]`
 	 *
-	 *  - `tempUserBanner`: Whether to display a banner on page views by in temporary user sessions.
-	 *     This will prepend SkinComponentTempUserBanner to the `<body>` above everything else.
-	 *     See also MediaWiki\MainConfigSchema::AutoCreateTempUser and User::isTemp.
-	 *
-	 *     Default: `false`
-	 *
 	 *  - `menus`: Which menus the skin supports, to allow features like SpecialWatchlist
 	 *     to render their own navigation in the skins that don't support certain menus.
 	 *     For any key in the array, the skin is promising to render an element e.g. the
@@ -2342,6 +2336,20 @@ abstract class Skin extends ContextSource {
 	 */
 	public function getAfterPortlet( string $name ): string {
 		$html = '';
+
+		if ( $name === 'user-page' && $this->getUser()->isTemp() ) {
+			$html .= Html::rawElement( 'div', [ 'class' => 'mw-temp-user-banner-tooltip' ],
+				Html::rawElement( 'button', [
+					'id' => 'mw-temp-user-banner-tooltip-button',
+					'class' => 'mw-temp-user-banner-tooltip-summary cdx-button '
+						. 'cdx-button--icon-only cdx-button--weight-quiet',
+					'aria-label' => $this->msg( 'temp-user-banner-tooltip-label' )->text(),
+					'data-event-name' => 'temp-user-banner.info',
+				],
+					Html::element( 'span', [ 'class' => 'mw-temp-user-banner-tooltip-icon' ] )
+				)
+			);
+		}
 
 		$this->getHookRunner()->onSkinAfterPortlet( $this, $name, $html );
 

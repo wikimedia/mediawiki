@@ -9,8 +9,6 @@ namespace MediaWiki\Skin;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\Language\Language;
-use MediaWiki\Skin\Components\SkinComponentTempUserBanner;
-use MediaWiki\Skin\Components\SkinComponentUtils;
 use MediaWiki\Title\Title;
 
 /**
@@ -40,34 +38,6 @@ class SkinMustache extends SkinTemplate {
 	}
 
 	/**
-	 * Creates a banner notifying IP masked users (temporary accounts)
-	 * That they are editing via a temporary account.
-	 *
-	 * @return string
-	 */
-	private function createTempUserBannerHTML() {
-		$isSupportedSkin = $this->getOptions()['tempUserBanner'];
-		$isTempUser = $this->getUser()->isTemp();
-
-		if ( !$isSupportedSkin || !$isTempUser ) {
-			return '';
-		}
-
-		$returntoParam = SkinComponentUtils::getReturnToParam(
-			$this->getTitle(),
-			$this->getRequest(),
-			$this->getAuthority()
-		);
-
-		$tempUserBanner = new SkinComponentTempUserBanner(
-			$returntoParam,
-			$this->getContext(),
-			$this->getUser(),
-		);
-		return $tempUserBanner->getTemplateData()['html'];
-	}
-
-	/**
 	 * @inheritDoc
 	 * Render the associated template. The master template is assumed
 	 * to be 'skin' unless `template` has been passed in the skin options
@@ -79,9 +49,7 @@ class SkinMustache extends SkinTemplate {
 		$tp = $this->getTemplateParser();
 		$template = $this->options['template'] ?? 'skin';
 		$data = $this->getTemplateData();
-		$html = $this->createTempUserBannerHTML();
-		$html .= $tp->processTemplate( $template, $data );
-		return $html;
+		return $tp->processTemplate( $template, $data );
 	}
 
 	/**

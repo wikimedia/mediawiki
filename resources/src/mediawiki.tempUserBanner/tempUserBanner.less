@@ -1,36 +1,23 @@
 /**
- * Temporary account specific styles in the navigation bar
+ * Temporary account info button styles in the navigation bar.
+ * The button is rendered via Skin::getAfterPortlet() for the user-page
+ * portlet and appears in html-after-portal. Skins provide their own
+ * positioning CSS.
  * See T418478
  **/
 
 @import 'mediawiki.skin.variables.less';
 
-// Override conditional styles
-#pt-userpage-2#pt-userpage-2 {
-	// Allow the tooltip to be visible
-	overflow: initial;
-
-	// Vertically align the text and the tooltip button
-	display: flex;
-	align-items: center;
-}
-
 .mw-temp-user-banner-tooltip {
 	position: relative;
 
-	// Prevent FOUC by hiding the tooltip until its instantiated
-	display: none;
-
-	&.mw-temp-user-banner-tooltip-loaded {
-		display: initial;
-	}
-
 	.mw-temp-user-banner-tooltip-icon {
-		.cdx-mixin-css-icon(@cdx-icon-info, @color-base);
+		.cdx-mixin-css-icon( @cdx-icon-info, @color-base );
 	}
 
 	& .oo-ui-widget {
 		color: @color-base;
+		font-size: @font-size-small;
 		z-index: @z-index-off-canvas-backdrop;
 	}
 }
