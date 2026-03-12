@@ -97,7 +97,7 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 		// Add module for language selector widget
 		$this->mParent->getOutput()->addModules( 'mediawiki.widgets.LanguageSelectWidget' );
 
-		$standardAttribs = $this->getAttributes( [ 'disabled', 'required', 'multiple', 'size' ] );
+		$standardAttribs = $this->getAttributes( [ 'disabled', 'required', 'multiple', 'size', 'placeholder' ] );
 		$isMultiple = $this->mParams['multiple'] ?? false;
 		$defaultValue = $isMultiple ? [] : null;
 

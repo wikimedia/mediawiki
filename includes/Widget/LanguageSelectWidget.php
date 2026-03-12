@@ -29,6 +29,8 @@ class LanguageSelectWidget {
 	 *   - bool $config['disabled'] Whether the select is disabled
 	 *   - bool $config['required'] Whether the select is required
 	 *   - bool $config['multiple'] multi select language selector
+	 *   - string|null $config['placeholder'] Placeholder text for the JavaScript
+	 *     input field
 	 *   - string $config['cssclass'] Additional CSS classes for the select element
 	 *   - callable $config['labelFormat'] Callback to format option labels.
 	 *     Receives the language code, and name as parameters, should return a string.
@@ -61,6 +63,10 @@ class LanguageSelectWidget {
 
 		if ( isset( $this->config['size'] ) ) {
 			$selectAttribs['size'] = $this->config['size'];
+		}
+
+		if ( isset( $this->config['placeholder'] ) ) {
+			$selectAttribs['data-mw-placeholder'] = $this->config['placeholder'];
 		}
 
 		// These are standard HTML attributes that can be passed from HTMLFormField

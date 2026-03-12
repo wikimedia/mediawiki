@@ -76,6 +76,17 @@ class LanguageSelectWidgetTest extends MediaWikiUnitTestCase {
 		$this->assertStringNotContainsString( '<option value="en" selected="">', $html );
 	}
 
+	public function testToStringWithPlaceholder() {
+		$config = [
+			'languages' => [ 'en' => 'English' ],
+			'placeholder' => 'test-placeholder',
+		];
+		$widget = new LanguageSelectWidget( $config );
+		$html = $widget->toString();
+
+		$this->assertStringContainsString( 'data-mw-placeholder="test-placeholder"', $html );
+	}
+
 	public function testToStringWithDisabled() {
 		$config = [
 			'languages' => [ 'en' => 'English' ],

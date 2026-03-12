@@ -16,6 +16,7 @@
 		// Get configuration from data attributes
 		const languagesAttr = nativeSelect.getAttribute( 'data-mw-languages' );
 		const languages = languagesAttr && languagesAttr !== 'null' ? JSON.parse( languagesAttr ) : null;
+		const placeholder = nativeSelect.getAttribute( 'data-mw-placeholder' );
 
 		let selectedLanguage;
 
@@ -43,6 +44,7 @@
 		const vueApp = factory( {
 			selectableLanguages: languages,
 			selectedLanguage: selectedLanguage,
+			placeholder: placeholder,
 			menuItemSlot: ( { languageCode } ) => optionLabels[ languageCode ],
 			onLanguageChange: ( newValue ) => {
 				if ( isMultiple ) {
