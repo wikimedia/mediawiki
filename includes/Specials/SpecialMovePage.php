@@ -902,12 +902,12 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			return;
 		}
 
+		$oldTalk = $ot->getTalkPageIfDefined();
+		$newTalk = $nt->getTalkPageIfDefined();
+
 		if ( $ot->isTalkPage() || $nt->isTalkPage() ) {
 			$this->moveTalk = false;
 		}
-
-		$oldTalk = $ot->getTalkPageIfDefined();
-		$newTalk = $nt->getTalkPageIfDefined();
 
 		# Show a warning if the target file exists on a shared repo
 		if ( $nt->getNamespace() === NS_FILE
@@ -926,7 +926,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				$this->showForm();
 				return;
 			}
-			if ( $this->moveTalk && $this->restrictionStore->isProtected( $newTalk, 'create' ) ) {
+			if ( $this->moveTalk && $newTalk && $this->restrictionStore->isProtected( $newTalk, 'create' ) ) {
 				$this->showForm();
 				return;
 			}
@@ -953,7 +953,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$permStatusMain->merge( $mp->isValidMove() );
 
 		$onlyMovingTalkSubpages = false;
-		if ( $this->moveTalk ) {
+		if ( $this->moveTalk && $oldTalk && $newTalk ) {
 			$mpTalk = $this->movePageFactory->newMovePage( $oldTalk, $newTalk );
 			$permStatusTalk = $mpTalk->authorizeMove( $this->getAuthority(), $this->reason );
 			$permStatusTalk->merge( $mpTalk->isValidMove() );
@@ -991,7 +991,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				$this->showForm( $deleteStatus );
 				return;
 			}
-			if ( $this->moveTalk ) {
+			if ( $this->moveTalk && $oldTalk && $newTalk ) {
 				$deleteStatus = $this->vacateTitle( $newTalk, $user, $oldTalk );
 				if ( !$deleteStatus->isGood() ) {
 					// Ideally we would specify that the subject page redirect was deleted
@@ -1024,7 +1024,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 
 		$moveStatuses = [];
 		$talkStatus = null;
-		if ( $this->moveTalk && !$onlyMovingTalkSubpages ) {
+		if ( $mpTalk && !$onlyMovingTalkSubpages ) {
 			$talkStatus = $mpTalk->moveIfAllowed( $this->getAuthority(), $this->reason, $createRedirect );
 			// moveIfAllowed returns a Status with an array as a value, however moveSubpages per-title statuses
 			// have strings as values. Massage this status into the moveSubpages format so it fits in with
@@ -1041,7 +1041,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				$subpageStatus = $mp->moveSubpagesIfAllowed( $this->getAuthority(), $this->reason, $createRedirect );
 				$moveStatuses = array_merge( $moveStatuses, $subpageStatus->value );
 			}
-			if ( $this->moveTalk && $maximumMovedPages > count( $moveStatuses ) &&
+			if ( $mpTalk && $oldTalk && $maximumMovedPages > count( $moveStatuses ) &&
 				 $this->permManager->userCan( 'move-subpages', $user, $oldTalk ) &&
 				 ( $onlyMovingTalkSubpages || $talkStatus->isOK() )
 			) {
