@@ -391,34 +391,6 @@ function wfGetUrlUtils(): UrlUtils {
 }
 
 /**
- * Returns a partial regular expression of recognized URL protocols, e.g. "http:\/\/|https:\/\/"
- *
- * @deprecated since 1.39, use UrlUtils::validProtocols(); hard-deprecated since 1.43
- * @param bool $includeProtocolRelative If false, remove '//' from the returned protocol list.
- *        DO NOT USE this directly, use UrlUtils::validAbsoluteProtocols() instead
- * @return string
- */
-function wfUrlProtocols( $includeProtocolRelative = true ) {
-	wfDeprecated( __FUNCTION__, '1.39' );
-
-	return $includeProtocolRelative ? wfGetUrlUtils()->validProtocols() :
-		wfGetUrlUtils()->validAbsoluteProtocols();
-}
-
-/**
- * Like wfUrlProtocols(), but excludes '//' from the protocol list. Use this if
- * you need a regex that matches all URL protocols but does not match protocol-
- * relative URLs
- * @deprecated since 1.39, use UrlUtils::validAbsoluteProtocols(); hard-deprecated since 1.44
- * @return string
- */
-function wfUrlProtocolsWithoutProtRel() {
-	wfDeprecated( __FUNCTION__, '1.39' );
-
-	return wfGetUrlUtils()->validAbsoluteProtocols();
-}
-
-/**
  * Sends a line to the debug log if enabled or, optionally, to a comment in output.
  * In normal operation this is a NOP.
  *

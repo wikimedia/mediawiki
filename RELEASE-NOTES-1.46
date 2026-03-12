@@ -301,6 +301,10 @@ because of Phabricator reports.
     UrlUtils::parse().
   - wfExpandUrl(), deprecated in 1.39, has been dropped. Instead, use
     UrlUtils::expand().
+  - wfUrlProtocolsWithoutProtRel(), deprecated in 1.39, has been dropped.
+    Instead, use UrlUtils::validAbsoluteProtocols().
+  - wfUrlProtocols(), deprecated in 1.39, has been dropped. Instead,
+    use UrlUtils::validProtocols().
 * …
 
 === Deprecations in 1.46 ===
