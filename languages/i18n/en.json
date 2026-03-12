@@ -3327,6 +3327,7 @@
 	"namespaceinfo-heading-canonical": "Canonical name",
 	"namespaceinfo-heading-local": "Local name",
 	"namespaceinfo-heading-info": "Description and properties",
+	"namespaceinfo-heading-aliases": "Aliases",
 	"namespaceinfo-description-custom": "Custom namespace \"$1\"",
 	"namespaceinfo-description-custom-talk": "Talk pages associated with the $1 namespace (ID $2)",
 	"namespaceinfo-description-ns-2": "Virtual namespace for images",

@@ -9,6 +9,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Html\Html;
+use MediaWiki\Language\Language;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 
@@ -22,7 +23,8 @@ use MediaWiki\Title\NamespaceInfo;
 class SpecialNamespaceInfo extends SpecialPage {
 
 	public function __construct(
-		private readonly NamespaceInfo $namespaceInfo
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly Language $contentLanguage
 	) {
 		parent::__construct( 'NamespaceInfo' );
 	}
@@ -51,6 +53,11 @@ class SpecialNamespaceInfo extends SpecialPage {
 			[],
 			$this->msg( 'namespaceinfo-heading-local' )->text()
 		);
+		$aliasHeading = Html::element(
+			'th',
+			[],
+			$this->msg( 'namespaceinfo-heading-aliases' )->text()
+		);
 		$infoHeading = Html::element(
 			'th',
 			[],
@@ -59,12 +66,20 @@ class SpecialNamespaceInfo extends SpecialPage {
 		$tableHeadingRow = Html::rawElement(
 			'tr',
 			[],
-			$idHeading . $canonicalHeading . $localHeading . $infoHeading
+			$idHeading . $canonicalHeading . $localHeading . $aliasHeading . $infoHeading
 		);
+
+		$allAliases = $this->contentLanguage->getNamespaceAliases();
+
+		$aliases = [];
+		foreach ( $allAliases as $alias => $ns ) {
+			$aliases[$ns][] = $alias;
+		}
 
 		$tableBodyRows = '';
 		foreach ( $this->getContentLanguage()->getFormattedNamespaces() as $ns => $localName ) {
-			$tableBodyRows .= $this->makeNamespaceRow( $ns, $localName );
+			$namespaceAliases = $aliases[$ns] ?? [];
+			$tableBodyRows .= $this->makeNamespaceRow( $ns, $localName, $namespaceAliases );
 		}
 
 		$table = Html::rawElement(
@@ -83,7 +98,7 @@ class SpecialNamespaceInfo extends SpecialPage {
 	 * @param string $localName
 	 * @return string
 	 */
-	private function makeNamespaceRow( int $ns, string $localName ): string {
+	private function makeNamespaceRow( int $ns, string $localName, array $aliases = [] ): string {
 		$canonicalName = $this->namespaceInfo->getCanonicalName( $ns );
 		if ( $canonicalName ) {
 			$canonicalName = strtr( $canonicalName, '_', ' ' );
@@ -167,15 +182,36 @@ class SpecialNamespaceInfo extends SpecialPage {
 			$namespaceProperties .= Html::closeElement( 'ul' );
 		}
 
+		$namespaceAliases = '';
+		if ( $aliases !== [] ) {
+			if ( count( $aliases ) === 1 ) {
+				$namespaceAliases = htmlspecialchars( str_replace( '_', ' ', $aliases[0] ) );
+			} else {
+				$namespaceAliases = Html::openElement( 'ul' );
+				foreach ( $aliases as $alias ) {
+					// cleanup _ for display, since _ is only used internally and not for display
+					$alias = str_replace( "_", " ", $alias );
+					$namespaceAliases .= Html::element(
+						'li',
+						[],
+						$alias
+					);
+				}
+				$namespaceAliases .= Html::closeElement( 'ul' );
+			}
+
+		}
+
 		$idField = Html::rawElement( 'td', [], (string)$ns );
 		$canonicalField = Html::rawElement( 'td', [], $canonicalName );
 		$localField = Html::rawElement( 'td', [], $localName );
+		$aliasesField = Html::rawElement( 'td', [], $namespaceAliases );
 		$infoField = Html::rawElement( 'td', [], $descriptionText . $namespaceProperties );
 
 		return Html::rawElement(
 			'tr',
 			[],
-			$idField . $canonicalField . $localField . $infoField
+			$idField . $canonicalField . $localField . $aliasesField . $infoField
 		);
 	}
 

@@ -905,6 +905,7 @@ class SpecialPageFactory {
 			'class' => SpecialNamespaceInfo::class,
 			'services' => [
 				'NamespaceInfo',
+				'ContentLanguage'
 			],
 		],
 

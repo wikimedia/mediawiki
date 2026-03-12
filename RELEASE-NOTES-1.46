@@ -81,6 +81,8 @@ For notes on 1.45.x and older releases, see HISTORY.
 * (T85393) Special:MovePage will now require explicit confirmation if the
   page you are trying to move to is protected against creation.
 * (T413867) Special:Mute is always unconditionally enabled.
+* (T381455) Special:NamespaceInfo will now display aliases defined through
+  $wgNamespaceAliases.
 * …
 
 === New features for sysadmins in 1.46 ===
