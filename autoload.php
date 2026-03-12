@@ -165,6 +165,7 @@ $wgAutoloadLocalClasses = [
 	'AuthManagerSpecialPage' => __DIR__ . '/includes/SpecialPage/AuthManagerSpecialPage.php',
 	'AutoCommitUpdate' => __DIR__ . '/includes/Deferred/AutoCommitUpdate.php',
 	'AutoloadGenerator' => __DIR__ . '/includes/Autoload/AutoloadGenerator.php',
+	'BackfillInterwikiRightsLog' => __DIR__ . '/maintenance/backfillInterwikiRightsLog.php',
 	'BacklinkCache' => __DIR__ . '/includes/Cache/BacklinkCache.php',
 	'BacklinkJobUtils' => __DIR__ . '/includes/JobQueue/Utils/BacklinkJobUtils.php',
 	'BackupDumper' => __DIR__ . '/maintenance/includes/BackupDumper.php',
