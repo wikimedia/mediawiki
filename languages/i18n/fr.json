@@ -230,7 +230,8 @@
 			"HenriCab",
 			"Pa2chant.bis",
 			"Muisha wiki hke",
-			"Raveloaritiana Mamisoa"
+			"Raveloaritiana Mamisoa",
+			"Antimuonium"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Catégorie|Catégories}}",
@@ -1157,7 +1158,7 @@
 	"powersearch-remember": "Se souvenir de la sélection pour les prochaines recherches",
 	"searchdisabled": "La recherche est désactivée sur ce wiki et aucune URL de recherche externe n'a [[$1|été configurée]].",
 	"search-error": "Une erreur s’est produite en recherchant : $1",
-	"search-warning": "Un avertissement s’est produit en recherchant : $1",
+	"search-warning": "Avertissement : $1",
 	"mypreferences": "Préférences",
 	"searchresultshead": "Rechercher",
 	"prefs-description-misc": "Personnalisez la table des matières.",

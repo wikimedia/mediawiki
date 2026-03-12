@@ -3044,7 +3044,7 @@
 	"pageinfo-watchers": "Liczba obserwujących",
 	"pageinfo-visiting-watchers": "Liczba obserwujących stronę, którzy odwiedzili ją w ciągu {{PLURAL:$1|ostatniego dnia|ostatnich $1 dni}}",
 	"pageinfo-few-watchers": "Mniej niż $1 {{PLURAL:$1|obserwujący|obserwujących}}",
-	"pageinfo-few-visiting-watchers": "Może być lub nie użytkownik, który odwiedza ostatnie edycje",
+	"pageinfo-few-visiting-watchers": "Mniej niż dwoje obserwujących ostatnio odwiedziło tę stronę",
 	"pageinfo-redirects-name": "Liczba przekierowań do tej strony",
 	"pageinfo-subpages-name": "Liczba podstron tej strony",
 	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|przekierowanie|przekierowania|przekierowań}}; $3 {{PLURAL:$3|bez przekierowania|bez przekierowań|bez przekierowań}})",

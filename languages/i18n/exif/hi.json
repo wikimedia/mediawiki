@@ -194,6 +194,7 @@
 	"exif-compression-2": "सी०सी०आई०टी०टी० ग्रुप ३ १-डाइमेंशन वाली संशोधित हफ़मैन दौड़ की लम्बाई से जुड़ी एनकोडिंग",
 	"exif-compression-3": "CCITT ग्रुप 3 फ़ैक्स एनकोडिंग",
 	"exif-compression-4": "CCITT ग्रुप 4 फ़ैक्स एनकोडिंग",
+	"exif-compression-6": "JPEG (पुराना)",
 	"exif-copyrighted-true": "कॉपीराईट",
 	"exif-copyrighted-false": "कॉपीराइट स्थिति अनिर्दिष्ट",
 	"exif-photometricinterpretation-0": "काला और सफेद (सफेद 0 है)",

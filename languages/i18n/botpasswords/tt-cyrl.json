@@ -5,7 +5,8 @@
 			"Mansur",
 			"Stjn",
 			"Ерней",
-			"Ильнар"
+			"Ильнар",
+			"Ильгиз"
 		]
 	},
 	"botpasswords": "Ботларның серсүзләре",
@@ -28,7 +29,7 @@
 	"botpasswords-bad-appid": "«$1» исемле бот кабул ителми.",
 	"botpasswords-toolong-restrictions": "Артык күп IP-адреслар яки диапазоннар кертелгән.",
 	"botpasswords-toolong-grants": "Бик күп рөхсәт алынган.",
-	"botpasswords-insert-failed": "\"$1\" ботының исемен өстәп булмады. Бу инде өстәлгәнме?",
+	"botpasswords-insert-failed": "\"$1\" исемле роботны өстәп булмады. Бәлки ул моңарчы өстәлгән булгандыр?",
 	"botpasswords-update-failed": "\"$1\" ботының исемен яңартып булмады. Ул бетерелгән идеме?",
 	"botpasswords-created-title": "Бот өчен серсүз булдырылды",
 	"botpasswords-created-body": "$2 исемле {{GENDER:$2|кулланучы}}дан \"$1\" ике исем өчен дә бот серсүзе булдырылган.",

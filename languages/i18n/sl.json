@@ -366,7 +366,7 @@
 	"createacct-another-submit": "Ustvari račun",
 	"createacct-continue-submit": "Nadaljuj ustvarjanje računa",
 	"createacct-another-continue-submit": "Nadaljuj ustvarjanje računa",
-	"createacct-benefit-heading": "{{GRAMMAR:tožilnik|{{SITENAME}}}} ustvarjajo ljudje, kot ste vi.",
+	"createacct-benefit-heading": "Projekt {{SITENAME}} ustvarjajo ljudje, kot ste vi.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|urejanje|urejanji|urejanja|urejanj}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|stran|strani}}",
 	"createacct-benefit-text3": "$2 {{PLURAL:$1|nedavni sodelavec|nedavna sodelavca|nedavni sodelavci|nedavnih sodelavcev}}",

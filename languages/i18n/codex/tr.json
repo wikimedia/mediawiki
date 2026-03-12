@@ -5,7 +5,8 @@
 			"Joseph",
 			"Leo",
 			"Sümeyye",
-			"ToprakM"
+			"ToprakM",
+			"LisafBia"
 		]
 	},
 	"cdx-breadcrumb-navigation-label": "Ekmek kırıntısı",
@@ -34,5 +35,5 @@
 	"cdx-table-pagination-status-message-indeterminate-short": "Birçok sonuçtan $1-$2",
 	"cdx-table-pagination-status-message-indeterminate-final": "Son {{PLURAL:$1|$1 sonuç}} gösteriliyor",
 	"cdx-table-pagination-status-message-pending": "Sonuçlar yükleniyor...",
-	"cdx-table-no-data-message": "Veri bulunmamaktadır."
+	"cdx-table-no-data-message": "Mevcut veri yok."
 }

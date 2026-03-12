@@ -269,7 +269,8 @@
 			"ديفيد",
 			"아라",
 			"SrGarga",
-			"Tecbs"
+			"Tecbs",
+			"Monicapozo03"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoría|Categorías}}",
@@ -1616,6 +1617,8 @@
 	"rcfilters-hideminor-conflicts-typeofchange-global": "El filtro \"Ediciones menores\" está en conflicto con uno o más Tipos de filtros de Cambio, ya que ciertos tipos de cambio no pueden ser designados como \"menores\". Los filtros en conflicto están marcados en el área Filtros activos, anterior.",
 	"rcfilters-hideminor-conflicts-typeofchange": "Ciertos tipos de cambio no pueden ser designados como \"menores\", por lo que este filtro entra en conflicto con los siguientes Tipos de filtros de Cambio: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "Este filtro «Tipo de cambio» entra en conflicto con el filtro «Ediciones menores». Hay ciertos tipos de cambios que no pueden denominarse «menores».",
+	"rcfilters-hidecategorization-conflicts-reviewstatus-global": "El filtro \"cambios de categoría\" entra en conflicto con uno o más filtros de estado de revisión, porque los cambios de categoría se designan siempre como \"autocontrolados\". Los filtros en conflicto se marcan en el área de filtros activos, arriba.",
+	"rcfilters-hidecategorization-conflicts-reviewstatus": "Los cambios de categoría siempre se \"patrullan automáticamente\", por lo que este filtro entra en conflicto con los siguientes filtros de estado de revisión: $1",
 	"rcfilters-filtergroup-lastrevision": "Últimas revisiones",
 	"rcfilters-filter-lastrevision-label": "Última revisión",
 	"rcfilters-filter-lastrevision-description": "Solo el cambio más reciente a una página.",

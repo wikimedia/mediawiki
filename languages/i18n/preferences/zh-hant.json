@@ -24,7 +24,9 @@
 			"机智的小鱼君",
 			"沈澄心",
 			"铁桶",
-			"飞舞回堂前"
+			"飞舞回堂前",
+			"Leo768",
+			"臺灣象象"
 		]
 	},
 	"preferences": "偏好設定",
@@ -51,7 +53,7 @@
 	"prefs-help-realname": "真實姓名為選填欄位。\n若提供，真實姓名可能會用來作為您的作品的署名。",
 	"yourpassword": "密碼：",
 	"prefs-resetpass": "變更密碼",
-	"passwordtooshort": "密碼至少要{{PLURAL:$1|字元}}",
+	"passwordtooshort": "密碼至少要{{PLURAL:$1|$1字元}}",
 	"passwordtoolong": "密碼不能超過{{PLURAL:$1|1字元|$1字元}}。",
 	"password-substring-username-match": "您的密碼不能用在您的使用者名稱裡。",
 	"password-name-match": "您的密碼不可以跟使用者名稱相同。",
