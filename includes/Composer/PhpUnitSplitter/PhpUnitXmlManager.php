@@ -38,7 +38,6 @@ class PhpUnitXmlManager {
 	 */
 	private const EXPECTED_MISSING_CLASSES = [
 		"PHPUnit\\Framework\\SkippedTestCase",
-		"MediaWiki\\Extension\\Scribunto\\Tests\\Engines\\LuaCommon\\LuaEngineTestSkip",
 		"\\ParserIntegrationTest",
 	];
 

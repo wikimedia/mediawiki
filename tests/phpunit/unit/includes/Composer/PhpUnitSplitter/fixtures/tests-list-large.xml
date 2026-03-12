@@ -1740,8 +1740,6 @@
  </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\FlaggedRevs\Test\FlaggedRevsHooksTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="FlaggedRevsLibraryTest">
  </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\FlaggedRevs\Tests\Integration\FlaggedRevsStatsTest">
@@ -2440,8 +2438,6 @@
  </testCaseClass>
  <testCaseClass name="JsonConfig\Tests\JCLoaderTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="JsonConfig\Tests\JCLuaLibraryTest">
  </testCaseClass>
  <testCaseClass name="JsonConfig\Tests\JCMapDataContentTest">
@@ -2906,11 +2902,7 @@
  </testCaseClass>
  <testCaseClass name="ProofreadPage\ProofreadPageTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="ProofreadPage\Scribunto\IndexAndPageLibraryTest">
- </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
  </testCaseClass>
  <testCaseClass name="ProofreadPage\Scribunto\ProofreadPageLibraryTest">
  </testCaseClass>
@@ -2934,59 +2926,33 @@
  </testCaseClass>
  <testCaseClass name="PropertySuggester\SuggesterParamsParserTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\HashLibraryTest">
- </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
  </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\HtmlLibraryTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LanguageLibraryTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LibraryUtilTest">
- </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
  </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaCommonTest">
  </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEnvironmentComparisonTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\MessageLibraryTest">
- </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
  </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\SiteLibraryTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\TextLibraryTest">
- </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
  </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\TitleLibraryTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\UriLibraryTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\UstringLibraryPureLuaTest">
- </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
  </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\UstringLibraryTest">
  </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaSandbox\SandboxInterpreterTest">
- </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
  </testCaseClass>
  <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaStandalone\StandaloneInterpreterTest">
  </testCaseClass>
@@ -3668,19 +3634,11 @@
  </testCaseClass>
  <testCaseClass name="Wikibase\Lexeme\Tests\MediaWiki\Rdf\LexemeStubRdfBuilderTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="Wikibase\Lexeme\Tests\MediaWiki\Scribunto\WikibaseLexemeEntityFormLibraryTest">
- </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
  </testCaseClass>
  <testCaseClass name="Wikibase\Lexeme\Tests\MediaWiki\Scribunto\WikibaseLexemeEntityLexemeLibraryTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="Wikibase\Lexeme\Tests\MediaWiki\Scribunto\WikibaseLexemeEntitySenseLibraryTest">
- </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
  </testCaseClass>
  <testCaseClass name="Wikibase\Lexeme\Tests\MediaWiki\Scribunto\WikibaseLexemeLibraryTest">
  </testCaseClass>
@@ -3833,8 +3791,6 @@
  <testCaseClass name="Wikibase\MediaInfo\Tests\MediaWiki\Content\MediaInfoHandlerTest">
  </testCaseClass>
  <testCaseClass name="Wikibase\MediaInfo\Tests\MediaWiki\Content\MissingMediaInfoHandlerTest">
- </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
  </testCaseClass>
  <testCaseClass name="Wikibase\MediaInfo\Tests\MediaWiki\DataAccess\Scribunto\WikibaseMediaInfoEntityLibraryTest">
  </testCaseClass>
@@ -6216,27 +6172,15 @@
  </testCaseClass>
  <testCaseClass name="Wikibase\Client\Tests\Integration\DataAccess\ParserFunctions\StatementsParserFunctionIntegrationTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="Wikibase\Client\Tests\Integration\DataAccess\Scribunto\WikibaseEntityLibraryTest">
- </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
  </testCaseClass>
  <testCaseClass name="Wikibase\Client\Tests\Integration\DataAccess\Scribunto\WikibaseLibraryInProcessEntityCacheTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="Wikibase\Client\Tests\Integration\DataAccess\Scribunto\WikibaseLibraryNoArbitraryAccessTest">
- </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
  </testCaseClass>
  <testCaseClass name="Wikibase\Client\Tests\Integration\DataAccess\Scribunto\WikibaseLibraryNoLinkedEntityTest">
  </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
- </testCaseClass>
  <testCaseClass name="Wikibase\Client\Tests\Integration\DataAccess\Scribunto\WikibaseLibraryTest">
- </testCaseClass>
- <testCaseClass name="MediaWiki\Extension\Scribunto\Tests\Engines\LuaCommon\LuaEngineTestSkip">
  </testCaseClass>
  <testCaseClass name="Wikibase\Client\Tests\Integration\DataAccess\Scribunto\WikibaseStatsTest">
  </testCaseClass>
