@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Catrope",
 			"GerardM",
 			"HanV",
 			"Hex",
@@ -302,6 +303,7 @@
 	"listgrouprights-restrictedgroups-memberconditions": "Voorwaarden voor leden:",
 	"listgrouprights-restrictedgroups-updaterconditions": "Voorwaarden waaraan gebruikers moeten voldoen om voor deze groep te kwalificeren:",
 	"listgrouprights-restrictedgroups-bypassable": "Gebruikers die het recht \"$1\" ($2) hebben, kunnen toegang tot deze groep verlenen zonder dat een nieuw lid aan de bovenstaande voorwaarden hoeft te voldoen.",
+	"listgrouprights-restrictedgroups-autodemotion": "Gebruikers die niet meer aan de bovenstaande voorwaarden voldoen, worden automatisch uit deze groep verwijderd.",
 	"listgrouprights-restrictedgroups-op-and": "Moet aan alle volgende voorwaarden voldoen: $1",
 	"listgrouprights-restrictedgroups-op-or": "Moet aan ten minste één van de volgende voorwaarden voldoen: $1",
 	"listgrouprights-restrictedgroups-op-xor": "Moet aan precies één van de volgende voorwaarden voldoen: $1",

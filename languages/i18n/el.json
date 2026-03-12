@@ -3809,7 +3809,7 @@
 	"newpages-showhide-registered": "$1 εγγεγραμμένοι χρήστες",
 	"restsandbox": "REST Sandbox",
 	"restsandbox-text": "Χρησιμοποιήστε αυτήν τη σελίδα για να πειραματιστείτε με τα REST API του MediaWiki. Οι κλήσεις API που πραγματοποιούνται μέσω της διεπαφής sandbox θα αλληλεπιδρούν με το περιεχόμενο του ζωντανού wiki και ενδέχεται να τροποποιήσουν το wiki. Ανατρέξτε στην [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API τεκμηρίωση του API] για περισσότερες λεπτομέρειες σχετικά με τη χρήση του API.",
-	"restsandbox-disclaimer": "Έχετε σχόλια σχετικά με αυτό το sandbox; Παρακαλούμε αφήστε τα [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox εδώ].<br />Σημείωση: Το περιβάλλον χρήστη και τα στοιχεία πλοήγησης του sandbox δεν υποστηρίζουν ακόμη τη μετάφραση.<br />",
+	"restsandbox-disclaimer": "Έχετε σχόλια σχετικά με αυτό το sandbox; Παρακαλούμε αφήστε τα [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox εδώ].<br />Σημείωση: Το περιβάλλον χρήστη και τα στοιχεία πλοήγησης του sandbox δεν υποστηρίζουν ακόμη τη μετάφραση.",
 	"restsandbox-select-api": "Επιλέξτε το API για εξερεύνηση.",
 	"restsandbox-no-specs-configured": "Δεν διαμορφώθηκαν API REST για εξερεύνηση. Χρησιμοποιήστε τη ρύθμιση RestSandboxSpecs.",
 	"restsandbox-no-such-api": "Η παράμετρος API που δώσατε δεν υποστηρίζεται: $1",

@@ -3918,7 +3918,7 @@
 	"newpages-showhide-registered": "$1 zarejestrowanych użytkowników",
 	"restsandbox": "Środowisko testowe REST API",
 	"restsandbox-text": "Skorzystaj z tej strony, aby eksperymentować z REST API MediaWiki. Wywołania API wykonane z użyciem tej strony będą dotyczyć prawdziwej treści wiki i mogą ją zmodyfikować. Zobacz [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API dokumentację API], aby dowiedzieć się więcej.",
-	"restsandbox-disclaimer": "Masz opinię na temat tej strony? Pozostaw ją na [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox stronie dyskusji projektu].<br />Uwaga: interfejs użytkownika i elementy nawigacyjne nie obsługują jeszcze tłumaczenia.<br />",
+	"restsandbox-disclaimer": "Masz opinię na temat tej strony? Pozostaw ją na [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox stronie dyskusji projektu].<br />Uwaga: interfejs użytkownika i elementy nawigacyjne nie obsługują jeszcze tłumaczenia.",
 	"restsandbox-select-api": "Wybierz interfejs API do przetestowania",
 	"restsandbox-no-specs-configured": "Nie skonfigurowano żadnych REST API do przetestowania. Użyj ustawienia RestSandboxSpecs.",
 	"restsandbox-no-such-api": "Podany parametr API nie jest obsługiwany: $1",

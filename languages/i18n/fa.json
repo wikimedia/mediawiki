@@ -3920,7 +3920,7 @@
 	"newpages-showhide-registered": "$1 کاربران ثبت‌نام‌کرده",
 	"restsandbox": "محیط آزمایش REST",
 	"restsandbox-text": "از این صفحه برای آزمایش رابط‌های برنامه‌نویسی REST مدیاویکی استفاده کنید. فراخوانی‌های ای‌پی‌آی که از طریق رابط محیط آزمایشی انجام می‌شوند، با محتوای زندهٔ ویکی تعامل خواهند داشت و ممکن است ویکی را تغییر دهند. برای جزئیات بیش‌تر دربارهٔ نحوهٔ استفاده از ای‌پی‌آی، به [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API مستندات ای‌پی‌آی] مراجعه کنید.",
-	"restsandbox-disclaimer": "دربارهٔ این محیط آزمایشی بازخوردی دارید؟ لطفاً آن را [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox اینجا] ثبت کنید.<br />یادداشت: رابط کاربری محیط آزمایشی و آیتم‌های ناوبری هنوز از ترجمه پشتیبانی نمی‌کنند.<br />",
+	"restsandbox-disclaimer": "دربارهٔ این محیط آزمایشی بازخوردی دارید؟ لطفاً آن را [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox اینجا] ثبت کنید.<br />یادداشت: رابط کاربری محیط آزمایشی و آیتم‌های ناوبری هنوز از ترجمه پشتیبانی نمی‌کنند.",
 	"restsandbox-select-api": "یک واسط برنامه‌نویسی کاربردی انتخاب کنید تا به کاوش آن بپردازید.",
 	"blockedtext-made-by": "این قطع دسترسی توسط $1 اعمال شده است.",
 	"blockedtext-reason-comment": "دلیل ارائه‌شده چنین است: <em>$1</em>",

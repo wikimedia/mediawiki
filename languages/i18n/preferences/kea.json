@@ -45,7 +45,7 @@
 	"tog-oldsig": "Bu sinatura atual:",
 	"yournick": "Sinatura nobu:",
 	"tog-fancysig": "Trata sinatura móda uikitestu (sin linki otumátiku pa bu pájina di uzuári)",
-	"prefs-help-signature": "Kumentáris na pájinas di kunbérsu debeba ser sinadu ku \"<nowiki>~~~~</nowiki>\", ki antan ta kunvertedu pa bu sinatura ku data i óra.",
+	"prefs-help-signature": "Tudu kumentári na pájinas di kunbérsu debeba ser sinadu ku \"<nowiki>~~~~</nowiki>\", ki antan ta kunverte pa bu sinatura ku data i óra.",
 	"prefs-signature-invalid-new": "Bu sinatura atual é nbálidu. Nbóra bu podi kuntinua ta uza-l, bu ka ta podi altera-l ti ki bu kuriji éru ki el tene.",
 	"prefs-signature-highlight-error": "Izibi lukalizason di éru",
 	"badsig": "Sinatura brutu nbálidu.\nBirifika itikétas HTML.",

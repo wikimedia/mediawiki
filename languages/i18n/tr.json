@@ -3923,7 +3923,7 @@
 	"newpages-showhide-registered": "Kayıtlı Kullanıcılarını $1",
 	"restsandbox": "REST Deneme Tahtası",
 	"restsandbox-text": "MediaWiki REST API'lerini denemek için bu sayfayı kullanın. Deneme tahtası arayüzü üzerinden yapılan API çağrıları canlı viki içeriğiyle etkileşime girecektir ve vikiyi değiştirebilir. API kullanımı hakkında daha fazla ayrıntı için [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API API belgelerine] bakın.",
-	"restsandbox-disclaimer": "Bu deneme tahtası hakkında geri bildiriminiz mi var? Lütfen [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox buraya] bırakın.<br /> Not: deneme tahtası kullanıcı arayüzü ve gezinme ögeleri henüz çeviriyi desteklemiyor.<br />",
+	"restsandbox-disclaimer": "Bu deneme tahtası hakkında geri bildiriminiz mi var? Lütfen [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox buraya] bırakın.<br /> Not: deneme tahtası kullanıcı arayüzü ve gezinme ögeleri henüz çeviriyi desteklemiyor.",
 	"restsandbox-select-api": "Keşfedilecek API'yi seçin.",
 	"restsandbox-no-specs-configured": "Keşif için hiçbir REST API'si yapılandırılmadı. RestSandboxSpecs ayarını kullanın.",
 	"restsandbox-no-such-api": "Belirtilen API değişkeni desteklenmiyor: $1",

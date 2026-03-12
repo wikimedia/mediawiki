@@ -3756,7 +3756,7 @@
 	"newpages-showhide-registered": "$1 registrovanyh koristnikov",
 	"restsandbox": "REST-pěskovišče",
 	"restsandbox-text": "Koristajte tutu stranicu za eksperimenty s REST API MediaWiki. Pozovy API sdělane crěz pěskovišče budut vzajemodějati s aktivnym sodržanjem viki i mogut izměniti viki. Podrobnosti odnosno koristanja API vy najdete v [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API API dokumentaciji].",
-	"restsandbox-disclaimer": "Imajete li mněnje o tutom pěskovišču? Prosimo, napišite nam [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox tu].<br />Primětka: koristničsky interfejs i navigacijne elementy pěskovišča ješče ne poddrživajut prěvodženje.<br />",
+	"restsandbox-disclaimer": "Imajete li mněnje o tutom pěskovišču? Prosimo, napišite nam [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox tu].<br />Primětka: koristničsky interfejs i navigacijne elementy pěskovišča ješče ne poddrživajut prěvodženje.",
 	"restsandbox-select-api": "Izberite API za izslědovanje.",
 	"restsandbox-no-specs-configured": "Nemaje konfigurovanyh REST API za izslědovanje. Upotrěbite nastavjenje RestSandboxSpecs.",
 	"restsandbox-no-such-api": "Dany API-parametr ne poddrživaje se: $1",

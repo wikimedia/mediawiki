@@ -4043,7 +4043,7 @@
 	"newpages-showhide-registered": "$1 usuarios registrados",
 	"restsandbox": "Zona de pruebas REST",
 	"restsandbox-text": "Usa esta página para experimentar con las API REST de MediaWiki. Las llamadas API hechas desde la zona de pruebas interactúan con contenido activo y podrían modificar el contenido de la wiki. Dirígete a [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API API documentation] para obtener más información sobre el uso de las API.",
-	"restsandbox-disclaimer": "¿Tienes comentarios sobre esta zona de pruebas? Envíalos [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox aquí].<br />Nota: la interfaz de usuario de la zona de pruebas y los elementos de navegación todavía no se pueden traducir.<br />",
+	"restsandbox-disclaimer": "¿Tienes comentarios sobre esta zona de pruebas? Envíalos [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox aquí].<br />Nota: la interfaz de usuario de la zona de pruebas y los elementos de navegación todavía no se pueden traducir.",
 	"restsandbox-select-api": "Seleccione la API a explorar.",
 	"restsandbox-no-specs-configured": "No se han configurado APIs REST para la exploración. Utiliza la configuración RestSandboxSpecs.",
 	"restsandbox-no-such-api": "El parámetro API indicado no es compatible: $1",

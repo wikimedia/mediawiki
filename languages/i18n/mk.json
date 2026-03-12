@@ -3855,7 +3855,7 @@
 	"newpages-showhide-registered": "$1 најавени корисници",
 	"restsandbox": "Песочник REST",
 	"restsandbox-text": "Оваа страница дава срочувач на барања за приложниците REST. Имајте на ум дека повикувањата на приложниците ќе опходуваат со тековно видлива викисодржина.\n\nОваа страница служи за експериментирање со приложниците RES на МедијаВики. Повикувањата на приложниците направени преку песочничкиот посредникот опходуваат со тековна викисодржина и може да го изменат викито. Поподробно за употребата ќе најдете во [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API API документацијата].",
-	"restsandbox-disclaimer": "Имате мислење за песочников? Искажете се [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox тука].<br />Напомена: посредникот и прегледникот на песочникот сѐ уште не поддржуваат преведување.<br />",
+	"restsandbox-disclaimer": "Имате мислење за песочников? Искажете се [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox тука].<br />Напомена: посредникот и прегледникот на песочникот сѐ уште не поддржуваат преведување.",
 	"restsandbox-select-api": "Изберете кој приложник да го истражите.",
 	"restsandbox-no-specs-configured": "Нема наместено ниеден приложник REST за истражување. Користете ја поставката RestSandboxSpecs.",
 	"restsandbox-no-such-api": "Дадениот приложнички параметар не е поддржан: $1",

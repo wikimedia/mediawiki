@@ -1781,6 +1781,8 @@
 	"watchlistlabels-list-wrapper": "[[Special:WatchlistLabels|Etiketten]]: $1",
 	"watchlistlabels-watchaction-label": "Iwwerwaachungslëschtenetiketten:",
 	"watchlistlabels-watchaction-success": "Et {{PLURAL:$1|gouf|goufe(n)}} $1 [[$2|{{PLURAL:$1|Etikett|Etiketten}}]] zougewisen.",
+	"watchlistlabels-editpage-label": "Iwwerwaachungslëschtenetiketten:",
+	"watchlistlabels-editpage-placeholder": "Iwwerwaachungslëschtenetiketten auswielen",
 	"watchlist-filters-labels-title": "Etiketten",
 	"watchlist-filters-labels-list-title": "Iwwerwaachungslëschtenetiketten",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>net</strong> =$1",

@@ -3949,7 +3949,7 @@
 	"newpages-showhide-registered": "$1 المستخدمين المسجلين",
 	"restsandbox": "ملعب رست",
 	"restsandbox-text": "استخدم هذه الصفحة لتجربة واجهات برمجة تطبيقات REST في ميدياويكي. ستتفاعل استدعاءات واجهة برمجة التطبيقات التي تُجرى عبر واجهة Sandbox مع محتوى الويكي المباشر وقد تُعدّله. راجع [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API API documentation] لمزيد من التفاصيل حول استخدام واجهة برمجة التطبيقات.",
-	"restsandbox-disclaimer": "هل لديك أي ملاحظات حول هذه البيئة التجريبية؟ يُرجى تركها هنا [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox].<br /> ملاحظة: لا تدعم عناصر واجهة المستخدم والتنقل الخاصة بصندوق الحماية الترجمة حتى الآن.<br />",
+	"restsandbox-disclaimer": "هل لديك أي ملاحظات حول هذه البيئة التجريبية؟ يُرجى تركها هنا [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox].<br /> ملاحظة: لا تدعم عناصر واجهة المستخدم والتنقل الخاصة بصندوق الحماية الترجمة حتى الآن.",
 	"restsandbox-select-api": "اختر الAPI للتصفح.",
 	"restsandbox-no-specs-configured": "لم يتم تكوين واجهات برمجة تطبيقات REST للاستكشاف. استخدم إعداد RestSandboxSpecs.",
 	"restsandbox-no-such-api": "معلمة API المحددة غير مدعومة: $1",

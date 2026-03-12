@@ -3892,7 +3892,7 @@
 	"newpages-showhide-registered": "$1 thành viên có tài khoản",
 	"restsandbox": "Chỗ thử REST",
 	"restsandbox-text": "Sử dụng trang này để thử nghiệm REST API của MediaWiki. Các lời gọi API được thực hiện thông qua chỗ thử này sẽ tương tác với nội dung trực tiếp của wiki và có thể sửa đổi wiki. Tham khảo [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API API tài liệu] để biết thêm chi tiết về việc sử dụng API.",
-	"restsandbox-disclaimer": "Bạn có phản hồi về chỗ thử này? Hãy để lại tại [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox đây].<br />Lưu ý: giao diện chỗ thử và các mục điều hướng hiện chưa hỗ trợ việc dịch.<br />",
+	"restsandbox-disclaimer": "Bạn có phản hồi về chỗ thử này? Hãy để lại tại [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox đây].<br />Lưu ý: giao diện chỗ thử và các mục điều hướng hiện chưa hỗ trợ việc dịch.",
 	"restsandbox-select-api": "Chọn API để khám phá.",
 	"restsandbox-no-specs-configured": "Không có REST API nào được cấu hình để khám phá. Sử dụng cài đặt RestSandboxSpecs.",
 	"restsandbox-no-such-api": "Tham số API đã cho không được hỗ trợ: $1",

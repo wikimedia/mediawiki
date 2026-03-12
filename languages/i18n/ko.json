@@ -3853,7 +3853,7 @@
 	"newpages-showhide-registered": "등록된 사용자 $1",
 	"restsandbox": "REST 연습장",
 	"restsandbox-text": "이 문서를 사용하여 MediaWiki REST API를 실험해 보세요. 샌드박스 인터페이스를 통해 이루어진 API 호출은 라이브 위키 콘텐츠와 상호 작용하며 위키를 수정할 수도 있습니다. API 사용에 대한 자세한 내용은 [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API API 설명서]를 참조하세요.",
-	"restsandbox-disclaimer": "이 샌드박스에 대한 피드백이 있으신가요? [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox 여기]에 남겨주세요.<br /> 참고: 샌드박스 UI와 둘러보기 항목은 아직 번역을 지원하지 않습니다.<br />",
+	"restsandbox-disclaimer": "이 샌드박스에 대한 피드백이 있으신가요? [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox 여기]에 남겨주세요.<br /> 참고: 샌드박스 UI와 둘러보기 항목은 아직 번역을 지원하지 않습니다.",
 	"restsandbox-select-api": "둘러볼 API를 선택하십시오.",
 	"restsandbox-no-specs-configured": "REST API가 탐색을 위해 구성되지 않았습니다. RestSandboxSpecs 설정을 사용하십시오.",
 	"restsandbox-no-such-api": "지정된 API 변수는 지원되지 않습니다: $1",

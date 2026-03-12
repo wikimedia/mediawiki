@@ -3910,7 +3910,7 @@
 	"newpages-showhide-registered": "$1 pengguna terdaftar",
 	"restsandbox": "Bak pasir REST",
 	"restsandbox-text": "Gunakan halaman ini untuk bereksperimen dengan MediaWiki REST API. Panggilan API yang dilakukan melalui antarmuka bak pasir akan berinteraksi dengan konten wiki langsung dan dapat mengubah wiki. Lihat [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API dokumentasi API] untuk informasi lebih lanjut tentang penggunaan API.",
-	"restsandbox-disclaimer": "Punya masukan tentang bak pasir ini? Silakan tinggalkan di sini [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox].<br />Catatan: UI kotak pasir dan butir navigasi belum mendukung penerjemahan.<br />",
+	"restsandbox-disclaimer": "Punya masukan tentang bak pasir ini? Silakan tinggalkan di sini [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox].<br />Catatan: UI kotak pasir dan butir navigasi belum mendukung penerjemahan.",
 	"restsandbox-select-api": "Pilih API untuk dijelajahi.",
 	"restsandbox-no-specs-configured": "Tiada REST API yang diatur untuk penjelajahan. Gunakan pengaturan RestSandboxSpecs.",
 	"restsandbox-no-such-api": "Parameter API yang diberikan tidak didukung: $1",

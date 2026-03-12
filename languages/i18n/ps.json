@@ -3039,7 +3039,7 @@
 	"newpages-showhide-registered": "$1 نوم‌ليکلي کارنان",
 	"restsandbox": "ازمون‌مخ بيااوڼل",
 	"restsandbox-text": "د مېډياويکي بيااوڼنې ای‌پي‌آی‌گانو سره د ازمېښت لپاره دا مخ وکاروئ. د ازمون‌مخ مخبڼې له لارې ترسره شوې ای‌پي‌آی زنگونه به د ژوندۍ ويکي منځپانگې سره تعامل وکړي او ښايي ويکي بدل کړي. د ای‌پي‌ای کارولو اړوند نور سپيناوي لپاره [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API ای‌پي‌آی لاسوند] وگورئ.",
-	"restsandbox-disclaimer": "د دې ازمون‌مخ اړوند غبرگون لرئ؟ مهرباني وکړئ [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox دلته ] يې پرېږدئ. <br />يادونه: ازمون‌مخ کارن‌مخبڼه او چلندو توکي لاتراوسه د ژباړې ملاتړ نه کوي.<br />",
+	"restsandbox-disclaimer": "د دې ازمون‌مخ اړوند غبرگون لرئ؟ مهرباني وکړئ [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox دلته ] يې پرېږدئ. <br />يادونه: ازمون‌مخ کارن‌مخبڼه او چلندو توکي لاتراوسه د ژباړې ملاتړ نه کوي.",
 	"restsandbox-select-api": "د سپړلو لپاره ای‌پي‌ای غوره کړئ.",
 	"blockedtext-made-by": "بنديز د $1 له خوا شوی.",
 	"blockedtext-reason-comment": "لامل يې: <em>$1</em> ورکړی.",

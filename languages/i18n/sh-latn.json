@@ -3795,7 +3795,7 @@
 	"newpages-showhide-registered": "$1 registrirane korisnike",
 	"restsandbox": "REST igralište",
 	"restsandbox-text": "Na ovoj stranici možete eksperimentirati s MediaWiki REST API-jima. Pozivi API-ju, poslani putem interfejsa igrališta, stupaju u interakciju sa stvarnim sadržajem wikija i mogu ga izmijeniti. Pogledajte [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API dokumentaciju API-ja] za više informacija o njegovoj upotrebi.",
-	"restsandbox-disclaimer": "Imate povratne informacije o ovom igralištu? Ostavite ih [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox ovdje].<br />Napomena: korisnički interfejs i navigacijske stavke igrališta još ne podržavaju prijevode.<br />",
+	"restsandbox-disclaimer": "Imate povratne informacije o ovom igralištu? Ostavite ih [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox ovdje].<br />Napomena: korisnički interfejs i navigacijske stavke igrališta još ne podržavaju prijevode.",
 	"restsandbox-select-api": "Izaberite API za istraživanje.",
 	"restsandbox-no-specs-configured": "Nijedan REST API nije konfiguriran za pregledavanje. Koristite postavku RestSandboxSpecs.",
 	"restsandbox-no-such-api": "Zadani parametar API-ja nije podržan: $1",

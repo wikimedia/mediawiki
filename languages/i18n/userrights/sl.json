@@ -297,6 +297,7 @@
 	"listgrouprights-restrictedgroups-memberconditions": "Pogoji za člane:",
 	"listgrouprights-restrictedgroups-updaterconditions": "Pogoji za uporabnike, ki dodelijo to skupino:",
 	"listgrouprights-restrictedgroups-bypassable": "Uporabniki, ki imajo pravico »$1« ($2), lahko tej skupini podelijo dovoljenje, tako da zaobidejo zgornje pogoje.",
+	"listgrouprights-restrictedgroups-autodemotion": "Uporabniki, ki ne izpolnjujejo več zgornjih pogojev, bodo samodejno odstranjeni iz te skupine.",
 	"listgrouprights-restrictedgroups-op-and": "Izpolnjevati mora vse naslednje: $1",
 	"listgrouprights-restrictedgroups-op-or": "Izpolnjevati mora vsaj eno od naslednjega: $1",
 	"listgrouprights-restrictedgroups-op-xor": "Izpolnjevati mora natanko eno od naslednjega: $1",
