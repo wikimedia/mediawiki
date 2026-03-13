@@ -8,7 +8,6 @@
 namespace MediaWiki\Content;
 
 use LogicException;
-use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
@@ -55,11 +54,11 @@ abstract class AbstractContent implements Content, JsonCodecable {
 	 *
 	 * @since 1.21
 	 * @param string $modelId The model to check
-	 * @throws MWException If the provided model ID differs from this Content object
+	 * @throws UnexpectedContentModelException If the provided model ID differs from this Content object
 	 */
 	protected function checkModelID( $modelId ) {
 		if ( $modelId !== $this->model_id ) {
-			throw new MWException(
+			throw new UnexpectedContentModelException(
 				"Bad content model: expected {$this->model_id} but got $modelId."
 			);
 		}

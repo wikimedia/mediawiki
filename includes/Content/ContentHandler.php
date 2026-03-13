@@ -309,11 +309,11 @@ abstract class ContentHandler {
 	/**
 	 * @since 1.21
 	 * @param string $model_id The model to check
-	 * @throws MWException If the provided model ID differs from this ContentHandler
+	 * @throws UnexpectedContentModelException If the provided model ID differs from this ContentHandler
 	 */
 	protected function checkModelID( $model_id ) {
 		if ( $model_id !== $this->mModelID ) {
-			throw new MWException( "Bad content model: " .
+			throw new UnexpectedContentModelException( "Bad content model: " .
 				"expected {$this->mModelID} " .
 				"but got $model_id." );
 		}
@@ -1059,7 +1059,7 @@ abstract class ContentHandler {
 				// doing that will be confusing.
 				$this->checkModelID( $undoAfterContent->getModel() );
 			}
-		} catch ( MWException ) {
+		} catch ( UnexpectedContentModelException ) {
 			// If the revisions have different content models
 			// just return false
 			return false;

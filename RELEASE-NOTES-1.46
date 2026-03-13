@@ -322,6 +322,8 @@ because of Phabricator reports.
   if you need form fields that are not supported by Codex yet.
 * The VFormHTMLForm class and the HTMLFormField::getVForm() method
   have been removed.
+* ContentHandler::checkModelID() and AbstractContent::checkModelID() now
+  throw UnexpectedContentModelException instead of deprecated MWException.
 * …
 
 === Deprecations in 1.46 ===

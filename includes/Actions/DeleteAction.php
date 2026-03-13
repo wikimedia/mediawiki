@@ -647,8 +647,9 @@ class DeleteAction extends FormAction {
 		} catch ( Exception $e ) {
 			# if a page is horribly broken, we still want to be able to
 			# delete it. So be lenient about errors here.
-			# For example, WMF logs show MWException thrown from
+			# For example, WMF logs show UnexpectedContentModelException thrown from
 			# ContentHandler::checkModelID().
+			# TODO: Make this `catch` narrower if possible
 			MWExceptionHandler::logException( $e );
 			return '';
 		}

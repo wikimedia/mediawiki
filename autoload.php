@@ -1249,6 +1249,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Content\\Transform\\PreSaveTransformParamsValue' => __DIR__ . '/includes/Content/Transform/PreSaveTransformParamsValue.php',
 	'MediaWiki\\Content\\Transform\\PreloadTransformParams' => __DIR__ . '/includes/Content/Transform/PreloadTransformParams.php',
 	'MediaWiki\\Content\\Transform\\PreloadTransformParamsValue' => __DIR__ . '/includes/Content/Transform/PreloadTransformParamsValue.php',
+	'MediaWiki\\Content\\UnexpectedContentModelException' => __DIR__ . '/includes/Content/UnexpectedContentModelException.php',
 	'MediaWiki\\Content\\UnknownContentModelException' => __DIR__ . '/includes/Content/UnknownContentModelException.php',
 	'MediaWiki\\Content\\UnsupportedContentFormatException' => __DIR__ . '/includes/Content/UnsupportedContentFormatException.php',
 	'MediaWiki\\Content\\ValidationParams' => __DIR__ . '/includes/Content/ValidationParams.php',
