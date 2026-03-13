@@ -12,7 +12,6 @@ unset( $cfg['minimum_target_php_version'] );
 // TODO Fix these issues, suppressed to allow upgrading
 $cfg['suppress_issue_types'][] = 'PhanUnusedPrivateMethodParameter';
 $cfg['suppress_issue_types'][] = 'PhanThrowTypeAbsent';
-$cfg['suppress_issue_types'][] = 'PhanThrowTypeMismatch';
 
 $cfg['file_list'] = array_merge(
 	$cfg['file_list'],

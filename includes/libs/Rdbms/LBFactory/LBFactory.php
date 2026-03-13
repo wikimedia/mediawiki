@@ -331,6 +331,8 @@ abstract class LBFactory implements ILBFactory {
 		$this->trxRoundStage = self::ROUND_CURSORY;
 		// Throw any last post-commit callback error
 		if ( $e instanceof Exception ) {
+			// FIXME: The possible checked exception types should be better documented
+			// @phan-suppress-next-line PhanThrowTypeMismatch
 			throw $e;
 		}
 

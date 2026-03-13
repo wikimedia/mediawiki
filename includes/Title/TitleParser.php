@@ -39,7 +39,7 @@ class TitleParser {
 	 * unit tests (see T281935). Until that changes, we use this helper callback
 	 * that can be overridden in unit tests to return a mock instead.
 	 *
-	 * @var callable
+	 * @var callable(string,?string=,array=):MalformedTitleException
 	 */
 	private $createMalformedTitleException;
 
@@ -74,7 +74,7 @@ class TitleParser {
 
 	/**
 	 * @internal
-	 * @param callable $callback
+	 * @param callable(string,?string=,array=):MalformedTitleException $callback
 	 */
 	public function overrideCreateMalformedTitleExceptionCallback( callable $callback ) {
 		// @codeCoverageIgnoreStart
