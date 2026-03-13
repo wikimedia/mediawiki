@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Linker\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -22,3 +22,6 @@ interface LinkerMakeExternalImageHook {
 	 */
 	public function onLinkerMakeExternalImage( &$url, &$alt, &$img );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LinkerMakeExternalImageHook::class, 'MediaWiki\\Hook\\LinkerMakeExternalImageHook' );

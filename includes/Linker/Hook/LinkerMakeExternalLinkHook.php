@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Linker\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -26,3 +26,6 @@ interface LinkerMakeExternalLinkHook {
 		$linkType
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LinkerMakeExternalLinkHook::class, 'MediaWiki\\Hook\\LinkerMakeExternalLinkHook' );

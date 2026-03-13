@@ -538,6 +538,10 @@ because of Phabricator reports.
     - LanguageZh
     - LanguageHsb
     - LanguageGan
+  - Linker related hooks: MediaWiki\Hook => MediaWiki\Linker\Hook
+    - LinkerMakeExternalImageHook
+    - LinkerMakeExternalLinkHook
+    - LinkerMakeMediaLinkFileHook
   - MediaWiki\ObjectCache:
     - ObjectCache
     - ObjectCacheFactory

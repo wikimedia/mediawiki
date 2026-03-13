@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Linker\Hook;
 
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Title\Title;
@@ -29,3 +29,6 @@ interface LinkerMakeMediaLinkFileHook {
 		&$ret
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LinkerMakeMediaLinkFileHook::class, 'MediaWiki\\Hook\\LinkerMakeMediaLinkFileHook' );
