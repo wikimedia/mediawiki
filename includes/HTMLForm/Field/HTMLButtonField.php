@@ -4,7 +4,6 @@ namespace MediaWiki\HTMLForm\Field;
 
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLFormField;
-use MediaWiki\HTMLForm\VFormHTMLForm;
 use MediaWiki\Message\Message;
 
 /**
@@ -79,11 +78,6 @@ class HTMLButtonField extends HTMLFormField {
 	public function getInputHTML( $value ) {
 		$flags = '';
 		$prefix = 'mw-htmlform-';
-		if ( $this->mParent instanceof VFormHTMLForm ) {
-			$prefix = 'mw-ui-';
-			// add mw-ui-button separately, so the descriptor doesn't need to set it
-			$flags .= ' ' . $prefix . 'button';
-		}
 		foreach ( $this->mFlags as $flag ) {
 			$flags .= ' ' . $prefix . $flag;
 		}

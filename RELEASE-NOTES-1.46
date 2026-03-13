@@ -305,6 +305,11 @@ because of Phabricator reports.
     Instead, use UrlUtils::validAbsoluteProtocols().
   - wfUrlProtocols(), deprecated in 1.39, has been dropped. Instead,
     use UrlUtils::validProtocols().
+* The 'vform' HTMLForm display format, deprecated in 1.45, has been removed.
+  Use the 'codex' display format introduced in 1.41, or the 'ooui' format
+  if you need form fields that are not supported by Codex yet.
+* The VFormHTMLForm class and the HTMLFormField::getVForm() method
+  have been removed.
 * …
 
 === Deprecations in 1.46 ===

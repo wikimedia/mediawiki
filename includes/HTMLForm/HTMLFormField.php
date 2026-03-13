@@ -42,8 +42,6 @@ abstract class HTMLFormField {
 	protected $mID;
 	/** @var string */
 	protected $mClass = '';
-	/** @var string */
-	protected $mVFormClass = '';
 	/** @var string|false */
 	protected $mHelpClass = false;
 	/** @var mixed */
@@ -732,7 +730,6 @@ abstract class HTMLFormField {
 		$wrapperAttributes = [ 'class' => [
 			"mw-htmlform-field-$fieldType",
 			$this->mClass,
-			$this->mVFormClass,
 			$errorClass,
 		] ];
 		if ( $this->mCondState ) {
@@ -1017,23 +1014,6 @@ abstract class HTMLFormField {
 			$this->getLabelHtml() .
 			$this->getInputHTML( $value ) .
 			$this->getHelpTextHtmlRaw( $this->getHelpText() );
-	}
-
-	/**
-	 * Get the complete field for the input, including help text,
-	 * labels, and whatever. Fall back from 'vform' to 'div' when not overridden.
-	 *
-	 * @stable to override
-	 * @since 1.25
-	 * @deprecated since 1.45
-	 * @param string $value The value to set the input to.
-	 * @return string Complete HTML field.
-	 */
-	public function getVForm( $value ) {
-		wfDeprecated( __METHOD__, '1.45' );
-		// Ewwww
-		$this->mVFormClass = ' mw-ui-vform-field';
-		return $this->getDiv( $value );
 	}
 
 	/**

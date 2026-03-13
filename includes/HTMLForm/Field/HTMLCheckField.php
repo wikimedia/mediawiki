@@ -6,7 +6,6 @@ use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\HTMLForm\OOUIHTMLForm;
-use MediaWiki\HTMLForm\VFormHTMLForm;
 use MediaWiki\Request\WebRequest;
 
 /**
@@ -42,21 +41,10 @@ class HTMLCheckField extends HTMLFormField {
 			$attrLabel['title'] = $attr['title'];
 		}
 
-		$isVForm = $this->mParent instanceof VFormHTMLForm;
-
 		$chkDivider = "\u{00A0}";
 		$chkLabel = Html::element( 'input', $attr ) .
 			$chkDivider .
 			Html::rawElement( 'label', $attrLabel, $this->mLabel );
-
-		if ( $isVForm ) {
-			$chkLabelClass = 'mw-ui-checkbox';
-			$chkLabel = Html::rawElement(
-				'div',
-				[ 'class' => $chkLabelClass ],
-				$chkLabel
-			);
-		}
 
 		return $chkLabel;
 	}

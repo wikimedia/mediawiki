@@ -423,7 +423,6 @@ class HTMLForm extends ContextSource {
 	 * @var array
 	 */
 	protected $availableSubclassDisplayFormats = [
-		'vform', // deprecated since 1.45
 		'codex',
 		'ooui',
 	];
@@ -453,9 +452,6 @@ class HTMLForm extends ContextSource {
 		switch ( $displayFormat ) {
 			case 'codex':
 				return new CodexHTMLForm( $descriptor, $context, $messagePrefix );
-			case 'vform':
-				wfDeprecatedMsg( "'vform' HTMLForm display format is deprecated", '1.45' );
-				return new VFormHTMLForm( $descriptor, $context, $messagePrefix );
 			case 'ooui':
 				return new OOUIHTMLForm( $descriptor, $context, $messagePrefix );
 			default:
