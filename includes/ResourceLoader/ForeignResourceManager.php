@@ -474,7 +474,7 @@ class ForeignResourceManager {
 				$moduleCdx['purl'] = $module['purl'];
 			}
 			if ( $module['version'] ?? false ) {
-				$moduleCdx['version'] = $module['version'];
+				$moduleCdx['version'] = (string)$module['version'];
 			}
 			if ( $module['authors'] ?? false ) {
 				$moduleCdx['authors'] = array_map(
