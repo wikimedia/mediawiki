@@ -357,7 +357,7 @@ class EditPage implements IEditObject {
 
 	public ?string $contentFormat = null;
 
-	private ?array $changeTags = null;
+	private array $changeTags = [];
 
 	# Placeholders for text injection by hooks (must be HTML)
 	# extensions should take care to _append_ to the present value
@@ -404,7 +404,7 @@ class EditPage implements IEditObject {
 	/**
 	 * What the user submitted in the 'wpUnicodeCheck' field
 	 */
-	private ?string $unicodeCheck = null;
+	private string $unicodeCheck = '';
 
 	/** @var callable|null */
 	private $editConflictHelperFactory = null;
