@@ -1393,7 +1393,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * or 'new' for a new section.
 	 * @param Content $sectionContent New content of the section.
 	 * @param string $sectionTitle New section's subject, only if $section is "new".
-	 * @param string $edittime Revision timestamp or null to use the current revision.
+	 * @param string|null $edittime Revision timestamp or null to use the current revision.
 	 *
 	 * @return Content|null New complete article content, or null if error.
 	 *
