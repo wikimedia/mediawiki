@@ -22,7 +22,6 @@ use MediaWiki\Diff\DifferenceEngineSlotDiffRenderer;
 use MediaWiki\Diff\SlotDiffRenderer;
 use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
 use MediaWiki\Diff\TextSlotDiffRenderer;
-use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Language\ILanguageConverter;
@@ -41,6 +40,7 @@ use MediaWiki\Search\ParserOutputSearchDataExtractor;
 use MediaWiki\Search\SearchEngine;
 use MediaWiki\Search\SearchIndexField;
 use MediaWiki\Title\Title;
+use RuntimeException;
 use StatusValue;
 use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
@@ -1361,7 +1361,7 @@ abstract class ContentHandler {
 			$revRecord = $page->getRevisionRecord();
 			if ( $revRecord == null ) {
 				$text = $page->getTitle()->getPrefixedText();
-				throw new MWException(
+				throw new RuntimeException(
 					"No revision could be loaded for page: $text" );
 			}
 		}
