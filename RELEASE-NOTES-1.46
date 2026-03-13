@@ -300,6 +300,7 @@ because of Phabricator reports.
     since 1.43.
   - Parser::setCacheTime() no longer accepts -1 to mean "not cacheable".
     This has emitted deprecation warnings since 1.36.
+* ContentSerializationException no longer extends deprecated MWException.
 * wfMergeErrorArrays(), deprecated in 1.43, has been dropped.
 * Article::getRedirectHeaderHtml(), deprecated in 1.41, has been dropped.
   Instead, use LinkRenderer::makeRedirectHeader().

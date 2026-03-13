@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Content;
 
-use MediaWiki\Exception\MWException;
+use Exception;
 
 /**
  * Exception representing a failure to serialize or unserialize a content object.
@@ -10,7 +10,7 @@ use MediaWiki\Exception\MWException;
  * @newable
  * @ingroup Content
  */
-class ContentSerializationException extends MWException {
+class ContentSerializationException extends Exception {
 }
 
 /** @deprecated class alias since 1.44 */

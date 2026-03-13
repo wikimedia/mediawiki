@@ -6,7 +6,6 @@ use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logging\LogFormatterFactory;
@@ -207,7 +206,7 @@ class ContentModelChange {
 				$newContent = $newHandler->unserializeContent(
 					$latestContent->serialize()
 				);
-			} catch ( MWException ) {
+			} catch ( ContentSerializationException ) {
 				// Messages: changecontentmodel-cannot-convert,
 				// apierror-changecontentmodel-cannot-convert
 				return Status::newFatal(
