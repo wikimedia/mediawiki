@@ -155,7 +155,7 @@ class ImagePage extends Article {
 			$out->setPageTitle( $this->getTitle()->getPrefixedText() );
 			$this->getPage()->doViewUpdates(
 				$context->getAuthority(),
-				$this->getOldID()
+				$this->fetchRevisionRecord()
 			);
 		}
 

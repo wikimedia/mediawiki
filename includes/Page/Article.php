@@ -538,7 +538,7 @@ class Article implements Page {
 				wfDebug( __METHOD__ . ": done file cache" );
 				# tell wgOut that output is taken care of
 				$outputPage->disable();
-				$this->mPage->doViewUpdates( $authority, $oldid );
+				$this->mPage->doViewUpdates( $authority );
 
 				return;
 			}
@@ -583,7 +583,7 @@ class Article implements Page {
 		$outputPage->adaptCdnTTL( $this->mPage->getTimestamp(), 86_400 );
 
 		$this->showViewFooter();
-		$this->mPage->doViewUpdates( $authority, $oldid, $this->fetchRevisionRecord() );
+		$this->mPage->doViewUpdates( $authority, $this->fetchRevisionRecord() );
 
 		# Load the postEdit module if the user just saved this revision
 		# See also EditPage::setPostEditCookie
@@ -1144,9 +1144,7 @@ class Article implements Page {
 
 		// Run view updates for the newer revision being diffed (and shown
 		// below the diff if not diffOnly).
-		[ , $new ] = $de->mapDiffPrevNext( $oldid, $diff );
-		// New can be false, convert it to 0 - this conveniently means the latest revision
-		$this->mPage->doViewUpdates( $context->getAuthority(), (int)$new );
+		$this->mPage->doViewUpdates( $context->getAuthority(), $de->getNewRevision() );
 
 		// Add link to help page; see T321569
 		$context->getOutput()->addHelpLink( 'Help:Diff' );

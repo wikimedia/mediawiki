@@ -939,8 +939,9 @@ because of Phabricator reports.
 * The WatchedItemQueryServiceExtensions hook is deprecated and is no longer
   called. Use ApiQueryBaseBeforeQuery, ApiQueryBaseAfterQuery,
   ApiQueryBaseProcessRow and ApiQueryWatchlistExtractOutputData.
-* Passing oldid on WatchlistManager::clearTitleUserNotifications is deprecated
-  and emits notice, pass RevisionRecord instead.
+* Passing oldid to WatchlistManager::clearTitleUserNotifications
+  or WikiPage::doViewUpdates is deprecated and emits notice,
+  pass RevisionRecord instead.
 * ApiUpload::getDummyInstance was deprecated, subclasses of ApiUpload can use
   ApiUpload::getUploadImageInfo() instead.
 * The UserLinkRenderer service has been marked @internal and the

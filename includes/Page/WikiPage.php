@@ -1134,14 +1134,20 @@ class WikiPage implements Stringable, Page, PageRecord {
 	/**
 	 * Do standard deferred updates after page view (existing or missing page)
 	 * @param Authority $performer The viewing user
-	 * @param int $oldid Revision id being viewed; if not given or 0, latest revision is assumed
-	 * @param RevisionRecord|null $oldRev The RevisionRecord associated with $oldid.
+	 * @param RevisionRecord|null|int $oldRev The revision being viewed, or null if
+	 *   the latest revision is used. Passing integer for $oldid is deprecated since 1.46
+	 * @param RevisionRecord|null $oldRevDeprecated Deprecated since 1.46
 	 */
 	public function doViewUpdates(
 		Authority $performer,
-		$oldid = 0,
-		?RevisionRecord $oldRev = null
+		$oldRev = null,
+		$oldRevDeprecated = null
 	) {
+		if ( func_num_args() > 2 ) {
+			wfDeprecatedMsg( 'Passing $oldid to ' . __METHOD__ . ' is deprecated since 1.46.' );
+			$oldRev = $oldRevDeprecated;
+		}
+
 		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			return;
 		}
