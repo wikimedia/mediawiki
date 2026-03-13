@@ -1047,6 +1047,8 @@ because of Phabricator reports.
   - ContributionsSpecialPage
   - IncludableSpecialPage
   - UnlistedSpecialPage
+* Less mixin 'mediawiki.mixins.rotation.less' got deprecated.
+  Use standard CSS transform and animation instead.
 * …
 
 === Other changes in 1.46 ===
