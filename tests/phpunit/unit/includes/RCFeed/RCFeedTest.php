@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Unit\RCFeed;
 
 use InvalidArgumentException;
 use MediaWiki\RCFeed\RCFeed;
-use MediaWiki\RCFeed\RedisPubSubFeedEngine;
 use MediaWiki\RCFeed\UDPRCFeedEngine;
 use MediaWikiUnitTestCase;
 
@@ -13,47 +12,43 @@ use MediaWikiUnitTestCase;
  */
 class RCFeedTest extends MediaWikiUnitTestCase {
 
-	public function testFactoryClass() {
-		$feed = RCFeed::factory( [ 'class' => UDPRCFeedEngine::class ] );
-		$this->assertInstanceOf( UDPRCFeedEngine::class, $feed );
+	public function testFactoryEmptyClass() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'must have a class set' );
+		$feed = RCFeed::factory( [] );
 	}
 
-	public function testFactoryUriUdp() {
-		$feed = RCFeed::factory( [ 'uri' => 'udp://127.0.0.1:8000' ] );
-		$this->assertInstanceOf( UDPRCFeedEngine::class, $feed );
+	public function testFactoryInvalidSchema() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'Invalid RCFeed uri' );
+		$feed = RCFeed::factory( [
+			'class' => UDPRCFeedEngine::class,
+			'uri' => 'bogus',
+		] );
 	}
 
-	public function testFactoryUriRedis() {
-		$feed = RCFeed::factory( [ 'uri' => 'redis://127.0.0.1' ] );
-		$this->assertInstanceOf( RedisPubSubFeedEngine::class, $feed );
+	public function testFactoryUnknownClass() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'Unknown class' );
+
+		// Explicitly set the global configuration for testing
+		$feed = RCFeed::factory( [
+			'class' => Bogus::class,
+			'uri' => 'udp://localhost'
+		] );
 	}
 
 	public function testFactoryCustomUri() {
-		$mockClass = get_class( $this->createMock( RCFeed::class ) );
-		$GLOBALS['wgRCEngines'] = [ 'test' => $mockClass ];
-
-		$this->hideDeprecated( '$wgRCFeeds without class' );
-		$feed = RCFeed::factory( [ 'uri' => 'test://bogus' ] );
-		$this->assertInstanceOf( $mockClass, $feed );
+		$feed = RCFeed::factory( [
+			'class' => UDPRCFeedEngine::class,
+			'uri' => 'test://bogus',
+		] );
+		$this->assertInstanceOf( UDPRCFeedEngine::class, $feed );
 	}
 
 	public function testFactoryEmpty() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'must have a class set' );
 		$feed = RCFeed::factory( [] );
-	}
-
-	public function testFactoryCustomUriDeprecated() {
-		$this->expectDeprecationAndContinue( '/\$wgRCFeeds without class/' );
-		$this->expectException( InvalidArgumentException::class );
-		$feed = RCFeed::factory( [ 'uri' => 'test://bogus' ] );
-	}
-
-	public function testFactoryCustomUriUnknown() {
-		$this->hideDeprecated( '$wgRCFeeds without class' );
-		$this->expectException( InvalidArgumentException::class );
-		$this->expectExceptionMessage( 'Unknown RCFeed engine' );
-		$GLOBALS['wgRCEngines'] = [];
-		$feed = RCFeed::factory( [ 'uri' => 'test://bogus' ] );
 	}
 }

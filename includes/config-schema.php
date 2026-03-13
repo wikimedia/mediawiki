@@ -2060,10 +2060,6 @@ return [
 			],
 			'RCFeeds' => [
 			],
-			'RCEngines' => [
-				'redis' => 'MediaWiki\\RCFeed\\RedisPubSubFeedEngine',
-				'udp' => 'MediaWiki\\RCFeed\\UDPRCFeedEngine',
-			],
 			'RCWatchCategoryMembership' => false,
 			'UseRCPatrol' => true,
 			'StructuredChangeFiltersLiveUpdatePollingRate' => 3,
@@ -3147,7 +3143,6 @@ return [
 			'RCLinkLimits' => 'array',
 			'RCLinkDays' => 'array',
 			'RCFeeds' => 'object',
-			'RCEngines' => 'object',
 			'OverrideSiteFeed' => 'object',
 			'FeedClasses' => 'object',
 			'AdvertisedFeedTypes' => 'array',

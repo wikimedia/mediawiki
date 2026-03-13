@@ -3664,12 +3664,6 @@ class MainConfigNames {
 	public const RCFeeds = 'RCFeeds';
 
 	/**
-	 * Name constant for the RCEngines setting, for use with Config::get()
-	 * @see MainConfigSchema::RCEngines
-	 */
-	public const RCEngines = 'RCEngines';
-
-	/**
 	 * Name constant for the RCWatchCategoryMembership setting, for use with Config::get()
 	 * @see MainConfigSchema::RCWatchCategoryMembership
 	 */

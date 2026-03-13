@@ -6759,8 +6759,6 @@ config-schema:
             - 'omit_patrolled' -- Exclude patrolled edits from the feed. (default: false)
             FormattedRCFeed-specific options:
             - 'uri' -- [required] The address to which the messages are sent.
-              The uri scheme of this string will be looked up in $wgRCEngines
-              to determine which FormattedRCFeed class to use.
             - 'formatter' -- [required] The class (implementing RCFeedFormatter) which will
               produce the text to send. This can also be an object of the class.
               Formatters available by default: JSONRCFeedFormatter, XMLRCFeedFormatter,
@@ -6792,15 +6790,6 @@ config-schema:
                 'class' => ExampleRCFeed::class,
             ];
             ```
-            @since 1.22
-    RCEngines:
-        default:
-            redis: MediaWiki\RCFeed\RedisPubSubFeedEngine
-            udp: MediaWiki\RCFeed\UDPRCFeedEngine
-        type: object
-        description: |-
-            Used by RecentChange::getEngine to find the correct engine for a given URI scheme.
-            Keys are scheme names, values are names of FormattedRCFeed sub classes.
             @since 1.22
     RCWatchCategoryMembership:
         default: false

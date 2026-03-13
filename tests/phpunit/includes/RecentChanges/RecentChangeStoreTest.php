@@ -44,7 +44,6 @@ class RecentChangeStoreTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::UseRCPatrol => false,
 			MainConfigNames::UseNPPatrol => false,
 			MainConfigNames::RCFeeds => [],
-			MainConfigNames::RCEngines => [],
 		] );
 
 		$this->recentChangeStore = $this->getServiceContainer()->getRecentChangeStore();

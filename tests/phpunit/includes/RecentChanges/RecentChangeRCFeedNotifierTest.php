@@ -20,7 +20,6 @@ class RecentChangeRCFeedNotifierTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::UseRCPatrol => false,
 			MainConfigNames::UseNPPatrol => false,
 			MainConfigNames::RCFeeds => [],
-			MainConfigNames::RCEngines => [],
 		] );
 	}
 

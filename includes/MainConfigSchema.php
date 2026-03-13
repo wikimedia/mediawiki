@@ -75,8 +75,6 @@ use MediaWiki\Password\MWSaltedPassword;
 use MediaWiki\Password\PasswordPolicyChecks;
 use MediaWiki\Password\Pbkdf2PasswordUsingOpenSSL;
 use MediaWiki\Permissions\GrantsInfo;
-use MediaWiki\RCFeed\RedisPubSubFeedEngine;
-use MediaWiki\RCFeed\UDPRCFeedEngine;
 use MediaWiki\RecentChanges\RecentChangeNotifyJob;
 use MediaWiki\RecentChanges\RecentChangesUpdateJob;
 use MediaWiki\RenameUser\Job\RenameUserDerivedJob;
@@ -10803,8 +10801,6 @@ class MainConfigSchema {
 	 *
 	 * FormattedRCFeed-specific options:
 	 * - 'uri' -- [required] The address to which the messages are sent.
-	 *   The uri scheme of this string will be looked up in $wgRCEngines
-	 *   to determine which FormattedRCFeed class to use.
 	 * - 'formatter' -- [required] The class (implementing RCFeedFormatter) which will
 	 *   produce the text to send. This can also be an object of the class.
 	 *   Formatters available by default: JSONRCFeedFormatter, XMLRCFeedFormatter,
@@ -10847,21 +10843,6 @@ class MainConfigSchema {
 	 */
 	public const RCFeeds = [
 		'default' => [],
-		'type' => 'map',
-	];
-
-	/**
-	 * Used by RecentChange::getEngine to find the correct engine for a given URI scheme.
-	 *
-	 * Keys are scheme names, values are names of FormattedRCFeed sub classes.
-	 *
-	 * @since 1.22
-	 */
-	public const RCEngines = [
-		'default' => [
-			'redis' => RedisPubSubFeedEngine::class,
-			'udp' => UDPRCFeedEngine::class,
-		],
 		'type' => 'map',
 	];
 

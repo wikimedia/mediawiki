@@ -31,7 +31,6 @@ class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::DBname => 'example',
 			MainConfigNames::DBprefix => self::dbPrefix(),
 			MainConfigNames::RCFeeds => [],
-			MainConfigNames::RCEngines => [],
 		] );
 	}
 

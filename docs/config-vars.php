@@ -3649,12 +3649,6 @@ $wgRCLinkDays = null;
 $wgRCFeeds = null;
 
 /**
- * Config variable stub for the RCEngines setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::RCEngines
- */
-$wgRCEngines = null;
-
-/**
  * Config variable stub for the RCWatchCategoryMembership setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::RCWatchCategoryMembership
  */
