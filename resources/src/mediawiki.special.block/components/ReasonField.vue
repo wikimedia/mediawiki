@@ -123,6 +123,10 @@ module.exports = exports = defineComponent( {
 			}
 		}, { immediate: true } );
 
+		watch( () => props.expiry, () => {
+			setFieldsFromGiven( props.modelValue );
+		}, { immediate: true } );
+
 		watch(
 			computed( () => [ selected.value, other.value ] ),
 			emitReason
