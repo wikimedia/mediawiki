@@ -1960,6 +1960,7 @@
 	"watchlistfor2": "Von $1",
 	"nowatchlist": "Es befinden sich keine Einträge auf {{#FORMAL:der|Ihrer}} Beobachtungsliste.",
 	"nowatchlistnamespace": "Du hast keine Einträge in diesem Namensraum auf deiner Beobachtungsliste.",
+	"watchlistedit-noitemsfound": "Es wurden keine Elemente gefunden.",
 	"watchlistanontext": "{{#FORMAL:Melde dich|Melden Sie sich}} an, um {{#FORMAL:deine|Ihre}} Beobachtungsliste zu sehen oder Einträge auf ihr zu bearbeiten.",
 	"watchlistanontext-for-temp-user": "Bitte erstelle ein Konto, um Beobachtungslisten-Einträge anzusehen oder zu bearbeiten.",
 	"watchnologin": "{{#FORMAL:Du bist|Sie sind}} nicht angemeldet",

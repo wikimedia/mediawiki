@@ -322,6 +322,7 @@
 	"listgrouprights-namespaceprotection-header": "Namensraumbeschränkungen",
 	"listgrouprights-namespaceprotection-namespace": "Namensraum",
 	"listgrouprights-namespaceprotection-restrictedto": "Rechte, die dem Benutzer die Bearbeitung erlauben",
+	"restrictedgroups-autodemotion-log-reason": "Automatische Entfernung des Benutzers aus {{PLURAL:$2|einer eingeschränkten Gruppe|eingeschränkten Gruppen}}, für die {{GENDER:$1|er|sie}} nicht mehr berechtigt ist",
 	"listgrants": "Berechtigungen",
 	"listgrants-summary": "Es folgt eine Liste mit Berechtigungen mit ihrem verknüpften Zugriff auf Benutzerrechte. Benutzer können Anwendungen autorisieren, um ihr Benutzerkonto zu verwenden, jedoch mit beschränkten Berechtigungen basierend auf den Rechten, die der Benutzer der Anwendung gegeben hat. Eine Anwendung agiert im Namen eines Benutzers, die keine Rechte verwenden kann, die der Benutzer nicht hat.\nEs existieren [[{{MediaWiki:Listgrouprights-helppage}}|zusätzliche Informationen]] über einzelne Rechte.",
 	"listgrants-grant": "Berechtigung",
