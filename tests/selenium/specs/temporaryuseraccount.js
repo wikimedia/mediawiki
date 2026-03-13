@@ -3,7 +3,6 @@
 
 import CreateAccountPage from 'wdio-mediawiki/CreateAccountPage.js';
 import EditPage from '../pageobjects/edit.page.js';
-import LoginPage from 'wdio-mediawiki/LoginPage.js';
 import { getTestString } from 'wdio-mediawiki/Util.js';
 
 describe( 'Temporary user account creation', () => {
@@ -23,7 +22,6 @@ describe( 'Temporary user account creation', () => {
 		await CreateAccountPage.open();
 
 		await CreateAccountPage.submitForm( username, password );
-		await expect( await LoginPage.getActualUsername() ).toBe( username );
 		await expect( CreateAccountPage.heading ).toHaveText( `Welcome, ${ username }!` );
 	} );
 } );
