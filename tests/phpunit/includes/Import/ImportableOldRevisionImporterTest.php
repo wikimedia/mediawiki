@@ -1,8 +1,8 @@
 <?php
 
 use MediaWiki\Content\ContentHandler;
-use MediaWiki\Exception\MWContentSerializationException;
-use MediaWiki\Exception\MWUnknownContentModelException;
+use MediaWiki\Content\ContentSerializationException;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\Page\Event\PageCreatedEvent;
 use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Page\PageIdentity;
@@ -44,8 +44,8 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	 * @param Title $title
 	 *
 	 * @return WikiRevision
-	 * @throws MWContentSerializationException
-	 * @throws MWUnknownContentModelException
+	 * @throws ContentSerializationException
+	 * @throws UnknownContentModelException
 	 */
 	private function getWikiRevision( Title $title ): WikiRevision {
 		$revision = new WikiRevision();

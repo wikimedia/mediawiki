@@ -17,9 +17,9 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\TextContent;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Exception\MWException;
-use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\OldLocalFile;
 use MediaWiki\HookContainer\HookContainer;
@@ -471,7 +471,7 @@ class XmlDumpWriter {
 		try {
 			$contentHandler = $contentHandlerFactory->getContentHandler( $contentModel );
 
-		} catch ( MWUnknownContentModelException ) {
+		} catch ( UnknownContentModelException ) {
 			// A content model should not be removed, as this would cause old revisions
 			//   to fail to render.  If this does happen, let dumps keep going but warn.
 			//   To stop these warnings, register a fallback content model like so:

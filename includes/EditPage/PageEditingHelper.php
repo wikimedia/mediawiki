@@ -4,7 +4,7 @@ namespace MediaWiki\EditPage;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Exception\MWUnknownContentModelException;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserFactory;
@@ -128,7 +128,7 @@ class PageEditingHelper {
 	 * @param string $modelId The ID of the content model to test. Use CONTENT_MODEL_XXX constants.
 	 * @param bool $enableApiEditOverride
 	 *
-	 * @throws MWUnknownContentModelException If $modelId has no known handler
+	 * @throws UnknownContentModelException If $modelId has no known handler
 	 */
 	public function isSupportedContentModel(
 		string $modelId,

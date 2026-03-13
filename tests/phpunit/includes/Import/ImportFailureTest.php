@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\Config\HashConfig;
-use MediaWiki\Exception\MWUnknownContentModelException;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\MainConfigNames;
 
 /**
@@ -97,7 +97,7 @@ class ImportFailureTest extends MediaWikiLangTestCase {
 		yield [ 'MissingSlotTextField', InvalidArgumentException::class, '/^Missing text field in import.$/' ];
 		yield [ 'MissingSlotRole', RuntimeException::class, '/^Missing role for imported slot.$/' ];
 		yield [ 'UndefinedSlotRole', RuntimeException::class, '/^Undefined slot role .*$/' ];
-		yield [ 'UndefinedContentModel', MWUnknownContentModelException::class, '/not registered on this wiki/' ];
+		yield [ 'UndefinedContentModel', UnknownContentModelException::class, '/not registered on this wiki/' ];
 	}
 
 	/**

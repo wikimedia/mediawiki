@@ -14,7 +14,7 @@ namespace MediaWiki\Import;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
-use MediaWiki\Exception\MWUnknownContentModelException;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\SlotRecord;
@@ -442,7 +442,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @since 1.24
 	 * @deprecated since 1.35, use getContent
 	 * @return ContentHandler
-	 * @throws MWUnknownContentModelException
+	 * @throws UnknownContentModelException
 	 */
 	public function getContentHandler() {
 		$this->contentHandler ??= MediaWikiServices::getInstance()

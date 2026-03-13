@@ -7,7 +7,6 @@
 namespace MediaWiki\Content;
 
 use InvalidArgumentException;
-use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use Psr\Log\LoggerInterface;
@@ -60,7 +59,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 * @param string $modelID
 	 *
 	 * @return ContentHandler
-	 * @throws MWUnknownContentModelException If no handler is known for the model ID.
+	 * @throws UnknownContentModelException If no handler is known for the model ID.
 	 */
 	public function getContentHandler( string $modelID ): ContentHandler {
 		if ( empty( $this->handlersByModel[$modelID] ) ) {
@@ -138,7 +137,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 *
 	 * @return ContentHandler The ContentHandler singleton for handling the model given by the ID.
 	 *
-	 * @throws MWUnknownContentModelException If no handler is known for the model ID.
+	 * @throws UnknownContentModelException If no handler is known for the model ID.
 	 */
 	private function createForModelID( string $modelID ): ContentHandler {
 		$handlerSpec = $this->handlerSpecs[$modelID] ?? null;
@@ -153,11 +152,11 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 * @param string $modelID
 	 * @param ContentHandler $contentHandler
 	 *
-	 * @throws MWUnknownContentModelException
+	 * @throws UnknownContentModelException
 	 */
 	private function validateContentHandler( string $modelID, $contentHandler ): void {
 		if ( $contentHandler === null ) {
-			throw new MWUnknownContentModelException( $modelID );
+			throw new UnknownContentModelException( $modelID );
 		}
 
 		if ( !is_object( $contentHandler ) ) {
@@ -179,7 +178,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 * @param callable|string $handlerSpec
 	 *
 	 * @return ContentHandler
-	 * @throws MWUnknownContentModelException
+	 * @throws UnknownContentModelException
 	 */
 	private function createContentHandlerFromHandlerSpec(
 		string $modelID, $handlerSpec
@@ -206,7 +205,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 * @param string $modelID
 	 *
 	 * @return ContentHandler
-	 * @throws MWUnknownContentModelException
+	 * @throws UnknownContentModelException
 	 */
 	private function createContentHandlerFromHook( string $modelID ): ContentHandler {
 		$contentHandler = null;

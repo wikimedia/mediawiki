@@ -18,9 +18,9 @@ use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\FallbackContent;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Exception\MWException;
-use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
@@ -706,7 +706,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @return array a revision table row
 	 *
 	 * @throws MWException
-	 * @throws MWUnknownContentModelException
+	 * @throws UnknownContentModelException
 	 */
 	private function insertRevisionRowOn(
 		IDatabase $dbw,
@@ -934,7 +934,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @param string $role
 	 *
 	 * @throws MWException
-	 * @throws MWUnknownContentModelException
+	 * @throws UnknownContentModelException
 	 */
 	private function checkContent( Content $content, PageIdentity $page, string $role ) {
 		// Note: may return null for revisions that have not yet been inserted

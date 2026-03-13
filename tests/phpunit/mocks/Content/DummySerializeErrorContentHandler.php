@@ -6,7 +6,7 @@
 namespace MediaWiki\Tests\Mocks\Content;
 
 use MediaWiki\Content\Content;
-use MediaWiki\Exception\MWContentSerializationException;
+use MediaWiki\Content\ContentSerializationException;
 
 /**
  * A dummy content handler that will throw on an attempt to serialize content.
@@ -27,7 +27,7 @@ class DummySerializeErrorContentHandler extends DummyContentHandlerForTesting {
 	 * @return Content
 	 */
 	public function unserializeContent( $blob, $format = null ) {
-		throw new MWContentSerializationException( 'Could not unserialize content' );
+		throw new ContentSerializationException( 'Could not unserialize content' );
 	}
 
 	/**

@@ -9,7 +9,7 @@ namespace MediaWiki\EditPage;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Exception\MWUnknownContentModelException;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\Html\Html;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
@@ -52,7 +52,7 @@ class TextConflictHelper {
 	 * @param string $submitLabel Message key for the label of the submit button
 	 * @param IContentHandlerFactory $contentHandlerFactory Required param with legacy support
 	 *
-	 * @throws MWUnknownContentModelException
+	 * @throws UnknownContentModelException
 	 */
 	public function __construct(
 		protected readonly Title $title,

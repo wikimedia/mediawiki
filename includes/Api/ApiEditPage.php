@@ -10,11 +10,11 @@ namespace MediaWiki\Api;
 
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Content\ContentHandler;
+use MediaWiki\Content\ContentSerializationException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\EditPage\EditPage;
-use MediaWiki\Exception\MWContentSerializationException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -222,7 +222,7 @@ class ApiEditPage extends ApiBase {
 
 					try {
 						$content = ContentHandler::makeContent( $text, $titleObj );
-					} catch ( MWContentSerializationException $ex ) {
+					} catch ( ContentSerializationException $ex ) {
 						$this->dieWithException( $ex, [
 							'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )
 						] );

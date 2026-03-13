@@ -7,7 +7,6 @@
 namespace MediaWiki\Content;
 
 use InvalidArgumentException;
-use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -238,7 +237,7 @@ class TextContent extends AbstractContent {
 	 *
 	 * @return Content|false A content object with the content model $toModel, or false if that
 	 *     conversion is not supported.
-	 * @throws MWUnknownContentModelException
+	 * @throws UnknownContentModelException
 	 *
 	 * @see Content::convert()
 	 */

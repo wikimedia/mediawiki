@@ -14,8 +14,10 @@ use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\Config;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
+use MediaWiki\Content\ContentSerializationException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\TextContent;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Debug\DeprecationHelper;
@@ -37,9 +39,7 @@ use MediaWiki\EditPage\Constraint\RevisionDeletedConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
 use MediaWiki\Exception\ErrorPageError;
-use MediaWiki\Exception\MWContentSerializationException;
 use MediaWiki\Exception\MWException;
-use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\ReadOnlyError;
 use MediaWiki\Exception\ThrottledError;
@@ -1144,7 +1144,7 @@ class EditPage implements IEditObject {
 
 		try {
 			$handler = $this->contentHandlerFactory->getContentHandler( $this->contentModel );
-		} catch ( MWUnknownContentModelException ) {
+		} catch ( UnknownContentModelException ) {
 			throw new ErrorPageError(
 				'editpage-invalidcontentmodel-title',
 				'editpage-invalidcontentmodel-text',
@@ -2055,7 +2055,7 @@ class EditPage implements IEditObject {
 		try {
 			# Construct Content object
 			$textbox_content = $this->toEditContent( $this->textbox1 );
-		} catch ( MWContentSerializationException $ex ) {
+		} catch ( ContentSerializationException $ex ) {
 			return EditPageStatus::newFatal(
 				'content-failed-to-parse',
 				$this->contentModel,
@@ -3186,7 +3186,7 @@ class EditPage implements IEditObject {
 		if ( $this->isConflict ) {
 			try {
 				$this->showConflict();
-			} catch ( MWContentSerializationException $ex ) {
+			} catch ( ContentSerializationException $ex ) {
 				// this can't really happen, but be nice if it does.
 				$out->addHTML( Html::errorBox(
 					$this->context->msg(
@@ -3519,7 +3519,7 @@ class EditPage implements IEditObject {
 		if ( $this->formtype === 'diff' ) {
 			try {
 				$this->showDiff();
-			} catch ( MWContentSerializationException $ex ) {
+			} catch ( ContentSerializationException $ex ) {
 				$out->addHTML( Html::errorBox(
 					$this->context->msg(
 						'content-failed-to-parse',
@@ -4028,7 +4028,7 @@ class EditPage implements IEditObject {
 			foreach ( $parserOutput->getWarningMsgs() as $warning ) {
 				$previewStatus->warning( $warning );
 			}
-		} catch ( MWContentSerializationException $ex ) {
+		} catch ( ContentSerializationException $ex ) {
 			$previewStatus->fatal(
 				'content-failed-to-parse',
 				$this->contentModel,

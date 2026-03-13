@@ -6,7 +6,7 @@ use Error;
 use InvalidArgumentException;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\ContentHandlerFactory;
-use MediaWiki\Exception\MWUnknownContentModelException;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Tests\Mocks\Content\DummyContentHandlerForTesting;
 use MediaWikiUnitTestCase;
@@ -154,7 +154,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 				[
 					'NullType' => null
 				],
-				MWUnknownContentModelException::class
+				UnknownContentModelException::class
 			],
 			'Class does not exist' => [
 				[
@@ -201,7 +201,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testCreateContentHandlerForModelID_callNotExist_throwMWUCMException() {
-		$this->expectException( MWUnknownContentModelException::class );
+		$this->expectException( UnknownContentModelException::class );
 		$factory = new ContentHandlerFactory(
 			[],
 			$this->createMock( ObjectFactory::class ),

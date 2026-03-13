@@ -8,11 +8,11 @@ namespace MediaWiki\Rest\Handler\Helper;
 use InvalidArgumentException;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Edit\SelserContext;
 use MediaWiki\Exception\HttpError;
-use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
@@ -356,7 +356,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			$handler = $this->contentHandlerFactory->getContentHandler( $model );
 			$content = $handler->unserializeContent( $source );
 			$this->setContent( $content );
-		} catch ( MWUnknownContentModelException ) {
+		} catch ( UnknownContentModelException ) {
 			throw new LocalizedHttpException( new MessageValue( "rest-bad-content-model", [ $model ] ), 400 );
 		}
 	}

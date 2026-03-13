@@ -22,9 +22,7 @@ use MediaWiki\Diff\DifferenceEngineSlotDiffRenderer;
 use MediaWiki\Diff\SlotDiffRenderer;
 use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
 use MediaWiki\Diff\TextSlotDiffRenderer;
-use MediaWiki\Exception\MWContentSerializationException;
 use MediaWiki\Exception\MWException;
-use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Language\ILanguageConverter;
@@ -95,8 +93,8 @@ abstract class ContentHandler {
 	 * @param string|null $format The format to use for deserialization. If not
 	 *    given, the model's default format is used.
 	 *
-	 * @throws MWContentSerializationException
-	 * @throws MWUnknownContentModelException
+	 * @throws ContentSerializationException
+	 * @throws UnknownContentModelException
 	 * @return Content A Content object representing the text.
 	 */
 	public static function makeContent( $text, ?Title $title = null,
@@ -224,7 +222,7 @@ abstract class ContentHandler {
 	 * @param string|null $format The format used for serialization
 	 *
 	 * @return Content The Content object created by deserializing $blob
-	 * @throws MWContentSerializationException
+	 * @throws ContentSerializationException
 	 * @see ContentJsonCodec
 	 */
 	abstract public function unserializeContent( $blob, $format = null );
@@ -244,7 +242,7 @@ abstract class ContentHandler {
 	public function deserializeContentFromJsonArray( array $json ): Content {
 		try {
 			return $this->unserializeContent( $json['blob'], $json['format'] );
-		} catch ( MWContentSerializationException $e ) {
+		} catch ( ContentSerializationException $e ) {
 			throw new JsonException( $e->getMessage() );
 		}
 	}

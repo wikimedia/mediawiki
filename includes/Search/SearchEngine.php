@@ -12,7 +12,7 @@ namespace MediaWiki\Search;
 use Closure;
 use InvalidArgumentException;
 use MediaWiki\Config\Config;
-use MediaWiki\Exception\MWUnknownContentModelException;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
@@ -766,7 +766,7 @@ abstract class SearchEngine {
 				$handler = MediaWikiServices::getInstance()
 					->getContentHandlerFactory()
 					->getContentHandler( $model );
-			} catch ( MWUnknownContentModelException ) {
+			} catch ( UnknownContentModelException ) {
 				// If we can find no handler, ignore it
 				continue;
 			}

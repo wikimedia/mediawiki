@@ -2,8 +2,6 @@
 
 namespace MediaWiki\Content;
 
-use MediaWiki\Exception\MWUnknownContentModelException;
-
 /**
  * @ingroup Content
  */
@@ -15,7 +13,7 @@ interface IContentHandlerFactory {
 	 * @param string $modelID
 	 *
 	 * @return ContentHandler
-	 * @throws MWUnknownContentModelException If no handler is known for the model ID.
+	 * @throws UnknownContentModelException If no handler is known for the model ID.
 	 */
 	public function getContentHandler( string $modelID ): ContentHandler;
 

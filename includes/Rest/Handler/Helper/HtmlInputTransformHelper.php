@@ -7,10 +7,10 @@ namespace MediaWiki\Rest\Handler\Helper;
 
 use InvalidArgumentException;
 use MediaWiki\Content\Content;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Edit\SelserContext;
-use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
@@ -594,7 +594,7 @@ class HtmlInputTransformHelper {
 				413,
 				[ 'reason' => $e->getMessage() ]
 			);
-		} catch ( MWUnknownContentModelException $e ) {
+		} catch ( UnknownContentModelException $e ) {
 			throw new LocalizedHttpException(
 				new MessageValue( "rest-unknown-content-model", [ $e->getModelId() ] ),
 				400

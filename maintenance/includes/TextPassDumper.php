@@ -19,8 +19,8 @@ require_once __DIR__ . '/../../includes/Export/WikiExporter.php';
 // @codeCoverageIgnoreEnd
 
 use Exception;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\Exception\MWException;
-use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\Export\BaseDump;
 use MediaWiki\Export\ExportProgressFilter;
 use MediaWiki\Export\WikiExporter;
@@ -476,7 +476,7 @@ TEXT
 			$contentHandler = $this->getServiceContainer()
 				->getContentHandlerFactory()
 				->getContentHandler( $model );
-		} catch ( MWUnknownContentModelException $ex ) {
+		} catch ( UnknownContentModelException $ex ) {
 			wfWarn( "Unable to apply export transformation for content model '$model': " .
 				$ex->getMessage() );
 

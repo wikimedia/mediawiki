@@ -10,12 +10,12 @@ namespace MediaWiki\Api;
 
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\Content;
+use MediaWiki\Content\ContentSerializationException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\EditPage\EditPage;
-use MediaWiki\Exception\MWContentSerializationException;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Language\LanguageNameUtils;
@@ -351,7 +351,7 @@ class ApiParse extends ApiBase {
 
 			try {
 				$this->content = $contentHandler->unserializeContent( $text, $format );
-			} catch ( MWContentSerializationException $ex ) {
+			} catch ( ContentSerializationException $ex ) {
 				$this->dieWithException( $ex, [
 					'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )
 				] );

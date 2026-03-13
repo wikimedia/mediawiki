@@ -12,10 +12,10 @@ use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\Config;
+use MediaWiki\Content\ContentSerializationException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Diff\DifferenceEngine;
 use MediaWiki\Exception\ErrorPageError;
-use MediaWiki\Exception\MWContentSerializationException;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
@@ -351,7 +351,7 @@ class McrUndoAction extends FormAction {
 				}
 				$previewIssuesHtml .= Html::warningBox( $warningsHtml );
 			}
-		} catch ( MWContentSerializationException $ex ) {
+		} catch ( ContentSerializationException $ex ) {
 			$m = $this->context->msg(
 				'content-failed-to-parse',
 				$ex->getMessage()

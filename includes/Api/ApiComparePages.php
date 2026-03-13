@@ -8,11 +8,11 @@ namespace MediaWiki\Api;
 
 use Exception;
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\Content\ContentSerializationException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Diff\DifferenceEngine;
-use MediaWiki\Exception\MWContentSerializationException;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -507,7 +507,7 @@ class ApiComparePages extends ApiBase {
 				$content = $this->contentHandlerFactory
 					->getContentHandler( $model )
 					->unserializeContent( $text, $format );
-			} catch ( MWContentSerializationException $ex ) {
+			} catch ( ContentSerializationException $ex ) {
 				$this->dieWithException( $ex, [
 					'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )
 				] );

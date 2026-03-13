@@ -15,8 +15,8 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\MutableConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\Debug\MWDebug;
-use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
@@ -815,7 +815,7 @@ class SiteConfig extends ISiteConfig {
 			if ( $handler->getDefaultFormat() === CONTENT_FORMAT_WIKITEXT ) {
 				return true;
 			}
-		} catch ( MWUnknownContentModelException ) {
+		} catch ( UnknownContentModelException ) {
 			// If the content model is not known, it can't be supported.
 			return false;
 		}

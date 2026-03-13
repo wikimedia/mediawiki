@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Exception;
+namespace MediaWiki\Content;
 
 use Exception;
 
@@ -13,7 +13,7 @@ use Exception;
  * @ingroup Content
  * @since 1.27
  */
-class MWUnknownContentModelException extends Exception {
+class UnknownContentModelException extends Exception {
 	/** @var string The name of the unknown content model */
 	private $modelId;
 
@@ -35,4 +35,6 @@ class MWUnknownContentModelException extends Exception {
 }
 
 /** @deprecated class alias since 1.44 */
-class_alias( MWUnknownContentModelException::class, 'MWUnknownContentModelException' );
+class_alias( UnknownContentModelException::class, 'MWUnknownContentModelException' );
+/** @deprecated class alias since 1.46 */
+class_alias( UnknownContentModelException::class, 'MediaWiki\\Exception\\MWUnknownContentModelException' );

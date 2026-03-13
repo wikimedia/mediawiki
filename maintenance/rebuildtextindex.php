@@ -8,7 +8,7 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
-use MediaWiki\Exception\MWContentSerializationException;
+use MediaWiki\Content\ContentSerializationException;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Search\SearchUpdate;
@@ -108,7 +108,7 @@ class RebuildTextIndex extends Maintenance {
 
 					$u = new SearchUpdate( $s->page_id, $title, $content );
 					$u->doUpdate();
-				} catch ( MWContentSerializationException ) {
+				} catch ( ContentSerializationException ) {
 					$this->output( "Failed to deserialize content of revision {$s->rev_id} of page "
 						. "`" . $title->getPrefixedDBkey() . "`!\n" );
 				}

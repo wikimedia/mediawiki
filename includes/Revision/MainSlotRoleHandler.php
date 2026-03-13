@@ -9,7 +9,7 @@
 namespace MediaWiki\Revision;
 
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Exception\MWUnknownContentModelException;
+use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
@@ -74,7 +74,7 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 	 * @param PageIdentity $page
 	 *
 	 * @return bool
-	 * @throws MWUnknownContentModelException
+	 * @throws UnknownContentModelException
 	 */
 	public function isAllowedModel( $model, PageIdentity $page ) {
 		$title = $this->titleFactory->newFromPageIdentity( $page );
