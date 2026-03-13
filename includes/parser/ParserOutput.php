@@ -1601,7 +1601,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * The displayed page title may differ, see ::getDisplayTitle(), but
 	 * this is the context object, corresponding to Parser::getPage().
 	 *
-	 * @since 1.46
+	 * @since 1.46 (also backported to 1.43.7, 1.44.4, 1.45.2)
 	 */
 	public function getTitle(): ?ParsoidLinkTarget {
 		$ns = $this->getExtensionData( 'core:title-ns' );
