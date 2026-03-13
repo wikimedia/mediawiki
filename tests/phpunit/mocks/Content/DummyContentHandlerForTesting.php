@@ -67,6 +67,6 @@ class DummyContentHandlerForTesting extends ContentHandler {
 		ParserOutput &$output
 	) {
 			'@phan-var DummyContentForTesting $content';
-			$output = new ParserOutput( $content->getNativeData() );
+			$output = new ParserOutput( $content->getDummyData() );
 	}
 }

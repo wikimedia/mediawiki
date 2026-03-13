@@ -100,7 +100,7 @@ class SpecialMovePageTest extends SpecialPageTestBase {
 	private function assertPageContent( string $title, ?string $expectedContent, string $message = '' ) {
 		$p = $this->getServiceContainer()->getPageStore()->getPageByText( $title );
 		$r = $this->getServiceContainer()->getRevisionLookup()->getRevisionByTitle( $p );
-		$this->assertEquals( $expectedContent, $r?->getMainContentRaw()?->getNativeData(), $message );
+		$this->assertEquals( $expectedContent, $r?->getMainContentRaw()?->getText(), $message );
 	}
 
 	/**

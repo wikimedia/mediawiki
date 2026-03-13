@@ -123,6 +123,7 @@ class TextContent extends AbstractContent {
 	 * @return string The raw text. Subclasses may guarantee a specific syntax here.
 	 */
 	public function getNativeData() {
+		wfDeprecated( __METHOD__, '1.33' );
 		return $this->getText();
 	}
 

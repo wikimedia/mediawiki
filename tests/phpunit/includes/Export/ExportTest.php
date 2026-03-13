@@ -52,10 +52,11 @@ class ExportTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Regression test for T328503 to verify that custom content types
-	 * with a getNativeData() override that returns a non-string value export correctly.
+	 * with a getNativeData()/getTestData() override that returns a
+	 * non-string value export correctly.
 	 */
 	public function testShouldExportContentWithNonStringNativeData(): void {
-		// Make a mock ContentHandler for a Content that has a getNativeData() method
+		// Make a mock ContentHandler for a Content that has a getTestData() method
 		// with a non-string return value.
 		$contentModelId = 'non-string-test-content-model';
 		$contentHandler = new class( $contentModelId ) extends ContentHandler {
@@ -68,7 +69,7 @@ class ExportTest extends MediaWikiLangTestCase {
 			}
 
 			public function serializeContent( Content $content, $format = null ) {
-				return json_encode( $content->getNativeData() );
+				return json_encode( $content->getTestData() );
 			}
 
 			public function unserializeContent( $blob, $format = null ) {
@@ -84,7 +85,7 @@ class ExportTest extends MediaWikiLangTestCase {
 				ContentParseParams $cpoParams,
 				ParserOutput &$output
 			) {
-				$output->setRawText( json_encode( $content->getNativeData() ) );
+				$output->setRawText( json_encode( $content->getTestData() ) );
 			}
 
 			private function getTestContent( string $blob ): Content {
@@ -102,6 +103,11 @@ class ExportTest extends MediaWikiLangTestCase {
 					}
 
 					public function getNativeData() {
+						wfDeprecated( __METHOD__, '1.33' );
+						return $this->getTestData();
+					}
+
+					public function getTestData() {
 						return $this->data;
 					}
 				};

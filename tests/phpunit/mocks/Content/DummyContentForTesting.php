@@ -59,6 +59,15 @@ class DummyContentForTesting extends AbstractContent {
 	 *  structure, an object, a binary blob... anything, really.
 	 */
 	public function getNativeData() {
+		wfDeprecated( __METHOD__, '1.33' );
+		return $this->data;
+	}
+
+	/**
+	 * Return the data stored in this dummy content.
+	 * @return mixed
+	 */
+	public function getDummyData() {
 		return $this->data;
 	}
 

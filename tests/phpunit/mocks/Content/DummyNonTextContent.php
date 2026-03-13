@@ -57,6 +57,7 @@ class DummyNonTextContent extends AbstractContent {
 	 *  structure, an object, a binary blob... anything, really.
 	 */
 	public function getNativeData() {
+		wfDeprecated( __METHOD__, '1.33' );
 		return $this->data;
 	}
 

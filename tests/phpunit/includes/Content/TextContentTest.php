@@ -164,8 +164,10 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 12, $content->getSize() );
 		$this->assertEquals( 'hello world.', $content->getText() );
 		$this->assertEquals( 'hello world.', $content->getTextForSearchIndex() );
-		$this->assertEquals( 'hello world.', $content->getNativeData() );
 		$this->assertEquals( 'hello world.', $content->getWikitextForTransclusion() );
+
+		$this->filterDeprecated( '/::getNativeData was deprecated/' );
+		$this->assertEquals( 'hello world.', $content->getNativeData() );
 	}
 
 	public function testGetModel() {

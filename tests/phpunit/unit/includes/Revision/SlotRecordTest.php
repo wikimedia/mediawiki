@@ -39,7 +39,7 @@ class SlotRecordTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $record->hasContentId() );
 		$this->assertTrue( $record->hasRevision() );
 		$this->assertTrue( $record->isInherited() );
-		$this->assertSame( 'A', $record->getContent()->getNativeData() );
+		$this->assertSame( 'A', $record->getContent()->getDummyData() );
 		$this->assertSame( 5, $record->getSize() );
 		$this->assertSame( 'someHash', $record->getSha1() );
 		$this->assertSame( DummyContentForTesting::MODEL_ID, $record->getModel() );
@@ -70,7 +70,7 @@ class SlotRecordTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $record->hasRevision() );
 		$this->assertFalse( $record->hasContentId() );
 		$this->assertFalse( $record->isInherited() );
-		$this->assertSame( 'A', $record->getContent()->getNativeData() );
+		$this->assertSame( 'A', $record->getContent()->getDummyData() );
 		$this->assertSame( 1, $record->getSize() );
 		$this->assertNotEmpty( $record->getSha1() );
 		$this->assertSame( DummyContentForTesting::MODEL_ID, $record->getModel() );
@@ -90,7 +90,7 @@ class SlotRecordTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $record->hasRevision() );
 		$this->assertFalse( $record->isInherited() );
 		$this->assertFalse( $record->hasOrigin() );
-		$this->assertSame( 'A', $record->getContent()->getNativeData() );
+		$this->assertSame( 'A', $record->getContent()->getDummyData() );
 		$this->assertSame( 1, $record->getSize() );
 		$this->assertNotEmpty( $record->getSha1() );
 		$this->assertSame( DummyContentForTesting::MODEL_ID, $record->getModel() );
@@ -241,7 +241,7 @@ class SlotRecordTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $saved->hasContentId() );
 		$this->assertSame( 'theNewAddress', $saved->getAddress() );
 		$this->assertSame( 20, $saved->getContentId() );
-		$this->assertSame( 'A', $saved->getContent()->getNativeData() );
+		$this->assertSame( 'A', $saved->getContent()->getDummyData() );
 		$this->assertSame( 10, $saved->getRevision() );
 		$this->assertSame( 10, $saved->getOrigin() );
 		$this->assertFalse( $saved->isDerived() );
@@ -398,7 +398,7 @@ class SlotRecordTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $record->hasRevision() );
 		$this->assertFalse( $record->isInherited() );
 		$this->assertFalse( $record->hasOrigin() );
-		$this->assertSame( 'A', $record->getContent()->getNativeData() );
+		$this->assertSame( 'A', $record->getContent()->getDummyData() );
 		$this->assertSame( 1, $record->getSize() );
 		$this->assertNotEmpty( $record->getSha1() );
 		$this->assertSame( DummyContentForTesting::MODEL_ID, $record->getModel() );
@@ -417,7 +417,7 @@ class SlotRecordTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $saved->hasContentId() );
 		$this->assertSame( 'theNewAddress', $saved->getAddress() );
 		$this->assertSame( 20, $saved->getContentId() );
-		$this->assertSame( 'A', $saved->getContent()->getNativeData() );
+		$this->assertSame( 'A', $saved->getContent()->getDummyData() );
 		$this->assertSame( 10, $saved->getRevision() );
 		$this->assertSame( 10, $saved->getOrigin() );
 		$this->assertTrue( $saved->isDerived() );

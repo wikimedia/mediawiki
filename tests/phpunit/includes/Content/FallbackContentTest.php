@@ -83,6 +83,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	public function testGetNativeData() {
 		$content = $this->newContent( 'hello world.' );
 
+		$this->filterDeprecated( '/::getNativeData was deprecated/' );
 		$this->assertEquals( 'hello world.', $content->getNativeData() );
 	}
 
