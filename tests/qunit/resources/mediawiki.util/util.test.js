@@ -648,6 +648,11 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		} else {
 			assert.strictEqual( data.resizeUrl, null, 'resizeUrl is not set' );
 		}
+
+		if ( !thisCase.url.includes( '?' ) ) {
+			const dataWithParams = mw.util.parseImageUrl( thisCase.url + '?foo=bar' );
+			assert.strictEqual( dataWithParams.name, thisCase.name, 'file name (with added query parameters)' );
+		}
 	} );
 
 	QUnit.test( 'parseImageUrl [no dynamic thumbnail generation]', function ( assert ) {
