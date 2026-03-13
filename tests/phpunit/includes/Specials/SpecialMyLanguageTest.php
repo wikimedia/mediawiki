@@ -4,16 +4,24 @@ namespace MediaWiki\Tests\Specials;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialMyLanguage;
 use MediaWiki\Specials\SpecialPageLanguage;
 use MediaWiki\Title\Title;
-use MediaWikiIntegrationTestCase;
 
 /**
  * @group Database
  * @covers \MediaWiki\Specials\SpecialMyLanguage
  */
-class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
+class SpecialMyLanguageTest extends SpecialPageTestBase {
+	/** @inheritDoc */
+	protected function newSpecialPage() {
+		return new SpecialMyLanguage(
+			$this->getServiceContainer()->getLanguageNameUtils(),
+			$this->getServiceContainer()->getRedirectLookup()
+		);
+	}
+
 	public function addDBDataOnce() {
 		$titles = [
 			'Page/Another',
@@ -63,10 +71,7 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 	public function testFindTitle( $expected, $subpage, $contLang, $userLang ) {
 		$this->setContentLang( $contLang );
 		$services = $this->getServiceContainer();
-		$special = new SpecialMyLanguage(
-			$services->getLanguageNameUtils(),
-			$services->getRedirectLookup()
-		);
+		$special = $this->newSpecialPage();
 		$special->getContext()->setLanguage( $userLang );
 		$this->overrideConfigValue( MainConfigNames::PageLanguageUseDB, true );
 		// Test with subpages both enabled and disabled
@@ -128,10 +133,7 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 	public function testFindTitleForTransclusion( $expected, $subpage, $langCode, $userLang ) {
 		$this->setContentLang( $langCode );
 		$services = $this->getServiceContainer();
-		$special = new SpecialMyLanguage(
-			$services->getLanguageNameUtils(),
-			$services->getRedirectLookup()
-		);
+		$special = $this->newSpecialPage();
 		$special->getContext()->setLanguage( $userLang );
 		// Test with subpages both enabled and disabled
 		$this->mergeMwGlobalArrayValue( 'wgNamespacesWithSubpages', [ NS_MAIN => true ] );
@@ -148,5 +150,36 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 			[ 'Page/Another/en', 'Page/Another', 'en', 'en' ],
 			[ 'Page/Another/en', 'Page/Another', 'en', 'frc' ],
 		];
+	}
+
+	/** @dataProvider provideRedirectParams */
+	private function testRedirectParams( array $params, ?string $expected ) {
+		$request = new FauxRequest( $params, wasPosted: false );
+		[ , $response ] = $this->executeSpecialPage( 'Test', $request );
+		$this->assertEquals(
+			$expected,
+			explode( '?', $response->getHeader( 'LOCATION' ), 2 )[1] ?? null
+		);
+	}
+
+	private static function provideRedirectParams() {
+		yield 'none' => [ [], null ];
+		yield 'allowed' => [ [ 'safemode' => '1' ], 'safemode=1' ];
+		yield 'allowed array' => [ [ 'preloadparams' => [ 'a', 'b', 'c' ] ],
+			'preloadparams[]=a&preloadparams[]=b&preloadparams[]=c' ];
+		yield 'not allowed' => [ [ 'idk' => 'asdf' ], null ];
+		yield 'mix' => [ [ 'safemode' => '1', 'idk' => 'asdf' ], 'safemode=1' ];
+	}
+
+	private function testRedirectParamsSafeModePref() {
+		$request = new FauxRequest( [], wasPosted: false );
+
+		// Simulate the 'forcesafemode' preference like in ActionEntryPoint::performRequest()
+		$request->setVal( 'safemode', '1' );
+
+		[ , $response ] = $this->executeSpecialPage( 'Test', $request );
+		$this->assertNull(
+			explode( '?', $response->getHeader( 'LOCATION' ), 2 )[1] ?? null
+		);
 	}
 }
