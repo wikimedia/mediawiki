@@ -211,11 +211,19 @@ class ForeignResourceManager {
 	 * Returns a JSON string describing the foreign resources in a CycloneDX format.
 	 */
 	public function generateCdx(): string {
-		$this->registry = Yaml::parseFile( $this->registryFile );
 		return json_encode(
-			$this->generateCdxForModules( $this->registry ),
+			$this->generateCdxData(),
 			JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR
 		);
+	}
+
+	/**
+	 * Returns an array describing the foreign resources in the CycloneDX format.
+	 * @since 1.46
+	 */
+	public function generateCdxData(): array {
+		$this->registry = Yaml::parseFile( $this->registryFile );
+		return $this->generateCdxForModules( $this->registry );
 	}
 
 	/**

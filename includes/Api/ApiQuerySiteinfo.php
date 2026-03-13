@@ -35,9 +35,11 @@ use MediaWiki\Upload\UploadFromUrl;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserRequirementsConditionChecker;
 use MediaWiki\Utils\ExtensionInfo;
 use MediaWiki\Utils\GitInfo;
+use MediaWiki\Utils\SBOMGenerator;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -73,6 +75,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		private readonly UrlUtils $urlUtils,
 		private readonly TempUserConfig $tempUserConfig,
 		private readonly GroupPermissionsLookup $groupPermissionsLookup,
+		private readonly SBOMGenerator $sbomGenerator,
+		private readonly UserIdentityUtils $userIdentityUtils,
 	) {
 		parent::__construct( $query, $moduleName, 'si' );
 	}
@@ -112,6 +116,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'autopromote' => $this->appendAutoPromote( $p ),
 				'autopromoteonce' => $this->appendAutoPromoteOnce( $p ),
 				'copyuploaddomains' => $this->appendCopyUploadDomains( $p ),
+				'sbom' => $this->appendSBOM( $p ),
 				// @phan-suppress-next-line PhanUseReturnValueOfNever
 				default => ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" ) // @codeCoverageIgnore
 			};
@@ -903,6 +908,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		);
 	}
 
+	protected function appendSBOM( string $property ): bool {
+		if ( !$this->userIdentityUtils->isNamed( $this->getUser() ) ) {
+			$this->dieWithError( 'apierror-mustbeloggedin-sbom' );
+		}
+		$data = $this->sbomGenerator->generateCdxSBOM( $this->getContext() );
+		return $this->getResult()->addValue( 'query', $property, $data );
+	}
+
 	/**
 	 * @param array|int|string $cond
 	 * @param array $allowedConditions
@@ -1024,6 +1037,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'autopromote',
 					'autopromoteonce',
 					'copyuploaddomains',
+					'sbom',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],

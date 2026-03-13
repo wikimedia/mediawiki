@@ -553,6 +553,8 @@ class ApiQuery extends ApiBase {
 				'UrlUtils',
 				'TempUserConfig',
 				'GroupPermissionsLookup',
+				'SBOMGenerator',
+				'UserIdentityUtils',
 			]
 		],
 		'userinfo' => [

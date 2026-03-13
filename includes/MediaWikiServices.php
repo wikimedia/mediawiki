@@ -216,6 +216,7 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRequirementsConditionChecker;
 use MediaWiki\User\UserRequirementsConditionCheckerFactory;
+use MediaWiki\Utils\SBOMGenerator;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\Watchlist\WatchedItemQueryService;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
@@ -2018,6 +2019,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getRowCommentFormatter(): RowCommentFormatter {
 		return $this->getService( 'RowCommentFormatter' );
+	}
+
+	/**
+	 * @since 1.46
+	 */
+	public function getSBOMGenerator(): SBOMGenerator {
+		return $this->getService( 'SBOMGenerator' );
 	}
 
 	/**

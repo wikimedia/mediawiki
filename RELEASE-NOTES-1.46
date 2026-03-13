@@ -177,6 +177,8 @@ For notes on 1.45.x and older releases, see HISTORY.
   deprecated. Use `prop=tocdata` instead (T319141).
 * When specifying the Action API output format as `xml` or `xmlfm`, the
   `xslt` parameter has been removed.  No alternative is provided.
+* (T359634) An SBOM in the CycloneDX 1.6 format can now be generated via the
+  `sbom` prop of meta=siteinfo.
 
 === Action API internal changes in 1.46 ===
 

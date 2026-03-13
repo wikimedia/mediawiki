@@ -286,6 +286,7 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRequirementsConditionChecker;
 use MediaWiki\User\UserRequirementsConditionCheckerFactory;
+use MediaWiki\Utils\SBOMGenerator;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\Watchlist\NoWriteWatchedItemStore;
 use MediaWiki\Watchlist\WatchedItemQueryService;
@@ -2300,6 +2301,14 @@ return [
 		return new RowCommentFormatter(
 			$services->getCommentParserFactory(),
 			$services->getCommentStore()
+		);
+	},
+
+	'SBOMGenerator' => static function ( MediaWikiServices $services ): SBOMGenerator {
+		return new SBOMGenerator(
+			$services->getConnectionProvider(),
+			$services->getExtensionRegistry(),
+			$services->getGlobalIdGenerator(),
 		);
 	},
 

@@ -3707,6 +3707,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Utils\\MWRestrictions' => __DIR__ . '/includes/Utils/MWRestrictions.php',
 	'MediaWiki\\Utils\\MWTimestamp' => __DIR__ . '/includes/Utils/MWTimestamp.php',
 	'MediaWiki\\Utils\\RowUpdateGenerator' => __DIR__ . '/includes/Utils/RowUpdateGenerator.php',
+	'MediaWiki\\Utils\\SBOMGenerator' => __DIR__ . '/includes/Utils/SBOMGenerator.php',
 	'MediaWiki\\Utils\\UrlUtils' => __DIR__ . '/includes/Utils/UrlUtils.php',
 	'MediaWiki\\Watchlist\\ActivityUpdateJob' => __DIR__ . '/includes/Watchlist/ActivityUpdateJob.php',
 	'MediaWiki\\Watchlist\\ClearUserWatchlistJob' => __DIR__ . '/includes/Watchlist/ClearUserWatchlistJob.php',

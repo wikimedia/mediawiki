@@ -1059,4 +1059,11 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			]
 		];
 	}
+
+	public function testSBOM() {
+		$sbom = $this->doQuery( 'sbom' );
+		$this->assertIsArray( $sbom );
+		$this->assertArrayHasKey( '$schema', $sbom );
+		$this->assertArrayHasKey( 'bomFormat', $sbom );
+	}
 }
