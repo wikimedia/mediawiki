@@ -2792,7 +2792,6 @@ return [
 			$services->getTempUserConfig(),
 			$services->getConnectionProvider(),
 			$services->getPageStoreFactory(),
-			$services->getActorStoreFactory(),
 		);
 	},
 

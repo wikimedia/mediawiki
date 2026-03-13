@@ -917,7 +917,6 @@ class UserGroupAssignmentServiceTest extends MediaWikiIntegrationTestCase {
 			$services->getTempUserConfig(),
 			$connectionProviderMock,
 			$pageStoreFactoryMock,
-			$actorStoreFactoryMock
 		);
 
 		$performer = $this->mockRegisteredUltimateAuthority();
