@@ -166,7 +166,7 @@ abstract class ImageHandler extends MediaHandler {
 	 *
 	 * NOTE: Keep in sync with client-side logic in mw.util.adjustThumbWidthForSteps.
 	 *
-	 * @since 1.46
+	 * @since 1.46 (also backported to 1.43.7, 1.44.4, 1.45.2)
 	 */
 	protected function getSteppedThumbWidth(
 		File $image, int $requestWidth, int $srcWidth, int $srcHeight
