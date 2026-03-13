@@ -10,11 +10,11 @@ use MediaWiki\Content\JavaScriptContentHandler;
 use MediaWiki\Content\JsonContent;
 use MediaWiki\Content\JsonContentHandler;
 use MediaWiki\Content\TextContentHandler;
+use MediaWiki\Content\UnsupportedContentFormatException;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Exception\MWException;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
@@ -34,6 +34,7 @@ use MediaWiki\Title\TitleFactory;
 use MediaWikiIntegrationTestCase;
 use SlotDiffRenderer;
 use TextSlotDiffRenderer;
+use Throwable;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\UUID\GlobalIdGenerator;
 
@@ -207,9 +208,9 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 				false
 			],
 
-			[ 'hallo', 'Help:Test', CONTENT_MODEL_WIKITEXT, "testing", null, true ],
-			[ 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, "testing", null, true ],
-			[ 'hallo', 'Dummy:Test', CONTENT_MODEL_JAVASCRIPT, "testing", null, true ],
+			[ 'hallo', 'Help:Test', CONTENT_MODEL_WIKITEXT, "testing", null, UnsupportedContentFormatException::class ],
+			[ 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, "testing", null, UnsupportedContentFormatException::class ],
+			[ 'hallo', 'Dummy:Test', CONTENT_MODEL_JAVASCRIPT, "testing", null, UnsupportedContentFormatException::class ],
 		];
 	}
 
@@ -217,25 +218,24 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideMakeContent
 	 */
 	public function testMakeContent( $data, $title, $modelId, $format,
-		$expectedModelId, $shouldFail
+		$expectedModelId, $expectedException
 	) {
 		$title = Title::newFromText( $title );
 		$this->getServiceContainer()->getLinkCache()->addBadLinkObj( $title );
 		try {
 			$content = ContentHandler::makeContent( $data, $title, $modelId, $format );
 
-			if ( $shouldFail ) {
+			if ( $expectedException ) {
 				$this->fail( "ContentHandler::makeContent should have failed!" );
 			}
 
 			$this->assertEquals( $expectedModelId, $content->getModel(), 'bad model id' );
 			$this->assertEquals( $data, $content->serialize(), 'bad serialized data' );
-		} catch ( MWException $ex ) {
-			if ( !$shouldFail ) {
+		} catch ( Throwable $ex ) {
+			if ( !$expectedException ) {
 				$this->fail( "ContentHandler::makeContent failed unexpectedly: " . $ex->getMessage() );
 			} else {
-				// dummy, so we don't get the "test did not perform any assertions" message.
-				$this->assertTrue( true );
+				$this->assertInstanceOf( $expectedException, $ex );
 			}
 		}
 	}

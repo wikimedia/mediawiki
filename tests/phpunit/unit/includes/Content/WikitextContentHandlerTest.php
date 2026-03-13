@@ -3,9 +3,9 @@
 namespace MediaWiki\Tests\Unit;
 
 use MediaWiki\Content\Renderer\ContentParseParams;
+use MediaWiki\Content\UnsupportedContentFormatException;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Content\WikitextContentHandler;
-use MediaWiki\Exception\MWException;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
@@ -58,7 +58,7 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 			$handler->serializeContent( $content, CONTENT_FORMAT_WIKITEXT )
 		);
 
-		$this->expectException( MWException::class );
+		$this->expectException( UnsupportedContentFormatException::class );
 		$handler->serializeContent( $content, 'dummy/foo' );
 	}
 
@@ -71,7 +71,7 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 		$content = $handler->unserializeContent( 'hello world', CONTENT_FORMAT_WIKITEXT );
 		$this->assertEquals( 'hello world', $content->getText() );
 
-		$this->expectException( MWException::class );
+		$this->expectException( UnsupportedContentFormatException::class );
 		$handler->unserializeContent( 'hello world', 'dummy/foo' );
 	}
 

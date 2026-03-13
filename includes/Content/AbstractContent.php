@@ -115,11 +115,11 @@ abstract class AbstractContent implements Content, JsonCodecable {
 	 *
 	 * @since 1.21
 	 * @param string $format The serialization format to check.
-	 * @throws MWException If the format is not supported by this Content object
+	 * @throws UnsupportedContentFormatException If the format is not supported by this Content object
 	 */
 	protected function checkFormat( $format ) {
 		if ( !$this->isSupportedFormat( $format ) ) {
-			throw new MWException(
+			throw new UnsupportedContentFormatException(
 				"Format $format is not supported for content model " .
 				$this->getModel()
 			);

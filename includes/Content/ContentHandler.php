@@ -384,11 +384,11 @@ abstract class ContentHandler {
 	 *
 	 * @param string $format The serialization format to check
 	 *
-	 * @throws MWException If the format is not supported by this content handler.
+	 * @throws UnsupportedContentFormatException If the format is not supported by this content handler.
 	 */
 	protected function checkFormat( $format ) {
 		if ( !$this->isSupportedFormat( $format ) ) {
-			throw new MWException(
+			throw new UnsupportedContentFormatException(
 				"Format $format is not supported for content model "
 				. $this->getModelID()
 			);

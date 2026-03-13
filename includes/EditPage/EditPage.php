@@ -18,6 +18,7 @@ use MediaWiki\Content\ContentSerializationException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\UnknownContentModelException;
+use MediaWiki\Content\UnsupportedContentFormatException;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Debug\DeprecationHelper;
@@ -992,7 +993,7 @@ class EditPage implements IEditObject {
 				$text = $this->pageEditingHelper->toEditText(
 					$content, $this->contentFormat, $this->enableApiEditOverride
 				) ?? $content->serialize();
-			} catch ( MWException ) {
+			} catch ( UnsupportedContentFormatException ) {
 				// T419883: If the content format isn't supported, Content::serialize throws an exception
 				$text = $content->serialize();
 			}
