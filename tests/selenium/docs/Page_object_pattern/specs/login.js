@@ -32,7 +32,6 @@ describe( 'User', () => {
 		await $( '#wpLoginAttempt' ).click();
 
 		// check
-		const actualUsername = await browser.execute( () => mw.config.get( 'wgUserName' ) );
-		expect( actualUsername ).toBe( username );
+		await expect( $( '[id^="pt-userpage"]' ) ).toHaveText( username );
 	} );
 } );
