@@ -104,6 +104,8 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 		}
 
 		if ( $e instanceof Exception ) {
+			// FIXME: The possible checked exception types should be better documented
+			// @phan-suppress-next-line PhanThrowTypeAbsent
 			throw $e; // trigger RefreshLinksJob enqueue via getAsJobSpecification()
 		}
 	}

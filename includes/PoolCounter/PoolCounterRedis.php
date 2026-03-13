@@ -432,6 +432,8 @@ LUA;
 			}
 		}
 		if ( $e ) {
+			// ::release() should not throw, so this can only throw unchecked exceptions
+			// @phan-suppress-next-line PhanThrowTypeAbsent
 			throw $e;
 		}
 	}

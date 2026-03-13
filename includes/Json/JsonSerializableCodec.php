@@ -29,7 +29,10 @@ class JsonSerializableCodec implements JsonClassCodec {
 		return $obj->jsonSerialize();
 	}
 
-	/** @return never */
+	/**
+	 * @return never
+	 * @throws JsonException
+	 */
 	public function newFromJsonArray( string $className, array $json ): never {
 		throw new JsonException( "Cannot deserialize: {$className}" );
 	}

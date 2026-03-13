@@ -235,6 +235,7 @@ class ExtensionRegistry implements DomainEventSubscriber {
 
 	/**
 	 * @param string $path Absolute path to the JSON file
+	 * @throws MissingExtensionException
 	 */
 	public function queue( $path ) {
 		global $wgExtensionInfoMTime;

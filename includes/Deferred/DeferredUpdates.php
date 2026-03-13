@@ -237,6 +237,7 @@ class DeferredUpdates {
 	 * inside an outer execution loop). In that case, it will instead operate on the sub-queue
 	 * of the innermost in-progress update on the stack.
 	 *
+	 * @throws ErrorPageError
 	 * @internal For use by MediaWiki, Maintenance, JobRunner, JobExecutor
 	 * @param int $stage Which updates to process. One of
 	 *  (DeferredUpdates::PRESEND, DeferredUpdates::POSTSEND, DeferredUpdates::ALL)
@@ -244,8 +245,10 @@ class DeferredUpdates {
 	public static function doUpdates( $stage = self::ALL ) {
 		/** @var ErrorPageError $guiError First presentable client-level error thrown */
 		$guiError = null;
+		'@phan-var ErrorPageError $guiError';
 		/** @var Throwable $exception First of any error thrown */
 		$exception = null;
+		'@phan-var Throwable $exception';
 
 		$scope = self::getScopeStack()->current();
 
@@ -296,6 +299,7 @@ class DeferredUpdates {
 		// VW-style hack to work around T190178, so we can make sure
 		// PageMetaDataUpdater doesn't throw exceptions.
 		if ( $exception && defined( 'MW_PHPUNIT_TEST' ) ) {
+			// @phan-suppress-next-line PhanThrowTypeMismatch
 			throw $exception;
 		}
 

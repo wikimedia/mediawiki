@@ -196,7 +196,10 @@ class JsonCodec
 		}
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 * @throws JsonException
+	 */
 	public function serialize( $value ) {
 		// Recursively convert stdClass, JsonSerializable, and JsonCodecable
 		// to serializable arrays
