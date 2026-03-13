@@ -49,7 +49,7 @@ export class MwApiHttpClient {
 			}
 
 			if ( !response.ok ) {
-				console.error( `[API] HTTP ${ response.status }: ${ response.statusText }` );
+				console.error( `[API] HTTP ${ response.status }: ${ response.statusText }`, text );
 				throw new Error( `HTTP ${ response.status }` );
 			}
 
