@@ -36,7 +36,8 @@ module.exports = exports = defineComponent( {
 	name: 'ReasonField',
 	components: { CdxSelect, CdxField, CdxTextInput },
 	props: {
-		modelValue: { type: String, default: '' }
+		modelValue: { type: String, default: '' },
+		expiry: { type: String, default: '' }
 	},
 	emits: [ 'update:modelValue' ],
 	setup( props, { emit } ) {
@@ -49,10 +50,22 @@ module.exports = exports = defineComponent( {
 		 */
 		const other = ref( String );
 
-		const reasonOptions = mw.config.get( 'blockReasonOptions' );
+		const reasonOptions = computed( () => {
+			if ( mw.util.isInfinity( props.expiry ) ) {
+				return mw.config.get( 'indefBlockReasonOptions' );
+			} else {
+				return mw.config.get( 'blockReasonOptions' );
+			}
+		} );
 		const reasonOptionsConfig = { visibleItemLimit: 10 };
 		const reasonMaxLength = mw.config.get( 'blockReasonMaxLength' );
-		const reasonEditUrl = mw.util.getUrl( 'MediaWiki:Ipbreason-dropdown', { action: 'edit' } );
+		const reasonEditUrl = computed( () => {
+			if ( mw.util.isInfinity( props.expiry ) ) {
+				return mw.util.getUrl( 'MediaWiki:Ipbreason-indef-dropdown', { action: 'edit' } );
+			} else {
+				return mw.util.getUrl( 'MediaWiki:Ipbreason-dropdown', { action: 'edit' } );
+			}
+		} );
 		const canEditInterface = mw.config.get( 'blockCanEditInterface' ) || false;
 
 		/**
@@ -67,7 +80,7 @@ module.exports = exports = defineComponent( {
 		function setFieldsFromGiven( given ) {
 			// TODO: Use Array.prototype.flat() when we have ES2019
 			const flattenedOptions = [];
-			for ( const opt of reasonOptions ) {
+			for ( const opt of reasonOptions.value ) {
 				if ( opt.items ) {
 					flattenedOptions.push( ...opt.items );
 				} else {

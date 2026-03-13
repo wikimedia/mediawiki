@@ -91,6 +91,21 @@ function mockMwConfigGet( config = {} ) {
 				label: 'Common block reasons',
 				items: [
 					{ label: 'Vandalism', value: 'Vandalism' },
+					{ label: 'Disruptive editing', value: 'Disruptive editing' }
+				]
+			},
+			{
+				label: 'Templated reasons',
+				items: [
+					{ label: '{{anonblock}}', value: '{{anonblock}}' }
+				]
+			}
+		],
+		indefBlockReasonOptions: [
+			{ label: 'Other', value: 'other' },
+			{
+				label: 'Common block reasons',
+				items: [
 					{ label: 'Spam', value: 'Spam' },
 					{ label: 'Disruptive editing', value: 'Disruptive editing' }
 				]
@@ -98,7 +113,6 @@ function mockMwConfigGet( config = {} ) {
 			{
 				label: 'Templated reasons',
 				items: [
-					{ label: '{{anonblock}}', value: '{{anonblock}}' },
 					{ label: '{{schoolblock}}', value: '{{schoolblock}}' },
 					{ label: '{{sockpuppet}}', value: '{{sockpuppet}}' }
 				]

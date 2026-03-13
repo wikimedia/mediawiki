@@ -84,7 +84,7 @@
 				<h2>{{ formHeaderText }}</h2>
 				<block-type-field></block-type-field>
 				<expiry-field></expiry-field>
-				<reason-field v-model="store.reason"></reason-field>
+				<reason-field v-model="store.reason" :expiry="store.expiry"></reason-field>
 				<block-details-field></block-details-field>
 				<additional-details-field></additional-details-field>
 				<confirmation-dialog

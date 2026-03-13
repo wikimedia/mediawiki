@@ -516,6 +516,11 @@ class SpecialBlock extends FormSpecialPage {
 					[ 'other' => $this->msg( 'htmlform-selectorother-other' )->text() ]
 			) );
 			$this->codexFormData[ 'blockReasonOptions' ] = $blockReasonOptions;
+			$indefBlockReasonOptions = Html::listDropdownOptionsCodex(
+				Html::listDropdownOptions( $this->msg( 'ipbreason-indef-dropdown' )->inContentLanguage()->plain(),
+					[ 'other' => $this->msg( 'htmlform-selectorother-other' )->text() ]
+				) );
+			$this->codexFormData[ 'indefBlockReasonOptions' ] = $indefBlockReasonOptions;
 			$this->codexFormData[ 'blockReasonMaxLength' ] = CommentStore::COMMENT_CHARACTER_LIMIT;
 		}
 

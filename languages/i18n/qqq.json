@@ -2515,6 +2515,7 @@
 	"ipaddressorusername": "{{Identical|IP address or username}}",
 	"ipbreason": "Label of the block reason dropdown in [[Special:BlockIP]] and the unblock reason textfield in [{{fullurl:Special:BlockList|action=unblock}} Special:BlockList?action=unblock].\n\n{{Identical|Reason}}",
 	"ipbreason-dropdown": "Used as item list for dropdown on [[Special:Block]].\n\nThe label for this dropdown is {{msg-mw|Ipbreason}}.",
+	"ipbreason-indef-dropdown": "Used as item list for dropdown of reasons for an indefinite block on [[Special:Block]].\n\nThe label for this dropdown is {{msg-mw|Ipbreason}}.",
 	"ipb-hardblock": "This is the label for a checkbox in the user block form on [[Special:Block]].\n\nSee also:\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipb-disableusertalk}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipbwatchuser}}",
 	"ipbcreateaccount": "{{Identical|Prevent account creation}}",
 	"ipbemailban": "Used as label for checkbox in [[Special:Block]].\n\nSee also:\n* {{msg-mw|ipb-disableusertalk}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipbwatchuser}}\n* {{msg-mw|ipb-hardblock}}\n{{Identical|Prevent user from sending e-mail}}",
