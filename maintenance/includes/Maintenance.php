@@ -385,7 +385,7 @@ abstract class Maintenance {
 
 	/**
 	 * Programmatically set the value of the given option.
-	 * Useful for setting up child scripts, see runChild().
+	 * Useful for setting up child scripts, see createChild().
 	 *
 	 * @since 1.39
 	 *
@@ -398,7 +398,7 @@ abstract class Maintenance {
 
 	/**
 	 * Programmatically set the value of the given argument.
-	 * Useful for setting up child scripts, see runChild().
+	 * Useful for setting up child scripts, see createChild().
 	 *
 	 * @since 1.39
 	 *
@@ -741,6 +741,7 @@ abstract class Maintenance {
 	 *   {@link Maintenance::execute} on the returned object.
 	 */
 	public function runChild( $maintClass, $classFile = null ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'runChild', '1.43' );
 		return self::createChild( $maintClass, $classFile );
 	}

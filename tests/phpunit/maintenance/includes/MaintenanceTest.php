@@ -648,10 +648,10 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->assertTrue( $testUser->equals( $this->maintenance->validateUserOption( "unused" ) ) );
 	}
 
-	public function testRunChildForNonExistentClass() {
+	public function testCreateChildForNonExistentClass() {
 		$this->expectCallToFatalError();
 		$this->expectOutputRegex( '/Cannot spawn child.*NonExistingTestClassForMaintenanceTest/' );
-		$this->maintenance->runChild( 'NonExistingTestClassForMaintenanceTest' );
+		$this->maintenance->createChild( 'NonExistingTestClassForMaintenanceTest' );
 	}
 
 	public function testSetAllowUnregisteredOptions() {

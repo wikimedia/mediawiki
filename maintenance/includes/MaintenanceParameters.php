@@ -293,7 +293,7 @@ class MaintenanceParameters {
 
 	/**
 	 * Programmatically set the value of the given option.
-	 * Useful for setting up child scripts, see runChild().
+	 * Useful for setting up child scripts, see createChild().
 	 *
 	 * @param string $name
 	 * @param mixed|null $value
@@ -304,7 +304,7 @@ class MaintenanceParameters {
 
 	/**
 	 * Programmatically set the value of the given argument.
-	 * Useful for setting up child scripts, see runChild().
+	 * Useful for setting up child scripts, see createChild().
 	 *
 	 * @param string|int $argId
 	 * @param string $value
