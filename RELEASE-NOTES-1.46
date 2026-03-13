@@ -245,8 +245,13 @@ because of Phabricator reports.
 * MimeAnalyzer::isPHPImageType, deprecated in 1.40, has been removed.
 * FileRepo no longer implements getUploadStash(), only LocalRepo does.
 * EtcdConfig::setLogger(), deprecated in 1.41, has been removed.
-* DatabaseBlock::delete, deprecated in 1.36, has been removed. Please use
-  DatabaseBlockStore::deleteBlock instead.
+* Deprecated functions in DatabaseBlock have been removed.
+  - DatabaseBlock::delete(), deprecated in 1.36, has been removed. Please use
+    DatabaseBlockStore::deleteBlock instead.
+  - DatabaseBlock::update(), deprecated in 1.36, has been removed. Use the
+    replacement DatabaseBlockStore::updateBlock instead.
+  - DatabaseBlock::insert(), deprecated in 1.36, has been removed. Use the
+    replacement DatabaseBlockStore::insertBlock instead.
 * The Result class has been removed; it was an unused alias of
   Shellbox\Command\UnboxedResult since 1.36.
 * The PageContentSave hook, deprecated in 1.35, has been removed.

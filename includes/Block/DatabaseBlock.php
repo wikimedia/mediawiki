@@ -169,40 +169,6 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Insert a block into the block table. Will fail if there is a conflicting
-	 * block (same name and options) already in the database.
-	 *
-	 * @deprecated since 1.36 Use DatabaseBlockStore::insertBlock instead.
-	 *             Passing a custom db connection is no longer supported since 1.42.
-	 *
-	 * @return bool|array False on failure, assoc array on success:
-	 * 	('id' => block ID, 'autoIds' => array of autoblock IDs)
-	 */
-	public function insert() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()
-			->getDatabaseBlockStoreFactory()
-			->getDatabaseBlockStore( $this->getWikiId() )
-			->insertBlock( $this );
-	}
-
-	/**
-	 * Update a block in the DB with new parameters.
-	 * The ID field needs to be loaded first.
-	 *
-	 * @deprecated since 1.36 Use DatabaseBlockStore::updateBlock instead.
-	 * @return bool|array False on failure, array on success:
-	 *   ('id' => block ID, 'autoIds' => array of autoblock IDs)
-	 */
-	public function update() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()
-			->getDatabaseBlockStoreFactory()
-			->getDatabaseBlockStore( $this->getWikiId() )
-			->updateBlock( $this );
-	}
-
-	/**
 	 * Checks whether a given IP is on the autoblock exemption list.
 	 *
 	 * @since 1.36
