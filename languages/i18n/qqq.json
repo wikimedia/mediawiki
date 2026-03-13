@@ -2559,6 +2559,7 @@
 	"block-expiry": "Label for the input for specifying the expiry time of a block on [[Special:Block]]. The expiry time can be specified either as a duration (a number of days, weeks, etc.), or as a specific date and time.",
 	"block-expiry-preset": "Label for radio button to specify a preset duration for a block on [[Special:Block]]",
 	"block-expiry-preset-placeholder": "Placeholder text for the dropdown to select a preset expiry time of a block on [[Special:Block]]",
+	"block-expiry-indefinite": "Label for radio button for an indefinite block on [[Special:Block]]",
 	"block-expiry-custom": "Label for radio button to specify a custom duration for a block on [[Special:Block]]",
 	"block-expiry-custom-minutes": "Full word for \"minutes\" when the number of minutes is unknown.\n\nThis is the label for the input to specify the expiry in number of minutes at [[Special:Block]]\n{{Identical|Minute}}",
 	"block-expiry-custom-hours": "Full word for \"hours\" when the number of hours is unknown.\n\nThis is the label for the input to specify the expiry in number of hours at [[Special:Block]]\n{{Identical|Hour}}",

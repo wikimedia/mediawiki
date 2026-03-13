@@ -2423,6 +2423,7 @@ return [
 			'block-expiry-custom-weeks',
 			'block-expiry-custom-years',
 			'block-expiry-datetime',
+			'block-expiry-indefinite',
 			'block-expiry-preset',
 			'block-expiry-preset-placeholder',
 			'block-item-edit',

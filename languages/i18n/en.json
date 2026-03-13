@@ -2279,6 +2279,7 @@
 	"block-expiry": "Expiration",
 	"block-expiry-preset": "Preset duration",
 	"block-expiry-preset-placeholder": "Select a duration",
+	"block-expiry-indefinite": "Indefinite",
 	"block-expiry-custom": "Custom duration",
 	"block-expiry-custom-minutes": "minutes",
 	"block-expiry-custom-hours": "hours",

@@ -10,6 +10,14 @@
 		<cdx-radio
 			v-model="expiryType"
 			name="expiryType"
+			input-value="indefinite"
+		>
+			{{ $i18n( 'block-expiry-indefinite' ).text() }}
+		</cdx-radio>
+
+		<cdx-radio
+			v-model="expiryType"
+			name="expiryType"
 			input-value="preset-duration"
 		>
 			{{ $i18n( 'block-expiry-preset' ).text() }}
@@ -188,7 +196,9 @@ module.exports = exports = defineComponent( {
 		}
 
 		const computedModelValue = computed( () => {
-			if ( expiryType.value === 'preset-duration' ) {
+			if ( expiryType.value === 'indefinite' ) {
+				return expiryType.value;
+			} else if ( expiryType.value === 'preset-duration' ) {
 				return presetDuration.value;
 			} else if ( expiryType.value === 'custom-duration' ) {
 				return `${ Number( customDurationNumber.value ) } ${ customDurationUnit.value }`;
