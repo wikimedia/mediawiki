@@ -51,7 +51,6 @@ class UserGroupAssignmentService {
 		private readonly TempUserConfig $tempUserConfig,
 		private readonly IConnectionProvider $connectionProvider,
 		private readonly PageStoreFactory $pageStoreFactory,
-		private readonly ActorStoreFactory $actorStoreFactory,
 	) {
 		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->restrictedGroupChecker = $restrictedGroupCheckerFactory->getRestrictedUserGroupChecker();
@@ -446,17 +445,11 @@ class UserGroupAssignmentService {
 			$wikis
 		) );
 
+		$currentWiki = WikiMap::getCurrentWikiId();
 		foreach ( $wikis as $wiki ) {
 			$logPerformer = $performer;
 			if ( $wiki !== UserIdentity::LOCAL ) {
-				// If a user with the same name exists on a remote wiki, assign the log entry to them. Otherwise,
-				// use an external user, pointing to the current wiki
-				$userIdentityLookup = $this->actorStoreFactory->getUserIdentityLookup( $wiki );
-				$logPerformer = $userIdentityLookup->getUserIdentityByName( $performer->getName() );
-				if ( !$logPerformer ) {
-					$logPerformer = UserIdentityValue::newExternal(
-						WikiMap::getCurrentWikiId(), $performer->getName(), $wiki );
-				}
+				$logPerformer = UserIdentityValue::newExternal( $currentWiki, $performer->getName(), $wiki );
 			}
 			$this->addRightsLogEntryOnWiki( $logPerformer, $target, $reason, $tags, $oldUGMs, $newUGMs, $wiki );
 		}
