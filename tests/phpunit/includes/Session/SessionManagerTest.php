@@ -154,6 +154,8 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$request = new FauxRequest();
 		$requestUnpersist1 = false;
 		$requestUnpersist2 = false;
+		$wasAttached1 = false;
+		$wasAttached2 = false;
 		$requestInfo1 = null;
 		$requestInfo2 = null;
 
@@ -163,7 +165,8 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 
 		$providerBuilder = $this->getMockBuilder( DummySessionProvider::class )
 			->onlyMethods(
-				[ 'provideSessionInfo', 'newSessionInfo', '__toString', 'describe', 'unpersistSession' ]
+				[ 'provideSessionInfo', 'newSessionInfo', '__toString', 'describe', 'unpersistSession',
+					'sessionWasAttachedToRequest' ]
 			);
 
 		$provider1 = $providerBuilder->getMock();
@@ -189,6 +192,10 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			->willReturnCallback( static function ( $request ) use ( &$requestUnpersist1 ) {
 				$requestUnpersist1 = true;
 			} );
+		$provider1->method( 'sessionWasAttachedToRequest' )
+			->willReturnCallback( static function ( $request ) use ( &$wasAttached1 ) {
+				$wasAttached1 = true;
+			} );
 
 		$provider2 = $providerBuilder->getMock();
 		$provider2->method( 'provideSessionInfo' )
@@ -204,6 +211,10 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			->willReturnCallback( static function ( $request ) use ( &$requestUnpersist2 ) {
 				$requestUnpersist2 = true;
 			} );
+		$provider2->method( 'sessionWasAttachedToRequest' )
+			->willReturnCallback( static function ( $request ) use ( &$wasAttached2 ) {
+				$wasAttached2 = true;
+			} );
 
 		$this->config->set( MainConfigNames::SessionProviders, [
 			$this->objectCacheDef( $provider1 ),
@@ -216,6 +227,8 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $idEmpty, $session->getId() );
 		$this->assertFalse( $requestUnpersist1 );
 		$this->assertFalse( $requestUnpersist2 );
+		$this->assertFalse( $wasAttached1 );
+		$this->assertFalse( $wasAttached2 );
 
 		// Both providers return info, picks best one
 		$requestInfo1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 1, [
@@ -235,6 +248,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $id2, $session->getId() );
 		$this->assertFalse( $requestUnpersist1 );
 		$this->assertFalse( $requestUnpersist2 );
+		$this->assertFalse( $wasAttached1 );
+		$this->assertTrue( $wasAttached2 );
+		$wasAttached2 = false;
 
 		$requestInfo1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 2, [
 			'provider' => $provider1,
@@ -253,6 +269,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $id1, $session->getId() );
 		$this->assertFalse( $requestUnpersist1 );
 		$this->assertFalse( $requestUnpersist2 );
+		$this->assertTrue( $wasAttached1 );
+		$this->assertFalse( $wasAttached2 );
+		$wasAttached1 = false;
 
 		// Tied priorities
 		$requestInfo1 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
@@ -283,6 +302,8 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		}
 		$this->assertFalse( $requestUnpersist1 );
 		$this->assertFalse( $requestUnpersist2 );
+		$this->assertFalse( $wasAttached1 );
+		$this->assertFalse( $wasAttached2 );
 
 		// Bad provider
 		$requestInfo1 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
@@ -303,6 +324,8 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		}
 		$this->assertFalse( $requestUnpersist1 );
 		$this->assertFalse( $requestUnpersist2 );
+		$this->assertFalse( $wasAttached1 );
+		$this->assertFalse( $wasAttached2 );
 
 		// Unusable session info
 		$this->logger->setCollect( true );
@@ -326,6 +349,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $requestUnpersist1 );
 		$this->assertFalse( $requestUnpersist2 );
 		$requestUnpersist1 = false;
+		$this->assertFalse( $wasAttached1 );
+		$this->assertTrue( $wasAttached2 );
+		$wasAttached2 = false;
 
 		$this->logger->setCollect( true );
 		$requestInfo1 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
@@ -348,6 +374,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $requestUnpersist1 );
 		$this->assertTrue( $requestUnpersist2 );
 		$requestUnpersist2 = false;
+		$this->assertTrue( $wasAttached1 );
+		$this->assertFalse( $wasAttached2 );
+		$wasAttached1 = false;
 
 		// Unpersisted session ID
 		$requestInfo1 = new SessionInfo( SessionInfo::MAX_PRIORITY, [
@@ -365,6 +394,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $requestUnpersist2 );
 		$session->persist();
 		$this->assertTrue( $session->isPersistent() );
+		$this->assertTrue( $wasAttached1 );
+		$this->assertFalse( $wasAttached2 );
+		$wasAttached1 = false;
 	}
 
 	public function testGetSessionById() {

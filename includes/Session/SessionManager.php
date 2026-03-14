@@ -140,6 +140,7 @@ class SessionManager implements SessionManagerInterface {
 			$session = $this->getInitialSession( $request );
 		} else {
 			$session = $this->getSessionFromInfo( $info, $request );
+			$info->getProvider()?->sessionWasAttachedToRequest( $info, $request );
 		}
 		return $session;
 	}

@@ -350,6 +350,19 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 	}
 
 	/**
+	 * Notification that the session provider was selected to handle a given request.
+	 *
+	 * Called when the SessionInfo returned from this provider's provideSessionInfo() was selected
+	 * to be the one used for the given request, and all other checks (e.g. loading the metadata
+	 * from the session store) are finished. Not called for empty sessions.
+	 *
+	 * Might be used for cookie handling by providers which are primarily non-cookie-based, and
+	 * use non-persisted sessions.
+	 */
+	public function sessionWasAttachedToRequest( SessionInfo $sessionInfo, WebRequest $request ): void {
+	}
+
+	/**
 	 * Persist a session into a request/response
 	 *
 	 * For example, you might set cookies for the session's ID, user ID, user
