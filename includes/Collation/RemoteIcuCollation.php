@@ -101,10 +101,6 @@ class RemoteIcuCollation extends Collation {
 			throw new RuntimeException( "Invalid ICU locale specified for collation: $locale" );
 		}
 
-		// If the special suffix for numeric collation is present, turn on numeric collation.
-		if ( str_ends_with( $locale, '-u-kn' ) ) {
-			$mainCollator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
-		}
 		$ret = [];
 		foreach ( self::decode( $blob ) as $string ) {
 			$ret[] = $mainCollator->getSortKey( $string );

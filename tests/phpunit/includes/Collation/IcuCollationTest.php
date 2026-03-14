@@ -26,6 +26,10 @@ class IcuCollationTest extends MediaWikiLangTestCase {
 			[ 'uca-zh@collation=unihan', Collator::OFF ],
 			[ 'uca-zh@collation=unihan;colNumeric=yes', Collator::ON ],
 			[ 'uca-zh@colNumeric=yes;collation=unihan', Collator::ON ],
+
+			[ 'uca-zh-u-co-unihan', Collator::OFF ],
+			[ 'uca-zh-u-co-unihan-kn', Collator::ON ],
+			[ 'uca-zh-u-kn-co-unihan', Collator::ON ],
 		];
 	}
 }

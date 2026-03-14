@@ -8,6 +8,7 @@ namespace MediaWiki\Collation;
 
 use Collator;
 use InvalidArgumentException;
+use Locale;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageFactory;
 use MediaWiki\MediaWikiServices;
@@ -18,25 +19,18 @@ use Wikimedia\ArrayUtils\ArrayUtils;
  * @since 1.16.3
  */
 class IcuCollation extends Collation {
-	private const FIRST_LETTER_VERSION = 6;
+	private const FIRST_LETTER_VERSION = 5;
 
-	/** @var Collator */
-	private $primaryCollator;
+	private Collator $primaryCollator;
+	private Collator $mainCollator;
 
-	/** @var Collator */
-	private $mainCollator;
+	private string $langCode;
+	private string $locale;
+	private string $localeGroup;
 
-	/** @var string */
-	private $locale;
+	protected Language $digitTransformLanguage;
 
-	/** @var Language */
-	protected $digitTransformLanguage;
-
-	/** @var bool */
-	private $isNumericCollation = false;
-
-	/** @var array */
-	private $firstLetterData;
+	private ?array $firstLetterData = null;
 
 	/**
 	 * Unified CJK blocks.
@@ -319,6 +313,7 @@ class IcuCollation extends Collation {
 		LanguageFactory $languageFactory,
 		$locale
 	) {
+		$this->locale = $locale;
 		$mainCollator = Collator::create( $locale );
 		if ( !$mainCollator ) {
 			throw new InvalidArgumentException( "Invalid ICU locale specified for collation: $locale" );
@@ -330,27 +325,16 @@ class IcuCollation extends Collation {
 		$this->primaryCollator->setStrength( Collator::PRIMARY );
 
 		// Make the internal collation key without an extra suffix or parameters for fetchFirstLetterData()
-		$localeParts = explode( '@', $locale, 2 );
-		if ( count( $localeParts ) === 1 ) {
-			if ( str_ends_with( $locale, '-u-kn' ) ) {
-				$this->isNumericCollation = true;
-				$locale = substr( $locale, 0, -5 );
-			}
+		$baseLocale = preg_split( '/-u-|@/', $locale, 2 )[ 0 ];
+		$keywords = Locale::getKeywords( $locale ) ?? [];
+		if ( isset( $keywords['collation'] ) ) {
+			$this->localeGroup = $baseLocale . '@collation=' . $keywords['collation'];
 		} else {
-			$parameters = explode( ';', $localeParts[1] );
-			$this->isNumericCollation = in_array( 'colNumeric=yes', $parameters );
-
-			$locale = $localeParts[0];
-			foreach ( $parameters as $param ) {
-				if ( str_starts_with( $param, 'collation=' ) ) {
-					$locale = $localeParts[0] . '@' . $param;
-					break;
-				}
-			}
+			$this->localeGroup = $baseLocale;
 		}
 
-		$this->locale = $locale;
-		$this->digitTransformLanguage = $languageFactory->getLanguage( $locale === 'root' ? 'en' : $localeParts[0] );
+		$this->langCode = $baseLocale === 'root' ? 'en' : $baseLocale;
+		$this->digitTransformLanguage = $languageFactory->getLanguage( $this->langCode );
 	}
 
 	/** @inheritDoc */
@@ -365,11 +349,13 @@ class IcuCollation extends Collation {
 			return '';
 		}
 
-		$langCode = explode( '@', $this->locale )[0];
 		$firstChar = mb_substr( $string, 0, 1, 'UTF-8' );
 
 		// If the first character is a CJK character, just return that character.
-		if ( $langCode !== 'zh' && ord( $firstChar[0] ) > 0x7f && self::isCjk( mb_ord( $firstChar ) ) ) {
+		if (
+			$this->langCode !== 'zh' &&
+			ord( $firstChar[0] ) > 0x7f && self::isCjk( mb_ord( $firstChar ) )
+		) {
 			return $firstChar;
 		}
 
@@ -397,7 +383,7 @@ class IcuCollation extends Collation {
 			$sortLetter = substr( $sortLetter, strlen( "\u{FDD0}" ) );
 		}
 
-		if ( $this->isNumericCollation ) {
+		if ( $this->mainCollator->getAttribute( Collator::NUMERIC_COLLATION ) === Collator::ON ) {
 			// If the sort letter is a number, return '0–9' (or localized equivalent).
 			// ASCII value of 0 is 48. ASCII value of 9 is 57.
 			// Note that this also applies to non-Arabic numerals since they are
@@ -424,8 +410,8 @@ class IcuCollation extends Collation {
 			$cacheKey = $cache->makeKey(
 				'first-letters',
 				static::class,
+				// Use the original locale since Collator behaviours can be controlled by parameters
 				$this->locale,
-				(int)$this->isNumericCollation,
 				$this->digitTransformLanguage->getCode(),
 				INTL_ICU_VERSION,
 				self::FIRST_LETTER_VERSION
@@ -442,13 +428,13 @@ class IcuCollation extends Collation {
 	 */
 	private function fetchFirstLetterData() {
 		// Generate data from serialized data file
-		if ( isset( self::TAILORING_FIRST_LETTERS[$this->locale] ) ) {
+		if ( isset( self::TAILORING_FIRST_LETTERS[$this->localeGroup] ) ) {
 			$letters = require dirname( __DIR__, 2 ) . "/languages/data/first-letters-root.php";
 			// Append additional characters
-			$letters = array_merge( $letters, self::TAILORING_FIRST_LETTERS[$this->locale] );
+			$letters = array_merge( $letters, self::TAILORING_FIRST_LETTERS[$this->localeGroup] );
 			// Remove unnecessary ones, if any
-			if ( isset( self::TAILORING_FIRST_LETTERS['-' . $this->locale] ) ) {
-				$letters = array_diff( $letters, self::TAILORING_FIRST_LETTERS['-' . $this->locale] );
+			if ( isset( self::TAILORING_FIRST_LETTERS['-' . $this->localeGroup] ) ) {
+				$letters = array_diff( $letters, self::TAILORING_FIRST_LETTERS['-' . $this->localeGroup] );
 			}
 			// Apply digit transforms
 			$digits = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ];
@@ -456,11 +442,11 @@ class IcuCollation extends Collation {
 			foreach ( $digits as $digit ) {
 				$letters[] = $this->digitTransformLanguage->formatNumNoSeparators( $digit );
 			}
-		} elseif ( $this->locale === 'root' ) {
+		} elseif ( $this->localeGroup === 'root' ) {
 			$letters = require dirname( __DIR__, 2 ) . "/languages/data/first-letters-root.php";
 		} else {
 			throw new RuntimeException( "MediaWiki does not support ICU locale " .
-				"\"{$this->locale}\"" );
+				"\"{$this->localeGroup}\"" );
 		}
 
 		/* Sort the letters.
