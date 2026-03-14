@@ -4,10 +4,9 @@ namespace MediaWiki\Specials\Helpers;
 
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
-use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Exception\LoginErrorHelper;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 /**
@@ -17,28 +16,6 @@ use MediaWiki\Title\Title;
  */
 class LoginHelper extends ContextSource {
 	use ProtectedHookAccessorTrait;
-
-	/**
-	 * @var string[]
-	 */
-	private static $validErrorMessages = [
-		'exception-nologin-text',
-		'exception-nologin-text-for-temp-user',
-		'watchlistanontext',
-		'watchlistanontext-for-temp-user',
-		'watchlistlabels-not-logged-in',
-		'watchlistlabels-not-logged-in-for-temp-user',
-		'changeemail-no-info',
-		'confirmemail_needlogin',
-		'prefsnologintext2',
-		'prefsnologintext2-for-temp-user',
-		'specialmute-login-required',
-		'specialmute-login-required-for-temp-user',
-		'mailnologintext',
-	];
-
-	/** @var array|null Cache for {@link LoginHelper::getValidErrorMessages} */
-	private static ?array $validErrorMessagesCache = null;
 
 	/**
 	 * Returns an array of all error and warning messages that can be displayed on Special:UserLogin or
@@ -54,13 +31,7 @@ class LoginHelper extends ContextSource {
 	 * @see LoginHelper::$validErrorMessages
 	 */
 	public static function getValidErrorMessages(): array {
-		if ( !static::$validErrorMessagesCache ) {
-			static::$validErrorMessagesCache = self::$validErrorMessages;
-			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
-				->onLoginFormValidErrorMessages( static::$validErrorMessagesCache );
-		}
-
-		return static::$validErrorMessagesCache;
+		return LoginErrorHelper::getValidErrorMessages();
 	}
 
 	public function __construct( IContextSource $context ) {

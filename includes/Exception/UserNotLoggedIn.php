@@ -8,7 +8,6 @@ namespace MediaWiki\Exception;
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\Specials\Helpers\LoginHelper;
 
 /**
  * Redirect a user to the login page or account creation page
@@ -103,7 +102,7 @@ class UserNotLoggedIn extends ErrorPageError {
 	public function report( $action = self::SEND_OUTPUT ) {
 		// If an unsupported message is used, don't try redirecting to Special:Userlogin,
 		// since the message may not be compatible.
-		if ( !in_array( $this->msg, LoginHelper::getValidErrorMessages() ) ) {
+		if ( !in_array( $this->msg, LoginErrorHelper::getValidErrorMessages() ) ) {
 			parent::report( $action );
 			return;
 		}

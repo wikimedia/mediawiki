@@ -1,21 +1,21 @@
 <?php
 
-namespace MediaWiki\Tests\Integration\Specials\Helpers;
+namespace MediaWiki\Tests\Integration\Exception;
 
-use MediaWiki\Specials\Helpers\LoginHelper;
+use MediaWiki\Exception\LoginErrorHelper;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \MediaWiki\Specials\Helpers\LoginHelper
+ * @covers \MediaWiki\Exception\LoginErrorHelper
  */
-class LoginHelperTest extends MediaWikiIntegrationTestCase {
+class LoginErrorHelperTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
 
 		// Clear the cache for the valid error messages after each test.
-		$loginHelper = TestingAccessWrapper::newFromClass( LoginHelper::class );
+		$loginHelper = TestingAccessWrapper::newFromClass( LoginErrorHelper::class );
 		$loginHelper->validErrorMessagesCache = null;
 	}
 
@@ -29,7 +29,7 @@ class LoginHelperTest extends MediaWikiIntegrationTestCase {
 			}
 		);
 
-		$actualMessages = LoginHelper::getValidErrorMessages();
+		$actualMessages = LoginErrorHelper::getValidErrorMessages();
 		$this->assertContains( 'testing-abc', $actualMessages );
 		$this->assertContains( 'exception-nologin-text', $actualMessages );
 		$this->assertContains( 'mailnologintext', $actualMessages );
@@ -37,7 +37,7 @@ class LoginHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetValidErrorMessagesWithoutHook() {
-		$actualMessages = LoginHelper::getValidErrorMessages();
+		$actualMessages = LoginErrorHelper::getValidErrorMessages();
 		$this->assertNotContains( 'testing-abc', $actualMessages );
 		$this->assertContains( 'exception-nologin-text', $actualMessages );
 		$this->assertContains( 'mailnologintext', $actualMessages );

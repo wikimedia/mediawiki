@@ -1403,6 +1403,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Exception\\HttpError' => __DIR__ . '/includes/Exception/HttpError.php',
 	'MediaWiki\\Exception\\ILocalizedException' => __DIR__ . '/includes/Exception/ILocalizedException.php',
 	'MediaWiki\\Exception\\LocalizedException' => __DIR__ . '/includes/Exception/LocalizedException.php',
+	'MediaWiki\\Exception\\LoginErrorHelper' => __DIR__ . '/includes/Exception/LoginErrorHelper.php',
 	'MediaWiki\\Exception\\MWContentSerializationException' => __DIR__ . '/includes/Content/ContentSerializationException.php',
 	'MediaWiki\\Exception\\MWException' => __DIR__ . '/includes/Exception/MWException.php',
 	'MediaWiki\\Exception\\MWExceptionHandler' => __DIR__ . '/includes/Exception/MWExceptionHandler.php',
