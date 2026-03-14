@@ -83,7 +83,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals(
 			[
 				'<label for="tagfilter"><a href="/wiki/Special:Tags" title="Special:Tags">Tag</a> filter:</label>',
-				'<input class="mw-tagfilter-input mw-ui-input mw-ui-input-inline" size="20" id="tagfilter" list="tagfilter-datalist" name="tagfilter"><datalist id="tagfilter-datalist"></datalist>'
+				'<input class="mw-tagfilter-input" size="20" id="tagfilter" list="tagfilter-datalist" name="tagfilter"><datalist id="tagfilter-datalist"></datalist>'
 			],
 			ChangeTags::buildTagFilterSelector(
 				'', false, RequestContext::getMain()
@@ -120,7 +120,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals(
 			[
 				'<label for="tagfilter"><a href="/wiki/Special:Tags" title="Special:Tags">Tag</a> filter:</label>',
-				'<input class="mw-tagfilter-input mw-ui-input mw-ui-input-inline" size="20" id="tagfilter" list="tagfilter-datalist" name="tagfilter"><datalist id="tagfilter-datalist"><option value="mw-replace">Replaced</option></datalist>'
+				'<input class="mw-tagfilter-input" size="20" id="tagfilter" list="tagfilter-datalist" name="tagfilter"><datalist id="tagfilter-datalist"><option value="mw-replace">Replaced</option></datalist>'
 			],
 			ChangeTags::buildTagFilterSelector(
 				'', false, RequestContext::getMain()

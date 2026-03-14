@@ -808,7 +808,7 @@ class ChangeTags {
 				$selected,
 				'text',
 				[
-					'class' => [ 'mw-tagfilter-input', 'mw-ui-input', 'mw-ui-input-inline' ],
+					'class' => [ 'mw-tagfilter-input' ],
 					'size' => 20,
 					'id' => 'tagfilter',
 					'list' => 'tagfilter-datalist',
