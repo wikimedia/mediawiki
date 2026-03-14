@@ -146,7 +146,7 @@ class UpdateQueryBuilder implements IWriteQueryBuilder {
 	 * to the existing conditions, separated by AND.
 	 *
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar|Blob>|RawSQLValue|Blob>|array<int,string|IExpression> $conds
 	 *
 	 * May be either a string containing a single condition, or an array of
 	 * conditions. If an array is given, the conditions constructed from each
@@ -203,7 +203,7 @@ class UpdateQueryBuilder implements IWriteQueryBuilder {
 	 * Add conditions to the query. Alias for where().
 	 *
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar|Blob>|RawSQLValue|Blob>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
@@ -215,7 +215,7 @@ class UpdateQueryBuilder implements IWriteQueryBuilder {
 	 * Add conditions to the query. Alias for where().
 	 *
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar|Blob>|RawSQLValue|Blob>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
@@ -227,7 +227,7 @@ class UpdateQueryBuilder implements IWriteQueryBuilder {
 	 * Add SET part to the query. It takes an array containing arrays of column names map to
 	 * the set values.
 	 *
-	 * @param string|array<string,?scalar|RawSQLValue>|array<int,string> $set
+	 * @param string|array<string,?scalar|RawSQLValue|Blob>|array<int,string> $set
 	 * @param-taint $set exec_sql_numkey
 	 *
 	 * Combination map/list where each string-keyed entry maps a column
@@ -263,7 +263,7 @@ class UpdateQueryBuilder implements IWriteQueryBuilder {
 	/**
 	 * Add set values to the query. Alias for set().
 	 *
-	 * @param string|array<string,?scalar|RawSQLValue>|array<int,string> $set
+	 * @param string|array<string,?scalar|RawSQLValue|Blob>|array<int,string> $set
 	 * @param-taint $set exec_sql_numkey
 	 * @return $this
 	 */

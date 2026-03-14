@@ -111,7 +111,7 @@ class DeleteQueryBuilder implements IWriteQueryBuilder {
 	 * to the existing conditions, separated by AND.
 	 *
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar|Blob>|RawSQLValue|Blob>|array<int,string|IExpression> $conds
 	 *
 	 * May be either a string containing a single condition, or an array of
 	 * conditions. If an array is given, the conditions constructed from each
@@ -168,7 +168,7 @@ class DeleteQueryBuilder implements IWriteQueryBuilder {
 	 * Add conditions to the query. Alias for where().
 	 *
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar|Blob>|RawSQLValue|Blob>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
@@ -180,7 +180,7 @@ class DeleteQueryBuilder implements IWriteQueryBuilder {
 	 * Add conditions to the query. Alias for where().
 	 *
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar|Blob>|RawSQLValue|Blob>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */

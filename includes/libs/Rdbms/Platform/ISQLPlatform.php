@@ -5,6 +5,7 @@
  */
 namespace Wikimedia\Rdbms\Platform;
 
+use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeMatch;
@@ -511,7 +512,7 @@ interface ISQLPlatform {
 	 * @param string|array $vars Field names
 	 * @param-taint $vars exec_sql
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar|Blob>|RawSQLValue|Blob>|array<int,string|IExpression> $conds
 	 *   Conditions
 	 * @param-taint $conds exec_sql_numkey
 	 * @param string $fname Caller function name @phan-mandatory-param
@@ -594,7 +595,7 @@ interface ISQLPlatform {
 	 *   or of the form "information_schema.<identifier>". {@see select} for details.
 	 * @param string $field Field name
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar|Blob>|RawSQLValue|Blob>|array<int,string|IExpression> $conds
 	 *   Conditions
 	 * @param string|array $join_conds Join conditions
 	 * @return string SQL text

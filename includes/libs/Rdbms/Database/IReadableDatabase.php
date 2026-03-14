@@ -158,7 +158,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 *  {@see select} for details.
 	 * @param-taint $var exec_sql
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $cond
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue|Blob>|array<int,string|IExpression> $cond
 	 *  The condition array. {@see select} for details.
 	 * @param-taint $cond exec_sql_numkey
 	 * @param string $fname The function name of the caller. @phan-mandatory-param
@@ -192,7 +192,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 *   fragment: do not use unvalidated user input.
 	 * @param-taint $var exec_sql
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $cond
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue|Blob>|array<int,string|IExpression> $cond
 	 *   The condition array. {@see select} for details.
 	 * @param-taint $cond exec_sql_numkey
 	 * @param string $fname The function name of the caller. @phan-mandatory-param
@@ -285,7 +285,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * Untrusted user input must not be passed to this parameter.
 	 *
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue|Blob>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 *
 	 * May be either a string containing a single condition, or an array of
@@ -444,7 +444,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @param string|array $vars Field names
 	 * @param-taint $vars exec_sql
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue|Blob>|array<int,string|IExpression> $conds
 	 *   Conditions
 	 * @param-taint $conds exec_sql_numkey
 	 * @param string $fname Caller function name @phan-mandatory-param
@@ -487,7 +487,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 *   or of the form "information_schema.<identifier>". {@see select} for details.
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue|Blob>|array<int,string|IExpression> $conds
 	 *   Filters on the table
 	 * @param string $fname Function name for profiling @phan-mandatory-param
 	 * @param array $options Options for select
@@ -518,7 +518,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param-taint $var exec_sql
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue|Blob>|array<int,string|IExpression> $conds
 	 *   Filters on the table
 	 * @param-taint $conds exec_sql_numkey
 	 * @param string $fname Function name for profiling @phan-mandatory-param
