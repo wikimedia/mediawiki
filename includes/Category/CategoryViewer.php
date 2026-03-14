@@ -36,9 +36,7 @@ class CategoryViewer extends ContextSource {
 	use ProtectedHookAccessorTrait;
 	use DeprecationHelper;
 
-	public int $limit;
-	public array $from;
-	public array $until;
+	public readonly int $limit;
 	/** @var string[] */
 	public array $articles;
 	public array $articles_start_char;
@@ -51,15 +49,11 @@ class CategoryViewer extends ContextSource {
 	protected array $prevPage;
 	public array $flip;
 
-	protected PageIdentity $page;
-	public Collation $collation;
+	public readonly Collation $collation;
 	public ImageGalleryBase $gallery;
 
 	/** @var Category Category object for this page. */
-	private Category $cat;
-
-	/** @var array The original query array, to be used in generating paging links. */
-	private array $query;
+	private readonly Category $cat;
 
 	private readonly ILanguageConverter $languageConverter;
 
@@ -70,17 +64,15 @@ class CategoryViewer extends ContextSource {
 	 * @param array $from An array with keys page, subcat,
 	 *        and file for offset of results of each section (since 1.17)
 	 * @param array $until An array with 3 keys for until of each section (since 1.17)
-	 * @param array $query
+	 * @param array $query The original query array, to be used in generating paging links.
 	 */
 	public function __construct(
-		PageIdentity $page,
+		protected PageIdentity $page,
 		IContextSource $context,
-		array $from = [],
-		array $until = [],
-		array $query = []
+		public readonly array $from = [],
+		public readonly array $until = [],
+		private readonly array $query = [],
 	) {
-		$this->page = $page;
-
 		$this->deprecatePublicPropertyFallback(
 			'title',
 			'1.37',
@@ -92,11 +84,8 @@ class CategoryViewer extends ContextSource {
 		$this->getOutput()->addModuleStyles( [
 			'mediawiki.action.styles',
 		] );
-		$this->from = $from;
-		$this->until = $until;
 		$this->limit = $context->getConfig()->get( MainConfigNames::CategoryPagingLimit );
 		$this->cat = Category::newFromTitle( $page );
-		$this->query = $query;
 
 		$this->articles = [];
 		$this->articles_start_char = [];

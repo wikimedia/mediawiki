@@ -34,13 +34,10 @@ class CategoriesRdf {
 	 * https://en.wikipedia.org/wiki/Special:CategoryDump
 	 */
 	private const SPECIAL_DUMP = 'Special:CategoryDump';
-	/**
-	 * @var RdfWriter
-	 */
-	private $rdfWriter;
 
-	public function __construct( RdfWriter $writer ) {
-		$this->rdfWriter = $writer;
+	public function __construct(
+		private readonly RdfWriter $rdfWriter,
+	) {
 	}
 
 	/**

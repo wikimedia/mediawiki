@@ -55,14 +55,9 @@ class Category {
 	public const COUNT_ALL_MEMBERS = 0;
 	public const COUNT_CONTENT_PAGES = 1;
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var ReadOnlyMode */
-	private $readOnlyMode;
-
-	/** @var TitleFactory */
-	private $titleFactory;
+	private readonly IConnectionProvider $dbProvider;
+	private readonly ReadOnlyMode $readOnlyMode;
+	private readonly TitleFactory $titleFactory;
 
 	private function __construct() {
 		$services = MediaWikiServices::getInstance();
