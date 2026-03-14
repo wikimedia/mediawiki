@@ -521,6 +521,10 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		$attribs = [ 'data-mw-revid' => $revRecord->getId() ];
+		$timestamp = $revRecord->getTimestamp();
+		if ( $timestamp ) {
+			$attribs['data-mw-ts'] = $timestamp;
+		}
 
 		$this->hookRunner->onPageHistoryLineEnding( $this, $row, $s, $classes, $attribs );
 		$attribs = array_filter( $attribs,

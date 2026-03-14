@@ -672,6 +672,10 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	 */
 	protected function populateAttributes( $row, &$attributes ) {
 		$attributes['data-mw-revid'] = $this->currentRevRecord->getId();
+		$timestamp = $this->currentRevRecord?->getTimestamp();
+		if ( $timestamp ) {
+			$attributes['data-mw-ts'] = $timestamp;
+		}
 	}
 
 	/**
