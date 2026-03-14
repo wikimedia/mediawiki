@@ -40,7 +40,6 @@ use MediaWiki\EditPage\Constraint\RevisionDeletedConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
 use MediaWiki\Exception\ErrorPageError;
-use MediaWiki\Exception\MWException;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\ReadOnlyError;
 use MediaWiki\Exception\ThrottledError;
@@ -2948,7 +2947,7 @@ class EditPage implements IEditObject {
 	 * @return Content|false|null The content object created from $text. If $text was false
 	 *   or null, then false or null will be returned instead.
 	 *
-	 * @throws MWException If unserializing the text results in a Content
+	 * @throws NotDirectlyEditableException If unserializing the text results in a Content
 	 *   object that is not an instance of TextContent and
 	 *   $this->enableApiEditOverride is not true.
 	 */
@@ -2963,7 +2962,7 @@ class EditPage implements IEditObject {
 		if ( !$this->pageEditingHelper->isSupportedContentModel(
 			$content->getModel(), $this->enableApiEditOverride
 		) ) {
-			throw new MWException( 'This content model is not supported: ' . $content->getModel() );
+			throw new NotDirectlyEditableException( 'This content model is not supported: ' . $content->getModel() );
 		}
 
 		return $content;
@@ -3888,7 +3887,7 @@ class EditPage implements IEditObject {
 
 	/**
 	 * Get the rendered text for previewing.
-	 * @throws MWException
+	 * @throws NotDirectlyEditableException
 	 * @return string
 	 */
 	public function getPreviewText() {

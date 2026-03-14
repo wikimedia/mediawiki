@@ -6,8 +6,8 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\EditPage\EditPageStatus;
+use MediaWiki\EditPage\NotDirectlyEditableException;
 use MediaWiki\Exception\ErrorPageError;
-use MediaWiki\Exception\MWException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\Article;
@@ -888,7 +888,7 @@ hello
 			'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
 		];
 
-		$this->expectException( MWException::class );
+		$this->expectException( NotDirectlyEditableException::class );
 		$this->expectExceptionMessage( 'This content model is not supported: testing' );
 
 		$this->doEditDummyNonTextPage( $edit );

@@ -1382,6 +1382,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\EditPage\\IEditObject' => __DIR__ . '/includes/EditPage/IEditObject.php',
 	'MediaWiki\\EditPage\\IntroMessageBuilder' => __DIR__ . '/includes/EditPage/IntroMessageBuilder.php',
 	'MediaWiki\\EditPage\\IntroMessageList' => __DIR__ . '/includes/EditPage/IntroMessageList.php',
+	'MediaWiki\\EditPage\\NotDirectlyEditableException' => __DIR__ . '/includes/EditPage/NotDirectlyEditableException.php',
 	'MediaWiki\\EditPage\\PageEditingHelper' => __DIR__ . '/includes/EditPage/PageEditingHelper.php',
 	'MediaWiki\\EditPage\\ParametersHelper' => __DIR__ . '/includes/EditPage/ParametersHelper.php',
 	'MediaWiki\\EditPage\\PreloadedContentBuilder' => __DIR__ . '/includes/EditPage/PreloadedContentBuilder.php',
