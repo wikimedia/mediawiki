@@ -4596,12 +4596,6 @@ class MainConfigNames {
 	public const UseLeximorph = 'UseLeximorph';
 
 	/**
-	 * Name constant for the UsePostprocCache setting, for use with Config::get()
-	 * @see MainConfigSchema::UsePostprocCache
-	 */
-	public const UsePostprocCache = 'UsePostprocCache';
-
-	/**
 	 * Name constant for the UsePostprocCacheLegacy setting, for use with Config::get()
 	 * @see MainConfigSchema::UsePostprocCacheLegacy
 	 */

@@ -550,19 +550,19 @@ return [
 						'minCpuTime' => 0,
 					],
 				],
-				'parsoid-pcache' => [
-					'default' => [
-						'minCpuTime' => 0,
-					],
-				],
 				'postproc-pcache' => [
 					'default' => [
 						'minCpuTime' => 9223372036854775807,
 					],
 				],
+				'parsoid-pcache' => [
+					'default' => [
+						'minCpuTime' => 0,
+					],
+				],
 				'postproc-parsoid-pcache' => [
 					'default' => [
-						'minCpuTime' => 9223372036854775807,
+						'minCpuTime' => 0,
 					],
 				],
 			],
@@ -2735,9 +2735,8 @@ return [
 			],
 			'CloneArticleParserOutput' => true,
 			'UseLeximorph' => false,
-			'UsePostprocCache' => false,
 			'UsePostprocCacheLegacy' => false,
-			'UsePostprocCacheParsoid' => false,
+			'UsePostprocCacheParsoid' => true,
 			'ParserOptionsLogUnsafeSampleRate' => 0,
 		],
 		'type' => [
@@ -3252,7 +3251,6 @@ return [
 			'FeatureShutdown' => 'array',
 			'CloneArticleParserOutput' => 'boolean',
 			'UseLeximorph' => 'boolean',
-			'UsePostprocCache' => 'boolean',
 			'UsePostprocCacheLegacy' => 'boolean',
 			'UsePostprocCacheParsoid' => 'boolean',
 			'ParserOptionsLogUnsafeSampleRate' => 'integer',

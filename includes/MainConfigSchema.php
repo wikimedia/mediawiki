@@ -4226,13 +4226,6 @@ class MainConfigSchema {
 					'minCpuTime' => 0
 				],
 			],
-			'parsoid-pcache' => [ // parsoid output cache
-				'default' => [ // all namespaces
-					// 0 means no threshold.
-					// Use PHP_INT_MAX to disable cache.
-					'minCpuTime' => 0
-				],
-			],
 			'postproc-pcache' => [ // postprocessing output cache
 				'default' => [ // all namespaces
 					// 0 means no threshold.
@@ -4240,11 +4233,18 @@ class MainConfigSchema {
 					'minCpuTime' => PHP_INT_MAX
 				],
 			],
+			'parsoid-pcache' => [ // parsoid output cache
+				'default' => [ // all namespaces
+					// 0 means no threshold.
+					// Use PHP_INT_MAX to disable cache.
+					'minCpuTime' => 0
+				],
+			],
 			'postproc-parsoid-pcache' => [ // parsoid postprocessing output cache
 				'default' => [ // all namespaces
 					// 0 means no threshold.
 					// Use PHP_INT_MAX to disable cache.
-					'minCpuTime' => PHP_INT_MAX
+					'minCpuTime' => 0
 				],
 			],
 		],
@@ -13495,18 +13495,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Whether to use the post-OutputTransform cache
-	 *
-	 * @unstable Temporary feature flag, T348255
-	 * @deprecated replaced by UsePostprocCacheLegacy and UsePostprocCacheParsoid
-	 * @since 1.46
-	 */
-	public const UsePostprocCache = [
-		'default' => false,
-		'type' => 'boolean',
-	];
-
-	/**
 	 * Whether to use the post-OutputTransform cache for legacy parses
 	 *
 	 * @unstable Temporary feature flag, T348255
@@ -13524,7 +13512,7 @@ class MainConfigSchema {
 	 * @since 1.46
 	 */
 	public const UsePostprocCacheParsoid = [
-		'default' => false,
+		'default' => true,
 		'type' => 'boolean'
 	];
 

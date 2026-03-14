@@ -1632,12 +1632,10 @@ class ParserOptions {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		if ( $this->getUseParsoid() ) {
 			$usePostprocCache =
-				$config->get( MainConfigNames::UsePostprocCacheParsoid ) ||
-				$config->get( MainConfigNames::UsePostprocCache );
+				$config->get( MainConfigNames::UsePostprocCacheParsoid );
 		} else {
 			$usePostprocCache =
-				$config->get( MainConfigNames::UsePostprocCacheLegacy ) ||
-				$config->get( MainConfigNames::UsePostprocCache );
+				$config->get( MainConfigNames::UsePostprocCacheLegacy );
 		}
 		if ( !$usePostprocCache && $this->shouldIncludePostproc() ) {
 			return false;

@@ -46,7 +46,8 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 		$this->overrideConfigValues( [
 			// always hit the sample code
 			MainConfigNames::ParsoidSelectiveUpdateSampleRate => 1,
-			MainConfigNames::UsePostprocCache => true,
+			MainConfigNames::UsePostprocCacheLegacy => true,
+			MainConfigNames::UsePostprocCacheParsoid => true,
 		] );
 	}
 

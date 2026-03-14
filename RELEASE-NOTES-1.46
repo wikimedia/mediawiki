@@ -94,6 +94,9 @@ For notes on 1.45.x and older releases, see HISTORY.
 * The update.php maintenance script and the web-based schema updater now skips
   messages about schema updates that were already applied in earlier MediaWiki
   versions.
+* A new "postprocessing" cache has been added in addition to the parser cache.
+  This is enabled by default for Parsoid but not for the legacy parser; use
+  $wgParserCacheFilterConfig to enable or disable use of this new cache.
 * …
 
 === New developer features in 1.46 ===

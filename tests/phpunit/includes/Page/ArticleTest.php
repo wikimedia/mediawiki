@@ -289,7 +289,6 @@ class ArticleTest extends ParserCacheTestBase {
 	public function testPostprocFeatureflagFalse(): void {
 		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheLegacy, false );
 		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheParsoid, false );
-		$this->overrideConfigValue( MainConfigNames::UsePostprocCache, false );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
 			$this->getParserCache( 'test', new HashBagOStuff() ),

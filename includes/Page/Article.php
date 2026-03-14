@@ -157,9 +157,7 @@ class Article implements Page {
 		$this->blockStore = $services->getDatabaseBlockStore();
 		$this->restrictionStore = $services->getRestrictionStore();
 		$this->parsoidPostprocCacheAvailable =
-			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UsePostprocCacheParsoid ) ||
-				// TODO remove when the config has been switched to UsePostprocCacheParsoid
-				MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UsePostprocCache );
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UsePostprocCacheParsoid );
 		$this->legacyPostprocCacheAvailable =
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UsePostprocCacheLegacy );
 		$this->useLegacyPostprocCache = false;
