@@ -5,6 +5,7 @@ namespace MediaWiki\EditPage;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\UnknownContentModelException;
+use MediaWiki\Content\UnsupportedContentFormatException;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserFactory;
@@ -102,6 +103,7 @@ class PageEditingHelper {
 	 * @return string|null The editable text form of the content, or null if
 	 * $content is not an instance of TextContent and $enableApiEditOverride
 	 * is not true.
+	 * @throws UnsupportedContentFormatException
 	 */
 	public function toEditText(
 		Content|null|false|string $content,
