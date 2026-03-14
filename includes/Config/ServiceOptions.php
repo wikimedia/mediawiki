@@ -25,10 +25,7 @@ use function array_key_exists;
  * @since 1.34
  */
 class ServiceOptions {
-	/** @var string[] */
-	private $keys;
-	/** @var array */
-	private $options = [];
+	private array $options = [];
 
 	/**
 	 * @stable to call since 1.36
@@ -39,8 +36,10 @@ class ServiceOptions {
 	 *  $keys are ignored.
 	 * @throws InvalidArgumentException if one of $keys is not found in any of $sources
 	 */
-	public function __construct( array $keys, ...$sources ) {
-		$this->keys = $keys;
+	public function __construct(
+		private readonly array $keys,
+		...$sources,
+	) {
 		foreach ( $keys as $key ) {
 			foreach ( $sources as $source ) {
 				if ( $source instanceof Config ) {

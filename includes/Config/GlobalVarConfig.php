@@ -19,12 +19,6 @@ use function array_key_exists;
 class GlobalVarConfig implements Config {
 
 	/**
-	 * Prefix to use for configuration variables
-	 * @var string
-	 */
-	private $prefix;
-
-	/**
 	 * Default builder function
 	 * @return self
 	 */
@@ -35,10 +29,11 @@ class GlobalVarConfig implements Config {
 	/**
 	 * @stable to call
 	 *
-	 * @param string $prefix
+	 * @param string $prefix Prefix to use for configuration variables
 	 */
-	public function __construct( $prefix = 'wg' ) {
-		$this->prefix = $prefix;
+	public function __construct(
+		private readonly string $prefix = 'wg',
+	) {
 	}
 
 	/**

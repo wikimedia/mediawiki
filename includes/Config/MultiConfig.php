@@ -16,20 +16,15 @@ namespace MediaWiki\Config;
 class MultiConfig implements Config {
 
 	/**
-	 * Array of Config objects to use
-	 * Order matters, the Config objects
-	 * will be checked in order to see
-	 * whether they have the requested setting
-	 *
-	 * @var Config[]
-	 */
-	private $configs;
-
-	/**
 	 * @param Config[] $configs
+	 *   Array of Config objects to use
+	 *   Order matters, the Config objects
+	 *   will be checked in order to see
+	 *   whether they have the requested setting
 	 */
-	public function __construct( array $configs ) {
-		$this->configs = $configs;
+	public function __construct(
+		private readonly array $configs,
+	) {
 	}
 
 	/**

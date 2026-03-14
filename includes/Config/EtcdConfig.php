@@ -21,10 +21,8 @@ use function array_key_exists;
  * @since 1.29
  */
 class EtcdConfig implements Config {
-	/** @var MultiHttpClient */
-	private $http;
-	/** @var BagOStuff */
-	private $srvCache;
+	private readonly MultiHttpClient $http;
+	private readonly BagOStuff $srvCache;
 	/** @var array */
 	private $procCache;
 	/** @var DnsSrvDiscoverer */

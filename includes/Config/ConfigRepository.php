@@ -18,17 +18,15 @@ use Wikimedia\Services\SalvageableService;
  * @since 1.32
  */
 class ConfigRepository implements SalvageableService {
-	/** @var ConfigFactory */
-	private $configFactory;
-
 	/** @var array */
 	private $configItems = [
 		'private' => [],
 		'public' => [],
 	];
 
-	public function __construct( ConfigFactory $configFactory ) {
-		$this->configFactory = $configFactory;
+	public function __construct(
+		private readonly ConfigFactory $configFactory,
+	) {
 	}
 
 	/**

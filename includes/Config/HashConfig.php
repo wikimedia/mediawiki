@@ -19,13 +19,6 @@ use function array_key_exists;
  */
 class HashConfig implements Config, MutableConfig, IterableConfig {
 
-	/**
-	 * Array of config settings
-	 *
-	 * @var array
-	 */
-	private $settings;
-
 	public static function newInstance(): self {
 		return new self();
 	}
@@ -33,8 +26,9 @@ class HashConfig implements Config, MutableConfig, IterableConfig {
 	/**
 	 * @param array $settings Any current settings to pre-load
 	 */
-	public function __construct( array $settings = [] ) {
-		$this->settings = $settings;
+	public function __construct(
+		private array $settings = [],
+	) {
 	}
 
 	/**
