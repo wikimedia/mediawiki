@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Mocks\Json;
 
 use MediaWiki\Json\JwtCodec;
 use MediaWiki\Json\JwtException;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * A JwtCodec replacement that outputs plain unencrypted JSON.
@@ -33,6 +34,16 @@ class PlainJsonJwtCodec implements JwtCodec {
 		if ( $claims === null ) {
 			throw new JwtException( json_last_error_msg() );
 		}
+
+		// match LooseValidAt check in RsaJwtToken
+		if ( ( $claims['iat'] ?? 0 ) > ConvertibleTimestamp::time() ) {
+			throw new JwtException( 'The token was issued in the future' );
+		} elseif ( ( $claims['nbf'] ?? 0 ) > ConvertibleTimestamp::time() ) {
+			throw new JwtException( 'The token cannot be used yet' );
+		} elseif ( ( $claims['exp'] ?? PHP_INT_MAX ) <= ConvertibleTimestamp::time() ) {
+			throw new JwtException( 'The token is expired' );
+		}
+
 		return $claims;
 	}
 

@@ -453,7 +453,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			], prefix: '' );
 			$info = $provider->provideSessionInfo( $request );
 			$this->assertNull( $info?->__toString() );
-			$this->assertSame( [ [ LogLevel::INFO, 'JWT validation failed: JWT error: hard-expired' ] ], $logger->getBuffer() );
+			$this->assertSame( [ [ LogLevel::INFO, 'JWT validation failed: The token is expired' ] ], $logger->getBuffer() );
 			$logger->clearBuffer();
 
 			$this->assertSame( [], $logger2->getBuffer() );
