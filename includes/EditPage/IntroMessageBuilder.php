@@ -130,7 +130,7 @@ class IntroMessageBuilder {
 			$this->addSharedRepoHint( $messages, $localizer, $page );
 			$this->addUserWarnings( $messages, $localizer, $title, $performer );
 			$this->addEditIntro( $messages, $localizer, $page, $performer, $editIntro, $section );
-			$this->addRecreateWarning( $messages, $localizer, $page );
+			$this->addRecreateWarning( $messages, $page );
 		}
 
 		$this->addTalkPageText( $messages, $localizer, $title );
@@ -392,7 +392,6 @@ class IntroMessageBuilder {
 
 	private function addRecreateWarning(
 		IntroMessageList $messages,
-		MessageLocalizer $localizer,
 		ProperPageIdentity $page
 	): void {
 		# Give a notice if the user is editing a deleted/moved page...

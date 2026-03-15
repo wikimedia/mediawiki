@@ -1217,9 +1217,7 @@ class PageUpdater implements PageUpdateCauses {
 			// NOTE: don't trigger a PageLatestRevisionChanged event!
 			$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
 			$this->prepareDerivedDataUpdater(
-				$wikiPage,
 				$newRevisionRecord,
-				$revision->getComment(),
 				[],
 				[
 					PageLatestRevisionChangedEvent::FLAG_SILENT => true,
@@ -1347,9 +1345,7 @@ class PageUpdater implements PageUpdateCauses {
 			}
 
 			$this->prepareDerivedDataUpdater(
-				$wikiPage,
 				$newRevisionRecord,
-				$summary,
 				$tags
 			);
 
@@ -1366,9 +1362,7 @@ class PageUpdater implements PageUpdateCauses {
 			$newRevisionRecord = $oldRev;
 
 			$this->prepareDerivedDataUpdater(
-				$wikiPage,
 				$newRevisionRecord,
-				$summary,
 				[],
 				[ 'changed' => false ]
 			);
@@ -1485,9 +1479,7 @@ class PageUpdater implements PageUpdateCauses {
 		}
 
 		$this->prepareDerivedDataUpdater(
-			$wikiPage,
 			$newRevisionRecord,
-			$summary,
 			$tags
 		);
 
@@ -1516,9 +1508,7 @@ class PageUpdater implements PageUpdateCauses {
 	}
 
 	private function prepareDerivedDataUpdater(
-		WikiPage $wikiPage,
 		RevisionRecord $newRevisionRecord,
-		CommentStoreComment $summary,
 		array $tags,
 		array $hintOverrides = []
 	) {

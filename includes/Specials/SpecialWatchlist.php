@@ -27,7 +27,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
-use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\Watchlist\WatchedItem;
@@ -148,7 +147,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( $this->getConfig()->get( MainConfigNames::EnableWatchlistLabels ) ) {
 			$output->addJsConfigVars( [
 				'enableWatchlistLabels' => true,
-				'watchlistLabels' => $this->getWatchlistLabelsForFiltering( $this->getUser() ),
+				'watchlistLabels' => $this->getWatchlistLabelsForFiltering(),
 				'SpecialWatchlistLabelsUrl' => SpecialPage::getTitleFor( 'WatchlistLabels' )->getLinkURL(),
 				'SpecialEditWatchlistUrl' => SpecialPage::getTitleFor( 'EditWatchlist' )->getLinkURL(),
 			] );
@@ -179,10 +178,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * @param User $user
 	 * @return array
 	 */
-	private function getWatchlistLabelsForFiltering( User $user ): array {
+	private function getWatchlistLabelsForFiltering(): array {
 		$idAndNames = [];
 		foreach ( $this->watchlistLabelsForCurrentUser as $label ) {
 			$idAndNames[] = [

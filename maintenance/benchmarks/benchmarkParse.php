@@ -164,6 +164,7 @@ class BenchmarkParse extends Maintenance {
 	 * @param bool &$skip
 	 * @param ?RevisionRecord &$revRecord
 	 * @return bool
+	 * @suppress PhanUnusedPrivateMethodParameter Used as callback with fix signature
 	 */
 	private function onFetchTemplate(
 		?LinkTarget $contextTitle,

@@ -70,7 +70,7 @@ class ModuleSpecHandler extends SimpleHandler {
 			'info' => $this->getInfoSpec( $module ),
 			'servers' => $this->getServerSpec( $module ),
 			'paths' => $this->getPathsSpec( $module ),
-			'components' => $this->getComponentsSpec( $module ),
+			'components' => $this->getComponentsSpec(),
 		];
 
 		unset( $spec['info']['deprecationSettings'] );
@@ -155,7 +155,7 @@ class ModuleSpecHandler extends SimpleHandler {
 		return $operationSpec;
 	}
 
-	private function getComponentsSpec( Module $module ): array {
+	private function getComponentsSpec(): array {
 		$components = [];
 
 		// XXX: also collect reusable components from handler specs (but how to avoid name collisions?).

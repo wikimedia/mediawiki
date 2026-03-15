@@ -431,6 +431,7 @@ class UserMailer {
 	 *
 	 * @param int $code Error number
 	 * @param string $string Error message
+	 * @suppress PhanUnusedPrivateMethodParameter Used as callback with fix signature
 	 */
 	private static function errorHandler( $code, $string ): bool {
 		if ( self::$mErrorString !== '' ) {

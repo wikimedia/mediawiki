@@ -39,7 +39,7 @@ class HandleTOCMarkersText extends ContentTextTransformStage {
 
 	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
 		if ( ( $options['allowTOC'] ?? true ) && ( $options['injectTOC'] ?? true ) ) {
-			return $this->injectTOC( $text, $po, $popts, $options );
+			return $this->injectTOC( $text, $po, $popts );
 		}
 		if ( !( $options['allowTOC'] ?? true ) ) {
 			return Parser::replaceTableOfContentsMarker( $text, '' );
@@ -47,7 +47,7 @@ class HandleTOCMarkersText extends ContentTextTransformStage {
 		return $text;
 	}
 
-	private function injectTOC( string $text, ParserOutput $po, ParserOptions $popts, array $options ): string {
+	private function injectTOC( string $text, ParserOutput $po, ParserOptions $popts ): string {
 		$tocData = $po->getTOCData();
 		if ( $tocData === null || $tocData->getSections() === [] ) {
 			$toc = '';

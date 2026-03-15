@@ -115,7 +115,7 @@ class SpecialExpandTemplates extends SpecialPage {
 				$out->addHTML( $this->makeOutput( $rawhtml, 'expand_templates_html_output' ) );
 			}
 
-			$this->showHtmlPreview( $title, $pout, $options, $out );
+			$this->showHtmlPreview( $pout, $options, $out );
 		} else {
 			$this->makeForm();
 		}
@@ -217,12 +217,11 @@ class SpecialExpandTemplates extends SpecialPage {
 	/**
 	 * Wraps the provided html code in a div and outputs it to the page
 	 *
-	 * @param Title $title
 	 * @param ParserOutput $pout
 	 * @param ParserOptions $popts
 	 * @param OutputPage $out
 	 */
-	private function showHtmlPreview( Title $title, ParserOutput $pout, ParserOptions $popts, OutputPage $out ) {
+	private function showHtmlPreview( ParserOutput $pout, ParserOptions $popts, OutputPage $out ) {
 		$out->addHTML( "<h2>" . $this->msg( 'expand_templates_preview' )->escaped() . "</h2>\n" );
 
 		if ( $this->getConfig()->get( MainConfigNames::RawHtml ) ) {

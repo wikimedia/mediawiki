@@ -163,12 +163,11 @@ class ApiParamValidator {
 
 	/**
 	 * Check an API settings message
-	 * @param ApiBase $module
 	 * @param string $key
 	 * @param string|array|Message $value Message definition, see Message::newFromSpecifier()
 	 * @param array &$ret
 	 */
-	private function checkSettingsMessage( ApiBase $module, string $key, $value, array &$ret ): void {
+	private function checkSettingsMessage( string $key, $value, array &$ret ): void {
 		try {
 			$msg = Message::newFromSpecifier( $value );
 			$ret['messages'][] = MessageValue::newFromSpecifier( $msg );
@@ -215,7 +214,7 @@ class ApiParamValidator {
 
 		$path = $module->getModulePath();
 		$this->checkSettingsMessage(
-			$module, 'PARAM_HELP_MSG', $settings[ApiBase::PARAM_HELP_MSG] ?? "apihelp-$path-param-$name", $ret
+			'PARAM_HELP_MSG', $settings[ApiBase::PARAM_HELP_MSG] ?? "apihelp-$path-param-$name", $ret
 		);
 
 		if ( isset( $settings[ApiBase::PARAM_HELP_MSG_APPEND] ) ) {
@@ -224,7 +223,7 @@ class ApiParamValidator {
 					. gettype( $settings[ApiBase::PARAM_HELP_MSG_APPEND] );
 			} else {
 				foreach ( $settings[ApiBase::PARAM_HELP_MSG_APPEND] as $k => $v ) {
-					$this->checkSettingsMessage( $module, "PARAM_HELP_MSG_APPEND[$k]", $v, $ret );
+					$this->checkSettingsMessage( "PARAM_HELP_MSG_APPEND[$k]", $v, $ret );
 				}
 			}
 		}
@@ -241,7 +240,7 @@ class ApiParamValidator {
 						$ret['issues'][] = "PARAM_HELP_MSG_INFO[$k][0] must be a string, got " . gettype( $v[0] );
 					} else {
 						$v[0] = "apihelp-{$path}-paraminfo-{$v[0]}";
-						$this->checkSettingsMessage( $module, "PARAM_HELP_MSG_INFO[$k]", $v, $ret );
+						$this->checkSettingsMessage( "PARAM_HELP_MSG_INFO[$k]", $v, $ret );
 					}
 				}
 			}
@@ -261,7 +260,7 @@ class ApiParamValidator {
 			} elseif ( $settings[ParamValidator::PARAM_TYPE] === 'string'
 				&& ( $settings[ParamValidator::PARAM_ISMULTI] ?? false ) ) {
 				foreach ( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] as $k => $v ) {
-					$this->checkSettingsMessage( $module, "PARAM_HELP_MSG_PER_VALUE[$k]", $v, $ret );
+					$this->checkSettingsMessage( "PARAM_HELP_MSG_PER_VALUE[$k]", $v, $ret );
 				}
 			} else {
 				$values = array_map( 'strval', $settings[ParamValidator::PARAM_TYPE] );
@@ -270,7 +269,7 @@ class ApiParamValidator {
 						// Or should this be allowed?
 						$ret['issues'][] = "PARAM_HELP_MSG_PER_VALUE contains \"$k\", which is not in PARAM_TYPE.";
 					}
-					$this->checkSettingsMessage( $module, "PARAM_HELP_MSG_PER_VALUE[$k]", $v, $ret );
+					$this->checkSettingsMessage( "PARAM_HELP_MSG_PER_VALUE[$k]", $v, $ret );
 				}
 				foreach ( $settings[ParamValidator::PARAM_TYPE] as $p ) {
 					if ( array_key_exists( $p, $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
@@ -278,7 +277,6 @@ class ApiParamValidator {
 					}
 					$path = $module->getModulePath();
 					$this->checkSettingsMessage(
-						$module,
 						"PARAM_HELP_MSG_PER_VALUE[$p]",
 						"apihelp-$path-paramvalue-$name-$p",
 						$ret

@@ -138,10 +138,9 @@ class SpecialComparePages extends SpecialPage {
 
 	/**
 	 * @param string|null $value
-	 * @param array $alldata
 	 * @return string|bool
 	 */
-	private function checkExistingRevision( $value, $alldata ) {
+	private function checkExistingRevision( $value ) {
 		if ( $value === '' || $value === null ) {
 			return true;
 		}

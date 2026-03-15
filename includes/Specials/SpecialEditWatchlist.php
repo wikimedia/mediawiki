@@ -420,10 +420,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/**
 	 * Handler for the clear form submission
 	 *
-	 * @param array $data
 	 * @return bool
 	 */
-	private function submitClear( $data ): bool {
+	private function submitClear(): bool {
 		$this->clearUserWatchedItems( 'clear' );
 		return true;
 	}

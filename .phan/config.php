@@ -9,9 +9,6 @@ $cfg = require __DIR__ . '/../vendor/mediawiki/mediawiki-phan-config/src/config.
 // Unset the default value to make sure we use that from composer.json.
 unset( $cfg['minimum_target_php_version'] );
 
-// TODO Fix these issues, suppressed to allow upgrading
-$cfg['suppress_issue_types'][] = 'PhanUnusedPrivateMethodParameter';
-
 $cfg['file_list'] = array_merge(
 	$cfg['file_list'],
 	[

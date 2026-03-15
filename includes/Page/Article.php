@@ -930,7 +930,6 @@ class Article implements Page {
 		}
 
 		$this->doOutputFromRenderStatus(
-			$rev,
 			$renderStatus,
 			$outputPage,
 			$parserOptions,
@@ -1010,7 +1009,6 @@ class Article implements Page {
 	}
 
 	private function doOutputFromRenderStatus(
-		RevisionRecord $rev,
 		StatusValue $renderStatus,
 		OutputPage $outputPage,
 		ParserOptions $parserOptions,

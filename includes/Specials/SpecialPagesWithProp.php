@@ -119,9 +119,8 @@ class SpecialPagesWithProp extends QueryPage {
 
 	/**
 	 * @param array $data
-	 * @param HTMLForm $form
 	 */
-	private function onSubmit( $data, $form ) {
+	private function onSubmit( $data ) {
 		$this->propName = $data['propname'];
 		parent::execute( $data['propname'] );
 	}

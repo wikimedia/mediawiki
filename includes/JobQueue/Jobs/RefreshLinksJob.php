@@ -377,7 +377,7 @@ class RefreshLinksJob extends Job {
 			return null;
 		}
 
-		$cachedOutput = $this->getParserOutputFromCache( $parserCache, $page, $revision, $stats );
+		$cachedOutput = $this->getParserOutputFromCache( $parserCache, $page );
 		$statsCounter = $stats->getCounter( 'refreshlinks_parsercache_operations_total' );
 
 		if ( $cachedOutput && $this->canUseParserOutputFromCache( $cachedOutput, $revision ) ) {
@@ -531,15 +531,11 @@ class RefreshLinksJob extends Job {
 	 *
 	 * @param ParserCache $parserCache
 	 * @param WikiPage $page
-	 * @param RevisionRecord $currentRevision
-	 * @param StatsFactory $stats
 	 * @return ParserOutput|null
 	 */
 	private function getParserOutputFromCache(
 		ParserCache $parserCache,
-		WikiPage $page,
-		RevisionRecord $currentRevision,
-		StatsFactory $stats
+		WikiPage $page
 	): ?ParserOutput {
 		// Parsoid can do selective updates, so it is always worth the I/O
 		// to check for a previous parse.

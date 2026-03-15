@@ -2,6 +2,7 @@
 /**
  * @license GPL-2.0-or-later
  * @file
+ * @phan-file-suppress PhanUnusedPrivateMethodParameter
  */
 namespace MediaWiki\Permissions;
 

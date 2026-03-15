@@ -944,11 +944,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			Assert::invariant( $status->isOK() ? $status->getValue()->getRenderId() !== null : true, "no render id" );
 		} else {
 			'@phan-var RevisionRecord $revision';
-			$status = $this->parseUncacheable(
-				$this->page,
-				$revision,
-				$this->lenientRevHandling
-			);
+			$status = $this->parseUncacheable( $revision );
 
 			if ( $status->isOK() && $this->flavor === 'fragment' ) {
 				// Unwrap sections and return body_only content
@@ -968,11 +964,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 
 	// See ParserOutputAccess::renderRevision() -- but of course this method
 	// bypasses any caching.
-	private function parseUncacheable(
-		PageIdentity $page,
-		RevisionRecord $revision,
-		bool $lenientRevHandling = false
-	): Status {
+	private function parseUncacheable( RevisionRecord $revision ): Status {
 		// Enforce caller expectation
 		$revId = $revision->getId();
 		if ( $revId !== 0 && $revId !== null ) {

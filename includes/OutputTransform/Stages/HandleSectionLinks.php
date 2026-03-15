@@ -40,7 +40,7 @@ class HandleSectionLinks extends ContentTextTransformStage {
 	}
 
 	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
-		$text = $this->replaceHeadings( $text, $options );
+		$text = $this->replaceHeadings( $text );
 
 		if (
 			// this should be kept in sync with the legacy implementation in HandleParsoidSectionLinks
@@ -48,7 +48,7 @@ class HandleSectionLinks extends ContentTextTransformStage {
 			!$popts->getSuppressSectionEditLinks() &&
 			( $options['enableSectionEditLinks'] ?? true )
 		) {
-			return $this->addSectionLinks( $text, $po, $popts, $options );
+			return $this->addSectionLinks( $text, $popts, $options );
 		} else {
 			return preg_replace( self::EDITSECTION_REGEX, '', $text );
 		}
@@ -66,7 +66,7 @@ class HandleSectionLinks extends ContentTextTransformStage {
 		return false;
 	}
 
-	private function replaceHeadings( string $text, array $options ): string {
+	private function replaceHeadings( string $text ): string {
 		$needToCheckExistingWrappers = preg_match( '/class="[^"]*\bmw-heading\b[^"]*"/', $text );
 
 		return preg_replace_callback( self::HEADING_REGEX, function ( $m ) use (
@@ -179,7 +179,7 @@ class HandleSectionLinks extends ContentTextTransformStage {
 		}
 	}
 
-	private function addSectionLinks( string $text, ParserOutput $po, ParserOptions $popts, array $options ): string {
+	private function addSectionLinks( string $text, ParserOptions $popts, array $options ): string {
 		$skin = $this->resolveSkin( $options );
 		if ( !$skin ) {
 			// Should be unreachable

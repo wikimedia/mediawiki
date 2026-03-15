@@ -661,6 +661,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @param array<string,array> $argsByKey Non-empty (key => []) map
 	 * @param array<string,mixed> &$resByKey Map of (key => result) prefilled with false [returned]
 	 * @throws DBError
+	 * @suppress PhanUnusedPrivateMethodParameter Used as callback with fix signature
 	 */
 	private function modifyTableSpecificBlobsForDelete(
 		IDatabase $db,

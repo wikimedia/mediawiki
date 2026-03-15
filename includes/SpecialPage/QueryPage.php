@@ -552,7 +552,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	public function reallyDoQuery( $limit, $offset = false ) {
 		if ( $this->usesExternalSource() ) {
-			return $this->reallyDoQueryExternal( $limit, $offset );
+			return $this->reallyDoQueryExternal();
 		}
 
 		return $this->reallyDoQueryInternal( $limit, $offset );
@@ -608,11 +608,9 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Run the query and return the result
 	 *
-	 * @param int|false $limit Numerical limit or false for no limit
-	 * @param int|false $offset Numerical offset or false for no offset
 	 * @return IResultWrapper
 	 */
-	private function reallyDoQueryExternal( $limit, $offset = false ) {
+	private function reallyDoQueryExternal() {
 		$fname = static::class . '::reallyDoQueryExternal';
 		$httpRequestFactory = $this->getHttpRequestFactory();
 		$externalSources = $this->getConfig()->get( MainConfigNames::ExternalQuerySources );

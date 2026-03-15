@@ -481,10 +481,9 @@ class UploadVerification {
 	 * Callback to filter SVG Processing Instructions.
 	 *
 	 * @param string $target Processing instruction name
-	 * @param string $data Processing instruction attribute and value
 	 * @return bool|array
 	 */
-	private function checkSvgPICallback( $target, $data ) {
+	private function checkSvgPICallback( $target ) {
 		// Don't allow external stylesheets (T59550)
 		if ( preg_match( '/xml-stylesheet/i', $target ) ) {
 			return [ 'upload-scripted-pi-callback' ];
