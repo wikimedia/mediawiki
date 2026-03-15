@@ -2865,7 +2865,7 @@
 	"bydate": "by date",
 	"sp-newimages-showfrom": "Show new files starting from $2, $1",
 	"video-dims": "$1, $2 × $3",
-	"bad_image_list": "The format is as follows:\n\nOnly list items (lines starting with *) are considered.\nThe first link on a line must be a link to a bad file.\nAny subsequent links on the same line are considered to be exceptions, i.e. pages where the file may occur inline.",
+	"bad_image_list": "The format is as follows:\n\nOnly list items (lines starting with \"*\") are considered.\nThe first link on a line must be a link to a bad file.\nAny subsequent links on the same line are considered to be exceptions, i.e. pages where the file may occur inline.",
 	"metadata": "Metadata",
 	"metadata-help": "This file contains additional information, probably added from the digital camera or scanner used to create or digitize it.\nIf the file has been modified from its original state, some details may not fully reflect the modified file.",
 	"metadata-expand": "Show extended details",
