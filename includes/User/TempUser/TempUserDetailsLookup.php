@@ -16,18 +16,12 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @since 1.44
  */
 class TempUserDetailsLookup {
-	private TempUserConfig $tempUserConfig;
-	private UserRegistrationLookup $userRegistrationLookup;
-
-	private MapCacheLRU $expiryCache;
+	private readonly MapCacheLRU $expiryCache;
 
 	public function __construct(
-		TempUserConfig $tempUserConfig,
-		UserRegistrationLookup $userRegistrationLookup
+		private readonly TempUserConfig $tempUserConfig,
+		private readonly UserRegistrationLookup $userRegistrationLookup,
 	) {
-		$this->tempUserConfig = $tempUserConfig;
-		$this->userRegistrationLookup = $userRegistrationLookup;
-
 		// Use a relatively large cache size to account for pages with a high number of user links,
 		// such as Special:RecentChanges or history pages.
 		$this->expiryCache = new MapCacheLRU( 1_000 );

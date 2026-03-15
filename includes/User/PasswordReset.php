@@ -36,19 +36,13 @@ use Wikimedia\MapCacheLRU\MapCacheLRU;
 class PasswordReset implements LoggerAwareInterface {
 	use LoggerAwareTrait;
 
-	private ServiceOptions $config;
-	private AuthManager $authManager;
-	private HookRunner $hookRunner;
-	private UserIdentityLookup $userIdentityLookup;
-	private UserFactory $userFactory;
-	private UserNameUtils $userNameUtils;
-	private UserOptionsLookup $userOptionsLookup;
+	private readonly HookRunner $hookRunner;
 
 	/**
 	 * In-process cache for isAllowed lookups, by username.
 	 * Contains a StatusValue object
 	 */
-	private MapCacheLRU $permissionCache;
+	private readonly MapCacheLRU $permissionCache;
 
 	/**
 	 * @internal For use by ServiceWiring
@@ -60,37 +54,21 @@ class PasswordReset implements LoggerAwareInterface {
 
 	/**
 	 * This class is managed by MediaWikiServices, don't instantiate directly.
-	 *
-	 * @param ServiceOptions $config
-	 * @param LoggerInterface $logger
-	 * @param AuthManager $authManager
-	 * @param HookContainer $hookContainer
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param UserFactory $userFactory
-	 * @param UserNameUtils $userNameUtils
-	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
-		ServiceOptions $config,
+		private readonly ServiceOptions $config,
 		LoggerInterface $logger,
-		AuthManager $authManager,
+		private readonly AuthManager $authManager,
 		HookContainer $hookContainer,
-		UserIdentityLookup $userIdentityLookup,
-		UserFactory $userFactory,
-		UserNameUtils $userNameUtils,
-		UserOptionsLookup $userOptionsLookup
+		private readonly UserIdentityLookup $userIdentityLookup,
+		private readonly UserFactory $userFactory,
+		private readonly UserNameUtils $userNameUtils,
+		private readonly UserOptionsLookup $userOptionsLookup,
 	) {
 		$config->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
-		$this->config = $config;
 		$this->logger = $logger;
-
-		$this->authManager = $authManager;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->userIdentityLookup = $userIdentityLookup;
-		$this->userFactory = $userFactory;
-		$this->userNameUtils = $userNameUtils;
-		$this->userOptionsLookup = $userOptionsLookup;
 
 		$this->permissionCache = new MapCacheLRU( 1 );
 	}

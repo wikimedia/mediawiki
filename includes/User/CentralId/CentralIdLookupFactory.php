@@ -34,9 +34,9 @@ class CentralIdLookupFactory {
 	];
 
 	/** @var array ObjectFactory specs indexed by provider name */
-	private $providers;
+	private readonly array $providers;
 
-	private string $defaultProvider;
+	private readonly string $defaultProvider;
 
 	/** @var CentralIdLookup[] */
 	private $instanceCache = [];
@@ -45,7 +45,7 @@ class CentralIdLookupFactory {
 		ServiceOptions $options,
 		private readonly ObjectFactory $objectFactory,
 		private readonly UserIdentityLookup $userIdentityLookup,
-		private readonly UserFactory $userFactory
+		private readonly UserFactory $userFactory,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->providers = $options->get( MainConfigNames::CentralIdLookupProviders );

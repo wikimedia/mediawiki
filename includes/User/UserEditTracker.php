@@ -27,10 +27,6 @@ class UserEditTracker {
 	private const FIRST_EDIT = 1;
 	private const LATEST_EDIT = 2;
 
-	private ActorNormalization $actorNormalization;
-	private IConnectionProvider $dbProvider;
-	private JobQueueGroup $jobQueueGroup;
-
 	/**
 	 * @var int[]
 	 *
@@ -41,19 +37,11 @@ class UserEditTracker {
 	 */
 	private $userEditCountCache = [];
 
-	/**
-	 * @param ActorNormalization $actorNormalization
-	 * @param IConnectionProvider $dbProvider
-	 * @param JobQueueGroup $jobQueueGroup
-	 */
 	public function __construct(
-		ActorNormalization $actorNormalization,
-		IConnectionProvider $dbProvider,
-		JobQueueGroup $jobQueueGroup
+		private readonly ActorNormalization $actorNormalization,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly JobQueueGroup $jobQueueGroup,
 	) {
-		$this->actorNormalization = $actorNormalization;
-		$this->dbProvider = $dbProvider;
-		$this->jobQueueGroup = $jobQueueGroup;
 	}
 
 	/**

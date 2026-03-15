@@ -15,19 +15,17 @@ use Wikimedia\ArrayUtils\ArrayUtils;
  * @since 1.39
  */
 class FilteredRadixSerialMapping implements SerialMapping {
-	/** @var int */
-	private $radix;
+	private readonly int $radix;
 
 	/** @var int[] */
-	private $badIndexes;
+	private readonly array $badIndexes;
 
-	/** @var bool */
-	private $uppercase;
+	private readonly bool $uppercase;
 
 	/**
 	 * @param array $config See MainConfigSchema::AutoCreateTempUser
 	 */
-	public function __construct( $config ) {
+	public function __construct( array $config ) {
 		$this->radix = $config['radix'] ?? 10;
 		$this->badIndexes = $config['badIndexes'] ?? [];
 		$this->uppercase = $config['uppercase'] ?? false;

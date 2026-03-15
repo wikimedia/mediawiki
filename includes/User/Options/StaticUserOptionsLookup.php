@@ -12,19 +12,14 @@ use Wikimedia\Rdbms\IDBAccessObject;
  */
 class StaticUserOptionsLookup extends UserOptionsLookup {
 
-	/** @var array[] */
-	private $userMap;
-
-	/** @var mixed[] */
-	private $defaults;
-
 	/**
 	 * @param array[] $userMap User options, username => [ option name => value ]
 	 * @param mixed[] $defaults Defaults for each option, option name => value
 	 */
-	public function __construct( array $userMap, array $defaults = [] ) {
-		$this->userMap = $userMap;
-		$this->defaults = $defaults;
+	public function __construct(
+		private readonly array $userMap,
+		private readonly array $defaults = [],
+	) {
 	}
 
 	/** @inheritDoc */

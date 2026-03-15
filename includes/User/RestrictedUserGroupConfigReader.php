@@ -23,7 +23,7 @@ class RestrictedUserGroupConfigReader {
 	];
 
 	public function __construct(
-		private readonly ServiceOptions $options
+		private readonly ServiceOptions $options,
 	) {
 	}
 

@@ -12,8 +12,6 @@ use Wikimedia\Rdbms\ILBFactory;
  * @since 1.39
  */
 class LocalSerialProvider extends DBSerialProvider {
-	private ILBFactory $lbf;
-
 	/**
 	 * @param array $config
 	 *   - numShards (int, default 1): A small integer. This can be set to a
@@ -21,9 +19,11 @@ class LocalSerialProvider extends DBSerialProvider {
 	 *     allocating IDs, at the expense of making the IDs be non-monotonic.
 	 * @param ILBFactory $lbf
 	 */
-	public function __construct( $config, ILBFactory $lbf ) {
+	public function __construct(
+		array $config,
+		private readonly ILBFactory $lbf,
+	) {
 		parent::__construct( $config );
-		$this->lbf = $lbf;
 	}
 
 	/** @inheritDoc */

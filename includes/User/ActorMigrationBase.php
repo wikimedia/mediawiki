@@ -24,17 +24,12 @@ class ActorMigrationBase {
 	private $joinCache = [];
 
 	/** @var int One of the SCHEMA_COMPAT_READ_* values */
-	private $readStage;
+	private readonly int $readStage;
 
 	/** @var int A combination of the SCHEMA_COMPAT_WRITE_* flags */
-	private $writeStage;
+	private readonly int $writeStage;
 
-	protected ActorStoreFactory $actorStoreFactory;
-
-	/** @var array */
-	private $fieldInfos;
-
-	private bool $allowUnknown;
+	private readonly bool $allowUnknown;
 
 	private bool $forImport = false;
 
@@ -64,12 +59,11 @@ class ActorMigrationBase {
 	 *   - allowUnknown: Allow fields not present in $fieldInfos. True by default.
 	 */
 	public function __construct(
-		$fieldInfos,
+		private readonly array $fieldInfos,
 		$stage,
-		ActorStoreFactory $actorStoreFactory,
-		$options = []
+		protected readonly ActorStoreFactory $actorStoreFactory,
+		$options = [],
 	) {
-		$this->fieldInfos = $fieldInfos;
 		$this->allowUnknown = $options['allowUnknown'] ?? true;
 
 		$writeStage = $stage & SCHEMA_COMPAT_WRITE_MASK;
@@ -91,8 +85,6 @@ class ActorMigrationBase {
 		}
 		$this->readStage = $readStage;
 		$this->writeStage = $writeStage;
-
-		$this->actorStoreFactory = $actorStoreFactory;
 	}
 
 	/**

@@ -33,7 +33,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 
 	private const LOCAL_CACHE_SIZE = 100;
 
-	private ActorCache $cache;
+	private readonly ActorCache $cache;
 
 	private bool $allowCreateIpActors;
 

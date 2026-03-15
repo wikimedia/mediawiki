@@ -27,7 +27,7 @@ class UserNamePrefixSearch {
 	public function __construct(
 		private readonly IConnectionProvider $dbProvider,
 		private readonly UserNameUtils $userNameUtils,
-		private readonly HideUserUtils $hideUserUtils
+		private readonly HideUserUtils $hideUserUtils,
 	) {
 	}
 

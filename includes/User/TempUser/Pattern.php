@@ -15,10 +15,6 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
  */
 class Pattern implements Stringable {
 	/** @var string */
-	private $debugName;
-	/** @var string */
-	private $pattern;
-	/** @var string */
 	private $prefix;
 	/** @var string */
 	private $suffix;
@@ -27,9 +23,10 @@ class Pattern implements Stringable {
 	 * @param string $debugName The name of the pattern, for use in error messages
 	 * @param string $pattern The pattern itself
 	 */
-	public function __construct( string $debugName, string $pattern ) {
-		$this->debugName = $debugName;
-		$this->pattern = $pattern;
+	public function __construct(
+		private readonly string $debugName,
+		private readonly string $pattern,
+	) {
 	}
 
 	/**

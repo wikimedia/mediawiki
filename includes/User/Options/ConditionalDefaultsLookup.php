@@ -22,10 +22,6 @@ class ConditionalDefaultsLookup {
 		MainConfigNames::ConditionalUserOptions,
 	];
 
-	private HookRunner $hookRunner;
-	private ServiceOptions $options;
-	private UserRegistrationLookup $userRegistrationLookup;
-	private UserIdentityUtils $userIdentityUtils;
 	/**
 	 * UserGroupManager must be provided as a callback function to avoid circular dependency
 	 * @var callable
@@ -34,18 +30,13 @@ class ConditionalDefaultsLookup {
 	private ?array $extraConditions = null;
 
 	public function __construct(
-		HookRunner $hookRunner,
-		ServiceOptions $options,
-		UserRegistrationLookup $userRegistrationLookup,
-		UserIdentityUtils $userIdentityUtils,
-		callable $userGroupManagerCallback
+		private readonly HookRunner $hookRunner,
+		private readonly ServiceOptions $options,
+		private readonly UserRegistrationLookup $userRegistrationLookup,
+		private readonly UserIdentityUtils $userIdentityUtils,
+		callable $userGroupManagerCallback,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-
-		$this->hookRunner = $hookRunner;
-		$this->options = $options;
-		$this->userRegistrationLookup = $userRegistrationLookup;
-		$this->userIdentityUtils = $userIdentityUtils;
 		$this->userGroupManagerCallback = $userGroupManagerCallback;
 	}
 

@@ -14,12 +14,12 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class UserArrayFromResult extends UserArray {
 
-	private IResultWrapper $res;
 	private int $key = 0;
 	private ?User $current = null;
 
-	public function __construct( IResultWrapper $res ) {
-		$this->res = $res;
+	public function __construct(
+		private readonly IResultWrapper $res,
+	) {
 		$this->rewind();
 	}
 

@@ -24,7 +24,7 @@ class UserRegistrationLookup {
 	];
 
 	/** @var array ObjectFactory specs indexed by provider name */
-	private array $providersSpecs;
+	private readonly array $providersSpecs;
 
 	/** @var IUserRegistrationProvider[] Constructed registration providers indexed by name */
 	private array $providers = [];
@@ -35,7 +35,7 @@ class UserRegistrationLookup {
 
 	public function __construct(
 		ServiceOptions $options,
-		private readonly ObjectFactory $objectFactory
+		private readonly ObjectFactory $objectFactory,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->providersSpecs = $options->get( MainConfigNames::UserRegistrationProviders );

@@ -60,7 +60,7 @@ class UserGroupManager {
 	 */
 	public const VALID_OPS = UserRequirementsConditionChecker::VALID_OPS;
 
-	private HookRunner $hookRunner;
+	private readonly HookRunner $hookRunner;
 
 	/** string key for implicit groups cache */
 	private const CACHE_IMPLICIT = 'implicit';

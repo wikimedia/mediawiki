@@ -41,7 +41,7 @@ class UserFactory implements UserRigorOptions {
 		MainConfigNames::SharedTables,
 	];
 
-	private ILoadBalancer $loadBalancer;
+	private readonly ILoadBalancer $loadBalancer;
 
 	private ?User $lastUserFromIdentity = null;
 
@@ -49,7 +49,7 @@ class UserFactory implements UserRigorOptions {
 		private readonly ServiceOptions $options,
 		private readonly ILBFactory $loadBalancerFactory,
 		private readonly UserNameUtils $userNameUtils,
-		private readonly TempUserConfig $tempUserConfig
+		private readonly TempUserConfig $tempUserConfig,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->loadBalancer = $loadBalancerFactory->getMainLB();

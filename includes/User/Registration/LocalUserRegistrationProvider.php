@@ -12,7 +12,7 @@ class LocalUserRegistrationProvider implements IUserRegistrationProvider {
 	public const TYPE = 'local';
 
 	public function __construct(
-		private readonly IConnectionProvider $connectionProvider
+		private readonly IConnectionProvider $connectionProvider,
 	) {
 	}
 

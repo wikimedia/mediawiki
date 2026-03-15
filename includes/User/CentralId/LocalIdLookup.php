@@ -27,33 +27,22 @@ use Wikimedia\Rdbms\IDBAccessObject;
  */
 class LocalIdLookup extends CentralIdLookup {
 
-	private IConnectionProvider $dbProvider;
-	private HideUserUtils $hideUserUtils;
-
-	/** @var string|null */
-	private $sharedDB;
+	private readonly ?string $sharedDB;
 
 	/** @var string[] */
-	private $sharedTables;
+	private readonly array $sharedTables;
 
 	/** @var string[] */
-	private $localDatabases;
+	private readonly array $localDatabases;
 
-	/**
-	 * @param Config $config
-	 * @param IConnectionProvider $dbProvider
-	 * @param HideUserUtils $hideUserUtils
-	 */
 	public function __construct(
 		Config $config,
-		IConnectionProvider $dbProvider,
-		HideUserUtils $hideUserUtils
+		private readonly IConnectionProvider $dbProvider,
+		private readonly HideUserUtils $hideUserUtils,
 	) {
 		$this->sharedDB = $config->get( MainConfigNames::SharedDB );
 		$this->sharedTables = $config->get( MainConfigNames::SharedTables );
 		$this->localDatabases = $config->get( MainConfigNames::LocalDatabases );
-		$this->dbProvider = $dbProvider;
-		$this->hideUserUtils = $hideUserUtils;
 	}
 
 	/** @inheritDoc */

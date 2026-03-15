@@ -11,15 +11,12 @@ use MediaWiki\User\TempUser\TempUserConfig;
  * @since 1.41
  */
 class UserIdentityUtils {
-	private TempUserConfig $tempUserConfig;
-
 	/**
 	 * @internal
-	 *
-	 * @param TempUserConfig $tempUserConfig
 	 */
-	public function __construct( TempUserConfig $tempUserConfig ) {
-		$this->tempUserConfig = $tempUserConfig;
+	public function __construct(
+		private readonly TempUserConfig $tempUserConfig,
+	) {
 	}
 
 	/**

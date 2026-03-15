@@ -25,26 +25,22 @@ use MediaWiki\Title\Title;
  */
 class UserGroupMembership {
 
-	/** @var int The ID of the user who belongs to the group */
-	private $userId;
-
-	/** @var string */
-	private $group;
-
 	/** @var string|null Timestamp of expiry in TS::MW format, or null if no expiry */
-	private $expiry;
+	private readonly ?string $expiry;
 
 	/** @var bool Expiration flag */
-	private $expired;
+	private readonly bool $expired;
 
 	/**
 	 * @param int $userId The ID of the user who belongs to the group
 	 * @param string|null $group The internal group name
 	 * @param string|null $expiry Timestamp of expiry in TS::MW format, or null if no expiry
 	 */
-	public function __construct( int $userId = 0, ?string $group = null, ?string $expiry = null ) {
-		$this->userId = $userId;
-		$this->group = $group;
+	public function __construct(
+		private readonly int $userId = 0,
+		private readonly ?string $group = null,
+		?string $expiry = null,
+	) {
 		$this->expiry = $expiry ?: null;
 		$this->expired = $expiry && wfTimestampNow() > $expiry;
 	}

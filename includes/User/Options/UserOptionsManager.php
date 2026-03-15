@@ -71,17 +71,7 @@ class UserOptionsManager extends UserOptionsLookup {
 
 	private const LOCAL_STORE_KEY = 'local';
 
-	private ServiceOptions $serviceOptions;
-	private DefaultOptionsLookup $defaultOptionsLookup;
-	private LanguageConverterFactory $languageConverterFactory;
-	private IConnectionProvider $dbProvider;
-	private UserFactory $userFactory;
-	private LoggerInterface $logger;
-	private HookRunner $hookRunner;
-	private UserNameUtils $userNameUtils;
-	private array $storeProviders;
-
-	private ObjectFactory $objectFactory;
+	private readonly HookRunner $hookRunner;
 
 	/** @var UserOptionsCacheEntry[] */
 	private $cache = [];
@@ -89,42 +79,21 @@ class UserOptionsManager extends UserOptionsLookup {
 	/** @var UserOptionsStore[]|null */
 	private $stores;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param DefaultOptionsLookup $defaultOptionsLookup
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param IConnectionProvider $dbProvider
-	 * @param LoggerInterface $logger
-	 * @param HookContainer $hookContainer
-	 * @param UserFactory $userFactory
-	 * @param UserNameUtils $userNameUtils
-	 * @param ObjectFactory $objectFactory
-	 * @param array $storeProviders
-	 */
 	public function __construct(
-		ServiceOptions $options,
-		DefaultOptionsLookup $defaultOptionsLookup,
-		LanguageConverterFactory $languageConverterFactory,
-		IConnectionProvider $dbProvider,
-		LoggerInterface $logger,
+		private readonly ServiceOptions $serviceOptions,
+		private readonly DefaultOptionsLookup $defaultOptionsLookup,
+		private readonly LanguageConverterFactory $languageConverterFactory,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly LoggerInterface $logger,
 		HookContainer $hookContainer,
-		UserFactory $userFactory,
-		UserNameUtils $userNameUtils,
-		ObjectFactory $objectFactory,
-		array $storeProviders
+		private readonly UserFactory $userFactory,
+		private readonly UserNameUtils $userNameUtils,
+		private readonly ObjectFactory $objectFactory,
+		private readonly array $storeProviders,
 	) {
 		parent::__construct( $userNameUtils );
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->serviceOptions = $options;
-		$this->defaultOptionsLookup = $defaultOptionsLookup;
-		$this->languageConverterFactory = $languageConverterFactory;
-		$this->dbProvider = $dbProvider;
-		$this->logger = $logger;
+		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->userFactory = $userFactory;
-		$this->userNameUtils = $userNameUtils;
-		$this->objectFactory = $objectFactory;
-		$this->storeProviders = $storeProviders;
 	}
 
 	/**

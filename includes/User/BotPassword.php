@@ -51,26 +51,13 @@ class BotPassword {
 	 */
 	public const GRANTS_MAXLENGTH = 65535;
 
-	/** @var bool */
-	private $isSaved;
-
-	/** @var int */
-	private $centralId;
-
-	/** @var string */
-	private $appId;
-
-	/** @var string */
-	private $token;
-
-	/** @var MWRestrictions */
-	private $restrictions;
+	private int $centralId;
+	private readonly string $appId;
+	private string $token;
+	private readonly MWRestrictions $restrictions;
 
 	/** @var string[] */
-	private $grants;
-
-	/** @var int Defaults to {@see READ_NORMAL} */
-	private $flags;
+	private readonly array $grants;
 
 	/**
 	 * @internal only public for construction in BotPasswordStore
@@ -79,10 +66,11 @@ class BotPassword {
 	 * @param bool $isSaved Whether the bot password was read from the database
 	 * @param int $flags IDBAccessObject read flags
 	 */
-	public function __construct( $row, $isSaved, $flags = IDBAccessObject::READ_NORMAL ) {
-		$this->isSaved = $isSaved;
-		$this->flags = $flags;
-
+	public function __construct(
+		stdClass $row,
+		private bool $isSaved,
+		private readonly int $flags = IDBAccessObject::READ_NORMAL,
+	) {
 		$this->centralId = (int)$row->bp_user;
 		$this->appId = $row->bp_app_id;
 		$this->token = $row->bp_token;

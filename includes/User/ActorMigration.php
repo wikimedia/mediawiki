@@ -49,8 +49,6 @@ class ActorMigration extends ActorMigrationBase {
 
 	/**
 	 * @internal
-	 *
-	 * @param ActorStoreFactory $actorStoreFactory
 	 */
 	public function __construct( ActorStoreFactory $actorStoreFactory ) {
 		parent::__construct(

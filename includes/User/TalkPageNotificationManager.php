@@ -34,36 +34,20 @@ class TalkPageNotificationManager {
 	];
 
 	private array $userMessagesCache = [];
-	private bool $disableAnonTalk;
-	private IConnectionProvider $dbProvider;
-	private ReadOnlyMode $readOnlyMode;
-	private RevisionLookup $revisionLookup;
-	private HookRunner $hookRunner;
-	private UserFactory $userFactory;
+	private readonly bool $disableAnonTalk;
+	private readonly HookRunner $hookRunner;
 
-	/**
-	 * @param ServiceOptions $serviceOptions
-	 * @param IConnectionProvider $dbProvider
-	 * @param ReadOnlyMode $readOnlyMode
-	 * @param RevisionLookup $revisionLookup
-	 * @param HookContainer $hookContainer
-	 * @param UserFactory $userFactory
-	 */
 	public function __construct(
 		ServiceOptions $serviceOptions,
-		IConnectionProvider $dbProvider,
-		ReadOnlyMode $readOnlyMode,
-		RevisionLookup $revisionLookup,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly ReadOnlyMode $readOnlyMode,
+		private readonly RevisionLookup $revisionLookup,
 		HookContainer $hookContainer,
-		UserFactory $userFactory
+		private readonly UserFactory $userFactory,
 	) {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->disableAnonTalk = $serviceOptions->get( MainConfigNames::DisableAnonTalk );
-		$this->dbProvider = $dbProvider;
-		$this->readOnlyMode = $readOnlyMode;
-		$this->revisionLookup = $revisionLookup;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->userFactory = $userFactory;
 	}
 
 	/**

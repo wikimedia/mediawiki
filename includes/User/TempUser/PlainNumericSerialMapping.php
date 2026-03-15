@@ -8,13 +8,9 @@ namespace MediaWiki\User\TempUser;
  * @since 1.39
  */
 class PlainNumericSerialMapping implements SerialMapping {
-	/** @var int */
-	private $offset;
+	private readonly int $offset;
 
-	/**
-	 * @param array $config
-	 */
-	public function __construct( $config ) {
+	public function __construct( array $config ) {
 		$this->offset = $config['offset'] ?? 0;
 	}
 

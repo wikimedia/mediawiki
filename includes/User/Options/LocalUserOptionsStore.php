@@ -9,15 +9,13 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 class LocalUserOptionsStore implements UserOptionsStore {
-	private IConnectionProvider $dbProvider;
-	private HookRunner $hookRunner;
-
 	/** @var array[] Cached options for each user, by user ID */
 	private array $optionsFromDb;
 
-	public function __construct( IConnectionProvider $dbProvider, HookRunner $hookRunner ) {
-		$this->dbProvider = $dbProvider;
-		$this->hookRunner = $hookRunner;
+	public function __construct(
+		private readonly IConnectionProvider $dbProvider,
+		private readonly HookRunner $hookRunner,
+	) {
 	}
 
 	public function fetch(

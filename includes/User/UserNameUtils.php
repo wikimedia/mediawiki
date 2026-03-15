@@ -45,20 +45,12 @@ class UserNameUtils implements UserRigorOptions {
 
 	// RIGOR_* constants are inherited from UserRigorOptions
 
-	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
-	private ServiceOptions $options;
-	private Language $contentLang;
-	private LoggerInterface $logger;
-	private TitleParser $titleParser;
-	private ITextFormatter $textFormatter;
-
 	/**
 	 * @var string[]|false Cache for isUsable()
 	 */
 	private $reservedUsernames = false;
 
-	private HookRunner $hookRunner;
-	private TempUserConfig $tempUserConfig;
+	private readonly HookRunner $hookRunner;
 
 	/**
 	 * @param ServiceOptions $options
@@ -70,22 +62,16 @@ class UserNameUtils implements UserRigorOptions {
 	 * @param TempUserConfig $tempUserConfig
 	 */
 	public function __construct(
-		ServiceOptions $options,
-		Language $contentLang,
-		LoggerInterface $logger,
-		TitleParser $titleParser,
-		ITextFormatter $textFormatter,
+		private readonly ServiceOptions $options,
+		private readonly Language $contentLang,
+		private readonly LoggerInterface $logger,
+		private readonly TitleParser $titleParser,
+		private readonly ITextFormatter $textFormatter,
 		HookContainer $hookContainer,
-		TempUserConfig $tempUserConfig
+		private readonly TempUserConfig $tempUserConfig,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
-		$this->contentLang = $contentLang;
-		$this->logger = $logger;
-		$this->titleParser = $titleParser;
-		$this->textFormatter = $textFormatter;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**

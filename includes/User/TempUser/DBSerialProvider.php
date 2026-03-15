@@ -11,8 +11,7 @@ use Wikimedia\Rdbms\RawSQLValue;
  * @since 1.39
  */
 abstract class DBSerialProvider implements SerialProvider {
-	/** @var int */
-	private $numShards;
+	private readonly int $numShards;
 
 	/**
 	 * @param array $config
@@ -20,7 +19,7 @@ abstract class DBSerialProvider implements SerialProvider {
 	 *     value greater than 1 to avoid acquiring a global lock when
 	 *     allocating IDs, at the expense of making the IDs be non-monotonic.
 	 */
-	public function __construct( $config ) {
+	public function __construct( array $config ) {
 		$this->numShards = $config['numShards'] ?? 1;
 	}
 

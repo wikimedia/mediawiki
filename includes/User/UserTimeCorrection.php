@@ -41,11 +41,9 @@ class UserTimeCorrection implements Stringable {
 	/** @var string Time correction based on a user defined timezone */
 	public const ZONEINFO = 'ZoneInfo';
 
-	/** @var DateTime */
-	private $date;
+	private readonly DateTime $date;
 
-	/** @var bool */
-	private $valid;
+	private bool $valid;
 
 	/** @var string */
 	private $correctionType;
@@ -65,7 +63,7 @@ class UserTimeCorrection implements Stringable {
 	public function __construct(
 		string $timeCorrection,
 		?DateTime $relativeToDate = null,
-		int $systemOffset = 0
+		int $systemOffset = 0,
 	) {
 		$this->date = $relativeToDate ?? new DateTime( '@' . MWTimestamp::time() );
 		$this->valid = false;

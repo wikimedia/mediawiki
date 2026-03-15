@@ -28,10 +28,9 @@ abstract class UserOptionsLookup {
 	 */
 	public const LOCAL_EXCEPTION_SUFFIX = '-local-exception';
 
-	private UserNameUtils $userNameUtils;
-
-	public function __construct( UserNameUtils $userNameUtils ) {
-		$this->userNameUtils = $userNameUtils;
+	public function __construct(
+		private readonly UserNameUtils $userNameUtils,
+	) {
 	}
 
 	/**

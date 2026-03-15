@@ -11,14 +11,17 @@ use MediaWiki\Language\LanguageFactory;
  * @since 1.39
  */
 class LocalizedNumericSerialMapping implements SerialMapping {
-	private Language $language;
+	private readonly Language $language;
 
 	/**
 	 * @param array $config
 	 *   - language: The language code
 	 * @param LanguageFactory $languageFactory
 	 */
-	public function __construct( $config, LanguageFactory $languageFactory ) {
+	public function __construct(
+		array $config,
+		LanguageFactory $languageFactory,
+	) {
 		$this->language = $languageFactory->getLanguage( $config['language'] ?? 'en' );
 	}
 

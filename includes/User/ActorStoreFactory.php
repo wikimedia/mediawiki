@@ -29,12 +29,6 @@ class ActorStoreFactory {
 		MainConfigNames::SharedTables,
 	];
 
-	private ILBFactory $loadBalancerFactory;
-	private UserNameUtils $userNameUtils;
-	private TempUserConfig $tempUserConfig;
-	private LoggerInterface $logger;
-	private HideUserUtils $hideUserUtils;
-
 	/** @var string|false */
 	private $sharedDB;
 
@@ -42,32 +36,19 @@ class ActorStoreFactory {
 	private $sharedTables;
 
 	/** @var ActorStore[] */
-	private $storeCache = [];
+	private array $storeCache = [];
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param ILBFactory $loadBalancerFactory
-	 * @param UserNameUtils $userNameUtils
-	 * @param TempUserConfig $tempUserConfig
-	 * @param LoggerInterface $logger
-	 * @param HideUserUtils $hideUserUtils
-	 */
 	public function __construct(
 		ServiceOptions $options,
-		ILBFactory $loadBalancerFactory,
-		UserNameUtils $userNameUtils,
-		TempUserConfig $tempUserConfig,
-		LoggerInterface $logger,
-		HideUserUtils $hideUserUtils
+		private readonly ILBFactory $loadBalancerFactory,
+		private readonly UserNameUtils $userNameUtils,
+		private readonly TempUserConfig $tempUserConfig,
+		private readonly LoggerInterface $logger,
+		private readonly HideUserUtils $hideUserUtils,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->loadBalancerFactory = $loadBalancerFactory;
 		$this->sharedDB = $options->get( MainConfigNames::SharedDB );
 		$this->sharedTables = $options->get( MainConfigNames::SharedTables );
-		$this->userNameUtils = $userNameUtils;
-		$this->tempUserConfig = $tempUserConfig;
-		$this->logger = $logger;
-		$this->hideUserUtils = $hideUserUtils;
 	}
 
 	/**

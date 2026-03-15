@@ -18,8 +18,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
  */
 class ExternalUserNames {
 
-	private string $usernamePrefix;
-	private bool $assignKnownUsers;
+	private readonly string $usernamePrefix;
 
 	/**
 	 * @var bool[]
@@ -30,9 +29,11 @@ class ExternalUserNames {
 	 * @param string $usernamePrefix Prefix to apply to unknown (and possibly also known) usernames
 	 * @param bool $assignKnownUsers Whether to apply the prefix to usernames that exist locally
 	 */
-	public function __construct( $usernamePrefix, $assignKnownUsers ) {
-		$this->usernamePrefix = rtrim( (string)$usernamePrefix, ':>' );
-		$this->assignKnownUsers = (bool)$assignKnownUsers;
+	public function __construct(
+		string $usernamePrefix,
+		private readonly bool $assignKnownUsers,
+	) {
+		$this->usernamePrefix = rtrim( $usernamePrefix, ':>' );
 	}
 
 	/**

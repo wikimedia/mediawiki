@@ -8,12 +8,9 @@ namespace MediaWiki\User\TempUser;
  * @since 1.44
  */
 class ReadableNumericSerialMapping implements SerialMapping {
-	private int $offset;
+	private readonly int $offset;
 
-	/**
-	 * @param array $config
-	 */
-	public function __construct( $config ) {
+	public function __construct( array $config ) {
 		$this->offset = $config['offset'] ?? 0;
 	}
 

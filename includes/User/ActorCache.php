@@ -30,8 +30,6 @@ class ActorCache {
 	/** @var string Key by user name */
 	public const KEY_USER_NAME = 'name';
 
-	private int $maxSize;
-
 	/**
 	 * @var array[][] Contains 3 keys, KEY_ACTOR_ID, KEY_USER_ID, and KEY_USER_NAME,
 	 * each of which has a value of an array of arrays with actor ids and UserIdentity objects,
@@ -42,8 +40,9 @@ class ActorCache {
 	/**
 	 * @param int $maxSize hold up to this many UserIdentity values
 	 */
-	public function __construct( int $maxSize ) {
-		$this->maxSize = $maxSize;
+	public function __construct(
+		private readonly int $maxSize,
+	) {
 	}
 
 	/**

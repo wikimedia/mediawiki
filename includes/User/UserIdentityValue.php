@@ -21,19 +21,6 @@ class UserIdentityValue implements Stringable, UserIdentity {
 	use WikiAwareEntityTrait;
 
 	/**
-	 * @var int
-	 */
-	private $id;
-
-	/**
-	 * @var string
-	 */
-	private $name;
-
-	/** @var string|false */
-	private $wikiId;
-
-	/**
 	 * @stable to call
 	 *
 	 * @note Signature in 1.35 was: ( $id, $name, $actor ).
@@ -42,12 +29,12 @@ class UserIdentityValue implements Stringable, UserIdentity {
 	 * @param string $name user name
 	 * @param string|false $wikiId wiki ID or self::LOCAL for the local wiki
 	 */
-	public function __construct( int $id, string $name, $wikiId = self::LOCAL ) {
+	public function __construct(
+		private readonly int $id,
+		private readonly string $name,
+		private readonly string|false $wikiId = self::LOCAL,
+	) {
 		$this->assertWikiIdParam( $wikiId );
-
-		$this->id = $id;
-		$this->name = $name;
-		$this->wikiId = $wikiId;
 	}
 
 	/**

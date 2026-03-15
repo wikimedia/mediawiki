@@ -35,46 +35,26 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		MainConfigNames::NamespacesToBeSearchedDefault
 	];
 
-	private ServiceOptions $serviceOptions;
-	private LanguageCode $contentLang;
-	private NamespaceInfo $nsInfo;
-	private ConditionalDefaultsLookup $conditionalDefaultsLookup;
-	private UserIdentityLookup $userIdentityLookup;
-
 	/** @var array Cache of default options by user */
 	private $cache = [];
 
 	/** @var array|null Cached default options */
 	private $defaultOptions = null;
 
-	private HookRunner $hookRunner;
+	private readonly HookRunner $hookRunner;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param LanguageCode $contentLang
-	 * @param HookContainer $hookContainer
-	 * @param NamespaceInfo $nsInfo
-	 * @param ConditionalDefaultsLookup $conditionalUserOptionsDefaultsLookup
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param UserNameUtils $userNameUtils
-	 */
 	public function __construct(
-		ServiceOptions $options,
-		LanguageCode $contentLang,
+		private readonly ServiceOptions $serviceOptions,
+		private readonly LanguageCode $contentLang,
 		HookContainer $hookContainer,
-		NamespaceInfo $nsInfo,
-		ConditionalDefaultsLookup $conditionalUserOptionsDefaultsLookup,
-		UserIdentityLookup $userIdentityLookup,
-		UserNameUtils $userNameUtils
+		private readonly NamespaceInfo $nsInfo,
+		private readonly ConditionalDefaultsLookup $conditionalDefaultsLookup,
+		private readonly UserIdentityLookup $userIdentityLookup,
+		UserNameUtils $userNameUtils,
 	) {
 		parent::__construct( $userNameUtils );
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->serviceOptions = $options;
-		$this->contentLang = $contentLang;
+		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->nsInfo = $nsInfo;
-		$this->conditionalDefaultsLookup = $conditionalUserOptionsDefaultsLookup;
-		$this->userIdentityLookup = $userIdentityLookup;
 	}
 
 	/**

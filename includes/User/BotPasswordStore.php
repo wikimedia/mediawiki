@@ -35,24 +35,12 @@ class BotPasswordStore {
 		MainConfigNames::EnableBotPasswords,
 	];
 
-	private ServiceOptions $options;
-	private IConnectionProvider $dbProvider;
-	private CentralIdLookup $centralIdLookup;
-
-	/**
-	 * @param ServiceOptions $options
-	 * @param CentralIdLookup $centralIdLookup
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct(
-		ServiceOptions $options,
-		CentralIdLookup $centralIdLookup,
-		IConnectionProvider $dbProvider
+		private readonly ServiceOptions $options,
+		private readonly CentralIdLookup $centralIdLookup,
+		private readonly IConnectionProvider $dbProvider,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
-		$this->centralIdLookup = $centralIdLookup;
-		$this->dbProvider = $dbProvider;
 	}
 
 	/**

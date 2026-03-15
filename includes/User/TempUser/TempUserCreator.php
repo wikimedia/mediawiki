@@ -29,15 +29,8 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * @since 1.39
  */
 class TempUserCreator implements TempUserConfig {
-	private RealTempUserConfig $config;
-	private UserFactory $userFactory;
-	private AuthManager $authManager;
-	private CentralIdLookup $centralIdLookup;
-	private Throttler $tempAccountCreationThrottler;
-	private Throttler $tempAccountNameAcquisitionThrottler;
-	private array $serialProviderConfig;
-	private array $serialMappingConfig;
-	private ObjectFactory $objectFactory;
+	private readonly array $serialProviderConfig;
+	private readonly array $serialMappingConfig;
 	private ?SerialProvider $serialProvider;
 	private ?SerialMapping $serialMapping;
 
@@ -70,21 +63,14 @@ class TempUserCreator implements TempUserConfig {
 	];
 
 	public function __construct(
-		RealTempUserConfig $config,
-		ObjectFactory $objectFactory,
-		UserFactory $userFactory,
-		AuthManager $authManager,
-		CentralIdLookup $centralIdLookup,
-		Throttler $tempAccountCreationThrottler,
-		Throttler $tempAccountNameAcquisitionThrottler
+		private readonly RealTempUserConfig $config,
+		private readonly ObjectFactory $objectFactory,
+		private readonly UserFactory $userFactory,
+		private readonly AuthManager $authManager,
+		private readonly CentralIdLookup $centralIdLookup,
+		private readonly Throttler $tempAccountCreationThrottler,
+		private readonly Throttler $tempAccountNameAcquisitionThrottler,
 	) {
-		$this->config = $config;
-		$this->objectFactory = $objectFactory;
-		$this->userFactory = $userFactory;
-		$this->authManager = $authManager;
-		$this->centralIdLookup = $centralIdLookup;
-		$this->tempAccountCreationThrottler = $tempAccountCreationThrottler;
-		$this->tempAccountNameAcquisitionThrottler = $tempAccountNameAcquisitionThrottler;
 		$this->serialProviderConfig = $config->getSerialProviderConfig();
 		$this->serialMappingConfig = $config->getSerialMappingConfig();
 	}
