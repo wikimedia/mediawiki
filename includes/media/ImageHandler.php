@@ -206,18 +206,11 @@ abstract class ImageHandler extends MediaHandler {
 			}
 		}
 
-		$prevStep = $thumbnailSteps[0];
-		foreach ( $thumbnailSteps as $i => $widthStep ) {
+		foreach ( $thumbnailSteps as $widthStep ) {
 			if ( ( $widthStep > $srcWidth ) && !$image->isVectorized() ) {
-				if ( $i === 0 ) {
-					// Round up to original width if there is no step between
-					// desired thumb width & original file width
-					//
-					// FIXME: non-standard thumbnail T418745
-					return $srcWidth;
-				} else {
-					return $prevStep;
-				}
+				// Round up to original width if there is no step between
+				// desired thumb width & original file width
+				return $srcWidth;
 			}
 			if ( $widthStep == $requestWidth ) {
 				return $requestWidth;
@@ -225,15 +218,9 @@ abstract class ImageHandler extends MediaHandler {
 			if ( $widthStep > $requestWidth ) {
 				return $widthStep;
 			}
-
-			$prevStep = $widthStep;
 		}
 
-		// T418745: Avoid non-standard widths beyond last step
-		// It is a sysadmin responsibility, when choosing to enable $wgThumbnailSteps,
-		// to include adequate sizes that cover traditional thumbnails, full-screen previews,
-		// and wallpaper downloads ($wgImageLimits).
-		return $prevStep;
+		return $requestWidth;
 	}
 
 	/**
