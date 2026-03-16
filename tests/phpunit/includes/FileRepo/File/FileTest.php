@@ -498,12 +498,9 @@ class FileTest extends MediaWikiMediaTestCase {
 		$this->assertSame( $obj, $file->getHandlerState( 'test' ) );
 	}
 
-	/**
-	 * NOTE: Keep in sync with util.test.js#adjustThumbWidthForSteps in QUnit.
-	 *
-	 * @see \MediaWiki\Media\ImageHandler::getSteppedThumbWidth
-	 */
 	public static function provideThumbNameSteps() {
+		// See also client-side logic test for mw.util.adjustThumbWidthForSteps in util.test.js
+
 		// File format that is web-safe
 		$jpeg = [
 			'filename' => 'test.jpg',
@@ -628,8 +625,9 @@ class FileTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\FileRepo\File\File
-	 * @covers \MediaWiki\Media\ImageHandler
+	 * @covers \MediaWiki\FileRepo\File\File::thumbName
+	 * @covers \MediaWiki\FileRepo\File\File::generateThumbName
+	 * @covers \MediaWiki\Media\ImageHandler::getSteppedThumbWidth
 	 * @dataProvider provideThumbNameSteps
 	 */
 	public function testThumbNameSteps(

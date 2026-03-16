@@ -1078,9 +1078,10 @@ const util = {
 
 	/**
 	 * Adjust the thumbnail size to fit the width steps defined in config via
-	 * config.ThumbnailSteps, according to whether config.ThumbnailStepsRatio is set.
+	 * config.ThumbnailSteps, according to whether config.ThumbnailStepsRatio
+	 * is set.
 	 *
-	 * NOTE: Keep in sync with server-side logic in ImageHandler::getSteppedThumbWidth.
+	 * This logic is duplicated server-side in File::adjustThumbWidthForSteps.
 	 *
 	 * @param {number} thumbWidth Target width in pixels
 	 * @param {number} originalWidth Original file width
@@ -1100,24 +1101,19 @@ const util = {
 		// as equivalent to 1 here. This is a transitional setting
 		// for content generation and should be ok to ignore client-side.
 
-		let prevStep = steps[ 0 ];
 		for ( const widthStep of steps ) {
 			if ( widthStep > originalWidth ) {
-				if ( widthStep === steps[ 0 ] ) {
-					// FIXME: non-standard thumbnail T418745
-					return originalWidth;
-				} else {
-					return prevStep;
-				}
+				// Round up to original width if there is no step between
+				// desired thumb width & original file width
+				return originalWidth;
 			}
 			if ( widthStep >= thumbWidth ) {
 				return widthStep;
 			}
-			prevStep = widthStep;
 		}
 
-		// T418745: Avoid non-standard widths beyond last step
-		return prevStep;
+		// If no step matched, default to target thumb width
+		return thumbWidth;
 	},
 
 	/**
