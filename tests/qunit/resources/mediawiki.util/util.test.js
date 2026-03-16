@@ -660,7 +660,6 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		assert.strictEqual( resizeUrl( 500 ), '/w?title=Special:Redirect/file/Princess_Alexandra_of_Denmark_(later_Queen_Alexandra,_wife_of_Edward_VII)_with_her_two_eldest_sons,_Prince_Albert_Victor_(Eddy)_and_George_Frederick_Ernest_Albert_(later_George_V).jpg&width=500', 'Resized URL is correct' );
 	} );
 
-	// NOTE: Keep in sync with FileTest::provideThumbNameSteps in PHPUnit.
 	QUnit.test.each( 'adjustThumbWidthForSteps', {
 		'unchanged when disabled': {
 			enabled: false,
@@ -674,27 +673,28 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 			thumbWidth: 52,
 			expected: 100
 		},
-		'thumb under first step and original': {
+		'original width when first step beyond original width': {
 			enabled: true,
 			originalWidth: 90,
 			thumbWidth: 52,
-			expected: 90 // FIXME: non-standard thumbnail T418745
+			expected: 90
 		},
-		'thumb between penultimate step and original': {
+		'original width when no other step between requested & original width': {
 			enabled: true,
 			originalWidth: 180,
 			thumbWidth: 130,
-			expected: 100
+			expected: 180
 		},
-		'thumb beyond last step': {
+		'unchanged when beyond available steps': {
 			enabled: true,
-			originalWidth: 2345,
-			thumbWidth: 1252,
-			expected: 1000
+			originalWidth: 500,
+			thumbWidth: 252,
+			expected: 252
 		}
 	}, ( assert, data ) => {
+		// See also server-side logic test for File::adjustThumbWidthForSteps in FileTest.php
 		mw.util.setOptionsForTest( {
-			ThumbnailSteps: [ 100, 200, 1000 ],
+			ThumbnailSteps: [ 100, 200 ],
 			ThumbnailStepsRatio: data.enabled ? 1 : 0
 		} );
 
