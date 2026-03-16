@@ -317,6 +317,7 @@
 	"listgrouprights-namespaceprotection-header": "Restricións dos espazos de nomes",
 	"listgrouprights-namespaceprotection-namespace": "Espazo de nomes",
 	"listgrouprights-namespaceprotection-restrictedto": "Dereito(s) que permite(n) ao usuario editar",
+	"restrictedgroups-autodemotion-log-reason": "Eliminación automática {{GENDER:$1|do usuario|da usuaria}} {{PLURAL:$2|dun grupo restrinxido|de varios grupos restrinxidos}} para {{PLURAL:$2|o|os}} que xa non é elixible",
 	"listgrants": "Permisos",
 	"listgrants-summary": "Esta é unha lista de permisos cos seus accesos asociados aos dereitos de usuario. Os usuarios poden autorizar aplicacións para que usen a súa conta, pero con acceso limitado en función dos permisos que o usuario concede á aplicación. Porén, unha aplicación que actúa no nome dun usuario non pode empregar permisos que o propio usuario non posúe.\nPodes obter máis información sobre os dereitos individuais [[{{MediaWiki:Listgrouprights-helppage}}|nesta páxina]].",
 	"listgrants-grant": "Outorgar",

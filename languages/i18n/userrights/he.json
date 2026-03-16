@@ -318,6 +318,7 @@
 	"listgrouprights-namespaceprotection-header": "הגבלות על מרחבי שם",
 	"listgrouprights-namespaceprotection-namespace": "מרחב השם",
 	"listgrouprights-namespaceprotection-restrictedto": "ההרשאה או ההרשאות המאפשרות למשתמשים לערוך",
+	"restrictedgroups-autodemotion-log-reason": "הסרה אוטומטית של משתמש {{PLURAL:$2|מקבוצה מוגבלת|מקבוצות מוגבלות}} {{GENDER:$1|שהוא אינו זכאי|שהיא אינה זכאית}} להיות {{PLURAL:$2|בה|בהן}} עוד",
 	"listgrants": "זיכיונות",
 	"listgrants-summary": "להלן רשימת זיכיונות עם הגישות להרשאות משתמש שמשויכות אליהן. משתמשים יכולים לאשר ליישומים להשתמש בחשבון שלהם, אבל עם הרשאות מוגבלות בהתאם לזיכיון שהשמשתמש נתן ליישום. יישום שפועל בשמו של המשתמש אינו יכול להשתמש בהרשאות שאין למשתמש.\nייתכן שיש [[{{MediaWiki:Listgrouprights-helppage}}|מידע נוסף]] על הרשאות פרטניות.",
 	"listgrants-grant": "זיכיון",

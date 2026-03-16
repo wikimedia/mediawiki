@@ -163,7 +163,7 @@
 	"listgrouprights-group": "組",
 	"listgrouprights-rights": "權",
 	"listgrouprights-helppage": "Help:組權",
-	"listgrouprights-members": "（社員表）",
+	"listgrouprights-members": "（其人一覽）",
 	"listgrouprights-addgroup": "加{{PLURAL:$2|一|多}}組：$1",
 	"listgrouprights-removegroup": "除{{PLURAL:$2|一|多}}組：$1",
 	"listgrouprights-addgroup-all": "加全組",

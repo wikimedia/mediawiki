@@ -4,6 +4,7 @@
 			"Framawiki",
 			"Gomoko",
 			"Pols12",
+			"Sik666",
 			"Thibaut120094",
 			"Verdy p",
 			"Wladek92"
@@ -29,6 +30,7 @@
 	"botpasswords-bad-appid": "Le nom de robot « $1 » n’est pas valide.",
 	"botpasswords-toolong-restrictions": "Les adresses ou plages d’adresses IP saisies sont trop nombreuses.",
 	"botpasswords-toolong-grants": "Les agréments sélectionnés sont trop nombreux.",
+	"botpasswords-too-many": "Vous avez atteint la limite de {{PLURAL:$1|mot de passe|mots de passe}} pour le bot. Veuillez en supprimer autant que nécessaire afin de pouvoir en créer de nouveaux.",
 	"botpasswords-insert-failed": "Échec de l’ajout du nom de robot « $1 ». A-t-il déjà été ajouté ?",
 	"botpasswords-update-failed": "Échec de la mise à jour du nom de robot « $1 ». A-t-il déjà été supprimé ?",
 	"botpasswords-created-title": "Mot de passe de robots créé",

@@ -28,6 +28,8 @@
 	"username": "{{GENDER:$1|Корисничко име}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Член}} на {{PLURAL:$1|групата|групите}}:",
 	"group-membership-link-with-expiry": "$1 (до $2)",
+	"prefs-memberingroupsdisabled": "{{PLURAL:$1|{{GENDER:$2|Оневозможена}} група|{{GENDER:$2|Оневозможени}} групи}}:",
+	"prefs-memberingroupsdisabled-help": "Повеќе не ги {{GENDER:$2|задоволувате}} [[$3|условите]] за членство во {{PLURAL:$1|оваа група|овие групи}} и затоа не можете да се служите со правата што {{PLURAL:$1|таа ги дава|тие ги даваат}}.",
 	"prefs-edits": "Број на уредувања:",
 	"prefs-registration": "Време на зачленување:",
 	"yourrealname": "Вистинско име:",

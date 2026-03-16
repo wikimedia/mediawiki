@@ -26,6 +26,7 @@
 	"botpasswords-bad-appid": "\"$1\" روباټ نوم د باور وړ نه دی.",
 	"botpasswords-toolong-restrictions": "دلته ډېرې زياتې وېبپتې يا بريدونه ننوتی دي.",
 	"botpasswords-toolong-grants": "ټاکلې واگې ډېرې زياتې دي.",
+	"botpasswords-too-many": "تاسو د $1 {{PLURAL:$1|روباټ پټنوم|روباټ پټنومونو}} ډېر شمېر ته رسېدلي ياست. مهرباني د نوي پټنوم جوړولو دمخه د روباټ ځينې شته پټنومونه ړنگ کړئ.",
 	"botpasswords-insert-failed": "\"$1\" روباټ نوم ورگډولو کې پاتې راغی. ايا دا له مخکې څخه ورگډ شوی و؟",
 	"botpasswords-update-failed": "د \"$1\" روباټ نوم هم‌مهالولو کې پاتې راغی. ايا دا ړنگ شوی و؟",
 	"botpasswords-created-title": "روباټ پټنوم جوړ شو",
