@@ -9,6 +9,7 @@
  */
 
 let ffmpeg;
+import os from 'os';
 import path from 'path';
 import { getChromeOptions } from './chromeOptions.js';
 import { setupProcessHandlers } from './processHandlers.js';
@@ -50,7 +51,7 @@ export const config = {
 	// Define the different browser configurations to use ("capabilities") here.
 	// ============
 
-	maxInstances: process.env.CI ? 6 : 1,
+	maxInstances: process.env.CI ? Math.floor( os.cpus().length * 0.75 ) : 1,
 	// Make sure wdio do not try to start XVFB (we do that ourselves when needed)
 	autoXvfb: false,
 	capabilities: [ {
