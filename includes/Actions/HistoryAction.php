@@ -407,15 +407,15 @@ class HistoryAction extends FormlessAction {
 			->formatRows( $items, 'rev_comment' );
 
 		// Generate feed elements enclosed between header and footer.
-		$feed->outHeader();
+		$feed->outputHeader( $this->getOutput() );
 		if ( $items->numRows() ) {
 			foreach ( $items as $i => $row ) {
-				$feed->outItem( $this->feedItem( $row, $formattedComments[$i] ) );
+				$feed->outputItem( $this->feedItem( $row, $formattedComments[$i] ), $this->getOutput() );
 			}
 		} else {
-			$feed->outItem( $this->feedEmpty() );
+			$feed->outputItem( $this->feedEmpty(), $this->getOutput() );
 		}
-		$feed->outFooter();
+		$feed->outputFooter( $this->getOutput() );
 	}
 
 	private function feedEmpty(): FeedItem {

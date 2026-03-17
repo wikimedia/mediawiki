@@ -98,11 +98,11 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 
 			// execute() needs to pass strings to $this->printText, not produce output itself.
 			ob_start();
-			$feed->outHeader();
+			$feed->outputHeader( $this->getOutput() );
 			foreach ( $items as $item ) {
-				$feed->outItem( $item );
+				$feed->outputItem( $item, $this->getOutput() );
 			}
-			$feed->outFooter();
+			$feed->outputFooter( $this->getOutput() );
 			$this->printText( ob_get_clean() );
 		} else {
 			// Error has occurred, print something useful

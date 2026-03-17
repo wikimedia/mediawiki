@@ -386,18 +386,19 @@ class SpecialNewPages extends IncludableSpecialPage {
 			$this->msg( 'tagline' )->text(),
 			$this->getPageTitle()->getFullURL()
 		);
+		/** @var ChannelFeed $feed */
 
 		$pager = $this->getNewPagesPager();
 		$limit = $this->opts->getValue( 'limit' );
 		$pager->mLimit = min( $limit, $this->getConfig()->get( MainConfigNames::FeedLimit ) );
 
-		$feed->outHeader();
+		$feed->outputHeader( $this->getOutput() );
 		if ( $pager->getNumRows() > 0 ) {
 			foreach ( $pager->mResult as $row ) {
-				$feed->outItem( $this->feedItem( $row ) );
+				$feed->outputItem( $this->feedItem( $row ), $this->getOutput() );
 			}
 		}
-		$feed->outFooter();
+		$feed->outputFooter( $this->getOutput() );
 	}
 
 	protected function feedTitle(): string {

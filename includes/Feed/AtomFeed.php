@@ -36,10 +36,10 @@ class AtomFeed extends ChannelFeed {
 
 	/**
 	 * Outputs a basic header for Atom 1.0 feeds.
+	 * @inheritDoc
 	 */
-	public function outHeader() {
-		global $wgOut;
-		$this->outputXmlHeader( $wgOut );
+	public function outputHeader( $output ): void {
+		$this->outputXmlHeader( $output );
 		// Manually escaping rather than letting Mustache do it because Mustache
 		// uses htmlentities, which does not work with XML
 		$templateParams = [
@@ -74,9 +74,9 @@ class AtomFeed extends ChannelFeed {
 	/**
 	 * Output a given item.
 	 *
-	 * @param FeedItem $item
+	 * @inheritDoc
 	 */
-	public function outItem( $item ) {
+	public function outputItem( FeedItem $item, $output ): void {
 		$mimeType = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::MimeType );
 		// Manually escaping rather than letting Mustache do it because Mustache
@@ -97,8 +97,9 @@ class AtomFeed extends ChannelFeed {
 
 	/**
 	 * Outputs the footer for Atom 1.0 feed (basically '\</feed\>').
+	 * @inheritDoc
 	 */
-	public function outFooter() {
+	public function outputFooter( $output ): void {
 		print "</feed>";
 	}
 }

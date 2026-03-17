@@ -1008,6 +1008,8 @@ because of Phabricator reports.
 * ChannelFeed::httpHeaders() and ChannelFeed::outXmlHeader() have been
   deprecated and emit deprecation warnings, use ::sendHttpHeaders() and
   ::outputXmlHeader() instead.
+* ChannelFeed::outHeader(), ::outItem() and ::outFooter() have been deprecated,
+  use ::outputHeader(), ::outputItem() and ::outputFooter() instead.
 * …
 
 === Other changes in 1.46 ===
