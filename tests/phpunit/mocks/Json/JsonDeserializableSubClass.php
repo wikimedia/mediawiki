@@ -40,9 +40,7 @@ class JsonDeserializableSubClass extends JsonDeserializableSuperClass {
 		];
 	}
 }
-// This class_alias exists for backward compatibility with pre-1.46
-// serialization test data
-// @deprecated since 1.46
+/** @deprecated class alias since 1.46 */
 class_alias( JsonDeserializableSubClass::class, 'MediaWiki\\Tests\\Json\\JsonDeserializableSubClass' );
 
 // This class_alias exists for testing alias support in JsonCodec and
