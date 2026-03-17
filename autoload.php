@@ -3941,6 +3941,7 @@ $wgAutoloadLocalClasses = [
 	'RebuildTextIndex' => __DIR__ . '/maintenance/rebuildtextindex.php',
 	'RecentChange' => __DIR__ . '/includes/RecentChanges/RecentChange.php',
 	'RecentChangesUpdateJob' => __DIR__ . '/includes/RecentChanges/RecentChangesUpdateJob.php',
+	'ReconcileTables' => __DIR__ . '/maintenance/reconcileTables.php',
 	'RecountCategories' => __DIR__ . '/maintenance/recountCategories.php',
 	'RedirectSpecialArticle' => __DIR__ . '/includes/SpecialPage/RedirectSpecialArticle.php',
 	'RedirectSpecialPage' => __DIR__ . '/includes/SpecialPage/RedirectSpecialPage.php',
