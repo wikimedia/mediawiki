@@ -1418,7 +1418,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 *                 with true meaning READ_NORMAL and false meaning
 	 *                 READ_LATEST.
 	 * @param bool $disableIpBlockExemptChecking This is used internally to prevent
-	 *   a infinite recursion with autopromote. See T270145.
+	 *   an infinite recursion with autopromote. See T270145.
 	 *
 	 * @return ?AbstractBlock
 	 */

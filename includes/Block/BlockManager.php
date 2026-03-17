@@ -116,7 +116,7 @@ class BlockManager {
 	 *  To improve performance, non-critical checks are done against replica DBs.
 	 *  Check when actually saving should be done against primary.
 	 * @param bool $disableIpBlockExemptChecking This is used internally to prevent
-	 *   a infinite recursion with autopromote. See T270145.
+	 *   an infinite recursion with autopromote. See T270145.
 	 * @return AbstractBlock|null The most relevant block, or null if there is no block.
 	 */
 	public function getUserBlock(
