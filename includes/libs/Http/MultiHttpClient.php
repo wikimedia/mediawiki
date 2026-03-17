@@ -8,6 +8,8 @@
 
 namespace Wikimedia\Http;
 
+use CurlHandle;
+use CurlMultiHandle;
 use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
@@ -46,8 +48,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	/** Regex for headers likely to contain tokens, etc. that we want to redact from logs */
 	private const SENSITIVE_HEADERS = '/(^|-|_)(authorization|auth|password|cookie)($|-|_)/';
 	/**
-	 * @phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.ObjectTypeHintVar
-	 * @var resource|object|null curl_multi_init() handle, initialized in getCurlMulti()
+	 * @var CurlMultiHandle|null curl_multi_init() handle, initialized in getCurlMulti()
 	 */
 	protected $cmh = null;
 	/** @var string|null SSL certificates path */
@@ -365,13 +366,12 @@ class MultiHttpClient implements LoggerAwareInterface {
 	/**
 	 * @param array &$req HTTP request map
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{url:string,proxy?:?string,query:mixed,method:string,body:string|resource,headers:array<string,string>,stream?:resource,flags:array} $req
+	 * @phan-param array{url:string,proxy?:?string,query:mixed,method:string,body:string|CurlHandle,headers:array<string,string>,stream?:resource,flags:array} $req
 	 * @param array $opts
 	 *   - connTimeout : default connection timeout
 	 *   - reqTimeout : default request timeout
 	 *   - httpVersion: default HTTP version
-	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn
-	 * @return resource|object
+	 * @return CurlHandle
 	 * @throws \Exception
 	 */
 	protected function getCurlHandle( array &$req, array $opts ) {
@@ -501,8 +501,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 
 	/**
 	 * @param array $opts
-	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn
-	 * @return resource|object
+	 * @return CurlMultiHandle
 	 * @throws \Exception
 	 */
 	protected function getCurlMulti( array $opts ) {
@@ -546,8 +545,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * Get a time in seconds, formatted with microsecond resolution, or fall back to second
 	 * resolution on PHP 7.2
 	 *
-	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
-	 * @param resource|object $ch
+	 * @param CurlHandle $ch
 	 * @param int $oldOption
 	 * @param string $newConstName
 	 * @return string
