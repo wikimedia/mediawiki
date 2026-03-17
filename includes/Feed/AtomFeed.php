@@ -12,6 +12,7 @@ namespace MediaWiki\Feed;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\WebRequest;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -48,12 +49,12 @@ class AtomFeed extends ChannelFeed {
 			// for every feed we create. For now just use the URL, but who
 			// can tell if that's right? If we put options on the feed, do we
 			// have to change the id? Maybe? Maybe not.
-			'feedID' => $this->getSelfUrl(),
+			'feedID' => $this->getSelfUrl( $output->getRequest() ),
 			'title' => $this->getTitle(),
 			'url' => $this->xmlEncode(
 				$this->urlUtils->expand( $this->getUrlUnescaped(), PROTO_CURRENT ) ?? ''
 			),
-			'selfUrl' => $this->getSelfUrl(),
+			'selfUrl' => $this->getSelfUrl( $output->getRequest() ),
 			'timestamp' => $this->xmlEncode( $this->formatTime( wfTimestampNow() ) ),
 			'description' => $this->getDescription(),
 			'version' => $this->xmlEncode( MW_VERSION ),
@@ -64,11 +65,10 @@ class AtomFeed extends ChannelFeed {
 	/**
 	 * Atom 1.0 requests a self-reference to the feed.
 	 *
-	 * @return string
+	 * @param WebRequest $request
 	 */
-	private function getSelfUrl() {
-		global $wgRequest;
-		return htmlspecialchars( $wgRequest->getFullRequestURL() );
+	private function getSelfUrl( $request ): string {
+		return htmlspecialchars( $request->getFullRequestURL() );
 	}
 
 	/**
