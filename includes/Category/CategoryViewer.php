@@ -71,7 +71,7 @@ class CategoryViewer extends ContextSource {
 		IContextSource $context,
 		public readonly array $from = [],
 		public readonly array $until = [],
-		private readonly array $query = [],
+		private array $query = [],
 	) {
 		$this->deprecatePublicPropertyFallback(
 			'title',
