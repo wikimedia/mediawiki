@@ -26,10 +26,6 @@
 
 // Non-dialog styling for footer buttons
 #preferences {
-	// Support Edge: The `position: sticky` rule above causes the buttons to
-	// disappear in RTL languages on Microsoft Edge. This magically fixes the issue. See T220706.
-	filter: brightness( 1 );
-
 	/*
 	 * Use `position: sticky` on supported browsers, degrades gracefully in
 	 * all others, therefore no `@supports` feature query to reduce code complexity.
