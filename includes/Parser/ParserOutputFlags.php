@@ -266,6 +266,12 @@ enum ParserOutputFlags: string {
 	case PREVENT_SELECTIVE_UPDATE = 'prevent-selective-update';
 
 	/**
+	 * Set if this page contains header placeholders (T200915).
+	 * @since 1.46
+	 */
+	case HAS_SLOT_HEADERS = 'has-slot-headers';
+
+	/**
 	 * Return the ParserOutputFlags, as an array of string flag values.
 	 * @return list<string>
 	 */
