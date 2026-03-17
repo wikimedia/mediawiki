@@ -188,6 +188,12 @@ class ParserOutputFlags {
 	 */
 	public const IS_PREVIEW = 'is-preview';
 
+	/**
+	 * Set if this page contains header placeholders (T200915).
+	 * @since 1.46
+	 */
+	public const HAS_SLOT_HEADERS = 'has-slot-headers';
+
 	public static function cases(): array {
 		return [
 			self::NO_GALLERY,
@@ -210,6 +216,7 @@ class ParserOutputFlags {
 			self::VARY_USER,
 			self::USER_SIGNATURE,
 			self::IS_PREVIEW,
+			self::HAS_SLOT_HEADERS,
 		];
 	}
 }
