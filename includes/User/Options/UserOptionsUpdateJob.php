@@ -52,4 +52,5 @@ class UserOptionsUpdateJob extends Job implements GenericParameterJob {
 	}
 }
 
+/** @deprecated class alias since 1.46 */
 class_alias( UserOptionsUpdateJob::class, 'UserOptionsUpdateJob' );
