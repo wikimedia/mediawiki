@@ -89,7 +89,7 @@ class DjVuHandler extends ImageHandler {
 			// e.g. [[File:Foo.djvu|thumb|Page 3 of the document shows foo]]
 			return false;
 		}
-		return in_array( $name, [ 'width', 'height', 'page' ] ) && $value > 0;
+		return in_array( $name, [ 'width', 'height', 'page', 'physicalWidth', 'physicalHeight' ] ) && $value > 0;
 	}
 
 	/**
@@ -98,11 +98,12 @@ class DjVuHandler extends ImageHandler {
 	 */
 	public function makeParamString( $params ) {
 		$page = $params['page'] ?? 1;
-		if ( !isset( $params['width'] ) ) {
+		$width = $params['physicalWidth'] ?? $params['width'] ?? null;
+		if ( !$width ) {
 			return false;
 		}
 
-		return "page{$page}-{$params['width']}px";
+		return "page{$page}-{$width}px";
 	}
 
 	/**
@@ -115,6 +116,24 @@ class DjVuHandler extends ImageHandler {
 			return [ 'width' => $m[2], 'page' => $m[1] ];
 		}
 		return false;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function normaliseParams( $image, &$params ) {
+		// Copy-paste from TransformationalImageHandler::normaliseParams() and PdfHandler
+		// Probably should be trait or subclass.
+		if ( !parent::normaliseParams( $image, $params ) ) {
+			return false;
+		}
+		$srcWidth = $image->getWidth( $params['page'] );
+		$srcHeight = $image->getHeight( $params['page'] );
+		$params['physicalWidth'] = $this->getSteppedThumbWidth(
+			$image, $params['physicalWidth'], $srcWidth, $srcHeight
+		);
+		$params['physicalHeight'] = File::scaleHeight( $srcWidth, $srcHeight, $params['physicalWidth'] );
+		return true;
 	}
 
 	/**
