@@ -121,34 +121,17 @@ class CategoryViewer extends ContextSource {
 			$this->getPagesSection() .
 			$this->getImageSection();
 
-		if ( $html == '' ) {
-			// If there is no category content to display, only
-			// show the top part of the navigation links.
-			// @todo FIXME: Cannot be completely suppressed because it
-			//        is unknown if 'until' or 'from' makes this
-			//        give 0 results.
-			$html = $this->getCategoryTop();
-		} else {
-			$html = $this->getCategoryTop() .
-				$html .
-				$this->getCategoryBottom();
-		}
-
-		// Give a proper message if category is empty
-		if ( $html == '' ) {
+		if ( $html === '' ) {
 			$html = $this->msg( 'category-empty' )->parseAsBlock();
 		}
 
+		# put a div around the headings which are in the user language
 		$lang = $this->getLanguage();
-		$attribs = [
+		return Html::rawElement( 'div', [
 			'class' => 'mw-category-generated',
 			'lang' => $lang->getHtmlCode(),
 			'dir' => $lang->getDir()
-		];
-		# put a div around the headings which are in the user language
-		$html = Html::rawElement( 'div', $attribs, $html );
-
-		return $html;
+		], $html );
 	}
 
 	protected function clearCategoryState() {
@@ -460,16 +443,6 @@ class CategoryViewer extends ContextSource {
 	/**
 	 * @return string HTML
 	 */
-	protected function getCategoryTop() {
-		$html = $this->getCategoryBottom();
-		return $html === ''
-			? $html
-			: "<br style=\"clear:both;\"/>\n" . $html;
-	}
-
-	/**
-	 * @return string HTML
-	 */
 	protected function getSubcategorySection() {
 		# Don't show subcategories section if there are none.
 		$html = '';
@@ -592,13 +565,6 @@ class CategoryViewer extends ContextSource {
 			);
 		}
 
-		return '';
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getCategoryBottom() {
 		return '';
 	}
 
