@@ -2042,7 +2042,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\JobQueue\\RunnableJob' => __DIR__ . '/includes/JobQueue/RunnableJob.php',
 	'MediaWiki\\JobQueue\\Utils\\BacklinkJobUtils' => __DIR__ . '/includes/JobQueue/Utils/BacklinkJobUtils.php',
 	'MediaWiki\\JobQueue\\Utils\\PurgeJobUtils' => __DIR__ . '/includes/JobQueue/Utils/PurgeJobUtils.php',
-	'MediaWiki\\Json\\ClockAdapter' => __DIR__ . '/includes/Json/ClockAdapter.php',
 	'MediaWiki\\Json\\FormatJson' => __DIR__ . '/includes/Json/FormatJson.php',
 	'MediaWiki\\Json\\JsonCodec' => __DIR__ . '/includes/Json/JsonCodec.php',
 	'MediaWiki\\Json\\JsonConstants' => __DIR__ . '/includes/Json/JsonConstants.php',

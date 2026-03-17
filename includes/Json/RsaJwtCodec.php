@@ -18,6 +18,7 @@ use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * JwtCodec using lcobucci/jwt with an RSA key ($wgJwtPublicKey / $wgJwtPrivateKey).
@@ -70,7 +71,7 @@ class RsaJwtCodec implements JwtCodec {
 		$validator = new Validator();
 		$validationConstraints = [
 			new SignedWith( $signingAlgorithm, $privateKey ),
-			new LooseValidAt( new ClockAdapter() ),
+			new LooseValidAt( ConvertibleTimestamp::getClock() ),
 		];
 
 		try {
