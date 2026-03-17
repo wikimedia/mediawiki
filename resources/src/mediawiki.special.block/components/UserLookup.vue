@@ -33,6 +33,7 @@
 			v-for="customComponent in customComponents"
 			:key="customComponent.name"
 			:target-user="targetExists ? targetUser : null"
+			:block-id="blockId"
 		></component>
 	</cdx-field>
 </template>
@@ -70,7 +71,7 @@ module.exports = exports = defineComponent( {
 	],
 	setup( props ) {
 		const store = useBlockStore();
-		const { targetExists, targetUser } = storeToRefs( store );
+		const { blockId, targetExists, targetUser } = storeToRefs( store );
 		const blockCIDRLimit = mw.config.get( 'blockCIDRLimit' );
 		/**
 		 * Custom components to be added to the bottom of the field.
@@ -329,6 +330,7 @@ module.exports = exports = defineComponent( {
 		return {
 			targetExists,
 			targetUser,
+			blockId,
 			menuItems,
 			onChange,
 			onInput,

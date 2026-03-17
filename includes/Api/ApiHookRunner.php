@@ -17,6 +17,7 @@ use MediaWiki\User\UserIdentity;
  */
 class ApiHookRunner implements
 	Hook\APIAfterExecuteHook,
+	Hook\ApiBlockSucceededHook,
 	Hook\ApiCheckCanExecuteHook,
 	Hook\ApiDeprecationHelpHook,
 	Hook\ApiLogFeatureUsageHook,
@@ -70,6 +71,20 @@ class ApiHookRunner implements
 		return $this->container->run(
 			'APIAfterExecute',
 			[ $module ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onApiBlockSucceeded(
+		$module,
+		$performer,
+		$mainTarget,
+		$params,
+		&$additionalBlocksStatuses
+	): void {
+		$this->container->run(
+			'ApiBlockSucceeded',
+			[ $module, $performer, $mainTarget, $params, &$additionalBlocksStatuses ]
 		);
 	}
 

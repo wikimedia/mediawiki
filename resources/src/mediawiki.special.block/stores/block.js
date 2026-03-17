@@ -152,6 +152,11 @@ module.exports = exports = defineStore( 'block', () => {
 	 */
 	const formErrors = ref( mw.config.get( 'blockPreErrors' ) || [] );
 	/**
+	 * Error messages processed from the additional blocks hook mechanism.
+	 * They're generated in the success block of the doBlock call.
+	 */
+	const blocksAdditionalErrors = ref( [] );
+	/**
 	 * Whether the form has been submitted. This is watched by UserLookup
 	 * and ExpiryField to trigger validation on form submission.
 	 *
@@ -178,6 +183,13 @@ module.exports = exports = defineStore( 'block', () => {
 	 * @type {Ref<boolean>}
 	 */
 	const blockAdded = ref( false );
+	/**
+	 * The message detailing any additional blocks that were added successfully.
+	 * It's generated in the success block of the doBlock call.
+	 *
+	 * @type {Ref<Array>}
+	 */
+	const additionalBlocksMessage = ref( '' );
 	/**
 	 * Whether the block was removed successfully.
 	 *
@@ -379,6 +391,8 @@ module.exports = exports = defineStore( 'block', () => {
 		if ( internal ) {
 			resetFormInternal();
 		}
+
+		mw.hook( 'mw.special.block.formReset' ).fire();
 	}
 
 	/**
@@ -394,6 +408,8 @@ module.exports = exports = defineStore( 'block', () => {
 		formDirty.value = false;
 		blockAdded.value = false;
 		blockRemoved.value = false;
+		additionalBlocksMessage.value = '';
+		blocksAdditionalErrors.value = '';
 		promises.value.clear();
 	}
 
@@ -470,6 +486,10 @@ module.exports = exports = defineStore( 'block', () => {
 		if ( !hardBlock.value && mw.util.isIPAddress( targetUser.value, true ) ) {
 			params.anononly = 1;
 		}
+
+		// Allow other components to update the final block parameters without the store
+		// needing to know about third-party props and without needing to expose the store
+		mw.hook( 'mw.special.block.doBlockParamsReady' ).fire( params );
 
 		// Clear any previous errors.
 		formErrors.value = [];
@@ -620,6 +640,8 @@ module.exports = exports = defineStore( 'block', () => {
 		formDirty,
 		targetUser,
 		blockAdded,
+		additionalBlocksMessage,
+		blocksAdditionalErrors,
 		blockRemoved,
 		blockId,
 		alreadyBlocked,

@@ -83,6 +83,7 @@ class ApiBlock extends ApiBase {
 		$this->requireNoConflictingParameters( $params,
 			'id', [ 'newblock', 'reblock' ] );
 
+		$additionalBlocksStatuses = [];
 		if ( $params['id'] !== null ) {
 			$block = $this->blockStore->newFromID( $params['id'], true );
 			if ( !$block ) {
@@ -106,6 +107,25 @@ class ApiBlock extends ApiBase {
 			}
 			if ( $params['newblock'] ) {
 				$status = $this->insertBlock( $target, $params );
+
+				// Don't allow post-processing if the base block fails
+				if ( !$status->isOK() ) {
+					$this->dieStatus( $status );
+				}
+
+				// Only support additional blocks if multiblocks are enabled
+				if ( $this->getConfig()->get( MainConfigNames::EnableMultiBlocks ) ) {
+					$targetUserIdentity = $this->userIdentityLookup->getUserIdentityByName( $target->toString() );
+					if ( $targetUserIdentity ) {
+						$this->getHookRunner()->onApiBlockSucceeded(
+							$this,
+							$this->getAuthority(),
+							$targetUserIdentity,
+							$params,
+							$additionalBlocksStatuses
+						);
+					}
+				}
 			} else {
 				$blocks = $this->blockStore->newListFromTarget(
 					$target, null, false, DatabaseBlockStore::AUTO_NONE );
@@ -169,6 +189,7 @@ class ApiBlock extends ApiBase {
 		$res['pagerestrictions'] = $params['pagerestrictions'];
 		$res['namespacerestrictions'] = $params['namespacerestrictions'];
 		$res['actionrestrictions'] = $params['actionrestrictions'];
+		$res['additionalBlocksStatuses'] = $additionalBlocksStatuses;
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
@@ -260,7 +281,7 @@ class ApiBlock extends ApiBase {
 	 * @param array $params
 	 * @return Status
 	 */
-	private function insertBlock( $target, $params ) {
+	public function insertBlock( $target, $params ) {
 		$this->checkEmailPermissions( $params );
 		return $this->blockUserFactory->newBlockUser(
 			$target,
