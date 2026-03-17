@@ -210,6 +210,12 @@ class ParserOutputFlags {
 	 */
 	public const ASYNC_NOT_READY = 'async-not-ready';
 
+	/**
+	 * Set if this page contains header placeholders (T200915).
+	 * @since 1.46
+	 */
+	public const HAS_SLOT_HEADERS = 'has-slot-headers';
+
 	public static function cases(): array {
 		return [
 			self::NO_GALLERY,
@@ -234,6 +240,7 @@ class ParserOutputFlags {
 			self::IS_PREVIEW,
 			self::HAS_ASYNC_CONTENT,
 			self::ASYNC_NOT_READY,
+			self::HAS_SLOT_HEADERS,
 		];
 	}
 }
