@@ -56,6 +56,11 @@
 	},
 	{
 		"@owner": "N/A",
+		"resourceModule": "mediawiki.router",
+		"maxSizeUncompressed": "2.6 kB"
+	},
+	{
+		"@owner": "N/A",
 		"resourceModule": "mediawiki.String",
 		"maxSizeUncompressed": "2.5 kB"
 	},
