@@ -36,7 +36,7 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 
 	/**
 	 * Subfields
-	 * @var SearchIndexFieldDefinition[]
+	 * @var SearchIndexField[]
 	 */
 	protected $subfields = [];
 
@@ -118,14 +118,14 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	}
 
 	/**
-	 * @return SearchIndexFieldDefinition[]
+	 * @return SearchIndexField[]
 	 */
 	public function getSubfields() {
 		return $this->subfields;
 	}
 
 	/**
-	 * @param SearchIndexFieldDefinition[] $subfields
+	 * @param SearchIndexField[] $subfields
 	 * @return $this
 	 */
 	public function setSubfields( array $subfields ) {
