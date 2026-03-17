@@ -1564,4 +1564,5 @@ class FileModule extends Module {
 	}
 }
 
+/** @deprecated class alias since 1.46 */
 class_alias( FileModule::class, 'MediaWiki\ResourceLoader\LessVarFileModule' );
