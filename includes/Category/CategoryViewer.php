@@ -38,16 +38,24 @@ class CategoryViewer extends ContextSource {
 
 	public readonly int $limit;
 	/** @var string[] */
-	public array $articles;
-	public array $articles_start_char;
-	public array $children;
-	public array $children_start_char;
+	public array $articles = [];
+	/** @var string[] */
+	public array $articles_start_char = [];
+	/** @var string[] */
+	public array $children = [];
+	/** @var string[] */
+	public array $children_start_char = [];
 	public bool $showGallery;
-	public array $imgsNoGallery_start_char;
-	public array $imgsNoGallery;
-	public array $nextPage;
-	protected array $prevPage;
-	public array $flip;
+	/** @var string[] */
+	public array $imgsNoGallery_start_char = [];
+	/** @var string[] */
+	public array $imgsNoGallery = [];
+	/** @var array<'page'|'subcat'|'file',?string> */
+	public array $nextPage = [];
+	/** @var array<'page'|'subcat'|'file',?string> */
+	protected array $prevPage = [];
+	/** @var array<'page'|'subcat'|'file',bool> Sorting order for each type */
+	public array $flip = [];
 
 	public readonly Collation $collation;
 	public ImageGalleryBase $gallery;
@@ -61,9 +69,9 @@ class CategoryViewer extends ContextSource {
 	 * @since 1.19 $context is a second, required parameter
 	 * @param PageIdentity $page
 	 * @param IContextSource $context
-	 * @param array $from An array with keys page, subcat,
+	 * @param array<'page'|'subcat'|'file',?string> $from An array with keys page, subcat,
 	 *        and file for offset of results of each section (since 1.17)
-	 * @param array $until An array with 3 keys for until of each section (since 1.17)
+	 * @param array<'page'|'subcat'|'file',?string> $until An array with 3 keys for until of each section (since 1.17)
 	 * @param array $query The original query array, to be used in generating paging links.
 	 */
 	public function __construct(
@@ -87,20 +95,10 @@ class CategoryViewer extends ContextSource {
 		$this->limit = $context->getConfig()->get( MainConfigNames::CategoryPagingLimit );
 		$this->cat = Category::newFromTitle( $page );
 
-		$this->articles = [];
-		$this->articles_start_char = [];
-		$this->children = [];
-		$this->children_start_char = [];
-		$this->imgsNoGallery = [];
-		$this->imgsNoGallery_start_char = [];
-		$this->nextPage = [];
-		$this->prevPage = [];
-		$this->flip = [];
-
 		$services = MediaWikiServices::getInstance();
-
 		$this->collation = $services->getCollationFactory()->getCategoryCollation();
 		$this->languageConverter = $services->getLanguageConverterFactory()->getLanguageConverter();
+
 		unset( $this->query['title'] );
 	}
 
@@ -332,12 +330,14 @@ class CategoryViewer extends ContextSource {
 				$extraConds[] = $categoryLinksDbr->expr(
 					'cl_sortkey',
 					'>=',
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 					$this->collation->getSortKey( $this->from[$type] )
 				);
 			} elseif ( isset( $this->until[$type] ) ) {
 				$extraConds[] = $categoryLinksDbr->expr(
 					'cl_sortkey',
 					'<',
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 					$this->collation->getSortKey( $this->until[$type] )
 				);
 				$this->flip[$type] = true;
@@ -478,7 +478,7 @@ class CategoryViewer extends ContextSource {
 		$databaseCount = $this->cat->getPageCount( Category::COUNT_CONTENT_PAGES );
 		$localCount = count( $this->articles );
 		// This function should be called even if the result isn't used, it has side-effects
-		$countMessage = $this->getCountMessage( $localCount, $databaseCount, 'article' );
+		$countMessage = $this->getCountMessage( $localCount, $databaseCount, 'page' );
 
 		if ( $localCount > 0 ) {
 			$html .= Html::openElement( 'div', [ 'id' => 'mw-pages' ] ) . "\n";
@@ -545,6 +545,7 @@ class CategoryViewer extends ContextSource {
 			if ( $this->nextPage[$type] !== null ) {
 				return $this->pagingLinks(
 					$this->prevPage[$type] ?? '',
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 					$this->until[$type],
 					$type
 				);
@@ -554,6 +555,7 @@ class CategoryViewer extends ContextSource {
 			// and therefore the previous link should be disabled.
 			return $this->pagingLinks(
 				'',
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 				$this->until[$type],
 				$type
 			);
@@ -572,8 +574,8 @@ class CategoryViewer extends ContextSource {
 	 * Format a list of articles chunked by letter, either as a
 	 * bullet list or a columnar format, depending on the length.
 	 *
-	 * @param array $articles
-	 * @param array $articles_start_char
+	 * @param string[] $articles
+	 * @param string[] $articles_start_char
 	 * @param int $cutoff
 	 * @return string
 	 * @internal
@@ -724,7 +726,7 @@ class CategoryViewer extends ContextSource {
 	 *
 	 * @param int $localCount The number of items returned by our database query.
 	 * @param int $databaseCount The number of items according to the category table.
-	 * @param string $type 'subcat', 'article', or 'file'
+	 * @param string $type 'page', 'subcat', or 'file'
 	 * @return string A message giving the number of items, to output to HTML.
 	 */
 	private function getCountMessage( int $localCount, int $databaseCount, string $type ): string {
@@ -742,14 +744,10 @@ class CategoryViewer extends ContextSource {
 
 		// This is a little ugly, but we seem to use different names
 		// for the paging types then for the messages.
-		if ( $type === 'article' ) {
-			$pagingType = 'page';
-		} else {
-			$pagingType = $type;
-		}
+		$msgType = $type === 'page' ? 'article' : $type;
 
 		$fromOrUntil = false;
-		if ( isset( $this->from[$pagingType] ) || isset( $this->until[$pagingType] ) ) {
+		if ( isset( $this->from[$type] ) || isset( $this->until[$type] ) ) {
 			$fromOrUntil = true;
 		}
 
@@ -765,9 +763,9 @@ class CategoryViewer extends ContextSource {
 			// Case 3: hopeless.  Don't give a total count at all.
 			// Messages: category-subcat-count-limited, category-article-count-limited,
 			// category-file-count-limited
-			return $this->msg( "category-$type-count-limited" )->numParams( $localCount )->parseAsBlock();
+			return $this->msg( "category-$msgType-count-limited" )->numParams( $localCount )->parseAsBlock();
 		}
 		// Messages: category-subcat-count, category-article-count, category-file-count
-		return $this->msg( "category-$type-count" )->numParams( $localCount, $totalCount )->parseAsBlock();
+		return $this->msg( "category-$msgType-count" )->numParams( $localCount, $totalCount )->parseAsBlock();
 	}
 }
