@@ -320,6 +320,7 @@
 	"listgrouprights-namespaceprotection-header": "Naamruimtebeperkingen",
 	"listgrouprights-namespaceprotection-namespace": "Naamruimte",
 	"listgrouprights-namespaceprotection-restrictedto": "Recht(en) waardoor gebruiker kan bewerken",
+	"restrictedgroups-autodemotion-log-reason": "Automatisch verwijderen {{GENDER:$1|gebruiker}} uit {{PLURAL:$2|een beperkte groep|beperkte groepen}}",
 	"listgrants": "Toestemmingen",
 	"listgrants-summary": "Hieronder staat een lijst met toestemmingen en de bijbehorende gebruikersrechten. Gebruikers kunnen toepassingen machtigen hun account te gebruiken, maar met beperkte rechten gebaseerd op de toestemmingen die de gebruiker aan de toepassing heeft gegeven. Een toepassing die namens een gebruiker handelt, kan echter geen rechten gebruiken die de gebruiker niet heeft.\nEr is mogelijk [[{{MediaWiki:Listgrouprights-helppage}}|aanvullende informatie]] over individuele rechten.",
 	"listgrants-grant": "Toestemming",

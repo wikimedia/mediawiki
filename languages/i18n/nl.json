@@ -2956,7 +2956,7 @@
 	"ilsubmit": "Zoeken",
 	"bydate": "op datum",
 	"sp-newimages-showfrom": "Nieuwe bestanden bekijken vanaf $1 om $2.",
-	"bad_image_list": "De opmaak is als volgt:\n\nAlleen regels in een lijst (regels die beginnen met *) worden verwerkt.\nDe eerste koppeling op een regel moet een koppeling zijn naar een ongewenst bestand.\nAlle volgende koppelingen die op dezelfde regel staan, worden behandeld als uitzondering, zoals bijvoorbeeld pagina's waarop het bestand in de tekst is opgenomen.",
+	"bad_image_list": "De opmaak is als volgt:\n\nAlleen regels in een lijst (regels die beginnen met \"*\") worden verwerkt.\nDe eerste koppeling op een regel moet een koppeling zijn naar een ongewenst bestand.\nAlle volgende koppelingen die op dezelfde regel staan, worden behandeld als uitzondering, zoals bijvoorbeeld pagina's waarop het bestand in de tekst is opgenomen.",
 	"metadata": "Metadata",
 	"metadata-help": "Dit bestand bevat aanvullende gegevens, die waarschijnlijk door een fotocamera, scanner of fotobewerkingsprogramma toegevoegd zijn.\nAls het bestand is aangepast, komen sommige details mogelijk niet overeen met het gewijzigde bestand.",
 	"metadata-expand": "Uitgebreide gegevens bekijken",

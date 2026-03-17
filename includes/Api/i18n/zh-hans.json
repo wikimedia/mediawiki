@@ -1014,7 +1014,7 @@
 	"apihelp-query+info-param-testactionsdetail": "<var>$1testactions</var>的详细级别。使用[[Special:ApiHelp/main|主模块]]的<var>errorformat</var>和<var>errorlang</var>参数来控制返回消息的格式。",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "为每个操作返回一个布尔值。",
 	"apihelp-query+info-paramvalue-testactionsdetail-full": "返回描述操作被禁止的原因的消息，如果允许则返回一个空数组。",
-	"apihelp-query+info-paramvalue-testactionsdetail-quick": "类似于<kbd>填充</kbd>但是跳过需要花费大量资源的检查",
+	"apihelp-query+info-paramvalue-testactionsdetail-quick": "类似于 <kbd>full</kbd> 但是跳过需要花费大量资源的检查",
 	"apihelp-query+info-param-testactionsautocreate": "测试执行<var>$1testactions</var>操作是否会自动创建临时账号。",
 	"apihelp-query+info-example-simple": "获取有关页面[[{{MediaWiki:Mainpage}}]]的信息。",
 	"apihelp-query+info-example-protection": "获取页面[[{{MediaWiki:Mainpage}}]]相关的常规和保护信息。",

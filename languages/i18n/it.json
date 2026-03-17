@@ -2367,7 +2367,7 @@
 	"block-multiblocks-new-feature": "È disponibile una nuova funzionalità che consente di applicare più blocchi a una singola utenza.",
 	"ipaddressorusername": "Indirizzo IP, nome utente o ID blocco:",
 	"ipbreason": "Motivo:",
-	"ipbreason-dropdown": "*Motivazioni più comuni per i blocchi\n** Inserimento di informazioni false\n** Rimozione di contenuti dalle pagine\n** Collegamenti promozionali a siti esterni\n** Inserimento di contenuti privi di senso\n** Comportamenti intimidatori o molestie\n** Uso indebito di utenze multiple\n** Nome utente non consono",
+	"ipbreason-dropdown": "*Motivazioni più comuni per i blocchi\n** Inserimento di informazioni false\n** Rimozione di contenuti dalle pagine\n** Collegamenti promozionali a siti esterni\n** Inserimento di contenuti privi di senso\n** Comportamenti intimidatori o molestie",
 	"ipb-hardblock": "Applica blocco agli utenti registrati da questo indirizzo IP",
 	"ipbcreateaccount": "Creazione di utenze",
 	"ipbemailban": "Invio di email",

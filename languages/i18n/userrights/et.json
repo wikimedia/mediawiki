@@ -5,6 +5,7 @@
 			"Jaan513",
 			"Pikne",
 			"Purodha",
+			"Rivoz",
 			"Silvar",
 			"WikedKentaur"
 		]
@@ -290,6 +291,7 @@
 	"listgrouprights-removegroup-self": "Eemaldada enda konto {{PLURAL:$2|rühmast|rühmadest}}: $1",
 	"listgrouprights-addgroup-self-all": "Oma konto kõigisse rühmadesse lisada",
 	"listgrouprights-removegroup-self-all": "Eemaldada ennast kõigist rühmadest",
+	"listgrouprights-restrictedgroups-cond-isbot": "Kasutaja on bot",
 	"listgrouprights-namespaceprotection-header": "Nimeruumipiirangud",
 	"listgrouprights-namespaceprotection-namespace": "Nimeruum",
 	"listgrouprights-namespaceprotection-restrictedto": "Redigeerimiseks vajalikud õigused",

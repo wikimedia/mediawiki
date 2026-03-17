@@ -2883,7 +2883,7 @@
 	"bydate": "por data",
 	"sp-newimages-showfrom": "Amosar os novos ficheiros comezando polo $1 ás $2",
 	"video-dims": "$1, $2 × $3",
-	"bad_image_list": "O formato é o seguinte:\n\nSó se consideran os elementos dunha lista (liñas que comezan por *).\nA primeira ligazón dunha liña ten que apuntar cara a un ficheiro que se queira bloquear.\nAs ligazóns posteriores da mesma liña considéranse excepcións, isto é, páxinas nas que o ficheiro pode aparecer inserido.",
+	"bad_image_list": "O formato é o seguinte:\n\nSó se consideran os elementos dunha lista (liñas que comezan por «*»).\nA primeira ligazón dunha liña ten que apuntar cara a un ficheiro que se queira bloquear.\nAs ligazóns posteriores da mesma liña considéranse excepcións, isto é, páxinas nas que o ficheiro pode aparecer inserido.",
 	"metadata": "Metadatos",
 	"metadata-help": "Este ficheiro contén información adicional, probablemente engadida pola cámara dixital ou polo escáner usado para crear ou dixitalizar a imaxe. Se o ficheiro orixinal foi modificado, poida que algúns detalles non se reflictan no ficheiro modificado.",
 	"metadata-expand": "Amosar os detalles",

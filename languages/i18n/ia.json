@@ -2857,7 +2857,7 @@
 	"ilsubmit": "Cercar",
 	"bydate": "per data",
 	"sp-newimages-showfrom": "Monstrar nove files a partir del $1 a $2",
-	"bad_image_list": "Le formato es como seque:\n\nSolmente punctos de lista (lineas que comencia con *) es considerate.\nLe prime ligamine in un linea debe esser un ligamine a un file invalide.\nOmne ligamines posterior in le mesme linea es considerate como exceptiones, i.e. paginas in que le file pote esser directemente incorporate.",
+	"bad_image_list": "Le formato es como seque:\n\nSolmente punctos de lista (lineas que comencia con “*”) es considerate.\nLe prime ligamine in un linea debe esser un ligamine a un file invalide.\nOmne ligamines posterior in le mesme linea es considerate como exceptiones, i.e. paginas in que le file pote esser directemente incorporate.",
 	"metadata": "Metadatos",
 	"metadata-help": "Iste file contine informationes additional, probabilemente addite per le camera digital o scanner usate pro crear o digitalisar lo.\nSi le file ha essite modificate ab su stato original, es possibile que alcun detalios non reflecte completemente le file modificate.",
 	"metadata-expand": "Revelar detalios extense",
