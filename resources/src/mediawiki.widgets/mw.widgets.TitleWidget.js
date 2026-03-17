@@ -192,6 +192,8 @@
 		} ).promise( { abort: function () {} } );
 	};
 
+	const knownNamespaces = new Set( Object.keys( mw.config.get( 'wgNamespaceIds' ) ) );
+
 	/**
 	 * Get a promise which resolves with an API response for suggested
 	 * links for the current query.
@@ -215,12 +217,16 @@
 			if ( interwikiMap.length ) {
 				const splitIndex = Math.max( 0, query.indexOf( ':' ) );
 				const interwiki = query.slice( 0, splitIndex ).toLowerCase();
-				if ( interwiki !== '' ) {
+				if (
+					interwiki !== '' &&
+					// Check prefix is not a valid namespace (T420288)
+					!knownNamespaces.has( interwiki.replace( / /g, '_' ) )
+				) {
 					const wiki = interwikiMap.find( ( iw ) => iw.prefix === interwiki );
 					if ( wiki ) {
 						// If iw_api is not set, try to guess from the URL.
 						if ( wiki.api || wiki.url.endsWith( '/wiki/$1' ) ) {
-							// Make a foregin API request
+							// Make a foreign API request
 							const interwikiApi = new mw.ForeignApi( wiki.api || wiki.url.replace( '/wiki/$1', '/w/api.php' ), { anonymous: true, parameters: { origin: '*' } } );
 							const normalizedQuery = query.slice( splitIndex + 1 ).trim();
 							return this.getPrefixSearchRequest( interwikiApi, normalizedQuery, ajaxOptions, wiki );
