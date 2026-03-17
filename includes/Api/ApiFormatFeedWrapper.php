@@ -74,7 +74,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 			$feed = $data['_feed'];
 			'@phan-var ChannelFeed $feed';
 
-			$feed->httpHeaders();
+			$feed->sendHttpHeaders( $this->getOutput() );
 		} else {
 			// Error has occurred, print something useful
 			ApiBase::dieDebug( __METHOD__, 'Invalid feed class/item' );

@@ -38,7 +38,8 @@ class AtomFeed extends ChannelFeed {
 	 * Outputs a basic header for Atom 1.0 feeds.
 	 */
 	public function outHeader() {
-		$this->outXmlHeader();
+		global $wgOut;
+		$this->outputXmlHeader( $wgOut );
 		// Manually escaping rather than letting Mustache do it because Mustache
 		// uses htmlentities, which does not work with XML
 		$templateParams = [

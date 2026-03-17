@@ -1005,6 +1005,8 @@ because of Phabricator reports.
   deprecated and emits deprecation warnings.
 * The HtmlCacheUpdater service has been renamed to HTMLCacheUpdater (T419427).
   Using the old name is now deprecated and emits deprecation warnings.
+* ChannelFeed::httpHeaders() and ChannelFeed::outXmlHeader() have been
+  deprecated, use ::sendHttpHeaders() and ::outputXmlHeader() instead.
 * …
 
 === Other changes in 1.46 ===

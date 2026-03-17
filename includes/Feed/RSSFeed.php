@@ -35,7 +35,8 @@ class RSSFeed extends ChannelFeed {
 	 * Output an RSS 2.0 header
 	 */
 	public function outHeader() {
-		$this->outXmlHeader();
+		global $wgOut;
+		$this->outputXmlHeader( $wgOut );
 		// Manually escaping rather than letting Mustache do it because Mustache
 		// uses htmlentities, which does not work with XML
 		$templateParams = [
