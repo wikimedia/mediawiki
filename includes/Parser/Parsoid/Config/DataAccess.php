@@ -33,6 +33,7 @@ use Wikimedia\Assert\UnreachableException;
 use Wikimedia\Parsoid\Config\DataAccess as IDataAccess;
 use Wikimedia\Parsoid\Config\PageConfig as IPageConfig;
 use Wikimedia\Parsoid\Config\PageContent as IPageContent;
+use Wikimedia\Parsoid\Config\SiteConfig as ISiteConfig;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\Fragments\HtmlPFragment;
@@ -306,6 +307,54 @@ class DataAccess extends IDataAccess {
 		}
 
 		return $ret;
+	}
+
+	/**
+	 * Return information about blocked/rewritten external URLs.
+	 *
+	 * @param ISiteConfig $siteConfig
+	 * @param list<string> $hrefList The external URLs to query.
+	 * @param ParsoidLinkTarget $contextTitle The context title, for
+	 *   wgNoFollowNsExceptions lookups.
+	 * @return list<array{originalHref:string,href:?string,class:?string,rel:?string,title:?string}>
+	 *   Information about the external URL: the href can be rewritten
+	 *   or blocked (null), and optional class, title, and rel attributes can
+	 *   be added (if non-null).  The results are in the same order as
+	 *   the input $hrefList.
+	 */
+	public function getExternalUrlInfo(
+		ISiteConfig $siteConfig,
+		array $hrefList,
+		ParsoidLinkTarget $contextTitle
+	): array {
+		return array_map( function ( $href ) use ( $contextTitle ) {
+			$originalHref = $href;
+			$linkText = 'modifying link text not supported';
+			$linkHtml = 'modifying link HTML not supported';
+			$attribs = [];
+			/* First obtain the rel information. */
+			$rel = Parser::getExternalLinkRel( $href, $contextTitle );
+			if ( $rel !== null ) {
+				$attribs['rel'] = $rel;
+			}
+			/* Now allow other modifications via hook. */
+			$result = $this->hookRunner->onLinkerMakeExternalLink(
+				$href, $linkText, $linkHtml, $attribs, 'text'
+			);
+			if ( !$result ) {
+				wfDeprecated( "Parsoid does not support modifying link html", "1.46" );
+			}
+			$class = Html::expandClassList( $attribs['class'] ?? '' );
+			return [
+				'originalHref' => $originalHref,
+				'href' => $href,
+				// Setting class/rel to '' is the same as not setting them
+				'class' => $attribs['class'] ?: null,
+				'rel' => $attribs['rel'] ?: null,
+				// Setting `title` to '' might be useful to override a default
+				'title' => $attribs['title'] ?? null,
+			];
+		}, $hrefList );
 	}
 
 	/**
