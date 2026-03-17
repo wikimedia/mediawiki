@@ -110,5 +110,5 @@ class DummyContentForTesting extends AbstractContent {
 		return false;
 	}
 }
-// @deprecated since 1.46
+/** @deprecated class alias since 1.46 */
 class_alias( DummyContentForTesting::class, 'DummyContentForTesting' );
