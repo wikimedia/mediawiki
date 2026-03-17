@@ -112,6 +112,7 @@ abstract class ChannelFeed extends FeedItem {
 	 * @deprecated since 1.46; use sendHttpHeaders() instead
 	 */
 	public function httpHeaders() {
+		wfDeprecated( __METHOD__, '1.46' );
 		global $wgOut;
 		$this->sendHttpHeaders( $wgOut );
 	}
@@ -154,6 +155,7 @@ abstract class ChannelFeed extends FeedItem {
 	 * @deprecated since 1.46; use outputXmlHeader() instead
 	 */
 	protected function outXmlHeader() {
+		wfDeprecated( __METHOD__, '1.46' );
 		global $wgOut;
 		$this->outputXmlHeader( $wgOut );
 	}
