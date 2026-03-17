@@ -24,6 +24,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
+use MediaWiki\Watchlist\WatchlistLabel;
 use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Xml\XmlSelect;
@@ -166,10 +167,14 @@ class WatchAction extends FormAction {
 			foreach ( $this->watchlistLabelStore->loadAllForUser( $this->getUser() ) as $label ) {
 				$options[ htmlspecialchars( $label->getName() ) ] = $label->getId();
 			}
+			$default = $this->watchedItem instanceof WatchedItem
+				? array_map( static fn ( WatchlistLabel $l ) => $l->getId(), $this->watchedItem->getLabels() )
+				: [];
 			$fields[ 'labels' ] = [
 				'label-message' => 'watchlistlabels-watchaction-label',
 				'type' => 'multiselect',
 				'options' => $options,
+				'default' => $default,
 			];
 		}
 
