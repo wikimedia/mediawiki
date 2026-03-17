@@ -13,6 +13,7 @@ use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Permissions\Authority;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -268,6 +269,7 @@ class RevisionRenderer implements LoggerAwareInterface {
 					// NOTE: this placeholder is hydrated by ParserOutput::getText().
 					$headText = Html::element( 'mw:slotheader', [], $role );
 					$html .= Html::rawElement( 'h1', [ 'class' => 'mw-slot-header' ], $headText );
+					$combinedOutput->setOutputFlag( ParserOutputFlags::HAS_SLOT_HEADERS );
 				}
 
 				// XXX: do we want to put a wrapper div around the output?
