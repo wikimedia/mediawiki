@@ -76,6 +76,7 @@ class ApiBlockTest extends ApiTestCase {
 
 		$this->assertSame( $params['user'] ?? $this->mUser->getName(), $this->block->getTargetName() );
 		$this->assertSame( 'Some reason', $this->block->getReasonComment()->text );
+		$this->assertSame( wfTimestamp( TS::ISO_8601, $this->block->getTimestamp() ), $ret[0]['block']['timestamp'] );
 
 		return $ret;
 	}

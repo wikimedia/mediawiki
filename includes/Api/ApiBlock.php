@@ -33,6 +33,7 @@ use MediaWiki\Watchlist\WatchlistManager;
 use RuntimeException;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
+use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * API module that facilitates the blocking of users. Requires API write mode
@@ -166,6 +167,7 @@ class ApiBlock extends ApiBase {
 		$blockedUser = $block->getTargetUserIdentity();
 		$res['userID'] = $blockedUser ? $blockedUser->getId() : 0;
 
+		$res['timestamp'] = wfTimestamp( TS::ISO_8601, $block->getTimestamp() );
 		$res['expiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
 		$res['id'] = $block->getId();
 
