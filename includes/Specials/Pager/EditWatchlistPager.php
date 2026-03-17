@@ -402,18 +402,18 @@ class EditWatchlistPager extends CodexTablePager {
 	 */
 	public function getEmptyBody(): string {
 		if ( trim( $this->getContext()->getRequest()->getText( 'search', '' ) ) !== '' ) {
-			$msgEmpty = $this->msg( 'watchlistedit-noitemsfound' )->text();
+			$msgEmpty = $this->msg( 'watchlistedit-noitemsfound' );
 		} elseif ( $this->getContext()->getRequest()->getIntOrNull( 'namespace' ) ) {
-			$msgEmpty = $this->msg( 'nowatchlistnamespace' )->text();
+			$msgEmpty = $this->msg( 'nowatchlistnamespace' );
 		} else {
-			$msgEmpty = $this->msg( 'nowatchlist' )->text();
+			$msgEmpty = $this->msg( 'nowatchlist' );
 		}
 		$colspan = count( $this->getFieldNames() ) + 1;
 		return Html::rawElement( 'tr', [ 'class' => 'cdx-table__table__empty-state' ],
-			Html::element(
+			Html::rawElement(
 				'td',
 				[ 'class' => 'cdx-table__table__empty-state-content', 'colspan' => $colspan ],
-				$msgEmpty )
+				$msgEmpty->parse() )
 		);
 	}
 
