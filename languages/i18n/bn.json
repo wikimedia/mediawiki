@@ -711,6 +711,7 @@
 	"invalid-content-data": "বিষয়বস্তুর উপাত্ত বৈধ নয়",
 	"invalid-json-data": "অবৈধ জেসন (JSON): $1",
 	"vue-invalid-content": "অবৈধ Vue বিষয়বস্তু: <code>$1</code>",
+	"vue-less-notsupported": "অবৈধ Vue বিষয়বস্তু: &lt;style&gt; ট্যাগে LESS-এর ব্যবহার সমর্থিত নয়।",
 	"content-not-allowed-here": "\"$1\" সামগ্রী [[:$2]] পাতায় \"$3\" স্লটে অনুমোদিত নয়",
 	"confirmleave-warning": "এই পাতাটি ত্যাগ করলে আপনার করা পরিবর্তনগুলো হারিয়ে যেতে পারে।",
 	"editpage-invalidcontentmodel-title": "বিষয়বস্তু মডেল সমর্থিত নয়",

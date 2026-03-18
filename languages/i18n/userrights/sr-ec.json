@@ -307,7 +307,7 @@
 	"listgrouprights-namespaceprotection-header": "Ограничења именских простора",
 	"listgrouprights-namespaceprotection-namespace": "Именски простор",
 	"listgrouprights-namespaceprotection-restrictedto": "Права потребна за уређивање",
-	"restrictedgroups-autodemotion-log-reason": "Аутоматски {{GENDER:$1|уклоњен корисник|уклоњена корисница}} из {{PLURAL:$2|ограничене групе|ограничених група}} за коју више не испуњава услове",
+	"restrictedgroups-autodemotion-log-reason": "Аутоматски {{GENDER:$1|уклоњен корисник|уклоњена корисница}} из {{PLURAL:$2|ограничене групе|ограничених група}}",
 	"listgrants": "Списак дозвола",
 	"listgrants-grant": "Дозвола",
 	"listgrants-rights": "Права"

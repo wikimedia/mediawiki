@@ -2990,7 +2990,7 @@
 	"ilsubmit": "Ricerca",
 	"bydate": "per data",
 	"sp-newimages-showfrom": "Mostra i file più recenti a partire dalle ore $2 del $1",
-	"bad_image_list": "Il formato è il seguente:\n\nVengono considerati soltanto gli elenchi puntati (righe che cominciano con il carattere *). Il primo collegamento su ciascuna riga dev'essere un collegamento a un file indesiderato.\nI collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (ovvero, pagine nelle quali il file può essere richiamato normalmente).",
+	"bad_image_list": "Il formato è il seguente:\n\nVengono considerati soltanto gli elenchi puntati (righe che cominciano con il carattere \"*\"). Il primo collegamento su ciascuna riga dev'essere un collegamento a un file indesiderato.\nI collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (ovvero, pagine nelle quali il file può essere richiamato normalmente).",
 	"metadata": "Metadati",
 	"metadata-help": "Questo file contiene informazioni aggiuntive, probabilmente aggiunte dalla fotocamera o dallo scanner usati per crearlo o digitalizzarlo. Se il file è stato modificato, alcuni dettagli potrebbero non corrispondere alla realtà.",
 	"metadata-expand": "Mostra dettagli",

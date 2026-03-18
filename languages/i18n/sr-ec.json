@@ -92,6 +92,7 @@
 	"navigation-heading": "Мени за навигацију",
 	"errorpagetitle": "Грешка",
 	"returnto": "Назад на страницу $1.",
+	"returnto-login": "Назад на пријаву",
 	"tagline": "Извор: {{SITENAME}}",
 	"help": "Помоћ",
 	"help-mediawiki": "Помоћ о Медијавикију",
