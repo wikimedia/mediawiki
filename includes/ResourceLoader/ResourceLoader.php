@@ -1710,11 +1710,12 @@ MESSAGE;
 	 * @return string JavaScript code
 	 * @throws LogicException
 	 *
-	 * @deprecated since 1.44, Consider using package files instead or
-	 * you can return mw.config.set() combined with RL\Context::encodeJson, if available.
-	 * If not, use FormatJson::encode.
+	 * @deprecated since 1.44; hard-deprecated since 1.46. Consider using package files
+	 * instead or you can return mw.config.set() combined with RL\Context::encodeJson,
+	 * if available. If not, use FormatJson::encode.
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
+		wfDeprecated( __METHOD__, '1.44' );
 		$json = self::encodeJsonForScript( $configuration );
 		if ( $json === false ) {
 			$e = new LogicException(

@@ -129,14 +129,14 @@ class SpecialJavaScriptTest extends SpecialPage {
 			//
 			// See https://phabricator.wikimedia.org/T89434.
 			// Keep a select few that are commonly referenced.
-			ResourceLoader::makeConfigSetScript( [
+			'mw.config.set(' . $embedContext->encodeJson( [
 				// used by mediawiki.util
 				'wgPageName' => 'Special:Badtitle/JavaScriptTest',
 				// used as input for mw.Title
 				'wgRelevantPageName' => 'Special:Badtitle/JavaScriptTest',
 				// used by testrunner.js for QUnit toolbar
 				'wgTestModuleComponents' => $this->getComponents(),
-			] )
+			] ) . ');'
 			// Embed private modules as they're not allowed to be loaded dynamically
 			. $rl->makeModuleResponse( $embedContext, [
 				'user.options' => $rl->getModule( 'user.options' ),

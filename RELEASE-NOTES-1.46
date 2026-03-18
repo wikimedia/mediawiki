@@ -1014,6 +1014,8 @@ because of Phabricator reports.
   ::outputXmlHeader() instead.
 * ChannelFeed::outHeader(), ::outItem() and ::outFooter() have been deprecated,
   use ::outputHeader(), ::outputItem() and ::outputFooter() instead.
+* ResourceLoader::makeConfigSetScript(), deprecated in 1.44, now emits
+  deprecation warnings.
 * …
 
 === Other changes in 1.46 ===
