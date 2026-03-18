@@ -1018,6 +1018,7 @@ because of Phabricator reports.
   use ::outputHeader(), ::outputItem() and ::outputFooter() instead.
 * ResourceLoader::makeConfigSetScript(), deprecated in 1.44, now emits
   deprecation warnings.
+* SpecialVersion::getVersionLinked() is unused and has been deprecated.
 * …
 
 === Other changes in 1.46 ===

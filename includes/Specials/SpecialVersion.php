@@ -10,6 +10,7 @@ namespace MediaWiki\Specials;
 
 use Closure;
 use MediaWiki\Config\Config;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TocGeneratorTrait;
@@ -279,8 +280,9 @@ class SpecialVersion extends SpecialPage {
 		// Put the software in an array of form 'name' => 'version'. All messages should
 		// be loaded here, so feel free to use wfMessage in the 'name'. Wikitext
 		// can be used both in the name and value.
+		$versionLink = self::getVersionLinkedGit( $this->getLanguage() ) ?: MW_VERSION;
 		$software = [
-			'[https://www.mediawiki.org/ MediaWiki]' => self::getVersionLinked(),
+			'[https://www.mediawiki.org/ MediaWiki]' => $versionLink,
 			'[https://php.net/ PHP]' => PHP_VERSION . " (" . PHP_SAPI . ")",
 			'[https://icu.unicode.org/ ICU]' => INTL_ICU_VERSION,
 			$dbr->getSoftwareLink() => $dbr->getServerInfo(),
@@ -366,10 +368,13 @@ class SpecialVersion extends SpecialPage {
 	 * the Git SHA1 of head if available.
 	 * The fallback is just MW_VERSION.
 	 *
+	 * @deprecated since 1.46
 	 * @return string
 	 */
 	public static function getVersionLinked() {
-		return self::getVersionLinkedGit() ?: MW_VERSION;
+		wfDeprecated( __METHOD__, '1.46' );
+		$lang = RequestContext::getMain()->getLanguage();
+		return self::getVersionLinkedGit( $lang ) ?: MW_VERSION;
 	}
 
 	/**
@@ -392,9 +397,8 @@ class SpecialVersion extends SpecialPage {
 	 * @return bool|string MW version and Git HEAD (SHA1 stripped to the first 7 chars)
 	 *   with link and date, or false on failure
 	 */
-	private static function getVersionLinkedGit() {
-		global $wgLang;
-
+	private static function getVersionLinkedGit( Language $lang ) {
+		// TODO make function non-static and replace param with $this->getLanguage() after dropping getVersionLinked
 		$gitInfo = new GitInfo( MW_INSTALL_PATH );
 		$headSHA1 = $gitInfo->getHeadSHA1();
 		if ( !$headSHA1 ) {
@@ -410,7 +414,8 @@ class SpecialVersion extends SpecialPage {
 
 		$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
 		if ( $gitHeadCommitDate ) {
-			$shortSHA1 .= Html::element( 'br' ) . $wgLang->timeanddate( (string)$gitHeadCommitDate, true );
+			$shortSHA1 .= Html::element( 'br' );
+			$shortSHA1 .= $lang->timeanddate( (string)$gitHeadCommitDate, true );
 		}
 
 		return self::getMWVersionLinked() . " $shortSHA1";
