@@ -614,16 +614,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$options = [];
 		foreach ( $languages as $code => $name ) {
-			$displayCode = LanguageCode::bcp47( $code );
-			$options[$displayCode] = $name;
+			$display = LanguageCode::bcp47( $code ) . ' - ' . $name;
+			$options[$display] = $code;
 		}
-
 		$defaultPreferences['language'] = [
-			'type' => 'language',
+			'type' => 'select',
 			'section' => 'personal/i18n',
-			'useCodex' => true,
+			'options' => $options,
 			'label-message' => 'yourlanguage',
-			'languages' => $options,
 		];
 
 		$neutralGenderMessage = $context->msg( 'gender-notknown' )->escaped() . (
@@ -664,17 +662,16 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 					$options = [];
 					foreach ( $variantArray as $code => $name ) {
-						$displayCode = LanguageCode::bcp47( $code );
-						$options[$displayCode] = $name;
+						$display = LanguageCode::bcp47( $code ) . ' - ' . $name;
+						$options[$display] = $code;
 					}
 
 					$defaultPreferences['variant'] = [
 						'label-message' => 'yourvariant',
-						'type' => 'language',
+						'type' => 'select',
+						'options' => $options,
 						'section' => 'personal/i18n',
 						'help-message' => 'prefs-help-variant',
-						'useCodex' => true,
-						'languages' => $options,
 					];
 				} else {
 					$defaultPreferences["variant-$langCode"] = [
