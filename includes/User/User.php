@@ -2033,11 +2033,11 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	public function getDatePreference() {
 		// Important migration for old data rows
 		if ( $this->mDatePreference === null ) {
-			global $wgLang;
+			$lang = RequestContext::getMain()->getLanguage();
 			$userOptionsLookup = MediaWikiServices::getInstance()
 				->getUserOptionsLookup();
 			$value = $userOptionsLookup->getOption( $this, 'date' ) ?? 'default';
-			$map = $wgLang->getDatePreferenceMigrationMap();
+			$map = $lang->getDatePreferenceMigrationMap();
 			if ( isset( $map[$value] ) ) {
 				$value = $map[$value];
 			}

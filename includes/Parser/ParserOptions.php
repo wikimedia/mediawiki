@@ -13,6 +13,7 @@ use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
 use MediaWiki\Logger\LoggerFactory;
@@ -1135,11 +1136,7 @@ class ParserOptions {
 	 * @param Language|null $lang
 	 */
 	public function __construct( UserIdentity $user, $lang = null ) {
-		if ( $lang === null ) {
-			global $wgLang;
-			StubObject::unstub( $wgLang );
-			$lang = $wgLang;
-		}
+		$lang ??= RequestContext::getMain()->getLanguage();
 		$this->initialiseFromUser( $user, $lang );
 	}
 
@@ -1155,7 +1152,7 @@ class ParserOptions {
 
 	/**
 	 * Get a ParserOptions object from a given user.
-	 * Language will be taken from $wgLang.
+	 * Language will be taken from main request context.
 	 *
 	 * @since 1.13
 	 * @param UserIdentity $user

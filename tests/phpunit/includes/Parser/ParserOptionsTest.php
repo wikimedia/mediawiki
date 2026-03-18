@@ -65,7 +65,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$context->setUser( $user );
 		$context->setLanguage( $lang );
 
-		// Just a user uses $wgLang
+		// Just a user uses main context language
 		$popt = ParserOptions::newCanonical( $user );
 		$this->assertSame( $user, $popt->getUserIdentity() );
 		$this->assertSame( $userLang, $popt->getUserLangObj() );

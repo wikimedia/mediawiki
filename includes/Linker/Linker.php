@@ -1165,16 +1165,15 @@ class Linker {
 	 * @return string
 	 */
 	public static function renderUserToolLinksArray( array $items, bool $useParentheses ): string {
-		global $wgLang;
-
 		if ( !$items ) {
 			return '';
 		}
 
 		if ( $useParentheses ) {
+			$lang = RequestContext::getMain()->getLanguage();
 			return wfMessage( 'word-separator' )->escaped()
 				. '<span class="mw-usertoollinks">'
-				. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped()
+				. wfMessage( 'parentheses' )->rawParams( $lang->pipeList( $items ) )->escaped()
 				. '</span>';
 		}
 

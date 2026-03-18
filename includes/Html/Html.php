@@ -11,6 +11,7 @@
 
 namespace MediaWiki\Html;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -909,8 +910,7 @@ class Html {
 		}
 
 		if ( $params['in-user-lang'] ?? false ) {
-			global $wgLang;
-			$lang = $wgLang;
+			$lang = RequestContext::getMain()->getLanguage();
 		} else {
 			$lang = MediaWikiServices::getInstance()->getContentLanguage();
 		}
