@@ -192,11 +192,20 @@ abstract class ImageHandler extends MediaHandler {
 			}
 		}
 
+		$prevStep = $thumbnailSteps[0];
 		foreach ( $thumbnailSteps as $widthStep ) {
 			if ( ( $widthStep > $srcWidth ) && !$image->isVectorized() ) {
-				// Round up to original width if there is no step between
-				// desired thumb width & original file width
-				return $srcWidth;
+				if ( $this->mustRender( $image ) ) {
+					// since the original is not web safe, return the previous step instead.
+					// This in theory means it could upscale a width to a large size but in practice
+					// this will be rare since the code path that triggers this is for 1.5x and 2x
+					return $prevStep;
+				} else {
+					// Round up to original width if there is no step between
+					// desired thumb width & original file width
+					// This will trigger loading of the original instead of the thumb
+					return $srcWidth;
+				}
 			}
 			if ( $widthStep == $requestWidth ) {
 				return $requestWidth;
@@ -204,6 +213,7 @@ abstract class ImageHandler extends MediaHandler {
 			if ( $widthStep > $requestWidth ) {
 				return $widthStep;
 			}
+			$prevStep = $widthStep;
 		}
 
 		return $requestWidth;

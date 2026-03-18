@@ -567,7 +567,7 @@ class FileTest extends MediaWikiMediaTestCase {
 			'enabled' => true,
 			'originalWidth' => 180,
 			'thumbWidth' => 130,
-			'expected' => 180 // 180px-doc.tiff.png FIXME: non-standard thumbnail T418745
+			'expected' => 100
 		];
 		yield 'thumb between penultimate step and original for svg scales up' => $svg + [
 			'enabled' => true,
