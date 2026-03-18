@@ -171,12 +171,12 @@ class AuthenticationResponse {
 
 	/**
 	 * @param AuthenticationRequest[] $reqs AuthenticationRequests needed to continue
-	 * @param Message $msg
+	 * @param ?Message $msg
 	 * @param string $msgtype
 	 * @return AuthenticationResponse
 	 * @see AuthenticationResponse::UI
 	 */
-	public static function newUI( array $reqs, Message $msg, $msgtype = 'warning' ) {
+	public static function newUI( array $reqs, ?Message $msg = null, $msgtype = 'warning' ) {
 		if ( !$reqs ) {
 			throw new InvalidArgumentException( '$reqs may not be empty' );
 		}
