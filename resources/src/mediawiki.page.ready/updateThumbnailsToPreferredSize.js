@@ -3,7 +3,7 @@
  *
  * @ignore
  * @param {string} srcset
- * @return {Object} shuffled srcset
+ * @return {Object} shuffled srcset mapping strings e.g. '2' to src values.
  */
 const makeSrcSetMap = ( srcset ) => {
 	const srcsetMap = {};
@@ -20,25 +20,23 @@ const makeSrcSetMap = ( srcset ) => {
 };
 
 /**
- * Takes a srcset map and shuffles it so that 2x becomes 1x etc..
- * Drops existing 1x and 1.5x values.
+ * Takes a srcset map and shuffles it so that 3x becomes 2x etc..
+ * Drops numbers < 1
  *
  * @ignore
  * @param {Object<string, string>} srcsetMap
  * @return {string} shuffled srcset
  */
-const shuffleSrcSet = ( srcsetMap ) => {
-	// create new srcset
-	const newSrcset = Object.keys( srcsetMap ).filter( ( key ) => parseInt( key, 10 ) - 1 > 0.5 ).map( ( key ) => `${ srcsetMap[ key ] } ${ parseInt( key, 10 ) - 1 }x` ).join( ', ' );
-	return newSrcset;
-};
+const shuffleSrcSet = ( srcsetMap ) => Object.keys( srcsetMap )
+	.filter( ( key ) => parseInt( key, 10 ) - 1 > 1 )
+	.map( ( key ) => `${ srcsetMap[ key ] } ${ parseInt( key, 10 ) - 1 }x` ).join( ', ' );
 
 /**
  * For users requiring a larger thumbnail, we reach into srcset to promote the larger values
- * to avoid blurry thumbnails. This function shuffles the srcset values down by 1x, so 2x becomes 1x etc.. and drops
- * existing 1x and 1.5x values.
+ * to avoid blurry thumbnails. This function updates the src and srcset attribute of the image
+ * to support a higher resolution image (for example using 2x as the src image).
  * If the srcset is in an unexpected format, or no srcset values are above 1.5x, this function will do nothing leaving
- * the image as is.
+ * the srcset as is.
  *
  * @ignore
  * @param {Element} img
@@ -48,10 +46,13 @@ const updateThumbnailToPreferredSize = ( img ) => {
 	const srcsetMap = makeSrcSetMap( img.srcset );
 	if ( Object.keys( srcsetMap ).length > 0 ) {
 		const newSrcset = shuffleSrcSet( srcsetMap );
+		const upgradedSrc = srcsetMap[ '2' ];
+		if ( upgradedSrc ) {
+			img.src = upgradedSrc;
+		}
 		if ( newSrcset ) {
 			img.srcset = newSrcset;
-			const upgradedSrc = srcsetMap[ '1x' ];
-			if ( upgradedSrc && img.currentSrc !== upgradedSrc ) {
+			if ( upgradedSrc && img.src !== upgradedSrc ) {
 				img.src = upgradedSrc;
 			}
 		}
