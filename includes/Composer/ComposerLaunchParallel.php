@@ -6,6 +6,7 @@ namespace MediaWiki\Composer;
 
 use Composer\Script\Event;
 use MediaWiki\Composer\PhpUnitSplitter\InvalidSplitGroupCountException;
+use MediaWiki\Composer\PhpUnitSplitter\LockingException;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitConsoleOutputProcessingException;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitConsoleOutputProcessor;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitXml;
@@ -35,6 +36,7 @@ class ComposerLaunchParallel extends ForkController {
 
 	private SplitGroupExecutor $splitGroupExecutor;
 	private ComposerSystemInterface $composerSystemInterface;
+	private string $logDir;
 
 	private const DEFAULT_SPLIT_GROUP_COUNT = 8;
 
@@ -54,10 +56,17 @@ class ComposerLaunchParallel extends ForkController {
 		array $excludeGroups,
 		?Event $event,
 		?SplitGroupExecutor $splitGroupExecutor = null,
-		?ComposerSystemInterface $composerSystemInterface = null
+		?ComposerSystemInterface $composerSystemInterface = null,
+		?string $logDir = null
 	) {
 		$this->groups = $groups;
 		$this->excludeGroups = $excludeGroups;
+		if ( $logDir ) {
+			$this->logDir = $logDir;
+		} else {
+			$envLogDir = getenv( 'MW_LOG_DIR' );
+			$this->logDir = is_string( $envLogDir ) ? $envLogDir : '.';
+		}
 		$this->composerSystemInterface = $composerSystemInterface ?? new ComposerSystemInterface();
 		$this->splitGroupExecutor = $splitGroupExecutor ?? new SplitGroupExecutor(
 			$phpUnitConfigFile, Shellbox::createUnboxedExecutor(), $event->getIO(), $this->composerSystemInterface
@@ -94,6 +103,7 @@ class ComposerLaunchParallel extends ForkController {
 
 	/**
 	 * @inheritDoc
+	 * @throws LockingException
 	 */
 	public function start(): string {
 		$status = parent::start();
@@ -103,21 +113,62 @@ class ComposerLaunchParallel extends ForkController {
 		return $status;
 	}
 
+	/**
+	 * Generate a path in the log directory for a given filename
+	 *
+	 * @param string $filename
+	 * @return string
+	 */
+	private function getLogFilePath( string $filename ) {
+		return implode( DIRECTORY_SEPARATOR, [ $this->logDir, $filename ] );
+	}
+
+	/**
+	 * @throws LockingException
+	 */
+	private function updateTestTimings( int $childNumber, float $elapsedTime ): void {
+		$groupName = $this->getGroupName();
+		$lockFilePath = $this->getLogFilePath( "phpunit_{$groupName}_split_group_timings.json.lock" );
+		$lockFileHandle = fopen( $lockFilePath, "w" );
+		if ( flock( $lockFileHandle, LOCK_EX ) ) {
+			$splitGroupTimingFile = $this->getLogFilePath( "phpunit_{$groupName}_split_group_timings.json" );
+			if ( !file_exists( $splitGroupTimingFile ) ) {
+				$timingData = [];
+			} else {
+				$timingData = json_decode( file_get_contents( $splitGroupTimingFile ), true );
+			}
+			$timingData[ "PHPUnit {$groupName} split_group {$childNumber}" ] = $elapsedTime;
+			file_put_contents( $splitGroupTimingFile, json_encode( $timingData, JSON_FORCE_OBJECT ) );
+			fclose( $lockFileHandle );
+			unlink( $lockFilePath );
+		} else {
+			fclose( $lockFileHandle );
+			unlink( $lockFilePath );
+			throw new LockingException( $lockFilePath );
+		}
+	}
+
+	private function getGroupName(): string {
+		$excludeGroups = array_diff( $this->excludeGroups, $this->groups );
+		if ( !self::isDatabaseRunForGroups( $this->groups, $excludeGroups ) ) {
+			return "databaseless";
+		}
+		return "database";
+	}
+
 	protected function prepareEnvironment() {
 		// Skip parent class method to avoid errors:
 		// this script does not run inside MediaWiki, so there is no environment to prepare
 	}
 
-	private function runTestSuite( int $groupId ) {
-		$logDir = getenv( 'MW_LOG_DIR' ) ?? '.';
+	/**
+	 * @throws LockingException
+	 */
+	private function runTestSuite( int $groupId ): void {
+		$startTime = microtime( true );
 		$excludeGroups = array_diff( $this->excludeGroups, $this->groups );
-		$groupName = "database";
-		if ( !self::isDatabaseRunForGroups( $this->groups, $excludeGroups ) ) {
-			$groupName = "databaseless";
-		}
-		$resultCacheFile = implode( DIRECTORY_SEPARATOR, [
-			$logDir, "phpunit_group_{$groupId}_{$groupName}.result.cache"
-		] );
+		$groupName = $this->getGroupName();
+		$resultCacheFile = $this->getLogFilePath( "phpunit_group_{$groupId}_{$groupName}.result.cache" );
 		$result = $this->splitGroupExecutor->executeSplitGroup(
 			"split_group_$groupId",
 			$this->groups,
@@ -133,6 +184,7 @@ class ComposerLaunchParallel extends ForkController {
 			);
 		}
 		$this->composerSystemInterface->print( $consoleOutput );
+		$this->updateTestTimings( $this->getChildNumber(), microtime( true ) - $startTime );
 		$this->composerSystemInterface->exit( $result->getExitCode() );
 	}
 

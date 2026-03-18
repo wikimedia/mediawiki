@@ -44,7 +44,7 @@ class ComposerLaunchParallelTest extends TestCase {
 	}
 
 	public function testExecuteDatabaseSuite() {
-		$logDir = getenv( 'MW_LOG_DIR' ) ?? '.';
+		$logDir = sys_get_temp_dir();
 		$executor = $this->createMock( SplitGroupExecutor::class );
 		$systemInterface = $this->getMockSystemInterface( 'phpunit_output_1_database.log' );
 		$composerLaunchParallel = new ComposerLaunchParallel(
@@ -53,7 +53,8 @@ class ComposerLaunchParallelTest extends TestCase {
 			[ 'Broken' ],
 			null,
 			$executor,
-			$systemInterface
+			$systemInterface,
+			$logDir
 		);
 		$result = $this->getMockCommandResult();
 		$executor->expects( $this->once() )
@@ -70,7 +71,7 @@ class ComposerLaunchParallelTest extends TestCase {
 	}
 
 	public function testExecuteDatabaselessSuite() {
-		$logDir = getenv( 'MW_LOG_DIR' ) ?? '.';
+		$logDir = sys_get_temp_dir();
 		$executor = $this->createMock( SplitGroupExecutor::class );
 		$systemInterface = $this->getMockSystemInterface( 'phpunit_output_1_databaseless.log' );
 		$composerLaunchParallel = new ComposerLaunchParallel(
@@ -79,7 +80,8 @@ class ComposerLaunchParallelTest extends TestCase {
 			[ 'Broken', 'Standalone', 'Database' ],
 			null,
 			$executor,
-			$systemInterface
+			$systemInterface,
+			$logDir
 		);
 		$result = $this->getMockCommandResult();
 		$executor->expects( $this->once() )
@@ -93,5 +95,26 @@ class ComposerLaunchParallelTest extends TestCase {
 			->willReturn( $result );
 		$wrapper = TestingAccessWrapper::newFromObject( $composerLaunchParallel );
 		$wrapper->runTestSuite( 1 );
+	}
+
+	public function testUpdateTestTimings() {
+		$logDir = sys_get_temp_dir();
+		unlink( $logDir . "/phpunit_databaseless_split_group_timings.json" );
+		$composerLaunchParallel = new ComposerLaunchParallel(
+			"phpunit-databaseless.xml",
+			[],
+			[ 'Broken', 'Standalone', 'Database' ],
+			null,
+			$this->createMock( SplitGroupExecutor::class ),
+			$this->createMock( ComposerSystemInterface::class ),
+			$logDir
+		);
+		$wrapper = TestingAccessWrapper::newFromObject( $composerLaunchParallel );
+		$wrapper->updateTestTimings( 1, 12.234987 );
+		$timingData = json_decode( file_get_contents( $logDir . "/phpunit_databaseless_split_group_timings.json" ), true );
+		$this->assertEquals( [
+			"PHPUnit databaseless split_group 1" => 12.234987
+		], $timingData );
+		unlink( $logDir . "/phpunit_databaseless_split_group_timings.json" );
 	}
 }
