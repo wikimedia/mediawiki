@@ -9,7 +9,6 @@
 		}
 
 		const pageLanguageOptions = OO.ui.infuse( $( '#mw-pl-options' ) );
-		pageLanguageOptions.setValue( '1' );
 
 		// Wait for the widget to replace the native select with Vue component
 		mw.loader.using( 'mediawiki.widgets.LanguageSelectWidget' ).then( () => {

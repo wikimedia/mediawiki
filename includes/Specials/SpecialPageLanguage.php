@@ -102,7 +102,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 			'type' => 'language',
 			'useCodex' => true,
 			'label-message' => 'pagelang-language',
-			'value' => $title ?
+			'default' => $title ?
 				$title->getPageLanguage()->getCode() :
 				$this->getConfig()->get( MainConfigNames::LanguageCode ),
 		];
