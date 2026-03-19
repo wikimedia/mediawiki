@@ -1,4 +1,9 @@
-QUnit.module( 'mediawiki.base/track', () => {
+QUnit.module( 'mediawiki.base/track', ( hooks ) => {
+	hooks.beforeEach( () => {
+		// Empty the queue so that trackSubscribe tests can't be confused by
+		// other tests.
+		mw.trackQueue.length = 0;
+	} );
 
 	QUnit.test( 'track', ( assert ) => {
 		const sequence = [];
