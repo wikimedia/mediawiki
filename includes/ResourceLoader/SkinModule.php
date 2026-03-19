@@ -511,7 +511,6 @@ class SkinModule extends FileModule {
 
 		$config = $this->getConfig();
 		$limits = $config->get( 'ThumbLimits' );
-		$thumbnailOptionsCount = count( $limits );
 
 		// Note this is currently restricted to Parsoid.
 		// @todo: Pending feedback on T375981 it can be extended to legacy parser as well.
@@ -524,19 +523,32 @@ class SkinModule extends FileModule {
 				$config->get( 'DefaultUserOptions' )[ 'thumbsize' ]
 			];
 			$largeSize = max( $limits );
-			$imgSelector = '.mw-parser-output[data-mw-parsoid-version] .mw-default-size img' .
-				'[ width="' . $defaultSize . '" ]';
+			$imgSelectors = [
+				'.mw-parser-output[data-mw-parsoid-version] .mw-default-size img' .
+				'[ width="' . $defaultSize . '" ]',
+				'.mw-parser-output[data-mw-parsoid-version] .mw-default-size img.mw-file-upright',
+			];
 			// Restrict to width='$defaultSize' to prevent upscaling images which were
 			// originally smaller than the default thumbnail size (T417828)
-			$featureStyles['all'][] = $imgSelector .
-				' { height: auto; width: ' . $defaultSize . 'px; }';
-			$featureStyles['all'][] = 'html.skin-theme-clientpref-thumb-small ' .
-				$imgSelector . ' { width: ' . $smallSize . 'px; }';
-			$featureStyles['all'][] = 'html.skin-theme-clientpref-thumb-large ' .
-				$imgSelector . ' { width: ' . $largeSize . 'px; }';
+			foreach ( $imgSelectors as $imgSelector ) {
+				$featureStyles['all'][] = $imgSelector .
+					' { height: auto; width: ' . self::makeThumbCalc( $defaultSize ) . '; }';
+				$featureStyles['all'][] = 'html.skin-theme-clientpref-thumb-small ' .
+					$imgSelector . ' { width: ' . self::makeThumbCalc( $smallSize ) . '; }';
+				$featureStyles['all'][] = 'html.skin-theme-clientpref-thumb-large ' .
+					$imgSelector . ' { width: ' . self::makeThumbCalc( $largeSize ) . '; }';
+			}
 		}
 
 		return $this->combineFeatureAndParentStyles( $featureStyles, $parentStyles );
+	}
+
+	/**
+	 * @param int $size
+	 * @return string
+	 */
+	private static function makeThumbCalc( int $size ) {
+		return 'calc( ' . $size . 'px * var( --mw-file-upright, 1 ) )';
 	}
 
 	public function getPreloadLinks( Context $context ): array {
