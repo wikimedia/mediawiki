@@ -221,6 +221,7 @@
 	"api-help-permissions": "{{PLURAL:$1|Autorisatioun|Autorisatiounen}}:",
 	"api-help-open-in-apisandbox": "<small>[an der Sandkaul opmaachen]</small>",
 	"apierror-articleexists": "D'Säit, déi Dir probéiert hutt unzeleeën, gouf schonn ugeluecht.",
+	"apierror-assertnameduserfailed": "Dir sidd net méi als \" $1 \" ageloggt, dofir konnt d'Aktioun net ofgeschloss ginn.",
 	"apierror-assertuserfailed": "D'Kontroll datt de Benotzer ageloggt ass war negativ.",
 	"apierror-autoblocked": "Är IP-Adress gouf automatesch gespaart well se vun engem gespaarte Benotzer benotzt gouf.",
 	"apierror-badip": "Den IP-Parameter ass ongülteg.",

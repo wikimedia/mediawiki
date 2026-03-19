@@ -997,7 +997,7 @@
 	"nchanges": "$1 {{PLURAL:$1|pakeitimas|pakeitimai|pakeitimų}}",
 	"ntimes": "$1×",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|nuo paskutinio apsilankymo}}",
-	"enhancedrc-history": "istorija",
+	"enhancedrc-history": "ist",
 	"recentchanges": "Naujausi keitimai",
 	"recentchanges-legend": "Naujausių keitimų parinktys",
 	"recentchanges-summary": "Žemiau pateikiamas naujausių šio projekto pakeitimų sąrašas.",

@@ -1958,7 +1958,7 @@
 	"delete-error-associated-alreadytalk": "Дийцарийн агӀонца йихкина йолу дийцарийн агӀо дӀайаккха цало.",
 	"delete-error-associated-doesnotexist": "ДӀайаккха йоцу йихкина агӀо дийцадаккха ца ло.",
 	"deleteprotected": "Шуга дӀа ца йаккхало хӀара агӀо, хӀунда аьлча иза ларйина йу.",
-	"deleting-backlinks-warning": "'''ДӀахьедар:''' Ахьа дӀайоккхуш йолeлу агӀонан тӀетоьвжийна [[Special:WhatLinksHere/{{FULLPAGENAME}}|кхин агӀонаш]] йу.",
+	"deleting-backlinks-warning": "'''ДӀахьедар:''' Ахьа дӀайоккхуш йолу агӀонан тӀетоьвжийна [[Special:WhatLinksHere/{{FULLPAGENAME}}|кхин агӀонаш]] йу.",
 	"deleting-subpages-warning": "<strong>ДӀахьедар:</strong> Ахьа дӀайоккхуш йолчу агӀонан йу [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|$1 бухара агӀо|51=50 сов бухара агӀо}}]].",
 	"deleting-talkpage-subpages-warning": "<strong>Предупреждение:</strong> У связанной страницы обсуждения, которую вы собираетесь удалить, имеется [[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|$1 подстраница|$1 подстраницы|$1 подстраниц|51=более 50 подстраниц}}]].",
 	"rollback": "Йухабаккха хийцам",

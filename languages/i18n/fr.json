@@ -3233,7 +3233,7 @@
 	"watchlistedit-normal-check-all": "Tout cocher",
 	"watchlistedit-normal-done": "{{PLURAL:$1|Une page a été enlevée|$1 pages ont été enlevées}} de votre liste de suivi :",
 	"watchlistedit-search-label": "Chercher :",
-	"watchlistedit-search-placeholder": "Chercher des pages dans votre liste de suivi",
+	"watchlistedit-search-placeholder": "Chercher des pages dans votre liste de suivi commençant par…",
 	"watchlistedit-raw-title": "Modifier la liste de suivi en mode brut",
 	"watchlistedit-raw-legend": "Modification de la liste de suivi en mode brut",
 	"watchlistedit-raw-explain": "Les titres de votre liste de suivi sont affichés ci-dessous et peuvent être modifiés en les ajoutant ou les retirant de la liste (un titre par ligne).\nLorsque vous avez fini, cliquez sur le bouton « {{int:Watchlistedit-raw-submit}} » en bas.\nVous pouvez aussi [[Special:EditWatchlist|utiliser l’éditeur normal]].",
