@@ -142,7 +142,8 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 
 	private function getMultiSelectProxy(): HTMLMultiSelectField {
 		if ( $this->multiSelectProxy === null ) {
-			$name = $this->mParams['fieldname'];
+			$fieldname = $this->mParams['fieldname'];
+			$name = $this->mName;
 
 			// Since the HTMLSelectLanguageField didn't traditionally know how to handle multi-select,
 			// we hack it here by delegating to HTMLMultiSelectField, it natively does not include the []
@@ -150,8 +151,10 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 			if ( str_ends_with( $name, '[]' ) ) {
 				$name = substr( $name, 0, -2 );
 			}
+
 			$this->multiSelectProxy = new HTMLMultiSelectField( [
-				'fieldname' => $name,
+				'fieldname' => $fieldname,
+				'name' => $name,
 				'type' => 'multiselect',
 				'parent' => $this->mParent,
 				'options' => $this->mParams['options'] ?? [],
