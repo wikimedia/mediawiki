@@ -229,7 +229,8 @@
 			"BoredYukolin",
 			"0x48fe75df30",
 			"ShuQizhe",
-			"PrinceAzuka134"
+			"PrinceAzuka134",
+			"Leo768"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|分类}}",
@@ -3565,7 +3566,7 @@
 	"tags-create-submit": "创建",
 	"tags-create-no-name": "您必须指定一个标签名称。",
 	"tags-create-invalid-chars": "标签名称必须不包含逗号（<code>,</code>）、竖线（<code>|</code>）或正斜线（<code>/</code>）。",
-	"tags-create-invalid-title-chars": "标签名称不得含有无法在网页标题中使用的字符。",
+	"tags-create-invalid-title-chars": "标签名称不得含有无法在页面标题中使用的字符。",
 	"tags-create-already-exists": "标签“$1”已存在。",
 	"tags-create-warnings-above": "下列{{PLURAL:$2|警告}}是尝试创建“$1”标签时遇到的：",
 	"tags-create-warnings-below": "您希望继续创建此标签吗？",

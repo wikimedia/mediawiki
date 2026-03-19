@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Michawiki"
+		]
+	},
+	"cdx-breadcrumb-navigation-label": "Srjódka",
+	"cdx-breadcrumb-overflow-label": "Dalše nawigaciske nastajenja",
+	"cdx-chip-input-chip-added": "Chip $1 je so přidał.",
+	"cdx-chip-input-chip-removed": "Chip $1 je so wotstronił.",
+	"cdx-input-chip-aria-description": "Tłóčće Enter, zo by wobdźěłał abo Entf, zo by wotstronił.",
+	"cdx-dialog-close-button-label": "Začinić",
+	"cdx-label-optional-flag": "(opcionalny)",
+	"cdx-message-dismiss-button-label": "Začinić",
+	"cdx-popover-close-button-label": "Začinić",
+	"cdx-search-input-search-button-label": "Pytać",
+	"cdx-table-select-all-label": "Wšě linki wubrać",
+	"cdx-table-select-row-label": "Linku $1 z $2 wubrać",
+	"cdx-table-sort-caption": "$1 (špaltowe hłowy z tłóčatkami su sortěrujomne).",
+	"cdx-typeahead-search-search-results-label": "Pytanske wuslědki",
+	"cdx-table-pager-button-first-page": "Prěnja strona",
+	"cdx-table-pager-button-last-page": "Poslednja strona",
+	"cdx-table-pager-button-next-page": "Přichodna strona",
+	"cdx-table-pager-button-prev-page": "Předchadna strona",
+	"cdx-table-pager-items-per-page-default": "Wuslědki na stronu",
+	"cdx-table-pagination-status-message-determinate-long": "Pokazuja so wuslědki $1-$2 z $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 z $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Pokazuja so wuslědki $1-$2 z mnoho",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 z mnoho",
+	"cdx-table-pagination-status-message-indeterminate-final": "{{PLURAL:$1|Pokazuje so posledni $1 wuslědk|Pokazujetej so poslednjej $1 wuslědkaj|Pokazuja so poslednje $1 wuslědki|Pokazuje so poslednje $1 wuslědkow}}",
+	"cdx-table-pagination-status-message-pending": "Wuslědki so začitaja…",
+	"cdx-table-no-data-message": "Žane daty k dispoziciji."
+}

@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"GrogeXaKaba"
+		]
+	},
+	"interwiki": "Udja i idita dadus nteruiki",
+	"interwiki-legend-label": "Lijénda",
+	"interwiki_prefix": "Prifíksu",
+	"interwiki-prefix-label": "Prifíksu:",
+	"interwiki_1": "aian",
+	"interwiki_0": "non",
+	"interwiki_edit": "Idita",
+	"interwiki_reasonfield": "Razon:",
+	"interwiki_deleting": "Bu sa-ta paga prifíksu \"$1\".",
+	"interwiki-logtext": "Udja rajistu",
+	"interwiki_addtext": "Kirsenta un prifíksu nteruiki o di linga",
+	"interwiki-addtext-local": "Kirsenta un prifíksu nteruiki lukal o di linga",
+	"interwiki-addtext-nolang": "Kirsenta un prifíksu nteruiki",
+	"interwiki-addtext-local-nolang": "Kirsenta un prifíksu nteruiki lukal",
+	"interwiki_addintro": "Bu sa-ta kirsenta un prifíksu nteruiki nobu.\nRalenbra ma el ka podi konte spasu ( ), dos-pontu (:), \"e\" kumersial (&), o sinal di igual (=).",
+	"interwiki_addbutton": "Kirsenta",
+	"action-interwiki": "altera es antrada nteruiki",
+	"interwiki-global-links": "Prifíksus nteruiki glubal",
+	"interwiki-local-links": "Prifíksus nteruiki lukal",
+	"interwiki-local-description": "Es prifíksus ta izisti lukalmenti. Na kolker duplikadu ku kunfigurason glubal, es últimu ta ser subriskrebidu pa kunfigurason lukal.",
+	"interwiki-links": "Prifíksus nteruiki",
+	"interwiki-language-links": "Prifíksus nterlinga",
+	"interwiki-language-description": "Es prifíksus tene kuruspondénsa ku kódis di linga difinidu, i es ta ser uzadu pa kiria un listáji \"{{int:otherlanguages}}\" kantu kirsentadu na un pájina.",
+	"interwiki-global-language-links": "Prifíksus nterlinga glubal",
+	"interwiki-global-language-description": "Es prifíksus tene kuruspondénsa ku kódis di linga difinidu, i es ta ser uzadu pa kiria un listáji \"{{int:otherlanguages}}\" kantu kirsentadu na un pájina. Kuma es é ardadu di un kunfigurason glubal, es so podi iditadu na uiki di oriji. Difinisons nterlinga glubal ka podi subriskrebidu lukalmenti."
+}
