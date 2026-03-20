@@ -1,5 +1,15 @@
 # Changelog
 
+## 6.5.0 / 2026-03-20
+
+In 6.5.0 we changed how we choose hos many parallel tests suites that will run in CI. It wil now use 75%
+of the availible CPUs insted of a hard coded number. This will make tests faster on machines with more CPU
+and many test suites. We also log what maxInstances number that is used.
+
+* Log configured maxInstances (T420070)
+* Log response error from the API (T420005)
+* Set max number of parallel jobs to 75% of available CPUs in CI (T420185)
+
 ## 6.4.0 / 2026-03-09
 There are two additions to this release. First we add the abilitry to add a cookie when talking to the
 MediaWiki API to make it easier to upgrade wdio-wikibase to later version. Then we also added logging
