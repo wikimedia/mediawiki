@@ -9,6 +9,7 @@ use InvalidArgumentException;
 use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Request\WebRequest;
 use Wikimedia\Minify\CSSMin;
 
@@ -518,11 +519,10 @@ class SkinModule extends FileModule {
 		// @todo: This may be moved to a dedicated module later on to group user customizations
 		// (for example the underline user preference currently residing in `content-links` feature.
 		if ( $isAccessibilityEnabled ) {
-			$smallSize = max( 180, min( $limits ) );
-			$defaultSize = $limits[
-				$config->get( 'DefaultUserOptions' )[ 'thumbsize' ]
-			];
-			$largeSize = max( $limits );
+			[ $smallSize, $defaultSize, $largeSize ] = DefaultPreferencesFactory::getNormalizedThumbSizes(
+				$config->get( MainConfigNames::ThumbLimits ),
+				$config->get( 'DefaultUserOptions' )
+			);
 			// Note: If changing any of the CSS selectors here,
 			// please make sure to update getDefinitionSummary() accordingly to ensure
 			// the cache keys are properly invalidated when they change.
