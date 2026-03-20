@@ -326,6 +326,8 @@ because of Phabricator reports.
   have been removed.
 * ContentHandler::checkModelID() and AbstractContent::checkModelID() now
   throw UnexpectedContentModelException instead of deprecated MWException.
+* The mediawiki.ui.radio module, deprecated in 1.41 and unused, was removed.
+  Instead, use Codex modules.
 * …
 
 === Deprecations in 1.46 ===

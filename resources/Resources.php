@@ -3010,15 +3010,6 @@ return [
 			],
 		],
 	],
-	'mediawiki.ui.radio' => [
-		'deprecated' => '[1.41] Please use Codex. See migration guidelines: ' .
-			'https://www.mediawiki.org/wiki/Codex/Migrating_from_MediaWiki_UI',
-		'skinStyles' => [
-			'default' => [
-				'resources/src/mediawiki.ui.radio/radio.less',
-			],
-		],
-	],
 	// Lightweight compatibility module for legacy message box styles
 	'mediawiki.legacy.messageBox' => [
 		'class' => SkinModule::class,
