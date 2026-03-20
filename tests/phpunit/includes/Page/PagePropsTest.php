@@ -2,6 +2,8 @@
 
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\LBFactorySingle;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Page\PageProps
@@ -47,6 +49,27 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		$result = $pageProps->getProperties( $this->title1, "property1" );
 		$this->assertArrayHasKey( $page1ID, $result, "Found property" );
 		$this->assertSame( "value1", $result[$page1ID], "Get property" );
+	}
+
+	/**
+	 * Test handling of absent single property.
+	 */
+	public function testGetSinglePropertyAbsent() {
+		$pageProps = $this->getServiceContainer()->getPageProps();
+		$page1ID = $this->title1->getArticleID();
+		$result = $pageProps->getProperties( $this->title1, 'property9' );
+		$this->assertNull( $result[$page1ID]['property9'] ?? null, 'Property' );
+		$this->assertSame( [], $result, 'Result' );
+
+		// Support caching absence (T347123), disable database to assert no repeat queries
+		TestingAccessWrapper::newFromObject( $pageProps )->dbProvider = LBFactorySingle::newDisabled();
+		$result = $pageProps->getProperties( $this->title1, 'property9' );
+		$this->assertSame( [], $result, 'Cached result' );
+
+		// Make sure we can still read other data, e.g. a different page
+		$this->expectException( RuntimeException::class );
+		$this->expectExceptionMessage( 'Database backend disabled' );
+		$pageProps->getProperties( $this->title2, 'property9' );
 	}
 
 	/**
@@ -135,8 +158,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		$this->assertArrayHasKey( $page1ID, $result, "Found properties" );
 
 		$properties = $result[$page1ID];
-		$subset = array_intersect_key( $properties, $this->expectedProperties );
-		$this->assertEquals( $this->expectedProperties, $subset, "Get all properties" );
+		$this->assertEquals( $this->expectedProperties, $properties, "Get all properties" );
 	}
 
 	/**
@@ -189,11 +211,20 @@ class PagePropsTest extends MediaWikiLangTestCase {
 	public function testMultiCache() {
 		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
-		$properties1 = $pageProps->getAllProperties( $this->title1 );
-		$this->setProperty( $page1ID, "property1", "another value" );
-		$properties2 = $pageProps->getAllProperties( $this->title1 );
 
-		$this->assertEquals( $properties1, $properties2, "Multi Cache" );
+		$properties1 = $pageProps->getAllProperties( $this->title1 );
+		$this->assertSame( $properties1, [
+			$page1ID => [
+				'property1' => 'value1',
+				'property2' => 'value2',
+				'property3' => 'value3',
+				'property4' => 'value4',
+			]
+		], 'Before' );
+
+		$this->setProperty( $page1ID, "property1", "different value" );
+		$properties2 = $pageProps->getAllProperties( $this->title1 );
+		$this->assertEquals( $properties1, $properties2, 'After is unchanged from cache' );
 	}
 
 	/**
@@ -216,7 +247,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		$this->assertSame( "another value", $result[$page1ID], "Clear cache" );
 	}
 
-	protected function setProperties( $pageID, $properties ) {
+	protected function setProperties( $pageID, array $properties ) {
 		$queryBuilder = $this->getDb()->newReplaceQueryBuilder()
 			->replaceInto( 'page_props' )
 			->uniqueIndexFields( [ 'pp_page', 'pp_propname' ] );
@@ -230,11 +261,10 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		$queryBuilder->caller( __METHOD__ )->execute();
 	}
 
-	protected function setProperty( $pageID, $propertyName, $propertyValue ) {
-		$properties = [
+	protected function setProperty( $pageID, string $propertyName, $propertyValue ) {
+		$this->setProperties( $pageID, [
 			$propertyName => $propertyValue
-		];
-		$this->setProperties( $pageID, $properties );
+		] );
 	}
 
 	protected function createRowFromTitle( $title ) {

@@ -73,13 +73,17 @@ class PageProps {
 		foreach ( $goodIDs as $pageID ) {
 			foreach ( $propertyNames as $propertyName ) {
 				$propertyValue = $this->getCachedProperty( $pageID, $propertyName );
-				if ( $propertyValue === false ) {
+				if ( $propertyValue === null ) {
+					// Store absence, and overwrite below if present (T347123).
+					$this->cache->setField( $pageID, $propertyName, false );
 					$queryIDs[] = $pageID;
 					break;
-				} elseif ( $gotArray ) {
-					$values[$pageID][$propertyName] = $propertyValue;
-				} else {
-					$values[$pageID] = $propertyValue;
+				} elseif ( $propertyValue !== false ) {
+					if ( $gotArray ) {
+						$values[$pageID][$propertyName] = $propertyValue;
+					} else {
+						$values[$pageID] = $propertyValue;
+					}
 				}
 			}
 		}
@@ -213,11 +217,11 @@ class PageProps {
 	}
 
 	/**
-	 * Get a property from the cache.
+	 * Get a single property from the cache.
 	 *
 	 * @param int $pageID page ID of page being queried
 	 * @param string $propertyName name of property being queried
-	 * @return string|bool property value array or false if not found
+	 * @return string|false|null property value, false if known absent, or null if uncached
 	 */
 	private function getCachedProperty( $pageID, $propertyName ) {
 		if ( $this->cache->hasField( $pageID, $propertyName ) ) {
@@ -229,7 +233,7 @@ class PageProps {
 				return $pageProperties[$propertyName];
 			}
 		}
-		return false;
+		return null;
 	}
 
 	/**
@@ -252,7 +256,9 @@ class PageProps {
 	 * @param array<string,string> $pageProperties associative array of page properties to be cached
 	 */
 	private function cacheProperties( $pageID, array $pageProperties ) {
+		// Remove any partial data for this page
 		$this->cache->clear( $pageID );
+		// Set complete data for this page
 		$this->cache->setField( self::ALL_PROPS_KEY, $pageID, $pageProperties );
 	}
 
