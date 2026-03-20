@@ -1534,6 +1534,7 @@
 	"unusedtemplateswlh": "other links",
 	"randompage": "Random page",
 	"randompage-nopages": "There are no pages in the following {{PLURAL:$2|namespace|namespaces}}: $1.",
+	"randompage-disallowed-action": "For security reasons, action \"$1\" cannot be used on the page Special:Random.",
 	"randomincategory": "Random page in category",
 	"randomincategory-invalidcategory": "\"$1\" is not a valid category name.",
 	"randomincategory-nopages": "There are no pages in the [[:Category:$1|$1]] category.",

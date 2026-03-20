@@ -1815,6 +1815,7 @@
 	"unusedtemplateswlh": "Used as link text in [[Special:UnusedTemplates]].\n\nThe link points to the \"What links here\" page.",
 	"randompage": "{{doc-special|RandomPage}}\nSee also:\n* {{msg-mw|Randompage}}\n* {{msg-mw|Accesskey-n-randompage}}\n* {{msg-mw|Tooltip-n-randompage}}\n{{Identical|Random page}}",
 	"randompage-nopages": "Parameters:\n* $1 - list of namespaces\n* $2 - number of namespaces, for PLURAL support\nSee also:\n* {{msg-mw|Randomredirect-nopages}}",
+	"randompage-disallowed-action": "Shown when you visit a URL such as w/index.php?title=Special:Random&action=delete. Parameters:\n* $1 - ?action= from the URL (e.g. delete, protect, etc.)",
 	"randomincategory": "{{doc-special|RandomInCategory}}\n{{Identical|Random page in category}}",
 	"randomincategory-invalidcategory": "Message shown if an invalid category is specified.\n\nParameters:\n* $1 - the invalid category name given\n\n(Note, if the category is simply empty, but could possibly exist, {{msg-mw|randomincategory-nopages}} is shown instead)",
 	"randomincategory-nopages": "Message shown from [[Special:RandomInCategory]] if the category is empty.\n\nParameters:\n* $1 - the category name (without the namespace prefix)",

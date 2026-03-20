@@ -67,6 +67,17 @@ class SpecialRandomPage extends SpecialPage {
 
 	/** @inheritDoc */
 	public function execute( $par ) {
+		// T419273: Disallow most non-view actions, to make writing malicious user scripts harder.
+		$action = $this->getRequest()->getVal( 'action' );
+		$allowedActions = [ 'view', 'edit', 'history' ];
+		if ( $action && !in_array( $action, $allowedActions, true ) ) {
+			$this->setHeaders();
+			$this->getOutput()->addHTML(
+				$this->msg( 'randompage-disallowed-action' )->params( $action )->escaped()
+			);
+			return;
+		}
+
 		$this->parsePar( $par );
 
 		$title = $this->getRandomTitle();
@@ -76,7 +87,6 @@ class SpecialRandomPage extends SpecialPage {
 			// Message: randompage-nopages, randomredirect-nopages
 			$this->getOutput()->addWikiMsg( strtolower( $this->getName() ) . '-nopages',
 				$this->getNsList(), count( $this->namespaces ) );
-
 			return;
 		}
 
