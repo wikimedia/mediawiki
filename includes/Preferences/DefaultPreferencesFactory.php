@@ -1019,12 +1019,31 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'imagemaxsize',
 			'section' => 'rendering/files',
 		];
+		$sizes = self::getNormalizedThumbSizes(
+			$this->options->get( MainConfigNames::ThumbLimits ),
+			$this->userOptionsManager->getDefaultOptions()
+		);
 		$defaultPreferences['thumbsize'] = [
 			'type' => 'select',
 			'options' => $this->getThumbSizes( $context ),
 			'label-message' => 'thumbsize',
+			'help' => $context->msg( 'thumbsize-help' )->params( $sizes[ 1 ] ),
 			'section' => 'rendering/files',
 		];
+		$user = $context->getUser();
+		$limits = $this->options->get( MainConfigNames::ThumbLimits );
+		$currentSize = $limits[ $this->userOptionsManager->getOption( $user, 'thumbsize' ) ];
+		// Correct legacy values in next save (can be removed once T376152 is resolved)
+		if ( !in_array( $currentSize, $sizes ) ) {
+			// using a non-standard preference so map to the closest.
+			$closestSize = $limits[1];
+			if ( $currentSize < $limits[0] ) {
+				$closestSize = $limits[0];
+			} elseif ( $currentSize > $limits[1] ) {
+				$closestSize = $limits[2];
+			}
+			$defaultPreferences['thumbsize']['default'] = array_search( $closestSize, $limits );
+		}
 	}
 
 	/**
@@ -1881,19 +1900,42 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	}
 
 	/**
+	 * Normalizes thumbnail options (which can support more than 3 values) to min, default and max values
+	 * for correspondance with user preferences options available to the user (small, regular, large).
+	 *
+	 * Note, for now, this requires that the small size is at least 180px to smoothness the transition to three
+	 * thumbnail sizes. Numbers below 180px are historical artifacts and we do not want users on Wikimedia sites to
+	 * ever receive thumbnails that small. This is temporary until migrations on Wikimedia sites have occurred and must
+	 * be removed before the 1.48 release so third parties are not impacted by the change and can make their own
+	 * decisions.
+	 *
+	 * @internal only for use outside this class by ResourceLoader/SkinModule
+	 * @param array $limits as defined in $wgThumbLimits
+	 * @param array $defaultUserOptions
+	 * @return array of three thumbnail sizes representing small, medium, large
+	 */
+	public static function getNormalizedThumbSizes( array $limits, array $defaultUserOptions ) {
+		$smallSize = max( 180, min( $limits ) );
+		$defaultIndex = $defaultUserOptions[ 'thumbsize' ] ?? 0;
+		$defaultSize = $limits[ $defaultIndex ];
+		$largeSize = max( $limits );
+		return [ $smallSize, $defaultSize, $largeSize ];
+	}
+
+	/**
 	 * @param MessageLocalizer $l10n
 	 * @return array
 	 */
 	protected function getThumbSizes( MessageLocalizer $l10n ) {
-		$ret = [];
-		$pixels = $l10n->msg( 'unit-pixel' )->text();
+		$config = $this->options;
+		$limits = $config->get( MainConfigNames::ThumbLimits );
+		$sizes = self::getNormalizedThumbSizes( $limits, $this->userOptionsManager->getDefaultOptions() );
 
-		foreach ( $this->options->get( MainConfigNames::ThumbLimits ) as $index => $size ) {
-			$display = $size . $pixels;
-			$ret[$display] = $index;
-		}
-
-		return $ret;
+		return [
+			$l10n->msg( 'thumbsize-small' )->text() => array_search( $sizes[ 0 ], $limits ),
+			$l10n->msg( 'thumbsize-regular' )->text() => array_search( $sizes[ 1 ], $limits ),
+			$l10n->msg( 'thumbsize-large' )->text() => array_search( $sizes[ 2 ], $limits ),
+		];
 	}
 
 	/**
