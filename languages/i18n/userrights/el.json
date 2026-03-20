@@ -306,6 +306,7 @@
 	"listgrouprights-removegroup-self": "Μπορεί να αφαιρέσει {{PLURAL:$2|ομάδα|ομάδες}} από το δικό σας λογαριασμό: $1",
 	"listgrouprights-addgroup-self-all": "Μπορεί να προσθέσει όλες τις ομάδες στο δικό σας λογαριασμό",
 	"listgrouprights-removegroup-self-all": "Μπορεί να αφαιρέσει όλες τις ομάδες από το δικό σας λογαριασμό",
+	"listgrouprights-restrictedgroups-cond-isbot": "Ο χρήστης είναι bot",
 	"listgrouprights-namespaceprotection-header": "Περιορισμοί ονοματοχώρων",
 	"listgrouprights-namespaceprotection-namespace": "Ονοματοχώρος",
 	"listgrouprights-namespaceprotection-restrictedto": "Δικαίωμα(τα) που επιτρέπει(ουν) σε χρήστη να επεξεργαστεί",

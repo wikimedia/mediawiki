@@ -2324,6 +2324,7 @@
 	"block-expiry": "Expiração",
 	"block-expiry-preset": "Duração predefinida",
 	"block-expiry-preset-placeholder": "Selecionar uma duração",
+	"block-expiry-indefinite": "Indefinido",
 	"block-expiry-custom": "Duração personalizada",
 	"block-expiry-custom-minutes": "minutos",
 	"block-expiry-custom-hours": "horas",

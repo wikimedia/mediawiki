@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"DannyS712",
 			"Elenrm",
 			"Fitoschido",
@@ -1986,7 +1987,7 @@
 	"anoncontribs": "Путфкст",
 	"contribute": "Путфкс",
 	"contributions-subtitle": "{{GENDER:$2|$1}}-нди",
-	"contributions-edit-count": "A {{GENDER\n:$1|сувайсь}} $2 {{PLURAL:$2|петьксонь|петькснень}} мархта.",
+	"contributions-edit-count": "A {{GENDER:$1|сувайсь}} $2 {{PLURAL:$2|петьксонь|петькснень}} мархта.",
 	"contributions-account-creation-date": "Учётонь сёрмаёрматфксь тиф $1.",
 	"contributions-userdoesnotexist": "«$1» учётонь сёрматфкссь апак тяштькстак.",
 	"negative-namespace-not-supported": "Кальдяв смузь мархта лемонь васттне аф кирдевихть.",

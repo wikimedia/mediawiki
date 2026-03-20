@@ -25,7 +25,7 @@
 	"botpasswords-label-grants-column": "Odobreno",
 	"botpasswords-bad-appid": "Ime bota \"$1\" nije ispravno.",
 	"botpasswords-toolong-restrictions": "Uneseno je previše IP adresa ili opsega.",
-	"botpasswords-toolong-grants": "Odabrano je previše potpora.",
+	"botpasswords-toolong-grants": "Izabrano je previše potpora.",
 	"botpasswords-insert-failed": "Neuspjelo dodavanje imena bota \"$1\". Možda je već dodano?",
 	"botpasswords-update-failed": "Neuspjelo ažuriranje bota s imenom \"$1\". Možda je obrisan?",
 	"botpasswords-created-title": "Izrađena lozinka za bota",

@@ -50,6 +50,8 @@
 	"username": "{{GENDER:$1}}Tên người dùng:",
 	"prefs-memberingroups": "{{GENDER:$2}}Thành viên của {{PLURAL:$1|nhóm|các nhóm}}:",
 	"group-membership-link-with-expiry": "$1 (cho đến $2)",
+	"prefs-memberingroupsdisabled": "{{PLURAL:$1|Nhóm|Các nhóm}} {{GENDER:$2|bị vô hiệu hóa}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|Bạn}} không còn đáp ứng đủ [[$3|điều kiện]] để làm thành viên của {{PLURAL:$1|nhóm này|các nhóm này}}, vì vậy bạn không thể sử dụng các quyền hạn do {{PLURAL:$1|nhóm|các nhóm}} đó cấp.",
 	"prefs-edits": "Số lần sửa đổi:",
 	"prefs-registration": "Lúc mở tài khoản:",
 	"yourrealname": "Tên thật:",

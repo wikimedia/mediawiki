@@ -1,22 +1,33 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bayahiu",
 			"Hidayatsrf",
 			"HyperAnd",
 			"Rebeccayoga"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Remah roti",
+	"cdx-breadcrumb-overflow-label": "Pilihan navigasi lainnya",
+	"cdx-chip-input-chip-added": "Cip $1 telah ditambahkan.",
+	"cdx-chip-input-chip-removed": "Cip $1 telah dicopot.",
+	"cdx-input-chip-aria-description": "Tekan Enter untuk menyunting atau Delete untuk mencopot.",
 	"cdx-dialog-close-button-label": "Tutup",
 	"cdx-label-optional-flag": "(opsional)",
 	"cdx-message-dismiss-button-label": "Tutup",
 	"cdx-popover-close-button-label": "Tutup",
 	"cdx-search-input-search-button-label": "Cari",
 	"cdx-table-select-all-label": "Pilih semua baris",
+	"cdx-table-select-row-label": "Pilih baris $1 dari $2",
+	"cdx-table-sort-caption": "$1 (pengepala kolom dengan tombol dapat diurutkan).",
 	"cdx-typeahead-search-search-results-label": "Hasil pencarian",
 	"cdx-table-pager-button-first-page": "Halaman pertama",
 	"cdx-table-pager-button-last-page": "Halaman terakhir",
 	"cdx-table-pager-button-next-page": "Halaman selanjutnya",
 	"cdx-table-pager-button-prev-page": "Halaman sebelumnya",
 	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 butir}}",
+	"cdx-table-pager-items-per-page-default": "Hasil per halaman",
+	"cdx-table-pagination-status-message-determinate-long": "Menampilkan hasil $1–$2 dari $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 dari $3",
 	"cdx-table-pagination-status-message-pending": "Memuat hasil..."
 }

@@ -1205,7 +1205,7 @@
 	"rcfilters-filter-watchlist-watched-label": "ध्यानसूची में",
 	"rcfilters-filter-watchlist-watched-description": "आपकी ध्यानसूची पर मौजूद पृष्ठों में हुए बदलाव।",
 	"rcfilters-filter-watchlist-watchednew-label": "नया ध्यानसूची बदलाव",
-	"rcfilters-filter-watchlist-watchednew-description": "ध्यानसूची में मौजूद उन पृष्ठों पर हुए बदलाव जिनपर आप बदलावों के होने के बाद न गए हों।",
+	"rcfilters-filter-watchlist-watchednew-description": "ध्यानसूची में मौजूद उन पृष्ठों पर हुए बदलाव जिन पर आप बदलावों के होने के बाद न गए हों।",
 	"rcfilters-filter-watchlist-notwatched-label": "ध्यानसूची में नहीं",
 	"rcfilters-filter-watchlist-notwatched-description": "आपके ध्यान रखे हुए पृष्ठों पर हुए बदलावों के अलावा सब कुछ।",
 	"rcfilters-filtergroup-watchlistactivity": "ध्यानसूची गतिविधियाँ",
