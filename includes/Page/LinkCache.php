@@ -632,9 +632,6 @@ class LinkCache implements LoggerAwareInterface {
 		$this->clearLink( $page );
 	}
 
-	/**
-	 * Clears cache
-	 */
 	public function clear() {
 		$this->entries->clear();
 	}

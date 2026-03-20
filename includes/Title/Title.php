@@ -2670,6 +2670,8 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 		if ( MediaWikiServices::hasInstance() ) {
 			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 			$linkCache->clear();
+			$pageProps = MediaWikiServices::getInstance()->getPageProps();
+			$pageProps->clear();
 		}
 
 		// Reset cached main page instance (T395214).

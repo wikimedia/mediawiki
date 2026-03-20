@@ -16,6 +16,7 @@ use MediaWiki\JobQueue\Jobs\DuplicateJob;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\LinkCache;
+use MediaWiki\Page\PageProps;
 use Psr\Log\LoggerInterface;
 use Throwable;
 use Wikimedia\Rdbms\DBConnectionError;
@@ -60,6 +61,8 @@ class JobRunner {
 	/** @var LinkCache */
 	private $linkCache;
 
+	private PageProps $pageProps;
+
 	/** @var StatsFactory */
 	private $statsFactory;
 
@@ -94,6 +97,7 @@ class JobRunner {
 	 * @param JobQueueGroup $jobQueueGroup The JobQueueGroup for this wiki
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param LinkCache $linkCache
+	 * @param PageProps $pageProps
 	 * @param StatsFactory $statsFactory
 	 * @param LoggerInterface $logger
 	 */
@@ -103,6 +107,7 @@ class JobRunner {
 		JobQueueGroup $jobQueueGroup,
 		ReadOnlyMode $readOnlyMode,
 		LinkCache $linkCache,
+		PageProps $pageProps,
 		StatsFactory $statsFactory,
 		LoggerInterface $logger
 	) {
@@ -112,6 +117,7 @@ class JobRunner {
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->linkCache = $linkCache;
+		$this->pageProps = $pageProps;
 		$this->statsFactory = $statsFactory;
 		$this->logger = $logger;
 	}
@@ -349,6 +355,7 @@ class JobRunner {
 		// Clear out title cache data from prior snapshots
 		// (e.g. from before JobRunner was invoked in this process)
 		$this->linkCache->clear();
+		$this->pageProps->clear();
 
 		// Run the job...
 		$caught = [];

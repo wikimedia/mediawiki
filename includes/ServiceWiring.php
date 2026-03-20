@@ -1235,6 +1235,7 @@ return [
 			$services->getJobQueueGroup(),
 			$services->getReadOnlyMode(),
 			$services->getLinkCache(),
+			$services->getPageProps(),
 			$services->getStatsFactory(),
 			LoggerFactory::getInstance( 'runJobs' )
 		);
