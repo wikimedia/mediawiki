@@ -10,4 +10,8 @@ namespace MediaWiki\Tests\Parser;
 class TrackerWrapper {
 	/** This array contains data set by TrackingParserCache during tests */
 	public array $calls = [];
+
+	public function reset(): void {
+		$this->calls = [];
+	}
 }
