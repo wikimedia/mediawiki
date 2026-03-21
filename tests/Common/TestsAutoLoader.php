@@ -255,6 +255,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\BrokenClass2' => "$testDir/phpunit/mocks/BrokenClass2.php",
 	'MediaWiki\\Tests\\BrokenClass3' => "$testDir/phpunit/mocks/BrokenClass3.php",
 	'MediaWiki\\Tests\\MockDatabase' => "$testDir/phpunit/mocks/MockDatabase.php",
+	'MediaWiki\\Tests\\NullDomainEventSubscriber' => "$testDir/phpunit/mocks/NullDomainEventSubscriber.php",
 	'MediaWiki\\Tests\\ExpectCallbackTrait' => "$testDir/phpunit/mocks/ExpectCallbackTrait.php",
 	'MediaWiki\\Tests\\MockWikiMapTrait' => "$testDir/phpunit/mocks/MockWikiMapTrait.php",
 	'MediaWiki\\Tests\\Unit\\DummyServicesTrait' => "$testDir/phpunit/mocks/DummyServicesTrait.php",

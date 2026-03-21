@@ -37,6 +37,13 @@ class EventSubscriptionTest extends MediaWikiIntegrationTestCase {
 		$subscriberSpecs = ExtensionRegistry::getInstance()
 			->getAttribute( 'DomainEventIngresses' );
 
+		// Avoid empty data provider
+		$subscriberSpecs[] = [
+			'extensionPath' => 'core',
+			'events' => [],
+			'class' => \MediaWiki\Tests\NullDomainEventSubscriber::class,
+		];
+
 		foreach ( $subscriberSpecs as $spec ) {
 			yield [ $spec ];
 		}
