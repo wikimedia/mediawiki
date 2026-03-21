@@ -16,7 +16,39 @@ use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * @group Database
- * @covers \MediaWiki\SpecialPage\QueryPage<extended>
+ * @covers \MediaWiki\Specials\SpecialAncientPages
+ * @covers \MediaWiki\Specials\SpecialBrokenRedirects
+ * @covers \MediaWiki\Specials\SpecialDeadendPages
+ * @covers \MediaWiki\Specials\SpecialDoubleRedirects
+ * @covers \MediaWiki\Specials\SpecialListDuplicatedFiles
+ * @covers \MediaWiki\Specials\SpecialLinkSearch
+ * @covers \MediaWiki\Specials\SpecialListRedirects
+ * @covers \MediaWiki\Specials\SpecialLonelyPages
+ * @covers \MediaWiki\Specials\SpecialLongPages
+ * @covers \MediaWiki\Specials\SpecialMediaStatistics
+ * @covers \MediaWiki\Specials\SpecialMIMESearch
+ * @covers \MediaWiki\Specials\SpecialMostCategories
+ * @covers \MediaWiki\Specials\SpecialMostImages
+ * @covers \MediaWiki\Specials\SpecialMostInterwikis
+ * @covers \MediaWiki\Specials\SpecialMostLinkedCategories
+ * @covers \MediaWiki\Specials\SpecialMostLinkedTemplates
+ * @covers \MediaWiki\Specials\SpecialMostLinked
+ * @covers \MediaWiki\Specials\SpecialMostRevisions
+ * @covers \MediaWiki\Specials\SpecialFewestRevisions
+ * @covers \MediaWiki\Specials\SpecialShortPages
+ * @covers \MediaWiki\Specials\SpecialUncategorizedCategories
+ * @covers \MediaWiki\Specials\SpecialUncategorizedPages
+ * @covers \MediaWiki\Specials\SpecialUncategorizedImages
+ * @covers \MediaWiki\Specials\SpecialUncategorizedTemplates
+ * @covers \MediaWiki\Specials\SpecialUnusedCategories
+ * @covers \MediaWiki\Specials\SpecialUnusedImages
+ * @covers \MediaWiki\Specials\SpecialWantedCategories
+ * @covers \MediaWiki\Specials\SpecialWantedFiles
+ * @covers \MediaWiki\Specials\SpecialWantedPages
+ * @covers \MediaWiki\Specials\SpecialWantedTemplates
+ * @covers \MediaWiki\Specials\SpecialUnwatchedPages
+ * @covers \MediaWiki\Specials\SpecialUnusedTemplates
+ * @covers \MediaWiki\Specials\SpecialWithoutInterwiki
  */
 class QueryAllSpecialPagesTest extends MediaWikiIntegrationTestCase {
 

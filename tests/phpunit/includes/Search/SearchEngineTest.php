@@ -9,7 +9,12 @@ use MediaWiki\Search\SearchResult;
  * @group Search
  * @group Database
  *
- * @covers \MediaWiki\Search\SearchEngine<extended>
+ * @covers \MediaWiki\Search\SearchEngine
+ * @covers \MediaWiki\Search\SearchEngineDummy
+ * @covers \MediaWiki\Search\SearchDatabase
+ * @covers \MediaWiki\Search\SearchMySQL
+ * @covers \MediaWiki\Search\SearchPostgres
+ * @covers \MediaWiki\Search\SearchSqlite
  * @note Coverage will only ever show one of on of the Search* classes
  */
 class SearchEngineTest extends MediaWikiLangTestCase {
