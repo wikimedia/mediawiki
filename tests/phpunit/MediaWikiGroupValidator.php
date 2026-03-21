@@ -18,6 +18,7 @@ trait MediaWikiGroupValidator {
 		// If the test class says it belongs to the Database group, it needs the database.
 		// NOTE: This ONLY checks for the group in the class level doc comment.
 		$rc = new ReflectionClass( static::class );
-		return (bool)preg_match( '/@group +Database\b/m', $rc->getDocComment() );
+		// DocComment includes the '*/', match them for one-line comments
+		return (bool)preg_match( '/@group +Database( *\*\/)?$/m', $rc->getDocComment() );
 	}
 }
