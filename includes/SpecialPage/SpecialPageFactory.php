@@ -725,6 +725,7 @@ class SpecialPageFactory {
 				'RecentChangeFactory',
 				'ChangesListQueryFactory',
 				'WatchlistLabelStore',
+				'PermissionManager'
 			]
 		],
 		'WatchlistLabels' => [

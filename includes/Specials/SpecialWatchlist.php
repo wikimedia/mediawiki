@@ -12,6 +12,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
 use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
@@ -75,6 +76,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		RecentChangeFactory $recentChangeFactory,
 		ChangesListQueryFactory $changesListQueryFactory,
 		WatchlistLabelStore $watchlistLabelStore,
+		private PermissionManager $permissionManager
 	) {
 		parent::__construct(
 			'Watchlist',
@@ -592,6 +594,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$links = [];
 		$namesOfDisplayedFilters = [];
 		foreach ( $this->filterGroups->getLegacyShowHideFilters() as $filterName => $filter ) {
+			if ( !$this->permissionManager->isEveryoneAllowed( "edit" ) &&
+				( $filter->getName() == "hideliu" || $filter->getName() == "hideanons" ) ) {
+				continue;
+			}
 			$namesOfDisplayedFilters[] = $filterName;
 			$links[] = $this->showHideCheck(
 				$nondefaults,

@@ -69,6 +69,7 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 			$services->getRecentChangeFactory(),
 			$services->getChangesListQueryFactory(),
 			$services->getWatchlistLabelStore(),
+			$services->getPermissionManager()
 		);
 	}
 

@@ -46,6 +46,7 @@ class SpecialWatchlistLabelsTest extends SpecialPageTestBase {
 			$services->getRecentChangeFactory(),
 			$services->getChangesListQueryFactory(),
 			$services->getWatchlistLabelStore(),
+			$services->getPermissionManager()
 		);
 		if ( $enabled ) {
 			$this->assertContains( 'Special:WatchlistLabels', $watchlistLabels->getAssociatedNavigationLinks() );
