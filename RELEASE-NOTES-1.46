@@ -77,6 +77,9 @@ For notes on 1.45.x and older releases, see HISTORY.
 * (T413375) A new parser function has been added, {{#isbn}}, which replaces
   the ISBN "magic link" functionality for those wikis which have chosen to
   disable it.
+* (T420600) A new tag has been added called "Edited other user's JS". It is
+  automatically applied to edits to JavaScript pages in userspace that are not
+  subpages of the user making the edit.
 * (T12814) Special:MovePage can now move over existing pages when moving the
   talk page (following the same logic as for moving the subject page).
 * (T12814) Special:MovePage will now fail loudly if you ask to move the

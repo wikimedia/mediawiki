@@ -8,6 +8,7 @@ namespace MediaWiki\Storage;
 
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
@@ -617,6 +618,8 @@ class PageUpdater implements PageUpdateCauses {
 		$tags = $this->tags;
 		$editResult = $this->getEditResult();
 
+		// Add tags mw-blank, mw-new-redirect, mw-changed-redirect-target,
+		// mw-removed-redirect, mw-replace, and mw-contentmodelchange if appropriate.
 		foreach ( $this->slotsUpdate->getModifiedRoles() as $role ) {
 			$old_content = $this->getParentContent( $role );
 
@@ -629,6 +632,13 @@ class PageUpdater implements PageUpdateCauses {
 			if ( $tag ) {
 				$tags[] = $tag;
 			}
+		}
+
+		// Add tag mw-edited-other-users-js if appropriate.
+		$isUserJsConfigPage = $this->getTitle()->isUserJsConfigPage();
+		$isOwnUserSpace = $this->getTitle()->getRootText() === $this->author->getName();
+		if ( $isUserJsConfigPage && !$isOwnUserSpace ) {
+			$tags[] = ChangeTags::TAG_EDITED_OTHER_USERS_JS;
 		}
 
 		$tags = array_merge( $tags, $editResult->getRevertTags() );

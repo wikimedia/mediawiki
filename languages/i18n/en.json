@@ -3224,6 +3224,8 @@
 	"tag-mw-server-side-upload-description": "Media files that were uploaded via a maintenance script",
 	"tag-mw-ipblock-appeal": "IP block appeal",
 	"tag-mw-ipblock-appeal-description": "Temporary account creations via [[{{#special:Mytalk}}]] from IP addresses blocked from account creation",
+	"tag-mw-edited-other-users-js": "Edited other user's JS",
+	"tag-mw-edited-other-users-js-description": "Edits in userspace that modify JavaScript pages belonging to other users",
 	"tags-title": "Tags",
 	"tags-intro": "This page lists the tags that the software may mark an edit with, and their meaning.",
 	"tags-tag": "Tag name",

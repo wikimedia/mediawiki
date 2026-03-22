@@ -75,6 +75,7 @@ class ChangeTagsStore {
 		'mw-reverted',
 		'mw-server-side-upload',
 		'mw-ipblock-appeal',
+		'mw-edited-other-users-js',
 	];
 
 	private IConnectionProvider $dbProvider;

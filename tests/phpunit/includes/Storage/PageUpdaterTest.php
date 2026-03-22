@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Storage;
 
 use LogicException;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\JavaScriptContent;
@@ -1155,6 +1156,66 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $updater->wasSuccessful(), 'wasSuccessful()' );
 		$this->assertNull( $updater->getNewRevision(), 'getNewRevision()' );
 		$this->assertStatusError( 'edit-conflict', $status, 'edit-conflict' );
+	}
+
+	/**
+	 * @dataProvider provideEditedOtherUsersJSTag
+	 * @covers \MediaWiki\Storage\PageUpdater::computeEffectiveTags()
+	 */
+	public function testEditedOtherUsersJsTag( $userName, $pageToEdit, $contentModel, $expected ) {
+		$title = Title::newFromText( $pageToEdit );
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( $title );
+
+		if ( $contentModel === CONTENT_MODEL_JAVASCRIPT ) {
+			$content = new JavaScriptContent( 'console.log("hi")' );
+		} else {
+			$content = new TextContent( 'Lorem' );
+		}
+
+		$user = $this->makeUser( $userName );
+		$updater = $page->newPageUpdater( $user );
+		$updater->setContent( SlotRecord::MAIN, $content );
+
+		$summary = CommentStoreComment::newUnsavedComment( 'test' );
+		$rev = $updater->saveRevision( $summary );
+
+		$this->assertNotNull( $rev );
+
+		$tagsStore = $this->getServiceContainer()->getChangeTagsStore();
+		$actual = $tagsStore->getTags( $this->getDb(), null, $rev->getId() );
+
+		// expected may be empty
+		foreach ( $expected as $tag ) {
+			$this->assertContains( $tag, $actual );
+		}
+	}
+
+	public static function provideEditedOtherUsersJSTag() {
+		yield 'own users js edited' => [
+			'myUserName' => 'Admin',
+			'pageToEdit' => 'User:Admin/common.js',
+			'contentModelOfPageToEdit' => CONTENT_MODEL_JAVASCRIPT,
+			'expectedEditTags' => [],
+		];
+		yield 'other users js edited' => [
+			'myUserName' => 'Admin',
+			'pageToEdit' => 'User:SomeoneElse/common.js',
+			'contentModelOfPageToEdit' => CONTENT_MODEL_JAVASCRIPT,
+			'expectedEditTags' => [ ChangeTags::TAG_EDITED_OTHER_USERS_JS ],
+		];
+		yield 'own users non-js edited' => [
+			'myUserName' => 'Admin',
+			'pageToEdit' => 'User:Admin/subpage',
+			'contentModelOfPageToEdit' => CONTENT_MODEL_WIKITEXT,
+			'expectedEditTags' => [],
+		];
+		yield 'other user non-js edited' => [
+			'myUserName' => 'Admin',
+			'pageToEdit' => 'User:SomeoneElse/subpage',
+			'contentModelOfPageToEdit' => CONTENT_MODEL_WIKITEXT,
+			'expectedEditTags' => [],
+		];
 	}
 
 	/**

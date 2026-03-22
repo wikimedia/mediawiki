@@ -115,6 +115,11 @@ class ChangeTags {
 	 * from an IP address that is blocked from account creation.
 	 */
 	public const TAG_IPBLOCK_APPEAL = 'mw-ipblock-appeal';
+	/**
+	 * This tagged edit was performed on a page with the JavaScript content model on a page
+	 * not a subpage of the user's own user page.
+	 */
+	public const TAG_EDITED_OTHER_USERS_JS = 'mw-edited-other-users-js';
 
 	/**
 	 * List of tags which denote a revert of some sort. (See also TAG_REVERTED.)

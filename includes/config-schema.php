@@ -2109,6 +2109,7 @@ return [
 				'mw-reverted' => true,
 				'mw-server-side-upload' => true,
 				'mw-ipblock-appeal' => true,
+				'mw-edited-other-users-js' => true,
 			],
 			'UnwatchedPageThreshold' => false,
 			'RecentChangesFlags' => [
