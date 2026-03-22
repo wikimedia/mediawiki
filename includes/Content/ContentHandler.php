@@ -899,7 +899,9 @@ abstract class ContentHandler {
 
 		// Core tags use the same keys as ones returned from $this->getChangeType()
 		// but prefixed with pseudo namespace 'mw-', so we add the prefix before checking
-		// if this type of change should be tagged
+		// if this type of change should be tagged. List of tags for grep:
+		// mw-blank, mw-new-redirect, mw-changed-redirect-target, mw-removed-redirect,
+		// mw-replace, mw-contentmodelchange
 		$tag = 'mw-' . $changeType;
 
 		// Not all change types are tagged, so we check against the list of defined tags.
