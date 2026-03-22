@@ -10,6 +10,12 @@
 	unicode-bidi: embed;
 }
 
+/* stylelint-disable selector-class-pattern */
+:not( .mw-enhanced-rc ) > :is( .newpage, .minoredit, .botedit, .unpatrolled ) + :is( .newpage, .minoredit, .botedit, .unpatrolled ) {
+	margin-inline-start: 0.05em;
+}
+/* stylelint-enable selector-class-pattern */
+
 /*
  * Bidi-isolate these numbers.
  * See https://phabricator.wikimedia.org/T93484
