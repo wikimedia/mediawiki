@@ -38,7 +38,7 @@
 		"justinrainbow/json-schema": "5.3.2",
 		"lcobucci/jwt": "5.6.0",
 		"liuggio/statsd-php-client": "1.0.18",
-		"mck89/peast": "1.17.4",
+		"mck89/peast": "1.17.5",
 		"monolog/monolog": "2.11.0",
 		"okvpn/clock-lts": "1.0.0",
 		"oojs/oojs-ui": "0.53.1",
