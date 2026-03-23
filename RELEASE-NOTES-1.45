@@ -12,8 +12,90 @@ THIS IS NOT A RELEASE YET
 
 === Changes since 1.45.1 ===
 * Localisation updates.
+* (T386108) Upgrade pear/pear-core-minimal to v1.10.17.
+* (T412194) Upgrading justinrainbow/json-schema (5.3.0 => 5.3.1).
+* (T411213) Upgrade wikimedia/less.php from 5.2.2 to 5.5.0.
+* (T413538) MultiHttpClient: Remove curl_close() call.
+* (T413565) Search: Replace deprecated SplObjectStorage methods.
+* Mime: Change mime type video/x-matroska to video/matroska.
+* (T413625) LinksMigration: Correctly filter for equal namespaces.
+* (T413582) ShellboxClientFactory: Handle $service being null in getUrl().
+* (T413672) EtcdConfigTest: Add return value for some MultiHttpClient mocks.
+* (T413675) DBConnRefTest: Add a temporary variable for return value in
+  testRoleExceptions.
+* (T413580) LanguageCodeTest: Remove unnecessary null assertion.
+* Allow wikimedia/testing-access-wrapper ^4.0.0.
+* Logging: Handle possible null as type for LogPage.
+* (T411019) Logging: Set default for log type on dropdown via LogEventsList.
+* (T413690) libs: Fix closure detection in MemoizedCallable.
+* (T413923) Don't use null offsets in BlockManager::getUniqueBlocks.
+* SiteConfiguration: Optimize processSetting for default-only case.
+* SiteConfiguration: Use \array_key_exists().
+* SiteConfiguration: Use use function syntax.
+* Config: Use use function array_key_exists some more.
+* (T413924, T413925) tests: PHP 8.5 compatibility in AuthManager tests.
+* (T413573) [php8.4] Use DOMCompat::innerHTML() instead of Element::nodeValue.
+* Update documentation from which versions you can upgrade.
+* (T413673) tests: Fix PHP8.5 error when casting float(INF) as integer.
+* (T414355) Fix PHP 8.5 deprecation warnings in IcuCollation.
+* (T414351) Avoid coercing NAN/INF/-INF to string.
+* (T404636) tests: Hide deprecation warning for PHPSessionHandler.
+* (T414323) tests: Use setAttributeForTest() correctly.
+* (T413674) ParamValidator: Suppress cast warning in IntegerDef.
+* (T413577) Parser: Ignore long user provided int in
+  Sanitizer::decodeCharReferences.
+* (T413576) Rdbms: Get strings from SQLPlatform::getDatabaseAndTableIdentifier.
+* (T413579) Site: Handle non-stored Site objects in SiteList.
+* (T413920) tests: Mock some functions in OutputPageTest.
+* (T413926) Do not attempt to get handler for unknown file types.
+* (T413919) tests: Use real TitleFormatter in LinkBatchTest.
+* (T413930) User: Add fallback 'default' to User::getDatePreference.
+* (T413934) JobQueueGroup: avoid PHP 8.5 deprecation from null array offsets.
+* (T413922) Rdbms: Handle null from DatabaseDomain::getDatabase in
+  LBFactoryMulti.
+* (T413901) Media: Remove deprecated imagedestroy.
+* rdbms::assertTransactionRoundStage: Show transaction name if available.
+* (T414350) Language: Handle NAN coercion to string in formatting numbers.
+* (T413931) tests: Set module name in ApiBaseTest::doGetParameterFromSettings.
+* (T414336) Disable process timeout for Composer phpunit script.
+* (T413575) libs>XhprofData: Handle use of NULLs as array keys for PHP8.5.
+* (T406744) tests: remove setAccessible() call on Reflection objects.
+* tests: Change DomDocument return type in SpecialCreateAccountTest.
+* (T415443) Upgrading mck89/peast (v1.16.3 => v1.17.4).
+* (T413918) tests: Mock value for RangeChronologicalPager::getTimestampField.
+* (T413921) LinksUpdate: Handle nullable el_to_path column in
+  ExternalLinksUpdate.
+* (T413926) Upload: Do not attempt to get handler for unknown file types.
+* File: Ensure mime type is set for LocalFile::getMimeType.
+* (T413917) Specials: Use empty string as missing type on
+  Special:RevisionDelete.
+* (T415723) Updated phpunit/phpunit from 9.6.21 to 9.6.33.
+* Update phpunit/phpunit from 9.6.33 to 9.6.34.
+* Update wikimedia/parsoid to 0.22.1.
+* (T414599) migrateLinksTable: Handle constant namespace values in mapping.
+* VueComponentParser: use Parsoid DOM compatibility methods.
+* FileRepo: Add 'userAgent' option in ForeignAPIRepo for wgForeignFileRepos.
+* [tests] Add forward-compatibility alias for JsonDeserializableSubClass.
+* (T367584) JsonCodec/ParserCache: Forward-compatibility test cases.
+* (T413545) Update wikimedia/parsoid to 0.22.2.
+* (T417390) mediawiki.util: Don't throw in addSubtitle if the skin lacks a
+  subtitle.
+* (T414884) PostgresInstaller: Handle null password in openConnectionToAnyDB.
+* Forward compatibility with ParserOutput::getTitle().
 * Upgrade wikimedia/css-sanitizer from 6.1.0 to 6.2.1.
-* Upgrade wikimedia/less.php from 5.2.2 to 5.5.0.
+* (T414805, T418745, T418346) WebPHandler: Allow the original being served on
+  the web.
+* (T411013) mediawiki.util: Add adjustThumbWidthForSteps for step sizing in JS.
+* (T411013) mediawiki.util,FileRepo: Improve adjustThumbWidthForSteps test
+  coverage.
+* (T411125) Round to original file width if there is no steep between that &
+  requested.
+* (T411125) File: Allow scaling up vectorized images to larger sizes.
+* (T360589, T415598) Move handling of ThumbnailSteps to media handlers.
+* (T416518) Disable Composer audit.block-insecure option.
+* (T419183) ParserOutputFlags: add HAS_SLOT_HEADERS.
+* (T419479) sql: Mark pl_target_id as non-nullable in abstract schema.
+* (T329183, T417691) Clarify documentation for action=query&list=tags.
 
 == MediaWiki 1.45.1 ==
 
