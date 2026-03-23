@@ -2,6 +2,7 @@
  * @typedef {Object} FetchEndEvent
  * @property {number} numberOfResults
  * @property {string} query
+ * @property {string} searchId
  */
 
 /**

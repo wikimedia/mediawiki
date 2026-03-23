@@ -228,22 +228,23 @@ module.exports = exports = defineComponent( {
 		const updateUIWithSearchClientResult = ( search, replaceResults ) => {
 			const query = currentSearchQuery.value;
 			search.fetch
-				.then( ( data ) => {
+				.then( ( { results, searchId } ) => {
 					if ( currentSearchQuery.value === query ) {
 						if ( replaceResults ) {
 							suggestions.value = [];
 						}
 						suggestions.value.push(
 							...instrumentation.addWprovToSearchResultUrls(
-								data.results, suggestions.value.length
+								results, suggestions.value.length
 							)
 						);
 						searchFooterUrl.value = props.urlGenerator.generateUrl( query );
 					}
 
 					const event = {
-						numberOfResults: data.results.length,
-						query: query
+						numberOfResults: results.length,
+						query,
+						searchId
 					};
 					instrumentation.listeners.onFetchEnd( event );
 				} )

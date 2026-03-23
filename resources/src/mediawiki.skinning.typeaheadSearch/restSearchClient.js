@@ -8,11 +8,18 @@ const fetchJson = require( './fetch.js' );
 
 /**
  * @typedef {Object} RestResponse
+ * @property {string | null} searchId
+ * @property {RestResponseBody} body
+ */
+
+/**
+ * @typedef {Object} RestResponseBody
  * @property {RestResult[]} pages
  */
 
 /**
  * @typedef {Object} SearchResponse
+ * @property {string | null} searchId
  * @property {string} query
  * @property {SearchResult[]} results
  */
@@ -38,7 +45,8 @@ function nullish( a, b ) {
 function adaptApiResponse( urlGeneratorInstance, query, restResponse, showDescription ) {
 	return {
 		query,
-		results: restResponse.pages.map( ( page, index ) => {
+		searchId: restResponse.searchId,
+		results: restResponse.body.pages.map( ( page, index ) => {
 			const thumbnail = page.thumbnail;
 			return {
 				id: page.id,

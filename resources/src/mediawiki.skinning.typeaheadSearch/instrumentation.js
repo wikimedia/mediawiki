@@ -6,7 +6,7 @@ function onFetchEnd( event ) {
 		action: 'impression-results',
 		numberOfResults: event.numberOfResults,
 		// resultSetType: '',
-		// searchId: '',
+		searchId: event.searchId,
 		query: event.query,
 		inputLocation: 'header-moved'
 	} );

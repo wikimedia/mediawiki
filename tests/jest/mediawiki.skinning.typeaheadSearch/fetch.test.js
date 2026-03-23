@@ -38,7 +38,9 @@ describe( 'fetch() using window.fetch', () => {
 				return {
 					body: JSON.stringify( { pages: [] } ),
 					headers: {
-						'Content-Type': 'application/json'
+						'Content-Type': 'application/json',
+						'X-Search-ID': 'some-search-id'
+
 					}
 				};
 			} else {
@@ -54,7 +56,7 @@ describe( 'fetch() using window.fetch', () => {
 		const { fetch } = fetchJson( url );
 		const json = await fetch;
 		const controller = new AbortController();
-		expect( json ).toStrictEqual( { pages: [] } );
+		expect( json ).toStrictEqual( { searchId: 'some-search-id', body: { pages: [] } } );
 
 		if ( mockedRequests ) {
 			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
@@ -66,7 +68,7 @@ describe( 'fetch() using window.fetch', () => {
 		const { fetch } = fetchJson( url, { mode: 'cors' } );
 		const json = await fetch;
 
-		expect( json ).toStrictEqual( { pages: [] } );
+		expect( json ).toStrictEqual( { searchId: 'some-search-id', body: { pages: [] } } );
 
 		if ( mockedRequests ) {
 			expect( fetchMock ).toHaveBeenCalledTimes( 1 );

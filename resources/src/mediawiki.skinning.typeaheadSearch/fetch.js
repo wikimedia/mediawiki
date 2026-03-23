@@ -40,7 +40,11 @@ function fetchJson( resource, init ) {
 				'Network request failed with HTTP code ' + response.status
 			);
 		}
-		return response.json();
+		const searchId = response.headers.get( 'x-search-id' );
+		return response.json().then( ( body ) => ( {
+			searchId,
+			body
+		} ) );
 	} );
 
 	return {
