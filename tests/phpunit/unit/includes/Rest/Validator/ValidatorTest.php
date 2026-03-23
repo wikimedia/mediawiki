@@ -298,6 +298,25 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 				'name' => 'test',
 			]
 		];
+
+		yield 'boolean parameter with default' => [
+			[
+				ParamValidator::PARAM_TYPE => 'boolean',
+				Validator::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_REQUIRED => false,
+				ParamValidator::PARAM_DEFAULT => true,
+			],
+			[
+				'schema' => [
+					'type' => 'boolean',
+					'default' => true,
+				],
+				'required' => false,
+				'description' => 'test parameter',
+				'in' => 'query',
+				'name' => 'test',
+			]
+		];
 	}
 
 	/**

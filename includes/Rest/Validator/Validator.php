@@ -417,6 +417,10 @@ class Validator {
 			$schema = self::PARAM_TYPE_SCHEMAS["{$type}-param"] ?? [];
 		}
 
+		if ( isset( $paramSetting[ ParamValidator::PARAM_DEFAULT ] ) ) {
+			$schema['default'] = $paramSetting[ ParamValidator::PARAM_DEFAULT ];
+		}
+
 		return $schema;
 	}
 
