@@ -8,7 +8,6 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Status\StatusFormatter;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
-use Psr\Log\Test\TestLogger;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\TestingAccessWrapper;
 
@@ -22,7 +21,7 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->logger = new TestLogger();
+		$this->logger = new TestLogger( true );
 	}
 
 	protected function tearDown(): void {
@@ -130,9 +129,10 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 		);
 
 		if ( $expectedWarning !== null ) {
-			$this->assertTrue( $this->logger->hasWarningThatContains( $expectedWarning ) );
+			$this->assertTrue( array_any( $this->logger->getBuffer(),
+				static fn ( $buffer ) => str_contains( $buffer[1], $expectedWarning ) ) );
 		} else {
-			$this->assertFalse( $this->logger->hasWarningRecords() );
+			$this->assertSame( [], $this->logger->getBuffer() );
 		}
 	}
 
@@ -268,9 +268,10 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 		$this->assertCount( 1, $message->getParams(), 'Message::getParams with wrappers' );
 
 		if ( $expectedWarning !== null ) {
-			$this->assertTrue( $this->logger->hasWarningThatContains( $expectedWarning ) );
+			$this->assertTrue( array_any( $this->logger->getBuffer(),
+				static fn ( $buffer ) => str_contains( $buffer[1], $expectedWarning ) ) );
 		} else {
-			$this->assertFalse( $this->logger->hasWarningRecords() );
+			$this->assertSame( [], $this->logger->getBuffer() );
 		}
 	}
 

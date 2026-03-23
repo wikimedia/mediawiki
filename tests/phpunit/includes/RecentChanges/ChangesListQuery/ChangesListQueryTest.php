@@ -26,7 +26,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchlistLabel;
 use Psr\Log\NullLogger;
-use Psr\Log\Test\TestLogger;
+use TestLogger;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -1316,7 +1316,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			$this->markTestSkipped( 'the code under test checks the DB type' );
 		}
 		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['require changeTags mw-blank'];
-		$logger = new TestLogger();
+		$logger = new TestLogger( true );
 		$query = $this->getQuery( [ 'logger' => $logger ] )
 			->requireChangeTags( [ 'mw-blank' ] )
 			// Make sure thresholds are passed
@@ -1327,7 +1327,9 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		$expectedInfo['options']['LIMIT'] = 50;
 
 		$this->doQuery( $query, $expectedInfo, $expectedIds );
-		$this->assertTrue( $logger->hasDebugThatContains( 'isDenseTagFilter' ) );
+		$this->assertTrue( array_any( $logger->getBuffer(),
+			static fn ( $buffer ) => str_contains( $buffer[1], 'isDenseTagFilter' )
+		) );
 	}
 
 	public static function provideDenseTagFilter() {
