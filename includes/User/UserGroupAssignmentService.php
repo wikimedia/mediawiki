@@ -18,6 +18,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -662,7 +663,7 @@ class UserGroupAssignmentService {
 			return null;
 		}
 
-		$unix = strtotime( $expiry );
+		$unix = strtotime( $expiry, ConvertibleTimestamp::time() );
 
 		if ( !$unix || $unix === -1 ) {
 			return false;

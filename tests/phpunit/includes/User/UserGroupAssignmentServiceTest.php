@@ -26,6 +26,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers \MediaWiki\User\UserGroupAssignmentService
@@ -947,5 +948,20 @@ class UserGroupAssignmentServiceTest extends MediaWikiIntegrationTestCase {
 		}
 		$this->assertTrue( $localPresent, 'Local wiki log entry is missing' );
 		$this->assertTrue( $remotePresent, 'Remote wiki log entry is missing' );
+	}
+
+	/** @dataProvider provideExpiryToTimestamp */
+	public function testExpiryToTimestamp( string $providedExpiry, string|null|bool $expectedTimestamp ): void {
+		ConvertibleTimestamp::setFakeTime( '20260504030201' );
+		$this->assertSame( $expectedTimestamp, UserGroupAssignmentService::expiryToTimestamp( $providedExpiry ) );
+	}
+
+	public static function provideExpiryToTimestamp(): array {
+		return [
+			'Expiry is indefinite' => [ 'indefinite', null ],
+			'Expiry is 1 year' => [ '1 year', '20270504030201' ],
+			'Expiry is absolute timestamp' => [ '1 January 2026 23:45', '20260101234500' ],
+			'Expiry is not valid' => [ 'Invalid timestamp', false ],
+		];
 	}
 }
