@@ -403,6 +403,11 @@ class SearchHandler extends Handler {
 			}
 			$response->setHeader( ResponseHeaders::CACHE_CONTROL, $cacheControl );
 		}
+		$searchId = $searchEngine->getFeatureData( SearchEngine::SEARCH_ID );
+		if ( $searchId ) {
+			// if the search backend provides a search id propagate it via headers.
+			$response->setHeader( 'X-Search-ID', $searchId );
+		}
 
 		return $response;
 	}

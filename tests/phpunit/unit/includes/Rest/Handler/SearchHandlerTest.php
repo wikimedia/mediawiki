@@ -118,6 +118,10 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 			->with( $query )
 			->willReturn( $completionResult );
 
+		$this->searchEngine->method( 'getFeatureData' )
+			->with( SearchEngine::SEARCH_ID )
+			->willReturn( 'a-search-id' );
+
 		$searchEngineFactory = $this->createNoOpMock( SearchEngineFactory::class, [ 'create' ] );
 		$searchEngineFactory->method( 'create' )
 			->willReturn( $this->searchEngine );
@@ -226,6 +230,7 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 200, $response->getStatusCode() );
 		$this->assertSame( 'application/json', $response->getHeaderLine( 'Content-Type' ) );
 		$this->assertSame( 'public, max-age=1200', $response->getHeaderLine( 'Cache-Control' ) );
+		$this->assertSame( 'a-search-id', $response->getHeaderLine( 'X-Search-ID' ) );
 
 		$data = json_decode( $response->getBody(), true );
 		$this->assertIsArray( $data, 'Body must be a JSON array' );
@@ -257,6 +262,7 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 		$response = $this->executeHandler( $handler, $request, $config );
 		$this->assertSame( 'no-store, max-age=0', $response->getHeaderLine( 'Cache-Control' ) );
 		$this->assertSame( 200, $response->getStatusCode() );
+		$this->assertSame( 'a-search-id', $response->getHeaderLine( 'X-Search-ID' ) );
 	}
 
 	public function testExecute_limit() {
