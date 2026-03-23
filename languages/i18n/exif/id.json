@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bayahiu",
 			"Bennylin",
 			"Borgx",
 			"Daud I.F. Argana",
@@ -409,6 +410,7 @@
 	"exif-poseheadingdegrees": "Kepala pose (derajat)",
 	"exif-posepitchdegrees": "Anggul (derajat)",
 	"exif-poserolldegrees": "Guling (derajat)",
+	"exif-initialviewheadingdegrees": "Arah pandangan awal (derajat)",
 	"exif-initialviewpitchdegrees": "Anggul tampilan awal (derajat)",
 	"exif-initialviewrolldegrees": "Guling tampilan awal (derajat)",
 	"exif-initialhorizontalfovdegrees": "Ruang pandang awal (derajat horizontal)",
@@ -422,9 +424,25 @@
 	"exif-croppedareatoppixels": "Pemotong atas panorama",
 	"exif-initialcameradolly": "Doli kamera awal",
 	"exif-stitchingsoftware": "Perangkat lunak penjahit",
+	"exif-digitalsourcetype": "Sumber media digital",
+	"exif-digitalsourcetype-digitalcapture": "Kamera atau perekam digital",
+	"exif-digitalsourcetype-computationalcapture": "Kamera atau perekam digital (gabungan bingkai ganda)",
+	"exif-digitalsourcetype-negativefilm": "Didigitalkan dari negatif transparan",
+	"exif-digitalsourcetype-positivefilm": "Didigitalkan dari positif transparan",
+	"exif-digitalsourcetype-print": "Didigitalkan dari media tak transparan",
+	"exif-digitalsourcetype-minorhumanedits": "Media asli dengan sedikit suntingan manusia",
 	"exif-digitalsourcetype-humanedits": "Media yang disunting oleh manusia",
 	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "Disunting menggunakan AI generatif",
+	"exif-digitalsourcetype-algorithmicallyenhanced": "Media yang diubah secara algoritmik",
 	"exif-digitalsourcetype-softwareimage": "Dibuat oleh perangkat lunak",
+	"exif-digitalsourcetype-digitalart": "Diciptakan oleh manusia menggunakan alat digital",
+	"exif-digitalsourcetype-digitalcreation": "Media terciptakan oleh manusia menggunakan alat non-AI",
+	"exif-digitalsourcetype-datadrivenmedia": "Perwakilan media digital bagi data lewat pemrograman atau daya cipta manusia.",
 	"exif-digitalsourcetype-trainedalgorithmicmedia": "Dibuat menggunakan AI Generatif",
-	"exif-digitalsourcetype-algorithmicmedia": "Media yang dibuat secara murni oleh algoritma non-AI"
+	"exif-digitalsourcetype-algorithmicmedia": "Media yang dibuat secara murni oleh algoritma non-AI",
+	"exif-digitalsourcetype-screencapture": "Tangkapan layar",
+	"exif-digitalsourcetype-virtualrecording": "Rekaman langsung acara virtual berdasarkan AI Generatif dan/atau unsur tertangkap",
+	"exif-digitalsourcetype-composite": "Campuran atau gabungan dari beberapa unsur, yang mana salah satunya mungkin berupa AI generatif atau bukan",
+	"exif-digitalsourcetype-compositecapture": "Campuran atau gabungan dari beberapa unsur yang semuanya berupa tangkapan dari kehidupan nyata",
+	"exif-digitalsourcetype-compositesynthetic": "Campuran atau gabungan dari beberapa unsur, setidaknya salah satunya berupa AI Generatif"
 }

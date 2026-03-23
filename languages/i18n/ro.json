@@ -2192,6 +2192,7 @@
 	"ipaddressorusername": "Adresă IP, nume de utilizator sau ID blocare:",
 	"ipbreason": "Motiv:",
 	"ipbreason-dropdown": "*Motivele cele mai frecvente\n** Introducere de informații false\n** Ștergere conținut fără explicații\n** Introducere de legături externe de publicitate (spam)\n** Creare pagini fără sens\n** Tentative de intimidare\n** Abuz utilizare conturi multiple\n** Nume de utilizator inacceptabil",
+	"ipbreason-indef-dropdown": "* Motive generale pentru blocare pe termen nelimitat\n** Legături spam către site-uri externe\n** Folosirea abuzivă a mai multor conturi\n** Nume de utilizator inacceptabil",
 	"ipb-hardblock": "Aplică blocarea utilizatorilor autentificați de la această adresă IP",
 	"ipbcreateaccount": "Crearea de conturi",
 	"ipbemailban": "Trimiterea unui e-mail",

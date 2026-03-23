@@ -1394,6 +1394,7 @@
 	"unusedtemplateswlh": "Aner Linken",
 	"randompage": "Zoufälleg Säit",
 	"randompage-nopages": "Et gëtt keng Säiten {{PLURAL:$2|am Nummraum|an den Nummraim}}: $1.",
+	"randompage-disallowed-action": "Aus Sécherheetsgrënn kann d'Aktioun „$1“ bei der Säit „Spezial:Zoufälleg Säit“ net benotzt ginn.",
 	"randomincategory": "Zoufälleg Säit an der Kategorie",
 	"randomincategory-invalidcategory": "„$1“ ass kee gültege Kategoriennumm.",
 	"randomincategory-nopages": "Et gëtt keng Säiten an der [[:Category:$1]].",

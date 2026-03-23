@@ -271,7 +271,7 @@
 	"listgrouprights-namespaceprotection-header": "Limitatioune vum Nummraum",
 	"listgrouprights-namespaceprotection-namespace": "Nummraum",
 	"listgrouprights-namespaceprotection-restrictedto": "Recht(er), déi dem Benotzer d'Änneren erlaben",
-	"restrictedgroups-autodemotion-log-reason": "De Benotzer gëtt automatesch aus {{PLURAL:$2|enger ageschränkter Grupp|ageschränkte Gruppen}} erausgeholl, fir déi {{GENDER:$1|hien|si|de Benotzer}} net méi eligibel ass",
+	"restrictedgroups-autodemotion-log-reason": "{{GENDER:$1|De Benotzer|D'Benotzerin}} gëtt automatesch aus {{PLURAL:$2|enger ageschränkter Grupp|ageschränkte Gruppen}} erausgeholl",
 	"listgrants": "Autorisatiounen",
 	"listgrants-grant": "Autorisatioun",
 	"listgrants-rights": "Rechter"

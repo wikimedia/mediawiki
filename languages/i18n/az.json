@@ -1570,6 +1570,7 @@
 	"unusedtemplateswlh": "digər keçidlər",
 	"randompage": "Təsadüfi səhifə",
 	"randompage-nopages": "Aşağıdakı {{PLURAL:$2|ad fəzasında|ad fəzalarında}} səhifə yoxdur: $1.",
+	"randompage-disallowed-action": "Təhlükəsizlik səbəblərinə görə, \"$1\" əməliyyatı Xüsusi:Təsadüfi səhifəsində istifadə edilə bilməz.",
 	"randomincategory": "Kateqoriyada təsadüfi səhifə",
 	"randomincategory-invalidcategory": "\"$1\" düzgün kateqoriya adı deyil.",
 	"randomincategory-nopages": "[[:Category:$1|$1]] kateqoriyasında səhifə yoxdur",

@@ -1754,6 +1754,7 @@
 	"unusedtemplateswlh": "其他链接",
 	"randompage": "随机页面",
 	"randompage-nopages": "在以下{{PLURAL:$2|命名空间}}中没有页面：$1。",
+	"randompage-disallowed-action": "出于安全原因，Special:Random页面不能使用操作“$1”。",
 	"randomincategory": "随机特定分类内页面",
 	"randomincategory-invalidcategory": "“$1”不是一个有效的分类名称。",
 	"randomincategory-nopages": "[[:Category:$1|$1]]分类下没有页面。",

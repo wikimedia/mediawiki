@@ -19,7 +19,7 @@
 	"interwiki_1": "da",
 	"interwiki_0": "ne",
 	"interwiki_error": "Greška: Međuwiki tabela je prazna ili nešto drugo nije u redu.",
-	"interwiki-cached": "Međuwiki podaci su u predmemoriji. Mijenjanje predmemorije nije moguće.",
+	"interwiki-cached": "Međuwiki podaci su u predmemoriji, koju nije moguće mijenjati.",
 	"interwiki_edit": "Uredi",
 	"interwiki_reasonfield": "Razlog:",
 	"interwiki_deleting": "Brišete prefiks \"$1\".",

@@ -311,7 +311,7 @@
 	"listgrouprights-namespaceprotection-header": "Restrictiones de spatio de nomines",
 	"listgrouprights-namespaceprotection-namespace": "Spatio de nomines",
 	"listgrouprights-namespaceprotection-restrictedto": "Derecto(s) que permitte al usator de modificar",
-	"restrictedgroups-autodemotion-log-reason": "Retiro automatic del usat{{GENDER:$1|or|rice}} de {{PLURAL:$2|un gruppo|gruppos}} restringite pro le qual{{PLURAL:$2||es}} {{GENDER:$1|ille|illa}} non es plus eligibile",
+	"restrictedgroups-autodemotion-log-reason": "Retiro automatic del usat{{GENDER:$1|or|rice}} de {{PLURAL:$2|un gruppo|gruppos}} restringite",
 	"listgrants": "Concessiones",
 	"listgrants-summary": "Lo sequente es un lista de concessiones con lor accesso associate a derectos de usator. Le usatores pote autorisar applicationes a usar lor conto, ma con permissiones limitate secundo le concessiones que le usator ha date al application. Nonobstante, un application agente in nomine de un usator non pote vermente usar derectos que le usator non ha.\nIl ha possibilemente [[{{MediaWiki:Listgrouprights-helppage}}|informationes supplementari]] sur derectos individual.",
 	"listgrants-grant": "Conceder",

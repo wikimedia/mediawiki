@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ella Lachow",
 			"Malaalaa"
 		]
 	},
-	"converter-manual-rule-error": "Asan doonaa laammiyo seeran balay beettiis",
+	"converter-manual-rule-error": "Asa kushiyan doonaa laammiyo seeran balay beettiis",
 	"language-converter-depth-warning": "Doonaa laammiyo ciimmaa teqqiyo ($1)ppe aadhdhiis"
 }

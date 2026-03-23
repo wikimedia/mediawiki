@@ -344,7 +344,7 @@
 	"listgrouprights-namespaceprotection-header": "命名空间限制",
 	"listgrouprights-namespaceprotection-namespace": "命名空间",
 	"listgrouprights-namespaceprotection-restrictedto": "允许用户编辑的权限",
-	"restrictedgroups-autodemotion-log-reason": "自动将用户从{{GENDER:$1|他|她|其}}不再符合资格的{{PLURAL:$2|受限用户组}}中移除",
+	"restrictedgroups-autodemotion-log-reason": "自动将{{GENDER:$1|用户}}从{{PLURAL:$2|受限用户组}}中移除",
 	"listgrants": "授权",
 	"listgrants-summary": "以下是与用户权限访问相关的授权列表。用户可以授予应用程序访问它们的账号，但限定于用户授予应用程序的功能权限。代表一位用户的应用程序不能使用用户没有的权限。这里可能有关于个别权限的[[{{MediaWiki:Listgrouprights-helppage}}|额外信息]]。",
 	"listgrants-grant": "授权",

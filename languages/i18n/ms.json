@@ -1560,6 +1560,7 @@
 	"unusedtemplateswlh": "pautan-pautan lain",
 	"randompage": "Laman rawak",
 	"randompage-nopages": "Tiada laman dalam {{PLURAL:$2|ruang|ruang-ruang}} nama berikut: $1.",
+	"randompage-disallowed-action": "Atas sebab keselamatan, tindakan \"$1\" tidak boleh digunakan pada laman Khas:Rawak.",
 	"randomincategory": "Laman rawak dalam kategori",
 	"randomincategory-invalidcategory": "\"$1\" bukan nama kategori yang sah.",
 	"randomincategory-nopages": "Tiada halaman di [[:Category:$1]].",

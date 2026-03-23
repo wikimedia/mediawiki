@@ -12,6 +12,7 @@
 			"Mahabarata",
 			"McDutchie",
 			"Méthodes Bulebe Hangi",
+			"Serieminou",
 			"Thibaut120094",
 			"Urhixidur",
 			"Verdy p",
@@ -300,5 +301,8 @@
 	"rest-endpoint-summ-post-page": "Créer une page",
 	"rest-endpoint-summ-post-transform-wikitext-to-lint": "Renvoie les erreurs de l’analyseur syntaxique pour du wikitexte",
 	"rest-endpoint-summ-post-transform-wikitext-to-html": "Convertir Wikitext en HTML",
-	"rest-endpoint-summ-post-transform-html-to-wikitext": "Convertit du HTML en wikitexte."
+	"rest-endpoint-summ-post-transform-html-to-wikitext": "Convertit du HTML en wikitexte.",
+	"rest-requestheader-desc-contenttype": "Indique le type de média original d'une ressource avant tout encodage de contenu.",
+	"rest-requestheader-desc-cookie": "Autoriser les serveurs à stocker des informations d'état sur le navigateur du client, permettant ainsi des fonctionnalités telles que la gestion de session, la personnalisation et le suivi.",
+	"rest-requestheader-desc-authorization": "Fournit des informations d'identification qui authentifient un agent utilisateur avec un serveur, autorisant ainsi l'accès aux ressources protégées."
 }

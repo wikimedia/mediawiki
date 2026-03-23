@@ -31,6 +31,8 @@
 	"username": "{{GENDER:$1|Kasutajanimi}}:",
 	"prefs-memberingroups": "{{PLURAL:$1|Järgmise rühma|Järgmiste rühmade}} {{GENDER:$2|liige}}:",
 	"group-membership-link-with-expiry": "$1 (tähtaeg $2)",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|Keelatud}} {{PLURAL:$1|rühm|rühmad}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|Sa}} ei vasta enam [[$3|tingimustele]], et olla {{PLURAL:$1|selle rühma|nende rühmade}} liige ning sa ei saa seetõttu enam kasutada {{PLURAL:$1|sellega|nendega}} seotud õiguseid.",
 	"prefs-edits": "Redigeerimiste arv:",
 	"prefs-registration": "Registreerumise aeg:",
 	"yourrealname": "Tegelik nimi:",

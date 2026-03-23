@@ -312,6 +312,8 @@
 	"listgrouprights-restrictedgroups-op-and": "다음을 모두 충족해야 합니다: $1",
 	"listgrouprights-restrictedgroups-cond-editcount": "사용자가 {{PLURAL:$1|편집}}을 적어도 $1회 수행했습니다",
 	"listgrouprights-restrictedgroups-cond-age": "사용자 계정이 $1 전에 만들어졌습니다",
+	"listgrouprights-restrictedgroups-cond-isip": "사용자는 IP 주소를 사용합니다: $1",
+	"listgrouprights-restrictedgroups-cond-isbot": "사용자는 봇입니다",
 	"listgrouprights-namespaceprotection-header": "이름공간 제한",
 	"listgrouprights-namespaceprotection-namespace": "이름공간",
 	"listgrouprights-namespaceprotection-restrictedto": "사용자가 편집할 수 있는 권한",

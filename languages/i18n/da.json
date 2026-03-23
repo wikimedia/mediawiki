@@ -1604,6 +1604,7 @@
 	"unusedtemplateswlh": "andre henvisninger",
 	"randompage": "Tilfældig side",
 	"randompage-nopages": "Der er ingen sider i {{PLURAL:$2|navnerummet|disse navnerum:}} $1.",
+	"randompage-disallowed-action": "Af sikkerhedsmæssige årsager kan handlingen \"$1\" ikke bruges på siden Special:Random.",
 	"randomincategory": "Tilfældig side i kategori",
 	"randomincategory-invalidcategory": "\"$1\" er ikke et gyldigt kategorinavn.",
 	"randomincategory-nopages": "Der er ingen sider i [[:Category:$1]].",

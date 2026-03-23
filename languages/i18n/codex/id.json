@@ -29,5 +29,9 @@
 	"cdx-table-pager-items-per-page-default": "Hasil per halaman",
 	"cdx-table-pagination-status-message-determinate-long": "Menampilkan hasil $1–$2 dari $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 dari $3",
-	"cdx-table-pagination-status-message-pending": "Memuat hasil..."
+	"cdx-table-pagination-status-message-indeterminate-long": "Menampilkan hasil $1–$2 dari banyak",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 dari banyak",
+	"cdx-table-pagination-status-message-indeterminate-final": "Meanpilkan {{PLURAL:$1|$1 hasil terakhir}}",
+	"cdx-table-pagination-status-message-pending": "Memuat hasil...",
+	"cdx-table-no-data-message": "Tidak ada data tersedia."
 }
