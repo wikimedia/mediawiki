@@ -321,7 +321,8 @@ Util = {
 			case 'raw':
 			case 'text':
 				widget = new OO.ui.MultilineTextInputWidget( {
-					required: Util.apiBool( pi.required )
+					required: Util.apiBool( pi.required ),
+					rows: 6
 				} );
 				widget.paramInfo = pi;
 				Object.assign( widget, WidgetMethods.textInputWidget );
