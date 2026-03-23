@@ -385,7 +385,7 @@ class SpecialImport extends SpecialPage {
 				foreach ( $this->importSources as $key => $value ) {
 					if ( is_array( $value ) ) {
 						foreach ( $value as $subproject ) {
-							$subprojects[ $subproject ] = $key . '::' . $subproject;
+							$subprojects[ $key . ':' . $subproject ] = $key . '::' . $subproject;
 						}
 					}
 				}
