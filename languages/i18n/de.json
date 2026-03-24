@@ -3390,6 +3390,7 @@
 	"namespaceinfo-heading-canonical": "Kanonischer Name",
 	"namespaceinfo-heading-local": "Lokaler Name",
 	"namespaceinfo-heading-info": "Beschreibung und Eigenschaften",
+	"namespaceinfo-heading-aliases": "Aliasse",
 	"namespaceinfo-description-custom": "Benutzerdefinierter Namensraum „$1“",
 	"namespaceinfo-description-custom-talk": "Diskussionsseiten, die mit dem Namensraum $1 (ID $2) verknüpft sind",
 	"namespaceinfo-description-ns-2": "Virtueller Namensraum für Dateien",

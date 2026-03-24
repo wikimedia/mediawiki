@@ -1642,6 +1642,7 @@
 	"unusedtemplateswlh": "linkujące",
 	"randompage": "Losowa strona",
 	"randompage-nopages": "Brak stron w {{PLURAL:$2|przestrzeni nazw|przestrzeniach nazw:}} $1.",
+	"randompage-disallowed-action": "Ze względów bezpieczeństwa, akcja „$1” nie może zostać użyta na stronie {{#special:Random}}.",
 	"randomincategory": "Losowa strona w kategorii",
 	"randomincategory-invalidcategory": "\"$1\" nie jest prawidłową nazwą kategorii.",
 	"randomincategory-nopages": "Nie ma żadnych stron w [[:Category:$1]].",

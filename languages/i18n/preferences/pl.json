@@ -204,6 +204,7 @@
 	"prefs-description-watchlist": "Zarządzaj i personalizuj listę obserwowanych stron.",
 	"prefs-editwatchlist": "Edycja listy obserwowanych",
 	"prefs-editwatchlist-label": "Edytuj wpisy na Twojej liście obserwowanych:",
+	"prefs-editwatchlistlabels-label": "Edytuj etykiety listy obserwowanych:",
 	"prefs-editwatchlist-edit": "Przejrzyj i usuń strony z listy obserwowanych",
 	"prefs-editwatchlist-raw": "Tekstowy edytor obserwowanych",
 	"prefs-editwatchlist-clear": "Wyczyść listę obserwowanych",

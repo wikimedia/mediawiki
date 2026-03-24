@@ -291,5 +291,6 @@
 	"rest-endpoint-summ-post-page": "أنشئ الصفحة",
 	"rest-endpoint-summ-post-transform-wikitext-to-lint": "إرجاع أخطاء الوبر لـ wikitext",
 	"rest-endpoint-summ-post-transform-wikitext-to-html": "تحويل Wikitext إلى HTML",
-	"rest-endpoint-summ-post-transform-html-to-wikitext": "تحويل HTML إلى Wikitext"
+	"rest-endpoint-summ-post-transform-html-to-wikitext": "تحويل HTML إلى Wikitext",
+	"rest-requestheader-desc-acceptlanguage": "اللغة الطبيعية والموقع الذي يفضله العميل."
 }
