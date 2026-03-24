@@ -241,6 +241,7 @@ class JsonSchemaTraitTest extends TestCase {
 		yield 'integer' => [ 'integer', 'int' ];
 		yield 'double' => [ 'double', 'float' ]; // For good measure.
 		yield 'integer or null' => [ [ 'integer', 'null' ], '?int' ];
+		yield 'more than one nullable' => [ [ 'int', 'string', 'null' ], 'int|string|null' ];
 		yield 'boolean' => [ 'boolean', 'bool' ];
 		yield 'string or number' => [ [ 'string', 'number' ], 'string|float' ];
 		yield 'array' => [ 'array', 'array' ];

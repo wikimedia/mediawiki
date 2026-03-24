@@ -34,10 +34,10 @@ trait JsonSchemaTrait {
 
 		$nullable = false;
 		if ( is_array( $jsonSchemaType ) ) {
-			$nullIndex = array_search( 'null', $jsonSchemaType );
-			if ( $nullIndex !== false ) {
-				$nullable = true;
-				unset( $jsonSchemaType[$nullIndex] );
+			// Don't turn "null" into "?", nor should "null|int|string" become "?int|string"
+			$nullable = count( $jsonSchemaType ) === 2 ? array_search( 'null', $jsonSchemaType ) : false;
+			if ( $nullable !== false ) {
+				unset( $jsonSchemaType[$nullable] );
 			}
 
 			$jsonSchemaType = array_map( self::jsonToPhpDoc( ... ), $jsonSchemaType );
@@ -46,11 +46,7 @@ trait JsonSchemaTrait {
 			$type = $phpTypes[ strtolower( $jsonSchemaType ) ] ?? $jsonSchemaType;
 		}
 
-		if ( $nullable ) {
-			$type = "?$type";
-		}
-
-		return $type;
+		return $nullable === false ? $type : "?$type";
 	}
 
 	/**
