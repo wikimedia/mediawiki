@@ -349,7 +349,7 @@ return [
 			'PasswordReminderResendTime' => 24,
 			'NewPasswordExpiry' => 604800,
 			'UserEmailConfirmationTokenExpiry' => 604800,
-			'UserEmailConfirmationUseHTML' => false,
+			'UserEmailConfirmationUseHTML' => true,
 			'PasswordExpirationDays' => false,
 			'PasswordExpireGrace' => 604800,
 			'SMTP' => false,

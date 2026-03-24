@@ -2671,7 +2671,7 @@ class MainConfigSchema {
 	 * @since 1.46
 	 */
 	public const UserEmailConfirmationUseHTML = [
-		'default' => false,
+		'default' => true,
 		'type' => 'boolean',
 	];
 
