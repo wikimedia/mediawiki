@@ -1400,22 +1400,21 @@ abstract class DatabaseUpdater {
 	 * Check the site_stats table is not properly populated.
 	 */
 	protected function checkStats() {
-		$this->output( "...site_stats is populated..." );
 		$row = $this->db->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'site_stats' )
 			->where( [ 'ss_row_id' => 1 ] )
 			->caller( __METHOD__ )->fetchRow();
 		if ( $row === false ) {
-			$this->output( "data is missing! rebuilding...\n" );
+			$this->output( "...site_stats is populated...data is missing! rebuilding..." );
 		} elseif ( isset( $row->site_stats ) && $row->ss_total_pages == -1 ) {
-			$this->output( "missing ss_total_pages, rebuilding...\n" );
+			$this->output( "...site_stats is populated...missing ss_total_pages, rebuilding..." );
 		} else {
-			$this->output( "done.\n" );
-
+			$this->outputApplied( "...site_stats is populated.\n" );
 			return;
 		}
 		SiteStatsInit::doAllAndCommit( $this->db );
+		$this->output( "done.\n" );
 	}
 
 	# Common updater functions
