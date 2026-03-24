@@ -74,33 +74,31 @@ trait JsonSchemaTrait {
 			throw new InvalidArgumentException( 'The type name cannot be null! Use "null" instead.' );
 		}
 
-		if ( is_array( $phpDocType ) ) {
-			$types = $phpDocType;
-		} else {
-			$types = explode( '|', trim( $phpDocType ) );
+		if ( is_string( $phpDocType ) ) {
+			$phpDocType = explode( '|', trim( $phpDocType ) );
 		}
 
+		/** @var array<string,null> $types */
+		$types = [];
 		$nullable = false;
-		foreach ( $types as $i => $t ) {
+		foreach ( $phpDocType as $t ) {
 			if ( str_starts_with( $t, '?' ) ) {
 				$nullable = true;
 				$t = substr( $t, 1 );
 			}
 
-			$types[$i] = $jsonTypes[ strtolower( $t ) ] ?? $t;
+			$types[$jsonTypes[ strtolower( $t ) ] ?? $t] = null;
 		}
 
 		if ( $nullable ) {
-			$types[] = 'null';
+			$types['null'] = null;
 		}
-
-		$types = array_unique( $types );
 
 		if ( count( $types ) === 1 ) {
-			return reset( $types );
+			return array_key_first( $types );
 		}
 
-		return $types;
+		return array_keys( $types );
 	}
 
 	/**
