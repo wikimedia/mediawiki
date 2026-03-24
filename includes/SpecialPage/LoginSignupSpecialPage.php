@@ -676,7 +676,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return string
 	 */
 	protected function getPageHtml( $formHtml ) {
-		$loginPrompt = $this->isSignup() || $this->getLoginHelper()->isDisplayModePopup()
+		$loginPrompt = $this->isSignup() || $this->getLoginHelper()->isDisplayModePopup() || $this->isContinued()
 			? ''
 			: Html::rawElement( 'div', [ 'id' => 'userloginprompt' ], $this->msg( 'loginprompt' )->parseAsBlock() );
 		$languageLinks = $this->getConfig()->get( MainConfigNames::LoginLanguageSelector )
