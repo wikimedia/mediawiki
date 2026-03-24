@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Integration\Mail\ConfirmEmail;
 
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\Mail\MailAddress;
-use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use StatusValue;
 
@@ -29,19 +28,7 @@ class ConfirmEmailSenderTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusError( 'june', $user->sendConfirmationMail() );
 	}
 
-	public static function provideSuccessfulEmail() {
-		return [
-			'plaintext' => [ [ MainConfigNames::UserEmailConfirmationUseHTML => false ] ],
-			'HTML' => [ [ MainConfigNames::UserEmailConfirmationUseHTML => true ] ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideSuccessfulEmail
-	 */
-	public function testSuccessfulEmail( array $configOverrides ) {
-		$this->overrideConfigValues( $configOverrides );
-
+	public function testSuccessfulEmail() {
 		$emailer = $this->createNoOpMock( IEmailer::class, [ 'send' ] );
 		$emailer->expects( $this->once() )
 			->method( 'send' )

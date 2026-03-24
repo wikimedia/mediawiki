@@ -696,10 +696,6 @@ return [
 
 	'ConfirmEmailBuilderFactory' => static function ( MediaWikiServices $services ): ConfirmEmailBuilderFactory {
 		return new ConfirmEmailBuilderFactory(
-			new ServiceOptions(
-				ConfirmEmailBuilderFactory::CONSTRUCTOR_OPTIONS,
-				$services->getMainConfig()
-			),
 			$services->getLocalServerObjectCache(),
 			$services->getUrlUtils()
 		);

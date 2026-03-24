@@ -972,12 +972,6 @@ class MainConfigNames {
 	public const UserEmailConfirmationTokenExpiry = 'UserEmailConfirmationTokenExpiry';
 
 	/**
-	 * Name constant for the UserEmailConfirmationUseHTML setting, for use with Config::get()
-	 * @see MainConfigSchema::UserEmailConfirmationUseHTML
-	 */
-	public const UserEmailConfirmationUseHTML = 'UserEmailConfirmationUseHTML';
-
-	/**
 	 * Name constant for the PasswordExpirationDays setting, for use with Config::get()
 	 * @see MainConfigSchema::PasswordExpirationDays
 	 */
