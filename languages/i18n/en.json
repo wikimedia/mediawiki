@@ -3654,6 +3654,8 @@
 	"mw-widgets-dateinput-no-date": "No date selected",
 	"mw-widgets-dateinput-placeholder-day": "YYYY-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "YYYY-MM",
+	"mw-widgets-expiryinput-relative": "Enter expiry duration",
+	"mw-widgets-expiryinput-calendar": "Choose expiry from calendar",
 	"mw-widgets-mediasearch-input-placeholder": "Search for media",
 	"mw-widgets-mediasearch-recent-uploads": "{{GENDER:$1|Your}} recent uploads",
 	"mw-widgets-mediasearch-noresults": "No results found.",

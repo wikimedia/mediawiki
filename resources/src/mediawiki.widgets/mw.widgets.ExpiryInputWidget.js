@@ -35,11 +35,15 @@
 			items: [
 				new OO.ui.ButtonOptionWidget( {
 					data: 'relative',
-					icon: 'edit'
+					icon: 'edit',
+					invisibleLabel: true,
+					label: mw.msg( 'mw-widgets-expiryinput-relative' )
 				} ),
 				new OO.ui.ButtonOptionWidget( {
 					data: 'date',
-					icon: 'calendar'
+					icon: 'calendar',
+					invisibleLabel: true,
+					label: mw.msg( 'mw-widgets-expiryinput-calendar' )
 				} )
 			]
 		} );

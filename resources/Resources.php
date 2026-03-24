@@ -3273,6 +3273,10 @@ return [
 		'skinStyles' => [
 			'default' => 'resources/src/mediawiki.widgets/mw.widgets.ExpiryInputWidget.less',
 		],
+		'messages' => [
+			'mw-widgets-expiryinput-relative',
+			'mw-widgets-expiryinput-calendar',
+		],
 	],
 	'mediawiki.widgets.CheckMatrixWidget' => [
 		'scripts' => [
