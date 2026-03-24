@@ -90,7 +90,10 @@ class OtlpHttpExporter implements ExporterInterface {
 		try {
 			$response = $this->client->sendRequest( $request );
 			if ( $response->getStatusCode() !== 200 ) {
-				$this->logger->error( 'Failed to export trace data' );
+				$this->logger->error( 'Failed to export trace data', [
+					'http_code' => $response->getStatusCode(),
+					'http_response' => $response->getBody()->getContents() ?: '(empty)'
+				] );
 			}
 		} catch ( ClientExceptionInterface $e ) {
 			$this->logger->error( 'Failed to connect to exporter', [ 'exception' => $e ] );
