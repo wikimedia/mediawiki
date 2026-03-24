@@ -109,47 +109,47 @@ class DatabaseUpdaterTest extends MediaWikiIntegrationTestCase {
 		return [
 			'::addField' => [
 				'methodName' => 'addField',
-				'methodArgument' => [ 'test_table', 'test_field', 'ignored.sql' ],
+				'methodArguments' => [ 'test_table', 'test_field', 'ignored.sql' ],
 				'expectedAlterMessage' => 'Adding test_field field to table test_table',
 			],
 			'::addIndex' => [
 				'methodName' => 'addIndex',
-				'methodArgument' => [ 'test_table', 'test_index', 'ignored.sql' ],
+				'methodArguments' => [ 'test_table', 'test_index', 'ignored.sql' ],
 				'expectedAlterMessage' => 'Adding index test_index to table test_table',
 			],
 			'::dropField' => [
 				'methodName' => 'dropField',
-				'methodArgument' => [ 'test_table', 'test_field', 'ignored.sql' ],
+				'methodArguments' => [ 'test_table', 'test_field', 'ignored.sql' ],
 				'expectedAlterMessage' => 'Dropping test_field from table test_table',
 			],
 			'::dropIndex' => [
 				'methodName' => 'dropIndex',
-				'methodArgument' => [ 'test_table', 'test_index', 'ignored.sql' ],
+				'methodArguments' => [ 'test_table', 'test_index', 'ignored.sql' ],
 				'expectedAlterMessage' => 'Dropping test_index index from table test_table',
 			],
 			'::renameIndex' => [
 				'methodName' => 'renameIndex',
-				'methodArgument' => [ 'test_table', 'old_index', 'new_index', false, 'ignored.sql' ],
+				'methodArguments' => [ 'test_table', 'old_index', 'new_index', false, 'ignored.sql' ],
 				'expectedAlterMessage' => 'Renaming index old_index to new_index in table test_table',
 			],
 			'::modifyPrimaryKey' => [
 				'methodName' => 'modifyPrimaryKey',
-				'methodArgument' => [ 'test_table', [ 'ignored' ], 'ignored.sql' ],
+				'methodArguments' => [ 'test_table', [ 'ignored' ], 'ignored.sql' ],
 				'expectedAlterMessage' => 'Modifying primary key on table test_table',
 			],
 			'::modifyTable' => [
 				'methodName' => 'modifyTable',
-				'methodArgument' => [ 'test_table', 'patch.sql' ],
+				'methodArguments' => [ 'test_table', 'patch.sql' ],
 				'expectedAlterMessage' => 'Modifying table test_table with patch patch.sql',
 			],
 			'::modifyTableIfFieldNotExists' => [
 				'methodName' => 'modifyTableIfFieldNotExists',
-				'methodArgument' => [ 'test_table', 'test_field', 'patch.sql' ],
+				'methodArguments' => [ 'test_table', 'test_field', 'patch.sql' ],
 				'expectedAlterMessage' => 'Modifying table test_table with patch patch.sql',
 			],
 			'::modifyFieldIfNullable' => [
 				'methodName' => 'modifyFieldIfNullable',
-				'methodArgument' => [ 'test_table', 'test_field', 'ignored.sql' ],
+				'methodArguments' => [ 'test_table', 'test_field', 'ignored.sql' ],
 				'expectedAlterMessage' => 'Modifying test_field field of table test_table',
 			],
 		];
