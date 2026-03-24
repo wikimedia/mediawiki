@@ -344,13 +344,16 @@ class DataAccess extends IDataAccess {
 			if ( !$result ) {
 				wfDeprecated( "Parsoid does not support modifying link html", "1.46" );
 			}
+			// Allow either array or string form for $attribs, but normalize
+			// to a single string.
 			$class = Html::expandClassList( $attribs['class'] ?? '' );
+			$rel = Html::expandClassList( $attribs['rel'] ?? '' );
 			return [
 				'originalHref' => $originalHref,
 				'href' => $href,
 				// Setting class/rel to '' is the same as not setting them
-				'class' => $attribs['class'] ?: null,
-				'rel' => $attribs['rel'] ?: null,
+				'class' => $class ?: null,
+				'rel' => $rel ?: null,
 				// Setting `title` to '' might be useful to override a default
 				'title' => $attribs['title'] ?? null,
 			];
