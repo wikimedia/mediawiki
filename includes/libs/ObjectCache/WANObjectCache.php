@@ -179,8 +179,8 @@ class WANObjectCache implements
 	/** @var TracerInterface */
 	private $tracer;
 
-	/** @var array<int,array> List of (key, UNIX timestamp) tuples for get() cache misses */
-	private $missLog;
+	/** @var array<string,float> Maps key to UNIX timestamp for get() cache misses */
+	private array $missLog = [];
 
 	/** @var int Callback stack depth for getWithSetCallback() */
 	private $callbackDepth = 0;
@@ -370,7 +370,6 @@ class WANObjectCache implements
 		$this->stats = $params['stats'] ?? StatsFactory::newNull();
 
 		$this->asyncHandler = $params['asyncHandler'] ?? null;
-		$this->missLog = array_fill( 0, 10, [ '', 0.0 ] );
 		$this->pendingCallback = $params['pendingCallback'] ?? null;
 	}
 
@@ -464,9 +463,14 @@ class WANObjectCache implements
 			];
 
 		if ( $curTTL === null || $curTTL <= 0 ) {
+			// Remove old item so the updated one moves to the end of the array
+			unset( $this->missLog[$key] );
+			if ( count( $this->missLog ) >= 10 ) {
+				// Drop the oldest entry
+				array_shift( $this->missLog );
+			}
 			// Log the timestamp in case a corresponding set() call does not provide "walltime"
-			unset( $this->missLog[array_key_first( $this->missLog )] );
-			$this->missLog[] = [ $key, $this->getCurrentTime() ];
+			$this->missLog[$key] = $this->getCurrentTime();
 		}
 
 		return $res[self::RES_VALUE];
@@ -3008,14 +3012,7 @@ class WANObjectCache implements
 	 * @return float|null Seconds since the last logged get() miss for this key, or, null
 	 */
 	private function timeSinceLoggedMiss( $key, $now ) {
-		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.Found
-		for ( end( $this->missLog ); $miss = current( $this->missLog ); prev( $this->missLog ) ) {
-			if ( $miss[0] === $key ) {
-				return ( $now - $miss[1] );
-			}
-		}
-
-		return null;
+		return isset( $this->missLog[$key] ) ? ( $now - $this->missLog[$key] ) : null;
 	}
 
 	/**
