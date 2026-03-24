@@ -211,6 +211,7 @@ module.exports = defineComponent( {
 		};
 
 		const openRemoveDialog = () => {
+			updateSelectedPagesListHtml();
 			isOpen.value = true;
 			dialogAction.value = 'remove';
 		};
