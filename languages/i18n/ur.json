@@ -1332,6 +1332,8 @@
 	"rcfilters-filter-categorization-description": "زمروں میں شامل یا ان سے حذف کیے جانے والے صفحات کے نوشتے",
 	"rcfilters-filter-logactions-label": "درج نوشتہ اقدامات",
 	"rcfilters-filter-logactions-description": "انتظامی اقدامات، تخلیق کھاتہ، صفحات کی حذف شدگی، اپلوڈ وغیرہ۔۔۔",
+	"rcfilters-filter-accountcreations-label": "نئے کھاتے",
+	"rcfilters-filter-accountcreations-description": "تخلیق کھاتہ سے متعلق لاگ اندراجات۔ لاگ شدہ اعمال کا انتخاب ضروری ہے۔",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "«معمولی ترامیم» والا فلٹر «تبدیلی کی نوعیت» والے ایک یا زائد فلٹروں سے متعارض ہو جاتا ہے کیونکہ کچھ مخصوص قسم کی تبدیلیاں \"معمولی\" نہیں کہلاتیں۔ یہ متعارض فلٹر اوپر موجود «فعال فلٹر» کے تحت نمایاں کر دیے گئے ہیں۔",
 	"rcfilters-hideminor-conflicts-typeofchange": "مخصوص قسم کی تبدیلیاں \"معمولی\" نہیں کہلاتیں، اس صورت میں یہ فلٹر درج ذیل «تبدیلی کی نوعیت» فلٹروں سے متعارض ہو جاتا ہے: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "اس نوعیت کی تبدیلی والا فلٹر «معمولی ترامیم» والے فلٹر سے متعارض ہو جاتا ہے؛ کیونکہ کچھ مخصوص قسم کی تبدیلیاں \"معمولی\" نہیں کہلاتیں۔",

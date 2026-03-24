@@ -109,7 +109,8 @@
 			"Felianiwiki",
 			"HyperAnd",
 			"RaymondSutanto94",
-			"Deepturquoise"
+			"Deepturquoise",
+			"Bayahiu"
 		]
 	},
 	"sunday": "Minggu",
@@ -2108,6 +2109,7 @@
 	"apisandbox-request-php-label": "Minta larik PHP:",
 	"apisandbox-request-time": "Lama permintaan: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-request-post": "Permintaan ini harus dikirim menggunakan metode HTTP POST.",
+	"apisandbox-request-post2": "Karena ukuran muatannya, permintaan ini telah dikirim menggunakan cara HTTP POST.",
 	"apisandbox-request-formdata": "Permintaan ini harus dikirim sebagai unggahan berkas (menggunakan <code>multipart/form-data</code> ).",
 	"apisandbox-results-fixtoken": "Perbaiki token dan kirim kembali",
 	"apisandbox-results-fixtoken-fail": "Gagal mendapatkan token \"$1\".",

@@ -1102,7 +1102,7 @@
 	"search-redirect": "(Weiterleitung von „$1“)",
 	"search-section": "(Abschnitt $1)",
 	"search-category": "(Kategorie $1)",
-	"search-file-match": "(treffende Dateiinhalte)",
+	"search-file-match": "(Übereinstimmung mit Dateiinhalt)",
 	"search-suggest": "Meintest du „$1“?",
 	"search-rewritten": "Es werden die Ergebnisse für $1 angezeigt. Keine Ergebnisse für $2 gefunden.",
 	"search-interwiki-resultset-link": "Alle Ergebnisse anzeigen",
