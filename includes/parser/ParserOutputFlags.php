@@ -22,12 +22,18 @@ namespace MediaWiki\Parser;
  * It is recommended that new flag names in core should begin with 'mw-'
  * in order to prevent namespace conflicts with legacy flags.
  *
+ * Note that in order to provide forward compatibility with "new" flag
+ * values, any additions to ParserOutputFlags should be backported to
+ * all currently-active release branches before those flags are written
+ * into the parser cache.
+ *
  * @package MediaWiki\Parser
  * @since 1.38
  */
 enum ParserOutputFlags: string {
 
-	// These flags are currently stored as ParserOutput properties
+	// See note above about backporting any new flags added to this
+	// enumeration.
 
 	/**
 	 * Disable magic gallery on category page (__NOGALLERY__).
@@ -36,16 +42,14 @@ enum ParserOutputFlags: string {
 	 * gallery on thumbnail pages.
 	 *
 	 * @see MainConfigSchema::CategoryMagicGallery
-	 * @see ParserOutput::getNoGallery()
-	 * @see ParserOutput::setNoGallery()
 	 * @since 1.38
 	 */
 	case NO_GALLERY = 'mw-NoGallery';
 
 	/**
-	 * Whether OOUI should be enabled.
-	 * @see ParserOutput::getEnableOOUI()
-	 * @see ParserOutput::setEnableOOUI()
+	 * Whether OOUI should be enabled.  If set, OOUI is enabled in
+	 * any OutputPage instance the ParserOutput containing this flag
+	 * is added to.
 	 * @since 1.38
 	 */
 	case ENABLE_OOUI = 'mw-EnableOOUI';
@@ -68,32 +72,30 @@ enum ParserOutputFlags: string {
 
 	/**
 	 * Show a new section link?
-	 * @see ParserOutput::getNewSection()
-	 * @see ParserOutput::setNewSection()
 	 * @since 1.38
 	 */
 	case NEW_SECTION = 'mw-NewSection';
 
 	/**
 	 * Hide the new section link?
-	 * @see ParserOutput::getHideNewSection()
-	 * @see ParserOutput::setHideNewSection()
 	 * @since 1.38
 	 */
 	case HIDE_NEW_SECTION = 'mw-HideNewSection';
 
 	/**
 	 * The prevent-clickjacking flag.
-	 * If true, we emit X-Frame-Options: DENY.
-	 * This controls if anti-clickjacking / frame-breaking headers will
-	 * be sent. This should be done for pages where edit actions are possible.
-	 * @see ParserOutput::getPreventClickjacking()
-	 * @see ParserOutput::setPreventClickjacking()
+	 *
+	 * If true, we emit an `X-Frame-Options` header appropriate for
+	 * edit pages.  The exact header value is controlled by
+	 * `$wgEditPageFrameOptions`.  This controls if anti-clickjacking
+	 * / frame-breaking headers will be sent.  This flag is set by
+	 * default for special pages.  For other pages where a
+	 * CSRF-protect form is displayed (for example where edit actions
+	 * are possible), you need to set this flag.
+	 *
 	 * @since 1.38
 	 */
 	case PREVENT_CLICKJACKING = 'mw-PreventClickjacking';
-
-	// These flags are stored in the ParserOutput::$mFlags array
 
 	/**
 	 * Show the table of contents in the skin?
@@ -135,7 +137,7 @@ enum ParserOutputFlags: string {
 	case COLLAPSIBLE_SECTIONS = 'collapsible-sections';
 
 	// See RenderedRevision::outputVariesOnRevisionMetadata for the
-	// following flags.
+	// VARY_* flags.
 
 	/**
 	 * Informs the edit saving system that the canonical output for
@@ -249,6 +251,23 @@ enum ParserOutputFlags: string {
 	 * @since 1.44
 	 */
 	case ASYNC_NOT_READY = 'async-not-ready';
+
+	/**
+	 * Set if this page is unsafe for selective update.
+	 *
+	 * Generally this means a resource limit was reached, and so this
+	 * page does not contain a full representation of the input wikitext.
+	 * An update might resolve the excess resource use, but it wouldn't
+	 * be able to replace the content that was lost when the limit
+	 * was reached. (Duplicate or conflicting definitions constitute
+	 * another form of "resource limit", since uniqueness limits us to
+	 * only one of a given item.)
+	 *
+	 * Triggering other error conditions or the use of other unsafe features
+	 * may also set this flag.
+	 * @since 1.46
+	 */
+	case PREVENT_SELECTIVE_UPDATE = 'prevent-selective-update';
 
 	/**
 	 * Set if this page contains header placeholders (T200915).
