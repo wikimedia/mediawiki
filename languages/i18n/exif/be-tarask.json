@@ -306,7 +306,7 @@
 	"exif-gpslatitude-s": "паўднёвай шыраты",
 	"exif-gpslongitude-e": "усходняй даўгаты",
 	"exif-gpslongitude-w": "заходняй даўгаты",
-	"exif-gpsaltitude-above-sealevel": "$1 {{PLURAL:$1|мэтар|мэтры|мэтраў}} над узроўнем мора",
+	"exif-gpsaltitude-above-sealevel": "$1 {{PLURAL:$1|мэтар|мэтры|мэтраў}} над роўнем мора",
 	"exif-gpsaltitude-below-sealevel": "$1 {{PLURAL:$1|мэтар|мэтры|мэтраў}} ніжэй за ўзровень мора",
 	"exif-gpsstatus-a": "Адбываецца вымярэньне",
 	"exif-gpsstatus-v": "Ацэнка магчымасьці ўзаемадзеяньня сетак",

@@ -53,5 +53,6 @@
 	"thu": "Xam",
 	"fri": "Jum",
 	"sat": "C/S",
-	"sun": "Nab"
+	"sun": "Nab",
+	"duration-days": "$1 {{PLURAL:$1|lellec|lelleeca}}"
 }

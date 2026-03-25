@@ -13,7 +13,8 @@
 			"Rex",
 			"Veracious",
 			"Penyuwangi",
-			"HyperAnd"
+			"HyperAnd",
+			"Bayahiu"
 		]
 	},
 	"exif-imagewidth": "Lebar",
@@ -409,6 +410,7 @@
 	"exif-poseheadingdegrees": "Kepala pose (derajat)",
 	"exif-posepitchdegrees": "Anggul (derajat)",
 	"exif-poserolldegrees": "Guling (derajat)",
+	"exif-initialviewheadingdegrees": "Arah pandangan awal (derajat)",
 	"exif-initialviewpitchdegrees": "Anggul tampilan awal (derajat)",
 	"exif-initialviewrolldegrees": "Guling tampilan awal (derajat)",
 	"exif-initialhorizontalfovdegrees": "Ruang pandang awal (derajat horizontal)",

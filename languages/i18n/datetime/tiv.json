@@ -1,0 +1,38 @@
+{
+	"@metadata": {
+		"authors": [
+			"Meritkosy"
+		]
+	},
+	"january": "Wer u sha môm",
+	"february": "Wer u sha uhar",
+	"march": "Wer u sha utar",
+	"april": "Wer u sha unyiin",
+	"may_long": "Wer u sha utaan",
+	"june": "Wer u sha ateratar",
+	"july": "Wer u sha utaan kar uhar",
+	"august": "Wer u sha anigheni",
+	"september": "Wer u sha utaan kar-unyiin",
+	"october": "Wer u sha pue",
+	"november": "Wer u sha puekar-môm",
+	"december": "Wer u sha puekar-uhar",
+	"january-gen": "Wer u sha môm",
+	"february-gen": "Wer u sha uhar",
+	"march-gen": "Wer u sha utar",
+	"april-gen": "Wer u sha unyiin",
+	"may-gen": "Wer u sha utaan",
+	"june-gen": "Wer u sha ateratar",
+	"july-gen": "Wer u sha utaan kar-uhar",
+	"august-gen": "Wer u sha anigheni",
+	"september-gen": "Wer u sha utaan kar-unyiin",
+	"october-gen": "Wer u sha pue",
+	"november-gen": "Wer u sha puekar-môm",
+	"december-gen": "Wer u sha puekar-uhar",
+	"monday": "Hiitom",
+	"tuesday": "Tom ahar",
+	"wednesday": "Tomatar",
+	"thursday": "Tom anyiin",
+	"friday": "Tomataan",
+	"saturday": "Sati",
+	"sunday": "Yange i memen"
+}

@@ -4059,7 +4059,7 @@
 	"paramvalidator-help-type-title": "Soort: paginatitel",
 	"paramvalidator-help-type-title-must-exist": "Accepteer alleen bestaande pagina's.",
 	"paramvalidator-help-type-title-no-must-exist": "Accepteert niet-bestaande pagina's.",
-	"nonmain-slot-differences-therefore-readonly": "U kunt de wikitext van deze versie van de pagina niet bewerken omdat er na deze versie wijzigingen aan de informatie op de pagina zijn gemaakt die niet op wikitext zijn gebaseerd. [$1 klik hier om deze versie te herstellen.]",
+	"nonmain-slot-differences-therefore-readonly": "U kunt de wikitext van deze versie van de pagina niet bewerken omdat er na deze versie wijzigingen aan de pagina zijn gemaakt die niet op wikitext zijn gebaseerd. [$1 klik hier om deze versie te herstellen.]",
 	"config-missing-key": "Missende MediaWiki configuratie parameter \"$1\"",
 	"config-invalid-key": "Ongeldige MediaWiki-configuratieparameter \"$1\": $2",
 	"changeslist-nocomment": "Geen bewerkingssamenvatting",
