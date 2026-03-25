@@ -134,19 +134,11 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 	/** @inheritDoc */
 	protected function getDisplayFormat() {
-		if ( $this->getLoginHelper()->isDisplayModePopup() ) {
-			return 'codex';
-		}
-
-		return 'ooui';
+		return 'codex';
 	}
 
 	public function alterForm( HTMLForm $form ) {
 		$resetRoutes = $this->getConfig()->get( MainConfigNames::PasswordResetRoutes );
-
-		if ( !$this->getLoginHelper()->isDisplayModePopup() ) {
-			$form->setSubmitDestructive();
-		}
 
 		$form->addHiddenFields( $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
 
