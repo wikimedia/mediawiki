@@ -22,12 +22,18 @@ namespace MediaWiki\Parser;
  * It is recommended that new flag names in core should begin with 'mw-'
  * in order to prevent namespace conflicts with legacy flags.
  *
+ * Note that in order to provide forward compatibility with "new" flag
+ * values, any additions to ParserOutputFlags should be backported to
+ * all currently-active release branches before those flags are written
+ * into the parser cache.
+ *
  * @package MediaWiki\Parser
  * @since 1.38
  */
 enum ParserOutputFlags: string {
 
-	// These flags are currently stored as ParserOutput properties
+	// See note above about backporting any new flags added to this
+	// enumeration.
 
 	/**
 	 * Disable magic gallery on category page (__NOGALLERY__).
@@ -91,8 +97,6 @@ enum ParserOutputFlags: string {
 	 */
 	case PREVENT_CLICKJACKING = 'mw-PreventClickjacking';
 
-	// These flags are stored in the ParserOutput::$mFlags array
-
 	/**
 	 * Show the table of contents in the skin?
 	 *
@@ -133,7 +137,7 @@ enum ParserOutputFlags: string {
 	case COLLAPSIBLE_SECTIONS = 'collapsible-sections';
 
 	// See RenderedRevision::outputVariesOnRevisionMetadata for the
-	// following flags.
+	// VARY_* flags.
 
 	/**
 	 * Informs the edit saving system that the canonical output for

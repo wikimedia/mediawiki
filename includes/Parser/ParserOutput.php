@@ -3337,8 +3337,22 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// Set all generic output flags (whether stored as properties or not)
 		// (This is effectively a logical-OR if these are also serialized
 		// above.)
-		foreach ( $jsonData['OutputFlags'] ?? [] as $flag ) {
-			$this->setOutputFlag( $flag );
+		foreach ( $jsonData['OutputFlags'] ?? [] as $flagName ) {
+			$flag = ParserOutputFlags::tryFrom( $flagName );
+			if ( $flag !== null ) {
+				$this->setOutputFlag( $flag );
+			} else {
+				// T417819: We *should* backport new ParserOutputFlags values
+				// to avoid reaching this case, but it ought to be safe to drop
+				// the unknown flags on the floor.
+				wfDeprecated(
+					__METHOD__ . " of flag $flagName without forward compatibility",
+					'1.46'
+				);
+				// Preserve non-standard flags for now since they are used in
+				// serialization test cases.
+				$this->setOutputFlag( $flagName );
+			}
 		}
 
 		if ( isset( $jsonData['TOCData'] ) ) {

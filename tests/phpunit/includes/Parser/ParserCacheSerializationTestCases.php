@@ -744,6 +744,7 @@ abstract class ParserCacheSerializationTestCases {
 				'serializer' => $jsonCodec->serialize( ... ),
 				'deserializer' => static function ( $data ) use ( $jsonCodec ) {
 					MWDebug::filterDeprecationForTest( '/::setOutputFlag with non-standard flag/' );
+					MWDebug::filterDeprecationForTest( '/::initFromJson of flag/' );
 					return $jsonCodec->deserialize( $data );
 				},
 			],
