@@ -140,7 +140,7 @@ abstract class AuthenticationRequest {
 	 * complex behavior can be implemented by overriding {@see ::loadFromSubmission()}.
 	 *
 	 * @return array As above
-	 * @phan-return array<string,array{type:string,options?:array,value?:string,label:Message,help:Message,optional?:bool,sensitive?:bool,skippable?:bool}>
+	 * @phan-return array<string,array{type:'null',value:Message,help:Message,label?:Message}|array{type:string,options?:array,value?:string,label:Message,help:Message,optional?:bool,sensitive?:bool,skippable?:bool}>
 	 */
 	abstract public function getFieldInfo();
 
