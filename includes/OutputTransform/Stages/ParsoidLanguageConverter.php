@@ -64,7 +64,6 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 
 	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
 		return $po->getContentHolder()->isParsoidContent() &&
-			( !$this->languageConverterFactory->isConversionDisabled() ) &&
 			// For back-compatibility with old data from the cache, which has
 			// already been converted.
 			$po->getExtensionData( 'core:parsoid-languageconverter' ) === 'postprocess';
@@ -77,8 +76,10 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 		$title = $title ? $this->titleFactory->newFromLinkTarget( $title ) :
 			$this->titleFactory->newFromTextThrow( 'Special:BadTitle/LanguageConverter' );
 		$toVariant = $popts->getOption( 'parsoidnewlc' );
-		$targetLanguage = $toVariant ?
-			$this->languageFactory->getParentLanguage( $toVariant ) :
+		if ( $toVariant ) {
+			$lang = $this->languageFactory->getLanguage( $toVariant );
+			$targetLanguage = $this->languageFactory->getParentLanguage( $lang ) ?? $lang;
+		} else {
 			// Note that technically page language is hookable via
 			// ContentHandler::getPageLanguage() and could technically be
 			// the user language, which then wouldn't be marked as 'used'
@@ -88,18 +89,19 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 			// the page language.
 			// T267067: This should eventually be handled by putting the
 			// target variant into the ParserOptions
-			$title->getPageLanguage();
-		$converter = null;
+			$targetLanguage = $title->getPageLanguage();
+		}
+		$converter = $this->languageConverterFactory->getLanguageConverter(
+			$targetLanguage
+		);
 		if (
 			$toVariant !== null &&
+			$converter->hasVariants() &&
 			// From parser.php
 			( !$popts->getDisableContentConversion() ) &&
 			( !$popts->getInterfaceMessage() ) &&
 			$po->getPageProperty( 'nocontentconvert' ) === null
 		) {
-			$converter = $this->languageConverterFactory->getLanguageConverter(
-				$targetLanguage
-			);
 			// Converter::loadTables() is protected, so call ::translate()
 			// to load the converter tables. Otherwise trying to add a rule
 			// as the very first thing in the wikitext will fail/crash because
