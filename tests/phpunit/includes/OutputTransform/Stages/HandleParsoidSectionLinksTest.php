@@ -94,6 +94,11 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 			[
 				'toclevel' => 1,
 				'fromtitle' => 'TestTitle',
+				'anchor' => 'baz',
+			],
+			[
+				'toclevel' => 1,
+				'fromtitle' => 'TestTitle',
 				'anchor' => '',
 			],
 		] );
@@ -147,6 +152,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		// Empty string isn't a valid id
 		$input = '<section id="a"><h2 id="">Foo</h2>Bar</section>';
 		$expected = '<section id="a"><h2 id="">Foo</h2>Bar</section>';
+		$pOpts = ParserOptions::newFromAnon();
 		yield 'Heading with empty id is skipped' => [
 			self::newParserOutput( $input, $pOpts, $toc ),
 			$pOpts, $options,
@@ -154,8 +160,9 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		];
 
 		// T353489: Wrappers aren't added to headings with attributes
-		$input = '<section id="a"><h2 id="foo">F</h2>Oo<h2 id="bar" class="b">B</h2>Ar</section>';
-		$expected = '<section id="a" aria-labelledby="foo"><div class="mw-heading mw-heading-1"><h2 id="foo">F</h2>!<a id="c">edit</a>!</div><div>Oo<h2 id="bar" class="b mw-html-heading">B</h2>Ar</div></section>';
+		$input = '<section id="a"><h2 id="foo" data-parsoid=\'{"stx": "html"}\'>F</h2>Oo<h2 id="bar" class="b" data-parsoid=\'{"stx": "html"}\'>B</h2>Ar<h2 id="baz" data-parsoid=\'{"stx": "html", "reusedId": true}\'>B</h2>Az</section>';
+		$expected = '<section id="a" aria-labelledby="foo"><div class="mw-heading mw-heading-1"><h2 id="foo">F</h2>!<a id="c">edit</a>!</div>Oo<h2 id="bar" class="b mw-html-heading">B</h2>Ar<h2 id="baz" class="mw-html-heading">B</h2>Az</section>';
+		$pOpts = ParserOptions::newFromAnon();
 		yield 'Heading with attributes is skipped' => [
 			self::newParserOutput( $input, $pOpts, $toc ),
 			$pOpts, $options,

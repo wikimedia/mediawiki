@@ -21,16 +21,13 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMDataUtils;
 use Wikimedia\Parsoid\Utils\DOMTraverser;
 use Wikimedia\Parsoid\Utils\DOMUtils;
+use Wikimedia\Parsoid\Utils\WTUtils;
 
 /**
  * Add anchors and other heading formatting, and replace the section link placeholders.
  * @internal
  */
 class HandleParsoidSectionLinks extends ContentDOMTransformStage {
-	// See below: if/when PHP implements DocumentFragment::getElementById()
-	// efficiently, set this to true.
-	private static bool $useGetElementById = false;
-
 	private TitleFactory $titleFactory;
 
 	public function __construct(
@@ -48,9 +45,14 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 	/**
 	 * Check if the heading has attributes that can only be added using HTML syntax.
 	 *
-	 * In the Parsoid default future, we might prefer checking for stx=html.
+	 * In the Parsoid default future, we might prefer only checking for stx=html.
 	 */
 	private static function isHtmlHeading( Element $h ): bool {
+		// FIXME(T100856): stx info probably shouldn't be in data-parsoid
+		if ( !WTUtils::isLiteralHTMLNode( $h ) ) {
+			return false;
+		}
+
 		foreach ( $h->attributes as $attr ) {
 			// Condition matches DiscussionTool's CommentFormatter::handleHeading
 			if (
@@ -60,7 +62,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 				return true;
 			}
 		}
-		// FIXME(T100856): stx info probably shouldn't be in data-parsoid
+
 		// Id is ignored above since it's a special case, make use of metadata
 		// to determine if it came from wikitext
 		if ( DOMDataUtils::getDataParsoid( $h )->reusedId ?? false ) {
@@ -107,43 +109,36 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 			];
 		}
 
-		if ( self::$useGetElementById ) {
-			// This version will be faster if we have an efficient O(1)
-			// implementation of DocumentFragment::getElementById()
-			// https://github.com/php/php-src/issues/20282
-			foreach ( $sectionMap as $anchor => &$info ) {
-				$h = DOMCompat::getElementById( $df, $anchor );
-				if ( $h !== null ) {
-					$this->transformHeading( $df, $h, $po, $popts, $options, $skin, $info );
-				}
+		$traverser = new DOMTraverser( false, false );
+		$headings = array_fill_keys(
+			[ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ], true
+		);
+		$traverser->addHandler( null, function ( Node $node ) use (
+			$df, $po, $popts, $options, $skin, &$sectionMap, $headings
+		) {
+			if ( !( $headings[DOMUtils::nodeName( $node )] ?? false ) ) {
+				return true;
 			}
-		} else {
-			// Older PHP versions must traverse the entire DOM to find the
-			// heading nodes.
-			$traverser = new DOMTraverser( false, false );
-			$headings = array_fill_keys(
-				[ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ], true
+			'@phan-var Element $node';
+			$id = DOMCompat::getAttribute( $node, 'id' );
+			if ( $id === null ) {
+				return true;
+			}
+			if ( self::isHtmlHeading( $node ) ) {
+				// This is a <h#> tag with attributes added using HTML syntax.
+				// Mark it with a class to make them easier to distinguish (T68637).
+				DOMCompat::getClassList( $node )->add( 'mw-html-heading' );
+				// Do not add the wrapper if the heading has attributes added using HTML syntax (T353489).
+				return true;
+			}
+			if ( !isset( $sectionMap[$id] ) ) {
+				return true;
+			}
+			return $this->transformHeading(
+				$df, $node, $po, $popts, $options, $skin, $sectionMap[$id]
 			);
-			$traverser->addHandler( null, function ( Node $node ) use (
-				$df, $po, $popts, $options, $skin, &$sectionMap, $headings
-			) {
-				if ( !( $headings[DOMUtils::nodeName( $node )] ?? false ) ) {
-					return true;
-				}
-				'@phan-var Element $node';
-				$id = DOMCompat::getAttribute( $node, 'id' );
-				if ( $id === null ) {
-					return true;
-				}
-				if ( !isset( $sectionMap[$id] ) ) {
-					return true;
-				}
-				return $this->transformHeading(
-					$df, $node, $po, $popts, $options, $skin, $sectionMap[$id]
-				);
-			} );
-			$traverser->traverse( null, $df );
-		}
+		} );
+		$traverser->traverse( null, $df );
 
 		foreach ( $sectionMap as $id => $sectionInfo ) {
 			if ( !$sectionInfo['processed'] ) {
@@ -193,15 +188,6 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 			if ( $id !== null ) {
 				$s->setAttribute( 'aria-labelledby', $id );
 			}
-		}
-
-		if ( self::isHtmlHeading( $h ) ) {
-			// This is a <h#> tag with attributes added using HTML syntax.
-			// Mark it with a class to make them easier to distinguish (T68637).
-			DOMCompat::getClassList( $h )->add( 'mw-html-heading' );
-
-			// Do not add the wrapper if the heading has attributes added using HTML syntax (T353489).
-			return true;
 		}
 
 		$next = $h->nextSibling;
