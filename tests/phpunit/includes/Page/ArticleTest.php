@@ -497,6 +497,7 @@ class ArticleTest extends ParserCacheTestBase {
 		$html = preg_replace( '/NewPP limit report.*?(?=-->)/s', '', $html );
 		$html = preg_replace( '/Transclusion expansion time report.*?(?=-->)/s', '', $html );
 		$html = preg_replace( '/, generated at \d+/', '', $html );
+		$html = preg_replace( '/\n<!-- Render ID (.*?)-->\n/', '', $html );
 		return $html;
 	}
 }

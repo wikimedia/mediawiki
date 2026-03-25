@@ -106,8 +106,14 @@ class ApiParseTest extends ApiTestCase {
 		$possibleIdAttr = '/^( (id|data-mw[^=]*)="[^"]+")*>/';
 		$html = preg_replace( $possibleIdAttr, '', $html );
 
+		$possibleRenderId = '/\n<!-- Render ID (.*?)-->\n/';
+		$html = preg_replace( $possibleRenderId, '', $html );
+
 		$possibleParserCache = '/\n<!-- Saved in (?>parser cache|RevisionOutputCache) (?>.*?\n -->)\n/';
 		$html = preg_replace( $possibleParserCache, '', $html );
+
+		$possibleParsoidVersion = '/\n<!-- Parsoid (.*?)-->\n/';
+		$html = preg_replace( $possibleParsoidVersion, '', $html );
 
 		if ( $res[1]->getBool( 'disablelimitreport' ) ) {
 			$expectedEnd = "</div>";

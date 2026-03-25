@@ -114,13 +114,20 @@ class RenderDebugInfo extends ContentTextTransformStage {
 			}
 		}
 
+		$renderId = $po->getRenderId();
+		if ( $renderId ) {
+			// Ensure render ID doesn't randomly contain `-->`
+			$renderId = htmlspecialchars( $renderId );
+			$text .= "\n<!-- Render ID " . $renderId . " -->\n";
+		}
+
 		if ( $po->getCacheMessage() ) {
 			$text .= "\n<!-- " . $po->getCacheMessage() . "\n -->\n";
 		}
 
 		$parsoidVersion = $po->getExtensionData( 'core:parsoid-version' );
 		if ( $parsoidVersion ) {
-			$text .= "\n<!--Parsoid $parsoidVersion-->\n";
+			$text .= "\n<!-- Parsoid $parsoidVersion -->\n";
 		}
 
 		return $text;
