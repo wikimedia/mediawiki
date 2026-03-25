@@ -3366,6 +3366,7 @@
 	"namespaceinfo-heading-canonical": "Järjestelmänlaajuinen nimi",
 	"namespaceinfo-heading-local": "Paikallinen nimi",
 	"namespaceinfo-heading-info": "Kuvaus ja ominaisuudet",
+	"namespaceinfo-heading-aliases": "Aliakset",
 	"namespaceinfo-description-custom": "Mukautettu nimiavaruus ”$1”",
 	"namespaceinfo-description-custom-talk": "Nimiavaruuteen $1 (nro $2) liittyvät keskustelusivut",
 	"namespaceinfo-description-ns-2": "Virtuaalinen nimiavaruus kuville",

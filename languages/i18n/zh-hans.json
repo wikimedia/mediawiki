@@ -3522,6 +3522,7 @@
 	"namespaceinfo-heading-canonical": "规范名称",
 	"namespaceinfo-heading-local": "本地化名称",
 	"namespaceinfo-heading-info": "描述和属性",
+	"namespaceinfo-heading-aliases": "别名",
 	"namespaceinfo-description-custom": "自定义命名空间“$1”",
 	"namespaceinfo-description-custom-talk": "与$1命名空间（ID $2）相关联的讨论页",
 	"namespaceinfo-description-ns-2": "图像的虚拟命名空间",

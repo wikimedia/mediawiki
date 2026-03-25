@@ -3249,6 +3249,7 @@
 	"namespaceinfo-heading-canonical": "Основни назив",
 	"namespaceinfo-heading-local": "Локални назив",
 	"namespaceinfo-heading-info": "Опис и својства",
+	"namespaceinfo-heading-aliases": "Псеудоними",
 	"namespaceinfo-description-custom": "Прилагођен именски простор „$1”",
 	"namespaceinfo-description-custom-talk": "Странице за разговор повезане са именским простором $1 (ID $2)",
 	"namespaceinfo-description-ns-2": "Виртуелни именски простор за слике",

@@ -3363,6 +3363,7 @@
 	"namespaceinfo-heading-canonical": "Canonieke naam",
 	"namespaceinfo-heading-local": "Lokale naam",
 	"namespaceinfo-heading-info": "Beschrijving en eigenschappen",
+	"namespaceinfo-heading-aliases": "Aliassen",
 	"namespaceinfo-description-custom": "Aangepaste naamruimte “$1”",
 	"namespaceinfo-description-custom-talk": "Overlegpagina’s die gekoppeld zijn aan de naamruimte $1 (ID $2)",
 	"namespaceinfo-description-ns-2": "Virtuele naamruimte voor afbeeldingen",

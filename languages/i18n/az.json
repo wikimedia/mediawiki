@@ -3304,6 +3304,7 @@
 	"namespaceinfo-heading-canonical": "Bilinən adı",
 	"namespaceinfo-heading-local": "Lokal adı",
 	"namespaceinfo-heading-info": "Açıqlaması və parametrləri",
+	"namespaceinfo-heading-aliases": "Digər adları",
 	"namespaceinfo-description-custom": "\"$1\" xüsusi ad fəzası",
 	"namespaceinfo-description-custom-talk": "$1 ad fəzası ilə əlaqəli müzakirə səhifələri (ID $2)",
 	"namespaceinfo-description-ns-2": "Şəkillər üçün virtual ad fəzası",

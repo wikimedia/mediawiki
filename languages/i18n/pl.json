@@ -3379,6 +3379,7 @@
 	"namespaceinfo-heading-canonical": "Nazwa kanoniczna",
 	"namespaceinfo-heading-local": "Nazwa lokalna",
 	"namespaceinfo-heading-info": "Opis i właściwości",
+	"namespaceinfo-heading-aliases": "Aliasy",
 	"namespaceinfo-description-custom": "Niestandardowa przestrzeń nazw „$1”",
 	"namespaceinfo-description-custom-talk": "Strona dyskusji powiązana z przestrzenią nazw $1 (o ID $2)",
 	"namespaceinfo-description-ns-2": "Wirtualna przestrzeń nazw dla obrazów",

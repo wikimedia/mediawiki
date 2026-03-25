@@ -325,6 +325,7 @@
 	"listgrouprights-namespaceprotection-header": "Ograniczenia przestrzeni nazw",
 	"listgrouprights-namespaceprotection-namespace": "Przestrzeń nazw",
 	"listgrouprights-namespaceprotection-restrictedto": "Uprawnienia pozwalające użytkownikom na edytowanie",
+	"restrictedgroups-autodemotion-log-reason": "Automatyczne wypisanie {{GENDER:$1|użytkownika|użytkowniczki}} z {{PLURAL:$2|grupy|grup}} z ograniczeniami",
 	"listgrants": "Dostępy",
 	"listgrants-summary": "Poniżej znajduje się lista dostępów wraz z powiązaną grupą uprawnień. Użytkownicy mogą autoryzować aplikacje do używania ich kont, ale z ograniczonymi uprawnieniami, które oparte są na dostępach. Użytkownik nadaje aplikacji dostęp, ale ta działając na koncie użytkownika nie może wykorzystywać uprawnień, do których użytkownik nie ma dostępu.\nTu możesz znaleźć [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowe informacje]] na temat poszczególnych uprawnień.",
 	"listgrants-grant": "Dostęp",

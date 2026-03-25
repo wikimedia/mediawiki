@@ -294,6 +294,7 @@
 	"listgrouprights-restrictedgroups-header": "Ограничувања за членство во група",
 	"listgrouprights-restrictedgroups-config": "Поставка на ограничувања",
 	"listgrouprights-restrictedgroups-memberconditions": "Услови за членови:",
+	"listgrouprights-restrictedgroups-updaterconditions": "Услови за доделување на оваа група:",
 	"listgrouprights-namespaceprotection-header": "Ограничувања за именски простори",
 	"listgrouprights-namespaceprotection-namespace": "Именски простор",
 	"listgrouprights-namespaceprotection-restrictedto": "Права што им овозможуваат на корисниците да уредуваат",

@@ -3540,6 +3540,7 @@
 	"namespaceinfo-heading-canonical": "Nom canonique",
 	"namespaceinfo-heading-local": "Nom local",
 	"namespaceinfo-heading-info": "Description et propriétés",
+	"namespaceinfo-heading-aliases": "Alias",
 	"namespaceinfo-description-custom": "Espace de noms personnalisé « $1 »",
 	"namespaceinfo-description-custom-talk": "Pages de discussion associées à l'espace de noms $1 (ID $2 )",
 	"namespaceinfo-description-ns-2": "Espace de noms virtuel pour les images",

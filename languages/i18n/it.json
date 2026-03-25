@@ -3401,6 +3401,7 @@
 	"namespaceinfo-heading-canonical": "Nome canonico",
 	"namespaceinfo-heading-local": "Nome locale",
 	"namespaceinfo-heading-info": "Descrizione e proprietà",
+	"namespaceinfo-heading-aliases": "Alias",
 	"namespaceinfo-description-custom": "Namespace personalizzato \"$1\"",
 	"namespaceinfo-description-custom-talk": "Pagine di discussione associate al namespace $1 (ID $2)",
 	"namespaceinfo-description-ns-2": "Namespace virtuale per le immagini",

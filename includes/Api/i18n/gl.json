@@ -55,7 +55,7 @@
 	"apihelp-block-param-expiry": "Tempo de caducidade. Pode ser relativo (por exemplo, <kbd>5 months</kbd> ou <kbd>2 weeks</kbd>) ou absoluto (por exemplo, <kbd>2014-09-18T12:34:56Z</kbd>). Se se pon <kbd>infinite</kbd>, <kbd>indefinite</kbd> ou <kbd>never</kbd>, o bloqueo nunca caducará.",
 	"apihelp-block-param-reason": "Motivo para o bloqueo.",
 	"apihelp-block-param-anononly": "Bloquear só os usuarios anónimos (é dicir, desactivar as edicións anónimas desde este enderezo IP, incluíndo as edicións desde contas temporais).",
-	"apihelp-block-param-nocreate": "Previr a creación de contas.",
+	"apihelp-block-param-nocreate": "Impedir a creación de contas.",
 	"apihelp-block-param-autoblock": "Bloquear automaticamente o último enderezo IP utilizado, e calquera outro enderezo desde o que intente conectarse.",
 	"apihelp-block-param-noemail": "Impedir que o usuario envíe correos electrónicos a través do wiki. (Cómpre o permiso <code>blockemail</code>.)",
 	"apihelp-block-param-hidename": "Ocultar o nome de usuario do rexistro de bloqueos. (Cómpre o permiso <code>hideuser</code>.)",

@@ -100,7 +100,7 @@
 	"exif-devicesettingdescription": "Опис налаштування камери",
 	"exif-subjectdistancerange": "Відстань до об'єкта зйомки",
 	"exif-imageuniqueid": "Номер зображення (ID)",
-	"exif-gpsversionid": "Версія блоку GPS-інформації",
+	"exif-gpsversionid": "Версія GPS-тегу",
 	"exif-gpslatituderef": "Індекс широти",
 	"exif-gpslatitude": "Широта",
 	"exif-gpslongituderef": "Індекс довготи",

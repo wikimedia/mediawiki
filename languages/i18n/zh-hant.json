@@ -3417,6 +3417,7 @@
 	"namespaceinfo-heading-canonical": "規範名稱",
 	"namespaceinfo-heading-local": "本地名稱",
 	"namespaceinfo-heading-info": "描述與屬性",
+	"namespaceinfo-heading-aliases": "別名",
 	"namespaceinfo-description-custom": "自訂命名空間「$1」",
 	"namespaceinfo-description-custom-talk": "與$1命名空間（ID：$2）關聯的討論頁面",
 	"namespaceinfo-description-ns-2": "圖片的虛擬命名空間",

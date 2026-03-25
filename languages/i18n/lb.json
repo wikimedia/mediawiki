@@ -2982,6 +2982,7 @@
 	"namespaceinfo-heading-canonical": "Kanoneschen Numm",
 	"namespaceinfo-heading-local": "Lokalen Numm",
 	"namespaceinfo-heading-info": "Beschreiwung an Eegenschaften",
+	"namespaceinfo-heading-aliases": "Aliasen",
 	"namespaceinfo-description-custom": "Benotzerdefinéierten Nummraum „$1“",
 	"namespaceinfo-description-custom-talk": "Diskussiounssäite, déi mam $1-Nummraum (ID $2) verbonne sinn",
 	"namespaceinfo-description-ns-2": "Virtuellen Nummraum fir Biller",
