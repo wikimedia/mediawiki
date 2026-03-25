@@ -94,14 +94,15 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 	protected function streamThumb( array $params ) {
 		$headers = []; // HTTP headers to send
 
-		$fileName = $params['f'] ?? '';
+		// None of the parameters below can handle arrays from `&param[]=…` queries
+		$params = array_filter( $params, is_scalar( ... ) );
 
 		// Backwards compatibility parameters
 		if ( isset( $params['w'] ) ) {
 			$params['width'] = $params['w'];
 			unset( $params['w'] );
 		}
-		if ( isset( $params['width'] ) && substr( $params['width'], -2 ) == 'px' ) {
+		if ( isset( $params['width'] ) && str_ends_with( $params['width'], 'px' ) ) {
 			// strip the px (pixel) suffix, if found
 			$params['width'] = substr( $params['width'], 0, -2 );
 		}
@@ -110,17 +111,17 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 		}
 
 		// Is this a thumb of an archived file?
-		$isOld = ( isset( $params['archived'] ) && $params['archived'] );
+		$isOld = (bool)( $params['archived'] ?? false );
 		unset( $params['archived'] ); // handlers don't care
 
 		// Is this a thumb of a temp file?
-		$isTemp = ( isset( $params['temp'] ) && $params['temp'] );
+		$isTemp = (bool)( $params['temp'] ?? false );
 		unset( $params['temp'] ); // handlers don't care
 
 		$services = $this->getServiceContainer();
 
 		// Some basic input validation
-		$fileName = strtr( $fileName, '\\/', '__' );
+		$fileName = strtr( $params['f'] ?? '', '\\/', '__' );
 		$localRepo = $services->getRepoGroup()->getLocalRepo();
 		$archiveTimestamp = null;
 
