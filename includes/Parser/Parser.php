@@ -2765,8 +2765,17 @@ class Parser {
 				$this, $fakeCache, $index, $value, $frame
 			);
 			// Cache the value returned by the hook by falling through here.
-			// Assert the the hook returned a non-null value for this MV
-			'@phan-var string $value';
+			if ( $value === null ) {
+				// T419880: If a magic word ID was registered with the
+				// GetMagicVariableIDs hook, the registering extension should
+				// *not* let that $value remain `null` when the
+				// ParserGetVariableValueSwitch hook is invoked.
+				wfDeprecated(
+					__METHOD__ . " called hook for $index and got null",
+					"1.46"
+				);
+				$value = '';
+			}
 		}
 
 		$this->mVarCache[$index] = $value;

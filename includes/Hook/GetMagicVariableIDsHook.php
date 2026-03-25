@@ -15,6 +15,9 @@ interface GetMagicVariableIDsHook {
 	 * Magic variables are localized with the magic word system,
 	 * and this hook is called by MagicWordFactory.
 	 *
+	 * If you register a magic variable id here, you should
+	 * handle it in the ParserGetVariableValueSwitch hook.
+	 *
 	 * @since 1.35
 	 *
 	 * @param string[] &$variableIDs array of magic word identifiers

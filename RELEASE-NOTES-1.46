@@ -961,6 +961,9 @@ because of Phabricator reports.
   passing other values triggers a deprecation warning.
 * Content::getNativeData() now emits deprecation warnings in all Content
   subclasses defined in core; it was deprecated in 1.33.
+* Returning null (or allowing the null initial value to remain) from the
+  ParserGetVariableValueSwitch hook for a magic word you've registered
+  via the GetMagicVariableIDs hook is deprecated and emits warnings.
 * The WatchedItemQueryServiceExtensions hook is deprecated and is no longer
   called. Use ApiQueryBaseBeforeQuery, ApiQueryBaseAfterQuery,
   ApiQueryBaseProcessRow and ApiQueryWatchlistExtractOutputData.
