@@ -604,7 +604,7 @@
 	"semiprotectedpagewarning": "<strong>Bemierkung:</strong> Dës Säit gouf esou gespaart, datt nëmmen automatesch confirméiert Benotzer se ännere kënnen.\nDe leschten Antrag aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner:",
 	"cascadeprotectedwarning": "<strong>Opgepasst:</strong> Dës Säit gouf gespaart a kann nëmme vu Benotzer mat [[Special:ListGroupRights|spezifische Rechter]] geännert ginn. Si ass an dës {{PLURAL:$1|Säit|Säiten}} agebonnen, déi duerch Cascadespäroptioun gespaart {{PLURAL:$1|ass|sinn}}:'''",
 	"titleprotectedwarning": "<strong>Opgepasst: Dës Säit gouf gespaart, soudatt [[Special:ListGroupRights|speziell Rechter]] gebraucht gi fir se uleeën ze kënnen.</strong> De leschten Antrag am Logbuch steet als Referenz hei drënner:",
-	"templatesused": "{{PLURAL:$1|Säit|Säiten}} an dëser Säit agebonnen:",
+	"templatesused": "{{PLURAL:$1|Säit|Säiten}}, déi an dëser Säit agebonne {{PLURAL:$1|gëtt|ginn}}:",
 	"templatesusedpreview": "{{PLURAL:$1|Säit|Säiten}} an dëser Virschau agebonnen:",
 	"templatesusedsection": "{{PLURAL:$1|Säit|Säiten}} an dësem Abschnitt agebonnen:",
 	"template-protected": "(gespaart)",

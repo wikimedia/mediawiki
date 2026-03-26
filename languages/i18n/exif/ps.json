@@ -11,6 +11,7 @@
 	"exif-imagewidth": "پراخوالی",
 	"exif-imagelength": "لوړوالی",
 	"exif-bitspersample": "د هرې برخې ټوټې",
+	"exif-compression": "فشار طرجخ",
 	"exif-photometricinterpretation": "پېکسل ترکيب",
 	"exif-orientation": "لورموندنه",
 	"exif-samplesperpixel": "د ټوټو شمېر",

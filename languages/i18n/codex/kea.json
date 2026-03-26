@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"GrogeXaKaba"
+		]
+	},
+	"cdx-breadcrumb-navigation-label": "Kamin di nabegason",
+	"cdx-breadcrumb-overflow-label": "Más opuson di nabegason",
+	"cdx-chip-input-chip-added": "Fixa $1 foi kirsentadu.",
+	"cdx-chip-input-chip-removed": "Fixa $1 foi ramuvedu.",
+	"cdx-input-chip-aria-description": "Perta tékla Enter pa idita, o Delete pa ramuve.",
+	"cdx-dialog-close-button-label": "Fitxa",
+	"cdx-label-optional-flag": "(opusional)",
+	"cdx-message-dismiss-button-label": "Fitxa",
+	"cdx-popover-close-button-label": "Fitxa",
+	"cdx-search-input-search-button-label": "Piskiza",
+	"cdx-table-select-all-label": "Silesona tudu linha",
+	"cdx-table-select-row-label": "Silesona linha $1 di $2",
+	"cdx-table-sort-caption": "$1 (tudu kabesáliu di kuluna podi ordiadu).",
+	"cdx-typeahead-search-search-results-label": "Razultadus di piskiza",
+	"cdx-table-pager-button-first-page": "Purmeru pájina",
+	"cdx-table-pager-button-last-page": "Últimu pájina",
+	"cdx-table-pager-button-next-page": "Pájina dipadianti",
+	"cdx-table-pager-button-prev-page": "Pájina dipatrás",
+	"cdx-table-pager-items-per-page-default": "Razultadus pa pájina",
+	"cdx-table-pagination-status-message-determinate-long": "Sa-ta izibidu razultadus $1-$2 di $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 di $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Sa-ta izibidu razultadus $1-$2 di un munti",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 di un munti",
+	"cdx-table-pagination-status-message-indeterminate-final": "Sa-ta izibidu {{PLURAL:$1|$1 últimu razultadu}}",
+	"cdx-table-pagination-status-message-pending": "Razultadus sa-ta karaga...",
+	"cdx-table-no-data-message": "Niun dadu ka sta dispunívi."
+}
