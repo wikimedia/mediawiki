@@ -116,7 +116,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 ===== New development-only external libraries =====
 
-* Added ergebnis/phpunit-slow-test-detector v2.23.0.
+* Added ergebnis/phpunit-slow-test-detector v2.24.0.
 * …
 
 ==== Changed external libraries ====

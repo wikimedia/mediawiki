@@ -92,6 +92,9 @@ Generate a local configuration by running `composer phpunit:config`
 					<element key="maximum-count">
 						<integer>10</integer>
 					</element>
+					<element key="stderr">
+						<boolean>true</boolean>
+					</element>
 				</array>
 			</arguments>
 		</extension>

@@ -93,7 +93,7 @@
 		"composer/spdx-licenses": "1.5.9",
 		"doctrine/dbal": "3.10.5",
 		"doctrine/sql-formatter": "1.5.4",
-		"ergebnis/phpunit-slow-test-detector": "2.23.0",
+		"ergebnis/phpunit-slow-test-detector": "2.24.0",
 		"ext-simplexml": "*",
 		"giorgiosironi/eris": "^0.14.0",
 		"hamcrest/hamcrest-php": "^2.0",
