@@ -3166,6 +3166,7 @@
 	"confirmemail_noemail": "Failure message on [[Special:ConfirmEmail]].",
 	"confirmemail_text": "Explanation on [[Special:ConfirmEmail]]",
 	"confirmemail-notice": "Banner shown at the top of every page for logged-in users whose email address is not yet confirmed. Contains a link to [[Special:ConfirmEmail]].",
+	"confirmemail-notice-arm-b": "Alternate banner shown to users in the arm_b group of the email confirmation A/B test. Shown at the top of every page for logged-in users whose email address is not yet confirmed. Contains a link to [[Special:ConfirmEmail]].",
 	"confirmemail_pending": "Message on [[Special:ConfirmEmail]] when confirmation of e-mail not yet complete.",
 	"confirmemail_send": "Button label on [[Special:ConfirmEmail]]",
 	"confirmemail_sent": "Message appearing after button {{msg-mw|Confirmemail send}} activated on [[Special:ConfirmEmail]].",
