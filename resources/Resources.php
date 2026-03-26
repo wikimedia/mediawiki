@@ -1312,6 +1312,10 @@ return [
 	'mediawiki.experiments' => [
 		'scripts' => 'resources/src/mediawiki.experiments.js',
 	],
+	'mediawiki.emailConfirmationBanner.abTest' => [
+		'scripts' => 'resources/src/mediawiki.emailConfirmationBanner/abTest.js',
+	],
+
 	'mediawiki.editfont.styles' => [
 		'styles' => 'resources/src/mediawiki.editfont.less',
 	],
