@@ -621,6 +621,7 @@ because of Phabricator reports.
     - BeforeParserFetchFileAndTitleHook
     - BeforeParserFetchTemplateRevisionRecordHook
     - GetLinkColoursHook
+    - GetMagicVariableIDsHook
     - InternalParseBeforeLinksHook
     - IsValidEmailAddrHook
     - PageRenderingHashHook
