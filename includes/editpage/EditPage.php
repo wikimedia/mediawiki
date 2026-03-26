@@ -1436,7 +1436,12 @@ class EditPage implements IEditObject {
 			return false;
 		}
 
-		$this->textbox1 = $this->toEditText( $content );
+		try {
+			$this->textbox1 = $this->toEditText( $content );
+		} catch ( MWException ) {
+			// T391524: If the content format isn't supported, Content::serialize throws an exception
+			$this->textbox1 = $content->serialize();
+		}
 
 		$user = $this->context->getUser();
 		// activate checkboxes if user wants them to be always active
