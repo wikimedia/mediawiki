@@ -200,7 +200,6 @@ class HookRunner implements
 	\MediaWiki\Hook\LinkerMakeExternalImageHook,
 	\MediaWiki\Hook\LinkerMakeExternalLinkHook,
 	\MediaWiki\Hook\LinkerMakeMediaLinkFileHook,
-	\MediaWiki\Hook\MagicWordwgVariableIDsHook,
 	\MediaWiki\Hook\MaintenanceRefreshLinksInitHook,
 	\MediaWiki\Hook\MaintenanceShellStartHook,
 	\MediaWiki\Hook\MaintenanceUpdateAddParamsHook,
@@ -2760,14 +2759,6 @@ class HookRunner implements
 		return $this->container->run(
 			'LonelyPagesQuery',
 			[ &$tables, &$conds, &$joinConds ]
-		);
-	}
-
-	/** @inheritDoc */
-	public function onMagicWordwgVariableIDs( &$variableIDs ) {
-		return $this->container->run(
-			'MagicWordwgVariableIDs',
-			[ &$variableIDs ]
 		);
 	}
 

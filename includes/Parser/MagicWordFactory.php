@@ -177,7 +177,6 @@ class MagicWordFactory {
 	public function getVariableIDs(): array {
 		if ( !$this->mVariableIDsInitialised ) {
 			# Get variable IDs
-			$this->hookRunner->onMagicWordwgVariableIDs( $this->mVariableIDs );
 			$this->hookRunner->onGetMagicVariableIDs( $this->mVariableIDs );
 			$this->mVariableIDsInitialised = true;
 		}

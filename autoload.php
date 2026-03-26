@@ -1709,7 +1709,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\LogLineHook' => __DIR__ . '/includes/Logging/Hook/LogLineHook.php',
 	'MediaWiki\\Hook\\LoginFormValidErrorMessagesHook' => __DIR__ . '/includes/Specials/Hook/LoginFormValidErrorMessagesHook.php',
 	'MediaWiki\\Hook\\LonelyPagesQueryHook' => __DIR__ . '/includes/Specials/Hook/LonelyPagesQueryHook.php',
-	'MediaWiki\\Hook\\MagicWordwgVariableIDsHook' => __DIR__ . '/includes/Hook/MagicWordwgVariableIDsHook.php',
 	'MediaWiki\\Hook\\MaintenanceRefreshLinksInitHook' => __DIR__ . '/includes/Hook/MaintenanceRefreshLinksInitHook.php',
 	'MediaWiki\\Hook\\MaintenanceShellStartHook' => __DIR__ . '/includes/Hook/MaintenanceShellStartHook.php',
 	'MediaWiki\\Hook\\MaintenanceUpdateAddParamsHook' => __DIR__ . '/includes/Hook/MaintenanceUpdateAddParamsHook.php',

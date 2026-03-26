@@ -30,7 +30,6 @@ class DeprecatedHooks {
 		'EmailUserPermissionsErrors' => [ 'deprecatedVersion' => '1.41' ],
 		'InterwikiLoadPrefix' => [ 'deprecatedVersion' => '1.36' ],
 		'LocalFile::getHistory' => [ 'deprecatedVersion' => '1.37' ],
-		'MagicWordwgVariableIDs' => [ 'deprecatedVersion' => '1.35' ],
 		'MessageCache::get' => [ 'deprecatedVersion' => '1.41' ],
 		'PrefixSearchBackend' => [ 'deprecatedVersion' => '1.27' ],
 		'ProtectionForm::buildForm' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
