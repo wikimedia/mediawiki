@@ -3267,6 +3267,7 @@
 	"namespaceinfo-heading-canonical": "Nomine canonic",
 	"namespaceinfo-heading-local": "Nomine local",
 	"namespaceinfo-heading-info": "Description e proprietates",
+	"namespaceinfo-heading-aliases": "Aliases",
 	"namespaceinfo-description-custom": "Spatio de nomines personalisate “$1”",
 	"namespaceinfo-description-custom-talk": "Paginas de discussion associate con le spatio de nomines $1 (ID $2)",
 	"namespaceinfo-description-ns-2": "Spatio de nomines virtual pro imagines",

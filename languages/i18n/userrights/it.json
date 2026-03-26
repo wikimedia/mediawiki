@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Asteralee",
 			"Beta16",
 			"BrokenArrow",
 			"Cruccone",
@@ -303,6 +304,7 @@
 	"listgrouprights-addgroup-self-all": "Può aggiungersi a tutti i gruppi",
 	"listgrouprights-removegroup-self-all": "Può rimuoversi da tutti i gruppi",
 	"listgrouprights-restrictedgroups-autodemotion": "Gli utenti che non soddisfano più le condizioni sopra indicate verranno automaticamente rimossi da questo gruppo.",
+	"listgrouprights-restrictedgroups-cond-isbot": "L'utente è un bot",
 	"listgrouprights-namespaceprotection-header": "Restrizioni per namespace",
 	"listgrouprights-namespaceprotection-namespace": "Namespace",
 	"listgrouprights-namespaceprotection-restrictedto": "Diritto che consente all'utente di modificare",

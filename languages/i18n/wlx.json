@@ -19,6 +19,7 @@
 	"category-file-count": "{{PLURAL:$2|A lombori ŋa tarɛɛ a peeji ŋa yoŋ.|A tutaa {{PLURAL:$1|peeji bɩɛ|$1 peejihi bɩɛ}} a lombori ŋa, a yi a $2 jaa lantaa puoŋ.}}",
 	"broken-file-category": "Peejihi aŋ tarɩ lɩnkɩ ŋmaaha",
 	"about": "Chaahɩ nɩŋ",
+	"article": "sigbu gbantali lampegi",
 	"newwindow": "(yuo window paalaa ɩŋaŋ)",
 	"cancel": "Ŋmaakʋʋ bahɩ",
 	"mypage": "Peeji",

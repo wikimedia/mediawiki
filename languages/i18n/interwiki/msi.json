@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tofeiku"
+		]
+	},
+	"interwiki": "Nampak dan idit data antara wiki",
+	"interwiki-title-norights": "Nampak data antara wiki",
+	"interwiki_intro": "Ni kasaluruhan jadual antara wiki yang kasih maksud jalan capat awalan yang diguna untuk kasih sambung capat wiki lain dan tapak luar lain. Untuk kagunaan yang bagus, tulung tinguk [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki di Mediawiki.org].",
+	"interwiki-legend-label": "Patunjuk",
+	"interwiki_prefix": "Awalan",
+	"interwiki-prefix-label": "Awalan:",
+	"interwiki_local": "Maju",
+	"interwiki-local-label": "Maju",
+	"interwiki_trans": "Tukar",
+	"interwiki-trans-label": "Tukar",
+	"interwiki_1": "iya",
+	"interwiki_0": "ndak",
+	"interwiki_edit": "Idit",
+	"interwiki_reasonfield": "Sabab:",
+	"interwiki-logtext": "Nampak log",
+	"interwiki_addtext": "Tambah awalan antara wiki atau bahasa",
+	"interwiki-addtext-local": "Tambah awalan antara wiki tampatan atau bahasa",
+	"interwiki-addtext-nolang": "Tambah awalan antara wiki",
+	"interwiki-addtext-local-nolang": "Tambah awalan antara wiki tampatan",
+	"interwiki_addbutton": "Tambah",
+	"interwiki_edittext": "Mangidit awalan antara wiki",
+	"log-name-interwiki": "Log jadual antara wiki",
+	"right-interwiki": "Idit data antara wiki",
+	"action-interwiki": "tukar masukan antara wiki ni",
+	"interwiki-global-links": "Awalan antara wiki dunia",
+	"interwiki-local-links": "Awalan antara wiki tampatan",
+	"interwiki-links": "Awalan antara wiki",
+	"interwiki-language-links": "Awalan antara bahasa",
+	"interwiki-global-language-links": "Awalan antara bahasa dunia",
+	"interwiki-global-language-description": "Awalan ni ngam dangan kod bahasa yang dikasih maksud dan akan diguna untuk buat sanarai \"{{int:otherlanguages}}\" bila dikasih masuk ke laman. Mamandangkan tu dari susun bantuk dunia, tu hanya bulih diidit di wiki asal. Maksud antara bahasa dunia ndak bulih tindih tampatan."
+}

@@ -67,7 +67,7 @@
 	"minutes": "{{PLURAL:$1|$1 miinut|$1 miinut|$1 miinut|$1 minuttid}}",
 	"seconds": "{{PLURAL:$1|$1 seekunt|$1 seekunt|$1 seekunt|$1 sekuntid}}",
 	"ago": "$1 tassaaš",
-	"duration-years": "$1 {{PLURAL:$1|ihe|ive}}",
+	"duration-years": "$1 {{PLURAL:$1|ihe|ive|ihheed}}",
 	"duration-months": "$1 {{PLURAL:$1|mánuppaje|mánuppaje|mánuppaje|mánuppaijeed}}",
 	"duration-weeks": "$1 {{PLURAL:$1|okko|oho|oho|okkod}}",
 	"duration-days": "$1 {{PLURAL:$1|peivi|peeivi|peeivi|peivid}}",

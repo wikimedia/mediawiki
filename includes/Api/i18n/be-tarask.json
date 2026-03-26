@@ -93,6 +93,7 @@
 	"apihelp-feedrecentchanges-example-simple": "Паказаць апошнія зьмяненьні.",
 	"apihelp-feedrecentchanges-example-30days": "Паказаць зьмяненьні за апошнія 30 дзён.",
 	"apihelp-help-example-recursive": "Уся дапамога на адной старонцы.",
+	"apihelp-imagerotate-param-rotation": "Ґрадусы для павароту выявы водле гадзіньнікавай стрэлкі.",
 	"apihelp-login-param-name": "Імя ўдзельніцы(-ка)",
 	"apihelp-login-param-password": "Пароль.",
 	"apihelp-login-example-login": "Увайсьці.",

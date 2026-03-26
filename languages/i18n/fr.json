@@ -3004,7 +3004,7 @@
 	"pageinfo-subpages-value-unknown": "Inconnu ($1)",
 	"pageinfo-firstuser": "Créat{{GENDER:$1|eur|rice}} de la page",
 	"pageinfo-firsttime": "Date de création de la page",
-	"pageinfo-lastuser": "Derni{{GENDER:$1|er|ère}} rédact{{GENDER:$1|eur|rice}}",
+	"pageinfo-lastuser": "Derni{{GENDER:$1|er|ère}} contribut{{GENDER:$1|eur|rice}}",
 	"pageinfo-lasttime": "Date de la dernière modification",
 	"pageinfo-edits": "Nombre total de modifications",
 	"pageinfo-authors": "Nombre total d’auteurs distincts",
