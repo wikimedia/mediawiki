@@ -11,22 +11,13 @@ use MediaWiki\User\UserIdentityValue;
  * like password if we log in via the API.
  */
 class TestUser {
-	/**
-	 * @var string
-	 */
-	private $username;
+	private string $username;
 
-	/**
-	 * @var string
-	 */
-	private $password;
+	private string $password;
 
-	/**
-	 * @var User
-	 */
-	private $user;
+	private User $user;
 
-	private function assertNotReal() {
+	private function assertNotReal(): void {
 		global $wgDBprefix;
 		if (
 			$wgDBprefix !== MediaWikiIntegrationTestCase::DB_PREFIX &&
@@ -36,8 +27,11 @@ class TestUser {
 		}
 	}
 
-	public function __construct( string $username, string $realname = 'Real Name',
-		string $email = 'sample@example.com', array $groups = []
+	public function __construct(
+		string $username,
+		string $realname = 'Real Name',
+		string $email = 'sample@example.com',
+		array $groups = [],
 	) {
 		$this->assertNotReal();
 
@@ -52,17 +46,17 @@ class TestUser {
 		// we particularly need the new password, since we just generated it randomly.
 		// In core MediaWiki, there is no functionality to delete users, so this is the best we can do.
 		if ( !$this->user->isRegistered() ) {
-			// create the user
-			$this->user = User::createNew(
+			$user = User::createNew(
 				$this->username, [
 					"email" => $email,
-					"real_name" => $realname
+					"real_name" => $realname,
 				]
 			);
 
-			if ( !$this->user ) {
+			if ( !$user ) {
 				throw new RuntimeException( "Error creating TestUser " . $username );
 			}
+			$this->user = $user;
 		}
 
 		// Update the user to use the password and other details
@@ -88,11 +82,7 @@ class TestUser {
 		}
 	}
 
-	/**
-	 * @param string $realname
-	 * @return bool
-	 */
-	private function setRealName( $realname ) {
+	private function setRealName( string $realname ): bool {
 		if ( $this->user->getRealName() !== $realname ) {
 			$this->user->setRealName( $realname );
 			return true;
@@ -101,11 +91,7 @@ class TestUser {
 		return false;
 	}
 
-	/**
-	 * @param string $email
-	 * @return bool
-	 */
-	private function setEmail( string $email ) {
+	private function setEmail( string $email ): bool {
 		if ( $this->user->getEmail() !== $email ) {
 			$this->user->setEmail( $email );
 			return true;
@@ -114,10 +100,7 @@ class TestUser {
 		return false;
 	}
 
-	/**
-	 * @param string $password
-	 */
-	private function setPassword( $password ) {
+	private function setPassword( string $password ): void {
 		self::setPasswordForUser( $this->user, $password );
 	}
 
@@ -127,10 +110,8 @@ class TestUser {
 	 * This assumes we're still using the generic AuthManager config from
 	 * {@link TestSetup::applyInitialConfig()}, and just sets the password in the
 	 * database directly.
-	 * @param User $user
-	 * @param string $password
 	 */
-	public static function setPasswordForUser( User $user, $password ) {
+	public static function setPasswordForUser( User $user, string $password ): void {
 		if ( !$user->getId() ) {
 			throw new InvalidArgumentException( "Passed User has not been added to the database yet!" );
 		}
@@ -160,15 +141,13 @@ class TestUser {
 
 	/**
 	 * @since 1.25
-	 * @return User
 	 */
-	public function getUser() {
+	public function getUser(): User {
 		return $this->user;
 	}
 
 	/**
 	 * @since 1.39
-	 * @return Authority
 	 */
 	public function getAuthority(): Authority {
 		return $this->user;
@@ -176,7 +155,6 @@ class TestUser {
 
 	/**
 	 * @since 1.36
-	 * @return UserIdentity
 	 */
 	public function getUserIdentity(): UserIdentity {
 		return new UserIdentityValue( $this->user->getId(), $this->user->getName() );
@@ -184,9 +162,8 @@ class TestUser {
 
 	/**
 	 * @since 1.25
-	 * @return string
 	 */
-	public function getPassword() {
+	public function getPassword(): string {
 		return $this->password;
 	}
 }
