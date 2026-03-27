@@ -69,7 +69,7 @@ class CreditsAction extends FormlessAction {
 	 * Get a list of contributors
 	 *
 	 * @param int $cnt Maximum list of contributors to show
-	 * @param bool $showIfMax Whether to contributors if there more than $cnt
+	 * @param bool $showIfMax Whether to show contributors if there more than $cnt
 	 * @return string Html
 	 */
 	public function getCredits( $cnt, $showIfMax = true ) {
