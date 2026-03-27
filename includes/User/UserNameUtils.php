@@ -256,8 +256,7 @@ class UserNameUtils implements UserRigorOptions {
 			if ( str_starts_with( $name, $nsPrefix ) ) {
 				$name = str_replace( $nsPrefix, '', $name );
 			}
-			$name = strtr( $name, '_', ' ' );
-			return $name;
+			return strtr( $name, '_', ' ' );
 		}
 
 		// Clean up name according to title rules,

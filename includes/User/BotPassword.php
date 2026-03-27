@@ -183,9 +183,8 @@ class BotPassword {
 	 * @return string
 	 */
 	public static function getSeparator() {
-		$userrightsInterwikiDelimiter = MediaWikiServices::getInstance()
+		return MediaWikiServices::getInstance()
 			->getMainConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter );
-		return $userrightsInterwikiDelimiter;
 	}
 
 	/**

@@ -3139,7 +3139,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo() {
-		$ret = [
+		return [
 			'tables' => [ 'user', 'user_actor' => 'actor' ],
 			'fields' => [
 				'user_id',
@@ -3159,8 +3159,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 				'user_actor' => [ 'JOIN', 'user_actor.actor_user = user_id' ],
 			],
 		];
-
-		return $ret;
 	}
 
 	/**
