@@ -219,17 +219,6 @@ class Router extends OO.Registry {
 
 		window.history.back();
 
-		// If for some reason (old browser, bug in IE/windows 8.1, etc) popstate doesn't fire,
-		// resolve manually. Since we don't know for sure which browsers besides IE10/11 have
-		// this problem, it's better to fall back this way rather than singling out browsers
-		// and resolving the deferred request for them individually.
-		// See https://connect.microsoft.com/IE/feedback/details/793618/history-back-popstate-not-working-as-expected-in-webview-control
-		// Give browser a few ms to update its history.
-		timeoutID = setTimeout( () => {
-			this.off( 'popstate' );
-			deferred.resolve();
-		}, 50 );
-
 		return deferred.promise();
 	}
 
