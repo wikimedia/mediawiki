@@ -393,22 +393,28 @@ class ImagePage extends Article {
 				) {
 					// SVG that is rendered native doesn't need these links
 					$msgsmall = '';
-				} elseif ( $width > $maxWidth ||
-					$height > $maxHeight ||
-					$this->displayImg->isVectorized()
-				) {
-					// "Download high res version" link below the image
-					// $msgsize = $this->getContext()->msg( 'file-info-size', $width_orig, $height_orig,
-					//   Language::formatSize( $this->displayImg->getSize() ), $mime )->escaped();
-					// We'll show a thumbnail of this image
-					[ $width, $height ] = $this->displayImg->getDisplayWidthHeight(
-						$maxWidth, $maxHeight, $page
-					);
-					$linktext = $context->msg( 'show-big-image' )->escaped();
+				} elseif ( $width == 0 && $height == 0 ) {
+					# Some sort of audio file that doesn't have dimensions
+					# Don't output a no hi res message for such a file
+					$msgsmall = '';
+				} else {
+					if ( $width > $maxWidth ||
+						$height > $maxHeight ||
+						$this->displayImg->isVectorized()
+					) {
+						// We'll show a thumbnail of this image
+						[ $width, $height ] = $this->displayImg->getDisplayWidthHeight(
+							$maxWidth, $maxHeight, $page
+						);
+						$linktext = $context->msg( 'show-big-image' )->escaped();
+					}
 
-					$thumbSizes = $this->getThumbSizes( $width_orig, $height_orig );
-					// Generate thumbnails or thumbnail links as needed...
+					$sizeLinkBigImagePreview = $this->makeSizeLink( $params, $width, $height );
+					$msgsmall = $this->getThumbPrevText( $params, $sizeLinkBigImagePreview );
+
+					// Link to other sizes as needed
 					$otherSizes = [];
+					$thumbSizes = $this->getThumbSizes( $width_orig, $height_orig );
 					foreach ( $thumbSizes as $size ) {
 						// We include a thumbnail size in the list, if it is
 						// less than or equal to the original size of the image
@@ -432,9 +438,6 @@ class ImagePage extends Article {
 						}
 					}
 					$otherSizes = array_unique( $otherSizes );
-
-					$sizeLinkBigImagePreview = $this->makeSizeLink( $params, $width, $height );
-					$msgsmall = $this->getThumbPrevText( $params, $sizeLinkBigImagePreview );
 					if ( count( $otherSizes ) ) {
 						$msgsmall .= ' ' .
 						Html::rawElement(
@@ -446,13 +449,6 @@ class ImagePage extends Article {
 								->parse()
 						);
 					}
-				} elseif ( $width == 0 && $height == 0 ) {
-					# Some sort of audio file that doesn't have dimensions
-					# Don't output a no hi res message for such a file
-					$msgsmall = '';
-				} else {
-					# Image is small enough to show full size on image page
-					$msgsmall = $this->getContext()->msg( 'file-nohires' )->parse();
 				}
 
 				$params['width'] = $width;
