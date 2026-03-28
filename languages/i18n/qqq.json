@@ -2236,6 +2236,7 @@
 	"watchlistlabels-watchaction-success": "Success message shown after submitting the action=watch page form.\n\nParameters:\n* $1 — Integer number of labels that were saved.\n* $2 — Localized special page name of Special:WatchlistLabels.",
 	"watchlistlabels-editpage-label": "Label for the watchlist labels selector widget shown on the source edit form, next to the 'Watch this page' checkbox.",
 	"watchlistlabels-editpage-help": "Help text shown under the watchlist labels selector on the source edit form.\n\n\"Manage labels\" is {{msg-mw|watchlisttools-labels}}.",
+	"watchlistlabels-editpage-nolabels": "Sentence shown in the source edit form when a user doesn't have any watchlist labels defined.",
 	"watchlistlabels-editpage-placeholder": "Placeholder text shown in the watchlist labels selector widget on the source edit form when no label is selected.",
 	"watchlist-filters-labels-title": "Text for the Labels button in filters on [[Special:Watchlist]]",
 	"watchlist-filters-labels-list-title": "Title for the list of label filters on [[Special:Watchlist]]",

@@ -3779,7 +3779,12 @@ class EditPage implements IEditObject {
 			[ 'minor' => $this->minoredit, 'watch' => $this->watchthis, 'wpWatchlistExpiry' => $expiryFromRequest ]
 		);
 		$watchlistLabelsWidget = $this->getWatchlistLabelsWidget( $tabindex );
-
+		// Add a message (inline with the checkboxes) when the user doesn't have any labels.
+		if ( !$watchlistLabelsWidget && $this->watchlistLabelsEnabled ) {
+			$checkboxes['watchlistlabels'] = new OOUI\LabelWidget( [
+				'label' => new OOUI\HtmlSnippet( $this->context->msg( 'watchlistlabels-editpage-nolabels' )->parse() ),
+			] );
+		}
 		$checkboxesHTML = new OOUI\HorizontalLayout( [ 'items' => array_values( $checkboxes ) ] );
 
 		$out->addHTML( Html::rawElement( 'div', [ 'class' => 'editCheckboxes' ], (string)$checkboxesHTML ) . "\n" );
