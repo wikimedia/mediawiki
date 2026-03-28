@@ -14,7 +14,6 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWRestrictions;
@@ -917,16 +916,12 @@ final class SessionBackend {
 		// rare to have multiple ones which are significantly different, and even rarer for the
 		// first of those not to be the real one.
 		$request = reset( $this->requests );
-		// Don't require $this->requests to be non-empty for unit tests, as it's hard to enforce
-		if ( $request === false && defined( 'MW_PHPUNIT_TEST' ) ) {
-			$request = new FauxRequest();
-		}
 		LoggerFactory::getInstance( 'session-sampled' )->info( 'Session store: {action} for {reason}', $data + [
 				'id' => $id,
 				'provider' => get_class( $this->getProvider() ),
 				'user' => $user,
-				'clientip' => $request->getIP(),
-				'userAgent' => $request->getHeader( 'user-agent' ),
+				'clientip' => $request ? $request->getIP() : '<no request data>',
+				'userAgent' => $request ? $request->getHeader( 'user-agent' ) : '<no request data>',
 			] );
 	}
 
