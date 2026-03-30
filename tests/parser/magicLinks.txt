@@ -29,7 +29,21 @@ cat=Pages_using_RFC_magic_links sort=
 <p><a class="external mw-magiclink-rfc" rel="nofollow" href="https://datatracker.ietf.org/doc/html/rfc822">RFC 822</a>
 </p>
 !! html/parsoid
-<p><a href="https://datatracker.ietf.org/doc/html/rfc822" rel="mw:ExtLink" class="external mw-magiclink">RFC 822</a></p>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc822" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-rfc">RFC 822</a></p>
+!! end
+
+!! test
+Magic links: RFC in wikilink (T420749)
+!! options
+cat
+!! wikitext
+[[Test|RFC 822]]
+!! metadata
+!! html/php
+<p><a href="/index.php?title=Test&amp;action=edit&amp;redlink=1" class="new" title="Test (page does not exist)">RFC 822</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Test?action=edit&amp;redlink=1" title="Test" class="new" typeof="mw:LocalizedAttrs" data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Test"]}}'>RFC 822</a></p>
 !! end
 
 !! test
@@ -40,7 +54,7 @@ This is RFC 822 but thisRFC 822 is not RFC 822linked.
 <p>This is <a class="external mw-magiclink-rfc" rel="nofollow" href="https://datatracker.ietf.org/doc/html/rfc822">RFC 822</a> but thisRFC 822 is not RFC 822linked.
 </p>
 !! html/parsoid
-<p>This is <a href="https://datatracker.ietf.org/doc/html/rfc822" rel="mw:ExtLink" class="external mw-magiclink">RFC 822</a> but thisRFC 822 is not RFC 822linked.</p>
+<p>This is <a href="https://datatracker.ietf.org/doc/html/rfc822" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-rfc">RFC 822</a> but thisRFC 822 is not RFC 822linked.</p>
 !! end
 
 !! test
@@ -55,7 +69,7 @@ RFC
 822
 </p>
 !! html/parsoid
-<p><a href="https://datatracker.ietf.org/doc/html/rfc822" rel="mw:ExtLink" class="external mw-magiclink">RFC <span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#0160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#Xa0;","srcContent":" "}'> </span> 822</a>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc822" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-rfc">RFC <span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#0160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#Xa0;","srcContent":" "}'> </span> 822</a>
 RFC
 822</p>
 !! end
@@ -87,7 +101,7 @@ cat=Pages_using_ISBN_magic_links sort=
 <p><a href="/wiki/Special:BookSources/0306406152" class="internal mw-magiclink-isbn">ISBN 0-306-40615-2</a>
 </p>
 !! html/parsoid
-<p><a href="./Special:BookSources/0306406152" rel="mw:WikiLink">ISBN 0-306-40615-2</a></p>
+<p><a href="./Special:BookSources/0306406152" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn">ISBN 0-306-40615-2</a></p>
 !! end
 
 !! test
@@ -98,7 +112,7 @@ This is ISBN 978-0-316-09811-3 but thisISBN 978-0-316-09811-3 is not ISBN 978-0-
 <p>This is <a href="/wiki/Special:BookSources/9780316098113" class="internal mw-magiclink-isbn">ISBN 978-0-316-09811-3</a> but thisISBN 978-0-316-09811-3 is not ISBN 978-0-316-09811-3linked.
 </p>
 !! html/parsoid
-<p>This is <a href="./Special:BookSources/9780316098113" rel="mw:WikiLink">ISBN 978-0-316-09811-3</a> but thisISBN 978-0-316-09811-3 is not ISBN 978-0-316-09811-3linked.</p>
+<p>This is <a href="./Special:BookSources/9780316098113" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn">ISBN 978-0-316-09811-3</a> but thisISBN 978-0-316-09811-3 is not ISBN 978-0-316-09811-3linked.</p>
 !! end
 
 !! test
@@ -117,7 +131,7 @@ ISBN 978
 0316098113
 </p>
 !! html/parsoid
-<p><a href="./Special:BookSources/9780316098113" rel="mw:WikiLink">ISBN <span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#0160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#Xa0;","srcContent":" "}'> </span> 978<span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>0<span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span>316<span typeof="mw:Entity" data-parsoid='{"src":"&amp;#0160;","srcContent":" "}'> </span>09811<span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span>3</a>
+<p><a href="./Special:BookSources/9780316098113" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn">ISBN <span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#0160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#Xa0;","srcContent":" "}'> </span> 978<span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>0<span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span>316<span typeof="mw:Entity" data-parsoid='{"src":"&amp;#0160;","srcContent":" "}'> </span>09811<span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span>3</a>
 ISBN
 9780316098113
 ISBN 978
@@ -132,7 +146,7 @@ PMID 1234
 <p><a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract">PMID 1234</a>
 </p>
 !! html/parsoid
-<p><a href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" rel="mw:ExtLink" class="external mw-magiclink">PMID 1234</a></p>
+<p><a href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-pmid">PMID 1234</a></p>
 !! end
 
 !! test
@@ -147,7 +161,7 @@ cat=Pages_using_PMID_magic_links sort=
 <p>This is <a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract">PMID 1234</a> but thisPMID 1234 is not PMID 1234linked.
 </p>
 !! html/parsoid
-<p>This is <a href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" rel="mw:ExtLink" class="external mw-magiclink">PMID 1234</a> but thisPMID 1234 is not PMID 1234linked.</p>
+<p>This is <a href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-pmid">PMID 1234</a> but thisPMID 1234 is not PMID 1234linked.</p>
 !! end
 
 !! test
@@ -162,7 +176,7 @@ PMID
 1234
 </p>
 !! html/parsoid
-<p><a href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" rel="mw:ExtLink" class="external mw-magiclink">PMID <span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#0160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#Xa0;","srcContent":" "}'> </span> 1234</a>
+<p><a href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-pmid">PMID <span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#0160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#Xa0;","srcContent":" "}'> </span> 1234</a>
 PMID
 1234</p>
 !! end
@@ -231,7 +245,7 @@ PMID 234
 <p><a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract">PMID 234</a>
 </p>
 !! html/parsoid
-<p><a href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract" rel="mw:ExtLink" class="external mw-magiclink">PMID 234</a></p>
+<p><a href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-pmid">PMID 234</a></p>
 !! end
 
 !! test
@@ -244,7 +258,7 @@ PMID 234
 <p><a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract">PMID 234</a>
 </p>
 !! html/parsoid
-<p><a href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract" rel="mw:ExtLink" class="external mw-magiclink">PMID 234</a></p>
+<p><a href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-pmid">PMID 234</a></p>
 !! end
 
 !! test
@@ -381,7 +395,7 @@ ISBN  978-0-1234-56&#x20;789
 <p><a href="/wiki/Special:BookSources/9780123456" class="internal mw-magiclink-isbn">ISBN 978-0-1234-56</a>&#x20;789
 </p>
 !! html/parsoid
-<p><a href="./Special:BookSources/9780123456" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 978-0-1234-56</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#x20;","srcContent":" "}'> </span>789</p>
+<p><a href="./Special:BookSources/9780123456" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn" data-parsoid='{"stx":"magiclink"}'>ISBN 978-0-1234-56</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#x20;","srcContent":" "}'> </span>789</p>
 !! end
 
 !! test
@@ -401,7 +415,7 @@ ISBN ISBN 1234567890
 <p>ISBN <a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1234567890</a>
 </p>
 !! html/parsoid
-<p>ISBN <a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a></p>
+<p>ISBN <a href="./Special:BookSources/1234567890" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a></p>
 !! end
 
 # Uppercase X and lowercase x as well
@@ -423,12 +437,12 @@ ISBN 978080442957x
 <a href="/wiki/Special:BookSources/978080442957X" class="internal mw-magiclink-isbn">ISBN 978080442957x</a>
 </p>
 !! html/parsoid
-<p><a href="./Special:BookSources/346204561X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 3-462-04561-X</a>
-<a href="./Special:BookSources/346204561X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 3-462-04561-x</a>
-<a href="./Special:BookSources/080442957X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 080442957X</a>
-<a href="./Special:BookSources/080442957X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 080442957x</a>
-<a href="./Special:BookSources/978080442957X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 978080442957X</a>
-<a href="./Special:BookSources/978080442957X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 978080442957x</a></p>
+<p><a href="./Special:BookSources/346204561X" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn" data-parsoid='{"stx":"magiclink"}'>ISBN 3-462-04561-X</a>
+<a href="./Special:BookSources/346204561X" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn" data-parsoid='{"stx":"magiclink"}'>ISBN 3-462-04561-x</a>
+<a href="./Special:BookSources/080442957X" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn" data-parsoid='{"stx":"magiclink"}'>ISBN 080442957X</a>
+<a href="./Special:BookSources/080442957X" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn" data-parsoid='{"stx":"magiclink"}'>ISBN 080442957x</a>
+<a href="./Special:BookSources/978080442957X" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn" data-parsoid='{"stx":"magiclink"}'>ISBN 978080442957X</a>
+<a href="./Special:BookSources/978080442957X" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn" data-parsoid='{"stx":"magiclink"}'>ISBN 978080442957x</a></p>
 !! end
 
 !! test
@@ -439,7 +453,7 @@ ISBN 1234567890
 <p><a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1234567890</a>
 </p>
 !! html/parsoid
-<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink">ISBN 1234567890</a></p>
+<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn">ISBN 1234567890</a></p>
 !! end
 
 !! test
@@ -450,7 +464,7 @@ T24905: <abbr> followed by ISBN followed by </a>
 <p><abbr>(fr)</abbr> <a href="/wiki/Special:BookSources/2753300917" class="internal mw-magiclink-isbn">ISBN 2753300917</a> <a rel="nofollow" class="external text" href="http://www.example.com">example.com</a>
 </p>
 !! html/parsoid
-<p><abbr data-parsoid='{"stx":"html"}'>(fr)</abbr> <a href="./Special:BookSources/2753300917" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 2753300917</a> <a rel="mw:ExtLink" href="http://www.example.com" class="external text">example.com</a></p>
+<p><abbr data-parsoid='{"stx":"html"}'>(fr)</abbr> <a href="./Special:BookSources/2753300917" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn" data-parsoid='{"stx":"magiclink"}'>ISBN 2753300917</a> <a rel="mw:ExtLink" href="http://www.example.com" class="external text">example.com</a></p>
 !! end
 
 !! test
@@ -461,7 +475,7 @@ RFC RFC 1234
 <p>RFC <a class="external mw-magiclink-rfc" rel="nofollow" href="https://datatracker.ietf.org/doc/html/rfc1234">RFC 1234</a>
 </p>
 !! html/parsoid
-<p>RFC <a href="https://datatracker.ietf.org/doc/html/rfc1234" rel="mw:ExtLink" class="external mw-magiclink">RFC 1234</a></p>
+<p>RFC <a href="https://datatracker.ietf.org/doc/html/rfc1234" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-rfc">RFC 1234</a></p>
 !! end
 
 !! test
@@ -483,7 +497,7 @@ RFC   983&#x20;987
 <p><a class="external mw-magiclink-rfc" rel="nofollow" href="https://datatracker.ietf.org/doc/html/rfc983">RFC 983</a>&#x20;987
 </p>
 !! html/parsoid
-<p><a href="https://datatracker.ietf.org/doc/html/rfc983" rel="mw:ExtLink" class="external mw-magiclink" data-parsoid='{"stx":"magiclink"}'>RFC   983</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#x20;","srcContent":" "}'> </span>987</p>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc983" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-rfc" data-parsoid='{"stx":"magiclink"}'>RFC   983</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#x20;","srcContent":" "}'> </span>987</p>
 !! end
 
 !! test
@@ -503,7 +517,7 @@ ISBN 92 9017 032 8
 <p><a href="/wiki/Special:BookSources/9290170328" class="internal mw-magiclink-isbn">ISBN 92 9017 032 8</a>
 </p>
 !! html/parsoid
-<p><a href="./Special:BookSources/9290170328" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 92 9017 032 8</a></p>
+<p><a href="./Special:BookSources/9290170328" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn" data-parsoid='{"stx":"magiclink"}'>ISBN 92 9017 032 8</a></p>
 !! end
 
 !! test
@@ -531,7 +545,7 @@ ISBN 12345678901
 !! html/parsoid
 <p>ISBN 123456789</p>
 
-<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a></p>
+<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink"  class="internal mw-magiclink mw-magiclink-isbn" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a></p>
 
 <p>ISBN 12345678901</p>
 !! end
@@ -547,9 +561,9 @@ ISBN 1 234 56789 0 - 2006
 </p><p><a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1 234 56789 0</a> - 2006
 </p>
 !! html/parsoid
-<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1-234-56789-0</a> - 2006</p>
+<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn" data-parsoid='{"stx":"magiclink"}'>ISBN 1-234-56789-0</a> - 2006</p>
 
-<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1 234 56789 0</a> - 2006</p>
+<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn" data-parsoid='{"stx":"magiclink"}'>ISBN 1 234 56789 0</a> - 2006</p>
 !! end
 
 !! test

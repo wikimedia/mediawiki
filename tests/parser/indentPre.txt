@@ -895,3 +895,20 @@ Preserving leading whitespace in indent-pre suppressing contexts
 </li>
 </ol>
 !! end
+
+## From T2529, legacy will put the bullet at SOL
+!! test
+Indent pre and list items
+!! wikitext
+ {{1x|*test}}
+
+ *123
+!! html/php
+<ul><li>test</li></ul>
+<pre>*123
+</pre>
+!! html/parsoid+integrated
+<pre><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"*test"}},"i":0}}]}'>*test</span></pre>
+
+<pre>*123</pre>
+!! end

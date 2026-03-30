@@ -1937,8 +1937,7 @@ DEF
 {{1x|
 {{{!}}
 {{!}} a
-{{!}}}}}
-b
+{{!}}}}} b
 !! end
 
 ## It's important to omit the data-parsoid attribute so html2wt mode doesn't

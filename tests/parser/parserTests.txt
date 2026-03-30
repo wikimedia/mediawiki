@@ -1578,6 +1578,27 @@ data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},
 !! end
 
 !! test
+Pipe in html attribute is link description
+!! wikitext
+[[Test|a|b]]
+
+[[Test|<span>a|b</span>]]
+
+[[Test|<span class="a|b">c</span>]]
+!! html/php
+<p><a href="/wiki/Test" title="Test">a|b</a>
+</p><p><a href="/wiki/Test" title="Test"><span>a|b</span></a>
+</p><p><a href="/wiki/Test" title="Test"><span class="a&#124;b">c</span></a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Test" title="Test">a|b</a></p>
+
+<p><a rel="mw:WikiLink" href="./Test" title="Test"><span>a|b</span></a></p>
+
+<p><a rel="mw:WikiLink" href="./Test" title="Test"><span class="a|b">c</span></a></p>
+!! end
+
+!! test
 Parsoid: Pipe in template with nested template in external link target in template parameter (seriously)
 !! wikitext
 {{1x|[{{fullurl:{{FULLPAGENAME}}|action=edit}} bar]}}
@@ -7899,10 +7920,14 @@ x[[es:Foo]]y
 
 !! test
 Parsoid: Serialize link to file page with colon escape
+!! options
+showflags
 !! wikitext
 
 [[:File:Foo.png]]
 [[:File:Foo.png|Bar]]
+!! metadata
+flags=
 !! html/php
 <p><a href="/index.php?title=File:Foo.png&amp;action=edit&amp;redlink=1" class="new" title="File:Foo.png (page does not exist)">File:Foo.png</a>
 <a href="/index.php?title=File:Foo.png&amp;action=edit&amp;redlink=1" class="new" title="File:Foo.png (page does not exist)">Bar</a>
@@ -7913,11 +7938,18 @@ Parsoid: Serialize link to file page with colon escape
 <a rel="mw:WikiLink" href="./File:Foo.png?action=edit&amp;redlink=1" title="File:Foo.png" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"piped","a":{"href":"./File:Foo.png"},"sa":{"href":":File:Foo.png"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["File:Foo.png"]}}'>Bar</a></p>
 !! end
 
+# The conflicting category sort keys cause the
+# 'prevent-selective-update' flag to be set; see
+# [[mw:Parsoid/Internals/Handling_resource_limits]]
 !! test
 Parsoid: Serialize a genuine category link without colon escape
+!! options
+showflags
 !! wikitext
 [[Category:Foo]]
 [[Category:Foo|Bar]]
+!! metadata
+flags=prevent-selective-update
 !! html/php
 !! html/parsoid
 <link rel="mw:PageProp/Category" href="./Category:Foo">
@@ -15432,13 +15464,19 @@ parsoid={
 !! end
 
 ## No sort-key or templated sort-key
+# The conflicting category sort keys cause the
+# 'prevent-selective-update' flag to be set; see
+# [[mw:Parsoid/Internals/Handling_resource_limits]]
 !! test
 T192913 Regression test: 1. html2wt of links should not trip on parser functions found in target
 !! options
 parsoid
+showflags
 !! wikitext
 [[Category:Bugs-{{#if:blah|Regression|None}}]]
 [[Category:Bugs-{{#if:blah|Regression|None}}|{{#if:blah|2020|None}}-#fragment]]
+!! metadata/parsoid
+flags=prevent-selective-update
 !! html/parsoid
 <link typeof="mw:ExpandedAttrs" rel="mw:PageProp/Category" href="./Category:Bugs-Regression" data-mw='{"attribs":[[{"txt":"href"},{"html":"Category:Bugs-&lt;span typeof=\"mw:Transclusion\" data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"#if:blah\",\"function\":\"if\"},\"params\":{\"1\":{\"wt\":\"Regression\"},\"2\":{\"wt\":\"None\"}},\"i\":0}}]}&apos;>Regression&lt;/span>"}]]}'/>
 <link typeof="mw:ExpandedAttrs" rel="mw:PageProp/Category" href="./Category:Bugs-Regression#2020-%23fragment" data-mw='{"attribs":[[{"txt":"href"},{"html":"Category:Bugs-&lt;span typeof=\"mw:Transclusion\" data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"#if:blah\",\"function\":\"if\"},\"params\":{\"1\":{\"wt\":\"Regression\"},\"2\":{\"wt\":\"None\"}},\"i\":0}}]}&apos;>Regression&lt;/span>"}],[{"txt":"mw:sortKey"},{"html":"&lt;span typeof=\"mw:Transclusion\" data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"#if:blah\",\"function\":\"if\"},\"params\":{\"1\":{\"wt\":\"2020\"},\"2\":{\"wt\":\"None\"}},\"i\":0}}]}&apos;>2020&lt;/span>-#fragment"}]]}'/>

@@ -2235,11 +2235,13 @@ parsoid={
 <h3 id="asdf">odd</h3>
 !! html/php
 <h3 id="asdf" class="mw-html-heading">odd</h3>
-!! html/parsoid
-<section data-mw-section-id="0"></section><section data-mw-section-id="-1"><h3 id="asdf" data-parsoid='{"stx":"html","reusedId":true}'>odd</h3></section>
-!! metadata
+!! metadata/php
 Sections:
  h3 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:asdf line:odd
+!! html/parsoid
+<section data-mw-section-id="0"><h3 id="asdf" data-parsoid='{"stx":"html","reusedId":true}'>odd</h3></section>
+!! metadata/parsoid
+Sections:
 !! end
 
 !! test
@@ -2682,6 +2684,10 @@ wgFragmentMode=[ "html5", "legacy" ]
 mw-heading wrapper edge cases
 !! options
 notoc
+showtocdata
+parsoid={
+	"wrapSections": true
+}
 !! wikitext
 ==Normal heading!==
 
@@ -2700,16 +2706,27 @@ notoc
 <div class="mw-heading mw-heading2">
 <h2 id="Normal_heading_with_existing_wrapper.21">Normal heading with existing wrapper!</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Normal heading with existing wrapper!">edit</a><span class="mw-editsection-bracket">]</span></span>
 </div>
+!! metadata/php
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:Normal_heading.21 line:Normal heading!
+ h2 index: toclevel:1 number:2 title:NULL off:NULL anchor/linkAnchor:HTML_heading.21 line:HTML heading!
+ h2 index: toclevel:1 number:3 title:NULL off:NULL anchor/linkAnchor:HTML_heading_with_attributes.21 line:HTML heading with attributes!
+ h2 index:2 toclevel:1 number:4 title:Parser_test off:211 anchor/linkAnchor:Normal_heading_with_existing_wrapper.21 line:Normal heading with existing wrapper!
 !! html/parsoid
-<h2 id="Normal_heading!" data-parsoid='{}'><span id="Normal_heading.21" typeof="mw:FallbackId"></span>Normal heading!</h2>
+<section data-mw-section-id="0"></section><section data-mw-section-id="1"><h2 id="Normal_heading!" data-parsoid='{}'><span id="Normal_heading.21" typeof="mw:FallbackId"></span>Normal heading!</h2>
 
-<h2 id="HTML_heading!" data-parsoid='{"stx":"html"}'><span id="HTML_heading.21" typeof="mw:FallbackId"></span>HTML heading!</h2>
+</section><section data-mw-section-id="-1"><h2 id="HTML_heading!" data-parsoid='{"stx":"html"}'><span id="HTML_heading.21" typeof="mw:FallbackId"></span>HTML heading!</h2>
 
 <h2 style="border: 1px solid green; background: lightgreen; padding: 5px; font-size: 1.5em;" id="HTML_heading_with_attributes!" data-parsoid='{"stx":"html"}'><span id="HTML_heading_with_attributes.21" typeof="mw:FallbackId"></span>HTML heading with attributes!</h2>
 
-<div class="mw-heading mw-heading2">
-<h2 id="Normal_heading_with_existing_wrapper!" data-parsoid='{}'><span id="Normal_heading_with_existing_wrapper.21" typeof="mw:FallbackId"></span>Normal heading with existing wrapper!</h2>
-</div>
+</section><section data-mw-section-id="-2"><div class="mw-heading mw-heading2">
+<section data-mw-section-id="-1"><h2 id="Normal_heading_with_existing_wrapper!" data-parsoid='{}'><span id="Normal_heading_with_existing_wrapper.21" typeof="mw:FallbackId"></span>Normal heading with existing wrapper!</h2>
+</section></div></section>
+!! metadata/parsoid
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:Normal_heading! line:Normal heading!
+ h2 index: toclevel:1 number:2 title:NULL off:NULL anchor/linkAnchor:HTML_heading! line:HTML heading!
+ h2 index:2 toclevel:1 number:3 title:Parser_test off:211 anchor/linkAnchor:Normal_heading_with_existing_wrapper! line:Normal heading with existing wrapper!
 !! end
 
 !! test

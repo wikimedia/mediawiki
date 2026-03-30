@@ -1072,7 +1072,7 @@ Examples from RFC 2732, section 2:
 !! html/parsoid
 <p><a rel="mw:ExtLink" href="http://[2404:130:0:1000::187:2]/index.php" class="external free">http://[2404:130:0:1000::187:2]/index.php</a></p>
 
-<p>Examples from <a href="https://datatracker.ietf.org/doc/html/rfc2373" rel="mw:ExtLink" class="external mw-magiclink">RFC 2373</a>, section 2.2:</p>
+<p>Examples from <a href="https://datatracker.ietf.org/doc/html/rfc2373" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-rfc">RFC 2373</a>, section 2.2:</p>
 <ul><li><a rel="mw:ExtLink" href="http://[1080::8:800:200C:417A]/unicast" class="external free">http://[1080::8:800:200C:417A]/unicast</a></li>
 <li><a rel="mw:ExtLink" href="http://[FF01::101]/multicast" class="external free">http://[FF01::101]/multicast</a></li>
 <li><a rel="mw:ExtLink" href="http://[::1]/loopback" class="external free">http://[::1]/loopback</a></li>
@@ -1080,7 +1080,7 @@ Examples from RFC 2732, section 2:
 <li><a rel="mw:ExtLink" href="http://[::13.1.68.3]/ipv4compat" class="external free">http://[::13.1.68.3]/ipv4compat</a></li>
 <li><a rel="mw:ExtLink" href="http://[::FFFF:129.144.52.38]/ipv4compat" class="external free">http://[::FFFF:129.144.52.38]/ipv4compat</a></li></ul>
 
-<p>Examples from <a href="https://datatracker.ietf.org/doc/html/rfc2732" rel="mw:ExtLink" class="external mw-magiclink">RFC 2732</a>, section 2:</p>
+<p>Examples from <a href="https://datatracker.ietf.org/doc/html/rfc2732" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-rfc">RFC 2732</a>, section 2:</p>
 <ul><li><a rel="mw:ExtLink" href="http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html" class="external free">http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html</a></li>
 <li><a rel="mw:ExtLink" href="http://[1080:0:0:0:8:800:200C:417A]/index.html" class="external free">http://[1080:0:0:0:8:800:200C:417A]/index.html</a></li>
 <li><a rel="mw:ExtLink" href="http://[3ffe:2a00:100:7031::1]" class="external free">http://[3ffe:2a00:100:7031::1]</a></li>
@@ -1163,7 +1163,7 @@ Examples from RFC 2732, section 2:
 !! html/parsoid
 <p><a rel="mw:ExtLink" href="http://[2404:130:0:1000::187:2]/index.php" class="external text">test</a></p>
 
-<p>Examples from <a href="https://datatracker.ietf.org/doc/html/rfc2373" rel="mw:ExtLink" class="external mw-magiclink">RFC 2373</a>, section 2.2:</p>
+<p>Examples from <a href="https://datatracker.ietf.org/doc/html/rfc2373" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-rfc">RFC 2373</a>, section 2.2:</p>
 <ul><li><a rel="mw:ExtLink" href="http://[1080::8:800:200C:417A]" class="external text">unicast</a></li>
 <li><a rel="mw:ExtLink" href="http://[FF01::101]" class="external text">multicast</a></li>
 <li><a rel="mw:ExtLink" href="http://[::1]/" class="external text">loopback</a></li>
@@ -1171,7 +1171,7 @@ Examples from RFC 2732, section 2:
 <li><a rel="mw:ExtLink" href="http://[::13.1.68.3]" class="external text">ipv4compat</a></li>
 <li><a rel="mw:ExtLink" href="http://[::FFFF:129.144.52.38]" class="external text">ipv4compat</a></li></ul>
 
-<p>Examples from <a href="https://datatracker.ietf.org/doc/html/rfc2732" rel="mw:ExtLink" class="external mw-magiclink">RFC 2732</a>, section 2:</p>
+<p>Examples from <a href="https://datatracker.ietf.org/doc/html/rfc2732" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-rfc">RFC 2732</a>, section 2:</p>
 <ul><li><a rel="mw:ExtLink" href="http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html" class="external text">1</a></li>
 <li><a rel="mw:ExtLink" href="http://[1080:0:0:0:8:800:200C:417A]/index.html" class="external text">2</a></li>
 <li><a rel="mw:ExtLink" href="http://[3ffe:2a00:100:7031::1]" class="external text">3</a></li>

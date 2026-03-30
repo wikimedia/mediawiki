@@ -2294,3 +2294,105 @@ Row syntax td starting with closing curly brace
 <tbody><tr><td>a</td><td data-parsoid='{"stx":"row"}'>}</td><td data-parsoid='{"stx":"row"}'>b</td></tr>
 </tbody></table>
 !! end
+
+!! article
+Template:Content_and_cell
+!! text
+test
+| 123
+!! endarticle
+
+!! test
+Newline constraint after multi-node template
+!! wikitext
+{|
+| {{content and cell}} || {{content and cell}}
+|}
+!! html/php
+<table>
+<tbody><tr>
+<td>test
+</td>
+<td>123</td>
+<td>test
+</td>
+<td>123
+</td></tr></tbody></table>
+!! html/parsoid
+<table>
+<tbody><tr><td about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"firstWikitextNode":"TD"}' data-mw='{"parts":["| ",{"template":{"target":{"wt":"content and cell","href":"./Template:Content_and_cell"},"params":{},"i":0}}," "]}'>test</td><td about="#mwt1">123</td><td about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"stx":"row","firstWikitextNode":"TD_row"}' data-mw='{"parts":["|| ",{"template":{"target":{"wt":"content and cell","href":"./Template:Content_and_cell"},"params":{},"i":0}}]}'>test</td><td about="#mwt2">123</td></tr>
+</tbody></table>
+!! end
+
+!! test
+Pipe within attribute without quotes
+!! options
+parsoid=wt2html
+!! wikitext
+{| style=font-size:85%|0 – 2
+|- style=font-size:85%|0 – 2
+| style=font-size:85%|0 – 2 hi
+|}
+!! html/php
+<table style="font-size:85%&#124;0">
+
+<tbody><tr style="font-size:85%&#124;0">
+<td style="font-size:85%">0 – 2 hi
+</td></tr></tbody></table>
+!! html/parsoid
+<table style="font-size:85%|0">
+<tbody>
+<tr style="font-size:85%|0">
+<td style="font-size:85%">0 – 2 hi</td>
+</tr>
+</tbody>
+</table>
+!! end
+
+!! test
+Pipe within attribute with single quotes
+!! options
+parsoid=wt2html
+!! wikitext
+{| style='font-size:85%|0 – 2'
+|- style='font-size:85%|0 – 2'
+| style='font-size:85%|0 – 2' hi
+|}
+!! html/php
+<table style="font-size:85%&#124;0 – 2">
+
+<tbody><tr style="font-size:85%&#124;0 – 2">
+<td style="font-size:85%">0 – 2' hi
+</td></tr></tbody></table>
+!! html/parsoid
+<table style="font-size:85%|0 – 2">
+<tbody>
+<tr style="font-size:85%|0 – 2">
+<td style="font-size:85%">0 – 2' hi</td>
+</tr>
+</tbody>
+</table>
+!! end
+
+!! test
+Pipe within attribute with double quotes
+!! wikitext
+{| style="font-size:85%|0 – 2"
+|- style="font-size:85%|0 – 2"
+|hi
+|}
+!! html/php
+<table style="font-size:85%&#124;0 – 2">
+
+<tbody><tr style="font-size:85%&#124;0 – 2">
+<td>hi
+</td></tr></tbody></table>
+!! html/parsoid
+<table style="font-size:85%|0 – 2">
+<tbody>
+<tr style="font-size:85%|0 – 2">
+<td>hi</td>
+</tr>
+</tbody>
+</table>
+!! end

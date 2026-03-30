@@ -1620,7 +1620,7 @@ T3887: A ISBN with a thumbnail
 !! html/php
 <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="mw-file-element" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a><figcaption><a href="/wiki/Special:BookSources/1235467890" class="internal mw-magiclink-isbn">ISBN 1235467890</a></figcaption></figure>
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption><a href="./Special:BookSources/1235467890" rel="mw:WikiLink">ISBN 1235467890</a></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption><a href="./Special:BookSources/1235467890" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn">ISBN 1235467890</a></figcaption></figure>
 !! end
 
 !! test
@@ -1630,7 +1630,7 @@ T3887: A RFC with a thumbnail
 !! html/php
 <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="mw-file-element" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a><figcaption>This is <a class="external mw-magiclink-rfc" rel="nofollow" href="https://datatracker.ietf.org/doc/html/rfc12354">RFC 12354</a></figcaption></figure>
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption>This is <a href="https://datatracker.ietf.org/doc/html/rfc12354" rel="mw:ExtLink" class="external mw-magiclink">RFC 12354</a></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption>This is <a href="https://datatracker.ietf.org/doc/html/rfc12354" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-rfc">RFC 12354</a></figcaption></figure>
 !! end
 
 !! test
@@ -3493,6 +3493,7 @@ Image: New block level image should have \n before and after (existing content)
 <p>456</p>
 !! end
 
+# Note that upright option is ignored when explicit 500x500px size is given
 !! test
 Image: upright option (parsoid)
 !! wikitext
@@ -3500,8 +3501,8 @@ Image: upright option (parsoid)
 [[File:Foobar.jpg|thumb|upright=0.5|caption]]
 [[File:Foobar.jpg|thumb|500x500px|upright=0.5|caption]]
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/140px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="16" width="140" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/280px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption>caption</figcaption></figure>
-<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/90px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="10" width="90" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption>caption</figcaption></figure>
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/140px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="16" width="140" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/280px-Foobar.jpg 2x" class="mw-file-element mw-file-upright" style="--mw-file-upright: 0.75"/></a><figcaption>caption</figcaption></figure>
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/90px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="10" width="90" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 2x" class="mw-file-element mw-file-upright" style="--mw-file-upright: 0.5"/></a><figcaption>caption</figcaption></figure>
 <figure typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/500px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="57" width="500" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/1000px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption>caption</figcaption></figure>
 !! end
 
@@ -3688,9 +3689,9 @@ Magic links inside image captions (autolinked)
 <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="mw-file-element" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a><figcaption><a href="/wiki/Special:BookSources/123456789X" class="internal mw-magiclink-isbn">ISBN 123456789x</a></figcaption></figure>
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption><a rel="mw:ExtLink" href="http://example.com" class="external free">http://example.com</a></figcaption></figure>
-<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption><a href="https://datatracker.ietf.org/doc/html/rfc1234" rel="mw:ExtLink" class="external mw-magiclink">RFC 1234</a></figcaption></figure>
-<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption><a href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" rel="mw:ExtLink" class="external mw-magiclink">PMID 1234</a></figcaption></figure>
-<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption><a href="./Special:BookSources/123456789X" rel="mw:WikiLink">ISBN 123456789x</a></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption><a href="https://datatracker.ietf.org/doc/html/rfc1234" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-rfc">RFC 1234</a></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption><a href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" rel="mw:ExtLink" class="external mw-magiclink mw-magiclink-pmid">PMID 1234</a></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption><a href="./Special:BookSources/123456789X" rel="mw:WikiLink" class="internal mw-magiclink mw-magiclink-isbn">ISBN 123456789x</a></figcaption></figure>
 !! end
 
 ## FIXME: Parsoid isn't recognizing an Interwiki here in standalone mode
@@ -4344,4 +4345,17 @@ T374445: Non extlink in media caption
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption>[<span typeof="mw:Nowiki"></span><a rel="mw:WikiLink" href="./Link1" title="Link1">Link1</a><span typeof="mw:Nowiki">]</span></figcaption></figure>
 <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption><a rel="mw:WikiLink" href="./Link1" title="Link1">[<span typeof="mw:Nowiki"></span>Link1<span typeof="mw:Nowiki">]</span></a></figcaption></figure>
+!! end
+
+!! test
+Must render with default width larger than file width
+!! options
+thumbsize=2500
+!! wikitext
+[[File:LoremIpsum.djvu|frameless]]
+!! html/php
+<p><span class="mw-default-size" typeof="mw:File/Frameless"><a href="/wiki/File:LoremIpsum.djvu" class="mw-file-description"><img src="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page1-2480px-LoremIpsum.djvu.jpg" decoding="async" width="2480" height="3508" class="mw-file-element" srcset="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page1-4960px-LoremIpsum.djvu.jpg 2x" /></a></span>
+</p>
+!! html/parsoid+integrated
+<p><span class="mw-default-size" typeof="mw:File/Frameless"><a href="./File:LoremIpsum.djvu" class="mw-file-description"><img resource="./File:LoremIpsum.djvu" src="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page1-2480px-LoremIpsum.djvu.jpg" decoding="async" data-file-width="2480" data-file-height="3508" data-file-type="office" height="3508" width="2480" srcset="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page1-4960px-LoremIpsum.djvu.jpg 2x" class="mw-file-element"/></a></span></p>
 !! end
