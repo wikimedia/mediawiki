@@ -637,14 +637,18 @@ class Parser {
 			&& !isset( $this->mDoubleUnderscores['notitleconvert'] )
 			&& $this->mOutput->getDisplayTitle() === false
 		) {
-			$titleText = $this->getTargetLanguageConverter()->getConvRuleTitle();
+			$converter = $this->getTargetLanguageConverter();
+			$titleText = $converter->getConvRuleTitle();
 			if ( $titleText !== false ) {
 				$titleText = Sanitizer::removeSomeTags( $titleText );
 			} else {
-				[ $nsText, $nsSeparator, $mainText ] = $this->getTargetLanguageConverter()->convertSplitTitle( $page );
+				[ $nsText, $nsSeparator, $mainText ] = $converter->convertSplitTitle( $page );
 				// In the future, those three pieces could be stored separately rather than joined into $titleText,
 				// and OutputPage would format them and join them together, to resolve T314399.
-				$titleText = self::formatPageTitle( $nsText, $nsSeparator, $mainText );
+				$titleLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage(
+					$converter->getPreferredVariant()
+				);
+				$titleText = self::formatPageTitle( $nsText, $nsSeparator, $mainText, $titleLang );
 			}
 			$this->mOutput->setTitleText( $titleText );
 		}

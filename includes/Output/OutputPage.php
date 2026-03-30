@@ -1242,11 +1242,11 @@ class OutputPage extends ContextSource {
 		$text = $this->getDisplayTitle();
 
 		// Create a regexp with matching groups as placeholders for the namespace, separator and main text
-		$pageTitleRegexp = '/^' . str_replace(
+		$pageTitleRegexp = '/' . str_replace(
 			preg_quote( '(.+?)', '/' ),
 			'(.+?)',
 			preg_quote( Parser::formatPageTitle( '(.+?)', '(.+?)', '(.+?)' ), '/' )
-		) . '$/';
+		) . '/';
 		$matches = [];
 		if ( preg_match( $pageTitleRegexp, $text, $matches ) ) {
 			// The regexp above could be manipulated by malicious user input,

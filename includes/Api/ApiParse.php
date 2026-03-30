@@ -489,7 +489,8 @@ class ApiParse extends ApiBase {
 			$result_array['redirects'] = $redirValues;
 		}
 
-		if ( isset( $prop['text'] ) ) {
+		// Parsoid displaytitle is set during the postprocessing pipeline
+		if ( isset( $prop['text'] ) || isset( $prop['displaytitle'] ) ) {
 			$skin = $context ? $context->getSkin() : null;
 			$skinOptions = $skin ? $skin->getOptions() : [
 				'toc' => true,
@@ -499,7 +500,8 @@ class ApiParse extends ApiBase {
 			// careful checking of the clone and of what happens on the boundary of OutputPage. Leaving this as
 			// "getText-equivalent" for now; will fix in a later, independent patch.
 			$oldText = $p_result->getRawText();
-			$result_array['text'] = $p_result->runOutputPipeline( $popts, [
+			$newText = $p_result->runOutputPipeline( $popts, [
+				// This will have side effects on $p_result (T371022)
 				'allowClone' => false,
 				'allowTOC' => !$params['disabletoc'],
 				'injectTOC' => $skinOptions['toc'],
@@ -510,9 +512,12 @@ class ApiParse extends ApiBase {
 				'includeDebugInfo' => !$params['disablepp'] && !$params['disablelimitreport']
 			] )->getContentHolderText();
 			$p_result->setRawText( $oldText );
-			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
-			if ( $context ) {
-				$this->getHookRunner()->onOutputPageBeforeHTML( $context->getOutput(), $result_array['text'] );
+			if ( isset( $prop['text'] ) ) {
+				$result_array['text'] = $newText;
+				$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
+				if ( $context ) {
+					$this->getHookRunner()->onOutputPageBeforeHTML( $context->getOutput(), $result_array['text'] );
+				}
 			}
 		}
 

@@ -737,7 +737,7 @@ language=zh htmlVariantLanguage=zh showtitle
 -{H|zh:China; zh-tw:Taiwan}-
 Taiwan is China.-{T|Taiwan is China}-
 !! metadata+langconv
-<span class="mw-page-title-main">Parser test</span>
+<span lang="zh" dir="ltr"><span class="mw-page-title-main">Parser test</span></span>
 !! html/php
 <p>
 Taiwan is China.
@@ -1028,7 +1028,7 @@ language=zh htmlVariantLanguage=zh title=[[ZH]] showtitle
 !! wikitext
 -{T|zh-cn:CN;zh-tw:TW}-
 !! metadata+langconv
-<span class="mw-page-title-main">ZH</span>
+<span lang="zh" dir="ltr"><span class="mw-page-title-main">ZH</span></span>
 !! html/php
 <p class="mw-empty-elt">
 </p>
@@ -1045,7 +1045,7 @@ language=zh htmlVariantLanguage=zh title=[[ZH]] showtitle
 !! wikitext
 -{T|TW}-
 !! metadata+langconv
-<span class="mw-page-title-main">ZH</span>
+<span lang="zh" dir="ltr"><span class="mw-page-title-main">ZH</span></span>
 !! html/php
 <p class="mw-empty-elt">
 </p>

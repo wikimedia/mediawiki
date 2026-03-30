@@ -153,7 +153,8 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 				[ $nsText, $nsSeparator, $mainText ] = $converter->convertSplitTitle( $title );
 				// In the future, those three pieces could be stored separately rather than joined into $titleText,
 				// and OutputPage would format them and join them together, to resolve T314399.
-				$titleText = Parser::formatPageTitle( $nsText, $nsSeparator, $mainText );
+				$titleLang = $this->languageFactory->getLanguage( $po->getLanguage() ?? $targetLanguage );
+				$titleText = Parser::formatPageTitle( $nsText, $nsSeparator, $mainText, $titleLang );
 			}
 			$po->setTitleText( $titleText );
 		}

@@ -691,7 +691,7 @@ showtitle
 !! wikitext
 -{T|zh-cn:气气气;zh-hk:馬馬馬;zh-tw:電電電;}-
 !! metadata+langconv
-<span class="mw-page-title-main">馬马</span>
+<span lang="zh" dir="ltr"><span class="mw-page-title-main">馬马</span></span>
 !! html/php
 <p class="mw-empty-elt">
 </p>
@@ -748,6 +748,40 @@ showtitle
 </p>
 !! html/parsoid+langconv
 <p class="mw-empty-elt"><meta typeof="mw:LanguageVariant" data-mw-variant='{"title":true,"twoway":[{"l":"zh-cn","t":"气气气"},{"l":"zh-hk","t":"馬馬馬"},{"l":"zh-tw","t":"電電電"}]}'/></p>
+!! end
+
+!! test
+Default title conversion, traditional (T36514)
+!! options
+title=[[气]]
+language=zh htmlVariantLanguage=zh-hant
+showtitle
+!! wikitext
+ignore
+!! metadata+langconv
+<span lang="zh-Hant" dir="ltr"><span class="mw-page-title-main">氣</span></span>
+!! html/php
+<p>ignore
+</p>
+!! html/parsoid+langconv
+<p>ignore</p>
+!! end
+
+!! test
+Default title conversion, simplified (T36514)
+!! options
+title=[[氣]]
+language=zh htmlVariantLanguage=zh-hans
+showtitle
+!! wikitext
+ignore
+!! metadata+langconv
+<span lang="zh-Hans" dir="ltr"><span class="mw-page-title-main">气</span></span>
+!! html/php
+<p>ignore
+</p>
+!! html/parsoid+langconv
+<p>ignore</p>
 !! end
 
 # D flag

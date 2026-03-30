@@ -12563,7 +12563,7 @@ wgRestrictDisplayTitle=false
 !! wikitext
 this is not the title
 !! metadata
-<span class="mw-page-title-main">Parser test</span>
+<span lang="en" dir="ltr"><span class="mw-page-title-main">Parser test</span></span>
 !! html
 <p>this is not the title
 </p>
@@ -12602,7 +12602,7 @@ wgRestrictDisplayTitle=true
 this is not the title
 {{DISPLAYTITLE:whatever}}
 !! metadata
-<span class="mw-page-title-main">Screen</span>
+<span lang="en" dir="ltr"><span class="mw-page-title-main">Screen</span></span>
 !! html/php
 <p>this is not the title
 </p>
@@ -12643,7 +12643,7 @@ wgAllowDisplayTitle=false
 this is not the title
 {{DISPLAYTITLE:screen}}
 !! metadata
-<span class="mw-page-title-main">Screen</span>
+<span lang="en" dir="ltr"><span class="mw-page-title-main">Screen</span></span>
 !! html/php
 <p>this is not the title
 <a href="/index.php?title=Template:DISPLAYTITLE:screen&amp;action=edit&amp;redlink=1" class="new" title="Template:DISPLAYTITLE:screen (page does not exist)">Template:DISPLAYTITLE:screen</a>
@@ -12662,7 +12662,7 @@ wgAllowDisplayTitle=false
 !! wikitext
 this is not the title
 !! metadata
-<span class="mw-page-title-main">Screen</span>
+<span lang="en" dir="ltr"><span class="mw-page-title-main">Screen</span></span>
 !! html/php
 <p>this is not the title
 </p>
@@ -12765,7 +12765,7 @@ wgRestrictDisplayTitle=true
 !! wikitext
 this is not the title
 !! metadata
-<span class="mw-page-title-main">Art&amp;copy</span>
+<span lang="en" dir="ltr"><span class="mw-page-title-main">Art&amp;copy</span></span>
 !! html/php
 <p>this is not the title
 </p>
