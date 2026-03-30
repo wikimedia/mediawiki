@@ -110,13 +110,33 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 			// Now actually do the language conversion on the DOM
 			$redLinks = [];
 			$this->doTraversal( $df, $converter, $toVariant, $redLinks );
-			$po->setLanguage( new Bcp47CodeValue(
-				LanguageCode::bcp47( $toVariant )
-			) );
 			// Adjust red links
 			if ( !$this->languageConverterFactory->isLinkConversionDisabled() ) {
 				$this->resolveRedLinks( $title, $converter, $toVariant, $redLinks );
 			}
+			// Set language
+			$po->setLanguage( new Bcp47CodeValue(
+				LanguageCode::bcp47( $toVariant )
+			) );
+		} else {
+			$targetLanguage = $popts->getTargetLanguage() ??
+				( $popts->getInterfaceMessage() ? $popts->getUserLangObj() : null ) ??
+				$targetLanguage;
+			$po->setLanguage( $targetLanguage );
+		}
+		/**
+		 * A converted title will be provided in the output object if title and
+		 * content conversion are enabled, the article text does not contain
+		 * a conversion-suppressing double-underscore tag, and no
+		 * {{DISPLAYTITLE:...}} is present. DISPLAYTITLE takes precedence over
+		 * automatic link conversion.
+		 */
+		if (
+			!$popts->getDisableTitleConversion() &&
+			$po->getPageProperty( 'nocontentconvert' ) === null &&
+			$po->getPageProperty( 'notitleconvert' ) === null &&
+			$po->getDisplayTitle() === false
+		) {
 			// Apply display title
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			$titleText = $converter->getConvRuleTitleFragment( $df->ownerDocument );
@@ -136,8 +156,6 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 				$titleText = Parser::formatPageTitle( $nsText, $nsSeparator, $mainText );
 			}
 			$po->setTitleText( $titleText );
-		} else {
-			$po->setLanguage( $targetLanguage );
 		}
 		// Localize/convert TOC
 		// (even if conversion is disabled/$converter is null)
