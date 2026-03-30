@@ -1777,6 +1777,9 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 */
 	public function setFragment( $fragment ) {
 		$this->uncache();
+		if ( str_starts_with( $fragment, '#' ) ) {
+			$fragment = substr( $fragment, 1 );
+		}
 		$this->mFragment = self::normalizeFragment( $fragment );
 	}
 
@@ -1803,9 +1806,6 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * @return string
 	 */
 	private static function normalizeFragment( $fragment ) {
-		if ( str_starts_with( $fragment, '#' ) ) {
-			$fragment = substr( $fragment, 1 );
-		}
 		return strtr( $fragment, '_', ' ' );
 	}
 
