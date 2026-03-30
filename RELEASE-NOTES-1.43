@@ -108,6 +108,10 @@ THIS IS NOT A RELEASE YET
 * (T419183) ParserOutputFlags: add HAS_SLOT_HEADERS.
 * (T419479) sql: Mark pl_target_id as non-nullable in abstract schema.
 * (T329183, T417691) Clarify documentation for action=query&list=tags.
+* (T391524) EditPage: Handle MWException when serializing the preloaded
+  content.
+* (T417819) ParserOutputFlags: Back-port new flags added in 1.46 for
+  forward compat.
 
 == MediaWiki 1.43.6 ==
 
