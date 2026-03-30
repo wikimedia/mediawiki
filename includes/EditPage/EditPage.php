@@ -274,9 +274,6 @@ class EditPage implements IEditObject {
 	/** @var int[] Watchlist label IDs submitted in the form */
 	private array $watchlistLabels = [];
 
-	/** @var array|null Cached watchlist labels for the current user */
-	private ?array $userWatchlistLabels = null;
-
 	private bool $recreate = false;
 
 	/** @var bool */
@@ -2691,54 +2688,9 @@ class EditPage implements IEditObject {
 		// This can't run as a DeferredUpdate due to a possible race condition
 		// when the post-edit redirect happens if the pendingUpdates queue is
 		// too large to finish in time (T259564)
-		$this->watchlistManager->setWatch( $watch, $user, $this->page, $watchlistExpiry );
+		$this->watchlistManager->setWatch( $watch, $user, $this->page, $watchlistExpiry, $this->watchlistLabels );
 
 		$this->watchedItemStore->maybeEnqueueWatchlistExpiryJob();
-
-		// Sync watchlist labels if the feature is enabled and the page is being watched.
-		if ( $this->watchlistLabelsEnabled && $watch ) {
-			$watchedItem = $this->watchedItemStore->getWatchedItem( $user, $this->page );
-			$currentLabelIds = [];
-			// WatchlistLabel::getId() is nullable; normalize to int[] for add/removeLabels().
-			if ( $watchedItem instanceof WatchedItem ) {
-				foreach ( $watchedItem->getLabels() as $label ) {
-					$labelId = $label->getId();
-					if ( $labelId !== null ) {
-						$currentLabelIds[] = $labelId;
-					}
-				}
-			}
-			$submittedLabelIds = $this->watchlistLabels;
-			$userLabelIds = array_keys( $this->loadWatchlistLabelsForUser( $user ) );
-			$submittedLabelIds = array_values( array_intersect( $submittedLabelIds, $userLabelIds ) );
-
-			/** @var int[] $currentLabelIds */
-			/** @var int[] $submittedLabelIds */
-
-			$toAdd = array_values( array_diff( $submittedLabelIds, $currentLabelIds ) );
-			$toRemove = array_values( array_diff( $currentLabelIds, $submittedLabelIds ) );
-
-			if ( $toAdd ) {
-				$this->watchedItemStore->addLabels( $user, [ $this->page ], $toAdd );
-			}
-			if ( $toRemove ) {
-				$this->watchedItemStore->removeLabels( $user, [ $this->page ], $toRemove );
-			}
-		}
-	}
-
-	/**
-	 * Load all watchlist labels for the given user, cached for the lifetime of this EditPage instance.
-	 *
-	 * @param UserIdentity $user
-	 * @return array
-	 */
-	private function loadWatchlistLabelsForUser( UserIdentity $user ): array {
-		if ( $this->userWatchlistLabels === null ) {
-			$this->userWatchlistLabels = $this->watchlistLabelStore->loadAllForUser( $user );
-		}
-
-		return $this->userWatchlistLabels;
 	}
 
 	/**
@@ -4374,7 +4326,7 @@ class EditPage implements IEditObject {
 			return null;
 		}
 
-		$userLabels = $this->loadWatchlistLabelsForUser( $user );
+		$userLabels = $this->watchlistLabelStore->loadAllForUser( $user );
 		if ( !$userLabels ) {
 			return null;
 		}

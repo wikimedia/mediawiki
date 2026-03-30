@@ -2993,6 +2993,7 @@ return [
 			$services->getRevisionLookup(),
 			$services->getTalkPageNotificationManager(),
 			$services->getWatchedItemStore(),
+			$services->getWatchlistLabelStore(),
 			$services->getUserFactory(),
 			$services->getNamespaceInfo(),
 			$services->getWikiPageFactory()

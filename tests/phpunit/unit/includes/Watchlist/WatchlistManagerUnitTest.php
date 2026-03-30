@@ -16,6 +16,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
+use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistManager;
 
 /**
@@ -75,6 +76,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$this->createMock( RevisionLookup::class ),
 			$talkPageNotificationManager,
 			$watchedItemStore,
+			$this->createMock( WatchlistLabelStore::class ),
 			$userFactory,
 			$nsInfo,
 			$this->getWikiPageFactory()

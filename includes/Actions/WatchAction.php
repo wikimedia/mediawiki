@@ -96,13 +96,9 @@ class WatchAction extends FormAction {
 			true,
 			$this->getAuthority(),
 			$this->getTitle(),
-			$this->getRequest()->getVal( 'wp' . $this->expiryFormFieldName )
+			$this->getRequest()->getVal( 'wp' . $this->expiryFormFieldName ),
+			$this->getRequest()->getArray( 'wplabels' )
 		);
-
-		$labelIds = $this->getRequest()->getArray( 'wplabels' );
-		if ( $labelIds ) {
-			$this->watchedItemStore->addLabels( $this->getUser(), [ $this->getTitle() ], $labelIds );
-		}
 
 		return Status::wrap( $result );
 	}

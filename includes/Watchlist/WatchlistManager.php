@@ -20,6 +20,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
@@ -67,6 +68,9 @@ class WatchlistManager {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/** @var WatchlistLabel[][] Runtime cache of watchlist labels, per user. */
+	private array $watchlistLabels = [];
+
 	/**
 	 * @var array
 	 *
@@ -92,6 +96,7 @@ class WatchlistManager {
 	 * @param RevisionLookup $revisionLookup
 	 * @param TalkPageNotificationManager $talkPageNotificationManager
 	 * @param WatchedItemStoreInterface $watchedItemStore
+	 * @param WatchlistLabelStore $watchlistLabelStore
 	 * @param UserFactory $userFactory
 	 * @param NamespaceInfo $nsInfo
 	 * @param WikiPageFactory $wikiPageFactory
@@ -103,6 +108,7 @@ class WatchlistManager {
 		RevisionLookup $revisionLookup,
 		TalkPageNotificationManager $talkPageNotificationManager,
 		WatchedItemStoreInterface $watchedItemStore,
+		private readonly WatchlistLabelStore $watchlistLabelStore,
 		UserFactory $userFactory,
 		NamespaceInfo $nsInfo,
 		WikiPageFactory $wikiPageFactory
@@ -499,6 +505,7 @@ class WatchlistManager {
 	 * @param PageReference $target Page to watch/unwatch
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
 	 *   null will not create expiries, or leave them unchanged should they already exist.
+	 * @param ?int[] $labels Optional watchlist label IDs.
 	 * @return StatusValue
 	 * @since 1.37
 	 */
@@ -506,7 +513,8 @@ class WatchlistManager {
 		bool $watch,
 		Authority $performer,
 		PageReference $target,
-		?string $expiry = null
+		?string $expiry = null,
+		?array $labels = null
 	): StatusValue {
 		// User must be registered, and (T371091) not a temp user
 		if ( !$performer->getUser()->isRegistered() || $performer->isTemp() ) {
@@ -525,16 +533,75 @@ class WatchlistManager {
 				$oldWatchPeriod !== ExpiryDef::normalizeExpiry( $expiry, TS::MW );
 		}
 
+		$out = StatusValue::newGood();
 		if ( $changingWatchStatus ) {
 			// If the user doesn't have 'editmywatchlist', we still want to
 			// allow them to add but not remove items via edits and such.
 			if ( $watch ) {
-				return $this->addWatchIgnoringRights( $performer->getUser(), $target, $expiry );
+				$out = $this->addWatchIgnoringRights( $performer->getUser(), $target, $expiry );
 			} else {
-				return $this->removeWatch( $performer, $target );
+				$out = $this->removeWatch( $performer, $target );
 			}
 		}
 
-		return StatusValue::newGood();
+		if ( $watch && $labels !== null ) {
+			// Add labels to both the subject and talk pages.
+			$assocPage = $this->nsInfo->getAssociatedPage( TitleValue::newFromPage( $target ) );
+			$targets = [
+				$target,
+				PageReferenceValue::localReference( $assocPage->getNamespace(), $assocPage->getDBkey() ),
+			];
+			$this->addOrRemoveLabels( $performer->getUser(), $targets, $labels );
+		}
+
+		return $out;
+	}
+
+	/**
+	 * Apply a set of new labels to all given pages, only adding or removing as is needed.
+	 *
+	 * @param UserIdentity $user
+	 * @param PageReference[] $targets
+	 * @param int[] $newLabelIds
+	 *
+	 * @return void
+	 */
+	private function addOrRemoveLabels( UserIdentity $user, array $targets, array $newLabelIds ): void {
+		foreach ( $targets as $target ) {
+			$currentLabelIds = [];
+			$watchedItem = $this->watchedItemStore->getWatchedItem( $user, $target );
+			if ( $watchedItem ) {
+				foreach ( $watchedItem->getLabels() as $label ) {
+					$labelId = $label->getId();
+					if ( $labelId !== null ) {
+						$currentLabelIds[] = $labelId;
+					}
+				}
+			}
+			$userLabelIds = array_keys( $this->loadWatchlistLabelsForUser( $user ) );
+			$submittedLabelIds = array_values( array_intersect( $newLabelIds, $userLabelIds ) );
+			$toAdd = array_values( array_diff( $submittedLabelIds, $currentLabelIds ) );
+			$toRemove = array_values( array_diff( $currentLabelIds, $submittedLabelIds ) );
+			if ( $toAdd ) {
+				$this->watchedItemStore->addLabels( $user, $targets, $toAdd );
+			}
+			if ( $toRemove ) {
+				$this->watchedItemStore->removeLabels( $user, $targets, $toRemove );
+			}
+		}
+	}
+
+	/**
+	 * Load all watchlist labels for the given user, cached for the lifetime of this EditPage instance.
+	 *
+	 * @param UserIdentity $user
+	 * @return array Watchlist labels, indexed by label ID.
+	 */
+	private function loadWatchlistLabelsForUser( UserIdentity $user ): array {
+		if ( !isset( $this->watchlistLabels[$user->getId()] ) ) {
+			$this->watchlistLabels[$user->getId()] = $this->watchlistLabelStore->loadAllForUser( $user );
+		}
+
+		return $this->watchlistLabels[$user->getId()];
 	}
 }
