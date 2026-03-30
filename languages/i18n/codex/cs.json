@@ -4,6 +4,8 @@
 			"Mormegil"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Drobečková navigace",
+	"cdx-breadcrumb-overflow-label": "Další možnosti navigace",
 	"cdx-chip-input-chip-added": "Byl přidán žeton $1.",
 	"cdx-chip-input-chip-removed": "Byl odstraněn žeton $1.",
 	"cdx-input-chip-aria-description": "Stiskněte Enter pro editaci nebo Delete pro odstranění.",
@@ -20,7 +22,7 @@
 	"cdx-table-pager-button-last-page": "Poslední stránka",
 	"cdx-table-pager-button-next-page": "Další stránka",
 	"cdx-table-pager-button-prev-page": "Předchozí stránka",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 řádek|$1 řádky|$1 řádků}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 položka|$1 položky|$1 položek}}",
 	"cdx-table-pager-items-per-page-default": "Výsledků na stránku",
 	"cdx-table-pagination-status-message-determinate-long": "Zobrazují se výsledky $1–$2 z $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 z $3",

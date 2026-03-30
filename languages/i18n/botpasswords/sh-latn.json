@@ -7,7 +7,7 @@
 		]
 	},
 	"botpasswords": "Botovske lozinke",
-	"botpasswords-summary": "<em>Lozinke botova</em> daju pristup korisničkom računu preko priložnika bez da se koriste podaci o prijavi glavnog računa. Korisnička prava mogla bi biti ograničena kada se prijavite na ovaj način.\n\nUkoliko ne znate kako bi Vam ovo poslužilo, vjerovatno to ne biste trebali raditi. Niko nikada ne treba od Vas tražiti da napravite ovakve lozinke i da mu ih date.",
+	"botpasswords-summary": "<em>Lozinke botova</em> daju pristup korisničkom računu preko API-ja bez da se koriste podaci o prijavi glavnog računa. Korisnička prava mogla bi biti ograničena kada se prijavite na ovaj način.\n\nUkoliko ne znate kako bi Vam ovo poslužilo, vjerovatno to ne biste trebali raditi. Nitko nikada ne treba od Vas tražiti da napravite ovakve lozinke i da mu ih date.",
 	"botpasswords-disabled": "Lozinke botova su onemogućene.",
 	"botpasswords-no-central-id": "Da biste koristili botovske lozinke, morate biti prijavljeni na središnji račun.",
 	"botpasswords-existing": "Postojeće lozinke botova",

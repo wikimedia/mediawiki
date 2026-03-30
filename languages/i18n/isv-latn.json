@@ -2281,6 +2281,8 @@
 	"block-confirm-no": "Ne",
 	"block-submit": "Odpraviti",
 	"block-success": "{{GENDER:$1|Koristnik|Koristnica}} [[Special:Contributions/$1|{{GENDER:$1|$1}}]] ([[{{ns:user_talk}}:$1|besěda]]) jest {{GENDER:$1|zablokovany|zablokovana}}. Gledite [[Special:BlockList|spisok blokad]] za prěgled blokad.",
+	"block-additional-success-text": "Slědujuče {{PLURAL:$2|povezano konto|Slědujuče povezane konta}} takože {{PLURAL:$2|jest zablokovano|sut zablokovane}}: $1.",
+	"block-target-link": "[[Special:Contributions/$1|$1]] ([[{{ns:user_talk}}:$1|besěda]])",
 	"block-user-active-blocks": "Aktivne blokady",
 	"block-user-no-active-blocks": "Nijedna aktivna blokada ne najdena",
 	"block-user-active-range-blocks": "Aktivne blokady obsegov",

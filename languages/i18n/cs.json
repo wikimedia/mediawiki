@@ -2356,6 +2356,7 @@
 	"block-confirm-no": "Ne",
 	"block-submit": "Potvrdit",
 	"block-success": "„[[Special:Contributions/$1|$1]]“ ([[{{ns:user_talk}}:$1|diskuse]]) je {{GENDER:$1|zablokován|zablokována}}. Můžete si prohlédnout [[Special:BlockList|seznam zablokovaných uživatelů]].",
+	"block-target-link": "[[Special:Contributions/$1|$1]] ([[{{ns:user_talk}}:$1|diskuse]])",
 	"block-user-active-blocks": "Aktivní blokování",
 	"block-user-no-active-blocks": "Nenalezena žádná aktivní blokování",
 	"block-user-active-range-blocks": "Aktivní blokování rozsahu",

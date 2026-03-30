@@ -2531,6 +2531,7 @@
 	"block-confirm-no": "No",
 	"block-submit": "Enviar",
 	"block-success": "[[Special:Contributions/$1|$1]] ([[{{ns:user_talk}}:$1|talk]]) ha sido {{GENDER:$1|bloqueado|bloqueada}}. Ve a la [[Special:BlockList|lista de bloqueos]] para revisar los bloqueos.",
+	"block-additional-error-header-text": "Fallo en {{PLURAL:$1| el bloqueo| los bloqueos}}",
 	"block-user-active-blocks": "Bloqueos activos",
 	"block-user-no-active-blocks": "No se encontraron bloqueos activos",
 	"block-user-active-range-blocks": "Bloqueos por intervalo activos",

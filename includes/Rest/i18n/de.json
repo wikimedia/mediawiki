@@ -105,7 +105,7 @@
 	"rest-param-desc-revision-id": "Versionskennung",
 	"rest-param-desc-html-input-contentmodel": "Seiteninhaltsformat: Wikitext (Standard), CSS, JavaScript, JSON oder Text.",
 	"rest-param-desc-page-content-title": "Seitentitel. Um den Titel zu formatieren, ersetze Leerzeichen durch Unterstriche und kodiere das Ergebnis anschließend URL-kodiert (Beispiel: Steller%27s_jay). Im Rest-Sandbox-Bereich ersetze Leerzeichen ebenfalls durch Unterstriche, führe aber keine URL-Kodierung durch (Beispiel: Steller's_jay).",
-	"rest-param-desc-page-content-redirect": "Legt fest, ob Weiterleitungen befolgt werden sollen, z. B. häufigen Seitenaliasen oder wenn eine Seite verschoben wurde. Der Standardwert ist `true`.",
+	"rest-param-desc-page-content-redirect": "Legt fest, ob Weiterleitungen befolgt werden sollen, z. B. häufige Seitenaliasse oder wenn eine Seite verschoben wurde. Der Standardwert ist `true`.",
 	"rest-param-desc-source": "Seiteninhalt im durch die Eigenschaft content_model angegebenen Format",
 	"rest-param-desc-comment": "Grund für die Bearbeitung der Seite. Um den Kommentar vom Server ausfüllen zu lassen, verwende „comment: null“.",
 	"rest-param-desc-contentmodel": "Seiteninhaltsformat: Wikitext (Standard), CSS, JavaScript, JSON oder Text.",

@@ -309,7 +309,7 @@
 	"listgrouprights-namespaceprotection-namespace": "Imenski prostor",
 	"listgrouprights-namespaceprotection-restrictedto": "Prava kojima se dozvoljava korisniku da uređuje",
 	"listgrants": "Dozvole",
-	"listgrants-summary": "Ovo je lista dozvola, svaka sa svojim pravima. Korisnici mogu autorizirati prilozi koji će koristiti račun, ali uz ograničena prava u zavisnosti od tog koju dozvolu im korisnik omogući. Međutim, prilog koji djeluje u ime korisnika ograničen je na prava samog korisnika. Moguće je da postoje [[{{MediaWiki:Listgrouprights-helppage}}|dodatne informacije]] o pojedinim pravima.",
+	"listgrants-summary": "Ovo je lista dozvola, svaka sa svojim pravima. Korisnici mogu autorizirati aplikacije koje će koristiti račun, ali uz ograničena prava u zavisnosti od tog koju dozvolu im korisnik omogući. Međutim, aplikacija koji djeluje u ime korisnika ograničena je na prava samog korisnika. Moguće je da postoje [[{{MediaWiki:Listgrouprights-helppage}}|dodatne informacije]] o pojedinim pravima.",
 	"listgrants-grant": "Dozvola",
 	"listgrants-rights": "Prava"
 }

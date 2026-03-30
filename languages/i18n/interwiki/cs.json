@@ -46,6 +46,7 @@
 	"interwiki_edited": "Prefix „$1“ v tabulce interwiki byl úspěšně modifikován.",
 	"interwiki_editerror": "Prefix „$1“ v tabulce interwiki nemohl být modifikován.\nPravděpodobně neexistuje.",
 	"interwiki-badprefix": "Uvedený interwiki prefix „$1“ obsahuje nepovolený znak",
+	"interwiki-cannotaddlocallanguage": "Prefix „$1“ odpovídá známému kódu jazyka. Přidávání místních mezijazykových prefixů je vypnuto, protože se používá globální mezijazyková databáze.",
 	"interwiki-submit-empty": "Prefix a URL nemohou být prázdné.",
 	"interwiki-submit-invalidurl": "Protokol v URL je neplatný.",
 	"log-name-interwiki": "Kniha změn tabulky interwiki",

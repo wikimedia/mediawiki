@@ -319,6 +319,7 @@
 	"listgrouprights-namespaceprotection-header": "Batasan ruang nama",
 	"listgrouprights-namespaceprotection-namespace": "Ruang nama",
 	"listgrouprights-namespaceprotection-restrictedto": "Hak(-hak) yang membenarkan pengguna untuk menyunting",
+	"restrictedgroups-autodemotion-log-reason": "Buangkan {{GENDER:$1|pengguna}} secara automatik daripada {{PLURAL:$2|kumpulan yang terbatas}}",
 	"listgrants": "Izin",
 	"listgrants-summary": "Berikut ialah senarai geran dnegan capaian berkaitannya ke hak pengguna. Pengguna boleh memberi kuasa aplikasi untuk menggunakan akaunnya tetapi dengan kebenaran terhad berdasarkan geran yang pengguna beri kepada aplikasi. Aplikasi yang bertindak atas pihak pengguna sebenarnya tidak boleh menggunakan hak yang pengguna tersebut tidak miliki sekalipun.\nTerdapar [[{{MediaWiki:Listgrouprights-helppage}}|maklumat tambahan]] tentang hak individu.",
 	"listgrants-grant": "Izin",

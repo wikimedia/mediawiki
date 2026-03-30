@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aefgh39622",
 			"Prem4826",
 			"Wutkh"
 		]
@@ -23,7 +24,7 @@
 	"cdx-table-pager-button-last-page": "หน้าสุดท้าย",
 	"cdx-table-pager-button-next-page": "หน้าถัดไป",
 	"cdx-table-pager-button-prev-page": "หน้าก่อนหน้า",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 แถว}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 รายการ}}",
 	"cdx-table-pager-items-per-page-default": "ผลลัพธ์ต่อหน้า",
 	"cdx-table-pagination-status-message-determinate-long": "แสดงผล $1–$2 จาก $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 จาก $3",
