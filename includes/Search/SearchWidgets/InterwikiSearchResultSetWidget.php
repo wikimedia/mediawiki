@@ -6,6 +6,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Search\ISearchResultSet;
 use MediaWiki\Specials\SpecialSearch;
@@ -218,7 +219,8 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 	 * @return OOUI\IconWidget
 	 */
 	protected function generateIconFromFavicon( $logoUrl ) {
-		$parsed = wfGetUrlUtils()->parse( (string)wfGetUrlUtils()->expand( $logoUrl, PROTO_CURRENT ) );
+		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
+		$parsed = $urlUtils->parse( (string)$urlUtils->expand( $logoUrl, PROTO_CURRENT ) );
 		'@phan-var array $parsed'; // Valid URL
 		$iwIconUrl = $parsed['scheme'] .
 			$parsed['delimiter'] .
