@@ -11,13 +11,7 @@ namespace MediaWiki\DB;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Debug\MWDebug;
-use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
-use MediaWiki\Deferred\LinksUpdate\ExistenceLinksTable;
-use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
-use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
-use MediaWiki\Deferred\LinksUpdate\InterwikiLinksTable;
-use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
-use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
+use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Exception\MWExceptionRenderer;
 use MediaWiki\Logger\LoggerFactory;
@@ -55,13 +49,7 @@ class MWLBFactory {
 		'virtual-botpasswords',
 		'virtual-interwiki',
 		'virtual-interwiki-interlanguage',
-		ExternalLinksTable::VIRTUAL_DOMAIN,
-		TemplateLinksTable::VIRTUAL_DOMAIN,
-		ImageLinksTable::VIRTUAL_DOMAIN,
-		ExistenceLinksTable::VIRTUAL_DOMAIN,
-		InterwikiLinksTable::VIRTUAL_DOMAIN,
-		PageLinksTable::VIRTUAL_DOMAIN,
-		CategoryLinksTable::VIRTUAL_DOMAIN,
+		LinksTable::VIRTUAL_DOMAIN,
 	];
 
 	/**
