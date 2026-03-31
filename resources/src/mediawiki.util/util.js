@@ -1085,11 +1085,13 @@ const util = {
 	 *
 	 * @param {number} thumbWidth Target width in pixels
 	 * @param {number} originalWidth Original file width
+	 * @param {boolean} isVectorized whether the image is svg or similar
 	 * @return {number} Adjusted thumbnail width in pixels
 	 */
 	adjustThumbWidthForSteps(
 		thumbWidth,
-		originalWidth
+		originalWidth,
+		isVectorized = false
 	) {
 		const steps = config.ThumbnailSteps;
 		const ratio = config.ThumbnailStepsRatio;
@@ -1102,7 +1104,7 @@ const util = {
 		// for content generation and should be ok to ignore client-side.
 
 		for ( const widthStep of steps ) {
-			if ( widthStep > originalWidth ) {
+			if ( widthStep > originalWidth && !isVectorized ) {
 				// Round up to original width if there is no step between
 				// desired thumb width & original file width
 				return originalWidth;
