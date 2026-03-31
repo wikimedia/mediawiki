@@ -7,6 +7,7 @@
 namespace MediaWiki\Linker;
 
 use InvalidArgumentException;
+use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\Title\TitleValue;
 use RuntimeException;
 use stdClass;
@@ -85,7 +86,7 @@ class LinkTargetStore implements LinkTargetLookup {
 			return $this->byIdCache[$linkTargetId];
 		}
 
-		$value = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
+		$value = $this->dbProvider->getReplicaDatabase( LinksTable::VIRTUAL_DOMAIN )->newSelectQueryBuilder()
 			->caller( __METHOD__ )
 			->table( 'linktarget' )
 			->conds( [ 'lt_id' => $linkTargetId ] )
@@ -177,7 +178,7 @@ class LinkTargetStore implements LinkTargetLookup {
 		LinkTarget $linkTarget,
 		bool $lockInShareMode = false
 	): ?int {
-		$queryBuilder = $this->dbProvider->getPrimaryDatabase()->newSelectQueryBuilder()
+		$queryBuilder = $this->dbProvider->getPrimaryDatabase( LinksTable::VIRTUAL_DOMAIN )->newSelectQueryBuilder()
 			->select( [ 'lt_id', 'lt_namespace', 'lt_title' ] )
 			->from( 'linktarget' )
 			->where( [ 'lt_namespace' => $linkTarget->getNamespace(), 'lt_title' => $linkTarget->getDBkey() ] );
@@ -231,7 +232,8 @@ class LinkTargetStore implements LinkTargetLookup {
 					),
 					WANObjectCache::TTL_DAY,
 					function () use ( $linkTarget, $fname ) {
-						$row = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
+						$row = $this->dbProvider->getReplicaDatabase( LinksTable::VIRTUAL_DOMAIN )
+							->newSelectQueryBuilder()
 							->select( [ 'lt_id', 'lt_namespace', 'lt_title' ] )
 							->from( 'linktarget' )
 							->where( [

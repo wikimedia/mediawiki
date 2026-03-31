@@ -13,7 +13,6 @@ use MediaWiki\Parser\ParserOutput;
  * @since 1.38
  */
 class ExternalLinksTable extends LinksTable {
-	public const VIRTUAL_DOMAIN = 'virtual-externallinks';
 	/** @var array<string,array<string,true>> */
 	private $newLinks = [];
 	/** @var array<string,array<string,true>>|null */
