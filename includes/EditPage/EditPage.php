@@ -3780,7 +3780,7 @@ class EditPage implements IEditObject {
 		);
 		$watchlistLabelsWidget = $this->getWatchlistLabelsWidget( $tabindex );
 		// Add a message (inline with the checkboxes) when the user doesn't have any labels.
-		if ( !$watchlistLabelsWidget && $this->watchlistLabelsEnabled ) {
+		if ( $this->context->getUser()->isNamed() && !$watchlistLabelsWidget && $this->watchlistLabelsEnabled ) {
 			$checkboxes['watchlistlabels'] = new OOUI\LabelWidget( [
 				'label' => new OOUI\HtmlSnippet( $this->context->msg( 'watchlistlabels-editpage-nolabels' )->parse() ),
 			] );
