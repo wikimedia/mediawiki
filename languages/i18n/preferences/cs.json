@@ -39,6 +39,8 @@
 	"username": "{{GENDER:$1|Uživatelské jméno}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Člen|Členka}} {{PLURAL:$1|skupiny|skupin}}:",
 	"group-membership-link-with-expiry": "$1 (do $2)",
+	"prefs-memberingroupsdisabled": "{{PLURAL:$1|Zakázaná skupina|Zakázané skupiny}}{{GENDER:$2|:}}",
+	"prefs-memberingroupsdisabled-help": "Již {{GENDER:$2|nesplňujete}} [[$3|podmínky]] pro členství v {{PLURAL:$1|této skupině|těchto skupinách}} a proto nemůžete využívat oprávnění získaná členstvím v {{PLURAL:$1|ní|nich}}.",
 	"prefs-edits": "Počet editací:",
 	"prefs-registration": "Čas registrace:",
 	"yourrealname": "Vaše skutečné jméno:",

@@ -63,5 +63,6 @@
 	"interwiki-links": "Interwiki prefixy",
 	"interwiki-language-links": "Mezijazykové prefixy",
 	"interwiki-language-description": "Tyto prefixy odpovídají definovaným jazykovým kódům a použijí se k vytvoření seznamu „{{int:otherlanguages}}“, když se přidají do stránky.",
-	"interwiki-global-language-links": "Globální mezijazykové prefixy"
+	"interwiki-global-language-links": "Globální mezijazykové prefixy",
+	"interwiki-global-language-description": "Tyto prefixy odpovídají definovaným jazykovým kódům a budou se při přidání do stránky používat pro sestavení seznamu „{{int:otherlanguages}}“. Jelikož se přebírají z globální konfigurace, mohou se editovat pouze na zdrojové wiki. Globální mezijazykové definice nelze přepsat lokálně."
 }
