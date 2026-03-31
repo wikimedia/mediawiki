@@ -13,8 +13,6 @@ use MediaWiki\Parser\ParserOutputLinkTypes;
  * @since 1.45
  */
 class ExistenceLinksTable extends GenericPageLinksTable {
-	public const VIRTUAL_DOMAIN = 'virtual-existencelinks';
-
 	public function setParserOutput( ParserOutput $parserOutput ) {
 		$this->newLinks = [];
 		foreach (

@@ -16,8 +16,6 @@ use MediaWiki\Title\Title;
  * @since 1.38
  */
 class ImageLinksTable extends TitleLinksTable {
-	public const VIRTUAL_DOMAIN = 'virtual-imagelinks';
-
 	/**
 	 * @var array New links with the name in the key, value arbitrary
 	 */

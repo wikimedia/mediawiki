@@ -9,8 +9,6 @@ use MediaWiki\Parser\ParserOutputLinkTypes;
  * pagelinks
  */
 class PageLinksTable extends GenericPageLinksTable {
-	public const VIRTUAL_DOMAIN = 'virtual-pagelinks';
-
 	public function setParserOutput( ParserOutput $parserOutput ) {
 		// Convert the format of the local links
 		$this->newLinks = [];

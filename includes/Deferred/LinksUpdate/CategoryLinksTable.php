@@ -34,8 +34,6 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * @since 1.38
  */
 class CategoryLinksTable extends TitleLinksTable {
-	public const VIRTUAL_DOMAIN = 'virtual-categorylinks';
-
 	/**
 	 * @var array Associative array of new links, with the category name in the
 	 *   key. The value is a list consisting of the sort key prefix and the sort

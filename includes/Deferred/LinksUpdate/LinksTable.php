@@ -56,6 +56,8 @@ abstract class LinksTable {
 	/** Link type: new links (from the ParserOutput) */
 	public const NEW = 5;
 
+	public const VIRTUAL_DOMAIN = 'virtual-links';
+
 	/**
 	 * Rows to delete. An array of associative arrays, each associative array
 	 * being the conditions for a delete query. Common conditions should be

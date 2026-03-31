@@ -15,8 +15,6 @@ use MediaWiki\Parser\ParserOutputLinkTypes;
  * @since 1.38
  */
 class InterwikiLinksTable extends LinksTable {
-	public const VIRTUAL_DOMAIN = 'virtual-interwikilinks';
-
 	/** @var array */
 	private $newLinks = [];
 
