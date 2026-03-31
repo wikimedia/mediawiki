@@ -123,7 +123,12 @@ class SBOMGenerator {
 
 			if ( array_key_exists( 'author', $extension ) ) {
 				$authors = $extension['author'];
-				$componentData['authors'] = is_array( $authors ) ? $authors : [ $authors ];
+				$componentData['authors'] = array_map(
+					static fn ( $author ) => [
+						'name' => $author
+					],
+					is_array( $authors ) ? $authors : [ $authors ],
+				);
 			}
 
 			if ( array_key_exists( 'version', $extension ) ) {

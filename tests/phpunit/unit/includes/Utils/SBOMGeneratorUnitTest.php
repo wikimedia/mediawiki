@@ -81,7 +81,9 @@ class SBOMGeneratorUnitTest extends MediaWikiUnitTestCase {
 						'type' => 'application',
 						'name' => 'Extension1',
 						'authors' => [
-							'Author 1',
+							[
+								'name' => 'Author 1',
+							],
 						],
 						'version' => '1.2.3',
 						'licences' => [
@@ -94,8 +96,12 @@ class SBOMGeneratorUnitTest extends MediaWikiUnitTestCase {
 						'type' => 'application',
 						'name' => 'Extension2',
 						'authors' => [
-							'Author 2',
-							'Author 3',
+							[
+								'name' => 'Author 2',
+							],
+							[
+								'name' => 'Author 3',
+							],
 						],
 						'version' => '4.5.6',
 						'licences' => [
