@@ -3520,7 +3520,7 @@
 	"namespaceinfo-heading-local": "Nome local",
 	"namespaceinfo-heading-info": "Descrición e propiedades",
 	"namespaceinfo-description-custom": "Espazo de nomes personalizado «$1»",
-	"namespaceinfo-description-custom-talk": "Páxinas de conversa asociadas ao espazo de nomes $1 (ID $2)",
+	"namespaceinfo-description-custom-talk": "Páxinas de conversa asociadas ao espazo de nomes «$1» (ID $2)",
 	"namespaceinfo-description-ns-2": "Espazo de nomes virtual para as imaxes",
 	"namespaceinfo-description-ns-1": "Espazo de nomes virtual para as páxinas especiais",
 	"namespaceinfo-description-ns0": "Espazo de nomes principal",

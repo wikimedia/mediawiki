@@ -975,7 +975,7 @@
 	"savedrights": "D'Benotzergruppe vum {{GENDER:$1|$1}} goufe gespäichert.",
 	"prefs-namespaces": "Nummraim",
 	"default": "Standard",
-	"linterror-deletable-table-tag": "Tabellen-Tag dee geläscht gi soll",
+	"linterror-deletable-table-tag": "Tabellen-Tag, dee geläscht soll ginn",
 	"linterror-inline-media-caption": "Onsichtbar Beschrëftung",
 	"linterror-missing-end-tag": "Schluss-Tag feelt",
 	"linterror-missing-image-alt-text": "Alt Text fir d'Bild feelt",

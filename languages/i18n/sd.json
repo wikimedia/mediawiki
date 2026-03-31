@@ -1887,6 +1887,7 @@
 	"tooltip-feed-atom": "هن صفحي لاءِ ايٽم فيڊ",
 	"tooltip-t-contributions": "{{GENDER:$1|ھن واپرائيندڙ}} جي ڀاڱيدارين جي فھرست",
 	"tooltip-t-emailuser": "{{GENDER:$1|ھن واپرائيندڙ}} ڏانھن ايميل موڪليو",
+	"tooltip-t-info": "هن صفحي بابت وڌيڪ ڄاڻ",
 	"tooltip-t-upload": "فائيل چاڙهيو",
 	"tooltip-t-specialpages": "سڀني خاص صفحن جي فھرست",
 	"tooltip-t-print": "ھن صفحي جو پرنٽ وٺو",
