@@ -116,6 +116,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'autopromote' => $this->appendAutoPromote( $p ),
 				'autopromoteonce' => $this->appendAutoPromoteOnce( $p ),
 				'copyuploaddomains' => $this->appendCopyUploadDomains( $p ),
+				'crosssiteajaxdomains' => $this->appendCrossSiteAJAXdomains( $p ),
 				'sbom' => $this->appendSBOM( $p ),
 				// @phan-suppress-next-line PhanUseReturnValueOfNever
 				default => ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" ) // @codeCoverageIgnore
@@ -920,6 +921,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		);
 	}
 
+	private function appendCrossSiteAJAXdomains( string $property ): bool {
+		$allowedDomains = $this->getConfig()->get( MainConfigNames::CrossSiteAJAXdomains );
+		ApiResult::setArrayType( $allowedDomains, 'array' );
+		ApiResult::setIndexedTagName( $allowedDomains, 'domain' );
+		return $this->getResult()->addValue( 'query', $property, $allowedDomains );
+	}
+
 	protected function appendSBOM( string $property ): bool {
 		if ( !$this->userIdentityUtils->isNamed( $this->getUser() ) ) {
 			$this->dieWithError( 'apierror-mustbeloggedin-sbom' );
@@ -1049,6 +1057,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'autopromote',
 					'autopromoteonce',
 					'copyuploaddomains',
+					'crosssiteajaxdomains',
 					'sbom',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],

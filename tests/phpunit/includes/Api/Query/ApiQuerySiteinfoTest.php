@@ -741,6 +741,12 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$this->assertSame( $wgUploadDialog, $this->doQuery( 'uploaddialog' ) );
 	}
 
+	public function testCrossSiteAJAXdomains() {
+		$this->overrideConfigValue( MainConfigNames::CrossSiteAJAXdomains, [ '*.example.com' ] );
+
+		$this->assertSame( [ '*.example.com' ], $this->doQuery( 'crosssiteajaxdomains' ) );
+	}
+
 	public function testGetHooks() {
 		// Make sure there's something to report on
 		$this->setTemporaryHook( 'somehook',
