@@ -381,9 +381,6 @@ class ImagePage extends Article {
 			$height_orig = $this->displayImg->getHeight( $page );
 			$height = $height_orig;
 
-			$filename = wfEscapeWikiText( $this->displayImg->getName() );
-			$linktext = $filename;
-
 			$this->getHookRunner()->onImageOpenShowImageInlineBefore( $this, $out );
 
 			if ( $this->displayImg->allowInlineDisplay() ) {
@@ -406,7 +403,6 @@ class ImagePage extends Article {
 						[ $width, $height ] = $this->displayImg->getDisplayWidthHeight(
 							$maxWidth, $maxHeight, $page
 						);
-						$linktext = $context->msg( 'show-big-image' )->escaped();
 					}
 
 					$sizeLinkBigImagePreview = $this->makeSizeLink( $params, $width, $height );
@@ -594,6 +590,8 @@ class ImagePage extends Article {
 				}
 			}
 
+			$filename = wfEscapeWikiText( $this->displayImg->getName() );
+			$linktext = $context->msg( 'show-big-image' )->escaped();
 			$medialink = $context->msg( new RawMessage( "[[Media:$filename|$linktext]]" ) )->parse();
 			if ( !$this->displayImg->isSafeFile() ) {
 				$medialink = Html::rawElement( 'span', [ 'class' => 'dangerousLink' ], $medialink );
