@@ -2293,7 +2293,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				$mapping[$key] = 'special';
 			} elseif ( str_starts_with( $key, 'userjs-' ) ) {
 				$mapping[$key] = 'userjs';
-			} elseif ( str_starts_with( $key, UserOptionsLookup::LOCAL_EXCEPTION_SUFFIX ) ) {
+			} elseif ( str_ends_with( $key, UserOptionsLookup::LOCAL_EXCEPTION_SUFFIX ) ) {
 				$mapping[$key] = 'local-exception';
 			} else {
 				$mapping[$key] = 'unused';
@@ -2308,8 +2308,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'registered',
 			'registered-multiselect',
 			'registered-checkmatrix',
-			'userjs',
 			'special',
+			'userjs',
+			'local-exception',
 			'unused'
 		];
 	}
