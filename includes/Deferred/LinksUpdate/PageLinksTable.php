@@ -51,7 +51,7 @@ class PageLinksTable extends GenericPageLinksTable {
 	}
 
 	/** @inheritDoc */
-	protected function getVirtualDomain(): string {
+	protected function virtualDomain(): string {
 		return self::VIRTUAL_DOMAIN;
 	}
 }
