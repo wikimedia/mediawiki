@@ -86,11 +86,11 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 			return;
 		}
 
-		if ( !$this->getAuthority()->isAllowed( 'userrights-interwiki' ) ) {
-			$isRedirected = $this->redirectIfRemoteWikiForView( $targetName );
-			if ( $isRedirected ) {
-				return;
-			}
+		if (
+			!$this->getAuthority()->isAllowed( 'userrights-interwiki' ) &&
+			$this->redirectIfRemoteWikiForView( $targetName )
+		) {
+			return;
 		}
 
 		// No need to check if $target is non-empty or non-canonical, this is done in the lookup service
