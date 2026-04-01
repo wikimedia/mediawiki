@@ -227,7 +227,7 @@ class SpecialUserRights extends SpecialPage {
 
 		$this->switchForm();
 
-		if ( !$this->getAuthority()->isAllowed( 'userrights-interwiki' ) ) {
+		if ( $this->mTarget !== null && !$this->getAuthority()->isAllowed( 'userrights-interwiki' ) ) {
 			$isRedirected = $this->redirectIfRemoteWikiForView( $this->mTarget );
 			if ( $isRedirected ) {
 				return;
