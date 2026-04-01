@@ -6382,8 +6382,21 @@ class Parser {
 	#[\NoDiscard]
 	protected function lock(): ScopedCallback {
 		if ( $this->mInParse ) {
-			throw new LogicException( "Parser state cleared while parsing. "
-				. "Did you call Parser::parse recursively? Lock is held by: " . $this->mInParse );
+			$message = 'Parser state cleared while parsing. Did you call Parser::parse recursively?';
+			$xdebugMode = ini_get( 'xdebug.mode' );
+			if ( $xdebugMode !== false && str_contains( $xdebugMode, 'develop' ) ) {
+				$message .= PHP_EOL . 'xdebug.mode=develop is known to cause this issue ' .
+					'(xdebug bug #2222); consider ';
+				$improvedMode = implode( ',',
+					array_diff( explode( ',', $xdebugMode ),
+						[ 'develop' ] ) );
+				if ( $improvedMode !== '' ) {
+					$message .= "using xdebug.mode=$improvedMode instead or ";
+				}
+				$message .= "disabling xdebug.";
+			}
+			$message .= PHP_EOL . 'lock is held by: ' . $this->mInParse;
+			throw new LogicException( $message );
 		}
 
 		// Save the backtrace when locking, so that if some code tries locking again,
