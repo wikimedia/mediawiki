@@ -6,9 +6,17 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
 
+== MediaWiki 1.44.5 ==
+
+This is a maintenance release of the MediaWiki 1.44 branch.
+
+=== Changes since 1.44.4 ===
+* Localisation updates.
+* Fixed backport issues.
+
 == MediaWiki 1.44.4 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.44 branch.
 
 === Changes since 1.44.3 ===
 * Localisation updates.
@@ -116,7 +124,6 @@ THIS IS NOT A RELEASE YET
 * (T419192, CVE-2026-34095) SECURITY: action=raw with Special:Mypage subpage
   title responds with "Content-Type) SECURITY: text/html" on
   ctype=text/javascript request.
-
 
 == MediaWiki 1.44.3 ==
 
