@@ -63,7 +63,7 @@ class MemoizedCallable {
 			);
 		}
 
-		if ( $this->callableName === 'Closure::__invoke' ) {
+		if ( $callable instanceof Closure ) {
 			throw new InvalidArgumentException( 'Cannot memoize unnamed closure' );
 		}
 

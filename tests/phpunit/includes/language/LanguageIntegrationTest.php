@@ -2053,14 +2053,19 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ true, 'en', 1.23e-1, false, '0.123' ],
 			[ true, 'en', 0.0, false, '0' ],
 			[ true, 'en', -0.0, false, '−0' ],
-			[ true, 'en', INF, false, '∞' ],
-			[ true, 'en', -INF, false, '−∞' ],
-			[ true, 'en', NAN, false, 'Not a Number' ],
 			[ true, 'kn', '1050', false, '೧,೦೫೦' ],
 			[ true, 'kn', '1060', true, '೧೦೬೦' ],
 			[ false, 'kn', '1070', false, '1,070' ],
 			[ false, 'kn', '1080', true, '1080' ],
 			[ true, 'kn', '.1090', false, '.೧೦೯೦' ],
+
+			// (T414350) Testing both string and actual forms of INF/NAN
+			[ true, 'en', INF, false, '∞' ],
+			[ true, 'en', -INF, false, '−∞' ],
+			[ true, 'en', NAN, false, 'Not a Number' ],
+			[ true, 'en', 'INF', false, '∞' ],
+			[ true, 'en', '-INF', false, '−∞' ],
+			[ true, 'en', 'NAN', false, 'Not a Number' ],
 
 			// Make sure non-numeric strings are not destroyed
 			[ false, 'en', 'The number is 1234', false, 'The number is 1,234' ],

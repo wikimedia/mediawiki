@@ -633,6 +633,48 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		assert.strictEqual( resizeUrl( 500 ), '/w?title=Special:Redirect/file/Princess_Alexandra_of_Denmark_(later_Queen_Alexandra,_wife_of_Edward_VII)_with_her_two_eldest_sons,_Prince_Albert_Victor_(Eddy)_and_George_Frederick_Ernest_Albert_(later_George_V).jpg&width=500', 'Resized URL is correct' );
 	} );
 
+	QUnit.test.each( 'adjustThumbWidthForSteps', {
+		'unchanged when disabled': {
+			enabled: false,
+			originalWidth: 500,
+			thumbWidth: 52,
+			expected: 52
+		},
+		'round up': {
+			enabled: true,
+			originalWidth: 500,
+			thumbWidth: 52,
+			expected: 100
+		},
+		'original width when first step beyond original width': {
+			enabled: true,
+			originalWidth: 90,
+			thumbWidth: 52,
+			expected: 90
+		},
+		'original width when no other step between requested & original width': {
+			enabled: true,
+			originalWidth: 180,
+			thumbWidth: 130,
+			expected: 180
+		},
+		'unchanged when beyond available steps': {
+			enabled: true,
+			originalWidth: 500,
+			thumbWidth: 252,
+			expected: 252
+		}
+	}, ( assert, data ) => {
+		// See also server-side logic test for File::adjustThumbWidthForSteps in FileTest.php
+		mw.util.setOptionsForTest( {
+			ThumbnailSteps: [ 100, 200 ],
+			ThumbnailStepsRatio: data.enabled ? 1 : 0
+		} );
+
+		const actual = mw.util.adjustThumbWidthForSteps( data.thumbWidth, data.originalWidth );
+		assert.strictEqual( actual, data.expected );
+	} );
+
 	QUnit.test( 'escapeRegExp [normal]', ( assert ) => {
 		const normal = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
 			'abcdefghijklmnopqrstuvwxyz' +

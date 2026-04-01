@@ -731,9 +731,10 @@ abstract class LBFactory implements ILBFactory {
 	 */
 	private function assertTransactionRoundStage( $stage ) {
 		if ( $this->trxRoundStage !== $stage ) {
+			$transactionName = $this->trxRoundId ?: '<unknown>';
 			throw new DBTransactionError(
 				null,
-				"Transaction round stage must be '$stage' (not '{$this->trxRoundStage}')"
+				"Transaction '$transactionName' round stage must be '$stage' (not '{$this->trxRoundStage}')"
 			);
 		}
 	}

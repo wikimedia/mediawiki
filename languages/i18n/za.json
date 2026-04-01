@@ -6,7 +6,8 @@
 			"GolyatGeri",
 			"Hakka",
 			"Midleading",
-			"唐吉訶德的侍從"
+			"唐吉訶德的侍從",
+			"OverflowCat"
 		]
 	},
 	"sunday": "Ngoenzsinghgiz",
@@ -104,6 +105,7 @@
 	"talk": "Daujlun",
 	"views": "Cazyawj",
 	"toolbox": "Loengx",
+	"cactions": "Gizhiz",
 	"imagepage": "Yawj yieb vwnzgen",
 	"mediawikipage": "Yawj yieb siuhsik",
 	"templatepage": "Yawj yieb mozbanj",
@@ -275,6 +277,7 @@
 	"blocklist-editing-ns": "ndawhoengq mingzcih",
 	"contribslink": "gung'yen",
 	"move-page-legend": "Caen doengh mae",
+	"newtitle": "Daezmoeg moq:",
 	"move-watch": "Demq mae-nej",
 	"movepagebtn": "Caen doengh mae",
 	"movereason": "Haujgaemj:",

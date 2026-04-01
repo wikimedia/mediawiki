@@ -314,7 +314,7 @@
 	"currentrevisionlink": "最新兮版本",
 	"cur": "今",
 	"last": "前",
-	"histlegend": "差异选择：选择卜比较兮版本兮单选按键，再扼Enter键或者点下底兮许個按键。<br/>\n说明：<strong>（{{int:cur}}）</strong> = 合最新兮修改版本比较，<strong>（{{int:last}}）</strong> = 合前蜀個修改版本比较，<strong>（{{int:minoreditletter}}）</strong> = 细兮修改",
+	"histlegend": "差异选择：选择卜比较兮版本兮单选按键，再扼Enter键或者点下底兮许個按键。<br />\n说明：<strong>（{{int:cur}}）</strong> = 合最新兮修改版本比较，<strong>（{{int:last}}）</strong> = 合前蜀個修改版本比较，<strong>（{{int:minoreditletter}}）</strong> = 细兮修改",
 	"history-fieldset-title": "过滤修改版本",
 	"histfirst": "最旧兮",
 	"histlast": "最新兮",

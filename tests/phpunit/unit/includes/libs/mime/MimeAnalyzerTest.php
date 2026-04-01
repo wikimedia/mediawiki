@@ -42,7 +42,6 @@ class MimeAnalyzerTest extends TestCase {
 	private function doGuessMimeType( array $parameters = [] ) {
 		$class = new ReflectionClass( get_class( $this->mimeAnalyzer ) );
 		$method = $class->getMethod( 'doGuessMimeType' );
-		$method->setAccessible( true );
 		return $method->invokeArgs( $this->mimeAnalyzer, $parameters );
 	}
 

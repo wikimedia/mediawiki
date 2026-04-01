@@ -285,7 +285,7 @@
 	"cur": "att",
 	"last": "prec",
 	"page_first": "prima",
-	"histlegend": "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.\n\nLegenda: <strong>({{int:cur}})</strong> = differenze cù a versione attuale, <strong>({{int:last}})</strong> = differenze cù a versione precedente, <strong>{{int:minoreditletter}}</strong> = mudifica minò",
+	"histlegend": "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.<br />\nLegenda: <strong>({{int:cur}})</strong> = differenze cù a versione attuale, <strong>({{int:last}})</strong> = differenze cù a versione precedente, <strong>{{int:minoreditletter}}</strong> = mudifica minò",
 	"history-fieldset-title": "Filtra versioni",
 	"history-show-deleted": "Solu quelli cancellati",
 	"histfirst": "prima",

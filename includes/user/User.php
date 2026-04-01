@@ -2070,7 +2070,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 			global $wgLang;
 			$userOptionsLookup = MediaWikiServices::getInstance()
 				->getUserOptionsLookup();
-			$value = $userOptionsLookup->getOption( $this, 'date' );
+			$value = $userOptionsLookup->getOption( $this, 'date' ) ?? 'default';
 			$map = $wgLang->getDatePreferenceMigrationMap();
 			if ( isset( $map[$value] ) ) {
 				$value = $map[$value];

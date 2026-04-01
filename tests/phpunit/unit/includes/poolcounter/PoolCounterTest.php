@@ -41,7 +41,6 @@ class PoolCounterTest extends MediaWikiUnitTestCase {
 		$poolCounter = $this->createMock( PoolCounterAbstractMock::class );
 
 		$hashKeyIntoSlots = new ReflectionMethod( $poolCounter, 'hashKeyIntoSlots' );
-		$hashKeyIntoSlots->setAccessible( true );
 
 		$keysWithTwoSlots = $keysWithFiveSlots = [];
 		foreach ( range( 1, 100 ) as $i ) {

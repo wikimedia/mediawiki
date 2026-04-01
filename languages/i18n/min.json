@@ -27,7 +27,8 @@
 			"VoteITP",
 			"Zakiy",
 			"아라",
-			"Zhilal Darma"
+			"Zhilal Darma",
+			"Harditaher"
 		]
 	},
 	"sunday": "Akaik",
@@ -120,6 +121,7 @@
 	"help": "Bantuan",
 	"help-mediawiki": "Bantuan pakaro MediaWiki",
 	"search": "Cari",
+	"search-ignored-headings": "#<!-- Biaan baris iko sarupo apo adonyo. --><pre> \n# Judul nan ka diabaikan dek pancarian.\n# Parubahan iko balaku sacapek laman jo judul diindeks.\n# Sanak dapek mamaso indeks ulang laman jo malakukan panyuntiangan kosong.\n# Sintaksisnyo sarupo barikuik:\n# * Sagalonyo dari karakter \"#\" barih nan indak kosong adolah judul nan tapek untuak diabaikan, kasus jo sagalonyo.\nRujukan\nPautan lua\nCaliak juo\n #</pre><!-- Biaan baris iko sarupo apo adonyo -->",
 	"searchbutton": "Cari",
 	"go": "Tuju",
 	"searcharticle": "Tuju",

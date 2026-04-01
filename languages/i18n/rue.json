@@ -20,7 +20,9 @@
 			"Reedy",
 			"Tkalyn",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Oujon",
+			"Cevioch"
 		]
 	},
 	"sunday": "недїля",
@@ -89,6 +91,8 @@
 	"index-category": "Індексованы сторінкы",
 	"noindex-category": "Неіндексованы сторінкы",
 	"broken-file-category": "Сторінкы, што ся одказують на неіснуючі файлы",
+	"categoryviewer-pagedlinks": "($1)($2)",
+	"category-header-numerals": "$1-$2",
 	"about": "О",
 	"article": "Обсягова сторінка",
 	"newwindow": "(отворить ся в новім окнї)",
@@ -2467,7 +2471,7 @@
 	"htmlform-reset": "Вернути зміны",
 	"htmlform-selectorother-other": "Інше",
 	"htmlform-no": "Нє",
-	"htmlform-yes": "Гей",
+	"htmlform-yes": "Айно",
 	"logentry-delete-delete": "$1 {{GENDER:$2|змазав|змазала}} сторінку $3",
 	"logentry-delete-delete_redir": "$1 {{GENDER:$2|змазав|змазала}} напрямлїня $3 переписавши го",
 	"logentry-delete-restore": "$1 {{GENDER:$2|обновив|обновила}} сторінку $3",
@@ -2511,7 +2515,7 @@
 	"feedback-submit": "Одослати",
 	"feedback-thanks": "Дякуєме! Ваш коментарь быв приданый на сторінку „[$2 $1]“.",
 	"searchsuggest-search": "Глядати {{SITENAME}}",
-	"searchsuggest-containing": "обсягуючій...",
+	"searchsuggest-containing": "Гляданя сторінок обсягуючіх",
 	"api-clientside-error-timeout": "Сервер не одповідав в очекаванім часї.",
 	"api-error-badtoken": "Внутрїшня хыба: планый знак.",
 	"api-error-emptypage": "Створїня новых, порожнїх сторінк неслободно.",

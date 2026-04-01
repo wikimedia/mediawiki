@@ -3,7 +3,7 @@
 namespace Wikimedia\Message;
 
 use InvalidArgumentException;
-use MediaWiki\Json\JsonDeserializer;
+use Wikimedia\JsonCodec\Hint;
 
 /**
  * Value object representing a message parameter that consists of a list of values.
@@ -13,6 +13,7 @@ use MediaWiki\Json\JsonDeserializer;
  * @newable
  */
 class ListParam extends MessageParam {
+
 	/** @var string */
 	private $listType;
 
@@ -56,7 +57,7 @@ class ListParam extends MessageParam {
 		return "<{$this->type} listType=\"{$this->listType}\">$contents</{$this->type}>";
 	}
 
-	protected function toJsonArray(): array {
+	public function toJsonArray(): array {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		return [
@@ -65,7 +66,21 @@ class ListParam extends MessageParam {
 		];
 	}
 
-	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ) {
+	/** @inheritDoc */
+	public static function jsonClassHintFor( string $keyName ) {
+		// Reduce serialization overhead by eliminating the type information
+		// when the list consists of MessageParam instances
+		if ( $keyName === ParamType::LIST ) {
+			return Hint::build(
+				MessageParam::class, Hint::INHERITED,
+				Hint::LIST, Hint::USE_SQUARE,
+				Hint::ONLY_FOR_DECODE
+			);
+		}
+		return null;
+	}
+
+	public static function newFromJsonArray( array $json ): ListParam {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		if ( count( $json ) !== 2 || !isset( $json[ParamType::LIST] ) || !isset( $json['type'] ) ) {

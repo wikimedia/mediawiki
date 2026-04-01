@@ -144,7 +144,7 @@ class SqlitePlatformTest extends TestCase {
 		yield [
 			'table',
 			new DatabaseDomain( null, null, '' ),
-			[ null, 'table' ],
+			[ '', 'table' ],
 			null
 		];
 		yield [

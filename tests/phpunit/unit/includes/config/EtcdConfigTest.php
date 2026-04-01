@@ -537,7 +537,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 						return true;
 					} )
 				)
-			);
+			)->willReturn( [ 200, '', [], '', '' ] );
 
 		$conf->fetchAllFromEtcdServer( 'etcd.example' );
 	}
@@ -565,7 +565,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 						return true;
 					} )
 				)
-			);
+			)->willReturn( [ 200, '', [], '', '' ] );
 
 		$conf->fetchAllFromEtcdServer( 'etcd.example', 4001 );
 	}

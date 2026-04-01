@@ -870,7 +870,13 @@ class WANObjectCache implements
 		}
 
 		$now = $this->getCurrentTime();
-		$ttl = (int)$ttl;
+
+		// T413673: Handle PHP8.5 case where TTL is infinite.
+		if ( is_finite( $ttl ) ) {
+			$ttl = (int)$ttl;
+		} else {
+			$ttl = self::TTL_INDEFINITE;
+		}
 		$walltime ??= $this->timeSinceLoggedMiss( $key, $now );
 		$dataSnapshotLag = ( $dataReadSince !== null ) ? max( 0, $now - $dataReadSince ) : 0;
 		$dataCombinedLag = $dataReplicaLag + $dataSnapshotLag;

@@ -2,7 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
-			"Design System Team"
+			"Design System Team",
+			"Doğu Abaris",
+			"Matma Rex"
 		]
 	},
 	"cdx-chip-input-chip-added": "Visually-hidden status message that is announced to users of assistive technology when a new chip is added. (A \"Chip\" is a visual component that puts a short text that a user has recently written into a small box. See a [[:wmdoc:codex/latest/components/demos/chip-input.html|full ChipInput description]].)",
@@ -23,7 +25,7 @@
 	"cdx-table-pager-items-per-page-current": "Label for the currently-selected number of items to display per page in the CdxTable component.\n\nParameters:\n* $1 - Current page size, expressed in terms of items per page to display",
 	"cdx-table-pager-items-per-page-default": "Default label for the items-per-page dropdown in the CdxTable component",
 	"cdx-table-pagination-status-message-determinate-long": "Message indicating the current page of results being displayed in a CdxTable component.\n\nParameters:\n* $1 - Number representing the position of the first row of the current page of results within the sequence of all available rows.\n* $2 - Number representing the position of the last row of the current page of results within the sequence of all available rows.\n* $3 - Total count of all available rows",
-	"cdx-table-pagination-status-message-determinate-short": "Message indicating the current page of results being displayed in a CdxTable component, suitable for small screens.\n\nParameters:\n* $1 - Number representing the position of the first row of the current page of results within the sequence of all available rows.\n* $2 - Number representing the position of the last row of the current page of results within the sequence of all available rows.\n * $3 - Total count of all available rows",
+	"cdx-table-pagination-status-message-determinate-short": "Message indicating the current page of results being displayed in a CdxTable component, suitable for small screens.\n\nParameters:\n* $1 - Number representing the position of the first row of the current page of results within the sequence of all available rows.\n* $2 - Number representing the position of the last row of the current page of results within the sequence of all available rows.\n* $3 - Total count of all available rows",
 	"cdx-table-pagination-status-message-indeterminate-long": "Message indicating the current page of results being displayed in a CdxTable component when the total number of results is not known.\n\nParameters:\n* $1 - Number representing the position of the first row of the current page of results within the sequence of all available rows.\n* $2 - Number representing the position of the last row of the current page of results within the sequence of all available rows.",
 	"cdx-table-pagination-status-message-indeterminate-short": "Message indicating the current page of results being displayed in a CdxTable component when the total number of results is not known, suitable for small screens.\n\nParameters:\n* $1 - Number representing the position of the first row of the current page of results within the sequence of all available rows.\n* $2 - Number representing the position of the last row of the current page of results within the sequence of all available rows.",
 	"cdx-table-pagination-status-message-indeterminate-final": "Message indicating that the user has reached the last page of an otherwise indeterminate number of results within a CdxTable component.\n\nParameters:\n* $1 - Current number of visible rows",

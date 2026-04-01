@@ -810,11 +810,11 @@ abstract class SearchEngine {
 				continue;
 			}
 			// Several models can have the same handler, so avoid processing it repeatedly
-			if ( $seenHandlers->contains( $handler ) ) {
+			if ( $seenHandlers->offsetExists( $handler ) ) {
 				// We already did this one
 				continue;
 			}
-			$seenHandlers->attach( $handler );
+			$seenHandlers->offsetSet( $handler );
 			$handlerFields = $handler->getFieldsForSearchIndex( $this );
 			foreach ( $handlerFields as $fieldName => $fieldData ) {
 				if ( empty( $fields[$fieldName] ) ) {

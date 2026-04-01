@@ -230,7 +230,6 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 
 		$ref = new ReflectionObject( $dumpScript );
 		$processedProperty = $ref->getProperty( 'processed' );
-		$processedProperty->setAccessible( true );
 		$processedProperty->setValue( $dumpScript, $preProcessed );
 
 		$output = fopen( "php://memory", "w+b" );
@@ -291,10 +290,8 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 
 		$ref = new ReflectionObject( $categoryChangesAsRdf );
 		$startTSProp = $ref->getProperty( 'startTS' );
-		$startTSProp->setAccessible( true );
 		$startTSProp->setValue( $categoryChangesAsRdf, $start->getTimestamp() );
 		$endTSProp = $ref->getProperty( 'endTS' );
-		$endTSProp->setAccessible( true );
 		$endTSProp->setValue( $categoryChangesAsRdf, $end->getTimestamp() );
 
 		$categoryChangesAsRdf->initialize();

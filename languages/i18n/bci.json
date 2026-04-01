@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Kjeanclaude",
-			"Mahuton"
+			"Mahuton",
+			"TMg"
 		]
 	},
 	"sunday": "Monnin",
@@ -1440,7 +1441,7 @@
 	"namespace": "Dounman moun bé akpassoua",
 	"invert": "Katchi liké nga a fali",
 	"namespace_association": "Aniaan sou douman akpassoua",
-	"blanknamespace": "Tchinndji",
+	"blanknamespace": "(Tchinndji)",
 	"contributions": "Oukalè",
 	"contributions-title": "Wiki interneti conti lé fouè nga i oukalè $1 conti sou",
 	"mycontris": "Oukalè",

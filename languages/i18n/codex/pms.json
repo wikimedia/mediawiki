@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dragonòt",
+			"Borichèt"
+		]
+	},
+	"cdx-chip-input-chip-added": "Giontà 'l geton $1.",
+	"cdx-chip-input-chip-removed": "Gavà 'l geton $1.",
+	"cdx-input-chip-aria-description": "Sgnaché A cap për modifiché o Dëscancelé për gavé.",
+	"cdx-dialog-close-button-label": "Saré",
+	"cdx-label-optional-flag": "(opsional)",
+	"cdx-message-dismiss-button-label": "Saré",
+	"cdx-search-input-search-button-label": "Sërché",
+	"cdx-table-select-all-label": "Selession-a tute le righe",
+	"cdx-table-select-row-label": "Selessioné la riga $1 ëd $2",
+	"cdx-table-sort-caption": "$1 (j'intestassion dle colòne con dij boton a son ordinàbij).",
+	"cdx-typeahead-search-search-results-label": "Arzultà dl'arserca",
+	"cdx-table-pager-button-first-page": "Prima pàgina",
+	"cdx-table-pager-button-last-page": "Ùltima pàgina",
+	"cdx-table-pager-button-next-page": "Pàgina anans",
+	"cdx-table-pager-button-prev-page": "Pàgina andré",
+	"cdx-table-pager-items-per-page-default": "Arzultà për pàgina",
+	"cdx-table-pagination-status-message-determinate-long": "Visualisassion dj'arzultà $1–$2 ëd $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 ëd $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Visualisassion dj'arzultà $1–$2 ëd vàire",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 ëd vàire",
+	"cdx-table-pagination-status-message-indeterminate-final": "Visualisassion {{PLURAL:$1|dl'ùltim arzultà|dj'ùltim $1 arzultà}}",
+	"cdx-table-pagination-status-message-pending": "Carié j'arzultà..."
+}

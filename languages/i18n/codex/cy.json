@@ -22,5 +22,8 @@
 	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 rhes|$1 rhes|$1 res|$1 rhes}}",
 	"cdx-table-pager-items-per-page-default": "Canlyniadau fesul tudalen",
 	"cdx-table-pagination-status-message-determinate-long": "Yn dangos canlyniadau $1–$2 o $3",
-	"cdx-table-pagination-status-message-determinate-short": "$1–$2 o $3"
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 o $3",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 o nifer",
+	"cdx-table-pagination-status-message-indeterminate-final": "Yn dangos y {{PLURAL:$1|$1 canlyniad|$1 ganlyniad|$1 chanlyniad|$1 canlyniad}} diwethaf",
+	"cdx-table-pagination-status-message-pending": "Wrthi'n llwytho canlyniadau..."
 }

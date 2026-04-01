@@ -13,7 +13,6 @@ class SqliteInstallerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testCheckDataDir() {
 		$method = new ReflectionMethod( SqliteInstaller::class, 'checkDataDir' );
-		$method->setAccessible( true );
 
 		# Test 1: Should return fatal Status if $dir exist and it un-writable
 		if ( ( isset( $_SERVER['USER'] ) && $_SERVER['USER'] !== 'root' ) && !wfIsWindows() ) {
@@ -43,7 +42,6 @@ class SqliteInstallerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testCreateDataDir() {
 		$method = new ReflectionMethod( SqliteInstaller::class, 'createDataDir' );
-		$method->setAccessible( true );
 
 		# Test 1: Should return fatal Status if $dir not exist and it parent un-writable
 		if ( ( isset( $_SERVER['USER'] ) && $_SERVER['USER'] !== 'root' ) && !wfIsWindows() ) {

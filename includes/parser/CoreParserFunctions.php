@@ -376,9 +376,9 @@ class CoreParserFunctions {
 			$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?([Ee][-+]?\d+)?';
 			if (
 				!is_numeric( $number ) &&
-				$number !== (string)NAN &&
-				$number !== (string)INF &&
-				$number !== (string)-INF
+				$number !== 'NAN' &&
+				$number !== 'INF' &&
+				$number !== '-INF'
 			) {
 				$parser->addTrackingCategory( 'nonnumeric-formatnum' );
 				// Don't split on NAN/INF in the legacy case since they are
@@ -1130,7 +1130,9 @@ class CoreParserFunctions {
 	public static function anchorencode( $parser, $text ) {
 		$text = $parser->killMarkers( $text );
 		$section = substr( $parser->guessSectionNameFromWikiText( $text ), 1 );
-		return Sanitizer::safeEncodeAttribute( $section );
+		$encodedSection = Sanitizer::safeEncodeAttribute( $section );
+		// decode underscores to avoid breaking templates (T407131)
+		return str_replace( '&#95;', '_', $encodedSection );
 	}
 
 	public static function special( $parser, $text ) {

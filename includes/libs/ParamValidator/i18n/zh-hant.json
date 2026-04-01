@@ -3,10 +3,11 @@
 		"authors": [
 			"Kly",
 			"Winston Sung",
-			"捍粵者"
+			"捍粵者",
+			"SunAfterRain"
 		]
 	},
-	"paramvalidator-badbool": "用於布林值參數「$1」的值「$2」無效。傳遞$3為 true，傳遞$5為 false。",
+	"paramvalidator-badbool": "用於布林值參數「$1」的值「$2」無效。傳遞$3表示真，或傳遞$5表示否。",
 	"paramvalidator-badbool-type": "布林參數「$1」的值「$2」無效。實際取到的值為「$3」。",
 	"paramvalidator-badexpiry": "用於逾期參數「$1」的值「$2」無效。",
 	"paramvalidator-badexpiry-duration": "給予參數 <var>$1</var> 的值「$2」超過上限「$3」。",

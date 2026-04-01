@@ -7,6 +7,7 @@ use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\FileBackend\FSFileBackend;
+use Wikimedia\TestingAccessWrapper;
 
 class FileTest extends MediaWikiMediaTestCase {
 
@@ -185,7 +186,6 @@ class FileTest extends MediaWikiMediaTestCase {
 
 		$reflection = new ReflectionClass( $fileMock );
 		$reflection_property = $reflection->getProperty( 'handler' );
-		$reflection_property->setAccessible( true );
 		$reflection_property->setValue( $fileMock, $handlerMock );
 
 		if ( $data['tmpBucketedThumbCache'] !== null ) {
@@ -193,7 +193,6 @@ class FileTest extends MediaWikiMediaTestCase {
 				$tmpBucketed = str_replace( '/tmp', $tempDir, $tmpBucketed );
 			}
 			$reflection_property = $reflection->getProperty( 'tmpBucketedThumbCache' );
-			$reflection_property->setAccessible( true );
 			$reflection_property->setValue( $fileMock, $data['tmpBucketedThumbCache'] );
 		}
 
@@ -283,7 +282,6 @@ class FileTest extends MediaWikiMediaTestCase {
 			->willReturn( $handlerMock );
 
 		$reflectionMethod = new ReflectionMethod( File::class, 'generateBucketsIfNeeded' );
-		$reflectionMethod->setAccessible( true );
 
 		$fileMock->method( 'getWidth' )
 			->willReturn( $data['width'] );
@@ -493,5 +491,183 @@ class FileTest extends MediaWikiMediaTestCase {
 		$this->assertNull( $file->getHandlerState( 'test' ) );
 		$file->setHandlerState( 'test', $obj );
 		$this->assertSame( $obj, $file->getHandlerState( 'test' ) );
+	}
+
+	public static function provideThumbNameSteps() {
+		// See also client-side logic test for mw.util.adjustThumbWidthForSteps in util.test.js
+
+		// File format that is web-safe
+		$jpeg = [
+			'filename' => 'test.jpg',
+			'type' => 'image/jpeg',
+		];
+		// File format that is not web-safe (can't use original as thumb)
+		$tiff = [
+			'filename' => 'doc.tiff',
+			'type' => 'image/tiff',
+		];
+		// File format that is vector scalable
+		$svg = [
+			'filename' => 'logo.svg',
+			'type' => 'image/svg+xml',
+		];
+
+		$disabled = [
+			'enabled' => false,
+			'originalWidth' => 500,
+			'thumbWidth' => 52,
+			'expected' => 52
+		];
+		yield 'unchanged when disabled jpeg' => $jpeg + $disabled;
+		yield 'unchanged when disabled tiff' => $tiff + $disabled;
+		yield 'unchanged when disabled svg' => $svg + $disabled;
+
+		$roundUp = [
+			'enabled' => true,
+			'originalWidth' => 500,
+			'thumbWidth' => 52,
+			'expected' => 100
+		];
+		yield 'round up jpeg' => $jpeg + $roundUp;
+		yield 'round up tiff' => $tiff + $roundUp;
+		yield 'round up svg' => $svg + $roundUp;
+
+		// Check against scaling up bitmaps beyond original
+
+		yield 'thumb under first step and original for jpeg serves original' => $jpeg + [
+			'enabled' => true,
+			'originalWidth' => 90,
+			'thumbWidth' => 52,
+			'expected' => 90 // test.jpg
+		];
+		yield 'thumb under first step and original for tiff transforms original' => $tiff + [
+			'enabled' => true,
+			'originalWidth' => 90,
+			'thumbWidth' => 52,
+			'expected' => 90 // 90px-doc.tiff.png FIXME: non-standard thumbnail T418745
+		];
+		yield 'thumb under first step and original for svg scales up' => $svg + [
+			'enabled' => true,
+			'originalWidth' => 90,
+			'thumbWidth' => 52,
+			'expected' => 100 // 100px-logo.svg.png
+		];
+		yield 'thumb between penultimate step and original for jpeg serves original' => $jpeg + [
+			'enabled' => true,
+			'originalWidth' => 180,
+			'thumbWidth' => 130,
+			'expected' => 180 // test.jpg
+		];
+		yield 'thumb between penultimate step and original for tiff transforms original' => $tiff + [
+			'enabled' => true,
+			'originalWidth' => 180,
+			'thumbWidth' => 130,
+			'expected' => 180 // 180px-doc.tiff.png FIXME: non-standard thumbnail T418745
+		];
+		yield 'thumb between penultimate step and original for svg scales up' => $svg + [
+			'enabled' => true,
+			'originalWidth' => 180,
+			'thumbWidth' => 130,
+			'expected' => 200 // 200px-logo.svg.png
+		];
+
+		$beyondSteps = [
+			'enabled' => true,
+			'originalWidth' => 2345,
+			'thumbWidth' => 1252,
+			'expected' => 1252
+		];
+		// 1252px-test.jpg FIXME: T418745
+		yield 'thumb beyond last step for jpeg creates non-standard' => $jpeg + $beyondSteps;
+		// 1252px-doc.tiff.png FIXME: T418745
+		yield 'thumb beyond last step for tiff creates non-standard' => $tiff + $beyondSteps;
+		// 1252px-logo.svg.png FIXME: T418745
+		yield 'thumb beyond last step for svg creates non-standard' => $svg + $beyondSteps;
+	}
+
+	private function assertThumbNameEquals(
+		string $filename,
+		string $type,
+		int $originalWidth,
+		array $params,
+		int $expected,
+		bool $nativeSvg = false
+	) {
+		$file = $this->dataFile( $filename, $type );
+		$fileObj = TestingAccessWrapper::newFromObject( $file );
+		$fileObj->sizeAndMetadata = [
+			'width' => $originalWidth,
+			'height' => $originalWidth,
+			'metadata' => []
+		];
+
+		$file->getHandler()->normaliseParams( $file, $params );
+		$thumbName = $file->thumbName( $params );
+		$thumbUrl = $file->getThumbUrl( $thumbName );
+		$thumbPath = $file->getThumbPath( $thumbName );
+		$thumb = $file->getHandler()->getTransform( $file, $thumbPath, $thumbUrl, $params );
+		$actual = array_last( explode( '/', $thumb->getUrl() ) );
+
+		if ( ( $expected >= $originalWidth && $type === 'image/jpeg' ) || $nativeSvg ) {
+			$this->assertEquals( $filename, $actual );
+		} else {
+			$expectedThumb = $expected . 'px-' . $filename;
+			if ( $type === 'image/svg+xml' || $type === 'image/tiff' ) {
+				$expectedThumb .= '.png';
+			}
+			$this->assertEquals( $expectedThumb, $actual );
+		}
+	}
+
+	/**
+	 * @covers \File::thumbName
+	 * @covers \File::generateThumbName
+	 * @covers \ImageHandler::getSteppedThumbWidth
+	 * @dataProvider provideThumbNameSteps
+	 */
+	public function testThumbNameSteps(
+		string $filename,
+		string $type,
+		bool $enabled,
+		int $originalWidth,
+		int $thumbWidth,
+		int $expected
+	) {
+		$this->overrideConfigValues( [
+			MainConfigNames::ThumbnailSteps => [ 100, 200, 1000 ],
+			MainConfigNames::ThumbnailStepsRatio => $enabled ? 1.0 : 0.0,
+			MainConfigNames::SVGNativeRendering => false,
+			MainConfigNames::TiffThumbnailType => [ 'png', 'image/png' ],
+		] );
+
+		$params = [
+			'width' => $thumbWidth,
+			'height' => $thumbWidth,
+			'physicalWidth' => $thumbWidth,
+			'physicalHeight' => $thumbWidth
+		];
+		$this->assertThumbNameEquals( $filename, $type, $originalWidth, $params, $expected );
+		if ( $type === 'image/svg+xml' ) {
+			$this->overrideConfigValue( MainConfigNames::SVGNativeRendering, true );
+			$this->assertThumbNameEquals( $filename, $type, $originalWidth, $params, $expected, true );
+		}
+	}
+
+	/**
+	 * @covers \File::thumbName
+	 * @covers \File::generateThumbName
+	 */
+	public function testThumbNameStepsRatio() {
+		$this->overrideConfigValues( [
+			MainConfigNames::ThumbnailSteps => [ 10, 100, 200 ],
+			// Enable for 50%
+			MainConfigNames::ThumbnailStepsRatio => 0.5,
+		] );
+
+		$params = [ 'width' => 90, 'height' => 90, 'physicalWidth' => 90, 'physicalHeight' => 90 ];
+		$this->assertThumbNameEquals( 'test1.jpg', 'image/jpeg', 500, $params, 100 );
+
+		$params = [ 'width' => 90, 'height' => 90, 'physicalWidth' => 90, 'physicalHeight' => 90 ];
+		$this->assertThumbNameEquals( 'test2.jpg', 'image/jpeg', 500, $params, 90 );
 	}
 }

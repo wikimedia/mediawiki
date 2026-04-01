@@ -3,7 +3,6 @@
 namespace Wikimedia\Message;
 
 use InvalidArgumentException;
-use MediaWiki\Json\JsonDeserializer;
 use Stringable;
 
 /**
@@ -18,6 +17,7 @@ use Stringable;
  * @newable
  */
 class ScalarParam extends MessageParam {
+
 	/**
 	 * Construct a text parameter
 	 *
@@ -72,7 +72,7 @@ class ScalarParam extends MessageParam {
 		return "<{$this->type}>" . $contents . "</{$this->type}>";
 	}
 
-	protected function toJsonArray(): array {
+	public function toJsonArray(): array {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		return [
@@ -80,7 +80,15 @@ class ScalarParam extends MessageParam {
 		];
 	}
 
-	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ) {
+	/** @inheritDoc */
+	public static function jsonClassHintFor( string $keyName ) {
+		// If this is not a scalar value (string|int|float) then it's
+		// probably a MessageValue, and we can hint it as such to
+		// reduce serialization overhead.
+		return MessageValue::hint();
+	}
+
+	public static function newFromJsonArray( array $json ): ScalarParam {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		if ( count( $json ) !== 1 ) {

@@ -88,7 +88,7 @@
 	"emailauthenticated": "Soa adrëssa ëd pòsta eletrònica a l'é stàita confirmà ël $2 a $3.",
 	"allowemail": "Lassa che j'àutri utent am mando ëd mëssagi ëd pòsta eletrònica",
 	"email-allow-new-users-label": "Përmëtte ij mëssagi da j'utent neuv",
-	"prefs-help-email-allow-new-users": "Abilitand costa opsione, j'utent ch'a son nen [[{{MediaWiki:grouppage-autoconfirmed}}|autoconfermà]] a podran spedite dj'email.",
+	"prefs-help-email-allow-new-users": "Abilitand costa opsion, j'utent ch'a son nen [[{{MediaWiki:grouppage-autoconfirmed}}|autoconfermà]] a podran ëspedije dij mëssagi an pòsta eletrònica.",
 	"tog-ccmeonemails": "Mandeme na còpia dij mëssagi ëd pòsta eletrònica che i-j mando a j'àotri utent",
 	"email-mutelist-label": "Proibì a costi utent ëd mandeme 'd mëssagi:",
 	"tog-enotifwatchlistpages": "Mandeme un mëssagi an pòsta eletrònica quand a-i son dle modìfiche a le pàgine ch'im ten-o sot-euj",

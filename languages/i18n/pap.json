@@ -10,7 +10,9 @@
 			"ObaTango",
 			"Sdm1985",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Letra.berdi",
+			"Sanderpel713"
 		]
 	},
 	"sunday": "djadumingu",
@@ -202,7 +204,7 @@
 	"editold": "editá",
 	"viewsourceold": "wak kódigo fuente",
 	"editlink": "editá",
-	"viewsourcelink": "wak kódigo fuente",
+	"viewsourcelink": "Mira fuente",
 	"editsectionhint": "Editá servisio: $1",
 	"toc": "Kontenido",
 	"showtoc": "mustra",
@@ -275,6 +277,7 @@
 	"badtitle": "Título inválido",
 	"badtitletext": "E título di e página ku bo a pidi tabata inválido, bashí, òf un link pa un inter-idioma òf inter-wiki inkorekto.",
 	"viewsource": "Wak fuente",
+	"skin-action-viewsource": "Mira fuente",
 	"viewsource-title": "Mira fuente pa $1",
 	"viewsourcetext": "Bo por mira i kopia fuente di e página akí.",
 	"yourname": "Nòmber di uzadó",
@@ -662,7 +665,7 @@
 	"pageinfo-toolboxlink": "Informashon di e página",
 	"patrol-log-page": "Registro di revishon",
 	"previousdiff": "← Mas grandi editá",
-	"nextdiff": "Mas recent edison →",
+	"nextdiff": "Idison más rasenti →",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|página}}",
 	"file-info-size": "$1 × $2 pixel, tamaño di fail: $3, MIME type: $4",
 	"file-nohires": "No tin resolushon mas mihó.",

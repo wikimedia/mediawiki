@@ -284,7 +284,7 @@
 	"currentrevisionlink": "最后版本",
 	"cur": "如嶄",
 	"last": "之前",
-	"histlegend": "差异选择：选中要对比亇版本亇单选按钮，按Enter键或下方亇按钮。<br />说明：<strong>（{{int:cur}}）</strong>=侸最后版本之间亇差异，<strong>（{{int:last}}）</strong>=侸上一版本之间亇差异，<strong>{{int:minoreditletter}}</strong>=細编辑。",
+	"histlegend": "差异选择：选中要对比亇版本亇单选按钮，按Enter键或下方亇按钮。<br />\n说明：<strong>（{{int:cur}}）</strong>=侸最后版本之间亇差异，<strong>（{{int:last}}）</strong>=侸上一版本之间亇差异，<strong>{{int:minoreditletter}}</strong>=細编辑。",
 	"history-fieldset-title": "筛选修订版本",
 	"histfirst": "最旧",
 	"histlast": "最新",

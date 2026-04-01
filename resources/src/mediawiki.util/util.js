@@ -540,18 +540,19 @@ const util = {
 	 * Add content to the subtitle of the skin.
 	 *
 	 * @param {HTMLElement|string} nodeOrHTMLString
+	 * @return {boolean} Whether the subtitle was updated
 	 */
 	addSubtitle: function ( nodeOrHTMLString ) {
 		const subtitle = document.getElementById( 'mw-content-subtitle' );
-		if ( subtitle ) {
-			if ( typeof nodeOrHTMLString === 'string' ) {
-				subtitle.innerHTML += nodeOrHTMLString;
-			} else {
-				subtitle.appendChild( nodeOrHTMLString );
-			}
-		} else {
-			throw new Error( 'This skin does not support additions to the subtitle.' );
+		if ( !subtitle ) {
+			return false;
 		}
+		if ( typeof nodeOrHTMLString === 'string' ) {
+			subtitle.innerHTML += nodeOrHTMLString;
+		} else {
+			subtitle.appendChild( nodeOrHTMLString );
+		}
+		return true;
 	},
 
 	/**
@@ -1064,6 +1065,45 @@ const util = {
 			};
 		}
 		return null;
+	},
+
+	/**
+	 * Adjust the thumbnail size to fit the width steps defined in config via
+	 * config.ThumbnailSteps, according to whether config.ThumbnailStepsRatio
+	 * is set.
+	 *
+	 * This logic is duplicated server-side in File::adjustThumbWidthForSteps.
+	 *
+	 * @param {number} thumbWidth target width in pixels
+	 * @param {number} originalWidth original file width
+	 */
+	adjustThumbWidthForSteps(
+		thumbWidth,
+		originalWidth
+	) {
+		const steps = config.ThumbnailSteps;
+		const ratio = config.ThumbnailStepsRatio;
+		if ( !steps || !ratio ) {
+			return thumbWidth;
+		}
+
+		// Note: non-integral thumbnailStepsRatio values are treated
+		// as equivalent to 1 here. This is a transitional setting
+		// for content generation and should be ok to ignore client-side.
+
+		for ( const widthStep of steps ) {
+			if ( widthStep > originalWidth ) {
+				// Round up to original width if there is no step between
+				// desired thumb width & original file width
+				return originalWidth;
+			}
+			if ( widthStep >= thumbWidth ) {
+				return widthStep;
+			}
+		}
+
+		// If no step matched, default to target thumb width
+		return thumbWidth;
 	},
 
 	/**

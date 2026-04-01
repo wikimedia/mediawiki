@@ -257,6 +257,7 @@ class LogEventsList extends ContextSource {
 			'class' => HTMLSelectField::class,
 			'name' => 'type',
 			'options' => array_flip( $typesByName ),
+			'default' => '',
 		];
 	}
 

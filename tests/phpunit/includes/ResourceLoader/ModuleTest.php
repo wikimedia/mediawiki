@@ -276,9 +276,7 @@ class ModuleTest extends ResourceLoaderTestCase {
 
 	public function testPlaceholderize() {
 		$getRelativePaths = new ReflectionMethod( Module::class, 'getRelativePaths' );
-		$getRelativePaths->setAccessible( true );
 		$expandRelativePaths = new ReflectionMethod( Module::class, 'expandRelativePaths' );
-		$expandRelativePaths->setAccessible( true );
 
 		$this->setMwGlobals( [
 			'IP' => '/srv/example/mediawiki/core',

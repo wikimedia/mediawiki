@@ -207,12 +207,10 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		$req = $reflection->newInstanceWithoutConstructor();
 
 		$prop = $reflection->getProperty( 'data' );
-		$prop->setAccessible( true );
 		$prop->setValue( $req, $data );
 
 		if ( isset( $config['requestTime'] ) ) {
 			$prop = $reflection->getProperty( 'requestTime' );
-			$prop->setAccessible( true );
 			$prop->setValue( $req, $config['requestTime'] );
 		}
 

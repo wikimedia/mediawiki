@@ -60,7 +60,8 @@
 			"Michael2101",
 			"Valentin JJ.",
 			"Dimitrie569",
-			"SZ475"
+			"SZ475",
+			"TMg"
 		]
 	},
 	"sunday": "duminică",
@@ -2462,7 +2463,7 @@
 	"tooltip-whatlinkshere-invert": "Bifați această casetă pentru a ascunde legăturile din paginile aparținând spațiilor de nume selectate.",
 	"namespace_association": "Spații de nume asociate",
 	"tooltip-namespace_association": "Bifați această căsuță pentru a include și spațiul de nume destinat discuțiilor care este asociat cu spațiul de nume deja selectat",
-	"blanknamespace": "Articole",
+	"blanknamespace": "(Articole)",
 	"contributions": "Contribuțiile utilizatorului",
 	"tool-link-contributions": "Contribuțiile {{GENDER:$1|utilizatorului|utilizatoarei}}",
 	"contributions-title": "Contribuțiile utilizatorului $1",
@@ -3246,11 +3247,13 @@
 	"watchlisttools-edit": "Vezi și modifică lista paginilor urmărite",
 	"watchlisttools-raw": "Modifică lista brută a paginilor urmărite",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discuție]])",
+	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|discuție]])",
 	"timezone-local": "Local",
 	"duplicate-defaultsort": "'''Atenție:''' Cheia de sortare implicită („$2”) o înlocuiește pe precedenta („$1”).",
 	"duplicate-displaytitle": "<strong>Atenție:</strong> Titlul afișat „$2” înlocuiește titlul afișat anterior, „$1”.",
 	"restricted-displaytitle": "<strong>Atenție:</strong> Titlul de afișat \"$1\" a fost ignorat deoarece nu este echivalent cu titlul real al paginii.",
 	"invalid-indicator-name": "<strong>Eroare:</strong> Parametrul <code>nume</code> al indicatorilor de stare a paginii nu trebuie să fie gol.",
+	"invalid-langconvert-attrs": "<strong>Eroare:</strong> Atributele <code>from</code> și <code>to</code> ale etichetelor Langconvert nu trebuie să fie goale și trebuie să conțină coduri BCP 47 pentru variantele convertibile ale aceleiași limbi.",
 	"version": "Versiune",
 	"version-extensions": "Extensii instalate",
 	"version-skins": "Aspecte instalate",

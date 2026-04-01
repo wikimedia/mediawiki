@@ -74,9 +74,14 @@ class SpecialDeletedContributionsTest extends SpecialPageTestBase {
 			true
 		);
 		$specialPageDocument = DOMUtils::parseHTML( $html );
-		$contentHtml = DOMCompat::querySelector( $specialPageDocument, '.mw-content-container' )->nodeValue;
-		$this->assertStringNotContainsString( 'mw-pager-body', $contentHtml );
-		$this->assertStringContainsString( "($expectedPageTitleMessageKey: 127.0.0.1", $contentHtml );
+		$contentHtml = DOMCompat::getInnerHTML(
+			DOMCompat::querySelector( $specialPageDocument, '#content' )
+		);
+		$pagerContents = trim( DOMCompat::querySelector(
+			 $specialPageDocument, '#content .mw-pager-body'
+		)->textContent );
+		$this->assertEquals( '(nocontribs)', $pagerContents );
+		$this->assertStringContainsString( "($expectedPageTitleMessageKey: <bdi>127.0.0.1</bdi>", $contentHtml );
 	}
 
 	public static function provideExecuteNoResultsForIPTarget() {

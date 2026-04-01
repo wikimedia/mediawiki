@@ -2,10 +2,10 @@
 
 namespace Wikimedia\Message;
 
-use MediaWiki\Json\JsonDeserializable;
-use MediaWiki\Json\JsonDeserializableTrait;
-use MediaWiki\Json\JsonDeserializer;
 use Stringable;
+use Wikimedia\JsonCodec\Hint;
+use Wikimedia\JsonCodec\JsonCodecable;
+use Wikimedia\JsonCodec\JsonCodecableTrait;
 
 /**
  * Value object representing a message for i18n.
@@ -18,8 +18,8 @@ use Stringable;
  *
  * @newable
  */
-class MessageValue implements JsonDeserializable, MessageSpecifier {
-	use JsonDeserializableTrait;
+class MessageValue implements MessageSpecifier, JsonCodecable {
+	use JsonCodecableTrait;
 
 	/** @var string */
 	private $key;
@@ -367,7 +367,7 @@ class MessageValue implements JsonDeserializable, MessageSpecifier {
 			$contents . '</message>';
 	}
 
-	protected function toJsonArray(): array {
+	public function toJsonArray(): array {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		return [
@@ -376,9 +376,36 @@ class MessageValue implements JsonDeserializable, MessageSpecifier {
 		];
 	}
 
-	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ) {
+	/** @inheritDoc */
+	public static function jsonClassHintFor( string $keyName ) {
+		// Reduce serialization overhead by eliminating the type information
+		// when 'params' consists of MessageParam instances
+		if ( $keyName === 'params' ) {
+			return Hint::build(
+				MessageParam::class, Hint::INHERITED,
+				Hint::LIST, Hint::USE_SQUARE,
+				Hint::ONLY_FOR_DECODE
+			);
+		}
+		return null;
+	}
+
+	public static function newFromJsonArray( array $json ): MessageValue {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
+		// Support use of [MessageValue::class, Hint::INHERITED] for
+		// DataMessageValue as well:
+		if ( isset( $json['code'] ) ) {
+			return DataMessageValue::newFromJsonArray( $json );
+		}
 		return new self( $json['key'], $json['params'] );
+	}
+
+	/**
+	 * If you are serializing a MessageValue (or a DataMessageValue), use
+	 * this JsonCodec hint to suppress unnecessary type information.
+	 */
+	public static function hint(): Hint {
+		return Hint::build( self::class, Hint::INHERITED, Hint::ONLY_FOR_DECODE );
 	}
 }

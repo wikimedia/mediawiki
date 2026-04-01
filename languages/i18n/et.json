@@ -37,7 +37,8 @@
 			"Silvar",
 			"Võrok",
 			"WikedKentaur",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"Rivoz"
 		]
 	},
 	"sunday": "pühapäev",
@@ -333,7 +334,7 @@
 	"viewsource-title": "Lehekülje $1 lähteteksti vaatamine",
 	"actionthrottled": "Toiming nurjus",
 	"actionthrottledtext": "Väärtarvituse vastase meetmena pole sul lubatud lühikese aja jooksul seda toimingut liiga palju kordi sooritada. Oled piirangu ületanud. Palun proovi mõne aja pärast uuesti.",
-	"protectedpagetext": "See lehekülg on lukustatud, et ei tehtaks muudatusi ega sooritataks muid toiminguid.",
+	"protectedpagetext": "See lehekülg on kaitstud, et ei tehtaks muudatusi ega sooritataks muid toiminguid.",
 	"viewsourcetext": "Saad vaadata ja kopeerida selle lehekülje lähteteksti.",
 	"viewyourtext": "Saad vaadata ja kopeerida sellel leheküljel tehtud <strong>enda muudatuste</strong> lähteteksti.",
 	"protectedinterface": "Sellel leheküljel on selle viki tarkvara kasutajaliidese tekst. Väärtarvituse vältimiseks on lehekülg kaitstud.\nEt lisada ja muuta tõlkeid kõigi vikide jaoks, kasuta palun MediaWiki lokaliseerimisprojekti [https://translatewiki.net/ translatewiki.net].",

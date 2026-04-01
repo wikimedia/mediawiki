@@ -1,0 +1,38 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bennylin"
+		]
+	},
+	"preferences": "ꦥꦶꦭꦭꦤ꧀",
+	"saveprefs": "ꦱꦶꦩ꧀ꦥꦼꦤ꧀",
+	"yourpassword": "ꦠꦼꦩ꧀ꦧꦸꦁ​ꦱꦤ꧀ꦢꦶ:",
+	"prefs-resetpass": "ꦒꦤ꧀ꦠꦶꦠꦼꦩ꧀ꦧꦸꦁ​ꦱꦤ꧀ꦢꦶ",
+	"yourlanguage": "ꦧꦱ:",
+	"prefs-signature-error-details": "ꦱꦶꦤꦲꦸ​ꦭꦸꦮꦶꦃ​ꦲꦏꦺꦃ",
+	"youremail": "ꦭꦪꦁ​ꦌꦭ꧀:",
+	"prefs-user-pages": "ꦏꦕ​ꦤꦫꦒꦸꦤ",
+	"prefs-rendering": "ꦥꦿꦲꦺꦤ꧀",
+	"prefs-skin": "ꦏꦸꦭꦶꦠ꧀",
+	"skin-preview": "ꦥꦿꦠꦸꦢꦸꦃ",
+	"timezoneregion-africa": "ꦄꦥꦿꦶꦏꦃ",
+	"timezoneregion-america": "ꦄꦩꦺꦫꦶꦏꦃ",
+	"timezoneregion-antarctica": "ꦄꦤ꧀ꦠꦂꦠꦶꦏꦃ",
+	"timezoneregion-arctic": "ꦄꦂꦏ꧀ꦠꦶꦏ꧀",
+	"timezoneregion-asia": "ꦄꦱꦶꦪꦃ",
+	"timezoneregion-atlantic": "ꦱꦩꦸꦢꦿ​ꦄꦠ꧀ꦭꦤ꧀ꦠꦶꦏ꧀",
+	"timezoneregion-australia": "ꦄꦈꦱ꧀ꦠꦿꦭꦶꦪꦃ",
+	"timezoneregion-europe": "ꦌꦫꦺꦴꦥꦃ",
+	"timezoneregion-indian": "ꦱꦩꦸꦢꦿ​ꦲꦶꦤ꧀ꦢꦶꦪꦃ",
+	"timezoneregion-pacific": "ꦱꦩꦸꦢꦿ​ꦥꦱꦶꦥ꦳ꦶꦏ꧀",
+	"prefs-files": "ꦧꦼꦂꦏꦱ꧀",
+	"prefs-diffs": "ꦧꦺꦢ",
+	"underline-never": "ꦲꦺꦴꦫ​ꦠꦲꦸ",
+	"underline-always": "ꦩꦼꦱ꧀ꦠꦶ",
+	"prefs-editing": "ꦩ꧀ꦧꦼꦱꦸꦠ꧀",
+	"prefs-preview": "ꦥꦿꦠꦸꦢꦸꦃ",
+	"prefs-watchlist": "ꦥꦮꦮꦁꦔꦤ꧀",
+	"prefs-editwatchlist": "ꦧꦼꦱꦸꦠ꧀ꦥꦮꦮꦁꦔꦤ꧀",
+	"prefs-searchoptions": "ꦒꦺꦴꦭꦺꦏ꧀",
+	"prefs-searchmisc": "ꦲꦸꦩꦸꦩ꧀"
+}

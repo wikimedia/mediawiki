@@ -262,7 +262,6 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		// Install it in the ParsoidParser object
 		$reflector = new ReflectionClass( ParsoidParser::class );
 		$prop = $reflector->getProperty( 'parsoid' );
-		$prop->setAccessible( true );
 		$prop->setValue( $parsoidParser, $mockParsoid );
 		$this->assertEquals( $prop->getValue( $parsoidParser ), $mockParsoid );
 
@@ -277,7 +276,6 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$wtHandler = $services->getContentHandlerFactory()->getContentHandler( 'wikitext' );
 		$reflector = new ReflectionClass( 'WikitextContentHandler' );
 		$prop = $reflector->getProperty( 'parsoidParserFactory' );
-		$prop->setAccessible( true );
 		$prop->setValue( $wtHandler, $mockParsoidParserFactory );
 		$this->assertEquals( $prop->getValue( $wtHandler ), $mockParsoidParserFactory );
 

@@ -187,7 +187,7 @@ class PostgresInstaller extends DatabaseInstaller {
 					'host' => $this->getVar( 'wgDBserver' ),
 					'port' => $this->getVar( 'wgDBport' ),
 					'user' => $user,
-					'password' => $password,
+					'password' => $password ?? '',
 					'ssl' => $this->getVar( 'wgDBssl' ),
 					'dbname' => $db
 				];

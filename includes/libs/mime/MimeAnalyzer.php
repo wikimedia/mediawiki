@@ -612,8 +612,8 @@ class MimeAnalyzer implements LoggerAwareInterface {
 				// Next byte is datasize, then data (sizes larger than 1 byte are stupid muxers)
 				$data = substr( $head16k, $doctype + 3, 8 );
 				if ( str_starts_with( $data, "matroska" ) ) {
-					$this->logger->info( __METHOD__ . ": recognized file as video/x-matroska" );
-					return "video/x-matroska";
+					$this->logger->info( __METHOD__ . ": recognized file as video/matroska" );
+					return "video/matroska";
 				}
 
 				if ( str_starts_with( $data, "webm" ) ) {

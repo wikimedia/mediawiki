@@ -525,21 +525,28 @@ class BlockManager {
 	 * @return AbstractBlock[]
 	 */
 	private function getUniqueBlocks( array $blocks ) {
+		// Blocks without an ID are considered "system blocks" for the purpose of this function
 		$systemBlocks = [];
 		$databaseBlocks = [];
 
 		foreach ( $blocks as $block ) {
-			if ( $block instanceof SystemBlock ) {
-				$systemBlocks[] = $block;
-			} elseif ( $block->getType() === DatabaseBlock::TYPE_AUTO ) {
-				/** @var DatabaseBlock $block */
-				'@phan-var DatabaseBlock $block';
-				if ( !isset( $databaseBlocks[$block->getParentBlockId()] ) ) {
-					$databaseBlocks[$block->getParentBlockId()] = $block;
+			// Autoblocks are keyed by their parent block id, if it's specified.
+			// Otherwise, they are treated as any other block.
+			if ( $block->getType() === DatabaseBlock::TYPE_AUTO && $block instanceof DatabaseBlock ) {
+				$parentBlockId = $block->getParentBlockId();
+				if ( $parentBlockId !== null ) {
+					if ( !isset( $databaseBlocks[$parentBlockId] ) ) {
+						$databaseBlocks[$parentBlockId] = $block;
+					}
+					continue;
 				}
+			}
+
+			$blockId = $block->getId();
+			if ( $blockId !== null ) {
+				$databaseBlocks[$blockId] = $block;
 			} else {
-				// @phan-suppress-next-line PhanTypeMismatchDimAssignment getId is not null here
-				$databaseBlocks[$block->getId()] = $block;
+				$systemBlocks[] = $block;
 			}
 		}
 

@@ -219,7 +219,8 @@ class DBConnRefTest extends TestCase {
 		$lb = $this->getLoadBalancerMock();
 		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_REPLICA );
 		$this->expectException( DBReadOnlyRoleError::class );
-		$ref->$method( ...$args );
+		// T413675 - $ret is unused, but needed for PHP 8.5 and use of #[NoDiscard]
+		$ret = $ref->$method( ...$args );
 	}
 
 	public static function provideRoleExceptions() {

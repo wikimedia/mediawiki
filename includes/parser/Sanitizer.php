@@ -515,8 +515,10 @@ class Sanitizer {
 			# * Ensure attribute name will be accepted by the HTML
 			#   parser; see
 			#   https://github.com/whatwg/dom/issues/849#issuecomment-1007541209
+			# * Underscore and double-wide underscore (U+FF3F) is disallowed
+			#   here (but not in Parsoid): T407131
 			if ( (
-				!preg_match( '|^data-[^:= \t\r\n/>\0]*$|i', $attribute ) &&
+				!preg_match( '|^data-[^:= \t\r\n/>\0_＿]*$|i', $attribute ) &&
 				!array_key_exists( $attribute, $allowed )
 			) || self::isReservedDataAttribute( $attribute ) ) {
 				continue;
@@ -861,7 +863,8 @@ class Sanitizer {
 			'RFC'  => '&#82;FC',
 			'PMID' => '&#80;MID',
 			'|'    => '&#124;',
-			'__'   => '&#95;_',
+			'_'    => '&#95;',
+			'＿'    => '&#xFF3F;', // Japanese magic words
 		] );
 
 		# Stupid hack
@@ -1308,7 +1311,9 @@ class Sanitizer {
 		if ( isset( $matches[1] ) ) {
 			return self::decodeEntity( $matches[1] );
 		} elseif ( isset( $matches[2] ) ) {
-			return self::decodeChar( intval( $matches[2] ) );
+			// Value is user provided string and may exceed native int bounds.
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			return self::decodeChar( @intval( $matches[2] ) );
 		} elseif ( isset( $matches[3] ) ) {
 			$point = hexdec( $matches[3] );
 			// hexdec() might return a float if the string is too long

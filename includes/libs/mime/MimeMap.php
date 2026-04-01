@@ -152,7 +152,7 @@ class MimeMap {
 		'audio/basic' => [ 'au', 'snd' ],
 		'video/webm' => [ 'webm' ],
 		'audio/webm' => [ 'webm' ],
-		'audio/x-matroska' => [ 'mka', 'mkv' ],
+		'audio/matroska' => [ 'mka', 'mkv' ],
 		'audio/x-mpegurl' => [ 'm3u' ],
 		'audio/x-ogg' => [ 'oga', 'ogg', 'spx', 'opus' ],
 		'audio/x-pn-realaudio' => [ 'ram', 'rm' ],
@@ -205,7 +205,7 @@ class MimeMap {
 		'video/quicktime' => [ 'qt', 'mov' ],
 		'video/vnd.mpegurl' => [ 'mxu' ],
 		'video/x-flv' => [ 'flv' ],
-		'video/x-matroska' => [ 'mkv', 'mka' ],
+		'video/matroska' => [ 'mkv', 'mka' ],
 		'video/x-msvideo' => [ 'avi' ],
 		'video/x-ogg' => [ 'ogv', 'ogm', 'ogg' ],
 		'video/x-sgi-movie' => [ 'movie' ],
@@ -361,7 +361,7 @@ class MimeMap {
 			'audio/x-pn-realaudio',
 			'audio/x-realaudio',
 			'audio/webm',
-			'audio/x-matroska',
+			'audio/matroska',
 			'audio/x-flac',
 			'audio/flac',
 		],
@@ -453,7 +453,7 @@ class MimeMap {
 			'video/x-sgi-video',
 			'video/x-flv',
 			'video/webm',
-			'video/x-matroska',
+			'video/matroska',
 			'video/mp4',
 		],
 		MEDIATYPE_UNKNOWN => [
@@ -537,5 +537,7 @@ class MimeMap {
 		'text/x-csv' => 'text/csv',
 		'text/comma-separated-values' => 'text/csv',
 		'text/x-comma-separated-values' => 'text/csv',
+		'video/x-matroska' => 'video/matroska',
+		'audio/x-matroska' => 'audio/matroska',
 	];
 }

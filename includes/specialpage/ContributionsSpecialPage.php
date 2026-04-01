@@ -221,7 +221,10 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			return;
 		}
 		$out->addSubtitle( $this->contributionsSub( $userObj, $target ) );
-		$out->setPageTitleMsg( $this->msg( $this->getResultsPageTitleMessageKey( $userObj ), $target ) );
+		$out->setPageTitleMsg(
+			$this->msg( $this->getResultsPageTitleMessageKey( $userObj ) )
+				->rawParams( Html::element( 'bdi', [], $target ) )
+		);
 
 		# For IP ranges, we want the contributionsSub, but not the skin-dependent
 		# links under 'Tools', which may include irrelevant links like 'Logs'.
@@ -328,23 +331,19 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 				}
 				$work = new PoolCounterWorkViaCallback( 'Special' . $this->mName, $poolKey, [
 					'doWork' => function () use ( $pager, $out, $target ) {
-						if ( !$pager->getNumRows() ) {
-							$out->addWikiMsg( 'nocontribs', $target );
-						} else {
-							# Show a message about replica DB lag, if applicable
-							$lag = $pager->getDatabase()->getSessionLagStatus()['lag'];
-							if ( $lag > 0 ) {
-								$out->showLagWarning( $lag );
-							}
-
-							$output = $pager->getBody();
-							if ( !$this->including() ) {
-								$output = $pager->getNavigationBar() .
-									$output .
-									$pager->getNavigationBar();
-							}
-							$out->addHTML( $output );
+						# Show a message about replica DB lag, if applicable
+						$lag = $pager->getDatabase()->getSessionLagStatus()['lag'];
+						if ( $lag > 0 ) {
+							$out->showLagWarning( $lag );
 						}
+
+						$output = $pager->getBody();
+						if ( !$this->including() ) {
+							$output = $pager->getNavigationBar() .
+								$output .
+								$pager->getNavigationBar();
+						}
+						$out->addHTML( $output );
 					},
 					'error' => function () use ( $out ) {
 						$msg = $this->getUser()->isAnon()

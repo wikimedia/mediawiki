@@ -1089,8 +1089,13 @@ abstract class File implements MediaHandlerState {
 	 * Return the file name of a thumbnail with the specified parameters.
 	 * Use File::THUMB_FULL_NAME to always get a name like "<params>-<source>".
 	 * Otherwise, the format may be "<params>-<source>" or "<params>-thumbnail.<ext>".
-	 * @stable to override
 	 *
+	 * The parameters used here must be the same as those used by media handlers'
+	 * implementation of {@link MediaHandler::doTransform}. Otherwise, the decision
+	 * of whether thumbnailing is needed may be wrong, and the actual size of the
+	 * thumbnail generated may not match the name (T415598).
+	 *
+	 * @stable to override
 	 * @param array $params Handler-specific parameters
 	 * @param int $flags Bitfield that supports THUMB_* constants
 	 * @return string|null
@@ -1226,7 +1231,8 @@ abstract class File implements MediaHandlerState {
 
 			$thumbName = $this->thumbName( $normalisedParams );
 			$thumbUrl = $this->getThumbUrl( $thumbName );
-			$thumbPath = $this->getThumbPath( $thumbName ); // final thumb path
+			// final thumb path, if the media handler decides to use a thumbnail for the given params
+			$thumbPath = $this->getThumbPath( $thumbName );
 			if ( isset( $normalisedParams['isFilePageThumb'] ) && $normalisedParams['isFilePageThumb'] ) {
 				// Use a versioned URL on file description pages
 				$thumbUrl = $this->getFilePageThumbUrl( $thumbUrl );
@@ -1325,7 +1331,8 @@ abstract class File implements MediaHandlerState {
 
 		$thumbName = $this->thumbName( $normalisedParams );
 		$thumbUrl = $this->getThumbUrl( $thumbName );
-		$thumbPath = $this->getThumbPath( $thumbName ); // final thumb path
+		// final thumb path, if the media handler decides to use a thumbnail for the given params
+		$thumbPath = $this->getThumbPath( $thumbName );
 		if ( isset( $normalisedParams['isFilePageThumb'] ) && $normalisedParams['isFilePageThumb'] ) {
 			// Use a versioned URL on file description pages
 			$thumbUrl = $this->getFilePageThumbUrl( $thumbUrl );

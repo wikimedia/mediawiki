@@ -214,7 +214,9 @@ class SiteListTest extends MediaWikiIntegrationTestCase {
 		 * @var Site $site
 		 */
 		foreach ( $list as $site ) {
-			$this->assertTrue( $copy->hasInternalId( $site->getInternalId() ) );
+			if ( is_int( $site->getInternalId() ) ) {
+				$this->assertTrue( $copy->hasInternalId( $site->getInternalId() ) );
+			}
 
 			foreach ( $site->getNavigationIds() as $navId ) {
 				$this->assertTrue(

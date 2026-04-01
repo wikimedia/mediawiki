@@ -187,7 +187,7 @@ class LanguageCode {
 	/**
 	 * Replace deprecated language codes that were used in previous
 	 * versions of MediaWiki to up-to-date, current language codes.
-	 * Other values will be returned unchanged.
+	 * Any other code will be returned unchanged.
 	 *
 	 * @param string $code Old language code
 	 * @return string New language code

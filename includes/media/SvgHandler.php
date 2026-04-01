@@ -223,17 +223,20 @@ class SvgHandler extends ImageHandler {
 	protected function normaliseParamsInternal( $image, $params ) {
 		$svgMaxSize = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::SVGMaxSize );
 
+		$srcWidth = $image->getWidth( $params['page'] );
+		$srcHeight = $image->getHeight( $params['page'] );
+		$params['physicalWidth'] = $this->getSteppedThumbWidth(
+			$image, $params['physicalWidth'], $srcWidth, $srcHeight
+		);
+		$params['physicalHeight'] = File::scaleHeight( $srcWidth, $srcHeight, $params['physicalWidth'] );
+
 		# Don't make an image bigger than wgMaxSVGSize on the smaller side
 		if ( $params['physicalWidth'] <= $params['physicalHeight'] ) {
 			if ( $params['physicalWidth'] > $svgMaxSize ) {
-				$srcWidth = $image->getWidth( $params['page'] );
-				$srcHeight = $image->getHeight( $params['page'] );
 				$params['physicalWidth'] = $svgMaxSize;
 				$params['physicalHeight'] = File::scaleHeight( $srcWidth, $srcHeight, $svgMaxSize );
 			}
 		} elseif ( $params['physicalHeight'] > $svgMaxSize ) {
-			$srcWidth = $image->getWidth( $params['page'] );
-			$srcHeight = $image->getHeight( $params['page'] );
 			$params['physicalWidth'] = File::scaleHeight( $srcHeight, $srcWidth, $svgMaxSize );
 			$params['physicalHeight'] = $svgMaxSize;
 		}
@@ -583,6 +586,11 @@ class SvgHandler extends ImageHandler {
 		if ( $code !== self::SVG_DEFAULT_RENDER_LANG ) {
 			$lang = 'lang' . strtolower( $code ) . '-';
 		}
+
+		if ( isset( $params['physicalWidth'] ) && $params['physicalWidth'] ) {
+			return "$lang{$params['physicalWidth']}px";
+		}
+
 		if ( !isset( $params['width'] ) ) {
 			return false;
 		}

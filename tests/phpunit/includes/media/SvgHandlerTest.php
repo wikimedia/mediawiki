@@ -152,6 +152,11 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 				'Width in thumb'
 			],
 			[
+				[ 'width' => 113, 'physicalWidth' => 120 ],
+				'120px',
+				'physicalWidth should override width in thumb'
+			],
+			[
 				[ 'width' => 123, 'lang' => 'en' ],
 				'123px',
 				'Ignore lang=en'
@@ -209,7 +214,10 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		array $params,
 		?array $paramsExpected = null
 	) {
-		$this->overrideConfigValue( MainConfigNames::SVGMaxSize, 1000 );
+		$this->overrideConfigValues( [
+			MainConfigNames::SVGMaxSize => 1000,
+			MainConfigNames::ThumbnailSteps => null,
+		] );
 
 		/** @var SvgHandler $handler */
 		$handler = TestingAccessWrapper::newFromObject( new SvgHandler() );
@@ -234,6 +242,10 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		$file->method( 'getHandler' )
 			->willReturn( $handler );
 
+		// Would be set to 1 by ImageHandler::normaliseParams
+		$params += [ 'page' => 1 ];
+		$paramsExpected += [ 'page' => 1 ];
+
 		/** @var File $file */
 		$params = $handler->normaliseParamsInternal( $file, $params );
 		self::assertEquals( $paramsExpected, $params, $message );
@@ -250,14 +262,14 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 			[
 				'Resize horizontal image',
 				2000, 1600,
-				[ 'physicalWidth' => 2000, 'physicalHeight' => 1600, 'page' => 0 ],
-				[ 'physicalWidth' => 1250, 'physicalHeight' => 1000, 'page' => 0 ],
+				[ 'physicalWidth' => 2000, 'physicalHeight' => 1600 ],
+				[ 'physicalWidth' => 1250, 'physicalHeight' => 1000 ],
 			],
 			[
 				'Resize vertical image',
 				1600, 2000,
-				[ 'physicalWidth' => 1600, 'physicalHeight' => 2000, 'page' => 0 ],
-				[ 'physicalWidth' => 1000, 'physicalHeight' => 1250, 'page' => 0 ],
+				[ 'physicalWidth' => 1600, 'physicalHeight' => 2000 ],
+				[ 'physicalWidth' => 1000, 'physicalHeight' => 1250 ],
 			],
 			[
 				'Preserve targetlang present in the image',

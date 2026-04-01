@@ -20,6 +20,8 @@
 
 namespace MediaWiki\Config;
 
+use function array_key_exists;
+
 /**
  * Configuration holder, particularly for multi-wiki sites.
  *
@@ -232,6 +234,12 @@ class SiteConfiguration {
 	private function processSetting( $thisSetting, $wiki, $tags ) {
 		// Optimization: Avoid native type hint on private method called by hot getAll()
 		// <https://gerrit.wikimedia.org/r/c/mediawiki/core/+/820244>
+
+		// Optimization: Fast path for when there is only a default value and no overrides
+		// <https://gerrit.wikimedia.org/r/c/mediawiki/core/+/1220661>
+		if ( count( $thisSetting ) === 1 && array_key_exists( 'default', $thisSetting ) ) {
+			return $thisSetting['default'];
+		}
 
 		$retval = null;
 

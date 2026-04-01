@@ -349,7 +349,7 @@
 	"last": "antis",
 	"page_first": "primu",
 	"page_last": "ùrtimu",
-	"histlegend": "Sceberu de cunfrontus: poni sa spunta a is butonis de is versionis de cumparai e craca Invio o su butoni in bàsciu.\n\nLegenda: <strong>({{int:cur}})</strong> = diferèntzias cun sa versioni atuali, <strong>({{int:last}})</strong> = diferèntzias cun sa versioni bècia, <strong>{{int:minoreditletter}}</strong> = mudàntzia pitica",
+	"histlegend": "Sceberu de cunfrontus: poni sa spunta a is butonis de is versionis de cumparai e craca Invio o su butoni in bàsciu.<br />\nLegenda: <strong>({{int:cur}})</strong> = diferèntzias cun sa versioni atuali, <strong>({{int:last}})</strong> = diferèntzias cun sa versioni bècia, <strong>{{int:minoreditletter}}</strong> = mudàntzia pitica",
 	"history-fieldset-title": "Filtra is versionis",
 	"histfirst": "innantis",
 	"histlast": "ùrtimu",
