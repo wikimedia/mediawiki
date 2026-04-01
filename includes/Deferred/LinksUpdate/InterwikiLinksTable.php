@@ -112,7 +112,7 @@ class InterwikiLinksTable extends LinksTable {
 	}
 
 	/** @inheritDoc */
-	protected function getVirtualDomain() {
+	protected function virtualDomain() {
 		return self::VIRTUAL_DOMAIN;
 	}
 }
