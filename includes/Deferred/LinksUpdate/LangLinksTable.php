@@ -113,4 +113,9 @@ class LangLinksTable extends LinksTable {
 			'll_lang' => $linkId[0]
 		] );
 	}
+
+	/** @inheritDoc */
+	protected function virtualDomain(): string {
+		return self::VIRTUAL_DOMAIN;
+	}
 }
