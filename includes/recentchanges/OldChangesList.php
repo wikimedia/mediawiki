@@ -22,6 +22,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 
 /**
@@ -153,9 +154,15 @@ class OldChangesList extends ChangesList {
 			$html .= ' ' . $this->numberofWatchingusers( $rc->numberofWatchingusers );
 		}
 
+		$titleText = $rc->getTitle();
+		if ( !ChangesList::userCan( $rc, RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
+			$titleText = $this->msg( 'rev-deleted-event' )->escaped();
+		}
+
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		$html = Html::rawElement( 'span', [
 			'class' => 'mw-changeslist-line-inner',
-			'data-target-page' => $rc->getTitle(), // Used for reliable determination of the affiliated page
+			'data-target-page' => $titleText, // Used for reliable determination of the affiliated page
 		], $html );
 		if ( is_callable( $this->changeLinePrefixer ) ) {
 			$prefix = call_user_func( $this->changeLinePrefixer, $rc, $this, false );
