@@ -2490,7 +2490,6 @@
 	"file-info": "fitxategiaren tamaina: $1, MIME mota: $2",
 	"file-info-size": "$1 × $2 pixel, fitxategiaren tamaina: $3, MIME mota: $4",
 	"file-info-size-pages": "$1 × $2 pixel, fitxategi tamaina: $3, MIME mota: $4, {{PLURAL:$5|orrialde $5|$5 orrialde}}",
-	"file-nohires": "Ez dago bereizmen handiagorik.",
 	"svg-long-desc": "SVG fitxategia, nominaldi $1 × $2 pixel, fitxategiaren tamaina: $3",
 	"svg-long-desc-animated": "SVG fitxategi animatua, nominalki $1 × $2 pixel, fitxategiaren tamaina: $3",
 	"svg-long-error": "SVG fitxategi ez baliagarria: $1",

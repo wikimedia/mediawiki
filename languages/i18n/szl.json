@@ -1469,7 +1469,6 @@
 	"file-info": "rozmjor plika: $1, typ MIME: $2",
 	"file-info-size": "$1 × $2 pikselōw, srogość zbioru: $3, zorta MIME: $4",
 	"file-info-size-pages": "$1 × $2 pikselōw, srogość zbioru: $3, typ MIME: $4, $5 {{PLURAL:$5|strōna|strōny|strōn}}",
-	"file-nohires": "Niy ma dostympnyj srogszyj rodzielczości.",
 	"svg-long-desc": "Zbiōr SVG, nōminalnie $1 × $2 pikselōw, srogość zbioru: $3",
 	"show-big-image": "Ôryginalny zbiōr",
 	"show-big-image-preview": "Srogość tego podglōndu: $1.",

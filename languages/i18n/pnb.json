@@ -1884,7 +1884,6 @@
 	"file-info": "فائل ناپ: $1، MIME  ٹائپ: $2",
 	"file-info-size": "$1 × $2 پکسلز, فائل حجم: $3, MIME type: $4",
 	"file-info-size-pages": "$1 × $2 pixels, فائل حجم: $3, مائم قسم: $4, $5 {{PLURAL:$5|ورقہ|ورقے}}",
-	"file-nohires": "اس توں وڈی مورت موجود نہیں۔",
 	"svg-long-desc": "ایس وی جی فائل، پکسل:$1 × $2، فائل سائز: $3",
 	"show-big-image": "اصل فائل",
 	"show-big-image-preview": "ایس وکھالے دا ناپ: $1۔",

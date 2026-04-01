@@ -1241,7 +1241,6 @@
 	"file-info": "Dateigriße: $1, MIME-Typ: $2",
 	"file-info-size": "$1 × $2 Pixel, Dateigriße: $3, MIME-Typ: $4",
 	"file-info-size-pages": "$1 × $2 Pixel, Dateigreeße: $3, MIME-Typ: $4, $5 {{PLURAL:$5|Seite| Seita}}",
-	"file-nohires": "'s ies kenne hiehere Uffleesung vurhanda.",
 	"svg-long-desc": "SVG-Datei, Basisgreeße: $1 × $2 Pixel, Dateigreeße: $3",
 	"show-big-image": "Originoaldatei",
 	"show-big-image-preview": "Greeße dieser Vurschau: $1.",

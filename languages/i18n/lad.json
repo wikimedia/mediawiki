@@ -809,7 +809,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|hoja|hojas}}",
 	"file-info-size": "$1 × $2 píkseles; boy de la dosya: $3; tipo MIME: $4",
 	"file-info-size-pages": "$1 × $2 píxeles, tamaño de la dosya: $3, tipo MIME: $4, $5 {{PLURAL:$5|hoja|hojas}}",
-	"file-nohires": "No disponible a mayor resolución.",
 	"svg-long-desc": "arxivo SVG, nominalmente $1 × $2 píkseles, boy del arxivo: $3",
 	"show-big-image": "Dosya orijinal",
 	"show-big-image-preview": "Tamaño de la previsualisación: $1",

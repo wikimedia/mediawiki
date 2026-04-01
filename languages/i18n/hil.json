@@ -2808,7 +2808,6 @@
 	"file-info": "kadakuon sang file: $1, sahi sang MIME: $2",
 	"file-info-size": "$1 × $2 piksel, kadakuon sang tangkas: $3, sahi sang MIME: $4",
 	"file-info-size-pages": "$1 × $2 ka mga piksel, kadakuon sang file: $3, MIME type: $4, $5 {{PLURAL:$5|pahina|mga pahina}}",
-	"file-nohires": "Wala sang yara na taas nga resolusyon.",
 	"svg-long-desc": "SVG file, nominalya $1 × $2 piksels, kadakuon sang file: $3",
 	"svg-long-desc-animated": "Animated SVG file, nominally $1 × $2 pixels, file size: $3",
 	"svg-long-error": "Indi balido nga SVG file: $1",

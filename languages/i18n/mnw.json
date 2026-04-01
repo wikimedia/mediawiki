@@ -1347,7 +1347,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|မုက်လိက်|မုက်လိက်ဂမၠိုင်}}",
 	"file-info-size": "$1 × $2 pixels, file size: $3, MIME type: $4",
 	"file-info-size-pages": "$1 × $2 pixels, ဇမၞော် ဝှာင်: $3, MIME ဂကူ: $4, $5 {{PLURAL:$5|မုက်လိက်|မုက်လိက်ဂမၠိုင်}}",
-	"file-nohires": "resolution ခိုဟ် နူဏအ် ဟွံဂွံဆဵုရ၊၊",
 	"svg-long-desc": "SVG ဝှာင်, မိက်ကဵုကသပ် $1 × $2 pixels, ဇမၞော် ဝှာင်: $3",
 	"show-big-image": "ဝှာင် တမ်မူလ",
 	"show-big-image-preview": "ဇမၞော် နမူနာ ဏအ်- $1",

@@ -1176,7 +1176,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|pàgina|pàginas}}",
 	"file-info": "mannesa de su documentu: $1, casta de MIME: $2",
 	"file-info-size": "$1 × $2 pixels, mannesa de su file: $3, tipu de MIME: $4",
-	"file-nohires": "Non si tenent risolutziones prus artas.",
 	"svg-long-desc": "file in formadu SVG, mannesa nominale $1 × $2 pixel, mannesa de su file: $3",
 	"show-big-image": "Versione a risolutzione arta",
 	"show-big-image-preview": "Mannària de custa anteprima: $1.",

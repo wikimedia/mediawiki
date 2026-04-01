@@ -1995,7 +1995,6 @@
 	"file-info": "sukat ng talaksan: $1, tipo ng MIME: $2",
 	"file-info-size": "$1 × $2 na pixel, laki: $3, uri ng MIME: $4",
 	"file-info-size-pages": "$1 × $2 na pixel, laki: $3, uri ng MIME: $4, $5 {{PLURAL:$5|pahina|(na) pahina}}",
-	"file-nohires": "Wala na'ng mas malinaw.",
 	"svg-long-desc": "SVG na file, nominal na $1 × $2 (na) pixel, laki: $3",
 	"svg-long-desc-animated": "Animadong talaksang SVG, nasa mga bilang na $1 × $2 mga piksel, sukat ng talaksan: $3",
 	"show-big-image": "Orihinal na file",

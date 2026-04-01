@@ -2546,7 +2546,6 @@
 	"file-info": "amzura dl'archivi: $1, sòrt MIME: $2",
 	"file-info-size": "$1 × $2 pontin, amzure: $3, sòrt MIME: $4",
 	"file-info-size-pages": "$1 × $2 pontin, dimension ëd l'archivi: $3, sòrt MIME: $4, $5 {{PLURAL:$5|pàgina|pàgine}}",
-	"file-nohires": "Gnun-a risolussion pì bela disponìbil.",
 	"svg-long-desc": "archivi an forma SVG, amzure nominaj $1 × $2 pontin, amzura dl'archivi: $3",
 	"svg-long-desc-animated": "Archivi SVG animà, dimension $1 × $2 pontin, amzura dl'archivi: $3",
 	"svg-long-error": "Archivi SVG nen bon: $1",

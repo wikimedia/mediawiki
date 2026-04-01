@@ -2927,7 +2927,6 @@
 	"file-info": "bestandsgrootte: $1, MIME-type: $2",
 	"file-info-size": "$1 × $2 pixels, bestandsgrootte: $3, MIME-type: $4",
 	"file-info-size-pages": "$1 × $2 pixels, bestandsgrootte: $3, MIME-type: $4, $5 {{PLURAL:$5|pagina|pagina's}}",
-	"file-nohires": "Geen hogere resolutie beschikbaar.",
 	"svg-long-desc": "SVG-bestand, nominaal $1 × $2 pixels, bestandsgrootte: $3",
 	"svg-long-desc-animated": "Bewegend SVG-bestand, nominaal $1 × $2 pixels, bestandsgrootte: $3",
 	"svg-long-error": "Ongeldig SVG-bestand: $1",

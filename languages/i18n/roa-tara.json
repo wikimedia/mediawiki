@@ -2275,7 +2275,6 @@
 	"file-info": "dimenzione d'u fail: $1, tipe de MIME: $2",
 	"file-info-size": "$1 × $2 pixel, dimenzione d'u fail: $3, tipe de MIME: $4",
 	"file-info-size-pages": "$1 × $2 pixel, dimenzione d'u file: $3, tipe de MIME: $4, $5 {{PLURAL:$5|pàgene|pàggene}}",
-	"file-nohires": "Manghe 'a risoluzione ierta.",
 	"svg-long-desc": "Fail SVG, nominalmende sonde $1 × $2 pixel, dimenzione d'u fail: $3",
 	"svg-long-desc-animated": "File SVG animate, nominalmende sonde $1 × $2 pixel, dimenzione d'u file: $3",
 	"svg-long-error": "File SVG invalide: $1",

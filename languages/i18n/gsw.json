@@ -1961,7 +1961,6 @@
 	"file-info": "Dateigressi: $1, MIME-Typ: $2",
 	"file-info-size": "$1 × $2 Pixel, Dateigrößi: $3, MIME-Typ: $4",
 	"file-info-size-pages": "$1 × $2 Pixel, Dateigreßi: $3, MIME-Typ: $4, $5 {{PLURAL:$5|Syte| Syte}}",
-	"file-nohires": "Kei höcheri Uflösig verfüegbar.",
 	"svg-long-desc": "SVG-Datei, Basisgrößi: $1 × $2 Pixel, Dateigrößi: $3",
 	"svg-long-desc-animated": "Animierti SVG-Datei, Basisgreßi $1 × $2 Pixel, Dateigreßi: $3",
 	"svg-long-error": "Ungültigi SVG-Datei: $1",

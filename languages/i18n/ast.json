@@ -2424,7 +2424,6 @@
 	"file-info": "tamañu de ficheru: $1, triba MIME: $2",
 	"file-info-size": "$1 × $2 píxels, tamañu de ficheru: $3, triba MIME: $4",
 	"file-info-size-pages": "$1 × $2 pixels, tamañu del ficheru: $3, triba MIME: $4, $5 {{PLURAL:$5|páxina|páxines}}",
-	"file-nohires": "Nun ta disponible con mayor resolución.",
 	"svg-long-desc": "ficheru SVG, $1 × $2 píxels nominales, tamañu de ficheru: $3",
 	"svg-long-desc-animated": "Ficheru SVG animáu; nominalmente de $1 × $2 pixels; tamañu del ficheru: $3",
 	"svg-long-error": "Ficheru SVG inválidu: $1",

@@ -841,7 +841,6 @@
 	"previousdiff": "← Mas ultimo edit",
 	"nextdiff": "Mas nuevo edit →",
 	"widthheightpage": "$1 x $2, $3 {{PLURAL:$3|pagina|maga pagina}}",
-	"file-nohires": "No hay available resolucion alto.",
 	"show-big-image": "Original file",
 	"show-big-image-preview": "Grandor de este preview: $1.",
 	"show-big-image-other": "Otro {{PLURAL:$2|resolucion|maga resolucion}}: $1.",

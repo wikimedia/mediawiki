@@ -1242,7 +1242,6 @@
 	"file-info": "iyeltakaldo : $1, MIME ord : $2",
 	"file-info-size": "$1 × $2 pixel, iyeltakaldo : $3, MIME ord : $4",
 	"file-info-size-pages": "$1 × $2 pixel, iyeltakaldo : $3, MIME ord : $4, $5 {{PLURAL:$5|bu}}",
-	"file-nohires": "Me rodadin logijaf lum.",
 	"svg-long-desc": "SVG iyeltak, prekson $1 × $2 pixels, iyeltakaldo : $3",
 	"show-big-image": "Xantaf iyeltak",
 	"show-big-image-preview": "Lum ke bata abdiwira : $1.",

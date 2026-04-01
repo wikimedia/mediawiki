@@ -2171,7 +2171,6 @@
 	"file-info": "Gbigblo wepo tọn: $1, wunmẹ MIME tọn: $2",
 	"file-info-size": "$1 × $2 pizẹl lẹ, kiklo wepo tọn: $3, MIME wunmẹ: $4",
 	"file-info-size-pages": "$1 × $2 pizẹl lẹ, kiklo wepo tọn: $3, MIME wunmẹ: $4, $5 {{PLURAL:$5|weda|weda lẹ}}",
-	"file-nohires": "Dehe pẹzin hugan le dé ma tin.",
 	"svg-long-desc": "SVG wepo tọn, po $1 × $2 pizẹl lẹ, kiklo wepo tọn: $3",
 	"svg-long-error": "Wepo SVG ma sọgbe: $1",
 	"show-big-image": "Wepo jọun",

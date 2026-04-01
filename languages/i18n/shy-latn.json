@@ -1023,7 +1023,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|asebtar|isebtar}}",
 	"file-info-size": "$1 × $2 pixel, tiddi n ufaylu: $3, anaw n MIME: $4",
 	"file-info-size-pages": "$1 × $2 iferdisen, tiddi n ufaylu : $3, tawsit MIME : $4, $5 {{PLURAL:$5|asebtar|isebtar}}",
-	"file-nohires": "Ulac resolution i tameqqrant fell-as.",
 	"svg-long-desc": "Afaylu SVG, tabadut n $1 × $2 pixel, lqedd: $3",
 	"show-big-image": "Afaylu aneṣli",
 	"show-big-image-preview": "Tiddi n azaraskan agi : $1.",

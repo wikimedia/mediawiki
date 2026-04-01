@@ -2295,7 +2295,6 @@
 	"file-info": "kadakkel ti papeles: $1, MIME a kita: $2",
 	"file-info-size": "$1 × $2 dagiti piksel, kadakkel ti papeles: $3, kita ti  MIME: $4",
 	"file-info-size-pages": "$1 × $2 dagiti piksel, kadakkel ti papeles: $3, kita ti MIME: $4, $5 {{PLURAL:$5|panid|pampanid}}",
-	"file-nohires": "Awan ti mabalin a nangatngato a resolusion.",
 	"svg-long-desc": "SVG a papeles, babassit ngem $1 × $2 pixels, kadakkel ti papeles: $3",
 	"svg-long-desc-animated": "Naanimado nga SVG a papeles, babassit ngem  $1 × $2 pixels, kadakkel ti papeles: $3",
 	"svg-long-error": "Saan nga umiso a papeles ti SVG: $1",

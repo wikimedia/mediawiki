@@ -2780,7 +2780,6 @@
 	"file-info": "stærð skráar: $1, MIME-tegund: $2",
 	"file-info-size": "$1 × $2 mynddílar, skráarstærð: $3, MIME-gerð: $4",
 	"file-info-size-pages": "$1 × $2 mynddílar, skráarstærð: $3, MIME-gerð: $4, $5 {{PLURAL:$5|síða|síður}} tengja í skrána.",
-	"file-nohires": "Það er engin hærri upplausn til.",
 	"svg-long-desc": "SVG-skrá, að nafni til $1 × $2 mynddílar, skráarstærð: $3",
 	"svg-long-desc-animated": "SVG-hreyfimynd, að nafni til $1 × $2 mynddílar, skráarstærð: $3",
 	"svg-long-error": "Ógild SVG skrá: $1",

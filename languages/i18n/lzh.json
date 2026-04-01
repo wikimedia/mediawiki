@@ -1679,7 +1679,6 @@
 	"widthheightpage": "$1矩$2，共$3頁",
 	"file-info": "大小：$1，MIME類型：$2",
 	"file-info-size": "微格$1矩$2，度：$3，多用網際網路副檔名之型：$4",
-	"file-nohires": "無以更晰。",
 	"svg-long-desc": "SVG檔，貌有像素$1矩$2，幅$3",
 	"show-big-image": "全幅",
 	"show-big-image-preview": "覽幅：$1。",

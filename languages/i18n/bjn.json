@@ -1939,7 +1939,6 @@
 	"file-info": "takaran barakas: $1, macam MIME: $2",
 	"file-info-size": "$1 × $2 piksel, ukuran barakas: $3, tipe MIME: $4",
 	"file-info-size-pages": "$1 × $2 piksal, takaran barakas: $3, macam MIME: $4, $5 {{PLURAL:$5|laman}}",
-	"file-nohires": "Kadada tasadia resolusi nang labih tinggi.",
 	"svg-long-desc": "Barakas SVG, nominal $1 × $2 piksel, ganal barakas: $3",
 	"show-big-image": "Ukuran asli",
 	"show-big-image-preview": "Takaran tilikan ngini: $1.",

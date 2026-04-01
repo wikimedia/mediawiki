@@ -1565,7 +1565,6 @@
 	"file-info": "mezinbûna daneyê: $1, MIME type: $2",
 	"file-info-size": "$1 × $2 pixel, mezinbûnê data: $3, MIME-typ: $4",
 	"file-info-size-pages": "$1 × $2 pîksel, mezinahiya pelê: $3, MIME cure: $4, $5 {{PLURAL:$5|rûpel}}",
-	"file-nohires": "Versyonekî jê mezintir tune.",
 	"svg-long-desc": "Daneya SVG, mezinbûna rast: $1 × $2 pixel; mezinbûna daneyê: $3",
 	"show-big-image": "Dosyeya orjînal",
 	"show-big-image-preview": "Mezinahiya vê pêşdîtinê: $1.",

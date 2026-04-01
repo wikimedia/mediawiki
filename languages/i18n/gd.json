@@ -1950,7 +1950,6 @@
 	"file-info": "meud an fhaidhle: $1, seòrsa MIME: $2",
 	"file-info-size": "$1 × $2 pixel, meud an fhaidhle: $3, seòrsa MIME: $4",
 	"file-info-size-pages": "$1 × $2 piogsail, meud an fhaidhle: $3, seòrsa MIME: $4, $5 {{PLURAL:$5|duilleag|dhuilleag|duilleagan|duilleag}}",
-	"file-nohires": "Chan eil dùmhlachd-bhreacaidh nas fhearr ri fhaighinn.",
 	"svg-long-desc": "Faidhle SVG, a-rèir ainm $1 × $2 pixel, meud faidhle: $3",
 	"svg-long-desc-animated": "Faidhle SVG beòthaichte, a-rèir ainm $1 × $2 pixel, meud faidhle: $3",
 	"svg-long-error": "Faidhle SVG mì-dhligheach: $1",

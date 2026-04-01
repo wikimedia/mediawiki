@@ -2803,7 +2803,6 @@
 	"file-info": "mida: $1, tipus MIME: $2",
 	"file-info-size": "$1 × $2 píxels, mida del fitxer: $3, tipus MIME: $4",
 	"file-info-size-pages": "$1 × $2 píxels, mida del fitxer: $3, tipus MIME: $4, $5 {{PLURAL:$5|pàgina|pàgines}}",
-	"file-nohires": "No hi ha cap versió amb una resolució més gran.",
 	"svg-long-desc": "fitxer SVG, nominalment $1 × $2 píxels, mida del fitxer: $3",
 	"svg-long-desc-animated": "Fitxer SVG animat, nominalment $1 × $2 píxels, mida del fitxer: $3",
 	"svg-long-error": "El fitxer SVG no és vàlid: $1",

@@ -1071,7 +1071,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|yaɣili|yaɣa}}",
 	"file-info-size": "$1 × $2 pixels, file size: $3, MIME type: $4",
 	"file-info-size-pages": "$1 × $2 pixels, lahabali kɔligu yɛliŋ: $3, MIME balibu: $4, $5 {{PLURAL:$5|yaɣili|yaɣa}}",
-	"file-nohires": "Aayi di ku lahi tooi yaligi n-pahi.",
 	"svg-long-desc": "SVG lahabali kɔligu, nominally $1×$2 pixels,lahabali koligu galisim:$3",
 	"show-big-image": "Faal maa maŋmaŋa",
 	"show-big-image-preview": "Jɔhiyuli maa galisim:$1.",

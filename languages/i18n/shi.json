@@ -912,7 +912,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|tasna|tasniwin}}",
 	"file-info-size": "$1 × $2 piksil, tiddi n ufaylu: $3, anaw MIME: $4",
 	"file-info-size-pages": "$1 × $2 piksil, tiddi n ufaylu: $3, anaw n MIME: $4, $5 {{PLURAL:$5|tasna|tasniwin}}",
-	"file-nohires": "Ur tlli tabudut imqqurn.",
 	"svg-long-desc": "Afaylu SVG, tabadut n $1 × $2 id piksil, tiddi n ufaylu: $3",
 	"show-big-image": "Afaylu anṣli",
 	"show-big-image-preview": "Aksay n uẓṛi ad :$1",

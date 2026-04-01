@@ -1185,7 +1185,6 @@
 	"widthheightpage": "$1 × $2, $3 floua boué{{PLURAL:$3||moun}}",
 	"file-info-size": "$1 × $2 pixels, floua boué i sounzoulè: $3, MIME i fanou: $4",
 	"file-info-size-pages": "$1 × $2 pixels ; floua i nouan : $3 ; MIME i fa : $4 ; $5 floua boué {{PLURAL:$5||moun}}",
-	"file-nohires": "Bé kloua ouka man i fité wa sou ékoun.",
 	"svg-long-desc": "SVG floua, nga ô lé $1 × $2 pixels, floua i nouan: $3",
 	"show-big-image": "Ibobolè noun floua",
 	"show-big-image-preview": "Liké nga i sounzoulè: $1.",

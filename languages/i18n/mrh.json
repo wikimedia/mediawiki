@@ -650,7 +650,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|hmia|hmiazy}}",
 	"file-info-size": "$1 × $2 pixels, faih laichyh zie: $3, MIME pho: $4",
 	"file-info-size-pages": "$1 × $2 pixels, faih laichyhzie: $3, MIME pho: $4, $5 {{PLURAL:$5|châhmia|châhmiazy}}",
-	"file-nohires": "â siana asâh viapa a hmô khao vei.",
 	"show-big-image": "Faih kakuapa",
 	"show-big-image-preview": "He mochhilina laichyh zie: $1.",
 	"show-big-image-other": "Ahropa {{PLURAL:$2|âsiana|âsianazy}}: $1.",

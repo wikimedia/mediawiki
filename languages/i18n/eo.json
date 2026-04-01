@@ -2624,7 +2624,6 @@
 	"file-info": "grando de dosiero: $1, MIME-tipo: $2",
 	"file-info-size": "$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4",
 	"file-info-size-pages": "$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4, $5 {{PLURAL:$5|paĝo|paĝoj}}",
-	"file-nohires": "Nenia pli granda distingivo havebla.",
 	"svg-long-desc": "SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3",
 	"svg-long-desc-animated": "Animata SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3",
 	"svg-long-error": "Nevalida SVG-dosiero: $1",

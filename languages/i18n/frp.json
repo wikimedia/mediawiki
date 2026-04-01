@@ -2423,7 +2423,6 @@
 	"file-info": "Talye du fichiér : $1, tipo MIME : $2",
 	"file-info-size": "$1 × $2 pixèls, talye du fichiér : $3, tipo MIME : $4",
 	"file-info-size-pages": "$1 × $2 pixèls, talye du fichiér : $3, tipo MIME : $4, $5 pâge{{PLURAL:$5||s}}",
-	"file-nohires": "Gins de rèsolucion ples hiôta disponibla.",
 	"svg-long-desc": "Fichiér SVG, nominalament $1 × $2 pixèls, talye du fichiér : $3",
 	"svg-long-desc-animated": "Fichiér SVG animâ, nominalament $1 × $2 pixèls, talye du fichiér : $3",
 	"svg-long-error": "Fichiér SVG pas justo : $1",

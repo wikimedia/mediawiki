@@ -1321,7 +1321,6 @@
 	"file-info": "tiätuvuárkkástuárudâh: $1, MIME-tijppâ: $2",
 	"file-info-size": "$1 × $2 kovečyegisid, tiätuvuárkkástuárudâh: $3, MIME-tijppâ: $4",
 	"file-info-size-pages": "$1 × $2 kovečuággá, tiätuvuárhâ stuárudâh $3, MIME-tijppâ $4, $5 {{PLURAL:$5|sijđo|siijđo|siijđo|sijđod}}",
-	"file-nohires": "Täärhib kove ij lah finniimist",
 	"svg-long-desc": "SVG-tiätuvuárkká; nobdum tärkkivuotâ $1 × $2 kovečuággá; tiätuvuárhá stuárudah $3",
 	"svg-long-error": "Tuhhiimettum SVG-tiätuvuárkká: $1",
 	"show-big-image": "Algâalgâlâš tiätuvuárkká",

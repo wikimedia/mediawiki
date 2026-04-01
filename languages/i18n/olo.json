@@ -2532,7 +2532,6 @@
 	"file-info": "tiijoston suurus: $1, MIME-tiippu: $2",
 	"file-info-size": "$1 × $2 pikselii, tiijoston suurus: $3, MIME-tiippu: $4",
 	"file-info-size-pages": "$1 × $2 pikselii, tiijoston suurus $3, MIME-tiippu $4, $5 {{PLURAL:$5|sivu|sivuu}}",
-	"file-nohires": "Tarkembua kuvua ei ole suadavis.",
 	"svg-long-desc": "SVG-failu, nominualizesti $1 × $2 pikselii, tiijoston suurus: $3",
 	"svg-long-desc-animated": "Animiiruittu SVG-failu, nominualizesti $1 × $2 pikselii, tiijoston suurus: $3",
 	"svg-long-error": "Viäry SVG-tiijosto: $1",

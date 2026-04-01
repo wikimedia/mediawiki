@@ -313,6 +313,8 @@
 	"listgrouprights-restrictedgroups-memberconditions": "Условия для участников:",
 	"listgrouprights-restrictedgroups-updaterconditions": "Условия на членство в этой группе участников:",
 	"listgrouprights-restrictedgroups-cond-editcount": "Участник сделал как минимум $1 {{PLURAL:$1|правку|правки|правок}}",
+	"listgrouprights-restrictedgroups-cond-isip": "Участник использует IP-адрес: $1",
+	"listgrouprights-restrictedgroups-cond-ipinrange": "Участник использует IP-адрес, находящийся в диапазоне: $1",
 	"listgrouprights-restrictedgroups-cond-isbot": "Участник — бот",
 	"listgrouprights-namespaceprotection-header": "Ограничения пространства имён",
 	"listgrouprights-namespaceprotection-namespace": "Пространство имён",

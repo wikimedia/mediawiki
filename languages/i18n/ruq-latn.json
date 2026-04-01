@@ -189,7 +189,6 @@
 	"tooltip-minoredit": "ce-est n'modifikacion minoru",
 	"tooltip-save": "Salvaere tes modifikacions",
 	"tooltip-diff": "Rată ce modifikări ai făcut tekstului.",
-	"file-nohires": "Ce-n-est n'resolucion mai mari.",
 	"bad_image_list": "Formatul este următorul:\n\nNumai elementîle unei liste sunt luate en consideraere. (Açestea sunt linii ce encep cu *)\n\nPrima legătură de pe linie trebuie se fie spre un fişier defectuos.\n\nOrice legături ce urmează pe acenaşi linie sunt consideraete excepţii, dică paži unde fişierul poate părea inclus direct.",
 	"metadata": "Metadata",
 	"namespacesall": "toati",

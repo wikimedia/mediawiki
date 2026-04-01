@@ -1346,7 +1346,6 @@
 	"widthheightpage": "$1×$2，$3頁",
 	"file-info-size": "$1×$2像素，檔案大小：$3，MIME類型：$4",
 	"file-info-size-pages": "$1 × $2像素，檔案大小：$3，MIME類型：$4，$5頁",
-	"file-nohires": "還要高个明糊度無好用个。",
 	"svg-long-desc": "SVG檔案，名義大小：$1×$2像素，檔案大小：$3",
 	"show-big-image": "原先个文件",
 	"show-big-image-preview": "箇預覽个尺寸：$1。",

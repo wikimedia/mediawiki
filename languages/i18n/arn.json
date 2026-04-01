@@ -638,7 +638,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|tapülh}}",
 	"file-info-size": "$1 × $2 azentun piqsel, eltukawün ñi tunte ngen: $3, MIME ñi chumngen: $4",
 	"file-info-size-pages": "$1 × $2 pigsel, chuntengen eltukawün: $3, MIME azentu: $4, $5 {{PLURAL:$5|tapülh}}",
-	"file-nohires": "Mülelay zoy küme azentu.",
 	"svg-long-desc": "SVG eltukawün, pingey $1 × $2 pigsel, eltukawün ñi tunte ngen: $3",
 	"show-big-image": "Llügun eltukawün",
 	"show-big-image-preview": "Chuntengen tüfachi pengelpelu: $1",

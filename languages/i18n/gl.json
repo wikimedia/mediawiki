@@ -2860,7 +2860,6 @@
 	"file-info": "tamaño do ficheiro: $1; tipo MIME: $2",
 	"file-info-size": "$1 × $2 píxeles; tamaño do ficheiro: $3; tipo MIME: $4",
 	"file-info-size-pages": "$1 × $2 píxeles; tamaño do ficheiro: $3; tipo MIME: $4; $5 {{PLURAL:$5|páxina|páxinas}}",
-	"file-nohires": "Non se pode ver nunha resolución meirande.",
 	"svg-long-desc": "ficheiro SVG; resolución de $1 × $2 píxeles; tamaño do ficheiro: $3",
 	"svg-long-desc-animated": "ficheiro SVG animado; resolución de $1 × $2 píxeles; tamaño do ficheiro: $3",
 	"svg-long-error": "Ficheiro SVG non válido: $1",

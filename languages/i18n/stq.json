@@ -1472,7 +1472,6 @@
 	"file-info": "Doatäigrööte: $1, MIME-Typ: $2",
 	"file-info-size": "$1 × $2 Pixel, Doatäigrööte: $3, MIME-Typ: $4",
 	"file-info-size-pages": "$1 × $2 Pixel, Doatäigrööte: $3, MIME-Typ: $4, $5 {{PLURAL:$5|Siede| Sieden}}",
-	"file-nohires": "Neen haagere Aplöösenge foarhounden.",
 	"svg-long-desc": "SVG-Doatäi, Basisgrööte: $1 × $2 Pixel, Doatäigrööte: $3",
 	"show-big-image": "Bielde in hooge Aplöösenge",
 	"show-big-image-preview": "Grööte fon dissen Foarbekiek: $1.",

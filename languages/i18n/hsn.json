@@ -468,7 +468,6 @@
 	"widthheightpage": "$1 × $2，$3{{PLURAL:$3|页}}",
 	"file-info-size": "$1 × $2像素，文件亇大細：$3，MIME类型：$4",
 	"file-info-size-pages": "$1 × $2像素，文件大細：$3，MIME类型：$4，$5{{PLURAL:$5|$5页}}",
-	"file-nohires": "冇更高亇分辨率。",
 	"svg-long-desc": "SVG文件，尺寸是$1 × $2像素，文件亇大小：$3",
 	"show-big-image": "原始亇文件",
 	"show-big-image-preview": "啯预览亇尺寸：$1。",

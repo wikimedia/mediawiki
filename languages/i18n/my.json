@@ -1898,7 +1898,6 @@
 	"widthheightpage": "$1 × $2, {{PLURAL:$3|စာမျက်နှာ|စာမျက်နှာများ}} $3 ခု",
 	"file-info-size": "$1 × $2 pixels, ဖိုင်အရွယ်အစား - $3, MIME အမျိုးအစား $4",
 	"file-info-size-pages": "$1 × $2 pixels, ဖိုင်အရွယ်အစား: $3, MIME အမျိုးအစား: $4, {{PLURAL:$5|စာမျက်နှာ|စာမျက်နှာများ}} $5 ခု",
-	"file-nohires": "သည်ထက်ကြီးသော resolution မရှိပါ.",
 	"svg-long-desc": "SVG ဖိုင်, $1 × $2 pixels ကို အကြံပြုသည်, ဖိုင်အရွယ်အစား - $3",
 	"show-big-image": "မူရင်းဖိုင်",
 	"show-big-image-preview": "ဤနမူနာ၏ အရွယ်အစား - $1။",

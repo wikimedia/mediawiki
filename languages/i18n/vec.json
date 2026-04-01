@@ -1942,7 +1942,6 @@
 	"file-info": "Dimensioni: $1, tipo MIME: $2",
 	"file-info-size": "$1 × $2 pixel, dimension del file: $3, tipo MIME: $4",
 	"file-info-size-pages": "$1 × $2 pixel, dimension del file: $3, tipo MIME: $4, $5 {{PLURAL:$5|pajina|pajine}}",
-	"file-nohires": "No ghe xé version co rixołusion pì grande",
 	"svg-long-desc": "file en formato SVG, dimension nominałi $1 × $2 pixel, dimension del file: $3",
 	"svg-long-desc-animated": "file in formato SVG animà, dimension nominałi $1 × $2 pixel, dimension del file: $3",
 	"svg-long-error": "File SVG mìa valido: $1",

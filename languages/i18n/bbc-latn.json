@@ -620,7 +620,6 @@
 	"widthheightpage": "$1 x $2, $3 {{PLURAL:$3|alaman|angka alaman}}",
 	"file-info-size": "$1 × $2 piksel, balga ni berkas: $3, rumang na MIME: $4",
 	"file-info-size-pages": "$1 x $2 piksel, ukuranna: $3, ragam MIME: $4, $5 {{PLURAL:$5|alaman|angka alaman}}",
-	"file-nohires": "Ndang adong resolusi natumimbo.",
 	"svg-long-desc": "Berkas SVG, nominal $1 × $2 piksel, balga ni surat partadingan: $3",
 	"show-big-image": "Ungkuran na tingkos",
 	"show-big-image-preview": "Ungkuran ni pratinjau on: $1",

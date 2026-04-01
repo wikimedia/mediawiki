@@ -965,7 +965,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|ᱥᱟᱦᱴᱟ|ᱥᱟᱦᱴᱟᱠᱚ}}",
 	"file-info-size": "$1 x $2 pixels, file size: $3, MIME type: $4",
 	"file-info-size-pages": "$1 × $2 ᱯᱤᱠᱥᱮᱞ, ᱨᱮᱫ ᱥᱚᱝ: $3, MIME ᱞᱮᱠᱟᱱ: $4, $5 {{PLURAL:$5|ᱥᱟᱦᱴᱟ|ᱥᱟᱦᱴᱟᱠᱚ}}",
-	"file-nohires": "ᱥᱮᱬᱟ ᱨᱮᱡᱩᱞᱮᱥᱚᱱ ᱵᱟᱱᱩᱜ-ᱟ᱾",
 	"svg-long-desc": "SVG ᱨᱮᱫ, ᱱᱚᱨᱢᱟᱞᱛᱮ $1 x $2 pixels, ᱨᱮᱫ ᱡᱟᱜᱟ: $3",
 	"show-big-image": "ᱟᱥᱚᱞ ᱨᱮᱫ",
 	"show-big-image-preview": "ᱧᱮᱞᱡᱚᱝ ᱨᱮᱱᱟᱜ ᱟᱠᱟᱨ:$1",

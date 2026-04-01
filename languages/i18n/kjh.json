@@ -2539,7 +2539,6 @@
 	"file-info": "файл синi: $1, MIME тибi: $2",
 	"file-info-size": "$1 × $2 пиксель, файл синi: $3, MIME тибi: $4",
 	"file-info-size-pages": "$1 × $2 пиксель, файл синi: $3, MIME тибi: $4, $5 {{PLURAL:$5|cтраница}}",
-	"file-nohires": "Мыннаң чоон кӧзідер версия чоғыл.",
 	"svg-long-desc": "SVG файл, $1 × $2 пиксель, файл синi: $3",
 	"svg-long-desc-animated": "SVG файл,  $1 × $2 пиксель, файл синi: $3",
 	"svg-long-error": "Саба SVG файл: $1",

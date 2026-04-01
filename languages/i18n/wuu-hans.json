@@ -1381,7 +1381,6 @@
 	"widthheightpage": "$1×$2，$3页",
 	"file-info-size": "$1×$2像素，文件大小：$3，MIME类型：$4",
 	"file-info-size-pages": "$1 × $2像素，文件大小：$3，MIME类型：$4，$5页",
-	"file-nohires": "无更高分辨率可提供。",
 	"svg-long-desc": "SVG文件，名义大小：$1×$2像素，文件大小：$3",
 	"show-big-image": "原始文件",
 	"show-big-image-preview": "本预览个尺寸：$1。",

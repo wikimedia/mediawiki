@@ -1938,7 +1938,6 @@
 	"file-info": "ìtóbi faili: $1, irú MIME: $2",
 	"file-info-size": "$1 × $2 pixel, ìtóbi faili: $3, irú MIME: $4",
 	"file-info-size-pages": "$1 × $2 pixel, ìtóbi faili: $3, irú MIME: $4, {{PLURAL:$5|ojúewé|ojúewé}} $5",
-	"file-nohires": "Kò sí ìgbéhàn gíga jù báun lọ.",
 	"svg-long-desc": "faili SVG, pẹ̀lú $1 × $2 pixels, ìtòbi faili: $3",
 	"svg-long-desc-animated": "Fáìlì SVG alámùúrìn, tó jẹ́ $1 × $2 pixels, ìtóbi fáìlì: $3",
 	"svg-long-error": "Fáìlì SVG àìyẹ: $1",

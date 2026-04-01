@@ -2114,7 +2114,6 @@
 	"file-info": "ukuran barkas: $1, jinis MIME: $2",
 	"file-info-size": "$1 × $2 piksel, ukuran barkas: $3, jinis MIME: $4",
 	"file-info-size-pages": "$1 × $2 piksel, gedhéné berkas: $3, jinisé MIME: $4, $5 {{PLURAL:$5|kaca|kaca}}",
-	"file-nohires": "Ora ana résolusi kang luwih dhuwur.",
 	"svg-long-desc": "Barkas SVG, nominal $1 × $2 piksel, gedhéning barkas: $3",
 	"svg-long-desc-animated": "Berkas SVG, nominal $1 × $2 piksel, gedhené berkas: $3",
 	"svg-long-error": "Berkas SVG ora sah: $1",

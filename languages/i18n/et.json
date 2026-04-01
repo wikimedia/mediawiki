@@ -2849,7 +2849,6 @@
 	"file-info": "faili suurus: $1, MIME tüüp: $2",
 	"file-info-size": "$1 × $2 pikslit, faili suurus: $3, MIME tüüp: $4",
 	"file-info-size-pages": "$1 × $2 pikslit, faili suurus: $3, MIME tüüp: $4, $5 {{PLURAL:$5|lehekülg|lehekülge}}",
-	"file-nohires": "Sellest suuremat pilti pole.",
 	"svg-long-desc": "SVG-fail, algsuurus $1 × $2 pikslit, faili suurus: $3",
 	"svg-long-desc-animated": "Animeeritud SVG-fail,  algsuurus $1 × $2 pikslit, faili suurus: $3",
 	"svg-long-error": "Vigane SVG-fail: $1",

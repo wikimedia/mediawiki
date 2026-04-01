@@ -1225,7 +1225,6 @@
 	"file-info": "$1, MIME-tüüp: $2",
 	"file-info-size": "$1 × $2 pikslit, $3, MIME-tüüp: $4",
 	"file-info-size-pages": "$1 × $2 pikslit, teedüstü suurus: $3, MIME tüüp: $4, $5 {{PLURAL:$5|lehekülg|lehekülge}}",
-	"file-nohires": "Taast terävämpä pilti olõ-i saiaq.",
 	"svg-long-desc": "SVG-teedüstü, põhisuurus $1 × $2 pikslit, teedüstü suurus $3",
 	"show-big-image": "Algteedüstü",
 	"show-big-image-preview": "Seo proovikaehusõ suurus: $1.",

@@ -2523,7 +2523,6 @@
 	"file-info": "ukuran berkeas: $1, jenis MIME: $2",
 	"file-info-size": "$1 × $2 piksel, ukuran berekas: $3, jenis MIME: $4",
 	"file-info-size-pages": "$1 × $2 piksel, ukuran berekas: $3, jenis MIME: $4, $5 {{PLURAL:$5|halaman}}",
-	"file-nohires": "Kaga' ada kedantaan nyang lebi tinggi",
 	"svg-long-desc": "Gepokan SVG, secara angka $1 × $2 piksel, ukuran gepokan: $3",
 	"svg-long-desc-animated": "Gepokan SVG gerak, secara angka $1 × $2 piksel, ukuran gepokan: $3",
 	"svg-long-error": "Berekas SVG kaga' aci: $1",

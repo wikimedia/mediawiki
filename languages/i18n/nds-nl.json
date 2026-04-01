@@ -1915,7 +1915,6 @@
 	"file-info": "Bestaandsgrootte: $1, MIME-type: $2",
 	"file-info-size": "$1 × $2 bealdpunten, bestandsgroutde: $3, MIME-type: $4",
 	"file-info-size-pages": "$1 × $2 bealdpunten, bestandsgroutde: $3, MIME-type: $4, $5 {{PLURAL:$5|syde|syden}}",
-	"file-nohires": "Geen hougere resoluty beskikbår.",
 	"svg-long-desc": "SVG-bestand, uutgangsgroutde $1 × $2 bealdpunten, bestandsgroutde: $3",
 	"svg-long-desc-animated": "Bewegend SVG-bestaand, uutgangsgrootte $1 × $2 beeldpunten, bestaandsgrootte: $3",
 	"svg-long-error": "Ongeldig SVG-bestaand: $1",

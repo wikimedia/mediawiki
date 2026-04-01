@@ -465,7 +465,6 @@
 	"widthheightpage": "$1×$2, $3 {{PLURAL:$3| Orubaju|embaju}}",
 	"file-info-size": "$1 × $2 pixoz, obuhango bwa fayiro: $3, MIME ekyika:$4",
 	"file-info-size-pages": "$1×$2 pixoz, obuhango bwa fayiro:$3, ekyika Kya MIME: $4,$5{{PLURAL:$5|Orubaju|embaju}}",
-	"file-nohires": "Tihariyo buhango obukukira aha",
 	"svg-long-desc": "SVG fayiro,buzima $1×$2 pixoz, obuhango bwa fayiro:$3",
 	"show-big-image": "Fayiro yenyini",
 	"show-big-image-preview": "Obuhango bw'eki ekishushani: $1",

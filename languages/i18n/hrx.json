@@ -1802,7 +1802,6 @@
 	"file-info": "Dateigröss: $1, MIME-Typ: $2",
 	"file-info-size": "$1 × $2 Pixel, Dateigress: $3, MIME-Typ: $4",
 	"file-info-size-pages": "$1 × $2 Pixel, Dateigröss: $3, MIME-Typ: $4, $5 {{PLURAL:$5|Seit| Seite}}",
-	"file-nohires": "Keen hegher Rësoluzion forhand.",
 	"svg-long-desc": "SVG-Datei, Basisgröss: $1 × $2 Pixel, Dateigröss: $3",
 	"svg-long-desc-animated": "Animierte SVG-Datei, Basisgröss $1 × $2 Pixel, Dateigröss: $3",
 	"svg-long-error": "Ungültiche SVG-Datei: $1",

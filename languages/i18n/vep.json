@@ -2561,7 +2561,6 @@
 	"file-info": "failan suruz': $1, MIME-tip: $2",
 	"file-info-size": "$1 × $2 piksel'ad, failan suruz': $3, MIME-tip: $4",
 	"file-info-size-pages": "$1 × $2 pikselid, failan suruz': $3, MIME - tip: $4, $5 {{PLURAL:$5|lehtpol'|lehtpoled}}",
-	"file-nohires": "Paremb versii om soubas.",
 	"svg-long-desc": "SVG-fail, nominaližikš $1 × $2 piksel'ad, failan suruz': $3",
 	"svg-long-desc-animated": "Eläb SVG - fail, $1 × $2 pikselid, failan suruz': $3",
 	"svg-long-error": "Vär SVG - fail: $1",

@@ -2118,7 +2118,6 @@
 	"file-info": "faila izmērs: $1, MIME tips: $2",
 	"file-info-size": "$1 × $2 pikseļi, faila izmērs: $3, MIME tips: $4",
 	"file-info-size-pages": "$1 × $2 pikseļi, faila izmērs: $3, MIME tips: $4, $5 {{PLURAL:$5|lapas|lapa|lapas}}",
-	"file-nohires": "Augstāka izšķirtspēja nav pieejama.",
 	"svg-long-desc": "SVG fails, definētais izmērs $1 × $2 pikseļi, faila izmērs: $3",
 	"svg-long-desc-animated": "Animēts SVG fails, definētais izmērs $1 × $2 pikseļi, faila izmērs: $3",
 	"svg-long-error": "Nederīgs SVG fails: $1",

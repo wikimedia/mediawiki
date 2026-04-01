@@ -2936,7 +2936,6 @@
 	"file-info": "rozmiar pliku: $1, typ MIME: $2",
 	"file-info-size": "$1 × $2 pikseli, rozmiar pliku: $3, typ MIME: $4",
 	"file-info-size-pages": "$1 × $2 pikseli, rozmiar pliku: $3, typ MIME: $4, $5 {{PLURAL:$5|strona|strony|stron}}",
-	"file-nohires": "Grafika w wyższej rozdzielczości nie jest dostępna.",
 	"svg-long-desc": "Plik SVG, nominalnie $1 × $2 pikseli, rozmiar pliku: $3",
 	"svg-long-desc-animated": "Animowany plik SVG, nominalnie $1 × $2 pikseli, rozmiar pliku: $3",
 	"svg-long-error": "Nieprawidłowy plik SVG:$1",

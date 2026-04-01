@@ -1211,7 +1211,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|pagina|paginae}}",
 	"file-info": "magnitudo fasciculi: $1, typus MIME: $2",
 	"file-info-size": "$1 × $2 elementa imaginalia, magnitudo fasciculi: $3, typus MIME: $4",
-	"file-nohires": "Nulla maior resolutio exstat.",
 	"svg-long-desc": "fasciculus SVG, nominale $1 × $2 elementa imaginalia, magnitudo fasciculi: $3",
 	"show-big-image": "Sua resolutio",
 	"show-big-image-preview": "Mensura huius perspectionis: $1.",

@@ -2836,7 +2836,6 @@
 	"file-info": "dimensción do file: $1, tîpo MIME: $2",
 	"file-info-size": "$1 × $2 pixel, dimensción do file: $3, tîpo MIME: $4",
 	"file-info-size-pages": "$1 × $2 pixel, dimensción do file: $3, tîpo MIME: $4, $5 {{PLURAL:$5|pàgina|pàgine}}",
-	"file-nohires": "No gh'é de verscioìn a resoluçión ciù âta.",
 	"svg-long-desc": "file into formâto SVG, dimenscioìn nominâli $1 × $2 pixel, dimenscioìn do file: $3",
 	"svg-long-desc-animated": "file into formâto SVG animòu, dimensción nominâle $1 × $2 pixel, dimensción do file: $3",
 	"svg-long-error": "File SVG no vàlido: $1",

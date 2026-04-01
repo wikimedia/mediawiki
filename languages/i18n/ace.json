@@ -1005,7 +1005,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|ôn}}",
 	"file-info-size": "$1 × $2 piksel, rayek beureukaih: $3, MIME jeunèh: $4",
 	"file-info-size-pages": "$1 × $2 piksel, seunipat beureukaih: $3, jeunèh MIME: $4, $5 {{PLURAL:$5|laman}}",
-	"file-nohires": "Hana resolusi nyang leubèh manyang.",
 	"svg-long-desc": "Beureukah SVG, nominal $1 x $2 piksel, rayek beureukah: $3",
 	"show-big-image": "Beureukaih aseuli",
 	"show-big-image-preview": "Seunipat hasé peusaneut: $1",

@@ -2733,7 +2733,6 @@
 	"file-info": "ukuran berkas: $1, tipe MIME: $2",
 	"file-info-size": "$1x$2 piksel, agengnyané berkas: $3, soroh MIME:$4",
 	"file-info-size-pages": "$1 × $2 piksel, agengnyané berkas: $3, soroh MIME: $4, $5 {{PLURAL:$5|kaca}}",
-	"file-nohires": "Nénten kasayagaang résolusi sané luwih ageng.",
 	"svg-long-desc": "Berkas SVG, jimbarnyané $1 × $2 piksel, agengnyané berkas: $3",
 	"svg-long-desc-animated": "Berkas animasi SVG, jimbarnyané $1 × $2 piksel, ukuran berkas: $3",
 	"svg-long-error": "Berkas SVG nénten sah: $1",

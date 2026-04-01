@@ -599,7 +599,6 @@
 	"widthheightpage": "$1 × $2、$3 {{PLURAL:$3|ページ}}",
 	"file-info-size": "$1 × $2 ピクセル、ファイルサイズ: $3、MIME タイプ: $4",
 	"file-info-size-pages": "$1 × $2 ピクセル、ファイルサイズ: $3、MIMEタイプ: $4、$5 {{PLURAL:$5|ページ}}",
-	"file-nohires": "くり以上ぬ解像度ぉーあいびらん。",
 	"svg-long-desc": "SVG ファイル、$1 × $2 ピクセル、ファイルサイズ: $3",
 	"show-big-image": "元ぬファイル",
 	"show-big-image-preview": "くぬプレビューぬサイズ: $1。",

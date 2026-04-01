@@ -2231,7 +2231,6 @@
 	"file-info": "dimenziona d' 'o file: $1, tipo MIME: $2",
 	"file-info-size": "$1 × $2 pixel, dimenzione ddo file: $3, tipo MIME: $4",
 	"file-info-size-pages": "$1 × $2 pixel, dimenzione d' 'o file: $3, tipe 'e MIME: $4, $5 {{PLURAL:$5|paggena|paggene}}",
-	"file-nohires": "Nun ce sta na risoluzione cchiù auta.",
 	"svg-long-desc": "File SVG, dimenziune nommenale $1 × $2 pixel, dimenzione d' 'o file: $3",
 	"svg-long-desc-animated": "File SVG animato, dimenziune nommenale $1 × $2 pixel, dimenzione d' 'o file: $3",
 	"svg-long-error": "File SVG invalido: $1",

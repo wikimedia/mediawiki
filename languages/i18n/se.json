@@ -2609,7 +2609,6 @@
 	"file-info": "fiilasturrodat: $1, MIME-tiipa: $2",
 	"file-info-size": "$1 × $2 piksela (govvačuoggá), fiilasturrodat: $3, MIME-tiipa: $4",
 	"file-info-size-pages": "$1 × $2 piksela (govvačuoggá), fiilasturrodat: $3, MIME-tiipa: $4, $5 {{PLURAL:$5|siidu|siiddu}}",
-	"file-nohires": "Alit čuokkisčoahkku ii leat olámuttos.",
 	"svg-long-desc": "SVG-fiila, dábálaččat $1 × $2 piksela (govvačuoggá), fiilasturrodat: $3",
 	"svg-long-desc-animated": "Animerejuvvon SVG-fiila, dábálaččat $1 × $2 piksela (govvačuoggá), fiilasturrodat: $3",
 	"svg-long-error": "Gustohis SVG-fiila $1",

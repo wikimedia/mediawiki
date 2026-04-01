@@ -2097,7 +2097,6 @@
 	"file-info": "Grannizza: $1, tipu MIME: $2",
 	"file-info-size": "$1 × $2 pixel, grannizza dû file: $3, tipu MIME: $4",
 	"file-info-size-pages": "$1 × $2 pixel, grannizza dû file: $3, tipu MIME: $4, $5 {{PLURAL:$5|pàggina|pàggini}}",
-	"file-nohires": "Risuluzzioni cchiù àuta nun nn'havi.",
 	"svg-long-desc": "File SVG, diminzioni numinali $1 × $2 pixel, grannizza dû file: $3",
 	"svg-long-desc-animated": "File SVG animatu, diminzioni numinali $1 × $2 pixel, grannizza dû file: $3",
 	"svg-long-error": "File SVG nun vàlidu: $1",

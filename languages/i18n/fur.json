@@ -1006,7 +1006,6 @@
 	"file-info": "Dimensions: $1, gjenar MIME: $2",
 	"file-info-size": "$1 × $2 pixel, dimensions: $3, gjenar MIME: $4",
 	"file-info-size-pages": "$1 × $2 pixels, dimension dal file: $3, gjenar MIME: $4, $5 {{PLURAL:$5|pagjine|pagjinis}}",
-	"file-nohires": "No son disponibilis versions cun risoluzion plui alte.",
 	"svg-long-desc": "file tal formât SVG, dimensions nominâls $1 × $2 pixels, dimensions dal file: $3",
 	"show-big-image": "File origjnâl",
 	"show-big-image-preview": "Dimension di cheste anteprime: $1.",

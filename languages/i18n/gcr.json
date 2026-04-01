@@ -808,7 +808,6 @@
 	"widthheightpage": "$1 × $2, $3 paj{{PLURAL:$3|}}",
 	"file-info-size": "$1 × $2 piksèl, tay di fiché : $3, tip MIME : $4",
 	"file-info-size-pages": "$1 × $2 piksèl ; tay di fiché : $3 ; tip MIME : $4 ; $5 paj{{PLURAL:$5|}}",
-	"file-nohires": "Pa di pli rot rézolisyon disponnib.",
 	"svg-long-desc": "Fiché SVG, rézolisyon di $1 × $2 piksèl, tay : $3",
 	"show-big-image": "Fiché d’orijin",
 	"show-big-image-preview": "Tay di sa apèrsou : $1.",

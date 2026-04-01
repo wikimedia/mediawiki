@@ -2172,7 +2172,6 @@
 	"file-info": "கோப்பின் அளவு: $1, MIME வகை: $2",
 	"file-info-size": "$1 × $2 படவணுக்கள், கோப்பின் அளவு: $3, MIME வகை: $4",
 	"file-info-size-pages": "$1 × $2 pixels, file size: $3, MIME type: $4, $5 {{PLURAL:$5|பக்கம்|பக்கங்கள்}}",
-	"file-nohires": "இதைவிட அளவில் பெரிய படிமம் இல்லை.",
 	"svg-long-desc": "SVG கோப்பு, பெயரளவில் $1 × $2 பிக்சல்கள், கோப்பு அளவு: $3",
 	"svg-long-desc-animated": "அனிமேட்டட் SVG file, தோராயமாக $1 × $2 pixels, file size: $3",
 	"svg-long-error": "செல்லாத SVG கோப்பு: $1",

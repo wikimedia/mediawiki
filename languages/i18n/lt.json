@@ -2711,7 +2711,6 @@
 	"file-info": "rinkmenos dydis: $1, MIME tipas: $2",
 	"file-info-size": "$1 × $2 taškų, rinkmenos dydis: $3, MIME tipas: $4",
 	"file-info-size-pages": "$1 × $2 taškų, rinkmenos dydis: $3, MIME tipas: $4, $5 {{PLURAL:$5|puslapis|puslapiai|puslapių}}",
-	"file-nohires": "Geresnė raiška negalima.",
 	"svg-long-desc": "SVG rinkmena, formaliai $1 × $2 taškų, rinkmenos dydis: $3",
 	"svg-long-desc-animated": "Animuotas SVG failas, formaliai $1 × $2 pikselių, failo dydis: $3",
 	"svg-long-error": "Neleistinas SVG failas: $1",

@@ -1722,7 +1722,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|bet|betler}}",
 	"file-info": "fayldıń ólshemi: $1, MIME tipi: $2",
 	"file-info-size": "$1 × $2 piksel, fayldıń ólshemi: $3, MIME tipi: $4",
-	"file-nohires": "Bunnan joqarı rezolyuciya tabılmadı.",
 	"svg-long-desc": "SVG fayl, $1 × $2 piksel belgilengen, fayldıń ólshemi: $3",
 	"svg-long-error": "Jaramsız SVG faylı: $1",
 	"show-big-image": "Túp fayl",

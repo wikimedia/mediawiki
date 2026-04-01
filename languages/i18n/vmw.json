@@ -466,7 +466,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|nikukhu|makukhu}}",
 	"file-info-size": "$1 × $2 ipiiseli, munnuwelo: $3, muthinto MIME: $4",
 	"file-info-size-pages": "$1 × $2 pixels, munnuwelo wa etthu: $3, MIME type: $4, $5 {{PLURAL:$5|opuro|mapuro}}",
-	"file-nohires": "Woohikha maphukelo maalupale amphwanyaneya",
 	"svg-long-desc": "Etthu SVG, nsina naya $1 × $2 pixels, wunnuwa waya: $3",
 	"show-big-image": "Eyoonelo ya ekeekhayi",
 	"show-big-image-preview": "Munnuwelo wa myaanyiheryo: $1.",

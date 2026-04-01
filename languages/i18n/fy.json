@@ -1626,7 +1626,6 @@
 	"file-info": "bestânsgrutte: $1, MIME-type: $2",
 	"file-info-size": "$1 × $2 pixels, bestânsgrutte: $3, MIME-type: $4",
 	"file-info-size-pages": "$1 × $2 piksels, bestânsgrutte: $3, MIME-type: $4, $5 {{PLURAL:$5|side|siden}}",
-	"file-nohires": "Gjin hegere resolúsje beskikber.",
 	"svg-long-desc": "SVG-bestân, nominaal $1 × $2 pixels, bestânsgrutte: $3",
 	"show-big-image": "Oarspronklik bestân",
 	"show-big-image-preview": "Grutte fan dit proefbyld: $1.",

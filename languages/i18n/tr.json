@@ -2936,7 +2936,6 @@
 	"file-info": "dosya boyutu: $1, MIME türü: $2",
 	"file-info-size": "$1 × $2 piksel, dosya boyutu: $3, MIME türü: $4",
 	"file-info-size-pages": "$1 × $2 piksel, dosya boyutu: $3, MIME türü: $4, $5 sayfa",
-	"file-nohires": "Daha yüksek çözünürlük yok.",
 	"svg-long-desc": "SVG dosyası, sözde $1 × $2 piksel, dosya boyutu: $3",
 	"svg-long-desc-animated": "Hareketli SVG dosyası, sözde $1 × $2 piksel, dosya boyutu: $3",
 	"svg-long-error": "Geçersiz SVG dosyası: $1",

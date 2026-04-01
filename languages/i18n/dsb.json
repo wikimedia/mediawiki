@@ -1816,7 +1816,6 @@
 	"file-info": "wjelikosć dataje: $1, MIME-Typ: $2",
 	"file-info-size": "$1 × $2 pikselow, wjelikosć dataje: $3, MIME-Typ: $4",
 	"file-info-size-pages": "$1 × $2 pikselow, wjelikosć dataje: $3, MIME-typ: $4, $5 {{PLURAL:$5|bok|boka|boki|bokow}}",
-	"file-nohires": "Wuše wótgranicowanje njeeksistěrujo.",
 	"svg-long-desc": "dataja SVG, nominalnje: $1 × $2 piksele, wjelikosć dataje: $3",
 	"svg-long-desc-animated": "Animěrowana SVG-dataja, zakładnej wótměra $1 × $2 pikselow, datajowa wjelikosć: $3",
 	"svg-long-error": "Njepłaśiwa SVG-dataja: $1",

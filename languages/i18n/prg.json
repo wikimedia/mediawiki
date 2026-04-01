@@ -1349,7 +1349,6 @@
 	"file-info": "zūrbrukes debban: $1, MIME tīps: $2",
 	"file-info-size": "$1 × $2 pikselai, zūrbrukes debban: $3, MIME tīps: $4",
 	"file-info-size-pages": "$1 × $2 pikselai, zūrbrukes debban: $3, MIME tīps: $4, $5 {{PLURAL:$5|pāusan|pausāi}}",
-	"file-nohires": "Mūisesa rezōluciōni ni ast preiēiminan.",
 	"svg-long-desc": "SVG zūrbrukis, nōminalai $1 × $2 pikselai, debban: $3",
 	"show-big-image": "Ōrigināls zūrbrukis",
 	"show-big-image-preview": "Šisse pirmādiran debban: $1.",

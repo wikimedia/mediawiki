@@ -2036,7 +2036,6 @@
 	"file-info": "Dateiömfang: $1, <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Multi-Purpose Internet Mail Extensions\">MIME</i>-Zoot: <code>$2</code>",
 	"file-info-size": "{{PLURAL:$1|Ei Pixel|$1 Pixelle}} breed × {{PLURAL:$2|Ei Pixel|$2 Pixelle}} huh, de Datei hät $3, de <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Multi-Purpose Internet Mail Extensions\">MIME</i>-Zood es: <code>$4</code>",
 	"file-info-size-pages": "{{PLURAL:$1|Ei Pixel|$1 Pixelle}} breed × {{PLURAL:$2|Ei Pixel|$2 Pixelle}} huh, Ömfang:&nbsp;$3, <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Multi-Purpose Internet Mail Extensions\">MIME</i>-Zoot: $4, met {{PLURAL:$5|ein Sigg|$5 Sigge|kein Sigge}}",
-	"file-nohires": "Mer han kein hüütere Oplösung vun däm Beld.",
 	"svg-long-desc": "SVG-Datei, de Basis es {{PLURAL:$1|ei Pixel|$1 Pixelle|kei Pixel}} breed × {{PLURAL:$2|ei Pixel|$2 Pixelle|kei Pixel}} huh, dä Dateiömfang es $3",
 	"svg-long-desc-animated": "SVG-Datei met Bewääjong, de Basis es {{PLURAL:$1|ei Pixel|$1 Pixelle|kei Pixel}} breed × {{PLURAL:$2|ei Pixel|$2 Pixelle|kei Pixel}} huh, dä Dateiömfang es $3",
 	"svg-long-error": "En kapodde <i lang=\"en\">SVG</i>-Dattei: $1",

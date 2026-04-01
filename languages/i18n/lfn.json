@@ -2361,7 +2361,6 @@
 	"file-info": "grandia de fix: $1, tipo MIME: $2",
 	"file-info-size": "$1 × $2 pixeles, grandia de fix: $3, tipo MIME: $4",
 	"file-info-size-pages": "$1 × $2 pixeles, grandia de fix: $3, tipo MIME: $4, $5 {{PLURAL:$5|paje|pajes}}",
-	"file-nohires": "No densia plu alta es disponable.",
 	"svg-long-desc": "fix svg, densia: $1 × $2 pixeles, grandia: $3",
 	"svg-long-desc-animated": "Fix SVG animada, densia: $1 × $2 pixeles, grandia: $3",
 	"svg-long-error": "Fix SVG nonvalida: $1",

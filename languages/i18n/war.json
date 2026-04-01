@@ -1498,7 +1498,6 @@
 	"file-info": "Kadako han paypay: $1, klase han MIME: $2",
 	"file-info-size": "$1 × $2 nga pixel, kadako han fayl: $3, MIME nga tipo: $4",
 	"file-info-size-pages": "$1 × $2 mga pixel, kadako han file: $3, klase han MIME: $4, $5 {{PLURAL:$5|pakli|mga pakli}}",
-	"file-nohires": "Waray mas hiruhitaas nga resolusyon.",
 	"svg-long-desc": "SVG nga fayl, ginbabanabanahan nga $1 × $2 nga mga pixel, kadako han fayl: $3",
 	"show-big-image": "Orihinal nga paypay",
 	"show-big-image-preview": "Kadako hin nga pahiuna nga pagawas: $1.",

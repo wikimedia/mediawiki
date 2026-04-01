@@ -2280,7 +2280,6 @@
 	"file-info": "Talha del fichièr: $1, tipe MIME: $2",
 	"file-info-size": "$1 × $2 pixèl, talha del fichièr: $3, tipe MIME: $4",
 	"file-info-size-pages": "$1 × $2 pixèls, talha de fichièr: $3, tipe MIME: $4, $5 {{PLURAL:$5|pagina|paginas}}",
-	"file-nohires": "Pas de resolucion mai nauta de disponibla.",
 	"svg-long-desc": "Fichièr SVG, resolucion de $1 × $2 pixèls, talha : $3",
 	"svg-long-desc-animated": "Fichièr SVG animat, talha $1 x $2 pixèls, talha del fichièr : $3",
 	"svg-long-error": "Fichièr SVG invalid : $1",

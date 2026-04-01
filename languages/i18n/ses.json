@@ -1874,7 +1874,6 @@
 	"file-info": "tuku azzaati: $1, MIME dumi: $2",
 	"file-info-size": "biitonbi $1 × $2 pixels, tuku azzaati: $3, MIME dumi: $4",
 	"file-info-size-pages": "biitonbi $1 × $2, tuku azzaati size: $3, MIME dumi: {{PLURAL:$5|moo}} $4, $5",
-	"file-nohires": "Biisahã ši bara kaŋ ga bis'a.",
 	"svg-long-desc": "SVG tuku, ka nee biitonbi $1 × $2, tuku azzaati: $3",
 	"svg-long-desc-animated": "SVG tuku hunante, ka nee biitonbi $1 × $2, tuku azzaati: $3",
 	"svg-long-error": "SVG tuku laala: $1",

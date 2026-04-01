@@ -835,7 +835,6 @@
 	"nextdiff": "ສ່ວນຕ່າງຕໍ່ໄປ →",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|ໜ້າ}}",
 	"file-info-size": "$1 × $2  ປິກເຊລ, ຂະໜາດໄຟລ໌: $3, MIME type: $4",
-	"file-nohires": "ບໍ່ມີຂະໜາດລະອຽດກວ່າ",
 	"show-big-image": "ໄຟລ໌ຕົ້ນສະບັບ",
 	"show-big-image-preview": "ຂະໜາດຂອງຕົວຢ່າງນີ້: $1",
 	"show-big-image-other": "{{PLURAL:$2|ຄວາມລະອຽດອື່ນ ໆ}}: $1",

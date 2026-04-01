@@ -821,7 +821,6 @@
 	"file-info": "nui waihona: $1, kaila MIME: $2",
 	"file-info-size": "$1 x $2 pikela, nui waihona: $3, ʻano MIME: $4",
 	"file-info-size-pages": "$1 × $2 mau pikela, nui waihona: $3, kaila MIME: $4, $5 {{PLURAL:$5|ʻaoʻao|mau ʻaoʻao}}",
-	"file-nohires": "Loaʻa ʻole ka miomio aʻe.",
 	"svg-long-desc": "Waihona SVG, $1 x $2 mau pikela, nui waihona: $3",
 	"svg-long-error": "Hewa ka waihona SVG: $1",
 	"show-big-image": "Waihona kumu",

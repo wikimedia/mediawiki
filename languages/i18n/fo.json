@@ -1658,7 +1658,6 @@
 	"file-info": "fílustødd: $1, MIME slag: $2",
 	"file-info-size": "$1 × $2 pixel, stødd fílu: $3, MIME-slag: $4",
 	"file-info-size-pages": "$1 × $2 pixels, fílustødd: $3, MIME slag: $4, $5 {{PLURAL:$5|síða|síður}}",
-	"file-nohires": "Ongin hægri upploysn varð funnin.",
 	"svg-long-desc": "SVG fíle, nominelt $1 × $2 pixel, fíle stødd: $3",
 	"svg-long-desc-animated": "Animerað SVG fíla, nominelt $1 × $2 pixels, fílustødd: $3",
 	"svg-long-error": "Ógyldug SVG fíla: $1",

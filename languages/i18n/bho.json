@@ -1385,7 +1385,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|पन्ना}}",
 	"file-info-size": "$1 × $2 पिक्सेल, फाइल साइज: $3, MIME टाइप: $4",
 	"file-info-size-pages": "$1 × $2 पिक्सेल, फाइल साइज: $3, MIME प्रकार: $4, $5 {{PLURAL:$5|पन्ना}}",
-	"file-nohires": "ए से उच्च गुणवत्ता उपलब्ध नइखे।",
 	"svg-long-desc": "एसवीजी फाइल, नॉमिनली $1 x $2 पिक्सल, फाइल के आकार: $3",
 	"show-big-image": "ओरिजनल फाइल",
 	"show-big-image-preview": "ए नमूना के साइज: $1.",

@@ -2362,7 +2362,6 @@
 	"file-info": "filstorleik: $1, MIME-type: $2",
 	"file-info-size": "$1 × $2 pikslar, filstorleik: $3, MIME-type: $4",
 	"file-info-size-pages": "$1 × $2 pikslar, filstorleik: $3, MIME-type: $4, {{PLURAL:$5|éi side|$5 sider}}",
-	"file-nohires": "Høgare oppløysing er ikkje tilgjengeleg.",
 	"svg-long-desc": "SVG-fil, standardoppløysing: $1 × $2 pikslar, filstorleik: $3",
 	"svg-long-desc-animated": "Animert SVG-fil, standardoppløysing $1 × $2 pikslar, filstorleik: $3",
 	"svg-long-error": "Ugild SVG-fil: $1",

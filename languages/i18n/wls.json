@@ -469,7 +469,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|pāsina}}",
 	"file-info-size": "$1 × $2 pikisele, lahi o te koga: $3, fa'ahiga tohi: $4",
 	"file-info-size-pages": "$1 × $2 pikisele, lahi o te koga: $3, fa'ahiga MIME: $4, $5 {{PLURAL:$5|pāsina}}",
-	"file-nohires": "Ko te gata'aga aeni o tana 'asi lelei mai.",
 	"svg-long-desc": "koga SVG, e $1 × $2 pikisele, mo: $3 tona lahi",
 	"show-big-image": "Koga 'uluaki",
 	"show-big-image-preview": "Lahi o te pāki fakatomu'a:$1.",

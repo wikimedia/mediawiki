@@ -511,7 +511,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|sera|seri}}",
 	"file-info-size": "$1 × $2 pikseli, e mira le suboriske: $3, MIME tipos: $4",
 	"file-info-size-pages": "$1 × $2 pikseli, e mira le suboriske: $3, MIME tipos: $4, $5 {{PLURAL:$5|sera|seri}}",
-	"file-nohires": "Nane upreder rezolucija.",
 	"svg-long-desc": "SVG suboris, $1 × $2 pixeli, suboriskero baripen: $3",
 	"show-big-image": "O suboris so sas akor",
 	"show-big-image-preview": "E mira kale dikhibnaske: $1.",

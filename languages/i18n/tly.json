@@ -735,7 +735,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|səhifə|səhifon}}",
 	"file-info-size": "$1 × $2 пиксел, фајли памјә: $3, MIME тиспир: $4",
 	"file-info-size-pages": "$1 × $2 пиксел, фајли памјә: $3, MIME-тиспир: $4, $5 {{PLURAL:$5|сәһифә|сәһифон}}",
-	"file-nohires": "Ən barzə rəvojət ni.",
 	"svg-long-desc": "SVG фајл, номинәләдә $1 × $2 пиксел, фајли памјә: $3",
 	"show-big-image": "Fajli original",
 	"show-big-image-preview": "Nav dijə kardej pamjə: $1.",

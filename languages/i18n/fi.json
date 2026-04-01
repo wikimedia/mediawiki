@@ -2907,7 +2907,6 @@
 	"file-info": "$1, MIME-tyyppi: $2",
 	"file-info-size": "$1 × $2 kuvapistettä, $3, MIME-tyyppi: $4",
 	"file-info-size-pages": "$1 × $2 kuvapistettä, tiedoston koko $3, MIME-tyyppi $4, $5 {{PLURAL:$5|sivu|sivua}}",
-	"file-nohires": "Tarkempaa kuvaa ei ole saatavilla.",
 	"svg-long-desc": "SVG-tiedosto; oletustarkkuus $1 × $2 kuvapistettä; tiedostokoko $3",
 	"svg-long-desc-animated": "Animoitu SVG-tiedosto; oletustarkkuus $1 × $2 kuvapistettä; tiedostokoko $3",
 	"svg-long-error": "Kelvoton SVG-tiedosto: $1",

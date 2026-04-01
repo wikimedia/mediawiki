@@ -407,5 +407,6 @@
 	"exif-digitalsourcetype-softwareimage": "소프트웨어에 의해 생성됨",
 	"exif-digitalsourcetype-digitalart": "사람이 디지털 도구로 생성한 미디어",
 	"exif-digitalsourcetype-trainedalgorithmicmedia": "생성형 AI를 사용해 생성됨",
+	"exif-digitalsourcetype-algorithmicmedia": "인공지능이 아닌 알고리즘으로만 생성된 미디어",
 	"exif-digitalsourcetype-screencapture": "스크린 캡쳐"
 }

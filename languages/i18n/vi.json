@@ -2901,7 +2901,6 @@
 	"file-info": "kích thước tập tin: $1, kiểu MIME: $2",
 	"file-info-size": "$1×$2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4",
 	"file-info-size-pages": "$1×$2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4, $5 trang",
-	"file-nohires": "Không có độ phân giải cao hơn.",
 	"svg-long-desc": "tập tin SVG, $1×$2 điểm ảnh trên danh nghĩa, kích thước: $3",
 	"svg-long-desc-animated": "tập tin hình động SVG, $1×$2 điểm ảnh trên danh nghĩa, kích thước: $3",
 	"svg-long-error": "Tập tin SVG có lỗi: $1",

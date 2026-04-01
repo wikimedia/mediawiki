@@ -728,7 +728,6 @@
 	"previousdiff": "← Redaktim mâ i vjetër",
 	"nextdiff": "Redaktim ma i ri →",
 	"file-info-size": "$1 × $2 pixela, madhësia e skedës: $3, tipi MIME: $4",
-	"file-nohires": "Rezolucioni i plotë.",
 	"svg-long-desc": "skeda SVG, $1 × $2 pixela, madhësia: $3",
 	"show-big-image": "Rezolucion i plotë",
 	"bad_image_list": "Formati asht si vijon:\n\nMerren parasysh vetëm elementet e radhituna (rreshtat që fillojnë me *).\nVegza e parë në rresht lidhet patjetër me nji skedë të keqe.\nKrejt vegzat tjera në të njejtin rresht do të bajnë përjashtim, d.m.th. faqe ku skeda paraqitet mbrenda rreshtit.",

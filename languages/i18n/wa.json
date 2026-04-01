@@ -1224,7 +1224,6 @@
 	"widthheightpage": "$1 × $2, $3 pådje{{PLURAL:$3||s}}",
 	"file-info-size": "$1 × $2 picsels, groxheur do fitchî: $3, del sôre \"MIME\": $4",
 	"file-info-size-pages": "$1 × $2 picsels ; taye do fitchî : $3 ; type MIME : $4 ; $5 pådje{{PLURAL:$5||s}}",
-	"file-nohires": "I n’&nbsp;a nén di pus grande finté.",
 	"svg-long-desc": "Fitchî SVG, finté di $1 × $2 picsels, grandeu: $3",
 	"show-big-image": "Fitchî d’&nbsp;oridjinne",
 	"show-big-image-preview": "Grandeur do préveyaedje: $1.",

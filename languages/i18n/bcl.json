@@ -2088,7 +2088,6 @@
 	"file-info": "sokol kan ''file'': $1, tipo nin MIME: $2",
 	"file-info-size": "$1 × $2 na pixel, pakadakula: $3, tipo nin MIME: $4",
 	"file-info-size-pages": "$1 × $2 na pixel, pakadakula: $3, tipo kan MIME: $4, $5 {{PLURAL:$5|pahina|(na) pahina}}",
-	"file-nohires": "Mayo na nin mas malinaw.",
 	"svg-long-desc": "SVG na file, nominal na $1 × $2 (na) pixel, pakadakula: $3",
 	"svg-long-desc-animated": "Animatadong SVG na sagunson, nangangaranang $1 x $2 piksel, kadakulaan nin sagunson: $3",
 	"svg-long-error": "Imbalidong SVG na sagunson: $1",

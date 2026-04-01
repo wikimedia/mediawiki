@@ -2918,7 +2918,6 @@
 	"file-info": "filstorlek: $1, MIME-typ: $2",
 	"file-info-size": "$1 × $2 pixlar, filstorlek: $3, MIME-typ: $4",
 	"file-info-size-pages": "$1 × $2 pixlar, filstorlek: $3, MIME-typ: $4, $5 {{PLURAL:$5|sida|sidor}}",
-	"file-nohires": "Det finns ingen version med högre upplösning.",
 	"svg-long-desc": "SVG-fil, standardstorlek: $1 × $2 pixlar, filstorlek: $3",
 	"svg-long-desc-animated": "Animerad SVG-fil, standardstorlek $1 × $2 pixlar, filstorlek: $3",
 	"svg-long-error": "Felaktig SVG-fil: $1",

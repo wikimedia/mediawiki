@@ -2981,7 +2981,6 @@
 	"file-info": "ファイルサイズ: $1、MIMEタイプ: $2",
 	"file-info-size": "$1 × $2 ピクセル、ファイルサイズ: $3、MIME タイプ: $4",
 	"file-info-size-pages": "$1 × $2 ピクセル、ファイルサイズ: $3、MIMEタイプ: $4、$5 {{PLURAL:$5|ページ}}",
-	"file-nohires": "高解像度版はありません。",
 	"svg-long-desc": "SVG ファイル、$1 × $2 ピクセル、ファイルサイズ: $3",
 	"svg-long-desc-animated": "アニメーション SVG ファイル、$1 × $2 ピクセル、ファイルサイズ: $3",
 	"svg-long-error": "無効な SVG ファイル: $1",

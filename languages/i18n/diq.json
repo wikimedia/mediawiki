@@ -2521,7 +2521,6 @@
 	"file-info": "ebatê dosyayi: $1, MIME tip: $2",
 	"file-info-size": "$1 × $2 pikselan, ebatê dosya: $3, MIME tipê cı: $4",
 	"file-info-size-pages": "$1 × $2 pikse, dergeya dosyay: $3, MIME tipiya cı: $4, $5 {{PLURAL:$5|pela|pela}}",
-	"file-nohires": "Deha berz agozney cı çıniyo",
 	"svg-long-desc": "Dosyay SVGi, nominal $1 × $2 pikseli, ebadê dosya: $3",
 	"svg-long-desc-animated": "SVG dosya, nominalin $1 × $2 piksela, ebatê dosya: $3",
 	"svg-long-error": "Nêmeqbul dosyaya SVG'i: $1",

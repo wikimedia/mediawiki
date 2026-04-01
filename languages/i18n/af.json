@@ -2104,7 +2104,6 @@
 	"file-info": "lêergrootte: $1, MIME-tipe: $2",
 	"file-info-size": "$1 × $2 piksels, lêergrootte: $3, MIME-tipe: $4",
 	"file-info-size-pages": "$1 × $2 piksels, lêergrootte: $3, MIME-tipe: $4, $5 {{PLURAL:$5|bladsy|bladsye}}",
-	"file-nohires": "Geen hoër resolusie is beskikbaar nie.",
 	"svg-long-desc": "SVG-lêer, normaalweg $1 × $2 piksels, lêergrootte: $3",
 	"svg-long-desc-animated": "Geanimeerde SVG-lêer, normaalweg $1 × $2 piksels, lêergrootte: $3",
 	"svg-long-error": "Ongeldige SVG-lêer: $1",

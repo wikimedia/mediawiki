@@ -2421,7 +2421,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|pagino|pagini}}",
 	"file-info-size": "$1 × $2 pixel-i, grandeso dil arkivo: $3, MIME type: $4",
 	"file-info-size-pages": "$1 × $2 pixel-i, grandeso dil arkivo: $3, tipo MIME: $4, $5 {{PLURAL:$5|pagino|pagini}}",
-	"file-nohires": "Ne existas grandeso plu granda.",
 	"svg-long-desc": "arkivo SVG, nominale $1 x $2 \"pixels\", kun $3",
 	"svg-long-error": "Nevalida arkivo SVG: $1",
 	"show-big-image": "Arkivo originala",

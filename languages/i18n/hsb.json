@@ -2329,7 +2329,6 @@
 	"file-info": "Wulkosć dataje: $1, typ MIME: $2",
 	"file-info-size": "$1 × $2 pikselow, wulkosć dataje: $3, typ MIME: $4",
 	"file-info-size-pages": "$1 × $2 pikselow, wulkosć dataje: $3, MIME-typ: $4, $5 {{PLURAL:$5|strona|stronje|strony|stronow}}",
-	"file-nohires": "Za tutu dataju žane wyše rozeznaće njeje.",
 	"svg-long-desc": "SVG-dataja, zakładna wulkosć: $1 × $2 pikselow, datajowa wulkosć: $3",
 	"svg-long-desc-animated": "Animěrowana SVG-dataja, zakładnej wotměraj $1 × $2 pikselow, datajowa wulkosć: $3",
 	"svg-long-error": "Njepłaćiwa SVG-dataja: $1",

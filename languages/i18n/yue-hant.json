@@ -2726,7 +2726,6 @@
 	"file-info": "檔案大細：$1 ，MIME類型：$2",
 	"file-info-size": "$1 × $2 像素，檔案大細：$3 ，MIME類型：$4",
 	"file-info-size-pages": "$1 × $2 像素，檔案大細： $3 ，MIME類型：$4，$5 {{PLURAL:$5|頁}}",
-	"file-nohires": "冇更高解像度嘅圖像。",
 	"svg-long-desc": "SVG檔案，表面大細： $1 × $2 像素，檔案大細：$3",
 	"svg-long-desc-animated": "動態SVG檔案，表面大細： $1 × $2 像素，檔案大細：$3",
 	"svg-long-error": "無效嘅SVG檔： $1",

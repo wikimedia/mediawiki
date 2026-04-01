@@ -2761,7 +2761,6 @@
 	"file-info": "fájlméret: $1, MIME-típus: $2",
 	"file-info-size": "$1 × $2 képpont, fájlméret: $3, MIME-típus: $4",
 	"file-info-size-pages": "$1 × $2 képpont, fájlméret: $3, MIME típus: $4, $5 oldal",
-	"file-nohires": "Nem érhető el nagyobb felbontású változat.",
 	"svg-long-desc": "SVG fájl, névlegesen $1 × $2 képpont, fájlméret: $3",
 	"svg-long-desc-animated": "Animált SVG fájl, névlegesen $1 × $2 képpont, fájlméret: $3",
 	"svg-long-error": "Érvénytelen SVG-fájl: $1",

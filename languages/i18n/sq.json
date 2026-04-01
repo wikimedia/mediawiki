@@ -2303,7 +2303,6 @@
 	"file-info": "madhësia skedës: $1, lloji MIME: $2",
 	"file-info-size": "$1 × $2 pixela, madhësia e skedës: $3, tipi MIME: $4",
 	"file-info-size-pages": "$1 × $2 pixel, madhësia e dokumentit: $3 , MIME tipi: $4 , $5 {{PLURAL:$5| faqe | faqet}}",
-	"file-nohires": "Nuk ka rezolucion më të madh.",
 	"svg-long-desc": "skedë SVG, fillimisht $1 × $2 pixel, madhësia e skedës: $3",
 	"svg-long-error": "Skedar SVG i parregullt: $1",
 	"show-big-image": "Skedari origjinal",

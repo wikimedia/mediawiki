@@ -2574,7 +2574,6 @@
 	"file-info": "maint y ffeil: $1, ffurf MIME: $2",
 	"file-info-size": "$1 × $2 picsel, maint y ffeil: $3, ffurf MIME: $4",
 	"file-info-size-pages": "$1 × $2 picsel, maint ffeil: $3, math MIME: $4, $5 {{PLURAL:$5|tudalen|tudalen}}",
-	"file-nohires": "Wedi ei chwyddo hyd yr eithaf.",
 	"svg-long-desc": "Ffeil SVG, maint mewn enw $1 × $2 picsel, maint y ffeil: $3",
 	"svg-long-desc-animated": "Ffeil SVG animeiddiedig, maint mewn enw $1 × $2 picsel, maint y ffeil: $3",
 	"svg-long-error": "Ffeil SVG annilys: $1",

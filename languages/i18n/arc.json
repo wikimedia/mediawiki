@@ -937,7 +937,6 @@
 	"file-info": "ܥܓܪܐ ܕܠܦܦܐ: $1, MIME ܐܕܫܐ: $2",
 	"file-info-size": "$1 × $2 ܦܩܣܠ، ܥܓܪܐ ܕܠܦܦܐ: $3، ܐܕܫܐ ܕ MIME: $4",
 	"file-info-size-pages": "$1 × $2 ܦܩܣܠ, ܥܓܪܐ ܕܠܦܦܐ: $3, ܐܕܫܐ ܕ MIME: $4, $5 {{PLURAL:$5|ܦܐܬܐ|ܦܐܬܬ̈ܐ}}",
-	"file-nohires": "ܠܝܬ ܢܩܕܘܬܐ ܝܬܝܪ ܡܢ ܗܢܐ.",
 	"show-big-image": "ܠܦܦܐ ܫܪܫܝܐ",
 	"show-big-image-preview": "ܥܓܪܐ ܕܓܠܚܐ: $1.",
 	"show-big-image-size": "$1 × $2 ܦܩܣܠ",

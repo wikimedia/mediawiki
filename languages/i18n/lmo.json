@@ -2526,7 +2526,6 @@
 	"file-info": "grandezza de fail: $1, tipo MIME: $2",
 	"file-info-size": "$1 × $2 picsel, dimension : $3, sort MIME: $4",
 	"file-info-size-pages": "$1 × $2 picsel, grandezza del fail: $3, tipo MIME: $4, $5 {{PLURAL:$5|pagina|pagine}}",
-	"file-nohires": "Nissuna resoluzzion maggiora disponibil.",
 	"svg-long-desc": "archivi in formad SVG, grandezza nominal  $1 × $2 picsel, grandezza de l'archivi: $3",
 	"svg-long-desc-animated": "Fail in formad SVG animad, grandezza nominal $1 × $2 picsel, grandezza del fail: $3",
 	"svg-long-error": "Fail SVG minga bon: $1",

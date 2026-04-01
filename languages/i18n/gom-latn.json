@@ -944,7 +944,6 @@
 	"file-info": "faylichi voddai: $1, MIME prokar: $2",
 	"file-info-size": "$1 × $2 chitr-totvam, faylichi voddai: $3, MIME prokar: $4",
 	"file-info-size-pages": "$1 × $2 chitr-totvam, faylichi voddai: $3, MIME prokar: $4, $5 {{PLURAL:$5|pan|panam}}‎",
-	"file-nohires": "Odhik bariksai na.",
 	"svg-long-desc": "SVG fayl, nanvak $1 × $2 chitr-totvam, faylchi voddai: $3",
 	"show-big-image": "Mullavi fayl",
 	"show-big-image-preview": "Hea purvdekhavachi voddai: $1",

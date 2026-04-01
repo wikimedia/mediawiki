@@ -2361,7 +2361,6 @@
 	"widthheightpage": "$1 × $2, {{PLURAL:$3|pad|pads}} $3",
 	"file-info": "ragivagretot: $1, MIME-pated: $2",
 	"file-info-size": "$1 × $2 pixel, ragivagret: $3, pated MIME: $4",
-	"file-nohires": "Gretot gudikum no pagebidon.",
 	"svg-long-desc": "ragiv in fomät: SVG, magodaziöbs $1 × $2, gretot: $3",
 	"svg-long-error": "Ragiv 'SVG' ne lonöfon: $1",
 	"show-big-image": "Ragiv rigik",

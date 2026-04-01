@@ -2488,7 +2488,6 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|ਸਫ਼ਾ|ਸਫ਼ੇ}}",
 	"file-info": "ਫਾਇਲ ਆਕਾਰ: $1, MIME ਕਿਸਮ: $2",
 	"file-info-size": "$1 × $2 ਪਿਕਸਲ, ਫ਼ਾਈਲ ਅਕਾਰ: $3, MIME ਕਿਸਮ: $4",
-	"file-nohires": "ਇਸ ਤੋਂ ਵੱਡੀ ਤਸਵੀਰ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।",
 	"svg-long-desc": "SVG ਫ਼ਾਈਲ, ਆਮ ਤੌਰ ’ਤੇ $1 × $2 ਪਿਕਸਲ, ਫ਼ਾਈਲ ਦਾ ਅਕਾਰ: $3",
 	"show-big-image": "ਅਸਲ ਫ਼ਾਈਲ",
 	"show-big-image-preview": "ਇਸ ਝਾਤ ਦਾ ਅਕਾਰ: $1.",

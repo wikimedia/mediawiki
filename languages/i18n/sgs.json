@@ -1381,7 +1381,6 @@
 	"file-info": "faila dėdoms: $1, MIME tips: $2",
 	"file-info-size": "$1 × $2 taškū, abruozdielė dėdloms: $3, MIME būds: $4",
 	"file-info-size-pages": "$1 × $2 pikselē, abruozdielė dėdloms: $3, MIME būds: $4, $5 {{PLURAL:$5|poslapis|poslapē|poslapiu}}",
-	"file-nohires": "Geresnis ėšraiškėms negalėms.",
 	"svg-long-desc": "SVG skvarmou, fuormalē $1 × $2 puškiu, skvarmenė dėdloms: $3",
 	"show-big-image": "Pradėnis abruozdielis",
 	"show-big-image-preview": "Parvaizos dėdloms: $1.",

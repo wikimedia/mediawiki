@@ -1772,7 +1772,6 @@
 	"file-info": "ukubwa wa faili: $1, aina ya MIME: $2",
 	"file-info-size": "piseli $1 × $2, saizi ya faili: $3, aina ya MIME: $4",
 	"file-info-size-pages": "Piseli $1 × $2, ukubwa wa faili: $3, aina ya MIME: $4, {{PLURAL:$5|ukurasa|kurasa}} $5",
-	"file-nohires": "Hakuna saizi kubwa zaidi.",
 	"svg-long-desc": "faili la SVG, husemwa kuwa piseli $1 × $2, saizi ya faili: $3",
 	"show-big-image": "Faili halisi",
 	"show-big-image-preview": "Ukubwa wa hakikisho: $1.",
