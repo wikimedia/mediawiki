@@ -13,6 +13,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\CreateFromLoginAuthenticationRequest;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -315,7 +316,7 @@ class ApiAuthManagerHelper {
 	 * Clean up a field array for output
 	 * @param array $fields
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{type:string,options:array,value:string,label:Message,help:Message,optional:bool,sensitive:bool,skippable:bool} $fields
+	 * @phan-param array{type:string,options?:array,value:string,label?:Message,help:Message,optional:bool,sensitive:bool,skippable:bool} $fields
 	 * @return array
 	 */
 	private function formatFields( array $fields ) {
@@ -336,7 +337,7 @@ class ApiAuthManagerHelper {
 				}, $field['options'] );
 				ApiResult::setArrayType( $ret['options'], 'assoc' );
 			}
-			$this->formatMessage( $ret, 'label', $field['label'] );
+			$this->formatMessage( $ret, 'label', $field['label'] ?? new RawMessage( '' ) );
 			$this->formatMessage( $ret, 'help', $field['help'] );
 			$ret['optional'] = !empty( $field['optional'] );
 			$ret['sensitive'] = !empty( $field['sensitive'] );
