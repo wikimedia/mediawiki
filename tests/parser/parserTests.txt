@@ -18118,3 +18118,24 @@ Nowikis can be considered pwrap optional based on content
 !! html/parsoid
 <span typeof="mw:Nowiki mw:Transclusion" about="#mwt1" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;nowiki />[[category:123]]&lt;div>123&lt;/div>"}},"i":0}}]}'></span><link rel="mw:PageProp/Category" href="./Category:123" about="#mwt1"/><div about="#mwt1" data-parsoid='{"stx":"html"}'>123</div>
 !! end
+
+!! article
+Template:Tplrt
+!! text
+{{1x|{}}{1x|test}}
+!! endarticle
+
+!! test
+Template returning template syntax in html attribute
+!! wikitext
+{{tplrt}}
+
+<div class="{{tplrt}}">123</div>
+!! html/php
+<p>{{1x|test}}
+</p>
+<div class="&#123;&#123;1x&#124;test&#125;&#125;">123</div>
+!! html/parsoid+integrated
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"tplrt","href":"./Template:Tplrt"},"params":{},"i":0}}]}'>{{1x|test}}</span></p>
+<div class="{{1x|test}}" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"class"},{"html":"&lt;span typeof=\"mw:Transclusion\" data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"tplrt\",\"href\":\"./Template:Tplrt\"},\"params\":{},\"i\":0}}]}&apos;>{{1x|test}}&lt;/span>"}]]}'>123</div>
+!! end

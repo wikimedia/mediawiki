@@ -1500,10 +1500,9 @@ class Parser {
 
 		$text = Sanitizer::internalRemoveHtmlTags(
 			$text,
-			// Callback from the Sanitizer for expanding items found in
+			// Callback from the Sanitizer for unstripping items found in
 			// HTML attribute values, so they can be safely tested and escaped.
 			function ( &$text, $frame = false ) {
-				$text = $this->replaceVariables( $text, $frame );
 				$text = $this->mStripState->unstripBoth( $text );
 			},
 			false,
