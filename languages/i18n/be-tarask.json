@@ -3564,7 +3564,7 @@
 	"api-error-stashfailed": "Унутраная памылка: сэрвэр ня змог захаваць часовы файл.",
 	"api-error-unknown-warning": "Невядомае папярэджаньне: «$1».",
 	"api-error-unknownerror": "Невядомая памылка: «$1».",
-	"rotate-comment": "Выява павернутая на $1{{PLURAL:$1|°}} па гадзіньнікавай стрэлцы",
+	"rotate-comment": "Выява павернутая на $1{{PLURAL:$1|°}} водле гадзіньнікавай стрэлкі",
 	"limitreport-title": "Зьвесткі прафіляваньня парсэра:",
 	"limitreport-cputime": "Працэсарны час",
 	"limitreport-cputime-value": "$1 {{PLURAL:$1|сэкунда|сэкунды|сэкундаў}}",

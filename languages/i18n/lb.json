@@ -929,7 +929,7 @@
 	"savedrights": "D'Benotzergruppe vum {{GENDER:$1|$1}} goufe gespäichert.",
 	"prefs-namespaces": "Nummraim",
 	"default": "Standard",
-	"linterror-deletable-table-tag": "Tabellen-Tag dee geläscht gi soll",
+	"linterror-deletable-table-tag": "Tabellen-Tag, dee geläscht soll ginn",
 	"linterror-duplicate-ids": "Duebel IDen",
 	"linterror-empty-heading": "Eidel Iwwerschrëften",
 	"linterror-inline-media-caption": "Onsichtbar Beschrëftung",

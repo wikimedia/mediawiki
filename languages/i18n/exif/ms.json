@@ -373,7 +373,16 @@
 	"exif-exposurelockused-true": "Ya",
 	"exif-exposurelockused-false": "Tidak",
 	"exif-poseheadingdegrees": "Tajuk kedudukan (darjah)",
+	"exif-posepitchdegrees": "Pic (darjah)",
+	"exif-poserolldegrees": "Gulung (darjah)",
+	"exif-initialviewheadingdegrees": "Tajuk pemandangan awal (darjah)",
+	"exif-initialviewpitchdegrees": "Pic pemandangan awal (darjah)",
+	"exif-initialviewrolldegrees": "Gulung pemandangan awal (darjah)",
+	"exif-initialhorizontalfovdegrees": "FOV awal (darjah mendatar)",
+	"exif-initialverticalfovdegrees": "FOV awal (darjah menegak)",
 	"exif-sourcephotoscount": "Kiraan foto sumber",
+	"exif-fullpanowidthpixels": "Lebar penuh panoram",
+	"exif-fullpanoheightpixels": "Tinggi penuh panorama",
 	"exif-initialcameradolly": "Doli kamera awal",
 	"exif-stitchingsoftware": "Perisian jahit"
 }

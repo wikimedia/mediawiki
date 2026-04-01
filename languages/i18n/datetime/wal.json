@@ -57,5 +57,6 @@
 	"sun": "Wog",
 	"period-am": "Guura",
 	"period-pm": "Gallassa",
-	"duration-days": "$1 {{PLURAL:$1|gallassaa|gallasata}}"
+	"duration-days": "$1 {{PLURAL:$1|gallassaa|gallasata}}",
+	"monday-at": "Sagga $1 saatiyan"
 }
