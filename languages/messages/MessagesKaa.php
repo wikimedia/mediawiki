@@ -159,3 +159,7 @@ $dateFormats = [
 
 $linkTrail = "/^((?:[a-zıÁáǴǵŃńÓóÚúÍıİʼ’“»]|'(?!'))+)(.*)$/sDu";
 $linkPrefixCharset = 'a-zıA-ZÁáǴǵŃńÓóÚúÍıİ\\x80-\\xff';
+
+$magicWords = [
+	'redirect' => [ '0', '#REDIRECT', '#BAǴDARLAW', '#AYDAW' ]
+];
