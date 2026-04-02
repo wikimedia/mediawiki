@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Parser;
 use InvalidArgumentException;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
@@ -61,6 +62,11 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 				new WikitextContent( 'test test test' )
 			)
 		);
+
+		$this->overrideConfigValues( [
+			MainConfigNames::UsePostprocCacheLegacy => true,
+			MainConfigNames::UsePostprocCacheParsoid => true,
+		] );
 	}
 
 	/**
@@ -160,6 +166,47 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $this->revision->getId(), $savedOutput->getCacheRevisionId() );
 		$this->assertSame( '$wgOldRevisionParserCacheExpireTime',
 			$savedOutput->getCacheExpirySource() );
+	}
+
+	/**
+	 * Test that post-processing options are included in the cache key.
+	 * @covers \MediaWiki\Parser\RevisionOutputCache::get
+	 * @covers \MediaWiki\Parser\RevisionOutputCache::save
+	 */
+	public function testSaveGetPostprocOptions() {
+		$cache = $this->createRevisionOutputCache();
+		$parserOutput = new ParserOutput( 'TEST_TEXT' );
+		$parserOutput->updateCacheExpiry( 100000 );
+		$parserOutput->recordOption( 'injectTOC' );
+
+		$options1 = ParserOptions::newFromAnon();
+		$options1->setUseParsoid();
+		$options1->setOption( 'injectTOC', 1 );
+		$options1->enablePostproc();
+		$cache->save( $parserOutput, $this->revision, $options1, $this->cacheTime );
+
+		// Recreate options
+		$options1 = ParserOptions::newFromAnon();
+		$options1->setUseParsoid();
+		$options1->setOption( 'injectTOC', 1 );
+		$options1->enablePostproc();
+		$savedOutput = $cache->get( $this->revision, $options1 );
+		$this->assertInstanceOf( ParserOutput::class, $savedOutput );
+		// RevisionOutputCache adds a comment to the HTML, so check if the result starts with page content.
+		$this->assertStringStartsWith( 'TEST_TEXT',
+			$savedOutput->getRawText() );
+		$this->assertSame( $this->cacheTime, $savedOutput->getCacheTime() );
+		$this->assertSame( $this->revision->getId(), $savedOutput->getCacheRevisionId() );
+		$this->assertSame( '$wgOldRevisionParserCacheExpireTime',
+			$savedOutput->getCacheExpirySource() );
+
+		// Now check that using *different* options does *not* retrieve this!
+		$options2 = ParserOptions::newFromAnon();
+		$options2->setUseParsoid();
+		$options2->setOption( 'injectTOC', 0 );
+		$options2->enablePostproc();
+		$savedOutput = $cache->get( $this->revision, $options2 );
+		$this->assertSame( false, $savedOutput );
 	}
 
 	/**

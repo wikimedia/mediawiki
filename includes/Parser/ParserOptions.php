@@ -1521,6 +1521,16 @@ class ParserOptions {
 	}
 
 	/**
+	 * Return all option keys that vary the options hash, including
+	 * postprocessing options if appropriate.
+	 * @since 1.46
+	 * @return list<string>
+	 */
+	public function allCacheVaryingOptionsWithPostproc() {
+		return self::allCacheVaryingOptions( $this->shouldIncludePostproc() );
+	}
+
+	/**
 	 * Convert an option to a string value
 	 * @param mixed $value
 	 * @return string

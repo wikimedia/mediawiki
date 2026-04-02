@@ -137,7 +137,7 @@ class RevisionOutputCache {
 		ParserOptions $options,
 		?array $usedOptions = null
 	): string {
-		$usedOptions = ParserOptions::allCacheVaryingOptions();
+		$usedOptions = $options->allCacheVaryingOptionsWithPostproc();
 
 		$revId = $revision->getId();
 		if ( !$revId ) {
