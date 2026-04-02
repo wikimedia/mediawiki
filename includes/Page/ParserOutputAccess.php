@@ -582,7 +582,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			$preStatus = $this->getParserOutput( $page, $preParserOptions, $revision, $options );
 			$output = $preStatus->getValue();
 			if ( $output ) {
-				$output = $this->postprocess( $output, $parserOptions, $page );
+				$output = $this->postprocess( $output, $parserOptions, $page, $revision );
 			}
 		} else {
 			$renderedRev = $this->revisionRenderer->getRenderedRevision( $revision, $parserOptions, null, [
@@ -820,8 +820,49 @@ class ParserOutputAccess implements LoggerAwareInterface {
 
 	/**
 	 * Postprocess the given ParserOutput.
+	 * @internal
 	 */
-	public function postprocess( ParserOutput $output, ParserOptions $parserOptions, PageRecord $page ): ParserOutput {
+	public function postprocess(
+		ParserOutput $output, ParserOptions $parserOptions,
+		PageRecord $page, ?RevisionRecord $revision = null
+	): ParserOutput {
+		$useCache = $this->shouldUseCache( $page, $revision );
+		return self::postprocessInPipeline(
+			$this->outputTransformPipeline, $output, $parserOptions, $page,
+			fn ( $used ) => match ( $useCache ) {
+				self::CACHE_NONE => null,
+				self::CACHE_PRIMARY =>
+					$this->getPrimaryCache( $parserOptions )
+						 ->makeParserOutputKey( $page, $parserOptions, $used ),
+				self::CACHE_SECONDARY =>
+					$this->getSecondaryCache( $parserOptions )
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $revision is non-null here
+						->makeParserOutputKey( $revision, $parserOptions, $used ),
+			}
+		);
+	}
+
+	/**
+	 * Postprocess the given ParserOutput in the given pipeline.
+	 *
+	 * If debugging information is requested in the parser options,
+	 * $getCache will be used to obtain an appropriate ParserCache
+	 * in order to include the cache key in the debugging output.
+	 *
+	 * @param OutputTransformPipeline $outputTransformPipeline
+	 * @param ParserOutput $output
+	 * @param ParserOptions $parserOptions
+	 * @param PageRecord $page
+	 * @param callable(array):(string|null) $getCacheKey a function to return
+	 *   the cache key used, given an array of used parser options; null
+	 *   indicates that the postprocessed output will not be cached
+	 * @return ParserOutput a new ParserOutput
+	 */
+	public static function postprocessInPipeline(
+		OutputTransformPipeline $outputTransformPipeline,
+		ParserOutput $output, ParserOptions $parserOptions, PageRecord $page,
+		callable $getCacheKey
+	): ParserOutput {
 		// Kludgey workaround: extract $textOptions from the $parserOptions
 		$textOptions = [];
 		// Don't add these to the used options set of $output because we
@@ -835,7 +876,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			'allowClone' => true,
 		] + $textOptions;
 
-		$output = $this->outputTransformPipeline->run( $output, $parserOptions, $textOptions );
+		$output = $outputTransformPipeline->run( $output, $parserOptions, $textOptions );
 		// Ensure this ParserOptions is watching the resulting ParserOutput,
 		// now that it exists.
 		$parserOptions->registerWatcher( $output->recordOption( ... ) );
@@ -849,17 +890,17 @@ class ParserOutputAccess implements LoggerAwareInterface {
 		}
 		// Add a cache message if debug info is requested (this used to
 		// be part of $textOptions)
-		if ( $parserOptions->getOption( 'includeDebugInfo' ) ) {
+		$keyForDebugInfo = $parserOptions->getOption( 'includeDebugInfo' ) ?
+			$getCacheKey( $output->getUsedOptions() ) : null;
+		if ( $keyForDebugInfo !== null ) {
 			# Note that we can't make the key before postprocessing because
 			# the set of used options may vary during postprocessing; similarly
 			# we can't use ParserOutput::addCacheMsg() because the
 			# RenderDebugInfo stage has already run by the time we get here.
 			# So add the debug info "the hard way", but consistent with how
 			# RenderDebugInfo does it.
-			$parserOutputKey = $this->getPrimaryCache( $parserOptions )
-				->makeParserOutputKey( $page, $parserOptions, $output->getUsedOptions() );
 			$timestamp = MWTimestamp::now();
-			$msg = "Post-processing cache key $parserOutputKey, generated at $timestamp";
+			$msg = "Post-processing cache key $keyForDebugInfo, generated at $timestamp";
 			// Sanitize for comment. Note '‐' in the replacement is U+2010,
 			// which looks much like the problematic '-'.
 			$msg = str_replace( [ '-', '>' ], [ '‐', '&gt;' ], $msg );

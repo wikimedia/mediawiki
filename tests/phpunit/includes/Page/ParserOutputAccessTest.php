@@ -1462,6 +1462,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 		$secondRev = $this->editPage( $page, '== Second ==' )->getNewRevision();
 
 		$parserOptions0 = $this->getParserOptions();
+		$parserOptions0->setOption( 'includeDebugInfo', false );
 		$status = $access->getParserOutput( $page, $parserOptions0, $firstRev );
 		$this->assertContainsHtml( 'First', $status );
 		// Check that we used the "not parsoid" revision cache
@@ -1472,6 +1473,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 
 		$calls = [];
 		$parserOptions1 = $this->getParserOptions();
+		$parserOptions1->setOption( 'includeDebugInfo', false );
 		$parserOptions1->enablePostproc();
 		$status = $access->getParserOutput( $page, $parserOptions1, $firstRev );
 		$this->assertContainsHtml( 'First', $status, false );
