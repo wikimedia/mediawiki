@@ -2257,4 +2257,23 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $title->getDefaultSystemMessage() );
 	}
 
+	public static function provideNormalizeFragment() {
+		return [
+			[ 'foo', 'foo' ],
+			[ 'foo bar', 'foo bar' ],
+			[ 'foo_bar', 'foo bar' ],
+			// regression test for "T315631: auto edit summary for talk page sections whose
+			// heading starts with # is incorrect"
+			[ '#section', '#section' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideNormalizeFragment
+	 * @covers \MediaWiki\Title\Title::normalizeFragment
+	 */
+	public function testNormalizeFragment( $fragment, $expected ) {
+		$title = Title::makeTitle( NS_MAIN, 'Test', $fragment );
+		$this->assertSame( $expected, $title->getFragment() );
+	}
 }
