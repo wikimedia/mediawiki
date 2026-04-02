@@ -3617,6 +3617,7 @@
 	"logentry-merge-merge": "$1님이 $3 문서를 $4 안에 {{GENDER:$2|병합했습니다}} (판은 $5까지)",
 	"logentry-merge-merge-partial": "$1님이 $3 문서를 $4 문서로 {{GENDER:$2|병합했습니다}} (판은 $7부터 $5까지)",
 	"logentry-merge-merge-into": "$1님이 $4 문서의 판을 $3 문서에 {{GENDER:$2|통합했습니다}} ($5까지의 판)",
+	"logentry-merge-merge-into-partial": "$1님이 $4 문서의 판을 $3 문서로 {{GENDER:$2|병합}}함 (판 $7에서 $5까지)",
 	"logentry-move-move": "$1님이 $3 문서를 $4 문서로 {{GENDER:$2|이동했습니다}}",
 	"logentry-move-move-noredirect": "$1님이 $3 문서를 넘겨주기를 만들지 않고 $4 문서로 {{GENDER:$2|이동했습니다}}",
 	"logentry-move-move_redir": "$1님이 $3 문서를 $4 문서로 {{GENDER:$2|이동하면서}} 넘겨주기를 덮어썼습니다",

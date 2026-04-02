@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tofeiku"
+		]
+	},
+	"converter-manual-rule-error": "Kasalahan dinampak dalam paraturan panukaran bahasa manual",
+	"language-converter-depth-warning": "Had kadalaman panukar bahasa talabih ($1)"
+}

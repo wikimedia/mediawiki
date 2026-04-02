@@ -2845,7 +2845,7 @@
 	"move-over-sharedrepo": "[[:$1]] 已存在於共用檔案庫，將檔案移動到此標題會覆蓋該共用檔案。",
 	"file-exists-sharedrepo": "選擇的檔案名稱於共用檔案庫已有其他檔案使用。\n請改選擇其他名稱。",
 	"export": "匯出頁面",
-	"exporttext": "您可以匯出指定頁面或多頁的文字與編輯歷史，使用 XML 格式包裝。\n這些檔案可以匯入至其他使用 MediaWiki 的 Wiki，透過 [[Special:Import|匯入頁面]]。\n\n要匯出頁面，請在下方文字方塊中輸入頁面標題，一個標題使用一行，並選擇是否要匯出目前的修訂含所有的歷史修訂記錄，或者只匯出目前的修訂與最後編輯的資訊。\n\n在文字方塊中您也可使用連結，如：[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] 代表匯出頁面 \"[[{{MediaWiki:Mainpage}}]]\"。",
+	"exporttext": "您可以匯出指定頁面或多頁的文字與編輯歷史，使用 XML 格式包裝。該檔案可以透過[[Special:Import|匯入頁面]]功能匯入至其他使用 MediaWiki 的 wiki。\n\n要匯出頁面，請在下方文字方塊中輸入頁面標題，一行一個標題，並選擇是要匯出目前修訂及所有的歷史修訂紀錄，或只匯出目前的修訂與最後編輯的資訊。\n\n對於後者，您也可使用連結，如 [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] 代表匯出頁面「[[{{MediaWiki:Mainpage}}]]」。",
 	"exportall": "匯出所有頁面",
 	"exportcuronly": "只包含目前修訂版本，不包含完整的修訂紀錄",
 	"exportnohistory": "----\n<strong>注意：</strong>因避免伺服器效能問題，已停用匯出頁面的所有歷史記錄。",

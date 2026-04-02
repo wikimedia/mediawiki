@@ -2368,7 +2368,7 @@
 	"blanknamespace": "(Glavno)",
 	"contributions": "Prispevki uporabnika",
 	"tool-link-contributions": "{{GENDER:$1|Uporabnikovi|Uporabničini|Uporabnikovi}} prispevki",
-	"contributions-title": "Prispevki {{GENDER:$2|uporabnika|uporabnice|uporabnika_ce}} $1",
+	"contributions-title": "Prispevki {{GENDER:$2|uporabnika|uporabnice|uporabnika}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Podedovani IP-prispevki za $1",
 	"contribute-title": "Uporabnikovi prispevki",
 	"mycontris": "Prispevki",
