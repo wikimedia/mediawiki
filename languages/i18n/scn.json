@@ -539,6 +539,7 @@
 	"postedit-confirmation-created": "La pàggina fu criata.",
 	"postedit-confirmation-restored": "La pàggina fu ripristinata.",
 	"postedit-confirmation-saved": "Lu tò canciamentu fu sarvatu.",
+	"postedit-confirmation-published": "[[Special:Diff/$2|Li tò canci]] foru pubblicati.",
 	"postedit-temp-created-label": "Cuntu tempuàniu",
 	"edit-already-exists": "Nun fu pussìbbili criari na pàggina nova.\nGià esisti.",
 	"defaultmessagetext": "Testu dû missaggiu pridifinutu",
