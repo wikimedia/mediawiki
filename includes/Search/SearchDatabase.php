@@ -9,6 +9,7 @@
 
 namespace MediaWiki\Search;
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -103,6 +104,23 @@ abstract class SearchDatabase extends SearchEngine {
 		}
 		$this->namespaces = $queryAndNs[1];
 		return $queryAndNs[0];
+	}
+
+	protected function regexTerm( string $string, ?string $wildcard = null ): string {
+		$regex = preg_quote( $string, '/' );
+		if ( MediaWikiServices::getInstance()->getContentLanguage()->hasWordBreaks() ) {
+			if ( $wildcard ) {
+				// Don't cut off the final bit!
+				$regex = "\b$regex";
+			} else {
+				$regex = "\b$regex\b";
+			}
+		} else {
+			// For Chinese, words may legitimately abut other words in the text literal.
+			// Don't add \b boundary checks... note this could cause false positives
+			// for Latin chars.
+		}
+		return $regex;
 	}
 }
 

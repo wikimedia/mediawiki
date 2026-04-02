@@ -157,7 +157,7 @@ class SearchPostgres extends SearchDatabase {
 			$m = [];
 			if ( preg_match_all( "/'([^']+)'/", $top, $m, PREG_SET_ORDER ) ) {
 				foreach ( $m as $terms ) {
-					$this->searchTerms[$terms[1]] = $terms[1];
+					$this->searchTerms[] = $this->regexTerm( $terms[1] );
 				}
 			}
 

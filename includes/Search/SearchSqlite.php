@@ -123,23 +123,6 @@ class SearchSqlite extends SearchDatabase {
 		return " $field MATCH $searchon ";
 	}
 
-	private function regexTerm( string $string, string $wildcard ): string {
-		$regex = preg_quote( $string, '/' );
-		if ( MediaWikiServices::getInstance()->getContentLanguage()->hasWordBreaks() ) {
-			if ( $wildcard ) {
-				// Don't cut off the final bit!
-				$regex = "\b$regex";
-			} else {
-				$regex = "\b$regex\b";
-			}
-		} else {
-			// For Chinese, words may legitimately abut other words in the text literal.
-			// Don't add \b boundary checks... note this could cause false positives
-			// for Latin chars.
-		}
-		return $regex;
-	}
-
 	/** @inheritDoc */
 	public function legalSearchChars( $type = self::CHARS_ALL ) {
 		$searchChars = parent::legalSearchChars( $type );
