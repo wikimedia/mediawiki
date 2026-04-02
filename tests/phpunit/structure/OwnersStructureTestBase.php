@@ -2,10 +2,12 @@
 
 namespace MediaWiki\Tests\Structure;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversNothing
  */
-abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
+abstract class OwnersStructureTestBase extends TestCase {
 	private const HELP_MESSAGE = 'Please check the format of your OWNERS.md file against'
 		. 'https://www.mediawiki.org/wiki/OWNERS.md'
 		. ' if you think you are viewing this in error.';
@@ -15,7 +17,7 @@ abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
 	 *
 	 * @return array of paths
 	 */
-	public function getUntestedFiles() {
+	public function getUntestedFiles(): array {
 		return [
 			'.browserslistrc',
 			'.md',
@@ -28,10 +30,8 @@ abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * Returns array of sections that must be present in each OWNERS.md entry.
-	 *
-	 * @return array
 	 */
-	public function getRequiredSections() {
+	public function getRequiredSections(): array {
 		return [ 'Contact' ];
 	}
 
@@ -46,10 +46,9 @@ abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
 	 */
 	abstract public function getOwnersFile(): string;
 
-	/** @var array */
-	private static $ownerSections;
-	/** @var array */
-	private $ownership;
+	private static array $ownerSections;
+
+	private ?array $ownership = null;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -97,32 +96,23 @@ abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * Check if a line is a section header (starts with "## ").
-	 *
-	 * @param string $line
-	 * @return bool
 	 */
 	private static function isSectionHeader( string $line ): bool {
-		return strpos( $line, '## ' ) === 0;
+		return str_starts_with( $line, '## ' );
 	}
 
 	/**
 	 * Check if a line is a metadata line (starts with "* ").
-	 *
-	 * @param string $line
-	 * @return bool
 	 */
 	private static function isMetadataLine( string $line ): bool {
-		return strpos( $line, '* ' ) === 0 && str_contains( $line, ':' );
+		return str_starts_with( $line, '* ' ) && str_contains( $line, ':' );
 	}
 
 	/**
 	 * Check if a line is a bulleted list item (starts with "  - ").
-	 *
-	 * @param string $line
-	 * @return bool
 	 */
 	private static function isBulletedListItem( string $line ): bool {
-		return strpos( $line, '  - ' ) === 0;
+		return str_starts_with( $line, '  - ' );
 	}
 
 	/**
@@ -178,9 +168,6 @@ abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * Check if a metadata label expects a list of values.
-	 *
-	 * @param string $label
-	 * @return bool
 	 */
 	private static function isListMetadata( string $label ): bool {
 		return in_array( $label, [ 'Files', 'Folders' ] );
@@ -194,7 +181,7 @@ abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
 	 * @param string $path
 	 * @return array Updated section
 	 */
-	private static function addItem( array $section, string $currentListKey, string $path ) {
+	private static function addItem( array $section, string $currentListKey, string $path ): array {
 		$path = trim( $path );
 		if ( $path[ 0 ] !== '/' ) {
 			$path = '/' . $path;
@@ -226,7 +213,7 @@ abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
 	 * @param string $folder
 	 * @return string[] of all files and directories in the folder.
 	 */
-	private function getFilesInFolder( string $folder ) {
+	private function getFilesInFolder( string $folder ): array {
 		$handle = opendir( $this->getRootFolder() . '/' . $folder );
 		$files = [];
 		$entry = readdir( $handle );
@@ -247,7 +234,7 @@ abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
 	 * @return string The directory containing the OWNERS.md file,
 	 *  which is the base for relative paths in the file.
 	 */
-	private function getRootFolder() {
+	private function getRootFolder(): string {
 		return dirname( $this->getOwnersFile() );
 	}
 
@@ -257,7 +244,7 @@ abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
 	 *
 	 * @return array with keys 'folders' and 'files' containing arrays of owned paths
 	 */
-	private function getOwnership() {
+	private function getOwnership(): array {
 		if ( $this->ownership !== null ) {
 			return $this->ownership;
 		}
@@ -290,15 +277,16 @@ abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
 	 * @param string[] $ownedFolders List of owned folder paths from OWNERS.md
 	 * @param string $label Label for error messages (e.g., folder name)
 	 * @param string $localBasePath Base path to prepend to file entries for ownership checks
-	 * @return void calls fail if any file entry is not accounted for in the owned files or folders, directly or indirectly.
+	 * @return void calls fail if any file entry is not accounted for in the owned files or folders,
+	 * directly or indirectly.
 	 */
 	private function checkFilesAreOwned(
-		$fileEntries,
-		$ownedFiles,
-		$ownedFolders,
-		$label = '',
-		$localBasePath = '',
-	) {
+		array $fileEntries,
+		array $ownedFiles,
+		array $ownedFolders,
+		string $label = '',
+		string $localBasePath = '',
+	): void {
 		foreach ( $fileEntries as $entry ) {
 			$name = $entry;
 
@@ -329,21 +317,23 @@ abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
 				foreach ( $ownedFiles as $ownedFile ) {
 					if ( str_ends_with( $relativePath, $ownedFile ) ) {
 						$found = true;
-
 						break;
 					}
 				}
 			}
 
-			$ignoreExtensions = $this->getUntestedFiles();
-			foreach ( $ignoreExtensions as $extension ) {
-				if (
-					str_ends_with( $relativePath, $extension ) ||
-					str_starts_with( $relativePath, $extension )
-				) {
-					$found = true;
+			if ( !$found ) {
+				foreach ( $this->getUntestedFiles() as $extension ) {
+					if (
+						str_ends_with( $relativePath, $extension ) ||
+						str_starts_with( $relativePath, $extension )
+					) {
+						$found = true;
+						break;
+					}
 				}
 			}
+
 			if ( !$found ) {
 				$isDirectory = is_dir( $this->getRootFolder() . '/' . $relativePath );
 				if ( $isDirectory ) {
@@ -356,7 +346,10 @@ abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
 					);
 					// if this succeeds all files were accounted for so not needed.
 				} else {
-					$this->fail( "Resource $relativePath ($label) isn't documented as owned in OWNERS.md.\n\n" . self::HELP_MESSAGE );
+					$this->fail(
+						"Resource $relativePath ($label) isn't documented as owned in OWNERS.md.\n\n"
+							. self::HELP_MESSAGE
+					);
 				}
 			}
 		}
@@ -369,10 +362,11 @@ abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
 	 * - it has either a Files or Folders label (you can't own nothing!)
 	 */
 	public function testOwnersFile() {
-		$expectedResourceLabels = [ 'Folders', 'Files' ];
 		if ( count( self::$ownerSections ) === 0 ) {
 			$this->markTestSkipped( 'OWNERS.md file is empty or has no sections.' );
 		}
+
+		$expectedResourceLabels = [ 'Folders', 'Files' ];
 
 		$requiredSections = $this->getRequiredSections();
 		foreach ( self::$ownerSections as $title => $section ) {
@@ -398,14 +392,14 @@ abstract class OwnersStructureTestBase extends \PHPUnit\Framework\TestCase {
 	 * - there are no folders defined in self::getFolders()
 	 */
 	public function testFoldersAreOwned() {
-		$ownership = $this->getOwnership();
-		$ownedFolders = $ownership['folders'];
-		$ownedFiles = $ownership['files'];
-
 		$folders = $this->getFolders();
 		if ( count( $folders ) === 0 ) {
 			$this->markTestSkipped( 'No folders defined to check ownership for.\n\n' . self::HELP_MESSAGE );
 		}
+
+		$ownership = $this->getOwnership();
+		$ownedFolders = $ownership['folders'];
+		$ownedFiles = $ownership['files'];
 
 		foreach ( $folders as $checkFolder ) {
 			$this->checkFilesAreOwned(
