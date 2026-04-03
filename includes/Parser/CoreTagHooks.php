@@ -97,6 +97,7 @@ class CoreTagHooks {
 	 * @deprecated since 1.46; use the ParserCoreTagHooks service instead
 	 */
 	public static function nowiki( ?string $content, array $attributes, Parser $parser ): array {
+		wfDeprecated( __METHOD__, '1.46' );
 		return MediaWikiServices::getInstance()->getParserCoreTagHooks()->nowiki(
 			$content, $attributes, $parser
 		);
@@ -140,6 +141,7 @@ class CoreTagHooks {
 	 * @deprecated since 1.46; use the ParserCoreTagHooks service instead
 	 */
 	public static function indicator( ?string $content, array $attributes, Parser $parser, PPFrame $frame ): string {
+		wfDeprecated( __METHOD__, '1.46' );
 		return MediaWikiServices::getInstance()->getParserCoreTagHooks()->indicator(
 			$content, $attributes, $parser, $frame
 		);
