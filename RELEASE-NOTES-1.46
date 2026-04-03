@@ -334,6 +334,8 @@ because of Phabricator reports.
   throw UnexpectedContentModelException instead of deprecated MWException.
 * The mediawiki.ui.radio module, deprecated in 1.41 and unused, was removed.
   Instead, use Codex modules.
+* Less mixin 'mediawiki.mixins.animation.less', deprecated in 1.39, was removed.
+  Use standard CSS animation and transform instead.
 * …
 
 === Deprecations in 1.46 ===
