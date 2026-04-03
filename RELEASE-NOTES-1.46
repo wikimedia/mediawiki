@@ -964,6 +964,9 @@ because of Phabricator reports.
   deprecated in 1.34.
 * Parser::setCacheTime() now requires its argument to be a non-null string;
   passing other values triggers a deprecation warning.
+* CoreTagHooks has been deprecated; use the ParserCoreTagHooks service
+  instead.  Its static methods were previously marked @internal but will
+  now trigger deprecation warnings as well.
 * Content::getNativeData() now emits deprecation warnings in all Content
   subclasses defined in core; it was deprecated in 1.33.
 * Returning null (or allowing the null initial value to remain) from the

@@ -2562,6 +2562,7 @@ class ParserTestRunner {
 		$reset = function () use ( $mwServices ) {
 			// Configurations changed above
 			$this->resetTitleServices();
+			$mwServices->resetServiceForTesting( 'ParserCoreTagHooks' );
 			$mwServices->resetServiceForTesting( 'MagicWordFactory' );
 			$mwServices->resetServiceForTesting( 'ParserFactory' );
 			// The SiteConfig depends on various services that reset above,

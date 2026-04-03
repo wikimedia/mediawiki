@@ -15,6 +15,7 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserCoreTagHooks;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -44,6 +45,11 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 		$contLang = $this->createMock( Language::class );
 		$mw = new MagicWord( null, [], true, $contLang );
 
+		// Stub out a ParserCoreTagHooks so the Parser can initialize its
+		// tag hooks when it is created.
+		$coreTagHooks = $this->createNoOpMock( ParserCoreTagHooks::class,
+			[ 'register' ] );
+
 		// Stub out a MagicWordFactory so the Parser can initialize its
 		// function hooks when it is created.
 		$mwFactory = $this->createNoOpMock( MagicWordFactory::class,
@@ -56,6 +62,7 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 
 		return [
 			$options,
+			$coreTagHooks,
 			$mwFactory,
 			$contLang,
 			$urlUtils,

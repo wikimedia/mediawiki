@@ -51,6 +51,7 @@ class ParserFactory {
 	 */
 	public function __construct(
 		private readonly ServiceOptions $svcOptions,
+		private readonly ParserCoreTagHooks $parserCoreTagHooks,
 		private readonly MagicWordFactory $magicWordFactory,
 		private readonly Language $contLang,
 		private readonly UrlUtils $urlUtils,
@@ -92,6 +93,7 @@ class ParserFactory {
 		try {
 			return new Parser(
 				$this->svcOptions,
+				$this->parserCoreTagHooks,
 				$this->magicWordFactory,
 				$this->contLang,
 				$this->urlUtils,

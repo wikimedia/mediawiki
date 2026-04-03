@@ -390,6 +390,7 @@ class Parser {
 		// $mOptions, which is public and widely used, and also with the local variable $options used
 		// for ParserOptions throughout this file.
 		private ServiceOptions $svcOptions,
+		private ParserCoreTagHooks $parserCoreTagHooks,
 		private MagicWordFactory $magicWordFactory,
 		private Language $contLang,
 		private UrlUtils $urlUtils,
@@ -444,10 +445,7 @@ class Parser {
 			$this,
 			new ServiceOptions( CoreParserFunctions::REGISTER_OPTIONS, $svcOptions )
 		);
-		CoreTagHooks::register(
-			$this,
-			new ServiceOptions( CoreTagHooks::REGISTER_OPTIONS, $svcOptions )
-		);
+		$parserCoreTagHooks->register( $this );
 		$this->initializeVariables();
 
 		$this->hookRunner->onParserFirstCallInit( $this );

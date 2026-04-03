@@ -434,7 +434,7 @@ class MessageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers \MediaWiki\Language\RawMessage
-	 * @covers \MediaWiki\Parser\CoreTagHooks::html
+	 * @covers \MediaWiki\Parser\ParserCoreTagHooks::html
 	 */
 	public function testRawHtmlInMsg() {
 		$this->overrideConfigValue( MainConfigNames::RawHtml, true );

@@ -18,7 +18,7 @@ use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
  * @covers \MediaWiki\Parser\Parser
  * @covers \MediaWiki\Parser\BlockLevelPass
  * @covers \MediaWiki\Parser\CoreParserFunctions
- * @covers \MediaWiki\Parser\CoreTagHooks
+ * @covers \MediaWiki\Parser\ParserCoreTagHooks
  * @covers \MediaWiki\Parser\Sanitizer
  * @covers \MediaWiki\Parser\Preprocessor
  * @covers \MediaWiki\Parser\Preprocessor_Hash

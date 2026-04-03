@@ -13,6 +13,7 @@ use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserCoreTagHooks;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -42,6 +43,11 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 		$contLang = $this->createNoOpMock( Language::class );
 		$mw = new MagicWord( null, [], true, $contLang );
 
+		// Stub out a ParserCoreTagHooks so the Parser can initialize its
+		// tag hooks when it is created.
+		$coreTagHooks = $this->createNoOpMock( ParserCoreTagHooks::class,
+			[ 'register' ] );
+
 		// Stub out a MagicWordFactory so the Parser can initialize its
 		// function hooks when it is created.
 		$mwFactory = $this->createNoOpMock( MagicWordFactory::class,
@@ -54,6 +60,7 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 
 		$factory = new ParserFactory(
 			$options,
+			$coreTagHooks,
 			$mwFactory,
 			$contLang,
 			$urlUtils,

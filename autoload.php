@@ -2599,6 +2599,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Parser\\ParserCacheFactory' => __DIR__ . '/includes/Parser/ParserCacheFactory.php',
 	'MediaWiki\\Parser\\ParserCacheFilter' => __DIR__ . '/includes/Parser/ParserCacheFilter.php',
 	'MediaWiki\\Parser\\ParserCacheMetadata' => __DIR__ . '/includes/Parser/ParserCacheMetadata.php',
+	'MediaWiki\\Parser\\ParserCoreTagHooks' => __DIR__ . '/includes/Parser/ParserCoreTagHooks.php',
 	'MediaWiki\\Parser\\ParserFactory' => __DIR__ . '/includes/Parser/ParserFactory.php',
 	'MediaWiki\\Parser\\ParserObserver' => __DIR__ . '/includes/Parser/ParserObserver.php',
 	'MediaWiki\\Parser\\ParserOptions' => __DIR__ . '/includes/Parser/ParserOptions.php',

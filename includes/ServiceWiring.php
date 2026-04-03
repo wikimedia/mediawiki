@@ -168,6 +168,7 @@ use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\ParserCoreTagHooks;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserObserver;
 use MediaWiki\Parser\Parsoid\Config\DataAccess as MWDataAccess;
@@ -1789,6 +1790,17 @@ return [
 		);
 	},
 
+	'ParserCoreTagHooks' => static function ( MediaWikiServices $services ): ParserCoreTagHooks {
+		$options = new ServiceOptions( ParserCoreTagHooks::CONSTRUCTOR_OPTIONS,
+			$services->getMainConfig()
+		);
+		return new ParserCoreTagHooks(
+			$options,
+			$services->getLanguageFactory(),
+			$services->getLanguageConverterFactory(),
+		);
+	},
+
 	'ParserFactory' => static function ( MediaWikiServices $services ): ParserFactory {
 		$options = new ServiceOptions( Parser::CONSTRUCTOR_OPTIONS,
 			$services->getMainConfig()
@@ -1796,6 +1808,7 @@ return [
 
 		return new ParserFactory(
 			$options,
+			$services->getParserCoreTagHooks(),
 			$services->getMagicWordFactory(),
 			$services->getContentLanguage(),
 			$services->getUrlUtils(),

@@ -124,6 +124,7 @@ use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\ParserCoreTagHooks;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\Parsoid\Config\DataAccess;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
@@ -1731,6 +1732,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getParserCacheFactory(): ParserCacheFactory {
 		return $this->getService( 'ParserCacheFactory' );
+	}
+
+	/**
+	 * @since 1.46
+	 */
+	public function getParserCoreTagHooks(): ParserCoreTagHooks {
+		return $this->getService( 'ParserCoreTagHooks' );
 	}
 
 	/**
