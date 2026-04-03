@@ -4,6 +4,8 @@
 			"شاه زمان پټان"
 		]
 	},
+	"variantname-gan": "گان",
+	"variantname-gan-hans": "هانزي",
 	"converter-manual-rule-error": "د ژبې لاسي اړونې قاعده کې تېروتنه وموندل شوه",
 	"language-converter-depth-warning": "د ژبې اړولو د ژوروالي بريد نه تېر شو ($1)"
 }

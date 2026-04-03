@@ -99,7 +99,7 @@
 	"emailnotauthenticated": "Vaše e-mailová adresa dosud nebyla ověřena.\nU následujících funkcí nebudou zasílány žádné e-maily.",
 	"emailconfirmlink": "Potvrďte svou e-mailovou adresu",
 	"prefs-emailconfirm-label": "Ověření e-mailu:",
-	"emailauthenticated": "Vaše e-mailová adresa byla ověřena $2 v $3.",
+	"emailauthenticated": "Vaše e-mailová adresa byla potvrzena $2 v $3.",
 	"allowemail": "Dovolit ostatním uživatelům posílat mi e-maily",
 	"email-allow-new-users-label": "Povolit e-maily od zcela nových uživatelů",
 	"prefs-help-email-allow-new-users": "Zapnutím této volby umožníte uživatelům, kteří nejsou [[{{MediaWiki:grouppage-autoconfirmed}}|automaticky schválení]], aby vám posílali e-maily.",
