@@ -1818,7 +1818,7 @@ return [
 			'addedwatchtext',
 			'addedwatchtext-talk',
 			'removedwatchtext',
-			'removedwatchtext-talk'
+			'removedwatchtext-talk',
 		],
 	],
 	'mediawiki.page.preview' => [
@@ -3485,37 +3485,23 @@ return [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.watchstar.widgets',
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.watchstar.widgets",
 		'packageFiles' => [
-			'init.js',
-			'WatchlistPopup.vue',
+			'WatchlistPopup.js',
 			[ 'name' => 'data.json', 'callback' => static function ( MessageLocalizer $messageLocalizer ) {
 				return WatchAction::getExpiryOptions( $messageLocalizer, false );
 			} ]
 		],
+		'styles' => 'WatchlistPopup.css',
 		'dependencies' => [
-			'mediawiki.api',
-			'vue',
-			'@wikimedia/codex',
-			'mediawiki.DateFormatter',
+			'oojs-ui',
+			'mediawiki.api'
 		],
 		'messages' => [
 			'accesskey-ca-watch',
 			'addedwatchexpiry-options-label',
-			'addedwatchexpiryhours',
-			'addedwatchexpiryhours-talk',
-			'addedwatchexpirydays',
-			'addedwatchexpirydays-talk',
 			'addedwatchexpirytext',
 			'addedwatchexpirytext-talk',
 			'addedwatchindefinitelytext',
-			'addedwatchindefinitelytext-talk',
-			'watchlist-expiry-days-left',
-			'watchlist-expiry-hours-left',
-			'watchstar-popup-already-watched',
-			'watchstar-popup-expiry-help',
-			'watchstar-popup-labels',
-			'watchstar-popup-labels-help',
-			'watchstar-popup-labels-no-results',
-			'watchstar-popup-title'
+			'addedwatchindefinitelytext-talk'
 		],
 	],
 
