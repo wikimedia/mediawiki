@@ -5,6 +5,7 @@ namespace MediaWiki\Permissions;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
+use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -264,7 +265,7 @@ class RestrictionStore {
 	public function isCascadeProtected( PageIdentity $page ): bool {
 		$page->assertWiki( PageIdentity::LOCAL );
 
-		return $this->shouldUseVirtualDomains( $page )
+		return $this->shouldUseVirtualDomains()
 			? $this->getCascadeProtectionSourcesInternal( $page )[0] !== []
 			: $this->getCascadeProtectionSourcesInternalJoined( $page )[0] !== [];
 	}
@@ -531,7 +532,7 @@ class RestrictionStore {
 	public function getCascadeProtectionSources( PageIdentity $page ): array {
 		$page->assertWiki( PageIdentity::LOCAL );
 
-		return $this->shouldUseVirtualDomains( $page )
+		return $this->shouldUseVirtualDomains()
 			? $this->getCascadeProtectionSourcesInternal( $page )
 			: $this->getCascadeProtectionSourcesInternalJoined( $page );
 	}
@@ -780,13 +781,11 @@ class RestrictionStore {
 	 *
 	 * See T408801.
 	 *
-	 * @param PageIdentity $page The page to check virtual domain usage for.
 	 * @return bool True if virtual domains should be used
 	 */
-	private function shouldUseVirtualDomains( PageIdentity $page ): bool {
+	private function shouldUseVirtualDomains(): bool {
 		$virtualDomains = $this->options->get( MainConfigNames::VirtualDomainsMapping );
-		return isset( $virtualDomains[TemplateLinksTable::VIRTUAL_DOMAIN] ) ||
-			( $page->getNamespace() === NS_FILE && isset( $virtualDomains[ImageLinksTable::VIRTUAL_DOMAIN] ) );
+		return isset( $virtualDomains[LinksTable::VIRTUAL_DOMAIN] );
 	}
 
 	/**

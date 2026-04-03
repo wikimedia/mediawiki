@@ -6,10 +6,7 @@ use InvalidArgumentException;
 use LogicException;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
-use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
-use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
-use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
+use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Logging\LogPage;
@@ -64,13 +61,6 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		'templatelinks' => 'tl',
 		'categorylinks' => 'cl',
 		'imagelinks' => 'il'
-	];
-
-	private const LINK_TABLE_VIRTUAL_DOMAINS = [
-		'pagelinks' => PageLinksTable::VIRTUAL_DOMAIN,
-		'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,
-		'categorylinks' => CategoryLinksTable::VIRTUAL_DOMAIN,
-		'imagelinks' => ImageLinksTable::VIRTUAL_DOMAIN
 	];
 
 	/** Minimum number of estimated rows before timestamp partitioning is considered */
@@ -1305,10 +1295,11 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			return [ $mainQueryBuilder ];
 		}
 
+		$useVirtualDomains = $this->shouldUseVirtualDomains();
+
 		$queries = [];
 		foreach ( $this->linkTables as $linkTable ) {
 			$queryBuilder = clone $mainQueryBuilder;
-			$useVirtualDomains = $this->shouldUseVirtualDomains( $linkTable );
 
 			if ( $this->linkDirection === self::LINKS_TO ) {
 				$ok = $useVirtualDomains
@@ -1338,11 +1329,10 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 *
 	 * See T411577.
 	 *
-	 * @param string $linkTable The link table to check virtual domain usage for.
 	 * @return bool True if virtual domains should be used
 	 */
-	private function shouldUseVirtualDomains( string $linkTable ): bool {
-		return isset( $this->virtualDomainsMapping[self::LINK_TABLE_VIRTUAL_DOMAINS[$linkTable]] );
+	private function shouldUseVirtualDomains(): bool {
+		return isset( $this->virtualDomainsMapping[LinksTable::VIRTUAL_DOMAIN] );
 	}
 
 	/**
@@ -1406,7 +1396,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		}
 
 		$connProvider = MediaWikiServices::getInstance()->getConnectionProvider();
-		$dbr = $connProvider->getReplicaDatabase( self::LINK_TABLE_VIRTUAL_DOMAINS[$linkTable] );
+		$dbr = $connProvider->getReplicaDatabase( LinksTable::VIRTUAL_DOMAIN );
 		$prefix = self::LINK_TABLE_PREFIXES[$linkTable];
 
 		$res = $dbr->newSelectQuerybuilder()
@@ -1476,7 +1466,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		}
 
 		$connProvider = MediaWikiServices::getInstance()->getConnectionProvider();
-		$dbr = $connProvider->getReplicaDatabase( self::LINK_TABLE_VIRTUAL_DOMAINS[$linkTable] );
+		$dbr = $connProvider->getReplicaDatabase( LinksTable::VIRTUAL_DOMAIN );
 		$prefix = self::LINK_TABLE_PREFIXES[$linkTable];
 
 		$res = $dbr->newSelectQuerybuilder()
