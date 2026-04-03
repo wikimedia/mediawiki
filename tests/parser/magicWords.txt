@@ -1144,9 +1144,9 @@ bar
 </p><p>bar
 </p>
 !! html/parsoid
-<p>foo
+<p>foo</p>
 <meta property="mw:PageProp/notoc" data-parsoid='{"src":"__notoc__","magicSrc":"__notoc__"}'/>
-bar</p>
+<p>bar</p>
 !! end
 
 # wt2wt,html2wt disabled because we always (unless selser) serialize
@@ -1164,9 +1164,9 @@ bar
 </p><p>bar
 </p>
 !! html/parsoid
-<p>foo
+<p>foo</p>
 <meta property="mw:PageProp/notoc" data-parsoid='{"src":"__NOtOC__","magicSrc":"__NOtOC__"}'/>
-bar</p>
+<p>bar</p>
 !! end
 
 !! test

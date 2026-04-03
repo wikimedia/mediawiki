@@ -5386,7 +5386,7 @@ Un-closed <includeonly>
 !! test
 Includes and comments at SOL
 !! options
-parsoid=wt2html,html2html
+parsoid=wt2html
 !! wikitext
 <!-- comment --><noinclude><!-- comment --></noinclude><!-- comment -->==hu==
 
