@@ -134,6 +134,12 @@ class SpecialMostLinkedTemplates extends QueryPage {
 	}
 
 	/** @inheritDoc */
+	public function execute( $par ) {
+		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
+		parent::execute( $par );
+	}
+
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'highuse';
 	}
