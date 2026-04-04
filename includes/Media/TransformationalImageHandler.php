@@ -72,7 +72,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 *
 	 * This will match the physical size/aspect ratio of the original image
 	 * prior to application of the rotation -- so for a portrait image that's
-	 * stored as raw landscape with 90-degress rotation, the resulting size
+	 * stored as raw landscape with 90-degrees rotation, the resulting size
 	 * will be wider than it is tall.
 	 *
 	 * @param array $params Parameters as returned by normaliseParams
@@ -265,7 +265,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		// @phan-suppress-next-line PhanTypeMismatchArgument Relaying on bool/int conversion to cast objects correct
 		$removed = $this->removeBadFile( $dstPath, (bool)$err );
 		if ( $err ) {
-			# transform returned MediaTransforError
+			// transform returned MediaTransformError
 			return $err;
 		}
 

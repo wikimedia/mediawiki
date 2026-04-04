@@ -107,7 +107,7 @@ class UploadVerification {
 	 *  responsible for verifying if the file has a valid name, is
 	 *  too big, meets on wiki permission checks, etc. If you are
 	 *  implementing your own upload support, see
-	 *  UploadBase::verifyUpload for other neccessary checks.
+	 *  UploadBase::verifyUpload for other necessary checks.
 	 *
 	 * @param string $path Path to the (temporary) file to check
 	 * @param string $ext Final extension of file (UploadBase->mFinalExtension)

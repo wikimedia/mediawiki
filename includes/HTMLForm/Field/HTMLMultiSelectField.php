@@ -25,7 +25,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	 * @stable to call
 	 *
 	 * @param array $params
-	 *   In adition to the usual HTMLFormField parameters, this can take the following fields:
+	 *   In addition to the usual HTMLFormField parameters, this can take the following fields:
 	 *   - dropdown: If given, the options will be displayed inside a dropdown with a text field that
 	 *     can be used to filter them. This is desirable mostly for very long lists of options.
 	 *     This only works for users with JavaScript support and falls back to the list of checkboxes.

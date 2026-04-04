@@ -35,7 +35,7 @@ class RenameuserLogFormatter extends LogFormatter {
 		 *    (not available except in newest log entries)
 		 * 7: new username (raw format for GENDER)
 		 * Note that the arrays are zero-indexed, while message parameters
-		 * start from 1, so substract one to get array entries below.
+		 * start from 1, so subtract one to get array entries below.
 		 */
 
 		if ( !isset( $params[3] ) ) {

@@ -41,7 +41,7 @@ use Wikimedia\Rdbms\LikeValue;
 class NamespaceDupes extends Maintenance {
 
 	/**
-	 * Total number of pages that need fixing that are automatically resolveable
+	 * Total number of pages that need fixing that are automatically resolvable
 	 * @var int
 	 */
 	private $resolvablePages = 0;
@@ -53,7 +53,7 @@ class NamespaceDupes extends Maintenance {
 	private $totalPages = 0;
 
 	/**
-	 * Total number of links that need fixing that are automatically resolveable
+	 * Total number of links that need fixing that are automatically resolvable
 	 * @var int
 	 */
 	private $resolvableLinks = 0;
@@ -65,7 +65,7 @@ class NamespaceDupes extends Maintenance {
 	private $totalLinks = 0;
 
 	/**
-	 * Total number of links deleted because they weren't automatically resolveable due to the
+	 * Total number of links deleted because they weren't automatically resolvable due to the
 	 * target already existing
 	 * @var int
 	 */

@@ -146,7 +146,7 @@ class ChangeTags {
 	 *
 	 * If TAG_SET_ACTIVE_ONLY is used then the hit count for each tag will be checked against
 	 * and only tags with hits will be returned
-	 * Otherwise if TAG_SET_ALL is used then all tags will be returned regardlesss of if they've
+	 * Otherwise if TAG_SET_ALL is used then all tags will be returned regardless of if they've
 	 * ever been used or not
 	 */
 	public const TAG_SET_ACTIVE_ONLY = true;

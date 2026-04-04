@@ -93,7 +93,7 @@ class WikiReference {
 	 * @todo FIXME: This may be generalized...
 	 *
 	 * @param string $page Page name (must be normalised before calling this function!
-	 *  May contain a hash frament already.)
+	 *  May contain a hash fragment already.)
 	 * @param string|null $fragmentId
 	 * @return string Relative URL, e.g. "/wiki/Foo#Bar".
 	 */

@@ -137,7 +137,7 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 
 	/**
 	 * Returns the latest revision ID of the page at
-	 * the time of the visibilty change event.
+	 * the time of the visibility change event.
 	 *
 	 * @return int
 	 * @since 1.46

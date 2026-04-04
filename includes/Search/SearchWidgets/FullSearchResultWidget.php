@@ -108,7 +108,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 			$html = null;
 			$score = '';
 			$related = '';
-			// TODO: remove this instanceof and always pass [], let implementors do the cast if
+			// TODO: remove this instanceof and always pass [], let implementers do the cast if
 			// they want to be SearchDatabase specific
 			$terms = $result instanceof \MediaWiki\Search\SqlSearchResult ? $result->getTermMatches() : [];
 			if ( !$this->hookRunner->onShowSearchHit( $this->specialPage, $result,

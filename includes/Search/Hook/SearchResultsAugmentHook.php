@@ -14,7 +14,7 @@ use MediaWiki\Search\ResultSetAugmentor;
  */
 interface SearchResultsAugmentHook {
 	/**
-	 * Use this hook to add code to the list of search result augmentors.
+	 * Use this hook to add code to the list of search result augmenters.
 	 *
 	 * @since 1.35
 	 *

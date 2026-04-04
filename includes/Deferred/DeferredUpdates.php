@@ -280,7 +280,7 @@ class DeferredUpdates {
 					// Any addUpdate() calls between descend() and ascend() used the sub-queue.
 					// In rare cases, DeferrableUpdate::doUpdates() will process them by calling
 					// doUpdates() itself. In any case, process remaining updates in the subqueue.
-					// them, enqueueing them, or transferring them to the parent scope
+					// them, enqueuing them, or transferring them to the parent scope
 					// queues as appropriate...
 					$childScope->processUpdates(
 						$activeStage,
@@ -321,7 +321,7 @@ class DeferredUpdates {
 	 * Maintenance scripts that would otherwise grow an excessively large queue, which increases
 	 * memory use, and risks losing all updates if the script ends early or crashes.
 	 *
-	 * The folllowing conditions are required for updates to run early in CLI mode:
+	 * The following conditions are required for updates to run early in CLI mode:
 	 *
 	 * - No update is already in progress (ensure linear flow, recursion guard).
 	 * - LBFactory indicates that we don't have any "busy" database connections, i.e.

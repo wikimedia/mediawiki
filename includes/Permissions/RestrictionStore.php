@@ -525,7 +525,7 @@ class RestrictionStore {
 	 *   third and fourth elements of this array, which may be empty.
 	 *   Second is an array like that returned by getAllRestrictions().
 	 *   Third is an array of PageIdentity objects of the pages from
-	 *   which cascading restrictions have come, orginating via templatelinks, which may be empty.
+	 *   which cascading restrictions have come, originating via templatelinks, which may be empty.
 	 *   Fourth is an array of PageIdentity objects of the pages from
 	 *   which cascading restrictions have come, orginating via imagelinks, which may be empty.
 	 */

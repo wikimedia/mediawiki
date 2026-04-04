@@ -12,7 +12,7 @@ use MediaWiki\MainConfigNames;
 /**
  * A service class for looking up permissions bestowed to groups, groups bestowed with
  * permissions, and permissions bestowed by membership in a combination of groups, solely
- * according to site configuration for group permissions and inheritence thereof.
+ * according to site configuration for group permissions and inheritance thereof.
  *
  * This class does *not* account for implicit rights (which are not associated with groups).
  * Callers might want to use {@see PermissionManager} if this is an issue.

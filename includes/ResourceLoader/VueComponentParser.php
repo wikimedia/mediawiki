@@ -147,7 +147,7 @@ class VueComponentParser {
 	}
 
 	/**
-	 * Get the HTML contents of the <template> tag, optionally minifed.
+	 * Get the HTML contents of the <template> tag, optionally minified.
 	 *
 	 * To work around a bug in PHP's DOMDocument where attributes like @click get mangled,
 	 * we re-parse the entire file using a Remex parse+serialize pipeline, with a custom dispatcher

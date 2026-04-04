@@ -339,7 +339,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 			// If it validates, set it as the default
 			// FIXME: That's not how the validate() function works! Values of nested fields
-			// (e.g. CheckMatix) would be missing.
+			// (e.g. CheckMatrix) would be missing.
 			if ( $prefFromUser !== null && // Make sure we're not just pulling nothing
 					$field->validate( $prefFromUser, $this->userOptionsManager->getOptions( $user ) ) === true ) {
 				$info['default'] = $prefFromUser;

@@ -23,7 +23,7 @@ use Wikimedia\StringUtils\StringUtils;
  * for managing the storage layer, and by SpecialLinkSearch and ApiQueryExtLinksUsage
  * as query interface.
  *
- * For spam removal and anti-spam meausures based on this, see also:
+ * For spam removal and anti-spam measures based on this, see also:
  * - maintenance/cleanupSpam.php
  * - SpamBlacklist extension
  * - AbuseFilter extension (Special:BlockedExternalDomains, T337431)

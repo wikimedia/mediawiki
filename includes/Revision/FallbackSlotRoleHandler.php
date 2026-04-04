@@ -15,7 +15,7 @@ use MediaWiki\Page\PageIdentity;
  * A SlotRoleHandler for providing basic functionality for undefined slot roles.
  *
  * This class is intended to be used when encountering slots with a role that used to be defined
- * by an extension, but no longer is backed by hany specific handler, since the extension in
+ * by an extension, but no longer is backed by many specific handler, since the extension in
  * question has been uninstalled. It may also be used for pages imported from another wiki.
  *
  * @since 1.33

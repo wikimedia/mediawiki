@@ -329,7 +329,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			->fetchResultSet() ];
 		if ( !$this->revisionsOnly && $this->runHooks ) {
 			// These hooks were moved from ContribsPager and DeletedContribsPager. For backwards
-			// compatability, they keep the same names. But they should be run for any contributions
+			// compatibility, they keep the same names. But they should be run for any contributions
 			// pager, otherwise the entries from extensions would be missing.
 			$reallyDoQueryHook = $this->isArchive ?
 				'onDeletedContribsPager__reallyDoQuery' :
@@ -1096,7 +1096,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 
 	/**
 	 * Generate array of template parameters to pass to the template for rendering.
-	 * Function can be overriden by classes to add/remove their own parameters.
+	 * Function can be overridden by classes to add/remove their own parameters.
 	 *
 	 * @since 1.43
 	 *
@@ -1144,7 +1144,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	}
 
 	/**
-	 * Return the processed template. Function can be overriden by classes
+	 * Return the processed template. Function can be overridden by classes
 	 * to provide their own template parser.
 	 *
 	 * @since 1.43

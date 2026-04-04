@@ -814,7 +814,7 @@ abstract class SearchEngine {
 			return;
 		}
 
-		// Convert row augmentors to set augmentor
+		// Convert row augmenters to set augmentor
 		foreach ( $rowAugmentors as $name => $row ) {
 			if ( isset( $setAugmentors[$name] ) ) {
 				throw new InvalidArgumentException( "Both row and set augmentors are defined for $name" );

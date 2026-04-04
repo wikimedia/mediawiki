@@ -529,7 +529,7 @@ TEXT
 		$this->fetchCount++;
 
 		// To allow to simply return on success and do not have to worry about book keeping,
-		// we assume, this fetch works (possible after some retries). Nevertheless, we koop
+		// we assume, this fetch works (possible after some retries). Nevertheless, we keep
 		// the old value, so we can restore it, if problems occur (See after the while loop).
 		$oldConsecutiveFailedTextRetrievals = $consecutiveFailedTextRetrievals;
 		$consecutiveFailedTextRetrievals = 0;

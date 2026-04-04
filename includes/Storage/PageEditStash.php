@@ -437,7 +437,7 @@ class PageEditStash {
 	 *
 	 * This key can be used for caching prepared edits provided:
 	 *   - a) The $user was used for PST options
-	 *   - b) The parser output was made from the PST using cannonical matching options
+	 *   - b) The parser output was made from the PST using canonical matching options
 	 *
 	 * @param PageIdentity $page
 	 * @param string $contentHash Result of getContentHash()

@@ -926,7 +926,7 @@ abstract class MediaWikiEntryPoint {
 	/**
 	 * Enable capturing of the current output buffer.
 	 *
-	 * There may be mutiple levels of output buffering. The level
+	 * There may be multiple levels of output buffering. The level
 	 * we are currently at, at the time of calling this method,
 	 * is the level that will be captured to later retrieve via
 	 * getCapturedOutput().

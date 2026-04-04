@@ -286,7 +286,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
 	 * @param int $loading Sets loading attribute of the underlying <img> (optional)
-	 * @param ?array $imageOptions To supercede the $link param
+	 * @param ?array $imageOptions To supersede the $link param
 	 */
 	public function add(
 		$title,

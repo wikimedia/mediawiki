@@ -806,7 +806,7 @@ abstract class ParsoidHandler extends Handler {
 
 				// NOTE: This is slightly misleading since there are fixed costs
 				// for generating output like the <head> section and should be factored in,
-				// but this is good enough for now as a useful first degree of approxmation.
+				// but this is good enough for now as a useful first degree of approximation.
 				$timePerKB = $parseTime * 1024 / $outSize;
 				if ( $timePerKB > 500 ) {
 					// At 100ms/KB, even a 100KB page which isn't that large will take 10s.
@@ -828,7 +828,7 @@ abstract class ParsoidHandler extends Handler {
 			// XXX: can we just refuse to do wikitext parsing in a GET request?
 			$response->setHeader( ResponseHeaders::CACHE_CONTROL, 'private,no-cache,s-maxage=0' );
 		} elseif ( $oldid !== null ) {
-			// XXX: can this go away? Parsoid's PageContent class doesn't expose supressed revision content.
+			// XXX: can this go away? Parsoid's PageContent class doesn't expose suppressed revision content.
 			if ( $request->getHeaderLine( 'Cookie' ) ||
 				$request->getHeaderLine( 'Authorization' ) ) {
 				// Don't cache requests with a session.

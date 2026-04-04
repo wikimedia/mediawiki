@@ -104,9 +104,9 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 
 		$notes = [];
 		if ( $includesRestrictedPages ) {
-			$restricedMsg = $this->msg( 'specialpages-note-restricted' );
-			if ( !$restricedMsg->isDisabled() ) {
-				$notes[] = $restricedMsg->parse();
+			$restrictedMsg = $this->msg( 'specialpages-note-restricted' );
+			if ( !$restrictedMsg->isDisabled() ) {
+				$notes[] = $restrictedMsg->parse();
 			}
 		}
 		if ( $includesCachedPages ) {

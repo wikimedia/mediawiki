@@ -279,14 +279,14 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 	 *   After an edit, whether or not we need to use the RecentChangeNotifier
 	 *   to determine which RecentChangeNotifyJob to dispatch.
 	 *
-	 * - performance optmization in WatchlistManager.
+	 * - performance optimization in WatchlistManager.
 	 *   After using reset ("Mark all pages as seen") on Special:Watchlist,
 	 *   whether to only look for user talk data to reset, or whether to look
 	 *   at all possible pages for timestamps to reset.
 	 *
 	 * TODO: Determine whether these optimizations still make sense.
 	 *
-	 * FIXME: The $wgShowUpdatedMarker variable was added to this condtion
+	 * FIXME: The $wgShowUpdatedMarker variable was added to this condition
 	 * in 2008 (2cf12c973d, SVN r35001) because at the time the per-user
 	 * "last seen" marker for watchlist and page history, was managed by
 	 * the RecentChangeNotifier/UserMailer classes. As of August 2022, this

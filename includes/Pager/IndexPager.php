@@ -80,7 +80,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	public $mRequest;
 	/** @var int[] List of default entry limit options to be presented to clients */
 	public $mLimitsShown = [ 20, 50, 100, 250, 500 ];
-	/** @var int The default entry limit choosen for clients */
+	/** @var int The default entry limit chosen for clients */
 	public $mDefaultLimit = 50;
 	/** @var mixed The starting point to enumerate entries */
 	public $mOffset;

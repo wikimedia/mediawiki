@@ -300,7 +300,7 @@ TEXT
 				// Update links tables for each page where these bogus links are supposedly
 				// located. If the invalid rows don't go away after these jobs go through,
 				// they're probably being added by a buggy hook.
-				$this->outputStatus( "Queueing link update jobs for the pages in $idField...\n" );
+				$this->outputStatus( "Queuing link update jobs for the pages in $idField...\n" );
 				$linksMigration = $this->getServiceContainer()->getLinksMigration();
 				$wikiPageFactory = $services->getWikiPageFactory();
 				foreach ( $res as $row ) {

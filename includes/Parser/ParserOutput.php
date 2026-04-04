@@ -1318,7 +1318,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		}
 		// For backward compatibility with callers of ::getWarnings()
 		// and rollback compatibility for ParserCache; don't remove
-		// until we no longer need rollback compatiblity with MW 1.43.
+		// until we no longer need rollback compatibility with MW 1.43.
 		$s = Message::newFromSpecifier( $mv )
 			// some callers set the title here?
 			->inContentLanguage() // because this ends up in cache

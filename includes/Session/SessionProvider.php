@@ -485,7 +485,7 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 	 *
 	 * The default CookieSessionProvider stores the last username in a dedicated cookie
 	 * that, unlike the "Token" session ID cookie, is not removed during logout
-	 * (via User::doLogout, SessionBackend::unpersist, SessionBackedn::save,
+	 * (via User::doLogout, SessionBackend::unpersist, SessionBackend::save,
 	 * and finally  CookieSessionProvider::unpersistSession).
 	 *
 	 * @stable to override

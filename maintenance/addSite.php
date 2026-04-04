@@ -39,7 +39,7 @@ class AddSite extends Maintenance {
 
 	/**
 	 * Imports the site described by the parameters (see self::__construct()) passed to this
-	 * maintenance sccript into the sites table of MediaWiki.
+	 * maintenance script into the sites table of MediaWiki.
 	 */
 	public function execute() {
 		$siteStore = $this->getServiceContainer()->getSiteStore();

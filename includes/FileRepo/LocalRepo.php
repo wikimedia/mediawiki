@@ -535,14 +535,14 @@ class LocalRepo extends FileRepo {
 	 * @return bool
 	 * @since 1.35
 	 */
-	protected function hasAcessibleSharedCache() {
+	protected function hasAccessibleSharedCache() {
 		return $this->hasAccessibleSharedCache;
 	}
 
 	/** @inheritDoc */
 	public function getSharedCacheKey( $kClassSuffix, ...$components ) {
 		// T267668: do not include the repo name in the key
-		return $this->hasAcessibleSharedCache()
+		return $this->hasAccessibleSharedCache()
 			? $this->wanCache->makeGlobalKey(
 				'filerepo-' . $kClassSuffix,
 				$this->dbDomain,

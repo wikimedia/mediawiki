@@ -69,7 +69,7 @@ class WebPHandler extends BitmapHandler {
 	public function isFileMetadataValid( $image ) {
 		$data = $image->getMetadataArray();
 		if ( $data === [ '_error' => self::BROKEN_FILE ] ) {
-				// Do not repetitivly regenerate metadata on broken file.
+				// Do not repetitively regenerate metadata on broken file.
 				return self::METADATA_GOOD;
 		}
 

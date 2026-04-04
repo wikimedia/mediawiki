@@ -873,7 +873,7 @@ class EditPage implements IEditObject {
 		} elseif ( $this->unsavedTempUser ) {
 			return $this->unsavedTempUser;
 		} elseif ( $this->firsttime && $this->placeholderTempUser ) {
-			// Mostly a GET request and no temp user was aquired,
+			// Mostly a GET request and no temp user was acquired,
 			// but needed for pst or content transform for preview,
 			// fallback to a placeholder for this situation (T330943)
 			return $this->placeholderTempUser;
@@ -3109,10 +3109,10 @@ class EditPage implements IEditObject {
 			}
 
 			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
-			// $editConflictHelper is declard, when isConflict is true
+			// $editConflictHelper is declared, when isConflict is true
 			$out->addHTML( $editConflictHelper->getEditConflictMainTextBox( $conflictTextBoxAttribs ) );
 			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
-			// $editConflictHelper is declard, when isConflict is true
+			// $editConflictHelper is declared, when isConflict is true
 			$out->addHTML( $editConflictHelper->getEditFormHtmlAfterContent() );
 		} else {
 			$this->showContentForm();

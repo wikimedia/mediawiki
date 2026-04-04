@@ -496,7 +496,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * Some updates are performed based on the difference between the database state at the
 	 * moment this method is first called, and the state after the edit.
 	 *
-	 * @see docs/pageupdater.md for more information on when thie method can and should be called.
+	 * @see docs/pageupdater.md for more information on when this method can and should be called.
 	 *
 	 * @note After prepareUpdate() was called, grabLatestRevision() will throw an exception
 	 * to avoid confusion, since the page's latest revision is then the new revision after
@@ -688,7 +688,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * The derived data prepared for revision creation may then later be re-used by doUpdates(),
 	 * without the need to re-calculate.
 	 *
-	 * @see docs/pageupdater.md for more information on when thie method can and should be called.
+	 * @see docs/pageupdater.md for more information on when this method can and should be called.
 	 *
 	 * @note Calling this method more than once with the same $slotsUpdate
 	 * has no effect. Calling this method multiple times with different content will cause
@@ -1036,7 +1036,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * derived data e.g. in ApiPurge, RefreshLinksJob, and the refreshLinks
 	 * script.
 	 *
-	 * @see docs/pageupdater.md for more information on when thie method can and should be called.
+	 * @see docs/pageupdater.md for more information on when this method can and should be called.
 	 *
 	 * @note Calling this method more than once with the same revision has no effect.
 	 * $options are only used for the first call. Calling this method multiple times with

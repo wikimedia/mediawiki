@@ -21,7 +21,7 @@ use Wikimedia\Rdbms\IDatabase;
  * Proxy backend that manages file layout rewriting for FileRepo.
  *
  * LocalRepo may be configured to store files under their title names or by SHA-1.
- * This acts as a shim in the latter case, providing backwards compatability for
+ * This acts as a shim in the latter case, providing backwards compatibility for
  * most callers. All "public"/"deleted" zone files actually go in an "original"
  * container and are never changed.
  *

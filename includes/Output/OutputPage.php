@@ -2342,7 +2342,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * Consider whether RequestContext::getLanguage (e.g. OutputPage::getLanguage
 	 * or Skin::getLanguage) or MediaWikiServices::getContentLanguage is more
-	 * appropiate first for your use case.
+	 * appropriate first for your use case.
 	 *
 	 * @since 1.42
 	 * @return Language

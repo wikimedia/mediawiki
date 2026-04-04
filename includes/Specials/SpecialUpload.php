@@ -92,7 +92,7 @@ class SpecialUpload extends SpecialPage {
 	/** @var string */
 	public $mSourceType;
 
-	/** @var string The cache key to use to retreive the status of your async upload */
+	/** @var string The cache key to use to retrieve the status of your async upload */
 	public $mCacheKey;
 
 	/** @var UploadBase */

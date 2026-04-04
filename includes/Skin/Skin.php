@@ -155,7 +155,7 @@ abstract class Skin extends ContextSource {
 			// the custom page heading is shown to all users, not just those that have
 			// their interface set to the site content language.
 			//
-			// T331095: Avoid Message::inContentLanuguage and, just like Parser,
+			// T331095: Avoid Message::inContentLanguage and, just like Parser,
 			// pick the language variant based on the current URL and/or user
 			// preference if their variant relates to the content language.
 			$forceUIMsgAsContentMsg = $this->getConfig()

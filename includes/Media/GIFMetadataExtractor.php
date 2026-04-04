@@ -153,7 +153,7 @@ class GIFMetadataExtractor {
 					}
 
 					// The standard says this should be ASCII, however its unclear if
-					// thats true in practise. Check to see if its valid utf-8, if so
+					// that's true in practise. Check to see if its valid utf-8, if so
 					// assume its that, otherwise assume its windows-1252 (iso-8859-1)
 					$dataCopy = $data;
 					// quickIsNFCVerify has the side effect of replacing any invalid characters

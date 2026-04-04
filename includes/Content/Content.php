@@ -192,7 +192,7 @@ interface Content {
 	 * - $a->equals( $b ) &&  $b->equals( $c ) ==> $a->equals( $c )
 	 *
 	 * This default AbstractContent::equals implementation fulfills the above and relies on
-	 * Contenet::serialize() (via AbstractContent::equalsInternal) to determine whether Content
+	 * Content::serialize() (via AbstractContent::equalsInternal) to determine whether Content
 	 * objects are logically equivalent. Subclasses that only need to implement a custom equality
 	 * check should consider overriding AbstractContent::equalsInternal().
 	 *
@@ -223,7 +223,7 @@ interface Content {
 	 * Whether this content may count towards a "real" wiki page.
 	 *
 	 * The only factor not taken into account here is the content location
-	 * (i.e. whether the content belongs to a latest revision, of an existant page,
+	 * (i.e. whether the content belongs to a latest revision, of an existing page,
 	 * in a "content" namespace).
 	 *
 	 * @since 1.21

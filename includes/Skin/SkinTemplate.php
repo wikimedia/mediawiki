@@ -1024,7 +1024,7 @@ class SkinTemplate extends Skin {
 			return;
 		}
 		// The new `associatedPages` menu (added in 1.39)
-		// should be backwards compatibile with `namespaces`.
+		// should be backwards compatible with `namespaces`.
 		// To do this we look for hook modifications to both keys. If modifications are not
 		// made the new key, but are made to the old key, associatedPages reverts back to the
 		// links in the namespaces menu.

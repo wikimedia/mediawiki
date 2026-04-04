@@ -14,7 +14,7 @@ trait RestAuthorizeTrait {
 	/**
 	 * Authorize an action
 	 *
-	 * @see Authroity::authorizeWrite
+	 * @see Authority::authorizeWrite
 	 * @throws HttpException
 	 */
 	private function authorizeActionOrThrow(
@@ -30,7 +30,7 @@ trait RestAuthorizeTrait {
 	/**
 	 * Authorize a read operation
 	 *
-	 * @see Authroity::authorizeWrite
+	 * @see Authority::authorizeWrite
 	 * @throws HttpException
 	 */
 	private function authorizeReadOrThrow(
@@ -47,7 +47,7 @@ trait RestAuthorizeTrait {
 	/**
 	 * Authorize a write operation
 	 *
-	 * @see Authroity::authorizeWrite
+	 * @see Authority::authorizeWrite
 	 * @throws HttpException
 	 */
 	private function authorizeWriteOrThrow(

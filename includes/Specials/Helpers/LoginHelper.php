@@ -63,7 +63,7 @@ class LoginHelper extends ContextSource {
 	 *   - success: display a return to link using $wgRedirectOnLogin if needed
 	 *   - successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
 	 *   - signup: used during signup, functionally identical to 'success'
-	 * @param string $returnTo Title of page to return to. Overriden by $wgRedirectOnLogin
+	 * @param string $returnTo Title of page to return to. Overridden by $wgRedirectOnLogin
 	 *   when that is set (and $type is not 'error').
 	 * @param array|string $returnToQuery Query parameters to return to.
 	 * @param bool $stickHTTPS Keep redirect link on HTTPS. Ignored (treated as

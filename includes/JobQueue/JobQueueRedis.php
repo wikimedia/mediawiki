@@ -59,7 +59,7 @@ use Wikimedia\ObjectCache\RedisConnRef;
  *
  * This class requires Redis 2.6 or later as it uses Lua scripting for fast atomic operations.
  * Additionally, it should be noted that redis has different persistence modes, such
- * as rdb snapshots, journaling, or no persistence. Appropriate configuration should be
+ * as rdb snapshots, journalling, or no persistence. Appropriate configuration should be
  * made on the servers based on what queues are using it and what tolerance they have.
  *
  * @since 1.22
