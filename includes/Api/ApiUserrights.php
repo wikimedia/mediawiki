@@ -22,6 +22,7 @@ use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -166,6 +167,25 @@ class ApiUserrights extends ApiBase {
 		$this->requireOnlyOneParameter( $params, 'user', 'userid' );
 
 		$userDesignator = $params['user'] ?? '#' . $params['userid'];
+
+		// T422085: Check userrights-interwiki permission BEFORE looking up the user,
+		// to prevent user enumeration on private/remote wikis.
+		// This mirrors the fix applied to SpecialUserRights in Gerrit change I15306e63.
+		if ( isset( $params['user'] ) ) {
+			$interwikiDelimiter = $this->getConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter );
+			if ( str_contains( $userDesignator, $interwikiDelimiter ) ) {
+				$targetParts = explode( $interwikiDelimiter, $userDesignator );
+				$remoteWikiId = $targetParts[1] ?? '';
+				if (
+					$remoteWikiId !== '' &&
+					!WikiMap::isCurrentWikiId( $remoteWikiId ) &&
+					!$this->getAuthority()->isAllowed( 'userrights-interwiki' )
+				) {
+					$this->dieWithError( 'apierror-permissiondenied-userrights-interwiki', 'permissiondenied' );
+				}
+			}
+		}
+
 		$status = $this->multiFormatUserIdentityLookup->getUserIdentity( $userDesignator, $this->getAuthority() );
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
