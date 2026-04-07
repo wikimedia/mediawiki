@@ -917,6 +917,12 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
+
+			return true;
+		}
+
 		if ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
 			return $this->applyPatch( $patch, $fullpath, "Table $table contains $field field. Dropping" );
 		}
@@ -939,6 +945,12 @@ abstract class DatabaseUpdater {
 	 */
 	protected function dropIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
+
 			return true;
 		}
 
