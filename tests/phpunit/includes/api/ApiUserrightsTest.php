@@ -325,4 +325,17 @@ class ApiUserrightsTest extends ApiTestCase {
 		$this->assertTrue( $this->getServiceContainer()->getWatchlistManager()
 			->isWatched( $this->getTestSysop()->getUser(), $userPage ) );
 	}
+
+	/**
+	 * T422085: Verify that cross-wiki user lookup is blocked
+	 * when the performer lacks the 'userrights-interwiki' permission.
+	 */
+	public function testInterwikiLookupWithoutPermission() {
+		$this->setGroupPermissions( 'sysop', 'userrights-interwiki', false );
+
+		$this->doFailedRightsChange(
+			'permissiondenied',
+			[ 'user' => 'SomeUser@remotewiki' ]
+		);
+	}
 }
