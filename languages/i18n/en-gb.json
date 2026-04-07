@@ -65,6 +65,8 @@
 	},
 	"lastmodifiedat": "This page was last modified on $1, at $2.",
 	"botpasswords-no-central-id": "To use bot passwords, you must be logged in to a centralised account.",
+	"bad-double-underscore-category": "Pages with invalid behaviour switches",
+	"bad-double-underscore-category-desc": "The page contains a invalid localised [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|behaviour switch]]. Valid localisations begin and end with double underscores.",
 	"search-invalid-sort-order": "Sort order of $1 is unrecognised, default sorting will be applied. Valid sort orders are: $2",
 	"search-unknown-profile": "Search profile of $1 is unrecognised, default search profile will be applied.",
 	"prefs-description-misc": "Customise the table of contents.",
