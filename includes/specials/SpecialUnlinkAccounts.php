@@ -24,6 +24,11 @@ class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 		$this->setAuthManager( $authManager );
 	}
 
+	/** @inheritDoc */
+	public function getRestriction(): string {
+		return 'editmyprivateinfo';
+	}
+
 	protected function getLoginSecurityLevel() {
 		return 'UnlinkAccount';
 	}
