@@ -33,6 +33,8 @@ class ApiChangeAuthenticationData extends ApiBase {
 			$this->dieWithError( 'apierror-mustbeloggedin-changeauthenticationdata', 'notloggedin' );
 		}
 
+		$this->checkUserRightsAny( 'editmyprivateinfo' );
+
 		$helper = new ApiAuthManagerHelper( $this, $this->authManager );
 
 		// Check security-sensitive operation status

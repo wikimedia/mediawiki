@@ -32,6 +32,11 @@ class SpecialLinkAccounts extends AuthManagerSpecialPage {
 	}
 
 	/** @inheritDoc */
+	public function getRestriction(): string {
+		return 'editmyprivateinfo';
+	}
+
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'login';
 	}
