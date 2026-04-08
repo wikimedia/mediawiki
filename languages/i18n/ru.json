@@ -202,7 +202,8 @@
 			"Dolbaeb",
 			"EneshTranslates",
 			"Mitte27",
-			"Engineer56"
+			"Engineer56",
+			"Shabe"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|1=Категория|Категории}}",
@@ -707,7 +708,7 @@
 	"resettokens-resetbutton": "Сбросить выбранные токены",
 	"editrecovery": "Восстановление правки",
 	"edit-recovery-nojs-placeholder": "Для функции «Восстановление правки» требуется JavaScript.",
-	"edit-recovery-special-user-unnamed": "Пожалуйста, [[Special:UserLogin|войдите в систему]] или [[Special:CreateAccount|создайте учетную запись]], чтобы использовать эту функцию.",
+	"edit-recovery-special-user-unnamed": "Пожалуйста, [[Special:UserLogin|войдите в систему]] или [[Special:CreateAccount|создайте учётную запись]], чтобы использовать эту функцию.",
 	"edit-recovery-special-user-not-enabled": "Вы можете включить эту функцию в [[Special:Preferences#mw-prefsection-editing|Ваших настройках]].",
 	"edit-recovery-special-intro": "У вас есть несохранённые изменения на {{PLURAL:$1|следующей  странице или разделе|страницах и/или разделах}}:",
 	"edit-recovery-special-intro-empty": "У вас нет несохранённых изменений.",

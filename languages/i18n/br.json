@@ -3815,6 +3815,8 @@
 	"benefit-2-description": "Roll peurbadus ar c'hemmoù hoc'h eus degaset d'ar raktres.",
 	"benefit-3-description": "Dibaboù a ro deoc’h tu da bersonelaat hoc’h implij eus al lec’hienn",
 	"temp-user-unable-to-acquire": "N'haller ket tapout un anv implijer evit ur gont berrbad. Klaskit en-dro mar plij.",
+	"table-of-contents-show-button-aria-label": "Diskouez an daolenn",
+	"table-of-contents-hide-button-aria-label": "Kuzhat an daolenn",
 	"interwiki": "Gwelet hag aozañ ar roadennoù etrewiki",
 	"interwiki-title-norights": "Gwelet ar roadennoù etrewiki",
 	"interwiki_intro": "Hemañ zo un alberz eus taolenn an etrewiki, a dermen ar rakgerioù berr a dalvez da liammañ ouzh wikioù disheñvel ha lec'hiennoù diavaez all. Evit an implij erbedet, sellit ouzh [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki an dornlevr war MediaWiki.org] mar plij.",

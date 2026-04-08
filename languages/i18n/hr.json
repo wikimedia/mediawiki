@@ -746,6 +746,7 @@
 	"cur": "sad",
 	"next": "sljed",
 	"last": "pret",
+	"tooltip-last": "Razlika u odnosu na prethodnu izmjenu",
 	"page_first": "prva",
 	"page_last": "zadnja",
 	"histlegend": "Izbor inačica za usporedbu: označite kružiće pokraj dviju inačica koje želite usporediti i pritisnite »Enter« ili tipku na dnu.<br />\nTumač oznaka: <strong>({{int:cur}})</strong> = usporedba s trenutačnom inačicom, <strong>({{int:last}})</strong> = usporedba s prethodnom inačicom, <strong>{{int:minoreditletter}}</strong> = manja promjena.",

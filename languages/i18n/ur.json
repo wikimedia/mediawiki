@@ -2163,6 +2163,7 @@
 	"contributions": "صارف کی شراکتیں",
 	"tool-link-contributions": "{{GENDER:$1|صارف}} کی شراکتیں",
 	"contributions-title": "صارف $1 کی شراکتیں",
+	"contributions-title-for-ip-when-temporary-accounts-enabled": "$1 کی قدیم آئی پی شراکتیں",
 	"contribute-title": "صارف کی شراکتیں",
 	"mycontris": "شراکتیں",
 	"anoncontribs": "شراکتیں",

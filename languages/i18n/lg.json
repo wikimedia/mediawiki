@@ -7,7 +7,8 @@
 			"Kizito",
 			"Macofe",
 			"Ssemmanda will",
-			"아라"
+			"아라",
+			"B722N"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Tuluba|Matuluba}}",
@@ -485,6 +486,8 @@
 	"recentchangeslinked-summary": "Olulpapula olw'enjawulo luno luliko olukalala lw'ebikyuse ku mpapula eziriko enyunzi ezigguka ku lw'obadde otunuulira. Ebiwandikidwa mu '''nukuta enziggumivu''' biri ku [[Special:Watchlist|mpapula z'ogoberera]].",
 	"recentchangeslinked-page": "Lupapula:",
 	"recentchangeslinked-to": "Nonamu eby'empapula ezikuggusa ku luno zokka",
+	"recentchanges-page-added-to-category": "[[:$1]] eyogendwa mu ttuluba lino",
+	"recentchanges-page-removed-from-category": "[[:$1]] eggyiddwa mu ttuluba lino",
 	"upload": "Teekayo fayiro",
 	"uploadlogpage": "Likooda eya fayiro eziteekedwa ku wiki",
 	"filedesc": "Mu bufunze",
@@ -508,6 +511,7 @@
 	"upload-disallowed-here": "Tosobola kukola nkyukakyuka mu fayiro eno.",
 	"filedelete-comment": "Ekigyisizzawo fayiro:",
 	"randompage": "Nondera olupapula muwawa",
+	"randomincategory-category": "Ettuluba:",
 	"statistics": "Ebibalidwa",
 	"nbytes": "{{PLURAL:$1|bayiti|bayiti}} $1",
 	"ncategories": "$1 {{PLURAL:$1|ttuluba|matuluba}}",

@@ -65,6 +65,8 @@
 	},
 	"lastmodifiedat": "This page was last modified on $1, at $2.",
 	"botpasswords-no-central-id": "To use bot passwords, you must be logged in to a centralised account.",
+	"bad-double-underscore-category": "Pages with invalid behaviour switches",
+	"bad-double-underscore-category-desc": "The page contains a invalid localised [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|behaviour switch]]. Valid localisations begin and end with double underscores.",
 	"search-invalid-sort-order": "Sort order of $1 is unrecognised, default sorting will be applied. Valid sort orders are: $2",
 	"search-unknown-profile": "Search profile of $1 is unrecognised, default search profile will be applied.",
 	"prefs-description-misc": "Customise the table of contents.",
@@ -95,6 +97,7 @@
 	"blockiptext": "Use the form below to block write access from a specific IP address or username.\nThis should be done only to prevent vandalism and in accordance with [[{{MediaWiki:Policy-url}}|policy]].\nFill in a specific reason below (for example, citing particular pages that were vandalised).\nYou can block IP address ranges using the [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] syntax; the largest allowed range is /$1 for IPv4 and /$2 for IPv6.",
 	"ipbreason-dropdown": "*Common block reasons\n** Inserting false information\n** Removing content from pages\n** Spamming links to external sites\n** Inserting nonsense/gibberish into pages\n** Intimidating behaviour/harassment\n** Abusing multiple accounts\n** Unacceptable username",
 	"block-expiry": "Expiry:",
+	"block-reason-help": "For example, cite particular pages that were vandalised",
 	"proxyblockreason": "Your IP address has been blocked because it is an open proxy.\nPlease contact your Internet service provider or technical support of your organisation and inform them of this serious security problem.",
 	"movecategorypage-warning": "<strong>Warning:</strong> You are about to move a category page. Please note that only the page will be moved and any pages in the old category will <em>not</em> be recategorised into the new one.",
 	"allmessages-filter": "Filter by customisation state:",
@@ -117,5 +120,6 @@
 	"logentry-suppress-block": "$1 {{GENDER:$2|blocked}} {{GENDER:$4|$3}} with an expiry time of $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|changed}} block settings for {{GENDER:$4|$3}} with an expiry time of $5 $6",
 	"feedback-error1": "Error: Unrecognised result from API",
+	"session-page-restricted": "{{GENDER:|You}} are not authorised to edit this page using the current grant",
 	"benefit-3-description": "Preferences that allow you to customise your experience."
 }

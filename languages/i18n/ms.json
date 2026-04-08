@@ -3659,7 +3659,7 @@
 	"limitreport-cputime-value": "$1 {{PLURAL:$1|saat}}",
 	"limitreport-walltime": "Penggunaan masa nyata",
 	"limitreport-walltime-value": "$1 {{PLURAL:$1|saat}}",
-	"limitreport-ppvisitednodes": "Kiraan nod kunjungan pempraproses",
+	"limitreport-ppvisitednodes": "Kiraan nod kunjungan pempraprosesan",
 	"limitreport-postexpandincludesize": "Saiz selepas peluasan",
 	"limitreport-postexpandincludesize-value": "$1/$2 {{PLURAL:$2|bait}}",
 	"limitreport-templateargumentsize": "Saiz parameter templat",
