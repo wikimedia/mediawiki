@@ -280,7 +280,7 @@ class BackfillInterwikiRightsLog extends Maintenance {
 			foreach ( $renameLogs as $renameLog ) {
 				$log = DatabaseLogEntry::newFromRow( $renameLog );
 
-				$oldName = $log->getTarget()->getText();
+				$oldName = $log->getTarget()->getDBkey();
 				$timestamp = $log->getTimestamp();
 				$params = $log->getParameters();
 				$newName = strtr( $params['5::newuser'] ?? $params[0] ?? '', ' ', '_' );

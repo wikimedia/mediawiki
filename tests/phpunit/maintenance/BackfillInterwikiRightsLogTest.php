@@ -186,4 +186,55 @@ class BackfillInterwikiRightsLogTest extends MaintenanceBaseTestCase {
 			->caller( __METHOD__ )
 			->fetchRowCount();
 	}
+
+	public function testBreaksRenameCycles() {
+		// Interwiki rights log to our wiki - to be copied
+		// Don't use insertRightsLogs(), as here the target is different, to specifically test usernames with spaces
+		$currWiki = WikiMap::getCurrentWikiId();
+		$log1 = new ManualLogEntry( 'rights', 'rights' );
+		$log1->setTimestamp( '20200101000000' );
+		$log1->setPerformer( new UserIdentityValue( 1, 'Performer 1' ) );
+		$log1->setTarget( new PageIdentityValue( 0, NS_USER, 'Target_1@' . $currWiki, false ) );
+		$log1->setParameters( [ '4::oldgroups' => [], '5::newgroups' => [ 'sysop' ] ] );
+		$log1->insert();
+
+		// Target 1 -> Target 2
+		$renameLog1 = new ManualLogEntry( 'renameuser', 'renameuser' );
+		$renameLog1->setTimestamp( '20200102000000' );
+		$renameLog1->setPerformer( new UserIdentityValue( 100, 'Renamer' ) );
+		$renameLog1->setTarget( new PageIdentityValue( 0, NS_USER, 'Target_1', false ) );
+		$renameLog1->setParameters( [ '5::newuser' => 'Target 2' ] );
+		$renameLog1->insert();
+
+		// Target 2 -> Target 1
+		$renameLog2 = new ManualLogEntry( 'renameuser', 'renameuser' );
+		$renameLog2->setTimestamp( '20200103000000' );
+		$renameLog2->setPerformer( new UserIdentityValue( 100, 'Renamer' ) );
+		$renameLog2->setTarget( new PageIdentityValue( 0, NS_USER, 'Target_2', false ) );
+		$renameLog2->setParameters( [ '5::newuser' => 'Target 1' ] );
+		$renameLog2->insert();
+
+		$preLogsCount = $this->countLogs();
+
+		$this->maintenance->setOption( 'remote-wiki', self::REMOTE_WIKI );
+		$this->maintenance->setArg( 0, '20250101000000' );
+		$this->maintenance->execute();
+
+		$postLogsCount = $this->countLogs();
+
+		$this->assertSame( 1, $postLogsCount - $preLogsCount, 'Only one log entry should be added' );
+
+		$addedRow = DatabaseLogEntry::newSelectQueryBuilder( $this->getDb() )
+			->orderBy( 'log_id', SelectQueryBuilder::SORT_DESC )
+			->caller( __METHOD__ )
+			->fetchRow();
+		$addedLog = DatabaseLogEntry::newFromRow( $addedRow );
+
+		$this->assertSame( 'rights', $addedLog->getType() );
+		$this->assertSame( 'rights', $addedLog->getSubtype() );
+		$this->assertSame( 'Target 1', $addedLog->getTarget()->getText() );
+		$this->assertSame( self::REMOTE_WIKI . '>Performer 1', $addedLog->getPerformerIdentity()->getName() );
+		$this->assertSame( [ '4::oldgroups' => [], '5::newgroups' => [ 'sysop' ] ], $addedLog->getParameters() );
+		$this->assertSame( '20200101000000', $addedLog->getTimestamp() );
+	}
 }
