@@ -28,6 +28,11 @@ class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 	}
 
 	/** @inheritDoc */
+	public function getRestriction(): string {
+		return 'editmyprivateinfo';
+	}
+
+	/** @inheritDoc */
 	protected function getLoginSecurityLevel() {
 		return 'UnlinkAccount';
 	}
