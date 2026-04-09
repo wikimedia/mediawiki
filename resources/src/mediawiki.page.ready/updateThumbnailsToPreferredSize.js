@@ -67,12 +67,6 @@ const updateThumbnailToPreferredSize = ( img ) => {
  * @param {jQuery} $element
  */
 function updateThumbnailsToPreferredSize( $element ) {
-	if ( !$element.closest( '[data-mw-parsoid-version]' ).length ) {
-		// Don't run on legacy parser-rendered content (yet), as legacy parser already achieves this via HTML changes
-		// this can be removed once we've verified that users are happy with the Parsoid solution and we
-		// remove the legacy parser option.
-		return;
-	}
 	if ( document.documentElement.classList.contains( 'skin-theme-clientpref-thumb-large' ) ) {
 		const observer = new IntersectionObserver( ( entries ) => {
 			entries.forEach( ( entry ) => {

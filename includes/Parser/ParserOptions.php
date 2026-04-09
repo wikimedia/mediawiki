@@ -617,7 +617,8 @@ class ParserOptions {
 	}
 
 	/**
-	 * Thumb size preferred by the user.
+	 * Get thumbnail size.
+	 *
 	 * @return int
 	 */
 	public function getThumbSize() {
@@ -626,11 +627,14 @@ class ParserOptions {
 
 	/**
 	 * Thumb size preferred by the user.
+	 * This is currently ignored by the parser. It will be
+	 * deprecated in future versions.
+	 *
 	 * @param int|null $x New value (null is no change)
 	 * @return int Old value
 	 */
 	public function setThumbSize( $x ) {
-		return $this->setOptionLegacy( 'thumbsize', $x );
+		return $this->options['thumbsize'];
 	}
 
 	/**
@@ -1430,7 +1434,7 @@ class ParserOptions {
 		$this->mUser = $user;
 		$services = MediaWikiServices::getInstance();
 		$optionsLookup = $services->getUserOptionsLookup();
-		$this->options['thumbsize'] = $optionsLookup->getOption( $user, 'thumbsize' );
+		$this->options['thumbsize'] = $optionsLookup->getDefaultOption( 'thumbsize' );
 		$this->options['userlang'] = $lang;
 	}
 

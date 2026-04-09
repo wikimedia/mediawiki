@@ -526,9 +526,9 @@ class SkinModule extends FileModule {
 			];
 			$largeSize = max( $limits );
 			$imgSelectors = [
-				'.mw-parser-output[data-mw-parsoid-version] .mw-default-size img' .
+				'.mw-parser-output .mw-default-size img' .
 				'[ width="' . $defaultSize . '" ]',
-				'.mw-parser-output[data-mw-parsoid-version] .mw-default-size img.mw-file-upright',
+				'.mw-parser-output .mw-default-size img.mw-file-upright',
 			];
 			// Restrict to width='$defaultSize' to prevent upscaling images which were
 			// originally smaller than the default thumbnail size (T417828)

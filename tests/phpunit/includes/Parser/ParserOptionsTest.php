@@ -461,13 +461,13 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			->getUserOptionsManager()
 			->setOption( $user, 'thumbsize', 251 );
 		$uOpts = ParserOptions::newFromUser( $user );
-		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
+		$this->assertTrue( $cOpts->matchesForCacheKey( $uOpts ) );
 
 		$this->getServiceContainer()
 			->getUserOptionsManager()
 			->setOption( $user, 'stubthreshold', 800 );
 		$uOpts = ParserOptions::newFromUser( $user );
-		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
+		$this->assertTrue( $cOpts->matchesForCacheKey( $uOpts ) );
 
 		$uOpts = ParserOptions::newFromUserAndLang(
 			$user,

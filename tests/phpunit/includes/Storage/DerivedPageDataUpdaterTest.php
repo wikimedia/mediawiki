@@ -1382,7 +1382,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->doUpdates();
 
 		$this->assertGreaterThan( 1, DeferredUpdates::pendingUpdatesCount(), 'Pending updates' );
-		$this->assertFalse( $pcache->get( $page, $updater->getCanonicalParserOptions() ) );
+		// the user thumbsize should not result in a cache miss.
+		$this->assertNotFalse( $pcache->get( $page, $updater->getCanonicalParserOptions() ) );
 
 		$this->getDb()->endAtomic( __METHOD__ ); // run deferred updates
 		$this->runDeferredUpdates();
