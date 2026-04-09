@@ -48,6 +48,7 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 		'pre' => true,
 		'math' => true,
 		'svg' => true,
+		'style' => true,
 	];
 
 	public function __construct(
