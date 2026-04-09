@@ -1675,7 +1675,7 @@
 	"listusers-temporaryaccountsonly": "يوازې لنډمهالي گڼونونه ښودل",
 	"listusers-creationsort": "د جوړېدو د نېټې له مخې اوډل",
 	"listusers-desc": "مخښکته اوډل",
-	"usereditcount": "{{PLURAL:$1|سمون|سمونونه}}",
+	"usereditcount": "$1 {{PLURAL:$1|سمون|سمونونه}}",
 	"usercreated": "په $1 نېټه په $2 بجو {{GENDER:$3|جوړ شو}}",
 	"newpages": "نوي مخونه",
 	"newpages-submit": "ښکاره کول",

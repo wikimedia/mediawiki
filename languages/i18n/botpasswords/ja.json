@@ -8,7 +8,8 @@
 			"Rxy",
 			"Shirayuki",
 			"かしわのはみん",
-			"ネイ"
+			"ネイ",
+			"Tensama0415"
 		]
 	},
 	"botpasswords": "ボット用パスワード",
@@ -17,7 +18,7 @@
 	"botpasswords-no-central-id": "ボット用パスワードを利用する場合、中央管理ログイン (CentralAuth) に対応した統一アカウントにログインする必要があります。",
 	"botpasswords-existing": "既存のボット用パスワード",
 	"botpasswords-createnew": "ボット用パスワードの新規作成",
-	"botpasswords-editexisting": "既存のボットのパスワードを編集",
+	"botpasswords-editexisting": "既存のボット用パスワードを編集",
 	"botpasswords-label-needsreset": "(パスワードのリセットが必要です)",
 	"botpasswords-label-appid": "ボット名:",
 	"botpasswords-label-create": "作成",

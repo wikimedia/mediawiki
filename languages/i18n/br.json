@@ -1847,6 +1847,7 @@
 	"logeventslist-patrol-log": "Marilh ar patrouilh",
 	"logeventslist-tag-log": "Marilh tikedennoù",
 	"logeventslist-newusers-log": "Marilh krouidigezhioù implijerien",
+	"newusers-excludetempacct": "Kuzhat krouidigezhioù kontoù berrbad",
 	"all-logs-page": "Marilhoù foran pennañ",
 	"alllogstext": "Diskwel a-gevret an holl varilhoù hegerz war {{SITENAME}}.\nGallout a rit strishaat ar mod diskwel en ur zibab ar marilh, an anv implijer (diwallit ouzh ar pennlizherennoù) pe ar bajenn a fell deoc'h (memes tra).",
 	"logempty": "Goullo eo istor ar bajenn-mañ.",
@@ -3774,5 +3775,7 @@
 	"benefit-1-description": "Rolloù evezhiañ a ro deoc’h tu da heuliañ ar pajennoù a blij deoc'h.",
 	"benefit-2-description": "Roll peurbadus ar c'hemmoù hoc'h eus degaset d'ar raktres.",
 	"benefit-3-description": "Dibaboù a ro deoc’h tu da bersonelaat hoc’h implij eus al lec’hienn",
-	"temp-user-unable-to-acquire": "N'haller ket tapout un anv implijer evit ur gont berrbad. Klaskit en-dro mar plij."
+	"temp-user-unable-to-acquire": "N'haller ket tapout un anv implijer evit ur gont berrbad. Klaskit en-dro mar plij.",
+	"table-of-contents-show-button-aria-label": "Diskouez an daolenn",
+	"table-of-contents-hide-button-aria-label": "Kuzhat an daolenn"
 }

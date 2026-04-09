@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mehtab ahmed",
+			"Siddhu Talreja"
+		]
+	},
+	"cdx-chip-input-chip-added": "چپ $1 شامل ڪئي وئي.",
+	"cdx-input-chip-aria-description": "ايڊٽ ڪرڻ لاءِ اينٽر دٻايو يا ڪڍڻ لاءِ ڊِليِٽ دٻايو",
+	"cdx-dialog-close-button-label": "بند ڪريو",
+	"cdx-label-optional-flag": "(اختياري)",
+	"cdx-message-dismiss-button-label": "بند ڪريو",
+	"cdx-popover-close-button-label": "بند ڪريو",
+	"cdx-search-input-search-button-label": "ڳولھيو",
+	"cdx-table-select-all-label": "سڀ قطارون چونڊيو",
+	"cdx-table-pager-button-next-page": "اڳيون صفحو",
+	"cdx-table-no-data-message": "ڪابہ ڊيٽا موجود ناھي."
+}

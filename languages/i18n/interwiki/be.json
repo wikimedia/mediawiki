@@ -4,10 +4,14 @@
 			"Artsiom91",
 			"No Sleep till Krupki",
 			"ZlyiLev",
-			"Тест"
+			"Тест",
+			"Vlad5250"
 		]
 	},
 	"interwiki-title-norights": "Прагляд звестак пра інтэрвікі",
+	"interwiki-legend-label": "Легенда",
+	"interwiki_prefix": "Прэфікс",
+	"interwiki-prefix-label": "Прэфікс:",
 	"interwiki_1": "так",
 	"interwiki_0": "не",
 	"interwiki_edit": "Правіць",

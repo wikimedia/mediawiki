@@ -14,7 +14,8 @@
 			"Ua2004",
 			"Ата",
 			"Максим Підліснюк",
-			"Тест"
+			"Тест",
+			"Vlad5250"
 		]
 	},
 	"exif-imagewidth": "Ширина",
@@ -400,7 +401,7 @@
 	"exif-urgency-other": "Визначений користувачем пріоритет ($1)",
 	"exif-firstphotodate": "Дата першого фото",
 	"exif-lastphotodate": "Дата останнього фото",
-	"exif-projectiontype": "Тип проекції",
+	"exif-projectiontype": "Тип проєкції",
 	"exif-projectiontype-equirectangular": "Еквідистантна",
 	"exif-usepanoramaviewer": "Використовувати переглядач панорами",
 	"exif-usepanoramaviewer-true": "Так",
@@ -424,5 +425,18 @@
 	"exif-croppedarealeftpixels": "Ліве обрізання панорами",
 	"exif-croppedareatoppixels": "Верхнє обрізання панорами",
 	"exif-initialcameradolly": "Початковий візок для камери",
-	"exif-stitchingsoftware": "Зшивальна програма"
+	"exif-stitchingsoftware": "Зшивальна програма",
+	"exif-digitalsourcetype": "Джерело цифрового медіа",
+	"exif-digitalsourcetype-digitalcapture": "Цифрова камера або диктофон",
+	"exif-digitalsourcetype-computationalcapture": "Цифрова камера або диктофон (об'єднання кількох кадрів)",
+	"exif-digitalsourcetype-negativefilm": "Оцифровано з прозорого негативу",
+	"exif-digitalsourcetype-positivefilm": "Оцифровано з прозорого позитиву",
+	"exif-digitalsourcetype-print": "Оцифровано з непрозорого носія",
+	"exif-digitalsourcetype-minorhumanedits": "Оригінальні медіафайли з незначними людськими редагуваннями",
+	"exif-digitalsourcetype-humanedits": "Медіафайли, відредаговані людиною",
+	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "Відредаговано за допомогою генеративного ШІ",
+	"exif-digitalsourcetype-algorithmicallyenhanced": "Алгоритмічно змінені медіа",
+	"exif-digitalsourcetype-softwareimage": "Створено програмним забезпеченням",
+	"exif-digitalsourcetype-digitalart": "Створено людиною за допомогою цифрових інструментів",
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "Створено за допомогою генеративного ШІ"
 }

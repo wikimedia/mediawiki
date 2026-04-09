@@ -271,7 +271,8 @@
 			"SrGarga",
 			"Tecbs",
 			"Monicapozo03",
-			"Kookoriko"
+			"Kookoriko",
+			"Jaume9118"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoría|Categorías}}",
@@ -2538,7 +2539,7 @@
 	"protect-otherreason-op": "Otro motivo",
 	"protect-dropdown": "*Motivos de protección comúnes\n** Vandalismo excesivo\n** Spam excesivo\n** Guerra de ediciones\n** Página muy visitada",
 	"protect-edit-reasonlist": "Editar motivos de protección",
-	"protect-expiry-options": "1 hora:1 hour,1 día:1 day,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,para siempre:infinite",
+	"protect-expiry-options": "1 hora:1 hour,1 día:1 day,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,indefinido:infinite",
 	"restriction-type": "Permiso:",
 	"restriction-level": "Nivel de restricción:",
 	"minimum-size": "Tamaño mínimo",
@@ -2680,7 +2681,7 @@
 	"ipbenableautoblock": "Bloquear la última dirección IP usada por este usuario y cualquier IP posterior desde la cual intente editar durante $1",
 	"ipbsubmit": "Añadir bloqueo",
 	"ipbother": "Otra duración o fecha:",
-	"ipboptions": "2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,para siempre:infinite",
+	"ipboptions": "2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,indefinido:infinite",
 	"ipbhidename": "Ocultar nombre de usuario de ediciones y listas",
 	"ipbwatchuser": "Vigilar las páginas de usuario y de discusión del objetivo",
 	"ipb-disableusertalk": "Edición de la propia página de discusión",
@@ -3329,7 +3330,7 @@
 	"confirm-watch-button": "Aceptar",
 	"confirm-watch-top": "¿Añadir esta página a tu lista de seguimiento?",
 	"confirm-watch-label": "Tiempo de seguimiento:",
-	"watchlist-expiry-options": "Permanente:infinite,una semana:1 week,un mes:1 month,tres meses:3 months,seis meses:6 months,un año:1 year",
+	"watchlist-expiry-options": "Permanente:infinito,una semana:1 semana,un mes:1 mes,tres meses:3 meses,seis meses:6 meses,un año:1 año",
 	"watchlist-expires-in-aria-label": "Elemento temporal en la lista de seguimiento",
 	"confirm-watch-button-expiry": "Vigilar",
 	"confirm-unwatch-button": "Aceptar",
