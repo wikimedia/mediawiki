@@ -3488,6 +3488,11 @@ class Parser {
 		# Cache miss, go to the database
 		[ $text, $title ] = $this->fetchTemplateAndTitle( $title );
 
+		// T299359: Verify that the real title that's actually being transcluded is includable
+		if ( $this->nsInfo->isNonincludable( $title->getNamespace() ) ) {
+			return [ false, $title ];
+		}
+
 		if ( $text === false ) {
 			$this->mTplDomCache[$titleKey] = false;
 			return [ false, $title ];
