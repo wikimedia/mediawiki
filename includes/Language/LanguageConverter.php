@@ -832,6 +832,9 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$out = '';
 		$length = strlen( $text );
 		$shouldConvert = !$this->guessVariant( $text, $variant );
+		if ( RequestContext::getMain()->getRequest()->getFuzzyBool( 'nolcguess', false ) ) {
+			$shouldConvert = true;
+		}
 		$continue = true;
 
 		$noScript = '<script.*?>.*?<\/script>(*SKIP)(*FAIL)';
