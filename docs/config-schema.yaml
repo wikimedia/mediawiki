@@ -1214,6 +1214,30 @@ config-schema:
             frame instead of an animated thumbnail.  As of MW 1.17 this limit
             is checked against the total size of all frames in the animation.
             It probably makes sense to keep this equal to $wgMaxImageArea.
+    MaxAnimatedWebPArea:
+        default: 12500000
+        description: |-
+            Force thumbnailing of animated WebPs above this size to a single
+            frame instead of an animated thumbnail.
+            It probably makes sense to keep this equal to $wgMaxImageArea.
+    WebPThumbnailType:
+        default:
+            - webp
+            - image/webp
+        type: array
+        mergeStrategy: replace
+        description: |-
+            Extension and MIME type to use for WebP thumbnails.
+            Animated WebP files rendered as WebP thumbnails will remain animated;
+            rendered as PNG thumbnails, only the first frame will be used.
+            **Example:**
+            ```
+            // Keep thumbnails as WebP, preserving animation
+            $wgWebPThumbnailType = [ 'webp', 'image/webp' ];
+            // Convert thumbnails to PNG instead
+            $wgWebPThumbnailType = [ 'png', 'image/png' ];
+            ```
+            @since 1.46
     TiffThumbnailType:
         default: []
         type: array

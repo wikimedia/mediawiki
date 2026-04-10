@@ -199,22 +199,28 @@ class BitmapHandler extends TransformationalImageHandler {
 			if ( $params['interlace'] ) {
 				$animation_post = [ '-interlace', 'PNG' ];
 			}
-		} elseif ( $params['mimeType'] === 'image/webp' ) {
-			$quality = [ '-quality', '95' ]; // zlib 9, adaptive filtering
-		} elseif ( $params['mimeType'] === 'image/gif' ) {
-			if ( $this->getImageArea( $image ) > $maxAnimatedGifArea ) {
+		} elseif ( $params['mimeType'] === 'image/webp' || $params['mimeType'] === 'image/gif' ) {
+			if ( $params['mimeType'] === 'image/webp' ) {
+				$quality = [ '-quality', '95' ];
+				$canAnimate = $this->canAnimateThumbnail( $image );
+			} else {
+				$canAnimate = $this->getImageArea( $image ) <= $maxAnimatedGifArea;
+			}
+			if ( !$canAnimate ) {
 				// Extract initial frame only; we're so big it'll
 				// be a total drag. :P
 				$scene = 0;
 			} elseif ( $this->isAnimatedImage( $image ) ) {
-				// Coalesce is needed to scale animated GIFs properly (T3017).
+				// Coalesce is needed to scale animated images properly (T3017).
 				$animation_pre = [ '-coalesce' ];
 
 				// We optimize the output, but -optimize is broken,
 				// use optimizeTransparency instead (T13822). Version >= IM 6.3.5
 				$animation_post = [ '-fuzz', '5%', '-layers', 'optimizeTransparency' ];
 			}
-			if ( $params['interlace'] && !$this->isAnimatedImage( $image ) ) {
+			if ( $params['mimeType'] === 'image/gif' &&
+				$params['interlace'] && !$this->isAnimatedImage( $image )
+			) {
 				// Version >= IM 6.3.4
 				// interlacing animated GIFs is a bad idea
 				$animation_post[] = '-interlace';
@@ -333,8 +339,15 @@ class BitmapHandler extends TransformationalImageHandler {
 				if ( $params['interlace'] ) {
 					$im->setInterlaceScheme( Imagick::INTERLACE_PNG );
 				}
-			} elseif ( $params['mimeType'] === 'image/gif' ) {
-				if ( $this->getImageArea( $image ) > $maxAnimatedGifArea ) {
+			} elseif ( $params['mimeType'] === 'image/webp' || $params['mimeType'] === 'image/gif' ) {
+				if ( $params['mimeType'] === 'image/webp' ) {
+					$im->setCompressionQuality( 95 );
+					$canAnimate = $this->canAnimateThumbnail( $image );
+				} else {
+					$canAnimate = $this->getImageArea( $image ) <= $maxAnimatedGifArea;
+				}
+
+				if ( !$canAnimate ) {
 					// Extract initial frame only; we're so big it'll
 					// be a total drag. :P
 					$im->setIteratorIndex( 0 );
@@ -342,12 +355,14 @@ class BitmapHandler extends TransformationalImageHandler {
 					$im->clear();
 					$im->addImage( $firstFrame );
 				} elseif ( $this->isAnimatedImage( $image ) ) {
-					// Coalesce is needed to scale animated GIFs properly (T3017).
+					// Coalesce is needed to scale animated images properly (T3017).
 					$im = $im->coalesceImages();
 				}
-				// GIF interlacing is only available since 6.3.4
-				if ( $params['interlace'] ) {
-					$im->setInterlaceScheme( Imagick::INTERLACE_GIF );
+				if ( $params['mimeType'] === 'image/gif' ) {
+					// GIF interlacing is only available since 6.3.4
+					if ( $params['interlace'] ) {
+						$im->setInterlaceScheme( Imagick::INTERLACE_GIF );
+					}
 				}
 			}
 

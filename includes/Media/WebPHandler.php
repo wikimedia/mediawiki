@@ -11,6 +11,7 @@ namespace MediaWiki\Media;
 
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\RiffExtractor;
 use Wikimedia\XMPReader\Reader as XMPReader;
@@ -36,13 +37,22 @@ class WebPHandler extends BitmapHandler {
 	/**
 	 * Version of the metadata stored in db records
 	 */
-	private const _MW_WEBP_VERSION = 2;
+	private const _MW_WEBP_VERSION = 3;
 
 	private const VP8X_ICC = 32;
 	private const VP8X_ALPHA = 16;
 	private const VP8X_EXIF = 8;
 	private const VP8X_XMP = 4;
 	private const VP8X_ANIM = 2;
+
+	/**
+	 * Minimum chunk size for ANIM chunk
+	 */
+	private const MIN_ANIM_CHUNK_SIZE = 6;
+	/**
+	 * Minimum chunk size for ANMF chunk
+	 */
+	private const MIN_ANMF_CHUNK_SIZE = 16;
 
 	/** @inheritDoc */
 	public function getSizeAndMetadata( $state, $filename ) {
@@ -55,6 +65,7 @@ class WebPHandler extends BitmapHandler {
 		$info = [
 			'width' => $parsedWebPData['width'],
 			'height' => $parsedWebPData['height'],
+			'bits' => $parsedWebPData['bits'],
 			'metadata' => $parsedWebPData
 		];
 		return $info;
@@ -69,22 +80,22 @@ class WebPHandler extends BitmapHandler {
 	public function isFileMetadataValid( $image ) {
 		$data = $image->getMetadataArray();
 		if ( $data === [ '_error' => self::BROKEN_FILE ] ) {
-				// Do not repetitively regenerate metadata on broken file.
-				return self::METADATA_GOOD;
+			// Do not repetitively regenerate metadata on broken file.
+			return self::METADATA_GOOD;
 		}
 
-		if ( !$data || !isset( $data['_error'] ) ) {
-				wfDebug( __METHOD__ . " invalid WebP metadata" );
+		if ( !$data || isset( $data['_error'] ) ) {
+			wfDebug( __METHOD__ . " invalid WebP metadata" );
 
-				return self::METADATA_BAD;
+			return self::METADATA_BAD;
 		}
 
 		if ( !isset( $data['metadata']['_MW_WEBP_VERSION'] )
-				|| $data['metadata']['_MW_WEBP_VERSION'] != self::_MW_WEBP_VERSION
+			|| $data['metadata']['_MW_WEBP_VERSION'] != self::_MW_WEBP_VERSION
 		) {
-				wfDebug( __METHOD__ . " old but compatible WebP metadata" );
+			wfDebug( __METHOD__ . " old but compatible WebP metadata" );
 
-				return self::METADATA_COMPATIBLE;
+			return self::METADATA_COMPATIBLE;
 		}
 		return self::METADATA_GOOD;
 	}
@@ -131,10 +142,13 @@ class WebPHandler extends BitmapHandler {
 		$vp8Info = [];
 		$exifData = null;
 		$xmpData = null;
+		$frameCount = 0;
+		$duration = 0;
+		$loopCount = 0;
 
 		foreach ( $chunks as $chunk ) {
 			// Note, spec says it should be 'XMP ' but some real life files use "XMP\0"
-			if ( !in_array( $chunk['fourCC'], [ 'VP8 ', 'VP8L', 'VP8X', 'EXIF', 'XMP ', "XMP\0" ] ) ) {
+			if ( !in_array( $chunk['fourCC'], [ 'VP8 ', 'VP8L', 'VP8X', 'ANIM', 'ANMF', 'EXIF', 'XMP ', "XMP\0" ] ) ) {
 				// Not a chunk containing interesting metadata
 				continue;
 			}
@@ -157,6 +171,22 @@ class WebPHandler extends BitmapHandler {
 						self::decodeExtendedChunkHeader( $chunkHeader ) );
 					// Continue looking for other chunks to improve the metadata
 					break;
+				case 'ANIM':
+					$animChunk = self::extractChunk( $chunk, $filename );
+					if ( $animChunk && strlen( $animChunk ) >= self::MIN_ANIM_CHUNK_SIZE ) {
+						$loopCount = unpack( 'v', substr( $animChunk, 4, 2 ) )[1];
+					}
+					break;
+				case 'ANMF':
+					if ( $chunk['size'] >= self::MIN_ANMF_CHUNK_SIZE ) {
+						$anmfChunk = file_get_contents( $filename, false, null,
+							$chunk['start'] + 8, self::MIN_ANMF_CHUNK_SIZE );
+						if ( $anmfChunk !== false && strlen( $anmfChunk ) >= self::MIN_ANMF_CHUNK_SIZE ) {
+							$duration += unpack( 'V', substr( $anmfChunk, 12, 3 ) . "\x00" )[1];
+							$frameCount++;
+						}
+					}
+					break;
 				case 'EXIF':
 					// Spec says ignore all but first one
 					$exifData ??= self::extractChunk( $chunk, $filename );
@@ -166,6 +196,15 @@ class WebPHandler extends BitmapHandler {
 					$xmpData ??= self::extractChunk( $chunk, $filename );
 					break;
 			}
+		}
+		if ( $frameCount > 1 ) {
+			$vp8Info['frameCount'] = $frameCount;
+			$vp8Info['duration'] = $duration / 1000.0;
+			$vp8Info['looped'] = $loopCount === 0 || $loopCount > 1;
+			$vp8Info['animated'] = true;
+		}
+		if ( $vp8Info ) {
+			$vp8Info['bits'] = 8;
 		}
 		$vp8Info = array_merge( $vp8Info,
 			self::decodeMediaMetadata( $exifData, $xmpData, $filename ) );
@@ -309,9 +348,6 @@ class WebPHandler extends BitmapHandler {
 	 * @return bool False if we are unable to render this image
 	 */
 	public function canRender( $file ) {
-		if ( $this->isAnimatedImage( $file ) ) {
-			return false;
-		}
 		return true;
 	}
 
@@ -321,28 +357,39 @@ class WebPHandler extends BitmapHandler {
 	 */
 	public function isAnimatedImage( $image ) {
 		$metadata = $image->getMetadataArray();
-		if ( isset( $metadata['animated'] ) && $metadata['animated'] === true ) {
-			return true;
-		}
+		return !empty( $metadata['animated'] );
+	}
 
-		return false;
+	/**
+	 * @param File $image
+	 * @return int
+	 */
+	public function getImageArea( $image ) {
+		$metadata = $image->getMetadataArray();
+		if ( isset( $metadata['frameCount'] ) && $metadata['frameCount'] > 0 ) {
+			return $image->getWidth() * $image->getHeight() * $metadata['frameCount'];
+		}
+		return $image->getWidth() * $image->getHeight();
 	}
 
 	/** @inheritDoc */
 	public function canAnimateThumbnail( $file ) {
-		return false;
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		[ $thumbExt ] = $mainConfig->get( MainConfigNames::WebPThumbnailType );
+		if ( $thumbExt !== 'webp' ) {
+			// Non-WebP thumbnail output can't be animated.
+			return false;
+		}
+
+		$maxAnimatedWebPArea = $mainConfig->get( MainConfigNames::MaxAnimatedWebPArea );
+
+		return $this->getImageArea( $file ) <= $maxAnimatedWebPArea;
 	}
 
-	/**
-	 * Render files as PNG
-	 *
-	 * @param string $ext
-	 * @param string $mime
-	 * @param array|null $params
-	 * @return array
-	 */
+	/** @inheritDoc */
 	public function getThumbType( $ext, $mime, $params = null ) {
-		return [ 'png', 'image/png' ];
+		return MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::WebPThumbnailType );
 	}
 
 	/** @inheritDoc */
@@ -364,6 +411,50 @@ class WebPHandler extends BitmapHandler {
 		}
 
 		return $this->formatMetadataHelper( $meta, $context );
+	}
+
+	/**
+	 * @param File $image
+	 * @return string
+	 */
+	public function getLongDesc( $image ) {
+		$lang = $this->getLanguage();
+		$original = parent::getLongDesc( $image );
+
+		$metadata = $image->getMetadataArray();
+
+		if ( !$metadata || isset( $metadata['_error'] ) || empty( $metadata['frameCount'] ) ) {
+			return $original;
+		}
+
+		/* Preserve original image info string, but strip the last char ')' so we can add even more */
+		$info = [];
+		$info[] = $original;
+
+		if ( !empty( $metadata['looped'] ) ) {
+			$info[] = wfMessage( 'file-info-webp-looped' )->inLanguage( $lang )->parse();
+		}
+
+		if ( $metadata['frameCount'] > 1 ) {
+			$info[] = wfMessage( 'file-info-webp-frames' )->numParams( $metadata['frameCount'] )
+				->inLanguage( $lang )->parse();
+		}
+
+		if ( !empty( $metadata['duration'] ) ) {
+			$info[] = htmlspecialchars( $lang->formatTimePeriod( $metadata['duration'] ), ENT_QUOTES );
+		}
+
+		return $lang->commaList( $info );
+	}
+
+	/**
+	 * Return the duration of the WebP file.
+	 *
+	 * @param File $file
+	 * @return float The duration of the file.
+	 */
+	public function getLength( $file ) {
+		return (float)( $file->getMetadataArray()['duration'] ?? 0.0 );
 	}
 }
 

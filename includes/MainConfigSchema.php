@@ -2037,6 +2037,39 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Force thumbnailing of animated WebPs above this size to a single
+	 * frame instead of an animated thumbnail.
+	 *
+	 * It probably makes sense to keep this equal to $wgMaxImageArea.
+	 */
+	public const MaxAnimatedWebPArea = [
+		'default' => 12_500_000,
+	];
+
+	/**
+	 * Extension and MIME type to use for WebP thumbnails.
+	 *
+	 * Animated WebP files rendered as WebP thumbnails will remain animated;
+	 * rendered as PNG thumbnails, only the first frame will be used.
+	 *
+	 * **Example:**
+	 *
+	 * ```
+	 * // Keep thumbnails as WebP, preserving animation
+	 * $wgWebPThumbnailType = [ 'webp', 'image/webp' ];
+	 * // Convert thumbnails to PNG instead
+	 * $wgWebPThumbnailType = [ 'png', 'image/png' ];
+	 * ```
+	 *
+	 * @since 1.46
+	 */
+	public const WebPThumbnailType = [
+		'default' => [ 'webp', 'image/webp' ],
+		'type' => 'list',
+		'mergeStrategy' => 'replace',
+	];
+
+	/**
 	 * Browsers don't support TIFF inline generally...
 	 * For inline display, we need to convert to PNG or JPEG.
 	 *
