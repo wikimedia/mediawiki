@@ -1021,6 +1021,23 @@ class SkinTemplate extends Skin {
 		// Equiv to SkinTemplateContentActions, run
 		$this->getHookRunner()->onSkinTemplateNavigation__Universal(
 			$skin, $content_navigation );
+
+		// check all items have been added with the required fields
+		foreach ( $content_navigation as $menuName => $menuItems ) {
+			foreach ( $menuItems as $itemName => $itemData ) {
+				if ( !isset( $itemData['text'] ) && !isset( $itemData['html'] ) ) {
+					throw new InvalidArgumentException(
+						"Menu item '$itemName' in menu '$menuName' is missing required `text` or `html` key. "
+					);
+				}
+				if ( isset( $itemData['icon'] ) && !isset( $itemData['href'] ) ) {
+					throw new InvalidArgumentException(
+						"Menu items with 'icon' must also have href key."
+					);
+				}
+			}
+		}
+
 		if ( !$fallbackNeeded ) {
 			return;
 		}

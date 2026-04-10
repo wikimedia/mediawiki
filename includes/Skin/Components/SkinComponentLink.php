@@ -194,7 +194,7 @@ class SkinComponentLink implements SkinComponent {
 		$data = [
 			'html' => $html,
 			'icon' => $icon,
-			'array-attributes' => count( $linkHtmlAttributes ) > 0 ? $linkHtmlAttributes : null,
+			'array-attributes' => count( $linkHtmlAttributes ) > 0 ? $linkHtmlAttributes : [],
 			'text' => trim( $text ),
 		];
 		if ( $classAsProperty ) {
