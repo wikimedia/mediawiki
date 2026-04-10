@@ -79,7 +79,7 @@ class NewFilesPager extends RangeChronologicalPager {
 			$jconds = [];
 
 		} else {
-			$tables = [ 'file', 'filerevision' ];
+			$tables = [ 'filerevision', 'file' ];
 			$nameField = 'file_name';
 			$actorField = 'fr_actor';
 			$timestampField = 'fr_timestamp';
@@ -89,7 +89,7 @@ class NewFilesPager extends RangeChronologicalPager {
 				'actor_user',
 				'actor_name'
 			];
-			$jconds = [ 'filerevision' => [ 'JOIN', 'file_latest=fr_id' ] ];
+			$jconds = [ 'file' => [ 'JOIN', 'file_latest=fr_id' ] ];
 		}
 		$tables[] = 'actor';
 		$options = [];
@@ -168,7 +168,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
 			return [ [ 'img_timestamp', 'img_name' ] ];
 		} else {
-			return [ [ 'fr_timestamp', 'file_name' ] ];
+			return [ [ 'fr_timestamp', 'fr_id' ] ];
 		}
 	}
 
