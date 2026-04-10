@@ -9,7 +9,7 @@
 		"mocha": "mocha --timeout 0 --recursive",
 		"qunit": "grunt qunit",
 		"qunit-coverage": "grunt qunit-coverage",
-		"selenium-test": "if [ \"$CI\" = true ]; then node tests/selenium/docs/Stack/webdriverio.js; fi && wdio ./tests/selenium/wdio.conf.js",
+		"selenium-test": "wdio ./tests/selenium/wdio.conf.js",
 		"test": "grunt lint && npm run doc && npm run jest",
 		"jest": "jest --config tests/jest/jest.config.js"
 	},
