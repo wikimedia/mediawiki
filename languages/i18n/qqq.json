@@ -4246,6 +4246,7 @@
 	"renameuser-move-log": "Reason for a page move when a page is moved because of a user rename. Parameters:\n* $1 - the old username\n* $2 - the new username, can be used for GENDER",
 	"renameuser-renamed-notice": "Parameters:\n* $1 - (Optional) username, for GENDER support",
 	"log-unknown-action": "Fallback message used to display an unknown action in the log. Parameters:\n* $1 - Page title.\n* $2 - Key of the action.",
+	"log-unsafe-logentry": "{{technical}}\nSee [[phab:T422244]]. Follows {{msg-mw|log-unknown-action}}",
 	"createacct-benefit-heading-temp-user": "Heading text description for temporary users who want to create an account to make their edits more permanent.",
 	"createacct-benefit-subheading-temp-user": "Subheading text description for temporary users who want to create an account to make their edits more permanent.",
 	"benefit-1-description": "The text for the first benefit shown on signup for temporary users.",

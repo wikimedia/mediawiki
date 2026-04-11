@@ -72,7 +72,8 @@ class ManualLogEntryTest extends MediaWikiIntegrationTestCase {
 				->from( 'logging' )
 				->caller( __METHOD__ )
 				->where( [ 'log_id' => $logId ] )
-				->fetchField()
+				->fetchField(),
+				'phpunit/test'
 			),
 			false,
 			true

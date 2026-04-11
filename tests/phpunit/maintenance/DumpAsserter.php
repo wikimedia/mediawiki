@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use MediaWiki\Logging\LogEntryBase;
 use PHPUnit\Framework\Assert;
 use XMLReader;
 
@@ -537,7 +538,7 @@ class DumpAsserter {
 		$this->assertTextNode( "logtitle", $title );
 
 		$this->assertNodeStart( "params" );
-		$parameters_xml = unserialize( $this->xml->value );
+		$parameters_xml = LogEntryBase::extractParams( $this->xml->value, "$type/$subtype" );
 		Assert::assertEquals( $parameters, $parameters_xml );
 		Assert::assertTrue( $this->xml->read(), "Skipping past processed text of params" );
 		$this->assertNodeEnd( "params" );

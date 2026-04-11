@@ -184,8 +184,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	public function getParameters() {
 		if ( $this->params === null ) {
 			$blob = $this->getRawParameters();
-			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			$params = @LogEntryBase::extractParams( $blob );
+			$params = LogEntryBase::extractParams( $blob, $this->getFullType() );
 			if ( $params !== false ) {
 				$this->params = $params;
 				$this->legacy = false;

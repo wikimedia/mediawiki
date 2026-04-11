@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Import\ImportStringSource;
+use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Title\ForeignTitle;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -312,6 +314,118 @@ EOF
 			'assign, no create' => [ true, false ],
 			'assign, create' => [ true, true ],
 		];
+	}
+
+	private function prepareImportLogEntries( $performer ) {
+		$source = new ImportStringSource( <<<EOF
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.11/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.11/ http://www.mediawiki.org/xml/export-0.11.xsd" version="0.11" xml:lang="en">
+
+	<logitem>
+		<id>1</id>
+		<timestamp>2008-10-23T00:00:02Z</timestamp>
+		<contributor>
+			<username>Wikimedian</username>
+			<id>12345</id>
+		</contributor>
+		<comment>content was: 'I think this was a silly edit'</comment>
+		<type>test</type>
+		<action>test</action>
+		<logtitle>Silly page name</logtitle>
+		<params>a:1:{s:3:"foo";s:3:"bar";}</params>
+	</logitem>
+
+	<logitem>
+		<id>2</id>
+		<timestamp>2008-10-23T00:00:01Z</timestamp>
+		<contributor>
+			<username>Wikimedian</username>
+			<id>12345</id>
+		</contributor>
+		<comment>content was: 'I think this was a silly edit'</comment>
+		<type>test</type>
+		<action>test</action>
+		<logtitle>Silly page name</logtitle>
+		<params>a:1:{s:3:"foo";O:8:"stdClass":0:{}}</params>
+	</logitem>
+
+</mediawiki>
+EOF
+		);
+
+		$services = $this->getServiceContainer();
+		$importer = $services->getWikiImporterFactory()->getWikiImporter( $source, $performer );
+		$importer->setUsernamePrefix( 'Xxx', true );
+		return $importer;
+	}
+
+	public function testLogEntryImportNoRightsChecksUnsafe() {
+		$importer = $this->prepareImportLogEntries( new UltimateAuthority( $this->getTestUser()->getUserIdentity() ) );
+		$importer->doImport();
+
+		$result = $this->getDb()->newSelectQueryBuilder()
+			->from( 'logging' )
+			->where( [
+				'log_type' => 'test',
+				'log_action' => 'test',
+			] )
+			->fetchRowCount();
+		$this->assertSame( 1, $result, "Only one, safe log entry imported" );
+	}
+
+	public function testLogEntryImportNoRightsChecksSafe() {
+		$scope = ExtensionRegistry::getInstance()->setAttributeForTest( 'LogParamsAllowedClasses', [
+			'test/test' => [ stdClass::class ],
+		] );
+
+		$importer = $this->prepareImportLogEntries( new UltimateAuthority( $this->getTestUser()->getUserIdentity() ) );
+		$importer->doImport();
+
+		$result = $this->getDb()->newSelectQueryBuilder()
+			->from( 'logging' )
+			->where( [
+				'log_type' => 'test',
+				'log_action' => 'test',
+			] )
+			->fetchRowCount();
+		$this->assertSame( 2, $result, "Both log entries imported" );
+	}
+
+	public function testLogEntryImportUserNotAllowed() {
+		RequestContext::getMain()->setOutput( $this->createMock( OutputPage::class ) );
+
+		$importer = $this->prepareImportLogEntries( $this->getTestSysop()->getAuthority() );
+		$importer->doImport();
+
+		$result = $this->getDb()->newSelectQueryBuilder()
+			->from( 'logging' )
+			->where( [
+				'log_type' => 'test',
+				'log_action' => 'test',
+			] )
+			->fetchRowCount();
+		$this->assertSame( 0, $result, "No log entries imported" );
+	}
+
+	public function testLogEntryImportUserAllowed() {
+		$this->overrideConfigValue( MainConfigNames::GroupPermissions, [
+			'logentryimport' => [ 'logentryimport' => true ],
+		] );
+		$performer = $this->getTestUser( 'logentryimport' );
+
+		RequestContext::getMain()->setOutput( $this->createMock( OutputPage::class ) );
+		RequestContext::getMain()->setUser( $performer->getUser() );
+
+		$importer = $this->prepareImportLogEntries( $performer->getAuthority() );
+		$importer->doImport();
+
+		$result = $this->getDb()->newSelectQueryBuilder()
+			->from( 'logging' )
+			->where( [
+				'log_type' => 'test',
+				'log_action' => 'test',
+			] )
+			->fetchRowCount();
+		$this->assertSame( 1, $result, "Only one, safe log entry imported" );
 	}
 
 }
