@@ -27,6 +27,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\Logging\PatrolLog;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -43,7 +44,6 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 use RuntimeException;
 use Wikimedia\Assert\Assert;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 
 /**
@@ -1388,13 +1388,8 @@ class RecentChange implements Taggable {
 	 * @return mixed|bool false on failed unserialization
 	 */
 	public function parseParams() {
-		$rcParams = $this->getAttribute( 'rc_params' );
-
-		AtEase::suppressWarnings();
-		$unserializedParams = unserialize( $rcParams );
-		AtEase::restoreWarnings();
-
-		return $unserializedParams;
+		return LogEntryBase::extractParams( $this->getAttribute( 'rc_params' ),
+			$this->getAttribute( 'rc_log_type' ) . '/' . $this->getAttribute( 'rc_log_action' ) );
 	}
 
 	/**
