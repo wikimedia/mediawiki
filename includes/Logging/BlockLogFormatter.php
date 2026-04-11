@@ -71,7 +71,6 @@ class BlockLogFormatter extends LogFormatter {
 			// in English to help visitors from other wikis.
 			// The lrm is needed to make sure that the number
 			// is shown on the correct side of the tooltip text.
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			$durationTooltip = '&lrm;' . htmlspecialchars( $params[4] );
 			$blockExpiry = $this->context->getLanguage()->translateBlockExpiry(
 				$params[4],
@@ -79,12 +78,10 @@ class BlockLogFormatter extends LogFormatter {
 				(int)wfTimestamp( TS::UNIX, $this->entry->getTimestamp() )
 			);
 			if ( $this->plaintext ) {
-				// @phan-suppress-next-line SecurityCheck-XSS Unlikely positive, only if language format is bad
-				$params[4] = Message::rawParam( $blockExpiry );
+				$params[4] = $blockExpiry;
 			} else {
 				$params[4] = Message::rawParam(
 					"<span class=\"blockExpiry\" title=\"$durationTooltip\">" .
-					// @phan-suppress-next-line SecurityCheck-DoubleEscaped language class does not escape
 					htmlspecialchars( $blockExpiry ) .
 					'</span>'
 				);

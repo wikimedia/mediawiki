@@ -40,19 +40,18 @@ class PatrolLogFormatter extends LogFormatter {
 		$revision = $this->context->getLanguage()->formatNumNoSeparators( $oldid );
 
 		if ( $this->plaintext ) {
-			$revlink = $revision;
+			$revLinkParam = $revision;
 		} elseif ( $target->exists() ) {
 			$query = [
 				'oldid' => $oldid,
 				'diff' => 'prev'
 			];
-			$revlink = $this->getLinkRenderer()->makeLink( $target, $revision, [], $query );
+			$revLinkParam = Message::rawParam( $this->getLinkRenderer()->makeLink( $target, $revision, [], $query ) );
 		} else {
-			$revlink = htmlspecialchars( $revision );
+			$revLinkParam = $revision;
 		}
 
-		// @phan-suppress-next-line SecurityCheck-XSS Unlikely positive, only if language format is bad
-		$params[3] = Message::rawParam( $revlink );
+		$params[3] = $revLinkParam;
 
 		return $params;
 	}

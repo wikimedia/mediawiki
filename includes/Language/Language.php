@@ -3702,6 +3702,8 @@ class Language implements Bcp47Code {
 	 * @param string[] $list
 	 * @param-taint $list tainted
 	 * @return string
+	 * @return-taint none Pretend that no part of the return value is HTML-escaped, even though we
+	 *   escape the glue messages just-in-case, to avoid SecurityCheck-DoubleEscaped warnings
 	 */
 	public function listToText( array $list ) {
 		$itemCount = count( $list );
@@ -3728,6 +3730,8 @@ class Language implements Bcp47Code {
 	 * @param string[] $list Array of strings to put in a comma list
 	 * @param-taint $list tainted
 	 * @return string
+	 * @return-taint none Pretend that no part of the return value is HTML-escaped, even though we
+	 *   escape the glue messages just-in-case, to avoid SecurityCheck-DoubleEscaped warnings
 	 */
 	public function commaList( array $list ): string {
 		return implode(
@@ -3742,6 +3746,8 @@ class Language implements Bcp47Code {
 	 * @param string[] $list Array of strings to put in a semicolon list
 	 * @param-taint $list tainted
 	 * @return string
+	 * @return-taint none Pretend that no part of the return value is HTML-escaped, even though we
+	 *   escape the glue messages just-in-case, to avoid SecurityCheck-DoubleEscaped warnings
 	 */
 	public function semicolonList( array $list ): string {
 		return implode(
@@ -3755,6 +3761,8 @@ class Language implements Bcp47Code {
 	 * @param string[] $list Array of strings to put in a pipe list
 	 * @param-taint $list tainted
 	 * @return string
+	 * @return-taint none Pretend that no part of the return value is HTML-escaped, even though we
+	 *   escape the glue messages just-in-case, to avoid SecurityCheck-DoubleEscaped warnings
 	 */
 	public function pipeList( array $list ): string {
 		return implode(
@@ -4390,6 +4398,7 @@ class Language implements Bcp47Code {
 	 * match up with it.
 	 *
 	 * @param string $str The validated block duration in English
+	 * @param-taint $str tainted
 	 * @param UserIdentity|null $user User to use timezone from or null for the context user
 	 * @param int $now Current timestamp, for formatting relative block durations
 	 * @return string Somehow translated block duration

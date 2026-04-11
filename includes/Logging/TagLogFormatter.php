@@ -45,20 +45,18 @@ class TagLogFormatter extends LogFormatter {
 
 		$formattedNumber = $this->context->getLanguage()->formatNumNoSeparators( $id );
 		if ( $this->plaintext ) {
-			$link = $formattedNumber;
+			$linkParam = $formattedNumber;
 		} elseif ( !$isRevLink || $target->exists() ) {
-			$link = $this->getLinkRenderer()->makeKnownLink(
-				$target, $formattedNumber, [], $query );
+			$linkParam = Message::rawParam( $this->getLinkRenderer()->makeKnownLink(
+				$target, $formattedNumber, [], $query ) );
 		} else {
-			$link = htmlspecialchars( $formattedNumber );
+			$linkParam = $formattedNumber;
 		}
 
 		if ( $isRevLink ) {
-			// @phan-suppress-next-line SecurityCheck-XSS Unlikely positive, only if language format is bad
-			$params[3] = Message::rawParam( $link );
+			$params[3] = $linkParam;
 		} else {
-			// @phan-suppress-next-line SecurityCheck-XSS Unlikely positive, only if language format is bad
-			$params[4] = Message::rawParam( $link );
+			$params[4] = $linkParam;
 		}
 
 		return $params;

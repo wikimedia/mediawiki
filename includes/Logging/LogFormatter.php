@@ -600,6 +600,7 @@ class LogFormatter {
 	 * The array indexes start from number 3.
 	 * @stable to override
 	 * @return array
+	 * @return-taint tainted
 	 */
 	protected function extractParameters() {
 		$entry = $this->entry;
@@ -654,6 +655,7 @@ class LogFormatter {
 	 *
 	 * @stable to override
 	 * @return array
+	 * @return-taint tainted
 	 * @see ManualLogEntry::setParameters() for how parameters are determined.
 	 */
 	protected function getMessageParameters() {
@@ -697,6 +699,7 @@ class LogFormatter {
 	 *   * number: Format value as number
 	 *   * list: Format value as a comma-separated list
 	 * @param mixed $value The parameter value that should be formatted
+	 * @param-taint $value tainted
 	 * @return mixed Formatted value
 	 * @since 1.21
 	 */
