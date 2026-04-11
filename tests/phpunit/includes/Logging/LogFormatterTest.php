@@ -144,8 +144,8 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Logging\LogFormatter::getActionText
 	 */
 	public function testLogParamsTypeRaw() {
-		$params = [ '4:raw:raw' => Linker::link( $this->title, null, [], [] ) ];
-		$expected = Linker::link( $this->title, null, [], [] );
+		$params = [ '4:raw:raw' => '<a href="">hello</a>' ];
+		$expected = htmlspecialchars( '<a href="">hello</a>' );
 
 		$entry = $this->newLogEntry( 'param', $params );
 		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $entry );
@@ -153,7 +153,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 
 		$logParam = $formatter->getActionText();
 
-		$this->assertEquals( $expected, $logParam );
+		$this->assertEquals( $expected, $logParam, "Raw HTML log parameters are no longer allowed" );
 	}
 
 	/**
