@@ -922,6 +922,10 @@ class LogFormatter {
 	 * @return array
 	 */
 	protected function getParametersForApi() {
+		if ( LogEntryBase::containsUnsafeParams( $this->entry->getParameters() ) ) {
+			// Just in case, although this should be unreachable if LogFormatterFactory is used
+			return [];
+		}
 		return $this->entry->getParameters();
 	}
 
@@ -945,11 +949,6 @@ class LogFormatter {
 		foreach ( $this->getParametersForApi() as $key => $value ) {
 			$vals = explode( ':', $key, 3 );
 			if ( count( $vals ) !== 3 ) {
-				if ( $value instanceof __PHP_Incomplete_Class ) {
-					wfLogWarning( 'Log entry of type ' . $this->entry->getFullType() .
-						' contains unrecoverable extra parameters.' );
-					continue;
-				}
 				$logParams[$key] = $value;
 				continue;
 			}

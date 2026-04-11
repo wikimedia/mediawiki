@@ -5,6 +5,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Logging\UnsafeLogFormatter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserEditTracker;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -52,7 +53,9 @@ class LogFormatterFactory {
 		$wildcard = $entry->getType() . '/*';
 		$handler = $logActionsHandlers[$fulltype] ?? $logActionsHandlers[$wildcard] ?? '';
 
-		if ( $handler !== '' ) {
+		if ( LogEntryBase::containsUnsafeParams( $entry->getParameters() ) ) {
+			$formatter = new UnsafeLogFormatter( $entry );
+		} elseif ( $handler !== '' ) {
 			$formatter = $this->objectFactory->createObject( $handler, [
 				'extraArgs' => [ $entry ],
 				'allowClassName' => true,

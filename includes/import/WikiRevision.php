@@ -650,6 +650,16 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 		$services = MediaWikiServices::getInstance();
 		$dbw = $services->getConnectionProvider()->getPrimaryDatabase();
 
+		// Check for unsafe log_params, in case other code elsewhere uses unserialize() directly
+		// instead of safely calling LogEntryBase::extractParams(). (T422244)
+		if ( LogEntryBase::containsUnsafeParams(
+			LogEntryBase::extractParams( $this->params, "{$this->type}/{$this->action}" ),
+		) ) {
+			wfDebug( __METHOD__
+				. ": skipping {$this->type}/{$this->action} with unsafe params" );
+			return false;
+		}
+
 		$userName = $this->getUser();
 		if ( ExternalUserNames::isExternal( $userName ) ) {
 			// Use newAnonymous() since the user name is already prefixed.

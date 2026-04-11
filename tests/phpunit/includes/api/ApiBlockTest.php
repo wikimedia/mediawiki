@@ -219,7 +219,7 @@ class ApiBlockTest extends ApiTestCase {
 			->orderBy( 'log_timestamp', SelectQueryBuilder::SORT_DESC )
 			->caller( __METHOD__ )
 			->fetchField();
-		$params = LogEntryBase::extractParams( $blob );
+		$params = LogEntryBase::extractParams( $blob, 'block/block' );
 		$this->assertSame( '1 day', $params['5::duration'] );
 	}
 

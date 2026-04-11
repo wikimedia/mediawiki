@@ -52,6 +52,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\ExternalUserNames;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\NormalizedException\NormalizedException;
 use Wikimedia\Rdbms\IDBAccessObject;
 
@@ -816,6 +817,11 @@ class WikiImporter {
 	 * @return mixed|false
 	 */
 	private function processLogItem( $logInfo ) {
+		if ( !$this->performer->authorizeAction( 'logentryimport' ) ) {
+			$this->notice( 'permissionserrorstext-withaction-noreason', MessageValue::new( 'action-logentryimport' ) );
+			return false;
+		}
+
 		$revision = new WikiRevision();
 
 		if ( isset( $logInfo['id'] ) ) {

@@ -143,7 +143,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 		}
 
 		$result = $dbr->newSelectQueryBuilder()
-			->select( [ 'log_id', 'log_params' ] )
+			->select( [ 'log_id', 'log_type', 'log_action', 'log_params' ] )
 			->from( 'logging' )
 			->where( $conds )
 			->orderBy( 'log_id' )

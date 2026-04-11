@@ -176,6 +176,7 @@ class PermissionManager {
 		'import',
 		'importupload',
 		'ipblock-exempt',
+		'logentryimport',
 		'managechangetags',
 		'markbotedits',
 		'mergehistory',
