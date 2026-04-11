@@ -710,7 +710,8 @@ class LogFormatter {
 
 		switch ( strtolower( trim( $type ) ) ) {
 			case 'raw':
-				$value = Message::rawParam( $value );
+				// This used to allow raw HTML params, until we realized that's a bad idea (T422244#11787820)
+				$value = Message::plaintextParam( $value );
 				break;
 			case 'list':
 				$value = $this->context->getLanguage()->commaList( $value );
