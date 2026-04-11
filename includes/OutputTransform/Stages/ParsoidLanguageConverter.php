@@ -111,9 +111,28 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 			// Now actually do the language conversion on the DOM
 			$redLinks = [];
 			$this->doTraversal( $df, $converter, $toVariant, $redLinks );
+			// Convert indicators as well
+			$indicators = array_map(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable ownerDocument will never be null
+				static fn ( $html ) => ContentUtils::createAndLoadDocumentFragment( $df->ownerDocument, $html ),
+				$po->getIndicators()
+			);
+			foreach ( $indicators as $indicatorFrag ) {
+				$this->doTraversal( $indicatorFrag, $converter, $toVariant, $redLinks );
+			}
 			// Adjust red links
 			if ( !$this->languageConverterFactory->isLinkConversionDisabled() ) {
 				$this->resolveRedLinks( $title, $converter, $toVariant, $redLinks );
+			}
+			// Store indicators
+			foreach ( $indicators as $name => $indicatorFrag ) {
+				$po->setIndicator(
+					$name,
+					ContentUtils::ppToXML( $indicatorFrag, [
+						'innerXML' => true,
+						'fragment' => true,
+					] )
+				);
 			}
 			// Set language
 			$po->setLanguage( new Bcp47CodeValue(

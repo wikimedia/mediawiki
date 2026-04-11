@@ -322,3 +322,19 @@ link=<a rel="mw:ExtLink nofollow" href="http://www.example.com" class="external 
 <meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"link"},"body":{"extsrc":"[http://www.example.com Example]"},"html":"&lt;a rel=\"mw:ExtLink nofollow\" href=\"http://www.example.com\" class=\"external text\">Example&lt;/a>"}'/>
 !! end
 
+!! test
+Indicators with language converter markup (T422961)
+!! options
+showindicators
+language=zh htmlVariantLanguage=zh-tw
+parsoid=wt2html
+!! wikitext
+<indicator name="test">-{foo}-</indicator>
+!! metadata/php
+test=foo
+!! metadata/parsoid
+test=<span typeof="mw:LanguageVariant" data-parsoid='{"fl":[],"src":"-{foo}-","dsr":[23,30,2,2]}' data-mw-variant='{"disabled":{"t":"foo"}}'>foo</span>
+!! html/php
+!! html/parsoid+langconv
+<meta data-mw='{"name":"indicator","attrs":{"name":"test"},"body":{"extsrc":"-{foo}-"},"html":"&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"disabled\":{\"t\":\"foo\"}}&apos;>foo&lt;/span>"}' typeof="mw:Extension/indicator"/>
+!! end
