@@ -9,6 +9,7 @@ namespace MediaWiki\RecentChanges;
 use InvalidArgumentException;
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\Debug\DeprecationHelper;
+use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -778,10 +779,8 @@ class RecentChange implements Taggable {
 	 * @return mixed|bool false on failed unserialization
 	 */
 	public function parseParams() {
-		$rcParams = $this->getAttribute( 'rc_params' );
-
-		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-		return @unserialize( $rcParams );
+		return LogEntryBase::extractParams( $this->getAttribute( 'rc_params' ),
+			$this->getAttribute( 'rc_log_type' ) . '/' . $this->getAttribute( 'rc_log_action' ) );
 	}
 
 	/**

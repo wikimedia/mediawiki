@@ -157,6 +157,7 @@ class PermissionManager {
 		'importupload',
 		'interwiki',
 		'ipblock-exempt',
+		'logentryimport',
 		'logout',
 		'managechangetags',
 		'markbotedits',

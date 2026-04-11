@@ -15,6 +15,7 @@ namespace MediaWiki\Import;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\UnknownContentModelException;
+use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\SlotRecord;
@@ -636,6 +637,16 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	public function importLogItem() {
 		$services = MediaWikiServices::getInstance();
 		$dbw = $services->getConnectionProvider()->getPrimaryDatabase();
+
+		// Check for unsafe log_params, in case other code elsewhere uses unserialize() directly
+		// instead of safely calling LogEntryBase::extractParams(). (T422244)
+		if ( LogEntryBase::containsUnsafeParams(
+			LogEntryBase::extractParams( $this->params, "{$this->type}/{$this->action}" ),
+		) ) {
+			wfDebug( __METHOD__
+				. ": skipping {$this->type}/{$this->action} with unsafe params" );
+			return false;
+		}
 
 		$userName = $this->getUser();
 		if ( ExternalUserNames::isExternal( $userName ) ) {

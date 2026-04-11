@@ -1739,6 +1739,10 @@
 				}
 			}
 		},
+		"LogParamsAllowedClasses": {
+			"type": "object",
+			"description": "For each log type, list of PHP classes allowed to be used in serialized parameters for log entries of that type. Do not use this in new code, and do not store non-plain data in log entry parameters, since they can't be parsed if your extension is uninstalled. This attribute may be removed in the future."
+		},
 
 		"$comment": "----------------------------------------------------------------------",
 		"$comment": "Miscellaneous",

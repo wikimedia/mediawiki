@@ -97,6 +97,7 @@ class ExtensionProcessor implements Processor {
 		'RecentChangeSources',
 		'ShadowPageProviders',
 		'CodeHighlightProviders',
+		'LogParamsAllowedClasses',
 	];
 
 	/**

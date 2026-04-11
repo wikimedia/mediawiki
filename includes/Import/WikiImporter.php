@@ -45,6 +45,7 @@ use RuntimeException;
 use UnexpectedValueException;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\NormalizedException\NormalizedException;
 use Wikimedia\Rdbms\IDBAccessObject;
 use XMLReader;
@@ -787,6 +788,11 @@ class WikiImporter {
 	 * @return mixed|false
 	 */
 	private function processLogItem( $logInfo ) {
+		if ( !$this->performer->authorizeAction( 'logentryimport' ) ) {
+			$this->notice( 'permissionserrorstext-withaction-noreason', MessageValue::new( 'action-logentryimport' ) );
+			return false;
+		}
+
 		$revision = new WikiRevision();
 
 		if ( isset( $logInfo['id'] ) ) {

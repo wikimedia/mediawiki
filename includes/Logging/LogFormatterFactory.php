@@ -51,7 +51,9 @@ class LogFormatterFactory {
 		$wildcard = $entry->getType() . '/*';
 		$handler = $logActionsHandlers[$fulltype] ?? $logActionsHandlers[$wildcard] ?? '';
 
-		if ( $handler !== '' ) {
+		if ( LogEntryBase::containsUnsafeParams( $entry->getParameters() ) ) {
+			$formatter = new UnsafeLogFormatter( $entry );
+		} elseif ( $handler !== '' ) {
 			$formatter = $this->objectFactory->createObject( $handler, [
 				'extraArgs' => [ $entry ],
 				'allowClassName' => true,
