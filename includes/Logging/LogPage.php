@@ -376,7 +376,9 @@ class LogPage {
 	 * @return string
 	 */
 	public static function makeParamBlob( $params ) {
-		return implode( "\n", $params );
+		$params = array_values( $params );
+		$params['_legacy_'] = true;
+		return LogEntryBase::makeParamBlob( $params );
 	}
 
 	/**

@@ -8,7 +8,6 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Linker\UserLinkRenderer;
 use MediaWiki\Logging\LogEntryBase;
-use MediaWiki\Logging\LogPage;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\PageStore;
@@ -165,6 +164,17 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 		return isset( $extra['legacy'] ) && $extra['legacy'];
 	}
 
+	/**
+	 * Encode parameters using the legacy format, which is no longer used for
+	 * insertion but may still exist in the database.
+	 *
+	 * @param array $params
+	 * @return string
+	 */
+	protected static function encodeLegacy( $params ) {
+		return implode( "\n", $params );
+	}
+
 	protected function expandDatabaseRow( $data, $legacy ) {
 		return [
 			// no log_id because no insert in database
@@ -180,7 +190,7 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 			'log_comment_text' => $data['comment'] ?? '',
 			'log_comment_data' => null,
 			'log_params' => $legacy
-				? LogPage::makeParamBlob( $data['params'] )
+				? self::encodeLegacy( $data['params'] )
 				: LogEntryBase::makeParamBlob( $data['params'] ),
 			'log_deleted' => $data['deleted'] ?? 0,
 		];

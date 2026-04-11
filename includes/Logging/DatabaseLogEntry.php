@@ -188,6 +188,10 @@ class DatabaseLogEntry extends LogEntryBase {
 			if ( $params !== false ) {
 				$this->params = $params;
 				$this->legacy = false;
+				if ( isset( $this->params['_legacy_'] ) ) {
+					unset( $this->params['_legacy_'] );
+					$this->legacy = true;
+				}
 			} else {
 				$this->params = LogPage::extractParams( $blob );
 				$this->legacy = true;

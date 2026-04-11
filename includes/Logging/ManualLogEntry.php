@@ -145,6 +145,10 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 */
 	public function setParameters( $parameters ) {
 		$this->parameters = $parameters;
+		if ( isset( $this->parameters['_legacy_'] ) ) {
+			unset( $this->parameters['_legacy_'] );
+			$this->legacy = true;
+		}
 	}
 
 	/**
@@ -273,6 +277,9 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	/**
 	 * Set the 'legacy' flag
 	 *
+	 * This is intended primarily for use in tests that need to create legacy log entries
+	 * to verify their behavior. Do not use in new non-test code.
+	 *
 	 * @since 1.25
 	 * @param bool $legacy
 	 */
@@ -333,6 +340,11 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		if ( $revId ) {
 			$params['associated_rev_id'] = $revId;
 			$relations['associated_rev_id'] = $revId;
+		}
+
+		if ( $this->legacy ) {
+			$params = array_values( $params );
+			$params['_legacy_'] = true;
 		}
 
 		$targetPage = $this->getTargetPage();
