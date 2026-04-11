@@ -2032,6 +2032,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Logging\\RenameuserLogFormatter' => __DIR__ . '/includes/logging/RenameuserLogFormatter.php',
 	'MediaWiki\\Logging\\RightsLogFormatter' => __DIR__ . '/includes/logging/RightsLogFormatter.php',
 	'MediaWiki\\Logging\\TagLogFormatter' => __DIR__ . '/includes/logging/TagLogFormatter.php',
+	'MediaWiki\\Logging\\UnsafeLogFormatter' => __DIR__ . '/includes/logging/UnsafeLogFormatter.php',
 	'MediaWiki\\Logging\\UploadLogFormatter' => __DIR__ . '/includes/logging/UploadLogFormatter.php',
 	'MediaWiki\\Logging\\WikitextLogFormatter' => __DIR__ . '/includes/logging/WikitextLogFormatter.php',
 	'MediaWiki\\Mail\\EmailUser' => __DIR__ . '/includes/mail/EmailUser.php',
