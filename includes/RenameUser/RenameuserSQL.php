@@ -18,6 +18,7 @@ use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -477,5 +478,27 @@ class RenameuserSQL {
 	private static function isTableShared( string $table ) {
 		global $wgSharedTables, $wgSharedDB;
 		return $wgSharedDB && in_array( $table, $wgSharedTables, true );
+	}
+
+	/**
+	 * This method does not check log_deleted, and thus will reveal the existence of hidden rename log
+	 * entries. This seems unavoidable: we have to reveal that the username can't be registered when
+	 * someone tries to register it, and there is no other plausible error message we could give.
+	 * Please review whether that's appropriate for your use case when calling it.
+	 *
+	 * @since 1.47
+	 */
+	public static function isPreviouslyRenamedAccount( string $username, IReadableDatabase $db ): bool {
+		return (bool)$db->newSelectQueryBuilder()
+			->from( 'logging' )
+			->where( [
+				'log_type' => 'renameuser',
+				'log_action' => 'renameuser',
+				'log_namespace' => NS_USER,
+				'log_title' => strtr( $username, ' ', '_' ),
+			] )
+			->field( '1' )
+			->caller( __METHOD__ )
+			->fetchField();
 	}
 }

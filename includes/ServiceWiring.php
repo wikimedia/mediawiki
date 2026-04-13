@@ -2163,6 +2163,7 @@ return [
 		return new RenameUserFactory(
 			new ServiceOptions( RenameUserFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getCentralIdLookupFactory(),
+			$services->getConnectionProvider(),
 			$services->getJobQueueGroupFactory(),
 			$services->getMovePageFactory(),
 			$services->getUserFactory(),

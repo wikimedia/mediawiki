@@ -969,6 +969,14 @@ return [
 						'class' => 'MediaWiki\\Auth\\ThrottlePreAuthenticationProvider',
 						'sort' => 0,
 					],
+					'MediaWiki\\Auth\\PreviouslyRenamedAccountPreAuthenticationProvider' => [
+						'class' => 'MediaWiki\\Auth\\PreviouslyRenamedAccountPreAuthenticationProvider',
+						'services' => [
+							'ConnectionProvider',
+							'UserFactory',
+						],
+						'sort' => 0,
+					],
 				],
 				'primaryauth' => [
 					'MediaWiki\\Auth\\TemporaryPasswordPrimaryAuthenticationProvider' => [
@@ -1285,6 +1293,7 @@ return [
 				'sysop' => [
 					'block' => true,
 					'createaccount' => true,
+					'createpreviouslyrenamedaccount' => true,
 					'delete' => true,
 					'bigdelete' => true,
 					'deletedhistory' => true,

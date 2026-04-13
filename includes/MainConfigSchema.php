@@ -19,6 +19,7 @@ use MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider;
 use MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider;
 use MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
+use MediaWiki\Auth\PreviouslyRenamedAccountPreAuthenticationProvider;
 use MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider;
 use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 use MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider;
@@ -7208,6 +7209,14 @@ class MainConfigSchema {
 					'class' => ThrottlePreAuthenticationProvider::class,
 					'sort' => 0,
 				],
+				PreviouslyRenamedAccountPreAuthenticationProvider::class => [
+					'class' => PreviouslyRenamedAccountPreAuthenticationProvider::class,
+					'services' => [
+						'ConnectionProvider',
+						'UserFactory',
+					],
+					'sort' => 0,
+				],
 			],
 			'primaryauth' => [
 				// TemporaryPasswordPrimaryAuthenticationProvider should come before
@@ -8115,6 +8124,7 @@ class MainConfigSchema {
 			'sysop' => [
 				'block' => true,
 				'createaccount' => true,
+				'createpreviouslyrenamedaccount' => true,
 				'delete' => true,
 				'bigdelete' => true,
 				'deletedhistory' => true,
