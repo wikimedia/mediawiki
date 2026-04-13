@@ -45,6 +45,19 @@ class HashSiteStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $site, $store->getSite( 'dewiki' ), 'Store has dewiki' );
 	}
 
+	public function testSaveSite_noGlobalId() {
+		$store = new HashSiteStore();
+
+		$site = new Site();
+
+		$this->assertCount( 0, $store->getSites(), '0 sites in store' );
+
+		$store->saveSite( $site );
+
+		$this->assertCount( 1, $store->getSites(), 'Store has 1 sites' );
+		$this->assertEquals( $site, $store->getSite( '' ), 'Store has an unnamed site' );
+	}
+
 	public function testSaveSites() {
 		$store = new HashSiteStore();
 

@@ -33,7 +33,7 @@ class HashSiteStore implements SiteStore {
 	 * @return bool Success indicator
 	 */
 	public function saveSite( Site $site ) {
-		$this->sites[$site->getGlobalId()] = $site;
+		$this->sites[ $site->getGlobalId() ?? '' ] = $site;
 
 		return true;
 	}
@@ -63,7 +63,7 @@ class HashSiteStore implements SiteStore {
 	 * @return Site|null
 	 */
 	public function getSite( $globalId, $source = 'cache' ) {
-		return $this->sites[$globalId] ?? null;
+		return $this->sites[ $globalId ] ?? null;
 	}
 
 	/**

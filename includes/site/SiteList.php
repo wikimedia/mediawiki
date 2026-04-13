@@ -149,7 +149,7 @@ class SiteList extends ArrayObject {
 			$this->removeSite( $site->getGlobalId() );
 		}
 
-		$this->byGlobalId[$site->getGlobalId()] = $index;
+		$this->byGlobalId[$site->getGlobalId() ?? ''] = $index;
 		$internalId = $site->getInternalId();
 		if ( $internalId !== null ) {
 			$this->byInternalId[$internalId] = $index;
@@ -212,7 +212,7 @@ class SiteList extends ArrayObject {
 	 * @return bool
 	 */
 	public function hasSite( $globalSiteId ) {
-		return array_key_exists( $globalSiteId, $this->byGlobalId );
+		return array_key_exists( $globalSiteId ?? '', $this->byGlobalId );
 	}
 
 	/**
