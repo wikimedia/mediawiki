@@ -132,6 +132,7 @@ class PermissionManager {
 		'browsearchive',
 		'changetags',
 		'createaccount',
+		'createpreviouslyrenamedaccount',
 		'createwithcontentmodel',
 		'createpage',
 		'createtalk',

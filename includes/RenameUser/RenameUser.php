@@ -20,6 +20,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Handles the backend logic of renaming users.
@@ -68,6 +69,7 @@ class RenameUser {
 	public function __construct(
 		private readonly ServiceOptions $options,
 		private readonly CentralIdLookupFactory $centralIdLookupFactory,
+		private readonly IConnectionProvider $dbProvider,
 		private readonly JobQueueGroupFactory $jobQueueGroupFactory,
 		private readonly MovePageFactory $movePageFactory,
 		private readonly UserFactory $userFactory,
@@ -137,6 +139,12 @@ class RenameUser {
 		}
 		if ( !$this->derived && $newUser->isRegistered() ) {
 			return Status::newFatal( 'renameusererrorexists', $this->newName );
+		}
+		if ( !$this->derived ) {
+			$dbr = $this->dbProvider->getReplicaDatabase();
+			if ( RenameuserSQL::isPreviouslyRenamedAccount( $newUser->getName(), $dbr ) ) {
+				return Status::newFatal( 'username-previously-renamed-account' );
+			}
 		}
 
 		// Do not act on temp users
