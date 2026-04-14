@@ -70,20 +70,12 @@ class ForeignDBFile extends LocalFile {
 	}
 
 	/**
-	 * @param Language|null $lang Language to fetch description in. Passing null
-	 *   for the language is deprecated since 1.46.
+	 * @param Language $lang Language to fetch description in.
 	 * @return string|false
 	 */
-	public function getDescriptionText( ?Language $lang = null ) {
+	public function getDescriptionText( Language $lang ) {
 		if ( !$this->repo->fetchDescription ) {
 			return false;
-		}
-
-		if ( $lang === null ) {
-			wfDeprecatedMsg( 'Calling File::getDescriptionText without a lang parameter ' .
-				'was deprecated in MediaWiki 1.46', '1.46' );
-			global $wgLang;
-			$lang = $wgLang;
 		}
 
 		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $lang->getCode() );

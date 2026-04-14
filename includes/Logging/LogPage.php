@@ -18,7 +18,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -237,7 +236,6 @@ class LogPage {
 	public static function actionText( $type, $action, $title = null, $skin = null,
 		$params = [], $filterWikilinks = false
 	) {
-		global $wgLang;
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$key = "$type/$action";
 
@@ -255,10 +253,7 @@ class LogPage {
 			$langObj = MediaWikiServices::getInstance()->getContentLanguage();
 			$langObjOrNull = null;
 		} else {
-			// TODO Is $skin->getLanguage() safe here?
-			StubUserLang::unstub( $wgLang );
-			$langObj = $wgLang;
-			$langObjOrNull = $wgLang;
+			$langObj = $langObjOrNull = $skin->getLanguage();
 		}
 		if ( $title === null ) {
 			$rv = wfMessage( $message )->inLanguage( $langObj )->escaped();

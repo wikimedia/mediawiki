@@ -874,15 +874,10 @@ abstract class MediaHandler {
 	 * Used instead of getShortDesc if there is no handler registered for file.
 	 *
 	 * @param File $file
-	 * @param ?Language $lang
+	 * @param Language $lang
 	 * @return string HTML
 	 */
-	public static function getGeneralShortDesc( $file, ?Language $lang = null ) {
-		if ( $lang === null ) {
-			wfDeprecatedMsg( 'Calling MediaHandler::getGeneralShortDesc without a lang parameter ' .
-				'was deprecated in MediaWiki 1.46', '1.46' );
-			$lang = RequestContext::getMain()->getLanguage();
-		}
+	public static function getGeneralShortDesc( $file, Language $lang ) {
 		return htmlspecialchars( $lang->formatSize( $file->getSize() ), ENT_QUOTES );
 	}
 
@@ -890,15 +885,10 @@ abstract class MediaHandler {
 	 * Used instead of getLongDesc if there is no handler registered for file.
 	 *
 	 * @param File $file
-	 * @param ?Language $lang
+	 * @param Language $lang
 	 * @return string HTML
 	 */
-	public static function getGeneralLongDesc( $file, ?Language $lang = null ) {
-		if ( $lang === null ) {
-			wfDeprecatedMsg( 'Calling MediaHandler::getGeneralLongDesc without a lang parameter ' .
-				'was deprecated in MediaWiki 1.46', '1.46' );
-			$lang = RequestContext::getMain()->getLanguage();
-		}
+	public static function getGeneralLongDesc( $file, Language $lang ) {
 		return wfMessage( 'file-info' )
 			->sizeParams( $file->getSize() )
 			->params( '<span class="mime-type">' . $file->getMimeType() . '</span>' )

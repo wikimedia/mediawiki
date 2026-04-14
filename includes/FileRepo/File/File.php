@@ -2290,21 +2290,13 @@ abstract class File implements MediaHandlerState {
 	 * Get the HTML text of the description page, if available
 	 * @stable to override
 	 *
-	 * @param Language|null $lang Language to fetch description in. Passing null
-	 *   for the language is deprecated since 1.46.
+	 * @param Language $lang Language to fetch description in.
 	 * @return string|false HTML
 	 * @return-taint escaped
 	 */
-	public function getDescriptionText( ?Language $lang = null ) {
+	public function getDescriptionText( Language $lang ) {
 		if ( !$this->repo || !$this->repo->fetchDescription ) {
 			return false;
-		}
-
-		if ( $lang === null ) {
-			wfDeprecatedMsg( 'Calling File::getDescriptionText without a lang parameter ' .
-				'was deprecated in MediaWiki 1.46', '1.46' );
-			global $wgLang;
-			$lang = $wgLang;
 		}
 
 		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $lang->getCode() );
@@ -2457,16 +2449,11 @@ abstract class File implements MediaHandlerState {
 	 * while others returned plain text. When calling this method, you should treat it as returning
 	 * unsafe HTML, and call `Sanitizer::removeSomeTags()` on the result.
 	 *
-	 * @param ?Language $lang User language to return the description in (since 1.46)
+	 * @param Language $lang User language to return the description in (since 1.46)
 	 * @return string HTML (possibly unsafe, call `Sanitizer::removeSomeTags()` on the result)
 	 * @return-taint tainted
 	 */
-	public function getLongDesc( ?Language $lang = null ) {
-		if ( $lang === null ) {
-			wfDeprecatedMsg( 'Calling File::getLongDesc without a lang parameter ' .
-				'was deprecated in MediaWiki 1.46', '1.46' );
-		}
-
+	public function getLongDesc( Language $lang ) {
 		$handler = $this->getHandler( $lang );
 		if ( $handler ) {
 			return $handler->getLongDesc( $this );
@@ -2482,16 +2469,11 @@ abstract class File implements MediaHandlerState {
 	 * while others returned plain text. When calling this method, you should treat it as returning
 	 * unsafe HTML, and call `Sanitizer::removeSomeTags()` on the result.
 	 *
-	 * @param ?Language $lang User language to return the description in (since 1.46)
+	 * @param Language $lang User language to return the description in (since 1.46)
 	 * @return string HTML (possibly unsafe, call `Sanitizer::removeSomeTags()` on the result)
 	 * @return-taint tainted
 	 */
-	public function getShortDesc( ?Language $lang = null ) {
-		if ( $lang === null ) {
-			wfDeprecatedMsg( 'Calling File::getShortDesc without a lang parameter ' .
-				'was deprecated in MediaWiki 1.46', '1.46' );
-		}
-
+	public function getShortDesc( Language $lang ) {
 		$handler = $this->getHandler( $lang );
 		if ( $handler ) {
 			return $handler->getShortDesc( $this );
@@ -2501,15 +2483,10 @@ abstract class File implements MediaHandlerState {
 	}
 
 	/**
-	 * @param ?Language $lang Language to return the description in (since 1.46)
+	 * @param Language $lang Language to return the description in (since 1.46)
 	 * @return string plain text
 	 */
-	public function getDimensionsString( ?Language $lang = null ) {
-		if ( $lang === null ) {
-			wfDeprecatedMsg( 'Calling File::getDimensionsString without a lang parameter ' .
-				'was deprecated in MediaWiki 1.46', '1.46' );
-		}
-
+	public function getDimensionsString( Language $lang ) {
 		$handler = $this->getHandler( $lang );
 		if ( $handler ) {
 			return $handler->getDimensionsString( $this );

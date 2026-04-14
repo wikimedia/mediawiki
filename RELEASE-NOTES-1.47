@@ -127,6 +127,12 @@ because of Phabricator reports.
   - IncludableSpecialPage
   - UnlistedSpecialPage
   Instantiate a subclass instead.
+* It is no longer possible to call File::getShortDesc, File::getLongDesc,
+  File::getDescriptionText, File::getDimensionsString,
+  MediaHandler::getGeneralShortDesc or MediaHandler::getGeneralLongDesc without
+  specifying a language, deprecated in 1.46.
+* The unused method SpecialVersion::getVersionLinked, deprecated in 1.46, has
+  been removed.
 * The ability to construct a HTMLFormField without a parent, deprecated in 1.40,
   has been removed.
 * …
@@ -144,6 +150,10 @@ because of Phabricator reports.
   Use EditFilterMergedContent or MultiContentSave instead.
 * The EditPageBeforeConflictDiff hook has been deprecated and will trigger
   deprecation warnings.
+* The global variable $wgLang has been deprecated. Use an available
+  ContextSource instead, falling back to RequestContext::getMain(). As MediaWiki
+  Core no longer reads from $wgLang, writing to $wgLang in extensions will no
+  longer affect core.
 * …
 
 === Other changes in 1.47 ===

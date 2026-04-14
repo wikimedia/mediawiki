@@ -2593,15 +2593,10 @@ class LocalFile extends File {
 	 * it skips the parser cache.
 	 * @stable to override
 	 *
-	 * @param Language|null $lang What language to get description in. Passing null
-	 *     was deprecated in 1.46.
+	 * @param Language $lang What language to get description in.
 	 * @return string|false
 	 */
-	public function getDescriptionText( ?Language $lang = null ) {
-		if ( !$lang ) {
-			wfDeprecatedMsg( 'Calling File::getDescriptionText without a lang parameter ' .
-				'was deprecated in MediaWiki 1.46', '1.46' );
-		}
+	public function getDescriptionText( Language $lang ) {
 		if ( !$this->title ) {
 			return false; // Avoid hard failure when the file does not exist. T221812
 		}
@@ -2612,15 +2607,10 @@ class LocalFile extends File {
 			return false;
 		}
 
-		if ( $lang ) {
-			$parserOptions = ParserOptions::newFromUserAndLang(
-				RequestContext::getMain()->getUser(),
-				$lang
-			);
-		} else {
-			$parserOptions = ParserOptions::newFromContext( RequestContext::getMain() );
-		}
-
+		$parserOptions = ParserOptions::newFromUserAndLang(
+			RequestContext::getMain()->getUser(),
+			$lang
+		);
 		$parseStatus = $services->getParserOutputAccess()
 			->getParserOutput( $page, $parserOptions );
 

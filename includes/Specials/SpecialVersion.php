@@ -10,7 +10,6 @@ namespace MediaWiki\Specials;
 
 use Closure;
 use MediaWiki\Config\Config;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TocGeneratorTrait;
@@ -361,20 +360,6 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		return $version;
-	}
-
-	/**
-	 * Return a wikitext-formatted string of the MediaWiki version with a link to
-	 * the Git SHA1 of head if available.
-	 * The fallback is just MW_VERSION.
-	 *
-	 * @deprecated since 1.46
-	 * @return string
-	 */
-	public static function getVersionLinked() {
-		wfDeprecated( __METHOD__, '1.46' );
-		$lang = RequestContext::getMain()->getLanguage();
-		return self::getVersionLinkedGit( $lang ) ?: MW_VERSION;
 	}
 
 	/**

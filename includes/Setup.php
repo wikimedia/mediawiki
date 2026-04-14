@@ -550,6 +550,8 @@ global $wgLang, $wgOut, $wgTitle;
 
 /**
  * @var Language|StubUserLang $wgLang
+ * @deprecated since 1.47, use an available context source when possible, or, as a backup,
+ * RequestContext::getMain()
  */
 $wgLang = new StubUserLang;
 
