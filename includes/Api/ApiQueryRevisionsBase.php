@@ -299,16 +299,6 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		$this->needSlots = $this->fetchContent || $this->fld_contentmodel ||
 			$this->fld_slotsize || $this->fld_slotsha1;
-		if ( $this->needSlots && $this->slotRoles === null ) {
-			$encParam = $this->encodeParamName( 'slots' );
-			$name = $this->getModuleName();
-			$parent = $this->getParent();
-			$parentParam = $parent->encodeParamName( $parent->getModuleManager()->getModuleGroup( $name ) );
-			$this->addDeprecation(
-				[ 'apiwarn-deprecation-missingparam', $encParam ],
-				"action=query&{$parentParam}={$name}&!{$encParam}"
-			);
-		}
 	}
 
 	/**
