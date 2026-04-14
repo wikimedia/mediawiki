@@ -237,7 +237,8 @@ trait FileBackendGroupTestTrait {
 			'class' => FSFileBackend::class,
 			'lockManager' =>
 				$this->lmgFactory->getLockManagerGroup( self::getWikiID() )->get( 'fsLockManager' ),
-			'asyncHandler' => DeferredUpdates::addCallableUpdate( ... )
+			'asyncHandler' => DeferredUpdates::addCallableUpdate( ... ),
+			'telemetry' => $config['telemetry'],
 		], $config );
 
 		// Compare closures with ==

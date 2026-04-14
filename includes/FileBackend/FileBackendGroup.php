@@ -23,6 +23,7 @@ use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FileBackendMultiWrite;
 use Wikimedia\FileBackend\FSFile\TempFSFileFactory;
 use Wikimedia\FileBackend\FSFileBackend;
+use Wikimedia\Http\TelemetryHeadersInterface;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
@@ -63,6 +64,9 @@ class FileBackendGroup {
 	/** @var ObjectFactory */
 	private $objectFactory;
 
+	/** @var TelemetryHeadersInterface|null */
+	private ?TelemetryHeadersInterface $telemetry;
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -83,6 +87,7 @@ class FileBackendGroup {
 	 * @param LockManagerGroupFactory $lmgFactory
 	 * @param TempFSFileFactory $tmpFileFactory
 	 * @param ObjectFactory $objectFactory
+	 * @param TelemetryHeadersInterface|null $telemetry
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -92,7 +97,8 @@ class FileBackendGroup {
 		MimeAnalyzer $mimeAnalyzer,
 		LockManagerGroupFactory $lmgFactory,
 		TempFSFileFactory $tmpFileFactory,
-		ObjectFactory $objectFactory
+		ObjectFactory $objectFactory,
+		?TelemetryHeadersInterface $telemetry = null
 	) {
 		$this->options = $options;
 		$this->srvCache = $srvCache;
@@ -101,6 +107,7 @@ class FileBackendGroup {
 		$this->lmgFactory = $lmgFactory;
 		$this->tmpFileFactory = $tmpFileFactory;
 		$this->objectFactory = $objectFactory;
+		$this->telemetry = $telemetry;
 
 		// Register explicitly defined backends
 		$this->register( $options->get( MainConfigNames::FileBackends ), $readOnlyMode->getConfiguredReason() );
@@ -231,7 +238,8 @@ class FileBackendGroup {
 				'logger' => LoggerFactory::getInstance( 'FileOperation' ),
 				'profiler' => static function ( $section ) {
 					return Profiler::instance()->scopedProfileIn( $section );
-				}
+				},
+				'telemetry' => $this->telemetry,
 			],
 			// Configured backend parameters
 			$config,

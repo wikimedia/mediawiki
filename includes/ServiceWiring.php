@@ -991,7 +991,8 @@ return [
 			$services->getMimeAnalyzer(),
 			$services->getLockManagerGroupFactory(),
 			$services->getTempFSFileFactory(),
-			$services->getObjectFactory()
+			$services->getObjectFactory(),
+			$services->getTracer()
 		);
 	},
 

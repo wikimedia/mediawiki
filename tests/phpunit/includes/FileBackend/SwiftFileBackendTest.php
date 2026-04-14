@@ -4,6 +4,7 @@ use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FileBackendError;
 use Wikimedia\FileBackend\SwiftFileBackend;
+use Wikimedia\Http\TelemetryHeadersInterface;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -266,4 +267,34 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 		$this->expectException( FileBackendError::class );
 		iterator_to_array( $result );
 	}
+
+	public function testTelemetryIsForwardedToHttpClient(): void {
+		$telemetry = $this->createMock( TelemetryHeadersInterface::class );
+
+		$backend = TestingAccessWrapper::newFromObject(
+			new SwiftFileBackend( [
+				'name'            => 'local-swift-testing-telemetry',
+				'class'           => SwiftFileBackend::class,
+				'wikiId'          => 'unit-testing',
+				'lockManager'     => $this->getServiceContainer()
+					->getLockManagerGroupFactory()
+					->getLockManagerGroup()
+					->get( 'fsLockManager' ),
+				'swiftAuthUrl'    => 'http://127.0.0.1:8080/auth',
+				'swiftUser'       => 'test:tester',
+				'swiftKey'        => 'testing',
+				'logger'          => LoggerFactory::getInstance( 'FileOperation' ),
+				'telemetry'       => $telemetry,
+			] )
+		);
+
+		// Assert that the TelemetryHeadersInterface was forwarded to the inner MultiHttpClient
+		$httpClient = TestingAccessWrapper::newFromObject( $backend->http );
+		$this->assertSame(
+			$telemetry,
+			$httpClient->telemetry,
+			'TelemetryHeadersInterface passed to SwiftFileBackend must be forwarded to MultiHttpClient'
+		);
+	}
+
 }

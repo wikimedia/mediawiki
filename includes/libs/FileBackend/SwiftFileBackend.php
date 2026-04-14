@@ -20,6 +20,7 @@ use Wikimedia\FileBackend\FileIteration\SwiftFileBackendFileList;
 use Wikimedia\FileBackend\FileOpHandle\SwiftFileOpHandle;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\Http\MultiHttpClient;
+use Wikimedia\Http\TelemetryHeadersInterface;
 use Wikimedia\LockManager\LockManager;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -86,6 +87,9 @@ class SwiftFileBackend extends FileBackendStore {
 	/** @var bool Whether the server is an Ceph RGW */
 	protected $isRGW = false;
 
+	/** @var TelemetryHeadersInterface|null For propagating distributed trace context to HTTP requests */
+	private ?TelemetryHeadersInterface $telemetry = null;
+
 	/**
 	 * @see FileBackendStore::__construct()
 	 * @param array $config Params include:
@@ -128,6 +132,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 *                           seconds.
 	 *   - reqTimeout          : The HTTP request timeout to use when communicating with Swift, in
 	 *                           seconds.
+	 *   - telemetry           : A TelemetryHeadersInterface instance used to propagate distributed
+	 *                           trace context (e.g. traceparent/tracestate/X-Request-Id) on all
+	 *                           outbound HTTP requests. Swift is an internal service, so this is safe.
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -151,6 +158,10 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( isset( $config[$optionName] ) ) {
 				$httpOptions[$optionName] = $config[$optionName];
 			}
+		}
+		if ( isset( $config['telemetry'] ) ) {
+			$this->telemetry = $config['telemetry'];
+			$httpOptions['telemetry'] = $this->telemetry;
 		}
 		$this->http = new MultiHttpClient( $httpOptions );
 		$this->http->setLogger( $this->logger );
