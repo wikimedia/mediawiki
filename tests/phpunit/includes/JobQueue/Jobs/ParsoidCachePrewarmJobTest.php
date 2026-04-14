@@ -2,6 +2,7 @@
 namespace MediaWiki\Tests\JobQueue\Jobs;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\OutputTransform\Stages\RenderDebugInfo;
@@ -47,7 +48,12 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 		$rev1 = $this->editPage( $page, self::NON_JOB_QUEUE_EDIT )->getNewRevision();
 
 		$parsoidPrewarmJob = new ParsoidCachePrewarmJob(
-			[ 'revId' => $rev1->getId(), 'pageId' => $page->getId() ],
+			[
+				'revId' => $rev1->getId(),
+				'pageId' => $page->getId(),
+				'namespace' => $page->getNamespace(),
+				'title' => $page->getDBkey()
+			],
 			$this->getServiceContainer()->getParserOutputAccess(),
 			$this->getServiceContainer()->getPageStore(),
 			$this->getServiceContainer()->getRevisionLookup(),
@@ -59,6 +65,10 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 		//       below.
 		$execStatus = $parsoidPrewarmJob->run();
 		$this->assertTrue( $execStatus );
+
+		$contextTitle = RequestContext::getMain()->getTitle();
+		$this->assertSame( $page->getNamespace(), $contextTitle->getNamespace() );
+		$this->assertSame( $page->getDBkey(), $contextTitle->getDBkey() );
 
 		$popts = ParserOptions::newFromAnon();
 		$popts->setUseParsoid();

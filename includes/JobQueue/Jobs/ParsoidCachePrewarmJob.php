@@ -6,6 +6,7 @@
 
 namespace MediaWiki\JobQueue\Jobs;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\JobQueue\Job;
 use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\Logger\LoggerFactory;
@@ -87,6 +88,8 @@ class ParsoidCachePrewarmJob extends Job {
 				'revId' => $revisionId,
 				'pageId' => $pageId,
 				'page_touched' => $pageTouched,
+				'namespace' => $page->getNamespace(),
+				'title' => $page->getDBkey()
 			] + $params,
 			$opts
 		);
@@ -101,6 +104,8 @@ class ParsoidCachePrewarmJob extends Job {
 			$this->logger->info( "Page with ID {$this->params['pageId']} not found" );
 			return;
 		}
+
+		RequestContext::getMain()->setTitle( $this->title );
 
 		if ( $page->getLatest() !== $revId ) {
 			$this->logger->info(
