@@ -157,6 +157,7 @@
 	"editfont-serif": "З засечкамі",
 	"tog-minordefault": "Прадвызначана пазначаць усе праўкі як дробныя",
 	"tog-forceeditsummary": "Папярэджваць пра пустое поле тлумачэння праўкі (або апісанне стандартнай адмены)",
+	"tog-editrecovery": "Уключыць функцыю [[Special:EditRecovery|{{int:editrecovery}}]]",
 	"tog-useeditwarning": "Папярэдзіць мяне, калі я пакідаю старонку з незахаванымі праўкамі",
 	"prefs-preview": "Перадпаказ",
 	"tog-previewonfirst": "Перадпрагляд пры пачатку рэдагавання",

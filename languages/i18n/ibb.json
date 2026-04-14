@@ -12,7 +12,8 @@
 			"Nyaknograce",
 			"Okon Ibiono",
 			"Uduakj",
-			"Uduakumana"
+			"Uduakumana",
+			"Andikan Efiok Eduok"
 		]
 	},
 	"sunday": "adere",
@@ -298,6 +299,7 @@
 	"grouppage-bot": "{{ns:project}}:Timme tongho",
 	"grouppage-sysop": "{{ns:project}}:Si kama utom",
 	"rightslog": "Eti owo aduk",
+	"skin-action-addsection": "Dian iwod nwed",
 	"action-edit": "kod ikpa nwed am",
 	"action-createaccount": "nam account owo adam",
 	"enhancedrc-history": "nkan mkpo",
@@ -535,6 +537,7 @@
 	"pagelang-language": "Ikọ",
 	"pagelang-reason": "Ntak:",
 	"pagelang-submit": "Dọñ",
+	"nstab-mainpage": "Ata Ikpa Nwed",
 	"skin-action-delete": "Sịññe",
 	"blockedtext-made-by": "Enamel block am i ke $1.",
 	"blockedtext-reason-comment": "Mfana enoho <em>$1</em>.",

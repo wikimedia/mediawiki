@@ -381,8 +381,12 @@
 	"exif-initialhorizontalfovdegrees": "FOV awal (darjah mendatar)",
 	"exif-initialverticalfovdegrees": "FOV awal (darjah menegak)",
 	"exif-sourcephotoscount": "Kiraan foto sumber",
+	"exif-croppedareaimagewidthpixels": "Lebar panorama yang terpangkas",
+	"exif-croppedareaimageheightpixels": "Ketinggian panorama yang terpangkas",
 	"exif-fullpanowidthpixels": "Lebar penuh panoram",
 	"exif-fullpanoheightpixels": "Tinggi penuh panorama",
+	"exif-croppedarealeftpixels": "Pangkasan kiri panorama",
+	"exif-croppedareatoppixels": "Pangkasan atas panorama",
 	"exif-initialcameradolly": "Doli kamera awal",
 	"exif-stitchingsoftware": "Perisian jahit"
 }

@@ -1522,7 +1522,7 @@
 	"rcfilters-exclude-button-on": "Poissuljetaan valitut",
 	"rcfilters-view-tags": "Merkatut muokkaukset",
 	"rcfilters-view-namespaces-tooltip": "Suodata tuloksia nimiavaruuden mukaan",
-	"rcfilters-view-tags-tooltip": "Suodata tuloksia käyttäen merkkauksia",
+	"rcfilters-view-tags-tooltip": "Suodata tuloksia merkkausten avulla",
 	"rcfilters-view-return-to-default-tooltip": "Palaa suodattimien päävalikkon",
 	"rcfilters-view-tags-help-icon-tooltip": "Lue lisää merkatuista muutoksista",
 	"rcfilters-liveupdates-button": "Live-päivitykset",

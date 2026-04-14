@@ -10,7 +10,8 @@
 			"Revi",
 			"Ykhwong",
 			"아라",
-			"메지로 아르당"
+			"메지로 아르당",
+			"Tensama0415"
 		]
 	},
 	"exif-imagewidth": "너비",
@@ -71,6 +72,7 @@
 	"exif-lightsource": "광원",
 	"exif-flash": "플래시",
 	"exif-focallength": "렌즈 초점 거리",
+	"exif-focallength-format": "$1 mm",
 	"exif-subjectarea": "대상 위치",
 	"exif-flashenergy": "플래시 광량",
 	"exif-focalplanexresolution": "초점면 X방향 해상도",
@@ -349,6 +351,7 @@
 	"exif-dc-type": "미디어 종류",
 	"exif-rating-rejected": "거부",
 	"exif-isospeedratings-overflow": "65535 이상",
+	"exif-maxaperturevalue-value": "$1 APEX (f/$2)",
 	"exif-iimcategory-ace": "예술, 문화, 엔터테인먼트",
 	"exif-iimcategory-clj": "범죄와 법률",
 	"exif-iimcategory-dis": "재난 및 사고",

@@ -3846,5 +3846,7 @@
 	"benefit-1-description": "Rolloù evezhiañ a ro deoc’h tu da heuliañ ar pajennoù a blij deoc'h.",
 	"benefit-2-description": "Roll peurbadus ar c'hemmoù hoc'h eus degaset d'ar raktres.",
 	"benefit-3-description": "Dibaboù a ro deoc’h tu da bersonelaat hoc’h implij eus al lec’hienn",
-	"temp-user-unable-to-acquire": "N'haller ket tapout un anv implijer evit ur gont berrbad. Klaskit en-dro mar plij."
+	"temp-user-unable-to-acquire": "N'haller ket tapout un anv implijer evit ur gont berrbad. Klaskit en-dro mar plij.",
+	"table-of-contents-show-button-aria-label": "Diskouez an daolenn",
+	"table-of-contents-hide-button-aria-label": "Kuzhat an daolenn"
 }

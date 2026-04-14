@@ -45,7 +45,7 @@
 	"prefs-help-prefershttps": "Dës Astellung gëtt déi nächste Kéier wierksam wou Dir Iech ageloggt.",
 	"prefs-user-downloaddata-label": "Zougrëff op Benotzerdaten:",
 	"prefs-user-downloaddata-info": "Meng Benotzerdate vun dësem Projet",
-	"prefs-user-restoreprefs-label": "Astellungen zrécksetzen:",
+	"prefs-user-restoreprefs-label": "Astellungen zerécksetzen:",
 	"prefs-user-restoreprefs-info": "All Standard-Astellungen zrécksetzen (an allen Abschnitter)",
 	"prefs-i18n": "Internationalisatioun",
 	"yourlanguage": "Sprooch:",
@@ -216,5 +216,5 @@
 	"prefs-advancedsearchoptions": "Méi Optiounen",
 	"prefs-reset-intro": "Dir kënnt dës Säit benotze fir Är Astellungen zréck op d'Standard-Astllungen ze setzen.\nDëst kann net réckgängeg gemaach ginn.",
 	"prefs-reset-confirm": "Jo, Ech wëll meng Astellungen zrécksetzen.",
-	"restoreprefs": "All Standardastellungen zrécksetzen"
+	"restoreprefs": "Op d'Standardastellungen zerécksetzen"
 }

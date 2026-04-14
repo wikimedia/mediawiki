@@ -110,7 +110,8 @@
 			"HyperAnd",
 			"RaymondSutanto94",
 			"Deepturquoise",
-			"Bayahiu"
+			"Bayahiu",
+			"Budhiastawa"
 		]
 	},
 	"sunday": "Minggu",
@@ -270,7 +271,7 @@
 	"pool-servererror": "Layanan penghitung pool ini tidak tersedia ($1).",
 	"poolcounter-usage-error": "Galat penggunaan: $1",
 	"aboutsite": "Tentang {{SITENAME}}",
-	"aboutpage": "Project:Tentang",
+	"aboutpage": "Project:Perihal",
 	"copyright-footer": "Konten tersedia sesuai di bawah $1.",
 	"copyrightpage": "{{ns:project}}:Hak cipta",
 	"currentevents": "Peristiwa terkini",
