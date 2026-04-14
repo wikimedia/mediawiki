@@ -20,12 +20,13 @@ use Wikimedia\Parsoid\Utils\DOMTraverser;
  * @internal
  */
 class ExpandToAbsoluteUrlsDOM extends ContentDOMTransformStage {
-
 	public function __construct(
-		ServiceOptions $options, LoggerInterface $logger,
+		ServiceOptions $options,
+		LoggerInterface $logger,
+		bool $transformBodyOnly,
 		private readonly UrlUtils $urlUtils,
 	) {
-		parent::__construct( $options, $logger );
+		parent::__construct( $options, $logger, $transformBodyOnly );
 	}
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {

@@ -21,7 +21,9 @@ use Wikimedia\Assert\Assert;
  */
 class ContentHolderTransformStage extends OutputTransformStage {
 	public function __construct(
-		ServiceOptions $options, LoggerInterface $logger,
+		ServiceOptions $options,
+		LoggerInterface $logger,
+		bool $transformBodyOnly,
 		/** The HTML transform. */
 		private ContentTextTransformStage $textTransform,
 		/** The DOM transform. */
@@ -31,9 +33,9 @@ class ContentHolderTransformStage extends OutputTransformStage {
 		 * false if both transforms are equivalent and either can be selected depending
 		 * on the ContentHolder preferences.
 		 */
-		private bool $exclusive = false
+		private bool $exclusive = false,
 	) {
-		parent::__construct( $options, $logger );
+		parent::__construct( $options, $logger, $transformBodyOnly );
 	}
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {

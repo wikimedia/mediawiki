@@ -20,6 +20,7 @@ class AddWrapperDivClassTest extends OutputTransformStageTestBase {
 		return new AddWrapperDivClass(
 			new ServiceOptions( [] ),
 			new NullLogger(),
+			true,
 			$this->getServiceContainer()->getLanguageFactory(),
 			$this->getServiceContainer()->getContentLanguage()
 		);
@@ -41,6 +42,7 @@ class AddWrapperDivClassTest extends OutputTransformStageTestBase {
 	public static function provideTransform(): array {
 		$opts = [ 'wrapperDivClass' => 'mw-parser-output' ];
 		$po = new ParserOutput( TestUtils::TEST_DOC );
+		$po->getContentHolder()->setAsHtmlString( 'My Fragment', 'this is just a random fragment' );
 		$wrappedText = <<<EOF
 <div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>Test document.
 </p>
@@ -59,6 +61,7 @@ class AddWrapperDivClassTest extends OutputTransformStageTestBase {
 </p></div>
 EOF;
 		$expected = new ParserOutput( $wrappedText );
+		$expected->getContentHolder()->setAsHtmlString( 'My Fragment', 'this is just a random fragment' );
 		return [
 			[ $po, ParserOptions::newFromAnon(), $opts, $expected ]
 		];

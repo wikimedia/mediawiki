@@ -277,6 +277,10 @@ class ContentHolder implements JsonCodecable {
 		return $frag;
 	}
 
+	public function getFragmentNames(): array {
+		return array_keys( $this->domFormat ? $this->domMap : $this->htmlMap );
+	}
+
 	/**
 	 * Return the BasePageBundle of the ContentHolder.
 	 * @internal

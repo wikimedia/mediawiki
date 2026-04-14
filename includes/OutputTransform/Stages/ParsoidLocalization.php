@@ -11,7 +11,6 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
@@ -30,13 +29,19 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
  * @internal
  */
 class ParsoidLocalization extends ContentDOMTransformStage {
+	public static bool $bodyOnly = false;
 
 	public function __construct(
-		ServiceOptions $options, LoggerInterface $logger,
-		private TitleFactory $titleFactory,
+		ServiceOptions $options,
+		LoggerInterface $logger,
+		bool $transformBodyOnly,
 		private LanguageFactory $languageFactory
 	) {
-		parent::__construct( $options, $logger );
+		parent::__construct( $options, $logger, $transformBodyOnly );
+	}
+
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
+		return $po->getContentHolder()->isParsoidContent();
 	}
 
 	public function transformDOM(
@@ -65,10 +70,6 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 		} );
 		$traverser->traverse( null, $df );
 		return $df;
-	}
-
-	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
-		return $po->getContentHolder()->isParsoidContent();
 	}
 
 	/**

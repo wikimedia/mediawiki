@@ -19,7 +19,8 @@ class HardenNFCTest extends OutputTransformStageTestBase {
 	public function createStage(): OutputTransformStage {
 		return new HardenNFC(
 			new ServiceOptions( [] ),
-			new NullLogger()
+			new NullLogger(),
+			false
 		);
 	}
 
@@ -36,8 +37,12 @@ class HardenNFCTest extends OutputTransformStageTestBase {
 	public static function provideTransform(): array {
 		$text = "<h1>\u{0338}</h1>";
 		$expectedText = "<h1>&#x338;</h1>";
+		$input = new ParserOutput( $text );
+		$input->getContentHolder()->setAsHtmlString( 'my fragment', $text );
+		$expected = new ParserOutput( $expectedText );
+		$expected->getContentHolder()->setAsHtmlString( 'my fragment', $expectedText );
 		return [
-			[ new ParserOutput( $text ), ParserOptions::newFromAnon(), [], new ParserOutput( $expectedText ) ],
+			[ $input, ParserOptions::newFromAnon(), [], $expected ],
 		];
 	}
 }

@@ -16,7 +16,8 @@ class ExpandToAbsoluteUrlsTest extends ExpandToAbsoluteUrlsTestBase {
 	public function createStage(): OutputTransformStage {
 		return new ExpandToAbsoluteUrls(
 			new ServiceOptions( [] ),
-			new NullLogger()
+			new NullLogger(),
+			false
 		);
 	}
 }

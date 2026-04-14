@@ -20,7 +20,8 @@ class HydrateHeaderPlaceholdersTest extends OutputTransformStageTestBase {
 	public function createStage(): OutputTransformStage {
 		return new HydrateHeaderPlaceholders(
 			new ServiceOptions( [] ),
-			new NullLogger()
+			new NullLogger(),
+			true,
 		);
 	}
 
@@ -43,8 +44,10 @@ class HydrateHeaderPlaceholdersTest extends OutputTransformStageTestBase {
 		$expectedText = "<h1>Header&1</h1><h2>Header 2</h2>";
 		$po = new ParserOutput( $text );
 		$po->setOutputFlag( ParserOutputFlags::HAS_SLOT_HEADERS );
+		$po->getContentHolder()->setAsHtmlString( 'my fragment', $text );
 		$expected = new ParserOutput( $expectedText );
 		$expected->setOutputFlag( ParserOutputFlags::HAS_SLOT_HEADERS );
+		$expected->getContentHolder()->setAsHtmlString( 'my fragment', $text );
 		return [
 			[ $po, ParserOptions::newFromAnon(), [], $expected ],
 		];

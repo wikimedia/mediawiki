@@ -8,7 +8,6 @@ use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -16,11 +15,13 @@ use Psr\Log\LoggerInterface;
  * @internal
  */
 class ExtractBody extends ContentTextTransformStage {
+
 	public function __construct(
-		ServiceOptions $options, LoggerInterface $logger,
-		private UrlUtils $urlUtils
+		ServiceOptions $options,
+		LoggerInterface $logger,
+		bool $transformBodyOnly,
 	) {
-		parent::__construct( $options, $logger );
+		parent::__construct( $options, $logger, $transformBodyOnly );
 	}
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {

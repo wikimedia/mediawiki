@@ -18,16 +18,14 @@ use Psr\Log\LoggerInterface;
  */
 class AddWrapperDivClass extends ContentTextTransformStage {
 
-	private LanguageFactory $langFactory;
-	private Language $contentLang;
-
 	public function __construct(
-		ServiceOptions $options, LoggerInterface $logger, LanguageFactory $langFactory,
-		Language $contentLang
+		ServiceOptions $options,
+		LoggerInterface $logger,
+		bool $transformBodyOnly,
+		private LanguageFactory $langFactory,
+		private Language $contentLang
 	) {
-		parent::__construct( $options, $logger );
-		$this->langFactory = $langFactory;
-		$this->contentLang = $contentLang;
+		parent::__construct( $options, $logger, $transformBodyOnly );
 	}
 
 	/**

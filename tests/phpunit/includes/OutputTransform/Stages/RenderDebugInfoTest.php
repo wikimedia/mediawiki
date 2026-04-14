@@ -20,6 +20,7 @@ class RenderDebugInfoTest extends OutputTransformStageTestBase {
 		return new RenderDebugInfo(
 			new ServiceOptions( [] ),
 			new NullLogger(),
+			true,
 			$this->getServiceContainer()->getHookContainer()
 		);
 	}
@@ -49,9 +50,11 @@ class RenderDebugInfoTest extends OutputTransformStageTestBase {
 EOF;
 		$expectedText = $text . "\n<!-- \nNewPP limit report\nComplications: []\n-->\n";
 		$po = new ParserOutput( $text );
+		$po->getContentHolder()->setAsHtmlString( 'some fragment', 'hello' );
 		$po->setLimitReportData( 'test', 'limit' );
 		$expected = new ParserOutput( $expectedText );
 		$expected->setLimitReportData( 'test', 'limit' );
+		$expected->getContentHolder()->setAsHtmlString( 'some fragment', 'hello' );
 
 		$expectedTextWithSource = $text .
 			"\n<!-- \nNewPP limit report\nCache expiry source: somesource\nComplications: []\n-->\n";

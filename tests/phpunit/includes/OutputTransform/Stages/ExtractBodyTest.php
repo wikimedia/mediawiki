@@ -23,7 +23,7 @@ class ExtractBodyTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
 		$urlUtils = $this->getServiceContainer()->getUrlUtils();
-		return new ExtractBody( new ServiceOptions( [] ), new NullLogger(), $urlUtils, null );
+		return new ExtractBody( new ServiceOptions( [] ), new NullLogger(), true, $urlUtils, null );
 	}
 
 	public static function provideShouldRun(): array {
@@ -118,7 +118,10 @@ HTML;
 			$title = Title::newFromText( $t['title'] );
 			$docHtml = $t['doc'] ?? str_replace( "__BODY__", $t['body'], $pageTemplate );
 			$poInput = new ParserOutput( $docHtml );
+			$poInput->getContentHolder()->setAsHtmlString( 'body fragment', $docHtml );
 			$poOutput = new ParserOutput( $t['result'] );
+			// don't touch other fragments even if they contain a full HTML doc (they shouldn't)
+			$poOutput->getContentHolder()->setAsHtmlString( 'body fragment', $docHtml );
 			$poInput->setTitle( $title );
 			$poOutput->setTitle( $title );
 			yield $label => [ $poInput, ParserOptions::newFromAnon(), [], $poOutput ];

@@ -26,13 +26,13 @@ class HandleSectionLinks extends ContentTextTransformStage {
 	private const HEADING_REGEX =
 		'/<H(?P<level>[1-6])(?P<attrib>(?:[^\'">]*|"([^"]*)"|\'([^\']*)\')*>)(?P<header>[\s\S]*?)<\/H[1-6] *>/i';
 
-	private TitleFactory $titleFactory;
-
 	public function __construct(
-		ServiceOptions $options, LoggerInterface $logger, TitleFactory $titleFactory
+		ServiceOptions $options,
+		LoggerInterface $logger,
+		bool $transformBodyOnly,
+		private TitleFactory $titleFactory
 	) {
-		parent::__construct( $options, $logger );
-		$this->titleFactory = $titleFactory;
+		parent::__construct( $options, $logger, $transformBodyOnly );
 	}
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {

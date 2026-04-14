@@ -24,6 +24,7 @@ class ParsoidLanguageConverterTest extends MediaWikiIntegrationTestCase {
 		return new ParsoidLanguageConverter(
 			new ServiceOptions( [] ),
 			new NullLogger(),
+			false,
 			$this->getServiceContainer()->getParsoidSiteConfig(),
 			$this->getServiceContainer()->getLanguageFactory(),
 			$this->getServiceContainer()->getLanguageConverterFactory(),
@@ -42,6 +43,7 @@ class ParsoidLanguageConverterTest extends MediaWikiIntegrationTestCase {
 		$languageFactory = $this->getServiceContainer()->getLanguageFactory();
 		$conv = $this->createStage();
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( $input ) );
+		$po->getContentHolder()->addFragment( 'my fragment', $input );
 		$po->setTitle( Title::newFromText( 'Test page' ) );
 		$variant = $languageFactory->getLanguage( new Bcp47CodeValue( $pagelang ) );
 		$baseLang = $languageFactory->getParentLanguage( $variant );
@@ -51,8 +53,10 @@ class ParsoidLanguageConverterTest extends MediaWikiIntegrationTestCase {
 		$opts = [];
 		$po->setFromParserOptions( $popts );
 		$transf = $conv->transform( $po, $popts, $opts );
-		$res = $transf->getContentHolderText();
-		self::assertEquals( $expected, TestUtils::stripParsoidIds( $res ) );
+		$resBody = $transf->getContentHolderText();
+		$resFragment = $transf->getContentHolder()->getAsHtmlString( 'my fragment' );
+		self::assertEquals( $expected, TestUtils::stripParsoidIds( $resBody ) );
+		self::assertEquals( $expected, TestUtils::stripParsoidIds( $resFragment ) );
 	}
 
 	public static function provideDocsToConvert() {

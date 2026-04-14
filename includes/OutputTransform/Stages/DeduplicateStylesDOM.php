@@ -17,6 +17,7 @@ use Wikimedia\Parsoid\Utils\DOMTraverser;
  * @internal
  */
 class DeduplicateStylesDOM extends ContentDOMTransformStage {
+	private array $seen = [];
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return ( $options['deduplicateStyles'] ?? true );
@@ -25,7 +26,7 @@ class DeduplicateStylesDOM extends ContentDOMTransformStage {
 	public function transformDOM(
 		DocumentFragment $df, ParserOutput $po, ParserOptions $popts, array &$options
 	): DocumentFragment {
-		$seen = [];
+		$seen = $this->seen;
 		$traverser = new DOMTraverser( false, false );
 		$traverser->addHandler( "style", static function ( Node $node ) use ( $df, &$seen ) {
 			'@phan-var Element $node'; // <style> nodes have Element type
@@ -50,7 +51,7 @@ class DeduplicateStylesDOM extends ContentDOMTransformStage {
 		} );
 
 		$traverser->traverse( null, $df );
-
+		$this->seen = $seen;
 		return $df;
 	}
 }

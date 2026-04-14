@@ -24,29 +24,22 @@ abstract class ExpandToAbsoluteUrlsTestBase extends OutputTransformStageTestBase
 
 	public static function provideTransform(): array {
 		$options = [];
-		return [
-			[ new ParserOutput( '' ), ParserOptions::newFromAnon(), $options, new ParserOutput( '' ) ],
-			[ new ParserOutput( '<p>test</p>' ), ParserOptions::newFromAnon(), $options, new ParserOutput( '<p>test</p>' ) ],
-			[
-				new ParserOutput( '<a href="/wiki/Test">test</a>' ),
-				ParserOptions::newFromAnon(), $options,
-				new ParserOutput( '<a href="//TEST_SERVER/wiki/Test">test</a>' )
-			],
-			[
-				new ParserOutput( '<a href="//TEST_SERVER/wiki/Test">test</a>' ),
-				ParserOptions::newFromAnon(), $options,
-				new ParserOutput( '<a href="//TEST_SERVER/wiki/Test">test</a>' )
-			],
-			[
-				new ParserOutput( '<a href="https://TEST_SERVER/wiki/Test">test</a>' ),
-				ParserOptions::newFromAnon(), $options,
-				new ParserOutput( '<a href="https://TEST_SERVER/wiki/Test">test</a>' )
-			],
-			[
-				new ParserOutput( '<a href="https://en.wikipedia.org/wiki/Test">test</a>' ),
-				ParserOptions::newFromAnon(), $options,
-				new ParserOutput( '<a href="https://en.wikipedia.org/wiki/Test">test</a>' )
-			],
+		$res = [
+			[ '', '' ],
+			[ '<p>test</p>', '<p>test</p>' ],
+			[ '<a href="/wiki/Test">test</a>', '<a href="//TEST_SERVER/wiki/Test">test</a>' ],
+			[ '<a href="//TEST_SERVER/wiki/Test">test</a>', '<a href="//TEST_SERVER/wiki/Test">test</a>' ],
+			[ '<a href="https://TEST_SERVER/wiki/Test">test</a>', '<a href="https://TEST_SERVER/wiki/Test">test</a>' ],
+			[ '<a href="https://en.wikipedia.org/wiki/Test">test</a>', '<a href="https://en.wikipedia.org/wiki/Test">test</a>' ]
 		];
+
+		return array_map( static function ( $a ): array {
+			$options = [];
+			$input = new ParserOutput( $a[0] );
+			$input->getContentHolder()->setAsHtmlString( 'some fragment', $a[0] );
+			$expected = new ParserOutput( $a[1] );
+			$expected->getContentHolder()->setAsHtmlString( 'some fragment', $a[1] );
+			return [ $input, ParserOptions::newFromAnon(), $options, $expected ];
+		}, $res );
 	}
 }

@@ -19,6 +19,7 @@ class HandleTOCMarkersTextTest extends HandleTOCMarkersTestCommon {
 		return new HandleTOCMarkersText(
 			new ServiceOptions( [] ),
 			new NullLogger(),
+			true,
 			$this->getServiceContainer()->getTidy()
 		);
 	}

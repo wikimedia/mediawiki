@@ -23,6 +23,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		return new HandleParsoidSectionLinks(
 			new ServiceOptions( [] ),
 			new NullLogger(),
+			true,
 			$this->getServiceContainer()->getTitleFactory()
 		);
 	}
@@ -39,8 +40,9 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		?string $rawText = null,
 		?ParserOptions $parserOptions = null,
 		?TOCData $toc = null,
-		string ...$flags
-	) {
+		?string $fragment = null,
+		string ...$flags,
+	): ParserOutput {
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
 			new HtmlPageBundle( $rawText ?? '' )
 		);
@@ -53,6 +55,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		foreach ( $flags as $f ) {
 			$po->setOutputFlag( $f );
 		}
+		$po->getContentHolder()->addFragment( 'my fragment', $fragment );
 		return $po;
 	}
 
@@ -107,16 +110,16 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		$expected = '<section id="a" aria-labelledby="foo"><div class="mw-heading mw-heading-1"><h2 id="foo">Foo</h2></div>Bar</section>';
 		$pOpts = ParserOptions::newFromAnon();
 		yield 'Standard Parsoid output: no links' => [
-			self::newParserOutput( $input, $pOpts, $toc ),
+			self::newParserOutput( $input, $pOpts, $toc, $input ),
 			$pOpts, [ 'enableSectionEditLinks' => false ] + $options,
-			self::newParserOutput( $expected, $pOpts, $toc )
+			self::newParserOutput( $expected, $pOpts, $toc, $input )
 		];
 
 		$expected = '<section id="a" aria-labelledby="foo"><div class="mw-heading mw-heading-1"><h2 id="foo">Foo</h2>!<a id="c">edit</a>!</div>Bar</section>';
 		yield 'Standard Parsoid output: with links' => [
-			self::newParserOutput( $input, $pOpts, $toc ),
+			self::newParserOutput( $input, $pOpts, $toc, $input ),
 			$pOpts, $options,
-			self::newParserOutput( $expected, $pOpts, $toc )
+			self::newParserOutput( $expected, $pOpts, $toc, $input )
 		];
 
 		// Test collapsible section wrapper (T359001)
@@ -124,9 +127,9 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		$pOpts->setCollapsibleSections();
 		$expected = '<section id="a" aria-labelledby="foo"><div class="mw-heading mw-heading-1"><h2 id="foo">Foo</h2>!<a id="c">edit</a>!</div><div>Bar</div></section>';
 		yield 'Standard Parsoid output: collapsible with links' => [
-			self::newParserOutput( $input, $pOpts, $toc ),
+			self::newParserOutput( $input, $pOpts, $toc, $input ),
 			$pOpts, $options,
-			self::newParserOutput( $expected, $pOpts, $toc )
+			self::newParserOutput( $expected, $pOpts, $toc, $input )
 		];
 
 		// Test that an existing heading <div> wrapper is reused (T357826)
@@ -134,9 +137,9 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		$expected = '<section id="a" aria-labelledby="foo"><div class="mw-heading mw-heading2" id="b">prefix<h2 id="foo">Foo</h2>!<a id="c">edit</a>!suffix</div>Bar</section>';
 		$pOpts = ParserOptions::newFromAnon();
 		yield 'Output with existing div: with links' => [
-			self::newParserOutput( $input, $pOpts, $toc ),
+			self::newParserOutput( $input, $pOpts, $toc, $input ),
 			$pOpts, $options,
-			self::newParserOutput( $expected, $pOpts, $toc )
+			self::newParserOutput( $expected, $pOpts, $toc, $input )
 		];
 
 		// Reused <div> plus collapsible sections
@@ -144,9 +147,9 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		$pOpts = ParserOptions::newFromAnon();
 		$pOpts->setCollapsibleSections();
 		yield 'Output with existing div: collapsible with links' => [
-			self::newParserOutput( $input, $pOpts, $toc ),
+			self::newParserOutput( $input, $pOpts, $toc, $input ),
 			$pOpts, $options,
-			self::newParserOutput( $expected, $pOpts, $toc )
+			self::newParserOutput( $expected, $pOpts, $toc, $input )
 		];
 
 		// Empty string isn't a valid id
@@ -154,19 +157,20 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		$expected = '<section id="a"><h2 id="">Foo</h2>Bar</section>';
 		$pOpts = ParserOptions::newFromAnon();
 		yield 'Heading with empty id is skipped' => [
-			self::newParserOutput( $input, $pOpts, $toc ),
+			self::newParserOutput( $input, $pOpts, $toc, $input ),
 			$pOpts, $options,
-			self::newParserOutput( $expected, $pOpts, $toc )
+			self::newParserOutput( $expected, $pOpts, $toc, $input )
 		];
 
 		// T353489: Wrappers aren't added to headings with attributes
 		$input = '<section id="a"><h2 id="foo" data-parsoid=\'{"stx": "html"}\'>F</h2>Oo<h2 id="bar" class="b" data-parsoid=\'{"stx": "html"}\'>B</h2>Ar<h2 id="baz" data-parsoid=\'{"stx": "html", "reusedId": true}\'>B</h2>Az</section>';
-		$expected = '<section id="a" aria-labelledby="foo"><div class="mw-heading mw-heading-1"><h2 id="foo">F</h2>!<a id="c">edit</a>!</div>Oo<h2 id="bar" class="b mw-html-heading">B</h2>Ar<h2 id="baz" class="mw-html-heading">B</h2>Az</section>';
+		$fragment = '<section id="fa"><h2 id="ffoo" data-parsoid=\'{"stx": "html"}\'>F</h2>Oo<h2 id="fbar" class="b" data-parsoid=\'{"stx": "html"}\'>B</h2>Ar<h2 id="fbaz" data-parsoid=\'{"stx": "html", "reusedId": true}\'>B</h2>Az</section>';
+		$expected = '<section id="a" aria-labelledby="foo"><div class="mw-heading mw-heading-1"><h2 id="foo" data-parsoid=\'{"stx": "html"}\'>F</h2>!<a id="c">edit</a>!</div>Oo<h2 id="bar" class="b mw-html-heading" data-parsoid=\'{"stx": "html"}\'>B</h2>Ar<h2 id="baz" class="mw-html-heading" data-parsoid=\'{"stx": "html","reusedId": true}\'>B</h2>Az</section>';
 		$pOpts = ParserOptions::newFromAnon();
 		yield 'Heading with attributes is skipped' => [
-			self::newParserOutput( $input, $pOpts, $toc ),
+			self::newParserOutput( $input, $pOpts, $toc, $fragment ),
 			$pOpts, $options,
-			self::newParserOutput( $expected, $pOpts, $toc )
+			self::newParserOutput( $expected, $pOpts, $toc, $fragment )
 		];
 	}
 }

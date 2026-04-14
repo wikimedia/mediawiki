@@ -21,9 +21,12 @@ class ExecutePostCacheTransformHooks extends ContentTextTransformStage {
 	private HookRunner $hookRunner;
 
 	public function __construct(
-		ServiceOptions $options, LoggerInterface $logger, HookContainer $hookContainer
+		ServiceOptions $options,
+		LoggerInterface $logger,
+		bool $transformBodyOnly,
+		HookContainer $hookContainer
 	) {
-		parent::__construct( $options, $logger );
+		parent::__construct( $options, $logger, $transformBodyOnly );
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->hookContainer = $hookContainer;
 	}

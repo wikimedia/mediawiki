@@ -38,7 +38,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		return new ParsoidLocalization(
 			new ServiceOptions( [] ),
 			new NullLogger(),
-			$this->getServiceContainer()->getTitleFactory(),
+			false,
 			$this->getServiceContainer()->getLanguageFactory(),
 		);
 	}
@@ -57,9 +57,14 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$po->setTitle( Title::newFromText( 'Test page' ) );
 		$popts = ParserOptions::newFromAnon();
 		$opts = [];
+
+		$po->getContentHolder()->addFragment( 'My Fragment', $input );
+
 		$transf = $loc->transform( $po, $popts, $opts );
 		$res = $transf->getContentHolderText();
+		$resFragment = $transf->getContentHolder()->getAsHtmlString( 'My Fragment' );
 		self::assertEquals( $expected, TestUtils::stripParsoidIds( $res ), $message );
+		self::assertEquals( $expected, TestUtils::stripParsoidIds( $resFragment ), $message );
 	}
 
 	/**

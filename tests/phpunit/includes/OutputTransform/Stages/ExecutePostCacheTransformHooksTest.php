@@ -23,6 +23,7 @@ class ExecutePostCacheTransformHooksTest extends \MediaWikiIntegrationTestCase {
 		return new ExecutePostCacheTransformHooks(
 			new ServiceOptions( [] ),
 			new NullLogger(),
+			true,
 			$this->getServiceContainer()->getHookContainer()
 		);
 	}
@@ -43,10 +44,14 @@ class ExecutePostCacheTransformHooksTest extends \MediaWikiIntegrationTestCase {
 		// This tests that the options are modified by the PostCacheTransformHookRunner (if it is not run, or if
 		// the options are not modified, the test fails)
 		$po = new ParserOutput( TestUtils::TEST_DOC );
-		$expected = new ParserOutput( TestUtils::TEST_DOC_WITH_LINKS );
+		$po->getContentHolder()->setAsHtmlString( 'some fragment', 'some string' );
+		$expected = new ParserOutput( TestUtils::TEST_DOC_WITH_LINKS . '<span>ran the transform</span>' );
+		// we're not going through the fragments in this pass, leaving as is
+		$expected->getContentHolder()->setAsHtmlString( 'some fragment', 'some string' );
 		$this->getServiceContainer()->getHookContainer()->register( 'ParserOutputPostCacheTransform',
 			static function ( ParserOutput $out, &$text, array &$options ) {
 				$options['enableSectionEditLinks'] = true;
+				$text .= '<span>ran the transform</span>';
 			}
 		);
 		// T358103: VisualEditor will change the section edit links causing a test failure.
@@ -70,7 +75,7 @@ class ExecutePostCacheTransformHooksTest extends \MediaWikiIntegrationTestCase {
 		$expected->clearParseStartTime();
 		$expected->recordOption( 'userlang' ); // T413227 workaround
 		$expected->recordOption( 'enableSectionEditLinks' );
-		$this->assertEquals( $expected, $res );
+		$this->assertEquals( $expected->toJsonArray(), $res->toJsonArray() );
 	}
 
 	/**

@@ -15,15 +15,16 @@ use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
  * @internal
  */
 class DeduplicateStyles extends ContentTextTransformStage {
+	private array $seen = [];
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return $options['deduplicateStyles'] ?? true;
 	}
 
 	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
-		$seen = [];
 		$isParsoidContent = $po->getContentHolder()->isParsoidContent();
 
+		$seen = $this->seen;
 		$transform = static function ( $fragment ) use ( &$seen, $isParsoidContent ) {
 			return HtmlHelper::modifyElements(
 				$fragment,
@@ -60,13 +61,15 @@ class DeduplicateStyles extends ContentTextTransformStage {
 			// This is unsafe to do for Parsoid content, since the naïve regex below might match encoded style
 			// tags within data-parsoid attribute values, so only apply it to legacy parser output.
 			// Parsoid content transformations will be further optimized in T394005.
-			return preg_replace_callback(
+			$res = preg_replace_callback(
 				'#<style\s+([^>]*data-mw-deduplicate\s*=[\'"][^>]*)>.*?</style>#s',
 				static fn ( array $matches ) => $transform( $matches[0] ),
 				$text
 			);
+		} else {
+			$res = $transform( $text );
 		}
-
-		return $transform( $text );
+		$this->seen = $seen;
+		return $res;
 	}
 }

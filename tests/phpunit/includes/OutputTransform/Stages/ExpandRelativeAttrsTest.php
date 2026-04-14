@@ -25,6 +25,7 @@ class ExpandRelativeAttrsTest extends OutputTransformStageTestBase {
 		return new ExpandRelativeAttrs(
 			new ServiceOptions( [] ),
 			new NullLogger(),
+			false,
 			$this->getServiceContainer()->getUrlUtils(),
 			new MockSiteConfig( [] ),
 			$this->getServiceContainer()->getTitleFormatter(),
@@ -89,7 +90,9 @@ class ExpandRelativeAttrsTest extends OutputTransformStageTestBase {
 			$title = Title::newFromText( $t['title'] );
 			$docHtml = $t['doc'] ?? $t['body'];
 			$poInput = new ParserOutput( $docHtml );
+			$poInput->getContentHolder()->addFragment( 'some fragment', $docHtml );
 			$poOutput = new ParserOutput( $t['result'] );
+			$poOutput->getContentHolder()->addFragment( 'some fragment', $t['result'] );
 			$poInput->setTitle( $title );
 			$poOutput->setTitle( $title );
 			yield $label => [ $poInput, ParserOptions::newFromAnon(), [], $poOutput ];

@@ -66,9 +66,11 @@ abstract class HandleTOCMarkersTestCommon extends OutputTransformStageTestBase {
 		string $withToc, string $withoutToc, string $withCustomToc
 	): iterable {
 		$poTest1 = new ParserOutput( TestUtils::TEST_DOC );
+		$poTest1->getContentHolder()->setAsHtmlString( 'my fragment', '<meta property="mw:PageProp/toc"/>' );
 		TestUtils::initSections( $poTest1 );
 		$expectedWith = new ParserOutput( $withToc );
 		TestUtils::initSections( $expectedWith );
+		$expectedWith->getContentHolder()->setAsHtmlString( 'my fragment', '<meta property="mw:PageProp/toc"/>' );
 		yield [ $poTest1, ParserOptions::newFromAnon(), [
 			'userLang' => null,
 			'skin' => null,

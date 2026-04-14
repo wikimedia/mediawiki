@@ -22,7 +22,8 @@ class ContentDOMTransformStageTest extends TestCase {
 	public function createStage(): ContentDOMTransformStage {
 		return new DummyDOMTransformStage(
 			new ServiceOptions( [] ),
-			new NullLogger()
+			new NullLogger(),
+			true
 		);
 	}
 

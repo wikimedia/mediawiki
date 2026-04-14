@@ -28,13 +28,14 @@ use Wikimedia\Parsoid\Utils\WTUtils;
  * @internal
  */
 class HandleParsoidSectionLinks extends ContentDOMTransformStage {
-	private TitleFactory $titleFactory;
 
 	public function __construct(
-		ServiceOptions $options, LoggerInterface $logger, TitleFactory $titleFactory
+		ServiceOptions $options,
+		LoggerInterface $logger,
+		bool $transformBodyOnly,
+		private TitleFactory $titleFactory
 	) {
-		parent::__construct( $options, $logger );
-		$this->titleFactory = $titleFactory;
+		parent::__construct( $options, $logger, $transformBodyOnly );
 	}
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {

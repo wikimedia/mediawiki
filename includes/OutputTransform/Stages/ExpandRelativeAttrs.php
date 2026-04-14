@@ -25,17 +25,17 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
  * @internal
  */
 class ExpandRelativeAttrs extends ContentDOMTransformStage {
-
 	public function __construct(
 		ServiceOptions $options,
 		LoggerInterface $logger,
+		bool $transformBodyOnly,
 		private UrlUtils $urlUtils,
 		private SiteConfig $siteConfig,
 		private TitleFormatter $titleFormatter,
 		// @phan-suppress-next-line PhanUndeclaredTypeParameter, PhanUndeclaredTypeProperty
 		private ?\MobileContext $mobileContext
 	) {
-		parent::__construct( $options, $logger );
+		parent::__construct( $options, $logger, $transformBodyOnly );
 	}
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
@@ -115,7 +115,6 @@ class ExpandRelativeAttrs extends ContentDOMTransformStage {
 		} );
 		$traverser->traverse( null, $df );
 
-		// Convert indicators
 		$ownerDoc = $df->ownerDocument;
 		'@phan-var Document $ownerDoc';
 		foreach ( $po->getIndicators() as $name => $html ) {

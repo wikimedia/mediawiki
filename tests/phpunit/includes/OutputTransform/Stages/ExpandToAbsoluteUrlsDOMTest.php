@@ -17,6 +17,7 @@ class ExpandToAbsoluteUrlsDOMTest extends ExpandToAbsoluteUrlsTestBase {
 		return new ExpandToAbsoluteUrlsDOM(
 			new ServiceOptions( [] ),
 			new NullLogger(),
+			false,
 			$this->getServiceContainer()->getUrlUtils(),
 		);
 	}

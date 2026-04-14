@@ -3,7 +3,6 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\OutputTransform;
 
-use MediaWiki\Parser\ContentHolder;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use Wikimedia\Parsoid\DOM\Document;
@@ -28,13 +27,13 @@ abstract class ContentDOMTransformStage extends OutputTransformStage {
 	public function transform(
 		ParserOutput $po, ParserOptions $popts, array &$options
 	): ParserOutput {
-		$contentHolder = $po->getContentHolder();
-		$df = $contentHolder->getAsDom( ContentHolder::BODY_FRAGMENT ) ??
-			$contentHolder->createFragment();
-
-		$df = $this->transformDOM( $df, $po, $popts, $options );
-
-		$contentHolder->setAsDom( ContentHolder::BODY_FRAGMENT, $df );
+		foreach ( $this->getFragmentsToTransform( $po, $popts ) as $key ) {
+			$dom = $po->getContentHolder()->getAsDom( $key );
+			if ( $dom ) {
+				$dom = $this->transformDOM( $dom, $po, $popts, $options );
+				$po->getContentHolder()->setAsDom( $key, $dom );
+			}
+		}
 		return $po;
 	}
 

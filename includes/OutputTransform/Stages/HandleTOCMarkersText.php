@@ -22,14 +22,13 @@ use Wikimedia\Parsoid\Core\TOCData;
  * @internal
  */
 class HandleTOCMarkersText extends ContentTextTransformStage {
-
-	private TidyDriverBase $tidy;
-
 	public function __construct(
-		ServiceOptions $options, LoggerInterface $logger, TidyDriverBase $tidy
+		ServiceOptions $options,
+		LoggerInterface $logger,
+		bool $transformBodyOnly,
+		private TidyDriverBase $tidy
 	) {
-		parent::__construct( $options, $logger );
-		$this->tidy = $tidy;
+		parent::__construct( $options, $logger, $transformBodyOnly );
 	}
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {

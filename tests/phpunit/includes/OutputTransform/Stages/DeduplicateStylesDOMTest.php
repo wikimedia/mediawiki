@@ -20,7 +20,7 @@ use Wikimedia\Parsoid\Core\HtmlPageBundle;
 class DeduplicateStylesDOMTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
-		return new DeduplicateStylesDOM( new ServiceOptions( [] ), new NullLogger() );
+		return new DeduplicateStylesDOM( new ServiceOptions( [] ), new NullLogger(), false );
 	}
 
 	public static function provideShouldRun(): array {
@@ -83,6 +83,10 @@ EOF
 				$in = new ParserOutput( $input );
 				$out = new ParserOutput( $expected );
 			}
+			$in->getContentHolder()->addFragment( 'My Fragment',
+				'<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>' );
+			$out->getContentHolder()->addFragment( 'My Fragment',
+				'<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1"/>' );
 			yield $name => [ $in, ParserOptions::newFromAnon(), [], $out ];
 		}
 	}

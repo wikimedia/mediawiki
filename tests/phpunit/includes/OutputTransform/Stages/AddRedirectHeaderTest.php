@@ -21,7 +21,8 @@ class AddRedirectHeaderTest extends OutputTransformStageTestBase {
 	public function createStage(): OutputTransformStage {
 		return new AddRedirectHeader(
 			new ServiceOptions( [] ),
-			new NullLogger()
+			new NullLogger(),
+			true
 		);
 	}
 
@@ -44,8 +45,10 @@ EOF;
 
 		$po = new ParserOutput( $text );
 		$po->setRedirectHeader( $redirect );
+		$po->getContentHolder()->setAsHtmlString( 'My Fragment', 'this is just a random fragment' );
 		$expected = new ParserOutput( $expectedText );
 		$expected->setRedirectHeader( $redirect );
+		$expected->getContentHolder()->setAsHtmlString( 'My Fragment', 'this is just a random fragment' );
 		return [ [ $po, ParserOptions::newFromAnon(), [], $expected ] ];
 	}
 }

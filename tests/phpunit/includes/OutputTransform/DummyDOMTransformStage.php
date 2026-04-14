@@ -9,7 +9,6 @@ use MediaWiki\Parser\ParserOutput;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 
 class DummyDOMTransformStage extends ContentDOMTransformStage {
-
 	public function transformDOM( DocumentFragment $df, ParserOutput $po, ?ParserOptions $popts, array &$options
 	): DocumentFragment {
 		return $df;

@@ -9,9 +9,7 @@ use Mediawiki\MediaWikiServices;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWikiIntegrationTestCase;
-use Wikimedia\TestingAccessWrapper;
 
 abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase {
 	abstract public function createStage(): OutputTransformStage;
@@ -58,22 +56,14 @@ abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase
 								   ParserOutput $expected, string $message = '' ): void {
 		$stage = $this->createStage();
 		$result = $stage->transform( $parserOutput, $parserOptions, $options );
-		// If this has Parsoid internal metadata, clear it in both the expected
-		// value and the result; these are internal implementation details
-		// that shouldn't be hardwired into tests.
-		if ( PageBundleParserOutputConverter::hasPageBundle( $result ) ) {
-			$ch = TestingAccessWrapper::newFromObject(
-				$expected->getContentHolder()
-			);
-			$ch->pageBundle = clone $result->getContentHolder()->getBasePageBundle();
-		}
-		// Similarly, clear the parse start time to avoid a spurious diff.
+
+		// Clear the parse start time to avoid a spurious diff.
 		$result->clearParseStartTime();
 		$expected->clearParseStartTime();
 		$jsonCodec = MediaWikiServices::getInstance()->getJsonCodec();
 		$this->assertEquals(
-			$jsonCodec->toJsonArray( $expected, ParserOutput::class ),
-			$jsonCodec->toJsonArray( $result, ParserOutput::class ),
+			$jsonCodec->toJsonArray( $expected ),
+			$jsonCodec->toJsonArray( $result ),
 			$message
 		);
 	}

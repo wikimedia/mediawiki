@@ -1962,6 +1962,7 @@ class ParserTestRunner {
 					$services->getMainConfig(),
 				),
 				new NullLogger(),
+				false,
 				$services->getParsoidSiteConfig(),
 				$services->getLanguageFactory(),
 				$services->getLanguageConverterFactory(),

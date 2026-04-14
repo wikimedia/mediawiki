@@ -22,7 +22,8 @@ class DeduplicateStylesTest extends OutputTransformStageTestBase {
 	public function createStage(): OutputTransformStage {
 		return new DeduplicateStyles(
 			new ServiceOptions( [] ),
-			new NullLogger()
+			new NullLogger(),
+			false
 		);
 	}
 
@@ -56,6 +57,9 @@ class DeduplicateStylesTest extends OutputTransformStageTestBase {
 <style data-mw-deduplicate="duplicate3">.Duplicate1 {}</style>
 <style>.Duplicate1 {}</style>
 EOF
+,
+				'<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>',
+				'<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1" />'
 			],
 			'parsoid content with encoded style tags in data-mw attribute' => [
 				<<<EOF
@@ -64,7 +68,7 @@ EOF
 &quot;body&quot;:{&quot;html&quot;:&quot;<style data-mw-deduplicate=\&quot;duplicate1\&quot;>.Duplicate1 {}</style>&quot;}"></span>
 <style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
 EOF
-				,
+,
 				true,
 				<<<EOF
 <style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
@@ -72,10 +76,13 @@ EOF
 &quot;body&quot;:{&quot;html&quot;:&quot;<style data-mw-deduplicate=\&quot;duplicate1\&quot;>.Duplicate1 {}</style>&quot;}"></span>
 <link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1">
 EOF
+,
+				'<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>',
+				'<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1">'
 			]
 		];
 
-		foreach ( $testCases as $name => [ $input, $isParsoid, $expected ] ) {
+		foreach ( $testCases as $name => [ $input, $isParsoid, $expected, $inputFragment, $expectedFragment ] ) {
 			if ( $isParsoid ) {
 				$in = PageBundleParserOutputConverter::parserOutputFromPageBundle(
 					new HtmlPageBundle( $input ) );
@@ -83,8 +90,11 @@ EOF
 					new HtmlPageBundle( $expected ) );
 			} else {
 				$in = new ParserOutput( $input );
+
 				$out = new ParserOutput( $expected );
 			}
+			$in->getContentHolder()->setAsHtmlString( 'My Fragment', $inputFragment );
+			$out->getContentHolder()->setAsHtmlString( 'My Fragment', $expectedFragment );
 			yield $name => [
 				$in,
 				ParserOptions::newFromAnon(),

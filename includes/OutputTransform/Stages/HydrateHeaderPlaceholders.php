@@ -13,7 +13,6 @@ use MediaWiki\Parser\ParserOutputFlags;
  * @internal
  */
 class HydrateHeaderPlaceholders extends ContentTextTransformStage {
-
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return $po->getOutputFlag( ParserOutputFlags::HAS_SLOT_HEADERS );
 	}
