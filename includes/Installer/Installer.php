@@ -507,7 +507,7 @@ abstract class Installer {
 	 * @return MediaWikiServices
 	 */
 	public static function disableStorage( Config $config, string $lang ) {
-		global $wgObjectCaches, $wgLang;
+		global $wgObjectCaches;
 
 		// Reset all services and inject config overrides.
 		// Reload to re-enable Rdbms, in case of any prior MediaWikiServices::disableStorage()
@@ -527,10 +527,9 @@ abstract class Installer {
 
 		// Don't attempt to load user language options (T126177)
 		// This will be overridden in the web installer with the user-specified language
-		// Ensure $wgLang does not have a reference to a stale LocalisationCache instance
+		// No more $wgLang, no longer read in MediaWiki core
 		// (T241638, T261081)
 		RequestContext::getMain()->setLanguage( $lang );
-		$wgLang = RequestContext::getMain()->getLanguage();
 
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
 		// SqlBagOStuff will then throw since we just disabled database connections)

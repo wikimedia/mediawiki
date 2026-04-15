@@ -67,13 +67,13 @@ class CliInstaller extends Installer {
 		}
 
 		if ( isset( $options['lang'] ) ) {
-			global $wgLang, $wgLanguageCode;
+			global $wgLanguageCode;
 			$this->setVar( '_UserLang', $options['lang'] );
 			$wgLanguageCode = $options['lang'];
 			$this->setVar( 'wgLanguageCode', $wgLanguageCode );
-			$wgLang = MediaWikiServices::getInstance()->getLanguageFactory()
+			$lang = MediaWikiServices::getInstance()->getLanguageFactory()
 				->getLanguage( $options['lang'] );
-			RequestContext::getMain()->setLanguage( $wgLang );
+			RequestContext::getMain()->setLanguage( $lang );
 		}
 
 		$this->setVar( 'wgSitename', $siteName );

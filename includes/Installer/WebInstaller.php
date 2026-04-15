@@ -469,13 +469,13 @@ class WebInstaller extends Installer {
 	 * Initializes language-related variables.
 	 */
 	public function setupLanguage() {
-		global $wgLang, $wgLanguageCode;
+		global $wgLanguageCode;
 
 		if ( $this->getSession( 'test' ) === null && !$this->request->wasPosted() ) {
 			$wgLanguageCode = $this->getAcceptLanguage();
-			$wgLang = MediaWikiServices::getInstance()->getLanguageFactory()
+			$lang = MediaWikiServices::getInstance()->getLanguageFactory()
 				->getLanguage( $wgLanguageCode );
-			RequestContext::getMain()->setLanguage( $wgLang );
+			RequestContext::getMain()->setLanguage( $lang );
 			$this->setVar( 'wgLanguageCode', $wgLanguageCode );
 			$this->setVar( '_UserLang', $wgLanguageCode );
 		} else {

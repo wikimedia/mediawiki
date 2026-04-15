@@ -29,7 +29,7 @@ require dirname( __DIR__ ) . '/includes/WebStart.php';
 wfInstallerMain();
 
 function wfInstallerMain() {
-	global $wgLang, $wgMetaNamespace, $wgCanonicalNamespaceNames;
+	global $wgMetaNamespace, $wgCanonicalNamespaceNames;
 	$request = RequestContext::getMain()->getRequest();
 
 	$installer = InstallerOverrides::getWebInstaller( $request );
@@ -68,11 +68,10 @@ function wfInstallerMain() {
 	if ( $uselang !== null && $languageNameUtils->isKnownLanguageTag( $uselang ) ) {
 		$langCode = $uselang;
 	}
-	$wgLang = $languageFactory->getRawLanguage( $langCode );
+	$lang = $languageFactory->getRawLanguage( $langCode );
 
-	RequestContext::getMain()->setLanguage( $wgLang );
-
-	$installer->setParserLanguage( $wgLang );
+	RequestContext::getMain()->setLanguage( $lang );
+	$installer->setParserLanguage( $lang );
 
 	$wgMetaNamespace = $wgCanonicalNamespaceNames[NS_PROJECT];
 
