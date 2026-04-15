@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Chocoj",
-			"RisingVoices"
+			"RisingVoices",
+			"CeciMagi"
 		]
 	},
 	"january": "nab'ey ik'",
@@ -19,7 +20,13 @@
 	"december": "rukab'laj ik'",
 	"january-gen": "nab'ey ik'",
 	"february-gen": "Ruka'n ik'",
+	"march-gen": "rox ik'",
+	"april-gen": "rukaj ik'",
+	"may-gen": "ro' ik'",
+	"june-gen": "ruwaq ik'",
+	"july-gen": "ruwuq ik'",
 	"august-gen": "ruwaqxaq ik'",
+	"september-gen": "rub'elej ik'",
 	"october-gen": "rulaj ik'",
 	"november-gen": "rujulaj ik'",
 	"december-gen": "rukab'laj ik'",
@@ -44,5 +51,9 @@
 	"sunday": "domingo",
 	"mon": "Luq'",
 	"tue": "Palow",
+	"wed": "rox q'ij",
+	"thu": "rukaj q'ij",
+	"fri": "ro' q'ij",
+	"sat": "ruwaq q'ij",
 	"sun": "Toq'"
 }

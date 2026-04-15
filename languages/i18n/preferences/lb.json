@@ -21,7 +21,8 @@
 	"tooltip-preferences-save": "Astellunge späicheren",
 	"savedprefs": "Är Astellunge goufe gespäichert.",
 	"prefs-back-title": "Zréck bei d'Astellungen",
-	"prefs-tabs-navigation-hint": "Tipp: Dir kënnt d'Feiler no lénks an no riets benotze fir tëscht den Tabs an der Lëscht vun den Tabs ze navigéieren.",
+	"prefs-tabs-navigation-hint": "Tipp: Dir kënnt déi lénks a riets Feiltast benotzen, fir tëscht den Tabs an der Tablëscht hin an hier ze navigéieren.",
+	"prefs-sections-navigation-hint": "Tipp: Dir kënnt Tab-Tast an d'Shift+Tab-Tastekombinatioun benotzen, fir tëscht den Sektioune vun den Astellungen hin an hier ze navigéieren.",
 	"prefs-personal": "Benotzerprofil",
 	"prefs-description-personal": "Kontrolléiert, wéi Dir Iech presentéiert, connectéiert a kommunizéiert.",
 	"prefs-info": "Grondinformatiounen",
@@ -45,7 +46,7 @@
 	"prefs-help-prefershttps": "Dës Astellung gëtt déi nächste Kéier wierksam wou Dir Iech ageloggt.",
 	"prefs-user-downloaddata-label": "Zougrëff op Benotzerdaten:",
 	"prefs-user-downloaddata-info": "Meng Benotzerdate vun dësem Projet",
-	"prefs-user-restoreprefs-label": "Astellungen zrécksetzen:",
+	"prefs-user-restoreprefs-label": "Astellungen zerécksetzen:",
 	"prefs-user-restoreprefs-info": "All Standard-Astellungen zrécksetzen (an allen Abschnitter)",
 	"prefs-i18n": "Internationalisatioun",
 	"yourlanguage": "Sprooch:",
@@ -217,5 +218,5 @@
 	"prefs-misc": "Verschiddenes",
 	"prefs-reset-intro": "Dir kënnt dës Säit benotze fir Är Astellungen zréck op d'Standard-Astllungen ze setzen.\nDëst kann net réckgängeg gemaach ginn.",
 	"prefs-reset-confirm": "Jo, Ech wëll meng Astellungen zrécksetzen.",
-	"restoreprefs": "All Standardastellungen zrécksetzen"
+	"restoreprefs": "Op d'Standardastellungen zerécksetzen"
 }
