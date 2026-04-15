@@ -1409,6 +1409,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @return OutputTransformPipeline
+	 * @internal
+	 */
+	public function getLanguageConverterPipeline(): OutputTransformPipeline {
+		return $this->getService( 'LanguageConverterPipeline' );
+	}
+
+	/**
 	 * @since 1.35
 	 */
 	public function getLanguageFactory(): LanguageFactory {
