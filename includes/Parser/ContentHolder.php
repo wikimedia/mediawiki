@@ -94,6 +94,8 @@ class ContentHolder implements JsonCodecable {
 			),
 			pageBundle: $pb->toBasePageBundle(),
 			htmlMap: $htmlMap,
+			// T429391: We shouldn't assume this is Parsoid-generated HTML
+			// (MediaWiki DOM Spec HTML) just because it has a page bundle
 			isParsoidContent: true,
 			siteConfig: $siteConfig,
 		);

@@ -61,6 +61,8 @@ class HtmlShadowOutputHelper implements HtmlOutputHelper {
 				return null;
 			}
 
+			// T429391: This is constructing full-document output without
+			// being Parsoid-generated HTML (MediaWiki DOM Spec HTML)
 			$messageDom = DOMUtils::parseHTML( $this->parserOutput->getContentHolderText() );
 			DOMUtils::appendToHead( $messageDom, 'meta', [
 				'http-equiv' => 'content-language',

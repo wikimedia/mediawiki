@@ -7,6 +7,7 @@ use MediaWiki\Language\LanguageCode;
 use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
@@ -123,15 +124,16 @@ class LanguageVariantConverter {
 			$baseLanguage = $this->languageFactory->getParentLanguage( $targetVariant );
 			$languageConverter = $this->languageConverterFactory->getLanguageConverter( $baseLanguage );
 			$targetVariantCode = $this->languageFactory->getLanguage( $targetVariant )->getCode();
+			$origHtml = Parser::extractBody( $pageBundle->html );
 			if ( $languageConverter->hasVariant( $targetVariantCode ) ) {
 				// NOTE: This is not a convert() because we have the exact desired variant
 				// and don't need to compute a preferred variant based on a base language.
 				// Also see T267067 for why convert() should be avoided.
-				$convertedHtml = $languageConverter->convertTo( $pageBundle->html, $targetVariantCode );
+				$convertedHtml = $languageConverter->convertTo( $origHtml, $targetVariantCode );
 				$pageVariant = $targetVariant;
 			} else {
 				// No conversion possible - pass through original HTML in original language
-				$convertedHtml = $pageBundle->html;
+				$convertedHtml = $origHtml;
 				$pageVariant = $pageConfig->getPageLanguageBcp47();
 			}
 
@@ -151,6 +153,8 @@ class LanguageVariantConverter {
 			'@phan-var Element $docElt';
 			$docHtml = DOMCompat::getOuterHTML( $docElt );
 			$convertedHtml = preg_replace( "#</body>#", $docHtml, "$convertedHtml</body>" );
+			// T429391: This is a page bundle that doesn't necessarily
+			// contain Parsoid-generated HTML (MediaWiki DOM Spec HTML)
 			return new HtmlPageBundle(
 				html: $convertedHtml, parsoid: [], mw: [],
 				version: $pageBundle->version, headers: $headers

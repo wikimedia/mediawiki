@@ -109,6 +109,8 @@ class PageHTMLHandler extends SimpleHandler {
 		// We could have a missing page at this point, check and return 404 if that's the case
 		$this->contentHelper->checkHasContent();
 
+		// T429391: If HtmlHelper is a HtmlShadowOutputHelper this isn't
+		// necessarily Parsoid-generated HTML (MediaWiki DOM Spec HTML).
 		$parserOutput = $this->htmlHelper->getHtml();
 		$parserOutputHtml = $parserOutput->getContentHolderText();
 
