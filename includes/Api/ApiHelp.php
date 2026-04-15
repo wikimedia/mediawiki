@@ -18,6 +18,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Skin\SkinFactory;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialVersion;
@@ -61,6 +62,7 @@ class ApiHelp extends ApiBase {
 		$out->setRobotPolicy( 'noindex,nofollow' );
 		$out->setCopyrightUrl( 'https://www.mediawiki.org/wiki/Special:MyLanguage/Copyright' );
 		$out->disallowUserJs();
+		$out->reduceAllowedModules( RL\Module::TYPE_SCRIPTS, RL\Module::ORIGIN_NONE );
 		$context->setOutput( $out );
 
 		self::getHelp( $context, $modules, $params );
