@@ -2,7 +2,6 @@
 
 namespace MediaWiki\HTMLForm\Field;
 
-use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -27,13 +26,8 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 		$this->useCodex = $params['useCodex'] ?? false;
 		parent::__construct( $params );
 
-		if ( $this->mParent instanceof HTMLForm ) {
-			$config = $this->mParent->getConfig();
-			$languageCode = $config->get( MainConfigNames::LanguageCode );
-		} else {
-			$languageCode = MediaWikiServices::getInstance()->getMainConfig()->get(
-				MainConfigNames::LanguageCode );
-		}
+		$config = $this->mParent->getConfig();
+		$languageCode = $config->get( MainConfigNames::LanguageCode );
 
 		// Use provided languages array if given, otherwise fetch all languages
 		if ( isset( $params['languages'] ) && is_array( $params['languages'] ) ) {

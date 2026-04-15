@@ -3,16 +3,17 @@
 namespace MediaWiki\HTMLForm;
 
 use InvalidArgumentException;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLCheckField;
 use MediaWiki\HTMLForm\Field\HTMLFormFieldCloner;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
+use RuntimeException;
 use StatusValue;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Message\MessageParam;
@@ -24,7 +25,7 @@ use Wikimedia\Message\MessageSpecifier;
  *
  * @stable to extend
  */
-abstract class HTMLFormField {
+abstract class HTMLFormField implements MessageLocalizer {
 	/** @var array|array[] */
 	public $mParams;
 
@@ -69,7 +70,7 @@ abstract class HTMLFormField {
 	protected $mShowEmptyLabels = true;
 
 	/**
-	 * @var HTMLForm|null
+	 * @var HTMLForm
 	 */
 	public $mParent;
 
@@ -126,10 +127,7 @@ abstract class HTMLFormField {
 	/**
 	 * Get a translated interface message
 	 *
-	 * This is a wrapper around $this->mParent->msg() if $this->mParent is set
-	 * and wfMessage() otherwise.
-	 *
-	 * Parameters are the same as wfMessage().
+	 * This is a wrapper around $this->mParent->msg().
 	 *
 	 * @param string|string[]|MessageSpecifier $key
 	 * @phpcs:ignore Generic.Files.LineLength
@@ -138,10 +136,7 @@ abstract class HTMLFormField {
 	 * @return Message
 	 */
 	public function msg( $key, ...$params ) {
-		if ( $this->mParent ) {
-			return $this->mParent->msg( $key, ...$params );
-		}
-		return wfMessage( $key, ...$params );
+		return $this->mParent->msg( $key, ...$params );
 	}
 
 	/**
@@ -459,7 +454,7 @@ abstract class HTMLFormField {
 		$p = ( $this->mValidationCallback )( $value, $alldata, $this->mParent );
 
 		if ( $p instanceof StatusValue ) {
-			$language = $this->mParent ? $this->mParent->getLanguage() : RequestContext::getMain()->getLanguage();
+			$language = $this->mParent->getLanguage();
 
 			return $p->isGood() ? true : Status::wrap( $p )->getHTML( false, false, $language );
 		}
@@ -552,17 +547,10 @@ abstract class HTMLFormField {
 	public function __construct( $params ) {
 		$this->mParams = $params;
 
-		if ( isset( $params['parent'] ) && $params['parent'] instanceof HTMLForm ) {
-			$this->mParent = $params['parent'];
-		} else {
-			// Normally parent is added automatically by HTMLForm::factory.
-			// Several field types already assume unconditionally this is always set,
-			// so deprecate manually creating an HTMLFormField without a parent form set.
-			wfDeprecatedMsg(
-				__METHOD__ . ": Constructing an HTMLFormField without a 'parent' parameter",
-				"1.40"
-			);
+		if ( !( isset( $params['parent'] ) && $params['parent'] instanceof HTMLForm ) ) {
+			throw new RuntimeException( "Parent must be set." );
 		}
+		$this->mParent = $params['parent'];
 
 		# Generate the label from a message, if possible
 		if ( isset( $params['label-message'] ) ) {
@@ -1356,6 +1344,7 @@ abstract class HTMLFormField {
 	 */
 	private function lookupOptionsKeys( $options, $needsParse ) {
 		$ret = [];
+		$langCode = $this->mParent->getLanguageCode()->toBcp47Code();
 		foreach ( $options as $key => $value ) {
 			$msg = $this->msg( $key );
 			$msgAsText = $needsParse ? $msg->parse() : $msg->plain();
@@ -1365,9 +1354,7 @@ abstract class HTMLFormField {
 					'another option in {lang}. This means that {msg_key_one} will not be used as an option.',
 					[
 						'msg_key_one' => $key,
-						'lang' => $this->mParent ?
-							$this->mParent->getLanguageCode()->toBcp47Code() :
-							RequestContext::getMain()->getLanguageCode()->toBcp47Code(),
+						'lang' => $langCode,
 					]
 				);
 				continue;
@@ -1498,11 +1485,7 @@ abstract class HTMLFormField {
 	 */
 	protected function getMessage( $value ) {
 		$message = Message::newFromSpecifier( $value );
-
-		if ( $this->mParent ) {
-			$message->setContext( $this->mParent );
-		}
-
+		$message->setContext( $this->mParent );
 		return $message;
 	}
 

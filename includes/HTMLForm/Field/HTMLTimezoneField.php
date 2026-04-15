@@ -5,7 +5,6 @@ namespace MediaWiki\HTMLForm\Field;
 use DateTime;
 use DateTimeZone;
 use InvalidArgumentException;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserTimeCorrection;
@@ -36,8 +35,7 @@ class HTMLTimezoneField extends HTMLSelectOrOtherField {
 		$params['placeholder-message'] ??= 'timezone-useoffset-placeholder';
 		$params['options'] = [];
 		parent::__construct( $params );
-		$lang = $this->mParent ? $this->mParent->getLanguage() : RequestContext::getMain()->getLanguage();
-		$langCode = $lang->getCode();
+		$langCode = $this->mParent->getLanguage()->getCode();
 		$this->msgFormatter = MediaWikiServices::getInstance()->getMessageFormatterFactory()
 			->getTextFormatter( $langCode );
 		$this->mOptions = $this->getTimezoneOptions();

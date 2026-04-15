@@ -127,6 +127,8 @@ because of Phabricator reports.
   - IncludableSpecialPage
   - UnlistedSpecialPage
   Instantiate a subclass instead.
+* The ability to construct a HTMLFormField without a parent, deprecated in 1.40,
+  has been removed.
 * …
 
 === Deprecations in 1.47 ===

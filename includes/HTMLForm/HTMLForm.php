@@ -624,25 +624,15 @@ class HTMLForm extends ContextSource {
 	 * @param string $fieldname Name of the field
 	 * @param array $descriptor Input Descriptor, as described
 	 * 	in the class documentation
-	 * @param self|null $parent Parent instance of HTMLForm
+	 * @param self $parent Parent instance of HTMLForm
 	 *
-	 * @warning Not passing (or passing null) for $parent is deprecated as of 1.40
 	 * @return HTMLFormField Instance of a subclass of HTMLFormField
 	 */
-	public static function loadInputFromParameters( $fieldname, $descriptor,
-		?self $parent = null
-	) {
+	public static function loadInputFromParameters( $fieldname, $descriptor, self $parent ) {
 		$class = static::getClassFromDescriptor( $fieldname, $descriptor );
 
 		$descriptor['fieldname'] = $fieldname;
-		if ( $parent ) {
-			$descriptor['parent'] = $parent;
-		} else {
-			wfDeprecatedMsg(
-				'Calling HTMLForm::loadInputFromParameters without a parent was deprecated in 1.40',
-				'1.40'
-			);
-		}
+		$descriptor['parent'] = $parent;
 
 		# @todo This will throw a fatal error whenever someone try to use
 		# 'class' to feed a CSS class instead of 'cssclass'. Would be
