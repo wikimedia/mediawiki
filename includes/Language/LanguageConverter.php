@@ -311,7 +311,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$defaultLanguageVariant = $services->getMainConfig()
 			->get( MainConfigNames::DefaultLanguageVariant );
 		if ( !$req && $defaultLanguageVariant ) {
-			$req = $this->validateVariant( $defaultLanguageVariant );
+			$req = $defaultLanguageVariant;
 		}
 
 		$req = $this->validateVariant( $req );
@@ -735,8 +735,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	}
 
 	/** @inheritDoc */
-	public function convertSplitTitle( $title ) {
-		$variant = $this->getPreferredVariant();
+	public function convertSplitTitle( $title, ?string $variant = null ) {
+		$variant ??= $this->getPreferredVariant();
 
 		$index = $title->getNamespace();
 		$nsText = $this->convertNamespace( $index, $variant );

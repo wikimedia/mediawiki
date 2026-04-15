@@ -77,7 +77,7 @@ class TrivialLanguageConverter implements ILanguageConverter {
 	}
 
 	/** @inheritDoc */
-	public function convertSplitTitle( $title ) {
+	public function convertSplitTitle( $title, ?string $variant = null ) {
 		$mainText = $this->titleFormatter->getText( $title );
 
 		$index = $title->getNamespace();

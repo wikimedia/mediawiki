@@ -1639,7 +1639,8 @@ class Parser {
 		self::localizeTOC(
 			$this->mOutput->getTOCData(),
 			$this->getTargetLanguage(),
-			$converter // null if conversion is to be suppressed.
+			$converter, // null if conversion is to be suppressed.
+			$converter?->getPreferredVariant()
 		);
 		if ( $converter ) {
 			$this->mOutput->setLanguage( new Bcp47CodeValue(
@@ -4551,10 +4552,13 @@ class Parser {
 	 * @param Language $lang The target language
 	 * @param ?ILanguageConverter $converter The target language converter, or
 	 *   null if language conversion is to be suppressed.
+	 * @param ?string $preferredVariant The target variant for language
+	 *   conversion.
 	 * @internal
 	 */
 	public static function localizeTOC(
-		?TOCData $tocData, Language $lang, ?ILanguageConverter $converter
+		?TOCData $tocData, Language $lang, ?ILanguageConverter $converter,
+		?string $preferredVariant = null
 	) {
 		if ( $tocData === null ) {
 			return; // Nothing to do
@@ -4562,10 +4566,11 @@ class Parser {
 		foreach ( $tocData->getSections() as $s ) {
 			// Localize heading
 			if ( $converter ) {
+				$preferredVariant ??= $converter->getPreferredVariant();
 				// T331316: don't use 'convert' or 'convertTo' as these reset
 				// the language converter state.
 				$s->line = $converter->convertTo(
-					$s->line, $converter->getPreferredVariant(), false
+					$s->line, $preferredVariant, false
 				);
 			}
 			// Localize numbering
