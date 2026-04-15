@@ -15,6 +15,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\ContentSecurityPolicy;
+use MediaWiki\ResourceLoader as RL;
 use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\Http\HttpStatus;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -271,6 +272,8 @@ abstract class ApiFormatBase extends ApiBase {
 			$context->setOutput( $out );
 
 			$out->setRobotPolicy( 'noindex,nofollow' );
+			$out->disallowUserJs();
+			$out->reduceAllowedModules( RL\Module::TYPE_SCRIPTS, RL\Module::ORIGIN_NONE );
 			$out->addModuleStyles( 'mediawiki.apipretty' );
 			$out->setPageTitleMsg( $context->msg( 'api-format-title' ) );
 
