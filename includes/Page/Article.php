@@ -22,6 +22,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
+use MediaWiki\Language\TrivialLanguageConverter;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logging\LogEventsList;
@@ -500,16 +501,6 @@ class Article implements Page {
 		$parserOptions = $this->getParserOptions( $oldid );
 
 		$poOptions = [];
-		// Temporary support for using new Parsoid LanguageConverter impl.
-		// T415435: remove once testing is complete.
-		if ( $parserOptions->getUseParsoid() && $context->getRequest()->getFuzzyBool( 'parsoidnewlc', false ) ) {
-			$lang = $this->getTitle()->getPageLanguage();
-			$langConv = MediaWikiServices::getInstance()->getLanguageConverterFactory()->getLanguageConverter( $lang );
-			$htmlVariantLanguage = $langConv->getPreferredVariant();
-			$parserOptions->setOption( 'parsoidnewlc', $htmlVariantLanguage );
-			// Ensure parsoidnewlc is in the used options
-			$parserOptions->getOption( 'parsoidnewlc' );
-		}
 		# Render printable version, use printable version cache
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
@@ -2095,8 +2086,22 @@ class Article implements Page {
 		$parserOptions =
 			$this->mPage->makeParserOptions( $user ?? $this->getContext() );
 		$parserOptions->setRenderReason( $oldid ? 'page_view_oldid' : 'page_view' );
+		$services = MediaWikiServices::getInstance();
+		# Add in the preferred variant from the URL or user preferences
+		$languageConverterFactory = $services->getLanguageConverterFactory();
+		if ( !$languageConverterFactory->isConversionDisabled() ) {
+			$converter = $languageConverterFactory->getLanguageConverter(
+				$this->getTitle()->getPageLanguage()
+			);
+			if ( !( $converter instanceof TrivialLanguageConverter ) ) {
+				$variant = $services->getLanguageFactory()->getLanguage(
+					$converter->getPreferredVariant()
+				);
+				$parserOptions->setVariant( $variant );
+			}
+		}
 		# Allow extensions to vary parser options used for article rendering
-		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+		( new HookRunner( $services->getHookContainer() ) )
 			->onArticleParserOptions( $this, $parserOptions );
 
 		return $parserOptions;

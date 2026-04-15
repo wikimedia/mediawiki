@@ -6,7 +6,6 @@ namespace MediaWiki\OutputTransform\Stages;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Language\ConverterRule;
 use MediaWiki\Language\ILanguageConverter;
-use MediaWiki\Language\LanguageCode;
 use MediaWiki\Language\LanguageConverter;
 use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Language\LanguageFactory;
@@ -21,7 +20,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\DOM\Node;
@@ -63,11 +61,8 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 		parent::__construct( $options, $logger );
 	}
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
-		return $po->getContentHolder()->isParsoidContent() &&
-			// For back-compatibility with old data from the cache, which has
-			// already been converted.
-			$po->getExtensionData( 'core:parsoid-languageconverter' ) === 'postprocess';
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
+		return $po->getContentHolder()->isParsoidContent();
 	}
 
 	public function transformDOM(
@@ -76,27 +71,24 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 		$title = $po->getTitle();
 		$title = $title ? $this->titleFactory->newFromLinkTarget( $title ) :
 			$this->titleFactory->newFromTextThrow( 'Special:BadTitle/LanguageConverter' );
-		$toVariant = $popts->getOption( 'parsoidnewlc' );
-		if ( $toVariant ) {
-			$lang = $this->languageFactory->getLanguage( $toVariant );
-			$targetLanguage = $this->languageFactory->getParentLanguage( $lang ) ?? $lang;
-		} else {
-			// Note that technically page language is hookable via
-			// ContentHandler::getPageLanguage() and could technically be
-			// the user language, which then wouldn't be marked as 'used'
-			// in the parser options. *However* the only special cases in
-			// production seem to be special pages, which aren't cacheable,
-			// and the MediaWiki namespace, where the title suffix determines
-			// the page language.
-			// T267067: This should eventually be handled by putting the
-			// target variant into the ParserOptions
-			$targetLanguage = $title->getPageLanguage();
+		$toVariant = $popts->getVariant();
+		// TEMPORARY for parser cache transition: opt out of new language
+		// convert if this is cached output of the *old* language converter
+		// implementation.
+		if ( $po->getExtensionData( 'core:parsoid-languageconverter' ) === 'preprocessed' ) {
+			$toVariant = null;
 		}
+		$targetLanguage = $popts->getTargetLanguage();
+		$targetLanguage ??= (
+			$popts->getInterfaceMessage() ? $popts->getUserLangObj() :
+			$title->getPageLanguage()
+		);
 		$converter = $this->languageConverterFactory->getLanguageConverter(
 			$targetLanguage
 		);
 		if (
 			$toVariant !== null &&
+			// For efficiency skip this traversal if TrivialLanguageConverter
 			$converter->hasVariants() &&
 			// From parser.php
 			( !$popts->getDisableContentConversion() ) &&
@@ -107,10 +99,10 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 			// to load the converter tables. Otherwise trying to add a rule
 			// as the very first thing in the wikitext will fail/crash because
 			// the tables won't have been loaded yet.
-			$converter->translate( 'x', $toVariant );
+			$converter->translate( 'x', $toVariant->getCode() );
 			// Now actually do the language conversion on the DOM
 			$redLinks = [];
-			$this->doTraversal( $df, $converter, $toVariant, $redLinks );
+			$this->doTraversal( $df, $converter, $toVariant->getCode(), $redLinks );
 			// Convert indicators as well
 			$indicators = array_map(
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable ownerDocument will never be null
@@ -118,11 +110,11 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 				$po->getIndicators()
 			);
 			foreach ( $indicators as $indicatorFrag ) {
-				$this->doTraversal( $indicatorFrag, $converter, $toVariant, $redLinks );
+				$this->doTraversal( $indicatorFrag, $converter, $toVariant->getCode(), $redLinks );
 			}
 			// Adjust red links
 			if ( !$this->languageConverterFactory->isLinkConversionDisabled() ) {
-				$this->resolveRedLinks( $title, $converter, $toVariant, $redLinks );
+				$this->resolveRedLinks( $title, $converter, $toVariant->getCode(), $redLinks );
 			}
 			// Store indicators
 			foreach ( $indicators as $name => $indicatorFrag ) {
@@ -135,13 +127,8 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 				);
 			}
 			// Set language
-			$po->setLanguage( new Bcp47CodeValue(
-				LanguageCode::bcp47( $toVariant )
-			) );
+			$po->setLanguage( $toVariant );
 		} else {
-			$targetLanguage = $popts->getTargetLanguage() ??
-				( $popts->getInterfaceMessage() ? $popts->getUserLangObj() : null ) ??
-				$targetLanguage;
 			$po->setLanguage( $targetLanguage );
 		}
 		/**
@@ -163,8 +150,9 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 			if ( $titleText !== null ) {
 				// XXX we should be able to sanitize without serializing
 				// and reparsing.
-				// XXX getFragmentInnerHTML() doesn't serialize rich attributes
-				// XXX use ContentHolder?
+				// XXX ContentUtils::toXML() doesn't serialize rich attributes,
+				// although they shouldn't be in the display title anyway.
+				// Should we use ContentHolder to hold the title fragment?
 				$titleText = ContentUtils::toXML( $titleText, [
 					'noSideEffects' => true,
 				] );
@@ -184,7 +172,10 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 		}
 		// Localize/convert TOC
 		// (even if conversion is disabled/$converter is null)
-		Parser::localizeTOC( $po->getTOCData(), $targetLanguage, $converter, $toVariant );
+		Parser::localizeTOC(
+			$po->getTOCData(), $targetLanguage,
+			$toVariant === null ? null : $converter, $toVariant?->getCode()
+		);
 		return $df;
 	}
 

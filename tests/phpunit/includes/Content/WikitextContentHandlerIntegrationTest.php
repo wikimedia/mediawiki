@@ -64,14 +64,14 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'expensiveParserFunctionLimit',
 			'maxPPExpandDepth',
 			'maxPPNodeCount',
+			'targetLanguage',
+			'disableTitleConversion',
 		];
 		$commonParsoidOptions = array_merge( $commonOptions, [
 			'currentRevisionRecordCallback',
-			'parsoidnewlc',
+			'variant',
 		] );
 		$commonLegacyOptions = array_merge( $commonOptions, [
-			'disableTitleConversion',
-			'targetLanguage',
 			'enableSectionEditLinks',
 		] );
 		$parsoidVersion =

@@ -401,9 +401,14 @@ class ArticleTest extends ParserCacheTestBase {
 		$this->assertEquals( $html, $html2 );
 	}
 
-	/** @covers \MediaWiki\Page\Article::view */
-	public function testParsoidNewLcTrue(): void {
+	/**
+	 * @covers \MediaWiki\Page\Article::view
+	 * @covers \MediaWiki\OutputTransform\Stages\ParsoidLanguageConverter
+	 * @dataProvider provideParsoidLanguageConversion
+	 */
+	public function testParsoidLanguageConversion( bool $useSameVariant ): void {
 		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheParsoid, true );
+		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
 			$this->getParserCache( 'test', new HashBagOStuff() ),
@@ -435,13 +440,14 @@ class ArticleTest extends ParserCacheTestBase {
 			}
 		);
 		$title = $this->getExistingTestPage()->getTitle();
-		$req = new FauxRequest( [ 'parsoidnewlc' => true ] );
+		$req = new FauxRequest( [ 'variant' => 'en-x-piglatin' ] );
+		$this->setRequest( $req );
 		$context = new RequestContext();
 		$context->setRequest( $req );
 		$context->setTitle( $title );
 		$article = $this->newArticle( $title );
 		$article->setContext( $context );
-		$this->editPage( $title, '== Hello ==' );
+		$this->editPage( $title, '== Hello, -{world}- ==' );
 		// here we only hit the main parser cache for now.
 		// TODO PageUpdaterFactory (which is used for the edit here) hardwires the legacy cache, should this
 		// adjusted?
@@ -463,17 +469,30 @@ class ArticleTest extends ParserCacheTestBase {
 			$article->getContext()->getOutput()->getHTML()
 		);
 		$this->assertArrayEquals( $expectedCallPattern, $calls, true );
-		// check that we're running postprocessing (if the headers are wrapped then that's a good sign)
+		// check that we're running postprocessing
+		// (headers should be wrapped, text should be pig latin)
 		$this->assertStringContainsString(
-			'<div class="mw-heading mw-heading2"><h2 id="Hello">Hello</h2><span class="mw-editsection">',
+			'<div class="mw-heading mw-heading2"><h2 id="Hello,_-{world}-">',
+			$html
+		);
+		$this->assertStringContainsString(
+			'Ellohay, <span',
+			$html
+		);
+		$this->assertStringContainsString(
+			'world</span></h2>',
 			$html
 		);
 
 		// Clear the per-process local cache (since even uncacheable parses
 		// are actually cached in the local cache)
 		$this->getServiceContainer()->getParserOutputAccess()->clearLocalCache();
+		$this->resetServices();
 
-		$req = new FauxRequest( [ 'parsoidnewlc' => true ] );
+		$req = new FauxRequest( [
+			'variant' => $useSameVariant ? 'en-x-piglatin' : 'en',
+		] );
+		$this->setRequest( $req );
 		$context = new RequestContext();
 		$context->setRequest( $req );
 		$context->setTitle( $title );
@@ -485,10 +504,48 @@ class ArticleTest extends ParserCacheTestBase {
 		$html2 = self::removeTimingData(
 			$article->getContext()->getOutput()->getHTML()
 		);
-		// unlike before, with parsoidnewlc we're not cached, so we hit
-		// all these caches again; this looks just like the first view.
-		$this->assertArrayEquals( $expectedCallPattern, $calls, true );
-		$this->assertEquals( $html, $html2 );
+		if ( $useSameVariant ) {
+			// With the same variant, this hits in the postprocessing cache.
+			$this->assertArrayEquals( [
+				'postproc-parsoid-pcache', // hit
+			], $calls, true );
+			$this->assertEquals( $html, $html2 );
+		} else {
+			// With variant set to a different variant we miss in the
+			// postprocessing cache but hit in the canonical cache.
+			$this->assertArrayEquals( [
+				'postproc-parsoid-pcache', // first view, get postproc, miss
+				'postproc-parsoid-pcache', // creates worker to render the page
+				'parsoid-pcache', // first view, *HIT IN PCACHE*
+				'postproc-parsoid-pcache', // first view, store postproc
+				'postproc-parsoid-pcache', // postprocess, compute cache key for report
+			], $calls, true );
+			$this->assertNotEquals(
+				// Results should not be the same since we are converting to
+				// a different variant.
+				self::removeTimingData( $html ),
+				self::removeTimingData( $html2 )
+			);
+			// Check that the "parent" language was converted correctly.
+			$this->assertStringContainsString(
+				'<div class="mw-heading mw-heading2"><h2 id="Hello,_-{world}-">',
+				$html2
+			);
+			$this->assertStringContainsString(
+				'Hello, <span',
+				$html2
+			);
+			// Note in particular that this span is not empty.
+			$this->assertStringContainsString(
+				'world</span></h2>',
+				$html2
+			);
+		}
+	}
+
+	public function provideParsoidLanguageConversion() {
+		yield "Same variant, should be cached" => [ true ];
+		yield "Different variant, should not be cached" => [ false ];
 	}
 
 	private static function removeTimingData( string $html ): string {

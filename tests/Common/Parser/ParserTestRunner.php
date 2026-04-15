@@ -23,7 +23,6 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\Language\LanguageCode;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Media\MediaHandlerFactory;
@@ -1958,13 +1957,14 @@ class ParserTestRunner {
 				$services->getLinkBatchFactory(),
 			);
 			$textOptions = [];
-			$pageConfig->getParserOptions()->setOption(
-				'parsoidnewlc', LanguageCode::bcp47ToInternal(
+			$pageConfig->getParserOptions()->setVariant(
+				$services->getLanguageFactory()->getLanguage(
 					$test->options['htmlvariantlanguage'] ??
 					$test->options['language'] ??
 					'en'
 				)
 			);
+			// Temporary: for compatibility with old cache contents
 			$metadata->setExtensionData(
 				'core:parsoid-languageconverter', 'postprocess'
 			);

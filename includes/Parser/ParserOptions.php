@@ -114,6 +114,7 @@ class ParserOptions {
 		'skin' => true,
 		'injectTOC' => true,
 		'enableSectionEditLinks' => true,
+		'variant' => true,
 	];
 
 	/**
@@ -132,6 +133,7 @@ class ParserOptions {
 		'deduplicateStyles',
 		'unwrap',
 		'absoluteURLs',
+		'variant',
 	];
 
 	/**
@@ -898,6 +900,31 @@ class ParserOptions {
 	}
 
 	/**
+	 * Set the target language variant.  This is a postprocessing
+	 * option, and has an effect on Parsoid parses only.  `null`
+	 * means LanguageConverter should be bypassed, so `-{...}-`
+	 * constructs will not be filled in at all.  Setting the
+	 * variant to the base language will ensure that `-{...}-`
+	 * constructs will be processed, even though no text conversion
+	 * will occur.
+	 * @since 1.46
+	 */
+	public function setVariant( ?Language $variantLanguage ) {
+		$this->setOption( 'variant', $variantLanguage );
+	}
+
+	/**
+	 * Returns the target language variant, or null if no language
+	 * conversion is to be performed. This is a postprocessing
+	 * option, and has an effect on Parsoid parses only. `null`
+	 * means LanguageConverter should be bypassed.
+	 * @since 1.46
+	 */
+	public function getVariant(): ?Language {
+		return $this->getOption( 'variant' );
+	}
+
+	/**
 	 * If the wiki is configured to allow raw html ($wgRawHtml = true)
 	 * is it allowed in the specific case of parsing this page.
 	 *
@@ -1312,7 +1339,6 @@ class ParserOptions {
 				'speculativePageIdCallback' => null,
 				'speculativePageId' => null,
 				'useParsoid' => false,
-				'parsoidnewlc' => null, # T415435: temporary for testing
 				'postproc' => false,
 				// postproc options - if 'postproc' above is false, these are ignored
 				'skin' => null,
@@ -1324,6 +1350,7 @@ class ParserOptions {
 				'deduplicateStyles' => true,
 				'unwrap' => false,
 				'absoluteURLs' => true,
+				'variant' => null,
 			];
 
 			self::$cacheVaryingOptionsHash = self::$initialCacheVaryingOptionsHash;
@@ -1596,12 +1623,18 @@ class ParserOptions {
 
 		$confstr = $values ? implode( '!', $values ) : 'canonical';
 
-		// add in language specific options, if any
-		// @todo FIXME: This is just a way of retrieving the url/user preferred variant
+		// The legacy parser used a backdoor means of associating a language
+		// variant with the parse (and thus with the cache key).  For Parsoid
+		// variant is just an "ordinary" postprocessing option, and the
+		// backdoor method isn't needed.
 		$services = MediaWikiServices::getInstance();
-		$lang = $title ? $title->getPageLanguage() : $services->getContentLanguage();
-		$converter = $services->getLanguageConverterFactory()->getLanguageConverter( $lang );
-		$confstr .= $converter->getExtraHashOptions();
+		if ( !$this->options['useParsoid'] ) {
+			// Legacy Parser: add in language specific options, if any
+			// @todo FIXME: This is just a way of retrieving the url/user preferred variant
+			$lang = $title ? $title->getPageLanguage() : $services->getContentLanguage();
+			$converter = $services->getLanguageConverterFactory()->getLanguageConverter( $lang );
+			$confstr .= $converter->getExtraHashOptions();
+		}
 
 		$confstr .= $renderHashAppend;
 

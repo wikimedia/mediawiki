@@ -1624,8 +1624,9 @@ class Parser {
 		$converter = null;
 		if ( !( $this->mOptions->getDisableContentConversion()
 			|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
-			|| $this->mOptions->getInterfaceMessage() )
-		) {
+			|| $this->mOptions->getInterfaceMessage()
+			|| $this->mOptions->getUseParsoid()
+		) ) {
 			# The position of the convert() call should not be changed. it
 			# assumes that the links are all replaced and the only thing left
 			# is the <nowiki> mark.

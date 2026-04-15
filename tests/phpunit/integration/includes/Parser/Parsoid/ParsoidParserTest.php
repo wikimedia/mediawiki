@@ -49,13 +49,15 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			'isMessage',
 			'isPreview',
 			'isSectionPreview',
-			'parsoidnewlc',
 			'useParsoid',
 			'wrapclass',
 		];
 		$this->assertEqualsCanonicalizing( $usedOptions, $output->getUsedOptions() );
 
-		$usedOptions = array_merge( $usedOptions, [ 'enableSectionEditLinks', 'userlang' ] );
+		$usedOptions = array_merge( $usedOptions, [
+			'enableSectionEditLinks', 'userlang',
+			'disableTitleConversion', 'targetLanguage', 'variant'
+		] );
 		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
 		$output = $pipeline->run( $output, $args[2], [] );
 		$this->assertArrayEquals( $usedOptions, $output->getUsedOptions() );
@@ -100,14 +102,16 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			'isMessage',
 			'isPreview',
 			'isSectionPreview',
-			'parsoidnewlc',
 			'useParsoid',
 			'wrapclass',
 		];
 		$this->assertArrayEquals( $usedOptions, $output->getUsedOptions() );
 
 		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
-		$usedOptions = array_merge( $usedOptions, [ 'enableSectionEditLinks', 'userlang' ] );
+		$usedOptions = array_merge( $usedOptions, [
+			'enableSectionEditLinks', 'userlang',
+			'disableTitleConversion', 'targetLanguage', 'variant'
+		] );
 		$output = $pipeline->run( $output, $opts, [] );
 		$this->assertArrayEquals( $usedOptions, $output->getUsedOptions() );
 	}

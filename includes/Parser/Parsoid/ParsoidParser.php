@@ -121,10 +121,6 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 					$previousOutput
 				);
 		}
-		// Temporary support for new LanguageConverter implementation: T415435
-		$shouldUseNewLCImplementation =
-			( $options->getOption( 'parsoidnewlc' ) !== null );
-
 		$defaultOptions = [
 			'pageBundle' => true,
 			'wrapSections' => true,
@@ -132,7 +128,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			'body_only' => false,
 			'htmlVariantLanguage' => $htmlVariantLanguage,
 			// We're doing language conversion in postprocessing now.
-			'skipLanguageConversionPass' => $shouldUseNewLCImplementation,
+			'skipLanguageConversionPass' => true,
 			'offsetType' => 'byte',
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 			'previousOutput' => $oldPageBundle,
@@ -207,10 +203,11 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		$parserOutput->setJsConfigVar(
 			'wgParsoidHtmlVersion', Parsoid::defaultHTMLVersion()
 		);
-		// Transition to new LanguageConverter
+		// TEMPORARY during transition to new LanguageConverter
+		// Ensure we can distinguish ParserOutputs created using the
+		// older language converter implementation.
 		$parserOutput->setExtensionData(
-			'core:parsoid-languageconverter',
-			$shouldUseNewLCImplementation ? 'postprocess' : 'preprocessed'
+			'core:parsoid-languageconverter', 'postprocess'
 		);
 
 		return $parserOutput;

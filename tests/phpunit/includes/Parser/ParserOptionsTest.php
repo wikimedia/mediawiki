@@ -497,7 +497,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$this->assertSame( [
 			'collapsibleSections', 'dateformat', 'enableSectionEditLinks',
 			'injectTOC', 'postproc', 'printable', 'skin',
-			'thumbsize', 'useParsoid', 'userlang',
+			'thumbsize', 'useParsoid', 'userlang', 'variant',
 		], array_values( ParserOptions::allCacheVaryingOptions( true ) ) );
 
 		ParserOptions::clearStaticCache();
