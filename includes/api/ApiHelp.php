@@ -34,6 +34,7 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\ResourceLoader as RL;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialVersion;
 use MediaWiki\Title\Title;
@@ -78,6 +79,7 @@ class ApiHelp extends ApiBase {
 		$out->setRobotPolicy( 'noindex,nofollow' );
 		$out->setCopyrightUrl( 'https://www.mediawiki.org/wiki/Special:MyLanguage/Copyright' );
 		$out->disallowUserJs();
+		$out->reduceAllowedModules( RL\Module::TYPE_SCRIPTS, RL\Module::ORIGIN_NONE );
 		$context->setOutput( $out );
 
 		self::getHelp( $context, $modules, $params );
