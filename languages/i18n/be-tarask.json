@@ -1743,7 +1743,7 @@
 	"mimesearch": "Пошук па MIME",
 	"mimesearch-summary": "Гэта старонка дазваляе адбор файлаў па іх MIME-тыпе.\nФармат уводу: тып_зьместу/падтып або тып_зьместу/*, напрыклад, <code>image/jpeg</code>.",
 	"mimetype": "Тып MIME:",
-	"download": "загрузіць",
+	"download": "сьцягнуць",
 	"unwatchedpages": "Старонкі, за якімі ніхто не назірае",
 	"listredirects": "Сьпіс перанакіраваньняў",
 	"listduplicatedfiles": "Сьпіс файлаў з дублікатамі",

@@ -409,6 +409,8 @@
 	"exif-digitalsourcetype-algorithmicallyenhanced": "알고리즘에 의해 변형된 미디어",
 	"exif-digitalsourcetype-softwareimage": "소프트웨어에 의해 생성됨",
 	"exif-digitalsourcetype-digitalart": "사람이 디지털 도구로 생성한 미디어",
+	"exif-digitalsourcetype-digitalcreation": "AI가 아닌 도구를 사용하여 사람이 만든 미디어",
+	"exif-digitalsourcetype-datadrivenmedia": "인간 프로그래밍 또는 창의력으로 만든 디지털 미디어의 데이터 표현",
 	"exif-digitalsourcetype-trainedalgorithmicmedia": "생성형 AI를 사용해 생성됨",
 	"exif-digitalsourcetype-algorithmicmedia": "인공지능이 아닌 알고리즘으로만 생성된 미디어",
 	"exif-digitalsourcetype-screencapture": "스크린 캡쳐"

@@ -15,7 +15,8 @@
 			"Ата",
 			"Максим Підліснюк",
 			"Тест",
-			"Vlad5250"
+			"Vlad5250",
+			"Flomik"
 		]
 	},
 	"exif-imagewidth": "Ширина",
@@ -438,5 +439,11 @@
 	"exif-digitalsourcetype-algorithmicallyenhanced": "Алгоритмічно змінені медіа",
 	"exif-digitalsourcetype-softwareimage": "Створено програмним забезпеченням",
 	"exif-digitalsourcetype-digitalart": "Створено людиною за допомогою цифрових інструментів",
-	"exif-digitalsourcetype-trainedalgorithmicmedia": "Створено за допомогою генеративного ШІ"
+	"exif-digitalsourcetype-digitalcreation": "Медіа, створене людиною за допомогою не-ШІ інструментів.",
+	"exif-digitalsourcetype-datadrivenmedia": "Цифрове медіа як представлення даних через людське програмування або творчість",
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "Створено за допомогою генеративного ШІ",
+	"exif-digitalsourcetype-algorithmicmedia": "Медіа, створене виключно не-ШІ алгоритмом",
+	"exif-digitalsourcetype-screencapture": "Знімок екрана",
+	"exif-digitalsourcetype-virtualrecording": "Живий запис віртуальної події, заснованої на генеративному ШІ та/або захоплених елементах",
+	"exif-digitalsourcetype-composite": "Суміш або композиція з кількох елементів, будь-який із яких може бути або не бути створений генеративним ШІ"
 }

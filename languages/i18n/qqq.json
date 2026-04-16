@@ -279,7 +279,8 @@
 			"Ильгиз",
 			"Albertoleoncio",
 			"NguoiDungKhongDinhDanh",
-			"Warudo"
+			"Warudo",
+			"Sree1959"
 		]
 	},
 	"pagecategories": "Used in the categories section of pages.\n\nFollowed by a colon and a list of categories.\n\nParameters:\n* $1 - number of categories\n{{Identical|Category}}",
@@ -867,7 +868,7 @@
 	"edit_form_incomplete": "Error message in Preview page.\n\nSee also:\n* {{msg-mw|Token suffix mismatch}}\n* {{msg-mw|Session fail preview}}\n* {{msg-mw|Edit form incomplete}}",
 	"editing": "Shown as page title when editing a page. Parameters:\n* $1 - the name of the page that is being edited. e.g. \"Editing Main Page\"\n{{Related|Editing}}\n{{Identical|Editing}}",
 	"edit-textarea-aria-label": "Label for the Wikitext editing textarea for users of assistive technologies.",
-	"creating": "Shown as page title when creating a page. Parameters:\n* $1 - the name of the page that is being created. Example: \"Creating Main Page\".\n{{Related|Editing}}\n{{Identical|Creating}}",
+	"creating": "Shown as page title when creating a page. Parameters:\n* $1 - the name of the page that is being created. Example: \"Creating Main Page\".\n{{Related|Editing}}",
 	"editingsection": "This message displays at the top of the page when a user is editing a page section. Parameters:\n* $1 - page name\n{{Related|Editing}}",
 	"editingcomment": "This message displays at the top of the page when a user is creating a new section. Parameters:\n* $1 - page name\n{{Related|Editing}}",
 	"editconflict": "Alert message when saving a page causes an edit conflict. Parameters:\n* $1 - page name\n{{Related|Editing}}",
@@ -2517,7 +2518,7 @@
 	"changecontentmodel-title-label": "Label for the input field where the target page title should be entered\n{{Identical|Page title}}",
 	"changecontentmodel-model-label": "Label of the dropdown listing available content model types the user can change a page to",
 	"changecontentmodel-reason-label": "{{Identical|Reason}}",
-	"changecontentmodel-submit": "Label of the form \"submit\" button for [[Special:ChangeContentModel]]\n{{Identical|Change}}",
+	"changecontentmodel-submit": "Label of the form \"submit\" button for [[Special:ChangeContentModel]] when editing an existing page\n{{Identical|Change}}",
 	"changecontentmodel-success-title": "Title of the success page of the change content model special page",
 	"changecontentmodel-success-text": "Message telling user that their change has been successfully done.\n* $1 - Target page title",
 	"changecontentmodel-cannot-convert": "Error message shown if the content model cannot be changed to the specified type. $1 is the page title, $2 is the localized content model name.",

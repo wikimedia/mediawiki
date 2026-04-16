@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"VanModers"
+			"VanModers",
+			"WikiFayo95"
 		]
 	},
 	"january": "jannerwoi",
@@ -53,5 +54,6 @@
 	"thu": "dönner",
 	"fri": "frei",
 	"sat": "sóóter",
-	"sun": "sön"
+	"sun": "sön",
+	"duration-days": "$1 {{PLURAL:$1|dağ|dóógen}}"
 }

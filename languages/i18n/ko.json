@@ -804,6 +804,7 @@
 	"unstrip-size-category-desc": "이 문서는 unstrip 크기 제한을 초과합니다.",
 	"bad-language-code-category": "유효하지 않은 언어 코드가 있는 문서",
 	"bad-language-code-category-desc": "페이지에는 잘못된 언어 코드가 있는 <code><nowiki>{{#dir}}</nowiki></code>이 있습니다.",
+	"bad-double-underscore-category": "유효하지 않은 동작 스위치가 있는 문서",
 	"double-px-category": "추가 px가 포함된 이미지 크기를 가진 문서",
 	"double-px-category-desc": "페이지에는 크기에 추가 <code>px</code> 접미사가 있는 이미지, 예: <code>100pxpx</code>가 포함되어 있습니다.",
 	"undo-success": "편집을 취소할 수 있습니다.\n이 편집을 되돌리려면 아래의 바뀐 내용을 확인한 후 게시해주세요.",
