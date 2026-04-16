@@ -671,7 +671,7 @@ class ConverterRule {
 				$this->mRuleDisplay = $dmv->describe
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 					? $this->getRulesDescFragment( $el->ownerDocument )
-					: $this->getRuleConvertedValue( $variant );
+					: ( $this->getRuleConvertedValue( $variant ) ?? false );
 			}
 		}
 		$this->generateConvTable();
