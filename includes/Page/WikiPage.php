@@ -1766,6 +1766,20 @@ class WikiPage implements Stringable, Page, PageRecord {
 			// we don't need special cases like this one, but see T313455.
 			$options->disableContentConversion();
 		}
+		# Add in the preferred variant from the URL or user preferences
+		$services = MediaWikiServices::getInstance();
+		$languageConverterFactory = $services->getLanguageConverterFactory();
+		if ( !$languageConverterFactory->isConversionDisabled() ) {
+			$converter = $languageConverterFactory->getLanguageConverter(
+				$title->getPageLanguage()
+			);
+			if ( $converter->hasVariants() ) {
+				$variant = $services->getLanguageFactory()->getLanguage(
+					$converter->getPreferredVariant()
+				);
+				$options->setVariant( $variant );
+			}
+		}
 
 		return $options;
 	}

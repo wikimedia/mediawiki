@@ -834,6 +834,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 				CONTENT_MODEL_CSS,
 			],
 			MainConfigNames::DisableLangConversion => false,
+			MainConfigNames::UsePigLatinVariant => false,
 		] );
 		// Call the context function first, which lets us setup the
 		// overall wiki context before invoking the function-under-test
@@ -844,7 +845,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			Title::makeTitle( $ns, $title ), __METHOD__, $model
 		);
 		$parserOptions = $page->makeParserOptions( $context );
-		$expected = $expectation();
+		$expected = $expectation( $this );
 		$this->assertTrue( $expected->matches( $parserOptions ) );
 	}
 
@@ -860,6 +861,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 				CONTENT_MODEL_CSS,
 			],
 			MainConfigNames::DisableLangConversion => false,
+			MainConfigNames::UsePigLatinVariant => false,
 		] );
 		// Call the context function first, which lets us setup the
 		// overall wiki context before invoking the function-under-test
@@ -869,7 +871,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$parserOptions = WikiPage::makeParserOptionsFromTitleAndModel(
 			Title::makeTitle( $ns, $title ), $model, $context
 		);
-		$expected = $expectation();
+		$expected = $expectation( $this );
 		$this->assertTrue( $expected->matches( $parserOptions ) );
 	}
 
@@ -898,9 +900,14 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 				$test->setUserLang( 'en' );
 				return 'canonical';
 			},
-			static function () {
+			static function ( $test ) {
 				$po = ParserOptions::newFromAnon();
 				$po->disableContentConversion();
+				// Even though content conversion is disabled, an
+				// appropriate variant is set.
+				$zhLang = $test->getServiceContainer()->getLanguageFactory()
+					->getLanguage( 'zh' );
+				$po->setVariant( $zhLang );
 				// "Canonical" PO should use content language not user language
 				Assert::assertSame( 'zh', $po->getUserLang() );
 				return $po;

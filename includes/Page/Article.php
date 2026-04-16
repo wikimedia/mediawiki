@@ -22,7 +22,6 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
-use MediaWiki\Language\TrivialLanguageConverter;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logging\LogEventsList;
@@ -2086,21 +2085,8 @@ class Article implements Page {
 		$parserOptions =
 			$this->mPage->makeParserOptions( $user ?? $this->getContext() );
 		$parserOptions->setRenderReason( $oldid ? 'page_view_oldid' : 'page_view' );
-		$services = MediaWikiServices::getInstance();
-		# Add in the preferred variant from the URL or user preferences
-		$languageConverterFactory = $services->getLanguageConverterFactory();
-		if ( !$languageConverterFactory->isConversionDisabled() ) {
-			$converter = $languageConverterFactory->getLanguageConverter(
-				$this->getTitle()->getPageLanguage()
-			);
-			if ( !( $converter instanceof TrivialLanguageConverter ) ) {
-				$variant = $services->getLanguageFactory()->getLanguage(
-					$converter->getPreferredVariant()
-				);
-				$parserOptions->setVariant( $variant );
-			}
-		}
 		# Allow extensions to vary parser options used for article rendering
+		$services = MediaWikiServices::getInstance();
 		( new HookRunner( $services->getHookContainer() ) )
 			->onArticleParserOptions( $this, $parserOptions );
 
