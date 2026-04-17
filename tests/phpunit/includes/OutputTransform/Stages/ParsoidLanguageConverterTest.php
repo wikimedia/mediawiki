@@ -66,5 +66,10 @@ class ParsoidLanguageConverterTest extends MediaWikiIntegrationTestCase {
 			'<p>Латин</p><style>.foo { display: none; }</style><p class="foo">Море</p>',
 			'sr-Cyrl',
 		];
+		yield "Update wrapper div" => [
+			'<div class="mw-parser-output mw-content-ltr" lang="ku" dir="ltr">Foo</div>',
+			'<div class="mw-parser-output mw-content-rtl" lang="ku-Arab" dir="rtl">فۆئۆ</div>',
+			'ku-Arab',
+		];
 	}
 }

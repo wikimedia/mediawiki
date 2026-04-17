@@ -30,12 +30,25 @@ class AddWrapperDivClass extends ContentTextTransformStage {
 		$this->contentLang = $contentLang;
 	}
 
+	/**
+	 * Returns the class name for the wrapper div, or null if no wrapper
+	 * div should be added.
+	 */
+	public static function wrapperDivClass( ParserOutput $po, ParserOptions $popts, array $options = [] ): ?string {
+		$wrapperDivClass = $options['wrapperDivClass'] ?? $po->getWrapperDivClass();
+		if ( $wrapperDivClass === '' || ( $options['unwrap'] ?? false ) ) {
+			// Don't wrap!
+			return null;
+		}
+		return $wrapperDivClass;
+	}
+
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
-		return ( $options['wrapperDivClass'] ?? $po->getWrapperDivClass() ) !== '' && !( $options['unwrap'] ?? false );
+		return self::wrapperDivClass( $po, $popts, $options ) !== null;
 	}
 
 	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
-		$wrapperDivClass = $options['wrapperDivClass'] ?? $po->getWrapperDivClass();
+		$wrapperDivClass = self::wrapperDivClass( $po, $popts, $options );
 		$pageLang = $this->getLanguageWithFallbackGuess( $po );
 		$extraAttrs = [];
 		$parsoidVersion = $po->getExtensionData( 'core:parsoid-version' );

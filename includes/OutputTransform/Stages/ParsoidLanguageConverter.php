@@ -126,6 +126,22 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 					] )
 				);
 			}
+			// Adjust wrapper div class (see AddWrapperDivClass)
+			$wrapperDivClass = AddWrapperDivClass::wrapperDivClass( $po, $popts, $options );
+			if ( $wrapperDivClass !== null ) {
+				$div = DOMCompat::getFirstElementChild( $df );
+				$classes = $div ? DOMCompat::getClassList( $div ) : null;
+				if ( $classes?->contains( $wrapperDivClass ) ) {
+					$dirClass = 'mw-content-' . $toVariant->getDir();
+					if ( !$classes->contains( $dirClass ) ) {
+						$classes->remove( 'mw-content-ltr' );
+						$classes->remove( 'mw-content-rtl' );
+						$classes->add( $dirClass );
+					}
+					$div->setAttribute( 'lang', $toVariant->toBcp47Code() );
+					$div->setAttribute( 'dir', $toVariant->getDir() );
+				}
+			}
 			// Set language
 			$po->setLanguage( $toVariant );
 		} else {
