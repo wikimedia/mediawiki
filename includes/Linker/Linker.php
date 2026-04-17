@@ -1795,6 +1795,7 @@ class Linker {
 	 */
 	private static function getContextFromMain() {
 		$context = RequestContext::getMain();
+		// TODO: Why is this here?
 		$context = new DerivativeContext( $context );
 		return $context;
 	}
@@ -1856,7 +1857,10 @@ class Linker {
 		return $tooltip;
 	}
 
-	/** @var (string|false)[] */
+	/**
+	 * @internal For Linker::accesskey, exposed for MediaWikiIntegrationTestCase
+	 * @var (string|false)[]
+	 */
 	public static $accesskeycache;
 
 	/**
@@ -1872,13 +1876,16 @@ class Linker {
 	 *   escape), or false for no accesskey attribute
 	 */
 	public static function accesskey( $name, $localizer = null ) {
+		// Optimization: Reduce from 79 to 35 fetches
+		// Vector fetches most accesskeys 2x and "search" 6x (April 2026).
+		// This cache was added in 2010 (r78995), and worthwhile even with message preload (r52503).
+		//
+		// NOTE: This assumes calls won't differ by context (i.e. wiki database, and user language).
 		if ( !isset( self::$accesskeycache[$name] ) ) {
-			if ( !$localizer ) {
-				$localizer = self::getContextFromMain();
-			}
+			$localizer ??= RequestContext::getMain();
 			$msg = $localizer->msg( "accesskey-$name" );
-			// Set a default accesskey for subject namespace tabs if an
-			// accesskey has not been defined. See T22126
+			// T22126: For custom namespaces, ensure a default
+			// Talk pages have their default in SkinTemplate::buildContentNavigationUrlsInternal.
 			if ( !$msg->exists() && str_starts_with( $name, 'ca-nstab-' ) ) {
 				$msg = $localizer->msg( 'accesskey-ca-nstab' );
 			}

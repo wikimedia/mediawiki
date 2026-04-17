@@ -563,7 +563,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// Invalidate any Title objects cached by newFromText() or isMainPage() (T395214).
 		Title::clearCaches();
 
-		// Clear accessKeyCache in case a test changed the language
+		// Clear accessKeyCache in case a test changed the language or message override
 		Linker::$accesskeycache = [];
 	}
 
