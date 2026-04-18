@@ -333,4 +333,38 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $status->isRateLimitExceeded() );
 	}
 
+	/**
+	 * Test that creating a new page with the default content model
+	 * doesn't create a 'contentmodel' log entry, and returns logid = 0.
+	 */
+	public function testNewPageWithDefaultModel() {
+		$wikipage = $this->getNonexistingTestPage( 'NewPageWithDefaultModel' );
+		$this->assertSame(
+			'wikitext',
+			$wikipage->getTitle()->getContentModel(),
+			'The new page should use wikitext as default'
+		);
+
+		$change = $this->newContentModelChange(
+			$this->mockRegisteredAuthorityWithPermissions( [ 'editcontentmodel' ] ),
+			$wikipage,
+			'wikitext'
+		);
+
+		$status = $change->doContentModelChange(
+			RequestContext::getMain(),
+			'Test comment',
+			false
+		);
+
+		$this->assertStatusOK( $status );
+
+		// Assert that the returned logid is 0
+		$this->assertSame(
+			0,
+			$status->getValue()['logid'],
+			'logid should be 0 when using the default content model'
+		);
+	}
+
 }

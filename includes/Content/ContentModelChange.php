@@ -240,26 +240,33 @@ class ContentModelChange {
 		$page = $this->page;
 		$title = $page->getTitle();
 		$user = $this->userFactory->newFromAuthority( $this->performer );
+		// Check if this is a new page with the default content model
+		$isDefaultModelNewPage = (
+			$this->logAction === 'new' && $this->newModel === $title->getContentModel()
+		);
+		if ( !$isDefaultModelNewPage ) {
+			// Create log entry
+			$log = new ManualLogEntry( 'contentmodel', $this->logAction );
+			$log->setPerformer( $this->performer->getUser() );
+			$log->setTarget( $title );
+			$log->setComment( $comment );
+			$log->setParameters( [
+				'4::oldmodel' => $title->getContentModel(),
+				'5::newmodel' => $this->newModel
+			] );
+			$log->addTags( $this->tags );
 
-		// Create log entry
-		$log = new ManualLogEntry( 'contentmodel', $this->logAction );
-		$log->setPerformer( $this->performer->getUser() );
-		$log->setTarget( $title );
-		$log->setComment( $comment );
-		$log->setParameters( [
-			'4::oldmodel' => $title->getContentModel(),
-			'5::newmodel' => $this->newModel
-		] );
-		$log->addTags( $this->tags );
-
-		$formatter = $this->logFormatterFactory->newFromEntry( $log );
-		$formatter->setContext( RequestContext::newExtraneousContext( $title ) );
-		$reason = $formatter->getPlainActionText();
-
+			$formatter = $this->logFormatterFactory->newFromEntry( $log );
+			$formatter->setContext( RequestContext::newExtraneousContext( $title ) );
+			$reason = $formatter->getPlainActionText();
+		} else {
+			$log = null;
+			$reason = wfMessage( 'autosumm-newblank' )
+				->inContentLanguage()->text();
+		}
 		if ( $comment !== '' ) {
 			$reason .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $comment;
 		}
-
 		// Run edit filters
 		$derivativeContext = new DerivativeContext( $context );
 		$derivativeContext->setTitle( $title );
@@ -305,15 +312,14 @@ class ContentModelChange {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-
-		$logid = $log->insert();
-		$log->publish( $logid );
-
-		$values = [
-			'logid' => $logid
-		];
-
-		return Status::newGood( $values );
+		if ( $log !== null ) {
+			$logid = $log->insert();
+			$log->publish( $logid );
+			$status->value['logid'] = $logid;
+		} else {
+			$status->value['logid'] = 0;
+		}
+		return $status;
 	}
 
 }

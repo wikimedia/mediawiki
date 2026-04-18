@@ -2094,7 +2094,7 @@
 	"changecontentmodel-emptymodels-text": "The content on [[:$1]] cannot be converted to any type.",
 	"log-name-contentmodel": "Content model change log",
 	"log-description-contentmodel": "This page lists changes to the content model of pages, and pages that were created with a content model other than the default.",
-	"logentry-contentmodel-new": "$1 {{GENDER:$2|created}} the page $3 using a non-default content model \"$5\"",
+	"logentry-contentmodel-new": "$1 {{GENDER:$2|created}} page $3 with non-default content model \"$5\"",
 	"logentry-contentmodel-change": "$1 {{GENDER:$2|changed}} the content model of the page $3 from \"$4\" to \"$5\"",
 	"logentry-contentmodel-change-revertlink": "revert",
 	"logentry-contentmodel-change-revert": "revert",

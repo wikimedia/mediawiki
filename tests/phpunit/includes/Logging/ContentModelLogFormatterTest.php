@@ -19,8 +19,8 @@ class ContentModelLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 				[
-					'text' => 'User created the page ContentModelPage ' .
-						'using a non-default content model ' .
+					'text' => 'User created page ContentModelPage ' .
+						'with non-default content model ' .
 						'"testcontentmodel"',
 					'api' => [
 						'newModel' => 'testcontentmodel',
