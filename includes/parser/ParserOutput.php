@@ -21,6 +21,7 @@ use UnhandledMatchError;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
+use Wikimedia\JsonCodec\Hint;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
@@ -3202,6 +3203,15 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$parserOutput = new ParserOutput();
 		$parserOutput->initFromJson( $json );
 		return $parserOutput;
+	}
+
+	/** @inheritDoc */
+	public static function jsonClassHintFor( string $keyName ) {
+		return match ( $keyName ) {
+			'TOCData' => Hint::build( TOCData::class, Hint::ONLY_FOR_DECODE ),
+			'WarningMsgs' => Hint::build( MessageValue::class, Hint::LIST, Hint::ONLY_FOR_DECODE ),
+			default => null,
+		};
 	}
 
 	/**
