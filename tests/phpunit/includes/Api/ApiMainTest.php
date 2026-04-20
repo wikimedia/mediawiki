@@ -63,6 +63,18 @@ class ApiMainTest extends ApiTestCase {
 		] );
 	}
 
+	protected function getMockFauxRequest( array $postValues, array $queryValues ) {
+		$mockFauxRequest = $this->getMockBuilder( FauxRequest::class )
+			->onlyMethods( [ 'getQueryValuesOnly', 'getPostValues', 'getMethod' ] )
+			// wasPosted must be true because other logic relies on it
+			->setConstructorArgs( [ $postValues + $queryValues, true ] )
+			->getMock();
+		$mockFauxRequest->method( 'getQueryValuesOnly' )->willReturn( $queryValues );
+		$mockFauxRequest->method( 'getPostValues' )->willReturn( $postValues );
+		$mockFauxRequest->method( 'getMethod' )->willReturn( 'POST' );
+		return $mockFauxRequest;
+	}
+
 	/**
 	 * Test that the API will accept a MediaWiki\Request\FauxRequest and execute.
 	 */
@@ -83,6 +95,51 @@ class ApiMainTest extends ApiTestCase {
 		$api->execute();
 		$data = $api->getResult()->getResultData();
 		$this->assertIsArray( $data );
+		$this->assertArrayNotHasKey( 'query', $data );
+	}
+
+	public static function provideApiParams(): array {
+		return [
+			'Extra POST param is ok' => [
+				[ 'action' => 'query', 'meta' => 'siteinfo', 'format' => 'json' ],
+				[ 'action' => 'query', 'meta' => 'siteinfo' ],
+				true
+			],
+			'Extra URL param is ok' => [
+				[ 'action' => 'query', 'meta' => 'siteinfo' ],
+				[ 'action' => 'query', 'meta' => 'siteinfo', 'format' => 'json' ],
+				true
+			],
+			'Differing POST/URL param value gives error' => [
+				[ 'action' => 'query', 'meta' => 'siteinfo' ],
+				[ 'action' => 'query', 'meta' => 'languageinfo' ],
+				false
+			]
+		];
+	}
+
+	/**
+	 * Test that the API handles differences in POST params and those in the URL
+	 * as appropriate
+	 * @param array $postValues key value pairs we pretend were sent in a form
+	 * @param array $queryValues key value pairs we pretend were in the request URL
+	 * @param bool $shouldHaveQueryResults
+	 * @dataProvider provideApiParams
+	 */
+	public function testApiParams( $postValues, $queryValues, $shouldHaveQueryResults ) {
+		$fauxRequest = $this->getMockFauxRequest( $postValues, $queryValues );
+		// internal must be false, since we're testing code in setupExternalResponse()
+		$api = new ApiMain( $fauxRequest, false, false );
+		ob_start();
+		$api->execute();
+		ob_end_clean();
+		$data = $api->getResult()->getResultData();
+		$this->assertIsArray( $data );
+		if ( $shouldHaveQueryResults ) {
+			$this->assertArrayHasKey( 'query', $data );
+		} else {
+			$this->assertArrayNotHasKey( 'query', $data );
+		}
 	}
 
 	/**

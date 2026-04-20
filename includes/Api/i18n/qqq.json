@@ -1840,6 +1840,7 @@
 	"apierror-invalidparammix-mustusewith": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name or \"parameter=value\" text.\n* $2 - Parameter name or \"parameter=value\" text.",
 	"apierror-invalidparammix-parse-new-section": "{{doc-apierror}}",
 	"apierror-invalidparammix": "{{doc-apierror}}\n\nParameters:\n* $1 - List of parameter names or \"parameter=value\" text.\n* $2 - Number of parameters.",
+	"apierror-invalidpostparams": "{{doc-apierror}}",
 	"apierror-invalidsection": "{{doc-apierror}}",
 	"apierror-invalidsha1base36hash": "{{doc-apierror}}",
 	"apierror-invalidsha1hash": "{{doc-apierror}}",

@@ -1988,6 +1988,13 @@ class ApiMain extends ApiBase {
 					null, null, 413
 				);
 			}
+			if ( array_intersect_key(
+				array_diff_assoc( $request->getPostValues(), $request->getQueryValuesOnly() ),
+					$request->getQueryValuesOnly() ) ) {
+				$this->dieWithError(
+					[ 'apierror-invalidpostparams' ], null, null, 400
+				);
+			}
 		}
 
 		// See if custom printer is used
