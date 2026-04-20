@@ -7,11 +7,13 @@
 	"properties": {
 		"count": {
 			"type": "integer",
-			"x-i18n-description": "rest-property-desc-page-history-edit-count"
+			"x-i18n-description": "rest-property-desc-page-history-edit-count",
+			"example": 110
 		},
 		"limit": {
 			"type": "boolean",
-			"x-i18n-description": "rest-property-desc-page-history-edit-limit"
+			"x-i18n-description": "rest-property-desc-page-history-edit-limit",
+			"example": false
 		}
 	}
 }

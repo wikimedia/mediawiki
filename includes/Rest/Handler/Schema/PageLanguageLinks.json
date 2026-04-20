@@ -11,19 +11,23 @@
 		"properties": {
 			"code": {
 				"type": "string",
-				"x-i18n-description": "rest-property-desc-page-language-code"
+				"x-i18n-description": "rest-property-desc-page-language-code",
+				"example": "ms"
 			},
 			"name": {
 				"type": "string",
-				"x-i18n-description": "rest-property-desc-page-language-name"
+				"x-i18n-description": "rest-property-desc-page-language-name",
+				"example": "Bahasa Melayu"
 			},
 			"key": {
 				"type": "string",
-				"x-i18n-description": "rest-property-desc-page-language-key"
+				"x-i18n-description": "rest-property-desc-page-language-key",
+				"example": "Sistem_Suria"
 			},
 			"title": {
 				"type": "string",
-				"x-i18n-description": "rest-property-desc-page-language-title"
+				"x-i18n-description": "rest-property-desc-page-language-title",
+				"example": "Sistem Suria"
 			}
 		}
 	}

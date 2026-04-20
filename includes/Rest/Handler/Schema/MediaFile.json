@@ -11,11 +11,13 @@
 	"properties": {
 		"title": {
 			"type": "string",
-			"x-i18n-description": "rest-param-desc-media-file-title"
+			"x-i18n-description": "rest-param-desc-media-file-title",
+			"example": "Melitaea diamina MOČVIRSKI PISANČEK RD.webm"
 		},
 		"file_description_url": {
 			"type": "string",
-			"description": "rest-param-desc-media-description-url"
+			"x-i18n-description": "rest-param-desc-media-description-url",
+			"example": "//commons.wikimedia.org/wiki/File:Melitaea_diamina_MO%C4%8CVIRSKI_PISAN%C4%8CEK_RD.webm"
 		},
 		"latest": {
 			"type": "object",
@@ -25,7 +27,8 @@
 				"timestamp": {
 					"type": "string",
 					"format": "date-time",
-					"x-i18n-description": "rest-param-desc-media-latest-timestamp"
+					"x-i18n-description": "rest-param-desc-media-latest-timestamp",
+					"example": "2022-08-28T12:18:48Z"
 				},
 				"user": {
 					"type": "object",
@@ -34,12 +37,14 @@
 						"id": {
 							"type": "integer",
 							"nullable": true,
-							"x-i18n-description": "rest-property-desc-user-id"
+							"x-i18n-description": "rest-property-desc-user-id",
+							"example": 234501
 						},
 						"name": {
 							"type": "string",
 							"nullable": true,
-							"x-i18n-description": "rest-property-desc-user-name"
+							"x-i18n-description": "rest-property-desc-user-name",
+							"example": "Sporti"
 						}
 					},
 					"required": [ "id", "name" ]
@@ -55,32 +60,38 @@
 				"mediatype": {
 					"type": "string",
 					"enum": [ "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "UNKNOWN", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ],
-					"x-i18n-description": "rest-param-desc-media-mediatype"
+					"x-i18n-description": "rest-param-desc-media-mediatype",
+					"example": "VIDEO"
 				},
 				"size": {
 					"type": "integer",
 					"nullable": true,
-					"x-i18n-description": "rest-param-desc-media-size"
+					"x-i18n-description": "rest-param-desc-media-size",
+					"example": 4022330
 				},
 				"width": {
 					"type": "integer",
 					"nullable": true,
-					"x-i18n-description": "rest-param-desc-media-width"
+					"x-i18n-description": "rest-param-desc-media-width",
+					"example": 800
 				},
 				"height": {
 					"type": "integer",
 					"nullable": true,
-					"x-i18n-description": "rest-param-desc-media-height"
+					"x-i18n-description": "rest-param-desc-media-height",
+					"example": 450
 				},
 				"duration": {
 					"type": "number",
 					"nullable": true,
-					"x-i18n-description": "rest-param-desc-media-duration"
+					"x-i18n-description": "rest-param-desc-media-duration",
+					"example": 51.96
 				},
 				"url": {
 					"type": "string",
 					"format": "uri",
-					"x-i18n-description": "rest-param-desc-media-url"
+					"x-i18n-description": "rest-param-desc-media-url",
+					"example": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Melitaea_diamina_MO%C4%8CVIRSKI_PISAN%C4%8CEK_RD.webm/960px--Melitaea_diamina_MO%C4%8CVIRSKI_PISAN%C4%8CEK_RD.webm.jpg"
 				}
 			},
 			"required": [ "mediatype", "size", "width", "height", "duration", "url" ]
@@ -93,32 +104,38 @@
 				"mediatype": {
 					"type": "string",
 					"enum": [ "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "UNKNOWN", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ],
-					"x-i18n-description": "rest-param-desc-media-mediatype"
+					"x-i18n-description": "rest-param-desc-media-mediatype",
+					"example": "VIDEO"
 				},
 				"size": {
 					"type": "integer",
 					"nullable": true,
-					"x-i18n-description": "rest-param-desc-media-size"
+					"x-i18n-description": "rest-param-desc-media-size",
+					"example": 49193210
 				},
 				"width": {
 					"type": "integer",
 					"nullable": true,
-					"x-i18n-description": "rest-param-desc-media-width"
+					"x-i18n-description": "rest-param-desc-media-width",
+					"example": 1920
 				},
 				"height": {
 					"type": "integer",
 					"nullable": true,
-					"x-i18n-description": "rest-param-desc-media-height"
+					"x-i18n-description": "rest-param-desc-media-height",
+					"example": 1080
 				},
 				"duration": {
 					"type": "number",
 					"nullable": true,
-					"x-i18n-description": "rest-param-desc-media-duration"
+					"x-i18n-description": "rest-param-desc-media-duration",
+					"example": 51.96
 				},
 				"url": {
 					"type": "string",
 					"format": "url",
-					"x-i18n-description": "rest-param-desc-media-url"
+					"x-i18n-description": "rest-param-desc-media-url",
+					"example": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Melitaea_diamina_MO%C4%8CVIRSKI_PISAN%C4%8CEK_RD.webm"
 				}
 			},
 			"required": [ "mediatype", "size", "width", "height", "duration", "url" ]
@@ -131,32 +148,38 @@
 				"mediatype": {
 					"type": "string",
 					"enum": [ "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "UNKNOWN", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ],
-					"x-i18n-description": "rest-param-desc-media-mediatype"
+					"x-i18n-description": "rest-param-desc-media-mediatype",
+					"example": "VIDEO"
 				},
 				"size": {
 					"type": "integer",
 					"nullable": true,
-					"x-i18n-description": "rest-param-desc-media-size"
+					"x-i18n-description": "rest-param-desc-media-size",
+					"example": 49193210
 				},
 				"width": {
 					"type": "integer",
 					"nullable": true,
-					"x-i18n-description": "rest-param-desc-media-width"
+					"x-i18n-description": "rest-param-desc-media-width",
+					"example": 1920
 				},
 				"height": {
 					"type": "integer",
 					"nullable": true,
-					"x-i18n-description": "rest-param-desc-media-height"
+					"x-i18n-description": "rest-param-desc-media-height",
+					"example": 1080
 				},
 				"duration": {
 					"type": "number",
 					"nullable": true,
-					"x-i18n-description": "rest-param-desc-media-duration"
+					"x-i18n-description": "rest-param-desc-media-duration",
+					"example": 51.96
 				},
 				"url": {
 					"type": "string",
 					"format": "uri",
-					"x-i18n-description": "rest-param-desc-media-url"
+					"x-i18n-description": "rest-param-desc-media-url",
+					"example": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Melitaea_diamina_MO%C4%8CVIRSKI_PISAN%C4%8CEK_RD.webm/1920px--Melitaea_diamina_MO%C4%8CVIRSKI_PISAN%C4%8CEK_RD.webm.jpg"
 				}
 			},
 			"required": [ "mediatype", "size", "width", "height", "duration", "url" ]

@@ -22,35 +22,42 @@
 				"properties": {
 					"id": {
 						"type": "integer",
-						"x-i18n-description": "rest-property-desc-page-id"
+						"x-i18n-description": "rest-property-desc-page-id",
+						"example": 1133784
 					},
 					"key": {
 						"type": "string",
-						"x-i18n-description": "rest-property-desc-page-key"
+						"x-i18n-description": "rest-property-desc-page-key",
+						"example": "Mobile_game"
 					},
 					"title": {
 						"type": "string",
-						"x-i18n-description": "rest-property-desc-page-title"
+						"x-i18n-description": "rest-property-desc-page-title",
+						"example": "Mobile game"
 					},
 					"excerpt": {
 						"type": "string",
 						"nullable": true,
-						"x-i18n-description": "rest-property-desc-search-excerpt"
+						"x-i18n-description": "rest-property-desc-search-excerpt",
+						"example": "PDA to handheld <span class=\"searchmatch\">game</span> console, portable media player or graphing <span class=\"searchmatch\">calculator</span>, with and without network availability. The earliest known <span class=\"searchmatch\">game</span> on a mobile phone"
 					},
 					"matched_title": {
 						"type": "string",
 						"nullable": true,
-						"x-i18n-description": "rest-property-desc-search-matched-title"
+						"x-i18n-description": "rest-property-desc-search-matched-title",
+						"example": "Calculator game"
 					},
 					"anchor": {
 						"type": "string",
 						"nullable": true,
-						"x-i18n-description": "rest-property-desc-search-anchor"
+						"x-i18n-description": "rest-property-desc-search-anchor",
+						"example": "Calculator games"
 					},
 					"description": {
 						"type": "string",
 						"nullable": true,
-						"x-i18n-description": "rest-property-desc-search-description"
+						"x-i18n-description": "rest-property-desc-search-description",
+						"example": "Video game played on a mobile device"
 					},
 					"thumbnail": {
 						"type": "object",
@@ -59,27 +66,32 @@
 						"properties": {
 							"mimetype": {
 								"type": "string",
-								"x-i18n-description": "rest-param-desc-media-mediatype"
+								"x-i18n-description": "rest-param-desc-media-mediatype",
+								"example": "image/jpeg"
 							},
 							"width": {
 								"type": "integer",
 								"nullable": true,
-								"x-i18n-description": "rest-param-desc-media-width"
+								"x-i18n-description": "rest-param-desc-media-width",
+								"example": 60
 							},
 							"height": {
 								"type": "integer",
 								"nullable": true,
-								"x-i18n-description": "rest-param-desc-media-height"
+								"x-i18n-description": "rest-param-desc-media-height",
+								"example": 45
 							},
 							"duration": {
 								"type": "number",
 								"nullable": true,
-								"x-i18n-description": "rest-param-desc-media-duration"
+								"x-i18n-description": "rest-param-desc-media-duration",
+								"example": null
 							},
 							"url": {
 								"type": "string",
 								"format": "uri",
-								"x-i18n-description": "rest-param-desc-media-url"
+								"x-i18n-description": "rest-param-desc-media-url",
+								"example": "//upload.wikimedia.org/wikipedia/commons/thumb/1/17/Playing_with_smartphone.jpg/60px-Playing_with_smartphone.jpg"
 							}
 						},
 						"required": [ "mimetype", "width", "height", "duration", "url" ]
