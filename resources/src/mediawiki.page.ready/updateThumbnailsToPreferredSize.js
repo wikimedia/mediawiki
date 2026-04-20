@@ -57,7 +57,6 @@ const updateThumbnailToPreferredSize = ( img ) => {
 			}
 		}
 	}
-	img.classList.add( 'mw-file-element--updated' );
 };
 
 /**
