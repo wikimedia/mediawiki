@@ -380,58 +380,72 @@ class UserMailer {
 				}
 			}
 			return Status::newGood();
-		} else {
-			// PHP mail()
-			if ( count( $to ) > 1 ) {
-				$headers['To'] = 'undisclosed-recipients:;';
-			}
-
-			wfDebug( "Sending mail via internal mail() function" );
-
-			self::$mErrorString = '';
-			$html_errors = ini_get( 'html_errors' );
-			ini_set( 'html_errors', '0' );
-			set_error_handler( [ self::class, 'errorHandler' ] );
-
-			try {
-				foreach ( $to as $recip ) {
-					$sent = mail(
-						$recip->toString(),
-						self::quotedPrintable( $subject ),
-						$body,
-						$headers,
-						$extraParams
-					);
-				}
-			} catch ( Exception $e ) {
-				restore_error_handler();
-				throw $e;
-			}
-
-			restore_error_handler();
-			ini_set( 'html_errors', $html_errors );
-
-			if ( self::$mErrorString ) {
-				wfDebug( "Error sending mail: " . self::$mErrorString );
-				return Status::newFatal( 'php-mail-error', self::$mErrorString );
-			} elseif ( !$sent ) {
-				// @phan-suppress-previous-line PhanPossiblyUndeclaredVariable sent set on success
-				// mail function only tells if there's an error
-				wfDebug( "Unknown error sending mail" );
-				return Status::newFatal( 'php-mail-error-unknown' );
-			} else {
-				LoggerFactory::getInstance( 'usermailer' )->info(
-					"Email sent to {to} from {from} with subject {subject}",
-					[
-						'to' => $to[0]->toString(),
-						'allto' => implode( ', ', array_map( 'strval', $to ) ),
-						'from' => $from->toString(),
-						'subject' => $subject,
-					]
-				);
-				return Status::newGood();
-			}
 		}
+
+		return self::sendWithMailFunction( $to, $from, $subject, $body, $headers, $extraParams );
+	}
+
+	/**
+	 * Send mail using PHP's mail() function.
+	 *
+	 * @param MailAddress[] $to
+	 */
+	private static function sendWithMailFunction(
+		array $to,
+		MailAddress $from,
+		string $subject,
+		string $body,
+		array $headers,
+		string $extraParams
+	): Status {
+		if ( count( $to ) > 1 ) {
+			$headers['To'] = 'undisclosed-recipients:;';
+		}
+
+		wfDebug( "Sending mail via internal mail() function" );
+
+		self::$mErrorString = '';
+		$html_errors = ini_get( 'html_errors' );
+		ini_set( 'html_errors', '0' );
+		set_error_handler( [ self::class, 'errorHandler' ] );
+
+		try {
+			foreach ( $to as $recip ) {
+				$sent = mail(
+					$recip->toString(),
+					self::quotedPrintable( $subject ),
+					$body,
+					$headers,
+					$extraParams
+				);
+			}
+		} catch ( Exception $e ) {
+			restore_error_handler();
+			throw $e;
+		}
+
+		restore_error_handler();
+		ini_set( 'html_errors', $html_errors );
+
+		if ( self::$mErrorString ) {
+			wfDebug( "Error sending mail: " . self::$mErrorString );
+			return Status::newFatal( 'php-mail-error', self::$mErrorString );
+		} elseif ( !$sent ) {
+			// @phan-suppress-previous-line PhanPossiblyUndeclaredVariable sent set on success
+			// mail function only tells if there's an error
+			wfDebug( "Unknown error sending mail" );
+			return Status::newFatal( 'php-mail-error-unknown' );
+		}
+		LoggerFactory::getInstance( 'usermailer' )->info(
+			"Email sent to {to} from {from} with subject {subject}",
+			[
+				'to' => $to[0]->toString(),
+				'allto' => implode( ', ', array_map( 'strval', $to ) ),
+				'from' => $from->toString(),
+				'subject' => $subject,
+			]
+		);
+		return Status::newGood();
 	}
 
 	/**
