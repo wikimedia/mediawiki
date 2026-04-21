@@ -216,7 +216,8 @@ abstract class ImageHandler extends MediaHandler {
 			$prevStep = $widthStep;
 		}
 
-		return $requestWidth;
+		// Respond with the largest step if it's too big.
+		return $prevStep;
 	}
 
 	/**
