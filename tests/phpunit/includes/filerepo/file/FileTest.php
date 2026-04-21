@@ -577,14 +577,11 @@ class FileTest extends MediaWikiMediaTestCase {
 			'enabled' => true,
 			'originalWidth' => 2345,
 			'thumbWidth' => 1252,
-			'expected' => 1252
+			'expected' => 1000
 		];
-		// 1252px-test.jpg FIXME: T418745
-		yield 'thumb beyond last step for jpeg creates non-standard' => $jpeg + $beyondSteps;
-		// 1252px-doc.tiff.png FIXME: T418745
-		yield 'thumb beyond last step for tiff creates non-standard' => $tiff + $beyondSteps;
-		// 1252px-logo.svg.png FIXME: T418745
-		yield 'thumb beyond last step for svg creates non-standard' => $svg + $beyondSteps;
+		yield 'thumb beyond last step for jpeg falls back to the largest standard' => $jpeg + $beyondSteps;
+		yield 'thumb beyond last step for tiff falls back to the largest standard' => $tiff + $beyondSteps;
+		yield 'thumb beyond last step for svg falls back to the largest standard' => $svg + $beyondSteps;
 	}
 
 	private function assertThumbNameEquals(
