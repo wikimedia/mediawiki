@@ -170,6 +170,23 @@ class RawAction extends FormlessAction {
 			throw new HttpError( 403, wfMessage( 'unprotected-js' ) );
 		}
 
+		// Content-Type: text/javascript should only work when the following are true:
+		// page is in User subpage or Mediawiki namespace
+		// page title ends in .js or .vue
+		// page content type is CONTENT_MODEL_JAVASCRIPT or CONTENT_MODEL_VUE
+		// currntly only logging to determine how many pages would be impacted by this change
+		if ( $contentType === 'text/javascript' ) {
+			if ( !( $title->isSiteJsConfigPage() || $title->isUserJsConfigPage() ) ) {
+				$log = LoggerFactory::getInstance( "security" );
+				$log->info( "Did not block loading unprotected JS {title} for {user} with more restrictions",
+					[
+						'user' => $this->getUser()->getName(),
+						'title' => $title->getPrefixedDBkey(),
+					]
+				);
+			}
+		}
+
 		$response->header( 'Content-type: ' . $contentType . '; charset=UTF-8' );
 
 		$text = $this->getRawText();
