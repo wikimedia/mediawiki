@@ -3641,7 +3641,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\User\\MultiFormatUserIdentityLookup' => __DIR__ . '/includes/User/MultiFormatUserIdentityLookup.php',
 	'MediaWiki\\User\\Options\\ConditionalDefaultsLookup' => __DIR__ . '/includes/User/Options/ConditionalDefaultsLookup.php',
 	'MediaWiki\\User\\Options\\DefaultOptionsLookup' => __DIR__ . '/includes/User/Options/DefaultOptionsLookup.php',
-	'MediaWiki\\User\\Options\\Hook\\ConditionalDefaultOptionsAddConditionHook' => __DIR__ . '/includes/User/Options/Hook/ConditionalDefaultOptionsAddConditionHook.php',
 	'MediaWiki\\User\\Options\\Hook\\LoadUserOptionsHook' => __DIR__ . '/includes/User/Options/Hook/LoadUserOptionsHook.php',
 	'MediaWiki\\User\\Options\\Hook\\LocalUserOptionsStoreSaveHook' => __DIR__ . '/includes/User/Options/Hook/LocalUserOptionsStoreSaveHook.php',
 	'MediaWiki\\User\\Options\\Hook\\SaveUserOptionsHook' => __DIR__ . '/includes/User/Options/Hook/SaveUserOptionsHook.php',

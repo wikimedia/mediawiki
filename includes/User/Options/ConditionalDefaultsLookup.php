@@ -4,7 +4,6 @@ namespace MediaWiki\User\Options;
 
 use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\UserGroupManager;
@@ -31,7 +30,6 @@ class ConditionalDefaultsLookup {
 	private ?array $extraConditions = null;
 
 	public function __construct(
-		private readonly HookRunner $hookRunner,
 		private readonly ServiceOptions $options,
 		private readonly UserRegistrationLookup $userRegistrationLookup,
 		private readonly UserIdentityUtils $userIdentityUtils,
@@ -109,14 +107,6 @@ class ConditionalDefaultsLookup {
 		return true;
 	}
 
-	private function getExtraConditions(): array {
-		if ( !$this->extraConditions ) {
-			$this->extraConditions = [];
-			$this->hookRunner->onConditionalDefaultOptionsAddCondition( $this->extraConditions );
-		}
-		return $this->extraConditions;
-	}
-
 	/**
 	 * Is ONE condition satisfied for the given user?
 	 *
@@ -168,10 +158,6 @@ class ConditionalDefaultsLookup {
 				$userGroupManager = $userGroupManagerCallback();
 				return in_array( $cond[0], $userGroupManager->getUserEffectiveGroups( $userIdentity ) );
 			default:
-				$extraConditions = $this->getExtraConditions();
-				if ( array_key_exists( $condName, $extraConditions ) ) {
-					return $extraConditions[$condName]( $userIdentity, $cond );
-				}
 				throw new InvalidArgumentException( 'Unsupported condition ' . $condName );
 		}
 	}

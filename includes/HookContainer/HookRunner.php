@@ -587,7 +587,6 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserSendConfirmationMailHook,
 	\MediaWiki\User\Hook\UserSetEmailAuthenticationTimestampHook,
 	\MediaWiki\User\Hook\UserSetEmailHook,
-	\MediaWiki\User\Options\Hook\ConditionalDefaultOptionsAddConditionHook,
 	\MediaWiki\User\Options\Hook\LoadUserOptionsHook,
 	\MediaWiki\User\Options\Hook\LocalUserOptionsStoreSaveHook,
 	\MediaWiki\User\Options\Hook\SaveUserOptionsHook,
@@ -4820,15 +4819,6 @@ class HookRunner implements
 		return $this->container->run(
 			'UserGetDefaultOptions',
 			[ &$defaultOptions ]
-		);
-	}
-
-	/** @inheritDoc */
-	public function onConditionalDefaultOptionsAddCondition( &$extraConditions ): void {
-		$this->container->run(
-			'ConditionalDefaultOptionsAddCondition',
-			[ &$extraConditions ],
-			[ 'abortable' => false ]
 		);
 	}
 

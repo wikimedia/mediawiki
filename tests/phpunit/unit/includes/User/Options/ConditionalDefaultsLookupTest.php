@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\User\Options;
 
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\Options\ConditionalDefaultsLookup;
 use MediaWiki\User\Registration\UserRegistrationLookup;
@@ -86,7 +85,6 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 	 */
 	public function testIsConditionallyDefault( bool $expected, string $option ) {
 		$lookup = new ConditionalDefaultsLookup(
-			$this->createNoOpMock( HookRunner::class ),
 			$this->getServiceOptions( [
 				MainConfigNames::ConditionalUserOptions => [
 					'foo-option' => self::CONDITIONAL_USER_DEFAULTS,
@@ -117,7 +115,6 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 
 	public function testGetOptionDefaultForUser__notConditionallyDefault() {
 		$lookup = new ConditionalDefaultsLookup(
-			$this->createNoOpMock( HookRunner::class ),
 			$this->getServiceOptions(),
 			$this->createNoOpMock( UserRegistrationLookup::class ),
 			$this->createNoOpMock( UserIdentityUtils::class ),
@@ -151,7 +148,6 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 			->willReturn( $registrationTS );
 
 		$lookup = new ConditionalDefaultsLookup(
-			$this->createNoOpMock( HookRunner::class ),
 			$this->getServiceOptions( [
 				MainConfigNames::ConditionalUserOptions => [
 					'foo-option' => $conditions,
@@ -207,7 +203,6 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 		];
 
 		$lookup = new ConditionalDefaultsLookup(
-			$this->createNoOpMock( HookRunner::class ),
 			$this->getServiceOptions( $configOverrides ),
 			$registrationLookup,
 			$this->createNoOpMock( UserIdentityUtils::class ),
@@ -228,7 +223,6 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 	public function testGetOptionDefaultForUser__anon( int $id, ?string $expected ) {
 		$userIdentity = new UserIdentityValue( $id, 'test user' );
 
-		$hookRunner = $this->createNoOpMock( HookRunner::class );
 		$options = $this->getServiceOptions( [
 			MainConfigNames::ConditionalUserOptions => [
 				'test-option' => self::CONDITIONAL_USER_DEFAULTS_ANON,
@@ -237,7 +231,7 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 		$registrationLookup = $this->createNoOpMock( UserRegistrationLookup::class );
 		$userIdentityUtils = $this->createNoOpMock( UserIdentityUtils::class );
 
-		$lookup = new ConditionalDefaultsLookup( $hookRunner, $options, $registrationLookup, $userIdentityUtils,
+		$lookup = new ConditionalDefaultsLookup( $options, $registrationLookup, $userIdentityUtils,
 			new NullLogger(),
 			static fn () => null
 		);
@@ -260,7 +254,6 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 	public function testGetOptionDefaultForUser__named( bool $isNamed, ?string $expected ) {
 		$userIdentity = new UserIdentityValue( 1, 'test user' );
 
-		$hookRunner = $this->createNoOpMock( HookRunner::class );
 		$options = $this->getServiceOptions( [
 			MainConfigNames::ConditionalUserOptions => [
 				'test-option' => self::CONDITIONAL_USER_DEFAULTS_NAMED,
@@ -273,7 +266,7 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 			->with( $userIdentity )
 			->willReturn( $isNamed );
 
-		$lookup = new ConditionalDefaultsLookup( $hookRunner, $options, $registrationLookup, $userIdentityUtils,
+		$lookup = new ConditionalDefaultsLookup( $options, $registrationLookup, $userIdentityUtils,
 			new NullLogger(),
 			static fn () => null
 		);
@@ -296,7 +289,6 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 	public function testGetOptionDefaultForUser__usergroup( array $usergroups, ?string $expected ) {
 		$userIdentity = new UserIdentityValue( 1, 'test user' );
 
-		$hookRunner = $this->createNoOpMock( HookRunner::class );
 		$options = $this->getServiceOptions( [
 			MainConfigNames::ConditionalUserOptions => [
 				'test-option' => self::CONDITIONAL_USER_DEFAULTS_USERGROUP,
@@ -310,7 +302,7 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 			->with( $userIdentity )
 			->willReturn( $usergroups );
 
-		$lookup = new ConditionalDefaultsLookup( $hookRunner, $options, $registrationLookup, $userIdentityUtils,
+		$lookup = new ConditionalDefaultsLookup( $options, $registrationLookup, $userIdentityUtils,
 			new NullLogger(),
 			static function () use ( $userGroupManager ) {
 				return $userGroupManager;
@@ -323,62 +315,6 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 		return [
 			[ [ '*', 'user', 'sysop' ], 'sysop users' ],
 			[ [ 'user' ], null ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetOptionDefaultForUser__extraCondition
-	 * @param array $configConditions An array of condition descriptors as described for $wgConditionalUserOptions
-	 * @param array $extraConditions Key is the condition name and value is a callable
-	 * @param string|null $expected the default option or null if none apply
-	 */
-	public function testGetOptionDefaultForUser__extraCondition(
-		array $configConditions, array $extraConditions, ?string $expected
-	) {
-		$userIdentity = new UserIdentityValue( 1, 'test user' );
-
-		$hookRunner = $this->createNoOpMock( HookRunner::class, [ 'onConditionalDefaultOptionsAddCondition' ] );
-		$hookRunner->expects( $this->once() )
-			->method( 'onConditionalDefaultOptionsAddCondition' )
-			->willReturnCallback(
-				static function ( array &$outExtraConditions ) use ( $extraConditions ) {
-					$outExtraConditions = $extraConditions;
-				}
-			);
-		$options = $this->getServiceOptions( [
-			MainConfigNames::ConditionalUserOptions => [
-				'test-option' => $configConditions
-			]
-		] );
-		$registrationLookup = $this->createNoOpMock( UserRegistrationLookup::class );
-		$userIdentityUtils = $this->createMock( UserIdentityUtils::class );
-
-		$lookup = new ConditionalDefaultsLookup( $hookRunner, $options, $registrationLookup, $userIdentityUtils,
-			new NullLogger(),
-			static fn () => null
-		);
-
-		$this->assertSame( $expected, $lookup->getOptionDefaultForUser( 'test-option', $userIdentity ) );
-	}
-
-	public static function provideGetOptionDefaultForUser__extraCondition(): array {
-		return [
-			[
-				[
-					[ 'No', [ 'if-condition', false ] ],
-					[ 'Yes', [ 'if-condition', true ] ],
-				],
-				[ 'if-condition' => static fn ( $userIdentity, $args ) => (bool)$args[0] ],
-				'Yes'
-			],
-			[
-				[
-					[ 'Yes', [ 'if-condition', true ] ],
-					[ 'No', [ 'if-condition', false ] ],
-				],
-				[ 'if-condition' => static fn ( $userIdentity, $args ) => !$args[0] ],
-				'No'
-			]
 		];
 	}
 }

@@ -25,7 +25,6 @@ class DeprecatedHooks {
 		'ArticleDeleteComplete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
 		'ArticleUndelete' => [ 'deprecatedVersion' => '1.40', 'silent' => true ],
 		'AutopromoteCondition' => [ 'deprecatedVersion' => '1.46' ],
-		'ConditionalDefaultOptionsAddCondition' => [ 'deprecatedVersion' => '1.46' ],
 		'EditFilter' => [ 'deprecatedVersion' => '1.47' ],
 		'EditPageBeforeConflictDiff' => [ 'deprecatedVersion' => '1.47' ],
 		'EditPageBeforeEditToolbar' => [ 'deprecatedVersion' => '1.36' ],

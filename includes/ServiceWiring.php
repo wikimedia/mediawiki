@@ -3111,7 +3111,6 @@ return [
 		MediaWikiServices $services
 	): ConditionalDefaultsLookup {
 		return new ConditionalDefaultsLookup(
-			new HookRunner( $services->getHookContainer() ),
 			new ServiceOptions(
 				ConditionalDefaultsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
