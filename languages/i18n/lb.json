@@ -2194,7 +2194,7 @@
 	"restriction-create": "Uleeën",
 	"restriction-upload": "Eroplueden",
 	"restriction-level-sysop": "ganz gespaart",
-	"restriction-level-autoconfirmed": "hallef gespaart (nëmmen ugemellt Benotzer, déi net nei sinn)",
+	"restriction-level-autoconfirmed": "hallef-protegéiert",
 	"restriction-level-all": "alleguer",
 	"undelete": "Geläscht Säite restauréieren",
 	"undeletepage": "Geläscht Säite kucken a restauréieren",

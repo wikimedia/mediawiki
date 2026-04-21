@@ -18,7 +18,8 @@
 			"Vlad5250",
 			"아라",
 			"Jp2593",
-			"Neriah"
+			"Neriah",
+			"ShiminUfesoj"
 		]
 	},
 	"sunday": "Domingo",
@@ -2946,6 +2947,7 @@
 	"skin-action-undelete": "Bawion sa pagkapara",
 	"skin-action-delete": "puráon",
 	"skin-action-move": "Ibalyó",
+	"blockedtext-made-by": "An pagbagat ginibo ni $1.",
 	"renameuser": "Pangarani otro an paragamit",
 	"renameuser-linkoncontribs": "pangarani otro an {{GENDER:$1|paragamit}}",
 	"renameuser-linkoncontribs-text": "Pangarani otro ining {{GENDER:$1|paragamit}}",

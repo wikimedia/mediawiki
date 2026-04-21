@@ -11,6 +11,7 @@
 	"prefsnologintext2": "Prijavite se da biste promijenili postavke.",
 	"searchprefs": "Pretražite postavke",
 	"searchprefs-noresults": "Nema rezultata",
+	"searchprefs-results": "$1 {{PLURAL:$1|rezultat|rezultata}}",
 	"saveprefs": "Sačuvaj postavke",
 	"tooltip-preferences-save": "Sačuvajte postavke",
 	"savedprefs": "Vaše postavke su sačuvane.",
