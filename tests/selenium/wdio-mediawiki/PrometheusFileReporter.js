@@ -162,7 +162,7 @@ class PrometheusFileReporter extends WDIOReporter {
 		// Depending on how we configure webdriver.io we have two kind of retries:
 		// either per test or for a spec file (where the runner is restarted)
 		// and we want the number of retries from both
-		specMetrics.retries += runnerStats.retries;
+		specMetrics.retries += Math.max( 0, runnerStats.retries );
 
 		specMetrics.duration = getSpecDuration( this.suiteMetrics );
 		specMetrics.labels = labels;
