@@ -528,11 +528,9 @@ class FileTest extends MediaWikiMediaTestCase {
 			'thumbWidth' => 52,
 			'expected' => 100
 		];
-		yield 'round up jpeg' => $jpeg + $roundUp;
-		yield 'round up tiff' => $tiff + $roundUp;
-		yield 'round up svg' => $svg + $roundUp;
-
-		// Check against scaling up bitmaps beyond original
+		yield 'round up to next step for jpeg' => $jpeg + $roundUp;
+		yield 'round up to next step for tiff' => $tiff + $roundUp;
+		yield 'round up to next step for svg' => $svg + $roundUp;
 
 		yield 'thumb under first step and original for jpeg serves original' => $jpeg + [
 			'enabled' => true,
@@ -552,23 +550,45 @@ class FileTest extends MediaWikiMediaTestCase {
 			'thumbWidth' => 52,
 			'expected' => 100 // 100px-logo.svg.png
 		];
+
 		yield 'thumb between penultimate step and original for jpeg serves original' => $jpeg + [
 			'enabled' => true,
 			'originalWidth' => 180,
 			'thumbWidth' => 130,
 			'expected' => 180 // test.jpg
 		];
-		yield 'thumb between penultimate step and original for tiff transforms original' => $tiff + [
+		// FIXME: This should scale up instead of rounding down to avoid blurry image T424114
+		yield 'thumb between penultimate step and original for tiff rounds down' => $tiff + [
 			'enabled' => true,
 			'originalWidth' => 180,
 			'thumbWidth' => 130,
-			'expected' => 100
+			'expected' => 100 // 100px-doc.tiff.png
 		];
 		yield 'thumb between penultimate step and original for svg scales up' => $svg + [
 			'enabled' => true,
 			'originalWidth' => 180,
 			'thumbWidth' => 130,
 			'expected' => 200 // 200px-logo.svg.png
+		];
+
+		yield 'thumb beyond original jpg but under penultimate step falls back to original' => $jpeg + [
+			'enabled' => true,
+			'originalWidth' => 140,
+			'thumbWidth' => 190,
+			'expected' => 140 // test.jpg
+		];
+		// FIXME: This should scale up instead of rounding down to avoid blurry image T424114
+		yield 'thumb beyond original tiff but under penultimate step rounds down' => $tiff + [
+			'enabled' => true,
+			'originalWidth' => 140,
+			'thumbWidth' => 190,
+			'expected' => 100 // 100px-doc.tiff.png
+		];
+		yield 'thumb beyond original svg but under penultimate step scales up' => $svg + [
+			'enabled' => true,
+			'originalWidth' => 140,
+			'thumbWidth' => 190,
+			'expected' => 200 // 200px-logo-svg.png
 		];
 
 		$beyondSteps = [
@@ -617,9 +637,8 @@ class FileTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \File::thumbName
-	 * @covers \File::generateThumbName
-	 * @covers \ImageHandler::getSteppedThumbWidth
+	 * @covers \File
+	 * @covers \ImageHandler
 	 * @dataProvider provideThumbNameSteps
 	 */
 	public function testThumbNameSteps(

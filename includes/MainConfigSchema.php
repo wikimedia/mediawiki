@@ -2298,8 +2298,9 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * When defined, is an array of image widths used as steps for thumbnail sizes.
+	 * Array of image widths used as steps for thumbnail sizes.
 	 *
+	 * Requested thumbnail widths are rounded up to the nearest step
 	 * The thumbnail with smallest step that has larger value than requested will be shown
 	 * but it will be downsized via HTML values.
 	 *
@@ -2308,6 +2309,9 @@ class MainConfigSchema {
 	 *
 	 * Note that these steps are "best effort" and MediaWiki might decide to use the requested size
 	 * for any reason.
+	 *
+	 * @see MediaWiki\Media\ImageHandler::getSteppedThumbWidth
+	 * @since 1.43.7
 	 */
 	public const ThumbnailSteps = [
 		'default' => null,
