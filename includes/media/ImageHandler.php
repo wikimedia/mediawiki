@@ -180,6 +180,7 @@ abstract class ImageHandler extends MediaHandler {
 	 *
 	 * This logic is duplicated client-side in mw.util.adjustThumbWidthForSteps.
 	 *
+	 * @see FileTest::testThumbNameSteps
 	 * @since 1.46 (also backported to 1.43.7, 1.44.4, 1.45.2)
 	 */
 	protected function getSteppedThumbWidth(
@@ -210,14 +211,21 @@ abstract class ImageHandler extends MediaHandler {
 		foreach ( $thumbnailSteps as $widthStep ) {
 			if ( ( $widthStep > $srcWidth ) && !$image->isVectorized() ) {
 				if ( $this->mustRender( $image ) ) {
-					// since the original is not web safe, return the previous step instead.
-					// This in theory means it could upscale a width to a large size but in practice
-					// this will be rare since the code path that triggers this is for 1.5x and 2x
+					// Not web-safe: Round down to previous step
+					//
+					// While unlikely, this tries to upscale an original that is smaller than the smallest step
+					// (e.g. smaller than 20px if that's the smallest step configured), which is disallowed
+					// by default in MediaWiki core with HTTP 400 (ThumbnailEntryPoint::generateThumbnail).
 					return $prevStep;
 				} else {
-					// Round up to original width if there is no step between
-					// desired thumb width & original file width
-					// This will trigger loading of the original instead of the thumb
+					// Web-safe: Round up or down and use the original
+					//
+					// There was no step between the requested width and the original width
+					// (so either a thumb between penultimate step and original,
+					// or a thumb beyond original jpg but under penultimate step).
+					//
+					// NOTE: This thumb-at-original-width is replaced with the original
+					// in a higher-level code path after this method runs.
 					return $srcWidth;
 				}
 			}
