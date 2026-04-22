@@ -1958,7 +1958,7 @@
 	"statistics-header-users": "Statistiche relative agli utenti",
 	"statistics-header-hooks": "Altre statistiche",
 	"statistics-articles": "Pagine di contenuti",
-	"statistics-articles-desc": "Consultare la [https://www.google.com/search?q=https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod documentazione sul conteggio delle voci] per i dettagli",
+	"statistics-articles-desc": "Consultare la [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod documentazione sul conteggio delle voci] per i dettagli",
 	"statistics-pages": "Pagine",
 	"statistics-pages-desc": "Tutte le pagine del sito, comprese le pagine di discussione, i redirect, ecc.",
 	"statistics-files": "File caricati",

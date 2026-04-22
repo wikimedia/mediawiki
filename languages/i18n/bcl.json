@@ -18,7 +18,8 @@
 			"Vlad5250",
 			"아라",
 			"Jp2593",
-			"Neriah"
+			"Neriah",
+			"ShiminUfesoj"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategorya|Mga kategorya}}",
@@ -776,7 +777,7 @@
 	"search-relatedarticle": "Kauyon",
 	"searchrelated": "kauyon",
 	"searchall": "gabos",
-	"search-showingresults": "{{PLURAL:$4|Resulta <strong>$1</strong> kan <strong>$3</strong>|Resulta hali <strong>$1 -  $2</strong> kan <strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|1=Resulta <strong>$1</strong> kan <strong>$3</strong>|Mga resulta<strong>$1 – $2</strong> kan <strong>$3</strong>}}",
 	"search-nonefound": "Mayong resulta sa query.",
 	"powersearch-legend": "Adbansiyadong paghahanap",
 	"powersearch-ns": "Maghanap sa mga espasyong-ngaran:",
@@ -2856,6 +2857,7 @@
 	"skin-action-undelete": "Bawion sa pagkapara",
 	"skin-action-delete": "puráon",
 	"skin-action-move": "Ibalyó",
+	"blockedtext-made-by": "An pagbagat ginibo ni $1.",
 	"renameuser": "Pangarani otro an paragamit",
 	"renameuser-linkoncontribs": "pangarani otro an {{GENDER:$1|paragamit}}",
 	"renameuser-linkoncontribs-text": "Pangarani otro ining {{GENDER:$1|paragamit}}",

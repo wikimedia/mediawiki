@@ -53,7 +53,7 @@
 	"exif-relatedsoundfile": "관련된 오디오 파일",
 	"exif-datetimeoriginal": "날짜와 시간",
 	"exif-datetimedigitized": "날짜와 시간(디지털 데이터)",
-	"exif-subsectime": "파일을 수정한 날짜와 시간 (초단위 미만)",
+	"exif-subsectime": "파일을 수정한 시간날짜 (초단위 미만)",
 	"exif-subsectimeoriginal": "파일을 만든 날짜와 시간 (초단위 미만)",
 	"exif-subsectimedigitized": "디지털화된 날짜와 시간 (초단위 미만)",
 	"exif-exposuretime": "노출 시간",
