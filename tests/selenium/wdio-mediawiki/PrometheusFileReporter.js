@@ -145,6 +145,8 @@ class PrometheusFileReporter extends WDIOReporter {
 				testDurationSecondsCount: 0
 			};
 			this.spec.totalTests++;
+		} else {
+			this.testMetrics[ test.uid ].skipped++;
 		}
 		this.spec.skipped++;
 	}
