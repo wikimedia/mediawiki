@@ -17,11 +17,13 @@
 			"properties": {
 				"id": {
 					"type": "integer",
-					"x-i18n-description": "rest-param-desc-compare-from-id"
+					"x-i18n-description": "rest-param-desc-compare-from-id",
+					"example": 847170467
 				},
 				"slot_role": {
 					"type": "string",
-					"x-i18n-description": "rest-param-desc-compare-from-slotrole"
+					"x-i18n-description": "rest-param-desc-compare-from-slotrole",
+					"example": "main"
 				},
 				"sections": {
 					"type": "array",
@@ -36,15 +38,18 @@
 						"properties": {
 							"level": {
 								"type": "integer",
-								"x-i18n-description": "rest-param-desc-compare-from-section-level"
+								"x-i18n-description": "rest-param-desc-compare-from-section-level",
+								"example": 2
 							},
 							"heading": {
 								"type": "string",
-								"x-i18n-description": "rest-param-desc-compare-from-section-heading"
+								"x-i18n-description": "rest-param-desc-compare-from-section-heading",
+								"example": "==Description=="
 							},
 							"offset": {
 								"type": "integer",
-								"x-i18n-description": "rest-param-desc-compare-from-section-offset"
+								"x-i18n-description": "rest-param-desc-compare-from-section-offset",
+								"example": 3006
 							}
 						}
 					}
@@ -62,11 +67,13 @@
 			"properties": {
 				"id": {
 					"type": "integer",
-					"x-i18n-description": "rest-param-desc-compare-to"
+					"x-i18n-description": "rest-param-desc-compare-to",
+					"example": 851733941
 				},
 				"slot_role": {
 					"type": "string",
-					"x-i18n-description": "rest-param-desc-compare-to-slotrole"
+					"x-i18n-description": "rest-param-desc-compare-to-slotrole",
+					"example": "main"
 				},
 				"sections": {
 					"type": "array",
@@ -81,15 +88,18 @@
 						"properties": {
 							"level": {
 								"type": "integer",
-								"x-i18n-description": "rest-param-desc-compare-to-section-level"
+								"x-i18n-description": "rest-param-desc-compare-to-section-level",
+								"example": 2
 							},
 							"heading": {
 								"type": "string",
-								"x-i18n-description": "rest-param-desc-compare-to-section-heading"
+								"x-i18n-description": "rest-param-desc-compare-to-section-heading",
+								"example": "==Description=="
 							},
 							"offset": {
 								"type": "integer",
-								"x-i18n-description": "rest-param-desc-compare-to-section-offset"
+								"x-i18n-description": "rest-param-desc-compare-to-section-offset",
+								"example": 3006
 							}
 						}
 					}
@@ -100,7 +110,101 @@
 			"type": "array",
 			"x-i18n-description": "rest-param-desc-compare-diff",
 			"items": {
-				"type": "object"
+				"type": "object",
+				"required": [
+					"type",
+					"text",
+					"offset"
+				],
+				"properties": {
+					"type": {
+						"type": "integer",
+						"x-i18n-description": "rest-param-desc-diff-type",
+						"example": 3
+					},
+					"lineNumber": {
+						"type": "integer",
+						"x-i18n-description": "rest-param-desc-diff-linenumber",
+						"example": 320
+					},
+					"text": {
+						"type": "string",
+						"x-i18n-description": "rest-param-desc-diff-text",
+						"example": "* {{Visible anchor|Saturn|text=[[Saturn]]}} (9.08–10.12&nbsp;AU)<ref name=\"nasa-factsheet\" group=\"D\" /> has a distinctive visible [[Rings of Saturn|ring system]] orbiting around its equator composed of small ice and rock particles. Like Jupiter, it is mostly made of hydrogen and helium.<ref>{{Cite web |date=18 August 2021 |title=In Depth: Saturn |url=https://solarsystem.nasa.gov/planets/saturn/in-depth |url-status=live |archive-url=https://web.archive.org/web/20180224210031/https://solarsystem.nasa.gov/planets/saturn/in-depth |archive-date=24 February 2018 |access-date=31 March 2022 |website=NASA Science: Solar System Exploration}}</ref> At its north and south poles, Saturn has peculiar [[Saturn's hexagon|hexagon-shaped storms]] larger than the diameter of Earth. [[Magnetosphere of Saturn|Saturn has a magnetosphere]] capable of producing weak auroras. {{As of|2026}}, Saturn has [[Moons of Saturn|292285 confirmed satellites]], grouped into:"
+					},
+					"highlightRanges": {
+						"type": "array",
+						"x-i18n-description": "rest-param-desc-diff-highlightranges",
+						"items": {
+							"type": "object",
+							"properties": {
+								"start": {
+									"type": "integer",
+									"x-i18n-description": "rest-param-desc-diff-highlightranges-start",
+									"example": 911
+								},
+								"length": {
+									"type": "integer",
+									"x-i18n-description": "rest-param-desc-diff-highlightranges-length",
+									"example": 3
+								},
+								"type": {
+									"type": "integer",
+									"x-i18n-description": "rest-param-desc-diff-highlightranges-type",
+									"example": 1
+								}
+							}
+						}
+					},
+					"moveInfo": {
+						"type": "object",
+						"required": [
+							"id",
+							"linkId",
+							"linkDirection"
+						],
+						"x-i18n-description": "rest-param-desc-diff-moveinfo",
+						"properties": {
+							"id": {
+								"type": "string",
+								"x-i18n-description": "rest-param-desc-diff-moveinfo-id",
+								"example": "movedpara_2_5_lhs"
+							},
+							"linkId": {
+								"type": "string",
+								"x-i18n-description": "rest-param-desc-diff-moveinfo-linkid",
+								"example": "movedpara_4_2_rhs"
+							},
+							"linkDirection": {
+								"type": "integer",
+								"x-i18n-description": "rest-param-desc-diff-moveinfo-linkdirection",
+								"example": 0
+							}
+						}
+					},
+					"offset": {
+						"type": "object",
+						"x-i18n-description": "rest-param-desc-diff-offset",
+						"required": [
+							"from",
+							"to"
+						],
+						"properties": {
+							"from": {
+								"type": "integer",
+								"x-i18n-description": "rest-param-desc-diff-offset-from",
+								"nullable": true,
+								"example": 136129
+							},
+							"to": {
+								"type": "integer",
+								"x-i18n-description": "rest-param-desc-diff-offset-to",
+								"nullable": true,
+								"example": 136129
+							}
+						}
+					}
+				}
 			}
 		}
 	}
