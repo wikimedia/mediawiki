@@ -287,10 +287,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 				$info = $infos[(int)$ch];
 				$errno = $info['result'];
 				if ( $errno !== 0 ) {
-					$req['response']['error'] = "(curl error: $errno)";
-					if ( function_exists( 'curl_strerror' ) ) {
-						$req['response']['error'] .= " " . curl_strerror( $errno );
-					}
+					$req['response']['error'] = "(curl error: $errno) " .
+						curl_strerror( $errno ) . " " . curl_error( $ch );
 					$this->logger->error( 'Error fetching URL "{url}": {error}', [
 						'url' => $req['url'],
 						'error' => $req['response']['error'],
