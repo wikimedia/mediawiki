@@ -450,6 +450,39 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		);
 	} );
 
+	QUnit.test( 'addPortletLink (config object)', ( assert ) => {
+		$( '#qunit-fixture' ).html( '<ul id="p-toolbox"></ul>' );
+
+		const link = util.addPortletLink( 'p-toolbox', {
+			href: '#',
+			text: 'Label',
+			id: 't-foo',
+			tooltip: 'Tooltip [shift-x]',
+			accesskey: 'z'
+		} );
+
+		assert.strictEqual(
+			link.querySelector( 'a' ).title,
+			'Tooltip [test-z]',
+			'Change a pre-existing accesskey in a tooltip using config object'
+		);
+		assert.domEqual(
+			link,
+			{
+				tagName: 'LI',
+				attributes: { id: 't-foo', class: 'mw-list-item mw-list-item-js' },
+				contents: [
+					{
+						tagName: 'A',
+						attributes: { href: '#', title: 'Tooltip [test-z]', accesskey: 'z' },
+						contents: [ 'Label' ]
+					}
+				]
+			},
+			'Link element created using config object'
+		);
+	} );
+
 	QUnit.test( 'addPortletLink (nested list)', ( assert ) => {
 		// Regression test for T37082
 		$( '#qunit-fixture' ).html(

@@ -656,6 +656,22 @@ const util = {
 		mw.hook( 'util.addPortlet' ).fire( portlet, selectorHint );
 		return portlet;
 	},
+
+	/**
+	 * @typedef {Object} PortletOptions
+	 * @property {string} href Link URL
+	 * @property {string} text Link text
+	 * @property {string} [id] ID of the list item, should be unique and preferably have
+	 *  the appropriate prefix ('ca-', 'pt-', 'n-' or 't-')
+	 * @property {string} [tooltip] Text to show when hovering over the link, without accesskey suffix
+	 * @property {string} [accesskey] Access key to activate this link. One character only,
+	 *  avoid conflicts with other links. Use `$( '[accesskey=x]' )` in the console to
+	 *  see if 'x' is already used.
+	 * @property {HTMLElement|jQuery|string} [nextnode] Element that the new item should be added before.
+	 *  Must be another item in the same list, it will be ignored otherwise.
+	 *  Can be specified as DOM reference, as jQuery object, or as CSS selector string.
+	 */
+
 	/**
 	 * Add a link to a portlet menu on the page.
 	 *
@@ -705,22 +721,28 @@ const util = {
 	 * } );
 	 * ```
 	 *
-	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
-	 * @param {string} href Link URL
-	 * @param {string} text Link text
-	 * @param {string} [id] ID of the list item, should be unique and preferably have
-	 *  the appropriate prefix ('ca-', 'pt-', 'n-' or 't-')
-	 * @param {string} [tooltip] Text to show when hovering over the link, without accesskey suffix
-	 * @param {string} [accesskey] Access key to activate this link. One character only,
-	 *  avoid conflicts with other links. Use `$( '[accesskey=x]' )` in the console to
-	 *  see if 'x' is already used.
-	 * @param {HTMLElement|jQuery|string} [nextnode] Element that the new item should be added before.
-	 *  Must be another item in the same list, it will be ignored otherwise.
-	 *  Can be specified as DOM reference, as jQuery object, or as CSS selector string.
+	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal').
+	 * @param {PortletOptions|string} hrefOrOptions Portlet options. If a string, this will fall back to href for backwards compatibility.
+	 * @param {string} [_text] For backwards compatibility. See PortletOptions for documentation.
+	 * @param {string} [_id] For backwards compatibility. See PortletOptions for documentation.
+	 * @param {string} [_tooltip] For backwards compatibility. See PortletOptions for documentation.
+	 * @param {string} [_accesskey] For backwards compatibility. See PortletOptions for documentation.
+	 * @param {HTMLElement|jQuery|string} [_nextnode] For backwards compatibility. See PortletOptions for documentation.
 	 * @fires Hooks~'util.addPortletLink'
 	 * @return {HTMLElement|null} The added list item, or null if no element was added.
 	 */
-	addPortletLink( portletId, href, text, id, tooltip, accesskey, nextnode ) {
+	addPortletLink( portletId, hrefOrOptions, _text, _id, _tooltip, _accesskey, _nextnode ) {
+		const options = $.isPlainObject( hrefOrOptions ) ? hrefOrOptions : {
+			href: hrefOrOptions,
+			text: _text,
+			id: _id,
+			tooltip: _tooltip,
+			accesskey: _accesskey,
+			nextnode: _nextnode
+		};
+		const { href, text, id, tooltip, accesskey } = options;
+		let { nextnode } = options;
+
 		if ( !portletId ) {
 			// Avoid confusing id="undefined" lookup
 			return null;
