@@ -53,7 +53,7 @@
 	"exif-relatedsoundfile": "관련된 오디오 파일",
 	"exif-datetimeoriginal": "날짜와 시간",
 	"exif-datetimedigitized": "날짜와 시간(디지털 데이터)",
-	"exif-subsectime": "파일을 수정한 날짜와 시간 (초단위 미만)",
+	"exif-subsectime": "파일을 수정한 시간날짜 (초단위 미만)",
 	"exif-subsectimeoriginal": "파일을 만든 날짜와 시간 (초단위 미만)",
 	"exif-subsectimedigitized": "디지털화된 날짜와 시간 (초단위 미만)",
 	"exif-exposuretime": "노출 시간",
@@ -403,6 +403,9 @@
 	"exif-digitalsourcetype": "디지털 미디어의 출처",
 	"exif-digitalsourcetype-digitalcapture": "디지털 카메라 또는 녹음기",
 	"exif-digitalsourcetype-computationalcapture": "디지털 카메라 또는 레코더 (여러 프레임 합쳐짐)",
+	"exif-digitalsourcetype-negativefilm": "투명 네거티브 필름으로부터 디지털화됨",
+	"exif-digitalsourcetype-positivefilm": "투명 포지티브 필름으로부터 디지털화됨",
+	"exif-digitalsourcetype-print": "불투명 매체로부터 디지털화됨",
 	"exif-digitalsourcetype-minorhumanedits": "사람이 사소하게 수정한 원본 미디어",
 	"exif-digitalsourcetype-humanedits": "사람이 수정한 미디어",
 	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "생성형 AI를 사용해 수정한 미디어",
@@ -413,5 +416,9 @@
 	"exif-digitalsourcetype-datadrivenmedia": "인간 프로그래밍 또는 창의력으로 만든 디지털 미디어의 데이터 표현",
 	"exif-digitalsourcetype-trainedalgorithmicmedia": "생성형 AI를 사용해 생성됨",
 	"exif-digitalsourcetype-algorithmicmedia": "인공지능이 아닌 알고리즘으로만 생성된 미디어",
-	"exif-digitalsourcetype-screencapture": "스크린 캡쳐"
+	"exif-digitalsourcetype-screencapture": "스크린 캡쳐",
+	"exif-digitalsourcetype-virtualrecording": "생성형 AI 및/또는 캡쳐된 요소를 기반으로 한 가상 이벤트의 실시간 녹화",
+	"exif-digitalsourcetype-composite": "일부가 생성형 AI일 수도 있고 아닐 수도 있는, 여러 요소의 혼합 또는 복합체",
+	"exif-digitalsourcetype-compositecapture": "모두 실제 세계를 포착한, 여러 요소의 혼합 또는 복합체",
+	"exif-digitalsourcetype-compositesynthetic": "적어도 하나가 생성형 AI인, 여러 요소의 혼합 또는 복합체"
 }

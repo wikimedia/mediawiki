@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Ykhwong",
-			"Bisang"
+			"Bisang",
+			"Tensama0415"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "브레드크럼",
 	"cdx-breadcrumb-overflow-label": "더 많은 둘러보기 옵션",
 	"cdx-chip-input-chip-added": "$1 칩이 추가되었습니다.",
 	"cdx-chip-input-chip-removed": "$1 칩이 제거되었습니다.",

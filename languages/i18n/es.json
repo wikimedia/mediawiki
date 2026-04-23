@@ -3330,7 +3330,7 @@
 	"confirm-watch-button": "Aceptar",
 	"confirm-watch-top": "¿Añadir esta página a tu lista de seguimiento?",
 	"confirm-watch-label": "Tiempo de seguimiento:",
-	"watchlist-expiry-options": "Permanente:infinito,una semana:1 semana,un mes:1 mes,tres meses:3 meses,seis meses:6 meses,un año:1 año",
+	"watchlist-expiry-options": "Indefinido:infinite,una semana:1 week,un mes:1 month,tres meses:3 months,seis meses:6 months,un año:1 year",
 	"watchlist-expires-in-aria-label": "Elemento temporal en la lista de seguimiento",
 	"confirm-watch-button-expiry": "Vigilar",
 	"confirm-unwatch-button": "Aceptar",

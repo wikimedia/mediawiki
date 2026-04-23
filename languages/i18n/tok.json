@@ -33,7 +33,8 @@
 			"Amphidromus Cantaloupe",
 			"Natroute",
 			"AtTheTownHouse",
-			"Palinasin"
+			"Palinasin",
+			"Tymewalk"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|kulupu}}",
@@ -1796,6 +1797,9 @@
 	"block-user-no-active-range-blocks": "kulupu pi nanpa IP la mi lukin ala e weka pi ken pali lon tenpo ni.",
 	"block-user-previous-blocks": "weka pi ken pali la pini",
 	"block-user-no-previous-blocks": "mi lukin ala e weka pini pi ken pali.",
+	"block-item-remove": "o weka",
+	"block-item-edit": "o ante",
+	"block-target-placeholder": "nimi jan anu nanpa IP anu kulupu pi nanpa IP",
 	"block-removal-confirm-no": "o ala",
 	"blocklist": "jan pi ken weka",
 	"autoblocklist-submit": "o alasa",

@@ -445,5 +445,7 @@
 	"exif-digitalsourcetype-algorithmicmedia": "Медіа, створене виключно не-ШІ алгоритмом",
 	"exif-digitalsourcetype-screencapture": "Знімок екрана",
 	"exif-digitalsourcetype-virtualrecording": "Живий запис віртуальної події, заснованої на генеративному ШІ та/або захоплених елементах",
-	"exif-digitalsourcetype-composite": "Суміш або композиція з кількох елементів, будь-який із яких може бути або не бути створений генеративним ШІ"
+	"exif-digitalsourcetype-composite": "Суміш або композиція з кількох елементів, будь-який із яких може бути або не бути створений генеративним ШІ",
+	"exif-digitalsourcetype-compositecapture": "Суміш або композиція кількох елементів, які є фіксаціями реального життя",
+	"exif-digitalsourcetype-compositesynthetic": "Суміш або композиція з кількох елементів, принаймні один з яких є генеративним ШІ"
 }

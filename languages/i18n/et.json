@@ -2137,7 +2137,7 @@
 	"addedwatchexpiryhours": "\"[[:$1]]\" ja selle arutelulehekülg on lisatud mõneks tunniks sinu [[Special:Watchlist|jälgimisloendisse]].",
 	"addedwatchexpiryhours-talk": "\"[[:$1]]\" ja sellega seotud lehekülg on lisatud mõneks tunniks sinu [[Special:Watchlist|jälgimisloendisse]].",
 	"addedwatchexpirytext": "\"[[:$1]]\" ja selle arutelulehekülg on lisatud sinu [[Special:Watchlist|jälgimisloendisse]] tähtajaga $2.",
-	"addedwatchexpirytext-talk": "\"[[:$1]]\" seotud lehekülg on lisatud sinu [[Special:Watchlist|jälgimisloendisse]] tähtajaga $2.",
+	"addedwatchexpirytext-talk": "\"[[:$1]]\" ja sellega seotud lehekülg on lisatud sinu [[Special:Watchlist|jälgimisloendisse]] tähtajaga $2.",
 	"addedwatchindefinitelytext": "\"[[:$1]]\" ja selle arutelulehekülg on lisatud sinu [[Special:Watchlist|jälgimisloendisse]] tähtajatult.",
 	"addedwatchindefinitelytext-talk": "\"[[:$1]]\" ja seotud lehekülg on lisatud sinu [[Special:Watchlist|jälgimisloendisse]] tähtajatult.",
 	"removewatch": "Eemalda jälgimisloendist",

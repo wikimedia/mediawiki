@@ -92,7 +92,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Ejs-80",
-			"Papukaijo1"
+			"Papukaijo1",
+			"Wikipeedikko"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Luokka|Luokat}}",
@@ -3374,7 +3375,7 @@
 	"tag-mw-undo-description": "Muokkaukset, jotka kumoavat edelliset muokkaukset kumoamislinkillä",
 	"tag-mw-manual-revert": "Muokkaamalla palautettu",
 	"tag-mw-manual-revert-description": "Muokkaukset, joissa sivu palautetaan käsin aikaisemmin esiintyneeseen versioon",
-	"tag-mw-reverted": "Peräytetty",
+	"tag-mw-reverted": "Tämä on kumottu",
 	"tag-mw-reverted-description": "Muokkaukset, jotka kumottiin myöhemmin toisella muokkauksella",
 	"tag-mw-server-side-upload": "Palvelinpuolen tallennus",
 	"tag-mw-server-side-upload-description": "Ylläpitoskripteillä tallennetut mediatiedostot",
