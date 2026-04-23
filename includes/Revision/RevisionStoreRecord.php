@@ -122,14 +122,8 @@ class RevisionStoreRecord extends RevisionRecord {
 		return $this->mCurrent;
 	}
 
-	/**
-	 * MCR migration note: this replaced Revision::isDeleted
-	 *
-	 * @param int $field One of DELETED_* bitfield constants
-	 *
-	 * @return bool
-	 */
-	public function isDeleted( $field ) {
+	/** @inheritDoc */
+	public function isDeleted( int $field ) {
 		if ( $this->isCurrent() && $field === self::DELETED_TEXT ) {
 			// Latest revisions of pages cannot have the content hidden. Skipping this
 			// check is very useful for Parser as it fetches templates using newKnownCurrent().
@@ -141,7 +135,7 @@ class RevisionStoreRecord extends RevisionRecord {
 	}
 
 	/** @inheritDoc */
-	public function userCan( $field, Authority $performer ) {
+	public function userCan( int $field, Authority $performer ) {
 		if ( $this->isCurrent() && $field === self::DELETED_TEXT ) {
 			// Latest revisions of pages cannot have the content hidden. Skipping this
 			// check is very useful for Parser as it fetches templates using newKnownCurrent().
@@ -181,24 +175,14 @@ class RevisionStoreRecord extends RevisionRecord {
 		return $this->mSlots->computeSha1();
 	}
 
-	/**
-	 * @param int $audience
-	 * @param Authority|null $performer
-	 *
-	 * @return UserIdentity The identity of the revision author, null if access is forbidden.
-	 */
-	public function getUser( $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
+	/** @inheritDoc */
+	public function getUser( int $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
 		// overwritten just to add a guarantee to the contract
 		return parent::getUser( $audience, $performer );
 	}
 
-	/**
-	 * @param int $audience
-	 * @param Authority|null $performer
-	 *
-	 * @return CommentStoreComment The revision comment, null if access is forbidden.
-	 */
-	public function getComment( $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
+	/** @inheritDoc */
+	public function getComment( int $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
 		// overwritten just to add a guarantee to the contract
 		return parent::getComment( $audience, $performer );
 	}

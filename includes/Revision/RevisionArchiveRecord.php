@@ -140,24 +140,14 @@ class RevisionArchiveRecord extends RevisionRecord {
 		return $this->mSlots->computeSha1();
 	}
 
-	/**
-	 * @param int $audience
-	 * @param Authority|null $performer
-	 *
-	 * @return UserIdentity The identity of the revision author, null if access is forbidden.
-	 */
-	public function getUser( $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
+	/** @inheritDoc */
+	public function getUser( int $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
 		// overwritten just to add a guarantee to the contract
 		return parent::getUser( $audience, $performer );
 	}
 
-	/**
-	 * @param int $audience
-	 * @param Authority|null $performer
-	 *
-	 * @return CommentStoreComment The revision comment, null if access is forbidden.
-	 */
-	public function getComment( $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
+	/** @inheritDoc */
+	public function getComment( int $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
 		// overwritten just to add a guarantee to the contract
 		return parent::getComment( $audience, $performer );
 	}
@@ -171,7 +161,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 	}
 
 	/** @inheritDoc */
-	public function userCan( $field, Authority $performer ) {
+	public function userCan( int $field, Authority $performer ) {
 		// This revision belongs to a deleted page, so check the relevant permissions as well. (T345777)
 
 		// Viewing the content requires either 'deletedtext' or 'undelete' (for legacy reasons)
@@ -197,11 +187,11 @@ class RevisionArchiveRecord extends RevisionRecord {
 	}
 
 	/** @inheritDoc */
-	public function audienceCan( $field, $audience, ?Authority $performer = null ) {
+	public function audienceCan( int $field, int $audience, ?Authority $performer = null ) {
 		// This revision belongs to a deleted page, so check the relevant permissions as well. (T345777)
 		// See userCan().
 		if (
-			$audience == self::FOR_PUBLIC &&
+			$audience === self::FOR_PUBLIC &&
 			( $field === self::DELETED_TEXT || $field === self::DELETED_COMMENT )
 		) {
 			// TODO: Should this use PermissionManager::isEveryoneAllowed() or something?

@@ -352,7 +352,14 @@ trait RevisionRecordTests {
 	}
 
 	public static function provideUserCanBitfield() {
-		yield [ 0, 0, [], null, true ];
+		// Any valid $field returns true when the revision is fully visible
+		yield [
+			0,
+			RevisionRecord::DELETED_TEXT,
+			[],
+			null,
+			true
+		];
 		// Bitfields match, user has no permissions
 		yield [
 			RevisionRecord::DELETED_TEXT,
@@ -447,6 +454,43 @@ trait RevisionRecordTests {
 			$expected,
 			RevisionRecord::userCanBitfield( $bitField, $field, $performer, $title )
 		);
+	}
+
+	/** @dataProvider provideUserCanBitfieldFieldValidation */
+	public function testUserCanBitfieldFieldValidation( int $field, bool $shouldThrow ): void {
+		$performer = $this->mockRegisteredAuthorityWithPermissions( [] );
+
+		if ( $shouldThrow ) {
+			$this->expectException( \UnexpectedValueException::class );
+		} else {
+			$this->expectNotToPerformAssertions();
+		}
+
+		RevisionRecord::userCanBitfield( 0, $field, $performer );
+	}
+
+	public static function provideUserCanBitfieldFieldValidation(): iterable {
+		$validFields = [
+			RevisionRecord::DELETED_TEXT,
+			RevisionRecord::DELETED_COMMENT,
+			RevisionRecord::DELETED_USER,
+			RevisionRecord::DELETED_RESTRICTED,
+		];
+
+		for ( $field = 0; $field <= 15; $field++ ) {
+			yield 'Bitfield with value ' . $field => [
+				'field' => $field,
+				'shouldThrow' => !in_array( $field, $validFields, true ),
+			];
+		}
+	}
+
+	public function testUserCanBitfieldRejectsUnknownBits() {
+		$this->expectException( \UnexpectedValueException::class );
+
+		$performer = $this->mockRegisteredAuthorityWithPermissions( [] );
+
+		RevisionRecord::userCanBitfield( 16, 16, $performer );
 	}
 
 	public static function provideHasSameContent() {

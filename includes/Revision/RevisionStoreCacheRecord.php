@@ -67,15 +67,8 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 		return parent::getVisibility();
 	}
 
-	/**
-	 * Overridden to ensure that we return a fresh value and not a cached one.
-	 *
-	 * @param int $audience
-	 * @param Authority|null $performer
-	 *
-	 * @return UserIdentity The identity of the revision author, null if access is forbidden.
-	 */
-	public function getUser( $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
+	/** @inheritDoc */
+	public function getUser( int $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
 		if ( $this->mCallback ) {
 			$this->loadFreshRow();
 		}
