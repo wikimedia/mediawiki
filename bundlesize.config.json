@@ -31,8 +31,9 @@
 	},
 	{
 		"@owner": "N/A",
+		"@note": "This module fluctuates based on mw.config and mw.user.options defaults added by extensions via hooks",
 		"resourceModule": "mediawiki.base",
-		"maxSizeUncompressed": "17.0 kB"
+		"maxSizeUncompressed": null
 	},
 	{
 		"@owner": "N/A",
