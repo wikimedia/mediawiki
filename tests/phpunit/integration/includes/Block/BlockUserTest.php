@@ -139,8 +139,29 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( DatabaseBlock::class, $block );
 		$this->assertSame( 'test hideuser', $block->getReasonComment()->text );
 		$this->assertTrue( $block->getHideName() );
+		$this->assertTrue( $block->getHideBlock() );
 
 		$this->assertBlockLog( 'suppress', 'block', $performer, $block, [ 'hiddenname' ] );
+	}
+
+	public function testHideBlock(): void {
+		$performer = $this->getTestUser( [ 'sysop', 'suppress' ] )->getUser();
+
+		$status = $this->blockUserFactory->newBlockUser(
+			$this->user,
+			$performer,
+			'infinity',
+			'test hideblock',
+			[ 'isHideBlock' => true ]
+		)->placeBlock();
+		$this->assertStatusGood( $status );
+		$block = $this->user->getBlock();
+		$this->assertInstanceOf( DatabaseBlock::class, $block );
+		$this->assertSame( 'test hideblock', $block->getReasonComment()->text );
+		$this->assertTrue( $block->getHideBlock() );
+		$this->assertFalse( $block->getHideName() );
+
+		$this->assertBlockLog( 'suppress', 'block', $performer, $block, [ 'hiddenblock' ] );
 	}
 
 	public function testExistingPage() {
@@ -356,13 +377,24 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusError( 'ipb_hide_invalid', $blockStatus );
 	}
 
-	public function testPlaceBlockForHideUserBlockWhenUserCannotHideUsers(): void {
+	public function testPlaceBlockForHideUserWhenUserCannotHideUsers(): void {
 		$blockStatus = $this->blockUserFactory->newBlockUser(
 			$this->user,
 			$this->mockRegisteredAuthorityWithoutPermissions( [ 'hideuser' ] ),
 			'infinity',
 			'test block',
 			[ 'isHideUser' => true ]
+		)->placeBlock();
+		$this->assertStatusError( 'badaccess-group0', $blockStatus );
+	}
+
+	public function testPlaceBlockForHideBlockWhenUserCannotHideUsers(): void {
+		$blockStatus = $this->blockUserFactory->newBlockUser(
+			$this->user,
+			$this->mockRegisteredAuthorityWithoutPermissions( [ 'hideuser' ] ),
+			'infinity',
+			'test block',
+			[ 'isHideBlock' => true ]
 		)->placeBlock();
 		$this->assertStatusError( 'badaccess-group0', $blockStatus );
 	}

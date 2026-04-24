@@ -124,6 +124,8 @@ class BlockUser {
 	/** @var bool */
 	private $isHideUser = false;
 
+	private bool $isHideBlock = false;
+
 	/**
 	 * @var bool
 	 *
@@ -171,6 +173,8 @@ class BlockUser {
 	 *                                   limit block evasion?
 	 *   - isUserTalkEditBlocked       : Is editing blocked user's own talk page prevented?
 	 *   - isHideUser                  : Should blocked user's name be hidden (needs hideuser)?
+	 *   - isHideBlock                 : Should the block be hidden (assumed true if isHideUser is set and
+	 *                                   needs hideuser)?
 	 *   - isPartial                   : Is this block partial? This is ignored when
 	 *                                   blockRestrictions is not an empty array.
 	 * @param AbstractRestriction[] $blockRestrictions
@@ -284,6 +288,10 @@ class BlockUser {
 		if ( isset( $blockOptions['isHideUser'] ) && $this->target instanceof UserBlockTarget ) {
 			$this->isHideUser = $blockOptions['isHideUser'];
 		}
+
+		if ( isset( $blockOptions['isHideBlock'] ) ) {
+			$this->isHideBlock = $blockOptions['isHideBlock'];
+		}
 	}
 
 	/**
@@ -349,6 +357,7 @@ class BlockUser {
 		$block->isSitewide( $isSitewide );
 		$block->isUsertalkEditAllowed( !$this->isUserTalkEditBlocked );
 		$block->setHideName( $this->isHideUser );
+		$block->setHideBlock( $this->isHideBlock );
 
 		$blockId = $block->getId();
 		if ( $blockId === null ) {
@@ -423,7 +432,7 @@ class BlockUser {
 		if (
 			$this->blockPermissionChecker
 				->checkBasePermissions(
-					$this->isHideUser || $priorHideUser
+					$this->isHideUser || $this->isHideBlock || $priorHideUser
 				) !== true
 		) {
 			$this->logger->debug( 'placeBlock: checkBasePermissions failed' );
@@ -774,7 +783,7 @@ class BlockUser {
 	 * @return ManualLogEntry
 	 */
 	private function prepareLogEntry( bool $isReblock ) {
-		$logType = $this->isHideUser ? 'suppress' : 'block';
+		$logType = $this->isHideUser || $this->isHideBlock ? 'suppress' : 'block';
 		$logAction = $isReblock ? 'reblock' : 'block';
 		// FIXME: Shouldn't this use BlockTarget::getLogPage?
 		$title = Title::makeTitle( NS_USER, $this->target->toString() );
@@ -836,6 +845,11 @@ class BlockUser {
 		if ( $this->isHideUser ) {
 			// For grepping: message block-log-flags-hiddenname
 			$flags[] = 'hiddenname';
+		}
+
+		if ( $this->isHideBlock && !$this->isHideUser ) {
+			// For grepping: message block-log-flags-hiddenblock
+			$flags[] = 'hiddenblock';
 		}
 
 		return implode( ',', $flags );
