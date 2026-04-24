@@ -9610,6 +9610,16 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Controls the report-uri directive within a content security policy
+	 *
+	 * @since 1.47
+	 */
+	public const CSPUseReportURIDirective = [
+		'default' => false,
+		'type' => 'false|object',
+	];
+
+	/**
 	 * List of urls which appear often to be triggering CSP reports
 	 * but do not appear to be caused by actual content, but by client
 	 * software inserting scripts (i.e. Ad-Ware).

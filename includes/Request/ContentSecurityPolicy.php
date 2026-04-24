@@ -30,6 +30,13 @@ class ContentSecurityPolicy {
 	private const UPLOAD_CSP_PDF = "default-src 'none'; style-src 'unsafe-inline' data:; object-src 'self';" .
 		"font-src data:; img-src data: 'self'; media-src data: 'self';";
 
+	// Reporting-Endpoints header name
+	private const REPORTING_ENDPOINTS_HEADER = "Reporting-Endpoints";
+
+	// report-to URI names, as set via Reporting-Endpoints header
+	private const REPORT_TO_NAME = "csp-report-to-endpoint";
+	private const REPORT_TO_REPORT_ONLY_NAME = "csp-report-to-report-only-endpoint";
+
 	/** @var Config The site configuration object */
 	private $mwConfig;
 	/** @var WebResponse */
@@ -68,7 +75,7 @@ class ContentSecurityPolicy {
 	 * Get the CSP directives for the wiki.
 	 * @return string[] Array of CSP directives (header name => header value). The array keys will be
 	 *    ContentSecurityPolicy::FULL_MODE and ContentSecurityPolicy::REPORT_ONLY_MODE; they might not
-	 *    be present if the wiki is configured no to use the given type of CSP.
+	 *    be present if the wiki is configured not to use the given type of CSP.
 	 * @phan-return array{Content-Security-Policy?:string,Content-Security-Policy-Report-Only?:string}
 	 * @since 1.42
 	 */
@@ -86,7 +93,7 @@ class ContentSecurityPolicy {
 	}
 
 	/**
-	 * Send CSP headers based on wiki config
+	 * Send CSP and related headers based on wiki config
 	 *
 	 * Main method that callers (OutputPage) are expected to use.
 	 * As a general rule, you would never call this in an extension unless
@@ -95,6 +102,14 @@ class ContentSecurityPolicy {
 	 * @since 1.35
 	 */
 	public function sendHeaders() {
+		// send Reporting-Endpoints header
+		// TODO: this should eventually be generalized somewhere else within includes/Request
+		$reportingHeader = $this->getReportingEndpointsHeader();
+		if ( $reportingHeader != '' ) {
+			$this->response->header( $reportingHeader );
+		}
+
+		// send CSP headers
 		$directives = $this->getDirectives();
 		foreach ( $directives as $headerName => $policy ) {
 			$this->response->header( "$headerName: $policy" );
@@ -122,7 +137,30 @@ class ContentSecurityPolicy {
 		if ( $reportOnly === self::FULL_MODE ) {
 			return 'Content-Security-Policy';
 		}
+
 		throw new UnexpectedValueException( "Mode '$reportOnly' not recognised" );
+	}
+
+	/**
+	 * @return string value of Reporting Endpoints header name and value
+	 */
+	private function getReportingEndpointsHeader() {
+		$cspConfig = $this->mwConfig->get( MainConfigNames::CSPHeader );
+		$cspConfigReportOnly = $this->mwConfig->get( MainConfigNames::CSPReportOnlyHeader );
+
+		if ( !$cspConfig && !$cspConfigReportOnly ) {
+			return '';
+		}
+
+		$header = self::REPORTING_ENDPOINTS_HEADER . ": ";
+		if ( $cspConfig ) {
+			$header .= self::REPORT_TO_NAME . "='" . $this->getReportToURI( false ) . "'; ";
+		}
+		if ( $cspConfigReportOnly ) {
+			$header .= self::REPORT_TO_REPORT_ONLY_NAME . "='" . $this->getReportToURI( true ) . "'; ";
+		}
+
+		return $header;
 	}
 
 	/**
@@ -212,14 +250,30 @@ class ContentSecurityPolicy {
 		$this->hookRunner->onContentSecurityPolicyDefaultSource( $defaultSrc, $policyConfig, $mode );
 		$this->hookRunner->onContentSecurityPolicyScriptSource( $scriptSrc, $policyConfig, $mode );
 
-		if ( isset( $policyConfig['report-uri'] ) && $policyConfig['report-uri'] !== true ) {
-			if ( $policyConfig['report-uri'] === false ) {
-				$reportUri = false;
+		// TODO: formally deprecate report-uri after MW 1.47
+		$reportUri = false;
+		if ( $mwConfig->get( MainConfigNames::CSPUseReportURIDirective ) ) {
+			if ( isset( $policyConfig['report-uri'] ) && $policyConfig['report-uri'] !== true ) {
+				if ( $policyConfig['report-uri'] !== false ) {
+					$reportUri = $this->escapeUrlForCSP( $policyConfig['report-uri'] );
+				}
 			} else {
-				$reportUri = $this->escapeUrlForCSP( $policyConfig['report-uri'] );
+				$reportUri = $this->getReportUri( $mode );
+			}
+		}
+
+		if ( isset( $policyConfig['report-to'] ) && $policyConfig['report-to'] !== true ) {
+			if ( $policyConfig['report-to'] === false ) {
+				$reportToName = false;
+			} else {
+				$reportToName = $policyConfig['report-to'];
 			}
 		} else {
-			$reportUri = $this->getReportUri( $mode );
+			if ( $mode == self::REPORT_ONLY_MODE ) {
+				$reportToName = self::REPORT_TO_REPORT_ONLY_NAME;
+			} else {
+				$reportToName = self::REPORT_TO_NAME;
+			}
 		}
 
 		// Only send an img-src, if we're sending a restrictive default.
@@ -272,8 +326,10 @@ class ContentSecurityPolicy {
 			$directives[] = 'object-src ' . implode( ' ', $objectSrc );
 		}
 		if ( $reportUri ) {
-			$directives[] = 'report-to ' . $reportUri;
 			$directives[] = 'report-uri ' . $reportUri;
+		}
+		if ( $reportToName ) {
+			$directives[] = 'report-to ' . $reportToName;
 		}
 
 		$this->hookRunner->onContentSecurityPolicyDirectives( $directives, $policyConfig, $mode );
@@ -301,6 +357,30 @@ class ContentSecurityPolicy {
 		// Per spec, ';' and ',' must be hex-escaped in report URI
 		$reportUri = $this->escapeUrlForCSP( $reportUri );
 		return $reportUri;
+	}
+
+	/**
+	 * Get the default report-to URI
+	 *  - to be named and used with Reporting-Endpoints:
+	 *
+	 * @param bool $cspReportOnlyEnabled
+	 * @return string The URI to send reports to.
+	 * @throws UnexpectedValueException if given invalid mode.
+	 */
+	private function getReportToURI( $cspReportOnlyEnabled ) {
+		$apiArguments = [
+			'action' => 'cspreport',
+			'format' => 'json'
+		];
+
+		if ( $cspReportOnlyEnabled ) {
+			$apiArguments['reportonly'] = '1';
+		}
+		$reportToURI = wfAppendQuery( wfScript( 'api' ), $apiArguments );
+
+		// Per spec, ';' and ',' must be hex-escaped in report URI
+		$reportToURI = $this->escapeUrlForCSP( $reportToURI );
+		return $reportToURI;
 	}
 
 	/**

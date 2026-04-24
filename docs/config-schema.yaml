@@ -6017,6 +6017,14 @@ config-schema:
         description: |-
             Controls Content-Security-Policy-Report-Only header
             @since 1.32
+    CSPUseReportURIDirective:
+        default: false
+        type:
+            - boolean
+            - object
+        description: |-
+            Controls the report-uri directive within a content security policy
+            @since 1.47
     CSPFalsePositiveUrls:
         default:
             'https://3hub.co': true

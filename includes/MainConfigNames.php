@@ -3159,6 +3159,12 @@ class MainConfigNames {
 	public const CSPReportOnlyHeader = 'CSPReportOnlyHeader';
 
 	/**
+	 * Name constant for the CSPUseReportURIDirective setting, for use with Config::get()
+	 * @see MainConfigSchema::CSPUseReportURIDirective
+	 */
+	public const CSPUseReportURIDirective = 'CSPUseReportURIDirective';
+
+	/**
 	 * Name constant for the CSPFalsePositiveUrls setting, for use with Config::get()
 	 * @see MainConfigSchema::CSPFalsePositiveUrls
 	 */

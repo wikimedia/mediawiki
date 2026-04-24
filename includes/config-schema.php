@@ -1892,6 +1892,7 @@ return [
 			'ApiFrameOptions' => 'DENY',
 			'CSPHeader' => false,
 			'CSPReportOnlyHeader' => false,
+			'CSPUseReportURIDirective' => false,
 			'CSPFalsePositiveUrls' => [
 				'https://3hub.co' => true,
 				'https://morepro.info' => true,
@@ -3101,6 +3102,10 @@ return [
 				'object',
 			],
 			'CSPReportOnlyHeader' => [
+				'boolean',
+				'object',
+			],
+			'CSPUseReportURIDirective' => [
 				'boolean',
 				'object',
 			],

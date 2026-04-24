@@ -3144,6 +3144,12 @@ $wgCSPHeader = null;
 $wgCSPReportOnlyHeader = null;
 
 /**
+ * Config variable stub for the CSPUseReportURIDirective setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::CSPUseReportURIDirective
+ */
+$wgCSPUseReportURIDirective = null;
+
+/**
  * Config variable stub for the CSPFalsePositiveUrls setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::CSPFalsePositiveUrls
  */

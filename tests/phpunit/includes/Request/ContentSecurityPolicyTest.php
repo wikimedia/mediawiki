@@ -12,6 +12,12 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	/** @var ContentSecurityPolicy|TestingAccessWrapper */
 	private $csp;
 
+	/** @var CSPReportToEndpointName|string */
+	private static $CSPReportToEndpointName = 'csp-report-to-endpoint';
+
+	/** @var CSPReportToReportOnlyEndpointName|string */
+	private static $CSPReportToReportOnlyEndpointName = 'csp-report-to-report-only-endpoint';
+
 	protected function setUp(): void {
 		global $wgUploadDirectory;
 
@@ -115,11 +121,21 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAddScriptSrc() {
 		$this->csp->addScriptSrc( 'https://example.com:71' );
+
 		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::FULL_MODE );
 		$expected = "script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'" .
 			" sister-site.somewhere.com *.wikipedia.org https://example.com:71; default-src *" .
-			" data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to" .
-			" /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json";
+			" data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none';" .
+			" report-to " . self::$CSPReportToEndpointName;
+		$this->assertSame( $expected, $actual );
+
+		$this->setMwGlobals( 'wgCSPUseReportURIDirective', true );
+		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::FULL_MODE );
+		$expected = "script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'" .
+			" sister-site.somewhere.com *.wikipedia.org https://example.com:71; default-src *" .
+			" data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none';" .
+			" report-uri /w/api.php?action=cspreport&format=json;" .
+			" report-to " . self::$CSPReportToEndpointName;
 		$this->assertSame( $expected, $actual );
 	}
 
@@ -129,11 +145,20 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAddStyleSrc() {
 		$this->csp->addStyleSrc( 'style.example.com' );
+
 		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::REPORT_ONLY_MODE );
 		$expected = "script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'" .
 			" sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:;" .
 			" style-src * data: blob: style.example.com 'unsafe-inline'; object-src 'none'; report-to" .
-			" /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1";
+			self::$CSPReportToEndpointName;
+
+		$this->setMwGlobals( 'wgCSPUseReportURIDirective', true );
+		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::REPORT_ONLY_MODE );
+		$expected = "script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'" .
+			" sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:;" .
+			" style-src * data: blob: style.example.com 'unsafe-inline'; object-src 'none';" .
+			" report-uri /w/api.php?action=cspreport&format=json&reportonly=1;" .
+			" report-to " . self::$CSPReportToReportOnlyEndpointName;
 		$this->assertSame( $expected, $actual );
 	}
 
@@ -143,11 +168,20 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAddDefaultSrc() {
 		$this->csp->addDefaultSrc( '*.example.com' );
+
 		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::FULL_MODE );
 		$expected = "script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'" .
 			" sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:" .
 			" *.example.com; style-src * data: blob: *.example.com 'unsafe-inline';" .
-			" object-src 'none'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json";
+			" object-src 'none'; report-to " . self::$CSPReportToEndpointName;
+
+		$this->setMwGlobals( 'wgCSPUseReportURIDirective', true );
+		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::FULL_MODE );
+		$expected = "script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'" .
+			" sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:" .
+			" *.example.com; style-src * data: blob: *.example.com 'unsafe-inline';" .
+			" object-src 'none'; report-uri /w/api.php?action=cspreport&format=json;" .
+			" report-to " . self::$CSPReportToEndpointName;
 		$this->assertSame( $expected, $actual );
 	}
 
@@ -160,6 +194,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 		$expectedFull,
 		$expectedReport
 	) {
+		$this->setMwGlobals( 'wgCSPUseReportURIDirective', true );
 		$actualFull = $this->csp->makeCSPDirectives( $policy, ContentSecurityPolicy::FULL_MODE );
 		$actualReport = $this->csp->makeCSPDirectives(
 			$policy, ContentSecurityPolicy::REPORT_ONLY_MODE
@@ -174,94 +209,94 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 			[ false, '', '' ],
 			[
 				[],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 				"script-src 'unsafe-eval' blob: 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'"
 			],
 			[
 				true,
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'script-src' => [ 'http://example.com', 'http://something,else.com' ] ],
-				"script-src 'unsafe-eval' blob: 'self' http://example.com http://something%2Celse.com 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' http://example.com http://something%2Celse.com 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' http://example.com http://something%2Celse.com 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' http://example.com http://something%2Celse.com 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'unsafeFallback' => false ],
-				"script-src 'unsafe-eval' blob: 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'unsafeFallback' => true ],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'default-src' => false ],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'default-src' => true ],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'default-src' => [ 'https://foo.com', 'http://bar.com', 'baz.de' ] ],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'includeCORS' => false ],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'includeCORS' => false, 'default-src' => true ],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'includeCORS' => true ],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'report-uri' => false ],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'report-uri' => true ],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'report-uri' => 'https://example.com/index.php?foo;report=csp' ],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to https://example.com/index.php?foo%3Breport=csp; report-uri https://example.com/index.php?foo%3Breport=csp",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to https://example.com/index.php?foo%3Breport=csp; report-uri https://example.com/index.php?foo%3Breport=csp",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri https://example.com/index.php?foo%3Breport=csp; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri https://example.com/index.php?foo%3Breport=csp; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'object-src' => false ],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'object-src' => true ],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'object-src' => "'self'" ],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'self'; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'self'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'self'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'self'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
 				[ 'object-src' => [ "'self'", 'https://example.com/f;d' ] ],
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'self' https://example.com/f%3Bd; report-to /w/api.php?action=cspreport&format=json; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'self' https://example.com/f%3Bd; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'self' https://example.com/f%3Bd; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'self' https://example.com/f%3Bd; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 		];
 		// phpcs:enable
@@ -270,12 +305,20 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Request\ContentSecurityPolicy::makeCSPDirectives
 	 */
-	public function testMakeCSPDirectivesReportUri() {
+	public function testMakeCSPDirectivesReportUriAndReportTo() {
 		$actual = $this->csp->makeCSPDirectives(
 			true,
 			ContentSecurityPolicy::REPORT_ONLY_MODE
 		);
-		$expected = "script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to /w/api.php?action=cspreport&format=json&reportonly=1; report-uri /w/api.php?action=cspreport&format=json&reportonly=1";
+		$expected = "script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-to " . self::$CSPReportToReportOnlyEndpointName;
+		$this->assertSame( $expected, $actual );
+
+		$this->setMwGlobals( 'wgCSPUseReportURIDirective', true );
+		$actual = $this->csp->makeCSPDirectives(
+			true,
+			ContentSecurityPolicy::REPORT_ONLY_MODE
+		);
+		$expected = "script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName;
 		$this->assertSame( $expected, $actual );
 	}
 
@@ -390,8 +433,19 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 				'Content-Security-Policy' => "script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'"
 					. " sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:;"
 					. " style-src * data: blob: 'unsafe-inline'; object-src 'none';"
-					. " report-to /w/api.php?action=cspreport&format=json;"
-					. " report-uri /w/api.php?action=cspreport&format=json"
+					. " report-to " . self::$CSPReportToEndpointName
+			],
+			$this->csp->getDirectives()
+		);
+
+		$this->setMwGlobals( 'wgCSPUseReportURIDirective', true );
+		$this->assertSame(
+			[
+				'Content-Security-Policy' => "script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'"
+					. " sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:;"
+					. " style-src * data: blob: 'unsafe-inline'; object-src 'none';"
+					. " report-uri /w/api.php?action=cspreport&format=json;"
+					. " report-to " . self::$CSPReportToEndpointName
 			],
 			$this->csp->getDirectives()
 		);
@@ -401,15 +455,67 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Request\ContentSecurityPolicy::sendHeaders
 	 */
 	public function testSendHeaders() {
+		// csp header defined, no report-uri directive
 		$this->csp->sendHeaders();
 		$this->assertSame(
 			"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'"
 				. " sister-site.somewhere.com *.wikipedia.org; default-src *"
 				. " data: blob:; style-src * data: blob: 'unsafe-inline';"
-				. " object-src 'none'; report-to /w/api.php?action=cspreport&format=json;"
-				. " report-uri /w/api.php?action=cspreport&format=json",
+				. " object-src 'none'; report-to " . self::$CSPReportToEndpointName,
 			$this->csp->response->getHeader( 'Content-Security-Policy' )
 		);
+		$this->assertSame(
+			self::$CSPReportToEndpointName . "='/w/api.php?action=cspreport&format=json';",
+			$this->csp->response->getHeader( 'Reporting-Endpoints' )
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::sendHeaders
+	 */
+	public function testSendHeadersOnlyEnforceAndReportURI() {
+		// report-only disabled, report-uri directive set
+		$this->setMwGlobals( 'wgCSPUseReportURIDirective', true );
+		$this->setMwGlobals( 'wgCSPReportOnlyHeader', false );
+		$this->csp->sendHeaders();
+		$this->assertSame(
+			"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'"
+				. " sister-site.somewhere.com *.wikipedia.org; default-src *"
+				. " data: blob:; style-src * data: blob: 'unsafe-inline';"
+				. " object-src 'none'; report-uri /w/api.php?action=cspreport&format=json;"
+				. " report-to " . self::$CSPReportToEndpointName,
+				$this->csp->response->getHeader( 'Content-Security-Policy' )
+		);
+		$this->assertSame(
+			self::$CSPReportToEndpointName . "='/w/api.php?action=cspreport&format=json';",
+			$this->csp->response->getHeader( 'Reporting-Endpoints' )
+		);
 		$this->assertNull( $this->csp->response->getHeader( 'Content-Security-Policy-Report-Only' ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Request\ContentSecurityPolicy::sendHeaders
+	 */
+	public function testSendHeadersReportOnlyAndReportURI() {
+		// report-only enabled, csp header set to false
+		$this->setMwGlobals( 'wgCSPUseReportURIDirective', true );
+		$this->overrideConfigValue( MainConfigNames::CSPHeader, false );
+		$this->setMwGlobals( 'wgCSPHeader', false );
+		$this->setMwGlobals( 'wgCSPReportOnlyHeader', true );
+		$this->csp->sendHeaders();
+		$this->assertSame(
+			"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'"
+				. " sister-site.somewhere.com *.wikipedia.org; default-src *"
+				. " data: blob:; style-src * data: blob: 'unsafe-inline';"
+				. " object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1;"
+				. " report-to " . self::$CSPReportToReportOnlyEndpointName,
+				$this->csp->response->getHeader( 'Content-Security-Policy-Report-Only' )
+		);
+		$this->assertSame(
+			self::$CSPReportToReportOnlyEndpointName
+				. "='/w/api.php?action=cspreport&format=json&reportonly=1';",
+			$this->csp->response->getHeader( 'Reporting-Endpoints' )
+		);
+		$this->assertNull( $this->csp->response->getHeader( 'Content-Security-Policy' ) );
 	}
 }
