@@ -2910,7 +2910,6 @@
 	"confirmemail_noemail": "You do not have a valid email address set in your [[Special:Preferences|user preferences]].",
 	"confirmemail_text": "{{SITENAME}} requires that you validate your email address before using email features.\nActivate the button below to send a confirmation mail to your address.\nThe mail will include a link containing a code;\nload the link in your browser to confirm that your email address is valid.",
 	"confirmemail-notice": "To finish setting up your account, [[Special:ConfirmEmail|confirm your email address]].<br><br>This is required if you ever need to recover your account, and other features and security protections on {{SITENAME}} may require a confirmed email.",
-	"confirmemail-notice-arm-b": "We noticed that you haven’t confirmed your email address yet. Without a confirmed email you won’t receive emails related to your activity such as mentions or edit reverts. You also won’t be able to recover your account if you lose access.<br><br>[[Special:ConfirmEmail|Take a moment to confirm your email address now.]]",
 	"confirmemail_pending": "A confirmation code has already been emailed to you;\nif you recently created your account, you may wish to wait a few minutes for it to arrive before trying to request a new code.",
 	"confirmemail_send": "Mail a confirmation code",
 	"confirmemail_sent": "Confirmation email sent.",

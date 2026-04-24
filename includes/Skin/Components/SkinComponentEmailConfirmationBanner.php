@@ -37,12 +37,7 @@ class SkinComponentEmailConfirmationBanner implements SkinComponent {
 			[ 'class' => 'mw-emailconfirmbanner-container', 'data-arm' => 'arm_a', 'style' => 'display:none' ],
 			Html::warningBox( $this->context->msg( 'confirmemail-notice' )->parse(), 'mw-emailconfirmbanner' )
 		);
-		$armB = Html::rawElement(
-			'div',
-			[ 'class' => 'mw-emailconfirmbanner-container', 'data-arm' => 'arm_b', 'style' => 'display:none' ],
-			Html::warningBox( $this->context->msg( 'confirmemail-notice-arm-b' )->parse(), 'mw-emailconfirmbanner' )
-		);
 
-		return [ 'html' => $armA . $armB ];
+		return [ 'html' => $armA ];
 	}
 }
