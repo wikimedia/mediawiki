@@ -2212,7 +2212,10 @@ abstract class UploadBase {
 		$maxUploadSize = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::MaxUploadSize );
 
 		if ( is_array( $maxUploadSize ) ) {
-			return $maxUploadSize[$forType] ?? $maxUploadSize['*'];
+			if ( $forType !== null && isset( $maxUploadSize[$forType] ) ) {
+				return $maxUploadSize[$forType];
+			}
+			return $maxUploadSize['*'];
 		}
 		return intval( $maxUploadSize );
 	}
