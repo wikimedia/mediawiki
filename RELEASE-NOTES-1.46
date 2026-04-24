@@ -367,6 +367,8 @@ because of Phabricator reports.
   throw UnexpectedContentModelException instead of deprecated MWException.
 * The mediawiki.ui module, deprecated in 1.41 and unused, was removed.
   Instead, use Codex modules.
+* The mediawiki.ui.input module, deprecated in 1.41 and unused, was removed.
+  Instead, use Codex modules.
 * The mediawiki.ui.checkbox module, deprecated in 1.41 and unused, was removed.
   Instead, use Codex modules.
 * The mediawiki.ui.radio module, deprecated in 1.41 and unused, was removed.

@@ -3035,15 +3035,6 @@ return [
 			],
 		],
 	],
-	'mediawiki.ui.input' => [
-		'deprecated' => '[1.41] Please use Codex. See migration guidelines: ' .
-			'https://www.mediawiki.org/wiki/Codex/Migrating_from_MediaWiki_UI',
-		'skinStyles' => [
-			'default' => [
-				'resources/src/mediawiki.ui.input/input.less',
-			],
-		],
-	],
 	'mediawiki.ui.icon' => [
 		'deprecated' => '[1.41] Please use Codex. See migration guidelines: ' .
 			'https://www.mediawiki.org/wiki/Codex/Migrating_from_MediaWiki_UI',
