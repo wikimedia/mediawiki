@@ -534,11 +534,14 @@ class SkinModule extends FileModule {
 			// originally smaller than the default thumbnail size (T417828)
 			foreach ( $imgSelectors as $imgSelector ) {
 				$featureStyles['all'][] = $imgSelector .
-					' { height: auto; width: ' . self::makeThumbCalc( $defaultSize ) . '; }';
+					' { height: auto; width: ' . self::makeThumbCalc( $defaultSize ) .
+						'; width: ' . self::makeThumbCalc( $defaultSize, true ) . '; }';
 				$featureStyles['all'][] = 'html.skin-theme-clientpref-thumb-small ' .
-					$imgSelector . ' { width: ' . self::makeThumbCalc( $smallSize ) . '; }';
+					$imgSelector . ' { width: ' . self::makeThumbCalc( $smallSize ) .
+						'; width: ' . self::makeThumbCalc( $smallSize, true ) . '; }';
 				$featureStyles['all'][] = 'html.skin-theme-clientpref-thumb-large ' .
-					$imgSelector . ' { width: ' . self::makeThumbCalc( $largeSize ) . '; }';
+					$imgSelector . ' { width: ' . self::makeThumbCalc( $largeSize ) .
+						'; width: ' . self::makeThumbCalc( $largeSize, true ) . '; }';
 			}
 		}
 
@@ -547,10 +550,14 @@ class SkinModule extends FileModule {
 
 	/**
 	 * @param int $size
+	 * @param bool $round apply the CSS round function. This is not supported in
+	 *   some recent browsers e.g. Firefox 115esr.
+	 *   See https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/round.
 	 * @return string
 	 */
-	private static function makeThumbCalc( int $size ) {
-		return 'calc( round( ' . $size . 'px * var( --mw-file-upright, 1 ), 10px ) )';
+	private static function makeThumbCalc( int $size, bool $round = false ) {
+		$val = $size . 'px * var( --mw-file-upright, 1 )';
+		return $round ? 'calc( round( ' . $val . ', 10px ) )' : 'calc(' . $val . ')';
 	}
 
 	public function getPreloadLinks( Context $context ): array {
