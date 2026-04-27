@@ -24,6 +24,7 @@ use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\OldLocalFile;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\RevisionList\RevisionListBase;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -119,17 +120,33 @@ class RevDelFileItem extends RevDelItem {
 			$this->list->deleteBatch[] = [ $this->file->getRel(), $dstRel ];
 		}
 
-		# Do the database operations
+		// Do the database operations
 		$dbw = $this->dbProvider->getPrimaryDatabase();
-		$dbw->newUpdateQueryBuilder()
-			->update( 'oldimage' )
-			->set( [ 'oi_deleted' => $bits ] )
-			->where( [
-				'oi_name' => $this->row->oi_name,
-				'oi_timestamp' => $this->row->oi_timestamp,
-				'oi_deleted' => $this->getBits()
-			] )
+		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
+		if ( $migrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+			$dbw->newUpdateQueryBuilder()
+				->update( 'oldimage' )
+				->set( [ 'oi_deleted' => $bits ] )
+				->where( [
+					'oi_name' => $this->row->oi_name,
+					'oi_timestamp' => $this->row->oi_timestamp,
+					'oi_deleted' => $this->getBits()
+				] )
 			->caller( __METHOD__ )->execute();
+		}
+		if ( $migrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+			$dbw->newUpdateQueryBuilder()
+				->update( 'filerevision' )
+				->set( [ 'fr_deleted' => $bits ] )
+				->where( [
+					'fr_file' => $this->file->getFileIdFromName(),
+					'fr_timestamp' => $this->row->oi_timestamp,
+					'fr_deleted' => $this->getBits()
+				] )
+				->caller( __METHOD__ )->execute();
+		}
 
 		return (bool)$dbw->affectedRows();
 	}
