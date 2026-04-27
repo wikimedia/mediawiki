@@ -44,7 +44,7 @@ class ContentDOMTransformStageTest extends TestCase {
 		$this->assertTrue( $po->getContentHolder()->isParsoidContent() );
 		$po = $transform->transform( $po, $popts, $options );
 		$json = MediaWikiServices::getInstance()->getJsonCodec()->serialize( $po );
-		self::assertStringContainsString( "parsoid-page-bundle", $json );
+		self::assertStringContainsString( "pageBundle", $json );
 	}
 
 	/**

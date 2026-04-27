@@ -3270,7 +3270,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		$data = [
-			'Text' => $this->hasText() ? $this->getContentHolderText() : null,
 			'LanguageLinks' => $this->getLanguageLinksInternal(),
 			'Categories' => $this->mCategories,
 			'Indicators' => $this->mIndicators,
@@ -3310,13 +3309,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'WrapperDivClasses' => $this->mWrapperDivClasses,
 			'OutputFlags' => array_keys( $this->mFlags ),
 		];
-
-		// TODO ultimately we'll change the serialization to directly
-		// encode the ContentHolder, but let's maintain compatibility for now.
-		if ( $this->contentHolder->isParsoidContent() ) {
-			$pageBundle = $this->contentHolder->getBasePageBundle();
-			$data[ 'ExtensionData' ][ self::PARSOID_PAGE_BUNDLE_KEY ] =
-				$pageBundle->toJsonArray();
+		if ( $this->getContentHolder()->hasContent() ) {
+			$data[ 'ContentHolder' ] = $this->getContentHolder();
 		}
 
 		// Fill in missing fields from parents. Array addition does not override existing fields.
@@ -3360,6 +3354,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		if ( isset( $jsonData['ContentHolder'] ) ) {
 			$this->contentHolder = $jsonData['ContentHolder'];
 		} else {
+			// mostly backward compatibility T423701
 			$pageBundleData = $jsonData['ExtensionData'][self::PARSOID_PAGE_BUNDLE_KEY] ?? null;
 			if ( $pageBundleData ) {
 				unset( $jsonData['ExtensionData'][self::PARSOID_PAGE_BUNDLE_KEY] );
@@ -3372,11 +3367,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				$this->contentHolder = ContentHolder::createFromLegacyString( $jsonData['Text'] ?? '' );
 			}
 			if ( !isset( $jsonData['Text'] ) ) {
-				// Make the content holder empty if 'Text' was null.
+				// Make the content holder empty if 'no content holder and 'Text' was null.
 				$this->contentHolder->setAsHtmlString( ContentHolder::BODY_FRAGMENT, null );
 			}
 		}
-
 		$this->mLanguageLinkMap = [];
 		foreach ( ( $jsonData['LanguageLinks'] ?? [] ) as $l ) {
 			// T374736: old serialized parser cache entries may
