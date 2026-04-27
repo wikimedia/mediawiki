@@ -3340,6 +3340,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return match ( $keyName ) {
 			'TOCData' => Hint::build( TOCData::class, Hint::ONLY_FOR_DECODE ),
 			'WarningMsgs' => Hint::build( MessageValue::class, Hint::LIST, Hint::ONLY_FOR_DECODE ),
+			'ContentHolder' => Hint::build( ContentHolder::class ),
 			default => null,
 		};
 	}
@@ -3354,20 +3355,23 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		// (This includes changing default values when fields are missing.)
-
-		$pageBundleData = $jsonData['ExtensionData'][ self::PARSOID_PAGE_BUNDLE_KEY ] ?? null;
-		if ( $pageBundleData ) {
-			unset( $jsonData['ExtensionData'][ self::PARSOID_PAGE_BUNDLE_KEY ] );
-			$pb = HtmlPageBundle::newFromJsonArray(
-				$pageBundleData + [ 'html' => $jsonData[ 'Text' ] ?? '' ]
-			);
-			$this->contentHolder = ContentHolder::createFromParsoidPageBundle( $pb );
+		if ( isset( $jsonData['ContentHolder'] ) ) {
+			$this->contentHolder = $jsonData['ContentHolder'];
 		} else {
-			$this->contentHolder = ContentHolder::createFromLegacyString( $jsonData[ 'Text' ] ?? '' );
-		}
-		if ( !isset( $jsonData['Text'] ) ) {
-			// Make the content holder empty if 'Text' was null.
-			$this->contentHolder->setAsHtmlString( ContentHolder::BODY_FRAGMENT, null );
+			$pageBundleData = $jsonData['ExtensionData'][self::PARSOID_PAGE_BUNDLE_KEY] ?? null;
+			if ( $pageBundleData ) {
+				unset( $jsonData['ExtensionData'][self::PARSOID_PAGE_BUNDLE_KEY] );
+				$pb = HtmlPageBundle::newFromJsonArray(
+					$pageBundleData + [ 'html' => $jsonData['Text'] ?? '' ]
+				);
+				$this->contentHolder = ContentHolder::createFromParsoidPageBundle( $pb );
+			} else {
+				$this->contentHolder = ContentHolder::createFromLegacyString( $jsonData['Text'] ?? '' );
+			}
+			if ( !isset( $jsonData['Text'] ) ) {
+				// Make the content holder empty if 'Text' was null.
+				$this->contentHolder->setAsHtmlString( ContentHolder::BODY_FRAGMENT, null );
+			}
 		}
 
 		$this->mLanguageLinkMap = [];
