@@ -5475,16 +5475,16 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v1.2.3.22",
+            "version": "v1.2.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig.git",
-                "reference": "b7634be89029c060b4ebb3a3d263328866750b61"
+                "reference": "53258141765761efc9a36e7ace8da4447787321b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/b7634be89029c060b4ebb3a3d263328866750b61",
-                "reference": "b7634be89029c060b4ebb3a3d263328866750b61",
+                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/53258141765761efc9a36e7ace8da4447787321b",
+                "reference": "53258141765761efc9a36e7ace8da4447787321b",
                 "shasum": ""
             },
             "require": {
@@ -5574,9 +5574,9 @@
                 "payments"
             ],
             "support": {
-                "source": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig/tree/v1.2.3.22"
+                "source": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig/tree/v1.2.4.4"
             },
-            "time": "2026-04-04T03:51:45+00:00"
+            "time": "2026-04-27T13:48:40+00:00"
         },
         {
             "name": "wikimedia/timestamp",
@@ -10718,5 +10718,5 @@
     "platform-overrides": {
         "php": "8.2.26"
     },
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }
