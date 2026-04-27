@@ -109,8 +109,11 @@ class SpecialAllMessages extends SpecialPage {
 			'lang' => [
 				'type' => 'language',
 				'name' => 'lang',
-				'label-message' => 'allmessages-language',
+				'useCodex' => true,
+				'cssclass' => 'mw-languageselector',
 				'default' => $opts->getValue( 'lang' ),
+				'label-message' => 'allmessages-language',
+				'languages' => $this->languageNameUtils->getLanguageNames(),
 			],
 
 			'limit' => [
