@@ -8,6 +8,7 @@ use MediaWiki\Parser\CacheTime;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputLinkTypes;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Tests\Mocks\Json\JsonDeserializableSubClass;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
@@ -15,6 +16,11 @@ use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use stdClass;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Parsoid\Core\BasePageBundle;
+use Wikimedia\Parsoid\Core\DomPageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
+use Wikimedia\Parsoid\Ext\ContentUtils;
+use Wikimedia\Parsoid\Mocks\MockSiteConfig;
 use Wikimedia\Tests\SerializationTestUtils;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -342,6 +348,11 @@ abstract class ParserCacheSerializationTestCases {
 
 		$parserOutputWithEmptyToC = new ParserOutput( '' );
 		$parserOutputWithEmptyToC->setSections( [] );
+
+		$parserOutputPageBundleOnly = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+			new HtmlPageBundle( 'hello', null, null, null, "1.2.3" )
+		);
+		$parserOutputPageBundleOnly->setContentHolderText( null );
 
 		MWDebug::clearDeprecationFilters();
 
@@ -718,6 +729,46 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertNotNull( $object->getTOCData() );
 				},
 			],
+			'parsoidEmpty' => [
+				'instance' => PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ) ),
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					$testCase->assertTrue( $object->getContentHolder()->isParsoidContent() );
+					$testCase->assertEqualsCanonicalizing( $object->getContentHolder()->getBasePageBundle(), new BasePageBundle() );
+					$testCase->assertEquals( '', $object->getContentHolder()->getAsHtmlString() );
+				}
+			],
+			'legacyEmpty' => [
+				'instance' => new ParserOutput(),
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					$testCase->assertFalse( $object->getContentHolder()->isParsoidContent() );
+					$testCase->assertNull( $object->getContentHolder()->getAsHtmlString() );
+				}
+			],
+			'parsoidContent' => [
+				'instance' => PageBundleParserOutputConverter::parserOutputFromPageBundle(
+					HtmlPageBundle::fromDomPageBundle(
+						DomPageBundle::fromLoadedDocument( ContentUtils::createAndLoadDocument( "<p data-parsoid='{\"dsr\":[0,5,0,0]}'>hello</p>" ), new MockSiteConfig( [] ) )
+					) ),
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					$testCase->assertTrue( $object->getContentHolder()->isParsoidContent() );
+					$testCase->assertEqualsCanonicalizing(
+						$object->getContentHolder()->getBasePageBundle(),
+						new BasePageBundle(
+							parsoid: [ 'ids' => [ 'mwAA' => [ 'dsr' => [ 0, 5, 0, 0 ] ] ] ],
+							mw: [ 'ids' => [] ],
+							counters: [ 'nodedata' => 0, 'annotation' => 0, 'transclusion' => 1 ],
+						)
+					);
+					$testCase->assertEquals( "<!DOCTYPE html>\n<html><head></head><body><p id=\"mwAA\">hello</p></body></html>", $object->getContentHolder()->getAsHtmlString() );
+				}
+			],
+			'parsoidBundleOnly' => [
+				'instance' => $parserOutputPageBundleOnly,
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					$testCase->assertNull( $object->getContentHolder()->getAsHtmlString() );
+					$testCase->assertEquals( '1.2.3', $object->getContentHolder()->getBasePageBundle()->version );
+				}
+			]
 		];
 		// We don't serialize or restore parseStartTime any more, so
 		// ensure that it is cleared in the instances we are going to

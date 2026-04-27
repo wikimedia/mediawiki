@@ -10,6 +10,9 @@ namespace MediaWiki\Parser;
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
+use Wikimedia\JsonCodec\Hint;
+use Wikimedia\JsonCodec\JsonCodecable;
+use Wikimedia\JsonCodec\JsonCodecableTrait;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\BasePageBundle;
 use Wikimedia\Parsoid\Core\DomPageBundle;
@@ -36,7 +39,9 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
  * which case the <base> tag contained in the <head> must be handled before conversion. OutputTransform steps
  * after ExtractBody should however be unaffected.
  */
-class ContentHolder {
+class ContentHolder implements JsonCodecable {
+	use JsonCodecableTrait;
+
 	public const BODY_FRAGMENT = "body";
 
 	private function __construct(
@@ -350,8 +355,49 @@ class ContentHolder {
 		return $this->domFormat;
 	}
 
+	public function hasContent(): bool {
+		return $this->isParsoidContent ||
+			$this->domMap ||
+			$this->htmlMap ||
+			( $this->pageBundle?->hasContent() );
+	}
+
+	public function toJsonArray(): array {
+		$this->convertDomToHtml();
+		$data = [];
+		if ( $this->htmlMap ) {
+			$data['htmlMap'] = $this->htmlMap;
+		}
+		if ( $this->isParsoidContent ) {
+			$data['parsoid'] = $this->isParsoidContent;
+		}
+		if ( $this->pageBundle && $this->pageBundle?->hasContent() ) {
+			$data['pageBundle'] = $this->pageBundle;
+		}
+		return $data;
+	}
+
+	public static function newFromJsonArray( array $json ): ContentHolder {
+		$holder = self::createEmpty();
+		$holder->convertDomToHtml(); // ensure in html form
+		$holder->isParsoidContent = $json['parsoid'] ?? false;
+		$holder->pageBundle = $json['pageBundle'] ?? ( $holder->isParsoidContent ? new BasePageBundle() : null );
+		if ( isset( $json['htmlMap'] ) ) {
+			$holder->htmlMap = $json['htmlMap'];
+		}
+		return $holder;
+	}
+
+	/** @inheritDoc */
+	public static function jsonClassHintFor( string $keyName ) {
+		return match ( $keyName ) {
+			'pageBundle' => Hint::build( BasePageBundle::class ),
+			default => null,
+		};
+	}
+
 	/** Helper for serialization compatibility testing. */
 	private static function normalizeForObjectEquality(): array {
-		return [ 'ownerDocument' => false ];
+		return [ 'ownerDocument' => false, 'siteConfig' => false ];
 	}
 }
