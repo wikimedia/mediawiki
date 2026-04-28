@@ -3703,6 +3703,7 @@ return [
 			'ooui-dialog-process-dismiss',
 			'ooui-dialog-process-error',
 			'ooui-dialog-process-retry',
+			'ooui-dialog-process-back',
 		],
 	],
 	'oojs-ui-windows.icons' => [
