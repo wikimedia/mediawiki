@@ -206,6 +206,11 @@ class UserEditTracker {
 			[
 				'lockTSE' => 30,
 				'staleTTL' => WANObjectCache::TTL_DAY,
+				// First edit timestamp is very stable; reduce popularity-based preemptive refresh rate
+				// After the initial hour passes (newAge), the timestamp will be refreshed on average every
+				// 10k requests (i.e. once every 6 hours if requests come at 1 req/sec)
+				'newAge' => 3600,
+				'hotTTR' => 21600,
 			]
 		);
 		if ( $timestamp === 0 ) {
