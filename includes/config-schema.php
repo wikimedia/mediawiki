@@ -843,7 +843,6 @@ return [
 				'useSelser' => true,
 			],
 			'ParsoidExperimentalParserFunctionOutput' => false,
-			'UseLegacyMediaStyles' => false,
 			'RawHtml' => false,
 			'ExternalLinkTarget' => false,
 			'NoFollowLinks' => true,

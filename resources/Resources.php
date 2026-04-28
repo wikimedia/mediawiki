@@ -3026,7 +3026,11 @@ return [
 		],
 	],
 
-	/* MediaWiki UI */
+	/* Legacy modules */
+	'mediawiki.skins.legacy' => [
+		'class' => SkinModule::class,
+		'features' => [ 'content-media-legacy' ],
+	],
 
 	// Lightweight compatibility module for legacy message box styles
 	'mediawiki.legacy.messageBox' => [

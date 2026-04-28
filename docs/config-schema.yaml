@@ -4298,14 +4298,6 @@ config-schema:
             experiment with it locally.
             This is an experimental flag and might be removed without notice.
             @unstable EXPERIMENTAL
-    UseLegacyMediaStyles:
-        default: false
-        description: |-
-            Disable shipping the styles for the legacy media HTML structure.
-            This is to give time for templates and extensions that mimic the
-            legacy output to be migrated away.
-            @internal Temporary feature flag for T318433.
-            @since 1.41
     RawHtml:
         default: false
         description: |-

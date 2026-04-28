@@ -6733,18 +6733,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Disable shipping the styles for the legacy media HTML structure.
-	 * This is to give time for templates and extensions that mimic the
-	 * legacy output to be migrated away.
-	 *
-	 * @internal Temporary feature flag for T318433.
-	 * @since 1.41
-	 */
-	public const UseLegacyMediaStyles = [
-		'default' => false,
-	];
-
-	/**
 	 * Allow raw, unchecked HTML in "<html>...</html>" sections.
 	 *
 	 * THIS IS VERY DANGEROUS on a publicly editable site, so USE $wgGroupPermissions

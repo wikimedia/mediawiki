@@ -2385,12 +2385,6 @@ class MainConfigNames {
 	public const ParsoidExperimentalParserFunctionOutput = 'ParsoidExperimentalParserFunctionOutput';
 
 	/**
-	 * Name constant for the UseLegacyMediaStyles setting, for use with Config::get()
-	 * @see MainConfigSchema::UseLegacyMediaStyles
-	 */
-	public const UseLegacyMediaStyles = 'UseLegacyMediaStyles';
-
-	/**
 	 * Name constant for the RawHtml setting, for use with Config::get()
 	 * @see MainConfigSchema::RawHtml
 	 */

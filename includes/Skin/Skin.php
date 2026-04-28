@@ -485,6 +485,15 @@ abstract class Skin extends ContextSource {
 		if ( str_contains( $bodyHtml, 'mw-message-box' ) ) {
 			$modules['styles']['content'][] = 'mediawiki.legacy.messageBox';
 		}
+
+		// Many templates mirror the old HTML syntax of thumbnails and expect similar
+		// styling. Once those templates have a migration path we can deprecate this
+		// module and remove it from the page similar to the above.
+		// More information at https://phabricator.wikimedia.org/T318433',
+		if ( str_contains( $bodyHtml, 'floatright' ) ||
+			str_contains( $bodyHtml, 'floatleft' ) || str_contains( $bodyHtml, 'thumbinner' ) ) {
+			$modules['styles']['content'][] = 'mediawiki.skins.legacy';
+		}
 		// Since 1.46, links to temporary accounts in page content are expected to be styled.
 		if ( str_contains( $bodyHtml, 'mw-tempuserlink' ) ) {
 			$modules['styles']['content'][] = 'mediawiki.interface.helpers.styles';
