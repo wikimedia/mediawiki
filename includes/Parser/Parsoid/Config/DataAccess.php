@@ -266,7 +266,9 @@ class DataAccess extends IDataAccess {
 			}
 
 			if ( isset( $dims['seek'] ) ) {
-				$dims['thumbtime'] = $dims['seek'];
+				// Parsoid sets this as int|float but TMH's validateParam
+				// expects it as a string
+				$dims['thumbtime'] = (string)$dims['seek'];
 			}
 
 			$txopts = $this->makeTransformOptions( $pageConfig, $file, $dims );
