@@ -22,6 +22,7 @@
 <script>
 const { defineComponent, ref, onMounted, onUnmounted, onUpdated } = require( 'vue' );
 const { CdxPopover } = require( '@wikimedia/codex' );
+const EXPERIMENT_NAME = 'we-1-8-account-creation-form-v2';
 
 module.exports = defineComponent( {
 	name: 'UsernamePolicyPopover',
@@ -66,6 +67,23 @@ module.exports = defineComponent( {
 			isPopoverOpen.value = true;
 			props.triggerElement.addEventListener( 'click', onTriggerClick, true );
 			applyPolicyLinkAttrs();
+
+			mw.loader.using( [ 'ext.testKitchen', 'ext.wikimediaEvents.testKitchen' ] ).then( () => {
+				const { ClickThroughRateInstrument, UrlEnrolledExperiment } = require( 'ext.wikimediaEvents.testKitchen' );
+				const experiment = UrlEnrolledExperiment.getExperimentFromQuery( EXPERIMENT_NAME );
+				ClickThroughRateInstrument.start( '.mw-createaccount-username-policy-popover-list > li:first-of-type > a:first-of-type',
+					'username policy popover informational link - offensive', experiment );
+				ClickThroughRateInstrument.start( '.mw-createaccount-username-policy-popover-list > li:first-of-type > a:nth-of-type(2)',
+					'username policy popover informational link - misleading', experiment );
+				ClickThroughRateInstrument.start( '.mw-createaccount-username-policy-popover-list > li:first-of-type > a:nth-of-type(3)',
+					'username policy popover informational link - promotional', experiment );
+
+				ClickThroughRateInstrument.start( '.mw-createaccount-username-policy-popover-list > li:nth-of-type(2) > a:first-of-type',
+					'username policy popover informational link - not an organization', experiment );
+
+				ClickThroughRateInstrument.start( '.mw-createaccount-username-policy-popover-list > li:nth-of-type(3) > a:first-of-type',
+					'username policy popover informational link - real name', experiment );
+			} );
 		} );
 
 		onUpdated( () => {
