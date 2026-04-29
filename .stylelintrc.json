@@ -7,5 +7,15 @@
 		"selector-class-pattern": "^((mw|oo-ui|cdx)-|(wikitable|(toc(|toggle|hidden))|client-(no)?js)$)",
 		"no-descending-specificity": null,
 		"selector-max-id": null
-	}
+	},
+	"overrides": [
+		{
+			"files": [ "**/*.less" ],
+			"rules": {
+				"wikimedia/no-darkmode-override": [ true, {
+					"severity": "error"
+				} ]
+			}
+		}
+	]
 }

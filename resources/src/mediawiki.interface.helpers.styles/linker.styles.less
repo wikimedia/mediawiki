@@ -43,6 +43,7 @@
 	border-radius: @border-radius-base;
 	white-space: nowrap;
 
+	/* stylelint-disable-next-line wikimedia/no-darkmode-override */
 	.darkmode-override( {
 		// Color is calculated to match @background-color-interactive in dark-mode.
 		// The passed-in background color is @background-color-inverted.
@@ -57,6 +58,7 @@ a.mw-tempuserlink.mw-userlink.external {
 	/* stylelint-disable-next-line declaration-no-important */
 	background-color: @tempuserlink-color !important;
 
+	/* stylelint-disable-next-line wikimedia/no-darkmode-override */
 	.darkmode-override( {
 		/* stylelint-disable-next-line declaration-no-important */
 		background-color: @tempuserlink-color-dark-mode !important;
