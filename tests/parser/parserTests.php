@@ -234,6 +234,7 @@ class ParserTestsMaintenance extends Maintenance {
 			'updateKnownFailures' => $this->hasOption( 'updateKnownFailures' ),
 			'traceFlags' => $traceFlags,
 			'dumpFlags' => $dumpFlags,
+			'update-format' => $this->getOption( 'update-format' ),
 			'update-tests' => $this->hasOption( 'update-tests' ),
 			'update-unexpected' => $this->hasOption( 'update-unexpected' ),
 		] );
