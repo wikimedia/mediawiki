@@ -1532,7 +1532,7 @@ class WebRequest {
 	 *   - user_exists_locally: whether the user account exists on the current wiki
 	 *   More fields can be added via the GetSecurityLogContext hook.
 	 *
-	 * @since 1.45
+	 * @since 1.45 (also backported to 1.43.9, 1.44.6)
 	 * @see GetSecurityLogContextHook
 	 */
 	public function getSecurityLogContext( ?UserIdentity $user = null ): array {
