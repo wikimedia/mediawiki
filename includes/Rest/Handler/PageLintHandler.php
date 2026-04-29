@@ -46,7 +46,7 @@ class PageLintHandler extends SimpleHandler {
 		return $this->helperFactory->newPageRedirectHelper(
 			$this->getResponseFactory(),
 			$this->getRouter(),
-			$this->getPath(),
+			$this->getRoutePath(),
 			$this->getRequest()
 		);
 	}

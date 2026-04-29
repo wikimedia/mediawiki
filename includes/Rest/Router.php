@@ -400,31 +400,32 @@ class Router {
 
 	/**
 	 * @since 1.42
+	 * @todo This should be called getRelativeRouteUrl() since query parameters are included
 	 */
 	public function getRoutePath(
-		string $routeWithModulePrefix,
+		string $pathWithModulePrefix,
 		array $pathParams = [],
 		array $queryParams = []
 	): string {
-		$routeWithModulePrefix = $this->substPathParams( $routeWithModulePrefix, $pathParams );
-		$path = $this->rootPath . $routeWithModulePrefix;
+		$pathWithModulePrefix = $this->substPathParams( $pathWithModulePrefix, $pathParams );
+		$path = $this->rootPath . $pathWithModulePrefix;
 		return wfAppendQuery( $path, $queryParams );
 	}
 
 	public function getRouteUrl(
-		string $routeWithModulePrefix,
+		string $pathWithModulePrefix,
 		array $pathParams = [],
 		array $queryParams = []
 	): string {
-		return $this->baseUrl . $this->getRoutePath( $routeWithModulePrefix, $pathParams, $queryParams );
+		return $this->baseUrl . $this->getRoutePath( $pathWithModulePrefix, $pathParams, $queryParams );
 	}
 
 	public function getPrivateRouteUrl(
-		string $routeWithModulePrefix,
+		string $pathWithModulePrefix,
 		array $pathParams = [],
 		array $queryParams = []
 	): string {
-		return $this->privateBaseUrl . $this->getRoutePath( $routeWithModulePrefix, $pathParams, $queryParams );
+		return $this->privateBaseUrl . $this->getRoutePath( $pathWithModulePrefix, $pathParams, $queryParams );
 	}
 
 	/**

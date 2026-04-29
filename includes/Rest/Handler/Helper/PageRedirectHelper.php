@@ -25,7 +25,7 @@ class PageRedirectHelper {
 	private TitleFormatter $titleFormatter;
 	private ResponseFactory $responseFactory;
 	private Router $router;
-	private string $path;
+	private string $pathWithModulePrefix;
 	private RequestInterface $request;
 	private LanguageConverterFactory $languageConverterFactory;
 	private bool $followWikiRedirects = false;
@@ -37,7 +37,7 @@ class PageRedirectHelper {
 		TitleFormatter $titleFormatter,
 		ResponseFactory $responseFactory,
 		Router $router,
-		string $path,
+		string $pathWithModulePrefix,
 		RequestInterface $request,
 		LanguageConverterFactory $languageConverterFactory
 	) {
@@ -45,7 +45,7 @@ class PageRedirectHelper {
 		$this->titleFormatter = $titleFormatter;
 		$this->responseFactory = $responseFactory;
 		$this->router = $router;
-		$this->path = $path;
+		$this->pathWithModulePrefix = $pathWithModulePrefix;
 		$this->request = $request;
 		$this->languageConverterFactory = $languageConverterFactory;
 	}
@@ -190,13 +190,13 @@ class PageRedirectHelper {
 
 		if ( $this->useRelativeRedirects ) {
 			return $this->router->getRoutePath(
-				$this->path,
+				$this->pathWithModulePrefix,
 				$pathParams,
 				$queryParams
 			);
 		} else {
 			return $this->router->getRouteUrl(
-				$this->path,
+				$this->pathWithModulePrefix,
 				$pathParams,
 				$queryParams
 			);

@@ -228,7 +228,7 @@ class PageRestHelperFactory {
 	public function newPageRedirectHelper(
 		ResponseFactory $responseFactory,
 		Router $router,
-		string $route,
+		string $pathWithModulePrefix,
 		RequestInterface $request
 	): PageRedirectHelper {
 		return new PageRedirectHelper(
@@ -236,7 +236,7 @@ class PageRestHelperFactory {
 			$this->titleFormatter,
 			$responseFactory,
 			$router,
-			$route,
+			$pathWithModulePrefix,
 			$request,
 			$this->languageConverterFactory
 		);
