@@ -954,8 +954,22 @@ class AuthManager implements LoggerAwareInterface {
 			}
 		}
 
+		$oldStatus = $status;
+
 		$this->getHookRunner()->onSecuritySensitiveOperationStatus(
 			$status, $operation, $session, $timeSinceLogin );
+
+		if ( $status !== $oldStatus ) {
+			$this->logger->info(
+				__METHOD__ . ': {operation} changed from {oldstatus} to {status} for {user} in ' .
+				'SecuritySensitiveOperationStatusHook hook',
+				[
+					'operation' => $operation,
+					'oldstatus' => $oldStatus,
+					'status' => $status,
+				] + $this->getRequest()->getSecurityLogContext( $session->getUser() )
+			);
+		}
 
 		// If authentication is not possible, downgrade from "REAUTH" to "FAIL".
 		if ( !$this->canAuthenticateNow() && $status === self::SEC_REAUTH ) {
