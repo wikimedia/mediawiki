@@ -36,7 +36,7 @@ class MemcLockManager extends QuorumLockManager {
 	];
 
 	/** @var MemcachedBagOStuff[] Map of (server name => MemcachedBagOStuff) */
-	protected $cacheServers = [];
+	protected $lockServers = [];
 	/** @var MapCacheLRU Server status cache */
 	protected $statusCache;
 
@@ -45,25 +45,15 @@ class MemcLockManager extends QuorumLockManager {
 	 *
 	 * @param array $config Parameters include:
 	 *   - lockServers  : Associative array of server names to "<IP>:<port>" strings.
-	 *   - srvsByBucket : [optional] An array of up to 16 arrays, each containing the server names
-	 *                    in a bucket. Each bucket should have an odd number of servers.
-	 *                    If omitted, all servers will be in one bucket.
 	 *   - memcConfig   : [optional] Configuration array for MemcachedBagOStuff::construct() with an
 	 *                    additional 'class' parameter specifying which MemcachedBagOStuff
 	 *                    subclass to use. The server names will be injected.
+	 *   - minVotes     : Minimum number of votes to consider lock valid. The higher,
+	 *      the stronger (and slower). Default: 2
 	 * @throws Exception
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
-
-		if ( isset( $config['srvsByBucket'] ) ) {
-			// Sanitize srvsByBucket config to prevent PHP errors
-			$this->srvsByBucket = array_filter( $config['srvsByBucket'], 'is_array' );
-			$this->srvsByBucket = array_values( $this->srvsByBucket ); // consecutive
-		} else {
-			$this->srvsByBucket = [ array_keys( $config['lockServers'] ) ];
-		}
-
 		$memcConfig = $config['memcConfig'] ?? [];
 		$memcConfig += [ 'class' => MemcachedPhpBagOStuff::class ]; // default
 
@@ -74,10 +64,11 @@ class MemcLockManager extends QuorumLockManager {
 
 		foreach ( $config['lockServers'] as $name => $address ) {
 			$params = [ 'servers' => [ $address ] ] + $memcConfig;
-			$this->cacheServers[$name] = new $class( $params );
+			$this->lockServers[$name] = new $class( $params );
 		}
 
 		$this->statusCache = new MapCacheLRU( 100 );
+		$this->minVotes = $config['minVotes'] ?? 2;
 	}
 
 	/** @inheritDoc */
@@ -243,20 +234,20 @@ class MemcLockManager extends QuorumLockManager {
 	 * @return MemcachedBagOStuff|null
 	 */
 	protected function getCache( $lockSrv ) {
-		if ( !isset( $this->cacheServers[$lockSrv] ) ) {
+		if ( !isset( $this->lockServers[$lockSrv] ) ) {
 			throw new InvalidArgumentException( "Invalid cache server '$lockSrv'." );
 		}
 
 		$online = $this->statusCache->get( "online:$lockSrv", 30 );
 		if ( $online === null ) {
-			$online = $this->cacheServers[$lockSrv]->set( __CLASS__ . ':ping', 1, 1 );
+			$online = $this->lockServers[$lockSrv]->set( __CLASS__ . ':ping', 1, 1 );
 			if ( !$online ) { // server down?
 				$this->logger->warning( __METHOD__ . ": Could not contact $lockSrv." );
 			}
 			$this->statusCache->set( "online:$lockSrv", (int)$online );
 		}
 
-		return $online ? $this->cacheServers[$lockSrv] : null;
+		return $online ? $this->lockServers[$lockSrv] : null;
 	}
 
 	/**

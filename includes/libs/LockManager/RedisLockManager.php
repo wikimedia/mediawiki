@@ -16,8 +16,8 @@ use Wikimedia\ObjectCache\RedisConnectionPool;
  * This is meant for multi-wiki systems that may share files.
  * All locks are non-blocking, which avoids deadlocks.
  *
- * All lock requests for a resource, identified by a hash string, will map to one
- * bucket. Each bucket maps to one or several peer servers, each running redis.
+ * All lock requests for a resource, identified by a hash string, will map to several servers,
+ * each running redis.
  * A majority of peers must agree for a lock to be acquired.
  *
  * This class requires Redis 2.6 as it makes use of Lua scripts for fast atomic operations.
@@ -44,26 +44,18 @@ class RedisLockManager extends QuorumLockManager {
 	 *
 	 * @param array $config Parameters include:
 	 *   - lockServers  : Associative array of server names to "<IP>:<port>" strings.
-	 *   - srvsByBucket : An array of up to 16 arrays, each containing the server names
-	 *                    in a bucket. Each bucket should have an odd number of servers.
-	 *                    If omitted, all servers will be in one bucket. (optional).
 	 *   - redisConfig  : Configuration for RedisConnectionPool::singleton() (optional).
+	 *   - minVotes     : Minimum number of votes to consider lock valid. The higher,
+	 *     the stronger (and slower). Default: 2
 	 * @throws Exception
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
 
 		$this->lockServers = $config['lockServers'];
-		if ( isset( $config['srvsByBucket'] ) ) {
-			// Sanitize srvsByBucket config to prevent PHP errors
-			$this->srvsByBucket = array_filter( $config['srvsByBucket'], 'is_array' );
-			$this->srvsByBucket = array_values( $this->srvsByBucket ); // consecutive
-		} else {
-			$this->srvsByBucket = [ array_keys( $this->lockServers ) ];
-		}
-
 		$config['redisConfig']['serializer'] = 'none';
 		$this->redisPool = RedisConnectionPool::singleton( $config['redisConfig'] );
+		$this->minVotes = $config['minVotes'] ?? 2;
 	}
 
 	/** @inheritDoc */
