@@ -3465,14 +3465,13 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * Whether the magic words __INDEX__ and __NOINDEX__ function for this page.
 	 *
 	 * @return bool
+	 * @deprecated since 1.47; use NamespaceInfo::canUseNoindex() instead.
 	 */
 	public function canUseNoindex() {
-		global $wgExemptFromUserRobotsControl;
-
-		$bannedNamespaces = $wgExemptFromUserRobotsControl ??
-			MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces();
-
-		return !in_array( $this->mNamespace, $bannedNamespaces );
+		wfDeprecated( __METHOD__, '1.47' );
+		return MediaWikiServices::getInstance()->getNamespaceInfo()->canUseNoindex(
+			$this->mNamespace
+		);
 	}
 
 	/**

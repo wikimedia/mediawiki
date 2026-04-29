@@ -44,6 +44,7 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 			NS_USER_TALK => true,
 		],
 		MainConfigNames::NonincludableNamespaces => [],
+		MainConfigNames::ExemptFromUserRobotsControl => null,
 	];
 
 	/**
@@ -1207,6 +1208,26 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 			'Out of order (T109137)' => [ [ 1, 0 ], [ 0, 1 ] ],
 			'Alphabetical order' => [ [ 10, 2 ], [ 2, 10 ] ],
 			'Negative' => [ [ -1000, -500, -2, 0 ], [ 0 ] ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideCanUseNoindex
+	 * @covers \MediaWiki\Title\NamespaceInfo::canUseNoindex
+	 */
+	public function testCanUseNoindex( bool $expected, int $ns, ?array $exempt = null ) {
+		$obj = $this->newObj( [ MainConfigNames::ExemptFromUserRobotsControl => $exempt ] );
+		$this->assertSame( $expected, $obj->canUseNoindex( $ns ) );
+	}
+
+	public static function provideCanUseNoindex() {
+		yield "NS_MAIN is banned by default" => [ false, NS_MAIN ];
+		yield "NS_SPECIAL is not banned by default" => [ true, NS_SPECIAL ];
+		yield "Config var can be used to allow in NS_MAIN" => [
+			true, NS_MAIN, []
+		];
+		yield "Config var can be used to disallow in NS_SPECIAL" => [
+			false, NS_SPECIAL, [ NS_MAIN, NS_SPECIAL ]
 		];
 	}
 

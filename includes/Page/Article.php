@@ -1209,7 +1209,11 @@ class Article implements Page {
 				self::formatRobotPolicy( $namespaceRobotPolicies[$ns] )
 			);
 		}
-		if ( $title->canUseNoindex() && $pOutput && $pOutput->getIndexPolicy() ) {
+		$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		if (
+			$namespaceInfo->canUseNoindex( $title->getNamespace() ) &&
+			$pOutput && $pOutput->getIndexPolicy()
+		) {
 			# __INDEX__ and __NOINDEX__ magic words, if allowed. Incorporates
 			# a final check that we have really got the parser output.
 			$policy['index'] = $pOutput->getIndexPolicy();

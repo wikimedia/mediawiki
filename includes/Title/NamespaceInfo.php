@@ -80,6 +80,7 @@ class NamespaceInfo {
 		MainConfigNames::NamespaceContentModels,
 		MainConfigNames::NamespacesWithSubpages,
 		MainConfigNames::NonincludableNamespaces,
+		MainConfigNames::ExemptFromUserRobotsControl,
 	];
 
 	/**
@@ -523,6 +524,21 @@ class NamespaceInfo {
 	 */
 	public static function getCommonNamespaces(): array {
 		return array_keys( self::CANONICAL_NAMES );
+	}
+
+	/**
+	 * Whether the magic words __INDEX__ and __NOINDEX__ function for this
+	 * namespace.
+	 *
+	 * @param int $index Namespace index
+	 * @return bool
+	 * @since 1.47
+	 */
+	public function canUseNoindex( int $index ): bool {
+		$bannedNamespaces = $this->options->get(
+			MainConfigNames::ExemptFromUserRobotsControl
+		) ?? $this->getContentNamespaces();
+		return !in_array( $index, $bannedNamespaces );
 	}
 }
 

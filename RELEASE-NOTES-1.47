@@ -172,6 +172,8 @@ because of Phabricator reports.
 
 * The PatrolLog::record method is deprecated and will trigger
   deprecation warnings. Use PatrolManager::createPatrolLog instead.
+* Title::canUseNoindex() is deprecated with warnings. Please use
+  NamespaceInfo::canUseNoindex() instead.
 * The MarkPatrolledComplete hook has been deprecated and will trigger
   deprecation warnings. Use the MarkPatrolledAudit hook instead.
 * FileBackendStore::memCache is now deprecated. Instead, subclasses should

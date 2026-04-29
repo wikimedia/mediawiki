@@ -4158,12 +4158,18 @@ class Parser {
 			$this->addTrackingCategory( 'hidden-category-category' );
 		}
 		# (T10068) Allow control over whether robots index a page.
-		# __INDEX__ always overrides __NOINDEX__, see T16899
-		if ( isset( $this->mDoubleUnderscores['noindex'] ) && $this->getTitle()->canUseNoindex() ) {
+		# __NOINDEX__ always overrides __INDEX__, see T16899
+		if (
+			isset( $this->mDoubleUnderscores['noindex'] ) &&
+			$this->nsInfo->canUseNoindex( $this->getPage()->getNamespace() )
+		) {
 			$this->mOutput->setIndexPolicy( 'noindex' );
 			$this->addTrackingCategory( 'noindex-category' );
 		}
-		if ( isset( $this->mDoubleUnderscores['index'] ) && $this->getTitle()->canUseNoindex() ) {
+		if (
+			isset( $this->mDoubleUnderscores['index'] ) &&
+			$this->nsInfo->canUseNoindex( $this->getPage()->getNamespace() )
+		) {
 			$this->mOutput->setIndexPolicy( 'index' );
 			$this->addTrackingCategory( 'index-category' );
 		}
