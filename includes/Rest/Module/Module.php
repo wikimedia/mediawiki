@@ -327,13 +327,12 @@ abstract class Module {
 		$latency = ConvertibleTimestamp::hrtime() - $startTime;
 
 		// NOTE: The "/" prefix is for consistency with old logs. It's rather ugly.
-		$pathForMetrics = $this->getPathPrefix();
-
-		if ( $pathForMetrics !== '' ) {
-			$pathForMetrics = '/' . $pathForMetrics;
+		if ( $handler ) {
+			$pathForMetrics = $handler->getRoutePath();
+		} else {
+			$prefix = $this->getPathPrefix();
+			$pathForMetrics = ( $prefix !== '' ) ? "/$prefix/UNKNOWN" : '/UNKNOWN';
 		}
-
-		$pathForMetrics .= $handler ? $handler->getPath() : '/UNKNOWN';
 
 		// Replace any characters that may have a special meaning in the metrics DB.
 		$pathForMetrics = strtr( $pathForMetrics, '{}:/.', '---__' );
@@ -449,7 +448,7 @@ abstract class Module {
 	 * @throws HttpException
 	 */
 	protected function executeHandler( Handler $handler ): ResponseInterface {
-		ProfilingContext::singleton()->init( MW_ENTRY_POINT, $handler->getPath() );
+		ProfilingContext::singleton()->init( MW_ENTRY_POINT, $handler->getRoutePath() );
 		// Check for basic authorization, to avoid leaking data from private wikis
 		$authResult = $this->basicAuth->authorize( $handler->getRequest(), $handler );
 		if ( $authResult ) {

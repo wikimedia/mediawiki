@@ -286,9 +286,7 @@ abstract class Handler {
 	 * @return string[]
 	 */
 	public function getSupportedPathParams(): array {
-		$path = $this->getPath();
-
-		preg_match_all( '/\{(.*?)\}/', $path, $matches, PREG_PATTERN_ORDER );
+		preg_match_all( '/\{(.*?)\}/', $this->path, $matches, PREG_PATTERN_ORDER );
 
 		return $matches[1] ?? [];
 	}
