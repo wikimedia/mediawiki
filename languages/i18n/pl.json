@@ -2518,7 +2518,7 @@
 	"sp-contributions-hideminor": "Ukryj drobne zmiany",
 	"sp-contributions-submit": "Szukaj",
 	"sp-contributions-outofrange": "Nie można wyświetlić żadnych wyników. Żądany zakres IP jest większy niż limit CIDR równy /$1.",
-	"sp-contributions-concurrency-user": "Przepraszamy, twoje konto wykonało zbyt wiele żądań. Spróbuj ponownie później.",
+	"sp-contributions-concurrency-user": "Przepraszamy, twoje konto wykonało zbyt wiele żądań jednocześnie. Spróbuj ponownie później.",
 	"sp-contributions-concurrency-ip": "Przepraszamy, twój adres IP wykonał zbyt wiele żądań. Spróbuj ponownie później.",
 	"whatlinkshere": "Linkujące",
 	"whatlinkshere-count": "Wyświetlono $1 {{PLURAL:$1|element|elementy|elementów}}.",
