@@ -1730,8 +1730,10 @@ class ParserTestRunner {
 				$propList = [ $propList ];
 			}
 			foreach ( $propList as $prop ) {
-				$after[] = "property[$prop]=" .
-					( $output->getPageProperty( $prop ) ?? '' );
+				if ( $output->getPageProperty( $prop ) !== null ) {
+					$after[] = "property[$prop]=" .
+						$output->getPageProperty( $prop );
+				}
 			}
 		}
 		if ( isset( $opts['showflags'] ) ) {

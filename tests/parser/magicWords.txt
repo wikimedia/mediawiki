@@ -1214,12 +1214,14 @@ __NOCONTENTCONVERT__
 NOGALLERY sets flag
 !! options
 showflags
+property=nogallery
 !! wikitext
 __NOGALLERY__
+!! metadata
+property[nogallery]=
+flags=mw-NoGallery
 !! html/parsoid
 <meta property="mw:PageProp/nogallery" data-parsoid='{"src":"__NOGALLERY__","magicSrc":"__NOGALLERY__"}'/>
-!! metadata
-flags=mw-NoGallery
 !! end
 
 !! test
@@ -1227,11 +1229,13 @@ flags=mw-NoGallery
 !! options
 title=[[123]]
 cat
+property=hiddencat
 !! wikitext
 __HIDDENCAT__
+!! metadata
+property[hiddencat]=
 !! html/parsoid
 <meta property="mw:PageProp/hiddencat" data-parsoid='{"src":"__HIDDENCAT__","magicSrc":"__HIDDENCAT__"}'/>
-!! metadata
 !! end
 
 !! test
@@ -1239,24 +1243,29 @@ __HIDDENCAT__
 !! options
 title=[[Category:123]]
 cat
+property=hiddencat
 !! wikitext
 __HIDDENCAT__
-!! html/parsoid
-<meta property="mw:PageProp/hiddencat" data-parsoid='{"src":"__HIDDENCAT__","magicSrc":"__HIDDENCAT__"}'/>
 !! metadata
 cat=Hidden_categories sort=
+property[hiddencat]=
+!! html/parsoid
+<meta property="mw:PageProp/hiddencat" data-parsoid='{"src":"__HIDDENCAT__","magicSrc":"__HIDDENCAT__"}'/>
 !! end
 
 !! test
 New section link / no new section link
 !! options
 showflags
+property=newsectionlink,nonewsectionlink
 parsoid={
 	"wrapSections": true
 }
 !! wikitext
 __NEWSECTIONLINK__ __NONEWSECTIONLINK__
 !! metadata
+property[newsectionlink]=
+property[nonewsectionlink]=
 flags=mw-HideNewSection, mw-NewSection
 !! html/parsoid
 <section data-mw-section-id="0"><meta property="mw:PageProp/newsectionlink" data-parsoid='{"src":"__NEWSECTIONLINK__","magicSrc":"__NEWSECTIONLINK__"}'/> <meta property="mw:PageProp/nonewsectionlink" data-parsoid='{"src":"__NONEWSECTIONLINK__","magicSrc":"__NONEWSECTIONLINK__"}'/></section>
@@ -1275,9 +1284,11 @@ showflags
 parsoid={
 	"wrapSections": true
 }
+property=newsectionlink
 !! wikitext
 {{NewSectionLink}}
 !! metadata
+property[newsectionlink]=
 flags=mw-NewSection
 !! html/parsoid
 <section data-mw-section-id="0"><span class="mw-empty-elt" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"NewSectionLink","href":"./Template:NewSectionLink"},"params":{},"i":0}}]}'><meta property="mw:PageProp/newsectionlink"/></span></section>
@@ -1289,8 +1300,11 @@ Japanese magic words with U+FF3F (T407289)
 !! options
 language=ja
 parsoid=wt2html,wt2wt,html2html
+property=notoc
 !! wikitext
 ＿＿目次非表示＿＿
+!! metadata
+property[notoc]=
 !! html/parsoid
 <meta property="mw:PageProp/notoc"/>
 !! end
