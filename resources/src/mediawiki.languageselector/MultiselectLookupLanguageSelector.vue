@@ -33,9 +33,10 @@
 </template>
 
 <script>
-const { defineComponent, ref, toRefs, watch, computed } = require( 'vue' );
+const { defineComponent, toRefs } = require( 'vue' );
 const { CdxField, CdxMultiselectLookup } = require( './codex.js' );
-const { useLanguageSelector, computeMenuItems } = require( 'mediawiki.languageselector.core' );
+const { useLanguageSelector } = require( 'mediawiki.languageselector.core' );
+const useLanguageLookup = require( './useLanguageLookup.js' );
 
 module.exports = exports = defineComponent( {
 	name: 'MultiselectLookupLanguageSelector',
@@ -92,67 +93,31 @@ module.exports = exports = defineComponent( {
 			clearSearchQuery
 		} = useLanguageSelector( selectableLanguages, selected, props.searchApiUrl, props.debounceDelayMs, true );
 
-		const inputValue = ref( '' );
-		const menuItems = ref( computeMenuItems( languages.value ) );
-
-		const status = ref( 'default' );
-		const statusMessages = computed( () => ( {
-			warning: mw.msg( 'languageselector-invalid-input', inputValue.value.slice( 0, 30 ) ) // Limit returned input to 30 bytes
-		} ) );
-
-		const onUpdateInputValue = ( val ) => {
-			if ( val === '' ) {
-				menuItems.value = computeMenuItems( languages.value );
-				return;
-			}
-
-			search( val );
-		};
-
-		const onUpdateSelected = ( values ) => {
-			inputValue.value = '';
-			if ( isSelectionUpdated( values ) ) {
-				emit( 'update:selected', values );
-			}
-
-			clearSearchQuery();
-		};
+		const {
+			inputValue,
+			status,
+			statusMessages,
+			menuItems,
+			onUpdateInputValue,
+			onUpdateSelected,
+			onBlur
+		} = useLanguageLookup( {
+			selection,
+			selectedValues,
+			languages,
+			searchQuery,
+			searchResults,
+			search,
+			clearSearchQuery,
+			isSelectionUpdated,
+			emit,
+			isMultiple: true
+		} );
 
 		const onUpdateInputChips = ( chips ) => {
-			inputValue.value = '';
 			const chipValues = chips.map( ( c ) => c.value );
-			if ( isSelectionUpdated( chipValues ) ) {
-				emit( 'update:selected', chipValues );
-			}
-
-			clearSearchQuery();
+			onUpdateSelected( chipValues );
 		};
-
-		const onBlur = () => {
-			status.value = 'default';
-			if ( inputValue.value.length > 0 ) {
-				if ( menuItems.value.length ) {
-					// Select the first item from the menu
-					const selectedLanguages = selected.value;
-					const assumedSelection = menuItems.value[ 0 ].value;
-					if ( !selectedLanguages.includes( assumedSelection ) ) {
-						selectedLanguages.push( assumedSelection );
-					}
-					onUpdateSelected( selectedLanguages );
-					status.value = 'default';
-				} else {
-					status.value = 'warning';
-				}
-			}
-		};
-
-		watch( searchResults, () => {
-			if ( inputValue.value === '' ) {
-				menuItems.value = computeMenuItems( languages.value );
-			} else {
-				menuItems.value = computeMenuItems( languages.value, searchResults.value );
-			}
-		} );
 
 		return {
 			searchQuery,

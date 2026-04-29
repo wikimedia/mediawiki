@@ -134,7 +134,6 @@ return [
 			'useLanguageSelector.js',
 			'languageSearch.js',
 			'debounce.js',
-			'menuHelper.js',
 		],
 		'dependencies' => [
 			'mediawiki.api',
@@ -147,6 +146,7 @@ return [
 		'remoteBasePath' => '',
 		'packageFiles' => [
 			'lookup.js',
+			'useLanguageLookup.js',
 			'lookup-factory.js',
 			'LookupLanguageSelector.vue',
 			'multiselect-factory.js',

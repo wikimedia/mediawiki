@@ -30,9 +30,10 @@
 </template>
 
 <script>
-const { defineComponent, ref, toRefs, watch, computed } = require( 'vue' );
+const { defineComponent, toRefs } = require( 'vue' );
 const { CdxField, CdxLookup } = require( './codex.js' );
-const { useLanguageSelector, computeMenuItems } = require( 'mediawiki.languageselector.core' );
+const { useLanguageSelector } = require( 'mediawiki.languageselector.core' );
+const useLanguageLookup = require( './useLanguageLookup.js' );
 
 // @vue/component
 module.exports = exports = defineComponent( {
@@ -87,70 +88,25 @@ module.exports = exports = defineComponent( {
 			selectedValues
 		} = useLanguageSelector( selectableLanguages, selected, props.searchApiUrl, props.debounceDelayMs );
 
-		const inputValue = ref( '' );
-		watch( selection, ( newSelection ) => {
-			inputValue.value = newSelection.label || '';
-		}, { immediate: true } );
-
-		const menuItems = ref( [] );
-
-		const status = ref( 'default' );
-		const statusMessages = computed( () => {
-			if ( status.value !== 'warning' ) {
-				return {};
-			}
-
-			return {
-				// Limit returned input to 30 bytes
-				warning: mw.msg( 'languageselector-invalid-input', inputValue.value.slice( 0, 30 ) )
-			};
-		} );
-
-		const onUpdateInputValue = ( val ) => {
-			if ( val === '' ) {
-				clearSearchQuery();
-				return;
-			}
-
-			if ( val !== selection.value.label ) {
-				search( val );
-			}
-		};
-
-		const onUpdateSelected = ( val ) => {
-			if ( isSelectionUpdated( val ) ) {
-				emit( 'update:selected', val );
-			}
-			if ( val ) {
-				clearSearchQuery();
-			}
-		};
-
-		const onBlur = () => {
-			status.value = 'default';
-			if ( inputValue.value.length > 0 && !selectedValues.value ) {
-				if ( menuItems.value.length ) {
-					// Select the first item from the menu
-					onUpdateSelected( menuItems.value[ 0 ].value );
-				} else {
-					status.value = 'warning';
-				}
-			}
-		};
-
-		const allMenuItems = computed( () => computeMenuItems( languages.value ) );
-		watch( [ searchResults, allMenuItems ], () => {
-			if ( searchQuery.value ) {
-				menuItems.value = computeMenuItems( languages.value, searchResults.value );
-			} else {
-				menuItems.value = allMenuItems.value;
-			}
-		}, { immediate: true } );
-
-		watch( searchQuery, ( newQuery ) => {
-			if ( !newQuery ) {
-				menuItems.value = allMenuItems.value;
-			}
+		const {
+			inputValue,
+			status,
+			statusMessages,
+			menuItems,
+			onUpdateInputValue,
+			onUpdateSelected,
+			onBlur
+		} = useLanguageLookup( {
+			selection,
+			selectedValues,
+			languages,
+			searchQuery,
+			searchResults,
+			search,
+			clearSearchQuery,
+			isSelectionUpdated,
+			emit,
+			isMultiple: false
 		} );
 
 		return {
