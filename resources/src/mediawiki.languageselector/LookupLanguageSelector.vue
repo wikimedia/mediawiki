@@ -3,7 +3,7 @@
 		<cdx-lookup
 			:id="inputId"
 			v-model:input-value="inputValue"
-			:selected="selection.value"
+			:selected="selectedValues"
 			:menu-items="menuItems"
 			:menu-config="menuConfig"
 			:placeholder="placeholder"
@@ -83,20 +83,32 @@ module.exports = exports = defineComponent( {
 			search,
 			clearSearchQuery,
 			isSelectionUpdated,
-			selection
+			selection,
+			selectedValues
 		} = useLanguageSelector( selectableLanguages, selected, props.searchApiUrl, props.debounceDelayMs );
 
-		const inputValue = ref( selection.value && selection.value.label || '' );
-		const menuItems = ref( computeMenuItems( languages.value ) );
+		const inputValue = ref( '' );
+		watch( selection, ( newSelection ) => {
+			inputValue.value = newSelection.label || '';
+		}, { immediate: true } );
+
+		const menuItems = ref( [] );
 
 		const status = ref( 'default' );
-		const statusMessages = computed( () => ( {
-			warning: mw.msg( 'languageselector-invalid-input', inputValue.value.slice( 0, 30 ) ) // Limit returned input to 30 bytes
-		} ) );
+		const statusMessages = computed( () => {
+			if ( status.value !== 'warning' ) {
+				return {};
+			}
+
+			return {
+				// Limit returned input to 30 bytes
+				warning: mw.msg( 'languageselector-invalid-input', inputValue.value.slice( 0, 30 ) )
+			};
+		} );
 
 		const onUpdateInputValue = ( val ) => {
 			if ( val === '' ) {
-				menuItems.value = computeMenuItems( languages.value );
+				clearSearchQuery();
 				return;
 			}
 
@@ -116,22 +128,28 @@ module.exports = exports = defineComponent( {
 
 		const onBlur = () => {
 			status.value = 'default';
-			if ( inputValue.value.length > 0 && selection.value.value === null ) {
+			if ( inputValue.value.length > 0 && !selectedValues.value ) {
 				if ( menuItems.value.length ) {
 					// Select the first item from the menu
 					onUpdateSelected( menuItems.value[ 0 ].value );
-					status.value = 'default';
 				} else {
 					status.value = 'warning';
 				}
 			}
 		};
 
-		watch( searchResults, () => {
-			if ( inputValue.value === '' ) {
-				menuItems.value = computeMenuItems( languages.value );
-			} else {
+		const allMenuItems = computed( () => computeMenuItems( languages.value ) );
+		watch( [ searchResults, allMenuItems ], () => {
+			if ( searchQuery.value ) {
 				menuItems.value = computeMenuItems( languages.value, searchResults.value );
+			} else {
+				menuItems.value = allMenuItems.value;
+			}
+		}, { immediate: true } );
+
+		watch( searchQuery, ( newQuery ) => {
+			if ( !newQuery ) {
+				menuItems.value = allMenuItems.value;
 			}
 		} );
 
@@ -140,7 +158,7 @@ module.exports = exports = defineComponent( {
 			status,
 			statusMessages,
 			searchQuery,
-			selection,
+			selectedValues,
 			menuItems,
 			onBlur,
 			onUpdateInputValue,

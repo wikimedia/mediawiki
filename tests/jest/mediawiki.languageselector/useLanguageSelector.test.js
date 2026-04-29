@@ -209,4 +209,26 @@ describe( 'useLanguageSelector', () => {
 
 		expect( wrapper.vm.selectedValues ).toEqual( [ 'en', 'fr' ] );
 	} );
+
+	it( 'clearSearchQuery cancels pending searches and clears results', async () => {
+		jest.useFakeTimers();
+		mockSearchLanguages.mockReturnValue( Promise.resolve( { languagesearch: { en: 'English' } } ) );
+
+		const wrapper = mount( {
+			selectableLanguages: { en: 'English' }
+		} );
+		await wrapper.vm.$nextTick();
+
+		wrapper.vm.search( 'en' );
+		wrapper.vm.clearSearchQuery();
+
+		jest.advanceTimersByTime( 300 );
+		await wrapper.vm.$nextTick();
+
+		expect( mockSearchLanguages ).not.toHaveBeenCalled();
+		expect( wrapper.vm.searchQuery ).toBe( '' );
+		expect( wrapper.vm.searchResults ).toEqual( [] );
+
+		jest.useRealTimers();
+	} );
 } );

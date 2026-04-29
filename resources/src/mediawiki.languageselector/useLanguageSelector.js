@@ -91,7 +91,9 @@ function useLanguageSelector(
 	const debouncedSearch = debounce( search, debounceDelayMs );
 
 	const clearSearchQuery = () => {
+		debouncedSearch.cancel();
 		searchQuery.value = '';
+		searchResults.value = [];
 	};
 
 	const isSelectionUpdated = ( newValue ) => {
