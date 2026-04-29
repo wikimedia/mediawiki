@@ -24,7 +24,7 @@ interface GetSecurityLogContextHook {
 	 * @param array &$context The PSR-3 log context.
 	 * @return void This hook must not abort, it must return no value
 	 *
-	 * @since 1.45
+	 * @since 1.45 (also backported to 1.43.9, 1.44.6)
 	 * @see WebRequest::getSecurityLogContext()
 	 */
 	public function onGetSecurityLogContext( array $info, array &$context ): void;
