@@ -218,6 +218,23 @@ because of Phabricator reports.
   service since 1.46, has been removed. Use the new service name instead.
 * The EditFilter hook, deprecated in 1.46, has been removed. Use
   EditFilterMergedContent or MultiContentSave instead.
+* Passing a MessageLocalizer to ChangesList::formatSummaryRow is now mandatory.
+  Passing null was deprecated in 1.46.
+* Passing an IContextSource to ChangesList::buildTagFilterSelector is now
+  mandatory. Passing null was deprecated in 1.46.
+* Passing a performer to WikiImporterFactory::getImporter is mandatory now.
+  Passing null was deprecated in 1.42.
+* Passing a performer to ChangesList::userCan is mandatory now. Passing null was
+  deprecated in 1.46.
+* Passing a context to ChangesList::showCharacterDifference
+  and ChangesList::flag is mandatory now. Passing null was deprecated in 1.46.
+* RecentChange::getCharacterDifference, deprecated in 1.46, has been removed.
+  Use ChangesList::showCharacterDifference or
+  ChangesList::formatCharacterDifference instead.
+* Passing a context so SpecialPageFactory::getUsablePages is mandatory now.
+  Passing null was deprecated in 1.46.
+* Passing a performer to UploadBase::checkWarnings is mandatory now. Passing
+  null was deprecated in 1.46.
 * The protected static method UserMailer::sendWithPear() has been removed
   following the migration from PEAR Mail to symfony/mailer.
 * Passing null to any of the three constructor parameters of TextboxBuilder,

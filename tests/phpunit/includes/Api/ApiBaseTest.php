@@ -1216,7 +1216,7 @@ class ApiBaseTest extends ApiTestCase {
 				[ ParamValidator::PARAM_TYPE => 'tags' ],
 				ApiUsageException::newWithMessage(
 					null,
-					[ 'tags-apply-not-allowed-one', 'invalid tag', 1 ],
+					[ 'tags-apply-not-allowed-one', Message::listParam( [ 'invalid tag' ] ), 1 ],
 					'badtags',
 					[ 'disallowedtags' => [ 'invalid tag' ] ]
 				),

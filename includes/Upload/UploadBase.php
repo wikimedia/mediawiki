@@ -14,7 +14,6 @@ use LogicException;
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Api\ApiResult;
 use MediaWiki\Api\ApiUpload;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\FileRepo\File\ArchivedFile;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\LocalFile;
@@ -579,20 +578,10 @@ abstract class UploadBase {
 	 *
 	 * This should not assume that mTempPath is set.
 	 *
-	 * @param User|null $user Accepted since 1.35; not passing the parameter or
-	 *  passing null to it is deprecated since 1.46
-	 *
+	 * @param Authority $performer Accepted since 1.35; mandatory since 1.47
 	 * @return mixed[] Array of warnings
 	 */
-	public function checkWarnings( $user = null ) {
-		if ( $user === null ) {
-			wfDeprecatedMsg(
-				'Calling UploadBase::checkWarnings without a user was deprecated in 1.46',
-				'1.46'
-			);
-			$user = RequestContext::getMain()->getUser();
-		}
-
+	public function checkWarnings( Authority $performer ): array {
 		$warnings = [];
 
 		$localFile = $this->getLocalFile();
@@ -632,7 +621,7 @@ abstract class UploadBase {
 			$warnings['duplicate'] = $dupes;
 		}
 
-		$archivedDupes = $this->checkAgainstArchiveDupes( $hash, $user );
+		$archivedDupes = $this->checkAgainstArchiveDupes( $hash, $performer );
 		if ( $archivedDupes !== null ) {
 			$warnings['duplicate-archive'] = $archivedDupes;
 		}

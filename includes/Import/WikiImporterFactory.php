@@ -9,7 +9,6 @@ namespace MediaWiki\Import;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Page\WikiPageFactory;
@@ -39,21 +38,13 @@ class WikiImporterFactory {
 
 	/**
 	 * @param ImportSource $source
-	 * @param Authority|null $performer Authority used for permission checks only (to ensure that
+	 * @param Authority $performer Authority used for permission checks only (to ensure that
 	 *     the user performing the import is allowed to edit the pages they're importing). To skip
 	 *     the checks, use UltimateAuthority.
-	 *
-	 *     When omitted, defaults to the current global user. This behavior is deprecated since 1.42.
-	 *
 	 *     If you want to also log the import actions, see ImportReporter.
 	 * @return WikiImporter
 	 */
-	public function getWikiImporter( ImportSource $source, ?Authority $performer = null ): WikiImporter {
-		if ( !$performer ) {
-			wfDeprecated( __METHOD__ . ' without $performer', '1.42' );
-			$performer = RequestContext::getMain()->getAuthority();
-		}
-
+	public function getWikiImporter( ImportSource $source, Authority $performer ): WikiImporter {
 		return new WikiImporter(
 			$source,
 			$performer,

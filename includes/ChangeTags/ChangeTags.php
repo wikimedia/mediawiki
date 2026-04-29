@@ -7,7 +7,6 @@
 namespace MediaWiki\ChangeTags;
 
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
@@ -191,22 +190,15 @@ class ChangeTags {
 	 *
 	 * @param string $tags Comma-separated list of tags
 	 * @param null|string $unused Unused (formerly: $page)
-	 * @param MessageLocalizer|null $localizer Passing null is deprecated
+	 * @param MessageLocalizer $localizer
 	 * @return array Array with two items: (html, classes)
 	 *   - html: String: HTML for displaying the tags (empty string when param $tags is empty)
 	 *   - classes: Array of strings: CSS classes used in the generated html, one class for each tag
 	 * @return-taint onlysafefor_htmlnoent
 	 */
-	public static function formatSummaryRow( $tags, $unused, ?MessageLocalizer $localizer = null ) {
+	public static function formatSummaryRow( $tags, $unused, MessageLocalizer $localizer ) {
 		if ( $tags === '' || $tags === null ) {
 			return [ '', [] ];
-		}
-		if ( !$localizer ) {
-			wfDeprecatedMsg(
-				"Calling ChangeTags::formatSummaryRow without a localizer is deprecated.",
-				'1.46'
-			);
-			$localizer = RequestContext::getMain();
 		}
 
 		$classes = [];
@@ -448,11 +440,10 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	protected static function restrictedTagError( $msgOne, $msgMulti, $tags ) {
-		$lang = RequestContext::getMain()->getLanguage();
 		$tags = array_values( $tags );
 		$count = count( $tags );
 		$status = Status::newFatal( ( $count > 1 ) ? $msgMulti : $msgOne,
-			$lang->commaList( $tags ), $count );
+			Message::listParam( $tags ), $count );
 		$status->value = $tags;
 		return $status;
 	}
@@ -754,25 +745,17 @@ class ChangeTags {
 	 * @param string $selected Tag to select by default
 	 * @param bool $ooui Use an OOUI TextInputWidget as selector instead of a non-OOUI input field
 	 *        You need to call OutputPage::enableOOUI() yourself.
-	 * @param IContextSource|null $context Passing null is deprecated.
+	 * @param IContextSource $context
 	 * @param bool $activeOnly Whether to filter for tags that have been used or not
 	 * @param bool $useAllTags Whether to use all known tags or to only use software defined tags
 	 *        These map to ChangeTagsStore->listDefinedTags and ChangeTagsStore->getCoreDefinedTags respectively
 	 * @return array{0:string,1:string}|null Two chunks of HTML (label, and dropdown menu) or null if disabled
 	 */
 	public static function buildTagFilterSelector(
-		$selected = '', $ooui = false, ?IContextSource $context = null,
+		$selected, $ooui, IContextSource $context,
 		bool $activeOnly = self::TAG_SET_ACTIVE_ONLY,
 		bool $useAllTags = self::USE_ALL_TAGS
 	) {
-		if ( !$context ) {
-			wfDeprecatedMsg(
-				"Calling ChangeTags::buildTagFilterSelector without a localizer is deprecated.",
-				'1.46'
-			);
-			$context = RequestContext::getMain();
-		}
-
 		$config = $context->getConfig();
 		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 		if ( !$config->get( MainConfigNames::UseTagFilter ) ||

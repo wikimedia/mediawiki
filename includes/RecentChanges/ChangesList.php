@@ -10,7 +10,6 @@ use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
@@ -328,10 +327,10 @@ class ChangesList extends ContextSource {
 	 * Styling for these flags is provided through mediawiki.interface.helpers.styles.
 	 *
 	 * @param string $flag One key of $wgRecentChangesFlags
-	 * @param IContextSource|null $context
+	 * @param IContextSource $context
 	 * @return string HTML
 	 */
-	public static function flag( $flag, ?IContextSource $context = null ) {
+	public static function flag( $flag, IContextSource $context ) {
 		static $map = [ 'minoredit' => 'minor', 'botedit' => 'bot' ];
 		static $flagInfos = null;
 
@@ -345,14 +344,6 @@ class ChangesList extends ContextSource {
 				// Allow customized class name, fall back to flag name
 				$flagInfos[$key]['class'] = $value['class'] ?? $key;
 			}
-		}
-
-		if ( !$context ) {
-			wfDeprecatedMsg(
-				'Calling ChangesList::flag without specifying a context is deprecated since 1.46',
-				'1.46'
-			);
-			$context = RequestContext::getMain();
 		}
 
 		// Inconsistent naming, kept for b/c
@@ -409,18 +400,10 @@ class ChangesList extends ContextSource {
 	 *
 	 * @param int $old Number of bytes
 	 * @param int $new Number of bytes
-	 * @param IContextSource|null $context
+	 * @param IContextSource $context
 	 * @return string
 	 */
-	public static function showCharacterDifference( $old, $new, ?IContextSource $context = null ) {
-		if ( !$context ) {
-			wfDeprecatedMsg(
-				'Calling ChangesList::showCharacterDifference without specifying a context is deprecated since 1.46',
-				'1.46'
-			);
-			$context = RequestContext::getMain();
-		}
-
+	public static function showCharacterDifference( $old, $new, IContextSource $context ) {
 		$new = (int)$new;
 		$old = (int)$old;
 		$szdiff = $new - $old;
@@ -882,23 +865,14 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * Determine if the current user is allowed to view a particular
+	 * Determine if the given user is allowed to view a particular
 	 * field of this revision, if it's marked as deleted.
 	 * @param RCCacheEntry|RecentChange $rc
 	 * @param int $field
-	 * @param Authority|null $performer to check permissions against. If null, the global RequestContext's
-	 * User is assumed instead.
+	 * @param Authority $performer to check permissions against
 	 * @return bool
 	 */
-	public static function userCan( $rc, $field, ?Authority $performer = null ) {
-		if ( !$performer ) {
-			wfDeprecatedMsg(
-				'Calling ChangesList::userCan without specifying a performer is deprecated since 1.46',
-				'1.46'
-			);
-			$performer = RequestContext::getMain()->getAuthority();
-		}
-
+	public static function userCan( $rc, $field, Authority $performer ) {
 		if ( $rc->mAttribs['rc_source'] === RecentChange::SRC_LOG ) {
 			return LogEventsList::userCanBitfield( $rc->mAttribs['rc_deleted'], $field, $performer );
 		}
