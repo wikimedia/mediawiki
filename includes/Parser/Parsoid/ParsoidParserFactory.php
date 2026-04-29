@@ -3,10 +3,12 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Parser\Parsoid;
 
+use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\Parsoid\Config\DataAccess;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
+use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Parsoid;
 
@@ -30,6 +32,8 @@ class ParsoidParserFactory {
 		private readonly DataAccess $dataAccess,
 		private readonly PageConfigFactory $pageConfigFactory,
 		private readonly LanguageConverterFactory $languageConverterFactory,
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly TrackingCategories $trackingCategories,
 		private readonly ParserFactory $legacyParserFactory,
 	) {
 	}
@@ -46,7 +50,9 @@ class ParsoidParserFactory {
 			$this->pageConfigFactory,
 			$this->languageConverterFactory,
 			$this->siteConfig,
-			$this->dataAccess
+			$this->dataAccess,
+			$this->namespaceInfo,
+			$this->trackingCategories,
 		);
 	}
 }

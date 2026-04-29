@@ -3,6 +3,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Parser\Parsoid;
 
+use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\RequestContext;
@@ -18,6 +19,7 @@ use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Assert\Assert;
@@ -40,6 +42,8 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		private readonly LanguageConverterFactory $languageConverterFactory,
 		private readonly SiteConfig $siteConfig,
 		private readonly DataAccess $dataAccess,
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly TrackingCategories $trackingCategories,
 	) {
 	}
 
@@ -189,8 +193,38 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			->setLabels( $labels )
 			->increment();
 
+		return $this->addMetadata( $parserOutput, $pageConfig );
+	}
+
+	/**
+	 * Add Parsoid-specific metadata to the final ParserOutput. This is
+	 * split into its own function to allow it to be invoked by
+	 * ParserTestRunner.
+	 *
+	 * @internal
+	 */
+	public function addMetadata( ParserOutput $parserOutput, PageConfig $pageConfig ): ParserOutput {
 		// Add Parsoid skinning module
 		$parserOutput->addModuleStyles( [ 'mediawiki.skinning.content.parsoid' ] );
+
+		// (T10068) Allow control over whether robots index a page.
+		# __NOINDEX__ always overrides __INDEX__, see T16899
+		foreach ( [ 'noindex', 'index' ] as $indexSwitch ) {
+			if (
+				$parserOutput->getPageProperty( $indexSwitch ) !== null &&
+				$this->namespaceInfo->canUseNoindex(
+					$pageConfig->getLinkTarget()->getNamespace()
+				)
+			) {
+				$parserOutput->setIndexPolicy( $indexSwitch );
+				// Tracking categories are 'index-category', 'noindex-category'
+				$this->trackingCategories->addTrackingCategory(
+					$parserOutput,
+					$indexSwitch . '-category',
+					Title::newFromLinkTarget( $pageConfig->getLinkTarget() ),
+				);
+			}
+		}
 
 		// Record Parsoid version in extension data; this allows
 		// us to use the onRejectParserCacheValue hook to selectively

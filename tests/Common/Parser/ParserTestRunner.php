@@ -1782,6 +1782,10 @@ class ParserTestRunner {
 			);
 			$after[] = 'images=' . implode( ', ', $images );
 		}
+		if ( isset( $opts['showindexpolicy'] ) ) {
+			$metadataOptionsSeen[] = 'showindexpolicy';
+			$after[] = 'indexpolicy=' . $output->getIndexPolicy();
+		}
 		if ( $metadataExpected === null ) {
 			// legacy format, add $before and $after to $out
 			if ( $before ) {
@@ -1932,6 +1936,7 @@ class ParserTestRunner {
 			return false;
 		}
 
+		$services = MediaWikiServices::getInstance();
 		$metadata = new ParserOutput( 'parsoid' );
 		$origOut = $parsoid->wikitext2html( $pageConfig, [
 			'body_only' => true,
@@ -1948,9 +1953,9 @@ class ParserTestRunner {
 		/** @var \MediaWiki\Parser\Parsoid\Config\PageConfig $pageConfig */
 		'@phan-var \MediaWiki\Parser\Parsoid\Config\PageConfig $pageConfig';
 		$metadata->setFromParserOptions( $pageConfig->getParserOptions() );
+		$services->getParsoidParserFactory()->create()->addMetadata( $metadata, $pageConfig );
 		if ( isset( $test->options['langconv'] ) ) {
 			// Run (just) the LanguageConverter post-processing pass
-			$services = MediaWikiServices::getInstance();
 			$pass = new ParsoidLanguageConverter(
 				new ServiceOptions(
 					[],

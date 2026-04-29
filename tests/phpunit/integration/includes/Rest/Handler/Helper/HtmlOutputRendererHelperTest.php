@@ -836,7 +836,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				$services->getParsoidPageConfigFactory(),
 				$services->getLanguageConverterFactory(),
 				$services->getParsoidSiteConfig(),
-				$services->getParsoidDataAccess()
+				$services->getParsoidDataAccess(),
+				$services->getNamespaceInfo(),
+				$services->getTrackingCategories(),
 			);
 		}
 

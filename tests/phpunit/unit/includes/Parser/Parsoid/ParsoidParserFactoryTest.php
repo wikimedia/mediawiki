@@ -7,12 +7,14 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Tests\Parser\Parsoid;
 
+use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\Parsoid\Config\DataAccess;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWikiUnitTestCase;
 use Wikimedia\Parsoid\Config\SiteConfig;
 
@@ -27,6 +29,8 @@ class ParsoidParserFactoryTest extends MediaWikiUnitTestCase {
 	protected PageConfigFactory $pageConfigFactory;
 	protected LanguageConverterFactory $languageConverterFactory;
 	protected ParserFactory $legacyParserFactory;
+	protected NamespaceInfo $namespaceInfo;
+	protected TrackingCategories $trackingCategories;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -35,6 +39,8 @@ class ParsoidParserFactoryTest extends MediaWikiUnitTestCase {
 		$this->pageConfigFactory = $this->createMock( PageConfigFactory::class );
 		$this->languageConverterFactory = $this->createMock( LanguageConverterFactory::class );
 		$this->legacyParserFactory = $this->createMock( ParserFactory::class );
+		$this->namespaceInfo = $this->createMock( NamespaceInfo::class );
+		$this->trackingCategories = $this->createMock( TrackingCategories::class );
 	}
 
 	public function testCreate() {
@@ -43,7 +49,9 @@ class ParsoidParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->dataAccess,
 			$this->pageConfigFactory,
 			$this->languageConverterFactory,
-			$this->legacyParserFactory
+			$this->namespaceInfo,
+			$this->trackingCategories,
+			$this->legacyParserFactory,
 		);
 		$this->assertInstanceOf( ParsoidParser::class, $factory->create() );
 	}

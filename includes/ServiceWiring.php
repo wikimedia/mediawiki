@@ -1929,7 +1929,9 @@ return [
 			$services->getParsoidDataAccess(),
 			$services->getParsoidPageConfigFactory(),
 			$services->getLanguageConverterFactory(),
-			$services->getParserFactory()
+			$services->getNamespaceInfo(),
+			$services->getTrackingCategories(),
+			$services->getParserFactory(),
 		);
 	},
 
