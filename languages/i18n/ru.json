@@ -204,7 +204,8 @@
 			"Mitte27",
 			"Engineer56",
 			"Shabe",
-			"LuckyBlock13fa"
+			"LuckyBlock13fa",
+			"Маринад"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|1=Категория|Категории}}",
@@ -1554,6 +1555,7 @@
 	"rcfilters-typeofchange-conflicts-hideminor": "Этот фильтр типа правок конфликтует с фильтром малых правок. Определённые типы правок не могут быть отмечены «малыми».",
 	"rcfilters-hidecategorization-conflicts-reviewstatus-global": "Фильтр «Изменения категорий» конфликтует с одним или несколькими фильтрами статуса проверки, поскольку изменения категорий всегда помечаются как «автопатрулируемые». Конфликтующие фильтры отмечены в области «Активные фильтры» выше.",
 	"rcfilters-hidecategorization-conflicts-reviewstatus": "Изменения категорий всегда \"автопатрулируемые\", поэтому данный фильтр конфликтует со следующими фильтрами статуса проверки: $1",
+	"rcfilters-reviewstatus-conflicts-reviewstatus": "Этот фильтр \"статуса проверки\" конфликтует с фильтром «Изменения категорий».  Изменения категорий всегда помечаются как «автопатрулируемые».",
 	"rcfilters-filtergroup-lastrevision": "Последние версии",
 	"rcfilters-filter-lastrevision-label": "Текущая версия",
 	"rcfilters-filter-lastrevision-description": "Только самое последнее изменение на странице.",

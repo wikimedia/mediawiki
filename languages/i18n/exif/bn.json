@@ -375,5 +375,15 @@
 	"exif-exposurelockused-false": "না",
 	"exif-posepitchdegrees": "পিচ (ডিগ্রি)",
 	"exif-poserolldegrees": "রোল (ডিগ্রি)",
-	"exif-sourcephotoscount": "উৎস ছবির গণনা"
+	"exif-sourcephotoscount": "উৎস ছবির গণনা",
+	"exif-croppedareaimagewidthpixels": "প্রস্থ-ছাঁটা পরিদৃশ্য",
+	"exif-croppedareaimageheightpixels": "উচ্চতা-ছাঁটা পরিদৃশ্য",
+	"exif-fullpanowidthpixels": "পূর্ণপ্রস্থ পরিদৃশ্য",
+	"exif-fullpanoheightpixels": "পূর্ণ-উচ্চতা পরিদৃশ্য",
+	"exif-croppedarealeftpixels": "বামদিক-ছাঁটা পরিদৃশ্য",
+	"exif-croppedareatoppixels": "উপর-ছাঁটা পরিদৃশ্য",
+	"exif-digitalsourcetype-minorhumanedits": "স্বল্প মানব-সম্পাদনাযুক্ত মৌলিক বিষয়বস্তু",
+	"exif-digitalsourcetype-humanedits": "মানব-সম্পাদিত বিষয়বস্তু",
+	"exif-digitalsourcetype-softwareimage": "সফটওয়্যার দ্বারা সৃষ্ট",
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "উৎপাদনী কৃত্রিম বুদ্ধিমত্তা ব্যবহার করে সৃষ্ট"
 }

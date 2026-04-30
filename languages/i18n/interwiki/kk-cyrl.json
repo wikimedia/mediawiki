@@ -2,12 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Arystanbek",
-			"СеніңШешең"
+			"СеніңШешең",
+			"Moonborn"
 		]
 	},
 	"interwiki": "Уикиаралық деректерді көру және өңдеу",
 	"interwiki-title-norights": "Уикиаралық деректерді көру",
 	"interwiki_intro": "Бұл интеруики кестесін шолып шығу",
+	"interwiki-legend-label": "Шартты белгілер",
 	"interwiki_prefix": "Префикс",
 	"interwiki-prefix-label": "Префикс",
 	"interwiki_local": "Алға",

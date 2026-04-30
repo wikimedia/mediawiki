@@ -358,5 +358,6 @@
 	"exif-usepanoramaviewer-false": "Nee",
 	"exif-exposurelockused-true": "Jo",
 	"exif-exposurelockused-false": "Nee",
-	"exif-stitchingsoftware": "Stitching-Software"
+	"exif-stitchingsoftware": "Stitching-Software",
+	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "Mat generativer KI geännert"
 }

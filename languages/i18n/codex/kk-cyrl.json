@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Moonborn"
+		]
+	},
+	"cdx-dialog-close-button-label": "Жабу",
+	"cdx-label-optional-flag": "(міндетті емес)",
+	"cdx-message-dismiss-button-label": "Жабу",
+	"cdx-popover-close-button-label": "Жабу",
+	"cdx-search-input-search-button-label": "Іздеу",
+	"cdx-table-select-all-label": "Барлық жолды таңдау",
+	"cdx-table-select-row-label": "$2 ішінен $1-жолды таңдау",
+	"cdx-typeahead-search-search-results-label": "Іздеу нәтижелері",
+	"cdx-table-pager-button-first-page": "Бірінші бет",
+	"cdx-table-pager-button-last-page": "Соңғы бет",
+	"cdx-table-pager-button-next-page": "Келесі бет",
+	"cdx-table-pager-button-prev-page": "Алдыңғы бет"
+}
