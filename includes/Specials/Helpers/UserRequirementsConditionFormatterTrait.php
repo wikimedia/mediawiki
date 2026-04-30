@@ -99,7 +99,7 @@ trait UserRequirementsConditionFormatterTrait {
 			foreach ( $args as $group ) {
 				$groupNames[] = $this->getLanguage()->getGroupName( $group );
 			}
-			$msg->params( count( $args ), $this->getLanguage()->listToText( $groupNames ) );
+			$msg->numParams( count( $args ) )->params( Message::listParam( $groupNames ) );
 		} elseif ( $condName === APCOND_EDITCOUNT ) {
 			$minEdits = $args[0] ?? $this->getConfig()->get( MainConfigNames::AutoConfirmCount );
 			$msg->numParams( $minEdits );

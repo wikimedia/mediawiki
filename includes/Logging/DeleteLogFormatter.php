@@ -12,6 +12,7 @@
 namespace MediaWiki\Logging;
 
 use MediaWiki\Api\ApiResult;
+use MediaWiki\Message\Message;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\RevisionDelete\RevisionDeleter;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -88,7 +89,7 @@ class DeleteLogFormatter extends LogFormatter {
 				foreach ( $extra as $v ) {
 					$changes[] = $this->msg( $v )->plain();
 				}
-				$changeText = $this->context->getLanguage()->listToText( $changes );
+				$changeText = Message::listParam( $changes );
 
 				$newParams = array_slice( $params, 0, 3 );
 				$newParams[3] = $changeText;
@@ -114,7 +115,7 @@ class DeleteLogFormatter extends LogFormatter {
 							->numParams( $count )->plain();
 					}
 				}
-				$params[3] = $this->context->getLanguage()->listToText( $countList );
+				$params[3] = Message::listParam( $countList );
 			}
 		}
 

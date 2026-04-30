@@ -45,6 +45,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\CategoryPage;
 use MediaWiki\Page\LinkBatchFactory;
@@ -3879,7 +3880,7 @@ class EditPage implements IEditObject {
 
 		if ( $match ) {
 			if ( is_array( $match ) ) {
-				$matchText = $this->context->getLanguage()->listToText( array_map( wfEscapeWikiText( ... ), $match ) );
+				$matchText = Message::listParam( array_map( wfEscapeWikiText( ... ), $match ) );
 			} else {
 				$matchText = wfEscapeWikiText( $match );
 			}

@@ -1622,9 +1622,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'label-message' => 'search-thumbnail-extra-namespaces-label',
 				'help-message' => $context->msg(
 					'search-thumbnail-extra-namespaces-message',
-					$context->getLanguage()->listToText( $extraThumbNamespacesFormatted ),
+					Message::listParam( $extraThumbNamespacesFormatted ),
 					count( $extraThumbNamespacesFormatted ),
-					$context->getLanguage()->listToText( $defaultThumbNamespacesFormatted ),
+					Message::listParam( $defaultThumbNamespacesFormatted ),
 					count( $defaultThumbNamespacesFormatted )
 				),
 			];

@@ -10,6 +10,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -370,7 +371,6 @@ class SpecialListGroupRights extends SpecialPage {
 
 		sort( $r );
 
-		$lang = $this->getLanguage();
 		$allGroups = $this->userGroupManager->listAllGroups();
 
 		$changeGroups = [
@@ -396,7 +396,7 @@ class SpecialListGroupRights extends SpecialPage {
 					// For grep: listgrouprights-addgroup, listgrouprights-removegroup,
 					// listgrouprights-addgroup-self, listgrouprights-removegroup-self
 					$r[] = $this->msg( 'listgrouprights-' . $messageKey,
-						$lang->listToText( $groupLinks ), count( $changeGroup ) )->parse();
+						Message::listParam( $groupLinks ), count( $changeGroup ) )->parse();
 				}
 			}
 		}

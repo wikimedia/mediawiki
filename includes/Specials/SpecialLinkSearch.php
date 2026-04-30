@@ -10,6 +10,7 @@ use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Skin\Skin;
@@ -144,7 +145,7 @@ class SpecialLinkSearch extends QueryPage {
 		if ( $ignoredDomains ) {
 			$out->addWikiMsg(
 				'linksearch-text-ignored-domains',
-				$this->getLanguage()->listToText(
+				Message::listParam(
 					array_map( static fn ( $domain ) => "<code>$domain</code>", $ignoredDomains )
 				),
 				count( $ignoredDomains )

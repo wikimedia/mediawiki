@@ -594,7 +594,7 @@ class DifferenceEngine extends ContextSource {
 			'difference-missing-revision';
 
 		$msg = $this->msg( $key )
-			->params( $this->getLanguage()->listToText( $missing ) )
+			->params( Message::listParam( $missing ) )
 			->numParams( count( $missing ) )
 			->parseAsBlock();
 		$out->addHTML( $msg );
