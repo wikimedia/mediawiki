@@ -12,14 +12,10 @@ jest.mock( '../../../resources/src/mediawiki.languageselector/codex.js', () => (
 	}
 } ), { virtual: true } );
 
-jest.mock( '../../../resources/src/mediawiki.languageselector/supportedLanguages.json', () => ( {
-	en: 'English',
-	fr: 'Français',
-	de: 'Deutsch'
-} ), { virtual: true } );
-
-const { getLookupLanguageSelector } = require( '../../../resources/src/mediawiki.languageselector/lookup-factory.js' );
-const { getMultiselectLookupLanguageSelector } = require( '../../../resources/src/mediawiki.languageselector/multiselect-factory.js' );
+const {
+	getLookupLanguageSelector,
+	getMultiselectLookupLanguageSelector
+} = require( '../../../resources/src/mediawiki.languageselector/lookup.js' );
 const Vue = require( 'vue' );
 
 // Mock mw global

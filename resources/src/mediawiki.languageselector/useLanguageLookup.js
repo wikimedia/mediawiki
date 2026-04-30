@@ -105,6 +105,13 @@ function useLanguageLookup( {
 		clearSearchQuery();
 	};
 
+	// In multiple mode, removing a chip (the X button) only emits
+	// update:input-chips, not update:selected. Translate the remaining chips
+	// back into selected values so the removal propagates to the parent.
+	const onUpdateInputChips = ( chips ) => {
+		onUpdateSelected( chips.map( ( chip ) => chip.value ) );
+	};
+
 	const onBlur = () => {
 		status.value = 'default';
 		const hasInput = inputValue.value.length > 0;
@@ -136,6 +143,7 @@ function useLanguageLookup( {
 		menuItems,
 		onUpdateInputValue,
 		onUpdateSelected,
+		onUpdateInputChips,
 		onBlur
 	};
 }

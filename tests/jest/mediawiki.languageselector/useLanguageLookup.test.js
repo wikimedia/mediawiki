@@ -106,6 +106,17 @@ describe( 'useLanguageLookup', () => {
 		expect( wrapper.vm.clearSearchQuery ).toHaveBeenCalled();
 	} );
 
+	it( 'emits the remaining selection when a chip is removed', () => {
+		const wrapper = VueTestUtils.mount( TestComponent, {
+			props: { isMultiple: true }
+		} );
+
+		// Codex emits the remaining chips after the removed one is dropped.
+		wrapper.vm.onUpdateInputChips( [ { value: 'fr', label: 'French' } ] );
+
+		expect( wrapper.emitted( 'update:selected' )[ 0 ] ).toEqual( [ [ 'fr' ] ] );
+	} );
+
 	it( 'sets warning on blur with invalid input', async () => {
 		const wrapper = VueTestUtils.mount( TestComponent );
 		wrapper.vm.inputValue = 'invalid';

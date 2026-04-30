@@ -147,9 +147,8 @@ return [
 		'packageFiles' => [
 			'lookup.js',
 			'useLanguageLookup.js',
-			'lookup-factory.js',
+			'LanguageSelector.vue',
 			'LookupLanguageSelector.vue',
-			'multiselect-factory.js',
 			'MultiselectLookupLanguageSelector.vue',
 		],
 		'codexComponents' => [

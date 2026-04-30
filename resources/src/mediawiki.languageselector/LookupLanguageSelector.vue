@@ -1,65 +1,58 @@
 <template>
-	<cdx-field :status="status" :messages="statusMessages">
-		<cdx-lookup
-			:id="inputId"
-			v-model:input-value="inputValue"
-			:selected="selectedValues"
-			:menu-items="menuItems"
-			:menu-config="menuConfig"
-			:placeholder="placeholder"
-			@update:input-value="onUpdateInputValue"
-			@update:selected="onUpdateSelected"
-			@blur="onBlur"
-		>
-			<template #menu-item="{ menuItem }">
-				<slot
-					name="menu-item"
-					:menu-item="menuItem"
-					:language-code="menuItem.value"
-					:language-name="menuItem.label">
-					{{ menuItem.label }}
-				</slot>
-			</template>
-			<template #no-results>
-				<slot name="no-results" :search-query="searchQuery">
-					{{ $i18n( 'languageselector-no-results' ).text() }}
-				</slot>
-			</template>
-		</cdx-lookup>
-	</cdx-field>
+	<language-selector
+		:is-multiple="false"
+		:selectable-languages="selectableLanguages"
+		:search-api-url="searchApiUrl"
+		:debounce-delay-ms="debounceDelayMs"
+		:selected="selected"
+		:menu-config="menuConfig"
+		:input-id="inputId"
+		:placeholder="placeholder"
+		@update:selected="$emit( 'update:selected', $event )"
+	>
+		<template #menu-item="slotProps">
+			<slot name="menu-item" v-bind="slotProps"></slot>
+		</template>
+		<template #no-results="slotProps">
+			<slot name="no-results" v-bind="slotProps"></slot>
+		</template>
+	</language-selector>
 </template>
 
 <script>
-const { defineComponent, toRefs } = require( 'vue' );
-const { CdxField, CdxLookup } = require( './codex.js' );
-const { useLanguageSelector } = require( 'mediawiki.languageselector.core' );
-const useLanguageLookup = require( './useLanguageLookup.js' );
+const { defineComponent } = require( 'vue' );
+const LanguageSelector = require( './LanguageSelector.vue' );
 
+/**
+ * Single-select language lookup.
+ *
+ * Thin backwards-compatibility wrapper around the unified LanguageSelector
+ * component with `isMultiple` fixed to `false`.
+ *
+ * @deprecated Use LanguageSelector with `is-multiple="false"` instead.
+ */
 // @vue/component
 module.exports = exports = defineComponent( {
 	name: 'LookupLanguageSelector',
 	components: {
-		CdxField,
-		CdxLookup
+		LanguageSelector
 	},
 	props: {
-		// eslint-disable-next-line vue/no-unused-properties
 		selectableLanguages: {
 			type: Object,
 			default: () => null
+		},
+		searchApiUrl: {
+			type: String,
+			required: true
 		},
 		debounceDelayMs: {
 			type: Number,
 			default: 300
 		},
-		// eslint-disable-next-line vue/no-unused-properties
 		selected: {
 			type: String,
 			default: null
-		},
-		searchApiUrl: {
-			type: String,
-			required: true
 		},
 		menuConfig: {
 			type: Object,
@@ -74,52 +67,6 @@ module.exports = exports = defineComponent( {
 			default: ''
 		}
 	},
-	emits: [ 'update:selected' ],
-	setup( props, { emit } ) {
-		const { selectableLanguages, selected } = toRefs( props );
-		const {
-			languages,
-			searchQuery,
-			searchResults,
-			search,
-			clearSearchQuery,
-			isSelectionUpdated,
-			selection,
-			selectedValues
-		} = useLanguageSelector( selectableLanguages, selected, props.searchApiUrl, props.debounceDelayMs );
-
-		const {
-			inputValue,
-			status,
-			statusMessages,
-			menuItems,
-			onUpdateInputValue,
-			onUpdateSelected,
-			onBlur
-		} = useLanguageLookup( {
-			selection,
-			selectedValues,
-			languages,
-			searchQuery,
-			searchResults,
-			search,
-			clearSearchQuery,
-			isSelectionUpdated,
-			emit,
-			isMultiple: false
-		} );
-
-		return {
-			inputValue,
-			status,
-			statusMessages,
-			searchQuery,
-			selectedValues,
-			menuItems,
-			onBlur,
-			onUpdateInputValue,
-			onUpdateSelected
-		};
-	}
+	emits: [ 'update:selected' ]
 } );
 </script>
