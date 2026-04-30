@@ -5,14 +5,14 @@ namespace MediaWiki\Tests\Parser;
 use MediaWiki\Parser\ContentHolder;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Assert\InvariantException;
+use Wikimedia\Parsoid\Core\DOMCompat;
 use Wikimedia\Parsoid\Core\DomPageBundle;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
+use Wikimedia\Parsoid\Ext\DOMUtils;
 use Wikimedia\Parsoid\Mocks\MockSiteConfig;
 use Wikimedia\Parsoid\Utils\ContentUtils;
-use Wikimedia\Parsoid\Utils\DOMCompat;
-use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @covers \MediaWiki\Parser\ContentHolder
@@ -52,7 +52,7 @@ EOD;
 				'header' => $header,
 				'html' => $html,
 				'htmlFiltered' => $htmlFiltered,
-				'dom' => static fn ( $siteConfig ) => ContentUtils::createAndLoadDocument( $html, [ 'siteConfig' => $siteConfig ] ),
+				'dom' => static fn ( $siteConfig ) => ContentUtils::createAndLoadDocument( $html, siteConfig: $siteConfig ),
 			]
 		];
 	}
@@ -179,8 +179,7 @@ EOD;
 		foreach ( self::parsoidContentProvider() as $k => $parsoidData ) {
 			$input = $parsoidData[0][ 'dom' ]( $siteConfig );
 			$doc = ContentUtils::createAndLoadDocument(
-				$parsoidData[0]['html'],
-				options: [ 'siteConfig' => $siteConfig ],
+				$parsoidData[0]['html'], siteConfig: $siteConfig
 			);
 			$expected = $doc->createDocumentFragment();
 			DOMUtils::migrateChildren( DOMCompat::getBody( $doc ), $expected );

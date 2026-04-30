@@ -752,7 +752,7 @@ abstract class ParserCacheSerializationTestCases {
 						DomPageBundle::fromLoadedDocument(
 							ContentUtils::createAndLoadDocument(
 								"<p data-parsoid='{\"dsr\":[0,5,0,0]}'>hello</p>",
-								options: [ 'siteConfig' => $siteConfig ],
+								siteConfig: $siteConfig,
 							),
 							$siteConfig
 						)

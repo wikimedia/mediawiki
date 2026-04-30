@@ -5,8 +5,8 @@ namespace MediaWiki\Tests\Language;
 use MediaWiki\Language\ConverterRule;
 use MediaWiki\Language\Converters\EnConverter;
 use MediaWikiIntegrationTestCase;
-use Wikimedia\Parsoid\Utils\ContentUtils;
-use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Core\DOMCompat;
+use Wikimedia\Parsoid\Ext\ContentUtils;
 
 /**
  * @group Language
@@ -17,9 +17,9 @@ class ConverterRuleTest extends MediaWikiIntegrationTestCase {
 	/** @dataProvider provideRules */
 	public function testParseText( $expected ) {
 		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
-		$ownerDoc = ContentUtils::createAndLoadDocument( '', [
-			'siteConfig' => $siteConfig,
-		] );
+		$ownerDoc = ContentUtils::createAndLoadDocument(
+			'', siteConfig: $siteConfig,
+		);
 		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$converter = new EnConverter( $lang );
 		$rule = new ConverterRule( $converter );
@@ -42,7 +42,7 @@ class ConverterRuleTest extends MediaWikiIntegrationTestCase {
 		$tag = $expected['tag'] ?? 'span';
 		$doc = ContentUtils::createAndLoadDocument(
 			"<$tag typeof='mw:LanguageVariant' data-mw-variant>",
-			[ 'siteConfig' => $siteConfig ],
+			siteConfig: $siteConfig,
 		);
 		$element = DOMCompat::querySelector( $doc, '[data-mw-variant]' );
 		$element->setAttribute( 'data-mw-variant', $expected['dmwv'] );

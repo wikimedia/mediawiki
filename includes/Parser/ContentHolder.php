@@ -15,14 +15,14 @@ use Wikimedia\JsonCodec\JsonCodecable;
 use Wikimedia\JsonCodec\JsonCodecableTrait;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\BasePageBundle;
+use Wikimedia\Parsoid\Core\DOMCompat;
 use Wikimedia\Parsoid\Core\DomPageBundle;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
+use Wikimedia\Parsoid\Ext\DOMUtils;
 use Wikimedia\Parsoid\Utils\ContentUtils;
-use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMDataUtils;
-use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @internal
@@ -90,7 +90,7 @@ class ContentHolder implements JsonCodecable {
 		] + $pb->fragments;
 		$ch = new ContentHolder(
 			ownerDocument: ContentUtils::createAndLoadDocument(
-				'', [ 'siteConfig' => $siteConfig, ]
+				'', siteConfig: $siteConfig,
 			),
 			pageBundle: $pb->toBasePageBundle(),
 			htmlMap: $htmlMap,
@@ -307,7 +307,7 @@ class ContentHolder implements JsonCodecable {
 				$this->pageBundle->withHtml( $html, $fragments )
 			);
 			$this->ownerDocument = $dpb->toDom(
-				options: [ 'siteConfig' => $this->siteConfig ],
+				siteConfig: $this->siteConfig,
 			);
 			$this->domMap = $dpb->fragments;
 			if ( $hasBody ) {

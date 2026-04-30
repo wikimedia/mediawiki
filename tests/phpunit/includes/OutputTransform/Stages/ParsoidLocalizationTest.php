@@ -15,10 +15,10 @@ use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
+use Wikimedia\Parsoid\Core\DOMCompat;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\ParserTests\TestUtils;
 use Wikimedia\Parsoid\Utils\ContentUtils;
-use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\WTUtils;
 
 /**
@@ -70,9 +70,9 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
 		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
 		$loc = $this->createStage();
-		$doc = ContentUtils::createAndLoadDocument( '<p>', [
-			'siteConfig' => $siteConfig,
-		] );
+		$doc = ContentUtils::createAndLoadDocument(
+			'<p>', siteConfig: $siteConfig,
+		);
 		$p = DOMCompat::querySelector( $doc, 'p' );
 		$p->appendChild(
 			$lang === null ?
@@ -96,9 +96,9 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	public function testTransformGeneratedAttrs( string $key, array $params, string $expected, string $message, string $lang = 'fr' ) {
 		$loc = $this->createStage();
 		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
-		$doc = ContentUtils::createAndLoadDocument( '<a>', [
-			'siteConfig' => $siteConfig,
-		] );
+		$doc = ContentUtils::createAndLoadDocument(
+			'<a>', siteConfig: $siteConfig,
+		);
 		$a = DOMCompat::querySelector( $doc, 'a' );
 		WTUtils::addInterfaceI18nAttribute( $a, 'title', $key, $params );
 
