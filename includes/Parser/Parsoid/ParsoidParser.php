@@ -22,6 +22,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Config\PageConfig;
+use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Parsoid;
 
 /**
@@ -37,6 +38,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		private Parsoid $parsoid,
 		private readonly PageConfigFactory $pageConfigFactory,
 		private readonly LanguageConverterFactory $languageConverterFactory,
+		private readonly SiteConfig $siteConfig,
 		private readonly DataAccess $dataAccess,
 	) {
 	}
@@ -150,7 +152,9 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			$parserOutput );
 
 		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			$pageBundle, $parserOutput, title: $pageConfig->getLinkTarget()
+			$pageBundle, $parserOutput,
+			title: $pageConfig->getLinkTarget(),
+			siteConfig: $this->siteConfig,
 		);
 
 		// Register a watcher again because the $parserOutput arg

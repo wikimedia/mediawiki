@@ -4,9 +4,11 @@ declare( strict_types = 1 );
 namespace MediaWiki\Parser\Parsoid;
 
 use MediaWiki\Language\LanguageCode;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ContentHolder;
 use MediaWiki\Parser\ParserOutput;
+use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\BasePageBundle;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
@@ -45,6 +47,7 @@ final class PageBundleParserOutputConverter {
 	 *  from $originalParserOutput will be copied into the new ParserOutput object.
 	 * @param ParsoidLinkTarget|PageReference|null $title The given title will
 	 *  be copied into the new ParserOutput object.
+	 * @param ?SiteConfig $siteConfig
 	 *
 	 * @return ParserOutput
 	 */
@@ -52,11 +55,13 @@ final class PageBundleParserOutputConverter {
 		HtmlPageBundle $pageBundle,
 		?ParserOutput $originalParserOutput = null,
 		// phpcs:ignore MediaWiki.Usage.NullableType.ExplicitNullableTypes
-		ParsoidLinkTarget|PageReference|null $title = null
+		ParsoidLinkTarget|PageReference|null $title = null,
+		?SiteConfig $siteConfig = null,
 	): ParserOutput {
+		$siteConfig ??= MediaWikiServices::getInstance()->getParsoidSiteConfig();
 		$parserOutput = new ParserOutput();
 		$parserOutput->setContentHolder(
-			ContentHolder::createFromParsoidPageBundle( $pageBundle )
+			ContentHolder::createFromParsoidPageBundle( $pageBundle, $siteConfig )
 		);
 		if ( $originalParserOutput ) {
 			// Merging metadata from the original parser output will also

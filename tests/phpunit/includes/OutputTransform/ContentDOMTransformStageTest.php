@@ -14,6 +14,7 @@ use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
+use Wikimedia\Parsoid\Mocks\MockSiteConfig;
 
 class ContentDOMTransformStageTest extends TestCase {
 	use MediaWikiCoversValidator;
@@ -35,6 +36,7 @@ class ContentDOMTransformStageTest extends TestCase {
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
 			new HtmlPageBundle( html: $html ),
 			title: new TitleValue( NS_MAIN, 'Test_Page' ),
+			siteConfig: new MockSiteConfig( [] ),
 		);
 		$transform = $this->createStage();
 		$popts = ParserOptions::newFromAnon();
@@ -65,6 +67,7 @@ class ContentDOMTransformStageTest extends TestCase {
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
 			new HtmlPageBundle( html: $html ),
 			title: new TitleValue( NS_MAIN, 'Test_Page' ),
+			siteConfig: new MockSiteConfig( [] ),
 		);
 		$this->assertTrue( $po->getContentHolder()->isParsoidContent() );
 		$po = $transform->transform( $po, $popts, $options );

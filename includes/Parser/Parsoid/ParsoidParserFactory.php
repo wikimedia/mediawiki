@@ -45,6 +45,7 @@ class ParsoidParserFactory {
 			new Parsoid( $this->siteConfig, $this->dataAccess ),
 			$this->pageConfigFactory,
 			$this->languageConverterFactory,
+			$this->siteConfig,
 			$this->dataAccess
 		);
 	}

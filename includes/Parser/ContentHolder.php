@@ -10,6 +10,7 @@ namespace MediaWiki\Parser;
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\BasePageBundle;
 use Wikimedia\Parsoid\Core\DomPageBundle;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
@@ -53,7 +54,8 @@ class ContentHolder {
 		 */
 		private array $domMap = [],
 		private bool $isParsoidContent = false,
-		private bool $domFormat = false
+		private bool $domFormat = false,
+		private ?SiteConfig $siteConfig = null,
 	) {
 	}
 
@@ -73,15 +75,22 @@ class ContentHolder {
 	/**
 	 * Create a ContentHolder from a Parsoid HtmlPageBundle.
 	 */
-	public static function createFromParsoidPageBundle( HtmlPageBundle $pb ): ContentHolder {
+	public static function createFromParsoidPageBundle(
+		HtmlPageBundle $pb,
+		?SiteConfig $siteConfig = null
+	): ContentHolder {
+		$siteConfig ??= MediaWikiServices::getInstance()->getParsoidSiteConfig();
 		$htmlMap = [
 			self::BODY_FRAGMENT => $pb->html,
 		] + $pb->fragments;
 		$ch = new ContentHolder(
-			ownerDocument: ContentUtils::createAndLoadDocument( '' ),
+			ownerDocument: ContentUtils::createAndLoadDocument(
+				'', [ 'siteConfig' => $siteConfig, ]
+			),
 			pageBundle: $pb->toBasePageBundle(),
 			htmlMap: $htmlMap,
 			isParsoidContent: true,
+			siteConfig: $siteConfig,
 		);
 		return $ch;
 	}
@@ -264,7 +273,9 @@ class ContentHolder {
 			$dpb = DomPageBundle::fromHtmlPageBundle(
 				$this->pageBundle->withHtml( $html, $fragments )
 			);
-			$this->ownerDocument = $dpb->toDom();
+			$this->ownerDocument = $dpb->toDom(
+				options: [ 'siteConfig' => $this->siteConfig ],
+			);
 			$this->domMap = $dpb->fragments;
 			if ( $hasBody ) {
 				$frag = $this->ownerDocument->createDocumentFragment();
@@ -287,7 +298,6 @@ class ContentHolder {
 			return;
 		}
 		if ( $this->isParsoidContent() ) {
-			$siteConfig = MediaWikiServices::getInstance()->getParsoidSiteConfig();
 			$body = $this->domMap[ self::BODY_FRAGMENT ] ?? null;
 			unset( $this->domMap[ self::BODY_FRAGMENT ] );
 			if ( $body !== null ) {
@@ -298,7 +308,10 @@ class ContentHolder {
 			}
 			$pb = HtmlPageBundle::fromDomPageBundle(
 				DomPageBundle::fromLoadedDocument(
-					$this->ownerDocument, siteConfig: $siteConfig,
+					$this->ownerDocument,
+					// If isParsoidContent then siteConfig will be non-null.
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+					siteConfig: $this->siteConfig,
 					options: [ 'pageBundle' => $this->pageBundle, ],
 					fragments: $this->domMap,
 				), [

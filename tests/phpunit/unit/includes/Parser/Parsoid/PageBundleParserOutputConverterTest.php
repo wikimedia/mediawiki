@@ -10,14 +10,16 @@ use MediaWiki\Title\TitleValue;
 use MediaWikiUnitTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
+use Wikimedia\Parsoid\Mocks\MockSiteConfig;
 
 /**
  * @covers \MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter
  */
 class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
+
 	/** @dataProvider provideParserOutputFromPageBundle */
 	public function testParserOutputFromPageBundle( HtmlPageBundle $pageBundle ) {
-		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle );
+		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, siteConfig: new MockSiteConfig( [] ) );
 		$this->assertSame( $pageBundle->html, $output->getContentHolderText() );
 
 		$outputPageBundle = $output->getContentHolder()->getBasePageBundle();
@@ -37,7 +39,7 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		$original->setTitle( new TitleValue( NS_MAIN, 'Test_Page' ) );
 
 		// This should preserve the metadata.
-		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $original );
+		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $original, siteConfig: new MockSiteConfig( [] ) );
 		$this->assertSame( $pageBundle->html, $output->getContentHolderText() );
 
 		// Check the page bundle data
@@ -148,7 +150,7 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		HtmlPageBundle $pb, $title = null
 	): ParserOutput {
 		return PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			$pb, title: $title
+			$pb, title: $title, siteConfig: new MockSiteConfig( [] ),
 		);
 	}
 }

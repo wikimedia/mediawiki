@@ -16,7 +16,10 @@ class ConverterRuleTest extends MediaWikiIntegrationTestCase {
 
 	/** @dataProvider provideRules */
 	public function testParseText( $expected ) {
-		$ownerDoc = ContentUtils::createAndLoadDocument( '' );
+		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
+		$ownerDoc = ContentUtils::createAndLoadDocument( '', [
+			'siteConfig' => $siteConfig,
+		] );
 		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$converter = new EnConverter( $lang );
 		$rule = new ConverterRule( $converter );
@@ -32,12 +35,14 @@ class ConverterRuleTest extends MediaWikiIntegrationTestCase {
 
 	/** @dataProvider provideRules */
 	public function testParseElement( $expected ) {
+		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
 		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$converter = new EnConverter( $lang );
 		$rule = new ConverterRule( $converter );
 		$tag = $expected['tag'] ?? 'span';
 		$doc = ContentUtils::createAndLoadDocument(
-			"<$tag typeof='mw:LanguageVariant' data-mw-variant>"
+			"<$tag typeof='mw:LanguageVariant' data-mw-variant>",
+			[ 'siteConfig' => $siteConfig ],
 		);
 		$element = DOMCompat::querySelector( $doc, '[data-mw-variant]' );
 		$element->setAttribute( 'data-mw-variant', $expected['dmwv'] );

@@ -21,7 +21,7 @@ class ContentHolderTest extends MediaWikiIntegrationTestCase {
 
 	public static function legacyHtmlProvider() {
 		yield "Basic legacy test case" => [
-		<<<EOD
+			<<<EOD
 <h2 data-mw-anchor="Test">Test<mw:editsection page="test" section="1">Test</mw:editsection></h2>
 <p>some basic wikitext
 </p>
@@ -52,7 +52,7 @@ EOD;
 				'header' => $header,
 				'html' => $html,
 				'htmlFiltered' => $htmlFiltered,
-				'dom' => ContentUtils::createAndLoadDocument( $html ),
+				'dom' => static fn ( $siteConfig ) => ContentUtils::createAndLoadDocument( $html, [ 'siteConfig' => $siteConfig ] ),
 			]
 		];
 	}
@@ -109,8 +109,9 @@ EOD;
 	 * @dataProvider parsoidContentProvider
 	 */
 	public function testShouldSetDomParsoid( array $parsoidData ): void {
+		$siteConfig = new MockSiteConfig( [] );
 		$dpb = DomPageBundle::fromLoadedDocument(
-			$parsoidData['dom'], siteConfig: new MockSiteConfig( [] )
+			$parsoidData['dom']( $siteConfig ), siteConfig: $siteConfig
 		);
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
@@ -135,8 +136,9 @@ EOD;
 	 * @dataProvider parsoidContentProvider
 	 */
 	public function testShouldHandleTextOnlyOperationsParsoidFullDocBundle( array $parsoidData ): void {
+		$siteConfig = new MockSiteConfig( [] );
 		$dpb = DomPageBundle::fromLoadedDocument(
-			$parsoidData['dom'], siteConfig: new MockSiteConfig( [] )
+			$parsoidData['dom']( $siteConfig ), siteConfig: $siteConfig
 		);
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
@@ -147,8 +149,9 @@ EOD;
 	 * @dataProvider parsoidContentProvider
 	 */
 	public function testShouldHandleTextOnlyOperationsParsoidBodyBundle( array $parsoidData ): void {
+		$siteConfig = new MockSiteConfig( [] );
 		$dpb = DomPageBundle::fromLoadedDocument(
-			$parsoidData['dom'], siteConfig: new MockSiteConfig( [] )
+			$parsoidData['dom']( $siteConfig ), siteConfig: $siteConfig,
 		);
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb, [ 'body_only' => true ] );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
@@ -172,9 +175,13 @@ EOD;
 	}
 
 	public static function parsoidDomProvider() {
+		$siteConfig = new MockSiteConfig( [] );
 		foreach ( self::parsoidContentProvider() as $k => $parsoidData ) {
-			$input = $parsoidData[0][ 'dom' ];
-			$doc = ContentUtils::createAndLoadDocument( $parsoidData[0]['html'] );
+			$input = $parsoidData[0][ 'dom' ]( $siteConfig );
+			$doc = ContentUtils::createAndLoadDocument(
+				$parsoidData[0]['html'],
+				options: [ 'siteConfig' => $siteConfig ],
+			);
 			$expected = $doc->createDocumentFragment();
 			DOMUtils::migrateChildren( DOMCompat::getBody( $doc ), $expected );
 			yield $k => [ $input, ContentUtils::dumpDOM( $expected ) ];
@@ -199,8 +206,9 @@ EOD;
 	 * @dataProvider parsoidContentProvider
 	 */
 	public function testShouldConvertHtmlDocToDomToHtmlBodyParsoid( array $parsoidData ): void {
+		$siteConfig = new MockSiteConfig( [] );
 		$dpb = DomPageBundle::fromLoadedDocument(
-			$parsoidData['dom'], siteConfig: new MockSiteConfig( [] )
+			$parsoidData['dom']( $siteConfig ), siteConfig: $siteConfig
 		);
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
@@ -214,8 +222,9 @@ EOD;
 	 * @dataProvider parsoidContentProvider
 	 */
 	public function testShouldConvertHtmlBodyToDomToHtmlBodyParsoid( array $parsoidData ): void {
+		$siteConfig = new MockSiteConfig( [] );
 		$dpb = DomPageBundle::fromLoadedDocument(
-			$parsoidData['dom'], siteConfig: new MockSiteConfig( [] )
+			$parsoidData['dom']( $siteConfig ), siteConfig: $siteConfig
 		);
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb, [ 'body_only', true ] );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );

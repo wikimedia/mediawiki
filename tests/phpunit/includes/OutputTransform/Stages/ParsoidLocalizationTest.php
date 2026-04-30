@@ -68,8 +68,11 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	public function testTransformGeneratedSpans( string $key, array $params, string $expected, string $message, ?string $lang = null ) {
 		// one of the messages we use resolves a link
 		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
+		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
 		$loc = $this->createStage();
-		$doc = ContentUtils::createAndLoadDocument( '<p>' );
+		$doc = ContentUtils::createAndLoadDocument( '<p>', [
+			'siteConfig' => $siteConfig,
+		] );
 		$p = DOMCompat::querySelector( $doc, 'p' );
 		$p->appendChild(
 			$lang === null ?
@@ -92,7 +95,10 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testTransformGeneratedAttrs( string $key, array $params, string $expected, string $message, string $lang = 'fr' ) {
 		$loc = $this->createStage();
-		$doc = ContentUtils::createAndLoadDocument( '<a>' );
+		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
+		$doc = ContentUtils::createAndLoadDocument( '<a>', [
+			'siteConfig' => $siteConfig,
+		] );
 		$a = DOMCompat::querySelector( $doc, 'a' );
 		WTUtils::addInterfaceI18nAttribute( $a, 'title', $key, $params );
 

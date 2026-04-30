@@ -82,6 +82,7 @@ trait PageHandlerTestTrait {
 			$mockParsoid,
 			$services->getParsoidPageConfigFactory(),
 			$services->getLanguageConverterFactory(),
+			$services->getParsoidSiteConfig(),
 			$services->getParsoidDataAccess()
 		);
 

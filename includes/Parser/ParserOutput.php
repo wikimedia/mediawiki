@@ -3363,7 +3363,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$pb = HtmlPageBundle::newFromJsonArray(
 				$pageBundleData + [ 'html' => $jsonData[ 'Text' ] ?? '' ]
 			);
-			$this->contentHolder = ContentHolder::createFromParsoidPageBundle( $pb );
+			$siteConfig = MediaWikiServices::getInstance()->getParsoidSiteConfig();
+			$this->contentHolder = ContentHolder::createFromParsoidPageBundle( $pb, $siteConfig );
 		} else {
 			$this->contentHolder = ContentHolder::createFromLegacyString( $jsonData[ 'Text' ] ?? '' );
 		}
