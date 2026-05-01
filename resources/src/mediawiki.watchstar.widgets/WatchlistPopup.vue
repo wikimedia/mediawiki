@@ -1,5 +1,5 @@
 <template>
-	<cdx-popover
+	<cdx-dialog
 		id="mw-watchstar-WatchlistPopup"
 		v-model:open="isOpen"
 		class="mw-watchstar-WatchlistPopup"
@@ -81,18 +81,18 @@
 				{{ $i18n( 'watch' ) }}
 			</cdx-button>
 		</template>
-	</cdx-popover>
+	</cdx-dialog>
 </template>
 
 <script>
 const { defineComponent, ref, computed, watch, onMounted } = require( 'vue' );
-const { CdxPopover, CdxMessage, CdxField, CdxSelect, CdxMultiselectLookup, CdxButton } = require( '@wikimedia/codex' );
+const { CdxDialog, CdxMessage, CdxField, CdxSelect, CdxMultiselectLookup, CdxButton } = require( '@wikimedia/codex' );
 const api = new mw.Api();
 
 module.exports = defineComponent( {
 	name: 'WatchlistPopup',
 	components: {
-		CdxPopover,
+		CdxDialog,
 		CdxMessage,
 		CdxField,
 		CdxSelect,
