@@ -189,6 +189,7 @@ class Names {
 		'frc' => 'français cadien', # Cajun French
 		'frp' => 'arpetan', # Franco-Provençal/Arpitan
 		'frr' => 'Nordfriisk', # North Frisian
+		'frs' => 'Oostfräisk', # East Frisian Low Saxon
 		'fur' => 'furlan', # Friulian
 		'fvr' => 'poor’íŋ belé’ŋ', # Fur
 		'fy' => 'Frysk', # Frisian

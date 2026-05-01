@@ -222,6 +222,7 @@ because of Phabricator reports.
 * (T409393) Added language support for Javanese (Javanese script) (jv-java).
 * (T411884) Added language support for Nawat (ppl).
 * (T419373) Added language support for Lakota (lkt).
+* (T423174) Added language support for East Frisian Low Saxon (frs).
 * …
 
 === Breaking changes in 1.46 ===
