@@ -598,7 +598,7 @@ because of Phabricator reports.
     - ObjectCache
     - ObjectCacheFactory
     - SqlBagOStuff
-  - MediaWiki\Skins\Hook => MediaWiki\Language\Skin
+  - MediaWiki\Skins\Hook => MediaWiki\Skin\Hook
     - SkinAfterPortletHook
     - SkinPageReadyConfigHook
   - Logging related hooks: MediaWiki\Hook => MediaWiki\Logging\Hook
