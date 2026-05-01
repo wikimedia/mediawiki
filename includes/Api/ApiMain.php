@@ -505,12 +505,6 @@ class ApiMain extends ApiBase {
 		'jsonfm' => [
 			'class' => ApiFormatJson::class,
 		],
-		'php' => [
-			'class' => ApiFormatPhp::class,
-		],
-		'phpfm' => [
-			'class' => ApiFormatPhp::class,
-		],
 		'xml' => [
 			'class' => ApiFormatXml::class,
 		],

@@ -111,6 +111,7 @@ For notes on 1.46.x and older releases, see HISTORY.
 * …
 
 === Action API changes in 1.47 ===
+* php response format has been removed.
 * When encountering a 'reauthenticate' error, clients must start a new
   authentication process by passing the "operation" value included in the
   error into meta=authmanagerinfo&amirequestsfor=login as 'amireauthenticate',
