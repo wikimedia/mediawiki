@@ -442,7 +442,7 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 				  $varnt->getFullURL( $queryElts );
 			$a->setAttribute( 'href', $href . $suffix );
 			DOMCompat::getClassList( $a )->remove( 'new' );
-			$a->removeAttribute( 'data-mw-i18n' );
+			DOMDataUtils::removeAttributeObject( $a, 'data-mw-i18n' );
 			$a->removeAttribute( 'typeof' );
 			$a->setAttribute( 'title', $converter->translate(
 				$varnt->getPrefixedText(), $toVariant
