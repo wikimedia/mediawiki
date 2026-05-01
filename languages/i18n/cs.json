@@ -3496,6 +3496,7 @@
 	"logentry-rights-rights-kept": "{{GENDER:$2|ponecháno nezměněno}} $1",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|změnil|změnila}} členství $3 ve skupinách",
 	"logentry-rights-autopromote": "Členství {{GENDER:$2|uživatele|uživatelky}} $1 ve skupinách bylo automaticky změněno: $7",
+	"logentry-rights-autopromote-expiry-changed": "{{GENDER:$2|změnil|změnila}} expiraci $1",
 	"logentry-upload-upload": "$1 {{GENDER:$2|načetl|načetla}} $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|načetl|načetla}} novou verzi $3",
 	"logentry-upload-revert": "$1 {{GENDER:$2|vrátil|vrátila}} $3 na starou verzi",

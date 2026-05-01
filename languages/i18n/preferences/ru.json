@@ -57,6 +57,7 @@
 	"username": "{{GENDER:$1|Имя участника|Имя участницы}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Член|Член}} {{PLURAL:$1|1=группы|групп}}:",
 	"group-membership-link-with-expiry": "$1 (до $2)",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|}} {{PLURAL:$1|Отключенная группа|Отключенные группы}}:",
 	"prefs-edits": "Количество правок:",
 	"prefs-registration": "Время регистрации:",
 	"yourrealname": "Настоящее имя:",

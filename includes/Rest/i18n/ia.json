@@ -212,6 +212,7 @@
 	"rest-property-desc-revision-url-newer": "Si disponibile, adresse URL pro obtener le versiones sequente",
 	"rest-property-desc-search-excerpt": "Pro /search/page, un curte exemplo del contento del pagina con terminos de recerca etiquettate con `<span class=\"searchmatch\">`. Extractos pote finir in medio de un phrase. Pro /search/title, le titulo del pagina in formato facile a leger.",
 	"rest-property-desc-search-matched-title": "Le titulo del pagina desde le qual se ha essite redirigite, si le termino de recerca correspondeva a un pagina de redirection, alteremente nulle valor.",
+	"rest-property-desc-search-anchor": "Section del pagina de destination, si le termino de recerca corresponde a un redirection verso un section specific, in formato legibile per humanos",
 	"rest-property-desc-search-description": "Curte summario del topico del pagina, o nulle valor si necun summario existe.",
 	"rest-property-desc-search-thumbnail": "Information sur le imagine de miniatura pro le pagina, o nulle valor si necun miniatura existe.",
 	"rest-property-desc-html-url": "Percurso API pro obtener le contento del pagina in HTML",
@@ -307,5 +308,10 @@
 	"rest-responseheader-desc-contenttype": "Indica le typo de contento original de un ressource ante que alcun codification de contento es applicate.",
 	"rest-responseheader-desc-link": "Forni un maniera de serialisar un o plus ligamines in capites HTTP. Isto permitte al servitor indicar a un cliente un altere ressource que contine metadatos sur le ressource requestate.",
 	"rest-responseheader-desc-expires": "Contine le data e hora post le qual le responsa se considera expirate in le contexto del immagazinage in memoria cache de requestas HTTP.",
-	"rest-responseheader-desc-location": "Indica un URL de destination pro duo scopos principal: redirection e identificar le loco de un ressource recentemente create."
+	"rest-responseheader-desc-location": "Indica un URL de destination pro duo scopos principal: redirection e identificar le loco de un ressource recentemente create.",
+	"rest-openapispec-genericerrorresponse-desc": "Responsa de error generic. Le message fornira plus detalios sur le error.",
+	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "Le codice de stato HTTP del responsa de error.",
+	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "Le message de stato HTTP del responsa de error.",
+	"rest-openapispec-genericerrorresponse-property-desc-message": "Un message de error legibile per humanos, utile quando necun traduction del message es disponibile",
+	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "Un tabella de correspondentia inter codices de lingua e messages de error legibile per humanos, pro le clientes que pote usar los."
 }

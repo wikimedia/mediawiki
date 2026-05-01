@@ -175,6 +175,8 @@
 	"prefs-watchlist": "Surveyo-listo",
 	"prefs-editwatchlist": "Modifikez surveyo-listo",
 	"prefs-editwatchlist-label": "Facez modifikuri en vua surveyo-listo:",
+	"prefs-editwatchlistlabels-label": "Modifikar etiketi de surveyo-listo:",
+	"prefs-managewatchlistlabels": "Vidar ed administrar etiketi de vua surveyo-listo",
 	"prefs-editwatchlist-edit": "Vidar e removar tituli de vua surveyo-listo",
 	"prefs-editwatchlist-raw": "Modifikez vua surveyo-listo en formo di texto",
 	"prefs-editwatchlist-clear": "Efacar vua surveyo-listo",

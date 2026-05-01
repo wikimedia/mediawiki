@@ -395,6 +395,12 @@
 	"createacct-error": "Грешка при создавањето на сметка",
 	"createaccounterror": "Не можам да ја создадам сметката: $1",
 	"createacct-popup-redirect-notice": "Ќе бидете пренасочени откако ќе создадете сметка...",
+	"createacct-username-policy-popover-title": "Правила за кориснички имиња",
+	"createacct-username-policy-popover-trigger-link": "Изберете внимателно",
+	"createacct-username-policy-popover-trigger-line": "$1 — под тоа име ќе ве знае заедницата.",
+	"createacct-username-policy-popover-bullet1": "Не користете [[wikipedia:Wikipedia:Username policy#Disruptive_or_offensive_usernames|навредливи]], [[wikipedia:Wikipedia:Username policy#Misleading_usernames|измамнички]] или [[wikipedia:Wikipedia:Username policy#Promotional_usernames|промотивни]] кориснички имиња.",
+	"createacct-username-policy-popover-bullet2": "Вашето корисничко име пора да ве претставува вас како поединец, [[wikipedia:Wikipedia:Username policy#Usernames_implying_shared_use|а не како организација]].",
+	"createacct-username-policy-popover-bullet3": "Земете ги предвид '''ризиците по приватноста''' пред да го користите вашето [[wikipedia:Wikipedia:Username policy#Real_names|вистинско име]].",
 	"nocookieslogin": "{{SITENAME}} користи колачиња за најавување на корисници.\nВие го имате оневозможено користењето на колачиња на вашиот прелистувач.\nВе молиме активирајте ги и обидете се повторно.",
 	"nocookiesfornew": "Корисничката сметка не е создадена бидејќи не можеше да се потврди нејзиниот извор.\nЗа оваа цел ќе ви требаат колачиња. Проверете дали се овозможени, превчитајте ја страницава и обидете се повторно.",
 	"createacct-loginerror": "Сметката е успешно создадена но не можев да ве најавам автоматски. Појдеете да се [[Special:UserLogin|најавите рачно]].",
@@ -2425,8 +2431,11 @@
 	"remove-blocklink": "отстрани блок",
 	"manage-blocklink": "управување со блокови",
 	"empty-username": "(недостапно корисничко име)",
+	"available-username": "Корисничкото име е достапно",
+	"available-username-check-feedback": "Проверувам достапност",
 	"blocklist-hidden-placeholder": "(корисничкото име е скриено)",
 	"blocklist-hidden-param": "корисничкото име е скриено",
+	"blocklist-block-hidden": "скриен блок",
 	"contribslink": "придонеси",
 	"emaillink": "испрати е-пошта",
 	"autoblocker": "Автоматски сте блокирани бидејќи вашата IP-адреса била скоро користена од „[[User:$1|$1]]“.\nНаведената причина за блокирање на $1 гласи: \"$2\"",
@@ -3962,5 +3971,6 @@
 	"table-of-contents-show-button-aria-label": "Прикажи ја Содржината",
 	"table-of-contents-hide-button-aria-label": "Скриј ја Соодржината",
 	"diff-usergroups": "$1 {{PLURAL:$1|корисничка група|кориснички групи}}",
-	"languageselector-no-results": "Не пронајдов ништо."
+	"languageselector-no-results": "Не пронајдов ништо.",
+	"languageselector-invalid-input": "„$1“ не претставува важечки јазик."
 }

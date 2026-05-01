@@ -2435,6 +2435,8 @@
 	"remove-blocklink": "buang sekatan",
 	"manage-blocklink": "urus sekatan",
 	"empty-username": "(tiada nama pengguna tersedia)",
+	"available-username": "Nama pengguna ini tersedia",
+	"available-username-check-feedback": "Memeriksa ketersediaan",
 	"blocklist-hidden-placeholder": "(nama pengguna disorok)",
 	"blocklist-hidden-param": "nama pengguna disorok",
 	"blocklist-block-hidden": "sekatan tersembunyi",

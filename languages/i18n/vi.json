@@ -80,7 +80,8 @@
 			"Yummie1207",
 			"לערי ריינהארט",
 			"沈澄心",
-			"아라"
+			"아라",
+			"Trần Xuân"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Thể loại}}",
@@ -443,6 +444,7 @@
 	"createacct-error": "Lỗi tạo tài khoản",
 	"createaccounterror": "Không thể mở tài khoản: $1",
 	"createacct-popup-redirect-notice": "Bạn sẽ được chuyển hướng sau khi tạo tài khoản...",
+	"createacct-username-policy-popover-trigger-link": "Hãy lựa chọn cẩn thận",
 	"nocookieslogin": "{{SITENAME}} sử dụng cookie để đăng nhập thành viên. Bạn đã tắt cookie. Xin hãy kích hoạt rồi thử lại.",
 	"nocookiesfornew": "Không thể mở tài khoản vì chúng tôi không thể xác định nguồn của tài khoản.\nHãy đảm bảo bạn đã bật cookie, rồi làm mới trang này và thử lại.",
 	"createacct-loginerror": "Bạn đã tạo tài khoản thành công nhưng không thể tự động đăng nhập. Xin hãy [[Special:UserLogin|đăng nhập thủ công]].",

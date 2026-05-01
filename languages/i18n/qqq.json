@@ -2697,7 +2697,7 @@
 	"manage-blocklink": "Used as a link title on [[Special:Contributions]] and [[Special:DeletedContributions]]. Before MW 1.44 there were two links labeled \"unblock\" and \"change block\" but now those links have been merged.",
 	"empty-username": "If no username is available to display for a log or history entry, such as because of an incorrect database entry, this message is displayed in place of the links to the user page/talk/contribs/etc.",
 	"available-username": "Used on [[Special:CreateAccount]] to inform the user a username availability check has been made for the text they input in the form",
-	"available-username-check-feedback": "Used on [[Special:CreateAccount]] to inform the user a username availability check request is in course",
+	"available-username-check-feedback": "Used on [[Special:CreateAccount]] to inform the user a username availability check request is in progress",
 	"blocklist-hidden-placeholder": "Used in [[Special:BlockList]]. If the username is hidden because the user is blocked with the hide-user option, this message is displayed in place of the username.",
 	"blocklist-hidden-param": "Used in [[Special:BlockList]]. If this block hides the user, this message is shown in a list item in the block parameters column.",
 	"blocklist-block-hidden": "Used in [[Special:BlockList]]. If the block is hidden, this message is shown in a list item in the block parameters column.",

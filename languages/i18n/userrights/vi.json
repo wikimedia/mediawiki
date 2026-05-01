@@ -12,7 +12,8 @@
 			"SongNgu.xyz",
 			"Trần Nguyễn Minh Huy",
 			"Vinhtantran",
-			"Withoutaname"
+			"Withoutaname",
+			"Trần Xuân"
 		]
 	},
 	"userrights": "Quyền thành viên",
@@ -299,6 +300,7 @@
 	"listgrouprights-removegroup-self": "Có thể loại tài khoản của chính mình ra khỏi {{PLURAL:$2|nhóm|các nhóm}}: $1",
 	"listgrouprights-addgroup-self-all": "Có thể thêm tài khoản của chính mình vào tất cả các nhóm",
 	"listgrouprights-removegroup-self-all": "Có thể loại tài khoản của chính mình ra khỏi tất cả các nhóm",
+	"listgrouprights-restrictedgroups-cond-isbot": "Người dùng là bot",
 	"listgrouprights-namespaceprotection-header": "Hạn chế không gian tên",
 	"listgrouprights-namespaceprotection-namespace": "Không gian tên",
 	"listgrouprights-namespaceprotection-restrictedto": "Quyền cho phép người dùng sửa đổi",

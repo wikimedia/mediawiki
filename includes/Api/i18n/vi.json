@@ -14,7 +14,8 @@
 			"Nguyenphutrong2",
 			"Nvdtn19",
 			"SaldırganSincap",
-			"Vinhtantran"
+			"Vinhtantran",
+			"Trần Xuân"
 		]
 	},
 	"apihelp-main-param-action": "Tác vụ để thực hiện.",
@@ -27,6 +28,7 @@
 	"apihelp-block-param-user": "Thành viên cần cấm. Không thể sử dụng cùng với <var>$1id</var>",
 	"apihelp-block-param-reason": "Lý do cấm.",
 	"apihelp-block-param-nocreate": "Cấm tạo tài khoản.",
+	"apihelp-block-param-noemail": "Ngăn người dùng gửi email qua wiki. (Yêu cầu quyền <code>blockemail</code>).",
 	"apihelp-block-param-reblock": "Nếu người dùng này đã bị cấm, ghi đè lên vụ cấm đã tồn tại.",
 	"apihelp-block-param-watchuser": "Xem người dùng hoặc địa chỉ IP của người dùng và trang thảo luận.",
 	"apihelp-block-example-ip-simple": "Cấm địa chỉ IP <kbd>192.0.2.5</kbd> trong ba ngày kèm với lý do.",

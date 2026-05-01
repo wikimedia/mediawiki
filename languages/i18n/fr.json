@@ -2631,6 +2631,7 @@
 	"empty-username": "(aucun nom d’utilisateur disponible)",
 	"blocklist-hidden-placeholder": "(nom masqué d'utilisateur)",
 	"blocklist-hidden-param": "nom masqué d'utilisateur",
+	"blocklist-block-hidden": "blocage masqué",
 	"contribslink": "contributions",
 	"emaillink": "envoyer un courriel",
 	"autoblocker": "Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « [[User:$1|$1]] ».\nLe motif fourni pour le blocage de $1 est : \"$2\"",
@@ -4184,5 +4185,6 @@
 	"table-of-contents-show-button-aria-label": "Afficher le sommaire",
 	"table-of-contents-hide-button-aria-label": "Masquer la table des matières",
 	"diff-usergroups": "$1 {{PLURAL:$1|groupe d'utilisateurs|groupes d'utilisateurs}}",
-	"languageselector-no-results": "Aucun résultat trouvé."
+	"languageselector-no-results": "Aucun résultat trouvé.",
+	"languageselector-invalid-input": "« $1 » n’est pas une langue valide."
 }

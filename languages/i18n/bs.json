@@ -1892,6 +1892,8 @@
 	"undelete-undeletetalk": "Vrati sve izmjene na pratećoj stranici za razgovor",
 	"undeleteinvert": "Obrni izbor",
 	"undeletecomment": "Razlog:",
+	"undeleteothercomment": "Drugi / dodatni razlog:",
+	"undelete-comment-dropdown": "* Uobičajeni razlozi vraćanja\n** Zahtjev autora",
 	"undeletedpage": "<strong>Stranica $1 je vraćena</strong>\n\nProvjerite [[Special:Log/delete|zapisnik brisanja]] za zapise nedavnih brisanja i vraćanja.",
 	"undelete-header": "Pogledajte [[Special:Log/delete|zapisnik brisanja]] za nedavno izbrisane stranice.",
 	"undelete-search-title": "Pretraga izbrisanih stranica",
