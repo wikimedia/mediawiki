@@ -1028,6 +1028,9 @@
 	"apihelp-query+languageinfo-paramvalue-prop-digittransforms": "{{doc-apihelp-paramvalue|query+languageinfo|prop|digittransforms}}",
 	"apihelp-query+languageinfo-paramvalue-prop-digitgroupingpattern": "{{doc-apihelp-paramvalue|query+languageinfo|prop|digitgroupingpattern}}",
 	"apihelp-query+languageinfo-paramvalue-prop-minimumgroupingdigits": "{{doc-apihelp-paramvalue|query+languageinfo|prop|minimumgroupingdigits}}",
+	"apihelp-query+languageinfo-paramvalue-prop-namespacenames": "{{doc-apihelp-paramvalue|query+languageinfo|prop|namespacenames}}",
+	"apihelp-query+languageinfo-paramvalue-prop-namespacealiases": "{{doc-apihelp-paramvalue|query+languageinfo|prop|namespacealiases}}",
+
 	"apihelp-query+languageinfo-param-code": "{{doc-apihelp-param|query+languageinfo|code}}",
 	"apihelp-query+languageinfo-example-simple": "{{doc-apihelp-example|query+languageinfo}}",
 	"apihelp-query+languageinfo-example-autonym-name-de": "{{doc-apihelp-example|query+languageinfo}}",

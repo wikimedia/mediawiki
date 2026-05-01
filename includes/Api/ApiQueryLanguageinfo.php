@@ -62,6 +62,8 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 		$includeDigitTransforms = isset( $props['digittransforms'] );
 		$includeDigitGroupingPattern = isset( $props['digitgroupingpattern'] );
 		$includeMinimumGroupingDigits = isset( $props['minimumgroupingdigits'] );
+		$includeNamespaceNames = isset( $props['namespacenames'] );
+		$includeNamespaceAliases = isset( $props['namespacealiases'] );
 
 		$targetLanguageCode = $this->getLanguage()->getCode();
 		$include = LanguageNameUtils::ALL;
@@ -200,6 +202,16 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 				$info['minimumgroupingdigits'] = $language->minimumGroupingDigits();
 			}
 
+			if ( $includeNamespaceNames ) {
+				$language = $this->languageFactory->getLanguage( $languageCode );
+				$info['namespacenames'] = $language->getNamespaces();
+			}
+
+			if ( $includeNamespaceAliases ) {
+				$language = $this->languageFactory->getLanguage( $languageCode );
+				$info['namespacealiases'] = $language->getNamespaceAliases();
+			}
+
 			$fit = $result->addValue( $rootPath, $languageCode, $info );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', $languageCode );
@@ -231,6 +243,8 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 					'digittransforms',
 					'digitgroupingpattern',
 					'minimumgroupingdigits',
+					'namespacenames',
+					'namespacealiases',
 				],
 				self::PARAM_HELP_MSG_PER_VALUE => [],
 			],

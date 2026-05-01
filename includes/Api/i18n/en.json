@@ -1079,6 +1079,8 @@
 	"apihelp-query+languageinfo-paramvalue-prop-digittransforms": "The digit transforms for formatting numbers in this language.",
 	"apihelp-query+languageinfo-paramvalue-prop-digitgroupingpattern": "The grouping pattern for formatting numbers in this language.",
 	"apihelp-query+languageinfo-paramvalue-prop-minimumgroupingdigits": "The number of digits below which grouping of numerals is suppressed.",
+	"apihelp-query+languageinfo-paramvalue-prop-namespacenames": "The names of this wiki's namespaces in this language.",
+	"apihelp-query+languageinfo-paramvalue-prop-namespacealiases": "The aliases for the namespace names in this wiki in this language.",
 	"apihelp-query+languageinfo-param-code": "Language codes of the languages that should be returned, or <code>*</code> for all languages.",
 	"apihelp-query+languageinfo-example-simple": "Get the language codes of all supported languages.",
 	"apihelp-query+languageinfo-example-autonym-name-de": "Get the autonyms and German names of all supported languages.",
