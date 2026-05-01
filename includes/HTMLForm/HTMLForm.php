@@ -18,6 +18,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLApiField;
 use MediaWiki\HTMLForm\Field\HTMLAutoCompleteSelectField;
+use MediaWiki\HTMLForm\Field\HTMLButtonField;
 use MediaWiki\HTMLForm\Field\HTMLCheckField;
 use MediaWiki\HTMLForm\Field\HTMLCheckMatrix;
 use MediaWiki\HTMLForm\Field\HTMLComboboxField;
@@ -230,6 +231,7 @@ class HTMLForm extends ContextSource {
 		'namespaceselectwithbutton' => HTMLSelectNamespaceWithButton::class,
 		'tagfilter' => HTMLTagFilter::class,
 		'sizefilter' => HTMLSizeFilterField::class,
+		'button' => HTMLButtonField::class,
 		'submit' => HTMLSubmitField::class,
 		'hidden' => HTMLHiddenField::class,
 		'edittools' => HTMLEditTools::class,
