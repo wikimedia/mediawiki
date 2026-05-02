@@ -252,10 +252,15 @@ class SkinModule extends FileModule {
 		'logo',
 	];
 
-	private const LESS_MESSAGES = [
+	private const TOC_LESS_MESSAGES = [
 		// `toc` feature, used in screen.less
 		'hidetoc',
 		'showtoc',
+	];
+
+	private const SECTION_LESS_MESSAGES = [
+		// `interface-edit-section-links` feature
+		'pipe-separator',
 	];
 
 	/**
@@ -313,7 +318,13 @@ class SkinModule extends FileModule {
 		if ( in_array( 'toc', $this->features ) ) {
 			$options['lessMessages'] = array_merge(
 				$options['lessMessages'] ?? [],
-				self::LESS_MESSAGES
+				self::TOC_LESS_MESSAGES
+			);
+		}
+		if ( in_array( 'interface-edit-section-links', $this->features ) ) {
+			$options['lessMessages'] = array_merge(
+				$options['lessMessages'] ?? [],
+				self::SECTION_LESS_MESSAGES
 			);
 		}
 

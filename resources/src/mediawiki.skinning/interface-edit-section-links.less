@@ -17,28 +17,43 @@
 	unicode-bidi: isolate;
 
 	a {
-		white-space: nowrap;
+		// Needed for 'pointer-events' below
+		white-space: pre;
+		display: inline-block;
 	}
 
 	&::before {
-		/* T253601 */
-		content: '\200B';
-	}
-}
-
-.mw-editsection-bracket,
-.mw-editsection-divider {
-	color: @color-subtle;
-}
-
-.mw-editsection-bracket {
-	&:first-of-type {
+		// Add U+200B (zero-width space) to allow line breaking here (T253601)
+		content: '\200B[';
+		// For browsers supporting alt text in 'content', make it empty
+		content: '\200B[' / '';
+		color: @color-subtle;
 		margin-right: 0.25em;
 		margin-inline: 0 0.25em;
 	}
 
-	&:not( :first-of-type ) {
+	&::after {
+		content: ']';
+		// For browsers supporting alt text in 'content', make it empty
+		content: ']' / '';
+		color: @color-subtle;
 		margin-left: 0.25em;
 		margin-inline: 0.25em 0;
 	}
+
+	a:not( :first-of-type )::before {
+		content: '@{msg-pipe-separator}';
+		// For browsers supporting alt text in 'content', make it empty
+		content: '@{msg-pipe-separator}' / '';
+		color: @color-subtle;
+		// Do not make this a clickable part of the link
+		pointer-events: none;
+		display: inline-block;
+	}
+}
+
+// TODO: Remove these elements from the HTML. (T268900)
+.mw-editsection-bracket,
+.mw-editsection-divider {
+	display: none;
 }

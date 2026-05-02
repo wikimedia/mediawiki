@@ -2027,6 +2027,7 @@ abstract class Skin extends ContextSource {
 	 */
 	protected function doEditSectionLinksHTML( array $links, Language $lang ) {
 		$result = Html::openElement( 'span', [ 'class' => 'mw-editsection' ] );
+		// TODO: Remove these elements from the HTML. (T268900)
 		$result .= Html::rawElement( 'span', [ 'class' => 'mw-editsection-bracket' ], '[' );
 
 		$linksHtml = array_column( $links, 'html' );
@@ -2035,6 +2036,7 @@ abstract class Skin extends ContextSource {
 			$result .= $linksHtml[0];
 		} else {
 			$result .= implode(
+				// TODO: Remove these elements from the HTML. (T268900)
 				Html::element( 'span',
 					[ 'class' => 'mw-editsection-divider' ],
 					$this->msg( 'pipe-separator' )->inLanguage( $lang )->text()
@@ -2043,6 +2045,7 @@ abstract class Skin extends ContextSource {
 			);
 		}
 
+		// TODO: Remove these elements from the HTML. (T268900)
 		$result .= Html::rawElement( 'span', [ 'class' => 'mw-editsection-bracket' ], ']' );
 		$result .= Html::closeElement( 'span' );
 		return $result;
