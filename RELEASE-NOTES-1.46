@@ -1155,6 +1155,8 @@ because of Phabricator reports.
 * wfPercent() has been deprecated and now emits deprecation warnings. Use
   round() and format the number as appropriate for the language, for example
   using `wfMessage( 'percent' )->numParams( round( $x, 2 ) )->text()`.
+* The EditFilter hook has been deprecated and will trigger deprecation warnings.
+  Use EditFilterMergedContent or MultiContentSave instead.
 * …
 
 === Other changes in 1.46 ===

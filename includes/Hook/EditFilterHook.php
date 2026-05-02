@@ -8,8 +8,8 @@ use MediaWiki\EditPage\EditPage;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "EditFilter" to register handlers implementing this interface.
  *
- * @stable to implement
  * @ingroup Hooks
+ * @deprecated since 1.46, use EditFilterMergedContent or MultiContentSave instead
  */
 interface EditFilterHook {
 	/**
