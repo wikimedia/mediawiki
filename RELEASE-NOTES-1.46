@@ -157,6 +157,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 * Updated wikimedia/testing-access-wrapper from 3.0.0 to 4.0.0.
 * Updated wikimedia/timestamp from 5.0.0 to 5.1.0.
 * Updated wikimedia/wrappedstring from 4.0.1 to 4.1.0.
+* Updated wikimedia/xmp-reader from 0.10.2 to 0.10.3.
 * …
 
 ===== Changed development-only external libraries =====
