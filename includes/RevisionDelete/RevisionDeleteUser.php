@@ -10,6 +10,7 @@
 namespace MediaWiki\RevisionDelete;
 
 use MediaWiki\Logging\LogPage;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
@@ -93,14 +94,27 @@ class RevisionDeleteUser {
 				->where( [ 'rc_actor' => $actorId ] )
 				->caller( __METHOD__ )->execute();
 
-			# Hide name from live images
-			$dbw->newUpdateQueryBuilder()
-				->update( 'oldimage' )
-				->set( self::buildSetBitDeletedField( 'oi_deleted', $op, $delUser, $dbw ) )
-				->where( [ 'oi_actor' => $actorId ] )
-				->caller( __METHOD__ )->execute();
+			$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+				MainConfigNames::FileSchemaMigrationStage
+			);
+			if ( $migrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+				// Hide name from live images
+				$dbw->newUpdateQueryBuilder()
+					->update( 'oldimage' )
+					->set( self::buildSetBitDeletedField( 'oi_deleted', $op, $delUser, $dbw ) )
+					->where( [ 'oi_actor' => $actorId ] )
+					->caller( __METHOD__ )->execute();
+			}
+			if ( $migrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+				// Hide name from live images
+				$dbw->newUpdateQueryBuilder()
+					->update( 'filerevision' )
+					->set( self::buildSetBitDeletedField( 'fr_deleted', $op, $delUser, $dbw ) )
+					->where( [ 'fr_actor' => $actorId ] )
+					->caller( __METHOD__ )->execute();
+			}
 
-			# Hide name from deleted images
+			// Hide name from deleted images
 			$dbw->newUpdateQueryBuilder()
 				->update( 'filearchive' )
 				->set( self::buildSetBitDeletedField( 'fa_deleted', $op, $delUser, $dbw ) )
