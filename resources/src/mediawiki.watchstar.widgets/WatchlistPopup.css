@@ -1,0 +1,10 @@
+.mw-watchstar-WatchlistPopup label {
+	/* Even though the parent .mw-notification already has this set, */
+	/* it's overridden by the label elements. */
+	cursor: pointer;
+}
+
+.mw-watchstar-WatchlistPopup > .oo-ui-labelElement:not( :first-of-type ) {
+	display: block;
+	margin-top: 0.8em;
+}

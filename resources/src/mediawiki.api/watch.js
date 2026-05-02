@@ -54,8 +54,8 @@
 		 *  with an object (or array of objects) describing each page that was passed in and its
 		 *  current watched/unwatched status.
 		 */
-		watch: function ( pages, expiry, labels ) {
-			return doWatchInternal.call( this, pages, { expiry, labels } );
+		watch: function ( pages, expiry ) {
+			return doWatchInternal.call( this, pages, { expiry: expiry } );
 		},
 
 		/**
