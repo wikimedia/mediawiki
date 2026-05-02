@@ -125,10 +125,14 @@ class MediaLinksHandler extends SimpleHandler {
 			$this->getAuthority()->getUser(),
 			'imagesize'
 		);
+
+		// Normalize thumbnail sizes
+		[ $maxNormalizedWidth, $maxNormalizedHeight ] = self::getNormalizedThumbLimits( $maxWidth );
+
 		$transforms = [
 			'preferred' => [
-				'maxWidth' => $maxWidth,
-				'maxHeight' => $maxHeight,
+				'maxWidth' => $maxNormalizedWidth,
+				'maxHeight' => $maxNormalizedHeight
 			]
 		];
 		$response = [];

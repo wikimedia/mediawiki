@@ -104,14 +104,18 @@ class MediaFileHandler extends SimpleHandler {
 		[ $maxThumbWidth, $maxThumbHeight ] = self::getImageLimitsFromOption(
 			$this->getAuthority()->getUser(), 'thumbsize'
 		);
+
+		// Normalize thumbnail sizes
+		[ $maxNormalizedWidth, $maxNormalizedHeight ] = self::getNormalizedThumbLimits( $maxThumbWidth );
+
 		$transforms = [
 			'preferred' => [
 				'maxWidth' => $maxWidth,
 				'maxHeight' => $maxHeight
 			],
 			'thumbnail' => [
-				'maxWidth' => $maxThumbWidth,
-				'maxHeight' => $maxThumbHeight
+				'maxWidth' => $maxNormalizedWidth,
+				'maxHeight' => $maxNormalizedHeight
 			]
 		];
 

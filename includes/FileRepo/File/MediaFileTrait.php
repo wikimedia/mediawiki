@@ -129,7 +129,11 @@ trait MediaFileTrait {
 	}
 
 	/**
-	 * Returns the corresponding $wgImageLimits entry for the selected user option
+	 * Returns the corresponding $wgImageLimits entry for the selected user option.
+	 *
+	 * This method uses the config and user option for the visual rendered size of
+	 * images on the screen, for display purposes.
+	 * For thumbnail physical sizing, use MediaFileTrait::getNormalizedThumbLimits().
 	 *
 	 * @param UserIdentity $user
 	 * @param string $optionName Name of a option to check, typically imagesize or thumbsize
@@ -154,6 +158,55 @@ trait MediaFileTrait {
 
 		// if nothing is set, fallback to a hardcoded default
 		return $imageLimits[$option] ?? [ 800, 600 ];
+	}
+
+	/**
+	 * Returns the corresponding thumbnail width for a given width,
+	 * based on the ThumbnailSteps config.
+	 *
+	 * This method should be used when calculating the physical
+	 * dimensions for thumbnails, to ensure that we use the same dimensions
+	 * as the thumbnail generator.
+	 * For display purposes, use MediaFileTrait::getImageLimitsFromOption().
+	 *
+	 * @param int $width Requested width
+	 * @return int[] Normalized width and height for the thumbnail
+	 * @since 1.46
+	 */
+	public static function getNormalizedThumbLimits( $width ) {
+		$thumbSteps = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::ThumbnailSteps );
+		if ( !is_array( $thumbSteps ) ) {
+			// Sanity check: If ThumbnailSteps does not exist in the config,
+			// or is empty, we need to fall back on an array. In that case,
+			// in order to not have an empty value, we will just use the
+			// requested width as the only "step".
+			// This shouldn't happen in actual wikis, since ThumbnailSteps
+			// has a default value, but it has happened in CI wikis, so it's
+			// better to be safe in case of misconfiguration.
+			$thumbSteps = [ $width ];
+		}
+		sort( $thumbSteps, SORT_NUMERIC );
+
+		// Find the smallest thumbnail step that is at least as large
+		// as the requested width
+		foreach ( $thumbSteps as $thumbWidth ) {
+			if ( $thumbWidth >= $width ) {
+				return [ $thumbWidth, $thumbWidth ];
+			}
+		}
+
+		// if none was found to be at least as large,
+		// return the largest thumbnail step
+		$normalizedWidth = end( $thumbSteps );
+
+		if ( $normalizedWidth <= 0 ) {
+			// Sanity check: if the config is not set properly
+			// just return the original width.
+			return [ $width, $width ];
+		}
+
+		return [ $normalizedWidth, $normalizedWidth ];
 	}
 }
 
