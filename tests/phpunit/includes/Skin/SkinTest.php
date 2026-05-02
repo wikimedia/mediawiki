@@ -944,4 +944,50 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 			],
 		], $skin->getLanguages() );
 	}
+
+	/**
+	 * @see https://phabricator.wikimedia.org/T294695
+	 */
+	public function testGetLanguagesTurkishCapitalization() {
+		$this->overrideConfigValues( [
+			MainConfigNames::HideInterlanguageLinks => false,
+			MainConfigNames::InterlanguageLinkCodeMap => [],
+			MainConfigNames::LanguageCode => 'tr',
+		] );
+
+		$mockOutputPage = $this->createMock( OutputPage::class );
+		$mockOutputPage->method( 'getLanguageLinks' )
+			->willReturn( [ 'it:Roma' ] );
+
+		$fakeContext = new RequestContext();
+		$fakeContext->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
+		$fakeContext->setOutput( $mockOutputPage );
+		// Set user interface language to Turkish
+		$fakeContext->setLanguage( 'tr' );
+
+		$hookContainer = $this->createMock( HookContainer::class );
+		$this->setService( 'HookContainer', $hookContainer );
+
+		$mockIwLookup = $this->createMock( InterwikiLookup::class );
+		$mockIwLookup->method( 'isValidInterwiki' )->willReturn( true );
+		$mockIwLookup->method( 'fetch' )->willReturnCallback( static function ( string $prefix ) {
+			return new Interwiki(
+				$prefix,
+				"https://$prefix.example.com/$1"
+			);
+		} );
+		$this->setService( 'InterwikiLookup', $mockIwLookup );
+
+		$skin = new class extends Skin {
+			public function outputPage() {
+			}
+		};
+		$skin->setContext( $fakeContext );
+
+		$languages = $skin->getLanguages();
+		$this->assertCount( 1, $languages );
+		// T294695: Must be 'Italiano' (standard I), not 'İtaliano' (Turkish İ)
+		$this->assertSame( 'Italiano', $languages[0]['text'] );
+		$this->assertSame( 'Italiano', $languages[0]['data-language-autonym'] );
+	}
 }

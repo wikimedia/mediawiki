@@ -1226,7 +1226,12 @@ abstract class Skin extends ContextSource {
 
 			$userLang = $this->getLanguage();
 			$languageLinks = [];
-			$langNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+			$services = MediaWikiServices::getInstance();
+			$langNameUtils = $services->getLanguageNameUtils();
+			// Use a Language without locale-specific ucfirst overrides (T294695).
+			// Turkish and Azerbaijani override ucfirst to map i→İ, which
+			// incorrectly capitalizes autonyms like 'italiano' to 'İtaliano'.
+			$defaultCaseLang = $services->getLanguageFactory()->getLanguage( 'en' );
 
 			foreach ( $this->getOutput()->getLanguageLinks() as $languageLinkText ) {
 				[ $prefix, $title ] = explode( ':', $languageLinkText, 2 );
@@ -1252,7 +1257,7 @@ abstract class Skin extends ContextSource {
 					}
 				} else {
 					// Use the language autonym as display text
-					$ilLangName = $this->getLanguage()->ucfirst( $ilLangName );
+					$ilLangName = $defaultCaseLang->ucfirst( $ilLangName );
 				}
 
 				// CLDR extension or similar is required to localize the language name;
