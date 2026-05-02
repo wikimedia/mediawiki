@@ -15,6 +15,7 @@ use MediaWiki\Api\ApiResult;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
+use MediaWiki\User\ExternalUserNames;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
@@ -24,6 +25,20 @@ use MediaWiki\WikiMap\WikiMap;
  * @since 1.21
  */
 class RightsLogFormatter extends LogFormatter {
+	/** @inheritDoc */
+	protected function getCommentWikiId() {
+		// If the performer is hidden, don't attempt to resolve the source wiki
+		// to avoid leaking information about the performer's origin.
+		if ( !$this->canView( LogPage::DELETED_USER ) ) {
+			return false;
+		}
+		$performerName = $this->entry->getPerformerIdentity()->getName();
+		// External performers have the format "wikiId>username".
+		// The wiki ID prefix indicates the wiki the log entry was
+		// replicated from, and comment links should resolve against it.
+		return ExternalUserNames::getPrefix( $performerName );
+	}
+
 	/** @inheritDoc */
 	protected function makePageLink( ?Title $title = null, $parameters = [], $html = null ) {
 		$userrightsInterwikiDelimiter = $this->context->getConfig()

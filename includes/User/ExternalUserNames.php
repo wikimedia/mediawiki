@@ -151,6 +151,21 @@ class ExternalUserNames {
 		return substr( $username, strpos( $username, '>' ) + 1 );
 	}
 
+	/**
+	 * Get the prefix of an external username.
+	 *
+	 * @since 1.47
+	 * @param string $username Username to extract prefix from
+	 * @return string|false The prefix, or false if the username is not external
+	 */
+	public static function getPrefix( $username ) {
+		if ( !self::isExternal( $username ) ) {
+			return false;
+		}
+
+		return substr( $username, 0, strpos( $username, '>' ) );
+	}
+
 }
 
 /** @deprecated class alias since 1.41 */

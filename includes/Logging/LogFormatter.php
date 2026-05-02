@@ -810,7 +810,7 @@ class LogFormatter {
 	public function getComment() {
 		if ( $this->canView( LogPage::DELETED_COMMENT ) ) {
 			$comment = $this->getCommentFormatter()
-				->formatBlock( $this->entry->getComment() );
+				->formatBlock( $this->entry->getComment(), null, false, $this->getCommentWikiId() );
 			// No hard coded spaces thanx
 			$element = ltrim( $comment );
 			if ( $this->entry->isDeleted( LogPage::DELETED_COMMENT ) ) {
@@ -821,6 +821,23 @@ class LogFormatter {
 		}
 
 		return $element;
+	}
+
+	/**
+	 * Returns the wiki ID to use for resolving links in the log comment.
+	 *
+	 * When a log entry has been replicated from a remote wiki (indicated by
+	 * an external performer), comment links should resolve against the source
+	 * wiki rather than the local wiki.
+	 *
+	 * Subclasses can override this to provide the source wiki ID.
+	 *
+	 * @stable to override
+	 * @since 1.47
+	 * @return string|false Wiki ID for link resolution, or false for local wiki
+	 */
+	protected function getCommentWikiId() {
+		return false;
 	}
 
 	/**

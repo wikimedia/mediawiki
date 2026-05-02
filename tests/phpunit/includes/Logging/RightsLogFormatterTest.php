@@ -372,4 +372,83 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 	public function testAutopromoteLogDatabaseRows( $row, $extra ) {
 		$this->doTestLogFormatter( $row, $extra );
 	}
+
+	public function testCommentLinksResolveAgainstSourceWikiForExternalPerformer() {
+		$conf = new \MediaWiki\Config\SiteConfiguration();
+		$conf->settings = [
+			'wgServer' => [ 'foowiki' => '//foo.example.org' ],
+			'wgArticlePath' => [ 'foowiki' => '/foo/$1' ],
+		];
+		$conf->suffixes = [ 'wiki' ];
+		$this->setMwGlobals( 'wgConf', $conf );
+
+		$row = $this->expandDatabaseRow( [
+			'type' => 'rights',
+			'action' => 'rights',
+			'comment' => 'Per [[Special:Permalink/18150205|resignation]] on [[SRP]].',
+			'user' => 0,
+			'user_text' => 'foowiki>Steward',
+			'namespace' => NS_USER,
+			'title' => 'TargetUser',
+			'params' => [
+				'4::oldgroups' => [ 'sysop' ],
+				'5::newgroups' => [],
+				'oldmetadata' => [ [ 'expiry' => null ] ],
+				'newmetadata' => [],
+			],
+		], false );
+
+		$services = $this->getServiceContainer();
+		$formatter = $services->getLogFormatterFactory()->newFromRow( $row );
+		$context = new \MediaWiki\Context\RequestContext();
+		$context->setLanguage( 'en' );
+		$formatter->setContext( $context );
+
+		$comment = $formatter->getComment();
+
+		// Links should be rendered as external links pointing to the source wiki
+		$this->assertStringContainsString(
+			'foo.example.org/foo/',
+			$comment,
+			'Comment links should be resolved against the source wiki (foowiki)'
+		);
+		$this->assertStringContainsString(
+			'class="external"',
+			$comment,
+			'Links should be rendered as external links'
+		);
+	}
+
+	public function testCommentLinksResolveLocallyForLocalPerformer() {
+		$row = $this->expandDatabaseRow( [
+			'type' => 'rights',
+			'action' => 'rights',
+			'comment' => 'Per [[Special:Permalink/123|request]].',
+			'user' => 0,
+			'user_text' => 'Sysop',
+			'namespace' => NS_USER,
+			'title' => 'TargetUser',
+			'params' => [
+				'4::oldgroups' => [ 'sysop' ],
+				'5::newgroups' => [],
+				'oldmetadata' => [ [ 'expiry' => null ] ],
+				'newmetadata' => [],
+			],
+		], false );
+
+		$services = $this->getServiceContainer();
+		$formatter = $services->getLogFormatterFactory()->newFromRow( $row );
+		$context = new \MediaWiki\Context\RequestContext();
+		$context->setLanguage( 'en' );
+		$formatter->setContext( $context );
+
+		$comment = $formatter->getComment();
+
+		// For local performers, links should resolve locally
+		$this->assertStringNotContainsString(
+			'class="external"',
+			$comment,
+			'Comment links should be local links for local performers'
+		);
+	}
 }

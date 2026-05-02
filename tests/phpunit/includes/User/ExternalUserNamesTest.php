@@ -180,4 +180,24 @@ class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public static function provideGetPrefix() {
+		return [
+			[ 'User1', false ],
+			[ '>User2', '' ],
+			[ 'prefix>User3', 'prefix' ],
+			[ 'prefix:>User4', 'prefix:' ],
+		];
+	}
+
+	/**
+	 * @covers \MediaWiki\User\ExternalUserNames::getPrefix
+	 * @dataProvider provideGetPrefix
+	 */
+	public function testGetPrefix( $username, $expected ) {
+		$this->assertSame(
+			$expected,
+			ExternalUserNames::getPrefix( $username )
+		);
+	}
+
 }
