@@ -391,6 +391,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @deprecated since 1.45; use ::getContentHolderText() instead
 	 */
 	public function getRawText() {
+		wfDeprecated( __METHOD__, '1.45' );
 		return $this->getContentHolderText();
 	}
 
@@ -1089,6 +1090,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @deprecated Since 1.45, use ::setContentHolderText()
 	 */
 	public function setRawText( ?string $text ): void {
+		wfDeprecated( __METHOD__, '1.45' );
 		$this->setContentHolderText( $text );
 	}
 
