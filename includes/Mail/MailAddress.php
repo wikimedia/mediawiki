@@ -71,9 +71,8 @@ class MailAddress implements Stringable {
 			return '';
 		}
 
-		# PHP's mail() implementation under Windows is somewhat shite, and
-		# can't handle "Joe Bloggs <joe@bloggs.com>" format email addresses,
-		# so don't bother generating them
+		// T6979 (r16285): PHP's mail() on Windows is somewhat shite, and
+		// can't handle "Joe Bloggs <joe@bloggs.com>" format email addresses
 		if ( $this->name === '' || wfIsWindows() ) {
 			return $this->address;
 		}
