@@ -32,22 +32,17 @@ class DjVuImage {
 	 */
 	private const DJVUTXT_MEMORY_LIMIT = 300_000_000;
 
-	private string $mFilename;
-
 	/**
 	 * @param string $filename The DjVu file name.
 	 */
-	public function __construct( string $filename ) {
-		$this->mFilename = $filename;
+	public function __construct( private readonly string $filename ) {
 	}
 
 	/**
 	 * Check if the given file is indeed a valid DjVu image file
 	 */
 	public function isValid(): bool {
-		$info = $this->getInfo();
-
-		return $info !== false;
+		return $this->getInfo() !== false;
 	}
 
 	/**
@@ -68,9 +63,11 @@ class DjVuImage {
 
 	/**
 	 * For debugging; dump the IFF chunk structure
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function dump(): void {
-		$file = fopen( $this->mFilename, 'rb' );
+		$file = fopen( $this->filename, 'rb' );
 		$header = fread( $file, 12 );
 		$arr = unpack( 'a4magic/a4chunk/NchunkLength', $header );
 		$chunk = $arr['chunk'];
@@ -81,6 +78,8 @@ class DjVuImage {
 	}
 
 	/**
+	 * @codeCoverageIgnore
+	 *
 	 * @param resource $file
 	 * @param int $length
 	 * @param int $indent
@@ -113,7 +112,7 @@ class DjVuImage {
 
 	private function getInfo(): array|false {
 		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-		$file = @fopen( $this->mFilename, 'rb' );
+		$file = @fopen( $this->filename, 'rb' );
 		if ( $file === false ) {
 			wfDebug( __METHOD__ . ": missing or failed file read" );
 
@@ -238,8 +237,7 @@ class DjVuImage {
 			'vresolution/' .
 			'Cgamma', $data );
 
-		# Newer files have rotation info in byte 10, but we don't use it yet.
-
+		// Newer files have rotation info in byte 10, but we don't use it yet.
 		return [
 			'width' => $arr['width'],
 			'height' => $arr['height'],
@@ -278,7 +276,7 @@ class DjVuImage {
 				->inputFileFromFile(
 					'scripts/retrieveDjvuMetaData.sh',
 					__DIR__ . '/scripts/retrieveDjvuMetaData.sh' )
-				->inputFileFromFile( 'file.djvu', $this->mFilename )
+				->inputFileFromFile( 'file.djvu', $this->filename )
 				->memoryLimit( self::DJVUTXT_MEMORY_LIMIT );
 			$env = [];
 			if ( $djvuDump !== null ) {
@@ -312,15 +310,16 @@ class DjVuImage {
 					wfDebug( __METHOD__ . ": did not receive text file" );
 				}
 			}
-		} else { // No boxedcommand
+		} else {
+			// No boxedcommand
 			if ( $djvuDump !== null ) {
-				# djvudump is faster than djvutoxml (now abandoned) as of version 3.5
-				# https://sourceforge.net/p/djvu/bugs/71/
-				$cmd = Shell::escape( $djvuDump ) . ' ' . Shell::escape( $this->mFilename );
+				// djvudump is faster than djvutoxml (now abandoned) as of version 3.5
+				// https://sourceforge.net/p/djvu/bugs/71/
+				$cmd = Shell::escape( $djvuDump ) . ' ' . Shell::escape( $this->filename );
 				$dump = Shell::command()->unsafeCommand( $cmd )->execute()->getStdout();
 			}
 			if ( $djvuTxt !== null ) {
-				$cmd = Shell::escape( $djvuTxt ) . ' --detail=page ' . Shell::escape( $this->mFilename );
+				$cmd = Shell::escape( $djvuTxt ) . ' --detail=page ' . Shell::escape( $this->filename );
 				wfDebug( __METHOD__ . ": $cmd" );
 				$txt = Shell::command()->unsafeCommand( $cmd )->environment(
 					[ 'memory' => (string)self::DJVUTXT_MEMORY_LIMIT ]
@@ -333,7 +332,7 @@ class DjVuImage {
 			}
 		}
 
-		# Convert dump to array
+		// Convert dump to array
 		$json = [];
 		if ( $dump !== null ) {
 			$data = $this->convertDumpToJSON( $dump );
@@ -342,13 +341,13 @@ class DjVuImage {
 			}
 		}
 
-		# Text layer
+		// Text layer
 		$json['text'] = [];
 		if ( $txt !== null ) {
-			# Strip some control characters
-			# Ignore carriage returns
+			// Strip some control characters
+			// Ignore carriage returns
 			$txt = preg_replace( "/\\\\013/", "", $txt );
-			# Replace runs of OCR region separators with a single extra line break
+			// Replace runs of OCR region separators with a single extra line break
 			$txt = preg_replace( "/(?:\\\\(035|037))+/", "\n", $txt );
 
 			$reg = <<<EOR
@@ -375,7 +374,7 @@ EOR;
 	}
 
 	private function pageTextCallback( string $match ): string {
-		# Get rid of invalid UTF-8
+		// Get rid of invalid UTF-8
 		$val = \UtfNormal\Validator::cleanUp( stripcslashes( $match ) );
 		return str_replace( '�', '', $val );
 	}
@@ -395,7 +394,7 @@ EOR;
 		$good = false;
 		$result = [];
 		if ( preg_match( '/^( *)FORM:DJVU/', $line, $m ) ) {
-			# Single-page
+			// Single-page
 			$parsed = $this->parseFormDjvu( $line );
 			if ( $parsed ) {
 				$good = true;
@@ -404,9 +403,9 @@ EOR;
 			}
 			$result['pages'] = [ $parsed ];
 		} elseif ( preg_match( '/^( *)FORM:DJVM/', $line, $m ) ) {
-			# Multi-page
+			// Multi-page
 			$parentLevel = strlen( $m[1] );
-			# Find DIRM
+			// Find DIRM
 			$line = strtok( "\n" );
 			$result['pages'] = [];
 			while ( $line !== false ) {
@@ -423,7 +422,7 @@ EOR;
 				}
 
 				if ( preg_match( '/^ *FORM:DJVU/', $line ) ) {
-					# Found page
+					// Found page
 					$parsed = $this->parseFormDjvu( $line );
 					if ( $parsed ) {
 						$good = true;
@@ -446,11 +445,11 @@ EOR;
 	private function parseFormDjvu( string $line ): array|false {
 		$parentLevel = strspn( $line, ' ' );
 		$line = strtok( "\n" );
-		# Find INFO
+		// Find INFO
 		while ( $line !== false ) {
 			$childLevel = strspn( $line, ' ' );
 			if ( $childLevel <= $parentLevel ) {
-				# End of chunk
+				// End of chunk
 				break;
 			}
 

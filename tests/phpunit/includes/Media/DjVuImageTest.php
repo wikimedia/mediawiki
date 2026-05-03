@@ -13,12 +13,21 @@ class DjVuImageTest extends MediaWikiMediaTestCase {
 
 	private const string FILE_NAME = __DIR__ . '/../../data/media/LoremIpsum.djvu';
 
+	private function getFile(): DjVuImage {
+		return new DjVuImage( self::FILE_NAME );
+	}
+
 	public function testIsValid() {
-		$this->assertTrue( ( new DjVuImage( self::FILE_NAME ) )->isValid() );
+		$this->assertTrue( $this->getFile()->isValid() );
 	}
 
 	public function testRetrieveMetadata() {
-		$data = ( new DjVuImage( self::FILE_NAME ) )->retrieveMetadata();
+		$data = $this->getFile()->retrieveMetadata();
+		$this->assertNotEquals( [], $data );
+	}
+
+	public function testGetImageSize() {
+		$data = $this->getFile()->getImageSize();
 		$this->assertNotEquals( [], $data );
 	}
 }
