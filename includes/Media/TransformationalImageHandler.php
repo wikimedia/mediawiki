@@ -506,10 +506,11 @@ abstract class TransformationalImageHandler extends ImageHandler {
 				$imageMagickConvertCommand = MediaWikiServices::getInstance()
 					->getMainConfig()->get( MainConfigNames::ImageMagickConvertCommand );
 
-				$cmd = Shell::escape( $imageMagickConvertCommand ) . ' -version';
 				wfDebug( $method . ": Running convert -version" );
-				$retval = '';
-				$return = wfShellExecWithStderr( $cmd, $retval );
+				$return = Shell::command( $imageMagickConvertCommand, '-version' )
+					->includeStderr()
+					->execute()
+					->getStdout() ?? '';
 				$x = preg_match(
 					'/Version: ImageMagick ([0-9]*\.[0-9]*\.[0-9]*)/', $return, $matches
 				);
