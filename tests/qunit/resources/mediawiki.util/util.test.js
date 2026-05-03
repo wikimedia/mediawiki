@@ -156,6 +156,28 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		href = util.getUrl( 'Sandbox', {} );
 		assert.strictEqual( href, '/wiki/Sandbox', 'title with empty query string' );
 
+		// T424249
+		mw.config.set( {
+			wgVariantArticlePath: '/$2/$1',
+			wgUserVariant: 'zh-my'
+		} );
+		href = util.getUrl( 'Sandbox' );
+		assert.strictEqual( href, '/zh-my/Sandbox', 'title with variant' );
+
+		href = util.getUrl( 'Sandbox', { variant: 'zh-cn' } );
+		assert.strictEqual( href, '/zh-cn/Sandbox', 'title with explicitly specified variant' );
+
+		href = util.getUrl( 'Sandbox', { action: 'edit' } );
+		assert.strictEqual( href, '/w/index.php?title=Sandbox&action=edit', 'title with action and variant fallback' );
+
+		href = util.getUrl( 'Sandbox', { action: 'edit', variant: 'zh-cn' } );
+		assert.strictEqual( href, '/w/index.php?title=Sandbox&action=edit&variant=zh-cn', 'title with action and explicitly specified variant fallback' );
+
+		mw.config.set( {
+			wgVariantArticlePath: false,
+			wgUserVariant: false
+		} );
+
 		href = util.getUrl( '#Fragment' );
 		assert.strictEqual( href, '#Fragment', 'empty title with fragment' );
 

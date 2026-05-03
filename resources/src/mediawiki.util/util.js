@@ -291,9 +291,20 @@ const util = {
 			title = title.slice( 0, fragmentIdx );
 		}
 
+		const variantArticlePath = mw.config.get( 'wgVariantArticlePath' );
+		let variant = mw.config.get( 'wgUserVariant' );
+		let isVariantOnly = false;
+
 		// Produce query string
 		if ( params ) {
-			query = $.param( params );
+			if ( variantArticlePath && params.variant && Object.keys( params ).length === 1 ) {
+				variant = params.variant;
+				isVariantOnly = true;
+			} else {
+				query = $.param( params );
+			}
+		} else if ( variantArticlePath && variant ) {
+			isVariantOnly = true;
 		}
 
 		if ( !title && fragment ) {
@@ -303,6 +314,12 @@ const util = {
 			url = title ?
 				util.wikiScript() + '?title=' + util.wikiUrlencode( title ) + '&' + query :
 				util.wikiScript() + '?' + query;
+		} else if ( isVariantOnly ) {
+			// Specify a function as the replacement,
+			// so that "$" characters in title are not interpreted.
+			url = variantArticlePath
+				.replace( '$2', () => util.wikiUrlencode( variant ) )
+				.replace( '$1', () => util.wikiUrlencode( title ) );
 		} else {
 			// Specify a function as the replacement,
 			// so that "$" characters in title are not interpreted.
