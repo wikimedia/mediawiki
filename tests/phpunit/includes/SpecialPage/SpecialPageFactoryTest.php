@@ -116,6 +116,37 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\SpecialPage\SpecialPageFactory::resolveAlias
+	 */
+	public function testResolveAliasTurkishDottedI() {
+		// T288402: Turkish ucfirst maps 'i' to 'İ' (U+0130), producing
+		// 'İmport' instead of 'Import'. resolveAlias should still find
+		// the canonical special page via fallback normalization.
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'tr' );
+
+		[ $name, $param ] = $this->getFactory()->resolveAlias( "İmport" );
+		$this->assertEquals( 'Import', $name, 'Turkish İmport should resolve to canonical Import' );
+		$this->assertNull( $param );
+
+		// Also verify the Turkish alias still works
+		[ $name2, ] = $this->getFactory()->resolveAlias( 'İçeAktar' );
+		$this->assertEquals( 'Import', $name2, 'Turkish alias İçeAktar should still resolve' );
+
+		// Verify subpage parameter is preserved
+		[ $name3, $param3 ] = $this->getFactory()->resolveAlias( "İmport/foo.xml" );
+		$this->assertEquals( 'Import', $name3 );
+		$this->assertEquals( 'foo.xml', $param3 );
+
+		// Non-existent page should still return null
+		[ $name4, ] = $this->getFactory()->resolveAlias( 'İNonExistentPage' );
+		$this->assertNull( $name4, 'Non-existent page with İ should still return null' );
+
+		// ASCII-only aliases should not be affected by the fallback
+		[ $name5, ] = $this->getFactory()->resolveAlias( 'Specialpages' );
+		$this->assertEquals( 'Specialpages', $name5, 'ASCII alias should still work under Turkish' );
+	}
+
+	/**
 	 * @covers \MediaWiki\SpecialPage\SpecialPageFactory::getLocalNameFor
 	 */
 	public function testGetLocalNameFor() {

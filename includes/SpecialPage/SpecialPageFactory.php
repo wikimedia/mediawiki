@@ -1516,7 +1516,16 @@ class SpecialPageFactory {
 		$caseFoldedAlias = str_replace( ' ', '_', $caseFoldedAlias );
 		$aliases = $this->getAliasList();
 		if ( !isset( $aliases[$caseFoldedAlias] ) ) {
-			return [ null, null ];
+			// T288402: Turkish/Azerbaijani ucfirst maps 'i' to 'İ' (U+0130),
+			// but canonical special page names use ASCII 'I' (U+0049).
+			// When caseFold produces e.g. 'İMPORT' instead of 'IMPORT',
+			// normalize U+0130 to ASCII 'I' and retry the lookup.
+			$fallback = str_replace( "\u{0130}", 'I', $caseFoldedAlias );
+			if ( $fallback !== $caseFoldedAlias && isset( $aliases[$fallback] ) ) {
+				$caseFoldedAlias = $fallback;
+			} else {
+				return [ null, null ];
+			}
 		}
 		$name = $aliases[$caseFoldedAlias];
 		$par = $bits[1] ?? null; // T4087
