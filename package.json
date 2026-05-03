@@ -31,7 +31,7 @@
 		"domino": "2.1.0",
 		"dotenv": "8.2.0",
 		"eslint-config-wikimedia": "0.32.3",
-		"grunt": "1.6.1",
+		"grunt": "1.6.2",
 		"grunt-banana-checker": "0.13.0",
 		"grunt-contrib-watch": "1.1.0",
 		"grunt-eslint": "24.3.0",
