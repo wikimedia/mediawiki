@@ -25,15 +25,6 @@ class LanguageFallback {
 	 */
 	public const STRICT = LanguageFallbackMode::STRICT;
 
-	/** @var string */
-	private $siteLangCode;
-
-	/** @var LocalisationCache */
-	private $localisationCache;
-
-	/** @var LanguageNameUtils */
-	private $langNameUtils;
-
 	/** @var array */
 	private $fallbackCache = [];
 
@@ -46,13 +37,10 @@ class LanguageFallback {
 	 * @param LanguageNameUtils $langNameUtils
 	 */
 	public function __construct(
-		$siteLangCode,
-		LocalisationCache $localisationCache,
-		LanguageNameUtils $langNameUtils
+		private readonly string $siteLangCode,
+		private readonly LocalisationCache $localisationCache,
+		private readonly LanguageNameUtils $langNameUtils,
 	) {
-		$this->siteLangCode = $siteLangCode;
-		$this->localisationCache = $localisationCache;
-		$this->langNameUtils = $langNameUtils;
 	}
 
 	/**

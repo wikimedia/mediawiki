@@ -65,8 +65,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
 class Language implements Bcp47Code {
 	use DebugInfoTrait;
 
-	/** @var string */
-	public $mCode;
+	public string $mCode;
 
 	/**
 	 * @deprecated since 1.35, use LocalisationCache with custom language config
@@ -104,63 +103,13 @@ class Language implements Bcp47Code {
 	private $transformData = [];
 
 	/**
-	 * @var NamespaceInfo
-	 * @noVarDump
-	 */
-	private $namespaceInfo;
-
-	/**
-	 * @var LocalisationCache
-	 * @noVarDump
-	 */
-	private $localisationCache;
-
-	/**
-	 * @var LanguageNameUtils
-	 * @noVarDump
-	 */
-	private $langNameUtils;
-
-	/**
-	 * @var LanguageFallback
-	 * @noVarDump
-	 */
-	private $langFallback;
-
-	/**
 	 * @var array[]|null
 	 * @noVarDump
 	 */
 	private $grammarTransformCache;
 
-	/**
-	 * @var LanguageConverterFactory
-	 * @noVarDump
-	 */
-	private $converterFactory;
-
-	/**
-	 * @var HookContainer
-	 * @noVarDump
-	 */
-	private $hookContainer;
-
-	/**
-	 * @var HookRunner
-	 * @noVarDump
-	 */
-	private $hookRunner;
-
-	/**
-	 * @var Config
-	 * @noVarDump
-	 */
-	private $config;
-
-	/**
-	 * @noVarDump
-	 */
-	private LeximorphFactory $leximorphFactory;
+	/** @noVarDump */
+	private HookRunner $hookRunner;
 
 	/**
 	 * @var array|null
@@ -344,25 +293,25 @@ class Language implements Bcp47Code {
 	 */
 	public function __construct(
 		string $code,
-		NamespaceInfo $namespaceInfo,
-		LocalisationCache $localisationCache,
-		LanguageNameUtils $langNameUtils,
-		LanguageFallback $langFallback,
-		LanguageConverterFactory $converterFactory,
-		HookContainer $hookContainer,
-		Config $config,
-		LeximorphFactory $leximorphFactory
+		/** @noVarDump */
+		private readonly NamespaceInfo $namespaceInfo,
+		/** @noVarDump */
+		private LocalisationCache $localisationCache,
+		/** @noVarDump */
+		private readonly LanguageNameUtils $langNameUtils,
+		/** @noVarDump */
+		private readonly LanguageFallback $langFallback,
+		/** @noVarDump */
+		private readonly LanguageConverterFactory $converterFactory,
+		/** @noVarDump */
+		private readonly HookContainer $hookContainer,
+		/** @noVarDump */
+		private readonly Config $config,
+		/** @noVarDump */
+		private readonly LeximorphFactory $leximorphFactory,
 	) {
 		$this->mCode = $code;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->localisationCache = $localisationCache;
-		$this->langNameUtils = $langNameUtils;
-		$this->langFallback = $langFallback;
-		$this->converterFactory = $converterFactory;
-		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->config = $config;
-		$this->leximorphFactory = $leximorphFactory;
 	}
 
 	/**

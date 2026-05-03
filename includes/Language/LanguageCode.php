@@ -16,20 +16,14 @@ use Wikimedia\Bcp47Code\Bcp47CodeValue;
  * @ingroup Language
  */
 class LanguageCode {
-
-	private string $code;
-
 	/**
-	 * @param string $code
 	 * @unstable
 	 * @since 1.43
 	 */
-	public function __construct( string $code ) {
-		$this->code = $code;
+	public function __construct( private readonly string $code ) {
 	}
 
 	/**
-	 * @return string
 	 * @since 1.43
 	 */
 	public function toString(): string {

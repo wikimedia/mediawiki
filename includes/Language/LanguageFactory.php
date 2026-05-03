@@ -24,35 +24,8 @@ use Wikimedia\ObjectCache\MapCacheLRU;
  * @since 1.35
  */
 class LanguageFactory {
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var LocalisationCache */
-	private $localisationCache;
-
-	/** @var LanguageNameUtils */
-	private $langNameUtils;
-
-	/** @var LanguageFallback */
-	private $langFallback;
-
-	/** @var LanguageConverterFactory */
-	private $langConverterFactory;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
 	/** @var MapCacheLRU */
 	private $langObjCache;
-
-	/** @var Config */
-	private $config;
-
-	/** @var LeximorphFactory */
-	private LeximorphFactory $leximorphFactory;
 
 	/** @var array */
 	private $parentLangCache = [];
@@ -67,43 +40,23 @@ class LanguageFactory {
 	/** How many distinct Language objects to retain at most in memory (T40439). */
 	private const LANG_CACHE_SIZE = 10;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param LocalisationCache $localisationCache
-	 * @param LanguageNameUtils $langNameUtils
-	 * @param LanguageFallback $langFallback
-	 * @param LanguageConverterFactory $langConverterFactory
-	 * @param HookContainer $hookContainer
-	 * @param Config $config
-	 * @param LeximorphFactory $leximorphFactory
-	 */
 	public function __construct(
-		ServiceOptions $options,
-		NamespaceInfo $namespaceInfo,
-		LocalisationCache $localisationCache,
-		LanguageNameUtils $langNameUtils,
-		LanguageFallback $langFallback,
-		LanguageConverterFactory $langConverterFactory,
-		HookContainer $hookContainer,
-		Config $config,
-		LeximorphFactory $leximorphFactory
+		private readonly ServiceOptions $options,
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly LocalisationCache $localisationCache,
+		private readonly LanguageNameUtils $langNameUtils,
+		private readonly LanguageFallback $langFallback,
+		private readonly LanguageConverterFactory $langConverterFactory,
+		private readonly HookContainer $hookContainer,
+		private readonly Config $config,
+		private readonly LeximorphFactory $leximorphFactory,
 	) {
 		// We have both ServiceOptions and a Config object because
 		// the Language class hasn't (yet) been updated to use ServiceOptions
 		// and for now gets a full Config
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
-		$this->options = $options;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->localisationCache = $localisationCache;
-		$this->langNameUtils = $langNameUtils;
-		$this->langFallback = $langFallback;
-		$this->langConverterFactory = $langConverterFactory;
-		$this->hookContainer = $hookContainer;
 		$this->langObjCache = new MapCacheLRU( self::LANG_CACHE_SIZE );
-		$this->config = $config;
-		$this->leximorphFactory = $leximorphFactory;
 	}
 
 	/**

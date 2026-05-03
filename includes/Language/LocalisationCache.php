@@ -46,9 +46,6 @@ use Wikimedia\Leximorph\Provider\PluralRules as LeximorphPluralRulesProvider;
 class LocalisationCache {
 	public const VERSION = 6;
 
-	/** @var ServiceOptions */
-	private $options;
-
 	/**
 	 * True if re-caching should only be done on an explicit call to recache().
 	 * Setting this reduces the overhead of cache freshness checking, which
@@ -75,16 +72,9 @@ class LocalisationCache {
 	 */
 	protected $sourceLanguage = [];
 
-	/** @var LCStore */
-	private $store;
-	/** @var LoggerInterface */
-	private $logger;
-	/** @var HookRunner */
-	private $hookRunner;
+	private HookRunner $hookRunner;
 	/** @var callable[] See comment for parameter in constructor */
 	private $clearStoreCallbacks;
-	/** @var LanguageNameUtils */
-	private $langNameUtils;
 
 	/**
 	 * A 2-d associative array, code/key, where presence indicates that the item
@@ -351,20 +341,16 @@ class LocalisationCache {
 	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
-		ServiceOptions $options,
-		LCStore $store,
-		LoggerInterface $logger,
+		private readonly ServiceOptions $options,
+		private LCStore $store,
+		private readonly LoggerInterface $logger,
 		array $clearStoreCallbacks,
-		LanguageNameUtils $langNameUtils,
-		HookContainer $hookContainer
+		private readonly LanguageNameUtils $langNameUtils,
+		HookContainer $hookContainer,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
-		$this->options = $options;
-		$this->store = $store;
-		$this->logger = $logger;
 		$this->clearStoreCallbacks = $clearStoreCallbacks;
-		$this->langNameUtils = $langNameUtils;
 		$this->hookRunner = new HookRunner( $hookContainer );
 
 		// Keep this separate from $this->options so that it can be mutable

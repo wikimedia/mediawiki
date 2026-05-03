@@ -19,9 +19,6 @@ class LanguageEventIngress
 	extends DomainEventIngress
 	implements PageDeletedListener, PageLatestRevisionChangedListener
 {
-
-	private MessageCache $messageCache;
-
 	/** Object spec intended for use with {@link DomainEventSource::registerSubscriber()} */
 	public const OBJECT_SPEC = [
 		'class' => self::class,
@@ -34,8 +31,7 @@ class LanguageEventIngress
 		],
 	];
 
-	public function __construct( MessageCache $messageCache ) {
-		$this->messageCache = $messageCache;
+	public function __construct( private readonly MessageCache $messageCache ) {
 	}
 
 	/**
