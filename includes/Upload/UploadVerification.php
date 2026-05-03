@@ -919,7 +919,8 @@ class UploadVerification {
 		# NOTE: there's a 50-line workaround to make stderr redirection work on windows, too.
 		#  that does not seem to be worth the pain.
 		#  Ask me (Duesentrieb) about it if it's ever needed.
-		$output = wfShellExecWithStderr( $command, $exitCode );
+		$output = Shell::command()->unsafeCommand( $command )->includeStderr()->execute();
+		$exitCode = $output->getExitCode();
 
 		# map exit code to AV_xxx constants.
 		$mappedCode = $exitCode;
@@ -949,7 +950,7 @@ class UploadVerification {
 			wfDebug( __METHOD__ . ": file passed virus scan." );
 			$output = false;
 		} else {
-			$output = trim( $output );
+			$output = trim( $output->getStdout() );
 
 			if ( !$output ) {
 				$output = true; # if there's no output, return true
