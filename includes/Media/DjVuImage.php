@@ -253,15 +253,19 @@ class DjVuImage {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$djvuDump = $config->get( MainConfigNames::DjvuDump );
 		$djvuTxt = $config->get( MainConfigNames::DjvuTxt );
-		$djvuUseBoxedCommand = $config->get( MainConfigNames::DjvuUseBoxedCommand );
-		$shell = $config->get( MainConfigNames::ShellboxShell );
+
+		if ( $djvuTxt === null && $djvuDump === null ) {
+			// @codeCoverageIgnoreStart
+			return [];
+			// @codeCoverageIgnoreEnd
+		}
+
 		if ( !$this->isValid() ) {
 			return false;
 		}
 
-		if ( $djvuTxt === null && $djvuDump === null ) {
-			return [];
-		}
+		$djvuUseBoxedCommand = $config->get( MainConfigNames::DjvuUseBoxedCommand );
+		$shell = $config->get( MainConfigNames::ShellboxShell );
 
 		$txt = null;
 		$dump = null;
