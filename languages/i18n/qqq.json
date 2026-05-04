@@ -2766,7 +2766,7 @@
 	"movepagetext-noredirectsupport": "A variant of the following message ''Movepagetext'' displayed when the content model of the page being moved does not support redirects.\n\nSee also:\n* {{msg-mw|Movepagetext}}\n* {{msg-mw|Movepagetext-noredirectfixer}}",
 	"movepagetalktext": "Text on the special 'Move page'. This text only appears if the talk page is not empty.",
 	"moveuserpage-warning": "Used as warning in [[Special:MovePage]], when moving a user page.",
-	"moveusersubpage-warning": "Used as warning in [[Special:MovePage]], when moving a user subpage.",
+	"moveusersubpage-warning": "Used as warning in [[Special:MovePage]], when moving a user subpage.\n\nSee also:\n* {{msg-mw|blanknamespace}}\n* {{msg-mw|newtitle}}",
 	"movecategorypage-warning": "Used as warning in [[Special:MovePage]], when moving a category page.",
 	"movenologintext": "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.\n\nSee also:\n* {{msg-mw|cant-move-user-page}}\n* {{msg-mw|cant-move-to-user-page}}\n* {{msg-mw|cant-move-category-page}}\n* {{msg-mw|cant-move-to-category-page}}\n* {{msg-mw|movenotallowedfile}}\n* {{msg-mw|movenotallowed}}",
 	"movenotallowed": "Used as error message.\n\nSee also:\n* {{msg-mw|cant-move-user-page}}\n* {{msg-mw|cant-move-to-user-page}}\n* {{msg-mw|cant-move-category-page}}\n* {{msg-mw|cant-move-to-category-page}}\n* {{msg-mw|movenotallowedfile}}\n* {{msg-mw|movenologintext}}",

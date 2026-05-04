@@ -21,6 +21,7 @@
 	},
 	"preferences": "Настройки",
 	"prefsnologintext2": "За да промените настройките си е необходимо да влезете в системата.",
+	"prefsnologintext2-for-temp-user": "Моля, създайте си сметка, за да промените предпочитанията си.",
 	"searchprefs": "Предпочитания за търсене",
 	"searchprefs-noresults": "Няма резултати",
 	"searchprefs-results": "$1 {{PLURAL:$1|резултат|резултата}}",

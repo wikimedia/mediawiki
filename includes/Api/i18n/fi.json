@@ -15,6 +15,7 @@
 			"Samoasambia",
 			"Silvonen",
 			"Stryn",
+			"Wikipeedikko",
 			"Yupik"
 		]
 	},
@@ -139,6 +140,7 @@
 	"api-help-parameters": "{{PLURAL:$1|Tietty parametri|Tietyt parametrit}}:",
 	"api-help-param-deprecated-label": "vanhentunut",
 	"api-help-param-internal-label": "sisäinen",
+	"api-help-general-header": "Yleistiedot",
 	"api-help-param-default-empty": "Oletus: <span class=\"apihelp-empty\">(tyhjä)</span>",
 	"api-help-examples": "{{PLURAL:$1|esimerkki|esimerkkiä}}:",
 	"api-help-open-in-apisandbox": "<small>[avaa hiekkalaatikossa]</small>",

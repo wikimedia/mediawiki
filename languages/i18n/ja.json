@@ -2557,6 +2557,8 @@
 	"remove-blocklink": "ブロックを除去",
 	"manage-blocklink": "ブロックを管理",
 	"empty-username": "(使用可能な利用者名がありません)",
+	"available-username": "この利用者名は利用可能です",
+	"available-username-check-feedback": "利用者名の可用性を確認中",
 	"blocklist-hidden-placeholder": "(利用者名は隠されています)",
 	"blocklist-hidden-param": "利用者名は隠されています",
 	"contribslink": "投稿記録",
@@ -3177,7 +3179,7 @@
 	"watchlistedit-normal-title": "ウォッチリストの編集",
 	"watchlistedit-normal-check-all": "すべてチェック",
 	"watchlistedit-normal-done": "ウォッチリストから {{PLURAL:$1|$1 件のページ}}を除去しました:あなたのウォッチリストから{{PLURAL:$1|1ページが|$1ページが}}削除されました:",
-	"watchlistedit-search-label": "検索:",
+	"watchlistedit-search-label": "大文字と小文字を区別する接頭辞で検索:",
 	"watchlistedit-search-placeholder": "ウォッチリストに登録されているページを検索",
 	"watchlistedit-raw-title": "ウォッチリストをテキストで編集",
 	"watchlistedit-raw-legend": "ウォッチリストをテキストで編集",
@@ -3346,6 +3348,8 @@
 	"tag-mw-server-side-upload-description": "メンテナンススクリプト経由でアップロードされたメディアファイル",
 	"tag-mw-ipblock-appeal": "IPブロック解除依頼",
 	"tag-mw-ipblock-appeal-description": "アカウント作成がブロックされているIPアドレスから行われた[[{{#special:Mytalk}}]]経由の仮アカウント作成",
+	"tag-mw-edited-other-users-js": "他の利用者のJSを編集",
+	"tag-mw-edited-other-users-js-description": "他の利用者のJavaScriptページを変更する利用者名前空間での編集",
 	"tags-title": "タグ",
 	"tags-intro": "このページは、ソフトウェアが編集に対して付けるタグとその意味の一覧です。",
 	"tags-tag": "タグ名",
@@ -4100,5 +4104,6 @@
 	"table-of-contents-show-button-aria-label": "目次の表示",
 	"table-of-contents-hide-button-aria-label": "目次の非表示",
 	"diff-usergroups": "$1 {{PLURAL:$1|利用者グループ}}",
-	"languageselector-no-results": "見つかりませんでした。"
+	"languageselector-no-results": "見つかりませんでした。",
+	"languageselector-invalid-input": "「$1」は有効な言語ではありません。"
 }

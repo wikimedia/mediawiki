@@ -2407,8 +2407,11 @@
 	"remove-blocklink": "kuhaa ang bloke",
 	"manage-blocklink": "pagdumala sang mga bloke",
 	"empty-username": "(wala sing username nga magamit)",
+	"available-username": "Magamit ang username",
+	"available-username-check-feedback": "Pag-usisa sang pagka-available",
 	"blocklist-hidden-placeholder": "(natago nga ngalan sang user)",
 	"blocklist-hidden-param": "username nga natago",
+	"blocklist-block-hidden": "bloke nga natago",
 	"contribslink": "amot",
 	"emaillink": "magpadala sang email",
 	"autoblocker": "Autoblocked tungod ang imo IP address bag-o lang gingamit sang \"[[User:$1|$1]]\".\nAng rason nga ginhatag para sa $1's block amo ang: \"$2\".",
@@ -3879,5 +3882,6 @@
 	"table-of-contents-show-button-aria-label": "Ipakita ang listahan sang mga kaundan",
 	"table-of-contents-hide-button-aria-label": "Itago ang listahan sang mga kaundan",
 	"diff-usergroups": "$1 {{PLURAL:$1|grupo sang user|mga grupo sang user}}",
-	"languageselector-no-results": "Wala sing nakita nga mga resulta."
+	"languageselector-no-results": "Wala sing nakita nga mga resulta.",
+	"languageselector-invalid-input": "Ang \"$1\" indi isa ka balido nga lenguahe."
 }

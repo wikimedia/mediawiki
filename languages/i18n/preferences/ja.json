@@ -88,6 +88,7 @@
 	"prefs-user-downloaddata-info": "このプロジェクトに関する自分のアカウントのデータ",
 	"prefs-user-restoreprefs-label": "設定のリセット:",
 	"prefs-user-restoreprefs-info": "すべての初期設定を復元する（すぺてのセクションが対象です）",
+	"prefs-accountsecurity": "アカウントのセキュリティ",
 	"prefs-i18n": "国際化",
 	"yourlanguage": "使用言語:",
 	"yourgender": "言及にはどの性別を選べばよいですか？",

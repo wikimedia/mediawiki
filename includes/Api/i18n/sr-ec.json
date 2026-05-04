@@ -12,7 +12,7 @@
 			"Сербијана"
 		]
 	},
-	"apihelp-main-param-action": "Коју радњу извршити.",
+	"apihelp-main-param-action": "Which action to perform. This parameter should be sent as part of the request URL (not the POST body) for ease of use in debugging, analytics, and request routing or filtering.",
 	"apihelp-main-param-format": "Формат излаза.",
 	"apihelp-main-param-maxlag": "Максимално кашњење може се користити када је Медијавики инсталиран на репликовани кластер базе података. Да би се сачувало од радња које ће изазвати још кашњења услед репликације сајта, овај параметар може да учини да клијент чека док кашњење због репликације не буде мање од одређене вредности. У случају прекомерних кашњења, код грешке <samp>maxlag</samp> бива враћен са поруком као што је <samp>Waiting for $host: $lag seconds lagged</samp>.<br />Погледајте [[mw:Special:MyLanguage/Manual:Maxlag_parameter|Приручник: параметар Maxlag]] за више информација.",
 	"apihelp-main-paramvalue-errorformat-raw": "Кључ поруке и параметри",
@@ -96,7 +96,7 @@
 	"api-login-fail-badsessionprovider": "Не могу да се пријавим када се користи $1.",
 	"api-login-fail-sameorigin": "Не могу да се пријавим када полиса заједничког порекла није примењена.",
 	"api-help-title": "Помоћ око Медијавикијевог API-ја",
-	"api-help-lead": "Ово је аутоматски генерисана документација за Медијавики API\n\nДокументација и примери: https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page",
+	"api-help-lead": "This is an auto-generated [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Action_API MediaWiki Action API] documentation page.",
 	"api-help-main-header": "Главни модул",
 	"api-help-flag-deprecated": "Овај модул је застарео.",
 	"api-help-source": "Извор: $1",

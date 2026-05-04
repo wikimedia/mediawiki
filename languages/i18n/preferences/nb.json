@@ -41,6 +41,8 @@
 	"username": "{{GENDER:$1|Brukernavn}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Medlem}} i følgende {{PLURAL:$1|gruppe|grupper}}:",
 	"group-membership-link-with-expiry": "$1 (til $2)",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|{{PLURAL:$1|Deaktivert gruppe|Deaktiverte grupper}}}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|Du}} oppfyller ikke lenger vilkårene for å bli medlem i {{PLURAL:$2|denne gruppa|disse gruppene}}, og kan derfor ikke bruke rettighetene som er knyttet til {{PLURAL:$1|den|dem}}.",
 	"prefs-edits": "Antall redigeringer:",
 	"prefs-registration": "Registreringstidspunkt:",
 	"yourrealname": "Virkelig navn:",

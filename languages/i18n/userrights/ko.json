@@ -172,7 +172,7 @@
 	"grant-generic": "\"$1\" 권한 묶음",
 	"grant-group-page-interaction": "문서로 상호 작용",
 	"grant-group-file-interaction": "미디어로 상호 작용",
-	"grant-group-watchlist-interaction": "당신의 주시문서로 상호작용",
+	"grant-group-watchlist-interaction": "당신의 주시문서 목록과 상호작용",
 	"grant-group-email": "이메일 보내기",
 	"grant-group-high-volume": "대량의 작업 수행",
 	"grant-group-customization": "사용자 최적화 및 환경 설정",

@@ -3910,6 +3910,7 @@
 	"userlogout-temp-moreinfo": "Tieni presente che modificare con più utenze temporanee potrebbe violare le regole di questa wiki e potrebbe portare a un blocco se accade frequentemente.",
 	"userlogout-temp-messagebox-title": "Sei sicuro di voler uscire dalla sessione e disconnetterti?",
 	"userlogout-temp-messagebox-body": "Una volta disconnesso, non potrai più accedere a questa utenza temporanea.",
+	"temp-user-logout-confirm-title": "Esci dalla sessione",
 	"paramvalidator-baduser": "Valore \"$2\" non valido per il parametro utente <var>$1</var>.",
 	"paramvalidator-help-type-user": "Tipo: {{PLURAL:$1|1=utente|2=elenco di utenti}}, {{PLURAL:$3|da|da uno qualsiasi}} $2",
 	"paramvalidator-help-type-user-subtype-name": "nome utente",
