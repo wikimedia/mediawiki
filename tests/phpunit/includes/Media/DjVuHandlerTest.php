@@ -1,10 +1,13 @@
 <?php
 
+namespace MediaWiki\Tests\Media;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\Media\DjVuHandler;
 use MediaWiki\Media\ThumbnailImage;
 use MediaWiki\Media\TrivialMediaHandlerState;
 use MediaWiki\Tests\Common\Parser\DjVuSupport;
+use MediaWikiMediaTestCase;
 
 /**
  * @group Media
@@ -12,10 +15,7 @@ use MediaWiki\Tests\Common\Parser\DjVuSupport;
  */
 class DjVuHandlerTest extends MediaWikiMediaTestCase {
 
-	/**
-	 * @var DjVuHandler
-	 */
-	protected $handler;
+	protected DjVuHandler $handler;
 
 	protected function setUp(): void {
 		parent::setUp();
