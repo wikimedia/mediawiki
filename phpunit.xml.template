@@ -76,6 +76,7 @@ Generate a local configuration by running `composer phpunit:config`
 			<directory suffix=".php">skins</directory>
 		</include>
 		<exclude>
+			<directory suffix=".php">languages/data</directory>
 			<directory suffix=".php">languages/messages</directory>
 			<directory suffix=".php">maintenance/benchmarks</directory>
 			<directory suffix=".php">extensions/*/tests</directory>
