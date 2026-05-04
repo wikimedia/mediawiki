@@ -1,6 +1,7 @@
 /*!
  * Add search suggestions to the search form.
  */
+// setup API
 ( function () {
 	// eslint-disable-next-line no-jquery/no-map-util
 	const searchNS = $.map( mw.config.get( 'wgFormattedNamespaces' ), ( nsName, nsID ) => {
@@ -61,7 +62,9 @@
 			} );
 		}
 	};
+}() );
 
+const init = () => {
 	$( () => {
 		let api;
 		// Region where the suggestions box will appear directly below
@@ -398,5 +401,8 @@
 			$searchForm.find( '.mw-fallbackSearchButton' ).remove();
 		}
 	} );
+};
 
-}() );
+// Expose module for enabling search suggestions at skin level, separately
+// from public mw.searchSuggest API.
+module.exports = { init };
