@@ -743,13 +743,16 @@ class ImagePage extends Article {
 	protected function makeSizeLink( $params, $width, $height ) {
 		$params['width'] = $width;
 		$params['height'] = $height;
+		$img = $this->displayImg;
 		$thumbnail = $this->displayImg->transform( $params );
 		if ( $thumbnail && !$thumbnail->isError() ) {
+			[ $normalizedWidth, ] = self::getNormalizedThumbLimits( $thumbnail->getWidth() );
+			$normalizedHeight = File::scaleHeight( $img->getWidth(), $img->getHeight(), $normalizedWidth );
 			return Html::rawElement( 'a', [
 				'href' => $thumbnail->getUrl(),
 				'class' => 'mw-thumbnail-link'
 				], $this->getContext()->msg( 'show-big-image-size' )->numParams(
-					$thumbnail->getWidth(), $thumbnail->getHeight()
+					$normalizedWidth, $normalizedHeight
 				)->parse() );
 		} else {
 			return '';
