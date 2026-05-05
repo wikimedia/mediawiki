@@ -346,7 +346,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 				if ( $fld_rights ) {
 					$user = $this->userFactory->newFromId( (int)$row->user_id );
-					$data['rights'] = $this->getPermissionManager()->getUserPermissions( $user );
+					$data['rights'] = $this->getPermissionManager()->getUserPermissions( $user, false );
 					ApiResult::setIndexedTagName( $data['rights'], 'r' );
 					ApiResult::setArrayType( $data['rights'], 'array' );
 				}

@@ -18,6 +18,7 @@ use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -204,7 +205,8 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 
 				if ( isset( $this->prop['groups'] ) ) {
-					$data[$key]['groups'] = $this->userGroupManager->getUserEffectiveGroups( $user );
+					$data[$key]['groups'] = $this->userGroupManager->getUserEffectiveGroups(
+						$user, IDBAccessObject::READ_NORMAL, false, false );
 				}
 
 				if ( isset( $this->prop['groupmemberships'] ) ) {
@@ -222,7 +224,7 @@ class ApiQueryUsers extends ApiQueryBase {
 
 				if ( isset( $this->prop['rights'] ) ) {
 					$data[$key]['rights'] = $this->getPermissionManager()
-						->getUserPermissions( $user );
+						->getUserPermissions( $user, false );
 				}
 				if ( $row->hu_deleted ) {
 					$data[$key]['hidden'] = true;
