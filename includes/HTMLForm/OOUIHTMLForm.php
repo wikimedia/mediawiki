@@ -10,6 +10,7 @@ namespace MediaWiki\HTMLForm;
  */
 
 use DomainException;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Parser\Sanitizer;
@@ -30,7 +31,7 @@ class OOUIHTMLForm extends HTMLForm {
 	 * @stable to call
 	 * @inheritDoc
 	 */
-	public function __construct( $descriptor, $context = null, $messagePrefix = '' ) {
+	public function __construct( $descriptor, IContextSource $context, string $messagePrefix = '' ) {
 		parent::__construct( $descriptor, $context, $messagePrefix );
 		$this->getOutput()->enableOOUI();
 		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.ooui.styles' );
