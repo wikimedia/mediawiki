@@ -7,6 +7,7 @@
 namespace MediaWiki\Preferences;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\MainConfigNames;
@@ -15,6 +16,7 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Parser\Parsoid\LintErrorChecker;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\TitleFactory;
@@ -251,7 +253,12 @@ class SignatureValidator {
 			'multiple-unclosed-formatting-tags',
 			...$this->serviceOptions->get( MainConfigNames::SignatureAllowedLintErrors ),
 		];
-		return $this->lintErrorChecker->checkSome( $signature, $disabled );
+
+		$revision = MutableRevisionRecord::newFromContent(
+			$this->titleFactory->newMainPage(),
+			new WikitextContent( $signature )
+		);
+		return $this->lintErrorChecker->checkSome( $revision, $disabled );
 	}
 
 	/**

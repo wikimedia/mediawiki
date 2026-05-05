@@ -11,7 +11,7 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\MutableRevisionRecord;
-use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\TitleFactory;
 use Wikimedia\Parsoid\Parsoid;
 
@@ -48,11 +48,11 @@ class LintErrorChecker {
 	 *
 	 * While not strictly required, you'll get better results if the wikitext has already gone through PST
 	 *
-	 * @param string $wikitext Wikitext after PST
+	 * @param RevisionRecord|string $revision Revision containing wikitext after PST
 	 * @return array Array of error objects returned by Parsoid's lint API (empty array for no errors)
 	 */
-	public function check( string $wikitext ): array {
-		return $this->checkSome( $wikitext, [] );
+	public function check( RevisionRecord|string $revision ): array {
+		return $this->checkSome( $revision, [] );
 	}
 
 	/**
@@ -60,25 +60,23 @@ class LintErrorChecker {
 	 *
 	 * While not strictly required, you'll get better results if the wikitext has already gone through PST
 	 *
-	 * @param string $wikitext Wikitext after PST
+	 * @param RevisionRecord|string $revision Revision containing wikitext after PST
 	 * @param string[] $disabled Array of lint categories to disable
 	 * @return array Array of error objects returned by Parsoid's lint API (empty array for no errors)
 	 */
-	public function checkSome( string $wikitext, array $disabled ): array {
-		$title = $this->titleFactory->newMainPage();
-		$fakeRevision = new MutableRevisionRecord( $title );
-		$fakeRevision->setSlot(
-			SlotRecord::newUnsaved(
-				SlotRecord::MAIN,
-				new WikitextContent( $wikitext )
-			)
-		);
-
+	public function checkSome( RevisionRecord|string $revision, array $disabled ): array {
+		if ( is_string( $revision ) ) {
+			// To be deprecated
+			$revision = MutableRevisionRecord::newFromContent(
+				$this->titleFactory->newMainPage(),
+				new WikitextContent( $revision )
+			);
+		}
 		return $this->parsoid->wikitext2lint(
 			$this->pageConfigFactory->createFromParserOptions(
 				ParserOptions::newFromAnon(),
-				$title,
-				$fakeRevision
+				$revision->getPage(),
+				$revision
 			),
 			$this->linterOptions( $disabled ),
 			new ParserOutput()
