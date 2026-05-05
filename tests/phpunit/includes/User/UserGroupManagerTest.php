@@ -292,17 +292,41 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertContains( 'from_hook', $manager->getUserEffectiveGroups( $user ) );
 	}
 
-	public function testGetEffectiveGroups_disabled() {
+	public static function provideGetEffectiveGroups_disabled(): iterable {
+		yield 'No private conditions' => [
+			'privateConditions' => [],
+			'expectedGroups' => [ '*', 'user', 'autoconfirmed', 'sysop' ],
+			'includePrivateInfo' => true,
+		];
+		yield 'Group based on private conditions, include private info' => [
+			'privateConditions' => [ APCOND_EDITCOUNT ],
+			'expectedGroups' => [ '*', 'user', 'autoconfirmed', 'sysop' ],
+			'includePrivateInfo' => true,
+		];
+		yield 'Group based on private conditions, skip private info' => [
+			'privateConditions' => [ APCOND_EDITCOUNT ],
+			'expectedGroups' => [ '*', 'user', 'autoconfirmed', 'sysop', 'interface-admin' ],
+			'includePrivateInfo' => false,
+		];
+	}
+
+	/** @dataProvider provideGetEffectiveGroups_disabled */
+	public function testGetEffectiveGroups_disabled(
+		array $privateConditions,
+		array $expectedGroups,
+		bool $includePrivateInfo
+	) {
 		$this->overrideConfigValue( MainConfigNames::RestrictedGroups, [
 			'interface-admin' => [
 				'memberConditions' => [ APCOND_EDITCOUNT, 1000 ]
 			],
 		] );
+		$this->overrideConfigValue( MainConfigNames::UserRequirementsPrivateConditions, $privateConditions );
 		$manager = $this->getManager();
 		$user = $this->getTestUser( [ 'interface-admin', 'sysop' ] )->getUser();
 		$this->assertArrayEquals(
-			[ '*', 'user', 'autoconfirmed', 'sysop' ],
-			$manager->getUserEffectiveGroups( $user )
+			$expectedGroups,
+			$manager->getUserEffectiveGroups( $user, IDBAccessObject::READ_NORMAL, false, $includePrivateInfo )
 		);
 	}
 

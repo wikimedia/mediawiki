@@ -44,6 +44,7 @@ use StatusValue;
 use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -1662,15 +1663,17 @@ class PermissionManager {
 	 *
 	 * @since 1.34
 	 * @param UserIdentity $user
+	 * @param bool $includePrivateInfo If false, the function will pretend that the user has some rights
+	 *      even though they don't (or vice versa), not to leak certain private information when it shouldn't be leaked
 	 * @return string[] permission names
 	 */
-	public function getUserPermissions( UserIdentity $user ): array {
-		$rightsCacheKey = $this->getRightsCacheKey( $user );
+	public function getUserPermissions( UserIdentity $user, bool $includePrivateInfo = true ): array {
+		$rightsCacheKey = $this->getRightsCacheKey( $user, $includePrivateInfo );
 		if ( !isset( $this->usersRights[ $rightsCacheKey ] ) ) {
 			$userObj = $this->userFactory->newFromUserIdentity( $user );
-			$rights = $this->groupPermissionsLookup->getGroupPermissions(
-				$this->userGroupManager->getUserEffectiveGroups( $user )
-			);
+			$effectiveGroups = $this->userGroupManager->getUserEffectiveGroups(
+				$user, IDBAccessObject::READ_NORMAL, false, $includePrivateInfo );
+			$rights = $this->groupPermissionsLookup->getGroupPermissions( $effectiveGroups );
 			// Hook requires a full User object
 			$this->hookRunner->onUserGetRights( $userObj, $rights );
 
@@ -1730,7 +1733,9 @@ class PermissionManager {
 	 */
 	public function invalidateUsersRightsCache( $user = null ): void {
 		if ( $user !== null ) {
-			$rightsCacheKey = $this->getRightsCacheKey( $user );
+			$rightsCacheKey = $this->getRightsCacheKey( $user, false );
+			unset( $this->usersRights[ $rightsCacheKey ] );
+			$rightsCacheKey = $this->getRightsCacheKey( $user, true );
 			unset( $this->usersRights[ $rightsCacheKey ] );
 		} else {
 			$this->usersRights = [];
@@ -1739,12 +1744,13 @@ class PermissionManager {
 
 	/**
 	 * Get a unique key for user rights cache.
-	 *
-	 * @param UserIdentity $user
-	 * @return string
 	 */
-	private function getRightsCacheKey( UserIdentity $user ): string {
-		return $user->isRegistered() ? "u:{$user->getId()}" : "anon:{$user->getName()}";
+	private function getRightsCacheKey( UserIdentity $user, bool $includePrivateInfo ): string {
+		$key = $user->isRegistered() ? "u:{$user->getId()}" : "anon:{$user->getName()}";
+		if ( $includePrivateInfo ) {
+			$key .= ':private';
+		}
+		return $key;
 	}
 
 	/**
@@ -1983,7 +1989,9 @@ class PermissionManager {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new LogicException( __METHOD__ . ' can not be called outside of tests' );
 		}
-		$this->usersRights[ $this->getRightsCacheKey( $user ) ] =
+		$this->usersRights[ $this->getRightsCacheKey( $user, false ) ] =
+			is_array( $rights ) ? $rights : [ $rights ];
+		$this->usersRights[ $this->getRightsCacheKey( $user, true ) ] =
 			is_array( $rights ) ? $rights : [ $rights ];
 	}
 

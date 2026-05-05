@@ -67,6 +67,8 @@ class UserGroupManager {
 
 	/** string key for effective groups cache */
 	private const CACHE_EFFECTIVE = 'effective';
+	/** string key for effective groups cache, but without using private data */
+	private const CACHE_EFFECTIVE_NO_PRIVATE = 'effective-noprivate';
 
 	/** string key for group memberships cache */
 	private const CACHE_MEMBERSHIP = 'membership';
@@ -265,21 +267,28 @@ class UserGroupManager {
 	 * @param UserIdentity $user
 	 * @param int $queryFlags
 	 * @param bool $recache Whether to avoid the cache
+	 * @param bool $includePrivateInfo If false, the function will pretend that the user is member of some groups
+	 *     even though they aren't (or vice versa), not to leak certain private information when it shouldn't be leaked
 	 * @return string[] internal group names
 	 */
 	public function getUserEffectiveGroups(
 		UserIdentity $user,
 		int $queryFlags = IDBAccessObject::READ_NORMAL,
-		bool $recache = false
+		bool $recache = false,
+		bool $includePrivateInfo = true
 	): array {
 		$user->assertWiki( $this->wikiId );
 		$userKey = $this->getCacheKey( $user );
+
+		// Split the cache by whether we include private info or not
+		$cacheKind = $includePrivateInfo ? self::CACHE_EFFECTIVE : self::CACHE_EFFECTIVE_NO_PRIVATE;
+
 		// Ignore cache if the $recache flag is set, cached values can not be used
 		// or the cache value is missing
 		if (
 			$recache ||
-			!isset( $this->userGroupCache[$userKey][self::CACHE_EFFECTIVE] ) ||
-			!$this->canUseCachedValues( $user, self::CACHE_EFFECTIVE, $queryFlags )
+			!isset( $this->userGroupCache[$userKey][$cacheKind] ) ||
+			!$this->canUseCachedValues( $user, $cacheKind, $queryFlags )
 		) {
 			$groups = array_unique( array_merge(
 				// explicit groups
@@ -297,12 +306,12 @@ class UserGroupManager {
 				// Hook for additional groups
 				$this->hookRunner->onUserEffectiveGroups( $userObj, $groups );
 			}
-			$groups = array_diff( $groups, $this->getUserDisabledGroups( $user ) );
+			$groups = array_diff( $groups, $this->getUserDisabledGroups( $user, $includePrivateInfo ) );
 			// Force re-indexing of groups when a hook has unset one of them
 			$effectiveGroups = array_values( array_unique( $groups ) );
-			$this->setCache( $userKey, self::CACHE_EFFECTIVE, $effectiveGroups, $queryFlags );
+			$this->setCache( $userKey, $cacheKind, $effectiveGroups, $queryFlags );
 		}
-		return $this->userGroupCache[$userKey][self::CACHE_EFFECTIVE];
+		return $this->userGroupCache[$userKey][$cacheKind];
 	}
 
 	/**
@@ -313,9 +322,11 @@ class UserGroupManager {
 	 * as configured by $wgRestrictedGroups.
 	 *
 	 * @param UserIdentity $user
+	 * @param bool $includePrivateInfo If false, the function will include only those disabled groups that can
+	 *     be determined as disabled based on public information.
 	 * @return array
 	 */
-	public function getUserDisabledGroups( UserIdentity $user ): array {
+	public function getUserDisabledGroups( UserIdentity $user, bool $includePrivateInfo = true ): array {
 		// Check if the user is system user. Given that such accounts cannot be logged in to and are controlled by
 		// software, we can keep all their user groups enabled. These accounts may also ignore permission checks,
 		// so in some cases the group membership is only declarative.
@@ -342,7 +353,12 @@ class UserGroupManager {
 			$checker = $this->userRequirementsConditionCheckerFactory->getUserRequirementsConditionChecker(
 				$this, $this->wikiId
 			);
-			if ( !$checker->recursivelyCheckCondition( $restrictions->getMemberConditions(), $user ) ) {
+			$checkResult = $checker->recursivelyCheckCondition(
+				$restrictions->getMemberConditions(),
+				$user,
+				$includePrivateInfo
+			);
+			if ( $checkResult === false ) {
 				$disabledGroups[] = $group;
 			}
 		}
