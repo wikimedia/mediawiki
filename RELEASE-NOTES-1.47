@@ -146,8 +146,6 @@ because of Phabricator reports.
 * ResourceLoader::inDebugMode is now deprecated and emits deprecation warnings.
 * QuickTemplate::msg() and QuickTemplate::haveMsg() got deprecated and shouldn't
   be used any more.
-* The EditFilter hook has been deprecated and will trigger deprecation warnings.
-  Use EditFilterMergedContent or MultiContentSave instead.
 * The EditPageBeforeConflictDiff hook has been deprecated and will trigger
   deprecation warnings.
 * The global variable $wgLang has been deprecated. Use an available

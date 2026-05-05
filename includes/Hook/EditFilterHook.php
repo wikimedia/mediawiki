@@ -9,7 +9,7 @@ use MediaWiki\EditPage\EditPage;
  * Use the hook name "EditFilter" to register handlers implementing this interface.
  *
  * @ingroup Hooks
- * @deprecated since 1.47, use EditFilterMergedContent or MultiContentSave instead
+ * @deprecated since 1.46, use EditFilterMergedContent or MultiContentSave instead
  */
 interface EditFilterHook {
 	/**
