@@ -135,6 +135,8 @@ because of Phabricator reports.
   been removed.
 * The ability to construct a HTMLFormField without a parent, deprecated in 1.40,
   has been removed.
+* The EditFilter hook, deprecated in 1.46, has been removed. Use
+  EditFilterMergedContent or MultiContentSave instead.
 * …
 
 === Deprecations in 1.47 ===

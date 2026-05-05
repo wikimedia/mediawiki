@@ -1610,7 +1610,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\DeleteUnknownPreferencesHook' => __DIR__ . '/includes/Hook/DeleteUnknownPreferencesHook.php',
 	'MediaWiki\\Hook\\DeletedContribsPager__reallyDoQueryHook' => __DIR__ . '/includes/Specials/Hook/DeletedContribsPager__reallyDoQueryHook.php',
 	'MediaWiki\\Hook\\DeletedContributionsLineEndingHook' => __DIR__ . '/includes/Specials/Hook/DeletedContributionsLineEndingHook.php',
-	'MediaWiki\\Hook\\EditFilterHook' => __DIR__ . '/includes/Hook/EditFilterHook.php',
 	'MediaWiki\\Hook\\EditFilterMergedContentHook' => __DIR__ . '/includes/Hook/EditFilterMergedContentHook.php',
 	'MediaWiki\\Hook\\EditFormInitialTextHook' => __DIR__ . '/includes/Hook/EditFormInitialTextHook.php',
 	'MediaWiki\\Hook\\EditFormPreloadTextHook' => __DIR__ . '/includes/Hook/EditFormPreloadTextHook.php',

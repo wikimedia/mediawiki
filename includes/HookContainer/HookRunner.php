@@ -156,7 +156,6 @@ class HookRunner implements
 	\MediaWiki\Hook\ContentSecurityPolicyDirectivesHook,
 	\MediaWiki\Hook\ContentSecurityPolicyScriptSourceHook,
 	\MediaWiki\Hook\DeleteUnknownPreferencesHook,
-	\MediaWiki\Hook\EditFilterHook,
 	\MediaWiki\Hook\EditFilterMergedContentHook,
 	\MediaWiki\Hook\EditFormInitialTextHook,
 	\MediaWiki\Hook\EditFormPreloadTextHook,
@@ -1614,14 +1613,6 @@ class HookRunner implements
 		return $this->container->run(
 			'DisplayOldSubtitle',
 			[ $article, &$oldid ]
-		);
-	}
-
-	/** @inheritDoc */
-	public function onEditFilter( $editor, $text, $section, &$error, $summary ) {
-		return $this->container->run(
-			'EditFilter',
-			[ $editor, $text, $section, &$error, $summary ]
 		);
 	}
 

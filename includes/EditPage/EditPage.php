@@ -1990,18 +1990,6 @@ class EditPage implements IEditObject {
 				->setValue( self::AS_HOOK_ERROR );
 		}
 
-		if ( !$this->getHookRunner()->onEditFilter( $this, $this->textbox1, $this->section,
-			$this->hookError, $this->summary )
-		) {
-			# Error messages etc. could be handled within the hook...
-			return EditPageStatus::newFatal( 'hookaborted' )
-				->setValue( self::AS_HOOK_ERROR );
-		} elseif ( $this->hookError ) {
-			# ...or the hook could be expecting us to produce an error
-			return EditPageStatus::newFatal( 'hookaborted' )
-				->setValue( self::AS_HOOK_ERROR_EXPECTED );
-		}
-
 		$pageEdit = $this->pageEditFactory->newPageEdit( new PageEditInputs(
 			allowBlankArticle: $this->allowBlankArticle,
 			allowBlankSummary: $this->allowBlankSummary,
