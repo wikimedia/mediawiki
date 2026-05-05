@@ -125,11 +125,13 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				'viewsuppressed' => true,
 			],
 			'interface-admin' => [
+				'editalluserpages' => true,
 				'editinterface' => true,
 				'editsitejs' => true,
 				'edituserjs' => true,
 			],
 			'sysop' => [
+				'editalluserpages' => true,
 				'editinterface' => true,
 				'delete' => true,
 				'undelete' => true,
@@ -492,6 +494,92 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				[ 'titleprotected', 'Useruser', 'test' ]
 			],
 			'expectedUserCan' => false,
+		];
+	}
+
+	/**
+	 * @dataProvider provideUserPageEditPermissions
+	 */
+	public function testUserPageEditPermissions(
+		int $namespace,
+		string $pageTitle,
+		string $action,
+		array $userPerms,
+		array $expectedPermErrors,
+		bool $expectedUserCan
+	): void {
+		$this->overrideConfigValue( MainConfigNames::RestrictUserPageEditing, true );
+		$this->setTitle( $namespace, $pageTitle );
+
+		$this->overrideUserPermissions( $this->user, $userPerms );
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+
+		$permErrors = $permissionManager->getPermissionErrors( $action, $this->user, $this->title );
+
+		$this->assertSame(
+			$expectedPermErrors,
+			array_map( static fn ( $error ) => $error[0], $permErrors )
+		);
+		$this->assertSame(
+			$expectedUserCan,
+			$permissionManager->userCan( $action, $this->user, $this->title )
+		);
+	}
+
+	public static function provideUserPageEditPermissions() {
+		yield 'Own user page edit allowed' => [
+			NS_USER,
+			'Useruser/subpage',
+			'edit',
+			[ 'edit', 'createpage' ],
+			[],
+			true,
+		];
+
+		yield 'Other user page edit denied' => [
+			NS_USER,
+			'Altuseruser/subpage',
+			'edit',
+			[ 'edit', 'createpage' ],
+			[ 'badaccess-groups' ],
+			false,
+		];
+
+		yield 'Other user page edit with editalluserpages allowed' => [
+			NS_USER,
+			'Altuseruser/subpage',
+			'edit',
+			[ 'edit', 'createpage', 'editalluserpages' ],
+			[],
+			true,
+		];
+
+		yield 'Other user page move denied' => [
+			NS_USER,
+			'Altuseruser/subpage',
+			'move',
+			[ 'move' ],
+			[ 'badaccess-groups' ],
+			false,
+		];
+
+		yield 'Other user page move target denied' => [
+			NS_USER,
+			'Altuseruser/subpage',
+			'move-target',
+			[ 'move' ],
+			[ 'badaccess-groups' ],
+			false,
+		];
+
+		yield 'Non-user page edit allowed' => [
+			NS_MAIN,
+			'Test page',
+			'edit',
+			[ 'edit', 'createpage' ],
+			[],
+			true,
 		];
 	}
 

@@ -2844,6 +2844,12 @@ $wgSemiprotectedRestrictionLevels = null;
 $wgNamespaceProtection = null;
 
 /**
+ * Config variable stub for the RestrictUserPageEditing setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::RestrictUserPageEditing
+ */
+$wgRestrictUserPageEditing = null;
+
+/**
  * Config variable stub for the NonincludableNamespaces setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::NonincludableNamespaces
  */

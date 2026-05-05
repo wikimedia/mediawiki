@@ -1404,6 +1404,7 @@ return [
 			],
 			'NamespaceProtection' => [
 			],
+			'RestrictUserPageEditing' => false,
 			'NonincludableNamespaces' => [
 			],
 			'AutoConfirmAge' => 0,
@@ -3099,6 +3100,7 @@ return [
 			'CascadingRestrictionLevels' => 'array',
 			'SemiprotectedRestrictionLevels' => 'array',
 			'NamespaceProtection' => 'object',
+			'RestrictUserPageEditing' => 'boolean',
 			'NonincludableNamespaces' => 'object',
 			'Autopromote' => 'object',
 			'AutopromoteOnce' => 'object',

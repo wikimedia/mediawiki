@@ -76,6 +76,7 @@ class PermissionManager {
 		MainConfigNames::RevokePermissions,
 		MainConfigNames::AvailableRights,
 		MainConfigNames::NamespaceProtection,
+		MainConfigNames::RestrictUserPageEditing,
 		MainConfigNames::RestrictionLevels,
 		MainConfigNames::DeleteRevisionsLimit,
 		MainConfigNames::RateLimits,
@@ -134,6 +135,7 @@ class PermissionManager {
 		'deletelogentry',
 		'deleterevision',
 		'edit',
+		'editalluserpages',
 		'editcontentmodel',
 		'editinterface',
 		'editprotected',
@@ -477,6 +479,7 @@ class PermissionManager {
 				$this->checkQuickPermissions( ... ),
 				$this->checkPermissionHooks( ... ),
 				$this->checkSpecialsAndNSPermissions( ... ),
+				$this->checkUserPageEditPermissions( ... ),
 				$this->checkSiteConfigPermissions( ... ),
 			];
 			if ( !in_array( $action, $skipUserConfigActions, true ) ) {
@@ -1423,6 +1426,47 @@ class PermissionManager {
 				$this->mergeUserRightStatus( $status, $user, 'editsitecss', $rigor, !$short,
 					'siterawhtmlprotected', $action );
 			}
+		}
+	}
+
+	/**
+	 * Check user page edit permissions
+	 *
+	 * @param string $action The action to check
+	 * @param UserIdentity $user User to check
+	 * @param PermissionStatus $status Current errors
+	 * @param string $rigor One of PermissionManager::RIGOR_ constants
+	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
+	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
+	 * @param bool $short Short circuit on first error
+	 * @param LinkTarget $page
+	 */
+	private function checkUserPageEditPermissions(
+		$action,
+		UserIdentity $user,
+		PermissionStatus $status,
+		$rigor,
+		$short,
+		LinkTarget $page
+	): void {
+		if ( !$this->options->get( MainConfigNames::RestrictUserPageEditing ) ) {
+			return;
+		}
+
+		if ( !in_array( $action, [ 'edit', 'move', 'move-target' ], true ) ) {
+			return;
+		}
+
+		// TODO: remove & rework upon further use of LinkTarget
+		$title = Title::newFromLinkTarget( $page );
+
+		if (
+			$title->getNamespace() === NS_USER
+			&& $title->getRootText() !== $user->getName()
+			&& !$this->userHasRight( $user, 'editalluserpages' )
+		) {
+			$this->missingPermissionError( 'editalluserpages', $short, $status );
 		}
 	}
 

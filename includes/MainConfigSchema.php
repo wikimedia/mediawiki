@@ -8425,6 +8425,15 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Whether to restrict editing user pages to the page owner and users with
+	 * the 'editalluserpages' right.
+	 */
+	public const RestrictUserPageEditing = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+
+	/**
 	 * Pages in namespaces in this array can not be used as templates.
 	 *
 	 * Elements MUST be numeric namespace ids, you can safely use the MediaWiki

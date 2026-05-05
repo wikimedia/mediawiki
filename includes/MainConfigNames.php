@@ -2859,6 +2859,12 @@ class MainConfigNames {
 	public const NamespaceProtection = 'NamespaceProtection';
 
 	/**
+	 * Name constant for the RestrictUserPageEditing setting, for use with Config::get()
+	 * @see MainConfigSchema::RestrictUserPageEditing
+	 */
+	public const RestrictUserPageEditing = 'RestrictUserPageEditing';
+
+	/**
 	 * Name constant for the NonincludableNamespaces setting, for use with Config::get()
 	 * @see MainConfigSchema::NonincludableNamespaces
 	 */

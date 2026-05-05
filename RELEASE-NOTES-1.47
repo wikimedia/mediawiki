@@ -34,6 +34,9 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 ==== New configuration ====
 
+* (T410654) Added $wgRestrictUserPageEditing, which prevents users from editing
+  other users' pages and is disabled by default. Users with the new
+  'editalluserpages' right are exempt. By default, no group has the right.
 * $wgRestModuleOverrides - (T422756) Defaults to `[]`, allows overriding the
   default behavior mode of REST modules. See MediaWiki\Rest\Module\ModuleMode
   for details on available modes.

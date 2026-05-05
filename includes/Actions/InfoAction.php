@@ -829,6 +829,10 @@ class InfoAction extends FormlessAction {
 			$rights[] = 'edituserjs';
 		} elseif ( $title->isUserJsonConfigPage() ) {
 			$rights[] = 'edituserjson';
+		} elseif ( $title->inNamespace( NS_USER )
+			&& $this->context->getConfig()->get( MainConfigNames::RestrictUserPageEditing )
+		) {
+			$rights[] = 'editalluserpages';
 		} else {
 			$namespaceProtection = $this->context->getConfig()->get( MainConfigNames::NamespaceProtection );
 			$right = $namespaceProtection[$title->getNamespace()] ?? null;

@@ -48,6 +48,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			MainConfigNames::GroupInheritsPermissions => [],
 			MainConfigNames::AvailableRights => [],
 			MainConfigNames::NamespaceProtection => [ NS_MEDIAWIKI => 'editinterface' ],
+			MainConfigNames::RestrictUserPageEditing => false,
 			MainConfigNames::RestrictionLevels => [ '', 'autoconfirmed', 'sysop' ],
 			MainConfigNames::DeleteRevisionsLimit => false,
 			MainConfigNames::RateLimits => [],

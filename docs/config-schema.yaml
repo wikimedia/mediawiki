@@ -5320,6 +5320,12 @@ config-schema:
             namespace.  If you list more than one permission, a user must
             have all of them to edit pages in that namespace.
             @note NS_MEDIAWIKI is implicitly restricted to 'editinterface'.
+    RestrictUserPageEditing:
+        default: false
+        type: boolean
+        description: |-
+            Whether to restrict editing user pages to the page owner and users with
+            the 'editalluserpages' right.
     NonincludableNamespaces:
         default: {  }
         type: object
