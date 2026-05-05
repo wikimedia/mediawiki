@@ -2765,7 +2765,7 @@
 	"watchlistedit-normal-title": "Kemmañ ar roll evezhiañ",
 	"watchlistedit-normal-check-all": "Askañ pep tra",
 	"watchlistedit-normal-done": "Tennet ez eus bet {{PLURAL:$1|ur pajenn|$1 pajenn}} a-ziwar ho roll evezhiañ:",
-	"watchlistedit-search-label": "Klaskː",
+	"watchlistedit-search-label": "Klask, lizherennoù bras pe vihan ne vern ː",
 	"watchlistedit-raw-title": "Kemmañ ar roll evezhiañ (mod diginkl)",
 	"watchlistedit-raw-legend": "Kemmañ ar roll evezhiañ (mod diginkl)",
 	"watchlistedit-raw-explain": "Dindan emañ titloù ar pajennoù zo war ho roll evezhiañ; gallout a rit kemmañ anezho en ur ouzhpennañ pe tennañ pajennoù a-ziwar ar roll; un titl dre linenn. Ur wech graet, klikañ war \"{{int:Watchlistedit-raw-submit}}\".\nGallout a rit [[Special:EditWatchlist|implijout an aozer boutin ivez]].",

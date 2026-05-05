@@ -1042,6 +1042,7 @@
 	"apihelp-query+languageinfo-paramvalue-prop-digittransforms": "Die Zifferntransformationen zur Formatierung von Zahlen in dieser Sprache.",
 	"apihelp-query+languageinfo-paramvalue-prop-digitgroupingpattern": "Das Gruppierungsmuster für die Formatierung von Zahlen in dieser Sprache.",
 	"apihelp-query+languageinfo-paramvalue-prop-minimumgroupingdigits": "Die Anzahl der Ziffern, unterhalb derer die Gruppierung von Ziffern unterdrückt wird.",
+	"apihelp-query+languageinfo-paramvalue-prop-namespacenames": "Die Namen der Namensräume dieses Wikis in dieser Sprache.",
 	"apihelp-query+languageinfo-param-code": "Sprachcodes der Sprachen, die zurückgegeben werden sollen, oder <code>*</code> für alle Sprachen.",
 	"apihelp-query+languageinfo-example-simple": "Holt die Sprachcodes aller unterstützten Sprachen.",
 	"apihelp-query+languageinfo-example-autonym-name-de": "Holt die Autonyme und deutschen Namen aller unterstützten Sprachen.",

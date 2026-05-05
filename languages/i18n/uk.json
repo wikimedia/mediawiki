@@ -3119,7 +3119,7 @@
 	"watchlistedit-normal-title": "Редагування списку спостереження",
 	"watchlistedit-normal-check-all": "Вибрати всі",
 	"watchlistedit-normal-done": "{{PLURAL:$1|$1 сторінка була вилучена|$1 сторінки були вилучені|$1 сторінок були вилучені}} з вашого списку спостереження:",
-	"watchlistedit-search-label": "Пошук:",
+	"watchlistedit-search-label": "Пошук за префіксом, що враховує регістр:",
 	"watchlistedit-search-placeholder": "Пошук сторінок у вашому списку спостереження",
 	"watchlistedit-raw-title": "Редагування рядків списку спостереження",
 	"watchlistedit-raw-legend": "Редагування рядків списку спостереження",

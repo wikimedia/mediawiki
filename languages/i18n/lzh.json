@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"A2093064",
+			"Above mountain",
 			"Base",
 			"Bowleerin",
 			"C933103",
@@ -1231,7 +1232,7 @@
 	"protect-cascadeon": "此頁已緘。蓋因此頁見引於{{PLURAL:$1|下記之頁|下開諸頁}}，{{PLURAL:$1|彼頁|諸頁}}既緘，焉乃迭緘至此矣。\n縱弛此頁緘封之度，於彼連環之緘，亦無改焉。",
 	"protect-default": "允全簿",
 	"protect-fallback": "須''$1''准",
-	"protect-level-autoconfirmed": "唯文士而自證者得修",
+	"protect-level-autoconfirmed": "須自證",
 	"protect-level-sysop": "惟有秩",
 	"protect-summary-cascade": "迭緘",
 	"protect-expiring": "$1（UTC）屆",
@@ -1241,7 +1242,7 @@
 	"protect-othertime": "它時：",
 	"protect-othertime-op": "它時",
 	"protect-existing-expiry": "現屆時：$2 $3",
-	"protect-existing-expiry-infinity": "現屆時：恒久",
+	"protect-existing-expiry-infinity": "現屆時：恆久",
 	"protect-otherreason": "它／附之理：",
 	"protect-otherreason-op": "它理",
 	"protect-dropdown": "* 緘封事由常例\n** 毀損頻仍\n** 穢雜濫發\n** 纂輯紛爭\n** 閱者甚眾",
