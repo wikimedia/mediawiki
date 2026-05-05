@@ -133,6 +133,8 @@ because of Phabricator reports.
   specifying a language, deprecated in 1.46.
 * The unused method SpecialVersion::getVersionLinked, deprecated in 1.46, has
   been removed.
+* The ConditionalDefaultOptionsAddCondition hook, deprecated in 1.46, has been
+  removed. There is no replacement.
 * The ability to construct a HTMLFormField without a parent, deprecated in 1.40,
   has been removed.
 * The EditFilter hook, deprecated in 1.46, has been removed. Use
