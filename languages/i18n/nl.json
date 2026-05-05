@@ -3364,7 +3364,7 @@
 	"version-software-version": "Versie",
 	"version-entrypoints": "URL's voor ingangen",
 	"version-entrypoints-header-entrypoint": "Ingang",
-	"version-entrypoints-header-url": "URL",
+	"version-entrypoints-header-url": "Url",
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Paginapad]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Scriptpad]",
 	"version-libraries": "Geïnstalleerde bibliotheken",
