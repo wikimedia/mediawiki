@@ -85,11 +85,14 @@ class PageLintHandler extends SimpleHandler {
 		// We could have a missing page at this point, check and return 404 if that's the case
 		$this->contentHelper->checkHasContent();
 
-		// Get the content and make sure that it is text content
-		$content = $this->contentHelper->getContent();
+		// Make sure that it is text content
+		$this->contentHelper->getContent();
+
+		$revisionRecord = $this->contentHelper->getTargetRevision();
+		Assert::invariant( $revisionRecord !== null, 'Revision should be known' );
 
 		try {
-			$lintErrors = $this->lintErrorChecker->check( $content->getText() );
+			$lintErrors = $this->lintErrorChecker->check( $revisionRecord );
 			$response = $this->getResponseFactory()->createJson( $lintErrors );
 			$this->contentHelper->setCacheControl( $response );
 		} catch ( ClientError $e ) {

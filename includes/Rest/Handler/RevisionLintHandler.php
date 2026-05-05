@@ -51,11 +51,11 @@ class RevisionLintHandler extends SimpleHandler {
 		// The revision should be set if checkAccess() didn't throw
 		Assert::invariant( $revisionRecord !== null, 'Revision should be known' );
 
-		// Get the content and make sure that it is text content
-		$content = $this->contentHelper->getContent();
+		// Make sure that it is text content
+		$this->contentHelper->getContent();
 
 		try {
-			$lintErrors = $this->lintErrorChecker->check( $content->getText() );
+			$lintErrors = $this->lintErrorChecker->check( $revisionRecord );
 			$response = $this->getResponseFactory()->createJson( $lintErrors );
 			$this->contentHelper->setCacheControl( $response );
 		} catch ( ClientError $e ) {

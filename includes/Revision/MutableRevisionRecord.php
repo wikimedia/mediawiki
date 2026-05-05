@@ -88,6 +88,20 @@ class MutableRevisionRecord extends RevisionRecord {
 	}
 
 	/**
+	 * Returns a MutableRevisionRecord with content in its main slot
+	 *
+	 * @param PageIdentity $page
+	 * @param Content $content
+	 * @return MutableRevisionRecord
+	 * @since 1.47
+	 */
+	public static function newFromContent( PageIdentity $page, Content $content ) {
+		$revision = new MutableRevisionRecord( $page );
+		$revision->setSlot( SlotRecord::newUnsaved( SlotRecord::MAIN, $content ) );
+		return $revision;
+	}
+
+	/**
 	 * @stable to call.
 	 *
 	 * @param PageIdentity $page The page this RevisionRecord is associated with.
