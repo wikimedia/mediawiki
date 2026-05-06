@@ -514,8 +514,6 @@ class SkinModule extends FileModule {
 		$config = $this->getConfig();
 		$limits = $config->get( 'ThumbLimits' );
 
-		// Note this is currently restricted to Parsoid.
-		// @todo: Pending feedback on T375981 it can be extended to legacy parser as well.
 		// @todo: these may be converted to em units at later point in project (pending feedback)
 		// @todo: This may be moved to a dedicated module later on to group user customizations
 		// (for example the underline user preference currently residing in `content-links` feature.
@@ -525,23 +523,33 @@ class SkinModule extends FileModule {
 				$config->get( 'DefaultUserOptions' )[ 'thumbsize' ]
 			];
 			$largeSize = max( $limits );
+			// Note: If changing any of the CSS selectors here,
+			// please make sure to update getDefinitionSummary() accordingly to ensure
+			// the cache keys are properly invalidated when they change.
 			$imgSelectors = [
 				'.mw-parser-output .mw-default-size img' .
+				// Restrict to width='$defaultSize' to prevent upscaling images which were
+				// originally smaller than the default thumbnail size (T417828)
 				'[ width="' . $defaultSize . '" ]',
 				'.mw-parser-output .mw-default-size img.mw-file-upright',
 			];
-			// Restrict to width='$defaultSize' to prevent upscaling images which were
-			// originally smaller than the default thumbnail size (T417828)
+
+			$makeRule = function ( $imgSelector, $size ) {
+				return $imgSelector .
+					"{\n  height: auto;\n  width: " . self::makeThumbCalc( $size ) .
+						";\n  width: " . self::makeThumbCalc( $size, true ) . ";\n}\n";
+			};
+
 			foreach ( $imgSelectors as $imgSelector ) {
-				$featureStyles['all'][] = $imgSelector .
-					' { height: auto; width: ' . self::makeThumbCalc( $defaultSize ) .
-						'; width: ' . self::makeThumbCalc( $defaultSize, true ) . '; }';
-				$featureStyles['all'][] = 'html.skin-theme-clientpref-thumb-small ' .
-					$imgSelector . ' { width: ' . self::makeThumbCalc( $smallSize ) .
-						'; width: ' . self::makeThumbCalc( $smallSize, true ) . '; }';
-				$featureStyles['all'][] = 'html.skin-theme-clientpref-thumb-large ' .
-					$imgSelector . ' { width: ' . self::makeThumbCalc( $largeSize ) .
-						'; width: ' . self::makeThumbCalc( $largeSize, true ) . '; }';
+				$featureStyles['all'][] = $makeRule( $imgSelector, $defaultSize );
+				$featureStyles['all'][] = $makeRule(
+					'html.skin-thumbsize-clientpref-small ' . $imgSelector,
+					$smallSize
+				);
+				$featureStyles['all'][] = $makeRule(
+					'html.skin-thumbsize-clientpref-large ' . $imgSelector,
+					$largeSize
+				);
 			}
 		}
 
@@ -772,8 +780,10 @@ class SkinModule extends FileModule {
 	/** @inheritDoc */
 	public function getDefinitionSummary( Context $context ) {
 		$summary = parent::getDefinitionSummary( $context );
+		$config = $this->getConfig();
 		$summary[] = [
-			'logos' => self::getAvailableLogos( $this->getConfig(), $context->getLanguage() ),
+			'thumblimits' => $config->get( 'ThumbLimits' ),
+			'logos' => self::getAvailableLogos( $config, $context->getLanguage() ),
 		];
 		return $summary;
 	}

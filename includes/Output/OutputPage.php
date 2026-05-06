@@ -3888,7 +3888,7 @@ class OutputPage extends ContextSource {
 			Html::expandClassList( $skinHtmlAttribs['class'] ?? [] ),
 			Html::expandClassList( $this->mAdditionalHtmlClasses ),
 			// This uses `-clientpref-` for now to support future customization for anonymous users.
-			'skin-theme-clientpref-thumb-' . $thumbValue,
+			'skin-thumbsize-clientpref-' . $thumbValue,
 		] );
 
 		if ( $htmlClass === '' ) {
