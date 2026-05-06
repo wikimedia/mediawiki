@@ -296,7 +296,7 @@ class PageEdit implements IEditObject {
 			if ( $this->isConflict ) {
 				return EditPageStatus::newGood( self::AS_CONFLICT_DETECTED )
 					// This message isn't shown, it's just for some logging code (T423754)
-					->fatal( 'editconflict', $this->inputs->getContextTitle()->getPrefixedText() );
+					->fatal( 'editconflict', (string)$this->inputs->getContextPage() );
 			}
 
 			$pageUpdater = $this->inputs->getPage()->newPageUpdater( $pstUser )

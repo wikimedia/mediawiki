@@ -2005,7 +2005,7 @@ class EditPage implements IEditObject {
 			contentFormat: $this->contentFormat,
 			contentModel: $this->contentModel,
 			context: $this->context,
-			contextTitle: $this->mContextTitle,
+			contextPage: $this->mContextTitle,
 			edittime: $this->edittime,
 			editRevId: $this->editRevId,
 			enableApiEditOverride: $this->enableApiEditOverride,

@@ -42,7 +42,7 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 			contentFormat: null,
 			contentModel: $article->getTitle()->getContentModel(),
 			context: $context,
-			contextTitle: $page->getTitle(),
+			contextPage: $page,
 			edittime: null,
 			editRevId: null,
 			enableApiEditOverride: false,

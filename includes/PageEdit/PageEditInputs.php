@@ -5,11 +5,11 @@ namespace MediaWiki\PageEdit;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\Article;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use RuntimeException;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -22,9 +22,6 @@ class PageEditInputs {
 	/** @var Article */
 	private $article;
 
-	/** @var ?Title */
-	private $contextTitle;
-
 	/**
 	 * @param bool $allowBlankArticle
 	 * @param bool $allowBlankSummary
@@ -36,7 +33,7 @@ class PageEditInputs {
 	 * @param string|null $contentFormat
 	 * @param string $contentModel
 	 * @param IContextSource $context
-	 * @param ?Title $contextTitle
+	 * @param ?PageReference $contextPage
 	 * @param string|null $edittime
 	 * @param int|null $editRevId
 	 * @param bool $enableApiEditOverride
@@ -74,7 +71,7 @@ class PageEditInputs {
 		private ?string $contentFormat,
 		private string $contentModel,
 		private IContextSource $context,
-		$contextTitle,
+		private ?PageReference $contextPage,
 		private ?string $edittime,
 		private ?int $editRevId,
 		private bool $enableApiEditOverride,
@@ -101,7 +98,6 @@ class PageEditInputs {
 		private bool $watchthis,
 	) {
 		$this->article = $article;
-		$this->contextTitle = $contextTitle;
 	}
 
 	public function shouldAllowBlankArticle(): bool {
@@ -147,16 +143,8 @@ class PageEditInputs {
 		return $this->context;
 	}
 
-	/**
-	 * @return Title
-	 */
-	public function getContextTitle() {
-		// TODO Remove this logic and either remove $contextTitle from this class or enforce setting it
-		if ( $this->contextTitle === null ) {
-			throw new RuntimeException( "PageEditInputs do not have a context title set" );
-		} else {
-			return $this->contextTitle;
-		}
+	public function getContextPage(): PageReference {
+		return $this->contextPage ?? $this->getPage();
 	}
 
 	public function getEdittime(): ?string {
