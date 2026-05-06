@@ -50,6 +50,9 @@ class LintErrorChecker {
 	 *
 	 * @param RevisionRecord|string $revision Revision containing wikitext after PST
 	 * @return array Array of error objects returned by Parsoid's lint API (empty array for no errors)
+	 * @note Passing a string as $revision is deprecated since 1.47 and will
+	 *   emit warnings.  Use MutableRevisionRecord::newFromContent() to pass
+	 *   a WikitextContent constructed with your string.
 	 */
 	public function check( RevisionRecord|string $revision ): array {
 		return $this->checkSome( $revision, [] );
@@ -63,10 +66,15 @@ class LintErrorChecker {
 	 * @param RevisionRecord|string $revision Revision containing wikitext after PST
 	 * @param string[] $disabled Array of lint categories to disable
 	 * @return array Array of error objects returned by Parsoid's lint API (empty array for no errors)
+	 * @note Passing a string as $revision is deprecated since 1.47 and will
+	 *   emit warnings.  Use MutableRevisionRecord::newFromContent() to pass
+	 *   a WikitextContent constructed with your string.
 	 */
 	public function checkSome( RevisionRecord|string $revision, array $disabled ): array {
 		if ( is_string( $revision ) ) {
-			// To be deprecated
+			wfDeprecatedMsg(
+				'Passing $revision as string to ' . __METHOD__ . ' is deprecated since 1.47.'
+			);
 			$revision = MutableRevisionRecord::newFromContent(
 				$this->titleFactory->newMainPage(),
 				new WikitextContent( $revision )
