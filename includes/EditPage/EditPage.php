@@ -2022,7 +2022,6 @@ class EditPage implements IEditObject {
 			starttime: $this->starttime,
 			submitButtonLabel: $this->getSubmitButtonLabel(),
 			summary: $this->summary,
-			tempUserCreateActive: $this->tempUserCreateActive,
 			textbox1: $this->textbox1,
 			undidRev: $this->undidRev,
 			undoAfter: $this->undoAfter,

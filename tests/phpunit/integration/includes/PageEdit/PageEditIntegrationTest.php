@@ -58,7 +58,6 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 			starttime: null,
 			submitButtonLabel: '',
 			summary: 'Edit summary',
-			tempUserCreateActive: false,
 			textbox1: $textbox1,
 			undidRev: $undidRev,
 			undoAfter: $undoAfter,

@@ -740,9 +740,6 @@ class PageEdit implements IEditObject {
 	 * Register the change of watch status
 	 */
 	private function updateWatchlist(): void {
-		if ( $this->inputs->isTempUserCreateActive() ) {
-			return;
-		}
 		$authority = $this->inputs->getAuthority();
 		if ( !$authority->isNamed() ) {
 			return;

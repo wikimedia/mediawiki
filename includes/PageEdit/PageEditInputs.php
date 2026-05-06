@@ -52,7 +52,6 @@ class PageEditInputs {
 	 * @param string|null $starttime
 	 * @param string $submitButtonLabel
 	 * @param string $summary
-	 * @param bool $tempUserCreateActive
 	 * @param string $textbox1
 	 * @param int $undidRev
 	 * @param int $undoAfter
@@ -91,7 +90,6 @@ class PageEditInputs {
 		private ?string $starttime,
 		private string $submitButtonLabel,
 		private string $summary,
-		private bool $tempUserCreateActive,
 		private string $textbox1,
 		private int $undidRev,
 		private int $undoAfter,
@@ -222,10 +220,6 @@ class PageEditInputs {
 
 	public function getSummary(): string {
 		return $this->summary;
-	}
-
-	public function isTempUserCreateActive(): bool {
-		return $this->tempUserCreateActive;
 	}
 
 	public function getTextbox1(): string {
