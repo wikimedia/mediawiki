@@ -56,7 +56,6 @@ class PageEditInputs {
 	 * @param string $textbox1
 	 * @param int $undidRev
 	 * @param int $undoAfter
-	 * @param string $unicodeCheck
 	 * @param UserIdentity $userForPreview
 	 * @param UserIdentity $userForSave
 	 * @param string|null $watchlistExpiry
@@ -96,7 +95,6 @@ class PageEditInputs {
 		private string $textbox1,
 		private int $undidRev,
 		private int $undoAfter,
-		private string $unicodeCheck,
 		private UserIdentity $userForPreview,
 		private UserIdentity $userForSave,
 		private ?string $watchlistExpiry,
@@ -240,10 +238,6 @@ class PageEditInputs {
 
 	public function getUndoAfter(): int {
 		return $this->undoAfter;
-	}
-
-	public function getUnicodeCheck(): string {
-		return $this->unicodeCheck;
 	}
 
 	public function getUserForPreview(): UserIdentity {

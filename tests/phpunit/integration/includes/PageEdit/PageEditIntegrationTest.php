@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\PageEdit;
 
 use MediaWiki\Context\RequestContext;
-use MediaWiki\EditPage\EditPage;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\PageEdit\PageEdit;
@@ -63,7 +62,6 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 			textbox1: $textbox1,
 			undidRev: $undidRev,
 			undoAfter: $undoAfter,
-			unicodeCheck: EditPage::UNICODE_CHECK,
 			userForPreview: $user->getUser(),
 			userForSave: $user->getUser(),
 			watchlistExpiry: null,

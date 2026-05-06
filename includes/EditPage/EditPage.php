@@ -30,7 +30,6 @@ use MediaWiki\EditPage\Constraint\NewSectionMissingSubjectConstraint;
 use MediaWiki\EditPage\Constraint\RedirectConstraint;
 use MediaWiki\EditPage\Constraint\RevisionDeletedConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
-use MediaWiki\EditPage\Constraint\UnicodeConstraint;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\ReadOnlyError;
@@ -132,7 +131,7 @@ class EditPage implements IEditObject {
 	/**
 	 * Used for Unicode support checks
 	 */
-	public const UNICODE_CHECK = UnicodeConstraint::VALID_UNICODE;
+	public const UNICODE_CHECK = 'ℳ𝒲♥𝓊𝓃𝒾𝒸ℴ𝒹ℯ';
 
 	/**
 	 * HTML id and name for the beginning of the edit form.
@@ -1990,6 +1989,11 @@ class EditPage implements IEditObject {
 				->setValue( self::AS_HOOK_ERROR );
 		}
 
+		if ( $this->unicodeCheck !== self::UNICODE_CHECK ) {
+			return EditPageStatus::newFatal( 'unicode-support-fail' )
+				->setValue( self::AS_UNICODE_NOT_SUPPORTED );
+		}
+
 		$pageEdit = $this->pageEditFactory->newPageEdit( new PageEditInputs(
 			allowBlankArticle: $this->allowBlankArticle,
 			allowBlankSummary: $this->allowBlankSummary,
@@ -2022,7 +2026,6 @@ class EditPage implements IEditObject {
 			textbox1: $this->textbox1,
 			undidRev: $this->undidRev,
 			undoAfter: $this->undoAfter,
-			unicodeCheck: $this->unicodeCheck,
 			userForPreview: $this->getUserForPreview(),
 			userForSave: $this->getUserForSave(),
 			watchlistExpiry: $this->watchlistExpiry,
