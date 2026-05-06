@@ -12,10 +12,10 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	/** @var ContentSecurityPolicy|TestingAccessWrapper */
 	private $csp;
 
-	/** @var CSPReportToEndpointName|string */
+	/** @var string */
 	private static $CSPReportToEndpointName = 'csp-report-to-endpoint';
 
-	/** @var CSPReportToReportOnlyEndpointName|string */
+	/** @var string */
 	private static $CSPReportToReportOnlyEndpointName = 'csp-report-to-report-only-endpoint';
 
 	protected function setUp(): void {
