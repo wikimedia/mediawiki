@@ -3167,6 +3167,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Skin\\Components\\SkinComponentTableOfContents' => __DIR__ . '/includes/Skin/Components/SkinComponentTableOfContents.php',
 	'MediaWiki\\Skin\\Components\\SkinComponentTempUserBanner' => __DIR__ . '/includes/Skin/Components/SkinComponentTempUserBanner.php',
 	'MediaWiki\\Skin\\Components\\SkinComponentUtils' => __DIR__ . '/includes/Skin/Components/SkinComponentUtils.php',
+	'MediaWiki\\Skin\\Helpers\\SkinLanguageHelper' => __DIR__ . '/includes/Skin/Helpers/SkinLanguageHelper.php',
 	'MediaWiki\\Skin\\Hook\\GetNewMessagesAlertHook' => __DIR__ . '/includes/Skin/Hook/GetNewMessagesAlertHook.php',
 	'MediaWiki\\Skin\\Hook\\SidebarBeforeOutputHook' => __DIR__ . '/includes/Skin/Hook/SidebarBeforeOutputHook.php',
 	'MediaWiki\\Skin\\Hook\\SiteNoticeAfterHook' => __DIR__ . '/includes/Skin/Hook/SiteNoticeAfterHook.php',

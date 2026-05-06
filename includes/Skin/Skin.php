@@ -11,7 +11,6 @@ use MediaWiki\Context\ContextSource;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
-use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
@@ -27,9 +26,9 @@ use MediaWiki\Skin\Components\SkinComponentMenu;
 use MediaWiki\Skin\Components\SkinComponentRegistry;
 use MediaWiki\Skin\Components\SkinComponentRegistryContext;
 use MediaWiki\Skin\Components\SkinComponentUtils;
+use MediaWiki\Skin\Helpers\SkinLanguageHelper;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleValue;
 use MediaWiki\Upload\UploadBase;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -1222,100 +1221,8 @@ abstract class Skin extends ContextSource {
 			return [];
 		}
 		if ( $this->languageLinks === null ) {
-			$hookRunner = $this->getHookRunner();
-
-			$userLang = $this->getLanguage();
-			$languageLinks = [];
-			$services = MediaWikiServices::getInstance();
-			$langNameUtils = $services->getLanguageNameUtils();
-			// Use a Language without locale-specific ucfirst overrides (T294695).
-			// Turkish and Azerbaijani override ucfirst to map i→İ, which
-			// incorrectly capitalizes autonyms like 'italiano' to 'İtaliano'.
-			$defaultCaseLang = $services->getLanguageFactory()->getLanguage( 'en' );
-
-			foreach ( $this->getOutput()->getLanguageLinks() as $languageLinkText ) {
-				[ $prefix, $title ] = explode( ':', $languageLinkText, 2 );
-				$class = 'interlanguage-link interwiki-' . $prefix;
-
-				[ $title, $frag ] = array_pad( explode( '#', $title, 2 ), 2, '' );
-				$languageLinkTitle = TitleValue::tryNew( NS_MAIN, $title, $frag, $prefix );
-				if ( $languageLinkTitle === null ) {
-					continue;
-				}
-				$ilInterwikiCode = $this->mapInterwikiToLanguage( $prefix );
-
-				$ilLangName = $langNameUtils->getLanguageName( $ilInterwikiCode );
-
-				if ( strval( $ilLangName ) === '' ) {
-					$ilDisplayTextMsg = $this->msg( "interlanguage-link-$ilInterwikiCode" );
-					if ( !$ilDisplayTextMsg->isDisabled() ) {
-						// Use custom MW message for the display text
-						$ilLangName = $ilDisplayTextMsg->text();
-					} else {
-						// Last resort: fallback to the language link target
-						$ilLangName = $languageLinkText;
-					}
-				} else {
-					// Use the language autonym as display text
-					$ilLangName = $defaultCaseLang->ucfirst( $ilLangName );
-				}
-
-				// CLDR extension or similar is required to localize the language name;
-				// otherwise we'll end up with the autonym again.
-				$ilLangLocalName =
-					$langNameUtils->getLanguageName( $ilInterwikiCode, $userLang->getCode() );
-
-				$languageLinkTitleText = $languageLinkTitle->getText();
-				if ( $ilLangLocalName === '' ) {
-					$ilFriendlySiteName =
-						$this->msg( "interlanguage-link-sitename-$ilInterwikiCode" );
-					if ( !$ilFriendlySiteName->isDisabled() ) {
-						if ( $languageLinkTitleText === '' ) {
-							$ilTitle =
-								$this->msg( 'interlanguage-link-title-nonlangonly',
-									$ilFriendlySiteName->text() )->text();
-						} else {
-							$ilTitle =
-								$this->msg( 'interlanguage-link-title-nonlang',
-									$languageLinkTitleText, $ilFriendlySiteName->text() )->text();
-						}
-					} else {
-						// we have nothing friendly to put in the title, so fall back to
-						// displaying the interlanguage link itself in the title text
-						// (similar to what is done in page content)
-						$ilTitle = $languageLinkTitle->getInterwiki() . ":$languageLinkTitleText";
-					}
-				} elseif ( $languageLinkTitleText === '' ) {
-					$ilTitle =
-						$this->msg( 'interlanguage-link-title-langonly', $ilLangLocalName )->text();
-				} else {
-					$ilTitle =
-						$this->msg( 'interlanguage-link-title', $languageLinkTitleText,
-							$ilLangLocalName )->text();
-				}
-
-				$ilInterwikiCodeBCP47 = LanguageCode::bcp47( $ilInterwikiCode );
-				// A TitleValue is sufficient above this point, but we need
-				// a full Title for ::getFullURL() and the hook invocation
-				$languageLinkFullTitle = Title::newFromLinkTarget( $languageLinkTitle );
-				$languageLink = [
-					'href' => $languageLinkFullTitle->getFullURL(),
-					'text' => $ilLangName,
-					'title' => $ilTitle,
-					'class' => $class,
-					'link-class' => 'interlanguage-link-target',
-					'lang' => $ilInterwikiCodeBCP47,
-					'hreflang' => $ilInterwikiCodeBCP47,
-					'data-title' => $languageLinkTitleText,
-					'data-language-autonym' => $ilLangName,
-					'data-language-local-name' => $ilLangLocalName,
-				];
-				$hookRunner->onSkinTemplateGetLanguageLink(
-					$languageLink, $languageLinkFullTitle, $this->getTitle(), $this->getOutput()
-				);
-				$languageLinks[] = $languageLink;
-			}
-			$this->languageLinks = $languageLinks;
+			$helper = new SkinLanguageHelper( $this );
+			$this->languageLinks = $helper->getData();
 		}
 
 		return $this->languageLinks;
