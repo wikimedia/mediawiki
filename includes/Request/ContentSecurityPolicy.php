@@ -105,7 +105,7 @@ class ContentSecurityPolicy {
 		// send Reporting-Endpoints header
 		// TODO: this should eventually be generalized somewhere else within includes/Request
 		$reportingHeader = $this->getReportingEndpointsHeader();
-		if ( $reportingHeader != '' ) {
+		if ( $reportingHeader !== '' ) {
 			$this->response->header( $reportingHeader );
 		}
 
@@ -144,7 +144,7 @@ class ContentSecurityPolicy {
 	/**
 	 * @return string value of Reporting Endpoints header name and value
 	 */
-	private function getReportingEndpointsHeader() {
+	private function getReportingEndpointsHeader(): string {
 		$cspConfig = $this->mwConfig->get( MainConfigNames::CSPHeader );
 		$cspConfigReportOnly = $this->mwConfig->get( MainConfigNames::CSPReportOnlyHeader );
 
@@ -344,19 +344,23 @@ class ContentSecurityPolicy {
 	 * @return string The URI to send reports to.
 	 * @throws UnexpectedValueException if given invalid mode.
 	 */
-	private function getReportUri( $mode ) {
+	private function getReportUri( int $mode ): string {
+		return $this->getUri( $mode === self::REPORT_ONLY_MODE );
+	}
+
+	private function getUri( bool $reportOnly ): string {
 		$apiArguments = [
 			'action' => 'cspreport',
-			'format' => 'json'
+			'format' => 'json',
 		];
-		if ( $mode === self::REPORT_ONLY_MODE ) {
+		if ( $reportOnly ) {
 			$apiArguments['reportonly'] = '1';
 		}
-		$reportUri = wfAppendQuery( wfScript( 'api' ), $apiArguments );
 
 		// Per spec, ';' and ',' must be hex-escaped in report URI
-		$reportUri = $this->escapeUrlForCSP( $reportUri );
-		return $reportUri;
+		return $this->escapeUrlForCSP(
+			wfAppendQuery( wfScript( 'api' ), $apiArguments )
+		);
 	}
 
 	/**
@@ -367,20 +371,8 @@ class ContentSecurityPolicy {
 	 * @return string The URI to send reports to.
 	 * @throws UnexpectedValueException if given invalid mode.
 	 */
-	private function getReportToURI( $cspReportOnlyEnabled ) {
-		$apiArguments = [
-			'action' => 'cspreport',
-			'format' => 'json'
-		];
-
-		if ( $cspReportOnlyEnabled ) {
-			$apiArguments['reportonly'] = '1';
-		}
-		$reportToURI = wfAppendQuery( wfScript( 'api' ), $apiArguments );
-
-		// Per spec, ';' and ',' must be hex-escaped in report URI
-		$reportToURI = $this->escapeUrlForCSP( $reportToURI );
-		return $reportToURI;
+	private function getReportToURI( bool $cspReportOnlyEnabled ): string {
+		return $this->getUri( $cspReportOnlyEnabled );
 	}
 
 	/**
