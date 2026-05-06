@@ -6,7 +6,8 @@
 		watchlistLabelsEnabled = config.EnableWatchlistLabels,
 		// Use Object.create( null ) instead of {} to get an Object without predefined properties.
 		// This avoids problems if the title is 'hasOwnPropery' or similar. Bug: T342137
-		watchstarsByTitle = Object.create( null );
+		watchstarsByTitle = Object.create( null ),
+		enablePopover = config.EnableWatchstarPopover;
 
 	/**
 	 * Update the link text, link href attribute and (if applicable) "loading" class.
@@ -299,7 +300,13 @@
 	function watchstar( $links, title, callback ) {
 		// Set up the ARIA connection between the watch link and the notification.
 		// This is set outside the click handler so that it's already present when the user clicks.
-		const notificationId = 'mw-watchlink-notification';
+		let notificationId = 'mw-watchlink-notification';
+		if ( enablePopover ) {
+			notificationId = 'mw-watchstar-WatchlistPopup';
+		}
+
+		let vueWatchlistPopup;
+
 		const mwTitle = mw.Title.newFromText( title );
 		const preferredExpiry = mw.user.options.get( 'watchstar-expiry', 'infinity' );
 
@@ -320,7 +327,7 @@
 
 		// Add click handler.
 		$links.on( 'click', function ( e ) {
-			const action = mwUriGetAction( this.href );
+			let action = mwUriGetAction( this.href );
 
 			if ( !mwTitle || ( action !== 'watch' && action !== 'unwatch' ) ) {
 				// Let native browsing handle the link
@@ -331,9 +338,11 @@
 
 			const $link = $( this );
 
-			// eslint-disable-next-line no-jquery/no-class-state
-			if ( $link.hasClass( 'loading' ) ) {
-				return;
+			if ( !enablePopover ) {
+				// eslint-disable-next-line no-jquery/no-class-state
+				if ( $link.hasClass( 'loading' ) ) {
+					return;
+				}
 			}
 
 			updateWatchLinkAttributes( $link, action, 'loading' );
@@ -343,108 +352,169 @@
 
 			// Preload modules required for the popup in parallel with the initial watch API call.
 			if ( isWatchlistExpiryEnabled || watchlistLabelsEnabled ) {
-				modulesToLoad.push( 'mediawiki.watchstar.widgets' );
+				if ( enablePopover ) {
+					modulesToLoad.push( 'mediawiki.watchstar.popover' );
+				} else {
+					modulesToLoad.push( 'mediawiki.watchstar.widgets' );
+				}
 			}
 			if ( watchlistLabelsEnabled ) {
 				modulesToLoad.push( 'mediawiki.widgets.MenuTagMultiselectWidget' );
 			}
 			mw.loader.load( modulesToLoad );
 
-			const api = new mw.Api();
-			api[ action ]( title, preferredExpiry )
-				.done( ( watchResponse ) => {
-					const isWatched = watchResponse.watched === true;
-
-					let message = isWatched ? 'addedwatchtext' : 'removedwatchtext';
-					if ( mwTitle.isTalkPage() ) {
-						message += '-talk';
-					}
-
-					let notifyPromise;
-					let watchlistPopup;
-					// @since 1.35 - pop up notification will be loaded with OOUI
-					// only if one or both of watchlist expiry or watchlist labels are enabled
-					if ( isWatchlistExpiryEnabled || watchlistLabelsEnabled ) {
-						if ( isWatched ) {
-							if ( !preferredExpiry || mw.util.isInfinity( preferredExpiry ) ) {
-								// The message should include `infinite` watch period
-								message = mwTitle.isTalkPage() ? 'addedwatchindefinitelytext-talk' : 'addedwatchindefinitelytext';
-							} else {
-								message = mwTitle.isTalkPage() ? 'addedwatchexpirytext-talk' : 'addedwatchexpirytext';
-							}
+			if ( !enablePopover ) {
+				const api = new mw.Api();
+				api[ action ]( title, preferredExpiry )
+					.done( ( watchResponse ) => {
+						const isWatched = watchResponse.watched === true;
+						let watchlistPopup;
+						let notifyPromise;
+						let message = isWatched ? 'addedwatchtext' : 'removedwatchtext';
+						if ( mwTitle.isTalkPage() ) {
+							message += '-talk';
 						}
 
-						notifyPromise = mw.loader.using( 'mediawiki.watchstar.widgets' ).then( ( require ) => {
-							const WatchlistPopup = require( 'mediawiki.watchstar.widgets' );
-
-							if ( !watchlistPopup ) {
-								watchlistPopup = new WatchlistPopup(
-									action,
-									title,
-									watchResponse.expiry,
-									updateWatchLink,
-									{
-										expiryEnabled: isWatchlistExpiryEnabled,
-										labelsEnabled: watchlistLabelsEnabled,
-										// The following messages can be used here:
-										// * addedwatchindefinitelytext-talk
-										// * addedwatchindefinitelytext
-										// * removedwatchtext-talk
-										// * removedwatchtext
-										message: mw.message( message, mwTitle.getPrefixedText(), preferredExpiry ).parseDom(),
-										$link: $link
-									} );
+						// @since 1.35 - pop up notification will be loaded with OOUI
+						// only if one or both of watchlist expiry or watchlist labels are enabled
+						if ( isWatchlistExpiryEnabled || watchlistLabelsEnabled ) {
+							if ( isWatched ) {
+								if ( !preferredExpiry || mw.util.isInfinity( preferredExpiry ) ) {
+									// The message should include `infinite` watch period
+									message = mwTitle.isTalkPage() ? 'addedwatchindefinitelytext-talk' : 'addedwatchindefinitelytext';
+								} else {
+									message = mwTitle.isTalkPage() ? 'addedwatchexpirytext-talk' : 'addedwatchexpirytext';
+								}
 							}
 
-							mw.notify( watchlistPopup.$element, {
-								tag: 'watch-self',
-								id: notificationId,
-								autoHideSeconds: 'short'
+							notifyPromise = mw.loader.using( 'mediawiki.watchstar.widgets' ).then( ( require ) => {
+								const WatchlistPopup = require( 'mediawiki.watchstar.widgets' );
+
+								if ( !watchlistPopup ) {
+									watchlistPopup = new WatchlistPopup(
+										action,
+										title,
+										watchResponse.expiry,
+										updateWatchLink,
+										{
+											expiryEnabled: isWatchlistExpiryEnabled,
+											labelsEnabled: watchlistLabelsEnabled,
+											// The following messages can be used here:
+											// * addedwatchindefinitelytext-talk
+											// * addedwatchindefinitelytext
+											// * removedwatchtext-talk
+											// * removedwatchtext
+											message: mw.message( message, mwTitle.getPrefixedText(), preferredExpiry ).parseDom(),
+											$link: $link
+										} );
+								}
+
+								mw.notify( watchlistPopup.$element, {
+									tag: 'watch-self',
+									id: notificationId,
+									autoHideSeconds: 'short'
+								} );
 							} );
-						} );
-					} else {
-						// The following messages can be used here:
-						// * addedwatchtext-talk
-						// * addedwatchtext
-						// * removedwatchtext-talk
-						// * removedwatchtext
-						notifyPromise = mw.notify(
-							mw.message( message, mwTitle.getPrefixedText() ).parseDom(), {
-								tag: 'watch-self',
-								id: notificationId
-							}
-						);
-					}
-
-					// The notifications are stored as a promise and the watch link is only updated
-					// once it is resolved. Otherwise, if $wgWatchlistExpiry set, the loading of
-					// OOUI could cause a race condition and the link is updated before the popup
-					// actually is shown. See T263135
-					notifyPromise.always( () => {
-						// Update all watchstars associated with this title
-						watchstarsByTitle[ normalizedTitle ].forEach( ( w ) => {
-							w.update( isWatched );
-						} );
-						// For the current page, also trigger the hook
-						if ( normalizedTitle === pageTitle ) {
-							notifyPageWatchStatus( isWatched, watchResponse.expiry );
+						} else {
+							// The following messages can be used here:
+							// * addedwatchtext-talk
+							// * addedwatchtext
+							// * removedwatchtext-talk
+							// * removedwatchtext
+							notifyPromise = mw.notify(
+								mw.message( message, mwTitle.getPrefixedText() ).parseDom(), {
+									tag: 'watch-self',
+									id: notificationId
+								}
+							);
 						}
-					} );
-				} )
-				.fail( ( code, data ) => {
-					// Reset link to non-loading mode
-					updateWatchLinkAttributes( $link, action );
 
-					// Format error message
-					const $msg = api.getErrorMessage( data );
+						// The notifications are stored as a promise and the watch link is only updated
+						// once it is resolved. Otherwise, if $wgWatchlistExpiry set, the loading of
+						// OOUI could cause a race condition and the link is updated before the popup
+						// actually is shown. See T263135
+						notifyPromise.always( () => {
+							// Update all watchstars associated with this title
+							watchstarsByTitle[ normalizedTitle ].forEach( ( w ) => {
+								w.update( isWatched );
+							} );
+							// For the current page, also trigger the hook
+							if ( normalizedTitle === pageTitle ) {
+								notifyPageWatchStatus( isWatched, watchResponse.expiry );
+							}
+						} );
+					} )
+					.fail( ( code, data ) => {
+						// Reset link to non-loading mode
+						updateWatchLinkAttributes( $link, action );
 
-					// Report to user about the error
-					mw.notify( $msg, {
-						tag: 'watch-self',
-						type: 'error',
-						id: notificationId
+						// Format error message
+						const $msg = api.getErrorMessage( data );
+
+						// Report to user about the error
+						mw.notify( $msg, {
+							tag: 'watch-self',
+							type: 'error',
+							id: notificationId
+						} );
 					} );
+			} else {
+				mw.loader.using( 'mediawiki.watchstar.popover' ).then( () => {
+				// On the first click, attach the Vue app; subsequent ones will open the same popover.
+					if ( !vueWatchlistPopup ) {
+						const Vue = require( 'vue' );
+						const watchlistWidgets = require( 'mediawiki.watchstar.popover' );
+						const WatchlistPopup = watchlistWidgets.WatchlistPopup;
+						const wrapper = document.createElement( 'span' );
+						wrapper.classList.add( 'mw-watchlink-popup' );
+						document.body.append( wrapper );
+						vueWatchlistPopup = Vue.createMwApp( WatchlistPopup, {
+							initialAction: action,
+							expiryEnabled: isWatchlistExpiryEnabled,
+							labelsEnabled: watchlistLabelsEnabled,
+							title: mwTitle,
+							dataExpiryOptions: watchlistWidgets.dataExpiryOptions,
+							preferredExpiry,
+							link: $link[ 0 ]
+						} ).mount( wrapper );
+						window.addEventListener( 'WatchlistPopup.loading', () => {
+							updateWatchLinkAttributes( $link, action, 'loading' );
+						} );
+						window.addEventListener( 'WatchlistPopup.watch', ( event ) => {
+							action = 'unwatch';
+							// Update all watchstars associated with this title
+							watchstarsByTitle[ normalizedTitle ].forEach( ( w ) => {
+								w.update( true );
+							} );
+							// For the current page, also trigger the hook
+							if ( normalizedTitle === pageTitle ) {
+								notifyPageWatchStatus( true, event.detail.watchResponse.expiry );
+							}
+						} );
+						window.addEventListener( 'WatchlistPopup.unwatch', () => {
+							action = 'watch';
+							// Update all watchstars associated with this title
+							watchstarsByTitle[ normalizedTitle ].forEach( ( w ) => {
+								w.update( false );
+							} );
+							// For the current page, also trigger the hook
+							if ( normalizedTitle === pageTitle ) {
+								notifyPageWatchStatus( false );
+							}
+						} );
+					}
+					// Re-set to idle.
+					updateWatchLinkAttributes( $link, action, 'idle' );
 				} );
+				if ( vueWatchlistPopup ) {
+					if ( vueWatchlistPopup.isOpen ) {
+						vueWatchlistPopup.isOpen = false;
+					} else {
+						vueWatchlistPopup.openPopup( $link[ 0 ] );
+					}
+				}
+			}
+
 		} );
 	}
 

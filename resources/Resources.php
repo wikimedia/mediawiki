@@ -1793,7 +1793,11 @@ return [
 			'watch-ajax.js',
 			[
 				'name' => 'config.json',
-				'config' => [ MainConfigNames::WatchlistExpiry, MainConfigNames::EnableWatchlistLabels ],
+				'config' => [
+					MainConfigNames::WatchlistExpiry,
+					MainConfigNames::EnableWatchlistLabels,
+					MainConfigNames::EnableWatchstarPopover,
+				],
 			],
 		],
 		'dependencies' => [
@@ -3486,6 +3490,52 @@ return [
 		'dependencies' => [
 			'oojs-ui',
 			'mediawiki.api',
+		],
+		'messages' => [
+			'accesskey-ca-watch',
+			'addedwatchexpiry-options-label',
+			'addedwatchexpiryhours',
+			'addedwatchexpiryhours-talk',
+			'addedwatchexpirydays',
+			'addedwatchexpirydays-talk',
+			'addedwatchexpirytext',
+			'addedwatchexpirytext-talk',
+			'addedwatchindefinitelytext',
+			'addedwatchindefinitelytext-talk',
+			'watchlist-expiry-days-left',
+			'watchlist-expiry-hours-left',
+			'watchstar-popup-already-watched',
+			'watchstar-popup-expiry-help',
+			'watchstar-popup-labels',
+			'watchstar-popup-labels-help',
+			'watchstar-popup-labels-no-results',
+			'watchstar-popup-title'
+		],
+	],
+	'mediawiki.watchstar.popover' => [
+		'class' => CodexModule::class,
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.watchstar.popover',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.watchstar.popover",
+		'codexComponents' => [
+			'CdxButton',
+			'CdxPopover',
+			'CdxField',
+			'CdxMessage',
+			'CdxMultiselectLookup',
+			'CdxSelect',
+		],
+		'packageFiles' => [
+			'init.js',
+			'WatchlistPopup.vue',
+			[ 'name' => 'data.json', 'callback' => static function ( MessageLocalizer $messageLocalizer ) {
+				return WatchAction::getExpiryOptions( $messageLocalizer, false );
+			} ]
+		],
+		'dependencies' => [
+			'oojs-ui',
+			'mediawiki.api',
+			'vue',
+			'mediawiki.DateFormatter',
 		],
 		'messages' => [
 			'accesskey-ca-watch',

@@ -3802,6 +3802,12 @@ class MainConfigNames {
 	public const WatchlistExpiry = 'WatchlistExpiry';
 
 	/**
+	 * Name constant for the EnableWatchstarPopover setting, for use with Config::get()
+	 * @see MainConfigSchema::EnableWatchstarPopover
+	 */
+	public const EnableWatchstarPopover = 'EnableWatchstarPopover';
+
+	/**
 	 * Name constant for the EnableWatchlistLabels setting, for use with Config::get()
 	 * @see MainConfigSchema::EnableWatchlistLabels
 	 */

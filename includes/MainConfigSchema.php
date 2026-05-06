@@ -11202,6 +11202,16 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Whether to enable the watchstar popover.
+	 *
+	 * @since 1.47
+	 */
+	public const EnableWatchstarPopover = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+
+	/**
 	 * Whether to enable the watchlist labels feature.
 	 *
 	 * @since 1.46

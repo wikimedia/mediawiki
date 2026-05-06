@@ -7008,6 +7008,12 @@ config-schema:
         description: |-
             Whether to enable the watchlist expiry feature.
             @since 1.35
+    EnableWatchstarPopover:
+        default: false
+        type: boolean
+        description: |-
+            Whether to enable the watchstar popover.
+            @since 1.47
     EnableWatchlistLabels:
         default: false
         type: boolean

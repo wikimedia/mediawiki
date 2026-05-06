@@ -3787,6 +3787,12 @@ $wgRecentChangesFlags = null;
 $wgWatchlistExpiry = null;
 
 /**
+ * Config variable stub for the EnableWatchstarPopover setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::EnableWatchstarPopover
+ */
+$wgEnableWatchstarPopover = null;
+
+/**
  * Config variable stub for the EnableWatchlistLabels setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::EnableWatchlistLabels
  */
