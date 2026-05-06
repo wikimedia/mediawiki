@@ -1031,6 +1031,8 @@
 	"apihelp-query+languageinfo-paramvalue-prop-digittransforms": "De cijfertransformaties voor de opmaak van getallen in deze taal.",
 	"apihelp-query+languageinfo-paramvalue-prop-digitgroupingpattern": "Het groeperingspatroon voor de opmaak van getallen in deze taal.",
 	"apihelp-query+languageinfo-paramvalue-prop-minimumgroupingdigits": "Het aantal cijfers waaronder de groepering van cijfers wordt onderdrukt.",
+	"apihelp-query+languageinfo-paramvalue-prop-namespacenames": "De naamruimtenamen van deze wiki in deze taal.",
+	"apihelp-query+languageinfo-paramvalue-prop-namespacealiases": "De aliassen voor de naamruimtenamen in deze wiki in deze taal.",
 	"apihelp-query+languageinfo-param-code": "Taalcodes van de talen die geretourneerd moeten worden, of <code>*</code> voor alle talen.",
 	"apihelp-query+languageinfo-example-simple": "Vraag de taalcodes op van alle ondersteunde talen.",
 	"apihelp-query+languageinfo-example-autonym-name-de": "Vraag de autoniemen en Duitse namen op van alle ondersteunde talen.",

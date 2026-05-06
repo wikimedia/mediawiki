@@ -2704,6 +2704,7 @@
 	"movepagetext-noredirectsupport": "使用下方表单来重命名页面，其所有历史记录也会被移动到新名称下。您有责任确保链接继续指向它们应当指向的地方。\n\n注意，如果新名称的页面已经存在，则此页面<strong>不会</strong>被移动。这意味着，如果重命名出错，您可以将页面重命名回原名称，但不能覆盖已存在页面。\n\n<strong>注意：</strong>对一个经常被访问的页面而言这可能是一个重大且唐突的更改；请在行动前先确定您了解其所可能带来的后果。",
 	"movepagetalktext": "如果您勾选此框，相关联的讨论页将被自动移动到新的标题，除非这里已经有了一个非空讨论页。\n\n在这种情况下，如有需要，您将不得不手动移动或合并页面。",
 	"moveuserpage-warning": "<strong>警告：</strong>您将移动一个用户页面。请注意，只有页面会被移动，用户<em>不会</em>被更名。",
+	"moveusersubpage-warning": "<strong>警告：</strong>你即将移动用户页的子页面。如果是要发布新条目，请确保在“{{int:newtitle}}”下拉式菜单处将“{{ns:User}}”改为“{{int:blanknamespace}}”。",
 	"movecategorypage-warning": "<strong>警告：</strong>您将要移动分类页面。请注意，只有分类页面会被移动，而属于旧分类的任何页面<em>都不会</em>被重新归类到新分类内。",
 	"movenologintext": "您必须是一名注册用户并且[[Special:UserLogin|登录]]后才可移动一个页面。",
 	"movenotallowed": "您没有权限移动页面。",

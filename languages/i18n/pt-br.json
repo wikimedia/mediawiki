@@ -4061,5 +4061,6 @@
 	"table-of-contents-show-button-aria-label": "Mostrar o índice",
 	"table-of-contents-hide-button-aria-label": "Ocultar o índice",
 	"diff-usergroups": "$1 {{PLURAL:$1|grupo|grupos}} de usuário",
-	"languageselector-no-results": "Nenhum resultado encontrado."
+	"languageselector-no-results": "Nenhum resultado encontrado.",
+	"languageselector-invalid-input": "\"$1\" não é um idioma válido."
 }
