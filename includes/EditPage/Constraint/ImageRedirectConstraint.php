@@ -8,7 +8,7 @@ namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Exception\PermissionsError;
-use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageReference;
 use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Permissions\Authority;
 
@@ -22,21 +22,16 @@ use MediaWiki\Permissions\Authority;
  */
 class ImageRedirectConstraint extends EditConstraint {
 
-	/**
-	 * @param Content $newContent
-	 * @param LinkTarget $title
-	 * @param Authority $performer
-	 */
 	public function __construct(
 		private readonly Content $newContent,
-		private readonly LinkTarget $title,
+		private readonly PageReference $page,
 		private readonly Authority $performer,
 	) {
 	}
 
 	public function checkConstraint(): PageEditStatus {
 		// Check isn't simple enough to just repeat when getting the status
-		if ( $this->title->getNamespace() === NS_FILE &&
+		if ( $this->page->getNamespace() === NS_FILE &&
 			$this->newContent->isRedirect() &&
 			!$this->performer->isAllowed( 'upload' )
 		) {

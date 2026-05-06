@@ -3274,6 +3274,7 @@ return [
 			$services->getShadowPageLoader(),
 			$services->getWatchlistManager(),
 			$services->getWatchedItemStore(),
+			$services->getWikiPageFactory(),
 		);
 	},
 

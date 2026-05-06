@@ -1417,7 +1417,8 @@ class EditPage implements IEditObject {
 			// Get section edit text (returns $def_text for invalid sections)
 			$orig = $this->pageEditingHelper->getOriginalContent(
 				$this->getAuthority(),
-				$this->mArticle,
+				$this->page,
+				$this->mArticle->fetchRevisionRecord(),
 				$this->contentModel,
 				$this->section,
 			);
@@ -1528,7 +1529,8 @@ class EditPage implements IEditObject {
 			if ( $content === false ) {
 				$content = $this->pageEditingHelper->getOriginalContent(
 					$this->getAuthority(),
-					$this->mArticle,
+					$this->page,
+					$this->mArticle->fetchRevisionRecord(),
 					$this->contentModel,
 					$this->section,
 				);
@@ -2010,7 +2012,6 @@ class EditPage implements IEditObject {
 			allowBlankArticle: $this->allowBlankArticle,
 			allowBlankSummary: $this->allowBlankSummary,
 			allowedProblematicRedirectTarget: $this->allowedProblematicRedirectTarget,
-			article: $this->mArticle,
 			authority: $this->getAuthority(),
 			autoSumm: $this->autoSumm,
 			changeTags: $this->changeTags,
@@ -2027,6 +2028,7 @@ class EditPage implements IEditObject {
 			markAsMinor: $markAsMinor,
 			newSectionAnchor: $this->newSectionAnchor,
 			oldid: $this->oldid,
+			page: $this->page,
 			parentRevId: $this->parentRevId,
 			recreate: $this->recreate,
 			section: $this->section,
@@ -2633,9 +2635,9 @@ class EditPage implements IEditObject {
 					$this->starttime,
 				),
 				new RevisionDeletedConstraint(
-					$this->mArticle,
 					false,
 					$this->oldid,
+					$this->mArticle->fetchRevisionRecord(),
 					$this->section,
 					$this->getTitle(),
 					$this->context->getUser(),

@@ -7,8 +7,8 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\Page\PageReference;
 use MediaWiki\PageEdit\PageEditStatus;
-use MediaWiki\Title\Title;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -29,7 +29,7 @@ class SpamRegexConstraint extends EditConstraint {
 	 * @param ?string $sectionHeading
 	 * @param string $text
 	 * @param string $reqIP for logging hits
-	 * @param Title $title for logging hits
+	 * @param PageReference $page for logging hits
 	 */
 	public function __construct(
 		private readonly LoggerInterface $logger,
@@ -38,7 +38,7 @@ class SpamRegexConstraint extends EditConstraint {
 		private readonly ?string $sectionHeading,
 		private readonly string $text,
 		private readonly string $reqIP,
-		private readonly Title $title,
+		private readonly PageReference $page,
 	) {
 	}
 
@@ -59,7 +59,7 @@ class SpamRegexConstraint extends EditConstraint {
 				'{ip} spam regex hit [[{title}]]: "{match}"',
 				[
 					'ip' => $this->reqIP,
-					'title' => $this->title->getPrefixedDBkey(),
+					'title' => $this->page,
 					'match' => $match
 				]
 			);

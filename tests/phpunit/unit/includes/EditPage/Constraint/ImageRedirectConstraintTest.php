@@ -9,9 +9,9 @@ namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 use MediaWiki\Content\Content;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\ImageRedirectConstraint;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
-use MediaWiki\Title\Title;
 use MediaWikiUnitTestCase;
 use Wikimedia\TestingAccessWrapper;
 
@@ -34,12 +34,12 @@ class ImageRedirectConstraintTest extends MediaWikiUnitTestCase {
 		$content = $this->createMock( Content::class );
 		$content->method( 'isRedirect' )->willReturn( true );
 
-		$title = $this->createMock( Title::class );
-		$title->method( 'getNamespace' )->willReturn( NS_FILE );
+		$page = $this->createMock( PageReference::class );
+		$page->method( 'getNamespace' )->willReturn( NS_FILE );
 
 		return new ImageRedirectConstraint(
 			$content,
-			$title,
+			$page,
 			$performer
 		);
 	}

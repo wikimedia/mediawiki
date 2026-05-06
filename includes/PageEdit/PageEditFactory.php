@@ -8,6 +8,7 @@ use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\PageEditingHelper;
 use MediaWiki\Language\Language;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\ShadowPage\ShadowPageLoader;
@@ -36,6 +37,7 @@ class PageEditFactory {
 		private readonly ShadowPageLoader $shadowPageLoader,
 		private readonly WatchlistManager $watchlistManager,
 		private readonly WatchedItemStoreInterface $watchedItemStore,
+		private readonly WikiPageFactory $wikiPageFactory,
 	) {
 		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 	}
@@ -58,6 +60,7 @@ class PageEditFactory {
 			$this->shadowPageLoader,
 			$this->watchlistManager,
 			$this->watchedItemStore,
+			$this->wikiPageFactory,
 		);
 	}
 

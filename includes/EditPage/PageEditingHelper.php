@@ -6,7 +6,7 @@ use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\Content\UnsupportedContentFormatException;
-use MediaWiki\Page\Article;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Permissions\Authority;
@@ -152,26 +152,27 @@ class PageEditingHelper {
 	 * 'missing-revision' message.
 	 *
 	 * @param Authority $performer to get the revision for
-	 * @param Article $article
+	 * @param WikiPage $page
+	 * @param RevisionRecord|null $revisionRecord
 	 * @param string $contentModel
 	 * @param string $section
 	 */
 	public function getOriginalContent(
 		Authority $performer,
-		Article $article,
+		$page,
+		?RevisionRecord $revisionRecord,
 		string $contentModel,
 		string $section,
 	): ?Content {
 		if ( $section === 'new' ) {
-			return $this->getCurrentContent( $contentModel, $article->getPage() );
+			return $this->getCurrentContent( $contentModel, $page );
 		}
-		$revRecord = $article->fetchRevisionRecord();
-		if ( $revRecord === null ) {
+		if ( $revisionRecord === null ) {
 			return $this->contentHandlerFactory
 				->getContentHandler( $contentModel )
 				->makeEmptyContent();
 		}
-		return $revRecord->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $performer );
+		return $revisionRecord->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $performer );
 	}
 
 	/**
@@ -204,7 +205,7 @@ class PageEditingHelper {
 	public function getExpectedParentRevision(
 		?int $editRevId,
 		?string $editTime,
-		WikiPage $page,
+		PageReference $page,
 	): ?RevisionRecord {
 		if ( $editRevId ) {
 			return $this->revisionStore->getRevisionById(

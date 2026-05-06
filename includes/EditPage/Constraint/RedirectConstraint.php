@@ -10,6 +10,7 @@ use MediaWiki\Content\Content;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Title\Title;
@@ -38,7 +39,7 @@ class RedirectConstraint extends EditConstraint {
 		private readonly ?LinkTarget $allowedProblematicRedirectTarget,
 		private readonly Content $newContent,
 		private readonly ?Content $originalContent,
-		private readonly LinkTarget $title,
+		private readonly PageReference $page,
 		private readonly MessageSpecifier $errorMessageWrapper,
 		private readonly ?string $contentFormat,
 		private readonly RedirectLookup $redirectLookup,
@@ -66,7 +67,7 @@ class RedirectConstraint extends EditConstraint {
 			if ( !$currentTarget?->equals( $newRedirectTarget ) ) {
 				$this->problematicTarget = $newRedirectTarget;
 
-				if ( $newRedirectTarget->equals( $this->title ) ) {
+				if ( $newRedirectTarget->isSamePageAs( $this->page ) ) {
 					// redirect pointing to itself - self redirect
 					return $this->wrapResult(
 						self::AS_SELF_REDIRECT,
@@ -83,7 +84,7 @@ class RedirectConstraint extends EditConstraint {
 						$this->redirectLookup->getRedirectTarget( $newRedirectTarget )
 					);
 
-					if ( $doubleRedirectTarget?->isSameLinkAs( $this->title ) ) {
+					if ( $doubleRedirectTarget?->isSamePageAs( $this->page ) ) {
 						// the double redirect is pointing to the current page, so it's a loop
 						return $this->wrapResult(
 							self::AS_DOUBLE_REDIRECT_LOOP,

@@ -8,8 +8,8 @@ namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\RevisionDeletedConstraint;
-use MediaWiki\Page\Article;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Title\Title;
 use MediaWikiUnitTestCase;
@@ -24,9 +24,9 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testPass() {
 		$constraint = new RevisionDeletedConstraint(
-			$this->createMockArticle( false, true ),
 			false,
 			1,
+			$this->createMockRevision( false, true ),
 			'notnew',
 			$this->createMock( Title::class ),
 			$this->createMock( Authority::class ),
@@ -36,9 +36,9 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testPass_newSection() {
 		$constraint = new RevisionDeletedConstraint(
-			$this->createMock( Article::class ),
 			false,
 			1,
+			null,
 			'new',
 			$this->createMock( Title::class ),
 			$this->createMock( Authority::class ),
@@ -50,9 +50,9 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 		$title = $this->createMock( Title::class );
 		$title->method( 'getPrefixedURL' )->willReturn( 'TestTitle' );
 		$constraint = new RevisionDeletedConstraint(
-			$this->createMockArticle( true, true ),
 			false,
 			1,
+			$this->createMockRevision( true, true ),
 			'notnew',
 			$title,
 			$this->createMock( Authority::class ),
@@ -64,9 +64,9 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 		$title = $this->createMock( Title::class );
 		$title->method( 'getPrefixedURL' )->willReturn( 'TestTitle' );
 		$constraint = new RevisionDeletedConstraint(
-			$this->createMockArticle( true, true ),
 			true,
 			1,
+			$this->createMockRevision( true, true ),
 			'notnew',
 			$title,
 			$this->createMock( Authority::class ),
@@ -78,9 +78,9 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testFailure_revisionDeleted() {
 		$constraint = new RevisionDeletedConstraint(
-			$this->createMockArticle( true, false ),
 			false,
 			1,
+			$this->createMockRevision( true, false ),
 			'notnew',
 			$this->createMock( Title::class ),
 			$this->createMock( Authority::class ),
@@ -92,10 +92,9 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 		$title = $this->createMock( Title::class );
 		$title->method( 'exists' )->willReturn( true );
 		$constraint = new RevisionDeletedConstraint(
-			// Article::fetchRevisionRecord will implicitly return null
-			$this->createMock( Article::class ),
 			false,
 			1,
+			null,
 			'notnew',
 			$title,
 			$this->createMock( Authority::class ),
@@ -103,13 +102,11 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 		$this->assertConstraintFailed( $constraint, EditConstraint::AS_REVISION_MISSING );
 	}
 
-	private function createMockArticle( bool $isDeleted, bool $canSeeRevision ): Article {
-		$article = $this->createMock( Article::class );
+	private function createMockRevision( bool $isDeleted, bool $canSeeRevision ): RevisionRecord {
 		$revRecord = $this->createMock( RevisionStoreRecord::class );
 		$revRecord->method( 'userCan' )->willReturn( !$isDeleted || $canSeeRevision );
 		$revRecord->method( 'isDeleted' )->willReturn( $isDeleted );
-		$article->method( 'fetchRevisionRecord' )->willReturn( $revRecord );
-		return $article;
+		return $revRecord;
 	}
 
 }

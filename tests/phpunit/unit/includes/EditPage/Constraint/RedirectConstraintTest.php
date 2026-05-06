@@ -40,7 +40,7 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 	private function createTargetTitle( bool $exists, bool $isRedirect, bool $isValidRedirectTarget = true ): Title {
 		$target = $this->createMock( Title::class );
 		$target->expects( $this->atLeastOnce() )
-			->method( 'equals' )
+			->method( $this->logicalOr( $this->identicalTo( 'equals' ), $this->identicalTo( 'isSamePageAs' ) ) )
 			->willReturnCallback( static fn ( $otherTitle ) => $otherTitle === $target );
 		$target->method( 'isKnown' )->willReturn( $exists );
 		$target->method( 'isRedirect' )->willReturn( $isRedirect );

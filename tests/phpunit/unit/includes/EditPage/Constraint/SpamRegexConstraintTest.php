@@ -9,7 +9,7 @@ namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\SpamChecker;
-use MediaWiki\Title\Title;
+use MediaWiki\Page\PageReference;
 use MediaWikiUnitTestCase;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
@@ -49,7 +49,7 @@ class SpamRegexConstraintTest extends MediaWikiUnitTestCase {
 			$sectionHeading,
 			$text,
 			'Request-IP',
-			$this->createNoOpMock( Title::class )
+			$this->createNoOpMock( PageReference::class )
 		);
 		$this->assertConstraintPassed( $constraint );
 	}
@@ -66,13 +66,9 @@ class SpamRegexConstraintTest extends MediaWikiUnitTestCase {
 			->with( $summary )
 			->willReturn( $matchingText );
 
-		$prefixedDBKey = 'PrefixedDBKeyGoesHere';
-		$title = $this->createMock( Title::class );
-		$title->expects( $this->once() )
-			->method( 'getPrefixedDBkey' )
-			->willReturn( $prefixedDBKey );
+		$page = $this->createMock( PageReference::class );
 
-		$logger = new TestLogger( true );
+		$logger = new TestLogger( true, collectContext: true );
 
 		$constraint = new SpamRegexConstraint(
 			$logger,
@@ -81,16 +77,14 @@ class SpamRegexConstraintTest extends MediaWikiUnitTestCase {
 			$sectionHeading,
 			$text,
 			'Request-IP',
-			$title
+			$page
 		);
 		$this->assertConstraintFailed( $constraint, EditConstraint::AS_SPAM_ERROR );
+		[ $level, $msg, $context ] = $logger->getBuffer()[0];
 
-		$this->assertSame( [
-			[
-				LogLevel::DEBUG,
-				'{ip} spam regex hit [[{title}]]: "{match}"'
-			],
-		], $logger->getBuffer() );
+		$this->assertSame( LogLevel::DEBUG, $level );
+		$this->assertSame( '{ip} spam regex hit [[{title}]]: "{match}"', $msg );
+		$this->assertSame( $page, $context['title'] );
 		$logger->clearBuffer();
 
 		$this->assertSame(

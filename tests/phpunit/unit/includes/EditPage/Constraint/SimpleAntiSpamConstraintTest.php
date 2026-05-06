@@ -8,7 +8,7 @@ namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\SimpleAntiSpamConstraint;
-use MediaWiki\Title\Title;
+use MediaWiki\Page\PageReference;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Psr\Log\LogLevel;
@@ -28,39 +28,35 @@ class SimpleAntiSpamConstraintTest extends MediaWikiUnitTestCase {
 	public function testPass() {
 		$logger = new NullLogger();
 		$user = new UserIdentityValue( 5, 'UserNameGoesHere' );
-		$title = $this->createMock( Title::class );
+		$page = $this->createMock( PageReference::class );
 
 		$constraint = new SimpleAntiSpamConstraint(
 			$logger,
 			'',
 			$user,
-			$title
+			$page
 		);
 		$this->assertConstraintPassed( $constraint );
 	}
 
 	public function testFailure() {
-		$logger = new TestLogger( true );
+		$logger = new TestLogger( true, collectContext: true );
 		$user = new UserIdentityValue( 5, 'UserNameGoesHere' );
-		$title = $this->createMock( Title::class );
-		$title->expects( $this->once() )
-			->method( 'getPrefixedText' )
-			->willReturn( 'TitlePrefixedTextGoesHere' );
+		$page = $this->createMock( PageReference::class );
 
 		$constraint = new SimpleAntiSpamConstraint(
 			$logger,
 			'SpamContent',
 			$user,
-			$title
+			$page,
 		);
 		$this->assertConstraintFailed( $constraint, EditConstraint::AS_SPAM_ERROR );
+		[ $level, $msg, $context ] = $logger->getBuffer()[0];
 
-		$this->assertSame( [
-			[
-				LogLevel::DEBUG,
-				'{name} editing "{title}" submitted bogus field "{input}"'
-			],
-		], $logger->getBuffer() );
+		$this->assertSame( LogLevel::DEBUG, $level );
+		$this->assertSame( '{name} editing "{title}" submitted bogus field "{input}"', $msg );
+		$this->assertSame( $page, $context['title'] );
+
 		$logger->clearBuffer();
 	}
 

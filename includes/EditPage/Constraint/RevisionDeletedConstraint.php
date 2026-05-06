@@ -2,7 +2,6 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\Page\Article;
 use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
@@ -20,9 +19,9 @@ use Wikimedia\Message\MessageValue;
 class RevisionDeletedConstraint extends EditConstraint {
 
 	public function __construct(
-		private readonly Article $article,
 		private readonly bool $ignoreWarning,
 		private readonly int $oldId,
+		private readonly ?RevisionRecord $revisionRecord,
 		private readonly string $section,
 		private readonly Title $title,
 		private readonly Authority $authority,
@@ -38,12 +37,11 @@ class RevisionDeletedConstraint extends EditConstraint {
 			return PageEditStatus::newGood();
 		}
 
-		$revRecord = $this->article->fetchRevisionRecord();
-		if ( $revRecord instanceof RevisionStoreRecord ) {
-			if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->authority ) ) {
+		if ( $this->revisionRecord instanceof RevisionStoreRecord ) {
+			if ( !$this->revisionRecord->userCan( RevisionRecord::DELETED_TEXT, $this->authority ) ) {
 				return PageEditStatus::newFatal( 'rev-deleted-text-permission', $this->title->getPrefixedURL() )
 					->setValue( self::AS_REVISION_WAS_DELETED );
-			} elseif ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+			} elseif ( $this->revisionRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				// Let sysop know that this will make private content public if saved
 				$status = PageEditStatus::newGood( self::AS_REVISION_WAS_DELETED );
 				$warningMessage = MessageValue::new(

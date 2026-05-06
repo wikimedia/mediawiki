@@ -28,6 +28,8 @@ use MediaWiki\Language\Language;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\WikiPage;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\RecentChanges\RecentChange;
@@ -37,6 +39,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdateCauses;
+use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
@@ -81,6 +84,7 @@ class PageEdit implements IEditObject {
 		private readonly ShadowPageLoader $shadowPageLoader,
 		private readonly WatchlistManager $watchlistManager,
 		private readonly WatchedItemStoreInterface $watchedItemStore,
+		private readonly WikiPageFactory $wikiPageFactory,
 	) {
 		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->parentRevId = $inputs->getParentRevId();
@@ -134,21 +138,24 @@ class PageEdit implements IEditObject {
 		$requestUser = $this->inputs->getContext()->getUser();
 		$pstUser = $this->inputs->getUserForPreview();
 
+		$page = $this->wikiPageFactory->newFromTitle( $this->inputs->getPage() );
+
 		$changingContentModel = false;
-		if ( $this->inputs->getContentModel() !== $this->inputs->getTitle()->getContentModel() ) {
+		if ( $this->inputs->getContentModel() !== $page->getTitle()->getContentModel() ) {
 			$changingContentModel = true;
-			$oldContentModel = $this->inputs->getTitle()->getContentModel();
+			$oldContentModel = $page->getTitle()->getContentModel();
 		}
 
 		// Load the page data from the primary DB. If anything changes in the meantime,
 		// we detect it by using page_latest like a token in a 1 try compare-and-swap.
-		$this->inputs->getPage()->loadPageData( IDBAccessObject::READ_LATEST );
-		$new = !$this->inputs->getPage()->exists();
+		$page->loadPageData( IDBAccessObject::READ_LATEST );
+		$new = !$page->exists();
 
 		$preliminaryChecksRunner = $this->getPreliminaryChecksRunner(
 			$new,
 			$textbox_content,
 			$requestUser,
+			$page->getTitle(),
 		);
 		$status = $preliminaryChecksRunner->checkConstraints();
 		if ( !$status->isOK() ) {
@@ -174,7 +181,7 @@ class PageEdit implements IEditObject {
 				$this->sectionanchor = $this->inputs->getNewSectionAnchor();
 			}
 
-			$pageUpdater = $this->inputs->getPage()->newPageUpdater( $pstUser )
+			$pageUpdater = $page->newPageUpdater( $pstUser )
 				->setContent( SlotRecord::MAIN, $content );
 			$pageUpdater->prepareUpdate( $flags );
 
@@ -187,8 +194,8 @@ class PageEdit implements IEditObject {
 
 			# Article exists. Check for edit conflict.
 
-			$timestamp = $this->inputs->getPage()->getTimestamp();
-			$latest = $this->inputs->getPage()->getLatest();
+			$timestamp = $page->getTimestamp();
+			$latest = $page->getLatest();
 			$edittime = $this->inputs->getEdittime();
 			$editRevId = $this->inputs->getEditRevId();
 
@@ -205,8 +212,8 @@ class PageEdit implements IEditObject {
 			) {
 				$this->isConflict = true;
 				if ( $this->section === 'new' ) {
-					if ( $this->inputs->getPage()->getUserText() === $requestUser->getName() &&
-						$this->inputs->getPage()->getComment() === $this->summary
+					if ( $page->getUserText() === $requestUser->getName() &&
+						$page->getComment() === $this->summary
 					) {
 						// Probably a duplicate submission of a new comment.
 						// This can happen when CDN resends a request after
@@ -223,7 +230,7 @@ class PageEdit implements IEditObject {
 					&& $edittime
 					&& $this->revisionStore->userWasLastToEdit(
 						$this->connectionProvider->getPrimaryDatabase(),
-						$this->inputs->getTitle()->getArticleID(),
+						$this->inputs->getPage()->getId(),
 						$requestUser->getId(),
 						$edittime
 					)
@@ -248,14 +255,14 @@ class PageEdit implements IEditObject {
 				// @TODO: replaceSectionAtRev() with base ID (not prior current) for ?oldid=X case
 				// ...or disable section editing for non-latest revisions (not exposed anyway).
 				if ( $editRevId !== null ) {
-					$content = $this->inputs->getPage()->replaceSectionAtRev(
+					$content = $page->replaceSectionAtRev(
 						$this->section,
 						$textbox_content,
 						$sectiontitle ?? '',
 						$editRevId
 					);
 				} else {
-					$content = $this->inputs->getPage()->replaceSectionContent(
+					$content = $page->replaceSectionContent(
 						$this->section,
 						$textbox_content,
 						$sectiontitle ?? '',
@@ -267,7 +274,7 @@ class PageEdit implements IEditObject {
 					'Getting section {section}',
 					[ 'section' => $this->section ]
 				);
-				$content = $this->inputs->getPage()->replaceSectionAtRev(
+				$content = $page->replaceSectionAtRev(
 					$this->section,
 					$textbox_content,
 					$sectiontitle ?? ''
@@ -300,11 +307,11 @@ class PageEdit implements IEditObject {
 					->fatal( 'editconflict', (string)$this->inputs->getContextPage() );
 			}
 
-			$pageUpdater = $this->inputs->getPage()->newPageUpdater( $pstUser )
+			$pageUpdater = $page->newPageUpdater( $pstUser )
 				->setContent( SlotRecord::MAIN, $content );
 			$pageUpdater->prepareUpdate( $flags );
 
-			$existingPageChecksRunner = $this->getExistingPageChecksRunner( $content, $pstUser );
+			$existingPageChecksRunner = $this->getExistingPageChecksRunner( $content, $pstUser, $page );
 			$status = $existingPageChecksRunner->checkConstraints();
 			if ( !$status->isOK() ) {
 				return $status;
@@ -343,13 +350,13 @@ class PageEdit implements IEditObject {
 			$content, $this->inputs->getContentFormat(), $this->inputs->shouldEnableApiEditOverride()
 		) ?? '' );
 
-		$postMergeChecksRunner = $this->getPostMergeChecksRunner( $content );
+		$postMergeChecksRunner = $this->getPostMergeChecksRunner( $content, $page );
 		$status = $postMergeChecksRunner->checkConstraints();
 		if ( !$status->isOK() ) {
 			return $status;
 		}
 
-		if ( $this->inputs->getUndidRev() && $this->isUndoClean( $content ) ) {
+		if ( $this->inputs->getUndidRev() && $this->isUndoClean( $content, $page ) ) {
 			// As the user can change the edit's content before saving, we only mark
 			// "clean" undos as reverts. This is to avoid abuse by marking irrelevant
 			// edits as undos.
@@ -364,9 +371,9 @@ class PageEdit implements IEditObject {
 		}
 
 		$needsPatrol = $this->options->get( MainConfigNames::UseRCPatrol )
-			|| ( $this->options->get( MainConfigNames::UseNPPatrol ) && !$this->inputs->getPage()->exists() );
+			|| ( $this->options->get( MainConfigNames::UseNPPatrol ) && !$page->exists() );
 		if ( $needsPatrol &&
-				$this->inputs->getAuthority()->authorizeWrite( 'autopatrol', $this->inputs->getTitle() ) ) {
+				$this->inputs->getAuthority()->authorizeWrite( 'autopatrol', $this->inputs->getPage() ) ) {
 			$pageUpdater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );
 		}
 
@@ -423,10 +430,17 @@ class PageEdit implements IEditObject {
 		return PageEditStatus::newGood( $statusCode );
 	}
 
+	/**
+	 * @param bool $new
+	 * @param Content $newContent
+	 * @param User $requestUser
+	 * @param Title $title
+	 */
 	private function getPreliminaryChecksRunner(
 		bool $new,
 		Content $newContent,
 		User $requestUser,
+		$title,
 	): EditConstraintRunner {
 		return new EditConstraintRunner(
 			// Ensure that the context request does not have `wpAntispam` set
@@ -434,7 +448,7 @@ class PageEdit implements IEditObject {
 			$this->constraintFactory->newSimpleAntiSpamConstraint(
 				$this->inputs->getContext()->getRequest()->getText( 'wpAntispam' ),
 				$requestUser,
-				$this->inputs->getTitle()
+				$this->inputs->getPage(),
 			),
 
 			// Ensure that the summary and text don't match the spam regex
@@ -443,12 +457,12 @@ class PageEdit implements IEditObject {
 				$this->inputs->getSectiontitle(),
 				$this->textbox1,
 				$this->inputs->getContext()->getRequest()->getIP(),
-				$this->inputs->getTitle()
+				$this->inputs->getPage(),
 			),
 
 			new ImageRedirectConstraint(
 				$newContent,
-				$this->inputs->getTitle(),
+				$this->inputs->getPage(),
 				$this->inputs->getAuthority()
 			),
 
@@ -462,7 +476,7 @@ class PageEdit implements IEditObject {
 
 			new ContentModelChangeConstraint(
 				$this->inputs->getAuthority(),
-				$this->inputs->getTitle(),
+				$title,
 				$this->inputs->getContentModel()
 			),
 
@@ -479,7 +493,7 @@ class PageEdit implements IEditObject {
 
 			// If the article has been deleted while editing, don't save it without confirmation
 			$this->constraintFactory->newAccidentalRecreationConstraint(
-				$this->inputs->getTitle(),
+				$title,
 				$this->inputs->shouldRecreate(),
 				$this->inputs->getStarttime(),
 				$this->inputs->getSubmitButtonLabel(),
@@ -497,7 +511,7 @@ class PageEdit implements IEditObject {
 		// in this case to disable messages, see T52124)
 			new DefaultTextConstraint(
 				$this->shadowPageLoader,
-				$this->inputs->getTitle(),
+				$this->inputs->getPage(),
 				$this->inputs->shouldAllowBlankArticle(),
 				$this->textbox1,
 				$this->inputs->getSubmitButtonLabel()
@@ -514,10 +528,19 @@ class PageEdit implements IEditObject {
 		);
 	}
 
+	/**
+	 * @param Content $content
+	 * @param UserIdentity $pstUser
+	 * @param WikiPage $page
+	 */
 	private function getExistingPageChecksRunner(
 		Content $content,
 		UserIdentity $pstUser,
+		$page,
 	): EditConstraintRunner {
+		$revision = $this->inputs->getOldid()
+			? $this->revisionStore->getRevisionById( $this->inputs->getOldid() )
+			: $page->getRevisionRecord();
 		return new EditConstraintRunner(
 			$this->constraintFactory->newEditFilterMergedContentHookConstraint(
 				$content,
@@ -542,18 +565,19 @@ class PageEdit implements IEditObject {
 				$content,
 				$this->pageEditingHelper->getOriginalContent(
 					$this->inputs->getAuthority(),
-					$this->inputs->getArticle(),
+					$page,
+					$revision,
 					$this->inputs->getContentModel(),
 					$this->section,
 				),
 				$this->inputs->getSubmitButtonLabel()
 			),
 			new RevisionDeletedConstraint(
-				$this->inputs->getArticle(),
 				$this->inputs->shouldIgnoreRevisionDeletedWarning(),
 				$this->inputs->getOldid(),
+				$revision,
 				$this->section,
-				$this->inputs->getTitle(),
+				$page->getTitle(),
 				$this->inputs->getAuthority(),
 				MessageValue::new(
 					'edit-constraint-warning-wrapper-save-deleted-revision',
@@ -563,8 +587,13 @@ class PageEdit implements IEditObject {
 		);
 	}
 
+	/**
+	 * @param Content $content
+	 * @param WikiPage $page
+	 */
 	private function getPostMergeChecksRunner(
 		Content $content,
+		$page,
 	): EditConstraintRunner {
 		$constraintRunner = new EditConstraintRunner();
 		if ( !$this->inputs->shouldIgnoreProblematicRedirects() ) {
@@ -573,9 +602,9 @@ class PageEdit implements IEditObject {
 					$this->inputs->getAllowedProblematicRedirectTarget(),
 					$content,
 					$this->pageEditingHelper->getCurrentContent(
-						$this->inputs->getContentModel(), $this->inputs->getPage()
+						$this->inputs->getContentModel(), $page,
 					),
-					$this->inputs->getTitle(),
+					$this->inputs->getPage(),
 					MessageValue::new(
 						'edit-constraint-warning-wrapper-save',
 						[ $this->inputs->getSubmitButtonLabel() ],
@@ -621,8 +650,11 @@ class PageEdit implements IEditObject {
 	 * one that was submitted by the user. If they match, the undo is considered "clean".
 	 * Otherwise there is no guarantee if anything was reverted at all, as the user could
 	 * even swap out entire content.
+	 *
+	 * @param Content $content
+	 * @param WikiPage $page
 	 */
-	private function isUndoClean( Content $content ): bool {
+	private function isUndoClean( Content $content, $page ): bool {
 		// Check whether the undo was "clean", that is the user has not modified
 		// the automatically generated content.
 		$undoRev = $this->revisionStore->getRevisionById( $this->inputs->getUndidRev() );
@@ -643,9 +675,7 @@ class PageEdit implements IEditObject {
 			return false;
 		}
 
-		$undoContent = $this->pageEditingHelper->getUndoContent(
-			$this->inputs->getPage(), $undoRev, $oldRev, $undoError
-		);
+		$undoContent = $this->pageEditingHelper->getUndoContent( $page, $undoRev, $oldRev, $undoError );
 		if ( !$undoContent ) {
 			return false;
 		}

@@ -2,9 +2,7 @@
 
 namespace MediaWiki\Tests\Integration\EditPage;
 
-use MediaWiki\Context\RequestContext;
 use MediaWiki\EditPage\PageEditingHelper;
-use MediaWiki\Page\Article;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -90,7 +88,8 @@ class PageEditingHelperIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue(
 			$page->getContent()->equals( $this->getPageEditingHelper()->getOriginalContent(
 				$this->getTestUser()->getAuthority(),
-				Article::newFromWikiPage( $page, RequestContext::getMain() ),
+				$page,
+				$page->getRevisionRecord(),
 				$page->getContentModel(),
 				''
 			) ),
@@ -102,7 +101,8 @@ class PageEditingHelperIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue(
 			$this->getPageEditingHelper()->getOriginalContent(
 				$this->getTestUser()->getAuthority(),
-				Article::newFromWikiPage( $page, RequestContext::getMain() ),
+				$page,
+				$page->getRevisionRecord(),
 				$page->getContentModel(),
 				''
 			)->isEmpty(),

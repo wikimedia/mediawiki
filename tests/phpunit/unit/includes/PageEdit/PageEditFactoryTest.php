@@ -10,6 +10,7 @@ use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\PageEditingHelper;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\PageEdit\PageEdit;
 use MediaWiki\PageEdit\PageEditFactory;
 use MediaWiki\PageEdit\PageEditInputs;
@@ -47,6 +48,7 @@ class PageEditFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( ShadowPageLoader::class ),
 			$this->createMock( WatchlistManager::class ),
 			$this->createMock( WatchedItemStoreInterface::class ),
+			$this->createMock( WikiPageFactory::class ),
 		);
 		$this->assertInstanceOf(
 			PageEdit::class,

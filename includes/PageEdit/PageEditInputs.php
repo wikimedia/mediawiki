@@ -4,11 +4,9 @@ namespace MediaWiki\PageEdit;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Page\Article;
 use MediaWiki\Page\PageReference;
-use MediaWiki\Page\WikiPage;
+use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Message\MessageSpecifier;
 
@@ -19,14 +17,10 @@ use Wikimedia\Message\MessageSpecifier;
 class PageEditInputs {
 	// TODO This class should have setters
 
-	/** @var Article */
-	private $article;
-
 	/**
 	 * @param bool $allowBlankArticle
 	 * @param bool $allowBlankSummary
 	 * @param ?LinkTarget $allowedProblematicRedirectTarget
-	 * @param Article $article
 	 * @param Authority $authority
 	 * @param string $autoSumm
 	 * @param string[] $changeTags
@@ -43,6 +37,7 @@ class PageEditInputs {
 	 * @param bool $markAsMinor
 	 * @param string|null $newSectionAnchor
 	 * @param int $oldid
+	 * @param ProperPageIdentity $page
 	 * @param int $parentRevId
 	 * @param bool $recreate
 	 * @param string $section
@@ -64,7 +59,6 @@ class PageEditInputs {
 		private bool $allowBlankArticle,
 		private bool $allowBlankSummary,
 		private ?LinkTarget $allowedProblematicRedirectTarget,
-		$article,
 		private Authority $authority,
 		private string $autoSumm,
 		private array $changeTags,
@@ -81,6 +75,7 @@ class PageEditInputs {
 		private bool $markAsMinor,
 		private ?string $newSectionAnchor,
 		private int $oldid,
+		private ProperPageIdentity $page,
 		private int $parentRevId,
 		private bool $recreate,
 		private string $section,
@@ -97,7 +92,6 @@ class PageEditInputs {
 		private array $watchlistLabels,
 		private bool $watchthis,
 	) {
-		$this->article = $article;
 	}
 
 	public function shouldAllowBlankArticle(): bool {
@@ -110,13 +104,6 @@ class PageEditInputs {
 
 	public function getAllowedProblematicRedirectTarget(): ?LinkTarget {
 		return $this->allowedProblematicRedirectTarget;
-	}
-
-	/**
-	 * @return Article
-	 */
-	public function getArticle() {
-		return $this->article;
 	}
 
 	public function getAuthority(): Authority {
@@ -183,6 +170,10 @@ class PageEditInputs {
 		return $this->oldid;
 	}
 
+	public function getPage(): ProperPageIdentity {
+		return $this->page;
+	}
+
 	public function getParentRevId(): int {
 		return $this->parentRevId;
 	}
@@ -244,20 +235,6 @@ class PageEditInputs {
 
 	public function shouldWatchthis(): bool {
 		return $this->watchthis;
-	}
-
-	/**
-	 * @return Title
-	 */
-	public function getTitle() {
-		return $this->article->getTitle();
-	}
-
-	/**
-	 * @return WikiPage
-	 */
-	public function getPage() {
-		return $this->article->getPage();
 	}
 
 }

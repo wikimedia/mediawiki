@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\PageEdit;
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\RawMessage;
-use MediaWiki\Page\Article;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\PageEdit\PageEdit;
 use MediaWiki\PageEdit\PageEditFactory;
@@ -29,19 +28,16 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 		int $undidRev = 0,
 		int $undoAfter = 0,
 	) {
-		$context = RequestContext::getMain();
-		$article = Article::newFromWikiPage( $page, $context );
 		$inputs = new PageEditInputs(
 			allowBlankArticle: false,
 			allowBlankSummary: false,
 			allowedProblematicRedirectTarget: null,
-			article: $article,
 			authority: $user->getAuthority(),
 			autoSumm: '',
 			changeTags: [],
 			contentFormat: null,
-			contentModel: $article->getTitle()->getContentModel(),
-			context: $context,
+			contentModel: $page->getTitle()->getContentModel(),
+			context: RequestContext::getMain(),
 			contextPage: $page,
 			edittime: null,
 			editRevId: null,
@@ -52,7 +48,8 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 			markAsMinor: false,
 			newSectionAnchor: null,
 			oldid: 0,
-			parentRevId: $article->fetchRevisionRecord()->getId(),
+			page: $page,
+			parentRevId: $page->getRevisionRecord()->getId(),
 			recreate: false,
 			section: '',
 			sectiontitle: null,
@@ -85,7 +82,7 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 			textbox1: 'Initial revision',
 			undidRev: $undoRev->getId()
 		);
-		$this->assertTrue( $pageEdit->isUndoClean( $initialRev->getMainContentRaw() ) );
+		$this->assertTrue( $pageEdit->isUndoClean( $initialRev->getMainContentRaw(), $page ) );
 	}
 
 	public function testIsUndoClean_DifferentContent() {
@@ -93,14 +90,14 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 		$undoRev = $this->editPage( $page, 'Undo Revision' )->getNewRevision();
 
 		$pageEdit = $this->newPageEdit( $page, $this->getTestUser(), undidRev: $undoRev->getId() );
-		$this->assertFalse( $pageEdit->isUndoClean( $pageEdit->convertTextToContent( 'New content' ) ) );
+		$this->assertFalse( $pageEdit->isUndoClean( $pageEdit->convertTextToContent( 'New content' ), $page ) );
 	}
 
 	public function testIsUndoClean_NoUndidRev() {
 		$page = $this->getExistingTestPage();
 
 		$pageEdit = $this->newPageEdit( $page, $this->getTestUser() );
-		$this->assertFalse( $pageEdit->isUndoClean( $page->getContent() ) );
+		$this->assertFalse( $pageEdit->isUndoClean( $page->getContent(), $page ) );
 	}
 
 	public function testIsUndoClean_RevDeleted() {
@@ -111,7 +108,7 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->revisionDelete( $undoRev );
 
 		$pageEdit = $this->newPageEdit( $page, $this->getTestUser(), undidRev: $undoRev->getId() );
-		$this->assertFalse( $pageEdit->isUndoClean( $initialRev->getMainContentRaw() ) );
+		$this->assertFalse( $pageEdit->isUndoClean( $initialRev->getMainContentRaw(), $page ) );
 	}
 
 }

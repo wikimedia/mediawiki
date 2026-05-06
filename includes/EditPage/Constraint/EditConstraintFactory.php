@@ -16,6 +16,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\Spi;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RateLimitSubject;
@@ -132,39 +133,25 @@ class EditConstraintFactory {
 		);
 	}
 
-	/**
-	 * @param string $input
-	 * @param UserIdentity $user
-	 * @param Title $title
-	 * @return SimpleAntiSpamConstraint
-	 */
 	public function newSimpleAntiSpamConstraint(
 		string $input,
 		UserIdentity $user,
-		Title $title
+		PageReference $page,
 	): SimpleAntiSpamConstraint {
 		return new SimpleAntiSpamConstraint(
 			$this->loggerFactory->getLogger( 'SimpleAntiSpam' ),
 			$input,
 			$user,
-			$title
+			$page,
 		);
 	}
 
-	/**
-	 * @param string $summary
-	 * @param ?string $sectionHeading
-	 * @param string $text
-	 * @param string $reqIP
-	 * @param Title $title
-	 * @return SpamRegexConstraint
-	 */
 	public function newSpamRegexConstraint(
 		string $summary,
 		?string $sectionHeading,
 		string $text,
 		string $reqIP,
-		Title $title
+		PageReference $page,
 	): SpamRegexConstraint {
 		return new SpamRegexConstraint(
 			$this->loggerFactory->getLogger( 'SpamRegex' ),
@@ -173,7 +160,7 @@ class EditConstraintFactory {
 			$sectionHeading,
 			$text,
 			$reqIP,
-			$title
+			$page,
 		);
 	}
 
@@ -181,7 +168,7 @@ class EditConstraintFactory {
 		?LinkTarget $allowedProblematicRedirectTarget,
 		Content $newContent,
 		?Content $originalContent,
-		LinkTarget $title,
+		PageReference $page,
 		MessageSpecifier $errorMessageWrapper,
 		?string $contentFormat,
 	): RedirectConstraint {
@@ -189,7 +176,7 @@ class EditConstraintFactory {
 			$allowedProblematicRedirectTarget,
 			$newContent,
 			$originalContent,
-			$title,
+			$page,
 			$errorMessageWrapper,
 			$contentFormat,
 			$this->redirectLookup
