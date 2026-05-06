@@ -121,6 +121,8 @@
 	"rest-param-desc-pagehistory-title": "Wikisidetittel",
 	"rest-param-desc-search-q": "Søkebegreper",
 	"rest-param-desc-search-limit": "Maksimal antall søkeresultater som skal returneres, som er mellom 1 og 100. Standard: 50",
+	"rest-param-desc-transform-from": "Transformer fra",
+	"rest-param-desc-transform-title": "Transformertittel",
 	"rest-property-desc-revision-id": "Sideversjons-ID",
 	"rest-property-desc-revision-timestamp": "Sideversjonens tidsstempel",
 	"rest-property-desc-revision-array": "Liste over versjoner av siden",

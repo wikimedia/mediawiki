@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Agurzil",
-			"Mmistmurt"
+			"Mmistmurt",
+			"ButterflyOfFire"
 		]
 	},
 	"exif-imagewidth": "Tehri",
@@ -198,6 +199,7 @@
 	"exif-orientation-8": "Tezzi s 90° deg unamek n usrag",
 	"exif-planarconfiguration-1": "Isefka iqriben",
 	"exif-planarconfiguration-2": "Isefka ibrarazen",
+	"exif-colorspace-1": "sRGB",
 	"exif-colorspace-65535": "Ur yezize ara",
 	"exif-componentsconfiguration-0": "Ulac it",
 	"exif-exposureprogram-0": "Ur yersen ara",

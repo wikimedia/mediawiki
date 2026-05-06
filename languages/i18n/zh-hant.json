@@ -3118,7 +3118,7 @@
 	"pageinfo-authors": "作者總數",
 	"pageinfo-recent-edits": "最近編輯次數（過去$1內）",
 	"pageinfo-recent-authors": "最近作者數",
-	"pageinfo-magic-words": "魔術{{PLURAL:$1|字}} ($1)",
+	"pageinfo-magic-words": "魔術{{PLURAL:$1|字}}（$1）",
 	"pageinfo-hidden-categories": "隱藏分類 ($1)",
 	"pageinfo-templates": "引用模板（$1）",
 	"pageinfo-transclusions": "{{PLURAL:$1|頁}}引用於（$1）",
