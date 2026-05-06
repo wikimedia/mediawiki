@@ -2020,7 +2020,7 @@ class EditPage implements IEditObject {
 			section: $this->section,
 			sectiontitle: $this->sectiontitle,
 			starttime: $this->starttime,
-			submitButtonLabel: $this->getSubmitButtonLabel(),
+			submitButtonLabel: new MessageValue( $this->getSubmitButtonLabel() ),
 			summary: $this->summary,
 			textbox1: $this->textbox1,
 			undidRev: $this->undidRev,

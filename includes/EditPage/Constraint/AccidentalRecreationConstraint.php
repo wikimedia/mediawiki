@@ -12,6 +12,7 @@ use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -31,7 +32,7 @@ class AccidentalRecreationConstraint extends EditConstraint {
 		private readonly Title $title,
 		private readonly bool $allowRecreation,
 		private readonly ?string $startTime,
-		private readonly ?string $submitButtonLabel,
+		private readonly ?MessageSpecifier $submitButtonLabel,
 	) {
 	}
 
@@ -56,7 +57,7 @@ class AccidentalRecreationConstraint extends EditConstraint {
 							: 'edit-constraint-confirmrecreate',
 						$username,
 						Message::rawParam( $commentHtml ),
-						new MessageValue( $this->submitButtonLabel ),
+						$this->submitButtonLabel,
 					);
 			} else {
 				return EditPageStatus::newGood( self::AS_ARTICLE_WAS_DELETED )

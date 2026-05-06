@@ -7,6 +7,7 @@
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\Title\Title;
+use Wikimedia\Message\MessageValue;
 
 /**
  * Tests the DefaultTextConstraint
@@ -30,7 +31,7 @@ class DefaultTextConstraintTest extends MediaWikiUnitTestCase {
 			$this->getTitle( 'DefaultMessageTextGoesHere' ),
 			false, // Allow blank
 			'User provided text goes here',
-			''
+			new MessageValue( '' ),
 		);
 		$this->assertConstraintPassed( $constraint );
 	}
@@ -45,7 +46,7 @@ class DefaultTextConstraintTest extends MediaWikiUnitTestCase {
 			$this->getTitle( $defaultText ),
 			false, // Allow blank
 			$userInput,
-			''
+			new MessageValue( '' ),
 		);
 		$this->assertConstraintFailed( $constraint, EditConstraint::AS_BLANK_ARTICLE );
 	}

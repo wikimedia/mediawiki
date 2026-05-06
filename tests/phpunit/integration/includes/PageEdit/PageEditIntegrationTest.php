@@ -10,6 +10,7 @@ use MediaWiki\PageEdit\PageEditFactory;
 use MediaWiki\PageEdit\PageEditInputs;
 use MediaWikiIntegrationTestCase;
 use TestUser;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -56,7 +57,7 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 			section: '',
 			sectiontitle: null,
 			starttime: null,
-			submitButtonLabel: '',
+			submitButtonLabel: new MessageValue( '' ),
 			summary: 'Edit summary',
 			textbox1: $textbox1,
 			undidRev: $undidRev,

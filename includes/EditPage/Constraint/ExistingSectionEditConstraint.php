@@ -8,7 +8,7 @@ namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
 use MediaWiki\EditPage\EditPageStatus;
-use Wikimedia\Message\MessageValue;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * To simplify the logic in EditPage, this constraint may be created even if the section being
@@ -41,7 +41,7 @@ class ExistingSectionEditConstraint extends EditConstraint {
 		private readonly bool $allowBlankSummary,
 		private readonly Content $newContent,
 		private readonly ?Content $originalContent,
-		private readonly string $submitButtonLabel,
+		private readonly MessageSpecifier $submitButtonLabel,
 	) {
 	}
 
@@ -61,7 +61,7 @@ class ExistingSectionEditConstraint extends EditConstraint {
 				->setResult( false, self::AS_SUMMARY_NEEDED )
 				->warning(
 					'missingsummary',
-					MessageValue::new( $this->submitButtonLabel )
+					$this->submitButtonLabel,
 				);
 		}
 

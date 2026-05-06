@@ -22,6 +22,7 @@ use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -200,7 +201,7 @@ class EditConstraintFactory {
 		Title $title,
 		bool $allowRecreation,
 		?string $startTime,
-		?string $submitButtonLabel = null,
+		?MessageSpecifier $submitButtonLabel = null,
 	): AccidentalRecreationConstraint {
 		return new AccidentalRecreationConstraint(
 			$this->connectionProvider,

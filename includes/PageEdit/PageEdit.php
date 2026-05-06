@@ -555,7 +555,7 @@ class PageEdit implements IEditObject {
 				$this->inputs->getAuthority(),
 				MessageValue::new(
 					'edit-constraint-warning-wrapper-save-deleted-revision',
-					[ MessageValue::new( $this->inputs->getSubmitButtonLabel() ) ],
+					[ $this->inputs->getSubmitButtonLabel() ],
 				),
 			),
 		);
@@ -576,7 +576,7 @@ class PageEdit implements IEditObject {
 					$this->inputs->getTitle(),
 					MessageValue::new(
 						'edit-constraint-warning-wrapper-save',
-						[ MessageValue::new( $this->inputs->getSubmitButtonLabel() ) ],
+						[ $this->inputs->getSubmitButtonLabel() ],
 					),
 					$this->inputs->getContentFormat(),
 				)

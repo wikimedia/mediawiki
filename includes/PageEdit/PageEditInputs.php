@@ -10,6 +10,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use RuntimeException;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * @internal
@@ -50,7 +51,7 @@ class PageEditInputs {
 	 * @param string $section
 	 * @param string|null $sectiontitle
 	 * @param string|null $starttime
-	 * @param string $submitButtonLabel
+	 * @param MessageSpecifier $submitButtonLabel
 	 * @param string $summary
 	 * @param string $textbox1
 	 * @param int $undidRev
@@ -88,7 +89,7 @@ class PageEditInputs {
 		private string $section,
 		private ?string $sectiontitle,
 		private ?string $starttime,
-		private string $submitButtonLabel,
+		private MessageSpecifier $submitButtonLabel,
 		private string $summary,
 		private string $textbox1,
 		private int $undidRev,
@@ -214,7 +215,7 @@ class PageEditInputs {
 		return $this->starttime;
 	}
 
-	public function getSubmitButtonLabel(): string {
+	public function getSubmitButtonLabel(): MessageSpecifier {
 		return $this->submitButtonLabel;
 	}
 
