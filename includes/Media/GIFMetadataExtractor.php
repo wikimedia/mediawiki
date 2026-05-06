@@ -152,9 +152,9 @@ class GIFMetadataExtractor {
 						throw new InvalidArgumentException( 'Read error, zero-length comment block' );
 					}
 
-					// The standard says this should be ASCII, however its unclear if
-					// that's true in practise. Check to see if its valid utf-8, if so
-					// assume its that, otherwise assume its windows-1252 (iso-8859-1)
+					// The standard says this should be ASCII, however it's unclear if
+					// that's true in practice. Check to see if it's valid utf-8, if so
+					// assume it's that, otherwise assume it's windows-1252 (iso-8859-1)
 					$dataCopy = $data;
 					// quickIsNFCVerify has the side effect of replacing any invalid characters
 					\UtfNormal\Validator::quickIsNFCVerify( $dataCopy );

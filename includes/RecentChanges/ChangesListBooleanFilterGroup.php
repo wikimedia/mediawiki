@@ -67,13 +67,13 @@ class ChangesListBooleanFilterGroup extends ChangesListFilterGroup {
 		if ( !is_array( $defaultValue ) ) {
 			throw new InvalidArgumentException(
 				"Can't set the default of filter options group \"{$this->getName()}\"" .
-				' to a value of type "' . gettype( $defaultValue ) . ': expected bool[]' );
+				' to a value of type "' . gettype( $defaultValue ) . '": expected bool[]' );
 		}
 		foreach ( $defaultValue as $name => $value ) {
 			if ( !is_bool( $value ) ) {
 				throw new InvalidArgumentException(
 					"Can't set the default of filter option \"{$this->getName()}/$name\"" .
-					' to a value of type "' . gettype( $value ) . ': expected bool' );
+					' to a value of type "' . gettype( $value ) . '": expected bool' );
 			}
 			$this->getFilter( $name )?->setDefault( $value );
 		}

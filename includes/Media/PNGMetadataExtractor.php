@@ -167,7 +167,7 @@ class PNGMetadataExtractor {
 					 * $items[5] = content
 					 */
 
-					// Theoretically should be case-sensitive, but in practise...
+					// Theoretically should be case-sensitive, but in practice...
 					$items[1] = strtolower( $items[1] );
 					if ( !isset( self::$textChunks[$items[1]] ) ) {
 						// Only extract textual chunks on our list.
@@ -217,7 +217,7 @@ class PNGMetadataExtractor {
 					continue;
 				}
 
-				// Theoretically should be case-sensitive, but in practise...
+				// Theoretically should be case-sensitive, but in practice...
 				$keyword = strtolower( $keyword );
 				if ( !isset( self::$textChunks[$keyword] ) ) {
 					// Don't recognize chunk, so skip.
@@ -247,7 +247,7 @@ class PNGMetadataExtractor {
 						wfDebug( __METHOD__ . ": Empty zTXt chunk" );
 						continue;
 					}
-					// Theoretically should be case-sensitive, but in practise...
+					// Theoretically should be case-sensitive, but in practice...
 					$keyword = strtolower( $keyword );
 
 					if ( !isset( self::$textChunks[$keyword] ) ) {

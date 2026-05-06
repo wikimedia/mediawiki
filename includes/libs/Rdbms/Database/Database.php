@@ -1106,7 +1106,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 			// Transaction automatically rolled back, breaking the expectations of callers
 			// relying on the continued existence of that transaction for things like atomic
 			// writes, serializability, or reads from the same point-in-time snapshot. If the
-			// connection loss occured on ROLLBACK (non-SAVEPOINT) or COMMIT, then we do not
+			// connection loss occurred on ROLLBACK (non-SAVEPOINT) or COMMIT, then we do not
 			// need to mark the transaction state as corrupt, since no transaction would still
 			// be open even if the query did succeed (T127428).
 			$res = max( $res, self::ERR_ABORT_TRX );

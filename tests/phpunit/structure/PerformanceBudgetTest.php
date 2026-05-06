@@ -206,7 +206,7 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 			array_map(
 				function ( $moduleName ) {
 					$loadedBy = implode( ",", $this->dependencyOf[ $moduleName ] ?? [ 'unknown' ] );
-					return "$moduleName (loaded by $loadedBy )";
+					return "$moduleName (loaded by $loadedBy)";
 				},
 				$unexpectedModules
 			)

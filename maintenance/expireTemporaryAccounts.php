@@ -120,7 +120,7 @@ class ExpireTemporaryAccounts extends Maintenance {
 	 *
 	 * Default implementation expects $queryBuilder is an instance of UserSelectQueryBuilder. If
 	 * you override getTempAccountsToExpireQueryBuilder() to work with a different query builder,
-	 * this method should be overriden to properly convert the query builder into user identities.
+	 * this method should be overridden to properly convert the query builder into user identities.
 	 *
 	 * @throws LogicException if $queryBuilder is not UserSelectQueryBuilder
 	 * @stable to override

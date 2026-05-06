@@ -7814,7 +7814,7 @@ class MainConfigSchema {
 	 *     temp accounts have been created on this wiki already. This setting allows
 	 *     temp users to be recognized even if auto-creation is currently disabled.
 	 *     If auto-creation is enabled via the 'enabled' property, then 'known' is
-	 *     overriden to true.
+	 *     overridden to true.
 	 *   - enabled: (bool) Whether auto-creation is enabled. If changing this
 	 *     value from 'true' to 'false', you should also set 'known' to true, so
 	 *     that relevant code can continue to identify temporary accounts as

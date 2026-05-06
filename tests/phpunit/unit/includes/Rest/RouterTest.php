@@ -509,7 +509,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 	public function testHandlerDisablesBodyParsing() {
 		// This is valid JSON, but not an object.
-		// Automatic parsing will fail, since it re	requires
+		// Automatic parsing will fail, since it requires
 		// an array to be returned.
 		$payload = '"just a test"';
 
@@ -540,7 +540,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->expectDeprecationAndContinue( '/JsonBodyValidator/' );
 
 		// This is valid JSON, but not an object.
-		// Automatic parsing will fail, since it re	requires
+		// Automatic parsing will fail, since it requires
 		// an array to be returned.
 		$payload = '{ "test": "yes" }';
 

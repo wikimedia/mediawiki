@@ -530,7 +530,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	}
 
 	/**
-	 * Determine if the give authority is allowed to view a particular
+	 * Determine if the given authority is allowed to view a particular
 	 * field of this revision, if it's marked as deleted.
 	 *
 	 * MCR migration note: this corresponded to Revision::userCan

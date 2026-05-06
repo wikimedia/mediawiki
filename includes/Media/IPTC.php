@@ -250,7 +250,7 @@ class IPTC {
 				case '2#000': /* iim version */
 					// unlike other tags, this is a 2-byte binary number.
 					// technically this is required if there is iptc data
-					// but in practise it isn't always there.
+					// but in practice it isn't always there.
 					if ( strlen( $val[0] ) === 2 ) {
 						// if is just to be paranoid.
 						$versionValue = ord( substr( $val[0], 0, 1 ) ) * 256;

@@ -1102,7 +1102,7 @@ abstract class Maintenance {
 	/**
 	 * Returns a database to be used by current maintenance script.
 	 *
-	 * This uses the main LBFactory instance by default unless overriden via setDB().
+	 * This uses the main LBFactory instance by default unless overridden via setDB().
 	 *
 	 * This function has the same parameters as LoadBalancer::getConnection().
 	 *
