@@ -780,8 +780,6 @@ class Xml {
 			return false;
 		}
 
-		xml_parser_free( $parser );
-
 		return true;
 	}
 
