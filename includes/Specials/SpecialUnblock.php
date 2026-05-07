@@ -183,7 +183,7 @@ class SpecialUnblock extends SpecialPage {
 
 	/**
 	 * Get the target and type, given the request and the subpage parameter.
-	 * Several parameters are handled for backwards compatability. 'wpTarget' is
+	 * Several parameters are handled for backwards compatibility. 'wpTarget' is
 	 * prioritized, since it matches the HTML form.
 	 *
 	 * @param string|null $par Subpage parameter

@@ -101,7 +101,7 @@ class CorsUtils implements BasicAuthorizerInterface {
 		if ( $this->options->get( MainConfigNames::RestAllowCrossOriginCookieAuth ) ) {
 			// @TODO Since we only Vary the response if (1) the method is OPTIONS or (2) the user is
 			//       registered, it is safe to only add the Vary: Origin when those two conditions
-			//       are met since a response to a logged-in user's request is not cachable.
+			//       are met since a response to a logged-in user's request is not cacheable.
 			//       Therefore, logged out users should always get `Access-Control-Allow-Origin: *`
 			//       on all non-OPTIONS request and logged-in users *may* get
 			//      `Access-Control-Allow-Origin: <requested origin>`

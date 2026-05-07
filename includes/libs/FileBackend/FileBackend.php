@@ -165,11 +165,11 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *
 	 * @param array $config Parameters include:
 	 *   - name : The unique name of this backend.
-	 *      This should consist of alphanumberic, '-', and '_' characters.
+	 *      This should consist of alphanumeric, '-', and '_' characters.
 	 *      This name should not be changed after use.
 	 *      Note that the name is *not* used in actual container names.
 	 *   - domainId : Prefix to container names that is unique to this backend.
-	 *      It should only consist of alphanumberic, '-', and '_' characters.
+	 *      It should only consist of alphanumeric, '-', and '_' characters.
 	 *      This ID is what avoids collisions if multiple logical backends
 	 *      use the same storage system, so this should be set carefully.
 	 *   - lockManager : LockManager object to use for any file locking.

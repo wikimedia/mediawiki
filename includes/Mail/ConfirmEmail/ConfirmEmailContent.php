@@ -10,7 +10,7 @@ use Wikimedia\Assert\Assert;
 /**
  * Value class defining an email sent to the user
  *
- * Currently only used for sending cofirmation emails.
+ * Currently only used for sending confirmation emails.
  *
  * @todo Despite the name, this class probably can be generalised and passed to IEmailer and/or
  * UserMailer.

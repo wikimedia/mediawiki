@@ -644,7 +644,7 @@ class FileModule extends Module {
 		}
 
 		// Add any lazily discovered file dependencies from previous module builds.
-		// These are saved as relatative paths.
+		// These are saved as relative paths.
 		foreach ( Module::expandRelativePaths( $this->getFileDependencies( $context ) ) as $file ) {
 			$files[] = $file;
 		}

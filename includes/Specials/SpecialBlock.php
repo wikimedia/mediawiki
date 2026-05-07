@@ -947,7 +947,7 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Get the target and type, given the request and the subpage parameter.
-	 * Several parameters are handled for backwards compatability. A block ID
+	 * Several parameters are handled for backwards compatibility. A block ID
 	 * is prioritized, followed by 'wpTarget' since it matches the HTML form.
 	 *
 	 * @param string|null $par Subpage parameter passed to setup, or data value from

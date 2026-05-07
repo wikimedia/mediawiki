@@ -226,7 +226,7 @@ language, for example English uses `{{PLURAL:$1|one|other}}` while Arabic uses
 `{{PLURAL:$1|zero|one|two|few|many|other}}`. Details are defined in
 [CLDR][CLDR plurals].
 
-It is not possible to "skip" positions while still suppling later ones. If too
+It is not possible to "skip" positions while still supplying later ones. If too
 few values are supplied, the final form is repeated for subsequent positions.
 
 If there is an explicit plural form to be given for a specific number, it may

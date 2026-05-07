@@ -175,7 +175,7 @@ class RawAction extends FormlessAction {
 		// page is in User subpage or Mediawiki namespace
 		// page title ends in .js or .vue
 		// page content type is CONTENT_MODEL_JAVASCRIPT or CONTENT_MODEL_VUE
-		// currntly only logging to determine how many pages would be impacted by this change
+		// currently only logging to determine how many pages would be impacted by this change
 		if ( $contentType === 'text/javascript' ) {
 			if ( !( $title->isSiteJsConfigPage() || $title->isUserJsConfigPage() ) ) {
 				$log = LoggerFactory::getInstance( "security" );

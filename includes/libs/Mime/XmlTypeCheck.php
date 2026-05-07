@@ -178,7 +178,7 @@ class XmlTypeCheck {
 				$this->validate( $reader );
 			} catch ( Exception $e ) {
 				// Calling this malformed, because we didn't parse the whole
-				// thing. Maybe just an external entity refernce.
+				// thing. Maybe just an external entity reference.
 				$this->wellFormed = false;
 				throw $e;
 			} finally {
@@ -460,7 +460,7 @@ class XmlTypeCheck {
 		$res = preg_match(
 			'/^<!DOCTYPE\s*\S+\s*' .
 			'(?:(?P<typepublic>PUBLIC)\s*' .
-				'(?:"(?P<pubquote>[^"]*)"|\'(?P<pubapos>[^\']*)\')' . // public identifer
+				'(?:"(?P<pubquote>[^"]*)"|\'(?P<pubapos>[^\']*)\')' . // public identifier
 				'\s*"(?P<pubsysquote>[^"]*)"|\'(?P<pubsysapos>[^\']*)\'' . // system identifier
 			'|(?P<typesystem>SYSTEM)\s*' .
 				'(?:"(?P<sysquote>[^"]*)"|\'(?P<sysapos>[^\']*)\')' .

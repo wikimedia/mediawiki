@@ -306,7 +306,7 @@ abstract class Skin extends ContextSource {
 	 *
 	 *     Default: `false`
 	 *
-	 *  - `link`: An array of link option overriddes. See Skin::makeLink for the available options.
+	 *  - `link`: An array of link option overrides. See Skin::makeLink for the available options.
 	 *
 	 *     Default: `[]`
 	 *

@@ -276,7 +276,7 @@ class SkinModule extends FileModule {
 	 *
 	 * @param string|null $localBasePath
 	 * @param string|null $remoteBasePath
-	 * @see Additonal options at $wgResourceModules
+	 * @see Additional options at $wgResourceModules
 	 */
 	public function __construct(
 		array $options = [],

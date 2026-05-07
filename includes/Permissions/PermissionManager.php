@@ -1885,7 +1885,7 @@ class PermissionManager {
 	/**
 	 * Add temporary user rights, only valid for the current function scope.
 	 *
-	 * This is meant for making it possible to programatically trigger certain actions that
+	 * This is meant for making it possible to programmatically trigger certain actions that
 	 * the user wouldn't be able to trigger themselves; e.g. allow users without the bot right
 	 * to make bot-flagged actions through certain special pages.
 	 *

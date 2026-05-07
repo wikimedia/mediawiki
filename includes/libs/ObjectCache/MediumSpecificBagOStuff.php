@@ -11,7 +11,7 @@ use stdClass;
 use Wikimedia\WaitConditionLoop;
 
 /**
- * Helper classs that implements most of BagOStuff for a backend.
+ * Helper class that implements most of BagOStuff for a backend.
  *
  * This should be used by concrete implementations only. Wrapper classes that
  * proxy another BagOStuff should extend and implement BagOStuff directly.

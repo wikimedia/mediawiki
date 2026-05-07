@@ -61,7 +61,7 @@ class FileStatePredicates {
 	}
 
 	/**
-	 * Get the hypothetical existance a file given predicated and current state of files
+	 * Get the hypothetical existence a file given predicated and current state of files
 	 *
 	 * @param string $path Storage path
 	 * @param Closure $curExistenceFunc Function to compute the current existence for a given path

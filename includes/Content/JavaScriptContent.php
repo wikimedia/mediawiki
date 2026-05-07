@@ -58,7 +58,7 @@ class JavaScriptContent extends TextContent {
 		$this->redirectTarget = null;
 		$text = $this->getText();
 		if ( str_starts_with( $text, '/* #REDIRECT */' ) ) {
-			// Compatiblity with pages created by MW 1.41 and earlier:
+			// Compatibility with pages created by MW 1.41 and earlier:
 			// Older redirects use an over-escaped \u0026 instead of a literal ampersand (T107289)
 			$text = str_replace( '\u0026', '&', $text );
 			// Extract the title from the url

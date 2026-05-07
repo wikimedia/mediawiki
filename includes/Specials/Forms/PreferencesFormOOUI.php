@@ -154,7 +154,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 * @inheritDoc
 	 */
 	public function addFields( $descriptor ) {
-		// Replace checkbox fields with toggle switchs on Special:Preferences
+		// Replace checkbox fields with toggle switches on Special:Preferences
 		if ( $this->isMobileLayout() && $this->getTitle()->isSpecial( 'Preferences' ) ) {
 			foreach ( $descriptor as $_ => &$info ) {
 				if ( isset( $info['type'] ) && in_array( $info['type'], [ 'check', 'toggle' ] ) ) {

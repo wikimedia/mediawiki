@@ -22,7 +22,7 @@ use MediaWiki\User\UserIdentity;
  * When creating a new implementation, register it via the UserOptionsStoreProviders
  * extension attribute. The UserOptionsManager service will automatically discover
  * and merge values from your backend. When calling UserOptionsManager::setOption
- * or ApiOptions, we automatically write to the appropiate store, based on where
+ * or ApiOptions, we automatically write to the appropriate store, based on where
  * a previous value existed, and the `global` flag.
  *
  * Launch task: https://phabricator.wikimedia.org/T323076

@@ -159,7 +159,7 @@ abstract class BagOStuff implements
 
 	/**
 	 * If supported, do not block on write operation completion; instead, treat writes as
-	 * succesful based on whether they could be buffered. When using this flag with methods
+	 * successful based on whether they could be buffered. When using this flag with methods
 	 * that yield item values, the boolean "true" will be used as a placeholder. The next
 	 * blocking operation (e.g. typical read) will trigger a flush of the operation buffer.
 	 */

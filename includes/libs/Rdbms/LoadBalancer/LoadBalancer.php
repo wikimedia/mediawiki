@@ -1113,7 +1113,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/**
-	 * @param string $extraLbError Separat load balancer error
+	 * @param string $extraLbError Separate load balancer error
 	 * @throws DBConnectionError
 	 * @return never
 	 */

@@ -224,7 +224,7 @@ class MniConverter extends LanguageConverterSpecific {
 					$this->isEndOfWord( $chars[ $i + 1 ] )
 				) )
 			) {
-				// Consonants without halantas should end with diacritics of aa sound everytime.
+				// Consonants without halantas should end with diacritics of aa sound every time.
 				yield self::MTEI_TO_BENG_MAP[$char] . self::MTEI_TO_BENG_MAP[self::DIACRITIC_AA];
 			} else {
 				yield (

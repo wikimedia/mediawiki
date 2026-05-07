@@ -2376,7 +2376,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *  - wall: Wall clock time
 	 *  - cpu: CPU time (requires getrusage)
 	 *
-	 * If recordTimeProfile() has noit been called since the most recent call to
+	 * If recordTimeProfile() has not been called since the most recent call to
 	 * resetParseStartTime(), or if resetParseStartTime() was never called, then
 	 * this method will return null.
 	 *

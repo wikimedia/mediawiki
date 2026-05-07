@@ -17,7 +17,7 @@ interface LocalUserOptionsStoreSaveHook {
 	 *
 	 * Hook handlers cannot modify the new preferences as the changes have been saved.
 	 * This will only allow handlers to see the changes in specifically local options
-	 * storage as opposed to any storge (which would be handled using {@link SaveUserOptionsHook}).
+	 * storage as opposed to any storage (which would be handled using {@link SaveUserOptionsHook}).
 	 *
 	 * @since 1.45
 	 *

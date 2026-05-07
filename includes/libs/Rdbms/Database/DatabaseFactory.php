@@ -64,14 +64,14 @@ class DatabaseFactory {
 	 *      The database must exist or an error might be thrown. Setting this to the empty string
 	 *      will avoid any such errors and make the handle have no implicit database scope. This is
 	 *      useful for queries like SHOW STATUS, CREATE DATABASE, or DROP DATABASE. Note that a
-	 *      "database" in Postgres is rougly equivalent to an entire MySQL server. This the domain
+	 *      "database" in Postgres is roughly equivalent to an entire MySQL server. This the domain
 	 *      in which user names and such are defined, e.g. users are database-specific in Postgres.
 	 *   - schema : The database schema to use (if supported). A "schema" in Postgres is roughly
 	 *      equivalent to a "database" in MySQL. Note that MySQL and SQLite do not use schemas.
 	 *   - tablePrefix : Optional table prefix that is implicitly added on to all table names
 	 *      recognized in queries. This can be used in place of schemas for handle site farms.
 	 *   - flags : Optional bit field of DBO_* constants that define connection, protocol,
-	 *      buffering, and transaction behavior. It is STRONGLY adviced to leave the DBO_DEFAULT
+	 *      buffering, and transaction behavior. It is STRONGLY advised to leave the DBO_DEFAULT
 	 *      flag in place UNLESS this this database simply acts as a key/value store.
 	 *   - ssl : Whether to use TLS connections.
 	 *   - strictWarnings: Whether to check for warnings and throw an exception if an unacceptable

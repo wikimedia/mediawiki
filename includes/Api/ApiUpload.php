@@ -7,7 +7,7 @@
  */
 
 /**
- * @todo: create a UploadCommandFactory and UploadComand classes to share logic with Special:Upload
+ * @todo: create a UploadCommandFactory and UploadCommand classes to share logic with Special:Upload
  * @todo: split the different cases of upload in subclasses or submethods.
  */
 

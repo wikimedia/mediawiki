@@ -112,7 +112,7 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Provides a caching key for an upload from url set of parameters
 	 * Used to set the status of an async job in UploadFromUrlJob
-	 * and retreive it in frontend clients like ApiUpload. Will return the
+	 * and retrieve it in frontend clients like ApiUpload. Will return the
 	 * empty string if not all parameters are present.
 	 *
 	 * @param array $params

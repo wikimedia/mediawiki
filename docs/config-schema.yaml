@@ -5747,7 +5747,7 @@ config-schema:
             results, MediaWiki will treat this external source as drop-in replacement
             for the database, not as replacement for the cache.
             This means if you enable $wgMiserMode, your external service does not
-            require high-availabilty and high-traffic support because you still benefit
+            require high-availability and high-traffic support because you still benefit
             from persistent cache (in the querycache table) and offline pull (via
             maintenance/updateSpecialPages.php, instead of a live user request).
             **Example:**

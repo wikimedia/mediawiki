@@ -162,7 +162,7 @@ An advantage of object stores is the reduced Round-Trip Times. This is
 achieved by avoiding the need to create each parent directory before placing a
 file somewhere. It gets worse the deeper the directory hierarchy is. Another
 advantage of object stores is that object listings tend to use databases, which
-scale better than the linked list directories that file sytems sometimes use.
+scale better than the linked list directories that file systems sometimes use.
 File systems like btrfs and xfs use tree structures, which scale better.
 For both object stores and file systems, using "/" in filenames will allow for the
 intuitive use of directory functions. For example, creating a file in Swift

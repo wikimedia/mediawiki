@@ -19,7 +19,7 @@ class UploadFromUrlJob extends Job implements GenericParameterJob {
 	use UploadJobTrait;
 
 	public function __construct( array $params ) {
-		// @TODO: fix the invokation of Job::__construct in the parent class
+		// @TODO: fix the invocation of Job::__construct in the parent class
 		parent::__construct( 'UploadFromUrl', $params );
 		$this->removeDuplicates = true;
 		$this->user = null;

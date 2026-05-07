@@ -14,7 +14,7 @@ use Throwable;
 /**
  * Formats incoming records into a one-line string.
  *
- * An 'exeception' in the log record's context will be treated specially.
+ * An 'exception' in the log record's context will be treated specially.
  * It will be output for an '%exception%' placeholder in the format and
  * excluded from '%context%' output if the '%exception%' placeholder is
  * present.

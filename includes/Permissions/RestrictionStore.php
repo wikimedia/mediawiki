@@ -527,7 +527,7 @@ class RestrictionStore {
 	 *   Third is an array of PageIdentity objects of the pages from
 	 *   which cascading restrictions have come, originating via templatelinks, which may be empty.
 	 *   Fourth is an array of PageIdentity objects of the pages from
-	 *   which cascading restrictions have come, orginating via imagelinks, which may be empty.
+	 *   which cascading restrictions have come, originating via imagelinks, which may be empty.
 	 */
 	public function getCascadeProtectionSources( PageIdentity $page ): array {
 		$page->assertWiki( PageIdentity::LOCAL );

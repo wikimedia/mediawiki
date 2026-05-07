@@ -1389,7 +1389,7 @@ class ApiPageSet extends ApiBase {
 	 * is merged. Note that if multiple titles redirect to the same target
 	 * the order of operations is undefined.
 	 *
-	 * Example to include generated data from redirect in target, prefering
+	 * Example to include generated data from redirect in target, preferring
 	 * the data generated for the destination when there is a collision:
 	 * @code
 	 *   $pageSet->setRedirectMergePolicy( function( array $current, array $new ) {
@@ -1397,7 +1397,7 @@ class ApiPageSet extends ApiBase {
 	 *   } );
 	 * @endcode
 	 *
-	 * @param callable|null $callable Recieves two array arguments, first the
+	 * @param callable|null $callable Receives two array arguments, first the
 	 *  generator data for the redirect target and second the generator data
 	 *  for the redirect source. Returns the resulting generator data to use
 	 *  for the redirect target.

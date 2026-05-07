@@ -233,7 +233,7 @@ $om=\uE050; # OM
 $lm = \uE055;#  Telugu Length Mark
 $ailm=\uE056;#  AI Length Mark
 $aulm=\uE057;#  AU Length Mark
-#urdu compatibity forms
+#urdu compatibility forms
 $uka=\uE058;
 $ukha=\uE059;
 $ugha=\uE05A;
@@ -551,7 +551,7 @@ $wse} $x → ĕ;
 $wso} $x → o;
 $om} $x → oṁ;
 
-# independent vowels when preceeded by vowels
+# independent vowels when preceded by vowels
 $vowels{$waa  → ''ā;
 $vowels{$wai  → ''ai;
 $vowels{$wau  → ''au;

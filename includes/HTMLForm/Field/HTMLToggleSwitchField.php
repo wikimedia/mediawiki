@@ -30,7 +30,7 @@ class HTMLToggleSwitchField extends HTMLCheckField {
 			$attr['classes'] = [ $this->mClass ];
 		}
 
-		// For the underlaying CheckboxInputWidget
+		// For the underlying CheckboxInputWidget
 		$attr['selected'] = $value;
 		$attr['value'] = '1';
 

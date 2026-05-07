@@ -1168,7 +1168,7 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	/**
-	 * Get the database identifer and prefixed table name identifier for a table
+	 * Get the database identifier and prefixed table name identifier for a table
 	 *
 	 * The table name is assumed to be relative to the current DB domain
 	 *

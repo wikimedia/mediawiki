@@ -1665,7 +1665,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 			ARRAY_FILTER_USE_BOTH
 		);
 		// Subclasses might need explicit type casting within "WITH...AS (VALUES ...)"
-		// so that these CTE rows can be referenced within the SET clause assigments.
+		// so that these CTE rows can be referenced within the SET clause assignments.
 		$typeByColumn = $useWith ? $this->getValueTypesForWithClause( $table ) : [];
 
 		$first = true;

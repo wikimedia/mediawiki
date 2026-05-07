@@ -257,7 +257,7 @@ class SiteConfiguration {
 			$retval = $thisSetting[$wiki];
 		} else {
 			if ( array_key_exists( "+$wiki", $thisSetting ) ) {
-				// Found mergable override by Wiki ID.
+				// Found mergeable override by Wiki ID.
 				// We continue to look for more merge candidates.
 				$retval = $thisSetting["+$wiki"];
 			}
@@ -265,18 +265,18 @@ class SiteConfiguration {
 			foreach ( $tags as $tag ) {
 				if ( array_key_exists( $tag, $thisSetting ) ) {
 					if ( is_array( $retval ) && is_array( $thisSetting[$tag] ) ) {
-						// Found a mergable override by Tag, without "+" operator.
+						// Found a mergeable override by Tag, without "+" operator.
 						// Merge it with any "+wiki" match from before, and stop the cascade.
 						$retval = self::arrayMerge( $retval, $thisSetting[$tag] );
 					} else {
-						// Found a non-mergable override by Tag.
+						// Found a non-mergeable override by Tag.
 						// This could in theory replace a "+wiki" match, but it should never happen
-						// that a setting uses both mergable array values and non-array values.
+						// that a setting uses both mergeable array values and non-array values.
 						$retval = $thisSetting[$tag];
 					}
 					return $retval;
 				} elseif ( array_key_exists( "+$tag", $thisSetting ) ) {
-					// Found a mergable override by Tag with "+" operator.
+					// Found a mergeable override by Tag with "+" operator.
 					// Merge it with any "+wiki" or "+tag" matches from before,
 					// and keep looking for more merge candidates.
 					$retval = self::arrayMerge( $retval ?? [], $thisSetting["+$tag"] );
@@ -285,7 +285,7 @@ class SiteConfiguration {
 
 			if ( array_key_exists( 'default', $thisSetting ) ) {
 				if ( is_array( $retval ) && is_array( $thisSetting['default'] ) ) {
-					// Found a mergable default
+					// Found a mergeable default
 					// Merge it with any "+wiki" or "+tag" matches from before.
 					$retval = self::arrayMerge( $retval, $thisSetting['default'] );
 				} else {

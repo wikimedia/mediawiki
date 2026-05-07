@@ -611,7 +611,7 @@ class ApiParse extends ApiBase {
 				$p_result->getWarningMsgs()
 			);
 			if ( $warningMsgs === [] ) {
-				// Backward compatibilty with cached ParserOutput from
+				// Backward compatibility with cached ParserOutput from
 				// MW <= 1.45 which didn't store the MessageValues (T343048)
 				$warningMsgs = array_map(
 					static fn ( $warning ) => new RawMessage( '$1', [ $warning ] ),

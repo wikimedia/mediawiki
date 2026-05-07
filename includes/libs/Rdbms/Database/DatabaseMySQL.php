@@ -65,7 +65,7 @@ class DatabaseMySQL extends Database {
 	 *   - sslKeyPath : path to key file [default: null]
 	 *   - sslCertPath : path to certificate file [default: null]
 	 *   - sslCAFile: path to a single certificate authority PEM file [default: null]
-	 *   - sslCAPath : parth to certificate authority PEM directory [default: null]
+	 *   - sslCAPath : path to certificate authority PEM directory [default: null]
 	 *   - sslCiphers : array list of allowable ciphers [default: null]
 	 * @param array $params
 	 */

@@ -873,7 +873,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * Issue ATTATCH statements for all unattached foreign DBs in table aliases
+	 * Issue ATTACH statements for all unattached foreign DBs in table aliases
 	 */
 	private function attachDatabasesFromTableAliases() {
 		foreach ( $this->platform->getTableAliases() as $params ) {

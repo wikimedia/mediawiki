@@ -155,7 +155,7 @@ class Xml {
 	 *     apply to the label as well; only class and title are applied.
 	 * @return string HTML
 	 *
-	 * @deprecated since 1.42, use {@see Html::label} instead; emiting warnings since 1.46
+	 * @deprecated since 1.42, use {@see Html::label} instead; emitting warnings since 1.46
 	 */
 	public static function label( $label, $id, $attribs = [] ) {
 		wfDeprecated( __METHOD__, '1.42' );
@@ -207,7 +207,7 @@ class Xml {
 	 * @param int|null $tabindex Value of the tabindex attribute
 	 * @return string
 	 *
-	 * @deprecated since 1.42; use the equivalent methods in Html without a wrapper; emiting warnings since 1.46
+	 * @deprecated since 1.42; use the equivalent methods in Html without a wrapper; emitting warnings since 1.46
 	 */
 	public static function listDropdown( $name = '', $list = '', $other = '',
 		$selected = '', $class = '', $tabindex = null
@@ -242,7 +242,7 @@ class Xml {
 	 *   - string $params['other'] If set, add an option with this as text and a value of 'other'
 	 * @return array Array keys are textual labels, values are internal values
 	 *
-	 * @deprecated since 1.42; use the equivalent method in Html; emiting warnings since 1.46
+	 * @deprecated since 1.42; use the equivalent method in Html; emitting warnings since 1.46
 	 */
 	public static function listDropdownOptions( $list, $params = [] ) {
 		wfDeprecated( __METHOD__, '1.42' );
@@ -296,7 +296,7 @@ class Xml {
 	 * @param array $options Options, as returned e.g. by Xml::listDropdownOptions()
 	 * @return array
 	 *
-	 * @deprecated since 1.42; use the equivalent method in Html; emiting warnings since 1.46
+	 * @deprecated since 1.42; use the equivalent method in Html; emitting warnings since 1.46
 	 */
 	public static function listDropdownOptionsOoui( $options ) {
 		wfDeprecated( __METHOD__, '1.42' );

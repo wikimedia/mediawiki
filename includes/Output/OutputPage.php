@@ -4605,7 +4605,7 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		# Alternate URLs for interlanguage links would be handeled in HTML body tag instead of
+		# Alternate URLs for interlanguage links would be handled in HTML body tag instead of
 		#  head tag, see T326829.
 
 		if ( $languageUrls ) {

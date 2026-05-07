@@ -112,7 +112,7 @@ class LinkHolderArray {
 
 		$this->size++;
 		if ( $nt->isExternal() ) {
-			// Use a globally unique ID to keep the objects mergable
+			// Use a globally unique ID to keep the objects mergeable
 			$this->interwikis[$key] = $entry;
 			return "<!--IWLINK'\" $key-->{$trail}";
 		} else {

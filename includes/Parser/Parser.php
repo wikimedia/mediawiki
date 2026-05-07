@@ -3774,7 +3774,7 @@ class Parser {
 			// 'revision-record' to false instead of null if it was unavailable,
 			// so that callers to use isset and then rely on the revision-record
 			// key instead of the revision key, even if there was no corresponding
-			// object - we continue to set to false here for backwards compatability
+			// object - we continue to set to false here for backwards compatibility
 			'revision-record' => $revRecord ?: false,
 			'text' => $text,
 			'finalTitle' => $finalTitle,
@@ -4811,7 +4811,7 @@ class Parser {
 			}
 		}
 
-		# Make sure nickname doesnt get a sig in a sig
+		# Make sure nickname doesn't get a sig in a sig
 		$nickname = self::cleanSigInSig( $nickname );
 
 		# If we're still here, make it a link to the user page

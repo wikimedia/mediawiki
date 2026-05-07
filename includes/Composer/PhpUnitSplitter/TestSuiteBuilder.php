@@ -29,7 +29,7 @@ class TestSuiteBuilder {
 	 * wrong we fall back to just creating split-groups with the same number of tests in them.
 	 *
 	 * @param array $testDescriptors the list of tests that we want to sort into split_groups
-	 * @param int $groups the number of split_groups we are targetting
+	 * @param int $groups the number of split_groups we are targeting
 	 * @param ?int $chunkSize optionally override the size of the 'chunks' into which tests
 	 *             are grouped. If not supplied, the chunk size will depend on the total number
 	 *             of tests.

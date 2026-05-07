@@ -107,7 +107,7 @@ final class PageBundleParserOutputConverter {
 		// NOTE that the fragments from the ContentHolder are missing
 		// from this page bundle.  It is assumed that the fragments
 		// are referenced from other parts of the ParserOutput; aka that
-		// they are loaded/saved as part of ParserOuput::$mIndicators
+		// they are loaded/saved as part of ParserOutput::$mIndicators
 		return $pb;
 	}
 

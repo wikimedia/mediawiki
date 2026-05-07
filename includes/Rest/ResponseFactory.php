@@ -36,7 +36,7 @@ class ResponseFactory {
 	}
 
 	/**
-	 * Control whether web responses may include a exception messanger and backtrace
+	 * Control whether web responses may include a exception messenger and backtrace
 	 *
 	 * @see $wgShowExceptionDetails
 	 * @since 1.39
