@@ -1026,6 +1026,8 @@
 	"apihelp-query+languageinfo-paramvalue-prop-digittransforms": "이 언어에서의 숫자 형태에 대한 자리수 변환입니다.",
 	"apihelp-query+languageinfo-paramvalue-prop-digitgroupingpattern": "이 언어에서의 숫자 형태에 대한 묶음 패턴입니다.",
 	"apihelp-query+languageinfo-paramvalue-prop-minimumgroupingdigits": "자릿수로, 이 자릿수 이하의 숫자 묶음은 숨겨집니다.",
+	"apihelp-query+languageinfo-paramvalue-prop-namespacenames": "이 언어로의 이 위키의 이름공간의 이름들입니다.",
+	"apihelp-query+languageinfo-paramvalue-prop-namespacealiases": "이 언어로의 이 위키의 이름공간 이름들에 대한 별명들입니다.",
 	"apihelp-query+languageinfo-param-code": "반환되어야 하는 언어의 언어 코드입니다. 모든 언어에 경우에는 <code>*</code>를 입력합니다.",
 	"apihelp-query+languageinfo-example-simple": "지원하는 모든 언어의 언어 코드를 가져옵니다.",
 	"apihelp-query+languageinfo-example-autonym-name-de": "지원되는 모든 언어의 본명과 독일어 이름을 가져옵니다.",

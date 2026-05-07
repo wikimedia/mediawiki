@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Abakar B",
+			"Alkmen-Alesia",
 			"Automatik",
 			"Cigaryno",
 			"Crochet.david",
@@ -81,6 +82,7 @@
 	"prefs-user-downloaddata-info": "Mes données de compte sur ce projet",
 	"prefs-user-restoreprefs-label": "Réinitialiser la configuration :",
 	"prefs-user-restoreprefs-info": "Rétablir toutes les préférences par défaut (dans toutes les sections)",
+	"prefs-accountsecurity": "Sécurité du compte",
 	"prefs-i18n": "Préférences langagières",
 	"yourlanguage": "Langue :",
 	"yourgender": "Comment préférez-vous qu’on vous décrive ?",

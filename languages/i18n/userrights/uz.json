@@ -4,6 +4,7 @@
 			"Abdulla",
 			"Casual",
 			"CoderSI",
+			"Mainculprit",
 			"Malikxan",
 			"Sociologist"
 		]
@@ -93,7 +94,7 @@
 	"action-edit": "ushbu sahifani tahrirlash",
 	"action-createpage": "bu sahifani yaratish",
 	"action-createtalk": "bu munozara sahifani yaratish",
-	"action-createaccount": "bu foydalanuvchi hisobini yaratish",
+	"action-createaccount": "ushbu foydalanuvchi akkauntini yaratish",
 	"action-move": "bu sahifani koʻchirish",
 	"action-move-subpages": "Bu sahifani va uning ostsahifalarini koʻchirish",
 	"action-movefile": "ushbu faylni ko‘chirish",

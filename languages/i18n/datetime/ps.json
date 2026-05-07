@@ -124,7 +124,7 @@
 	"hours-abbrev": "$1 گ",
 	"minutes-abbrev": "$1 دقيقې",
 	"seconds-abbrev": "$1 ث",
-	"ago": "$1 دمخه",
+	"ago": "$1 مخکې",
 	"duration-millennia": "$1 {{PLURAL:$1|زرمه|زرمې}}",
 	"duration-centuries": "$1 {{PLURAL:$1|پېړۍ}}",
 	"duration-decades": "$1 {{PLURAL:$1|لسيزه|لسيزې}}",
