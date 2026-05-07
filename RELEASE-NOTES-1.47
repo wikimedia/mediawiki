@@ -156,6 +156,8 @@ because of Phabricator reports.
   ContextSource instead, falling back to RequestContext::getMain(). As MediaWiki
   Core no longer reads from $wgLang, writing to $wgLang in extensions will no
   longer affect core.
+* Skin::mapInterwikiToLanguage has been deprecated. Use the
+  InterlanguageLinkCodeMap config setting directly.
 * …
 
 === Other changes in 1.47 ===

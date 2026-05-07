@@ -1202,8 +1202,11 @@ abstract class Skin extends ContextSource {
 	 * @param string $code
 	 * @return string
 	 * @since 1.35
+	 * @deprecated since 1.47 No longer used by core. Use the
+	 *   InterlanguageLinkCodeMap config setting directly.
 	 */
 	public function mapInterwikiToLanguage( $code ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		$map = $this->getConfig()->get( MainConfigNames::InterlanguageLinkCodeMap );
 		return $map[ $code ] ?? $code;
 	}
