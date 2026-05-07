@@ -2,9 +2,12 @@
 
 namespace MediaWiki\Tests\Unit\EditPage;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\PageEditingHelper;
+use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Revision\RevisionStore;
 use MediaWikiUnitTestCase;
@@ -16,9 +19,13 @@ class PageEditingHelperUnitTest extends MediaWikiUnitTestCase {
 
 	private function createPageEditingHelper(
 		?IContentHandlerFactory $contentHandlerFactory = null,
+		array $configOverrides = [],
 	): PageEditingHelper {
 		$contentHandlerFactory ??= $this->createMock( IContentHandlerFactory::class );
 		return new PageEditingHelper(
+			new ServiceOptions( PageEditingHelper::CONSTRUCTOR_OPTIONS, $configOverrides + [
+				MainConfigNames::EditSubmitButtonLabelPublish => false,
+			] ),
 			$contentHandlerFactory,
 			$this->createMock( ParserFactory::class ),
 			$this->createMock( RevisionStore::class ),
@@ -57,6 +64,48 @@ class PageEditingHelperUnitTest extends MediaWikiUnitTestCase {
 			$pageEditingHelper->isSupportedContentModel( 'unsupported', true ),
 			'Should return true if the content model is not supported but the API edit override is enabled.'
 		);
+	}
+
+	/**
+	 * @dataProvider provideGetSubmitButtonLabel
+	 */
+	public function testGetSubmitButtonLabel(
+		bool $usePublishLabels,
+		bool $pageExists,
+		string $expectedLabel,
+	) {
+		$page = $this->createMock( PageIdentity::class );
+		$page->method( 'exists' )->willReturn( $pageExists );
+
+		$pageEditingHelper = $this->createPageEditingHelper( configOverrides: [
+			MainConfigNames::EditSubmitButtonLabelPublish => $usePublishLabels,
+		] );
+		$this->assertEquals( $expectedLabel, $pageEditingHelper->getSubmitButtonLabel( $page ) );
+	}
+
+	public static function provideGetSubmitButtonLabel(): array {
+		return [
+			[
+				false,
+				false,
+				'savearticle',
+			],
+			[
+				false,
+				true,
+				'savechanges',
+			],
+			[
+				true,
+				false,
+				'publishpage',
+			],
+			[
+				true,
+				true,
+				'publishchanges',
+			],
+		];
 	}
 
 }

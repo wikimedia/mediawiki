@@ -15,95 +15,75 @@ use Wikimedia\Message\MessageSpecifier;
  * @since 1.47
  */
 class PageEditInputs {
-	// TODO This class should have setters
 
-	/**
-	 * @param bool $allowBlankArticle
-	 * @param bool $allowBlankSummary
-	 * @param ?LinkTarget $allowedProblematicRedirectTarget
-	 * @param Authority $authority
-	 * @param string $autoSumm
-	 * @param string[] $changeTags
-	 * @param string|null $contentFormat
-	 * @param string $contentModel
-	 * @param IContextSource $context
-	 * @param ?PageReference $contextPage
-	 * @param string|null $edittime
-	 * @param int|null $editRevId
-	 * @param bool $enableApiEditOverride
-	 * @param bool $ignoreProblematicRedirects
-	 * @param bool $ignoreRevisionDeletedWarning
-	 * @param bool $markAsBot
-	 * @param bool $markAsMinor
-	 * @param string|null $newSectionAnchor
-	 * @param int $oldid
-	 * @param ProperPageIdentity $page
-	 * @param int $parentRevId
-	 * @param bool $recreate
-	 * @param string $section
-	 * @param string|null $sectiontitle
-	 * @param string|null $starttime
-	 * @param MessageSpecifier $submitButtonLabel
-	 * @param string $summary
-	 * @param string $textbox1
-	 * @param int $undidRev
-	 * @param int $undoAfter
-	 * @param UserIdentity $userForPreview
-	 * @param UserIdentity $userForSave
-	 * @param string|null $watchlistExpiry
-	 * @param int[] $watchlistLabels
-	 * @param bool $watchthis
-	 */
+	private bool $allowBlankArticle = false;
+	private bool $allowBlankSummary = false;
+	private ?LinkTarget $allowedProblematicRedirectTarget = null;
+	private string $autoSumm = '';
+	/** @var string[] */
+	private array $changeTags = [];
+	private ?string $contentFormat = null;
+	private ?PageReference $contextPage = null;
+	private ?string $edittime = null;
+	private ?int $editRevId = null;
+	private bool $enableApiEditOverride = false;
+	private bool $ignoreProblematicRedirects = false;
+	private bool $ignoreRevisionDeletedWarning = false;
+	private bool $markAsBot = false;
+	private bool $markAsMinor = false;
+	private ?string $newSectionAnchor = null;
+	private int $oldid = 0;
+	private int $parentRevId = 0;
+	private bool $recreate = false;
+	private string $section = '';
+	private ?string $sectiontitle = null;
+	private ?string $starttime = null;
+	private ?MessageSpecifier $submitButtonLabel = null;
+	private int $undidRev = 0;
+	private int $undoAfter = 0;
+	private ?UserIdentity $userForPreview = null;
+	private ?UserIdentity $userForSave = null;
+	private ?string $watchlistExpiry = null;
+	/** @var int[] */
+	private array $watchlistLabels = [];
+	private bool $watchthis = false;
+
 	public function __construct(
-		// TODO Most parameters should be optional
-		private bool $allowBlankArticle,
-		private bool $allowBlankSummary,
-		private ?LinkTarget $allowedProblematicRedirectTarget,
 		private Authority $authority,
-		private string $autoSumm,
-		private array $changeTags,
-		private ?string $contentFormat,
 		private string $contentModel,
 		private IContextSource $context,
-		private ?PageReference $contextPage,
-		private ?string $edittime,
-		private ?int $editRevId,
-		private bool $enableApiEditOverride,
-		private bool $ignoreProblematicRedirects,
-		private bool $ignoreRevisionDeletedWarning,
-		private bool $markAsBot,
-		private bool $markAsMinor,
-		private ?string $newSectionAnchor,
-		private int $oldid,
 		private ProperPageIdentity $page,
-		private int $parentRevId,
-		private bool $recreate,
-		private string $section,
-		private ?string $sectiontitle,
-		private ?string $starttime,
-		private MessageSpecifier $submitButtonLabel,
 		private string $summary,
 		private string $textbox1,
-		private int $undidRev,
-		private int $undoAfter,
-		private UserIdentity $userForPreview,
-		private UserIdentity $userForSave,
-		private ?string $watchlistExpiry,
-		private array $watchlistLabels,
-		private bool $watchthis,
 	) {
+		$this->starttime = wfTimestampNow();
 	}
 
 	public function shouldAllowBlankArticle(): bool {
 		return $this->allowBlankArticle;
 	}
 
+	public function setAllowBlankArticle( bool $allowBlankArticle ): self {
+		$this->allowBlankArticle = $allowBlankArticle;
+		return $this;
+	}
+
 	public function shouldAllowBlankSummary(): bool {
 		return $this->allowBlankSummary;
 	}
 
+	public function setAllowBlankSummary( bool $allowBlankSummary ): self {
+		$this->allowBlankSummary = $allowBlankSummary;
+		return $this;
+	}
+
 	public function getAllowedProblematicRedirectTarget(): ?LinkTarget {
 		return $this->allowedProblematicRedirectTarget;
+	}
+
+	public function setAllowedProblematicRedirectTarget( ?LinkTarget $allowedProblematicRedirectTarget ): self {
+		$this->allowedProblematicRedirectTarget = $allowedProblematicRedirectTarget;
+		return $this;
 	}
 
 	public function getAuthority(): Authority {
@@ -114,12 +94,33 @@ class PageEditInputs {
 		return $this->autoSumm;
 	}
 
+	public function setAutoSumm( string $autoSumm ): self {
+		$this->autoSumm = $autoSumm;
+		return $this;
+	}
+
+	/**
+	 * @return string[]
+	 */
 	public function getChangeTags(): array {
 		return $this->changeTags;
 	}
 
+	/**
+	 * @param string[] $changeTags
+	 */
+	public function setChangeTags( array $changeTags ): self {
+		$this->changeTags = $changeTags;
+		return $this;
+	}
+
 	public function getContentFormat(): ?string {
 		return $this->contentFormat;
+	}
+
+	public function setContentFormat( ?string $contentFormat ): self {
+		$this->contentFormat = $contentFormat;
+		return $this;
 	}
 
 	public function getContentModel(): string {
@@ -134,40 +135,90 @@ class PageEditInputs {
 		return $this->contextPage ?? $this->getPage();
 	}
 
+	public function setContextPage( ?PageReference $contextPage ): self {
+		$this->contextPage = $contextPage;
+		return $this;
+	}
+
 	public function getEdittime(): ?string {
 		return $this->edittime;
+	}
+
+	public function setEdittime( ?string $edittime ): self {
+		$this->edittime = $edittime;
+		return $this;
 	}
 
 	public function getEditRevId(): ?int {
 		return $this->editRevId;
 	}
 
+	public function setEditRevId( ?int $editRevId ): self {
+		$this->editRevId = $editRevId;
+		return $this;
+	}
+
 	public function shouldEnableApiEditOverride(): bool {
 		return $this->enableApiEditOverride;
+	}
+
+	public function setEnableApiEditOverride( bool $enableApiEditOverride ): self {
+		$this->enableApiEditOverride = $enableApiEditOverride;
+		return $this;
 	}
 
 	public function shouldIgnoreProblematicRedirects(): bool {
 		return $this->ignoreProblematicRedirects;
 	}
 
+	public function setIgnoreProblematicRedirects( bool $ignoreProblematicRedirects ): self {
+		$this->ignoreProblematicRedirects = $ignoreProblematicRedirects;
+		return $this;
+	}
+
 	public function shouldIgnoreRevisionDeletedWarning(): bool {
 		return $this->ignoreRevisionDeletedWarning;
+	}
+
+	public function setIgnoreRevisionDeletedWarning( bool $ignoreRevisionDeletedWarning ): self {
+		$this->ignoreRevisionDeletedWarning = $ignoreRevisionDeletedWarning;
+		return $this;
 	}
 
 	public function shouldMarkAsBot(): bool {
 		return $this->markAsBot;
 	}
 
+	public function setMarkAsBot( bool $markAsBot ): self {
+		$this->markAsBot = $markAsBot;
+		return $this;
+	}
+
 	public function shouldMarkAsMinor(): bool {
 		return $this->markAsMinor;
+	}
+
+	public function setMarkAsMinor( bool $markAsMinor ): self {
+		$this->markAsMinor = $markAsMinor;
+		return $this;
 	}
 
 	public function getNewSectionAnchor(): ?string {
 		return $this->newSectionAnchor;
 	}
 
+	public function setNewSectionAnchor( ?string $newSectionAnchor ): self {
+		$this->newSectionAnchor = $newSectionAnchor;
+		return $this;
+	}
+
 	public function getOldid(): int {
 		return $this->oldid;
+	}
+
+	public function setOldid( int $oldid ): self {
+		$this->oldid = $oldid;
+		return $this;
 	}
 
 	public function getPage(): ProperPageIdentity {
@@ -178,24 +229,54 @@ class PageEditInputs {
 		return $this->parentRevId;
 	}
 
+	public function setParentRevId( int $parentRevId ): self {
+		$this->parentRevId = $parentRevId;
+		return $this;
+	}
+
 	public function shouldRecreate(): bool {
 		return $this->recreate;
+	}
+
+	public function setRecreate( bool $recreate ): self {
+		$this->recreate = $recreate;
+		return $this;
 	}
 
 	public function getSection(): string {
 		return $this->section;
 	}
 
+	public function setSection( string $section ): self {
+		$this->section = $section;
+		return $this;
+	}
+
 	public function getSectiontitle(): ?string {
 		return $this->sectiontitle;
+	}
+
+	public function setSectiontitle( ?string $sectiontitle ): self {
+		$this->sectiontitle = $sectiontitle;
+		return $this;
 	}
 
 	public function getStarttime(): ?string {
 		return $this->starttime;
 	}
 
-	public function getSubmitButtonLabel(): MessageSpecifier {
+	public function setStarttime( ?string $starttime ): self {
+		$this->starttime = $starttime;
+		return $this;
+	}
+
+	public function getSubmitButtonLabel(): ?MessageSpecifier {
 		return $this->submitButtonLabel;
+	}
+
+	public function setSubmitButtonLabel( ?MessageSpecifier $submitButtonLabel ): self {
+		$this->submitButtonLabel = $submitButtonLabel;
+		return $this;
 	}
 
 	public function getSummary(): string {
@@ -210,20 +291,45 @@ class PageEditInputs {
 		return $this->undidRev;
 	}
 
+	public function setUndidRev( int $undidRev ): self {
+		$this->undidRev = $undidRev;
+		return $this;
+	}
+
 	public function getUndoAfter(): int {
 		return $this->undoAfter;
 	}
 
+	public function setUndoAfter( int $undoAfter ): self {
+		$this->undoAfter = $undoAfter;
+		return $this;
+	}
+
 	public function getUserForPreview(): UserIdentity {
-		return $this->userForPreview;
+		return $this->userForPreview ?? $this->getAuthority()->getUser();
+	}
+
+	public function setUserForPreview( ?UserIdentity $userForPreview ): self {
+		$this->userForPreview = $userForPreview;
+		return $this;
 	}
 
 	public function getUserForSave(): UserIdentity {
-		return $this->userForSave;
+		return $this->userForSave ?? $this->getAuthority()->getUser();
+	}
+
+	public function setUserForSave( ?UserIdentity $userForSave ): self {
+		$this->userForSave = $userForSave;
+		return $this;
 	}
 
 	public function getWatchlistExpiry(): ?string {
 		return $this->watchlistExpiry;
+	}
+
+	public function setWatchlistExpiry( ?string $watchlistExpiry ): self {
+		$this->watchlistExpiry = $watchlistExpiry;
+		return $this;
 	}
 
 	/**
@@ -233,8 +339,21 @@ class PageEditInputs {
 		return $this->watchlistLabels;
 	}
 
+	/**
+	 * @param int[] $watchlistLabels
+	 */
+	public function setWatchlistLabels( array $watchlistLabels ): self {
+		$this->watchlistLabels = $watchlistLabels;
+		return $this;
+	}
+
 	public function shouldWatchthis(): bool {
 		return $this->watchthis;
+	}
+
+	public function setWatchthis( bool $watchthis ): self {
+		$this->watchthis = $watchthis;
+		return $this;
 	}
 
 }

@@ -3280,6 +3280,7 @@ return [
 
 	'_PageEditingHelper' => static function ( MediaWikiServices $services ): PageEditingHelper {
 		return new PageEditingHelper(
+			new ServiceOptions( PageEditingHelper::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentHandlerFactory(),
 			$services->getParserFactory(),
 			$services->getRevisionStore(),

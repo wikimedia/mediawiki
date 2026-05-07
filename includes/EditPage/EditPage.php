@@ -2008,43 +2008,43 @@ class EditPage implements IEditObject {
 				->setValue( self::AS_UNICODE_NOT_SUPPORTED );
 		}
 
-		$pageEdit = $this->pageEditFactory->newPageEdit( new PageEditInputs(
-			allowBlankArticle: $this->allowBlankArticle,
-			allowBlankSummary: $this->allowBlankSummary,
-			allowedProblematicRedirectTarget: $this->allowedProblematicRedirectTarget,
+		$inputs = ( new PageEditInputs(
 			authority: $this->getAuthority(),
-			autoSumm: $this->autoSumm,
-			changeTags: $this->changeTags,
-			contentFormat: $this->contentFormat,
 			contentModel: $this->contentModel,
 			context: $this->context,
-			contextPage: $this->mContextTitle,
-			edittime: $this->edittime,
-			editRevId: $this->editRevId,
-			enableApiEditOverride: $this->enableApiEditOverride,
-			ignoreProblematicRedirects: $this->ignoreProblematicRedirects,
-			ignoreRevisionDeletedWarning: $this->ignoreRevisionDeletedWarning,
-			markAsBot: $markAsBot,
-			markAsMinor: $markAsMinor,
-			newSectionAnchor: $this->newSectionAnchor,
-			oldid: $this->oldid,
 			page: $this->page,
-			parentRevId: $this->parentRevId,
-			recreate: $this->recreate,
-			section: $this->section,
-			sectiontitle: $this->sectiontitle,
-			starttime: $this->starttime,
-			submitButtonLabel: new MessageValue( $this->getSubmitButtonLabel() ),
 			summary: $this->summary,
 			textbox1: $this->textbox1,
-			undidRev: $this->undidRev,
-			undoAfter: $this->undoAfter,
-			userForPreview: $this->getUserForPreview(),
-			userForSave: $this->getUserForSave(),
-			watchlistExpiry: $this->watchlistExpiry,
-			watchlistLabels: $this->watchlistLabels,
-			watchthis: $this->watchthis,
-		) );
+		) )->setAllowBlankArticle( $this->allowBlankArticle )
+			->setAllowBlankSummary( $this->allowBlankSummary )
+			->setAllowedProblematicRedirectTarget( $this->allowedProblematicRedirectTarget )
+			->setAutoSumm( $this->autoSumm )
+			->setChangeTags( $this->changeTags )
+			->setContentFormat( $this->contentFormat )
+			->setContextPage( $this->mContextTitle )
+			->setEdittime( $this->edittime )
+			->setEditRevId( $this->editRevId )
+			->setEnableApiEditOverride( $this->enableApiEditOverride )
+			->setIgnoreProblematicRedirects( $this->ignoreProblematicRedirects )
+			->setIgnoreRevisionDeletedWarning( $this->ignoreRevisionDeletedWarning )
+			->setMarkAsBot( $markAsBot )
+			->setMarkAsMinor( $markAsMinor )
+			->setNewSectionAnchor( $this->newSectionAnchor )
+			->setOldid( $this->oldid )
+			->setParentRevId( $this->parentRevId )
+			->setRecreate( $this->recreate )
+			->setSection( $this->section )
+			->setSectiontitle( $this->sectiontitle )
+			->setStarttime( $this->starttime )
+			->setUndidRev( $this->undidRev )
+			->setUndoAfter( $this->undoAfter )
+			->setUserForPreview( $this->getUserForPreview() )
+			->setUserForSave( $this->getUserForSave() )
+			->setWatchlistExpiry( $this->watchlistExpiry )
+			->setWatchlistLabels( $this->watchlistLabels )
+			->setWatchthis( $this->watchthis );
+
+		$pageEdit = $this->pageEditFactory->newPageEdit( $inputs );
 		$pageEditResult = $pageEdit->edit();
 
 		// PageEdit writes to those properties, so update them for backwards compatibility
@@ -3772,25 +3772,6 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Get the message key of the label for the button to save the page
-	 */
-	private function getSubmitButtonLabel(): string {
-		$labelAsPublish =
-			$this->context->getConfig()->get( MainConfigNames::EditSubmitButtonLabelPublish );
-
-		// Can't use $this->isNew as that's also true if we're adding a new section to an extant page
-		$newPage = !$this->page->exists();
-
-		if ( $labelAsPublish ) {
-			$buttonLabelKey = $newPage ? 'publishpage' : 'publishchanges';
-		} else {
-			$buttonLabelKey = $newPage ? 'savearticle' : 'savechanges';
-		}
-
-		return $buttonLabelKey;
-	}
-
-	/**
 	 * Returns an array of html code of the following buttons:
 	 * save, diff and preview
 	 *
@@ -3806,7 +3787,7 @@ class EditPage implements IEditObject {
 		$labelAsPublish =
 			$this->context->getConfig()->get( MainConfigNames::EditSubmitButtonLabelPublish );
 
-		$buttonLabel = $this->context->msg( $this->getSubmitButtonLabel() )->text();
+		$buttonLabel = $this->context->msg( $this->pageEditingHelper->getSubmitButtonLabel( $this->page ) )->text();
 		$buttonTooltip = $labelAsPublish ? 'publish' : 'save';
 
 		$buttons['save'] = new OOUI\ButtonInputWidget( [
@@ -3955,7 +3936,7 @@ class EditPage implements IEditObject {
 
 	private function getEditConflictHelper(): TextConflictHelper {
 		if ( !$this->editConflictHelper ) {
-			$label = $this->getSubmitButtonLabel();
+			$label = $this->pageEditingHelper->getSubmitButtonLabel( $this->page );
 			if ( $this->editConflictHelperFactory ) {
 				$this->editConflictHelper = ( $this->editConflictHelperFactory )( $label );
 			} else {

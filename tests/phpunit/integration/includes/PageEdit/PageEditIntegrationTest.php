@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\PageEdit;
 
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Language\RawMessage;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\PageEdit\PageEdit;
 use MediaWiki\PageEdit\PageEditFactory;
@@ -28,43 +27,15 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 		int $undidRev = 0,
 		int $undoAfter = 0,
 	) {
-		$inputs = new PageEditInputs(
-			allowBlankArticle: false,
-			allowBlankSummary: false,
-			allowedProblematicRedirectTarget: null,
+		$inputs = ( new PageEditInputs(
 			authority: $user->getAuthority(),
-			autoSumm: '',
-			changeTags: [],
-			contentFormat: null,
 			contentModel: $page->getTitle()->getContentModel(),
 			context: RequestContext::getMain(),
-			contextPage: $page,
-			edittime: null,
-			editRevId: null,
-			enableApiEditOverride: false,
-			ignoreProblematicRedirects: false,
-			ignoreRevisionDeletedWarning: false,
-			markAsBot: false,
-			markAsMinor: false,
-			newSectionAnchor: null,
-			oldid: 0,
 			page: $page,
-			parentRevId: $page->getRevisionRecord()->getId(),
-			recreate: false,
-			section: '',
-			sectiontitle: null,
-			starttime: null,
-			submitButtonLabel: new RawMessage( '' ),
 			summary: 'Edit summary',
 			textbox1: $textbox1,
-			undidRev: $undidRev,
-			undoAfter: $undoAfter,
-			userForPreview: $user->getUser(),
-			userForSave: $user->getUser(),
-			watchlistExpiry: null,
-			watchlistLabels: [],
-			watchthis: false,
-		);
+		) )->setUndidRev( $undidRev )
+			->setUndoAfter( $undoAfter );
 
 		$factory = $this->getServiceContainer()->getService( '_PageEditFactory' );
 		/** @var PageEditFactory $factory */

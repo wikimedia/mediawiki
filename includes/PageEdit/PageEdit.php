@@ -44,6 +44,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -496,7 +497,7 @@ class PageEdit implements IEditObject {
 				$title,
 				$this->inputs->shouldRecreate(),
 				$this->inputs->getStarttime(),
-				$this->inputs->getSubmitButtonLabel(),
+				$this->getSubmitButtonLabel(),
 			)
 		);
 	}
@@ -514,7 +515,7 @@ class PageEdit implements IEditObject {
 				$this->inputs->getPage(),
 				$this->inputs->shouldAllowBlankArticle(),
 				$this->textbox1,
-				$this->inputs->getSubmitButtonLabel()
+				$this->getSubmitButtonLabel()
 			),
 
 			$this->constraintFactory->newEditFilterMergedContentHookConstraint(
@@ -554,7 +555,7 @@ class PageEdit implements IEditObject {
 				$this->section,
 				$this->inputs->getSectiontitle() ?? '',
 				$this->inputs->shouldAllowBlankSummary(),
-				$this->inputs->getSubmitButtonLabel()
+				$this->getSubmitButtonLabel()
 			),
 			new MissingCommentConstraint( $this->section, $this->textbox1 ),
 			new ExistingSectionEditConstraint(
@@ -570,7 +571,7 @@ class PageEdit implements IEditObject {
 					$this->inputs->getContentModel(),
 					$this->section,
 				),
-				$this->inputs->getSubmitButtonLabel()
+				$this->getSubmitButtonLabel()
 			),
 			new RevisionDeletedConstraint(
 				$this->inputs->shouldIgnoreRevisionDeletedWarning(),
@@ -581,7 +582,7 @@ class PageEdit implements IEditObject {
 				$this->inputs->getAuthority(),
 				MessageValue::new(
 					'edit-constraint-warning-wrapper-save-deleted-revision',
-					[ $this->inputs->getSubmitButtonLabel() ],
+					[ $this->getSubmitButtonLabel() ],
 				),
 			),
 		);
@@ -607,7 +608,7 @@ class PageEdit implements IEditObject {
 					$this->inputs->getPage(),
 					MessageValue::new(
 						'edit-constraint-warning-wrapper-save',
-						[ $this->inputs->getSubmitButtonLabel() ],
+						[ $this->getSubmitButtonLabel() ],
 					),
 					$this->inputs->getContentFormat(),
 				)
@@ -762,7 +763,7 @@ class PageEdit implements IEditObject {
 		$log->setComment( $reason );
 		$log->setParameters( [
 			'4::oldmodel' => $oldModel,
-			'5::newmodel' => $newModel
+			'5::newmodel' => $newModel,
 		] );
 		$logid = $log->insert();
 		$log->publish( $logid );
@@ -792,6 +793,11 @@ class PageEdit implements IEditObject {
 		);
 
 		$this->watchedItemStore->maybeEnqueueWatchlistExpiryJob();
+	}
+
+	private function getSubmitButtonLabel(): MessageSpecifier {
+		return $this->inputs->getSubmitButtonLabel() ??
+			new MessageValue( $this->pageEditingHelper->getSubmitButtonLabel( $this->inputs->getPage() ) );
 	}
 
 }

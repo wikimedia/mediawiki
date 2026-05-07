@@ -2,10 +2,13 @@
 
 namespace MediaWiki\EditPage;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\UnknownContentModelException;
 use MediaWiki\Content\UnsupportedContentFormatException;
+use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserFactory;
@@ -22,11 +25,17 @@ use Wikimedia\Rdbms\IDBAccessObject;
  */
 class PageEditingHelper {
 
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::EditSubmitButtonLabelPublish,
+	];
+
 	public function __construct(
+		private readonly ServiceOptions $options,
 		private readonly IContentHandlerFactory $contentHandlerFactory,
 		private readonly ParserFactory $parserFactory,
 		private readonly RevisionStore $revisionStore,
 	) {
+		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 	}
 
 	/**
@@ -220,6 +229,23 @@ class PageEditingHelper {
 			);
 		}
 		return null;
+	}
+
+	/**
+	 * Get the message key of the label for the button to save the page
+	 *
+	 * @param PageIdentity $page The page that's being edited.
+	 */
+	public function getSubmitButtonLabel( PageIdentity $page ): string {
+		$newPage = !$page->exists();
+
+		if ( $this->options->get( MainConfigNames::EditSubmitButtonLabelPublish ) ) {
+			$buttonLabelKey = $newPage ? 'publishpage' : 'publishchanges';
+		} else {
+			$buttonLabelKey = $newPage ? 'savearticle' : 'savechanges';
+		}
+
+		return $buttonLabelKey;
 	}
 
 }
