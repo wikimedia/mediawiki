@@ -33,7 +33,7 @@ QUnit.module( 'mediawiki.base/errorLogger', () => {
 				errorObject,
 				stackTrace: errorObject.stack
 			}
-		], 'global.errror call' );
+		], 'global.error call' );
 		assert.deepEqual( track.getCall( 1 ).args, [ 'error.uncaught', errorObject ], 'error.uncaught call' );
 
 		// ---

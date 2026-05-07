@@ -2594,7 +2594,7 @@ Gallery with wikitext inside caption
 !! wikitext
 <gallery>
 File:Foobar.jpg|alt=galleryalt|[[File:Foobar.jpg|alt=inneralt|20x20px|desc]]
-File:Foobar.jpg|alt=galleryalt|{{Test|unamedParam|alt=param}}
+File:Foobar.jpg|alt=galleryalt|{{Test|unnamedParam|alt=param}}
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-traditional">
@@ -2610,7 +2610,7 @@ File:Foobar.jpg|alt=galleryalt|{{Test|unamedParam|alt=param}}
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt6" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img alt="galleryalt" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext"><span typeof="mw:File" data-mw='{"caption":"desc"}'><a href="./File:Foobar.jpg" class="mw-file-description" title="desc"><img alt="inneralt" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/20px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="2" width="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/40px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description" title="This is a test template"><img alt="galleryalt" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext"><span about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Test","href":"./Template:Test"},"params":{"1":{"wt":"unamedParam"},"alt":{"wt":"param"}},"i":0}}]}'>This is a test template</span></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description" title="This is a test template"><img alt="galleryalt" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext"><span about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Test","href":"./Template:Test"},"params":{"1":{"wt":"unnamedParam"},"alt":{"wt":"param"}},"i":0}}]}'>This is a test template</span></div></li>
 </ul>
 !! end
 
@@ -3221,7 +3221,7 @@ parsoid=wt2html,html2html
 !! wikitext
 <gallery>
 File:Foobar.jpg|alt=-{R|bat}-|[[File:foobar.jpg|20px|desc|alt=-{R|foo}-|-{R|bar}-]]
-File:Foobar.jpg|alt=galleryalt|{{Test|unamedParam|alt=-{R|param}-}}
+File:Foobar.jpg|alt=galleryalt|{{Test|unnamedParam|alt=-{R|param}-}}
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-traditional">
@@ -3237,7 +3237,7 @@ File:Foobar.jpg|alt=galleryalt|{{Test|unamedParam|alt=-{R|param}-}}
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt6" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File mw:ExpandedAttrs" data-mw='{"attribs":[["alt",{"html":"alt=&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"disabled\":{\"t\":\"bat\"}}&apos; data-parsoid=&apos;{\"fl\":[\"R\"]}&apos;>&lt;/span>","txt":""}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img alt="" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext"><span typeof="mw:File mw:ExpandedAttrs" about="#mwt3" data-mw='{"attribs":[["alt",{"html":"alt=&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"disabled\":{\"t\":\"foo\"}}&apos; data-parsoid=&apos;{\"fl\":[\"R\"]}&apos;>&lt;/span>","txt":""}]],"caption":"&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"disabled\":{\"t\":\"bar\"}}&apos; data-parsoid=&apos;{\"fl\":[\"R\"]}&apos;>&lt;/span>"}'><a href="./File:Foobar.jpg" class="mw-file-description"><img alt="" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/20px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="2" width="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/40px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description" title="This is a test template"><img alt="galleryalt" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext"><span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Test","href":"./Template:Test"},"params":{"1":{"wt":"unamedParam"},"alt":{"wt":"-{R|param}-"}},"i":0}}]}'>This is a test template</span></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description" title="This is a test template"><img alt="galleryalt" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext"><span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Test","href":"./Template:Test"},"params":{"1":{"wt":"unnamedParam"},"alt":{"wt":"-{R|param}-"}},"i":0}}]}'>This is a test template</span></div></li>
 </ul>
 !! end
 

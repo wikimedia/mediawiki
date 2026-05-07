@@ -221,7 +221,7 @@ class RevisionSlotsUpdateTest extends MediaWikiIntegrationTestCase {
 		$c->modifySlot( $barZ );
 
 		yield 'same instance' => [ $a, $a, true ];
-		yield 'same udpates' => [ $a, $a2, true ];
+		yield 'same updates' => [ $a, $a2, true ];
 
 		yield 'different modified' => [ $a, $b, false ];
 		yield 'different removed' => [ $a, $c, false ];

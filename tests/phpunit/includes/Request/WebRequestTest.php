@@ -480,7 +480,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 				[ '12.0.0.1', '12.0.0.2' ],
 				[],
 				false,
-				'With X-Forwaded-For'
+				'With X-Forwarded-For'
 			],
 			[
 				'12.0.0.1',
@@ -491,7 +491,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 				[],
 				[],
 				false,
-				'With X-Forwaded-For and disallowed server'
+				'With X-Forwarded-For and disallowed server'
 			],
 			[
 				'12.0.0.2',
@@ -502,7 +502,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 				[ '12.0.0.1' ],
 				[],
 				false,
-				'With multiple X-Forwaded-For and only one allowed server'
+				'With multiple X-Forwarded-For and only one allowed server'
 			],
 			[
 				'10.0.0.3',
@@ -513,7 +513,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 				[ '12.0.0.1', '12.0.0.2' ],
 				[],
 				false,
-				'With X-Forwaded-For and private IP (from cache proxy)'
+				'With X-Forwarded-For and private IP (from cache proxy)'
 			],
 			[
 				'10.0.0.4',
@@ -524,7 +524,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 				[ '12.0.0.1', '12.0.0.2', '10.0.0.3' ],
 				[],
 				true,
-				'With X-Forwaded-For and private IP (allowed)'
+				'With X-Forwarded-For and private IP (allowed)'
 			],
 			[
 				'10.0.0.4',
@@ -535,7 +535,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 				[ '12.0.0.1', '12.0.0.2' ],
 				[ '10.0.0.3' ],
 				true,
-				'With X-Forwaded-For and private IP (allowed)'
+				'With X-Forwarded-For and private IP (allowed)'
 			],
 			[
 				'10.0.0.3',
@@ -546,7 +546,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 				[ '12.0.0.1', '12.0.0.2' ],
 				[ '10.0.0.3' ],
 				false,
-				'With X-Forwaded-For and private IP (disallowed)'
+				'With X-Forwarded-For and private IP (disallowed)'
 			],
 			[
 				'12.0.0.3',
@@ -557,7 +557,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 				[],
 				[ '12.0.0.1', '12.0.0.2' ],
 				false,
-				'With X-Forwaded-For'
+				'With X-Forwarded-For'
 			],
 			[
 				'12.0.0.2',
@@ -568,7 +568,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 				[],
 				[ '12.0.0.1' ],
 				false,
-				'With multiple X-Forwaded-For and only one allowed server'
+				'With multiple X-Forwarded-For and only one allowed server'
 			],
 			[
 				'12.0.0.2',
@@ -579,7 +579,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 				[],
 				[ '12.0.0.2' ],
 				false,
-				'With X-Forwaded-For and private IP and hook (disallowed)'
+				'With X-Forwarded-For and private IP and hook (disallowed)'
 			],
 			[
 				'12.0.0.1',
@@ -639,14 +639,14 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 			[
 				'zh-cn,zh-tw',
 				[ 'zh-cn' => 1.0, 'zh-tw' => 1.0 ],
-				'Two equally prefered languages, listed in appearance order per rfc3282. Checks c9119'
+				'Two equally preferred languages, listed in appearance order per rfc3282. Checks c9119'
 			],
 			[
 				'es, en; q=0.5',
 				[ 'es' => 1.0, 'en' => 0.5 ],
 				'Spanish as first language and English and second'
 			],
-			[ 'en; q=0.5, es', [ 'es' => 1.0, 'en' => 0.5 ], 'Less prefered language first' ],
+			[ 'en; q=0.5, es', [ 'es' => 1.0, 'en' => 0.5 ], 'Less preferred language first' ],
 			[ 'fr, en; q=0.5, es', [ 'fr' => 1.0, 'es' => 1.0, 'en' => 0.5 ], 'Three languages' ],
 			[ 'en; q=0.5, es', [ 'es' => 1.0, 'en' => 0.5 ], 'Two languages' ],
 			[ 'en, zh;q=0', [ 'en' => 1.0 ], "It's Chinese to me" ],
@@ -658,7 +658,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 			[
 				'en-gb, en-us; q=1',
 				[ 'en-gb' => 1.0, 'en-us' => 1.0 ],
-				'Two equally prefered English variants'
+				'Two equally preferred English variants'
 			],
 			[ '_', [], 'Invalid input' ],
 		];

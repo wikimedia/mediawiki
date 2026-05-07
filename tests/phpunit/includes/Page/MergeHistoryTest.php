@@ -127,8 +127,8 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 			// Timestamp of `true` is a placeholder for "in the future""
 			[ 'Test', 'Test2', true, null, true ],
 			[ 'Test', 'Test', false, null, 'mergehistory-fail-self-merge' ],
-			[ 'Nonexistant', 'Test2', false, null, 'mergehistory-fail-invalid-source' ],
-			[ 'Test', 'Nonexistant', false, null, 'mergehistory-fail-invalid-dest' ],
+			[ 'Nonexistent', 'Test2', false, null, 'mergehistory-fail-invalid-source' ],
+			[ 'Test', 'Nonexistent', false, null, 'mergehistory-fail-invalid-dest' ],
 			// Invalid end timestamp
 			[
 				'Test',

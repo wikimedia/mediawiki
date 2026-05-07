@@ -365,7 +365,7 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 	 * parser to avoid being encumbered by the "shall be used for Good, not
 	 * Evil" clause of the JSON.org parser's license. By default, json-c
 	 * parses in a non-strict mode which allows trailing commas for array and
-	 * object delarations among other things, so our JSON_ERROR_SYNTAX rescue
+	 * object declarations among other things, so our JSON_ERROR_SYNTAX rescue
 	 * block is not always triggered. It however isn't lenient in exactly the
 	 * same ways as our TRY_FIXING mode, so the assertions in this test are
 	 * a bit more complicated than they ideally would be:
@@ -373,7 +373,7 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 	 * Optional third argument: true if json-c parses the value without
 	 * intervention, false otherwise. Defaults to true.
 	 *
-	 * Optional fourth argument: expected cannonical JSON serialization of
+	 * Optional fourth argument: expected canonical JSON serialization of
 	 * json-c parsed result. Defaults to the second argument's value.
 	 */
 	public static function provideParseTryFixing() {

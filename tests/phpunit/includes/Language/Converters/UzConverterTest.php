@@ -34,7 +34,7 @@ class UzConverterTest extends MediaWikiIntegrationTestCase {
 	 * @author Nikola Smolenski
 	 */
 	public function testConversionToCyrillic() {
-		// A convertion of Latin to Cyrillic
+		// A conversion of Latin to Cyrillic
 		$this->assertEquals( 'абвгғ',
 			$this->convertToCyrillic( 'abvggʻ' )
 		);
@@ -42,7 +42,7 @@ class UzConverterTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 'ljабnjвгўоdb',
 			$this->convertToCyrillic( '-{lj}-ab-{nj}-vgoʻo-{db}-' )
 		);
-		// A simple convertion of Cyrillic to Cyrillic
+		// A simple conversion of Cyrillic to Cyrillic
 		$this->assertEquals( 'абвг',
 			$this->convertToCyrillic( 'абвг' )
 		);
@@ -53,11 +53,11 @@ class UzConverterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testConversionToLatin() {
-		// A simple convertion of Latin to Latin
+		// A simple conversion of Latin to Latin
 		$this->assertEquals( 'abdef',
 			$this->convertToLatin( 'abdef' )
 		);
-		// A convertion of Cyrillic to Latin
+		// A conversion of Cyrillic to Latin
 		$this->assertEquals( 'gʻabtsdOʻQyo',
 			$this->convertToLatin( 'ғабцдЎҚё' )
 		);
@@ -94,7 +94,7 @@ class UzConverterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Verifiy the given Cyrillic text is not converted when using
+	 * Verify the given Cyrillic text is not converted when using
 	 * using the Cyrillic variant and converted to Latin when using
 	 * the Latin variant.
 	 * @param string $text Text to convert
@@ -106,7 +106,7 @@ class UzConverterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Verifiy the given Latin text is not converted when using
+	 * Verify the given Latin text is not converted when using
 	 * using the Latin variant and converted to Cyrillic when using
 	 * the Cyrillic variant.
 	 * @param string $text Text to convert

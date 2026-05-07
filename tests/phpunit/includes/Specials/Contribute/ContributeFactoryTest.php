@@ -37,7 +37,7 @@ class ContributeFactoryTest extends MediaWikiIntegrationTestCase {
 		$cards = $factory->getCards();
 		$this->assertIsArray( $cards );
 		$this->assertNotEmpty( $cards );
-		$defaltCard = $cards[ count( $cards ) - 1 ];
+		$defaultCard = $cards[ count( $cards ) - 1 ];
 		$expectedCard = ( new ContributeCard(
 			$context->msg( 'newpage' )->text(),
 			$context->msg( 'newpage-desc' )->text(),
@@ -46,8 +46,8 @@ class ContributeFactoryTest extends MediaWikiIntegrationTestCase {
 				SpecialPage::getSafeTitleFor( 'Wantedpages' )->getLocalURL(),
 				$context->msg( 'view-missing-pages' )->text()
 			) ) )->toArray();
-		$this->assertArrayEquals( [ 'title', 'icon', 'description', 'action' ], array_keys( $defaltCard ) );
-		$this->assertArrayEquals( $expectedCard, $defaltCard );
+		$this->assertArrayEquals( [ 'title', 'icon', 'description', 'action' ], array_keys( $defaultCard ) );
+		$this->assertArrayEquals( $expectedCard, $defaultCard );
 	}
 
 }

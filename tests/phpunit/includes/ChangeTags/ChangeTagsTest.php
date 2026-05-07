@@ -836,7 +836,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 				[ 'mw-tag-hidden-tag' ]
 			]
 		];
-		yield 'mutliple tags' => [
+		yield 'multiple tags' => [
 			'tag1,0,,hidden-tag',
 			[
 				'<span class="mw-tag-markers">(tag-list-wrapper: 2, '

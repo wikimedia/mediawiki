@@ -66,7 +66,7 @@ class ChronologyProtectorTest extends TestCase {
 		];
 	}
 
-	public static function providePresistAndLoad() {
+	public static function providePersistAndLoad() {
 		$pos = new MySQLPrimaryPos( '1-2-3', 1301648400 );
 
 		yield 'pageview on minimal default install (SQLite, no cache)' => [
@@ -147,9 +147,9 @@ class ChronologyProtectorTest extends TestCase {
 	 * and then in a new instance (as if in a future web request),
 	 * loading those same positions.
 	 *
-	 * @dataProvider providePresistAndLoad
+	 * @dataProvider providePersistAndLoad
 	 */
-	public function testPresistAndLoad( BagOStuff $bag, array $state, $expectPosIndex, bool $expectTouched, $expectPos ) {
+	public function testPersistAndLoad( BagOStuff $bag, array $state, $expectPosIndex, bool $expectTouched, $expectPos ) {
 		$reqInfo = [
 			'IPAddress' => '127.0.0.1',
 			'UserAgent' => 'FireFox',

@@ -74,7 +74,7 @@ class MainSlotRoleHandlerTest extends MediaWikiUnitTestCase {
 			[ 100 => CONTENT_MODEL_TEXT ]
 		);
 
-		// For the main handler, the namespace determins the default model
+		// For the main handler, the namespace determines the default model
 		$titleMain = $this->makeMockTitle(
 			'Article',
 			[ 'namespace' => NS_MAIN ]

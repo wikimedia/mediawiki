@@ -85,21 +85,21 @@ class JpegMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $res['XMP'] );
 	}
 
-	public function testIPTCHashComparisionNoHash() {
+	public function testIPTCHashComparisonNoHash() {
 		$segments = JpegMetadataExtractor::segmentSplitter( self::FILE_PATH . 'jpeg-xmp-psir.jpg' );
 		$res = JpegMetadataExtractor::doPSIR( $segments['PSIR'][0] );
 
 		$this->assertEquals( 'iptc-no-hash', $res );
 	}
 
-	public function testIPTCHashComparisionBadHash() {
+	public function testIPTCHashComparisonBadHash() {
 		$segments = JpegMetadataExtractor::segmentSplitter( self::FILE_PATH . 'jpeg-iptc-bad-hash.jpg' );
 		$res = JpegMetadataExtractor::doPSIR( $segments['PSIR'][0] );
 
 		$this->assertEquals( 'iptc-bad-hash', $res );
 	}
 
-	public function testIPTCHashComparisionGoodHash() {
+	public function testIPTCHashComparisonGoodHash() {
 		$segments = JpegMetadataExtractor::segmentSplitter( self::FILE_PATH . 'jpeg-iptc-good-hash.jpg' );
 		$res = JpegMetadataExtractor::doPSIR( $segments['PSIR'][0] );
 

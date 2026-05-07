@@ -173,10 +173,10 @@ class StatusValueTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideToString
 	 */
-	public function testToString( bool $sucess, $message, $errors, string $expected, string $testExplanation ) {
+	public function testToString( bool $success, $message, $errors, string $expected, string $testExplanation ) {
 		$status = StatusValue::newGood();
 
-		$status->setResult( $sucess, $message );
+		$status->setResult( $success, $message );
 
 		if ( isset( $errors ) ) {
 			foreach ( $errors as $key => $error ) {

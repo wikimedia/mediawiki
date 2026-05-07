@@ -175,7 +175,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			null,
 			'qqx',
 			// This is necessary because permission checks aren't actually
-			// done on the UlitmateAuthority that is self::$admin. Instead,
+			// done on the UltimateAuthority that is self::$admin. Instead,
 			// they are done on a UserAuthority. See the TODO comment in
 			// User::getThisAsAuthority for more details.
 			$this->getTestUser( [

@@ -17,7 +17,7 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		// Check the element is visible using computed CSS to be thorough (instead of just .hasAttribute( 'hidden' ) ).
 		return $el.css( 'content-visibility' ) === 'hidden' ||
 			// Support: FF<=138, Safari
-			// Browser doesn't support content-visiblity / hidden=until-found
+			// Browser doesn't support content-visibility / hidden=until-found
 			$el.css( 'display' ) === 'none';
 	}
 

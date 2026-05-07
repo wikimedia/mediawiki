@@ -16,7 +16,7 @@ use Psr\Log\NullLogger;
 use TestLogger;
 
 /**
- * Tests the SpamRegexContraint
+ * Tests the SpamRegexConstraint
  *
  * @author DannyS712
  *

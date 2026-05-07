@@ -160,7 +160,7 @@ class XhprofDataTest extends TestCase {
 
 	/**
 	 * Get an Xhprof instance that has been primed with a set of known testing
-	 * data. Tests for the Xhprof class should laregly be concerned with
+	 * data. Tests for the Xhprof class should largely be concerned with
 	 * evaluating the manipulations of the data collected by xhprof rather
 	 * than the data collection process itself.
 	 *

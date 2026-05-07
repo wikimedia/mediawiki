@@ -343,7 +343,7 @@ class AuthenticatedFileEntryPointTest extends MediaWikiIntegrationTestCase {
 		$file = $this->getTestRepo()->newFile( $name );
 		$history = $file->getHistory();
 
-		// This old revision is marked as deleted (supressed) in the database
+		// This old revision is marked as deleted (suppressed) in the database
 		$oldFile = $history[0];
 		$url = '/img_auth/' . $oldFile->getArchiveRel() . '/' . $oldFile->getArchiveName();
 		$env = $this->makeEnvironment( $url );

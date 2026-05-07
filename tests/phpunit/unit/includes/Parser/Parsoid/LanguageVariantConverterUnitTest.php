@@ -356,7 +356,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 	 * Mock constraint helper to compare equality when there are
 	 * Bcp47Code instances involved.
 	 * @param mixed $expected The expected value, with embedded Bcp47Codes
-	 * @return Constraint a PHPUnit equality constrait
+	 * @return Constraint a PHPUnit equality constraint
 	 */
 	private function constraintEquals( $expected ): Constraint {
 		return $this->callback( static function ( $actual ) use ( $expected ) {

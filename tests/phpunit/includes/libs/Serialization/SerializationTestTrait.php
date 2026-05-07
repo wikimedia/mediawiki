@@ -95,7 +95,7 @@ trait SerializationTestTrait {
 	 * equal to stored $expected instances.
 	 * Serialization formats might change in backwards compatible ways
 	 * (in particular, php 8.1 orders protected instance variables differently
-	 * than earlier php), so do the comparision on the deserialized version.
+	 * than earlier php), so do the comparison on the deserialized version.
 	 * @dataProvider provideSerialization
 	 */
 	public function testSerialization( callable $serializer, callable $deserializer, string $expected, object $testInstance ) {

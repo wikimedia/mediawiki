@@ -1467,7 +1467,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'section link' => [ Title::makeTitle( NS_MAIN, '', 'Section' ) ],
 			'empty' => [ Title::makeTitle( NS_MAIN, '' ) ],
 			'bad chars' => [ Title::makeTitle( NS_MAIN, '_|_' ) ],
-			'empty in namspace' => [ Title::makeTitle( NS_USER, '' ) ],
+			'empty in namespace' => [ Title::makeTitle( NS_USER, '' ) ],
 			'special' => [ Title::makeTitle( NS_SPECIAL, 'RecentChanges' ) ],
 			'interwiki' => [ Title::makeTitle( NS_MAIN, 'Test', '', 'acme' ) ],
 		];

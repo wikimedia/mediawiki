@@ -39,7 +39,7 @@ class RevisionSlotsTest extends MediaWikiUnitTestCase {
 		return new RevisionSlots( $slots );
 	}
 
-	public static function provideConstructorFailue() {
+	public static function provideConstructorFailure() {
 		yield 'not an array or callable' => [
 			'foo'
 		];
@@ -49,10 +49,10 @@ class RevisionSlotsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provideConstructorFailue
+	 * @dataProvider provideConstructorFailure
 	 * @param array $slots
 	 */
-	public function testConstructorFailue( $slots ) {
+	public function testConstructorFailure( $slots ) {
 		$this->expectException( InvalidArgumentException::class );
 
 		new RevisionSlots( $slots );

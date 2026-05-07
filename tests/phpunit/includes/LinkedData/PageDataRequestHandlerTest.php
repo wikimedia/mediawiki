@@ -295,7 +295,7 @@ class PageDataRequestHandlerTest extends MediaWikiLangTestCase {
 				[ 'ACCEPT' => 'text/*; q=0.5, text/json; q=0.7, application/rdf+xml; q=0.8' ],
 				'Helsinki&action=raw'
 			],
-			'Accept Header accepting evertyhing and HTML' => [
+			'Accept Header accepting everything and HTML' => [
 				$helsinki,
 				[ 'ACCEPT' => 'text/html, */*' ],
 				'Helsinki&action=raw'

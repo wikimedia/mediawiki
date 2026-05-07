@@ -1,7 +1,7 @@
 ( function () {
 
 	let jqcookie;
-	const NOW = 9012, // miliseconds
+	const NOW = 9012, // milliseconds
 		DEFAULT_DURATION = 5678, // seconds
 		defaults = {
 			prefix: 'mywiki',

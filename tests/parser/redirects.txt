@@ -214,7 +214,7 @@ Foo
 
 ## WikiContent::getRedirectTargetAndText() strips the redirect from text so,
 ## in practice, the legacy parse never sees it from the source.  Hence, the
-## the differnce in output.
+## the difference in output.
 !! test
 Redirect followed by block on the same line
 !! options
@@ -229,7 +229,7 @@ parsoid=wt2html
 
 ## WikiContent::getRedirectTargetAndText() strips the redirect from text so,
 ## in practice, the legacy parse never sees it from the source.  Hence, the
-## the differnce in output.
+## the difference in output.
 !! test
 Redirect followed by horizontal rule on the same line
 !! options

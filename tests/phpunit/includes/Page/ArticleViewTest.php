@@ -468,7 +468,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 		// Need global user set to sysop, global state in Linker::revUserTools/Linker::revComment (T309479)
 		$realContext->setUser( $context->getUser() );
-		// Language is resetted in setUser
+		// Language is reset in setUser
 		$this->setUserLang( $oldLanguage );
 
 		$article->view();
@@ -523,7 +523,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 		// Need global user set to sysop, global state in Linker::revUserTools/Linker::revComment (T309479)
 		$realContext->setUser( $context->getUser() );
-		// Language is resetted in setUser
+		// Language is reset in setUser
 		$this->setUserLang( $oldLanguage );
 
 		$article->view();

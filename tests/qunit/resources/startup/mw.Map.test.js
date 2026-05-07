@@ -109,7 +109,7 @@
 		const conf = new mw.Map();
 
 		assert.strictEqual( conf.get( 'constructor' ), null, 'Get unknown "constructor"' );
-		assert.strictEqual( conf.get( 'hasOwnProperty' ), null, 'Get unkonwn "hasOwnProperty"' );
+		assert.strictEqual( conf.get( 'hasOwnProperty' ), null, 'Get unknown "hasOwnProperty"' );
 
 		conf.set(
 			'hasOwnProperty',

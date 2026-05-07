@@ -1033,7 +1033,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 				'20120102090705',
 				'ה\'תשע"ב2012',
 				'ה\'תשע"ב2012',
-				'Hebrew numberals'
+				'Hebrew numerals'
 			],
 			[
 				'xnY',
@@ -2181,7 +2181,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * Example of the real localisation files being loaded.
 	 *
 	 * This might be a bit cumbersome to maintain long-term,
-	 * but still valueable to have as integration test.
+	 * but still valuable to have as integration test.
 	 */
 	public function testGetNamespaceAliasesReal() {
 		$language = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'zh' );

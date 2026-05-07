@@ -57,7 +57,7 @@ class MySQLPlatformTest extends TestCase {
 			[ '``', '' ],
 
 			// Dear codereviewer, guess what addIdentifierQuotes()
-			// will return with thoses:
+			// will return with these:
 			[ '``', false ],
 			[ '`1`', true ],
 

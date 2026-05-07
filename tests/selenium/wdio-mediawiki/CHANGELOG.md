@@ -13,8 +13,8 @@ This bug release makes sure we log and throw errors if the MediaWiki API returns
 
 ## 6.5.0 / 2026-03-20
 
-In 6.5.0 we changed how we choose hos many parallel tests suites that will run in CI. It wil now use 75%
-of the availible CPUs insted of a hard coded number. This will make tests faster on machines with more CPU
+In 6.5.0 we changed how we choose how many parallel tests suites that will run in CI. It will now use 75%
+of the available CPUs instead of a hard coded number. This will make tests faster on machines with more CPU
 and many test suites. We also log what maxInstances number that is used.
 
 * Log configured maxInstances (T420070)
@@ -22,7 +22,7 @@ and many test suites. We also log what maxInstances number that is used.
 * Set max number of parallel jobs to 75% of available CPUs in CI (T420185)
 
 ## 6.4.0 / 2026-03-09
-There are two additions to this release. First we add the abilitry to add a cookie when talking to the
+There are two additions to this release. First we add the ability to add a cookie when talking to the
 MediaWiki API to make it easier to upgrade wdio-wikibase to later version. Then we also added logging
 of wdio-mediawiki and webdriver.io version to make it easier to see in the CI what versions are actually
 used.
@@ -32,7 +32,7 @@ used.
 
 ## 6.3.3 / 2026-03-06
 In 6.3.0 how you run tests locally on your machine was changed so it always use a browser window. That
-change was unintentional and with this release we bring back the old behavoir check if DISPLAY is exported.
+change was unintentional and with this release we bring back the old behavior check if DISPLAY is exported.
 
 * Bring back DISPLAY to enable/disable headless local (T418833)
 
@@ -70,7 +70,7 @@ useBrowserHeadless: false,
 We also removed default screenshots for passing tests. Instead of taking screenshots
 for both passing and failing tests, we now only create screenshots for failing tests.
 
-If you still need screenshots for passing tests, you can re-enable them temporarly with:
+If you still need screenshots for passing tests, you can re-enable them temporarily with:
 ```screenshotsOnFailureOnly: false```
 
 By reducing the time spent recording videos and taking screenshots for passing tests,
@@ -107,7 +107,7 @@ to actually change those.
 The changes in 6.1.0 has a couple of focus areas.
 
 ### Performance
-We decrease the overhead of using FFMPEG by following bsest practices. In CI
+We decrease the overhead of using FFMPEG by following best practices. In CI
 this will makes tests 12-13% faster and use 26% less of CPU time.
 
 We also made it possible to disable video recording and run tests as true headless
@@ -119,17 +119,17 @@ off video recordings.
 * Make it possible to configure the --headless flag (T410607)
 
 ### Prometheus
-There's been ongoing work to get Promethues metrics from Jenkins CI. The epic for that work
+There's been ongoing work to get Prometheus metrics from Jenkins CI. The epic for that work
 is T412714. In this release there are a couple of bug fixes and some new metrics.
 
 * Add specific flaky metric for Prometheus (T413062)
 * Make it possible to collect average run time per project (T413064)
 * Cleanup how to handle numbers for duration (T412681)
-* Only write Promethues metrics if test runs (T407831)
+* Only write Prometheus metrics if test runs (T407831)
 
 ### Make our tool better
 There's a change here where we set the screen size. This is good because we never did that before
-and using headdless vs not using headless used different screensizes. We also added logging of
+and using headless vs not using headless used different screen sizes. We also added logging of
 browser/system information at startup to make it easier to spot differences when we run tests.
 
 * Set browser size to 1280x1024 (T409439)

@@ -653,7 +653,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideValidateBodyParams_invalid() {
-		$paramDefintions = [
+		$paramDefinitions = [
 			'foo' => [
 				ParamValidator::PARAM_TYPE => 'timestamp',
 				ParamValidator::PARAM_REQUIRED => true,
@@ -662,13 +662,13 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'missing param' => [
-			$paramDefintions,
+			$paramDefinitions,
 			new RequestData( [ 'parsedBody' => [], ] ),
 			'missingparam'
 		];
 
 		yield 'extra param' => [
-			$paramDefintions,
+			$paramDefinitions,
 			new RequestData(
 				[
 					'parsedBody' => [
@@ -681,7 +681,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'bad param' => [
-			$paramDefintions,
+			$paramDefinitions,
 			new RequestData(
 				[
 					'parsedBody' => [

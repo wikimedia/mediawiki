@@ -652,16 +652,16 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			[ $testPageFactory( 100, 0, 'SomeDbKey', $this ), '111' ],
 			[ $testPageFactory( 101, 0, 'OtherDbKey', $this ), '111' ],
 			[ $testPageFactory( 102, 1, 'AnotherDbKey', $this ), '123' ],
-			[ PageReferenceValue::localReference( 0, 'SomeNotExisitingDbKey' ), null ],
-			[ PageReferenceValue::localReference( 0, 'OtherNotExisitingDbKey' ), null ],
+			[ PageReferenceValue::localReference( 0, 'SomeNotExistingDbKey' ), null ],
+			[ PageReferenceValue::localReference( 0, 'OtherNotExistingDbKey' ), null ],
 		];
 
 		$dbResult = [
 			(object)[ 'wl_title' => 'SomeDbKey', 'wl_namespace' => '0', 'watchers' => '100' ],
 			(object)[ 'wl_title' => 'OtherDbKey', 'wl_namespace' => '0', 'watchers' => '300' ],
 			(object)[ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => '1', 'watchers' => '500' ],
-			(object)[ 'wl_title' => 'SomeNotExisitingDbKey', 'wl_namespace' => '0', 'watchers' => '100' ],
-			(object)[ 'wl_title' => 'OtherNotExisitingDbKey', 'wl_namespace' => '0', 'watchers' => '200' ],
+			(object)[ 'wl_title' => 'SomeNotExistingDbKey', 'wl_namespace' => '0', 'watchers' => '100' ],
+			(object)[ 'wl_title' => 'OtherNotExistingDbKey', 'wl_namespace' => '0', 'watchers' => '200' ],
 		];
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->exactly( 3 ) )
@@ -682,7 +682,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'makeWhereFrom2d' )
 			->with(
-				[ [ 'SomeNotExisitingDbKey' => 1, 'OtherNotExisitingDbKey' => 1 ] ],
+				[ [ 'SomeNotExistingDbKey' => 1, 'OtherNotExistingDbKey' => 1 ] ],
 				$this->isType( 'string' ),
 				$this->isType( 'string' )
 			)
@@ -726,7 +726,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$expected = [
 			0 => [
 				'SomeDbKey' => 100, 'OtherDbKey' => 300,
-				'SomeNotExisitingDbKey' => 100, 'OtherNotExisitingDbKey' => 200
+				'SomeNotExistingDbKey' => 100, 'OtherNotExistingDbKey' => 200
 			],
 			1 => [ 'AnotherDbKey' => 500 ],
 		];

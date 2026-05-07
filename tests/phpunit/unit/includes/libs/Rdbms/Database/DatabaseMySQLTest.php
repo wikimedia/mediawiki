@@ -222,8 +222,8 @@ class DatabaseMySQLTest extends TestCase {
 
 		$lagEst = $replicationReporter->getLag( $db );
 
-		$this->assertGreaterThan( $lag - 0.010, $lagEst, "Correct heatbeat lag" );
-		$this->assertLessThan( $lag + 0.010, $lagEst, "Correct heatbeat lag" );
+		$this->assertGreaterThan( $lag - 0.010, $lagEst, "Correct heartbeat lag" );
+		$this->assertLessThan( $lag + 0.010, $lagEst, "Correct heartbeat lag" );
 	}
 
 	public static function provideLagAmounts() {

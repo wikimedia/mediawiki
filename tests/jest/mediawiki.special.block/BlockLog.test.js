@@ -64,7 +64,7 @@ describe( 'BlockLog', () => {
 		expect( rows ).toHaveLength( 3 );
 	} );
 
-	it( 'should show the active hightlighted selected row', async () => {
+	it( 'should show the active highlighted selected row', async () => {
 		mockMwConfigGet( { blockTargetUser: 'ActiveBlockedUser', blockTargetExists: true, blockId: 1116 } );
 		const wrapper = mount( BlockLog, {
 			propsData: { blockLogType: 'active' },

@@ -36,7 +36,7 @@ class SearchResultTraitTest extends MediaWikiIntegrationTestCase {
 		$result->setExtensionData( $data );
 		$this->assertEquals( $data, $result->getExtensionData(), 'can set extension data' );
 		$data['this'] = 'that';
-		$this->assertNotEquals( $data, $result->getExtensionData(), 'shouldnt hold any reference' );
+		$this->assertNotEquals( $data, $result->getExtensionData(), 'shouldn\'t hold any reference' );
 
 		$result->setExtensionData( $data );
 		$this->assertEquals( $data, $result->getExtensionData(), 'can replace extension data' );

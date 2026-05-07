@@ -663,17 +663,17 @@ class DatabaseSQLTest extends TestCase {
 		$this->database->endAtomic( __METHOD__ );
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
 
-		$noOpCallack = static function () {
+		$noOpCallback = static function () {
 		};
 
-		$this->database->doAtomicSection( __METHOD__, $noOpCallack, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->doAtomicSection( __METHOD__, $noOpCallback, IDatabase::ATOMIC_CANCELABLE );
 		$this->assertLastSql( 'BEGIN; COMMIT' );
 
-		$this->database->doAtomicSection( __METHOD__, $noOpCallack );
+		$this->database->doAtomicSection( __METHOD__, $noOpCallback );
 		$this->assertLastSql( 'BEGIN; COMMIT' );
 
 		$this->database->begin( __METHOD__ );
-		$this->database->doAtomicSection( __METHOD__, $noOpCallack, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->doAtomicSection( __METHOD__, $noOpCallback, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->rollback( __METHOD__ );
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; RELEASE SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK' );
 

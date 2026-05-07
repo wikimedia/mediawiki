@@ -2,7 +2,7 @@
 <template lineStart="1"><title>Template documentation</title></template>
 This template finds the [[factorial]] of a number. To use it, enter:&lt;br /&gt;
 &lt;code&gt;&lt;nowiki&gt;<template><title>factorial</title><part><name index="1" /><value>input</value></part></template>&lt;/nowiki&gt;&lt;/code&gt;&lt;br /&gt;
-The input must be a positive interger smaller than 100 (better than most calculators, which go up to only 69). This template works by repeating conditional multiplications. Examples:&lt;br /&gt;
+The input must be a positive integer smaller than 100 (better than most calculators, which go up to only 69). This template works by repeating conditional multiplications. Examples:&lt;br /&gt;
 *&lt;nowiki&gt;<template><title>factorial</title><part><name index="1" /><value>2</value></part></template>&lt;/nowiki&gt; gives <template><title>factorial</title><part><name index="1" /><value>2</value></part></template>
 *&lt;nowiki&gt;<template><title>factorial</title><part><name index="1" /><value>3</value></part></template>&lt;/nowiki&gt; gives <template><title>factorial</title><part><name index="1" /><value>3</value></part></template>
 *&lt;nowiki&gt;<template><title>factorial</title><part><name index="1" /><value>5</value></part></template>&lt;/nowiki&gt; gives <template><title>factorial</title><part><name index="1" /><value>5</value></part></template>

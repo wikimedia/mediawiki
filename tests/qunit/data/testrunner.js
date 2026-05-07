@@ -110,7 +110,7 @@
 	}
 
 	/**
-	 * Ensure mw.config and other `mw` singleton state is prestine for each test.
+	 * Ensure mw.config and other `mw` singleton state is pristine for each test.
 	 *
 	 * Example:
 	 *

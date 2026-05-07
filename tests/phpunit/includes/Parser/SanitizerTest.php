@@ -292,7 +292,7 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 			[ 'Link', $newLegacy, $text, $html5EncodedHref ],
 			[ 'ExternalInterwiki', $newLegacy, $text, $legacyEncoded ],
 
-			// Distant future: no legacy fallbacks, but still linking to leagacy wikis
+			// Distant future: no legacy fallbacks, but still linking to legacy wikis
 			[ 'Attribute', $new, $text, $html5EncodedId, Sanitizer::ID_PRIMARY ],
 			[ 'Attribute', $new, $text, false, Sanitizer::ID_FALLBACK ],
 			[ 'Link', $new, $text, $html5EncodedHref ],

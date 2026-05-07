@@ -2385,7 +2385,7 @@ class ParserTestRunner {
 		wfDebug( __METHOD__ . ": running {$test->testName} [$mode]" );
 		$opts = $test->options;
 
-		// Skip tests targetting features Parsoid doesn't (yet) support
+		// Skip tests targeting features Parsoid doesn't (yet) support
 		// @todo T270312
 		if ( isset( $opts['styletag'] ) || isset( $opts['pst'] ) ||
 			isset( $opts['msg'] ) || isset( $opts['section'] ) ||

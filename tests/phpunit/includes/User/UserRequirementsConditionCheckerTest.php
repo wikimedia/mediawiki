@@ -279,7 +279,7 @@ class UserRequirementsConditionCheckerTest extends MediaWikiIntegrationTestCase 
 				'checkedCondition' => [ '&', 'publ1', 'priv1', [ '|', 'publ2', [ 'priv2', 'priv3' ] ] ],
 				'expectedResult' => [ 'priv1', 'priv2' ],
 			],
-			'The same condition occuring multiple times' => [
+			'The same condition occurring multiple times' => [
 				'privateConditions' => [ 'priv1' ],
 				'checkedCondition' => [ '&', 'priv1', 'priv1' ],
 				'expectedResult' => [ 'priv1' ],
@@ -308,7 +308,7 @@ class UserRequirementsConditionCheckerTest extends MediaWikiIntegrationTestCase 
 				'checkedCondition' => [ '&', 'cond1', [ 'cond2', 'arg' ] ],
 				'expectedResult' => [ 'cond1', 'cond2' ],
 			],
-			'The same condition occuring multiple times' => [
+			'The same condition occurring multiple times' => [
 				'checkedCondition' => [ '&', 'cond1', 'cond1' ],
 				'expectedResult' => [ 'cond1' ],
 			],

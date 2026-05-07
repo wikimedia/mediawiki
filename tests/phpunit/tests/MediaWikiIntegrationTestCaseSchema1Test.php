@@ -42,7 +42,7 @@ class MediaWikiIntegrationTestCaseSchema1Test extends MediaWikiIntegrationTestCa
 		$this->assertFalse( $this->db->tableExists( 'oldimage' ) );
 	}
 
-	public function testTableWasOverriden() {
+	public function testTableWasOverridden() {
 		// Make sure imagelinks was overwritten
 		$this->assertTrue( $this->db->tableExists( 'imagelinks' ) );
 		$this->assertTrue( $this->db->fieldExists( 'imagelinks', 'il_frobnitz' ) );

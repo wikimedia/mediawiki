@@ -85,7 +85,7 @@ class BanConverterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Verifiy the given Balinese text is not converted when using
+	 * Verify the given Balinese text is not converted when using
 	 * using the Balinese variant and converted to Latin when using
 	 * the Latin variant.
 	 * @param string $text Text to convert

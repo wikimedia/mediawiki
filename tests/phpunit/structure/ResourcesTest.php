@@ -125,13 +125,13 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Get all registered modules from ResouceLoader.
+	 * Get all registered modules from ResourceLoader.
 	 * @return array
 	 */
 	protected static function getAllModules() {
 		global $wgEnableJavaScriptTest;
 
-		// Test existance of test suite files as well
+		// Test existence of test suite files as well
 		// (can't use setUp or setMwGlobals because providers are static)
 		$org_wgEnableJavaScriptTest = $wgEnableJavaScriptTest;
 		$wgEnableJavaScriptTest = true;

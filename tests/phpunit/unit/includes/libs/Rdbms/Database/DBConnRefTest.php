@@ -84,7 +84,7 @@ class DBConnRefTest extends TestCase {
 
 	/**
 	 * Test that bumping the modification counter causes the wrapped connection
-	 * to be discarded and re-aquired.
+	 * to be discarded and re-acquired.
 	 */
 	public function testModCount() {
 		$lb = $this->getLoadBalancerMock();

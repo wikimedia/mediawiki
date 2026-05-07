@@ -54,8 +54,8 @@ class WatchedItemUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 0, $daysRemainingSoon );
 
 		// Adding a watched item with no expiry
-		$permamentlyWatchedItem = new WatchedItem( $user, $target, null, null );
-		$days = $permamentlyWatchedItem->getExpiryInDays();
+		$permanentlyWatchedItem = new WatchedItem( $user, $target, null, null );
+		$days = $permanentlyWatchedItem->getExpiryInDays();
 		$this->assertSame( null, $days );
 	}
 
@@ -123,8 +123,8 @@ class WatchedItemUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'watchlist-expiry-hours-left', $daysRemainingSoonText );
 
 		// Adding a watched item with no expiry
-		$permamentlyWatchedItem = new WatchedItem( $user, $target, null, null );
-		$daysText = $permamentlyWatchedItem->getExpiryInDaysText( $messageLocalizer );
+		$permanentlyWatchedItem = new WatchedItem( $user, $target, null, null );
+		$daysText = $permanentlyWatchedItem->getExpiryInDaysText( $messageLocalizer );
 		$this->assertSame( '', $daysText );
 	}
 

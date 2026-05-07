@@ -424,7 +424,7 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 
 			$this->assertTrue( $this->cache->deleteMulti( [ $key ] ), "delete $case" );
 			$this->assertFalse( $this->cache->get( $key ), "deleted $case" );
-			$this->assertEquals( [], $this->cache->getMulti( [ $key ] ), "deletd $case" );
+			$this->assertEquals( [], $this->cache->getMulti( [ $key ] ), "deleted $case" );
 
 			$this->cache->set( $key, "@$value", 10, BagOStuff::WRITE_ALLOW_SEGMENTS );
 			$this->assertEquals( "@$value", $this->cache->get( $key ), "get $case" );

@@ -534,7 +534,7 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'Array' => [ [ $callable, 'validate' ] ],
 			'Array (static)' => [ [ get_class( $callable ), 'validateStatic' ] ],
 			'String' => [ get_class( $callable ) . '::validateStatic' ],
-			'Invokable' => [ $callable ]
+			'Invocable' => [ $callable ]
 		];
 	}
 

@@ -847,7 +847,7 @@
 				group1__filter2: false, // The text is "show filter 2"
 				group1__filter3: false // The text is "show filter 3"
 			} ),
-			'All paremeters in the same \'send_unselected_if_any\' group false is equivalent to none are truthy (checked) in the interface'
+			'All parameters in the same \'send_unselected_if_any\' group false is equivalent to none are truthy (checked) in the interface'
 		);
 
 		// The ones above don't update the model, so we have a clean state.

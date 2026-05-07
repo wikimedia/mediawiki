@@ -223,7 +223,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function testForbidenPage() {
+	public function testForbiddenPage() {
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$title = $page->getTitle();
 		$helper = $this->newHelper(

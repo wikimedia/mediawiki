@@ -389,7 +389,7 @@ describe( 'The edit action', () => {
 	} );
 	it( 'should override the text parameter with the appendtext parameter', async () => {
 		const page = utils.title( 'Page_' );
-		const text = 'A text that is to be overriden';
+		const text = 'A text that is to be overridden';
 		const bottom = 'This text should override the text parameter';
 
 		await Clark.edit( page, {
@@ -404,7 +404,7 @@ describe( 'The edit action', () => {
 
 	it( 'should override the text parameter with the prependtext parameter', async () => {
 		const page = utils.title( 'Page_' );
-		const text = 'A text that is to be overriden';
+		const text = 'A text that is to be overridden';
 		const top = 'This text should override the text parameter';
 
 		await Clark.edit( page, {
@@ -419,7 +419,7 @@ describe( 'The edit action', () => {
 
 	it( 'should override the text parameter with the appendtext and prependtext parameters', async () => {
 		const page = utils.title( 'Page_' );
-		const text = 'A text that is to be overriden';
+		const text = 'A text that is to be overridden';
 		const top = 'This text should override the text parameter on top';
 		const bottom = 'This text should override the text parameter at the end';
 

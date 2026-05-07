@@ -18,7 +18,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 	private function getNoWriteStoreForErrors(): NoWriteWatchedItemStore {
 		// NoWriteWatchedItemStore where the inner actual store should never be called,
 		// because we are testing the methods that throw exceptions instead
-		// We could do a fancy constrant for never having a method that matches the
+		// We could do a fancy constraint for never having a method that matches the
 		// specific list, but since we don't use this for the cases that we have the
 		// inner actual store do anything, it should never be used
 		$innerService = $this->createNoOpAbstractMock( WatchedItemStoreInterface::class );

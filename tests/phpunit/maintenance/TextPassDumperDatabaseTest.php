@@ -13,7 +13,7 @@ use MediaWikiLangTestCase;
 /**
  * Tests for TextPassDumper that rely on the database
  *
- * Some of these tests use the old constuctor for TextPassDumper
+ * Some of these tests use the old constructor for TextPassDumper
  * and the dump() function, while others use the new loadWithArgv( $args )
  * function and execute(). This is to ensure both the old and new methods
  * work properly.

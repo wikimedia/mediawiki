@@ -182,7 +182,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 	}
 
 	private function getAttribs() {
-		# Sidebar text we will use everytime
+		# Sidebar text we will use every time
 		$text = '* Title
 ** https://www.mediawiki.org/| Home';
 

@@ -961,7 +961,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		// Request C: Discover new dependencies and save them
 		$module = $this->newModuleRequest( $moduleInfo, $context );
 		$module->getStyles( $context );
-		// Request D: Retreive new dependencies,
+		// Request D: Retrieve new dependencies,
 		// which should have replaced (not adding to) the previous ones.
 		$module = $this->newModuleRequest( $moduleInfo, $context );
 		$this->assertEquals(

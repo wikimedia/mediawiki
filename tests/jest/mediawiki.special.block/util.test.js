@@ -1,7 +1,7 @@
 const util = require( '../../../resources/src/mediawiki.special.block/util.js' );
 
 describe( 'util', () => {
-	const santizeRangeTestCases = [
+	const sanitizeRangeTestCases = [
 		{
 			title: 'IPv4 range',
 			input: '35.56.31.252/16',
@@ -68,7 +68,7 @@ describe( 'util', () => {
 			expected: '0:C1:A2:3:4:5:C6:7'
 		}
 	];
-	it.each( santizeRangeTestCases )( 'sanitizeRange ($title)',
+	it.each( sanitizeRangeTestCases )( 'sanitizeRange ($title)',
 		( { input, expected, sanitizeIP, isIPv4Address, isIPv6Address } ) => {
 			mw.util.sanitizeIP = jest.fn().mockReturnValue( sanitizeIP || input );
 			mw.util.isIPv4Address = jest.fn().mockReturnValue( !!isIPv4Address );

@@ -28,7 +28,7 @@ class RenameUsersMatchingPatternTest extends MaintenanceBaseTestCase {
 		return RenameUsersMatchingPattern::class;
 	}
 
-	public function testExecuteWhenNonLocalCentralIdAvailible() {
+	public function testExecuteWhenNonLocalCentralIdAvailable() {
 		$mockCentralIdLookupFactory = $this->createMock( CentralIdLookupFactory::class );
 		$mockCentralIdLookupFactory->method( 'getNonLocalLookup' )
 			->willReturn( $this->createMock( CentralIdLookup::class ) );

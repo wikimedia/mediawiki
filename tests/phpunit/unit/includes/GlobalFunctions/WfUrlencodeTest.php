@@ -95,7 +95,7 @@ class WfUrlencodeTest extends MediaWikiUnitTestCase {
 	public static function provideURLS() {
 		// NOTE: Keep in sync with qunit/mediawiki.util/util.test.js
 		return [
-			// Plus is not safe, ambigious with space.
+			// Plus is not safe, ambiguous with space.
 			[ '+', '%2B' ],
 			// & and = not safe in query parameters.
 			[ '&', '%26' ],

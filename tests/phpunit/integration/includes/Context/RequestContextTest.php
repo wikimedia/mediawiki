@@ -230,7 +230,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Context\RequestContext
 	 */
-	public function testOverideActionName() {
+	public function testOverrideActionName() {
 		$factory = $this->createMock( ActionFactory::class );
 		$factory
 			->method( 'getActionName' )

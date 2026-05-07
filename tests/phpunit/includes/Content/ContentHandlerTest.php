@@ -241,7 +241,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * getAutoSummary() should set "Created blank page" summary if we save an empy string.
+	 * getAutoSummary() should set "Created blank page" summary if we save an empty string.
 	 */
 	public function testGetAutosummary() {
 		$this->setContentLang( 'en' );

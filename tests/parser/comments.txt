@@ -269,7 +269,7 @@ IE conditional comments
 <![endif]-->
 !! end
 
-## Regession test for Parsoid
+## Regression test for Parsoid
 !! test
 Comment with valid json
 !! wikitext

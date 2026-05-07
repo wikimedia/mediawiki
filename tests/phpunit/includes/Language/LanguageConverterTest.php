@@ -179,7 +179,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertStringNotContainsString(
 			'v',
 			$result,
-			"в converted to v despite being in attribue"
+			"в converted to v despite being in attribute"
 		);
 	}
 

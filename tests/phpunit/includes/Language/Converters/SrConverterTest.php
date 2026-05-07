@@ -165,7 +165,7 @@ class SrConverterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Verifiy the given Cyrillic text is not converted when using
+	 * Verify the given Cyrillic text is not converted when using
 	 * using the Cyrillic variant and converted to Latin when using
 	 * the Latin variant.
 	 * @param string $text Text to convert
@@ -177,7 +177,7 @@ class SrConverterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Verifiy the given Latin text is not converted when using
+	 * Verify the given Latin text is not converted when using
 	 * using the Latin variant and converted to Cyrillic when using
 	 * the Cyrillic variant.
 	 * @param string $text Text to convert

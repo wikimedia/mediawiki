@@ -54,7 +54,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Adds a revision to a page, while returning the resuting revision's id text id.
+	 * Adds a revision to a page, while returning the resulting revision's id text id.
 	 *
 	 * @param WikiPage $page Page to add the revision to
 	 * @param string $text Revisions text

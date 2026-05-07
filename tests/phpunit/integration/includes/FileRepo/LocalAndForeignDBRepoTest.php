@@ -36,7 +36,7 @@ class LocalAndForeignDBRepoTest extends MediaWikiIntegrationTestCase {
 
 		$sharedKeyForLocal = $localRepo->getSharedCacheKey( 'class', 93 );
 		$sharedKeyForForeign = $foreignRepo->getSharedCacheKey( 'class', 93 );
-		$sharedKeyForForiegn2 = $foreignRepo2->getSharedCacheKey( 'class', 93 );
+		$sharedKeyForForeign2 = $foreignRepo2->getSharedCacheKey( 'class', 93 );
 
 		$this->assertSame(
 			$wanCache->makeGlobalKey( 'filerepo-class', $wikiId, 93 ),
@@ -51,7 +51,7 @@ class LocalAndForeignDBRepoTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame(
 			$wanCache->makeGlobalKey( 'filerepo-class', 'weirdoutside-domain', 93 ),
-			$sharedKeyForForiegn2,
+			$sharedKeyForForeign2,
 			"Shared key (repo is on a different foreign domain)"
 		);
 	}

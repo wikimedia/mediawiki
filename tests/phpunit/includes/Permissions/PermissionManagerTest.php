@@ -1182,7 +1182,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->assertContains( 'writetest', $rights );
 		$this->assertNotContains( 'nukeworld', $rights );
 
-		// Add a hook manipluating the rights
+		// Add a hook manipulating the rights
 		$this->setTemporaryHook( 'UserGetRights', static function ( $user, &$rights ) {
 			$rights[] = 'nukeworld';
 			$rights = array_diff( $rights, [ 'writetest' ] );

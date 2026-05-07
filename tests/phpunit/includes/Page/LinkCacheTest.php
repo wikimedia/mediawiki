@@ -336,7 +336,7 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 		return [
 			'empty' => [ NS_MAIN, '' ],
 			'bad chars' => [ NS_MAIN, '_|_' ],
-			'empty in namspace' => [ NS_USER, '' ],
+			'empty in namespace' => [ NS_USER, '' ],
 			'special' => [ NS_SPECIAL, 'RecentChanges' ],
 		];
 	}

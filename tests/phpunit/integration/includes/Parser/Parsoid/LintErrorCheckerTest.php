@@ -116,7 +116,7 @@ class LintErrorCheckerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [], $errors );
 	}
 
-	/** Test when categories are diabled in $wgLinterCategories */
+	/** Test when categories are disabled in $wgLinterCategories */
 	public function testLinterCategory() {
 		$input = self::getRevision( '<font color="red">RED</font>' );
 		$errors = $this->getLintErrorChecker()->check( $input );

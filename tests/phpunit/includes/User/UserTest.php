@@ -1223,7 +1223,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			'DannyS712',
 			$user->getName(),
-			'Santiy check: Users created using ::newFromName should return the name used'
+			'Sanity check: Users created using ::newFromName should return the name used'
 		);
 
 		$user->setName( 'FooBarBaz' );

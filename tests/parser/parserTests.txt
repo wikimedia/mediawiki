@@ -3313,7 +3313,7 @@ parsoid=wt2html
 !! end
 
 !! test
-Incorrecly removing closing slashes from correctly formed XHTML
+Incorrectly removing closing slashes from correctly formed XHTML
 !! wikitext
 <br style="clear:both;" />
 !! html
@@ -8383,11 +8383,11 @@ Text with HTML5 semicolon-less entity (should not decode)
 HTML5 tags
 !! wikitext
 <data value="5">five</data>
-<time datetime="2000-01-01T00:00Z">The new millenium started</time>
+<time datetime="2000-01-01T00:00Z">The new millennium started</time>
 <mark>This highlighted text</mark>
 !! html
 <p><data value="5">five</data>
-<time datetime="2000-01-01T00:00Z">The new millenium started</time>
+<time datetime="2000-01-01T00:00Z">The new millennium started</time>
 <mark>This highlighted text</mark>
 </p>
 !! end
@@ -15288,7 +15288,7 @@ parsoid=html2wt
 !! end
 
 !! test
-4. I/B quote minimization: new content should be mimimized with adjacent old content
+4. I/B quote minimization: new content should be minimized with adjacent old content
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -15378,7 +15378,7 @@ parsoid={
 !! end
 
 !! test
-2. Move format tags outside of WikiLink with mergable A tags
+2. Move format tags outside of WikiLink with mergeable A tags
 !! options
 parsoid={
   "modes": ["html2wt"]

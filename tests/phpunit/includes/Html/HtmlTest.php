@@ -429,7 +429,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			Html::namespaceSelector(
 				[ 'label' => 'Select a namespace:' ]
 			),
-			'Basic namespace selector with a custom label but no id attribtue for the <select>'
+			'Basic namespace selector with a custom label but no id attribute for the <select>'
 		);
 
 		$this->assertEquals(

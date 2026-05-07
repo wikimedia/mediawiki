@@ -314,7 +314,7 @@ Sections:
 !! end
 
 # The legacy parser, parsoid+standalone, and parsoid+integrated differ
-# in ther "index" output for headings that come from template args.
+# in their "index" output for headings that come from template args.
 #
 # - For templated sections, Parsoid and core differ in some of the metadata.
 #   Parsoid doesn't distinguish between sections that come from template args

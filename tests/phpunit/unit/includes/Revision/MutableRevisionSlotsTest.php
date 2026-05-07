@@ -24,17 +24,17 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 		return new MutableRevisionSlots( $slots );
 	}
 
-	public static function provideConstructorFailue() {
+	public static function provideConstructorFailure() {
 		yield 'array or the wrong thing' => [
 			[ 1, 2, 3 ]
 		];
 	}
 
 	/**
-	 * @dataProvider provideConstructorFailue
+	 * @dataProvider provideConstructorFailure
 	 * @param array $slots
 	 */
-	public function testConstructorFailue( $slots ) {
+	public function testConstructorFailure( $slots ) {
 		$this->expectException( InvalidArgumentException::class );
 
 		new MutableRevisionSlots( $slots );

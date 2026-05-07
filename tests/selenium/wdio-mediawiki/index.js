@@ -82,7 +82,7 @@ export function startVideo( ffmpeg, title ) {
 			'-y', // overwrite output files without asking
 			'-an', // skip sound
 			'-c:v', 'libx264', // specify encoder
-			'-preset', 'ultrafast', // fastest preset, reduse CPU overhead, creates larger files
+			'-preset', 'ultrafast', // fastest preset, reduce CPU overhead, creates larger files
 			'-crf', '42', // 23 is default, higher number makes files smaller but lower quality
 			'-pix_fmt', 'yuv420p', // QuickTime Player support, "Use -pix_fmt yuv420p for compatibility with outdated media players"
 			videoPath // output file
@@ -190,7 +190,7 @@ export function setDisplay( instances ) {
 	// and the second the spec file that capability is running, e.g. 0-5 indicates a
 	// worker the first running the 6th spec file for the first capability."
 	// https://webdriver.io/docs/api/environment#wdio_worker_id
-	// By using the spec index and number of instances that runs simultanesly
+	// By using the spec index and number of instances that runs simultaneously
 	// and use modulus we set the correct display for just this spec file.
 	const [ , index ] = ( process.env.WDIO_WORKER_ID ).split( '-' );
 	const slot = Number( index ) % instances;
@@ -201,7 +201,7 @@ export function setDisplay( instances ) {
 }
 
 /**
- * Start multipe Xvfb depending on number of simultanesly running
+ * Start multiple Xvfb depending on number of simultaneously running
  * NodeJS instances.
  *
  * @param {number} instances The number of parallel Xvfb servers to launch.

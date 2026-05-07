@@ -94,7 +94,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		// Passing something else raises an exception
 		try {
 			$popt = ParserOptions::newCanonical( 'bogus' );
-			$this->fail( 'Excpected exception not thrown' );
+			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException ) {
 		}
 	}

@@ -126,7 +126,7 @@ class SiteListTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider siteListProvider
 	 * @param SiteList $sites
 	 */
-	public function testHasInternallId( $sites ) {
+	public function testHasInternalId( $sites ) {
 		/**
 		 * @var Site $site
 		 */

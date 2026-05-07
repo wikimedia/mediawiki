@@ -876,7 +876,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::SecureLogin => false,
 			MainConfigNames::ForceHTTPS => $forceHTTPS,
 		] );
-		// match WebRespose::clearCookie()
+		// match WebResponse::clearCookie()
 		$deletedTime = $startTime - ExpirationAwareness::TTL_YEAR;
 		$centralIdMap = &$this->mockCentralIdLookup();
 

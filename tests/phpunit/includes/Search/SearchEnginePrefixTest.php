@@ -56,7 +56,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 			$this->markTestSkipped( 'Main namespace does not support wikitext.' );
 		}
 
-		// Avoid special pages from extensions interferring with the tests
+		// Avoid special pages from extensions interfering with the tests
 		$this->overrideConfigValues( [
 			MainConfigNames::SpecialPages => [],
 			MainConfigNames::Hooks => [],

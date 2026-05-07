@@ -32,7 +32,7 @@ class XmlTest extends MediaWikiUnitTestCase {
 
 	public function testEscapeTagsOnly() {
 		$this->assertEquals( '&quot;&gt;&lt;', Xml::escapeTagsOnly( '"><' ),
-			'replace " > and < with their HTML entitites'
+			'replace " > and < with their HTML entities'
 		);
 	}
 }

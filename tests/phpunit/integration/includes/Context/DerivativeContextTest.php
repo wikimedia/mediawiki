@@ -122,12 +122,12 @@ class DerivativeContextTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$derivativeContext = new DerivativeContext( $initialContext );
-		$this->assertSame( $initialValue, $derivativeContext->$getter(), 'Get inital value' );
+		$this->assertSame( $initialValue, $derivativeContext->$getter(), 'Get initial value' );
 		$derivativeContext->$setter( $newValue );
 		$this->assertSame( $newValue, $derivativeContext->$getter(), 'Get new value' );
 	}
 
-	public function testOverideActionName() {
+	public function testOverrideActionName() {
 		$parent = new RequestContext();
 		$parent->setActionName( 'view' );
 

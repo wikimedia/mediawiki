@@ -391,12 +391,12 @@ class LinkerTest extends MediaWikiLangTestCase {
 			'made-up-display-key'
 		];
 
-		yield 'Contributions, targetted' => [
+		yield 'Contributions, targeted' => [
 			'<a href="/wiki/Special:Contributions/JohnDoe" title="Special:Contributions/JohnDoe">User contributions</a>',
 			'Contributions/JohnDoe'
 		];
 
-		yield 'Contributions, targetted, topOnly' => [
+		yield 'Contributions, targeted, topOnly' => [
 			'<a href="/w/index.php?title=Special:Contributions/JohnDoe&amp;topOnly=1" title="Special:Contributions/JohnDoe">User contributions</a>',
 			'Contributions/JohnDoe?topOnly=1'
 		];
@@ -413,7 +413,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 			'login'
 		];
 
-		yield 'Userlogin, targetted' => [
+		yield 'Userlogin, targeted' => [
 			// Note that this special page doesn't have any support for and doesn't do anything with
 			// the subtitle; this is here as demonstration that Linker doesn't care.
 			'<a href="/wiki/Special:UserLogin/JohnDoe" title="Special:UserLogin/JohnDoe">Log in</a>',

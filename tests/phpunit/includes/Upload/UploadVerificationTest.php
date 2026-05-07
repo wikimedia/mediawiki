@@ -222,7 +222,7 @@ class UploadVerificationTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				// Haven't found a browser that accepts this particular example, but we
-				// don't want to allow embeded svgs, ever
+				// don't want to allow embedded SVGs, ever
 				'<svg> <image style=\'filter:url("data:image/svg+xml;charset=utf-8;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxzY3JpcHQ/YWxlcnQoMSk8L3NjcmlwdD48L3N2Zz4NCg==")\' /> </svg>',
 				true,
 				true,
@@ -265,7 +265,7 @@ class UploadVerificationTest extends MediaWikiIntegrationTestCase {
 				'<svg xmlns="http://www.w3.org/2000/svg" viewbox="-1 -1 15 15"> <rect y="0" height="13" width="12" stroke="#179" rx="1" fill="#2ac"/> <text x="1.5" y="11" font-family="courier" stroke="white" font-size="16"><![CDATA[B]]></text> <iframe xmlns="http://www.w3.org/1999/xhtml" srcdoc="&#x3C;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3E;&#x61;&#x6C;&#x65;&#x72;&#x74;&#x28;&#x27;&#x58;&#x53;&#x53;&#x45;&#x44;&#x20;&#x3D;&#x3E;&#x20;&#x44;&#x6F;&#x6D;&#x61;&#x69;&#x6E;&#x28;&#x27;&#x2B;&#x74;&#x6F;&#x70;&#x2E;&#x64;&#x6F;&#x63;&#x75;&#x6D;&#x65;&#x6E;&#x74;&#x2E;&#x64;&#x6F;&#x6D;&#x61;&#x69;&#x6E;&#x2B;&#x27;&#x29;&#x27;&#x29;&#x3B;&#x3C;&#x2F;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3E;"></iframe> </svg>',
 				true,
 				true,
-				'SVG with rembeded iframe (T62771)'
+				'SVG with embedded iframe (T62771)'
 			],
 			[
 				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="6 3 177 153" xmlns:xlink="http://www.w3.org/1999/xlink"> <style>@import url("https://fonts.googleapis.com/css?family=Bitter:700&amp;text=WebPlatform.org");</style> <g transform="translate(-.5,-.5)"> <text fill="#474747" x="95" y="150" text-anchor="middle" font-family="Bitter" font-size="20" font-weight="bold">WebPlatform.org</text> </g> </svg>',

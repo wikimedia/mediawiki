@@ -389,7 +389,7 @@
 			},
 			{
 				// @import always works in the first stylesheet.
-				// Test with at least two stylesheets to excercise the special
+				// Test with at least two stylesheets to exercise the special
 				// condition in addEmbeddedCSS to support @import (end the batch
 				// earlier than normal).
 				css: [
@@ -808,7 +808,7 @@
 		);
 	} );
 
-	// Regresion test for T68598
+	// Regression test for T68598
 	QUnit.test( 'Network failure', function ( assert ) {
 		// Modules named "test.*Dump" always exist via load.mock.php (testloader)
 		mw.loader.register( [
@@ -1171,9 +1171,9 @@
 			// Must use try-catch because cb.later() will throw if require is undefined,
 			// which doesn't work well inside Deferred.then() when using jQuery 1.x with QUnit
 			try {
-				assert.strictEqual( cb.later(), 'Defined.', 'require works asynchrously in debug mode' );
+				assert.strictEqual( cb.later(), 'Defined.', 'require works asynchronously in debug mode' );
 			} catch ( e ) {
-				assert.strictEqual( String( e ), null, 'require works asynchrously in debug mode' );
+				assert.strictEqual( String( e ), null, 'require works asynchronously in debug mode' );
 			}
 		} );
 	} );

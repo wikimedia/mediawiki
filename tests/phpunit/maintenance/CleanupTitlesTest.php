@@ -58,7 +58,7 @@ class CleanupTitlesTest extends MaintenanceBaseTestCase {
 		# The point of this is to make sure it escapes the invalid < character without also
 		# escaping the non-ASCII characters in the other parts of the title
 		yield [ 0, '<Википедия', 0, 'Broken/\x3cВикипедия', null ];
-		# Non-ascii charaters (and otherwise invalid in a way that removing characters not in Title::legalChars()
+		# Non-ascii characters (and otherwise invalid in a way that removing characters not in Title::legalChars()
 		# doesn't cure)
 		# This output is unideal, and just a failsafe to avoid "Broken/id:" titles
 		yield [ 1, '%25Википедия', 0, 'Broken/Talk:\x2525\xd0\x92\xd0\xb8\xd0\xba\xd0\xb8\xd0\xbf\xd0\xb5\xd0\xb4\xd0\xb8\xd1\x8f', null ];

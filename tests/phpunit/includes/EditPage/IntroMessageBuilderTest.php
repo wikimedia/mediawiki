@@ -116,7 +116,7 @@ class IntroMessageBuilderTest extends MediaWikiIntegrationTestCase {
 			[ 'MediaWiki:Does-not-exist-asdfasdf', null, 'Alice', null, [],
 				[ "editinginterface", "newarticletext" ], $errorClass ];
 
-		yield 'Translateable MediaWiki: namespace message links to Translatewiki' =>
+		yield 'Translatable MediaWiki: namespace message links to Translatewiki' =>
 			[ 'MediaWiki:View', null, 'Alice', null, [],
 				[ "editinginterface", "translateinterface", "newarticletext" ], $errorClass ];
 

@@ -327,7 +327,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		assert.strictEqual(
 			$table.find( 'th.headerSortUp' ).length + $table.find( 'th.headerSortDown' ).length,
 			0,
-			'No sort specific sort classes addign to header cells'
+			'No sort specific sort classes adding to header cells'
 		);
 
 		assert.strictEqual(
@@ -862,7 +862,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		);
 	} );
 
-	// FIXME: the diff output is not very readeable.
+	// FIXME: the diff output is not very readable.
 	QUnit.test( 'T34047 - caption must be before thead', ( assert ) => {
 		const $table = $(
 			'<table class="sortable">' +
@@ -1717,7 +1717,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		QUnit.test( 'MY Dates', function ( assert ) {
 			this.parser( assert, 'date', [
 				[ 'December 2010', false, '99999999', 'Plain month year' ],
-				[ 'Dec 2010', false, '99999999', 'Abreviated month year' ],
+				[ 'Dec 2010', false, '99999999', 'Abbreviated month year' ],
 				[ '12 2010', false, '99999999', 'Numeric month year' ]
 			] );
 		} );
@@ -1727,7 +1727,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 				[ '2010', false, '99999999', 'Plain 4-digit year' ],
 				[ '876', false, '99999999', '3-digit year' ],
 				[ '76', false, '99999999', '2-digit year' ],
-				[ '\'76', false, '99999999', '2-digit millenium bug year' ],
+				[ '\'76', false, '99999999', '2-digit millennium bug year' ],
 				[ '2010 BC', false, '99999999', '4-digit year BC' ]
 			] );
 		} );

@@ -23,7 +23,7 @@
 		[ 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.68 Safari/534.30', 'Linux i686', 'alt-' ],
 		[ 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.11.3 Chrome/65.0.3325.230 Safari/537.36 Konqueror (WebEnginePart)', 'Linux x86_64', 'alt-' ],
 		// Unknown! Note: These aren't necessarily *right* for the browser.
-		// This is testing plaform-based fallback (Mac vs other).
+		// This is testing platform-based fallback (Mac vs other).
 		[ 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-US; rv:1.0.1) Gecko/20021111 Chimera/0.6', 'MacPPC', 'ctrl-' ],
 		[ 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.3a) Gecko/20021207 Phoenix/0.5', 'Linux i686', 'alt-' ]
 	];

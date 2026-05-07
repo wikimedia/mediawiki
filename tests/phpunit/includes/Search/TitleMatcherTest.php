@@ -21,7 +21,7 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 		return [
 			'empty request returns nothing' => [ null, 'en', '', 'Near Match Test' ],
 			'with a hash returns nothing' => [ null, 'en', '#near match test', 'Near Match Test' ],
-			'wrong seach string returns nothing' => [ null, 'en', ':', 'Near Match Test' ],
+			'wrong search string returns nothing' => [ null, 'en', ':', 'Near Match Test' ],
 			'default behaviour exact' => [
 				'Near Match Test', 'en', 'Near Match Test', 'Near Match Test', 'NEAR MATCH TEST'
 			],

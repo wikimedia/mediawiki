@@ -7,7 +7,7 @@ use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\FileBackend\FSFileBackend;
 
 /**
- * Specificly for testing Media handlers. Sets up a FileRepo backend
+ * Specifically for testing Media handlers. Sets up a FileRepo backend
  */
 abstract class MediaWikiMediaTestCase extends MediaWikiIntegrationTestCase {
 

@@ -49,7 +49,7 @@ QUnit.module( 'mediawiki.api.options', QUnit.newMwEnvironment(), ( hooks ) => {
 				// reset an option, not bundleable
 				'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C'
 			].includes( request.requestBody ) ) {
-				assert.true( true, 'Repond to ' + request.requestBody );
+				assert.true( true, 'Respond to ' + request.requestBody );
 				request.respond( 200, { 'Content-Type': 'application/json' },
 					'{ "options": "success" }' );
 			} else {
@@ -103,7 +103,7 @@ QUnit.module( 'mediawiki.api.options', QUnit.newMwEnvironment(), ( hooks ) => {
 				// reset an option, not bundleable
 				'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C'
 			].includes( request.requestBody ) ) {
-				assert.true( true, 'Repond to ' + request.requestBody );
+				assert.true( true, 'Respond to ' + request.requestBody );
 				request.respond(
 					200,
 					{ 'Content-Type': 'application/json' },

@@ -102,7 +102,7 @@ class MiddlewareChainTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $keptNotification, $envelopes[0]->getNotification() );
 	}
 
-	public function testSupressNotification() {
+	public function testSuppressNotification() {
 		$userIdentity = $this->createMock( UserIdentity::class );
 		$keptNotification = new Notification( 'test', [] );
 		$removedNotification = new Notification( 'welcome', [] );

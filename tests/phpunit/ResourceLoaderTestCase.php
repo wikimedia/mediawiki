@@ -199,7 +199,7 @@ class ResourceLoaderTestModule extends Module {
  * A more constrained and testable variant of FileModule.
  *
  * - Implements getLessVars() support.
- * - Disables database persistance of discovered file dependencies.
+ * - Disables database persistence of discovered file dependencies.
  */
 class ResourceLoaderFileTestModule extends FileModule {
 	/** @var array */

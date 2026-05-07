@@ -244,8 +244,8 @@ class MaintenanceParametersTest extends TestCase {
 
 	public static function provideAddArgFailure() {
 		yield 'Already defined' => [
-			[ 'foo', 'testin 1' ],
-			[ 'foo', 'testin 2' ],
+			[ 'foo', 'testing 1' ],
+			[ 'foo', 'testing 2' ],
 		];
 
 		yield 'Required after optional' => [

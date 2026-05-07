@@ -20,9 +20,9 @@ class SanitizerValidateEmailTest extends MediaWikiIntegrationTestCase {
 		yield 'with uppercase #4' => [ 'USER@eXAMPLE.com' ];
 		yield 'with plus #1' => [ 'user+sub@example.com' ];
 		yield 'with plus #2' => [ 'user+@example.com' ];
-		yield 'TLD not neeeded #1' => [ "user@localhost" ];
-		yield 'TLD not neeeded #2' => [ "FooBar@localdomain" ];
-		yield 'TLD not neeeded #3' => [ "nobody@mycompany" ];
+		yield 'TLD not needed #1' => [ "user@localhost" ];
+		yield 'TLD not needed #2' => [ "FooBar@localdomain" ];
+		yield 'TLD not needed #3' => [ "nobody@mycompany" ];
 
 		yield 'with hythen #1' => [ "user-foo@example.org" ];
 		yield 'with hythen #2' => [ "userfoo@ex-ample.org" ];

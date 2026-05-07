@@ -145,19 +145,19 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	public static function provideFeedLinkData() {
 		return [
 			[
-				true, [ 'rss' ], 'Only RSS RC link should be offerred',
+				true, [ 'rss' ], 'Only RSS RC link should be offered',
 				[ self::RSS_RC_LINK ], [ self::ATOM_RC_LINK ]
 			],
 			[
-				true, [ 'atom' ], 'Only Atom RC link should be offerred',
+				true, [ 'atom' ], 'Only Atom RC link should be offered',
 				[ self::ATOM_RC_LINK ], [ self::RSS_RC_LINK ]
 			],
 			[
-				true, [], 'No RC feed formats should be offerred',
+				true, [], 'No RC feed formats should be offered',
 				[], [ self::ATOM_RC_LINK, self::RSS_RC_LINK ]
 			],
 			[
-				false, [ 'atom' ], 'No RC feeds should be offerred',
+				false, [ 'atom' ], 'No RC feeds should be offered',
 				[], [ self::ATOM_RC_LINK, self::RSS_RC_LINK ]
 			],
 		];
@@ -266,7 +266,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideCanonicalUrlAndAlternateUrlData() {
-		# $messsage, $action, $urlVariant, $canonicalUrl, $altUrlLangCode, $present, $nonpresent
+		# $message, $action, $urlVariant, $canonicalUrl, $altUrlLangCode, $present, $nonpresent
 		return [
 			[
 				'Non-specified variant with view action - '
@@ -317,7 +317,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideCanonicalUrlAndAlternateUrlData
 	 */
 	public function testCanonicalUrlAndAlternateUrls(
-		$messsage, $action, $urlVariant, $canonicalUrl, $altUrlLangCode, $present, $nonpresent
+		$message, $action, $urlVariant, $canonicalUrl, $altUrlLangCode, $present, $nonpresent
 	) {
 		$req = new FauxRequest( [
 			'title' => 'My_test_page',
@@ -334,7 +334,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			Html::element( 'link', [ 'rel' => 'canonical', 'href' => $canonicalUrl ] ),
 			$headLinks['link-canonical'],
-			$messsage
+			$message
 		);
 
 		if ( isset( $present ) ) {
@@ -348,7 +348,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					]
 				),
 				$headLinks['link-alternate-language-' . $bcp47Lowercase],
-				$messsage
+				$message
 			);
 		}
 
@@ -358,7 +358,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				[ 'rel' => 'alternate', 'hreflang' => $bcp47, 'href' => $nonpresent, ]
 			),
 			$headLinks,
-			$messsage
+			$message
 		);
 	}
 

@@ -451,7 +451,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'addPortletLink (nested list)', ( assert ) => {
-		// Regresion test for T37082
+		// Regression test for T37082
 		$( '#qunit-fixture' ).html(
 			'<ul id="p-toolbox">' +
 				'<li id="x-foo"><a href="#">Foo</a></li>' +
@@ -508,7 +508,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		false,
 		true,
 		':fc:100::', // starting with lone ":"
-		'fc:100:::', // ending with a tripple ":::"
+		'fc:100:::', // ending with a triple ":::"
 		'fc:300', // 2 words
 		'fc:100:300', // 3 words
 		'fc:100:a:d:1:e:ac:0::', // 8 words ending with "::"
@@ -519,7 +519,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		'::fc:100:a:d:1:e:ac:0:1', // 9 words
 		':fc::100', // starting with lone ":"
 		'fc::100:', // ending with lone ":"
-		'fc:::100', // tripple ":::" in the middle
+		'fc:::100', // triple ":::" in the middle
 		'fc::100:a:d:1:e:ac:0', // 8 words containing double "::"
 		'fc::100:a:d:1:e:ac:0:1' // 9 words
 	], ( assert, ip ) => {

@@ -146,7 +146,7 @@ trait DummyServicesTrait {
 	 *     that it is valid, or an array with some or all of the information for a row
 	 *     from the interwiki table (iw_prefix, iw_url, iw_api, iw_wikiid, iw_local, iw_trans).
 	 *     Like the real InterwikiLookup interface, the iw_api/iw_wikiid/iw_local/iw_trans are
-	 *     all optional, defaulting to empty strings or 0 as approriate. *Unlike* the real
+	 *     all optional, defaulting to empty strings or 0 as appropriate. *Unlike* the real
 	 *     InterwikiLookup interface, iw_url is also optional, defaulting to an empty string.
 	 * @return InterwikiLookup
 	 */

@@ -1443,7 +1443,7 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 			[ 'op' => 'describe', 'src' => $fileA,
 				'headers' => [ 'X-Content-Length' => '91.3' ], 'disposition' => 'inline' ],
 			[ 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ],
-			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (file:<orginal contents>)
+			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (file:<original contents>)
 			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => 1 ],
 			// Now: A:<A>, B:<B>, C:<A>, D:<empty>
 			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileD, 'overwrite' => 1 ],
@@ -1525,7 +1525,7 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 			[ 'op' => 'store', 'src' => $tmpNameB, 'dst' => $fileB, 'overwrite' => 1 ],
 			[ 'op' => 'store', 'src' => $tmpNameC, 'dst' => $fileC, 'overwrite' => 1 ],
 			[ 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ],
-			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (file:<orginal contents>)
+			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (file:<original contents>)
 			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => 1 ],
 			// Now: A:<A>, B:<B>, C:<A>, D:<empty>
 			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileD, 'overwrite' => 1 ],
@@ -1596,7 +1596,7 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 
 		$status = $this->backend->doOperations( [
 			[ 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ],
-			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (file:<orginal contents>)
+			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (file:<original contents>)
 			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => 1 ],
 			// Now: A:<A>, B:<B>, C:<A>, D:<empty>
 			[ 'op' => 'copy', 'src' => $fileB, 'dst' => $fileD, 'overwrite' => 1 ],

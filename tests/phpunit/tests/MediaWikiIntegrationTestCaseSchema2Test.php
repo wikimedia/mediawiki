@@ -35,7 +35,7 @@ class MediaWikiIntegrationTestCaseSchema2Test extends MediaWikiIntegrationTestCa
 		$this->assertTrue( $this->db->tableExists( 'oldimage' ) );
 	}
 
-	public function testOverridenTableWasRestored() {
+	public function testOverriddenTableWasRestored() {
 		// Make sure imagelinks overwritten by MediaWikiIntegrationTestCaseSchema1Test
 		// was restored to the original schema before executing MediaWikiIntegrationTestCaseSchema2Test.
 		$this->assertTrue( $this->db->tableExists( 'imagelinks' ) );

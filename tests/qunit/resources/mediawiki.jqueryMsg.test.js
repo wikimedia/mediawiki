@@ -78,7 +78,7 @@
 		// Messages that are reused in multiple tests
 		messages: {
 			// The values for gender are not significant,
-			// what matters is which of the values is choosen by the parser
+			// what matters is which of the values is chosen by the parser
 			'gender-msg': '$1: {{GENDER:$2|blue|pink|green}}',
 			'gender-msg-currentuser': '{{GENDER:|blue|pink|green}}',
 

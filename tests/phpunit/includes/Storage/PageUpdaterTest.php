@@ -735,7 +735,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectHook( 'RevisionFromEditComplete', 0 );
 
-		// NOTE: it's not clear whether PageSaveComplete should relaly be fired here
+		// NOTE: it's not clear whether PageSaveComplete should really be fired here
 		$this->expectHook( 'PageSaveComplete', 1 );
 
 		// derived slot update
@@ -1231,7 +1231,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater = $page->newPageUpdater( $user );
 
 		// update with EDIT_UPDATE flag should fail
-		$summary = CommentStoreComment::newUnsavedComment( 'udpate?!' );
+		$summary = CommentStoreComment::newUnsavedComment( 'update?!' );
 		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem ipsum' ) );
 		$updater->saveRevision( $summary, EDIT_UPDATE );
 		$status = $updater->getStatus();
@@ -1271,7 +1271,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			->setContent( SlotRecord::MAIN, new TextContent( 'Main Content' ) )
 			->setContent( 'aux', new TextContent( 'Aux Content' ) );
 
-		$summary = CommentStoreComment::newUnsavedComment( 'udpate?!' );
+		$summary = CommentStoreComment::newUnsavedComment( 'update?!' );
 		$updater->saveRevision( $summary, EDIT_UPDATE );
 		$status = $updater->getStatus();
 

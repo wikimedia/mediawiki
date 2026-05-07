@@ -203,7 +203,7 @@ class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::getETag()
 	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::checkAccess()
 	 */
-	public function testForbidenPage() {
+	public function testForbiddenPage() {
 		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
 		$title = $page->getTitle();
 		$helper = $this->newHelper(

@@ -14,7 +14,7 @@ use MediaWiki\Message\Message;
 class UnsupportedSlotDiffRendererTest extends MediaWikiUnitTestCase {
 
 	public static function provideDiff() {
-		// AbstactContent::getContentHandler uses the ContentHandlerFactory
+		// AbstractContent::getContentHandler uses the ContentHandlerFactory
 		// from MediaWikiServices, which we need to avoid. Instead, mock
 		// to return the relevant ContentHandlers. The actual "content" of the
 		// Content objects isn't used, just getModel() and getContentHandler()

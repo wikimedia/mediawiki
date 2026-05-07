@@ -370,7 +370,7 @@
 		assert.strictEqual( mw.Title.phpCharToUpper( '\uD801\uDC38' ), '\uD801\uDC10', 'U+10438 (DESERET SMALL LETTER H) 𐐸 -> U+10410 (DESERET CAPITAL LETTER H) 𐐐' );
 	} );
 
-	QUnit.test( 'Case-sensivity', ( assert ) => {
+	QUnit.test( 'Case-sensitivity', ( assert ) => {
 		// Default config
 		mw.config.set( 'wgCaseSensitiveNamespaces', [] );
 
@@ -426,7 +426,7 @@
 		// Empty registry, checks default to null
 
 		let title = new mw.Title( 'Some random page', 4 );
-		assert.strictEqual( title.exists(), null, 'Return null with empty existance registry' );
+		assert.strictEqual( title.exists(), null, 'Return null with empty existence registry' );
 
 		// Basic registry, checks default to boolean
 		mw.Title.exist.set( [ 'Does_exist', 'User_talk:NeilK', 'Wikipedia:Sandbox_rules' ], true );
