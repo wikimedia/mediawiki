@@ -12,46 +12,46 @@ class FileContentsHasherTest extends \PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
+	private static function getFixtureFiles() {
+		return [
+			'hash.svg' => [
+				__DIR__ . '/../../data/filecontentshasher/hash.svg',
+				'bb270c58a73de5c9a6071f89288debc8',
+			],
+			'primes.txt' => [
+				__DIR__ . '/../../data/filecontentshasher/primes.txt',
+				'96c9ed44903f19477f6a6f7a0667c314',
+			]
+		];
+	}
+
 	public static function provideSingleFile() {
-		return array_map( static function ( $file ) {
-			return [ $file, file_get_contents( $file ) ];
-		}, glob( __DIR__ . '/../../data/filecontentshasher/*.*' ) );
+		return self::getFixtureFiles();
 	}
 
 	/**
 	 * @dataProvider provideSingleFile
 	 */
-	public function testSingleFileHash( $fileName, $contents ) {
-		$expected = hash( 'md4', $contents );
-		$actualHash = FileContentsHasher::getFileContentsHash( $fileName );
-		$this->assertEquals( $expected, $actualHash );
-
-		$actualHashRepeat = FileContentsHasher::getFileContentsHash( $fileName );
-		$this->assertEquals( $expected, $actualHashRepeat );
+	public function testSingleFile( $filePath, $expected ) {
+		$this->assertEquals( $expected, FileContentsHasher::getFileContentsHash( $filePath ) );
+		$this->assertEquals( $expected, FileContentsHasher::getFileContentsHash( $filePath ), 'Repeat to exercise caching' );
 	}
 
-	public static function provideMultipleFiles() {
-		return [
-			[ self::provideSingleFile() ]
-		];
-	}
-
-	/**
-	 * @dataProvider provideMultipleFiles
-	 */
-	public function testMultipleFileHash( $files ) {
-		$fileNames = [];
-		$hashes = [];
-		foreach ( $files as [ $fileName, $contents ] ) {
-			$fileNames[] = $fileName;
-			$hashes[] = hash( 'md4', $contents );
+	public function testMultipleFiles() {
+		$fixture = self::getFixtureFiles();
+		$filePaths = [];
+		foreach ( $fixture as [ $filePath ] ) {
+			$filePaths[] = $filePath;
 		}
 
-		$expectedHash = hash( 'md4', implode( '', $hashes ) );
-		$actualHash = FileContentsHasher::getFileContentsHash( $fileNames );
-		$this->assertEquals( $expectedHash, $actualHash );
-
-		$actualHashRepeat = FileContentsHasher::getFileContentsHash( $fileNames );
-		$this->assertEquals( $expectedHash, $actualHashRepeat );
+		$expected = 'daaab2042b11d2d760d8331687dde3cb';
+		$this->assertEquals(
+			$expected,
+			// Implementation sorts by filepath (hash.svg, primes.txt) and re-hashes
+			hash( 'md4', $fixture['hash.svg'][1] . $fixture['primes.txt'][1] ),
+			'manual'
+		);
+		$this->assertEquals( $expected, FileContentsHasher::getFileContentsHash( $filePaths ) );
+		$this->assertEquals( $expected, FileContentsHasher::getFileContentsHash( $filePaths ), 'Repeat to exercise caching' );
 	}
 }
