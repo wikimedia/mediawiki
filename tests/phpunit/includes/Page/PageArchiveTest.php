@@ -6,7 +6,6 @@ use MediaWiki\Content\TextContent;
 use MediaWiki\Page\PageArchive;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
@@ -76,11 +75,10 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 			TS::MW,
 			wfTimestamp( TS::UNIX, $this->firstRev->getTimestamp() ) + 1
 		);
-		$rev = new MutableRevisionRecord( $page );
-		$rev->setUser( UserIdentityValue::newAnonymous( $this->ipEditor ) );
-		$rev->setTimestamp( $ipTimestamp );
-		$rev->setContent( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
-		$rev->setComment( CommentStoreComment::newUnsavedComment( 'just a test' ) );
+		$rev = MutableRevisionRecord::newFromContent( $page, new TextContent( 'Lorem Ipsum' ) )
+			->setUser( UserIdentityValue::newAnonymous( $this->ipEditor ) )
+			->setTimestamp( $ipTimestamp )
+			->setComment( CommentStoreComment::newUnsavedComment( 'just a test' ) );
 
 		$dbw = $this->getDb();
 		$this->ipRev = $revisionStore->insertRevisionOn( $rev, $dbw );

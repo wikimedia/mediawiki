@@ -222,14 +222,13 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			->getContentHandler( CONTENT_MODEL_WIKITEXT )
 			->unserializeContent( __METHOD__ . ' [[|foo]][[bar]]' );
 
-		$revRecord = new MutableRevisionRecord( $page->getTitle() );
-		$revRecord->setContent( SlotRecord::MAIN, $content );
-		$revRecord->setUser( $user );
-		$revRecord->setTimestamp( '20170707040404' );
-		$revRecord->setPageId( $page->getId() );
-		$revRecord->setId( 9989 );
-		$revRecord->setMinorEdit( true );
-		$revRecord->setComment( $comment );
+		$revRecord = MutableRevisionRecord::newFromContent( $page->getTitle(), $content )
+			->setUser( $user )
+			->setTimestamp( '20170707040404' )
+			->setPageId( $page->getId() )
+			->setId( 9989 )
+			->setMinorEdit( true )
+			->setComment( $comment );
 
 		$page->doEditUpdates( $revRecord, $user );
 
@@ -1331,18 +1330,14 @@ more stuff
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
 
-		$revisionRecord = new MutableRevisionRecord( $page );
-		$revisionRecord->setContent(
-			SlotRecord::MAIN,
-			new WikitextContent( __METHOD__ . '-text' )
-		);
-		$revisionRecord->setUser( $user );
-		$revisionRecord->setTimestamp( '20170707040404' );
-		$revisionRecord->setPageId( $page->getId() );
-		$revisionRecord->setId( 9989 );
-		$revisionRecord->setSize( strlen( __METHOD__ . '-text' ) );
-		$revisionRecord->setMinorEdit( true );
-		$revisionRecord->setComment( CommentStoreComment::newUnsavedComment( __METHOD__ ) );
+		$revisionRecord = MutableRevisionRecord::newFromContent( $page, new WikitextContent( __METHOD__ . '-text' ) )
+			->setUser( $user )
+			->setTimestamp( '20170707040404' )
+			->setPageId( $page->getId() )
+			->setId( 9989 )
+			->setSize( strlen( __METHOD__ . '-text' ) )
+			->setMinorEdit( true )
+			->setComment( CommentStoreComment::newUnsavedComment( __METHOD__ ) );
 
 		$result = $page->updateRevisionOn( $this->getDb(), $revisionRecord );
 		$this->assertTrue( $result );
@@ -1355,18 +1350,14 @@ more stuff
 		$page = $this->createPage( __METHOD__, 'StartText' );
 		$this->deletePage( $page, '', $user );
 
-		$revisionRecord = new MutableRevisionRecord( $page );
-		$revisionRecord->setContent(
-			SlotRecord::MAIN,
-			new WikitextContent( __METHOD__ . '-text' )
-		);
-		$revisionRecord->setUser( $user );
-		$revisionRecord->setTimestamp( '20170707040404' );
-		$revisionRecord->setPageId( $page->getId() );
-		$revisionRecord->setId( 9989 );
-		$revisionRecord->setSize( strlen( __METHOD__ . '-text' ) );
-		$revisionRecord->setMinorEdit( true );
-		$revisionRecord->setComment( CommentStoreComment::newUnsavedComment( __METHOD__ ) );
+		$revisionRecord = MutableRevisionRecord::newFromContent( $page, new WikitextContent( __METHOD__ . '-text' ) )
+			->setUser( $user )
+			->setTimestamp( '20170707040404' )
+			->setPageId( $page->getId() )
+			->setId( 9989 )
+			->setSize( strlen( __METHOD__ . '-text' ) )
+			->setMinorEdit( true )
+			->setComment( CommentStoreComment::newUnsavedComment( __METHOD__ ) );
 
 		$result = $page->updateRevisionOn( $this->getDb(), $revisionRecord );
 		$this->assertFalse( $result );
@@ -1968,14 +1959,10 @@ more stuff
 		$page = $this->newPage( $title );
 		$page->insertOn( $dbw );
 
-		$revision = new MutableRevisionRecord( $page );
-		$revision->setContent(
-			SlotRecord::MAIN,
-			new WikitextContent( '#REDIRECT [[Target]]' )
-		);
-		$revision->setTimestamp( wfTimestampNow() );
-		$revision->setComment( CommentStoreComment::newUnsavedComment( '' ) );
-		$revision->setUser( $this->getTestUser()->getUser() );
+		$revision = MutableRevisionRecord::newFromContent( $page, new WikitextContent( '#REDIRECT [[Target]]' ) )
+			->setTimestamp( wfTimestampNow() )
+			->setComment( CommentStoreComment::newUnsavedComment( '' ) )
+			->setUser( $this->getTestUser()->getUser() );
 
 		$revision = $store->insertRevisionOn( $revision, $dbw );
 

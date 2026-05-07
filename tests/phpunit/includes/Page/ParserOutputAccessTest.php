@@ -21,7 +21,6 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Mocks\PoolCounter\MockPoolCounterFailing;
 use MediaWiki\Tests\Parser\ParserCacheTestBase;
@@ -299,9 +298,8 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 	private function makeFakeRevision( WikiPage $page, $text ) {
 		// construct fake revision with no ID
 		$content = new WikitextContent( $text );
-		$rev = new MutableRevisionRecord( $page->getTitle() );
+		$rev = MutableRevisionRecord::newFromContent( $page->getTitle(), $content );
 		$rev->setPageId( $page->getId() );
-		$rev->setContent( SlotRecord::MAIN, $content );
 
 		return $rev;
 	}
@@ -1669,11 +1667,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 		$access = $this->getParserOutputAccess();
 
 		$page = $this->getExistingTestPage();
-		$fakeRevision = new MutableRevisionRecord( $page );
-		$fakeRevision->setContent(
-			SlotRecord::MAIN,
-			new WikitextContent( 'just a test' )
-		);
+		$fakeRevision = MutableRevisionRecord::newFromContent( $page, new WikitextContent( 'just a test' ) );
 
 		$status = $access->getParserOutput(
 			$page,

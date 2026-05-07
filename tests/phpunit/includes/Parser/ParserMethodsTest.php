@@ -10,7 +10,6 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
@@ -342,13 +341,12 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$po = new ParserOptions( $frank );
 		if ( isset( $poSpec['revisionCallback'] ) ) {
 			$revisionSpec = $poSpec['revisionCallback'];
-			$revision = new MutableRevisionRecord( $title );
+			$revision = MutableRevisionRecord::newFromContent( $title, new WikitextContent( $revisionSpec['content'] ) )
+				->setUser( new UserIdentityValue( ...$revisionSpec['user'] ) )
+				->setTimestamp( $revisionSpec['timestamp'] );
 			if ( isset( $revisionSpec['id'] ) ) {
 				$revision->setId( $revisionSpec['id'] );
 			}
-			$revision->setUser( new UserIdentityValue( ...$revisionSpec['user'] ) );
-			$revision->setTimestamp( $revisionSpec['timestamp'] );
-			$revision->setContent( SlotRecord::MAIN, new WikitextContent( $revisionSpec['content'] ) );
 			$po->setCurrentRevisionRecordCallback( static function () use ( $revision ) {
 				return $revision;
 			} );
@@ -357,17 +355,15 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 			$po->setIsPreview( $poSpec['preview'] );
 		}
 
-		$oldRevision = new MutableRevisionRecord( $title );
-		$oldRevision->setId( 100 );
-		$oldRevision->setUser( new UserIdentityValue( 7, 'OldAuthor' ) );
-		$oldRevision->setTimestamp( '20140404000000' );
-		$oldRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'OLD' ) );
+		$oldRevision = MutableRevisionRecord::newFromContent( $title, new WikitextContent( 'OLD' ) )
+			->setId( 100 )
+			->setUser( new UserIdentityValue( 7, 'OldAuthor' ) )
+			->setTimestamp( '20140404000000' );
 
-		$currentRevision = new MutableRevisionRecord( $title );
-		$currentRevision->setId( 200 );
-		$currentRevision->setUser( new UserIdentityValue( 9, 'CurrentAuthor' ) );
-		$currentRevision->setTimestamp( '20160606000000' );
-		$currentRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'CURRENT' ) );
+		$currentRevision = MutableRevisionRecord::newFromContent( $title, new WikitextContent( 'CURRENT' ) )
+			->setId( 200 )
+			->setUser( new UserIdentityValue( 9, 'CurrentAuthor' ) )
+			->setTimestamp( '20160606000000' );
 
 		$revisionStore = $this->createMock( RevisionStore::class );
 

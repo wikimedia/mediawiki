@@ -120,11 +120,6 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	public function testGetRenderedRevision_new() {
 		$renderer = $this->newRevisionRenderer( 100 );
 
-		$rev = new MutableRevisionRecord( $this->fakePage );
-		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
-		$rev->setTimestamp( '20180101000003' );
-		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
-
 		$text = "";
 		$text .= "* page:{{PAGENAME}}\n";
 		$text .= "* rev:{{REVISIONID}}\n";
@@ -132,7 +127,10 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$text .= "* time:{{REVISIONTIMESTAMP}}\n";
 		$text .= "* [[Link It]]\n";
 
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
+		$rev = MutableRevisionRecord::newFromContent( $this->fakePage, new WikitextContent( $text ) )
+			->setUser( new UserIdentityValue( 9, 'Frank' ) )
+			->setTimestamp( '20180101000003' )
+			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options );
@@ -155,19 +153,17 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	public function testGetRenderedRevision_current() {
 		$renderer = $this->newRevisionRenderer( 100 );
 
-		$rev = new MutableRevisionRecord( $this->fakePage );
-		$rev->setId( 21 ); // current!
-		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
-		$rev->setTimestamp( '20180101000003' );
-		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
-
 		$text = "";
 		$text .= "* page:{{PAGENAME}}\n";
 		$text .= "* rev:{{REVISIONID}}\n";
 		$text .= "* user:{{REVISIONUSER}}\n";
 		$text .= "* time:{{REVISIONTIMESTAMP}}\n";
 
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
+		$rev = MutableRevisionRecord::newFromContent( $this->fakePage, new WikitextContent( $text ) )
+			->setId( 21 ) // current!
+			->setUser( new UserIdentityValue( 9, 'Frank' ) )
+			->setTimestamp( '20180101000003' )
+			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options );
@@ -190,19 +186,17 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	public function testGetRenderedRevision_master() {
 		$renderer = $this->newRevisionRenderer( 100, true ); // use master
 
-		$rev = new MutableRevisionRecord( $this->fakePage );
-		$rev->setId( 21 ); // current!
-		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
-		$rev->setTimestamp( '20180101000003' );
-		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
-
 		$text = "";
 		$text .= "* page:{{PAGENAME}}\n";
 		$text .= "* rev:{{REVISIONID}}\n";
 		$text .= "* user:{{REVISIONUSER}}\n";
 		$text .= "* time:{{REVISIONTIMESTAMP}}\n";
 
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
+		$rev = MutableRevisionRecord::newFromContent( $this->fakePage, new WikitextContent( $text ) )
+			->setId( 21 ) // current!
+			->setUser( new UserIdentityValue( 9, 'Frank' ) )
+			->setTimestamp( '20180101000003' )
+			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options, null, [ 'use-master' => true ] );
@@ -219,14 +213,12 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	public function testGetRenderedRevision_known() {
 		$renderer = $this->newRevisionRenderer( 100, true ); // use master
 
-		$rev = new MutableRevisionRecord( $this->fakePage );
-		$rev->setId( 21 ); // current!
-		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
-		$rev->setTimestamp( '20180101000003' );
-		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
-
 		$text = "uncached text";
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
+		$rev = MutableRevisionRecord::newFromContent( $this->fakePage, new WikitextContent( $text ) )
+			->setId( 21 ) // current!
+			->setUser( new UserIdentityValue( 9, 'Frank' ) )
+			->setTimestamp( '20180101000003' )
+			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$output = new ParserOutput( 'cached text' );
 
@@ -246,19 +238,17 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	public function testGetRenderedRevision_old() {
 		$renderer = $this->newRevisionRenderer( 100 );
 
-		$rev = new MutableRevisionRecord( $this->fakePage );
-		$rev->setId( 11 ); // old!
-		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
-		$rev->setTimestamp( '20180101000003' );
-		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
-
 		$text = "";
 		$text .= "* page:{{PAGENAME}}\n";
 		$text .= "* rev:{{REVISIONID}}\n";
 		$text .= "* user:{{REVISIONUSER}}\n";
 		$text .= "* time:{{REVISIONTIMESTAMP}}\n";
 
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
+		$rev = MutableRevisionRecord::newFromContent( $this->fakePage, new WikitextContent( $text ) )
+			->setId( 11 ) // old!
+			->setUser( new UserIdentityValue( 9, 'Frank' ) )
+			->setTimestamp( '20180101000003' )
+			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options );
@@ -281,20 +271,18 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	public function testGetRenderedRevision_suppressed() {
 		$renderer = $this->newRevisionRenderer( 100 );
 
-		$rev = new MutableRevisionRecord( $this->fakePage );
-		$rev->setId( 11 ); // old!
-		$rev->setVisibility( RevisionRecord::DELETED_TEXT ); // suppressed!
-		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
-		$rev->setTimestamp( '20180101000003' );
-		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
-
 		$text = "";
 		$text .= "* page:{{PAGENAME}}\n";
 		$text .= "* rev:{{REVISIONID}}\n";
 		$text .= "* user:{{REVISIONUSER}}\n";
 		$text .= "* time:{{REVISIONTIMESTAMP}}\n";
 
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
+		$rev = MutableRevisionRecord::newFromContent( $this->fakePage, new WikitextContent( $text ) )
+			->setId( 11 ) // old!
+			->setVisibility( RevisionRecord::DELETED_TEXT ) // suppressed!
+			->setUser( new UserIdentityValue( 9, 'Frank' ) )
+			->setTimestamp( '20180101000003' )
+			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options );
@@ -305,20 +293,18 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	public function testGetRenderedRevision_privileged() {
 		$renderer = $this->newRevisionRenderer( 100 );
 
-		$rev = new MutableRevisionRecord( $this->fakePage );
-		$rev->setId( 11 ); // old!
-		$rev->setVisibility( RevisionRecord::DELETED_TEXT ); // suppressed!
-		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
-		$rev->setTimestamp( '20180101000003' );
-		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
-
 		$text = "";
 		$text .= "* page:{{PAGENAME}}\n";
 		$text .= "* rev:{{REVISIONID}}\n";
 		$text .= "* user:{{REVISIONUSER}}\n";
 		$text .= "* time:{{REVISIONTIMESTAMP}}\n";
 
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
+		$rev = MutableRevisionRecord::newFromContent( $this->fakePage, new WikitextContent( $text ) )
+			->setId( 11 ) // old!
+			->setVisibility( RevisionRecord::DELETED_TEXT ) // suppressed!
+			->setUser( new UserIdentityValue( 9, 'Frank' ) )
+			->setTimestamp( '20180101000003' )
+			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$options = ParserOptions::newFromAnon();
 		$sysop = $this->mockRegisteredUltimateAuthority();
@@ -344,20 +330,18 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	public function testGetRenderedRevision_raw() {
 		$renderer = $this->newRevisionRenderer( 100 );
 
-		$rev = new MutableRevisionRecord( $this->fakePage );
-		$rev->setId( 11 ); // old!
-		$rev->setVisibility( RevisionRecord::DELETED_TEXT ); // suppressed!
-		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
-		$rev->setTimestamp( '20180101000003' );
-		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
-
 		$text = "";
 		$text .= "* page:{{PAGENAME}}\n";
 		$text .= "* rev:{{REVISIONID}}\n";
 		$text .= "* user:{{REVISIONUSER}}\n";
 		$text .= "* time:{{REVISIONTIMESTAMP}}\n";
 
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
+		$rev = MutableRevisionRecord::newFromContent( $this->fakePage, new WikitextContent( $text ) )
+			->setId( 11 ) // old!
+			->setVisibility( RevisionRecord::DELETED_TEXT ) // suppressed!
+			->setUser( new UserIdentityValue( 9, 'Frank' ) )
+			->setTimestamp( '20180101000003' )
+			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision(
@@ -391,13 +375,11 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	public function testGetRenderedRevision_multi() {
 		$renderer = $this->newRevisionRenderer();
 
-		$rev = new MutableRevisionRecord( $this->fakePage );
-		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
-		$rev->setTimestamp( '20180101000003' );
-		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
-
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( '[[Kittens]]' ) );
-		$rev->setContent( 'aux', new WikitextContent( '[[Goats]]' ) );
+		$rev = MutableRevisionRecord::newFromContent( $this->fakePage, new WikitextContent( '[[Kittens]]' ) )
+			->setUser( new UserIdentityValue( 9, 'Frank' ) )
+			->setTimestamp( '20180101000003' )
+			->setComment( CommentStoreComment::newUnsavedComment( '' ) )
+			->setContent( 'aux', new WikitextContent( '[[Goats]]' ) );
 
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options );
@@ -495,9 +477,8 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 		$renderer = $this->newRevisionRenderer( 100, false, $mockContentRenderer );
 
-		$rev = new MutableRevisionRecord( $this->fakePage );
-		$rev->setContent( SlotRecord::MAIN, $content );
-		$rev->setContent( 'aux', $content );
+		$rev = MutableRevisionRecord::newFromContent( $this->fakePage, $content )
+			->setContent( 'aux', $content );
 
 		// NOTE: we are testing the private combineSlotOutput() callback here.
 		$rr = $renderer->getRenderedRevision( $rev );

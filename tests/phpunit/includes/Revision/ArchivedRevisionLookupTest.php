@@ -7,7 +7,6 @@ use MediaWiki\Content\ContentHandler;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -79,11 +78,10 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
-		$rev = new MutableRevisionRecord( $page );
-		$rev->setUser( $user );
-		$rev->setTimestamp( $timestamp );
-		$rev->setContent( SlotRecord::MAIN, $newContent );
-		$rev->setComment( CommentStoreComment::newUnsavedComment( 'just a test' ) );
+		$rev = MutableRevisionRecord::newFromContent( $page, $newContent )
+			->setUser( $user )
+			->setTimestamp( $timestamp )
+			->setComment( CommentStoreComment::newUnsavedComment( 'just a test' ) );
 
 		$this->secondRev = $revisionStore->insertRevisionOn( $rev, $this->getDb() );
 

@@ -303,8 +303,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	private function getPageConfig( PageIdentity $page, $revIdOrText = null ): PageConfig {
 		$rev = null;
 		if ( is_string( $revIdOrText ) ) {
-			$rev = new MutableRevisionRecord( $page );
-			$rev->setContent( SlotRecord::MAIN, new WikitextContent( $revIdOrText ) );
+			$rev = MutableRevisionRecord::newFromContent( $page, new WikitextContent( $revIdOrText ) );
 		} else {
 			// may be null or an int or a RevisionRecord
 			$rev = $revIdOrText;

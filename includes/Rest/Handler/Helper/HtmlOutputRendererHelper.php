@@ -332,11 +332,11 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @param Content $content
 	 */
 	public function setContent( Content $content ): void {
-		$rev = new MutableRevisionRecord( $this->page );
-		$rev->setId( 0 );
-		$rev->setPageId( $this->page->getId() );
-		$rev->setContent( SlotRecord::MAIN, $content );
-		$this->setRevision( $rev );
+		$this->setRevision(
+			MutableRevisionRecord::newFromContent( $this->page, $content )
+				->setId( 0 )
+				->setPageId( $this->page->getId() )
+		);
 	}
 
 	/**

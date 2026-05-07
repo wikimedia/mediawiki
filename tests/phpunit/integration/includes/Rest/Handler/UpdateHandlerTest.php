@@ -19,7 +19,6 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Session\Token;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -71,19 +70,15 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 		$revisionLookup->method( 'getRevisionById' )
 			->willReturnCallback( function ( $id ) {
 				$title = $this->makeMockTitle( __CLASS__ );
-				$rev = new MutableRevisionRecord( $title );
-				$rev->setId( $id );
-				$rev->setContent( SlotRecord::MAIN, new WikitextContent( "Content of revision $id" ) );
-				$rev->setTimestamp( '2020-01-01T01:02:03Z' );
-				return $rev;
+				return MutableRevisionRecord::newFromContent( $title, new WikitextContent( "Content of revision $id" ) )
+					->setId( $id )
+					->setTimestamp( '2020-01-01T01:02:03Z' );
 			} );
 		$revisionLookup->method( 'getRevisionByTitle' )
 			->willReturnCallback( static function ( $title ) {
-				$rev = new MutableRevisionRecord( Title::castFromLinkTarget( $title ) );
-				$rev->setId( 1234 );
-				$rev->setContent( SlotRecord::MAIN, new WikitextContent( "Current content of $title" ) );
-				$rev->setTimestamp( '2020-01-01T01:02:03Z' );
-				return $rev;
+				return MutableRevisionRecord::newFromContent( Title::castFromLinkTarget( $title ), new WikitextContent( "Current content of $title" ) )
+					->setId( 1234 )
+					->setTimestamp( '2020-01-01T01:02:03Z' );
 			} );
 
 		$handler = new UpdateHandler(

@@ -448,17 +448,16 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetRevisionParserOutput_incompleteNoId() {
-		$rev = new MutableRevisionRecord(
-			PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' )
-		);
-
 		$text = "";
 		$text .= "* page:{{PAGENAME}}!\n";
 		$text .= "* rev:{{REVISIONID}}!\n";
 		$text .= "* user:{{REVISIONUSER}}!\n";
 		$text .= "* time:{{REVISIONTIMESTAMP}}!\n";
 
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
+		$rev = MutableRevisionRecord::newFromContent(
+			PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' ),
+			new WikitextContent( $text )
+		);
 
 		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
@@ -530,11 +529,10 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 				}
 			} );
 
-		$rev = new MutableRevisionRecord(
-			PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' )
-		);
-		$rev->setContent( SlotRecord::MAIN, $content );
-		$rev->setContent( 'aux', $content );
+		$rev = MutableRevisionRecord::newFromContent(
+			PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' ),
+			$content
+		)->setContent( 'aux', $content );
 
 		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
@@ -553,7 +551,6 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 
 	public function testUpdateRevision() {
 		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' );
-		$rev = new MutableRevisionRecord( $page );
 
 		$text = "";
 		$text .= "* page:{{PAGENAME}}!\n";
@@ -561,8 +558,8 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$text .= "* user:{{REVISIONUSER}}!\n";
 		$text .= "* time:{{REVISIONTIMESTAMP}}!\n";
 
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
-		$rev->setContent( 'aux', new WikitextContent( '[[Goats]]' ) );
+		$rev = MutableRevisionRecord::newFromContent( $page, new WikitextContent( $text ) )
+			->setContent( 'aux', new WikitextContent( '[[Goats]]' ) );
 
 		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
@@ -577,12 +574,11 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$auxOutput = $rr->getSlotParserOutput( 'aux' );
 
 		// emulate a saved revision
-		$savedRev = new MutableRevisionRecord( $page );
-		$savedRev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
-		$savedRev->setContent( 'aux', new WikitextContent( '[[Goats]]' ) );
-		$savedRev->setId( 23 ); // saved, new
-		$savedRev->setUser( new UserIdentityValue( 9, 'Frank' ) );
-		$savedRev->setTimestamp( '20180101000003' );
+		$savedRev = MutableRevisionRecord::newFromContent( $page, new WikitextContent( $text ) )
+			->setContent( 'aux', new WikitextContent( '[[Goats]]' ) )
+			->setId( 23 ) // saved, new
+			->setUser( new UserIdentityValue( 9, 'Frank' ) )
+			->setTimestamp( '20180101000003' );
 
 		$rr->updateRevision( $savedRev );
 
@@ -605,9 +601,8 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 
 	public function testUpdateRevision_revIdSet() {
 		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' );
-		$rev = new MutableRevisionRecord( $page );
-		$rev->setId( 123 );
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( 'FooBar' ) );
+		$rev = MutableRevisionRecord::newFromContent( $page, new WikitextContent( 'FooBar' ) )
+			->setId( 123 );
 
 		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
@@ -617,9 +612,8 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			$this->combinerCallback
 		);
 
-		$newRev = new MutableRevisionRecord( $page );
-		$newRev->setId( 321 ); // Different
-		$newRev->setContent( SlotRecord::MAIN, new WikitextContent( 'FooBar' ) );
+		$newRev = MutableRevisionRecord::newFromContent( $page, new WikitextContent( 'FooBar' ) )
+			->setId( 321 ); // Different
 
 		$this->expectException( LogicException::class );
 		$this->expectExceptionMessage(

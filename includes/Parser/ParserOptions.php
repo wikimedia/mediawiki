@@ -24,7 +24,6 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Revision\MutableRevisionRecord;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Skin\Skin;
 use MediaWiki\StubObject\StubObject;
 use MediaWiki\Title\Title;
@@ -1827,8 +1826,7 @@ class ParserOptions {
 						);
 					}
 
-					$revRecord = new MutableRevisionRecord( $page );
-					$revRecord->setContent( SlotRecord::MAIN, $content )
+					$revRecord = MutableRevisionRecord::newFromContent( $page, $content )
 						->setUser( $user )
 						->setTimestamp( MWTimestamp::now( TS::MW ) )
 						->setId( 0 )

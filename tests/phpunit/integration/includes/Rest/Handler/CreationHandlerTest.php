@@ -12,7 +12,6 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Session\Token;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -51,10 +50,8 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 		$revisionLookup->method( 'getRevisionById' )
 			->willReturnCallback( function ( $id ) {
 				$title = $this->makeMockTitle( __CLASS__ );
-				$rev = new MutableRevisionRecord( $title );
-				$rev->setId( $id );
-				$rev->setContent( SlotRecord::MAIN, new WikitextContent( "Content of revision $id" ) );
-				return $rev;
+				return MutableRevisionRecord::newFromContent( $title, new WikitextContent( "Content of revision $id" ) )
+					->setId( $id );
 			} );
 
 		$handler = new CreationHandler(

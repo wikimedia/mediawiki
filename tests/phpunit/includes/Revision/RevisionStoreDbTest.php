@@ -2820,11 +2820,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $actorId, 'New actor has no actor_id' );
 
 		$page = $this->getTestPage();
-		$rev = new MutableRevisionRecord( $page->getTitle() );
-		$rev->setTimestamp( '20180101000000' )
+		$rev = MutableRevisionRecord::newFromContent( $page->getTitle(), new WikitextContent( 'Text' ) )
+			->setTimestamp( '20180101000000' )
 			->setComment( CommentStoreComment::newUnsavedComment( 'test' ) )
 			->setUser( $user )
-			->setContent( SlotRecord::MAIN, new WikitextContent( 'Text' ) )
 			->setPageId( $page->getId() );
 
 		$return = $this->getServiceContainer()->getRevisionStore()->insertRevisionOn( $rev, $this->getDb() );
@@ -2897,11 +2896,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			->caller( __METHOD__ )
 			->execute();
 
-		$rev = new MutableRevisionRecord( $page->getTitle() );
-		$rev->setTimestamp( '20180101000000' )
+		$rev = MutableRevisionRecord::newFromContent( $page->getTitle(), new WikitextContent( 'Text' ) )
+			->setTimestamp( '20180101000000' )
 			->setComment( CommentStoreComment::newUnsavedComment( 'test' ) )
 			->setUser( $this->getTestUser()->getUser() )
-			->setContent( SlotRecord::MAIN, new WikitextContent( 'Text' ) )
 			->setPageId( $page->getId() );
 
 		$store = $this->getServiceContainer()->getRevisionStore();

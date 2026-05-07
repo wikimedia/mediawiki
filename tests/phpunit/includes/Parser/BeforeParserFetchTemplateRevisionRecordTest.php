@@ -9,7 +9,6 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
 use MockTitleTrait;
 
@@ -169,8 +168,7 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 			'BeforeParserFetchTemplateRevisionRecord',
 			static function ( ?LinkTarget $contextTitle, LinkTarget $title, bool &$skip, ?RevisionRecord &$revRecord ) use ( $baseTitle, $subst ) {
 				if ( $title->getPrefixedText() === $baseTitle ) {
-					$revRecord = new MutableRevisionRecord( $subst->getTitle() );
-					$revRecord->setContent( SlotRecord::MAIN, new WikitextContent( 'foo' ) );
+					$revRecord = MutableRevisionRecord::newFromContent( $subst->getTitle(), new WikitextContent( 'foo' ) );
 				}
 			}
 		);

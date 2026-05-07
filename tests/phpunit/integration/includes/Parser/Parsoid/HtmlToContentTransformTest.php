@@ -13,7 +13,6 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\Parsoid\Config\PageConfig;
 use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Revision\MutableRevisionRecord;
-use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\SelserData;
@@ -204,8 +203,7 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$text = 'Lorem Ipsum';
 
 		$page = PageIdentityValue::localIdentity( 17, NS_MAIN, 'Test' );
-		$rev = new MutableRevisionRecord( $page );
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
+		$rev = MutableRevisionRecord::newFromContent( $page, new WikitextContent( $text ) );
 
 		$transform = $this->createHtmlToContentTransformWithOriginalData();
 		$transform->setOriginalRevision( $rev );

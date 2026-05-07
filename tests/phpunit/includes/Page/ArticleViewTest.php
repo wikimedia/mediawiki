@@ -224,14 +224,12 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$content->expects( $this->never() )->method( 'getNativeData' );
 		$content->method( 'copy' )->willReturnSelf();
 
-		$rev = new MutableRevisionRecord( $title );
-		$rev->setId( $dummyRev->getId() );
-		$rev->setPageId( $title->getArticleID() );
-		$rev->setUser( $dummyRev->getUser() );
-		$rev->setComment( $dummyRev->getComment() );
-		$rev->setTimestamp( $dummyRev->getTimestamp() );
-
-		$rev->setContent( SlotRecord::MAIN, $content );
+		$rev = MutableRevisionRecord::newFromContent( $title, $content )
+			->setId( $dummyRev->getId() )
+			->setPageId( $title->getArticleID() )
+			->setUser( $dummyRev->getUser() )
+			->setComment( $dummyRev->getComment() )
+			->setTimestamp( $dummyRev->getTimestamp() );
 
 		/** @var MockObject|WikiPage $page */
 		$page = $this->getMockBuilder( WikiPage::class )

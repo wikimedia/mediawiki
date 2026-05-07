@@ -5,7 +5,6 @@ use MediaWiki\Content\WikitextContent;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\UserEditCountUpdate;
 use MediaWiki\Revision\MutableRevisionRecord;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
@@ -35,12 +34,11 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 			$page->insertOn( $this->getDb() );
 		}
 
-		$rev = new MutableRevisionRecord( $title );
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $timestamp ) );
-		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
-		$rev->setTimestamp( $timestamp );
-		$rev->setUser( $user );
-		$rev->setPageId( $page->getId() );
+		$rev = MutableRevisionRecord::newFromContent( $title, new WikitextContent( $timestamp ) )
+			->setComment( CommentStoreComment::newUnsavedComment( '' ) )
+			->setTimestamp( $timestamp )
+			->setUser( $user )
+			->setPageId( $page->getId() );
 		$this->getServiceContainer()->getRevisionStore()->insertRevisionOn( $rev, $this->getDb() );
 	}
 
