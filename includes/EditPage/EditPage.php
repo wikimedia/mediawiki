@@ -246,8 +246,8 @@ class EditPage implements IEditObject {
 	/** Corresponds to $wgEnableWatchlistLabels */
 	private bool $watchlistLabelsEnabled;
 
-	/** @var int[] Watchlist label IDs submitted in the form */
-	private array $watchlistLabels = [];
+	/** @var ?int[] Watchlist label IDs submitted in the form, or null if not submitted */
+	private ?array $watchlistLabels = null;
 
 	private bool $recreate = false;
 
@@ -1280,7 +1280,10 @@ class EditPage implements IEditObject {
 			}
 		}
 		if ( $this->watchlistLabelsEnabled ) {
-			$this->watchlistLabels = $request->getIntArray( 'wpWatchlistLabels', [] );
+			$watchlistLabelsSubmitted = $request->getCheck( 'wpWatchlistLabelsSubmitted' );
+			$this->watchlistLabels = $watchlistLabelsSubmitted
+				? $request->getIntArray( 'wpWatchlistLabels', [] )
+				: null;
 		}
 
 		$this->autoSumm = $request->getText( 'wpAutoSummary' );
@@ -3115,7 +3118,7 @@ class EditPage implements IEditObject {
 			$out->addHTML( Html::rawElement(
 				'div',
 				[ 'class' => $watchlistLabelClass . ' mw-editpage-watchlistLabels' ],
-				(string)$watchlistLabelsWidget
+				Html::hidden( 'wpWatchlistLabelsSubmitted', 1 ) . (string)$watchlistLabelsWidget
 			) . "\n" );
 		}
 

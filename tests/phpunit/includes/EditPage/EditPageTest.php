@@ -1195,6 +1195,7 @@ hello
 				'wpTextbox1' => 'Updated text',
 				'wpSummary' => 'test summary',
 				'wpWatchthis' => 1,
+				'wpWatchlistLabelsSubmitted' => 1,
 				'wpWatchlistLabels' => [
 					(string)$labelA->getId(),
 					'not-an-int',
@@ -1217,7 +1218,7 @@ hello
 	/**
 	 * @covers \MediaWiki\PageEdit\PageEdit::updateWatchlist
 	 */
-	public function testWatchlistLabelsAreAddedOnSave(): void {
+	public function testWatchlistLabelsAreReplacedOnSave(): void {
 		$this->overrideConfigValue( MainConfigNames::EnableWatchlistLabels, true );
 		$user = self::$editUsers['user'];
 		$title = Title::newFromText( __METHOD__, $this->getDefaultWikitextNS() );
@@ -1239,7 +1240,6 @@ hello
 			[ $labelA->getId(), $labelB->getId() ],
 			$this->getAssignedWatchlistLabelIds( $user, $title )
 		);
-		$this->getServiceContainer()->getWatchedItemStore()->getWatchedItem( $user, $title );
 
 		$this->assertEdit(
 			$title,
@@ -1249,6 +1249,7 @@ hello
 				'wpTextbox1' => 'Updated text',
 				'wpSummary' => 'test summary',
 				'wpWatchthis' => 1,
+				'wpWatchlistLabelsSubmitted' => 1,
 				'wpWatchlistLabels' => [
 					(string)$labelB->getId(),
 					(string)$labelC->getId(),
@@ -1260,8 +1261,56 @@ hello
 
 		$assignedIds = $this->getAssignedWatchlistLabelIds( $user, $title );
 
-		$expectedIds = [ $labelA->getId(), $labelB->getId(), $labelC->getId() ];
+		$expectedIds = [ $labelB->getId(), $labelC->getId() ];
 		sort( $expectedIds );
+
+		$this->assertSame( $expectedIds, $assignedIds );
+	}
+
+	/**
+	 * @covers \MediaWiki\PageEdit\PageEdit::updateWatchlist
+	 */
+	public function testWatchlistLabelsAreClearedOnSave(): void {
+		$this->overrideConfigValue( MainConfigNames::EnableWatchlistLabels, true );
+		$user = self::$editUsers['user'];
+		$title = Title::newFromText( __METHOD__, $this->getDefaultWikitextNS() );
+
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$page->doUserEditContent( ContentHandler::makeContent( 'base', $title ), $user, 'base text for test' );
+
+		$labelA = $this->createWatchlistLabel( $user, 'sync-a' );
+		$labelB = $this->createWatchlistLabel( $user, 'sync-b' );
+		$labelC = $this->createWatchlistLabel( $user, 'sync-c' );
+
+		$this->getServiceContainer()->getWatchlistManager()->setWatch( true, $user, $title );
+		$this->getServiceContainer()->getWatchedItemStore()->addLabels(
+			$user,
+			[ $title ],
+			[ $labelA->getId(), $labelB->getId() ]
+		);
+		$this->assertSame(
+			[ $labelA->getId(), $labelB->getId() ],
+			$this->getAssignedWatchlistLabelIds( $user, $title )
+		);
+
+		$this->assertEdit(
+			$title,
+			null,
+			'user',
+			[
+				'wpTextbox1' => 'Updated text',
+				'wpSummary' => 'test summary',
+				'wpWatchthis' => 1,
+				'wpWatchlistLabelsSubmitted' => 1,
+				'wpWatchlistLabels' => [],
+			],
+			EditPage::AS_SUCCESS_UPDATE,
+			'Updated text'
+		);
+
+		$assignedIds = $this->getAssignedWatchlistLabelIds( $user, $title );
+
+		$expectedIds = [];
 
 		$this->assertSame( $expectedIds, $assignedIds );
 	}
@@ -1286,6 +1335,7 @@ hello
 				'wpTextbox1' => 'Updated text',
 				'wpSummary' => 'test summary',
 				'wpWatchthis' => 1,
+				'wpWatchlistLabelsSubmitted' => 1,
 				'wpWatchlistLabels' => [
 					(string)$ownLabel->getId(),
 					(string)$otherUsersLabel->getId(),

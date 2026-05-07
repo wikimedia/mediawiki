@@ -43,8 +43,8 @@ class PageEditInputs {
 	private ?UserIdentity $userForPreview = null;
 	private ?UserIdentity $userForSave = null;
 	private ?string $watchlistExpiry = null;
-	/** @var int[] */
-	private array $watchlistLabels = [];
+	/** @var ?int[] */
+	private ?array $watchlistLabels = null;
 	private bool $watchthis = false;
 
 	public function __construct(
@@ -333,16 +333,16 @@ class PageEditInputs {
 	}
 
 	/**
-	 * @return int[]
+	 * @return ?int[]
 	 */
-	public function getWatchlistLabels(): array {
+	public function getWatchlistLabels(): ?array {
 		return $this->watchlistLabels;
 	}
 
 	/**
-	 * @param int[] $watchlistLabels
+	 * @param ?int[] $watchlistLabels
 	 */
-	public function setWatchlistLabels( array $watchlistLabels ): self {
+	public function setWatchlistLabels( ?array $watchlistLabels ): self {
 		$this->watchlistLabels = $watchlistLabels;
 		return $this;
 	}

@@ -21,6 +21,7 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
+use MediaWiki\Watchlist\WatchlistLabel;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -1886,4 +1887,39 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertTrue( $watchlistManager->isWatched( $user, $title ) );
 		$this->assertTrue( $watchlistManager->isTempWatched( $user, $title ) );
 	}
+
+	public function testEditDoesNotResetWatchlistLabelsWhenNotSubmitted(): void {
+		$this->overrideConfigValue( MainConfigNames::EnableWatchlistLabels, true );
+
+		$user = $this->getTestUser()->getUser();
+		$title = Title::makeTitle( NS_HELP, 'TestEditDoesNotResetWatchlistLabelsWhenNotSubmitted' );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$page->doUserEditContent( new WikitextContent( 'initial' ), $user, 'create', EDIT_NEW );
+
+		$labelStore = $this->getServiceContainer()->getWatchlistLabelStore();
+		$watchedItemStore = $this->getServiceContainer()->getWatchedItemStore();
+		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
+
+		$label = new WatchlistLabel( $user, 'API edit label' );
+		$this->assertStatusGood( $labelStore->save( $label ) );
+		$this->assertStatusGood( $watchlistManager->setWatch( true, $user, $title, null, [ $label->getId() ] ) );
+
+		$before = $watchedItemStore->getWatchedItem( $user, $title );
+		$this->assertNotNull( $before );
+		$this->assertCount( 1, $before->getLabels() );
+		$this->assertSame( $label->getId(), $before->getLabels()[0]->getId() );
+
+		// Simulate action=edit with no watchlist labels input; existing labels should be preserved.
+		$this->doApiRequestWithToken( [
+			'action' => 'edit',
+			'title' => $title,
+			'appendtext' => ' updated',
+		], null, $user );
+
+		$after = $watchedItemStore->getWatchedItem( $user, $title );
+		$this->assertNotNull( $after );
+		$this->assertCount( 1, $after->getLabels() );
+		$this->assertSame( $label->getId(), $after->getLabels()[0]->getId() );
+	}
+
 }

@@ -792,6 +792,7 @@ class PageEdit implements IEditObject {
 
 		$watch = $this->inputs->shouldWatchthis();
 		$watchlistExpiry = $this->inputs->getWatchlistExpiry();
+		$watchlistLabels = $this->inputs->getWatchlistLabels();
 
 		// This can't run as a DeferredUpdate due to a possible race condition
 		// when the post-edit redirect happens if the pendingUpdates queue is
@@ -801,7 +802,7 @@ class PageEdit implements IEditObject {
 			$authority,
 			$this->inputs->getPage(),
 			$watchlistExpiry,
-			$this->inputs->getWatchlistLabels()
+			$watchlistLabels
 		);
 
 		$this->watchedItemStore->maybeEnqueueWatchlistExpiryJob();

@@ -1860,6 +1860,8 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 				->caller( __METHOD__ )
 				->execute();
 		}
+		// Clear the cache for affected items
+		$this->uncacheTitlesForUser( $user, $targets );
 	}
 
 	/** @inheritDoc */
@@ -1883,6 +1885,8 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 				] )
 			->execute();
 		}
+		// Clear the cache for affected items
+		$this->uncacheTitlesForUser( $user, $targets );
 	}
 
 	/**
