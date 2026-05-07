@@ -10,7 +10,7 @@ let cachedModifiers;
 /**
  * Find the modifier keys that need to be pressed together with the accesskey to trigger the input.
  *
- * The result is dependent on the ua paramater or the current platform.
+ * The result is dependent on the ua parameter or the current platform.
  * For browsers that support accessKeyLabel, #getAccessKeyLabel never calls here.
  * Valid key values that are returned can be: ctrl, alt, option, shift, esc
  *

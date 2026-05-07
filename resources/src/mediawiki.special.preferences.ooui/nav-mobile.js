@@ -28,7 +28,7 @@ const setSection = function ( sectionName, fieldset ) {
 	windowManager.openWindow( 'mw-mobile-prefs-' + section ).opened.then( () => {
 		// Scroll to a fieldset if provided.
 		if ( fieldset ) {
-			// setTimout is ie11-compatible and queues up tasks for async exec
+			// setTimeout is ie11-compatible and queues up tasks for async exec
 			setTimeout( () => {
 				fieldset.scrollIntoView( { behavior: 'smooth' } );
 			} );

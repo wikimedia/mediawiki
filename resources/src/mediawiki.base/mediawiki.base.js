@@ -16,7 +16,7 @@ require( './log.js' );
 
 /**
  * @class mw.Message
- * @classdesc Describes a translateable text or HTML string. Similar to the Message class in MediaWiki PHP.
+ * @classdesc Describes a translatable text or HTML string. Similar to the Message class in MediaWiki PHP.
  *
  * @example
  * var obj, str;
@@ -919,7 +919,7 @@ mw.loader.using = function ( dependencies, ready, error ) {
  *     .then( function () {
  *         // Script succeeded. You can use X now.
  *     }, function ( e ) {
- *         // Script failed. X is not avaiable
+ *         // Script failed. X is not available
  *         mw.log.error( e.message ); // => "Failed to load script"
  *     } );
  * } );

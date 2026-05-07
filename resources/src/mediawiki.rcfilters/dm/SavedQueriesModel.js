@@ -278,7 +278,7 @@ SavedQueriesModel.prototype.removeQuery = function ( queryID ) {
 	if ( query ) {
 		// Check if this item was the default
 		if ( String( this.getDefault() ) === String( queryID ) ) {
-			// Nulify the default
+			// Nullify the default
 			this.setDefault( null );
 		}
 
@@ -388,7 +388,7 @@ SavedQueriesModel.prototype.setDefault = function ( itemID ) {
 	if ( this.default !== itemID ) {
 		this.default = itemID;
 
-		// Set for individual itens
+		// Set for individual items
 		this.getItems().forEach( ( item ) => {
 			item.toggleDefault( item.getID() === itemID );
 		} );

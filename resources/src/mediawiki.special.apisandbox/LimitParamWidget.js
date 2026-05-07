@@ -25,7 +25,7 @@ OO.mixinClass( LimitParamWidget, TextParamMixin );
  *  - at most the maximum set in paramInfo.apiSandboxMax
  *
  * this.paramInfo should be set by the code using this widget, and
- * should have `min` and `apiSandboxMax` set as intergers
+ * should have `min` and `apiSandboxMax` set as integers
  *
  * @param {string} value
  * @return {boolean}

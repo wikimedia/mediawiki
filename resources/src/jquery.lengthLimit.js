@@ -116,7 +116,7 @@
 				// the byteLimit can only be lower than the native maxLength limit
 				// (that is, there are no characters less than 1 byte in size). So lets (re-)enforce
 				// the native limit for efficiency when possible (it will make the while-loop below
-				// faster by there being less left to interate over). This does not work for $.codePointLimit
+				// faster by there being less left to iterate over). This does not work for $.codePointLimit
 				// (code units for surrogates represent half a character each).
 				$el.attr( 'maxlength', elLimit );
 			}

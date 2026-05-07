@@ -585,7 +585,7 @@
 		regex = regex.join( '|' );
 
 		// Build RegEx
-		// Any date formated with . , ' - or /
+		// Any date formatted with . , ' - or /
 		ts.dateRegex[ 0 ] = new RegExp( /^\s*(\d{1,2})[,.\-/'\s]{1,2}(\d{1,2})[,.\-/'\s]{1,2}(\d{2,4})\s*?/i );
 
 		// Written Month name, dmy
@@ -712,7 +712,7 @@
 	 * Build index to handle colspanned cells in the body.
 	 * Set the cell index for each column in an array,
 	 * so that colspaned cells set multiple in this array.
-	 * columnToCell[collumnIndex] point at the real cell in this row.
+	 * columnToCell[columnIndex] point at the real cell in this row.
 	 *
 	 * @param {jQuery} $table object for a <table>
 	 */
@@ -1253,7 +1253,7 @@
 
 			let y;
 			if ( ( y = parseInt( s[ 0 ], 10 ) ) < 100 ) {
-				// Guestimate years without centuries
+				// Guesstimate years without centuries
 				if ( y < 30 ) {
 					s[ 0 ] = 2000 + y;
 				} else {

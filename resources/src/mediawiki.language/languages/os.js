@@ -6,7 +6,7 @@
 mw.language.convertGrammarMapping.os = function ( word, form ) {
 	// Ending for allative case
 	let endAllative = 'мæ',
-		// Variable for 'j' beetwen vowels
+		// Variable for 'j' between vowels
 		jot = '',
 		// Variable for "-" for not Ossetic words
 		hyphen = '',

@@ -88,7 +88,7 @@
 			} else {
 				// Support: FF<=138, Safari
 				// Browsers which don't support until-found will just see the hidden
-				// attribute and interpet it as hidden=hidden, but because we want to
+				// attribute and interpret it as hidden=hidden, but because we want to
 				// use a [hidden=until-found] CSS selector, do a feature check here.
 				this.setAttribute( 'hidden', 'onbeforematch' in document.body ? 'until-found' : 'hidden' );
 			}

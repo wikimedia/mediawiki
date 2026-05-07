@@ -29,7 +29,7 @@ mw.widgets.CopyTextLayout = function MwWidgetsCopyTextLayout( config ) {
 	this.connect( this, { copy: 'onMwCopy' } );
 };
 
-/* Inheritence */
+/* Inheritance */
 
 OO.inheritClass( mw.widgets.CopyTextLayout, OO.ui.CopyTextLayout );
 

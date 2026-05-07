@@ -511,7 +511,7 @@ Parser.prototype = {
 			const result = nOrMore( 1, escapedOrLiteralWithoutSpace )();
 			return result === null ? null : result.join( '' );
 		}
-		// Used to define "literals" within template parameters. The pipe character is the parameter delimeter, so by default
+		// Used to define "literals" within template parameters. The pipe character is the parameter delimiter, so by default
 		// it is not a literal in the parameter
 		function literalWithoutBar() {
 			const result = nOrMore( 1, escapedOrLiteralWithoutBar )();

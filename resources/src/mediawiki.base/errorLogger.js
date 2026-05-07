@@ -26,7 +26,7 @@
 /**
  * Install a `window.onerror` handler that logs errors by notifying both `global.error` and
  * `error.uncaught` topic subscribers that an event has occurred. Note well that the former is
- * done for backwards compatibilty.
+ * done for backwards compatibility.
  *
  * @private
  * @param {Object} window

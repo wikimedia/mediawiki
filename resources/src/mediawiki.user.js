@@ -409,7 +409,7 @@
 				);
 				const match = docClass.match( featureRegEx );
 
-				// check no further matches if we replaced this occurance.
+				// check no further matches if we replaced this occurrence.
 				const isAmbiguous = docClass.replace( featureRegEx, '$1$3' ).match( featureRegEx ) !== null;
 				return !isAmbiguous && match ? match[ 2 ] : false;
 			}

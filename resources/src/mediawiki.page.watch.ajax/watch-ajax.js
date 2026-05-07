@@ -5,7 +5,7 @@
 		isWatchlistExpiryEnabled = config.WatchlistExpiry,
 		watchlistLabelsEnabled = config.EnableWatchlistLabels,
 		// Use Object.create( null ) instead of {} to get an Object without predefined properties.
-		// This avoids problems if the title is 'hasOwnPropery' or similar. Bug: T342137
+		// This avoids problems if the title is 'hasOwnProperty' or similar. Bug: T342137
 		watchstarsByTitle = Object.create( null ),
 		enablePopover = config.EnableWatchstarPopover;
 

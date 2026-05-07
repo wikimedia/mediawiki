@@ -362,7 +362,7 @@ FilterGroup.prototype.getDefaultFilters = function () {
 };
 
 /**
- * Get the messags defining the 'whats this' popup for this group
+ * Get the messages defining the 'whats this' popup for this group
  *
  * @return {Object} What's this messages
  */

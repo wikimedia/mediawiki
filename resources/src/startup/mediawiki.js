@@ -15,7 +15,7 @@
 	 * This is an internal class that backs the mw.config and mw.messages APIs.
 	 *
 	 * It allows reading and writing to the collection via public methods,
-	 * and allows batch iteraction for all its methods.
+	 * and allows batch interaction for all its methods.
 	 *
 	 * For mw.config, scripts sometimes choose to "import" a set of keys locally,
 	 * like so:

@@ -271,7 +271,7 @@ function bindToggleOnSpaceEnter( checkbox, button ) {
 		// Prevent the browser from scrolling when pressing space. The browser will
 		// try to do this unless the "button" element is a button or a checkbox.
 		// Depending on the actual "button" element, this also possibly prevents a
-		// native click event from being triggered so we programatically trigger a
+		// native click event from being triggered so we programmatically trigger a
 		// click event in the keyup handler.
 		event.preventDefault();
 	}

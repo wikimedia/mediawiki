@@ -456,7 +456,7 @@ module.exports = exports = defineComponent( {
 						const additionalBlocks = Object.entries( result.block.additionalBlocksStatuses )
 							.filter( ( obj ) => !obj[ 1 ].length );
 						if ( additionalBlocks.length ) {
-							// From the target names of sucessful blocks, generate the copy describing the blocks made
+							// From the target names of successful blocks, generate the copy describing the blocks made
 							const userLinks = additionalBlocks.map(
 								( target ) => mw.message( 'block-target-link', target ).parse()
 							);

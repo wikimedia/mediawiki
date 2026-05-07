@@ -14,7 +14,7 @@ const fieldNamePrefix = 'field_';
 let originalData = {};
 let changeDebounceTimer = null;
 
-// Number of miliseconds to debounce form input.
+// Number of milliseconds to debounce form input.
 const debounceTime = 5000;
 
 // This module is loaded for every edit form, but not all should have Edit Recovery functioning.

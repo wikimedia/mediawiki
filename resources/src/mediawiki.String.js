@@ -149,7 +149,7 @@
 		];
 
 		// Chop off characters from the end of the "inserted content" string
-		// until the limit is statisfied.
+		// until the limit is satisfied.
 		// Make sure to stop when there is nothing to slice (T43450).
 		while ( lengthFn( inpParts.join( '' ) ) > length && inpParts[ 1 ].length > 0 ) {
 			// Do not chop off halves of surrogate pairs

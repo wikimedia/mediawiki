@@ -63,7 +63,7 @@
 				$elm: $this,
 				width: outerWidth,
 				imgWidth: imgWidth,
-				// FIXME: Deal with devision by 0.
+				// FIXME: Deal with division by 0.
 				aspect: imgWidth / imgHeight,
 				captionWidth: captionWidth,
 				height: imgHeight
