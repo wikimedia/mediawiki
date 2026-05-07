@@ -3,7 +3,8 @@
 		"authors": [
 			"Juneleonora",
 			"ObaTango",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"Kallmemel"
 		]
 	},
 	"january": "yanüari",
@@ -58,5 +59,35 @@
 	"sun": "dum",
 	"period-am": "AM",
 	"period-pm": "PM",
-	"duration-days": "$1 {{PLURAL:$1|dia}}"
+	"timezone-local": "Lokal",
+	"years": "{{PLURAL:$1|$1 aña}}",
+	"months": "{{PLURAL:$1|$1 luna}}",
+	"weeks": "{{PLURAL:$1|$1 siman}}",
+	"days": "{{PLURAL:$1|$1 dia}}",
+	"hours": "{{PLURAL:$1|$1 ora}}",
+	"minutes": "{{PLURAL:$1|$1 minüt}}",
+	"seconds": "{{PLURAL:$1|$1 sekònde}}",
+	"ago": "$1 pasá",
+	"duration-millennia": "$1 {{PLURAL:$1|milenio}}",
+	"duration-centuries": "$1 {{PLURAL:$1|siglo}}",
+	"duration-decades": "$1 {{PLURAL:$1|dékada}}",
+	"duration-years": "$1 {{PLURAL:$1|aña}}",
+	"duration-months": "$1 {{PLURAL:$1|luna}}",
+	"duration-weeks": "$1 {{PLURAL:$1|siman}}",
+	"duration-days": "$1 {{PLURAL:$1|dia}}",
+	"duration-hours": "$1 {{PLURAL:$1|ora}}",
+	"duration-minutes": "$1 {{PLURAL:$1|minüt}}",
+	"duration-seconds": "$1 {{PLURAL:$1|$1 sekònde}}",
+	"monday-at": "Djaluna $1",
+	"tuesday-at": "Djamars $1",
+	"wednesday-at": "Djarason $1",
+	"thursday-at": "Djaweps $1",
+	"friday-at": "Djabièrnè $1",
+	"saturday-at": "Djasabra $1",
+	"sunday-at": "Djadumingu $1",
+	"yesterday-at": "Ayera $1",
+	"hours-ago": "$1 {{PLURAL:$1|ora|}} pasá",
+	"minutes-ago": "$1 {{PLURAL:$1| minüt}} pasá",
+	"seconds-ago": "$1 {{PLURAL:$1|sekònde}} pasá",
+	"just-now": "awor'ei"
 }

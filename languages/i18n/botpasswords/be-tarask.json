@@ -3,7 +3,8 @@
 		"authors": [
 			"Nerogaf",
 			"Red Winged Duck",
-			"Renessaince"
+			"Renessaince",
+			"Ucukor"
 		]
 	},
 	"botpasswords": "Паролі робатаў",
@@ -25,7 +26,7 @@
 	"botpasswords-label-grants-column": "Дазволена",
 	"botpasswords-bad-appid": "Назва робата «$1» зьяўляецца няслушнай.",
 	"botpasswords-toolong-restrictions": "Уведзена вельмі шмат IP-адрасоў або дыяпазонаў.",
-	"botpasswords-toolong-grants": "Вельмі шмат грантаў адабрана.",
+	"botpasswords-toolong-grants": "Выбрана занадта многа дазволаў.",
 	"botpasswords-insert-failed": "Не атрымалася дадаць робата зь імем «$1». Магчыма, ён ужо быў дададзены?",
 	"botpasswords-update-failed": "Не атрымалася абнавіць робата зь імем «$1». Магчыма, ён быў выдалены?",
 	"botpasswords-created-title": "Пароль робата створаны",
