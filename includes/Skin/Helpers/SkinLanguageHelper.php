@@ -5,12 +5,15 @@
 
 namespace MediaWiki\Skin\Helpers;
 
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Language\LanguageNameUtils;
+use MediaWiki\Language\MessageLocalizer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Skin\Skin;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 
@@ -25,7 +28,12 @@ use MediaWiki\Title\TitleValue;
 class SkinLanguageHelper {
 
 	public function __construct(
-		private readonly Skin $skin
+		private readonly Title $title,
+		private readonly Language $userLang,
+		private readonly MessageLocalizer $localizer,
+		private readonly OutputPage $output,
+		private readonly array $languageLinks,
+		private readonly Config $config
 	) {
 	}
 
@@ -37,7 +45,6 @@ class SkinLanguageHelper {
 	public function getData(): array {
 		$services = MediaWikiServices::getInstance();
 		$hookRunner = new HookRunner( $services->getHookContainer() );
-		$userLang = $this->skin->getLanguage();
 		$languageLinks = [];
 		$langNameUtils = $services->getLanguageNameUtils();
 		// Use a Language without locale-specific ucfirst overrides (T294695).
@@ -45,9 +52,9 @@ class SkinLanguageHelper {
 		// incorrectly capitalizes autonyms like 'italiano' to 'İtaliano'.
 		$defaultCaseLang = $services->getLanguageFactory()->getLanguage( 'en' );
 
-		foreach ( $this->skin->getOutput()->getLanguageLinks() as $languageLinkText ) {
+		foreach ( $this->languageLinks as $languageLinkText ) {
 			$languageLink = $this->buildLanguageLink(
-				$languageLinkText, $langNameUtils, $defaultCaseLang, $userLang
+				$languageLinkText, $langNameUtils, $defaultCaseLang
 			);
 			if ( $languageLink === null ) {
 				continue;
@@ -55,12 +62,23 @@ class SkinLanguageHelper {
 			$languageLinkFullTitle = $languageLink['fullTitle'];
 			unset( $languageLink['fullTitle'] );
 			$hookRunner->onSkinTemplateGetLanguageLink(
-				$languageLink, $languageLinkFullTitle, $this->skin->getTitle(), $this->skin->getOutput()
+				$languageLink, $languageLinkFullTitle, $this->title, $this->output
 			);
 			$languageLinks[] = $languageLink;
 		}
 
 		return $languageLinks;
+	}
+
+	/**
+	 * Allows correcting the language of interlanguage links which, mostly due to
+	 * legacy reasons, do not always match the standards compliant language tag.
+	 *
+	 * @see \MediaWiki\Skin\Skin::mapInterwikiToLanguage
+	 */
+	private function mapInterwikiToLanguage( string $code ): string {
+		$map = $this->config->get( MainConfigNames::InterlanguageLinkCodeMap );
+		return $map[ $code ] ?? $code;
 	}
 
 	/**
@@ -71,8 +89,7 @@ class SkinLanguageHelper {
 	private function buildLanguageLink(
 		string $languageLinkText,
 		LanguageNameUtils $langNameUtils,
-		Language $defaultCaseLang,
-		Language $userLang
+		Language $defaultCaseLang
 	): ?array {
 		[ $prefix, $title ] = explode( ':', $languageLinkText, 2 );
 		$class = 'interlanguage-link interwiki-' . $prefix;
@@ -82,12 +99,12 @@ class SkinLanguageHelper {
 		if ( $languageLinkTitle === null ) {
 			return null;
 		}
-		$ilInterwikiCode = $this->skin->mapInterwikiToLanguage( $prefix );
+		$ilInterwikiCode = $this->mapInterwikiToLanguage( $prefix );
 
 		$ilLangName = $langNameUtils->getLanguageName( $ilInterwikiCode );
 
 		if ( strval( $ilLangName ) === '' ) {
-			$ilDisplayTextMsg = $this->skin->msg( "interlanguage-link-$ilInterwikiCode" );
+			$ilDisplayTextMsg = $this->localizer->msg( "interlanguage-link-$ilInterwikiCode" );
 			if ( !$ilDisplayTextMsg->isDisabled() ) {
 				// Use custom MW message for the display text
 				$ilLangName = $ilDisplayTextMsg->text();
@@ -103,20 +120,20 @@ class SkinLanguageHelper {
 		// CLDR extension or similar is required to localize the language name;
 		// otherwise we'll end up with the autonym again.
 		$ilLangLocalName =
-			$langNameUtils->getLanguageName( $ilInterwikiCode, $userLang->getCode() );
+			$langNameUtils->getLanguageName( $ilInterwikiCode, $this->userLang->getCode() );
 
 		$languageLinkTitleText = $languageLinkTitle->getText();
 		if ( $ilLangLocalName === '' ) {
 			$ilFriendlySiteName =
-				$this->skin->msg( "interlanguage-link-sitename-$ilInterwikiCode" );
+				$this->localizer->msg( "interlanguage-link-sitename-$ilInterwikiCode" );
 			if ( !$ilFriendlySiteName->isDisabled() ) {
 				if ( $languageLinkTitleText === '' ) {
 					$ilTitle =
-						$this->skin->msg( 'interlanguage-link-title-nonlangonly',
+						$this->localizer->msg( 'interlanguage-link-title-nonlangonly',
 							$ilFriendlySiteName->text() )->text();
 				} else {
 					$ilTitle =
-						$this->skin->msg( 'interlanguage-link-title-nonlang',
+						$this->localizer->msg( 'interlanguage-link-title-nonlang',
 							$languageLinkTitleText, $ilFriendlySiteName->text() )->text();
 				}
 			} else {
@@ -127,10 +144,10 @@ class SkinLanguageHelper {
 			}
 		} elseif ( $languageLinkTitleText === '' ) {
 			$ilTitle =
-				$this->skin->msg( 'interlanguage-link-title-langonly', $ilLangLocalName )->text();
+				$this->localizer->msg( 'interlanguage-link-title-langonly', $ilLangLocalName )->text();
 		} else {
 			$ilTitle =
-				$this->skin->msg( 'interlanguage-link-title', $languageLinkTitleText,
+				$this->localizer->msg( 'interlanguage-link-title', $languageLinkTitleText,
 					$ilLangLocalName )->text();
 		}
 

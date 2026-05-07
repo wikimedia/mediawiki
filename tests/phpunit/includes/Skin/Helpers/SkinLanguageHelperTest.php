@@ -7,7 +7,6 @@ use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Skin\Helpers\SkinLanguageHelper;
-use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 
 /**
@@ -23,14 +22,12 @@ class SkinLanguageHelperTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::LanguageCode => 'qqx',
 		] );
 
+		$title = Title::makeTitle( NS_MAIN, 'Test' );
+
 		$mockOutputPage = $this->createMock( OutputPage::class );
-		$mockOutputPage->method( 'getLanguageLinks' )
-			// The 'talk' interwiki is a deliberate conflict with the
-			// Talk namespace (T363538)
-			->willReturn( [ 'en:Foo', 'talk:Page' ] );
 
 		$fakeContext = new RequestContext();
-		$fakeContext->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
+		$fakeContext->setTitle( $title );
 		$fakeContext->setOutput( $mockOutputPage );
 		$fakeContext->setLanguage( 'en' );
 
@@ -47,13 +44,16 @@ class SkinLanguageHelperTest extends MediaWikiIntegrationTestCase {
 		} );
 		$this->setService( 'InterwikiLookup', $mockIwLookup );
 
-		$skin = new class extends Skin {
-			public function outputPage() {
-			}
-		};
-		$skin->setContext( $fakeContext );
+		$languageLinks = [ 'en:Foo', 'talk:Page' ];
 
-		$helper = new SkinLanguageHelper( $skin );
+		$helper = new SkinLanguageHelper(
+			$title,
+			$fakeContext->getLanguage(),
+			$fakeContext,
+			$mockOutputPage,
+			$languageLinks,
+			$this->getServiceContainer()->getMainConfig()
+		);
 
 		$this->assertSame( [
 			[
@@ -93,12 +93,12 @@ class SkinLanguageHelperTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::LanguageCode => 'tr',
 		] );
 
+		$title = Title::makeTitle( NS_MAIN, 'Test' );
+
 		$mockOutputPage = $this->createMock( OutputPage::class );
-		$mockOutputPage->method( 'getLanguageLinks' )
-			->willReturn( [ 'it:Roma' ] );
 
 		$fakeContext = new RequestContext();
-		$fakeContext->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
+		$fakeContext->setTitle( $title );
 		$fakeContext->setOutput( $mockOutputPage );
 		// Set user interface language to Turkish
 		$fakeContext->setLanguage( 'tr' );
@@ -116,13 +116,16 @@ class SkinLanguageHelperTest extends MediaWikiIntegrationTestCase {
 		} );
 		$this->setService( 'InterwikiLookup', $mockIwLookup );
 
-		$skin = new class extends Skin {
-			public function outputPage() {
-			}
-		};
-		$skin->setContext( $fakeContext );
+		$languageLinks = [ 'it:Roma' ];
 
-		$helper = new SkinLanguageHelper( $skin );
+		$helper = new SkinLanguageHelper(
+			$title,
+			$fakeContext->getLanguage(),
+			$fakeContext,
+			$mockOutputPage,
+			$languageLinks,
+			$this->getServiceContainer()->getMainConfig()
+		);
 		$languages = $helper->getData();
 		$this->assertCount( 1, $languages );
 		// T294695: Must be 'Italiano' (standard I), not 'İtaliano' (Turkish İ)

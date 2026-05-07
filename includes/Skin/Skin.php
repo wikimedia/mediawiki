@@ -1221,7 +1221,14 @@ abstract class Skin extends ContextSource {
 			return [];
 		}
 		if ( $this->languageLinks === null ) {
-			$helper = new SkinLanguageHelper( $this );
+			$helper = new SkinLanguageHelper(
+				$this->getTitle(),
+				$this->getLanguage(),
+				$this->getContext(),
+				$this->getOutput(),
+				$this->getOutput()->getLanguageLinks(),
+				$this->getConfig()
+			);
 			$this->languageLinks = $helper->getData();
 		}
 
