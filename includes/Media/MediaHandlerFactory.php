@@ -44,13 +44,6 @@ class MediaHandlerFactory {
 	/** @var array */
 	private $registry;
 
-	/**
-	 * Instance cache of MediaHandler objects by mimetype
-	 *
-	 * @var MediaHandler[]
-	 */
-	private $handlers;
-
 	public function __construct(
 		private LanguageFactory $langFactory,
 		private LoggerInterface $logger,
@@ -74,13 +67,8 @@ class MediaHandlerFactory {
 	 */
 	public function getHandler(
 		$type,
-		// phpcs:ignore MediaWiki.Usage.NullableType.ExplicitNullableTypes -- false positive
 		Language|string|null $lang = null
 	) {
-		if ( isset( $this->handlers[$type] ) ) {
-			return $this->handlers[$type];
-		}
-
 		$class = $this->getHandlerClass( $type );
 		if ( $class !== false ) {
 			/** @var MediaHandler $handler */
@@ -91,13 +79,11 @@ class MediaHandlerFactory {
 					[ 'class' => $class ]
 				);
 				$handler = false;
-			} else {
-				if ( $lang !== null ) {
-					if ( !$lang instanceof Language ) {
-						$lang = $this->langFactory->getLanguage( $lang );
-					}
-					$handler->setLanguage( $lang );
+			} elseif ( $lang !== null ) {
+				if ( !$lang instanceof Language ) {
+					$lang = $this->langFactory->getLanguage( $lang );
 				}
+				$handler->setLanguage( $lang );
 			}
 		} else {
 			$this->logger->debug(
@@ -107,7 +93,6 @@ class MediaHandlerFactory {
 			$handler = false;
 		}
 
-		$this->handlers[$type] = $handler;
 		return $handler;
 	}
 }
