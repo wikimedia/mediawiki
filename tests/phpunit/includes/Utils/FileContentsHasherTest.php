@@ -44,11 +44,11 @@ class FileContentsHasherTest extends \PHPUnit\Framework\TestCase {
 			$filePaths[] = $filePath;
 		}
 
-		$expected = 'daaab2042b11d2d760d8331687dde3cb';
+		$expected = '53a10dc4c6d758651418ce63f37b4434';
 		$this->assertEquals(
 			$expected,
-			// Implementation sorts by filepath (hash.svg, primes.txt) and re-hashes
-			hash( 'md4', $fixture['hash.svg'][1] . $fixture['primes.txt'][1] ),
+			// Implementation sorts by hash (96c..., bb2...) and re-hashes
+			hash( 'md4', $fixture['primes.txt'][1] . $fixture['hash.svg'][1] ),
 			'manual'
 		);
 		$this->assertEquals( $expected, FileContentsHasher::getFileContentsHash( $filePaths ) );

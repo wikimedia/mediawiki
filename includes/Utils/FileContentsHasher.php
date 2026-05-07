@@ -86,16 +86,16 @@ class FileContentsHasher {
 		}
 
 		if ( count( $filePaths ) === 1 ) {
-			$hash = $instance->getFileContentsHashInternal( $filePaths[0] );
-			return $hash;
+			return $instance->getFileContentsHashInternal( $filePaths[0] );
 		}
 
-		sort( $filePaths );
 		$hashes = [];
 		foreach ( $filePaths as $filePath ) {
 			$hashes[] = $instance->getFileContentsHashInternal( $filePath ) ?: '';
 		}
 
+		// T425356: Ensure stable sort regardless of absolute file path, which may vary over time
+		sort( $hashes );
 		$hashes = implode( '', $hashes );
 		return $hashes ? hash( self::ALGO, $hashes ) : false;
 	}

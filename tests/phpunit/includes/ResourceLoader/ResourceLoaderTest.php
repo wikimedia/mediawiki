@@ -1339,7 +1339,7 @@ JS
 		$extraHeaders = TestingAccessWrapper::newFromObject( $rl )->extraHeaders;
 		$this->assertEquals(
 			[
-				'SourceMap: /load.php?lang=en&modules=test1%2Ctest2&only=scripts&sourcemap=1&version=pq39u'
+				'SourceMap: /load.php?lang=en&modules=test1%2Ctest2&only=scripts&sourcemap=1&version=zixoj'
 			],
 			$extraHeaders,
 			'Extra headers'
