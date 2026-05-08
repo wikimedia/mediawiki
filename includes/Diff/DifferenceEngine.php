@@ -31,6 +31,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Page\Article;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
@@ -1267,7 +1268,15 @@ class DifferenceEngine extends ContextSource {
 				$parserOptions = $wikiPage->makeParserOptions( $this->getContext() );
 				$parserOptions->setRenderReason( 'diff-page' );
 
-				$parserOutputAccess = MediaWikiServices::getInstance()->getParserOutputAccess();
+				$services = MediaWikiServices::getInstance();
+
+				# Allow extensions to vary parser options used for article rendering
+				$article = Article::newFromTitle( $wikiPage->getTitle(), $this->getContext() );
+				( new HookRunner( $services->getHookContainer() ) )->onArticleParserOptions(
+					$article, $parserOptions
+				);
+
+				$parserOutputAccess = $services->getParserOutputAccess();
 				$status = $parserOutputAccess->getParserOutput(
 					$wikiPage,
 					$parserOptions,
