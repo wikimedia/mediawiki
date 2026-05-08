@@ -9,11 +9,11 @@
 			"Vodnokon4e"
 		]
 	},
-	"apihelp-main-param-action": "Кое действие да се извърши.",
+	"apihelp-main-param-action": "Кое действие да се извърши. Този параметър трябва да бъде изпратен като част от URL адреса на заявката (а не в тялото на POST), за по-лесно отстраняване на грешки, анализи, както и за маршрутизиране или филтриране на заявките.",
 	"apihelp-main-param-format": "Форматът на изхода.",
 	"apihelp-main-param-requestid": "Всяка указана тук стойност, ще бъде включена в отговора. Може да се използва за разграничаване на заявките.",
 	"apihelp-block-summary": "Блокиране на потребител.",
-	"apihelp-block-param-user": "Потребител за блокиране.",
+	"apihelp-block-param-user": "Потребител за блокиране. Не може да се използва заедно с <var>$1id</var>.",
 	"apihelp-block-param-reason": "Причина за блокиране.",
 	"apihelp-block-param-nocreate": "Забрана за създаване на потребителски сметки.",
 	"apihelp-block-param-hidename": "Скрива потребителското име от дневника на блокиранията. (Изисква право <code>hideuser</code>)",
@@ -83,7 +83,7 @@
 	"api-format-title": "Резултат от МедияУики API",
 	"api-format-prettyprint-header": "Това е HTML представянето на формата $1. HTML е добър за откриването на грешки, но е неподходящ за приложно използване.\n\nПосочете параметъра <var>format</var> за да промените изходния формат. За да видите представянето на формата $1 извън HTML, посочете format=$2.\n\nПовече информация ще намерите на [[mw:Special:MyLanguage/API|пълната документация]] или [[Special:ApiHelp/main|помощната информация за API-то]].",
 	"api-help-title": "Помощ за МедияУики API",
-	"api-help-lead": "Това е автоматично генерирана страница за документация на МедияУики API.\n\nДокументация и примери:\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page",
+	"api-help-lead": "Това е автоматично генерирана страница за документация на [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Action_API МедияУики Action API].",
 	"api-help-flag-generator": "Този модул може да се използва като генератор.",
 	"api-help-param-deprecated": "Непрепоръчителен.",
 	"api-help-param-type-enum": "{{PLURAL:$1|1=Една от следните стойности|2=Стойности (разделени с <kbd>{{!}}</kbd> или [[Special:ApiHelp/main#main/datatypes|алтернативния разделител]])}}: $2",

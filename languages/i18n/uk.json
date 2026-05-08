@@ -2496,8 +2496,11 @@
 	"remove-blocklink": "зняти блокування",
 	"manage-blocklink": "керувати блокуваннями",
 	"empty-username": "(ім'я користувача недоступне)",
+	"available-username": "Ім'я користувача доступне",
+	"available-username-check-feedback": "Перевірка доступності",
 	"blocklist-hidden-placeholder": "(ім'я користувача приховане)",
 	"blocklist-hidden-param": "ім'я користувача приховано",
+	"blocklist-block-hidden": "блокування приховане",
 	"contribslink": "внесок",
 	"emaillink": "Надіслати повідомлення електронною поштою",
 	"autoblocker": "Доступ заблоковано автоматично, тому що ви використовуєте ту саму IP-адресу, що й «[[User:$1|$1]]». Причина блокування $1: \"$2\"",
@@ -3981,13 +3984,6 @@
 	"newpages-showhide-patrolled": "$1 перевірені редагування",
 	"newpages-showhide-redirect": "$1 перенаправлення",
 	"newpages-showhide-registered": "$1 зареєстрованих користувачів",
-	"restsandbox": "REST-пісочниця",
-	"restsandbox-text": "Використовуйте цю сторінку, щоб експериментувати з REST API MediaWiki. Виклики API, здійснені через інтерфейс пісочниці, взаємодіятимуть із живим вмістом вікі та можуть змінювати вікі. Зверніться до [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API документації API], щоб дізнатися більше про використання API.",
-	"restsandbox-disclaimer": "Маєте відгук про цю пісочницю? Будь ласка, залиште його [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox тут].<br /> Примітка: інтерфейс пісочниці та елементи навігації ще не підтримують переклад.",
-	"restsandbox-select-api": "Виберіть API для дослідження.",
-	"restsandbox-no-specs-configured": "Жодного API REST не налаштовано для дослідження. Використовуйте налаштування RestSandboxSpecs.",
-	"restsandbox-no-such-api": "Даний параметр API не підтримується: $1",
-	"restsandbox-jsonly": "Для перегляду специфікації REST потрібен JavaScript.",
 	"blockedtext-made-by": "Блокування зроблено $1.",
 	"blockedtext-reason-comment": "Вказана причина: <em>$1</em>",
 	"blockedtext-start-time": "Початок блокування: $1",
@@ -4042,5 +4038,6 @@
 	"table-of-contents-show-button-aria-label": "Показати зміст",
 	"table-of-contents-hide-button-aria-label": "Приховати зміст",
 	"diff-usergroups": "$1 {{PLURAL:$1|група користувача|групи користувача|груп користувача}}",
-	"languageselector-no-results": "Результатів не знайдено."
+	"languageselector-no-results": "Результатів не знайдено.",
+	"languageselector-invalid-input": "«$1» не є дійсною мовою."
 }

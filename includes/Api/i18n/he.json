@@ -1297,7 +1297,7 @@
 	"apihelp-query+tags-paramvalue-prop-displayname": "הוספת הודעת המערכת עבור התג.",
 	"apihelp-query+tags-paramvalue-prop-description": "הוספת תיאור התג.",
 	"apihelp-query+tags-paramvalue-prop-hitcount": "הוספת מספר הגרסאות ורשומות היומן עם התג הזה.",
-	"apihelp-query+tags-paramvalue-prop-defined": "ציון האם התג מוגדר (ר' <kbd>מקור</kbd>)",
+	"apihelp-query+tags-paramvalue-prop-defined": "ציון האם התג מוגדר (ר' <kbd>source</kbd>)",
 	"apihelp-query+tags-paramvalue-prop-source": "קבלת מקורות התג, שיכולים להיות <samp>extension</samp> עבור תגים שמגדירות הרחבות ו־<samp>manual</samp> עבור תגים שמשתמשים יכולים להחיל ידנית.",
 	"apihelp-query+tags-paramvalue-prop-active": "האם התג עדיין מוּחל.",
 	"apihelp-query+tags-example-simple": "רשימת תגים זמינים.",

@@ -3796,8 +3796,6 @@
 	"newpages-showhide-patrolled": "পরীক্ষিত সম্পাদনা $1",
 	"newpages-showhide-redirect": "পুনর্নির্দেশনাগুলো $1",
 	"newpages-showhide-registered": "নিবন্ধিত ব্যবহারকারীদের $1",
-	"restsandbox": "REST খেলাঘর",
-	"restsandbox-select-api": "অন্বেষণ করতে API নির্বাচন করুন।",
 	"blockedtext-made-by": "এই বাধাটি প্রদান করেছেন $1।",
 	"blockedtext-reason-comment": "প্রদত্ত কারণ হচ্ছে: <em>$1</em>",
 	"blockedtext-start-time": "বাধা শুরুর সময়: $1",

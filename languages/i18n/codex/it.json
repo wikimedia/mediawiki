@@ -3,9 +3,11 @@
 		"authors": [
 			"Beta16",
 			"Bultro",
-			"Luca.favorido"
+			"Luca.favorido",
+			"Asteralee"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Percorso di navigazione",
 	"cdx-input-chip-aria-description": "Premi Invio per modificare o Cancella per rimuovere.",
 	"cdx-dialog-close-button-label": "Chiudi",
 	"cdx-label-optional-flag": "(facoltativo)",

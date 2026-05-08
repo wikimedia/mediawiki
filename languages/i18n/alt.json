@@ -3643,7 +3643,6 @@
 	"newpages-showhide-patrolled": "$1 ширтелген тӱзедӱлерди",
 	"newpages-showhide-redirect": "$1 ууландырыштарды",
 	"newpages-showhide-registered": "$1 регистрациялу турган туружаачыларды",
-	"restsandbox-select-api": "Шиҥжӱ эдерге API-ни талдагар.",
 	"blockedtext-made-by": "$1 администратор туйуктаган.",
 	"blockedtext-reason-comment": "Туйукташтыҥ шылтагы: <em>$1</em>.",
 	"blockedtext-start-time": "Туйукташтыҥ башталганы: $1",

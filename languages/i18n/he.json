@@ -2453,6 +2453,8 @@
 	"remove-blocklink": "הסרת החסימה",
 	"manage-blocklink": "ניהול חסימות",
 	"empty-username": "(שם המשתמש אינו זמין)",
+	"available-username": "שם משתמש זמין",
+	"available-username-check-feedback": "בדיקת זמינות",
 	"blocklist-hidden-placeholder": "(שם המשתמש הוסתר)",
 	"blocklist-hidden-param": "שם המשתמש הוסתר",
 	"blocklist-block-hidden": "חסימה מוסתרת",
@@ -3918,13 +3920,6 @@
 	"newpages-showhide-patrolled": "$1 עריכות בדוקות",
 	"newpages-showhide-redirect": "$1 הפניות",
 	"newpages-showhide-registered": "$1 משתמשים רשומים",
-	"restsandbox": "ארגז חול של REST",
-	"restsandbox-text": "ניתן להשתמש בדף הזה כדי להתנסות ב־REST APIs של מדיה־ויקי. קריאות API שייעשו דרך ממשק ארגז החול יתחברו לתוכן ויקי חי, והן יכולות לשנות אותו. נא לעיין ב‏[https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API תיעוד ה־API] למידע נוסף על שימוש ב־API.",
-	"restsandbox-disclaimer": "יש לך משוב על ארגז החול הזה? ניתן להשאירו [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox כאן].<br />לתשומת ליבך: כעת עדיין לא ניתן לתרגם את הממשק של ארגז החול ואת תפריטי הניווט.",
-	"restsandbox-select-api": "נא לבחור איזה API לחקור.",
-	"restsandbox-no-specs-configured": "לא הוגדרו ממשקי REST API שאפשר לחקור. נא להשתמש בהגדרה RestSandboxSpecs.",
-	"restsandbox-no-such-api": "פרמטר ה־API שניתן אינו נתמך: $1",
-	"restsandbox-jsonly": "נדרשת הפעלת JavaScript כדי להציג את מפרט ה־REST.",
 	"blockedtext-made-by": "החסימה בוצעה על־ידי $1.",
 	"blockedtext-reason-comment": "הסיבה שניתנה לכך היא: <em>$1</em>.",
 	"blockedtext-start-time": "תחילת החסימה: $1",
@@ -3979,5 +3974,6 @@
 	"table-of-contents-show-button-aria-label": "להציג את תוכן העניינים",
 	"table-of-contents-hide-button-aria-label": "להסתיר את תוכן העניינים",
 	"diff-usergroups": "{{PLURAL:$1|קבוצת משתמשים אחת|$1 קבוצות משתמשים}}",
-	"languageselector-no-results": "לא נמצאו תוצאות."
+	"languageselector-no-results": "לא נמצאו תוצאות.",
+	"languageselector-invalid-input": "\"$1\" אינה שפה תקינה."
 }
