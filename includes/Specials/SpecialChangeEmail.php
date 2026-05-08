@@ -25,10 +25,7 @@ use MediaWiki\User\User;
  * @ingroup SpecialPage
  */
 class SpecialChangeEmail extends FormSpecialPage {
-	/**
-	 * @var Status
-	 */
-	private $status;
+	private Status $status;
 
 	public function __construct( AuthManager $authManager ) {
 		parent::__construct( 'ChangeEmail' );
@@ -46,15 +43,14 @@ class SpecialChangeEmail extends FormSpecialPage {
 		return true;
 	}
 
-	/**
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function isListed() {
 		return $this->getAuthManager()->allowsPropertyChange( 'emailaddress' );
 	}
 
 	/**
 	 * Main execution point
+	 *
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
@@ -158,13 +154,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		}
 	}
 
-	/**
-	 * @param User $user
-	 * @param string $newAddr
-	 *
-	 * @return Status
-	 */
-	private function attemptChange( User $user, $newAddr ) {
+	private function attemptChange( User $user, string $newAddr ): Status {
 		if ( $newAddr !== '' && !Sanitizer::validateEmail( $newAddr ) ) {
 			return Status::newFatal( 'invalidemailaddress' );
 		}
