@@ -91,4 +91,32 @@ class SpecialRenameUserTest extends SpecialPageTestBase {
 		$oldPage->resetArticleID( false );
 		$this->assertSame( !$suppressRedirects, $oldPage->exists() );
 	}
+
+	public function testRenamingToPreviouslyUsedNameIsPrevented() {
+		$performer = $this->getTestSysop()->getUser();
+		$renameUserFactory = $this->getServiceContainer()->getRenameUserFactory();
+
+		$alice = $this->getMutableTestUser()->getUser();
+		$firstRename = $renameUserFactory->newRenameUser(
+			$performer, $alice, $alice->getName() . ' renamed', 'first rename'
+		);
+		$this->assertStatusGood( $firstRename->renameLocal() );
+
+		$charlie = $this->getMutableTestUser()->getUser();
+
+		// Check that attempting to rename to Alice's old name results in a warning
+		[ $html ] = $this->executeSpecialPage(
+			'',
+			new FauxRequest( [
+				'wpEditToken' => $performer->getEditToken(),
+				'oldusername' => $charlie->getName(),
+				'newusername' => $alice->getName(),
+				'reason' => 'renaming to previously used name',
+			], true ),
+			'qqx',
+			$performer
+		);
+
+		$this->assertStringContainsString( '(renameuser-warning-previously-renamed-account)', $html );
+	}
 }

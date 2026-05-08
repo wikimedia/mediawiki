@@ -140,12 +140,6 @@ class RenameUser {
 		if ( !$this->derived && $newUser->isRegistered() ) {
 			return Status::newFatal( 'renameusererrorexists', $this->newName );
 		}
-		if ( !$this->derived ) {
-			$dbr = $this->dbProvider->getReplicaDatabase();
-			if ( RenameuserSQL::isPreviouslyRenamedAccount( $newUser->getName(), $dbr ) ) {
-				return Status::newFatal( 'username-previously-renamed-account' );
-			}
-		}
 
 		// Do not act on temp users
 		if ( $this->userNameUtils->isTemp( $this->oldName ) ) {

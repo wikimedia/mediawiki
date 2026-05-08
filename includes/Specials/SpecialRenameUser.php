@@ -11,6 +11,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\RenameUser\RenameUserFactory;
+use MediaWiki\RenameUser\RenameuserSQL;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Status\StatusFormatter;
@@ -263,6 +264,11 @@ class SpecialRenameUser extends SpecialPage {
 				'renameuser-warning-currentblock',
 				SpecialPage::getTitleFor( 'Log', 'block' )->getFullURL( [ 'page' => $oldName ] )
 			];
+		}
+		$dbr = $this->dbConns->getReplicaDatabase();
+		$newUser = $this->userFactory->newFromName( $newName, $this->userFactory::RIGOR_CREATABLE );
+		if ( RenameuserSQL::isPreviouslyRenamedAccount( $newUser->getName(), $dbr ) ) {
+			$warnings[] = 'renameuser-warning-previously-renamed-account';
 		}
 		$this->getHookRunner()->onRenameUserWarning( $oldName, $newName, $warnings );
 		return $warnings;
