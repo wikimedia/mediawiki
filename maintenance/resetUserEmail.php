@@ -88,6 +88,10 @@ class ResetUserEmail extends Maintenance {
 						'reason' => $this->getOption( 'reason', '' ),
 					]
 				);
+
+				$invalidator = $this->createChild( InvalidateUserSessions::class );
+				$invalidator->setOption( 'user', $user->getName() );
+				$invalidator->execute();
 			}
 		}
 
