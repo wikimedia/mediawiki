@@ -439,14 +439,11 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		if ( $this->fld_preload ) {
-			if ( $pageExists ) {
-				$pageInfo['preload'] = '';
-			} else {
-				$text = '';
+			$text = '';
+			if ( !$pageExists ) {
 				$this->getHookRunner()->onEditFormPreloadText( $text, $title );
-
-				$pageInfo['preload'] = $text;
 			}
+			$pageInfo['preload'] = $text;
 		}
 
 		if ( $this->fld_preloadcontent ) {
