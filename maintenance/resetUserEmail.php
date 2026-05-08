@@ -34,6 +34,7 @@ class ResetUserEmail extends Maintenance {
 
 		$this->addOption( 'no-reset-password', 'Don\'t reset the user\'s password' );
 		$this->addOption( 'email-password', 'Send a temporary password to the user\'s new email address' );
+		$this->addOption( 'reason', 'Reason for the email change (ticket number etc)', false, true );
 	}
 
 	public function execute() {
@@ -64,6 +65,7 @@ class ResetUserEmail extends Maintenance {
 				'user' => $user->getName(),
 				'oldemail' => $oldAddr,
 				'newemail' => $email,
+				'reason' => $this->getOption( 'reason', '' ),
 			]
 		);
 
