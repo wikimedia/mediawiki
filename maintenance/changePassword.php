@@ -30,6 +30,7 @@ class ChangePassword extends Maintenance {
 		$this->addOption( "password", "The password to use", false, true );
 		// phpcs:ignore Generic.Files.LineLength.TooLong
 		$this->addOption( "passwordstdin", "Makes the script read the password from stdin instead. Cannot be used alongside --password", false, false );
+		$this->addOption( 'reason', 'Reason for the password change (ticket number etc)', false, true );
 		$this->addDescription( "Change a user's password" );
 	}
 
@@ -48,6 +49,7 @@ class ChangePassword extends Maintenance {
 			LoggerFactory::getInstance( 'authentication' )->info(
 				'Password for {user} changed via changePassword.php', [
 					'user' => $user->getName(),
+					'reason' => $this->getOption( 'reason', '' ),
 				]
 			);
 
