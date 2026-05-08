@@ -57,6 +57,10 @@ class ChangePassword extends Maintenance {
 		] );
 		if ( $status->isGood() ) {
 			$this->output( "Password set for " . $user->getName() . "\n" );
+
+			$invalidator = $this->createChild( InvalidateUserSessions::class );
+			$invalidator->setOption( 'user', $user->getName() );
+			$invalidator->execute();
 		} else {
 			$this->fatalError( $status );
 		}
