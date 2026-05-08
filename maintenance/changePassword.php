@@ -28,6 +28,7 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Maintenance\Maintenance;
 
 /**
@@ -54,6 +55,12 @@ class ChangePassword extends Maintenance {
 		] );
 		if ( $status->isGood() ) {
 			$this->output( "Password set for " . $user->getName() . "\n" );
+
+			LoggerFactory::getInstance( 'authentication' )->info(
+				'Password for {user} changed via changePassword.php', [
+					'user' => $user->getName(),
+				]
+			);
 
 			$invalidator = $this->createChild( InvalidateUserSessions::class );
 			$invalidator->setOption( 'user', $user->getName() );
