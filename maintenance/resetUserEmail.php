@@ -11,6 +11,7 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Password\PasswordFactory;
@@ -51,10 +52,20 @@ class ResetUserEmail extends Maintenance {
 			$this->fatalError( "Error: email '$email' is not valid\n" );
 		}
 
+		$oldAddr = $user->getEmail();
+
 		// Code from https://wikitech.wikimedia.org/wiki/Password_reset
 		$user->setEmail( $email );
 		$user->setEmailAuthenticationTimestamp( wfTimestampNow() );
 		$user->saveSettings();
+
+		LoggerFactory::getInstance( 'authentication' )->info(
+			'Changing email address for {user} from {oldemail} to {newemail} via resetUserEmail.php', [
+				'user' => $user->getName(),
+				'oldemail' => $oldAddr,
+				'newemail' => $email,
+			]
+		);
 
 		if ( !$this->hasOption( 'no-reset-password' ) ) {
 			// Kick whomever is currently controlling the account off if possible
