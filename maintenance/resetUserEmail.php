@@ -60,7 +60,8 @@ class ResetUserEmail extends Maintenance {
 		$user->setEmailAuthenticationTimestamp( wfTimestampNow() );
 		$user->saveSettings();
 
-		LoggerFactory::getInstance( 'authentication' )->info(
+		$logger = LoggerFactory::getInstance( 'authentication' );
+		$logger->info(
 			'Changing email address for {user} from {oldemail} to {newemail} via resetUserEmail.php', [
 				'user' => $user->getName(),
 				'oldemail' => $oldAddr,
@@ -80,6 +81,13 @@ class ResetUserEmail extends Maintenance {
 			if ( !$status->isGood() ) {
 				$this->error( "Password couldn't be reset because:" );
 				$this->error( $status );
+			} else {
+				$logger->info(
+					'Scrambling password for {user} via resetUserEmail.php', [
+						'user' => $user->getName(),
+						'reason' => $this->getOption( 'reason', '' ),
+					]
+				);
 			}
 		}
 
@@ -90,6 +98,13 @@ class ResetUserEmail extends Maintenance {
 			if ( !$status->isGood() ) {
 				$this->error( "Email couldn't be sent because:" );
 				$this->error( $status );
+			} else {
+				$logger->info(
+					'Password reset email sent for {user} via resetUserEmail.php', [
+						'user' => $user->getName(),
+						'reason' => $this->getOption( 'reason', '' ),
+					]
+				);
 			}
 		}
 		$this->output( "Done!\n" );
