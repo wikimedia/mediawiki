@@ -229,8 +229,10 @@
 	"searchlimit-label": "Kantidat di resultado listrá pa sho riba kada página:",
 	"searchlimit-help": "Kantidat máksimo: $1",
 	"search-thumbnail-extra-namespaces-label": "Sho miniaturanan den Spesial:Buska riba Desktop",
+	"search-thumbnail-extra-namespaces-message": "Disponé miniaturanana pa $1 {{PLURAL:$2|nòmber di espasio}} ta resultá riba página di {{#special:search}}",
 	"prefs-advancedsearchoptions": "Konfigurashon avansá",
 	"prefs-misc": "Miseláneo",
+	"prefs-reset-intro": "Bo por usa e página aki pa reistourá bo preferensianan predeterminá di e wèpsait.\nEsaki no por wòrdu anulá.",
 	"prefs-reset-confirm": "Si, mi kier reistourá mi preferencianan.",
 	"restoreprefs": "Restourá tur konfigurashon predeterminá"
 }
