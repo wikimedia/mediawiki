@@ -42,6 +42,7 @@ class ChangePassword extends Maintenance {
 		$this->addOption( "user", "The username to operate on", false, true );
 		$this->addOption( "userid", "The user id to operate on", false, true );
 		$this->addOption( "password", "The password to use", true, true );
+		$this->addOption( 'reason', 'Reason for the password change (ticket number etc)', false, true );
 		$this->addDescription( "Change a user's password" );
 	}
 
@@ -59,6 +60,7 @@ class ChangePassword extends Maintenance {
 			LoggerFactory::getInstance( 'authentication' )->info(
 				'Password for {user} changed via changePassword.php', [
 					'user' => $user->getName(),
+					'reason' => $this->getOption( 'reason', '' ),
 				]
 			);
 
