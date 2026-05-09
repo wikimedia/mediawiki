@@ -1098,7 +1098,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				]
 			);
 
-		$mockCache = $this->getMockCache( [ 'delete' ] );
+		$mockCache = $this->getMockCache( [ 'delete', 'set' ] );
 		$mockCache->expects( $this->once() )
 			->method( 'delete' )
 			->with( '0:Some_Page:1' );
@@ -1306,7 +1306,10 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			->method( 'select' )
 			->willReturn( new FakeResultWrapper( [] ) );
 
-		$mockCache = $this->createNoOpMock( HashBagOStuff::class );
+		$mockCache = $this->getMockCache( [ 'set' ] );
+		$mockCache->expects( $this->once() )
+			->method( 'set' )
+			->with( '0:SomeDbKey:1', null );
 
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 
@@ -1477,7 +1480,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			->with(
 				'0:SomeDbKey:1'
 			)
-			->willReturn( null );
+			->willReturn( false );
 		$mockCache->expects( $this->once() )
 			->method( 'set' )
 			->with(
@@ -1562,7 +1565,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				return $returnValue;
 			} );
 
-		$mockCache = $this->getMockCache( [ 'get' ] );
+		$mockCache = $this->getMockCache( [ 'get', 'set' ] );
 		$mockCache->expects( $this->once() )
 			->method( 'get' )
 			->with( '0:SomeDbKey:1' )
@@ -1894,7 +1897,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				return $returnValue;
 			} );
 
-		$mockCache = $this->getMockCache( [ 'get' ] );
+		$mockCache = $this->getMockCache( [ 'get', 'set' ] );
 		$mockCache->expects( $this->once() )
 			->method( 'get' )
 			->with( '0:SomeDbKey:1' )
@@ -1981,7 +1984,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			->willReturnCallback( function ( $key ) use ( &$cacheKeys ) {
 				$nextKey = array_shift( $cacheKeys );
 				$this->assertSame( $nextKey, $key );
-				return null;
+				return false;
 			} );
 
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
@@ -2031,7 +2034,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockCache->expects( $this->once() )
 			->method( 'get' )
 			->with( '0:OtherDbKey:1' )
-			->willReturn( null );
+			->willReturn( false );
 
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 
@@ -2224,8 +2227,8 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				return $returnValue;
 			} );
 
-		$mockCache = $this->getMockCache( [ 'get' ] );
-		$mockCache->expects( $this->once() )->method( 'get' );
+		$mockCache = $this->getMockCache( [ 'get', 'set' ] );
+		$mockCache->expects( $this->once() )->method( 'get' )->willReturn( false );
 
 		$user = new UserIdentityValue( 1, 'MockUser' );
 
@@ -2288,7 +2291,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			} );
 
 		$mockCache = $this->getMockCache( [ 'get', 'set', 'delete' ] );
-		$mockCache->expects( $this->once() )->method( 'get' );
+		$mockCache->expects( $this->once() )->method( 'get' )->willReturn( false );
 		$mockCache->expects( $this->once() )
 			->method( 'set' )
 			->with(
@@ -2608,7 +2611,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				return $returnValue;
 			} );
 
-		$mockCache = $this->getMockCache( [ 'delete' ] );
+		$mockCache = $this->getMockCache( [ 'delete', 'set' ] );
 		$mockCache->expects( $this->once() )
 			->method( 'delete' )
 			->with( '0:SomeDbKey:1' );
@@ -2822,7 +2825,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			} );
 
 		$mockCache = $this->getMockCache( [ 'get', 'set', 'delete' ] );
-		$mockCache->expects( $this->once() )->method( 'get' );
+		$mockCache->expects( $this->once() )->method( 'get' )->willReturn( false );
 		$mockCache->expects( $this->once() )
 			->method( 'set' )
 			->with( '0:SomeDbKey:1', $this->isType( 'object' ) );
@@ -3136,7 +3139,8 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			->with( '0:SomeDbKey:1', $this->isType( 'object' ) );
 		$mockCache->expects( $this->once() )
 			->method( 'get' )
-			->with( '0:SomeDbKey:1' );
+			->with( '0:SomeDbKey:1' )
+			->willReturn( false );
 		$mockCache->expects( $this->once() )
 			->method( 'delete' )
 			->with( '0:SomeDbKey:1' );

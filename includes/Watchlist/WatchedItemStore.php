@@ -203,9 +203,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		);
 	}
 
-	private function cache( WatchedItem $item ) {
-		$user = $item->getUserIdentity();
-		$target = $item->getTarget();
+	private function cache( UserIdentity $user, PageReference $target, ?WatchedItem $item ) {
 		$key = $this->getCacheKey( $user, $target );
 		$this->cache->set( $key, $item );
 		$this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] = $key;
@@ -244,7 +242,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 	 * @param UserIdentity $user
 	 * @param PageReference $target
 	 *
-	 * @return WatchedItem|false
+	 * @return WatchedItem|null|false
 	 */
 	private function getCached( UserIdentity $user, PageReference $target ) {
 		return $this->cache->get( $this->getCacheKey( $user, $target ) );
@@ -654,8 +652,8 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		}
 
 		$cached = $this->getCached( $user, $target );
-		if ( $cached && !$cached->isExpired() ) {
-			return $cached;
+		if ( $cached !== false ) {
+			return $cached && !$cached->isExpired() ? $cached : false;
 		}
 		return $this->loadWatchedItem( $user, $target );
 	}
@@ -699,10 +697,16 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		}
 
 		$items = [];
+		$targetMap = [];
 		foreach ( $rows as $row ) {
 			$item = $this->getWatchedItemFromRow( $user, $row, $labels );
-			$this->cache( $item );
 			$items[] = $item;
+			$target = $item->getTarget();
+			$targetMap[$target->getNamespace()][$target->getDBkey()] = $item;
+		}
+
+		foreach ( $targets as $target ) {
+			$this->cache( $user, $target, $targetMap[$target->getNamespace()][$target->getDBkey()] ?? null );
 		}
 
 		return $items;
@@ -968,7 +972,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 			null,
 			$expiry
 		);
-		$this->cache( $item );
+		$this->cache( $user, $target, $item );
 	}
 
 	/**
