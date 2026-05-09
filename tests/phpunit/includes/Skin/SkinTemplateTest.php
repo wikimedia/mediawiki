@@ -271,4 +271,126 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 			array_keys( $contentNav )
 		);
 	}
+
+	/**
+	 * Verify that footer keys exist in buildContentNavigationUrlsInternal output
+	 * as they are now populated from SkinComponentFooter (T318376).
+	 *
+	 * @covers \MediaWiki\Skin\SkinTemplate::buildContentNavigationUrlsInternal
+	 */
+	public function testFooterKeysInContentNavigation() {
+		$wrapper = TestingAccessWrapper::newFromObject(
+			new SkinTemplate( [
+				'menus' => [ 'actions', 'associated-pages', 'dock-bottom', 'variants', 'views' ],
+				'template' => 'SkinQuickTemplateTest',
+				'name' => 'test'
+			] )
+		);
+
+		$wrapper->getContext()->setTitle( Title::makeTitle( NS_MAIN, 'FooterKeysTest' ) );
+		$contentNav = $wrapper->buildContentNavigationUrlsInternal();
+
+		$this->assertArrayHasKey( 'footer-info', $contentNav,
+			'footer-info key must exist in content navigation' );
+		$this->assertArrayHasKey( 'footer-places', $contentNav,
+			'footer-places key must exist in content navigation' );
+		$this->assertArrayHasKey( 'footer-icons', $contentNav,
+			'footer-icons key must exist in content navigation' );
+	}
+
+	/**
+	 * Verify that footer keys are excluded from the template's content_navigation
+	 * data when the skin does not opt in via menus (T318376).
+	 *
+	 * @covers \MediaWiki\Skin\SkinTemplate::prepareQuickTemplate
+	 */
+	public function testFooterKeysExcludedFromContentNavigation() {
+		$wrapper = TestingAccessWrapper::newFromObject(
+			new SkinTemplate( [
+				'menus' => [ 'actions', 'associated-pages', 'dock-bottom', 'variants', 'views' ],
+				'template' => 'SkinQuickTemplateTest',
+				'name' => 'test'
+			] )
+		);
+
+		$wrapper->getContext()->setTitle( Title::makeTitle( NS_MAIN, 'FooterExclusionTest' ) );
+		$tpl = $wrapper->prepareQuickTemplate();
+		$contentNav = $tpl->get( 'content_navigation' );
+
+		$this->assertArrayNotHasKey( 'footer-info', $contentNav,
+			'footer-info must not appear in content_navigation when not in menus' );
+		$this->assertArrayNotHasKey( 'footer-places', $contentNav,
+			'footer-places must not appear in content_navigation when not in menus' );
+		$this->assertArrayNotHasKey( 'footer-icons', $contentNav,
+			'footer-icons must not appear in content_navigation when not in menus' );
+	}
+
+	/**
+	 * Verify that items added via the SkinTemplateNavigation::Universal hook
+	 * appear in the content_navigation footer keys (T318376).
+	 *
+	 * @covers \MediaWiki\Skin\SkinTemplate::buildContentNavigationUrlsInternal
+	 */
+	public function testUniversalHookFooterItemsAppear() {
+		$this->setTemporaryHook( 'SkinTemplateNavigation::Universal',
+			static function ( $skin, &$links ) {
+				$links['footer-places']['test-item'] = [
+					'id' => 'footer-places-test-item',
+					'html' => '<a href="#">Test Link</a>',
+				];
+			}
+		);
+
+		$wrapper = TestingAccessWrapper::newFromObject(
+			new SkinTemplate( [
+				'menus' => [ 'actions', 'associated-pages', 'dock-bottom', 'variants', 'views' ],
+				'template' => 'SkinQuickTemplateTest',
+				'name' => 'test'
+			] )
+		);
+
+		$wrapper->getContext()->setTitle( Title::makeTitle( NS_MAIN, 'HookIntegrationTest' ) );
+		$contentNav = $wrapper->buildContentNavigationUrlsInternal();
+
+		$this->assertArrayHasKey( 'test-item', $contentNav['footer-places'],
+			'Item added via Universal hook must appear in footer-places' );
+		$this->assertSame( 'footer-places-test-item',
+			$contentNav['footer-places']['test-item']['id'],
+			'Item id must match what was set in the hook' );
+	}
+
+	/**
+	 * Verify that footer items added via the Universal hook are rendered
+	 * through the portlet pipeline in template data (T318376).
+	 *
+	 * @covers \MediaWiki\Skin\SkinTemplate::getTemplateData
+	 */
+	public function testUniversalHookFooterItemsInPortlets() {
+		$this->setTemporaryHook( 'SkinTemplateNavigation::Universal',
+			static function ( $skin, &$links ) {
+				$links['footer-places']['custom-link'] = [
+					'id' => 'footer-places-custom-link',
+					'html' => '<a href="#">Custom Footer</a>',
+				];
+			}
+		);
+
+		$skin = new SkinTemplate( [
+			'menus' => [
+				'actions', 'associated-pages', 'dock-bottom', 'variants', 'views',
+				'footer-places',
+			],
+			'template' => 'SkinQuickTemplateTest',
+			'name' => 'test'
+		] );
+
+		$skin->getContext()->setTitle( Title::makeTitle( NS_MAIN, 'FooterPortletTest' ) );
+		$data = $skin->getTemplateData();
+
+		$this->assertArrayHasKey( 'data-portlets', $data,
+			'Template data must contain data-portlets' );
+		$portlets = $data['data-portlets'];
+		$this->assertArrayHasKey( 'data-footer-places', $portlets,
+			'Footer places portlet must appear in data-portlets when opted in via menus' );
+	}
 }

@@ -317,6 +317,10 @@ class SkinTemplate extends Skin {
 			'category-normal',
 			'category-hidden',
 			'associated-pages',
+			// Footer menus are handled by SkinComponentFooter, not content_navigation (T318376)
+			'footer-icons',
+			'footer-info',
+			'footer-places',
 			// All historic menus are covered by requested menus so can be unset
 			// This should match the default for Skin::getOptions()['menus']
 			'namespaces',
@@ -1131,6 +1135,11 @@ class SkinTemplate extends Skin {
 			'associated-pages' => [],
 			// Added in 1.44: a fixed position menu at bottom of page
 			'dock-bottom' => [],
+			// Added in 1.47: footer menus, allowing modification via
+			// SkinTemplateNavigation::Universal hook (T318376)
+			'footer-icons' => [],
+			'footer-info' => [],
+			'footer-places' => [],
 			// Legacy keys
 			'views' => [],
 			'actions' => [],
@@ -1458,6 +1467,20 @@ class SkinTemplate extends Skin {
 			$content_navigation['namespaces'] = $namespaces;
 		}
 		$content_navigation['associated-pages'] = $associatedPages;
+		// Populate footer menus from SkinComponentFooter so that extensions
+		// can modify them via the Universal hook (T318376).
+		$footer = $this->getComponent( 'footer' )->getTemplateData();
+		foreach ( $footer as $key => $data ) {
+			$portletId = $data['id'] ?? null;
+			if ( $portletId ) {
+				$items = [];
+				foreach ( $data['array-items'] ?? [] as $i => $item ) {
+					$name = $item['name'] ?? $i;
+					$items[ $name ] = $item;
+				}
+				$content_navigation[ $portletId ] = $items;
+			}
+		}
 		$this->runOnSkinTemplateNavigationHooks( $this, $content_navigation );
 
 		// Setup xml ids and tooltip info

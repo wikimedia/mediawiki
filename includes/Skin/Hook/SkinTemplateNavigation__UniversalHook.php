@@ -22,6 +22,10 @@ interface SkinTemplateNavigation__UniversalHook {
 	 * @param SkinTemplate $sktemplate
 	 * @param array &$links Structured navigation links. This is used to alter the navigation for
 	 *   skins which use buildNavigationUrls such as Vector.
+	 *   Since 1.47, the keys 'footer-info', 'footer-places' and 'footer-icons'
+	 *   are available for modifying footer menus (T318376). Items should use the
+	 *   format `[ 'id' => 'footer-<section>-<key>', 'html' => '...' ]` matching
+	 *   the structure used by SkinAddFooterLinks.
 	 * @return void This hook must not abort, it must return no value
 	 */
 	public function onSkinTemplateNavigation__Universal( $sktemplate, &$links ): void;

@@ -54,6 +54,9 @@ For notes on 1.46.x and older releases, see HISTORY.
   from Leximorph. When $wgUseLeximorph is enabled, these features use
   Leximorph's modular handlers instead of the legacy implementations and
   plural-rule files.
+* (T318376) The SkinTemplateNavigation::Universal hook now supports
+  'footer-info' and 'footer-places' keys for modifying footer menus, as
+  an alternative to the SkinAddFooterLinks hook.
 * …
 
 === External library changes in 1.47 ===

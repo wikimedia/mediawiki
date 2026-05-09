@@ -44,6 +44,7 @@ class SkinComponentFooter implements SkinComponent {
 				];
 			}
 		}
+
 		return $data;
 	}
 
