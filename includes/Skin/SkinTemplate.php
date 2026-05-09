@@ -964,7 +964,7 @@ class SkinTemplate extends Skin {
 
 		$services = MediaWikiServices::getInstance();
 		$watchlistManager = $services->getWatchlistManager();
-		$watchIcon = $watchlistManager->isWatched( $performer, $title ) ? 'unStar' : 'star';
+		$watchIcon = $mode === 'unwatch' ? 'unStar' : 'star';
 		$watchExpiry = null;
 		// Modify tooltip and add class identifying the page is temporarily watched, if applicable.
 		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) &&
