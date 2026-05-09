@@ -1089,7 +1089,14 @@ class EditPage implements IEditObject {
 			}
 		}
 
-		$this->oldid = $request->getInt( 'oldid' );
+		if ( $request !== $this->getContext()->getRequest() ) {
+			// TODO Deprecate the $request parameter of this method, and always
+			// use the one in the context instead to avoid inconsistencies.
+			$this->oldid = $request->getInt( 'oldid' );
+		} else {
+			// Article::getOldID falls back to the request if no oldid is set
+			$this->oldid = $this->mArticle->getOldID();
+		}
 		$this->parentRevId = $request->getInt( 'parentRevId' );
 
 		$this->markAsBot = $request->getBool( 'bot', true );
