@@ -5885,10 +5885,10 @@ class Parser {
 
 		# Write out the remainder (in replace mode only)
 		if ( $mode === 'replace' ) {
-			# Output the replacement text
-			# Add two newlines on -- trailing whitespace in $newText is conventionally
-			# stripped by the editor, so we need both newlines to restore the paragraph gap
-			# Only add trailing whitespace if there is newText
+			# Output the replacement text.
+			# Add two newlines. Trailing whitespace in $newText is conventionally
+			# stripped by the editor, so we need both newlines to restore the paragraph gap.
+			# Only add trailing whitespace if there is newText.
 			if ( $newText != "" ) {
 				$outText .= $newText . "\n\n";
 			}
