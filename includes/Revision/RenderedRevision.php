@@ -282,6 +282,27 @@ class RenderedRevision implements SlotRenderingProvider {
 			$this->revision->getId(),
 			$this->revision->getTimestamp()
 		);
+
+		// T358708: Update the cache revision ID on any ParserOutput that was
+		// kept (not pruned) by pruneRevisionSensitiveOutput(). These outputs
+		// were originally rendered with a MutableRevisionRecord that had no
+		// revision ID, so ContentRenderer did not set the cacheRevisionId.
+		// Without this, ParserCache::save() would see a mismatch between the
+		// actual revision ID and the null cacheRevisionId, causing a
+		// high-volume "Inconsistent revision ID" warning.
+		$revId = $this->revision->getId();
+		if ( $revId ) {
+			if ( $this->revisionOutput !== null
+				&& $this->revisionOutput->getCacheRevisionId() === null
+			) {
+				$this->revisionOutput->setCacheRevisionId( $revId );
+			}
+			foreach ( $this->slotsOutput as $output ) {
+				if ( $output->getCacheRevisionId() === null ) {
+					$output->setCacheRevisionId( $revId );
+				}
+			}
+		}
 	}
 
 	/**

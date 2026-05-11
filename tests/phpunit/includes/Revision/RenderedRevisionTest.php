@@ -629,4 +629,68 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr->updateRevision( $newRev );
 	}
 
+	/**
+	 * @covers \MediaWiki\Revision\RenderedRevision::updateRevision
+	 * Regression test for T358708: updateRevision() should set the cache
+	 * revision ID on kept (non-pruned) ParserOutput objects. This prevents
+	 * a false-positive "Inconsistent revision ID" warning in ParserCache.
+	 */
+	public function testUpdateRevision_setsCacheRevisionIdOnKeptOutput() {
+		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' );
+
+		// Content WITHOUT revision-sensitive magic words (no {{REVISIONID}} etc.)
+		// This means pruneRevisionSensitiveOutput() will KEEP the output.
+		$content = [
+			SlotRecord::MAIN => new WikitextContent( '[[Kittens]] are cute' ),
+		];
+
+		$rev = new MutableRevisionRecord( $page );
+		$rev->setContent( SlotRecord::MAIN, $content[SlotRecord::MAIN] );
+
+		$options = ParserOptions::newFromAnon();
+		$rr = new RenderedRevision(
+			$rev,
+			$options,
+			$this->contentRenderer,
+			$this->combinerCallback
+		);
+
+		// Trigger rendering with the unsaved revision (no ID)
+		$revOutput = $rr->getRevisionParserOutput();
+		$slotOutput = $rr->getSlotParserOutput( SlotRecord::MAIN );
+
+		// Before updateRevision, cacheRevisionId should be null because
+		// the revision had no ID when it was rendered.
+		$this->assertNull(
+			$revOutput->getCacheRevisionId(),
+			'revision cacheRevisionId should be null before updateRevision'
+		);
+		$this->assertNull(
+			$slotOutput->getCacheRevisionId(),
+			'slot cacheRevisionId should be null before updateRevision'
+		);
+
+		// Emulate saving the revision
+		$savedRev = new MutableRevisionRecord( $page );
+		$savedRev->setContent( SlotRecord::MAIN, $content[SlotRecord::MAIN] );
+		$savedRev->setId( 42 );
+		$savedRev->setUser( new UserIdentityValue( 9, 'Frank' ) );
+		$savedRev->setTimestamp( '20180101000003' );
+
+		$rr->updateRevision( $savedRev );
+
+		// Verify outputs were kept (not pruned) by checking object identity.
+		// Since the content doesn't use revision-sensitive magic words,
+		// pruneRevisionSensitiveOutput() should not discard the outputs.
+		$this->assertSame( $slotOutput, $rr->getSlotParserOutput( SlotRecord::MAIN ),
+			'Slot output should be kept (not re-rendered) after updateRevision' );
+
+		// T358708: cacheRevisionId should now be set to the saved revision's ID
+		// on both the revision output and the slot output.
+		$this->assertSame( 42, $rr->getRevisionParserOutput()->getCacheRevisionId(),
+			'revision cacheRevisionId should be set after updateRevision (T358708)' );
+		$this->assertSame( 42, $rr->getSlotParserOutput( SlotRecord::MAIN )->getCacheRevisionId(),
+			'slot cacheRevisionId should be set after updateRevision (T358708)' );
+	}
+
 }
