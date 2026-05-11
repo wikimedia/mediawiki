@@ -245,6 +245,7 @@ use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Shell\Shell;
 use MediaWiki\Shell\ShellboxClientFactory;
 use MediaWiki\Site\CachingSiteStore;
 use MediaWiki\Site\DBSiteStore;
@@ -1084,7 +1085,7 @@ return [
 		return new GlobalIdGenerator(
 			$mainConfig->get( MainConfigNames::TmpDirectory ),
 			static function ( $command ) {
-				return wfShellExec( $command );
+				return Shell::command( $command )->execute()->getStdout();
 			}
 		);
 	},

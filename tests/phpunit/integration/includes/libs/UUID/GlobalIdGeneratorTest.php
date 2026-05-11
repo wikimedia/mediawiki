@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Shell\Shell;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 use Wikimedia\UUID\GlobalIdGenerator;
@@ -187,7 +188,7 @@ class GlobalIdGeneratorTest extends PHPUnit\Framework\TestCase {
 		$this->globalIdGenerator = new GlobalIdGenerator(
 			wfTempDir(),
 			static function ( $command ) {
-				return wfShellExec( $command );
+				return Shell::command( $command )->execute();
 			}
 		);
 	}
