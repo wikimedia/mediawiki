@@ -12852,6 +12852,7 @@ class MainConfigSchema {
 			/* MediaWiki whitelist */
 			'User-Agent',
 			'Api-User-Agent',
+			'Promise-Non-Write-API-Action',
 			/* Allowing caching preflight requests, see T269636 */
 			'Access-Control-Max-Age',
 			/* OAuth 2.0, see T322944 */
