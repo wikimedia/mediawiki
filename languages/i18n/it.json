@@ -515,6 +515,8 @@
 	"badretype": "Le password inserite non coincidono tra loro.",
 	"usernameinprogress": "La creazione di account con questo nome utente è già in corso.\nSi prega di attendere.",
 	"userexists": "Il nome utente inserito è già utilizzato.\nScegli un nome utente diverso.",
+	"username-previously-renamed-account": "Questo nome utente non può essere registrato perché è stato precedentemente utilizzato da un utente che è stato poi rinominato.\nScegli un nome diverso.",
+	"allow-previously-renamed-account": "Consenti i nomi utente precedentemente usati da utenti rinominati",
 	"createacct-normalization": "Il tuo nome utente sarà corretto in \"$2\" a causa di restrizioni tecniche.",
 	"loginerror": "Errore durante l'accesso",
 	"createacct-error": "Errore durante la creazione dell'utenza",

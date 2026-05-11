@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Anthelior",
 			"Aşilleus",
 			"BaRaN6161 TURK",
 			"Bulgu",
@@ -220,6 +221,7 @@
 	"action-createpage": "bu sayfayı oluşturma",
 	"action-createtalk": "bu tartışma sayfasını oluştur",
 	"action-createaccount": "bu kullanıcı hesabını oluştur",
+	"action-createpreviouslyrenamedaccount": "daha önce yeniden adlandırılan bir hesap tarafından kullanılan bir kullanıcı adıyla hesap oluştur",
 	"action-autocreateaccount": "bu harici kullanıcı hesabını otomatik olarak oluştur",
 	"action-history": "bu sayfanın geçmişini görüntüle",
 	"action-minoredit": "bu değişikliği küçük olarak işaretle",

@@ -53,7 +53,7 @@
 	"interwiki-badprefix": "Het interwikivoorvoegsel \"$1\" bevat ongeldige tekens",
 	"interwiki-cannotaddlocallanguage": "Het voorvoegsel “$1” komt overeen met een bekende taalcode. Het toevoegen van lokale taalvoorvoegsels is niet mogelijk wanneer een globale taalkoppelingen-database gebruikt wordt.",
 	"interwiki-submit-empty": "Het voorvoegsel en de URL mogen niet leeg zijn.",
-	"interwiki-submit-invalidurl": "Het protocol van de URL is ongeldig.",
+	"interwiki-submit-invalidurl": "Het protocol van de URL is onjuist.",
 	"log-name-interwiki": "Logboek interwikitabel",
 	"logentry-interwiki-iw_add": "$1 {{GENDER:$2|heeft}} het voorvoegsel \"$4\" toegevoegd ($5) aan de interwikitabel (trans: $6; local: $7)",
 	"logentry-interwiki-iw_edit": "$1 {{GENDER:$2|heeft}} het voorvoegsel \"$4\" ($5) gewijzigd in de interwikitabel (trans: $6; local: $7)",

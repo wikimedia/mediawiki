@@ -491,6 +491,8 @@
 	"badretype": "Die beiden Passwörter stimmen nicht überein.",
 	"usernameinprogress": "Eine Benutzerkontenerstellung für diesen Benutzernamen ist bereits in Bearbeitung.\nBitte warten.",
 	"userexists": "Dieser Benutzername ist schon vergeben.\nBitte {{#FORMAL:wähle|wählen Sie}} einen anderen.",
+	"username-previously-renamed-account": "Dieser Benutzername kann nicht registriert werden, da er bereits von einem Konto verwendet wurde, das umbenannt wurde. Bitte {{#FORMAL:wähle|wählen Sie}} einen anderen Namen.",
+	"allow-previously-renamed-account": "Zulassen von Benutzernamen, die zuvor von umbenannten Konten verwendet wurden",
 	"createacct-normalization": "{{#FORMAL:Dein|Ihr}} Benutzername wird aufgrund technischer Beschränkungen in „$2“ geändert.",
 	"loginerror": "Fehler bei der Anmeldung",
 	"createacct-error": "Fehler beim Erstellen des Benutzerkontos",

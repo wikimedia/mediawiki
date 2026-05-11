@@ -2905,7 +2905,7 @@
 	"watchlistedit-unwatch-confirmation-accept": "Eltávolítás",
 	"watchlisttools-clear": "A figyelőlista kiürítése",
 	"watchlisttools-view": "Figyelőlista megtekintése",
-	"watchlisttools-edit": "Figyelőlista megtekintése",
+	"watchlisttools-edit": "Figyelőlista szerkesztése",
 	"watchlisttools-labels": "Címkék szerkesztése",
 	"watchlisttools-raw": "A nyers figyelőlista szerkesztése",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|vita]])",

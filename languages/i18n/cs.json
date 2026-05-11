@@ -429,6 +429,8 @@
 	"badretype": "Vámi napsaná hesla nesouhlasí.",
 	"usernameinprogress": "Vytváření účtu tohoto uživatele již probíhá. Čekejte prosím.",
 	"userexists": "Zadané uživatelské jméno se již používá.\nZvolte si prosím jiné jméno.",
+	"username-previously-renamed-account": "Toto uživatelské jméno nelze zaregistrovat, protože je dříve používal uživatelský účet, který byl přejmenován. Zvolte si prosím jiné jméno.",
+	"allow-previously-renamed-account": "Povolit uživatelská jména dříve používaná přejmenovanými účty",
 	"createacct-normalization": "Vaše uživatelské jméno bude z technických důvodů upraveno na „$2“.",
 	"loginerror": "Chyba při přihlašování",
 	"createacct-error": "Chyba při zakládání účtu",

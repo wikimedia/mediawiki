@@ -2525,6 +2525,8 @@
 	"remove-blocklink": "remover bloqueio",
 	"manage-blocklink": "gerenciar bloqueios",
 	"empty-username": "(sem nome de usuário disponível)",
+	"available-username": "Nome de usuário disponível",
+	"available-username-check-feedback": "Verificando a disponibilidade",
 	"blocklist-hidden-placeholder": "(nome de usuário ocultado)",
 	"blocklist-hidden-param": "nome de usuário oculto",
 	"contribslink": "contribs",

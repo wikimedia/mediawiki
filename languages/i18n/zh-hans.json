@@ -590,6 +590,8 @@
 	"badretype": "您输入的密码不匹配。",
 	"usernameinprogress": "此用户名的账号创建已在进行中。请稍等。",
 	"userexists": "输入的用户名已在使用，请选用其他名称。",
+	"username-previously-renamed-account": "无法注册此用户名，因为它已经被已更名的账号使用过。请使用其他名称。",
+	"allow-previously-renamed-account": "允许已更名账号使用过的用户名",
 	"createacct-normalization": "由于技术限制，您的用户名将被调整为“$2”。",
 	"loginerror": "登录错误",
 	"createacct-error": "账号创建出错",

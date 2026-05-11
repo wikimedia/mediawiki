@@ -976,6 +976,7 @@
 	"linterror-tidy-font-bug": "Font тагът опитва да промени цвета на препратката",
 	"linterror-tidy-whitespace-bug": "Грешка при обработката на интервал",
 	"linterror-unclosed-quotes-in-heading": "Незатворена кавичка в заглавие на раздел, която вследствие на това има обхват извън съдържанието",
+	"linterror-template-arg-in-extension-tag": "Таг на разширение с параметър на шаблон",
 	"email": "Е-поща",
 	"newuserlogpage": "Дневник на регистрациите",
 	"newuserlogpagetext": "В този дневник се записват регистрациите на потребители.",

@@ -405,6 +405,8 @@
 	"badretype": "Daxil etdiyiniz parol uyğun gəlmir.",
 	"usernameinprogress": "Bu istifadəçi adı üçün bir hesab yaratma artıq başlamışdır.\nZəhmət olmasa, gözləyin.",
 	"userexists": "Bu istifadəçi adı artıq istifadə olunur. \nZəhmət olmasa, fərqli ad seçin.",
+	"username-previously-renamed-account": "Bu istifadəçi adı istifadə edilə bilməz, çünki əvvəllər adı dəyişdirilmiş hesab tərəfindən istifadə olunub.\nZəhmət olmasa, fərqli bir ad seçin.",
+	"allow-previously-renamed-account": "Adını dəyişdirmiş hesablar tərəfindən əvvəllər istifadə edilmiş istifadəçi adlarına icazə ver",
 	"createacct-normalization": "Texniki məhdudiyyətlər səbəbiylə istifadəçi adınız \"$2\" olaraq düzəldiləcək.",
 	"loginerror": "Daxil olma xətası",
 	"createacct-error": "Hesab yaratma xətası",

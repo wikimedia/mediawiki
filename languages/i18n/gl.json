@@ -394,6 +394,8 @@
 	"badretype": "Os contrasinais que escribiches son distintos un do outro.",
 	"usernameinprogress": "Xa se está a crear unha conta con este nome de usuario.\nPor favor, agarda.",
 	"userexists": "O nome de usuario que escribiches xa o usa alguén.\nEscolle un nome diferente.",
+	"username-previously-renamed-account": "Non se pode rexistrar este nome de usuario porque xa o usou unha conta que foi renomeada.\nEscolle un nome diferente.",
+	"allow-previously-renamed-account": "Permitir nomes de usuario usados previamente por contas renomeadas",
 	"createacct-normalization": "O teu nome de usuario quedará reducido a «$2» debido a restricións técnicas.",
 	"loginerror": "Erro de inicio de sesión",
 	"createacct-error": "Erro ao crear a conta",

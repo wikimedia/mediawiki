@@ -512,6 +512,8 @@
 	"badretype": "兩次輸入的密碼並不相同。",
 	"usernameinprogress": "已開始為此使用者名建立帳號，請稍等。",
 	"userexists": "您所輸入的使用者名稱已存在，請另選一個名稱。",
+	"username-previously-renamed-account": "此使用者名稱無法註冊，因為它之前已被一個已更名的帳號使用過。請選擇其他名稱。",
+	"allow-previously-renamed-account": "允許先前被重新命名之帳號使用過的使用者名稱",
 	"createacct-normalization": "基於技術限制，您的用戶名將調整為「$2」。",
 	"loginerror": "登入錯誤",
 	"createacct-error": "帳號建立錯誤",
