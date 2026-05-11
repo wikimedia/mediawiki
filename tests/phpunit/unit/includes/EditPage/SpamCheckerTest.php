@@ -1,6 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\EditPage;
+
 use MediaWiki\EditPage\SpamChecker;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\EditPage\SpamChecker

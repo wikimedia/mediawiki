@@ -4,8 +4,11 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
+
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
+use MediaWikiUnitTestCase;
 
 /**
  * Tests the MissingCommentConstraint

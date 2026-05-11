@@ -4,10 +4,13 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
+
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Title\Title;
+use MediaWikiUnitTestCase;
 
 /**
  * Tests the DefaultTextConstraint

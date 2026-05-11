@@ -6,7 +6,6 @@
 
 namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 
-use EditConstraintTestTrait;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\EditPage\Constraint\RedirectConstraint;

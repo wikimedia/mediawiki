@@ -295,7 +295,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Unit\\CommentFormatter\\CommentFormatterTestUtils' => "$testDir/phpunit/unit/includes/CommentFormatter/CommentFormatterTestUtils.php",
 
 	# tests/phpunit/unit/includes/EditPage/Constraint and tests/phpunit/integration/includes/EditPage/Constraint
-	'EditConstraintTestTrait' => "$testDir/phpunit/unit/includes/EditPage/Constraint/EditConstraintTestTrait.php",
+	'MediaWiki\\Tests\\Unit\\EditPage\\Constraint\\EditConstraintTestTrait' => "$testDir/phpunit/unit/includes/EditPage/Constraint/EditConstraintTestTrait.php",
 
 	# tests/phpunit/unit/includes/FileBackend
 	'FileBackendGroupTestTrait' => "$testDir/phpunit/unit/includes/FileBackend/FileBackendGroupTestTrait.php",

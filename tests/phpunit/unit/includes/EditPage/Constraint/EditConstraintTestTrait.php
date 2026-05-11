@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
+
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\EditPageStatus;
 

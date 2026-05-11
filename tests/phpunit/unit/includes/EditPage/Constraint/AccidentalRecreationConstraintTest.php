@@ -4,11 +4,14 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
+
 use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Title\Title;
+use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
 

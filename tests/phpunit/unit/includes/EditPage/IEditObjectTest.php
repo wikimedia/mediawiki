@@ -1,7 +1,11 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\EditPage;
+
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\EditPage\IEditObject;
+use MediaWikiUnitTestCase;
+use ReflectionClass;
 
 /**
  * @covers \MediaWiki\EditPage\EditPage

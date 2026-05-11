@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
+
 use MediaWiki\EditPage\Constraint\AuthorizationConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\Page\PageIdentity;
@@ -11,6 +13,8 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Tests\Unit\MockBlockTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiUnitTestCase;
+use MockTitleTrait;
 
 /**
  * @covers \MediaWiki\EditPage\Constraint\AuthorizationConstraint

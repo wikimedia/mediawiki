@@ -4,11 +4,15 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
+
 use MediaWiki\EditPage\Constraint\ContentModelChangeConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
+use MediaWikiUnitTestCase;
+use MockTitleTrait;
 use Wikimedia\TestingAccessWrapper;
 
 /**

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\EditPage;
+
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\TextContent;
@@ -26,6 +28,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Watchlist\WatchlistLabel;
+use MediaWikiLangTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**

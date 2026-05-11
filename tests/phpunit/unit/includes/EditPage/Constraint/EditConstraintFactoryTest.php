@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
+
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
@@ -27,6 +29,7 @@ use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
+use MediaWikiUnitTestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;

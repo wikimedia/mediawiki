@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Integration\EditPage;
+namespace MediaWiki\Tests\EditPage;
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\EditPage\EditPage;

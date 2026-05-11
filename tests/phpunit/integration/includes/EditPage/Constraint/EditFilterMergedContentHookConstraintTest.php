@@ -4,14 +4,18 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Integration\EditPage\Constraint;
+
 use MediaWiki\Content\Content;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
+use MediaWiki\Tests\Unit\EditPage\Constraint\EditConstraintTestTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWikiIntegrationTestCase;
 
 /**
  * Tests the EditFilterMergedContentHookConstraint

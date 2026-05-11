@@ -4,9 +4,12 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
+
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\NewSectionMissingSubjectConstraint;
 use MediaWiki\Language\RawMessage;
+use MediaWikiUnitTestCase;
 
 /**
  * Tests the NewSectionMissingSubjectConstraint

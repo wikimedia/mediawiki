@@ -4,8 +4,11 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
+
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\ReadOnlyConstraint;
+use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\TestingAccessWrapper;
 

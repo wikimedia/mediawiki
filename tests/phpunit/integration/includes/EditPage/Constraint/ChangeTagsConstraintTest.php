@@ -4,9 +4,13 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Integration\EditPage\Constraint;
+
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraint;
+use MediaWiki\Tests\Unit\EditPage\Constraint\EditConstraintTestTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWikiIntegrationTestCase;
 
 /**
  * Tests the ChangeTagsConstraint

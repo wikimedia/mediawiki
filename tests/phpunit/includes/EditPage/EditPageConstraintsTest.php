@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\EditPage;
+
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
@@ -16,6 +18,7 @@ use MediaWiki\Tests\Unit\MockBlockTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWikiLangTestCase;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**

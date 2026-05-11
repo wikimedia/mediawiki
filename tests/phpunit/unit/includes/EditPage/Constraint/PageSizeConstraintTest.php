@@ -4,8 +4,12 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
+
+use InvalidArgumentException;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
+use MediaWikiUnitTestCase;
 
 /**
  * Tests the PageSizeConstraint

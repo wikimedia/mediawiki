@@ -4,11 +4,14 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
+
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\LinkPurgeRateLimitConstraint;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**

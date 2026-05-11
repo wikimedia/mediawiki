@@ -4,12 +4,15 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
+
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\RevisionDeletedConstraint;
 use MediaWiki\Page\Article;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Title\Title;
+use MediaWikiUnitTestCase;
 
 /**
  * Tests the RevisionDeletedConstraint

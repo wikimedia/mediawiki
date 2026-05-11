@@ -4,12 +4,16 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
+
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\SimpleAntiSpamConstraint;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiUnitTestCase;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
+use TestLogger;
 
 /**
  * Tests the SimpleAntiSpamConstraint
