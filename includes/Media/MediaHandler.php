@@ -8,6 +8,7 @@ namespace MediaWiki\Media;
 
 use InvalidArgumentException;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\HookContainer\HookRunner;
@@ -61,7 +62,14 @@ abstract class MediaHandler {
 	 */
 	public function getLanguage(): Language {
 		if ( !$this->lang ) {
-			throw new \RuntimeException( "Need to set language before accessing." );
+			wfDeprecatedMsg(
+				"Accessing the language without explicitly setting it via " .
+				"MediaHandler:setLanguage, MediaHandler::getHandler, or " .
+				"MediaHandlerFactory::getHandler was deprecated in 1.46.",
+				'1.46'
+			);
+			$this->lang = RequestContext::getMain()->getLanguage();
+			// throw new \RuntimeException( "Need to set language before accessing." );
 		}
 		return $this->lang;
 	}
