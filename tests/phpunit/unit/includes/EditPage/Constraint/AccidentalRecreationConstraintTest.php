@@ -6,9 +6,9 @@
 
 use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraint;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Title\Title;
-use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
 
@@ -29,7 +29,7 @@ class AccidentalRecreationConstraintTest extends MediaWikiUnitTestCase {
 			$this->createMock( Title::class ),
 			false,
 			null,
-			new MessageValue( '' ),
+			new RawMessage( '' ),
 		);
 		$this->assertConstraintPassed( $constraint );
 	}

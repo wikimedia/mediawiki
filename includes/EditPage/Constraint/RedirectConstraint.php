@@ -13,6 +13,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Title\Title;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -38,7 +39,7 @@ class RedirectConstraint extends EditConstraint {
 		private readonly Content $newContent,
 		private readonly ?Content $originalContent,
 		private readonly LinkTarget $title,
-		private readonly MessageValue $errorMessageWrapper,
+		private readonly MessageSpecifier $errorMessageWrapper,
 		private readonly ?string $contentFormat,
 		private readonly RedirectLookup $redirectLookup,
 	) {
@@ -124,7 +125,10 @@ class RedirectConstraint extends EditConstraint {
 
 	private function wrapResult( int $result, MessageValue $errorMessage ): EditPageStatus {
 		return EditPageStatus::newGood( $result )
-			->warning( $this->errorMessageWrapper->params( $errorMessage ) )
+			->warning(
+				$this->errorMessageWrapper->getKey(),
+				...array_merge( $this->errorMessageWrapper->getParams(), [ $errorMessage ] )
+			)
 			->setOK( false );
 	}
 

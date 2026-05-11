@@ -6,7 +6,7 @@
 
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\NewSectionMissingSubjectConstraint;
-use Wikimedia\Message\MessageValue;
+use MediaWiki\Language\RawMessage;
 
 /**
  * Tests the NewSectionMissingSubjectConstraint
@@ -19,17 +19,17 @@ class NewSectionMissingSubjectConstraintTest extends MediaWikiUnitTestCase {
 	use EditConstraintTestTrait;
 
 	public function testPass() {
-		$constraint = new NewSectionMissingSubjectConstraint( 'new', 'Subject', false, new MessageValue( '' ), );
+		$constraint = new NewSectionMissingSubjectConstraint( 'new', 'Subject', false, new RawMessage( '' ), );
 		$this->assertConstraintPassed( $constraint );
 	}
 
 	public function testFailure() {
-		$constraint = new NewSectionMissingSubjectConstraint( 'new', '', false, new MessageValue( '' ), );
+		$constraint = new NewSectionMissingSubjectConstraint( 'new', '', false, new RawMessage( '' ), );
 		$this->assertConstraintFailed( $constraint, EditConstraint::AS_SUMMARY_NEEDED );
 	}
 
 	public function testNonNew() {
-		$constraint = new NewSectionMissingSubjectConstraint( 'notnew', '', false, new MessageValue( '' ), );
+		$constraint = new NewSectionMissingSubjectConstraint( 'notnew', '', false, new RawMessage( '' ), );
 		$this->assertConstraintPassed( $constraint );
 	}
 

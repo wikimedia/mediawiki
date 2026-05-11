@@ -23,7 +23,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Message\MessageSpecifier;
-use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
@@ -183,7 +182,7 @@ class EditConstraintFactory {
 		Content $newContent,
 		?Content $originalContent,
 		LinkTarget $title,
-		MessageValue $errorMessageWrapper,
+		MessageSpecifier $errorMessageWrapper,
 		?string $contentFormat,
 	): RedirectConstraint {
 		return new RedirectConstraint(

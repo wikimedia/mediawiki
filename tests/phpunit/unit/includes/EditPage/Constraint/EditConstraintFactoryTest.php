@@ -18,6 +18,7 @@ use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Logger\Spi;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\MainConfigNames;
@@ -27,7 +28,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use Psr\Log\NullLogger;
-use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
@@ -108,7 +108,7 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 				$this->createMock( Content::class ),
 				$this->createMock( Content::class ),
 				$title,
-				MessageValue::new( '' ),
+				new RawMessage( '' ),
 				''
 			)
 		);

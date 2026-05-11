@@ -7,7 +7,7 @@
 use MediaWiki\Content\Content;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\ExistingSectionEditConstraint;
-use Wikimedia\Message\MessageValue;
+use MediaWiki\Language\RawMessage;
 
 /**
  * Tests the ExistingSectionEditConstraint
@@ -36,7 +36,7 @@ class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 			false,
 			$newContent,
 			$originalContent,
-			new MessageValue( '' ),
+			new RawMessage( '' ),
 		);
 		$this->assertConstraintPassed( $constraint );
 	}
@@ -49,7 +49,7 @@ class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 			false,
 			$this->createNoOpMock( Content::class ),
 			null,
-			new MessageValue( '' ),
+			new RawMessage( '' ),
 		);
 		$this->assertConstraintPassed( $constraint );
 	}
@@ -71,7 +71,7 @@ class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 			false,
 			$newContent,
 			$originalContent,
-			new MessageValue( '' ),
+			new RawMessage( '' ),
 		);
 		$this->assertConstraintFailed( $constraint, EditConstraint::AS_SUMMARY_NEEDED );
 	}
