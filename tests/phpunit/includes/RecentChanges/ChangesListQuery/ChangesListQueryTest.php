@@ -274,10 +274,11 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 
 	private function getQuery( array $options = [] ) {
 		$services = $this->getServiceContainer();
-		$extraConfig = [];
-		if ( !empty( $options['watchlist-expiry'] ) ) {
-			$extraConfig[MainConfigNames::WatchlistExpiry] = true;
-		}
+		// Pin WatchlistExpiry explicitly so the built query does not depend on the
+		// ambient default, which may be enabled site-wide (e.g. on WMF wikis).
+		$extraConfig = [
+			MainConfigNames::WatchlistExpiry => !empty( $options['watchlist-expiry'] ),
+		];
 		$factory = new ChangesListQueryFactory(
 			new ServiceOptions(
 				ChangesListQuery::CONSTRUCTOR_OPTIONS,

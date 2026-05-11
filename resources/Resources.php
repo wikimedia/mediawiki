@@ -3561,13 +3561,7 @@ return [
 			'addedwatchindefinitelytext',
 			'addedwatchindefinitelytext-talk',
 			'watchlist-expiry-days-left',
-			'watchlist-expiry-hours-left',
-			'watchstar-popup-already-watched',
-			'watchstar-popup-expiry-help',
-			'watchstar-popup-labels',
-			'watchstar-popup-labels-help',
-			'watchstar-popup-labels-no-results',
-			'watchstar-popup-title'
+			'watchlist-expiry-hours-left'
 		],
 	],
 	'mediawiki.watchstar.popover' => [
@@ -3576,24 +3570,36 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.watchstar.popover",
 		'codexComponents' => [
 			'CdxButton',
-			'CdxPopover',
 			'CdxField',
-			'CdxMessage',
+			'CdxIcon',
 			'CdxMultiselectLookup',
-			'CdxSelect',
+			'CdxPopover',
+			'CdxSelect'
 		],
 		'packageFiles' => [
 			'init.js',
 			'WatchlistPopup.vue',
-			[ 'name' => 'data.json', 'callback' => static function ( MessageLocalizer $messageLocalizer ) {
-				return WatchAction::getExpiryOptions( $messageLocalizer, false );
-			} ]
+			[
+				'name' => 'icons.json',
+				'callback' => 'MediaWiki\\ResourceLoader\\CodexModule::getIcons',
+				'callbackParam' => [
+					'cdxIconUndo',
+					'cdxIconSuccess',
+					'cdxIconError',
+					'cdxIconInfoFilled',
+					'cdxIconClose',
+				],
+			],
+			[
+				'name' => 'data.json',
+				'callback' => static function ( MessageLocalizer $messageLocalizer ) {
+					return WatchAction::getExpiryOptions( $messageLocalizer, false );
+				}
+			]
 		],
 		'dependencies' => [
-			'oojs-ui',
 			'mediawiki.api',
 			'vue',
-			'mediawiki.DateFormatter',
 		],
 		'messages' => [
 			'accesskey-ca-watch',
@@ -3611,9 +3617,11 @@ return [
 			'watchstar-popup-already-watched',
 			'watchstar-popup-expiry-help',
 			'watchstar-popup-labels',
+			'watchstar-popup-labels-add',
 			'watchstar-popup-labels-help',
 			'watchstar-popup-labels-no-results',
-			'watchstar-popup-title'
+			'watchstar-popup-labels-none',
+			'watchstar-popup-undo'
 		],
 	],
 
