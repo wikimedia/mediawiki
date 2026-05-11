@@ -2675,6 +2675,7 @@ return [
 				'Origin',
 				'User-Agent',
 				'Api-User-Agent',
+				'Promise-Non-Write-API-Action',
 				'Access-Control-Max-Age',
 				'Authorization',
 			],
