@@ -163,10 +163,13 @@ class PageEdit implements IEditObject {
 			return $status;
 		}
 
+		$markAsMinor = $this->isMinorEdit( $new );
+		$markAsBot = $this->isBotEdit();
+
 		$flags = EDIT_AUTOSUMMARY |
 			( $new ? EDIT_NEW : EDIT_UPDATE ) |
-			( $this->inputs->shouldMarkAsMinor() ? EDIT_MINOR : 0 ) |
-			( $this->inputs->shouldMarkAsBot() ? EDIT_FORCE_BOT : 0 );
+			( $markAsMinor ? EDIT_MINOR : 0 ) |
+			( $markAsBot ? EDIT_FORCE_BOT : 0 );
 
 		$sectiontitle = $this->inputs->getSectiontitle();
 
@@ -186,7 +189,7 @@ class PageEdit implements IEditObject {
 				->setContent( SlotRecord::MAIN, $content );
 			$pageUpdater->prepareUpdate( $flags );
 
-			$newPageChecksRunner = $this->getNewPageChecksRunner( $content, $pstUser );
+			$newPageChecksRunner = $this->getNewPageChecksRunner( $content, $pstUser, $markAsMinor );
 			$status = $newPageChecksRunner->checkConstraints();
 			if ( !$status->isOK() ) {
 				return $status;
@@ -312,7 +315,7 @@ class PageEdit implements IEditObject {
 				->setContent( SlotRecord::MAIN, $content );
 			$pageUpdater->prepareUpdate( $flags );
 
-			$existingPageChecksRunner = $this->getExistingPageChecksRunner( $content, $pstUser, $page );
+			$existingPageChecksRunner = $this->getExistingPageChecksRunner( $content, $pstUser, $page, $markAsMinor );
 			$status = $existingPageChecksRunner->checkConstraints();
 			if ( !$status->isOK() ) {
 				return $status;
@@ -505,6 +508,7 @@ class PageEdit implements IEditObject {
 	private function getNewPageChecksRunner(
 		Content $content,
 		UserIdentity $pstUser,
+		bool $markAsMinor,
 	): EditConstraintRunner {
 		return new EditConstraintRunner(
 		// Don't save a new page if it's blank or if it's a MediaWiki:
@@ -522,7 +526,7 @@ class PageEdit implements IEditObject {
 				$content,
 				$this->inputs->getContext(),
 				$this->summary,
-				$this->inputs->shouldMarkAsMinor(),
+				$markAsMinor,
 				$this->inputs->getContext()->getLanguage(),
 				$pstUser
 			),
@@ -533,11 +537,13 @@ class PageEdit implements IEditObject {
 	 * @param Content $content
 	 * @param UserIdentity $pstUser
 	 * @param WikiPage $page
+	 * @param bool $markAsMinor
 	 */
 	private function getExistingPageChecksRunner(
 		Content $content,
 		UserIdentity $pstUser,
 		$page,
+		bool $markAsMinor,
 	): EditConstraintRunner {
 		$revision = $this->inputs->getOldid()
 			? $this->revisionStore->getRevisionById( $this->inputs->getOldid() )
@@ -547,7 +553,7 @@ class PageEdit implements IEditObject {
 				$content,
 				$this->inputs->getContext(),
 				$this->summary,
-				$this->inputs->shouldMarkAsMinor(),
+				$markAsMinor,
 				$this->inputs->getContext()->getLanguage(),
 				$pstUser
 			),
@@ -798,6 +804,24 @@ class PageEdit implements IEditObject {
 	private function getSubmitButtonLabel(): MessageSpecifier {
 		return $this->inputs->getSubmitButtonLabel() ??
 			new MessageValue( $this->pageEditingHelper->getSubmitButtonLabel( $this->inputs->getPage() ) );
+	}
+
+	/**
+	 * @return bool Whether the user marked the edit as a minor edit, the edit does not create a new page or section,
+	 * and the user is allowed to mark edits as minor.
+	 */
+	private function isMinorEdit( bool $isNewPage ): bool {
+		return $this->inputs->shouldMarkAsMinor()
+			&& !$isNewPage
+			&& $this->section !== 'new'
+			&& $this->inputs->getAuthority()->isAllowed( 'minoredit' );
+	}
+
+	/**
+	 * @return bool Whether the user marked the edit as a bot edit and is allowed to do so.
+	 */
+	private function isBotEdit(): bool {
+		return $this->inputs->shouldMarkAsBot() && $this->inputs->getAuthority()->isAllowed( 'bot' );
 	}
 
 }

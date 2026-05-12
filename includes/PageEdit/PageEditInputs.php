@@ -185,6 +185,11 @@ class PageEditInputs {
 		return $this;
 	}
 
+	/**
+	 * @return bool Whether the user requested that this edit is marked as a bot edit.
+	 * Note that this method returning `true` doesn't mean the user actually has the
+	 * permission to do that, it needs to be checked separately!
+	 */
 	public function shouldMarkAsBot(): bool {
 		return $this->markAsBot;
 	}
@@ -194,6 +199,11 @@ class PageEditInputs {
 		return $this;
 	}
 
+	/**
+	 * @return bool Whether the user requested that this edit is marked as a minor edit.
+	 * Note that this method returning `true` doesn't mean the user actually has the
+	 * permission to do that, it needs to be checked separately!
+	 */
 	public function shouldMarkAsMinor(): bool {
 		return $this->markAsMinor;
 	}

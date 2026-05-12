@@ -1705,15 +1705,7 @@ class EditPage implements IEditObject {
 	 * @return StatusValue
 	 */
 	public function attemptSave( &$resultDetails = false ) {
-		// Allow bots to exempt some edits from bot flagging
-		$markAsBot = $this->markAsBot
-			&& $this->getAuthority()->isAllowed( 'bot' );
-
-		// Allow trusted users to mark some edits as minor
-		$markAsMinor = $this->minoredit && !$this->isNew
-			&& $this->getAuthority()->isAllowed( 'minoredit' );
-
-		$status = $this->internalAttemptSave( $resultDetails, $markAsBot, $markAsMinor );
+		$status = $this->internalAttemptSave( $resultDetails );
 		if ( !$status->isOK() ) {
 			$this->handleFailedConstraint( $status );
 		}
@@ -1963,9 +1955,6 @@ class EditPage implements IEditObject {
 	 *     false otherwise.
 	 *   - redirect (bool): Set if doUserEditContent is OK. True if resulting
 	 *     revision is a redirect.
-	 * @param bool $markAsBot True if edit is being made under the bot right
-	 *     and the bot wishes the edit to be marked as such.
-	 * @param bool $markAsMinor True if edit should be marked as minor.
 	 *
 	 * @return PageEditStatus Status object, possibly with a message, but always with
 	 *   one of the AS_* constants in $status->value,
@@ -1977,7 +1966,7 @@ class EditPage implements IEditObject {
 	 *   AS_BLOCKED_PAGE_FOR_USER. All that stuff needs to be cleaned up some
 	 * time.
 	 */
-	private function internalAttemptSave( &$result, $markAsBot = false, $markAsMinor = false ) {
+	private function internalAttemptSave( &$result ) {
 		// If an attempt to acquire a temporary name failed, don't attempt to do anything else.
 		if ( $this->unableToAcquireTempName ) {
 			return PageEditStatus::newFatal( 'temp-user-unable-to-acquire' )
@@ -2027,8 +2016,8 @@ class EditPage implements IEditObject {
 			->setEnableApiEditOverride( $this->enableApiEditOverride )
 			->setIgnoreProblematicRedirects( $this->ignoreProblematicRedirects )
 			->setIgnoreRevisionDeletedWarning( $this->ignoreRevisionDeletedWarning )
-			->setMarkAsBot( $markAsBot )
-			->setMarkAsMinor( $markAsMinor )
+			->setMarkAsBot( $this->markAsBot )
+			->setMarkAsMinor( $this->minoredit )
 			->setNewSectionAnchor( $this->newSectionAnchor )
 			->setOldid( $this->oldid )
 			->setParentRevId( $this->parentRevId )
