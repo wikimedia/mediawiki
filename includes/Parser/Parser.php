@@ -2471,7 +2471,7 @@ class Parser {
 				# If we get a ] at the beginning of $m[3] that means we have a link that's something like:
 				# [[Image:Foo.jpg|[http://example.com desc]]] <- having three ] in a row fucks up,
 				# the real problem is with the $e1 regex
-				# See T1500.
+				# See T3300.
 				# Still some problems for cases where the ] is meant to be outside punctuation,
 				# and no image is in sight. See T4095.
 				if ( $text !== ''
