@@ -8,10 +8,10 @@ namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Content\WikitextContent;
-use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\RedirectLookup;
+use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Title\Title;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
@@ -48,7 +48,7 @@ class RedirectConstraint extends EditConstraint {
 	/**
 	 * @inheritDoc
 	 */
-	public function checkConstraint(): EditPageStatus {
+	public function checkConstraint(): PageEditStatus {
 		$newRedirectTarget = $this->getRedirectTarget( $this->newContent );
 
 		// the constraint should only be checked if there is a redirect in the new content, and either
@@ -120,11 +120,11 @@ class RedirectConstraint extends EditConstraint {
 
 		}
 
-		return EditPageStatus::newGood();
+		return PageEditStatus::newGood();
 	}
 
-	private function wrapResult( int $result, MessageValue $errorMessage ): EditPageStatus {
-		return EditPageStatus::newGood( $result )
+	private function wrapResult( int $result, MessageValue $errorMessage ): PageEditStatus {
+		return PageEditStatus::newGood( $result )
 			->warning(
 				$this->errorMessageWrapper->getKey(),
 				...array_merge( $this->errorMessageWrapper->getParams(), [ $errorMessage ] )

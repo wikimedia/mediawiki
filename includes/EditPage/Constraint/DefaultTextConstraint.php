@@ -6,7 +6,7 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\EditPage\EditPageStatus;
+use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Title\Title;
 use Wikimedia\Message\MessageSpecifier;
 
@@ -29,7 +29,7 @@ class DefaultTextConstraint extends EditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): EditPageStatus {
+	public function checkConstraint(): PageEditStatus {
 		$defaultMessageText = $this->title->getDefaultMessageText();
 		if ( $this->title->getNamespace() === NS_MEDIAWIKI && $defaultMessageText !== false ) {
 			$defaultText = $defaultMessageText;
@@ -38,11 +38,11 @@ class DefaultTextConstraint extends EditConstraint {
 		}
 
 		if ( !$this->allowBlank && $this->userProvidedText === $defaultText ) {
-			return EditPageStatus::newGood( self::AS_BLANK_ARTICLE )
+			return PageEditStatus::newGood( self::AS_BLANK_ARTICLE )
 				->setOK( false )
 				->warning( 'blankarticle', $this->submitButtonLabel );
 		}
-		return EditPageStatus::newGood();
+		return PageEditStatus::newGood();
 	}
 
 }

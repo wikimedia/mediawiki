@@ -6,8 +6,8 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 
@@ -26,7 +26,7 @@ class AuthorizationConstraint extends EditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): EditPageStatus {
+	public function checkConstraint(): PageEditStatus {
 		$status = PermissionStatus::newEmpty();
 
 		if ( $this->new && !$this->performer->authorizeWrite( 'create', $this->target, $status ) ) {
@@ -40,9 +40,9 @@ class AuthorizationConstraint extends EditConstraint {
 		return $this->castPermissionStatus( $status );
 	}
 
-	private function castPermissionStatus( PermissionStatus $status ): EditPageStatus {
+	private function castPermissionStatus( PermissionStatus $status ): PageEditStatus {
 		if ( $status->isGood() ) {
-			return EditPageStatus::cast( $status );
+			return PageEditStatus::cast( $status );
 		}
 
 		// Report the most specific errors first
@@ -58,7 +58,7 @@ class AuthorizationConstraint extends EditConstraint {
 			$value = self::AS_READ_ONLY_PAGE_LOGGED;
 		}
 
-		return EditPageStatus::cast( $status )
+		return PageEditStatus::cast( $status )
 			->setErrorFunction( $status->throwErrorPageError( ... ) )
 			->setResult( false, $value );
 	}

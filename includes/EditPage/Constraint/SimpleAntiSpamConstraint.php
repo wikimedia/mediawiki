@@ -6,7 +6,7 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\EditPage\EditPageStatus;
+use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
@@ -33,7 +33,7 @@ class SimpleAntiSpamConstraint extends EditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): EditPageStatus {
+	public function checkConstraint(): PageEditStatus {
 		if ( $this->input !== '' ) {
 			$this->logger->debug(
 				'{name} editing "{title}" submitted bogus field "{input}"',
@@ -43,10 +43,10 @@ class SimpleAntiSpamConstraint extends EditConstraint {
 					'input' => $this->input
 				]
 			);
-			return EditPageStatus::newFatal( 'spamprotectionmatch', '' )
+			return PageEditStatus::newFatal( 'spamprotectionmatch', '' )
 				->setValue( self::AS_SPAM_ERROR );
 		}
-		return EditPageStatus::newGood();
+		return PageEditStatus::newGood();
 	}
 
 }

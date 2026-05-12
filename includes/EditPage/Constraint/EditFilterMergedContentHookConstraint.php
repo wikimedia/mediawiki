@@ -8,12 +8,12 @@ namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
-use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Message\Message;
+use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Status\Status;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
@@ -53,14 +53,14 @@ class EditFilterMergedContentHookConstraint extends EditConstraint {
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
-	public function checkConstraint(): EditPageStatus {
-		$status = EditPageStatus::newGood();
+	public function checkConstraint(): PageEditStatus {
+		$status = PageEditStatus::newGood();
 
 		$hookResult = $this->hookRunner->onEditFilterMergedContent(
 			$this->hookContext,
 			$this->content,
 			// Status::wrap() takes references to all internal variables, allowing hook handlers to modify
-			// the $status, without changing the hook interface to use the EditPageStatus type.
+			// the $status, without changing the hook interface to use the PageEditStatus type.
 			Status::wrap( $status ),
 			$this->summary,
 			$this->userFactory->newFromUserIdentity( $this->hookUser ),
@@ -101,7 +101,7 @@ class EditFilterMergedContentHookConstraint extends EditConstraint {
 			return $status;
 		}
 
-		return EditPageStatus::newGood();
+		return PageEditStatus::newGood();
 	}
 
 	/**
@@ -120,7 +120,7 @@ class EditFilterMergedContentHookConstraint extends EditConstraint {
 	/**
 	 * Wrap status errors in error boxes for increased visibility.
 	 */
-	private function formatStatusErrors( EditPageStatus $status ): string {
+	private function formatStatusErrors( PageEditStatus $status ): string {
 		$ret = '';
 		foreach ( $status->getMessages() as $msg ) {
 			$msg = Message::newFromSpecifier( $msg );

@@ -7,7 +7,7 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\ChangeTags\ChangeTags;
-use MediaWiki\EditPage\EditPageStatus;
+use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Permissions\Authority;
 
 /**
@@ -29,9 +29,9 @@ class ChangeTagsConstraint extends EditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): EditPageStatus {
+	public function checkConstraint(): PageEditStatus {
 		if ( !$this->tags ) {
-			return EditPageStatus::newGood();
+			return PageEditStatus::newGood();
 		}
 
 		// TODO inject a service once canAddTagsAccompanyingChange is moved to a
@@ -42,7 +42,7 @@ class ChangeTagsConstraint extends EditConstraint {
 			false
 		);
 
-		return EditPageStatus::cast( $changeTagStatus )
+		return PageEditStatus::cast( $changeTagStatus )
 			->setValue( self::AS_CHANGE_TAG_ERROR );
 	}
 

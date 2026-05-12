@@ -6,11 +6,11 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\Message\Message;
+use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Title\Title;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
@@ -36,9 +36,9 @@ class AccidentalRecreationConstraint extends EditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): EditPageStatus {
+	public function checkConstraint(): PageEditStatus {
 		if ( $this->allowRecreation ) {
-			return EditPageStatus::newGood();
+			return PageEditStatus::newGood();
 		}
 		$deletion = $this->getDeletionSinceLastEdit();
 		if ( $deletion ) {
@@ -49,7 +49,7 @@ class AccidentalRecreationConstraint extends EditConstraint {
 					: $deletion->getPerformerIdentity()->getName();
 				$commentHtml = $logFormatter->getComment();
 
-				return EditPageStatus::newGood( self::AS_ARTICLE_WAS_DELETED )
+				return PageEditStatus::newGood( self::AS_ARTICLE_WAS_DELETED )
 					->setOK( false )
 					->warning(
 						$commentHtml === ''
@@ -60,12 +60,12 @@ class AccidentalRecreationConstraint extends EditConstraint {
 						$this->submitButtonLabel,
 					);
 			} else {
-				return EditPageStatus::newGood( self::AS_ARTICLE_WAS_DELETED )
+				return PageEditStatus::newGood( self::AS_ARTICLE_WAS_DELETED )
 					->setOK( false )
 					->warning( 'deletedwhileediting' );
 			}
 		}
-		return EditPageStatus::newGood();
+		return PageEditStatus::newGood();
 	}
 
 	/**

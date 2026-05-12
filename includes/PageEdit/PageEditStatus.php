@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\EditPage;
+namespace MediaWiki\PageEdit;
 
 use Closure;
 use LogicException;
@@ -16,7 +16,7 @@ use Throwable;
  *
  * @extends StatusValue<int>
  */
-class EditPageStatus extends StatusValue {
+class PageEditStatus extends StatusValue {
 
 	private ?Closure $errorFunction = null;
 	private ?EditConstraint $failedConstraint = null;

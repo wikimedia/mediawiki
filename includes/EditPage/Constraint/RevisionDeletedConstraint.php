@@ -2,8 +2,8 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Page\Article;
+use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
@@ -33,19 +33,19 @@ class RevisionDeletedConstraint extends EditConstraint {
 	/**
 	 * @inheritDoc
 	 */
-	public function checkConstraint(): EditPageStatus {
+	public function checkConstraint(): PageEditStatus {
 		if ( $this->section === 'new' ) {
-			return EditPageStatus::newGood();
+			return PageEditStatus::newGood();
 		}
 
 		$revRecord = $this->article->fetchRevisionRecord();
 		if ( $revRecord instanceof RevisionStoreRecord ) {
 			if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->authority ) ) {
-				return EditPageStatus::newFatal( 'rev-deleted-text-permission', $this->title->getPrefixedURL() )
+				return PageEditStatus::newFatal( 'rev-deleted-text-permission', $this->title->getPrefixedURL() )
 					->setValue( self::AS_REVISION_WAS_DELETED );
 			} elseif ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				// Let sysop know that this will make private content public if saved
-				$status = EditPageStatus::newGood( self::AS_REVISION_WAS_DELETED );
+				$status = PageEditStatus::newGood( self::AS_REVISION_WAS_DELETED );
 				$warningMessage = MessageValue::new(
 					'rev-deleted-text-view',
 					[ $this->title->getPrefixedURL() ]
@@ -58,10 +58,10 @@ class RevisionDeletedConstraint extends EditConstraint {
 			}
 		} elseif ( $this->title->exists() ) {
 			// Something went wrong, and the revision is missing
-			return EditPageStatus::newFatal( 'missing-revision', $this->oldId )
+			return PageEditStatus::newFatal( 'missing-revision', $this->oldId )
 				->setValue( self::AS_REVISION_MISSING );
 		}
 
-		return EditPageStatus::newGood();
+		return PageEditStatus::newGood();
 	}
 }

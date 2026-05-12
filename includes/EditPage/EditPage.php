@@ -54,6 +54,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\PageEdit\PageEditFactory;
 use MediaWiki\PageEdit\PageEditInputs;
+use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
@@ -629,9 +630,9 @@ class EditPage implements IEditObject {
 		if ( $this->formtype === 'save' ) {
 			$resultDetails = null;
 			$status = $this->attemptSave( $resultDetails );
-			if ( !( $status instanceof EditPageStatus ) ) {
+			if ( !( $status instanceof PageEditStatus ) ) {
 				// Hooks and subclasses can cause attemptSave to return a normal Status, so cast it if necessary
-				$status = EditPageStatus::cast( $status );
+				$status = PageEditStatus::cast( $status );
 			}
 			if ( !$this->handleStatus( $status, $resultDetails ) ) {
 				return;
@@ -1706,7 +1707,7 @@ class EditPage implements IEditObject {
 		}
 
 		// Status::wrap() takes references to all internal variables, allowing hook handlers to modify
-		// the $status, without changing the hook interface to use the EditPageStatus type.
+		// the $status, without changing the hook interface to use the PageEditStatus type.
 		$this->getHookRunner()->onEditPage__attemptSave_after( $this, Status::wrap( $status ), $resultDetails );
 
 		return $status;
@@ -1726,13 +1727,13 @@ class EditPage implements IEditObject {
 	/**
 	 * Handle status, such as after attempt save
 	 *
-	 * @param EditPageStatus $status
+	 * @param PageEditStatus $status
 	 * @param array|false $resultDetails
 	 *
 	 * @throws ErrorPageError
 	 * @return bool False, if output is done, true if rest of the form should be displayed
 	 */
-	private function handleStatus( EditPageStatus $status, $resultDetails ): bool {
+	private function handleStatus( PageEditStatus $status, $resultDetails ): bool {
 		$statusValue = is_int( $status->value ) ? $status->value : 0;
 
 		/**
@@ -1954,7 +1955,7 @@ class EditPage implements IEditObject {
 	 *     and the bot wishes the edit to be marked as such.
 	 * @param bool $markAsMinor True if edit should be marked as minor.
 	 *
-	 * @return EditPageStatus Status object, possibly with a message, but always with
+	 * @return PageEditStatus Status object, possibly with a message, but always with
 	 *   one of the AS_* constants in $status->value,
 	 *
 	 * @todo FIXME: This interface is TERRIBLE, but hard to get rid of due to
@@ -1967,7 +1968,7 @@ class EditPage implements IEditObject {
 	private function internalAttemptSave( &$result, $markAsBot = false, $markAsMinor = false ) {
 		// If an attempt to acquire a temporary name failed, don't attempt to do anything else.
 		if ( $this->unableToAcquireTempName ) {
-			return EditPageStatus::newFatal( 'temp-user-unable-to-acquire' )
+			return PageEditStatus::newFatal( 'temp-user-unable-to-acquire' )
 				->setValue( self::AS_UNABLE_TO_ACQUIRE_TEMP_ACCOUNT );
 		}
 		// Auto-create the temporary account user, if the feature is enabled.
@@ -1978,7 +1979,7 @@ class EditPage implements IEditObject {
 		// eventually successful account creation)
 		$tempAccountStatus = $this->createTempUser();
 		if ( !$tempAccountStatus->isOK() ) {
-			return EditPageStatus::cast( $tempAccountStatus );
+			return PageEditStatus::cast( $tempAccountStatus );
 		}
 		if ( $tempAccountStatus instanceof CreateStatus ) {
 			$result['savedTempUser'] = $tempAccountStatus->getUser();
@@ -1986,12 +1987,12 @@ class EditPage implements IEditObject {
 
 		if ( !$this->getHookRunner()->onEditPage__attemptSave( $this ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving" );
-			return EditPageStatus::newFatal( 'hookaborted' )
+			return PageEditStatus::newFatal( 'hookaborted' )
 				->setValue( self::AS_HOOK_ERROR );
 		}
 
 		if ( $this->unicodeCheck !== self::UNICODE_CHECK ) {
-			return EditPageStatus::newFatal( 'unicode-support-fail' )
+			return PageEditStatus::newFatal( 'unicode-support-fail' )
 				->setValue( self::AS_UNICODE_NOT_SUPPORTED );
 		}
 
@@ -2071,7 +2072,7 @@ class EditPage implements IEditObject {
 	 * each of the points the constraints are checked. Eventually, this will act on the
 	 * result from the backend.
 	 */
-	private function handleFailedConstraint( EditPageStatus $status ): void {
+	private function handleFailedConstraint( PageEditStatus $status ): void {
 		$failed = $status->getFailedConstraint();
 		if ( $failed instanceof AuthorizationConstraint ) {
 			// Auto-block user's IP if the account was "hard" blocked

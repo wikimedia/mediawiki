@@ -6,8 +6,8 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\EditPage\IEditObject;
+use MediaWiki\PageEdit\PageEditStatus;
 
 /**
  * Abstract class for all constraints that can prevent edits
@@ -18,10 +18,10 @@ use MediaWiki\EditPage\IEditObject;
 abstract class EditConstraint implements IEditObject {
 
 	/**
-	 * @return EditPageStatus A status indicating failure or success. A status that is not OK indicates a
+	 * @return PageEditStatus A status indicating failure or success. A status that is not OK indicates a
 	 * failure and will prevent saving the page.
 	 */
-	abstract public function checkConstraint(): EditPageStatus;
+	abstract public function checkConstraint(): PageEditStatus;
 
 	/**
 	 * @return string The name of the constraint. Used for logging, and can be overridden if a constraint class

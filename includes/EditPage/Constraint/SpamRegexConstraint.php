@@ -6,8 +6,8 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Title\Title;
 use Psr\Log\LoggerInterface;
 
@@ -42,7 +42,7 @@ class SpamRegexConstraint extends EditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): EditPageStatus {
+	public function checkConstraint(): PageEditStatus {
 		$match = $this->spamChecker->checkSummary( $this->summary );
 		if ( $match === false && $this->sectionHeading !== null ) {
 			// If the section isn't new, the $this->sectionHeading is null
@@ -63,11 +63,11 @@ class SpamRegexConstraint extends EditConstraint {
 					'match' => $match
 				]
 			);
-			return EditPageStatus::newFatal( 'spamprotectionmatch', $match )
+			return PageEditStatus::newFatal( 'spamprotectionmatch', $match )
 				->setValue( self::AS_SPAM_ERROR );
 		}
 
-		return EditPageStatus::newGood();
+		return PageEditStatus::newGood();
 	}
 
 	public function getMatch(): string {

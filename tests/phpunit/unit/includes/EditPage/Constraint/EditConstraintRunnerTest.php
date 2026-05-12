@@ -8,7 +8,7 @@ namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
-use MediaWiki\EditPage\EditPageStatus;
+use MediaWiki\PageEdit\PageEditStatus;
 use MediaWikiUnitTestCase;
 use Wikimedia\TestingAccessWrapper;
 
@@ -21,7 +21,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class EditConstraintRunnerTest extends MediaWikiUnitTestCase {
 
-	private function getConstraint( EditPageStatus $result ) {
+	private function getConstraint( PageEditStatus $result ) {
 		$constraint = $this->getMockBuilder( EditConstraint::class )
 			->onlyMethods( [ 'checkConstraint' ] )
 			->getMockForAbstractClass();
@@ -33,7 +33,7 @@ class EditConstraintRunnerTest extends MediaWikiUnitTestCase {
 
 	public function testCheckConstraint_pass() {
 		$runner = new EditConstraintRunner();
-		$constraint = $this->getConstraint( EditPageStatus::newGood() );
+		$constraint = $this->getConstraint( PageEditStatus::newGood() );
 
 		$runner->addConstraint( $constraint );
 		$this->assertStatusGood( $runner->checkConstraints() );
@@ -41,7 +41,7 @@ class EditConstraintRunnerTest extends MediaWikiUnitTestCase {
 
 	public function testCheckConstraint_fail() {
 		$runner = new EditConstraintRunner();
-		$testStatus = EditPageStatus::newFatal( 'test-error' );
+		$testStatus = PageEditStatus::newFatal( 'test-error' );
 		$constraint = $this->getConstraint( $testStatus );
 
 		$runner->addConstraint( $constraint );
@@ -55,8 +55,8 @@ class EditConstraintRunnerTest extends MediaWikiUnitTestCase {
 
 	public function testCheckConstraint_multi() {
 		$runner = new EditConstraintRunner();
-		$constraintPass = $this->getConstraint( EditPageStatus::newGood() );
-		$constraintFail = $this->getConstraint( EditPageStatus::newFatal( 'test-error' ) );
+		$constraintPass = $this->getConstraint( PageEditStatus::newGood() );
+		$constraintFail = $this->getConstraint( PageEditStatus::newFatal( 'test-error' ) );
 
 		$runner->addConstraint( $constraintPass );
 		$runner->addConstraint( $constraintFail );
@@ -70,17 +70,17 @@ class EditConstraintRunnerTest extends MediaWikiUnitTestCase {
 
 	public function testCheckAllConstraints_pass() {
 		$runner = new EditConstraintRunner();
-		$runner->addConstraint( $this->getConstraint( EditPageStatus::newGood() ) );
-		$runner->addConstraint( $this->getConstraint( EditPageStatus::newGood() ) );
+		$runner->addConstraint( $this->getConstraint( PageEditStatus::newGood() ) );
+		$runner->addConstraint( $this->getConstraint( PageEditStatus::newGood() ) );
 
 		$this->assertStatusGood( $runner->checkAllConstraints() );
 	}
 
 	public function testCheckAllConstraints_fail() {
 		$runner = new EditConstraintRunner();
-		$runner->addConstraint( $this->getConstraint( EditPageStatus::newGood()->warning( 'testwarning' ) ) );
-		$runner->addConstraint( $this->getConstraint( EditPageStatus::newFatal( 'testerror' ) ) );
-		$runner->addConstraint( $this->getConstraint( EditPageStatus::newGood() ) );
+		$runner->addConstraint( $this->getConstraint( PageEditStatus::newGood()->warning( 'testwarning' ) ) );
+		$runner->addConstraint( $this->getConstraint( PageEditStatus::newFatal( 'testerror' ) ) );
+		$runner->addConstraint( $this->getConstraint( PageEditStatus::newGood() ) );
 
 		$status = $runner->checkAllConstraints();
 		$this->assertStatusNotOK( $status );

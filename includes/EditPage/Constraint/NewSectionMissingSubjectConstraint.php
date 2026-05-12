@@ -6,7 +6,7 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\EditPage\EditPageStatus;
+use MediaWiki\PageEdit\PageEditStatus;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -26,12 +26,12 @@ class NewSectionMissingSubjectConstraint extends EditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): EditPageStatus {
+	public function checkConstraint(): PageEditStatus {
 		if ( $this->section === 'new' &&
 			!$this->allowBlankSubject &&
 			trim( $this->subject ) === ''
 		) {
-			return EditPageStatus::newGood( self::AS_SUMMARY_NEEDED )
+			return PageEditStatus::newGood( self::AS_SUMMARY_NEEDED )
 				->setOK( false )
 				->warning(
 					'missingcommentheader',
@@ -39,7 +39,7 @@ class NewSectionMissingSubjectConstraint extends EditConstraint {
 				);
 		}
 
-		return EditPageStatus::newGood();
+		return PageEditStatus::newGood();
 	}
 
 }

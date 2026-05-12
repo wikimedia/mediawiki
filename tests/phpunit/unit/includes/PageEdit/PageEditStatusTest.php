@@ -1,21 +1,21 @@
 <?php
 
-namespace MediaWiki\Tests\Unit\EditPage;
+namespace MediaWiki\Tests\Unit\PageEdit;
 
 use Exception;
 use LogicException;
 use MediaWiki\EditPage\Constraint\EditConstraint;
-use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\EditPage\IEditObject;
+use MediaWiki\PageEdit\PageEditStatus;
 use MediaWikiUnitTestCase;
 
 /**
- * @covers \MediaWiki\EditPage\EditPageStatus
+ * @covers \MediaWiki\PageEdit\PageEditStatus
  */
-class EditPageStatusTest extends MediaWikiUnitTestCase {
+class PageEditStatusTest extends MediaWikiUnitTestCase {
 
 	public function testSetAndGetFailedConstraint() {
-		$status = new EditPageStatus();
+		$status = new PageEditStatus();
 
 		$this->assertNull( $status->getFailedConstraint() );
 
@@ -26,7 +26,7 @@ class EditPageStatusTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSetValue() {
-		$status = new EditPageStatus();
+		$status = new PageEditStatus();
 
 		$status->setValue( IEditObject::AS_SUCCESS_NEW_ARTICLE );
 		$this->assertSame( IEditObject::AS_SUCCESS_NEW_ARTICLE, $status->getValue() );
@@ -36,7 +36,7 @@ class EditPageStatusTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testErrorFunction() {
-		$status = new EditPageStatus();
+		$status = new PageEditStatus();
 		$exceptionClass = new class extends Exception {
 		};
 		$status->setErrorFunction( static fn () => throw new $exceptionClass() );
@@ -45,14 +45,14 @@ class EditPageStatusTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testErrorFunctionNotSet() {
-		$status = new EditPageStatus();
+		$status = new PageEditStatus();
 
 		$this->expectException( LogicException::class );
 		$status->throwError();
 	}
 
 	public function testErrorFunctionDoesNotThrow() {
-		$status = new EditPageStatus();
+		$status = new PageEditStatus();
 		$status->setErrorFunction( static fn () => null );
 
 		$this->expectException( LogicException::class );

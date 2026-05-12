@@ -6,8 +6,8 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\PageEdit\PageEditStatus;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -64,9 +64,9 @@ class EditConstraintRunner {
 	/**
 	 * Run constraint checks until one fails.
 	 *
-	 * @return EditPageStatus Good if all constraints pass, otherwise the status returned by the constraint that failed.
+	 * @return PageEditStatus Good if all constraints pass, otherwise the status returned by the constraint that failed.
 	 */
-	public function checkConstraints(): EditPageStatus {
+	public function checkConstraints(): PageEditStatus {
 		foreach ( $this->constraints as $constraint ) {
 			$status = $constraint->checkConstraint();
 			$this->logConstraintCheck( $constraint, $status );
@@ -77,18 +77,18 @@ class EditConstraintRunner {
 			}
 		}
 
-		return EditPageStatus::newGood();
+		return PageEditStatus::newGood();
 	}
 
 	/**
 	 * Run all constraint checks and merge the returned statuses.
 	 *
-	 * @return EditPageStatus Good if all constraints pass, otherwise a status that was merged with all
+	 * @return PageEditStatus Good if all constraints pass, otherwise a status that was merged with all
 	 * statuses that were returned by constraint checks.
 	 * Note: This status does not have the failed constraint set, since multiple constraints may have failed.
 	 */
-	public function checkAllConstraints(): EditPageStatus {
-		$statusValue = EditPageStatus::newGood();
+	public function checkAllConstraints(): PageEditStatus {
+		$statusValue = PageEditStatus::newGood();
 
 		foreach ( $this->constraints as $constraint ) {
 			$constraintStatus = $constraint->checkConstraint();
@@ -103,7 +103,7 @@ class EditConstraintRunner {
 	 * Log the result of a constraint check.
 	 * Passes use the `debug` level; failures use `info`.
 	 */
-	private function logConstraintCheck( EditConstraint $constraint, EditPageStatus $status ): void {
+	private function logConstraintCheck( EditConstraint $constraint, PageEditStatus $status ): void {
 		if ( $status->isOK() ) {
 			$this->logger->debug(
 				'Check for {name} succeeded',

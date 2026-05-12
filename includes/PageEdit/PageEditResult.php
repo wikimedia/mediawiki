@@ -2,8 +2,6 @@
 
 namespace MediaWiki\PageEdit;
 
-use MediaWiki\EditPage\EditPageStatus;
-
 /**
  * @internal
  * @since 1.47
@@ -11,7 +9,7 @@ use MediaWiki\EditPage\EditPageStatus;
 class PageEditResult {
 
 	public function __construct(
-		private readonly EditPageStatus $status,
+		private readonly PageEditStatus $status,
 		private readonly int|false $contentLength,
 		private readonly bool $isConflict,
 		private readonly ?bool $nullEdit,
@@ -24,7 +22,7 @@ class PageEditResult {
 	) {
 	}
 
-	public function getStatus(): EditPageStatus {
+	public function getStatus(): PageEditStatus {
 		return $this->status;
 	}
 

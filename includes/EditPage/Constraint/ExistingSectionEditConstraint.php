@@ -7,7 +7,7 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
-use MediaWiki\EditPage\EditPageStatus;
+use MediaWiki\PageEdit\PageEditStatus;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -45,10 +45,10 @@ class ExistingSectionEditConstraint extends EditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): EditPageStatus {
+	public function checkConstraint(): PageEditStatus {
 		if ( $this->section === 'new' ) {
 			// Constraint is not applicable
-			return EditPageStatus::newGood();
+			return PageEditStatus::newGood();
 		}
 
 		if (
@@ -57,7 +57,7 @@ class ExistingSectionEditConstraint extends EditConstraint {
 			!$this->newContent->isRedirect() &&
 			md5( $this->userSummary ) === $this->autoSummary
 		) {
-			return EditPageStatus::newGood()
+			return PageEditStatus::newGood()
 				->setResult( false, self::AS_SUMMARY_NEEDED )
 				->warning(
 					'missingsummary',
@@ -65,7 +65,7 @@ class ExistingSectionEditConstraint extends EditConstraint {
 				);
 		}
 
-		return EditPageStatus::newGood();
+		return PageEditStatus::newGood();
 	}
 
 }

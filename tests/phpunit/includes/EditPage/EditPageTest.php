@@ -9,13 +9,13 @@ use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\EditPage\EditPage;
-use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\EditPage\NotDirectlyEditableException;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\WikiPage;
+use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -971,7 +971,7 @@ hello
 		$this->assertStatusValue( EditPage::AS_NO_CHANGE_CONTENT_MODEL, $status );
 	}
 
-	private function doEditDummyNonTextPage( array $edit ): EditPageStatus {
+	private function doEditDummyNonTextPage( array $edit ): PageEditStatus {
 		$title = Title::newFromText( 'Dummy:NonTextPageForEditPage' );
 
 		$article = new Article( $title );

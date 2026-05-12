@@ -7,9 +7,9 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
-use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Permissions\Authority;
 
 /**
@@ -34,7 +34,7 @@ class ImageRedirectConstraint extends EditConstraint {
 	) {
 	}
 
-	public function checkConstraint(): EditPageStatus {
+	public function checkConstraint(): PageEditStatus {
 		// Check isn't simple enough to just repeat when getting the status
 		if ( $this->title->getNamespace() === NS_FILE &&
 			$this->newContent->isRedirect() &&
@@ -43,12 +43,12 @@ class ImageRedirectConstraint extends EditConstraint {
 			$errorCode = $this->performer->getUser()->isRegistered() ?
 				self::AS_IMAGE_REDIRECT_LOGGED :
 				self::AS_IMAGE_REDIRECT_ANON;
-			return EditPageStatus::newGood( $errorCode )
+			return PageEditStatus::newGood( $errorCode )
 				->setOK( false )
 				->setErrorFunction( static fn () => throw new PermissionsError( 'upload' ) );
 		}
 
-		return EditPageStatus::newGood();
+		return PageEditStatus::newGood();
 	}
 
 }

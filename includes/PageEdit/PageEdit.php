@@ -21,7 +21,6 @@ use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
 use MediaWiki\EditPage\Constraint\NewSectionMissingSubjectConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
 use MediaWiki\EditPage\Constraint\RevisionDeletedConstraint;
-use MediaWiki\EditPage\EditPageStatus;
 use MediaWiki\EditPage\IEditObject;
 use MediaWiki\EditPage\NotDirectlyEditableException;
 use MediaWiki\EditPage\PageEditingHelper;
@@ -111,15 +110,15 @@ class PageEdit implements IEditObject {
 	/**
 	 * Perform checks, and perform the edit if they pass.
 	 *
-	 * @return EditPageStatus Status object, possibly with a message, but always with one of the AS_* constants as
+	 * @return PageEditStatus Status object, possibly with a message, but always with one of the AS_* constants as
 	 * its value,
 	 */
-	private function doEdit(): EditPageStatus {
+	private function doEdit(): PageEditStatus {
 		try {
 			# Construct Content object
 			$textbox_content = $this->convertTextToContent( $this->textbox1 );
 		} catch ( ContentSerializationException $ex ) {
-			return EditPageStatus::newFatal(
+			return PageEditStatus::newFatal(
 				'content-failed-to-parse',
 				$this->inputs->getContentModel(),
 				$this->inputs->getContentFormat() ?? '',
@@ -294,7 +293,7 @@ class PageEdit implements IEditObject {
 			}
 
 			if ( $this->isConflict ) {
-				return EditPageStatus::newGood( self::AS_CONFLICT_DETECTED )
+				return PageEditStatus::newGood( self::AS_CONFLICT_DETECTED )
 					// This message isn't shown, it's just for some logging code (T423754)
 					->fatal( 'editconflict', (string)$this->inputs->getContextPage() );
 			}
@@ -387,10 +386,10 @@ class PageEdit implements IEditObject {
 				$doEditStatus->failedBecauseOfConflict()
 			) {
 				$this->isConflict = true;
-				return EditPageStatus::cast( $doEditStatus )
+				return PageEditStatus::cast( $doEditStatus )
 					->setValue( self::AS_END );
 			}
-			return EditPageStatus::cast( $doEditStatus );
+			return PageEditStatus::cast( $doEditStatus );
 		}
 
 		$this->nullEdit = !$doEditStatus->wasRevisionCreated();
@@ -419,7 +418,7 @@ class PageEdit implements IEditObject {
 		// when it is returned, either at an earlier point due to an error or here
 		// due to a successful edit.
 		$statusCode = ( $new ? self::AS_SUCCESS_NEW_ARTICLE : self::AS_SUCCESS_UPDATE );
-		return EditPageStatus::newGood( $statusCode );
+		return PageEditStatus::newGood( $statusCode );
 	}
 
 	private function getPreliminaryChecksRunner(
