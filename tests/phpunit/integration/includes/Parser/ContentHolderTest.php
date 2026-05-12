@@ -109,8 +109,6 @@ EOD;
 	 * @dataProvider parsoidContentProvider
 	 */
 	public function testShouldSetDomParsoid( array $parsoidData ): void {
-		$this->markTestSkipped( "Lazy loading fixes incorrect test output - re-enable after new vendor release." );
-
 		$dpb = DomPageBundle::fromLoadedDocument(
 			$parsoidData['dom'], siteConfig: new MockSiteConfig( [] )
 		);
