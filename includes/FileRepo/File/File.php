@@ -1604,12 +1604,16 @@ abstract class File implements MediaHandlerState {
 	 *
 	 * @param Language|null $lang The language this media handler will use to localize
 	 *   descriptions. If null, descriptions will not work.
+	 *   Note that $this->handler->getLanguage() will return the language specified in
+	 *   the last call of this function (or MediaHandler::setLanguage directly).
 	 * @return MediaHandler|false Registered MediaHandler for file's MIME type
 	 *   or false if none found
 	 */
 	public function getHandler( ?Language $lang = null ) {
 		if ( !$this->handler ) {
 			$this->handler = MediaHandler::getHandler( $this->getMimeType(), $lang );
+		} elseif ( $lang ) {
+			$this->handler->setLanguage( $lang );
 		}
 
 		return $this->handler;
