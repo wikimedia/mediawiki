@@ -109,21 +109,22 @@ EOD;
 	 * @dataProvider parsoidContentProvider
 	 */
 	public function testShouldSetDomParsoid( array $parsoidData ): void {
+		$this->markTestSkipped( "Lazy loading fixes incorrect test output - re-enable after new vendor release." );
+
 		$dpb = DomPageBundle::fromLoadedDocument(
 			$parsoidData['dom'], siteConfig: new MockSiteConfig( [] )
 		);
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
-
 		$frag = $ch->createFragment( $parsoidData['body'] );
 
 		$ch->setAsDom( ContentHolder::BODY_FRAGMENT, $frag );
-		self::assertEquals( $parsoidData['body'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
+		self::assertEquals( $parsoidData['bodyFiltered'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
 		$this->checkBundle( $ch );
 
 		$frag = $ch->createFragment( $parsoidData['body'] );
 		$ch->setAsDom( ContentHolder::BODY_FRAGMENT, $frag );
-		self::assertEquals( $parsoidData['body'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
+		self::assertEquals( $parsoidData['bodyFiltered'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
 		$this->checkBundle( $ch );
 	}
 
