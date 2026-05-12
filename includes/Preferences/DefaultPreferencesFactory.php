@@ -271,7 +271,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			// text, skip all of them.
 			if ( ( isset( $params['type'] ) && $params['type'] === 'info' ) ||
 				// Checking old alias for compatibility with unchanged extensions
-				( isset( $params['class'] ) && $params['class'] === \HTMLInfoField::class ) ||
+				( isset( $params['class'] ) && $params['class'] === 'HTMLInfoField' ) ||
 				( isset( $params['class'] ) && $params['class'] === HTMLInfoField::class )
 			) {
 				unset( $descriptor[$name] );
@@ -398,7 +398,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// Handling for multiselect preferences
 		if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
 			// Checking old alias for compatibility with unchanged extensions
-			( isset( $info['class'] ) && $info['class'] === \HTMLMultiSelectField::class ) ||
+			( isset( $info['class'] ) && $info['class'] === 'HTMLMultiSelectField' ) ||
 			( isset( $info['class'] ) && $info['class'] === HTMLMultiSelectField::class )
 		) {
 			$options = HTMLFormField::flattenOptions( $info['options-messages'] ?? $info['options'] );
@@ -415,7 +415,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// Handling for checkmatrix preferences
 		if ( ( isset( $info['type'] ) && $info['type'] == 'checkmatrix' ) ||
 			// Checking old alias for compatibility with unchanged extensions
-			( isset( $info['class'] ) && $info['class'] === \HTMLCheckMatrix::class ) ||
+			( isset( $info['class'] ) && $info['class'] === 'HTMLCheckMatrix' ) ||
 			( isset( $info['class'] ) && $info['class'] === HTMLCheckMatrix::class )
 		) {
 			$columns = HTMLFormField::flattenOptions( $info['columns'] );
@@ -2247,7 +2247,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		foreach ( $prefs as $name => $info ) {
 			if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
 				// Checking old alias for compatibility with unchanged extensions
-				( isset( $info['class'] ) && $info['class'] === \HTMLMultiSelectField::class ) ||
+				( isset( $info['class'] ) && $info['class'] === 'HTMLMultiSelectField' ) ||
 				( isset( $info['class'] ) && $info['class'] === HTMLMultiSelectField::class )
 			) {
 				$opts = HTMLFormField::flattenOptions( $info['options'] ?? $info['options-messages'] );
@@ -2264,7 +2264,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		foreach ( $prefs as $name => $info ) {
 			if ( ( isset( $info['type'] ) && $info['type'] == 'checkmatrix' ) ||
 				// Checking old alias for compatibility with unchanged extensions
-				( isset( $info['class'] ) && $info['class'] === \HTMLCheckMatrix::class ) ||
+				( isset( $info['class'] ) && $info['class'] === 'HTMLCheckMatrix' ) ||
 				( isset( $info['class'] ) && $info['class'] === HTMLCheckMatrix::class )
 			) {
 				$columns = HTMLFormField::flattenOptions( $info['columns'] );

@@ -19,9 +19,9 @@ use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\CodexModule;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\DateFormatterConfig;
+use MediaWiki\ResourceLoader\FileModule;
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\ForeignApiModule;
-use MediaWiki\ResourceLoader\LessVarFileModule;
 use MediaWiki\ResourceLoader\Module;
 use MediaWiki\ResourceLoader\OOUIFileModule;
 use MediaWiki\ResourceLoader\OOUIIconPackModule;
@@ -76,7 +76,7 @@ return [
 		],
 	],
 	'jquery.makeCollapsible.styles' => [
-		'class' => LessVarFileModule::class,
+		'class' => FileModule::class,
 		'lessMessages' => [
 			'collapsible-collapse',
 			'collapsible-expand',
@@ -837,7 +837,7 @@ return [
 		]
 	],
 	'mediawiki.diff.styles' => [
-		'class' => LessVarFileModule::class,
+		'class' => FileModule::class,
 		'lessMessages' => [
 			'diff-line-deleted',
 			'diff-newline'
@@ -921,7 +921,7 @@ return [
 		],
 	],
 	'mediawiki.hlist' => [
-		'class' => LessVarFileModule::class,
+		'class' => FileModule::class,
 		'lessMessages' => [
 			'colon-separator',
 			'parentheses-start',
@@ -2114,7 +2114,7 @@ return [
 	'mediawiki.interface.helpers.styles' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.interface.helpers.styles',
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.interface.helpers.styles",
-		'class' => LessVarFileModule::class,
+		'class' => FileModule::class,
 		'lessMessages' => [
 			'comma-separator',
 			'parentheses-start',

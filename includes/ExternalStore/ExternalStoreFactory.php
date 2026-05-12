@@ -86,8 +86,10 @@ class ExternalStoreFactory implements LoggerAwareInterface {
 		}
 
 		if ( $protoLowercase === 'db' ) {
-			$class = 'ExternalStoreDB';
+			$class = ExternalStoreDB::class;
 		} else {
+			// Custom stores are registered under their non-namespaced name (and core's
+			// own stores keep a class_alias() for that name), so resolve the bare class.
 			$class = 'ExternalStore' . ucfirst( $proto );
 		}
 		if ( isset( $params['wiki'] ) ) {

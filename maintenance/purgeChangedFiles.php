@@ -9,6 +9,7 @@
 
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\LocalRepo;
+use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Title\Title;
 

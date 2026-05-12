@@ -1,7 +1,7 @@
 <?php
 namespace MediaWiki\Languages\Data;
 
-use CrhConverter as Crh;
+use MediaWiki\Language\Converters\CrhConverter as Crh;
 
 /**
  * Exceptions Tables for Crimean Tatar (crh / Qırımtatarca)

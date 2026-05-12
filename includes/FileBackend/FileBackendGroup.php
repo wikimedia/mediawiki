@@ -163,7 +163,10 @@ class FileBackendGroup {
 
 			$class = $config['class'];
 			// Checking old alias for compatibility with unchanged config
-			if ( $class === FileBackendMultiWrite::class || $class === \FileBackendMultiWrite::class ) {
+			if ( $class === FileBackendMultiWrite::class || $class === 'FileBackendMultiWrite' ) {
+				// Normalise the compat alias to the canonical class name so the
+				// instantiation below resolves without relying on class_alias().
+				$class = FileBackendMultiWrite::class;
 				// @todo How can we test this? What's the intended use-case?
 				foreach ( $config['backends'] as $index => $beConfig ) {
 					if ( isset( $beConfig['template'] ) ) {

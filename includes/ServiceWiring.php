@@ -320,6 +320,8 @@ use Psr\Http\Client\ClientInterface;
 use Wikimedia\EventRelayer\EventRelayerGroup;
 use Wikimedia\FileBackend\FSFile\TempFSFileFactory;
 use Wikimedia\LockManager\DatabaseLockManager;
+use Wikimedia\LockManager\LockManager;
+use Wikimedia\LockManager\NullLockManager;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\ObjectCache\BagOStuff;
