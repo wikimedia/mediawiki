@@ -11,6 +11,7 @@ namespace MediaWiki\FileRepo\File;
 use LogicException;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\FileRepo\ForeignAPIRepo;
 use MediaWiki\FileRepo\LocalRepo;
@@ -1603,12 +1604,13 @@ abstract class File implements MediaHandlerState {
 	 * Get a MediaHandler instance for this file
 	 *
 	 * @param Language|null $lang The language this media handler will use to localize
-	 *   descriptions. If null, descriptions will not work.
+	 *   descriptions.
 	 * @return MediaHandler|false Registered MediaHandler for file's MIME type
 	 *   or false if none found
 	 */
 	public function getHandler( ?Language $lang = null ) {
 		if ( !$this->handler ) {
+			$lang ??= RequestContext::getMain()->getLanguage();
 			$this->handler = MediaHandler::getHandler( $this->getMimeType(), $lang );
 		}
 
