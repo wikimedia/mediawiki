@@ -423,6 +423,8 @@
 	"badretype": "Passordene samsvarte ikke.",
 	"usernameinprogress": "Opprettelsesprosessen for dette brukernavnet er allerede i gang.\nVennligst vent.",
 	"userexists": "Brukernavnet er allerede i bruk.\nVelg et annet brukernavn.",
+	"username-previously-renamed-account": "Dette brukernavnet kan ikke registreres, fordi det tidligere ble brukt av en konto som har endret navn.\nVelg et annet navn.",
+	"allow-previously-renamed-account": "Tillat brukernavn som tidligere har blitt brukt av kontoer som har endret navn",
 	"createacct-normalization": "Brukernavnet ditt vil bli endret til «$2» på grunn av tekniske begrensninger.",
 	"loginerror": "Innloggingsfeil",
 	"createacct-error": "Feil under kontooppretting",

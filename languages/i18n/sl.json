@@ -2076,7 +2076,7 @@
 	"changecontentmodel-success-title": "Vsebinski model spremenjen",
 	"changecontentmodel-create-success-title": "Ustvarjena nova stran z vsebinskim modelom",
 	"changecontentmodel-success-text": "Vsebinski model strani [[:$1]] je spremenjen iz $2 v $3.",
-	"changecontentmodel-create-success-text": "Stran [[: $1 ]] je bila ustvarjena kot prazna stran z vsebinskim modelom $2. Prosimo, dodajte ji vsebino.",
+	"changecontentmodel-create-success-text": "Stran [[:$1]] je bila ustvarjena kot prazna stran z vsebinskim modelom $2. Prosimo, dodajte ji vsebino.",
 	"changecontentmodel-cannot-convert": "Vsebine na strani [[:$1]] ni mogoče pretvoriti v vrsto $2.",
 	"changecontentmodel-nodirectediting": "Vsebinski model $1 ne podpira neposrednega urejanja",
 	"changecontentmodel-emptymodels-title": "Na voljo ni noben vsebinski model",
@@ -2496,6 +2496,7 @@
 	"movepagetext-noredirectsupport": "Z naslednjim obrazcem lahko stran preimenujete in hkrati prestavite tudi vso njeno zgodovino.\nOdgovorni ste, da bodo povezave še naprej kazale na prava mesta.\n\nČe stran z izbranim novim imenom že obstaja, dejanje <strong>ne</strong> bo izvedeno.\nTo pomeni, da lahko, če se zmotite, strani vrnete prvotno ime, ne morete pa prepisati že obstoječe strani.\n\n<strong>Opomba:</strong>\nPrestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprememba, zato pred nadaljevanjem dobro razmislite o posledicah.",
 	"movepagetalktext": "Če označite to polje, bomo pripadajočo pogovorno stran samodejno prestavili na novi naslov, razen kadar tam že obstaja neprazna pogovorna stran.\n\nČe je tako, boste morali pogovorno stran, če želite, prestaviti ali združiti ročno.",
 	"moveuserpage-warning": "<strong>Opozorilo:</strong>Prestavili boste uporabniško stran. To pomeni, da bo prestavljena samo stran, uporabnik pa <em>ne</em> bo preimenovan.",
+	"moveusersubpage-warning": "<strong>Opozorilo:</strong> Premaknili boste uporabniško podstran. Če objavljate nov članek, v spustnem meniju »{{int:newtitle}}« spremenite »{{ns:User}}« v »{{int:blanknamespace}}«.",
 	"movecategorypage-warning": "<strong>Opozorilo:</strong> Prestavili boste stran kategorije. Upoštevajte, da boste prestavili samo stran; v novo kategorijo se <em>ne</em> bo prekategorizirala nobena stran iz stare kategorije.",
 	"movenologintext": "Za prestavitev strani morate biti registrirani in [[Special:UserLogin|prijavljeni]].",
 	"movenotallowed": "Za prestavljanje strani nimate dovoljenja.",
@@ -3052,7 +3053,7 @@
 	"watchlistedit-normal-title": "Urejanje nadzornega seznama",
 	"watchlistedit-normal-check-all": "Izberi vse",
 	"watchlistedit-normal-done": "Z vašega nadzornega seznama {{PLURAL:$1|je bila odstranjena $1 stran|sta bili odstranjeni $1 strani|so bile odstranjene $1 strani|je bilo odstranjenih $1 strani}}:",
-	"watchlistedit-search-label": "Iskanje:",
+	"watchlistedit-search-label": "Iskanje po predponi, ki razlikuje velike in male črke:",
 	"watchlistedit-search-placeholder": "Iskanje strani na vašem nadzornem seznamu",
 	"watchlistedit-raw-title": "Urejanje golega nadzornega seznama",
 	"watchlistedit-raw-legend": "Uredi goli nadzorni seznam",
@@ -3223,6 +3224,8 @@
 	"tag-mw-server-side-upload-description": "Predstavnostne datoteke, ki jih je naložil skript za vzdrževanje",
 	"tag-mw-ipblock-appeal": "Pritožba na blokiranje IP-ja",
 	"tag-mw-ipblock-appeal-description": "Začasna ustvarjanja računov prek [[{{#special:Mytalk}}]] z IP-naslovov, ki so blokirani za ustvarjanje računov",
+	"tag-mw-edited-other-users-js": "Urejanje JS drugega uporabnika",
+	"tag-mw-edited-other-users-js-description": "Urejanja v uporabniškem prostoru, ki spreminjajo strani JavaScript, ki pripadajo drugim uporabnikom",
 	"tags-title": "Oznake",
 	"tags-intro": "Na tej strani so navedene oznake, s katerimi lahko programje označi urejanja, in njihov pomen.",
 	"tags-tag": "Ime oznake",
@@ -3979,5 +3982,6 @@
 	"table-of-contents-show-button-aria-label": "Prikaži vsebinsko kazalo",
 	"table-of-contents-hide-button-aria-label": "Skrij vsebinsko kazalo",
 	"diff-usergroups": "$1 {{PLURAL:$1|uporabniška skupina|uporabniške skupine}}",
-	"languageselector-no-results": "Ni najdenih zadetkov."
+	"languageselector-no-results": "Ni najdenih zadetkov.",
+	"languageselector-invalid-input": "»$1« ni veljaven jezik."
 }
