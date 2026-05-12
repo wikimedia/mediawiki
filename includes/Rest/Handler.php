@@ -39,6 +39,12 @@ abstract class Handler {
 	 */
 	public const PARAM_DESCRIPTION = Validator::PARAM_DESCRIPTION;
 
+	/**
+	 * @see Validator::PARAM_EXAMPLE
+	 * @since 1.43
+	 */
+	public const PARAM_EXAMPLE = Validator::PARAM_EXAMPLE;
+
 	public const OPENAPI_DESCRIPTION_KEY = 'description';
 
 	/** @var Module */
@@ -764,6 +770,15 @@ abstract class Handler {
 				$setting, Validator::PARAM_DESCRIPTION,
 			);
 
+			if (
+				isset( $setting[ Validator::PARAM_EXAMPLE ] ) &&
+				$setting[ Validator::PARAM_EXAMPLE ] instanceof MessageValue
+			) {
+				$setting[ Validator::PARAM_EXAMPLE ] = $this->getJsonLocalizer()->localizeValue(
+					$setting, Validator::PARAM_EXAMPLE,
+				);
+			}
+
 			$param = Validator::getParameterSpec( $name, $setting );
 
 			$parameters[] = $param;
@@ -779,6 +794,15 @@ abstract class Handler {
 			$setting[ Validator::PARAM_DESCRIPTION ] = $this->getJsonLocalizer()->localizeValue(
 				$setting, Validator::PARAM_DESCRIPTION,
 			);
+
+			if (
+				isset( $setting[ Validator::PARAM_EXAMPLE ] ) &&
+				$setting[ Validator::PARAM_EXAMPLE ] instanceof MessageValue
+			) {
+				$setting[ Validator::PARAM_EXAMPLE ] = $this->getJsonLocalizer()->localizeValue(
+					$setting, Validator::PARAM_EXAMPLE,
+				);
+			}
 
 			$param = Validator::getParameterSpec( $name, $setting );
 
@@ -883,6 +907,15 @@ abstract class Handler {
 			if ( !in_array( $source, $allowedSources ) ) {
 				// TODO: post parameters also work as body parameters...
 				continue;
+			}
+
+			if (
+				isset( $settings[ Validator::PARAM_EXAMPLE ] ) &&
+				$settings[ Validator::PARAM_EXAMPLE ] instanceof MessageValue
+			) {
+				$settings[ Validator::PARAM_EXAMPLE ] = $this->getJsonLocalizer()->localizeValue(
+					$settings, Validator::PARAM_EXAMPLE,
+				);
 			}
 
 			$properties[$name] = Validator::getParameterSchema( $settings );

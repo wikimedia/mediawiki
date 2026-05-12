@@ -317,6 +317,43 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 				'name' => 'test',
 			]
 		];
+
+		yield 'parameter with example' => [
+			[
+				ParamValidator::PARAM_TYPE => 'string',
+				Validator::PARAM_SOURCE => 'query',
+				Validator::PARAM_EXAMPLE => 'test-example',
+			],
+			[
+				'schema' => [
+					'type' => 'string',
+				],
+				'required' => false,
+				'description' => 'test parameter',
+				'in' => 'query',
+				'name' => 'test',
+				'example' => 'test-example',
+			],
+		];
+
+		// Should not happen, but we shouldn't let things explode either.
+		yield 'timestamp, missing source, with example' => [
+			[
+				ParamValidator::PARAM_TYPE => 'timestamp',
+				Validator::PARAM_EXAMPLE => '2023-01-01T00:00:00Z',
+			],
+			[
+				'schema' => [
+					'type' => 'string',
+					'format' => 'mw-timestamp',
+				],
+				'required' => false,
+				'description' => 'test parameter',
+				'in' => 'unspecified',
+				'name' => 'test',
+				'example' => '2023-01-01T00:00:00Z',
+			]
+		];
 	}
 
 	/**
@@ -327,6 +364,20 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 	public function testParameterSpec( $paramSetting, $expectedSpec ) {
 		$spec = Validator::getParameterSpec( 'test', $paramSetting );
 		$this->assertArrayEquals( $expectedSpec, $spec, false, true );
+
+		// Ensure the example is NOT in the schema if it was lifted
+		if ( isset( $expectedSpec['example'] ) ) {
+			$this->assertArrayNotHasKey( 'example', $spec['schema'] );
+		}
+	}
+
+	public function testParameterSchema() {
+		$paramSetting = [
+			ParamValidator::PARAM_TYPE => 'string',
+			Validator::PARAM_EXAMPLE => 'test-example',
+		];
+		$schema = Validator::getParameterSchema( $paramSetting );
+		$this->assertSame( 'test-example', $schema['example'] );
 	}
 
 	/**

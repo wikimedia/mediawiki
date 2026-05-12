@@ -1944,6 +1944,129 @@ class HandlerTest extends MediaWikiUnitTestCase {
 				},
 		];
 
+		yield 'OAS PARAM_EXAMPLE' => [
+			'paramSettings' => [
+				// Test standard string example
+				'p' => [
+					Handler::PARAM_SOURCE => 'path',
+					Handler::PARAM_EXAMPLE => 'Earth',
+				],
+				// Ensure PHP integer serializes to JSON integer (not string)
+				'q' => [
+					Handler::PARAM_SOURCE => 'query',
+					Handler::PARAM_EXAMPLE => 12345,
+				],
+				// Ensure the 'example' field is omitted when no example is provided
+				'r' => [
+					Handler::PARAM_SOURCE => 'query',
+				],
+				// Ensure PHP boolean serializes to JSON boolean (not string, not dropped)
+				's' => [
+					Handler::PARAM_SOURCE => 'query',
+					Handler::PARAM_EXAMPLE => false,
+				],
+				// Ensure PHP null serializes to JSON null (not dropped)
+				't' => [
+					Handler::PARAM_SOURCE => 'query',
+					Handler::PARAM_EXAMPLE => null,
+				],
+				// Ensure defensive fallback that converts MessageValue objects to strings
+				'u' => [
+					Handler::PARAM_SOURCE => 'query',
+					Handler::PARAM_EXAMPLE => new MessageValue( 'rest-param-desc-mock-desc' ),
+				],
+			],
+			'headerParamSettings' => [
+				// Test header parameter example
+				'h1' => [
+					Handler::PARAM_SOURCE => 'header',
+					Handler::PARAM_EXAMPLE => 'es, en-US',
+				],
+				// Ensure defensive fallback that converts MessageValue objects to strings
+				'h2' => [
+					Handler::PARAM_SOURCE => 'header',
+					Handler::PARAM_EXAMPLE => new MessageValue( 'rest-param-desc-mock-desc' ),
+				],
+			],
+			'bodySettings' => [
+				// Ensure that when request body property has a PHP array, PHP array serializes to JSON array
+				'b1' => [
+					Handler::PARAM_SOURCE => 'body',
+					Handler::PARAM_EXAMPLE => [ 'History' ],
+				],
+				// Ensure example merges cleanly into ArrayDef overrides
+				'b2' => [
+					Handler::PARAM_SOURCE => 'body',
+					ArrayDef::PARAM_SCHEMA => [
+						'type' => 'object',
+						'required' => [ 'x' ]
+					],
+					Handler::PARAM_EXAMPLE => [ 'x' => 'test' ],
+				],
+				// Ensure defensive fallback that converts MessageValue objects to strings
+				'b3' => [
+					Handler::PARAM_SOURCE => 'body',
+					Handler::PARAM_EXAMPLE => new MessageValue( 'rest-param-desc-mock-desc' ),
+				],
+			],
+			'requestTypes' => [ 'application/json' ],
+			'responseBodySchema' => null,
+			'responseHeaderSettings' => [],
+			'routeConfig' => [
+				'path' => 'test/{p}',
+			],
+			'openApiSpec' => [],
+			'method' => 'POST',
+			'assertions' =>
+				static function ( array $spec ) {
+					self::assertWellFormedOAS( $spec, [ 'parameters', 'requestBody' ] );
+
+					$params = self::makeMap( $spec['parameters'], 'name' );
+
+					// Path / Query / Header parameters should have the example lifted out of the schema
+					Assert::assertArrayHasKey( 'p', $params );
+					Assert::assertSame( 'Earth', $params['p']['example'] );
+					Assert::assertArrayNotHasKey( 'example', $params['p']['schema'] );
+
+					Assert::assertArrayHasKey( 'q', $params );
+					Assert::assertSame( 12345, $params['q']['example'] );
+
+					// Negative emission check: r has no example
+					Assert::assertArrayHasKey( 'r', $params );
+					Assert::assertArrayNotHasKey( 'example', $params['r'] );
+					Assert::assertArrayNotHasKey( 'example', $params['r']['schema'] );
+
+					// Boolean
+					Assert::assertArrayHasKey( 's', $params );
+					Assert::assertFalse( $params['s']['example'] );
+
+					// Null
+					Assert::assertArrayHasKey( 't', $params );
+					Assert::assertNull( $params['t']['example'] );
+
+					// MessageValue fallback to string
+					Assert::assertArrayHasKey( 'u', $params );
+					Assert::assertSame( '<message key="rest-param-desc-mock-desc"></message>', $params['u']['example'] );
+
+					Assert::assertArrayHasKey( 'h1', $params );
+					Assert::assertSame( 'es, en-US', $params['h1']['example'] );
+					Assert::assertArrayNotHasKey( 'example', $params['h1']['schema'] );
+
+					Assert::assertArrayHasKey( 'h2', $params );
+					Assert::assertSame( '<message key="rest-param-desc-mock-desc"></message>', $params['h2']['example'] );
+					Assert::assertArrayNotHasKey( 'example', $params['h2']['schema'] );
+
+					// Body parameters should have the example inside the schema properties
+					$bodySchema = $spec['requestBody']['content']['application/json']['schema'];
+					Assert::assertSame( [ 'History' ], $bodySchema['properties']['b1']['example'] );
+
+					// ArrayDef::PARAM_SCHEMA merging
+					Assert::assertSame( [ 'x' => 'test' ], $bodySchema['properties']['b2']['example'] );
+
+					Assert::assertSame( '<message key="rest-param-desc-mock-desc"></message>', $bodySchema['properties']['b3']['example'] );
+				},
+		];
+
 		yield 'OAS info' => [
 			'paramSettings' => [
 				'p' => [

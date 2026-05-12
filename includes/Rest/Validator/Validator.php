@@ -60,6 +60,15 @@ class Validator {
 	 */
 	public const PARAM_DESCRIPTION = 'rest-param-description';
 
+	/**
+	 * Parameter example to use in generated OpenAPI documentation.
+	 * Note: This constant maps to the singular OpenAPI `example` keyword.
+	 * The plural `examples` object map is intentionally out of scope.
+	 *
+	 * @since 1.43
+	 */
+	public const PARAM_EXAMPLE = 'rest-param-example';
+
 	/** @var array Type defs for ParamValidator */
 	private const TYPE_DEFS = [
 		'boolean' => [ 'class' => BooleanDef::class ],
@@ -377,8 +386,21 @@ class Validator {
 			'name' => $name,
 			'description' => $paramSetting[ self::PARAM_DESCRIPTION ] ?? "$name parameter",
 			'in' => $location,
-			'schema' => $schema
 		];
+
+		// Lift the example from the schema to the OpenAPI Parameter Object level.
+		// In OpenAPI 3.0, providing the same example at both the parameter level and
+		// the inner schema level is redundant and can trigger linting warnings.
+		// By lifting the example, we ensure path / query / header parameters get the example
+		// at the root level.  Meanwhile, body parameters bypass this function
+		// and rely solely on the injection in getParameterSchema(), keeping their
+		// examples nested safely inside their schema properties.
+		if ( array_key_exists( 'example', $schema ) ) {
+			$param['example'] = $schema['example'];
+			unset( $schema['example'] );
+		}
+
+		$param['schema'] = $schema;
 
 		// TODO: generate a warning if required is false for a pth param
 		$param['required'] = $location === 'path'
@@ -419,6 +441,10 @@ class Validator {
 
 		if ( isset( $paramSetting[ ParamValidator::PARAM_DEFAULT ] ) ) {
 			$schema['default'] = $paramSetting[ ParamValidator::PARAM_DEFAULT ];
+		}
+
+		if ( array_key_exists( self::PARAM_EXAMPLE, $paramSetting ) ) {
+			$schema['example'] = $paramSetting[ self::PARAM_EXAMPLE ];
 		}
 
 		return $schema;
