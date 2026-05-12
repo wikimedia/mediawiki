@@ -38,11 +38,13 @@ class ParsoidLanguageConverterTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testApplyTransformation(
 		string $input, string $expected, string $pagelang,
+		?string $expectedFragment = null,
 	) {
 		$languageFactory = $this->getServiceContainer()->getLanguageFactory();
 		$conv = $this->createStage();
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( $input ) );
 		$po->getContentHolder()->addFragment( 'my fragment', $input );
+		$po->setIndicator( 'foo', $input );
 		$po->setTitle( Title::newFromText( 'Test page' ) );
 		$variant = $languageFactory->getLanguage( new Bcp47CodeValue( $pagelang ) );
 		$baseLang = $languageFactory->getParentLanguage( $variant );
@@ -54,8 +56,10 @@ class ParsoidLanguageConverterTest extends MediaWikiIntegrationTestCase {
 		$transf = $conv->transform( $po, $popts, $opts );
 		$resBody = $transf->getContentHolderText();
 		$resFragment = $transf->getContentHolder()->getAsHtmlString( 'my fragment' );
+		$fooFragment = $transf->getIndicators()['foo'];
 		self::assertEquals( $expected, TestUtils::stripParsoidIds( $resBody ) );
-		self::assertEquals( $expected, TestUtils::stripParsoidIds( $resFragment ) );
+		self::assertEquals( $expectedFragment ?? $expected, TestUtils::stripParsoidIds( $resFragment ) );
+		self::assertEquals( $expectedFragment ?? $expected, TestUtils::stripParsoidIds( $fooFragment ) );
 	}
 
 	public static function provideDocsToConvert() {
@@ -73,6 +77,9 @@ class ParsoidLanguageConverterTest extends MediaWikiIntegrationTestCase {
 			'<div class="mw-parser-output mw-content-ltr" lang="ku" dir="ltr">Foo</div>',
 			'<div class="mw-parser-output mw-content-rtl" lang="ku-Arab" dir="rtl">فۆئۆ</div>',
 			'ku-Arab',
+			// Fragment wrapper isn't affected, only the wrapper div on the body is
+			// changed.  The contents of the fragment are converted, though.
+			'<div class="mw-parser-output mw-content-ltr" lang="ku" dir="ltr">فۆئۆ</div>',
 		];
 	}
 }

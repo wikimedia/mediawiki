@@ -12,10 +12,8 @@ use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Parsoid\Config\SiteConfig;
-use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
-use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMTraverser;
 use Wikimedia\Parsoid\Utils\DOMUtils;
@@ -113,18 +111,6 @@ class ExpandRelativeAttrs extends ContentDOMTransformStage {
 			return true;
 		} );
 		$traverser->traverse( null, $df );
-
-		$ownerDoc = $df->ownerDocument;
-		'@phan-var Document $ownerDoc';
-		foreach ( $po->getIndicators() as $name => $html ) {
-			$indicatorFrag = DOMUtils::parseHTMLToFragment( $ownerDoc, $html );
-			$traverser->traverse( null, $indicatorFrag );
-			$po->setIndicator(
-				$name,
-				ContentUtils::toXML( $indicatorFrag, [ 'innerXML' => true ] )
-			);
-		}
-
 		return $df;
 	}
 }

@@ -90,8 +90,10 @@ class ExpandRelativeAttrsTest extends OutputTransformStageTestBase {
 			$docHtml = $t['doc'] ?? $t['body'];
 			$poInput = new ParserOutput( $docHtml );
 			$poInput->getContentHolder()->addFragment( 'some fragment', $docHtml );
+			$poInput->setIndicator( 'foo', $docHtml );
 			$poOutput = new ParserOutput( $t['result'] );
 			$poOutput->getContentHolder()->addFragment( 'some fragment', $t['result'] );
+			$poOutput->setIndicator( 'foo', $t['result'] );
 			$poInput->setTitle( $title );
 			$poOutput->setTitle( $title );
 			yield $label => [ $poInput, ParserOptions::newFromAnon(), [], $poOutput ];

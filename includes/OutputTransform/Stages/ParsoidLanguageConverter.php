@@ -9,8 +9,9 @@ use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\LanguageConverter;
 use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Language\LanguageFactory;
-use MediaWiki\OutputTransform\ContentDOMTransformStage;
+use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\Page\LinkBatchFactory;
+use MediaWiki\Parser\ContentHolder;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
@@ -33,9 +34,16 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
 /**
  * Resolves Parsoid language converter markup to the appropriate
  * variant.
+ *
+ * This is an OutputTransformStage, not a ContentDOMTransformStage,
+ * because we want to control which order we do conversion on the
+ * content holder fragments -- in particular, we want to do the
+ * body fragment first, so that any rules defined in the body fragment
+ * are applied to all of the other fragments (and the TOC).
+ *
  * @internal
  */
-class ParsoidLanguageConverter extends ContentDOMTransformStage {
+class ParsoidLanguageConverter extends OutputTransformStage {
 	/**
 	 * @var array<string,true> List of tags inside which content should
 	 * not be converted.
@@ -59,16 +67,17 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 		private UrlUtils $urlUtils,
 		private LinkBatchFactory $linkBatchFactory,
 	) {
-		parent::__construct( $options, $logger, transformBodyOnly: false );
+		parent::__construct( $options, $logger );
 	}
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return $po->getContentHolder()->isParsoidContent();
 	}
 
-	public function transformDOM(
-		DocumentFragment $df, ParserOutput $po, ParserOptions $popts, array &$options
-	): DocumentFragment {
+	public function transform(
+		ParserOutput $po, ParserOptions $popts, array &$options
+	): ParserOutput {
+		$contentHolder = $po->getContentHolder();
 		$title = $po->getTitle();
 		$title = $title ? $this->titleFactory->newFromLinkTarget( $title ) :
 			$this->titleFactory->newFromTextThrow( 'Special:BadTitle/LanguageConverter' );
@@ -104,34 +113,33 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 			$converter->translate( 'x', $toVariant->getCode() );
 			// Now actually do the language conversion on the DOM
 			$redLinks = [];
-			$this->doTraversal( $df, $converter, $toVariant->getCode(), false, $redLinks );
-			// Convert indicators as well
-			$indicators = array_map(
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable ownerDocument will never be null
-				static fn ( $html ) => ContentUtils::createAndLoadDocumentFragment( $df->ownerDocument, $html ),
-				$po->getIndicators()
-			);
-			foreach ( $indicators as $indicatorFrag ) {
-				$this->doTraversal( $indicatorFrag, $converter, $toVariant->getCode(), false, $redLinks );
+
+			// Do body fragment first (and update rule state)
+			$bodyFragment = $contentHolder->getAsDom( ContentHolder::BODY_FRAGMENT );
+			if ( $bodyFragment !== null ) {
+				$this->doTraversal( $bodyFragment, $converter, $toVariant->getCode(), false, $redLinks );
 			}
-			// Adjust red links
+
+			// Now do all other fragments (in sorted order for reproducibility)
+			$otherFragments = $contentHolder->getFragmentNames();
+			sort( $otherFragments );
+			foreach ( $otherFragments as $fragName ) {
+				if ( $fragName !== ContentHolder::BODY_FRAGMENT ) {
+					$df = $contentHolder->getAsDom( $fragName );
+					'@phan-var DocumentFragment $df'; // not null
+					$this->doTraversal( $df, $converter, $toVariant->getCode(), false, $redLinks );
+				}
+			}
+
+			// Adjust red links (for all fragments at once)
 			if ( !$this->languageConverterFactory->isLinkConversionDisabled() ) {
 				$this->resolveRedLinks( $title, $converter, $toVariant->getCode(), $redLinks );
 			}
-			// Store indicators
-			foreach ( $indicators as $name => $indicatorFrag ) {
-				$po->setIndicator(
-					$name,
-					ContentUtils::ppToXML( $indicatorFrag, [
-						'innerXML' => true,
-						'fragment' => true,
-					] )
-				);
-			}
-			// Adjust wrapper div class (see AddWrapperDivClass)
+
+			// Adjust wrapper div class on body fragment (see AddWrapperDivClass)
 			$wrapperDivClass = AddWrapperDivClass::wrapperDivClass( $po, $popts, $options );
-			if ( $wrapperDivClass !== null ) {
-				$div = DOMCompat::getFirstElementChild( $df );
+			if ( $wrapperDivClass !== null && $bodyFragment !== null ) {
+				$div = DOMCompat::getFirstElementChild( $bodyFragment );
 				$classes = $div ? DOMCompat::getClassList( $div ) : null;
 				if ( $classes?->contains( $wrapperDivClass ) ) {
 					$dirClass = 'mw-content-' . $toVariant->getDir();
@@ -144,6 +152,7 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 					$div->setAttribute( 'dir', $toVariant->getDir() );
 				}
 			}
+
 			// Set language
 			$po->setLanguage( $toVariant );
 			$tocVariant = $toVariant;
@@ -164,8 +173,9 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 			$po->getDisplayTitle() === false
 		) {
 			// Apply display title
+			$ownerDocument = $contentHolder->createFragment()->ownerDocument;
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
-			$titleText = $converter->getConvRuleTitleFragment( $df->ownerDocument );
+			$titleText = $converter->getConvRuleTitleFragment( $ownerDocument );
 			if ( $titleText !== null ) {
 				// XXX we should be able to sanitize without serializing
 				// and reparsing.
@@ -195,7 +205,7 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 			$po->getTOCData(), $targetLanguage,
 			$tocVariant === null ? null : $converter, $tocVariant?->getCode()
 		);
-		return $df;
+		return $po;
 	}
 
 	private function doTraversal(

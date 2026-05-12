@@ -35,6 +35,7 @@ use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\Core\MergeStrategy;
 use Wikimedia\Parsoid\Core\TOCData;
+use Wikimedia\Parsoid\DOM\DocumentFragment;
 
 /**
  * ParserOutput is a rendering of a Content object or a message.
@@ -130,9 +131,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private array $mCategories = [];
 
 	/**
-	 * @var array<string,string> Page status indicators, usually displayed in top-right corner.
+	 * @var array<string> Page status indicators, usually displayed in top-right corner.
+	 * This is a list of indicator IDs; the actual content is stored in
+	 * the ContentHolder.
 	 */
-	private array $mIndicators = [];
+	private array $mIndicatorIds = [];
 
 	/**
 	 * @var string Title text of the chosen language variant, as HTML.
@@ -649,7 +652,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @since 1.25
 	 */
 	public function getIndicators(): array {
-		return $this->mIndicators;
+		$result = [];
+		foreach ( $this->mIndicatorIds as $id ) {
+			$fragmentName = "indicator:{$id}";
+			$contents = $this->contentHolder->getAsHtmlString( $fragmentName );
+			Assert::invariant( $contents !== null, "fragments should exist" );
+			$result[$id] = $contents;
+		}
+		return $result;
 	}
 
 	public function getTitleText(): string {
@@ -1248,12 +1258,31 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @since 1.25
 	 */
 	public function setIndicator( $id, $content ): void {
-		if ( ( $this->mIndicators[$id] ?? $content ) !== $content ) {
+		Assert::parameterType( 'string', $content, 'content' );
+		$fragmentName = "indicator:{$id}";
+		if ( $this->contentHolder->has( $fragmentName ) ) {
 			// Overwriting an indicator prevents selective update
 			// [[mw:Parsoid/Internals/Handling_resource_limits]]
 			$this->setOutputFlag( ParserOutputFlags::PREVENT_SELECTIVE_UPDATE );
+		} else {
+			$this->mIndicatorIds[] = $id;
 		}
-		$this->mIndicators[$id] = $content;
+		$this->getContentHolder()->setAsHtmlString( $fragmentName, $content );
+	}
+
+	/**
+	 * @since 1.47
+	 */
+	public function setIndicatorDom( string $id, DocumentFragment $content ): void {
+		$fragmentName = "indicator:{$id}";
+		if ( $this->contentHolder->has( $fragmentName ) ) {
+			// Overwriting an indicator prevents selective update
+			// [[mw:Parsoid/Internals/Handling_resource_limits]]
+			$this->setOutputFlag( ParserOutputFlags::PREVENT_SELECTIVE_UPDATE );
+		} else {
+			$this->mIndicatorIds[] = $id;
+		}
+		$this->getContentHolder()->setAsDom( $fragmentName, $content );
 	}
 
 	/**
@@ -2822,7 +2851,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		);
 
 		// NOTE: last write wins, same as within one ParserOutput
-		$this->mIndicators = self::mergeMap( $this->mIndicators, $source->getIndicators() );
+		foreach ( $source->getIndicators() as $id => $content ) {
+			$this->setIndicator( $id, $content );
+		}
 
 		// NOTE: include extension data in "tracking meta data" as well as "html meta data"!
 		// TODO: add a $mergeStrategy parameter to setExtensionData to allow different
@@ -2995,7 +3026,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		foreach ( $this->mLimitReportData as $key => $value ) {
 			$metadata->setLimitReportData( (string)$key, $value );
 		}
-		foreach ( $this->mIndicators as $id => $content ) {
+		foreach ( $this->getIndicators() as $id => $content ) {
 			$metadata->setIndicator( (string)$id, $content );
 		}
 
@@ -3272,7 +3303,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$data = [
 			'LanguageLinks' => $this->getLanguageLinksInternal(),
 			'Categories' => $this->mCategories,
-			'Indicators' => $this->mIndicators,
+			'IndicatorIds' => $this->mIndicatorIds,
 			'TitleText' => $this->mTitleText,
 			'Links' => $this->mLinks,
 			'LinksSpecial' => $this->mLinksSpecial,
@@ -3382,14 +3413,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		}
 		// Default values should match the property default values.
 		$this->mCategories = $jsonData['Categories'] ?? [];
-		$this->mIndicators = $jsonData['Indicators'] ?? [];
-		// forward compatibility T427622
-		foreach ( ( $jsonData['IndicatorIds'] ?? [] ) as $id ) {
-			$fragmentName = "indicator:{$id}";
-			if ( $this->contentHolder->has( $fragmentName ) ) {
-				$this->mIndicators[ $id ] = $this->contentHolder->getAsHtmlString( $fragmentName ) ?? '';
-				$this->contentHolder->setAsHtmlString( $fragmentName, null );
-			}
+		$this->mIndicatorIds = $jsonData['IndicatorIds'] ?? [];
+		// backwards compatibility T427622
+		foreach ( ( $jsonData['Indicators'] ?? [] ) as $id => $value ) {
+			$this->setIndicator( $id, $value );
 		}
 		$this->mTitleText = $jsonData['TitleText'] ?? '';
 		$this->mLinks = $jsonData['Links'] ?? [];
