@@ -910,7 +910,7 @@ abstract class MediaHandler {
 		if ( round( $roundedUp * $boxHeight / $boxWidth ) > $maxHeight ) {
 			return (int)floor( $idealWidth );
 		}
-		return $roundedUp;
+		return (int)$roundedUp;
 	}
 
 	/**
