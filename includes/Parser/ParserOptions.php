@@ -1356,7 +1356,7 @@ class ParserOptions {
 				'wrapperDivClass' => 'mw-parser-output',
 				'deduplicateStyles' => true,
 				'unwrap' => false,
-				'absoluteURLs' => true,
+				'absoluteURLs' => false,
 				'variant' => null,
 			];
 
