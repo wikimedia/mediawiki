@@ -463,7 +463,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 	 */
 	protected function buildMeta( $desc, $date ) {
 		if ( $desc && $date ) {
-			$meta = "{$desc} - {$date}";
+			$meta = "{$desc} – {$date}";
 		} elseif ( $desc ) {
 			$meta = $desc;
 		} elseif ( $date ) {
