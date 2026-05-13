@@ -58,6 +58,12 @@ class WebRequest {
 	protected $queryParams;
 
 	/**
+	 * The values from $_POST only.
+	 * @var (string|string[])[]
+	 */
+	protected $postParams;
+
+	/**
 	 * Lazy-initialized request headers indexed by upper-case header name
 	 * @var string[]
 	 */
@@ -118,6 +124,7 @@ class WebRequest {
 		// We don't use $_REQUEST here to avoid interference from cookies...
 		$this->data = $_POST + $_GET;
 
+		$this->postParams = $_POST;
 		$this->queryAndPathParams = $this->queryParams = $_GET;
 	}
 
@@ -545,7 +552,9 @@ class WebRequest {
 	}
 
 	/**
-	 * Set an arbitrary value into our get/post data.
+	 * Set an arbitrary value into our get/post data. Values set using this
+	 * method will be available vis getVal() and getValues() but not
+	 * getQueryValues() or getPostValues().
 	 *
 	 * @param string $key Key name to use
 	 * @param mixed $value Value to set
@@ -769,7 +778,7 @@ class WebRequest {
 	 * @return (string|string[])[] Might contain arrays in case there was a `&param[]=…` parameter
 	 */
 	public function getPostValues() {
-		return $_POST;
+		return $this->postParams;
 	}
 
 	/**

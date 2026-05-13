@@ -36,7 +36,7 @@ class FauxRequest extends WebRequest {
 	 * @stable to call
 	 *
 	 * @param array $data Array of *non*-urlencoded key => value pairs, the
-	 *   fake GET/POST values
+	 *   fake GET/POST values. Use setParams() to set GEt and POST params separately.
 	 * @param bool $wasPosted Whether to treat the data as POST
 	 * @param MediaWiki\Session\Session|array|null $session Session, session
 	 *  data array, or null
@@ -48,7 +48,10 @@ class FauxRequest extends WebRequest {
 		$this->requestTime = microtime( true );
 		$this->serverInfo = $_SERVER;
 
-		$this->data = $data;
+		// If the request was posted, assume data to be post params.
+		// Otherwise, assume data to be query params.
+		$this->setParams( $wasPosted ? [] : $data, $wasPosted ? $data : [] );
+
 		$this->wasPosted = $wasPosted;
 		if ( $session instanceof MediaWiki\Session\Session ) {
 			$this->session = $session;
@@ -64,6 +67,20 @@ class FauxRequest extends WebRequest {
 			throw new InvalidArgumentException( "MediaWiki\Request\FauxRequest() got bogus session" );
 		}
 		$this->protocol = $protocol;
+	}
+
+	/**
+	 * Emulate $_GET and $_POST values.
+	 *
+	 * @param string[] $queryParams
+	 * @param string[] $postParams
+	 * @param string[] $pathParams
+	 */
+	public function setParams( $queryParams = [], $postParams = [], $pathParams = [] ) {
+		$this->postParams = $postParams;
+		$this->queryParams = $queryParams;
+		$this->queryAndPathParams = $queryParams + $pathParams;
+		$this->data = $postParams + $queryParams;
 	}
 
 	public function response(): FauxResponse {
@@ -89,22 +106,6 @@ class FauxRequest extends WebRequest {
 	public function getText( $name, $default = '' ) {
 		# Override; don't recode since we're using internal data
 		return (string)$this->getVal( $name, $default );
-	}
-
-	/**
-	 * @return array
-	 */
-	public function getQueryValues() {
-		if ( $this->wasPosted ) {
-			return [];
-		} else {
-			return $this->data;
-		}
-	}
-
-	/** @inheritDoc */
-	public function getQueryValuesOnly() {
-		return $this->getQueryValues();
 	}
 
 	/** @inheritDoc */
@@ -280,11 +281,6 @@ class FauxRequest extends WebRequest {
 			return iterator_to_array( $this->getSession() );
 		}
 		return null;
-	}
-
-	/** @inheritDoc */
-	public function getPostValues() {
-		return $this->wasPosted ? $this->data : [];
 	}
 
 	/**

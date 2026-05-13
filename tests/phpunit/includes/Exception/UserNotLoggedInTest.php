@@ -113,9 +113,11 @@ class UserNotLoggedInTest extends MediaWikiIntegrationTestCase {
 	public function testPreserveQueryParams() {
 		$this->disableAutoCreateTempUser();
 		$request = RequestContext::getMain()->getRequest();
-		$request->setVal( 'display', 'popup' );
-		$request->setVal( 'uselang', 'de' );
-		$request->setVal( 'foo', 'bar' );
+		$request->setParams( [
+			'display' => 'popup',
+			'uselang' => 'de',
+			'foo' => 'bar'
+		] );
 		RequestContext::getMain()->setTitle( Title::newMainPage() );
 
 		$e = new UserNotLoggedIn();
