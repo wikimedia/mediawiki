@@ -596,6 +596,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 					$v = $hook;
 					return true;
 				} );
+
 			$session->set(
 				'AuthManager:lastAuthTimestamps',
 				[ 'test' => time() - 500, 'test2' => time() - 10 ]
@@ -606,11 +607,13 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				"hook $hook"
 			);
 			$this->assertEquals(
-				$expect, $this->manager->securitySensitiveOperationStatus( 'test2' ),
+				$expect,
+				$this->manager->securitySensitiveOperationStatus( 'test2' ),
 				"hook $hook"
 			);
 			$this->assertEquals(
-				$expect, $this->manager->securitySensitiveOperationStatus( 'test3' ),
+				$expect,
+				$this->manager->securitySensitiveOperationStatus( 'test3' ),
 				"hook $hook"
 			);
 			$this->unhook( 'SecuritySensitiveOperationStatus' );

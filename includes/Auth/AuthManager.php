@@ -161,11 +161,11 @@ class AuthManager implements LoggerAwareInterface {
 	public const ACTION_UNLINK = 'unlink';
 
 	/** Security-sensitive operations are ok. */
-	public const SEC_OK = 'ok';
+	public const string SEC_OK = 'ok';
 	/** Security-sensitive operations should re-authenticate. */
-	public const SEC_REAUTH = 'reauth';
+	public const string SEC_REAUTH = 'reauth';
 	/** Security-sensitive should not be performed. */
-	public const SEC_FAIL = 'fail';
+	public const string SEC_FAIL = 'fail';
 
 	/** Auto-creation is due to SessionManager */
 	public const AUTOCREATE_SOURCE_SESSION = SessionManager::class;
@@ -941,6 +941,7 @@ class AuthManager implements LoggerAwareInterface {
 				'operation' => $operation,
 				'status' => $status,
 			] );
+
 			return $status;
 		}
 
@@ -949,7 +950,8 @@ class AuthManager implements LoggerAwareInterface {
 			$lastAuthTimestamps = $session->get( 'AuthManager:lastAuthTimestamps', [] );
 			$last = $lastAuthTimestamps[$operation] ?? null;
 			if ( $id !== $aId || $last === null ) {
-				$timeSinceAuth = PHP_INT_MAX; // Forever ago
+				// Forever ago
+				$timeSinceAuth = PHP_INT_MAX;
 			} else {
 				$timeSinceAuth = max( 0, time() - $last );
 			}
@@ -986,11 +988,27 @@ class AuthManager implements LoggerAwareInterface {
 		$oldStatus = $status;
 
 		$this->getHookRunner()->onSecuritySensitiveOperationStatus(
-			$status, $operation, $session, $timeSinceAuth );
+			$status,
+			$operation,
+			$session,
+			$timeSinceAuth
+		);
 
-		if ( $status !== $oldStatus ) {
+		if ( $oldStatus === self::SEC_OK && $status !== self::SEC_OK ) {
 			$this->logger->info(
-				__METHOD__ . ': {operation} changed from {oldstatus} to {status} for {user} in ' .
+				__METHOD__ .
+				': {operation} escalated from {oldstatus} to {status} for {user} in ' .
+				'SecuritySensitiveOperationStatusHook hook',
+				[
+					'operation' => $operation,
+					'oldstatus' => $oldStatus,
+					'status' => $status,
+				] + $this->getRequest()->getSecurityLogContext( $session->getUser() )
+			);
+		} elseif ( $oldStatus !== self::SEC_OK && $status === self::SEC_OK ) {
+			$this->logger->info(
+				__METHOD__ .
+				': {operation} downgraded from {oldstatus} to {status} for {user} in ' .
 				'SecuritySensitiveOperationStatusHook hook',
 				[
 					'operation' => $operation,
