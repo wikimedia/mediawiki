@@ -25,6 +25,7 @@
 			"Whatback11",
 			"YeBoy371",
 			"Ykhwong",
+			"解浪",
 			"렌즈",
 			"밝은소년",
 			"아라"
@@ -155,6 +156,10 @@
 	"prefs-files": "파일",
 	"imagemaxsize": "파일 설명 페이지의 그림 크기 제한:",
 	"thumbsize": "섬네일 크기:",
+	"thumbsize-small": "작게",
+	"thumbsize-regular": "보통",
+	"thumbsize-large": "크게",
+	"thumbsize-help": "일부 사용자는 기본보다 작거나 큰 섬네일을 선호할 수 있습니다. 기본 크기는 $1 픽셀입니다.",
 	"prefs-diffs": "차이",
 	"tog-diffonly": "편집 차이를 비교할 때 문서 내용을 보지 않기",
 	"tog-norollbackdiff": "되돌리기 후 차이를 보지 않기",
