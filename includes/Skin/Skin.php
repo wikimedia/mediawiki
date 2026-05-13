@@ -1905,7 +1905,9 @@ abstract class Skin extends ContextSource {
 	public function getSiteNotice() {
 		$siteNotice = '';
 
-		if ( $this->getHookRunner()->onSiteNoticeBefore( $siteNotice, $this ) ) {
+		// Extensions may disable or replace the built-in sitenotice
+		$applyDefault = $this->getHookRunner()->onSiteNoticeBefore( $siteNotice, $this );
+		if ( $applyDefault ) {
 			if ( $this->getUser()->isRegistered() ) {
 				$siteNotice = $this->getCachedNotice( 'sitenotice' );
 			} else {
@@ -1930,9 +1932,18 @@ abstract class Skin extends ContextSource {
 				$siteNotice = Html::rawElement( 'div', [ 'id' => 'localNotice', 'data-nosnippet' => '' ], $siteNotice );
 			}
 		}
+		$isDisabled = ( !$applyDefault && $siteNotice === '' );
+		if ( $isDisabled ) {
+			return '';
+		}
 
 		$this->getHookRunner()->onSiteNoticeAfter( $siteNotice, $this );
+
+		// T418336: Inject here instead of under $applyDefault, because the DismissableSiteNotice extension
+		// wraps the sitenotice. The email confirmation notice should render in the same area as sitenotice,
+		// but not be dismissable or visually appear as part of it.
 		$siteNotice = $this->getEmailConfirmationNotice() . $siteNotice;
+
 		if ( $this->getOptions()[ 'wrapSiteNotice' ] ) {
 			$siteNotice = Html::rawElement( 'div', [ 'id' => 'siteNotice' ], $siteNotice );
 		}
