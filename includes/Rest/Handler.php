@@ -41,7 +41,7 @@ abstract class Handler {
 
 	/**
 	 * @see Validator::PARAM_EXAMPLE
-	 * @since 1.43
+	 * @since 1.47
 	 */
 	public const PARAM_EXAMPLE = Validator::PARAM_EXAMPLE;
 

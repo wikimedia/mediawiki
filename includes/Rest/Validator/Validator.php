@@ -65,7 +65,7 @@ class Validator {
 	 * Note: This constant maps to the singular OpenAPI `example` keyword.
 	 * The plural `examples` object map is intentionally out of scope.
 	 *
-	 * @since 1.43
+	 * @since 1.47
 	 */
 	public const PARAM_EXAMPLE = 'rest-param-example';
 
