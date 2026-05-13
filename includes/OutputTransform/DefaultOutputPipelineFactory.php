@@ -13,6 +13,7 @@ use MediaWiki\OutputTransform\Stages\DeduplicateStylesDOM;
 use MediaWiki\OutputTransform\Stages\ExecutePostCacheTransformHooks;
 use MediaWiki\OutputTransform\Stages\ExpandRelativeAttrs;
 use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrls;
+use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrlsDOM;
 use MediaWiki\OutputTransform\Stages\ExtractBody;
 use MediaWiki\OutputTransform\Stages\HandleParsoidSectionLinks;
 use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
@@ -152,8 +153,18 @@ class DefaultOutputPipelineFactory {
 			'exclusive' => false
 		],
 
-		'ExpandToAbsoluteUrls' =>
-			ExpandToAbsoluteUrls::class,
+		'ExpandToAbsoluteUrls' => [
+			'textStage' => [
+				'class' => ExpandToAbsoluteUrls::class,
+			],
+			'domStage' => [
+				'class' => ExpandToAbsoluteUrlsDOM::class,
+				'services' => [
+					'UrlUtils',
+				],
+			],
+			'exclusive' => false
+		],
 
 		'HydrateHeaderPlaceholders' =>
 			HydrateHeaderPlaceholders::class,

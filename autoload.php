@@ -2371,6 +2371,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\OutputTransform\\Stages\\ExecutePostCacheTransformHooks' => __DIR__ . '/includes/OutputTransform/Stages/ExecutePostCacheTransformHooks.php',
 	'MediaWiki\\OutputTransform\\Stages\\ExpandRelativeAttrs' => __DIR__ . '/includes/OutputTransform/Stages/ExpandRelativeAttrs.php',
 	'MediaWiki\\OutputTransform\\Stages\\ExpandToAbsoluteUrls' => __DIR__ . '/includes/OutputTransform/Stages/ExpandToAbsoluteUrls.php',
+	'MediaWiki\\OutputTransform\\Stages\\ExpandToAbsoluteUrlsDOM' => __DIR__ . '/includes/OutputTransform/Stages/ExpandToAbsoluteUrlsDOM.php',
 	'MediaWiki\\OutputTransform\\Stages\\ExtractBody' => __DIR__ . '/includes/OutputTransform/Stages/ExtractBody.php',
 	'MediaWiki\\OutputTransform\\Stages\\HandleParsoidSectionLinks' => __DIR__ . '/includes/OutputTransform/Stages/HandleParsoidSectionLinks.php',
 	'MediaWiki\\OutputTransform\\Stages\\HandleSectionLinks' => __DIR__ . '/includes/OutputTransform/Stages/HandleSectionLinks.php',

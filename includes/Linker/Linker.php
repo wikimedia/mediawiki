@@ -1408,8 +1408,10 @@ class Linker {
 			},
 			static function ( SerializerNode $node ): SerializerNode {
 				$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
-				$node->attrs['href'] =
-					$urlUtils->expand( $node->attrs['href'], PROTO_RELATIVE ) ?? false;
+				$href = $urlUtils->expand( $node->attrs['href'], PROTO_RELATIVE );
+				if ( $href !== null ) {
+					$node->attrs['href'] = $href;
+				}
 				return $node;
 			}
 		);
