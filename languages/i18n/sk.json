@@ -1234,7 +1234,7 @@
 	"recentchanges-label-plusminus": "Veľkosť stránky sa zmenila o toľkoto bajtov",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (pozri tiež [[Special:NewPages|zoznam nových stránok]])",
-	"recentchanges-legend-watchlistexpiry": "Dočasne sledované stránky",
+	"recentchanges-legend-watchlistexpiry": "Dočasne sledovaná stránka",
 	"recentchanges-submit": "Zobraziť",
 	"rcfilters-tag-remove": "Odstrániť '$1'",
 	"rcfilters-legend-heading": "<strong>Zoznam skratiek:</strong>",
