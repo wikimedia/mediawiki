@@ -77,15 +77,17 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 						type: 'warning'
 					};
 				} else if ( !userinfo.cancreate ) {
-					const canCreateError = userinfo.cancreateerror || [];
+					const canCreateErrors = userinfo.cancreateerror || [];
 					mw.track(
 						'specialCreateAccount.validationErrors',
-						canCreateError.map( ( m ) => m.code.replace( '-', '_' ) )
+						canCreateErrors.map( ( m ) => m.code.replace( '-', '_' ) )
 					);
+
 					return {
 						valid: false,
-						messages: canCreateError.map( ( m ) => m.html ),
-						type: 'error'
+						messages: canCreateErrors.map( ( m ) => m.html ),
+						type: ( canCreateErrors.length && canCreateErrors[ 0 ].code === 'userexists' ) ?
+							'warning' : 'error'
 					};
 				} else if ( userinfo.name !== username ) {
 					return {
