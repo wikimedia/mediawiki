@@ -109,4 +109,28 @@ class UserNotLoggedInTest extends MediaWikiIntegrationTestCase {
 			true
 		);
 	}
+
+	public function testPreserveQueryParams() {
+		$this->disableAutoCreateTempUser();
+		$request = RequestContext::getMain()->getRequest();
+		$request->setVal( 'display', 'popup' );
+		$request->setVal( 'uselang', 'de' );
+		$request->setVal( 'foo', 'bar' );
+		RequestContext::getMain()->setTitle( Title::newMainPage() );
+
+		$e = new UserNotLoggedIn();
+		$e->report();
+		$redirectUrl = RequestContext::getMain()->getOutput()->getRedirect();
+		$parsedUrlParts = $this->getServiceContainer()->getUrlUtils()->parse( $redirectUrl );
+		$this->assertNotNull( $parsedUrlParts );
+		$actualQueryParams = wfCgiToArray( $parsedUrlParts['query'] );
+		$this->assertArrayContains(
+			[
+				'display' => 'popup',
+				'uselang' => 'de',
+			],
+			$actualQueryParams
+		);
+		$this->assertArrayNotHasKey( 'foo', $actualQueryParams );
+	}
 }

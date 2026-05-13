@@ -122,10 +122,13 @@ class UserNotLoggedIn extends ErrorPageError {
 		unset( $query['title'] );
 		// Redirect to Special:Userlogin
 		$output->redirect( SpecialPage::getTitleFor( $specialPageName )->getFullURL( [
+			'warning' => $this->msg,
 			// Return to this page when the user logs in
 			'returnto' => $context->getTitle()->getFullText(),
 			'returntoquery' => wfArrayToCgi( $query ),
-			'warning' => $this->msg,
+			// keep the current language
+			'uselang' => $query['uselang'] ?? null,
+			'variant' => $query['variant'] ?? null,
 			// Forward the 'display' parameter if provided
 			'display' => $query['display'] ?? null,
 		] ) );
