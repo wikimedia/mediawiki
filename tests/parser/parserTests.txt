@@ -2967,6 +2967,17 @@ parsoid=html2wt
 !! end
 
 !! test
+Empty title wikilink (current behavior is wrong, in both parsers, see T19006)
+!! wikitext
+[[#]] [[#|x]]
+!! html/php
+<p><a href="/wiki/">#</a> <a href="/wiki/">x</a>
+</p>
+!! html/parsoid
+<p><a class="mw-selflink selflink" href="./Parser_test" rel="mw:WikiLink">#</a> <a class="mw-selflink selflink" href="./Parser_test" rel="mw:WikiLink">x</a></p>
+!! end
+
+!! test
 1. Interaction of linktrail and template encapsulation
 !! wikitext
 {{1x|[[Foo]]}}l

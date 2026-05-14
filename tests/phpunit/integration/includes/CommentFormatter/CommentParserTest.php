@@ -250,6 +250,28 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 				'abc [[|]] def',
 				"abc [[|]] def",
 			],
+			// Links to '#' behave differently than autocomments /* */ linking to the top section (T423642),
+			// and differently from the same links in page wikitext (T19006)
+			[
+				'<a href="/wiki/">#</a> <a href="/wiki/">x</a>',
+				"[[#]] [[#|x]]",
+				false, true,
+			],
+			[
+				'<a href="/wiki/">#</a> <a href="/wiki/">x</a>',
+				"[[#]] [[#|x]]",
+				null, true,
+			],
+			[
+				'<a href="/wiki/Special:BlankPage" title="Special:BlankPage">#</a> <a href="/wiki/Special:BlankPage" title="Special:BlankPage">x</a>',
+				"[[#]] [[#|x]]",
+				false, false,
+			],
+			[
+				'<a href="/wiki/">#</a> <a href="/wiki/">x</a>',
+				"[[#]] [[#|x]]",
+				null, false,
+			],
 			[
 				'abc <a href="/w/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a> def',
 				"abc [[link]] def",
