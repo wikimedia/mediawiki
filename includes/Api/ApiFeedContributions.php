@@ -80,13 +80,14 @@ class ApiFeedContributions extends ApiBase {
 			$this->dieWithError( 'feed-invalid' );
 		}
 
-		if ( $params['showsizediff'] && $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
+		if ( $params['showsizediff'] && $config->get( MainConfigNames::MiserMode ) ) {
 			$this->dieWithError( 'apierror-sizediffdisabled' );
 		}
 
 		$msg = $this->msg( 'Contributions' )->inContentLanguage()->escaped();
-		$feedTitle = $config->get( MainConfigNames::Sitename ) . ' - ' . $msg .
-			' [' . $config->get( MainConfigNames::LanguageCode ) . ']';
+		$feedTitle = $config->get( MainConfigNames::Sitename )
+			. " - $msg "
+			. $this->msg( 'brackets', $config->get( MainConfigNames::LanguageCode ) )->inContentLanguage()->text();
 
 		$target = $params['user'];
 		if ( ExternalUserNames::isExternal( $target ) ) {
@@ -132,7 +133,7 @@ class ApiFeedContributions extends ApiBase {
 			$this->commentFormatter
 		);
 
-		$feedLimit = $this->getConfig()->get( MainConfigNames::FeedLimit );
+		$feedLimit = $config->get( MainConfigNames::FeedLimit );
 		if ( $pager->getLimit() > $feedLimit ) {
 			$pager->setLimit( $feedLimit );
 		}

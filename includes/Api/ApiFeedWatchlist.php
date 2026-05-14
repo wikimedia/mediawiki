@@ -84,7 +84,7 @@ class ApiFeedWatchlist extends ApiBase {
 				'wlprop' => 'title|user|comment|timestamp|ids|loginfo',
 				'wldir' => 'older', // reverse order - from newest to oldest
 				'wlend' => $endTime, // stop at this time
-				'wllimit' => min( 50, $this->getConfig()->get( MainConfigNames::FeedLimit ) )
+				'wllimit' => min( 50, $config->get( MainConfigNames::FeedLimit ) )
 			];
 
 			if ( $params['wlowner'] !== null ) {
@@ -132,8 +132,9 @@ class ApiFeedWatchlist extends ApiBase {
 
 			$msg = $this->msg( 'watchlist' )->inContentLanguage()->text();
 
-			$feedTitle = $this->getConfig()->get( MainConfigNames::Sitename ) . ' - ' . $msg .
-				' [' . $this->getConfig()->get( MainConfigNames::LanguageCode ) . ']';
+			$feedTitle = $config->get( MainConfigNames::Sitename )
+				. " - $msg "
+				. $this->msg( 'brackets', $config->get( MainConfigNames::LanguageCode ) )->inContentLanguage()->text();
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullURL();
 
 			$feed = new $feedClasses[$params['feedformat']] (
@@ -147,10 +148,11 @@ class ApiFeedWatchlist extends ApiBase {
 			// Error results should not be cached
 			$this->getMain()->setCacheMaxAge( 0 );
 
-			// @todo FIXME: Localise  brackets
-			$feedTitle = $this->getConfig()->get( MainConfigNames::Sitename ) . ' - Error - ' .
-				$this->msg( 'watchlist' )->inContentLanguage()->text() .
-				' [' . $this->getConfig()->get( MainConfigNames::LanguageCode ) . ']';
+			$feedTitle = $config->get( MainConfigNames::Sitename )
+				. ' - Error - '
+				. $this->msg( 'watchlist' )->inContentLanguage()->text()
+				. ' '
+				. $this->msg( 'brackets', $config->get( MainConfigNames::LanguageCode ) )->inContentLanguage()->text();
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullURL();
 
 			$feedFormat = $params['feedformat'] ?? 'rss';
