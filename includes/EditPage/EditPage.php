@@ -714,9 +714,9 @@ class EditPage implements IEditObject {
 		// As described in T389485, we need to do this because the maintenance script to expire temporary accounts
 		// may fail to run or not be configured to run.
 		if ( $user->isTemp() ) {
-			$expiryAfterDays = $this->tempUserCreator->getExpireAfterDays();
-			if ( $expiryAfterDays ) {
-				$expirationCutoff = (int)ConvertibleTimestamp::now( TS::UNIX ) - ( 86_400 * $expiryAfterDays );
+			$expireAfterDays = $this->tempUserCreator->getExpireAfterDays();
+			if ( $expireAfterDays ) {
+				$expirationCutoff = (int)ConvertibleTimestamp::now( TS::UNIX ) - ( 86_400 * $expireAfterDays );
 
 				// If the user was created before the expiration cutoff, then log them out, expire any other existing
 				// sessions, and revoke any access to the account that may exist.

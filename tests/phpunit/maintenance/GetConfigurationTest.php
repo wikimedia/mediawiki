@@ -39,7 +39,7 @@ class GetConfigurationTest extends MaintenanceBaseTestCase {
 		return [
 			'Config could not be encoded as JSON' => [
 				[ 'format' => 'json' ], '/Failed to serialize the requested settings/',
-				MainConfigNames::AutoCreateTempUser, [ 'enabled' => true, 'expiryAfterDays' => INF ]
+				MainConfigNames::AutoCreateTempUser, [ 'enabled' => true, 'expireAfterDays' => INF ]
 			],
 			'Undefined format' => [ [ 'format' => 'invalid-format' ], '/--format set to an unrecognized format/' ],
 			'Using both iregex and regex' => [

@@ -18,7 +18,7 @@ require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 /**
- * Expire temporary accounts that are registered for longer than `expiryAfterDays` days
+ * Expire temporary accounts that are registered for longer than `expireAfterDays` days
  * (defined in $wgAutoCreateTempUser) by forcefully logging them out.
  *
  * Extensions can extend this class to provide their own logic of determining a list
@@ -167,15 +167,15 @@ class ExpireTemporaryAccounts extends Maintenance {
 
 		$frequencyDays = (int)$this->getOption( 'frequency' );
 		if ( $this->getOption( 'expiry' ) !== null ) {
-			$expiryAfterDays = (int)$this->getOption( 'expiry' );
+			$expireAfterDays = (int)$this->getOption( 'expiry' );
 		} else {
-			$expiryAfterDays = $this->tempUserConfig->getExpireAfterDays();
+			$expireAfterDays = $this->tempUserConfig->getExpireAfterDays();
 		}
-		if ( $expiryAfterDays === null ) {
+		if ( $expireAfterDays === null ) {
 			$this->output( 'Temporary account expiry is not enabled' . PHP_EOL );
 			return;
 		}
-		$registeredBeforeUnix = (int)ConvertibleTimestamp::now( TS::UNIX ) - ( 86_400 * $expiryAfterDays );
+		$registeredBeforeUnix = (int)ConvertibleTimestamp::now( TS::UNIX ) - ( 86_400 * $expireAfterDays );
 
 		$tempAccounts = $this->queryBuilderToUserIdentities( $this->getTempAccountsToExpireQueryBuilder(
 			$registeredBeforeUnix,
