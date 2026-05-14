@@ -9,10 +9,12 @@ namespace MediaWiki\Parser;
 
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageConverterFactory;
+use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Page\File\BadFileLookup;
@@ -60,6 +62,8 @@ class ParserFactory {
 		private readonly NamespaceInfo $nsInfo,
 		private readonly LoggerInterface $logger,
 		private readonly BadFileLookup $badFileLookup,
+		private readonly RepoGroup $repoGroup,
+		private readonly LanguageFactory $languageFactory,
 		private readonly LanguageConverterFactory $languageConverterFactory,
 		private readonly LanguageNameUtils $languageNameUtils,
 		private readonly HookContainer $hookContainer,
@@ -102,6 +106,8 @@ class ParserFactory {
 				$this->nsInfo,
 				$this->logger,
 				$this->badFileLookup,
+				$this->repoGroup,
+				$this->languageFactory,
 				$this->languageConverterFactory,
 				$this->languageNameUtils,
 				$this->hookContainer,

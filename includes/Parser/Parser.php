@@ -21,6 +21,7 @@ use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Gallery\Exception\ImageGalleryClassNotFoundException;
 use MediaWiki\Gallery\ImageGalleryBase;
 use MediaWiki\HookContainer\HookContainer;
@@ -32,6 +33,7 @@ use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Language\LanguageConverterFactory;
+use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\Linker;
@@ -401,6 +403,8 @@ class Parser {
 		private NamespaceInfo $nsInfo,
 		private LoggerInterface $logger,
 		private BadFileLookup $badFileLookup,
+		private RepoGroup $repoGroup,
+		private LanguageFactory $languageFactory,
 		private LanguageConverterFactory $languageConverterFactory,
 		private LanguageNameUtils $languageNameUtils,
 		private HookContainer $hookContainer,
@@ -645,9 +649,7 @@ class Parser {
 				[ $nsText, $nsSeparator, $mainText ] = $converter->convertSplitTitle( $page );
 				// In the future, those three pieces could be stored separately rather than joined into $titleText,
 				// and OutputPage would format them and join them together, to resolve T314399.
-				$titleLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage(
-					$converter->getPreferredVariant()
-				);
+				$titleLang = $this->languageFactory->getLanguage( $converter->getPreferredVariant() );
 				$titleText = self::formatPageTitle( $nsText, $nsSeparator, $mainText, $titleLang );
 			}
 			$this->mOutput->setTitleText( $titleText );
@@ -3839,12 +3841,11 @@ class Parser {
 		if ( isset( $options['broken'] ) ) {
 			$file = false; // broken thumbnail forced by hook
 		} else {
-			$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
 			if ( isset( $options['sha1'] ) ) { // get by (sha1,timestamp)
-				$file = $repoGroup->findFileFromKey( $options['sha1'], $options );
+				$file = $this->repoGroup->findFileFromKey( $options['sha1'], $options );
 			} else { // get by (name,timestamp)
 				$link = TitleValue::newFromLinkTarget( $link );
-				$file = $repoGroup->findFile( $link, $options );
+				$file = $this->repoGroup->findFile( $link, $options );
 			}
 		}
 		return $file;

@@ -1848,6 +1848,8 @@ return [
 			$services->getNamespaceInfo(),
 			LoggerFactory::getInstance( 'Parser' ),
 			$services->getBadFileLookup(),
+			$services->getRepoGroup(),
+			$services->getLanguageFactory(),
 			$services->getLanguageConverterFactory(),
 			$services->getLanguageNameUtils(),
 			$services->getHookContainer(),

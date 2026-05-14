@@ -4,9 +4,11 @@ namespace MediaWiki\Tests\Parser;
 
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageConverterFactory;
+use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Page\File\BadFileLookup;
@@ -69,6 +71,8 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( NamespaceInfo::class ),
 			new TestLogger(),
 			$this->createNoOpMock( BadFileLookup::class ),
+			$this->createNoOpMock( RepoGroup::class ),
+			$this->createNoOpMock( LanguageFactory::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class, [ 'isConversionDisabled' ] ),
 			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createHookContainer(),
