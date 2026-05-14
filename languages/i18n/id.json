@@ -111,14 +111,15 @@
 			"RaymondSutanto94",
 			"Deepturquoise",
 			"Bayahiu",
-			"Budhiastawa"
+			"Budhiastawa",
+			"Argo Carpathians"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategori}}",
 	"category_header": "Halaman-halaman dalam kategori \"$1\"",
 	"subcategories": "Subkategori",
 	"category-media-header": "Media dalam kategori \"$1\"",
-	"category-empty": "<em>Saat ini, tidak terdapat halaman ataupun media dalam kategori ini.</em>",
+	"category-empty": "<em>Tiada laman atau media di kategori ini.</em>",
 	"hidden-categories": "{{PLURAL:$1|Kategori tersembunyi}}",
 	"hidden-category-category": "Kategori tersembunyi",
 	"category-subcat-count": "{{PLURAL:$2|Kategori ini hanya memiliki subkategori berikut.|{{PLURAL:$1|$1 subkategori}} di kategori ini ditampilkan berikut ini. Terdapat $2  subkategori seluruhnya dalam kategori ini.}}",

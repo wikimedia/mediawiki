@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kallmemel"
+		]
+	},
+	"interwiki": "Mira i editá dato di interwiki",
+	"interwiki-title-norights": "Mira dato di interwiki",
+	"interwiki_intro": "Esaki ta un bista di interwiki tabèl, ku ta definí e prefihonan abreviá ku ta wòrdu usá pa lenk rapidamente na diferente wiki i otro wèpsaitnan eksterno. Pa uso rekomendá, por fabor wak [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki e manual riba MediaWiki.org].",
+	"interwiki-legend-label": "Leyenda",
+	"interwiki_prefix": "Prefiho",
+	"interwiki-prefix-label": "Prefiho:",
+	"interwiki_prefix_intro": "Prefiho di interwiki pa wòrdu usá den <code>[<nowiki />[prefiho:<em>nòmber di página</em>]]</code> sintáksis di wikiteksto.",
+	"interwiki_url_intro": "Malchi pa URLnan. E espasio reservá $1 lo wòrdu remplasá pa e <em>nòmber di página</em> den <code>[<nowiki />[prefiho:<em>nòmber di página</em>]]</code>.",
+	"interwiki_local": "Remití",
+	"interwiki-local-label": "Remití",
+	"interwiki_trans": "Transkluí",
+	"interwiki-trans-label": "Transkluí",
+	"interwiki_1": "sí",
+	"interwiki_0": "nò",
+	"interwiki_edit": "Editá",
+	"interwiki_reasonfield": "Motibu:",
+	"interwiki_deleting": "Bo ta eliminá prefiho \" $1 \".",
+	"interwiki_deleted": "Prefiho \" $1 \" a wòrdu kitá for di tabèl di interwiki.",
+	"interwiki_delfailed": "Prefiho \"$1\" no por a wòrdu kitá for di tabèl di interwiki.",
+	"interwiki-logtext": "Mira registro",
+	"interwiki_addtext": "Agregá un prefiho di interwiki òf idioma",
+	"interwiki_addbutton": "Agregá",
+	"action-interwiki": "alterá e entrada di interwiki aki",
+	"interwiki-global-links": "Prefihonan di interwiki global",
+	"interwiki-local-links": "Prefihonan di interwiki lokal",
+	"interwiki-links": "Prefihonan di interwiki",
+	"interwiki-language-links": "Prefihonan di interidioma",
+	"interwiki-global-language-links": "Prefihonan di interidioma global"
+}

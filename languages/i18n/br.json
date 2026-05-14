@@ -57,6 +57,7 @@
 	"mypage": "Ma zammig pajenn",
 	"mytalk": "Ma c'haozeadennoù",
 	"mytalk-appeal": "Engelver ar stankadenn IP-mañ",
+	"mytalk-appeal-summary": "Stanket eo ho chomlec'h IP, neuze ne c’hallit ket degas kemmoù. Ma klikit war \"{{int:mytalk-appeal-submit}}\" e vo krouet ur [[mw:Special:MyLanguage/Help:Temporary_accounts|kont berrbad]]. Neuze e c'hallit kemmañ ho pajenn gaozeal berrbad evit ober engalv d’ar stankadenn-mañ.",
 	"mytalk-appeal-submit": "Kenderc'hel",
 	"anontalk": "Kaozeal",
 	"navigation": "Merdeiñ",

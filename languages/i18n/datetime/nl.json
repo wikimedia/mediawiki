@@ -106,5 +106,5 @@
 	"hours-ago": "$1 {{PLURAL:$1|uur}} geleden",
 	"minutes-ago": "$1 {{PLURAL:$1|minuut|minuten}} geleden",
 	"seconds-ago": "$1 {{PLURAL:$1|seconde|seconden}} geleden",
-	"just-now": "Zojuist"
+	"just-now": "zojuist"
 }
