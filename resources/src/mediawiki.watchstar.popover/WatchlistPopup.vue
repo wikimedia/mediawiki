@@ -5,6 +5,7 @@
 		class="mw-watchstar-WatchlistPopup"
 		:anchor="anchor"
 		:placement="placement"
+		:use-bottom-sheet="useBottomSheet"
 		@mouseenter="onPopoverMouseEnter"
 		@mouseleave="onPopoverMouseLeave"
 		@focusin="onPopoverFocusIn"
@@ -158,7 +159,8 @@ module.exports = defineComponent( {
 		watchResponse: { type: Array, default: () => [] },
 		title: { type: mw.Title, default: null },
 		preferredExpiry: { type: String, default: '' },
-		link: { type: Object, default: () => {} }
+		link: { type: Object, default: () => {} },
+		useBottomSheet: { type: Boolean, default: false }
 	},
 	setup( props ) {
 		/** @member {boolean} isOpen Whether the popup is currently open. */

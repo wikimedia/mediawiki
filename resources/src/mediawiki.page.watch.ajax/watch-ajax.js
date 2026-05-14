@@ -311,7 +311,9 @@
 					title: mwTitle,
 					dataExpiryOptions: watchlistWidgets.dataExpiryOptions,
 					preferredExpiry,
-					link: $link[ 0 ]
+					link: $link[ 0 ],
+					// On mobile the popover is shown as a bottom sheet.
+					useBottomSheet: mobileView
 				} ).mount( wrapper );
 				window.addEventListener( 'WatchlistPopup.loading', () => {
 					updateWatchLinkAttributes( $link, popoverState.action, 'loading' );
@@ -522,7 +524,7 @@
 			}
 			mw.loader.load( modulesToLoad );
 
-			if ( !enablePopover || mobileView ) {
+			if ( !enablePopover ) {
 				const api = new mw.Api();
 				api[ action ]( title, preferredExpiry )
 					.done( ( watchResponse ) => {
