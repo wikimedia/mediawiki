@@ -19,7 +19,7 @@ jest.mock( '../../../resources/src/mediawiki.languageselector/codex.js', () => (
 				</div>
 			</div>
 		`,
-		props: [ 'selected', 'inputValue', 'inputChips', 'menuItems', 'menuConfig' ]
+		props: [ 'selected', 'inputValue', 'inputChips', 'menuItems', 'menuConfig', 'placeholder' ]
 	}
 } ), { virtual: true } );
 
@@ -92,6 +92,14 @@ describe( 'MultiselectLookupLanguageSelector', () => {
 
 		const cdxMultiselectLookup = wrapper.findComponent( { name: 'CdxMultiselectLookup' } );
 		expect( cdxMultiselectLookup.props( 'menuConfig' ) ).toEqual( menuConfig );
+	} );
+
+	it( 'passes placeholder prop to CdxMultiselectLookup', () => {
+		const placeholder = 'Search for a language';
+		const wrapper = mount( { placeholder } );
+
+		const cdxMultiselectLookup = wrapper.findComponent( { name: 'CdxMultiselectLookup' } );
+		expect( cdxMultiselectLookup.props( 'placeholder' ) ).toBe( placeholder );
 	} );
 
 	it( 'emits update:selected when language is selected via update:selected', async () => {

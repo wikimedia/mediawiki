@@ -10,7 +10,7 @@ jest.mock( '../../../resources/src/mediawiki.languageselector/codex.js', () => (
 	CdxLookup: {
 		name: 'CdxLookup',
 		template: '<div class="cdx-lookup"><slot name="menu-item" :menu-item="{ label: \'test\', value: \'test\' }"></slot><slot name="no-results"></slot></div>',
-		props: [ 'selected', 'inputValue', 'menuItems', 'menuConfig' ]
+		props: [ 'selected', 'inputValue', 'menuItems', 'menuConfig', 'placeholder' ]
 	}
 } ), { virtual: true } );
 
@@ -80,6 +80,14 @@ describe( 'LookupLanguageSelector', () => {
 
 		const cdxLookup = wrapper.findComponent( { name: 'CdxLookup' } );
 		expect( cdxLookup.props( 'menuConfig' ) ).toEqual( menuConfig );
+	} );
+
+	it( 'passes placeholder prop to CdxLookup', () => {
+		const placeholder = 'Search for a language';
+		const wrapper = mount( { placeholder } );
+
+		const cdxLookup = wrapper.findComponent( { name: 'CdxLookup' } );
+		expect( cdxLookup.props( 'placeholder' ) ).toBe( placeholder );
 	} );
 
 	it( 'renders custom menu-item slot content', () => {
