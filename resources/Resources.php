@@ -3001,6 +3001,12 @@ return [
 		'packageFiles' => [
 			'tempUserBanner.js',
 			[ 'name' => 'config.json', 'config' => [ MainConfigNames::AutoCreateTempUser ] ],
+			[
+				'name' => 'contLangMessages.json',
+				'callback' => static fn ( MessageLocalizer $messageLocalizer ) => [
+					'tempuser-helppage' => $messageLocalizer->msg( 'tempuser-helppage' )->inContentLanguage()->text(),
+				],
+			],
 		],
 		'dependencies' => [
 			'mediawiki.jqueryMsg',
