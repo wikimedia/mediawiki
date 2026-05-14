@@ -38,7 +38,7 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 		$constraint = new RevisionDeletedConstraint(
 			false,
 			1,
-			null,
+			$this->createMockRevision( true, false ),
 			'new',
 			$this->createMock( Title::class ),
 			$this->createMock( Authority::class ),
