@@ -3,6 +3,7 @@
 		"authors": [
 			"Abdullahi",
 			"Abshirdheere",
+			"AhmedG612",
 			"Maax",
 			"Mimursal"
 		]
@@ -10,6 +11,7 @@
 	"saveusergroups": "Kaydi kooxaha isticmaalayaasha",
 	"userrights-groupsmember": "Ka mid ah:",
 	"userrights-reason": "Sababta:",
+	"userrights-nodatabase": "Xog ururinta $1 ma jirto ama ma aha mid deegaanka ku jirta.",
 	"group": "Koox:",
 	"group-user": "Isticmaalada",
 	"group-autoconfirmed": "Isticmaalada si otomaatik loo aqoonsaday",
@@ -17,6 +19,7 @@
 	"group-sysop": "Maamulada",
 	"group-all": "(dhamaan)",
 	"group-user-member": "{{GENDER:$1|isticmaale}}",
+	"group-named-member": "{{GENDER:$1|isticmaale diiwaangashan}}",
 	"group-bot-member": "{{GENDER:$1|bot}}",
 	"group-sysop-member": "{{GENDER:$1|maamulaha}}",
 	"grouppage-user": "{{ns:project}}:Isticmaalada",
@@ -27,10 +30,12 @@
 	"right-createpage": "Samaynta bogag (taasoo aan lahayn bogag wadahadal)",
 	"right-createtalk": "Samaynta bogagga wadahadalka",
 	"right-createaccount": "Samaynta akoon isticmaale cusub",
+	"right-autocreateaccount": "Si toos ah u gal adigoo adeegsanaya akoon isticmaale dibadeed",
 	"right-minoredit": "Calaamaynta bedelka yar",
 	"right-move": "Wareeji maqaalada",
 	"right-upload": "Soo geli fayl",
 	"right-delete": "Tirtir maqaalada",
+	"right-delete-redirect": "Tirtir dib u wareejin hal isbeddel ah",
 	"right-bigdelete": "Tirtir maqaalada taariikhda dheer leh",
 	"right-browsearchive": "Raadi maqaalada la tirtiray",
 	"right-undelete": "Ha tirtirin bog",
@@ -54,10 +59,20 @@
 	"action-undelete": "ha tirtirin boggaan",
 	"action-block": "ka mamnuuc isticmaalahaan in oo wax badalo",
 	"action-protect": "Difaac",
+	"action-userrights": "Wax ka beddel dhamaan xuquuqaha isticmaalaha",
 	"listgrouprights": "Xuquuqaha koox isticmaalada",
 	"listgrouprights-summary": "Kani waa liiska koox isticmaale yaal ah ee la aqoonsaday wikigaan, in ay leeyihiin xuquuqdaan.\nWaxaa laga yaabaa in ay halkaan ku jiraan [[{{MediaWiki:Listgrouprights-helppage}}|macluumaad dheeraad ah]] ee ku saabsan xuquuqaha kala gadisan.",
 	"listgrouprights-key": "Ciwaanka:\n* <span class=\"listgrouprights-granted\">Xuquuq la siiyey</span>\n* <span class=\"listgrouprights-revoked\">Xuquuq laga qaaday</span>",
 	"listgrouprights-group": "Kooxda",
 	"listgrouprights-rights": "Xuquuqaha",
-	"listgrouprights-members": "(Inta ka mid ah liiskooda)"
+	"listgrouprights-members": "(Inta ka mid ah liiskooda)",
+	"listgrouprights-restrictedgroups-bypassable": "Isticmaalayaasha leh xuquuqda \"$1\" ($2) waxay siin karaan kooxdan iyagoo ka gudbaya shuruudaha kor ku xusan.",
+	"listgrouprights-restrictedgroups-cond-emailconfirmed": "Isticmaaluhu wuxuu xaqiijiyay ciwaankiisa iimaylka",
+	"listgrouprights-restrictedgroups-cond-ingroups": "Isticmaaluhu waa xubin ka tirsan {{PLURAL:$1|kooxda|kooxaha oo dhan}}: $2",
+	"listgrouprights-restrictedgroups-cond-isip": "Isticmaaluhu wuxuu isticmaalayaa cinwaan IP ah: $1",
+	"listgrouprights-restrictedgroups-cond-ipinrange": "Isticmaaluhu wuxuu isticmaalayaa cinwaan IP ah oo ku jira xadka: $1",
+	"listgrouprights-restrictedgroups-cond-age-from-edit": "Isticmaaluhu wuxuu sameeyay tafatirkiisii ugu horreeyay ugu yaraan $1 ka hor",
+	"listgrouprights-restrictedgroups-cond-blocked": "Koontada isticmaalaha waa laga xannibay dhammaan bogga",
+	"listgrouprights-restrictedgroups-cond-isbot": "Isticmaaluhu waa bot",
+	"restrictedgroups-autodemotion-log-reason": "Si otomaatig ah ayaa looga saaraya {{GENDER:$1|isticmaale}} {{PLURAL:$2|koox xaddidan|kooxo xaddidan}}"
 }

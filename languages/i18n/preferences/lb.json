@@ -134,6 +134,8 @@
 	"prefs-files": "Fichieren",
 	"imagemaxsize": "Maximal Gréisst fir Biller op Beschreiwungssäite fir Fichieren:",
 	"thumbsize": "Gréisst vun der Miniatur:",
+	"thumbsize-small": "Kleng",
+	"thumbsize-large": "Grouss",
 	"prefs-diffs": "Ënnerscheeder",
 	"tog-diffonly": "Den Inhalt vun der Säit ënnert de Versiounsënnerscheeder net weisen",
 	"tog-norollbackdiff": "Ënnerscheed nom Zrécksetzen net weisen",

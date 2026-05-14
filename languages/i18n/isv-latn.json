@@ -360,6 +360,7 @@
 	"badretype": "Vpisane paroly ne sut identične.",
 	"usernameinprogress": "Stvorjenje konta za tuto koristničsko ime jest uže v teku. \nProsimo, počekajte.",
 	"userexists": "Vvedeno koristničsko ime uže jest zajeto.\nProsimo, izberite drugo ime.",
+	"username-previously-renamed-account": "Tuto ime koristnika ne ide zaregistrovati, ibo bylo upotrěbjano kontom, ktoro bylo prěimenovano. Prošu, izberite ino ime.",
 	"createacct-normalization": "Vaše koristničsko ime bude izměnjeno na «$2» iz pričiny tehničnyh ograničenij.",
 	"loginerror": "Pogrěška pri prijavjenju se",
 	"createacct-error": "Pogrěška pri tvorjenju konta",

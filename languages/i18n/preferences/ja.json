@@ -177,6 +177,7 @@
 	"thumbsize-small": "小",
 	"thumbsize-regular": "中",
 	"thumbsize-large": "大",
+	"thumbsize-help": "一部の利用者は標準より小さいか、あるいは大きいサムネイルを好むかもしれません。標準サイズは$1ピクセルです。",
 	"prefs-diffs": "差分",
 	"tog-diffonly": "差分の下にページ内容を表示しない",
 	"tog-norollbackdiff": "巻き戻し後の差分を表示しない",
