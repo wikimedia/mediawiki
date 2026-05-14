@@ -9,6 +9,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\MessageLocalizer;
+use MediaWiki\Page\PageReference;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
@@ -358,15 +359,15 @@ class UserLinkRenderer {
 	 *   a 'default' caption.
 	 * @internal For use by LinkRenderer::getLinkClasses()
 	 */
-	public function getLinkClasses( LinkTarget $target, bool $isDefaultCaption = false ): array {
+	public function getLinkClasses( LinkTarget|PageReference $target, bool $isDefaultCaption = false ): array {
 		$ns = $target->getNamespace();
 		$userName = null;
 		if ( $ns === NS_USER ) {
 			// Recognize direct links to users
-			$userName = $target->getText();
+			$userName = $target->getDBkey();
 		} elseif ( $ns === NS_SPECIAL ) {
 			// Recognize links to contributions pages
-			[ $name, $subpage ] = $this->specialPageFactory->resolveAlias( $target->getText() );
+			[ $name, $subpage ] = $this->specialPageFactory->resolveAlias( $target->getDBkey() );
 			if ( $name === 'Contributions' && $subpage !== null ) {
 				$userName = $subpage;
 			}

@@ -629,9 +629,15 @@ class LinkRenderer {
 	 */
 	public function getLinkClasses( $target, bool $isDefaultCaption = false ) {
 		Assert::parameterType( [ LinkTarget::class, PageReference::class ], $target, '$target' );
-		$target = $this->castToLinkTarget( $target );
+		if ( $target instanceof LinkTarget ) {
+			$isExternal = $target->isExternal();
+		} else {
+			// $target instanceof PageReference
+			// treat all PageReferences as local for now
+			$isExternal = false;
+		}
 		// Don't call LinkCache if the target is "non-proper"
-		if ( $target->isExternal() || $target->getText() === '' ) {
+		if ( $isExternal || $target->getDBkey() === '' ) {
 			return '';
 		}
 		$classes = $this->userLinkRenderer->getLinkClasses( $target, $isDefaultCaption );
