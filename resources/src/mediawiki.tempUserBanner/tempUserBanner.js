@@ -8,6 +8,7 @@
 $( () => {
 
 	const config = require( './config.json' ),
+		contLangMessages = require( './contLangMessages.json' ),
 		local = require( 'mediawiki.storage' ).local,
 		$tempUserBannerTooltipEl = $( '.mw-temp-user-banner-tooltip' ),
 		$tempUserBannerTooltipButtonEl = $( '#mw-temp-user-banner-tooltip-button' ),
@@ -98,7 +99,10 @@ $( () => {
 	function getTooltipContent( shouldShowExpiration ) {
 		const descriptionText = shouldShowExpiration ?
 			getExpirationDescriptionText() :
-			mw.message( 'temp-user-banner-tooltip-description-learn-more' ).parseDom();
+			mw.message(
+				'temp-user-banner-tooltip-description-learn-more',
+				contLangMessages[ 'tempuser-helppage' ]
+			).parseDom();
 		return $( '<div>' ).append(
 			$( '<p>' ).append( descriptionText ),
 			$( '<p>' ).append( mw.message( 'temp-user-banner-tooltip-description-login' ).parseDom() )
