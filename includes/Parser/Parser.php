@@ -1232,7 +1232,7 @@ class Parser {
 	/**
 	 * Get a list of strippable XML-like elements
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getStripList() {
 		return $this->mStripList;
@@ -3636,7 +3636,14 @@ class Parser {
 	 * @param LinkTarget $link
 	 * @param Parser|false $parser
 	 *
-	 * @return array
+	 * @return array An associative array with the following keys:
+	 *   - revision-record: RevisionRecord|false Optional, for b/c
+	 *   - text: string|false The wikitext
+	 *   - finalTitle: Title The title after any redirection has been applied
+	 *   - deps: An array of associative arrays, each describing a dependency, with keys:
+	 *     - title: Title
+	 *     - page_id: int
+	 *     - rev_id: int|null
 	 * @since 1.12
 	 */
 	public static function defaultFetchTemplate(
@@ -3807,7 +3814,7 @@ class Parser {
 	 * If 'broken' is a key in $options then the file will appear as a broken thumbnail.
 	 * @param LinkTarget $link
 	 * @param array $options Array of options to RepoGroup::findFile
-	 * @return array ( File or false, Title of file )
+	 * @return array{File|false,Title}
 	 * @since 1.18
 	 */
 	public function fetchFileAndTitle( LinkTarget $link, array $options = [] ) {
@@ -3929,7 +3936,7 @@ class Parser {
 	 * @param array $piece
 	 * @param PPFrame $frame
 	 *
-	 * @return array
+	 * @return array{object:PPNode}|array{text:string}
 	 * @internal
 	 */
 	public function argSubstitution( array $piece, PPFrame $frame ) {
@@ -5126,7 +5133,7 @@ class Parser {
 	/**
 	 * Get all registered function hook identifiers
 	 *
-	 * @return array
+	 * @return string[]
 	 * @since 1.8
 	 */
 	public function getFunctionHooks() {
@@ -5793,7 +5800,7 @@ class Parser {
 	/**
 	 * Accessor
 	 *
-	 * @return array
+	 * @return string[]
 	 * @since 1.6
 	 */
 	public function getTags(): array {
@@ -6388,7 +6395,7 @@ class Parser {
 	 *   has already been matched against `img_width` to localize the `px`
 	 *   suffix.
 	 *
-	 * @return array
+	 * @return array{width?:int,height?:int}
 	 * @since 1.20
 	 * @internal
 	 */
