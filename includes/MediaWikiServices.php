@@ -169,6 +169,7 @@ use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Session\SessionManagerInterface;
 use MediaWiki\Session\SessionStore;
 use MediaWiki\Settings\Config\ConfigSchema;
+use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Shell\ShellboxClientFactory;
 use MediaWiki\Site\SiteLookup;
@@ -2079,6 +2080,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSessionStore(): SessionStore {
 		return $this->getService( 'SessionStore' );
+	}
+
+	/**
+	 * @since 1.47
+	 */
+	public function getShadowPageLoader(): ShadowPageLoader {
+		return $this->getService( 'ShadowPageLoader' );
 	}
 
 	/**

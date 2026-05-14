@@ -197,6 +197,8 @@ because of Phabricator reports.
   been deprecated. Use ParserOptions::getTemplateCallback() to get the original
   handler.
 * Parser::getExternalLinkRel() has been deprecated. Use LinkRenderer.
+* Title::hasSourceText(), ::getDefaultMessageText() and
+  ::getDefaultSystemMessage() have been deprecated. Use ShadowPageLoader.
 * Passing $revision as a string to LintErrorChecker::check() and ::checkSome()
   is deprecated and will trigger deprecation warnings.  Use
   MutableRevisionRecord::newFromContent() to pass a WikitextContent constructed

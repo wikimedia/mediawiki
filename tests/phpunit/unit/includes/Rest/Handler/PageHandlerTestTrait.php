@@ -12,8 +12,8 @@ use MediaWiki\Parser\Parsoid\LintErrorChecker;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Registration\ExtensionRegistry;
-use MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
+use MediaWiki\Rest\Handler\Helper\HtmlShadowOutputHelper;
 use MediaWiki\Rest\Handler\Helper\PageContentHelper;
 use MediaWiki\Rest\Handler\Helper\PageRedirectHelper;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
@@ -110,7 +110,7 @@ trait PageHandlerTestTrait {
 
 		$helperFactory = $this->createNoOpMock(
 			PageRestHelperFactory::class,
-			[ 'newPageContentHelper', 'newHtmlOutputRendererHelper', 'newHtmlMessageOutputHelper', 'newPageRedirectHelper' ]
+			[ 'newPageContentHelper', 'newHtmlOutputRendererHelper', 'newHtmlShadowOutputHelper', 'newPageRedirectHelper' ]
 		);
 
 		$helperFactory->method( 'newPageContentHelper' )
@@ -121,7 +121,8 @@ trait PageHandlerTestTrait {
 				$services->getPageStore(),
 				$services->getTitleFactory(),
 				$services->getConnectionProvider(),
-				$services->getChangeTagsStore()
+				$services->getChangeTagsStore(),
+				$services->getShadowPageLoader(),
 			) );
 
 		$parsoidOutputStash = $this->getParsoidOutputStash();
@@ -145,9 +146,13 @@ trait PageHandlerTestTrait {
 					$lenientRevHandling
 				);
 			} );
-		$helperFactory->method( 'newHtmlMessageOutputHelper' )
-			->willReturnCallback( static function ( $page ) {
-				return new HtmlMessageOutputHelper( $page );
+		$helperFactory->method( 'newHtmlShadowOutputHelper' )
+			->willReturnCallback( static function ( $page ) use ( $services ) {
+				return new HtmlShadowOutputHelper(
+					$services->getShadowPageLoader(),
+					$services->getTitleFormatter(),
+					$page
+				);
 			} );
 
 		$request ??= new RequestData( [] );
@@ -200,7 +205,8 @@ trait PageHandlerTestTrait {
 				$services->getPageStore(),
 				$services->getTitleFactory(),
 				$services->getConnectionProvider(),
-				$services->getChangeTagsStore()
+				$services->getChangeTagsStore(),
+				$services->getShadowPageLoader(),
 			) );
 
 		$request ??= new RequestData( [] );
@@ -259,7 +265,8 @@ trait PageHandlerTestTrait {
 				$services->getPageStore(),
 				$services->getTitleFactory(),
 				$services->getConnectionProvider(),
-				$services->getChangeTagsStore()
+				$services->getChangeTagsStore(),
+				$services->getShadowPageLoader(),
 			) );
 
 		$request ??= new RequestData( [] );

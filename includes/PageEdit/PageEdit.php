@@ -34,6 +34,7 @@ use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\User\User;
@@ -77,6 +78,7 @@ class PageEdit implements IEditObject {
 		private readonly PageEditingHelper $pageEditingHelper,
 		private readonly RateLimiter $rateLimiter,
 		private readonly RevisionStore $revisionStore,
+		private readonly ShadowPageLoader $shadowPageLoader,
 		private readonly WatchlistManager $watchlistManager,
 		private readonly WatchedItemStoreInterface $watchedItemStore,
 	) {
@@ -494,6 +496,7 @@ class PageEdit implements IEditObject {
 		// message with content equivalent to default (allow empty pages
 		// in this case to disable messages, see T52124)
 			new DefaultTextConstraint(
+				$this->shadowPageLoader,
 				$this->inputs->getTitle(),
 				$this->inputs->shouldAllowBlankArticle(),
 				$this->textbox1,

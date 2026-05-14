@@ -15,6 +15,7 @@ use MediaWiki\PageEdit\PageEditFactory;
 use MediaWiki\PageEdit\PageEditInputs;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWikiUnitTestCase;
@@ -43,6 +44,7 @@ class PageEditFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( PageEditingHelper::class ),
 			$this->createMock( RateLimiter::class ),
 			$this->createMock( RevisionStore::class ),
+			$this->createMock( ShadowPageLoader::class ),
 			$this->createMock( WatchlistManager::class ),
 			$this->createMock( WatchedItemStoreInterface::class ),
 		);

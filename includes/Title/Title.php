@@ -3162,6 +3162,10 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 			return true; // any interwiki link might be viewable, for all we know
 		}
 
+		if ( $services->getShadowPageLoader()->existsForLink( $this ) ) {
+			return true;
+		}
+
 		switch ( $this->mNamespace ) {
 			case NS_MEDIA:
 			case NS_FILE:
@@ -3173,9 +3177,6 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 			case NS_MAIN:
 				// selflink, possibly with fragment
 				return $this->mDbkeyform == '';
-			case NS_MEDIAWIKI:
-				// known system message
-				return $this->hasSourceText() !== false;
 			default:
 				return false;
 		}
@@ -3199,9 +3200,11 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	/**
 	 * Does this page have source text?
 	 *
+	 * @deprecated since 1.47 use ShadowPageLoader
 	 * @return bool
 	 */
 	public function hasSourceText() {
+		wfDeprecated( __METHOD__, '1.47' );
 		if ( $this->exists() ) {
 			return true;
 		}
@@ -3227,37 +3230,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * Get the default (plain) message contents for a page that overrides an
 	 * interface message key.
 	 *
-	 * Primary use cases:
-	 *
-	 * - Article:
-	 *    - Show default when viewing the page. The Article::getSubstituteContent
-	 *      method displays the default message content, instead of the
-	 *      'noarticletext' placeholder message normally used.
-	 *
-	 * - EditPage:
-	 *    - Title of edit page. When creating an interface message override,
-	 *      the editor is told they are "Editing the page", instead of
-	 *      "Creating the page". (EditPage::setHeaders)
-	 *    - Edit notice. The 'translateinterface' edit notice is shown when creating
-	 *      or editing an interface message override. (EditPage::showIntro)
-	 *    - Opening the editor. The contents of the localisation message are used
-	 *      as contents of the editor when creating a new page in the MediaWiki
-	 *      namespace. This simplifies the process for editors when "changing"
-	 *      an interface message by creating an override. (EditPage::getContentObject)
-	 *    - Showing a diff. The left-hand side of a diff when an editor is
-	 *      previewing their changes before saving the creation of a page in the
-	 *      MediaWiki namespace. (EditPage::showDiff)
-	 *    - Disallowing a save. When attempting to create a MediaWiki-namespace
-	 *      page with the proposed content matching the interface message default,
-	 *      the save is rejected, the same way we disallow blank pages from being
-	 *      created. (EditPage using DefaultTextConstraint)
-	 *
-	 * - ApiEditPage:
-	 *    - Default content, when using the 'prepend' or 'append' feature.
-	 *
-	 * - SkinTemplate:
-	 *    - Label the create action as "Edit", if the page can be an override.
-	 *
+	 * @deprecated since 1.47 use ShadowPageLoader
 	 * @return string|false
 	 */
 	public function getDefaultMessageText() {
@@ -3270,6 +3243,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * Same as getDefaultMessageText, but returns a Message object.
 	 *
 	 * @see ::getDefaultMessageText
+	 * @deprecated since 1.47 use ShadowPageLoader
 	 *
 	 * @return ?Message
 	 */

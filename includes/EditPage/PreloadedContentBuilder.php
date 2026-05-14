@@ -14,6 +14,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
 use Wikimedia\Assert\Assert;
@@ -38,7 +39,8 @@ class PreloadedContentBuilder {
 		private readonly RedirectLookup $redirectLookup,
 		private readonly SpecialPageFactory $specialPageFactory,
 		private readonly ContentTransformer $contentTransformer,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		private readonly ShadowPageLoader $shadowPageLoader,
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
@@ -93,18 +95,7 @@ class PreloadedContentBuilder {
 	 * Beware.
 	 */
 	public function getDefaultContent( ProperPageIdentity $page ): ?Content {
-		$title = Title::newFromPageIdentity( $page );
-		$contentModel = $title->getContentModel();
-		$contentHandler = $this->contentHandlerFactory->getContentHandler( $contentModel );
-		$contentFormat = $contentHandler->getDefaultFormat();
-		if ( $title->getNamespace() === NS_MEDIAWIKI ) {
-			// If this is a system message, get the default text.
-			$text = $title->getDefaultMessageText();
-			if ( $text !== false ) {
-				return $contentHandler->unserializeContent( $text, $contentFormat );
-			}
-		}
-		return null;
+		return $this->shadowPageLoader->get( $page )?->getPreloadContent();
 	}
 
 	/**

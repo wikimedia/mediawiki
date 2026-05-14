@@ -36,6 +36,7 @@ class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
 		array $params = [],
 		?Authority $authority = null
 	): RevisionContentHelper {
+		$services = $this->getServiceContainer();
 		$helper = new RevisionContentHelper(
 			new ServiceOptions(
 				PageContentHelper::CONSTRUCTOR_OPTIONS,
@@ -44,12 +45,13 @@ class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
 					MainConfigNames::RightsText => 'some rights',
 				]
 			),
-			$this->getServiceContainer()->getRevisionLookup(),
-			$this->getServiceContainer()->getTitleFormatter(),
-			$this->getServiceContainer()->getPageStore(),
-			$this->getServiceContainer()->getTitleFactory(),
-			$this->getServiceContainer()->getConnectionProvider(),
-			$this->getServiceContainer()->getChangeTagsStore()
+			$services->getRevisionLookup(),
+			$services->getTitleFormatter(),
+			$services->getPageStore(),
+			$services->getTitleFactory(),
+			$services->getConnectionProvider(),
+			$services->getChangeTagsStore(),
+			$services->getShadowPageLoader(),
 		);
 
 		$authority = $authority ?: $this->mockRegisteredUltimateAuthority();

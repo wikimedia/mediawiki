@@ -55,6 +55,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tidy\TidyDriverBase;
@@ -3625,7 +3626,7 @@ class Parser {
 	 * @param RevisionLookup $revLookup
 	 * @param HookRunner $hookRunner
 	 * @param LinkCache $linkCache
-	 * @param Language $contLang
+	 * @param ShadowPageLoader $shadowPageLoader
 	 * @param LinkTarget $link
 	 * @param Parser|false $parser
 	 *
@@ -3643,12 +3644,13 @@ class Parser {
 		RevisionLookup $revLookup,
 		HookRunner $hookRunner,
 		LinkCache $linkCache,
-		Language $contLang,
+		ShadowPageLoader $shadowPageLoader,
 		$link,
 		$parser
 	) {
 		$title = Title::castFromLinkTarget( $link ); // for compatibility with return type
 		$text = $skip = false;
+		$content = null;
 		$finalTitle = $title;
 		$deps = [];
 		$revRecord = null;
@@ -3749,18 +3751,15 @@ class Parser {
 					$text = false;
 					break;
 				}
-			} elseif ( $title->getNamespace() === NS_MEDIAWIKI ) {
-				$message = wfMessage( $contLang->lcfirst( $title->getText() ) )->inContentLanguage();
-				if ( !$message->exists() ) {
-					$text = false;
-					break;
-				}
-				$text = $message->plain();
-				break;
 			} else {
+				$content = $shadowPageLoader->get( $title )?->getContentForTransclusion();
+				if ( $content ) {
+					$text = $content->getWikitextForTransclusion();
+				} else {
+					$text = false;
+				}
 				break;
 			}
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Only reached when content is set
 			if ( !$content ) {
 				break;
 			}
@@ -3796,7 +3795,7 @@ class Parser {
 			$services->getRevisionLookup(),
 			new HookRunner( $services->getHookContainer() ),
 			$services->getLinkCache(),
-			$services->getContentLanguage(),
+			$services->getShadowPageLoader(),
 			$page,
 			$parser
 		);

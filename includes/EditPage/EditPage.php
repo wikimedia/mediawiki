@@ -69,6 +69,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -376,6 +377,7 @@ class EditPage implements IEditObject {
 	private RestrictionStore $restrictionStore;
 	private RevisionStore $revisionStore;
 	private SessionManager $sessionManager;
+	private ShadowPageLoader $shadowPageLoader;
 	private TempUserCreator $tempUserCreator;
 	private TextboxBuilder $textboxBuilder;
 	private UserEditTracker $userEditTracker;
@@ -437,6 +439,7 @@ class EditPage implements IEditObject {
 		$this->restrictionStore = $services->getRestrictionStore();
 		$this->revisionStore = $services->getRevisionStore();
 		$this->sessionManager = $services->getSessionManager();
+		$this->shadowPageLoader = $services->getShadowPageLoader();
 		$this->tempUserCreator = $services->getTempUserCreator();
 		$this->textboxBuilder = $services->getTextboxBuilder();
 		$this->userEditTracker = $services->getUserEditTracker();
@@ -2154,9 +2157,7 @@ class EditPage implements IEditObject {
 			$msg = $this->section === 'new' ? 'editingcomment' : 'editingsection';
 		} else {
 			$msg = $contextTitle->exists()
-				|| ( $contextTitle->getNamespace() === NS_MEDIAWIKI
-					&& $contextTitle->getDefaultMessageText() !== false
-				)
+				|| $this->shadowPageLoader->get( $contextTitle )?->existsForEdit()
 				? 'editing'
 				: 'creating';
 		}
@@ -2270,14 +2271,22 @@ class EditPage implements IEditObject {
 
 		$content = ContentHandler::makeContent( $text, $this->getTitle(),
 			$this->contentModel, $this->contentFormat );
+		$this->assertSupportedContent( $content );
+		return $content;
+	}
 
+	/**
+	 * Throw an exception if the content can't be directly edited
+	 *
+	 * @param Content $content
+	 * @throws NotDirectlyEditableException
+	 */
+	private function assertSupportedContent( Content $content ) {
 		if ( !$this->pageEditingHelper->isSupportedContentModel(
 			$content->getModel(), $this->enableApiEditOverride
 		) ) {
 			throw new NotDirectlyEditableException( 'This content model is not supported: ' . $content->getModel() );
 		}
-
-		return $content;
 	}
 
 	/**
@@ -2869,14 +2878,13 @@ class EditPage implements IEditObject {
 	 */
 	public function showDiff(): void {
 		$oldtitlemsg = 'currentrev';
-		# if message does not exist, show diff against the preloaded default
-		if ( $this->page->getNamespace() === NS_MEDIAWIKI && !$this->page->exists() ) {
-			$oldtext = $this->getTitle()->getDefaultMessageText();
-			if ( $oldtext !== false ) {
-				$oldtitlemsg = 'defaultmessagetext';
-				$oldContent = $this->toEditContent( $oldtext );
-			} else {
-				$oldContent = null;
+		# if page does not exist, show diff against the preloaded default
+		if ( !$this->page->exists() ) {
+			$oldShadow = $this->shadowPageLoader->get( $this->getTitle() );
+			$oldContent = $oldShadow?->getPreloadContent();
+			if ( $oldContent ) {
+				$this->assertSupportedContent( $oldContent );
+				$oldtitlemsg = $oldShadow->getDiffTitleMessage() ?? $oldtitlemsg;
 			}
 		} else {
 			$oldContent = $this->getCurrentContent();

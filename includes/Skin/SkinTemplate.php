@@ -1115,6 +1115,7 @@ class SkinTemplate extends Skin {
 		$action = $this->getContext()->getActionName();
 		$services = MediaWikiServices::getInstance();
 		$permissionManager = $services->getPermissionManager();
+		$shadowPageLoader = $services->getShadowPageLoader();
 		$categoriesData = $this->getCategoryPortletsData( $this->getOutput()->getCategoryLinks() );
 		$userPageLink = [];
 		$this->addPersonalPageItem( $userPageLink, '-2' );
@@ -1225,6 +1226,7 @@ class SkinTemplate extends Skin {
 
 				$page = $this->canUseWikiPage() ? $this->getWikiPage() : false;
 				$isRemoteContent = $page && !$page->isLocal();
+				$shadowPage = $shadowPageLoader->get( $title );
 
 				// If it is a non-local file, show a link to the file in its own repository
 				// @todo abstract this for remote content that isn't a file
@@ -1255,11 +1257,7 @@ class SkinTemplate extends Skin {
 					);
 					$section = $request->getVal( 'section' );
 
-					if ( $title->exists()
-						|| ( $title->inNamespace( NS_MEDIAWIKI )
-							&& $title->getDefaultMessageText() !== false
-						)
-					) {
+					if ( $title->exists() || $shadowPage?->existsForEdit() ) {
 						$msgKey = $isRemoteContent ? 'edit-local' : 'edit';
 					} else {
 						$msgKey = $isRemoteContent ? 'create-local' : 'create';
@@ -1292,7 +1290,7 @@ class SkinTemplate extends Skin {
 						];
 					}
 				// Checks if the page has some kind of viewable source content
-				} elseif ( $title->hasSourceText() ) {
+				} elseif ( $shadowPage?->hasPreloadContent() ) {
 					// Adds view source view link
 					$content_navigation['views']['viewsource'] = [
 						'class' => ( $onPage && $action == 'edit' ) ? 'selected' : null,

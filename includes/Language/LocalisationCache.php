@@ -1462,6 +1462,23 @@ class LocalisationCache {
 	private function isLeximorphEnabled(): bool {
 		return (bool)$this->options->get( MainConfigNames::UseLeximorph );
 	}
+
+	/**
+	 * Override a subitem value. For use in tests.
+	 *
+	 * @param string $code
+	 * @param string $key
+	 * @param string $subkey
+	 * @param mixed $value
+	 * @return void
+	 */
+	public function setSubitemForTesting( $code, $key, $subkey, $value ) {
+		if ( !isset( $this->initialisedLangs[$code] ) ) {
+			$this->initLanguage( $code );
+		}
+		$this->data[$code][$key][$subkey] = $value;
+		$this->loadedSubitems[$code][$key][$subkey] = true;
+	}
 }
 
 /** @deprecated class alias since 1.46 */

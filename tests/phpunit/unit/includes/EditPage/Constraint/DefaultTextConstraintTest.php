@@ -9,6 +9,9 @@ namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\ShadowPage\ShadowPage;
+use MediaWiki\ShadowPage\ShadowPageLoader;
+use MediaWiki\Tests\Mocks\Content\DummyContentForTesting;
 use MediaWiki\Title\Title;
 use MediaWikiUnitTestCase;
 
@@ -22,16 +25,30 @@ use MediaWikiUnitTestCase;
 class DefaultTextConstraintTest extends MediaWikiUnitTestCase {
 	use EditConstraintTestTrait;
 
-	private function getTitle( $defaultText ) {
+	private function getTitle() {
 		$title = $this->createMock( Title::class );
 		$title->method( 'getNamespace' )->willReturn( NS_MEDIAWIKI );
-		$title->method( 'getDefaultMessageText' )->willReturn( $defaultText );
 		return $title;
+	}
+
+	private function getShadowPageLoader( $defaultText ) {
+		if ( $defaultText === false ) {
+			$page = null;
+		} else {
+			$page = $this->createMock( ShadowPage::class );
+			$page->method( 'getPreloadContent' )->willReturn(
+				new DummyContentForTesting( $defaultText )
+			);
+		}
+		$loader = $this->createMock( ShadowPageLoader::class );
+		$loader->method( 'get' )->willReturn( $page );
+		return $loader;
 	}
 
 	public function testPass() {
 		$constraint = new DefaultTextConstraint(
-			$this->getTitle( 'DefaultMessageTextGoesHere' ),
+			$this->getShadowPageLoader( 'DefaultMessageTextGoesHere' ),
+			$this->getTitle(),
 			false, // Allow blank
 			'User provided text goes here',
 			new RawMessage( '' ),
@@ -46,7 +63,8 @@ class DefaultTextConstraintTest extends MediaWikiUnitTestCase {
 	 */
 	public function testFailure( $defaultText, $userInput ) {
 		$constraint = new DefaultTextConstraint(
-			$this->getTitle( $defaultText ),
+			$this->getShadowPageLoader( $defaultText ),
+			$this->getTitle(),
 			false, // Allow blank
 			$userInput,
 			new RawMessage( '' ),

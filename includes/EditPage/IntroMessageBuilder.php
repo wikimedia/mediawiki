@@ -18,6 +18,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Skin\SkinFactory;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -62,7 +63,8 @@ class IntroMessageBuilder {
 		private readonly NamespaceInfo $namespaceInfo,
 		private readonly SkinFactory $skinFactory,
 		private readonly IConnectionProvider $dbProvider,
-		private readonly UrlUtils $urlUtils
+		private readonly UrlUtils $urlUtils,
+		private readonly ShadowPageLoader $shadowPageLoader,
 	) {
 	}
 
@@ -202,16 +204,14 @@ class IntroMessageBuilder {
 				!$isCSS
 				&& !$title->hasContentModel( CONTENT_MODEL_JSON )
 				&& !$isJavaScript
+				&& $this->shadowPageLoader->getMessageProvider()->existsForLink( $title )
 			) {
-				$defaultMessageText = $title->getDefaultMessageText();
-				if ( $defaultMessageText !== false ) {
-					$translateInterfaceText = $localizer->msg( 'translateinterface' )->parse();
-					$intro .= $translateInterfaceText ? Html::rawElement(
-						'div',
-						[ 'class' => 'mw-translateinterface' ],
-						$translateInterfaceText
-					) : '';
-				}
+				$translateInterfaceText = $localizer->msg( 'translateinterface' )->parse();
+				$intro .= $translateInterfaceText ? Html::rawElement(
+					'div',
+					[ 'class' => 'mw-translateinterface' ],
+					$translateInterfaceText
+				) : '';
 			}
 		}
 

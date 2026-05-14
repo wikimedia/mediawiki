@@ -4,9 +4,9 @@ namespace MediaWiki\Tests\Rest\Handler\Helper;
 
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper;
-use MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputHelper;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
+use MediaWiki\Rest\Handler\Helper\HtmlShadowOutputHelper;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -16,16 +16,16 @@ use MediaWikiIntegrationTestCase;
 class PageRestHelperFactoryTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers \MediaWiki\Rest\Handler\Helper\PageRestHelperFactory::newHtmlMessageOutputHelper
+	 * @covers \MediaWiki\Rest\Handler\Helper\PageRestHelperFactory::newHtmlShadowOutputHelper
 	 * @covers \MediaWiki\Rest\Handler\Helper\PageRestHelperFactory::newHtmlOutputRendererHelper
 	 */
 	public function testNewHtmlOutputHelpers() {
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 		$helperFactory = $this->getServiceContainer()->getPageRestHelperFactory();
 
-		$helper = $helperFactory->newHtmlMessageOutputHelper( $page );
+		$helper = $helperFactory->newHtmlShadowOutputHelper( $page );
 
-		$this->assertInstanceOf( HtmlMessageOutputHelper::class, $helper );
+		$this->assertInstanceOf( HtmlShadowOutputHelper::class, $helper );
 		$this->assertInstanceOf( HtmlOutputHelper::class, $helper );
 
 		$authority = $this->createNoOpMock( Authority::class );

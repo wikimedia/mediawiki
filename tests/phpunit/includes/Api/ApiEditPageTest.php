@@ -1221,7 +1221,8 @@ class ApiEditPageTest extends ApiTestCase {
 	}
 
 	public function testAppendInMediaWikiNamespaceWithSerializationError() {
-		$name = 'MediaWiki:' . ucfirst( __FUNCTION__ );
+		// Any existing message will trigger unserialization
+		$name = 'MediaWiki:Editpage';
 
 		$this->expectApiErrorCode( 'parseerror' );
 

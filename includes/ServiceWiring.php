@@ -239,6 +239,7 @@ use MediaWiki\Session\SessionStore;
 use MediaWiki\Session\SingleBackendSessionStore;
 use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Settings\SettingsBuilder;
+use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Shell\ShellboxClientFactory;
 use MediaWiki\Site\CachingSiteStore;
@@ -1170,7 +1171,8 @@ return [
 			$services->getNamespaceInfo(),
 			$services->getSkinFactory(),
 			$services->getConnectionProvider(),
-			$services->getUrlUtils()
+			$services->getUrlUtils(),
+			$services->getShadowPageLoader(),
 		);
 	},
 
@@ -1724,7 +1726,8 @@ return [
 			$services->getTitleFactory(),
 			$services->getConnectionProvider(),
 			$services->getChangeTagsStore(),
-			$services->getStatsFactory()
+			$services->getStatsFactory(),
+			$services->getShadowPageLoader(),
 		);
 	},
 
@@ -2081,6 +2084,7 @@ return [
 			$services->getSpecialPageFactory(),
 			$services->getContentTransformer(),
 			$services->getHookContainer(),
+			$services->getShadowPageLoader(),
 		);
 	},
 
@@ -2421,6 +2425,14 @@ return [
 			$objectCacheFactory->getInstance( $authCacheType ),
 			$logger,
 			$services->getStatsFactory()
+		);
+	},
+
+	'ShadowPageLoader' => static function ( MediaWikiServices $services ): ShadowPageLoader {
+		return new ShadowPageLoader(
+			$services->getObjectFactory(),
+			ShadowPageLoader::CORE_SPECS,
+			[]
 		);
 	},
 
@@ -3259,6 +3271,7 @@ return [
 			$services->getService( '_PageEditingHelper' ),
 			$services->getRateLimiter(),
 			$services->getRevisionStore(),
+			$services->getShadowPageLoader(),
 			$services->getWatchlistManager(),
 			$services->getWatchedItemStore(),
 		);

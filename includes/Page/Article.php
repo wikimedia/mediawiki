@@ -41,6 +41,7 @@ use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\BadRevisionException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -122,6 +123,7 @@ class Article implements Page {
 	protected IConnectionProvider $dbProvider;
 	protected DatabaseBlockStore $blockStore;
 	protected RestrictionStore $restrictionStore;
+	private ShadowPageLoader $shadowPageLoader;
 	private bool $useLegacyPostprocCache;
 
 	/**
@@ -158,6 +160,7 @@ class Article implements Page {
 		$this->dbProvider = $services->getConnectionProvider();
 		$this->blockStore = $services->getDatabaseBlockStore();
 		$this->restrictionStore = $services->getRestrictionStore();
+		$this->shadowPageLoader = $services->getShadowPageLoader();
 		$this->parsoidPostprocCacheAvailable =
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UsePostprocCacheParsoid );
 		$this->legacyPostprocCacheAvailable =
@@ -1707,29 +1710,34 @@ class Article implements Page {
 			return;
 		}
 
-		# Show error message
+		// Try shadow page
 		$oldid = $this->getOldID();
-		if ( !$oldid && $title->getNamespace() === NS_MEDIAWIKI && $title->hasSourceText() ) {
-			$text = $this->getTitle()->getDefaultMessageText() ?? '';
-			$outputPage->addWikiTextAsContent( $text );
-		} else {
-			if ( $oldid ) {
-				$text = $this->getMissingRevisionMsg( $oldid )->plain();
-			} elseif ( $context->getAuthority()->probablyCan( 'edit', $title ) ) {
-				$message = $isRegistered ? 'noarticletext' : 'noarticletextanon';
-				$text = $context->msg( $message )->plain();
-			} else {
-				$text = $context->msg( 'noarticletext-nopermission' )->plain();
+		if ( !$oldid ) {
+			$view = $this->shadowPageLoader->get( $this->getTitle() )?->getView();
+			if ( $view ) {
+				$outputPage->addParserOutputContent(
+					$view->getParserOutput(), $view->getParserOptions() );
+				return;
 			}
-
-			$dir = $context->getLanguage()->getDir();
-			$lang = $context->getLanguage()->getHtmlCode();
-			$outputPage->addWikiTextAsInterface( Html::openElement( 'div', [
-				'class' => "noarticletext mw-content-$dir",
-				'dir' => $dir,
-				'lang' => $lang,
-			] ) . "\n$text\n</div>" );
 		}
+
+		// Show error message
+		if ( $oldid ) {
+			$text = $this->getMissingRevisionMsg( $oldid )->plain();
+		} elseif ( $context->getAuthority()->probablyCan( 'edit', $title ) ) {
+			$message = $isRegistered ? 'noarticletext' : 'noarticletextanon';
+			$text = $context->msg( $message )->plain();
+		} else {
+			$text = $context->msg( 'noarticletext-nopermission' )->plain();
+		}
+
+		$dir = $context->getLanguage()->getDir();
+		$lang = $context->getLanguage()->getHtmlCode();
+		$outputPage->addWikiTextAsInterface( Html::openElement( 'div', [
+			'class' => "noarticletext mw-content-$dir",
+			'dir' => $dir,
+			'lang' => $lang,
+		] ) . "\n$text\n</div>" );
 	}
 
 	/**

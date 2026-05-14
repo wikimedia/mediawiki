@@ -52,11 +52,11 @@ class PageHTMLHandler extends SimpleHandler {
 		$this->contentHelper->init( $authority, $this->getValidatedParams() );
 
 		$page = $this->contentHelper->getPageIdentity();
-		$isSystemMessage = $this->contentHelper->useDefaultSystemMessage();
+		$isShadowPage = $this->contentHelper->useShadowContent();
 
 		if ( $page ) {
-			if ( $isSystemMessage ) {
-				$this->htmlHelper = $this->helperFactory->newHtmlMessageOutputHelper( $page );
+			if ( $isShadowPage ) {
+				$this->htmlHelper = $this->helperFactory->newHtmlShadowOutputHelper( $page );
 			} else {
 				$revision = $this->contentHelper->getTargetRevision();
 				$this->htmlHelper = $this->helperFactory->newHtmlOutputRendererHelper(
@@ -173,7 +173,7 @@ class PageHTMLHandler extends SimpleHandler {
 		return array_merge(
 			$this->contentHelper->getParamSettings(),
 			// Note that postValidation we might end up using
-			// a HtmlMessageOutputHelper, but the param settings
+			// a HtmlShadowOutputHelper, but the param settings
 			// for that are a subset of those for HtmlOutputRendererHelper
 			HtmlOutputRendererHelper::getParamSettings()
 		);

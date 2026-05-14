@@ -73,7 +73,8 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 				$services->getPageStore(),
 				$services->getTitleFactory(),
 				$services->getConnectionProvider(),
-				$services->getChangeTagsStore()
+				$services->getChangeTagsStore(),
+				$services->getShadowPageLoader(),
 			) );
 
 		$parsoidOutputStash = $this->getParsoidOutputStash();

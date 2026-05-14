@@ -10,6 +10,7 @@ use MediaWiki\EditPage\PageEditingHelper;
 use MediaWiki\Language\Language;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -32,6 +33,7 @@ class PageEditFactory {
 		private readonly PageEditingHelper $pageEditingHelper,
 		private readonly RateLimiter $rateLimiter,
 		private readonly RevisionStore $revisionStore,
+		private readonly ShadowPageLoader $shadowPageLoader,
 		private readonly WatchlistManager $watchlistManager,
 		private readonly WatchedItemStoreInterface $watchedItemStore,
 	) {
@@ -53,6 +55,7 @@ class PageEditFactory {
 			$this->pageEditingHelper,
 			$this->rateLimiter,
 			$this->revisionStore,
+			$this->shadowPageLoader,
 			$this->watchlistManager,
 			$this->watchedItemStore,
 		);

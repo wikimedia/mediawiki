@@ -364,6 +364,7 @@ class ApiMain extends ApiBase {
 				'RedirectLookup',
 				'TempUserCreator',
 				'UserFactory',
+				'ShadowPageLoader',
 			]
 		],
 		'upload' => [

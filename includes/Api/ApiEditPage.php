@@ -9,7 +9,6 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\ChangeTags\ChangeTags;
-use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\ContentSerializationException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\TextContent;
@@ -25,6 +24,7 @@ use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserCreator;
@@ -62,6 +62,7 @@ class ApiEditPage extends ApiBase {
 	private RedirectLookup $redirectLookup;
 	private TempUserCreator $tempUserCreator;
 	private UserFactory $userFactory;
+	private ShadowPageLoader $shadowPageLoader;
 
 	/**
 	 * Sends a cookie so anons get talk message notifications, mirroring SubmitAction (T295910)
@@ -81,7 +82,8 @@ class ApiEditPage extends ApiBase {
 		?UserOptionsLookup $userOptionsLookup = null,
 		?RedirectLookup $redirectLookup = null,
 		?TempUserCreator $tempUserCreator = null,
-		?UserFactory $userFactory = null
+		?UserFactory $userFactory = null,
+		?ShadowPageLoader $shadowPageLoader = null,
 	) {
 		parent::__construct( $mainModule, $moduleName );
 
@@ -101,6 +103,7 @@ class ApiEditPage extends ApiBase {
 		$this->redirectLookup = $redirectLookup ?? $services->getRedirectLookup();
 		$this->tempUserCreator = $tempUserCreator ?? $services->getTempUserCreator();
 		$this->userFactory = $userFactory ?? $services->getUserFactory();
+		$this->shadowPageLoader = $shadowPageLoader ?? $services->getShadowPageLoader();
 	}
 
 	/**
@@ -209,28 +212,14 @@ class ApiEditPage extends ApiBase {
 
 		$toMD5 = $params['text'];
 		if ( $params['appendtext'] !== null || $params['prependtext'] !== null ) {
-			$content = $pageObj->getContent();
-
-			if ( !$content ) {
-				if ( $titleObj->getNamespace() === NS_MEDIAWIKI ) {
-					# If this is a MediaWiki:x message, then load the messages
-					# and return the message value for x.
-					$text = $titleObj->getDefaultMessageText();
-					if ( $text === false ) {
-						$text = '';
-					}
-
-					try {
-						$content = ContentHandler::makeContent( $text, $titleObj );
-					} catch ( ContentSerializationException $ex ) {
-						$this->dieWithException( $ex, [
-							'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )
-						] );
-					}
-				} else {
-					# Otherwise, make a new empty content.
-					$content = $contentHandler->makeEmptyContent();
-				}
+			try {
+				$content = $pageObj->getContent()
+					?? $this->shadowPageLoader->get( $titleObj )?->getPreloadContent()
+					?? $contentHandler->makeEmptyContent();
+			} catch ( ContentSerializationException $ex ) {
+				$this->dieWithException( $ex, [
+					'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )
+				] );
 			}
 
 			// @todo Add support for appending/prepending to the Content interface

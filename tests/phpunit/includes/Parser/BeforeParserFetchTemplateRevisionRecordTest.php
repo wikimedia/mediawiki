@@ -46,7 +46,7 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 		$revisionLookup = $services->getRevisionLookup();
 		$hookRunner = new HookRunner( $services->getHookContainer() );
 		$linkCache = $services->getLinkCache();
-		$contLang = $services->getContentLanguage();
+		$shadowPageLoader = $services->getShadowPageLoader();
 
 		$suffix ??= $this->getCallerName();
 		$parser = $services->getParserFactory()->create();
@@ -62,7 +62,7 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 			"Make redirect link for testing"
 		);
 
-		return [ $revisionLookup, $hookRunner, $linkCache, $contLang, $parser, $page, $redirectPage ];
+		return [ $revisionLookup, $hookRunner, $linkCache, $shadowPageLoader, $parser, $page, $redirectPage ];
 	}
 
 	/**
@@ -70,12 +70,12 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 	 * @dataProvider provideWithParser
 	 */
 	public function testDefaultFetchTemplateBasic( bool $withParser ) {
-		[ $revisionLookup, $hookRunner, $linkCache, $contLang, $parser, $page, $redirectPage ]
+		[ $revisionLookup, $hookRunner, $linkCache, $shadowPageLoader, $parser, $page, $redirectPage ]
 			= $this->commonSetup( __FUNCTION__ );
 
 		// Basic redirect test
 		$ret = Parser::defaultFetchTemplate(
-			$revisionLookup, $hookRunner, $linkCache, $contLang,
+			$revisionLookup, $hookRunner, $linkCache, $shadowPageLoader,
 			$redirectPage->getTitle(), $withParser ? $parser : null
 		);
 		$this->checkResult( [
@@ -93,7 +93,7 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 	 * @dataProvider provideWithParser
 	 */
 	public function testDefaultFetchTemplateSkip( bool $withParser ) {
-		[ $revisionLookup, $hookRunner, $linkCache, $contLang, $parser, $page, $redirectPage ]
+		[ $revisionLookup, $hookRunner, $linkCache, $shadowPageLoader, $parser, $page, $redirectPage ]
 			= $this->commonSetup( __FUNCTION__ );
 
 		// Create a hook to prevent resolution of the redirect
@@ -105,7 +105,7 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 		);
 
 		$ret = Parser::defaultFetchTemplate(
-			$revisionLookup, $hookRunner, $linkCache, $contLang,
+			$revisionLookup, $hookRunner, $linkCache, $shadowPageLoader,
 			$redirectPage->getTitle(), $withParser ? $parser : null
 		);
 		$this->checkResult( [
@@ -122,7 +122,7 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 	 * @dataProvider provideWithParser
 	 */
 	public function testDefaultFetchTemplateMissing( bool $withParser ) {
-		[ $revisionLookup, $hookRunner, $linkCache, $contLang, $parser, $page, $redirectPage ]
+		[ $revisionLookup, $hookRunner, $linkCache, $shadowPageLoader, $parser, $page, $redirectPage ]
 			= $this->commonSetup( __FUNCTION__ );
 
 		// Create a hook to redirect to a non-existing page
@@ -137,7 +137,7 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 			}
 		);
 		$ret = Parser::defaultFetchTemplate(
-			$revisionLookup, $hookRunner, $linkCache, $contLang,
+			$revisionLookup, $hookRunner, $linkCache, $shadowPageLoader,
 			$redirectPage->getTitle(), $withParser ? $parser : null
 		);
 		$this->checkResult( [
@@ -159,7 +159,7 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 	 * @dataProvider provideWithParser
 	 */
 	public function testDefaultFetchTemplateSubstituted( bool $withParser ) {
-		[ $revisionLookup, $hookRunner, $linkCache, $contLang, $parser, $page, $redirectPage ]
+		[ $revisionLookup, $hookRunner, $linkCache, $shadowPageLoader, $parser, $page, $redirectPage ]
 			= $this->commonSetup( __FUNCTION__ );
 
 		// Create a hook to redirect to a non-existing page
@@ -175,7 +175,7 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 			}
 		);
 		$ret = Parser::defaultFetchTemplate(
-			$revisionLookup, $hookRunner, $linkCache, $contLang,
+			$revisionLookup, $hookRunner, $linkCache, $shadowPageLoader,
 			$redirectPage->getTitle(), $withParser ? $parser : null
 		);
 		$this->checkResult( [

@@ -5,9 +5,7 @@ namespace MediaWiki\Rest\Handler\Helper;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\TextContent;
-use MediaWiki\Content\WikitextContent;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Message\Message;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageLookup;
@@ -21,7 +19,8 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
-use MediaWiki\Title\Title;
+use MediaWiki\ShadowPage\ShadowPage;
+use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use Wikimedia\Message\MessageValue;
@@ -55,14 +54,6 @@ class PageContentHelper {
 		MainConfigNames::RightsText,
 	];
 
-	protected ServiceOptions $options;
-	protected RevisionLookup $revisionLookup;
-	protected TitleFormatter $titleFormatter;
-	protected PageLookup $pageLookup;
-	private TitleFactory $titleFactory;
-	private IConnectionProvider $dbProvider;
-	private ChangeTagsStore $changeTagsStore;
-
 	/** @var Authority|null */
 	protected $authority = null;
 
@@ -78,22 +69,19 @@ class PageContentHelper {
 	/** @var PageIdentity|false|null */
 	private $pageIdentity = false;
 
+	/** @var ShadowPage|false|null */
+	private $shadowPage = false;
+
 	public function __construct(
-		ServiceOptions $options,
-		RevisionLookup $revisionLookup,
-		TitleFormatter $titleFormatter,
-		PageLookup $pageLookup,
-		TitleFactory $titleFactory,
-		IConnectionProvider $dbProvider,
-		ChangeTagsStore $changeTagsStore
+		protected ServiceOptions $options,
+		protected RevisionLookup $revisionLookup,
+		protected TitleFormatter $titleFormatter,
+		protected PageLookup $pageLookup,
+		private TitleFactory $titleFactory,
+		private IConnectionProvider $dbProvider,
+		private ChangeTagsStore $changeTagsStore,
+		private ShadowPageLoader $shadowPageLoader,
 	) {
-		$this->options = $options;
-		$this->revisionLookup = $revisionLookup;
-		$this->titleFormatter = $titleFormatter;
-		$this->pageLookup = $pageLookup;
-		$this->titleFactory = $titleFactory;
-		$this->dbProvider = $dbProvider;
-		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	/**
@@ -238,7 +226,7 @@ class PageContentHelper {
 	 * Checks whether content exists. Permission checks are not considered.
 	 */
 	public function hasContent(): bool {
-		return $this->useDefaultSystemMessage() || (bool)$this->getPage();
+		return $this->useShadowContent() || (bool)$this->getPage();
 	}
 
 	public function constructMetadata(): array {
@@ -358,17 +346,27 @@ class PageContentHelper {
 	}
 
 	/**
-	 * If the page is a system message page. When the content gets
+	 * If the page is a shadow page. When the content gets
 	 * overridden to create an actual page, this method returns false.
 	 */
-	public function useDefaultSystemMessage(): bool {
-		return $this->getDefaultSystemMessage() !== null && $this->getPage() === null;
+	public function useShadowContent(): bool {
+		return $this->getShadowPage()?->hasPreloadContent() && $this->getPage() === null;
 	}
 
-	public function getDefaultSystemMessage(): ?Message {
-		$title = Title::newFromText( $this->getTitleText() );
-
-		return $title ? $title->getDefaultSystemMessage() : null;
+	/**
+	 * Get the shadow page, if any
+	 * @return ShadowPage|null
+	 */
+	public function getShadowPage(): ?ShadowPage {
+		if ( $this->shadowPage === false ) {
+			$page = $this->getPageIdentity();
+			if ( $page ) {
+				$this->shadowPage = $this->shadowPageLoader->get( $page );
+			} else {
+				$this->shadowPage = null;
+			}
+		}
+		return $this->shadowPage;
 	}
 
 	/**
@@ -409,7 +407,7 @@ class PageContentHelper {
 		}
 
 		$revision = $this->getTargetRevision();
-		if ( !$revision && !$this->useDefaultSystemMessage() ) {
+		if ( !$revision && !$this->useShadowContent() ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-no-revision' )->plaintextParams( $titleText ),
 				404
@@ -429,10 +427,10 @@ class PageContentHelper {
 	 * @return MutableRevisionRecord|RevisionRecord|null
 	 */
 	private function getRevisionRecordForMetadata() {
-		if ( $this->useDefaultSystemMessage() ) {
-			$title = Title::newFromText( $this->getTitleText() );
-			$content = new WikitextContent( $title->getDefaultMessageText() );
-			$revision = new MutableRevisionRecord( $title );
+		$pageIdentity = $this->getPageIdentity();
+		$content = $this->getShadowPage()?->getPreloadContent();
+		if ( $pageIdentity && $content ) {
+			$revision = new MutableRevisionRecord( $pageIdentity );
 			$revision->setPageId( 0 );
 			$revision->setId( 0 );
 			$revision->setContent(

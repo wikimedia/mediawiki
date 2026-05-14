@@ -14,6 +14,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Title\TitleFactory;
 
 /**
@@ -84,7 +85,7 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 	}
 
 	/**
-	 * @param LinkTarget|PageIdentity $page
+	 * @param LinkTarget|PageReference $page
 	 *
 	 * @return string
 	 */
@@ -97,8 +98,8 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 		$model = $this->namespaceContentModels[$ns] ?? null;
 
 		// Hook can determine default model
-		if ( $page instanceof PageIdentity ) {
-			$title = $this->titleFactory->newFromPageIdentity( $page );
+		if ( $page instanceof PageReference ) {
+			$title = $this->titleFactory->newFromPageReference( $page );
 		} else {
 			$title = $this->titleFactory->newFromLinkTarget( $page );
 		}

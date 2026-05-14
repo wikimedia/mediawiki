@@ -1433,9 +1433,9 @@ class ParserOptions {
 		$revisionLookup = $services->getRevisionLookup();
 		$hookRunner = new HookRunner( $services->getHookContainer() );
 		$linkCache = $services->getLinkCache();
-		$contLang = $services->getContentLanguage();
+		$shadowPageLoader = $services->getShadowPageLoader();
 		return static fn ( $link, $parser ) => Parser::defaultFetchTemplate(
-			$revisionLookup, $hookRunner, $linkCache, $contLang, $link, $parser );
+			$revisionLookup, $hookRunner, $linkCache, $shadowPageLoader, $link, $parser );
 	}
 
 	/**

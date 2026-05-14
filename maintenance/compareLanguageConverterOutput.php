@@ -99,7 +99,8 @@ class CompareLanguageConverterOutput extends Maintenance {
 			$services->getTitleFactory(),
 			$services->getConnectionProvider(),
 			$services->getChangeTagsStore(),
-			StatsFactory::newNull()
+			StatsFactory::newNull(),
+			$services->getShadowPageLoader(),
 		);
 	}
 

@@ -10,6 +10,7 @@ namespace MediaWiki\Revision;
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 
 /**
  * SlotRoleHandler instances are used to declare the existence and behavior of slot roles.
@@ -129,7 +130,7 @@ class SlotRoleHandler {
 	 *
 	 * @stable to override
 	 *
-	 * @param LinkTarget|PageIdentity $page
+	 * @param LinkTarget|PageReference $page
 	 *
 	 * @return string
 	 */

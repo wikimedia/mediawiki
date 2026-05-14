@@ -42,6 +42,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		array $params = [],
 		?Authority $authority = null
 	): PageContentHelper {
+		$services = $this->getServiceContainer();
 		$helper = new PageContentHelper(
 			new ServiceOptions(
 				PageContentHelper::CONSTRUCTOR_OPTIONS,
@@ -50,12 +51,13 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 					MainConfigNames::RightsText => 'some rights',
 				]
 			),
-			$this->getServiceContainer()->getRevisionLookup(),
-			$this->getServiceContainer()->getTitleFormatter(),
-			$this->getServiceContainer()->getPageStore(),
-			$this->getServiceContainer()->getTitleFactory(),
-			$this->getServiceContainer()->getConnectionProvider(),
-			$this->getServiceContainer()->getChangeTagsStore()
+			$services->getRevisionLookup(),
+			$services->getTitleFormatter(),
+			$services->getPageStore(),
+			$services->getTitleFactory(),
+			$services->getConnectionProvider(),
+			$services->getChangeTagsStore(),
+			$services->getShadowPageLoader(),
 		);
 
 		$authority = $authority ?: $this->mockRegisteredUltimateAuthority();
@@ -235,8 +237,8 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $helper->getPage()->isSamePageAs( $title ) );
 
 		$this->assertTrue( $helper->hasContent() );
-		$this->assertFalse( $helper->useDefaultSystemMessage() );
-		$this->assertNull( $helper->getDefaultSystemMessage() );
+		$this->assertFalse( $helper->useShadowContent() );
+		$this->assertNull( $helper->getShadowPage() );
 		$this->assertFalse( $helper->isAccessible() );
 
 		$this->assertNull( $helper->getLastModified() );
@@ -263,8 +265,8 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $helper->getPage() );
 
 		$this->assertTrue( $helper->hasContent() );
-		$this->assertTrue( $helper->useDefaultSystemMessage() );
-		$this->assertNotNull( $helper->getDefaultSystemMessage() );
+		$this->assertTrue( $helper->useShadowContent() );
+		$this->assertNotNull( $helper->getShadowPage() );
 		$this->assertFalse( $helper->isAccessible() );
 
 		$this->assertNull( $helper->getLastModified() );
@@ -288,8 +290,8 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $helper->getPage() );
 
 		$this->assertTrue( $helper->hasContent() );
-		$this->assertTrue( $helper->useDefaultSystemMessage() );
-		$this->assertNotNull( $helper->getDefaultSystemMessage() );
+		$this->assertTrue( $helper->useShadowContent() );
+		$this->assertNotNull( $helper->getShadowPage() );
 		$this->assertTrue( $helper->isAccessible() );
 
 		$this->assertNull( $helper->getLastModified() );

@@ -22,6 +22,7 @@ use MediaWiki\Rest\Router;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -56,6 +57,7 @@ class PageRestHelperFactory {
 	private IConnectionProvider $dbProvider;
 	private ChangeTagsStore $changeTagsStore;
 	private StatsFactory $statsFactory;
+	private ShadowPageLoader $shadowPageLoader;
 
 	public function __construct(
 		ServiceOptions $options,
@@ -74,7 +76,8 @@ class PageRestHelperFactory {
 		TitleFactory $titleFactory,
 		IConnectionProvider $dbProvider,
 		ChangeTagsStore $changeTagsStore,
-		StatsFactory $statsFactory
+		StatsFactory $statsFactory,
+		ShadowPageLoader $shadowPageLoader,
 	) {
 		$this->options = $options;
 		$this->revisionLookup = $revisionLookup;
@@ -93,6 +96,7 @@ class PageRestHelperFactory {
 		$this->titleFactory = $titleFactory;
 		$this->dbProvider = $dbProvider;
 		$this->changeTagsStore = $changeTagsStore;
+		$this->shadowPageLoader = $shadowPageLoader;
 	}
 
 	public function newRevisionContentHelper(): RevisionContentHelper {
@@ -103,7 +107,8 @@ class PageRestHelperFactory {
 			$this->pageLookup,
 			$this->titleFactory,
 			$this->dbProvider,
-			$this->changeTagsStore
+			$this->changeTagsStore,
+			$this->shadowPageLoader,
 		);
 	}
 
@@ -115,7 +120,8 @@ class PageRestHelperFactory {
 			$this->pageLookup,
 			$this->titleFactory,
 			$this->dbProvider,
-			$this->changeTagsStore
+			$this->changeTagsStore,
+			$this->shadowPageLoader,
 		);
 	}
 
@@ -177,14 +183,12 @@ class PageRestHelperFactory {
 		);
 	}
 
-	/**
-	 * @note Since 1.43, passing a null $page is deprecated.
-	 */
-	public function newHtmlMessageOutputHelper( ?PageIdentity $page = null ): HtmlMessageOutputHelper {
-		if ( $page === null ) {
-			wfDeprecated( __METHOD__ . ' with null $page', '1.43' );
-		}
-		return new HtmlMessageOutputHelper( $page );
+	public function newHtmlShadowOutputHelper( PageIdentity $page ): HtmlShadowOutputHelper {
+		return new HtmlShadowOutputHelper(
+			$this->shadowPageLoader,
+			$this->titleFormatter,
+			$page
+		);
 	}
 
 	/**

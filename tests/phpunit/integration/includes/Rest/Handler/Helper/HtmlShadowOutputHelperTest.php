@@ -2,21 +2,25 @@
 
 namespace MediaWiki\Tests\Rest\Handler\Helper;
 
-use MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper;
+use MediaWiki\Rest\Handler\Helper\HtmlShadowOutputHelper;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper
+ * @covers \MediaWiki\Rest\Handler\Helper\HtmlShadowOutputHelper
  * @group Database
  */
-class HtmlMessageOutputHelperTest extends MediaWikiIntegrationTestCase {
-	private function newHelper( $page ): HtmlMessageOutputHelper {
-		return new HtmlMessageOutputHelper( $page );
+class HtmlShadowOutputHelperTest extends MediaWikiIntegrationTestCase {
+	private function newHelper( $page ): HtmlShadowOutputHelper {
+		$services = $this->getServiceContainer();
+		return new HtmlShadowOutputHelper(
+			$services->getShadowPageLoader(),
+			$services->getTitleFormatter(),
+			$page
+		);
 	}
 
 	/**
-	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper::init
-	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper::getHtml
+	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlShadowOutputHelper::getHtml
 	 */
 	public function testGetHtml() {
 		$page = $this->getNonexistingTestPage( 'MediaWiki:Logouttext' );
@@ -34,8 +38,7 @@ class HtmlMessageOutputHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper::init
-	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper::getETag
+	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlShadowOutputHelper::getETag
 	 */
 	public function testGetETag() {
 		$page = $this->getNonexistingTestPage( 'MediaWiki:Logouttext' );
@@ -48,8 +51,7 @@ class HtmlMessageOutputHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper::init
-	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper::getHtml
+	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlShadowOutputHelper::getHtml
 	 */
 	public function testGetHtmlWithLanguageCode() {
 		$page = $this->getNonexistingTestPage( 'MediaWiki:Logouttext/de' );
