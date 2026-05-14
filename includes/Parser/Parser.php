@@ -2168,6 +2168,7 @@ class Parser {
 	 * Get the rel attribute for a particular external link.
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.47 use LinkRenderer::getExternalLinkRel()
 	 * @internal
 	 * @param string|false $url Optional URL, to extract the domain from for rel =>
 	 *   nofollow if appropriate
@@ -2175,19 +2176,9 @@ class Parser {
 	 * @return string|null Rel attribute for $url
 	 */
 	public static function getExternalLinkRel( $url = false, $title = null ): ?string {
-		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$noFollowLinks = $mainConfig->get( MainConfigNames::NoFollowLinks );
-		$noFollowNsExceptions = $mainConfig->get( MainConfigNames::NoFollowNsExceptions );
-		$noFollowDomainExceptions = $mainConfig->get( MainConfigNames::NoFollowDomainExceptions );
-		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
-		$ns = $title ? $title->getNamespace() : false;
-		if (
-			$noFollowLinks && !in_array( $ns, $noFollowNsExceptions )
-			&& !$urlUtils->matchesDomainList( (string)$url, $noFollowDomainExceptions )
-		) {
-			return 'nofollow';
-		}
-		return null;
+		wfDeprecated( __METHOD__, '1.47' );
+		return MediaWikiServices::getInstance()->getLinkRenderer()
+			->getExternalLinkRel( $url, $title );
 	}
 
 	/**
@@ -2203,7 +2194,7 @@ class Parser {
 	 */
 	public function getExternalLinkAttribs( $url ) {
 		$attribs = [];
-		$rel = self::getExternalLinkRel( $url, $this->getTitle() ) ?? '';
+		$rel = $this->getLinkRenderer()->getExternalLinkRel( $url, $this->getTitle() ) ?? '';
 
 		$target = $this->mOptions->getExternalLinkTarget();
 		if ( $target ) {

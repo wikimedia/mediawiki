@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinkTarget;
@@ -288,6 +289,8 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		$tempUserDetailsLookup = $services->getTempUserDetailsLookup();
 		$userIdentityLookup = $services->getUserIdentityLookup();
 		$userNameUtils = $services->getUserNameUtils();
+		$urlUtils = $services->getUrlUtils();
+		$options = new ServiceOptions( LinkRenderer::CONSTRUCTOR_OPTIONS, $services->getMainConfig() );
 		$linkCache = $services->getLinkCache();
 		if ( $foobarTitle instanceof PageReference ) {
 			$cacheTitle = Title::newFromPageReference( $foobarTitle );
@@ -318,7 +321,9 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			$tempUserDetailsLookup,
 			$userIdentityLookup,
 			$userNameUtils,
-			new ServiceOptions( LinkRenderer::CONSTRUCTOR_OPTIONS, [ 'renderForComment' => false ] )
+			$urlUtils,
+			$options,
+			renderForComment: false
 		);
 		$this->assertSame(
 			'',
@@ -399,5 +404,55 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			'<b>~2025-1</b>',
 			true
 		];
+	}
+
+	public static function provideGetExternalLinkRel() {
+		$defaults = [
+			'ns' => null,
+			'url' => 'https://example.com',
+			'enabled' => true,
+			'nsExceptions' => [],
+			'domainExceptions' => []
+		];
+		$nofollow = [ 'expected' => 'nofollow' ];
+		$follow = [ 'expected' => null ];
+		$cases = [
+			'basic' => $nofollow + $defaults,
+			'disabled' => [ 'enabled' => false ] + $follow + $defaults,
+			'NS exception' => [ 'ns' => 1, 'nsExceptions' => [ 1 ] ] + $follow + $defaults,
+			'no title' => [ 'ns' => null, 'nsExceptions' => [ 1 ] ] + $nofollow + $defaults,
+			'NS mismatch' => [ 'ns' => 2, 'nsExceptions' => [ 1 ] ] + $nofollow + $defaults,
+			'domain exception' => [ 'domainExceptions' => [ 'example.com' ] ] + $follow + $defaults,
+			'domain mismatch' => [ 'domainExceptions' => [ 'example.org' ] ] + $nofollow + $defaults,
+			'no URL' => [ 'url' => false, 'domainExceptions' => [ 'example.org' ] ] + $nofollow + $defaults,
+		];
+		foreach ( $cases as $name => $case ) {
+			yield $name => [ $case['ns'], $case['url'], $case['enabled'], $case['nsExceptions'],
+				$case['domainExceptions'], $case['expected'] ];
+		}
+	}
+
+	/**
+	 * @dataProvider provideGetExternalLinkRel
+	 * @param int|null $ns
+	 * @param string $url
+	 * @param bool $enabled
+	 * @param int[] $nsExceptions
+	 * @param string[] $domainExceptions
+	 * @param string|null $expected
+	 */
+	public function testGetExternalLinkRel( $ns, $url, $enabled, $nsExceptions,
+		$domainExceptions, $expected
+	) {
+		$this->overrideConfigValues( [
+			MainConfigNames::NoFollowLinks => $enabled,
+			MainConfigNames::NoFollowNsExceptions => $nsExceptions,
+			MainConfigNames::NoFollowDomainExceptions => $domainExceptions,
+		] );
+		$linkRenderer = $this->getServiceContainer()->getLinkRendererFactory()->create();
+		$title = $ns === null ? null
+			: new PageReferenceValue( $ns, 'Foo', WikiAwareEntity::LOCAL );
+		$result = $linkRenderer->getExternalLinkRel( $url, $title );
+		$this->assertSame( $expected, $result );
 	}
 }

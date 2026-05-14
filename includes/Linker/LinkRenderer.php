@@ -13,10 +13,10 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget as MWLinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\PageReference;
-use MediaWiki\Parser\Parser;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
@@ -26,6 +26,7 @@ use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\Utils\UrlUtils;
 use Wikimedia\Assert\Assert;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Parsoid\Core\LinkTarget;
@@ -40,7 +41,9 @@ use Wikimedia\Parsoid\Core\LinkTarget;
 class LinkRenderer {
 
 	public const CONSTRUCTOR_OPTIONS = [
-		'renderForComment',
+		MainConfigNames::NoFollowLinks,
+		MainConfigNames::NoFollowNsExceptions,
+		MainConfigNames::NoFollowDomainExceptions,
 	];
 
 	/**
@@ -64,23 +67,15 @@ class LinkRenderer {
 	 */
 	private $comment = false;
 
-	/**
-	 * @var TitleFormatter
-	 */
-	private $titleFormatter;
-
-	/**
-	 * @var LinkCache
-	 */
-	private $linkCache;
+	/** @var bool */
+	private $noFollowLinks;
+	/** @var int[] */
+	private $noFollowNsExceptions;
+	/** @var string[] */
+	private $noFollowDomainExceptions;
 
 	/** @var HookRunner */
 	private $hookRunner;
-
-	/**
-	 * @var SpecialPageFactory
-	 */
-	private $specialPageFactory;
 
 	private UserLinkRenderer $userLinkRenderer;
 
@@ -88,22 +83,24 @@ class LinkRenderer {
 	 * @internal For use by LinkRendererFactory
 	 */
 	public function __construct(
-		TitleFormatter $titleFormatter,
-		LinkCache $linkCache,
-		SpecialPageFactory $specialPageFactory,
+		private TitleFormatter $titleFormatter,
+		private LinkCache $linkCache,
+		private SpecialPageFactory $specialPageFactory,
 		HookContainer $hookContainer,
 		TempUserConfig $tempUserConfig,
 		TempUserDetailsLookup $tempUserDetailsLookup,
 		UserIdentityLookup $userIdentityLookup,
 		UserNameUtils $userNameUtils,
-		ServiceOptions $options
+		private UrlUtils $urlUtils,
+		ServiceOptions $options,
+		bool $renderForComment
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->comment = $options->get( 'renderForComment' );
+		$this->noFollowLinks = $options->get( MainConfigNames::NoFollowLinks );
+		$this->noFollowNsExceptions = $options->get( MainConfigNames::NoFollowNsExceptions );
+		$this->noFollowDomainExceptions = $options->get( MainConfigNames::NoFollowDomainExceptions );
+		$this->comment = $renderForComment;
 
-		$this->titleFormatter = $titleFormatter;
-		$this->linkCache = $linkCache;
-		$this->specialPageFactory = $specialPageFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userLinkRenderer = new UserLinkRenderer(
 			$hookContainer,
@@ -414,7 +411,7 @@ class LinkRenderer {
 			'@phan-var string $text';
 		}
 
-		$newRel = Parser::getExternalLinkRel( $url, $title );
+		$newRel = $this->getExternalLinkRel( $url, $title );
 		if ( $newRel !== null ) {
 			$attribs['rel'] ??= [];
 			Html::addClass( $attribs['rel'], $newRel );
@@ -741,4 +738,25 @@ class LinkRenderer {
 		}
 		return false;
 	}
+
+	/**
+	 * Get the rel attribute for a particular external link.
+	 *
+	 * @since 1.47
+	 * @param string|false $url Optional URL, to extract the domain from for rel =>
+	 *   nofollow if appropriate
+	 * @param LinkTarget|PageReference|null $title Optional page, for wgNoFollowNsExceptions lookups
+	 * @return string|null Rel attribute for $url
+	 */
+	public function getExternalLinkRel( $url = false, $title = null ): ?string {
+		if (
+			$this->noFollowLinks
+			&& ( !$title || !in_array( $title->getNamespace(), $this->noFollowNsExceptions ) )
+			&& ( !$url || !$this->urlUtils->matchesDomainList( $url, $this->noFollowDomainExceptions ) )
+		) {
+			return 'nofollow';
+		}
+		return null;
+	}
+
 }

@@ -335,7 +335,7 @@ class DataAccess extends IDataAccess {
 			$linkHtml = 'modifying link HTML not supported';
 			$attribs = [];
 			/* First obtain the rel information. */
-			$rel = Parser::getExternalLinkRel( $href, $contextTitle );
+			$rel = $this->linkRenderer->getExternalLinkRel( $href, $contextTitle );
 			if ( $rel !== null ) {
 				$attribs['rel'] = $rel;
 			}

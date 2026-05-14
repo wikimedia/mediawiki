@@ -51,11 +51,12 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 			$services->getTempUserDetailsLookup(),
 			$services->getUserIdentityLookup(),
 			$services->getUserNameUtils(),
+			$services->getUrlUtils(),
 			new ServiceOptions(
 				LinkRenderer::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig(),
-				[ 'renderForComment' => false ]
-			)
+			),
+			renderForComment: false,
 		);
 		// Then create a mock LinkRenderer that proxies makeLink calls to the original LinkRenderer, but assumes
 		// that all links are known to bypass DB access in Title::exists().

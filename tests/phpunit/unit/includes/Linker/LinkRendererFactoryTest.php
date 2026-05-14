@@ -1,8 +1,10 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\LinkCache;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\TitleFormatter;
@@ -10,6 +12,7 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\Utils\UrlUtils;
 
 /**
  * @covers \MediaWiki\Linker\LinkRendererFactory
@@ -40,6 +43,8 @@ class LinkRendererFactoryTest extends MediaWikiUnitTestCase {
 	private TempUserDetailsLookup $tempUserDetailsLookup;
 	private UserIdentityLookup $userIdentityLookup;
 	private UserNameUtils $userNameUtils;
+	private UrlUtils $urlUtils;
+	private ServiceOptions $options;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -52,6 +57,15 @@ class LinkRendererFactoryTest extends MediaWikiUnitTestCase {
 		$this->tempUserDetailsLookup = $this->createMock( TempUserDetailsLookup::class );
 		$this->userIdentityLookup = $this->createMock( UserIdentityLookup::class );
 		$this->userNameUtils = $this->createMock( UserNameUtils::class );
+		$this->urlUtils = $this->createMock( UrlUtils::class );
+		$this->options = new ServiceOptions(
+			LinkRendererFactory::CONSTRUCTOR_OPTIONS,
+			[
+				MainConfigNames::NoFollowLinks => false,
+				MainConfigNames::NoFollowNsExceptions => [],
+				MainConfigNames::NoFollowDomainExceptions => [],
+			]
+		);
 	}
 
 	public static function provideCreateFromLegacyOptions() {
@@ -86,7 +100,9 @@ class LinkRendererFactoryTest extends MediaWikiUnitTestCase {
 			$this->tempUserConfig,
 			$this->tempUserDetailsLookup,
 			$this->userIdentityLookup,
-			$this->userNameUtils
+			$this->userNameUtils,
+			$this->urlUtils,
+			$this->options,
 		);
 		$linkRenderer = $factory->createFromLegacyOptions(
 			$options
@@ -108,7 +124,9 @@ class LinkRendererFactoryTest extends MediaWikiUnitTestCase {
 			$this->tempUserConfig,
 			$this->tempUserDetailsLookup,
 			$this->userIdentityLookup,
-			$this->userNameUtils
+			$this->userNameUtils,
+			$this->urlUtils,
+			$this->options,
 		);
 		$linkRenderer = $factory->create();
 		$this->assertInstanceOf( LinkRenderer::class, $linkRenderer );
@@ -124,7 +142,9 @@ class LinkRendererFactoryTest extends MediaWikiUnitTestCase {
 			$this->tempUserConfig,
 			$this->tempUserDetailsLookup,
 			$this->userIdentityLookup,
-			$this->userNameUtils
+			$this->userNameUtils,
+			$this->urlUtils,
+			$this->options,
 		);
 		$linkRenderer = $factory->create( [ 'renderForComment' => true ] );
 		$this->assertInstanceOf( LinkRenderer::class, $linkRenderer );

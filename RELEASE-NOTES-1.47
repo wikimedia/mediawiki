@@ -166,6 +166,7 @@ because of Phabricator reports.
 * Parser::statelessFetchTemplate() and ::statelessFetchRevisionRecord() have
   been deprecated. Use ParserOptions::getTemplateCallback() to get the original
   handler.
+* Parser::getExternalLinkRel() has been deprecated. Use LinkRenderer.
 * …
 
 === Other changes in 1.47 ===

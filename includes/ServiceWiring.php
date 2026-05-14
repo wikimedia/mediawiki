@@ -1316,7 +1316,12 @@ return [
 			$services->getTempUserConfig(),
 			$services->getTempUserDetailsLookup(),
 			$services->getUserIdentityLookup(),
-			$services->getUserNameUtils()
+			$services->getUserNameUtils(),
+			$services->getUrlUtils(),
+			new ServiceOptions(
+				LinkRendererFactory::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			)
 		);
 	},
 
