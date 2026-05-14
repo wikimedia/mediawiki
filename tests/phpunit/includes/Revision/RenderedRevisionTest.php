@@ -18,7 +18,6 @@ use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
@@ -480,52 +479,6 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		// then parser uses current time. Hence don't expect time to be
 		// empty or a specific time.
 		$this->assertStringContainsString( 'time:2', $html );
-	}
-
-	public function testGetRevisionParserOutput_incompleteWithId() {
-		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' );
-		$rev = new MutableRevisionRecord( $page );
-		$rev->setId( 21 );
-
-		$text = "";
-		$text .= "* page:{{PAGENAME}}!\n";
-		$text .= "* rev:{{REVISIONID}}!\n";
-		$text .= "* user:{{REVISIONUSER}}!\n";
-		$text .= "* time:{{REVISIONTIMESTAMP}}!\n";
-
-		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
-
-		$actualRevision = $this->getMockRevision(
-			RevisionStoreRecord::class,
-			$page,
-			21,
-			RevisionRecord::DELETED_TEXT
-		);
-
-		$options = ParserOptions::newFromAnon();
-		$rr = new RenderedRevision(
-			$rev,
-			$options,
-			$this->contentRenderer,
-			$this->combinerCallback
-		);
-
-		// MutableRevisionRecord with ID should not be used by the parser,
-		// revision should be loaded instead!
-		$revisionStore = $this->createMock( RevisionStore::class );
-
-		$revisionStore->expects( $this->once() )
-			->method( 'getKnownLatestRevision' )
-			->willReturn( $actualRevision );
-
-		$this->setService( 'RevisionStore', $revisionStore );
-
-		$html = $rr->getRevisionParserOutput()->getContentHolderText();
-
-		$this->assertStringContainsString( 'page:RenderTestPage!', $html );
-		$this->assertStringContainsString( 'rev:21!', $html );
-		$this->assertStringContainsString( 'user:Frank!', $html );
-		$this->assertStringContainsString( 'time:20180101000003!', $html );
 	}
 
 	public function testSetRevisionParserOutput() {

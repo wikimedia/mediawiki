@@ -8,6 +8,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Parser\Parsoid\Config;
 
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -79,14 +80,15 @@ class PageConfig extends IPageConfig {
 	 * (usually latest) RevisionRecord for the given title.
 	 *
 	 * @param Title $title
+	 * @param ?Parser $parser
 	 * @return ?RevisionRecord
 	 */
-	public function fetchRevisionRecordOfTemplate( Title $title ): ?RevisionRecord {
+	public function fetchRevisionRecordOfTemplate( Title $title, ?Parser $parser ): ?RevisionRecord {
 		// See Parser::fetchTemplateAndTitle(), but stateless
 		// (Parsoid will track dependencies, etc, itself.)
-		// The callback defaults to Parser::statelessFetchTemplate()
+		// The callback defaults to Parser::defaultFetchTemplate()
 		$templateCb = $this->parserOptions->getTemplateCallback();
-		$stuff = $templateCb( $title, $this );
+		$stuff = $templateCb( $title, $parser ?? false );
 		return $stuff['revision-record'] ?? null;
 	}
 

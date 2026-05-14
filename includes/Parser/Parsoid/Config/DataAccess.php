@@ -564,7 +564,7 @@ class DataAccess extends IDataAccess {
 
 		// Use the PageConfig to take advantage of custom template
 		// fetch hooks like FlaggedRevisions, etc.
-		$revRecord = $pageConfig->fetchRevisionRecordOfTemplate( $titleObj );
+		$revRecord = $pageConfig->fetchRevisionRecordOfTemplate( $titleObj, $this->parser );
 
 		return $revRecord ? new PageContent( $revRecord ) : null;
 	}

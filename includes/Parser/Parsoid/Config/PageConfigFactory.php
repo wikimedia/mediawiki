@@ -117,7 +117,7 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 			// Fetch the 'latest' revision for the given title.
 			// Note: This initial fetch of the page context revision is
 			// *not* using Parser::fetchCurrentRevisionRecordOfTitle()
-			// (which usually invokes Parser::statelessFetchRevisionRecord
+			// (which usually invokes Parser::defaultFetchRevisionRecord
 			// and from there RevisionStore::getKnownCurrentRevision)
 			// because we don't have a Parser object to give to that callback.
 			// We could create one if needed for greater compatibility.

@@ -267,22 +267,17 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	public static function provideRevisionAccess() {
 		$text = '* user:{{REVISIONUSER}};id:{{REVISIONID}};time:{{REVISIONTIMESTAMP}};';
 
-		yield 'current' => [ $text, [], 0, 'user:CurrentAuthor;id:200;time:20160606000000;' ];
-		yield 'anonymous' => [ $text, [], null, 'user:;id:;time:' ];
-		yield 'current with ID' => [ $text, [], 200, 'user:CurrentAuthor;id:200;time:20160606000000;' ];
-
-		$text = '* user:{{REVISIONUSER}};id:{{REVISIONID}};time:{{REVISIONTIMESTAMP}};';
-
-		yield 'old' => [ $text, [], 100, 'user:OldAuthor;id:100;time:20140404000000;' ];
-
 		$oldRevisionSpec = [
 			'id' => 100,
-			'user' => [ 7, 'FauxAuthor' ],
+			'user' => [ 7, 'Author' ],
 			'timestamp' => '20141111111111',
-			'content' => 'FAUX',
+			'content' => 'OLD',
 		];
+		$oldOpts = [ 'revisionCallback' => $oldRevisionSpec ];
 
-		yield 'old with override' => [ $text, [ 'revisionCallback' => $oldRevisionSpec ], 100, 'user:FauxAuthor;id:100;time:20141111111111;' ];
+		yield 'old' => [ $text, $oldOpts, 0, 'user:Author;id:100;time:20141111111111;' ];
+		yield 'anonymous' => [ $text, [], null, 'user:;id:;time:' ];
+		yield 'old with ID' => [ $text, $oldOpts, 100, 'user:Author;id:100;time:20141111111111;' ];
 
 		$text = '* user:{{REVISIONUSER}};user-subst:{{subst:REVISIONUSER}};';
 

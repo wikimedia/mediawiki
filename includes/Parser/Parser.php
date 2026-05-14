@@ -43,12 +43,14 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\CacheKeyHelper;
 use MediaWiki\Page\File\BadFileLookup;
+use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\Profiler\SectionProfiler;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -3509,13 +3511,13 @@ class Parser {
 		if ( !$this->currentRevisionCache->has( $cacheKey ) ) {
 			$title = Title::newFromLinkTarget( $link ); // hook signature compat
 			$revisionRecord =
-				// Defaults to Parser::statelessFetchRevisionRecord()
+				// Defaults to Parser::defaultFetchRevisionRecord()
 				$this->mOptions->getCurrentRevisionRecordCallback()(
 					$title,
 					$this
 				);
 			if ( $revisionRecord === false ) {
-				// Parser::statelessFetchRevisionRecord() can return false;
+				// Parser::defaultFetchRevisionRecord() can return false;
 				// normalize it to null.
 				$revisionRecord = null;
 			}
@@ -3539,14 +3541,20 @@ class Parser {
 	}
 
 	/**
-	 * Wrapper around RevisionLookup::getKnownCurrentRevision
+	 * Default implementation of fetchCurrentRevisionRecordOfTitle()
 	 *
-	 * @since 1.34
+	 * @internal Use ParserOptions::getCurrentRevisionRecordCallback() -- services may change
+	 * @since 1.47
+	 * @param RevisionLookup $revisionLookup
 	 * @param LinkTarget $link
 	 * @param Parser|null $parser
 	 * @return RevisionRecord|false False if missing
 	 */
-	public static function statelessFetchRevisionRecord( LinkTarget $link, $parser = null ) {
+	public static function defaultFetchRevisionRecord(
+		RevisionLookup $revisionLookup,
+		LinkTarget $link,
+		$parser
+	) {
 		if ( $link instanceof PageIdentity ) {
 			// probably a Title, just use it.
 			$page = $link;
@@ -3557,10 +3565,23 @@ class Parser {
 			$page = Title::newFromLinkTarget( $link );
 		}
 
-		$revRecord = MediaWikiServices::getInstance()
-			->getRevisionLookup()
-			->getKnownLatestRevision( $page );
-		return $revRecord;
+		return $revisionLookup->getKnownLatestRevision( $page );
+	}
+
+	/**
+	 * @deprecated since 1.47 Use ParserOptions::getCurrentRevisionRecordCallback()
+	 * @since 1.34
+	 * @param LinkTarget $link
+	 * @param Parser|null $parser
+	 * @return RevisionRecord|false False if missing
+	 */
+	public static function statelessFetchRevisionRecord( LinkTarget $link, $parser = null ) {
+		wfDeprecated( __METHOD__, '1.47' );
+		return self::defaultFetchRevisionRecord(
+			MediaWikiServices::getInstance()->getRevisionLookup(),
+			$link,
+			$parser
+		);
 	}
 
 	/**
@@ -3573,7 +3594,7 @@ class Parser {
 		// Use Title for compatibility with callbacks and return type
 		$title = Title::newFromLinkTarget( $link );
 
-		// Defaults to Parser::statelessFetchTemplate()
+		// Defaults to Parser::defaultFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
 		$stuff = $templateCb( $title, $this );
 		$revRecord = $stuff['revision-record'] ?? null;
@@ -3603,16 +3624,30 @@ class Parser {
 
 	/**
 	 * Static function to get a template
-	 * Can be overridden via ParserOptions::setTemplateCallback().
+	 * Can be overridden via ParserOptions::setTemplateCallback(), in which case the
+	 * service arguments are not passed.
 	 *
-	 * @param LinkTarget $page
+	 * @internal Use ParserOptions::getTemplateCallback() -- services may change
+	 *
+	 * @param RevisionLookup $revLookup
+	 * @param HookRunner $hookRunner
+	 * @param LinkCache $linkCache
+	 * @param Language $contLang
+	 * @param LinkTarget $link
 	 * @param Parser|false $parser
 	 *
 	 * @return array
 	 * @since 1.12
 	 */
-	public static function statelessFetchTemplate( $page, $parser = false ) {
-		$title = Title::castFromLinkTarget( $page ); // for compatibility with return type
+	public static function defaultFetchTemplate(
+		RevisionLookup $revLookup,
+		HookRunner $hookRunner,
+		LinkCache $linkCache,
+		Language $contLang,
+		$link,
+		$parser
+	) {
+		$title = Title::castFromLinkTarget( $link ); // for compatibility with return type
 		$text = $skip = false;
 		$finalTitle = $title;
 		$deps = [];
@@ -3627,9 +3662,6 @@ class Parser {
 		# are careful not to add external titles to the dependency
 		# list. (T362221)
 
-		$services = MediaWikiServices::getInstance();
-		$revLookup = $services->getRevisionLookup();
-		$hookRunner = new HookRunner( $services->getHookContainer() );
 		for ( $i = 0; $i < 3 && is_object( $title ); $i++ ) {
 			# Give extensions a chance to select the revision instead
 			$revRecord = null; # Assume no hook
@@ -3695,7 +3727,6 @@ class Parser {
 			}
 			# If there is no current revision, there is no page
 			if ( $revRecord === null || $revRecord->getId() === null ) {
-				$linkCache = $services->getLinkCache();
 				$linkCache->addBadLinkObj( $title );
 			}
 			if ( $revRecord ) {
@@ -3719,8 +3750,7 @@ class Parser {
 					break;
 				}
 			} elseif ( $title->getNamespace() === NS_MEDIAWIKI ) {
-				$message = wfMessage( $services->getContentLanguage()->
-					lcfirst( $title->getText() ) )->inContentLanguage();
+				$message = wfMessage( $contLang->lcfirst( $title->getText() ) )->inContentLanguage();
 				if ( !$message->exists() ) {
 					$text = false;
 					break;
@@ -3751,6 +3781,25 @@ class Parser {
 			'deps' => $deps
 		];
 		return $retValues;
+	}
+
+	/**
+	 * @deprecated since 1.47 use ParserOptions::getTemplateCallback()
+	 *
+	 * @param LinkTarget $page
+	 * @param Parser|false $parser
+	 * @return array
+	 */
+	public static function statelessFetchTemplate( $page, $parser = false ) {
+		$services = MediaWikiServices::getInstance();
+		return self::defaultFetchTemplate(
+			$services->getRevisionLookup(),
+			new HookRunner( $services->getHookContainer() ),
+			$services->getLinkCache(),
+			$services->getContentLanguage(),
+			$page,
+			$parser
+		);
 	}
 
 	/**
@@ -6058,7 +6107,7 @@ class Parser {
 		if ( !$rev ) {
 			// The revision record callback returns `false` (not null) to
 			// indicate that the revision is missing.  (See for example
-			// Parser::statelessFetchRevisionRecord(), the default callback.)
+			// Parser::defaultFetchRevisionRecord(), the default callback.)
 			// This API expects `null` instead. (T251952)
 			return null;
 		}

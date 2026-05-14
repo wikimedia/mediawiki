@@ -163,6 +163,9 @@ because of Phabricator reports.
   longer affect core.
 * Skin::mapInterwikiToLanguage has been deprecated. Use the
   InterlanguageLinkCodeMap config setting directly.
+* Parser::statelessFetchTemplate() and ::statelessFetchRevisionRecord() have
+  been deprecated. Use ParserOptions::getTemplateCallback() to get the original
+  handler.
 * …
 
 === Other changes in 1.47 ===

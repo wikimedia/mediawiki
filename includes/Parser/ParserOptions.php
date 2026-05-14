@@ -16,6 +16,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -986,7 +987,6 @@ class ParserOptions {
 
 	/**
 	 * Callback to fetch the current revision
-	 * @internal
 	 * @since 1.35
 	 * @return callable
 	 */
@@ -1007,8 +1007,8 @@ class ParserOptions {
 
 	/**
 	 * Callback to fetch a template
-	 * @see Parser::statelessFetchTemplate
-	 * @return callable
+	 * @see Parser::defaultFetchTemplate
+	 * @return callable(LinkTarget,Parser|false):array
 	 */
 	public function getTemplateCallback() {
 		return $this->getOption( 'templateCallback' );
@@ -1016,8 +1016,8 @@ class ParserOptions {
 
 	/**
 	 * Set the callback to fetch a template
-	 * @param callable|null $x New value (null is no change)
-	 * @return callable Old value
+	 * @param callable(LinkTarget,Parser|false):array|null $x New value (null is no change)
+	 * @return callable(LinkTarget,Parser|false):array Old value
 	 */
 	public function setTemplateCallback( $x ) {
 		return $this->setOptionLegacy( 'templateCallback', $x );
@@ -1173,6 +1173,9 @@ class ParserOptions {
 
 	/**
 	 * Get a ParserOptions object for an anonymous user
+	 *
+	 * @todo Move to ParserFactory or create a ParserOptionsFactory
+	 *
 	 * @since 1.27
 	 * @return ParserOptions
 	 */
@@ -1336,8 +1339,8 @@ class ParserOptions {
 				'printable' => false,
 				'allowUnsafeRawHtml' => true,
 				'wrapclass' => 'mw-parser-output',
-				'currentRevisionRecordCallback' => [ Parser::class, 'statelessFetchRevisionRecord' ],
-				'templateCallback' => [ Parser::class, 'statelessFetchTemplate' ],
+				'currentRevisionRecordCallback' => self::getDefaultRevisionCallback(),
+				'templateCallback' => self::getDefaultTemplateCallback(),
 				'speculativeRevIdCallback' => null,
 				'speculativeRevId' => null,
 				'speculativePageIdCallback' => null,
@@ -1417,6 +1420,35 @@ class ParserOptions {
 			'thumbsize' => $userOptionsLookup->getDefaultOption( 'thumbsize' ),
 			'userlang' => $contentLanguage,
 		];
+	}
+
+	/**
+	 * Resolve services necessary for template fetching and return a closure
+	 * which wraps them, to avoid service container access during parse.
+	 *
+	 * @return callable
+	 */
+	private static function getDefaultTemplateCallback() {
+		$services = MediaWikiServices::getInstance();
+		$revisionLookup = $services->getRevisionLookup();
+		$hookRunner = new HookRunner( $services->getHookContainer() );
+		$linkCache = $services->getLinkCache();
+		$contLang = $services->getContentLanguage();
+		return static fn ( $link, $parser ) => Parser::defaultFetchTemplate(
+			$revisionLookup, $hookRunner, $linkCache, $contLang, $link, $parser );
+	}
+
+	/**
+	 * Resolve services necessary for revision fetching and return a closure
+	 * which wraps them, to avoid service container access during parse.
+	 *
+	 * @return callable
+	 */
+	private static function getDefaultRevisionCallback() {
+		$services = MediaWikiServices::getInstance();
+		$revisionLookup = $services->getRevisionLookup();
+		return static fn ( $link, $parser = null )
+			=> Parser::defaultFetchRevisionRecord( $revisionLookup, $link, $parser );
 	}
 
 	/**
@@ -1579,6 +1611,8 @@ class ParserOptions {
 			return $value->getSkinName();
 		} elseif ( is_array( $value ) ) {
 			return '[' . implode( ',', array_map( $this->optionToString( ... ), $value ) ) . ']';
+		} elseif ( $value instanceof \Closure ) {
+			return (string)new \ReflectionFunction( $value );
 		} else {
 			return (string)$value;
 		}

@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Parser;
 
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
@@ -41,8 +42,14 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 	}
 
 	private function commonSetup( $suffix = null ) {
+		$services = $this->getServiceContainer();
+		$revisionLookup = $services->getRevisionLookup();
+		$hookRunner = new HookRunner( $services->getHookContainer() );
+		$linkCache = $services->getLinkCache();
+		$contLang = $services->getContentLanguage();
+
 		$suffix ??= $this->getCallerName();
-		$parser = $this->getServiceContainer()->getParserFactory()->create();
+		$parser = $services->getParserFactory()->create();
 		$parser->setOptions( ParserOptions::newFromAnon() );
 
 		$page = $this->getNonexistingTestPage( "Base $suffix" );
@@ -55,18 +62,20 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 			"Make redirect link for testing"
 		);
 
-		return [ $parser, $page, $redirectPage ];
+		return [ $revisionLookup, $hookRunner, $linkCache, $contLang, $parser, $page, $redirectPage ];
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parser::statelessFetchTemplate
+	 * @covers \MediaWiki\Parser\Parser::defaultFetchTemplate
 	 * @dataProvider provideWithParser
 	 */
-	public function testStatelessFetchTemplateBasic( bool $withParser ) {
-		[ $parser, $page, $redirectPage ] = $this->commonSetup( __FUNCTION__ );
+	public function testDefaultFetchTemplateBasic( bool $withParser ) {
+		[ $revisionLookup, $hookRunner, $linkCache, $contLang, $parser, $page, $redirectPage ]
+			= $this->commonSetup( __FUNCTION__ );
 
 		// Basic redirect test
-		$ret = Parser::statelessFetchTemplate(
+		$ret = Parser::defaultFetchTemplate(
+			$revisionLookup, $hookRunner, $linkCache, $contLang,
 			$redirectPage->getTitle(), $withParser ? $parser : null
 		);
 		$this->checkResult( [
@@ -80,11 +89,12 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parser::statelessFetchTemplate
+	 * @covers \MediaWiki\Parser\Parser::defaultFetchTemplate
 	 * @dataProvider provideWithParser
 	 */
-	public function testStatelessFetchTemplateSkip( bool $withParser ) {
-		[ $parser, $page, $redirectPage ] = $this->commonSetup( __FUNCTION__ );
+	public function testDefaultFetchTemplateSkip( bool $withParser ) {
+		[ $revisionLookup, $hookRunner, $linkCache, $contLang, $parser, $page, $redirectPage ]
+			= $this->commonSetup( __FUNCTION__ );
 
 		// Create a hook to prevent resolution of the redirect
 		$this->setTemporaryHook(
@@ -94,7 +104,8 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 			}
 		);
 
-		$ret = Parser::statelessFetchTemplate(
+		$ret = Parser::defaultFetchTemplate(
+			$revisionLookup, $hookRunner, $linkCache, $contLang,
 			$redirectPage->getTitle(), $withParser ? $parser : null
 		);
 		$this->checkResult( [
@@ -107,11 +118,12 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parser::statelessFetchTemplate
+	 * @covers \MediaWiki\Parser\Parser::defaultFetchTemplate
 	 * @dataProvider provideWithParser
 	 */
-	public function testStatelessFetchTemplateMissing( bool $withParser ) {
-		[ $parser, $page, $redirectPage ] = $this->commonSetup( __FUNCTION__ );
+	public function testDefaultFetchTemplateMissing( bool $withParser ) {
+		[ $revisionLookup, $hookRunner, $linkCache, $contLang, $parser, $page, $redirectPage ]
+			= $this->commonSetup( __FUNCTION__ );
 
 		// Create a hook to redirect to a non-existing page
 		$baseTitle = 'Base ' . __FUNCTION__;
@@ -124,7 +136,8 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 				}
 			}
 		);
-		$ret = Parser::statelessFetchTemplate(
+		$ret = Parser::defaultFetchTemplate(
+			$revisionLookup, $hookRunner, $linkCache, $contLang,
 			$redirectPage->getTitle(), $withParser ? $parser : null
 		);
 		$this->checkResult( [
@@ -142,11 +155,12 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Parser::statelessFetchTemplate
+	 * @covers \MediaWiki\Parser\Parser::defaultFetchTemplate
 	 * @dataProvider provideWithParser
 	 */
-	public function testStatelessFetchTemplateSubstituted( bool $withParser ) {
-		[ $parser, $page, $redirectPage ] = $this->commonSetup( __FUNCTION__ );
+	public function testDefaultFetchTemplateSubstituted( bool $withParser ) {
+		[ $revisionLookup, $hookRunner, $linkCache, $contLang, $parser, $page, $redirectPage ]
+			= $this->commonSetup( __FUNCTION__ );
 
 		// Create a hook to redirect to a non-existing page
 		$baseTitle = 'Base ' . __FUNCTION__;
@@ -160,7 +174,8 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 				}
 			}
 		);
-		$ret = Parser::statelessFetchTemplate(
+		$ret = Parser::defaultFetchTemplate(
+			$revisionLookup, $hookRunner, $linkCache, $contLang,
 			$redirectPage->getTitle(), $withParser ? $parser : null
 		);
 		$this->checkResult( [
