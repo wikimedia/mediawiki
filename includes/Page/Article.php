@@ -2080,11 +2080,13 @@ class Article implements Page {
 	 *
 	 * @param int|null $oldid Revision ID or null
 	 * @param UserIdentity|null $user The relevant user
+	 * @param array $options Extra ParserOutputAccess options; see
+	 *   ParserOutputAccess::getParserOutput()
 	 * @return ParserOutput|false ParserOutput or false if the given revision ID is not found
 	 */
-	public function getParserOutput( $oldid = null, ?UserIdentity $user = null ) {
+	public function getParserOutput( $oldid = null, ?UserIdentity $user = null, array $options = [] ) {
 		$parserOptions = $this->getParserOptions( $oldid, $user );
-		return $this->mPage->getParserOutput( $parserOptions, $oldid );
+		return $this->mPage->getParserOutput( $parserOptions, $oldid, options: $options );
 	}
 
 	/**

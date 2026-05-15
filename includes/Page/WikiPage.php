@@ -58,6 +58,7 @@ use stdClass;
 use Stringable;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -1110,15 +1111,22 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 *
 	 * @since 1.19
 	 * @param ParserOptions|null $parserOptions ParserOptions to use for the parse operation
-	 * @param null|int $oldid Revision ID to get the text from, passing null or 0 will
+	 * @param null|int|RevisionRecord $oldid Revision or Revision ID to get the text from, passing null or 0 will
 	 *   get the latest revision (default value)
 	 * @param bool $noCache Do not read from or write to caches.
+	 * @param array $options Extra ParserOutputAccess options; see
+	 *   ParserOutputAccess::getParserOutput()
+	 * @param MessageSpecifier[] &$errors Errors returned by ParserOutputAccess
+	 *   on a failure (false return value).
 	 * @return ParserOutput|false ParserOutput or false if the revision was not found or is not public
 	 */
 	public function getParserOutput(
-		?ParserOptions $parserOptions = null, $oldid = null, $noCache = false
+		?ParserOptions $parserOptions = null, $oldid = null, $noCache = false,
+		array $options = [], array &$errors = []
 	) {
-		if ( $oldid ) {
+		if ( $oldid instanceof RevisionRecord ) {
+			$revision = $oldid;
+		} elseif ( $oldid ) {
 			$revision = $this->getRevisionStore()->getRevisionByTitle( $this->getTitle(), $oldid );
 
 			if ( !$revision ) {
@@ -1132,12 +1140,20 @@ class WikiPage implements Stringable, Page, PageRecord {
 			$parserOptions = ParserOptions::newFromAnon();
 		}
 
-		$options = $noCache ? ParserOutputAccess::OPT_NO_CACHE : 0;
+		if ( $noCache ) {
+			$options += [ ParserOutputAccess::OPT_NO_CACHE => true ];
+		}
 
 		$status = MediaWikiServices::getInstance()->getParserOutputAccess()->getParserOutput(
 			$this, $parserOptions, $revision, $options
 		);
-		return $status->isOK() ? $status->getValue() : false; // convert null to false
+		if ( $status->isOK() ) {
+			return $status->getValue();
+		} else {
+			$errors = [ ...$status->getMessages() ];
+			// convert null to false
+			return false;
+		}
 	}
 
 	/**

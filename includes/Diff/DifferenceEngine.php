@@ -1265,31 +1265,25 @@ class DifferenceEngine extends ContextSource {
 					$wikiPage = $this->wikiPageFactory->newFromTitle( $this->mNewPage );
 				}
 
-				$parserOptions = $wikiPage->makeParserOptions( $this->getContext() );
+				# Use appropriate parser options for the Article.
+				$article = Article::newFromWikiPage( $wikiPage, $this->getContext() );
+				$parserOptions = $article->getParserOptions();
+				// Override the render reason.
 				$parserOptions->setRenderReason( 'diff-page' );
 
-				$services = MediaWikiServices::getInstance();
-
-				# Allow extensions to vary parser options used for article rendering
-				$article = Article::newFromTitle( $wikiPage->getTitle(), $this->getContext() );
-				( new HookRunner( $services->getHookContainer() ) )->onArticleParserOptions(
-					$article, $parserOptions
-				);
-
-				$parserOutputAccess = $services->getParserOutputAccess();
-				$status = $parserOutputAccess->getParserOutput(
-					$wikiPage,
-					$parserOptions,
-					$this->mNewRevisionRecord,
-					[
+				$errors = [];
+				$parserOutput = $article->getPage()->getParserOutput(
+					$parserOptions, $this->mNewRevisionRecord,
+					options: [
 						// we already checked
 						ParserOutputAccess::OPT_NO_AUDIENCE_CHECK => true,
 						// Update cascading protection
 						ParserOutputAccess::OPT_LINKS_UPDATE => true,
 					],
+					errors: $errors
 				);
-				if ( $status->isOK() ) {
-					$parserOutput = $status->getValue();
+
+				if ( $parserOutput !== false ) {
 					// Allow extensions to change parser output here
 					if ( $this->hookRunner->onDifferenceEngineRenderRevisionAddParserOutput(
 						$this, $out, $parserOutput, $wikiPage )
@@ -1307,7 +1301,8 @@ class DifferenceEngine extends ContextSource {
 					}
 				} else {
 					$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
-					foreach ( $status->getMessages() as $msg ) {
+					// @phan-suppress-next-line PhanEmptyForeach $errors written by-reference
+					foreach ( $errors as $msg ) {
 						$out->addHTML( Html::errorBox(
 							$this->msg( $msg )->parse()
 						) );
