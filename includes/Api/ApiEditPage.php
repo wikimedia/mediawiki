@@ -622,34 +622,41 @@ class ApiEditPage extends ApiBase {
 						case EditPage::AS_NO_CHANGE_CONTENT_MODEL:
 							$status->fatal( 'apierror-cantchangecontentmodel' );
 							break;
-						case EditPage::AS_CONFLICT_DETECTED:
-							$status->fatal( 'edit-conflict' );
-							break;
 
 						// Currently shouldn't be needed, but here in case
 						// hooks use them without setting appropriate
 						// errors on the status.
 						// @codeCoverageIgnoreStart
+						case EditPage::AS_CONFLICT_DETECTED:
+							wfDeprecatedMsg( 'Status code AS_CONFLICT_DETECTED without a message', '1.47' );
+							$status->fatal( 'edit-conflict' );
+							break;
 						case EditPage::AS_SPAM_ERROR:
+							wfDeprecatedMsg( 'Status code AS_SPAM_ERROR without a message', '1.47' );
 							$status->fatal( 'apierror-spamdetected', $result['spam'] ?? '' );
 							break;
 						case EditPage::AS_READ_ONLY_PAGE_LOGGED:
+							wfDeprecatedMsg( 'Status code AS_READ_ONLY_PAGE_LOGGED without a message', '1.47' );
 							$status->fatal( 'apierror-noedit' );
 							break;
 						case EditPage::AS_NO_CREATE_PERMISSION:
+							wfDeprecatedMsg( 'Status code AS_NO_CREATE_PERMISSION without a message', '1.47' );
 							$status->fatal( 'nocreate-loggedin' );
 							break;
 						case EditPage::AS_BLANK_ARTICLE:
+							wfDeprecatedMsg( 'Status code AS_BLANK_ARTICLE without a message', '1.47' );
 							$status->fatal( 'apierror-emptypage' );
 							break;
 						case EditPage::AS_TEXTBOX_EMPTY:
+							wfDeprecatedMsg( 'Status code AS_TEXTBOX_EMPTY without a message', '1.47' );
 							$status->fatal( 'apierror-emptynewsection' );
 							break;
 						case EditPage::AS_SUMMARY_NEEDED:
+							wfDeprecatedMsg( 'Status code AS_SUMMARY_NEEDED without a message', '1.47' );
 							$status->fatal( 'apierror-summaryrequired' );
 							break;
 						default:
-							wfWarn( __METHOD__ . ": Unknown EditPage code $statusValue with no message" );
+							wfDeprecatedMsg( "Status code $statusValue without a message", '1.47' );
 							$status->fatal( 'apierror-unknownerror-editpage', $statusValue );
 							break;
 						// @codeCoverageIgnoreEnd

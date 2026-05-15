@@ -708,6 +708,10 @@ because of Phabricator reports.
   LinkTargetIsAlwaysKnownBatch hook instead.
 * Overriding MediaHandler::getMetadata() and ::getImageSize(), deprecated since
   1.37, now emits deprecation warnings.
+* ApiEditPage supplements messages when a handler for the
+  "EditPage::attemptSave:after" or "EditFilterMergedContent" hook sets certain
+  status values without setting a message. This behaviour is now deprecated,
+  and hook handlers are expected to supply messages themselves.
 * (T433783) The SpecialCreateAccountBenefitsHook has been deprecated and will
   be removed in a future version. There will be no replacement.
 * Title::isAlwaysKnown() has been deprecated. Use the LinkAlwaysKnownLookup
