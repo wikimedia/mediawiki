@@ -1347,4 +1347,23 @@ hello
 			EditPage::AS_CONFLICT_DETECTED, null, 'expected successful update' );
 	}
 
+	/**
+	 * @covers \MediaWiki\EditPage\EditPage::internalAttemptSave
+	 */
+	public function testWpAntiSpamCheck() {
+		$edit = [
+			'wpTextbox1' => 'one',
+			'wpSummary' => 'first update',
+			'wpAntispam' => 'tatata'
+		];
+		$this->assertEdit(
+			'EditPageTest_testWpAntiSpamCheck',
+			'zero',
+			'user',
+			$edit,
+			EditPage::AS_SPAM_ERROR,
+			message: 'expected AS_SPAM_ERROR update'
+		);
+	}
+
 }

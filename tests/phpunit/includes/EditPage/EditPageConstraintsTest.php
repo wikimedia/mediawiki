@@ -621,25 +621,6 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\EditPage\Constraint\SimpleAntiSpamConstraint
-	 */
-	public function testSimpleAntiSpamConstraint() {
-		$edit = [
-			'wpTextbox1' => 'one',
-			'wpSummary' => 'first update',
-			'wpAntispam' => 'tatata'
-		];
-		$this->assertEdit(
-			'EditPageTest_testUpdatePageSpamError',
-			'zero',
-			null,
-			$edit,
-			EditPage::AS_SPAM_ERROR,
-			'expected AS_SPAM_ERROR update'
-		);
-	}
-
-	/**
 	 * @covers \MediaWiki\EditPage\Constraint\SpamRegexConstraint
 	 */
 	public function testSpamRegexConstraint() {

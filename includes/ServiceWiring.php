@@ -3186,7 +3186,6 @@ return [
 				EditConstraintFactory::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
-			LoggerFactory::getProvider(),
 
 			// EditFilterMergedContentHookConstraint
 			$services->getHookContainer(),
@@ -3196,6 +3195,10 @@ return [
 
 			// SpamRegexConstraint
 			$services->getSpamChecker(),
+			// The wpAntispam check in EditPage::internalAttemptSave uses the 'SimpleAntiSpam' channel, but
+			// SpamRegexConstraint uses 'SpamRegex'.
+			// TODO can they be combined into the same channel?
+			LoggerFactory::getProvider()->getLogger( 'SpamRegex' ),
 
 			// LinkPurgeRateLimitConstraint
 			$services->getRateLimiter(),

@@ -15,13 +15,11 @@ use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
 use MediaWiki\EditPage\Constraint\ReadOnlyConstraint;
 use MediaWiki\EditPage\Constraint\RedirectConstraint;
-use MediaWiki\EditPage\Constraint\SimpleAntiSpamConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
-use MediaWiki\Logger\Spi;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\RedirectLookup;
@@ -48,16 +46,13 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 			EditConstraintFactory::CONSTRUCTOR_OPTIONS,
 			[ MainConfigNames::MaxArticleSize => 10 ]
 		);
-		$loggerFactory = $this->createMock( Spi::class );
-		$loggerFactory->method( 'getLogger' )
-			->willReturn( new NullLogger() );
 
 		$factory = new EditConstraintFactory(
 			$options,
-			$loggerFactory,
 			$this->createMock( HookContainer::class ),
 			$this->createMock( ReadOnlyMode::class ),
 			$this->createMock( SpamChecker::class ),
+			new NullLogger(),
 			$this->createMock( RateLimiter::class ),
 			$this->createMock( RedirectLookup::class ),
 			$this->createMock( IConnectionProvider::class ),
@@ -89,10 +84,6 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf(
 			ReadOnlyConstraint::class,
 			$factory->newReadOnlyConstraint()
-		);
-		$this->assertInstanceOf(
-			SimpleAntiSpamConstraint::class,
-			$factory->newSimpleAntiSpamConstraint( '', $user, $title )
 		);
 		$this->assertInstanceOf(
 			SpamRegexConstraint::class,

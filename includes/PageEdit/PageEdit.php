@@ -447,14 +447,6 @@ class PageEdit implements IEditObject {
 		$title,
 	): EditConstraintRunner {
 		return new EditConstraintRunner(
-			// Ensure that the context request does not have `wpAntispam` set
-			// Use $user since there is no permissions aspect
-			$this->constraintFactory->newSimpleAntiSpamConstraint(
-				$this->inputs->getContext()->getRequest()->getText( 'wpAntispam' ),
-				$requestUser,
-				$this->inputs->getPage(),
-			),
-
 			// Ensure that the summary and text don't match the spam regex
 			$this->constraintFactory->newSpamRegexConstraint(
 				$this->summary,

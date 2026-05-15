@@ -1997,6 +1997,21 @@ class EditPage implements IEditObject {
 				->setValue( self::AS_UNICODE_NOT_SUPPORTED );
 		}
 
+		$antispam = $this->getContext()->getRequest()->getText( 'wpAntispam' );
+		if ( $antispam !== '' ) {
+			LoggerFactory::getInstance( 'SimpleAntiSpam' )->debug(
+				'{name} editing "{title}" submitted bogus field "{input}"',
+				[
+					// Use the context user since there is no permissions aspect
+					'name' => $this->context->getUser()->getName(),
+					'title' => $this->page,
+					'input' => $antispam,
+				]
+			);
+			return PageEditStatus::newFatal( 'spamprotectionmatch', '' )
+				->setValue( self::AS_SPAM_ERROR );
+		}
+
 		$inputs = ( new PageEditInputs(
 			authority: $this->getAuthority(),
 			contentModel: $this->contentModel,

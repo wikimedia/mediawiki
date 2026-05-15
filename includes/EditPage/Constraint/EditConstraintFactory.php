@@ -13,7 +13,6 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Logger\Spi;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
@@ -23,6 +22,7 @@ use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -46,24 +46,17 @@ class EditConstraintFactory {
 	 * Some constraints have dependencies that need to be injected,
 	 * this class serves as a factory for all of the different constraints
 	 * that need dependencies injected.
-	 *
-	 * The checks in EditPage use wfDebugLog and logged to different channels, hence the need
-	 * for multiple loggers retrieved from the Spi. The channels used are:
-	 * - SimpleAntiSpam (in SimpleAntiSpamConstraint)
-	 * - SpamRegex (in SpamRegexConstraint)
-	 *
-	 * TODO can they be combined into the same channel?
 	 */
 	public function __construct(
 		// Multiple
 		private readonly ServiceOptions $options,
-		private readonly Spi $loggerFactory,
 		// EditFilterMergedContentHookConstraint
 		private readonly HookContainer $hookContainer,
 		// ReadOnlyConstraint
 		private readonly ReadOnlyMode $readOnlyMode,
 		// SpamRegexConstraint
 		private readonly SpamChecker $spamRegexChecker,
+		private readonly LoggerInterface $spamRegexLogger,
 		// LinkPurgeRateLimitConstraint
 		private readonly RateLimiter $rateLimiter,
 		// RedirectConstraint
@@ -133,19 +126,6 @@ class EditConstraintFactory {
 		);
 	}
 
-	public function newSimpleAntiSpamConstraint(
-		string $input,
-		UserIdentity $user,
-		PageReference $page,
-	): SimpleAntiSpamConstraint {
-		return new SimpleAntiSpamConstraint(
-			$this->loggerFactory->getLogger( 'SimpleAntiSpam' ),
-			$input,
-			$user,
-			$page,
-		);
-	}
-
 	public function newSpamRegexConstraint(
 		string $summary,
 		?string $sectionHeading,
@@ -154,7 +134,7 @@ class EditConstraintFactory {
 		PageReference $page,
 	): SpamRegexConstraint {
 		return new SpamRegexConstraint(
-			$this->loggerFactory->getLogger( 'SpamRegex' ),
+			$this->spamRegexLogger,
 			$this->spamRegexChecker,
 			$summary,
 			$sectionHeading,
