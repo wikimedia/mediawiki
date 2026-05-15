@@ -12,10 +12,7 @@ class HtmlformCheckerV2 {
 		this.validationMessageWrapper = this.field.querySelector( '.cdx-field__validation-message' );
 		this.validationMessage = this.field.querySelector( '.cdx-message' );
 
-		this.debouncedValidation = mw.util.debounce(
-			( value ) => this.validate( value ),
-			2000
-		);
+		this.debouncedValidation = mw.util.debounce( this.validate, 2000 );
 	}
 
 	enhanceElement() {
@@ -82,8 +79,8 @@ class HtmlformCheckerV2 {
 			} );
 		}
 
-		$e.on( 'input', ( e ) => this.debouncedValidation( e.target.value ) );
-		$e.on( 'blur', ( e ) => this.validate( e.target.value ) );
+		$e.on( 'input', () => this.debouncedValidation() );
+		$e.on( 'blur', () => this.validate() );
 
 		// Check validation state on submit and trigger 'error' state instead of 'warning'
 		this.$form.on( 'submit', () => {
@@ -212,7 +209,8 @@ class HtmlformCheckerV2 {
 		this.setValidationStateClasses( 'notice', true );
 	}
 
-	validate( value ) {
+	validate() {
+		const { value } = this.element;
 		if ( this.abortController ) {
 			this.abortController.abort();
 		}
