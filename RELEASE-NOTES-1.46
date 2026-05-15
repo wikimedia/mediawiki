@@ -148,6 +148,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 * Updated symfony/polyfill-php85 from 1.33.0 to 1.36.0.
 * Updated symfony/yaml from 6.4.26 to 7.4.12.
 * Updated wikimedia/bcp-47-code from 2.0.1 to 2.0.3.
+* Updated wikimedia/cldr-plural-rule-parser from 3.0.0 to 3.0.1.
 * Updated wikimedia/css-sanitizer from 6.1.0 to 6.2.1.
 * Updated wikimedia/ip-utils from 5.0.0 to 6.0.1.
 * Updated wikimedia/less.php from 5.2.2 to 5.5.1.
