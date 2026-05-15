@@ -176,11 +176,12 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			return new TransformTooBigImageAreaError( $params, $maxImageArea );
 		}
 
+		$usePhysicalSize = $params['usePhysicalSize'] ?? false;
 		if ( $flags & self::TRANSFORM_LATER ) {
 			wfDebug( __METHOD__ . ": Transforming later per flags." );
 			$newParams = [
-				'width' => $scalerParams['clientWidth'],
-				'height' => $scalerParams['clientHeight']
+				'width' => $scalerParams[$usePhysicalSize ? 'physicalWidth' : 'clientWidth'],
+				'height' => $scalerParams[$usePhysicalSize ? 'physicalHeight' : 'clientHeight']
 			];
 			if ( isset( $params['quality'] ) ) {
 				$newParams['quality'] = $params['quality'];
@@ -283,8 +284,8 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		}
 
 		$newParams = [
-			'width' => $scalerParams['clientWidth'],
-			'height' => $scalerParams['clientHeight']
+			'width' => $scalerParams[$usePhysicalSize ? 'physicalWidth' : 'clientWidth'],
+			'height' => $scalerParams[$usePhysicalSize ? 'physicalHeight' : 'clientHeight']
 		];
 		if ( isset( $params['quality'] ) ) {
 			$newParams['quality'] = $params['quality'];

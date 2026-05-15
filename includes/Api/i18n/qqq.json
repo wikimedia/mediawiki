@@ -900,6 +900,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-sha1": "{{doc-apihelp-paramvalue|query+imageinfo|prop|sha1}}",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "{{doc-apihelp-paramvalue|query+imageinfo|prop|mime}}",
 	"apihelp-query+imageinfo-paramvalue-prop-thumbmime": "{{doc-apihelp-paramvalue|query+imageinfo|prop|thumbmime}}",
+	"apihelp-query+imageinfo-paramvalue-prop-thumburls": "{{doc-apihelp-paramvalue|query+imageinfo|prop|thumburls}}",
 	"apihelp-query+imageinfo-paramvalue-prop-mediatype": "{{doc-apihelp-paramvalue|query+imageinfo|prop|mediatype}}",
 	"apihelp-query+imageinfo-paramvalue-prop-metadata": "{{doc-apihelp-paramvalue|query+imageinfo|prop|metadata}}",
 	"apihelp-query+imageinfo-paramvalue-prop-commonmetadata": "{{doc-apihelp-paramvalue|query+imageinfo|prop|commonmetadata}}",

@@ -618,6 +618,50 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 		}
 
+		if ( $exists && isset( $prop['thumburls'] ) ) {
+			$urlUtils = $services->getUrlUtils();
+			$config = $services->getMainConfig();
+			$thumbnailSteps = $config->get( MainConfigNames::ThumbnailSteps );
+			$sizes = [];
+			if ( is_array( $thumbnailSteps ) ) {
+				// When $wgThumbnailSteps is enabled
+				foreach ( $thumbnailSteps as $width ) {
+					$sizes[] = [ 'width' => $width ];
+				}
+			} else {
+				// Default to union of the default thumbnail size and $wgImageLimits
+				$userOptionsLookup = $services->getUserOptionsLookup();
+				$thumbKey = $userOptionsLookup->getDefaultOption( 'thumbsize' ) ?: 0;
+				$thumbWidth = $config->get( MainConfigNames::ThumbLimits )[ $thumbKey ];
+				$sizes[] = [ 'width' => $thumbWidth ];
+				if ( $config->get( MainConfigNames::ResponsiveImages ) ) {
+					$sizes[] = [ 'width' => $thumbWidth * 2 ];
+				}
+				foreach ( $config->get( MainConfigNames::ImageLimits ) as [ $width, $height ] ) {
+					$sizes[] = [ 'width' => $width, 'height' => $height ];
+				}
+			}
+			$vals['thumburls'] = [];
+			foreach ( $sizes as $size ) {
+				if ( $size['width'] >= $file->getWidth() && !$file->isVectorized() ) {
+					continue;
+				}
+				$size['requestProvenance'] = 'imageinfo';
+				$size['usePhysicalSize'] = true;
+				$mto = $file->transform( $size );
+				self::$transformCount++;
+				if ( !$mto || $mto->isError() ) {
+					continue;
+				}
+				$thumburl = (string)$urlUtils->expand( $mto->getUrl(), PROTO_CURRENT );
+				$vals['thumburls'][$mto->getWidth()] = [
+					'url' => $thumburl,
+					'width' => $mto->getWidth(),
+					'height' => $mto->getHeight(),
+				];
+			}
+		}
+
 		if ( !$exists ) {
 			$vals['filemissing'] = true;
 		}
@@ -685,6 +729,13 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 */
 	protected static function getTransformCount() {
 		return self::$transformCount;
+	}
+
+	/**
+	 * Reset the count of image transformations performed. Solely used for phpunit.
+	 */
+	public static function resetTransformCountForUnitTest() {
+		self::$transformCount = 0;
 	}
 
 	/**
@@ -830,6 +881,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				'sha1' => 'apihelp-query+imageinfo-paramvalue-prop-sha1',
 				'mime' => 'apihelp-query+imageinfo-paramvalue-prop-mime',
 				'thumbmime' => 'apihelp-query+imageinfo-paramvalue-prop-thumbmime',
+				'thumburls' => 'apihelp-query+imageinfo-paramvalue-prop-thumburls',
 				'mediatype' => 'apihelp-query+imageinfo-paramvalue-prop-mediatype',
 				'metadata' => 'apihelp-query+imageinfo-paramvalue-prop-metadata',
 				'commonmetadata' => 'apihelp-query+imageinfo-paramvalue-prop-commonmetadata',

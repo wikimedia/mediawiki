@@ -3,9 +3,12 @@
 namespace MediaWiki\Tests\Api\Query;
 
 use MediaWiki\Api\ApiQueryImageInfo;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\FileRepo\TestRepoTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserIdentity;
@@ -22,6 +25,9 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
 class ApiQueryImageInfoTest extends ApiTestCase {
 	use MockAuthorityTrait;
 	use TempUserTestTrait;
+	use TestRepoTrait;
+
+	private const IMAGES_DIR = __DIR__ . '/../../../data/media';
 
 	private const IMAGE_NAME = 'Random-11m.png';
 
@@ -48,8 +54,21 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 	/** @var User */
 	private $tempUser = null;
 
+	protected function setUp(): void {
+		ApiQueryImageInfo::resetTransformCountForUnitTest();
+		parent::setUp();
+	}
+
+	public function tearDown(): void {
+		self::destroyTestRepo();
+		parent::tearDown();
+	}
+
 	public function addDBData() {
 		parent::addDBData();
+
+		$this->initTestRepoGroup();
+
 		$this->testUser = new UserIdentityValue( 12364321, 'Dummy User' );
 
 		$actorId = $this->getServiceContainer()
@@ -186,7 +205,7 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 		$this->assertSame( 'File:' . self::IMAGE_NAME, $info['title'] );
 		$this->assertTrue( $info['missing'] );
 		$this->assertTrue( $info['known'] );
-		$this->assertSame( 'local', $info['imagerepository'] );
+		$this->assertSame( 'test', $info['imagerepository'] );
 		$this->assertFalse( $info['badfile'] );
 		$this->assertIsArray( $info['imageinfo'] );
 		return $info['imageinfo'][0];
@@ -207,6 +226,133 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 		$this->assertSame( $this->testUser->getName(), $image['user'] );
 		$this->assertSame( $this->testUser->getId(), $image['userid'] );
 		$this->assertSame( self::NEW_IMAGE_SIZE, $image['size'] );
+	}
+
+	public function testGetImageInfoThumburlsFromStepsPortrait() {
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => 'http://example.com',
+			MainConfigNames::ThumbnailSteps => [ 20, 40, 120, 250 ],
+		] );
+		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
+		// Original portrait is 120x160
+		$this->importFileToTestRepo( self::IMAGES_DIR . '/portrait-rotated.jpg', 'Portrait-rotated.jpg' );
+
+		[ $result, ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'imageinfo',
+			'titles' => 'File:Portrait-rotated.jpg',
+			'iiprop' => 'thumburls',
+		] );
+
+		$info = $result['query']['pages']['1'];
+		$image = $info['imageinfo'][0];
+		$this->assertEquals( [
+			20 => [ 'width' => 20, 'height' => 27, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=20' ],
+			40 => [ 'width' => 40, 'height' => 53, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=40' ]
+		], $image['thumburls'] );
+	}
+
+	public function testGetImageInfoThumburlsFromStepsLandscape() {
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => 'http://example.com',
+			MainConfigNames::ThumbnailSteps => [ 20, 40, 120, 250 ],
+		] );
+		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
+		// Original landscape is 160x120
+		$this->importFileToTestRepo( self::IMAGES_DIR . '/landscape-plain.jpg', 'Landscape-plain.jpg' );
+
+		[ $result, ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'imageinfo',
+			'titles' => 'File:Landscape-plain.jpg',
+			'iiprop' => 'thumburls',
+		] );
+
+		$info = $result['query']['pages']['1'];
+		$image = $info['imageinfo'][0];
+		$this->assertEquals( [
+			20 => [ 'width' => 20, 'height' => 15, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=20' ],
+			40 => [ 'width' => 40, 'height' => 30, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=40' ],
+			120 => [ 'width' => 120, 'height' => 90, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=120' ]
+		], $image['thumburls'] );
+	}
+
+	public function testGetImageInfoThumburlsFromUnionPortrait() {
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => 'http://example.com',
+			MainConfigNames::ThumbnailSteps => null,
+			MainConfigNames::ImageLimits => [
+				[ 32, 24 ],
+				[ 128, 96 ],
+				[ 256, 192 ],
+			],
+			MainConfigNames::ThumbLimits => [
+				30,
+				40,
+				110,
+			],
+			MainConfigNames::ResponsiveImages => true,
+		] );
+		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [ 'thumbsize' => 1 ] );
+		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
+		// Original is 160x120
+		$this->importFileToTestRepo( self::IMAGES_DIR . '/portrait-rotated.jpg', 'Portrait-rotated.jpg' );
+
+		[ $result, ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'imageinfo',
+			'titles' => 'File:Portrait-rotated.jpg',
+			'iiprop' => 'thumburls',
+		] );
+
+		$info = $result['query']['pages']['1'];
+		$image = $info['imageinfo'][0];
+		$this->assertEquals( [
+			// $wgThumbLimits, default + responsive
+			40 => [ 'width' => 40, 'height' => 53, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=40' ],
+			80 => [ 'width' => 80, 'height' => 107, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=80' ],
+			// $wgImageLimits, fit portrait in 32x24
+			18 => [ 'width' => 18, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=18' ],
+		], $image['thumburls'] );
+	}
+
+	public function testGetImageInfoThumburlsFromUnionLandscape() {
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => 'http://example.com',
+			MainConfigNames::ThumbnailSteps => null,
+			MainConfigNames::ImageLimits => [
+				[ 32, 24 ],
+				[ 128, 96 ],
+				[ 256, 192 ],
+			],
+			MainConfigNames::ThumbLimits => [
+				30,
+				40,
+				110,
+			],
+			MainConfigNames::ResponsiveImages => true,
+		] );
+		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [ 'thumbsize' => 1 ] );
+		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
+		$this->importFileToTestRepo( self::IMAGES_DIR . '/landscape-plain.jpg', 'Landscape-plain.jpg' );
+
+		[ $result, ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'imageinfo',
+			'titles' => 'File:Landscape-plain.jpg',
+			'iiprop' => 'thumburls',
+		] );
+
+		$info = $result['query']['pages']['1'];
+		$image = $info['imageinfo'][0];
+		$this->assertEquals( [
+			// $wgThumbLimits, default + responsive
+			40 => [ 'width' => 40, 'height' => 30, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=40' ],
+			80 => [ 'width' => 80, 'height' => 60, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=80' ],
+			// $wgImageLimits
+			32 => [ 'width' => 32, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=32' ],
+			128 => [ 'width' => 128, 'height' => 96, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=128' ],
+		], $image['thumburls'] );
 	}
 
 	public function testGetImageCreatedByTempUser() {
