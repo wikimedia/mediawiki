@@ -32,6 +32,8 @@ class TransactionProfiler implements LoggerAwareInterface {
 	private $expect;
 	/** @var array<string,int> Map of (event name => current hits) */
 	private $hits;
+	/** @var array<string,array<string,int>> Map of (event name => fName => current hits) */
+	private $hitsFName;
 	/** @var array<string,int> Map of (event name => violation counter) */
 	private $violations;
 	/** @var array<string,int> Map of (event name => silence counter) */
@@ -64,6 +66,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 	private const EVENT_NAMES = [
 		'writes',
 		'queries',
+		'queriesPerCaller',
 		'conns',
 		'masterConns',
 		'maxAffected',
@@ -345,6 +348,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param int|null $rowCount Number of affected/read rows
 	 * @param string $trxId Transaction id
 	 * @param string|null $serverName db host name like db1234
+	 * @param string|null $fname Name of the calling function
 	 */
 	public function recordQueryCompletion(
 		$query,
@@ -352,7 +356,8 @@ class TransactionProfiler implements LoggerAwareInterface {
 		bool $isWrite,
 		?int $rowCount,
 		string $trxId,
-		?string $serverName = null
+		?string $serverName = null,
+		?string $fname = null,
 	) {
 		$eTime = $this->getCurrentTime();
 		$elapsed = ( $eTime - $sTime );
@@ -369,6 +374,15 @@ class TransactionProfiler implements LoggerAwareInterface {
 		}
 		if ( $isWrite && $this->pingAndCheckThreshold( 'writes' ) ) {
 			$this->reportExpectationViolated( 'writes', $query, $this->hits['writes'], $trxId, $serverName );
+		}
+		if ( $fname !== null && $this->pingAndCheckThresholdFname( 'queriesPerCaller', $fname ) ) {
+			$this->reportExpectationViolated(
+				'queriesPerCaller',
+				$query,
+				$this->hitsFName['queriesPerCaller'][$fname] . ' by ' . $fname,
+				$trxId,
+				$serverName,
+			);
 		}
 		// Report slow queries...
 		if ( !$isWrite && $this->isAboveThreshold( $elapsed, 'readQueryTime' ) ) {
@@ -494,6 +508,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 		);
 
 		$this->hits = array_fill_keys( self::COUNTER_EVENT_NAMES, 0 );
+		$this->hitsFName = [];
 		$this->violations = array_fill_keys( self::EVENT_NAMES, 0 );
 	}
 
@@ -525,10 +540,28 @@ class TransactionProfiler implements LoggerAwareInterface {
 		return ( $newValue > $limit );
 	}
 
+	private function pingAndCheckThresholdFname( string $event, string $fname ): bool {
+		if ( $this->silenced[$event] > 0 || str_starts_with( $fname, 'Wikimedia\\Rdbms\\' ) ) {
+			return false;
+		}
+		$limit = $this->expect[$event][self::FLD_LIMIT];
+		if ( $limit === INF ) {
+			// expectation disabled, skip collecting function names
+			return false;
+		}
+		if ( !isset( $this->hitsFName[$event][$fname] ) ) {
+			$this->hitsFName[$event][$fname] = 0;
+		}
+
+		$newValue = ++$this->hitsFName[$event][$fname];
+
+		return $newValue > $limit;
+	}
+
 	/**
 	 * @param string $event
 	 * @param string|GeneralizedSql $query
-	 * @param float|int $actual
+	 * @param float|int|string $actual
 	 * @param string|null $trxId Transaction id
 	 * @param string|null $serverName db host name like db1234
 	 */

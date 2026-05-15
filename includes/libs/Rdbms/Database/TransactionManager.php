@@ -566,15 +566,17 @@ class TransactionManager {
 	 * @param bool $isPermWrite
 	 * @param int|null $rowCount
 	 * @param string|null $serverName
+	 * @param string|null $fname
 	 */
-	public function recordQueryCompletion( $sql, $startTime, $isPermWrite, $rowCount, $serverName ) {
+	public function recordQueryCompletion( $sql, $startTime, $isPermWrite, $rowCount, $serverName, $fname ) {
 		$this->profiler->recordQueryCompletion(
 			$sql,
 			$startTime,
 			$isPermWrite,
 			$rowCount,
 			(string)$this->trxId,
-			$serverName
+			$serverName,
+			$fname
 		);
 	}
 

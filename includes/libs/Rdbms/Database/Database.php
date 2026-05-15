@@ -852,7 +852,8 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 			$startTime,
 			$isPermWrite,
 			$isPermWrite ? $affectedRowCount : $returnedRowCount,
-			$this->getServerName()
+			$this->getServerName(),
+			$fname
 		);
 
 		// Check if the query failed...

@@ -164,6 +164,22 @@ class TransactionProfilerTest extends TestCase {
 		$tp->transactionWritingOut( 'srv1', 'db1', '123', 1, 1 );
 	}
 
+	public function testQueryPerCallerCount() {
+		$logger = $this->createMock( LoggerInterface::class );
+		$logger->expects( $this->exactly( 2 ) )->method( 'warning' );
+
+		$now = 1668108368.0;
+		$tp = new TransactionProfiler();
+		$tp->setMockTime( $now );
+		$tp->setLogger( $logger );
+		$tp->setExpectation( 'queriesPerCaller', 2, __METHOD__ );
+
+		$tp->recordQueryCompletion( "SQL 1", $now - 0.01, false, 0, '1', null, __METHOD__ );
+		$tp->recordQueryCompletion( "SQL 2", $now - 0.01, false, 0, '1', null, __METHOD__ );
+		$tp->recordQueryCompletion( "SQL 3", $now - 0.01, false, 0, '1', null, __METHOD__ ); // warn
+		$tp->recordQueryCompletion( "SQL 4", $now - 0.01, false, 0, '1', null, __METHOD__ ); // warn
+	}
+
 	public function testSilence() {
 		$logger = $this->createMock( LoggerInterface::class );
 		$logger->expects( $this->never() )->method( 'warning' );
