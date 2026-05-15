@@ -75,7 +75,7 @@ class HtmlformCheckerV2 {
 				}
 				if ( this.validationState !== 'notice' ) {
 					setTimeout(
-						() => this.showCheckFeedback( value ),
+						() => this.showCheckFeedback(),
 						250
 					);
 				}
