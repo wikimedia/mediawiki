@@ -2511,8 +2511,11 @@
 	"remove-blocklink": "अवरोध हटाएँ",
 	"manage-blocklink": "अवरोध प्रबंधित करें",
 	"empty-username": "(कोई सदस्यनाम उपलब्ध नहीं)",
+	"available-username": "सदस्यनाम उपलब्ध",
+	"available-username-check-feedback": "उपलब्धता की जाँच की जा रही है",
 	"blocklist-hidden-placeholder": "(सदस्यनाम छिपाया गया)",
 	"blocklist-hidden-param": "सदस्यनाम छिपाया गया",
+	"blocklist-block-hidden": "अवरोध छिपाया गया",
 	"contribslink": "योगदान",
 	"emaillink": "ईमेल भेजें",
 	"autoblocker": "आप स्वतः अवरोधित हैं क्योंकि आपके IP पते का हाल ही में \"[[User:$1|$1]]\" द्वारा उपयोग किया गया है।\n$1 के अवरोध के लिए दिया गया कारण है: \"$2\"",
@@ -4002,5 +4005,6 @@
 	"table-of-contents-show-button-aria-label": "विषयसूची दिखाएँ",
 	"table-of-contents-hide-button-aria-label": "विषयसूची छिपाएँ",
 	"diff-usergroups": "$1 {{PLURAL:$1|सदस्य समूह}}",
-	"languageselector-no-results": "कोई परिणाम नहीं मिला।"
+	"languageselector-no-results": "कोई परिणाम नहीं मिला।",
+	"languageselector-invalid-input": "\"$1\" मान्य भाषा नहीं है।"
 }

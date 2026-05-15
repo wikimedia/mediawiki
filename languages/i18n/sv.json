@@ -1951,6 +1951,8 @@
 	"addedwatchexpiry-options-label": "Tidsperiod för bevakningslista:",
 	"addedwatchexpiryhours": "\"[[:$1]]\" och dess diskussionssida har lagts till i din [[Special:Watchlist|bevakningslista]] i några timmar.",
 	"addedwatchexpiryhours-talk": "\"[[:$1]]\" och dess associerade sida har lagts till i din [[Special:Watchlist|bevakningslista]] i några timmar.",
+	"addedwatchexpirydays": "\"[[:$1]]\" och dess diskussionssida har lagts till i din [[Special:Watchlist|bevakningslista]] för {{PLURAL:$2|$2 dag|$2 dagar}}.",
+	"addedwatchexpirydays-talk": "\"[[:$1]]\" och dess associerade sida har lagts till i din [[Special:Watchlist|bevakningslista]] för {{PLURAL:$2|$2 dag|$2 dagar}}.",
 	"addedwatchexpirytext": "\"[[:$1]]\" och dess diskussionssida har lagts till i din [[Special:Watchlist|bevakningslista]] i $2.",
 	"addedwatchexpirytext-talk": "\"[[:$1]]\" och dess associerade sida har lagts till i din [[Special:Watchlist|bevakningslista]] i $2.",
 	"addedwatchindefinitelytext": "\"[[:$1]]\" och dess diskussionssida har permanent lagts till i din [[Special:Watchlist|bevakningslista]].",

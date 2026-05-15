@@ -2561,6 +2561,7 @@
 	"available-username-check-feedback": "利用者名の可用性を確認中",
 	"blocklist-hidden-placeholder": "(利用者名は隠されています)",
 	"blocklist-hidden-param": "利用者名は隠されています",
+	"blocklist-block-hidden": "ブロック非表示",
 	"contribslink": "投稿記録",
 	"emaillink": "メールを送信",
 	"autoblocker": "この IP アドレスを「[[User:$1|$1]]」が最近使用したため、自動ブロックされています。\n$1 のブロックの理由は「$2」です。",

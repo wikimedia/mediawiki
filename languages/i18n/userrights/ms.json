@@ -246,6 +246,7 @@
 	"action-viewmyprivateinfo": "melihat maklumat peribadi sendiri",
 	"action-editmyprivateinfo": "menyunting maklumat peribadi sendiri",
 	"action-editcontentmodel": "menyunting model kandungan laman",
+	"action-createwithcontentmodel": "cipta laman dengan model kandungan bukan lalai",
 	"action-managechangetags": "mencipta dan me(ng/nyah)aktifkan teg",
 	"action-applychangetags": "mengenakan teg di samping suntingan anda",
 	"action-changetags": "menambah dan menggugurkan teg yang dikenakan sembarangan pada semakan dan entri log individu",

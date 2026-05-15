@@ -3226,6 +3226,7 @@
 	"watchlistedit-table-title-pages": "Заголовок страницы",
 	"watchlistedit-table-title-expiry": "Истекает",
 	"watchlistedit-table-remove-selected": "Удалить {{PLURAL:$1|страницу|страницы}}",
+	"watchlistedit-table-remove-selected-error": "Не удалось удалить страницы",
 	"watchlistedit-unwatch-confirmation": "{{PLURAL:$2|Удалить}} $1 из вашего списка наблюдения?",
 	"watchlistedit-unwatch-confirmation-empty": "Выберите страницы, которые вы хотите удалить из своего списка наблюдения.",
 	"watchlistedit-unwatch-confirmation-accept": "Удалить",
@@ -4116,5 +4117,6 @@
 	"table-of-contents-show-button-aria-label": "Показать содержание",
 	"table-of-contents-hide-button-aria-label": "Скрыть содержание",
 	"diff-usergroups": "$1 {{PLURAL:$1|группа участника|группы участника|групп участника}}",
-	"languageselector-no-results": "Ничего не найдено."
+	"languageselector-no-results": "Ничего не найдено.",
+	"languageselector-invalid-input": "«$1» — некорректный язык."
 }

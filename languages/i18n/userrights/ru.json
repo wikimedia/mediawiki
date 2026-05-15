@@ -22,7 +22,8 @@
 			"Tucvbif",
 			"Vlad5250",
 			"Yurina Tatiana",
-			"Александр Сигачёв"
+			"Александр Сигачёв",
+			"Stjn"
 		]
 	},
 	"userrights": "Права участника",
@@ -220,7 +221,7 @@
 	"action-move-rootuserpages": "переименование корневых страниц участников",
 	"action-move-categorypages": "переименование страниц категорий",
 	"action-movefile": "переименовать этот файл",
-	"action-upload": "загрузку этого файла",
+	"action-upload": "загрузка этого файла",
 	"action-pagelang": "изменять язык страницы",
 	"action-reupload": "перезапись существующего файла",
 	"action-reupload-shared": "перекрытие файла из общего хранилища",
