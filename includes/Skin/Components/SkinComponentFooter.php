@@ -19,6 +19,9 @@ class SkinComponentFooter implements SkinComponent {
 	/** @var SkinComponentRegistryContext */
 	private $skinContext;
 
+	/** @var array|null Cached template data to avoid redundant computation */
+	private $cachedTemplateData;
+
 	public function __construct( SkinComponentRegistryContext $skinContext ) {
 		$this->skinContext = $skinContext;
 	}
@@ -52,6 +55,10 @@ class SkinComponentFooter implements SkinComponent {
 	 * @inheritDoc
 	 */
 	public function getTemplateData(): array {
+		if ( $this->cachedTemplateData ) {
+			return $this->cachedTemplateData;
+		}
+
 		$footerData = $this->getTemplateDataFooter();
 
 		// Create the menu components from the footer data.
@@ -76,11 +83,12 @@ class SkinComponentFooter implements SkinComponent {
 			'data-icons' => $this->getFooterIcons(),
 		] );
 
-		return [
+		$this->cachedTemplateData = [
 			'data-info' => $footerMenuData['data-info'],
 			'data-places' => $footerMenuData['data-places'],
 			'data-icons' => $footerMenuData['data-icons']
 		];
+		return $this->cachedTemplateData;
 	}
 
 	/**
