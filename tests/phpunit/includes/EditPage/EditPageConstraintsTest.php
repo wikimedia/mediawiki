@@ -148,7 +148,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$article->setContext( $context );
 		$ep = new EditPage( $article );
 		$ep->setContextTitle( $title );
-		$ep->importFormData( $req );
+		$ep->importFormData();
 
 		// this is where the edit happens!
 		$status = $ep->attemptSave( $result );

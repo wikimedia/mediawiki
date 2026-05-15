@@ -191,6 +191,11 @@ because of Phabricator reports.
   ContextSource instead, falling back to RequestContext::getMain(). As MediaWiki
   Core no longer reads from $wgLang, writing to $wgLang in extensions will no
   longer affect core.
+* Supplying the $request parameter to EditPage::importFormData() has been
+  deprecated. The method will use the request from the context stored in the
+  Article passed to the EditPage constructor instead. To use a different
+  request, provide the Article with an appropriate context before instantiating
+  EditPage.
 * Skin::mapInterwikiToLanguage has been deprecated. Use the
   InterlanguageLinkCodeMap config setting directly.
 * Parser::statelessFetchTemplate() and ::statelessFetchRevisionRecord() have

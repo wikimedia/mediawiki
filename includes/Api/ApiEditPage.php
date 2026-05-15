@@ -473,7 +473,7 @@ class ApiEditPage extends ApiBase {
 
 		$ep->setApiEditOverride( true );
 		$ep->setContextTitle( $titleObj );
-		$ep->importFormData( $req );
+		$ep->importFormData();
 		$tempUserCreateStatus = $ep->maybeActivateTempUserCreate( true );
 		if ( !$tempUserCreateStatus->isOK() ) {
 			$this->dieWithError( 'apierror-tempuseracquirefailed', 'tempuseracquirefailed' );

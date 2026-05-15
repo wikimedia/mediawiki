@@ -526,9 +526,10 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			],
 			true
 		);
+		$context->setRequest( $request );
 
 		$editPage = new EditPage( $article );
-		$editPage->importFormData( $request );
+		$editPage->importFormData();
 		$editPage->attemptSave( $result );
 	}
 
@@ -579,9 +580,10 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			],
 			true
 		);
+		$context->setRequest( $request );
 
 		$editPage = new EditPage( $article );
-		$editPage->importFormData( $request );
+		$editPage->importFormData();
 		$editPage->attemptSave( $result );
 	}
 
@@ -635,9 +637,10 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			],
 			true
 		);
+		$context->setRequest( $request );
 
 		$editPage = new EditPage( $article );
-		$editPage->importFormData( $request );
+		$editPage->importFormData();
 		$editPage->attemptSave( $result );
 	}
 

@@ -228,7 +228,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$article->setContext( $context );
 		$ep = new EditPage( $article );
 		$ep->setContextTitle( $title );
-		$ep->importFormData( $req );
+		$ep->importFormData();
 
 		// this is where the edit happens!
 		// Note: don't want to use EditPage::AttemptSave, because it messes with $wgOut
@@ -974,14 +974,18 @@ hello
 	private function doEditDummyNonTextPage( array $edit ): PageEditStatus {
 		$title = Title::newFromText( 'Dummy:NonTextPageForEditPage' );
 
+		$req = new FauxRequest( $edit, true );
+
 		$article = new Article( $title );
-		$article->getContext()->setTitle( $title );
+		$context = new RequestContext();
+		$context->setRequest( $req );
+		$context->setTitle( $title );
+		$article->setContext( $context );
+
 		$ep = new EditPage( $article );
 		$ep->setContextTitle( $title );
 
-		$req = new FauxRequest( $edit, true );
 		$ep->importFormData( $req );
-
 		return $ep->attemptSave( $result );
 	}
 
@@ -1039,7 +1043,7 @@ hello
 		$req = new FauxRequest( [], true );
 		$context->setRequest( $req );
 		$req->getSession()->setUser( $user );
-		$ep->importFormData( $req );
+		$ep->importFormData();
 		$def = $ep->getCheckboxesDefinition( [
 			'watch' => true,
 			'wpWatchlistExpiry' => $postedExpiry,

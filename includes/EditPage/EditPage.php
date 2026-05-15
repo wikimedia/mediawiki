@@ -539,7 +539,7 @@ class EditPage implements IEditObject {
 			return;
 		}
 
-		$this->importFormData( $request );
+		$this->importFormData();
 		$this->firsttime = false;
 
 		$readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
@@ -1034,10 +1034,15 @@ class EditPage implements IEditObject {
 
 	/**
 	 * This function collects the form data and uses it to populate various member variables.
-	 * @param WebRequest &$request
+	 * @param WebRequest|null $request Supplying this parameter is deprecated since 1.47.
 	 * @throws ErrorPageError
 	 */
-	public function importFormData( &$request ) {
+	public function importFormData( $request = null ) {
+		if ( $request !== null ) {
+			// TODO Hard-deprecate passing a request to this method once all usages have been updated
+		}
+		$request ??= $this->getContext()->getRequest();
+
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section', '' ) );
 
@@ -1090,8 +1095,7 @@ class EditPage implements IEditObject {
 		}
 
 		if ( $request !== $this->getContext()->getRequest() ) {
-			// TODO Deprecate the $request parameter of this method, and always
-			// use the one in the context instead to avoid inconsistencies.
+			// TODO Remove this once the $request parameter has been removed from this method
 			$this->oldid = $request->getInt( 'oldid' );
 		} else {
 			// Article::getOldID falls back to the request if no oldid is set
