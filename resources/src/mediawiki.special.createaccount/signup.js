@@ -37,12 +37,13 @@ $( () => {
 } );
 
 // Check if the username is invalid or already taken; show username normalisation warning
-mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
+mw.hook( 'htmlform.enhance' ).add( async ( $root ) => {
 	const $usernameInput = $root.find( '#wpName2' ),
 		$passwordInput = $root.find( '#wpPassword2' ),
 		$emailInput = $root.find( '#wpEmail' ),
 		$realNameInput = $root.find( '#wpRealName' ),
 		api = new mw.Api();
+	const isV2 = await isExperimentV2Treatment();
 
 	function checkUsername( username, signal ) {
 		// Leading/trailing/multiple whitespace characters are always stripped in usernames,
@@ -95,12 +96,14 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 						messages: [ mw.message( 'createacct-normalization', username, userinfo.name ).parseDom() ],
 						type: 'success'
 					};
-				} else {
+				} else if ( isV2 ) {
 					return {
 						valid: true,
 						messages: [ mw.message( 'available-username' ).parseDom() ],
 						type: 'success'
 					};
+				} else {
+					return { valid: true, messages: [] };
 				}
 			} );
 	}
@@ -149,29 +152,33 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 		passwordChecker.attach( $usernameInput.add( $emailInput ).add( $realNameInput ) );
 	}
 
-	const experimentPromise = mw.loader.using( [
-		'ext.testKitchen'
-	] )
-		.then( () => mw.testKitchen.getExperiment( 'we-1-8-account-creation-form-v2' ) )
-		.catch( ( error ) => {
-			mw.log( 'Error loading ext.testKitchen module:', error );
-			return null;
-		} );
-
-	if ( mw.config.get( 'skin' ) === 'minerva' ) {
-		experimentPromise.then( ( experiment ) => {
-			if ( !( experiment && experiment.isAssignedGroup( 'treatment' ) ) ) {
-				attachCheckers( HtmlformChecker );
-				return;
-			}
-			attachCheckers( HtmlformCheckerV2 );
-		} );
+	if ( isV2 ) {
+		attachCheckers( HtmlformCheckerV2 );
 	} else {
-		// Experiment is just for Minerva, skip enrollment checks
 		attachCheckers( HtmlformChecker );
 	}
 
 } );
+
+async function isExperimentV2Treatment() {
+	if ( mw.config.get( 'skin' ) !== 'minerva' ) {
+		// Experiment is just for Minerva, skip enrollment checks
+		return false;
+	}
+
+	try {
+		await mw.loader.using( [ 'ext.testKitchen' ] );
+	} catch ( error ) {
+		mw.log( 'Error loading ext.testKitchen module:', error );
+		return false;
+	}
+
+	const experiment = await mw.testKitchen.getExperiment( 'we-1-8-account-creation-form-v2' );
+	if ( !experiment ) {
+		return false;
+	}
+	return experiment.isAssignedGroup( 'treatment' );
+}
 
 /**
  * Minerva: wire “Choose carefully” (username policy popover).
