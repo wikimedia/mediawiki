@@ -571,7 +571,7 @@
 	"temp-user-banner-tooltip-title": "臨時戶口",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>你個臨時戶口會喺{{PLURAL:$1|1日|$1日}}後到期。</strong>喺佢到期之後，下次你喺唔簽到嘅情況下編輯嗰陣，系統會建立一個新嘅。",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>你嘅臨時戶口唔夠一日就會到期。</strong> 喺佢到期之後，下次你喺唔簽到嘅情況下編輯嗰陣，系統會建立一個新嘅。",
-	"temp-user-banner-tooltip-description-learn-more": "呢個臨時戶口係喺呢個瀏覽器同裝置上面冇戶口嘅情況下進行編輯之後建立嘅。[[{{MediaWiki:tempuser-helppage}}|知多啲]]。",
+	"temp-user-banner-tooltip-description-learn-more": "呢個臨時戶口係喺呢個瀏覽器同裝置上面冇戶口嘅情況下進行編輯之後建立嘅。[[$1|知多啲]]。",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|簽到]]或者[[Special:CreateAccount|開返個戶口]]就可以將你嘅編輯會歸落你名下，同埋存取其他功能。",
 	"blankarticle": "<strong>警告</strong>：你開緊呢版吉嘅。\n撳多次「$1」就會開版吉頁（可能被視為破壞）。",
 	"anoneditwarning": "<strong>警告：</strong>你未簽到。如果你進行任何編輯，你嘅IP位址將會公開顯示。如果你<strong>[$1 簽到]</strong>或者<strong>[$2 開戶口]</strong>，你嘅編輯會歸落你嘅用戶名，同埋有其他好處。",

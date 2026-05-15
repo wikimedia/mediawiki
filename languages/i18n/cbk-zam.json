@@ -524,7 +524,7 @@
 	"temp-user-banner-tooltip-title": "Account temporario",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>El expira el account temporario de tuyo na {{PLURAL:$1|1 dia|$1 dia}}.</strong> Despues este expira, un nuevo account ya tambien el queda creao na siguiente tiempo que hace tu editacion sin man log in.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>El expira el account temporario de tuyo na menos de un dia.</strong> Despues este expira, un nuevo account ya tambien el queda creao na siguiente tiempo que hace tu editacion sin man log in.",
-	"temp-user-banner-tooltip-description-learn-more": "Este account temporario ya crea despues ya hace este un editacion sin account con este browser y device. [[{{MediaWiki:tempuser-helppage}}|Aprende mas]].",
+	"temp-user-banner-tooltip-description-learn-more": "Este account temporario ya crea despues ya hace este un editacion sin account con este browser y device. [[$1|Aprende mas]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Man log in]] o [[Special:CreateAccount|crea account]] para saca creditos por maga editacion na futuro y man access pa otro maga feature.",
 	"blankarticle": "<strong>Aviso:</strong> Blanco el pagina ya crea tu.\nSi pichi tu \"$1\" otra vez, queda creao el pagina sin contenido.",
 	"anoneditwarning": "<strong>Aviso:</strong> Hende pa tu logged in. Queda visible na de tu publico el IP address si hace pa tu mas edits. Si <strong>[$1 man log in]</strong> o <strong>[$2 crea account]</strong>, de tu maga edits queda atribuido na username de tuyo, junto el maga otro beneficio.",

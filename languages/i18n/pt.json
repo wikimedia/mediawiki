@@ -613,7 +613,7 @@
 	"temp-user-banner-tooltip-title": "Conta temporária",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>A sua conta temporária expira daqui a {{PLURAL:$1|1 dia|$1 dias}}.</strong> Após a expiração, será criada uma conta nova da próxima vez que fizer uma edição sem se autenticar.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>A sua conta temporária expira daqui a menos de um dia.</strong> Após a expiração, será criada uma conta nova da próxima vez que fizer uma edição sem se autenticar.",
-	"temp-user-banner-tooltip-description-learn-more": "Esta conta temporária foi criada depois ter sido efetuada uma edição sem uma conta neste navegador e dispositivo. [[{{MediaWiki:tempuser-helppage}}|Saiba mais]].",
+	"temp-user-banner-tooltip-description-learn-more": "Esta conta temporária foi criada depois ter sido efetuada uma edição sem uma conta neste navegador e dispositivo. [[$1|Saiba mais]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Inicie uma sessão]] ou [[Special:CreateAccount|crie uma conta]] para lhe ser atribuída a autoria das edições futuras e para aceder a outras funcionalidades.",
 	"blankarticle": "<strong>Aviso:</strong> A página que está prestes a criar está em branco. \nSe clicar \"$1\" outra vez, a página será criada sem qualquer conteúdo.",
 	"anoneditwarning": "<strong>Aviso</strong>: não iniciou uma sessão. O seu endereço IP poderá ser visto publicamente se realizar alguma edição. Se <strong>[$1 iniciar uma sessão]</strong> ou <strong>[$2 criar uma conta]</strong>, as suas edições serão registadas com o seu nome de utilizador, podendo ainda usufruir de outros benefícios.",

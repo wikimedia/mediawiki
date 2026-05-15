@@ -566,7 +566,7 @@
 	"temp-user-banner-tooltip-title": "Müvəqqəti hesab",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Müvəqqəti hesabınızın müddəti {{PLURAL:$1|1 gün|$1 gün}} sonra bitir.</strong> Müddəti bitdikdən sonra daxil olmadan növbəti dəfə redaktə etdiyiniz zaman yenisi yaradılacaq.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Müvəqqəti hesabınızın müddəti bir gündən az müddətdə bitir.</strong> Müddəti bitdikdən sonra daxil olmadan növbəti dəfə redaktə etdiyiniz zaman yenisi yaradılacaq.",
-	"temp-user-banner-tooltip-description-learn-more": "Bu müvəqqəti hesab bu brauzerdə və cihazda hesab olmadan redaktə edildikdən sonra yaradılmışdır. [[{{MediaWiki:tempuser-helppage}}|Ətraflı məlumat]].",
+	"temp-user-banner-tooltip-description-learn-more": "Bu müvəqqəti hesab bu brauzerdə və cihazda hesab olmadan redaktə edildikdən sonra yaradılmışdır. [[$1|Ətraflı məlumat]].",
 	"temp-user-banner-tooltip-description-login": "Gələcək redaktələrdə adınızın keçməsi və digər funksiyalara daxil olmaq üçün [[Special:UserLogin|daxil olun]] və ya [[Special:CreateAccount|hesab yaradın]].",
 	"blankarticle": "<strong>Xəbərdarlıq:</strong> Yaratdığınız səhifə boşdur. \nƏgər bir daha \"$1\" düyməsinə klikləsəniz, səhifə heç bir məzmun olmadan yaradılacaq.",
 	"anoneditwarning": "<strong>Diqqət:</strong> Siz sistemə daxil olmamısınız. Hər hansı dəyişiklik etsəniz, sizin IP-ünvanınız hamıya görünəcək. Əgər <strong>[$1 daxil olsanız]</strong> və ya <strong>[$2 hesab yaratsanız]</strong>, redaktələriniz sizin istifadəçi adınıza yazılacaq və digər üstünlüklər də qazanacaqsınız.",

@@ -549,7 +549,7 @@
 	"temp-user-banner-tooltip-title": "Majan cuenta",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>A majan cuentae' ku xu'ulul ichil {{PLURAL:$1|1 k'iin|$1 k'iino'ob}}</strong>. Le kéen xu'uluk u meyaje', yaan u beetpajal uláak' túumben cuenta le kéen ojkech meyaje'.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>A majan cuentae' ma' tun máanak jump'éel k'íin kun xu'ulul</strong>. Le kéen xu'uluk u meyaje', yaan u beetpajal uláak' túumben cuenta le kéen ojkech meyaje'.",
-	"temp-user-banner-tooltip-description-learn-more": "Le majan cuentaa' beetpaja le ka'aj ta beetaj jump'éel u k'eexil meyaj, ba'ale mina'an mix jump'éel cuenta ichil navegador mix ti' le nu'ukula'.\n[[{{MediaWiki:tempuser-helppage}}|Uláak' tsoolil]].",
+	"temp-user-banner-tooltip-description-learn-more": "Le majan cuentaa' beetpaja le ka'aj ta beetaj jump'éel u k'eexil meyaj, ba'ale mina'an mix jump'éel cuenta ichil navegador mix ti' le nu'ukula'.\n[[$1|Uláak' tsoolil]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|káajs a meyaj]] wa [[Special:CreateAccount|bet túumben cuenta]] ti'al u ya'alpajal máax beetik meyaj le kéen ojkech meyaj yéetel u páajtal a k'abéetkunsik uláak' nu'ukulilo'ob meyaj.",
 	"blankarticle": "<strong>Ts'aaj táant:</strong> jach u ka'ajech a junwáal mina'an mixba'ali'.\nWa ka péets'k'abtik «$1» tu ka'atéene', yaan u beetpajal junwáal meyaj mina'an mixba'al ichil.",
 	"anoneditwarning": "<strong>A'almaj t'aan:</strong> Ma' táan a wokol. A dirección IP yaan u yila'al tumen tuláakal máak wa ka beetik je'el ba'alak k'eexilo'ob. Wa ka <strong>[$1 wokol ichil]</strong> wa <strong>[$2 ka beetik jump'éel yíila'áj]</strong>, a k'eexo'obe' yaan u ts'a'abal ti' a k'aaba', yéetel uláak' untsilo'ob.",

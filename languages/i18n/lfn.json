@@ -479,7 +479,7 @@
 	"temp-user-banner-tooltip-title": "Conta tempora",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Tua conta tempora va desvalidi en {{PLURAL:$1|1 dia|$1 dias}}.</strong> Pos desvalidi, on va crea un nova conta cuando tu fa un edita sin autentici.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Tua conta tempora va desvalidi en min ca un dia.</strong> Pos desvalidi, on va crea un nova conta cuando tu fa un edita sin autentici.",
-	"temp-user-banner-tooltip-description-learn-more": "Esta conta tempora ia es creada pos cuando un edita ia es fada sin un conta sur esta surfador e aparato. [[{{MediaWiki:tempuser-helppage}}|Aprende plu]].",
+	"temp-user-banner-tooltip-description-learn-more": "Esta conta tempora ia es creada pos cuando un edita ia es fada sin un conta sur esta surfador e aparato. [[$1|Aprende plu]].",
 	"blankarticle": "<strong>Avisa:</strong> La paje cual tu crea es vacua.\nSi tu clica \"$1\" denova, la paje va es creada sin contenida.",
 	"anoneditwarning": "<strong>Avisa:</strong> Tu no es autenticida. Tua adirije IP va es publica vidable si tu fa editas. Si tu <strong>[$1 autentici]</strong> o <strong>[$2 crea un conta]</strong>, tua editas va es atribuida a tua nom de usor, entre otra beneficas.",
 	"autocreate-edit-warning": "<strong>Avisa:</strong>Tu no es autenticida. Pos cuando tu fa un edita, on va crea un conta tempora per tu. [[{{MediaWiki:tempuser-helppage}}|Aprende plu]]. <strong>[$1 Autentici]</strong> o <strong>[$2 crea un conta]</strong> per continua reseta avisas pos cuando esta conta desvalidi, e per asede otra utiles.",

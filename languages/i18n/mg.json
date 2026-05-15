@@ -520,7 +520,7 @@
 	"temp-user-banner-tooltip-title": "Kaonty vonjimaika",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Ny kaontinao vonjimaika dia tapitra anatin'ny {{PLURAL:$1|1 andro|$1 andro}}.</strong> Rehefa tapitra ny fe-potoana dia hisy kaonty iray vaovao hatsangana amin'ny manaraka raha manao fanitsiana ianao nefa tsy niditra.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Lany andro latsaka ny fahafahanao mampiasa ny kaontinao vonjimaika.</strong> Rehefa tapitra izany dia hisy iray vaovao hamboarina amin'ny manaraka raha manao fanitsiana ianao nefa tsy miditra.",
-	"temp-user-banner-tooltip-description-learn-more": "Ity kaonty vonjimaika ity dia noforonina taorian'ny fanitsiana natao tsy nisy kaonty amin'ity navigateur sy fitaovana ity. [[{{MediaWiki:tempuser-helppage}}|Hahafantatra bebe kokoa]].",
+	"temp-user-banner-tooltip-description-learn-more": "Ity kaonty vonjimaika ity dia noforonina taorian'ny fanitsiana natao tsy nisy kaonty amin'ity navigateur sy fitaovana ity. [[$1|Hahafantatra bebe kokoa]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Midira]] na [[Special:CreateAccount|mamoròna kaonty]] mba ho amin'ny anaranao ny fanovana ho avy ary hahafahanao mampiasa endri-javatra hafa.",
 	"blankarticle": "<strong>Tandremo:</strong> Fotsy ny pejy tianao hoforonina.\nRaha manindry an'i \"$1\" indray ianao dia hoforonina tsy hisy vontoatiny na inona na inona ilay pejy.",
 	"anoneditwarning": "<strong>Fampitandremana :</strong> Tsy niditra tamin'ny kaontinao ianao. Ho hitan'ny vahoaka ny adiresy IP-nao raha manova inona na inona ianao. Raha <strong>[$1 miditra amin'ny kaontinao]</strong> ianao dia ho anisan'ny tombontsoa anananao ny fanaovana ny fiovana amin'ny solonanaranao.",

@@ -548,7 +548,7 @@
 	"temp-user-banner-tooltip-title": "Akaụntụ nwa oge",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Akaụntụ nwa oge gị ga kubie ume\nna {{PLURAL:$1| 1 ụbọchị| $1 ụbọchị}}.</strong> Mgbe o kubiri ume, a ga-emepụta nke ọhụrụ oge ọzọ ị na-eme ndezi na-abanyeghị.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Akaụntụ nwa oge gị ga-ekubie ume n'ihe na-erughị otu ụbọchị.</strong> Mgbe ọ kubiri ume, a ga-emepụta nke ọhụrụ oge ọzọ ị na-eme ndezi na-abanyeghị.",
-	"temp-user-banner-tooltip-description-learn-more": "Emebere akaụntụ nwa oge a ka emechara ndezi na-enweghị akaụntụ na ihe nchọgharị na ngwaọrụ a. [[{{MediaWiki:tempuser-helppage}}|Learn more]].",
+	"temp-user-banner-tooltip-description-learn-more": "Emebere akaụntụ nwa oge a ka emechara ndezi na-enweghị akaụntụ na ihe nchọgharị na ngwaọrụ a. [[$1|Learn more]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Banye]] ma ọ bụ [[Special:CreateAccount|mepụta akaụntụ]] iji nweta kredit maka ndezi n'ọdịnihu yana nweta atụmatụ ndị ọzọ.",
 	"blankarticle": "<strong>Ịdọ aka ná ntị:</strong> Ibe ahụ ị na-emepụta bụ oghere. Ọ bụrụ na ị pịa \" $1 \" ọzọ, a ga-emepụta ibe ahụ n'enweghị ọdịnaya ọ bụla.",
 	"anoneditwarning": "<strong>Ndụmodụ:</strong> Ịjighị aha gị banye. Onye ọbụla ga-ahụ akara IP gị ma ọbụrụ na-ime ndezi ebe a. Jiri <strong>[$1 aha banye]</strong> m'ọbụ <strong>[$2 kepụta akanụtụ]</strong>, ndezi niile i ga-eme gosi n'aha gi.",

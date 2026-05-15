@@ -547,7 +547,7 @@
 	"temp-user-banner-tooltip-title": "Llogari e përkohshme",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Llogaria jote e përkohshme skadon pas {{PLURAL:$1|1 dite|$1 ditësh}}.</strong> Pasi të skadojë, do të krijohet një e re herën tjetër që do të bësh një ndryshim pa hyrë në llogari.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Llogaria jote e përkohshme skadon në më pak se një ditë.</strong> Pasi të skadojë, do të krijohet një e re herën tjetër që që do të bësh një ndryshim pa hyrë në llogari.",
-	"temp-user-banner-tooltip-description-learn-more": "Kjo llogari e përkohshme u krijua pasi u bë një ndryshim pa një llogari në këtë shfletues dhe pajisje. [[{{MediaWiki:tempuser-helppage}}|Mëso më shumë]].",
+	"temp-user-banner-tooltip-description-learn-more": "Kjo llogari e përkohshme u krijua pasi u bë një ndryshim pa një llogari në këtë shfletues dhe pajisje. [[$1|Mëso më shumë]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Hyr në llogari]] ose [[Special:CreateAccount|krijo një të tillë]] për të marrë merita për redaktimet e ardhshme dhe për t'u qasur në cilësi të tjera.",
 	"blankarticle": "<strong>Kujdes:</strong> Faqja që po krijon është bosh.\nNëse klikon \"$1\" përsëri, faqja do të krijohet pa ndonjë përmbajtje.",
 	"anoneditwarning": "<strong>Kujdes:</strong> S’keni bërë hyrjen në llogari. Adresa juaj IP do të jetë e dukshme publikisht, nëse bëni çfarëdo përpunimi. Nëse <strong>[$1 bëni hyrjen]</strong>, ose <strong>[$2 krijoninjë llogari]</strong>, përveç përfitimesh të tjera, përpunimet tuaja do t’i atribuohen emrit tuaj të përdoruesit.",

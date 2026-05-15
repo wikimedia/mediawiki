@@ -560,7 +560,7 @@
 	"temp-user-banner-tooltip-title": "Privremeni suradnički račun",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Privremeni vam račun istječe za {{PLURAL:$1|jedan dan|$1 dana}}.</strong> Kad istekne i kad idući put budete uređivali neprijavljeni, bit će vam dodijeljen novi.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Privremeni vam račun istječe za manje od jednog dana.</strong> Kad istekne i kad idući put budete uređivali neprijavljeni, bit će vam dodijeljen novi.",
-	"temp-user-banner-tooltip-description-learn-more": "Ovaj je privremeni račun stvoren nakon uređivanja bez suradničkog računa u ovom pregledniku i uređaju. [[{{MediaWiki:tempuser-helppage}}|Vidi više]].",
+	"temp-user-banner-tooltip-description-learn-more": "Ovaj je privremeni račun stvoren nakon uređivanja bez suradničkog računa u ovom pregledniku i uređaju. [[$1|Vidi više]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Prijavite se]] ili [[Special:CreateAccount|stvorite suradnički račun]]. Tako će Vaši doprinosi biti pripisani Vašem suradničkom imenu i steći ćete druge pogodnosti.",
 	"blankarticle": "<strong>Upozorenje:</strong> Stvorili ste stranicu koja je prazna.\nAko iznova pritisnete na \"$1\", stranica će biti stvorena bez ikakvog sadržaja.",
 	"anoneditwarning": "<strong>Upozorenje:</strong> niste prijavljeni. Ako napravite uređivanje, Vaša IP adresa bit će javno vidljiva. Ako se <strong>[$1 prijavite]</strong> ili <strong>[$2 stvorite račun]</strong>, Vaša će uređivanja biti pripisana Vašem suradničkom imenu, zajedno s ostalim pogodnostima.",

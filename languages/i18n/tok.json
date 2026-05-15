@@ -556,7 +556,7 @@
 	"temp-user-banner-tooltip-title": "sijelo pi awen ala",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>sijelo sina pi nimi ala li weka lon {{PLURAL:$1|tenpo $1}}.</strong> ona li weka la, sina pali sin kepeken ala sijelo nimi la, mi pana e sijelo sin pi nimi ala.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>sijelo sina li weka lon tenpo pi poka lili.</strong> ona li weka la, sina pali sin kepeken ala sijelo nimi la, mi pana e sijelo sin pi nimi ala.",
-	"temp-user-banner-tooltip-description-learn-more": "lipu jan ni pi awen ala li kama lon tan ni: jan li ante e lipu kepeken ilo ni. [[{{MediaWiki:tempuser-helppage}}|o sona]].",
+	"temp-user-banner-tooltip-description-learn-more": "lipu jan ni pi awen ala li kama lon tan ni: jan li ante e lipu kepeken ilo ni. [[$1|o sona]].",
 	"temp-user-banner-tooltip-description-login": "sina [[Special:UserLogin|kama lon sijelo]] anu [[Special:CreateAccount|pali e sijelo]] la, pali sina pi tenpo kama li kepeken nimi sina. kin sina ken kepeken ilo mute.",
 	"blankarticle": "<strong>o lukin:</strong> sina alasa pali e lipu pi sitelen ala. \n\nsina luka sin e nena \"$1\" la lipu pi sitelen ala li kama lon.",
 	"anoneditwarning": "<strong>suli a la</strong> sina kepeken ala sijelo. sina pali la, jan li ken lukin e nanpa IP sina. sina <strong>[$1 lon sijelo]</strong> anu <strong>[$2 pali e sijelo]</strong> la, jan li lukin e nimi sina lon poka pi pali sina. pona ante li kama.",
