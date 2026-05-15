@@ -171,19 +171,14 @@ trait MediaFileTrait {
 	 *
 	 * @param int $width Requested width
 	 * @return int[] Normalized width and height for the thumbnail
-	 * @since 1.46
+	 * @since 1.47
 	 */
 	public static function getNormalizedThumbLimits( $width ) {
 		$thumbSteps = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::ThumbnailSteps );
 		if ( !is_array( $thumbSteps ) ) {
-			// Sanity check: If ThumbnailSteps does not exist in the config,
-			// or is empty, we need to fall back on an array. In that case,
-			// in order to not have an empty value, we will just use the
-			// requested width as the only "step".
-			// This shouldn't happen in actual wikis, since ThumbnailSteps
-			// has a default value, but it has happened in CI wikis, so it's
-			// better to be safe in case of misconfiguration.
+			// If ThumbnailSteps is not set,
+			// fall back on the requested width
 			$thumbSteps = [ $width ];
 		}
 		sort( $thumbSteps, SORT_NUMERIC );
