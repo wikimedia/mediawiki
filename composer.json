@@ -117,12 +117,6 @@
 		"symfony/polyfill-php80": "1.99",
 		"symfony/polyfill-php81": "1.99"
 	},
-	"repositories": [
-		{
-			"type": "git",
-			"url": "https://github.com/ejegg/login-and-pay-with-amazon-sdk-php"
-		}
-	],
 	"suggest": {
 		"ext-apcu": "Faster web responses overall.",
 		"ext-bcmath": "Increased performance of some operations. Required especially on 32 bit machines. This or ext-gmp are needed for scrambling Temporary Accounts.",

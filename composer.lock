@@ -4,30 +4,30 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c99a0c3b34efa0cf64db86f955a6a4cb",
+    "content-hash": "76fb18089a81f8417d686ef5d44d1a54",
     "packages": [
         {
             "name": "addshore/psr-6-mediawiki-bagostuff-adapter",
-            "version": "0.1",
+            "version": "0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/addshore/psr-6-mediawiki-bagostuff-adapter.git",
-                "reference": "92f3bb69bf3e7f51b8b66ae74b6a4a291637354c"
+                "reference": "7ae8baf705042b92cc75d361ce421325b600d531"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/addshore/psr-6-mediawiki-bagostuff-adapter/zipball/92f3bb69bf3e7f51b8b66ae74b6a4a291637354c",
-                "reference": "92f3bb69bf3e7f51b8b66ae74b6a4a291637354c",
+                "url": "https://api.github.com/repos/addshore/psr-6-mediawiki-bagostuff-adapter/zipball/7ae8baf705042b92cc75d361ce421325b600d531",
+                "reference": "7ae8baf705042b92cc75d361ce421325b600d531",
                 "shasum": ""
             },
             "require": {
-                "psr/cache": "^1.0.0"
+                "php": "^8.2",
+                "psr/cache": "^3.0"
             },
             "require-dev": {
-                "cache/integration-tests": "~0.9.1",
-                "jakub-onderka/php-parallel-lint": "^0.9.2",
-                "mediawiki/mediawiki-codesniffer": "^0.7.2",
-                "phpunit/phpunit": "~4.8.0|~5.3.0"
+                "mediawiki/mediawiki-codesniffer": "47.0",
+                "php-parallel-lint/php-parallel-lint": "^1.4",
+                "phpunit/phpunit": "^11.5"
             },
             "type": "library",
             "autoload": {
@@ -37,7 +37,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -51,49 +51,9 @@
             ],
             "support": {
                 "issues": "https://github.com/addshore/psr-6-mediawiki-bagostuff-adapter/issues",
-                "source": "https://github.com/addshore/psr-6-mediawiki-bagostuff-adapter/tree/master"
+                "source": "https://github.com/addshore/psr-6-mediawiki-bagostuff-adapter/tree/0.2"
             },
-            "time": "2017-02-16T14:33:59+00:00"
-        },
-        {
-            "name": "amzn/login-and-pay-with-amazon-sdk-php",
-            "version": "2.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ejegg/login-and-pay-with-amazon-sdk-php",
-                "reference": "0c923fe9926621bb8a39a22cecd1d2f33c75de30"
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": ">=5.3.0",
-                "psr/log": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PayWithAmazon\\": "PayWithAmazon/"
-                }
-            },
-            "license": [
-                "Apache OSL-2"
-            ],
-            "authors": [
-                {
-                    "name": "Amazon Payments",
-                    "email": "eps-dse@amazon.com"
-                }
-            ],
-            "description": "Pay with Amazon SDK",
-            "homepage": "https://github.com/amzn/login-and-pay-with-amazon-sdk-php",
-            "keywords": [
-                "amazon",
-                "amazon payments",
-                "pay",
-                "pay with amazon",
-                "payment",
-                "payments"
-            ],
-            "time": "2019-09-19T21:51:50+00:00"
+            "time": "2026-05-12T09:38:15+00:00"
         },
         {
             "name": "brick/math",
@@ -259,16 +219,16 @@
         },
         {
             "name": "coderkungfu/php-queue",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CoderKungfu/php-queue.git",
-                "reference": "60b35b9fe80be9fbfe1fe29dc94161083f03b569"
+                "reference": "773763fe78d1193cc890735d4892a8dfa5fe6f8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CoderKungfu/php-queue/zipball/60b35b9fe80be9fbfe1fe29dc94161083f03b569",
-                "reference": "60b35b9fe80be9fbfe1fe29dc94161083f03b569",
+                "url": "https://api.github.com/repos/CoderKungfu/php-queue/zipball/773763fe78d1193cc890735d4892a8dfa5fe6f8f",
+                "reference": "773763fe78d1193cc890735d4892a8dfa5fe6f8f",
                 "shasum": ""
             },
             "require": {
@@ -281,9 +241,8 @@
                 "aws/aws-sdk-php": ">=2.8",
                 "ext-memcache": "*",
                 "iron-io/iron_mq": "dev-master",
-                "microsoft/windowsazure": ">=0.4.0",
                 "mrpoundsign/pheanstalk-5.3": "dev-master",
-                "predis/predis": "1.*"
+                "predis/predis": "1.*|2.*|3.*"
             },
             "suggest": {
                 "Respect/Rest": "For a REST server to post job data",
@@ -326,9 +285,9 @@
             ],
             "support": {
                 "issues": "https://github.com/CoderKungfu/php-queue/issues",
-                "source": "https://github.com/CoderKungfu/php-queue/tree/1.0.2"
+                "source": "https://github.com/CoderKungfu/php-queue/tree/1.0.3"
             },
-            "time": "2025-12-04T01:20:46+00:00"
+            "time": "2026-05-06T15:01:50+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -2465,16 +2424,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "3.0.50",
+            "version": "3.0.52",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "aa6ad8321ed103dc3624fb600a25b66ebf78ec7b"
+                "reference": "2adaefc83df2ec548558307690f376dd7d4f4fce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/aa6ad8321ed103dc3624fb600a25b66ebf78ec7b",
-                "reference": "aa6ad8321ed103dc3624fb600a25b66ebf78ec7b",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/2adaefc83df2ec548558307690f376dd7d4f4fce",
+                "reference": "2adaefc83df2ec548558307690f376dd7d4f4fce",
                 "shasum": ""
             },
             "require": {
@@ -2555,7 +2514,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.50"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.52"
             },
             "funding": [
                 {
@@ -2571,7 +2530,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-19T02:57:58+00:00"
+            "time": "2026-04-27T07:02:15+00:00"
         },
         {
             "name": "predis/predis",
@@ -2641,20 +2600,20 @@
         },
         {
             "name": "psr/cache",
-            "version": "1.0.1",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/cache.git",
-                "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8"
+                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/cache/zipball/d11b50ad223250cf17b86e38383413f5a6764bf8",
-                "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8",
+                "url": "https://api.github.com/repos/php-fig/cache/zipball/aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
+                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=8.0.0"
             },
             "type": "library",
             "extra": {
@@ -2674,7 +2633,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Common interface for caching libraries",
@@ -2684,9 +2643,9 @@
                 "psr-6"
             ],
             "support": {
-                "source": "https://github.com/php-fig/cache/tree/master"
+                "source": "https://github.com/php-fig/cache/tree/3.0.0"
             },
-            "time": "2016-08-06T20:24:11+00:00"
+            "time": "2021-02-03T23:26:27+00:00"
         },
         {
             "name": "psr/clock",
@@ -3219,16 +3178,16 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.6.0",
+            "version": "v3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "63afe740e99a13ba87ec199bb07bbdee937a5b62"
+                "reference": "50f59d1f3ca46d41ac911f97a78626b6756af35b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/63afe740e99a13ba87ec199bb07bbdee937a5b62",
-                "reference": "63afe740e99a13ba87ec199bb07bbdee937a5b62",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/50f59d1f3ca46d41ac911f97a78626b6756af35b",
+                "reference": "50f59d1f3ca46d41ac911f97a78626b6756af35b",
                 "shasum": ""
             },
             "require": {
@@ -3241,7 +3200,7 @@
                     "name": "symfony/contracts"
                 },
                 "branch-alias": {
-                    "dev-main": "3.6-dev"
+                    "dev-main": "3.7-dev"
                 }
             },
             "autoload": {
@@ -3266,7 +3225,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.6.0"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.7.0"
             },
             "funding": [
                 {
@@ -3278,11 +3237,15 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-25T14:21:43+00:00"
+            "time": "2026-04-13T15:52:40+00:00"
         },
         {
             "name": "symfony/http-foundation",
@@ -5475,20 +5438,19 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v1.2.4.4",
+            "version": "v1.2.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig.git",
-                "reference": "53258141765761efc9a36e7ace8da4447787321b"
+                "reference": "cfd6a7a60983dd2342b0ed5389f53846385568ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/53258141765761efc9a36e7ace8da4447787321b",
-                "reference": "53258141765761efc9a36e7ace8da4447787321b",
+                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/cfd6a7a60983dd2342b0ed5389f53846385568ac",
+                "reference": "cfd6a7a60983dd2342b0ed5389f53846385568ac",
                 "shasum": ""
             },
             "require": {
-                "amzn/login-and-pay-with-amazon-sdk-php": "^2.5",
                 "brick/money": "^0.10.3",
                 "coderkungfu/php-queue": "^1.0",
                 "corneltek/getoptionkit": "^2.5",
@@ -5498,10 +5460,10 @@
                 "php": ">=8.2",
                 "phpmailer/phpmailer": "^6",
                 "phpseclib/phpseclib": "~3",
-                "predis/predis": "^1.1",
-                "psr/cache": "^1.0",
+                "predis/predis": "^1|^2|^3",
+                "psr/cache": "^3.0",
                 "psr/container": "~1.0 || ~2.0",
-                "psr/log": "^1.0",
+                "psr/log": "^1|^2|^3",
                 "symfony/http-foundation": "^5|^6",
                 "symfony/yaml": "^4|^5|^6|^7"
             },
@@ -5574,9 +5536,9 @@
                 "payments"
             ],
             "support": {
-                "source": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig/tree/v1.2.4.4"
+                "source": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig/tree/v1.2.4.10"
             },
-            "time": "2026-04-27T13:48:40+00:00"
+            "time": "2026-05-14T20:17:54+00:00"
         },
         {
             "name": "wikimedia/timestamp",
