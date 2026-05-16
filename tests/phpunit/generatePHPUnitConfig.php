@@ -11,6 +11,7 @@
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\Tests\Common\Parser\ParserTestRunner;
 use PHPUnit\Util\Xml\Loader as XmlLoader;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
@@ -38,8 +39,43 @@ foreach ( $extensionsPaths as $componentPath ) {
 	$extUnitTestPaths[] = "$componentPath/tests/phpunit/unit";
 }
 
+$parserTestFiles = ParserTestRunner::getParserTestFiles();
+
 $baseConfigPath = __DIR__ . '/../../phpunit.xml.template';
 $outConfigPath = __DIR__ . '/../../phpunit.xml';
+
+$parserTestDir = __DIR__ . '/gen/';
+$parserTestTemplate = __DIR__ . '/ParserTest.php.template';
+if ( !is_dir( $parserTestDir ) ) {
+	mkdir( $parserTestDir, 0777, true );
+}
+
+$atomicWrite = static function ( $filename, $newContent ) {
+	$file = fopen( $filename, 'cb+' );
+	// Acquire an exclusive lock and avoid unnecessary writes to prevent race conditions where this script is run by
+	// multiple processes. `file_put_contents` with LOCK_EX would be equivalent, except for the "unnecessary writes" part,
+	// but it would requires us to call `flock` for all readers, which may be impossible considering that PHPUnit itself
+	// will need to open the file. (T419107)
+	flock( $file, LOCK_EX );
+
+	// Avoid pointless read of empty file
+	$fileSize = filesize( $filename );
+	if ( $fileSize === 0 ) {
+		$needsWrite = true;
+	} else {
+		$oldContent = fread( $file, $fileSize );
+		$needsWrite = $newContent !== $oldContent;
+	}
+
+	if ( $needsWrite ) {
+		ftruncate( $file, 0 );
+		rewind( $file );
+		fwrite( $file, $newContent );
+		fflush( $file );
+	}
+	fclose( $file );
+	return $needsWrite;
+};
 
 $config = ( new XmlLoader )->loadFile( $baseConfigPath, false, true, true );
 $xpath = new DOMXPath( $config );
@@ -64,6 +100,43 @@ $addNodeFromPath = static function ( DOMNode $parent, string $path ) use ( $conf
 	$parent->appendChild( $node );
 };
 
+$parserTestList = [];
+$makeParserTestClass = static function ( string $extensionName, string $fileName ) use ( &$parserTestList, $atomicWrite, $parserTestDir, $parserTestTemplate ) {
+	$isCore = str_starts_with( $extensionName, 'core_' );
+	if ( is_int( $extensionName ) ) {
+		// If there's no extension name because this is coming
+		// from the legacy global, then assume the next level directory
+		// is the extension name (e.g. extensions/FooBar/parserTests.txt).
+		$extensionName = basename( dirname( $fileName ) );
+	}
+	$testsName = $extensionName . '_' . basename( $fileName, '.txt' );
+	$parserTestClassName = ucfirst( $testsName );
+	// Official spec for class names: https://www.php.net/manual/en/language.oop5.basic.php
+	// Prepend 'ParserTest_' to be paranoid about it not starting with a number
+	$parserTestClassName = 'ParserTest_' .
+		preg_replace( '/[^a-zA-Z0-9_\x7f-\xff]/', '_', $parserTestClassName );
+
+	$originalClassName = $parserTestClassName;
+	$parserTestClassName .= '_Test';
+	$counter = 1;
+	while ( isset( $parserTestList[$parserTestClassName] ) ) {
+		// If there is a conflict, append a number.
+		$counter++;
+		$parserTestClassName = $originalClassName . '_' . $counter . '_Test';
+	}
+	$parserTestList[$parserTestClassName] = true;
+
+	// Ok, write this class
+	$contents = strtr( file_get_contents( $parserTestTemplate ), [
+		'CLASSNAME' => $parserTestClassName,
+		'FILENAME' => var_export( $fileName, true ),
+		'IS_CORE' => var_export( $isCore, true ),
+	] );
+	$parserTestClassFile = $parserTestDir . $parserTestClassName . '.php';
+	$atomicWrite( $parserTestClassFile, $contents );
+	return $parserTestClassFile;
+};
+
 $extensionsSuite = $xpath->query( '//testsuite[@name="extensions"]' )->item( 0 );
 foreach ( $extTestPaths as $extPath ) {
 	$addNodeFromPath( $extensionsSuite, $extPath );
@@ -74,32 +147,19 @@ foreach ( $extUnitTestPaths as $extUnitPath ) {
 	$addNodeFromPath( $extensionsUnitSuite, $extUnitPath );
 }
 
-$config->formatOutput = true;
-$newContent = $config->saveXML();
-
-$file = fopen( $outConfigPath, 'cb+' );
-// Acquire an exclusive lock and avoid unnecessary writes to prevent race conditions where this script is run by
-// multiple processes. `file_put_contents` with LOCK_EX would be equivalent, except for the "unnecessary writes" part,
-// but it would requires us to call `flock` for all readers, which may be impossible considering that PHPUnit itself
-// will need to open the file. (T419107)
-flock( $file, LOCK_EX );
-
-// Avoid pointless read of empty file
-$fileSize = filesize( $outConfigPath );
-if ( $fileSize === 0 ) {
-	$needsWrite = true;
-} else {
-	$oldContent = fread( $file, $fileSize );
-	$needsWrite = $newContent !== $oldContent;
+$parserTestsSuite = $xpath->query( '//testsuite[@name="parsertests"]' )->item( 0 );
+foreach ( ParserTestRunner::getParserTestFiles() as $extName => $fileName ) {
+	$isCore = str_starts_with( $extName, 'core_' );
+	$parserTestClassFile = $makeParserTestClass( $extName, $fileName );
+	$addNodeFromPath(
+		$isCore ? $parserTestsSuite : $extensionsSuite,
+		$parserTestClassFile
+	);
 }
 
-if ( $needsWrite ) {
-	ftruncate( $file, 0 );
-	rewind( $file );
-	fwrite( $file, $newContent );
-	fflush( $file );
+$config->formatOutput = true;
+if ( $atomicWrite( $outConfigPath, $config->saveXML() ) ) {
 	echo "Config written to " . realpath( $outConfigPath ) . "\n";
 } else {
 	echo "Config already up-to-date.\n";
 }
-fclose( $file );

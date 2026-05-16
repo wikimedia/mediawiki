@@ -22,7 +22,7 @@ class PhpUnitTestListProcessor {
 		?string $resultsCacheFile = null,
 		?string $testGroup = null
 	) {
-		$this->xml = new SimpleXMLElement( file_get_contents( $testListFile ) );
+		$this->xml = new SimpleXMLElement( file_get_contents( $testListFile ), LIBXML_PARSEHUGE );
 		// Load phpunit result cache information if available to create more balanced split groups
 		if ( $resultsCacheFile && $testGroup ) {
 			if ( !file_exists( $resultsCacheFile ) ) {

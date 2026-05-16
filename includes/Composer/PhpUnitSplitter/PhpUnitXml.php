@@ -75,9 +75,7 @@ class PhpUnitXml {
 	 * @throws SuiteGenerationException
 	 */
 	public function addSpecialCaseTests( int $groupCount ) {
-		$suite = $this->xml->testsuites->addChild( "testsuite" );
-		$suite->addAttribute( "name", "split_group_" . ( $groupCount - 1 ) );
-		$suite->addChild( "file", "tests/phpunit/suites/ExtensionsParserTestSuite.php" );
+		/* no special cases */
 	}
 
 	public function saveToDisk( string $targetXml ) {

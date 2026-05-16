@@ -58,6 +58,7 @@ node_modules/
 .phpunit.result.cache
 phpunit*result.cache
 /tests/phpunit/.phpunit.result.cache
+/tests/phpunit/gen/ParserTest_*.php
 phpunit.xml
 /tests/selenium/log
 .eslintcache

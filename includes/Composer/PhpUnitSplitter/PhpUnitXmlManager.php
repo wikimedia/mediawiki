@@ -31,14 +31,9 @@ class PhpUnitXmlManager {
 	 * The `SkippedTestCase` is generated dynamically by PHPUnit for tests
 	 * that are marked as skipped. We don't need to find a matching filesystem
 	 * file for these.
-	 *
-	 * The `ParserIntegrationTest` is a special case - it's a single test class
-	 * that generates very many tests. To balance out the test suites, we exclude
-	 * the class from the scan, and add it back in PhpUnitXml::addSpecialCaseTests
 	 */
 	private const EXPECTED_MISSING_CLASSES = [
 		"PHPUnit\\Framework\\SkippedTestCase",
-		"\\ParserIntegrationTest",
 	];
 
 	public function __construct(
@@ -354,8 +349,7 @@ class PhpUnitXmlManager {
 	) {
 		/**
 		 * We split into 8 groups here, because experimentally that generates 100% CPU load
-		 * on developer machines and results in groups that are similar in size to the
-		 * Parser tests (which we have to run in a group on their own - see T345481)
+		 * on developer machines and results in groups that are similar in size
 		 */
 		try {
 			$cacheFileLocation = self::resultsCacheFileLocation();

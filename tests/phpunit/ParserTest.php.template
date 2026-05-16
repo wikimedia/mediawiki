@@ -1,0 +1,7 @@
+<?php
+class CLASSNAME extends \PHPUnit\Framework\TestCase {
+	use ParserTestFileTrait;
+
+	protected static string $filename = FILENAME;
+	protected static bool $isCore = IS_CORE;
+}

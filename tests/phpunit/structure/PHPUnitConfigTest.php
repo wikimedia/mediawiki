@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Shell\Shell;
+use MediaWiki\Tests\Common\Parser\ParserTestRunner;
 
 /**
  * The tests here verify that the PHPUnit config file covers all of the tests under /tests/phpunit
@@ -52,6 +53,7 @@ class PHPUnitConfigTest extends PHPUnit\Framework\TestCase {
 				'data',
 				'docs',
 				'documentation',
+				'gen', // these are included by filename, not directory
 				'mocks',
 				'suites' // custom suite entry points load their own files
 			]
@@ -96,6 +98,37 @@ class PHPUnitConfigTest extends PHPUnit\Framework\TestCase {
 
 	private function isSameOrChildOfDirectory( $dirA, $dirB ) {
 		return $dirA === $dirB || str_starts_with( "$dirB/", $dirA );
+	}
+
+	/**
+	 * Verify that there is a <file> entry in the phpunit.xml config for
+	 * every parser test in tests/parser/*.txt (both in core and extensions).
+	 */
+	public function testConfigParserTests() {
+		$testRootDir = realpath( __DIR__ . '/..' );
+
+		$dom = new DOMDocument();
+		$dom->load( __DIR__ . '/../../../phpunit.xml' );
+		$suites = $dom->documentElement->getElementsByTagName( 'testsuites' )[0];
+		/** @var DOMElement $suite */
+
+		// Enumerate all the <file> entries in phpunit.xml
+		$filesFromConfig = [];
+		foreach ( $suites->getElementsByTagName( 'testsuite' ) as $suite ) {
+			foreach ( $suite->getElementsByTagName( 'file' ) as $fileNode )	{
+				$contents = file_get_contents( $fileNode->textContent );
+				if (
+					str_contains( $contents, 'use ParserTestFileTrait;' ) &&
+					preg_match( '/\$filename\s*=\s*([\'"])([^\'"]+)\1/', $contents, $matches )
+				) {
+					$filesFromConfig[] = stripcslashes( $matches[2] );
+				}
+			}
+		}
+
+		// Enumerate all the tests in tests/parser/*.txt
+		$filesFromDirs = ParserTestRunner::getParserTestFiles();
+		$this->assertEqualsCanonicalizing( $filesFromDirs, $filesFromConfig );
 	}
 
 	/**

@@ -37,8 +37,7 @@ Generate a local configuration by running `composer phpunit:config`
 			<directory>tests/phpunit/includes</directory>
 		</testsuite>
 		<testsuite name="parsertests">
-			<file>tests/phpunit/suites/CoreParserTestSuite.php</file>
-			<file>tests/phpunit/suites/ExtensionsParserTestSuite.php</file>
+			<!-- PLACEHOLDER FOR AUTOMATIC TEST INSERTION -->
 		</testsuite>
 		<!-- As there is a class Maintenance, we cannot use the name "maintenance" directly -->
 		<testsuite name="maintenance_suite">
@@ -52,7 +51,6 @@ Generate a local configuration by running `composer phpunit:config`
 		</testsuite>
 		<testsuite name="extensions">
 			<directory>tests/phpunit/structure</directory>
-			<file>tests/phpunit/suites/ExtensionsParserTestSuite.php</file>
 			<!-- PLACEHOLDER FOR AUTOMATIC TEST INSERTION -->
 		</testsuite>
 		<testsuite name="integration">

@@ -326,23 +326,29 @@ class ParserTestRunner {
 				$ptDirs[ $info['name'] ] = $dir;
 			}
 		}
+		// Make directory order reproducible
+		ksort( $ptDirs );
 
 		$files = [];
 		foreach ( $ptDirs as $extName => $dir ) {
-			$counter = 1;
 			$dirIterator = new RecursiveIteratorIterator(
 				new RecursiveDirectoryIterator( $dir )
 			);
+			$f = [];
 			foreach ( $dirIterator as $fileInfo ) {
 				/** @var SplFileInfo $fileInfo */
 				if ( str_ends_with( $fileInfo->getFilename(), '.txt' ) ) {
-					$name = $extName . '_' . $counter;
-					while ( isset( $files[$name] ) ) {
-						$counter++;
-						$name = $extName . '_' . $counter;
-					}
-					$files[$name] = $fileInfo->getPathname();
+					$f[] = $fileInfo->getPathname();
 				}
+			}
+			// Make filename order reproducible
+			sort( $f );
+			$counter = 1;
+			foreach ( $f as $pathname ) {
+				do {
+					$name = $extName . '_' . ( $counter++ );
+				} while ( isset( $files[$name] ) );
+				$files[$name] = $pathname;
 			}
 		}
 

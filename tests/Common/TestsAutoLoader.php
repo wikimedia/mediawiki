@@ -168,7 +168,6 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Parser\\CacheTimeTest' => "$testDir/phpunit/includes/Parser/CacheTimeTest.php",
 	'MediaWiki\\Tests\\Parser\\ParserCacheTestBase' => "$testDir/phpunit/includes/Parser/ParserCacheTestBase.php",
 	'MediaWiki\\Tests\\Parser\\ParserOutputTest' => "$testDir/phpunit/includes/Parser/ParserOutputTest.php",
-	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",
 	'MediaWiki\\Tests\\Parser\\ParserCacheSerializationTestCases' =>
 		"$testDir/phpunit/includes/Parser/ParserCacheSerializationTestCases.php",
 	'MediaWiki\\Tests\\Parser\\TrackerWrapper' => "$testDir/phpunit/includes/Parser/TrackerWrapper.php",
@@ -407,8 +406,6 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Session\\SessionStoreTestTrait' => "$testDir/phpunit/unit/includes/Session/SessionStoreTestTrait.php",
 
 	# tests/suites
-	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",
-	'ParsoidTestFileSuite' => "$testDir/phpunit/suites/ParsoidTestFileSuite.php",
-	'ParserTestTopLevelSuite' => "$testDir/phpunit/suites/ParserTestTopLevelSuite.php",
 	'SuiteEventsTrait' => "$testDir/phpunit/suites/SuiteEventsTrait.php",
+	'ParserTestFileTrait' => "$testDir/phpunit/ParserTestFileTrait.php",
 ];
