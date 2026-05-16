@@ -18,7 +18,6 @@ use MediaWiki\EditPage\Constraint\RedirectConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\MainConfigNames;
@@ -73,7 +72,7 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 				$context,
 				'EditSummary',
 				true, // $minorEdit
-				$this->createMock( Language::class ),
+				$context,
 				$this->createMock( User::class )
 			)
 		);

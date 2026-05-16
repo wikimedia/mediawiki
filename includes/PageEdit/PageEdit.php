@@ -531,7 +531,7 @@ class PageEdit implements IEditObject {
 				$this->inputs->getContext(),
 				$this->inputs->getSummary(),
 				$markAsMinor,
-				$this->inputs->getContext()->getLanguage(),
+				$this->inputs->getContext(),
 				$pstUser
 			),
 		);
@@ -560,7 +560,7 @@ class PageEdit implements IEditObject {
 				$this->inputs->getContext(),
 				$this->inputs->getSummary(),
 				$markAsMinor,
-				$this->inputs->getContext()->getLanguage(),
+				$this->inputs->getContext(),
 				$pstUser
 			),
 			new NewSectionMissingSubjectConstraint(

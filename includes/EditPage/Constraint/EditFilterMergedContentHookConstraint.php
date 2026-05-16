@@ -11,8 +11,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
-use MediaWiki\Language\Language;
-use MediaWiki\Message\Message;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Status\Status;
 use MediaWiki\User\UserFactory;
@@ -37,7 +36,7 @@ class EditFilterMergedContentHookConstraint extends EditConstraint {
 	 * @param IContextSource $hookContext NOTE: This should only be passed to the hook.
 	 * @param string $summary
 	 * @param bool $minorEdit
-	 * @param Language $language
+	 * @param MessageLocalizer $messageLocalizer
 	 * @param UserIdentity $hookUser NOTE: This should only be passed to the hook.
 	 */
 	public function __construct(
@@ -47,7 +46,7 @@ class EditFilterMergedContentHookConstraint extends EditConstraint {
 		private readonly IContextSource $hookContext,
 		private readonly string $summary,
 		private readonly bool $minorEdit,
-		private readonly Language $language,
+		private readonly MessageLocalizer $messageLocalizer,
 		private readonly UserIdentity $hookUser,
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
@@ -123,8 +122,7 @@ class EditFilterMergedContentHookConstraint extends EditConstraint {
 	private function formatStatusErrors( PageEditStatus $status ): string {
 		$ret = '';
 		foreach ( $status->getMessages() as $msg ) {
-			$msg = Message::newFromSpecifier( $msg );
-			$ret .= Html::errorBox( "\n" . $msg->inLanguage( $this->language )->plain() . "\n" );
+			$ret .= Html::errorBox( "\n" . $this->messageLocalizer->msg( $msg )->plain() . "\n" );
 		}
 		return $ret;
 	}
