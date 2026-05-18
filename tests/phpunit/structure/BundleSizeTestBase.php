@@ -7,8 +7,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\DependencyStore;
-use MediaWiki\ResourceLoader\DerivativeContext;
-use MediaWiki\ResourceLoader\Module;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\Assert;
 use RuntimeException;
@@ -124,12 +122,6 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 
 		$context = new Context( $resourceLoader, $request );
 		$module = $resourceLoader->getModule( $moduleName );
-		$contentContext = new DerivativeContext( $context );
-		$contentContext->setOnly(
-			$module->getType() === Module::LOAD_STYLES
-				? Module::TYPE_STYLES
-				: Module::TYPE_COMBINED
-		);
 		$content = $resourceLoader->makeModuleResponse( $context, [ $moduleName => $module ] );
 		$contentTransferSizeUncompressed = strlen( $content );
 		$contentTransferSize = strlen( gzencode( $content, 9 ) );
