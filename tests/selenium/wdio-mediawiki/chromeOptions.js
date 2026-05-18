@@ -1,9 +1,5 @@
 import fs from 'node:fs';
 
-const dockerExtraArgs = fs.existsSync( '/.dockerenv' ) ?
-	[ '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage' ] :
-	[];
-
 const baseArgs = [
 	// Disable as much as possible to make Chrome clean
 	// https://github.com/GoogleChrome/chrome-launcher/blob/main/docs/chrome-flags-for-tools.md
@@ -50,10 +46,16 @@ const prefs = {
 
 const excludeSwitches = [ 'enable-automation' ];
 
+// Flags required when Chrome runs as root in a container (CI, fresh or
+// quickstart). /.dockerenv is present in Docker containers but
+// missing in Kubernetes pods (Catalyst), so also check for CI. See T426551.
+const containerExtraArgs = [ '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage' ];
+const inContainer = ( isCi ) => isCi || fs.existsSync( '/.dockerenv' );
+
 export const getChromeOptions = ( isCi ) => ( {
 	...( isCi && { binary: '/usr/bin/chromium' } ),
 	args: [
-		...dockerExtraArgs,
+		...( inContainer( isCi ) ? containerExtraArgs : [] ),
 		...baseArgs
 	],
 	prefs,
