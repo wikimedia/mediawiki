@@ -1,4 +1,5 @@
 const VueTestUtils = require( '@vue/test-utils' );
+const { CdxTypeaheadSearch } = require( '@wikimedia/codex' );
 const App = require( '../../../resources/src/mediawiki.skinning.typeaheadSearch/App.vue' );
 const urlGeneratorFn = require( '../../../resources/src/mediawiki.skinning.typeaheadSearch/urlGenerator.js' );
 const scriptPath = '/w/index.php';
@@ -79,5 +80,29 @@ describe( 'App (mobile mode)', () => {
 		expect(
 			wrapper.element
 		).toMatchSnapshot();
+	} );
+} );
+
+const fetchByTitleMock = jest.fn( () => ( { fetch: Promise.resolve(), abort: Promise.resolve() } ) );
+const mockRestClient = {
+	fetchByTitle: fetchByTitleMock
+};
+
+describe( 'App (restSearchClient interaction)', () => {
+	it( 'runs restSearchClient.fetchByTitle with a user query surrounded with spaces', async () => {
+		const wrapper = mount( {
+			restClient: mockRestClient
+		} );
+		await wrapper.findComponent( CdxTypeaheadSearch ).vm.$emit( 'input', ' data ' );
+		expect( fetchByTitleMock.mock.calls ).toHaveLength( 1 );
+		expect( fetchByTitleMock.mock.calls[ 0 ][ 0 ] ).toBe( 'data ' );
+	} );
+
+	it( 'do not run restSearchClient.fetchByTitle with a user query with spaces', async () => {
+		const wrapper = mount( {
+			restClient: mockRestClient
+		} );
+		await wrapper.findComponent( CdxTypeaheadSearch ).vm.$emit( 'input', ' ' );
+		expect( fetchByTitleMock.mock.calls ).toHaveLength( 0 );
 	} );
 } );

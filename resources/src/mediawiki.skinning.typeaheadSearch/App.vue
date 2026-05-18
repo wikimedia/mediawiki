@@ -270,7 +270,8 @@ module.exports = exports = defineComponent( {
 		 * @param {string} value
 		 */
 		const onInput = ( value ) => {
-			const query = value.trim();
+			// keep trailing spaces (T420427)
+			const query = value.replace( /^\s+/, '' );
 			currentSearchQuery.value = query;
 
 			if ( query === '' ) {
