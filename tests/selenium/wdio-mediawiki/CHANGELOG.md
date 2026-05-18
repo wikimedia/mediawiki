@@ -1,8 +1,14 @@
 # Changelog
 
+## 6.5.2 / 2026-04-07
+
+* Fix duplicate metrics in PrometheusFileReporter (T423522)
+* Fix for run tests in K8 (T426551)
+* Log max test suites (not tests) in parallel (T422610)
+
 ## 6.5.1 / 2026-04-07
 
-This bug releas makes sure we log and throw errors if the MediaWiki API returns error in the response JSON.
+This bug release makes sure we log and throw errors if the MediaWiki API returns error in the response JSON.
 * Catch MediaWiki API errors and log (T422457)
 
 ## 6.5.0 / 2026-03-20
