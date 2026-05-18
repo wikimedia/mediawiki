@@ -21,6 +21,8 @@ class UrlUtils {
 	public const HTTPS_PORT = 'httpsPort';
 	public const VALID_PROTOCOLS = 'validProtocols';
 
+	public const ALL_PROTOCOLS = 'ALL_PROTOCOLS';
+
 	/** @var ?string */
 	private $server = null;
 
@@ -35,7 +37,7 @@ class UrlUtils {
 	/** @var int */
 	private $httpsPort = 443;
 
-	/** @var array */
+	/** @var array|string */
 	private $validProtocols = MainConfigSchema::UrlProtocols['default'];
 
 	/** @var ?string */
@@ -62,8 +64,8 @@ class UrlUtils {
 	 *     current request is detected to be via HTTPS, and 'http' otherwise.
 	 *   * self::HTTPS_PORT: Defaults to 443. Used when a protocol-relative URL is expanded to
 	 *     https.
-	 *   * self::VALID_PROTOCOLS: An array of recognized URL protocols. The default can be found
-	 *     in MainConfigSchema::UrlProtocols['default'].
+	 *   * self::VALID_PROTOCOLS: An array of recognized URL protocols, or self::ALL_PROTOCOLS to
+	 *     allow any protocol. The default can be found in MainConfigSchema::UrlProtocols['default'].
 	 */
 	public function __construct( array $options = [] ) {
 		foreach ( $options as $key => $value ) {
@@ -373,6 +375,11 @@ class UrlUtils {
 	 * @return string
 	 */
 	private function validProtocolsInternal( bool $includeProtocolRelative ): string {
+		if ( $this->validProtocols === self::ALL_PROTOCOLS ) {
+			// https://url.spec.whatwg.org/#scheme-start-state
+			// https://url.spec.whatwg.org/#scheme-state
+			return '[a-zA-Z][a-zA-Z0-9.+-]+:';
+		}
 		if ( !is_array( $this->validProtocols ) ) {
 			MWDebug::deprecated( '$wgUrlProtocols that is not an array', '1.39' );
 			return (string)$this->validProtocols;
@@ -436,7 +443,9 @@ class UrlUtils {
 		$bits['host'] ??= '';
 
 		// most of the protocols are followed by ://, but mailto: and sometimes news: not, check for it
-		if ( in_array( $bits['scheme'] . '://', $this->validProtocols ) ) {
+		if ( $this->validProtocols === self::ALL_PROTOCOLS ) {
+			$bits['delimiter'] = $bits['host'] !== '' ? '://' : ':';
+		} elseif ( in_array( $bits['scheme'] . '://', $this->validProtocols ) ) {
 			$bits['delimiter'] = '://';
 		} elseif ( in_array( $bits['scheme'] . ':', $this->validProtocols ) ) {
 			$bits['delimiter'] = ':';

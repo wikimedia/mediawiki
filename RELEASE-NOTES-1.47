@@ -73,6 +73,8 @@ For notes on 1.46.x and older releases, see HISTORY.
   at the ElevatedSecurityAuthenticationRequest (or lack thereof).
   Reauthentication can be triggered via a new 'securityLevel' option to
   AuthManager::getAuthenticationRequests().
+* (T412542) The UrlUtils class now has an option to allow any URL protocol:
+  `UrlUtils::VALID_PROTOCOLS => UrlUtils::ALL_PROTOCOLS`.
 * …
 
 === External library changes in 1.47 ===

@@ -112,6 +112,49 @@ class UrlUtilsTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $actual );
 	}
 
+	public function testParseValidProtocols(): void {
+		$urlUtils = new UrlUtils( [ UrlUtils::VALID_PROTOCOLS => [
+			'unknown:',
+		] ] );
+		$this->assertArrayEquals( [
+			'scheme' => 'unknown',
+			'host' => 'test',
+			'path' => '/',
+			'delimiter' => ':', // delimiter matches how the protocol was given in the constructor
+		], $urlUtils->parse( 'unknown://test/' ) );
+		$this->assertArrayEquals( [
+			'scheme' => 'unknown',
+			'host' => '',
+			'path' => 'test',
+			'delimiter' => ':', // delimiter matches how the protocol was given in the constructor
+		], $urlUtils->parse( 'unknown:test' ) );
+		$this->assertSame( null, $urlUtils->parse( 'unknown2:test' ) );
+		$this->assertSame( null, $urlUtils->parse( 'invalid_protocol://test/' ) );
+	}
+
+	public function testParseValidAllProtocols(): void {
+		$urlUtils = new UrlUtils( [ UrlUtils::VALID_PROTOCOLS => UrlUtils::ALL_PROTOCOLS ] );
+		$this->assertArrayEquals( [
+			'scheme' => 'unknown',
+			'host' => 'test',
+			'path' => '/',
+			'delimiter' => '://', // delimiter matches the input
+		], $urlUtils->parse( 'unknown://test/' ) );
+		$this->assertArrayEquals( [
+			'scheme' => 'unknown',
+			'host' => '',
+			'path' => 'test',
+			'delimiter' => ':', // delimiter matches the input
+		], $urlUtils->parse( 'unknown:test' ) );
+		$this->assertArrayEquals( [
+			'scheme' => 'unknown2',
+			'host' => '',
+			'path' => 'test',
+			'delimiter' => ':', // delimiter matches the input
+		], $urlUtils->parse( 'unknown2:test' ) );
+		$this->assertSame( null, $urlUtils->parse( 'invalid_protocol://test/' ) );
+	}
+
 	public function testExpandIRI(): void {
 		$this->assertSame( "https://te.wikibooks.org/wiki/ఉబుంటు_వాడుకరి_మార్గదర్శని",
 			( new UrlUtils )->expandIRI( "https://te.wikibooks.org/wiki/"

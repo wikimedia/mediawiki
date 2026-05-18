@@ -483,8 +483,14 @@ class UrlUtilsProviders {
 				'query' => 'subject=Foo',
 			]
 		];
+		// May be allowed by 'UrlUtils::VALID_PROTOCOLS', but not allowed by default
 		yield [
-			'invalid://test/',
+			'unknown://test/',
+			null
+		];
+		// Never allowed
+		yield [
+			'invalid_protocol://test/',
 			null
 		];
 		// T212067
