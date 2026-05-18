@@ -22,6 +22,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\MovePageFactory;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
@@ -33,6 +35,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchedItemStore;
@@ -107,6 +110,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		private readonly RestrictionStore $restrictionStore,
 		private readonly TitleFactory $titleFactory,
 		private readonly DeletePageFactory $deletePageFactory,
+		private readonly RedirectLookup $redirectLookup,
+		private readonly TitleFormatter $titleFormatter
 	) {
 		parent::__construct( 'Movepage' );
 	}
@@ -198,6 +203,16 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			}
 			$this->showForm();
 		}
+	}
+
+	private function getRedirectTarget( PageIdentity $title ): string {
+		$target = $this->redirectLookup->getRedirectTarget( $title );
+		if ( !$target ) {
+			// This should never happen since the caller checks that it is a redirect
+			// but Phan complains otherwise
+			return '';
+		}
+		return $this->titleFormatter->getPrefixedText( $target );
 	}
 
 	/**
@@ -385,7 +400,9 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		} elseif ( $mainIsRedirect && $talkIsRedirect ) {
 			$warning = $out->msg( 'delete_redirect_and_move_text_2',
 				$newTitle->getPrefixedText(),
-				$newTalkTitle->getPrefixedText()
+				$newTalkTitle->getPrefixedText(),
+				$this->getRedirectTarget( $newTitle ),
+				$this->getRedirectTarget( $newTalkTitle ),
 			);
 			$deleteAndMove = [ $newTitle, $newTalkTitle ];
 		// Case 3: The main page needs a full delete, the talk doesn't exist
@@ -395,14 +412,20 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			$deleteAndMove = [ $newTitle ];
 		// Case 4: The main page needs a simple delete, the talk doesn't exist
 		} elseif ( $mainIsRedirect && $talkOK ) {
-			$warning = $out->msg( 'delete_redirect_and_move_text', $newTitle->getPrefixedText() );
+			$warning = $out->msg( 'delete_redirect_and_move_text',
+				$newTitle->getPrefixedText(),
+				$this->getRedirectTarget( $newTitle ),
+			);
 			$deleteAndMove = [ $newTitle ];
 		// Cases 5 and 6: The same for the talk page
 		} elseif ( $talkIsArticle && $mainOK ) {
 			$warning = $out->msg( 'delete_and_move_text', $newTalkTitle->getPrefixedText() );
 			$deleteAndMove = [ $newTalkTitle ];
 		} elseif ( $talkIsRedirect && $mainOK ) {
-			$warning = $out->msg( 'delete_redirect_and_move_text', $newTalkTitle->getPrefixedText() );
+			$warning = $out->msg( 'delete_redirect_and_move_text',
+				$newTalkTitle->getPrefixedText(),
+				$this->getRedirectTarget( $newTalkTitle ),
+			);
 			$deleteAndMove = [ $newTalkTitle ];
 		}
 		if ( $warning ) {

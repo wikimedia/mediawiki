@@ -363,13 +363,13 @@ class SpecialMovePageTest extends SpecialPageTestBase {
 
 		// Users with permissions can move over an existing page after seeing a warning and confirming a checkbox
 		[ $html ] = $this->postSpecialMovePage( $this->getTestSysop()->getUser(), 'A', 'B' );
-		$this->assertStringContainsString( '(delete_redirect_and_move_text: B)', $html );
+		$this->assertStringContainsString( '(delete_redirect_and_move_text: B, C)', $html );
 		// And a separate warning for the talk page ...
 		$this->assertStatusGood( $this->editPage( 'Talk:B', '#REDIRECT [[Talk:C]]' ) );
 		[ $html ] = $this->postSpecialMovePage( $this->getTestSysop()->getUser(), 'A', 'B', [
 			'wpMovetalk' => 1
 		] );
-		$this->assertStringContainsString( '(delete_redirect_and_move_text_2: B, Talk:B)', $html );
+		$this->assertStringContainsString( '(delete_redirect_and_move_text_2: B, Talk:B, C, Talk:C)', $html );
 
 		[ $html ] = $this->postSpecialMovePage( $this->getTestSysop()->getUser(), 'A', 'B', [
 			'wpDeleteAndMove' => 1,

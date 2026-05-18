@@ -1162,6 +1162,8 @@ class SpecialPageFactory {
 				'RestrictionStore',
 				'TitleFactory',
 				'DeletePageFactory',
+				'RedirectLookup',
+				'TitleFormatter'
 			]
 		],
 		'Mycontributions' => [
