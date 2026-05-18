@@ -640,6 +640,11 @@ class PageUpdater implements PageUpdateCauses {
 		if ( $isUserJsConfigPage && !$isOwnUserSpace ) {
 			$tags[] = ChangeTags::TAG_EDITED_OTHER_USERS_JS;
 		}
+		// Add tag mw-edited-other-users-css if appropriate.
+		$isUserCssConfigPage = $this->getTitle()->isUserCssConfigPage();
+		if ( $isUserCssConfigPage && !$isOwnUserSpace ) {
+			$tags[] = ChangeTags::TAG_EDITED_OTHER_USERS_CSS;
+		}
 
 		$tags = array_merge( $tags, $editResult->getRevertTags() );
 

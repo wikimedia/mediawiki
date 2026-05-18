@@ -120,6 +120,11 @@ class ChangeTags {
 	 * not a subpage of the user's own user page.
 	 */
 	public const TAG_EDITED_OTHER_USERS_JS = 'mw-edited-other-users-js';
+	/**
+	 * This tagged edit was performed on a page with the CSS content model on a page
+	 * not a subpage of the user's own user page.
+	 */
+	public const TAG_EDITED_OTHER_USERS_CSS = 'mw-edited-other-users-css';
 
 	/**
 	 * List of tags which denote a revert of some sort. (See also TAG_REVERTED.)

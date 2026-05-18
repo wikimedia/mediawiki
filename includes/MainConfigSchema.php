@@ -11106,6 +11106,7 @@ class MainConfigSchema {
 			'mw-server-side-upload' => true,
 			'mw-ipblock-appeal' => true,
 			'mw-edited-other-users-js' => true,
+			'mw-edited-other-users-css' => true,
 		],
 		'type' => 'map',
 		'additionalProperties' => [ 'type' => 'boolean', ],

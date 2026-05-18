@@ -44,12 +44,13 @@ For notes on 1.46.x and older releases, see HISTORY.
   name has previously existed and has been renamed, to prevent impersonation
   and (if this feature is enabled on your wiki) taking over user
   Javascript and CSS pages redirected after the rename.
-
   Users with the 'createpreviouslyrenamedaccount' right (granted to
   the 'sysop' group by default) can override this in the account
   creation form. Renaming an existing account to a previously existing
   username displays a warning, which can also be overridden.
-
+* (T424179) A new tag has been added called "Edited other user's CSS". It is
+  automatically applied to edits to CSS pages in userspace that are not
+  subpages of the user making the edit.
 * …
 
 === New features for sysadmins in 1.47 ===

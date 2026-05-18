@@ -2118,6 +2118,7 @@ return [
 				'mw-server-side-upload' => true,
 				'mw-ipblock-appeal' => true,
 				'mw-edited-other-users-js' => true,
+				'mw-edited-other-users-css' => true,
 			],
 			'UnwatchedPageThreshold' => false,
 			'RecentChangesFlags' => [

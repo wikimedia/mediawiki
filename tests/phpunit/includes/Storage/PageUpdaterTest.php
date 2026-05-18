@@ -6,6 +6,7 @@ use LogicException;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
+use MediaWiki\Content\CssContent;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
@@ -1211,6 +1212,66 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			'expectedEditTags' => [],
 		];
 		yield 'other user non-js edited' => [
+			'myUserName' => 'Admin',
+			'pageToEdit' => 'User:SomeoneElse/subpage',
+			'contentModelOfPageToEdit' => CONTENT_MODEL_WIKITEXT,
+			'expectedEditTags' => [],
+		];
+	}
+
+	/**
+	 * @dataProvider provideEditedOtherUsersCSSTag
+	 * @covers \MediaWiki\Storage\PageUpdater::computeEffectiveTags()
+	 */
+	public function testEditedOtherUsersCssTag( $userName, $pageToEdit, $contentModel, $expected ) {
+		$title = Title::newFromText( $pageToEdit );
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( $title );
+
+		if ( $contentModel === CONTENT_MODEL_CSS ) {
+			$content = new CssContent( 'body { color: red; }' );
+		} else {
+			$content = new TextContent( 'Lorem' );
+		}
+
+		$user = $this->makeUser( $userName );
+		$updater = $page->newPageUpdater( $user );
+		$updater->setContent( SlotRecord::MAIN, $content );
+
+		$summary = CommentStoreComment::newUnsavedComment( 'test' );
+		$rev = $updater->saveRevision( $summary );
+
+		$this->assertNotNull( $rev );
+
+		$tagsStore = $this->getServiceContainer()->getChangeTagsStore();
+		$actual = $tagsStore->getTags( $this->getDb(), null, $rev->getId() );
+
+		// expected may be empty
+		foreach ( $expected as $tag ) {
+			$this->assertContains( $tag, $actual );
+		}
+	}
+
+	public static function provideEditedOtherUsersCSSTag() {
+		yield 'own users css edited' => [
+			'myUserName' => 'Admin',
+			'pageToEdit' => 'User:Admin/common.css',
+			'contentModelOfPageToEdit' => CONTENT_MODEL_CSS,
+			'expectedEditTags' => [],
+		];
+		yield 'other users css edited' => [
+			'myUserName' => 'Admin',
+			'pageToEdit' => 'User:SomeoneElse/common.css',
+			'contentModelOfPageToEdit' => CONTENT_MODEL_CSS,
+			'expectedEditTags' => [ ChangeTags::TAG_EDITED_OTHER_USERS_CSS ],
+		];
+		yield 'own users non-css edited' => [
+			'myUserName' => 'Admin',
+			'pageToEdit' => 'User:Admin/subpage',
+			'contentModelOfPageToEdit' => CONTENT_MODEL_WIKITEXT,
+			'expectedEditTags' => [],
+		];
+		yield 'other user non-css edited' => [
 			'myUserName' => 'Admin',
 			'pageToEdit' => 'User:SomeoneElse/subpage',
 			'contentModelOfPageToEdit' => CONTENT_MODEL_WIKITEXT,
