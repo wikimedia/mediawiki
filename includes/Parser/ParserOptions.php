@@ -16,7 +16,6 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -33,6 +32,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 use ReflectionClass;
 use Wikimedia\IPUtils;
+use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -1008,7 +1008,7 @@ class ParserOptions {
 	/**
 	 * Callback to fetch a template
 	 * @see Parser::defaultFetchTemplate
-	 * @return callable(LinkTarget,Parser|false):array
+	 * @return callable(ParsoidLinkTarget,Parser|false):array
 	 */
 	public function getTemplateCallback() {
 		return $this->getOption( 'templateCallback' );
@@ -1016,8 +1016,8 @@ class ParserOptions {
 
 	/**
 	 * Set the callback to fetch a template
-	 * @param callable(LinkTarget,Parser|false):array|null $x New value (null is no change)
-	 * @return callable(LinkTarget,Parser|false):array Old value
+	 * @param callable(ParsoidLinkTarget,Parser|false):array|null $x New value (null is no change)
+	 * @return callable(ParsoidLinkTarget,Parser|false):array Old value
 	 */
 	public function setTemplateCallback( $x ) {
 		return $this->setOptionLegacy( 'templateCallback', $x );
