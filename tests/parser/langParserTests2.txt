@@ -751,6 +751,42 @@ showtitle
 !! end
 
 !! test
+DISPLAYTITLE takes precedence over -{T|...}- and is not converted
+!! config
+wgAllowDisplayTitle=true
+wgRestrictDisplayTitle=false
+!! options
+title=[[氣]]
+language=zh htmlVariantLanguage=zh-hans
+showtitle
+!! wikitext
+{{DISPLAYTITLE:馬}}
+!! metadata+langconv
+馬
+!! html/php
+!! html/parsoid+langconv
+<span data-mw='{"parts":[{"template":{"target":{"wt":"DISPLAYTITLE:馬","function":"displaytitle"},"params":{},"i":0}}]}' typeof="mw:Transclusion"></span>
+!! end
+
+!! test
+DISPLAYTITLE takes precedence over -{T|...}- and -{...}- markup is not converted
+!! config
+wgAllowDisplayTitle=true
+wgRestrictDisplayTitle=false
+!! options
+title=[[氣]]
+language=zh htmlVariantLanguage=zh-hans
+showtitle
+!! wikitext
+{{DISPLAYTITLE:-{zh-cn:气气气;zh-tw:電電電}-}}
+!! metadata+langconv
+-{zh-cn:气气气;zh-tw:電電電}-
+!! html/php
+!! html/parsoid+langconv
+<span data-mw='{"parts":[{"template":{"target":{"wt":"DISPLAYTITLE:-{zh-cn:气气气;zh-tw:電電電}-","function":"displaytitle"},"params":{},"i":0}}]}' typeof="mw:Transclusion"></span>
+!! end
+
+!! test
 Default title conversion, traditional (T36514)
 !! options
 title=[[气]]
@@ -782,6 +818,38 @@ ignore
 </p>
 !! html/parsoid+langconv
 <p>ignore</p>
+!! end
+
+!! test
+Disable title conversion w/ NOCONTENTCONVERT, traditional (T424773)
+!! options
+title=[[气]]
+language=zh htmlVariantLanguage=zh-hant
+showtitle
+!! wikitext
+__NOCONTENTCONVERT__
+!! metadata+langconv
+气
+!! html/php
+
+!! html/parsoid+langconv
+<meta property="mw:PageProp/nocontentconvert"/>
+!! end
+
+!! test
+Disable title conversion w/ NOTITLECONVERT, simplified (T424773)
+!! options
+title=[[氣]]
+language=zh htmlVariantLanguage=zh-hans
+showtitle
+!! wikitext
+__NOTITLECONVERT__
+!! metadata+langconv
+氣
+!! html/php
+
+!! html/parsoid+langconv
+<meta property="mw:PageProp/notitleconvert"/>
 !! end
 
 # D flag
@@ -895,6 +963,57 @@ language=zh htmlVariantLanguage=zh-hant,zh-hk,zh-mo,zh-tw
 <p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh-cn","t":"气气气"},{"l":"zh-hk","t":"馬馬馬"},{"l":"zh-tw","t":"電電電"}]}'/>
 馬馬 1: <span typeof="mw:LanguageVariant" data-mw-variant='{"filter":{"l":["zh","zh-hans","zh-hant"],"t":"气气气, 馬馬馬, 電電電"}}'>氣氣氣, 馬馬馬, 電電電</span></p>
 <p>馬馬 2: <span typeof="mw:LanguageVariant" data-mw-variant='{"filter":{"l":["zh","zh-cn","zh-hk"],"t":"气气气, 馬馬馬, 電電電"}}'>馬馬馬, 馬馬馬, 馬馬馬</span></p>
+!! end
+
+### TOC conversion ###
+
+!! test
+TOC conversion to traditional (T424773)
+!! config
+wgFragmentMode=[ "html5", "legacy" ]
+!! options
+language=zh htmlVariantLanguage=zh-hant
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+==气==
+!! metadata+langconv
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:气 line:氣
+!! html/php
+<div class="mw-heading mw-heading2"><h2 id="气"><span id=".E6.B0.94"></span>氣</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="編輯章節：氣">編輯</a><span class="mw-editsection-bracket">]</span></span></div>
+!! html/parsoid+langconv
+<section data-mw-section-id="0"></section><section data-mw-section-id="1">
+<h2 id="气"><span id=".E6.B0.94" typeof="mw:FallbackId"></span>氣</h2>
+</section>
+!! end
+
+!! test
+TOC conversion to traditional, disabled with __NOCONTENTCONVERT__ (T424773)
+!! config
+wgFragmentMode=[ "html5", "legacy" ]
+!! options
+language=zh htmlVariantLanguage=zh-hant
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+==气==
+__NOCONTENTCONVERT__
+!! metadata+langconv
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:气 line:气
+!! html/php
+<div class="mw-heading mw-heading2"><h2 id="气"><span id=".E6.B0.94"></span>气</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="編輯章節：气">編輯</a><span class="mw-editsection-bracket">]</span></span></div>
+!! html/parsoid+langconv
+<section data-mw-section-id="0"></section><section data-mw-section-id="1">
+<h2 id="气"><span id=".E6.B0.94" typeof="mw:FallbackId"></span>气</h2>
+<meta property="mw:PageProp/nocontentconvert"/></section>
 !! end
 
 ### Exceptions ###

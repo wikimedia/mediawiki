@@ -86,6 +86,7 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 		$converter = $this->languageConverterFactory->getLanguageConverter(
 			$targetLanguage
 		);
+		$tocVariant = null;
 		if (
 			$toVariant !== null &&
 			// For efficiency skip this traversal if TrivialLanguageConverter
@@ -144,6 +145,7 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 			}
 			// Set language
 			$po->setLanguage( $toVariant );
+			$tocVariant = $toVariant;
 		} else {
 			$po->setLanguage( $targetLanguage );
 		}
@@ -190,7 +192,7 @@ class ParsoidLanguageConverter extends ContentDOMTransformStage {
 		// (even if conversion is disabled/$converter is null)
 		Parser::localizeTOC(
 			$po->getTOCData(), $targetLanguage,
-			$toVariant === null ? null : $converter, $toVariant?->getCode()
+			$tocVariant === null ? null : $converter, $tocVariant?->getCode()
 		);
 		return $df;
 	}
