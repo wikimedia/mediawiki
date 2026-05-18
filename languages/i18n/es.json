@@ -628,6 +628,8 @@
 	"badretype": "Las contraseñas no coinciden.",
 	"usernameinprogress": "Ya está en marcha la creación de una cuenta para este nombre de usuario.\nEspera.",
 	"userexists": "El nombre de usuario indicado ya está en uso.\nElige un nombre diferente.",
+	"username-previously-renamed-account": "Este nombre de usuario no puede ser registrado, porque ha sido utilizado previamente por una cuenta que ha sido renombrada. Por favor, elija un nombre diferente.",
+	"allow-previously-renamed-account": "Permitir nombres de usuario utilizados previamente por cuentas renombradas",
 	"createacct-normalization": "Tu nombre de usuario será «$2» debido a restricciones técnicas.",
 	"loginerror": "Error de inicio de sesión",
 	"createacct-error": "Error al crear la cuenta",
@@ -1792,6 +1794,7 @@
 	"unusedtemplateswlh": "otros enlaces",
 	"randompage": "Página aleatoria",
 	"randompage-nopages": "No hay páginas en {{PLURAL:$2|el siguiente espacio de nombres|los siguientes espacios de nombres}}: $1.",
+	"randompage-disallowed-action": "Por razones de seguridad, la acción \"$1\" no puede ser utilizado en la página Especial:Aleatoria.",
 	"randomincategory": "Página aleatoria en categoría",
 	"randomincategory-invalidcategory": "«$1» no es un nombre válido de categoría.",
 	"randomincategory-nopages": "No hay páginas en la categoría [[:Category:$1|$1]].",
@@ -2285,6 +2288,7 @@
 	"changecontentmodel-model-label": "Modelo de contenido nuevo:",
 	"changecontentmodel-reason-label": "Motivo:",
 	"changecontentmodel-submit": "Cambiar",
+	"changecontentmodel-create-submit": "Crear",
 	"changecontentmodel-success-title": "Se cambió el modelo de contenido",
 	"changecontentmodel-success-text": "Se ha cambiado el tipo de contenido de [[:$1]].",
 	"changecontentmodel-cannot-convert": "No se puede convertir el contenido de [[:$1]] en un tipo de $2.",
@@ -2625,6 +2629,7 @@
 	"remove-blocklink": "revocar bloqueo",
 	"manage-blocklink": "gestionar bloqueos",
 	"empty-username": "(nombre de usuario no disponible)",
+	"available-username": "Nombre de usuario disponible",
 	"blocklist-hidden-placeholder": "(nombre de usuario oculto)",
 	"blocklist-hidden-param": "nombre de usuario ocultado",
 	"contribslink": "contribs.",
@@ -3222,6 +3227,7 @@
 	"watchlistedit-table-title-pages": "Título de la página",
 	"watchlistedit-table-title-expiry": "Caduca",
 	"watchlistedit-table-remove-selected": "Dejar de seguir",
+	"watchlistedit-table-remove-selected-error": "No se puede eliminar páginas",
 	"watchlistedit-unwatch-confirmation-accept": "Quitar",
 	"watchlisttools-clear": "Vaciar la lista de seguimiento",
 	"watchlisttools-view": "Ver lista de seguimiento",
@@ -4109,5 +4115,6 @@
 	"table-of-contents-show-button-aria-label": "Mostrar índice",
 	"table-of-contents-hide-button-aria-label": "Ocultar la tabla de contenidos",
 	"diff-usergroups": "$1 {{PLURAL:$1|grupo|grupos}} de usuario",
-	"languageselector-no-results": "No se han encontrado resultados."
+	"languageselector-no-results": "No se han encontrado resultados.",
+	"languageselector-invalid-input": "\"$1\" no es un idioma válido."
 }

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bayahiu",
 			"Bennylin",
 			"Borgx",
 			"Farras",
@@ -114,7 +115,7 @@
 	"hours-abbrev": "$1 j",
 	"minutes-abbrev": "$1 mnt",
 	"seconds-abbrev": "$1 d",
-	"ago": "$1 yang lalu",
+	"ago": "$1 lalu",
 	"duration-millennia": "$1 {{PLURAL:$1|milenium}}",
 	"duration-centuries": "$1 {{PLURAL:$1|abad}}",
 	"duration-decades": "$1 {{PLURAL:$1|dekade}}",

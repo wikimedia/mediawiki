@@ -450,6 +450,8 @@
 	"badretype": "Syöttämäsi salasanat ovat keskenään erilaiset.",
 	"usernameinprogress": "Tunnuksen luominen tälle käyttäjänimelle on parhaillaan käynnissä.\nOle hyvä ja odota.",
 	"userexists": "Pyytämäsi käyttäjänimi on jo käytössä. Valitse toinen käyttäjänimi.",
+	"username-previously-renamed-account": "Tätä käyttänimeä ei voi valita, koska sitä on käytetty aiemmin tunnuksella, joka on nimetty uudelleen. Valitse toinen käyttäjänimi.",
+	"allow-previously-renamed-account": "Salli uudelleennimettyjen tunnusten aiemmin käyttämät käyttäjänimet",
 	"createacct-normalization": "Käyttäjänimesi muutetaan muotoon ”$2” teknisten rajoitteiden vuoksi.",
 	"loginerror": "Sisäänkirjautumisvirhe",
 	"createacct-error": "Virhe tunnuksen luomisessa",
