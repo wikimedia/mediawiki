@@ -1,0 +1,9 @@
+{
+	"mwapi": "1.0.0",
+	"moduleId": "mock/v1-invalid",
+	"info": {
+		"version": "1.0.0-invalid",
+		"title": "Mock Module (Invalid)"
+	},
+	"paths": {}
+}

@@ -1,6 +1,6 @@
 {
 	"mwapi": "1.0.0",
-	"moduleId": "mock/v1",
+	"moduleId": "SpecTestRoutes/v1",
 	"info": {
 		"version": "1.0",
 		"title": "test module"

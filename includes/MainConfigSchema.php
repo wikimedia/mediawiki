@@ -12919,6 +12919,31 @@ class MainConfigSchema {
 		]
 	];
 
+	/**
+	 * A list of REST modules, by module id, and the desired behavior mode for each.
+	 *
+	 * By default, behavior modes are determined by a module's audience designation (ex. "beta").
+	 * This variable allows assigning a different behavior mode.
+	 *
+	 * Each override is an array with a "mode" key indicating the desired behavior, as well as
+	 * any additional information used in applying that mode. For example, the "published" mode
+	 * allows an optional "group" key, indicating the group the module should belong to.
+	 *
+	 * @unstable Introduced in 1.47. We may adjust this as we refine the available overrides.
+	 */
+	public const RestModuleOverrides = [
+		'default' => [],
+		'type' => 'map',
+		'mergeStrategy' => 'array_replace_recursive',
+		'additionalProperties' => [
+			'type' => 'object',
+			'properties' => [
+				'mode' => [ 'type' => 'string' ],
+			],
+			'required' => [ 'mode' ],
+		]
+	];
+
 	// endregion -- End AJAX and API
 
 	/***************************************************************************/

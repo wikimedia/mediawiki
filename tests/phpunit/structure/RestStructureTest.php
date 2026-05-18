@@ -13,6 +13,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\EntryPoint;
 use MediaWiki\Rest\Handler;
+use MediaWiki\Rest\Module\AudienceDesignation;
 use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\RequestData;
@@ -120,8 +121,9 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 			$context->method( 'getAuthority' )->willReturn( $authority );
 			$context->method( 'getRequest' )->willReturn( $request );
 
-			$responseFactory = $this->createNoOpMock( ResponseFactory::class, [ 'getFormattedMessage' ] );
+			$responseFactory = $this->createNoOpMock( ResponseFactory::class, [ 'getFormattedMessage', 'getLangCodes' ] );
 			$responseFactory->method( 'getFormattedMessage' )->willReturn( '' );
+			$responseFactory->method( 'getLangCodes' )->willReturn( [ 'en' ] );
 
 			$cors = $this->createNoOpMock( CorsUtils::class );
 
@@ -380,18 +382,16 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertMatchesJsonSchema( $schemaFile, $moduleSpec, self::SPEC_FILES );
 
-		$moduleId = $moduleSpec->moduleId;
-		$version = $moduleSpec->info->version;
+		$ad = AudienceDesignation::fromModuleId( $moduleSpec->moduleId );
+		$this->assertNotNull( $ad );
 
-		// TODO: Consider allowing other suffixes. If so, the regex would be something like:
-		//  '!^[-_.\w]+/v[0-9]+(?:-beta|-alpha|-rc)?(?:[0-9]+)?$!';
-		$moduleIdRegex = '!^[-_.\w]+/v[0-9]+(?:-beta)?(?:[0-9]+)?$!';
-		$this->assertMatchesRegularExpression( $moduleIdRegex, $moduleId );
-
-		// TODO: Consider allowing other suffixes. If so, the regex would be something like:
-		//  '!^[0-9]+\.[0-9]+\.[0-9]+(?:-beta|-alpha|-rc)?(?:[0-9]+)?$!'
-		$versionRegex = '!^[0-9]+\.[0-9]+\.[0-9]+(?:-beta)?(?:[0-9]+)?$!';
-		$this->assertMatchesRegularExpression( $versionRegex, $version );
+		$adStrings = [];
+		foreach ( AudienceDesignation::cases() as $case ) {
+			$adStrings[] = '-' . $case->value;
+		}
+		$adStrings = implode( '|', $adStrings );
+		$versionRegex = '!^[0-9]+\.[0-9]+\.[0-9]+(?:' . $adStrings . ')?(?:[0-9]+)?$!';
+		$this->assertMatchesRegularExpression( $versionRegex, $moduleSpec->info->version );
 	}
 
 	public function testGetModuleDescription(): void {

@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest\Module;
 use GuzzleHttp\Psr7\Uri;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
+use MediaWiki\Rest\Module\ModuleFormatException;
 use MediaWiki\Rest\Module\SpecBasedModule;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\RequestData;
@@ -314,5 +315,14 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 'test.v1', $moduleDef['moduleId'] );
 		$this->assertSame( 'test', $moduleDef['info']['title'] );
 		$this->assertArrayHasKey( 'paths', $moduleDef );
+	}
+
+	public function testLoadModuleDefinitionWithFlatRoutes() {
+		$specFile = __DIR__ . '/moduleFlatRoutes.json';
+		$formatter = $this->getDummyTextFormatter( true );
+		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
+
+		$this->expectException( ModuleFormatException::class );
+		SpecBasedModule::loadModuleDefinition( $specFile, $responseFactory );
 	}
 }

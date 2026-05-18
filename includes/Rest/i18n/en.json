@@ -11,6 +11,7 @@
 	"rest-wrong-method": "The request method ($1) was not {{PLURAL:$3|the allowed method for this path|one of the allowed methods for this path}} ($2)",
 	"rest-no-match": "The requested relative path ($1) did not match any known handler",
 	"rest-unknown-module": "The requested module name ($1) is not known",
+	"rest-unavailable-spec": "The OpenAPI specification for module ($1) is not available",
 	"rest-nonexistent-title": "The specified page ($1) does not exist",
 	"rest-nonexistent-title-revision": "The specified revision ($1) does not exist for the specified page ($2)",
 	"rest-nonexistent-revision": "The specified revision ($1) does not exist",

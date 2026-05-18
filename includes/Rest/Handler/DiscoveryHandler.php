@@ -7,6 +7,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Module\Module;
+use MediaWiki\Rest\Module\ModuleMode;
 
 /**
  * Core REST API endpoint that outputs discovery information, including a
@@ -50,11 +51,17 @@ class DiscoveryHandler extends Handler {
 	private function getModuleMap(): array {
 		$modules = [];
 
-		foreach ( $this->getRouter()->getModuleIds() as $moduleName ) {
-			$module = $this->getRouter()->getModule( $moduleName );
-
-			if ( $module ) {
-				$modules[$moduleName] = $this->getModuleSpec( $module );
+		$router = $this->getRouter();
+		$moduleManager = $router->getModuleManager();
+		foreach ( $router->getModuleIds() as $moduleId ) {
+			$mode = $moduleManager->getModuleMode( $moduleId );
+			// Any module that is not HIDDEN or DISABLED should be listed in /discovery.
+			// DISABLED modules won't be in this list, so we don't need to explicitly exclude them.
+			if ( $mode !== ModuleMode::HIDDEN ) {
+				$module = $router->getModule( $moduleId );
+				if ( $module ) {
+					$modules[$moduleId] = $this->getModuleSpec( $module );
+				}
 			}
 		}
 

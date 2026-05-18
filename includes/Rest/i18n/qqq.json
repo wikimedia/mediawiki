@@ -16,6 +16,7 @@
 	"rest-wrong-method": "Error message for REST API debugging, shown if the HTTP method is incorrect. Parameters:\n* $1: The received request method.\n* $2: A comma-separated list of allowed methods for this path.\n* $3: The number of items in the list $2",
 	"rest-no-match": "Error message for REST API debugging, shown if the path has the correct prefix but did not match any registered handler. Parameters:\n* $1: The received request path, relative to $wgRestPath.",
 	"rest-unknown-module": "Error message for REST API debugging, shown if the module name did not match any known module. Parameters:\n* $1: The received module name.",
+	"rest-unavailable-spec": "Error message for REST API debugging, shown if the requested OpenAPI spec is not available. Parameters:\n* $1: The received module name.",
 	"rest-nonexistent-title": "Error message for REST API debugging, shown if the specified title does not exist. Parameters:\n* $1 The page title.",
 	"rest-nonexistent-title-revision": "Error message for REST API debugging, shown if the specified revision of the specified title does not exist. Parameters:\n* $1 The revision ID.\n* $2 The page title.",
 	"rest-nonexistent-revision": "Error message for REST API debugging, shown when the specified revision does not exist. Parameters:\n* $1 The revision id.",

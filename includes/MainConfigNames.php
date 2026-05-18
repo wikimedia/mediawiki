@@ -4320,6 +4320,12 @@ class MainConfigNames {
 	public const RestSandboxSpecs = 'RestSandboxSpecs';
 
 	/**
+	 * Name constant for the RestModuleOverrides setting, for use with Config::get()
+	 * @see MainConfigSchema::RestModuleOverrides
+	 */
+	public const RestModuleOverrides = 'RestModuleOverrides';
+
+	/**
 	 * Name constant for the MaxShellMemory setting, for use with Config::get()
 	 * @see MainConfigSchema::MaxShellMemory
 	 */

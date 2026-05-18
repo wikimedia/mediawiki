@@ -10,6 +10,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\Module\ExtraRoutesModule;
 use MediaWiki\Rest\Module\Module;
+use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\Module\SpecBasedModule;
 use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
 use MediaWiki\Rest\Reporter\ErrorReporter;
@@ -63,6 +64,7 @@ class Router {
 	/** @var CorsUtils|null */
 	private $cors;
 
+	private ModuleManager $moduleManager;
 	private BagOStuff $cacheBag;
 	private ResponseFactory $responseFactory;
 	private BasicAuthorizerInterface $basicAuth;
@@ -87,7 +89,7 @@ class Router {
 	];
 
 	/**
-	 * @param string[] $routeFiles
+	 * @param ModuleManager $moduleManager
 	 * @param array[] $extraRoutes
 	 * @param ServiceOptions $options
 	 * @param BagOStuff $cacheBag A cache in which to store the matcher trees
@@ -102,7 +104,7 @@ class Router {
 	 * @internal
 	 */
 	public function __construct(
-		array $routeFiles,
+		ModuleManager $moduleManager,
 		array $extraRoutes,
 		ServiceOptions $options,
 		BagOStuff $cacheBag,
@@ -117,12 +119,14 @@ class Router {
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
-		$this->routeFiles = $routeFiles;
+		$this->routeFiles = $moduleManager->getRouteFiles();
 		$this->extraRoutes = $extraRoutes;
 		$this->baseUrl = $options->get( MainConfigNames::CanonicalServer );
 		$this->privateBaseUrl = $options->get( MainConfigNames::InternalServer );
 		$this->rootPath = $options->get( MainConfigNames::RestPath );
 		$this->scriptPath = $options->get( MainConfigNames::ScriptPath );
+
+		$this->moduleManager = $moduleManager;
 		$this->cacheBag = $cacheBag;
 		$this->responseFactory = $responseFactory;
 		$this->basicAuth = $basicAuth;
@@ -346,6 +350,13 @@ class Router {
 	private function getModuleInfo( string $module ): ?array {
 		$map = $this->getModuleMap();
 		return $map[$module] ?? null;
+	}
+
+	/**
+	 * @return ModuleManager
+	 */
+	public function getModuleManager(): ModuleManager {
+		return $this->moduleManager;
 	}
 
 	/**

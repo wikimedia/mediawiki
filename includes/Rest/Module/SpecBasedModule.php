@@ -114,24 +114,34 @@ class SpecBasedModule extends MatcherBasedModule {
 	public static function loadModuleDefinition( string $file, ResponseFactory $responseFactory ): array {
 		$moduleDef = static::loadJsonFile( $file );
 
-		if ( !$moduleDef ) {
-			throw new ModuleConfigurationException(
-				'Malformed module definition file: ' . $file
+		// This does not guarantee the file is a valid flat route file, just that it appears
+		// to be of that format. Files containing only an empty array are assumed to be valid
+		// flat route files containing no routes rather than malformed module definition files.
+		// Some development flat route files in extensions, such as Wikibase's routes.dev.json,
+		// may exist as placeholders but intentionally contain no routes.
+		if ( array_is_list( $moduleDef ) ) {
+			throw new ModuleFormatException(
+				$file . ' appears to be a flat route file, not a module definition file.'
 			);
 		}
 
-		if ( !isset( $moduleDef['mwapi'] ) ) {
+		// The array_is_list() call above confuses phan. Force phan to consider $mwapi to be of
+		// the type we expect. Also check its type ourselves in code at runtime, just to be sure.
+		$mwapi = $moduleDef['mwapi'] ?? null;
+		'@phan-var ?string $mwapi';
+
+		if ( !is_string( $mwapi ) ) {
 			throw new ModuleConfigurationException(
-				'Missing mwapi version field in ' . $file
+				'Missing or malformed mwapi version field in ' . $file
 			);
 		}
 
 		// Require a supported version of mwapi
-		if ( version_compare( $moduleDef['mwapi'], '1.0.0', '<' ) ||
-			version_compare( $moduleDef['mwapi'], '1.1.999', '>' )
+		if ( version_compare( $mwapi, '1.0.0', '<' ) ||
+			version_compare( $mwapi, '1.1.999', '>' )
 		) {
 			throw new ModuleConfigurationException(
-				"Unsupported mwapi version {$moduleDef['mwapi']} in "
+				"Unsupported mwapi version {$mwapi} in "
 				. $file
 			);
 		}

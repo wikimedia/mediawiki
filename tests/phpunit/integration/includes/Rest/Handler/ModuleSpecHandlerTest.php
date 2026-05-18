@@ -8,6 +8,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\ModuleSpecHandler;
+use MediaWiki\Rest\LocalizedHttpException;
+use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
@@ -33,7 +35,8 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private function createRouter(
 		RequestInterface $request,
-		$specFile
+		$specFile,
+		$moduleModes = []
 	): Router {
 		$services = $this->getServiceContainer();
 
@@ -60,7 +63,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$responseFactory = new ResponseFactory( [ $formatter ] );
 
 		return ( new Router(
-			[ $specFile ],
+			$this->newMockModuleManager( [ $specFile ], $moduleModes ),
 			[],
 			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
 			$services->getLocalServerObjectCache(),
@@ -254,6 +257,42 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 	): void {
 		$handler = TestingAccessWrapper::newFromClass( ModuleSpecHandler::class );
 		$this->assertSame( $expected, $handler->generateOperationId( $method, $summary, $path ) );
+	}
+
+	public function testHiddenSpec() {
+		$this->overrideConfigValues( [
+			MainConfigNames::RightsText => 'Test License',
+			MainConfigNames::RightsUrl => 'https://example.com/license',
+			MainConfigNames::EmergencyContact => 'test@example.com',
+			MainConfigNames::CanonicalServer => 'https://example.com:1234',
+			MainConfigNames::RestPath => '/api',
+		] );
+
+		$params = [
+			'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ]
+		];
+		$request = new RequestData( $params );
+
+		$overrides = [
+			'mock/v1' => ModuleMode::HIDDEN,
+		];
+		$router = $this->createRouter( $request, __DIR__ . '/SpecTestModule.json', $overrides );
+
+		$handler = $this->newHandler();
+
+		$this->expectException( LocalizedHttpException::class );
+		$response = $this->executeHandler(
+			$handler,
+			$request,
+			[],
+			[],
+			[],
+			[],
+			null,
+			null,
+			$router
+		);
+		$this->assertSame( 403, $response->getStatusCode() );
 	}
 
 	public static function newFooBarHandler() {

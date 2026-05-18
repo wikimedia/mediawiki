@@ -2696,6 +2696,8 @@ return [
 			],
 			'RestSandboxSpecs' => [
 			],
+			'RestModuleOverrides' => [
+			],
 			'MaxShellMemory' => 307200,
 			'MaxShellFileSize' => 102400,
 			'MaxShellTime' => 180,
@@ -3239,6 +3241,7 @@ return [
 			'AllowedCorsHeaders' => 'array',
 			'RestAPIAdditionalRouteFiles' => 'array',
 			'RestSandboxSpecs' => 'object',
+			'RestModuleOverrides' => 'object',
 			'ShellRestrictionMethod' => [
 				'string',
 				'boolean',
@@ -3303,6 +3306,7 @@ return [
 			'MWLoggerDefaultSpi' => 'replace',
 			'Profiler' => 'replace',
 			'Hooks' => 'array_merge_recursive',
+			'RestModuleOverrides' => 'array_replace_recursive',
 			'VirtualRestConfig' => 'array_plus_2d',
 		],
 		'dynamicDefault' => [
@@ -3715,6 +3719,19 @@ return [
 						'type' => 'string',
 						'description' => 'a message key',
 					],
+				],
+			],
+		],
+		'RestModuleOverrides' => [
+			'additionalProperties' => [
+				'type' => 'object',
+				'properties' => [
+					'mode' => [
+						'type' => 'string',
+					],
+				],
+				'required' => [
+					'mode',
 				],
 			],
 		],

@@ -4305,6 +4305,12 @@ $wgRestAPIAdditionalRouteFiles = null;
 $wgRestSandboxSpecs = null;
 
 /**
+ * Config variable stub for the RestModuleOverrides setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::RestModuleOverrides
+ */
+$wgRestModuleOverrides = null;
+
+/**
  * Config variable stub for the MaxShellMemory setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::MaxShellMemory
  */

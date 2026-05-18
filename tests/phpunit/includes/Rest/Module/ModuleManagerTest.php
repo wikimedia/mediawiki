@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Module\ModuleManager;
+use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWikiIntegrationTestCase;
 
@@ -18,6 +19,23 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$this->overrideConfigValue( MainConfigNames::RestPath, '/rest' );
+
+		$conf = $this->getServiceContainer()->getMainConfig();
+
+		$rf = $conf->get( MainConfigNames::RestAPIAdditionalRouteFiles );
+		$rf[] = __DIR__ . '/mock.v1-invalid.json';
+		$rf[] = __DIR__ . '/mockTwo.v1.json';
+		$this->overrideConfigValue( MainConfigNames::RestAPIAdditionalRouteFiles, $rf );
+
+		$overrides = [
+			'mockTwo/v1' => [ 'mode' => 'hidden' ],
+			'mockNonexistent/v1' => [ 'mode' => 'gibberish' ]
+		];
+		$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, $overrides );
+
+		$rss = $conf->get( MainConfigNames::RestSandboxSpecs );
+		$rss['mock.v1-invalid.json'] = [ 'file' => __DIR__ . '/mock.v1-invalid.json' ];
+		$this->overrideConfigValue( MainConfigNames::RestSandboxSpecs, $rss );
 	}
 
 	/**
@@ -34,14 +52,19 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public static function provideCoreRouteFiles() {
+	public static function provideRouteFiles() {
 		yield 'coreRoutes' => [ 'includes/Rest/coreRoutes.json' ];
+		yield 'coreDevelopmentRoutes' => [ 'includes/Rest/coreDevelopmentRoutes.json' ];
+		yield 'content.v1.json' => [ 'includes/Rest/content.v1.json' ];
+		yield 'site.v1.json' => [ 'includes/Rest/site.v1.json' ];
+		yield 'specs.v0.json' => [ 'includes/Rest/specs.v0.json' ];
+		yield 'mockTwo.v1.json' => [ 'mockTwo.v1.json' ];
 	}
 
 	/**
-	 * @dataProvider provideCoreRouteFiles
+	 * @dataProvider provideRouteFiles
 	 *
-	 * Ensure ModuleManager automatically loads core routes
+	 * Ensure ModuleManager automatically loads routes (flat and modules)
 	 */
 	public function testRouteFiles( string $needle ) {
 		$moduleManager = $this->getModuleManager();
@@ -59,29 +82,106 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $found, 'Core route ' . $needle . ' not found' );
 	}
 
-	public static function provideCoreSpecs() {
-		// TODO: When we add more modules to core whose specs are visible by default,
-		//  add them to this data provider
-		yield 'mw-extra' => [ 'mw-extra' ];
-	}
-
 	/**
-	 * @dataProvider provideCoreSpecs
-	 *
-	 * Ensure ModuleManager automatically loads core specs
+	 * Ensure disabled modules are treated as disabled.
 	 */
-	public function testSpecs( string $needle ) {
+	public function testDisabledModules() {
 		$moduleManager = $this->getModuleManager();
-		$specs = $moduleManager->getApiSpecs();
+		$routeFiles = $moduleManager->getRouteFiles();
 
+		$needle = 'mock.v1-invalid.json';
 		$found = false;
-		foreach ( $specs as $key => $spec ) {
-			if ( $key === $needle ) {
+		foreach ( $routeFiles as $file ) {
+			// ModuleManager prepends the install path, so an exact string comparison would fail
+			if ( str_contains( $file, $needle ) ) {
 				$found = true;
 				break;
 			}
 		}
 
-		$this->assertTrue( $found, 'Spec ' . $needle . ' not found' );
+		$this->assertFalse( $found, 'Disabled module ' . $needle . ' found' );
+	}
+
+	public static function provideSpecs() {
+		// This comes from the hard-coded list in core
+		yield 'mw-extra' => [
+			'mw-extra',
+			[
+				'group' => '',
+				'url' => '/rest.php/specs/v0/module/-',
+				'name' => 'MediaWiki REST API (routes not in modules)',
+			]
+		];
+
+		// This comes from RestSandboxSpecs, which should override audience designations.
+		yield 'mock.v1-invalid.json' => [
+			'mock.v1-invalid.json',
+			[
+				'group' => '',
+				'url' => '/rest.php/specs/v0/module/mock/v1-invalid',
+				'name' => 'Mock Module (Invalid)',
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideSpecs
+	 *
+	 * Ensure ModuleManager automatically loads core specs
+	 */
+	public function testSpecs( string $needle, array $expected ) {
+		$moduleManager = $this->getModuleManager();
+		$specs = $moduleManager->getApiSpecs();
+
+		$this->assertArrayHasKey( $needle, $specs, 'Spec ' . $needle . ' not found' );
+		$spec = $specs[$needle];
+		foreach ( $expected as $key => $expectedValue ) {
+			$this->assertSame( $expectedValue, $spec[$key] ?? null, "Unexpected value for $needle:$key" );
+		}
+	}
+
+	public function testHasApiSpecs(): void {
+		$moduleManager = $this->getModuleManager();
+		$this->assertTrue( $moduleManager->hasApiSpecs() );
+	}
+
+	public static function provideGetModuleModeCases() {
+		yield from [
+			[ 'example/v1', ModuleMode::DISCOVERABLE ], // TODO: switch to PUBLISHED when ready
+
+			// We don't expect people to actually use 'published', but if they do, it should work.
+			[ 'example/v1-published', ModuleMode::DISCOVERABLE ], // TODO: switch to PUBLISHED when ready
+
+			[ 'example/v1-internal', ModuleMode::DISCOVERABLE ], // TODO: switch to OPT_IN when ready
+
+			[ 'example/v1-beta', ModuleMode::DISCOVERABLE ], // TODO: switch to OPT_IN when ready
+
+			// We don't expect people to actually use 'invalid', but if they do, it should work.
+			[ 'example/v1-invalid', ModuleMode::DISABLED ],
+
+			// Completely unrecognized and unsupported audience designation
+			[ 'example/v1-unrecognized', ModuleMode::DISABLED ],
+
+			// Malformed module id (no version)
+			[ 'malformed', ModuleMode::DISABLED ],
+
+			// Overrides work
+			[ 'mockTwo/v1', ModuleMode::HIDDEN ],
+
+			// Fallback to DISABLED on unrecognized mode works
+			[ 'mockNonexistent/v1', ModuleMode::DISABLED ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetModuleModeCases
+	 */
+	public function testGetModuleMode( string $moduleId, ModuleMode $expected ): void {
+		$moduleManager = $this->getModuleManager();
+		$mode = $moduleManager->getModuleMode( $moduleId );
+
+		// The default message is unhelpful in identifying which test case failed.
+		$msg = "Failure for module id $moduleId and expected mode {$mode->name}";
+		$this->assertSame( $expected, $mode, $msg );
 	}
 }

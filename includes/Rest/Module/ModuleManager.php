@@ -40,6 +40,7 @@ class ModuleManager {
 
 	private array $restApiAdditionalRouteFiles;
 	private array $restSandboxSpecs;
+	private array $restModuleOverrides;
 
 	private string $scriptPath;
 
@@ -55,6 +56,7 @@ class ModuleManager {
 		MainConfigNames::ExtensionDirectory,
 		MainConfigNames::RestAPIAdditionalRouteFiles,
 		MainConfigNames::RestSandboxSpecs,
+		MainConfigNames::RestModuleOverrides,
 		MainConfigNames::ScriptPath
 	];
 
@@ -71,10 +73,46 @@ class ModuleManager {
 		$this->extensionDirectory = $options->get( MainConfigNames::ExtensionDirectory );
 		$this->restApiAdditionalRouteFiles = $options->get( MainConfigNames::RestAPIAdditionalRouteFiles );
 		$this->restSandboxSpecs = $options->get( MainConfigNames::RestSandboxSpecs );
+		$this->restModuleOverrides = $options->get( MainConfigNames::RestModuleOverrides );
 		$this->scriptPath = $options->get( MainConfigNames::ScriptPath );
 
 		$this->srvCache = $srvCache;
 		$this->responseFactory = $responseFactory;
+	}
+
+	/**
+	 * Gets the module mode for a given module id.
+	 *
+	 * @param string $moduleId The module id
+	 *
+	 * @return ModuleMode
+	 * @since 1.47
+	 */
+	public function getModuleMode( string $moduleId ): ModuleMode {
+		// If an override is attempted, but the mode is unrecognized, disable the module. This
+		// helps guard against undesired module activation/publishing due to configuration typos.
+		if ( isset( $this->restModuleOverrides[$moduleId]['mode'] ) ) {
+			$mm = ModuleMode::tryFrom( $this->restModuleOverrides[$moduleId]['mode'] );
+			$mm ??= ModuleMode::DISABLED;
+		}
+
+		return $mm ?? ModuleMode::getModuleMode( AudienceDesignation::fromModuleId( $moduleId ) );
+	}
+
+	/**
+	 * Gets the configured override parameters (if any) for a particular module
+	 *
+	 * @param string $moduleId The module id
+	 *
+	 * @return array<string,string>
+	 */
+	private function getModeParams( string $moduleId ): array {
+		$adParams = ModuleMode::getModeParams( AudienceDesignation::fromModuleId( $moduleId ) );
+		$overrideParams = $this->restModuleOverrides[$moduleId] ?? [];
+		unset( $overrideParams['mode'] );
+
+		// Config overrides audience designation
+		return $overrideParams + $adParams;
 	}
 
 	/**
@@ -110,6 +148,19 @@ class ModuleManager {
 				$file = MW_INSTALL_PATH . '/' . $file;
 			}
 		}
+		unset( $file );
+
+		// If the module's audience designation or configuration settings say it should be
+		// disabled, then don't include it at all. Old-style flat route files cannot be disabled.
+		foreach ( $routeFiles as $key => $file ) {
+			$moduleDefInfo = $this->getModuleDefinitionInfo( $file );
+			if (
+				isset( $moduleDefInfo['moduleId'] ) &&
+				$this->getModuleMode( $moduleDefInfo['moduleId'] ) === ModuleMode::DISABLED
+			) {
+				unset( $routeFiles[$key] );
+			}
+		}
 
 		return $routeFiles;
 	}
@@ -120,7 +171,11 @@ class ModuleManager {
 	 * @return bool
 	 */
 	public function hasApiSpecs(): bool {
-		return $this->getApiSpecDefs() !== [];
+		// mw-extra is always available, so there is no need for logic here.
+		//
+		// TODO: deprecate this function once audience designations are fully implemented and
+		//  rolled out, and it is clear that this function is no longer useful.
+		return true;
 	}
 
 	/**
@@ -129,51 +184,73 @@ class ModuleManager {
 	 * @return array<string,array<string,string>>
 	 */
 	public function getApiSpecs(): array {
-		$specs = $this->getApiSpecDefs();
+		$coreSpecs = self::CORE_SPECS;
+		foreach ( $coreSpecs as $key => &$spec ) {
+			if ( isset( $spec['url'] ) ) {
+				$spec['url'] = $this->scriptPath . $spec['url'];
+			}
+			$spec = $this->normalizeSpec( $key, $spec );
 
+			if ( $spec['mode'] !== ModuleMode::PUBLISHED ) {
+				unset( $coreSpecs[$key] );
+			}
+		}
+		unset( $spec );
+
+		// RestSandboxSpecs overrides everything else. If RestSandboxSpecs includes a module,
+		// it will be published to the REST Sandbox, regardless of its audience designation or
+		// any RestModuleOverrides configuration. This is for backwards compatibility.
+		$rssSpecs = $this->restSandboxSpecs;
+		foreach ( $rssSpecs as $key => &$spec ) {
+			$spec = $this->normalizeSpec( $key, $spec );
+		}
+		unset( $spec );
+
+		$specs = array_merge( $coreSpecs, $rssSpecs );
 		foreach ( $specs as $key => &$spec ) {
-			// Translate any message keys from config to a displayable name string
-			$localizer = new JsonLocalizer( $this->responseFactory );
-			if ( isset( $spec['msg'] ) ) {
-				$spec['name'] = $localizer->getFormattedMessage( $spec['msg'] );
-				unset( $spec['msg'] );
-			}
-
-			// Extract values from module definition files. Only load a file if necessary.
-			if ( isset( $spec['file'] ) ) {
-				$spec = $this->populateFromFile( $spec, $this->scriptPath );
-			} elseif ( !isset( $spec['name'] ) ) {
-				// If we were otherwise unable to get a name, use the key
-				$spec['name'] = $key;
-			}
+			unset( $spec['mode'] );
+			$spec['group'] = $spec['params']['group'] ?? '';
+			unset( $spec['params'] );
 		}
 
 		return $specs;
 	}
 
 	/**
-	 * Gets the available API spec definition information.
-	 * These need further processing before use by the REST Sandbox.
+	 * Normalizes a single spec definition, performing localization and loading from module
+	 * definition files as needed.
 	 *
-	 * @see MainConfigSchema::RestSandboxSpecs for the structure of the array
+	 * @param string $key spec definition array key, used as a fallback name if necessary
+	 * @param array $spec the spec definition array
 	 *
-	 * @return array<string,array<string,string>>
+	 * @return array<string,string> the normalized spec definition
 	 */
-	private function getApiSpecDefs(): array {
-		$coreSpecs = self::CORE_SPECS;
-
-		// Adjust core specs and merge with specs from config, giving config priority
-		foreach ( $coreSpecs as &$coreSpec ) {
-			if ( isset( $coreSpec['url'] ) ) {
-				$coreSpec['url'] = $this->scriptPath . $coreSpec['url'];
-			}
+	private function normalizeSpec( string $key, array $spec ): array {
+		// Translate any message keys from config to a displayable name string
+		$localizer = new JsonLocalizer( $this->responseFactory );
+		if ( isset( $spec['msg'] ) ) {
+			$spec['name'] = $localizer->getFormattedMessage( $spec['msg'] );
+			unset( $spec['msg'] );
 		}
 
-		return array_merge( $coreSpecs, $this->restSandboxSpecs );
+		// Extract values from module definition files. Only load a file if necessary.
+		if ( isset( $spec['file'] ) ) {
+			$spec = $this->populateFromFile( $spec, $this->scriptPath );
+		} elseif ( !isset( $spec['name'] ) ) {
+			// If we were otherwise unable to get a name, use the key
+			$spec['name'] = $key;
+		}
+
+		// Always include sensible defaults
+		$spec['mode'] ??= ModuleMode::PUBLISHED;
+		$spec['params'] ??= [];
+
+		return $spec;
 	}
 
 	/**
-	 * Populates any missing spec details from the input module definition file
+	 * Populates any missing spec details from the input module definition file.
+	 * The return value also includes the ModuleMode that should be applied.
 	 *
 	 * @param array<string,string> $spec The sandbox spec. Must have a 'file' key.
 	 * @param string $scriptPath
@@ -183,17 +260,19 @@ class ModuleManager {
 	private function populateFromFile( array $spec, string $scriptPath ): array {
 		$hasUrl = isset( $spec['url'] );
 		$hasName = isset( $spec['name'] ) || isset( $spec['msg'] );
-		if ( !$hasUrl || !$hasName ) {
-			// Get any missing information from the module definition file, giving config priority
-			$moduleDefInfo = $this->getModuleDefinitionInfo( $spec['file'] );
-			if ( !$hasName ) {
-				$spec['name'] = $moduleDefInfo['title'];
-			}
 
-			if ( !$hasUrl ) {
-				$spec['url'] = $scriptPath . '/rest.php/specs/v0/module/' . $moduleDefInfo['moduleId'];
-			}
+		$moduleDefInfo = $this->getModuleDefinitionInfo( $spec['file'] );
+
+		// Get any missing information from the module definition file, giving config priority
+		if ( !$hasName ) {
+			$spec['name'] = $moduleDefInfo['title'];
 		}
+		if ( !$hasUrl ) {
+			$spec['url'] = $scriptPath . '/rest.php/specs/v0/module/' . $moduleDefInfo['moduleId'];
+		}
+
+		$spec['mode'] = $this->getModuleMode( $moduleDefInfo['moduleId'] );
+		$spec['params'] = $this->getModeParams( $moduleDefInfo['moduleId'] );
 
 		return $spec;
 	}
@@ -204,7 +283,7 @@ class ModuleManager {
 	 *
 	 * @param string $file The module definition file to load
 	 *
-	 * @return array<string,string>
+	 * @return array<string,string> The module definition info, or an empty array for flat routes
 	 */
 	private function getModuleDefinitionInfo( string $file ): array {
 		$key = $this->srvCache->makeKey(
@@ -220,11 +299,16 @@ class ModuleManager {
 			$key,
 			self::MODULE_DEFINITION_TTL,
 			function () use ( $file ) {
-				$md = SpecBasedModule::loadModuleDefinition( $file, $this->responseFactory );
-				return [
-					'moduleId' => $md['moduleId'],
-					'title' => $md['info']['title']
-				];
+				// An exception here almost certainly means this is an old-style flat route file.
+				try {
+					$md = SpecBasedModule::loadModuleDefinition( $file, $this->responseFactory );
+					return [
+						'moduleId' => $md['moduleId'],
+						'title' => $md['info']['title']
+					];
+				} catch ( ModuleFormatException ) {
+					return [];
+				}
 			}
 		);
 	}

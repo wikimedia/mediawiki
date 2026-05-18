@@ -68,7 +68,7 @@ class EntryPoint extends MediaWikiEntryPoint {
 		);
 
 		return ( new Router(
-			$moduleManager->getRouteFiles(),
+			$moduleManager,
 			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
 			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
 			$services->getLocalServerObjectCache(),

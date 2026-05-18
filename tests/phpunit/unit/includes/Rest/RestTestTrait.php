@@ -6,6 +6,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Module\Module;
+use MediaWiki\Rest\Module\ModuleManager;
+use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\Reporter\PHPErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
@@ -28,6 +30,26 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 trait RestTestTrait {
 	use SessionHelperTestTrait;
 	use MockAuthorityTrait;
+
+	/**
+	 * @since 1.47
+	 *
+	 * @param array $routeFiles route files to return from mocked getRouteFiles() call
+	 * @param array $moduleModes maps module ids to module modes for mocked getModuleMode() call
+	 *
+	 * @return ModuleManager
+	 */
+	private function newMockModuleManager( array $routeFiles, array $moduleModes = [] ): ModuleManager {
+		$mock = $this->createMock( ModuleManager::class );
+		$mock->method( 'getRouteFiles' )->willReturn( $routeFiles );
+		$mock->method( 'getModuleMode' )->willReturnCallback(
+			static function ( string $moduleId ) use ( $moduleModes ) {
+				return $moduleModes[$moduleId] ?? ModuleMode::DISABLED;
+			}
+		);
+
+		return $mock;
+	}
 
 	/**
 	 * @param array $params Constructor parameters, as an associative array.
@@ -61,7 +83,7 @@ trait RestTestTrait {
 		$request = $params['request'] ?? new RequestData();
 
 		return new Router(
-			$params['routeFiles'] ?? [ MW_INSTALL_PATH . '/tests/phpunit/unit/includes/Rest/testRoutes.json' ],
+			$this->newMockModuleManager( $params['routeFiles'] ?? [ MW_INSTALL_PATH . '/tests/phpunit/unit/includes/Rest/testRoutes.json' ] ),
 			$params['extraRoutes'] ?? [],
 			$params['options'] ?? new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $config ),
 			$params['cacheBag'] ?? new EmptyBagOStuff(),

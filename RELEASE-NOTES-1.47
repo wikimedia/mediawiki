@@ -34,6 +34,9 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 ==== New configuration ====
 
+* $wgRestModuleOverrides - (T422756) Defaults to `[]`, allows overriding the
+  default behavior mode of REST modules. See MediaWiki\Rest\Module\ModuleMode
+  for details on available modes.
 * …
 
 ==== Changed configuration ====
@@ -79,6 +82,10 @@ For notes on 1.46.x and older releases, see HISTORY.
   at the ElevatedSecurityAuthenticationRequest (or lack thereof).
   Reauthentication can be triggered via a new 'securityLevel' option to
   AuthManager::getAuthenticationRequests().
+* (T422551) The REST API framework now supports audience designations on REST
+  modules. See MediaWiki\Rest\Module\AudienceDesignation for details. Modules
+  requiring a different behavior mode can use the new RestModuleOverrides
+  configuration variable.
 * (T412542) The UrlUtils class now has an option to allow any URL protocol:
   `UrlUtils::VALID_PROTOCOLS => UrlUtils::ALL_PROTOCOLS`.
 * …

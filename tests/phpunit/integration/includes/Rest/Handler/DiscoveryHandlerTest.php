@@ -7,6 +7,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler\DiscoveryHandler;
+use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
@@ -30,7 +31,7 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private function createRouter(
 		RequestInterface $request,
-		$specFile
+		array $specFiles
 	): Router {
 		$services = $this->getServiceContainer();
 
@@ -56,8 +57,13 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 		};
 		$responseFactory = new ResponseFactory( [ $formatter ] );
 
+		$moduleModes = [
+			'SpecTestRoutes/v1' => ModuleMode::PUBLISHED,
+			'SpecTestRoutes/v2' => ModuleMode::HIDDEN,
+		];
+
 		return ( new Router(
-			[ $specFile ],
+			$this->newMockModuleManager( $specFiles, $moduleModes ),
 			[],
 			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
 			$services->getLocalServerObjectCache(),
@@ -119,7 +125,13 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$request = new RequestData( [] );
-		$router = $this->createRouter( $request, __DIR__ . '/SpecTestRoutes.json' );
+		$router = $this->createRouter(
+			$request,
+			[
+				__DIR__ . '/SpecTestRoutes.v1.json',
+				__DIR__ . '/SpecTestRoutes.v2.json'
+			]
+		);
 
 		$handler = $this->newHandler();
 		$response = $this->executeHandler(
@@ -152,18 +164,22 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 				[ 'url' => 'https://example.com:1234/api', ],
 			],
 			'modules' => [
-				'mock/v1' => [
+				'SpecTestRoutes/v1' => [
 					'info' => [
 						'version' => '1.0',
 						'title' => 'test module',
 					],
-					'base' => 'https://example.com:1234/api/mock/v1',
-					'spec' => 'https://example.com:1234/api/specs/v0/module/mock%2Fv1',
+					'base' => 'https://example.com:1234/api/SpecTestRoutes/v1',
+					'spec' => 'https://example.com:1234/api/specs/v0/module/SpecTestRoutes%2Fv1',
 				],
 			],
 		];
 
+		// Note that this does not fail on unexpected keys/elements
 		self::assertContainsRecursive( $expected, $data );
+
+		// Ensure the hidden module is actually hidden
+		self::assertArrayNotHasKey( 'SpecTestRoutes/v2', $data['modules'] );
 	}
 
 }

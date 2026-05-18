@@ -8,6 +8,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Module\Module;
+use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\SimpleHandler;
@@ -56,12 +57,23 @@ class ModuleSpecHandler extends SimpleHandler {
 			$moduleName = '';
 		}
 
+		// This will also throw for DISABLED modules, which is the desired behavior.
 		$module = $this->getRouter()->getModule( $moduleName );
-
 		if ( !$module ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-unknown-module' )->params( $moduleName ),
 				404
+			);
+		}
+
+		// Suppress OpenAPI spec for HIDDEN modules. This is not a security or protection
+		// mechanism. MediaWiki is open source, so callers can learn the details of its endpoints.
+		// This is just a way to hide the spec in cases where it should not be available.
+		$mode = $this->getRouter()->getModuleManager()->getModuleMode( $moduleName );
+		if ( $mode === ModuleMode::HIDDEN ) {
+			throw new LocalizedHttpException(
+				MessageValue::new( 'rest-unavailable-spec' )->params( $moduleName ),
+				403
 			);
 		}
 
