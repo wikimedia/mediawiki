@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.5.2 / 2026-04-07
+## 6.5.2 / 2026-05-18
 
 * Fix duplicate metrics in PrometheusFileReporter (T423522)
 * Fix for run tests in K8 (T426551)
