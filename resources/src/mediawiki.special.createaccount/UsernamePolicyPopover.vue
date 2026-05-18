@@ -35,17 +35,10 @@ module.exports = defineComponent( {
 		triggerElement: {
 			type: Object,
 			required: true
-		},
-		/**
-		 * When true, the policy popover is visible as soon as this component mounts (first tap).
-		 */
-		openOnMount: {
-			type: Boolean,
-			default: false
 		}
 	},
 	setup( props ) {
-		const isPopoverOpen = ref( props.openOnMount );
+		const isPopoverOpen = ref( false );
 		const anchor = ref( props.triggerElement );
 		const bulletsElement = ref( null );
 		const pack = mw.config.get( 'wgCreateAccountUsernamePolicyPopoverMsgs' );
@@ -70,6 +63,7 @@ module.exports = defineComponent( {
 		}
 
 		onMounted( () => {
+			isPopoverOpen.value = true;
 			props.triggerElement.addEventListener( 'click', onTriggerClick, true );
 			applyPolicyLinkAttrs();
 		} );

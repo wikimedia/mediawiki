@@ -201,7 +201,7 @@ function bootstrapUsernamePolicyPopover() {
 	function onChooseCarefullyClick( ev ) {
 		ev.preventDefault();
 		chooseCarefullyLink.removeEventListener( 'click', onChooseCarefullyClick, true );
-		mountUsernamePolicyPopover( chooseCarefullyLink, { openOnMount: true } );
+		mountUsernamePolicyPopover( chooseCarefullyLink );
 	}
 	chooseCarefullyLink.addEventListener( 'click', onChooseCarefullyClick, true );
 }
