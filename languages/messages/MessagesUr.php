@@ -250,7 +250,7 @@ $magicWords = [
 	'img_left'                  => [ '1', 'بائیں', 'left' ],
 	'img_link'                  => [ '1', 'ربط=$1', 'لنک=$1', 'link=$1' ],
 	'img_manualthumb'           => [ '1', 'تصغیر=$1', 'thumbnail=$1', 'thumb=$1' ],
-	'img_middle'                => [ '1', 'وسط', 'درمیان', 'middle' ],
+	'img_middle'                => [ '1', 'درمیان', 'middle' ],
 	'img_none'                  => [ '1', 'بغیر', 'بدون', 'none' ],
 	'img_page'                  => [ '1', 'صفحہ=$1', 'صفحہ_$1', 'page=$1', 'page $1' ],
 	'img_right'                 => [ '1', 'دائیں', 'right' ],
