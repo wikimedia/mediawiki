@@ -37,6 +37,10 @@ class CleanupWatchlistLabelMemberTest extends MaintenanceBaseTestCase {
 
 		// Test that the missing page's label is added.
 		$this->assertSame( 3, $this->watchlistLabelMemberCount() );
+		// Force the run; another test in the same phpunit process may have
+		// already logged this updater (e.g. DatabaseSqliteUpgradeTest), which
+		// would otherwise short-circuit doDBUpdates()
+		$this->maintenance->setForce();
 		$this->maintenance->execute();
 		$this->assertSame( 4, $this->watchlistLabelMemberCount() );
 	}
