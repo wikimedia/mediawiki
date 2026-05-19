@@ -171,17 +171,17 @@ module.exports = defineComponent( {
 				.filter( ( e ) => e.checked )
 				.map( ( e ) => e.value );
 			const namedLimit = 5;
+			const displayPages = selectedPages.value.slice( 0, namedLimit );
 			if ( selectedPages.value.length > namedLimit ) {
 				const remaining = selectedPages.value.length - namedLimit;
-				selectedPages.value = selectedPages.value.splice( 0, namedLimit );
-				selectedPages.value.push( mw.msg(
+				displayPages.push( mw.msg(
 					'watchlistlabels-editwatchlist-dialog-intro-more',
 					remaining,
 					mw.language.convertNumber( remaining )
 				) );
 			}
 			selectedPagesListHtml.value = mw.language.listToText(
-				selectedPages.value.map( ( t ) => mw.html.element( 'strong', {}, t ) )
+				displayPages.map( ( t ) => mw.html.element( 'strong', {}, t ) )
 			);
 		};
 		checkboxes.forEach( ( checkbox ) => {
