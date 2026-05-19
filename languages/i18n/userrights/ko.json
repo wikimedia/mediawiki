@@ -312,7 +312,7 @@
 	"listgrouprights-removegroup-self": "자신에게서 다음 {{PLURAL:$2|권한}}을 해제: $1",
 	"listgrouprights-addgroup-self-all": "자신에게 모든 권한을 부여",
 	"listgrouprights-removegroup-self-all": "자신의 계정에서 모든 권한을 해제",
-	"listgrouprights-restrictedgroups-header": "그룹 멤버십 제한",
+	"listgrouprights-restrictedgroups-header": "그룹 권한 제한",
 	"listgrouprights-restrictedgroups-config": "제한 구성",
 	"listgrouprights-restrictedgroups-memberconditions": "회원 조건:",
 	"listgrouprights-restrictedgroups-updaterconditions": "이 그룹에 권한을 부여하는 사용자에 대한 조건:",

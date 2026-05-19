@@ -70,5 +70,7 @@
 	"duration-days": "$1 {{PLURAL:$1|maalin|maalmood}}",
 	"duration-minutes": "$1 {{PLURAL:$1|daqiiqo|daqiiqado}}",
 	"duration-seconds": "$1 {{PLURAL:$1|ilbiriqsi|ilbiriqsiyo}}",
+	"hours-ago": "$1 {{PLURAL:$1|saacad|saacado}} kahor",
+	"minutes-ago": "$1 {{PLURAL:$1|daqiiqo|daqiiqado}} kahor",
 	"just-now": "hadda"
 }

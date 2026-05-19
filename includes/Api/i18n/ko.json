@@ -94,7 +94,7 @@
 	"apihelp-clearhasmsg-example-1": "현재 계정의 <code>hasmsg</code> 플래그를 삭제합니다.",
 	"apihelp-clientlogin-summary": "상호작용 플로우를 이용하여 위키에 로그인합니다.",
 	"apihelp-clientlogin-example-login": "사용자 <kbd>Example</kbd>, 비밀번호 <kbd>ExamplePassword</kbd>로 위키 로그인 과정을 시작합니다.",
-	"apihelp-clientlogin-example-login2": "<kbd>987654</kbd>의 <var>OATHToken</var>을 지정하여 2요소 인증을 위한 <samp>UI</samp> 응답 이후에 로그인을 계속합니다.",
+	"apihelp-clientlogin-example-login2": "<kbd>987654</kbd>의 <var>OATHToken</var>을 지정하여 2단계 인증을 위한 <samp>UI</samp> 응답 이후에 로그인을 계속합니다.",
 	"apihelp-compare-summary": "두 문서 간의 차이를 가져옵니다.",
 	"apihelp-compare-extended-description": "대상이 되는 두 문서의 판 번호나 문서 제목 또는 문서 ID를 지정해야 합니다.",
 	"apihelp-compare-param-fromtitle": "비교할 첫 이름.",
