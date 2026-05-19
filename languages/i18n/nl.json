@@ -842,7 +842,7 @@
 	"content-model-text": "tekst zonder opmaak",
 	"content-json-empty-object": "Leeg object",
 	"content-json-empty-array": "Lege reeks",
-	"unsupported-content-model": "<strong>Let op:</strong> het inhoudsmodel $1 wordt niet ondersteunt op deze wiki.",
+	"unsupported-content-model": "<strong>Let op:</strong> het inhoudsmodel $1 wordt niet ondersteund op deze wiki.",
 	"unsupported-content-diff": "Wijzigingen worden niet ondersteund door het inhoudsmodel $1.",
 	"unsupported-content-diff2": "Wijzigingen tussen de inhoudsmodellen $1 en $2 worden niet ondersteund op deze wiki.",
 	"duplicate-args-warning": "<strong>Waarschuwing:</strong> [[:$1]] roept [[:$2]] aan met meer dan één waarde voor de parameter \"$3\". Alleen de laatste waarde wordt gebruikt.",

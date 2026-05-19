@@ -2204,7 +2204,7 @@
 	"allpagesfrom": "Mostra le pagine a partire da:",
 	"allpagesto": "Mostra le pagine fino a:",
 	"allarticles": "Tutte le pagine",
-	"allinnamespace": "Tutte le pagine del namespace $1",
+	"allinnamespace": "Tutte le pagine (namespace $1)",
 	"allpagessubmit": "Vai",
 	"allpagesprefix": "Mostra le pagine che iniziano con:",
 	"allpagesbadtitle": "Il titolo indicato per la pagina non è valido o contiene prefissi interlingua o interwiki. Potrebbe inoltre contenere uno o più caratteri il cui uso non è ammesso nei titoli.",
