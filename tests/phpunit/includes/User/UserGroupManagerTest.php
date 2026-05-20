@@ -1080,6 +1080,25 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayEquals( [ 'test_autoconfirmed' ], $manager->getUserAutopromoteGroups( $user ) );
 	}
 
+	public function testGetAutopromoteGroupsForRemoteUser() {
+		$siteConfig = new SiteConfiguration();
+		$siteConfig->wikis = [ 'otherwiki' ];
+		$this->setMwGlobals( 'wgConf', $siteConfig );
+
+		$this->overrideConfigValue( MainConfigNames::LocalDatabases, [ 'otherwiki' ] );
+
+		$this->overrideConfigValue(
+			MainConfigNames::Autopromote,
+			[ 'test_autoconfirmed' => [ APCOND_EDITCOUNT, 0 ] ]
+		);
+		$manager = $this->getServiceContainer()
+			->getUserGroupManagerFactory()
+			->getUserGroupManager( 'otherwiki' );
+
+		$remoteUser = UserIdentityValue::newRegistered( 1, 'User', 'otherwiki' );
+		$this->assertSame( [], $manager->getUserAutopromoteGroups( $remoteUser ) );
+	}
+
 	public static function provideGetUserAutopromoteOnce() {
 		yield 'Events are not matching' => [
 			[ 'NOT_EVENT' => [ 'autopromoteonce' => [ APCOND_EDITCOUNT, 0 ] ] ], [], [], []
