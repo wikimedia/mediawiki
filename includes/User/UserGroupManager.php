@@ -411,23 +411,26 @@ class UserGroupManager {
 			return [];
 		}
 
-		$promote = [];
-		// TODO: remove the need for the full user object
-		$userObj = User::newFromIdentity( $user );
-		if ( $userObj->isTemp() ) {
+		if ( $this->tempUserConfig->isTempName( $user->getName() ) ) {
 			return [];
 		}
 
+		$promote = [];
 		$checker = $this->userRequirementsConditionCheckerFactory->getUserRequirementsConditionChecker(
 			$this, $this->wikiId
 		);
 		foreach ( $this->options->get( MainConfigNames::Autopromote ) as $group => $cond ) {
-			if ( $checker->recursivelyCheckCondition( $cond, $userObj ) ) {
+			if ( $checker->recursivelyCheckCondition( $cond, $user ) ) {
 				$promote[] = $group;
 			}
 		}
 
-		$this->hookRunner->onGetAutoPromoteGroups( $userObj, $promote );
+		if ( $this->hookContainer->isRegistered( 'GetAutoPromoteGroups' ) ) {
+			// TODO: Deprecate passing out user object in the hook by introducing
+			// an alternative hook
+			$userObj = User::newFromIdentity( $user );
+			$this->hookRunner->onGetAutoPromoteGroups( $userObj, $promote );
+		}
 		return $promote;
 	}
 
@@ -452,9 +455,7 @@ class UserGroupManager {
 		$promote = [];
 
 		if ( isset( $autopromoteOnce[$event] ) && count( $autopromoteOnce[$event] ) ) {
-			// TODO: remove the need for the full user object
-			$userObj = User::newFromIdentity( $user );
-			if ( $userObj->isTemp() ) {
+			if ( $this->tempUserConfig->isTempName( $user->getName() ) ) {
 				return [];
 			}
 			$currentGroups = $this->getUserGroups( $user );
@@ -472,7 +473,7 @@ class UserGroupManager {
 					continue;
 				}
 				// Finally - check the conditions
-				if ( $checker->recursivelyCheckCondition( $cond, $userObj ) ) {
+				if ( $checker->recursivelyCheckCondition( $cond, $user ) ) {
 					$promote[] = $group;
 				}
 			}
