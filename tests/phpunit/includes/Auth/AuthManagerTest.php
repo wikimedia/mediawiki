@@ -54,6 +54,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Session\SessionProvider;
 use MediaWiki\Session\UserInfo;
 use MediaWiki\Status\Status;
 use MediaWiki\User\BotPasswordStore;
@@ -126,7 +127,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	private NotificationService $notificationService;
 	private SessionManager $sessionManager;
 
-	private const TAG = 'foo';
+	private const string TAG = 'foo';
 
 	/**
 	 * Registers a mock hook.
@@ -136,7 +137,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	 * @param InvocationOrder $expect From $this->once(), $this->never(), etc.
 	 * @return InvocationMocker $mock->expects( $expect )->method( ... ).
 	 */
-	protected function hook( $hook, $hookInterface, $expect ) {
+	protected function hook( string $hook, string $hookInterface, InvocationOrder $expect ): InvocationMocker {
 		$mock = $this->getMockBuilder( $hookInterface )
 			->onlyMethods( [ "on$hook" ] )
 			->getMock();
@@ -146,21 +147,15 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Unsets a hook
-	 * @param string $hook
 	 */
-	protected function unhook( $hook ) {
+	protected function unhook( string $hook ) {
 		$this->hookContainer->clear( $hook );
 	}
 
 	/**
 	 * Ensure a value is a clean Message object
-	 *
-	 * @param string|Message $key
-	 * @param array $params
-	 *
-	 * @return Message
 	 */
-	protected function message( $key, $params = [] ) {
+	protected function message( string|Message|null $key, array $params = [] ): ?Message {
 		if ( $key === null ) {
 			return null;
 		}
@@ -176,13 +171,11 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	 * Test two AuthenticationResponses for equality.  We don't want to use regular assertEquals
 	 * because that recursively compares members, which leads to false negatives if e.g. Language
 	 * caches are reset.
-	 *
-	 * @param AuthenticationResponse $expected
-	 * @param AuthenticationResponse $actual
-	 * @param string $msg
 	 */
 	private function assertResponseEquals(
-		AuthenticationResponse $expected, AuthenticationResponse $actual, $msg = ''
+		AuthenticationResponse $expected,
+		AuthenticationResponse $actual,
+		string $msg = ''
 	) {
 		foreach ( ( new ReflectionClass( $expected ) )->getProperties() as $prop ) {
 			$name = $prop->getName();
@@ -203,12 +196,9 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	protected function initializeConfig() {
 		$config = [
-			'preauth' => [
-			],
-			'primaryauth' => [
-			],
-			'secondaryauth' => [
-			],
+			'preauth' => [],
+			'primaryauth' => [],
+			'secondaryauth' => [],
 		];
 
 		foreach ( [ 'preauth', 'primaryauth', 'secondaryauth' ] as $type ) {
@@ -234,7 +224,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	 * Initialize $this->manager
 	 * @param bool $regen Force a call to $this->initializeConfig()
 	 */
-	protected function initializeManager( $regen = false ) {
+	protected function initializeManager( bool $regen = false ) {
 		if ( $regen || !isset( $this->config ) ) {
 			$this->config = new HashConfig();
 		}
@@ -317,9 +307,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	 * Setup SessionManager with a mock session provider
 	 * @param bool|null $canChangeUser If non-null, canChangeUser will be mocked to return this
 	 * @param array $methods Additional methods to mock
-	 * @return \MediaWiki\Session\SessionProvider
 	 */
-	protected function getMockSessionProvider( $canChangeUser = null, array $methods = [] ) {
+	protected function getMockSessionProvider( ?bool $canChangeUser = null, array $methods = [] ): SessionProvider {
 		if ( !isset( $this->config ) ) {
 			$this->config = new HashConfig();
 			$this->initializeConfig();
@@ -414,9 +403,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideSecuritySensitiveOperationStatus
-	 * @param bool $mutableSession
 	 */
-	public function testSecuritySensitiveOperationStatus( $mutableSession ) {
+	public function testSecuritySensitiveOperationStatus( bool $mutableSession ) {
 		$this->logger = new NullLogger();
 		$user = $this->getTestSysop()->getUser();
 		$provideUser = null;
@@ -475,69 +463,91 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 			// Mismatched user ID
 			$session->set( 'AuthManager:lastAuthId', $user->getId() + 1 );
-			$session->set( 'AuthManager:lastAuthTimestamps',
-				[ 'foo' => time() - 5, 'test' => time() - 5, 'test2' => time() - 5 ] );
-			$this->assertSame(
-				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'foo' )
+			$session->set(
+				'AuthManager:lastAuthTimestamps',
+				[ 'foo' => time() - 5, 'test' => time() - 5, 'test2' => time() - 5 ]
 			);
 			$this->assertSame(
-				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'test' )
+				AuthManager::SEC_REAUTH,
+				$this->manager->securitySensitiveOperationStatus( 'foo' )
 			);
 			$this->assertSame(
-				AuthManager::SEC_OK, $this->manager->securitySensitiveOperationStatus( 'test2' )
+				AuthManager::SEC_REAUTH,
+				$this->manager->securitySensitiveOperationStatus( 'test' )
+			);
+			$this->assertSame(
+				AuthManager::SEC_OK,
+				$this->manager->securitySensitiveOperationStatus( 'test2' )
 			);
 
 			// Missing time
 			$session->set( 'AuthManager:lastAuthId', $user->getId() );
 			$session->set( 'AuthManager:lastAuthTimestamps', null );
 			$this->assertSame(
-				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'foo' )
+				AuthManager::SEC_REAUTH,
+				$this->manager->securitySensitiveOperationStatus( 'foo' )
 			);
 			$this->assertSame(
-				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'test' )
+				AuthManager::SEC_REAUTH,
+				$this->manager->securitySensitiveOperationStatus( 'test' )
 			);
 			$this->assertSame(
-				AuthManager::SEC_OK, $this->manager->securitySensitiveOperationStatus( 'test2' )
+				AuthManager::SEC_OK,
+				$this->manager->securitySensitiveOperationStatus( 'test2' )
 			);
 			$session->set( 'AuthManager:lastAuthId', $user->getId() );
 			$session->set( 'AuthManager:lastAuthTimestamps', [] );
 			$this->assertSame(
-				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'foo' )
+				AuthManager::SEC_REAUTH,
+				$this->manager->securitySensitiveOperationStatus( 'foo' )
 			);
 			$this->assertSame(
-				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'test' )
+				AuthManager::SEC_REAUTH,
+				$this->manager->securitySensitiveOperationStatus( 'test' )
 			);
 			$this->assertSame(
-				AuthManager::SEC_OK, $this->manager->securitySensitiveOperationStatus( 'test2' )
+				AuthManager::SEC_OK,
+				$this->manager->securitySensitiveOperationStatus( 'test2' )
 			);
 
 			// Recent enough to pass
 			$session->set( 'AuthManager:lastAuthTimestamps', [ 'foo' => time() - 5 ] );
 			$this->assertSame(
-				AuthManager::SEC_OK, $this->manager->securitySensitiveOperationStatus( 'foo' )
+				AuthManager::SEC_OK,
+				$this->manager->securitySensitiveOperationStatus( 'foo' )
 			);
 
 			// Not recent enough to pass
-			$session->set( 'AuthManager:lastAuthTimestamps',
-				[ 'foo' => time() - 20, 'test' => time() - 20 ] );
+			$session->set(
+				'AuthManager:lastAuthTimestamps',
+				[ 'foo' => time() - 20, 'test' => time() - 20 ]
+			);
 			$this->assertSame(
-				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'foo' )
+				AuthManager::SEC_REAUTH,
+				$this->manager->securitySensitiveOperationStatus( 'foo' )
 			);
 			// But recent enough for the 'test' operation
 			$this->assertSame(
-				AuthManager::SEC_OK, $this->manager->securitySensitiveOperationStatus( 'test' )
+				AuthManager::SEC_OK,
+				$this->manager->securitySensitiveOperationStatus( 'test' )
 			);
 
 			// Sanity checks to make sure we are not reading the wrong field
-			$session->set( 'AuthManager:lastAuthTimestamps',
-				[ 'foo' => time() - 20, 'test' => time() - 20000 ] );
-			$this->assertSame(
-				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'test' )
+			$session->set(
+				'AuthManager:lastAuthTimestamps',
+				[ 'foo' => time() - 20, 'test' => time() - 20000 ]
 			);
-			$session->set( 'AuthManager:lastAuthTimestamps',
-				[ 'foo' => time() - 20 ] );
 			$this->assertSame(
-				AuthManager::SEC_REAUTH, $this->manager->securitySensitiveOperationStatus( 'test' )
+				AuthManager::SEC_REAUTH,
+				$this->manager->securitySensitiveOperationStatus( 'test' )
+			);
+			$session->set(
+				'AuthManager:lastAuthTimestamps',
+				[ 'foo' => time() - 20 ]
+			);
+			$this->assertSame(
+				AuthManager::SEC_REAUTH,
+				$this->manager->securitySensitiveOperationStatus( 'test' )
 			);
 		} else {
 			$this->config->set( MainConfigNames::AllowSecuritySensitiveOperationIfCannotReauthenticate, [
@@ -546,11 +556,13 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			] );
 
 			$this->assertEquals(
-				AuthManager::SEC_OK, $this->manager->securitySensitiveOperationStatus( 'foo' )
+				AuthManager::SEC_OK,
+				$this->manager->securitySensitiveOperationStatus( 'foo' )
 			);
 
 			$this->assertEquals(
-				AuthManager::SEC_FAIL, $this->manager->securitySensitiveOperationStatus( 'test' )
+				AuthManager::SEC_FAIL,
+				$this->manager->securitySensitiveOperationStatus( 'test' )
 			);
 		}
 
@@ -563,10 +575,14 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			$withArguments = [];
 			foreach ( [ 500, 10, PHP_INT_MAX ] as $invocationCount => $expectedTimeSinceAuth ) {
 				$withArguments[$invocationCount] = [
-					/* $status */ $this->anything(),
-					/* $operation */ $this->anything(),
-					/* $session */ $this->callback( static fn ( $s ) => $s->getId() === $session->getId() ),
-					/* $timeSinceAuth*/ $mutableSession
+					// $status
+					$this->anything(),
+					// $operation
+					$this->anything(),
+					// $session
+					$this->callback( static fn ( $s ) => $s->getId() === $session->getId() ),
+					// $timeSinceAuth
+					$mutableSession
 						? $this->equalToWithDelta( $expectedTimeSinceAuth, 2 )
 						: -1
 				];
@@ -580,16 +596,22 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 					$v = $hook;
 					return true;
 				} );
-			$session->set( 'AuthManager:lastAuthTimestamps',
-				[ 'test' => time() - 500, 'test2' => time() - 10 ] );
-			$this->assertEquals(
-				$expect, $this->manager->securitySensitiveOperationStatus( 'test' ), "hook $hook"
+			$session->set(
+				'AuthManager:lastAuthTimestamps',
+				[ 'test' => time() - 500, 'test2' => time() - 10 ]
 			);
 			$this->assertEquals(
-				$expect, $this->manager->securitySensitiveOperationStatus( 'test2' ), "hook $hook"
+				$expect,
+				$this->manager->securitySensitiveOperationStatus( 'test' ),
+				"hook $hook"
 			);
 			$this->assertEquals(
-				$expect, $this->manager->securitySensitiveOperationStatus( 'test3' ), "hook $hook"
+				$expect, $this->manager->securitySensitiveOperationStatus( 'test2' ),
+				"hook $hook"
+			);
+			$this->assertEquals(
+				$expect, $this->manager->securitySensitiveOperationStatus( 'test3' ),
+				"hook $hook"
 			);
 			$this->unhook( 'SecuritySensitiveOperationStatus' );
 		}
@@ -604,11 +626,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideUserCanAuthenticate
-	 * @param bool $primary1Can
-	 * @param bool $primary2Can
-	 * @param bool $expect
 	 */
-	public function testUserCanAuthenticate( $primary1Can, $primary2Can, $expect ) {
+	public function testUserCanAuthenticate( bool $primary1Can, bool $primary2Can, bool $expect ) {
 		$userName = 'TestUserCanAuthenticate';
 		$mock1 = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
 		$mock1->method( 'getUniqueId' )
@@ -1880,11 +1899,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideUserExists
-	 * @param bool $primary1Exists
-	 * @param bool $primary2Exists
-	 * @param bool $expect
 	 */
-	public function testUserExists( $primary1Exists, $primary2Exists, $expect ) {
+	public function testUserExists( bool $primary1Exists, bool $primary2Exists, bool $expect ) {
 		$userName = 'TestUserExists';
 		$mock1 = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
 		$mock1->method( 'getUniqueId' )
@@ -1915,14 +1931,13 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAllowsAuthenticationDataChange
-	 * @param AuthenticationRequest $req
-	 * @param StatusValue $primaryReturn
-	 * @param StatusValue $secondaryReturn
-	 * @param Status $expect
-	 * @param array $expectedLogs
 	 */
 	public function testAllowsAuthenticationDataChange(
-		$req, $primaryReturn, $secondaryReturn, $expect, $expectedLogs = []
+		AuthenticationRequest $req,
+		StatusValue $primaryReturn,
+		StatusValue $secondaryReturn,
+		Status $expect,
+		array $expectedLogs = []
 	) {
 		$mock1 = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
 		$mock1->method( 'getUniqueId' )->willReturn( '1' );
@@ -2046,7 +2061,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		try {
 			$this->manager->changeAuthenticationData( $invalidReq );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( \LogicException $e ) {
+		} catch ( LogicException $e ) {
 			$this->assertEquals( "Invalid auth data submitted for change for 'Foo': invalid",
 				$e->getMessage() );
 		}
@@ -2286,11 +2301,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusError( 'blockedtext-partial', $status );
 	}
 
-	/**
-	 * @param string $uniq
-	 * @return string
-	 */
-	private static function usernameForCreation( $uniq = '' ) {
+	private static function usernameForCreation( string $uniq = '' ): string {
 		$i = 0;
 		do {
 			$username = "UTAuthManagerTestAccountCreation" . $uniq . ++$i;
@@ -3138,10 +3149,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAccountCreationLogging
-	 * @param bool $isAnon
-	 * @param string|null $logSubtype
 	 */
-	public function testAccountCreationLogging( $isAnon, $logSubtype ) {
+	public function testAccountCreationLogging( bool $isAnon, ?string $logSubtype ) {
 		$creator = $isAnon ? new User : $this->getTestSysop()->getUser();
 		$username = self::usernameForCreation();
 
@@ -3907,7 +3916,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		array $blockOptions,
 		string $performerType,
 		bool $expectedStatus
-
 	) {
 		if ( $blockType === 'ip' ) {
 			$blockOptions['address'] = '127.0.0.0/24';
@@ -3986,11 +3994,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetAuthenticationRequests
-	 * @param string $action
-	 * @param array $expect
-	 * @param array $state
 	 */
-	public function testGetAuthenticationRequests( $action, $expect, $state = [] ) {
+	public function testGetAuthenticationRequests( string $action, array $expect, array $state = [] ) {
 		$makeReq = function ( $key ) use ( $action ) {
 			$req = $this->createMock( AuthenticationRequest::class );
 			$req->method( 'getUniqueId' )
@@ -5091,7 +5096,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Matcher for user objects
-	 * @param User $user
 	 */
 	private function userEqualTo( User $user ): Constraint {
 		return $this->callback( static fn ( User $otherUser ) =>
