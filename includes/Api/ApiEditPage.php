@@ -515,18 +515,15 @@ class ApiEditPage extends ApiBase {
 		$oldRevId = $articleObject->getRevIdFetched();
 		$result = null;
 
-		// Fake $wgRequest and RequestContext::getMain()->getRequest() for some hooks inside EditPage
+		// Fake $wgRequest for some hooks inside EditPage
 		// @todo FIXME: This interface SUCKS
 		// phpcs:disable MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
 		$oldRequest = $wgRequest;
-		$oldMainRequest = RequestContext::getMain()->getRequest();
 		$wgRequest = $req;
-		RequestContext::getMain()->setRequest( $req );
 
 		$status = $ep->attemptSave( $result );
 		$statusValue = is_int( $status->value ) ? $status->value : 0;
 		$wgRequest = $oldRequest;
-		RequestContext::getMain()->setRequest( $oldMainRequest );
 		// phpcs:enable
 
 		$r = [];
