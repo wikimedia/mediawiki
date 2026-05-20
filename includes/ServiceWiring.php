@@ -1107,11 +1107,6 @@ return [
 		);
 	},
 
-	'HtmlCacheUpdater' => static function ( MediaWikiServices $services ): HTMLCacheUpdater {
-		wfDeprecatedMsg( 'The "HtmlCacheUpdater" service alias was deprecated in 1.46', '1.46' );
-		return $services->getHTMLCacheUpdater();
-	},
-
 	'HTMLCacheUpdater' => static function ( MediaWikiServices $services ): HTMLCacheUpdater {
 		$config = $services->getMainConfig();
 

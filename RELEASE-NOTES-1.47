@@ -214,6 +214,8 @@ because of Phabricator reports.
   removed. There is no replacement.
 * The ability to construct a HTMLFormField without a parent, deprecated in 1.40,
   has been removed.
+* The HtmlCacheUpdater service, a deprecated alias of the HTMLCacheUpdater
+  service since 1.46, has been removed. Use the new service name instead.
 * The EditFilter hook, deprecated in 1.46, has been removed. Use
   EditFilterMergedContent or MultiContentSave instead.
 * The protected static method UserMailer::sendWithPear() has been removed
