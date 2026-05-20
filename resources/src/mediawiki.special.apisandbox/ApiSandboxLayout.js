@@ -483,7 +483,7 @@ ApiSandboxLayout.prototype.loadParamInfo = function () {
 						.text( mw.msg( 'api-help-param-deprecated' ) );
 				if ( pi.deprecationhelp ) {
 					$deprecationMessage = $deprecationMessage
-						.append( mw.msg( 'word-separator' ) )
+						.append( mw.message( 'word-separator' ).escaped() )
 						.append( Util.parseHTML( pi.deprecationhelp ) );
 				}
 				$desc = $deprecationMessage
