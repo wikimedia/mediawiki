@@ -389,6 +389,9 @@ class UserGroupManager {
 	/**
 	 * Get the groups for the given user based on $wgAutopromote.
 	 *
+	 * Supports only local-wiki checks. Trying to get autopromote groups for users from other wikis results in
+	 * an empty array.
+	 *
 	 * @param UserIdentity $user The user to get the groups for
 	 * @return string[] Array of groups to promote to.
 	 *
@@ -396,6 +399,12 @@ class UserGroupManager {
 	 */
 	public function getUserAutopromoteGroups( UserIdentity $user ): array {
 		$user->assertWiki( $this->wikiId );
+		if ( $this->wikiId !== UserIdentity::LOCAL && !WikiMap::isCurrentWikiId( $this->wikiId ) ) {
+			// The code below doesn't support checking for interwiki users, primarily due to use of User class
+			// Config of autopromote groups can also differ from wiki to wiki, which can likely lead to wrong results.
+			return [];
+		}
+
 		$promote = [];
 		// TODO: remove the need for the full user object
 		$userObj = User::newFromIdentity( $user );
