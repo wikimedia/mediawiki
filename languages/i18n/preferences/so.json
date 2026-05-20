@@ -5,7 +5,8 @@
 			"Abshirdheere",
 			"Maax",
 			"Mimursal",
-			"Yariiska"
+			"Yariiska",
+			"AhmedG612"
 		]
 	},
 	"preferences": "Dooqyada",
@@ -40,6 +41,7 @@
 	"tog-fancysig": "u isticmaal saxiixa sida qoraalada wiki  (ayada oo leheen linki otomaatik)",
 	"prefs-help-signature": "Waan in la saxiixaa wadahdalada ku dhaca bogga wadhadalka adigoo adeegsaanaya \"<nowiki>~~~~</nowiki>\", kaasoo u rogi doona saxiixa iyo waqtiga.",
 	"badsiglength": "Naaneysta aad bey u dheertahay.\nWaa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.",
+	"badsightml": "Saxiixaaga wuxuu ka kooban yahay HTML aan sax ahayn ama duugoobay:",
 	"prefs-email": "E-mail aad dooran kartaa",
 	"youremail": "E-mail:",
 	"prefs-changeemail": "Bedelid ama ka saarista ciwaanka E-mailka",
@@ -78,6 +80,7 @@
 	"underline-never": "Marnaba",
 	"underline-always": "Marwalba",
 	"tog-showhiddencats": "Itusi ereykoobyada qarsoon",
+	"tog-showrollbackconfirmation": "Muuji fariin xaqiijin ah marka la gujiyo isku xirka dib u celinta",
 	"prefs-editing": "Wax ka bedelka",
 	"prefs-advancedediting": "Xulasho guud",
 	"tog-editsectiononrightclick": "Fasax cutub wax ka bedelida hadii batoonka midig ee dooliga <br /> dhag lagu siiyo cinwaanka korkiisa (JavaScript)",

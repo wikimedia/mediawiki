@@ -33,7 +33,7 @@
 	"paramvalidator-badtimestamp": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
 	"paramvalidator-badupload-cantwrite": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Empty (unused).",
 	"paramvalidator-badupload-formsize": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Empty (unused).",
-	"paramvalidator-badupload-inisize": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Empty (unused).\n* $3 - Maximum allowed size, formated with appropriate units.",
+	"paramvalidator-badupload-inisize": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Empty (unused).\n* $3 - Maximum allowed size, formatted with appropriate units.",
 	"paramvalidator-badupload-nofile": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Empty (unused).",
 	"paramvalidator-badupload-notmpdir": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Empty (unused).",
 	"paramvalidator-badupload-notupload": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Empty (unused).",

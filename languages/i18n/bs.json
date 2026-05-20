@@ -339,7 +339,7 @@
 	"password-change-forbidden": "Ne možete da promjenite lozinku na ovom wikiju.",
 	"externaldberror": "Došlo je do greške pri vanjskoj autorizaciji baze podataka ili vam nije dopušteno osvježavanje Vašeg vanjskog korisničkog računa.",
 	"login": "Prijava",
-	"login-security": "Potvrdite svoj identitet",
+	"login-security": "Potvrdite identitet",
 	"nav-login-createaccount": "Prijavi se / Registruj se",
 	"logout": "Odjava",
 	"userlogout": "Odjava",
