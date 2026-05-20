@@ -332,20 +332,22 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			],
 		] );
 		$user = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$userIdentity = UserIdentityValue::newRegistered( $user->getId(), $user->getName() );
 
 		$userFactoryMock = $this->createMock( UserFactory::class );
-		$userFactoryMock->method( 'newFromUserIdentity' )
-			->willReturnCallback( function ( UserIdentity $userIdentity ) {
+		$userFactoryMock->method( 'newFromName' )
+			->willReturnCallback( function ( string $name ) use ( $user ) {
 				$userMock = $this->createMock( User::class );
 				$userMock->method( 'isSystemUser' )->willReturn( true );
 				$userMock->method( 'isRegistered' )->willReturn( true );
-				$userMock->method( 'getId' )->willReturn( $userIdentity->getId() );
+				$userMock->method( 'getId' )->willReturn( $user->getId() );
+				$userMock->method( 'getName' )->willReturn( $user->getName() );
 				return $userMock;
 			} );
 		$this->setService( 'UserFactory', $userFactoryMock );
 
 		$manager = $this->getManager();
-		$this->assertCount( 0, $manager->getUserDisabledGroups( $user ) );
+		$this->assertCount( 0, $manager->getUserDisabledGroups( $userIdentity ) );
 	}
 
 	public function testAddUserToGroup() {
