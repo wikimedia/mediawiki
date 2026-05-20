@@ -61,6 +61,7 @@
 	"years": "{{PLURAL:$1|$1 sano|$1 sano}}",
 	"months": "{{PLURAL:$1|$1 bil|$1 bilood}}",
 	"days": "{{PLURAL:$1|$1 maalin|$1 maalmood}}",
+	"hours": "{{PLURAL:$1|$1 saac|$1 saacadood}}",
 	"minutes": "{{PLURAL:$1|$1 daqiiqo|$1 daqiiqado}}",
 	"seconds": "{{PLURAL:$1|$1 ilbiriqsi|$1 ilbiriqsiyo}}",
 	"ago": "$1 kahor",

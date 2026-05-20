@@ -8,6 +8,7 @@
 			"Mimursal"
 		]
 	},
+	"userrights-lookup-user": "Dooro isticmaale",
 	"saveusergroups": "Kaydi kooxaha isticmaalayaasha",
 	"userrights-groupsmember": "Ka mid ah:",
 	"userrights-systemuser": "{{GENDER:$1|Isticmaalahani}} waa isticmaale ka tirsan nidaamka",
@@ -15,6 +16,8 @@
 	"userrights-no-interwiki": "Ma lihid oggolaansho aad ku beddesho xuquuqaha isticmaalayaasha ee wiki-yada kale.",
 	"userrights-nodatabase": "Xog ururinta $1 ma jirto ama ma aha mid deegaanka ku jirta.",
 	"userrights-restricted-group-warning": "Kooxdan waxaa saaran xaddidaadyo",
+	"userrights-changeable-col": "Kooxaha aad bedeli karto",
+	"userrights-unchangeable-col": "Kooxaha aadan bedeli karin",
 	"userrights-expiry-existing": "Ilaa $3, $2",
 	"userrights-expiry-othertime": "Waqti kale oo uu dhacayo",
 	"group": "Koox:",

@@ -48,6 +48,8 @@
 	"prefs-help-email": "E-mail waa wax aad xor u leedahay. laakiin waa loo baahanyahay hadii aad eraysirka badaleesid, markii aad ilaawdo eraygaaga sirta",
 	"prefs-help-email-required": "Waxaa loo baahanyahay e-mail.",
 	"prefs-help-email-others": "Waxaa kale oo aad u isticmaali kartaa in ee dadka kale kugula soo xiriiraan e-mail ayaga oo isticmaalaayo linki isticmaalahaada ama bogga wadahadalka.\nE-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.",
+	"tog-requireemail": "Dir emayllada dib u dejinta sirta kaliya marka labadaba cinwaanka emaylka iyo magaca isticmaalaha la bixiyo",
+	"prefs-help-requireemail": "Tani waxay hagaajisaa asturnaanta waxayna ka caawisaa ka hortagga emayllo aan la codsan.",
 	"emailnotauthenticated": "Ciwaankaada e-mailka weli lama xaqiijinin.\nWax e-mail ah oo ku saabsan arrimaha soo socdo looma soo diridoono.",
 	"emailconfirmlink": "Soo xaqiiji ciwaankaada e-mailka",
 	"prefs-emailconfirm-label": "Hubinta Email-ka:",
