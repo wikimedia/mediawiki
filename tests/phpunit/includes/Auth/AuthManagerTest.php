@@ -1082,34 +1082,34 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			} );
 
 		$ct = count( $primaryResponses );
-		$callback = $this->returnCallback( function ( $reqs ) use ( $req, &$primaryResponses ) {
+		$callback = function ( $reqs ) use ( $req, &$primaryResponses ) {
 			$this->assertContains( $req, $reqs );
 			return array_shift( $primaryResponses );
-		} );
+		};
 		$mocks['primary']->expects( $this->exactly( min( 1, $ct ) ) )
 			->method( 'beginPrimaryAuthentication' )
-			->will( $callback );
+			->willReturnCallback( $callback );
 		$mocks['primary']->expects( $this->exactly( max( 0, $ct - 1 ) ) )
 			->method( 'continuePrimaryAuthentication' )
-			->will( $callback );
+			->willReturnCallback( $callback );
 		if ( $link ) {
 			$mocks['primary']->method( 'accountCreationType' )
 				->willReturn( PrimaryAuthenticationProvider::TYPE_LINK );
 		}
 
 		$ct = count( $secondaryResponses );
-		$callback = $this->returnCallback( function ( $user, $reqs ) use ( $id, $name, $req, &$secondaryResponses ) {
+		$callback = function ( $user, $reqs ) use ( $id, $name, $req, &$secondaryResponses ) {
 			$this->assertSame( $id, $user->getId() );
 			$this->assertSame( $name, $user->getName() );
 			$this->assertContains( $req, $reqs );
 			return array_shift( $secondaryResponses );
-		} );
+		};
 		$mocks['secondary']->expects( $this->exactly( min( 1, $ct ) ) )
 			->method( 'beginSecondaryAuthentication' )
-			->will( $callback );
+			->willReturnCallback( $callback );
 		$mocks['secondary']->expects( $this->exactly( max( 0, $ct - 1 ) ) )
 			->method( 'continueSecondaryAuthentication' )
-			->will( $callback );
+			->willReturnCallback( $callback );
 
 		$abstain = AuthenticationResponse::newAbstain();
 		$mocks['pre2']->expects( $this->atMost( 1 ) )->method( 'testForAuthentication' )
@@ -2760,7 +2760,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$mocks['primary']->method( 'testUserExists' )
 			->willReturn( false );
 		$ct = count( $primaryResponses );
-		$callback = $this->returnCallback( function ( $user, $creatorArg, $reqs ) use ( $creator, $username, $req, &$primaryResponses ) {
+		$callback = function ( $user, $creatorArg, $reqs ) use ( $creator, $username, $req, &$primaryResponses ) {
 			$this->assertSame( $username, $user->getName() );
 			$this->assertSame( $creator->getName(), $creatorArg->getName() );
 			$foundReq = false;
@@ -2770,16 +2770,16 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			}
 			$this->assertTrue( $foundReq, '$reqs contains $req' );
 			return array_shift( $primaryResponses );
-		} );
+		};
 		$mocks['primary']->expects( $this->exactly( min( 1, $ct ) ) )
 			->method( 'beginPrimaryAccountCreation' )
-			->will( $callback );
+			->willReturnCallback( $callback );
 		$mocks['primary']->expects( $this->exactly( max( 0, $ct - 1 ) ) )
 			->method( 'continuePrimaryAccountCreation' )
-			->will( $callback );
+			->willReturnCallback( $callback );
 
 		$ct = count( $secondaryResponses );
-		$callback = $this->returnCallback( function ( $user, $creatorArg, $reqs ) use ( $creator, $username, $req, &$secondaryResponses ) {
+		$callback = function ( $user, $creatorArg, $reqs ) use ( $creator, $username, $req, &$secondaryResponses ) {
 			$this->assertSame( $username, $user->getName() );
 			$this->assertSame( $creator->getName(), $creatorArg->getName() );
 			$foundReq = false;
@@ -2789,13 +2789,13 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			}
 			$this->assertTrue( $foundReq, '$reqs contains $req' );
 			return array_shift( $secondaryResponses );
-		} );
+		};
 		$mocks['secondary']->expects( $this->exactly( min( 1, $ct ) ) )
 			->method( 'beginSecondaryAccountCreation' )
-			->will( $callback );
+			->willReturnCallback( $callback );
 		$mocks['secondary']->expects( $this->exactly( max( 0, $ct - 1 ) ) )
 			->method( 'continueSecondaryAccountCreation' )
-			->will( $callback );
+			->willReturnCallback( $callback );
 
 		$abstain = AuthenticationResponse::newAbstain();
 		$mocks['primary2']->method( 'accountCreationType' )
@@ -4647,7 +4647,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$mocks['primary']->method( 'accountCreationType' )
 			->willReturn( PrimaryAuthenticationProvider::TYPE_LINK );
 		$ct = count( $primaryResponses );
-		$callback = $this->returnCallback( function ( $u, $reqs ) use ( $user, $req, &$primaryResponses ) {
+		$callback = function ( $u, $reqs ) use ( $user, $req, &$primaryResponses ) {
 			$this->assertSame( $user->getId(), $u->getId() );
 			$this->assertSame( $user->getName(), $u->getName() );
 			$foundReq = false;
@@ -4657,13 +4657,13 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			}
 			$this->assertTrue( $foundReq, '$reqs contains $req' );
 			return array_shift( $primaryResponses );
-		} );
+		};
 		$mocks['primary']->expects( $this->exactly( min( 1, $ct ) ) )
 			->method( 'beginPrimaryAccountLink' )
-			->will( $callback );
+			->willReturnCallback( $callback );
 		$mocks['primary']->expects( $this->exactly( max( 0, $ct - 1 ) ) )
 			->method( 'continuePrimaryAccountLink' )
-			->will( $callback );
+			->willReturnCallback( $callback );
 
 		$abstain = AuthenticationResponse::newAbstain();
 		$mocks['primary2']->method( 'accountCreationType' )

@@ -108,21 +108,21 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 			->getMockForAbstractClass();
 
 		$idLookup->method( 'centralIdsFromNames' )
-			->will( self::returnCallback( static function ( $names ) use ( $userMapping ) {
+			->willReturnCallback( static function ( $names ) use ( $userMapping ) {
 				$ids = [];
 				foreach ( $names as $name ) {
 					$ids[] = $userMapping[$name] ?? null;
 				}
 				return array_filter( $ids, 'is_numeric' );
-			} ) );
+			} );
 		$idLookup->method( 'namesFromCentralIds' )
-			->will( self::returnCallback( static function ( $ids ) use ( $flipped ) {
+			->willReturnCallback( static function ( $ids ) use ( $flipped ) {
 				$names = [];
 				foreach ( $ids as $id ) {
 					$names[] = $flipped[$id] ?? null;
 				}
 				return array_filter( $names, 'is_string' );
-			} ) );
+			} );
 
 		return new MultiUsernameFilter( $idLookup );
 	}

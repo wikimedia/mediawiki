@@ -79,7 +79,7 @@ class UserIdentityUtilsTest extends MediaWikiUnitTestCase {
 		$tempUserConfig = $this->createMock( TempUserConfig::class );
 		$tempUserConfig
 			->method( 'isTempName' )
-			->willReturn( $this->onConsecutiveCalls( true, false ) );
+			->willReturnOnConsecutiveCalls( true, false );
 
 		$userIdentityUtils = new UserIdentityUtils( $tempUserConfig );
 		$anon = new UserIdentityValue(

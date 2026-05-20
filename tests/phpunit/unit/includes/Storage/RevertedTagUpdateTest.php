@@ -14,7 +14,6 @@ use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\RevertedTagUpdate;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
-use PHPUnit\Framework\MockObject\Stub\ReturnCallback;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use TestLogger;
@@ -586,9 +585,8 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 		$reallyRevertedRevs = [ 123, 124, 126 ];
 		$changeTagsStoreRetCallbacks = [];
 		for ( $i = 0; $i <= 2; $i++ ) {
-			$changeTagsStoreRetCallbacks[] = new ReturnCallback(
-				$this->getChangeTagsReturnCallback( $reallyRevertedRevs[$i], 130, $editResult )
-			);
+			$changeTagsStoreRetCallbacks[] =
+				$this->getChangeTagsReturnCallback( $reallyRevertedRevs[$i], 130, $editResult );
 		}
 		$changeTagsStore
 			->method( 'addTags' )

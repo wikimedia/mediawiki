@@ -212,7 +212,7 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 			return new SelectQueryBuilder( $db );
 		} );
 		$db->method( 'select' )
-			->will( $this->consecutivelyReturnFromSelect( $retvals ) );
+			->willReturnOnConsecutiveCalls( ...$this->consecutivelyReturnFromSelect( $retvals ) );
 		$db->method( 'addQuotes' )
 			->willReturnCallback( static function ( $value ) {
 				return "'$value'"; // not real quoting: doesn't matter in test
@@ -225,10 +225,10 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 		$retvals = [];
 		foreach ( $results as $rows ) {
 			// The Database::select method returns result wrapper, so we do too.
-			$retvals[] = $this->returnValue( new FakeResultWrapper( $rows ) );
+			$retvals[] = new FakeResultWrapper( $rows );
 		}
 
-		return $this->onConsecutiveCalls( ...$retvals );
+		return $retvals;
 	}
 
 	protected function genSelectResult( $batchSize, $numRows, $rowGenerator ) {
