@@ -289,7 +289,9 @@ class UserGroupManager {
 			) );
 			// TODO: Deprecate passing out user object in the hook by introducing
 			// an alternative hook
-			if ( $this->hookContainer->isRegistered( 'UserEffectiveGroups' ) ) {
+			// We can convert UserIdentity to User only for local users. User class doesn't support interwiki users
+			$isLocal = $user->getWikiId() === UserIdentity::LOCAL || WikiMap::isCurrentWikiId( $user->getWikiId() );
+			if ( $isLocal && $this->hookContainer->isRegistered( 'UserEffectiveGroups' ) ) {
 				$userObj = User::newFromIdentity( $user );
 				$userObj->load();
 				// Hook for additional groups
@@ -317,7 +319,10 @@ class UserGroupManager {
 		// Check if the user is system user. Given that such accounts cannot be logged in to and are controlled by
 		// software, we can keep all their user groups enabled. These accounts may also ignore permission checks,
 		// so in some cases the group membership is only declarative.
-		if ( $this->userFactory->newFromUserIdentity( $user )->isSystemUser() ) {
+		// Always check the local user with the same name for being a system user; it'll usually hold.
+		// Even if we're mistaken, we'll narrow the set of enabled groups, which is safe
+		$userObj = $user instanceof User ? $user : $this->userFactory->newFromName( $user->getName() );
+		if ( $userObj?->isSystemUser() ) {
 			return [];
 		}
 
@@ -399,7 +404,8 @@ class UserGroupManager {
 	 */
 	public function getUserAutopromoteGroups( UserIdentity $user ): array {
 		$user->assertWiki( $this->wikiId );
-		if ( $this->wikiId !== UserIdentity::LOCAL && !WikiMap::isCurrentWikiId( $this->wikiId ) ) {
+		$isLocal = $user->getWikiId() === UserIdentity::LOCAL || WikiMap::isCurrentWikiId( $user->getWikiId() );
+		if ( !$isLocal ) {
 			// The code below doesn't support checking for interwiki users, primarily due to use of User class
 			// Config of autopromote groups can also differ from wiki to wiki, which can likely lead to wrong results.
 			return [];
@@ -742,7 +748,8 @@ class UserGroupManager {
 
 		// TODO: Deprecate passing out user object in the hook by introducing
 		// an alternative hook
-		if ( $this->hookContainer->isRegistered( 'UserAddGroup' ) ) {
+		$isLocal = $user->getWikiId() === UserIdentity::LOCAL || WikiMap::isCurrentWikiId( $user->getWikiId() );
+		if ( $isLocal && $this->hookContainer->isRegistered( 'UserAddGroup' ) ) {
 			$userObj = User::newFromIdentity( $user );
 			$userObj->load();
 			if ( !$this->hookRunner->onUserAddGroup( $userObj, $group, $expiry ) ) {
@@ -860,7 +867,8 @@ class UserGroupManager {
 		$user->assertWiki( $this->wikiId );
 		// TODO: Deprecate passing out user object in the hook by introducing
 		// an alternative hook
-		if ( $this->hookContainer->isRegistered( 'UserRemoveGroup' ) ) {
+		$isLocal = $user->getWikiId() === UserIdentity::LOCAL || WikiMap::isCurrentWikiId( $user->getWikiId() );
+		if ( $isLocal && $this->hookContainer->isRegistered( 'UserRemoveGroup' ) ) {
 			$userObj = User::newFromIdentity( $user );
 			$userObj->load();
 			if ( !$this->hookRunner->onUserRemoveGroup( $userObj, $group ) ) {
