@@ -87,8 +87,7 @@ mw.hook( 'htmlform.enhance' ).add( async ( $root ) => {
 					return {
 						valid: false,
 						messages: canCreateErrors.map( ( m ) => m.html ),
-						type: ( canCreateErrors.length && canCreateErrors[ 0 ].code === 'userexists' ) ?
-							'warning' : 'error'
+						type: 'warning'
 					};
 				} else if ( userinfo.name !== username ) {
 					return {
