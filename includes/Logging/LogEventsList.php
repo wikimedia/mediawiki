@@ -567,7 +567,8 @@ class LogEventsList extends ContextSource {
 	/**
 	 * Show log extract. Either with text and a box (set $msgKey) or without (don't set $msgKey)
 	 *
-	 * @param OutputPage|string &$out
+	 * @param OutputPage|string &$out If passed an OutputPage, the log extract is added to its HTML.
+	 *   If passed a string (or anything else), the log extract is assigned to it by reference.
 	 * @param string|array $types Log types to show
 	 * @param string|PageReference|(string|PageReference)[] $pages The page title(s) to show log
 	 *   entries for
@@ -590,10 +591,12 @@ class LogEventsList extends ContextSource {
 	 * - extraUrlParams array|bool Additional url parameters for "full log" link (if it is shown)
 	 * - footerHtmlItems: string[] Extra HTML to add as horizontal list items after the
 	 *   end of the log
+	 * @param ?IContextSource $context Context for message language and permission checks.
+	 *   Do not use it when $out is an OutputPage, since OutputPage provides its own context.
 	 * @return int Number of total log items (not limited by $lim)
 	 */
 	public static function showLogExtract(
-		&$out, $types = [], $pages = '', $user = '', $param = []
+		&$out, $types = [], $pages = '', $user = '', $param = [], ?IContextSource $context = null
 	) {
 		$defaultParameters = [
 			'lim' => 25,
@@ -624,11 +627,14 @@ class LogEventsList extends ContextSource {
 			$msgKey = [ $msgKey ];
 		}
 
-		// ???
 		// @phan-suppress-next-line PhanRedundantCondition
 		if ( $out instanceof OutputPage ) {
+			if ( $context ) {
+				throw new InvalidArgumentException( 'When passing $context, do not pass OutputPage as $out' );
+			}
 			$context = $out->getContext();
-		} else {
+		}
+		if ( !$context ) {
 			$context = RequestContext::getMain();
 		}
 
