@@ -18,7 +18,7 @@
 	"interwiki_prefix": "접두어",
 	"interwiki-prefix-label": "접두어:",
 	"interwiki_prefix_intro": "<code>[<nowiki />[접두어:문서 이름]]</code> 위키 링크에 쓰일 인터위키 접두어",
-	"interwiki_url_intro": "URL 서식. $1 자리에는 <code>[<nowiki />[접두어:<em>문서 이름</em>]]</code>에서의 <em>문서 이름</em>으로 바뀔 것입니다.",
+	"interwiki_url_intro": "URL 서식. 자리 표시자 $1의 자리에는 <code>[<nowiki />[접두어:<em>문서 이름</em>]]</code>에서의 <em>문서 이름</em>으로 바뀔 것입니다.",
 	"interwiki_local": "전달",
 	"interwiki-local-label": "전달",
 	"interwiki_local_0_intro": "이 인터위키 접두어를 사용한 외부 HTTP 요청에 대해 \"{{int:badtitle}}\" 오류 문서가 표시됩니다.",

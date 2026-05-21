@@ -4,7 +4,8 @@
 			"Cenzontle25",
 			"Fredy",
 			"Kuxtal",
-			"ROJOVIVO"
+			"ROJOVIVO",
+			"Cohuoucan"
 		]
 	},
 	"cdx-breadcrumb-navigation-label": "u yalab waaj",
@@ -31,7 +32,7 @@
 	"cdx-table-pagination-status-message-determinate-short": "$1 – $2 ti' $3",
 	"cdx-table-pagination-status-message-indeterminate-long": "U ye'esa'al ba'ax kaxta'abil $1–$2 ti' u ya'abil",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1 – $2 ti' ya'ab",
-	"cdx-table-pagination-status-message-indeterminate-final": "Ku ye'esik u ts'ook u náajalil {{ya'abo'ob:$1|$1 ku ye'esik u ts'ook u náajalilo'ob|$1}}",
+	"cdx-table-pagination-status-message-indeterminate-final": "Ku ye'esik u ts'ook {{PLURAL:$1| $1 resultado| $1 resultados}}",
 	"cdx-table-pagination-status-message-pending": "táan u páa'tik ye'esajil",
 	"cdx-table-no-data-message": "Mina'an u ye'esajil utia'al a ilej"
 }

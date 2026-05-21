@@ -1313,6 +1313,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "లాగినై ఉన్న వాడుకరులు.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "నమోదు కానివారు",
 	"rcfilters-filter-user-experience-level-unregistered-description": "లాగినై లేని వాడుకరులు.",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "లాగిన్ కాని ఎడిటర్లు, తాత్కాలిక ఖాతాలను ఉపయోగిస్తున్న ఎడిటర్లు.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "కొత్తవారు",
 	"rcfilters-filter-user-experience-level-newcomer-description": "10 కంటే తక్కువ దిద్దుబాట్లు లేదా 4 రోజుల కంటే తక్కువ పని చేసిన నమోదైన వాడుకరులు.",
 	"rcfilters-filter-user-experience-level-learner-label": "నేర్చుకుంటున్నవారు",
