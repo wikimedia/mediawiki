@@ -108,6 +108,7 @@
 	"right-createpage": "ページ (議論ページ以外) を作成",
 	"right-createtalk": "議論ページを作成",
 	"right-createaccount": "新しい利用者アカウントを作成",
+	"right-createpreviouslyrenamedaccount": "以前改名されたアカウントが改名前に使っていた名前でアカウントを作成する",
 	"right-autocreateaccount": "外部利用者アカウントで自動的にログイン",
 	"right-minoredit": "細部の編集の印を付ける",
 	"right-move": "ページを移動",

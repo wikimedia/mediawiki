@@ -255,7 +255,7 @@
 	"searchlimit-label": "Aantal weer te geven zoekresultaten op elke pagina:",
 	"searchlimit-help": "Maximale aantal: $1",
 	"search-thumbnail-extra-namespaces-label": "Miniaturen weergeven in Speciaal:Zoeken op desktop",
-	"search-thumbnail-extra-namespaces-message": "Toont miniaturen voor de resultaten uit de {{PLURAL:$2|naamruimte|naamruimten}} $1 op de pagina {{#special:search}}",
+	"search-thumbnail-extra-namespaces-message": "Geeft miniaturen weer voor de resultaten uit de {{PLURAL:$2|naamruimte|naamruimten}} $1 op de pagina {{#special:search}}",
 	"prefs-advancedsearchoptions": "Gevorderde instellingen",
 	"prefs-misc": "Diversen",
 	"prefs-reset-intro": "Gebruik deze functie om uw voorkeuren te herstellen naar de standaardinstellingen.\nDeze handeling kan niet ongedaan gemaakt worden.",

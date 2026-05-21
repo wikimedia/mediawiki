@@ -3439,6 +3439,8 @@
 	"tag-mw-ipblock-appeal-description": "Création de comptes temporaires via [[{{#special:Mytalk}}]] depuis des adresses IP pour lesquelles la création de comptes est bloquée",
 	"tag-mw-edited-other-users-js": "Modification d'un JS utilisateur tiers",
 	"tag-mw-edited-other-users-js-description": "Modifications dans l'espace utilisateur de pages JavaScript appartenant à d'autres utilisateurs",
+	"tag-mw-edited-other-users-css": "Modification d'un CSS utilisateur tiers",
+	"tag-mw-edited-other-users-css-description": "Modifications dans l'espace utilisateur de pages CSS appartenant à d'autres utilisateurs",
 	"tags-title": "Balises",
 	"tags-intro": "Cette page liste les balises que le logiciel peut utiliser pour marquer une modification et la signification de chacune d’elles.",
 	"tags-tag": "Nom de la balise",

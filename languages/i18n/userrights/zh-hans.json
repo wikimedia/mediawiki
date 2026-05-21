@@ -33,6 +33,7 @@
 			"夢蝶葬花",
 			"星海",
 			"沈澄心",
+			"简纸Paper",
 			"铁桶",
 			"阿南之人"
 		]
@@ -103,6 +104,7 @@
 	"right-createpage": "创建（非讨论页）页面",
 	"right-createtalk": "创建讨论页面",
 	"right-createaccount": "新建用户账号",
+	"right-createpreviouslyrenamedaccount": "使用曾被其他账号使用过的用户名创建账号",
 	"right-autocreateaccount": "通过外部用户账号自动登录",
 	"right-minoredit": "标记编辑为小编辑",
 	"right-move": "移动页面",
@@ -226,6 +228,7 @@
 	"action-createpage": "创建该页面",
 	"action-createtalk": "创建该讨论页",
 	"action-createaccount": "创建此用户账号",
+	"action-createpreviouslyrenamedaccount": "使用曾被其他账号使用过的用户名创建账号",
 	"action-autocreateaccount": "自动创建此外部用户账号",
 	"action-history": "查看此页历史",
 	"action-minoredit": "标记该编辑为小编辑",
