@@ -509,11 +509,11 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 			)
 		) )->create() );
 		if ( $shouldMatch ) {
-			$this->assertStringMatchesFormat(
-				'%Aaction=protect%A', $formatter->getActionLinks() );
+			$this->assertMatchesRegularExpression(
+				'/\baction=protect\b/', $formatter->getActionLinks() );
 		} else {
-			$this->assertStringNotMatchesFormat(
-				'%Aaction=protect%A', $formatter->getActionLinks() );
+			$this->assertDoesNotMatchRegularExpression(
+				'/\baction=protect\b/', $formatter->getActionLinks() );
 		}
 	}
 }
