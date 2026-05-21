@@ -384,13 +384,13 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		$version = $moduleSpec->info->version;
 
 		// TODO: Consider allowing other suffixes. If so, the regex would be something like:
-		//  '!^[-_.\w]+/v[0-9]+(?:-beta|alpha|rc)?(?:[0-9+])?$!';
-		$moduleIdRegex = '!^[-_.\w]+/v[0-9]+(?:-beta)?(?:[0-9+])?$!';
+		//  '!^[-_.\w]+/v[0-9]+(?:-beta|-alpha|-rc)?(?:[0-9]+)?$!';
+		$moduleIdRegex = '!^[-_.\w]+/v[0-9]+(?:-beta)?(?:[0-9]+)?$!';
 		$this->assertMatchesRegularExpression( $moduleIdRegex, $moduleId );
 
 		// TODO: Consider allowing other suffixes. If so, the regex would be something like:
-		//  '!^[0-9]+\.[0-9]+\.[0-9]+(?:-beta|alpha|rc)?(?:[0-9+])?$!'
-		$versionRegex = '!^[0-9]+\.[0-9]+\.[0-9]+(?:-beta)?(?:[0-9+])?$!';
+		//  '!^[0-9]+\.[0-9]+\.[0-9]+(?:-beta|-alpha|-rc)?(?:[0-9]+)?$!'
+		$versionRegex = '!^[0-9]+\.[0-9]+\.[0-9]+(?:-beta)?(?:[0-9]+)?$!';
 		$this->assertMatchesRegularExpression( $versionRegex, $version );
 	}
 
