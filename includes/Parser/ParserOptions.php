@@ -9,6 +9,7 @@
 
 namespace MediaWiki\Parser;
 
+use BackedEnum;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Content\Content;
@@ -31,6 +32,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 use ReflectionClass;
+use UnitEnum;
 use Wikimedia\IPUtils;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\ScopedCallback;
@@ -1613,6 +1615,10 @@ class ParserOptions {
 			return '[' . implode( ',', array_map( $this->optionToString( ... ), $value ) ) . ']';
 		} elseif ( $value instanceof \Closure ) {
 			return (string)new \ReflectionFunction( $value );
+		} elseif ( $value instanceof BackedEnum ) {
+			return $value->value;
+		} elseif ( $value instanceof UnitEnum ) {
+			return $value->name;
 		} else {
 			return (string)$value;
 		}
