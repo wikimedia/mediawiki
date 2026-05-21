@@ -7,6 +7,32 @@ const HtmlformChecker = require( './HtmlformChecker.js' );
 const HtmlformCheckerV2 = require( './HtmlformCheckerV2.js' );
 const mountUsernamePolicyPopover = require( './username-policy-popover.js' );
 
+/**
+ * Minerva: wire “Choose carefully” (username policy popover).
+ *
+ * @memberof module:mediawiki.special.createaccount
+ */
+function bootstrapUsernamePolicyPopover() {
+	if ( mw.config.get( 'skin' ) !== 'minerva' ) {
+		return;
+	}
+	const chooseCarefullyLink = document.querySelector(
+		'a.mw-createaccount-username-policy-choose-carefully'
+	);
+	if ( !chooseCarefullyLink ) {
+		return;
+	}
+	chooseCarefullyLink.removeAttribute( 'target' );
+	chooseCarefullyLink.setAttribute( 'href', '#' );
+
+	function onChooseCarefullyClick( ev ) {
+		ev.preventDefault();
+		chooseCarefullyLink.removeEventListener( 'click', onChooseCarefullyClick, true );
+		mountUsernamePolicyPopover( chooseCarefullyLink );
+	}
+	chooseCarefullyLink.addEventListener( 'click', onChooseCarefullyClick, true );
+}
+
 // When sending password by email, hide the password input fields.
 $( () => {
 	// Always required if checked, otherwise it depends, so we use the original
@@ -42,8 +68,8 @@ mw.hook( 'htmlform.enhance' ).add( async ( $root ) => {
 		$passwordInput = $root.find( '#wpPassword2' ),
 		$emailInput = $root.find( '#wpEmail' ),
 		$realNameInput = $root.find( '#wpRealName' ),
-		api = new mw.Api();
-	const isV2 = await isExperimentV2Treatment();
+		api = new mw.Api(),
+		isV2 = mw.config.get( 'GECreateAccountExperimentV2' );
 
 	function checkUsername( username, signal ) {
 		// Leading/trailing/multiple whitespace characters are always stripped in usernames,
@@ -153,56 +179,9 @@ mw.hook( 'htmlform.enhance' ).add( async ( $root ) => {
 
 	if ( isV2 ) {
 		attachCheckers( HtmlformCheckerV2 );
+		bootstrapUsernamePolicyPopover();
 	} else {
 		attachCheckers( HtmlformChecker );
 	}
 
 } );
-
-async function isExperimentV2Treatment() {
-	if ( mw.config.get( 'skin' ) !== 'minerva' ) {
-		// Experiment is just for Minerva, skip enrollment checks
-		return false;
-	}
-
-	try {
-		await mw.loader.using( [ 'ext.testKitchen' ] );
-	} catch ( error ) {
-		mw.log( 'Error loading ext.testKitchen module:', error );
-		return false;
-	}
-
-	const experiment = await mw.testKitchen.getExperiment( 'we-1-8-account-creation-form-v2' );
-	if ( !experiment ) {
-		return false;
-	}
-	return experiment.isAssignedGroup( 'treatment' );
-}
-
-/**
- * Minerva: wire “Choose carefully” (username policy popover).
- *
- * @memberof module:mediawiki.special.createaccount
- */
-function bootstrapUsernamePolicyPopover() {
-	if ( mw.config.get( 'skin' ) !== 'minerva' ) {
-		return;
-	}
-	const chooseCarefullyLink = document.querySelector(
-		'a.mw-createaccount-username-policy-choose-carefully'
-	);
-	if ( !chooseCarefullyLink ) {
-		return;
-	}
-	chooseCarefullyLink.removeAttribute( 'target' );
-	chooseCarefullyLink.setAttribute( 'href', '#' );
-
-	function onChooseCarefullyClick( ev ) {
-		ev.preventDefault();
-		chooseCarefullyLink.removeEventListener( 'click', onChooseCarefullyClick, true );
-		mountUsernamePolicyPopover( chooseCarefullyLink );
-	}
-	chooseCarefullyLink.addEventListener( 'click', onChooseCarefullyClick, true );
-}
-
-$( bootstrapUsernamePolicyPopover );
