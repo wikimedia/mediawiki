@@ -134,7 +134,7 @@
 	"thumbsize-small": "Small",
 	"thumbsize-regular": "Regular",
 	"thumbsize-large": "Large",
-	"thumbsize-help": "Some users may prefer thumbnails which are smaller or larger than normal. Standard size is $1 pixels.",
+	"thumbsize-help": "Some users may prefer thumbnails which are smaller or larger than normal. Regular size is $1 pixels.",
 	"prefs-diffs": "Diffs",
 	"tog-diffonly": "Don't show page content below diffs",
 	"tog-norollbackdiff": "Don't show diff after performing a rollback",
