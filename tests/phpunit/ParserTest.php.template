@@ -1,4 +1,10 @@
 <?php
+/**
+ * @group large
+ * @group Database
+ * @group Parser
+ * @group ParserTests
+ */
 class CLASSNAME extends \PHPUnit\Framework\TestCase {
 	use ParserTestFileTrait;
 

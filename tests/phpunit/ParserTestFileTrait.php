@@ -13,6 +13,8 @@ use Wikimedia\ScopedCallback;
  * test to run as `static::$filename`; see `ParserTest.php.template`.
  */
 trait ParserTestFileTrait {
+	use MediaWikiCoversValidator;
+
 	public static ?TestFileReader $fileInfo = null;
 	public static ?ParserTestRunner $runner = null;
 	private static ?ScopedCallback $teardown = null;
@@ -157,14 +159,16 @@ trait ParserTestFileTrait {
 	 * @covers \MediaWiki\Parser\CoreMagicVariables
 	 * @covers \MediaWiki\Parser\CoreParserFunctions
 	 * @covers \MediaWiki\Parser\CoreTagHooks
-	 * @covers \MediaWiki\Parser\PPFrame
-	 * @covers \MediaWiki\Parser\PPNode
+	 * @covers \MediaWiki\Parser\DateFormatter
+	 * @covers \MediaWiki\Parser\LinkHolderArray
 	 * @covers \MediaWiki\Parser\Parser
+	 * @covers \MediaWiki\Parser\ParserCoreTagHooks
 	 * @covers \MediaWiki\Parser\ParserOptions
 	 * @covers \MediaWiki\Parser\ParserOutput
 	 * @covers \MediaWiki\Parser\ParserOutputFlags
 	 * @covers \MediaWiki\Parser\ParserOutputStringSets
 	 * @covers \MediaWiki\Parser\Preprocessor
+	 * @covers \MediaWiki\Parser\Preprocessor_Hash
 	 * @covers \MediaWiki\Parser\Sanitizer
 	 * @covers \MediaWiki\Parser\StripState
 	 */
