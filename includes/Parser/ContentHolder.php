@@ -10,9 +10,10 @@ namespace MediaWiki\Parser;
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
+use Wikimedia\JsonCodec\CodecService;
 use Wikimedia\JsonCodec\Hint;
 use Wikimedia\JsonCodec\JsonCodecable;
-use Wikimedia\JsonCodec\JsonCodecableTrait;
+use Wikimedia\JsonCodec\JsonCodecableWithServicesTrait;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\BasePageBundle;
 use Wikimedia\Parsoid\Core\DOMCompat;
@@ -41,7 +42,7 @@ use Wikimedia\Parsoid\Utils\DOMDataUtils;
  * in the BODY_FRAGMENT, and that wrapper is stripped in ::getAsHtmlString().
  */
 class ContentHolder implements JsonCodecable {
-	use JsonCodecableTrait;
+	use JsonCodecableWithServicesTrait;
 
 	public const BODY_FRAGMENT = "body";
 
@@ -520,6 +521,8 @@ class ContentHolder implements JsonCodecable {
 			( $this->pageBundle?->hasContent() );
 	}
 
+	// Implement JsonCodecable; make the ParsoidSiteConfig service available.
+
 	public function toJsonArray(): array {
 		$this->convertDomToHtml();
 		$data = [];
@@ -535,11 +538,14 @@ class ContentHolder implements JsonCodecable {
 		return $data;
 	}
 
-	public static function newFromJsonArray( array $json ): ContentHolder {
+	public static function newFromJsonArray(
+		array $json,
+		#[CodecService( 'ParsoidSiteConfig' )] SiteConfig $siteConfig,
+	): ContentHolder {
 		$holder = self::createEmpty();
 		$holder->isParsoidContent = $json['parsoid'] ?? false;
 		if ( $holder->isParsoidContent ) {
-			$holder->siteConfig = MediaWikiServices::getInstance()->getParsoidSiteConfig();
+			$holder->siteConfig = $siteConfig;
 		}
 		$holder->convertDomToHtml(); // ensure in html form
 		$holder->pageBundle = $json['pageBundle'] ?? ( $holder->isParsoidContent ? new BasePageBundle() : null );

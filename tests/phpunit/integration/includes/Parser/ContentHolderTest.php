@@ -2,9 +2,11 @@
 
 namespace MediaWiki\Tests\Parser;
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ContentHolder;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Assert\InvariantException;
+use Wikimedia\JsonCodec\JsonCodecableWithServicesTestTrait;
 use Wikimedia\Parsoid\Core\DOMCompat;
 use Wikimedia\Parsoid\Core\DomPageBundle;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
@@ -18,6 +20,18 @@ use Wikimedia\Parsoid\Utils\ContentUtils;
  * @covers \MediaWiki\Parser\ContentHolder
  */
 class ContentHolderTest extends MediaWikiIntegrationTestCase {
+	use JsonCodecableWithServicesTestTrait;
+
+	/** @inheritDoc */
+	protected static function getCodecableClass(): string {
+		return ContentHolder::class;
+	}
+
+	// Ensure that we can type check services against the JsonCodecable
+	// methods.
+	protected function getServiceContainer(): MediaWikiServices {
+		return parent::getServiceContainer();
+	}
 
 	public static function legacyHtmlProvider() {
 		yield "Basic legacy test case" => [
@@ -167,7 +181,7 @@ EOD;
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 
 		// Round-trip through JSON serialization, as ParserCache does.
-		$restored = ContentHolder::newFromJsonArray( $ch->toJsonArray() );
+		$restored = ContentHolder::newFromJsonArray( $ch->toJsonArray(), $siteConfig );
 
 		self::assertEquals( $parsoidData['bodyFiltered'],
 			$restored->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );

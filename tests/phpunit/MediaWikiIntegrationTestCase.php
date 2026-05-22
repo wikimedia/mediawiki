@@ -828,10 +828,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Gets the service container to be used with integration tests.
 	 *
-	 * @return MediaWikiServices
 	 * @since 1.36
 	 */
-	protected function getServiceContainer() {
+	protected function getServiceContainer(): MediaWikiServices {
 		if ( !$this->localServices ) {
 			throw new LogicException( __METHOD__ . ' must be called after MediaWikiIntegrationTestCase::run()' );
 		}
