@@ -155,7 +155,6 @@ trait ParserTestFileTrait {
 	 * @covers \MediaWiki\Parser\BlockLevelPass
 	 * @covers \MediaWiki\Parser\CacheTime
 	 * @covers \MediaWiki\Parser\CoreMagicVariables
-	 * @covers \MediaWiki\Parser\CoreMagicWords
 	 * @covers \MediaWiki\Parser\CoreParserFunctions
 	 * @covers \MediaWiki\Parser\CoreTagHooks
 	 * @covers \MediaWiki\Parser\PPFrame
