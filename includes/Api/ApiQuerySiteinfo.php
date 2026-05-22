@@ -248,7 +248,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data['galleryoptions'] = $config->get( MainConfigNames::GalleryOptions );
 
-		$data['thumblimits'] = $config->get( MainConfigNames::ThumbLimits );
+		$data['thumblimits'] = array_values(
+			$config->get( MainConfigNames::ThumbLimits )
+		);
 		ApiResult::setArrayType( $data['thumblimits'], 'BCassoc' );
 		ApiResult::setIndexedTagName( $data['thumblimits'], 'limit' );
 		$data['imagelimits'] = [];
