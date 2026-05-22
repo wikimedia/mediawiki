@@ -241,7 +241,7 @@
 	 */
 	mw.widgets.MediaResourceProvider.prototype.getStandardWidth = function () {
 		return ( this.thumbSizes && this.thumbSizes[ this.thumbSizes.length - 1 ] ) ||
-			( this.imageSizes && this.imageSizes[ 0 ] ) ||
+			( this.imageSizes && this.imageSizes[ 0 ] && this.imageSizes[ 0 ].width ) ||
 			// Fall back on a number
 			300;
 	};
