@@ -3409,7 +3409,7 @@ class OutputPage extends ContextSource {
 		// 2. the only error is insufficient permissions (i.e. no block or something else)
 		// 3. the error can be avoided simply by logging in
 
-		if ( !$this->getUser()->isNamed() && count( $messages ) == 1
+		if ( $action !== null && !$this->getUser()->isNamed() && count( $messages ) == 1
 			&& ( $messages[0]->getKey() == 'badaccess-groups' || $messages[0]->getKey() == 'badaccess-group0' )
 			&& ( $groupPermissionsLookup->groupHasPermission( 'user', $action )
 				|| $groupPermissionsLookup->groupHasPermission( 'autoconfirmed', $action ) )
