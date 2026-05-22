@@ -369,7 +369,7 @@ $magicWords = [
 	'userlanguage'              => [ '1', 'لغه_اليوزر', 'USERLANGUAGE' ],
 ];
 
-// (T18469) Override Eastern Arabic numberals, use Western
+// (T18469) Override Eastern Arabic numerals, use Western
 $digitTransformTable = [
 	'0' => '0',
 	'1' => '1',

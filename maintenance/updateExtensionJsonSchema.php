@@ -69,7 +69,7 @@ class UpdateExtensionJsonSchema extends Maintenance {
 				$json['requires'][ExtensionRegistry::MEDIAWIKI_CORE]
 			);
 			$newRequired = $versionParser->parseConstraints(
-				// The match works only when using an equal comparision
+				// The match works only when using an equal comparison
 				str_replace( '>=', '==', ExtensionRegistry::MANIFEST_VERSION_MW_VERSION )
 			);
 			if ( !$currentRequired->matches( $newRequired ) ) {

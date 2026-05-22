@@ -71,7 +71,7 @@ Most importantly, the following functions have been deprecated:
 * `Revision::getText()` was deprecated in favor of `Revision::getContent()` (though the Revision class was later fully removed as part of the migration to Multi-Content Revisions (MCR), see [documentation of mediawiki.org][mediawiki.org/wiki/Multi-Content_Revisions].
 * `WikiPage::getText()` is deprecated in favor of `WikiPage::getContent()`
 
-Also, the old `Article::getContent()` (which returns text) is superceded by `Article::getContentObject()`. However, both methods should be avoided since they do not provide clean access to the page's actual content. For instance, they may return a system message for non-existing pages. Use `WikiPage::getContent()` instead.
+Also, the old `Article::getContent()` (which returns text) is superseded by `Article::getContentObject()`. However, both methods should be avoided since they do not provide clean access to the page's actual content. For instance, they may return a system message for non-existing pages. Use `WikiPage::getContent()` instead.
 
 Code that relies on a textual representation of the page content should eventually be rewritten.
 

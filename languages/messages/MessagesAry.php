@@ -57,7 +57,7 @@ $namespaceGenderAliases = [
 	],
 ];
 
-// (T18469) Override Eastern Arabic numberals, use Western
+// (T18469) Override Eastern Arabic numerals, use Western
 $digitTransformTable = [
 	'0' => '0',
 	'1' => '1',

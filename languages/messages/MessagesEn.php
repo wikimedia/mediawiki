@@ -99,7 +99,7 @@ $namespaceNames = [
 /**
  * Array of namespace aliases, mapping from name to NS_xxx index.
  *
- * Note that 'namespaceAliases' is a mergable language attribute,
+ * Note that 'namespaceAliases' is a mergeable language attribute,
  * which means it is combined with other languages in the fallback chain.
  */
 $namespaceAliases = [
