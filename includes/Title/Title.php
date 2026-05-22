@@ -3234,6 +3234,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * @return string|false
 	 */
 	public function getDefaultMessageText() {
+		wfDeprecated( __METHOD__, '1.47' );
 		$message = $this->getDefaultSystemMessage();
 
 		return $message ? $message->plain() : false;
@@ -3248,6 +3249,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * @return ?Message
 	 */
 	public function getDefaultSystemMessage(): ?Message {
+		wfDeprecated( __METHOD__, '1.47' );
 		if ( $this->mNamespace !== NS_MEDIAWIKI ) { // Just in case
 			return null;
 		}

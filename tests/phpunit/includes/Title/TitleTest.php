@@ -2244,6 +2244,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Title\Title::getDefaultSystemMessage
 	 */
 	public function testGetDefaultSystemMessage() {
+		$this->hideDeprecated( Title::class . '::getDefaultSystemMessage' );
+		$this->hideDeprecated( Title::class . '::getDefaultMessageText' );
 		$title = Title::makeTitle( NS_MEDIAWIKI, 'Logouttext' );
 
 		$this->assertInstanceOf( Message::class, $title->getDefaultSystemMessage() );
@@ -2254,6 +2256,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Title\Title::getDefaultSystemMessage
 	 */
 	public function testGetDefaultSystemMessageReturnsNull() {
+		$this->hideDeprecated( Title::class . '::getDefaultSystemMessage' );
 		$title = Title::makeTitle( NS_MAIN, 'Some title' );
 
 		$this->assertNull( $title->getDefaultSystemMessage() );
