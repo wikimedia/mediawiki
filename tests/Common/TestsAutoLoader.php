@@ -406,6 +406,5 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Session\\SessionStoreTestTrait' => "$testDir/phpunit/unit/includes/Session/SessionStoreTestTrait.php",
 
 	# tests/suites
-	'SuiteEventsTrait' => "$testDir/phpunit/suites/SuiteEventsTrait.php",
 	'ParserTestFileTrait' => "$testDir/phpunit/ParserTestFileTrait.php",
 ];
