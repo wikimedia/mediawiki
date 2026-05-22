@@ -343,14 +343,14 @@ class UserMailer {
 		}
 
 		if ( is_array( $smtp ) ) {
-			$receips = array_map( 'strval', $to );
+			$recipients = array_map( 'strval', $to );
 
-			if ( count( $receips ) !== 1 ) {
+			if ( count( $recipients ) !== 1 ) {
 				throw new RuntimeException(
 					__METHOD__ . 'somehow called for multiple recipients, no longer supported.'
 				);
 			}
-			$recipient = $receips[0];
+			$recipient = $recipients[0];
 
 			// Create the mail object using the Mail::factory method
 			$mail_object = Mail::factory( 'smtp', $smtp );

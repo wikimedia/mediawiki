@@ -169,7 +169,7 @@ class SpecialPrefixIndex extends SpecialAllPages {
 			# ## @todo FIXME: Should complain if $fromNs != $namespace
 
 			$dbr = $this->dbProvider->getReplicaDatabase();
-			$queryBuiler = $dbr->newSelectQueryBuilder()
+			$queryBuilder = $dbr->newSelectQueryBuilder()
 				->select( LinkCache::getSelectFields() )
 				->from( 'page' )
 				->where( [
@@ -186,12 +186,12 @@ class SpecialPrefixIndex extends SpecialAllPages {
 				->useIndex( 'page_name_title' );
 
 			if ( $this->hideRedirects ) {
-				$queryBuiler->andWhere( [ 'page_is_redirect' => 0 ] );
+				$queryBuilder->andWhere( [ 'page_is_redirect' => 0 ] );
 			}
 
-			$this->getHookRunner()->onSpecialPrefixIndexQuery( $preparedHtmlForm->mFieldData, $queryBuiler );
+			$this->getHookRunner()->onSpecialPrefixIndexQuery( $preparedHtmlForm->mFieldData, $queryBuilder );
 
-			$res = $queryBuiler->caller( __METHOD__ )->fetchResultSet();
+			$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 			// @todo FIXME: Side link to previous
 

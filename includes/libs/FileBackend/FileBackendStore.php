@@ -108,7 +108,7 @@ abstract class FileBackendStore extends FileBackend {
 		$this->srvCache = $config['srvCache'] ?? new EmptyBagOStuff();
 		$this->wanCache = $config['wanCache'] ?? WANObjectCache::newEmpty();
 		$this->wanStatCache = WANObjectCache::newEmpty(); // disabled by default
-		$this->memCache =& $this->wanStatCache; // compatability alias
+		$this->memCache =& $this->wanStatCache; // compatibility alias
 		$this->procFileStatCache = new MapCacheLRU( self::CACHE_CHEAP_SIZE );
 		$this->cheapCache =& $this->procFileStatCache; // compatability alias
 		$this->procFileDataCache = new MapCacheLRU( self::CACHE_EXPENSIVE_SIZE );

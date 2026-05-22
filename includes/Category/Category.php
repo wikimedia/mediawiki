@@ -522,7 +522,7 @@ class Category {
 	public function refreshCountsIfSmall( $maxSize = self::ROW_COUNT_SMALL ) {
 		$categoryLinksDbr = $this->dbProvider->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
 
-		$typeOccurances = $categoryLinksDbr->newSelectQueryBuilder()
+		$typeOccurrences = $categoryLinksDbr->newSelectQueryBuilder()
 			->select( 'cl_type' )
 			->from( 'categorylinks' )
 			->join( 'linktarget', null, 'cl_target_id = lt_id' )
@@ -534,10 +534,10 @@ class Category {
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$dbw->startAtomic( __METHOD__ );
 
-		if ( !$typeOccurances ) {
+		if ( !$typeOccurrences ) {
 			$doRefresh = true; // delete any category table entry
-		} elseif ( count( $typeOccurances ) <= $maxSize ) {
-			$countByType = array_count_values( $typeOccurances );
+		} elseif ( count( $typeOccurrences ) <= $maxSize ) {
+			$countByType = array_count_values( $typeOccurrences );
 			$doRefresh = !$dbw->newSelectQueryBuilder()
 				->select( '1' )
 				->from( 'category' )

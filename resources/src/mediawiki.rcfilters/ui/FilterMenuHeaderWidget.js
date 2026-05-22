@@ -56,7 +56,7 @@ const FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( con
 		this.highlightButton = new OO.ui.ToggleButtonWidget( {
 			icon: 'highlight',
 			label: mw.msg( 'rcfilters-highlightbutton-title' ),
-			classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-hightlightButton' ]
+			classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-highlightButton' ]
 		} );
 	}
 

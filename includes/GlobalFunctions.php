@@ -1035,14 +1035,14 @@ function wfResetOutputBuffers( $resetGzipEncoding = true ) {
 	while ( $status = ob_get_status() ) {
 		if ( isset( $status['flags'] ) ) {
 			$flags = PHP_OUTPUT_HANDLER_CLEANABLE | PHP_OUTPUT_HANDLER_REMOVABLE;
-			$deleteable = ( $status['flags'] & $flags ) === $flags;
+			$deletable = ( $status['flags'] & $flags ) === $flags;
 		} elseif ( isset( $status['del'] ) ) {
-			$deleteable = $status['del'];
+			$deletable = $status['del'];
 		} else {
 			// Guess that any PHP-internal setting can't be removed.
-			$deleteable = $status['type'] !== 0; /* PHP_OUTPUT_HANDLER_INTERNAL */
+			$deletable = $status['type'] !== 0; /* PHP_OUTPUT_HANDLER_INTERNAL */
 		}
-		if ( !$deleteable ) {
+		if ( !$deletable ) {
 			// Give up, and hope the result doesn't break
 			// output behavior.
 			break;

@@ -309,7 +309,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 			}
 		}
 
-		$this->closeExcessIdleConections();
+		$this->closeExcessIdleConnections();
 
 		return $found;
 	}
@@ -317,7 +317,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	/**
 	 * Close any extra idle connections if there are more than the limit
 	 */
-	protected function closeExcessIdleConections() {
+	protected function closeExcessIdleConnections() {
 		if ( $this->idlePoolSize <= count( $this->connections ) ) {
 			return; // nothing to do (no more connections than servers)
 		}
