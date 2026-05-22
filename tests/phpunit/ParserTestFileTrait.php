@@ -29,7 +29,7 @@ trait ParserTestFileTrait {
 			} catch ( Exception $e ) {
 				// Friendlier wrapping for any syntax errors that might occur.
 				throw new RuntimeException(
-					$fileName . ': ' . $e->getMessage()
+					static::$filename . ': ' . $e->getMessage()
 				);
 			}
 		}
