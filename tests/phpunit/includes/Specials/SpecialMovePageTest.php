@@ -434,7 +434,7 @@ class SpecialMovePageTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( '(movepage-page-moved', $html ); // The talk page was moved
 	}
 
-	public function testCreateProtection() {
+	public function testCreateProtectionBoth() {
 		$this->assertStatusGood( $this->editPage( 'A', 'a' ) );
 		$this->assertStatusGood( $this->editPage( 'Talk:A', 'atalk' ) );
 
@@ -450,11 +450,48 @@ class SpecialMovePageTest extends SpecialPageTestBase {
 		[ $html ] = $this->postSpecialMovePage( $this->getTestSysop()->getUser(), 'A', 'B' );
 		$this->assertStringContainsString( '(protectedpagemovecreatewarning)', $html );
 		$this->assertStringContainsString( '(protectedpagemovetalkcreatewarning)', $html );
+		$this->assertStringContainsString( '(move_over_protection_confirm_both: B, Talk:B)', $html );
 		[ $html ] = $this->postSpecialMovePage( $this->getTestSysop()->getUser(), 'A', 'B',
 			[ 'wpMovetalk' => 1, 'wpMoveOverProtection' => 1 ]
 		);
 		$this->assertStringContainsString( '(movepage-moved-noredirect)', $html );
 		$this->assertStringContainsString( '(movepage-page-moved', $html ); // The talk page was moved
+	}
+
+	public function testCreateProtectionMainOnly() {
+		$this->assertStatusGood( $this->editPage( 'A', 'a' ) );
+
+		$wikiPage = $this->getNonExistingTestPage( 'B' );
+		$this->assertStatusGood( $wikiPage->doUpdateRestrictions(
+			[ 'create' => 'sysop' ], [], $cascade, '', $this->getTestSysop()->getUser()
+		) );
+		[ $html ] = $this->postSpecialMovePage( $this->getTestSysop()->getUser(), 'A', 'B' );
+		$this->assertStringContainsString( '(protectedpagemovecreatewarning)', $html );
+		$this->assertStringContainsString( '(move_over_protection_confirm: B)', $html );
+		[ $html ] = $this->postSpecialMovePage( $this->getTestSysop()->getUser(), 'A', 'B',
+			[ 'wpMoveOverProtection' => 1 ]
+		);
+		$this->assertStringContainsString( '(movepage-moved-noredirect)', $html );
+	}
+
+	public function testCreateProtectionTalkOnly() {
+		$this->assertStatusGood( $this->editPage( 'A', 'a' ) );
+		$this->assertStatusGood( $this->editPage( 'Talk:A', 'atalk' ) );
+
+		$wikiPage = $this->getNonExistingTestPage( 'Talk:B' );
+		$this->assertStatusGood( $wikiPage->doUpdateRestrictions(
+			[ 'create' => 'sysop' ], [], $cascade, '', $this->getTestSysop()->getUser()
+		) );
+		[ $html ] = $this->postSpecialMovePage( $this->getTestSysop()->getUser(), 'A', 'B',
+			[ 'wpMovetalk' => 1 ]
+		);
+		$this->assertStringContainsString( '(protectedpagemovetalkcreatewarning)', $html );
+		$this->assertStringContainsString( '(move_over_protection_confirm_talk: Talk:B)', $html );
+		[ $html ] = $this->postSpecialMovePage( $this->getTestSysop()->getUser(), 'A', 'B',
+			[ 'wpMovetalk' => 1, 'wpMoveOverProtection' => 1 ]
+		);
+		$this->assertStringContainsString( '(movepage-moved-noredirect)', $html );
+		$this->assertStringContainsString( '(movepage-page-moved', $html );
 	}
 
 	public function testMoveExistingSubpages() {

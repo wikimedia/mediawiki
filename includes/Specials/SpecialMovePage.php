@@ -502,7 +502,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			}
 		}
 
-		$moveOverProtection = false;
+		$moveOverProtectionMain = false;
+		$moveOverProtectionTalk = false;
 		if ( $this->newTitle && $mainOK ) {
 			// If you can't move the page anyway then don't bother displaying warnings
 			// about it being protected
@@ -521,7 +522,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 					'',
 					[ 'lim' => 1, 'msgKey' => $noticeMsg ]
 				);
-				$moveOverProtection = true;
+				$moveOverProtectionMain = true;
 			}
 			$newTalk = $newTitle->getTalkPageIfDefined();
 			if ( $oldTalk && $oldTalk->exists() && $talkOK &&
@@ -541,7 +542,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 					'',
 					[ 'lim' => 1, 'msgKey' => $noticeMsg ]
 				);
-				$moveOverProtection = true;
+				$moveOverProtectionTalk = true;
 			}
 		}
 
@@ -769,7 +770,24 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				]
 			);
 		}
-		if ( $moveOverProtection ) {
+		if ( $moveOverProtectionMain || $moveOverProtectionTalk ) {
+			if ( $moveOverProtectionMain && $moveOverProtectionTalk ) {
+				$moveOverProtectionMsg = $this->msg(
+					'move_over_protection_confirm_both',
+					$this->newTitle->getPrefixedText(),
+					$newTalkTitle->getPrefixedText()
+				)->text();
+			} elseif ( $moveOverProtectionMain ) {
+				$moveOverProtectionMsg = $this->msg(
+					'move_over_protection_confirm',
+					$this->newTitle->getPrefixedText()
+				)->text();
+			} else {
+				$moveOverProtectionMsg = $this->msg(
+					'move_over_protection_confirm_talk',
+					$newTalkTitle->getPrefixedText()
+				)->text();
+			}
 			$fields[] = new FieldLayout(
 				new CheckboxInputWidget( [
 					'name' => 'wpMoveOverProtection',
@@ -777,7 +795,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 					'value' => '1',
 				] ),
 				[
-					'label' => $this->msg( 'move_over_protection_confirm' )->text(),
+					'label' => $moveOverProtectionMsg,
 					'align' => 'inline',
 				]
 			);
