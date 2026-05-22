@@ -736,6 +736,40 @@ T2289: literal ">"-token in bracketed URL
 !!end
 
 !! test
+Include directive in url
+!! wikitext
+http://www.example.com/<noinclude>html</noinclude> test
+
+[http://www.example.com/<noinclude>html</noinclude> test]
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://www.example.com/html">http://www.example.com/html</a> test
+</p><p><a rel="nofollow" class="external text" href="http://www.example.com/html">test</a>
+</p>
+!! html/parsoid
+<p><a typeof="mw:ExpandedAttrs" about="#mwt1" rel="mw:ExtLink nofollow" href="http://www.example.com/html" class="external free" data-mw='{"attribs":[[{"txt":"href"},{"html":"http://www.example.com/&lt;meta typeof=\"mw:Includes/NoInclude\" data-parsoid=&apos;{\"src\":\"&amp;lt;noinclude>\",\"dsr\":[23,34,null,null]}&apos;/>html&lt;meta typeof=\"mw:Includes/NoInclude/End\" data-parsoid=&apos;{\"src\":\"&amp;lt;/noinclude>\",\"dsr\":[38,50,null,null]}&apos;/>"}]]}'>http://www.example.com/html</a> test</p>
+
+<p><a typeof="mw:ExpandedAttrs" about="#mwt2" rel="mw:ExtLink nofollow" href="http://www.example.com/html" class="external text" data-mw='{"attribs":[[{"txt":"href"},{"html":"http://www.example.com/&lt;meta typeof=\"mw:Includes/NoInclude\" data-parsoid=&apos;{\"src\":\"&amp;lt;noinclude>\",\"dsr\":[81,92,null,null]}&apos;/>html&lt;meta typeof=\"mw:Includes/NoInclude/End\" data-parsoid=&apos;{\"src\":\"&amp;lt;/noinclude>\",\"dsr\":[96,108,null,null]}&apos;/>"}]]}'>test</a></p>
+!! end
+
+!! test
+Nowiki in url
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+http://www.example.com/<nowiki>html</nowiki> test
+
+[http://www.example.com/<nowiki>html</nowiki> test]
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://www.example.com/">http://www.example.com/</a>html test
+</p><p><a rel="nofollow" class="external text" href="http://www.example.com/">html test</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink nofollow" href="http://www.example.com/" class="external free" data-parsoid='{"stx":"url","dsr":[0,23,0,0]}'>http://www.example.com/</a><span typeof="mw:Nowiki" data-parsoid='{"dsr":[23,44,8,9]}'>html</span> test</p>
+
+<p><a rel="mw:ExtLink nofollow" href="http://www.example.com/" class="external text" data-parsoid='{"dsr":[51,102,24,1]}'><span typeof="mw:Nowiki" data-parsoid='{"dsr":[75,96,8,9]}'>html</span> test</a></p>
+!! end
+
+!! test
 T2289: literal double quote at end of URL
 !! wikitext
 http://www.example.com/"hello"
@@ -752,6 +786,26 @@ T2289: literal double quote in bracketed URL
 <p><a rel="nofollow" class="external text" href="http://www.example.com/">"hello" stuff</a>
 </p>
 !!end
+
+## FIXME(T404241): Note that the mw:ExpandedAttrs href in the data-mw attribs
+## is a bit bogus here since it still contains the content that terminated the
+## url.  However, mw:Transclusion takes precedence when serializing
+!! test
+Extlink with templated url terminating chars
+!! wikitext
+http://www.example.com/{{1x|<b>html</b>}}
+[http://www.example.com/{{1x|<b>html</b>}}]
+{{1x|<spantag>[http://www.example.com/{{1x|<b>html</b>}}]</spantag>}}
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://www.example.com/">http://www.example.com/</a><b>html</b>
+<a rel="nofollow" class="external text" href="http://www.example.com/"><b>html</b></a>
+<span><a rel="nofollow" class="external text" href="http://www.example.com/"><b>html</b></a></span>
+</p>
+!! html/parsoid
+<p><a typeof="mw:Transclusion mw:ExpandedAttrs" about="#mwt4" rel="mw:ExtLink nofollow" href="http://www.example.com/" class="external free" data-mw='{"attribs":[[{"txt":"href"},{"html":"http://www.example.com/&lt;b about=\"#mwt3\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"stx\":\"html\",\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[23,41,null,null]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"&amp;lt;b>html&amp;lt;/b>\"}},\"i\":0}}]}&apos;>html&lt;/b>"}]],"parts":["http://www.example.com/",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;b>html&lt;/b>"}},"i":0}}]}'>http://www.example.com/</a><b about="#mwt4" data-parsoid='{"stx":"html"}'>html</b>
+<a typeof="mw:Transclusion mw:ExpandedAttrs" about="#mwt8" rel="mw:ExtLink nofollow" href="http://www.example.com/" class="external text" data-mw='{"attribs":[[{"txt":"href"},{"html":"http://www.example.com/&lt;b about=\"#mwt7\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"stx\":\"html\",\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[66,84,null,null]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"&amp;lt;b>html&amp;lt;/b>\"}},\"i\":0}}]}&apos;>html&lt;/b>"}]],"parts":["[http://www.example.com/",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;b>html&lt;/b>"}},"i":0}},"]"]}'><b>html</b></a>
+<span typeof="mw:Extension/spantag mw:Transclusion" about="#mwt9" data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"[http://www.example.com/{{1x|&lt;b>html&lt;/b>}}]"},"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;spantag>[http://www.example.com/{{1x|&lt;b>html&lt;/b>}}]&lt;/spantag>"}},"i":0}}]}'><a rel="mw:ExtLink nofollow" href="http://www.example.com/" class="external text"><b data-parsoid='{"stx":"html"}'>html</b></a></span></p>
+!! end
 
 !! test
 External links: multiple legal whitespace is fine, Magnus. Don't break it please. (T7081)
@@ -847,6 +901,18 @@ http://www.example.com/?title=Ben-Hur_%281959_film%29
 <p><a rel="mw:ExtLink nofollow" href="http://www.example.com/?title=Ben-Hur_%281959_film%29" class="external free">http://www.example.com/?title=Ben-Hur_%281959_film%29</a></p>
 !! end
 
+# This is a deliberate difference between legacy and Parsoid; Parsoid
+# maintains the author's original text and doesn't URL encode it.
+!! test
+%7C in URL
+!! wikitext
+http://testing.123?4=5&vert;6
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://testing.123?4=5%7C6">http://testing.123?4=5%7C6</a>
+</p>
+!! html/parsoid
+<p><a class="external free" href="http://testing.123?4=5%7C6" rel="mw:ExtLink nofollow">http://testing.123?4=5|6</a></p>
+!! end
 
 !! test
 T6781: %26 in autonumber URL
@@ -1031,7 +1097,7 @@ http://example.com/index.php?foozoid&#x5B;&#x5D;=bar
 !! html/parsoid
 <p><a rel="mw:ExtLink nofollow" href="http://example.com/index.php?foozoid%5B%5D=bar" class="external free" data-parsoid='{"stx":"url"}'>http://example.com/index.php?foozoid%5B%5D=bar</a></p>
 
-<p><a rel="mw:ExtLink nofollow" href="http://example.com/index.php?foozoid%5B%5D=bar" class="external free" data-parsoid='{"stx":"url","a":{"href":"http://example.com/index.php?foozoid%5B%5D=bar"},"sa":{"href":"http://example.com/index.php?foozoid&amp;#x5B;&amp;#x5D;=bar"}}'>http://example.com/index.php?foozoid%5B%5D=bar</a></p>
+<p><a rel="mw:ExtLink nofollow" href="http://example.com/index.php?foozoid%5B%5D=bar" class="external free" data-parsoid='{"stx":"url","a":{"href":"http://example.com/index.php?foozoid%5B%5D=bar"},"sa":{"href":"http://example.com/index.php?foozoid&amp;#x5B;&amp;#x5D;=bar"}}'>http://example.com/index.php?foozoid[]=bar</a></p>
 !! end
 
 !! test

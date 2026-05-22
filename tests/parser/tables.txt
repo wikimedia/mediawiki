@@ -764,7 +764,7 @@ parsoid=wt2html,html2html
 </tbody></table>
 !! html/parsoid
 <table data-parsoid='{"autoInsertedEnd":true}'>
-<tbody><tr data-parsoid='{"autoInsertedStart":true}'><td data-parsoid='{"startTagSrc":"| ","attrSepSrc":"|"}'>[<a rel="mw:ExtLink nofollow" href="ftp://%7Cx" class="external free" data-parsoid='{"stx":"url","a":{"href":"ftp://%7Cx"},"sa":{"href":"ftp://|x"}}'>ftp://%7Cx</a></td><td data-parsoid='{"stx":"row"}'>]" onmouseover="alert(document.cookie)">test</td></tr></tbody></table>
+<tbody><tr data-parsoid='{"autoInsertedStart":true}'><td data-parsoid='{"startTagSrc":"| ","attrSepSrc":"|"}'>[<a rel="mw:ExtLink nofollow" href="ftp://%7Cx" class="external free" data-parsoid='{"stx":"url","a":{"href":"ftp://%7Cx"},"sa":{"href":"ftp://|x"}}'>ftp://|x</a></td><td data-parsoid='{"stx":"row"}'>]" onmouseover="alert(document.cookie)">test</td></tr></tbody></table>
 !! end
 
 !! test
@@ -2394,4 +2394,20 @@ Pipe within attribute with double quotes
 </tr>
 </tbody>
 </table>
+!! end
+
+!! article
+Template:Asciiart
+!! text
+ |  |
+ |--|
+!! end
+
+!! test
+Asciiart template should display the right number of spaces
+!! wikitext
+{{Asciiart}}
+!! html/parsoid
+<pre data-mw='{"parts":[{"template":{"target":{"wt":"Asciiart","href":"./Template:Asciiart"},"params":{},"i":0}}]}' typeof="mw:Transclusion">|  |
+|--|</pre>
 !! end

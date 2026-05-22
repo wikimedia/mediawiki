@@ -1579,7 +1579,7 @@ Parsoid: pipe in transclusion parameter
 <p><a rel="nofollow" class="external free" href="http://foo.com/a%7Cb">http://foo.com/a%7Cb</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:ExtLink nofollow" href="http://foo.com/a%7Cb" about="#mwt1" typeof="mw:Transclusion" class="external free" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"http://foo.com/a&amp;#124;b"}},"i":0}}]}'>http://foo.com/a%7Cb</a></p>
+<p><a rel="mw:ExtLink nofollow" href="http://foo.com/a%7Cb" about="#mwt1" typeof="mw:Transclusion" class="external free" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"http://foo.com/a&amp;#124;b"}},"i":0}}]}'>http://foo.com/a|b</a></p>
 !! end
 
 !! test
@@ -6087,7 +6087,7 @@ parsoid=wt2html,wt2wt
 <div>a</div><p>b
 </p><div>c</div>
 !! html/parsoid
-<div about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;div>a&lt;/div>"}},"i":0}}]}'>a</div><p>b</p><div about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n&lt;div>c&lt;/div>"}},"i":0}}]}'>c</div>
+<div about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;div>a&lt;/div>"}},"i":0}}]}'>a</div><p>b</p><span class="mw-empty-elt" about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n&lt;div>c&lt;/div>"}},"i":0}}]}'></span><div about="#mwt2">c</div>
 !! end
 
 !!test
@@ -11175,7 +11175,7 @@ Handling of &#x0A; in URLs
 !! html/php
 <ul><li><a rel="nofollow" class="external free" href="irc://%0Aa">irc://%0Aa</a></li></ul>
 !! html/parsoid
-<ul><li><a rel="mw:ExtLink nofollow" href="irc://%0Aa" class="external free" data-parsoid='{"stx":"url","a":{"href":"irc://%0Aa"},"sa":{"href":"irc://&amp;#x0A;a"}}'>irc://%0Aa</a></li></ul>
+<ul><li><a rel="mw:ExtLink nofollow" href="irc://%0Aa" class="external free" data-parsoid='{"stx":"url","a":{"href":"irc://%0Aa"},"sa":{"href":"irc://&amp;#x0A;a"}}'>irc://a</a></li></ul>
 !! end
 
 !! test

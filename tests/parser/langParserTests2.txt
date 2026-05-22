@@ -1057,3 +1057,21 @@ language=zh htmlVariantLanguage=zh-hant
 !! html/parsoid+langconv
 <p><code>氣<span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":""}}'></span>氣</code></p>
 !! end
+
+!! test
+__NOCONTENTCONVERT__ should prevent conversion (T424773)
+!! options
+language=zh htmlVariantLanguage=zh-hant
+property=nocontentconvert
+!! wikitext
+__NOCONTENTCONVERT__
+氣 气
+!! metadata
+property[nocontentconvert]=
+!! html/php
+<p>氣 气
+</p>
+!! html/parsoid+langconv
+<meta property="mw:PageProp/nocontentconvert"/>
+<p>氣 气</p>
+!! end
