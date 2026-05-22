@@ -2012,7 +2012,7 @@
 	"watchlistlabels-watchaction-label": "תוויות רשימת מעקב:",
 	"watchlistlabels-watchaction-success": "{{PLURAL:$1|הוקצתה [[$2|תווית]] אחת|הוקצו $1 [[$2|תוויות]]}}",
 	"watchlistlabels-editpage-label": "[[Special:WatchlistLabels|תוויות רשימת מעקב]]:",
-	"watchlistlabels-editpage-help": "באפשרותף להוסיף תוויות לרשימת מעקב כדי לארגן את אופן סקירת השינויים באתר {{SITENAME}}.",
+	"watchlistlabels-editpage-help": "באפשרותך להוסיף תוויות לרשימת מעקב כדי לארגן את אופן סקירת השינויים באתר {{SITENAME}}.",
 	"watchlistlabels-editpage-nolabels": "אין לך [[Special:WatchlistLabels|תוויות רשימת מעקב]].",
 	"watchlistlabels-editpage-placeholder": "בחירת תוויות רשימת מעקב",
 	"watchlist-filters-labels-title": "תוויות",

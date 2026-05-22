@@ -158,6 +158,7 @@
 	"thumbsize-small": "小",
 	"thumbsize-regular": "標準",
 	"thumbsize-large": "大",
+	"thumbsize-help": "部分使用者可能偏好比正常尺寸更小或更大的縮圖。標準尺寸為$1像素。",
 	"prefs-diffs": "差異",
 	"tog-diffonly": "比對差異時下方不顯示頁面內容",
 	"tog-norollbackdiff": "回退後略過差異比對",

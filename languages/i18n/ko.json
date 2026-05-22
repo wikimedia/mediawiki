@@ -3172,7 +3172,7 @@
 	"version-license-not-found": "이 확장 기능에 대한 자세한 라이선스 정보가 없습니다.",
 	"version-credits-title": "$1의 작성자",
 	"version-credits-not-found": "이 확장 기능에 대한 자세한 제작진 정보가 없습니다.",
-	"version-poweredby-credits": "이 위키는 '''[https://www.mediawiki.org/ MediaWiki]'''(미디어위키)를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
+	"version-poweredby-credits": "이 위키는 '''[https://www.mediawiki.org/ Mediawiki]'''(미디어위키)를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
 	"version-poweredby-others": "그 외 다른 개발자",
 	"version-poweredby-translators": "translatewiki.net 번역자",
 	"version-poweredby-various": "여러 개발자",
