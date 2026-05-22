@@ -13,6 +13,7 @@ use ConstantDependency;
 use DOMDocument;
 use FileDependency;
 use InvalidArgumentException;
+use LogicException;
 use MainConfigDependency;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Config\ServiceOptions;
@@ -1473,6 +1474,9 @@ class LocalisationCache {
 	 * @return void
 	 */
 	public function setSubitemForTesting( $code, $key, $subkey, $value ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new LogicException( __METHOD__ . '() should be called only from tests!' );
+		}
 		if ( !isset( $this->initialisedLangs[$code] ) ) {
 			$this->initLanguage( $code );
 		}
