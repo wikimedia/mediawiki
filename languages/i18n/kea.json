@@ -442,7 +442,7 @@
 	"temp-user-banner-tooltip-label": "Más nfurmason sobri kóntas tenpurári",
 	"temp-user-banner-tooltip-title": "Kónta tenpurári",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Bu kónta tenpurári ta spira na ménus di un dia.</strong> Dispos di spirason, un kónta nobu ta ser kiriadu na prósimu bes ki bu fasi un idison sin sta kunetadu.",
-	"temp-user-banner-tooltip-description-learn-more": "Kiriason di es kónta tenpurári okori dispos ki un idison sin kónta foi fetu na uiki désdi bu nabegador i dispuzitivu. [[{{MediaWiki:tempuser-helppage}}|Sabi más sobri kel-li]].",
+	"temp-user-banner-tooltip-description-learn-more": "Kiriason di es kónta tenpurári okori dispos ki un idison sin kónta foi fetu na uiki désdi bu nabegador i dispuzitivu. [[$1|Sabi más sobri kel-li]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Kuneta]] o [[Special:CreateAccount|kiria un kónta]] pa ser markadu kuma otor di idisons futur i pa bu podi asesa otus funsonalidadi.",
 	"blankarticle": "<strong>Abizu:</strong> Pájina ma bu sa-ta tenta kiria sta baziu.\nSi bu klika na \"$1\" otu bes, pájina ta ser kiriadu sin nun kuntiúdu.",
 	"anoneditwarning": "<strong>Abizu:</strong> Bu ka sta kunetadu. Di es manera, bu nderésu di IP ta fika vizívi publikamenti si bu fasi kolker alterason. Si bu <strong>[$1 kuneta]</strong> o <strong>[$2 kiria un kónta]</strong>, bus idison ta ser markadu so ku bu nómi di uzuári, i bu inda podi purbeta otus binifísi.",

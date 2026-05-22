@@ -506,7 +506,7 @@
 	"showdiff": "Prikaži izmjene",
 	"temp-user-banner-description": "Koristite privremeni račun",
 	"temp-user-banner-tooltip-title": "Privremeni račun",
-	"temp-user-banner-tooltip-description-learn-more": "Ovaj privremeni račun automatski je napravljen nakon što ste neprijavljeni objavili izmjenu na ovom pregledniku i uređaju. [[{{MediaWiki:tempuser-helppage}}|Detaljnije]].",
+	"temp-user-banner-tooltip-description-learn-more": "Ovaj privremeni račun automatski je napravljen nakon što ste neprijavljeni objavili izmjenu na ovom pregledniku i uređaju. [[$1|Detaljnije]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Prijavite se]] ili [[Special:CreateAccount|napravite račun]] da bi Vam se trajno pripisivale buduće izmjene i da biste imali pristup drugim mogućnostima.",
 	"blankarticle": "<strong>Upozorenje:</strong> Napravili ste praznu stranicu.\nAko ponovno kliknete \"$1\", napravit ćete praznu stranicu bez sadržaja.",
 	"anoneditwarning": "<strong>Upozorenje:</strong> Niste prijavljeni. Vaša IP-adresa bit će javno vidljiva ako napravite neku izmjenu. Ako se <strong>[$1 prijavite]</strong> ili <strong>[$2 napravite račun]</strong>, Vaše izmjene bit će pripisane Vašem korisničkom imenu, pored drugih pogodnosti.",

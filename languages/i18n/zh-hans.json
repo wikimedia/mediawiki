@@ -231,7 +231,8 @@
 			"飞舞回堂前",
 			"魔琴",
 			"아라",
-			"Gsdn"
+			"Gsdn",
+			"简纸Paper"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|分类}}",
@@ -755,7 +756,7 @@
 	"temp-user-banner-tooltip-title": "临时账号",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>您的临时账号会在{{PLURAL:$1|$1天}}后到期。</strong>到期后，您下次进行未登录编辑时会创建新的临时账号。",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>您的临时账号会在1天内到期。</strong>到期后，您下次进行未登录编辑时会创建新的临时账号。",
-	"temp-user-banner-tooltip-description-learn-more": "由于在您做出编辑时此浏览器及设备上没有登录任何账号，已为您自动创建临时账号。[[{{MediaWiki:tempuser-helppage}}|了解更多信息]]。",
+	"temp-user-banner-tooltip-description-learn-more": "由于在您做出编辑时此浏览器及设备上没有登录任何账号，已为您自动创建临时账号。[[$1|了解更多信息]]。",
 	"temp-user-banner-tooltip-description-login": "请[[Special:UserLogin|登录]]或[[Special:CreateAccount|创建账号]]，这样一来之后的编辑将归于您的名下，且您将可以使用更多功能。",
 	"blankarticle": "<strong>警告：</strong>您正要创建的页面是空白的。如果您再次单击“$1”，创建的页面将没有任何内容。",
 	"anoneditwarning": "<strong>警告：</strong>您没有登录。如果您进行任何编辑，您的IP地址会公开展示。如果您<strong>[$1 登录]</strong>或<strong>[$2 创建账号]</strong>，您的编辑会以您的用户名署名，此外还有其他益处。",

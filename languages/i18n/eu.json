@@ -546,7 +546,7 @@
 	"temp-user-banner-tooltip-title": "Aldi baterako kontuak",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Zure aldi baterako kontua {{PLURAL:$1|bihar|$1 egun barru}} iraungiko da.</strong> Iraungi ondoren, berri bat sortuko da hurrengoan saioa hasi gabe aldaketa bat egiten duzunean.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Zure aldi baterako kontua egun bat baino gutxiagoan iraungiko da.</strong> Iraungi ondoren, berri bat sortuko da hurrengoan saioa hasi gabe aldaketa bat egiten duzunean.",
-	"temp-user-banner-tooltip-description-learn-more": "Aldi baterako kontu hau arakatzaile eta gailu honetan konturik gabe aldaketa bat egin ondoren sortu da. [[{{MediaWiki:tempuser-helppage}}|Lortu informazio gehiago]].",
+	"temp-user-banner-tooltip-description-learn-more": "Aldi baterako kontu hau arakatzaile eta gailu honetan konturik gabe aldaketa bat egin ondoren sortu da. [[$1|Lortu informazio gehiago]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Hasi saioa]] edo [[Special:CreateAccount|sortu kontu bat]] etorkizuneko aldaketengatik aitorpena jasotzeko eta beste funtzio batzuetarako sarbidea izateko.",
 	"blankarticle": "<strong>Oharra:</strong> sortzen ari zaren orria hutsik dago.\n\"$1\" berriro sakatzen baduzu, orrialdea edukirik gabe sortuko da.",
 	"anoneditwarning": "'''Oharra:''' Ez duzu saioa hasi. Aldaketak egiten badituzu, zure IP helbidea ikusgai geratuko da. <strong>[$1 Saioa hasi]</strong> edo <strong>[$2 kontu bat sortzen]</strong> baduzu, zure aldaketak lankide izenari egotziko zaizkio, eta beste abantaila batzuk ere izango dituzu.",

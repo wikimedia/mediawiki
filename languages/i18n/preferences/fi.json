@@ -167,7 +167,7 @@
 	"underline-never": "Ei koskaan",
 	"underline-always": "Aina",
 	"tog-showhiddencats": "Näytä piilotetut luokat",
-	"tog-showrollbackconfirmation": "Näytä vahvistuspyyntö, kun palauta-linkkiä klikataan.",
+	"tog-showrollbackconfirmation": "Näytä vahvistuspyyntö, kun palauta-linkkiä napsautetaan.",
 	"tog-forcesafemode": "Ota aina käyttöön [[mw:Special:MyLanguage/Manual:Safemode|turvallinen tila]]",
 	"prefs-help-forcesafemode": "Poista käytöstä wikin komentosarjat ja tyylitiedostot",
 	"prefs-editing": "Muokkaus",

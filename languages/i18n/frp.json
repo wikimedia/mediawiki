@@ -521,7 +521,7 @@
 	"temp-user-banner-tooltip-title": "Comptio temporèro",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Voutron comptio temporèro èxpire dens {{PLURAL:$1|1 jorn|$1 jorns}}.</strong> Aprés son èxpiracion, un comptio novél serat fêt lo prochen côp que vos faréd un changement sen vos branchiér.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Voutron comptio temporèro èxpire dens muens d’un jorn.</strong> Aprés son èxpiracion, un comptio novél serat fêt lo prochen côp que vos faréd un changement sen vos branchiér.",
-	"temp-user-banner-tooltip-description-learn-more": "Cél comptio temporèro est étâ fêt aprés qu’un changement seye étâ fêt sen comptio sus cél navegator et cél aparèly. [[{{MediaWiki:tempuser-helppage}}|Nen savêr més]].",
+	"temp-user-banner-tooltip-description-learn-more": "Cél comptio temporèro est étâ fêt aprés qu’un changement seye étâ fêt sen comptio sus cél navegator et cél aparèly. [[$1|Nen savêr més]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Sè branchiér]] ou ben [[Special:CreateAccount|fâre un comptio]] por arrevar a avêr lo crèdit de changements que vindront ples târd et pués a d’ôtres fonccionalitâts.",
 	"blankarticle": "<strong>Atencion :</strong> la pâge que vos éte aprés fâre est voueda.\nSe vos tornâd cllicar dessus « $1 », la pâge serat fêta sen gins de contegnu.",
 	"anoneditwarning": "<strong>Atencion :</strong> vos éte pas branchiê. Voutron adrèce IP serat visibla devant tot lo mondo se vos féte de changements. Se vos <strong>[$1 vos branchiéd]</strong> ou ben <strong>[$2 féte un comptio]</strong>, voutros changements seront atribuâs a voutron nom d’utilisator, ensemblo avouéc d’ôtros avantâjos.",

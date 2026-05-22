@@ -483,7 +483,7 @@
 	"temp-user-banner-tooltip-title": "Kont temporanju",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Il-kont temporanju tiegħek jiskadi fi żmien {{PLURAL:$1| ġurnata| $1 jum}}.</strong> Wara li jiskadi, wieħed ġdid jinħoloq meta tagħmel xi modifika mingħajr ma tidħol f'kont regolari.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Il-kont temporanju tiegħek jiskadi f'inqas minn ġurnata.</strong> Wara li jiskadi, wieħed ġdid jinħoloq id-darba li jmiss li tagħmel editjar mingħajr ma tidħol f'kont regolari.",
-	"temp-user-banner-tooltip-description-learn-more": "Dan il-kont temporanju nħoloq wara li saret modifika mingħajr kont fuq dan il-browser minn dan l-apparat. [[{{MediaWiki:tempuser-helppage}}|Sir af aktar]].",
+	"temp-user-banner-tooltip-description-learn-more": "Dan il-kont temporanju nħoloq wara li saret modifika mingħajr kont fuq dan il-browser minn dan l-apparat. [[$1|Sir af aktar]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Idħol]] jew [[Special:CreateAccount|oħloq kont]] biex tikseb rikonoxximent għal modifiki futuri u taċċessa servizzi oħra.",
 	"blankarticle": "<strong>Attenzjoni:</strong> Il-paġna li qed toħloq vojta.\nMeta terġa' tikklikkja fuq \"$1\", il-paġna tinħoloq bla ebda kontenut.",
 	"anoneditwarning": "'''Attenzjoni:''' Ma dħaltx f'kontok.\nL-indirizz tal-IP tiegħek se jkun jidher pubblikament meta tagħmel xi modifika. Jekk <strong>[$1 tidħol f'kontok]</strong> jew <strong>[$2 toħloq kont]</strong>, il-modifiki li tagħmel jiġu attribwiti lill-ismek ta' utent, flimkien ma benefiċċji oħra.",

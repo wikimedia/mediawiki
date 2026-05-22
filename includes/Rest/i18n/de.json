@@ -285,6 +285,7 @@
 	"rest-responseheader-desc-link": "Bietet eine Möglichkeit, einen oder mehrere Links in HTTP-Headern zu serialisieren. Dadurch kann der Server einen Client auf eine andere Ressource verweisen, die Metadaten über die angeforderte Ressource enthält.",
 	"rest-responseheader-desc-expires": "Enthält Datum und Uhrzeit, nach denen die Antwort im Kontext des HTTP-Cachings als abgelaufen gilt.",
 	"rest-responseheader-desc-location": "Gibt eine Ziel-URL für zwei Hauptzwecke an: Weiterleitung und Identifizierung des Speicherorts einer neu erstellten Ressource.",
+	"rest-openapispec-genericerrorresponse-desc": "Allgemeine Fehlermeldung. Die Meldung enthält weitere Details zum Fehler.",
 	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "Der HTTP-Statuscode der Fehlerantwort.",
 	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "Die HTTP-Statusmeldung der Fehlerantwort.",
 	"rest-openapispec-genericerrorresponse-property-desc-message": "Eine für Menschen lesbare Fehlermeldung, die nützlich ist, wenn keine Übersetzungen der Meldungen verfügbar sind",

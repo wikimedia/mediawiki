@@ -272,7 +272,8 @@
 			"ZhaleyLeitnib",
 			"לערי ריינהארט",
 			"ديفيد",
-			"아라"
+			"아라",
+			"Flame7311"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoría|Categorías}}",
@@ -790,7 +791,7 @@
 	"temp-user-banner-tooltip-title": "Cuenta temporal",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Tu cuenta temporal caduca dentro de {{PLURAL:$1|1 día|$1 días}}</strong>. Una vez que caduque, se creará una nueva la próxima vez que realices una edición sin iniciar sesión.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Tu cuenta temporal caducará dentro de menos de un día</strong>. Una vez que caduque, se creará una nueva la próxima vez que realices una edición sin iniciar sesión.",
-	"temp-user-banner-tooltip-description-learn-more": "Esta cuenta temporal se creó tras realizar una edición sin una cuenta en este navegador y dispositivo. [[{{MediaWiki:tempuser-helppage}}|Más información]].",
+	"temp-user-banner-tooltip-description-learn-more": "Esta cuenta temporal se creó tras realizar una edición sin una cuenta en este navegador y dispositivo. [[$1|Más información]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Inicia sesión]] o [[Special:CreateAccount|crea una cuenta]] para obtener crédito por ediciones futuras y acceder a otras funciones.",
 	"blankarticle": "<strong>Atención:</strong> estás a punto de crear una página vacía.\nSi pulsas en «$1» de nuevo, se creará la página sin ningún contenido.",
 	"anoneditwarning": "<strong>Advertencia:</strong> no {{#FORMAL:has|ha}} iniciado sesión. {{#FORMAL:Tu|Su}} dirección IP se hará pública si {{#FORMAL:haces|hace}} cualquier edición. Si <strong>[$1 {{#FORMAL:inicias|inicia}} sesión]</strong> o <strong>[$2 {{#FORMAL:creas|crea}} una cuenta]</strong>, {{#FORMAL:tus|sus}} ediciones se atribuirán a {{#FORMAL:tu|su}} nombre de usuario, además de otros beneficios.",
@@ -1795,6 +1796,7 @@
 	"unusedtemplateswlh": "otros enlaces",
 	"randompage": "Página aleatoria",
 	"randompage-nopages": "No hay páginas en {{PLURAL:$2|el siguiente espacio de nombres|los siguientes espacios de nombres}}: $1.",
+	"randompage-disallowed-action": "Por razones de seguridad, la acción \"$1\" no puede ser utilizado en la página Especial:Aleatoria.",
 	"randomincategory": "Página aleatoria en categoría",
 	"randomincategory-invalidcategory": "«$1» no es un nombre válido de categoría.",
 	"randomincategory-nopages": "No hay páginas en la categoría [[:Category:$1|$1]].",
@@ -2288,6 +2290,7 @@
 	"changecontentmodel-model-label": "Modelo de contenido nuevo:",
 	"changecontentmodel-reason-label": "Motivo:",
 	"changecontentmodel-submit": "Cambiar",
+	"changecontentmodel-create-submit": "Crear",
 	"changecontentmodel-success-title": "Se cambió el modelo de contenido",
 	"changecontentmodel-success-text": "Se ha cambiado el tipo de contenido de [[:$1]].",
 	"changecontentmodel-cannot-convert": "No se puede convertir el contenido de [[:$1]] en un tipo de $2.",
@@ -2628,6 +2631,7 @@
 	"remove-blocklink": "revocar bloqueo",
 	"manage-blocklink": "gestionar bloqueos",
 	"empty-username": "(nombre de usuario no disponible)",
+	"available-username": "Nombre de usuario disponible",
 	"blocklist-hidden-placeholder": "(nombre de usuario oculto)",
 	"blocklist-hidden-param": "nombre de usuario ocultado",
 	"contribslink": "contribs.",
@@ -3225,6 +3229,7 @@
 	"watchlistedit-table-title-pages": "Título de la página",
 	"watchlistedit-table-title-expiry": "Caduca",
 	"watchlistedit-table-remove-selected": "Dejar de seguir",
+	"watchlistedit-table-remove-selected-error": "No se puede eliminar páginas",
 	"watchlistedit-unwatch-confirmation-accept": "Quitar",
 	"watchlisttools-clear": "Vaciar la lista de seguimiento",
 	"watchlisttools-view": "Ver lista de seguimiento",
@@ -4105,5 +4110,6 @@
 	"table-of-contents-show-button-aria-label": "Mostrar índice",
 	"table-of-contents-hide-button-aria-label": "Ocultar la tabla de contenidos",
 	"diff-usergroups": "$1 {{PLURAL:$1|grupo|grupos}} de usuario",
-	"languageselector-no-results": "No se han encontrado resultados."
+	"languageselector-no-results": "No se han encontrado resultados.",
+	"languageselector-invalid-input": "\"$1\" no es un idioma válido."
 }

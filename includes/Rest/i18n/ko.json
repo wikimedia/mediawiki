@@ -302,7 +302,7 @@
 	"rest-endpoint-desc-get-sitemap-index": "사이트맵 내에서 사용 가능한 문서의 XML 목록을 반환합니다. 인덱스 기본값은 0이며, 추가 인덱스가 있는 경우 robots.txt 파일에 표시됩니다. 각 인덱스에는 최대 10,000개의 문서가 연결됩니다.",
 	"rest-endpoint-summ-get-sitemap-index": "사이트맵 문서 목록을 가져옵니다",
 	"rest-endpoint-desc-get-sitemap-page": "사이트에 있는 글 목록을 XML 형식으로 반환합니다. 각 항목에는 문서 URL과 최종 수정 날짜가 포함됩니다. 각 페이지에는 최대 10,000개의 URL 항목이 포함됩니다.",
-	"rest-endpoint-summ-get-sitemap-page": "페이지 당 기사 위치의 목록을 가져옵니다",
+	"rest-endpoint-summ-get-sitemap-page": "페이지 당 문서 위치의 목록을 가져옵니다",
 	"rest-param-desc-sitemap-index-id": "0부터 시작하는 사이트맵 인덱스입니다. 추가 인덱스는 robots.txt 파일에 지정되어 있습니다.",
 	"rest-param-desc-sitemap-page-id": "기사의 원하는 페이지입니다.",
 	"rest-param-desc-sitemap-include-namespace": "사이트맵에 포함할 이름공간 ID입니다. 지정하지 않으면 사이트 기본값을 사용합니다.",

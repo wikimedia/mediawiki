@@ -541,7 +541,7 @@
 	"temp-user-banner-tooltip-title": "Privremeni račun",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Vaš privremeni račun istječe za {{PLURAL:$1|1 dan|$1 dana}}.</strong> Nakon što istekne, novi privremeni račun bit će izrađen kada objavite izmjenu bez prijave.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Vaš privremeni račun ističe za manje od jednog dana.</strong> Nakon isteka, novi će biti izrađen onda kada objavite izmjenu neprijavljeni.",
-	"temp-user-banner-tooltip-description-learn-more": "Ovaj privremeni račun izrađen je nakon uređivanja bez računa na ovom pregledniku i uređaju. [[{{MediaWiki:tempuser-helppage}}|Detaljnije]].",
+	"temp-user-banner-tooltip-description-learn-more": "Ovaj privremeni račun izrađen je nakon uređivanja bez računa na ovom pregledniku i uređaju. [[$1|Detaljnije]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Prijavite se]] ili [[Special:CreateAccount|izradite račun]] da biste dobili zasluge za buduće izmjene i pristupili ostalim funkcijama.",
 	"blankarticle": "<strong>Napomena:</strong> Stranica koju izrađujete je prazna.\nAko ponovo kliknete na \"$1\", stranica će biti izrađena bez sadržaja.",
 	"anoneditwarning": "<strong>Napomena:</strong> Niste prijavljeni. Vaša IP adresa bit će javno vidljiva ako napravite neku izmjenu. Ako se <strong>[$1 prijavite]</strong> ili <strong>[$2 izradite račun]</strong>, Vaše izmjene bit će pripisane Vašem korisničkom imenu, pored drugih pogodnosti.",

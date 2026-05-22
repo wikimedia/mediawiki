@@ -538,7 +538,7 @@
 	"temp-user-banner-tooltip-title": "Уақытша тіркелгі",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Уақытша аккаунтыңыздың мерзімі {{PLURAL:$1|1 күн|$1 күн}} ішінде бітеді.</strong> Біткеннен кейін, жүйеге кірмей келесі рет өңдеу жасағанда жаңасы құрылады.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Уақытша аккаунтыңыздың мерзімі бір күннен аз уақыттың ішінде бітеді.</strong>  Біткеннен кейін, жүйеге кірмей келесі рет өңдеу жасағанда жаңасы құрылады.",
-	"temp-user-banner-tooltip-description-learn-more": "Мына браузер мен құрылғыда тіркелгісіз өңдеу жасалған соң уақытша тіркелгі жасалды. [[{{MediaWiki:tempuser-helppage}}|Толығырақ]]",
+	"temp-user-banner-tooltip-description-learn-more": "Мына браузер мен құрылғыда тіркелгісіз өңдеу жасалған соң уақытша тіркелгі жасалды. [[$1|Толығырақ]]",
 	"temp-user-banner-tooltip-description-login": "Өз атыңызбен үлес қосу үшін [[Special:UserLogin|жүйеге кіріңіз]], немесе жаңа [[Special:CreateAccount|тіркелгі жасаңыз]].",
 	"blankarticle": "<strong>Ескерту:</strong> сіз бастайын деп жатқан бет бос.\n«$1» дегенді қайта бассаңыз, бет мазмұнсыз құрылады.",
 	"anoneditwarning": "<strong>Ескерту:</strong> сіз кірмегенсіз. Өңдеме жасасаңыз, IP мекенжайыңыз жария болады. <strong>[$1 Кірсеңіз]</strong> немесе <strong>[$2 тіркелсеңіз]</strong>, өңдемелеріңіз қатысушы атыңызға атрибуцияланады және мұның басқа да артықшылықтары бар.",

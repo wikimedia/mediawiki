@@ -497,7 +497,7 @@
 	"temp-user-banner-description": "Tu izmanto pagaidu kontu",
 	"temp-user-banner-tooltip-label": "Vairāk informācijas par pagaidu kontiem",
 	"temp-user-banner-tooltip-title": "Pagaidu konts",
-	"temp-user-banner-tooltip-description-learn-more": "Šis pagaidu konts tika izveidots pēc tam, kad šajā pārlūkprogrammā un ierīcē tika veikts labojums bez konta. [[{{MediaWiki:tempuser-helppage}}|Uzzināt vairāk]].",
+	"temp-user-banner-tooltip-description-learn-more": "Šis pagaidu konts tika izveidots pēc tam, kad šajā pārlūkprogrammā un ierīcē tika veikts labojums bez konta. [[$1|Uzzināt vairāk]].",
 	"blankarticle": "<strong>Brīdinājums:</strong> Lapa, ko tu veido, ir tukša.\nJa tu vēlreiz nospiedīsi uz \"$1\", tiks izveidota lapa bez jebkāda satura.",
 	"anoneditwarning": "<strong>Uzmanību:</strong> tu neesi pieslēdzies. Ja veiksi labojumus, publiski būs redzama tava IP adrese. Ja tu <strong>[$1 pieslēgsies]</strong> vai <strong>[$2 izveidosi kontu]</strong>, visi labojumi tiks piesaistīti tavam kontam; būs arī citi ieguvumi.",
 	"anonpreviewwarning": "''Tu neesi ienācis. Saglabājot lapu, Tava IP adrese tiks ierakstīta šīs lapas hronoloģijā.''",
