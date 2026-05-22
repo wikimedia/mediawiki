@@ -379,8 +379,11 @@ class ContentHolder implements JsonCodecable {
 
 	public static function newFromJsonArray( array $json ): ContentHolder {
 		$holder = self::createEmpty();
-		$holder->convertDomToHtml(); // ensure in html form
 		$holder->isParsoidContent = $json['parsoid'] ?? false;
+		if ( $holder->isParsoidContent ) {
+			$holder->siteConfig = MediaWikiServices::getInstance()->getParsoidSiteConfig();
+		}
+		$holder->convertDomToHtml(); // ensure in html form
 		$holder->pageBundle = $json['pageBundle'] ?? ( $holder->isParsoidContent ? new BasePageBundle() : null );
 		if ( isset( $json['htmlMap'] ) ) {
 			$holder->htmlMap = $json['htmlMap'];
