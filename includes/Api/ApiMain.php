@@ -94,6 +94,9 @@ class ApiMain extends ApiBase {
 		],
 		'logout' => [
 			'class' => ApiLogout::class,
+			'services' => [
+				'SessionManager',
+			],
 		],
 		'createaccount' => [
 			'class' => ApiAMCreateAccount::class,

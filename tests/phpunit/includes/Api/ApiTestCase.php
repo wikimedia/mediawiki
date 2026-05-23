@@ -112,6 +112,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * - the request (WebRequest)
 	 * - the session data of the request (array)
 	 * - if $appendModule is true, the Api module $module
+	 * @phan-return {0:array,1:WebRequest,2:array,3?:ApiBase}
 	 * @throws ApiUsageException
 	 */
 	protected function doApiRequest( array $params, ?array $session = null,

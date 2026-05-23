@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Api;
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\User\User;
+use stdClass;
 
 /**
  * @group API
@@ -66,6 +67,26 @@ class ApiLogoutTest extends ApiTestCase {
 
 		$this->doUserLogout( $token, $user );
 		$this->assertFalse( $user->isRegistered() );
+	}
+
+	public function testUserLogoutGlobal() {
+		$user = $this->getTestSysop()->getUser();
+		$userToken = $user->getToken();
+		$hook = $this->getMockBuilder( stdClass::class )
+			->addMethods( [ 'onUserLogoutComplete' ] )
+			->getMock();
+		$hook->expects( $this->once() )->method( 'onUserLogoutComplete' )
+			->with( $user );
+		$this->setTemporaryHook( 'UserLogoutComplete', [ $hook, 'onUserLogoutComplete' ] );
+
+		$token = $this->getUserCsrfTokenFromApi( $user );
+		$this->doApiRequest( [
+			'action' => 'logout',
+			'global' => 1,
+			'token' => $token,
+		], null, false, $user );
+
+		$this->assertNotSame( $userToken, $user->getToken() );
 	}
 
 	private function getUserCsrfTokenFromApi( User $user ) {

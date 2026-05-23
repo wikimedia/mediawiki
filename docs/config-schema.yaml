@@ -5121,7 +5121,7 @@ config-schema:
         mergeStrategy: array_plus_2d
         default:
             '*': { createaccount: true, read: true, edit: true, createpage: true, createtalk: true, viewmyprivateinfo: true, editmyprivateinfo: true, editmyoptions: true }
-            user: { move: true, move-subpages: true, move-rootuserpages: true, move-categorypages: true, movefile: true, read: true, edit: true, createpage: true, createtalk: true, upload: true, reupload: true, reupload-shared: true, minoredit: true, editmyusercss: true, editmyuserjson: true, editmyuserjs: true, editmyuserjsredirect: true, sendemail: true, applychangetags: true, changetags: true, viewmywatchlist: true, editmywatchlist: true, createwithcontentmodel: true }
+            user: { move: true, move-subpages: true, move-rootuserpages: true, move-categorypages: true, movefile: true, read: true, edit: true, createpage: true, createtalk: true, upload: true, reupload: true, reupload-shared: true, minoredit: true, editmyusercss: true, editmyuserjson: true, editmyuserjs: true, editmyuserjsredirect: true, sendemail: true, applychangetags: true, changetags: true, viewmywatchlist: true, editmywatchlist: true, createwithcontentmodel: true, logout: true }
             autoconfirmed: { autoconfirmed: true, editsemiprotected: true }
             bot: { bot: true, autoconfirmed: true, editsemiprotected: true, nominornewtalk: true, autopatrol: true, suppressredirect: true, apihighlimits: true }
             sysop: { block: true, createaccount: true, createpreviouslyrenamedaccount: true, delete: true, bigdelete: true, deletedhistory: true, deletedtext: true, undelete: true, editcontentmodel: true, editinterface: true, editsitejson: true, edituserjson: true, import: true, importupload: true, move: true, move-subpages: true, move-rootuserpages: true, move-categorypages: true, patrol: true, autopatrol: true, protect: true, editprotected: true, rollback: true, upload: true, reupload: true, reupload-shared: true, unwatchedpages: true, autoconfirmed: true, editsemiprotected: true, ipblock-exempt: true, blockemail: true, markbotedits: true, apihighlimits: true, browsearchive: true, noratelimit: true, movefile: true, unblockself: true, suppressredirect: true, mergehistory: true, managechangetags: true, deletechangetags: true }
@@ -5806,6 +5806,7 @@ config-schema:
             createaccount: { createaccount: true }
             privateinfo: { viewmyprivateinfo: true }
             mergehistory: { mergehistory: true }
+            managesessions: { logout: true }
         type: object
         mergeStrategy: array_plus_2d
         additionalProperties:
@@ -5847,6 +5848,7 @@ config-schema:
             import: administration
             highvolume: high-volume
             privateinfo: private-information
+            managesessions: private-information
         type: object
         additionalProperties:
             type: string

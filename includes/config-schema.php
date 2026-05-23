@@ -1275,6 +1275,7 @@ return [
 					'viewmywatchlist' => true,
 					'editmywatchlist' => true,
 					'createwithcontentmodel' => true,
+					'logout' => true,
 				],
 				'autoconfirmed' => [
 					'autoconfirmed' => true,
@@ -1826,6 +1827,9 @@ return [
 				'mergehistory' => [
 					'mergehistory' => true,
 				],
+				'managesessions' => [
+					'logout' => true,
+				],
 			],
 			'GrantPermissionGroups' => [
 				'basic' => 'hidden',
@@ -1854,6 +1858,7 @@ return [
 				'import' => 'administration',
 				'highvolume' => 'high-volume',
 				'privateinfo' => 'private-information',
+				'managesessions' => 'private-information',
 			],
 			'GrantRiskGroups' => [
 				'basic' => 'low',

@@ -9,6 +9,9 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\Session\BotPasswordSessionProvider;
+use MediaWiki\Session\SessionManager;
+use MediaWiki\User\User;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * API module to allow users to log out of the wiki. API equivalent of
@@ -18,7 +21,40 @@ use MediaWiki\Session\BotPasswordSessionProvider;
  */
 class ApiLogout extends ApiBase {
 
+	public function __construct(
+		ApiMain $main,
+		string $action,
+		private readonly SessionManager $sessionManager
+	) {
+		parent::__construct( $main, $action );
+	}
+
 	public function execute() {
+		if ( $this->getUser()->isAnon() ) {
+			// Cannot log out an anon user, so add a warning and return early.
+			$this->addWarning( 'apierror-mustbeloggedin-generic', 'notloggedin' );
+			return;
+		}
+
+		if ( $this->getParameter( 'global' ) ) {
+			$this->checkUserRightsAny( 'logout' );
+			$this->doGlobalLogout();
+		} else {
+			$this->doLocalLogout();
+		}
+	}
+
+	protected function doGlobalLogout(): void {
+		$user = $this->getUser();
+		// remove cookies
+		$this->getRequest()->getSession()->unpersist();
+		$this->sessionManager->invalidateSessionsForUser( $user );
+		$this->callUserLogoutComplete( $user, $user->getName() );
+	}
+
+	protected function doLocalLogout(): void {
+		$user = $this->getUser();
+		$oldUserName = $user->getName();
 		$session = $this->getRequest()->getSession();
 
 		// Handle bot password logout specially
@@ -38,20 +74,24 @@ class ApiLogout extends ApiBase {
 			);
 		}
 
-		$user = $this->getUser();
-
-		if ( $user->isAnon() ) {
-			// Cannot logout a anon user, so add a warning and return early.
-			$this->addWarning( 'apierror-mustbeloggedin-generic', 'notloggedin' );
-			return;
-		}
-
-		$oldName = $user->getName();
 		$user->logout();
+		$this->callUserLogoutComplete( $user, $oldUserName );
+	}
 
+	protected function callUserLogoutComplete( User $user, string $oldUserName ) {
 		// Give extensions to do something after user logout
 		$injected_html = '';
-		$this->getHookRunner()->onUserLogoutComplete( $user, $injected_html, $oldName );
+		$this->getHookRunner()->onUserLogoutComplete( $user, $injected_html, $oldUserName );
+	}
+
+	/** @inheritDoc */
+	protected function getAllowedParams() {
+		return [
+			'global' => [
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false,
+			],
+		];
 	}
 
 	/** @inheritDoc */

@@ -3,10 +3,10 @@
 namespace MediaWiki\Tests\Unit\Api;
 
 use InvalidArgumentException;
+use MediaWiki\Api\ApiCheckToken;
 use MediaWiki\Api\ApiDisabled;
 use MediaWiki\Api\ApiFeedContributions;
 use MediaWiki\Api\ApiFeedRecentChanges;
-use MediaWiki\Api\ApiLogout;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiModuleManager;
 use MediaWiki\Api\ApiRsd;
@@ -125,7 +125,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 			'simple' => [
 				[
 					'rsd' => ApiRsd::class,
-					'logout' => ApiLogout::class,
+					'checktoken' => ApiCheckToken::class,
 				],
 				'action',
 			],
@@ -136,10 +136,10 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 						'class' => ApiRsd::class,
 						'factory' => [ self::class, 'newApiRsd' ],
 					],
-					'logout' => [
-						'class' => ApiLogout::class,
+					'checktoken' => [
+						'class' => ApiCheckToken::class,
 						'factory' => static function ( ApiMain $main, $action ) {
-							return new ApiLogout( $main, $action );
+							return new ApiCheckToken( $main, $action );
 						},
 					],
 				],
@@ -171,10 +171,10 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 				'class' => ApiRsd::class,
 				'factory' => [ self::class, 'newApiRsd' ],
 			],
-			'logout' => [
-				'class' => ApiLogout::class,
+			'checktoken' => [
+				'class' => ApiCheckToken::class,
 				'factory' => static function ( ApiMain $main, $action ) {
-					return new ApiLogout( $main, $action );
+					return new ApiCheckToken( $main, $action );
 				},
 			],
 		];
@@ -200,8 +200,8 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 
 			'with closure' => [
 				$modules,
-				'logout',
-				ApiLogout::class,
+				'checktoken',
+				ApiCheckToken::class,
 			],
 		];
 	}
@@ -237,7 +237,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 	public function testGetModule_null() {
 		$modules = [
 			'rsd' => ApiRsd::class,
-			'logout' => ApiLogout::class,
+			'checktoken' => ApiCheckToken::class,
 		];
 
 		$moduleManager = $this->getModuleManager();
@@ -253,7 +253,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 	public function testGetNames() {
 		$fooModules = [
 			'rsd' => ApiRsd::class,
-			'logout' => ApiLogout::class,
+			'checktoken' => ApiCheckToken::class,
 		];
 
 		$barModules = [
@@ -279,7 +279,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 	public function testGetNamesWithClasses() {
 		$fooModules = [
 			'rsd' => ApiRsd::class,
-			'logout' => ApiLogout::class,
+			'checktoken' => ApiCheckToken::class,
 		];
 
 		$barModules = [
@@ -308,7 +308,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 	public function testGetModuleGroup() {
 		$fooModules = [
 			'rsd' => ApiRsd::class,
-			'logout' => ApiLogout::class,
+			'checktoken' => ApiCheckToken::class,
 		];
 
 		$barModules = [
@@ -331,7 +331,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 	public function testGetGroups() {
 		$fooModules = [
 			'rsd' => ApiRsd::class,
-			'logout' => ApiLogout::class,
+			'checktoken' => ApiCheckToken::class,
 		];
 
 		$barModules = [
@@ -353,7 +353,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 	public function testGetClassName() {
 		$fooModules = [
 			'rsd' => ApiRsd::class,
-			'logout' => ApiLogout::class,
+			'checktoken' => ApiCheckToken::class,
 		];
 
 		$barModules = [
@@ -370,8 +370,8 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 			$moduleManager->getClassName( 'rsd' )
 		);
 		$this->assertEquals(
-			ApiLogout::class,
-			$moduleManager->getClassName( 'logout' )
+			ApiCheckToken::class,
+			$moduleManager->getClassName( 'checktoken' )
 		);
 		$this->assertEquals(
 			ApiFeedContributions::class,
@@ -392,11 +392,11 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( '$spec must define a class name' );
 		$moduleManager->addModule(
-			'logout',
+			'checktoken',
 			'action',
 			[
 				'factory' => static function ( ApiMain $main, $action ) {
-					return new ApiLogout( $main, $action );
+					return new ApiCheckToken( $main, $action );
 				},
 			]
 		);

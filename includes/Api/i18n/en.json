@@ -314,6 +314,7 @@
 
 	"apihelp-logout-summary": "Log out and clear session data.",
 	"apihelp-logout-example-logout": "Log the current user out.",
+	"apihelp-logout-param-global": "Log the user out from all their devices (rather than their current device only).",
 
 	"apihelp-managetags-summary": "Perform management tasks relating to change tags.",
 	"apihelp-managetags-param-operation": "Which operation to perform:",

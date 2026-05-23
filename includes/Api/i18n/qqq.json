@@ -310,6 +310,7 @@
 	"apihelp-login-example-login": "{{doc-apihelp-example|login}}\n{{Identical|Log in}}",
 	"apihelp-logout-summary": "{{doc-apihelp-summary|logout}}",
 	"apihelp-logout-example-logout": "{{doc-apihelp-example|logout}}",
+	"apihelp-logout-param-global": "{{doc-apihelp-param|logout|global}}",
 	"apihelp-managetags-summary": "{{doc-apihelp-summary|managetags}}",
 	"apihelp-managetags-param-operation": "{{doc-apihelp-param|managetags|operation}}",
 	"apihelp-managetags-paramvalue-operation-create": "{{doc-apihelp-paramvalue|managetags|operation|create}}",

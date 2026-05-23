@@ -8103,6 +8103,7 @@ class MainConfigSchema {
 				'viewmywatchlist' => true,
 				'editmywatchlist' => true,
 				'createwithcontentmodel' => true,
+				'logout' => true,
 			],
 			'autoconfirmed' => [
 				'autoconfirmed' => true,
@@ -9323,6 +9324,9 @@ class MainConfigSchema {
 			'mergehistory' => [
 				'mergehistory' => true,
 			],
+			'managesessions' => [
+				'logout' => true,
+			],
 		],
 		'type' => 'map',
 		'mergeStrategy' => 'array_plus_2d',
@@ -9380,6 +9384,7 @@ class MainConfigSchema {
 				'highvolume'          => 'high-volume',
 
 				'privateinfo'         => 'private-information',
+				'managesessions'      => 'private-information',
 			],
 		'type' => 'map',
 		'additionalProperties' => [ 'type' => 'string', ],

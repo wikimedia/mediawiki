@@ -117,6 +117,10 @@ For notes on 1.46.x and older releases, see HISTORY.
   error into meta=authmanagerinfo&amirequestsfor=login as 'amireauthenticate',
   and then passing the received requests to action=clientlogin and following
   the normal login process.
+* The action=logout API has a new 'global' optional parameter. When set to
+  truish, the user will be logged out on all devices, not just the current one.
+  Unlike the old behavior, global logout can be performed via an authentication
+  type where "log out on the current device" doesn't make sense (e.g. OAuth).
 * …
 
 === Action API internal changes in 1.47 ===
