@@ -98,6 +98,14 @@ module.exports = function ( grunt ) {
 						// Chrome requires --no-sandbox in Docker/CI.
 						// WMF CI images expose CHROMIUM_FLAGS which sets that.
 						flags: process.env.CHROMIUM_FLAGS ? ( process.env.CHROMIUM_FLAGS || '' ).split( ' ' ) : []
+					},
+					FirefoxCustom: {
+						base: 'FirefoxHeadless',
+						// Disable telemetry data submission. The startup phone-home is
+						// unnecessary in a test browser and shaves ~4% off QUnit runs.
+						prefs: {
+							'datareporting.policy.dataSubmissionEnabled': false
+						}
 					}
 				},
 				proxies: karmaProxy,
@@ -135,7 +143,7 @@ module.exports = function ( grunt ) {
 				browsers: [ 'FirefoxHeadless' ]
 			},
 			firefox: {
-				browsers: [ 'FirefoxHeadless' ]
+				browsers: [ 'FirefoxCustom' ]
 			},
 			chrome: {
 				browsers: [ 'ChromeCustom' ]
