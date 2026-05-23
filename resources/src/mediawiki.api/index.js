@@ -257,13 +257,6 @@
 
 			this.preprocessParameters( parameters, this.defaults.useUS );
 
-			// Add the 'action' query parameter to the request URL, and not just POST request body,
-			// for ease of use in debugging, analytics, and request routing or filtering. (T421288)
-			if ( ajaxOptions.type === 'POST' && parameters.action !== undefined ) {
-				ajaxOptions.url += ( ajaxOptions.url.includes( '?' ) ? '&' : '?' ) +
-					'action=' + encodeURIComponent( parameters.action );
-			}
-
 			// If multipart/form-data has been requested and emulation is possible, emulate it
 			if (
 				ajaxOptions.type === 'POST' &&
@@ -306,6 +299,21 @@
 			const lowercaseHeaders = Object.keys( ajaxOptions.headers || {} ).map( ( k ) => k.toLowerCase() );
 			if ( !lowercaseHeaders.includes( 'api-user-agent' ) ) {
 				ajaxOptions.headers[ 'Api-User-Agent' ] = this.defaults.userAgent;
+			}
+
+			if ( ajaxOptions.type === 'GET' && ajaxOptions.data.length > 7500 ) {
+				// Change GET requests which are likely to fail due to URL length limits
+				// to read-only POST requests. One day this should use QUERY instead. (T410883)
+				ajaxOptions.type = 'POST';
+				ajaxOptions.headers[ 'Promise-Non-Write-API-Action' ] = 'true';
+				mw.log.warn( 'API request method changed from GET to POST due to URL length', ajaxOptions );
+			}
+
+			// Add the 'action' query parameter to the request URL, and not just POST request body,
+			// for ease of use in debugging, analytics, and request routing or filtering. (T421288)
+			if ( ajaxOptions.type === 'POST' && parameters.action !== undefined ) {
+				ajaxOptions.url += ( ajaxOptions.url.includes( '?' ) ? '&' : '?' ) +
+					'action=' + encodeURIComponent( parameters.action );
 			}
 
 			// Make the AJAX request
