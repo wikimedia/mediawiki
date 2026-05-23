@@ -1290,7 +1290,7 @@ class SkinTemplate extends Skin {
 						];
 					}
 				// Checks if the page has some kind of viewable source content
-				} elseif ( $shadowPage?->hasPreloadContent() ) {
+				} elseif ( $title->exists() || $shadowPage?->hasPreloadContent() ) {
 					// Adds view source view link
 					$content_navigation['views']['viewsource'] = [
 						'class' => ( $onPage && $action == 'edit' ) ? 'selected' : null,
