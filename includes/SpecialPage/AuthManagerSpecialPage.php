@@ -20,6 +20,7 @@ use MediaWiki\Profiler\Profiler;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\Token;
+use MediaWiki\Specials\Helpers\LoginHelper;
 use MediaWiki\Status\Status;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWCryptRand;
@@ -582,6 +583,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @param array $options (since 1.43)
 	 *   - reset (bool, default false): Reset the authentication process, i.e. omit parameters
 	 *     which are related to continuing in-progress authentication.
+	 *   - params (array, since 1.47): Additional preserved parameters.
 	 *   - withToken (bool, default false): Include CSRF token
 	 *   Before 1.43, this was a boolean flag identical to the current 'withToken' option.
 	 *   That usage is deprecated.
@@ -597,32 +599,17 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			'reset' => false,
 			'withToken' => false,
 		];
-		$params = [];
-		$request = $this->getRequest();
 
-		$params += [
-			'uselang' => $request->getVal( 'uselang' ),
-			'variant' => $request->getVal( 'variant' ),
-			'returnto' => $request->getVal( 'returnto' ),
-			'returntoquery' => $request->getVal( 'returntoquery' ),
-			'returntoanchor' => $request->getVal( 'returntoanchor' ),
-		];
-
+		$params = $options['params'] ?? [];
 		if ( !$options['reset'] && $this->authAction !== $this->getDefaultAction( $this->subPage ) ) {
 			$params['authAction'] = $this->getContinueAction( $this->authAction );
 		}
-
 		if ( $options['withToken'] ) {
 			$params[$this->getTokenName()] = $this->getToken()->toString();
 		}
 
-		// Allow authentication extensions like CentralAuth to preserve their own
-		// query params during and after the authentication process.
-		$this->getHookRunner()->onAuthPreserveQueryParams(
-			$params, [ 'request' => $request, 'reset' => $options['reset'] ]
-		);
-
-		return array_filter( $params, static fn ( $val ) => $val !== null );
+		$loginHelper = new LoginHelper( $this->getContext() );
+		return $loginHelper->getPreservedParams( [ 'reset' => $options['reset'], 'params' => $params ] );
 	}
 
 	/**

@@ -250,7 +250,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/** @inheritDoc */
 	protected function getPreservedParams( $options = [] ) {
-		$params = parent::getPreservedParams( $options );
+		$params = $options['params'] ?? [];
 
 		// Override returnto* with their property-based values, to account for the
 		// special-casing in load().
@@ -276,12 +276,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$params['fromhttp'] = $this->mFromHTTP ? '1' : null;
 		}
 
-		$displayMode = $this->getLoginHelper()->getDisplayMode();
-		if ( $displayMode !== LoginHelper::DISPLAY_MODE_DEFAULT ) {
-			$params[ LoginHelper::DISPLAY_MODE_PARAM_NAME ] = $displayMode;
-		}
-
-		return array_filter( $params, static fn ( $val ) => $val !== null );
+		$options['params'] = $params;
+		return parent::getPreservedParams( $options );
 	}
 
 	/** @inheritDoc */

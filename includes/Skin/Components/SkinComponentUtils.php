@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Skin\Components;
 
-use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Specials\Helpers\LoginHelper;
 use MediaWiki\Title\Title;
 
 class SkinComponentUtils {
@@ -30,17 +30,8 @@ class SkinComponentUtils {
 			|| $title->isSpecial( 'CreateAccount' )
 			|| $title->isSpecial( 'Userlogout' )
 		) {
-			$params = [
-				'uselang' => $request->getVal( 'uselang' ),
-				'variant' => $request->getVal( 'variant' ),
-				'display' => $request->getVal( 'display' ),
-				'returnto' => $request->getVal( 'returnto' ),
-				'returntoquery' => $request->getVal( 'returntoquery' ),
-				'returntoanchor' => $request->getVal( 'returntoanchor' ),
-			];
-			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
-				->onAuthPreserveQueryParams( $params, [ 'request' => $request, 'reset' => true ] );
-			return array_filter( $params, static fn ( $val ) => $val !== null );
+			$loginHelper = new LoginHelper( RequestContext::getMain() );
+			return $loginHelper->getPreservedParams( [ 'request' => $request, 'reset' => true ] );
 		}
 
 		# Due to T34276, if a user does not have read permissions,

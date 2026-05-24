@@ -12,6 +12,7 @@ use MediaWiki\Title\Title;
 /**
  * Helper functions for the login form that need to be shared with other special pages
  * (such as CentralAuth's SpecialCentralLogin).
+ * @newable
  * @since 1.27
  */
 class LoginHelper extends ContextSource {
@@ -159,6 +160,44 @@ class LoginHelper extends ContextSource {
 		}
 
 		return self::DISPLAY_MODE_DEFAULT;
+	}
+
+	/**
+	 * Returns an URL query parameter array which contains state information that should be
+	 * preserved when navigating to the next (or first) step of a login or signup process.
+	 * These parameters can be included in links / forms to preserve things like the layout
+	 * or the language, which are normally preserved via user preferences, but during
+	 * login/signup, probably not.
+	 *
+	 * This is basically a wrapper around the AuthPreserveQueryParams hook to work around
+	 * the fact that there is no easy way to add hook handlers in core.
+	 *
+	 * @param array $options
+	 *   - reset (bool, default false): Reset the authentication process, i.e. omit
+	 *     parameters which are related to continuing in-progress authentication.
+	 *     This is used e.g. in the link for switching from the login form to the
+	 *     signup form.
+	 *   - params (array): Additional preserved parameters.
+	 *   - request (WebRequest): The request object. Can be omitted to use LoginHelper's
+	 *     context object.
+	 * @phan-param array{reset?: bool} $options
+	 * @since 1.47
+	 */
+	public function getPreservedParams( array $options ): array {
+		$request = $options['request'] ?? $this->getRequest();
+		$params = ( $options['params'] ?? [] ) + [
+			'uselang' => $request->getVal( 'uselang' ),
+			'variant' => $request->getVal( 'variant' ),
+			'display' => $request->getVal( 'display' ),
+			'returnto' => $request->getVal( 'returnto' ),
+			'returntoquery' => $request->getVal( 'returntoquery' ),
+			'returntoanchor' => $request->getVal( 'returntoanchor' ),
+		];
+		$params = array_filter( $params, static fn ( $val ) => $val !== null );
+
+		$options += [ 'request' => $request ];
+		$this->getHookRunner()->onAuthPreserveQueryParams( $params, $options );
+		return array_filter( $params, static fn ( $val ) => $val !== null );
 	}
 }
 
