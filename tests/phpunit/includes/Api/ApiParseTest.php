@@ -856,6 +856,34 @@ class ApiParseTest extends ApiTestCase {
 		);
 	}
 
+	public function testModulesFromApiParseMakeOutputPageHook() {
+		$this->setTemporaryHook( 'ApiParseMakeOutputPage',
+			static function ( $module, $outputPage ) {
+				$outputPage->addModules( [ 'hook.foo', 'hook.bar' ] );
+				$outputPage->addModuleStyles( [ 'hook.foo.styles' ] );
+			}
+		);
+
+		$res = $this->doApiRequest( [
+			'action' => 'parse',
+			'title' => __CLASS__,
+			'text' => 'Content',
+			'prop' => 'headhtml|modules|jsconfigvars',
+		] );
+
+		$this->assertArrayContains(
+			[ 'hook.foo', 'hook.bar' ],
+			$res[0]['parse']['modules'],
+			'resp.parse.modules'
+		);
+		$this->assertArrayContains(
+			[ 'hook.foo.styles' ],
+			$res[0]['parse']['modulestyles'],
+			'resp.parse.modulestyles'
+		);
+		$this->assertArrayNotHasKey( 'warnings', $res[0] );
+	}
+
 	public function testIndicators() {
 		$res = $this->doApiRequest( [
 			'action' => 'parse',
