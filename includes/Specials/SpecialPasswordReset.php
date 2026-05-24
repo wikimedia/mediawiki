@@ -119,15 +119,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 * @return array
 	 */
 	private function getPreservedParams(): array {
-		$params = [];
-
-		$request = $this->getRequest();
-		$value = $request->getRawVal( 'display' );
-		if ( $value !== null ) {
-			$params['display'] = $value;
-		}
-
-		return $params;
+		$loginHelper = new LoginHelper( $this->getContext() );
+		return $loginHelper->getPreservedParams( [] );
 	}
 
 	/** @inheritDoc */
