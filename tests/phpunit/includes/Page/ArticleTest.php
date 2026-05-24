@@ -544,7 +544,7 @@ class ArticleTest extends ParserCacheTestBase {
 		}
 	}
 
-	public function provideParsoidLanguageConversion() {
+	public static function provideParsoidLanguageConversion() {
 		yield "Same variant, should be cached" => [ true ];
 		yield "Different variant, should not be cached" => [ false ];
 	}

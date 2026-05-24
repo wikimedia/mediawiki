@@ -1933,12 +1933,13 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideAllowsAuthenticationDataChange
 	 */
 	public function testAllowsAuthenticationDataChange(
-		AuthenticationRequest $req,
+		callable $req,
 		StatusValue $primaryReturn,
 		StatusValue $secondaryReturn,
 		Status $expect,
 		array $expectedLogs = []
 	) {
+		$req = $req( $this );
 		$mock1 = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
 		$mock1->method( 'getUniqueId' )->willReturn( '1' );
 		$mock1->method( 'providerAllowsAuthenticationDataChange' )
@@ -1960,14 +1961,19 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expectedLogs, $this->logger->getBuffer() );
 	}
 
-	public function provideAllowsAuthenticationDataChange() {
-		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
-		$invalidReq = $this->getMockBuilder( AuthenticationRequest::class )
-			->onlyMethods( [ 'validate' ] )
-			->getMockForAbstractClass();
-		$invalidReq->expects( $this->any() )
-			->method( 'validate' )
-			->willReturn( StatusValue::newFatal( 'invalid' ) );
+	public static function provideAllowsAuthenticationDataChange() {
+		$req = static function ( $testCase ) {
+			return $testCase->getMockForAbstractClass( AuthenticationRequest::class );
+		};
+		$invalidReq = static function ( $testCase ) {
+			$invalidReq = $testCase->getMockBuilder( AuthenticationRequest::class )
+				->onlyMethods( [ 'validate' ] )
+				->getMockForAbstractClass();
+			$invalidReq->expects( $testCase->any() )
+				->method( 'validate' )
+				->willReturn( StatusValue::newFatal( 'invalid' ) );
+			return $invalidReq;
+		};
 
 		$ignored = Status::newGood( 'ignored' );
 		$ignored->warning( 'authmanager-change-not-supported' );

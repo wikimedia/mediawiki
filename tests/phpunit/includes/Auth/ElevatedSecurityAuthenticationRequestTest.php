@@ -48,14 +48,14 @@ class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTes
 	 */
 	public function testGetFieldInfo( array $args ) {
 		// HACK getTestUser() cannot be called in a data provider so we must generate the session here.
-		[ $session, $securityLevel ] = $args[0]();
+		[ $session, $securityLevel ] = $args[0]( $this );
 		parent::testGetFieldInfo( [ $session, $securityLevel ] );
 	}
 
-	public function provideGetFieldInfoCallbacks() {
-		yield [ [ function () {
+	public static function provideGetFieldInfoCallbacks() {
+		yield [ [ static function ( $testCase ) {
 			$session = RequestContext::getMain()->getRequest()->getSession();
-			$user = $this->getTestUser()->getUser();
+			$user = $testCase->getTestUser()->getUser();
 			$session->setUser( $user );
 			return [ $session, 'foo' ];
 		} ] ];
@@ -72,7 +72,7 @@ class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTes
 	public function testLoadFromSubmission( array $args, ?array $data = null, $expectState = null ) {
 		// HACK getTestUser() cannot be called in a data provider so we must generate the
 		// arguments here. To keep compatible with the parent method, pass a callback as $args[0]
-		[ $args, $data, $expectState ] = array_values( call_user_func( $args[0] ) );
+		[ $args, $data, $expectState ] = array_values( call_user_func( $args[0], $this ) );
 		parent::testLoadFromSubmission( $args, $data, $expectState );
 	}
 
@@ -82,10 +82,10 @@ class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTes
 		throw new BadMethodCallException( 'Should not be called' );
 	}
 
-	public function provideLoadFromSubmissionCallbacks() {
-		yield 'not present' => [ [ function () {
+	public static function provideLoadFromSubmissionCallbacks() {
+		yield 'not present' => [ [ static function ( $testCase ) {
 			$session = RequestContext::getMain()->getRequest()->getSession();
-			$user = $this->getTestUser()->getUser();
+			$user = $testCase->getTestUser()->getUser();
 			$session->setUser( $user );
 			// HACK calculate the same token create() will. Stop the clock to make sure it is the same.
 			MWTimestamp::setFakeTime( time() );
@@ -102,9 +102,9 @@ class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTes
 				],
 			];
 		} ] ];
-		yield 'normal' => [ [ function () {
+		yield 'normal' => [ [ static function ( $testCase ) {
 			$session = RequestContext::getMain()->getRequest()->getSession();
-			$user = $this->getTestUser()->getUser();
+			$user = $testCase->getTestUser()->getUser();
 			$session->setUser( $user );
 			$token = $session->getToken( [ $user->getId(), 'foo' ], 'reauth' )->toString();
 			return [
@@ -121,9 +121,9 @@ class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTes
 				],
 			];
 		} ] ];
-		yield 'fake level in object' => [ [ function () {
+		yield 'fake level in object' => [ [ static function ( $testCase ) {
 			$session = RequestContext::getMain()->getRequest()->getSession();
-			$user = $this->getTestUser()->getUser();
+			$user = $testCase->getTestUser()->getUser();
 			$session->setUser( $user );
 			$correctToken = $session->getToken( [ $user->getId(), 'foo' ], 'reauth' )->toString();
 			$objectToken = $session->getToken( [ $user->getId(), 'bar' ], 'reauth' )->toString();
@@ -141,9 +141,9 @@ class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTes
 				],
 			];
 		} ] ];
-		yield 'fake level in token' => [ [ function () {
+		yield 'fake level in token' => [ [ static function ( $testCase ) {
 			$session = RequestContext::getMain()->getRequest()->getSession();
-			$user = $this->getTestUser()->getUser();
+			$user = $testCase->getTestUser()->getUser();
 			$session->setUser( $user );
 			$correctToken = $session->getToken( [ $user->getId(), 'foo' ], 'reauth' )->toString();
 			$submittedToken = $session->getToken( [ $user->getId(), 'bar' ], 'reauth' )->toString();
@@ -161,10 +161,10 @@ class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTes
 				],
 			];
 		} ] ];
-		yield 'wrong user' => [ [ function () {
+		yield 'wrong user' => [ [ static function ( $testCase ) {
 			$session = RequestContext::getMain()->getRequest()->getSession();
-			$user1 = $this->getTestUser()->getUser();
-			$user2 = $this->getTestUser( [ 'sysop' ] )->getUser();
+			$user1 = $testCase->getTestUser()->getUser();
+			$user2 = $testCase->getTestUser( [ 'sysop' ] )->getUser();
 			$session->setUser( $user1 );
 			$correctToken = $session->getToken( [ $user1->getId(), 'foo' ], 'reauth' )->toString();
 			$submittedToken = $session->getToken( [ $user2->getId(), 'foo' ], 'reauth' )->toString();
