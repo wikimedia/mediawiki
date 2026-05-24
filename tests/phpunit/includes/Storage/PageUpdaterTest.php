@@ -1194,28 +1194,28 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideEditedOtherUsersJSTag() {
 		yield 'own users js edited' => [
-			'myUserName' => 'Admin',
+			'userName' => 'Admin',
 			'pageToEdit' => 'User:Admin/common.js',
-			'contentModelOfPageToEdit' => CONTENT_MODEL_JAVASCRIPT,
-			'expectedEditTags' => [],
+			'contentModel' => CONTENT_MODEL_JAVASCRIPT,
+			'expected' => [],
 		];
 		yield 'other users js edited' => [
-			'myUserName' => 'Admin',
+			'userName' => 'Admin',
 			'pageToEdit' => 'User:SomeoneElse/common.js',
-			'contentModelOfPageToEdit' => CONTENT_MODEL_JAVASCRIPT,
-			'expectedEditTags' => [ ChangeTags::TAG_EDITED_OTHER_USERS_JS ],
+			'contentModel' => CONTENT_MODEL_JAVASCRIPT,
+			'expected' => [ ChangeTags::TAG_EDITED_OTHER_USERS_JS ],
 		];
 		yield 'own users non-js edited' => [
-			'myUserName' => 'Admin',
+			'userName' => 'Admin',
 			'pageToEdit' => 'User:Admin/subpage',
-			'contentModelOfPageToEdit' => CONTENT_MODEL_WIKITEXT,
-			'expectedEditTags' => [],
+			'contentModel' => CONTENT_MODEL_WIKITEXT,
+			'expected' => [],
 		];
 		yield 'other user non-js edited' => [
-			'myUserName' => 'Admin',
+			'userName' => 'Admin',
 			'pageToEdit' => 'User:SomeoneElse/subpage',
-			'contentModelOfPageToEdit' => CONTENT_MODEL_WIKITEXT,
-			'expectedEditTags' => [],
+			'contentModel' => CONTENT_MODEL_WIKITEXT,
+			'expected' => [],
 		];
 	}
 
@@ -1254,28 +1254,28 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideEditedOtherUsersCSSTag() {
 		yield 'own users css edited' => [
-			'myUserName' => 'Admin',
+			'userName' => 'Admin',
 			'pageToEdit' => 'User:Admin/common.css',
-			'contentModelOfPageToEdit' => CONTENT_MODEL_CSS,
-			'expectedEditTags' => [],
+			'contentModel' => CONTENT_MODEL_CSS,
+			'expected' => [],
 		];
 		yield 'other users css edited' => [
-			'myUserName' => 'Admin',
+			'userName' => 'Admin',
 			'pageToEdit' => 'User:SomeoneElse/common.css',
-			'contentModelOfPageToEdit' => CONTENT_MODEL_CSS,
-			'expectedEditTags' => [ ChangeTags::TAG_EDITED_OTHER_USERS_CSS ],
+			'contentModel' => CONTENT_MODEL_CSS,
+			'expected' => [ ChangeTags::TAG_EDITED_OTHER_USERS_CSS ],
 		];
 		yield 'own users non-css edited' => [
-			'myUserName' => 'Admin',
+			'userName' => 'Admin',
 			'pageToEdit' => 'User:Admin/subpage',
-			'contentModelOfPageToEdit' => CONTENT_MODEL_WIKITEXT,
-			'expectedEditTags' => [],
+			'contentModel' => CONTENT_MODEL_WIKITEXT,
+			'expected' => [],
 		];
 		yield 'other user non-css edited' => [
-			'myUserName' => 'Admin',
+			'userName' => 'Admin',
 			'pageToEdit' => 'User:SomeoneElse/subpage',
-			'contentModelOfPageToEdit' => CONTENT_MODEL_WIKITEXT,
-			'expectedEditTags' => [],
+			'contentModel' => CONTENT_MODEL_WIKITEXT,
+			'expected' => [],
 		];
 	}
 
