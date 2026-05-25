@@ -149,7 +149,7 @@
 	"thumbsize-small": "Malý",
 	"thumbsize-regular": "Standardní",
 	"thumbsize-large": "Velký",
-	"thumbsize-help": "Někteří uživatelé preferují náhledy obrázků, které jsou menší nebo větší, než je standard. Standardní velikost je $1 pixelů.",
+	"thumbsize-help": "Někteří uživatelé preferují náhledy obrázků, které jsou menší nebo větší, než je běžné. Standardní velikost je $1 pixelů.",
 	"prefs-diffs": "Porovnání verzí",
 	"tog-diffonly": "Nezobrazovat obsah stránky pod rozdílem verzí",
 	"tog-norollbackdiff": "Po vrácení změny nezobrazovat porovnání rozdílů",

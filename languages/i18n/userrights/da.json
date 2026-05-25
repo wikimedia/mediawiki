@@ -72,7 +72,7 @@
 	"group-user-member": "{{GENDER:$1|bruger}}",
 	"group-named-member": "{{GENDER:$1|registreret bruger}}",
 	"group-temp-member": "{{GENDER:$1|midlertidig bruger}}",
-	"group-autoconfirmed-member": "{{GENDER:$1|registreret bruger}}",
+	"group-autoconfirmed-member": "{{GENDER:$1|automatisk bekræftet bruger}}",
 	"group-bot-member": "{{GENDER:$1|bot}}",
 	"group-sysop-member": "{{GENDER:$1|administrator}}",
 	"group-interface-admin-member": "{{GENDER:$1|brugerfladeredaktør}}",

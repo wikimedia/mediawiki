@@ -1830,6 +1830,7 @@
 	"apierror-invalidparammix-mustusewith": "O parámetro <kbd>$1</kbd> só pode usarse xunto con <kbd>$2</kbd>.",
 	"apierror-invalidparammix-parse-new-section": "<kbd>section=new</kbd> non se pode combinar cos parámetros <var>oldid</var>, <var>pageid</var> e <var>page</var>. Por favor, utilice <var>title</var> e <var>text</var>.",
 	"apierror-invalidparammix": "{{PLURAL:$2|Os parámetros}} $1 non poden usarse xuntos.",
+	"apierror-invalidpostparams": "Os parámetros POST, se tamén se proporcionan no enderezo URL, deben ter valores coincidentes.",
 	"apierror-invalidsection": "O parámetro <var>section</var> debe ser un ID de sección válido ou <kbd>new</kbd>.",
 	"apierror-invalidsha1base36hash": "O código hash SHA1Base36 proporcionado non é correcto.",
 	"apierror-invalidsha1hash": "O código hash SHA1 proporcionado non é correcto.",

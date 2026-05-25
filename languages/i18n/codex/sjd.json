@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Merrahtar"
+		]
+	},
+	"cdx-message-dismiss-button-label": "Ка̄һтӭ",
+	"cdx-table-pager-items-per-page-current": "$1 {{PLURAL:$1|элеменнт|элемент|элеменнтэ}}",
+	"cdx-table-pager-items-per-page-default": "Пуадтмуж югке лыстэсьт",
+	"cdx-table-no-data-message": "Евла да̄ннэ."
+}

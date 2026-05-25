@@ -630,7 +630,7 @@
 	"lineno": "سطر $1:",
 	"compareselectedversions": "قارن بين النسختين المختارتين",
 	"showhideselectedversions": "عرض/تخبية المراجعات المختاره.",
-	"editundo": "استرجاع",
+	"editundo": "تراجع",
 	"diff-multi-sameuser": "({{PLURAL:$1|نسخه واحده متوسطه|$1 نسخ متوسطه}} بواسطة نفس {{GENDER:$3|اليوزر}} مش معروضه)",
 	"diff-multi-manyusers": "({{PLURAL:$1|نسخه واحده متوسطه|$1 نسخ متوسطه}} by {{PLURAL:$2|يوزر واحد |$2 يوزرات}}  مش معروضه)",
 	"searchresults": "نتايج التدوير",

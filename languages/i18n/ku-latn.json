@@ -1144,6 +1144,7 @@
 	"watchlist-options": "Vebijarkên lîsteya şopandinê",
 	"watching": "Tê şopandin...",
 	"unwatching": "Nay şopandin…",
+	"watchlistlabels-editpage-nolabels": "Ti [[Special:WatchlistLabels|etîketên te yên lîsteya şablondinê]] nîne.",
 	"enotif_reset": "Hemû rûpelan wek lêsekirî nîşanbide",
 	"enotif_impersonal_salutation": "Bikarhênerê {{GRAMMAR:oblique|{{SITENAME}}}}",
 	"enotif_subject_deleted": "Rûpela {{GRAMMAR:oblique|{{SITENAME}}}} ya $1 ji aliyê $2 {{GENDER:$2|hate jêbirin}}",

@@ -154,7 +154,7 @@
 	"thumbsize-small": "Smal",
 	"thumbsize-regular": "Fast",
 	"thumbsize-large": "Stor",
-	"thumbsize-help": "Nogle brugere foretrækker måske miniaturebilleder, der er mindre eller større end normalt. Standardstørrelsen er $1 pixel.",
+	"thumbsize-help": "Nogle brugere foretrækker måske miniaturebilleder, der er mindre eller større end normalt. Normal størrelse er $1 pixel.",
 	"prefs-diffs": "Forskelle",
 	"tog-diffonly": "Vis ikke sideindhold nedenunder versionssammenligninger",
 	"tog-norollbackdiff": "Vis ikke forskellen efter udførelse af en tilbagerulning",

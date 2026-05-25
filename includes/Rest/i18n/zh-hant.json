@@ -133,7 +133,7 @@
 	"rest-param-desc-compare-from-section-offset": "維基文本中區段開始的位元組偏移量",
 	"rest-param-desc-compare-to-desc": "「to」修訂版的細節",
 	"rest-param-desc-compare-to": "用於與基準版本進行比照之修訂識別碼",
-	"rest-param-desc-compare-to-id": "「to」版本的修訂識別碼",
+	"rest-param-desc-compare-to-id": "修訂識別碼",
 	"rest-param-desc-compare-to-slotrole": "被比較插槽的角色（目前始終是「main」）",
 	"rest-param-desc-compare-to-sections": "修訂版的前處理器區段，不含模板的擴展",
 	"rest-param-desc-compare-to-section-level": "章節層級",

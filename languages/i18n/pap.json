@@ -780,7 +780,7 @@
 	"whatlinkshere-title": "Página ku ta lenk na \"$1\"",
 	"whatlinkshere-page": "Página:",
 	"linkshere": "E siguiente páginanan ta lenk na <strong>$2</strong>:",
-	"nolinkshere": "Niun página no ta lenk na <strong>$2</strong>",
+	"nolinkshere": "Ningun página ta referí na <strong>$2</strong>",
 	"isredirect": "página redirigí",
 	"istemplate": "transklushon",
 	"isimage": "fail lenk",

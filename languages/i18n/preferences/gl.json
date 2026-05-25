@@ -139,7 +139,7 @@
 	"thumbsize-small": "Pequeno",
 	"thumbsize-regular": "Normal",
 	"thumbsize-large": "Grande",
-	"thumbsize-help": "Algúns usuarios poden preferir miniaturas máis pequenas ou máis grandes do normal. O tamaño estándar é $1 en píxeles.",
+	"thumbsize-help": "Algúns usuarios poden preferir miniaturas máis pequenas ou máis grandes do normal. O tamaño normal é $1 en píxeles.",
 	"prefs-diffs": "Diferenzas",
 	"tog-diffonly": "Non amosar o contido da páxina que estea por baixo das diferenzas entre as edicións",
 	"tog-norollbackdiff": "Omitir as diferenzas entre edicións logo de facer unha reversión",

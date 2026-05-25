@@ -1813,6 +1813,7 @@
 	"apierror-invalidparammix-mustusewith": "Le parametro <kbd>$1</kbd> pote solmente esser usate con <kbd>$2</kbd>.",
 	"apierror-invalidparammix-parse-new-section": "<kbd>section=new</kbd> non pote esser combinate con le parametros <var>oldid</var>, <var>pageid</var> o <var>page</var>. Per favor usa <var>title</var> e <var>text</var>.",
 	"apierror-invalidparammix": "Le parametro{{PLURAL:$2||s}} $1 non pote esser usate insimul.",
+	"apierror-invalidpostparams": "Le parametros POST, si etiam fornite in le URL, debe haber valores correspondente.",
 	"apierror-invalidsection": "Le parametro <var>section</var> debe esser un identificator de section valide o <kbd>new</kbd>.",
 	"apierror-invalidsha1base36hash": "Le hash SHA1Base36 fornite non es valide.",
 	"apierror-invalidsha1hash": "Le hash SHA1 fornite non es valide.",

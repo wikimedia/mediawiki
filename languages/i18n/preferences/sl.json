@@ -137,7 +137,7 @@
 	"thumbsize-small": "Majhno",
 	"thumbsize-regular": "Običajno",
 	"thumbsize-large": "Veliko",
-	"thumbsize-help": "Nekateri uporabniki imajo morda raje sličice, ki so manjše ali večje od običajnih. Standardna velikost je $1 piksel.",
+	"thumbsize-help": "Nekateri uporabniki imajo morda raje sličice, ki so manjše ali večje od običajnih. Običajna velikost je $1 piksel.",
 	"prefs-diffs": "Primerjave",
 	"tog-diffonly": "Pod primerjavo ne prikaži vsebine strani",
 	"tog-norollbackdiff": "Po izvedeni vrnitvi ne prikaži primerjave",
