@@ -3998,6 +3998,7 @@
 	"authmanager-realname-help": "Vrai nom de l’utilisateur",
 	"authmanager-elevatedsecurity-token-label": "Jeton pour une réauthentification sécurisée.",
 	"authmanager-elevatedsecurity-token-help": "Le jeton permettant de vérifier la réauthentification doit être renvoyé inchangé.",
+	"authmanager-elevatedsecurity-missing-token": "Le jeton de sécurité élevé nécessaire à la réauthentification est manquant.",
 	"authmanager-elevatedsecurity-invalid-token": "Jeton de sécurité élevé invalide. Cela signifie probablement que vous avez attendu trop longtemps avant de soumettre votre requête.",
 	"authmanager-elevatedsecurity-not-validated": "Erreur interne, la demande de sécurité élevée n'a pas été validée.",
 	"authmanager-provider-password": "Authentification par mot de passe",

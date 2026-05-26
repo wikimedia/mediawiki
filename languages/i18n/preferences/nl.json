@@ -157,7 +157,7 @@
 	"thumbsize-small": "Klein",
 	"thumbsize-regular": "Normaal",
 	"thumbsize-large": "Groot",
-	"thumbsize-help": "Sommige gebruikers geven wellicht de voorkeur aan miniaturen die kleiner of groter zijn dan normaal. De standaardgrootte is $1 pixels.",
+	"thumbsize-help": "Sommige gebruikers geven wellicht de voorkeur aan miniaturen die kleiner of groter zijn dan normaal. De normale grootte is $1 pixels.",
 	"prefs-diffs": "Verschillen",
 	"tog-diffonly": "Pagina-inhoud onder wijzigingen niet weergeven",
 	"tog-norollbackdiff": "Wijzigingen weglaten na terugdraaien",

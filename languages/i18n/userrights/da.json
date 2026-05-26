@@ -62,7 +62,7 @@
 	"group": "Gruppe:",
 	"group-user": "Brugere",
 	"group-temp": "Midlertidige brugere",
-	"group-autoconfirmed": "Registrerede brugere",
+	"group-autoconfirmed": "Automatisk bekræftede brugere",
 	"group-bot": "Robotter",
 	"group-sysop": "Administratorer",
 	"group-interface-admin": "Grænsesnitadministratorer",
