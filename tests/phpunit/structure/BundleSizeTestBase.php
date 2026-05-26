@@ -101,7 +101,6 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 
 		$maxSizeUncompressed = $testCase['maxSizeUncompressed'] ?? null;
 		$maxSize = $testCase['maxSize'] ?? null;
-		$projectName = $testCase['projectName'] ?? '';
 
 		if ( $maxSize === null && $maxSizeUncompressed === null ) {
 			$this->markTestSkipped( "The module $moduleName has opted out of bundle size testing." );
@@ -127,15 +126,13 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 		$contentTransferSize = strlen( gzencode( $content, 9 ) );
 		$contentTransferSize -= array_sum( self::CORE_SIZE_ADJUSTMENTS );
 		if ( $maxSize !== null ) {
-			$message = $projectName ?
-				"$projectName: $moduleName should be less than $maxSize bytes (compressed)" :
-				"$moduleName should be less than $maxSize bytes (compressed)";
+			$kilobytes = round( $contentTransferSize / 1024, 1, PHP_ROUND_HALF_UP );
+			$message = "$moduleName should be less than $maxSize bytes (compressed), but is $kilobytes kB";
 			$this->assertLessThan( $maxSize, $contentTransferSize, $message );
 		}
 		if ( $maxSizeUncompressed !== null ) {
-			$messageUncompressed = $projectName ?
-				"$projectName: $moduleName should be less than $maxSizeUncompressed bytes (uncompressed)" :
-				"$moduleName should be less than $maxSizeUncompressed (uncompressed) bytes";
+			$kilobytes = round( $contentTransferSizeUncompressed / 1024, 1, PHP_ROUND_HALF_UP );
+			$messageUncompressed = "$moduleName should be less than $maxSizeUncompressed (uncompressed) bytes, but is $kilobytes kB";
 			$this->assertLessThan( $maxSizeUncompressed, $contentTransferSizeUncompressed, $messageUncompressed );
 		}
 	}
