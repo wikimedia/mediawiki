@@ -141,7 +141,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		return $rev;
 	}
 
-	// TODO: test setArticleCountMethod() and isCountable();
+	// TODO: test isCountable();
 	// TODO: test isRedirect() and wasRedirect()
 
 	/**
@@ -1201,8 +1201,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$pcache = $this->getServiceContainer()->getParserCache();
 		$pcache->deleteOptionsKey( $page );
-
-		$updater->setArticleCountMethod( 'link' );
 
 		$options = []; // TODO: test *all* the options...
 

@@ -90,15 +90,16 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
+	public const array CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::ArticleCountMethod,
+		MainConfigNames::ParsoidCacheConfig,
+		MainConfigNames::UseRCPatrol,
+	];
+
 	private ?UserIdentity $user = null;
 	private readonly WikiPage $wikiPage;
 	private readonly HookRunner $hookRunner;
 	private LoggerInterface $logger;
-
-	/**
-	 * @var string|null see $wgArticleCountMethod
-	 */
-	private ?string $articleCountMethod;
 
 	/**
 	 * Stores (most of) the $options parameter of prepareUpdate().
@@ -201,11 +202,8 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		],
 	];
 
-	private readonly bool $warmParsoidParserCache;
-	private readonly bool $useRcPatrol;
-
 	public function __construct(
-		ServiceOptions $options,
+		private readonly ServiceOptions $serviceOptions,
 		PageIdentity $page,
 		private readonly RevisionStore $revisionStore,
 		private readonly RevisionRenderer $revisionRenderer,
@@ -224,17 +222,14 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		WikiPageFactory $wikiPageFactory,
 		private readonly ChangeTagsStore $changeTagsStore,
 	) {
+		$this->serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+
 		// TODO: Remove this cast eventually
 		$this->wikiPage = $wikiPageFactory->newFromTitle( $page );
 
 		$this->hookRunner = new HookRunner( $hookContainer );
 
 		$this->logger = new NullLogger();
-
-		$this->warmParsoidParserCache = $options
-			->get( MainConfigNames::ParsoidCacheConfig )['WarmParsoidParserCache'];
-		$this->useRcPatrol = $options
-			->get( MainConfigNames::UseRCPatrol ) ?? false;
 	}
 
 	public function setLogger( LoggerInterface $logger ): void {
@@ -396,14 +391,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		}
 
 		$this->forceEmptyRevision = $forceEmptyRevision;
-	}
-
-	/**
-	 * @param string|null $articleCountMethod "any" or "link".
-	 * @see $wgArticleCountMethod
-	 */
-	public function setArticleCountMethod( ?string $articleCountMethod ) {
-		$this->articleCountMethod = $articleCountMethod;
 	}
 
 	/**
@@ -635,7 +622,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 		$hasLinks = null;
 
-		if ( $this->articleCountMethod === 'link' ) {
+		if ( $this->serviceOptions->get( MainConfigNames::ArticleCountMethod ) === 'link' ) {
 			// NOTE: it would be more appropriate to determine for each slot separately
 			// whether it has links, and use that information with that slot's
 			// isCountable() method. However, that would break parity with
@@ -1529,7 +1516,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			// This drives RevertedTagUpdateManager::approveRevertedTagForRevision.
 			// It is only needed if RCPatrolling is enabled and the edit is a revert.
 			// Skip in other cases to avoid flooding the cache, see T386217 and T388573.
-			if ( $editResult->isRevert() && $this->useRcPatrol ) {
+			if ( $editResult->isRevert() && $this->serviceOptions->get( MainConfigNames::UseRCPatrol ) ) {
 				$this->editResultCache->set(
 					$this->revision->getId(),
 					$editResult
@@ -1808,7 +1795,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		// If we enable cache warming with parsoid outputs, let's do it at the same
 		// time we're populating the parser cache with pre-generated HTML.
 		// Use OPT_FORCE_PARSE to avoid a useless cache lookup.
-		if ( $this->warmParsoidParserCache ) {
+		if ( $this->serviceOptions->get( MainConfigNames::ParsoidCacheConfig )['WarmParsoidParserCache'] ) {
 			$cacheWarmingParams = $this->getCauseForTracing();
 			$cacheWarmingParams['options'] = ParserOutputAccess::OPT_FORCE_PARSE;
 

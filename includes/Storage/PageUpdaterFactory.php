@@ -188,7 +188,10 @@ class PageUpdaterFactory {
 	 */
 	public function newDerivedPageDataUpdater( PageIdentity $page ): DerivedPageDataUpdater {
 		$derivedDataUpdater = new DerivedPageDataUpdater(
-			$this->options,
+			new ServiceOptions(
+				DerivedPageDataUpdater::CONSTRUCTOR_OPTIONS,
+				$this->options,
+			),
 			$page,
 			$this->revisionStore,
 			$this->revisionRenderer,
@@ -209,8 +212,6 @@ class PageUpdaterFactory {
 		);
 
 		$derivedDataUpdater->setLogger( $this->logger );
-		$derivedDataUpdater->setArticleCountMethod(
-			$this->options->get( MainConfigNames::ArticleCountMethod ) );
 
 		return $derivedDataUpdater;
 	}
