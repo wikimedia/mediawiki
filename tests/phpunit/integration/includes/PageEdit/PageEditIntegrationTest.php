@@ -13,6 +13,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\PageEdit\PageEdit
+ * @covers \MediaWiki\PageEdit\PageEditInputs
  * @group Database
  */
 class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {

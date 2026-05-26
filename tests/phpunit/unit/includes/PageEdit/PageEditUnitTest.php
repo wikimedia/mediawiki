@@ -27,6 +27,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\PageEdit\PageEdit
+ * @covers \MediaWiki\PageEdit\PageEditInputs
  */
 class PageEditUnitTest extends MediaWikiUnitTestCase {
 	use MockAuthorityTrait;
