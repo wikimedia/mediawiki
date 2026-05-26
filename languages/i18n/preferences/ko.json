@@ -118,7 +118,7 @@
 	"tog-enotifminoredits": "문서나 파일의 사소한 편집도 이메일로 알림",
 	"tog-enotifrevealaddr": "알림 메일에 내 이메일 주소를 밝히기",
 	"prefs-user-pages": "사용자 문서",
-	"prefs-rendering": "보이기",
+	"prefs-rendering": "외관",
 	"prefs-description-rendering": "스킨, 크기 및 읽기 옵션을 구성합니다.",
 	"prefs-skin": "스킨",
 	"skin-preview": "미리 보기",

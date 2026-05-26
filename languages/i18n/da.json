@@ -374,7 +374,7 @@
 	"perfcachedts": "Disse data stammer fra cachen, som senest blev opdateret $1. Der gemmes højst {{PLURAL:$4|ét resultat|$4 resultater}} i cachen.",
 	"querypage-no-updates": "Opdateringer til denne side er deaktiveret for øjeblikket. Dataene bliver indtil videre ikke fornyet.",
 	"querypage-updates-periodical": "Opdateringer for denne side køres periodisk.",
-	"viewsource": "Se kildekode",
+	"viewsource": "Vis kilde",
 	"protection-indicator-title-infinity": "Denne side er beskyttet, så kun brugere med tilladelsen \"$1\" kan redigere den.",
 	"protection-indicator-title": "Denne side er beskyttet, så kun brugere med tilladelsen \"$1\" kan redigere den indtil $2.",
 	"skin-action-viewsource": "Vis kilde",
