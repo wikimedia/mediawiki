@@ -18,11 +18,6 @@ use Wikimedia\Services\ServiceContainer;
  * @covers \MediaWiki\ShadowPage\ShadowPageLoader
  */
 class ShadowPageLoaderTest extends \MediaWikiUnitTestCase {
-	private PageReferenceValue $shadowed;
-	private PageReferenceValue $unshadowed;
-
-	public function setUp(): void {
-	}
 
 	private function newLoader() {
 		$singlePageCallback = static function ( LinkTarget|PageReference $title ) {

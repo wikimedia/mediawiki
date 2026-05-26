@@ -1466,14 +1466,10 @@ class LocalisationCache {
 
 	/**
 	 * Override a subitem value. For use in tests.
-	 *
-	 * @param string $code
-	 * @param string $key
-	 * @param string $subkey
-	 * @param mixed $value
-	 * @return void
 	 */
-	public function setSubitemForTesting( $code, $key, $subkey, $value ) {
+	public function setSubitemForTesting(
+		string $code, string $key, string $subkey, mixed $value
+	): void {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new LogicException( __METHOD__ . '() should be called only from tests!' );
 		}

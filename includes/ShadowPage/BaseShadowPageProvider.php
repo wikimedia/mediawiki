@@ -7,14 +7,12 @@ namespace MediaWiki\ShadowPage;
  * @since 1.47
  */
 abstract class BaseShadowPageProvider implements ShadowPageProvider {
-	/** @var ParseHelper */
-	private $parseHelper;
+	private ParseHelper $parseHelper;
 
 	/**
 	 * @internal
-	 * @param ParseHelper $parseHelper
 	 */
-	public function initBaseDeps( ParseHelper $parseHelper ) {
+	public function initBaseDeps( ParseHelper $parseHelper ): void {
 		$this->parseHelper = $parseHelper;
 	}
 

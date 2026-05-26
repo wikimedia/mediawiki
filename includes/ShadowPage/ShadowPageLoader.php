@@ -37,10 +37,10 @@ class ShadowPageLoader {
 	private const EXTENSION = 1;
 
 	/** @var ShadowPageProvider[][] */
-	private $providers = [];
+	private array $providers = [];
 
 	/** @var ShadowPageProvider[][] */
-	private $providersForNamespace = [];
+	private array $providersForNamespace = [];
 
 	private ?PageReference $cachedTitle = null;
 	private ?ShadowPage $cachedShadow = null;
@@ -65,9 +65,6 @@ class ShadowPageLoader {
 
 	/**
 	 * Try to get a ShadowPage for the given title.
-	 *
-	 * @param PageReference $title
-	 * @return ShadowPage|null
 	 */
 	public function get( PageReference $title ): ?ShadowPage {
 		if ( $this->cachedTitle && $title->isSamePageAs( $this->cachedTitle ) ) {
@@ -81,9 +78,6 @@ class ShadowPageLoader {
 	/**
 	 * Check if a link should be shown as existing, due to the existence of
 	 * shadow content at that location.
-	 *
-	 * @param LinkTarget $link
-	 * @return bool
 	 */
 	public function existsForLink( LinkTarget $link ): bool {
 		foreach ( $this->getProvidersForNamespace( $link->getNamespace() ) as $provider ) {
@@ -96,8 +90,6 @@ class ShadowPageLoader {
 
 	/**
 	 * Get the MessageProvider instance
-	 *
-	 * @return MessageProvider
 	 */
 	public function getMessageProvider(): MessageProvider {
 		if ( $this->messageProvider === null ) {
@@ -113,9 +105,6 @@ class ShadowPageLoader {
 
 	/**
 	 * Uncached implementation of get()
-	 *
-	 * @param PageReference $title
-	 * @return ShadowPage|null
 	 */
 	private function maybeCreateShadowPage( PageReference $title ): ?ShadowPage {
 		foreach ( $this->getProvidersForNamespace( $title->getNamespace() ) as $provider ) {
@@ -131,7 +120,7 @@ class ShadowPageLoader {
 	 * @param int $namespace
 	 * @return ShadowPageProvider[]
 	 */
-	private function getProvidersForNamespace( int $namespace ) {
+	private function getProvidersForNamespace( int $namespace ): array {
 		if ( !isset( $this->providersForNamespace[$namespace] ) ) {
 			$providers = [];
 			foreach ( $this->coreSpecs as $index => $spec ) {

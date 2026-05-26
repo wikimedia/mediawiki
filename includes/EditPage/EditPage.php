@@ -2295,10 +2295,9 @@ class EditPage implements IEditObject {
 	/**
 	 * Throw an exception if the content can't be directly edited
 	 *
-	 * @param Content $content
 	 * @throws NotDirectlyEditableException
 	 */
-	private function assertSupportedContent( Content $content ) {
+	private function assertSupportedContent( Content $content ): void {
 		if ( !$this->pageEditingHelper->isSupportedContentModel(
 			$content->getModel(), $this->enableApiEditOverride
 		) ) {
