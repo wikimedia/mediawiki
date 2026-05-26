@@ -6611,6 +6611,8 @@ class MainConfigSchema {
 	/**
 	 * URL schemes that should be recognized as valid by UrlUtils::parse().
 	 *
+	 * Scheme names must be in lowercase.
+	 *
 	 * WARNING: Do not add 'file:' to this or internal file links will be broken.
 	 * Instead, if you want to support file links, add 'file://'. The same applies
 	 * to any other protocols with the same name as a namespace. See task T46011 for
