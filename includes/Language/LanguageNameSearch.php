@@ -3,6 +3,7 @@
 namespace MediaWiki\Language;
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\LanguageData\LanguageUtil;
 
 /**
  * Cross-Language Language name search
@@ -53,8 +54,7 @@ class LanguageNameSearch {
 	 * The order of results is following:
 	 * 1: exact language code match
 	 * 2: exact language name match in any language
-	 * 3: prefix language name match in any language
-	 * 4: infix language name match in any language
+	 * 3: remaining languages matche by autonym and script group
 	 *
 	 * The returned language name for autocompletion is the first one that
 	 * matches in this list:
@@ -68,7 +68,8 @@ class LanguageNameSearch {
 	 * @return array
 	 */
 	public function doSearch( string $searchKey, int $typos = 0, ?string $userLanguage = null ): array {
-		$results = [];
+		$exactMatches = [];
+		$otherMatches = [];
 		$searchKey = mb_strtolower( $searchKey );
 
 		if ( mb_strlen( $searchKey ) > 100 ) {
@@ -83,9 +84,9 @@ class LanguageNameSearch {
 			$name = mb_strtolower( $languageNameUtils->getLanguageName( $searchKey, $userLanguage ) );
 			// Check if language code is a prefix of the name
 			if ( str_starts_with( $name, $searchKey ) ) {
-				$results[$searchKey] = $name;
+				$exactMatches[$searchKey] = $name;
 			} else {
-				$results[$searchKey] = "$searchKey – $name";
+				$exactMatches[$searchKey] = "$searchKey – $name";
 			}
 		}
 
@@ -103,8 +104,8 @@ class LanguageNameSearch {
 		// types are 'prefix', 'infix' (in this order!)
 		foreach ( $bucketsForIndex as $bucket ) {
 			foreach ( $bucket as $name => $code ) {
-				// We can skip checking languages we already have in the list
-				if ( isset( $results[ $code ] ) ) {
+				// We can skip checking languages we already have in either match list
+				if ( isset( $exactMatches[$code] ) || isset( $otherMatches[$code] ) ) {
 					continue;
 				}
 
@@ -121,23 +122,52 @@ class LanguageNameSearch {
 					$name
 				];
 
+				// First check for exact name match
 				foreach ( $candidates as $candidate ) {
 					if ( $searchKey === $candidate ) {
-						$results[$code] = $candidate;
+						$exactMatches[$code] = $candidate;
 						continue 2;
 					}
 				}
 
+				// Otherwise, check for prefix/infix match
 				foreach ( $candidates as $candidate ) {
 					if ( $this->matchNames( $candidate, $searchKey, $typos ) ) {
-						$results[$code] = $candidate;
+						$otherMatches[$code] = $candidate;
 						continue 2;
 					}
 				}
 			}
 		}
 
-		return $results;
+		// Sort the remaining matches by autonym and script group
+		$languageUtil = LanguageUtil::get();
+		$otherCodes = array_keys( $otherMatches );
+
+		$knownCodes = [];
+		$unknownCodes = [];
+		foreach ( $otherCodes as $code ) {
+			if ( $languageUtil->isKnown( $code ) ) {
+				$knownCodes[] = $code;
+			} else {
+				$unknownCodes[] = $code;
+			}
+		}
+
+		$knownCodes = $languageUtil->sortByAutonym( $knownCodes );
+		$knownCodes = $languageUtil->sortByScriptGroup( $knownCodes );
+
+		asort( $unknownCodes, SORT_STRING | SORT_FLAG_CASE );
+
+		$sortedOtherCodes = array_merge( $knownCodes, $unknownCodes );
+
+		// Merge exact matches (retaining priority order at the top) and sorted matches
+		$sortedResults = $exactMatches;
+		foreach ( $sortedOtherCodes as $code ) {
+			$sortedResults[$code] = $otherMatches[$code];
+		}
+
+		return $sortedResults;
 	}
 
 	private function matchNames( string $name, string $searchKey, int $typos ): bool {

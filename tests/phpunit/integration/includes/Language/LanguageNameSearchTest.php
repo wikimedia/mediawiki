@@ -19,6 +19,31 @@ class LanguageNameSearchTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $actual );
 	}
 
+	public function testSearchSorting(): void {
+		// 'tonga' search returns multiple script groups and autonyms (e.g., to, toi, tog, ts, nr)
+		$actual = LanguageNameSearch::search( 'tonga', 1, 'en' );
+		$actualCodes = array_keys( $actual );
+
+		// Expected order sorted by autonym and script group, with exact match 'to' prioritized at the top
+		$expectedCodes = [
+			'to', 'alt', 'toi', 'nr', 'st', 'ts', 'crj', 'hax', 'slh', 'tce', 'tog'
+		];
+
+		// Verify that the backend search natively returns sorted results
+		$this->assertSame( $expectedCodes, $actualCodes );
+
+		// 'hi' search exact match prioritized at the top
+		$actualHi = LanguageNameSearch::search( 'hi', 1, 'en' );
+		$actualHiCodes = array_keys( $actualHi );
+		$this->assertSame( 'hi', $actualHiCodes[0] ?? null, 'Exact match "hi" should be prioritized at the top' );
+
+		// 'ml' search exact match prioritized at the top and remaining sorted
+		$actualMl = LanguageNameSearch::search( 'ml', 1, 'en' );
+		$actualMlCodes = array_keys( $actualMl );
+		$expectedMlCodes = [ 'ml', 'moe', 'crg', 'und' ];
+		$this->assertSame( $expectedMlCodes, $actualMlCodes );
+	}
+
 	public static function searchDataProvider(): array {
 		return [
 			[ 'blargh', []
@@ -31,22 +56,22 @@ class LanguageNameSearchTest extends MediaWikiIntegrationTestCase {
 				// Presence of CLDR extension affects the results
 				'zh' => class_exists( \MediaWiki\Extension\CLDR\LanguageNames::class ) ? 'chinese' : 'chines',
 				'zh-cn' => 'chinese (china)',
-				'zh-hk' => 'chinese (hong kong)',
-				'zh-mo' => 'chinese (macau)',
-				'zh-my' => 'chinese (malaysia)',
 				'zh-sg' => 'chinese (singapore)',
-				'zh-tw' => 'chinese (taiwan)',
-				'zh-hant' => 'chinese durii',
-				'cdo' => 'chinese min dong',
-				'zh-min-nan' => 'chinese min nan',
+				'zh-mo' => 'chinese (macau)',
 				'zh-hans' => 'chinese salphifame',
-				'hak' => 'chinese — hakka chinese',
-				'gan' => 'chinese — isi-gan chinese',
-				'nan' => 'chinese — isi-min nan chinese',
+				'zh-hant' => 'chinese durii',
+				'zh-tw' => 'chinese (taiwan)',
+				'zh-hk' => 'chinese (hong kong)',
+				'zh-my' => 'chinese (malaysia)',
 				'wuu' => 'chinese — isi-wu chinese',
-				'hsn' => 'chinese — isi-xiang chinese',
+				'hak' => 'chinese — hakka chinese',
 				'zh-classical' => 'chinese — literary chinese',
 				'lzh' => 'chinesesch — klassescht chinesesch',
+				'hsn' => 'chinese — isi-xiang chinese',
+				'gan' => 'chinese — isi-gan chinese',
+				'zh-min-nan' => 'chinese min nan',
+				'nan' => 'chinese — isi-min nan chinese',
+				'cdo' => 'chinese min dong',
 			]
 			],
 			[ 'finnisj', [
@@ -66,8 +91,8 @@ class LanguageNameSearchTest extends MediaWikiIntegrationTestCase {
 			]
 			],
 			[ 'musi', [
-				'mos' => 'mosi',
 				'mui' => class_exists( \MediaWiki\Extension\CLDR\LanguageNames::class ) ? 'musi' : 'musi palembang',
+				'mos' => 'mosi',
 			]
 			],
 			[ 'palembang', [
@@ -75,10 +100,10 @@ class LanguageNameSearchTest extends MediaWikiIntegrationTestCase {
 			]
 			],
 			[ 'punja', [
+				'pnb' => 'punjabi western',
 				// Presence of CLDR extension affects the results
 				'pa' => class_exists( \MediaWiki\Extension\CLDR\LanguageNames::class ) ? 'punjabi' : 'punjaabi sennii',
 				'pa-guru' => 'punjabi (gurmukhi script)',
-				'pnb' => 'punjabi western'
 			]
 			],
 			[ 'qartuli', [
@@ -87,16 +112,16 @@ class LanguageNameSearchTest extends MediaWikiIntegrationTestCase {
 			],
 			[ 'tonga', [
 				'to' => 'tonga',
+				'alt' => 'tonga — ātai ki te tonga',
 				'toi' => 'tonga (botatwe)',
-				'tog' => 'tonga (niasa)',
-				'ts' => 'tsonga',
 				'nr' => 'tonga — enetepēra ki te tonga',
-				'hax' => 'tonga — haira ki te tonga',
 				'st' => 'tonga — hōto ki te tonga',
+				'ts' => 'tsonga',
+				'crj' => 'tonga-mā-rāwhiti — kirī tonga-mā-rāwhiti',
+				'hax' => 'tonga — haira ki te tonga',
 				'slh' => 'tonga — ratūti ki te tonga',
 				'tce' => 'tonga — tatōne ki te tonga',
-				'alt' => 'tonga — ātai ki te tonga',
-				'crj' => 'tonga-mā-rāwhiti — kirī tonga-mā-rāwhiti',
+				'tog' => 'tonga (niasa)',
 			]
 			],
 			[ 'valencia', [
@@ -129,17 +154,17 @@ class LanguageNameSearchTest extends MediaWikiIntegrationTestCase {
 			],
 			[ 'الفرنسية', [
 				'fr' => 'الفرنسية',
-				'fro' => 'الفرنسية القديمة',
 				'frc' => 'الفرنسية الكاجونية',
 				'crs' => 'الفرنسية الكريولية السيشيلية',
 				'frm' => 'الفرنسية الوسطى',
+				'fro' => 'الفرنسية القديمة',
 			]
 			],
 			[ 'മല', [
+				'ms' => 'മലെയ്',
 				'mg' => 'മലഗാസി',
 				'ml' => 'മലയാളം',
 				'pqm' => 'മലിസീറ്റ്-പസാമക്വുഡി',
-				'ms' => 'മലെയ്',
 			]
 			],
 			[ 'മലയളം', [
