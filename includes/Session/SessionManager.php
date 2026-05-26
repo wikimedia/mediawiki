@@ -287,6 +287,11 @@ class SessionManager implements SessionManagerInterface {
 		foreach ( $this->getProviders() as $provider ) {
 			$provider->invalidateSessionsForUser( $user );
 		}
+
+		$request = RequestContext::getMain()->getRequest();
+		LoggerFactory::getInstance( 'session' )->info( 'invalidateSessionsForUser called for {user}', [
+			'user' => $user->getName(),
+		] + $request->getSecurityLogContext( $user ) );
 	}
 
 	/**
