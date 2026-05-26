@@ -1039,7 +1039,7 @@ class EditPage implements IEditObject {
 	 */
 	public function importFormData( $request = null ) {
 		if ( $request !== null ) {
-			// TODO Hard-deprecate passing a request to this method once all usages have been updated
+			wfDeprecated( __METHOD__ . ' with non-null $request', '1.47' );
 		}
 		$request ??= $this->getContext()->getRequest();
 

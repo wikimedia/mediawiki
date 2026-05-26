@@ -985,7 +985,7 @@ hello
 		$ep = new EditPage( $article );
 		$ep->setContextTitle( $title );
 
-		$ep->importFormData( $req );
+		$ep->importFormData();
 		return $ep->attemptSave( $result );
 	}
 
