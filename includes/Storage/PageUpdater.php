@@ -67,9 +67,8 @@ class PageUpdater implements PageUpdateCauses {
 	 * @note When adding options here, also add them to PageUpdaterFactory::CONSTRUCTOR_OPTIONS.
 	 * @internal
 	 */
-	public const CONSTRUCTOR_OPTIONS = [
+	public const array CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::ManualRevertSearchRadius,
-		MainConfigNames::UseRCPatrol,
 	];
 
 	/**
@@ -160,10 +159,10 @@ class PageUpdater implements PageUpdateCauses {
 		private readonly RevisionStore $revisionStore,
 		private readonly SlotRoleRegistry $slotRoleRegistry,
 		private readonly IContentHandlerFactory $contentHandlerFactory,
-		private readonly HookContainer $hookContainer,
+		HookContainer $hookContainer,
 		private readonly UserGroupManager $userGroupManager,
 		private readonly TitleFormatter $titleFormatter,
-		private readonly ServiceOptions $serviceOptions,
+		ServiceOptions $serviceOptions,
 		private readonly array $softwareTags,
 		private readonly LoggerInterface $logger,
 		WikiPageFactory $wikiPageFactory,
@@ -181,10 +180,7 @@ class PageUpdater implements PageUpdateCauses {
 			$softwareTags,
 			new ServiceOptions(
 				EditResultBuilder::CONSTRUCTOR_OPTIONS,
-				[
-					MainConfigNames::ManualRevertSearchRadius =>
-						$serviceOptions->get( MainConfigNames::ManualRevertSearchRadius )
-				]
+				$serviceOptions,
 			)
 		);
 	}
