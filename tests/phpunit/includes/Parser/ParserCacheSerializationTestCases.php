@@ -356,6 +356,8 @@ abstract class ParserCacheSerializationTestCases {
 
 		MWDebug::clearDeprecationFilters();
 
+		$siteConfig = new MockSiteConfig( [] );
+
 		$testCases = [
 			'empty' => [
 				'instance' => new ParserOutput( '' ),
@@ -747,8 +749,15 @@ abstract class ParserCacheSerializationTestCases {
 			'parsoidContent' => [
 				'instance' => PageBundleParserOutputConverter::parserOutputFromPageBundle(
 					HtmlPageBundle::fromDomPageBundle(
-						DomPageBundle::fromLoadedDocument( ContentUtils::createAndLoadDocument( "<p data-parsoid='{\"dsr\":[0,5,0,0]}'>hello</p>" ), new MockSiteConfig( [] ) )
-					) ),
+						DomPageBundle::fromLoadedDocument(
+							ContentUtils::createAndLoadDocument(
+								"<p data-parsoid='{\"dsr\":[0,5,0,0]}'>hello</p>",
+								options: [ 'siteConfig' => $siteConfig ],
+							),
+							$siteConfig
+						)
+					)
+				),
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertTrue( $object->getContentHolder()->isParsoidContent() );
 					$testCase->assertEqualsCanonicalizing(
