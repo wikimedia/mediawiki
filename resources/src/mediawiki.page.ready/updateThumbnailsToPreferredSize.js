@@ -67,7 +67,7 @@ const updateThumbnailToPreferredSize = ( img ) => {
  * @param {jQuery} $element
  */
 function updateThumbnailsToPreferredSize( $element ) {
-	if ( document.documentElement.classList.contains( 'skin-theme-clientpref-thumb-large' ) ) {
+	if ( mw.user.clientPrefs.get( 'skin-thumbsize' ) === 'large' ) {
 		const observer = new IntersectionObserver( ( entries ) => {
 			entries.forEach( ( entry ) => {
 				if ( entry.isIntersecting ) {
