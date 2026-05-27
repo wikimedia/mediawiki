@@ -458,7 +458,7 @@
 	"apihelp-protect-param-expiry": "만료 타임스탬프입니다. 타임스탬프가 하나만 설정된 경우 모든 보호에 해당 타임스탬프가 사용됩니다. 만료되지 않는 보호를 원하면 <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> 또는 <kbd>never</kbd>를 사용하세요.",
 	"apihelp-protect-param-reason": "보호 또는 보호 해제의 이유.",
 	"apihelp-protect-param-tags": "보호 기록의 항목에 적용할 변경 태그입니다.",
-	"apihelp-protect-param-cascade": "계단식 보호 기능을 활성화합니다 (즉, 이 문서에서 사용되는 포함된 틀 및 이미지를 보호함). 지정된 보호 수준 중 어느 것도 계단식 보호를 지원하지 않는 경우 무시됩니다.",
+	"apihelp-protect-param-cascade": "연쇄적 보호 기능을 활성화합니다 (즉, 이 문서에서 사용되는 포함된 틀 및 이미지를 보호함). 지정된 보호 수준 중 어느 것도 연쇄적 보호를 지원하지 않는 경우 무시됩니다.",
 	"apihelp-protect-param-watch": "설정된 경우, 보호 (해제) 된 문서를 현재 사용자의 주시문서 목록에 추가합니다.",
 	"apihelp-protect-param-watchlist": "현재 사용자의 주시문서 목록에서 문서를 무조건적으로 추가하거나 제거하거나, 환경 설정을 사용하거나 (봇 사용자는 무시됨) 주시를 변경하지 않습니다.",
 	"apihelp-protect-param-watchlistexpiry": "주시문서 목록 만료 시간 타임스탬프입니다. 현재 만료 시간을 변경하지 않고 그대로 두려면 이 매개변수를 완전히 생략하세요.",
