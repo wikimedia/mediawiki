@@ -20,6 +20,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Rest\Handler\ModuleSpecHandler
@@ -128,10 +129,12 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 				'paths' => [
 					'/foo/bar' => [
 						'get' => [
+							'operationId' => 'getFooBarAction',
 							'parameters' => [ [ 'name' => 'q', 'in' => 'query' ] ],
 							'responses' => [ 200 => [ 'description' => 'OK' ] ]
 						],
 						'post' => [
+							'operationId' => 'postFooBar',
 							'requestBody' => [
 								'required' => true,
 								'content' => [
@@ -179,7 +182,10 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 				],
 				'paths' => [
 					'/mock/v1/foo/bar' => [
-						'get' => [ 'responses' => [ 200 => [ 'description' => 'OK' ] ] ],
+						'get' => [
+							'operationId' => 'getMockV1FooBar',
+							'responses' => [ 200 => [ 'description' => 'OK' ] ]
+						],
 					]
 				],
 			]
@@ -222,6 +228,32 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsArray( $data, 'Body must be a JSON array' );
 		$this->assertWellFormedOAS( $data );
 		$this->assertContainsRecursive( $expected, $data );
+	}
+
+	public static function provideGenerateOperationId(): iterable {
+		// ASCII summary
+		yield 'GET + summary' => [ 'GET', 'Search pages', '/v1/page', 'getSearchPages' ];
+		// No summary → falls back to path
+		yield 'GET + no summary' => [ 'GET', null, '/v1/page/{title}', 'getV1PageByTitle' ];
+		// Empty summary → falls back to path
+		yield 'GET + empty summary' => [ 'GET', '', '/v1/page', 'getV1Page' ];
+		// Method case is irrelevant; output is always lowercase-prefixed
+		yield 'lowercase method' => [ 'get', 'Search pages', '/v1/page', 'getSearchPages' ];
+		// Accented characters: non-ASCII letters are stripped; surrounding ASCII letters remain
+		yield 'accented chars in summary' => [ 'GET', 'Récupérer la page', '/v1/page', 'getRCupRerLaPage' ];
+	}
+
+	/**
+	 * @dataProvider provideGenerateOperationId
+	 */
+	public function testGenerateOperationId(
+		string $method,
+		?string $summary,
+		string $path,
+		string $expected
+	): void {
+		$handler = TestingAccessWrapper::newFromClass( ModuleSpecHandler::class );
+		$this->assertSame( $expected, $handler->generateOperationId( $method, $summary, $path ) );
 	}
 
 	public static function newFooBarHandler() {

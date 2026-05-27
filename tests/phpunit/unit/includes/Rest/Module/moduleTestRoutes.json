@@ -16,6 +16,7 @@
 		},
 		"/ModuleTest/hello/{name}": {
 			"get": {
+				"operationId": "getHelloName",
 				"summary": "hello summary",
 				"x-i18n-description": "rest-endpoint-desc-mock-desc",
 				"handler": {

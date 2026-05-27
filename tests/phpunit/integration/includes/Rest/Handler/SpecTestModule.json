@@ -7,6 +7,7 @@
 	"paths": {
 		"/foo/bar": {
 			"get": {
+				"summary": "Foo bar action",
 				"handler": {
 					"factory": "MediaWiki\\Tests\\Rest\\Handler\\ModuleSpecHandlerTest::newFooBarHandler"
 				}

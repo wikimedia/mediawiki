@@ -250,6 +250,18 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( '<message key="rest-endpoint-desc-mock-desc"></message>', $oas['description'] );
 	}
 
+	public function testManualOperationIdPassedThrough() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/test.v1/ModuleTest/hello/world' ),
+		] );
+		$module = $this->createOpenApiModule( $request );
+
+		$handler = $module->getHandlerForPath( '/ModuleTest/hello/world', $request );
+		$oas = $handler->getOpenApiSpec( 'GET' );
+
+		$this->assertSame( 'getHelloName', $oas['operationId'] );
+	}
+
 	public function testEndpointDeprecationOpenAPISpec() {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/test.v1/ModuleTest/deprecated' ) ] );
 		$module = $this->createOpenApiModule( $request );

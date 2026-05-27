@@ -202,7 +202,8 @@ class SpecBasedModule extends MatcherBasedModule {
 			'description',
 			'tags',
 			'externalDocs',
-			'deprecationSettings'
+			'deprecationSettings',
+			'operationId',
 		];
 
 		if ( isset( $opSpec['redirect'] ) ) {
