@@ -17,6 +17,12 @@ const runElementTest = ( src, srcset ) => {
 };
 
 describe( 'updateThumbnailToPreferredSize', () => {
+	beforeEach( () => {
+		mw.user.clientPrefs = {
+			get: jest.fn( () => 'small' )
+		};
+	} );
+
 	it( 'should shuffle srcset correctly', () => {
 		const shuffled = runTest( 'b.jpg 1.5x, c.jpg 2x, d.jpg 4x' );
 		expect( shuffled ).toBe( 'd.jpg 3x' );

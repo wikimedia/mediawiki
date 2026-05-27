@@ -42,6 +42,9 @@ let matchMediaResult;
 
 describe( 'App', () => {
 	beforeEach( () => {
+		mw.user.clientPrefs = {
+			get: jest.fn( () => 'small' )
+		};
 		matchMediaResult = ( {
 			matches: false
 		} );
