@@ -107,6 +107,7 @@ class ElevatedSecurityAuthenticationRequest extends AuthenticationRequest {
 				'label' => wfMessage( 'authmanager-elevatedsecurity-token-label' ),
 				'help' => wfMessage( 'authmanager-elevatedsecurity-token-help' ),
 				'sensitive' => true,
+				'skippable' => true,
 			],
 		];
 	}
