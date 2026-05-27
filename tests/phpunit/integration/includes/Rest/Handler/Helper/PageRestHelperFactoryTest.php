@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Rest\Handler\Helper;
 
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputHelper;
@@ -21,9 +22,10 @@ class PageRestHelperFactoryTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewHtmlOutputHelpers() {
 		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$parserOptions = ParserOptions::newFromAnon();
 		$helperFactory = $this->getServiceContainer()->getPageRestHelperFactory();
 
-		$helper = $helperFactory->newHtmlShadowOutputHelper( $page );
+		$helper = $helperFactory->newHtmlShadowOutputHelper( $page, $parserOptions );
 
 		$this->assertInstanceOf( HtmlShadowOutputHelper::class, $helper );
 		$this->assertInstanceOf( HtmlOutputHelper::class, $helper );

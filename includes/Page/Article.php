@@ -1713,7 +1713,7 @@ class Article implements Page {
 		// Try shadow page
 		$oldid = $this->getOldID();
 		if ( !$oldid ) {
-			$view = $this->shadowPageLoader->get( $this->getTitle() )?->getView();
+			$view = $this->shadowPageLoader->get( $this->getTitle() )?->getView( $this->getParserOptions() );
 			if ( $view ) {
 				$outputPage->addParserOutputContent(
 					$view->getParserOutput(), $view->getParserOptions() );

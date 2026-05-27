@@ -183,10 +183,12 @@ class PageRestHelperFactory {
 		);
 	}
 
-	public function newHtmlShadowOutputHelper( PageIdentity $page ): HtmlShadowOutputHelper {
+	public function newHtmlShadowOutputHelper( PageIdentity $page, ParserOptions $parserOptions
+	): HtmlShadowOutputHelper {
 		return new HtmlShadowOutputHelper(
 			$this->shadowPageLoader,
 			$this->titleFormatter,
+			$parserOptions,
 			$page
 		);
 	}

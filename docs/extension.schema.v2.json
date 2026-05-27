@@ -1658,6 +1658,26 @@
 				}
 			}
 		},
+		"ShadowPageProviders": {
+			"type": "array",
+			"description": "Providers for fallback content when displaying nonexistent pages",
+			"items": {
+				"type": "object",
+				"properties": {
+					"namespace": {
+						"type": "integer",
+						"description": "Handle only this namespace ID"
+					},
+					"factory": { "description": "See the ObjectFactorySpec definition" },
+					"class": { "description": "See the ObjectFactorySpec definition" },
+					"args": { "description": "See the ObjectFactorySpec definition" },
+					"services": { "description": "See the ObjectFactorySpec definition" },
+					"optional_services": { "description": "See the ObjectFactorySpec definition" }
+				},
+				"allOf": [ { "$ref": "#/definitions/ObjectFactorySpec" } ],
+				"additionalProperties": false
+			}
+		},
 
 		"$comment": "----------------------------------------------------------------------",
 		"$comment": "Logging",

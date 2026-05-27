@@ -4,6 +4,7 @@ namespace MediaWiki\ShadowPage;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\ParserOptions;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 
@@ -35,8 +36,9 @@ class MessagePage extends BaseShadowPage {
 		return new MessageValue( 'defaultmessagetext' );
 	}
 
-	public function getView(): ?ShadowPageView {
-		return $this->parseHelper->getParsedContentView( $this->content, $this->title );
+	public function getView( ParserOptions $parserOptions ): ?ShadowPageView {
+		return $this->parseHelper->getParsedContentView(
+			$this->content, $this->title, $parserOptions );
 	}
 
 }

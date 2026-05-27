@@ -6,6 +6,7 @@
 namespace MediaWiki\Rest\Handler\Helper;
 
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
@@ -27,6 +28,7 @@ class HtmlShadowOutputHelper implements HtmlOutputHelper {
 	public function __construct(
 		private ShadowPageLoader $shadowPageLoader,
 		private TitleFormatter $titleFormatter,
+		private ParserOptions $parserOptions,
 		PageIdentity $page
 	) {
 		$this->page = $page;
@@ -54,7 +56,7 @@ class HtmlShadowOutputHelper implements HtmlOutputHelper {
 	private function maybeGetParserOutput(): ?ParserOutput {
 		if ( $this->parserOutput === null ) {
 			$this->parserOutput = $this->shadowPageLoader->get( $this->page )
-				?->getView()->getParserOutput();
+				?->getView( $this->parserOptions )->getParserOutput();
 			if ( !$this->parserOutput ) {
 				return null;
 			}

@@ -3,6 +3,7 @@
 namespace MediaWiki\ShadowPage;
 
 use MediaWiki\Content\Content;
+use MediaWiki\Parser\ParserOptions;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -31,7 +32,7 @@ class BaseShadowPage implements ShadowPage {
 		return null;
 	}
 
-	public function getView(): ?ShadowPageView {
+	public function getView( ParserOptions $parserOptions ): ?ShadowPageView {
 		return null;
 	}
 }

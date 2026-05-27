@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Rest\Handler\Helper;
 
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Rest\Handler\Helper\HtmlShadowOutputHelper;
 use MediaWikiIntegrationTestCase;
 
@@ -15,6 +16,7 @@ class HtmlShadowOutputHelperTest extends MediaWikiIntegrationTestCase {
 		return new HtmlShadowOutputHelper(
 			$services->getShadowPageLoader(),
 			$services->getTitleFormatter(),
+			ParserOptions::newFromAnon(),
 			$page
 		);
 	}

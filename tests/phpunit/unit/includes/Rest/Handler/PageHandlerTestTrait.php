@@ -8,6 +8,7 @@ use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Parsoid\LintErrorChecker;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
@@ -151,6 +152,7 @@ trait PageHandlerTestTrait {
 				return new HtmlShadowOutputHelper(
 					$services->getShadowPageLoader(),
 					$services->getTitleFormatter(),
+					ParserOptions::newFromAnon(),
 					$page
 				);
 			} );

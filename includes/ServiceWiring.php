@@ -2432,7 +2432,7 @@ return [
 		return new ShadowPageLoader(
 			$services->getObjectFactory(),
 			ShadowPageLoader::CORE_SPECS,
-			[]
+			ExtensionRegistry::getInstance()->getAttribute( 'ShadowPageProviders' )
 		);
 	},
 

@@ -3,6 +3,7 @@
 namespace MediaWiki\Rest\Handler;
 
 use LogicException;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputHelper;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
@@ -56,7 +57,10 @@ class PageHTMLHandler extends SimpleHandler {
 
 		if ( $page ) {
 			if ( $isShadowPage ) {
-				$this->htmlHelper = $this->helperFactory->newHtmlShadowOutputHelper( $page );
+				$this->htmlHelper = $this->helperFactory->newHtmlShadowOutputHelper(
+					$page,
+					ParserOptions::newFromAnon()
+				);
 			} else {
 				$revision = $this->contentHelper->getTargetRevision();
 				$this->htmlHelper = $this->helperFactory->newHtmlOutputRendererHelper(
