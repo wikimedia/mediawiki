@@ -209,7 +209,7 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	 */
 	public function isSelected( FormOptions $opts ) {
 		return !$opts[ $this->getName() ] &&
-			array_filter(
+			array_any(
 				$this->getSiblings(),
 				static function ( ChangesListBooleanFilter $sibling ) use ( $opts ) {
 					return $opts[ $sibling->getName() ];

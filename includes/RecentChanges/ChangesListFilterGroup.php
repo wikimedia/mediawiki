@@ -417,12 +417,12 @@ abstract class ChangesListFilterGroup {
 	 * @return bool
 	 */
 	public function anySelected( FormOptions $opts ) {
-		return (bool)count( array_filter(
+		return array_any(
 			$this->getFilters(),
 			static function ( ChangesListFilter $filter ) use ( $opts ) {
 				return $filter->isSelected( $opts );
 			}
-		) );
+		);
 	}
 
 	/**
