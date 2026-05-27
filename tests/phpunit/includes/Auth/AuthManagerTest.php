@@ -454,12 +454,12 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			);
 		}
 
+		$this->config->set( MainConfigNames::ReauthenticateTime, [
+			'test' => 100,
+			'test2' => -1,
+			'default' => 10,
+		] );
 		if ( $mutableSession ) {
-			$this->config->set( MainConfigNames::ReauthenticateTime, [
-				'test' => 100,
-				'test2' => -1,
-				'default' => 10,
-			] );
 
 			// Mismatched user ID
 			$session->set( 'AuthManager:lastAuthId', $user->getId() + 1 );
@@ -567,11 +567,46 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		}
 
 		// Test hook, all three possible values
+		// The hook should not allow downgrading: if return value without the hook would have been
+		// SEC_REAUTH or SEC_FAIL, the hook is not allowed to change it to SEC_OK
 		foreach ( [
-			AuthManager::SEC_OK => AuthManager::SEC_OK,
-			AuthManager::SEC_REAUTH => $reauth,
-			AuthManager::SEC_FAIL => AuthManager::SEC_FAIL,
-		] as $hook => $expect ) {
+			// 'test' would have been SEC_REAUTH or SEC_FAIL, so the hook can't change it
+			// 'test2' would have been SEC_OK, so the hook is allowed to keep it as SEC_OK
+			AuthManager::SEC_OK => [ $reauth, AuthManager::SEC_OK ],
+			// Changing to SEC_REAUTH is always allowed, but it gets downgraded to SEC_FAIL if
+			// reauth is not possible
+			AuthManager::SEC_REAUTH => [ $reauth, $reauth ],
+			// Changing to SEC_FAIL is always allowed
+			AuthManager::SEC_FAIL => [ AuthManager::SEC_FAIL, AuthManager::SEC_FAIL ],
+		] as $hookReturnValue => $expectedReturnValues ) {
+			$session->set(
+				'AuthManager:lastAuthTimestamps',
+				[ 'test' => time() - 500, 'test2' => time() - 10 ]
+			);
+
+			// Assert what securitySensitiveOperationStatus() would return without the hook
+
+			// If the session is not mutable, 'test' will return SEC_FAIL because
+			// AllowSecuritySensitiveOperationIfCannotReauthenticate is set to false for it.
+			// If the session is mutable, 'test' will return SEC_REAUTH because its ReauthenticateTime
+			// is 100 but its last auth timestamp is 500 seconds ago
+			$this->assertEquals(
+				$reauth,
+				$this->manager->securitySensitiveOperationStatus( 'test' ),
+				"returns $reauth for 'test' without hook"
+			);
+
+			// If the session is not mutable, 'test2' will return SEC_OK because
+			// AllowSecuritySensitiveOperationIfCannotReauthenticate is set to true for it.
+			// If the session is mutable, 'test2' will also return SEC_OK because its ReauthenticateTime
+			// is -1, which causes securitySensitiveOperationStatus to skip its timestamp check.
+			$this->assertEquals(
+				AuthManager::SEC_OK,
+				$this->manager->securitySensitiveOperationStatus( 'test2' ),
+				"returns ok for 'test2' without hook"
+			);
+
+			// Set up the hook
 			$withArguments = [];
 			foreach ( [ 500, 10, PHP_INT_MAX ] as $invocationCount => $expectedTimeSinceAuth ) {
 				$withArguments[$invocationCount] = [
@@ -589,32 +624,23 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			}
 			$this->hook( 'SecuritySensitiveOperationStatus',
 				SecuritySensitiveOperationStatusHook::class,
-				$this->exactly( 3 )
+				$this->exactly( 2 )
 			)
 				->withConsecutive( ...$withArguments )
-				->willReturnCallback( static function ( &$v ) use ( $hook ) {
-					$v = $hook;
+				->willReturnCallback( static function ( &$v ) use ( $hookReturnValue ) {
+					$v = $hookReturnValue;
 					return true;
 				} );
 
-			$session->set(
-				'AuthManager:lastAuthTimestamps',
-				[ 'test' => time() - 500, 'test2' => time() - 10 ]
-			);
 			$this->assertEquals(
-				$expect,
+				$expectedReturnValues[0],
 				$this->manager->securitySensitiveOperationStatus( 'test' ),
-				"hook $hook"
+				"hook changes $reauth to $hookReturnValue for 'test'"
 			);
 			$this->assertEquals(
-				$expect,
+				$expectedReturnValues[1],
 				$this->manager->securitySensitiveOperationStatus( 'test2' ),
-				"hook $hook"
-			);
-			$this->assertEquals(
-				$expect,
-				$this->manager->securitySensitiveOperationStatus( 'test3' ),
-				"hook $hook"
+				"hook changes ok to $hookReturnValue for 'test2'"
 			);
 			$this->unhook( 'SecuritySensitiveOperationStatus' );
 		}
