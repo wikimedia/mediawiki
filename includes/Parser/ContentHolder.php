@@ -194,6 +194,34 @@ class ContentHolder implements JsonCodecable {
 	}
 
 	/**
+	 * Helper method to append the given HTML string to the
+	 * named content fragment.
+	 */
+	public function appendHtmlString( string $html, string $fragmentName = self::BODY_FRAGMENT ): void {
+		if ( $this->domFormat ) {
+			$df = $this->createFragment( $html );
+			$this->appendDom( $df, $fragmentName );
+		} else {
+			$prev = $this->htmlMap[ $fragmentName ] ?? '';
+			$this->htmlMap[ $fragmentName ] = $prev . $html;
+		}
+	}
+
+	/**
+	 * Helper method to append the given DocumentFragment to the
+	 * named content fragment.
+	 */
+	public function appendDom( DocumentFragment $df, string $fragmentName = self::BODY_FRAGMENT ) {
+		if ( !$this->domFormat ) {
+			$this->convertHtmlToDom();
+		}
+		$prev = $this->domMap[ $fragmentName ] ??
+			  $this->ownerDocument->createDocumentFragment();
+		DOMCompat::append( $prev, $df );
+		$this->domMap[ $fragmentName ] = $prev;
+	}
+
+	/**
 	 * Sets or removes a fragment, provided as a DOM DocumentFragment.
 	 * @param string $fragmentName name of the fragment to set
 	 * @param DocumentFragment|null $fragment the fragment to set, or null to
