@@ -393,4 +393,76 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'data-footer-places', $portlets,
 			'Footer places portlet must appear in data-portlets when opted in via menus' );
 	}
+
+	/**
+	 * Verify that footer data in prepareQuickTemplate is read after
+	 * content navigation hooks have run, so SkinAddFooterLinks items
+	 * appear in the legacy footerlinks template variable (T426358).
+	 *
+	 * @covers \MediaWiki\Skin\SkinTemplate::prepareQuickTemplate
+	 */
+	public function testFooterDataReadAfterHooks() {
+		$this->setTemporaryHook( 'SkinAddFooterLinks',
+			static function ( $skin, $key, &$footerLinks ) {
+				if ( $key === 'places' ) {
+					$footerLinks['hook-link'] = '<a href="#">Hook Footer</a>';
+				}
+			}
+		);
+
+		$wrapper = TestingAccessWrapper::newFromObject(
+			new SkinTemplate( [
+				// Legacy skin: does NOT opt into footer menus
+				'menus' => [ 'actions', 'associated-pages', 'dock-bottom', 'variants', 'views' ],
+				'template' => 'SkinQuickTemplateTest',
+				'name' => 'test'
+			] )
+		);
+
+		$wrapper->getContext()->setTitle( Title::makeTitle( NS_MAIN, 'FooterOrderingTest' ) );
+		$tpl = $wrapper->prepareQuickTemplate();
+		$footerlinks = $tpl->get( 'footerlinks' );
+
+		$this->assertArrayHasKey( 'places', $footerlinks,
+			'footerlinks must have a places section' );
+		$this->assertContains( 'hook-link', $footerlinks['places'],
+			'SkinAddFooterLinks item must appear in legacy footerlinks' );
+	}
+
+	/**
+	 * Verify that footer items added via the Universal hook appear in
+	 * legacy skins' footerlinks template variable even when the skin
+	 * has NOT opted into footer menus (T426358).
+	 *
+	 * @covers \MediaWiki\Skin\SkinTemplate::runOnSkinTemplateNavigationHooks
+	 * @covers \MediaWiki\Skin\SkinTemplate::prepareQuickTemplate
+	 */
+	public function testUniversalHookFooterItemsInLegacyFooterlinks() {
+		$this->setTemporaryHook( 'SkinTemplateNavigation::Universal',
+			static function ( $skin, &$links ) {
+				$links['footer-places']['ext-link'] = [
+					'id' => 'footer-places-ext-link',
+					'html' => '<a href="#">Extension Footer</a>',
+				];
+			}
+		);
+
+		$wrapper = TestingAccessWrapper::newFromObject(
+			new SkinTemplate( [
+				// Legacy skin: does NOT opt into footer menus
+				'menus' => [ 'actions', 'associated-pages', 'dock-bottom', 'variants', 'views' ],
+				'template' => 'SkinQuickTemplateTest',
+				'name' => 'test'
+			] )
+		);
+
+		$wrapper->getContext()->setTitle( Title::makeTitle( NS_MAIN, 'UniversalHookLegacyTest' ) );
+		$tpl = $wrapper->prepareQuickTemplate();
+		$footerlinks = $tpl->get( 'footerlinks' );
+
+		$this->assertArrayHasKey( 'places', $footerlinks,
+			'footerlinks must have a places section' );
+		$this->assertContains( 'ext-link', $footerlinks['places'],
+			'Universal hook footer item must appear in legacy footerlinks (T426358)' );
+	}
 }

@@ -21,6 +21,7 @@ use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Profiler\Profiler;
 use MediaWiki\ResourceLoader as RL;
+use MediaWiki\Skin\Components\SkinComponentFooter;
 use MediaWiki\Skin\Components\SkinComponentUtils;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\Contribute\ContributeFactory;
@@ -262,8 +263,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'newtalk', $this->getNewtalks() );
 		$tpl->set( 'logo', $this->logoText() );
 
-		$this->setFooterTemplateVars( $tpl );
-
 		$tpl->set( 'indicators', $out->getIndicators() );
 
 		$tpl->set( 'sitenotice', $this->getSiteNotice() );
@@ -313,6 +312,11 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'content_navigation', $content_navigation );
 		$tpl->set( 'content_actions', $content_actions );
 		$tpl->deprecate( 'content_actions', '1.46' );
+
+		// Read footer data AFTER content navigation hooks have run.
+		// This ensures items added via the Universal hook are captured
+		// in the footer template variables for legacy skins (T426358).
+		$this->setFooterTemplateVars( $tpl );
 
 		$tpl->set( 'sidebar', $this->buildSidebar() );
 		$tpl->set( 'nav_urls', $this->buildNavUrls() );
@@ -1035,6 +1039,14 @@ class SkinTemplate extends Skin {
 		$beforeHookNamespaces = array_keys( $content_navigation['namespaces'] ?? [] );
 		$fallbackNeeded = count( $beforeHookAssociatedPages ) === count( $beforeHookNamespaces );
 
+		// Snapshot footer menu keys before the hook runs, so we can detect
+		// new items added by extensions (T426358).
+		$beforeHookFooter = [
+			'footer-info' => array_keys( $content_navigation['footer-info'] ?? [] ),
+			'footer-places' => array_keys( $content_navigation['footer-places'] ?? [] ),
+			'footer-icons' => array_keys( $content_navigation['footer-icons'] ?? [] ),
+		];
+
 		// Equiv to SkinTemplateContentActions, run
 		$this->getHookRunner()->onSkinTemplateNavigation__Universal(
 			$skin, $content_navigation );
@@ -1051,6 +1063,28 @@ class SkinTemplate extends Skin {
 					throw new InvalidArgumentException(
 						"Menu items with 'icon' must also have href key."
 					);
+				}
+			}
+		}
+
+		// Detect new footer items added by hooks for skins that have not
+		// opted into footer menus via getOptions()['menus'] (T426358).
+		$supportedMenus = $this->getOptions()['menus'];
+		$footer = $this->getComponent( 'footer' );
+		foreach ( [ 'footer-info', 'footer-places', 'footer-icons' ] as $navKey ) {
+			if ( in_array( $navKey, $supportedMenus ) ) {
+				continue;
+			}
+			$afterKeys = array_keys( $content_navigation[$navKey] ?? [] );
+			$newKeys = array_diff( $afterKeys, $beforeHookFooter[$navKey] );
+			if ( $newKeys ) {
+				$section = str_replace( 'footer-', '', $navKey );
+				$newItems = [];
+				foreach ( $newKeys as $key ) {
+					$newItems[$key] = $content_navigation[$navKey][$key];
+				}
+				if ( $footer instanceof SkinComponentFooter ) {
+					$footer->addItem( $section, $newItems );
 				}
 			}
 		}

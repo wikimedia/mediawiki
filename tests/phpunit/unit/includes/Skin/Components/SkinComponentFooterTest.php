@@ -70,4 +70,34 @@ class SkinComponentFooterTest extends MediaWikiUnitTestCase {
 			$this->assertStringContainsString( $result, $html );
 		}
 	}
+
+	/**
+	 * Verify that addItem() stores extra items and invalidates the
+	 * cached template data so they are included in subsequent
+	 * getTemplateData() calls (T426358).
+	 *
+	 * @covers \MediaWiki\Skin\Components\SkinComponentFooter::addItem
+	 */
+	public function testAddItemStoresItemsAndInvalidatesCache() {
+		$ctx = $this->createMock( SkinComponentRegistryContext::class );
+		$footer = new SkinComponentFooter( $ctx );
+		$wrapper = \Wikimedia\TestingAccessWrapper::newFromObject( $footer );
+
+		// Simulate a cached state
+		$wrapper->cachedTemplateData = [ 'stale' => true ];
+
+		$footer->addItem( 'places', [
+			'ext-link' => [
+				'id' => 'footer-places-ext-link',
+				'html' => '<a href="#">Extension Footer</a>',
+			],
+		] );
+
+		$this->assertNull( $wrapper->cachedTemplateData,
+			'addItem() must invalidate the template data cache' );
+		$this->assertArrayHasKey( 'places', $wrapper->extraItems,
+			'addItem() must store items under the given section' );
+		$this->assertArrayHasKey( 'ext-link', $wrapper->extraItems['places'],
+			'addItem() must store items keyed by item name' );
+	}
 }

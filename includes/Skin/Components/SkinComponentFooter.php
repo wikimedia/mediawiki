@@ -22,8 +22,39 @@ class SkinComponentFooter implements SkinComponent {
 	/** @var array|null Cached template data to avoid redundant computation */
 	private $cachedTemplateData;
 
+	/**
+	 * Extra footer items injected via the SkinTemplateNavigation::Universal
+	 * hook for legacy skins that have not opted into footer menus.
+	 * Keyed by section name ('info', 'places').
+	 *
+	 * @var array<string,array>
+	 */
+	private $extraItems = [];
+
 	public function __construct( SkinComponentRegistryContext $skinContext ) {
 		$this->skinContext = $skinContext;
+	}
+
+	/**
+	 * Add extra items to a footer section.
+	 *
+	 * Used by SkinTemplate to pass items that were added via the
+	 * SkinTemplateNavigation::Universal hook but need to appear in
+	 * the footer for legacy skins (T426358).
+	 *
+	 * @internal for use by SkinTemplate only
+	 * @since 1.47
+	 * @param string $section Footer section name ('info', 'places', or 'icons')
+	 * @param array $items Associative array of item key => item data
+	 */
+	public function addItem( string $section, array $items ): void {
+		$this->extraItems[$section] = array_merge(
+			$this->extraItems[$section] ?? [],
+			$items
+		);
+		// Data changed, invalidate the cache so the next
+		// getTemplateData() call rebuilds with new items.
+		$this->cachedTemplateData = null;
 	}
 
 	/**
@@ -45,6 +76,14 @@ class SkinComponentFooter implements SkinComponent {
 					'id' => 'footer-' . $key . '-' . $index,
 					'html' => $linkHTML,
 				];
+			}
+		}
+
+		// Merge extra items added via SkinTemplateNavigation::Universal hook
+		// for legacy skins that have not opted into footer menus (T426358).
+		foreach ( $this->extraItems as $section => $items ) {
+			foreach ( $items as $key => $item ) {
+				$data[$section][$key] = $item;
 			}
 		}
 
