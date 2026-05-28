@@ -45,6 +45,7 @@ class TestSetup {
 		global $wgMainStash;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalTZoffset, $wgLocalisationCacheConf;
+		global $wgMetaNamespace;
 		global $wgSearchType;
 		global $wgDevelopmentWarnings;
 		global $wgSessionProviders, $wgSessionPbkdf2Iterations;
@@ -108,6 +109,9 @@ class TestSetup {
 		// Assume UTC for testing purposes
 		$wgLocaltimezone = 'UTC';
 		$wgLocalTZoffset = 0;
+
+		// T427462
+		$wgMetaNamespace = 'Project';
 
 		$wgLocalisationCacheConf['class'] = TestLocalisationCache::class;
 		$wgLocalisationCacheConf['storeClass'] = LCStoreNull::class;

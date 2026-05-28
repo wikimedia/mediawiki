@@ -2353,7 +2353,6 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			$langClass = Language::class;
 		}
 		$config += [
-			MainConfigNames::MetaNamespace => 'Project',
 			MainConfigNames::MetaNamespaceTalk => false,
 			MainConfigNames::ExtraNamespaces => [],
 		];

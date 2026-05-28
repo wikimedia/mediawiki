@@ -48,7 +48,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValues( [
 			MainConfigNames::AllowUserJs => false,
 			MainConfigNames::DefaultLanguageVariant => false,
-			MainConfigNames::MetaNamespace => 'Project',
 			MainConfigNames::Server => 'https://example.org',
 			MainConfigNames::CanonicalServer => 'https://example.org',
 			MainConfigNames::ScriptPath => '/w',

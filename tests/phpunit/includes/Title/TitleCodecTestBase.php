@@ -17,7 +17,6 @@ abstract class TitleCodecTestBase extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValues( [
 			MainConfigNames::AllowUserJs => false,
 			MainConfigNames::DefaultLanguageVariant => false,
-			MainConfigNames::MetaNamespace => 'Project',
 			MainConfigNames::LocalInterwikis => [ 'localtestiw' ],
 			MainConfigNames::CapitalLinks => true,
 			MainConfigNames::LanguageCode => 'en',

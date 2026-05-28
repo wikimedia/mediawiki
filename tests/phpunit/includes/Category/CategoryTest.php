@@ -18,7 +18,6 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValues( [
 			MainConfigNames::AllowUserJs => false,
 			MainConfigNames::DefaultLanguageVariant => false,
-			MainConfigNames::MetaNamespace => 'Project',
 			MainConfigNames::LanguageCode => 'en',
 		] );
 	}

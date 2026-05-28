@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
-use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Api\ApiTestCase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -31,10 +30,6 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 				}
 			}
 		);
-
-		$this->overrideConfigValues( [
-			MainConfigNames::MetaNamespace => 'TestWiki',
-		] );
 	}
 
 	private function doQuery( array $params ): array {
@@ -77,8 +72,8 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 					1 => 'Разговор',
 					2 => 'Корисник',
 					3 => 'Разговор_с_корисником',
-					4 => 'TestWiki',
-					5 => 'Разговор_о_TestWiki',
+					4 => 'Project',
+					5 => 'Разговор_о_Project',
 					6 => 'Датотека',
 					7 => 'Разговор_о_датотеци',
 					8 => 'Медијавики',
@@ -141,8 +136,8 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 					'Разговор' => 1,
 					'Корисник' => 2,
 					'Разговор с корисником' => 3,
-					'TestWiki' => 4,
-					'Разговор о TestWiki' => 5,
+					'Project' => 4,
+					'Разговор о Project' => 5,
 					'Датотека' => 6,
 					'Разговор о датотеци' => 7,
 					'Медијавики' => 8,
@@ -158,7 +153,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 					'Razgovor' => 1,
 					'Korisnik' => 2,
 					'Razgovor s korisnikom' => 3,
-					'Razgovor o TestWiki' => 5,
+					'Razgovor o Project' => 5,
 					'Datoteka' => 6,
 					'Razgovor o datoteci' => 7,
 					'Medijaviki' => 8,
@@ -208,8 +203,8 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 					3 => 'सदस्य_वार्ता',
 					0 => '',
 					1 => 'वार्ता',
-					4 => 'TestWiki',
-					5 => 'TestWiki_वार्ता',
+					4 => 'Project',
+					5 => 'Project_वार्ता',
 					6 => 'चित्र',
 					7 => 'चित्र_वार्ता',
 					8 => 'मीडियाविकि',
@@ -249,8 +244,8 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 					1 => 'Talk',
 					2 => 'User',
 					3 => 'User_talk',
-					4 => 'TestWiki',
-					5 => 'TestWiki_talk',
+					4 => 'Project',
+					5 => 'Project_talk',
 					6 => 'File',
 					7 => 'File_talk',
 					8 => 'MediaWiki',
