@@ -70,7 +70,7 @@
 	"badretype": "De wachtwoorden die je hebt ingevoerd verschillen van elkaar.",
 	"createacct-normalization": "Je gebruikersnaam wordt bijgesteld naar \"$2\" om technische beperkingen.",
 	"nocookieslogin": "{{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers.\nCookies zijn uitgeschakeld in jouw browser.\nZet deze optie aan en probeer het dan nog eens.",
-	"nocookiesfornew": "Het gebruikersaccount is niet aangemaakt, omdat de bron niet bevestigd kon worden.\nZorg ervoor dat je cookies hebt ingeschakeld, herlaad deze pagina en probeer het nog eens.",
+	"nocookiesfornew": "Het gebruikersaccount is niet aangemaakt, omdat de bron niet bevestigd kon worden.\nZorg ervoor dat je cookies hebt ingeschakeld, vernieuw deze pagina en probeer het nog eens.",
 	"createacct-loginerror": "Het account is aangemaakt, maar je kon niet automatisch worden aangemeld. Ga naar [[Special:UserLogin|handmatig aanmelden]].",
 	"createacct-temp-warning": "De bewerkingen die je maakt met je tijdelijke account <strong>$1</strong> worden niet overgedragen naar je permanente account.",
 	"noname": "Je hebt geen geldige gebruikersnaam opgegeven.",

@@ -1255,7 +1255,7 @@
 	"upload-dialog-button-cancel": "ယႃႉၶိုၼ်း",
 	"upload-dialog-button-back": "ႁူၼ်လင်",
 	"upload-dialog-button-done": "ယဝ်ႉ",
-	"upload-dialog-button-save": "ၵဵပ်းသိမ်း",
+	"upload-dialog-button-save": "သိမ်း",
 	"upload-dialog-button-upload": "လူတ်ႇၶိုၼ်ႈ",
 	"upload-form-label-infoform-title": "ႁူဝ်ယွႆႈ",
 	"upload-form-label-infoform-name": "ၸိုဝ်ႈ",
@@ -1992,6 +1992,7 @@
 	"blocklist-tempblocks": "သိူင်ႇ လွင်ႈႁႄႉတတ်းၸူဝ်ႈၵႅပ်ႉ",
 	"blocklist-addressblocks": "သိူင်ႇ လွင်ႈႁႄႉတတ်း ဢၢႆႇၽီႇဢၼ်လဵဝ်",
 	"blocklist-type": "မဵဝ်းမၼ်း:",
+	"blocklist-actions-header": "လွင်ႈႁဵတ်းသၢင်ႈ",
 	"blocklist-type-opt-all": "တင်းမူတ်း",
 	"blocklist-type-opt-sitewide": "ၶွပ်ႇၵၢၼ်",
 	"blocklist-rangeblocks": "သိူင်ႇလွင်ႈႁႄႉတတ်း ၶပ်ႉယႆ�",
@@ -2203,6 +2204,7 @@
 	"tooltip-pt-createaccount": "ၸဝ်ႈၵဝ်ႇထုၵ်ႇပၼ်ႁႅင်း တွၼ်ႈတႃႇၵေႃႇသၢင်ႈ ဢၶွင်ႉလႄႈ လွၵ်ႉၶဝ်ႈ။ ႁူမ်ႈဝႃႈၼၼ်သေတႃႉ ဢမ်ႇၸႂ်ႈဝႃႈ ဢမ်ႇႁဵတ်းဢမ်ႇလႆႈၼင်ႇၵဝ်ႇ။",
 	"tooltip-ca-talk": "ဢုပ်ႇဢူဝ်းလွင်ႈပႃးဝႆႉၼႂ်းၼႃႈလိၵ်ႈ",
 	"tooltip-ca-edit": "မႄးထတ်း ၼႃးလိၵ်ႈၼႆႉ",
+	"tooltip-ca-create": "သၢင်ႈၼႃႈလိၵ်ႈၼႆႉ",
 	"tooltip-ca-addsection": "တႄႇပွတ်းတွၼ်ႈမႂ်ႇ",
 	"tooltip-ca-viewsource": "ၼႃႈ​လိၵ်ႈ​ၼႆႉ ထုၵ်ႇ​ႁေႉ​ၵင်ႈ​ဝႆႉ။ သူ​ၸၢင်ႈတူၺ်း​ င​ဝ်ႈငႃႇမၼ်းလႆႈ",
 	"tooltip-ca-history": "လွင်ႈၶူၼ်ႉၶႆႈဢၼ်ပူၼ်ႉမႃး တႃႇၼႃႈလိၵ်ႈၼႆႉ",
@@ -2443,6 +2445,7 @@
 	"tags-edit": "မႄးထတ်း",
 	"tags-hitcount": "$1 {{PLURAL:$1|လႅၵ်ႈလၢႆႈ|ၸိူဝ်းလႅၵ်ႈလၢႆႈ}}",
 	"tags-create-explanation": "ပေႃးဢဝ်ပိူင်ၵႅဝ်ႈဝႃႈ ထႅၵ်ႉၸိူဝ်းဢၼ် ၵေႃႇသၢင်ႈဝႆႉမႂ်ႇမႂ်ႇၼႆႉ ၸိူဝ်းပဵၼ် ၽူႈၸႂ်ႉတိုဝ်း လႄႈ ပွတ်ႉၶဝ် တေၸၢင်ႈ ဢဝ်ၸႂ်ႉလႆႈ။",
+	"tags-create-submit": "သၢင်ႈ",
 	"tags-apply-no-permission": "ၸဝ်ႈၵဝ်ႇဢမ်ႇမီးသုၼ်ႇၶႂၢင်းပၼ် တွၼ်ႈတႃႇလႅၵ်ႈလၢႆႈထႅၵ်ႉ ၸိူဝ်းဢၼ်မီးၵႃႈတီႈ လွင်ႈလႅၵ်ႈလၢႆႈၸဝ်ႈၵဝ်ႇၼၼ်ႉ။",
 	"tags-apply-blocked": "ၽွင်း{{GENDER:$1|ၸဝ်ႈၵဝ်ႇ}}ထုၵ်ႇႁႄႉတတ်းဝႆႉၼၼ်ႉ ၸဝ်ႈၵဝ်ႇတေဢမ်ႇၸၢင်ႈ လႅၵ်ႈလၢႆႈထႅၵ်ႉ ဢၼ်မီးဝႆ့တီႈ လွင်ႈလႅၵ်ႈလၢႆႈၸဝ်ႈၵဝ်ႇၼၼ်ႉ။",
 	"tags-edit-title": "မႄးထတ်း ထႅၵ်ႉ",
@@ -2592,5 +2595,6 @@
 	"blockedtext-intended-blockee": "လွင်ႈႁႄႉတတ်း ဢၼ်ယိူင်းဢၢၼ်းဝႆႉ : $1",
 	"blockedtext-contact-blocker-admin": "တႃႇဢုပ်ႇဢူဝ်း လွင်ႈႁႄႉတတ်းၼၼ်ႉ ၸဝ်ႈၵဝ်ႇ တေဢမ်ႇၸၢင်ႈ ၵပ်းသိုပ်ႇတင်း $1 ဢမ်ႇၼၼ်  [[{{MediaWiki:Grouppage-sysop}}|ၽူႈၵုမ်းၵၢၼ်]]တၢင်ႇၸိူဝ်း။",
 	"blockedtext-block-ip": "ႁဵၼ်းလိၵ်ႈ ဢၢႆႇပီႇၸဝ်ႈၵဝ်ႇယၢမ်းလဵဝ်ၼႆႉ ပဵၼ် $1 ။",
-	"blockedtext-include-details-queries": "တီႈၵၢၼ်ၶူၼ်ႉႁႃ ဢၼ်ၸဝ်ႈၵဝ်ႇႁဵတ်း ဢၼ်လႂ်သေဢမ်ႇဝႃႈ ၶႅၼ်းတေႃႈ သႂ်ႇပၼ်ပႃး လွင်ႈတၢင်းႁူဝ်ယွႆႈ ၼင်ႇ ၽၢႆႇၼိူဝ်ၼႆႉတင်းသဵင်ႈတႃႉ။"
+	"blockedtext-include-details-queries": "တီႈၵၢၼ်ၶူၼ်ႉႁႃ ဢၼ်ၸဝ်ႈၵဝ်ႇႁဵတ်း ဢၼ်လႂ်သေဢမ်ႇဝႃႈ ၶႅၼ်းတေႃႈ သႂ်ႇပၼ်ပႃး လွင်ႈတၢင်းႁူဝ်ယွႆႈ ၼင်ႇ ၽၢႆႇၼိူဝ်ၼႆႉတင်းသဵင်ႈတႃႉ။",
+	"renameuser": "ၶိုၼ်းပၼ်ၸိုဝ်ႈ ၽူႈၸႂ်ႉတိုဝ်း"
 }
