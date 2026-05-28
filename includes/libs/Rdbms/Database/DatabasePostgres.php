@@ -988,6 +988,10 @@ __INDEXATTR__;
 
 	/** @inheritDoc */
 	public function doLock( string $lockName, string $method, int $timeout ) {
+		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+			// Locks have no value during tests and can cause parallel tests to fail --  T427466
+			return parent::doLock( $lockName, $method, $timeout );
+		}
 		$query = new Query(
 			$this->platform->lockSQLText( $lockName, $timeout ),
 			self::QUERY_CHANGE_LOCKS,
@@ -1017,6 +1021,9 @@ __INDEXATTR__;
 
 	/** @inheritDoc */
 	public function doUnlock( string $lockName, string $method ) {
+		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+			return true;
+		}
 		$query = new Query(
 			$this->platform->unlockSQLText( $lockName ),
 			self::QUERY_CHANGE_LOCKS,

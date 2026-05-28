@@ -489,6 +489,10 @@ class DatabaseMySQL extends Database {
 
 	/** @inheritDoc */
 	public function doLock( string $lockName, string $method, int $timeout ) {
+		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+			// Locks have no value during tests and can cause parallel tests to fail --  T427466
+			return parent::doLock( $lockName, $method, $timeout );
+		}
 		$query = new Query( $this->platform->lockSQLText( $lockName, $timeout ), self::QUERY_CHANGE_LOCKS, 'SELECT' );
 		$res = $this->query( $query, $method );
 		$row = $res->fetchObject();
@@ -498,6 +502,9 @@ class DatabaseMySQL extends Database {
 
 	/** @inheritDoc */
 	public function doUnlock( string $lockName, string $method ) {
+		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+			return true;
+		}
 		$query = new Query( $this->platform->unlockSQLText( $lockName ), self::QUERY_CHANGE_LOCKS, 'SELECT' );
 		$res = $this->query( $query, $method );
 		$row = $res->fetchObject();
