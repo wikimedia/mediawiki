@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Api\ApiTestCase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -30,6 +31,10 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 				}
 			}
 		);
+
+		$this->overrideConfigValues( [
+			MainConfigNames::MetaNamespace => 'TestWiki',
+		] );
 	}
 
 	private function doQuery( array $params ): array {
