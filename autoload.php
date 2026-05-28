@@ -2576,6 +2576,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Parser\\Hook\\ParserLogLinterDataHook' => __DIR__ . '/includes/Parser/Hook/ParserLogLinterDataHook.php',
 	'MediaWiki\\Parser\\Hook\\ParserMakeImageParamsHook' => __DIR__ . '/includes/Parser/Hook/ParserMakeImageParamsHook.php',
 	'MediaWiki\\Parser\\Hook\\ParserModifyImageHTMLHook' => __DIR__ . '/includes/Parser/Hook/ParserModifyImageHTMLHook.php',
+	'MediaWiki\\Parser\\Hook\\ParserOptionsDefaultsHook' => __DIR__ . '/includes/Parser/Hook/ParserOptionsDefaultsHook.php',
 	'MediaWiki\\Parser\\Hook\\ParserOptionsRegisterHook' => __DIR__ . '/includes/Parser/Hook/ParserOptionsRegisterHook.php',
 	'MediaWiki\\Parser\\Hook\\ParserOutputPostCacheTransformHook' => __DIR__ . '/includes/Parser/Hook/ParserOutputPostCacheTransformHook.php',
 	'MediaWiki\\Parser\\Hook\\ParserPreSaveTransformCompleteHook' => __DIR__ . '/includes/Parser/Hook/ParserPreSaveTransformCompleteHook.php',

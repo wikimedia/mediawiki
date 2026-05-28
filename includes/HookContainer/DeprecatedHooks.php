@@ -33,6 +33,7 @@ class DeprecatedHooks {
 		'LocalFile::getHistory' => [ 'deprecatedVersion' => '1.37' ],
 		'MarkPatrolledComplete' => [ 'deprecatedVersion' => '1.47' ],
 		'MessageCache::get' => [ 'deprecatedVersion' => '1.41' ],
+		'ParserOptionsRegister' => [ 'deprecatedVersion' => '1.47', 'silent' => true ],
 		'ProtectionForm::buildForm' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
 		'RecentChangesPurgeRows' => [ 'deprecatedVersion' => '1.45', 'silent' => true ],
 		'RollbackComplete' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],

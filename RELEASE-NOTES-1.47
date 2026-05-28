@@ -209,6 +209,8 @@ because of Phabricator reports.
   is deprecated and will trigger deprecation warnings.  Use
   MutableRevisionRecord::newFromContent() to pass a WikitextContent constructed
   with your string.
+* The ParserOptionsRegister hook has been deprecated and replaced by
+  ParserOptionsDefaults.
 * …
 
 === Other changes in 1.47 ===

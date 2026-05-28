@@ -364,6 +364,7 @@ class HookRunner implements
 	\MediaWiki\Parser\Hook\ParserLogLinterDataHook,
 	\MediaWiki\Parser\Hook\ParserMakeImageParamsHook,
 	\MediaWiki\Parser\Hook\ParserModifyImageHTMLHook,
+	\MediaWiki\Parser\Hook\ParserOptionsDefaultsHook,
 	\MediaWiki\Parser\Hook\ParserOptionsRegisterHook,
 	\MediaWiki\Parser\Hook\ParserOutputPostCacheTransformHook,
 	\MediaWiki\Parser\Hook\ParserPreSaveTransformCompleteHook,
@@ -3410,6 +3411,14 @@ class HookRunner implements
 			'ParserModifyImageHTML',
 			[ $parser, $file, $params, &$html ],
 			[ 'abortable' => false ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onParserOptionsDefaults( &$defaults, &$inCacheKey, &$lazyLoad, &$postprocOpts = [] ) {
+		return $this->container->run(
+			'ParserOptionsDefaults',
+			[ &$defaults, &$inCacheKey, &$lazyLoad, &$postprocOpts ]
 		);
 	}
 

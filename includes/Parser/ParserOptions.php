@@ -1365,10 +1365,17 @@ class ParserOptions {
 			self::$cacheVaryingOptionsHash = self::$initialCacheVaryingOptionsHash;
 			self::$lazyOptions = self::$initialLazyOptions;
 
-			( new HookRunner( $services->getHookContainer() ) )->onParserOptionsRegister(
+			$hookRunner = new HookRunner( $services->getHookContainer() );
+			$hookRunner->onParserOptionsRegister(
 				self::$defaults,
 				self::$cacheVaryingOptionsHash,
-				self::$lazyOptions
+				self::$lazyOptions,
+			);
+			$hookRunner->onParserOptionsDefaults(
+				self::$defaults,
+				self::$cacheVaryingOptionsHash,
+				self::$lazyOptions,
+				self::$postprocOptions,
 			);
 
 			ksort( self::$cacheVaryingOptionsHash );
