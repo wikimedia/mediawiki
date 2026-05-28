@@ -566,7 +566,7 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
 $wgTitle = null;
 
 // Explicit globals, so this works with bootstrap.php
-global $wgFullyInitialised, $wgExtensionFunctions;
+global $wgExtensionFunctions;
 
 // Extension setup functions
 // Entries should be added to this variable during the inclusion
@@ -581,15 +581,16 @@ unset( $func ); // no global pollution; destroy reference
 // autocreate it.
 if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 	$sessionUser = RequestContext::getMain()->getRequest()->getSession()->getUser();
-	if ( $sessionUser->getId() === 0 &&
+	$autocreateStatus = null;
+	if ( !$sessionUser->isRegistered() &&
 		MediaWikiServices::getInstance()->getUserNameUtils()->isValid( $sessionUser->getName() )
 	) {
-		MediaWikiServices::getInstance()->getAuthManager()->autoCreateUser(
+		$autocreateStatus = MediaWikiServices::getInstance()->getAuthManager()->autoCreateUser(
 			$sessionUser,
 			MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_SESSION
 		);
+		// If successful, the User object has been updated with its new ID
 	}
-	unset( $sessionUser );
 }
 
 // Optimization: Avoid overhead from DeferredUpdates and Pingback deps when turned off.
@@ -611,9 +612,9 @@ if ( $settingsWarnings ) {
 	foreach ( $settingsWarnings as $msg ) {
 		$logger->warning( $msg );
 	}
+	unset( $msg );
 	unset( $logger );
 }
-
 unset( $settingsWarnings );
 
 // Explicit globals, so this works with bootstrap.php
@@ -626,4 +627,28 @@ if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 	if ( $manager instanceof SessionManager ) {
 		$manager->logPotentialSessionLeakage();
 	}
+	unset( $manager );
+}
+
+if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
+	if ( $autocreateStatus ) {
+		// If we tried to autocreate a user, ensure that everything is in a consistent state.
+		if ( $autocreateStatus->isOK() ) {
+			if ( !$sessionUser->isRegistered() ) {
+				throw new LogicException( "Session user should be registered, but it's not" );
+			}
+			if ( !RequestContext::getMain()->getUser()->isRegistered() ) {
+				throw new LogicException( "Global context user should be registered, but it's not" );
+			}
+		} else {
+			if ( $sessionUser->isRegistered() ) {
+				throw new LogicException( "Session user should not be registered, but it is" );
+			}
+			if ( RequestContext::getMain()->getUser()->isRegistered() ) {
+				throw new LogicException( "Global context user should not be registered, but it is" );
+			}
+		}
+	}
+	unset( $sessionUser );
+	unset( $autocreateStatus );
 }
