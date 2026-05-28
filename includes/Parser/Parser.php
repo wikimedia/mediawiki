@@ -1877,7 +1877,11 @@ class Parser {
 			$h = str_repeat( '=', $i );
 			// Trim non-newline whitespace from headings
 			// Using \s* will break for: "==\n===\n" and parse as <h2>=</h2>
-			$text = preg_replace( "/^(?:$h)[ \\t]*(.+?)[ \\t]*(?:$h)\\s*$/m", "<h$i>\\1</h$i>", $text );
+			$text = preg_replace(
+				"/^(?:$h)[ \\t]*(.+?)[ \\t]*(?:$h)\\s*$/m",
+				"<h$i data-mw-wikitext>\\1</h$i>",
+				$text
+			);
 		}
 		return $text;
 	}

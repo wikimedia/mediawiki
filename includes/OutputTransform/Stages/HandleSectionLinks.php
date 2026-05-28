@@ -59,11 +59,11 @@ class HandleSectionLinks extends ContentTextTransformStage {
 	 */
 	private function isHtmlHeading( array $attrs ): bool {
 		foreach ( $attrs as $name => $value ) {
-			if ( !Sanitizer::isReservedDataAttribute( $name ) ) {
-				return true;
+			if ( $name === 'data-mw-wikitext' ) {
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 
 	private function replaceHeadings( string $text ): string {
@@ -123,9 +123,11 @@ class HandleSectionLinks extends ContentTextTransformStage {
 				// Mark it with a class to make them easier to distinguish (T68637).
 				Html::addClass( $attrs['class'], 'mw-html-heading' );
 
-				// Do not add the wrapper if the heading has attributes added using HTML syntax (T353489).
+				// Do not add the wrapper if the heading uses HTML syntax (T353489).
 				// In this case it's also guaranteed that there's no edit link, so we don't need wrappers.
 				$wrapperType = 'none';
+			} else {
+				unset( $attrs['data-mw-wikitext'] );
 			}
 
 			return $this->makeHeading(

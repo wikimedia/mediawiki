@@ -162,12 +162,12 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 			self::newParserOutput( $expected, $pOpts, $toc, $input )
 		];
 
-		// T353489: Wrappers aren't added to headings with attributes
+		// T353489/T68637: Wrappers aren't added to HTML-syntax headings
 		$input = '<section id="a"><h2 id="foo" data-parsoid=\'{"stx": "html"}\'>F</h2>Oo<h2 id="bar" class="b" data-parsoid=\'{"stx": "html"}\'>B</h2>Ar<h2 id="baz" data-parsoid=\'{"stx": "html", "reusedId": true}\'>B</h2>Az</section>';
 		$fragment = '<section id="fa"><h2 id="ffoo" data-parsoid=\'{"stx": "html"}\'>F</h2>Oo<h2 id="fbar" class="b" data-parsoid=\'{"stx": "html"}\'>B</h2>Ar<h2 id="fbaz" data-parsoid=\'{"stx": "html", "reusedId": true}\'>B</h2>Az</section>';
-		$expected = '<section id="a" aria-labelledby="foo"><div class="mw-heading mw-heading-1"><h2 id="foo" data-parsoid=\'{"stx": "html"}\'>F</h2>!<a id="c">edit</a>!</div>Oo<h2 id="bar" class="b mw-html-heading" data-parsoid=\'{"stx": "html"}\'>B</h2>Ar<h2 id="baz" class="mw-html-heading" data-parsoid=\'{"stx": "html","reusedId": true}\'>B</h2>Az</section>';
+		$expected = '<section id="a"><h2 id="foo" data-parsoid=\'{"stx": "html"}\' class="mw-html-heading">F</h2>Oo<h2 id="bar" class="b mw-html-heading" data-parsoid=\'{"stx": "html"}\'>B</h2>Ar<h2 id="baz" class="mw-html-heading" data-parsoid=\'{"stx": "html", "reusedId": true}\'>B</h2>Az</section>';
 		$pOpts = ParserOptions::newFromAnon();
-		yield 'Heading with attributes is skipped' => [
+		yield 'HTML syntax headings are skipped' => [
 			self::newParserOutput( $input, $pOpts, $toc, $fragment ),
 			$pOpts, $options,
 			self::newParserOutput( $expected, $pOpts, $toc, $fragment )

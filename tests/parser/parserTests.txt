@@ -17408,7 +17408,7 @@ __NOTOC__
 <tr><td> <!--c1--> <!--c2--> Table Cell <!--c3--> <!--c4--> <th></tr>
 </table>
 !! html/php
-<div class="mw-heading mw-heading2"><h2 id="Heading">        Heading       </h2></div>
+<h2 id="Heading" class="mw-html-heading">        Heading       </h2>
 <ul><li>          List item    </li></ul>
 <table>
 <tbody><tr><th>   Table Heading   </th><th></th></tr>

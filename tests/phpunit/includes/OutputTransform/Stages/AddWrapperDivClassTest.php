@@ -47,16 +47,16 @@ class AddWrapperDivClassTest extends OutputTransformStageTestBase {
 <div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>Test document.
 </p>
 <meta property="mw:PageProp/toc" />
-<h2 data-mw-anchor="Section_1">Section 1<mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2>
+<h2 data-mw-anchor="Section_1" data-mw-wikitext>Section 1<mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2>
 <p>One
 </p>
-<h2 data-mw-anchor="Section_2">Section 2<mw:editsection page="Test Page" section="2">Section 2</mw:editsection></h2>
+<h2 data-mw-anchor="Section_2" data-mw-wikitext>Section 2<mw:editsection page="Test Page" section="2">Section 2</mw:editsection></h2>
 <p>Two
 </p>
-<h3 data-mw-anchor="Section_2.1"><i>Section 2.1</i></h3>
+<h3 data-mw-anchor="Section_2.1" data-mw-wikitext><i>Section 2.1</i></h3>
 <p>Two point one
 </p>
-<h2 data-mw-anchor="Section_3">Section 3<mw:editsection page="Test Page" section="4">Section 3</mw:editsection></h2>
+<h2 data-mw-anchor="Section_3" data-mw-wikitext>Section 3<mw:editsection page="Test Page" section="4">Section 3</mw:editsection></h2>
 <p>Three
 </p></div>
 EOF;

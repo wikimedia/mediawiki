@@ -103,7 +103,7 @@ parsoid={
 ho
 }}
 !! html/php
-<div class="mw-heading mw-heading2"><h2 id="hi">hi</h2></div>
+<h2 id="hi" class="mw-html-heading">hi</h2>
 <p>ho
 </p>
 !! html/parsoid
@@ -1945,11 +1945,11 @@ __NOEDITSECTION__
 </ul>
 </div>
 
-<div class="mw-heading mw-heading1"><h1 id="Header_1">Header 1</h1></div>
+<h1 id="Header_1" class="mw-html-heading">Header 1</h1>
 <div class="mw-heading mw-heading2"><h2 id="Header_1.1">Header 1.1</h2></div>
 <div class="mw-heading mw-heading2"><h2 id="Header_1.2">Header 1.2</h2></div>
-<div class="mw-heading mw-heading1"><h1 id="Header_2">Header 2
-</h1></div>
+<h1 id="Header_2" class="mw-html-heading">Header 2
+</h1>
 <div class="mw-heading mw-heading2"><h2 id="Header_2.1">Header 2.1</h2></div>
 <div class="mw-heading mw-heading2"><h2 id="Header_2.2">Header 2.2</h2></div>
 !! html/parsoid
@@ -2701,7 +2701,7 @@ parsoid={
 !! html/php
 
 <div class="mw-heading mw-heading2"><h2 id="Normal_heading.21">Normal heading!</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Normal heading!">edit</a><span class="mw-editsection-bracket">]</span></span></div>
-<div class="mw-heading mw-heading2"><h2 id="HTML_heading.21">HTML heading!</h2></div>
+<h2 id="HTML_heading.21" class="mw-html-heading">HTML heading!</h2>
 <h2 id="HTML_heading_with_attributes.21" style="border: 1px solid green; background: lightgreen; padding: 5px; font-size: 1.5em;" class="mw-html-heading">HTML heading with attributes!</h2>
 <div class="mw-heading mw-heading2">
 <h2 id="Normal_heading_with_existing_wrapper.21">Normal heading with existing wrapper!</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Normal heading with existing wrapper!">edit</a><span class="mw-editsection-bracket">]</span></span>

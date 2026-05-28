@@ -15,16 +15,16 @@ class TestUtils {
 <p>Test document.
 </p>
 <meta property="mw:PageProp/toc" />
-<h2 data-mw-anchor="Section_1">Section 1<mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2>
+<h2 data-mw-anchor="Section_1" data-mw-wikitext>Section 1<mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2>
 <p>One
 </p>
-<h2 data-mw-anchor="Section_2">Section 2<mw:editsection page="Test Page" section="2">Section 2</mw:editsection></h2>
+<h2 data-mw-anchor="Section_2" data-mw-wikitext>Section 2<mw:editsection page="Test Page" section="2">Section 2</mw:editsection></h2>
 <p>Two
 </p>
-<h3 data-mw-anchor="Section_2.1"><i>Section 2.1</i></h3>
+<h3 data-mw-anchor="Section_2.1" data-mw-wikitext><i>Section 2.1</i></h3>
 <p>Two point one
 </p>
-<h2 data-mw-anchor="Section_3">Section 3<mw:editsection page="Test Page" section="4">Section 3</mw:editsection></h2>
+<h2 data-mw-anchor="Section_3" data-mw-wikitext>Section 3<mw:editsection page="Test Page" section="4">Section 3</mw:editsection></h2>
 <p>Three
 </p>
 HTML;
@@ -70,10 +70,10 @@ HTML;
 <h2 data-mw-anchor=">">><mw:editsection page="Test Page" section="1">></mw:editsection></h2>
 HTML;
 	public const TEST_DOC_ANGLE_BRACKETS_WITH_LINKS = <<<HTML
-<div class="mw-heading mw-heading2"><h2 id="&gt;">></h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: &gt;">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<h2 id="&gt;" class="mw-html-heading">></h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: &gt;">edit</a><span class="mw-editsection-bracket">]</span></span>
 HTML;
 	public const TEST_DOC_ANGLE_BRACKETS_WITHOUT_LINKS = <<<HTML
-<div class="mw-heading mw-heading2"><h2 id="&gt;">></h2></div>
+<h2 id="&gt;" class="mw-html-heading">></h2>
 HTML;
 
 	public const TEST_TO_DEDUP = <<<HTML
@@ -92,7 +92,7 @@ HTML;
 	public const TEST_MULTI_STAGE = <<<HTML
 <p>Test document for multiple stages.
 </p>
-<h2 id="Section_1">Section 1<mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2>
+<h2 id="Section_1" data-parsoid='{"stx": "html"}'>Section 1<mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2>
 <p>One <span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"testparam","params":["hello"]}}'></span>
 </p>
 HTML;
@@ -100,7 +100,7 @@ HTML;
 	public const TEST_MULTI_STAGE_POST_PIPELINE = <<<HTML
 <div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>Test document for multiple stages.
 </p>
-<div class="mw-heading mw-heading1"><h2 id="Section_1">Section 1<mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<h2 id="Section_1" class="mw-html-heading">Section 1<mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2>
 <p>One <span typeof="mw:I18n" lang="en" dir="ltr" data-mw-i18n='{"/":{"lang":"x-user","key":"testparam","params":["hello"]}}'>english hello</span>
 </p></div>
 HTML;

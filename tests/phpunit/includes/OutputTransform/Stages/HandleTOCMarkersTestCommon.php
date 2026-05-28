@@ -71,7 +71,7 @@ abstract class HandleTOCMarkersTestCommon extends OutputTransformStageTestBase {
 		$expectedWith = new ParserOutput( $withToc );
 		TestUtils::initSections( $expectedWith );
 		$expectedWith->getContentHolder()->setAsHtmlString( 'my fragment', '<meta property="mw:PageProp/toc"/>' );
-		yield [ $poTest1, ParserOptions::newFromAnon(), [
+		yield 'should insert TOC' => [ $poTest1, ParserOptions::newFromAnon(), [
 			'userLang' => null,
 			'skin' => null,
 			'allowTOC' => true,
@@ -82,13 +82,13 @@ abstract class HandleTOCMarkersTestCommon extends OutputTransformStageTestBase {
 		TestUtils::initSections( $poTest2 );
 		$expectedWithout = new ParserOutput( $withoutToc );
 		TestUtils::initSections( $expectedWithout );
-		yield [ $poTest2, ParserOptions::newFromAnon(), [ 'allowTOC' => false ], $expectedWithout, 'should not insert TOC' ];
+		yield 'should not insert TOC' => [ $poTest2, ParserOptions::newFromAnon(), [ 'allowTOC' => false ], $expectedWithout, 'should not insert TOC' ];
 
 		$poTest3 = new ParserOutput( TestUtils::TEST_DOC . '<meta property="mw:PageProp/toc" />' );
 		TestUtils::initSections( $poTest3 );
 		$expectedWith = new ParserOutput( $withToc );
 		TestUtils::initSections( $expectedWith );
-		yield [ $poTest3, ParserOptions::newFromAnon(), [
+		yield 'should insert TOC only once' => [ $poTest3, ParserOptions::newFromAnon(), [
 			'userLang' => null,
 			'skin' => null,
 			'allowTOC' => true,
@@ -108,7 +108,7 @@ abstract class HandleTOCMarkersTestCommon extends OutputTransformStageTestBase {
 			$poTest4->getTOCData()->setExtensionData( $key, $value );
 			$expected->getTOCData()->setExtensionData( $key, $value );
 		}
-		yield "with custom TOC" => [ $poTest4, ParserOptions::newFromAnon(), [
+		yield 'should insert custom TOC' => [ $poTest4, ParserOptions::newFromAnon(), [
 			'userLang' => null,
 			'skin' => null,
 			'allowTOC' => true,

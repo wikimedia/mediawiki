@@ -9,7 +9,6 @@ use MediaWiki\OutputTransform\ContentDOMTransformStage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
-use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
@@ -18,7 +17,6 @@ use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\DOM\Node;
 use Wikimedia\Parsoid\Utils\DOMCompat;
-use Wikimedia\Parsoid\Utils\DOMDataUtils;
 use Wikimedia\Parsoid\Utils\DOMTraverser;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\Parsoid\Utils\WTUtils;
@@ -50,26 +48,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 	 */
 	private static function isHtmlHeading( Element $h ): bool {
 		// FIXME(T100856): stx info probably shouldn't be in data-parsoid
-		if ( !WTUtils::isLiteralHTMLNode( $h ) ) {
-			return false;
-		}
-
-		foreach ( $h->attributes as $attr ) {
-			// Condition matches DiscussionTool's CommentFormatter::handleHeading
-			if (
-				!in_array( $attr->name, [ 'id', 'data-object-id', 'about', 'typeof' ], true ) &&
-				!Sanitizer::isReservedDataAttribute( $attr->name )
-			) {
-				return true;
-			}
-		}
-
-		// Id is ignored above since it's a special case, make use of metadata
-		// to determine if it came from wikitext
-		if ( DOMDataUtils::getDataParsoid( $h )->reusedId ?? false ) {
-			return true;
-		}
-		return false;
+		return WTUtils::isLiteralHTMLNode( $h );
 	}
 
 	public function transformDOM(
