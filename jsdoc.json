@@ -36,9 +36,7 @@
 		},
 		"wmf": {
 			"maintitle": "MediaWiki Frontend API",
-			"siteMap": {
-				"sections": true
-			},
+			"siteMap": {},
 			"hideSections": [ "Classes", "Events" ],
 			"repository": "https://gerrit.wikimedia.org/g/mediawiki/core/",
 			"linkMap": {
