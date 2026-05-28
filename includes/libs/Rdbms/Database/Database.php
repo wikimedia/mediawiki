@@ -2929,6 +2929,10 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	 * @inheritDoc
 	 */
 	public function lock( $lockName, $method, $timeout = 5, $flags = 0 ) {
+		$logContext = [
+			'lockname' => $lockName,
+			'db_log_category' => 'locking'
+		];
 		$lockTsUnix = $this->doLock( $lockName, $method, $timeout );
 		if ( $lockTsUnix !== null ) {
 			$locked = true;
@@ -2936,14 +2940,15 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 				'ts' => $lockTsUnix,
 				'trxId' => $this->transactionManager->getTrxId()
 			];
+			$this->logger->debug(
+				__METHOD__ . ": acquired lock '{lockname}'",
+				$logContext
+			);
 		} else {
 			$locked = false;
 			$this->logger->info(
 				__METHOD__ . ": failed to acquire lock '{lockname}'",
-				[
-					'lockname' => $lockName,
-					'db_log_category' => 'locking'
-				]
+				$logContext
 			);
 		}
 
@@ -2967,20 +2972,28 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	 * @inheritDoc
 	 */
 	public function unlock( $lockName, $method ) {
+		$logContext = [
+			'lockname' => $lockName,
+			'db_log_category' => 'locking'
+		];
 		if ( !isset( $this->sessionNamedLocks[$lockName] ) ) {
 			$released = false;
 			$this->logger->warning(
-				__METHOD__ . ": trying to release unheld lock '$lockName'\n",
-				[ 'db_log_category' => 'locking' ]
+				__METHOD__ . ": trying to release unheld lock '{lockname}'\n",
+				$logContext
 			);
 		} else {
 			$released = $this->doUnlock( $lockName, $method );
 			if ( $released ) {
 				unset( $this->sessionNamedLocks[$lockName] );
+				$this->logger->debug(
+					__METHOD__ . ": released lock '{lockname}'",
+					$logContext
+				);
 			} else {
 				$this->logger->warning(
-					__METHOD__ . ": failed to release lock '$lockName'\n",
-					[ 'db_log_category' => 'locking' ]
+					__METHOD__ . ": failed to release lock '{lockname}'\n",
+					$logContext
 				);
 			}
 		}
