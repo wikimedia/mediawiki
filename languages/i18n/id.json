@@ -3163,7 +3163,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|bicara]])",
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|Pembicaraan]])",
 	"duplicate-defaultsort": "Peringatan: Kunci pengurutan baku \"$2\" mengabaikan kunci pengurutan baku \"$1\" sebelumnya.",
-	"duplicate-displaytitle": "<strong>Peringatan:</strong> Menampilkan judul \"$2\" menimpa judul tampilan \"$1\" sebelumnya.",
+	"duplicate-displaytitle": "<strong>Peringatan:</strong> Judul penampil \"$2\" menimpa judul penampil \"$1\" sebelumnya.",
 	"restricted-displaytitle": "<strong>Perhatian:</strong> Tampilan judul \"$1\" diabaikan karena tidak sesuai dengan judul halaman asli.",
 	"invalid-indicator-name": "'''Galat:''' Atribut ''nama'' indikator status halaman tidak boleh kosong.",
 	"invalid-langconvert-attrs": "<strong>Galat:</strong> Atribut tanda Langconvert <code>from</code> dan <code>to</code> tidak boleh kosong dan harus mengandung kode untuk varian yang dapat diterjemahkan dari bahasa yang sama.</strong>",

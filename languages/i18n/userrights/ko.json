@@ -236,7 +236,7 @@
 	"action-deletedhistory": "문서의 삭제된 기여의 메타데이터 보기",
 	"action-deletedtext": "삭제된 판 사이의 삭제된 텍스트나 변경사항 보기",
 	"action-browsearchive": "삭제된 문서 검색",
-	"action-undelete": "문서 되살리기",
+	"action-undelete": "문서 복구하기",
 	"action-suppressrevision": "사용자로부터 특정 문서 판을 보거나 숨기거나 숨김 해제",
 	"action-suppressionlog": "감춰진 기록 보기",
 	"action-block": "이 사용자가 편집하지 못하도록 차단 및 차단을 해제",

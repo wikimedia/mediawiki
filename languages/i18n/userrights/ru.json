@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"Colt browning",
 			"DR",
 			"Dolbaeb",
 			"Facenapalm",
@@ -53,7 +54,7 @@
 	"userrights-expiry-for": "Срок действия для \"$1\"",
 	"userrights-expiry-existing": "До $3 $2",
 	"userrights-expiry-othertime": "Другой срок",
-	"userrights-expiry-options": "Срок годности просрочится завтра:1 day,Срок годности просрочится через неделю:1 week,Срок годности просрочится через месяц:1 month,Срок годности просрочится через 3 месяца:3 months,Срок годности просрочится через 6 месяцев:6 months,Срок годности просрочится через 1 год:1 year",
+	"userrights-expiry-options": "На 1 сутки:1 day,На 1 неделю:1 week,На 1 месяц:1 month,На 3 месяца:3 months,На 6 месяцев:6 months,На 1 год:1 year",
 	"userrights-invalid-expiry": "Время истечения для группы «$1» задано неверно.",
 	"userrights-expiry-in-past": "Время истечения для группы «$1» задано в прошлом.",
 	"userrights-no-group": "Временные участники не имеют групп.",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Daisy40",
 			"Facenapalm",
 			"Mailman",
 			"Okras"
@@ -26,6 +27,7 @@
 	"botpasswords-bad-appid": "Имя бота «$1» является недопустимым.",
 	"botpasswords-toolong-restrictions": "Введено слишком много IP-адресов или диапазонов адресов.",
 	"botpasswords-toolong-grants": "Выбрано слишком много прав.",
+	"botpasswords-too-many": "Вы достигли максимального лимита в $1 {{PLURAL:$1|пароль бота|пароля ботов|паролей ботов}}. Пожалуйста, удалите несколько существующих паролей ботов перед созданием новых.",
 	"botpasswords-insert-failed": "Не удалось добавить бота с именем «$1». Возможно, он был уже добавлен?",
 	"botpasswords-update-failed": "Не удалось обновить бота с именем «$1». Возможно, он был удалён?",
 	"botpasswords-created-title": "Пароль бота создан",

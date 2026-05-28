@@ -444,7 +444,7 @@
 	"userexists": "Det brugernavn, du har valgt, er allerede i brug.\nVælg venligst et andet brugernavn.",
 	"username-previously-renamed-account": "Dette brugernavn kan ikke registreres, da det tidligere har været brugt af en konto, der er blevet omdøbt.\nVælg venligst et andet navn.",
 	"allow-previously-renamed-account": "Tillad brugernavne, der tidligere er brugt af omdøbte konti",
-	"renameuser-warning-previously-renamed-account": "Dette brugernavn har tidligere været brugt af en konto, der er blevet omdøbt.",
+	"renameuser-warning-previously-renamed-account": "Dette brugernavn har tidligere været brugt af en konto, hvor navn er blevet ændret.",
 	"createacct-normalization": "Dit brugernavn vil blive ændret til \"$2\" på grund af tekniske begrænsninger.",
 	"loginerror": "Logon mislykket",
 	"createacct-error": "Fejl ved kontooprettelse",

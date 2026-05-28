@@ -1951,7 +1951,7 @@
 	"apierror-ratelimited": "您已超过您的速率限制。请等待一段时间再试。",
 	"apierror-readapidenied": "您需要读取权限以使用此模块。",
 	"apierror-readonly": "此wiki目前为只读模式。",
-	"apierror-reauthenticate": "您在该会话中尚未经过验证，请重新验证。",
+	"apierror-reauthenticate": "要执行此操作，您需要具有更高安全级别的会话。请重新进行身份验证以执行操作<kbd>$1</kbd>。",
 	"apierror-redirect-appendonly": "您试图使用重定向跟随模式编辑，而这必须与<kbd>section=new</kbd>、<var>prependtext</var>或<var>appendtext</var>共同使用。",
 	"apierror-revdel-mutuallyexclusive": "同一字段不能同时用于<var>hide</var>和<var>show</var>。",
 	"apierror-revdel-needtarget": "此修订版本删除类型需要目标标题。",

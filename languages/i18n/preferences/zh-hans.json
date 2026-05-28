@@ -168,7 +168,7 @@
 	"thumbsize-small": "小",
 	"thumbsize-regular": "常规",
 	"thumbsize-large": "大",
-	"thumbsize-help": "部分用户可能偏好比正常尺寸更小或更大的缩略图。标准尺寸为$1像素。",
+	"thumbsize-help": "部分用户可能偏好比正常尺寸更小或更大的缩略图。常规尺寸为$1像素。",
 	"prefs-diffs": "差异",
 	"tog-diffonly": "不在差异下面显示页面内容",
 	"tog-norollbackdiff": "执行回退后不显示差异",
