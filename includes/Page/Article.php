@@ -725,6 +725,7 @@ class Article implements Page {
 
 		// Augment the parser options
 		$skin = $outputPage->getSkin();
+		$skin->setParserOptions( $parserOptions );
 		$skinOptions = $skin->getOptions();
 		$textOptions += [
 			// T371022, T410923

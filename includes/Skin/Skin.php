@@ -14,6 +14,7 @@ use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\RevisionStore;
@@ -88,6 +89,8 @@ abstract class Skin extends ContextSource {
 	 * @var SkinComponentRegistry Initialised in constructor.
 	 */
 	private $componentRegistry = null;
+
+	private ?ParserOptions $parserOptions = null;
 
 	/**
 	 * Get the current major version of Skin. This is used to manage changes
@@ -2558,6 +2561,14 @@ abstract class Skin extends ContextSource {
 		}
 
 		return $target;
+	}
+
+	public function setParserOptions( ParserOptions $parserOptions ): void {
+		$this->parserOptions = $parserOptions;
+	}
+
+	public function getParserOptions(): ?ParserOptions {
+		return $this->parserOptions;
 	}
 }
 
