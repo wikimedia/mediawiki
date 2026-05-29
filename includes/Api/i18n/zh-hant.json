@@ -1902,7 +1902,7 @@
 	"apierror-ratelimited": "您超過了您的速率限制，請稍後再試。",
 	"apierror-readapidenied": "您需要有閱讀權限來使用此模組。",
 	"apierror-readonly": "wiki 目前為唯讀模式。",
-	"apierror-reauthenticate": "於本工作階段還未核對身分，請重新核對。",
+	"apierror-reauthenticate": "要執行此操作，您需要具有更高安全級別的工作階段。請重新進行身份驗證以執行操作<kbd>$1</kbd>。",
 	"apierror-redirect-appendonly": "您嘗試使用重新導向跟隨模式來編輯，這必須與 <kbd>section=new</kbd>、<var>prependtext</var>，或 <var>appendtext</var> 來結合使用。",
 	"apierror-revdel-mutuallyexclusive": "同一欄位不可同時用在 <var>hide</var> 與 <var>show</var>。",
 	"apierror-revdel-needtarget": "此 RevDel 類型需要目標標題。",
