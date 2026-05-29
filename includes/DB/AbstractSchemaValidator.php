@@ -68,6 +68,9 @@ class AbstractSchemaValidator {
 			throw new AbstractSchemaValidationError( "$path is not a supported JSON object" );
 		}
 
+		// Adjust uri on windows
+		$schemaPath = str_replace( '\\', '/', $schemaPath );
+
 		$validator = new Validator;
 		$validator->check( $data, (object)[ '$ref' => 'file://' . $schemaPath ] );
 		if ( $validator->isValid() ) {
