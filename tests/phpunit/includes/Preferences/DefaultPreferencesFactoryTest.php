@@ -61,8 +61,11 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$this->context = new RequestContext();
 		$this->context->setTitle( Title::makeTitle( NS_MAIN, self::class ) );
 
+		$this->setTemporaryHook( 'GetPreferences', HookContainer::NOOP );
 		$this->overrideConfigValues( [
 			MainConfigNames::DisableLangConversion => false,
+			MainConfigNames::EmailAuthentication => true,
+			MainConfigNames::EnableEmail => true,
 			MainConfigNames::UsePigLatinVariant => false,
 		] );
 		$this->config = $this->getServiceContainer()->getMainConfig();
@@ -170,8 +173,6 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetForm() {
-		$this->setTemporaryHook( 'GetPreferences', HookContainer::NOOP );
-
 		$testUser = $this->createMock( User::class );
 		$prefFactory = $this->getPreferencesFactory();
 		$form = $prefFactory->getForm( $testUser, $this->context );
@@ -215,13 +216,11 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	 *
 	 * @dataProvider emailAuthenticationProvider
 	 */
-	public function testEmailAuthentication( $user, $cssClass ) {
-		$this->overrideConfigValue( MainConfigNames::EmailAuthentication, true );
-
+	public function testEmailAuthentication( User $user, string $cssClass ) {
 		$prefs = $this->getPreferencesFactory()
 			->getFormDescriptor( $user, $this->context );
-		$this->assertArrayHasKey( 'cssclass', $prefs['emailauthentication'] );
-		$this->assertEquals( $cssClass, $prefs['emailauthentication']['cssclass'] );
+		$this->assertArrayHasKey( 'emailauthentication', $prefs );
+		$this->assertSame( $cssClass, $prefs['emailauthentication']['cssclass'] );
 	}
 
 	public function testShowRollbackConfIsHiddenForUsersWithoutRollbackRights() {
@@ -412,6 +411,38 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			UserGroupMembership::getLinkHTML( 'user', $this->context ),
 			( $prefs['usergroups']['default'] )()
 		);
+	}
+
+	public function provideResetKinds() {
+		return [
+			'empty' => [
+				'options' => [],
+				'expected' => [],
+			],
+			'userjs' => [
+				'options' => [ 'userjs-…' => '…' ],
+				'expected' => [ 'userjs-…' => 'userjs' ],
+			],
+			'local-exception' => [
+				'options' => [
+					'…-local-exception' => '…',
+					'foo' => '…',
+				],
+				'expected' => [
+					'…-local-exception' => 'local-exception',
+					'foo' => 'unused',
+				],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideResetKinds
+	 */
+	public function testGetResetKinds( array $options, array $expected ) {
+		$factory = $this->getPreferencesFactory();
+		$kinds = $factory->getResetKinds( $this->getTestUser()->getUser(), $this->context, $options );
+		$this->assertSame( $expected, $kinds );
 	}
 
 	/**
