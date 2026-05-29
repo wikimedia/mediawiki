@@ -3383,6 +3383,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// Default values should match the property default values.
 		$this->mCategories = $jsonData['Categories'] ?? [];
 		$this->mIndicators = $jsonData['Indicators'] ?? [];
+		// forward compatibility T427622
+		foreach ( ( $jsonData['IndicatorIds'] ?? [] ) as $id ) {
+			$fragmentName = "indicator:{$id}";
+			if ( $this->contentHolder->has( $fragmentName ) ) {
+				$this->mIndicators[ $id ] = $this->contentHolder->getAsHtmlString( $fragmentName ) ?? '';
+				$this->contentHolder->setAsHtmlString( $fragmentName, null );
+			}
+		}
 		$this->mTitleText = $jsonData['TitleText'] ?? '';
 		$this->mLinks = $jsonData['Links'] ?? [];
 		$this->mLinksSpecial = $jsonData['LinksSpecial'] ?? [];
