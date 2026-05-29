@@ -33,9 +33,14 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 		$obj->expects( $this->never() )
 			->method( $this->anythingBut( ...array_keys( $configMethods ) ) );
 		foreach ( $configMethods as $method => $value ) {
-			$obj->expects( $this->once() )
-				->method( $method )
-				->willReturn( $value );
+			if ( $value === 'void' ) {
+				$obj->expects( $this->once() )
+					->method( $method );
+			} else {
+				$obj->expects( $this->once() )
+					->method( $method )
+					->willReturn( $value );
+			}
 		}
 		return $obj;
 	}
@@ -71,7 +76,7 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 			[
 				'acquireForMe' => Status::newGood( 'StupidAction' )
 			], [], [
-				'info' => null
+				'info' => 'void'
 			],
 			false
 		];
@@ -81,7 +86,7 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 			[
 				'acquireForMe' => Status::newGood( 'StupidAction' )
 			], [], [
-				'info' => null
+				'info' => 'void'
 			],
 			false
 		];
@@ -91,7 +96,7 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 			[
 				'acquireForAnyone' => Status::newGood( 'StupidAction' )
 			], [], [
-				'info' => null
+				'info' => 'void'
 			],
 			false
 		];
@@ -101,7 +106,7 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 			[
 				'acquireForMe' => Status::newGood( 'StupidAction' )
 			], [], [
-				'info' => null
+				'info' => 'void'
 			],
 			false
 		];
@@ -113,7 +118,7 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 			], [
 				'doWork' => "SomeResults"
 			], [
-				'info' => null
+				'info' => 'void'
 			],
 			"SomeResults"
 		];
@@ -187,7 +192,7 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 					'acquireForMe' => Status::newGood( $acquireResult ),
 				], [
 				], [
-					'info' => null
+					'info' => 'void'
 				],
 				false
 			];
