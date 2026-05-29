@@ -3220,6 +3220,8 @@
 	"tag-mw-server-side-upload-description": "Predstavnostne datoteke, ki jih je naložil skript za vzdrževanje",
 	"tag-mw-ipblock-appeal": "Pritožba na blokiranje IP-ja",
 	"tag-mw-ipblock-appeal-description": "Začasna ustvarjanja računov prek [[{{#special:Mytalk}}]] z IP-naslovov, ki so blokirani za ustvarjanje računov",
+	"tag-mw-edited-other-users-js": "Urejanje JS drugega uporabnika",
+	"tag-mw-edited-other-users-js-description": "Urejanja v uporabniškem prostoru, ki spreminjajo strani JavaScript, ki pripadajo drugim uporabnikom",
 	"tags-title": "Oznake",
 	"tags-intro": "Na tej strani so navedene oznake, s katerimi lahko programje označi urejanja, in njihov pomen.",
 	"tags-tag": "Ime oznake",

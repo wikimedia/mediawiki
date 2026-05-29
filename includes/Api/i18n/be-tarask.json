@@ -89,7 +89,7 @@
 	"apihelp-feedcontributions-param-hideminor": "Схаваць дробныя рэдагаваньні.",
 	"apihelp-feedrecentchanges-param-hideminor": "Схаваць дробныя зьмяненьні.",
 	"apihelp-feedrecentchanges-param-hideanons": "Схаваць зьмяненьні, зробленыя безыменнымі ўдзельніцамі(-камі).",
-	"apihelp-feedrecentchanges-param-tagfilter": "Фільтар водле тэґу.",
+	"apihelp-feedrecentchanges-param-tagfilter": "Фільтар паводле тэгу.",
 	"apihelp-feedrecentchanges-example-simple": "Паказаць апошнія зьмяненьні.",
 	"apihelp-feedrecentchanges-example-30days": "Паказаць зьмяненьні за апошнія 30 дзён.",
 	"apihelp-help-example-recursive": "Уся дапамога на адной старонцы.",

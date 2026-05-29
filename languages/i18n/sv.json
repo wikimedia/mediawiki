@@ -3245,6 +3245,8 @@
 	"tag-mw-server-side-upload-description": "Mediafiler som laddades upp via ett underhållsskript",
 	"tag-mw-ipblock-appeal": "Överklagande av IP-blockering",
 	"tag-mw-ipblock-appeal-description": "Tillfälliga kontoskapanden via [[{{#special:Mytalk}}]] från IP-adresser som blockerats från kontoskapande",
+	"tag-mw-edited-other-users-js": "Redigerade annan användares JS",
+	"tag-mw-edited-other-users-js-description": "Redigeringar i användarrymden som modifierar JavaScript-sidor som tillhör andra användare",
 	"tags-title": "Märken",
 	"tags-intro": "Denna sida listar de märken som programvaran kan markera en redigering med, samt deras betydelse.",
 	"tags-tag": "Märkesnamn",

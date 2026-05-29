@@ -3164,6 +3164,8 @@
 	"tag-mw-server-side-upload-description": "Files multimedial que ha essite incargate via un script de mantenentia",
 	"tag-mw-ipblock-appeal": "Appello de blocage de adresse IP",
 	"tag-mw-ipblock-appeal-description": "Creationes de contos temporari via [[{{#special:Mytalk}}]] desde adresses IP blocate pro le creation de contos",
+	"tag-mw-edited-other-users-js": "Modification del JS de un altere usator",
+	"tag-mw-edited-other-users-js-description": "Modificationes in le spatio de usator que modifica paginas JavaScript que pertine a altere usatores",
 	"tags-title": "Etiquettas",
 	"tags-intro": "Iste pagina lista le etiquettas con le quales le software pote marcar un modification, e lor significato.",
 	"tags-tag": "Nomine del etiquetta",

@@ -24,7 +24,8 @@
 			"Seb35",
 			"Sumbukompor",
 			"WongKentir",
-			"아라"
+			"아라",
+			"Bayahiu"
 		]
 	},
 	"config-desc": "Pemasang MediaWiki",
@@ -282,7 +283,7 @@
 	"config-install-tables": "Membuat tabel, langkah pertama",
 	"config-install-tables-exist": "<strong>Peringatan:</strong> Tabel MediaWiki sepertinya sudah ada.\nMelompati pembuatan.",
 	"config-install-tables-failed": "<strong>Galat:</strong> Pembuatan tabel gagal dengan kesalahan berikut: $1",
-	"config-install-interwiki": "Mengisi tabel bawaan interwiki",
+	"config-install-interwiki": "Mengisi tabel antarwiki bawaan",
 	"config-install-interwiki-list": "Tidak dapat membaca berkas <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Peringatan:</strong> Tabel MediaWiki sepertinya sudah ada.\nMelompati daftar baku.",
 	"config-install-stats": "Inisialisasi statistik",

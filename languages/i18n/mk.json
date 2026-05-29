@@ -3222,6 +3222,8 @@
 	"tag-mw-server-side-upload-description": "Медиумски податотеки подигнати со помош на скрипта за одржување",
 	"tag-mw-ipblock-appeal": "Жалба за блокирана IP-адреса",
 	"tag-mw-ipblock-appeal-description": "Создавањето на привремени сметки преку [[{{#special:Mytalk}}]] од IP-адреси е блокирано",
+	"tag-mw-edited-other-users-js": "Уреден JS на друг корисник",
+	"tag-mw-edited-other-users-js-description": "Уредувањата во корисничкиот простор што менуваат страници со JavaScript на други корисници",
 	"tags-title": "Ознаки",
 	"tags-intro": "На оваа страница е даден список на ознаки со кои програмската опрема може да ги означи измените и нивното значење.",
 	"tags-tag": "Име на ознака",

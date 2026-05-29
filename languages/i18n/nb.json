@@ -3215,6 +3215,8 @@
 	"tag-mw-server-side-upload-description": "Mediefiler som ble lastet opp via et vedlikeholdsskript",
 	"tag-mw-ipblock-appeal": "Klage på IP-blokkering",
 	"tag-mw-ipblock-appeal-description": "Opprettelse av midleridige kontoer gjennom [[{{#special:Mytalk}}]] fra IP-adresser som er blokkert fra å opprette kontoer",
+	"tag-mw-edited-other-users-js": "Redigerte en annen brukers JS",
+	"tag-mw-edited-other-users-js-description": "Redigeringer i brukernavnerommet som endrer JavaScript-sider som tilhører andre brukere",
 	"tags-title": "Tagger",
 	"tags-intro": "Denne siden lister opp taggene programvaren kan merke en endring med, og hva de betyr.",
 	"tags-tag": "Taggnavn",

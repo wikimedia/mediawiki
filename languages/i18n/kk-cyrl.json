@@ -1157,7 +1157,7 @@
 	"minoreditletter": "ш",
 	"newpageletter": "Ж",
 	"boteditletter": "б",
-	"rc-change-size-new": "Өзгерістен кейінгі өлшем: $1 {{PLURAL:$1|байт}}",
+	"rc-change-size-new": "Өзгерістен кейінгі көлемі: $1 {{PLURAL:$1|байт}}",
 	"newsectionsummary": "/* $1 */ жаңа бөлім",
 	"rc-old-title": "басында «$1» деп басталған",
 	"recentchangeslinked": "Қатысты өзгерістер",

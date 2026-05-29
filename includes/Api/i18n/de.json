@@ -40,7 +40,9 @@
 			"Umherirrender",
 			"Umlaut",
 			"Zabe",
-			"Zenith"
+			"Zenith",
+			"Desvaters",
+			"TheRabbit22"
 		]
 	},
 	"apihelp-main-param-action": "Welche Aktion ausgeführt werden soll. Dieser Parameter sollte als Teil der Anfrage-URL (nicht im POST-Body) übermittelt werden, um die Fehlerbehebung, Analyse sowie die Weiterleitung oder Filterung von Anfragen zu vereinfachen.",
@@ -1395,6 +1397,7 @@
 	"apihelp-query+users-param-users": "Eine Liste der Benutzer, für die Informationen abgerufen werden sollen.",
 	"apihelp-query+users-param-userids": "Eine Liste der Benutzerkennungen, für die die Informationen abgerufen werden sollen.",
 	"apihelp-query+users-example-simple": "Gibt Informationen für den Benutzer <kbd>Example</kbd> zurück.",
+	"apihelp-query+watchlist-param-namespace": "Filtere Änderungen nur nach den angegebenen Namensräumen.",
 	"apihelp-query+watchlist-param-user": "Listet nur Änderungen von diesem Benutzer auf.",
 	"apihelp-query+watchlist-param-excludeuser": "Listet keine Änderungen von diesem Benutzer auf.",
 	"apihelp-query+watchlist-param-limit": "Wie viele Ergebnisse pro Anfrage insgesamt zurückgegeben werden sollen.",

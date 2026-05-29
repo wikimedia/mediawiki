@@ -3421,6 +3421,8 @@
 	"tag-mw-server-side-upload-description": "通过维护脚本上传的媒体文件",
 	"tag-mw-ipblock-appeal": "IP封禁申诉",
 	"tag-mw-ipblock-appeal-description": "通过[[{{#special:Mytalk}}]]从被封禁建立帐号的 IP地址建立临时帐号",
+	"tag-mw-edited-other-users-js": "编辑其他用户的JS代码",
+	"tag-mw-edited-other-users-js-description": "位于用户页命名空间的编辑，修改了属于其他用户的JavaScript页面",
 	"tags-title": "标签",
 	"tags-intro": "本页面列出了软件可能用于标记编辑的标签和它们的含义。",
 	"tags-tag": "标签名称",

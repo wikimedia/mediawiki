@@ -3260,6 +3260,8 @@
 	"tag-mw-server-side-upload-description": "Ylläpitoskripteillä tallennetut mediatiedostot",
 	"tag-mw-ipblock-appeal": "IP-eston poistopyyntö",
 	"tag-mw-ipblock-appeal-description": "Tilapäisten tunnusten luomiset [[{{#special:Mytalk}}]] -sivun kautta IP-osoitteesta, joilta on estetty käyttäjätunnusten luominen.",
+	"tag-mw-edited-other-users-js": "Toisen käyttäjän JS:n muokkaus",
+	"tag-mw-edited-other-users-js-description": "Käyttäjänimiavaruudessa tehdyt muokkaukset, joissa muutettiin toiselle käyttäjälle kuuluvaa JavaScript-sivua",
 	"tags-title": "Merkkaukset",
 	"tags-intro": "Tämä sivu luetteloi ne merkkaukset (engl. ''tags''), joilla ohjelmisto voi merkitä muokkauksia, ja mitä ne tarkoittavat.",
 	"tags-tag": "Merkkauksen nimi",

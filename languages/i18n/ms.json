@@ -3189,6 +3189,8 @@
 	"tag-mw-server-side-upload-description": "Fail media yang dimuat naik melalui skrip penyenggaraan",
 	"tag-mw-ipblock-appeal": "Rayuan sekatan IP",
 	"tag-mw-ipblock-appeal-description": "Penciptaan akaun sementara melalui [[{{#special:Mytalk}}]] daripada alamat IP yang disekat daripada penciptaan akaun",
+	"tag-mw-edited-other-users-js": "Telah sunting JS pengguna lain",
+	"tag-mw-edited-other-users-js-description": "Suntingan dalam ruang pengguna yang mengubah suai laman JavaScript milik pengguna lain",
 	"tags-title": "Teg",
 	"tags-intro": "Yang berikut ialah senarai teg yang digunakan untuk menanda suntingan, berserta maknanya.",
 	"tags-tag": "Nama teg",

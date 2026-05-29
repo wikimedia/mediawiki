@@ -154,7 +154,8 @@
 			"阿南之人",
 			"飞舞回堂前",
 			"魔琴",
-			"아라"
+			"아라",
+			"Kelly Hsueh"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|分類}}",
@@ -310,7 +311,7 @@
 	"toc": "目次",
 	"showtoc": "顯示",
 	"hidetoc": "隱藏",
-	"collapsible-collapse": "合併",
+	"collapsible-collapse": "摺疊",
 	"collapsible-collapse-all-text": "全部摺疊",
 	"collapsible-collapse-all-tooltip": "摺疊目前頁面上的所有可摺疊元素",
 	"collapsible-expand": "展開",
@@ -3314,6 +3315,8 @@
 	"tag-mw-server-side-upload-description": "透過維護指令碼上傳的媒體檔案",
 	"tag-mw-ipblock-appeal": "IP 封鎖申訴",
 	"tag-mw-ipblock-appeal-description": "透過[[{{#special:Mytalk}}]]從被封鎖建立帳號的 IP 位址建立臨時帳號",
+	"tag-mw-edited-other-users-js": "編輯其他使用者的JS",
+	"tag-mw-edited-other-users-js-description": "位於使用者頁面命名空間之編輯，修改了屬於其他使用者的JavaScript頁面",
 	"tags-title": "標籤",
 	"tags-intro": "此頁面列出所有可用來標示編輯內容的標籤以及這些標籤所代表的意思。",
 	"tags-tag": "標籤名稱",

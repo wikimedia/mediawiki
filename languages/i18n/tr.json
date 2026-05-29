@@ -3293,6 +3293,8 @@
 	"tag-mw-server-side-upload-description": "Bir bakım betiği ile yüklenmiş ortam dosyaları",
 	"tag-mw-ipblock-appeal": "IP engelleme itirazı",
 	"tag-mw-ipblock-appeal-description": "Hesap oluşturması engellenen IP adreslerinden [[{{#special:Mytalk}}]] aracılığıyla geçici hesap oluşturmaları",
+	"tag-mw-edited-other-users-js": "Başka kullanıcıların JS kodu düzenlendi",
+	"tag-mw-edited-other-users-js-description": "Kullanıcı alanında yapılan ve diğer kullanıcılara ait JavaScript sayfalarını değiştiren düzenlemeler",
 	"tags-title": "Etiketler",
 	"tags-intro": "Bu sayfa, yazılımın bir değişikliği işaretleyebileceği etiketleri ve bunların anlamlarını listeler.",
 	"tags-tag": "Etiket adı",

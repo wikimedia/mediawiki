@@ -3224,6 +3224,8 @@
 	"tag-mw-server-side-upload-description": "Mediální soubory, které byly načteny prostřednictvím údržbového skriptu",
 	"tag-mw-ipblock-appeal": "Odvolání se proti blokování IP adresy",
 	"tag-mw-ipblock-appeal-description": "Vytvoření dočasných účtů přes [[{{#special:Mytalk}}]] z IP adres se zablokovaným vytvářením účtů",
+	"tag-mw-edited-other-users-js": "Editace JS jiného uživatele",
+	"tag-mw-edited-other-users-js-description": "Editace v uživatelském jmenném prostoru, které mění JavaScriptové stránky patřící jiným uživatelům",
 	"tags-title": "Značky",
 	"tags-intro": "Tato stránka obsahuje seznam značek, kterými může software označovat jednotlivé editace, a jejich významy.",
 	"tags-tag": "Název značky",

@@ -3198,6 +3198,8 @@
 	"tag-mw-server-side-upload-description": "Texniki baxış skripti vasitəsilə yüklənmiş media faylları",
 	"tag-mw-ipblock-appeal": "IP blokunun açılması sorğusu",
 	"tag-mw-ipblock-appeal-description": "Hesab yaratmaqdan bloklanan IP ünvanlarından [[{{#special:Mytalk}}]] vasitəsilə müvəqqəti hesab yaradılması",
+	"tag-mw-edited-other-users-js": "Digər istifadəçinin JS-i redaktə",
+	"tag-mw-edited-other-users-js-description": "Digər istifadəçilərə məxsus JavaScript səhifələrini dəyişdirən istifadəçi ad fəzasındakı redaktələr",
 	"tags-title": "Teqlər",
 	"tags-intro": "Bu səhifə proqram təminatının redaktəni qeyd edə biləcəyi teqləri və onların mənasını sadalayır.",
 	"tags-tag": "Etiket adı",

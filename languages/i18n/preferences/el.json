@@ -23,7 +23,8 @@
 			"SucreRouge",
 			"Warudo",
 			"ZaDiak",
-			"Αντιγόνη"
+			"Αντιγόνη",
+			"Jimkats"
 		]
 	},
 	"preferences": "Προτιμήσεις",
@@ -44,6 +45,7 @@
 	"username": "Όνομα {{GENDER:$1|χρήστη|χρήστριας}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Μέλος}} {{PLURAL:$1|της ομάδας|των ομάδων}}:",
 	"group-membership-link-with-expiry": "$1 (μέχρι τις $2)",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|Απενεργοποιημένος|Απενεργοποιημένη}} {{PLURAL:$1|ομάδα|ομάδες}}:",
 	"prefs-edits": "Αριθμός επεξεργασιών:",
 	"prefs-registration": "Χρόνος εγγραφής:",
 	"yourrealname": "Πραγματικό όνομα:",

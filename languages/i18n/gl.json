@@ -3212,6 +3212,8 @@
 	"tag-mw-server-side-upload-description": "Ficheiros multimedia que se subiron mediante un script de mantemento",
 	"tag-mw-ipblock-appeal": "Apelación do bloqueo ao enderezo IP",
 	"tag-mw-ipblock-appeal-description": "Creacións temporais de contas a través de «[[{{#special:Mytalk}}]]» desde enderezos IP bloqueados fronte á creación de contas",
+	"tag-mw-edited-other-users-js": "Edición do JS doutro usuario",
+	"tag-mw-edited-other-users-js-description": "Edicións no espazo de usuario que modifican páxinas de JavaScript que pertencen a outros usuarios",
 	"tags-title": "Etiquetas",
 	"tags-intro": "Esta páxina lista as etiquetas coas que o software pode marcar unha edición e mailos seus significados.",
 	"tags-tag": "Nome da etiqueta",
