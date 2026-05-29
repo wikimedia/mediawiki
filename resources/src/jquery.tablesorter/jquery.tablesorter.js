@@ -426,9 +426,38 @@
 		return false;
 	}
 
+	function getHeaderSortSequence( $header ) {
+		const sortOrder = String( $header.data( 'sortOrder' ) ).toLowerCase();
+
+		return [ 'desc', 'descending' ].includes( sortOrder ) ? [ 1, 0, 2 ] : [ 0, 1, 2 ];
+	}
+
+	function getNextSortOrderFromCount( $header ) {
+		const sequence = getHeaderSortSequence( $header );
+
+		return sequence[ $header.data( 'count' ) % sequence.length ];
+	}
+
+	function getNextSortOrder( $header, order ) {
+		const sequence = getHeaderSortSequence( $header );
+		const index = sequence.indexOf( order );
+
+		return sequence[ ( index + 1 ) % sequence.length ];
+	}
+
+	function setHeaderSortState( $header, order ) {
+		const sequence = getHeaderSortSequence( $header );
+		const index = sequence.indexOf( order );
+
+		$header.data( {
+			order: order,
+			count: index === -1 ? 0 : index + 1
+		} );
+	}
+
 	/**
 	 * Sets the sort count of the columns that are not affected by the sorting to have them sorted
-	 * in default (ascending) order when their header cell is clicked the next time.
+	 * in their configured first-click order when their header cell is clicked the next time.
 	 *
 	 * @param {jQuery} $headers
 	 * @param {Array} sortList 2D number array
@@ -438,7 +467,7 @@
 		// Loop through all headers to retrieve the indices of the columns the header spans across:
 		headerToColumns.forEach( ( columns, headerIndex ) => {
 
-			columns.forEach( ( columnIndex, i ) => {
+			columns.forEach( ( columnIndex ) => {
 				const header = $headers[ headerIndex ],
 					$header = $( header );
 
@@ -452,11 +481,8 @@
 					// Column shall be sorted: Apply designated count and order.
 					for ( let j = 0; j < sortList.length; j++ ) {
 						const sortColumn = sortList[ j ];
-						if ( sortColumn[ 0 ] === i ) {
-							$header.data( {
-								order: sortColumn[ 1 ],
-								count: sortColumn[ 1 ] + 1
-							} );
+						if ( sortColumn[ 0 ] === columnIndex ) {
+							setHeaderSortState( $header, sortColumn[ 1 ] );
 							break;
 						}
 					}
@@ -960,11 +986,10 @@
 					if ( totalRows > 0 ) {
 						const cell = this;
 						const $cell = $( cell );
-						const numSortOrders = 3;
 
 						// Get current column sort order
 						$cell.data( {
-							order: $cell.data( 'count' ) % numSortOrders,
+							order: getNextSortOrderFromCount( $cell ),
 							count: $cell.data( 'count' ) + 1
 						} );
 
@@ -989,8 +1014,9 @@
 									const s = config.sortList[ j ];
 									const o = config.headerList[ config.columnToHeader[ s[ 0 ] ] ];
 									if ( isValueInArray( s[ 0 ], newSortList ) ) {
-										$( o ).data( 'count', s[ 1 ] + 1 );
-										s[ 1 ] = $( o ).data( 'count' ) % numSortOrders;
+										const $o = $( o );
+										s[ 1 ] = getNextSortOrder( $o, s[ 1 ] );
+										setHeaderSortState( $o, s[ 1 ] );
 									}
 								}
 							} else {

@@ -233,6 +233,55 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		}
 	);
 	QUnit.test(
+		'Planets: descending radius with data-sort-order="desc" on first click',
+		( assert ) => {
+			const $table = tableCreate( planetHeader, planets );
+			$table.find( 'th' ).eq( 1 ).attr( 'data-sort-order', 'desc' );
+			$table.tablesorter();
+			$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), reversed( planetsAscRadius ) );
+		}
+	);
+	QUnit.test(
+		'Planets: data-sort-order="desc" cycles to ascending on second click',
+		( assert ) => {
+			const $table = tableCreate( planetHeader, planets );
+			$table.find( 'th' ).eq( 1 ).attr( 'data-sort-order', 'desc' );
+			$table.tablesorter();
+			$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), planetsAscRadius );
+		}
+	);
+	QUnit.test(
+		'Planets: data-sort-order="desc" cycles to initial on third click',
+		( assert ) => {
+			const $table = tableCreate( planetHeader, planets );
+			$table.find( 'th' ).eq( 1 ).attr( 'data-sort-order', 'desc' );
+			$table.tablesorter();
+			$table.find( '.headerSort' ).eq( 1 )
+				.trigger( 'click' )
+				.trigger( 'click' )
+				.trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), planets );
+		}
+	);
+	QUnit.test(
+		'Planets: data-sort-order="desc" cycles correctly after initial sort',
+		( assert ) => {
+			const $table = tableCreate( planetHeader, planets );
+			$table.find( 'th' ).eq( 1 ).attr( 'data-sort-order', 'desc' );
+			$table.tablesorter( { sortList: [
+				{ 1: 'desc' }
+			] } );
+			$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), planetsAscRadius );
+		}
+	);
+	QUnit.test(
 		'Sorting multiple columns by passing sort list',
 		( assert ) => {
 			const $table = tableCreate( planetHeader, simple );
