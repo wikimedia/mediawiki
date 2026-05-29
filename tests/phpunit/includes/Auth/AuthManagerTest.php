@@ -3469,41 +3469,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$logger->clearBuffer();
 		$readOnlyMode->setReason( false );
 
-		// Session blacklisted
-		$session->clear();
-		$session->set( AuthManager::AUTOCREATE_BLOCKLIST, 'test' );
-		$user = User::newFromName( $username );
-		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
-		$ret = $this->manager->autoCreateUser(
-			$user, AuthManager::AUTOCREATE_SOURCE_SESSION, true, true
-		);
-		$this->unhook( 'LocalUserCreated' );
-		$this->assertEquals( Status::newFatal( 'test' ), $ret );
-		$this->assertSame( 0, $user->getId() );
-		$this->assertNotEquals( $username, $user->getName() );
-		$this->assertSame( 0, $session->getUser()->getId() );
-		$this->assertSame( [
-			[ LogLevel::DEBUG, 'blacklisted in session {sessionid}' ],
-		], $logger->getBuffer() );
-		$logger->clearBuffer();
-
-		$session->clear();
-		$session->set( AuthManager::AUTOCREATE_BLOCKLIST, StatusValue::newFatal( 'test2' ) );
-		$user = User::newFromName( $username );
-		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
-		$ret = $this->manager->autoCreateUser(
-			$user, AuthManager::AUTOCREATE_SOURCE_SESSION, true, true
-		);
-		$this->unhook( 'LocalUserCreated' );
-		$this->assertEquals( Status::newFatal( 'test2' ), $ret );
-		$this->assertSame( 0, $user->getId() );
-		$this->assertNotEquals( $username, $user->getName() );
-		$this->assertSame( 0, $session->getUser()->getId() );
-		$this->assertSame( [
-			[ LogLevel::DEBUG, 'blacklisted in session {sessionid}' ],
-		], $logger->getBuffer() );
-		$logger->clearBuffer();
-
 		// Invalid name
 		$session->clear();
 		$user = User::newFromName( $username . "\u{0080}", false );
@@ -3520,7 +3485,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			[ LogLevel::DEBUG, 'name "{username}" is not usable' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
-		$this->assertSame( 'noname', $session->get( AuthManager::AUTOCREATE_BLOCKLIST ) );
 
 		// IP unable to create accounts
 		$this->setGroupPermissions( [
@@ -3545,9 +3509,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			[ LogLevel::DEBUG, 'cannot create or autocreate accounts' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
-		$this->assertEquals(
-			(string)$ret, (string)$session->get( AuthManager::AUTOCREATE_BLOCKLIST )
-		);
 
 		// maintenance scripts always work
 		$expectedSource = AuthManager::AUTOCREATE_SOURCE_MAINT;
@@ -3632,9 +3593,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			[ LogLevel::DEBUG, 'Provider denied creation of {username}: {reason}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
-		$this->assertEquals(
-			StatusValue::newFatal( 'fail-in-pre' ), $session->get( AuthManager::AUTOCREATE_BLOCKLIST )
-		);
 
 		$session->clear();
 		$user = User::newFromName( $username );
@@ -3651,9 +3609,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			[ LogLevel::DEBUG, 'Provider denied creation of {username}: {reason}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
-		$this->assertEquals(
-			StatusValue::newFatal( 'fail-in-primary' ), $session->get( AuthManager::AUTOCREATE_BLOCKLIST )
-		);
 
 		$session->clear();
 		$user = User::newFromName( $username );
@@ -3670,9 +3625,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			[ LogLevel::DEBUG, 'Provider denied creation of {username}: {reason}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
-		$this->assertEquals(
-			StatusValue::newFatal( 'fail-in-secondary' ), $session->get( AuthManager::AUTOCREATE_BLOCKLIST )
-		);
 
 		// Test backoff
 		$cache = $this->objectCacheFactory->getLocalClusterInstance();
@@ -3693,7 +3645,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			[ LogLevel::DEBUG, '{username} denied by prior creation attempt failures' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
-		$this->assertSame( null, $session->get( AuthManager::AUTOCREATE_BLOCKLIST ) );
 		$cache->delete( $backoffKey );
 
 		// Test addToDatabase fails
@@ -3715,7 +3666,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			[ LogLevel::ERROR, '{username} failed with message {msg}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
-		$this->assertSame( null, $session->get( AuthManager::AUTOCREATE_BLOCKLIST ) );
 
 		// Test addToDatabase throws an exception
 		$cache = $this->objectCacheFactory->getLocalClusterInstance();
@@ -3742,7 +3692,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			[ LogLevel::ERROR, '{username} failed with exception {exception}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
-		$this->assertSame( null, $session->get( AuthManager::AUTOCREATE_BLOCKLIST ) );
 		$this->assertNotFalse( $cache->get( $backoffKey ) );
 		$cache->delete( $backoffKey );
 
@@ -3773,7 +3722,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			[ LogLevel::INFO, '{username} already exists locally (race)' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
-		$this->assertSame( null, $session->get( AuthManager::AUTOCREATE_BLOCKLIST ) );
 
 		// Success!
 		$session->clear();

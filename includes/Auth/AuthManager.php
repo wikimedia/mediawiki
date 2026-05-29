@@ -128,13 +128,6 @@ class AuthManager implements LoggerAwareInterface {
 	 */
 	public const ACCOUNT_LINK_STATE = 'AuthManager::accountLinkState';
 
-	/**
-	 * @internal
-	 * Key in the user's session data for storing autocreation failures,
-	 * to avoid re-attempting expensive autocreation checks on every request.
-	 */
-	public const AUTOCREATE_BLOCKLIST = 'AuthManager::AutoCreateBlacklist';
-
 	/** Log in with an existing (not necessarily local) user */
 	public const ACTION_LOGIN = 'login';
 	/** Continue a login process that was interrupted by the need for user input or communication
@@ -2110,31 +2103,12 @@ class AuthManager implements LoggerAwareInterface {
 			$session = $this->request->getSession();
 		}
 
-		// Check the session, if we tried to create this user already there's
-		// no point in retrying.
-		if ( $session && $session->get( self::AUTOCREATE_BLOCKLIST ) ) {
-			$this->logger->debug( __METHOD__ . ': blacklisted in session {sessionid}', [
-				'username' => $username,
-				'sessionid' => $session->getId(),
-			] );
-			$user->setId( 0 );
-			$user->loadFromId();
-			$reason = $session->get( self::AUTOCREATE_BLOCKLIST );
-
-			$status = $reason instanceof StatusValue ? Status::wrap( $reason ) : Status::newFatal( $reason );
-			$this->logAutocreationAttempt( $status, $user, $source, $login );
-			return $status;
-		}
-
 		// Is the username usable? (Previously isCreatable() was checked here but
 		// that doesn't work with auto-creation of TempUser accounts by CentralAuth)
 		if ( !$this->userNameUtils->isUsable( $username ) ) {
 			$this->logger->debug( __METHOD__ . ': name "{username}" is not usable', [
 				'username' => $username,
 			] );
-			if ( $session ) {
-				$session->set( self::AUTOCREATE_BLOCKLIST, 'noname' );
-			}
 			$user->setId( 0 );
 			$user->loadFromId();
 			$fatalStatus = Status::newFatal( 'noname' );
@@ -2157,10 +2131,6 @@ class AuthManager implements LoggerAwareInterface {
 						'username' => $username,
 						'creator' => $performer->getUser()->getName(),
 					] );
-					if ( $session ) {
-						$session->set( self::AUTOCREATE_BLOCKLIST, $status );
-						$session->persist();
-					}
 					$user->setId( 0 );
 					$user->loadFromId();
 					$statusWrapped = Status::wrap( $status );
@@ -2202,9 +2172,6 @@ class AuthManager implements LoggerAwareInterface {
 					'username' => $username,
 					'reason' => $ret->getWikiText( false, false, 'en' ),
 				] );
-				if ( $session ) {
-					$session->set( self::AUTOCREATE_BLOCKLIST, $status );
-				}
 				$user->setId( 0 );
 				$user->loadFromId();
 				$this->logAutocreationAttempt( $ret, $user, $source, $login );
