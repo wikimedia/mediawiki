@@ -10436,8 +10436,10 @@ class MainConfigSchema {
 	 */
 	public const GitRepositoryViewers = [
 		'default' => [
-			'https://(?:[a-z0-9_]+@)?gerrit.wikimedia.org/r/(?:p/)?(.*)' => 'https://gerrit.wikimedia.org/g/%R/+/%H',
-			'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' => 'https://gerrit.wikimedia.org/g/%R/+/%H',
+			'https://(?:[a-z0-9_]+@)?gerrit\.wikimedia\.org/r/(?:p/)?(.*)' => 'https://gerrit.wikimedia.org/g/%R/+/%H',
+			'ssh://(?:[a-z0-9_]+@)?gerrit\.wikimedia\.org:29418/(.*)' => 'https://gerrit.wikimedia.org/g/%R/+/%H',
+			'https://github\.com/(.*?)(\.git)?' => 'https://github.com/$1/commit/%H',
+			'git@github\.com:(.*?)(\.git)?' => 'https://github.com/$1/commit/%H',
 		],
 		'type' => 'map',
 	];
