@@ -3,8 +3,36 @@
 		"authors": [
 			"Nemoralis"
 		],
-		"comment": "Ordinal suffix rules for Azerbaijani numerals based on vowel harmony. Rules are ordered largest-magnitude-first so each number matches exactly one rule."
+		"comment": "Grammar transformation rules for Azerbaijani."
 	},
+	"genitive": [
+		[ "@metadata", [ "comment", "Special case: 'su' (water) → 'suyun'" ] ],
+		[ "^[Ss]u$", "$0yun" ],
+
+		[ "@metadata", [ "comment", "k→y mutation: word ends in 'k', last vowel a/ı → word[-k]+y+nın" ] ],
+		[ "^(.*[aı][^aıoueəiöü]*)k$", "$1yın" ],
+		[ "^(.*[ou][^aıoueəiöü]*)k$", "$1yun" ],
+		[ "^(.*[eəi][^aıoueəiöü]*)k$", "$1yin" ],
+		[ "^(.*[öü][^aıoueəiöü]*)k$", "$1yün" ],
+
+		[ "@metadata", [ "comment", "q→ğ mutation: word ends in 'q', suffix by last vowel" ] ],
+		[ "^(.*[aı][^aıoueəiöü]*)q$", "$1ğın" ],
+		[ "^(.*[ou][^aıoueəiöü]*)q$", "$1ğun" ],
+		[ "^(.*[eəi][^aıoueəiöü]*)q$", "$1ğin" ],
+		[ "^(.*[öü][^aıoueəiöü]*)q$", "$1ğün" ],
+
+		[ "@metadata", [ "comment", "Vowel-final words: append linking 'n', then suffix by last vowel" ] ],
+		[ "^(.*[aı])$", "$1nın" ],
+		[ "^(.*[ou])$", "$1nun" ],
+		[ "^(.*[eəi])$", "$1nin" ],
+		[ "^(.*[öü])$", "$1nün" ],
+
+		[ "@metadata", [ "comment", "Consonant-final words: suffix by last vowel" ] ],
+		[ "^(.*[aı][^aıoueəiöü]+)$", "$1ın" ],
+		[ "^(.*[ou][^aıoueəiöü]+)$", "$1un" ],
+		[ "^(.*[eəi][^aıoueəiöü]+)$", "$1in" ],
+		[ "^(.*[öü][^aıoueəiöü]+)$", "$1ün" ]
+	],
 	"ordinal": [
 		[ "@metadata", [ "comment", "Pure-zero inputs (sıfır): last vowel 'ı' → cı" ] ],
 		[ "^(0+)$", "$1-cı" ],

@@ -178,8 +178,6 @@ class GrammarTest extends TestCase {
 		yield 'Ukrainian Wikibooks Genitive' => [ 'uk', 'Вікіпідручник', 'genitive', 'Вікіпідручника' ];
 		yield 'Ukrainian Wikipedia Accusative' => [ 'uk', 'Вікіпедія', 'accusative', 'Вікіпедію' ];
 		yield 'Ukrainian MediaWiki Locative' => [ 'uk', 'MediaWiki', 'locative', 'у MediaWiki' ];
-
-		// Azerbaijani ordinal — JSON rules in includes/libs/Leximorph/data/grammarTransformations/az.json
 		yield 'Azerbaijani ordinal 0 → cı'         => [ 'az', '0', 'ordinal', '0-cı' ];
 		yield 'Azerbaijani ordinal 1 → ci'         => [ 'az', '1', 'ordinal', '1-ci' ];
 		yield 'Azerbaijani ordinal 2 → ci'         => [ 'az', '2', 'ordinal', '2-ci' ];
@@ -206,6 +204,23 @@ class GrammarTest extends TestCase {
 		yield 'Azerbaijani ordinal 1000 → ci'      => [ 'az', '1000', 'ordinal', '1000-ci' ];
 		yield 'Azerbaijani ordinal 1000000 → cu'   => [ 'az', '1000000', 'ordinal', '1000000-cu' ];
 		yield 'Azerbaijani ordinal 1000000000 → cı' => [ 'az', '1000000000', 'ordinal', '1000000000-cı' ];
+		yield 'Azerbaijani genitive su → suyun'         => [ 'az', 'su', 'genitive', 'suyun' ];
+		yield 'Azerbaijani genitive çörək → çörəyin'    => [ 'az', 'çörək', 'genitive', 'çörəyin' ];
+		yield 'Azerbaijani genitive ayaq → ayağın'     => [ 'az', 'ayaq', 'genitive', 'ayağın' ];
+		yield 'Azerbaijani genitive ilik → iliyin'      => [ 'az', 'ilik', 'genitive', 'iliyin' ];
+		yield 'Azerbaijani genitive ürək → ürəyin'      => [ 'az', 'ürək', 'genitive', 'ürəyin' ];
+		yield 'Azerbaijani genitive qulaq → qulağın'    => [ 'az', 'qulaq', 'genitive', 'qulağın' ];
+		yield 'Azerbaijani genitive buruq → buruğun'    => [ 'az', 'buruq', 'genitive', 'buruğun' ];
+		yield 'Azerbaijani genitive çörük → çörüyün'    => [ 'az', 'çörük', 'genitive', 'çörüyün' ];
+		yield 'Azerbaijani genitive ana → ananın'       => [ 'az', 'ana', 'genitive', 'ananın' ];
+		yield 'Azerbaijani genitive dolu → dolunun'     => [ 'az', 'dolu', 'genitive', 'dolunun' ];
+		yield 'Azerbaijani genitive hücrə → hücrənin'   => [ 'az', 'hücrə', 'genitive', 'hücrənin' ];
+		yield 'Azerbaijani genitive ölkə → ölkənin'     => [ 'az', 'ölkə', 'genitive', 'ölkənin' ];
+		yield 'Azerbaijani genitive Azərbaycan → Azərbaycanın' => [ 'az', 'Azərbaycan', 'genitive', 'Azərbaycanın' ];
+		yield 'Azerbaijani genitive qonur → qonurun'    => [ 'az', 'qonur', 'genitive', 'qonurun' ];
+		yield 'Azerbaijani genitive dəmir → dəmirin'    => [ 'az', 'dəmir', 'genitive', 'dəmirin' ];
+		yield 'Azerbaijani genitive gül → gülün'        => [ 'az', 'gül', 'genitive', 'gülün' ];
+		yield 'Azerbaijani genitive göy → göyün'        => [ 'az', 'göy', 'genitive', 'göyün' ];
 	}
 
 	/**
