@@ -22,8 +22,14 @@ Some specific notes for MediaWiki 1.47 upgrades are below:
 * …
 
 For notes on 1.46.x and older releases, see HISTORY.
-=== Configuration changes for system administrators in 1.47 ===
 
+=== Configuration changes for system administrators in 1.47 ===
+* $wgGroupPermissions['*']['autocreateaccount'] now defaults to true.
+  This matches the default for $wgGroupPermissions['*']['createaccount'].
+  If you're using an extension that allows autocreation
+  of local accounts, you wish to prevent it,
+  and you've already set `$wgGroupPermissions['*']['createaccount'] = false`,
+  set `$wgGroupPermissions['*']['autocreateaccount'] = false` too.
 * …
 
 ==== New configuration ====

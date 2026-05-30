@@ -8071,6 +8071,7 @@ class MainConfigSchema {
 		'default' => [
 			'*' => [
 				'createaccount' => true,
+				'autocreateaccount' => true,
 				'read' => true,
 				'edit' => true,
 				'createpage' => true,

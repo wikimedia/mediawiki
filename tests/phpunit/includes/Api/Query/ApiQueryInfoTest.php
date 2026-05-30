@@ -178,6 +178,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 
 		// Enabled - but the user isn't allowed to create accounts
 		$this->setGroupPermissions( '*', 'createaccount', false );
+		$this->setGroupPermissions( '*', 'autocreateaccount', false );
 		[ $data ] = $this->doApiRequest( [
 			'action' => 'query',
 			'prop' => 'info',
