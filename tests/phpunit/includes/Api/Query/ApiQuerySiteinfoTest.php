@@ -69,6 +69,28 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$this->assertTrue( $data['mainpageisdomainroot'] );
 	}
 
+	public function testThumbSizes() {
+		// Test discontinuous thumbnail sizes
+		$this->overrideConfigValues( [
+			MainConfigNames::ThumbLimits => [
+				1 => 150,
+				5 => 250,
+				7 => 400,
+			],
+			MainConfigNames::DefaultUserOptions => [
+				'thumbsize' => 5,
+			],
+		] );
+
+		// Thumb size list should be compact in API results
+		$general = $this->doQuery( 'general' );
+		$this->assertSame( [ 150, 250, 400 ], $general['thumblimits'] );
+
+		// Default thumbsize option should be adjusted to match compact list
+		$defaultoptions = $this->doQuery( 'defaultoptions' );
+		$this->assertSame( 1, $defaultoptions['thumbsize'] );
+	}
+
 	public function testLinkPrefixCharset() {
 		$contLang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'ar' );
 		$this->setContentLang( $contLang );

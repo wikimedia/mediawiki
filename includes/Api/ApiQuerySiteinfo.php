@@ -248,6 +248,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data['galleryoptions'] = $config->get( MainConfigNames::GalleryOptions );
 
+		/* T427066: return thumblimits as a compact array, even if it is
+		 * actually sparse; the thumbsize defaults are adjusted to match in
+		 * ::appendDefaultOptions() below. */
 		$data['thumblimits'] = array_values(
 			$config->get( MainConfigNames::ThumbLimits )
 		);
@@ -850,6 +853,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	public function appendDefaultOptions( string $property ): bool {
 		$options = $this->userOptionsLookup->getDefaultOptions( null );
 		$options[ApiResult::META_BC_BOOLS] = array_keys( $options );
+		// Adjust thumbsize option, since for API purposes we're returning
+		// thumblimits as a non-sparse array. (T427066)
+		$options['thumbsize'] = array_search(
+			$options['thumbsize'],
+			array_keys( $this->getConfig()->get( MainConfigNames::ThumbLimits ) ),
+			true
+		);
 		return $this->getResult()->addValue( 'query', $property, $options );
 	}
 
