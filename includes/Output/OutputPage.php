@@ -999,16 +999,18 @@ class OutputPage extends ContextSource {
 	 * @return string The robots policy options.
 	 */
 	private function formatRobotsOptions(): string {
-		$options = $this->mRobotsOptions;
-		// Check if options array has any non-integer keys.
-		if ( count( array_filter( array_keys( $options ), 'is_string' ) ) > 0 ) {
+		$options = [];
+		foreach ( $this->mRobotsOptions as $key => $value ) {
 			// Robots meta tags can have directives that are single strings or
 			// have parameters that should be formatted like <directive>:<setting>.
 			// If the options keys are strings, format them accordingly.
 			// https://developers.google.com/search/docs/advanced/robots/robots_meta_tag
-			array_walk( $options, static function ( &$value, $key ) {
-				$value = is_string( $key ) ? "{$key}:{$value}" : "{$value}";
-			} );
+			if ( is_string( $key ) ) {
+				$options[] = "$key:$value";
+			} else {
+				// string cast done by implode below
+				$options[] = $value;
+			}
 		}
 		return implode( ',', $options );
 	}
