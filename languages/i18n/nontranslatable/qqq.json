@@ -182,6 +182,7 @@
 	"ipb-default-expiry": "{{notranslate}}{{ignored}}The default block expiry on the block form on [[Special:Block]] when blocking users.",
 	"ipb-default-expiry-ip": "{{notranslate}}{{ignored}}The default block expiry on the block form on [[Special:Block]] when blocking IP addresses or IP ranges.",
 	"ipb-default-expiry-temporary-account": "{{ignored}}The default block expiry on the block form on [[Special:Block]] when blocking a temporary account.",
+	"ipb-indefinite-expiry-temporary-account": "{{ignored}}The expiry used by the \"indefinite\" option on [[Special:Block]] when blocking a temporary account.",
 	"licenses": "{{notranslate}}",
 	"linksearch-summary": "{{doc-specialpagesummary|linksearch}}",
 	"listredirects-summary": "{{doc-specialpagesummary|listredirects}}",

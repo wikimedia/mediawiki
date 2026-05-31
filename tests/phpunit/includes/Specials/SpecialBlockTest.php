@@ -168,6 +168,63 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
+	 * @dataProvider provideTempAccountIndefiniteExpiry
+	 */
+	public function testTempAccountIndefiniteExpiry(
+		string $configuredExpiry,
+		string $expectedExpiry,
+		string $expectedLabel
+	): void {
+		$this->overrideConfigValue( MainConfigNames::UseCodexSpecialBlock, true );
+		$this->overrideConfigValue( MainConfigNames::UseDatabaseMessages, true );
+
+		$context = RequestContext::getMain();
+		$context->setTitle( Title::newFromText( 'Block', NS_SPECIAL ) );
+		$context->setUser( $this->getTestSysop()->getUser() );
+
+		$this->editPage(
+			Title::newFromText( 'ipb-indefinite-expiry-temporary-account', NS_MEDIAWIKI ),
+			$configuredExpiry
+		);
+
+		$page = $this->newSpecialPage();
+		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
+		$wrappedPage->execute( '~2025-1' );
+
+		$actualJsConfigVars = $wrappedPage->getOutput()->getJsConfigVars();
+
+		$this->assertSame(
+			$expectedExpiry,
+			$actualJsConfigVars['blockIndefiniteExpiry']
+		);
+
+		$this->assertSame(
+			$expectedLabel,
+			$actualJsConfigVars['blockIndefiniteExpiryLabel']
+		);
+	}
+
+	public static function provideTempAccountIndefiniteExpiry(): array {
+		return [
+			'Simple duration' => [
+				'3 weeks',
+				'3 weeks',
+				'21 days',
+			],
+			'Month duration' => [
+				'2 months',
+				'2 months',
+				'2 months',
+			],
+			'Compound duration' => [
+				'3 days 12 hours',
+				'3 days 12 hours',
+				'3 days and 12 hours',
+			],
+		];
+	}
+
+	/**
 	 * @dataProvider provideGetFormFieldsCodex
 	 */
 	public function testCodexFormData( array $params, array $expected, bool $multiblocks = false ): void {

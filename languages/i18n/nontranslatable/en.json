@@ -191,6 +191,7 @@
 	"ipb-default-expiry": "",
 	"ipb-default-expiry-ip": "",
 	"ipb-default-expiry-temporary-account": "",
+	"ipb-indefinite-expiry-temporary-account": "",
 	"licenses": "-",
 	"linksearch-summary": "",
 	"listredirects-summary": "",

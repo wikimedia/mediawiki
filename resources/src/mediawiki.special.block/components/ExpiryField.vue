@@ -12,7 +12,7 @@
 			name="expiryType"
 			input-value="indefinite"
 		>
-			{{ $i18n( 'block-expiry-indefinite' ).text() }}
+			{{ indefiniteLabel }}
 		</cdx-radio>
 
 		<cdx-radio
@@ -124,6 +124,11 @@ module.exports = exports = defineComponent( {
 	setup() {
 		const store = useBlockStore();
 		const blockExpiryOptions = mw.config.get( 'blockExpiryOptions' );
+		const indefiniteExpiry = mw.config.get( 'blockIndefiniteExpiry' ) || 'indefinite';
+		const indefiniteExpiryLabel = mw.config.get( 'blockIndefiniteExpiryLabel' );
+		const indefiniteLabel = computed(
+			() => indefiniteExpiryLabel || mw.msg( 'block-expiry-indefinite' )
+		);
 		const presetDurationOptions = Object.keys( blockExpiryOptions )
 			.map( ( key ) => ( { label: key, value: blockExpiryOptions[ key ] } ) )
 			// Don't include "other" in the preset options as it's handled separately in the new UI
@@ -197,7 +202,7 @@ module.exports = exports = defineComponent( {
 
 		const computedModelValue = computed( () => {
 			if ( expiryType.value === 'indefinite' ) {
-				return expiryType.value;
+				return indefiniteExpiry;
 			} else if ( expiryType.value === 'preset-duration' ) {
 				return presetDuration.value;
 			} else if ( expiryType.value === 'custom-duration' ) {
@@ -218,7 +223,7 @@ module.exports = exports = defineComponent( {
 		 */
 		function setDurationFromGiven( given ) {
 			const optionsContainsValue = ( opts, v ) => opts.some( ( option ) => option.value === v );
-			if ( mw.util.isInfinity( given ) ) {
+			if ( given === indefiniteExpiry || mw.util.isInfinity( given ) ) {
 				expiryType.value = 'indefinite';
 			} else if ( optionsContainsValue( presetDurationOptions, given ) ) {
 				expiryType.value = 'preset-duration';
@@ -284,6 +289,7 @@ module.exports = exports = defineComponent( {
 		} );
 
 		return {
+			indefiniteLabel,
 			presetDurationOptions,
 			presetDurationStatus,
 			presetDurationMessages,

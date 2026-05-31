@@ -477,6 +477,8 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		$defaultExpiry = $this->msg( 'ipb-default-expiry' )->inContentLanguage();
+		$indefiniteExpiry = 'indefinite';
+		$indefiniteExpiryLabel = $this->msg( 'block-expiry-indefinite' )->text();
 		if ( $this->target instanceof BlockTargetWithIp ) {
 			$defaultExpiryIP = $this->msg( 'ipb-default-expiry-ip' )->inContentLanguage();
 			if ( !$defaultExpiryIP->isDisabled() ) {
@@ -491,6 +493,13 @@ class SpecialBlock extends FormSpecialPage {
 			if ( !$defaultExpiryTemporaryAccount->isDisabled() ) {
 				$defaultExpiry = $defaultExpiryTemporaryAccount;
 			}
+
+			$indefiniteExpiryTemporaryAccount = $this->msg( 'ipb-indefinite-expiry-temporary-account' )
+				->inContentLanguage();
+			if ( !$indefiniteExpiryTemporaryAccount->isDisabled() ) {
+				$indefiniteExpiry = $indefiniteExpiryTemporaryAccount->text();
+				$indefiniteExpiryLabel = $this->getExpiryLabel( $indefiniteExpiry, $suggestedDurations );
+			}
 		}
 
 		$a['Expiry'] = [
@@ -502,6 +511,8 @@ class SpecialBlock extends FormSpecialPage {
 		];
 		$this->codexFormData[ 'blockExpiryOptions' ] = $suggestedDurations;
 		$this->codexFormData[ 'blockExpiryDefault' ] = $defaultExpiry->text();
+		$this->codexFormData[ 'blockIndefiniteExpiry' ] = $indefiniteExpiry;
+		$this->codexFormData[ 'blockIndefiniteExpiryLabel' ] = $indefiniteExpiryLabel;
 
 		$a['Reason'] = [
 			'type' => 'selectandother',
@@ -642,6 +653,30 @@ class SpecialBlock extends FormSpecialPage {
 				} );
 			}
 		}
+	}
+
+	/**
+	 * Get a localized label for a block expiry value.
+	 *
+	 * @param string $expiry
+	 * @param array<string,string> $suggestedDurations
+	 * @return string
+	 */
+	private function getExpiryLabel( string $expiry, array $suggestedDurations ): string {
+		$label = array_search( $expiry, $suggestedDurations, true );
+		if ( $label !== false ) {
+			return $label;
+		}
+
+		$expiryTimestamp = strtotime( '+' . $expiry, 0 );
+		if ( $expiryTimestamp !== false ) {
+			return $this->getLanguage()->formatDurationBetweenTimestamps(
+				0,
+				$expiryTimestamp
+			);
+		}
+
+		return $expiry;
 	}
 
 	/**
