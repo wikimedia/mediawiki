@@ -144,7 +144,9 @@ class CommandFactory {
 			$this->getLocalShellboxOptions(), $this->logger );
 
 		$command = new Command( $executor );
-		$command->setLogger( $this->logger );
+		if ( $this->logger ) {
+			$command->setLogger( $this->logger );
+		}
 		if ( $allUsers ) {
 			$command->allowPath( '/home' );
 		}
@@ -171,7 +173,9 @@ class CommandFactory {
 				'service' => $service,
 			] );
 			$executor = new RemoteBoxedExecutor( $client );
-			$executor->setLogger( $this->logger );
+			if ( $this->logger ) {
+				$executor->setLogger( $this->logger );
+			}
 		} else {
 			$executor = Shellbox::createBoxedExecutor(
 				$this->getLocalShellboxOptions(),
