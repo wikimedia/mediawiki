@@ -136,6 +136,11 @@ class LocalRepo extends FileRepo {
 		return OldLocalFile::newFromArchiveName( $title, $this, $archiveName );
 	}
 
+	protected function getBackendOperationOptions(): array {
+		// See {@link LocalFile::acquireFileLock}
+		return [ 'nonLocking' => true ];
+	}
+
 	/**
 	 * Delete files in the deleted directory if they are not referenced in the
 	 * filearchive table. This needs to be done in the repo because it needs to

@@ -2713,8 +2713,12 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Acquire an exclusive lock on the file, indicating an intention to write
-	 * to the file backend.
+	 * Acquire an exclusive lock on the file, indicating an intention to perform writes to
+	 * the registry database and/or file backend as part of an operation affecting this file.
+	 *
+	 * This lock represents all uploaded versions of the file by name. Since archived files
+	 * use hash-based paths, additional locking is required when removing them, necessitating
+	 * the use of {@link LocalRepo::cleanupDeletedBatch()}.
 	 *
 	 * @param float|int $timeout The timeout in seconds
 	 * @return Status

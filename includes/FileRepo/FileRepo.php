@@ -52,6 +52,7 @@ class FileRepo {
 	public const DELETE_SOURCE = 1;
 	public const OVERWRITE = 2;
 	public const OVERWRITE_SAME = 4;
+	/** @deprecated Since 1.47; unused */
 	public const SKIP_LOCKING = 8;
 
 	public const NAME_AND_TIME_ONLY = 1;
@@ -252,6 +253,16 @@ class FileRepo {
 	 */
 	public function getBackend() {
 		return $this->backend;
+	}
+
+	/**
+	 * FileRepo is responsible for locking since there can be both file objects and metadata
+	 *
+	 * @return array<string,mixed> Options for {@link FileBackend::doOperations()}
+	 * @since 1.47
+	 */
+	protected function getBackendOperationOptions(): array {
+		return [];
 	}
 
 	/**
@@ -908,7 +919,6 @@ class FileRepo {
 	 *   self::OVERWRITE         Overwrite an existing destination file instead of failing
 	 *   self::OVERWRITE_SAME    Overwrite the file if the destination exists and has the
 	 *                           same contents as the source
-	 *   self::SKIP_LOCKING      Skip any file locking when doing the store
 	 * @return Status
 	 */
 	public function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
@@ -932,7 +942,6 @@ class FileRepo {
 	 *   self::OVERWRITE         Overwrite an existing destination file instead of failing
 	 *   self::OVERWRITE_SAME    Overwrite the file if the destination exists and has the
 	 *                           same contents as the source
-	 *   self::SKIP_LOCKING      Skip any file locking when doing the store
 	 * @return Status
 	 */
 	public function storeBatch( array $triplets, $flags = 0 ) {
@@ -985,10 +994,9 @@ class FileRepo {
 		}
 
 		// Execute the store operation for each triplet
-		$opts = [ 'force' => true ];
-		if ( $flags & self::SKIP_LOCKING ) {
-			$opts['nonLocking'] = true;
-		}
+		$opts = $this->getBackendOperationOptions();
+		// Attempt each operation regardless of others failing
+		$opts['force'] = true;
 
 		return $status->merge( $backend->doOperations( $operations, $opts ) );
 	}
@@ -1000,7 +1008,6 @@ class FileRepo {
 	 *
 	 * @param string[] $files List of files to delete
 	 * @param int $flags Bitwise combination of the following flags:
-	 *   self::SKIP_LOCKING      Skip any file locking when doing the deletions
 	 * @return Status
 	 */
 	public function cleanupBatch( array $files, $flags = 0 ) {
@@ -1020,11 +1027,10 @@ class FileRepo {
 			}
 			$operations[] = [ 'op' => 'delete', 'src' => $path ];
 		}
-		// Actually delete files from storage...
-		$opts = [ 'force' => true ];
-		if ( $flags & self::SKIP_LOCKING ) {
-			$opts['nonLocking'] = true;
-		}
+
+		$opts = $this->getBackendOperationOptions();
+		// Attempt each operation regardless of others failing
+		$opts['force'] = true;
 
 		return $status->merge( $this->backend->doOperations( $operations, $opts ) );
 	}
@@ -1361,7 +1367,8 @@ class FileRepo {
 		}
 
 		// Execute the operations for each triplet
-		$status->merge( $backend->doOperations( $operations ) );
+		$opts = $this->getBackendOperationOptions();
+		$status->merge( $backend->doOperations( $operations, $opts ) );
 		// Find out which files were archived...
 		foreach ( $ntuples as $i => $ntuple ) {
 			[ , , $archiveRel ] = $ntuple;
@@ -1524,10 +1531,12 @@ class FileRepo {
 			];
 		}
 
-		// Move the files by execute the operations for each pair.
+		$opts = $this->getBackendOperationOptions();
+		// Move the files by executing the operations for each pair.
 		// We're now committed to returning an OK result, which will
 		// lead to the files being moved in the DB also.
-		$opts = [ 'force' => true ];
+		$opts['force'] = true;
+
 		return $status->merge( $backend->doOperations( $operations, $opts ) );
 	}
 
