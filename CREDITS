@@ -5,7 +5,7 @@ following names for their contribution to the product.
 
 The following list can be found parsed under Special:Version/Credits -->
 
-== Contributors ==
+== {{int:version-credits-contributors}} ==
 <!-- Updates to this list made with maintenance/updateCredits.php -->
 <!-- BEGIN CONTRIBUTOR LIST -->
 * 4nn1l2
@@ -1162,6 +1162,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * 沈澄心
 <!-- END CONTRIBUTOR LIST -->
 
-== Translators ==
+== {{int:version-credits-translators}} ==
 
-* [https://translatewiki.net/wiki/Translating:MediaWiki/Credits Translators on translatewiki.net and others]
+* [https://translatewiki.net/wiki/Translating:MediaWiki/Credits {{int:version-credits-translators-link}}]
