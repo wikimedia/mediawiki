@@ -47,7 +47,7 @@
 		"php": ">=8.3.0",
 		"psr/container": "2.0.2",
 		"psr/http-message": "2.0",
-		"psr/log": "1.1.4",
+		"psr/log": "3.0.2",
 		"ralouphie/getallheaders": "3.0.3",
 		"symfony/polyfill-php84": "1.37.0",
 		"symfony/polyfill-php85": "1.37.0",
