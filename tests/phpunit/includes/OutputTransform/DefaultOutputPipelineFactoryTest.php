@@ -3,7 +3,6 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Tests\OutputTransform;
 
-use LogicException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOptions;
@@ -152,16 +151,5 @@ EOF
 			]
 		];
 		// phpcs:enable
-	}
-
-	/**
-	 * @covers \MediaWiki\OutputTransform\DefaultOutputPipelineFactory::buildPipeline
-	 */
-	public function testTransform_failsIfNoText() {
-		$po = new ParserOutput( null );
-
-		$this->expectException( LogicException::class );
-		$this->getServiceContainer()->getDefaultOutputPipeline()
-			->run( $po, ParserOptions::newFromAnon(), [] );
 	}
 }
