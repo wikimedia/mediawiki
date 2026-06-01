@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"AhmedG612",
+			"Codename Noreste",
 			"Cquoi",
 			"Derugon",
 			"Escargot bleu",
@@ -312,7 +313,7 @@
 	"listgrouprights-rights": "Droits",
 	"listgrouprights-helppage": "Help:Droits de groupes",
 	"listgrouprights-members": "(liste des membres)",
-	"listgrouprights-restricted": "Kooxdan waxay leedahay [[$1|xannibaado]]",
+	"listgrouprights-restricted": "Ce groupe a des [[$1|restrictions]]",
 	"listgrouprights-right-display": "<span class=\"listgrouprights-granted\">$1 <code>($2)</code></span>",
 	"listgrouprights-right-revoked": "<span class=\"listgrouprights-revoked\">$1 <code>($2)</code></span>",
 	"listgrouprights-addgroup": "Ajouter des membres {{PLURAL:$2|au groupe|aux groupes}} : $1",

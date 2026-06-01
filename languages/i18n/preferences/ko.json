@@ -91,7 +91,7 @@
 	"prefs-signature-invalid-disallow": "당신의 서명이 잘못되었습니다. 서명을 고치지 않는 한, 서명할 때 기본 서명이 쓰이게 됩니다.",
 	"prefs-signature-highlight-error": "오류 위치 보여주기",
 	"prefs-signature-error-details": "더 알아보기",
-	"badsig": "서명이 잘못되었습니다.\nHTML 태그를 확인하세요.",
+	"badsig": "원본 서명이 잘못되었습니다.\nHTML 태그를 확인하세요.",
 	"badsiglength": "서명이 너무 깁니다.\n서명은 $1 {{PLURAL:$1|글자}}보다 짧아야 합니다.",
 	"badsigsubst": "당신의 서명이 끼워진 치환 문법을 포함하고 있습니다 (예를 들어, <code>subst:</code> 또는 <code><nowiki>~~~~</nowiki></code>)",
 	"badsightml": "당신의 서명은 잘못되거나 구식 HTML 구문을 포함하고 있습니다:",

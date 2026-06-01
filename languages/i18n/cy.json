@@ -70,6 +70,7 @@
 	"navigation-heading": "Dewislen lywio",
 	"errorpagetitle": "Gwall",
 	"returnto": "Dychwelyd at $1.",
+	"returnto-login": "Dychwelyd i fewngofnodi",
 	"tagline": "Oddi ar {{SITENAME}}",
 	"help": "Cymorth",
 	"help-mediawiki": "Cymorth gyda MediaWici",
@@ -386,6 +387,7 @@
 	"loginerror": "Gwall mewngofnodi",
 	"createacct-error": "Gwall creu cyfrif",
 	"createaccounterror": "Ni ellir creu cyfrif: $1",
+	"createacct-popup-redirect-notice": "Byddwch yn cael eich ailgyfeirio ar ôl creu cyfrif...",
 	"nocookieslogin": "Mae {{SITENAME}} yn defnyddio cwcis wrth i ddefnyddwyr fewngofnodi. Rydych chi wedi analluogi cwcis. Trïwch eto os gwelwch yn dda, ar ôl galluogi cwcis.",
 	"nocookiesfornew": "Ni chrëwyd cyfrif defnyddiwr newydd, oherwydd na allem gadarnhau ei ffynhonnell.\nSicrhewch eich bod wedi galluogi cwcis, yna ail-lwythwch y dudalen hon a cheisiwch eto.",
 	"createacct-loginerror": "Crewyd y cyfrif yn llwyddiannus, ond nid oedd yn bosibl i chi fewngofnodi'n otomatig. Ewch i [[Special:UserLogin|fewngofnodi drwy law a llygad]].",
@@ -3431,5 +3433,6 @@
 	"temp-user-unable-to-acquire": "Ni ellir cael enw defnyddiwr cyfrif dros dro. Ceisiwch eto.",
 	"table-of-contents-show-button-aria-label": "Dangos y tabl cynnwys",
 	"table-of-contents-hide-button-aria-label": "Cuddio'r tabl cynnwys",
-	"languageselector-no-results": "Dim canlyniadau."
+	"languageselector-no-results": "Dim canlyniadau.",
+	"languageselector-invalid-input": "Nid yw \"$1\" yn iaith ddilys."
 }

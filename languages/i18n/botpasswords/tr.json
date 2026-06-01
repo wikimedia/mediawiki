@@ -3,6 +3,7 @@
 		"authors": [
 			"BaRaN6161 TURK",
 			"Coolland",
+			"HakanIST",
 			"Hedda",
 			"Imabadplayer",
 			"Joseph",
@@ -34,6 +35,7 @@
 	"botpasswords-bad-appid": "Bot ismi \"$1\" geçerli değil.",
 	"botpasswords-toolong-restrictions": "Çok fazla IP adresi veya girilen aralık var.",
 	"botpasswords-toolong-grants": "Çok fazla hibe seçildi.",
+	"botpasswords-too-many": "En fazla $1 {{PLURAL:$1|bot parolası}} sınırına ulaştınız. Lütfen önce bazılarını silin.",
 	"botpasswords-insert-failed": "Bot adı \"$1\" eklenemedi. Zaten eklenmiş miydi?",
 	"botpasswords-update-failed": "Bot ismini \"$1\" olarak güncelleme başarısız oldu. Silinmiş olabilir mi?",
 	"botpasswords-created-title": "Bot parolası oluşturuldu",
