@@ -1008,7 +1008,7 @@ class AuthManager implements LoggerAwareInterface {
 		} elseif ( $oldStatus !== self::SEC_OK && $status === self::SEC_OK ) {
 			$this->logger->info(
 				__METHOD__ .
-				': {operation} rejected downgrade attempt from {oldstatus} to {status} for {user} in ' .
+				': {operation} downgraded from {oldstatus} to {status} for {user} in ' .
 				'SecuritySensitiveOperationStatusHook hook',
 				[
 					'operation' => $operation,
@@ -1016,9 +1016,6 @@ class AuthManager implements LoggerAwareInterface {
 					'status' => $status,
 				] + $this->getRequest()->getSecurityLogContext( $session->getUser() )
 			);
-
-			// Don't allow downgrades (T423502)
-			$status = $oldStatus;
 		}
 
 		// If authentication is not possible, downgrade from "REAUTH" to "FAIL".
