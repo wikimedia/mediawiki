@@ -23,7 +23,6 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		return new HandleParsoidSectionLinks(
 			new ServiceOptions( [] ),
 			new NullLogger(),
-			true,
 			$this->getServiceContainer()->getTitleFactory()
 		);
 	}

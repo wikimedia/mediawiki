@@ -23,7 +23,6 @@ class ContentHolderTransformStage extends OutputTransformStage {
 	public function __construct(
 		ServiceOptions $options,
 		LoggerInterface $logger,
-		bool $transformBodyOnly,
 		/** The HTML transform. */
 		private ContentTextTransformStage $textTransform,
 		/** The DOM transform. */
@@ -35,7 +34,7 @@ class ContentHolderTransformStage extends OutputTransformStage {
 		 */
 		private bool $exclusive = false,
 	) {
-		parent::__construct( $options, $logger, $transformBodyOnly );
+		parent::__construct( $options, $logger );
 	}
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {

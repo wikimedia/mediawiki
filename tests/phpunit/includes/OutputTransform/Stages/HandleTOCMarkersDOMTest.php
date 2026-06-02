@@ -19,7 +19,6 @@ class HandleTOCMarkersDOMTest extends HandleTOCMarkersTestCommon {
 		return new HandleTOCMarkersDOM(
 			new ServiceOptions( [] ),
 			new NullLogger(),
-			true,
 		);
 	}
 

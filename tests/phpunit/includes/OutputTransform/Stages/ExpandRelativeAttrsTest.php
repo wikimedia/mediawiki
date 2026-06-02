@@ -25,7 +25,6 @@ class ExpandRelativeAttrsTest extends OutputTransformStageTestBase {
 		return new ExpandRelativeAttrs(
 			new ServiceOptions( [] ),
 			new NullLogger(),
-			false,
 			$this->getServiceContainer()->getUrlUtils(),
 			new MockSiteConfig( [] ),
 			$this->getServiceContainer()->getTitleFormatter(),

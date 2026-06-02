@@ -22,7 +22,6 @@ class AddRedirectHeaderTest extends OutputTransformStageTestBase {
 		return new AddRedirectHeader(
 			new ServiceOptions( [] ),
 			new NullLogger(),
-			true
 		);
 	}
 

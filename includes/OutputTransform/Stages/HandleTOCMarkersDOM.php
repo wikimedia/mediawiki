@@ -3,12 +3,14 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\OutputTransform\Stages;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\OutputTransform\ContentDOMTransformStage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Parsoid\DOM\Document;
@@ -18,6 +20,14 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 
 class HandleTOCMarkersDOM extends ContentDOMTransformStage {
+
+	public function __construct(
+		ServiceOptions $options,
+		LoggerInterface $logger,
+	) {
+		parent::__construct( $options, $logger, transformBodyOnly: true );
+	}
+
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return !( $options['allowTOC'] ?? true ) || ( $options['injectTOC'] ?? true );
 	}

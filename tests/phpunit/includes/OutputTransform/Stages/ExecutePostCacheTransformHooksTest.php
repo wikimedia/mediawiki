@@ -23,7 +23,6 @@ class ExecutePostCacheTransformHooksTest extends \MediaWikiIntegrationTestCase {
 		return new ExecutePostCacheTransformHooks(
 			new ServiceOptions( [] ),
 			new NullLogger(),
-			true,
 			$this->getServiceContainer()->getHookContainer()
 		);
 	}

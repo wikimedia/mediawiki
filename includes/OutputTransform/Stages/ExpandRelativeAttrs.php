@@ -28,14 +28,13 @@ class ExpandRelativeAttrs extends ContentDOMTransformStage {
 	public function __construct(
 		ServiceOptions $options,
 		LoggerInterface $logger,
-		bool $transformBodyOnly,
 		private UrlUtils $urlUtils,
 		private SiteConfig $siteConfig,
 		private TitleFormatter $titleFormatter,
 		// @phan-suppress-next-line PhanUndeclaredTypeParameter, PhanUndeclaredTypeProperty
 		private ?\MobileContext $mobileContext
 	) {
-		parent::__construct( $options, $logger, $transformBodyOnly );
+		parent::__construct( $options, $logger, transformBodyOnly: false );
 	}
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {

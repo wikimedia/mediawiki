@@ -38,7 +38,6 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		return new ParsoidLocalization(
 			new ServiceOptions( [] ),
 			new NullLogger(),
-			false,
 			$this->getServiceContainer()->getLanguageFactory(),
 		);
 	}

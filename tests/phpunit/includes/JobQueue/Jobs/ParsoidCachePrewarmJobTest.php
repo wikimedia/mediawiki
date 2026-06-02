@@ -125,7 +125,11 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 			RenderDebugInfo::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 		);
 		$rdi = TestingAccessWrapper::newFromObject(
-			new RenderDebugInfo( $servicesOptions, new NullLogger(), true, $services->getHookContainer() )
+			new RenderDebugInfo(
+				$servicesOptions,
+				new NullLogger(),
+				$services->getHookContainer()
+			)
 		);
 		// Check that the causeAction was looped through as the render reason
 		$this->assertStringContainsString(

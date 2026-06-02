@@ -17,7 +17,6 @@ class ExpandToAbsoluteUrlsTest extends ExpandToAbsoluteUrlsTestBase {
 		return new ExpandToAbsoluteUrls(
 			new ServiceOptions( [] ),
 			new NullLogger(),
-			false
 		);
 	}
 }
