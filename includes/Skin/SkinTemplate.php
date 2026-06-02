@@ -262,33 +262,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'newtalk', $this->getNewtalks() );
 		$tpl->set( 'logo', $this->logoText() );
 
-		$footerData = $this->getComponent( 'footer' )->getTemplateData();
-		$tpl->set( 'copyright', $footerData['info']['copyright'] ?? false );
-		// No longer used
-		$tpl->set( 'viewcount', false );
-		$tpl->set( 'lastmod', $footerData['info']['lastmod'] ?? false );
-		$tpl->set( 'credits', $footerData['info']['credits'] ?? false );
-		$tpl->set( 'numberofwatchingusers', false );
-
-		$tpl->set( 'disclaimer', $footerData['places']['disclaimer'] ?? false );
-		$tpl->set( 'privacy', $footerData['places']['privacy'] ?? false );
-		$tpl->set( 'about', $footerData['places']['about'] ?? false );
-
-		// Flatten for compat with the 'footerlinks' key in QuickTemplate-based skins.
-		$flattenedfooterlinks = [];
-		foreach ( $footerData as $category => $data ) {
-			if ( $category !== 'data-icons' ) {
-				foreach ( $data['array-items'] as $item ) {
-					$key = str_replace( 'data-', '', $category );
-					$flattenedfooterlinks[$key][] = $item['name'];
-					// For full support with BaseTemplate we also need to
-					// copy over the keys.
-					$tpl->set( $item['name'], $item['html'] );
-				}
-			}
-		}
-		$tpl->set( 'footerlinks', $flattenedfooterlinks );
-		$tpl->set( 'footericons', $this->getFooterIcons() );
+		$this->setFooterTemplateVars( $tpl );
 
 		$tpl->set( 'indicators', $out->getIndicators() );
 
@@ -365,6 +339,45 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'dataAfterContent', $this->afterContentHook() );
 
 		return $tpl;
+	}
+
+	/**
+	 * Populate footer-related template variables on the given QuickTemplate.
+	 *
+	 * Reads footer data from SkinComponentFooter and sets individual
+	 * template keys (copyright, lastmod, etc.) as well as the flattened
+	 * 'footerlinks' array for legacy QuickTemplate-based skins.
+	 *
+	 * @param QuickTemplate $tpl
+	 */
+	private function setFooterTemplateVars( QuickTemplate $tpl ): void {
+		$footerData = $this->getComponent( 'footer' )->getTemplateData();
+		$tpl->set( 'copyright', $footerData['info']['copyright'] ?? false );
+		// No longer used
+		$tpl->set( 'viewcount', false );
+		$tpl->set( 'lastmod', $footerData['info']['lastmod'] ?? false );
+		$tpl->set( 'credits', $footerData['info']['credits'] ?? false );
+		$tpl->set( 'numberofwatchingusers', false );
+
+		$tpl->set( 'disclaimer', $footerData['places']['disclaimer'] ?? false );
+		$tpl->set( 'privacy', $footerData['places']['privacy'] ?? false );
+		$tpl->set( 'about', $footerData['places']['about'] ?? false );
+
+		// Flatten for compat with the 'footerlinks' key in QuickTemplate-based skins.
+		$flattenedfooterlinks = [];
+		foreach ( $footerData as $category => $data ) {
+			if ( $category !== 'data-icons' ) {
+				foreach ( $data['array-items'] as $item ) {
+					$key = str_replace( 'data-', '', $category );
+					$flattenedfooterlinks[$key][] = $item['name'];
+					// For full support with BaseTemplate we also need to
+					// copy over the keys.
+					$tpl->set( $item['name'], $item['html'] );
+				}
+			}
+		}
+		$tpl->set( 'footerlinks', $flattenedfooterlinks );
+		$tpl->set( 'footericons', $this->getFooterIcons() );
 	}
 
 	/**
