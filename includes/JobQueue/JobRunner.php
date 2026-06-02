@@ -421,7 +421,7 @@ class JobRunner {
 		if ( $rssStart && $rssEnd ) {
 			$this->statsFactory->getCounter( 'jobqueue_rss_delta_total' )
 				->setLabel( 'rss_delta', $jType )
-				->incrementBy( $rssEnd - $rssStart );
+				->incrementBy( max( $rssEnd - $rssStart, 0 ) );
 		}
 
 		if ( $status === false ) {
