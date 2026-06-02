@@ -366,6 +366,7 @@
 	"badretype": "El maga password ya entra tu hende ta semeja.",
 	"usernameinprogress": "Ta hace pa con el creacion de account para con este nombre de usuario.\nFavor espera.",
 	"userexists": "Usao ya el nombre de usuario ya entra.\nFavor escoge diferente nombre.",
+	"username-previously-renamed-account": "Este nombre de usuario no puede registra, kay tiene ya quien ya usa antes con el account que ya cambia ya el nombre. Favor escoge otro nombre.",
 	"createacct-normalization": "El ajusta con el nombre de usuario de tuyo na \"$2\" por causa na restriccion tecnical.",
 	"loginerror": "Error na login",
 	"createacct-error": "Error na creacion de account",

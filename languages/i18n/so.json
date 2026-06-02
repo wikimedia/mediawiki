@@ -2177,7 +2177,7 @@
 	"blanknamespace": "(Bogga hore)",
 	"contributions": "Isticmaalada wax ku darsaday",
 	"tool-link-contributions": "{{GENDER:$1|Isticmaale}} ku darsaday",
-	"contributions-title": "Waxa oo ku darsaday {{GENDER\n:$2|isticmaalaha}} $1",
+	"contributions-title": "Waxa oo ku darsaday \n{{GENDER:$2|isticmaalaha}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Wax ku biirinta IP-ga hore ee $1",
 	"contribute-title": "Wax ku darsiyada isticmaalaha",
 	"mycontris": "Ku darsashooyinka",
