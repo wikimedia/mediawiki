@@ -16,7 +16,7 @@ use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
  * Generates a list of unique style links
  * @internal
  */
-class DeduplicateStyles extends ContentTextTransformStage {
+class DeduplicateStylesText extends ContentTextTransformStage {
 	private array $seen = [];
 
 	public function __construct(
