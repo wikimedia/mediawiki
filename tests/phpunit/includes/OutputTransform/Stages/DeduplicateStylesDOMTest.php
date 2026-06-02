@@ -15,7 +15,7 @@ use Psr\Log\NullLogger;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 
 /**
- * @covers \MediaWiki\OutputTransform\Stages\DeduplicateStyles
+ * @covers \MediaWiki\OutputTransform\Stages\DeduplicateStylesDOM
  */
 class DeduplicateStylesDOMTest extends OutputTransformStageTestBase {
 

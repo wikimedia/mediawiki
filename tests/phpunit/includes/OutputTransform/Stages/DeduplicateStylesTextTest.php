@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\OutputTransform\Stages;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
-use MediaWiki\OutputTransform\Stages\DeduplicateStyles;
+use MediaWiki\OutputTransform\Stages\DeduplicateStylesText;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
@@ -15,12 +15,12 @@ use Psr\Log\NullLogger;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 
 /**
- * @covers \MediaWiki\OutputTransform\Stages\DeduplicateStyles
+ * @covers \MediaWiki\OutputTransform\Stages\DeduplicateStylesText
  */
-class DeduplicateStylesTest extends OutputTransformStageTestBase {
+class DeduplicateStylesTextTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
-		return new DeduplicateStyles(
+		return new DeduplicateStylesText(
 			new ServiceOptions( [] ),
 			new NullLogger(),
 		);

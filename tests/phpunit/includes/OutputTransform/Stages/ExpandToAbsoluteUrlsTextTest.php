@@ -5,16 +5,16 @@ namespace MediaWiki\Tests\OutputTransform\Stages;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
-use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrls;
+use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrlsText;
 use Psr\Log\NullLogger;
 
 /**
- * @covers \MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrls
+ * @covers \MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrlsText
  */
-class ExpandToAbsoluteUrlsTest extends ExpandToAbsoluteUrlsTestBase {
+class ExpandToAbsoluteUrlsTextTest extends ExpandToAbsoluteUrlsTestBase {
 
 	public function createStage(): OutputTransformStage {
-		return new ExpandToAbsoluteUrls(
+		return new ExpandToAbsoluteUrlsText(
 			new ServiceOptions( [] ),
 			new NullLogger(),
 		);

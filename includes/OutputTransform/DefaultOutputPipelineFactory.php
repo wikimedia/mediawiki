@@ -8,12 +8,12 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\OutputTransform\Stages\AddRedirectHeader;
 use MediaWiki\OutputTransform\Stages\AddWrapperDivClass;
-use MediaWiki\OutputTransform\Stages\DeduplicateStyles;
 use MediaWiki\OutputTransform\Stages\DeduplicateStylesDOM;
+use MediaWiki\OutputTransform\Stages\DeduplicateStylesText;
 use MediaWiki\OutputTransform\Stages\ExecutePostCacheTransformHooks;
 use MediaWiki\OutputTransform\Stages\ExpandRelativeAttrs;
-use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrls;
 use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrlsDOM;
+use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrlsText;
 use MediaWiki\OutputTransform\Stages\ExtractBody;
 use MediaWiki\OutputTransform\Stages\HandleParsoidSectionLinks;
 use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
@@ -145,7 +145,7 @@ class DefaultOutputPipelineFactory {
 		],
 		'DeduplicateStyles' => [
 			'textStage' => [
-				'class' => DeduplicateStyles::class,
+				'class' => DeduplicateStylesText::class,
 			],
 			'domStage' => [
 				'class' => DeduplicateStylesDOM::class,
@@ -155,7 +155,7 @@ class DefaultOutputPipelineFactory {
 
 		'ExpandToAbsoluteUrls' => [
 			'textStage' => [
-				'class' => ExpandToAbsoluteUrls::class,
+				'class' => ExpandToAbsoluteUrlsText::class,
 			],
 			'domStage' => [
 				'class' => ExpandToAbsoluteUrlsDOM::class,

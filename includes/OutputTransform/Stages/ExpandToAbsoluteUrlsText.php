@@ -14,7 +14,7 @@ use Psr\Log\LoggerInterface;
  * Expand relative links to absolute URLs
  * @internal
  */
-class ExpandToAbsoluteUrls extends ContentTextTransformStage {
+class ExpandToAbsoluteUrlsText extends ContentTextTransformStage {
 
 	public function __construct(
 		ServiceOptions $options,
