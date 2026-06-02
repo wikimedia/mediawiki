@@ -2413,6 +2413,7 @@
 	"block-expiry-datetime": "Data eta ordu zehatzak",
 	"block-options": "Aukera gehigarriak:",
 	"block-reason": "Arrazoia:",
+	"block-user-active-blocks": "Blokeo aktiboak",
 	"block-target": "Erabiltzaile izena edo IP helbidea:",
 	"unblockip": "Erabiltzailea desblokeatu",
 	"unblockiptext": "Erabili beheko formularioa lehenago blokeatutako IP helbide edo erabiltzaile baten idazketa baimenak leheneratzeko.",

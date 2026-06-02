@@ -2678,7 +2678,7 @@
 	"ipblocklist-submit": "Пошук",
 	"ipblocklist-localblock": "Локальне блокування",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|1=Інше блокування|Інші блокування}}",
-	"infiniteblock": "блокування на невизначений термін",
+	"infiniteblock": "безстроково",
 	"anononlyblock": "тільки анонімів",
 	"noautoblockblock": "автоблокування вимкнене",
 	"createaccountblock": "створення облікових записів заблоковане",

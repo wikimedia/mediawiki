@@ -2095,7 +2095,7 @@
 	"booksources": "Bogkilder",
 	"booksources-search-legend": "Søg efter bogkilder",
 	"booksources-search": "Søg",
-	"booksources-text": "Nedenfor er en liste med henvisninger til andre sider, der sælger nye og brugte bøger, og som muligvis også indeholder yderligere information om bøger, du leder efter:",
+	"booksources-text": "Nedenfor er en liste med henvisninger til andre sider, der sælger nye og brugte bøger, som muligvis også indeholder yderligere information om bøger, du leder efter:",
 	"booksources-invalid-isbn": "Det angivne ISBN-nummer ser ikke ud til at være gyldigt; kontroller for fejl under kopiering fra den originale kilde.",
 	"magiclink-tracking-rfc": "Sider, der bruger automatiske RFC-henvisninger‎",
 	"magiclink-tracking-rfc-desc": "Denne side bruger RFC magiske links. Se [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] om, hvordan du migrerer.",

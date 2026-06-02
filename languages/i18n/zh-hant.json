@@ -154,7 +154,9 @@
 			"Peterxy12",
 			"臺灣象象",
 			"Leo768",
-			"ShuQizhe"
+			"ShuQizhe",
+			"Kelly Hsueh",
+			"Peterxy"
 		]
 	},
 	"sunday": "星期日",
@@ -353,7 +355,7 @@
 	"toc": "目次",
 	"showtoc": "顯示",
 	"hidetoc": "隱藏",
-	"collapsible-collapse": "合併",
+	"collapsible-collapse": "摺疊",
 	"collapsible-collapse-all-text": "全部摺疊",
 	"collapsible-collapse-all-tooltip": "摺疊目前頁面上的所有可摺疊元素",
 	"collapsible-expand": "展開",
