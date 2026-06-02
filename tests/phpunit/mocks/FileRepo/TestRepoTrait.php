@@ -20,7 +20,7 @@ trait TestRepoTrait {
 
 	/**
 	 * Initializes a mock repository in a temporary directory.
-	 * Must only be called in addDbDataOnce().
+	 * Must only be called in addDBDataOnce().
 	 * Must be paired with a call to destroyTestRepo() in tearDownAfterClass().
 	 */
 	private function initTestRepoGroup(): RepoGroup {
@@ -68,8 +68,9 @@ trait TestRepoTrait {
 			return;
 		}
 
-		if ( !str_starts_with( $dir, wfTempDir() ) ) {
-			throw new InvalidArgumentException( "Not in temp dir: $dir" );
+		// Apply realpath() because /tmp can be a symlink (e.g. BSD and Darwin)
+		if ( !str_starts_with( realpath( $dir ), realpath( wfTempDir() ) ) ) {
+			throw new InvalidArgumentException( "Not in temp dir: $dir outside " . wfTempDir() );
 		}
 
 		if ( !str_starts_with( basename( $dir ), 'mw-mock-repo-' ) ) {
