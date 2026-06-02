@@ -4,7 +4,6 @@ declare( strict_types = 1 );
 namespace MediaWiki\OutputTransform;
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Parser\ContentHolder;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use Psr\Log\LoggerInterface;
@@ -18,7 +17,6 @@ use Psr\Log\LoggerInterface;
 abstract class OutputTransformStage {
 	protected ServiceOptions $options;
 	protected LoggerInterface $logger;
-	private bool $transformBodyOnly;
 
 	/** @internal */
 	public const CONSTRUCTOR_OPTIONS = [];
@@ -27,13 +25,11 @@ abstract class OutputTransformStage {
 	public function __construct(
 		ServiceOptions $options,
 		LoggerInterface $logger,
-		bool $transformBodyOnly,
 	) {
 		// Note this is static:: not self:: so we use the subclass options
 		$options->assertRequiredOptions( static::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->logger = $logger;
-		$this->transformBodyOnly = $transformBodyOnly;
 	}
 
 	/**
@@ -57,16 +53,4 @@ abstract class OutputTransformStage {
 	 * @unstable
 	 */
 	abstract public function transform( ParserOutput $po, ParserOptions $popts, array &$options ): ParserOutput;
-
-	/**
-	 * @param ParserOutput $po
-	 * @param ParserOptions $popts
-	 *
-	 * @return array
-	 */
-	final protected function getFragmentsToTransform( ParserOutput $po, ParserOptions $popts ): array {
-		return $this->transformBodyOnly ?
-			[ ContentHolder::BODY_FRAGMENT ] :
-			$po->getContentHolder()->getFragmentNames();
-	}
 }

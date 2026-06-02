@@ -23,7 +23,6 @@ class DeduplicateStylesTest extends OutputTransformStageTestBase {
 		return new DeduplicateStyles(
 			new ServiceOptions( [] ),
 			new NullLogger(),
-			false
 		);
 	}
 

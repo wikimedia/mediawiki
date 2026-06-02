@@ -24,7 +24,6 @@ class ParsoidLanguageConverterTest extends MediaWikiIntegrationTestCase {
 		return new ParsoidLanguageConverter(
 			new ServiceOptions( [] ),
 			new NullLogger(),
-			false,
 			$this->getServiceContainer()->getParsoidSiteConfig(),
 			$this->getServiceContainer()->getLanguageFactory(),
 			$this->getServiceContainer()->getLanguageConverterFactory(),

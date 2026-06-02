@@ -20,7 +20,6 @@ class RenderDebugInfoTest extends OutputTransformStageTestBase {
 		return new RenderDebugInfo(
 			new ServiceOptions( [] ),
 			new NullLogger(),
-			true,
 			$this->getServiceContainer()->getHookContainer()
 		);
 	}

@@ -20,7 +20,6 @@ class AddWrapperDivClassTest extends OutputTransformStageTestBase {
 		return new AddWrapperDivClass(
 			new ServiceOptions( [] ),
 			new NullLogger(),
-			true,
 			$this->getServiceContainer()->getLanguageFactory(),
 			$this->getServiceContainer()->getContentLanguage()
 		);

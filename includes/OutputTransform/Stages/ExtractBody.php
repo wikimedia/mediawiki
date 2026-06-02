@@ -19,9 +19,8 @@ class ExtractBody extends ContentTextTransformStage {
 	public function __construct(
 		ServiceOptions $options,
 		LoggerInterface $logger,
-		bool $transformBodyOnly,
 	) {
-		parent::__construct( $options, $logger, $transformBodyOnly );
+		parent::__construct( $options, $logger, transformBodyOnly: true );
 	}
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {

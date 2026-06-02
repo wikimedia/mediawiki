@@ -21,11 +21,10 @@ class AddWrapperDivClass extends ContentTextTransformStage {
 	public function __construct(
 		ServiceOptions $options,
 		LoggerInterface $logger,
-		bool $transformBodyOnly,
 		private LanguageFactory $langFactory,
 		private Language $contentLang
 	) {
-		parent::__construct( $options, $logger, $transformBodyOnly );
+		parent::__construct( $options, $logger, transformBodyOnly: true );
 	}
 
 	/**

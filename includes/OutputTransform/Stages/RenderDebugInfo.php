@@ -18,17 +18,14 @@ use Psr\Log\LoggerInterface;
  * @internal
  */
 class RenderDebugInfo extends ContentTextTransformStage {
-	public static bool $bodyOnly = true;
-
 	private HookRunner $hookRunner;
 
 	public function __construct(
 		ServiceOptions $options,
 		LoggerInterface $logger,
-		bool $transformBodyOnly,
 		HookContainer $hookContainer
 	) {
-		parent::__construct( $options, $logger, $transformBodyOnly );
+		parent::__construct( $options, $logger, transformBodyOnly: true );
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 

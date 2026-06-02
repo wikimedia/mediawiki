@@ -34,10 +34,9 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 	public function __construct(
 		ServiceOptions $options,
 		LoggerInterface $logger,
-		bool $transformBodyOnly,
 		private LanguageFactory $languageFactory
 	) {
-		parent::__construct( $options, $logger, $transformBodyOnly );
+		parent::__construct( $options, $logger, transformBodyOnly: false );
 	}
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {

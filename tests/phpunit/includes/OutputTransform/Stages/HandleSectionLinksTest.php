@@ -25,7 +25,6 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 				new HashConfig()
 			),
 			new NullLogger(),
-			true,
 			$this->getServiceContainer()->getTitleFactory()
 		);
 	}

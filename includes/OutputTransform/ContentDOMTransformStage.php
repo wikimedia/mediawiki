@@ -3,8 +3,11 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\OutputTransform;
 
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Parser\ContentHolder;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
@@ -20,6 +23,24 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
  * @internal
  */
 abstract class ContentDOMTransformStage extends OutputTransformStage {
+
+	public function __construct(
+		ServiceOptions $options,
+		LoggerInterface $logger,
+		private readonly bool $transformBodyOnly,
+	) {
+		parent::__construct( $options, $logger );
+	}
+
+	/**
+	 * Override this method if you need more control over which fragments
+	 * should be transformed.
+	 */
+	protected function getFragmentsToTransform( ParserOutput $po, ParserOptions $popts ): array {
+		return $this->transformBodyOnly ?
+			[ ContentHolder::BODY_FRAGMENT ] :
+			$po->getContentHolder()->getFragmentNames();
+	}
 
 	/**
 	 * @inheritDoc

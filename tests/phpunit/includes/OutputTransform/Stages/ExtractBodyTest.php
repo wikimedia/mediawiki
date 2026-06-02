@@ -22,8 +22,10 @@ use Wikimedia\Parsoid\Core\HtmlPageBundle;
 class ExtractBodyTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
-		$urlUtils = $this->getServiceContainer()->getUrlUtils();
-		return new ExtractBody( new ServiceOptions( [] ), new NullLogger(), true, $urlUtils, null );
+		return new ExtractBody(
+			new ServiceOptions( [] ),
+			new NullLogger(),
+		);
 	}
 
 	public static function provideShouldRun(): array {

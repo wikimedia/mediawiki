@@ -46,33 +46,28 @@ class DefaultOutputPipelineFactory {
 	private const CORE_LIST = [
 		'ExtractBody' => [
 			'class' => ExtractBody::class,
-			'transformBodyOnly' => true,
 			'services' => [
 				'UrlUtils',
 			],
 		],
 		'AddRedirectHeader' => [
 			'class' => AddRedirectHeader::class,
-			'transformBodyOnly' => true,
 		],
 
 		'RenderDebugInfo' => [
 			'class' => RenderDebugInfo::class,
-			'transformBodyOnly' => true,
 			'services' => [
 				'HookContainer',
 			],
 		],
 		'ExecutePostCacheTransformHooks' => [
 			'class' => ExecutePostCacheTransformHooks::class,
-			'transformBodyOnly' => true,
 			'services' => [
 				'HookContainer',
 			],
 		],
 		'AddWrapperDivClass' => [
 			'class' => AddWrapperDivClass::class,
-			'transformBodyOnly' => true,
 			'services' => [
 				'LanguageFactory',
 				'ContentLanguage',
@@ -82,7 +77,6 @@ class DefaultOutputPipelineFactory {
 		// other to be able to skip unnecessary intermediate DOM->text->DOM transformations.
 		'ExpandRelativeAttrs' => [
 			'class' => ExpandRelativeAttrs::class,
-			'transformBodyOnly' => false,
 			'services' => [
 				'UrlUtils',
 				'ParsoidSiteConfig',
@@ -105,7 +99,6 @@ class DefaultOutputPipelineFactory {
 		// was performed.
 		'ParsoidLanguageConverter' => [
 			'class' => ParsoidLanguageConverter::class,
-			'transformBodyOnly' => false,
 			'services' => [
 				'ParsoidSiteConfig',
 				'LanguageFactory',
@@ -128,14 +121,12 @@ class DefaultOutputPipelineFactory {
 					'TitleFactory',
 				],
 			],
-			'transformBodyOnly' => true,
 			'exclusive' => true
 		],
 		// This should be before DeduplicateStyles because some system messages may use TemplateStyles (so we
 		// want to expand them before deduplication).
 		'ParsoidLocalization' => [
 			'class' => ParsoidLocalization::class,
-			'transformBodyOnly' => false,
 			'services' => [
 				'LanguageFactory',
 			]
@@ -150,7 +141,6 @@ class DefaultOutputPipelineFactory {
 			'domStage' => [
 				'class' => HandleTOCMarkersDOM::class,
 			],
-			'transformBodyOnly' => true,
 			'exclusive' => false
 		],
 		'DeduplicateStyles' => [
@@ -160,7 +150,6 @@ class DefaultOutputPipelineFactory {
 			'domStage' => [
 				'class' => DeduplicateStylesDOM::class,
 			],
-			'transformBodyOnly' => false,
 			'exclusive' => false
 		],
 
@@ -174,19 +163,16 @@ class DefaultOutputPipelineFactory {
 					'UrlUtils',
 				],
 			],
-			'transformBodyOnly' => false,
 			'exclusive' => false
 		],
 
 		'HydrateHeaderPlaceholders' => [
 			'class' => HydrateHeaderPlaceholders::class,
-			'transformBodyOnly' => true,
 		],
 
 		# This should be last, in order to ensure final output is hardened
 		'HardenNFC' => [
 			'class' => HardenNFC::class,
-			'transformBodyOnly' => false,
 		]
 	];
 
@@ -222,8 +208,6 @@ class DefaultOutputPipelineFactory {
 				array_key_exists( 'domStage', $spec ) &&
 				array_key_exists( 'textStage', $spec )
 			) {
-				$spec['textStage']['transformBodyOnly'] = $spec['transformBodyOnly'] ?? true;
-				$spec['domStage']['transformBodyOnly'] = $spec['transformBodyOnly'] ?? true;
 				$args = [
 					$this->objectFactory->createObject( $spec['textStage'],
 					[
@@ -264,11 +248,11 @@ class DefaultOutputPipelineFactory {
 		// If the handler is specified as a class, use the CONSTRUCTOR_OPTIONS
 		// for that class.
 		$class = is_string( $spec ) ? $spec : ( $spec['class'] ?? null );
-		$transformBodyOnly = $spec[ 'transformBodyOnly' ] ?? true;
 		$svcOptions = new ServiceOptions(
 			$class ? $class::CONSTRUCTOR_OPTIONS : [],
 			$this->config
 		);
-		return [ 'extraArgs' => [ $svcOptions, $this->logger, $transformBodyOnly ] ];
+		$extraArgs = [ $svcOptions, $this->logger ];
+		return [ 'extraArgs' => $extraArgs ];
 	}
 }
