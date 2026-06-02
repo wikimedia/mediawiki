@@ -493,6 +493,21 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
+	 * Whether this file has a database record in the file metadata tables.
+	 *
+	 * Unlike exists(), this returns true even when the file blob is missing
+	 * from storage (i.e. the archive name is empty). exists() returns false
+	 * for such "lost" files, but hasDbRecord() returns true because the
+	 * metadata was loaded from the database.
+	 *
+	 * @since 1.47
+	 * @return bool
+	 */
+	public function hasDbRecord(): bool {
+		return parent::exists();
+	}
+
+	/**
 	 * If archive name is an empty string, then file does not "exist"
 	 *
 	 * This is the case for a couple files on Wikimedia servers where

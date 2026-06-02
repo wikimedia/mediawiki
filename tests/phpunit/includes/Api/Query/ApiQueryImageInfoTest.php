@@ -35,6 +35,10 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 
 	private const NO_COMMENT_TIMESTAMP = '20201105235239';
 
+	// T426802: A "lost" old file revision where the storage blob is missing
+	private const LOST_FILE_TIMESTAMP = '20201105235240';
+	private const LOST_FILE_SIZE = 99999;
+
 	private const IMAGE_2_NAME = 'Random-2.png';
 	private const IMAGE_2_TIMESTAMP = '20230101000000';
 	private const IMAGE_2_SIZE = 12345;
@@ -109,6 +113,33 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 					->createComment( $this->getDb(), '' )->id,
 				'oi_actor' => $actorId,
 				'oi_timestamp' => $this->getDb()->timestamp( self::NO_COMMENT_TIMESTAMP ),
+				'oi_sha1' => 'sy02psim0bgdh0jt4vdltuzoh7j80ru',
+				'oi_deleted' => 0,
+			] )
+			->caller( __METHOD__ )
+			->execute();
+
+		// T426802: Insert a "lost" old file revision with empty archive name.
+		// This simulates a file where the storage blob is missing but the
+		// DB record still exists.
+		$this->getDb()->newInsertQueryBuilder()
+			->insertInto( 'oldimage' )
+			->row( [
+				'oi_name' => 'Random-11m.png',
+				'oi_archive_name' => '',
+				'oi_size' => self::LOST_FILE_SIZE,
+				'oi_width' => 800,
+				'oi_height' => 600,
+				'oi_metadata' => '',
+				'oi_bits' => 16,
+				'oi_media_type' => 'BITMAP',
+				'oi_major_mime' => 'image',
+				'oi_minor_mime' => 'png',
+				'oi_description_id' => $this->getServiceContainer()
+					->getCommentStore()
+					->createComment( $this->getDb(), 'lost file comment' )->id,
+				'oi_actor' => $actorId,
+				'oi_timestamp' => $this->getDb()->timestamp( self::LOST_FILE_TIMESTAMP ),
 				'oi_sha1' => 'sy02psim0bgdh0jt4vdltuzoh7j80ru',
 				'oi_deleted' => 0,
 			] )
@@ -250,5 +281,71 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 		$this->assertSame( $this->testUser->getId(), $image['userid'] );
 		$this->assertTrue( $image['filehidden'] );
 		$this->assertSame( self::OLD_IMAGE_SIZE, $image['size'] );
+	}
+
+	/**
+	 * T426802: When an old file revision has a DB record but the storage
+	 * blob is missing (empty archive name), timestamp and user should
+	 * still be included in the API response alongside filemissing=true.
+	 */
+	public function testGetImageInfoLostFile() {
+		[ $result, ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'imageinfo',
+			'titles' => 'File:' . self::IMAGE_NAME,
+			'iiprop' => 'timestamp|user|userid|size|comment',
+			'iilimit' => 'max',
+		] );
+		$this->assertArrayHasKey( 'query', $result );
+		$this->assertArrayHasKey( 'pages', $result['query'] );
+		$info = $result['query']['pages']['-1'];
+		$this->assertIsArray( $info['imageinfo'] );
+
+		// Find the entry for the lost file revision by looking for filemissing
+		$lostEntry = null;
+		foreach ( $info['imageinfo'] as $entry ) {
+			if ( isset( $entry['filemissing'] ) ) {
+				$lostEntry = $entry;
+				break;
+			}
+		}
+
+		$this->assertNotNull( $lostEntry, 'Should have an entry with filemissing' );
+		$this->assertTrue( $lostEntry['filemissing'] );
+
+		// These fields should now be present even though the file blob is missing
+		$this->assertArrayHasKey( 'timestamp', $lostEntry,
+			'Timestamp should be present for lost files (T426802)' );
+		$this->assertSame(
+			MWTimestamp::convert( TS::ISO_8601, self::LOST_FILE_TIMESTAMP ),
+			$lostEntry['timestamp']
+		);
+		$this->assertArrayHasKey( 'user', $lostEntry,
+			'User should be present for lost files (T426802)' );
+		$this->assertSame( $this->testUser->getName(), $lostEntry['user'] );
+		$this->assertSame( $this->testUser->getId(), $lostEntry['userid'] );
+		$this->assertSame( self::LOST_FILE_SIZE, $lostEntry['size'] );
+		$this->assertSame( 'lost file comment', $lostEntry['comment'] );
+	}
+
+	/**
+	 * T221812: Querying imageinfo for a completely non-existent file
+	 * (no DB record, no storage blob) should not crash and should not
+	 * return any imageinfo data. Note: this exercises the execute()
+	 * early-return path, not getInfo().
+	 */
+	public function testGetImageInfoNonExistentFile() {
+		[ $result, ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'imageinfo',
+			'titles' => 'File:This_file_does_not_exist_at_all.png',
+			'iiprop' => 'timestamp|user|size|comment',
+		] );
+		$this->assertArrayHasKey( 'query', $result );
+		$this->assertArrayHasKey( 'pages', $result['query'] );
+		$page = reset( $result['query']['pages'] );
+		// Non-existent file should not have imageinfo at all
+		$this->assertArrayNotHasKey( 'imageinfo', $page );
+		$this->assertSame( '', $page['imagerepository'] );
 	}
 }

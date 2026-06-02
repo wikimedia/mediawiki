@@ -435,9 +435,14 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		// Some information will be unavailable if the file does not exist. T221812
 		$exists = $file->exists();
 
+		// A file may have DB metadata even when the storage blob is missing
+		// (e.g. old file revisions with empty archive names). T221812 T239213 T426802
+		$hasDbMetadata = $exists
+			|| ( $file instanceof OldLocalFile && $file->hasDbRecord() );
+
 		// Timestamp is shown even if the file is revdelete'd in interface
 		// so do same here.
-		if ( isset( $prop['timestamp'] ) && $exists ) {
+		if ( isset( $prop['timestamp'] ) && $hasDbMetadata ) {
 			$vals['timestamp'] = wfTimestamp( TS::ISO_8601, $file->getTimestamp() );
 		}
 
@@ -456,7 +461,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$user = isset( $prop['user'] );
 		$userid = isset( $prop['userid'] );
 
-		if ( ( $user || $userid ) && $exists ) {
+		if ( ( $user || $userid ) && $hasDbMetadata ) {
 			if ( $file->isDeleted( File::DELETED_USER ) ) {
 				$vals['userhidden'] = true;
 				$anyHidden = true;
@@ -481,28 +486,32 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		// This is shown even if the file is revdelete'd in interface
 		// so do same here.
-		if ( ( isset( $prop['size'] ) || isset( $prop['dimensions'] ) ) && $exists ) {
+		if ( ( isset( $prop['size'] ) || isset( $prop['dimensions'] ) ) && $hasDbMetadata ) {
 			$vals['size'] = (int)$file->getSize();
 			$vals['width'] = (int)$file->getWidth();
 			$vals['height'] = (int)$file->getHeight();
 
-			$pageCount = $file->pageCount();
-			if ( $pageCount !== false ) {
-				$vals['pagecount'] = $pageCount;
-			}
+			// pageCount and duration require the file handler which may
+			// access the file blob, so they need the file to exist. T221812
+			if ( $exists ) {
+				$pageCount = $file->pageCount();
+				if ( $pageCount !== false ) {
+					$vals['pagecount'] = $pageCount;
+				}
 
-			// length as in how many seconds long a video is.
-			$length = $file->getLength();
-			if ( $length ) {
-				// Call it duration, because "length" can be ambiguous.
-				$vals['duration'] = (float)$length;
+				// length as in how many seconds long a video is.
+				$length = $file->getLength();
+				if ( $length ) {
+					// Call it duration, because "length" can be ambiguous.
+					$vals['duration'] = (float)$length;
+				}
 			}
 		}
 
 		$pcomment = isset( $prop['parsedcomment'] );
 		$comment = isset( $prop['comment'] );
 
-		if ( ( $pcomment || $comment ) && $exists ) {
+		if ( ( $pcomment || $comment ) && $hasDbMetadata ) {
 			if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = true;
 				$anyHidden = true;
