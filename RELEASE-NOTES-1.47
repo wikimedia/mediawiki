@@ -99,6 +99,7 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 ===== New development-only external libraries =====
 
+* Added fig/log-test at 1.2.1.
 * …
 
 ==== Changed external libraries ====

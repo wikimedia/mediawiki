@@ -95,6 +95,7 @@
 		"doctrine/sql-formatter": "1.5.4",
 		"ergebnis/phpunit-slow-test-detector": "2.24.0",
 		"ext-simplexml": "*",
+		"fig/log-test": "1.2.1",
 		"giorgiosironi/eris": "^0.14.0",
 		"hamcrest/hamcrest-php": "^2.0",
 		"mediawiki/mediawiki-codesniffer": "51.0.0",
