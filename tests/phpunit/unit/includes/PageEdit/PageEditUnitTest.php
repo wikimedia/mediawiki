@@ -22,6 +22,7 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWikiUnitTestCase;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\TestingAccessWrapper;
 
@@ -50,6 +51,7 @@ class PageEditUnitTest extends MediaWikiUnitTestCase {
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( Language::class ),
 			$this->createMock( ContentTransformer::class ),
+			$this->createMock( LoggerInterface::class ),
 			$this->createMock( PageEditingHelper::class ),
 			$this->createMock( RateLimiter::class ),
 			$this->createMock( RevisionStore::class ),

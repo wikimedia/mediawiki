@@ -3282,6 +3282,7 @@ return [
 			$services->getConnectionProvider(),
 			$services->getContentLanguage(),
 			$services->getContentTransformer(),
+			LoggerFactory::getInstance( 'EditConflict' ),
 			$services->getService( '_PageEditingHelper' ),
 			$services->getRateLimiter(),
 			$services->getRevisionStore(),

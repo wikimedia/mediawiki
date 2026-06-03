@@ -20,6 +20,7 @@ use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWikiUnitTestCase;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -42,6 +43,7 @@ class PageEditFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( Language::class ),
 			$this->createMock( ContentTransformer::class ),
+			$this->createMock( LoggerInterface::class ),
 			$this->createMock( PageEditingHelper::class ),
 			$this->createMock( RateLimiter::class ),
 			$this->createMock( RevisionStore::class ),

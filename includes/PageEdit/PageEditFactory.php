@@ -14,6 +14,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -31,6 +32,7 @@ class PageEditFactory {
 		private readonly IConnectionProvider $connectionProvider,
 		private readonly Language $contentLanguage,
 		private readonly ContentTransformer $contentTransformer,
+		private readonly LoggerInterface $editConflictLogger,
 		private readonly PageEditingHelper $pageEditingHelper,
 		private readonly RateLimiter $rateLimiter,
 		private readonly RevisionStore $revisionStore,
@@ -54,6 +56,7 @@ class PageEditFactory {
 			$this->connectionProvider,
 			$this->contentLanguage,
 			$this->contentTransformer,
+			$this->editConflictLogger,
 			$this->pageEditingHelper,
 			$this->rateLimiter,
 			$this->revisionStore,
