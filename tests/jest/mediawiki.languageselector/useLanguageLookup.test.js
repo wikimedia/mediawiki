@@ -99,6 +99,42 @@ describe( 'useLanguageLookup', () => {
 		expect( wrapper.vm.search ).toHaveBeenCalledWith( 'fra' );
 	} );
 
+	it( 'does not search when input matches the current single selection label', async () => {
+		const wrapper = VueTestUtils.mount( TestComponent, {
+			props: { isMultiple: false }
+		} );
+		wrapper.vm.selection = { value: 'en', label: 'English' };
+		await wrapper.vm.$nextTick();
+
+		wrapper.vm.onUpdateInputValue( 'English' );
+
+		expect( wrapper.vm.search ).not.toHaveBeenCalled();
+	} );
+
+	it( 'searches when input differs from the current single selection label', async () => {
+		const wrapper = VueTestUtils.mount( TestComponent, {
+			props: { isMultiple: false }
+		} );
+		wrapper.vm.selection = { value: 'en', label: 'English' };
+		await wrapper.vm.$nextTick();
+
+		wrapper.vm.onUpdateInputValue( 'Eng' );
+
+		expect( wrapper.vm.search ).toHaveBeenCalledWith( 'Eng' );
+	} );
+
+	it( 'searches in multiple mode even when input matches a selection label', async () => {
+		const wrapper = VueTestUtils.mount( TestComponent, {
+			props: { isMultiple: true }
+		} );
+		wrapper.vm.selection = [ { value: 'en', label: 'English' } ];
+		await wrapper.vm.$nextTick();
+
+		wrapper.vm.onUpdateInputValue( 'English' );
+
+		expect( wrapper.vm.search ).toHaveBeenCalledWith( 'English' );
+	} );
+
 	it( 'emits update:selected and clears search on selection update', () => {
 		const wrapper = VueTestUtils.mount( TestComponent );
 		wrapper.vm.onUpdateSelected( 'fr' );

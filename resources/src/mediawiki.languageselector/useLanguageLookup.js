@@ -92,6 +92,14 @@ function useLanguageLookup( {
 			return;
 		}
 
+		// Don't re-search when the input still reflects the current single
+		// selection's label (e.g. right after the user picks an item, Codex
+		// sets the input text to the selected label). In multiple mode the
+		// input is cleared on selection, so this never applies.
+		if ( !isMultiple && val === selection.value.label ) {
+			return;
+		}
+
 		search( val );
 	};
 
