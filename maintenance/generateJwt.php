@@ -50,7 +50,6 @@ class GenerateJwt extends Maintenance {
 	 * Validate if JWT has all required fields
 	 * @param array $claims
 	 * @return void
-	 * @throws \MediaWiki\Maintenance\MaintenanceFatalError
 	 */
 	private function validateClaims( array $claims ) {
 		foreach ( [ 'iss', 'sub' ] as $requiredClaim ) {
@@ -63,7 +62,6 @@ class GenerateJwt extends Maintenance {
 	/**
 	 * Read claims from the input file or JSON string
 	 * @return array
-	 * @throws \MediaWiki\Maintenance\MaintenanceFatalError
 	 */
 	private function readClaimsFromInput(): array {
 		$file = $this->getOption( 'file' );

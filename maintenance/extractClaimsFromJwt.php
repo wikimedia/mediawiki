@@ -34,7 +34,6 @@ class ExtractClaimsFromJwt extends Maintenance {
 	/**
 	 * Read claims from the input file or JSON string
 	 * @return string
-	 * @throws \MediaWiki\Maintenance\MaintenanceFatalError
 	 */
 	private function readJWTFromInput(): string {
 		$content = $this->getArg( 'jwt' );

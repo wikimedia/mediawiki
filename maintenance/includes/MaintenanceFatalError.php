@@ -7,8 +7,9 @@ use Exception;
 /**
  * Exception thrown by Maintenance::fatalError if called during PHPUnit tests. This is done because
  * calling exit() would cause the test suite to stop early.
+ * Use MaintenanceBaseTestCase::expectCallToFatalError() in test cases.
  *
- * @since 1.43
+ * @internal Do not mention in throws annotations, only for use in MaintenanceBaseTestCase
  */
 class MaintenanceFatalError extends Exception {
 	/**
