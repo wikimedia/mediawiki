@@ -413,7 +413,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideResetKinds() {
+	public static function provideResetKinds() {
 		return [
 			'empty' => [
 				'options' => [],
