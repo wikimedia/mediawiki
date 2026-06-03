@@ -572,28 +572,25 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			AuthManager::SEC_REAUTH => $reauth,
 			AuthManager::SEC_FAIL => AuthManager::SEC_FAIL,
 		] as $hook => $expect ) {
-			$withArguments = [];
-			foreach ( [ 500, 10, PHP_INT_MAX ] as $invocationCount => $expectedTimeSinceAuth ) {
-				$withArguments[$invocationCount] = [
-					// $status
-					$this->anything(),
-					// $operation
-					$this->anything(),
-					// $session
-					$this->callback( static fn ( $s ) => $s->getId() === $session->getId() ),
-					// $timeSinceAuth
-					$mutableSession
-						? $this->equalToWithDelta( $expectedTimeSinceAuth, 2 )
-						: -1
-				];
-			}
+			$expectedTimeSinceAuthValues = [ 500, 10, PHP_INT_MAX ];
+			$sessionId = $session->getId();
 			$this->hook( 'SecuritySensitiveOperationStatus',
 				SecuritySensitiveOperationStatusHook::class,
-				$this->exactly( 3 )
+				$this->exactly( count( $expectedTimeSinceAuthValues ) )
 			)
-				->withConsecutive( ...$withArguments )
-				->willReturnCallback( static function ( &$v ) use ( $hook ) {
-					$v = $hook;
+				->willReturnCallback( function (
+					&$status, $operation, $session, $timeSinceAuth
+				) use (
+					$hook, $sessionId, $mutableSession, &$expectedTimeSinceAuthValues
+				) {
+					$expectedTimeSinceAuth = array_shift( $expectedTimeSinceAuthValues );
+					$this->assertEquals( $sessionId, $session->getId() );
+					if ( $mutableSession ) {
+						$this->assertEqualsWithDelta( $expectedTimeSinceAuth, $timeSinceAuth, 2 );
+					} else {
+						$this->assertEquals( -1, $timeSinceAuth );
+					}
+					$status = $hook;
 					return true;
 				} );
 
