@@ -392,6 +392,7 @@
 	"resettokens-token-label": "$1 (balor aktual: $2)",
 	"resettokens-done": "reistourá token.",
 	"resettokens-resetbutton": "Reistourá token selektá",
+	"edit-recovery-special-user-not-enabled": "Bo por aktivá e funshon aki den [[Special:Preferences#mw-prefsection-editing|bo preferensianan]].",
 	"edit-recovery-special-intro": "Bo tin kambionan no wardá na siguiente {{PLURAL:$1|página òf sekshon}}:",
 	"edit-recovery-special-intro-empty": "No tin kambionan pa warda.",
 	"edit-recovery-special-view": "wak",

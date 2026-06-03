@@ -935,7 +935,7 @@
 	"skin-action-addsection": "Pridať tému",
 	"nchanges": "$1 {{PLURAL:$1|úprava|úpravy|úprav}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|od poslednej návštevy}}",
-	"enhancedrc-history": "história",
+	"enhancedrc-history": "hist",
 	"recentchanges": "Posledné úpravy",
 	"recentchanges-legend": "Možnosti posledných úprav",
 	"recentchanges-summary": "Pomocou tejto stránky sledujete posledné úpravy wiki.",

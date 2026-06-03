@@ -308,6 +308,7 @@
 	"apihelp-login-example-login": "로그인.",
 	"apihelp-logout-summary": "로그아웃하고 세션 데이터를 지웁니다.",
 	"apihelp-logout-example-logout": "현재 사용자를 로그아웃합니다.",
+	"apihelp-logout-param-global": "사용자를 (현재 기기만에서가 아닌) 모든 기기에서 로그아웃 시킵니다.",
 	"apihelp-managetags-summary": "변경 태그에 관한 관리 작업을 수행합니다.",
 	"apihelp-managetags-param-operation": "수행할 작업:",
 	"apihelp-managetags-paramvalue-operation-create": "수동 작업을 위해 새로운 변경 태그를 생성합니다.",
