@@ -41,8 +41,8 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 	}
 
 	private static function newParserOutput(
-		?string $rawText = null,
-		?ParserOptions $parserOptions = null,
+		?string $rawText,
+		?ParserOptions $parserOptions,
 		string $fragment,
 		string ...$flags
 	) {
