@@ -631,4 +631,27 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->expectException( InvalidArgumentException::class );
 		$this->insertPage( new stdClass() );
 	}
+
+	public function testFailsWhenBothExpectOutputStringAndExpectOutputRegex(): void {
+		$this->expectException( LogicException::class );
+		$this->expectExceptionMessage( 'Cannot use both ::expectOutputRegex and ::expectOutputString together' );
+		$this->expectOutputString( '' );
+		$this->expectOutputRegex( '/.*/' );
+	}
+
+	public function testFailsWhenBothExpectOutputRegexAndExpectOutputString(): void {
+		$this->expectException( LogicException::class );
+		$this->expectExceptionMessage( 'Cannot use both ::expectOutputRegex and ::expectOutputString together' );
+		$this->expectOutputRegex( '/.*/' );
+		$this->expectOutputString( '' );
+	}
+
+	public function testHasExpectationOnOutputForTrue(): void {
+		$this->expectOutputString( '' );
+		$this->assertTrue( $this->hasExpectationOnOutput() );
+	}
+
+	public function testHasExpectationOnOutputForFalse(): void {
+		$this->assertFalse( $this->hasExpectationOnOutput() );
+	}
 }

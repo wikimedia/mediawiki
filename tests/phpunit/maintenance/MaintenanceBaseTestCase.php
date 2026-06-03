@@ -25,12 +25,17 @@ abstract class MaintenanceBaseTestCase extends MediaWikiIntegrationTestCase {
 		// but is present to ensure isTesting is set even if subclass
 		// overwrites ::createMaintenance.)
 		$this->maintenance->isTesting = true;
+	}
+
+	protected function assertPostConditions(): void {
 		// This is smelly, but maintenance scripts usually produce output, so
 		// we anticipate and ignore with a regex that will catch everything.
 		//
 		// If you call $this->expectOutputRegex in your subclass, this guard
 		// is overridden, and your specific pattern will be respected.
-		$this->expectOutputRegex( '/.*/' );
+		if ( !$this->hasExpectationOnOutput() ) {
+			$this->expectOutputRegex( '/.*/' );
+		}
 	}
 
 	/**

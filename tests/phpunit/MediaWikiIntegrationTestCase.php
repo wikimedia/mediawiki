@@ -126,6 +126,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/** @var string */
 	private static $oldTablePrefix = '';
 
+	private bool $testHasExpectationOnRegexOutput = false;
+	private bool $testHasExpectationOnStringOutput = false;
+
 	/**
 	 * Holds the paths of temporary files/directories created through getNewTempFile,
 	 * and getNewTempDirectory
@@ -813,6 +816,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$tablesUsed = array_diff( $tablesUsed, static::$dbDataOnceTables );
 			self::resetDB( $this->db, $tablesUsed );
 		}
+
+		$this->testHasExpectationOnRegexOutput = false;
+		$this->testHasExpectationOnStringOutput = false;
 
 		self::restoreMwServices();
 		$this->localServices = null;
@@ -2806,5 +2812,36 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	protected function addEndOfRunTestWarning( string $message ): void {
 		$this->warningsToPrint[] = $message;
+	}
+
+	/** @inheritDoc */
+	public function expectOutputRegex( string $expectedRegex ): void {
+		// This is necessary to avoid maintenance script tests silently not validating the output (T427952)
+		if ( $this->testHasExpectationOnStringOutput ) {
+			throw new LogicException( 'Cannot use both ::expectOutputRegex and ::expectOutputString together' );
+		}
+		$this->testHasExpectationOnRegexOutput = true;
+		parent::expectOutputRegex( $expectedRegex );
+	}
+
+	/** @inheritDoc */
+	public function expectOutputString( string $expectedString ): void {
+		// This is necessary to avoid maintenance script tests silently not validating the output (T427952)
+		if ( $this->testHasExpectationOnRegexOutput ) {
+			throw new LogicException( 'Cannot use both ::expectOutputRegex and ::expectOutputString together' );
+		}
+		$this->testHasExpectationOnStringOutput = true;
+		parent::expectOutputString( $expectedString );
+	}
+
+	/**
+	 * Returns whether the test has expectations on output.
+	 *
+	 * @stable to call
+	 */
+	public function hasExpectationOnOutput(): bool {
+		// If hasExpectationOnOutput is removed, we can use the properties that detect and fail if
+		// ::expectOutputString and ::expectOutputRegex are both called
+		return parent::hasExpectationOnOutput();
 	}
 }
