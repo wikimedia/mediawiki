@@ -40,7 +40,6 @@
 use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\MWDebug;
-use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Exception\FatalError;
 use MediaWiki\Exception\HttpError;
 use MediaWiki\Exception\MWExceptionHandler;
@@ -462,6 +461,17 @@ if ( RequestContext::getMain()->getRequest()->getCookie( 'UseDC', '' ) === 'mast
 	}
 } )();
 
+$settingsWarnings = $wgSettings->getWarnings();
+if ( $settingsWarnings ) {
+	$logger = LoggerFactory::getInstance( 'Settings' );
+	foreach ( $settingsWarnings as $msg ) {
+		$logger->warning( $msg );
+	}
+	unset( $msg );
+	unset( $logger );
+}
+unset( $settingsWarnings );
+
 // Most of the config is out, some might want to run hooks here.
 ( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onSetupAfterCache();
 
@@ -577,8 +587,10 @@ foreach ( $wgExtensionFunctions as $func ) {
 }
 unset( $func ); // no global pollution; destroy reference
 
-// If the session user has a 0 id but a valid name, that means we need to
-// autocreate it.
+// Explicit globals, so this works with bootstrap.php
+global $wgFullyInitialised;
+
+// If the session user has a valid name but is not yet registered, that means we need to autocreate it.
 if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 	$sessionUser = RequestContext::getMain()->getRequest()->getSession()->getUser();
 	$autocreateStatus = null;
@@ -591,48 +603,19 @@ if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 		);
 		// If successful, the User object has been updated with its new ID
 	}
-}
+	// Autocreation is the last requirement before $wgFullyInitialised lets other code call the User object.
+	$wgFullyInitialised = true;
 
-// Optimization: Avoid overhead from DeferredUpdates and Pingback deps when turned off.
-if ( MW_ENTRY_POINT !== 'cli' && $wgPingback ) {
-	// NOTE: Do not refactor to inject Config or otherwise make unconditional service call.
-	//
-	// On a plain install of MediaWiki, Pingback is likely the *only* feature
-	// involving DeferredUpdates or DB_PRIMARY on a regular page view.
-	// To allow for error recovery and fault isolation, let admins turn this
-	// off completely. (T269516)
-	DeferredUpdates::addCallableUpdate( static function () {
-		MediaWikiServices::getInstance()->getPingback()->run();
-	} );
-}
-
-$settingsWarnings = $wgSettings->getWarnings();
-if ( $settingsWarnings ) {
-	$logger = LoggerFactory::getInstance( 'Settings' );
-	foreach ( $settingsWarnings as $msg ) {
-		$logger->warning( $msg );
-	}
-	unset( $msg );
-	unset( $logger );
-}
-unset( $settingsWarnings );
-
-// Explicit globals, so this works with bootstrap.php
-global $wgFullyInitialised;
-$wgFullyInitialised = true;
-
-// T264370
-if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
+	// T264370
 	$manager = MediaWikiServices::getInstance()->getSessionManager();
 	if ( $manager instanceof SessionManager ) {
 		$manager->logPotentialSessionLeakage();
 	}
 	unset( $manager );
-}
 
-if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 	if ( $autocreateStatus ) {
 		// If we tried to autocreate a user, ensure that everything is in a consistent state.
+		// Must be after $wgFullyInitialised
 		if ( $autocreateStatus->isOK() ) {
 			if ( !$sessionUser->isRegistered() ) {
 				throw new LogicException( "Session user should be registered, but it's not" );
@@ -651,4 +634,7 @@ if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 	}
 	unset( $sessionUser );
 	unset( $autocreateStatus );
+} else {
+	// MW_NO_SESSION or CLI
+	$wgFullyInitialised = true;
 }

@@ -12,6 +12,8 @@
  */
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputHandler;
 use MediaWiki\Settings\SettingsBuilder;
 use Wikimedia\Http\HttpStatus;
@@ -71,6 +73,19 @@ if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
 }
 
 require_once __DIR__ . '/Setup.php';
+
+// Optimization: Avoid overhead from DeferredUpdates and Pingback deps when turned off.
+//
+// NOTE: Do not refactor to inject Config or otherwise unconditionally call services.
+//
+// On a plain install of MediaWiki, Pingback is likely the *only* feature involving
+// DeferredUpdates or DB_PRIMARY on a regular page view. To allow for error recovery and fault
+// isolation, let admins turn this off completely. (T269516)
+if ( MW_ENTRY_POINT !== 'cli' && $wgPingback ) {
+	DeferredUpdates::addCallableUpdate( static function () {
+		MediaWikiServices::getInstance()->getPingback()->run();
+	} );
+}
 
 # Multiple DBs or commits might be used; keep the request as transactional as possible
 if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {
