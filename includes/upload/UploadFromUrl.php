@@ -284,14 +284,17 @@ class UploadFromUrl extends UploadBase {
 	 * @return Status
 	 */
 	public function canFetchFile() {
-		if ( !MWHttpRequest::isValidURI( $this->mUrl ) ) {
-			return Status::newFatal( 'http-invalid-url', $this->mUrl );
-		}
+		return $this->canFetchFileFromUrl( $this->mUrl );
+	}
 
-		if ( !self::isAllowedHost( $this->mUrl ) ) {
+	private function canFetchFileFromUrl( string $url ): Status {
+		if ( !MWHttpRequest::isValidURI( $url ) ) {
+			return Status::newFatal( 'http-invalid-url', $url );
+		}
+		if ( !self::isAllowedHost( $url ) ) {
 			return Status::newFatal( 'upload-copy-upload-invalid-domain' );
 		}
-		if ( !self::isAllowedUrl( $this->mUrl ) ) {
+		if ( !self::isAllowedUrl( $url ) ) {
 			return Status::newFatal( 'upload-copy-upload-invalid-url' );
 		}
 		return Status::newGood();
@@ -387,6 +390,10 @@ class UploadFromUrl extends UploadBase {
 				break;
 			}
 			$targetUrl = $req->getFinalUrl();
+			$redirectedUrlFetchable = $this->canFetchFileFromUrl( $targetUrl );
+			if ( !$redirectedUrlFetchable->isGood() ) {
+				return $redirectedUrlFetchable;
+			}
 			// Remove redirect response content from file.
 			ftruncate( $this->mTmpHandle, 0 );
 			rewind( $this->mTmpHandle );
