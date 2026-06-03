@@ -802,4 +802,26 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount() );
 		$this->assertSame( 0, $runs );
 	}
+
+	/**
+	 * Asserts the output before and after simulating shutdown
+	 *
+	 * This function simulates shutdown of self::maintenance.
+	 *
+	 * @param string $preShutdownOutput Expected output before simulating shutdown
+	 * @param bool $expectNLAppending Whether or not shutdown simulation is expected
+	 *   to add a newline to the output. If false, $preShutdownOutput is the
+	 *   expected output after shutdown simulation. Otherwise,
+	 *   $preShutdownOutput with an appended newline is the expected output
+	 *   after shutdown simulation.
+	 */
+	private function assertOutputPrePostShutdown( $preShutdownOutput, $expectNLAppending ) {
+		$this->assertEquals( $preShutdownOutput, $this->getActualOutputForAssertion(),
+				"Output before shutdown simulation" );
+
+		$this->maintenance->cleanupChanneled();
+
+		$postShutdownOutput = $preShutdownOutput . ( $expectNLAppending ? "\n" : "" );
+		$this->expectOutputString( $postShutdownOutput );
+	}
 }
