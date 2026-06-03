@@ -21,10 +21,10 @@ class InvalidateBotPasswordsTest extends MaintenanceBaseTestCase {
 		foreach ( $options as $name => $value ) {
 			$this->maintenance->setOption( $name, $value );
 		}
-		$this->maintenance->execute();
 		if ( $expectedOutputRegex ) {
 			$this->expectOutputRegex( $expectedOutputRegex );
 		}
+		$this->maintenance->execute();
 	}
 
 	public static function provideExecuteForFatalError() {

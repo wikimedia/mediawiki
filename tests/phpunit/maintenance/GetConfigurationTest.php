@@ -27,12 +27,12 @@ class GetConfigurationTest extends MaintenanceBaseTestCase {
 		foreach ( $options as $name => $value ) {
 			$this->maintenance->setOption( $name, $value );
 		}
+		$this->expectOutputRegex( $expectedOutputRegex );
 		$this->expectCallToFatalError();
 		// ::maybeShowHelp uses ->mName which is null unless we call this.
 		$this->maintenance->setName( 'getConfiguration.php' );
 		$this->maintenance->validateParamsAndArgs();
 		$this->maintenance->execute();
-		$this->expectOutputRegex( $expectedOutputRegex );
 	}
 
 	public static function provideExecuteForFatalError() {
@@ -56,12 +56,12 @@ class GetConfigurationTest extends MaintenanceBaseTestCase {
 			],
 			'Config that is referenced by --settings has non-array and non-scalar items' => [
 				[ 'settings' => 'wgAutoCreateTempUser' ],
-				'/Variable wgAutoCreateTempUser includes non-array, non-scalar, items/',
+				'/Variable \'wgAutoCreateTempUser\' includes non-array, non-scalar, items/',
 				MainConfigNames::AutoCreateTempUser, [ 'enabled' => true, 'invalid' => new NullJob( [] ) ]
 			],
 			'Config referenced by --settings is an object' => [
 				[ 'settings' => 'wgTestConfig' ],
-				'/Variable wgTestConfig includes non-array, non-scalar, items/',
+				'/Variable \'wgTestConfig\' includes non-array, non-scalar, items/',
 				'TestConfig', new NullJob( [] ),
 			],
 		];

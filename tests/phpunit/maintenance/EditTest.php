@@ -136,12 +136,12 @@ class EditTest extends MaintenanceBaseTestCase {
 	/** @dataProvider provideExecuteForFatalError */
 	public function testExecuteForFatalError( $options, $expectedOutputRegex, $title = null ) {
 		$this->expectCallToFatalError();
+		$this->expectOutputRegex( $expectedOutputRegex );
 		$this->maintenance->setArg( 'title', $title ?? 'test' );
 		foreach ( $options as $name => $value ) {
 			$this->maintenance->setOption( $name, $value );
 		}
 		$this->maintenance->execute();
-		$this->expectOutputRegex( $expectedOutputRegex );
 	}
 
 	public static function provideExecuteForFatalError() {

@@ -22,8 +22,8 @@ class InvalidateUserSessionsTest extends MaintenanceBaseTestCase {
 		foreach ( $options as $name => $value ) {
 			$this->maintenance->setOption( $name, $value );
 		}
-		$this->maintenance->execute();
 		$this->expectOutputRegex( $expectedOutputRegex );
+		$this->maintenance->execute();
 	}
 
 	public static function provideExecuteForFatalError() {
