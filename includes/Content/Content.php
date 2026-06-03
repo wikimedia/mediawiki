@@ -334,11 +334,6 @@ interface Content {
 	public function convert( $toModel, $lossy = '' );
 
 	// @todo ImagePage and CategoryPage interfere with per-content action handlers
-	// @todo nice integration of GeSHi syntax highlighting
-	//   [11:59] <vvv> Hooks are ugly; make CodeHighlighter interface and a
-	//   config to set the class which handles syntax highlighting
-	//   [12:00] <vvv> And default it to a DummyHighlighter
-
 }
 
 /** @deprecated class alias since 1.43 */

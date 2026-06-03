@@ -14,7 +14,7 @@ class CodeHighlighterOptions {
 	 * @param string[] $classes Classes to apply to the output HTML element
 	 * @param string $dir HTML dir attribute to apply to the output HTML element
 	 * @param bool $inline Whether the code block should be rendered inline with text
-	 * @param bool $includeLineNumbers Whether the code block should be rendered inline with text
+	 * @param bool $includeLineNumbers Whether the code block should include line numbers
 	 * @param int $startingLineNumber Line number for the first line of the code block
 	 * @param bool $includeLineLinks Whether the line numbers should have links
 	 * @param string $linkLinkAnchorPrefix Prefix for the anchor for each line number (if $includeLineLinks is enabled)
