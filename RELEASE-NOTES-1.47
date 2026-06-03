@@ -193,6 +193,10 @@ because of Phabricator reports.
   use FileBackendStore::procFileStatCache.
 * FileBackendStore::expensiveCache is now deprecated. Instead, subclasses should
   use FileBackendStore::procFileDataCache.
+* FSFile::extensionFromPath() has been deprecated. Use the older
+  FileBackend::extensionFromPath() instead.
+* Calling FileBackend::extensionFromPath() with a $case parameter is deprecated
+  and will default to lowercase in the future.
 * ResourceLoader::inDebugMode is now deprecated and emits deprecation warnings.
 * QuickTemplate::msg() and QuickTemplate::haveMsg() got deprecated and shouldn't
   be used any more.

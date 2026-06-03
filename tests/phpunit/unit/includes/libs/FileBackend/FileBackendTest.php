@@ -828,25 +828,15 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideExtensionFromPath
 	 */
-	public function testExtensionFromPath( array $args, string $expected ): void {
-		$this->assertSame( $expected, FileBackend::extensionFromPath( ...$args ) );
+	public function testExtensionFromPath( string $path, string $expected ): void {
+		$this->assertSame( $expected, FileBackend::extensionFromPath( $path ) );
 	}
 
-	public static function provideExtensionFromPath(): array {
-		$paths = [
-			'mwstore://backend/container/path.Txt' => 'Txt',
-			'mwstore://backend/container/path.svg.pNG' => 'pNG',
-			'mwstore://backend/container/path' => '',
-			'mwstore://backend/container/path.' => '',
-		];
-		$ret = [];
-		foreach ( $paths as $path => $expected ) {
-			$ret[$path] = [ [ $path ], strtolower( $expected ) ];
-			$ret["$path (lowercase)"] = [ [ $path, 'lowercase' ], strtolower( $expected ) ];
-			$ret["$path (uppercase)"] = [ [ $path, 'uppercase' ], strtoupper( $expected ) ];
-			$ret["$path (rawcase)"] = [ [ $path, 'rawcase' ], $expected ];
-		}
-		return $ret;
+	public static function provideExtensionFromPath(): iterable {
+		yield [ 'mwstore://backend/container/path.Txt', 'txt' ];
+		yield [ 'mwstore://backend/container/path.svg.pNG', 'png' ];
+		yield [ 'mwstore://backend/container/path', '' ];
+		yield [ 'mwstore://backend/container/path.', '' ];
 	}
 
 	/**

@@ -171,10 +171,13 @@ class FSFile {
 	/**
 	 * Get the final file extension from a file system path
 	 *
+	 * @deprecated since 1.47, use {@link FileBackend::extensionFromPath} instead
 	 * @param string $path
 	 * @return string
 	 */
 	public static function extensionFromPath( $path ) {
+		wfDeprecated( __METHOD__, '1.47' );
+
 		$i = strrpos( $path, '.' );
 
 		return strtolower( $i ? substr( $path, $i + 1 ) : '' );
