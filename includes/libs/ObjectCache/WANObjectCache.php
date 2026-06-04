@@ -1558,8 +1558,8 @@ class WANObjectCache implements
 	 *      incompatibly versioned value at the provided key, a "variant key" will be used for
 	 *      reading from and saving to cache. The variant key is specific to the key and version
 	 *      number provided to this method. If the variant key value is older than that of the
-	 *      provided key, or the provided key is non-existant, then the variant key will be seen
-	 *      as non-existant. Therefore, delete() calls purge the provided key's variant keys.
+	 *      provided key, or the provided key is non-existent, then the variant key will be seen
+	 *      as non-existent. Therefore, delete() calls purge the provided key's variant keys.
 	 *      The "checkKeys" and "touchedCallback" options still apply to variant keys as usual.
 	 *      Avoid storing class objects, as this reduces compatibility (due to serialization).
 	 *      Default: null.

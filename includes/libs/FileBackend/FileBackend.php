@@ -135,7 +135,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	public const ATTR_METADATA = 2; // files can be stored with metadata key/values
 	public const ATTR_UNICODE_PATHS = 4; // files can have Unicode paths (not just ASCII)
 
-	/** @var false Idiom for "no info; non-existant file" (since 1.34) */
+	/** @var false Idiom for "no info; non-existent file" (since 1.34) */
 	protected const STAT_ABSENT = false;
 
 	/** @var null Idiom for "no info; I/O errors" (since 1.34) */

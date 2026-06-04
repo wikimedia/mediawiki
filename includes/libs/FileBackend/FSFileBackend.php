@@ -638,7 +638,7 @@ class FSFileBackend extends FileBackendStore {
 		$error = $list->getLastError();
 		if ( $error !== null ) {
 			if ( $this->isFileNotFoundError( $error ) ) {
-				$this->logger->info( __METHOD__ . ": nonexistent directory: '$fsDirectory'" );
+				$this->logger->info( __METHOD__ . ": non-existent directory: '$fsDirectory'" );
 
 				return []; // nothing under this dir
 			} elseif ( is_dir( $fsDirectory ) ) {
