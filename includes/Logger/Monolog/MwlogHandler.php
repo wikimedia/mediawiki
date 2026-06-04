@@ -8,6 +8,7 @@ namespace MediaWiki\Logger\Monolog;
 
 use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Logger;
+use Monolog\LogRecord;
 
 /**
  * Write logs to syslog with the channel appended to the application name.
@@ -88,7 +89,7 @@ class MwlogHandler extends SyslogUdpHandler {
 		return preg_split( '/$\R?^/m', (string)$message, -1, PREG_SPLIT_NO_EMPTY );
 	}
 
-	protected function write( array $record ): void {
+	protected function write( array|LogRecord $record ): void {
 		$lines = $this->splitMessageIntoLines( $record['formatted'] );
 		$header = $this->syslogHeader(
 			$this->logLevels[$record['level']],

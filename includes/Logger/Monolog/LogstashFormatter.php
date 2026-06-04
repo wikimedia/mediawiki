@@ -3,6 +3,7 @@
 namespace MediaWiki\Logger\Monolog;
 
 use MediaWiki\Exception\MWExceptionHandler;
+use Monolog\LogRecord;
 
 /**
  * Modified version of Monolog\Formatter\LogstashFormatter
@@ -55,7 +56,7 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 		parent::__construct( $applicationName, $systemName, $extraKey, $contextKey );
 	}
 
-	public function format( array $record ): string {
+	public function format( array|LogRecord $record ): string {
 		$record = \Monolog\Formatter\NormalizerFormatter::format( $record );
 		if ( $this->version === self::V1 ) {
 			$message = $this->formatV1( $record );

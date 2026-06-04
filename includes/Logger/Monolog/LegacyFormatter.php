@@ -8,6 +8,7 @@ namespace MediaWiki\Logger\Monolog;
 
 use MediaWiki\Logger\LegacyLogger;
 use Monolog\Formatter\NormalizerFormatter;
+use Monolog\LogRecord;
 
 /**
  * Log message formatter that mimics the legacy log message formatting of `wfDebug`, `wfDebugLog`,
@@ -25,7 +26,7 @@ class LegacyFormatter extends NormalizerFormatter {
 		parent::__construct( 'c' );
 	}
 
-	public function format( array $record ): string {
+	public function format( array|LogRecord $record ): string {
 		$normalized = parent::format( $record );
 		return LegacyLogger::format(
 			$normalized['channel'], $normalized['message'], $normalized

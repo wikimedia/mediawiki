@@ -8,6 +8,7 @@ namespace MediaWiki\Logger\Monolog;
 
 use MediaWiki\Deferred\DeferredUpdates;
 use Monolog\Handler\BufferHandler as BaseBufferHandler;
+use Monolog\LogRecord;
 
 /**
  * Helper class for the index.php entry point.
@@ -27,7 +28,7 @@ class BufferHandler extends BaseBufferHandler {
 	/**
 	 * @inheritDoc
 	 */
-	public function handle( array $record ): bool {
+	public function handle( array|LogRecord $record ): bool {
 		if ( !$this->initialized ) {
 			DeferredUpdates::addCallableUpdate( $this->close( ... ) );
 			$this->initialized = true;

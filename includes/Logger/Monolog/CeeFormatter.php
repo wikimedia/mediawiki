@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Logger\Monolog;
 
+use Monolog\LogRecord;
+
 /**
  * Prefixed version of LogstashFormatter that adds a "cee cookie" for Rsyslog.
  *
@@ -15,10 +17,10 @@ namespace MediaWiki\Logger\Monolog;
 class CeeFormatter extends LogstashFormatter {
 	/**
 	 * Format records with a cee cookie
-	 * @param array $record
+	 * @param array|LogRecord $record
 	 * @return string
 	 */
-	public function format( array $record ): string {
+	public function format( array|LogRecord $record ): string {
 		return "@cee: " . parent::format( $record );
 	}
 }

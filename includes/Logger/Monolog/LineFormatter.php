@@ -9,6 +9,7 @@ namespace MediaWiki\Logger\Monolog;
 use Error;
 use MediaWiki\Exception\MWExceptionHandler;
 use Monolog\Formatter\LineFormatter as MonologLineFormatter;
+use Monolog\LogRecord;
 use Throwable;
 
 /**
@@ -50,7 +51,7 @@ class LineFormatter extends MonologLineFormatter {
 	/**
 	 * @inheritDoc
 	 */
-	public function format( array $record ): string {
+	public function format( array|LogRecord $record ): string {
 		// Drop the 'private' flag from the context
 		unset( $record['context']['private'] );
 
