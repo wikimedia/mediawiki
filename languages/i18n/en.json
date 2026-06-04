@@ -265,6 +265,7 @@
 	"viewyourtext": "You can view and copy the source of <strong>your edits</strong> to this page.",
 	"protectedinterface": "This page provides interface text for the software on this wiki, and is protected to prevent abuse.\nTo add or change translations for all wikis, please use [https://translatewiki.net/ translatewiki.net], the MediaWiki localisation project.",
 	"editinginterface": "<strong>Warning:</strong> You are editing a page that is used to provide interface text for the software.\nChanges to this page will affect the appearance of the user interface for other users on this wiki.",
+	"editinginterfacejs": "<strong>You are editing site-wide JavaScript</strong> <br>Changes here affect all visitors. You’ll be asked to confirm it’s you when you publish changes.",
 	"translateinterface": "To add or change translations for all wikis, please use [https://translatewiki.net/ translatewiki.net], the MediaWiki localisation project.",
 	"cascadeprotected": "This page has been protected from editing because it is transcluded in the following {{PLURAL:$1|page, which is|pages, which are}} protected with the \"cascading\" option turned on:\n$2",
 	"namespaceprotected": "You do not have permission to edit pages in the <strong>$1</strong> namespace.",

@@ -191,6 +191,9 @@ class IntroMessageBuilder {
 
 		if ( $namespace === NS_MEDIAWIKI ) {
 			$interfaceMsg = $localizer->msg( 'editinginterface' );
+			if ( $isJavaScript ) {
+				$interfaceMsg = $localizer->msg( 'editinginterfacejs' );
+			}
 			$interfaceMsgText = $interfaceMsg->parse();
 			# Show a warning if editing an interface message
 			$intro .= $interfaceMsgText ? Html::rawElement(
@@ -236,7 +239,7 @@ class IntroMessageBuilder {
 			// it's best to deter users who don't understand what they are doing by
 			// acknowledging the danger here. This is a potentially destructive action
 			// so requires destructive coloring.
-			Html::errorBox( '$1' )
+			Html::warningBox( '$1' )
 		);
 	}
 
