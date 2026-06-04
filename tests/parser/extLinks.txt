@@ -1410,7 +1410,7 @@ externallinktarget=_blank
 !! html/parsoid
 <p><a rel="mw:ExtLink nofollow noreferrer noopener" href="https://www.example.com" class="external autonumber" target="_blank"></a></p>
 !! html/php
-<p><a target="_blank" rel="nofollow noreferrer noopener" class="external autonumber" href="https://www.example.com">[1]</a>
+<p><a target="_blank" rel="nofollow" class="external autonumber" href="https://www.example.com">[1]</a>
 </p>
 !! end
 

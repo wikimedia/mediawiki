@@ -2209,15 +2209,8 @@ class Parser {
 		$target = $this->mOptions->getExternalLinkTarget();
 		if ( $target ) {
 			$attribs['target'] = $target;
-			if ( !in_array( $target, [ '_self', '_parent', '_top' ] ) ) {
-				// T133507. New windows can navigate parent cross-origin.
-				// Including noreferrer due to lacking browser
-				// support of noopener. Eventually noreferrer should be removed.
-				if ( $rel !== '' ) {
-					$rel .= ' ';
-				}
-				$rel .= 'noreferrer noopener';
-			}
+			// T133507/T427561: we used to set additional 'rel' attributes
+			// here, but no longer need to do so.
 		}
 		if ( $rel !== '' ) {
 			$attribs['rel'] = $rel;
