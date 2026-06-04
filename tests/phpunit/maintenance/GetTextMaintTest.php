@@ -3,10 +3,8 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use GetTextMaint;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\RevisionDelete\RevisionDeleter;
 
 /**
  * @covers \GetTextMaint
@@ -81,13 +79,15 @@ class GetTextMaintTest extends MaintenanceBaseTestCase {
 	private function getPageWithSuppressedFirstRevision() {
 		// Get a page with two revisions
 		$testPage = $this->getExistingTestPage();
-		$firstRevId = $testPage->getRevisionRecord()->getId();
+		$firstRev = $testPage->getRevisionRecord();
 		$this->editPage( $testPage, 'testing123456' );
 		// Hide the first revision associated with the test page
-		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
-		$list = RevisionDeleter::createList( 'revision', RequestContext::getMain(), $testPage, [ $firstRevId ] );
-		$list->setVisibility( [ 'value' => [ RevisionRecord::DELETED_TEXT => 1 ], 'comment' => 'Bye-bye' ] );
-		return [ 'page' => $testPage, 'revId' => $firstRevId ];
+		$this->revisionDelete(
+			$firstRev,
+			[ RevisionRecord::DELETED_TEXT => 1 ],
+			'Bye-bye'
+		);
+		return [ 'page' => $testPage, 'revId' => $firstRev->getId() ];
 	}
 
 	public function testExecuteForSuppressedContent() {
