@@ -12,7 +12,6 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -23,8 +22,12 @@ class MultiFormatUserIdentityLookupTest extends MediaWikiIntegrationTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->overrideConfigValue( MainConfigNames::LocalDatabases, [ WikiMap::getCurrentWikiId(), 'wiki' ] );
-		$this->overrideConfigValue( MainConfigNames::UserrightsInterwikiDelimiter, '@' );
+		$this->overrideConfigValues( [
+			MainConfigNames::DBname => 'currentwikiid',
+			MainConfigNames::DBprefix => '',
+			MainConfigNames::LocalDatabases => [ 'currentwikiid', 'wiki' ],
+			MainConfigNames::UserrightsInterwikiDelimiter => '@',
+		] );
 	}
 
 	/** @dataProvider provideParseUserDesignator */
@@ -48,7 +51,7 @@ class MultiFormatUserIdentityLookupTest extends MediaWikiIntegrationTestCase {
 			'multiple delimiters in username' => [ 'Exa@mple@wiki', 'Exa', 'mple' ],
 			'username with spaces around' => [ '  Example  ', 'Example', UserIdentity::LOCAL ],
 			'username with interwiki and spaces around' => [ ' Example @ wiki ', 'Example', 'wiki' ],
-			'explicit local wiki' => [ 'Example@' . WikiMap::getCurrentWikiId(), 'Example', UserIdentity::LOCAL ],
+			'explicit local wiki' => [ 'Example@currentwikiid', 'Example', UserIdentity::LOCAL ],
 		];
 	}
 
@@ -140,7 +143,7 @@ class MultiFormatUserIdentityLookupTest extends MediaWikiIntegrationTestCase {
 				'shouldUseNameLookup' => true,
 			],
 			'local user by name, explicit wiki' => [
-				'designator' => 'Example@' . WikiMap::getCurrentWikiId(),
+				'designator' => 'Example@currentwikiid',
 				'expectedId' => 1,
 				'expectedName' => 'Example',
 				'expectedWiki' => UserIdentity::LOCAL,
@@ -161,7 +164,7 @@ class MultiFormatUserIdentityLookupTest extends MediaWikiIntegrationTestCase {
 				'shouldUseNameLookup' => false,
 			],
 			'local user by id, explicit wiki' => [
-				'designator' => '#2@' . WikiMap::getCurrentWikiId(),
+				'designator' => '#2@currentwikiid',
 				'expectedId' => 2,
 				'expectedName' => 'Example',
 				'expectedWiki' => UserIdentity::LOCAL,
