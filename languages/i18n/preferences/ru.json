@@ -61,6 +61,7 @@
 	"prefs-memberingroups": "{{GENDER:$2|Член|Член}} {{PLURAL:$1|1=группы|групп}}:",
 	"group-membership-link-with-expiry": "$1 (до $2)",
 	"prefs-memberingroupsdisabled": "{{GENDER:$2|}} {{PLURAL:$1|Отключенная группа|Отключенные группы}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|Вы}} больше не соответствуете [[$3|условиям]] для членства в {{PLURAL:$1|этой группе|этих группах}} и, следовательно, не можете использовать права, предоставленные {{PLURAL:$1|ей|ими}}.",
 	"prefs-edits": "Количество правок:",
 	"prefs-registration": "Время регистрации:",
 	"yourrealname": "Настоящее имя:",

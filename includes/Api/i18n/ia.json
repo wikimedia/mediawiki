@@ -286,6 +286,7 @@
 	"apihelp-login-example-login": "Aperir session.",
 	"apihelp-logout-summary": "Clauder session e rader datos de session.",
 	"apihelp-logout-example-logout": "Clauder le session del usator actual.",
+	"apihelp-logout-param-global": "Clauder le session del usator in tote su apparatos (in loco de solmente su apparato actual).",
 	"apihelp-managetags-summary": "Executar cargas de gestion concernente le etiquettas de modification.",
 	"apihelp-managetags-param-operation": "Qual operation exequer:",
 	"apihelp-managetags-paramvalue-operation-create": "Crear un nove etiquetta de modification pro uso manual.",

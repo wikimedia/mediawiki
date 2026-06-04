@@ -313,6 +313,7 @@
 	"apihelp-login-example-login": "Aanmelden.",
 	"apihelp-logout-summary": "Afmelden en sessiegegevens wissen.",
 	"apihelp-logout-example-logout": "Meld de huidige gebruiker af.",
+	"apihelp-logout-param-global": "De gebruiker afmelden van alle apparaten (in plaats van alleen van het huidige apparaat).",
 	"apihelp-managetags-summary": "Beheertaken uitvoeren met betrekking tot wijzigingslabels.",
 	"apihelp-managetags-param-operation": "Welke handeling moet worden verricht:",
 	"apihelp-managetags-paramvalue-operation-create": "Maak een nieuw wijzigingslabel voor handmatig gebruik.",

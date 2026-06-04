@@ -665,7 +665,7 @@
 	"missingcommenttext": "من فضلك أدخل تعليقا.",
 	"missingcommentheader": "<strong>تذكير:</strong>  لم تقم بكتابة عنوان موضوع لهذا التعليق.\nإذا قمت بالضغط على \"$1\" مجددًا، سيتم نشر تعليقك بدون عنوان.",
 	"summary-preview": "معاينة ملخص تحرير:",
-	"autocomment-top": "(قمة)",
+	"autocomment-top": "(المقدمة)",
 	"previewerrortext": "حدث خطأ أثناء محاولة معاينة تغييراتك.",
 	"blockedtitle": "المستخدم ممنوع",
 	"blockedtext": "<strong>مُنع اسم المستخدم أو عنوان الآيبي الخاص بك.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nيمكنك استخدام ميزة \"{{int:emailuser}}\" إذا حُدد عنوان بريد إلكتروني صالح في [[Special:Preferences|التفضيلات]] ولم تُمنع من استخدامه.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
