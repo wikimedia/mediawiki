@@ -98,7 +98,7 @@ class TestSetup {
 		];
 		// Always default to LegacySpi and LegacyLogger during test
 		// See also MediaWikiIntegrationTestCase::setNullLogger().
-		// Note that MediaWikiLoggerPHPUnitTestListener may wrap this in
+		// Note that MediaWikiLoggerPHPUnitExtension may wrap this in
 		// a MediaWiki\Logger\LogCapturingSpi at run-time.
 		$wgMWLoggerDefaultSpi = [
 			'class' => LegacySpi::class,
