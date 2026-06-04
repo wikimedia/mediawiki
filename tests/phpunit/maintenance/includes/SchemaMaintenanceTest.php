@@ -23,12 +23,7 @@ class SchemaMaintenanceTest extends MaintenanceBaseTestCase {
 
 	// This is a *different* maintenance base class
 	protected function createGenerateSchemaChangeSql() {
-		$mbc = new class extends MaintenanceBaseTestCase {
-			protected function getMaintenanceClass() {
-				return GenerateSchemaChangeSql::class;
-			}
-		};
-		return $mbc->createMaintenance();
+		return $this->createMaintenanceInternal( GenerateSchemaChangeSql::class );
 	}
 
 	/** @dataProvider provideExecuteForFatalError */
