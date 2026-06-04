@@ -9,7 +9,6 @@ namespace MediaWiki\PoolCounter;
 use Exception;
 use MediaWiki\Status\Status;
 use RedisException;
-use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\HashRing\HashRing;
 use Wikimedia\ObjectCache\RedisConnectionPool;
 use Wikimedia\ObjectCache\RedisConnRef;
@@ -101,7 +100,6 @@ class PoolCounterRedis extends PoolCounter {
 		if ( !$this->conn ) {
 			$conn = false;
 			$servers = $this->ring->getLocations( $this->key, 3 );
-			ArrayUtils::consistentHashSort( $servers, $this->key );
 			foreach ( $servers as $server ) {
 				$conn = $this->pool->getConnection( $this->serversByLabel[$server], $this->logger );
 				if ( $conn ) {
