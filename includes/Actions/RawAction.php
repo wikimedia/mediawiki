@@ -176,7 +176,8 @@ class RawAction extends FormlessAction {
 		// page title ends in .js or .vue
 		// page content type is CONTENT_MODEL_JAVASCRIPT or CONTENT_MODEL_VUE
 		// currently only logging to determine how many pages would be impacted by this change
-		if ( $contentType === 'text/javascript' ) {
+		// checking only for pages that exist
+		if ( $contentType === 'text/javascript' && $title->exists() ) {
 			if ( !( $title->isSiteJsConfigPage() || $title->isUserJsConfigPage() ) ) {
 				$log = LoggerFactory::getInstance( "security" );
 				$log->info( "Did not block loading unprotected JS {title} for {user} with more restrictions",
