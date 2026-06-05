@@ -3829,7 +3829,7 @@
 	"authmanager-provider-temporarypassword": "Tijdelijk wachtwoord",
 	"authprovider-confirmlink-message": "Op basis van uw recente aanmeldpogingen kunnen de volgende accounts aan uw wiki-account worden gekoppeld. Het koppelen stelt u in staat zich aan te melden via deze accounts. Selecteer welke accounts gekoppeld moeten worden.",
 	"authprovider-confirmlink-request-label": "Accounts die aan elkaar gekoppeld moeten worden.",
-	"authprovider-confirmlink-success-line": "$1: Succesvol gekoppeld.",
+	"authprovider-confirmlink-success-line": "$1: gekoppeld.",
 	"authprovider-confirmlink-failed": "Het koppelen van accounts is niet volledig gelukt: $1",
 	"authprovider-confirmlink-ok-help": "Doorgaan na het weergeven van foutmeldingen over het koppelen.",
 	"authprovider-resetpass-skip-label": "Overslaan",

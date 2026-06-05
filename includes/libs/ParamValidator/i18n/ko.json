@@ -35,7 +35,7 @@
 	"paramvalidator-missingparam": "\"$1\" 매개변수는 설정이 필수입니다.",
 	"paramvalidator-notmulti": "매개변수 \"$1\"에는 단일 값만이 허용됩니다. U+001F 다중 값 구분은 다중 값 변수에만 사용할 수 있습니다.",
 	"paramvalidator-multivalue-must-be-array": "다중값 매개변수 \"$1\"은 반드시 배열로 주어져야 합니다.",
-	"paramvalidator-needstring": "매개변수 \"$1\"은 문자열 값만을 허용하지만, $2를 받았습니다.",
+	"paramvalidator-needstring": "매개변수 \"$1\"은(는) 문자열 값만을 허용하지만, $2을(를) 받았습니다.",
 	"paramvalidator-outofrange-max": "\"$1\" 매개변수의 \"$2\" 값은 $4 미만이어야 합니다.",
 	"paramvalidator-outofrange-minmax": "\"$1\" 매개변수의 \"$2\" 값은 $3에서 $4 사이여야 합니다.",
 	"paramvalidator-outofrange-min": "\"$1\" 매개변수의 \"$2\" 값은 $3 보다 작아서는 안 됩니다.",

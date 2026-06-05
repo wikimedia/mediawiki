@@ -3,9 +3,12 @@
 		"authors": [
 			"JorgeElias2302",
 			"Peterleth",
-			"Steenth"
+			"Steenth",
+			"Zakawer2"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Navigationssti",
+	"cdx-breadcrumb-overflow-label": "Flere navigationsmuligheder",
 	"cdx-chip-input-chip-added": "Chip $1 blev tilføjet.",
 	"cdx-chip-input-chip-removed": "Chip $1 blev fjernet.",
 	"cdx-input-chip-aria-description": "Tryk på Enter for at redigere eller Slet for at fjerne.",

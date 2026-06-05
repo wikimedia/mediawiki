@@ -962,7 +962,7 @@
 	"apihelp-query+info-paramvalue-prop-editintro": "Geeft de inleidende berichten die aan de gebruiker moeten worden getoond tijdens het bewerken van deze pagina of versie, opgemaakt in HTML.",
 	"apihelp-query+info-paraminfo-editintroonly": "Wordt alleen gebruikt als <var>$3prop</var> <var>editintro</var> bevat.",
 	"apihelp-query+info-param-editintrostyle": "Voor sommige inleidende berichten zijn er optionele omhullende kaders. Gebruik <kbd>moreframes</kbd> om ze op te nemen of <kbd>lessframes</kbd> om ze weg te laten.",
-	"apihelp-query+info-param-editintroskip": "Lijst met inleidende berichten die uit het antwoord moeten worden verwijderd. Gebruik dit als een bepaald bericht niet relevant is voor uw tool, of als de informatie al op een andere manier wordt overgebracht.",
+	"apihelp-query+info-param-editintroskip": "Lijst met inleidende berichten die uit het antwoord moeten worden verwijderd. Gebruik dit als een bepaald bericht niet relevant is voor uw hulpmiddel, of als de informatie al op een andere manier wordt overgebracht.",
 	"apihelp-query+info-param-editintrocustom": "Titel van een aangepaste pagina die u kunt gebruiken als extra inleidend bericht.",
 	"apihelp-query+info-paramvalue-prop-displaytitle": "Geeft aan hoe de paginatitel daadwerkelijk wordt weergegeven.",
 	"apihelp-query+info-paramvalue-prop-varianttitles": "Geeft de weergavetitel weer in alle varianten van de taal van de site-inhoud.",
