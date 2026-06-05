@@ -5,7 +5,6 @@
  */
 namespace Wikimedia\LockManager;
 
-use LogicException;
 use StatusValue;
 
 /**
@@ -240,18 +239,6 @@ abstract class QuorumLockManager extends LockManager {
 	 * @return StatusValue
 	 */
 	abstract protected function releaseAllLocks();
-
-	/** @inheritDoc */
-	final protected function doLock( array $paths, $type ) {
-		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	/** @inheritDoc */
-	final protected function doUnlock( array $paths, $type ) {
-		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
 }
 /** @deprecated class alias since 1.46 */
 class_alias( QuorumLockManager::class, 'QuorumLockManager' );

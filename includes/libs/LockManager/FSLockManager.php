@@ -50,42 +50,32 @@ class FSLockManager extends LockManager {
 		$this->isWindows = ( PHP_OS_FAMILY === 'Windows' );
 	}
 
-	/**
-	 * @see LockManager::doLock()
-	 * @param array $paths
-	 * @param int $type
-	 * @return StatusValue
-	 */
-	protected function doLock( array $paths, $type ) {
+	/** @inheritDoc */
+	protected function doLockByType( array $pathsByType ) {
 		$status = StatusValue::newGood();
-
-		$lockedPaths = []; // files locked in this attempt
-		foreach ( $paths as $path ) {
-			$status->merge( $this->doSingleLock( $path, $type ) );
-			if ( $status->isOK() ) {
-				$lockedPaths[] = $path;
-			} else {
-				// Abort and unlock everything
-				$status->merge( $this->doUnlock( $lockedPaths, $type ) );
-
-				return $status;
+		$lockedByType = [];
+		foreach ( $pathsByType as $type => $paths ) {
+			foreach ( $paths as $path ) {
+				$status->merge( $this->doSingleLock( $path, $type ) );
+				if ( $status->isOK() ) {
+					$lockedByType[$type] = $paths;
+				} else {
+					// Abort and release the subset of locks that were acquired
+					$this->doUnlockByType( $lockedByType );
+				}
 			}
 		}
 
 		return $status;
 	}
 
-	/**
-	 * @see LockManager::doUnlock()
-	 * @param array $paths
-	 * @param int $type
-	 * @return StatusValue
-	 */
-	protected function doUnlock( array $paths, $type ) {
+	/** @inheritDoc */
+	protected function doUnlockByType( array $pathsByType ) {
 		$status = StatusValue::newGood();
-
-		foreach ( $paths as $path ) {
-			$status->merge( $this->doSingleUnlock( $path, $type ) );
+		foreach ( $pathsByType as $type => $paths ) {
+			foreach ( $paths as $path ) {
+				$status->merge( $this->doSingleUnlock( $path, $type ) );
+			}
 		}
 
 		return $status;

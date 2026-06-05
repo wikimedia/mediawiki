@@ -15,12 +15,14 @@ use StatusValue;
  */
 class NullLockManager extends LockManager {
 	/** @inheritDoc */
-	protected function doLock( array $paths, $type ) {
-		foreach ( $paths as $path ) {
-			if ( isset( $this->locksHeld[$path][$type] ) ) {
-				++$this->locksHeld[$path][$type];
-			} else {
-				$this->locksHeld[$path][$type] = 1;
+	protected function doLockByType( array $pathsByType ) {
+		foreach ( $pathsByType as $type => $paths ) {
+			foreach ( $paths as $path ) {
+				if ( isset( $this->locksHeld[$path][$type] ) ) {
+					++$this->locksHeld[$path][$type];
+				} else {
+					$this->locksHeld[$path][$type] = 1;
+				}
 			}
 		}
 
@@ -28,19 +30,20 @@ class NullLockManager extends LockManager {
 	}
 
 	/** @inheritDoc */
-	protected function doUnlock( array $paths, $type ) {
+	protected function doUnlockByType( array $pathsByType ) {
 		$status = StatusValue::newGood();
-
-		foreach ( $paths as $path ) {
-			if ( isset( $this->locksHeld[$path][$type] ) ) {
-				if ( --$this->locksHeld[$path][$type] <= 0 ) {
-					unset( $this->locksHeld[$path][$type] );
-					if ( !$this->locksHeld[$path] ) {
-						unset( $this->locksHeld[$path] ); // clean up
+		foreach ( $pathsByType as $type => $paths ) {
+			foreach ( $paths as $path ) {
+				if ( isset( $this->locksHeld[$path][$type] ) ) {
+					if ( --$this->locksHeld[$path][$type] <= 0 ) {
+						unset( $this->locksHeld[$path][$type] );
+						if ( !$this->locksHeld[$path] ) {
+							unset( $this->locksHeld[$path] ); // clean up
+						}
 					}
+				} else {
+					$status->warning( 'lockmanager-notlocked', $path );
 				}
-			} else {
-				$status->warning( 'lockmanager-notlocked', $path );
 			}
 		}
 

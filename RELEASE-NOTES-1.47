@@ -177,6 +177,9 @@ because of Phabricator reports.
   relevant MediaWikiServices access points instead.
 * The method Action::getArticle is now final. Overriding of this method fails
   now.
+* LockManager::doLockByType and LockManager::doUnlockByType must be implemented
+  by subclasses. LockManager::doLock and LockManager::doUnlock no longer must
+  be implemented.
 * The SpecialPage root and intermediate classes are now marked as abstract:
   - SpecialPage
   - ContributionsSpecialPage

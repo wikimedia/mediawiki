@@ -201,63 +201,17 @@ abstract class LockManager {
 
 	/**
 	 * @see LockManager::lockByType()
-	 * @stable to override
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return StatusValue
-	 * @since 1.22
 	 */
-	protected function doLockByType( array $pathsByType ) {
-		$status = StatusValue::newGood();
-		$lockedByType = []; // map of (type => paths)
-		foreach ( $pathsByType as $type => $paths ) {
-			$status->merge( $this->doLock( $paths, $type ) );
-			if ( $status->isOK() ) {
-				$lockedByType[$type] = $paths;
-			} else {
-				// Release the subset of locks that were acquired
-				foreach ( $lockedByType as $lType => $lPaths ) {
-					$status->merge( $this->doUnlock( $lPaths, $lType ) );
-				}
-				break;
-			}
-		}
-
-		return $status;
-	}
-
-	/**
-	 * Lock resources with the given keys and lock type
-	 *
-	 * @param array $paths List of paths
-	 * @param int $type LockManager::LOCK_* constant
-	 * @return StatusValue
-	 */
-	abstract protected function doLock( array $paths, $type );
+	abstract protected function doLockByType( array $pathsByType );
 
 	/**
 	 * @see LockManager::unlockByType()
-	 * @stable to override
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return StatusValue
-	 * @since 1.22
 	 */
-	protected function doUnlockByType( array $pathsByType ) {
-		$status = StatusValue::newGood();
-		foreach ( $pathsByType as $type => $paths ) {
-			$status->merge( $this->doUnlock( $paths, $type ) );
-		}
-
-		return $status;
-	}
-
-	/**
-	 * Unlock resources with the given keys and lock type
-	 *
-	 * @param array $paths List of paths
-	 * @param int $type LockManager::LOCK_* constant
-	 * @return StatusValue
-	 */
-	abstract protected function doUnlock( array $paths, $type );
+	abstract protected function doUnlockByType( array $pathsByType );
 }
 /** @deprecated class alias since 1.46 */
 class_alias( LockManager::class, 'LockManager' );
