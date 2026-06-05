@@ -29,7 +29,8 @@
 			"Vito Genovese",
 			"Watermelon juice",
 			"İmmortalance",
-			"Superyetkin"
+			"Superyetkin",
+			"HakanIST"
 		]
 	},
 	"preferences": "Tercihler",
@@ -50,6 +51,8 @@
 	"username": "{{GENDER:$1|Kullanıcı adı}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Üye}} {{PLURAL:$1|grubu|grupları}}:",
 	"group-membership-link-with-expiry": "$1 ($2 tarihine kadar)",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|Devre dışı bırakılan}} {{PLURAL:$1|grup|gruplar}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|Artık}} bu {{PLURAL:$1|grubun|grupların}} üyesi olma [[$3|koşullarını]] karşılamıyorsunuz.",
 	"prefs-edits": "Değişiklik sayısı:",
 	"prefs-registration": "Kayıt zamanı:",
 	"yourrealname": "Gerçek isminiz:",

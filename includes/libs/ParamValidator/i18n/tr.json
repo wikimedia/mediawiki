@@ -2,17 +2,22 @@
 	"@metadata": {
 		"authors": [
 			"BaRaN6161 TURK",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"HakanIST"
 		]
 	},
 	"paramvalidator-badbool": "\"$1\" boole parametresi için geçersiz \"$2\" değeri. True için $3 veya false için $5 iletin.",
+	"paramvalidator-badbool-type": "\"$1\" mantıksal parametresi için geçersiz değer \"$2\". Bunun yerine bir $3 değeri alındı.",
 	"paramvalidator-badexpiry": "\"$1\" sona erme parametresi için geçersiz \"$2\" değeri.",
 	"paramvalidator-badexpiry-duration": "<var>$1</var> parametresi için \"$2\" verilen maksimum \"$3\" değerini aşıyor.",
 	"paramvalidator-badexpiry-duration-max": "Given value \"$2\" for parameter <var>$1</var> exceeds the maximum of \"$3\". Bunun yerine maksimum kullanılıyor.",
 	"paramvalidator-badexpiry-past": "\"$1\" son kullanma parametresi için \"$2\" değeri geçmişte.",
 	"paramvalidator-badfloat": "\"$1\" float parametresi için geçersiz \"$2\" değeri.",
+	"paramvalidator-badfloat-type": "\"$1\" kayan nokta parametresi için geçersiz değer \"$2\". Bunun yerine bir $3 değeri alındı.",
 	"paramvalidator-badfloat-notfinite": "\"$1\" float parametresi için \"$2\" değeri çok büyük veya bir sayı değil.",
 	"paramvalidator-badinteger": "\"$1\" tamsayı parametresi için geçersiz \"$2\" değeri.",
+	"paramvalidator-badinteger-type": "\"$1\" tamsayı parametresi için geçersiz değer \"$2\". Bunun yerine bir $3 değeri alındı.",
+	"paramvalidator-badinteger-fraction": "\"$1\" tamsayı parametresi için geçersiz değer \"$2\". Bunun yerine kesirli kısma sahip bir kayan nokta alındı.",
 	"paramvalidator-badtimestamp": "\"$1\" zaman damgası parametresi için geçersiz \"$2\" değeri.",
 	"paramvalidator-badupload-cantwrite": "\"$1\" dosyası, sunucu yanlış yapılandırması (yazma başarısız) nedeniyle işlenmek üzere saklanamadı.",
 	"paramvalidator-badupload-formsize": "\"$1\" için yüklenen dosya, istemcinin belirttiği maksimum değeri aşıyor.",
@@ -30,6 +35,8 @@
 	"paramvalidator-maxchars": "\"$1\" parametresi değeri $3 karakterden uzun olamaz ($4 idi).",
 	"paramvalidator-missingparam": "\"$1\" parametresi ayarlanmalıdır.",
 	"paramvalidator-notmulti": "\"$1\" parametresi yalnızca tek bir değeri kabul eder. U+001F çok değerli ayırma yalnızca çok değerli parametreler için kullanılabilir.",
+	"paramvalidator-multivalue-must-be-array": "Çok değerli parametre \"$1\" bir dizi olarak verilmelidir.",
+	"paramvalidator-needstring": "\"$1\" parametresi yalnızca bir dize değeri kabul eder, ancak $2 alındı",
 	"paramvalidator-outofrange-max": "\"$1\" parametresi için \"$2\" değeri $4 fazladan büyük olmamalıdır.",
 	"paramvalidator-outofrange-minmax": "\"$1\" parametresi için \"$2\" değeri $3 ile $4 arasında olmalıdır.",
 	"paramvalidator-outofrange-min": "\"$1\" parametresi için \"$2\" değeri $3 daha az olmamalıdır.",

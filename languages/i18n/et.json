@@ -2427,8 +2427,11 @@
 	"remove-blocklink": "eemalda blokeering",
 	"manage-blocklink": "halda blokeeringuid",
 	"empty-username": "(kasutajanimi puudub)",
+	"available-username": "Kasutajanimi saadaval",
+	"available-username-check-feedback": "Kontrolli saadavust",
 	"blocklist-hidden-placeholder": "(kasutajanimi peidetud)",
 	"blocklist-hidden-param": "kasutajanimi peidetud",
+	"blocklist-block-hidden": "blokeering peidetud",
 	"contribslink": "kaastöö",
 	"emaillink": "saada e-kiri",
 	"autoblocker": "Automaatselt blokeeritud, kuna [[User:$1|$1]] on hiljuti sinu IP-aadressi kasutanud.\nPõhjus: \"$2\"",
@@ -3183,6 +3186,8 @@
 	"tag-mw-server-side-upload-description": "Meediumifailid, mis laaditi üles hooldusskripti abil",
 	"tag-mw-ipblock-appeal": "IP-aadressi blokeeringu eemaldamise taotlus",
 	"tag-mw-ipblock-appeal-description": "Ajutise konto loomised lehekülje [[{{#special:Mytalk}}]] kaudu IP-aadressidelt, millel on konto loomine keelatud",
+	"tag-mw-edited-other-users-js": "Muudetud teise kasutaja JS-i",
+	"tag-mw-edited-other-users-js-description": "Kasutajanimeruumi muudatused, millega muudetakse teistele kasutajatele kuuluvaid JavaScripti lehekülgi",
 	"tags-title": "Märgised",
 	"tags-intro": "See lehekülg loetleb märgised, millega tarkvara võib muudatused märgistada, ja nende kirjeldused.",
 	"tags-tag": "Märgise nimi",
@@ -3922,5 +3927,6 @@
 	"table-of-contents-show-button-aria-label": "Näita sisukorda",
 	"table-of-contents-hide-button-aria-label": "Peida sisukord",
 	"diff-usergroups": "$1 {{PLURAL:$1|kasutajarühm|kasutajarühma}}",
-	"languageselector-no-results": "Tulemusi ei leitud."
+	"languageselector-no-results": "Tulemusi ei leitud.",
+	"languageselector-invalid-input": "\"$1\" ei ole kehtiv keel."
 }

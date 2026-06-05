@@ -81,7 +81,8 @@
 			"לערי ריינהארט",
 			"沈澄心",
 			"아라",
-			"Trần Xuân"
+			"Trần Xuân",
+			"YeBoy371"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Thể loại}}",
@@ -3697,8 +3698,8 @@
 	"mw-widgets-copytextlayout-copy-fail": "Thất bại khi sao chép vào bảng tạm.",
 	"mw-widgets-copytextlayout-copy-success": "Đã chép vào bảng tạm.",
 	"mw-widgets-dateinput-no-date": "Không chọn ngày tháng",
-	"mw-widgets-dateinput-placeholder-day": "YYYY-MM-DD (năm-tháng-ngày)",
-	"mw-widgets-dateinput-placeholder-month": "YYYY-MM (năm-tháng)",
+	"mw-widgets-dateinput-placeholder-day": "YYYY-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "YYYY-MM",
 	"mw-widgets-expiryinput-relative": "Nhập thời gian hết hạn",
 	"mw-widgets-expiryinput-calendar": "Chọn ngày hết hạn từ lịch",
 	"mw-widgets-mediasearch-input-placeholder": "Tìm phương tiện",

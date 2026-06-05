@@ -2363,7 +2363,7 @@
 	"block-confirm-no": "לא",
 	"block-submit": "שליחה",
 	"block-success": "[[Special:Contributions/$1|$1]] ([[{{ns:user_talk}}:$1|שיחה]]) {{GENDER:$1|נחסם|נחסמה}}. ר' את [[Special:BlockList|רשימת החסימות]] כדי לסקור חסימות.",
-	"block-additional-success-text": "{{PLURAL:$2|החשבון הקשור|החשבונות הקשורים}} נחסמו גם כן: $1.",
+	"block-additional-success-text": "{{PLURAL:$2|החשבון הקשור נחסם|החשבונות הקשורים נחסמו}} גם כן: $1.",
 	"block-additional-error-header-text": "{{PLURAL:$1|החסימה נכשלה|החסימות נכשלו}}",
 	"block-target-link": "[[Special:Contributions/$1|$1]] ([[{{ns:user_talk}}:$1|שיחה]])",
 	"block-user-active-blocks": "חסימות פעילות",

@@ -6,7 +6,8 @@
 			"LittlePaw365",
 			"Peterxy12",
 			"SunAfterRain",
-			"沈澄心"
+			"沈澄心",
+			"Peterxy"
 		]
 	},
 	"paramvalidator-badbool": "布尔类型参数\"$1\"的值\"$2\"无效。传递 $3 为真，或 $5 为假。",

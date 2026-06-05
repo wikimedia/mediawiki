@@ -76,7 +76,8 @@
 			"铁桶",
 			"Ed g2s",
 			"简纸Paper",
-			"Administrator66"
+			"Administrator66",
+			"Peterxy"
 		]
 	},
 	"apihelp-main-param-action": "需要执行的操作。为了便于调试、分析以及请求路由或过滤，此参数应作为请求URL的一部分发送（而不是POST请求体）。",

@@ -20,7 +20,8 @@
 			"Samoasambia",
 			"Stryn",
 			"Valtlai",
-			"Wikipeedikko"
+			"Wikipeedikko",
+			"Papukaijo1"
 		]
 	},
 	"userrights": "Käyttäjän oikeudet",
@@ -255,6 +256,7 @@
 	"action-viewmyprivateinfo": "katsoa omia yksityisiä tietojasi",
 	"action-editmyprivateinfo": "muokata omia yksityisiä tietojasi",
 	"action-editcontentmodel": "muokata sivun sisältömallia",
+	"action-createwithcontentmodel": "luoda sivuja, jotka käyttävät muita kuin oletussisältömalleja",
 	"action-managechangetags": "luoda ja ottaa käyttöön merkkauksia",
 	"action-applychangetags": "käyttää merkkauksia muutostesi yhteydessä",
 	"action-changetags": "lisätä ja poistaa satunnaisia merkkauksia yksittäisissä sivuversioissa ja lokimerkinnöissä",
@@ -329,6 +331,7 @@
 	"listgrouprights-namespaceprotection-header": "Nimiavaruutta koskevat rajoitukset",
 	"listgrouprights-namespaceprotection-namespace": "Nimiavaruus",
 	"listgrouprights-namespaceprotection-restrictedto": "Oikeudet, jotka antavat käyttäjän tehdä muutoksia",
+	"restrictedgroups-autodemotion-log-reason": "{{GENDER:$1|Käyttäjä}} poistettiin automaattisesti {{PLURAL:$2|rajoitetusta ryhmästä|rajoitetuista ryhmistä}}",
 	"listgrants": "Toimintaoikeudet",
 	"listgrants-summary": "Alla on luettelo toimintaoikeuksista sekä niihin liittyvät käyttäjäoikeudet. Käyttäjät voivat antaa oman tunnuksensa käyttöoikeuden sovelluksille, niin että käyttöoikeus on rajoitettu niiden toimintaoikeuksien mukaisesti, jotka käyttäjä on sovellukselle antanut. Käyttäjän puolesta toimiva sovellus ei kuitenkaan voi käyttää oikeuksia, joita käyttäjällä ei ole.\nYksittäisistä oikeuksista saattaa olla [[{{MediaWiki:Listgrouprights-helppage}}|lisätietoa]].",
 	"listgrants-grant": "Toimintaoikeus (grant)",

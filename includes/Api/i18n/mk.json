@@ -129,7 +129,7 @@
 	"apihelp-feedcontributions-param-newonly": "Само новосоздадени страници",
 	"apihelp-feedcontributions-param-hideminor": "Скриј ситни уредувања.",
 	"apihelp-feedcontributions-param-showsizediff": "Покажувај ја големинската разлика меѓу преработките.",
-	"apihelp-feedcontributions-example-simple": "Покажувај придонеси на <kbd>Пример</kbd>.",
+	"apihelp-feedcontributions-example-simple": "Покажувај придонеси на <kbd>Example</kbd>.",
 	"apihelp-feedrecentchanges-summary": "Дава тековник со скорешни промени.",
 	"apihelp-feedrecentchanges-param-feedformat": "Форматот на тековникот.",
 	"apihelp-feedrecentchanges-param-namespace": "На кој именски простор да се ограничи исходот.",
