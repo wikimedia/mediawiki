@@ -126,7 +126,7 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 			$select->getAttribute( 1911 )
 		);
 
-		# inexistent keys should give us 'null'
+		# non-existent keys should give us 'null'
 		$this->assertNull(
 			$select->getAttribute( 'I DO NOT EXIT' )
 		);
