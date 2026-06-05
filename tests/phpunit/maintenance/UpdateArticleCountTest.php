@@ -62,10 +62,11 @@ class UpdateArticleCountTest extends MaintenanceBaseTestCase {
 		$this->maintenance->execute();
 		// Verify that the output is as expected and that the ss_good_articles column has the correct value.
 		$this->expectOutputString( $expectedOutputString );
-		$this->assertSelect(
-			'site_stats', 'ss_good_articles', [ 'ss_row_id' => 1 ],
-			[ [ $expectedArticleCountInDb ] ],
-		);
+		$this->newSelectQueryBuilder()
+			->select( 'ss_good_articles' )
+			->from( 'site_stats' )
+			->where( [ 'ss_row_id' => 1 ] )
+			->assertFieldValue( $expectedArticleCountInDb );
 	}
 
 	public static function provideExecute() {
