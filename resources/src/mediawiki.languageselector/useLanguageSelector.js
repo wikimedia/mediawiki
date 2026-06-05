@@ -76,24 +76,35 @@ function useLanguageSelector(
 		}
 	};
 
+	// Only the network request is debounced; query and loading state update synchronously.
+	const debouncedFetch = debounce( fetchLanguages, debounceDelayMs );
+
+	// Reset search results and cancel any pending searches.
+	const resetSearch = () => {
+		debouncedFetch.cancel();
+		searchResults.value = [];
+		searchQueryHits.value = {};
+		isSearching.value = false;
+	};
+
 	const search = ( query ) => {
 		searchQuery.value = query;
+
 		if ( !query || query.trim().length === 0 ) {
-			searchResults.value = [];
+			resetSearch();
 			return;
 		}
 
 		if ( unref( selectableLanguages ) ) {
-			fetchLanguages( query );
+			// Enter loading state now so "no results" isn't shown during the debounce window.
+			isSearching.value = true;
+			debouncedFetch( query );
 		}
 	};
 
-	const debouncedSearch = debounce( search, debounceDelayMs );
-
 	const clearSearchQuery = () => {
-		debouncedSearch.cancel();
+		resetSearch();
 		searchQuery.value = '';
-		searchResults.value = [];
 	};
 
 	const isSelectionUpdated = ( newValue ) => {
@@ -107,7 +118,7 @@ function useLanguageSelector(
 	};
 
 	onBeforeUnmount( () => {
-		debouncedSearch.cancel();
+		debouncedFetch.cancel();
 	} );
 
 	return {
@@ -118,7 +129,7 @@ function useLanguageSelector(
 		searchResults,
 		selection,
 		selectedValues,
-		search: debouncedSearch,
+		search,
 		isSearching,
 		isSelectionUpdated
 	};
