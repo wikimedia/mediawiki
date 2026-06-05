@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Content\WikitextContent;
-use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Title\Title;
 
 /**
@@ -46,8 +45,7 @@ class TemplateCategoriesTest extends MediaWikiIntegrationTestCase {
 			'Add a category through a template'
 		);
 
-		$this->runJobs();
-		DeferredUpdates::doUpdates();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'refreshLinks' ] );
 
 		// Make sure page is in the category
 		$this->assertEquals(
@@ -63,8 +61,7 @@ class TemplateCategoriesTest extends MediaWikiIntegrationTestCase {
 			'Change the category added by the template'
 		);
 
-		$this->runJobs();
-		DeferredUpdates::doUpdates();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'refreshLinks' ] );
 
 		// Make sure page is in the right category
 		$this->assertEquals(
@@ -76,8 +73,7 @@ class TemplateCategoriesTest extends MediaWikiIntegrationTestCase {
 		// Now delete the template
 		$this->deletePage( $template, 'Delete the template', $user );
 
-		$this->runJobs();
-		DeferredUpdates::doUpdates();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'refreshLinks' ] );
 
 		// Make sure the page is no longer in the category
 		$this->assertEquals(

@@ -69,7 +69,7 @@ class ApiDeleteTest extends ApiTestCase {
 		$this->assertArrayNotHasKey( 'logid', $apiResult['delete'] );
 
 		// Run the jobs
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'deletePage' ] );
 
 		$this->assertFalse( $title->exists( IDBAccessObject::READ_LATEST ) );
 	}

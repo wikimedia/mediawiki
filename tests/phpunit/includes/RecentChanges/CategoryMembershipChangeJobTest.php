@@ -47,7 +47,7 @@ class CategoryMembershipChangeJobTest extends MediaWikiIntegrationTestCase {
 		);
 		/** @var RevisionRecord $revisionRecord */
 		$revisionRecord = $editResult->getNewRevision();
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'categoryMembershipChange' ] );
 
 		return $revisionRecord->getId();
 	}

@@ -27,7 +27,7 @@ class ImportTemporaryUserIntegrationTest extends MediaWikiIntegrationTestCase {
 		ConvertibleTimestamp::setFakeTime( $referenceTime );
 
 		$this->importTestData();
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'categoryMembershipChange' ] );
 
 		$rc = $this->getServiceContainer()->getRecentChangeLookup()->getRecentChangeByConds(
 			[

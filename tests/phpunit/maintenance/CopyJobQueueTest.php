@@ -142,7 +142,7 @@ class CopyJobQueueTest extends MaintenanceBaseTestCase {
 		$this->overrideConfigValue( 'JobTypeConf', [
 			'default' => [ 'class' => JobQueueDB::class ],
 		] );
-		$this->runJobs( [ 'minJobs' => 2 ] );
+		$this->runJobs( [ 'minJobs' => 2 ], [ 'type' => 'null' ] );
 	}
 
 	public static function provideBatchSizeValues() {

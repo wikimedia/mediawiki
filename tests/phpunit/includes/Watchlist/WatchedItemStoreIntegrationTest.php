@@ -358,7 +358,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// Run the job queue
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'activityUpdateJob' ] );
 
 		$this->assertEquals(
 			$initialVisitingWatchers,

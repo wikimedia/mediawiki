@@ -96,7 +96,7 @@ class FixDoubleRedirectsTest extends MaintenanceBaseTestCase {
 		$this->maintenance->execute();
 		// Run all queued jobs, which were added because the script was run with the
 		// async mode.
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'fixDoubleRedirect' ] );
 		// Assert on the output and whether the page content has been updated
 		$this->expectOutputRegex(
 			'/Queuing batch of 1 double redirects[\s\S]*' .

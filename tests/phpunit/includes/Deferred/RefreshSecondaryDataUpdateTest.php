@@ -162,7 +162,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $badCalls );
 
 		// Run the RefreshLinksJob
-		$this->runJobs( [ 'ignoreErrorsMatchingFormat' => 'Revision %d is not current' ] );
+		$this->runJobs( [ 'ignoreErrorsMatchingFormat' => 'Revision %d is not current' ], [ 'type' => 'refreshLinksPrioritized' ] );
 
 		$queue->flushCaches();
 		$this->assertSame( 0, $queue->getSize() );

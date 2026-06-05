@@ -281,7 +281,8 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 
 		$output = fopen( "php://memory", "w+b" );
 
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'categoryMembershipChange' ] );
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'CategoryCountUpdateJob' ] );
 
 		$dbr = $this->getDb();
 		$categoryChangesAsRdf = new CategoryChangesAsRdf();

@@ -542,7 +542,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->editPage( $new, $newContent );
 
 		// clear the queue
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'recentChangesUpdate' ] );
 
 		$deleteSource = false;
 

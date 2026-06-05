@@ -92,7 +92,7 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 		$tracker = $this->getServiceContainer()->getUserEditTracker();
 		$tracker->initializeUserEditCount( $user );
 		$tracker->clearUserEditCache( $user );
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'userEditCountInit' ] );
 		$this->assertSame( 1, $tracker->getUserEditCount( $user ) );
 	}
 

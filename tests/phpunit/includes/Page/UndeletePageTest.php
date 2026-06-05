@@ -162,7 +162,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$sysop = $this->getTestSysop()->getUser();
 
 		// clear the queue
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'recentChangesUpdate' ] );
 
 		$this->expectDomainEvent(
 			PageLatestRevisionChangedEvent::TYPE, 1,
@@ -270,7 +270,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $this->getDb()->affectedRows() );
 
 		// clear the queue
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'recentChangesUpdate' ] );
 
 		$sysop = $this->getTestSysop()->getUser();
 
@@ -329,7 +329,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 
 		$content ??= new WikitextContent( 'hi' );
 		$this->setupPage( $page->getDBkey(), $page->getNamespace(), $content );
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'recentChangesUpdate' ] );
 
 		$performer = $this->getTestSysop()->getUser();
 

@@ -186,7 +186,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			"rollback did not revert to the correct revision" );
 		$this->assertEquals( "one\n\ntwo", $page->getContent()->getText() );
 
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'revertedTagUpdate' ] );
 
 		$rc = $revisionStore->getRecentChange( $page->getRevisionRecord() );
 		$rc3 = $revisionStore->getRecentChange( $rev3 );
@@ -234,7 +234,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			->rollbackIfAllowed();
 		$this->assertStatusError( 'rollback-nochange', $rollbackResult );
 
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'recentChangesUpdate' ] );
 
 		$this->assertEquals( $status3->getNewRevision(), $page->getRevisionRecord() );
 
@@ -525,7 +525,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$this->prepareForRollback( $admin, $user1, $page );
 
 		// clear the queue
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'recentChangesUpdate' ] );
 
 		$this->expectDomainEvent(
 			PageLatestRevisionChangedEvent::TYPE, 1,
@@ -599,7 +599,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$this->prepareForRollback( $admin, $user1, $page, $content1, $content2 );
 
 		// clear the queue
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'recentChangesUpdate' ] );
 
 		// Should generate an RC entry for rollback
 		$this->expectChangeTrackingUpdates(

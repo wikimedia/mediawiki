@@ -194,7 +194,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$linkTarget = MediaWikiServices::getInstance()->getLinkTargetLookup()->getLinkTargetId(
 			Title::makeTitle( NS_TEMPLATE, 'Multiple_issues' )
 		);
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'recentChangesUpdate' ] );
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'CategoryCountUpdateJob' ] );
 		$this->newSelectQueryBuilder()
 			->select( [ 'lt_namespace', 'lt_title' ] )
 			->from( 'pagelinks' )
@@ -219,10 +220,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			->assertFieldValue( 1 );
 	}
 
-	private function assertPageLinksUpdate( int $pageID, bool $shouldRunJobs ): void {
-		if ( $shouldRunJobs ) {
-			$this->runJobs();
-		}
+	private function assertPageLinksUpdate( int $pageID ): void {
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'CategoryCountUpdateJob' ] );
 
 		$this->newSelectQueryBuilder()
 			->select( [ 'lt_namespace', 'lt_title' ] )
@@ -313,7 +312,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		} else {
 			$this->assertTrue( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] );
 			$this->assertNull( $deletePage->getSuccessfulDeletionsIDs()[DeletePage::PAGE_BASE] );
-			$this->runJobs();
+			$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'deletePage' ] );
 			$logID = $this->getDb()->newSelectQueryBuilder()
 				->select( 'log_id' )
 				->from( 'logging' )
@@ -330,7 +329,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertArchiveVisibility( $page->getTitle(), $suppress );
 		$this->assertDeletionLogged( $page, $id, $deleterUser, $reason, $suppress, $logSubtype, $logID );
 		$this->assertDeletionTags( $logID, $tags );
-		$this->assertPageLinksUpdate( $id, $immediate );
+		$this->assertPageLinksUpdate( $id );
 		$this->assertFalse( $editTracker->getFirstEditTimestamp( $pageAuthor ) );
 
 		ScopedCallback::consume( $teardownScope );
@@ -424,7 +423,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$id = $page->getId();
 
 		// clear the queue
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'recentChangesUpdate' ] );
 
 		$this->getServiceContainer()->getDomainEventSource()->registerListener(
 			PageDeletedEvent::TYPE,
@@ -517,7 +516,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$deleter = new UltimateAuthority( $deleterUser );
 		$page = $this->createPage( $name, $content );
 
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'recentChangesUpdate' ] );
 
 		// Should generate an RC entry for deletion,
 		// but not a regular page edit.

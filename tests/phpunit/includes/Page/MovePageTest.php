@@ -629,7 +629,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 		$reason = 'testEventEmission';
 		// clear the queue
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'recentChangesUpdate' ] );
 
 		$this->expectDomainEvent(
 			PageLatestRevisionChangedEvent::TYPE, 2,
@@ -750,7 +750,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$mover = $this->getTestSysop()->getUser();
 
 		// clear the queue
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'recentChangesUpdate' ] );
 
 		$this->expectDomainEvent(
 			PageMovedEvent::TYPE, 1,
@@ -810,7 +810,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$this->getNonexistingTestPage( $new );
 
 		// clear the queue
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'recentChangesUpdate' ] );
 
 		// Should be counted as user contributions (T163966)
 		// Should generate an RC entry for the move log, but not for
