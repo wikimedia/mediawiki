@@ -71,6 +71,7 @@ Entities inside <pre>
 <pre>&lt;nowiki&gt;Foo&lt;/nowiki&gt;</pre>
 !! end
 
+## FIXME(T415591): Fragment marker in bogus extsrc
 !! test
 <nowiki> inside of #tag:pre
 !! wikitext
@@ -80,7 +81,7 @@ Entities inside <pre>
 !! html/parsoid+standalone
 <pre about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"#tag:pre","function":"tag"},"params":{"1":{"wt":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"}},"i":0}}]}'>Foo <span typeof="mw:Entity">→</span>bar</pre>
 !! html/parsoid+integrated
-<pre about="#mwt1" typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"Foo &amp;rarr;bar"},"parts":[{"template":{"target":{"wt":"#tag:pre","function":"tag"},"params":{"1":{"wt":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"}},"i":0}}]}'>Foo →bar</pre>
+<pre about="#mwt1" typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"Foo {{#parsoid\u0000fragment:0}}"},"parts":[{"template":{"target":{"wt":"#tag:pre","function":"tag"},"params":{"1":{"wt":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"}},"i":0}}]}'>Foo →bar</pre>
 !! end
 
 ## Don't expect this to rt, Parsoid drops the unmatched closing pre tags that
@@ -650,8 +651,7 @@ Template pre: Nested template
 hi</pre>
 !! end
 
-## The extsrc contains a fragment marker because the legacy parser
-## didn't consider the pre an extension during template expansion
+## FIXME(T415591): Fragment marker in bogus extsrc
 !! test
 Template pre: Nowiki
 !! wikitext
@@ -668,8 +668,60 @@ Template pre: Nowiki
 <pre>test
 </pre>
 !! html/parsoid+integrated
-<pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n&lt;nowiki>test&lt;/nowiki>\n"}}'>test</pre>
-<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"\ntest\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\n&lt;nowiki>test&lt;/nowiki>\n"}},"i":0}}]}'>
+<pre data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n&lt;nowiki>test&lt;/nowiki>\n"}}' typeof="mw:Extension/pre">test</pre>
+<pre data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"\n{{#parsoid\u0000fragment}}\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\n&lt;nowiki>test&lt;/nowiki>\n"}},"i":0}}]}' typeof="mw:Extension/pre mw:Transclusion">
 
 test</pre>
+!! end
+
+## FIXME(T415591): Fragment marker in bogus extsrc
+!! test
+Template pre: Nowiki protecting template-like syntax
+!! wikitext
+<pre>
+<nowiki>{{1x|hi}}</nowiki>
+</pre>
+
+{{pre|
+<nowiki>{{1x|hi}}</nowiki>
+}}
+!! html/php
+<pre>{{1x|hi}}
+</pre>
+<pre>{{1x|hi}}
+</pre>
+!! html/parsoid+integrated
+<pre data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n&lt;nowiki>{{1x|hi}}&lt;/nowiki>\n"}}' typeof="mw:Extension/pre">{{1x|hi}}</pre>
+<pre data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"\n{{#parsoid\u0000fragment}}\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\n&lt;nowiki>{{1x|hi}}&lt;/nowiki>\n"}},"i":0}}]}' typeof="mw:Extension/pre mw:Transclusion">
+
+{{1x|hi}}</pre>
+!! end
+
+## FIXME(T415591): Fragment marker in bogus extsrc
+!! test
+Template pre: Nowiki protecting html syntax
+!! wikitext
+<pre>
+<nowiki><div>test</div></nowiki>
+<nowiki>&amp;plitude</nowiki>
+</pre>
+
+{{pre|
+<nowiki><div>test</div></nowiki>
+<nowiki>&amp;plitude</nowiki>
+}}
+!! html/php
+<pre>&lt;div&gt;test&lt;/div&gt;
+&amp;plitude
+</pre>
+<pre>&lt;div&gt;test&lt;/div&gt;
+&amp;plitude
+</pre>
+!! html/parsoid+integrated
+<pre data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n&lt;nowiki>&lt;div>test&lt;/div>&lt;/nowiki>\n&lt;nowiki>&amp;amp;plitude&lt;/nowiki>\n"}}' typeof="mw:Extension/pre">&lt;div>test&lt;/div>
+&amp;plitude</pre>
+<pre data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"\n{{#parsoid\u0000fragment}}\n{{#parsoid\u0000fragment}}\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\n&lt;nowiki>&lt;div>test&lt;/div>&lt;/nowiki>\n&lt;nowiki>&amp;amp;plitude&lt;/nowiki>\n"}},"i":0}}]}' typeof="mw:Extension/pre mw:Transclusion">
+
+&lt;div>test&lt;/div>
+&amp;plitude</pre>
 !! end

@@ -1453,3 +1453,19 @@ Extlink in indent pre gets link attributes
 !! html/parsoid
 <pre><a rel="mw:ExtLink nofollow" href="http://test.com" class="external text">123</a></pre>
 !! end
+
+!! test
+Templated extlink with an entity encoded invalid char
+!! wikitext
+[https://foo.bar?foo=bar&#93; bar]
+
+[{{1x|1=https://foo.bar?foo=bar&#93;}} bar]
+!! html/php
+<p><a rel="nofollow" class="external text" href="https://foo.bar?foo=bar%5D">bar</a>
+</p><p><a rel="nofollow" class="external text" href="https://foo.bar?foo=bar%5D">bar</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink nofollow" href="https://foo.bar?foo=bar%5D" class="external text" data-parsoid='{"a":{"href":"https://foo.bar?foo=bar%5D"},"sa":{"href":"https://foo.bar?foo=bar&amp;#93;"}}'>bar</a></p>
+
+<p><a typeof="mw:ExpandedAttrs" about="#mwt2" rel="mw:ExtLink nofollow" href="https://foo.bar?foo=bar%5D" class="external text" data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;a rel=\"mw:ExtLink nofollow\" href=\"https://foo.bar?foo=bar%5D\" about=\"#mwt3\" typeof=\"mw:Transclusion\" class=\"external free\" data-parsoid=&apos;{\"stx\":\"url\",\"a\":{\"href\":\"https://foo.bar?foo=bar%5D\"},\"sa\":{\"href\":\"https://foo.bar?foo=bar]\"},\"pi\":[[{\"k\":\"1\",\"named\":true}]],\"dsr\":[37,74,null,null]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"https://foo.bar?foo=bar&amp;amp;#93;\"}},\"i\":0}}]}&apos;>https://foo.bar?foo=bar]&lt;/a>"}]]}'>bar</a></p>
+!! end

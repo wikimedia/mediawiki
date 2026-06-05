@@ -404,3 +404,76 @@ Extlink on a line with a block gets wrapped
 !! html/parsoid
 <p><a rel="mw:ExtLink nofollow" href="https://google.com" class="external text"><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span></a> bar </p><div data-parsoid='{"stx":"html"}'>foo</div>
 !! end
+
+!! test
+1. TD content in tables nested in dl-lists should get p-wrapped
+!! options
+parsoid=wt2html
+!! wikitext
+:{|
+|foo
+bar
+|}
+
+:::{|
+|foo
+bar
+|}
+!! html
+<dl><dd><table>
+<tbody><tr>
+<td>foo
+<p>bar
+</p>
+</td></tr></tbody></table></dd></dl>
+<dl><dd><dl><dd><dl><dd><table>
+<tbody><tr>
+<td>foo
+<p>bar
+</p>
+</td></tr></tbody></table></dd></dl></dd></dl></dd></dl>
+!! end
+
+# Parsoid combines dl-lists whereas legacy doesn't
+!! test
+2. TD content in tables nested in dl-lists should get p-wrapped
+!! options
+parsoid=wt2html
+!! wikitext
+:a
+:{|
+|foo
+bar
+|}
+:*b
+:::{|
+|foo
+bar
+|}
+!! html/php
+<dl><dd>a</dd></dl>
+<dl><dd><table>
+<tbody><tr>
+<td>foo
+<p>bar
+</p>
+</td></tr></tbody></table></dd></dl>
+<dl><dd><ul><li>b</li></ul></dd></dl>
+<dl><dd><dl><dd><dl><dd><table>
+<tbody><tr>
+<td>foo
+<p>bar
+</p>
+</td></tr></tbody></table></dd></dl></dd></dl></dd></dl>
+!! html/parsoid
+<dl><dd>a</dd>
+<dd><table>
+<tbody><tr><td>foo
+<p>bar</p></td></tr>
+</tbody></table>
+<ul><li>b</li></ul>
+<dl><dd><dl><dd><table>
+<tbody><tr><td>foo
+<p>bar</p></td></tr>
+</tbody></table></dd></dl></dd></dl></dd></dl>
+!! end

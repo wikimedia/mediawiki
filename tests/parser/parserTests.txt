@@ -2149,15 +2149,18 @@ Piped link with extlink-like text
 [[Main Page|[bar]]]
 [[Main Page|This is a [bar]]]
 [[Main Page|[bar]]
+[[Main Page|[1-2]]]
 !! html/php
 <p><a href="/wiki/Main_Page" title="Main Page">[bar]</a>
 <a href="/wiki/Main_Page" title="Main Page">This is a [bar]</a>
 <a href="/wiki/Main_Page" title="Main Page">[bar</a>
+<a href="/wiki/Main_Page" title="Main Page">[1-2]</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"piped"}'>[bar]</a>
 <a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"piped"}'>This is a [bar]</a>
-<a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"piped"}'>[bar</a></p>
+<a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"piped"}'>[bar</a>
+<a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"piped"}'>[1-2]</a></p>
 !! end
 
 !! test
