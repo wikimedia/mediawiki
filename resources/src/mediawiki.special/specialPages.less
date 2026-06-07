@@ -1,5 +1,10 @@
 .mw-special-pages-search {
 	width: 20em;
+
+	/* Hide for users without JS (T404044) */
+	html.client-nojs & {
+		display: none;
+	}
 }
 
 .mw-special-pages-is-searching {
