@@ -205,14 +205,18 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( 'my-data', $modifiedParserOutput->getExtensionData( 'my-key' ) );
 
-		$html = $modifiedParserOutput->getContentHolderText();
+		// Look at full-document $html
+		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
+		$pageBundle = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+			$modifiedParserOutput, $siteConfig, bodyOnly: false,
+		);
+		$html = $pageBundle->html;
 		$stripped = preg_replace( ':</?span[^>]*>:', '', $html );
 		$this->assertStringContainsString( $expected, $stripped );
 		if ( $expectedLanguage !== false ) {
 			$this->assertMatchesRegularExpression( "@<meta http-equiv=\"content-language\" content=\"($expectedLanguage)\"/>@i", $html );
 		}
 
-		$pageBundle = $modifiedParserOutput->getContentHolder()->getBasePageBundle();
 		$this->assertEquals( Parsoid::defaultHTMLVersion(), $pageBundle->version );
 
 		if ( $expectedLanguage !== false ) {

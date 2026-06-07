@@ -481,7 +481,12 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			$stashSuccess = $this->parsoidOutputStash->set(
 				$parsoidStashKey,
 				new SelserContext(
-					PageBundleParserOutputConverter::htmlPageBundleFromParserOutput( $parserOutput ),
+					// Stash a full document (head + body) so the later html2wt
+					// selser round-trip keeps working once the canonical
+					// ParserOutput is body-only (T393295)
+					PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+						$parserOutput, $this->parsoidSiteConfig, bodyOnly: false,
+					),
 					$parsoidStashKey->getRevisionID(),
 					$isFakeRevision ? $this->revisionOrId->getContent( SlotRecord::MAIN ) : null
 				)
@@ -526,7 +531,12 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			// $parserOutput directly rather than via getPageBundle(), which
 			// would run variant conversion a second time off the unconverted
 			// parse.
-			$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput( $parserOutput );
+			$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+				$parserOutput, $this->parsoidSiteConfig, bodyOnly: false,
+			);
+			// T393295: This is setting the ContentHolder to a full document,
+			// but we could pass 'body_only' in the $options of
+			// ::toInlineAttributeHtml() (and bodyOnly above) to avoid this.
 			$parserOutput->setContentHolderText( $pb->toInlineAttributeHtml(
 				siteConfig: $this->parsoidSiteConfig
 			) );
@@ -764,7 +774,13 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	public function getPageBundle(): HtmlPageBundle {
 		// XXX: converting between HtmlPageBundle and ParserOutput is inefficient!
 		$parserOutput = $this->getParserOutput();
-		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput( $parserOutput );
+		// An HtmlPageBundle always carries the full document (head +
+		// body, with the <head> rebuilt from metadata). Request it
+		// explicitly so this keeps emitting a full document once the
+		// canonical ParserOutput is body-only (T393295).
+		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+			$parserOutput, $this->parsoidSiteConfig, bodyOnly: false,
+		);
 
 		// Check if variant conversion has to be performed
 		// NOTE: Variant conversion is performed on the fly, and kept outside the stash.
@@ -999,9 +1015,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	}
 
 	public function isParsoidContent(): bool {
-		return PageBundleParserOutputConverter::hasPageBundle(
-			$this->getParserOutput()
-		);
+		return $this->getParserOutput()->getContentHolder()->isParsoidContent();
 	}
 
 }

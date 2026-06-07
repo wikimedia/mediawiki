@@ -219,6 +219,7 @@ class PageRestHelperFactory {
 			$this->parserOutputAccess,
 			$this->pageLookup,
 			$this->revisionLookup,
+			$this->parsoidSiteConfig,
 			$envOptions,
 			$page,
 			$body ?? '',

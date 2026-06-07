@@ -112,7 +112,12 @@ class PageHTMLHandler extends SimpleHandler {
 		// T429391: If HtmlHelper is a HtmlShadowOutputHelper this isn't
 		// necessarily Parsoid-generated HTML (MediaWiki DOM Spec HTML).
 		$parserOutput = $this->htmlHelper->getHtml();
-		$parserOutputHtml = $parserOutput->getContentHolderText();
+		// This endpoint emits a full document. Use the raw accessor
+		// so it keeps receiving the full document once
+		// getContentHolderText() begins stripping the wrapper
+		// (T393295); it will switch to getPageBundle()->html later.
+		$parserOutputHtml = $parserOutput->getContentHolder()->getAsRawHtmlString();
+		'@phan-var string $parserOutputHtml'; // not null
 
 		$outputMode = $this->getOutputMode();
 		switch ( $outputMode ) {

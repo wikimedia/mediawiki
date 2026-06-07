@@ -19,7 +19,8 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 
 	/** @dataProvider provideParserOutputFromPageBundle */
 	public function testParserOutputFromPageBundle( HtmlPageBundle $pageBundle ) {
-		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, siteConfig: new MockSiteConfig( [] ) );
+		$siteConfig = new MockSiteConfig( [] );
+		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, siteConfig: $siteConfig );
 		$this->assertSame( $pageBundle->html, $output->getContentHolderText() );
 
 		$outputPageBundle = $output->getContentHolder()->getBasePageBundle();
@@ -94,7 +95,10 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 
 	/** @dataProvider providePageBundleFromParserOutput */
 	public function testPageBundleFromParserOutput( ParserOutput $parserOutput ) {
-		$pageBundle = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput( $parserOutput );
+		$siteConfig = new MockSiteConfig( [] );
+		$pageBundle = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+			$parserOutput, $siteConfig, bodyOnly: true,
+		);
 
 		$this->assertSame( $parserOutput->getContentHolderText(), $pageBundle->html );
 
@@ -127,14 +131,6 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 				HtmlPageBundle::newEmpty( html: 'hello world' )
 			)
 		];
-	}
-
-	public function testLanguageTransfer() {
-		$parserOutput = self::getParserOutput( HtmlPageBundle::newEmpty( '' ) );
-		$parserOutput->setLanguage( new Bcp47CodeValue( 'de' ) );
-		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput( $parserOutput );
-		$this->assertIsString( $pb->headers['content-language'] );
-		$this->assertEquals( 'de', $pb->headers['content-language'] );
 	}
 
 	public function testTitleTransfer() {

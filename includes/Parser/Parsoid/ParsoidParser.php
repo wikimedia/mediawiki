@@ -127,7 +127,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			);
 			$oldPageBundle =
 				PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-					$previousOutput
+					$previousOutput, $this->siteConfig, bodyOnly: false,
 				);
 		}
 		$defaultOptions = [

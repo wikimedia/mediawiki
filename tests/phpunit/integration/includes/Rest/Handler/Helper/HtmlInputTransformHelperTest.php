@@ -99,6 +99,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getParserOutputAccess(),
 			$this->getServiceContainer()->getPageStore(),
 			$this->getServiceContainer()->getRevisionLookup(),
+			$this->getServiceContainer()->getParsoidSiteConfig(),
 			[], /* envOptions */
 			$page,
 			$body,

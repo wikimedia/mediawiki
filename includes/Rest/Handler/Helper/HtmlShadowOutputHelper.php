@@ -63,6 +63,7 @@ class HtmlShadowOutputHelper implements HtmlOutputHelper {
 
 			// T429391: This is constructing full-document output without
 			// being Parsoid-generated HTML (MediaWiki DOM Spec HTML)
+			// T393295: refactor to carry the full document in an HtmlPageBundle.
 			$messageDom = DOMUtils::parseHTML( $this->parserOutput->getContentHolderText() );
 			DOMUtils::appendToHead( $messageDom, 'meta', [
 				'http-equiv' => 'content-language',
@@ -79,7 +80,11 @@ class HtmlShadowOutputHelper implements HtmlOutputHelper {
 	public function getETag( string $suffix = '' ): ?string {
 		$output = $this->maybeGetParserOutput();
 		if ( $output ) {
-			return '"message/' . sha1( $output->getContentHolderText() ) . '/' . $suffix . '"';
+			// Hash the full served document (see maybeGetParserOutput())
+			// T393295: Could this be a hash of the body_only content?
+			$fullHtml = $output->getContentHolder()->getAsRawHtmlString();
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal
+			return '"message/' . sha1( $fullHtml ) . '/' . $suffix . '"';
 		}
 		return null;
 	}

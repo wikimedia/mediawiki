@@ -79,7 +79,7 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// Ensure we have the parsoid output in parser cache as an HTML document
-		$this->assertStringContainsString( '<html', $parsoidOutput->getContentHolderText() );
+		$this->assertStringContainsString( '<html', $parsoidOutput->getContentHolder()->getAsRawHtmlString() );
 		$this->assertStringContainsString( self::NON_JOB_QUEUE_EDIT, $parsoidOutput->getContentHolderText() );
 
 		$rev2 = $this->editPage( $page, self::JOB_QUEUE_EDIT )->getNewRevision();
@@ -117,7 +117,7 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// Ensure we have the parsoid output in parser cache as an HTML document
-		$this->assertStringContainsString( '<html', $parsoidOutput->getContentHolderText() );
+		$this->assertStringContainsString( '<html', $parsoidOutput->getContentHolder()->getAsRawHtmlString() );
 		$this->assertStringContainsString( self::JOB_QUEUE_EDIT, $parsoidOutput->getContentHolderText() );
 
 		$services = MediaWikiServices::getInstance();

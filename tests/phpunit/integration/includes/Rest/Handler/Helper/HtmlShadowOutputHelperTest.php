@@ -31,7 +31,9 @@ class HtmlShadowOutputHelperTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( 0, $page->getLatest() );
 
-		$htmlresult = $helper->getHtml()->getContentHolderText();
+		// The served document is the full document, exposed via the raw
+		// accessor (as PageHTMLHandler consumes it).
+		$htmlresult = $helper->getHtml()->getContentHolder()->getAsRawHtmlString();
 
 		$this->assertStringContainsString( 'You are now logged out', $htmlresult );
 		// Check that we have a full HTML document in English
@@ -62,7 +64,8 @@ class HtmlShadowOutputHelperTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( 0, $page->getLatest() );
 
-		$htmlresult = $helper->getHtml()->getContentHolderText();
+		// The served document is the full document; see testGetHtml().
+		$htmlresult = $helper->getHtml()->getContentHolder()->getAsRawHtmlString();
 
 		$this->assertStringContainsString( 'Du bist nun abgemeldet', $htmlresult );
 		// Check that we have a full HTML document in English

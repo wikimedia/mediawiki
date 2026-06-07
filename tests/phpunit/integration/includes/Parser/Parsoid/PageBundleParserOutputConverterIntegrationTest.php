@@ -20,6 +20,17 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
  * @group Database
  */
 class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegrationTestCase {
+	public function testLanguageTransfer() {
+		$parserOutput = self::getParserOutput( HtmlPageBundle::newEmpty( '' ) );
+		$parserOutput->setLanguage( new Bcp47CodeValue( 'de' ) );
+		$siteConfig = new MockSiteConfig( [] );
+		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+			$parserOutput, $siteConfig, bodyOnly: false,
+		);
+		$this->assertIsString( $pb->headers['content-language'] );
+		$this->assertEquals( 'de', $pb->headers['content-language'] );
+	}
+
 	public function testParserOutputFromPageBundleShouldPreserveMetadata() {
 		$pageBundle = new HtmlPageBundle(
 			html: 'html content',

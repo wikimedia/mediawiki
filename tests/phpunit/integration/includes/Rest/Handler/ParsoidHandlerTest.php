@@ -1392,6 +1392,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 					$this->getServiceContainer()->getParserOutputAccess(),
 					$this->getServiceContainer()->getPageStore(),
 					$this->getServiceContainer()->getRevisionLookup(),
+					$this->getServiceContainer()->getParsoidSiteConfig(),
 					[],
 					$page,
 					[ 'html' => $html ],
@@ -1933,7 +1934,9 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				'body' => [
 					'counter' => 2,
 					'ids' => [ // NOTE: match "First Revision Content"
-						'mwAA' => [ 'dsr' => [ 0, 22, 0, 0 ] ],
+						// When we use htmlPageBundleFromParser output to
+						// recreate the document <body>, the data-parsoid
+						// on the <body> wrapper itself (mwAA) is orphaned.
 						'mwAQ' => [],
 						'mwAg' => [ 'dsr' => [ 0, 22, 0, 0 ] ],
 					],

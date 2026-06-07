@@ -779,12 +779,19 @@ abstract class ParsoidHandler extends Handler {
 			// Once the OutputTransform framework lands, we might revisit this.
 
 			$response = $this->getResponseFactory()->create();
-			$html = $out->getContentHolderText();
 			if ( $attribs['body_only'] ) {
 				// Language-variant conversion (Accept-Language) re-wraps the
 				// fragment into a full document, so a body_only request could
 				// come back as a full document. Strip the wrapper to honor it.
-				$html = Parser::extractBody( $html );
+				// T393925: extractBody() won't be necessary once
+				// ::getContentHolderText() starts doing it itself.
+				$html = Parser::extractBody( $out->getContentHolderText() );
+			} else {
+				// The full-document 'edit' flavor uses the raw accessor so it
+				// keeps its wrapper once getContentHolderText() begins
+				// stripping it. (T393925)
+				$html = $out->getContentHolder()->getAsRawHtmlString();
+				'@phan-var string $html'; // not null
 			}
 			$response->getBody()->write( $html );
 

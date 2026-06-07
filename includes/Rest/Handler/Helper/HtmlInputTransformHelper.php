@@ -33,6 +33,7 @@ use MediaWiki\Status\Status;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
@@ -67,13 +68,6 @@ class HtmlInputTransformHelper {
 	 */
 	private $envOptions;
 
-	private StatsFactory $statsFactory;
-	private HtmlTransformFactory $htmlTransformFactory;
-	private ParsoidOutputStash $parsoidOutputStash;
-	private ParserOutputAccess $parserOutputAccess;
-	private PageLookup $pageLookup;
-	private RevisionLookup $revisionLookup;
-
 	/**
 	 * @param StatsFactory $statsFactory
 	 * @param HtmlTransformFactory $htmlTransformFactory
@@ -81,6 +75,7 @@ class HtmlInputTransformHelper {
 	 * @param ParserOutputAccess $parserOutputAccess
 	 * @param PageLookup $pageLookup
 	 * @param RevisionLookup $revisionLookup
+	 * @param SiteConfig $siteConfig
 	 * @param array $envOptions
 	 * @param ?PageIdentity $page
 	 * @param array|string $body Body structure, or an HTML string
@@ -89,12 +84,13 @@ class HtmlInputTransformHelper {
 	 * @param Bcp47Code|null $pageLanguage
 	 */
 	public function __construct(
-		StatsFactory $statsFactory,
-		HtmlTransformFactory $htmlTransformFactory,
-		ParsoidOutputStash $parsoidOutputStash,
-		ParserOutputAccess $parserOutputAccess,
-		PageLookup $pageLookup,
-		RevisionLookup $revisionLookup,
+		private StatsFactory $statsFactory,
+		private readonly HtmlTransformFactory $htmlTransformFactory,
+		private readonly ParsoidOutputStash $parsoidOutputStash,
+		private readonly ParserOutputAccess $parserOutputAccess,
+		private readonly PageLookup $pageLookup,
+		private readonly RevisionLookup $revisionLookup,
+		private readonly SiteConfig $siteConfig,
 		array $envOptions = [],
 		?PageIdentity $page = null,
 		$body = '',
@@ -102,16 +98,10 @@ class HtmlInputTransformHelper {
 		?RevisionRecord $originalRevision = null,
 		?Bcp47Code $pageLanguage = null
 	) {
-		$this->statsFactory = $statsFactory;
-		$this->htmlTransformFactory = $htmlTransformFactory;
-		$this->parsoidOutputStash = $parsoidOutputStash;
 		$this->envOptions = $envOptions + [
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 			'offsetType' => 'byte',
 		];
-		$this->parserOutputAccess = $parserOutputAccess;
-		$this->pageLookup = $pageLookup;
-		$this->revisionLookup = $revisionLookup;
 		if ( $page === null ) {
 			wfDeprecated( __METHOD__ . ' without $page', '1.43' );
 		} else {
@@ -524,7 +514,12 @@ class HtmlInputTransformHelper {
 		}
 
 		if ( $originalRendering instanceof ParserOutput ) {
-			$originalRendering = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput( $originalRendering );
+			// Selser expects a full document (head + body). Request
+			// it explicitly so this keeps working once the canonical
+			// ParserOutput is body-only (T393295)
+			$originalRendering = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+				$originalRendering, $this->siteConfig, bodyOnly: false,
+			);
 
 			// NOTE: Use the default if we got a ParserOutput object.
 			//       Don't apply the default if we got passed a HtmlPageBundle,
@@ -738,7 +733,10 @@ class HtmlInputTransformHelper {
 				$counter->setLabels( $labels )
 					->increment();
 
-				$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput( $parserOutput );
+				// Full document (head + body) for selser; see the note above.
+				$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+					$parserOutput, $this->siteConfig, bodyOnly: false,
+				);
 				return new SelserContext( $pb, $renderID->getRevisionID() );
 			} catch ( HttpException ) {
 				$labels[ 'status' ] = 'failed-fallback_not_found';

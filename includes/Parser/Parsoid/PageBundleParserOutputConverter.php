@@ -120,7 +120,7 @@ final class PageBundleParserOutputConverter {
 	/**
 	 * Returns a Parsoid HtmlPageBundle equivalent to the given ParserOutput.
 	 * @param ParserOutput $parserOutput
-	 * @param ?SiteConfig $siteConfig ParsoidSiteConfig service
+	 * @param SiteConfig $siteConfig ParsoidSiteConfig service
 	 * @param bool $bodyOnly If false, returns a full document with
 	 *  metadata in the <head>.  If true, the `html` section of
 	 *  the PageBundle returns the inner HTML of the <body> element
@@ -129,21 +129,18 @@ final class PageBundleParserOutputConverter {
 	 * @note Until T393925 is fully resolved, $bodyOnly=true might still
 	 *  return full document content, if that is what is present in the
 	 *  ParserOutput.
-	 * @note $siteConfig is expected to be non-optional before MW 1.47
-	 *  is released.
-	 * @note $bodyOnly is expected swap defaults (to false) before MW 1.47
+	 * @note $bodyOnly will default to false before MW 1.47
 	 *  is released.
 	 */
 	public static function htmlPageBundleFromParserOutput(
 		ParserOutput $parserOutput,
-		?SiteConfig $siteConfig = null,
-		bool $bodyOnly = true,
+		SiteConfig $siteConfig,
+		bool $bodyOnly,
 	): HtmlPageBundle {
 		$bpb = self::basePageBundleFromParserOutput( $parserOutput );
 		$html = $parserOutput->getContentHolderText();
 		if ( !$bodyOnly ) {
 			$document = DOMCompat::newDocument();
-			$siteConfig ??= MediaWikiServices::getInstance()->getParsoidSiteConfig();
 			self::addMetadataToDocument( $parserOutput, $siteConfig, $bpb, $document );
 			// Add selected header information from page bundle to the <head>
 			foreach ( [ 'content-language', 'vary' ] as $h ) {

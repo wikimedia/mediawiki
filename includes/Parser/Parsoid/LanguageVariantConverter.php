@@ -176,9 +176,17 @@ class LanguageVariantConverter {
 		Bcp47Code $targetVariant,
 		?Bcp47Code $sourceVariant = null
 	): ParserOutput {
-		$pageBundle = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput( $parserOutput );
+		// convertPageBundleVariant() works on a full document (an
+		// HtmlPageBundle always carries one, and the fallback
+		// converter injects the content-language <meta> before
+		// </body>), so request a full document.
+		$pageBundle = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+			$parserOutput, $this->siteConfig, bodyOnly: false,
+		);
 		$modifiedPageBundle = $this->convertPageBundleVariant( $pageBundle, $targetVariant, $sourceVariant );
 
+		// Converting from page bundle to ParserOutput may convert back to
+		// body-only (T393925)
 		return PageBundleParserOutputConverter::parserOutputFromPageBundle(
 			$modifiedPageBundle, $parserOutput,
 			title: $this->pageIdentity,

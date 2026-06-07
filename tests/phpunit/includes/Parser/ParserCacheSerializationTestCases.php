@@ -768,7 +768,7 @@ abstract class ParserCacheSerializationTestCases {
 							counters: [ 'nodedata' => 0, 'annotation' => 0, 'transclusion' => 1 ],
 						)
 					);
-					$testCase->assertEquals( "<!DOCTYPE html>\n<html><head></head><body><p id=\"mwAA\">hello</p></body></html>", $object->getContentHolder()->getAsHtmlString() );
+					$testCase->assertEquals( "<!DOCTYPE html>\n<html><head></head><body><p id=\"mwAA\">hello</p></body></html>", $object->getContentHolder()->getAsRawHtmlString() );
 				}
 			],
 			'parsoidBundleOnly' => [
