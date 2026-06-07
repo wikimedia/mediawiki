@@ -725,6 +725,7 @@ class SpecialUndelete extends SpecialPage {
 			// TODO: MCR: make this work for multiple slots
 			// source view for textual content
 			$sourceView = Html::element( 'textarea', [
+				'class' => 'mw-undelete-textarea',
 				'readonly' => 'readonly',
 				'cols' => 80,
 				'rows' => 25
