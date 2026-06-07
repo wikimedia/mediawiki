@@ -79,8 +79,8 @@ EOD;
 	 */
 	public function testShouldSetHtmlStringParsoid( array $parsoidData ): void {
 		$ch = ContentHolder::createFromParsoidPageBundle( new HtmlPageBundle( '' ) );
-		$ch->setAsHtmlString( ContentHolder::BODY_FRAGMENT, $parsoidData['html'] );
-		self::assertEquals( $parsoidData['html'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
+		$ch->setAsHtmlString( ContentHolder::BODY_FRAGMENT, $parsoidData['body'] );
+		self::assertEquals( $parsoidData['body'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
 	}
 
 	/**
