@@ -38,7 +38,7 @@
 		"lcobucci/jwt": "5.6.0",
 		"liuggio/statsd-php-client": "1.0.18",
 		"mck89/peast": "1.17.5",
-		"monolog/monolog": "2.11.0",
+		"monolog/monolog": "3.10.0",
 		"okvpn/clock-lts": "1.0.0",
 		"oojs/oojs-ui": "0.54.0",
 		"php": ">=8.3.0",

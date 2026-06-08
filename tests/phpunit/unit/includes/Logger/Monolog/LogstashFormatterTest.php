@@ -3,6 +3,8 @@
 namespace MediaWiki\Tests\Logger\Monolog;
 
 use MediaWiki\Logger\Monolog\LogstashFormatter;
+use Monolog\Level;
+use Monolog\LogRecord;
 
 /**
  * @covers \MediaWiki\Logger\Monolog\LogstashFormatter
@@ -45,6 +47,32 @@ class LogstashFormatterTest extends \MediaWikiUnitTestCase {
 				[],
 			],
 		];
+	}
+
+	/**
+	 * Same key-conflict behaviour as testV1 data set #1, but exercising the
+	 * Monolog 3 LogRecord input branch rather than the legacy array form.
+	 */
+	public function testV1WithLogRecord() {
+		$formatter = new LogstashFormatter( 'app', 'system', '', '', LogstashFormatter::V1 );
+		$record = new LogRecord(
+			new \DateTimeImmutable( '2020-01-01T00:00:00+00:00' ),
+			'thechannel',
+			Level::Warning,
+			'themessage',
+			[ 'url' => 2 ],
+			[ 'url' => 1 ]
+		);
+		$formatted = json_decode( $formatter->format( $record ), true );
+		// LogRecord fields flow through normalisation
+		$this->assertSame( 'themessage', $formatted['message'] );
+		$this->assertSame( 'app', $formatted['type'] );
+		$this->assertSame( 'thechannel', $formatted['channel'] );
+		$this->assertSame( 'WARNING', $formatted['level'] );
+		// extra wins the reserved 'url' key; context is c_-prefixed and flagged
+		$this->assertSame( 1, $formatted['url'] );
+		$this->assertSame( 2, $formatted['c_url'] );
+		$this->assertSame( [ 'url' ], $formatted['logstash_formatter_key_conflict'] );
 	}
 
 	public function testV1WithPrefix() {

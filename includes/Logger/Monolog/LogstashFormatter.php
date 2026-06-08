@@ -63,7 +63,6 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 		// and any pre-Monolog-3 caller); normalize() has a stable signature
 		// across Monolog versions and accepts the array directly.
 		if ( $record instanceof LogRecord ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgumentReal whilst we're on Monolog 2
 			$record = \Monolog\Formatter\NormalizerFormatter::format( $record );
 		} else {
 			// TODO: Once all callers pass a LogRecord, emit a deprecation

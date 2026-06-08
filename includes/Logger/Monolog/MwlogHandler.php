@@ -7,6 +7,7 @@
 namespace MediaWiki\Logger\Monolog;
 
 use Monolog\Handler\SyslogUdpHandler;
+use Monolog\Level;
 use Monolog\Logger;
 use Monolog\LogRecord;
 
@@ -92,7 +93,7 @@ class MwlogHandler extends SyslogUdpHandler {
 	protected function write( array|LogRecord $record ): void {
 		$lines = $this->splitMessageIntoLines( $record['formatted'] );
 		$header = $this->syslogHeader(
-			$this->logLevels[$record['level']],
+			Level::fromValue( (int)$record['level'] )->toRFC5424Level(),
 			$this->appprefix . $record['channel'] );
 
 		foreach ( $lines as $line ) {
