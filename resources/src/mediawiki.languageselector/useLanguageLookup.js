@@ -1,4 +1,4 @@
-const { ref, computed, watch, unref } = require( 'vue' );
+const { ref, computed, watch } = require( 'vue' );
 
 /**
  * Convert language data to Codex menu items format
@@ -129,7 +129,7 @@ function useLanguageLookup( {
 			if ( menuItems.value.length ) {
 				let nextSelection;
 				if ( isMultiple ) {
-					nextSelection = [ ...unref( selectedValues ) ];
+					nextSelection = [ ...selectedValues.value ];
 					const assumedSelection = menuItems.value[ 0 ].value;
 					if ( !nextSelection.includes( assumedSelection ) ) {
 						nextSelection.push( assumedSelection );
