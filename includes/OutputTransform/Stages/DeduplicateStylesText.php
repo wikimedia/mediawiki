@@ -81,4 +81,8 @@ class DeduplicateStylesText extends ContentTextTransformStage {
 		$this->seen = $seen;
 		return $res;
 	}
+
+	public function reset(): void {
+		$this->seen = [];
+	}
 }

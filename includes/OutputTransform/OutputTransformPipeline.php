@@ -74,6 +74,7 @@ class OutputTransformPipeline {
 		}
 
 		foreach ( $this->stages as $stage ) {
+			$stage->reset();
 			if ( $stage->shouldRun( $out, $popts, $options ) ) {
 				// Some stages may (for now) modify $options. See OutputTransformStage documentation for more info.
 				$out = $stage->transform( $out, $popts, $options );

@@ -152,4 +152,30 @@ EOF
 		];
 		// phpcs:enable
 	}
+
+	public function testTransformTwiceDoesNotBreakDeduplicateStyles(): void {
+		$po = new ParserOutput( TestUtils::TEST_TO_DEDUP );
+
+		$popts = ParserOptions::newFromAnon();
+		$actual = $this->getServiceContainer()->getDefaultOutputPipeline()
+		   ->run( $po, $popts, [] )->getContentHolderText();
+		$expect = <<<EOF
+<p>This is a test document.</p>
+<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
+<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1" />
+<style data-mw-deduplicate="duplicate2">.Duplicate2 {}</style>
+<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1" />
+<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate2" />
+<style data-mw-not-deduplicate="duplicate1">.Duplicate1 {}</style>
+<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1" />
+<style data-mw-deduplicate="duplicate3">.Duplicate1 {}</style>
+<style>.Duplicate1 {}</style>
+EOF;
+		$this->assertSame( $expect, $actual );
+		$po2 = new ParserOutput( $actual );
+		$actual2 = $this->getServiceContainer()->getDefaultOutputPipeline()
+		   ->run( $po2, $popts, [] )->getContentHolderText();
+		$this->assertSame( $expect, $actual2 );
+	}
+
 }

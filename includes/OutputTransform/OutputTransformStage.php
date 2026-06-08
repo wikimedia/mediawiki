@@ -53,4 +53,12 @@ abstract class OutputTransformStage {
 	 * @unstable
 	 */
 	abstract public function transform( ParserOutput $po, ParserOptions $popts, array &$options ): ParserOutput;
+
+	/**
+	 * Reset the stage. Some stages (e.g. DeduplicateStyles) benefit from keeping a state between the different
+	 * fragments that they transform; but that state should still be reset between two invocations of the pipeline. This
+	 * method is called on each stage at the beginning of OutputTransformPipeline::run to ensure that this is the case.
+	 */
+	public function reset(): void {
+	}
 }

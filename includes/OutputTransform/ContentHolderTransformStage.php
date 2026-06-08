@@ -56,4 +56,9 @@ class ContentHolderTransformStage extends OutputTransformStage {
 		return $useDom ? $this->domTransform->transform( $po, $popts, $options ) :
 			$this->textTransform->transform( $po, $popts, $options );
 	}
+
+	public function reset(): void {
+		$this->domTransform->reset();
+		$this->textTransform->reset();
+	}
 }
