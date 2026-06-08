@@ -81,9 +81,8 @@ EOD;
 		$ch = ContentHolder::createFromParsoidPageBundle( new HtmlPageBundle( '' ) );
 		$ch->setAsHtmlString( ContentHolder::BODY_FRAGMENT, $parsoidData['html'] );
 		// Setting a full document is accepted, but the body-fragment accessor
-		// strips the wrapper while the raw accessor returns it verbatim.
+		// strips the wrapper
 		self::assertEquals( $parsoidData['body'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
-		self::assertEquals( $parsoidData['html'], $ch->getAsRawHtmlString( ContentHolder::BODY_FRAGMENT ) );
 	}
 
 	/**
@@ -145,10 +144,33 @@ EOD;
 		);
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
-		// A full-document bundle: body-fragment accessor strips the wrapper,
-		// raw accessor returns the full document.
+		// A full-document bundle: body-fragment accessor strips the wrapper
 		self::assertEquals( $parsoidData['bodyFiltered'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
-		self::assertEquals( $parsoidData['htmlFiltered'], $ch->getAsRawHtmlString( ContentHolder::BODY_FRAGMENT ) );
+	}
+
+	/**
+	 * A ParserCache entry written before Parsoid switched to body_only output
+	 * stores a full document in the body fragment. After a serialization
+	 * round-trip (as on a cache read) the full-document wrapper must still be
+	 * recognized, so the body-fragment accessor strips it while the raw
+	 * accessor returns it verbatim for the page-bundle converter.
+	 *
+	 * @dataProvider parsoidContentProvider
+	 */
+	public function testShouldHandleLegacyFullDocumentCacheRoundTrip( array $parsoidData ): void {
+		$siteConfig = new MockSiteConfig( [] );
+		$dpb = DomPageBundle::fromLoadedDocument(
+			$parsoidData['dom']( $siteConfig ), siteConfig: $siteConfig
+		);
+		// A full-document bundle, as stored by the pre-migration Parsoid output.
+		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
+		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
+
+		// Round-trip through JSON serialization, as ParserCache does.
+		$restored = ContentHolder::newFromJsonArray( $ch->toJsonArray() );
+
+		self::assertEquals( $parsoidData['bodyFiltered'],
+			$restored->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
 	}
 
 	/**

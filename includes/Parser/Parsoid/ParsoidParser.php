@@ -134,7 +134,11 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			'pageBundle' => true,
 			'wrapSections' => true,
 			'logLinterData' => true,
-			'body_only' => false,
+			// The canonical ParserOutput form is body-only; Parsoid emits the
+			// body fragment and the full document is reconstructed on demand
+			// from an HtmlPageBundle (getPageBundle()). Legacy full-document
+			// cache entries are still handled by the lazy strip in ContentHolder.
+			'body_only' => true,
 			'htmlVariantLanguage' => $htmlVariantLanguage,
 			// We're doing language conversion in postprocessing now.
 			'skipLanguageConversionPass' => true,

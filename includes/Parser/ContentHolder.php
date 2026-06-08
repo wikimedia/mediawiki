@@ -33,13 +33,12 @@ use Wikimedia\Parsoid\Utils\DOMDataUtils;
  * It should, as much as possible, be used in a consistent format and/or limit format switches, as conversions of
  * all the fragments happen on all accessors, which has a performance impact.
  *
- * @note ContentHolder currently makes no guarantee on the
- * preservation of the document outside of the <body> tag. In
- * particular, if a full Parsoid document with a <head> tag is passed
- * as a string, and converted to DOM, the <head> content is lost.
- * After T393295 is resolved (and cached content expires),
- * ContentHolder should never contain <head> content in the
- * BODY_FRAGMENT.
+ * The canonical body fragment is body-only: getAsHtmlString( BODY_FRAGMENT )
+ * returns just the <body> contents, and the full document (with <head>) is
+ * generated when needed with
+ * PageBundleParserOutputConverter::htmlPageBundleFromParserOutput().
+ * Pre-MW-1.47 ParserCache entries may still contain a full HTML document
+ * in the BODY_FRAGMENT, and that wrapper is stripped in ::getAsHtmlString().
  */
 class ContentHolder implements JsonCodecable {
 	use JsonCodecableTrait;
@@ -51,7 +50,9 @@ class ContentHolder implements JsonCodecable {
 		private ?BasePageBundle $pageBundle = null,
 		/**
 		 * Contains the string representation of the fragments.
-		 * $htmlMap[BODY_FRAGMENT] might contain the full document
+		 * $htmlMap[BODY_FRAGMENT] is body-only for new content, but may still be
+		 * a full document for legacy ParserCache entries (tracked by
+		 * $fullDocument and stripped lazily by getAsHtmlString()).
 		 * @var array<string,string>
 		 */
 		private array $htmlMap = [],
@@ -67,7 +68,7 @@ class ContentHolder implements JsonCodecable {
 		 * False if $htmlMap[BODY_FRAGMENT] currently holds a *full document*
 		 * (with a <body> tag and possibly a <head>) rather than a body
 		 * fragment.
-		 * @see ::getAsRawHtmlString() (T393925)
+		 * @see ::getAsHtmlString() (T393925)
 		 */
 		private bool $bodyOnly = true,
 	) {
@@ -160,7 +161,7 @@ class ContentHolder implements JsonCodecable {
 	 * @note If a conversion is needed, at present all fragments of the
 	 * document are converted to HTML strings.
 	 * @note The BODY_FRAGMENT will always return body-only content
-	 * (T393925); use ::getAsRawHtmlString() (transitional) or
+	 * (T393925); use
 	 * PageBundleParserOutputConverter::htmlPageBundleFromParserOutput()
 	 * with `bodyOnly: false` to obtain a full document.
 	 */
@@ -175,34 +176,6 @@ class ContentHolder implements JsonCodecable {
 			$html = Parser::extractBody( $html );
 		}
 		return $html;
-	}
-
-	/**
-	 * Returns the designated fragment as an HTML string *without* stripping a
-	 * full-document wrapper, or null if the fragment is not present.
-	 *
-	 * This is a transitional method for migration of ParserOutput to
-	 * body-only content (T393925).  Code which uses ::getAsRawHtmlString()
-	 * should migrate to using
-	 * PageBundleParserOutputConverter::htmlPageBundleFromParserOutput()
-	 * with `bodyOnly: false` to obtain a full document.
-	 *
-	 * @unstable Will be removed once migration is complete.
-	 */
-	public function getAsRawHtmlString( string $fragmentName = self::BODY_FRAGMENT ): ?string {
-		Assert::invariant(
-			$fragmentName === self::BODY_FRAGMENT,
-			"only the body fragment is available as a full document"
-		);
-		Assert::invariant(
-			!$this->domFormat,
-			"Conversion from DOM does not preserve the <head>"
-		);
-		Assert::invariant(
-			!$this->bodyOnly,
-			"Body fragment expected to contain full document"
-		);
-		return $this->htmlMap[$fragmentName] ?? null;
 	}
 
 	/**
