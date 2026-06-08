@@ -19,7 +19,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
-use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig;
@@ -782,14 +781,13 @@ abstract class ParsoidHandler extends Handler {
 			if ( $attribs['body_only'] ) {
 				// Language-variant conversion (Accept-Language) re-wraps the
 				// fragment into a full document, so a body_only request could
-				// come back as a full document. Strip the wrapper to honor it.
-				// T393925: extractBody() won't be necessary once
-				// ::getContentHolderText() starts doing it itself.
-				$html = Parser::extractBody( $out->getContentHolderText() );
+				// come back as a full document. ::getContentHolderText() will
+				// return body-only output.
+				$html = $out->getContentHolderText();
 			} else {
 				// The full-document 'edit' flavor uses the raw accessor so it
-				// keeps its wrapper once getContentHolderText() begins
-				// stripping it. (T393925)
+				// keeps its wrapper now that getContentHolderText() strips the
+				// <body> wrapper. (T393925)
 				$html = $out->getContentHolder()->getAsRawHtmlString();
 				'@phan-var string $html'; // not null
 			}

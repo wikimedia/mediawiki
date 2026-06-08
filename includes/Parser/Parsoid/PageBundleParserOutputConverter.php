@@ -8,7 +8,6 @@ use MediaWiki\Language\LanguageCode;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ContentHolder;
-use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -126,16 +125,11 @@ final class PageBundleParserOutputConverter {
 	 *  the PageBundle returns the inner HTML of the <body> element
 	 *  only.
 	 * @return HtmlPageBundle
-	 * @note Until T393925 is fully resolved, $bodyOnly=true might still
-	 *  return full document content, if that is what is present in the
-	 *  ParserOutput.
-	 * @note $bodyOnly will default to false before MW 1.47
-	 *  is released.
 	 */
 	public static function htmlPageBundleFromParserOutput(
 		ParserOutput $parserOutput,
 		SiteConfig $siteConfig,
-		bool $bodyOnly,
+		bool $bodyOnly = false,
 	): HtmlPageBundle {
 		$bpb = self::basePageBundleFromParserOutput( $parserOutput );
 		$html = $parserOutput->getContentHolderText();
@@ -165,8 +159,7 @@ final class PageBundleParserOutputConverter {
 				$posEnd !== false, "should have <body>"
 			);
 			$html = substr( $fulldoc, 0, $posEnd ) .
-				  // Ensure $html is body-only (don't double-wrap!)
-				  Parser::extractBody( $html ) .
+				  $html .
 				  substr( $fulldoc, $posEnd );
 		}
 		$pb = $bpb->withHtml( $html );

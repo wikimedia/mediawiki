@@ -1052,20 +1052,18 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		// check nominal content language
 		$this->assertSame( 'ar', $helper->getHtmlOutputContentLanguage()->toBcp47Code() );
 
-		// check content language in HTML
-		$output = $helper->getHtml();
-		$html = $output->getContentHolderText();
-		$this->assertStringContainsString( 'lang="ar"', $html );
-		$this->assertStringContainsString( '>ar<', $html ); # {{PAGELANGUAGE}}
+		// check content language in HTML. The lang attribute lives on the
+		// <body> wrapper, which is only present in the full-document page
+		// bundle; the {{PAGELANGUAGE}} content is in the body fragment.
+		$this->assertStringContainsString( 'lang="ar"', $helper->getPageBundle()->html );
+		$this->assertStringContainsString( '>ar<', $helper->getHtml()->getContentHolderText() ); # {{PAGELANGUAGE}}
 
 		// Check that cache is properly split on page language (T376783)
 		$helper = $this->newHelper( $options, $page, [], $this->newAuthority(), $revision );
 		$helper->setPageLanguage( 'en' );
 		$this->assertSame( 'en', $helper->getHtmlOutputContentLanguage()->toBcp47Code() );
-		$output = $helper->getHtml();
-		$html = $output->getContentHolderText();
-		$this->assertStringContainsString( 'lang="en"', $html );
-		$this->assertStringContainsString( '>en<', $html ); # {{PAGELANGUAGE}}
+		$this->assertStringContainsString( 'lang="en"', $helper->getPageBundle()->html );
+		$this->assertStringContainsString( '>en<', $helper->getHtml()->getContentHolderText() ); # {{PAGELANGUAGE}}
 	}
 
 	public function testGetParserOutputWithRedundantPageLanguage() {

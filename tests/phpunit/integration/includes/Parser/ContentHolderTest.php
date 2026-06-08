@@ -79,8 +79,11 @@ EOD;
 	 */
 	public function testShouldSetHtmlStringParsoid( array $parsoidData ): void {
 		$ch = ContentHolder::createFromParsoidPageBundle( new HtmlPageBundle( '' ) );
-		$ch->setAsHtmlString( ContentHolder::BODY_FRAGMENT, $parsoidData['body'] );
+		$ch->setAsHtmlString( ContentHolder::BODY_FRAGMENT, $parsoidData['html'] );
+		// Setting a full document is accepted, but the body-fragment accessor
+		// strips the wrapper while the raw accessor returns it verbatim.
 		self::assertEquals( $parsoidData['body'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
+		self::assertEquals( $parsoidData['html'], $ch->getAsRawHtmlString( ContentHolder::BODY_FRAGMENT ) );
 	}
 
 	/**
@@ -142,7 +145,10 @@ EOD;
 		);
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
-		self::assertEquals( $parsoidData['htmlFiltered'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
+		// A full-document bundle: body-fragment accessor strips the wrapper,
+		// raw accessor returns the full document.
+		self::assertEquals( $parsoidData['bodyFiltered'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
+		self::assertEquals( $parsoidData['htmlFiltered'], $ch->getAsRawHtmlString( ContentHolder::BODY_FRAGMENT ) );
 	}
 
 	/**

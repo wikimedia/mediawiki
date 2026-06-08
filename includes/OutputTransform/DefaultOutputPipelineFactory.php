@@ -16,7 +16,6 @@ use MediaWiki\OutputTransform\Stages\ExecutePostCacheTransformHooks;
 use MediaWiki\OutputTransform\Stages\ExpandRelativeAttrs;
 use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrlsDOM;
 use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrlsText;
-use MediaWiki\OutputTransform\Stages\ExtractBody;
 use MediaWiki\OutputTransform\Stages\HandleParsoidSectionLinks;
 use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
 use MediaWiki\OutputTransform\Stages\HandleTOCMarkersDOM;
@@ -46,12 +45,6 @@ class DefaultOutputPipelineFactory {
 	];
 
 	private const CORE_LIST = [
-		'ExtractBody' => [
-			'class' => ExtractBody::class,
-			'services' => [
-				'UrlUtils',
-			],
-		],
 		'ExecuteFirstStageTransformHooks' => [
 			'class' => ExecuteFirstStageTransformHooks::class,
 			'services' => [
