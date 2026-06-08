@@ -57,7 +57,19 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 	}
 
 	public function format( array|LogRecord $record ): string {
-		$record = \Monolog\Formatter\NormalizerFormatter::format( $record );
+		// Monolog 3 changed NormalizerFormatter::format() to require a LogRecord
+		// rather than an array, so we can only delegate to it for the LogRecord
+		// form. A plain-array record is the legacy Monolog 2 form (used by tests
+		// and any pre-Monolog-3 caller); normalize() has a stable signature
+		// across Monolog versions and accepts the array directly.
+		if ( $record instanceof LogRecord ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentReal whilst we're on Monolog 2
+			$record = \Monolog\Formatter\NormalizerFormatter::format( $record );
+		} else {
+			// TODO: Once all callers pass a LogRecord, emit a deprecation
+			// warning here before eventually dropping array support.
+			$record = $this->normalize( $record );
+		}
 		if ( $this->version === self::V1 ) {
 			$message = $this->formatV1( $record );
 		} elseif ( $this->version === self::V0 ) {
