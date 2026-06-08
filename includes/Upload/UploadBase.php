@@ -556,10 +556,13 @@ abstract class UploadBase {
 			throw new LogicException( __METHOD__ . ' must only be called with valid title' );
 		}
 
-		$performer->authorizeWrite( 'edit', $nt, $status );
-		$performer->authorizeWrite( 'upload', $nt, $status );
-		if ( !$status->isGood() ) {
-			// If the user can't upload at all, don't display additional errors about re-uploading
+		// Return early when one of the permission checks fails, to avoid duplicate messages
+		// when the user can neither edit nor upload, e.g. due to protection (T428124).
+		// If the user can't upload at all, don't display additional errors about re-uploading.
+		if ( !$performer->authorizeWrite( 'edit', $nt, $status ) ) {
+			return $status;
+		}
+		if ( !$performer->authorizeWrite( 'upload', $nt, $status ) ) {
 			return $status;
 		}
 
