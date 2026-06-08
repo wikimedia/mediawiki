@@ -65,6 +65,9 @@ class DiscoveryHandler extends Handler {
 			}
 		}
 
+		// This will put the "routes not in modules" entry first.
+		uksort( $modules, 'strnatcasecmp' );
+
 		return $modules;
 	}
 

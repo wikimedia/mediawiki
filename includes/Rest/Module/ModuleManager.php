@@ -213,6 +213,18 @@ class ModuleManager {
 			unset( $spec['params'] );
 		}
 
+		// This will put the "routes not in modules" entry first.
+		$defaultName = self::CORE_SPECS['mw-extra']['name'];
+		uasort( $specs, static function ( $a, $b ) use ( $defaultName ) {
+			if ( $a['name'] === $defaultName ) {
+				return -1;
+			} elseif ( $b['name'] === $defaultName ) {
+				return 1;
+			} else {
+				return strnatcasecmp( $a['name'], $b['name'] );
+			}
+		} );
+
 		return $specs;
 	}
 

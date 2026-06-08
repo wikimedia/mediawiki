@@ -1,0 +1,17 @@
+{
+	"mwapi": "1.0.0",
+	"moduleId": "SpecTestRoutes/v3",
+	"info": {
+		"version": "3.0",
+		"title": "test module"
+	},
+	"paths": {
+		"/foo/bar": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\Handler\\ModuleSpecHandlerTest::newFooBarHandler"
+				}
+			}
+		}
+	}
+}

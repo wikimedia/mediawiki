@@ -126,8 +126,6 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideSpecs
-	 *
-	 * Ensure ModuleManager automatically loads core specs
 	 */
 	public function testSpecs( string $needle, array $expected ) {
 		$moduleManager = $this->getModuleManager();
@@ -183,5 +181,32 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		// The default message is unhelpful in identifying which test case failed.
 		$msg = "Failure for module id $moduleId and expected mode {$mode->name}";
 		$this->assertSame( $expected, $mode, $msg );
+	}
+
+	public function testGetApiSpecsSortOrder(): void {
+		$conf = $this->getServiceContainer()->getMainConfig();
+		$rss = $conf->get( MainConfigNames::RestSandboxSpecs );
+
+		$unsorted = [
+			'c.json' => [ 'name' => 'C Spec', 'url' => '/c' ],
+			'a.json' => [ 'name' => 'A Spec', 'url' => '/a' ],
+			'b.json' => [ 'name' => 'b Spec', 'url' => '/b' ],
+		];
+		$this->overrideConfigValue( MainConfigNames::RestSandboxSpecs, $unsorted );
+
+		$moduleManager = $this->getModuleManager();
+		$specs = $moduleManager->getApiSpecs();
+
+		$names = array_column( $specs, 'name' );
+
+		// mw-extra is always first
+		$this->assertSame( 'MediaWiki REST API (routes not in modules)', $names[0] );
+
+		// The rest are sorted alphabetically by name
+		$this->assertSame( 'A Spec', $names[1] );
+		$this->assertSame( 'b Spec', $names[2] );
+		$this->assertSame( 'C Spec', $names[3] );
+
+		$this->overrideConfigValue( MainConfigNames::RestSandboxSpecs, $rss );
 	}
 }

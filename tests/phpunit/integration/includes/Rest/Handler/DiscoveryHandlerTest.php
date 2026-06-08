@@ -128,6 +128,7 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 		$router = $this->createRouter(
 			$request,
 			[
+				__DIR__ . '/SpecTestRoutes.v3.json', // intentionally missorted
 				__DIR__ . '/SpecTestRoutes.v1.json',
 				__DIR__ . '/SpecTestRoutes.v2.json'
 			]
@@ -171,6 +172,14 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 					],
 					'base' => 'https://example.com:1234/api/SpecTestRoutes/v1',
 					'spec' => 'https://example.com:1234/api/specs/v0/module/SpecTestRoutes%2Fv1',
+				],
+				'SpecTestRoutes/v3' => [
+					'info' => [
+						'version' => '3.0',
+						'title' => 'test module',
+					],
+					'base' => 'https://example.com:1234/api/SpecTestRoutes/v3',
+					'spec' => 'https://example.com:1234/api/specs/v0/module/SpecTestRoutes%2Fv3',
 				],
 			],
 		];
