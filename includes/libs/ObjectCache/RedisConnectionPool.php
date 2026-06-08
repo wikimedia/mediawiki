@@ -404,6 +404,11 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 * Make sure connections are closed
 	 */
 	public function __destruct() {
+		// T425487: Don't attempt to close persistent connections
+		if ( $this->persistent ) {
+			return;
+		}
+
 		foreach ( $this->connections as &$serverConnections ) {
 			foreach ( $serverConnections as &$connection ) {
 				try {
