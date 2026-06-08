@@ -9,7 +9,6 @@ namespace MediaWiki\Specials;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TocGeneratorTrait;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
-use MediaWiki\Title\Title;
 use OOUI\FieldLayout;
 use OOUI\SearchInputWidget;
 
@@ -84,7 +83,6 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 
 	private function outputPageList( array $groups ) {
 		$out = $this->getOutput();
-		$aliases = $this->getSpecialPageFactory()->getAliasList();
 		$out->addModules( 'mediawiki.special.specialpages' );
 		$out->enableOOUI();
 
@@ -152,6 +150,7 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 		$out->addTOCPlaceholder( $this->getTocData() );
 
 		// Format contents
+		$aliases = $this->getContentLanguage()->getSpecialPageAliases();
 		$language = $this->getLanguage();
 		foreach ( $groups as $group => $sortedPages ) {
 			if ( str_contains( $group, '/' ) ) {
@@ -173,15 +172,12 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 				. '<ul>'
 			);
 			foreach ( $sortedPages as $desc => [ $title, $restricted, $cached ] ) {
-				$indexAttr = [ 'data-search-index-0' => $language->lc( $title->getText() ) ];
-				$c = 1;
-				foreach ( $aliases as $alias => $target ) {
-					/** @var Title $title */
-					if (
-						$target == $title->getText() &&
-						$language->lc( $alias ) !== $language->lc( $title->getText() )
-					) {
-						$indexAttr['data-search-index-' . $c ] = $language->lc( $alias );
+				[ $canonicalName ] = $this->getSpecialPageFactory()->resolveAlias( $title->getDBkey() );
+				$indexAttr = [];
+				if ( $canonicalName !== null ) {
+					$c = 0;
+					foreach ( $aliases[ $canonicalName ] as $alias ) {
+						$indexAttr[ 'data-search-index-' . $c ] = str_replace( '_', ' ', $language->lc( $alias ) );
 						++$c;
 					}
 				}
