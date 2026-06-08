@@ -57,16 +57,44 @@
 			label: label
 		} ).$element[ 0 ];
 
-		mw.notify( data.message, {
-			classes: [ 'postedit' ]
-		} );
+		const showDefaultConfirmation = () => {
+			mw.notify( data.message, {
+				classes: [ 'postedit' ]
+			} );
 
-		// Deprecated - use the 'postEdit' hook, and an additional pause if required
-		mw.hook( 'postEdit.afterRemoval' ).fire();
+			// Deprecated - use the 'postEdit' hook, and an additional pause if required
+			mw.hook( 'postEdit.afterRemoval' ).fire();
 
-		if ( data.tempUserCreated ) {
-			mw.tempUserCreated.showPopup();
-		}
+			if ( data.tempUserCreated ) {
+				mw.tempUserCreated.showPopup();
+			}
+		};
+
+		mw.loader.using( [ 'ext.testKitchen' ] )
+			.then( () => mw.testKitchen.getExperiment( 'we-1-8-tempuser-post-edit' ) )
+			.then( ( experiment ) => {
+				const isMobile = mw.config.get( 'skin' ) === 'minerva';
+				if ( isMobile && data.tempUserCreated && experiment.isAssignedGroup( 'treatment' ) ) {
+					mw.tempUserCreated.showCondensedPopup( {
+						classes: [ 'postedit-tempusercreated' ],
+						title: mw.message( 'postedit-confirmation-published-title' ).text(),
+						content: [
+							mw.message( 'postedit-temp-created-createaccount-benefits' ).text(),
+							mw.message( 'postedit-temp-created-createaccount-benefit-1' ).text(),
+							mw.message( 'postedit-temp-created-createaccount-benefit-2' ).text(),
+							mw.message( 'postedit-temp-created-createaccount-benefit-3' ).text()
+						],
+						primaryActionLabel: mw.message( 'createaccount' ).text(),
+						primaryActionUrl: mw.util.getUrl( 'Special:CreateAccount' ),
+						hideBackdrop: true
+					} );
+					// Deprecated - use the 'postEdit' hook, and an additional pause if required
+					mw.hook( 'postEdit.afterRemoval' ).fire();
+				} else {
+					showDefaultConfirmation();
+				}
+			} )
+			.catch( showDefaultConfirmation );
 	}
 
 	function init() {
