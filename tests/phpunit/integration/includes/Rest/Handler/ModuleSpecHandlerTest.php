@@ -126,6 +126,10 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 						'email' => 'test@example.com'
 					],
 				],
+				'externalDocs' => [
+					'description' => 'Test docs',
+					'url' => 'https://example.com/docs',
+				],
 				'servers' => [
 					[ 'url' => 'https://example.com:1234/api/mock/v1' ]
 				],

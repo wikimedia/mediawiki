@@ -7,6 +7,10 @@
 		"x-i18n-title": "rest-module-site.v1-title",
 		"x-i18n-description": "rest-module-site.v1-desc"
 	},
+	"externalDocs": {
+		"description": "API documentation",
+		"url": "https://www.mediawiki.org/wiki/API:REST_API"
+	},
 	"paths": {
 		"/sitemap/{indexId}": {
 			"get": {

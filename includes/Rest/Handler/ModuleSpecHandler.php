@@ -81,11 +81,16 @@ class ModuleSpecHandler extends SimpleHandler {
 			'openapi' => '3.0.0',
 			'info' => $this->getInfoSpec( $module ),
 			'servers' => $this->getServerSpec( $module ),
+			'externalDocs' => $module->getOpenApiExternalDocs(),
 			'paths' => $this->getPathsSpec( $module ),
 			'components' => $this->getComponentsSpec(),
 		];
 
 		unset( $spec['info']['deprecationSettings'] );
+
+		if ( !$spec['externalDocs'] ) {
+			unset( $spec['externalDocs'] );
+		}
 
 		return $spec;
 	}

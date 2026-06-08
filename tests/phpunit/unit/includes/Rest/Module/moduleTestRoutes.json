@@ -6,6 +6,10 @@
 		"title": "test",
 		"version": "1.0"
 	},
+	"externalDocs": {
+		"description": "Test docs",
+		"url": "https://example.com/docs"
+	},
 	"paths": {
 		"/ModuleTest/HELLO/{name}": {
 			"get": {

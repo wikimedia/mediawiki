@@ -251,6 +251,15 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( '<message key="rest-endpoint-desc-mock-desc"></message>', $oas['description'] );
 	}
 
+	public function testOpenApiExternalDocs() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/test.v1/ModuleTest/hello/world' ) ] );
+		$module = $this->createOpenApiModule( $request );
+
+		$externalDocs = $module->getOpenApiExternalDocs();
+		$this->assertSame( 'Test docs', $externalDocs['description'] );
+		$this->assertSame( 'https://example.com/docs', $externalDocs['url'] );
+	}
+
 	public function testManualOperationIdPassedThrough() {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/test.v1/ModuleTest/hello/world' ),

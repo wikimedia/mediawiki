@@ -4,6 +4,10 @@
 	"info": {
 		"version": "1.3-test"
 	},
+	"externalDocs": {
+		"description": "Test docs",
+		"url": "https://example.com/docs"
+	},
 	"paths": {
 		"/foo/bar": {
 			"get": {

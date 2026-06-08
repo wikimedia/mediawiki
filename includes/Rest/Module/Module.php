@@ -548,6 +548,18 @@ abstract class Module {
 	}
 
 	/**
+	 * Return an array with data to be included as the root-level OpenAPI
+	 * "externalDocs" object describing this module's external documentation.
+	 *
+	 * @see https://spec.openapis.org/oas/v3.0.0#external-documentation-object
+	 * @since 1.47
+	 * @return array
+	 */
+	public function getOpenApiExternalDocs(): array {
+		return [];
+	}
+
+	/**
 	 * Returns fields to be included when describing this module in the
 	 * discovery document.
 	 *

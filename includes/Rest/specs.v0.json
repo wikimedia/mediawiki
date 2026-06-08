@@ -8,6 +8,10 @@
 		"x-i18n-description": "rest-module-specs.v0-desc",
 		"version": "0.1.0"
 	},
+	"externalDocs": {
+		"description": "API documentation",
+		"url": "https://www.mediawiki.org/wiki/API:REST_API"
+	},
 	"paths": {
 		"/discovery": {
 			"get": {

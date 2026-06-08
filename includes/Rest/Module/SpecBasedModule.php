@@ -246,4 +246,10 @@ class SpecBasedModule extends MatcherBasedModule {
 		return $def['info'] ?? [];
 	}
 
+	/** @inheritDoc */
+	public function getOpenApiExternalDocs(): array {
+		$def = $this->getModuleDefinition();
+		return $def['externalDocs'] ?? [];
+	}
+
 }
