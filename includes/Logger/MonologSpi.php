@@ -13,6 +13,7 @@ use Monolog\Handler\FormattableHandlerInterface;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\PsrHandler;
 use Monolog\Handler\StreamHandler;
+use Monolog\Level;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -146,7 +147,7 @@ class MonologSpi implements Spi {
 			];
 			$this->config['handlers']['@default'] ??= [
 				'class' => StreamHandler::class,
-				'args' => [ 'php://stderr', Logger::ERROR ],
+				'args' => [ 'php://stderr', Level::Error ],
 			];
 		}
 		$this->reset();

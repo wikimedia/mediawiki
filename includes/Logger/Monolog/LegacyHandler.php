@@ -9,7 +9,7 @@ namespace MediaWiki\Logger\Monolog;
 use LogicException;
 use MediaWiki\Logger\LegacyLogger;
 use Monolog\Handler\AbstractProcessingHandler;
-use Monolog\Logger;
+use Monolog\Level;
 use Monolog\LogRecord;
 use Socket;
 use UnexpectedValueException;
@@ -90,13 +90,13 @@ class LegacyHandler extends AbstractProcessingHandler {
 	/**
 	 * @param string $stream Stream URI
 	 * @param bool $useLegacyFilter Filter log events using legacy rules
-	 * @param int $level Minimum logging level that will trigger handler
+	 * @param int|string|Level $level Minimum logging level that will trigger handler
 	 * @param bool $bubble Can handled messages bubble up the handler stack?
 	 */
 	public function __construct(
 		$stream,
 		$useLegacyFilter = false,
-		$level = Logger::DEBUG,
+		$level = Level::Debug,
 		$bubble = true
 	) {
 		parent::__construct( $level, $bubble );

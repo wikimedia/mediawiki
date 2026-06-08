@@ -8,7 +8,6 @@ namespace MediaWiki\Logger\Monolog;
 
 use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Level;
-use Monolog\Logger;
 use Monolog\LogRecord;
 
 /**
@@ -49,8 +48,8 @@ class MwlogHandler extends SyslogUdpHandler {
 	 * @param string $host Syslog host
 	 * @param int $port Syslog port
 	 * @param int $facility Syslog message facility
-	 * @param int $level The minimum logging level at which this handler
-	 *   will be triggered
+	 * @param int|string|Level $level The minimum logging level at which this
+	 *   handler will be triggered
 	 * @param bool $bubble Whether the messages that are handled can bubble up
 	 *   the stack or not
 	 */
@@ -59,7 +58,7 @@ class MwlogHandler extends SyslogUdpHandler {
 		$host,
 		$port = 514,
 		$facility = LOG_USER,
-		$level = Logger::DEBUG,
+		$level = Level::Debug,
 		$bubble = true
 	) {
 		parent::__construct( $host, $port, $facility, $level, $bubble );

@@ -8,7 +8,7 @@ namespace MediaWiki\Logger\Monolog;
 
 use DateTimeInterface;
 use Monolog\Handler\SyslogUdpHandler;
-use Monolog\Logger;
+use Monolog\Level;
 
 /**
  * Write logs to a syslog server, using RFC 3164 formatted UDP packets.
@@ -44,8 +44,8 @@ class SyslogHandler extends SyslogUdpHandler {
 	 * @param string $host Syslog host
 	 * @param int $port Syslog port
 	 * @param int $facility Syslog message facility
-	 * @param int $level The minimum logging level at which this handler
-	 *   will be triggered
+	 * @param int|string|Level $level The minimum logging level at which this
+	 *   handler will be triggered
 	 * @param bool $bubble Whether the messages that are handled can bubble up
 	 *   the stack or not
 	 */
@@ -54,7 +54,7 @@ class SyslogHandler extends SyslogUdpHandler {
 		$host,
 		$port = 514,
 		$facility = LOG_USER,
-		$level = Logger::DEBUG,
+		$level = Level::Debug,
 		$bubble = true
 	) {
 		parent::__construct( $host, $port, $facility, $level, $bubble );
