@@ -17,6 +17,7 @@ class LogstashFormatterTest extends \MediaWikiUnitTestCase {
 	 * @param array $notExpected List of keys that should not exist.
 	 */
 	public function testV1( array $record, array $expected, array $notExpected ) {
+		$this->expectDeprecationAndContinue( '/Passing an array to .*::format\(\) is deprecated/' );
 		$formatter = new LogstashFormatter( 'app', 'system', '', '', LogstashFormatter::V1 );
 		$formatted = json_decode( $formatter->format( $record ), true );
 		foreach ( $expected as $key => $value ) {
@@ -76,6 +77,7 @@ class LogstashFormatterTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testV1WithPrefix() {
+		$this->expectDeprecationAndContinue( '/Passing an array to .*::format\(\) is deprecated/' );
 		$formatter = new LogstashFormatter( 'app', 'system', '', 'ctx_', LogstashFormatter::V1 );
 		$record = [ 'extra' => [ 'url' => 1 ], 'context' => [ 'url' => 2 ] ];
 		$formatted = json_decode( $formatter->format( $record ), true );

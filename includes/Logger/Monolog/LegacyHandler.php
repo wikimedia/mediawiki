@@ -175,6 +175,15 @@ class LegacyHandler extends AbstractProcessingHandler {
 	}
 
 	protected function write( array|LogRecord $record ): void {
+		if ( !$record instanceof LogRecord ) {
+			// Note: This is not a normal life-cycle deprecation warning, just a prod smoke test
+			// before actual removal now that Monolog has been upgrade from 2 to 3.
+			wfDeprecatedMsg(
+				'Passing an array to ' . __METHOD__ . '() is deprecated; pass a ' .
+					'\\Monolog\\LogRecord instead',
+				'1.47'
+			);
+		}
 		if ( $this->useLegacyFilter &&
 			!LegacyLogger::shouldEmit(
 				$record['channel'], $record['message'],

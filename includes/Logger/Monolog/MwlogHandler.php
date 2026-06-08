@@ -91,6 +91,15 @@ class MwlogHandler extends SyslogUdpHandler {
 	}
 
 	protected function write( array|LogRecord $record ): void {
+		if ( !$record instanceof LogRecord ) {
+			wfDeprecatedMsg(
+				// Note: This is not a normal life-cycle deprecation warning, just a prod smoke test
+				// before actual removal now that Monolog has been upgrade from 2 to 3.
+				'Passing an array to ' . __METHOD__ . '() is deprecated; pass a ' .
+					'\\Monolog\\LogRecord instead',
+				'1.47'
+			);
+		}
 		$lines = $this->splitMessageIntoLines( $record['formatted'] );
 		$header = $this->syslogHeader(
 			Level::fromValue( (int)$record['level'] )->toRFC5424Level(),

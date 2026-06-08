@@ -10,6 +10,7 @@ use MediaWiki\Logger\Monolog\LogstashFormatter;
  */
 class CeeFormatterTest extends \MediaWikiUnitTestCase {
 	public function testV1() {
+		$this->expectDeprecationAndContinue( '/Passing an array to .*::format\(\) is deprecated/' );
 		$ls_formatter = new LogstashFormatter( 'app', 'system', '', 'ctx_' );
 		$cee_formatter = new CeeFormatter( 'app', 'system', '', 'ctx_' );
 		$record = [

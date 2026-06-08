@@ -65,8 +65,13 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 		if ( $record instanceof LogRecord ) {
 			$record = \Monolog\Formatter\NormalizerFormatter::format( $record );
 		} else {
-			// TODO: Once all callers pass a LogRecord, emit a deprecation
-			// warning here before eventually dropping array support.
+			wfDeprecatedMsg(
+				// Note: This is not a normal life-cycle deprecation warning, just a prod smoke test
+				// before actual removal now that Monolog has been upgrade from 2 to 3.
+				'Passing an array to ' . __METHOD__ . '() is deprecated; pass a ' .
+					'\\Monolog\\LogRecord instead',
+				'1.47'
+			);
 			$record = $this->normalize( $record );
 		}
 		if ( $this->version === self::V1 ) {
