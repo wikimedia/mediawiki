@@ -13,6 +13,7 @@ use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Title\TitleFormatter;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 
@@ -57,21 +58,34 @@ class HtmlShadowOutputHelper implements HtmlOutputHelper {
 		if ( $this->parserOutput === null ) {
 			$this->parserOutput = $this->shadowPageLoader->get( $this->page )
 				?->getView( $this->parserOptions )->getParserOutput();
-			if ( !$this->parserOutput ) {
-				return null;
-			}
-
-			// T429391: This is constructing full-document output without
-			// being Parsoid-generated HTML (MediaWiki DOM Spec HTML)
-			// T393295: refactor to carry the full document in an HtmlPageBundle.
-			$messageDom = DOMUtils::parseHTML( $this->parserOutput->getContentHolderText() );
-			DOMUtils::appendToHead( $messageDom, 'meta', [
-				'http-equiv' => 'content-language',
-				'content' => $this->parserOutput->getLanguage()->toBcp47Code(),
-			] );
-			$this->parserOutput->setContentHolderText( ContentUtils::toXML( $messageDom ) );
 		}
 		return $this->parserOutput;
+	}
+
+	/**
+	 * @inheritDoc
+	 *
+	 * Builds the full document directly as a page bundle: the body fragment
+	 * from the shadow page wrapped in a document with an injected
+	 * content-language <meta> in the <head>. (getHtml()'s ParserOutput stays
+	 * body-only, per the ContentHolder invariant.)
+	 */
+	public function getPageBundle(): HtmlPageBundle {
+		// T429391: This is creating full-document output (and a PageBundle)
+		// without being Parsoid HTML.  This should probably be replaced
+		// by a call to
+		// PageBundleParserOutputConverter::htmlPageBundleFromParserOutput()
+		$output = $this->getHtml();
+		$language = $output->getLanguage()->toBcp47Code();
+		$messageDom = DOMUtils::parseHTML( $output->getContentHolderText() );
+		DOMUtils::appendToHead( $messageDom, 'meta', [
+			'http-equiv' => 'content-language',
+			'content' => $language,
+		] );
+		return new HtmlPageBundle(
+			html: ContentUtils::toXML( $messageDom ),
+			headers: [ 'content-language' => $language ],
+		);
 	}
 
 	/**
@@ -80,11 +94,8 @@ class HtmlShadowOutputHelper implements HtmlOutputHelper {
 	public function getETag( string $suffix = '' ): ?string {
 		$output = $this->maybeGetParserOutput();
 		if ( $output ) {
-			// Hash the full served document (see maybeGetParserOutput())
-			// T393295: Could this be a hash of the body_only content?
-			$fullHtml = $output->getContentHolder()->getAsRawHtmlString();
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal
-			return '"message/' . sha1( $fullHtml ) . '/' . $suffix . '"';
+			// Hash the full served document.
+			return '"message/' . sha1( $this->getPageBundle()->html ) . '/' . $suffix . '"';
 		}
 		return null;
 	}

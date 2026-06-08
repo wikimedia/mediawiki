@@ -10,6 +10,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Parsoid\Core\ClientError;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 
 /**
  * @since 1.40
@@ -31,6 +32,20 @@ interface HtmlOutputHelper {
 	 * @throws ClientError
 	 */
 	public function getHtml(): ParserOutput;
+
+	/**
+	 * Fetch the rendering of a given page as a full-document HtmlPageBundle.
+	 *
+	 * Unlike getHtml() (whose ParserOutput carries body-only content), the
+	 * returned bundle always carries the full document (`<html><head>…</head>
+	 * <body>…</body></html>`). Use this when emitting a full document to a
+	 * client.
+	 *
+	 * @return HtmlPageBundle
+	 * @throws LocalizedHttpException
+	 * @throws ClientError
+	 */
+	public function getPageBundle(): HtmlPageBundle;
 
 	/**
 	 * Returns an ETag uniquely identifying the HTML output.

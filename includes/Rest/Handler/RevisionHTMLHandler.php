@@ -72,28 +72,28 @@ class RevisionHTMLHandler extends SimpleHandler {
 		// $this->contentHelper->checkAccess() did not throw.
 		Assert::invariant( $revisionRecord !== null, 'Revision should be known' );
 
+		$cacheExpiry = $this->htmlHelper->getHtml()->getCacheExpiry();
+
+		// This endpoint emits a full document from the page bundle
+		$parserOutputHtml = $this->htmlHelper->getPageBundle()->html;
+
 		$outputMode = $this->getOutputMode();
-		$setContentLanguageHeader = true;
 		switch ( $outputMode ) {
 			case 'html':
-				$parserOutput = $this->htmlHelper->getHtml();
 				$response = $this->getResponseFactory()->create();
 				// TODO: need to respect content-type returned by Parsoid.
 				$response->setHeader( ResponseHeaders::CONTENT_TYPE, 'text/html' );
-				$this->htmlHelper->putHeaders( $response, $setContentLanguageHeader );
-				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
-				// Full-document endpoint: use the raw accessor (see PageHTMLHandler).
-				$response->setBody( new StringStream( $parserOutput->getContentHolder()->getAsRawHtmlString() ?? '' ) );
+				$this->htmlHelper->putHeaders( $response, forHtml: true );
+				$this->contentHelper->setCacheControl( $response, $cacheExpiry );
+				$response->setBody( new StringStream( $parserOutputHtml ) );
 				break;
 			case 'with_html':
-				$parserOutput = $this->htmlHelper->getHtml();
 				$body = $this->contentHelper->constructMetadata();
-				// Full-document endpoint: use the raw accessor (see PageHTMLHandler).
-				$body['html'] = $parserOutput->getContentHolder()->getAsRawHtmlString();
+				$body['html'] = $parserOutputHtml;
 				$response = $this->getResponseFactory()->createJson( $body );
 				// For JSON content, it doesn't make sense to set content language header
-				$this->htmlHelper->putHeaders( $response, !$setContentLanguageHeader );
-				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
+				$this->htmlHelper->putHeaders( $response, forHtml: false );
+				$this->contentHelper->setCacheControl( $response, $cacheExpiry );
 				break;
 			default:
 				throw new LogicException( "Unknown HTML type $outputMode" );

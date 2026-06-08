@@ -109,21 +109,16 @@ class PageHTMLHandler extends SimpleHandler {
 		// We could have a missing page at this point, check and return 404 if that's the case
 		$this->contentHelper->checkHasContent();
 
-		// T429391: If HtmlHelper is a HtmlShadowOutputHelper this isn't
-		// necessarily Parsoid-generated HTML (MediaWiki DOM Spec HTML).
-		$parserOutput = $this->htmlHelper->getHtml();
-		// This endpoint emits a full document. Use the raw accessor
-		// so it keeps receiving the full document once
-		// getContentHolderText() begins stripping the wrapper
-		// (T393295); it will switch to getPageBundle()->html later.
-		$parserOutputHtml = $parserOutput->getContentHolder()->getAsRawHtmlString();
-		'@phan-var string $parserOutputHtml'; // not null
+		$cacheExpiry = $this->htmlHelper->getHtml()->getCacheExpiry();
+
+		// This endpoint emits a full document from the page bundle
+		$parserOutputHtml = $this->htmlHelper->getPageBundle()->html;
 
 		$outputMode = $this->getOutputMode();
 		switch ( $outputMode ) {
 			case 'html':
 				$response = $this->getResponseFactory()->create();
-				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
+				$this->contentHelper->setCacheControl( $response, $cacheExpiry );
 				$response->setBody( new StringStream( $parserOutputHtml ) );
 				break;
 			case 'with_html':
@@ -137,7 +132,7 @@ class PageHTMLHandler extends SimpleHandler {
 				}
 
 				$response = $this->getResponseFactory()->createJson( $body );
-				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
+				$this->contentHelper->setCacheControl( $response, $cacheExpiry );
 				break;
 			default:
 				throw new LogicException( "Unknown HTML type $outputMode" );
