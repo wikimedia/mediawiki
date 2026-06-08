@@ -183,20 +183,11 @@ class LegacyHandler extends AbstractProcessingHandler {
 		return $this->host !== null;
 	}
 
-	protected function write( array|LogRecord $record ): void {
-		if ( !$record instanceof LogRecord ) {
-			// Note: This is not a normal life-cycle deprecation warning, just a prod smoke test
-			// before actual removal now that Monolog has been upgrade from 2 to 3.
-			wfDeprecatedMsg(
-				'Passing an array to ' . __METHOD__ . '() is deprecated; pass a ' .
-					'\\Monolog\\LogRecord instead',
-				'1.47'
-			);
-		}
+	protected function write( LogRecord $record ): void {
 		if ( $this->useLegacyFilter &&
 			!LegacyLogger::shouldEmit(
-				$record['channel'], $record['message'],
-				$record['level'], $record
+				$record->channel, $record->message,
+				$record->level->value, $record
 		) ) {
 			// Do not write record if we are enforcing legacy rules and they
 			// do not pass this message. This used to be done in isHandling(),
@@ -209,12 +200,12 @@ class LegacyHandler extends AbstractProcessingHandler {
 			$this->openSink();
 		}
 
-		$text = (string)$record['formatted'];
+		$text = (string)$record->formatted;
 		if ( $this->useUdp() ) {
 			// Clean it up for the multiplexer
 			if ( $this->prefix !== '' ) {
 				$leader = ( $this->prefix === '{channel}' ) ?
-					$record['channel'] : $this->prefix;
+					$record->channel : $this->prefix;
 				$text = preg_replace( '/^/m', "{$leader} ", $text );
 
 				// Limit to 64 KiB

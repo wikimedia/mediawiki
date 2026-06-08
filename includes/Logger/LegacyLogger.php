@@ -12,6 +12,7 @@ use LogicException;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\WikiMap\WikiMap;
+use Monolog\LogRecord;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 use Throwable;
@@ -198,7 +199,7 @@ class LegacyLogger extends AbstractLogger {
 	 * @param string $channel
 	 * @param string $message
 	 * @param string|int $level \Psr\Log\LogEvent constant or Monolog level int
-	 * @param array $context
+	 * @param array|LogRecord $context
 	 * @return bool True if message should be sent to disk/network, false
 	 * otherwise
 	 */

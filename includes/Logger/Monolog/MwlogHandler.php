@@ -89,20 +89,11 @@ class MwlogHandler extends SyslogUdpHandler {
 		return preg_split( '/$\R?^/m', (string)$message, -1, PREG_SPLIT_NO_EMPTY );
 	}
 
-	protected function write( array|LogRecord $record ): void {
-		if ( !$record instanceof LogRecord ) {
-			wfDeprecatedMsg(
-				// Note: This is not a normal life-cycle deprecation warning, just a prod smoke test
-				// before actual removal now that Monolog has been upgrade from 2 to 3.
-				'Passing an array to ' . __METHOD__ . '() is deprecated; pass a ' .
-					'\\Monolog\\LogRecord instead',
-				'1.47'
-			);
-		}
-		$lines = $this->splitMessageIntoLines( $record['formatted'] );
+	protected function write( LogRecord $record ): void {
+		$lines = $this->splitMessageIntoLines( $record->formatted );
 		$header = $this->syslogHeader(
-			Level::fromValue( (int)$record['level'] )->toRFC5424Level(),
-			$this->appprefix . $record['channel'] );
+			$this->toSyslogPriority( $record->level ),
+			$this->appprefix . $record->channel );
 
 		foreach ( $lines as $line ) {
 			$this->socket->write( $line, $header );

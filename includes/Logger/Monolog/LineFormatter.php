@@ -51,11 +51,11 @@ class LineFormatter extends MonologLineFormatter {
 	/**
 	 * @inheritDoc
 	 */
-	public function format( array|LogRecord $record ): string {
+	public function format( LogRecord $record ): string {
 		// A Monolog 3 LogRecord's context is readonly, so drop keys on a copy
-		// and rebuild the record before delegating; mutating $record['context']
+		// and rebuild the record before delegating; mutating $record->context
 		// in place would silently no-op (T397070).
-		$context = $record['context'] ?? [];
+		$context = $record->context;
 
 		// Drop the 'private' flag from the context
 		unset( $context['private'] );
@@ -78,11 +78,7 @@ class LineFormatter extends MonologLineFormatter {
 			}
 		}
 
-		if ( $record instanceof LogRecord ) {
-			$record = $record->with( context: $context );
-		} else {
-			$record['context'] = $context;
-		}
+		$record = $record->with( context: $context );
 
 		$output = parent::format( $record );
 

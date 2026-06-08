@@ -56,24 +56,8 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 		parent::__construct( $applicationName, $systemName, $extraKey, $contextKey );
 	}
 
-	public function format( array|LogRecord $record ): string {
-		// Monolog 3 changed NormalizerFormatter::format() to require a LogRecord
-		// rather than an array, so we can only delegate to it for the LogRecord
-		// form. A plain-array record is the legacy Monolog 2 form (used by tests
-		// and any pre-Monolog-3 caller); normalize() has a stable signature
-		// across Monolog versions and accepts the array directly.
-		if ( $record instanceof LogRecord ) {
-			$record = \Monolog\Formatter\NormalizerFormatter::format( $record );
-		} else {
-			wfDeprecatedMsg(
-				// Note: This is not a normal life-cycle deprecation warning, just a prod smoke test
-				// before actual removal now that Monolog has been upgrade from 2 to 3.
-				'Passing an array to ' . __METHOD__ . '() is deprecated; pass a ' .
-					'\\Monolog\\LogRecord instead',
-				'1.47'
-			);
-			$record = $this->normalize( $record );
-		}
+	public function format( LogRecord $record ): string {
+		$record = \Monolog\Formatter\NormalizerFormatter::format( $record );
 		if ( $this->version === self::V1 ) {
 			$message = $this->formatV1( $record );
 		} elseif ( $this->version === self::V0 ) {

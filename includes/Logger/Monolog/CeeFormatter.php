@@ -17,10 +17,10 @@ use Monolog\LogRecord;
 class CeeFormatter extends LogstashFormatter {
 	/**
 	 * Format records with a cee cookie
-	 * @param array|LogRecord $record
+	 * @param LogRecord $record
 	 * @return string
 	 */
-	public function format( array|LogRecord $record ): string {
+	public function format( LogRecord $record ): string {
 		return "@cee: " . parent::format( $record );
 	}
 }
