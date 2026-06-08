@@ -1336,13 +1336,7 @@ class PermissionManager {
 
 			if ( !$title->exists() ) {
 				$status->merge(
-					$this->getPermissionStatus(
-						'create',
-						$user,
-						$title,
-						$rigor,
-						true
-					)
+					$this->getPermissionStatus( 'create', $user, $title, $rigor, $short )
 				);
 			}
 		}

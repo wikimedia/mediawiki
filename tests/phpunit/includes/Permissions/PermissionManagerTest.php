@@ -478,7 +478,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'titleOverrides' => [],
 			'action' => 'edit',
 			'userPerms' => [ 'edit' ],
-			'expectedPermErrors' => [ [ 'nocreate-loggedin' ] ],
+			'expectedPermErrors' => [ [ 'nocreate-loggedin' ], [ 'titleprotected', 'Useruser', 'test' ] ],
 			'expectedUserCan' => false,
 		];
 	}
