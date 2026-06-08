@@ -225,12 +225,18 @@ class DefaultOutputPipelineFactory {
 				$args = [
 					$this->objectFactory->createObject( $spec['textStage'],
 					[
-						'assertClass' => ContentTextTransformStage::class,
+						// This stage is also required to implement
+						// TextTransformStage by the
+						// ContentHolderTransformStage constructor
+						'assertClass' => OutputTransformStage::class,
 						'allowClassName' => true,
 					] + $this->makeExtraArgs( $spec['textStage'] ) ),
 					$this->objectFactory->createObject( $spec['domStage'],
 						[
-							'assertClass' => ContentDOMTransformStage::class,
+							// This stage is also required to implement
+							// DOMTransformStage by the
+							// ContentHolderTransformStage constructor
+							'assertClass' => OutputTransformStage::class,
 							'allowClassName' => true,
 						] + $this->makeExtraArgs( $spec['domStage'] ) ),
 					$spec['exclusive'] ?? false,

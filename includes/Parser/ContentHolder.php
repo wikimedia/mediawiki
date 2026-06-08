@@ -277,8 +277,30 @@ class ContentHolder implements JsonCodecable {
 		return $frag;
 	}
 
-	public function getFragmentNames(): array {
-		return array_keys( $this->domFormat ? $this->domMap : $this->htmlMap );
+	/**
+	 * Return all the fragment names.  You can pass `bodyFirst: true` in
+	 * cases where the order of fragments matters, which will ensure that
+	 * the first element is self::BODY_FRAGMENT (if it exists in this
+	 * ContentHolder).
+	 * @param bool $bodyFirst Pass true to get a repeatable sorted list
+	 *  of fragments with the body fragment first.
+	 * @return list<string>
+	 */
+	public function getFragmentNames( bool $bodyFirst = false ): array {
+		$names = array_keys( $this->domFormat ? $this->domMap : $this->htmlMap );
+		// Just in case someone uses a numeric fragment name, make sure the
+		// result is a string.
+		$names = array_map( strval( ... ), $names );
+		if ( $bodyFirst ) {
+			// Sort names so that the fragment name order is reproducible
+			sort( $names );
+			// Now put BODY_FRAGMENT first, if it was present.
+			$idx = array_search( self::BODY_FRAGMENT, $names );
+			if ( $idx !== false ) {
+				array_splice( $names, 0, 0, array_splice( $names, $idx, 1 ) );
+			}
+		}
+		return $names;
 	}
 
 	/**

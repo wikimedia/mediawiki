@@ -22,7 +22,8 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
  *
  * @internal
  */
-abstract class ContentDOMTransformStage extends OutputTransformStage {
+abstract class ContentDOMTransformStage extends OutputTransformStage
+	implements DOMTransformStage {
 
 	public function __construct(
 		ServiceOptions $options,

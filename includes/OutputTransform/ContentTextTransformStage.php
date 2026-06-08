@@ -14,7 +14,8 @@ use Psr\Log\LoggerInterface;
  * transform() method (either directly by inheritance or by calling them in the overloaded method).
  * @internal
  */
-abstract class ContentTextTransformStage extends OutputTransformStage {
+abstract class ContentTextTransformStage extends OutputTransformStage
+	implements TextTransformStage {
 
 	public function __construct(
 		ServiceOptions $options,

@@ -9,9 +9,11 @@ use MediaWiki\Parser\ParserOutput;
 use Psr\Log\LoggerInterface;
 
 /**
- * Classes implementing the OutputTransformStage aim at being added to a pipeline of transformations that transform
- * a ParserOutput. The argument ParserOutput can explicitly be modified in place; ensuring that cached objects
- * do not suffer from side effects is the caller's (typically the pipeline's) responsibility.
+ * Classes extending OutputTransformStage are typically added to a
+ * pipeline of transformations that transform a ParserOutput. The
+ * argument ParserOutput can explicitly be modified in place; ensuring
+ * that cached objects do not suffer from side effects is the caller's
+ * (typically the pipeline's) responsibility.
  * @unstable
  */
 abstract class OutputTransformStage {
@@ -57,12 +59,4 @@ abstract class OutputTransformStage {
 	 * @unstable
 	 */
 	abstract public function transform( ParserOutput $po, ParserOptions $popts, array &$options ): ParserOutput;
-
-	/**
-	 * Reset the stage. Some stages (e.g. DeduplicateStyles) benefit from keeping a state between the different
-	 * fragments that they transform; but that state should still be reset between two invocations of the pipeline. This
-	 * method is called on each stage at the beginning of OutputTransformPipeline::run to ensure that this is the case.
-	 */
-	public function reset(): void {
-	}
 }

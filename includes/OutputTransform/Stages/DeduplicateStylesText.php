@@ -3,37 +3,34 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\OutputTransform\Stages;
 
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\HtmlHelper;
-use MediaWiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\OutputTransform\OutputTransformStage;
+use MediaWiki\OutputTransform\TextTransformStage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use Psr\Log\LoggerInterface;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
 use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
 
 /**
  * Generates a list of unique style links
+ *
+ * This is a text transform but uses OutputTransformStage so that
+ * we can maintain some state between fragments.
+ *
  * @internal
  */
-class DeduplicateStylesText extends ContentTextTransformStage {
-	private array $seen = [];
-
-	public function __construct(
-		ServiceOptions $options,
-		LoggerInterface $logger,
-	) {
-		parent::__construct( $options, $logger, transformBodyOnly: false );
-	}
+class DeduplicateStylesText extends OutputTransformStage
+	implements TextTransformStage {
 
 	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return $options['deduplicateStyles'] ?? true;
 	}
 
-	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
-		$isParsoidContent = $po->getContentHolder()->isParsoidContent();
+	public function transform( ParserOutput $po, ParserOptions $popts, array &$options ): ParserOutput {
+		$contentHolder = $po->getContentHolder();
+		$isParsoidContent = $contentHolder->isParsoidContent();
+		$seen = [];
 
-		$seen = $this->seen;
 		$transform = static function ( $fragment ) use ( &$seen, $isParsoidContent ) {
 			return HtmlHelper::modifyElements(
 				$fragment,
@@ -63,26 +60,30 @@ class DeduplicateStylesText extends ContentTextTransformStage {
 				$isParsoidContent
 			);
 		};
-
-		if ( !$isParsoidContent ) {
+		if ( $isParsoidContent ) {
+			$doTransform = $transform;
+		} else {
 			// Optimization: Only transform possible style nodes to avoid having to tokenize the entire output,
 			// which is expensive for large pages (T394059).
 			// This is unsafe to do for Parsoid content, since the naïve regex below might match encoded style
 			// tags within data-parsoid attribute values, so only apply it to legacy parser output.
 			// Parsoid content transformations will be further optimized in T394005.
-			$res = preg_replace_callback(
+			$doTransform = fn ( string $text ) => preg_replace_callback(
 				'#<style\s+([^>]*data-mw-deduplicate\s*=[\'"][^>]*)>.*?</style>#s',
 				static fn ( array $matches ) => $transform( $matches[0] ),
 				$text
 			);
-		} else {
-			$res = $transform( $text );
 		}
-		$this->seen = $seen;
-		return $res;
-	}
 
-	public function reset(): void {
-		$this->seen = [];
+		// Do body fragment first, since that will be the canonical location
+		// of the style
+		$fragmentNames = $contentHolder->getFragmentNames( bodyFirst: true );
+		foreach ( $fragmentNames as $name ) {
+			$text = $contentHolder->getAsHtmlString( $name );
+			'@phan-var string $text';
+			$text = $doTransform( $text );
+			$contentHolder->setAsHtmlString( $name, $text );
+		}
+		return $po;
 	}
 }

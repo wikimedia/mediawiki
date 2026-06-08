@@ -24,9 +24,9 @@ class ContentHolderTransformStage extends OutputTransformStage {
 		ServiceOptions $options,
 		LoggerInterface $logger,
 		/** The HTML transform. */
-		private ContentTextTransformStage $textTransform,
+		private OutputTransformStage&TextTransformStage $textTransform,
 		/** The DOM transform. */
-		private ContentDOMTransformStage $domTransform,
+		private OutputTransformStage&DOMTransformStage $domTransform,
 		/**
 		 * True if only one of $textTransform and $domTransform are expected to apply;
 		 * false if both transforms are equivalent and either can be selected depending
@@ -55,10 +55,5 @@ class ContentHolderTransformStage extends OutputTransformStage {
 			$po->getContentHolder()->preferDom();
 		return $useDom ? $this->domTransform->transform( $po, $popts, $options ) :
 			$this->textTransform->transform( $po, $popts, $options );
-	}
-
-	public function reset(): void {
-		$this->domTransform->reset();
-		$this->textTransform->reset();
 	}
 }
