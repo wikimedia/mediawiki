@@ -453,7 +453,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$keys = array_combine( $keys, $keys );
 		$fields = array_intersect_key( $queryInfo['fields'], $keys ) + $keys;
 
-		// assertSelect() fails unless the orders match.
+		// assertResultSet() fails unless the orders match.
 		ksort( $fields );
 		ksort( $row );
 

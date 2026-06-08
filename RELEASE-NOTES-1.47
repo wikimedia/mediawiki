@@ -235,6 +235,8 @@ because of Phabricator reports.
   with your string.
 * The ParserOptionsRegister hook has been deprecated and replaced by
   ParserOptionsDefaults.
+* MediaWikiIntegrationTestCase::assertSelect() has been deprecated,
+  use MediaWikiIntegrationTestCase::newSelectQueryBuilder() instead.
 * …
 
 === Other changes in 1.47 ===

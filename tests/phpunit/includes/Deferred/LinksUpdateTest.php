@@ -810,7 +810,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$po->setUnsortedPageProperty( "unsorted", 33 );
 		$expected[] = [ "unsorted", "33", null ];
 
-		// Note that the ::assertSelect machinery will sort by the columns
+		// Note that the ::assertResultSet machinery will sort by the columns
 		// provided in $fields; in our case we should sort by property name
 		usort( $expected, static fn ( $a, $b ): int => $a[0] <=> $b[0] );
 

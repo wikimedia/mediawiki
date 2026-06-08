@@ -2331,6 +2331,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * This method requires database support, which can be enabled with "@group Database".
 	 *
 	 * @since 1.20
+	 * @deprecated Since 1.47 Use $this->newSelectQueryBuilder()->...->assertResultSet() instead
 	 *
 	 * @param string|array $table The table(s) to query
 	 * @param string|array $fields The columns to include in the result (and to sort by)
@@ -2342,6 +2343,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected function assertSelect(
 		$table, $fields, $condition, array $expectedRows, array $options = [], array $join_conds = []
 	) {
+		wfDeprecated( __METHOD__, '1.47' );
 		if ( !self::needsDB() ) {
 			throw new LogicException( 'When testing database state, the test must use @group Database.' );
 		}
