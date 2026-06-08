@@ -63,4 +63,8 @@ class DeduplicateStylesDOM extends ContentDOMTransformStage {
 		$this->seen = $seen;
 		return $df;
 	}
+
+	public function reset(): void {
+		$this->seen = [];
+	}
 }
