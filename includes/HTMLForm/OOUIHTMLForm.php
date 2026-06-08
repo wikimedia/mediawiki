@@ -254,6 +254,9 @@ class OOUIHTMLForm extends HTMLForm {
 		// if there's no header, don't create an (empty) LabelWidget, simply use a placeholder
 		if ( $this->mHeader ) {
 			$element = new \OOUI\LabelWidget( [ 'label' => new \OOUI\HtmlSnippet( $this->mHeader ) ] );
+			// In case the form header contains any form elements, avoid treating the entire header
+			// as a clickable label (T428359). Maybe it shouldn't be a `<label>` in the first place…
+			$element->setAttributes( [ 'for' => '' ] );
 		} else {
 			$element = new \OOUI\Widget( [] );
 		}
