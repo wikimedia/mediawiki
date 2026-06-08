@@ -306,6 +306,7 @@
 	"apihelp-login-example-login": "Oturum açın.",
 	"apihelp-logout-summary": "Oturumu kapatın ve oturum verilerini temizleyin.",
 	"apihelp-logout-example-logout": "Geçerli kullanıcının oturumunu kapatın.",
+	"apihelp-logout-param-global": "Kullanıcıyı yalnızca geçerli cihazı yerine tüm cihazlarından çıkış yaptırır.",
 	"apihelp-managetags-summary": "Değişiklik etiketleriyle ilgili yönetim görevlerini gerçekleştirin.",
 	"apihelp-managetags-param-operation": "Hangi işlemin yapılacağı:",
 	"apihelp-managetags-paramvalue-operation-create": "Manuel kullanım için yeni bir değişiklik etiketi oluştur.",

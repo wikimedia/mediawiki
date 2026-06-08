@@ -157,7 +157,7 @@
 	"imagemaxsize": "파일 설명 페이지의 그림 크기 제한:",
 	"thumbsize": "섬네일 크기:",
 	"thumbsize-small": "작게",
-	"thumbsize-regular": "기본",
+	"thumbsize-regular": "보통",
 	"thumbsize-large": "크게",
 	"thumbsize-help": "일부 사용자는 기본보다 작거나 큰 섬네일을 선호할 수 있습니다. 기본 크기는 $1 픽셀입니다.",
 	"prefs-diffs": "차이",

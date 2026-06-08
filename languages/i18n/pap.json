@@ -1006,6 +1006,7 @@
 	"confirmemail_loggedin": "Bo e-mail adrès ta konfirmá.",
 	"confirmemail_subject": "{{SITENAME}}: Konfirmashon di e-mail adrès",
 	"confirmemail_body": "Un hende, probablemente abo, di IP adrès $1, a registrá un kuenta \"$2\" ku e email adrès aki riba {{SITENAME}}.\n\nPa konfirmá ku e kuenta aki en berdat ta di bo i pa aktivá funshon di email riba {{SITENAME}}, habri e link aki den bo browser:\n\n$3\n\nSi bo *no* registrá e kuenta, sigui e link aki pa kanselá e konfirmashon di email adrès:\n\n$5\n\nE kódigo di konfirmashon aki lo kaduká riba $4.",
+	"watchlist-expiry-options": "Pèrmanènt:infinito,1 siman:1 week,1 luna:1 month,3 luna:3 months,6 luna:6 months,1 aña:1 year",
 	"imgmultipageprev": "← página anterior",
 	"imgmultipagenext": "siguiente página →",
 	"imgmultigo": "OK!",

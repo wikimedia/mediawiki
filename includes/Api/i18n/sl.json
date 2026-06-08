@@ -286,6 +286,7 @@
 	"apihelp-login-example-login": "Prijava.",
 	"apihelp-logout-summary": "Odjava in počiščenje podatkov seje.",
 	"apihelp-logout-example-logout": "Odjava trenutnega uporabnika.",
+	"apihelp-logout-param-global": "Odjava uporabnika iz vseh naprav (namesto samo iz trenutne naprave)",
 	"apihelp-managetags-summary": "Izvajanje nalog upravljanja v zvezi s spremembami oznak.",
 	"apihelp-managetags-param-operation": "Katero dejanje naj se izvede:",
 	"apihelp-managetags-paramvalue-operation-create": "Ustvarite novo oznako spremembe za ročno uporabo.",

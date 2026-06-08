@@ -176,7 +176,7 @@
 	"imagemaxsize": "ファイルページでの画像のサイズ制限:",
 	"thumbsize": "サムネイルの大きさ:",
 	"thumbsize-small": "小",
-	"thumbsize-regular": "標準",
+	"thumbsize-regular": "中",
 	"thumbsize-large": "大",
 	"thumbsize-help": "一部の利用者は標準より小さいか、あるいは大きいサムネイルを好むかもしれません。標準サイズは$1ピクセルです。",
 	"prefs-diffs": "差分",

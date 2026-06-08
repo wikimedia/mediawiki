@@ -325,6 +325,7 @@
 	"listgrouprights-namespaceprotection-header": "Ad fəzası məhdudiyyətləri",
 	"listgrouprights-namespaceprotection-namespace": "Adlar fəzası",
 	"listgrouprights-namespaceprotection-restrictedto": "İstifadəçiyə redaktə etməyə icazə verən hüquq(lar)",
+	"restrictedgroups-autodemotion-log-reason": "{{GENDER:$1|İstifadəçi}} {{PLURAL:$2|məhdud qrupdan|məhdud qruplardan}} avtomatik çıxarılır",
 	"listgrants": "İcazələr",
 	"listgrants-summary": "Aşağıda istifadəçi hüquqlarına girişi olan icazələrin siyahısı verilmişdir. İstifadəçilər öz hesablarından istifadə etmək üçün tətbiqlərə icazə verə bilərlər, lakin istifadəçinin tətbiqə verdiyi icazələrə əsaslanan məhdud icazələrlə. İstifadəçinin adından fəaliyyət göstərən proqram əslində istifadəçinin malik olmadığı hüquqlardan istifadə edə bilməz.\nFərdi hüquqlar haqqında [[{{MediaWiki:Listgrouprights-helppage}}|əlavə məlumat]] ola bilər.",
 	"listgrants-grant": "İcazə",

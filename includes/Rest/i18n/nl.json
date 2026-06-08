@@ -141,7 +141,7 @@
 	"rest-param-desc-language-links-title": "Paginatitel. Om de titel te formatteren, vervangt u spaties door underscores en codeert u het resultaat vervolgens met URL-codering (voorbeeld: Steller%27s_jay). In het API-kladblok vervangt u spaties door underscores, maar codeert u het resultaat niet met URL-codering (voorbeeld: Steller's_jay).",
 	"rest-param-desc-media-links-title": "Paginatitel. Om de titel op te maken, vervangt u spaties door underscores en codeert u het resultaat vervolgens met URL-codering (voorbeeld: Steller%27s_jay). In het API-kladblok vervangt u spaties door underscores, maar codeert u het resultaat niet met URL-codering (voorbeeld: Steller's_jay).",
 	"rest-param-desc-media-file-title": "Bestandstitel. Om de titel te formatteren, vervangt u spaties door underscores en codeert u het resultaat vervolgens met URL-codering (voorbeeld: File%3AFennec_Fox.jpg). In het API-kladblok vervangt u spaties door underscores, maar codeert u het resultaat niet met URL-codering (voorbeeld: File:Fennec_Fox.jpg).",
-	"rest-param-desc-media-description-url": "Url voor de pagina met een beschrijving van het bestand, inclusief licentie-informatie en andere metadata. De url kan beginnen met https of //.",
+	"rest-param-desc-media-description-url": "Url voor de pagina met een beschrijving van het bestand, inclusief licentie-informatie en andere metagegevens. De url kan beginnen met https of //.",
 	"rest-param-desc-media-latest": "Informatie over de laatste versie van het bestand",
 	"rest-param-desc-media-latest-timestamp": "Tijdstip laatste wijziging in ISO 8601-indeling",
 	"rest-param-desc-media-latest-user": "Informatie over de gebruiker die het bestand heeft geüpload",

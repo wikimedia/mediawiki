@@ -6,6 +6,7 @@
 			"Luky001",
 			"TomášPolonec",
 			"Vegetator",
+			"Wizzard",
 			"Yardom78"
 		]
 	},
@@ -24,7 +25,7 @@
 	"botpasswords-label-delete": "Vymazať",
 	"botpasswords-label-resetpassword": "Obnoviť heslo",
 	"botpasswords-label-grants": "Príslušné oprávnenia:",
-	"botpasswords-help-grants": "Pridelenia poskytujú prístup k uvedeným oprávneniam, ktoré už váš používateľský účet má. Zaškrtnutím pridelenia tu nezíska váš účet akékoľvek práva, ktoré by inak nemal. Viac informácií nájdete v [[Special:ListGrants|tabuľke oprávnení]].",
+	"botpasswords-help-grants": "Pridelenia umožňujú prístup k právam, ktoré váš používateľský účet už má. Zapnutie pridelenia tu neposkytuje prístup k žiadnym právam, ktoré by váš účet inak nemal. Viac informácií nájdete v [[Special:ListGrants|tabuľke pridelení]].\n\nRizikové pridelenia sú označené. Neoznačené pridelenia sa pri únose bota niekým so zlým úmyslom zvyčajne ťažko zneužívajú. Pridelenia s rizikom vandalizmu (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) sa dajú použiť na narušenie, ktorého náprava stojí veľa úsilia. Pridelenia s bezpečnostným rizikom (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) môžu spôsobiť trvalé škody (napríklad krádež súkromných dát). Interné pridelenia (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) zvyčajne používa iba prevádzkovateľ webu. Nežiadajte prosím o rizikové pridelenia, pokiaľ ich naozaj nepotrebujete.",
 	"botpasswords-label-grants-column": "Udelené",
 	"botpasswords-bad-appid": "Názov bota „$1“ nie je platný.",
 	"botpasswords-toolong-restrictions": "Bolo zadaných príliš veľa IP adries alebo rozsahov.",

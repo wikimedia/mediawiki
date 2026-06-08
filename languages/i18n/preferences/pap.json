@@ -28,7 +28,7 @@
 	"prefs-memberingroupsdisabled": "{{GENDER:$2|Desaktivá}} {{PLURAL:$1|grupo|gruponan}}:",
 	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|Bo}} no ta kumpli ku [[$3|kondishonnan]] mas pa ta miembro di {{PLURAL:$1|e grupo aki|e gruponan aki}} i p'esei bo no por usa derechonan otorgá dor {{PLURAL:$1|dje|di nan}}.",
 	"prefs-edits": "Kantidat di adaptashon:",
-	"prefs-registration": "Tempu di registrashon:",
+	"prefs-registration": "Fecha di registrashon:",
 	"yourrealname": "Nòmber berdadero:",
 	"prefs-help-realname": "Nomber berdadero ta opshonal.\nSi suminstrá, e por wòrdu usá atributivamente pa bo trabou.",
 	"yourpassword": "Kontraseña",

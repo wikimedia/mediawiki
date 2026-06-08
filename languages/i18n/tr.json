@@ -674,7 +674,7 @@
 	"missingcommenttext": "Lütfen bir yorum yazın.",
 	"missingcommentheader": "<strong>Uyarı:</strong> Bu yorum için bir konu girmediniz.\nEğer \"$1\" seçeneğine tekrar tıklarsanız, düzenlemeniz konu olmadan kaydedilecektir.",
 	"summary-preview": "Değişiklik özetinin önizlemesi:",
-	"autocomment-top": "(yukarı)",
+	"autocomment-top": "(giriş)",
 	"previewerrortext": "Yaptığınız değişikliklerin önizlemesi sırasında bir hata oluştu.",
 	"blockedtitle": "Kullanıcı engellendi",
 	"blockedtext": "<strong>Kullanıcı adı veya IP adresiniz engellenmiştir.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\n[[Special:Preferences|Tercihler]] ögenizde geçerli bir e-posta adresi belirtilmişse ve bu adresi kullanmanız engellenmediyse \"{{int:emailuser}}\" özelliğini kullanabilirsiniz.\n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
