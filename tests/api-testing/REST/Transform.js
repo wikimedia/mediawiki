@@ -163,6 +163,10 @@ describe( '/transform/ and related endpoints', () => {
 				.expect( status200 )
 				.expect( ( res ) => {
 					validateDoc( domino.createDocument( res.text ), 'H2', true );
+					// The default (edit) flavor is a full document carrying
+					// inline data-parsoid attributes.
+					res.text.should.match( /<html[\s>]/ );
+					res.text.should.match( /\bdata-parsoid\s*=/ );
 					validateSpec( res );
 				} )
 				.end( done );
@@ -1143,6 +1147,34 @@ describe( '/transform/ and related endpoints', () => {
 						.expect( validHtmlResponse( ( doc ) => {
 							doc.body.textContent.should.equal( 'abvg abcd x' );
 						} ) )
+						.expect( ( res ) => {
+							// Variant conversion must keep the full-document shape
+							// and the edit flavor's inline data-parsoid (both used
+							// to be lost under conversion).
+							res.text.should.match( /<html[\s>]/ );
+							res.text.should.match( /\bdata-parsoid\s*=/ );
+						} )
+						.end( done );
+				} );
+
+				it( 'should keep body_only output body-only under variant conversion (html)', ( done ) => {
+					client.req
+						.post( endpointPrefix + '/v1/transform/wikitext/to/html' )
+						.set( 'Accept-Language', srLatn )
+						.set( 'Content-Language', 'sr' )
+						.send( {
+							wikitext: 'абвг abcd x',
+							body_only: 1
+						} )
+						.expect( status200 )
+						.expect( ( res ) => {
+							// body_only must stay body-only even when variant
+							// conversion runs (it used to re-wrap into a full doc).
+							res.text.should.not.match( /<body/ );
+							res.text.should.match( /<p/ );
+							// ...and conversion still happened (абвг -> abvg).
+							res.text.should.match( /abvg/ );
+						} )
 						.end( done );
 				} );
 
@@ -2478,6 +2510,8 @@ describe( '/transform/ and related endpoints', () => {
 
 			assert.deepEqual( status1, 200, text1 );
 			assert.ok( headers1.etag, 'ETag header' );
+			// The stashed rendering is a full document.
+			assert.match( text1, /<html[\s/>]/ );
 
 			// The request above should have stashed a rendering associated with the ETag it
 			// returned. Pass the ETag in the If-Match header.

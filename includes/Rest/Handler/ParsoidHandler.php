@@ -19,6 +19,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig;
@@ -778,7 +779,14 @@ abstract class ParsoidHandler extends Handler {
 			// Once the OutputTransform framework lands, we might revisit this.
 
 			$response = $this->getResponseFactory()->create();
-			$response->getBody()->write( $out->getContentHolderText() );
+			$html = $out->getContentHolderText();
+			if ( $attribs['body_only'] ) {
+				// Language-variant conversion (Accept-Language) re-wraps the
+				// fragment into a full document, so a body_only request could
+				// come back as a full document. Strip the wrapper to honor it.
+				$html = Parser::extractBody( $html );
+			}
+			$response->getBody()->write( $html );
 
 			$helper->putHeaders( $response, true );
 

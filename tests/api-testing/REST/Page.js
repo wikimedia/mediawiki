@@ -375,6 +375,8 @@ describe( 'Page Source', () => {
 			} );
 
 			assert.match( text, /esttay anguagelay onversioncay/ );
+			// Variant conversion must not change the full-document shape.
+			assert.match( text, /<html\b/ );
 			assert.match( headers[ 'content-type' ], /^text\/html/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
 			assert.match( headers[ 'content-language' ], /en-x-piglatin/i );
@@ -387,6 +389,8 @@ describe( 'Page Source', () => {
 			} );
 
 			assert.match( text, /Подвлачење линкова:/ );
+			// Variant conversion must not change the full-document shape.
+			assert.match( text, /<html\b/ );
 			assert.match( headers[ 'content-type' ], /^text\/html/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
 			assert.match( headers[ 'content-language' ], /sh-cyrl/i );
@@ -498,12 +502,14 @@ describe( 'Page Source', () => {
 		} );
 		it( 'Should perform variant conversion', async () => {
 			await mindy.edit( variantPage, { text: '<p>test language conversion</p>' } );
-			const { headers, text } = await client.get( `${ pathPrefix }/page/${ variantPage }/html`, null, {
+			const { headers, body } = await client.get( `${ pathPrefix }/page/${ variantPage }/with_html`, null, {
 				'accept-language': 'en-x-piglatin'
 			} );
 
-			assert.match( text, /esttay anguagelay onversioncay/ );
-			assert.match( headers[ 'content-type' ], /^text\/html/ );
+			assert.match( body.html, /esttay anguagelay onversioncay/ );
+			// Variant conversion must not change the full-document shape.
+			assert.match( body.html, /<html\b/ );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
 			assert.match( headers.etag, /en-x-piglatin/i );
 

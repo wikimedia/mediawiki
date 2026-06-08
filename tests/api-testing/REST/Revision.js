@@ -155,12 +155,14 @@ describe( 'Revision', () => {
 		} );
 
 		it( 'should perform variant conversion', async () => {
-			const { headers, text } = await client.get( `${ pathPrefix }/revision/${ newrevid }/with_html`, null, {
+			const { headers, body, text } = await client.get( `${ pathPrefix }/revision/${ newrevid }/with_html`, null, {
 				'accept-language': 'en-x-piglatin'
 			} );
 
 			assert.match( text, /Ellohay/ );
 			assert.match( text, /Orldway/ );
+			// Variant conversion must not change the full-document shape.
+			assert.match( body.html, /<html\b/ );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
 			assert.match( headers.etag, /en-x-piglatin/i );
@@ -205,6 +207,8 @@ describe( 'Revision', () => {
 
 			assert.match( text, /Ellohay/ );
 			assert.match( text, /Orldway/ );
+			// Variant conversion must not change the full-document shape.
+			assert.match( text, /<html\b/ );
 			assert.match( headers[ 'content-type' ], /^text\/html/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
 			assert.match( headers[ 'content-language' ], /en-x-piglatin/i );

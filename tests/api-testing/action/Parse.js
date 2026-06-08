@@ -23,6 +23,19 @@ describe( 'The parse action', () => {
 		} );
 
 		assert.include( result.parse.text[ '*' ], 'This is a <i>test</i>' );
+		// The parsed HTML is a body fragment, not a full <html> document.
+		assert.notMatch( result.parse.text[ '*' ], /<html[\s/>]/i );
+	} );
+
+	it( 'returns a body fragment (not a full document) when parsing with Parsoid', async () => {
+		const result = await alice.action( 'parse', {
+			page: pageTitle,
+			parser: 'parsoid'
+		} );
+
+		assert.include( result.parse.text[ '*' ], 'test' );
+		// Parsoid output via action=parse is a body fragment, not a full document.
+		assert.notMatch( result.parse.text[ '*' ], /<html[\s/>]/i );
 	} );
 
 	it( 'supports parsing text supplied as a parameter', async () => {

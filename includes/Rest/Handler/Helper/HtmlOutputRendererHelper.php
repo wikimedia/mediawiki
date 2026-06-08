@@ -507,17 +507,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 				->increment();
 		}
 
-		if ( $this->flavor === 'edit' ) {
-			$pb = $this->getPageBundle();
-
-			// Inject data-parsoid and data-mw attributes.
-			$parserOutput->setContentHolderText( $pb->toInlineAttributeHtml(
-				siteConfig: $this->parsoidSiteConfig
-			) );
-		}
-
-		// Check if variant conversion has to be performed
+		// Check if variant conversion has to be performed.
 		// NOTE: Variant conversion is performed on the fly, and kept outside the stash.
+		// It runs before the 'edit' inlining below: variant conversion rewrites
+		// the data-parsoid map, so inlining first would lose those attributes.
 		if ( $this->targetLanguage ) {
 			$languageVariantConverter = $this->htmlTransformFactory->getLanguageVariantConverter( $this->page );
 			$parserOutput = $languageVariantConverter->convertParserOutputVariant(
@@ -525,6 +518,18 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 				$this->targetLanguage,
 				$this->sourceLanguage
 			);
+		}
+
+		if ( $this->flavor === 'edit' ) {
+			// Inject data-parsoid and data-mw attributes, from the
+			// (possibly variant-converted) output. Build the bundle from
+			// $parserOutput directly rather than via getPageBundle(), which
+			// would run variant conversion a second time off the unconverted
+			// parse.
+			$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput( $parserOutput );
+			$parserOutput->setContentHolderText( $pb->toInlineAttributeHtml(
+				siteConfig: $this->parsoidSiteConfig
+			) );
 		}
 
 		$this->processedParserOutput = $parserOutput;
