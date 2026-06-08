@@ -30,7 +30,7 @@ class Emailer implements IEmailer {
 	 *
 	 * This function will perform a direct (authenticated) login to
 	 * a SMTP Server to use for mail relaying if 'wgSMTP' specifies an
-	 * array of parameters. It requires PEAR:Mail to do that.
+	 * array of parameters. It uses symfony/mailer to do that.
 	 * Otherwise it just uses the standard PHP 'mail' function.
 	 *
 	 * @inheritDoc

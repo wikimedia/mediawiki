@@ -11,9 +11,6 @@
 namespace MediaWiki\Mail;
 
 use Exception;
-use Mail;
-use Mail_mime;
-use Mail_smtp;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -22,8 +19,13 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
-use PEAR;
 use RuntimeException;
+use Symfony\Component\Mailer\Envelope;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
+use Symfony\Component\Mime\Address as SymfonyAddress;
+use Symfony\Component\Mime\Email as SymfonyEmail;
+use Symfony\Component\Mime\RawMessage;
 
 /**
  * @defgroup Mail Mail
@@ -40,25 +42,31 @@ class UserMailer {
 	private static $mErrorString;
 
 	/**
-	 * Send mail using a PEAR mailer
+	 * Build an SMTP transport from the $wgSMTP configuration array.
 	 *
-	 * @param Mail_smtp $mailer
-	 * @param string[]|string $dest
-	 * @param array $headers
-	 * @param string $body
-	 *
-	 * @return Status
+	 * @param array $smtp The $wgSMTP configuration array
 	 */
-	protected static function sendWithPear( $mailer, $dest, $headers, $body ) {
-		$mailResult = $mailer->send( $dest, $headers, $body );
+	private static function getSmtpTransport( array $smtp ): EsmtpTransport {
+		$host = $smtp['host'] ?? 'localhost';
+		$port = (int)( $smtp['port'] ?? 25 );
 
-		// Based on the result return an error string,
-		if ( PEAR::isError( $mailResult ) ) {
-			wfDebug( "PEAR::Mail failed: " . $mailResult->getMessage() );
-			return Status::newFatal( 'pear-mail-error', $mailResult->getMessage() );
-		} else {
-			return Status::newGood();
+		// PEAR's Net_SMTP accepted "ssl://" or "tls://" scheme prefixes on the
+		// host to request an encrypted connection. Map that onto Symfony's
+		// $tls flag so existing $wgSMTP['host'] values keep working.
+		$tls = false;
+		if ( preg_match( '!^(?:tls|ssl)://(.+)$!', $host, $m ) ) {
+			$tls = true;
+			$host = $m[1];
 		}
+
+		$transport = new EsmtpTransport( $host, $port, $tls );
+
+		if ( !empty( $smtp['auth'] ) ) {
+			$transport->setUsername( $smtp['username'] ?? '' );
+			$transport->setPassword( $smtp['password'] ?? '' );
+		}
+
+		return $transport;
 	}
 
 	/**
@@ -87,7 +95,7 @@ class UserMailer {
 	 *
 	 * This function perform a direct (authenticated) login to a SMTP server,
 	 * to use for mail relaying, if 'wgSMTP' specifies an array of parameters.
-	 * This uses the pear/mail package.
+	 * This uses the symfony/mailer package.
 	 *
 	 * Otherwise it uses the standard PHP 'mail' function, which in turn relies
 	 * on the server's sendmail configuration.
@@ -237,9 +245,8 @@ class UserMailer {
 		 *  PHP mail() first argument is the mail receiver. The argument is
 		 *  used as a recipient destination and as a To header.
 		 *
-		 *  PEAR mailer has a recipient argument which is only used to
-		 *  send the mail. If no To header is given, PEAR will set it to
-		 *  to 'undisclosed-recipients:'.
+		 *  The SMTP mailer takes the recipient from the envelope, which is
+		 *  only used to send the mail. The To header is set explicitly below.
 		 *
 		 *  NOTE: To: is for presentation, the actual recipient is specified
 		 *  by the mailer using the Rcpt-To: header.
@@ -248,7 +255,7 @@ class UserMailer {
 		 *  PHP mail() second argument to pass the subject, passing a Subject
 		 *  as an additional header will result in a duplicate header.
 		 *
-		 *  PEAR mailer should be passed a Subject header.
+		 *  The SMTP mailer should be passed a Subject header.
 		 *
 		 * -- hashar 20120218
 		 */
@@ -283,10 +290,6 @@ class UserMailer {
 		$headers['List-Unsubscribe'] = '<' . SpecialPage::getTitleFor( 'Preferences' )
 			->getFullURL( '', false, PROTO_CANONICAL ) . '>';
 
-		// Line endings need to be different on Unix and Windows due to
-		// the bug described at https://core.trac.wordpress.org/ticket/2603
-		$endl = PHP_EOL;
-
 		if ( is_array( $body ) ) {
 			// we are sending a multipart message
 			wfDebug( "Assembling multipart mime email" );
@@ -294,15 +297,23 @@ class UserMailer {
 				$body['text'] = str_replace( "\n", "\r\n", $body['text'] );
 				$body['html'] = str_replace( "\n", "\r\n", $body['html'] );
 			}
-			$mime = new Mail_mime( [
-				'eol' => $endl,
-				'text_charset' => 'UTF-8',
-				'html_charset' => 'UTF-8'
-			] );
-			$mime->setTXTBody( $body['text'] );
-			$mime->setHTMLBody( $body['html'] );
-			$body = $mime->get(); // must call get() before headers()
-			$headers = $mime->headers( $headers );
+			// Build a multipart/alternative body (text + HTML) with symfony/mime,
+			// then merge the generated content headers (Content-Type with the
+			// MIME boundary, Content-Transfer-Encoding, ...) into the header set,
+			// mirroring the old Mail_mime::headers() behaviour.
+			$email = ( new SymfonyEmail() )
+				->text( $body['text'] )
+				->html( $body['html'] );
+			$bodyPart = $email->getBody();
+			$body = $bodyPart->bodyToString();
+			foreach ( $bodyPart->getPreparedHeaders()->all() as $header ) {
+				$headers[$header->getName()] = $header->getBodyAsString();
+			}
+			// The body part only carries the Content-* headers; symfony/mailer
+			// normally emits MIME-Version when sending the whole message, which
+			// we bypass here by assembling headers ourselves. Add it manually so
+			// the message is a complete MIME document.
+			$headers['MIME-Version'] = '1.0';
 		} else {
 			// sending text only
 			if ( wfIsWindows() ) {
@@ -352,25 +363,39 @@ class UserMailer {
 			}
 			$recipient = $recipients[0];
 
-			// Create the mail object using the Mail::factory method
-			$mail_object = Mail::factory( 'smtp', $smtp );
-			if ( PEAR::isError( $mail_object ) ) {
-				wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() );
-				return Status::newFatal( 'pear-mail-error', $mail_object->getMessage() );
-			}
-			'@phan-var Mail_smtp $mail_object';
-
-			wfDebug( "Sending mail via PEAR::Mail" );
+			wfDebug( "Sending mail via SMTP" );
 
 			$headers['Subject'] = self::quotedPrintable( $subject );
 
 			// Shows recipient its email using To:
 			$headers['To'] = $recipient;
 
-			$status = self::sendWithPear( $mail_object, $recipient, $headers, $body );
-			if ( !$status->isOK() ) {
-				return $status;
+			// The headers and body have already been assembled and run through
+			// the UserMailerTransformMessage and AlternateUserMailer hooks, so
+			// the raw RFC 822 message is sent verbatim rather than rebuilt.
+			$rawHeaders = '';
+			foreach ( $headers as $name => $value ) {
+				$rawHeaders .= "$name: $value\r\n";
 			}
+			$rawMessage = new RawMessage( $rawHeaders . "\r\n" . $body );
+
+			// The envelope sets the SMTP MAIL FROM (Return-Path) and RCPT TO
+			// explicitly; the recipient argument is used purely for delivery,
+			// matching the previous PEAR mailer behaviour.
+			$envelope = new Envelope(
+				new SymfonyAddress( $returnPath ),
+				[ new SymfonyAddress( $to[0]->address ) ]
+			);
+			try {
+				self::getSmtpTransport( $smtp )->send( $rawMessage, $envelope );
+			} catch ( TransportExceptionInterface $e ) {
+				LoggerFactory::getInstance( 'usermailer' )->debug(
+					'SMTP mail failed: {exception}',
+					[ 'exception' => $e ]
+				);
+				return Status::newFatal( 'smtp-mail-error', $e->getMessage() );
+			}
+
 			return Status::newGood();
 		} else {
 			// PHP mail()

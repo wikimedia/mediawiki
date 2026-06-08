@@ -14,7 +14,7 @@ use MediaWiki\Mail\MailAddress;
 interface AlternateUserMailerHook {
 	/**
 	 * This hook is called before mail is sent so that mail could be logged
-	 * (or something else) instead of using PEAR or PHP's mail().
+	 * (or something else) instead of using SMTP or PHP's mail().
 	 *
 	 * @since 1.35
 	 *

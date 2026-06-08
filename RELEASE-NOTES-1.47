@@ -99,6 +99,8 @@ For notes on 1.46.x and older releases, see HISTORY.
 ==== New external libraries ====
 
 * Added symfony/polyfill-php86 at 1.37.0.
+* Added symfony/mailer at 7.4.12.
+* Added symfony/mime at 7.4.12.
 * …
 
 ===== New development-only external libraries =====
@@ -125,6 +127,9 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 ==== Removed external libraries ====
 
+* Removed pear/mail, pear/mail_mime and pear/net_smtp (and their abandoned
+  transitive dependency pear/net_socket), replaced by symfony/mailer and
+  symfony/mime.
 * …
 
 === Bug fixes in 1.47 ===
@@ -198,6 +203,8 @@ because of Phabricator reports.
   has been removed.
 * The EditFilter hook, deprecated in 1.46, has been removed. Use
   EditFilterMergedContent or MultiContentSave instead.
+* The protected static method UserMailer::sendWithPear() has been removed
+  following the migration from PEAR Mail to symfony/mailer.
 * …
 
 === Deprecations in 1.47 ===

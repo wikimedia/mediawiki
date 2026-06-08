@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Mail;
 
 use Generator;
 use MediaWiki\Mail\MailAddress;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
@@ -26,14 +27,10 @@ class MailAddressTest extends MediaWikiIntegrationTestCase {
 		$ma = MailAddress::newFromUser( $user );
 		$this->assertInstanceOf( MailAddress::class, $ma );
 
-		// No setMwGlobals() in a unit test, need some manual logic
-		// Don't worry about messing with the actual value, MediaWikiUnitTestCase restores it
-		global $wgEnotifUseRealName;
-
-		$wgEnotifUseRealName = true;
+		$this->overrideConfigValue( MainConfigNames::EnotifUseRealName, true );
 		$this->assertEquals( '"Real name" <foo@bar.baz>', $ma->toString() );
 
-		$wgEnotifUseRealName = false;
+		$this->overrideConfigValue( MainConfigNames::EnotifUseRealName, false );
 		$this->assertEquals( '"UserName" <foo@bar.baz>', $ma->toString() );
 	}
 
@@ -60,10 +57,7 @@ class MailAddressTest extends MediaWikiIntegrationTestCase {
 		if ( wfIsWindows() ) {
 			$this->markTestSkipped( 'This test only works on non-Windows platforms' );
 		}
-		// No setMwGlobals() in a unit test, need some manual logic
-		// Don't worry about messing with the actual value, MediaWikiUnitTestCase restores it
-		global $wgEnotifUseRealName;
-		$wgEnotifUseRealName = $useRealName;
+		$this->overrideConfigValue( MainConfigNames::EnotifUseRealName, $useRealName );
 
 		$ma = new MailAddress( $address, $name, $realName );
 		$this->assertEquals( $expected, $ma->toString() );
