@@ -2725,9 +2725,29 @@ class LocalFile extends File {
 	 * @since 1.28
 	 */
 	public function acquireFileLock( $timeout = 0 ) {
-		return Status::wrap( $this->getRepo()->getBackend()->lockFiles(
+		$status = Status::wrap( $this->getRepo()->getBackend()->lockFiles(
 			[ $this->getPath() ], LockManager::LOCK_EX, $timeout
 		) );
+
+		if ( !$status->isOK() ) {
+			$logger = LoggerFactory::getInstance( 'LocalFile' );
+			if ( $status->hasMessage( 'lockmanager-fail-conflict' ) ) {
+				$errorKey = 'lockmanager-fail-conflict';
+			} else {
+				$messages = $status->getMessages( 'error' );
+				$errorKey = $messages ? $messages[0]->getKey() : 'unknown';
+			}
+			$logger->warning(
+				"Failed to lock '{file}'",
+				[
+					'file' => $this->name,
+					'error_key' => $errorKey,
+					'exception' => new RuntimeException()
+				]
+			);
+		}
+
+		return $status;
 	}
 
 	/**
@@ -2737,9 +2757,25 @@ class LocalFile extends File {
 	 * @since 1.28
 	 */
 	public function releaseFileLock() {
-		return Status::wrap( $this->getRepo()->getBackend()->unlockFiles(
+		$status = Status::wrap( $this->getRepo()->getBackend()->unlockFiles(
 			[ $this->getPath() ], LockManager::LOCK_EX
 		) );
+
+		if ( !$status->isOK() ) {
+			$logger = LoggerFactory::getInstance( 'LocalFile' );
+			$messages = $status->getMessages( 'error' );
+			$errorKey = $messages ? $messages[0]->getKey() : 'unknown';
+			$logger->error(
+				"Failed to unlock '{file}'",
+				[
+					'file' => $this->name,
+					'error_key' => $errorKey,
+					'exception' => new RuntimeException()
+				]
+			);
+		}
+
+		return $status;
 	}
 
 	/**
@@ -2801,6 +2837,7 @@ class LocalFile extends File {
 	 * @deprecated since 1.38 Use releaseFileLock(); hard-deprecated in 1.47
 	 */
 	public function unlock() {
+		wfDeprecated( __METHOD__, '1.47' );
 		if ( $this->locked ) {
 			wfDeprecated( __METHOD__, '1.38' );
 			--$this->locked;
@@ -2824,7 +2861,9 @@ class LocalFile extends File {
 	 * Clean up any dangling locks
 	 */
 	public function __destruct() {
-		$this->unlock();
+		if ( $this->locked ) {
+			$this->unlock();
+		}
 	}
 }
 
