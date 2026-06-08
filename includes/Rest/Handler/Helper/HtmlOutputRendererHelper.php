@@ -512,10 +512,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 				->increment();
 		}
 
-		// Check if variant conversion has to be performed.
+		// Check if variant conversion has to be performed
 		// NOTE: Variant conversion is performed on the fly, and kept outside the stash.
-		// It runs before the 'edit' inlining below: variant conversion rewrites
-		// the data-parsoid map, so inlining first would lose those attributes.
 		if ( $this->targetLanguage ) {
 			$languageVariantConverter = $this->htmlTransformFactory->getLanguageVariantConverter( $this->page );
 			$parserOutput = $languageVariantConverter->convertParserOutputVariant(
@@ -526,24 +524,36 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		}
 
 		if ( $this->flavor === 'edit' ) {
-			// Inject data-parsoid and data-mw attributes, from the
-			// (possibly variant-converted) output. Build the bundle from
-			// $parserOutput directly rather than via getPageBundle(), which
-			// would run variant conversion a second time off the unconverted
-			// parse.
+			// The 'edit' flavor inlines data-parsoid/data-mw attributes so the
+			// editor can round-trip.
 			$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-				$parserOutput, $this->parsoidSiteConfig, bodyOnly: false,
+				$parserOutput, $this->parsoidSiteConfig, bodyOnly: true
 			);
-			// T393295: This is setting the ContentHolder to a full document,
-			// but we could pass 'body_only' in the $options of
-			// ::toInlineAttributeHtml() (and bodyOnly above) to avoid this.
-			$parserOutput->setContentHolderText( $pb->toInlineAttributeHtml(
-				siteConfig: $this->parsoidSiteConfig
-			) );
+			$parserOutput->setContentHolder(
+				ContentHolder::createFromParsoidPageBundle(
+					$this->convertToInline( $pb ), $this->parsoidSiteConfig
+				)
+			);
 		}
 
 		$this->processedParserOutput = $parserOutput;
 		return $parserOutput;
+	}
+
+	private function convertToInline( HtmlPageBundle $pb ): HtmlPageBundle {
+		$fragments = [];
+		$html = $pb->toInlineAttributeHtml(
+			siteConfig: $this->parsoidSiteConfig,
+			fragments: $fragments
+		);
+		return new HtmlPageBundle(
+			html: $html,
+			counters: $pb->counters,
+			version: $pb->version,
+			headers: $pb->headers,
+			contentmodel: $pb->contentmodel,
+			fragments: $fragments,
+		);
 	}
 
 	/**
@@ -791,6 +801,12 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 				$this->targetLanguage,
 				$this->sourceLanguage
 			);
+		}
+
+		if ( $this->flavor === 'edit' ) {
+			// The 'edit' flavor inlines data-parsoid/data-mw attributes so the
+			// editor can round-trip.
+			$pb = $this->convertToInline( $pb );
 		}
 
 		return $pb;

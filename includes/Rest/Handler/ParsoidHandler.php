@@ -779,19 +779,16 @@ abstract class ParsoidHandler extends Handler {
 
 			$response = $this->getResponseFactory()->create();
 			if ( $attribs['body_only'] ) {
-				// Language-variant conversion (Accept-Language) re-wraps the
-				// fragment into a full document, so a body_only request could
-				// come back as a full document. ::getContentHolderText() will
-				// return body-only output.
-				$html = $out->getContentHolderText();
+				// body_only must yield body-only output. getContentHolderText()
+				// lazily strips a full-document wrapper, so it both honors
+				// body_only and keeps fixing the variant-conversion case (which
+				// re-wraps the fragment into a full document).
+				$response->getBody()->write( $out->getContentHolderText() );
 			} else {
-				// The full-document 'edit' flavor uses the raw accessor so it
-				// keeps its wrapper now that getContentHolderText() strips the
-				// <body> wrapper. (T393925)
-				$html = $out->getContentHolder()->getAsRawHtmlString();
-				'@phan-var string $html'; // not null
+				// The 'edit' flavor is a full document (with inline data-parsoid
+				// attributes); emit it from the page bundle.
+				$response->getBody()->write( $helper->getPageBundle()->html );
 			}
-			$response->getBody()->write( $html );
 
 			$helper->putHeaders( $response, true );
 

@@ -527,7 +527,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->setContentSource( 'hello {{world}}', CONTENT_MODEL_WIKITEXT );
 		$helper->setFlavor( 'edit' );
 
-		$htmlresult = $helper->getHtml()->getContentHolderText();
+		// The 'edit' flavor inlines data-parsoid into the full document, which
+		// is exposed via getPageBundle()->html (getHtml() is body-only).
+		$htmlresult = $helper->getPageBundle()->html;
 
 		$this->assertStringContainsString( 'edit', $helper->getETag() );
 
