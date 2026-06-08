@@ -113,7 +113,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * @param array $expectedOpts Expected options
 	 */
 	public function testDateFilterOptionProcessing( array $inputOpts, array $expectedOpts ) {
-		$this->assertArraySubmapSame(
+		$this->assertArrayContains(
 			$expectedOpts,
 			ContribsPager::processDateFilter( $inputOpts ),
 			"Matching date filter options"

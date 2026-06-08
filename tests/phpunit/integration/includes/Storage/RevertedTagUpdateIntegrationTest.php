@@ -392,7 +392,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 			$this->assertNotEmpty( $extraParams, 'change_tag.ct_params' );
 			$this->assertJson( $extraParams, 'change_tag.ct_params' );
 			$parsedParams = FormatJson::decode( $extraParams, true );
-			$this->assertArraySubmapSame(
+			$this->assertArrayContains(
 				[ 'revertId' => $revertRevId ],
 				$parsedParams,
 				'change_tag.ct_params'

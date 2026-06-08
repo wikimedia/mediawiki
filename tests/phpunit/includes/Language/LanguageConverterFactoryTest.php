@@ -219,7 +219,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 				'H' => 'H',
 				'N' => 'N',
 			];
-			$this->assertArraySubmapSame(
+			$this->assertArrayContains(
 				array_merge( $defaultFlags, $flags ),
 				$converter->getFlags(),
 				"Flags"

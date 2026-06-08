@@ -170,7 +170,7 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 		$apiParams['auprop'] = 'blockinfo';
 		$result = $this->doApiRequest( $apiParams, null, null,
 			$this->mockRegisteredAuthorityWithPermissions( [ 'hideuser' ] ) );
-		$this->assertArraySubmapSame(
+		$this->assertArrayContains(
 			[
 				'userid' => $b->getId(),
 				'name' => $b->getName(),
@@ -216,14 +216,14 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 			'auprop' => 'blockinfo'
 		] );
 
-		$this->assertArraySubmapSame(
+		$this->assertArrayContains(
 			[
 				'userid' => $a->getId(),
 				'name' => $a->getName(),
 			],
 			$result[0]['query']['allusers'][0]
 		);
-		$this->assertArraySubmapSame(
+		$this->assertArrayContains(
 			[
 				'userid' => $b->getId(),
 				'name' => $b->getName(),
@@ -235,7 +235,7 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 			],
 			$result[0]['query']['allusers'][1]
 		);
-		$this->assertArraySubmapSame(
+		$this->assertArrayContains(
 			[
 				'userid' => $c->getId(),
 				'name' => $c->getName(),
@@ -396,7 +396,7 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'query', $result[0] );
 		$this->assertArrayHasKey( 'allusers', $result[0]['query'] );
-		$this->assertArraySubmapSame(
+		$this->assertArrayContains(
 			[
 				'userid' => $returnedUser->getId(),
 				'name' => $returnedUser->getName(),

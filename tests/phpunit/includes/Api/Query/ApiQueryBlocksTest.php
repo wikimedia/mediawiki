@@ -56,7 +56,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'expiry' => wfTimestamp( TS::ISO_8601, $expiry ),
 			'duration-l10n' => '1 day',
 		];
-		$this->assertArraySubmapSame( $subset, $data['query']['blocks'][0] );
+		$this->assertArrayContains( $subset, $data['query']['blocks'][0] );
 	}
 
 	public function testExecuteSitewide() {
@@ -82,7 +82,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'expiry' => $block->getExpiry(),
 			'partial' => !$block->isSitewide(),
 		];
-		$this->assertArraySubmapSame( $subset, $data['query']['blocks'][0] );
+		$this->assertArrayContains( $subset, $data['query']['blocks'][0] );
 	}
 
 	public function testHiddenBlocksVisibility() {
@@ -182,7 +182,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$flagSubset = array_merge( $subset, [
 			'partial' => !$block->isSitewide(),
 		] );
-		$this->assertArraySubmapSame( $flagSubset, $data['query']['blocks'][0] );
+		$this->assertArrayContains( $flagSubset, $data['query']['blocks'][0] );
 		$this->assertArrayNotHasKey( 'restrictions', $data['query']['blocks'][0] );
 
 		// Test requesting the restrictions.

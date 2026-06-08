@@ -1233,7 +1233,7 @@ class ParserCacheTest extends ParserCacheTestBase {
 			$this->page,
 			ParserOptions::newFromAnon()
 		);
-		$this->assertArraySubmapSame(
+		$this->assertArrayContains(
 			[
 				[
 					LogLevel::ERROR,
@@ -1267,7 +1267,7 @@ class ParserCacheTest extends ParserCacheTestBase {
 			$this->page,
 			ParserOptions::newFromAnon()
 		);
-		$this->assertArraySubmapSame(
+		$this->assertArrayContains(
 			[
 				[
 					LogLevel::ERROR,

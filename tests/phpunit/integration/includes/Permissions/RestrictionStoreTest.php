@@ -175,7 +175,7 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 		$restrictionStore = $this->newRestrictionStore();
 		$restrictionStore->loadRestrictions( $page );
 		$wrapper = TestingAccessWrapper::newFromObject( $restrictionStore );
-		$this->assertArraySubmapSame(
+		$this->assertArrayContains(
 			$expectedCacheSubmap,
 			$wrapper->cache[$cacheKey]
 		);
@@ -206,14 +206,14 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 		$restrictionStore = $this->newRestrictionStore();
 		$restrictionStore->loadRestrictions( $pageSource );
 		$wrapper = TestingAccessWrapper::newFromObject( $restrictionStore );
-		$this->assertArraySubmapSame(
+		$this->assertArrayContains(
 			[ 'restrictions' => [ 'edit' => [ 'sysop' ] ] ],
 			$wrapper->cache[$cacheKey]
 		);
 
 		$this->updateRestrictions( $pageSource, [ 'move' => 'sysop' ] );
 		$restrictionStore->loadRestrictions( $pageSource, IDBAccessObject::READ_LATEST );
-		$this->assertArraySubmapSame(
+		$this->assertArrayContains(
 			[ 'restrictions' => [ 'move' => [ 'sysop' ] ] ],
 			$wrapper->cache[$cacheKey]
 		);

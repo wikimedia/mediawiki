@@ -3341,7 +3341,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 		$op = $this->newInstance( [], null, null, $performer );
 		$op->getContext()->getSkin()->setRelevantTitle( Title::makeTitle( NS_MAIN, 'RelevantTitle' ) );
-		$this->assertArraySubmapSame( $expectedEditableConfig, $op->getJSVars() );
+		$this->assertArrayContains( $expectedEditableConfig, $op->getJSVars() );
 	}
 
 	public static function provideJsVarsAboutPageLang() {
@@ -3401,7 +3401,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		);
 		$output->setTitle( Title::makeTitle( $title[0], $title[1] ) );
 
-		$this->assertArraySubmapSame( [
+		$this->assertArrayContains( [
 			'wgPageViewLanguage' => $expected,
 			'wgPageContentLanguage' => $expected,
 		], $output->getJSVars() );

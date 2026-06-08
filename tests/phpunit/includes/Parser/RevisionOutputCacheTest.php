@@ -382,7 +382,7 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		$parserOutput = $this->createDummyParserOutput();
 		$parserOutput->setExtensionData( 'test', new User() );
 		$cache->save( $parserOutput, $this->revision, ParserOptions::newFromAnon() );
-		$this->assertArraySubmapSame(
+		$this->assertArrayContains(
 			[ [ LogLevel::ERROR, 'Unable to serialize JSON' ] ],
 			$testLogger->getBuffer()
 		);
@@ -401,7 +401,7 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		$cyclicArray['c'] = &$cyclicArray;
 		$parserOutput->setExtensionData( 'test', $cyclicArray );
 		$cache->save( $parserOutput, $this->revision, ParserOptions::newFromAnon() );
-		$this->assertArraySubmapSame(
+		$this->assertArrayContains(
 			[ [ LogLevel::ERROR, 'Unable to serialize JSON' ] ],
 			$testLogger->getBuffer()
 		);

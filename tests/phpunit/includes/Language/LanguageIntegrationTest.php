@@ -2375,7 +2375,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			$services->getLeximorphFactory()
 		);
 		$namespaces = $lang->getNamespaces();
-		$this->assertArraySubmapSame( $expected, $namespaces );
+		$this->assertArrayContains( $expected, $namespaces );
 	}
 
 	public static function provideGetNamespaces() {

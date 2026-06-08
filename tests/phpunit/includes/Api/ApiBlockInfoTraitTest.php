@@ -43,7 +43,7 @@ class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 			'blockemail' => false,
 			'blockowntalk' => true,
 		], $expectedInfo );
-		$this->assertArraySubmapSame( $subset, $info, "Matching block details" );
+		$this->assertArrayContains( $subset, $info, "Matching block details" );
 	}
 
 	public static function provideGetBlockDetails() {
