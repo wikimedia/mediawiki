@@ -3662,6 +3662,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\User\\Hook\\UserLoadAfterLoadFromSessionHook' => __DIR__ . '/includes/User/Hook/UserLoadAfterLoadFromSessionHook.php',
 	'MediaWiki\\User\\Hook\\UserLoadDefaultsHook' => __DIR__ . '/includes/User/Hook/UserLoadDefaultsHook.php',
 	'MediaWiki\\User\\Hook\\UserLogoutHook' => __DIR__ . '/includes/User/Hook/UserLogoutHook.php',
+	'MediaWiki\\User\\Hook\\UserModifyCreateAccountEmailHook' => __DIR__ . '/includes/User/Hook/UserModifyCreateAccountEmailHook.php',
 	'MediaWiki\\User\\Hook\\UserPrivilegedGroupsHook' => __DIR__ . '/includes/User/Hook/UserPrivilegedGroupsHook.php',
 	'MediaWiki\\User\\Hook\\UserRemoveGroupHook' => __DIR__ . '/includes/User/Hook/UserRemoveGroupHook.php',
 	'MediaWiki\\User\\Hook\\UserRequirementsConditionDisplayHook' => __DIR__ . '/includes/User/Hook/UserRequirementsConditionDisplayHook.php',

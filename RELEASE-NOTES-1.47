@@ -423,6 +423,9 @@ because of Phabricator reports.
 
 === Other changes in 1.47 ===
 
+* The UserModifyCreateAccountEmailHook has been added to allow modification of
+  both the email subject and the email body sent to new accounts when another
+  user creates an account on their behalf (such as using Special:CreateAccount).
 * …
 
 == Compatibility ==

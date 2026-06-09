@@ -404,12 +404,21 @@ abstract class AbstractTemporaryPasswordPrimaryAuthenticationProvider
 
 		$mainPageUrl = Title::newMainPage()->getCanonicalURL();
 		$userLanguage = $this->userOptionsLookup->getOption( $user, 'language' );
-		$subjectMessage = wfMessage( 'createaccount-title' )->inLanguage( $userLanguage );
+		$subjectMessage = wfMessage( 'createaccount-title' );
 		$bodyMessage = wfMessage( 'createaccount-text', $ip, $user->getName(), $password,
-			'<' . $mainPageUrl . '>', round( $this->newPasswordExpiry / 86400 ) )
-			->inLanguage( $userLanguage );
+			'<' . $mainPageUrl . '>', round( $this->newPasswordExpiry / 86400 ) );
 
-		$status = $user->sendMail( $subjectMessage->text(), $bodyMessage->text() );
+		$this->getHookRunner()->onUserModifyCreateAccountEmail(
+			$user,
+			$creatingUser,
+			$subjectMessage,
+			$bodyMessage
+		);
+
+		$status = $user->sendMail(
+			$subjectMessage->inLanguage( $userLanguage )->text(),
+			$bodyMessage->inLanguage( $userLanguage )->text()
+		);
 
 		// @codeCoverageIgnoreStart
 		if ( !$status->isGood() ) {

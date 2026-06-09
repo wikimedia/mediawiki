@@ -14,6 +14,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\Mail\MailAddress;
 use MediaWiki\Mail\UserEmailContact;
+use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\PageIdentity;
@@ -32,6 +33,7 @@ use MediaWiki\Session\Session;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use StatusValue;
 use Wikimedia\Message\MessageSpecifier;
@@ -582,6 +584,7 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserLoadAfterLoadFromSessionHook,
 	\MediaWiki\User\Hook\UserLoadDefaultsHook,
 	\MediaWiki\User\Hook\UserLogoutHook,
+	\MediaWiki\User\Hook\UserModifyCreateAccountEmailHook,
 	\MediaWiki\User\Hook\UserPrivilegedGroupsHook,
 	\MediaWiki\User\Hook\UserRemoveGroupHook,
 	\MediaWiki\User\Hook\UserRequirementsConditionHook,
@@ -5011,6 +5014,16 @@ class HookRunner implements
 		return $this->container->run(
 			'UserLogout',
 			[ $user ]
+		);
+	}
+
+	public function onUserModifyCreateAccountEmail(
+		User $user, User $performer, Message &$subject, Message &$body
+	): void {
+		$this->container->run(
+			'UserModifyCreateAccountEmail',
+			[ $user, $performer, &$subject, &$body ],
+			[ 'abortable' => false ]
 		);
 	}
 
