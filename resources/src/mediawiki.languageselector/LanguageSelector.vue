@@ -58,7 +58,7 @@ module.exports = exports = defineComponent( {
 		},
 		searchApiUrl: {
 			type: String,
-			required: true
+			default: () => mw.util.wikiScript( 'api' )
 		},
 		debounceDelayMs: {
 			type: Number,
