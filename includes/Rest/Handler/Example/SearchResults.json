@@ -1,0 +1,20 @@
+{
+	"pages": [
+		{
+			"id": 1133784,
+			"key": "Mobile_game",
+			"title": "Mobile game",
+			"excerpt": "PDA to handheld <span class=\"searchmatch\">game</span> console, portable media player or graphing <span class=\"searchmatch\">calculator</span>",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Video game played on a mobile device",
+			"thumbnail": {
+				"mimetype": "image/jpeg",
+				"width": 60,
+				"height": 45,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/1/17/Playing_with_smartphone.jpg/60px-Playing_with_smartphone.jpg"
+			}
+		}
+	]
+}

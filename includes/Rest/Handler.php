@@ -1039,6 +1039,45 @@ abstract class Handler {
 	}
 
 	/**
+	 * Returns the absolute path of a JSON file containing an example response body.
+	 *
+	 * Returns null by default. Subclasses that return a JSON response should
+	 * override this method to return a file path.
+	 *
+	 * The returned path must be absolute. Use `__DIR__` to construct the
+	 * path relative to the handler file, e.g.
+	 * `__DIR__ . '/Example/Foo.json'`.
+	 *
+	 * @param string $method The HTTP method to produce a spec for ("get", "post", etc).
+	 *
+	 * @since 1.47
+	 * @stable to override
+	 * @return ?string
+	 */
+	protected function getResponseBodyExampleFileName( string $method ): ?string {
+		return null;
+	}
+
+	/**
+	 * Returns an example response body for use in the OpenAPI description.
+	 *
+	 * Loads and decodes the JSON file returned by getResponseBodyExampleFileName().
+	 * Returns null if getResponseBodyExampleFileName() returns null.
+	 *
+	 * @see https://swagger.io/specification/#media-type-object
+	 *
+	 * @param string $method The HTTP method to produce a spec for ("get", "post", etc).
+	 *
+	 * @since 1.47
+	 * @stable to override
+	 * @return ?array
+	 */
+	protected function getResponseBodyExample( string $method ): ?array {
+		$file = $this->getResponseBodyExampleFileName( $method );
+		return $file ? Module::loadJsonFile( $file ) : null;
+	}
+
+	/**
 	 * Returns an OpenAPI Responses Object specification structure as an associative array.
 	 *
 	 * @see https://swagger.io/specification/#responses-object
@@ -1061,6 +1100,11 @@ abstract class Handler {
 		if ( $bodySchema ) {
 			$bodySchema = $this->getJsonLocalizer()->localizeJson( $bodySchema );
 			$ok['content']['application/json']['schema'] = $bodySchema;
+		}
+
+		$bodyExample = $this->getResponseBodyExample( $method );
+		if ( $bodyExample !== null ) {
+			$ok['content']['application/json']['example'] = $bodyExample;
 		}
 
 		// TODO: For Sitemap index and base tests the responsefactory is null.

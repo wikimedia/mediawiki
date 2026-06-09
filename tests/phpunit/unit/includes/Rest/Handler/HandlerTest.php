@@ -2153,4 +2153,42 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$assertions( $spec );
 	}
 
+	public function testGetOpenApiSpecIncludesBodyExample() {
+		$expectedExample = [ 'title' => 'Example Page', 'id' => 1 ];
+
+		$handler = $this->newHandler( [
+			'getParamSettings',
+			'getHeaderParamSettings',
+			'getBodyParamSettings',
+			'getSupportedRequestTypes',
+			'getResponseBodySchema',
+			'getResponseBodyExample',
+			'getResponseHeaderSettings'
+		] );
+		$handler->method( 'getParamSettings' )->willReturn( [] );
+		$handler->method( 'getHeaderParamSettings' )->willReturn( [] );
+		$handler->method( 'getBodyParamSettings' )->willReturn( [] );
+		$handler->method( 'getSupportedRequestTypes' )->willReturn( [ 'application/json' ] );
+		$handler->method( 'getResponseBodySchema' )->willReturn( null );
+		$handler->method( 'getResponseBodyExample' )->willReturn( $expectedExample );
+		$handler->method( 'getResponseHeaderSettings' )->willReturn( [] );
+
+		$module = $this->createNoOpMock( Module::class, [ 'getModuleDescription' ] );
+		$module->method( 'getModuleDescription' )->willReturn( [] );
+		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
+
+		$formatter = $this->getDummyTextFormatter( true );
+		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
+		$authority = $this->mockAnonUltimateAuthority();
+		$hookContainer = $this->createHookContainer();
+		$handler->initServices( $authority, $responseFactory, $hookContainer );
+
+		$spec = $handler->getOpenApiSpec( 'GET' );
+
+		$this->assertSame(
+			$expectedExample,
+			$spec['responses'][200]['content']['application/json']['example']
+		);
+	}
+
 }

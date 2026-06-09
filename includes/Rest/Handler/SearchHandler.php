@@ -436,4 +436,8 @@ class SearchHandler extends Handler {
 	public function getResponseBodySchemaFileName( string $method ): ?string {
 		return __DIR__ . '/Schema/SearchResults.json';
 	}
+
+	public function getResponseBodyExampleFileName( string $method ): ?string {
+		return __DIR__ . '/Example/SearchResults.json';
+	}
 }
