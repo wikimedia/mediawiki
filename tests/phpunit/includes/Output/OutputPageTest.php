@@ -722,17 +722,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$links,
 			'noindex takes precedence over index'
 		);
-
-		// Deprecated behavior: for OutputPage (unlike ParserOutput) we can
-		// reset to 'index' after 'noindex' has been set.
-		$this->filterDeprecated( '/OutputPage::setIndexPolicy with index after noindex/' );
-		$op->setIndexPolicy( 'index' );
-		$links = $op->getHeadLinksArray();
-		$this->assertContains(
-			'<meta name="robots" content="max-image-preview:standard,max-snippet:500">',
-			$links,
-			'index can reset noindex (deprecated)'
-		);
 	}
 
 	public function testGetRobotPolicy() {

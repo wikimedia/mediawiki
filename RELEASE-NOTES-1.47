@@ -246,8 +246,13 @@ because of Phabricator reports.
   - parserOptions (deprecated in 1.44)
   - setRevisionTimestamp (deprecated in 1.44)
   - wrapWikiTextAsInterface (deprecated in 1.45)
-* The following changes have been made to methods of OutputPage:
-  - getModules, getModuleStyles: now take only 1 argument (deprecated in 1.44)
+* The following changes have been made to methods of OutputPage, with the
+  version the old behavior was deprecated in parentheses:
+  - getModules, getModuleStyles: now take only 1 argument (1.44)
+  - setIndexPolicy: index followed by noindex results in index (1.43)
+  - addParserOutputContent: requires non-null ParserOptions (1.44)
+  - addParserOutputText: requires string first argument (1.42)
+  - addParserOutput: requires non-null ParserOptions (1.44)
 * The unused method SpecialVersion::getVersionLinked, deprecated in 1.46, has
   been removed.
 * The ConditionalDefaultOptionsAddCondition hook, deprecated in 1.46, has been

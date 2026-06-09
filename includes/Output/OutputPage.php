@@ -1038,13 +1038,6 @@ class OutputPage extends ContextSource {
 	 */
 	public function setIndexPolicy( $policy ) {
 		$policy = trim( $policy );
-		if ( $policy === 'index' && $this->metadata->getIndexPolicy() === 'noindex' ) {
-			wfDeprecated( __METHOD__ . ' with index after noindex', '1.43' );
-			// ParserOutput::setIndexPolicy has noindex take precedence
-			// (T16899) but the OutputPage version did not.  Preserve
-			// the behavior but deprecate it for future removal.
-			$this->metadata->setOutputFlag( ParserOutputFlags::NO_INDEX_POLICY, false );
-		}
 		$this->metadata->setIndexPolicy( $policy );
 	}
 
@@ -2415,23 +2408,15 @@ class OutputPage extends ContextSource {
 	 *
 	 * @since 1.24
 	 * @param ParserOutput $parserOutput
-	 * @param ParserOptions|null $parserOptions (since 1.44)
+	 * @param ParserOptions $parserOptions (since 1.44)
 	 *   Passing null has been deprecated since MW 1.44.
 	 * @param array|null $poOptions Options to OutputTransformPipeline::run() (to be deprecated)
 	 */
-	public function addParserOutputContent( ParserOutput $parserOutput, $parserOptions = null, $poOptions = null ) {
-		// For backward compatibility, accept $poOptions in the $parserOptions
-		// argument. This will also trigger the deprecation warning below.
-		if ( is_array( $parserOptions ) ) {
-			$poOptions = $parserOptions;
-			$parserOptions = null;
-		}
-		if ( $parserOptions === null ) {
-			wfDeprecated( __METHOD__ . ' without ParserOptions argument', '1.44' );
-			// XXX: This isn't guaranteed to be the same parser options that
-			// generated $parserOutput.
-			$parserOptions = $this->internalParserOptions( false );
-		}
+	public function addParserOutputContent(
+		ParserOutput $parserOutput,
+		ParserOptions $parserOptions,
+		?array $poOptions = null,
+	) {
 		$poOptions ??= [];
 		$text = $this->getParserOutputText( $parserOutput, $parserOptions, $poOptions );
 		$this->addParserOutputText( $text, $poOptions );
@@ -2446,15 +2431,10 @@ class OutputPage extends ContextSource {
 	 * Add the HTML associated with a ParserOutput object, without any metadata.
 	 *
 	 * @internal For local use only
-	 * @param string|ParserOutput $text
+	 * @param string $text
 	 * @param array $poOptions Options to OutputTransformPipeline::run() (to be deprecated)
 	 */
-	public function addParserOutputText( $text, $poOptions = [] ) {
-		if ( $text instanceof ParserOutput ) {
-			wfDeprecated( __METHOD__ . ' with ParserOutput as first arg', '1.42' );
-			$parserOptions = $this->internalParserOptions( false );
-			$text = $this->getParserOutputText( $text, $parserOptions, $poOptions );
-		}
+	public function addParserOutputText( string $text, $poOptions = [] ) {
 		$this->getHookRunner()->onOutputPageBeforeHTML( $this, $text );
 		$this->addHTML( $text );
 	}
@@ -2463,23 +2443,14 @@ class OutputPage extends ContextSource {
 	 * Add everything from a ParserOutput object.
 	 *
 	 * @param ParserOutput $parserOutput
-	 * @param ParserOptions|null $parserOptions (since 1.44)
-	 *   Passing null has been deprecated since MW 1.44.
+	 * @param ParserOptions $parserOptions (since 1.44)
 	 * @param array|null $poOptions Options to OutputTransformPipeline::run() (to be deprecated)
 	 */
-	public function addParserOutput( ParserOutput $parserOutput, $parserOptions = null, $poOptions = null ) {
-		// For backward compatibility, accept $poOptions in the $parserOptions
-		// argument. This will also trigger the deprecation warning below.
-		if ( is_array( $parserOptions ) ) {
-			$poOptions = $parserOptions;
-			$parserOptions = null;
-		}
-		if ( $parserOptions === null ) {
-			wfDeprecated( __METHOD__ . ' without ParserOptions argument', '1.44' );
-			// XXX: This isn't guaranteed to be the same parser options that
-			// generated $parserOutput.
-			$parserOptions = $this->internalParserOptions( false );
-		}
+	public function addParserOutput(
+		ParserOutput $parserOutput,
+		ParserOptions $parserOptions,
+		?array $poOptions = null,
+	) {
 		$poOptions ??= [];
 
 		/** @deprecated please postprocess then use ::addPostProcessedParserOutput() */
