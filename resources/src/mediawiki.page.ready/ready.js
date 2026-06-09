@@ -56,6 +56,9 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 	checkboxShift( $content.find( 'input[type="checkbox"]:not(.noshiftselect)' ) );
 } );
 
+// strip wprov from the URL
+require( './wprovStrip.js' ).stripWprov();
+
 // Add toolbox portlet to toggle all collapsibles if there are any
 require( './toggleAllCollapsibles.js' );
 

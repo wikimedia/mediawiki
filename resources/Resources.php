@@ -1746,6 +1746,7 @@ return [
 			'clearAddressBar.js',
 			'teleportTarget.js',
 			'toggleAllCollapsibles.js',
+			'wprovStrip.js',
 			[ 'name' => 'config.json', 'callback' => static function (
 				Context $context,
 				Config $config
