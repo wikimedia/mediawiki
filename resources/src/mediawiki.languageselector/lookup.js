@@ -1,7 +1,6 @@
 const Vue = require( 'vue' );
 const { h } = Vue;
 const LanguageSelector = require( './LanguageSelector.vue' );
-const useLanguageLookup = require( './useLanguageLookup.js' );
 
 /**
  * @param {Object} config
@@ -62,6 +61,5 @@ function getLanguageSelector( config, isMultiple = false ) {
 module.exports = {
 	LanguageSelector,
 	getLookupLanguageSelector: ( config ) => getLanguageSelector( config, false ),
-	getMultiselectLookupLanguageSelector: ( config ) => getLanguageSelector( config, true ),
-	useLanguageLookup
+	getMultiselectLookupLanguageSelector: ( config ) => getLanguageSelector( config, true )
 };
