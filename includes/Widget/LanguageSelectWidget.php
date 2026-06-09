@@ -9,7 +9,7 @@ use MediaWiki\Language\LanguageCode;
 /**
  * The Language Select Widget is a reusable component in PHP and JS.
  * It automatically transforms native HTML <select> elements into the
- * Codex language selector <LookupLanguageSelector> with the capabilities
+ * Codex language selector <LanguageSelector> with the capabilities
  * that <cdx-lookup> have, it also maintains backward compatibility
  * with JavaScript disabled environments.
  *
