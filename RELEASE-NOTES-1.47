@@ -210,6 +210,11 @@ because of Phabricator reports.
   File::getDescriptionText, File::getDimensionsString,
   MediaHandler::getGeneralShortDesc or MediaHandler::getGeneralLongDesc without
   specifying a language, deprecated in 1.46.
+* The following methods of OutputPage have been removed:
+  - setLanguageLinks (deprecated in 1.43)
+  - setCategoryLinks (deprecated in 1.43)
+  - parserOptions (deprecated in 1.44)
+  - wrapWikiTextAsInterface (deprecated in 1.45)
 * The unused method SpecialVersion::getVersionLinked, deprecated in 1.46, has
   been removed.
 * The ConditionalDefaultOptionsAddCondition hook, deprecated in 1.46, has been

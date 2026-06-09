@@ -1574,23 +1574,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Reset the language links and add new language links
-	 *
-	 * @param string[]|ParsoidLinkTarget[] $newLinkArray Array of interwiki-prefixed (non DB key) titles
-	 *                               (e.g. 'fr:Test page')
-	 * @deprecated since 1.43, use ::addLanguageLinks() instead, or
-	 * use the LanguageLinksHook in the rare case that you need to remove
-	 * or replace language links from the output page.
-	 */
-	public function setLanguageLinks( array $newLinkArray ) {
-		wfDeprecated( __METHOD__, '1.43' );
-		$this->metadata->clearLanguageLinks();
-		foreach ( $newLinkArray as $l ) {
-			$this->metadata->addLanguageLink( $l );
-		}
-	}
-
-	/**
 	 * Get the list of language links
 	 *
 	 * @return string[] Array of interwiki-prefixed (non DB key) titles (e.g. 'fr:Test page')
@@ -1724,22 +1707,6 @@ class OutputPage extends ContextSource {
 		$lb->addResultToCache( $linkCache, $res );
 
 		return $res;
-	}
-
-	/**
-	 * Reset the category links (but not the category list) and add $categories
-	 *
-	 * @param array $categories Mapping category name => sort key
-	 * @deprecated since 1.43, use ::addCategoryLinks()
-	 */
-	public function setCategoryLinks( array $categories ) {
-		wfDeprecated( __METHOD__, '1.43' );
-		$this->mCategoryLinks = [];
-		foreach ( $this->mCategoryData as &$arr ) {
-			// null out the 'link' entry for existing category data
-			$arr['link'] = null;
-		}
-		$this->addCategoryLinks( $categories );
 	}
 
 	/**
@@ -2003,32 +1970,6 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Get/set the ParserOptions object to use for wikitext parsing
-	 *
-	 * @return ParserOptions
-	 * @deprecated since 1.44; instead use
-	 * ParserOptions::newFromContext( $outputPage->getContext() )
-	 */
-	public function parserOptions() {
-		wfDeprecated( __METHOD__, '1.44' );
-		if ( !$this->mParserOptions ) {
-			if ( !$this->getUser()->isSafeToLoad() ) {
-				// Context user isn't unstubbable yet, so don't try to get a
-				// ParserOptions for it. And don't cache this ParserOptions
-				// either.
-				$po = ParserOptions::newFromAnon();
-				$po->setAllowUnsafeRawHtml( false );
-				return $po;
-			}
-
-			$this->mParserOptions = ParserOptions::newFromContext( $this->getContext() );
-			$this->mParserOptions->setAllowUnsafeRawHtml( false );
-		}
-
-		return $this->mParserOptions;
-	}
-
-	/**
-	 * Get/set the ParserOptions object to use for wikitext parsing
 	 * @param bool $interface Use interface language (instead of content language) while parsing
 	 *   language sensitive magic words like GRAMMAR and PLURAL.  This also disables
 	 *   LanguageConverter.
@@ -2201,49 +2142,6 @@ class OutputPage extends ContextSource {
 		}
 		$this->addWikiTextTitleInternal( $text, $title, $linestart,
 			$this->internalParserOptions( true ) );
-	}
-
-	/**
-	 * Convert wikitext *in the user interface language* to HTML and
-	 * add it to the buffer with a `<div class="$wrapperClass">`
-	 * wrapper.  The result will not be language-converted, as user
-	 * interface messages as already localized into a specific
-	 * variant.  The $text will be parsed in start-of-line context.
-	 * Output will be tidy and wrapped.
-	 *
-	 * @param string $wrapperClass The class attribute value for
-	 *   the <div> wrapper in the output HTML, should not be empty
-	 * @param string $text Wikitext in the user interface language
-	 * @since 1.32
-	 * @deprecated since 1.45 Use wrapWikiMsg() or addWikiTextAsInterface() instead
-	 * @phan-param non-empty-string $wrapperClass
-	 */
-	public function wrapWikiTextAsInterface(
-		$wrapperClass, $text
-	) {
-		wfDeprecated( __METHOD__, '1.45' );
-		if ( $wrapperClass === '' ) {
-			// I don't think anyone actually uses this corner case,
-			// but if you call wrapWikiTextAsInterface with
-			// `$wrapperClass===''` the result won't actually be
-			// wrapped. (Since
-			// ParserOptions::getInterfaceMessage()===true the default
-			// 'mw-parser-output' class is suppressed; ordinarily its
-			// presence would ensure the wrapper was created even if
-			// $wrapperClass was empty.)
-			wfDeprecated( __METHOD__ . ' with empty wrapper class', '1.44' );
-		}
-		$title = $this->getTitle();
-		if ( $title === null ) {
-			throw new RuntimeException( 'No title in ' . __METHOD__ );
-		}
-		$this->addWikiTextTitleInternal(
-			$text,
-			$title,
-			true,
-			$this->internalParserOptions( true ),
-			$wrapperClass
-		);
 	}
 
 	/**
