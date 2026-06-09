@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Settings\Source;
 
-use DnsSrvDiscoverer;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
@@ -14,6 +13,7 @@ use MediaWiki\Settings\Source\Format\JsonFormat;
 use Psr\Http\Message\UriInterface;
 use Stringable;
 use UnexpectedValueException;
+use Wikimedia\DnsSrvDiscoverer;
 
 /**
  * Settings loaded from an etcd server.

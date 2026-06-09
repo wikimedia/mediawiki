@@ -2,13 +2,13 @@
 
 namespace Wikimedia\Tests;
 
-use DnsSrvDiscoverer;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use stdClass;
+use Wikimedia\DnsSrvDiscoverer;
 
 /**
- * @covers \DnsSrvDiscoverer
+ * @covers \Wikimedia\DnsSrvDiscoverer
  */
 class DnsSrvDiscovererTest extends TestCase {
 

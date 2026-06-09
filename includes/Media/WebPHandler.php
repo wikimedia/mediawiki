@@ -12,7 +12,7 @@ namespace MediaWiki\Media;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use RiffExtractor;
+use Wikimedia\RiffExtractor;
 use Wikimedia\XMPReader\Reader as XMPReader;
 
 /**

@@ -4,7 +4,9 @@
  * @file
  */
 
-use Wikimedia\RunningStat;
+namespace Wikimedia;
+
+use Closure;
 
 /**
  * Convenience class for working with XHProf profiling data
@@ -367,3 +369,6 @@ class XhprofData {
 		};
 	}
 }
+
+/** @deprecated class alias since 1.47 */
+class_alias( XhprofData::class, 'XhprofData' );

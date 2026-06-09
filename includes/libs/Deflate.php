@@ -3,6 +3,11 @@
  * @license GPL-2.0-or-later
  */
 
+namespace Wikimedia;
+
+use InvalidArgumentException;
+use StatusValue;
+
 /**
  * Server-side helper for client-side compressed content.
  *
@@ -53,3 +58,6 @@ class Deflate {
 		return StatusValue::newGood( $inflated );
 	}
 }
+
+/** @deprecated class alias since 1.47 */
+class_alias( Deflate::class, 'Deflate' );

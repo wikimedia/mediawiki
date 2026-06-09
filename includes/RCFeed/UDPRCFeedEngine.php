@@ -6,7 +6,7 @@
 
 namespace MediaWiki\RCFeed;
 
-use UDPTransport;
+use Wikimedia\UDPTransport;
 
 /**
  * Send recent change notifications to a destination address over UDP.

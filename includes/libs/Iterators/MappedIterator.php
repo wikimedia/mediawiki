@@ -6,6 +6,13 @@
  * @file
  */
 
+namespace Wikimedia\Iterators;
+
+use ArrayIterator;
+use FilterIterator;
+use Iterator;
+use UnexpectedValueException;
+
 /**
  * Convenience class for generating iterators from iterators.
  *
@@ -108,3 +115,6 @@ class MappedIterator extends FilterIterator {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.47 */
+class_alias( MappedIterator::class, 'MappedIterator' );

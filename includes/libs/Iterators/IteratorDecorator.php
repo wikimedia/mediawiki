@@ -4,6 +4,10 @@
  * @license GPL-2.0-or-later
  */
 
+namespace Wikimedia\Iterators;
+
+use Iterator;
+
 /**
  * Allows extending classes to decorate an Iterator with
  * reduced boilerplate.
@@ -65,3 +69,6 @@ abstract class IteratorDecorator implements Iterator {
 		return $this->iterator->valid();
 	}
 }
+
+/** @deprecated class alias since 1.47 */
+class_alias( IteratorDecorator::class, 'IteratorDecorator' );

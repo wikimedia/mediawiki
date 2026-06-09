@@ -6,7 +6,6 @@
 
 namespace MediaWiki\Http;
 
-use CookieJar;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\MainConfigNames;
@@ -19,6 +18,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use StatusValue;
+use Wikimedia\CookieJar;
 use Wikimedia\Http\TelemetryHeadersInterface;
 
 /**

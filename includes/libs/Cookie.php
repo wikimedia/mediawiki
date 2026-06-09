@@ -4,6 +4,10 @@
  * @license GPL-2.0-or-later
  */
 
+namespace Wikimedia;
+
+use InvalidArgumentException;
+
 /**
  * Cookie for HTTP requests.
  *
@@ -159,3 +163,6 @@ class Cookie {
 	}
 
 }
+
+/** @deprecated class alias since 1.47 */
+class_alias( Cookie::class, 'Cookie' );

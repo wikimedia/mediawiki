@@ -20,10 +20,10 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
-use MWCryptHash;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPSet;
 use Wikimedia\IPUtils;
+use Wikimedia\MWCryptHash;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**

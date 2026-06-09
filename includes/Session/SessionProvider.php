@@ -31,6 +31,7 @@ use Stringable;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\MWCryptHash;
 
 /**
  * A SessionProvider provides SessionInfo and support for Session
@@ -636,7 +637,7 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 			);
 		}
 
-		$hash = \MWCryptHash::hmac( "$this\n$data",
+		$hash = MWCryptHash::hmac( "$this\n$data",
 			$key ?: $this->getConfig()->get( MainConfigNames::SecretKey ), false );
 		if ( strlen( $hash ) < 32 ) {
 			// Should never happen, even md5 is 128 bits

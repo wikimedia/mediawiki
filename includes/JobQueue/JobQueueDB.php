@@ -6,13 +6,13 @@
 
 namespace MediaWiki\JobQueue;
 
-use MappedIterator;
 use MediaWiki\JobQueue\Exceptions\JobQueueConnectionError;
 use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Profiler\Profiler;
 use stdClass;
 use UnexpectedValueException;
+use Wikimedia\Iterators\MappedIterator;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IDatabase;

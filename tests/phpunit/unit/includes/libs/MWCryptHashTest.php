@@ -3,12 +3,12 @@
 namespace Wikimedia\Tests;
 
 use MediaWikiUnitTestCase;
-use MWCryptHash;
+use Wikimedia\MWCryptHash;
 
 /**
  * @group Hash
  *
- * @covers \MWCryptHash
+ * @covers \Wikimedia\MWCryptHash
  */
 class MWCryptHashTest extends MediaWikiUnitTestCase {
 

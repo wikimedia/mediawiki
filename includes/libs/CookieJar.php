@@ -5,6 +5,8 @@
  * @ingroup HTTP
  */
 
+namespace Wikimedia;
+
 /**
  * Cookie jar to use with MWHttpRequest. Does not handle cookie unsetting.
  */
@@ -78,3 +80,6 @@ class CookieJar {
 	}
 
 }
+
+/** @deprecated class alias since 1.47 */
+class_alias( CookieJar::class, 'CookieJar' );

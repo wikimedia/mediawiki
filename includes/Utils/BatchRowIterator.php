@@ -4,8 +4,8 @@ namespace MediaWiki\Utils;
 
 use ArrayIterator;
 use InvalidArgumentException;
-use NotRecursiveIterator;
 use RecursiveIterator;
+use Wikimedia\Iterators\NotRecursiveIterator;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 

@@ -9,11 +9,11 @@ declare( strict_types=1 );
 namespace Wikimedia\Stats\Emitters;
 
 use InvalidArgumentException;
-use UDPTransport;
 use Wikimedia\Stats\Formatters\FormatterInterface;
 use Wikimedia\Stats\Metrics\NullMetric;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsUtils;
+use Wikimedia\UDPTransport;
 
 /**
  * Metrics UDP Emitter Implementation

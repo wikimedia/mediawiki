@@ -6,6 +6,8 @@
  * @file
  */
 
+namespace Wikimedia;
+
 /**
  * @since 1.29
  */
@@ -126,3 +128,6 @@ class DnsSrvDiscoverer {
 		return "$srv.{$this->domain}";
 	}
 }
+
+/** @deprecated class alias since 1.47 */
+class_alias( DnsSrvDiscoverer::class, 'DnsSrvDiscoverer' );

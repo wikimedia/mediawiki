@@ -4,6 +4,11 @@
  * @file
  */
 
+namespace Wikimedia;
+
+use DomainException;
+use InvalidArgumentException;
+
 /**
  * Utility functions for generating hashes
  *
@@ -90,3 +95,6 @@ class MWCryptHash {
 	}
 
 }
+
+/** @deprecated class alias since 1.47 */
+class_alias( MWCryptHash::class, 'MWCryptHash' );

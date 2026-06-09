@@ -2,12 +2,12 @@
 
 namespace Wikimedia\Tests;
 
-use CookieJar;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\CookieJar;
 
 /**
- * @covers \CookieJar
+ * @covers \Wikimedia\CookieJar
  */
 class CookieJarTest extends TestCase {
 	use MediaWikiCoversValidator;

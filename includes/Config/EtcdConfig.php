@@ -6,7 +6,7 @@
 
 namespace MediaWiki\Config;
 
-use DnsSrvDiscoverer;
+use Wikimedia\DnsSrvDiscoverer;
 use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\BagOStuff;

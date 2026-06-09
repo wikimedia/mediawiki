@@ -10,6 +10,7 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use MediaWiki\Http\GuzzleHttpRequest;
 use MediaWiki\Http\MWCallbackStream;
+use Wikimedia\CookieJar;
 
 /**
  * class for tests of GuzzleHttpRequest

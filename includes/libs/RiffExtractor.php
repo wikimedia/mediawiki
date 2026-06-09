@@ -4,6 +4,8 @@
  * @author Bryan Tong Minh
  */
 
+namespace Wikimedia;
+
 /**
  * Extractor for the Resource Interchange File Format
  *
@@ -94,3 +96,6 @@ class RiffExtractor {
 		return unpack( 'V', $string )[1];
 	}
 }
+
+/** @deprecated class alias since 1.47 */
+class_alias( RiffExtractor::class, 'RiffExtractor' );

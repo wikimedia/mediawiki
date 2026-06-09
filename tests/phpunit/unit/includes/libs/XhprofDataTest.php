@@ -9,11 +9,11 @@ namespace Wikimedia\Tests;
 use LogicException;
 use MediaWikiCoversValidator;
 use Monolog\Test\TestCase;
-use XhprofData;
+use Wikimedia\XhprofData;
 
 /**
  * @copyright © 2014 Wikimedia Foundation and contributors
- * @covers \XhprofData
+ * @covers \Wikimedia\XhprofData
  */
 class XhprofDataTest extends TestCase {
 	use MediaWikiCoversValidator;

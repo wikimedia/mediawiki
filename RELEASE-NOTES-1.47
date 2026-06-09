@@ -205,6 +205,21 @@ because of Phabricator reports.
   In this release of MediaWiki, XXX classes now have a namespace and XXX do
   not yet (XXX% done, up from 99% in MediaWiki 1.46.0). The following have newly
   been moved:
+  - Wikimedia:
+    - Cookie
+    - CookieJar
+    - Deflate
+    - DnsSrvDiscoverer
+    - MWCryptHash
+    - RiffExtractor
+    - UDPTransport
+    - XhprofData
+  - Wikimedia\Iterators:
+    - IteratorDecorator
+    - MappedIterator
+    - NotRecursiveIterator
+  - Wikimedia\ObjectCache:
+    - MemoizedCallable
   - …
 * The PatrolLog::record method is deprecated and will trigger
   deprecation warnings. Use PatrolManager::createPatrolLog instead.

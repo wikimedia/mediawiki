@@ -15,10 +15,10 @@ use MediaWiki\Request\FauxResponse;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
-use MWCryptHash;
 use Psr\Log\NullLogger;
 use TestAllServiceOptionsUsed;
 use TestUser;
+use Wikimedia\MWCryptHash;
 use Wikimedia\TestingAccessWrapper;
 
 /**

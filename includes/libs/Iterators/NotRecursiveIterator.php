@@ -3,6 +3,10 @@
  * @license GPL-2.0-or-later
  */
 
+namespace Wikimedia\Iterators;
+
+use RecursiveIterator;
+
 /**
  * Wraps a non-recursive iterator with methods to be recursive
  * without children.
@@ -22,3 +26,6 @@ class NotRecursiveIterator extends IteratorDecorator implements RecursiveIterato
 		return null;
 	}
 }
+
+/** @deprecated class alias since 1.47 */
+class_alias( NotRecursiveIterator::class, 'NotRecursiveIterator' );

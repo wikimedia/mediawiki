@@ -7,7 +7,7 @@
 namespace MediaWiki\JobQueue;
 
 use ArrayIterator;
-use MappedIterator;
+use Wikimedia\Iterators\MappedIterator;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 

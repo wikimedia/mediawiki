@@ -5,11 +5,11 @@ namespace Wikimedia\Tests\Stats;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
-use UDPTransport;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\OutputFormats;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\UDPTransport;
 
 /**
  * @covers \Wikimedia\Stats\Emitters\UDPEmitter

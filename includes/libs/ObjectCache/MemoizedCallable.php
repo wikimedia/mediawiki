@@ -4,6 +4,11 @@
  * @file
  */
 
+namespace Wikimedia\ObjectCache;
+
+use Closure;
+use InvalidArgumentException;
+
 /**
  * APCu-backed function memoization
  *
@@ -147,3 +152,6 @@ class MemoizedCallable {
 		return $instance->invokeArgs( $args );
 	}
 }
+
+/** @deprecated class alias since 1.47 */
+class_alias( MemoizedCallable::class, 'MemoizedCallable' );

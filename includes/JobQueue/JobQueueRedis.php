@@ -8,7 +8,6 @@ namespace MediaWiki\JobQueue;
 
 use InvalidArgumentException;
 use LogicException;
-use MappedIterator;
 use MediaWiki\JobQueue\Exceptions\JobQueueConnectionError;
 use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\Logger\LoggerFactory;
@@ -17,6 +16,7 @@ use Psr\Log\LoggerInterface;
 use Redis;
 use RedisException;
 use UnexpectedValueException;
+use Wikimedia\Iterators\MappedIterator;
 use Wikimedia\ObjectCache\RedisConnectionPool;
 use Wikimedia\ObjectCache\RedisConnRef;
 

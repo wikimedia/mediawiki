@@ -4,7 +4,9 @@
  * @file
  */
 
-use Wikimedia\IPUtils;
+namespace Wikimedia;
+
+use InvalidArgumentException;
 
 /**
  * A generic class to send a message over UDP
@@ -92,3 +94,6 @@ class UDPTransport {
 		socket_close( $sock );
 	}
 }
+
+/** @deprecated class alias since 1.47 */
+class_alias( UDPTransport::class, 'UDPTransport' );

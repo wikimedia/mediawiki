@@ -4,12 +4,12 @@ namespace Wikimedia\Tests;
 
 use InvalidArgumentException;
 use MediaWikiCoversValidator;
-use MemoizedCallable;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\ObjectCache\MemoizedCallable;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \MemoizedCallable
+ * @covers \Wikimedia\ObjectCache\MemoizedCallable
  * @group BagOStuff
  */
 class MemoizedCallableTest extends TestCase {

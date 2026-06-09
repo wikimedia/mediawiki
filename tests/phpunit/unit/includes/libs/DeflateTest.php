@@ -7,13 +7,13 @@
 
 namespace Wikimedia\Tests;
 
-use Deflate;
 use MediaWikiCoversValidator;
 use MediaWikiTestCaseTrait;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\Deflate;
 
 /**
- * @covers \Deflate
+ * @covers \Wikimedia\Deflate
  */
 class DeflateTest extends TestCase {
 	use MediaWikiCoversValidator;

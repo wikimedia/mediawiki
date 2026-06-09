@@ -9,7 +9,7 @@
 namespace MediaWiki\Profiler;
 
 use RuntimeException;
-use XhprofData;
+use Wikimedia\XhprofData;
 
 /**
  * Profiler that captures all function calls from the XHProf PHP extension.

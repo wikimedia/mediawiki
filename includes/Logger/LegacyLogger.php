@@ -15,9 +15,9 @@ use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 use Throwable;
-use UDPTransport;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
+use Wikimedia\UDPTransport;
 
 /**
  * PSR-3 logger that mimics the historic implementation of MediaWiki's former
