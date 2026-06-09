@@ -39,7 +39,7 @@ class HandleSectionLinks extends ContentTextTransformStage {
 	}
 
 	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
-		$text = $this->replaceHeadings( $text );
+		$text = $this->replaceHeadings( $text, $po );
 
 		if (
 			// this should be kept in sync with the legacy implementation in HandleParsoidSectionLinks
@@ -55,21 +55,22 @@ class HandleSectionLinks extends ContentTextTransformStage {
 
 	/**
 	 * Check if the heading has attributes that can only be added using HTML syntax.
+	 * @note This is used for backward-compatibility only! (T428677)
 	 */
 	private function isHtmlHeading( array $attrs ): bool {
 		foreach ( $attrs as $name => $value ) {
-			if ( $name === 'data-mw-wikitext' ) {
-				return false;
+			if ( !Sanitizer::isReservedDataAttribute( $name ) ) {
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
-	private function replaceHeadings( string $text ): string {
+	private function replaceHeadings( string $text, ParserOutput $po ): string {
 		$needToCheckExistingWrappers = preg_match( '/class="[^"]*\bmw-heading\b[^"]*"/', $text );
 
 		return preg_replace_callback( self::HEADING_REGEX, function ( $m ) use (
-			$needToCheckExistingWrappers, $text
+			$needToCheckExistingWrappers, $text, $po
 		) {
 			// Parse attributes out of the <h#> tag. Do not actually use HtmlHelper's output,
 			// because EDITSECTION_REGEX is sensitive to quotes in HTML serialization.
@@ -117,7 +118,13 @@ class HandleSectionLinks extends ContentTextTransformStage {
 				}
 			}
 
-			if ( $this->isHtmlHeading( $attrs ) ) {
+			$isHtmlHeading = !isset( $attrs['data-mw-wikitext'] );
+			if ( $po->getExtensionData( 'core:new-heading-attr' ) === null ) {
+				// T428677: temporary backward-compatibility fallback
+				// with old parser cache contents.
+				$isHtmlHeading = $this->isHtmlHeading( $attrs );
+			}
+			if ( $isHtmlHeading ) {
 				// This is a <h#> tag with attributes added using HTML syntax.
 				// Mark it with a class to make them easier to distinguish (T68637).
 				Html::addClass( $attrs['class'], 'mw-html-heading' );
