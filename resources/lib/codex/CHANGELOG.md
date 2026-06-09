@@ -1,3 +1,21 @@
+# 2.6.0 / 2026-06-09
+
+## Styles
+- fix(Message): correct vertical align for css-only icon messages (Sergio Gimeno)
+
+## Tokens
+- Tokens: Add generic color tokens for volunteer usage (Derek Torsani)
+
+## Icons
+- Icons: refine icon library (Derek Torsani)
+
+## Code
+- Lookup: Expose focus() method (TheresNoTime)
+- Popover: Remove unnecessary wrapper ref for the anchor (Roan Kattouw)
+
+## Build
+- build: Lint Markdown script blocks with 'eslint-plugin-markdown' (Volker E.)
+
 # 2.5.1 / 2026-04-24
 
 ## Code

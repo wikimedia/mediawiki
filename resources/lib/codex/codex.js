@@ -62,48 +62,48 @@ const stringHelpers = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defin
   regExpEscape,
   splitStringAtMatch
 }, Symbol.toStringTag, { value: "Module" }));
-const g = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', w = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', v1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', e1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', z1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', L1 = '<path d="M10 15 2 5h16z"/>', S1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', q1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', $1 = '<path d="M2 2a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2zm-.17 13 4.09-5.25 2.92 3.51L12.92 8l5.25 7z"/>', l0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', i = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', p0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', H2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', x2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', C2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', W2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', t5 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', r5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', I5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', c3 = '<path d="m10 5 8 10H2z"/>', F3 = g, N3 = w, n4 = v1, d4 = e1, r4 = z1, u4 = L1, y4 = S1, S4 = q1, X4 = $1, h6 = l0, r6 = {
+const m = '<path d="M19.765 16.059 18 19H2L.235 16.059l8-15h3.53zM9 14v2h2v-2zm0-8v6h2V6z"/>', B = '<path d="M18 19H2V1h16zM4 17h11.586l-3.922-3.922a3.5 3.5 0 111.414-1.414L16 14.586V3H4zm6-8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3"/>', V1 = '<path d="M18.154 3.837 8.034 16.62l-1.384.18-4.8-3.6 1.2-1.6 4.02 3.015 9.517-12.02z"/>', p1 = '<path d="M14.243 7.172 11.413 10l2.828 2.83-1.414 1.413L10 11.415l-2.827 2.827-1.414-1.414L8.585 10 5.757 7.172l1.415-1.414 2.827 2.828 2.83-2.828z"/><path d="M10 1a9 9 0 110 18 9 9 0 010-18m0 2a7 7 0 100 14 7 7 0 000-14"/>', i1 = '<path d="M16.707 4.707 11.414 10l5.293 5.293-1.414 1.414L10 11.414l-5.293 5.293-1.414-1.414L8.586 10 3.293 4.707l1.414-1.414L10 8.586l5.293-5.293z"/>', S1 = '<path d="M14 7H6v2.5l4 3.5 4-3.5z"/>', R1 = '<path d="M19 6.4v7.199L13.6 19H6.4L1 13.599v-7.2L6.4 1h7.2zM9 14v2h2v-2zm0-9v7h2V5z"/>', P1 = '<path d="m16.707 8.017-6 5.983H9.293l-6-5.983 1.414-1.414L10 11.896l5.293-5.293z"/>', z0 = '<path d="M15 15H5l3.5-4 2 2L15 8zM6.25 5a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5"/><path d="M19 19H1V1h18zM3 17h14V3H3z"/>', g0 = '<path d="M19 19H1V1h18zm-8.5-6-2-2L5 15h10V8zM6.25 5a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5"/>', M = '<path d="M13 20H7v-2h6zM10 0c1.938 0 3.58.556 4.745 1.644C15.918 2.738 16.5 4.27 16.5 6c0 2.22-1.15 3.732-2.04 4.727-.644.72-.96 1.633-.96 2.662V16h-7v-2.611c0-1.029-.317-1.942-.96-2.662C4.65 9.732 3.5 8.22 3.5 6c0-1.627.593-3.145 1.743-4.255C6.395.634 8.032 0 10 0"/>', f0 = '<path d="M10 1a9 9 0 110 18 9 9 0 010-18M8 9v2h1v2H8v2h4v-2h-1V9zm1-4v2h2V5z"/>', W2 = '<path d="M6 17H4V3h2zM16.417 4.707 11.124 10l5.293 5.293-1.414 1.414-6-6V9.293l6-6z"/>', R2 = '<path d="M16 17h-2V3h2zm-5-7.707v1.414l-5.993 6-1.414-1.414L8.886 10 3.593 4.707l1.414-1.414z"/>', Q2 = '<path d="M14 9.293v1.414l-5.982 6-1.415-1.414L11.896 10 6.603 4.707l1.414-1.414z"/>', s5 = '<path d="M13.417 4.707 8.124 10l5.293 5.293-1.414 1.414-6-6V9.293l6-6z"/>', C5 = '<path d="M8 1a7 7 0 015.605 11.191l5.102 5.102-1.414 1.414-5.102-5.102A7 7 0 118 1m0 2a5 5 0 100 10A5 5 0 008 3"/>', U5 = '<path d="M14 14.5 10 18l-4-3.5V12h8zm0-9V8H6V5.5L10 2z"/>', X5 = '<path d="M10 1a9 9 0 110 18 9 9 0 010-18M8.823 11.118 6.8 9.6l-1.2 1.6 2.8 2.1 1.381-.175 4.624-5.781-1.561-1.25z"/>', q4 = '<path d="M14 13H6v-2.5L10 7l4 3.5z"/>', v3 = m, A3 = B, J3 = V1, j3 = p1, _3 = i1, d7 = S1, m7 = R1, g7 = P1, O7 = z0, Y7 = g0, o6 = {
   langCodeMap: {
-    ar: i
+    ar: M
   },
-  default: p0
-}, l7 = {
-  ltr: H2,
-  shouldFlip: true
-}, n7 = {
-  ltr: x2,
-  shouldFlip: true
-}, p7 = {
-  ltr: C2,
-  shouldFlip: true
-}, C7 = {
+  default: f0
+}, l8 = {
   ltr: W2,
   shouldFlip: true
-}, P7 = t5, X7 = r5, v8 = I5, W8 = c3;
-function d9(c, s, o) {
-  if (typeof c == "string" || "path" in c)
-    return c;
-  if ("shouldFlip" in c)
-    return c.ltr;
-  if ("rtl" in c)
-    return o === "rtl" ? c.rtl : c.ltr;
-  const v = s in c.langCodeMap ? c.langCodeMap[s] : c.default;
+}, s8 = {
+  ltr: R2,
+  shouldFlip: true
+}, M8 = {
+  ltr: Q2,
+  shouldFlip: true
+}, F8 = {
+  ltr: s5,
+  shouldFlip: true
+}, G8 = C5, t9 = U5, p9 = X5, Y9 = q4;
+function Ih(h, l, o) {
+  if (typeof h == "string" || "path" in h)
+    return h;
+  if ("shouldFlip" in h)
+    return h.ltr;
+  if ("rtl" in h)
+    return o === "rtl" ? h.rtl : h.ltr;
+  const v = l in h.langCodeMap ? h.langCodeMap[l] : h.default;
   return typeof v == "string" || "path" in v ? v : v.ltr;
 }
-function e9(c, s) {
-  if (typeof c == "string")
+function Ah(h, l) {
+  if (typeof h == "string")
     return false;
-  if ("langCodeMap" in c) {
-    const o = s in c.langCodeMap ? c.langCodeMap[s] : c.default;
+  if ("langCodeMap" in h) {
+    const o = l in h.langCodeMap ? h.langCodeMap[l] : h.default;
     if (typeof o == "string")
       return false;
-    c = o;
+    h = o;
   }
-  if ("shouldFlipExceptions" in c && Array.isArray(c.shouldFlipExceptions)) {
-    const o = c.shouldFlipExceptions.indexOf(s);
+  if ("shouldFlipExceptions" in h && Array.isArray(h.shouldFlipExceptions)) {
+    const o = h.shouldFlipExceptions.indexOf(l);
     return o === void 0 || o === -1;
   }
-  return "shouldFlip" in c ? c.shouldFlip : false;
+  return "shouldFlip" in h ? h.shouldFlip : false;
 }
 function useComputedDirection(root) {
   const computedDir = ref(null);
@@ -307,13 +307,13 @@ const _sfc_main$D = defineComponent({
       return (_a = props.lang) != null ? _a : computedLang.value;
     });
     const rootClasses = computed(() => ({
-      "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && e9(props.icon, overriddenLang.value),
+      "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && Ah(props.icon, overriddenLang.value),
       ["cdx-icon--".concat(props.size)]: true
     }));
     const resolvedIcon = computed(
       () => {
         var _a, _b;
-        return d9(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
+        return Ih(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
       }
     );
     const iconSvg = computed(() => typeof resolvedIcon.value === "string" ? resolvedIcon.value : "");
@@ -941,7 +941,7 @@ const _sfc_main$z = defineComponent({
      */
     placeholderIcon: {
       type: [String, Object],
-      default: h6
+      default: Y7
     }
   },
   setup: (props) => {
@@ -1805,11 +1805,11 @@ const computePosition$1 = async (reference, floating, config) => {
   let statefulPlacement = placement;
   let middlewareData = {};
   let resetCount = 0;
-  for (let i2 = 0; i2 < validMiddleware.length; i2++) {
+  for (let i = 0; i < validMiddleware.length; i++) {
     const {
       name,
       fn
-    } = validMiddleware[i2];
+    } = validMiddleware[i];
     const {
       x: nextX,
       y: nextY,
@@ -1852,7 +1852,7 @@ const computePosition$1 = async (reference, floating, config) => {
           y
         } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
       }
-      i2 = -1;
+      i = -1;
     }
   }
   return {
@@ -2234,11 +2234,11 @@ const shift$1 = function(options) {
         limiter = {
           fn: (_ref) => {
             let {
-              x: x3,
+              x: x2,
               y: y2
             } = _ref;
             return {
-              x: x3,
+              x: x2,
               y: y2
             };
           }
@@ -3545,7 +3545,7 @@ const _sfc_main$v = defineComponent({
       rootClasses,
       ariaDescription,
       onKeydown,
-      cdxIconClose: r4,
+      cdxIconClose: _3,
       tabIndex,
       tooltipContent,
       textElement
@@ -4303,7 +4303,7 @@ const _sfc_main$s = defineComponent({
       contentTag,
       linkAttrs,
       title,
-      cdxIconCheck: n4
+      cdxIconCheck: J3
     };
   }
 });
@@ -5817,7 +5817,7 @@ const _sfc_main$p = defineComponent({
       onCompositionEnd,
       onInvalid,
       shouldPreventDefault,
-      cdxIconClear: d4
+      cdxIconClear: j3
     };
   },
   // Public methods
@@ -6240,7 +6240,7 @@ const _sfc_main$o = defineComponent({
       onKeydown,
       onButtonClick,
       onButtonMousedown,
-      cdxIconExpand: S4,
+      cdxIconExpand: g7,
       rootClasses,
       rootStyle,
       otherAttrs
@@ -6833,7 +6833,7 @@ const __default__ = defineComponent({
       close,
       onBackdropClick,
       onBackdropMouseDown,
-      cdxIconClose: r4,
+      cdxIconClose: _3,
       labelId,
       rootClasses,
       backdrop,
@@ -7077,12 +7077,12 @@ function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Dialog = /* @__PURE__ */ _export_sfc(__default__, [["render", _sfc_render$o]]);
 const iconMap$2 = {
-  subtle: r6,
-  notice: r6,
-  progressive: r6,
-  error: y4,
-  warning: F3,
-  success: v8
+  subtle: o6,
+  notice: o6,
+  progressive: o6,
+  error: m7,
+  warning: v3,
+  success: p9
 };
 const _sfc_main$n = defineComponent({
   name: "CdxMessage",
@@ -7244,7 +7244,7 @@ const _sfc_main$n = defineComponent({
       computedIcon,
       onDismiss,
       onActionButtonClick,
-      cdxIconClose: r4
+      cdxIconClose: _3
     };
   }
 });
@@ -7653,7 +7653,7 @@ const _sfc_main$l = defineComponent({
       placeholderStyles,
       handleError,
       handleLoad,
-      cdxIconImage: X4,
+      cdxIconImage: O7,
       iconSizeClass,
       placeholderClasses
     };
@@ -7702,12 +7702,12 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Image$1 = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$l]]);
 const iconMap$1 = {
-  subtle: r6,
-  notice: r6,
-  progressive: r6,
-  error: y4,
-  warning: F3,
-  success: v8
+  subtle: o6,
+  notice: o6,
+  progressive: o6,
+  error: m7,
+  warning: v3,
+  success: p9
 };
 const _sfc_main$k = defineComponent({
   name: "CdxInfoChip",
@@ -8045,6 +8045,20 @@ const _sfc_main$j = defineComponent({
       onInputFocus,
       onKeydown
     };
+  },
+  // Public methods
+  // These must be in the methods block, not in the setup function, otherwise their documentation
+  // won't be picked up by vue-docgen
+  methods: {
+    /**
+     * Focus the component's TextInput element.
+     *
+     * @public
+     */
+    focus() {
+      const textInput = this.$refs.textInput;
+      textInput.focus();
+    }
   }
 });
 function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
@@ -9052,14 +9066,6 @@ const _sfc_main$g = defineComponent({
         close();
       }
     }
-    const anchorForFocusTrap = ref(null);
-    watch(
-      reference,
-      () => {
-        anchorForFocusTrap.value = reference.value;
-      },
-      { immediate: true }
-    );
     const {
       focusTrapStart,
       focusTrapEnd,
@@ -9071,7 +9077,7 @@ const _sfc_main$g = defineComponent({
     } = useFocusTrap({
       containerRef: panel,
       bodyRef: bodyEl,
-      anchorRef: anchorForFocusTrap,
+      anchorRef: reference,
       preventScroll: true
     });
     function teardownFloating() {
@@ -9164,7 +9170,7 @@ const _sfc_main$g = defineComponent({
       showFooter,
       footerActionsClasses,
       close,
-      cdxIconClose: r4,
+      cdxIconClose: _3,
       transitionName,
       backdropClassObject,
       panelClassObject,
@@ -9790,7 +9796,7 @@ const _sfc_main$d = defineComponent({
       rootStyle,
       otherAttrs,
       handleSubmit,
-      searchIcon: P7,
+      searchIcon: G8,
       translatedSearchButtonLabel,
       useButtonOrLabel
     };
@@ -10057,7 +10063,7 @@ const _sfc_main$c = defineComponent({
       onClick,
       onKeydown,
       startIcon,
-      cdxIconExpand: S4
+      cdxIconExpand: g7
     };
   }
 });
@@ -10287,10 +10293,10 @@ const _sfc_main$a = defineComponent({
       btnLabelPrev,
       btnLabelLast,
       wrappedItemsPerPage,
-      cdxIconPrevious: C7,
-      cdxIconNext: p7,
-      cdxIconMoveFirst: l7,
-      cdxIconMoveLast: n7
+      cdxIconPrevious: F8,
+      cdxIconNext: M8,
+      cdxIconMoveFirst: l8,
+      cdxIconMoveLast: s8
     };
   }
 });
@@ -10396,9 +10402,9 @@ const CdxTablePager = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_
 const tableTextAlignmentsValidator = makeStringTypeValidator(TableTextAlignments);
 const paginationPositionValidator = makeStringTypeValidator(TablePaginationPositions);
 const iconMap = {
-  none: X7,
-  asc: W8,
-  desc: u4
+  none: t9,
+  asc: Y9,
+  desc: d7
 };
 const sortDirectionMap = {
   none: "none",
@@ -11445,8 +11451,8 @@ const _sfc_main$8 = defineComponent({
       assignTemplateRefForTabButton,
       scrollTabs,
       focusActiveTab,
-      cdxIconPrevious: C7,
-      cdxIconNext: p7
+      cdxIconPrevious: F8,
+      cdxIconNext: M8
     };
   },
   /**
@@ -13473,7 +13479,7 @@ const _sfc_main = defineComponent({
       onSubmit,
       onKeydown,
       MenuFooterValue,
-      articleIcon: N3,
+      articleIcon: A3,
       translatedSearchResultsLabel
     };
   },
