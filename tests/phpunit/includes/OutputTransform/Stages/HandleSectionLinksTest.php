@@ -53,6 +53,9 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 			$po->setOutputFlag( $f );
 		}
 		$po->getContentHolder()->setAsHtmlString( 'my fragment', $fragment );
+		// T428677: temporarily mark parser output generated with the
+		// data-mw-wikitext marking
+		$po->setExtensionData( 'core:new-heading-attr', true );
 		return $po;
 	}
 

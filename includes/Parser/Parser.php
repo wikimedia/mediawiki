@@ -1883,6 +1883,9 @@ class Parser {
 				$text
 			);
 		}
+		// T428677: temporarily mark parser output generated with the
+		// data-mw-wikitext marking of wikitext headings.
+		$this->getOutput()->setExtensionData( 'core:new-heading-attr', true );
 		return $text;
 	}
 
