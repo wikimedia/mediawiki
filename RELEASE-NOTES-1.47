@@ -15,7 +15,7 @@ for use in production.
 Don't forget to always back up your database before upgrading!
 
 See the file UPGRADE for more detailed per-version upgrade instructions from the
-oldest supported upgrading version, MediaWiki 1.35.
+oldest supported upgrading version, MediaWiki 1.39.
 
 Some specific notes for MediaWiki 1.47 upgrades are below:
 
