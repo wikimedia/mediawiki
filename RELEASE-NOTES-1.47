@@ -244,6 +244,8 @@ because of Phabricator reports.
   - parserOptions (deprecated in 1.44)
   - setRevisionTimestamp (deprecated in 1.44)
   - wrapWikiTextAsInterface (deprecated in 1.45)
+* The following changes have been made to methods of OutputPage:
+  - getModules, getModuleStyles: now take only 1 argument (deprecated in 1.44)
 * The unused method SpecialVersion::getVersionLinked, deprecated in 1.46, has
   been removed.
 * The ConditionalDefaultOptionsAddCondition hook, deprecated in 1.46, has been

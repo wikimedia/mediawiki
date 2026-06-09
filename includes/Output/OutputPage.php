@@ -625,23 +625,11 @@ class OutputPage extends ContextSource {
 	 * Get the list of modules to include on this page
 	 *
 	 * @param bool $filter Whether to filter out any modules that are not considered to be sufficiently trusted
-	 * @param ?string ...$args Additional arguments deprecated since 1.44
 	 * @return string[] Array of module names
 	 */
-	public function getModules(
-		$filter = false, ...$args
-	) {
-		// Deprecate all arguments other than the first
-		if ( count( $args ) > 0 ) {
-			wfDeprecated( __METHOD__ . ' with >1 argument', '1.44' );
-		}
-		$position = $args[0] ?? null;
-		$param = $args[1] ?? 'mModules';
-		$type = $args[2] ?? RL\Module::TYPE_COMBINED;
+	public function getModules( $filter = false ) {
 		return $this->getModulesInternal(
-			$filter,
-			$param,
-			$type
+			$filter, 'mModules', RL\Module::TYPE_COMBINED,
 		);
 	}
 
@@ -677,14 +665,9 @@ class OutputPage extends ContextSource {
 	 * Get the list of style-only modules to load on this page.
 	 *
 	 * @param bool $filter Whether to filter out any modules that are not considered to be sufficiently trusted
-	 * @param ?string ...$args Additional arguments deprecated since 1.44
 	 * @return string[] Array of module names
 	 */
-	public function getModuleStyles( $filter = false, ...$args ) {
-		// Deprecate all arguments other than the first
-		if ( count( $args ) > 0 ) {
-			wfDeprecated( __METHOD__ . ' with >1 argument', '1.44' );
-		}
+	public function getModuleStyles( $filter = false ) {
 		return $this->getModulesInternal(
 			$filter, 'mModuleStyles', RL\Module::TYPE_STYLES
 		);
