@@ -197,6 +197,15 @@ because of Phabricator reports.
 
 === Deprecations in 1.47 ===
 
+* (T166010) All PHP code in MediaWiki is slowly being moved to be in a class
+  namespace as appropriate, so that we can use PSR-4 auto-loading, which will
+  speed up general code loading of MediaWiki. The old global namespace class
+  names are being left behind as deprecated aliases.
+
+  In this release of MediaWiki, XXX classes now have a namespace and XXX do
+  not yet (XXX% done, up from 99% in MediaWiki 1.46.0). The following have newly
+  been moved:
+  - …
 * The PatrolLog::record method is deprecated and will trigger
   deprecation warnings. Use PatrolManager::createPatrolLog instead.
 * Title::canUseNoindex() is deprecated with warnings. Please use
