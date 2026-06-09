@@ -6,6 +6,8 @@
 
 // phpcs:disable MediaWiki.Files.ClassMatchesFilename.NotMatch
 
+// NO_NAMESPACE backward compatibility
+
 /**
  * Compatibility class for unserialize of php code from cache.
  * Adding a namespace breaks class properties, the serialize content contains full qualified names,

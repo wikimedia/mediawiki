@@ -8,6 +8,29 @@ use Wikimedia\TestingAccessWrapper;
  */
 class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 
+	/** Classes cannot have namespaces, mark them also in the class file with // NO_NAMESPACE */
+	private const CLASS_NO_NAMESPACES = [
+		\ConcatenatedGzipHistoryBlob::class,
+		\DiffHistoryBlob::class,
+		\HistoryBlob::class,
+		\HistoryBlobCurStub::class,
+		\HistoryBlobStub::class,
+		\HistoryBlobUtils::class,
+		\MediaWiki::class,
+		\MemcachedClient::class,
+		\PHPVersionCheck::class,
+
+		// No alias, needs to extends instead - T428663
+		\ConstantDependency::class,
+		\DependencyWrapper::class,
+		\FileDependency::class,
+		\GlobalDependency::class,
+		\MainConfigDependency::class,
+
+		// Needs namespace - Hardcoded in phan-taint-check - T428662
+		\StatusValue::class,
+	];
+
 	/** @var string[] */
 	private $oldPsr4;
 	/** @var string[] */
@@ -92,17 +115,18 @@ class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 
 		$error = [];
 		$prefixLen = strlen( $IP ) + 1;
+		$classNoNamespace = array_flip( self::CLASS_NO_NAMESPACES );
 		foreach ( $wgAutoloadLocalClasses as $className => $file ) {
-			// Classes in the global namespace are not relevant
-			if ( !str_contains( $className, '\\' ) ) {
-				continue;
-			}
-
 			$extDot = strrpos( $file, '.' );
 			$subPath = substr( $file, $prefixLen, $extDot - $prefixLen );
 
 			// Ignore maintenance scripts - T411218
 			if ( !str_starts_with( $subPath, 'includes/' ) ) {
+				continue;
+			}
+
+			// Ignore classes incompatibile with namespaces
+			if ( isset( $classNoNamespace[$className] ) ) {
 				continue;
 			}
 
@@ -117,6 +141,12 @@ class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 			$reflectionClass = new ReflectionClass( $className );
 			// class-alias supported for backward compatibility on cross-namespace moves are not relevant
 			if ( $reflectionClass->getName() !== $className ) {
+				continue;
+			}
+
+			// Classes in the global namespace should not exists
+			if ( !str_contains( $className, '\\' ) ) {
+				$error[$className] = 'Missing namespace declaration';
 				continue;
 			}
 

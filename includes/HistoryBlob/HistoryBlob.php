@@ -6,6 +6,8 @@
  * @file
  */
 
+// NO_NAMESPACE Compatibility with serialized objects in permanent storage
+
 /**
  * Base class for general text storage via the "object" flag in old_flags, or
  * two-part external storage URLs. Used for represent efficient concatenated

@@ -6,6 +6,8 @@
  * @file
  */
 
+// NO_NAMESPACE backward compatibility
+
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\EntryPointEnvironment;

@@ -6,6 +6,8 @@
  * @file
  */
 
+// NO_NAMESPACE Compatibility with serialized objects in permanent storage
+
 /**
  * Diff-based history compression
  * Requires xdiff and zlib

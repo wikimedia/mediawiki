@@ -6,6 +6,8 @@
  * @file
  */
 
+// NO_NAMESPACE Compatibility with serialized objects in permanent storage
+
 use MediaWiki\MediaWikiServices;
 
 /**

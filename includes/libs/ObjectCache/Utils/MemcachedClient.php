@@ -1,5 +1,8 @@
 <?php
 // phpcs:ignoreFile -- It's an external lib and it isn't. Let's not bother.
+
+// NO_NAMESPACE
+
 /**
  * Memcached client for PHP.
  *

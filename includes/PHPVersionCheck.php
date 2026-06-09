@@ -4,6 +4,8 @@
  * @file
  */
 
+// NO_NAMESPACE Compatibility with php4
+
 // phpcs:disable Generic.Arrays.DisallowLongArraySyntax,PSR2.Classes.PropertyDeclaration,MediaWiki.Usage.DirUsage
 // phpcs:disable Squiz.Scope.MemberVarScope.Missing,Squiz.Scope.MethodScope.Missing
 // phpcs:disable MediaWiki.Usage.StaticClosure.StaticClosure

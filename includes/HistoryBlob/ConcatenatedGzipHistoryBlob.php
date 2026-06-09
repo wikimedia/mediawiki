@@ -6,6 +6,8 @@
  * @file
  */
 
+// NO_NAMESPACE Compatibility with serialized objects in permanent storage
+
 /**
  * Concatenated gzip (CGZ) storage
  * Improves compression ratio by concatenating like objects before gzipping
