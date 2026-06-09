@@ -92,8 +92,7 @@ module.exports = {
 		'mediawiki.codex.typeaheadSearch': '@wikimedia/codex',
 		'mediawiki.page.ready$': '<rootDir>/resources/src/mediawiki.page.ready/ready.js',
 		'^mediawiki\\.languageselector\\.core$': '<rootDir>/resources/src/mediawiki.languageselector/core.js',
-		'^mediawiki\\.languageselector\\.lookup$': '<rootDir>/resources/src/mediawiki.languageselector/lookup.js',
-		'^mediawiki\\.languageselector$': '<rootDir>/resources/src/mediawiki.languageselector/index.js'
+		'^mediawiki\\.languageselector\\.lookup$': '<rootDir>/resources/src/mediawiki.languageselector/lookup.js'
 	},
 
 	// An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
