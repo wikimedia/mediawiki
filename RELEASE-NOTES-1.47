@@ -275,6 +275,13 @@ because of Phabricator reports.
   is deprecated and will trigger deprecation warnings.  Use
   MutableRevisionRecord::newFromContent() to pass a WikitextContent constructed
   with your string.
+* A non-empty $query parameter to Linker::makeBrokenImageLinkObj() and
+  Linker::getUploadUrl() has been deprecated and will trigger deprecation
+  warnings. There appear to be few users of these methods and no users
+  of this parameter since around MW 1.21 when they were removed from Skin.
+* Linker::makeBrokenImageLinkObj() used to wfWarn if the first argument
+  was not a LinkTarget.  This has been changed to a deprecation warning.
+  In a future release this will be a type hint on the argument.
 * The ParserOptionsRegister hook has been deprecated and replaced by
   ParserOptionsDefaults.
 * MediaWikiIntegrationTestCase::assertSelect() has been deprecated,

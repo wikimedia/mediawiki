@@ -32,6 +32,7 @@ use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Assert\Assert;
 use Wikimedia\HtmlArmor\HtmlArmor;
+use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
 
@@ -810,9 +811,12 @@ class Linker {
 	 * Make a "broken" link to an image
 	 *
 	 * @since 1.16.3
-	 * @param LinkTarget $title
+	 * @param ParsoidLinkTarget $title
 	 * @param string $label Link label (plain text)
 	 * @param string $query Query string
+	 *   This parameter was deprecated in 1.47 and will be ignored in
+	 *   a future release. For forward compatibility pass an empty string
+	 *   if needed.
 	 * @param string $unused1 Unused parameter kept for b/c
 	 * @param string $unused2 Unused parameter kept for b/c
 	 * @param bool $time A file of a certain timestamp was requested
@@ -824,9 +828,12 @@ class Linker {
 		$title, $label = '', $query = '', $unused1 = '', $unused2 = '',
 		$time = false, array $handlerParams = [], bool $currentExists = false
 	) {
-		if ( !$title instanceof LinkTarget ) {
-			wfWarn( __METHOD__ . ': Requires $title to be a LinkTarget object.' );
+		if ( !$title instanceof ParsoidLinkTarget ) {
+			wfDeprecatedMsg( __METHOD__ . ': Requires $title to be a LinkTarget object', '1.47' );
 			return "<!-- ERROR -->" . htmlspecialchars( $label );
+		}
+		if ( $query !== '' ) {
+			wfDeprecated( __METHOD__ . ' with non-empty query parameter', '1.47' );
 		}
 
 		$title = Title::newFromLinkTarget( $title );
@@ -885,16 +892,18 @@ class Linker {
 	 * Get the URL to upload a certain file
 	 *
 	 * @since 1.16.3
-	 * @param LinkTarget $destFile LinkTarget object of the file to upload
+	 * @param ParsoidLinkTarget $destFile LinkTarget object of the file to upload
 	 * @param string $query Urlencoded query string to prepend
+	 *   (deprecated since 1.47)
 	 * @return string Urlencoded URL
 	 */
-	public static function getUploadUrl( $destFile, $query = '' ) {
+	public static function getUploadUrl( ParsoidLinkTarget $destFile, string $query = '' ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$uploadMissingFileUrl = $mainConfig->get( MainConfigNames::UploadMissingFileUrl );
 		$uploadNavigationUrl = $mainConfig->get( MainConfigNames::UploadNavigationUrl );
 		$q = 'wpDestFile=' . Title::newFromLinkTarget( $destFile )->getPartialURL();
 		if ( $query != '' ) {
+			wfDeprecated( __METHOD__ . ' with $query parameter', '1.47' );
 			$q .= '&' . $query;
 		}
 
