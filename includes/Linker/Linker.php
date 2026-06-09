@@ -895,9 +895,11 @@ class Linker {
 	 * @param ParsoidLinkTarget $destFile LinkTarget object of the file to upload
 	 * @param string $query Urlencoded query string to prepend
 	 *   (deprecated since 1.47)
+	 * @param bool $prefixedURL Return a prefixed URL instead of a local URL
+	 *   (since 1.47)
 	 * @return string Urlencoded URL
 	 */
-	public static function getUploadUrl( ParsoidLinkTarget $destFile, string $query = '' ) {
+	public static function getUploadUrl( ParsoidLinkTarget $destFile, string $query = '', bool $prefixedURL = false ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$uploadMissingFileUrl = $mainConfig->get( MainConfigNames::UploadMissingFileUrl );
 		$uploadNavigationUrl = $mainConfig->get( MainConfigNames::UploadNavigationUrl );
@@ -917,6 +919,9 @@ class Linker {
 
 		$upload = SpecialPage::getTitleFor( 'Upload' );
 
+		if ( $prefixedURL ) {
+			return './' . $upload->getPrefixedURL( $q );
+		}
 		return $upload->getLocalURL( $q );
 	}
 

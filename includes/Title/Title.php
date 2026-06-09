@@ -2130,11 +2130,15 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	/**
 	 * Get a URL-encoded title (not an actual URL) including interwiki
 	 *
+	 * @param string $query An optional query string (since 1.47)
 	 * @return string The URL-encoded form
 	 */
-	public function getPrefixedURL() {
+	public function getPrefixedURL( string $query = '' ) {
 		$s = $this->prefix( $this->mDbkeyform );
 		$s = wfUrlencode( strtr( $s, ' ', '_' ) );
+		if ( $query !== '' ) {
+			$s = wfAppendQuery( $s, $query );
+		}
 		return $s;
 	}
 
