@@ -388,7 +388,7 @@
 	"nosuchusershort": "Li vê derê ne bikarhênerek bi navî \"$1\" heye. Li nivîsandinê xwe seke.",
 	"nouserspecified": "Divê tu navekî ji bo bikarhêneriyê hilbijêrî.",
 	"login-userblocked": "Rê li ber vî/vê bikarhênerî/ê hatiye girtin. Destûr bo têketinê nîne.",
-	"wrongpassword": "Nav yan şîfreya ku te nivîsand çewt e. Ji kerema xwe careke din biceribîne.",
+	"wrongpassword": "Nav yan şîfreya ku te nivîsand xelet e. Ji kerema xwe careke din biceribîne.",
 	"wrongpasswordempty": "Cihê şîfreya te vala ye. Carekê din binivisîne.",
 	"mailmypassword": "Şîfreyê nû bike",
 	"passwordremindertitle": "Şîfreyeke nû ya demkî ji bo {{GRAMMAR:oblique|{{SITENAME}}}}",

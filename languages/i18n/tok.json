@@ -36,7 +36,8 @@
 			"Palinasin",
 			"Tymewalk",
 			"Phurlaughn",
-			"Recqy"
+			"Recqy",
+			"Jlwoodwa"
 		]
 	},
 	"sunday": "tenpo suno #7 pi tenpo esun",
@@ -1320,7 +1321,7 @@
 	"rcfilters-filter-user-experience-level-unregistered-description": "jan li lon ala sijelo ona.",
 	"rcfilters-filter-user-experience-level-unregistered-description-temp": "sijelo ala en sijelo pi tenpo lili",
 	"rcfilters-filter-user-experience-level-newcomer-label": "jan sin",
-	"rcfilters-filter-user-experience-level-newcomer-description": "ante 10 la anti pi sijelo ni li lili. anu tenpo suno 4 la majuna pi sijelo ni li lili.",
+	"rcfilters-filter-user-experience-level-newcomer-description": "ante 10 la ante pi sijelo ni li lili. anu tenpo suno 4 la majuna pi sijelo ni li lili.",
 	"rcfilters-filter-user-experience-level-learner-label": "jan li kama sona",
 	"rcfilters-filter-user-experience-level-learner-description": "<!--kulupu-->{{int:Rcfilters-filter-user-experience-level-newcomer-label}} en <!--kulupu-->{{int:Rcfilters-filter-user-experience-level-experienced-label}} la sijelo li lon meso.",
 	"rcfilters-filter-user-experience-level-experienced-label": "tenpo la jan suli",

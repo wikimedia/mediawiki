@@ -2388,7 +2388,7 @@
 	"sessionfailure-title": "خطای نشست کاربری",
 	"sessionfailure": "به نظر می‌رسد مشکلی در مورد نشست کاربری شما وجود دارد؛\nعمل درخواست شده در اقدامی پیشگیرانه در برابر ربوده‌شدن اطلاعات نشست کاربری، لغو شد.\nلطفاً فرم را از نو بارگذاری کنید.",
 	"changecontentmodel": "ویرایش مدل محتوای یک صفحه",
-	"changecontentmodel-legend": "تغییر نوع محتوی",
+	"changecontentmodel-legend": "تغییر نوع محتوا",
 	"changecontentmodel-title-label": "عنوان صفحه:",
 	"changecontentmodel-model-label": "مدل محتوای جدید:",
 	"changecontentmodel-reason-label": "دلیل:",

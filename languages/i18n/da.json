@@ -3578,7 +3578,7 @@
 	"htmlform-user-not-exists": "<strong>$1</strong> findes ikke.",
 	"htmlform-user-not-valid": "<strong>$1</strong> er ikke et gyldigt brugernavn.",
 	"htmlform-tag-not-allowed": "$1 er ikke et tilladt tag",
-	"logentry-delete-delete": "$1 {{GENDER:$2|slettet}} side $3",
+	"logentry-delete-delete": "$1 {{GENDER:$2|slettede}} siden $3",
 	"logentry-delete-delete_redir": "$1 {{GENDER:$2|slettede}} omdirigering $3 ved overskrivning",
 	"logentry-delete-delete_redir2": "$1 {{GENDER:$2|slettede}} omdirigering $3 ved at overskrive",
 	"logentry-delete-restore": "$1 {{GENDER:$2|gendannede}} siden $3 ($4)",
