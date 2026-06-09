@@ -13,6 +13,7 @@
 	"rest-wrong-method": "요청 메소드($1)는 {{PLURAL:$3|이 경로에 대해 허용되는 메소드|이 경로에 대해 허용되는 메소드 중 하나}}가 아닙니다 ($2)",
 	"rest-no-match": "요청된 상대 경로($1)는 알려진 핸들러와 일치하지 않습니다",
 	"rest-unknown-module": "요청한 모듈 이름($1)을 알 수 없습니다",
+	"rest-unavailable-spec": "모듈($1)에 대한 OpenAPI 사양을 사용할 수 없습니다",
 	"rest-nonexistent-title": "지정한 문서($1)가 존재하지 않습니다.",
 	"rest-nonexistent-title-revision": "지정된 판($1)은 지정된 문서($2)에 대해 존재하지 않습니다",
 	"rest-nonexistent-revision": "요청한 판($1)이 존재하지 않습니다",

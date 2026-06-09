@@ -11,6 +11,7 @@
 			"Megakott",
 			"Mitte27",
 			"Okras",
+			"Stjn",
 			"Vlad5250",
 			"Yurina Tatiana"
 		]
@@ -86,8 +87,8 @@
 	"rest-param-desc-contentmodel": "Формат содержимого страницы: вики-текст (по умолчанию), css, javascript, json или text.",
 	"rest-param-desc-update-latest": "Информация о новейшей версии страницы. Вы можете получить эту информацию из источника источника страницы.",
 	"rest-param-desc-create-title": "Заголовок страницы. Посетите отдельные вики для ознакомления с политикой относительно форматов и символов заголовков страниц.",
-	"rest-param-desc-compare-from-section-level": "Уровень раздела",
-	"rest-param-desc-compare-to-section-level": "Уровень раздела",
+	"rest-param-desc-compare-from-section-level": "Уровень заголовка",
+	"rest-param-desc-compare-to-section-level": "Уровень заголовка",
 	"rest-param-desc-compare-diff": "Различия между версиями",
 	"rest-param-desc-language-links-title": "Заголовок вики-страницы",
 	"rest-param-desc-media-links-title": "Заголовок страницы",

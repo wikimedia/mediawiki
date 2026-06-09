@@ -23,7 +23,7 @@
 	"cdx-table-pager-button-last-page": "وروستی مخ",
 	"cdx-table-pager-button-next-page": "بل مخ",
 	"cdx-table-pager-button-prev-page": "تېر مخ",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1| $1 کتار| $1 کتارونه}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1| $1 توکی| $1 توکي}}",
 	"cdx-table-pager-items-per-page-default": "په هر مخ پایلې",
 	"cdx-table-pagination-status-message-determinate-long": "پايلې ښودل $1–$2 د $3",
 	"cdx-table-pagination-status-message-determinate-short": "د $3 څخه $1 - $2",

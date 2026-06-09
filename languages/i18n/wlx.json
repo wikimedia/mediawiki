@@ -264,7 +264,7 @@
 	"editing": "Maana enna $1",
 	"creating": "Maale $1",
 	"editingsection": "Maale embu $1 (jie)",
-	"editconflict": "Maale sɛʋ jɛʋri",
+	"editconflict": "Maale sɛʋ jɛʋri: $1",
 	"yourtext": "Ɩ sɛʋri",
 	"templatesused": "{{PLURAL:$1|Page|Pages}} included on this page:\n\n{{PLURAL:$1|Lɩɛrɩnimbiri|Lɩɛrɩnimbie}} ba paahʋʋŋ a lɩɛrɩnimbiri ŋa puoŋ:",
 	"templatesusedpreview": "{{PLURAL:$1|Lɩɛrɩnimbiri|Lɩɛrɩnimbie}} ba paahʋʋŋ a daŋkaabʋ ŋa puoŋ:",

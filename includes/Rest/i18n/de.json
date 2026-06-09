@@ -14,6 +14,7 @@
 	"rest-wrong-method": "Die angeforderte Methode ($1) war keine {{PLURAL:$3|erlaubte Methode für diesen Pfad|der erlaubten Methoden für diesen Pfad}} ($2)",
 	"rest-no-match": "Der angeforderte relative Pfad ($1) stimmte mit keinem bekannten Handler überein",
 	"rest-unknown-module": "Der angeforderte Modulname ($1) ist nicht bekannt",
+	"rest-unavailable-spec": "Die OpenAPI-Spezifikation für das Modul ($1) ist nicht verfügbar",
 	"rest-nonexistent-title": "Die angegebene Seite ($1) existiert nicht",
 	"rest-nonexistent-title-revision": "Die angegebene Version ($1) existiert nicht für die angegebene Seite ($2)",
 	"rest-nonexistent-revision": "Die angegebene Version ($1) existiert nicht",
