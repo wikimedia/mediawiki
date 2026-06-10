@@ -520,49 +520,16 @@ class SkinModule extends FileModule {
 				$config->get( MainConfigNames::ThumbLimits ),
 				$config->get( 'DefaultUserOptions' )
 			);
-			// Note: If changing any of the CSS selectors here,
-			// please make sure to update getDefinitionSummary() accordingly to ensure
-			// the cache keys are properly invalidated when they change.
-			$imgSelectors = [
-				'.mw-parser-output .mw-default-size img' .
-				// Restrict to width='$defaultSize' to prevent upscaling images which were
-				// originally smaller than the default thumbnail size (T417828)
-				'[ width="' . $defaultSize . '" ]',
-				'.mw-parser-output .mw-default-size img.mw-file-upright',
-			];
-
-			$makeRule = function ( $imgSelector, $size ) {
-				return $imgSelector .
-					"{\n  height: auto;\n  width: " . self::makeThumbCalc( $size ) .
-						";\n  width: " . self::makeThumbCalc( $size, true ) . ";\n}\n";
-			};
-
-			foreach ( $imgSelectors as $imgSelector ) {
-				$featureStyles['all'][] = $makeRule( $imgSelector, $defaultSize );
-				$featureStyles['all'][] = $makeRule(
-					'html.skin-thumbsize-clientpref-small ' . $imgSelector,
-					$smallSize
-				);
-				$featureStyles['all'][] = $makeRule(
-					'html.skin-thumbsize-clientpref-large ' . $imgSelector,
-					$largeSize
-				);
-			}
+			$featureStyles['all'][] = <<<CSS
+:root {
+	--image-size-small: {$smallSize}px;
+	--image-size-standard: {$defaultSize}px;
+	--image-size-large: {$largeSize}px;
+}
+CSS;
 		}
 
 		return $this->combineFeatureAndParentStyles( $featureStyles, $parentStyles, $context->getRequest() );
-	}
-
-	/**
-	 * @param int $size
-	 * @param bool $round apply the CSS round function. This is not supported in
-	 *   some recent browsers e.g. Firefox 115esr.
-	 *   See https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/round.
-	 * @return string
-	 */
-	private static function makeThumbCalc( int $size, bool $round = false ) {
-		$val = $size . 'px * var( --mw-file-upright, 1 )';
-		return $round ? 'calc( round( ' . $val . ', 10px ) )' : 'calc(' . $val . ')';
 	}
 
 	public function getPreloadLinks( Context $context ): array {
@@ -760,8 +727,14 @@ class SkinModule extends FileModule {
 	 */
 	protected function getLessVars( Context $context ) {
 		$lessVars = parent::getLessVars( $context );
-		$logos = self::getAvailableLogos( $this->getConfig(), $context->getLanguage() );
+		$config = $this->getConfig();
+		$logos = self::getAvailableLogos( $config, $context->getLanguage() );
+		[ $smallSize, $defaultSize, $largeSize ] = DefaultPreferencesFactory::getNormalizedThumbSizes(
+			$config->get( MainConfigNames::ThumbLimits ),
+			$config->get( 'DefaultUserOptions' )
+		);
 
+		$lessVars[ 'image-size-standard' ] = $defaultSize;
 		if ( isset( $logos['wordmark'] ) ) {
 			$logo = $logos['wordmark'];
 			$lessVars[ 'logo-enabled' ] = true;
