@@ -1,5 +1,5 @@
 <template>
-	<cdx-field :status="status" :messages="statusMessages">
+	<cdx-field :status="status" :messages="statusMessages" :disabled="disabled">
 		<component
 			:is="isMultiple ? 'cdx-multiselect-lookup' : 'cdx-lookup'"
 			:id="inputId"
@@ -9,6 +9,8 @@
 			:menu-items="menuItems"
 			:menu-config="menuConfig"
 			:placeholder="placeholder"
+			:disabled="disabled"
+			:required="required"
 			@update:input-value="onUpdateInputValue"
 			@update:selected="onUpdateSelected"
 			@update:input-chips="onUpdateInputChips"
@@ -80,6 +82,14 @@ module.exports = exports = defineComponent( {
 		placeholder: {
 			type: String,
 			default: ''
+		},
+		disabled: {
+			type: Boolean,
+			default: false
+		},
+		required: {
+			type: Boolean,
+			default: false
 		}
 	},
 	emits: [ 'update:selected' ],

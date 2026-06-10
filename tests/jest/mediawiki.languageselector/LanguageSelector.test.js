@@ -6,12 +6,12 @@ jest.mock( '../../../resources/src/mediawiki.languageselector/codex.js', () => (
 	CdxField: {
 		name: 'CdxField',
 		template: '<div class="cdx-field"><slot></slot></div>',
-		props: [ 'status', 'messages' ]
+		props: [ 'status', 'messages', 'disabled' ]
 	},
 	CdxLookup: {
 		name: 'CdxLookup',
 		template: '<div class="cdx-lookup"><slot name="menu-item" :menu-item="{ label: \'test\', value: \'test\' }"></slot><slot name="no-results"></slot></div>',
-		props: [ 'selected', 'inputValue', 'menuItems', 'menuConfig', 'placeholder' ]
+		props: [ 'selected', 'inputValue', 'menuItems', 'menuConfig', 'placeholder', 'disabled', 'required' ]
 	},
 	CdxMultiselectLookup: {
 		name: 'CdxMultiselectLookup',
@@ -25,7 +25,7 @@ jest.mock( '../../../resources/src/mediawiki.languageselector/codex.js', () => (
 				</div>
 			</div>
 		`,
-		props: [ 'selected', 'inputValue', 'inputChips', 'menuItems', 'menuConfig', 'placeholder' ]
+		props: [ 'selected', 'inputValue', 'inputChips', 'menuItems', 'menuConfig', 'placeholder', 'disabled', 'required' ]
 	}
 } ), { virtual: true } );
 
@@ -141,6 +141,23 @@ describe( 'LanguageSelector (single selection)', () => {
 		expect( wrapper.emitted( 'update:selected' ) ).toBeTruthy();
 		expect( wrapper.emitted( 'update:selected' )[ 0 ] ).toEqual( [ 'fr' ] );
 	} );
+
+	it( 'passes disabled prop to CdxField and CdxLookup', () => {
+		const wrapper = mount( { disabled: true } );
+
+		const cdxField = wrapper.findComponent( { name: 'CdxField' } );
+		expect( cdxField.props( 'disabled' ) ).toBe( true );
+
+		const cdxLookup = wrapper.findComponent( { name: 'CdxLookup' } );
+		expect( cdxLookup.props( 'disabled' ) ).toBe( true );
+	} );
+
+	it( 'passes required prop to CdxLookup', () => {
+		const wrapper = mount( { required: true } );
+
+		const cdxLookup = wrapper.findComponent( { name: 'CdxLookup' } );
+		expect( cdxLookup.props( 'required' ) ).toBe( true );
+	} );
 } );
 
 describe( 'LanguageSelector (multiple selection)', () => {
@@ -250,5 +267,22 @@ describe( 'LanguageSelector (multiple selection)', () => {
 
 		expect( wrapper.find( '.custom-no-results' ).exists() ).toBe( true );
 		expect( wrapper.find( '.custom-no-results' ).text() ).toBe( 'No results found' );
+	} );
+
+	it( 'passes disabled prop to CdxField and CdxMultiselectLookup', () => {
+		const wrapper = mountMultiple( { disabled: true } );
+
+		const cdxField = wrapper.findComponent( { name: 'CdxField' } );
+		expect( cdxField.props( 'disabled' ) ).toBe( true );
+
+		const cdxMultiselectLookup = wrapper.findComponent( { name: 'CdxMultiselectLookup' } );
+		expect( cdxMultiselectLookup.props( 'disabled' ) ).toBe( true );
+	} );
+
+	it( 'passes required prop to CdxMultiselectLookup', () => {
+		const wrapper = mountMultiple( { required: true } );
+
+		const cdxMultiselectLookup = wrapper.findComponent( { name: 'CdxMultiselectLookup' } );
+		expect( cdxMultiselectLookup.props( 'required' ) ).toBe( true );
 	} );
 } );
