@@ -102,11 +102,9 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 				}
 				return true;
 			}
-			if ( $permission === 'edit' ) {
-				$this->assertEquals( $title, $page );
-				return false;
-			}
-			$this->fail( "Unexpected permission check $permission" );
+			$this->assertEquals( 'edit', $permission, 'Unexpected permission check' );
+			$this->assertEquals( $title, $page );
+			return false;
 		} );
 
 		$constraint = new ContentModelChangeConstraint(

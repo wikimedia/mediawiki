@@ -302,9 +302,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// and that something is reported
 		$fnameReport = $this->getNewTempFile();
 		$dumper->stderr = fopen( $fnameReport, 'a' );
-		if ( $dumper->stderr === false ) {
-			$this->fail( "Could not open stream for stderr" );
-		}
+		$this->assertNotFalse( $dumper->stderr, "Could not open stream for stderr" );
 
 		// Performing the dump. Suppress warnings, since we want to test
 		// accessing broken revision data (page 5).

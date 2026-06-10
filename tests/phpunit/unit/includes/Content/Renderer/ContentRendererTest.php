@@ -65,21 +65,12 @@ class ContentRendererTest extends MediaWikiUnitTestCase {
 		$parserOutput = $renderer->getParserOutput( $content, $page, $revision, $parserOptions );
 
 		$this->assertInstanceOf( ParserOutput::class, $parserOutput );
-		if ( $parserOutput->getCacheRevisionId() !== null ) {
-			$this->assertEquals( 123, $parserOutput->getCacheRevisionId() );
-		} else {
-			$this->fail( 'Cache revision ID is null' );
-		}
-		if ( $parserOutput->getRenderId() !== null ) {
-			$this->assertSame( '12345', $parserOutput->getRenderId() );
-		} else {
-			$this->fail( 'Render ID is null' );
-		}
-		if ( $parserOutput->getRevisionTimestamp() !== null ) {
-			$this->assertSame( '20230418000000', $parserOutput->getRevisionTimestamp() );
-		} else {
-			$this->fail( 'Revision timestamp is null' );
-		}
+		$this->assertNotNull( $parserOutput->getCacheRevisionId() );
+		$this->assertEquals( 123, $parserOutput->getCacheRevisionId() );
+		$this->assertNotNull( $parserOutput->getRenderId() );
+		$this->assertSame( '12345', $parserOutput->getRenderId() );
+		$this->assertNotNull( $parserOutput->getRevisionTimestamp() );
+		$this->assertSame( '20230418000000', $parserOutput->getRevisionTimestamp() );
 	}
 
 	/**

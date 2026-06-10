@@ -174,9 +174,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		$nameOutputDir = $this->getNewTempDirectory();
 
 		$stderr = fopen( 'php://output', 'a' );
-		if ( $stderr === false ) {
-			$this->fail( "Could not open stream for stderr" );
-		}
+		$this->assertNotFalse( $stderr, "Could not open stream for stderr" );
 
 		$iterations = 32; // We'll start with that many iterations of revisions
 		// in stub. Make sure that the generated volume is above the buffer size

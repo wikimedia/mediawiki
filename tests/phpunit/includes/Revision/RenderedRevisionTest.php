@@ -521,12 +521,8 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 					$hints = [ 'generate-html' => $hints ];
 				}
 				$generateHtml = $hints['generate-html'] ?? true;
-				if ( !$generateHtml ) {
-					return new ParserOutput( null );
-				} else {
-					$this->fail( 'Should not be called with $generateHtml == true' );
-					return null; // never happens, make analyzer happy
-				}
+				$this->assertFalse( $generateHtml, 'Should not be called with $generateHtml == true' );
+				return new ParserOutput( null );
 			} );
 
 		$rev = MutableRevisionRecord::newFromContent(

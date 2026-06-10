@@ -2,7 +2,6 @@
 
 namespace Wikimedia\Tests\Rdbms;
 
-use Exception;
 use InvalidArgumentException;
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
@@ -701,15 +700,13 @@ class SQLPlatformTest extends TestCase {
 	 * @dataProvider provideDeleteEmptyCondition
 	 */
 	public function testDeleteEmptyCondition( $sql ) {
-		try {
-			$this->platform->deleteSqlText(
-				$sql['table'],
-				$sql['conds']
-			);
-			$this->fail( 'The Database::delete should raise exception' );
-		} catch ( Exception $e ) {
-			$this->assertStringContainsString( 'deleteSqlText called with empty conditions', $e->getMessage() );
-		}
+		$this->expectException( DBLanguageError::class );
+		$this->expectExceptionMessage( 'deleteSqlText called with empty conditions' );
+
+		$this->platform->deleteSqlText(
+			$sql['table'],
+			$sql['conds']
+		);
 	}
 
 	public static function provideDeleteEmptyCondition() {

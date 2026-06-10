@@ -176,9 +176,7 @@ class MessagesStructureTest extends MediaWikiUnitTestCase {
 	private function validateLinkTrail( $linkTrail ) {
 		$this->assertIsString( $linkTrail );
 		$result = preg_match( $linkTrail, 'test' );
-		if ( $result === false ) {
-			$this->fail( "linkTrail regex match failed with code " . preg_last_error() );
-		}
+		$this->assertNotFalse( $result, "linkTrail regex match failed with code " . preg_last_error() );
 	}
 
 }
