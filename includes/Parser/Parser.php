@@ -2845,7 +2845,6 @@ class Parser {
 	 *  - 'parsoidTopLevelCall' Is this coming from Parsoid for top-level templates?
 	 *   This is used to set start-of-line flag to true for template expansions since that
 	 *   is how Parsoid models templates.
-	 *  - 'processNowiki' expands <nowiki> and stores in strip state
 	 *
 	 * @return string
 	 * @since 1.24 method is public
@@ -2876,12 +2875,7 @@ class Parser {
 		}
 		$dom = $this->preprocessToDom( $text, $ppFlags );
 		$flags = $argsOnly ? PPFrame::NO_TEMPLATES : 0;
-		if ( $options['processNowiki'] ?? false ) {
-			$flags |= PPFrame::PROCESS_NOWIKI;
-		}
-		$text = $frame->expand( $dom, $flags );
-
-		return $text;
+		return $frame->expand( $dom, $flags );
 	}
 
 	/** @internal */
@@ -3990,15 +3984,15 @@ class Parser {
 	 *     inner      Contents of extension element
 	 *     noClose    Original text did not have a close tag
 	 * @param PPFrame $frame
-	 * @param bool $processNowiki Process nowiki tags by running the nowiki tag handler
-	 *     Normally, nowikis are only processed for the HTML output type. With this
-	 *     arg set to true, they are processed (and converted to a nowiki strip marker)
-	 *     for all output types.
+	 * @param bool $substNowiki Normally, nowikis are processed for the HTML output
+	 *     type but with this arg set to true, they are forced to subst.
 	 * @return string
 	 * @internal
 	 * @since 1.12
 	 */
-	public function extensionSubstitution( array $params, PPFrame $frame, bool $processNowiki = false ): string {
+	public function extensionSubstitution(
+		array $params, PPFrame $frame, bool $substNowiki = false
+	): string {
 		static $errorStr = '<span class="error">';
 
 		$name = $frame->expand( $params['name'] );
@@ -4027,10 +4021,12 @@ class Parser {
 		$isNowiki = $normalizedName === 'nowiki';
 		$markerType = $isNowiki ? 'nowiki' : 'general';
 		$extra = $isNowiki ? 'nowiki' : null;
-		if ( !$this->mStripExtTags ) {
-			$processNowiki = true;
-		}
-		if ( $this->ot['html'] || ( $processNowiki && $isNowiki ) ) {
+		$forceSubstNowiki = ( $isNowiki && $substNowiki );
+
+		if (
+			( $this->ot['html'] || ( $isNowiki && !$this->mStripExtTags ) ) &&
+			!$forceSubstNowiki
+		) {
 			$attributes = Sanitizer::decodeTagAttributes( $attrText );
 			// Merge in attributes passed via {{#tag:}} parser function
 			if ( isset( $params['attributes'] ) ) {
@@ -4076,7 +4072,7 @@ class Parser {
 				}
 				$output = "<$name$attrText>$content$close";
 			}
-			if ( !$this->mStripExtTags ) {
+			if ( !$this->mStripExtTags && !$forceSubstNowiki ) {
 				$markerType = 'exttag';
 			}
 		}
