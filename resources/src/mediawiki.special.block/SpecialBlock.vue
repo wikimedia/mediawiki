@@ -24,8 +24,7 @@
 			>
 				<p><strong>{{ blockSavedMessage }}</strong></p>
 				<p v-i18n-html:block-success="[ store.targetUser ]"></p>
-				<!-- eslint-disable-next-line vue/no-v-html -->
-				<p v-if="additionalBlocksMessage" v-html="additionalBlocksMessage"></p>
+				<p v-if="additionalBlocksMessage" v-i18n-html="additionalBlocksMessage"></p>
 			</cdx-message>
 			<cdx-message
 				v-if="blockRemoved"
@@ -460,9 +459,9 @@ module.exports = exports = defineComponent( {
 							const userLinks = additionalBlocks.map(
 								( target ) => mw.message( 'block-target-link', target ).parse()
 							);
-							const listOfUserLinks = mw.language.listToText( userLinks );
+							const $listOfUserLinks = $( $.parseHTML( mw.language.listToText( userLinks ) ) );
 							additionalBlocksMessage.value =
-								mw.msg( 'block-additional-success-text', listOfUserLinks, userLinks.length );
+								mw.message( 'block-additional-success-text', $listOfUserLinks, userLinks.length );
 						}
 
 						// Capture existing messages, which are all errors pre-parsed by the hook responder
