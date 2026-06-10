@@ -3,6 +3,7 @@
 namespace MediaWiki\ShadowPage;
 
 use MediaWiki\Page\PageReference;
+use OutOfBoundsException;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Parsoid\Core\LinkTarget;
 
@@ -101,6 +102,27 @@ class ShadowPageLoader {
 			}
 		}
 		return $this->messageProvider;
+	}
+
+	/**
+	 * Get an extension provider with a given class name, or throw
+	 * if no such provider exists.
+	 *
+	 * To get a core provider, use the relevant accessor such as
+	 * getMessageProvider().
+	 */
+	public function getExtensionProvider( string $className ): ShadowPageProvider {
+		foreach ( $this->extensionSpecs as $index => $spec ) {
+			if ( !isset( $spec['class'] ) ) {
+				$provider = $this->getProvider( self::EXTENSION, $index, $spec );
+				if ( $provider instanceof $className ) {
+					return $provider;
+				}
+			} elseif ( $spec['class'] === $className ) {
+				return $this->getProvider( self::EXTENSION, $index, $spec );
+			}
+		}
+		throw new OutOfBoundsException( 'No such provider class' );
 	}
 
 	/**
