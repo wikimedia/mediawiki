@@ -63,6 +63,7 @@ class EntryPoint extends MediaWikiEntryPoint {
 
 		$moduleManager = new ModuleManager(
 			new ServiceOptions( ModuleManager::CONSTRUCTOR_OPTIONS, $conf ),
+			ExtensionRegistry::getInstance()->getAttribute( 'RestModuleFiles' ),
 			$services->getLocalServerObjectCache(),
 			$responseFactory
 		);

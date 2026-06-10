@@ -9,6 +9,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\ParamValidator\TypeDef\ArrayDef;
 use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\EntryPoint;
@@ -355,12 +356,14 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		$conf = $services->getMainConfig();
 		$moduleManager = new ModuleManager(
 			new ServiceOptions( ModuleManager::CONSTRUCTOR_OPTIONS, $conf ),
+			ExtensionRegistry::getInstance()->getAttribute( 'RestModuleFiles' ),
 			$services->getLocalServerObjectCache(),
 			new ResponseFactory( [] ),
 		);
-		$routeFiles = $moduleManager->getRouteFiles();
+		$files = $moduleManager->getRouteFiles();
+		$files += $moduleManager->getDisabledRouteFiles();
 
-		foreach ( $routeFiles as $file ) {
+		foreach ( $files as $file ) {
 			$moduleSpec = self::loadJsonData( $file );
 			if ( !isset( $moduleSpec->mwapi ) ) {
 				// old-school flat route file, skip

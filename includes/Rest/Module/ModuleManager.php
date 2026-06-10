@@ -35,9 +35,11 @@ class ModuleManager {
 
 	/** @var string[]|null */
 	private ?array $routeFiles = null;
+	private ?array $disabledRouteFiles = null;
 
 	private string $extensionDirectory;
 
+	private array $extensionModuleFiles;
 	private array $restApiAdditionalRouteFiles;
 	private array $restSandboxSpecs;
 	private array $restModuleOverrides;
@@ -62,12 +64,15 @@ class ModuleManager {
 
 	/**
 	 * @param ServiceOptions $options
+	 * @param string[] $extensionModuleFiles
 	 * @param BagOStuff $srvCache Optional BagOStuff instance to an APC-style cache.
 	 * @param ResponseFactory $responseFactory
 	 *
 	 * @internal
 	 */
-	public function __construct( ServiceOptions $options, BagOStuff $srvCache, ResponseFactory $responseFactory ) {
+	public function __construct(
+		ServiceOptions $options, array $extensionModuleFiles, BagOStuff $srvCache, ResponseFactory $responseFactory
+	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->extensionDirectory = $options->get( MainConfigNames::ExtensionDirectory );
@@ -76,6 +81,7 @@ class ModuleManager {
 		$this->restModuleOverrides = $options->get( MainConfigNames::RestModuleOverrides );
 		$this->scriptPath = $options->get( MainConfigNames::ScriptPath );
 
+		$this->extensionModuleFiles = $extensionModuleFiles;
 		$this->srvCache = $srvCache;
 		$this->responseFactory = $responseFactory;
 	}
@@ -120,22 +126,37 @@ class ModuleManager {
 	 */
 	public function getRouteFiles(): array {
 		if ( $this->routeFiles === null ) {
-			$this->routeFiles = $this->initRouteFiles();
+			$this->initRouteFiles();
 		}
 
 		return $this->routeFiles;
 	}
 
 	/**
+	 * Useful for testing or error status. The return value will include route files that
+	 * were disabled by either audience designation or configuration.
+	 *
+	 * @since 1.47
 	 * @return string[]
 	 */
-	private function initRouteFiles(): array {
+	public function getDisabledRouteFiles(): array {
+		if ( $this->disabledRouteFiles === null ) {
+			$this->initRouteFiles();
+		}
+
+		return $this->disabledRouteFiles;
+	}
+
+	private function initRouteFiles() {
 		// Always include the "official" routes. Include additional routes if specified.
-		// Routes in extensions are added to RestAPIAdditionalRouteFiles by ExtensionProcessor.
+		// Extension module files are added to extension.json via the RestModuleFiles attribute
+		// and passed to ModuleManager via the extensionModuleFiles constructor parameter.
 		$routeFiles = array_merge(
 			self::CORE_ROUTE_FILES,
+			$this->extensionModuleFiles,
 			$this->restApiAdditionalRouteFiles
 		);
+		$disabledRouteFiles = [];
 
 		foreach ( $routeFiles as &$file ) {
 			if ( str_starts_with( $file, 'extensions/' ) ) {
@@ -158,11 +179,13 @@ class ModuleManager {
 				isset( $moduleDefInfo['moduleId'] ) &&
 				$this->getModuleMode( $moduleDefInfo['moduleId'] ) === ModuleMode::DISABLED
 			) {
+				$disabledRouteFiles[$key] = $file;
 				unset( $routeFiles[$key] );
 			}
 		}
 
-		return $routeFiles;
+		$this->routeFiles = $routeFiles;
+		$this->disabledRouteFiles = $disabledRouteFiles;
 	}
 
 	/**

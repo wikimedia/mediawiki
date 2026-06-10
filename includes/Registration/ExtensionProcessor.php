@@ -81,6 +81,7 @@ class ExtensionProcessor implements Processor {
 	 */
 	protected const CORE_ATTRIBS = [
 		'ParsoidModules',
+		'RestModuleFiles',
 		'RestRoutes',
 		'SkinOOUIThemes',
 		'SkinCodexThemes',
@@ -269,7 +270,6 @@ class ExtensionProcessor implements Processor {
 		$this->extractHooks( $info, $path );
 		$this->extractDomainEventIngresses( $info, $path );
 		$this->extractExtensionMessagesFiles( $dir, $info );
-		$this->extractRestModuleFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
 		$this->extractTranslationAliasesDirs( $dir, $info );
 		$this->extractSkins( $dir, $info );
@@ -312,6 +312,13 @@ class ExtensionProcessor implements Processor {
 				}
 				$module['name'] ??= $name;
 				$module['extension-name'] = $name;
+			}
+		}
+
+		// Prepend path to REST module files
+		if ( isset( $info['RestModuleFiles'] ) ) {
+			foreach ( $info['RestModuleFiles'] as &$file ) {
+				$file = "$dir/$file";
 			}
 		}
 
@@ -705,15 +712,6 @@ class ExtensionProcessor implements Processor {
 				$file = "$dir/$file";
 			}
 			$this->globals["wgExtensionMessagesFiles"] += $info['ExtensionMessagesFiles'];
-		}
-	}
-
-	protected function extractRestModuleFiles( string $dir, array $info ) {
-		$var = MainConfigNames::RestAPIAdditionalRouteFiles;
-		if ( isset( $info['RestModuleFiles'] ) ) {
-			foreach ( $info['RestModuleFiles'] as &$file ) {
-				$this->globals["wg$var"][] = "$dir/$file";
-			}
 		}
 	}
 

@@ -776,30 +776,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	public static function provideExtractRestModuleFiles() {
-		$dir = dirname( self::getExtensionPath() );
-		return [
-			[
-				[ 'RestModuleFiles' => [ 'FooBar.json' ] ],
-				[ 'wgRestAPIAdditionalRouteFiles' => [ $dir . '/FooBar.json' ] ]
-			],
-			[
-				[
-					'RestModuleFiles' => [
-						'FooBar.json',
-						'Xyzzy.json',
-					],
-				],
-				[
-					'wgRestAPIAdditionalRouteFiles' => [
-						$dir . '/FooBar.json',
-						$dir . '/Xyzzy.json',
-					],
-				],
-			],
-		];
-	}
-
 	public static function provideExtractMessagesDirs() {
 		$dir = dirname( self::getExtensionPath() );
 		return [
@@ -816,7 +792,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideExtractExtensionMessagesFiles
-	 * @dataProvider provideExtractRestModuleFiles
 	 * @dataProvider provideExtractMessagesDirs
 	 */
 	public function testExtractFilesAndDirs( $input, $expected ) {

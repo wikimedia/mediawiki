@@ -23,13 +23,13 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$conf = $this->getServiceContainer()->getMainConfig();
 
 		$rf = $conf->get( MainConfigNames::RestAPIAdditionalRouteFiles );
-		$rf[] = __DIR__ . '/mock.v1-invalid.json';
 		$rf[] = __DIR__ . '/mockTwo.v1.json';
 		$this->overrideConfigValue( MainConfigNames::RestAPIAdditionalRouteFiles, $rf );
 
 		$overrides = [
 			'mockTwo/v1' => [ 'mode' => 'hidden' ],
-			'mockNonexistent/v1' => [ 'mode' => 'gibberish' ]
+			'mockThree/v1' => [ 'mode' => 'disabled' ],
+			'mockNonexistent/v1' => [ 'mode' => 'gibberish' ],
 		];
 		$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, $overrides );
 
@@ -39,35 +39,39 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param array $extensionModuleFiles
+	 *
 	 * @return ModuleManager
 	 */
-	private function getModuleManager(): ModuleManager {
+	private function getModuleManager( $extensionModuleFiles = [] ): ModuleManager {
 		$services = $this->getServiceContainer();
 		$conf = $services->getMainConfig();
 
 		return new ModuleManager(
 			new ServiceOptions( ModuleManager::CONSTRUCTOR_OPTIONS, $conf ),
+			$extensionModuleFiles,
 			$services->getLocalServerObjectCache(),
 			new ResponseFactory( [] ),
 		);
 	}
 
 	public static function provideRouteFiles() {
-		yield 'coreRoutes' => [ 'includes/Rest/coreRoutes.json' ];
-		yield 'coreDevelopmentRoutes' => [ 'includes/Rest/coreDevelopmentRoutes.json' ];
-		yield 'content.v1.json' => [ 'includes/Rest/content.v1.json' ];
-		yield 'site.v1.json' => [ 'includes/Rest/site.v1.json' ];
-		yield 'specs.v0.json' => [ 'includes/Rest/specs.v0.json' ];
-		yield 'mockTwo.v1.json' => [ 'mockTwo.v1.json' ];
+		yield 'coreRoutes' => [ [], 'includes/Rest/coreRoutes.json' ];
+		yield 'coreDevelopmentRoutes' => [ [], 'includes/Rest/coreDevelopmentRoutes.json' ];
+		yield 'content.v1.json' => [ [], 'includes/Rest/content.v1.json' ];
+		yield 'site.v1.json' => [ [], 'includes/Rest/site.v1.json' ];
+		yield 'specs.v0.json' => [ [], 'includes/Rest/specs.v0.json' ];
+		yield 'mockTwo.v1.json' => [ [ __DIR__ . '/mockFour.v1.json' ], 'mockFour.v1.json' ];
 	}
 
 	/**
 	 * @dataProvider provideRouteFiles
 	 *
-	 * Ensure ModuleManager automatically loads routes (flat and modules)
+	 * Ensure ModuleManager automatically loads routes (flat and modules) via core, config,
+	 * and extension.
 	 */
-	public function testRouteFiles( string $needle ) {
-		$moduleManager = $this->getModuleManager();
+	public function testRouteFiles( array $extensionRouteFiles, string $needle ) {
+		$moduleManager = $this->getModuleManager( $extensionRouteFiles );
 		$routeFiles = $moduleManager->getRouteFiles();
 
 		$found = false;
@@ -80,6 +84,32 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->assertTrue( $found, 'Core route ' . $needle . ' not found' );
+	}
+
+	public static function provideDisabledRouteFiles() {
+		yield 'invalid' => [ [ __DIR__ . '/mock.v1-invalid.json' ], 'mock.v1-invalid.json' ];
+		yield 'overridden' => [ [ __DIR__ . '/mockThree.v1.json' ], 'mockThree.v1.json' ];
+	}
+
+	/**
+	 * @dataProvider provideDisabledRouteFiles
+	 *
+	 * Ensure ModuleManager tracks disabled route files.
+	 */
+	public function testDisabledRouteFiles( array $extensionRouteFiles, string $needle ) {
+		$moduleManager = $this->getModuleManager( $extensionRouteFiles );
+		$disabledRouteFiles = $moduleManager->getDisabledRouteFiles();
+
+		$found = false;
+		foreach ( $disabledRouteFiles as $file ) {
+			// ModuleManager prepends the install path, so an exact string comparison would fail
+			if ( str_contains( $file, $needle ) ) {
+				$found = true;
+				break;
+			}
+		}
+
+		$this->assertTrue( $found, 'Disabled route ' . $needle . ' not found' );
 	}
 
 	/**

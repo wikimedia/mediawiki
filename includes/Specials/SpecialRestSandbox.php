@@ -10,6 +10,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Message\MessageFormatterFactory;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -40,6 +41,7 @@ class SpecialRestSandbox extends SpecialPage {
 
 		$this->moduleManager = new ModuleManager(
 			new ServiceOptions( ModuleManager::CONSTRUCTOR_OPTIONS, $this->getConfig() ),
+			ExtensionRegistry::getInstance()->getAttribute( 'RestModuleFiles' ),
 			$srvCache,
 			$responseFactory
 		);

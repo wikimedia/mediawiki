@@ -1,0 +1,9 @@
+{
+	"mwapi": "1.0.0",
+	"moduleId": "mockThree/v1",
+	"info": {
+		"version": "1.0.0",
+		"title": "Mock Three Module"
+	},
+	"paths": {}
+}
