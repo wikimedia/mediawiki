@@ -61,6 +61,18 @@ describe( 'getLookupLanguageSelector', () => {
 
 		expect( context.selectedLanguage ).toBe( 'fr' );
 	} );
+
+	it( 'passes debounceDelayMs to the component', () => {
+		const app = getLookupLanguageSelector( { debounceDelayMs: 500 } );
+		const vm = app.mockOptions;
+		const data = vm.data();
+		const context = {
+			...data
+		};
+
+		const vnode = vm.render.call( context );
+		expect( vnode.props.debounceDelayMs ).toBe( 500 );
+	} );
 } );
 
 describe( 'getMultiselectLookupLanguageSelector', () => {

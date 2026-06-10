@@ -132,6 +132,7 @@ Both factories accept the same configuration object:
 | --- | --- | --- | --- |
 | `selectedLanguage` | `String` | `Array` | `null` | Initial selection. A language code for the single selector, or an array of codes for the multiselect. |
 | `selectableLanguages` | `Object` | `null` | Map of `languageCode → languageName` to restrict the choices. When `null`, the search is disabled. |
+| `debounceDelayMs` | `Number` | `300` | Delay applied to the search API request as the user types. |
 | `apiUrl` | `String` | `mw.util.wikiScript( 'api' )` | API endpoint used for the language search. |
 | `placeholder` | `String` | `null` | Placeholder text for the input. |
 | `menuConfig` | `Object` | `{}` | Passed through to the Codex lookup's `menu-config`. |
