@@ -107,7 +107,6 @@ class ParserOptions {
 	 */
 	private static $initialCacheVaryingOptionsHash = [
 		'dateformat' => true,
-		'thumbsize' => true,
 		'printable' => true,
 		'userlang' => true,
 		'useParsoid' => true,
@@ -623,21 +622,27 @@ class ParserOptions {
 	 * Get thumbnail size.
 	 *
 	 * @return int
+	 * @deprecated since 1.47; thumbnail resizing is handled client-side
+	 *  (T417514)
 	 */
 	public function getThumbSize() {
-		return $this->getOption( 'thumbsize' );
+		return MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getDefaultOption( 'thumbsize' );
 	}
 
 	/**
 	 * Thumb size preferred by the user.
-	 * This is currently ignored by the parser. It will be
-	 * deprecated in future versions.
+	 *
+	 * This is ignored by the parser.
 	 *
 	 * @param int|null $x New value (null is no change)
 	 * @return int Old value
+	 * @deprecated since 1.47; thumbnail resizing is handled client-side
+	 *  (T417514)
 	 */
 	public function setThumbSize( $x ) {
-		return $this->options['thumbsize'];
+		return $this->getThumbSize();
 	}
 
 	/**
@@ -1397,7 +1402,6 @@ class ParserOptions {
 		$expensiveParserFunctionLimit = $mainConfig->get( MainConfigNames::ExpensiveParserFunctionLimit );
 		$enableMagicLinks = $mainConfig->get( MainConfigNames::EnableMagicLinks );
 		$languageConverterFactory = $services->getLanguageConverterFactory();
-		$userOptionsLookup = $services->getUserOptionsLookup();
 		$contentLanguage = $services->getContentLanguage();
 		return self::$defaults + [
 			'interwikiMagic' => $interwikiMagic,
@@ -1424,9 +1428,6 @@ class ParserOptions {
 			'magicISBNLinks' => $enableMagicLinks['ISBN'] ?? false,
 			'magicPMIDLinks' => $enableMagicLinks['PMID'] ?? false,
 			'magicRFCLinks' => $enableMagicLinks['RFC'] ?? false,
-			// FIXME: [[T417514]] this can be removed once we've shown users find
-			// the CSS/JS thumbsize solution meets their needs.
-			'thumbsize' => $userOptionsLookup->getDefaultOption( 'thumbsize' ),
 			'userlang' => $contentLanguage,
 		];
 	}
@@ -1473,9 +1474,6 @@ class ParserOptions {
 		$this->options = $this->nullifyLazyOption( self::getDefaults() );
 
 		$this->mUser = $user;
-		$services = MediaWikiServices::getInstance();
-		$optionsLookup = $services->getUserOptionsLookup();
-		$this->options['thumbsize'] = $optionsLookup->getDefaultOption( 'thumbsize' );
 		$this->options['userlang'] = $lang;
 	}
 

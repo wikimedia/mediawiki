@@ -5646,8 +5646,10 @@ class Parser implements MessageLocalizer {
 		# Linker does the rest
 		$time = $options['time'] ?? false;
 		$params['handler']['requestProvenance'] = 'parser';
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$defaultThumbSize = $userOptionsLookup->getDefaultOption( 'thumbsize' );
 		$ret = Linker::makeImageLink( $this, $link, $file, $params['frame'], $params['handler'],
-			$time, $descQuery, $this->mOptions->getThumbSize() );
+			$time, $descQuery, $defaultThumbSize );
 
 		# Give the handler a chance to modify the parser object
 		if ( $handler ) {

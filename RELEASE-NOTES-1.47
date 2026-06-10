@@ -623,6 +623,9 @@ because of Phabricator reports.
 * Backwards compatibility for extensions using the hook
   SkinTemplateNavigation::Universal, deprecated in 1.46. to modify the
   namespaces menu has been removed (T416651).
+* ParserOptions::getThumbSize() and ::setThumbSize() have been deprecated.
+  Use UserOptionsLookup::getDefaultOption( 'thumbsize' ) instead; scaling
+  is done client-side now (T417514)
 * Parser::statelessFetchTemplate() and ::statelessFetchRevisionRecord() have
   been deprecated. Use ParserOptions::getTemplateCallback() to get the original
   handler.
