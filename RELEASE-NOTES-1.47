@@ -152,6 +152,12 @@ For notes on 1.46.x and older releases, see HISTORY.
 * (T426802) prop=imageinfo now includes timestamp, user, size, and comment
   fields for file revisions where the file blob is missing from storage,
   alongside the existing "filemissing" flag.
+* The `action=parse` API has a new `prop=parseroutput` parameter.
+  This returns the JSON serialization of the ParserOutput.  This API
+  is marked internal as there are no guarantees about the format of
+  the result; the format of the ParserOutput is governed by
+  [[mw:Manual:Parser cache/Serialization compatibility]] not by an
+  Action API policy. (T428786)
 * …
 
 === Action API internal changes in 1.47 ===

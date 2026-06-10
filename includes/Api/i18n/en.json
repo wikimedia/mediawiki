@@ -426,6 +426,7 @@
 	"apihelp-parse-paramvalue-prop-properties": "Gives various properties defined in the parsed wikitext.",
 	"apihelp-parse-paramvalue-prop-limitreportdata": "Gives the limit report in a structured way. Gives no data, when <var>$1disablelimitreport</var> is set.",
 	"apihelp-parse-paramvalue-prop-limitreporthtml": "Gives the HTML version of the limit report. Gives no data, when <var>$1disablelimitreport</var> is set.",
+	"apihelp-parse-paramvalue-prop-parseroutput": "Gives the JSON-serialized <code>ParserOutput</code> object for the parsed content. The format of this property may change at any time; [[mw:Manual:Parser cache/Serialization compatibility]] does not provide any guarantee of API stability.",
 	"apihelp-parse-paramvalue-prop-parsetree": "The XML parse tree of revision content (requires content model <code>$1</code>)",
 	"apihelp-parse-paramvalue-prop-parsewarnings": "Gives the warnings that occurred while parsing content (as wikitext).",
 	"apihelp-parse-paramvalue-prop-parsewarningshtml": "Gives the warnings that occurred while parsing content (as HTML).",

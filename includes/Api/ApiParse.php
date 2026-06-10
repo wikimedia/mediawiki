@@ -599,6 +599,11 @@ class ApiParse extends ApiBase {
 				$p_result->getTOCData(), TOCData::class
 			);
 		}
+		if ( isset( $prop['parseroutput'] ) ) {
+			$result_array['parseroutput'] = $this->jsonCodec->toJsonArray(
+				$p_result, ParserOutput::class
+			);
+		}
 		if ( isset( $prop['sections'] ) || isset( $prop['tocdata'] ) ) {
 			$result_array['showtoc'] = $p_result->getOutputFlag( ParserOutputFlags::SHOW_TOC );
 		}
@@ -1144,6 +1149,7 @@ class ApiParse extends ApiBase {
 					'properties',
 					'limitreportdata',
 					'limitreporthtml',
+					'parseroutput',
 					'parsetree',
 					'parsewarnings',
 					'parsewarningshtml',
@@ -1156,6 +1162,9 @@ class ApiParse extends ApiBase {
 					'headitems' => 'apiwarn-deprecation-parse-headitems',
 					// deprecated since 1.46: T319141
 					'sections' => [ 'apiwarn-deprecation-withreplacement', 'prop=sections', 'prop=tocdata' ],
+				],
+				EnumDef::PARAM_INTERNAL_VALUES => [
+					'parseroutput' => true, // since 1.47: T428786
 				],
 			],
 			'wrapoutputclass' => 'mw-parser-output',

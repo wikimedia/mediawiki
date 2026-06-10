@@ -12,6 +12,8 @@ namespace MediaWiki\Tests\Api;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Skin\SkinFactory;
 use MediaWiki\Skin\SkinFallback;
@@ -1105,5 +1107,27 @@ class ApiParseTest extends ApiTestCase {
 			'text' => '[[File:1]]',
 		] );
 		$this->assertSame( [ '1' ], $res[0]['parse']['images'] );
+	}
+
+	public function testParseroutputProp() {
+		// The parseroutput property is internal and unstable, so we don't
+		// want to assert any particular shape of the output.  Just check
+		// that the result can be deserialized as a ParserOutput.
+		$res = $this->doApiRequest( [
+			'action' => 'parse',
+			'title' => __CLASS__,
+			'text' => '[[Category:Foo]] [[bar]] [[en:Link]]',
+			'prop' => 'parseroutput',
+		] );
+
+		$this->assertArrayNotHasKey( 'warnings', $res[0] );
+
+		$this->assertArrayHasKey( 'parseroutput', $res[0]['parse'] );
+		$codec = MediaWikiServices::getInstance()->getJsonCodec();
+		$po = $codec->newFromJsonArray(
+			$res[0]['parse']['parseroutput'],
+			ParserOutput::class
+		);
+		$this->assertInstanceOf( ParserOutput::class, $po );
 	}
 }
