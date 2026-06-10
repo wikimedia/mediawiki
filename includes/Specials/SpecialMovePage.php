@@ -244,6 +244,9 @@ class SpecialMovePage extends UnlistedSpecialPage {
 						'mw-moveuserpage-warning'
 						)
 				);
+
+				// Deselect moveTalk unless it's explicitly given
+				$this->moveTalk = $this->getRequest()->getBool( "wpMovetalk", false );
 			} else {
 				$out->addHTML(
 					Html::warningBox(
@@ -251,11 +254,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 						'mw-moveusersubpage-warning'
 						)
 				);
-
 			}
-
-			// Deselect moveTalk unless it's explicitly given
-			$this->moveTalk = $this->getRequest()->getBool( "wpMovetalk", false );
 		} elseif ( $this->oldTitle->getNamespace() === NS_CATEGORY ) {
 			$out->addHTML(
 				Html::warningBox(
