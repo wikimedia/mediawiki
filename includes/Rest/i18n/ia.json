@@ -9,6 +9,7 @@
 	"rest-wrong-method": "Le methodo del requesta ($1) non es {{PLURAL:$3|le methodo|inter le methodos}} permittite pro iste percurso ($2)",
 	"rest-no-match": "Le percurso relative requestate ($1) non corresponde a un gestor cognoscite",
 	"rest-unknown-module": "Le nomine de modulo requestate ($1) non es cognoscite",
+	"rest-unavailable-spec": "Le specification OpenAPI del modulo ($1) non es disponibile",
 	"rest-nonexistent-title": "Le pagina specificate ($1) non existe",
 	"rest-nonexistent-title-revision": "Le version specificate ($1) non existe pro le pagina specificate ($2)",
 	"rest-nonexistent-revision": "Le version specificate ($1) non existe",

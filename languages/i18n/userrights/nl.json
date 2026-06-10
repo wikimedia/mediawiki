@@ -94,7 +94,7 @@
 	"right-reupload": "Bestaande bestanden overschrijven",
 	"right-reupload-own": "Eigen bestandsuploads overschrijven",
 	"right-reupload-shared": "Media uit de gedeelde mediadatabank lokaal overschrijven",
-	"right-upload_by_url": "Bestanden uploaden via een URL",
+	"right-upload_by_url": "Bestanden uploaden via een url",
 	"right-purge": "De cache van een pagina verversen",
 	"right-autoconfirmed": "Uitgezonderd van IP-adresgebaseerde tijdsafhankelijke beperkingen",
 	"right-bot": "Behandeld worden als een geautomatiseerd proces",

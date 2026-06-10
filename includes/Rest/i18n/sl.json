@@ -10,6 +10,7 @@
 	"rest-wrong-method": "Zahtevana metoda ($1) ni {{PLURAL:$3|veljavna metoda|ena od veljavnih metod}} za to pot ($2)",
 	"rest-no-match": "Zahtevana relativna pot ($1) se ni ujemala z nobenim znanim obravnavalnikom",
 	"rest-unknown-module": "Zahtevano ime modula ($1) ni znano",
+	"rest-unavailable-spec": "Specifikacija OpenAPI za modul ($1) ni na voljo",
 	"rest-nonexistent-title": "Navedena stran ($1) ne obstaja",
 	"rest-nonexistent-title-revision": "Navedena redakcija ($1) ne obstaja za izbrano stran ($2)",
 	"rest-nonexistent-revision": "Navedena redakcija ($1) ne obstaja",

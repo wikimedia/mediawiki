@@ -41,6 +41,7 @@
 			"TomatoCake",
 			"Umherirrender",
 			"Umlaut",
+			"VeryCreativeNameIKnow",
 			"Zabe",
 			"Zenith"
 		]
@@ -326,6 +327,7 @@
 	"apihelp-login-example-login": "Anmelden",
 	"apihelp-logout-summary": "Abmelden und alle Sitzungsdaten löschen.",
 	"apihelp-logout-example-logout": "Meldet den aktuellen Benutzer ab",
+	"apihelp-logout-param-global": "Benutzer von allen Geräten (statt nur dem aktuellen) abmelden.",
 	"apihelp-managetags-summary": "Ermöglicht Verwaltungsaufgaben zu Änderungsmarkierungen.",
 	"apihelp-managetags-param-operation": "Welcher Vorgang soll ausgeführt werden:",
 	"apihelp-managetags-paramvalue-operation-create": "Ein neues Änderungsschlagwort zum manuellen Gebrauch erstellen.",
