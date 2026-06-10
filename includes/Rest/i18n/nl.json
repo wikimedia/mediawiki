@@ -155,7 +155,7 @@
 	"rest-param-desc-module-spec-version": "Versie modulespecificatie",
 	"rest-param-desc-opensearch-ctype": "Ctype beschrijving “open search”",
 	"rest-param-desc-pagehistory-count-title": "Wiki-paginatitel",
-	"rest-param-desc-pagehistory-count-type": "Soort telling (anoniem, robot, redacteuren, bewerkingen, klein, teruggedraaid)",
+	"rest-param-desc-pagehistory-count-type": "Soort telling (anoniem, robot, bewerkers, bewerkingen, klein, teruggedraaid)",
 	"rest-param-desc-pagehistory-count-from": "Beperkt de telling tot tussen twee versies, aangegeven met hun versie-ID. Moet worden gebruikt met de parameter “to”.",
 	"rest-param-desc-pagehistory-count-to": "Beperkt de telling tot tussen twee versies, aangegeven met hun versie-ID. Moet worden gebruikt met de parameter “from”.",
 	"rest-param-desc-pagehistory-title": "Wiki-paginatitel",

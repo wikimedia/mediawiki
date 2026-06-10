@@ -6,7 +6,8 @@
 			"EPO",
 			"Jhertel",
 			"Peter Alberti",
-			"Saederup92"
+			"Saederup92",
+			"Zakawer2"
 		]
 	},
 	"exif-imagewidth": "Bredde",
@@ -195,6 +196,8 @@
 	"exif-photometricinterpretation-0": "Sort-hvid (sort er 0)",
 	"exif-photometricinterpretation-1": "Sort-hvid (sort er 0)",
 	"exif-photometricinterpretation-3": "Palet",
+	"exif-photometricinterpretation-4": "Gennemsigtighedsmaske",
+	"exif-photometricinterpretation-5": "Adskilt (sandsynligt CMYK)",
 	"exif-unknowndate": "Ukendt dato",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "Horisontalt spejlet",
