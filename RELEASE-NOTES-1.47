@@ -165,6 +165,8 @@ because of Phabricator reports.
 
 === Breaking changes in 1.47 ===
 
+* The minimum supported version of MariaDB has been raised to 10.11 (from 2022),
+  up from 10.3 (from 2017).
 * It is no longer possible to pass null to the $output parameter of
   FeedUtils::checkFeedOutput. This behaviour was deprecated in 1.46.
 * ChannelFeed::outHeader(), ::outItem(), ::outFooter(), ::httpHeaders() and
@@ -301,7 +303,7 @@ be used instead, but support for them is somewhat less mature.
 
 The supported versions are:
 
-* MariaDB 10.3 or higher
+* MariaDB 10.11 or higher
 * MySQL 5.7.0 or higher
 * PostgreSQL 10 or later
 * SQLite 3.8.0 or later

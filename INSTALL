@@ -19,7 +19,7 @@ Required software as of MediaWiki 1.47.0:
 ** xml
 ** xmlreader
 * A SQL server, the following types are supported
-** MariaDB 10.3 or higher
+** MariaDB 10.11 or higher
 ** MySQL 5.7.0 or higher
 ** PostgreSQL 10 or higher
 ** SQLite 3.31.0 or higher

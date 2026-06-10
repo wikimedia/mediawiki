@@ -46,7 +46,7 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	private const MIN_VERSIONS = [
 		'MySQL' => '5.7.0',
-		'MariaDB' => '10.3',
+		'MariaDB' => '10.11',
 	];
 	/** @inheritDoc */
 	public static $minimumVersion;
