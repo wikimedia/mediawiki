@@ -5,11 +5,12 @@
 		],
 		"comment": "Grammar transformation rules for Azerbaijani."
 	},
+	"yiyəlik": "genitive",
 	"genitive": [
 		[ "@metadata", [ "comment", "Special case: 'su' (water) → 'suyun'" ] ],
 		[ "^[Ss]u$", "$0yun" ],
 
-		[ "@metadata", [ "comment", "k→y mutation: word ends in 'k', last vowel a/ı → word[-k]+y+nın" ] ],
+		[ "@metadata", [ "comment", "k→y mutation: word ends in 'k', suffix by last vowel" ] ],
 		[ "^(.*[aı][^aıoueəiöü]*)k$", "$1yın" ],
 		[ "^(.*[ou][^aıoueəiöü]*)k$", "$1yun" ],
 		[ "^(.*[eəi][^aıoueəiöü]*)k$", "$1yin" ],
@@ -33,6 +34,7 @@
 		[ "^(.*[eəi][^aıoueəiöü]+)$", "$1in" ],
 		[ "^(.*[öü][^aıoueəiöü]+)$", "$1ün" ]
 	],
+	"sıra sayı": "ordinal",
 	"ordinal": [
 		[ "@metadata", [ "comment", "Pure-zero inputs (sıfır): last vowel 'ı' → cı" ] ],
 		[ "^(0+)$", "$1-cı" ],
@@ -55,5 +57,35 @@
 		[ "^(\\d*[12578])$", "$1-ci" ],
 		[ "^(\\d*[34])$", "$1-cü" ],
 		[ "^(\\d*6)$", "$1-cı" ]
+	],
+
+	"təsirlik": "accusative",
+	"accusative": [
+		[ "@metadata", [ "comment", "Special case: 'su' (water) → 'suyu'" ] ],
+		[ "^[Ss]u$", "$0yu" ],
+
+		[ "@metadata", [ "comment", "k→y mutation: word ends in 'k', replace with y + suffix by last vowel" ] ],
+		[ "^(.*[aı][^aıoueəiöü]*)k$", "$1yı" ],
+		[ "^(.*[ou][^aıoueəiöü]*)k$", "$1yu" ],
+		[ "^(.*[eəi][^aıoueəiöü]*)k$", "$1yi" ],
+		[ "^(.*[öü][^aıoueəiöü]*)k$", "$1yü" ],
+
+		[ "@metadata", [ "comment", "q→ğ mutation: word ends in 'q', replace with ğ + suffix by last vowel" ] ],
+		[ "^(.*[aı][^aıoueəiöü]*)q$", "$1ğı" ],
+		[ "^(.*[ou][^aıoueəiöü]*)q$", "$1ğu" ],
+		[ "^(.*[eəi][^aıoueəiöü]*)q$", "$1ği" ],
+		[ "^(.*[öü][^aıoueəiöü]*)q$", "$1ğü" ],
+
+		[ "@metadata", [ "comment", "Vowel-final words: append linking 'n', then suffix by last vowel" ] ],
+		[ "^(.*[aı])$", "$1nı" ],
+		[ "^(.*[ou])$", "$1nu" ],
+		[ "^(.*[eəi])$", "$1ni" ],
+		[ "^(.*[öü])$", "$1nü" ],
+
+		[ "@metadata", [ "comment", "Consonant-final words: suffix by last vowel" ] ],
+		[ "^(.*[aı][^aıoueəiöü]+)$", "$1ı" ],
+		[ "^(.*[ou][^aıoueəiöü]+)$", "$1u" ],
+		[ "^(.*[eəi][^aıoueəiöü]+)$", "$1i" ],
+		[ "^(.*[öü][^aıoueəiöü]+)$", "$1ü" ]
 	]
 }

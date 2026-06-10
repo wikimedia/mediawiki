@@ -221,6 +221,25 @@ class GrammarTest extends TestCase {
 		yield 'Azerbaijani genitive dəmir → dəmirin'    => [ 'az', 'dəmir', 'genitive', 'dəmirin' ];
 		yield 'Azerbaijani genitive gül → gülün'        => [ 'az', 'gül', 'genitive', 'gülün' ];
 		yield 'Azerbaijani genitive göy → göyün'        => [ 'az', 'göy', 'genitive', 'göyün' ];
+		yield 'Azerbaijani accusative su → suyu'         => [ 'az', 'su', 'accusative', 'suyu' ];
+		yield 'Azerbaijani accusative alma → almanı'     => [ 'az', 'alma', 'accusative', 'almanı' ];
+		yield 'Azerbaijani accusative qapı → qapını'     => [ 'az', 'qapı', 'accusative', 'qapını' ];
+		yield 'Azerbaijani accusative dolu → dolunu'     => [ 'az', 'dolu', 'accusative', 'dolunu' ];
+		yield 'Azerbaijani accusative kişi → kişini'     => [ 'az', 'kişi', 'accusative', 'kişini' ];
+		yield 'Azerbaijani accusative ev → evi'          => [ 'az', 'ev', 'accusative', 'evi' ];
+		yield 'Azerbaijani accusative at → atı'          => [ 'az', 'at', 'accusative', 'atı' ];
+		yield 'Azerbaijani accusative qız → qızı'        => [ 'az', 'qız', 'accusative', 'qızı' ];
+		yield 'Azerbaijani accusative gül → gülü'        => [ 'az', 'gül', 'accusative', 'gülü' ];
+		yield 'Azerbaijani accusative göy → göyü'        => [ 'az', 'göy', 'accusative', 'göyü' ];
+		yield 'Azerbaijani accusative dost → dostu'      => [ 'az', 'dost', 'accusative', 'dostu' ];
+		yield 'Azerbaijani accusative dəmir → dəmiri'    => [ 'az', 'dəmir', 'accusative', 'dəmiri' ];
+		yield 'Azerbaijani accusative saat → saatı'      => [ 'az', 'saat', 'accusative', 'saatı' ];
+		yield 'Azerbaijani accusative çörək → çörəyi'    => [ 'az', 'çörək', 'accusative', 'çörəyi' ];
+		yield 'Azerbaijani accusative ayaq → ayağı'      => [ 'az', 'ayaq', 'accusative', 'ayağı' ];
+		yield 'Azerbaijani accusative qulaq → qulağı'    => [ 'az', 'qulaq', 'accusative', 'qulağı' ];
+		yield 'Azerbaijani accusative buruq → buruğu'    => [ 'az', 'buruq', 'accusative', 'buruğu' ];
+		yield 'Azerbaijani accusative ürək → ürəyi'      => [ 'az', 'ürək', 'accusative', 'ürəyi' ];
+		yield 'Azerbaijani təsirlik su → suyu'           => [ 'az', 'su', 'təsirlik', 'suyu' ];
 	}
 
 	/**
