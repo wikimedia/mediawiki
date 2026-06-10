@@ -6,6 +6,7 @@ use DomainException;
 use Exception;
 use LogicException;
 use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiHelpParamValueMessage;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Api\Validator\SubmoduleDef;
@@ -632,6 +633,12 @@ class ApiBaseTest extends ApiTestCase {
 				[ ParamValidator::PARAM_TYPE => [ 'a' ], EnumDef::PARAM_DEPRECATED_VALUES => [ 'a' => 'my-msg' ] ],
 				'a',
 				[ [ 'my-msg' ] ],
+			],
+			'Internal parameter value emits no warning' => [
+				'a',
+				[ ParamValidator::PARAM_TYPE => [ 'a' ], EnumDef::PARAM_INTERNAL_VALUES => [ 'a' => true ] ],
+				'a',
+				[],
 			],
 			'"*" when wildcard not allowed' => [
 				'*',
@@ -1346,6 +1353,38 @@ class ApiBaseTest extends ApiTestCase {
 		$paramMessages = $paramDescription['param'];
 		$messageKeys = array_map( static fn ( MessageSpecifier $m ) => $m->getKey(), $paramMessages );
 		$this->assertSame( $messages, $messageKeys );
+	}
+
+	public function testGetFinalParamDescriptionPerValueFlags() {
+		$mock = $this->getMockBuilder( MockApi::class )
+			->onlyMethods( [ 'getAllowedParams', 'getModulePath' ] )
+			->getMock();
+		$mock->method( 'getAllowedParams' )->willReturn( [
+			'param' => [
+				ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c' ],
+				ParamValidator::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+				EnumDef::PARAM_INTERNAL_VALUES => [ 'b' => true ],
+				EnumDef::PARAM_DEPRECATED_VALUES => [ 'c' => true ],
+			],
+		] );
+		$mock->method( 'getModulePath' )->willReturn( 'test' );
+
+		$flags = [];
+		foreach ( $mock->getFinalParamDescription()['param'] as $m ) {
+			if ( $m instanceof ApiHelpParamValueMessage ) {
+				$flags[$m->getParamValue()] = [
+					'internal' => $m->isInternal(),
+					'deprecated' => $m->isDeprecated(),
+				];
+			}
+		}
+
+		$this->assertSame( [
+			'a' => [ 'internal' => false, 'deprecated' => false ],
+			'b' => [ 'internal' => true, 'deprecated' => false ],
+			'c' => [ 'internal' => false, 'deprecated' => true ],
+		], $flags );
 	}
 
 	public static function provideGetFinalParamDescription() {

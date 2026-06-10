@@ -2031,6 +2031,7 @@ abstract class ApiBase extends ContextSource {
 					array_keys( $settings[self::PARAM_HELP_MSG_PER_VALUE] );
 				$valueMsgs = $settings[self::PARAM_HELP_MSG_PER_VALUE];
 				$deprecatedValues = $settings[EnumDef::PARAM_DEPRECATED_VALUES] ?? [];
+				$internalValues = $settings[EnumDef::PARAM_INTERNAL_VALUES] ?? [];
 
 				foreach ( $values as $value ) {
 					$msg = Message::newFromSpecifier( $valueMsgs[$value] ?? "apihelp-$path-paramvalue-$param-$value" );
@@ -2045,7 +2046,8 @@ abstract class ApiBase extends ContextSource {
 						// @phan-suppress-next-line PhanTypeMismatchArgumentProbablyReal
 						[ $m->getKey(), 'api-help-param-no-description' ],
 						$m->getParams(),
-						$deprecationMsg
+						deprecated: $deprecationMsg,
+						internal: $internalValues[$value] ?? false,
 					);
 					$msgs[$param][] = $m->setContext( $this->getContext() );
 				}

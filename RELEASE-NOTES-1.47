@@ -156,6 +156,9 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 === Action API internal changes in 1.47 ===
 
+* Added EnumDef::PARAM_INTERNAL_VALUES to mark individual enum parameter values
+  as internal/unstable; these appear in action=paraminfo output as
+  "internalvalues".
 * …
 
 === Languages updated in 1.47 ===

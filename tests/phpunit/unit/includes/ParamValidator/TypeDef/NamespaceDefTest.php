@@ -116,7 +116,10 @@ class NamespaceDefTest extends TypeDefUnitTestCase {
 	}
 
 	public static function provideCheckSettings() {
-		$keys = [ 'Y', EnumDef::PARAM_DEPRECATED_VALUES, NamespaceDef::PARAM_EXTRA_NAMESPACES ];
+		$keys = [
+			'Y', EnumDef::PARAM_DEPRECATED_VALUES, EnumDef::PARAM_INTERNAL_VALUES,
+			NamespaceDef::PARAM_EXTRA_NAMESPACES
+		];
 		return [
 			'Basic test' => [
 				[],

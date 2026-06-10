@@ -140,7 +140,7 @@ class SubmoduleDefTest extends TypeDefTestCase {
 
 	public static function provideCheckSettings() {
 		$keys = [
-			'Y', EnumDef::PARAM_DEPRECATED_VALUES,
+			'Y', EnumDef::PARAM_DEPRECATED_VALUES, EnumDef::PARAM_INTERNAL_VALUES,
 			SubmoduleDef::PARAM_SUBMODULE_MAP, SubmoduleDef::PARAM_SUBMODULE_PARAM_PREFIX
 		];
 

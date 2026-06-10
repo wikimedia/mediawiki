@@ -205,7 +205,8 @@ class ParamValidatorTest extends TestCase {
 			ParamValidator::PARAM_ISMULTI_LIMIT1, ParamValidator::PARAM_ISMULTI_LIMIT2,
 			ParamValidator::PARAM_ALL, ParamValidator::PARAM_ALLOW_DUPLICATES
 		];
-		$multiEnumKeys = [ ...$multiKeys, TypeDef\EnumDef::PARAM_DEPRECATED_VALUES ];
+		$multiEnumKeys = [ ...$multiKeys,
+			TypeDef\EnumDef::PARAM_DEPRECATED_VALUES, TypeDef\EnumDef::PARAM_INTERNAL_VALUES ];
 
 		return [
 			'Basic test' => [
@@ -310,7 +311,8 @@ class ParamValidatorTest extends TestCase {
 					'issues' => [
 						ParamValidator::PARAM_DEFAULT => 'Value for PARAM_DEFAULT does not validate (code badvalue)',
 					],
-					'allowedKeys' => [ ...$normalKeys, TypeDef\EnumDef::PARAM_DEPRECATED_VALUES ],
+					'allowedKeys' => [ ...$normalKeys, TypeDef\EnumDef::PARAM_DEPRECATED_VALUES,
+							TypeDef\EnumDef::PARAM_INTERNAL_VALUES ],
 					'messages' => [],
 				],
 			],
