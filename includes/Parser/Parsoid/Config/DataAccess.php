@@ -490,10 +490,6 @@ class DataAccess extends IDataAccess {
 		$wikitext = $parser->replaceVariables(
 			$wikitext, $this->ppFrame, false, [
 				'parsoidTopLevelCall' => true,
-				// This is implied by stripExtTags=false and
-				// probably doesn't need to be explicitly passed
-				// any more.
-				'processNowiki' => true,
 			]
 		);
 		// Where the result has strip state markers, tunnel this content
