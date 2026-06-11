@@ -553,8 +553,8 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 			$checkFunc,
 			[ 'touchedCallback' => $touchedCallback ] + $extOpts
 		);
-		$this->assertSame( 'xxx1', $v, "Value was computed once" );
-		$this->assertSame( 1, $wasSet, "Value was computed once" );
+		$this->assertSame( 'xxx1', $v, "Initial compute" );
+		$this->assertSame( 1, $wasSet, "Initial compute" );
 
 		$touched = $mockWallClock - 10;
 		$v = $cache->getWithSetCallback(
@@ -569,8 +569,36 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 			$checkFunc,
 			[ 'touchedCallback' => $touchedCallback ] + $extOpts
 		);
-		$this->assertSame( 'xxx2', $v, "Value was recomputed once" );
-		$this->assertSame( 2, $wasSet, "Value was recomputed once" );
+		$this->assertSame( 'xxx2', $v, "Recompute after recent change" );
+		$this->assertSame( 2, $wasSet, "Recompute after recent change" );
+
+		$touched = INF;
+		$v = $cache->getWithSetCallback(
+			$key,
+			$cache::TTL_INDEFINITE,
+			$checkFunc,
+			[ 'touchedCallback' => $touchedCallback ] + $extOpts
+		);
+		$this->assertSame( 'xxx3', $v, "Recompute on INF" );
+		$this->assertSame( 3, $wasSet, "Recompute on INF" );
+		$v = $cache->getWithSetCallback(
+			$key,
+			$cache::TTL_INDEFINITE,
+			$checkFunc,
+			[ 'touchedCallback' => $touchedCallback ] + $extOpts
+		);
+		$this->assertSame( 'xxx4', $v, "Recompute on INF again" );
+		$this->assertSame( 4, $wasSet, "Recompute on INF again" );
+
+		$touched = null;
+		$v = $cache->getWithSetCallback(
+			$key,
+			$cache::TTL_INDEFINITE,
+			$checkFunc,
+			[ 'touchedCallback' => $touchedCallback ] + $extOpts
+		);
+		$this->assertSame( 'xxx4', $v, "Value was reused" );
+		$this->assertSame( 4, $wasSet, "Value was reused" );
 	}
 
 	public static function getWithSetCallbackProvider() {
