@@ -865,12 +865,37 @@ abstract class Handler {
 			return null;
 		}
 
-		return [
+		$spec = [
 			// TODO: some DELETE handlers may require a body that contains a token
 			// FIXME: check if there are required body params!
 			'required' => in_array( $method, RequestInterface::BODY_METHODS ),
-			'content' => $mediaTypes
+			'content' => $mediaTypes,
 		];
+
+		$description = $this->getRequestBodyDescription();
+		if ( $description ) {
+			$spec['description'] = $this->getJsonLocalizer()->localizeValue(
+				[ self::OPENAPI_DESCRIPTION_KEY => $description ],
+				self::OPENAPI_DESCRIPTION_KEY
+			);
+		}
+
+		return $spec;
+	}
+
+	/**
+	 * Returns a description for the OpenAPI Request Body Object, or null if no
+	 * description should be included. Return a MessageValue to have the description
+	 * automatically localized by the framework.
+	 *
+	 * @see https://swagger.io/specification/#request-body-object
+	 *
+	 * @since 1.47
+	 * @stable to override
+	 * @return MessageValue|string|null
+	 */
+	public function getRequestBodyDescription(): MessageValue|string|null {
+		return null;
 	}
 
 	/**

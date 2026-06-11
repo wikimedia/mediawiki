@@ -2191,4 +2191,81 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
+	public function testGetOpenApiSpecRequestBodyDescriptionPresent(): void {
+		$handler = $this->newHandler( [
+			'getParamSettings',
+			'getHeaderParamSettings',
+			'getBodyParamSettings',
+			'getSupportedRequestTypes',
+			'getResponseBodySchema',
+			'getResponseHeaderSettings',
+			'getRequestBodyDescription',
+		] );
+		$handler->method( 'getParamSettings' )->willReturn( [] );
+		$handler->method( 'getHeaderParamSettings' )->willReturn( [] );
+		$handler->method( 'getBodyParamSettings' )->willReturn( [
+			'content' => [
+				Handler::PARAM_SOURCE => 'body',
+			],
+		] );
+		$handler->method( 'getSupportedRequestTypes' )->willReturn( [ 'application/json' ] );
+		$handler->method( 'getResponseBodySchema' )->willReturn( null );
+		$handler->method( 'getResponseHeaderSettings' )->willReturn( [] );
+		$handler->method( 'getRequestBodyDescription' )->willReturn( 'The page content to create or update.' );
+
+		$module = $this->createNoOpMock( Module::class, [ 'getModuleDescription' ] );
+		$module->method( 'getModuleDescription' )->willReturn( [] );
+		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
+
+		$formatter = $this->getDummyTextFormatter( true );
+		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
+		$authority = $this->mockAnonUltimateAuthority();
+		$hookContainer = $this->createHookContainer();
+		$handler->initServices( $authority, $responseFactory, $hookContainer );
+
+		$spec = $handler->getOpenApiSpec( 'PUT' );
+
+		$this->assertArrayHasKey( 'requestBody', $spec );
+		$this->assertSame(
+			'The page content to create or update.',
+			$spec['requestBody']['description']
+		);
+	}
+
+	public function testGetOpenApiSpecRequestBodyDescriptionAbsentByDefault(): void {
+		$handler = $this->newHandler( [
+			'getParamSettings',
+			'getHeaderParamSettings',
+			'getBodyParamSettings',
+			'getSupportedRequestTypes',
+			'getResponseBodySchema',
+			'getResponseHeaderSettings',
+		] );
+		$handler->method( 'getParamSettings' )->willReturn( [] );
+		$handler->method( 'getHeaderParamSettings' )->willReturn( [] );
+		$handler->method( 'getBodyParamSettings' )->willReturn( [
+			'content' => [
+				Handler::PARAM_SOURCE => 'body',
+			],
+		] );
+		$handler->method( 'getSupportedRequestTypes' )->willReturn( [ 'application/json' ] );
+		$handler->method( 'getResponseBodySchema' )->willReturn( null );
+		$handler->method( 'getResponseHeaderSettings' )->willReturn( [] );
+
+		$module = $this->createNoOpMock( Module::class, [ 'getModuleDescription' ] );
+		$module->method( 'getModuleDescription' )->willReturn( [] );
+		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
+
+		$formatter = $this->getDummyTextFormatter( true );
+		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
+		$authority = $this->mockAnonUltimateAuthority();
+		$hookContainer = $this->createHookContainer();
+		$handler->initServices( $authority, $responseFactory, $hookContainer );
+
+		$spec = $handler->getOpenApiSpec( 'PUT' );
+
+		$this->assertArrayHasKey( 'requestBody', $spec );
+		$this->assertArrayNotHasKey( 'description', $spec['requestBody'] );
+	}
+
 }
