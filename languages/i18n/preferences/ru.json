@@ -80,7 +80,7 @@
 	"prefs-user-downloaddata-label": "Доступ к данным учётной записи:",
 	"prefs-user-downloaddata-info": "Данные моей учётной записи из этого проекта",
 	"prefs-user-restoreprefs-label": "Сбросить настройки:",
-	"prefs-user-restoreprefs-info": "Восстановить все настройки по умолчанию (во всех разделах)",
+	"prefs-user-restoreprefs-info": "Восстановить все настройки по умолчанию (во всех вкладках)",
 	"prefs-accountsecurity": "Безопасность учетной записи",
 	"prefs-i18n": "Интернационализация",
 	"yourlanguage": "Язык интерфейса:",
