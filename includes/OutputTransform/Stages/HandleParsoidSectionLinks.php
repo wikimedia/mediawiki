@@ -119,6 +119,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 		} );
 		$traverser->traverse( null, $df );
 
+		/* TEMPORARILY DISABLE: T428849
 		foreach ( $sectionMap as $id => $sectionInfo ) {
 			if ( !$sectionInfo['processed'] ) {
 				$this->logger->error(
@@ -127,6 +128,8 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 				);
 			}
 		}
+		*/
+
 		return $df;
 	}
 
