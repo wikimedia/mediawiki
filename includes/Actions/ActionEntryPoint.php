@@ -563,7 +563,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 			|| $request->wasPosted()
 			|| ( $request->getCheck( 'title' )
 				&& $title->getPrefixedDBkey() == $request->getText( 'title' ) )
-			|| count( $request->getValueNames( [ 'action', 'title' ] ) )
+			|| count( array_diff( array_keys( $request->getQueryValues() ), [ 'action', 'title' ] ) )
 			|| !$this->getHookRunner()->onTestCanonicalRedirect( $request, $title, $output )
 		) {
 			return false;

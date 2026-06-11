@@ -467,6 +467,7 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		$mw = TestingAccessWrapper::newFromObject( $this->getEntryPoint( $env, $context ) );
 		$mw->performRequest();
 		$this->assertSame( null, $request->getRawVal( 'safemode' ) );
+		$this->assertSame( '', $context->getOutput()->getRedirect() );
 
 		$fsmRequest = new FauxRequest( [ 'title' => $title->getPrefixedDBkey() ] );
 		$fsmEnv = new MockEnvironment( $fsmRequest );
@@ -482,6 +483,46 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		$fsmMw = TestingAccessWrapper::newFromObject( $this->getEntryPoint( $fsmEnv, $fsmContext ) );
 		$fsmMw->performRequest();
 		$this->assertSame( '1', $fsmRequest->getRawVal( 'safemode' ) );
+		$this->assertSame( '', $fsmContext->getOutput()->getRedirect() );
+	}
+
+	public function testForceSafeModeTryNormaliseRedirect() {
+		$skin = Skin::normalizeKey( $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::DefaultSkin ) );
+		$this->setService( 'UserOptionsLookup', new StaticUserOptionsLookup(
+			[ 'FsmUser' => [ 'forcesafemode' => 1 ] ],
+			[
+				'forcesafemode' => 0,
+				'skin' => $skin
+			]
+		) );
+
+		$page = $this->getExistingTestPage();
+		$title = $page->getTitle();
+
+		$request = new FauxRequest( [ 'title' => '_' . $title->getPrefixedDBkey() . '_' ] );
+		$env = new MockEnvironment( $request );
+		$context = $env->makeFauxContext();
+		$context->setTitle( $title );
+		$mw = TestingAccessWrapper::newFromObject( $this->getEntryPoint( $env, $context ) );
+		$mw->performRequest();
+		$this->assertSame( null, $request->getRawVal( 'safemode' ) );
+		$this->assertSame( $page->getTitle()->getFullURL(), $context->getOutput()->getRedirect() );
+
+		$fsmRequest = new FauxRequest( [ 'title' => '_' . $title->getPrefixedDBkey() . '_' ] );
+		$fsmEnv = new MockEnvironment( $fsmRequest );
+		$fsmContext = $fsmEnv->makeFauxContext();
+		$fsmContext->setTitle( $title );
+		$fsmUser = $this->createMock( User::class );
+		$fsmUser->method( 'isRegistered' )->willReturn( true );
+		$fsmUser->method( 'getName' )->willReturn( 'FsmUser' );
+		$fsmContext->setUser( $fsmUser );
+		$fsmContext->setAuthority(
+			$this->mockUserAuthorityWithPermissions( $fsmUser, [ 'read' ] )
+		);
+		$fsmMw = TestingAccessWrapper::newFromObject( $this->getEntryPoint( $fsmEnv, $fsmContext ) );
+		$fsmMw->performRequest();
+		$this->assertSame( '1', $fsmRequest->getRawVal( 'safemode' ) );
+		$this->assertSame( $page->getTitle()->getFullURL(), $fsmContext->getOutput()->getRedirect() );
 	}
 
 	public function testView() {
