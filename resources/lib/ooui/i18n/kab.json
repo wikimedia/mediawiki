@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Belkacem77"
+			"Belkacem77",
+			"ButterflyOfFire"
 		]
 	},
 	"ooui-outline-control-move-down": "Awi aferdi d akesser",
@@ -14,6 +15,7 @@
 	"ooui-dialog-message-accept": "IH",
 	"ooui-dialog-message-reject": "Sefsex",
 	"ooui-dialog-process-error": "Yella wayen yeḍran",
+	"ooui-dialog-process-back": "Uɣal",
 	"ooui-dialog-process-dismiss": "Mdel",
 	"ooui-dialog-process-retry": "Ɛreḍ tikelt-nniden",
 	"ooui-dialog-process-continue": "Kemmel",

@@ -1,3 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20"><title>
-		merge cells
-	</title><path id="a" d="M9 10 4 6v3H0v2h4v3zm-7 3H0v5h8v-2H2zM0 2v5h2V4h6V2z"/><use xlink:href="#a" transform="matrix(-1 0 0 1 20 0)"/></svg>
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>
+		merge table cells
+	</title><path d="M2 16.5h6v2H0V13h2zm18 2h-8v-2h6V13h2zM9.032 9.293v1.414l-3.707 3.707L3.911 13l2-2H0V9h5.911l-2-2 1.414-1.414zM16.089 7l-2 2H20v2h-5.911l2 2-1.414 1.414-3.707-3.707V9.293l3.707-3.707zM8 3.5H2V7H0V1.5h8zM20 7h-2V3.5h-6v-2h8z"/></svg>

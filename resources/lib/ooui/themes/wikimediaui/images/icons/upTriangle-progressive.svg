@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>
-		triangle upwards
-	</title><path fill="#36c" d="m10 5 8 10H2z"/></svg>
+		up triangle
+	</title><path fill="#36c" d="M14 13H6v-2.5L10 7l4 3.5z"/></svg>

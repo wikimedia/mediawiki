@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.53.2
+ * OOUI v0.54.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2026 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2026-04-21T12:46:08Z
+ * Date: 2026-06-11T21:42:16Z
  */
 ( function ( OO ) {
 
@@ -414,7 +414,7 @@ OO.ui.msg = function ( key, ...params ) {
  * @return {Function} Function that returns the resolved message when executed
  */
 OO.ui.deferMsg = function () {
-	// eslint-disable-next-line mediawiki/msg-doc
+
 	return () => OO.ui.msg( ...arguments );
 };
 
@@ -596,7 +596,7 @@ OO.ui.msg.messages = {
  */
 OO.ui.mixin = {};
 
-// getDocument( element ) is preferrable to window.document
+// getDocument( element ) is preferable to window.document
 /* global document:off */
 
 /**
@@ -1304,8 +1304,8 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
 			const val = $parent.css( props[ i ] );
 			// We assume that elements with 'overflow' (in any direction) set to 'hidden' will
 			// never be scrolled in that direction, but they can actually be scrolled
-			// programatically. The user can unintentionally perform a scroll in such case even if
-			// the application doesn't scroll programatically, e.g. when jumping to an anchor, or
+			// programmatically. The user can unintentionally perform a scroll in such case even if
+			// the application doesn't scroll programmatically, e.g. when jumping to an anchor, or
 			// when using built-in find functionality.
 			// This could cause funny issues...
 			if ( val === 'auto' || val === 'scroll' ) {
@@ -12301,7 +12301,7 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
  * Please see the [OOUI documentation on MediaWiki][1] for more information and examples.
  *
  * MultilineTextInputWidgets can also be used when a single line string is required, but
- * we want to display it to the user over mulitple lines (wrapped). This is done by setting
+ * we want to display it to the user over multiple lines (wrapped). This is done by setting
  * the `allowLinebreaks` config to `false`.
  *
  * This widget can be used inside an HTML form, such as a OO.ui.FormLayout.

@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>
-		double chevron start
-	</title><path d="M11 2 9.7 3.3l6.6 6.7-6.6 6.7L11 18l8-8zM2.5 2 1 3.3 7.8 10l-6.7 6.7L2.5 18l8-8z"/></svg>
+		forward
+	</title><path d="M10 9.293v1.414l-5.982 6-1.415-1.414L7.896 10 2.603 4.707l1.414-1.414zm8 0v1.414l-5.982 6-1.416-1.414L15.895 10l-5.293-5.293 1.415-1.414z"/></svg>

@@ -55,6 +55,9 @@
 		"smallerText": {
 			"file": "images/icons/smallerText.svg"
 		},
+		"universalDesign": {
+			"file": "images/icons/universalDesign.svg"
+		},
 		"visionSimulator": {
 			"file": "images/icons/visionSimulator.svg"
 		}

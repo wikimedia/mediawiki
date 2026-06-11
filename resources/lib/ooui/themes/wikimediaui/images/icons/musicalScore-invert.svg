@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>
-		musical score
-	</title><g fill="#fff"><path d="M8 15V5h8v10h2V2H6v13"/><circle cx="15" cy="15" r="3"/><circle cx="5" cy="15" r="3"/></g></svg>
+		music
+	</title><path fill="#fff" d="M19 15.5a3.5 3.5 0 1 1-2-3.164V7H8v8.5a3.5 3.5 0 1 1-2-3.164V1h13zM4.5 14a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M8 5h9V3H8z"/></svg>

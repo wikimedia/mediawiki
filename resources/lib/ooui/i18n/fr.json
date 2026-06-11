@@ -44,6 +44,7 @@
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Annuler",
 	"ooui-dialog-process-error": "Quelque chose s’est mal passé",
+	"ooui-dialog-process-back": "Retour",
 	"ooui-dialog-process-dismiss": "Fermer",
 	"ooui-dialog-process-retry": "Réessayer",
 	"ooui-dialog-process-continue": "Continuer",

@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>
 		search articles
-	</title><g fill="#36c"><path d="M13 0a2 2 0 0 1 2 2H6a2 2 0 0 0-2 2v12a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/><path d="M13.8 15.5a4.6 4.7 0 0 1-2.3.6 4.6 4.7 0 1 1 3.7-1.9l2.8 3V5a1.9 1.9 0 0 0-1.9-2H7a1.9 1.9 0 0 0-2 1.9V18a1.9 1.9 0 0 0 1.9 2H16a1.9 1.9 0 0 0 1.4-.6z"/><circle cx="11.5" cy="11.5" r="3"/></g></svg>
+	</title><g fill="#36c"><path d="M20 19H4V5h16zM6 17h9.586l-2.296-2.296A3 3 0 0 1 12 15a3 3 0 1 1 3-3c0 .463-.109.899-.296 1.29L18 16.586V7H6zm6-6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/><path d="M14 1v2H2v14H0V1z"/></g></svg>

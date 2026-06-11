@@ -15,6 +15,7 @@
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Cancellar",
 	"ooui-dialog-process-error": "Qualcosa ha vadite mal",
+	"ooui-dialog-process-back": "Retro",
 	"ooui-dialog-process-dismiss": "Clauder",
 	"ooui-dialog-process-retry": "Reprobar",
 	"ooui-dialog-process-continue": "Continuar",

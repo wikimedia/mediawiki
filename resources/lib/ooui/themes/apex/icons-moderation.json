@@ -11,6 +11,9 @@
 		"block": {
 			"file": "../wikimediaui/images/icons/block.svg"
 		},
+		"blockOutline": {
+			"file": "../wikimediaui/images/icons/blockOutline.svg"
+		},
 		"unBlock": {
 			"file": "../wikimediaui/images/icons/unBlock.svg"
 		},

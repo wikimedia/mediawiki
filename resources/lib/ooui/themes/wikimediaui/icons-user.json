@@ -49,6 +49,12 @@
 		"userBlocked": {
 			"file": "images/icons/userBlocked.svg"
 		},
+		"userChat": {
+			"file": {
+				"ltr": "images/icons/userChat-ltr.svg",
+				"rtl": "images/icons/userChat-rtl.svg"
+			}
+		},
 		"userContributions": {
 			"file": {
 				"ltr": "images/icons/userContributions-ltr.svg",
@@ -59,6 +65,18 @@
 			"file": {
 				"ltr": "images/icons/userGroup-ltr.svg",
 				"rtl": "images/icons/userGroup-rtl.svg"
+			}
+		},
+		"userMentor": {
+			"file": {
+				"ltr": "images/icons/userMentor-ltr.svg",
+				"rtl": "images/icons/userMentor-rtl.svg"
+			}
+		},
+		"userPages": {
+			"file": {
+				"ltr": "images/icons/userPages-ltr.svg",
+				"rtl": "images/icons/userPages-rtl.svg"
 			}
 		},
 		"userRights": {

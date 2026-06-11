@@ -26,6 +26,12 @@
 		"userBlocked": {
 			"file": "../wikimediaui/images/icons/userBlocked.svg"
 		},
+		"userChat": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/userChat-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/userChat-rtl.svg"
+			}
+		},
 		"userContributions": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/userContributions-ltr.svg",
@@ -36,6 +42,18 @@
 			"file": {
 				"ltr": "../wikimediaui/images/icons/userGroup-ltr.svg",
 				"rtl": "../wikimediaui/images/icons/userGroup-rtl.svg"
+			}
+		},
+		"userMentor": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/userMentor-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/userMentor-rtl.svg"
+			}
+		},
+		"userPages": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/userPages-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/userPages-rtl.svg"
 			}
 		},
 		"userRights": {

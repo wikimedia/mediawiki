@@ -43,6 +43,33 @@
 				"error"
 			]
 		},
+		"levelNone": {
+			"file": {
+				"ltr": "images/icons/levelNone-ltr.svg",
+				"rtl": "images/icons/levelNone-rtl.svg"
+			}
+		},
+		"levelOne": {
+			"file": {
+				"ltr": "images/icons/levelOne-ltr.svg",
+				"rtl": "images/icons/levelOne-rtl.svg"
+			}
+		},
+		"levelTwo": {
+			"file": {
+				"ltr": "images/icons/levelTwo-ltr.svg",
+				"rtl": "images/icons/levelTwo-rtl.svg"
+			}
+		},
+		"levelThree": {
+			"file": {
+				"ltr": "images/icons/levelThree-ltr.svg",
+				"rtl": "images/icons/levelThree-rtl.svg"
+			}
+		},
+		"live": {
+			"file": "images/icons/live.svg"
+		},
 		"message": {
 			"file": "images/icons/message.svg"
 		},
@@ -53,6 +80,12 @@
 			"file": {
 				"ltr": "images/icons/speechBubble-ltr.svg",
 				"rtl": "images/icons/speechBubble-rtl.svg"
+			}
+		},
+		"speechBubbleAlert": {
+			"file": {
+				"ltr": "images/icons/speechBubbleAlert-ltr.svg",
+				"rtl": "images/icons/speechBubbleAlert-rtl.svg"
 			}
 		},
 		"speechBubbleAdd": {

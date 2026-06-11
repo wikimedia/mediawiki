@@ -54,6 +54,9 @@
 		"close": {
 			"file": "images/icons/close.svg"
 		},
+		"configure": {
+			"file": "images/icons/configure.svg"
+		},
 		"ellipsis": {
 			"file": "images/icons/ellipsis.svg"
 		},
@@ -66,12 +69,18 @@
 				"rtl": "images/icons/feedback-rtl.svg"
 			}
 		},
+		"filter": {
+			"file": "images/icons/filter.svg"
+		},
 		"funnel": {
-			"file": {
-				"ltr": "images/icons/funnel-ltr.svg",
-				"rtl": "images/icons/funnel-rtl.svg"
-			},
+			"file": "images/icons/funnel.svg",
 			"variants": [ "destructive" ]
+		},
+		"funnelMatch": {
+			"file": {
+				"ltr": "images/icons/funnelMatch-ltr.svg",
+				"rtl": "images/icons/funnelMatch-rtl.svg"
+			}
 		},
 		"hand": {
 			"file": "images/icons/hand.svg",
@@ -81,6 +90,9 @@
 		},
 		"heart": {
 			"file": "images/icons/heart.svg"
+		},
+		"heartOutline": {
+			"file": "images/icons/heartOutline.svg"
 		},
 		"help": {
 			"file": {
@@ -112,6 +124,9 @@
 		"lightbulb": {
 			"file": "images/icons/lightbulb.svg"
 		},
+		"lightbulbOutline": {
+			"file": "images/icons/lightbulbOutline.svg"
+		},
 		"logIn": {
 			"file": {
 				"ltr": "images/icons/logIn-ltr.svg",
@@ -123,6 +138,9 @@
 				"ltr": "images/icons/logOut-ltr.svg",
 				"rtl": "images/icons/logOut-rtl.svg"
 			}
+		},
+		"magicWand": {
+			"file": "images/icons/magicWand.svg"
 		},
 		"network": {
 			"file": "images/icons/network.svg"
@@ -146,6 +164,12 @@
 			"file": "images/icons/printer.svg"
 		},
 		"reload": {
+			"file": "images/icons/reload.svg"
+		},
+		"restart": {
+			"file": "images/icons/restart.svg"
+		},
+		"rotate": {
 			"file": "images/icons/reload.svg"
 		},
 		"search": {

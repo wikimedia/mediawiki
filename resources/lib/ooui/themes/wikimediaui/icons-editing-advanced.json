@@ -45,14 +45,20 @@
 		},
 		"copy": {
 			"file": {
-				"ltr": "../wikimediaui/images/icons/copy-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/copy-rtl.svg"
+				"ltr": "images/icons/copy-ltr.svg",
+				"rtl": "images/icons/copy-rtl.svg"
 			}
 		},
 		"cut": {
 			"file": {
-				"ltr": "../wikimediaui/images/icons/cut-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/cut-rtl.svg"
+				"ltr": "images/icons/cut-ltr.svg",
+				"rtl": "images/icons/cut-rtl.svg"
+			}
+		},
+		"diffs": {
+			"file": {
+				"ltr": "images/icons/diffs-ltr.svg",
+				"rtl": "images/icons/diffs-rtl.svg"
 			}
 		},
 		"hieroglyph": {
@@ -110,10 +116,7 @@
 			"file": "images/icons/ocr.svg"
 		},
 		"outline": {
-			"file": {
-				"ltr": "images/icons/outline-ltr.svg",
-				"rtl": "images/icons/outline-rtl.svg"
-			}
+			"file": "images/icons/outline.svg"
 		},
 		"palette": {
 			"file": {
@@ -123,8 +126,8 @@
 		},
 		"paste": {
 			"file": {
-				"ltr": "../wikimediaui/images/icons/paste-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/paste-rtl.svg"
+				"ltr": "images/icons/paste-ltr.svg",
+				"rtl": "images/icons/paste-rtl.svg"
 			}
 		},
 		"puzzle": {

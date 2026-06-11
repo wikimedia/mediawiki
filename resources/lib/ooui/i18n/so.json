@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"ooui-copytextlayout-copy": "Nuqul",
+	"ooui-outline-control-move-down": "Hoos u dhaqaaji shayga",
+	"ooui-outline-control-move-up": "Kor u dhaqaaji shayga",
+	"ooui-outline-control-remove": "Ka saar shayga",
+	"ooui-toolbar-more": "Dheeraad",
+	"ooui-toolgroup-expand": "Dheeraad",
+	"ooui-toolgroup-collapse": "Ka yar",
+	"ooui-item-remove": "Ka saar",
+	"ooui-dialog-message-accept": "Hagaag",
+	"ooui-dialog-message-reject": "Jooji",
+	"ooui-dialog-process-error": "Wax baa qaldamay",
+	"ooui-dialog-process-back": "Dib u noqo",
+	"ooui-dialog-process-dismiss": "Xir",
+	"ooui-dialog-process-retry": "Mar kale isku day",
+	"ooui-dialog-process-continue": "Sii wad",
+	"ooui-combobox-button-label": "Beddel xulashooyinka",
+	"ooui-selectfile-button-select": "Dooro fayl",
+	"ooui-selectfile-button-select-multiple": "Dooro faylasha",
+	"ooui-selectfile-placeholder": "Fayl lama xulan",
+	"ooui-selectfile-dragdrop-placeholder": "Faylka halkan ku tuur",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Halkan ku soo rid faylasha",
+	"ooui-popup-widget-close-button-aria-label": "Xir",
+	"ooui-field-help": "Caawin"
+}

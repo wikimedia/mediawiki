@@ -14,6 +14,33 @@
 		"error": {
 			"file": "../wikimediaui/images/icons/error.svg"
 		},
+		"levelNone": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/levelNone-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/levelNone-rtl.svg"
+			}
+		},
+		"levelOne": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/levelOne-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/levelOne-rtl.svg"
+			}
+		},
+		"levelTwo": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/levelTwo-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/levelTwo-rtl.svg"
+			}
+		},
+		"levelThree": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/levelThree-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/levelThree-rtl.svg"
+			}
+		},
+		"live": {
+			"file": "../wikimediaui/images/icons/live.svg"
+		},
 		"message": {
 			"file": "../wikimediaui/images/icons/message.svg"
 		},
@@ -24,6 +51,12 @@
 			"file": {
 				"ltr": "../wikimediaui/images/icons/speechBubble-ltr.svg",
 				"rtl": "../wikimediaui/images/icons/speechBubble-rtl.svg"
+			}
+		},
+		"speechBubbleAlert": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/speechBubbleAlert-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/speechBubbleAlert-rtl.svg"
 			}
 		},
 		"speechBubbleAdd": {

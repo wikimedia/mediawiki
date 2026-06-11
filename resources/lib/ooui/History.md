@@ -1,5 +1,25 @@
 # OOUI Release History
 
+## v0.54.0 / 2026-06-11
+
+### Icons
+* Icons: refine icon library (Derek Torsani)
+* icons: Amend various icons (Derek Torsani)
+### Code
+* build: Updating dependencies ([BOT] libraryupgrader)
+* build: Updating fast-uri to 3.1.2 ([BOT] libraryupgrader)
+* build: Updating jsdoc-wmf-theme to 1.3.0 ([BOT] libraryupgrader)
+* build: Updating npm dependencies ([BOT] libraryupgrader)
+* build: Updating npm dependencies ([BOT] libraryupgrader)
+* build: Updating postcss to 8.5.12 ([BOT] libraryupgrader)
+* build: Updating tmp to 0.2.7 ([BOT] libraryupgrader)
+* composer: Indicate that we now require PHP 8.3+ (James D. Forrester)
+* Fix typos in documentation (Ed Sanders)
+* icons: Simplify paths for a few non-relative entries (Ed Sanders)
+* tests: Use ::class for class name resolution (Umherirrender)
+* Update name and address for bvibber (Brooke Vibber)
+
+
 ## v0.53.2 / 2026-04-20
 
 ### Features
@@ -3024,7 +3044,7 @@ built in the previous release.
 * WindowManager: Add `WindowInstance` - a Promise-based lifecycle object (Timo Tijhof)
 * WindowManager: Handle errors better in `#closeWindow` (Bartosz Dziewoński)
 
-* Allow *even more* widgets to be focussed programatically (Bartosz Dziewoński)
+* Allow *even more* widgets to be focussed programmatically (Bartosz Dziewoński)
 * Only cancel mouse down event if tool in toolgroup clicked on (Ed Sanders)
 * Re-introduce `.simulateLabelClick()` as a separate method from .focus() (Bartosz Dziewoński)
 
@@ -3061,7 +3081,7 @@ built in the previous release.
 
 ## v0.21.4 / 2017-05-16
 ### Features
-* Allow more widgets to be focussed programatically (Bartosz Dziewoński)
+* Allow more widgets to be focussed programmatically (Bartosz Dziewoński)
 * Generalize `.getInputId()` for all widgets (Bartosz Dziewoński)
 * Use `.focus()` method when possible instead of looking inside widgets (Bartosz Dziewoński)
 * TagMultiselectWidget: Fix Control+Backspace keys to delete last item (Bartosz Dziewoński)

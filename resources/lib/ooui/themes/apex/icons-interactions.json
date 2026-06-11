@@ -29,6 +29,9 @@
 		"close": {
 			"file": "../wikimediaui/images/icons/close.svg"
 		},
+		"configure": {
+			"file": "../wikimediaui/images/icons/configure.svg"
+		},
 		"ellipsis": {
 			"file": "../wikimediaui/images/icons/ellipsis.svg"
 		},
@@ -41,10 +44,16 @@
 				"rtl": "../wikimediaui/images/icons/feedback-rtl.svg"
 			}
 		},
+		"filter": {
+			"file": "../wikimediaui/images/icons/filter.svg"
+		},
 		"funnel": {
+			"file": "../wikimediaui/images/icons/funnel.svg"
+		},
+		"funnelMatch": {
 			"file": {
-				"ltr": "../wikimediaui/images/icons/funnel-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/funnel-rtl.svg"
+				"ltr": "../wikimediaui/images/icons/funnelMatch-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/funnelMatch-rtl.svg"
 			}
 		},
 		"hand": {
@@ -52,6 +61,9 @@
 		},
 		"heart": {
 			"file": "../wikimediaui/images/icons/heart.svg"
+		},
+		"heartOutline": {
+			"file": "../wikimediaui/images/icons/heartOutline.svg"
 		},
 		"help": {
 			"file": {
@@ -83,6 +95,9 @@
 		"lightbulb": {
 			"file": "../wikimediaui/images/icons/lightbulb.svg"
 		},
+		"lightbulbOutline": {
+			"file": "../wikimediaui/images/icons/lightbulbOutline.svg"
+		},
 		"logIn": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/logIn-ltr.svg",
@@ -94,6 +109,9 @@
 				"ltr": "../wikimediaui/images/icons/logOut-ltr.svg",
 				"rtl": "../wikimediaui/images/icons/logOut-rtl.svg"
 			}
+		},
+		"magicWand": {
+			"file": "../wikimediaui/images/icons/magicWand.svg"
 		},
 		"network": {
 			"file": "../wikimediaui/images/icons/network.svg"
@@ -117,6 +135,12 @@
 			"file": "../wikimediaui/images/icons/printer.svg"
 		},
 		"reload": {
+			"file": "../wikimediaui/images/icons/reload.svg"
+		},
+		"restart": {
+			"file": "../wikimediaui/images/icons/restart.svg"
+		},
+		"rotate": {
 			"file": "../wikimediaui/images/icons/reload.svg"
 		},
 		"search": {

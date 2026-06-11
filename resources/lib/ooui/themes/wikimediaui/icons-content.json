@@ -73,8 +73,11 @@
 				"rtl": "images/icons/articleRedirect-rtl.svg"
 			}
 		},
+		"asterisk": {
+			"file": "images/icons/asterisk.svg"
+		},
 		"database": {
-			"file": "../wikimediaui/images/icons/database.svg"
+			"file": "images/icons/database.svg"
 		},
 		"die": {
 			"file": "images/icons/die.svg"
@@ -122,10 +125,22 @@
 		"share": {
 			"file": "images/icons/share.svg"
 		},
+		"shareAndroid": {
+			"file": "images/icons/shareAndroid.svg"
+		},
+		"shareIOS": {
+			"file": "images/icons/shareIOS.svg"
+		},
 		"specialPages": {
 			"file": {
 				"ltr": "images/icons/specialPages-ltr.svg",
 				"rtl": "images/icons/specialPages-rtl.svg"
+			}
+		},
+		"tabs": {
+			"file": {
+				"ltr": "images/icons/tabs-ltr.svg",
+				"rtl": "images/icons/tabs-rtl.svg"
 			}
 		},
 		"tag": {
@@ -149,7 +164,10 @@
 			"file": "images/icons/upload.svg"
 		},
 		"window": {
-			"file": "images/icons/window.svg"
+			"file": {
+				"ltr": "images/icons/window-ltr.svg",
+				"rtl": "images/icons/window-rtl.svg"
+			}
 		}
 	}
 }

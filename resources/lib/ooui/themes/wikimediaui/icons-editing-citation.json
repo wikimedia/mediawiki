@@ -26,10 +26,7 @@
 	},
 	"images": {
 		"book": {
-			"file": {
-				"ltr": "images/icons/book-ltr.svg",
-				"rtl": "images/icons/book-rtl.svg"
-			}
+			"file": "images/icons/book.svg"
 		},
 		"journal": {
 			"file": {
@@ -44,7 +41,10 @@
 			}
 		},
 		"reference": {
-			"file": "images/icons/reference.svg"
+			"file": {
+				"ltr": "images/icons/reference-ltr.svg",
+				"rtl": "images/icons/reference-rtl.svg"
+			}
 		},
 		"referenceExisting": {
 			"file": {

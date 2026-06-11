@@ -3,10 +3,7 @@
 	"intro": "@import '../../../../src/styles/common.less';",
 	"images": {
 		"book": {
-			"file": {
-				"ltr": "../wikimediaui/images/icons/book-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/book-rtl.svg"
-			}
+			"file": "../wikimediaui/images/icons/book.svg"
 		},
 		"journal": {
 			"file": {
@@ -21,7 +18,10 @@
 			}
 		},
 		"reference": {
-			"file": "../wikimediaui/images/icons/reference.svg"
+			"file": {
+				"ltr": "../wikimediaui/images/icons/reference-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/reference-rtl.svg"
+			}
 		},
 		"referenceExisting": {
 			"file": {

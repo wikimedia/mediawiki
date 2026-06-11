@@ -25,6 +25,7 @@
 	"ooui-dialog-message-accept": "Okay",
 	"ooui-dialog-message-reject": "Abbrechen",
 	"ooui-dialog-process-error": "Etwas ist schiefgelaufen",
+	"ooui-dialog-process-back": "Zurück",
 	"ooui-dialog-process-dismiss": "Ausblenden",
 	"ooui-dialog-process-retry": "Erneut versuchen",
 	"ooui-dialog-process-continue": "Fortfahren",

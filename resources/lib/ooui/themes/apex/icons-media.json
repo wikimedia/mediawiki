@@ -8,6 +8,18 @@
 		"chart": {
 			"file": "../wikimediaui/images/icons/chart.svg"
 		},
+		"chartBar": {
+			"file": "../wikimediaui/images/icons/chartBar.svg"
+		},
+		"chartLine": {
+			"file": "../wikimediaui/images/icons/chartLine.svg"
+		},
+		"chartPie": {
+			"file": "../wikimediaui/images/icons/chartPie.svg"
+		},
+		"chartScatter": {
+			"file": "../wikimediaui/images/icons/chartScatter.svg"
+		},
 		"exitFullscreen": {
 			"file": "../wikimediaui/images/icons/exitFullscreen.svg"
 		},
@@ -33,7 +45,10 @@
 			}
 		},
 		"imageGallery": {
-			"file": "../wikimediaui/images/icons/imageGallery.svg"
+			"file": {
+				"ltr": "../wikimediaui/images/icons/imageGallery-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/imageGallery-rtl.svg"
+			}
 		},
 		"musicalScore": {
 			"file": "../wikimediaui/images/icons/musicalScore.svg"
@@ -41,11 +56,20 @@
 		"pause": {
 			"file": "../wikimediaui/images/icons/pause.svg"
 		},
+		"pictureInPicture": {
+			"file": "../wikimediaui/images/icons/pictureInPicture.svg"
+		},
 		"play": {
 			"file": "../wikimediaui/images/icons/play.svg"
 		},
 		"stop": {
 			"file": "../wikimediaui/images/icons/stop.svg"
+		},
+		"subtitle": {
+			"file": "../wikimediaui/images/icons/subtitle.svg"
+		},
+		"threeDimensional": {
+			"file": "../wikimediaui/images/icons/threeDimensional.svg"
 		},
 		"volumeDown": {
 			"file": {

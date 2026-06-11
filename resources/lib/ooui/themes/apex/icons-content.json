@@ -50,6 +50,9 @@
 				"rtl": "../wikimediaui/images/icons/articleRedirect-rtl.svg"
 			}
 		},
+		"asterisk": {
+			"file": "../wikimediaui/images/icons/asterisk.svg"
+		},
 		"database": {
 			"file": "../wikimediaui/images/icons/database.svg"
 		},
@@ -99,10 +102,22 @@
 		"share": {
 			"file": "../wikimediaui/images/icons/share.svg"
 		},
+		"shareAndroid": {
+			"file": "../wikimediaui/images/icons/shareAndroid.svg"
+		},
+		"shareIOS": {
+			"file": "../wikimediaui/images/icons/shareIOS.svg"
+		},
 		"specialPages": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/specialPages-ltr.svg",
 				"rtl": "../wikimediaui/images/icons/specialPages-rtl.svg"
+			}
+		},
+		"tabs": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/tabs-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/tabs-rtl.svg"
 			}
 		},
 		"tag": {
@@ -121,7 +136,10 @@
 			"file": "../wikimediaui/images/icons/upload.svg"
 		},
 		"window": {
-			"file": "../wikimediaui/images/icons/window.svg"
+			"file": {
+				"ltr": "../wikimediaui/images/icons/window-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/window-rtl.svg"
+			}
 		}
 	}
 }

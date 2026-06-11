@@ -29,6 +29,12 @@
 		"draggable": {
 			"file": "../wikimediaui/images/icons/draggable.svg"
 		},
+		"draggableHorizontal": {
+			"file": "../wikimediaui/images/icons/draggableHorizontal.svg"
+		},
+		"draggableXY": {
+			"file": "../wikimediaui/images/icons/draggableXY.svg"
+		},
 		"doubleChevronEnd": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/doubleChevronEnd-ltr.svg",

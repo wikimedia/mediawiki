@@ -32,6 +32,9 @@
 		"smallerText": {
 			"file": "../wikimediaui/images/icons/smallerText.svg"
 		},
+		"universalDesign": {
+			"file": "../wikimediaui/images/icons/universalDesign.svg"
+		},
 		"visionSimulator": {
 			"file": "../wikimediaui/images/icons/visionSimulator.svg"
 		}

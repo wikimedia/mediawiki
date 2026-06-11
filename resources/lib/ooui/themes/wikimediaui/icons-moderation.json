@@ -35,6 +35,10 @@
 			"file": "images/icons/block.svg",
 			"variants": [ "destructive" ]
 		},
+		"blockOutline": {
+			"file": "images/icons/blockOutline.svg",
+			"variants": [ "destructive" ]
+		},
 		"unBlock": {
 			"file": "images/icons/unBlock.svg"
 		},

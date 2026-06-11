@@ -30,7 +30,7 @@ Antoine Musso <hashar@free.fr>
 Arthur Taylor <arthur.taylor@wikimedia.de>
 Brad Jorsch <bjorsch@wikimedia.org>
 Brian Wolff <bawolff+wn@gmail.com>
-Brion Vibber <brion@users.mediawiki.org>
+Brooke Vibber <bvibber@pobox.com>
 C. Scott Ananian <cscott@cscott.net>
 Chad Horohoe <chadh@wikimedia.org>
 Chlod Alejandro <chlod@chlod.net>

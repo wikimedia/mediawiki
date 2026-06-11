@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.53.2
+ * OOUI v0.54.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2026 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2026-04-21T12:46:08Z
+ * Date: 2026-06-11T21:42:16Z
  */
 ( function ( OO ) {
 
@@ -208,7 +208,7 @@ OO.ui.mixin.DraggableElement.prototype.onDrop = function ( e ) {
 
 /**
  * In order for drag/drop to work, the dragover event must
- * return false and stop propogation.
+ * return false and stop propagation.
  *
  * @param {jQuery.Event} e Drag event
  * @private
@@ -410,7 +410,7 @@ OO.ui.mixin.DraggableGroupElement.prototype.onItemDropOrDragEnd = function () {
 		this.updateIndexes();
 	}
 	this.unsetDragItem();
-	// Return false to prevent propogation
+	// Return false to prevent propagation
 	return false;
 };
 
@@ -1429,7 +1429,7 @@ OO.ui.StackLayout.prototype.unsetCurrentItem = function () {
 };
 
 /**
- * Set the hideUntilFound config (see contructor)
+ * Set the hideUntilFound config (see constructor)
  *
  * @param {boolean} hideUntilFound
  */
@@ -3227,7 +3227,7 @@ OO.ui.ToggleButtonWidget.prototype.setButtonElement = function ( $button ) {
  * @constructor
  * @param {OO.ui.OutlineSelectWidget} outline Outline to control
  * @param {Object} [config] Configuration options
- * @param {Object} [config.abilities] List of abilties
+ * @param {Object} [config.abilities] List of abilities
  * @param {boolean} [config.abilities.move=true] Allow moving movable items
  * @param {boolean} [config.abilities.remove=true] Allow removing removable items
  */
@@ -3314,7 +3314,7 @@ OO.mixinClass( OO.ui.OutlineControlsWidget, OO.ui.mixin.GroupElement );
 /**
  * Set abilities.
  *
- * @param {Object} abilities List of abilties
+ * @param {Object} abilities List of abilities
  * @param {boolean} [abilities.move] Allow moving movable items
  * @param {boolean} [abilities.remove] Allow removing removable items
  */
@@ -5650,7 +5650,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.getTagInfoFromInput = function () {
 /**
  * Create the menu for this widget. This is in a separate method so that
  * child classes can override this without polluting the constructor with
- * unnecessary extra objects that will be overidden.
+ * unnecessary extra objects that will be overridden.
  *
  * @param {Object} menuConfig Configuration options
  * @return {OO.ui.MenuSelectWidget} Menu widget

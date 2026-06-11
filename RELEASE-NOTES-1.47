@@ -117,6 +117,7 @@ For notes on 1.46.x and older releases, see HISTORY.
 * Updated wikimedia/json-codec from 4.0.0 to 5.0.0.
 * Updated codex, codex-design-tokens and codex-icons
   from v2.5.1 to v2.6.0.
+* Updated OOUI from v0.53.2 to v0.54.0
 * …
 
 ===== Changed development-only external libraries =====

@@ -31,6 +31,18 @@
 		"chart": {
 			"file": "images/icons/chart.svg"
 		},
+		"chartBar": {
+			"file": "images/icons/chartBar.svg"
+		},
+		"chartLine": {
+			"file": "images/icons/chartLine.svg"
+		},
+		"chartPie": {
+			"file": "images/icons/chartPie.svg"
+		},
+		"chartScatter": {
+			"file": "images/icons/chartScatter.svg"
+		},
 		"exitFullscreen": {
 			"file": "images/icons/exitFullscreen.svg"
 		},
@@ -56,7 +68,10 @@
 			}
 		},
 		"imageGallery": {
-			"file": "images/icons/imageGallery.svg"
+			"file": {
+				"ltr": "images/icons/imageGallery-ltr.svg",
+				"rtl": "images/icons/imageGallery-rtl.svg"
+			}
 		},
 		"musicalScore": {
 			"file": "images/icons/musicalScore.svg"
@@ -64,12 +79,21 @@
 		"pause": {
 			"file": "images/icons/pause.svg"
 		},
+		"pictureInPicture": {
+			"file": "images/icons/pictureInPicture.svg"
+		},
 		"play": {
 			"file": "images/icons/play.svg"
 		},
 		"stop": {
 			"file": "images/icons/stop.svg",
 			"variants": [ "destructive" ]
+		},
+		"subtitle": {
+			"file": "images/icons/subtitle.svg"
+		},
+		"threeDimensional": {
+			"file": "images/icons/threeDimensional.svg"
 		},
 		"volumeDown": {
 			"file": {
