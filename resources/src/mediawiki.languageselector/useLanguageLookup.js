@@ -72,17 +72,22 @@ function useLanguageLookup( {
 	const menuItems = ref( [] );
 	const allMenuItems = computed( () => computeMenuItems( languages.value ) );
 
-	watch( [ searchResults, allMenuItems ], () => {
-		if ( searchQuery.value ) {
-			menuItems.value = computeMenuItems( languages.value, searchResults.value );
-		} else {
-			menuItems.value = allMenuItems.value;
-		}
-	}, { immediate: true } );
+	// Recompute the menu from the current query and results. The empty-query
+	// branch always assigns a fresh array (not the cached allMenuItems
+	// reference) so the Lookup's pending state resets even when the language
+	// list is unchanged; otherwise the loading indicator can get stuck after
+	// clearing and re-selecting.
+	const syncMenuItems = () => {
+		menuItems.value = searchQuery.value ?
+			computeMenuItems( languages.value, searchResults.value ) :
+			[ ...allMenuItems.value ];
+	};
+
+	watch( [ searchResults, allMenuItems ], syncMenuItems, { immediate: true } );
 
 	watch( searchQuery, ( newQuery ) => {
 		if ( !newQuery ) {
-			menuItems.value = allMenuItems.value;
+			syncMenuItems();
 		}
 	} );
 
