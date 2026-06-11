@@ -4,7 +4,8 @@
 			"McDutchie",
 			"PonkoSasuke",
 			"Robin van der Vliet",
-			"Romaine"
+			"Romaine",
+			"Siebrand"
 		]
 	},
 	"paramvalidator-badbool": "Onbekende waarde “$2” voor de booleaanse parameter “$1”. Geef $3 door voor “true”, of $5 voor “false”.",
@@ -27,7 +28,7 @@
 	"paramvalidator-badupload-notmpdir": "Het bestand voor “$1” kon niet worden opgeslagen voor verwerking vanwege een verkeerde serverconfiguratie (geen tijdelijke map).",
 	"paramvalidator-badupload-notupload": "De bestandsuploadparameter “$1” is geen bestandsupload. Zorg ervoor dat u multipart/form-data gebruikt voor uw POST-verzoek en neem een bestandsnaam op in de header Content-Disposition.",
 	"paramvalidator-badupload-partial": "Het bestand voor “$1” is slechts gedeeltelijk geüpload.",
-	"paramvalidator-badupload-phpext": "Een PHP-extensie heeft het uploaden van het bestand voor “$1” verhinderd.",
+	"paramvalidator-badupload-phpext": "Een PHP-uitbreiding heeft het uploaden van het bestand voor “$1” verhinderd.",
 	"paramvalidator-badvalue-enummulti": "Ongeldige waarde “$2” voor parameter “$1”. {{PLURAL:$4|Alleen “$3” is toegestaan.|De toegestane waarden zijn $3.}}",
 	"paramvalidator-badvalue-enumnotmulti": "Onbekende waarde voor parameter “$1”: $2.",
 	"paramvalidator-deprecated-value": "De waarde “$2” is verouderd voor parameter “$1”.",

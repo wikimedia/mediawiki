@@ -417,8 +417,12 @@
 	"exif-digitalsourcetype-softwareimage": "Создано программным обеспечением",
 	"exif-digitalsourcetype-digitalart": "Создано человеком, используя цифровые инструменты",
 	"exif-digitalsourcetype-digitalcreation": "Медиафайл создан человеком, используя не-ИИ инструменты",
+	"exif-digitalsourcetype-datadrivenmedia": "Представление цифровых данных в медиаформате посредством программирования человеком или человеческого творчества",
 	"exif-digitalsourcetype-trainedalgorithmicmedia": "Создано с использованием генеративного ИИ",
 	"exif-digitalsourcetype-algorithmicmedia": "Медиафайл создан исключительно с помощью не-ИИ алгоритма",
 	"exif-digitalsourcetype-screencapture": "Снимок экрана",
+	"exif-digitalsourcetype-virtualrecording": "Прямая трансляция виртуального мероприятия на основе генеративного ИИ и/или снятых элементов",
+	"exif-digitalsourcetype-composite": "Сочетание или комбинация нескольких элементов, любой из которых может быть, а может и не быть создан генеративным искусственным интеллектом",
+	"exif-digitalsourcetype-compositecapture": "Сочетание или комбинация нескольких элементов, снятых в реальности",
 	"exif-digitalsourcetype-compositesynthetic": "Сочетание или комбинация нескольких элементов, по крайней мере один из которых создан генеративным ИИ"
 }
