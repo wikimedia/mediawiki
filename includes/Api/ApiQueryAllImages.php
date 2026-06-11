@@ -99,10 +99,21 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		// Table and return fields
 		$prop = array_fill_keys( $params['prop'], true );
 
-		$fileQuery = FileSelectQueryBuilder::newForFile( $db )->getQueryInfo();
+		$migrationStage = $this->getConfig()->get( MainConfigNames::FileSchemaMigrationStage );
+		$fileOptions = [];
+		if ( ( $migrationStage & SCHEMA_COMPAT_READ_NEW ) && $params['sort'] == 'timestamp' ) {
+			// Force fr_timestamp index to optimize query for timestamp sorting
+			$fileOptions['force-index'] = 'fr_timestamp';
+		}
+
+		$fileQuery = FileSelectQueryBuilder::newForFile( $db, $fileOptions )->getQueryInfo();
 		$this->addTables( $fileQuery['tables'] );
 		$this->addFields( $fileQuery['fields'] );
 		$this->addJoinConds( $fileQuery['join_conds'] );
+
+		$secondarySortField = ( $migrationStage & SCHEMA_COMPAT_READ_NEW )
+			? 'img_filerevision_id'
+			: 'img_name';
 
 		$ascendingOrder = true;
 		if ( $params['dir'] == 'descending' || $params['dir'] == 'older' ) {
@@ -187,14 +198,14 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				$params['end']
 			);
 			// Include in ORDER BY for uniqueness
-			$this->addWhereRange( 'img_name', $ascendingOrder ? 'newer' : 'older', null, null );
+			$this->addWhereRange( $secondarySortField, $ascendingOrder ? 'newer' : 'older', null, null );
 
 			if ( $params['continue'] !== null ) {
 				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'timestamp', 'string' ] );
 				$op = ( $ascendingOrder ? '>=' : '<=' );
 				$this->addWhere( $db->buildComparison( $op, [
 					'img_timestamp' => $db->timestamp( $cont[0] ),
-					'img_name' => $cont[1],
+					$secondarySortField => $cont[1],
 				] ) );
 			}
 
@@ -285,7 +296,8 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				if ( $params['sort'] == 'name' ) {
 					$this->setContinueEnumParameter( 'continue', $row->img_name );
 				} else {
-					$this->setContinueEnumParameter( 'continue', "$row->img_timestamp|$row->img_name" );
+					$secondaryValue = $row->$secondarySortField;
+					$this->setContinueEnumParameter( 'continue', "$row->img_timestamp|$secondaryValue" );
 				}
 				break;
 			}
@@ -301,7 +313,8 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 					if ( $params['sort'] == 'name' ) {
 						$this->setContinueEnumParameter( 'continue', $row->img_name );
 					} else {
-						$this->setContinueEnumParameter( 'continue', "$row->img_timestamp|$row->img_name" );
+						$secondaryValue = $row->$secondarySortField;
+						$this->setContinueEnumParameter( 'continue', "$row->img_timestamp|$secondaryValue" );
 					}
 					break;
 				}

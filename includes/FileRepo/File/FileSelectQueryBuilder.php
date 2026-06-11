@@ -22,6 +22,7 @@ class FileSelectQueryBuilder extends SelectQueryBuilder {
 	 * @param string $type either 'file', 'oldfile' or 'archivedfile'
 	 * @param array $options
 	 *   - omit-lazy: Omit fields that are lazily cached.
+	 *   - force-index: Index name to force on the filerevision table.
 	 */
 	public function __construct( IReadableDatabase $db, string $type = 'file', array $options = [] ) {
 		parent::__construct( $db );
@@ -109,6 +110,11 @@ class FileSelectQueryBuilder extends SelectQueryBuilder {
 				'comment_img_description',
 				'comment_img_description.comment_id = fr_description_id'
 			);
+
+		if ( isset( $options['force-index'] ) ) {
+			// Use index on filerevision table to optimize timestamp sorting
+			$subquery->option( 'USE INDEX', [ 'filerevision' => $options['force-index'] ] );
+		}
 
 		if ( !in_array( 'omit-nonlazy', $options, true ) ) {
 			$subquery->fields(
