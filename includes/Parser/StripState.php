@@ -145,7 +145,7 @@ class StripState {
 	 * @param string $text
 	 * @param callable $callback
 	 * @return string
-	 * @unstable Temporarily used by Scribunto
+	 * @unstable Temporarily used by Scribunto/SyntaxHighlight
 	 */
 	public function replaceNoWikis( string $text, callable $callback ): string {
 		// Shortcut
@@ -166,7 +166,8 @@ class StripState {
 					return $this->getLimitationWarning( 'unstrip-size', $this->sizeLimit );
 				}
 
-				return $callback( $value );
+				$extra = $this->extra['nowiki'][$marker] ?? null;
+				return $callback( $value, $extra );
 			} else {
 				return $m[0];
 			}

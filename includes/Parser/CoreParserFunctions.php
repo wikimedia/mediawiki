@@ -1499,10 +1499,8 @@ class CoreParserFunctions {
 		) ) );
 
 		if ( count( $args ) ) {
-			$substNowiki = $parser->tagNeedsNowikiStrippedInTagPF( $tagName ) ?
-				PPFrame::SUBST_NOWIKI : 0;
-			$inner = $frame->expand( array_shift( $args ), $substNowiki );
-			if ( $substNowiki ) {
+			$inner = $frame->expand( array_shift( $args ) );
+			if ( $parser->tagNeedsNowikiStrippedInTagPF( $tagName ) ) {
 				// This is the T299103 workaround for <syntaxhighlight>,
 				// and reproduces the code in SyntaxHighlight::parserHook.
 				// The Parsoid extension API (SyntaxHighlight::sourceToDom)
@@ -1510,8 +1508,21 @@ class CoreParserFunctions {
 				// this itself.
 				$inner = $parser->getStripState()->replaceNoWikis(
 					$inner,
-					static function ( string $text ) {
-						return preg_replace( "#</?nowiki[^>]*>#i", '', $text );
+					static function ( string $text, ?string $contentSrc ) {
+						// Depending on the output type, $text here could be
+						// the xml serialization of the nowiki tag or the
+						// nowiki content processed to html, which escapes
+						// certain characters.  By contrast, $contentSrc
+						// is the source of the inner content
+						if ( $contentSrc === null ) {
+							// Some extensions (SyntaxHighlight, TemplateStyles)
+							// are known to wrap their output in a nowiki strip
+							// marker to skip the bulk of Parser::internalParseHalfParsed
+							// but that in turn is wrapped in a general marker
+							// and isn't expected to show up here
+							wfLogWarning( "Unexpected null contentSrc for text: " . $text );
+						}
+						return ( $contentSrc ?? '' );
 					}
 				);
 			}
