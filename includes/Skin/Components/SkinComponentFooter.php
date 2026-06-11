@@ -432,7 +432,7 @@ class SkinComponentFooter implements SkinComponent {
 	private function lastModified() {
 		$skinContext = $this->skinContext;
 		$out = $skinContext->getOutput();
-		$timestamp = $out->getRevisionTimestamp();
+		$timestamp = $out->getMetadata()->getRevisionTimestamp();
 
 		// No cached timestamp, load it from the database
 		// TODO: This code shouldn't be necessary, revision ID should always be available

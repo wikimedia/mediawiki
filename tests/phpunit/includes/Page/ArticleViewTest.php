@@ -270,7 +270,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringNotContainsString( 'id="revision-info-current"', $output->getSubtitle() );
 		$this->assertStringNotContainsString( 'Test B', $this->getHtml( $output ) );
 		$this->assertSame( $idA, $output->getRevisionId() );
-		$this->assertSame( $revisions[1]->getTimestamp(), $output->getRevisionTimestamp() );
+		$this->assertSame( $revisions[1]->getTimestamp(), $output->getMetadata()->getRevisionTimestamp() );
 	}
 
 	public function testViewOfOldRevisionFromCache() {
@@ -307,7 +307,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, substr_count( $output->getSubtitle(), 'cdx-message--warning' ) );
 		$this->assertSame( $idA, $output->getRevisionId() );
 		$this->assertSame( $idA, $outputPageBeforeHTMLRevisionId );
-		$this->assertSame( $revisions[1]->getTimestamp(), $output->getRevisionTimestamp() );
+		$this->assertSame( $revisions[1]->getTimestamp(), $output->getMetadata()->getRevisionTimestamp() );
 	}
 
 	public function testViewOfCurrentRevision() {
@@ -367,7 +367,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$output = $article->getContext()->getOutput();
 		$this->assertStringContainsString( 'Test A', $this->getHtml( $output ) );
 		$this->assertSame( $idA, $output->getRevisionId() );
-		$this->assertSame( $revisions[1]->getTimestamp(), $output->getRevisionTimestamp() );
+		$this->assertSame( $revisions[1]->getTimestamp(), $output->getMetadata()->getRevisionTimestamp() );
 	}
 
 	public function testViewOfMissingRevision() {

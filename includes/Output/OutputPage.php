@@ -2053,8 +2053,10 @@ class OutputPage extends ContextSource {
 	 *
 	 * @return string|null
 	 * @deprecated since 1.44, use ::getMetadata()->getRevisionTimestamp()
+	 *   Hard-deprecated since 1.47.
 	 */
 	public function getRevisionTimestamp() {
+		wfDeprecated( __METHOD__, '1.44' );
 		return $this->metadata->getRevisionTimestamp();
 	}
 

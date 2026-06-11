@@ -81,7 +81,7 @@ class SkinComponentRegistry {
 			'toc' => new SkinComponentTableOfContents( $skin->getOutput() ),
 			'last-modified' => new SkinComponentLastModified(
 				$skin,
-				$skin->getOutput()->getRevisionTimestamp()
+				$skin->getOutput()->getMetadata()->getRevisionTimestamp()
 			),
 			'rendered-with' => new SkinComponentRenderedWith(
 				$skin->getMessageLocalizer(),
