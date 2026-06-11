@@ -369,11 +369,6 @@ class OutputPage extends ContextSource {
 	private $mEnableTOC = false;
 
 	/**
-	 * @var array<string,true> Flags set in the ParserOutput
-	 */
-	private $mOutputFlags = [];
-
-	/**
 	 * @var string|null The URL to send in a <link> element with rel=license
 	 */
 	private $copyrightUrl;
@@ -2219,10 +2214,7 @@ class OutputPage extends ContextSource {
 	 * @return bool
 	 */
 	public function getOutputFlag( ParserOutputFlags|string $name ): bool {
-		if ( $name instanceof ParserOutputFlags ) {
-			$name = $name->value;
-		}
-		return $this->mOutputFlags[$name] ?? false;
+		return $this->metadata->getOutputFlag( $name );
 	}
 
 	/**
@@ -2347,16 +2339,6 @@ class OutputPage extends ContextSource {
 			$this->setTOCData( $tocData );
 		}
 
-		// FIXME: Best practice is for OutputPage to be an accumulator, as
-		// addParserOutputMetadata() may be called multiple times, but the
-		// following lines overwrite any previous data.  These should
-		// be migrated to an injection pattern. (T301020, T300979)
-		// (Note that OutputPage::getOutputFlag() also contains this
-		// information, with flags from each $parserOutput all OR'ed together.)
-		$this->metadata->setNewSection( $parserOutput->getNewSection() );
-		$this->metadata->setHideNewSection( $parserOutput->getHideNewSection() );
-		$this->metadata->setNoGallery( $parserOutput->getNoGallery() );
-
 		if ( !$parserOutput->isCacheable() ) {
 			$this->disableClientCache();
 		}
@@ -2457,7 +2439,7 @@ class OutputPage extends ContextSource {
 			array_flip( ParserOutputFlags::values() );
 		foreach ( $flags as $name => $ignore ) {
 			if ( $parserOutput->getOutputFlag( $name ) ) {
-				$this->mOutputFlags[$name] = true;
+				$this->metadata->setOutputFlag( $name );
 			}
 		}
 	}

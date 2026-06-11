@@ -264,6 +264,11 @@ because of Phabricator reports.
   Passing null was deprecated in 1.46.
 * Passing a performer to UploadBase::checkWarnings is mandatory now. Passing
   null was deprecated in 1.46.
+* OutputPage::showNewSectionLink(), ::forceHideNewSectionLink(), and
+  ::noGallery() are now merged like all other ParserOutput flags in
+  ::addParserOutputMetadata().  That is, these flags are now set if *any*
+  ParserOutput added to the page sets the flag; previously they were
+  last-ParserOutput-wins.
 * The protected static method UserMailer::sendWithPear() has been removed
   following the migration from PEAR Mail to symfony/mailer.
 * Passing null to any of the three constructor parameters of TextboxBuilder,

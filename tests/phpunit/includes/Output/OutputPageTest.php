@@ -1078,8 +1078,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$pOut2 = $this->createParserOutputStub( 'getNewSection', false );
 		$op->addParserOutput( $pOut2, ParserOptions::newFromAnon() );
-		$this->assertFalse( $op->showNewSectionLink() );
-		// Note that flags are OR'ed together, and not reset.
+		// Flags are OR'ed together
+		$this->assertTrue( $op->showNewSectionLink() );
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 	}
 
@@ -1099,8 +1099,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$pOut2 = $this->createParserOutputStub( 'getHideNewSection', false );
 		$op->addParserOutput( $pOut2, ParserOptions::newFromAnon() );
-		$this->assertFalse( $op->forceHideNewSectionLink() );
-		// Note that flags are OR'ed together, and not reset.
+		// Flags are OR'ed together
+		$this->assertTrue( $op->forceHideNewSectionLink() );
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::HIDE_NEW_SECTION ) );
 	}
 
@@ -2016,8 +2016,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$stubPO2 = $this->createParserOutputStub( 'getNoGallery', false );
 		$op->addParserOutput( $stubPO2, ParserOptions::newFromAnon() );
-		$this->assertFalse( $op->getNoGallery() );
-		// Note that flags are OR'ed together, and not reset.
+		// Flags are OR'ed together
+		$this->assertTrue( $op->getNoGallery() );
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 	}
 
