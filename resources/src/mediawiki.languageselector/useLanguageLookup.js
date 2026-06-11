@@ -120,7 +120,7 @@ function useLanguageLookup( {
 		onUpdateSelected( chips.map( ( chip ) => chip.value ) );
 	};
 
-	const onBlur = () => {
+	const attemptSelection = () => {
 		status.value = 'default';
 		const hasInput = inputValue.value.length > 0;
 		const shouldAttemptSelection = isMultiple ? hasInput : ( hasInput && !selectedValues.value );
@@ -152,7 +152,7 @@ function useLanguageLookup( {
 		onUpdateInputValue,
 		onUpdateSelected,
 		onUpdateInputChips,
-		onBlur
+		attemptSelection
 	};
 }
 

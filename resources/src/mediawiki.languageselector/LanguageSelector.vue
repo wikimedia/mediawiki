@@ -14,7 +14,8 @@
 			@update:input-value="onUpdateInputValue"
 			@update:selected="onUpdateSelected"
 			@update:input-chips="onUpdateInputChips"
-			@blur="onBlur"
+			@keydown.enter="attemptSelection"
+			@blur="attemptSelection"
 		>
 			<template #menu-item="{ menuItem }">
 				<slot
@@ -114,7 +115,7 @@ module.exports = exports = defineComponent( {
 			onUpdateInputValue,
 			onUpdateSelected,
 			onUpdateInputChips,
-			onBlur
+			attemptSelection
 		} = useLanguageLookup( {
 			selection,
 			selectedValues,
@@ -136,7 +137,7 @@ module.exports = exports = defineComponent( {
 			selection,
 			selectedValues,
 			menuItems,
-			onBlur,
+			attemptSelection,
 			onUpdateInputValue,
 			onUpdateSelected,
 			onUpdateInputChips

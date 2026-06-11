@@ -153,31 +153,31 @@ describe( 'useLanguageLookup', () => {
 		expect( wrapper.emitted( 'update:selected' )[ 0 ] ).toEqual( [ [ 'fr' ] ] );
 	} );
 
-	it( 'sets warning on blur with invalid input', async () => {
+	it( 'sets warning on attemptSelection with invalid input', async () => {
 		const wrapper = VueTestUtils.mount( TestComponent );
 		wrapper.vm.inputValue = 'invalid';
 		wrapper.vm.searchResults = [];
 		wrapper.vm.searchQuery = 'invalid';
 		await wrapper.vm.$nextTick();
 
-		wrapper.vm.onBlur();
+		wrapper.vm.attemptSelection();
 		expect( wrapper.vm.status ).toBe( 'warning' );
 		expect( wrapper.vm.statusMessages.warning ).toBeDefined();
 	} );
 
-	it( 'attempts selection on blur with valid input', async () => {
+	it( 'attempts selection on attemptSelection with valid input', async () => {
 		const wrapper = VueTestUtils.mount( TestComponent );
 		wrapper.vm.inputValue = 'English';
 		wrapper.vm.searchResults = [ 'en' ];
 		wrapper.vm.searchQuery = 'English';
 		await wrapper.vm.$nextTick();
 
-		wrapper.vm.onBlur();
+		wrapper.vm.attemptSelection();
 		expect( wrapper.vm.status ).toBe( 'default' );
 		expect( wrapper.emitted( 'update:selected' )[ 0 ] ).toEqual( [ 'en' ] );
 	} );
 
-	it( 'attempts selection on blur (multiple)', async () => {
+	it( 'attempts selection on attemptSelection (multiple)', async () => {
 		const wrapper = VueTestUtils.mount( TestComponent, {
 			props: { isMultiple: true }
 		} );
@@ -187,7 +187,7 @@ describe( 'useLanguageLookup', () => {
 		wrapper.vm.selectedValues = [ 'en' ];
 		await wrapper.vm.$nextTick();
 
-		wrapper.vm.onBlur();
+		wrapper.vm.attemptSelection();
 		expect( wrapper.emitted( 'update:selected' )[ 0 ] ).toEqual( [ [ 'en', 'fr' ] ] );
 		expect( wrapper.vm.inputValue ).toBe( '' );
 	} );

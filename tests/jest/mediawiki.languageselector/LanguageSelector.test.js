@@ -158,6 +158,20 @@ describe( 'LanguageSelector (single selection)', () => {
 		const cdxLookup = wrapper.findComponent( { name: 'CdxLookup' } );
 		expect( cdxLookup.props( 'required' ) ).toBe( true );
 	} );
+
+	it( 'attempts selection on Enter keypress', async () => {
+		const wrapper = mount();
+		const cdxLookup = wrapper.findComponent( { name: 'CdxLookup' } );
+
+		wrapper.vm.inputValue = 'fr';
+		wrapper.vm.menuItems = [ { label: 'Français', value: 'fr' } ];
+		await wrapper.vm.$nextTick();
+
+		await cdxLookup.trigger( 'keydown.enter' );
+
+		expect( wrapper.emitted( 'update:selected' ) ).toBeTruthy();
+		expect( wrapper.emitted( 'update:selected' )[ 0 ] ).toEqual( [ 'fr' ] );
+	} );
 } );
 
 describe( 'LanguageSelector (multiple selection)', () => {
