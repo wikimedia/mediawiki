@@ -92,10 +92,16 @@ final class PageBundleParserOutputConverter {
 		}
 		if ( isset( $pageBundle->headers['content-language'] ) ) {
 			$lang = LanguageCode::normalizeNonstandardCodeAndWarn(
-			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$pageBundle->headers['content-language']
 			);
 			$parserOutput->setLanguage( $lang );
+		}
+		if ( isset( $pageBundle->headers['x-mediawiki-render-id'] ) ) {
+			$parserOutput->setRenderId(
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+				$pageBundle->headers['x-mediawiki-render-id']
+			);
 		}
 		return $parserOutput;
 	}
@@ -137,7 +143,7 @@ final class PageBundleParserOutputConverter {
 			$document = DOMCompat::newDocument();
 			self::addMetadataToDocument( $parserOutput, $siteConfig, $bpb, $document );
 			// Add selected header information from page bundle to the <head>
-			foreach ( [ 'content-language', 'vary' ] as $h ) {
+			foreach ( [ 'content-language', 'vary', 'x-mediawiki-render-id' ] as $h ) {
 				if ( isset( $bpb->headers[$h] ) ) {
 					self::appendToHead( $document, 'meta', [
 						'http-equiv' => $h,
@@ -181,11 +187,17 @@ final class PageBundleParserOutputConverter {
 				// ParsoidFormatHelper chokes on that: T325137.
 				version: '0.0.0',
 			);
-		$lang = $parserOutput->getLanguage();
 
+		$lang = $parserOutput->getLanguage();
 		if ( $lang ) {
 			$basePageBundle->headers ??= [];
 			$basePageBundle->headers['content-language'] = $lang->toBcp47Code();
+		}
+
+		$renderid = $parserOutput->getRenderId();
+		if ( $renderid !== null ) {
+			$basePageBundle->headers ??= [];
+			$basePageBundle->headers['x-mediawiki-render-id'] = $renderid;
 		}
 		return $basePageBundle;
 	}

@@ -1185,7 +1185,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider providePutHeaders
 	 */
-	public function testPutHeaders( ?string $targetLanguage, bool $setContentLanguageHeader ) {
+	public function testPutHeaders( ?string $targetLanguage, bool $forHtml ) {
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$expectedCalls = [];
@@ -1197,24 +1197,27 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			$expectedCalls['addHeader'] = [ [ 'Vary', 'Accept-Language' ] ];
 		}
 
-		if ( $setContentLanguageHeader ) {
-			$expectedCalls['setHeader'][] = [ 'Content-Language', $targetLanguage ?: 'en' ];
+		if ( $forHtml ) {
+			$expectedCalls['setHeader'][] = [ 'content-language', $targetLanguage ?: 'en' ];
 
 			$version = Parsoid::defaultHTMLVersion();
 			$expectedCalls['setHeader'][] = [
-				'Content-Type',
+				'content-type',
 				'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/' . $version . '"',
 			];
 		}
+		$expectedCalls['setHeader'][] = [
+			'x-mediawiki-render-id', $helper->getHtml()->getRenderId()
+		];
 
 		$responseInterface = $this->getResponseInterfaceMock( $expectedCalls );
-		$helper->putHeaders( $responseInterface, $setContentLanguageHeader );
+		$helper->putHeaders( $responseInterface, $forHtml );
 	}
 
 	public static function providePutHeaders() {
 		yield 'no target variant language' => [ null, true ];
-		yield 'target language is set but setContentLanguageHeader is false' => [ 'en-x-piglatin', false ];
-		yield 'target language and setContentLanguageHeader flag is true' =>
+		yield 'target language is set but forHtml is false' => [ 'en-x-piglatin', false ];
+		yield 'target language and forHtml flag is true' =>
 			[ 'en-x-piglatin', true ];
 	}
 

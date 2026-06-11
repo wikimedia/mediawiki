@@ -318,6 +318,32 @@ describe( 'Page Source', () => {
 			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
+		it( 'Should expose the render ID in the HTTP headers and the document head', async () => {
+			const res = await client.get( `${ pathPrefix }/page/${ page }/html` );
+			const { status, headers, text } = res;
+			assert.deepEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^text\/html/ );
+
+			// The render ID must be present as an HTTP response header...
+			assert.nestedProperty( headers, 'x-mediawiki-render-id' );
+			const renderId = headers[ 'x-mediawiki-render-id' ];
+			assert.isNotEmpty( renderId, 'X-MediaWiki-Render-ID header must not be empty' );
+
+			// ...and reflected in the document <head> as an http-equiv <meta>.
+			const metaRegex = /<meta\b[^>]*\bhttp-equiv="x-mediawiki-render-id"[^>]*>/i;
+			assert.match( text, metaRegex, 'render ID <meta> must be present in <head>' );
+
+			// The value in the <head> must agree with the HTTP header.
+			const contentMatch = text.match( metaRegex )[ 0 ].match( /\bcontent="([^"]*)"/i );
+			assert.isNotNull( contentMatch, 'render ID <meta> must carry a content attribute' );
+			assert.deepEqual(
+				contentMatch[ 1 ], renderId,
+				'render ID in <head> must match the X-MediaWiki-Render-ID header'
+			);
+
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
+		} );
 		it( 'Should return a 304 on if-modified-since', async () => {
 			const res = await client.get( `${ pathPrefix }/page/${ page }/html` );
 			const { headers } = res;

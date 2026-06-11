@@ -753,15 +753,29 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @inheritDoc
 	 */
 	public function putHeaders( ResponseInterface $response, bool $forHtml = true ): void {
-		if ( $forHtml ) {
+		$pb = $this->getPageBundle();
+		$headers = $forHtml ? [
+			// default headers
+			'content-type' => ParsoidFormatHelper::getContentType(
+				ParsoidFormatHelper::FORMAT_HTML, $pb->version
+			),
+			'content-language' => $this->getHtmlOutputContentLanguage()
+				->toBcp47Code(),
+		] : [];
+		foreach ( $pb->headers ?? [] as $name => $value ) {
+			// ensure header names are lowercase and unique
+			$headers[strtolower( $name )] = $value;
+		}
+		if ( !$forHtml ) {
 			// For HTML, we want to set the Content-Language. For JSON, we probably don't.
-			$response->setHeader( 'Content-Language', $this->getHtmlOutputContentLanguage()->toBcp47Code() );
-
-			$pb = $this->getPageBundle();
-			ParsoidFormatHelper::setContentType( $response, ParsoidFormatHelper::FORMAT_HTML, $pb->version );
+			unset( $headers['content-language'] );
+		}
+		foreach ( $headers as $name => $value ) {
+			$response->setHeader( $name, $value );
 		}
 
 		if ( $this->targetLanguage ) {
+			// Ensure 'Accept-Language' is included among other 'vary' headers
 			$response->addHeader( 'Vary', 'Accept-Language' );
 		}
 
