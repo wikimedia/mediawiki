@@ -3977,15 +3977,11 @@ class Parser {
 	 *     inner      Contents of extension element
 	 *     noClose    Original text did not have a close tag
 	 * @param PPFrame $frame
-	 * @param bool $substNowiki Normally, nowikis are processed for the HTML output
-	 *     type but with this arg set to true, they are forced to subst.
 	 * @return string
 	 * @internal
 	 * @since 1.12
 	 */
-	public function extensionSubstitution(
-		array $params, PPFrame $frame, bool $substNowiki = false
-	): string {
+	public function extensionSubstitution( array $params, PPFrame $frame ): string {
 		static $errorStr = '<span class="error">';
 
 		$name = $frame->expand( $params['name'] );
@@ -4013,13 +4009,12 @@ class Parser {
 		$normalizedName = strtolower( $name );
 		$isNowiki = $normalizedName === 'nowiki';
 		$markerType = $isNowiki ? 'nowiki' : 'general';
-		$extra = $isNowiki ? 'nowiki' : null;
-		$forceSubstNowiki = ( $isNowiki && $substNowiki );
 
-		if (
-			( $this->ot['html'] || ( $isNowiki && !$this->mStripExtTags ) ) &&
-			!$forceSubstNowiki
-		) {
+		// The content is stored as extra data to potentially be pulled out
+		// with StripState::replaceNoWikis
+		$extra = $isNowiki ? ( $content ?? '' ) : null;
+
+		if ( $this->ot['html'] || ( $isNowiki && !$this->mStripExtTags ) ) {
 			$attributes = Sanitizer::decodeTagAttributes( $attrText );
 			// Merge in attributes passed via {{#tag:}} parser function
 			if ( isset( $params['attributes'] ) ) {
@@ -4065,7 +4060,7 @@ class Parser {
 				}
 				$output = "<$name$attrText>$content$close";
 			}
-			if ( !$this->mStripExtTags && !$forceSubstNowiki ) {
+			if ( !$this->mStripExtTags ) {
 				$markerType = 'exttag';
 			}
 		}

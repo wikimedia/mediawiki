@@ -508,7 +508,7 @@ class DataAccess extends IDataAccess {
 					$extra = $pieces[$i]['extra'] ?? null;
 					// T388819: If this is from an actual <nowiki>, we
 					// wrap <span typeof="mw:Nowiki"> around $contents.
-					if ( $extra === 'nowiki' ) {
+					if ( $extra !== null ) {
 						$content = Html::rawElement( 'span', [
 							'typeof' => 'mw:Nowiki',
 						], $content );
