@@ -242,6 +242,7 @@ because of Phabricator reports.
   - getNoGallery (deprecated in 1.44)
   - setCategoryLinks (deprecated in 1.43)
   - parserOptions (deprecated in 1.44)
+  - setRevisionTimestamp (deprecated in 1.44)
   - wrapWikiTextAsInterface (deprecated in 1.45)
 * The unused method SpecialVersion::getVersionLinked, deprecated in 1.46, has
   been removed.

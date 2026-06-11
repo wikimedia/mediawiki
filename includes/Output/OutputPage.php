@@ -1995,21 +1995,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Set the timestamp of the revision which will be displayed. This is used
-	 * to avoid a extra DB call in SkinComponentFooter::lastModified().
-	 *
-	 * @param string|null $timestamp
-	 * @return mixed Previous value
-	 * @deprecated since 1.44, use ::getMetadata()->setRevisionTimestamp(...)
-	 */
-	public function setRevisionTimestamp( $timestamp ) {
-		wfDeprecated( __METHOD__, '1.44' );
-		$previousValue = $this->metadata->getRevisionTimestamp();
-		$this->metadata->setRevisionTimestamp( $timestamp );
-		return $previousValue;
-	}
-
-	/**
 	 * Get the timestamp of displayed revision.
 	 * This will be null if not filled by setRevisionTimestamp().
 	 *

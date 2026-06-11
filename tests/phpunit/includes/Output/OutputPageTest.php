@@ -1629,13 +1629,12 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	public function testRevisionTimestamp() {
 		$this->filterDeprecated( '/OutputPage::getRevisionTimestamp was deprecated/' );
-		$this->filterDeprecated( '/OutputPage::setRevisionTimestamp was deprecated/' );
 		$op = $this->newInstance();
 		$this->assertNull( $op->getRevisionTimestamp() );
 
-		$this->assertNull( $op->setRevisionTimestamp( 'abc' ) );
+		$op->getMetadata()->setRevisionTimestamp( 'abc' );
 		$this->assertSame( 'abc', $op->getRevisionTimestamp() );
-		$this->assertSame( 'abc', $op->setRevisionTimestamp( null ) );
+		$op->getMetadata()->setRevisionTimestamp( null );
 		$this->assertNull( $op->getRevisionTimestamp() );
 	}
 
