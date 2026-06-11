@@ -1376,28 +1376,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Show an "add new section" link?
-	 *
-	 * @return bool
-	 * @deprecated since 1.44, use ::getOutputFlag(ParserOutputFlags::NEW_SECTION)
-	 */
-	public function showNewSectionLink() {
-		wfDeprecated( __METHOD__, '1.44' );
-		return $this->metadata->getNewSection();
-	}
-
-	/**
-	 * Forcibly hide the new section link?
-	 *
-	 * @return bool
-	 * @deprecated since 1.44, use ::getOutputFlag(ParserOutputFlags::HIDE_NEW_SECTION)
-	 */
-	public function forceHideNewSectionLink() {
-		wfDeprecated( __METHOD__, '1.44' );
-		return $this->metadata->getHideNewSection();
-	}
-
-	/**
 	 * Add or remove feed links in the page header
 	 * This is mainly kept for backward compatibility, see OutputPage::addFeedLink()
 	 * for the new version
@@ -1584,17 +1562,6 @@ class OutputPage extends ContextSource {
 			$result[] = $ll;
 		}
 		return $result;
-	}
-
-	/**
-	 * Get the "no gallery" flag
-	 *
-	 * Used directly only in CategoryViewer.php
-	 * @deprecated since 1.44; use ::getOutputFlag(ParserOutputFlags::NO_GALLERY)
-	 */
-	public function getNoGallery(): bool {
-		wfDeprecated( __METHOD__, '1.44' );
-		return $this->metadata->getNoGallery();
 	}
 
 	/**

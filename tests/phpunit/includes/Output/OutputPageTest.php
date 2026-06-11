@@ -1063,23 +1063,19 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testShowNewSectionLink() {
-		$this->filterDeprecated( '/OutputPage::showNewSectionLink was deprecated/' );
 		$op = $this->newInstance();
 
-		$this->assertFalse( $op->showNewSectionLink() );
 		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 
 		$pOut1 = $this->createParserOutputStubWithFlags(
 			[ 'getNewSection' => true ], [ ParserOutputFlags::NEW_SECTION ]
 		);
 		$op->addParserOutputMetadata( $pOut1 );
-		$this->assertTrue( $op->showNewSectionLink() );
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 
 		$pOut2 = $this->createParserOutputStub( 'getNewSection', false );
 		$op->addParserOutput( $pOut2, ParserOptions::newFromAnon() );
 		// Flags are OR'ed together
-		$this->assertTrue( $op->showNewSectionLink() );
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 	}
 
@@ -1087,20 +1083,17 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->filterDeprecated( '/OutputPage::forceHideNewSectionLink was deprecated/' );
 		$op = $this->newInstance();
 
-		$this->assertFalse( $op->forceHideNewSectionLink() );
 		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::HIDE_NEW_SECTION ) );
 
 		$pOut1 = $this->createParserOutputStubWithFlags(
 			[ 'getHideNewSection' => true ], [ ParserOutputFlags::HIDE_NEW_SECTION ]
 		);
 		$op->addParserOutputMetadata( $pOut1 );
-		$this->assertTrue( $op->forceHideNewSectionLink() );
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::HIDE_NEW_SECTION ) );
 
 		$pOut2 = $this->createParserOutputStub( 'getHideNewSection', false );
 		$op->addParserOutput( $pOut2, ParserOptions::newFromAnon() );
 		// Flags are OR'ed together
-		$this->assertTrue( $op->forceHideNewSectionLink() );
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::HIDE_NEW_SECTION ) );
 	}
 
@@ -2002,22 +1995,18 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNoGallery() {
-		$this->filterDeprecated( '/OutputPage::getNoGallery was deprecated/' );
 		$op = $this->newInstance();
-		$this->assertFalse( $op->getNoGallery() );
 		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 
 		$stubPO1 = $this->createParserOutputStubWithFlags(
 			[ 'getNoGallery' => true ], [ ParserOutputFlags::NO_GALLERY ]
 		);
 		$op->addParserOutputMetadata( $stubPO1 );
-		$this->assertTrue( $op->getNoGallery() );
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 
 		$stubPO2 = $this->createParserOutputStub( 'getNoGallery', false );
 		$op->addParserOutput( $stubPO2, ParserOptions::newFromAnon() );
 		// Flags are OR'ed together
-		$this->assertTrue( $op->getNoGallery() );
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 	}
 
@@ -2047,8 +2036,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	public function testAddParserOutput() {
 		$op = $this->newInstance();
 		$this->assertSame( '', $op->getHTML() );
-		$this->filterDeprecated( '/OutputPage::showNewSectionLink was deprecated/' );
-		$this->assertFalse( $op->showNewSectionLink() );
 		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 
 		$pOut = $this->createParserOutputStubWithFlags( [
@@ -2060,7 +2047,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$op->addParserOutput( $pOut, ParserOptions::newFromAnon() );
 		$this->assertSame( '<some text>', $op->getHTML() );
-		$this->assertTrue( $op->showNewSectionLink() );
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 	}
 

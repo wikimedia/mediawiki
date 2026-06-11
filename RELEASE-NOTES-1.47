@@ -233,7 +233,10 @@ because of Phabricator reports.
   MediaHandler::getGeneralShortDesc or MediaHandler::getGeneralLongDesc without
   specifying a language, deprecated in 1.46.
 * The following methods of OutputPage have been removed:
+  - showNewSectionLink (deprecated in 1.44)
+  - forceHideNewSectionLink (deprecated in 1.44)
   - setLanguageLinks (deprecated in 1.43)
+  - getNoGallery (deprecated in 1.44)
   - setCategoryLinks (deprecated in 1.43)
   - parserOptions (deprecated in 1.44)
   - wrapWikiTextAsInterface (deprecated in 1.45)
