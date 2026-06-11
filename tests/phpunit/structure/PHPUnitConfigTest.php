@@ -55,7 +55,6 @@ class PHPUnitConfigTest extends PHPUnit\Framework\TestCase {
 				'documentation',
 				'gen', // these are included by filename, not directory
 				'mocks',
-				'suites' // custom suite entry points load their own files
 			]
 		) );
 
