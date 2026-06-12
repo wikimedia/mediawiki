@@ -33,6 +33,7 @@ use MediaWikiLangTestCase;
 use StatusValue;
 use stdClass;
 use TestAllServiceOptionsUsed;
+use Wikimedia\Message\ListType;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -354,6 +355,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$expectedPermErrors,
 		$expectedUserCan
 	) {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'qqx' );
 		$this->setTitle( $namespace, "Test page" );
 
 		$this->overrideUserPermissions( $this->user, $userPerms );
@@ -478,7 +480,14 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'titleOverrides' => [],
 			'action' => 'edit',
 			'userPerms' => [ 'edit' ],
-			'expectedPermErrors' => [ [ 'nocreate-loggedin' ], [ 'titleprotected', 'Useruser', 'test' ] ],
+			'expectedPermErrors' => [
+				[ 'nocreate-loggedin' ],
+				[ 'badaccess-groups', Message::listParam( [
+					'[[(grouppage-*)|(group-*)]]',
+					'[[(grouppage-user)|(group-user)]]'
+				], ListType::COMMA ), 2 ],
+				[ 'titleprotected', 'Useruser', 'test' ]
+			],
 			'expectedUserCan' => false,
 		];
 	}
@@ -1221,44 +1230,82 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->assertNotContains( 'nukeworld', $rights );
 	}
 
-	public function testUserHasRight() {
+	/** @dataProvider provideUserHasRight */
+	public function testUserHasRight( string $group, string $right, bool $expected ) {
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
 
 		$result = $permissionManager->userHasRight(
-			$this->getTestUser( 'unittesters' )->getUser(),
-			'test'
+			$this->getTestUser( $group )->getUser(),
+			$right
 		);
-		$this->assertTrue( $result, 'right was granted to group, so should be allowed' );
+		$this->assertSame( $expected, $result );
+	}
 
-		$result = $permissionManager->userHasRight(
-			$this->getTestUser( 'unittesters' )->getUser(),
-			'limitabletest'
-		);
-		$this->assertTrue( $result, 'not granted, but listed as implicit' );
+	public static function provideUserHasRight() {
+		yield 'right was granted to group, so should be allowed' => [
+			'unittesters', 'test', true
+		];
+		yield 'not granted, but listed as implicit' => [
+			'unittesters', 'limitabletest', true
+		];
+		yield 'not granted, but has a limit, so should be allowed' => [
+			'unittesters', 'mailpassword', true
+		];
+		yield 'not granted, has a limit but is listed as available, so should not be allowed' => [
+			'unittesters', 'rollback', false
+		];
+		yield 'not granted, should not be allowed' => [
+			'formertesters', 'runtest', false
+		];
+		yield 'empty action should always be granted' => [
+			'formertesters', '', true
+		];
+	}
 
-		$result = $permissionManager->userHasRight(
-			$this->getTestUser( 'unittesters' )->getUser(),
-			'mailpassword'
-		);
-		$this->assertTrue( $result, 'not granted, but has a limit, so should be allowed' );
+	/** @dataProvider provideGetUserRightStatus */
+	public function testGetUserRightStatus(
+		string $group,
+		string $right,
+		bool $detailedPermissionErrors,
+		StatusValue $expectedStatus
+	) {
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'qqx' );
 
-		$result = $permissionManager->userHasRight(
-			$this->getTestUser( 'unittesters' )->getUser(),
-			'rollback'
+		$result = $permissionManager->getUserRightStatus(
+			$this->getTestUser( $group )->getUser(),
+			$right,
+			$detailedPermissionErrors
 		);
-		$this->assertFalse( $result, 'not granted, has a limit but is listed as available, so should not be allowed' );
+		$this->assertStatusMessagesExactly( $expectedStatus, $result );
+	}
 
-		$result = $permissionManager->userHasRight(
-			$this->getTestUser( 'formertesters' )->getUser(),
-			'runtest'
-		);
-		$this->assertFalse( $result, 'not granted, should not be allowed' );
-
-		$result = $permissionManager->userHasRight(
-			$this->getTestUser( 'formertesters' )->getUser(),
-			''
-		);
-		$this->assertTrue( $result, 'empty action should always be granted' );
+	public static function provideGetUserRightStatus() {
+		yield 'right was granted to group, so should be allowed' => [
+			'unittesters', 'test', true, StatusValue::newGood()
+		];
+		yield 'not granted, but listed as implicit' => [
+			'unittesters', 'limitabletest', true, StatusValue::newGood()
+		];
+		yield 'not granted, but has a limit, so should be allowed' => [
+			'unittesters', 'mailpassword', true, StatusValue::newGood()
+		];
+		yield 'not granted, has a limit but is listed as available, so should not be allowed' => [
+			'unittesters', 'rollback', true, StatusValue::newFatal( 'badaccess-groups', Message::listParam( [
+				'[[(grouppage-sysop)|(group-sysop)]]'
+			], ListType::COMMA ), 1 )
+		];
+		yield 'not granted, should not be allowed' => [
+			'formertesters', 'runtest', true, StatusValue::newFatal( 'badaccess-groups', Message::listParam( [
+				'[[(grouppage-unittesters)|(group-unittesters)]]'
+			], ListType::COMMA ), 1 )
+		];
+		yield 'detailed permission error not given when not requested' => [
+			'formertesters', 'runtest', false, StatusValue::newFatal( 'badaccess-group0' )
+		];
+		yield 'empty action should always be granted' => [
+			'formertesters', '', true, StatusValue::newGood()
+		];
 	}
 
 	public function testIsEveryoneAllowed() {
@@ -1421,14 +1468,14 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$permManager = $this->getServiceContainer()->getPermissionManager();
 		$userJs = Title::makeTitle( NS_USER, 'Example/common.js' );
 
-		$this->assertTrue( $permManager->userCan( 'delete', $admin, $userJs ) );
-		$this->assertTrue( $permManager->userCan( 'delete', $interfaceAdmin, $userJs ) );
-		$this->assertTrue( $permManager->userCan( 'deletedhistory', $admin, $userJs ) );
-		$this->assertTrue( $permManager->userCan( 'deletedhistory', $interfaceAdmin, $userJs ) );
-		$this->assertTrue( $permManager->userCan( 'deletedtext', $admin, $userJs ) );
-		$this->assertTrue( $permManager->userCan( 'deletedtext', $interfaceAdmin, $userJs ) );
-		$this->assertFalse( $permManager->userCan( 'undelete', $admin, $userJs ) );
-		$this->assertTrue( $permManager->userCan( 'undelete', $interfaceAdmin, $userJs ) );
+		$this->assertTrue( $permManager->userCan( 'delete', $admin, $userJs ), 'admin can delete user JS' );
+		$this->assertTrue( $permManager->userCan( 'delete', $interfaceAdmin, $userJs ), 'interface admin can delete user JS' );
+		$this->assertTrue( $permManager->userCan( 'deletedhistory', $admin, $userJs ), 'admin can view deleted history of user JS' );
+		$this->assertTrue( $permManager->userCan( 'deletedhistory', $interfaceAdmin, $userJs ), 'interface admin can view deleted history of user JS' );
+		$this->assertTrue( $permManager->userCan( 'deletedtext', $admin, $userJs ), 'admin can view deleted text of user JS' );
+		$this->assertTrue( $permManager->userCan( 'deletedtext', $interfaceAdmin, $userJs ), 'interface admin can view deleted history of user JS' );
+		$this->assertFalse( $permManager->userCan( 'undelete', $admin, $userJs ), 'admin cannot undelete user JS' );
+		$this->assertTrue( $permManager->userCan( 'undelete', $interfaceAdmin, $userJs ), 'interface admin can undelete user JS' );
 	}
 
 	/**

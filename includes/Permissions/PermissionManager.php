@@ -79,21 +79,7 @@ class PermissionManager {
 		MainConfigNames::ImplicitRights,
 	];
 
-	private ServiceOptions $options;
-	private SpecialPageFactory $specialPageFactory;
-	private NamespaceInfo $nsInfo;
-	private GroupPermissionsLookup $groupPermissionsLookup;
-	private UserGroupManager $userGroupManager;
-	private BlockManager $blockManager;
-	private BlockErrorFormatter $blockErrorFormatter;
 	private HookRunner $hookRunner;
-	private UserIdentityLookup $userIdentityLookup;
-	private RedirectLookup $redirectLookup;
-	private RestrictionStore $restrictionStore;
-	private TitleFormatter $titleFormatter;
-	private TempUserConfig $tempUserConfig;
-	private UserFactory $userFactory;
-	private ActionFactory $actionFactory;
 
 	/** @var string[]|null Cached results of getAllPermissions() */
 	private $allRights;
@@ -227,38 +213,24 @@ class PermissionManager {
 	];
 
 	public function __construct(
-		ServiceOptions $options,
-		SpecialPageFactory $specialPageFactory,
-		NamespaceInfo $nsInfo,
-		GroupPermissionsLookup $groupPermissionsLookup,
-		UserGroupManager $userGroupManager,
-		BlockManager $blockManager,
-		BlockErrorFormatter $blockErrorFormatter,
+		private ServiceOptions $options,
+		private SpecialPageFactory $specialPageFactory,
+		private NamespaceInfo $nsInfo,
+		private GroupPermissionsLookup $groupPermissionsLookup,
+		private UserGroupManager $userGroupManager,
+		private BlockManager $blockManager,
+		private BlockErrorFormatter $blockErrorFormatter,
 		HookContainer $hookContainer,
-		UserIdentityLookup $userIdentityLookup,
-		RedirectLookup $redirectLookup,
-		RestrictionStore $restrictionStore,
-		TitleFormatter $titleFormatter,
-		TempUserConfig $tempUserConfig,
-		UserFactory $userFactory,
-		ActionFactory $actionFactory
+		private UserIdentityLookup $userIdentityLookup,
+		private RedirectLookup $redirectLookup,
+		private RestrictionStore $restrictionStore,
+		private TitleFormatter $titleFormatter,
+		private TempUserConfig $tempUserConfig,
+		private UserFactory $userFactory,
+		private ActionFactory $actionFactory
 	) {
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
-		$this->specialPageFactory = $specialPageFactory;
-		$this->nsInfo = $nsInfo;
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
-		$this->userGroupManager = $userGroupManager;
-		$this->blockManager = $blockManager;
-		$this->blockErrorFormatter = $blockErrorFormatter;
+		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->userIdentityLookup = $userIdentityLookup;
-		$this->redirectLookup = $redirectLookup;
-		$this->restrictionStore = $restrictionStore;
-		$this->titleFormatter = $titleFormatter;
-		$this->tempUserConfig = $tempUserConfig;
-		$this->userFactory = $userFactory;
-		$this->actionFactory = $actionFactory;
 	}
 
 	/**
@@ -1013,37 +985,26 @@ class PermissionManager {
 			str_contains( $title->getText(), '/' );
 
 		if ( $action === 'create' ) {
-			if (
-				( $this->nsInfo->isTalk( $title->getNamespace() ) &&
-					!$this->userHasRight( $user, 'createtalk' ) ) ||
-				( !$this->nsInfo->isTalk( $title->getNamespace() ) &&
-					!$this->userHasRight( $user, 'createpage' ) )
-			) {
-				$status->fatal( $user->isNamed() ? 'nocreate-loggedin' : 'nocreatetext' );
-			}
+			$right = $this->nsInfo->isTalk( $title->getNamespace() ) ? 'createtalk' : 'createpage';
+			$errorMsgKey = $user->isNamed() ? 'nocreate-loggedin' : 'nocreatetext';
+			$this->mergeUserRightStatus( $status, $user, $right, !$short, $errorMsgKey );
 		} elseif ( $action === 'move' ) {
-			if ( !$this->userHasRight( $user, 'move-rootuserpages' )
-				&& $title->getNamespace() === NS_USER && !$isSubPage
-			) {
-				// Show user page-specific message only if the user can move other pages
-				$status->fatal( 'cant-move-user-page' );
+			if ( $title->getNamespace() === NS_USER && !$isSubPage ) {
+				$this->mergeUserRightStatus( $status, $user, 'move-rootuserpages', !$short, 'cant-move-user-page' );
 			}
 
 			// Check if user is allowed to move files if it's a file
-			if ( $title->getNamespace() === NS_FILE &&
-				!$this->userHasRight( $user, 'movefile' )
-			) {
-				$status->fatal( 'movenotallowedfile' );
+			if ( $title->getNamespace() === NS_FILE ) {
+				$this->mergeUserRightStatus( $status, $user, 'movefile', !$short, 'movenotallowedfile' );
 			}
 
 			// Check if user is allowed to move category pages if it's a category page
-			if ( $title->getNamespace() === NS_CATEGORY &&
-				!$this->userHasRight( $user, 'move-categorypages' )
-			) {
-				$status->fatal( 'cant-move-category-page' );
+			if ( $title->getNamespace() === NS_CATEGORY ) {
+				$this->mergeUserRightStatus( $status, $user, 'move-categorypages', !$short, 'cant-move-category-page' );
 			}
 
-			if ( !$this->userHasRight( $user, 'move' ) ) {
+			$moveStatus = $this->getUserRightStatus( $user, 'move', !$short );
+			if ( !$moveStatus->isOK() ) {
 				// User can't move anything
 				$userCanMove = $this->groupPermissionsLookup
 					->groupHasPermission( 'user', 'move' );
@@ -1060,30 +1021,26 @@ class PermissionManager {
 				} else {
 					$status->fatal( 'movenotallowed' );
 				}
+				if ( !$short ) {
+					$status->merge( $moveStatus );
+				}
 			}
 		} elseif ( $action === 'move-target' ) {
-			if ( !$this->userHasRight( $user, 'move' ) ) {
-				// User can't move anything
-				$status->fatal( 'movenotallowed' );
-			} elseif ( !$this->userHasRight( $user, 'move-rootuserpages' )
-				&& $title->getNamespace() === NS_USER
-				&& !$isSubPage
-			) {
+			if ( !$this->mergeUserRightStatus( $status, $user, 'move', !$short, 'movenotallowed' ) ) {
+				// User can't move anything, don't check the conditions below
+			} elseif ( $title->getNamespace() === NS_USER && !$isSubPage ) {
 				// Show user page-specific message only if the user can move other pages
-				$status->fatal( 'cant-move-to-user-page' );
-			} elseif ( !$this->userHasRight( $user, 'move-categorypages' )
-				&& $title->getNamespace() === NS_CATEGORY
-			) {
+				$this->mergeUserRightStatus( $status, $user, 'move-rootuserpages', !$short, 'cant-move-to-user-page' );
+			} elseif ( $title->getNamespace() === NS_CATEGORY ) {
 				// Show category page-specific message only if the user can move other pages
-				$status->fatal( 'cant-move-to-category-page' );
+				$this->mergeUserRightStatus( $status, $user, 'move-categorypages', !$short,
+					'cant-move-to-category-page' );
 			}
 		} elseif ( $action === 'autocreateaccount' ) {
 			// createaccount implies autocreateaccount
-			if ( !$this->userHasAnyRight( $user, 'autocreateaccount', 'createaccount' ) ) {
-				$this->missingPermissionError( $action, $short, $status );
-			}
-		} elseif ( !$this->userHasRight( $user, $action ) ) {
-			$this->missingPermissionError( $action, $short, $status );
+			$this->mergeUserRightStatus( $status, $user, [ 'autocreateaccount', 'createaccount' ], !$short );
+		} else {
+			$this->mergeUserRightStatus( $status, $user, $action, !$short );
 		}
 	}
 
@@ -1425,15 +1382,17 @@ class PermissionManager {
 
 		// Sitewide CSS/JSON/JS/RawHTML changes, like all NS_MEDIAWIKI changes, also require the
 		// editinterface right. That's implemented as a restriction so no check needed here.
-		if ( $title->isSiteCssConfigPage() && !$this->userHasRight( $user, 'editsitecss' ) ) {
-			$status->fatal( 'sitecssprotected', $action );
-		} elseif ( $title->isSiteJsonConfigPage() && !$this->userHasRight( $user, 'editsitejson' ) ) {
-			$status->fatal( 'sitejsonprotected', $action );
-		} elseif ( $title->isSiteJsConfigPage() && !$this->userHasRight( $user, 'editsitejs' ) ) {
-			$status->fatal( 'sitejsprotected', $action );
-		}
-		if ( $title->isRawHtmlMessage() && !$this->userCanEditRawHtmlPage( $user ) ) {
-			$status->fatal( 'siterawhtmlprotected', $action );
+		if ( $title->isSiteCssConfigPage() ) {
+			$this->mergeUserRightStatus( $status, $user, 'editsitecss', !$short, 'sitecssprotected', $action );
+		} elseif ( $title->isSiteJsonConfigPage() ) {
+			$this->mergeUserRightStatus( $status, $user, 'editsitejson', !$short, 'sitejsonprotected', $action );
+		} elseif ( $title->isSiteJsConfigPage() ) {
+			$this->mergeUserRightStatus( $status, $user, 'editsitejs', !$short, 'sitejsprotected', $action );
+		} elseif ( $title->isRawHtmlMessage() ) {
+			// Editing raw HTML messages requires both editsitejs AND editsitecss
+			if ( $this->mergeUserRightStatus( $status, $user, 'editsitejs', !$short, 'siterawhtmlprotected' ) ) {
+				$this->mergeUserRightStatus( $status, $user, 'editsitecss', !$short, 'siterawhtmlprotected', $action );
+			}
 		}
 	}
 
@@ -1465,32 +1424,26 @@ class PermissionManager {
 		// XXX: this might be better using restrictions
 		if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $title->getText() ) ) {
 			// Users need editmyuser* to edit their own CSS/JSON/JS subpages.
-			if (
-				$title->isUserCssConfigPage()
-				&& !$this->userHasAnyRight( $user, 'editmyusercss', 'editusercss' )
-			) {
-				$status->fatal( 'mycustomcssprotected', $action );
-			} elseif (
-				$title->isUserJsonConfigPage()
-				&& !$this->userHasAnyRight( $user, 'editmyuserjson', 'edituserjson' )
-			) {
-				$status->fatal( 'mycustomjsonprotected', $action );
-			} elseif (
-				$title->isUserJsConfigPage()
-				&& !$this->userHasAnyRight( $user, 'editmyuserjs', 'edituserjs' )
-			) {
-				$status->fatal( 'mycustomjsprotected', $action );
-			} elseif (
-				$title->isUserJsConfigPage()
-				&& !$this->userHasAnyRight( $user, 'edituserjs', 'editmyuserjsredirect' )
-			) {
-				// T207750 - do not allow users to edit a redirect if they couldn't edit the target
-				$target = $this->redirectLookup->getRedirectTarget( $title );
-				if ( $target && (
-						!$target->inNamespace( NS_USER )
-						|| !preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $target->getText() )
-				) ) {
-					$status->fatal( 'mycustomjsredirectprotected', $action );
+			if ( $title->isUserCssConfigPage() ) {
+				$this->mergeUserRightStatus( $status, $user, [ 'editmyusercss', 'editusercss' ], !$short,
+					'mycustomcssprotected', $action );
+			} elseif ( $title->isUserJsonConfigPage() ) {
+				$this->mergeUserRightStatus( $status, $user, [ 'editmyuserjson', 'edituserjson' ], !$short,
+					'mycustomjsonprotected', $action );
+			} elseif ( $title->isUserJsConfigPage() ) {
+				if ( $this->mergeUserRightStatus( $status, $user, [ 'editmyuserjs', 'edituserjs' ], !$short,
+					'mycustomjsprotected', $action ) ) {
+					// T207750 - do not allow users to edit a redirect if they couldn't edit the target
+					$target = $this->redirectLookup->getRedirectTarget( $title );
+					if ( $target && (
+							!$target->inNamespace( NS_USER )
+							|| !preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $target->getText() )
+					) ) {
+						// The target is not a user JS page belonging to the same user
+						// Only allow editing if the user has either editmyuserjsredirect or edituserjs
+						$this->mergeUserRightStatus( $status, $user, [ 'editmyuserjsredirect', 'edituserjs' ], !$short,
+							'mycustomjsredirectprotected', $action );
+					}
 				}
 			}
 		} else {
@@ -1500,27 +1453,104 @@ class PermissionManager {
 			// unprivileged user can post abusive content on their subpages
 			// and only very highly privileged users could remove it,
 			// are now a part of `getPermissionStatus` and this method isn't called.
-			if (
-				$title->isUserCssConfigPage()
-				&& !$this->userHasRight( $user, 'editusercss' )
-			) {
-				$status->fatal( 'customcssprotected', $action );
-			} elseif (
-				$title->isUserJsonConfigPage()
-				&& !$this->userHasRight( $user, 'edituserjson' )
-			) {
-				$status->fatal( 'customjsonprotected', $action );
-			} elseif (
-				$title->isUserJsConfigPage()
-				&& !$this->userHasRight( $user, 'edituserjs' )
-			) {
-				$status->fatal( 'customjsprotected', $action );
+			if ( $title->isUserCssConfigPage() ) {
+				$this->mergeUserRightStatus( $status, $user, 'editusercss', !$short, 'customcssprotected', $action );
+			} elseif ( $title->isUserJsonConfigPage() ) {
+				$this->mergeUserRightStatus( $status, $user, 'edituserjson', !$short, 'customjsonprotected', $action );
+			} elseif ( $title->isUserJsConfigPage() ) {
+				$this->mergeUserRightStatus( $status, $user, 'edituserjs', !$short, 'customjsprotected', $action );
 			}
 		}
 	}
 
 	/**
+	 * Check whether the user is generally allowed to perform the given action.
+	 *
+	 * @param UserIdentity $user
+	 * @param string $right
+	 * @param bool $detailedPermissionErrors If true, use a detailed error message that explains
+	 *   which groups the user needs to be in to be allowed to take the action. If false, use a
+	 *   generic "not allowed" error message ('badaccess-group0')
+	 * @return PermissionStatus
+	 * @since 1.47
+	 */
+	public function getUserRightStatus(
+		UserIdentity $user,
+		string $right,
+		bool $detailedPermissionErrors = true,
+	): PermissionStatus {
+		$status = PermissionStatus::newEmpty();
+
+		// For compatibility with userHasRight(), allow the empty action
+		if ( $right === '' ) {
+			return $status;
+		}
+
+		// Use strict parameter to avoid matching numeric 0 accidentally inserted
+		// by misconfiguration: 0 == 'foo'
+		if (
+			!in_array( $right, $this->getImplicitRights(), true )
+			&& !in_array( $right, $this->getUserPermissions( $user ), true )
+		) {
+			$this->missingPermissionError( $right, !$detailedPermissionErrors, $status );
+		}
+
+		return $status;
+	}
+
+	/**
+	 * Helper function to incorporate the results of a permission check into an existing PermissionStatus.
+	 *
+	 * Modifies $status with the result of a permission check for $action. If the permission check
+	 * fails, also prepends $extraStatus to the permission errors.
+	 *
+	 * @param PermissionStatus $status Status to add to
+	 * @param UserIdentity $user
+	 * @param string|string[] $right One or more rights to check permissions for. If multiple actions
+	 *   are provided, the permission check will succeed if the user has ANY of these rights, and
+	 *   will only fail if the user lacks all of them.
+	 * @param bool $detailedPermissionErrors See getUserRightStatus()
+	 * @param string|null $extraError More specific error message to add in case of failure.
+	 *   If $detailedPermissionErrors is true, this is added before the generic permission error.
+	 *   If $detailedPermissionErrors is false, this replaces the generic permission error.
+	 * @param mixed ...$extraParams Parameters to pass to pass to $extraError
+	 * @return bool True if the action is allowed, false if it is not allowed
+	 */
+	private function mergeUserRightStatus(
+		PermissionStatus $status,
+		UserIdentity $user,
+		string|array $right,
+		bool $detailedPermissionErrors = true,
+		?string $extraError = null,
+		...$extraParams
+	): bool {
+		$rightStatus = null;
+		foreach ( (array)$right as $r ) {
+			$rightStatus = $this->getUserRightStatus( $user, $r, $detailedPermissionErrors );
+			if ( $rightStatus->isOK() ) {
+				// Success, stop here
+				$status->merge( $rightStatus );
+				return true;
+			}
+		}
+
+		// If we got here, the user doesn't have any of the requested rights
+		// First add $extraError, if it exists...
+		if ( $extraError !== null ) {
+			$status->fatal( $extraError, ...$extraParams );
+		}
+		// ...then merge in the last permission error. But don't combine an $extraError with a
+		// non-detailed "permission denied" error
+		if ( $rightStatus && ( $extraError === null || $detailedPermissionErrors ) ) {
+			$status->merge( $rightStatus );
+		}
+		return false;
+	}
+
+	/**
 	 * Whether the user is generally allowed to perform the given action.
+	 *
+	 * To get details about why the user isn't allowed to perform the action, use getUserRightStatus() instead.
 	 *
 	 * @since 1.34
 	 * @param UserIdentity $user
@@ -1532,10 +1562,8 @@ class PermissionManager {
 			// In the spirit of DWIM
 			return true;
 		}
-		// Use strict parameter to avoid matching numeric 0 accidentally inserted
-		// by misconfiguration: 0 == 'foo'
-		return in_array( $action, $this->getImplicitRights(), true )
-			|| in_array( $action, $this->getUserPermissions( $user ), true );
+
+		return $this->getUserRightStatus( $user, $action, false )->isOK();
 	}
 
 	/**
@@ -1858,19 +1886,6 @@ class PermissionManager {
 		}
 
 		return $usableLevels;
-	}
-
-	/**
-	 * Check if user is allowed to edit sitewide pages that contain raw HTML.
-	 *
-	 * Pages listed in $wgRawHtmlMessages allow raw HTML which can be used to deploy CSS or JS
-	 * code to all users so both rights are required to edit them.
-	 *
-	 * @param UserIdentity $user
-	 * @return bool True if user has both rights
-	 */
-	private function userCanEditRawHtmlPage( UserIdentity $user ): bool {
-		return $this->userHasAllRights( $user, 'editsitecss', 'editsitejs' );
 	}
 
 	/**

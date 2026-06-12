@@ -3498,7 +3498,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			$user, AuthManager::AUTOCREATE_SOURCE_SESSION, true, true
 		);
 		$this->unhook( 'LocalUserCreated' );
-		$this->assertTrue( $ret->hasMessage( 'badaccess-group0' ) );
+		$this->assertTrue( $ret->hasMessage( 'badaccess-groups' ) );
 		$this->assertSame( 0, $user->getId() );
 		$this->assertNotEquals( $username, $user->getName() );
 		$this->assertSame( 0, $session->getUser()->getId() );
