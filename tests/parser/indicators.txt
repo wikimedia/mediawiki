@@ -333,7 +333,7 @@ parsoid=wt2html
 !! metadata/php
 test=foo
 !! metadata/parsoid
-test=<span typeof="mw:LanguageVariant" data-parsoid='{"fl":[],"src":"-{foo}-","dsr":[23,30,2,2]}' data-mw-variant='{"disabled":{"t":"foo"}}'>foo</span>
+test=<span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"foo"}}' id="mwAg">foo</span>
 !! html/php
 !! html/parsoid+langconv
 <meta data-mw='{"name":"indicator","attrs":{"name":"test"},"body":{"extsrc":"-{foo}-"},"html":"&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"disabled\":{\"t\":\"foo\"}}&apos;>foo&lt;/span>"}' typeof="mw:Extension/indicator"/>

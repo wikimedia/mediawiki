@@ -1319,11 +1319,14 @@ showindexpolicy
 cat
 !! wikitext
 __INDEX__
-!! metadata
+!! metadata/integrated
 cat=Indexed_pages sort=
 property[index]=
 flags=mw-IndexPolicy
 indexpolicy=index
+!! metadata/parsoid+standalone
+property[index]=
+flags=
 !! html/php
 !! html/parsoid+integrated
 <meta property="mw:PageProp/index"/>
@@ -1339,13 +1342,17 @@ showindexpolicy
 cat
 !! wikitext
 __INDEX__ __NOINDEX__ __INDEX__
-!! metadata
+!! metadata/integrated
 cat=Noindexed_pages sort=
 cat=Indexed_pages sort=
 property[index]=
 property[noindex]=
 flags=mw-IndexPolicy, mw-NoIndexPolicy
 indexpolicy=noindex
+!! metadata/parsoid+standalone
+property[index]=
+property[noindex]=
+flags=
 !! html/php
 !! html/parsoid+integrated
 <meta property="mw:PageProp/index"/> <meta property="mw:PageProp/noindex"/> <meta property="mw:PageProp/index"/>
