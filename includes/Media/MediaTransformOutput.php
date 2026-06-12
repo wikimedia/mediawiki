@@ -240,11 +240,12 @@ abstract class MediaTransformOutput {
 	/**
 	 * Stream the file if there were no errors
 	 *
-	 * @deprecated since 1.26, use streamFileWithStatus
+	 * @deprecated since 1.26, use streamFileWithStatus; hard-deprecated since 1.47
 	 * @param array $headers Additional HTTP headers to send on success
 	 * @return bool Success
 	 */
 	public function streamFile( $headers = [] ) {
+		wfDeprecated( __METHOD__, '1.26' );
 		return $this->streamFileWithStatus( $headers )->isOK();
 	}
 

@@ -290,6 +290,8 @@ because of Phabricator reports.
   use MediaWikiIntegrationTestCase::newSelectQueryBuilder() instead.
 * MediaWikiIntegrationTestCase::assertArraySubmapSame() has been deprecated,
   use MediaWikiTestCaseTrait::assertArrayContains() instead.
+* MediaTransformOutput::streamFile(), deprecated since 1.26, now emits
+  deprecation warnings. Use streamFileWithStatus() instead.
 * …
 
 === Other changes in 1.47 ===
