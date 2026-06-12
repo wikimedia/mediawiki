@@ -2454,7 +2454,6 @@
 	"namespacesall": "omna",
 	"monthsall": "omna",
 	"confirmemail": "Konfirmez adreso di e-posto",
-	"confirmemail-notice-arm-b": "Ni vidis ke vu ne konfirmis vua e-postal adreso. Sen e-postal adreso konfirmebla vu ne recevos e-mesaji relate vua agadi, exemple mencioni o redakturi modifikita. Anke ne esos posibla ke vu rekuperez vua konto se vu perdos aceso.<br><br>[[Special:ConfirmEmail|Informez vua e-postal adreso nun.]]",
 	"confirmemail_needlogin": "Vu mustas $1 pro konfirmar vua adreso di e-posto.",
 	"confirmemail_loggedin": "Vua adreso di e-posto konfirmesis nun.",
 	"notificationemail_subject_changed": "L'adreso di e-posto en {{SITENAME}} modifikesis",

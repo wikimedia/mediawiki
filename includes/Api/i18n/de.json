@@ -42,7 +42,8 @@
 			"Zabe",
 			"Zenith",
 			"Desvaters",
-			"TheRabbit22"
+			"TheRabbit22",
+			"VeryCreativeNameIKnow"
 		]
 	},
 	"apihelp-main-param-action": "Welche Aktion ausgeführt werden soll. Dieser Parameter sollte als Teil der Anfrage-URL (nicht im POST-Body) übermittelt werden, um die Fehlerbehebung, Analyse sowie die Weiterleitung oder Filterung von Anfragen zu vereinfachen.",

@@ -2843,7 +2843,6 @@
 	"confirmemail_noemail": "Vy ne jeste podali pravilny adres e-pošty v svojih [[Special:Preferences|nastavjenjah]].",
 	"confirmemail_text": "{{SITENAME}} potrěbuje potvrdženje vašego adresa e-pošty prěd tym, že smožete koristati e-poštne funkcije.\nNatisknite knopku niže, da byste poslali na vaš adres e-pismo za potvrdženje.\nOvo pismo bude sodrživati link s kodom; otvorite toj link v svojem prěgledaču za potvrdženje, že vaš adres e-pošty jest pravilny.",
 	"confirmemail-notice": "Za dokončenje nastavjenja vašego korističskogo konta, [[Special:ConfirmEmail|potvrdite svoj e-poštny adres]].<br><br>To bude neobhodimo, ako kogdakoli trěba vam bude odnoviti vaše konto. Kromě togo, v projektu {{SITENAME}} sut i druge funkcije i zaščity, za ktore potrěbny bude potvrdženy e-poštny adres.",
-	"confirmemail-notice-arm-b": "My jesmo primětili, že vy ješče ne potvrdili jeste svoj e-poštny adres. Bez potvrdženogo e-poštnogo adresa vy ne možete dobyvati poslanja svezane s vašeju aktivnostju, na priklad spomněnja ili odčinjenja vaših pravok. Vy takože ne smožete odnoviti svoje koristničsko konto v slučaju, že utratite dostup.<br><br>[[Special:ConfirmEmail|Vozmite si moment i potvrdite svoj e-poštny adres tutčas.]]",
 	"confirmemail_pending": "Kod za potvrdženje uže jest izslano na vaš adres e-pošty;\nako vy iztvorili jeste svoje koristničsko konto nedavno, počekajte několiko minut na dostiženje prěd tym, že poprobujete dostati novy kod.",
 	"confirmemail_send": "Poslati mi kod za potvrdženje",
 	"confirmemail_sent": "E-pismo s prosboju za potvrdženje izslano.",

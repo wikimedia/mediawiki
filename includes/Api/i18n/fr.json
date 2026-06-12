@@ -56,7 +56,8 @@
 			"Wladek92",
 			"Yasten",
 			"Zetud",
-			"Alkmen-Alesia"
+			"Alkmen-Alesia",
+			"Jules88!!"
 		]
 	},
 	"apihelp-main-param-action": "Quelle action effectuer. Ce paramètre devrait être envoyer comme part de la requête URL (et non le corps POST) pour faciliter l'usage en débogage, l'analyse, et le routage ou filtrage des requêtes.",
@@ -1310,6 +1311,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-autopromote": "Renvoie la configuration de la promotion automatique.",
 	"apihelp-query+siteinfo-paramvalue-prop-autopromoteonce": "Retourne la configuration automatique de promotion qui est effectuée une seule fois.",
 	"apihelp-query+siteinfo-paramvalue-prop-copyuploaddomains": "Retourne la liste des domaines de téléversement par URL autorisés.",
+	"apihelp-query+siteinfo-paramvalue-prop-sbom": "Renvoie une nomenclature logicielle (SBOM) pour l'installation de MediaWiki au format CycloneDX 1.6.",
 	"apihelp-query+siteinfo-param-filteriw": "Renvoyer uniquement les entrées locales ou uniquement les non locales de la correspondance interwiki.",
 	"apihelp-query+siteinfo-param-showalldb": "Lister tous les serveurs de base de données, pas seulement celui avec la plus grande latence.",
 	"apihelp-query+siteinfo-param-numberingroup": "Liste le nombre d’utilisateurs dans les groupes.",
@@ -1718,6 +1720,7 @@
 	"api-help-datatype-expiry": "Les valeurs d’expiration peuvent être relatives (par ex. <kbd>5 months</kbd> pour 5 mois ou <kbd>2 weeks</kbd> pour 2 semaines) ou absolues (par ex. <kbd>2014-09-18T12:34:56Z</kbd>). Pour ne pas avoir d’expiration, utiliser <kbd>infinite</kbd> (infini), <kbd>indefinite</kbd> (non défini), <kbd>infinity</kbd> (infinité) ou <kbd>never</kbd> (jamais).",
 	"api-help-datatype-timestamp": "Les horodatages peuvent être spécifiés sous plusieurs formes, voir [[mw:Special:MyLanguage/Timestamp|les formats d’entrée de la bibliothèque Timestamp documentés sur mediawiki.org]] pour plus de détails. La date et l’heure ISO 8601 sont recommandés : <kbd><var>2001</var>-<var>01</var>-<var>15</var>T<var>14</var>:<var>56</var>:<var>00</var>Z</kbd>. la chaîne <kbd>now</kbd> peut être utilisée pour spécifier l’horodatage courant.",
 	"api-help-limits-header": "Limites",
+	"api-help-limits-apihighlimits": "Pour les utilisateurs disposant du droit <code>apihighlimits</code> ( $4 ), les limites sont augmentées à $1 {{PLURAL:$1| input|inputs}} et $2 {{PLURAL:$2| result|results}} ( $3 {{PLURAL:$3| result|results}} pour les requêtes lentes).",
 	"api-help-templatedparams-header": "Paramètres de modèle",
 	"api-help-templatedparams": "Les paramètres dynamiques (nommés selon un format modèle) prennent en charge les cas où un module d’API a besoin d’une valeur pour chaque valeur d’un autre paramètre quelconque. Par exemple, s’il y avait un module d’API pour demander un fruit, il pourrait avoir un paramètre statique <var>fruits</var> pour spécifier quels fruits sont demandés et un paramètre dynamique <var>{fruit}-quantité</var> pour spécifier la quantité demandée de chacun des fruits. Un client de l’API qui voudrait une pomme, cinq bananes et vingt fraises pourrait alors faire une requête comme <kbd>fruits=pommes|bananes|fraises&pommes-quantité=1&bananes-quantité=5&fraises-quantité=20</kbd>.",
 	"api-help-param-type-expiry": "Type : {{PLURAL:$1|1=expiration|2=liste d’expirations}} ([[Special:ApiHelp/main#main/datatype/expiry|détails]])",

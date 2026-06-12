@@ -2957,7 +2957,6 @@
 	"confirmemail_noemail": "Ve svém [[Special:Preferences|uživatelském nastavení]] jste nezadali platnou e-mailovou adresu.",
 	"confirmemail_text": "Tato wiki vyžaduje, abyste před využíváním některých funkcí potvrdili svoji e-mailovou adresu. Kliknutím na tlačítko níže odešlete potvrzovací e-mail na vámi uvedenou adresu. Tento e-mail obsahuje odkaz a potvrzovací kód; zobrazením odkazované stránky ve svém internetovém prohlížeči potvrdíte, že zadaná adresa je platná.",
 	"confirmemail-notice": "Pro dokončení nastavení účtu [[Special:ConfirmEmail|potvrďte svou e-mailovou adresu]].<br><br>Je to potřeba, pokud někdy budete potřebovat obnovit svůj účet, a některé další funkce a bezpečnostní ochrany na {{grammar:6sg|{{SITENAME}}}} mohou vyžadovat potvrzený e-mail.",
-	"confirmemail-notice-arm-b": "Všimli jsme si, že jste dosud {{GENDER:|nepotvrdil|nepotvrdila|nepotvrdili}} svou e-mailovou adresu. Bez potvrzeného e-mailu nebudete moci dostávat e-maily týkající se vaší aktivity jako např. zmínky nebo reverty editací. Také si nebudete moci obnovit svůj účet, pokud k němu ztratíte přístup.<br><br>[[Special:ConfirmEmail|Věnujte teď chvíli potvrzení své e-mailové adresy.]]",
 	"confirmemail_pending": "Potvrzovací kód vám byl na váš e-mail již zaslán.\nPokud jste si účet založili před chvílí, zkuste na doručení kódu několik minut počkat, než požádáte o nový.",
 	"confirmemail_send": "Odeslat potvrzovací kód",
 	"confirmemail_sent": "Potvrzovací e-mail byl odeslán",

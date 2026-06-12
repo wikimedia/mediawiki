@@ -25,7 +25,8 @@
 			"WikiKaruhun",
 			"Zulf",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Deepturquoise"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategori|Kategori}}",
@@ -2196,7 +2197,7 @@
 	"watchlistedit-clear-done": "Daptar awaseun geus dibersihkeun.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|1 judul geus|$1 judul geus}} dipupus:",
 	"watchlistedit-too-many": "Loba teuing kaca nu dipidangkeun di dieu.",
-	"watchlisttools-clear": "Bersihan daptar awaseun",
+	"watchlisttools-clear": "Bersihkeun daptar awaseun",
 	"watchlisttools-view": "Témbongkeun parobahan nu patali",
 	"watchlisttools-edit": "Tempo sarta édit daptar awaseun",
 	"watchlisttools-raw": "Édit daptar atah awaseun",

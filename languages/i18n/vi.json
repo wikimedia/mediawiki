@@ -2968,7 +2968,6 @@
 	"confirmemail_noemail": "Bạn chưa đưa vào địa chỉ thư điện tử hợp lệ ở [[Special:Preferences|tùy chọn cá nhân]].",
 	"confirmemail_text": "{{SITENAME}} yêu cầu bạn xác thực địa chỉ email trước khi sử dụng các tính năng liên quan đến email.\nHãy nhấn nút bên dưới để gửi thư xác nhận đến địa chỉ thư điện tử của bạn.\nThư sẽ chứa một đường liên kết có mã xác thực;\nhãy truy cập vào đường liên kết này để xác nhận địa chỉ thư điện tử.",
 	"confirmemail-notice": "Để hoàn tất thiết lập tài khoản, hãy [[Special:ConfirmEmail|xác nhận địa chỉ email của bạn]].<br><br>Bước này là bắt buộc nếu bạn cần khôi phục tài khoản sau này, đồng thời các tính năng và lớp bảo vệ bảo mật khác trên {{SITENAME}} có thể yêu cầu email đã được xác nhận.",
-	"confirmemail-notice-arm-b": "Chúng tôi nhận thấy bạn vẫn chưa xác nhận địa chỉ email của mình. Nếu không xác nhận, bạn sẽ không nhận được thư liên quan đến hoạt động của mình như lượt nhắc tên hoặc lùi sửa đổi. Bạn cũng sẽ không thể khôi phục tài khoản nếu mất quyền truy cập.<br><br>\n[[Special:ConfirmEmail|Hãy dành chút thời gian để xác nhận địa chỉ email của bạn ngay bây giờ.]]",
 	"confirmemail_pending": "Mã xác minh đã được gửi đến địa chỉ thư điện tử của bạn; nếu bạn\nmới vừa tạo tài khoản, xin chờ vài phút để thư tới nơi rồi\nhãy cố gắng yêu cầu mã mới.",
 	"confirmemail_send": "Gửi thư xác nhận",
 	"confirmemail_sent": "Thư xác nhận đã được gửi",

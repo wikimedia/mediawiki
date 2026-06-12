@@ -2948,7 +2948,6 @@
 	"confirmemail_noemail": "Du har ikke oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].",
 	"confirmemail_text": "Du må bekrefte e-postadressen din før du kan benytte deg av e-posttjenester på {{SITENAME}}. Trykk på knappen under for å sende en bekreftelsesmelding til e-postadressen din. Meldingen vil inneholde en lenke med en kode; følg lenken for å bekrefte at e-postadressen er gyldig.",
 	"confirmemail-notice": "[[Special:ConfirmEmail|Bekreft e-postadressen din]] for å fullføre oppsettet av kontoen.<br><br>Dette er påkrevd hvis du noen gang trenger å få tilbake tilgang til kontoen, og annen funksjonalitet og andre sikkerhetsfunksjoner på {{SITENAME}} kan kreve at du har en bekreftet e-postadresse.",
-	"confirmemail-notice-arm-b": "Vi la merke til at du ikke har bekreftet e-postadressen din ennå. Uten bekreftet e-postadresse vil du ikke motta e-poster om aktiviteten din, som f.eks. når du blir nevnt eller redigeringene dine tilbakestilles. Du vil heller ikke kunne få tilbake tilgangen til kontoen din dersom du mister den.<br><br>[[Special:ConfirmEmail|Bekreft e-postadressen din nå.]]",
 	"confirmemail_pending": "En bekreftelseskode har allerede blitt sendt til deg på e-post; om du nylig opprettet kontoen din, kan du ønske å vente noen minutter før du spør om ny kode.",
 	"confirmemail_send": "Send en bekreftelseskode.",
 	"confirmemail_sent": "Bekreftelsesmelding sendt.",

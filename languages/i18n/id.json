@@ -2993,7 +2993,6 @@
 	"confirmemail_noemail": "Anda tidak memberikan alamat surel yang sah di [[Special:Preferences|preferensi pengguna]] Anda.",
 	"confirmemail_text": "{{SITENAME}} mengharuskan Anda untuk melakukan konfirmasi atas alamat surel Anda sebelum fitur-fitur surel dapat digunakan.\nTekan tombol di bawah ini untuk mengirimi Anda sebuah surel yang berisi kode konfirmasi yang berupa sebuah alamat internet.\nSalin alamat tersebut ke penjelajah web Anda dan buka alamat tersebut untuk melakukan konfirmasi sehingga menginformasikan bahwa alamat surel Anda valid.",
 	"confirmemail-notice": "Untuk menyelesaikan penyetelan akun anda. [[Special:ConfirmEmail|Konfirmasikan alamat surel anda]].<br><br>Ini diperlukan bila anda butuh pemulihan akun, serta fitur lain dan perlindungan keamanan di {{SITENAME}} bisa saja memerlukan surel sah.",
-	"confirmemail-notice-arm-b": "Kami menyadari bahwa Anda belum mengonfirmasi alamat surel Anda. Tanpa surel terkonfirmasi, Anda tak akan menerima surel terkait aktivitas Anda, seperti penyebutan atau pengurungan suntingan. Anda juga tak akan bisa memulihkan akun Anda jika kehilangan akses.<br><br> [[Special:ConfirmEmail|Luangkan waktu sejenak untuk mengonfirmasi alamat surel Anda sekarang.]]",
 	"confirmemail_pending": "Suatu kode konfirmasi telah dikirimkan kepada Anda; jika Anda baru saja membuat akun Anda, silakan tunggu beberapa menit untuk surat tersebut tiba sebelum mencoba untuk meminta satu kode baru.",
 	"confirmemail_send": "Kirim kode konfirmasi",
 	"confirmemail_sent": "Surel berisi kode konfirmasi telah dikirim.",

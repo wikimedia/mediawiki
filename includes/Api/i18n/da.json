@@ -5,10 +5,11 @@
 			"Peterleth",
 			"Saederup92",
 			"Sarrus",
-			"Steenth"
+			"Steenth",
+			"Zakawer2"
 		]
 	},
-	"apihelp-main-param-action": "Hvilken handling der skal udføres",
+	"apihelp-main-param-action": "Hvilken handling der skal udføres. Denne parameter skal sendes som en del af anmodningens URL (ikke POST-teksten) for at lette brugen ved fejlfinding, analyse og anmodningsrouting eller filtrering.",
 	"apihelp-main-param-format": "Formatet af resultatet.",
 	"apihelp-main-param-assertuser": "Verificer at den nuværende bruger er den navngivne bruger.",
 	"apihelp-main-param-curtimestamp": "Inkluder det nuværende tidsstempel i resultatet.",

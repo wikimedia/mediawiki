@@ -2933,7 +2933,6 @@
 	"confirmemail_noemail": "Sizin [[Special:Preferences|istifadəçi parametrlərinizdə]] təyin edilmiş etibarlı e-poçt ünvanınız yoxdur.",
 	"confirmemail_text": "{{SITENAME}} e-poçt funksiyalarından istifadə etməzdən əvvəl e-poçt ünvanınızı doğrulamanızı tələb edir.\nÜnvanınıza təsdiq məktubu göndərmək üçün aşağıdakı düyməni aktivləşdirin.\nPosta kod olan link göndəriləcək;\nE-poçt ünvanınızın etibarlı olduğunu təsdiqləmək üçün linki brauzerinizdə açın.",
 	"confirmemail-notice": "Hesabınızı tamamlamaq üçün [[Special:ConfirmEmail|e-poçt ünvanınızı təsdiqləyin]].<br><br> Hesabınızı bərpa etmək lazım gələrsə, bu tələb olunacaq və {{SITENAME}} saytında digər xüsusiyyətlər və təhlükəsizlik təsdiqlənmiş e-poçt tələb edə bilər.",
-	"confirmemail-notice-arm-b": "E-poçt ünvanınızı hələ də təsdiqləməmisiniz. Təsdiqlənmiş e-poçt olmadan fəaliyyətiniz ilə bağlı teqlər və ya redaktə geri qaytarmaları kimi e-poçtlar almayacaqsınız. Həmçinin parolunuzu itirsəniz, hesabınızı bərpa edə bilməyəcəksiniz.<br><br> [[Special:ConfirmEmail|E-poçt ünvanınızı təsdiqləyin]]",
 	"confirmemail_pending": "Təsdiq kodu artıq sizə e-poçt olaraq göndərilib;\nhesabınızı bu yaxınlarda yaratmısınızsa, yeni kod tələb etməzdən əvvəl onun gəlməsini bir neçə dəqiqə gözləyə bilərsiniz.",
 	"confirmemail_send": "Təsdiq kodu göndər",
 	"confirmemail_sent": "Təsdiq e-məktubu göndərildi.",

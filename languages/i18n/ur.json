@@ -2521,7 +2521,7 @@
 	"autoredircomment": "[[$1]] سے رجوع مکرر",
 	"autosumm-removed-redirect": "[[$1]] سے رجوع مکرر ہٹایا",
 	"autosumm-changed-redirect-target": "رجوع مکرر [[$1]] کو [[$2]] سے تبدیل کیا",
-	"autosumm-new": "«$1» مواد پر مشتمل نیا صفحہ بنایا",
+	"autosumm-new": "”$1“ مواد پر مشتمل نیا صفحہ بنایا",
 	"autosumm-newblank": "خالی صفحہ بنایا",
 	"size-bytes": "{{PLURAL:$1|بائٹ}}",
 	"size-kilobytes": "$1 کلوبائٹ",

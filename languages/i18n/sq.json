@@ -2337,7 +2337,6 @@
 	"confirmemail": "Konfirmo adresën e email-it",
 	"confirmemail_noemail": "Ju nuk keni dhënë email të sakt te [[Special:Preferences|parapëlqimet e juaja]].",
 	"confirmemail_text": "{{SITENAME}} kërkon që të validosh adresën tënde të email-it para se të përdorësh funksionet e email-it.\nAktivizo butonin më poshtë për të dërguar një email konfirmimi në adresën tënde.\nEmail-i do të përfshijë një lidhje që përmban një kod;\nhape lidhjen në shfletuesin tënd për të konfirmuar që adresa jote e email-it është e vlefshme.",
-	"confirmemail-notice-arm-b": "Vumë re se nuk e ke konfirmuar ende email adresën tënde. Pa një email të konfirmuar, nuk do të marrësh emaila që lidhen me aktivitetin tënd, siç janë përmendjet ose zhbërjet e redaktimeve. Gjithashtu, nuk do të jesh në gjendje ta rikuperosh llogarinë tënde nëse humb qasjen në të.<br><br> [[Special:ConfirmEmail|Ndaje një çast për të konfirmuar email adresën tënde tani.]]",
 	"confirmemail_pending": "Një kod konfirmimi të është dërguar tashmë me email;\nnëse e ke krijuar llogarinë tënde së fundmi, konsidero pritjen për disa minuta derisa të mbërrijë para se të përpiqesh të kërkosh një kod të ri.",
 	"confirmemail_send": "Dërgo vërtetimin",
 	"confirmemail_sent": "Email-i për vërtetim është dërguar.",

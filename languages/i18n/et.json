@@ -2913,7 +2913,6 @@
 	"confirmemail_noemail": "Sul pole [[Special:Preferences|eelistuste leheküljel]] e-posti aadressi määranud.",
 	"confirmemail_text": "Enne kui saad e-postiga seotud teenuseid kasutada, pead oma e-posti aadressi õigsust kinnitama. Allpool olevat nuppu klõpsates saadetakse sulle e-posti teel kinnituskood. Aadressi kinnitamiseks klõpsa e-kirjas olevat linki.",
 	"confirmemail-notice": "Et konto loomine lõpule viia, [[Special:ConfirmEmail|kinnita enda e-posti aadress]].<br><br>See on nõutav, kui sul peaks olema vaja enda konto taastada. Ka {{GRAMMAR:genitive|{{SITENAME}}}} teised funktsioonid ja turvalahendused võivad vajada e-posti aadressi kinnitamist.",
-	"confirmemail-notice-arm-b": "Panime tähele, et sa pole e-posti aadressi veel kinnitanud. E-posti aadressi kinnitamata ei saa sa konto tegevusega seotud e-kirju, näiteks mainimiste ja muudatuste tühistamise kohta. Samuti ei saa sa kontot taastada, kui kaotad sellele juurdepääsu.<br><br>[[Special:ConfirmEmail|Leia hetk, et e-posti aadress kinnitada.]]",
 	"confirmemail_pending": "Kinnituskood on juba saadetud. Kui tegid konto hiljuti, oota palun mõni minut selle saabumist, enne kui üritad uuesti.",
 	"confirmemail_send": "Saada kinnituskood",
 	"confirmemail_sent": "Kinnitus-e-kiri saadetud.",

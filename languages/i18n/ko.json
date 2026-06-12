@@ -3002,7 +3002,6 @@
 	"confirmemail_noemail": "[[Special:Preferences|사용자 환경 설정]]에 올바른 이메일 주소를 설정하지 않았습니다.",
 	"confirmemail_text": "{{SITENAME}}에서는 이메일 기능을 사용하기 전에 이메일 인증을 받아야 합니다.\n아래의 버튼을 누르면 인증 메일을 보냅니다.\n메일에는 인증 코드가 들어있는 링크가 있습니다.\n그 링크를 웹 브라우저로 열면 인증이 완료됩니다.",
 	"confirmemail-notice": "계정 설정을 완료하려면 [[Special:ConfirmEmail|이메일 주소를 인증하세요]].<br><br>이는 계정 복구시에 필요하며, {{SITENAME}}의 다른 기능 및 보안 보호 조치에도 인증된 이메일이 필요할 수 있습니다.",
-	"confirmemail-notice-arm-b": "아직 이메일 주소를 인증하지 않은 것으로 보입니다. 인증된 이메일 없이는 언급이나 편집 취소 등 당신의 활동에 관련된 이메일을 받아볼 수 없습니다. 또한 계정 접근 권한을 잃어버렸을 시 계정 복구가 불가능합니다.<br><br>[[Special:ConfirmEmail|잠시 시간을 내어 이메일 주소를 인증하세요.]]",
 	"confirmemail_pending": "이미 확인 이메일을 보냈습니다.\n계정을 최근에 만들었다면 이메일을 보내는 데에 몇 분이 걸릴 수 있으므로 잠시 후에 다시 확인해 주세요.",
 	"confirmemail_send": "인증 코드를 메일로 보내기",
 	"confirmemail_sent": "인증 이메일을 보냈습니다.",
