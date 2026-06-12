@@ -420,6 +420,7 @@ class SpecialVersion extends SpecialPage {
 			self::$extensionTypes = [
 				'specialpage' => wfMessage( 'version-specialpages' )->text(),
 				'editor' => wfMessage( 'version-editors' )->text(),
+				'wikifamily' => wfMessage( 'version-wikifamily' )->text(),
 				'parserhook' => wfMessage( 'version-parserhooks' )->text(),
 				'variable' => wfMessage( 'version-variables' )->text(),
 				'media' => wfMessage( 'version-mediahandlers' )->text(),

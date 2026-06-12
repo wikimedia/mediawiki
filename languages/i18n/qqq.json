@@ -3384,6 +3384,7 @@
 	"version-skins": "Header on [[Special:Version]].\n\nSee also:\n* {{msg-mw|Version-software}}\n* {{msg-mw|Version-extensions}}\n\n{{Identical|Skin}}",
 	"version-skins-no-skin": "Shown when there are no skins installed at [[Special:Version]]",
 	"version-specialpages": "Part of [[Special:Version]].\n{{Identical|Special page}}",
+	"version-wikifamily": "Part of [[Special:Version]].\n{{Identical|Wiki family}}",
 	"version-parserhooks": "This message is a heading for a table at [[Special:Version]] that lists extensions that add capabilities to the wikitext parser, such as XML-like tags or magic words.",
 	"version-variables": "{{Identical|Variable}}",
 	"version-editors": "Part of [[Special:Version]].\nThis message is followed by the list of installed extensions that provide an editor or enhance editing functionality.\n{{Identical|Editor}}",

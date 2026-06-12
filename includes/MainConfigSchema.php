@@ -11716,9 +11716,10 @@ class MainConfigSchema {
 	 * view said file. When the 'license-name' key is specified, this file is
 	 * interpreted as wikitext.
 	 *
-	 * - $type: One of 'specialpage', 'parserhook', 'variable', 'media', 'antispam',
-	 *    'skin', 'api', or 'other', or any additional types as specified through the
-	 *    ExtensionTypes hook as used in SpecialVersion::getExtensionTypes().
+	 * - $type: One of 'specialpage', 'parserhook', 'wikifamily', 'variable', 'media',
+	 *    'antispam', 'skin', 'api', or 'other', or any additional types as specified
+	 *    through the ExtensionTypes hook as used in
+	 *    SpecialVersion::getExtensionTypes().
 	 *
 	 * - name: Name of extension as an inline string instead of localizable message.
 	 *    Do not omit this even if 'namemsg' is provided, as it is used to override
