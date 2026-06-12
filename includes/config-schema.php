@@ -1901,6 +1901,10 @@ return [
 			'JwtPublicKey' => false,
 			'AllowUserJs' => false,
 			'ReauthenticateForActions' => [
+				'edituserjs' => 'edituserjscss',
+				'editusercss' => 'edituserjscss',
+				'editsitejs' => 'editsitejscss',
+				'editsitecss' => 'editsitejscss',
 			],
 			'AllowUserCss' => false,
 			'AllowUserCssPrefs' => true,

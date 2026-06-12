@@ -63,7 +63,10 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 				self::CM_TESTING => DummyContentHandlerForTesting::class
 			] + MainConfigSchema::getDefaultValue( MainConfigNames::ContentHandlers ),
 
-			MainConfigNames::RCWatchCategoryMembership => true
+			MainConfigNames::RCWatchCategoryMembership => true,
+
+			// Prevent merges of user scripts from failing because of reauthentication requirements
+			MainConfigNames::ReauthenticateForActions => []
 		] );
 	}
 

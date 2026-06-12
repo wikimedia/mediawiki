@@ -5947,7 +5947,11 @@ config-schema:
             This enables a lot of neat customizations, but may
             increase security risk to users and server load.
     ReauthenticateForActions:
-        default: {  }
+        default:
+            edituserjs: edituserjscss
+            editusercss: edituserjscss
+            editsitejs: editsitejscss
+            editsitecss: editsitejscss
         type: object
         description: |-
             Which actions require reauthentication.

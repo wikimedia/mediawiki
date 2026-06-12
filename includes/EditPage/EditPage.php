@@ -96,6 +96,7 @@ use OOUI\CheckboxMultiselectInputWidget;
 use OOUI\DropdownInputWidget;
 use OOUI\FieldLayout;
 use RuntimeException;
+use SpecialPage;
 use StatusValue;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageSpecifier;
@@ -584,6 +585,20 @@ class EditPage implements IEditObject {
 			$this->displayPermissionStatus( $status );
 
 			return;
+		}
+
+		if ( $status->getReauthOperation() !== null ) {
+			// Reauthentication is required. Ideally we would prompt for reauthentication after
+			// submitting the edit (T427955), but for now, force reauthentication when they enter
+			// the editor.
+			$this->context->getOutput()->redirect( SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
+				'force' => $status->getReauthOperation(),
+				'returnto' => $this->getTitle()->getPrefixedDBkey(),
+				'returntoquery' => wfArrayToCgi( array_diff_key(
+					$this->context->getRequest()->getQueryValues(),
+					[ 'title' => true, 'returnto' => true, 'returntoquery' => true ]
+				) ),
+			], false, PROTO_HTTPS ) );
 		}
 
 		$revRecord = $this->mArticle->fetchRevisionRecord();

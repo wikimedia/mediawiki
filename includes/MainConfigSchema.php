@@ -9525,6 +9525,10 @@ class MainConfigSchema {
 	 */
 	public const ReauthenticateForActions = [
 		'default' => [
+			'edituserjs' => 'edituserjscss',
+			'editusercss' => 'edituserjscss',
+			'editsitejs' => 'editsitejscss',
+			'editsitecss' => 'editsitejscss'
 		],
 		'type' => 'map',
 	];
