@@ -23,6 +23,7 @@
 	"userrights-unchangeable-col": "Gruppen dee jy neet beheyren künnet",
 	"userrights-expiry-none": "vervalt neet",
 	"userrights-conflict": "Konflikt bie t wiezigen van gebrukersrechten! Kiek joew wiezigingen nao en bevestig t.",
+	"userrights-unable-to-change": "Et is neet möägelik üm wysigingen in de {{GENDER:$2|gebrukersgruppen}} te seakeren vanweagen de volgende {{PLURAL:$3|raden|readenen}}:\n$1",
 	"group": "Groep:",
 	"group-user": "gebrukers",
 	"group-autoconfirmed": "bevästigde gebrukers",

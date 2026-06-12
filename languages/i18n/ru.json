@@ -1148,7 +1148,7 @@
 	"powersearch-togglelabel": "Отметить:",
 	"powersearch-toggleall": "Все",
 	"powersearch-togglenone": "Ничего",
-	"powersearch-remember": "Запомнить в будущем",
+	"powersearch-remember": "Запомнить выбор в будущем",
 	"searchdisabled": "Поиск в этой вики отключён, а внешний поисковый URL-адрес [[$1|не настроен]].",
 	"search-error": "Произошла ошибка при поиске: $1",
 	"search-warning": "Во время поиска выдано предупреждение: $1",

@@ -2618,7 +2618,7 @@
 	"nonfile-cannot-move-to-file": "Kan ikke flytte ikke-filer til fil-navnerummet.",
 	"imagetypemismatch": "Den nye filendelse passer ikke til filtypen",
 	"imageinvalidfilename": "Destinationsnavnet er ugyldigt",
-	"fix-double-redirects": "Opdater eventuelle omdirigeringer, der peger på den oprindelige titel",
+	"fix-double-redirects": "Opdatér eventuelle omdirigeringer, der peger på den oprindelige titel",
 	"move-leave-redirect": "Efterlad en omdirigering",
 	"movetalk-unselect": "Hvis du virkelig vil udelade diskussionssiden, skal du fjerne markeringen fra \"{{int:movetalk}}\".",
 	"protectedpagemovewarning": "<strong>Bemærk:</strong> Denne side er blevet beskyttet, så kun administratorer kan flytte den.\nDen seneste logpost vises nedenfor som reference:",
