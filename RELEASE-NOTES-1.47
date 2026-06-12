@@ -288,6 +288,8 @@ because of Phabricator reports.
   ParserOptionsDefaults.
 * MediaWikiIntegrationTestCase::assertSelect() has been deprecated,
   use MediaWikiIntegrationTestCase::newSelectQueryBuilder() instead.
+* MediaWikiIntegrationTestCase::assertArraySubmapSame() has been deprecated,
+  use MediaWikiTestCaseTrait::assertArrayContains() instead.
 * …
 
 === Other changes in 1.47 ===
