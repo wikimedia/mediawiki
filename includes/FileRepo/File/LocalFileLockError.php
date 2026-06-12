@@ -12,6 +12,7 @@ use MediaWiki\Status\Status;
 /**
  * @newable
  * @stable to extend
+ * @deprecated since 1.47
  * @ingroup FileAbstraction
  */
 class LocalFileLockError extends ErrorPageError {
@@ -22,6 +23,7 @@ class LocalFileLockError extends ErrorPageError {
 	 * @param Status $status
 	 */
 	public function __construct( Status $status ) {
+		wfDeprecated( __CLASS__, '1.47' );
 		parent::__construct(
 			'actionfailed',
 			$status->getMessage()

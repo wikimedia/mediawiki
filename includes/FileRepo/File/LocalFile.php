@@ -2744,11 +2744,12 @@ class LocalFile extends File {
 	 *
 	 * This method should not be used outside of LocalFile/LocalFile*Batch
 	 *
-	 * @deprecated since 1.38 Use acquireFileLock()
+	 * @deprecated since 1.38 Use acquireFileLock(); hard-deprecated in 1.47
 	 * @throws LocalFileLockError Throws an error if the lock was not acquired
 	 * @return bool Whether the file lock owns/spawned the DB transaction
 	 */
 	public function lock() {
+		wfDeprecated( __METHOD__, '1.38' );
 		if ( !$this->locked ) {
 			$logger = LoggerFactory::getInstance( 'LocalFile' );
 
@@ -2793,10 +2794,11 @@ class LocalFile extends File {
 	 * The commit and lock release will happen when no atomic sections are active, which
 	 * may happen immediately or at some point after calling this
 	 *
-	 * @deprecated since 1.38 Use releaseFileLock()
+	 * @deprecated since 1.38 Use releaseFileLock(); hard-deprecated in 1.47
 	 */
 	public function unlock() {
 		if ( $this->locked ) {
+			wfDeprecated( __METHOD__, '1.38' );
 			--$this->locked;
 			if ( !$this->locked ) {
 				$dbw = $this->repo->getPrimaryDB();
