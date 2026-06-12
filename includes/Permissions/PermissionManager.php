@@ -718,10 +718,6 @@ class PermissionManager {
 		$context = RequestContext::getMain();
 		$fatalStatus = $this->newFatalPermissionDeniedStatus( $action, $context );
 		$status->merge( $fatalStatus );
-		$statusPermission = $fatalStatus->getPermission();
-		if ( $statusPermission ) {
-			$status->setPermission( $statusPermission );
-		}
 	}
 
 	/**

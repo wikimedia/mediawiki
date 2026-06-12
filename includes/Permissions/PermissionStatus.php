@@ -6,7 +6,9 @@
 
 namespace MediaWiki\Permissions;
 
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
+use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\ThrottledError;
@@ -35,6 +37,37 @@ class PermissionStatus extends StatusValue {
 
 	/** @var ?string */
 	private $permission = null;
+
+	/**
+	 * @note Merging two PermissionStatus objects with different permission fields is not advised.
+	 *   If both $this and $other have permission set, the one from $this will be kept and the
+	 *   one from $other will be lost.
+	 * @inheritDoc
+	 */
+	public function merge( $other, $overwriteValue = false ) {
+		parent::merge( $other, $overwriteValue );
+		if ( $other instanceof PermissionStatus ) {
+			if ( $other->block !== null ) {
+				if ( $this->block === null ) {
+					$this->block = $other->block;
+				} elseif (
+					$other->block->getIdentifier() !== $this->block->getIdentifier() &&
+					// For Phan
+					$this->block instanceof AbstractBlock &&
+					$other->block instanceof AbstractBlock
+				) {
+					$this->block = CompositeBlock::createFromBlocks( $this->block, $other->block );
+				}
+			}
+			if ( $this->permission === null ) {
+				$this->permission = $other->permission;
+			}
+			if ( $other->rateLimitExceeded !== null ) {
+				$this->rateLimitExceeded = $this->rateLimitExceeded || $other->rateLimitExceeded;
+			}
+		}
+		return $this;
+	}
 
 	/**
 	 * Returns the user block that contributed to permissions being denied,
