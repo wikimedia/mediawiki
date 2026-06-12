@@ -272,6 +272,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		// REST-specific parameters
 		$ret['allowedKeys'][] = Handler::PARAM_SOURCE;
 		$ret['allowedKeys'][] = Handler::PARAM_DESCRIPTION;
+		$ret['allowedKeys'][] = Handler::PARAM_EXAMPLE;
 		if ( !in_array( $settings[Handler::PARAM_SOURCE] ?? '', Validator::KNOWN_PARAM_SOURCES, true ) ) {
 			$ret['issues'][Handler::PARAM_SOURCE] = "PARAM_SOURCE must be one of " . implode( ', ', Validator::KNOWN_PARAM_SOURCES );
 		}
