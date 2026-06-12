@@ -13,6 +13,7 @@ use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Shell\Shell;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\Database;
@@ -78,7 +79,7 @@ class CleanupSpam extends Maintenance {
 						->fetchField();
 					if ( $count ) {
 						$found = true;
-						$cmd = wfShellWikiCmd(
+						$cmd = Shell::makeScriptCommand(
 							MW_INSTALL_PATH . '/maintenance/cleanupSpam.php',
 							[ '--wiki', $wikiId, $spec ]
 						);
