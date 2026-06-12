@@ -1150,7 +1150,7 @@ abstract class File implements MediaHandlerState {
 	 * @stable to override
 	 * @param array $params Handler-specific parameters
 	 * @param int $flags Bitfield that supports THUMB_* constants
-	 * @return string|null
+	 * @return string|false
 	 */
 	public function thumbName( $params, $flags = 0 ) {
 		$name = ( $this->repo && !( $flags & self::THUMB_FULL_NAME ) )
@@ -1166,18 +1166,18 @@ abstract class File implements MediaHandlerState {
 	 *
 	 * @param string $name
 	 * @param array $params Parameters which will be passed to MediaHandler::makeParamString
-	 * @return string|null
+	 * @return string|false
 	 */
 	public function generateThumbName( $name, $params ) {
 		if ( !$this->getHandler() ) {
-			return null;
+			return false;
 		}
 		$extension = $this->getExtension();
 		[ $thumbExt, ] = $this->getHandler()->getThumbType(
 			$extension, $this->getMimeType(), $params );
 		$thumbName = $this->getHandler()->makeParamString( $params );
 		if ( !$thumbName ) {
-			return null;
+			return false;
 		}
 
 		if ( $this->repo->supportsSha1URLs() ) {
@@ -1568,7 +1568,7 @@ abstract class File implements MediaHandlerState {
 	/**
 	 * Returns the name of the thumb for a given bucket
 	 * @param int $bucket
-	 * @return string
+	 * @return string|false
 	 */
 	protected function getBucketThumbName( $bucket ) {
 		return $this->thumbName( [ 'physicalWidth' => $bucket ] );

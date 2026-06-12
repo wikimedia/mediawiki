@@ -218,7 +218,7 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 		// Get the normalized thumbnail name from the parameters...
 		try {
 			$thumbName = $img->thumbName( $params );
-			if ( ( $thumbName ?? '' ) === '' ) { // invalid params?
+			if ( $thumbName === false ) { // invalid params?
 				throw new MediaTransformInvalidParametersException(
 					'Empty return from File::thumbName'
 				);
