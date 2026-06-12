@@ -10629,6 +10629,8 @@ class MainConfigSchema {
 	 *    Default: 10,000.
 	 *  - expiry: The cache expiry time in seconds.
 	 *    Default: 3600 (1 hour).
+	 *  - skipRedirects: If true, do not include redirects in the sitemap.
+	 *    Default: false.
 	 *
 	 * @see https://www.sitemaps.org/protocol.html
 	 * @see \MediaWiki\Rest\Handler\SitemapHandlerBase
@@ -10642,6 +10644,7 @@ class MainConfigSchema {
 			'sitemapsPerIndex' => [ 'type' => 'int' ],
 			'pagesPerSitemap' => [ 'type' => 'int' ],
 			'expiry' => [ 'type' => 'int' ],
+			'skipRedirects' => [ 'type' => 'bool' ],
 		]
 	];
 

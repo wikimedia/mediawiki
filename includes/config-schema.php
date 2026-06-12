@@ -3707,6 +3707,9 @@ return [
 				'expiry' => [
 					'type' => 'int',
 				],
+				'skipRedirects' => [
+					'type' => 'bool',
+				],
 			],
 		],
 		'SoftwareTags' => [

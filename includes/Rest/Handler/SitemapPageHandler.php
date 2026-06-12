@@ -98,6 +98,7 @@ class SitemapPageHandler extends SitemapHandlerBase {
 						$this->genderCache
 					);
 					$xml = $generator
+						->skipRedirects( $this->skipRedirects )
 						->namespacesFromConfig( $this->config )
 						->additionalNamespaces( $namespaces )
 						->idRange( $startId, $endId )

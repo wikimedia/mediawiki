@@ -22,6 +22,8 @@ abstract class SitemapHandlerBase extends Handler {
 	protected $sitemapSize;
 	/** @var int */
 	protected $expiry;
+	/** @var bool */
+	protected $skipRedirects;
 
 	protected function __construct(
 		Config $config,
@@ -35,6 +37,7 @@ abstract class SitemapHandlerBase extends Handler {
 		$variants = SitemapGenerator::getVariants( $contLang, $languageConverterFactory );
 		$this->sitemapSize = (int)( ( $apiConf['pagesPerSitemap'] ?? 10_000 ) / ( count( $variants ) + 1 ) );
 		$this->expiry = $apiConf['expiry'] ?? 3600;
+		$this->skipRedirects = $apiConf['skipRedirects'] ?? false;
 	}
 
 	/**
