@@ -9518,6 +9518,18 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Which actions require reauthentication.
+	 * This is a map where the keys are rights, and the values are "operations".
+	 * If multiple rights map to the same operation, then reauthenticating for one of those rights
+	 * also grants the others.
+	 */
+	public const ReauthenticateForActions = [
+		'default' => [
+		],
+		'type' => 'map',
+	];
+
+	/**
 	 * Allow user Cascading Style Sheets (CSS)?
 	 * This enables a lot of neat customizations, but may
 	 * increase security risk to users and server load.

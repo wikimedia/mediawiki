@@ -38,6 +38,8 @@ class PermissionStatus extends StatusValue {
 	/** @var ?string */
 	private $permission = null;
 
+	private ?string $reauthOperation = null;
+
 	/**
 	 * @note Merging two PermissionStatus objects with different permission fields is not advised.
 	 *   If both $this and $other have permission set, the one from $this will be kept and the
@@ -64,6 +66,9 @@ class PermissionStatus extends StatusValue {
 			}
 			if ( $other->rateLimitExceeded !== null ) {
 				$this->rateLimitExceeded = $this->rateLimitExceeded || $other->rateLimitExceeded;
+			}
+			if ( $other->reauthOperation !== null ) {
+				$this->reauthOperation = $other->reauthOperation;
 			}
 		}
 		return $this;
@@ -147,6 +152,22 @@ class PermissionStatus extends StatusValue {
 	 */
 	public function getPermission(): ?string {
 		return $this->permission;
+	}
+
+	/**
+	 * Call this to indicate the user needs to reauthenticate in order to perform the requested action.
+	 * @param string $operation The name of the operation the user needs to reauthenticate for
+	 */
+	public function setReauthOperation( string $operation ): void {
+		$this->reauthOperation = $operation;
+	}
+
+	/**
+	 * Get the name of the operation the user needs to reauthenticate for, if any.
+	 * @return string|null The name of the operation if reauthentication is required, or null otherwise.
+	 */
+	public function getReauthOperation(): ?string {
+		return $this->reauthOperation;
 	}
 
 	/**

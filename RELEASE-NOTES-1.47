@@ -37,6 +37,8 @@ For notes on 1.46.x and older releases, see HISTORY.
 * $wgRestModuleOverrides - (T422756) Defaults to `[]`, allows overriding the
   default behavior mode of REST modules. See MediaWiki\Rest\Module\ModuleMode
   for details on available modes.
+* $wgReauthenticateForActions - Allows overriding which sensitive actions
+  require reauthentication.
 * …
 
 ==== Changed configuration ====

@@ -52,6 +52,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			MainConfigNames::DeleteRevisionsLimit => false,
 			MainConfigNames::RateLimits => [],
 			MainConfigNames::ImplicitRights => [],
+			MainConfigNames::ReauthenticateForActions => [],
 		];
 		$config = $overrideConfig + $baseConfig;
 

@@ -3099,6 +3099,12 @@ class MainConfigNames {
 	public const AllowUserJs = 'AllowUserJs';
 
 	/**
+	 * Name constant for the ReauthenticateForActions setting, for use with Config::get()
+	 * @see MainConfigSchema::ReauthenticateForActions
+	 */
+	public const ReauthenticateForActions = 'ReauthenticateForActions';
+
+	/**
 	 * Name constant for the AllowUserCss setting, for use with Config::get()
 	 * @see MainConfigSchema::AllowUserCss
 	 */

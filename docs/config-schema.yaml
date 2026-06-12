@@ -5946,6 +5946,14 @@ config-schema:
             Allow user Javascript page?
             This enables a lot of neat customizations, but may
             increase security risk to users and server load.
+    ReauthenticateForActions:
+        default: {  }
+        type: object
+        description: |-
+            Which actions require reauthentication.
+            This is a map where the keys are rights, and the values are "operations".
+            If multiple rights map to the same operation, then reauthenticating for one of those rights
+            also grants the others.
     AllowUserCss:
         default: false
         description: |-

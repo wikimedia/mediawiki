@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Integration\Permissions;
 
 use MediaWiki\Actions\Action;
 use MediaWiki\Api\ApiMessage;
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AnonIpBlockTarget;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\CompositeBlock;
@@ -20,6 +21,8 @@ use MediaWiki\Page\CacheKeyHelper;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
+use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Tests\Session\TestUtils;
 use MediaWiki\Tests\Unit\MockBlockTrait;
@@ -96,6 +99,9 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				'deletedtext',
 			],
 			MainConfigNames::RestrictedGroups => [],
+			MainConfigNames::ReauthenticateForActions => [
+				'editsitejs' => 'editsitejscss',
+			]
 		] );
 
 		$this->setGroupPermissions( [
@@ -1275,6 +1281,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$result = $permissionManager->getUserRightStatus(
 			$this->getTestUser( $group )->getUser(),
 			$right,
+			PermissionManager::RIGOR_SECURE,
 			$detailedPermissionErrors
 		);
 		$this->assertStatusMessagesExactly( $expectedStatus, $result );
@@ -1306,6 +1313,56 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		yield 'empty action should always be granted' => [
 			'formertesters', '', true, StatusValue::newGood()
 		];
+	}
+
+	public function testReauthenticateForAction() {
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		$user = $this->getTestUser( 'interface-admin' )->getUser();
+		$siteJsPage = Title::makeTitle( NS_MEDIAWIKI, 'Foo.js' );
+		$operationStatus = AuthManager::SEC_REAUTH;
+		$mockAuthManager = $this->createMock( AuthManager::class );
+		$mockAuthManager->method( 'securitySensitiveOperationStatus' )
+			->willReturnCallback( static function () use ( &$operationStatus ) {
+				return $operationStatus;
+			} );
+		// Set up the mock so that $authManager->getRequest()->getSession()->getUser() returns $user
+		$mockSession = $this->createMock( Session::class );
+		$mockSession->method( 'getUser' )->willReturn( $user );
+		$mockRequest = $this->createMock( WebRequest::class );
+		$mockRequest->method( 'getSession' )->willReturn( $mockSession );
+		$mockAuthManager->method( 'getRequest' )->willReturn( $mockRequest );
+		$this->setService( 'AuthManager', $mockAuthManager );
+
+		$result = $permissionManager->getPermissionStatus( 'edit', $user, $siteJsPage, PermissionManager::RIGOR_SECURE );
+		$this->assertStatusMessagesExactly(
+			StatusValue::newFatal( 'sitejsprotected', 'edit' )->fatal( 'badaccess-reauthenticate', 'editsitejscss' ),
+			$result,
+			'RIGOR_SECURE check returns reauth requirement in status message'
+		);
+		$this->assertStatusNotOK( $result, 'RIGOR_SECURE check sets status to not OK' );
+		$this->assertSame( 'editsitejscss', $result->getReauthOperation(), 'RIGOR_SECURE check sets reauth operation is set' );
+
+		$result = $permissionManager->getPermissionStatus( 'edit', $user, $siteJsPage, PermissionManager::RIGOR_FULL );
+		$this->assertStatusGood( $result, 'RIGOR_FULL check is OK despite reauth requirement' );
+		$this->assertSame( 'editsitejscss', $result->getReauthOperation(), 'RIGOR_FULL check sets reauth operation is set' );
+
+		$result = $permissionManager->getPermissionStatus( 'edit', $user, $siteJsPage, PermissionManager::RIGOR_QUICK );
+		$this->assertStatusGood( $result, 'RIGOR_QUICK check is OK despite reauth requirement' );
+		$this->assertSame( 'editsitejscss', $result->getReauthOperation(), 'RIGOR_QUICK check sets reauth operation is set' );
+
+		// Test that operations are allowed when the user has reauthenticated
+		$operationStatus = AuthManager::SEC_OK;
+		$result = $permissionManager->getPermissionStatus( 'edit', $user, $siteJsPage, PermissionManager::RIGOR_SECURE );
+		$this->assertStatusGood( $result, 'RIGOR_SECURE check is OK when user has reauthenticated' );
+		$this->assertNull( $result->getReauthOperation(), 'RIGOR_SECURE check sets reauth operation is set' );
+
+		$result = $permissionManager->getPermissionStatus( 'edit', $user, $siteJsPage, PermissionManager::RIGOR_FULL );
+		$this->assertStatusGood( $result, 'RIGOR_FULL check is OK when user has reauthenticated' );
+		$this->assertNull( $result->getReauthOperation(), 'RIGOR_FULL check sets reauth operation is set' );
+
+		$result = $permissionManager->getPermissionStatus( 'edit', $user, $siteJsPage, PermissionManager::RIGOR_QUICK );
+		$this->assertStatusGood( $result, 'RIGOR_QUICK check is OK when user has reauthenticated' );
+		$this->assertNull( $result->getReauthOperation(), 'RIGOR_QUICK check sets reauth operation is set' );
 	}
 
 	public function testIsEveryoneAllowed() {

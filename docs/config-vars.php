@@ -3084,6 +3084,12 @@ $wgJwtPublicKey = null;
 $wgAllowUserJs = null;
 
 /**
+ * Config variable stub for the ReauthenticateForActions setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ReauthenticateForActions
+ */
+$wgReauthenticateForActions = null;
+
+/**
  * Config variable stub for the AllowUserCss setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::AllowUserCss
  */

@@ -9,6 +9,7 @@ namespace MediaWiki\Permissions;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Actions\ActionFactory;
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
@@ -21,6 +22,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
@@ -77,6 +79,7 @@ class PermissionManager {
 		MainConfigNames::DeleteRevisionsLimit,
 		MainConfigNames::RateLimits,
 		MainConfigNames::ImplicitRights,
+		MainConfigNames::ReauthenticateForActions,
 	];
 
 	private HookRunner $hookRunner;
@@ -987,23 +990,25 @@ class PermissionManager {
 		if ( $action === 'create' ) {
 			$right = $this->nsInfo->isTalk( $title->getNamespace() ) ? 'createtalk' : 'createpage';
 			$errorMsgKey = $user->isNamed() ? 'nocreate-loggedin' : 'nocreatetext';
-			$this->mergeUserRightStatus( $status, $user, $right, !$short, $errorMsgKey );
+			$this->mergeUserRightStatus( $status, $user, $right, $rigor, !$short, $errorMsgKey );
 		} elseif ( $action === 'move' ) {
 			if ( $title->getNamespace() === NS_USER && !$isSubPage ) {
-				$this->mergeUserRightStatus( $status, $user, 'move-rootuserpages', !$short, 'cant-move-user-page' );
+				$this->mergeUserRightStatus( $status, $user, 'move-rootuserpages', $rigor, !$short,
+					'cant-move-user-page' );
 			}
 
 			// Check if user is allowed to move files if it's a file
 			if ( $title->getNamespace() === NS_FILE ) {
-				$this->mergeUserRightStatus( $status, $user, 'movefile', !$short, 'movenotallowedfile' );
+				$this->mergeUserRightStatus( $status, $user, 'movefile', $rigor, !$short, 'movenotallowedfile' );
 			}
 
 			// Check if user is allowed to move category pages if it's a category page
 			if ( $title->getNamespace() === NS_CATEGORY ) {
-				$this->mergeUserRightStatus( $status, $user, 'move-categorypages', !$short, 'cant-move-category-page' );
+				$this->mergeUserRightStatus( $status, $user, 'move-categorypages', $rigor, !$short,
+					'cant-move-category-page' );
 			}
 
-			$moveStatus = $this->getUserRightStatus( $user, 'move', !$short );
+			$moveStatus = $this->getUserRightStatus( $user, 'move', $rigor, !$short );
 			if ( !$moveStatus->isOK() ) {
 				// User can't move anything
 				$userCanMove = $this->groupPermissionsLookup
@@ -1026,21 +1031,22 @@ class PermissionManager {
 				}
 			}
 		} elseif ( $action === 'move-target' ) {
-			if ( !$this->mergeUserRightStatus( $status, $user, 'move', !$short, 'movenotallowed' ) ) {
+			if ( !$this->mergeUserRightStatus( $status, $user, 'move', $rigor, !$short, 'movenotallowed' ) ) {
 				// User can't move anything, don't check the conditions below
 			} elseif ( $title->getNamespace() === NS_USER && !$isSubPage ) {
 				// Show user page-specific message only if the user can move other pages
-				$this->mergeUserRightStatus( $status, $user, 'move-rootuserpages', !$short, 'cant-move-to-user-page' );
+				$this->mergeUserRightStatus( $status, $user, 'move-rootuserpages', $rigor, !$short,
+					'cant-move-to-user-page' );
 			} elseif ( $title->getNamespace() === NS_CATEGORY ) {
 				// Show category page-specific message only if the user can move other pages
-				$this->mergeUserRightStatus( $status, $user, 'move-categorypages', !$short,
+				$this->mergeUserRightStatus( $status, $user, 'move-categorypages', $rigor, !$short,
 					'cant-move-to-category-page' );
 			}
 		} elseif ( $action === 'autocreateaccount' ) {
 			// createaccount implies autocreateaccount
-			$this->mergeUserRightStatus( $status, $user, [ 'autocreateaccount', 'createaccount' ], !$short );
+			$this->mergeUserRightStatus( $status, $user, [ 'autocreateaccount', 'createaccount' ], $rigor, !$short );
 		} else {
-			$this->mergeUserRightStatus( $status, $user, $action, !$short );
+			$this->mergeUserRightStatus( $status, $user, $action, $rigor, !$short );
 		}
 	}
 
@@ -1383,15 +1389,22 @@ class PermissionManager {
 		// Sitewide CSS/JSON/JS/RawHTML changes, like all NS_MEDIAWIKI changes, also require the
 		// editinterface right. That's implemented as a restriction so no check needed here.
 		if ( $title->isSiteCssConfigPage() ) {
-			$this->mergeUserRightStatus( $status, $user, 'editsitecss', !$short, 'sitecssprotected', $action );
+			$this->mergeUserRightStatus( $status, $user, 'editsitecss', $rigor, !$short,
+				'sitecssprotected', $action );
 		} elseif ( $title->isSiteJsonConfigPage() ) {
-			$this->mergeUserRightStatus( $status, $user, 'editsitejson', !$short, 'sitejsonprotected', $action );
+			$this->mergeUserRightStatus( $status, $user, 'editsitejson', $rigor, !$short,
+				'sitejsonprotected', $action );
 		} elseif ( $title->isSiteJsConfigPage() ) {
-			$this->mergeUserRightStatus( $status, $user, 'editsitejs', !$short, 'sitejsprotected', $action );
+			$this->mergeUserRightStatus( $status, $user, 'editsitejs', $rigor, !$short,
+				'sitejsprotected', $action );
 		} elseif ( $title->isRawHtmlMessage() ) {
 			// Editing raw HTML messages requires both editsitejs AND editsitecss
-			if ( $this->mergeUserRightStatus( $status, $user, 'editsitejs', !$short, 'siterawhtmlprotected' ) ) {
-				$this->mergeUserRightStatus( $status, $user, 'editsitecss', !$short, 'siterawhtmlprotected', $action );
+			if (
+				$this->mergeUserRightStatus( $status, $user, 'editsitejs', $rigor, !$short,
+					'siterawhtmlprotected', $action )
+			) {
+				$this->mergeUserRightStatus( $status, $user, 'editsitecss', $rigor, !$short,
+					'siterawhtmlprotected', $action );
 			}
 		}
 	}
@@ -1425,14 +1438,16 @@ class PermissionManager {
 		if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $title->getText() ) ) {
 			// Users need editmyuser* to edit their own CSS/JSON/JS subpages.
 			if ( $title->isUserCssConfigPage() ) {
-				$this->mergeUserRightStatus( $status, $user, [ 'editmyusercss', 'editusercss' ], !$short,
+				$this->mergeUserRightStatus( $status, $user, [ 'editmyusercss', 'editusercss' ], $rigor, !$short,
 					'mycustomcssprotected', $action );
 			} elseif ( $title->isUserJsonConfigPage() ) {
-				$this->mergeUserRightStatus( $status, $user, [ 'editmyuserjson', 'edituserjson' ], !$short,
+				$this->mergeUserRightStatus( $status, $user, [ 'editmyuserjson', 'edituserjson' ], $rigor, !$short,
 					'mycustomjsonprotected', $action );
 			} elseif ( $title->isUserJsConfigPage() ) {
-				if ( $this->mergeUserRightStatus( $status, $user, [ 'editmyuserjs', 'edituserjs' ], !$short,
-					'mycustomjsprotected', $action ) ) {
+				if (
+					$this->mergeUserRightStatus( $status, $user, [ 'editmyuserjs', 'edituserjs' ], $rigor, !$short,
+						'mycustomjsprotected', $action )
+				) {
 					// T207750 - do not allow users to edit a redirect if they couldn't edit the target
 					$target = $this->redirectLookup->getRedirectTarget( $title );
 					if ( $target && (
@@ -1441,8 +1456,8 @@ class PermissionManager {
 					) ) {
 						// The target is not a user JS page belonging to the same user
 						// Only allow editing if the user has either editmyuserjsredirect or edituserjs
-						$this->mergeUserRightStatus( $status, $user, [ 'editmyuserjsredirect', 'edituserjs' ], !$short,
-							'mycustomjsredirectprotected', $action );
+						$this->mergeUserRightStatus( $status, $user, [ 'editmyuserjsredirect', 'edituserjs' ],
+							$rigor, !$short, 'mycustomjsredirectprotected', $action );
 					}
 				}
 			}
@@ -1454,20 +1469,33 @@ class PermissionManager {
 			// and only very highly privileged users could remove it,
 			// are now a part of `getPermissionStatus` and this method isn't called.
 			if ( $title->isUserCssConfigPage() ) {
-				$this->mergeUserRightStatus( $status, $user, 'editusercss', !$short, 'customcssprotected', $action );
+				$this->mergeUserRightStatus( $status, $user, 'editusercss', $rigor, !$short,
+					'customcssprotected', $action );
 			} elseif ( $title->isUserJsonConfigPage() ) {
-				$this->mergeUserRightStatus( $status, $user, 'edituserjson', !$short, 'customjsonprotected', $action );
+				$this->mergeUserRightStatus( $status, $user, 'edituserjson', $rigor, !$short,
+					'customjsonprotected', $action );
 			} elseif ( $title->isUserJsConfigPage() ) {
-				$this->mergeUserRightStatus( $status, $user, 'edituserjs', !$short, 'customjsprotected', $action );
+				$this->mergeUserRightStatus( $status, $user, 'edituserjs', $rigor, !$short,
+					'customjsprotected', $action );
 			}
 		}
 	}
 
 	/**
-	 * Check whether the user is generally allowed to perform the given action.
+	 * Check whether the user is generally allowed to perform the given action. This checks
+	 * the user's rights and their reauthentication status.
+	 *
+	 * If the requested action requires reauthentication, the returned PermissionStatus object
+	 * will indicate this. The caller can call ->getReauthOperation() to check whether reauthentication
+	 * is required, and get the operation the user needs to reauthenticate for. If $rigor is not
+	 * RIGOR_SECURE, the returned PermissionStatus will be OK even if reauthentication is required;
+	 * this should be used for GUI code that should act as if the action will be allowed.
 	 *
 	 * @param UserIdentity $user
 	 * @param string $right
+	 * @param string $rigor One of PermissionManager::RIGOR_ constants. If this is RIGOR_SECURE,
+	 *   a reauthentication requirement is considered a fatal error. Otherwise, it's considered
+	 *   non-fatal: the returned status will have an error, but ->isOK() will return true.
 	 * @param bool $detailedPermissionErrors If true, use a detailed error message that explains
 	 *   which groups the user needs to be in to be allowed to take the action. If false, use a
 	 *   generic "not allowed" error message ('badaccess-group0')
@@ -1477,6 +1505,7 @@ class PermissionManager {
 	public function getUserRightStatus(
 		UserIdentity $user,
 		string $right,
+		string $rigor = self::RIGOR_SECURE,
 		bool $detailedPermissionErrors = true,
 	): PermissionStatus {
 		$status = PermissionStatus::newEmpty();
@@ -1493,6 +1522,32 @@ class PermissionManager {
 			&& !in_array( $right, $this->getUserPermissions( $user ), true )
 		) {
 			$this->missingPermissionError( $right, !$detailedPermissionErrors, $status );
+			return $status;
+		}
+
+		// Deny actions that require reauthentication if the user hasn't recently reauthenticated
+		$operation = $this->options->get( MainConfigNames::ReauthenticateForActions )[ $right ] ?? false;
+		if ( $operation !== false ) {
+			// securitySensitiveOperationStatus() can only check for the currently logged-in user
+			// If $user is not that user, we can't check whether they've reauthenticated, so behave
+			// as if they haven't.
+			// FIXME move securitySensitiveOperationStatus to Session or SessionBackend, so that we
+			// can use it here. We can't dependency-inject AuthManager because of a circular dependency.
+			$authManager = MediaWikiServices::getInstance()->getAuthManager();
+			$reauth = $authManager->getRequest()->getSession()->getUser()->equals( $user ) ?
+				$authManager->securitySensitiveOperationStatus( $operation ) :
+				AuthManager::SEC_FAIL;
+
+			if ( $reauth === AuthManager::SEC_REAUTH ) {
+				$status->setReauthOperation( $operation );
+				if ( $rigor === self::RIGOR_SECURE ) {
+					$status->fatal( 'badaccess-reauthenticate', $operation );
+				}
+			} elseif ( $reauth === AuthManager::SEC_FAIL ) {
+				$status->setReauthOperation( $operation );
+				// If the user cannot reauthenticate, that is fatal regardless of $rigor
+				$status->fatal( 'badaccess-cannotreauthenticate', $operation );
+			}
 		}
 
 		return $status;
@@ -1509,6 +1564,7 @@ class PermissionManager {
 	 * @param string|string[] $right One or more rights to check permissions for. If multiple actions
 	 *   are provided, the permission check will succeed if the user has ANY of these rights, and
 	 *   will only fail if the user lacks all of them.
+	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 * @param bool $detailedPermissionErrors See getUserRightStatus()
 	 * @param string|null $extraError More specific error message to add in case of failure.
 	 *   If $detailedPermissionErrors is true, this is added before the generic permission error.
@@ -1520,13 +1576,14 @@ class PermissionManager {
 		PermissionStatus $status,
 		UserIdentity $user,
 		string|array $right,
+		string $rigor = self::RIGOR_SECURE,
 		bool $detailedPermissionErrors = true,
 		?string $extraError = null,
 		...$extraParams
 	): bool {
 		$rightStatus = null;
 		foreach ( (array)$right as $r ) {
-			$rightStatus = $this->getUserRightStatus( $user, $r, $detailedPermissionErrors );
+			$rightStatus = $this->getUserRightStatus( $user, $r, $rigor, $detailedPermissionErrors );
 			if ( $rightStatus->isOK() ) {
 				// Success, stop here
 				$status->merge( $rightStatus );
@@ -1563,7 +1620,7 @@ class PermissionManager {
 			return true;
 		}
 
-		return $this->getUserRightStatus( $user, $action, false )->isOK();
+		return $this->getUserRightStatus( $user, $action, self::RIGOR_SECURE, false )->isOK();
 	}
 
 	/**
