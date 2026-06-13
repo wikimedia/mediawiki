@@ -67,85 +67,76 @@ class FileTest extends MediaWikiMediaTestCase {
 
 		$this->assertEquals(
 			$data['expectedBucket'],
-			$fileMock->getThumbnailBucket( $data['requestedWidth'] ),
-			$data['message'] );
+			$fileMock->getThumbnailBucket( $data['requestedWidth'] )
+		);
 	}
 
 	public static function getThumbnailBucketProvider() {
 		$defaultBuckets = [ 256, 512, 1024, 2048, 4096 ];
 
 		return [
-			[ [
+			'Picking bucket bigger than requested size 120px' => [ [
 				'buckets' => $defaultBuckets,
 				'minimumBucketDistance' => 0,
 				'width' => 3000,
 				'requestedWidth' => 120,
 				'expectedBucket' => 256,
-				'message' => 'Picking bucket bigger than requested size'
 			] ],
-			[ [
+			'Picking bucket bigger than requested size 300px' => [ [
 				'buckets' => $defaultBuckets,
 				'minimumBucketDistance' => 0,
 				'width' => 3000,
 				'requestedWidth' => 300,
 				'expectedBucket' => 512,
-				'message' => 'Picking bucket bigger than requested size'
 			] ],
-			[ [
+			'Picking bucket bigger than requested size 1024px' => [ [
 				'buckets' => $defaultBuckets,
 				'minimumBucketDistance' => 0,
 				'width' => 3000,
 				'requestedWidth' => 1024,
 				'expectedBucket' => 2048,
-				'message' => 'Picking bucket bigger than requested size'
 			] ],
-			[ [
+			'Picking no bucket because none is bigger than the requested size' => [ [
 				'buckets' => $defaultBuckets,
 				'minimumBucketDistance' => 0,
 				'width' => 3000,
 				'requestedWidth' => 2048,
 				'expectedBucket' => false,
-				'message' => 'Picking no bucket because none is bigger than the requested size'
 			] ],
-			[ [
+			'Picking no bucket because requested size is bigger than original' => [ [
 				'buckets' => $defaultBuckets,
 				'minimumBucketDistance' => 0,
 				'width' => 3000,
 				'requestedWidth' => 3500,
 				'expectedBucket' => false,
-				'message' => 'Picking no bucket because requested size is bigger than original'
 			] ],
-			[ [
+			'Picking no bucket because requested size equals biggest bucket' => [ [
 				'buckets' => [ 1024 ],
 				'minimumBucketDistance' => 0,
 				'width' => 3000,
 				'requestedWidth' => 1024,
 				'expectedBucket' => false,
-				'message' => 'Picking no bucket because requested size equals biggest bucket'
 			] ],
-			[ [
+			'Picking no bucket because no buckets have been specified' => [ [
 				'buckets' => null,
 				'minimumBucketDistance' => 0,
 				'width' => 3000,
 				'requestedWidth' => 1024,
 				'expectedBucket' => false,
-				'message' => 'Picking no bucket because no buckets have been specified'
 			] ],
-			[ [
+			'Requested width is distant enough from next bucket for it to be picked' => [ [
 				'buckets' => [ 256, 512 ],
 				'minimumBucketDistance' => 10,
 				'width' => 3000,
 				'requestedWidth' => 245,
 				'expectedBucket' => 256,
-				'message' => 'Requested width is distant enough from next bucket for it to be picked'
 			] ],
-			[ [
+			'Requested width is too close to next bucket, picking next one' => [ [
 				'buckets' => [ 256, 512 ],
 				'minimumBucketDistance' => 10,
 				'width' => 3000,
 				'requestedWidth' => 246,
 				'expectedBucket' => 512,
-				'message' => 'Requested width is too close to next bucket, picking next one'
 			] ],
 		];
 	}
@@ -209,52 +200,46 @@ class FileTest extends MediaWikiMediaTestCase {
 
 		$this->assertEquals(
 			str_replace( '/tmp', $tempDir, $data['expectedPath'] ),
-			$result['path'],
-			$data['message']
+			$result['path']
 		);
 	}
 
 	public static function getThumbnailSourceProvider() {
 		return [
-			[ [
+			'Path downloaded from storage' => [ [
 				'supportsBucketing' => true,
 				'tmpBucketedThumbCache' => null,
 				'thumbnailBucket' => 1024,
 				'physicalWidth' => 2048,
 				'expectedPath' => 'fsFilePath',
-				'message' => 'Path downloaded from storage'
 			] ],
-			[ [
+			'Path downloaded from storage because temp file is missing' => [ [
 				'supportsBucketing' => true,
 				'tmpBucketedThumbCache' => [ 1024 => '/tmp/shouldnotexist' . rand() ],
 				'thumbnailBucket' => 1024,
 				'physicalWidth' => 2048,
 				'expectedPath' => 'fsFilePath',
-				'message' => 'Path downloaded from storage because temp file is missing'
 			] ],
-			[ [
+			'Temporary path because temp file was found' => [ [
 				'supportsBucketing' => true,
 				'tmpBucketedThumbCache' => [ 1024 => '/tmp' ],
 				'thumbnailBucket' => 1024,
 				'physicalWidth' => 2048,
 				'expectedPath' => '/tmp',
-				'message' => 'Temporary path because temp file was found'
 			] ],
-			[ [
+			'Original file path because bucketing is unsupported by handler' => [ [
 				'supportsBucketing' => false,
 				'tmpBucketedThumbCache' => null,
 				'thumbnailBucket' => 1024,
 				'physicalWidth' => 2048,
 				'expectedPath' => 'localRefPath',
-				'message' => 'Original file path because bucketing is unsupported by handler'
 			] ],
-			[ [
+			'Original file path because no width provided' => [ [
 				'supportsBucketing' => true,
 				'tmpBucketedThumbCache' => null,
 				'thumbnailBucket' => false,
 				'physicalWidth' => 2048,
 				'expectedPath' => 'localRefPath',
-				'message' => 'Original file path because no width provided'
 			] ],
 		];
 	}
@@ -315,15 +300,15 @@ class FileTest extends MediaWikiMediaTestCase {
 				[
 					'physicalWidth' => $data['physicalWidth'],
 					'physicalHeight' => $data['physicalHeight'] ]
-				),
-				$data['message'] );
+			)
+		);
 	}
 
 	public static function generateBucketsIfNeededProvider() {
 		$defaultBuckets = [ 256, 512, 1024, 2048, 4096 ];
 
 		return [
-			[ [
+			'No bucket found, nothing to generate' => [ [
 				'buckets' => $defaultBuckets,
 				'width' => 256,
 				'physicalWidth' => 256,
@@ -336,9 +321,8 @@ class FileTest extends MediaWikiMediaTestCase {
 				'expectedGenerateAndSaveThumb' => self::never(),
 				'generateAndSaveThumbReturn' => false,
 				'expectedResult' => false,
-				'message' => 'No bucket found, nothing to generate'
 			] ],
-			[ [
+			'File already exists, no reason to generate buckets' => [ [
 				'buckets' => $defaultBuckets,
 				'width' => 5000,
 				'physicalWidth' => 300,
@@ -351,9 +335,8 @@ class FileTest extends MediaWikiMediaTestCase {
 				'expectedGenerateAndSaveThumb' => self::never(),
 				'generateAndSaveThumbReturn' => false,
 				'expectedResult' => false,
-				'message' => 'File already exists, no reason to generate buckets'
 			] ],
-			[ [
+			'Cannot generate temp file for bucket' => [ [
 				'buckets' => $defaultBuckets,
 				'width' => 5000,
 				'physicalWidth' => 300,
@@ -366,9 +349,8 @@ class FileTest extends MediaWikiMediaTestCase {
 				'expectedGenerateAndSaveThumb' => self::never(),
 				'generateAndSaveThumbReturn' => false,
 				'expectedResult' => false,
-				'message' => 'Cannot generate temp file for bucket'
 			] ],
-			[ [
+			'Bucket image could not be generated' => [ [
 				'buckets' => $defaultBuckets,
 				'width' => 5000,
 				'physicalWidth' => 300,
@@ -381,9 +363,8 @@ class FileTest extends MediaWikiMediaTestCase {
 				'expectedGenerateAndSaveThumb' => self::once(),
 				'generateAndSaveThumbReturn' => false,
 				'expectedResult' => false,
-				'message' => 'Bucket image could not be generated'
 			] ],
-			[ [
+			'Bucket image could be generated' => [ [
 				'buckets' => $defaultBuckets,
 				'width' => 5000,
 				'physicalWidth' => 300,
@@ -396,7 +377,6 @@ class FileTest extends MediaWikiMediaTestCase {
 				'expectedGenerateAndSaveThumb' => self::once(),
 				'generateAndSaveThumbReturn' => new ThumbnailImage( false, 'bar', false, false ),
 				'expectedResult' => true,
-				'message' => 'Bucket image could not be generated'
 			] ],
 		];
 	}
