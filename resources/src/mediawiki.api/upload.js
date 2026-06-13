@@ -168,7 +168,7 @@
 				promise = next;
 			}
 
-			return deferred.promise( { abort: active.abort } );
+			return deferred.promise( { abort: () => active.abort() } );
 		},
 
 		/**
