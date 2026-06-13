@@ -648,7 +648,16 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		// warning header for non-standard workflows (e.g. security reauthentication)
 		if ( $this->getUser()->isNamed() && !$this->isContinued() ) {
 			if ( !$this->isSignup() && $this->securityLevel ) {
-				$submitStatus->warning( 'userlogin-reauth', $this->getUser()->getName() );
+				$securityLevelLower = strtolower( $this->securityLevel );
+				if ( $this->msg( "userlogin-reauth-banner-$securityLevelLower" )->exists() ) {
+					$submitStatus->warning( "userlogin-reauth-banner-$securityLevelLower" );
+				} else {
+					$submitStatus->warning( 'userlogin-reauth-banner-generic', $this->securityLevel );
+				}
+				$form->addHeaderHtml(
+					$this->msg( 'userlogin-reauth-description' )
+					->parseAsBlock()
+				);
 			} else {
 				// User is accessing the login or signup page while already logged in.
 				// Add a big warning and a button to leave this page (T284927),
