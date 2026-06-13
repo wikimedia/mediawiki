@@ -2967,91 +2967,68 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * Tests a particular case of transformCssMedia, using the given input, globals,
-	 * expected return, and message
-	 *
-	 * Asserts that $expectedReturn is returned.
-	 *
-	 * options['queryData'] - value of query string
-	 * options['media'] - passed into the method under the same name
-	 * options['expectedReturn'] - expected return value
-	 * options['message'] - PHPUnit message for assertion
-	 *
-	 * @param array $args Key-value array of arguments as shown above
-	 */
-	protected function assertTransformCssMediaCase( $args ) {
-		$queryData = $args['queryData'] ?? [];
-
+	/** @dataProvider provideTransformCssMedia */
+	protected function testTransformCssMedia( $queryData, $media, $expectedReturn ) {
 		$fauxRequest = new FauxRequest( $queryData, false );
 
-		$actualReturn = OutputPage::transformCssMedia( $args['media'], $fauxRequest );
-		$this->assertSame( $args['expectedReturn'], $actualReturn, $args['message'] );
+		$actualReturn = OutputPage::transformCssMedia( $media, $fauxRequest );
+		$this->assertSame( $expectedReturn, $actualReturn );
 	}
 
-	public function testPrintRequests() {
-		$this->assertTransformCssMediaCase( [
+	public static function provideTransformCssMedia() {
+		yield 'On printable request, screen returns null' => [
 			'queryData' => [ 'printable' => '1' ],
 			'media' => 'screen',
 			'expectedReturn' => null,
-			'message' => 'On printable request, screen returns null'
-		] );
+		];
 
-		$this->assertTransformCssMediaCase( [
+		yield 'On printable request, screen media query returns null' => [
 			'queryData' => [ 'printable' => '1' ],
 			'media' => self::SCREEN_MEDIA_QUERY,
 			'expectedReturn' => null,
-			'message' => 'On printable request, screen media query returns null'
-		] );
+		];
 
-		$this->assertTransformCssMediaCase( [
+		yield 'On printable request, screen media query with only returns null' => [
 			'queryData' => [ 'printable' => '1' ],
 			'media' => self::SCREEN_ONLY_MEDIA_QUERY,
 			'expectedReturn' => null,
-			'message' => 'On printable request, screen media query with only returns null'
-		] );
+		];
 
-		$this->assertTransformCssMediaCase( [
+		yield 'On printable request, media print returns empty string' => [
 			'queryData' => [ 'printable' => '1' ],
 			'media' => 'print',
 			'expectedReturn' => '',
-			'message' => 'On printable request, media print returns empty string'
-		] );
-	}
+		];
 
-	/**
-	 * Test screen requests, without either query parameter set
-	 */
-	public function testScreenRequests() {
-		$this->assertTransformCssMediaCase( [
+		yield 'On screen request, screen media type is preserved' => [
+			'queryData' => [],
 			'media' => 'screen',
 			'expectedReturn' => 'screen',
-			'message' => 'On screen request, screen media type is preserved'
-		] );
+		];
 
-		$this->assertTransformCssMediaCase( [
+		yield 'On screen request, handheld media type is preserved' => [
+			'queryData' => [],
 			'media' => 'handheld',
 			'expectedReturn' => 'handheld',
-			'message' => 'On screen request, handheld media type is preserved'
-		] );
+		];
 
-		$this->assertTransformCssMediaCase( [
+		yield 'On screen request, screen media query is preserved.' => [
+			'queryData' => [],
 			'media' => self::SCREEN_MEDIA_QUERY,
 			'expectedReturn' => self::SCREEN_MEDIA_QUERY,
-			'message' => 'On screen request, screen media query is preserved.'
-		] );
+		];
 
-		$this->assertTransformCssMediaCase( [
+		yield 'On screen request, screen media query with only is preserved.' => [
+			'queryData' => [],
 			'media' => self::SCREEN_ONLY_MEDIA_QUERY,
 			'expectedReturn' => self::SCREEN_ONLY_MEDIA_QUERY,
-			'message' => 'On screen request, screen media query with only is preserved.'
-		] );
+		];
 
-		$this->assertTransformCssMediaCase( [
+		yield 'On screen request, print media type is preserved' => [
+			'queryData' => [],
 			'media' => 'print',
 			'expectedReturn' => 'print',
-			'message' => 'On screen request, print media type is preserved'
-		] );
+		];
 	}
 
 	public function testIsTOCEnabled() {
