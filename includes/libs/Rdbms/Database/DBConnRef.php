@@ -261,11 +261,6 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 	}
 
 	/** @inheritDoc */
-	public function getProperty( $name ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	/** @inheritDoc */
 	public function getDomainID() {
 		if ( $this->conn === null ) {
 			// Avoid triggering a database connection
@@ -892,11 +887,6 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 
 	/** @inheritDoc */
 	public function tableName( $name, $format = 'quoted' ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	/** @inheritDoc */
-	public function tableNames( ...$tables ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
