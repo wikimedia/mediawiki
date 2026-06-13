@@ -511,7 +511,10 @@ class SvgHandler extends ImageHandler {
 		];
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @param array $unser
+	 * @return array|null
+	 */
 	protected function validateMetadata( $unser ) {
 		if ( isset( $unser['version'] ) && $unser['version'] === self::SVG_METADATA_VERSION ) {
 			return $unser;

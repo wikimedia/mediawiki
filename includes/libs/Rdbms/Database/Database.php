@@ -3301,7 +3301,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $this->transactionManager->trxTimestamp();
 	}
 
-	/** @inheritDoc */
+	/** @return int */
 	public function trxStatus() {
 		return $this->transactionManager->trxStatus();
 	}
@@ -3329,7 +3329,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $this->transactionManager->pendingWriteCallers();
 	}
 
-	/** @inheritDoc */
+	/** @return string[] */
 	public function pendingWriteAndCallbackCallers() {
 		if ( !$this->transactionManager ) {
 			return [];
@@ -3337,7 +3337,10 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $this->transactionManager->pendingWriteAndCallbackCallers();
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @return int Number of callbacks attempted
+	 * @throws Throwable Any exception thrown by a callback
+	 */
 	public function runOnTransactionPreCommitCallbacks() {
 		return $this->transactionManager->runOnTransactionPreCommitCallbacks();
 	}
@@ -3448,7 +3451,10 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $this->platform->addIdentifierQuotes( $s );
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @param string $name
+	 * @return bool
+	 */
 	public function isQuotedIdentifier( $name ) {
 		return $this->platform->isQuotedIdentifier( $name );
 	}

@@ -666,12 +666,12 @@ class LocalRepo extends FileRepo {
 		return $this->splitMetadataThreshold;
 	}
 
-	/** @inheritDoc */
+	/** @return bool */
 	public function isMetadataUpdateEnabled() {
 		return $this->updateCompatibleMetadata;
 	}
 
-	/** @inheritDoc */
+	/** @return bool */
 	public function isMetadataReserializeEnabled() {
 		return $this->reserializeMetadata;
 	}

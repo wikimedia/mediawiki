@@ -154,7 +154,7 @@ class RevDelRevisionList extends RevDelList {
 		}
 	}
 
-	/** @inheritDoc */
+	/** @return int */
 	public function getCurrent() {
 		if ( $this->currentRevId === null ) {
 			$dbw = $this->lbFactory->getPrimaryDatabase();

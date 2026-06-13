@@ -174,7 +174,7 @@ class UploadStashPager extends TablePager {
 		return $result;
 	}
 
-	/** @inheritDoc */
+	/** @return void */
 	public function getForm() {
 		$formDescriptor = [];
 		$formDescriptor['limit'] = [

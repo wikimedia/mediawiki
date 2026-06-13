@@ -54,7 +54,6 @@ class UserGroupAssignmentService extends UserGroupAssignmentServiceBase {
 		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 	}
 
-	/** @inheritDoc */
 	public function targetCanHaveUserGroups( UserIdentity $target ): bool {
 		// Basic stuff - don't assign groups to anons and temp. accounts
 		if ( !$target->isRegistered() ) {

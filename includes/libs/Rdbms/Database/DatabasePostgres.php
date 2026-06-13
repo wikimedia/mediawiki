@@ -850,12 +850,19 @@ __INDEXATTR__;
 		return $this->relationExists( $table, [ 'r', 'v' ] );
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @param string $sequence
+	 * @return bool
+	 */
 	public function sequenceExists( $sequence ) {
 		return $this->relationExists( $sequence, 'S' );
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @param string $table
+	 * @param string $constraint
+	 * @return bool
+	 */
 	public function constraintExists( $table, $constraint ) {
 		foreach ( $this->getCoreSchemas() as $schema ) {
 			$sql = sprintf( "SELECT 1 FROM information_schema.table_constraints " .

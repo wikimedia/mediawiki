@@ -610,7 +610,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @param int $i
+	 * @param int $flags
+	 * @return IDatabaseForOwner|false
+	 */
 	public function getAnyOpenConnection( $i, $flags = 0 ) {
 		$i = ( $i === self::DB_PRIMARY ) ? ServerInfo::WRITER_INDEX : $i;
 		$conn = false;

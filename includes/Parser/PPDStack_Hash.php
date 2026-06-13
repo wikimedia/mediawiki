@@ -45,7 +45,7 @@ class PPDStack_Hash {
 		return count( $this->stack );
 	}
 
-	/** @inheritDoc */
+	/** @return string[] */
 	public function &getAccum() {
 		return $this->accum;
 	}
@@ -61,7 +61,9 @@ class PPDStack_Hash {
 		}
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @param PPDStackElement_Hash|array $data
+	 */
 	public function push( $data ) {
 		if ( $data instanceof $this->elementClass ) {
 			$this->stack[] = $data;
@@ -73,7 +75,7 @@ class PPDStack_Hash {
 		$this->accum =& $this->top->getAccum();
 	}
 
-	/** @inheritDoc */
+	/** @return PPDStackElement_Hash */
 	public function pop() {
 		if ( $this->stack === [] ) {
 			throw new RuntimeException( __METHOD__ . ': no elements remaining' );
@@ -90,7 +92,9 @@ class PPDStack_Hash {
 		return $temp;
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @param string $s
+	 */
 	public function addPart( $s = '' ) {
 		$this->top->addPart( $s );
 		$this->accum =& $this->top->getAccum();

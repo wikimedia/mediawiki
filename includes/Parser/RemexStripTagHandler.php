@@ -15,7 +15,7 @@ class RemexStripTagHandler extends NullTokenHandler {
 	/** @var string */
 	private $text = '';
 
-	/** @inheritDoc */
+	/** @return string */
 	public function getResult() {
 		return $this->text;
 	}

@@ -90,7 +90,10 @@ class CategoryPager extends AlphabeticPager {
 		return Html::rawElement( 'li', [], $this->getLanguage()->specialList( $link, $count ) ) . "\n";
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @param string $from
+	 * @return string
+	 */
 	public function getStartForm( $from ) {
 		$formDescriptor = [
 			'from' => [

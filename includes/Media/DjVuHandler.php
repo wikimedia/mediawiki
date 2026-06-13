@@ -367,7 +367,7 @@ class DjVuHandler extends ImageHandler {
 		return false;
 	}
 
-	/** @inheritDoc */
+	/** @return array|false */
 	protected function getDimensionInfo( File $file ) {
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(

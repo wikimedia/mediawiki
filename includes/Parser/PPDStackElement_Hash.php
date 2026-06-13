@@ -64,12 +64,14 @@ class PPDStackElement_Hash {
 		}
 	}
 
-	/** @inheritDoc */
+	/** @return string[] */
 	public function &getAccum() {
 		return $this->parts[count( $this->parts ) - 1]->out;
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @param string $s
+	 */
 	public function addPart( $s = '' ) {
 		$class = $this->partClass;
 		$this->parts[] = new $class( $s );

@@ -202,7 +202,7 @@ class DatabaseLogEntry extends LogEntryBase {
 		return $this->params;
 	}
 
-	/** @inheritDoc */
+	/** @return int */
 	public function getAssociatedRevId() {
 		// This extracts the property
 		$this->getParameters();

@@ -198,7 +198,8 @@ class JsonCodec
 	}
 
 	/**
-	 * @inheritDoc
+	 * @param mixed $value
+	 * @return string
 	 * @throws JsonException
 	 */
 	public function serialize( $value ) {

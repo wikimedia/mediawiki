@@ -111,7 +111,10 @@ class MySQLPlatform extends SQLPlatform {
 		return "SELECT RELEASE_LOCK($encName) AS released";
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @param string $lockName
+	 * @return string
+	 */
 	public function makeLockName( $lockName ) {
 		// https://dev.mysql.com/doc/refman/5.7/en/locking-functions.html#function_get-lock
 		// MySQL 5.7+ enforces a 64 char length limit.
