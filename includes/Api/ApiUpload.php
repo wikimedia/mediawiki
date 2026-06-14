@@ -232,15 +232,46 @@ class ApiUpload extends ApiBase {
 		$result = $this->getResult();
 		// Calling a different API module depending on whether the file was stashed is less than optimal.
 		// In fact, calling API modules here at all is less than optimal. Maybe it should be refactored.
+
+		// TODO: Reduce to what is needed
+		//
+		// Prior to May 2026 this used ApiQueryImageInfo::getPropertyNames to fetch "all" properties
+		// (except "uploadwarning"). It was frozen to avoid adding "thumburls" (T426246) and become
+		// more intentional. Figuring out what's needed is hard due to many levels of indirection,
+		// including mediawiki.Upload.js and mediawiki.Upload.BookletLayout (via API action=upload)
+		// and UploadBase::getSessionStatus (via getUploadImageInfo, UploadJobTrait, UploadFromUrlJob).
+		$iiprops = [
+			'timestamp',
+			'canonicaltitle',
+			'url',
+			'size',
+			'dimensions',
+			'sha1',
+			'mime',
+			'thumbmime',
+			'metadata',
+			'commonmetadata',
+			'extmetadata',
+			'bitdepth',
+			'badfile',
+		];
 		if ( $stashedImageInfos ) {
-			$imParam = ApiQueryStashImageInfo::getPropertyNames();
+			$imParam = $iiprops;
 			$info = ApiQueryStashImageInfo::getInfo(
 				$file,
 				array_fill_keys( $imParam, true ),
 				$result
 			);
 		} else {
-			$imParam = ApiQueryImageInfo::getPropertyNames( [ 'uploadwarning' ] );
+			$imParam = [
+				...$iiprops,
+				'user',
+				'userid',
+				'comment',
+				'parsedcomment',
+				'mediatype',
+				'archivename',
+			];
 			$info = ApiQueryImageInfo::getInfo(
 				$file,
 				array_fill_keys( $imParam, true ),
