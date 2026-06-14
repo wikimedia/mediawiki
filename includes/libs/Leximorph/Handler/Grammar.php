@@ -29,12 +29,6 @@ use Wikimedia\Leximorph\Provider;
 class Grammar {
 
 	/**
-	 * Initializes the Grammar handler with the given transformations provider and a logger.
-	 *
-	 * @param Provider $provider Provider instance.
-	 * @param GrammarFallbackRegistry $postProcessor The post processor registry.
-	 * @param LoggerInterface $logger The logger instance to use.
-	 *
 	 * @since 1.45
 	 */
 	public function __construct(

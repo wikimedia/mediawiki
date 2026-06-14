@@ -38,7 +38,7 @@ class GrammarFallbackRegistry {
 	 *
 	 * @var array<string, array{class: class-string<IGrammarTransformer>, args: array<int, mixed>}>
 	 */
-	private const PROCESSOR_SPECS = [
+	private const array PROCESSOR_SPECS = [
 		'cu' => [
 			'class' => GrammarCu::class,
 			'args' => [],

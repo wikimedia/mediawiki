@@ -22,8 +22,6 @@ class JsonLoader {
 	/**
 	 * Initializes the JsonLoader with a logger.
 	 *
-	 * @param LoggerInterface $logger
-	 *
 	 * @since 1.45
 	 */
 	public function __construct(

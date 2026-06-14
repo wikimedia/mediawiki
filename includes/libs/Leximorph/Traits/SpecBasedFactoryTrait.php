@@ -27,9 +27,6 @@ trait SpecBasedFactoryTrait {
 	 */
 	protected string $langCode;
 
-	/**
-	 * The logger instance.
-	 */
 	protected ?LoggerInterface $logger = null;
 
 	/**

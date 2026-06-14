@@ -36,7 +36,7 @@ class GrammarCu implements IGrammarTransformer {
 		# site names, so it doesn't matter if they are wrong sometimes.
 		# Just add a special case for your site name if necessary.
 
-		# join and array_slice instead mb_substr
+		# join and array_slice instead of mb_substr
 		$ar = [];
 		preg_match_all( '/./us', $word, $ar );
 		if ( !preg_match( "/[a-zA-Z_]/u", $word ) ) {

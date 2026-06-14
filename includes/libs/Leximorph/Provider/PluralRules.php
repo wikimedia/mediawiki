@@ -27,7 +27,7 @@ class PluralRules {
 	/**
 	 * The paths to the plural rules XML files.
 	 */
-	public const PLURAL_FILES = [
+	public const array PLURAL_FILES = [
 		// Load CLDR plural rules
 		__DIR__ . '/../data/plurals.xml',
 		// Override or extend with MW-specific rules
@@ -47,14 +47,6 @@ class PluralRules {
 	private static ?array $pluralData = null;
 
 	/**
-	 * Initializes the PluralRules.
-	 *
-	 * @param string $langCode The language code for which plural rules will be evaluated.
-	 * @param Evaluator $evaluator The evaluator used for compiling and evaluating plural rules.
-	 * @param Provider $provider The provider used to access fallback and related resources.
-	 * @param LoggerInterface $logger The logger instance used for reporting errors.
-	 * @param XmlLoader $xmlLoader The xml loader to load data
-	 *
 	 * @since 1.45
 	 */
 	public function __construct(
@@ -68,8 +60,6 @@ class PluralRules {
 
 	/**
 	 * Finds the index number of the plural rule appropriate for the given number.
-	 *
-	 * @param float $number
 	 *
 	 * @since 1.45
 	 * @return int The index number of the plural rule.
@@ -226,8 +216,6 @@ class PluralRules {
 	/**
 	 * Finds the plural rule type corresponding to the given number.
 	 * For example, if the language is set to Arabic, getPluralRuleType(5) should return 'few'.
-	 *
-	 * @param float $number
 	 *
 	 * @since 1.45
 	 * @return string The name of the plural rule type (e.g., one, two, few, many).

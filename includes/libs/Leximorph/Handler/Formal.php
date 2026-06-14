@@ -27,10 +27,6 @@ use Wikimedia\Leximorph\Provider;
 class Formal {
 
 	/**
-	 * Initializes the Formal handler with the provider.
-	 *
-	 * @param Provider $provider The provider instance to use.
-	 *
 	 * @since 1.45
 	 */
 	public function __construct(

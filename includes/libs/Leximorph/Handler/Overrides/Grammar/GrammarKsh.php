@@ -27,7 +27,7 @@ class GrammarKsh implements IGrammarTransformer {
 	 * Do not add male wiki families, since that's the default.
 	 * No need to add neuter to wikis having names ending in "-wiki".
 	 */
-	private const FAMILYGENDER = [
+	private const array FAMILYGENDER = [
 		'wikipedia' => 'f',
 		'wikiversity' => 'f',
 		'wiktionary' => 'n',
@@ -147,27 +147,17 @@ class GrammarKsh implements IGrammarTransformer {
 			# dä WikiMaatPlaz, di Wikipeedija, dat Wikiwööterbooch
 			# der WikiMaatplaz, de Wikipeedija, et Wikiwööterbooch
 			if ( str_contains( $case, ' b' ) ) {
-				switch ( $gender ) {
-					case 'm':
-						$lord = 'dä';
-						break;
-					case 'f':
-						$lord = 'di';
-						break;
-					default:
-						$lord = 'dat';
-				}
+				$lord = match ( $gender ) {
+					'm' => 'dä',
+					'f' => 'di',
+					default => 'dat',
+				};
 			} else {
-				switch ( $gender ) {
-					case 'm':
-						$lord = 'der';
-						break;
-					case 'f':
-						$lord = 'de';
-						break;
-					default:
-						$lord = 'et';
-				}
+				$lord = match ( $gender ) {
+					'm' => 'der',
+					'f' => 'de',
+					default => 'et',
+				};
 			}
 			$word = $lord . ' ' . $word;
 		}

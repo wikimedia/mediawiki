@@ -30,23 +30,19 @@ class Bidi {
 	/**
 	 * Unicode LEFT-TO-RIGHT EMBEDDING character (U+202A).
 	 */
-	public const LRE = "\xE2\x80\xAA";
+	public const string LRE = "\xE2\x80\xAA";
 
 	/**
 	 * Unicode RIGHT-TO-LEFT EMBEDDING character (U+202B).
 	 */
-	public const RLE = "\xE2\x80\xAB";
+	public const string RLE = "\xE2\x80\xAB";
 
 	/**
 	 * Unicode POP DIRECTIONAL FORMATTING character (U+202C).
 	 */
-	public const PDF = "\xE2\x80\xAC";
+	public const string PDF = "\xE2\x80\xAC";
 
 	/**
-	 * Initializes the Bidi handler with the provider.
-	 *
-	 * @param Provider $provider The provider instance to use.
-	 *
 	 * @since 1.45
 	 */
 	public function __construct(

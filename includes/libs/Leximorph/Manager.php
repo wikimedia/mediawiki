@@ -54,7 +54,7 @@ final class Manager {
 	 *
 	 * @var array<class-string, array<string, mixed>>
 	 */
-	private const HANDLER_SPECS = [
+	private const array HANDLER_SPECS = [
 		Bidi::class => [
 			'args' => [],
 			'needsProvider' => true,
@@ -79,7 +79,6 @@ final class Manager {
 		],
 	];
 
-	/** @var Provider Shared provider */
 	private Provider $provider;
 
 	/**
@@ -141,7 +140,6 @@ final class Manager {
 	 * Get the Bidi handler.
 	 *
 	 * @since 1.45
-	 * @return Bidi
 	 */
 	public function getBidi(): Bidi {
 		return $this->createFromSpec( Bidi::class );
@@ -151,7 +149,6 @@ final class Manager {
 	 * Get the Formal handler.
 	 *
 	 * @since 1.45
-	 * @return Formal
 	 */
 	public function getFormal(): Formal {
 		return $this->createFromSpec( Formal::class );
@@ -161,7 +158,6 @@ final class Manager {
 	 * Get the Gender handler.
 	 *
 	 * @since 1.45
-	 * @return Gender
 	 */
 	public function getGender(): Gender {
 		return $this->createFromSpec( Gender::class );
@@ -171,7 +167,6 @@ final class Manager {
 	 * Get the Grammar handler.
 	 *
 	 * @since 1.45
-	 * @return Grammar
 	 */
 	public function getGrammar(): Grammar {
 		return $this->createFromSpec( Grammar::class );
@@ -181,7 +176,6 @@ final class Manager {
 	 * Get the Plural handler.
 	 *
 	 * @since 1.45
-	 * @return Plural
 	 */
 	public function getPlural(): Plural {
 		return $this->createFromSpec( Plural::class );

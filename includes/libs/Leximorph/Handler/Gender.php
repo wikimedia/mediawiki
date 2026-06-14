@@ -40,15 +40,13 @@ class Gender {
 	 */
 	public function process( string $value, array $options ): string {
 		$male = $options[0] ?? '';
-		$female = $options[1] ?? $male;
-		$other = $options[2] ?? $male;
 
 		if ( $value === 'male' ) {
 			return $male;
 		} elseif ( $value === 'female' ) {
-			return $female;
+			return $options[1] ?? $male;
 		}
 
-		return $other;
+		return $options[2] ?? $male;
 	}
 }

@@ -20,25 +20,14 @@ use Wikimedia\Leximorph\Util\JsonLoader;
  */
 class FormalityIndex {
 
-	/**
-	 * Path to formal indexes JSON file.
-	 */
-	private const FORMALITY_INDEXES_PATH = __DIR__ . '/../data/formal-indexes.json';
+	private const string FORMALITY_INDEXES_PATH = __DIR__ . '/../data/formal-indexes.json';
 
 	/**
-	 * Cached formality indexes.
-	 *
 	 * @var array<string, int>|null
 	 */
 	private static ?array $indexesCache = null;
 
 	/**
-	 * Initializes the FormalityIndex.
-	 *
-	 * @param string $langCode The language code.
-	 * @param LoggerInterface $logger The logger instance to use.
-	 * @param JsonLoader $jsonLoader The json loader to load data
-	 *
 	 * @since 1.45
 	 */
 	public function __construct(

@@ -54,7 +54,7 @@ final class Provider {
 	 *
 	 * @var array<class-string, array<string, mixed>>
 	 */
-	private const PROVIDER_SPECS = [
+	private const array PROVIDER_SPECS = [
 		TextDirection::class => [
 			'args' => [],
 		],
@@ -101,7 +101,6 @@ final class Provider {
 	/**
 	 * Get the current language code.
 	 *
-	 * @return string
 	 * @since 1.45
 	 */
 	public function getLanguageCode(): string {
@@ -121,8 +120,6 @@ final class Provider {
 	}
 
 	/**
-	 * Builds the constructor arguments.
-	 *
 	 * @param array<string,mixed> $spec
 	 *
 	 * @since 1.45
@@ -153,8 +150,6 @@ final class Provider {
 	}
 
 	/**
-	 * Get the TextDirection provider.
-	 *
 	 * @since 1.45
 	 */
 	public function getBidiProvider(): TextDirection {
@@ -162,8 +157,6 @@ final class Provider {
 	}
 
 	/**
-	 * Get the Index provider.
-	 *
 	 * @since 1.45
 	 */
 	public function getFormalityIndexProvider(): FormalityIndex {
@@ -171,30 +164,21 @@ final class Provider {
 	}
 
 	/**
-	 * Get the GrammarTransformations provider.
-	 *
 	 * @since 1.45
-	 * @return GrammarTransformations
 	 */
 	public function getGrammarTransformationsProvider(): GrammarTransformations {
 		return $this->createFromSpec( GrammarTransformations::class );
 	}
 
 	/**
-	 * Get the LanguageFallbacks provider.
-	 *
 	 * @since 1.45
-	 * @return LanguageFallbacks
 	 */
 	public function getLanguageFallbacksProvider(): LanguageFallbacks {
 		return $this->createFromSpec( LanguageFallbacks::class );
 	}
 
 	/**
-	 * Get the PluralRules provider.
-	 *
 	 * @since 1.45
-	 * @return PluralRules
 	 */
 	public function getPluralProvider(): PluralRules {
 		return $this->createFromSpec( PluralRules::class );

@@ -17,10 +17,7 @@ use Wikimedia\Leximorph\Util\JsonLoader;
  */
 class LanguageFallbacks {
 
-	/**
-	 * Path to the fallback language mappings JSON file.
-	 */
-	private const FALLBACKS_PATH = __DIR__ . '/../data/language-fallback-mappings.json';
+	private const string FALLBACKS_PATH = __DIR__ . '/../data/language-fallback-mappings.json';
 
 	/**
 	 * The fallback language codes for this instance's language.
@@ -30,12 +27,6 @@ class LanguageFallbacks {
 	private ?array $fallbacks = null;
 
 	/**
-	 * Initializes the LanguageFallbacks.
-	 *
-	 * @param string $langCode The language code.
-	 * @param LoggerInterface $logger The logger instance to use.
-	 * @param JsonLoader $jsonLoader The json loader to load data.
-	 *
 	 * @since 1.45
 	 */
 	public function __construct(
@@ -46,8 +37,6 @@ class LanguageFallbacks {
 	}
 
 	/**
-	 * Loads the fallback mappings from the JSON file.
-	 *
 	 * @since 1.45
 	 * @return array<int|string, mixed> The entire fallback mapping.
 	 */

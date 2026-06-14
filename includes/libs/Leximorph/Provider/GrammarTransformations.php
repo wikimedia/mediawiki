@@ -22,7 +22,7 @@ class GrammarTransformations {
 	/**
 	 * The paths to the grammar rules JSON files.
 	 */
-	private const TRANSFORMATIONS_PATH = __DIR__ . '/../data/grammarTransformations/';
+	private const string TRANSFORMATIONS_PATH = __DIR__ . '/../data/grammarTransformations/';
 
 	/**
 	 * Cached grammar transformations indexed by language code.
@@ -32,11 +32,6 @@ class GrammarTransformations {
 	private static array $transformationsCache = [];
 
 	/**
-	 * Initializes the GrammarTransformations.
-	 *
-	 * @param string $langCode The language code.
-	 * @param JsonLoader $jsonLoader The json loader to load data
-	 *
 	 * @since 1.45
 	 */
 	public function __construct(

@@ -23,8 +23,6 @@ class XmlLoader {
 	/**
 	 * Initializes the XmlLoader with a logger.
 	 *
-	 * @param LoggerInterface $logger
-	 *
 	 * @since 1.45
 	 */
 	public function __construct(

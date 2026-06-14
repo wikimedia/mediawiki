@@ -27,10 +27,6 @@ use Wikimedia\Leximorph\Provider;
 class Plural {
 
 	/**
-	 * Initializes the Plural handler with the given language code and provider.
-	 *
-	 * @param Provider $provider The provider instance to use.
-	 *
 	 * @since 1.45
 	 */
 	public function __construct(

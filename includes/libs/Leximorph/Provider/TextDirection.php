@@ -26,7 +26,7 @@ class TextDirection {
 	 *
 	 * @var int[]
 	 */
-	private const BIDI_CONTROL_CODES = [
+	private const array BIDI_CONTROL_CODES = [
 		// LEFT-TO-RIGHT EMBEDDING (LRE)
 		0x202A,
 		// RIGHT-TO-LEFT EMBEDDING (RLE)

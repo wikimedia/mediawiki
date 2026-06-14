@@ -337,8 +337,6 @@ class GrammarKk_cyrl implements IGrammarTransformer {
 	}
 
 	/**
-	 * @param string $str
-	 *
 	 * @return string The string with lowercase conversion applied to the first character
 	 */
 	public function lcfirst( string $str ): string {
@@ -359,11 +357,6 @@ class GrammarKk_cyrl implements IGrammarTransformer {
 			: lcfirst( $str );
 	}
 
-	/**
-	 * @param string $str
-	 *
-	 * @return bool
-	 */
 	private function isMultibyte( string $str ): bool {
 		return strlen( $str ) !== mb_strlen( $str );
 	}
