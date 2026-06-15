@@ -50,7 +50,11 @@
 
 		this.watchlist = false;
 		this.text = '';
+		this.autotext = false;
 		this.comment = '';
+		this.license = '';
+		this.copyStatus = '';
+		this.source = '';
 		this.filename = null;
 		this.file = null;
 		this.setState( Upload.State.NEW );
@@ -80,6 +84,18 @@
 	 */
 	UP.setText = function ( text ) {
 		this.text = text;
+	};
+
+	/**
+	 * Set whether the file page wikitext should be generated server-side from
+	 * the comment, license, copyright status and source, overriding the text.
+	 *
+	 * @name mw.Upload.prototype.setAutoText
+	 * @method
+	 * @param {boolean} autotext
+	 */
+	UP.setAutoText = function ( autotext ) {
+		this.autotext = autotext;
 	};
 
 	/**
@@ -162,6 +178,39 @@
 	};
 
 	/**
+	 * Set the license template for the upload.
+	 *
+	 * @name mw.Upload.prototype.setLicense
+	 * @method
+	 * @param {string} license
+	 */
+	UP.setLicense = function ( license ) {
+		this.license = license;
+	};
+
+	/**
+	 * Set the copyright status for the upload.
+	 *
+	 * @name mw.Upload.prototype.setCopyStatus
+	 * @method
+	 * @param {string} copyStatus
+	 */
+	UP.setCopyStatus = function ( copyStatus ) {
+		this.copyStatus = copyStatus;
+	};
+
+	/**
+	 * Set the source for the upload.
+	 *
+	 * @name mw.Upload.prototype.setSource
+	 * @method
+	 * @param {string} source
+	 */
+	UP.setSource = function ( source ) {
+		this.source = source;
+	};
+
+	/**
 	 * Get the text of the file page, to be created on file upload.
 	 *
 	 * @name mw.Upload.prototype.getText
@@ -170,6 +219,17 @@
 	 */
 	UP.getText = function () {
 		return this.text;
+	};
+
+	/**
+	 * Get whether the file page wikitext should be generated server-side.
+	 *
+	 * @name mw.Upload.prototype.getAutoText
+	 * @method
+	 * @return {boolean}
+	 */
+	UP.getAutoText = function () {
+		return this.autotext;
 	};
 
 	/**
@@ -214,6 +274,39 @@
 	 */
 	UP.getComment = function () {
 		return this.comment;
+	};
+
+	/**
+	 * Get the license for the upload.
+	 *
+	 * @name mw.Upload.prototype.getLicense
+	 * @method
+	 * @return {string}
+	 */
+	UP.getLicense = function () {
+		return this.license;
+	};
+
+	/**
+	 * Get the copyright status for the upload.
+	 *
+	 * @name mw.Upload.prototype.getCopyStatus
+	 * @method
+	 * @return {string}
+	 */
+	UP.getCopyStatus = function () {
+		return this.copyStatus;
+	};
+
+	/**
+	 * Get the source for the upload.
+	 *
+	 * @name mw.Upload.prototype.getSource
+	 * @method
+	 * @return {string}
+	 */
+	UP.getSource = function () {
+		return this.source;
 	};
 
 	/**
@@ -380,7 +473,11 @@
 				watchlist: ( this.getWatchlist() ) ? 1 : undefined,
 				comment: this.getComment(),
 				filename: this.getFilename(),
-				text: this.getText()
+				text: this.getText(),
+				license: this.getLicense(),
+				copystatus: this.getCopyStatus(),
+				source: this.getSource(),
+				autotext: this.getAutoText()
 			} ).then( ( result ) => {
 				this.setState( Upload.State.UPLOADED );
 				this.imageinfo = result.upload.imageinfo;

@@ -436,6 +436,44 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$this->assertEquals( 'Success', $result['upload']['result'] );
 	}
 
+	public function testUploadAutotextGeneration() {
+		$this->overrideConfigValue( MainConfigNames::UseCopyrightUpload, true );
+		$this->setTemporaryHook( 'UploadForm:getInitialPageText',
+			static function ( &$pageText, $msg, $config ) {
+				$pageText .= "\n[[Category:Hook-added category]]";
+			}
+		);
+
+		$fileName = 'TestUploadAutotext.jpg';
+		$this->fakeUploadFile( 'file', $fileName, 'image/jpeg', $this->filePath( 'yuv420.jpg' ) );
+
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filename' => $fileName,
+			'file' => 'dummy content',
+			'comment' => 'A test file',
+			'text' => 'This client-supplied text should be overridden.',
+			'autotext' => 1,
+			'license' => 'self|cc-by-sa-4.0',
+			'copystatus' => 'Own work',
+			'source' => 'My camera',
+		], null, $this->uploader );
+
+		$this->assertArrayHasKey( 'upload', $result );
+		$this->assertEquals( 'Success', $result['upload']['result'] );
+
+		$title = Title::makeTitle( NS_FILE, $fileName );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$text = $page->getContent()->getText();
+
+		$this->assertStringContainsString( 'A test file', $text );
+		$this->assertStringContainsString( '{{self|cc-by-sa-4.0}}', $text );
+		$this->assertStringContainsString( 'Own work', $text );
+		$this->assertStringContainsString( 'My camera', $text );
+		$this->assertStringContainsString( '[[Category:Hook-added category]]', $text );
+		$this->assertStringNotContainsString( 'This client-supplied text should be overridden.', $text );
+	}
+
 	public function testUploadStashPublishWithWarnings() {
 		$fileName = 'TestUploadStash.jpg';
 		$mimeType = 'image/jpeg';
@@ -827,5 +865,53 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$this->assertSame( filesize( $filePath ), (int)$result['upload']['imageinfo']['size'] );
 		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
 		$this->assertArrayNotHasKey( 'html', $result['upload']['imageinfo'] );
+	}
+
+	public function testTextIgnoredWhenStashing() {
+		$fileName = 'TestUploadTextIgnoredWhenStashing.jpg';
+		$mimeType = 'image/jpeg';
+		$filePath = $this->filePath( 'yuv420.jpg' );
+
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'comment' => 'dummy comment',
+			'filename' => $fileName,
+			'stash' => 1,
+			'text' => 'This page text should not be set.',
+			'errorformat' => 'raw',
+		], null, $this->uploader );
+
+		// The 'upload-textwithstash' warning is informational and meant to
+		// curb parameter misuse, so the result should be 'Success'.
+		$this->assertArrayHasKey( 'upload', $result );
+		$this->assertSame( 'Success', $result['upload']['result'] );
+		$this->assertArrayHasKey( 'warnings', $result );
+		$warnings = array_column( $result['warnings'], 'code' );
+		$this->assertContains( 'upload-textwithstash', $warnings );
+	}
+
+	public function testAutotextIgnoredWhenStashing() {
+		$fileName = 'TestUploadAutotextIgnoredWhenStashing.jpg';
+		$mimeType = 'image/jpeg';
+		$filePath = $this->filePath( 'yuv420.jpg' );
+
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'comment' => 'dummy comment',
+			'filename' => $fileName,
+			'stash' => 1,
+			'autotext' => 1,
+			'errorformat' => 'raw',
+		], null, $this->uploader );
+
+		// The 'upload-autotextwithstash' warning is informational and meant to
+		// curb parameter misuse, so the result should be 'Success'.
+		$this->assertArrayHasKey( 'upload', $result );
+		$this->assertSame( 'Success', $result['upload']['result'] );
+		$this->assertArrayHasKey( 'warnings', $result );
+		$warnings = array_column( $result['warnings'], 'code' );
+		$this->assertContains( 'upload-autotextwithstash', $warnings );
 	}
 }

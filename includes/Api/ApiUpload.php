@@ -28,6 +28,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Specials\SpecialUpload;
 use MediaWiki\Status\Status;
 use MediaWiki\Upload\Exception\UploadStashBadPathException;
 use MediaWiki\Upload\Exception\UploadStashException;
@@ -111,6 +112,19 @@ class ApiUpload extends ApiBase {
 		// Copy the session key to the file key, for backward compatibility.
 		if ( !$this->mParams['filekey'] && $this->mParams['sessionkey'] ) {
 			$this->mParams['filekey'] = $this->mParams['sessionkey'];
+		}
+
+		// 'text' is only used as the file page's text when actually
+		// publishing. A stash request never creates the page, so 'text' is
+		// ignored.
+		if ( $this->mParams['stash'] && $this->mParams['text'] !== null ) {
+			$this->addWarning( 'apiwarn-upload-textwithstash' );
+		}
+
+		// 'autotext' generates the file page's text when publishing. A stash
+		// request never creates the page, so 'autotext' is ignored.
+		if ( $this->mParams['stash'] && $this->mParams['autotext'] ) {
+			$this->addWarning( 'apiwarn-upload-autotextwithstash' );
 		}
 
 		if ( !$this->mParams['checkstatus'] ) {
@@ -1039,8 +1053,22 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	protected function performUpload( $warnings ) {
-		// Use comment as initial page text by default
-		$this->mParams['text'] ??= $this->mParams['comment'];
+		if ( $this->mParams['autotext'] ) {
+			// Generate the file page wikitext server-side from the provided
+			// parameters, overriding any client-supplied 'text'. Extensions
+			// may alter this text via the UploadForm:getInitialPageText hook,
+			// just like Special:Upload does.
+			$this->mParams['text'] = SpecialUpload::getInitialPageText(
+				$this->mParams['comment'],
+				$this->mParams['license'],
+				$this->mParams['copystatus'],
+				$this->mParams['source'],
+				$this->getConfig()
+			);
+		} else {
+			// Use comment as initial page text by default
+			$this->mParams['text'] ??= $this->mParams['comment'];
+		}
 
 		/** @var LocalFile $file */
 		$file = $this->mUpload->getLocalFile();
@@ -1236,7 +1264,29 @@ class ApiUpload extends ApiBase {
 
 			'async' => false,
 			'checkstatus' => false,
+
+			'autotext' => [
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false,
+			],
+			'license' => [
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_DEFAULT => ''
+			],
 		];
+
+		if ( $this->getConfig()->get( MainConfigNames::UseCopyrightUpload ) ) {
+			$params += [
+				'copystatus' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_DEFAULT => ''
+				],
+				'source' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_DEFAULT => ''
+				],
+			];
+		}
 
 		return $params;
 	}

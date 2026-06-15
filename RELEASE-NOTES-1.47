@@ -162,6 +162,11 @@ For notes on 1.46.x and older releases, see HISTORY.
   the result; the format of the ParserOutput is governed by
   [[mw:Manual:Parser cache/Serialization compatibility]] not by an
   Action API policy. (T428786)
+* (T74768) action=upload has new 'license', 'copystatus', 'source' and
+  'autotext' parameters. When 'autotext' is set, the file page wikitext is
+  generated server-side from 'comment', 'license', 'copystatus' and 'source',
+  overriding the 'text' parameter. Extensions may alter the generated text via
+  the UploadForm:getInitialPageText hook, just like Special:Upload POST.
 * …
 
 === Action API internal changes in 1.47 ===
