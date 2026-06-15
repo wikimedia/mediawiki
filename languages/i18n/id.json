@@ -3160,7 +3160,7 @@
 	"watchlistedit-unwatch-confirmation-accept": "Hapus",
 	"watchlisttools-clear": "Hapus daftar pantauan",
 	"watchlisttools-view": "Tampilkan daftar pantauan",
-	"watchlisttools-edit": "Suntingkan daftar pantauan",
+	"watchlisttools-edit": "Sunting daftar pantauan",
 	"watchlisttools-labels": "Kelola label",
 	"watchlisttools-raw": "Sunting daftar pantauan mentah",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|bicara]])",

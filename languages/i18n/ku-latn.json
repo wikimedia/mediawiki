@@ -1603,7 +1603,7 @@
 	"confirm-watch-top": "Vê rûpelê têxe nav lîsteya te ya şopandinê?",
 	"confirm-watch-label": "Wextê lîsteya şopandinê:",
 	"watchlist-expiry-options": "Daîmî:infinite,1 hefte:1 week,1 meh:1 month,3 meh:3 months,6 meh:6 months, 1 sal:1 year",
-	"watchlist-expires-in-aria-label": "Hêmanên lîsteya şopandinê yên bi dawî dibin",
+	"watchlist-expires-in-aria-label": "Unsirên lîsteya şopandinê yên ku bi dawî dibin",
 	"confirm-watch-button-expiry": "Bişopîne",
 	"confirm-unwatch-button": "Baş e",
 	"confirm-rollback-button": "Baş e",

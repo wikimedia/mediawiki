@@ -30,6 +30,7 @@
 	"botpasswords-bad-appid": "Názov bota „$1“ nie je platný.",
 	"botpasswords-toolong-restrictions": "Bolo zadaných príliš veľa IP adries alebo rozsahov.",
 	"botpasswords-toolong-grants": "Bol vybraných príliš veľa oprávnení.",
+	"botpasswords-too-many": "Dosiahli ste maximálny limit $1 {{PLURAL:$1|botového hesla|botových hesiel|botového hesla|botových hesiel}}. Pred vytváraním nových odstráňte niektoré existujúce botové heslá.",
 	"botpasswords-insert-failed": "Nepodarilo sa pridať názov bota „$1“. Je už pridaný?",
 	"botpasswords-update-failed": "Nepodarilo sa aktualizovať názov bota „$1“. Bol zmazaný?",
 	"botpasswords-created-title": "Heslo bota bolo vytvorené",
