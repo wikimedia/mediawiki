@@ -44,6 +44,9 @@ For notes on 1.46.x and older releases, see HISTORY.
   require reauthentication.
 * $wgRestrictedTagViewRights maps a rights-restricted ("mw-private-" prefixed)
   change tag to the right(s) that may view it. Default: [].
+* (T74768) Added $wgEnableChunkedUploads, which enables JavaScript chunked
+  uploads on upload forms (at least Special:Upload), allowing uploads larger
+  than the PHP request size limit up to $wgMaxUploadSize. Disabled by default.
 * …
 
 ==== Changed configuration ====
@@ -78,6 +81,12 @@ For notes on 1.46.x and older releases, see HISTORY.
   subpages of the user making the edit.
 * (T433203) __EXPECTSHORTPAGE__ on a short page causes it to be hidden
   on Special:ShortPages.
+* (T74768) Special:Upload now handles chunked uploads, increasing the
+  maximum upload size from the PHP limit to $wgMaxUploadSize. A textual
+  progress indicator next to the submit button updates as the upload
+  progresses. Falls back to the old non-chunked behavior if JS is disabled.
+  This is enabled with $wgEnableChunkedUploads, or per-request with a
+  '?usechunked=1' GET parameter.
 * …
 
 === New features for sysadmins in 1.47 ===
@@ -139,6 +148,7 @@ For notes on 1.46.x and older releases, see HISTORY.
 * (T408666) A new hook LinkTargetIsAlwaysKnownBatch allows overriding whether
   links are always known for a batch of link targets at once. It deprecates
   the TitleIsAlwaysKnown hook, which should no longer be used.
+* (T74768) Add support for overriding chunk size in 'mediawiki.Upload.js'.
 * SessionProvider subclasses can override
   allowSecuritySensitiveOperationIfCannotReauthenticate() to fail closed (or
   decide dynamically, based on the session's provider metadata and the current
@@ -199,6 +209,8 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 === Bug fixes in 1.47 ===
 
+* (T74768) Fix an issue in 'mediawiki.Upload.js' where 'watchlist' is set to an
+  integer instead of an enum, resulting in a badvalue error if set.
 * …
 
 === Action API changes in 1.47 ===

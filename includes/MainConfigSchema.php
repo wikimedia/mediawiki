@@ -862,6 +862,22 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Enable chunked uploads on upload forms, at least Special:Upload.
+	 *
+	 * This is a JavaScript-only feature: when enabled, the file is uploaded in
+	 * chunks via the browser, allowing uploads larger than the PHP request size
+	 * limit (up to $wgMaxUploadSize). Clients without JavaScript fall back to
+	 * the regular non-chunked upload bound by the PHP request size limit.
+	 *
+	 * @since 1.47
+	 * @unstable Temporary feature flag, may be removed once chunked uploads
+	 *   are considered stable.
+	 */
+	public const EnableChunkedUploads = [
+		'default' => false,
+	];
+
+	/**
 	 * To disable file delete/restore temporarily
 	 */
 	public const UploadMaintenance = [

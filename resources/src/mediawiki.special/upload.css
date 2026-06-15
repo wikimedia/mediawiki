@@ -25,3 +25,31 @@ p.mw-upload-editlicenses {
 	clear: right;
 	float: right;
 }
+
+.mw-upload-notices .cdx-message {
+	margin: 1em 0;
+}
+
+.mw-upload-progress-bar {
+	margin-top: 1em;
+}
+
+.mw-upload-progress-bar--hidden {
+	display: none;
+}
+
+.mw-upload-progress-status {
+	margin-top: 0.5em;
+}
+
+.mw-upload-maxfilesize-js {
+	display: none;
+}
+
+.client-js .mw-upload-maxfilesize-js {
+	display: inline;
+}
+
+.client-js .mw-upload-maxfilesize-nojs {
+	display: none;
+}

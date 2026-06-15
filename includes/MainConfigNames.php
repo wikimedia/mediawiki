@@ -251,6 +251,12 @@ class MainConfigNames {
 	public const EnableAsyncUploadsByURL = 'EnableAsyncUploadsByURL';
 
 	/**
+	 * Name constant for the EnableChunkedUploads setting, for use with Config::get()
+	 * @see MainConfigSchema::EnableChunkedUploads
+	 */
+	public const EnableChunkedUploads = 'EnableChunkedUploads';
+
+	/**
 	 * Name constant for the UploadMaintenance setting, for use with Config::get()
 	 * @see MainConfigSchema::UploadMaintenance
 	 */

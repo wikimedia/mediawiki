@@ -236,6 +236,12 @@ $wgEnableAsyncUploads = null;
 $wgEnableAsyncUploadsByURL = null;
 
 /**
+ * Config variable stub for the EnableChunkedUploads setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::EnableChunkedUploads
+ */
+$wgEnableChunkedUploads = null;
+
+/**
  * Config variable stub for the UploadMaintenance setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::UploadMaintenance
  */

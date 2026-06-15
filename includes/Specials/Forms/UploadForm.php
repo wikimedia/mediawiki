@@ -135,6 +135,18 @@ class UploadForm extends HTMLForm {
 	}
 
 	/**
+	 * Whether the JavaScript chunked-upload path should be offered for this
+	 * request, either via the $wgEnableChunkedUploads config or the
+	 * 'usechunked' request parameter.
+	 *
+	 * @return bool
+	 */
+	private function useChunkedUploads() {
+		return $this->getConfig()->get( MainConfigNames::EnableChunkedUploads )
+			|| $this->getRequest()->getBool( 'usechunked' );
+	}
+
+	/**
 	 * Get the descriptor of the fieldset that contains the file source
 	 * selection. The section is 'source'
 	 *
@@ -170,12 +182,42 @@ class UploadForm extends HTMLForm {
 			];
 		}
 
-		$this->mMaxUploadSize['file'] = min(
-			UploadBase::getMaxUploadSize( 'file' ),
-			UploadBase::getMaxPhpUploadSize()
-		);
+		// Without JavaScript, uploads are bound by the PHP request size limit.
+		$jsMaxUploadSize = UploadBase::getMaxUploadSize( 'file' );
+		$noJsMaxUploadSize = min( $jsMaxUploadSize, UploadBase::getMaxPhpUploadSize() );
 
-		$help = $this->msg( 'upload-maxfilesize' )->sizeParams( $this->mMaxUploadSize['file'] )->parse();
+		$help = '';
+
+		if ( $this->useChunkedUploads() ) {
+			$this->mMaxUploadSize['file'] = $jsMaxUploadSize;
+
+			// Render a different maximum size in the help text based on whether
+			// the client has JavaScript enabled or not by using js/nojs classes.
+			$help .= Html::rawElement(
+				'span',
+				[ 'class' => 'mw-upload-maxfilesize-nojs' ],
+				$this->msg( 'upload-maxfilesize' )
+					->sizeParams( $noJsMaxUploadSize )
+					->parse()
+			);
+			$help .= Html::rawElement(
+				'span',
+				[ 'class' => 'mw-upload-maxfilesize-js' ],
+				$this->msg( 'upload-maxfilesize' )
+					->sizeParams( $jsMaxUploadSize )
+					->parse()
+			);
+		} else {
+			$this->mMaxUploadSize['file'] = $noJsMaxUploadSize;
+
+			$help .= Html::rawElement(
+				'span',
+				[],
+				$this->msg( 'upload-maxfilesize' )
+					->sizeParams( $noJsMaxUploadSize )
+					->parse()
+			);
+		}
 
 		// If the user can also upload by URL, there are 2 different file size limits.
 		// This extra message helps stress which limit corresponds to what.
@@ -423,6 +465,17 @@ class UploadForm extends HTMLForm {
 			];
 		}
 
+		// Preserve the 'usechunked' query parameter across a native (non-AJAX)
+		// form submission, whose action URL drops the original query string,
+		// so it isn't lost if the submission needs to redisplay the form.
+		if ( $this->getRequest()->getBool( 'usechunked' ) ) {
+			$descriptor['UseChunked'] = [
+				'type' => 'hidden',
+				'name' => 'usechunked',
+				'default' => '1',
+			];
+		}
+
 		return $descriptor;
 	}
 
@@ -455,6 +508,9 @@ class UploadForm extends HTMLForm {
 			'wgFileExtensions' =>
 				array_values( array_unique( $config->get( MainConfigNames::FileExtensions ) ) ),
 			'wgMaxUploadSize' => $this->mMaxUploadSize,
+			'wgMaxPhpUploadSize' => UploadBase::getMaxPhpUploadSize(),
+			'wgMinUploadChunkSize' => $config->get( MainConfigNames::MinUploadChunkSize ),
+			'wgEnableChunkedUploads' => $this->useChunkedUploads(),
 			'wgFileCanRotate' => SpecialUpload::rotationEnabled(),
 		];
 

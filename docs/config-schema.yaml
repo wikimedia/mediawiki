@@ -387,6 +387,17 @@ config-schema:
         description: |-
             Enable the async processing of upload by url in Special:Upload.
             Only works if EnableAsyncUploads is also enabled
+    EnableChunkedUploads:
+        default: false
+        description: |-
+            Enable chunked uploads on upload forms, at least Special:Upload.
+            This is a JavaScript-only feature: when enabled, the file is uploaded in
+            chunks via the browser, allowing uploads larger than the PHP request size
+            limit (up to $wgMaxUploadSize). Clients without JavaScript fall back to
+            the regular non-chunked upload bound by the PHP request size limit.
+            @since 1.47
+            @unstable Temporary feature flag, may be removed once chunked uploads
+              are considered stable.
     UploadMaintenance:
         default: false
         description: 'To disable file delete/restore temporarily'

@@ -345,7 +345,9 @@
 						return $.Deferred().resolve( finishUpload );
 					}
 					return $.Deferred().reject( errorCode, result );
-				}
+				},
+				// jQuery's .then() only relays progress notifications with a filter.
+				( progressValue ) => progressValue
 			);
 		},
 

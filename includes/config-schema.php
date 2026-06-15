@@ -46,6 +46,7 @@ return [
 			'UploadStashMaxAge' => 21600,
 			'EnableAsyncUploads' => false,
 			'EnableAsyncUploadsByURL' => false,
+			'EnableChunkedUploads' => false,
 			'UploadMaintenance' => false,
 			'IllegalFileChars' => ':\\/\\\\',
 			'DeletedDirectory' => false,

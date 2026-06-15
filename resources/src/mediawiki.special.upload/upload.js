@@ -7,8 +7,38 @@
  */
 
 ( function () {
+	const ChunkedUpload = require( './chunkedUpload.js' );
+
+	const useChunked = mw.config.get( 'wgEnableChunkedUploads' );
+
 	let uploadWarning, uploadTemplatePreview, $warningBox;
+	let confirmCloseWindow = null;
+
 	const NS_FILE = mw.config.get( 'wgNamespaceIds' ).file;
+
+	/**
+	 * Setup the confirm close popup for unsaved work in the upload form.
+	 *
+	 * @return {Object|null} Returns null if the user has disabled edit warnings.
+	 */
+	function setupConfirmCloseWindow() {
+		if ( !mw.user.options.get( 'useeditwarning' ) ) {
+			return null;
+		}
+
+		return mw.confirmCloseWindow( {
+			test: function () {
+				const $uploadForm = $( '#mw-upload-form' );
+				const $wpUploadFile = $( '#wpUploadFile' );
+
+				// Check for existence of #wpUploadFile in case a gadget
+				// removed it (T262844).
+				return (
+					$wpUploadFile.length && $wpUploadFile.get( 0 ).files.length !== 0
+				) || $uploadForm.data( 'origtext' ) !== $uploadForm.serialize();
+			}
+		} );
+	}
 
 	window.wgUploadWarningObj = uploadWarning = {
 
@@ -527,11 +557,16 @@
 				.not( currentRow )
 				.find( 'input[type!="radio"]' )
 				.prop( 'disabled', true );
+
+			$( '#wpUploadFile' ).prop( 'required', this.id === 'wpSourceTypeFile' );
 		} );
 
 		// Set initial state
 		if ( !$( '#wpSourceTypeurl' ).prop( 'checked' ) ) {
 			$( '#wpUploadFileURL' ).prop( 'disabled', true );
+			$( '#wpUploadFile' ).prop( 'required', true );
+		} else {
+			$( '#wpUploadFile' ).prop( 'required', false );
 		}
 	} );
 
@@ -546,19 +581,13 @@
 
 		$uploadForm.data( 'origtext', $uploadForm.serialize() );
 
-		const allowCloseWindow = mw.confirmCloseWindow( {
-			test: function () {
-				const $wpUploadFile = $( '#wpUploadFile' );
-				// check for existence of #wpUploadFile in case a gadget removed it (T262844)
-				return (
-					$wpUploadFile.length && $wpUploadFile.get( 0 ).files.length !== 0
-				) || $uploadForm.data( 'origtext' ) !== $uploadForm.serialize();
-			}
-		} );
+		confirmCloseWindow = setupConfirmCloseWindow();
 
-		$uploadForm.on( 'submit', () => {
-			allowCloseWindow.release();
-		} );
+		if ( !useChunked ) {
+			$uploadForm.on( 'submit', () => {
+				confirmCloseWindow.release();
+			} );
+		}
 	} );
 
 	// Add tabindex to mw-editTools
@@ -598,5 +627,12 @@
 		// Set initial tabindex for mw-editTools to 0 and to -1 for all links
 		$( '.mw-editTools' ).attr( 'tabindex', '0' );
 		setEditTabindex( '-1' );
+	} );
+
+	// Add chunked uploading support for direct uploads.
+	$( () => {
+		if ( useChunked ) {
+			new ChunkedUpload( confirmCloseWindow ).setup();
+		}
 	} );
 }() );
