@@ -45,7 +45,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IExpression;
@@ -862,12 +861,11 @@ class InfoAction extends FormlessAction {
 		return $cache->getWithSetCallback(
 			self::getCacheKey( $cache, $page->getTitle(), $page->getLatest() ),
 			WANObjectCache::TTL_WEEK,
-			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname ) {
+			function () use ( $page, $config, $fname ) {
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
 
 				$dbr = $this->dbProvider->getReplicaDatabase();
-				$setOpts += Database::getCacheSetOptions( $dbr );
 
 				$field = 'rev_actor';
 				$pageField = 'rev_page';

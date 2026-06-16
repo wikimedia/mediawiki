@@ -25,7 +25,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
 use stdClass;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
@@ -267,10 +266,8 @@ class LocalRepo extends FileRepo {
 		$redirDbKey = $this->wanCache->getWithSetCallback(
 			$memcKey,
 			$expiry,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $method, $title ) {
+			function () use ( $method, $title ) {
 				$dbr = $this->getReplicaDB(); // possibly remote DB
-
-				$setOpts += Database::getCacheSetOptions( $dbr );
 
 				$row = $dbr->newSelectQueryBuilder()
 					->select( [ 'rd_namespace', 'rd_title' ] )

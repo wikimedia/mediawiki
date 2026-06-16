@@ -44,7 +44,6 @@ use Wikimedia\FileBackend\FileBackendError;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\LockManager\LockManager;
 use Wikimedia\Rdbms\Blob;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -365,9 +364,7 @@ class LocalFile extends File {
 		$cachedValues = $cache->getWithSetCallback(
 			$key,
 			$cache::TTL_WEEK,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $cache ) {
-				$setOpts += Database::getCacheSetOptions( $this->repo->getReplicaDB() );
-
+			function ( $oldValue, &$ttl ) use ( $cache ) {
 				$this->loadFromDB( IDBAccessObject::READ_NORMAL );
 
 				$fields = $this->getCacheFields( '' );

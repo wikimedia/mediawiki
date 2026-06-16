@@ -12,7 +12,6 @@ use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use stdClass;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 
@@ -139,9 +138,8 @@ class SiteStats {
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'SiteStats', 'groupcounts', $group ),
 			$cache::TTL_HOUR,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $group, $fname ) {
+			static function () use ( $group, $fname ) {
 				$dbr = self::getLB()->getConnection( DB_REPLICA );
-				$setOpts += Database::getCacheSetOptions( $dbr );
 				return (int)$dbr->newSelectQueryBuilder()
 					->select( 'COUNT(*)' )
 					->from( 'user_groups' )
@@ -191,10 +189,8 @@ class SiteStats {
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'SiteStats', 'page-in-namespace', $ns ),
 			$cache::TTL_HOUR,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $ns, $fname ) {
+			static function () use ( $ns, $fname ) {
 				$dbr = self::getLB()->getConnection( DB_REPLICA );
-				$setOpts += Database::getCacheSetOptions( $dbr );
-
 				return (int)$dbr->newSelectQueryBuilder()
 					->select( 'COUNT(*)' )
 					->from( 'page' )

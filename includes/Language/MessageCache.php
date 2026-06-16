@@ -33,7 +33,6 @@ use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\MapCacheLRU;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -1339,11 +1338,8 @@ class MessageCache implements LoggerAwareInterface {
 				return $this->wanCache->getWithSetCallback(
 					$this->bigMessageCacheKey( $hash, $dbKey ),
 					self::WAN_TTL,
-					function ( $oldValue, &$ttl, &$setOpts ) use ( $dbKey, $code, $fname ) {
+					function ( $oldValue, &$ttl ) use ( $dbKey, $code, $fname ) {
 						// Try loading the message from the database
-						$setOpts += Database::getCacheSetOptions(
-							MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase()
-						);
 						// Use newKnownCurrent() to avoid querying revision/user tables
 						$title = Title::makeTitle( NS_MEDIAWIKI, $dbKey );
 						// Injecting RevisionStore breaks installer since it

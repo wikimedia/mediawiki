@@ -52,7 +52,6 @@ use Wikimedia\DebugInfo\DebugInfoTrait;
 use Wikimedia\IPUtils;
 use Wikimedia\MWCryptHash;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\DBExpectedError;
 use Wikimedia\Rdbms\IDatabase;
@@ -544,10 +543,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		$data = $cache->getWithSetCallback(
 			$this->getCacheKey( $cache ),
 			$cache::TTL_HOUR,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $cache, $wgFullyInitialised ) {
-				$setOpts += Database::getCacheSetOptions(
-					MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase()
-				);
+			function ( $oldValue, &$ttl ) use ( $cache, $wgFullyInitialised ) {
 				wfDebug( "User: cache miss for user {$this->mId}" );
 
 				$this->loadFromDatabase( IDBAccessObject::READ_NORMAL );

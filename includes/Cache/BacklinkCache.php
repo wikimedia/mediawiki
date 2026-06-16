@@ -35,7 +35,6 @@ use MediaWiki\Title\TitleValue;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -393,9 +392,7 @@ class BacklinkCache {
 				$table
 			),
 			self::CACHE_EXPIRY,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $table ) {
-				$setOpts += Database::getCacheSetOptions( $this->getDB() );
-
+			function () use ( $table ) {
 				// Use partition() since it will batch the query and skip the JOIN.
 				// Use $wgUpdateRowsPerJob just to encourage cache reuse for jobs.
 				$batchSize = $this->options->get( MainConfigNames::UpdateRowsPerJob );
@@ -443,9 +440,7 @@ class BacklinkCache {
 				$batchSize
 			),
 			self::CACHE_EXPIRY,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $table, $batchSize ) {
-				$setOpts += Database::getCacheSetOptions( $this->getDB() );
-
+			function () use ( $table, $batchSize ) {
 				$value = [ 'numRows' => 0, 'batches' => [] ];
 
 				// Do the selects in batches to avoid client-side OOMs (T45452).

@@ -20,7 +20,6 @@ use stdClass;
 use Wikimedia\ObjectCache\MapCacheLRU;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Parsoid\Core\LinkTarget;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -431,9 +430,8 @@ class LinkCache implements LoggerAwareInterface {
 			$row = $this->wanCache->getWithSetCallback(
 				$wanCacheKey,
 				WANObjectCache::TTL_DAY,
-				function ( $curValue, &$ttl, array &$setOpts ) use ( $fetchCallback, $ns, $dbkey ) {
+				function ( $curValue, &$ttl ) use ( $fetchCallback, $ns, $dbkey ) {
 					$dbr = $this->loadBalancer->getConnection( ILoadBalancer::DB_REPLICA );
-					$setOpts += Database::getCacheSetOptions( $dbr );
 
 					$row = $fetchCallback( $dbr, $ns, $dbkey, [] );
 					$mtime = $row ? (int)wfTimestamp( TS::UNIX, $row->page_touched ) : false;

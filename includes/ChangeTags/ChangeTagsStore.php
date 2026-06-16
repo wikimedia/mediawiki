@@ -25,7 +25,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -511,9 +510,8 @@ class ChangeTagsStore {
 		return $this->wanCache->getWithSetCallback(
 			$this->wanCache->makeKey( 'valid-tags-db', $wiki ),
 			WANObjectCache::TTL_HOUR,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname, $dbProvider, $wiki ) {
+			static function () use ( $fname, $dbProvider, $wiki ) {
 				$dbr = $dbProvider->getReplicaDatabase( $wiki );
-				$setOpts += Database::getCacheSetOptions( $dbr );
 				$tags = $dbr->newSelectQueryBuilder()
 					->select( 'ctd_name' )
 					->from( self::CHANGE_TAG_DEF )
@@ -547,13 +545,11 @@ class ChangeTagsStore {
 			return $tags;
 		}
 		$hookRunner = $this->hookRunner;
-		$dbProvider = $this->dbProvider;
 		$wiki = $this->wiki;
 		return $this->wanCache->getWithSetCallback(
 			$this->wanCache->makeKey( 'valid-tags-hook', $wiki ),
 			WANObjectCache::TTL_HOUR,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner, $dbProvider, $wiki ) {
-				$setOpts += Database::getCacheSetOptions( $dbProvider->getReplicaDatabase( $wiki ) );
+			static function () use ( $tags, $hookRunner ) {
 				$hookRunner->onListDefinedTags( $tags );
 				return array_unique( $tags );
 			},
@@ -977,15 +973,12 @@ class ChangeTagsStore {
 			return $tags;
 		}
 		$hookRunner = $this->hookRunner;
-		$dbProvider = $this->dbProvider;
 		$wiki = $this->wiki;
 
 		return $this->wanCache->getWithSetCallback(
 			$this->wanCache->makeKey( 'active-tags', $wiki ),
 			WANObjectCache::TTL_HOUR,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner, $dbProvider, $wiki ) {
-				$setOpts += Database::getCacheSetOptions( $dbProvider->getReplicaDatabase( $wiki ) );
-
+			static function () use ( $tags, $hookRunner ) {
 				// Ask extensions which tags they consider active
 				$hookRunner->onChangeTagsListActive( $tags );
 				return $tags;
