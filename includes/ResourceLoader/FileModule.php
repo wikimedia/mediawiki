@@ -1180,26 +1180,29 @@ class FileModule extends Module {
 		// If we got a cached value, we have to validate it by getting a checksum of all the
 		// files that were loaded by the parser and ensuring it matches the cached entry's.
 		$data = $cache->get( $key );
+		// T425356: Expand here to avoid implicit reliance on global getcwd() matching MW_INSTALL_PATH.
+		$files = $data ? Module::expandRelativePaths( $data['files'] ) : false;
+
 		if (
 			!$data ||
-			$data['hash'] !== FileContentsHasher::getFileContentsHash( $data['files'] )
+			$data['hash'] !== FileContentsHasher::getFileContentsHash( $files )
 		) {
 			$compiler = $context->getResourceLoader()->getLessCompiler( $vars, $importDirs );
 
 			$css = $compiler->parse( $style, $stylePath )->getCss();
-			// T253055: store the implicit dependency paths in a form relative to any install
-			// path so that multiple version of the application can share the cache for identical
-			// less stylesheets. This also avoids churn during application updates.
 			$files = $compiler->getParsedFiles();
 			$data = [
 				'css'   => $css,
 				'files' => Module::getRelativePaths( $files ),
+				// T253055: store the implicit dependency paths in a form relative to any install
+				// path so that multiple version of the application can share the cache for identical
+				// less stylesheets. This also avoids churn during application updates.
 				'hash'  => FileContentsHasher::getFileContentsHash( $files )
 			];
 			$cache->set( $key, $data, $cache::TTL_DAY );
 		}
 
-		foreach ( Module::expandRelativePaths( $data['files'] ) as $path ) {
+		foreach ( $files as $path ) {
 			$this->localFileRefs[] = $path;
 		}
 
