@@ -3049,6 +3049,7 @@
 	"watchlistedit-table-title": "Páginas",
 	"watchlistedit-table-title-pages": "Título da página",
 	"watchlistedit-table-title-expiry": "Expiração",
+	"watchlistedit-unwatch-confirmation": "{{PLURAL:$2|Remover}} $1 da sua lista de páginas vigiadas?",
 	"watchlisttools-clear": "Limpar lista de páginas vigiadas",
 	"watchlisttools-view": "Ver alterações relevantes",
 	"watchlisttools-edit": "Ver e editar a lista de páginas vigiadas",

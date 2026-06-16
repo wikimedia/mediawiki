@@ -1712,6 +1712,7 @@
 	"apierror-filedoesnotexist": "Die Datei ist nicht vorhanden.",
 	"apierror-filetypecannotberotated": "Dieser Dateityp kann nicht rotiert werden.",
 	"apierror-http-contenttoolarge": "Der Inhalt der HTTP-Anforderung ist zu groß. Maximale Länge: $1.",
+	"apierror-imagelimitexceeded": "Die Bildgrenze ist überschritten worden.",
 	"apierror-import-unknownerror": "Unbekannter Fehler beim Importieren: $1.",
 	"apierror-invalid-file-key": "Kein gültiger Dateischlüssel.",
 	"apierror-invalid-label-id": "Ungültige Label-ID oder das Label gehört nicht zum aktuellen Benutzer.",

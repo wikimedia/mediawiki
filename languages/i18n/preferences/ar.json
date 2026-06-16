@@ -159,6 +159,8 @@
 	"prefs-files": "ملفات",
 	"imagemaxsize": "حد حجم الصورة في صفحات وصف الملفات:",
 	"thumbsize": "حجم العرض المصغر:",
+	"thumbsize-small": "صغير",
+	"thumbsize-large": "كبير",
 	"prefs-diffs": "فروقات",
 	"tog-diffonly": "لا تعرض محتوى الصفحة أسفل الفرق",
 	"tog-norollbackdiff": "لا تظهر الفروق بعد إجراء استرجاع",

@@ -938,7 +938,7 @@
 	"postedit-confirmation-saved": "{{gender}}\nShown after a user saves a page. Parameters:\n* $1 - the current user, for GENDER support\n* $2 - the revision ID of the published edit",
 	"postedit-confirmation-published": "{{gender}}\nShown after a user publishes a page. Parameters:\n* $1 - the current user, for GENDER support\n* $2 - the revision ID of the published edit",
 	"postedit-temp-created-label": "The heading for a message shown after temporary user creation on page save.",
-	"postedit-temp-created": "The body text for a message shown after temporary user creation on page save. Parameters:\n* $1 - The URL for creating an account.\n* $2 - Documentation page for temporary accounts.",
+	"postedit-temp-created": "The body text for a message shown after temporary user creation on page save. Parameters:\n* $1 - The URL for creating an account.\n* $2 - Documentation page for temporary accounts. The link is defined at {{msg-mw|tempuser-helppage}}",
 	"postedit-confirmation-published-title": "Shown after a user saves a page and a temporary account is auto-created.",
 	"postedit-temp-created-createaccount-benefits": "Shown after a user saves a page and a temporary account is auto-created, list description of account creation benefits.",
 	"postedit-temp-created-createaccount-benefit-1": "Shown after a user saves a page and a temporary account is auto-created, describes an account creation benefit.",

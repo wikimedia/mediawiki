@@ -2669,7 +2669,7 @@
 	"delete_and_move_confirm": "Sì, cancella la pagina \"$1\"",
 	"delete_and_move_confirm_2": "Sì, cancella la pagina \"$1\" e la relativa pagina di discussione \"$2\"",
 	"delete_and_move_reason": "Cancellata per rendere possibile lo spostamento da \"[[$1]]\"",
-	"move_over_protection_confirm": "Sì, sposta la pagina nonostante la protezione",
+	"move_over_protection_confirm": "Sì, sposta la pagina a \"$1\", il che rimuoverà la protezione della creazione di \"$1\"",
 	"selfmove": "Il titolo è lo stesso, non è possibile spostare una pagina su sé stessa.",
 	"immobile-source-namespace": "Non è possibile spostare pagine del namespace \"$1\"",
 	"immobile-source-namespace-iw": "Non è possibile spostare pagine da questo wiki verso altri wiki.",

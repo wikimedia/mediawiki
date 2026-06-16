@@ -1817,6 +1817,7 @@
 	"apierror-filetypecannotberotated": "파일 형식은 회전할 수 없습니다.",
 	"apierror-formatphp": "이 응답은 <kbd>format=php</kbd>를 사용하여 표시할 수 없습니다. https://phabricator.wikimedia.org/T68776을 참조하세요.",
 	"apierror-http-contenttoolarge": "HTTP 요청 콘텐츠가 너무 큽니다. 최대 길이: $1.",
+	"apierror-imagelimitexceeded": "이미지 제한을 초과했습니다",
 	"apierror-imageusage-badtitle": "<kbd>$1</kbd>의 제목은 파일이어야 합니다.",
 	"apierror-import-unknownerror": "알 수 없는 가져오기 오류: $1.",
 	"apierror-info-singlepagerevision": "복수의 문서 또는 판이 제공되었지만, <var>$1prop=preloadcontent</var> 및 <var>$1prop=editintro</var>는 단일 문서 및 판에만 사용할 수 있습니다.",

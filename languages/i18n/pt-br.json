@@ -3191,7 +3191,7 @@
 	"watchlistedit-table-title-expiry": "Expira",
 	"watchlistedit-table-remove-selected": "Remover {{PLURAL:$1|página|páginas}}",
 	"watchlistedit-table-remove-selected-error": "Não é possível remover páginas",
-	"watchlistedit-unwatch-confirmation": "{{PLURAL:$2|Remover}} $1 da sua lista de páginas viciadas?",
+	"watchlistedit-unwatch-confirmation": "{{PLURAL:$2|Remover}} $1 da sua lista de páginas vigiadas?",
 	"watchlistedit-unwatch-confirmation-empty": "Selecione as páginas que você deseja remover da sua lista de páginas viciadas.",
 	"watchlistedit-unwatch-confirmation-accept": "Remover",
 	"watchlisttools-clear": "Limpar a lista de páginas vigiadas",

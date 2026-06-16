@@ -736,6 +736,7 @@
 	"apierror-changecontentmodel-cannot-convert": "Non è possibile convertire $1 nel modello di contenuto $2",
 	"apierror-compare-notext": "Il parametro <var>$1</var> non può essere usato senza <var>$2</var>.",
 	"apierror-http-contenttoolarge": "Contenuto della richiesta HTTP troppo grande. Lunghezza massima: $1.",
+	"apierror-imagelimitexceeded": "Il limite immagine è stato superato",
 	"apierror-info-singlepagerevision": "Sono state fornite più pagine o versioni, ma <var>$1prop=preloadcontent</var> e <var>$1prop=editintro</var> possono essere utilizzati solo con una singola pagina e versione.",
 	"apierror-invalidoldimage": "Il parametro <var>oldimage</var> ha un formato non valido.",
 	"apierror-invaliduserid": "L'ID utente <var>$1</var> non è valido.",
