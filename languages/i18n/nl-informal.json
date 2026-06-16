@@ -13,7 +13,8 @@
 			"Siebrand",
 			"Southparkfan",
 			"Tedjuh10",
-			"Woytecr"
+			"Woytecr",
+			"Kippenvlees1"
 		]
 	},
 	"search-ignored-headings": " #<!-- leave this line exactly as it is --> <pre>\n# Koppen die worden genegeerd tijdens het zoeken.\n# Wijzigingen worden van kracht als een kop wordt geïndexeerd.\n# Je kunt opnieuw indexeren afdwingen door een nulbewerking te maken.\n# De syntaxis is als volgt:\n#   * Alle tekst vanaf het teken \"#\" tot het einde van de regel wordt gezien als een opmerking;\n#   * Iedere niet-lege regel is de precieze te negeren kop, met het juiste hoofdlettergebruik en degelijke.\nReferenties\nExterne koppelingen\nZie ook\n #</pre> <!-- leave this line exactly as it is -->",
@@ -223,6 +224,7 @@
 	"rcfilters-filter-watchlistactivity-unseen-description": "Wijzigingen aan pagina's die je nog niet hebt bezocht sinds de wijziging.",
 	"rcfilters-filter-watchlistactivity-seen-description": "Wijzigingen aan pagina's die je hebt bezocht sinds de wijziging.",
 	"rcfilters-watchlist-edit-watchlist-button": "Je lijst met gevolgde pagina's bewerken",
+	"rcfilters-watchlist-showupdated": "Wijzigingen aan pagina's die je niet hebt bezocht sinds de wijzigingen zijn aangebracht, worden <strong>vet</strong> en met gevulde opsommingstekens weergegeven.",
 	"recentchangeslinked-summary": "Voer een paginanaam in om bewerkingen te zien van pagina's waarheen vanaf die pagina verwezen wordt of die ernaar verwijzen. (Om leden van een categorie te zien, voer je <kbd>{{ns:category}}:''Naam van categorie''</kbd> in.) Bewerkingen van pagina's op [[Special:Watchlist|je volglijst]] worden <strong>vet</strong> weergegeven.",
 	"uploadnologintext": "Je moet $1 om bestanden te kunnen uploaden.",
 	"empty-file": "Het bestand dat je probeerde te uploaden had geen inhoud.",

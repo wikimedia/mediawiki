@@ -1802,7 +1802,7 @@
 	"uploadstash-header-thumb": "بندانگشتی",
 	"uploadstash-header-dimensions": "ابعاد",
 	"uploadstash-pager-submit": "نمایش فهرست پرونده‌ها",
-	"uploadstash-bad-path": "مسر وجود ندارد.",
+	"uploadstash-bad-path": "مسیر وجود ندارد.",
 	"uploadstash-bad-path-invalid": "مسیر معتبر نیست.",
 	"uploadstash-bad-path-unknown-type": "گونهٔ ناشناختهٔ \"$1\".",
 	"uploadstash-bad-path-unrecognized-thumb-name": "بندانگشتی نامعلوم.",

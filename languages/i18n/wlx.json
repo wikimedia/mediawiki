@@ -309,7 +309,7 @@
 	"editing": "Maana enna $1",
 	"creating": "Maale $1",
 	"editingsection": "Maale embu $1 (jie)",
-	"editconflict": "Maale sɛʋ jɛʋri",
+	"editconflict": "Maale sɛʋ jɛʋri: $1",
 	"yourtext": "Ɩ sɛʋri",
 	"templatesused": "{{PLURAL:$1|Bondemaahewuloo|Bondemaahewulo}} a tonneŋ a peeji ŋa:",
 	"templatesusedpreview": "{{PLURAL:$1|Tɛmpileti| Tɛmpiletihi}} aŋ tuŋ ne tuma a daŋkaabu ŋaŋ:",

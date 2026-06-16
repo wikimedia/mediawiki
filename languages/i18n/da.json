@@ -2798,7 +2798,7 @@
 	"nonfile-cannot-move-to-file": "Kan ikke flytte ikke-filer til fil-navnerummet.",
 	"imagetypemismatch": "Den nye filendelse passer ikke til filtypen",
 	"imageinvalidfilename": "Destinationsnavnet er ugyldigt",
-	"fix-double-redirects": "Opdater eventuelle omdirigeringer, der peger på den oprindelige titel",
+	"fix-double-redirects": "Opdatér eventuelle omdirigeringer, der peger på den oprindelige titel",
 	"move-leave-redirect": "Efterlad en omdirigering",
 	"protectedpagemovewarning": "'''Bemærk:''' Denne side er låst så kun administratorer kan flytte den.<br />\nDen seneste logpost vises nedenfor:",
 	"semiprotectedpagemovewarning": "<strong>Bemærk:</strong> Denne side er beskyttet, så kun automatisk bekræftede brugere kan flytte den.\nDen seneste logpost er angivet nedenfor til reference:",
