@@ -1236,9 +1236,10 @@ function wfStringToBool( $val ) {
  * @param string|string[] ...$args strings to escape and glue together,
  *  or a single array of strings parameter
  * @return string
- * @deprecated since 1.30 use MediaWiki\Shell\Shell::escape()
+ * @deprecated since 1.30 use MediaWiki\Shell\Shell::escape(); warning since 1.47
  */
 function wfEscapeShellArg( ...$args ) {
+	wfDeprecated( __FUNCTION__, '1.30' );
 	return Shell::escape( ...$args );
 }
 
@@ -1264,11 +1265,12 @@ function wfEscapeShellArg( ...$args ) {
  * @phan-param array{duplicateStderr?:bool,profileMethod?:string} $options
  *
  * @return string Collected stdout as a string
- * @deprecated since 1.30 use class MediaWiki\Shell\Shell
+ * @deprecated since 1.30 use class MediaWiki\Shell\Shell; warnings since 1.47
  */
 function wfShellExec( $cmd, &$retval = null, $environ = [],
 	$limits = [], $options = []
 ) {
+	wfDeprecated( __FUNCTION__, '1.30' );
 	if ( Shell::isDisabled() ) {
 		$retval = 1;
 		// Backwards compatibility be upon us...
@@ -1317,9 +1319,10 @@ function wfShellExec( $cmd, &$retval = null, $environ = [],
  * @param array $limits Optional array with limits(filesize, memory, time, walltime)
  *   this overwrites the global wgMaxShell* limits.
  * @return string Collected stdout and stderr as a string
- * @deprecated since 1.30 use class MediaWiki\Shell\Shell
+ * @deprecated since 1.30 use class MediaWiki\Shell\Shell; warning since 1.47
  */
 function wfShellExecWithStderr( $cmd, &$retval = null, $environ = [], $limits = [] ) {
+	wfDeprecated( __FUNCTION__, '1.30' );
 	return wfShellExec( $cmd, $retval, $environ, $limits,
 		[ 'duplicateStderr' => true, 'profileMethod' => wfGetCaller() ] );
 }
@@ -1329,7 +1332,7 @@ function wfShellExecWithStderr( $cmd, &$retval = null, $environ = [], $limits = 
  * Note that $parameters should be a flat array and an option with an argument
  * should consist of two consecutive items in the array (do not use "--option value").
  *
- * @deprecated since 1.31, use Shell::makeScriptCommand()
+ * @deprecated since 1.31, use Shell::makeScriptCommand(); warning since 1.47
  *
  * @param string $script MediaWiki cli script path
  * @param array $parameters Arguments and options to the script
@@ -1340,6 +1343,7 @@ function wfShellExecWithStderr( $cmd, &$retval = null, $environ = [], $limits = 
  * @return string
  */
 function wfShellWikiCmd( $script, array $parameters = [], array $options = [] ) {
+	wfDeprecated( __FUNCTION__, '1.30' );
 	global $wgPhpCli;
 	// Give site config file a chance to run the script in a wrapper.
 	// The caller may likely want to call wfBasename() on $script.

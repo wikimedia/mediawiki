@@ -6,6 +6,7 @@
  */
 class WfEscapeShellArgTest extends MediaWikiUnitTestCase {
 	public function testSingleInput() {
+		$this->expectDeprecationAndContinue( '/wfEscapeShellArg was deprecated in MediaWiki 1\.30/' );
 		if ( wfIsWindows() ) {
 			$expected = '"blah"';
 		} else {
@@ -18,6 +19,7 @@ class WfEscapeShellArgTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testMultipleArgs() {
+		$this->expectDeprecationAndContinue( '/wfEscapeShellArg was deprecated in MediaWiki 1\.30/' );
 		if ( wfIsWindows() ) {
 			$expected = '"foo" "bar" "baz"';
 		} else {
@@ -30,6 +32,7 @@ class WfEscapeShellArgTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testMultipleArgsAsArray() {
+		$this->expectDeprecationAndContinue( '/wfEscapeShellArg was deprecated in MediaWiki 1\.30/' );
 		if ( wfIsWindows() ) {
 			$expected = '"foo" "bar" "baz"';
 		} else {

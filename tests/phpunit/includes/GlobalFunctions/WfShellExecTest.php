@@ -6,6 +6,7 @@
  */
 class WfShellExecTest extends MediaWikiIntegrationTestCase {
 	public function testT69870() {
+		$this->expectDeprecationAndContinue( '/wfShellExec was deprecated in MediaWiki 1\.30/' );
 		if ( wfIsWindows() ) {
 			// T209159: Anonymous pipe under Windows does not support asynchronous read and write,
 			// and the default buffer is too small (~4K), it is easy to be blocked.

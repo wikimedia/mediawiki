@@ -425,6 +425,7 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	public function testWfShellWikiCmd( $script, $parameters, $options,
 		$expected, $description
 	) {
+		$this->expectDeprecationAndContinue( '/wfShellWikiCmd was deprecated in MediaWiki 1\.30/' );
 		if ( wfIsWindows() ) {
 			// Approximation that's good enough for our purposes just now
 			$expected = str_replace( "'", '"', $expected );
