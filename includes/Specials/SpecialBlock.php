@@ -951,7 +951,8 @@ class SpecialBlock extends FormSpecialPage {
 						$this->titleFormatter->getText( $userPage ),
 					],
 					'showIfEmpty' => false
-				]
+				],
+				$this->getContext()
 			);
 			$text .= $out;
 
@@ -970,7 +971,8 @@ class SpecialBlock extends FormSpecialPage {
 							$this->titleFormatter->getText( $userPage ),
 						],
 						'showIfEmpty' => false
-					]
+					],
+					$this->getContext()
 				);
 
 				$text .= $out;

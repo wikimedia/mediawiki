@@ -295,7 +295,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		$moveLogPage = new LogPage( 'pagelang' );
 		$out1 = Html::element( 'h2', [], $moveLogPage->getName()->text() );
 		$out2 = '';
-		LogEventsList::showLogExtract( $out2, 'pagelang', $title );
+		LogEventsList::showLogExtract( $out2, 'pagelang', $title, '', [], $this->getContext() );
 		return $out1 . $out2;
 	}
 

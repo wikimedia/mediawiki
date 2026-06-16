@@ -887,6 +887,8 @@ class LogEventsList extends ContextSource {
 	 * - `blocks: DatabaseBlock[]` - Active blocks matching the target
 	 * - `sitewide: bool` - Whether any of the blocks is sitewide
 	 * - `logTargetPages: string[]` - Pages used as log targets
+	 * @param ?IContextSource $context Context forwarded to ::showLogExtract().
+	 *   When null, ::showLogExtract() falls back to RequestContext::getMain().
 	 * @return string|null
 	 */
 	public static function getBlockLogWarningBox(
@@ -896,7 +898,8 @@ class LogEventsList extends ContextSource {
 		LinkRenderer $linkRenderer,
 		$user,
 		?Title $title,
-		array|callable $additionalParams = []
+		array|callable $additionalParams = [],
+		?IContextSource $context = null
 	) {
 		if ( !$user ) {
 			return null;
@@ -1048,7 +1051,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		$outString = '';
-		self::showLogExtract( $outString, 'block', $logTargetPages, '', $params );
+		self::showLogExtract( $outString, 'block', $logTargetPages, '', $params, $context );
 		return $outString ?: null;
 	}
 }

@@ -552,7 +552,8 @@ class SpecialUpload extends SpecialPage {
 				'', [ 'lim' => 10,
 					'conds' => [ $this->localRepo->getReplicaDB()->expr( 'log_action', '!=', 'revision' ) ],
 					'showIfEmpty' => false,
-					'msgKey' => [ 'upload-recreate-warning' ] ]
+					'msgKey' => [ 'upload-recreate-warning' ] ],
+				$this->getContext()
 			);
 		}
 		$form->addPreHtml( $delNotice );

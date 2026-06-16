@@ -449,7 +449,8 @@ abstract class ContributionsSpecialPage extends IncludableSpecialPage {
 								'$1'
 							)
 						];
-					}
+					},
+					$this->getContext()
 				);
 				if ( $blockLogBox !== null ) {
 					$out->addHTML( $blockLogBox );

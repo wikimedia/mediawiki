@@ -1651,7 +1651,9 @@ class Article implements Page {
 					$this->getContext(),
 					$this->linkRenderer,
 					$user,
-					$title
+					$title,
+					[],
+					$this->getContext()
 				);
 				if ( $blockLogBox !== null ) {
 					$outputPage->addHTML( $blockLogBox );

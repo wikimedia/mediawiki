@@ -137,7 +137,8 @@ class SpecialUnblock extends SpecialPage {
 						$targetName,
 					],
 					'showIfEmpty' => false
-				]
+				],
+				$this->getContext()
 			);
 			if ( $logExtract !== '' ) {
 				$form->addPostHtml( $logExtract );
@@ -159,7 +160,8 @@ class SpecialUnblock extends SpecialPage {
 							$targetName,
 						],
 						'showIfEmpty' => false
-					]
+					],
+					$this->getContext()
 				);
 				if ( $logExtract !== '' ) {
 					$form->addPostHtml( $logExtract );
