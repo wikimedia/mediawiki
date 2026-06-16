@@ -320,7 +320,12 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 
 	public function testRespond() {
 		$rl = $this->getServiceContainer()->getResourceLoader();
-		$skins = array_keys( $this->getServiceContainer()->getSkinFactory()->getInstalledSkins() );
+
+		// Test user-selectable skins plus the basic "fallback" skin. Other "skippable" skins
+		// (e.g. 'apioutput', 'authentication-popup') are special-purpose and most modules are
+		// never served with them in practice (T424462#11995284).
+		$skins = array_keys( $this->getServiceContainer()->getSkinFactory()->getAllowedSkins() );
+		$skins[] = 'fallback';
 
 		$failures = [];
 		foreach ( $rl->getModuleNames() as $moduleName ) {
