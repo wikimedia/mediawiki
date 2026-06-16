@@ -46,7 +46,11 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 	 * In the Parsoid default future, we might prefer only checking for stx=html.
 	 */
 	private static function isHtmlHeading( Element $h ): bool {
+		if ( $h->hasAttribute( 'data-mw-wikitext' ) ) {
+			return false;
+		}
 		// FIXME(T100856): stx info probably shouldn't be in data-parsoid
+		// but keep these here until the parser cache turns over.
 		return WTUtils::isLiteralHTMLNode( $h );
 	}
 
@@ -110,6 +114,8 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 				// Do not add the wrapper if the heading has attributes added using HTML syntax (T353489).
 				return true;
 			}
+			// Ensure the data-mw-wikitext marker doesn't leak into the output
+			$node->removeAttribute( 'data-mw-wikitext' );
 			if ( !isset( $sectionMap[$id] ) ) {
 				return true;
 			}
