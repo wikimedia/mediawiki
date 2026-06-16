@@ -63,6 +63,7 @@ class PurgeUserOptions extends Maintenance {
 				continue;
 			}
 
+			$this->beginTransactionRound( __METHOD__ );
 			$deleteQueryBuilder = $dbw->newDeleteQueryBuilder()
 				->deleteFrom( 'user_properties' )
 				->where( [ 'up_user' => $userIdsToClean ] );
@@ -70,7 +71,7 @@ class PurgeUserOptions extends Maintenance {
 				$deleteQueryBuilder->where( [ 'up_property' => $option ] );
 			}
 			$deleteQueryBuilder->caller( __METHOD__ )->execute();
-			$this->waitForReplication();
+			$this->commitTransactionRound( __METHOD__ );
 
 			$cleaned += count( $userIdsToClean );
 			$this->output( 'Cleaned up user_properties for users up to ' . ( $min + $this->getBatchSize() ) .
