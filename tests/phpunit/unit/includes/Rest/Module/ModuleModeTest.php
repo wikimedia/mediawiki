@@ -22,9 +22,9 @@ class ModuleModeTest extends \MediaWikiUnitTestCase {
 
 	public static function provideGetModuleModeCases() {
 		yield from [
-			[ AudienceDesignation::PUBLISHED, ModuleMode::DISCOVERABLE ], // Switch to PUBLISHED when ready
-			[ AudienceDesignation::INTERNAL, ModuleMode::DISCOVERABLE ], // Switch to PUBLISHED when ready
-			[ AudienceDesignation::BETA, ModuleMode::DISCOVERABLE ], // Switch to PUBLISHED when ready
+			[ AudienceDesignation::PUBLISHED, ModuleMode::PUBLISHED ],
+			[ AudienceDesignation::INTERNAL, ModuleMode::PUBLISHED ],
+			[ AudienceDesignation::BETA, ModuleMode::PUBLISHED ],
 			[ null, ModuleMode::DISABLED ],
 		];
 	}

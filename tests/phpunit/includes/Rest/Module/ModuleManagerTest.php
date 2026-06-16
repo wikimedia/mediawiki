@@ -57,8 +57,6 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideRouteFiles() {
 		yield 'coreRoutes' => [ [], 'includes/Rest/coreRoutes.json' ];
-		yield 'coreDevelopmentRoutes' => [ [], 'includes/Rest/coreDevelopmentRoutes.json' ];
-		yield 'content.v1.json' => [ [], 'includes/Rest/content.v1.json' ];
 		yield 'site.v1.json' => [ [], 'includes/Rest/site.v1.json' ];
 		yield 'specs.v0.json' => [ [], 'includes/Rest/specs.v0.json' ];
 		yield 'mockTwo.v1.json' => [ [ __DIR__ . '/mockFour.v1.json' ], 'mockFour.v1.json' ];
@@ -175,14 +173,14 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideGetModuleModeCases() {
 		yield from [
-			[ 'example/v1', ModuleMode::DISCOVERABLE ], // TODO: switch to PUBLISHED when ready
+			[ 'example/v1', ModuleMode::PUBLISHED ],
 
 			// We don't expect people to actually use 'published', but if they do, it should work.
-			[ 'example/v1-published', ModuleMode::DISCOVERABLE ], // TODO: switch to PUBLISHED when ready
+			[ 'example/v1-published', ModuleMode::PUBLISHED ],
 
-			[ 'example/v1-internal', ModuleMode::DISCOVERABLE ], // TODO: switch to OPT_IN when ready
+			[ 'example/v1-internal', ModuleMode::PUBLISHED ],
 
-			[ 'example/v1-beta', ModuleMode::DISCOVERABLE ], // TODO: switch to OPT_IN when ready
+			[ 'example/v1-beta', ModuleMode::PUBLISHED ],
 
 			// We don't expect people to actually use 'invalid', but if they do, it should work.
 			[ 'example/v1-invalid', ModuleMode::DISABLED ],

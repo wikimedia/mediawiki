@@ -12,7 +12,7 @@ use Wikimedia\ObjectCache\BagOStuff;
  * Manages information related to REST modules, such as routes and specs
  *
  * TODO: consider whether some code in Router or SpecBasedModule might be better placed here.
- * TODO: consider whether we should inject a ModuleManager instance into Router for shared caching.
+ * TODO: consider whether ModuleManager and Router can share caching.
  *
  * @since 1.46
  */
@@ -20,6 +20,8 @@ class ModuleManager {
 	// These modules will be enabled. No config entry is needed.
 	private const CORE_ROUTE_FILES = [
 		'includes/Rest/coreRoutes.json',
+		'includes/Rest/site.v1.json',
+		'includes/Rest/specs.v0.json',
 	];
 
 	// These specs will be available in the Rest Sandbox. No config change is needed.
@@ -27,6 +29,12 @@ class ModuleManager {
 		'mw-extra' => [
 			'url' => '/rest.php/specs/v0/module/-',
 			'name' => 'MediaWiki REST API (routes not in modules)',
+		],
+		'specs.v0' => [
+			'file' => "./includes/Rest/specs.v0.json",
+		],
+		'site.v1' => [
+			'file' => "./includes/Rest/site.v1.json",
 		]
 	];
 
@@ -220,6 +228,12 @@ class ModuleManager {
 		}
 		unset( $spec );
 
+		$extensionSpecs = [];
+		foreach ( $this->extensionModuleFiles as $file ) {
+			$key = basename( $file, '.json' );
+			$extensionSpecs[$key] = $this->normalizeSpec( $key, [ 'file' => $file ] );
+		}
+
 		// RestSandboxSpecs overrides everything else. If RestSandboxSpecs includes a module,
 		// it will be published to the REST Sandbox, regardless of its audience designation or
 		// any RestModuleOverrides configuration. This is for backwards compatibility.
@@ -229,7 +243,7 @@ class ModuleManager {
 		}
 		unset( $spec );
 
-		$specs = array_merge( $coreSpecs, $rssSpecs );
+		$specs = array_merge( $coreSpecs, $extensionSpecs, $rssSpecs );
 		foreach ( $specs as $key => &$spec ) {
 			unset( $spec['mode'] );
 			$spec['group'] = $spec['params']['group'] ?? '';
@@ -258,7 +272,7 @@ class ModuleManager {
 	 * @param string $key spec definition array key, used as a fallback name if necessary
 	 * @param array $spec the spec definition array
 	 *
-	 * @return array<string,string> the normalized spec definition
+	 * @return array<string,mixed> the normalized spec definition
 	 */
 	private function normalizeSpec( string $key, array $spec ): array {
 		// Translate any message keys from config to a displayable name string

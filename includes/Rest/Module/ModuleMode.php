@@ -30,11 +30,10 @@ enum ModuleMode: string {
 			return self::DISABLED;
 		}
 
-		// TODO: update after audience designations are fully introduced.
 		return match ( $ad ) {
-			AudienceDesignation::PUBLISHED => self::DISCOVERABLE, // will become PUBLISHED
-			AudienceDesignation::INTERNAL => self::DISCOVERABLE, // will become PUBLISHED
-			AudienceDesignation::BETA => self::DISCOVERABLE, // will become PUBLISHED
+			AudienceDesignation::PUBLISHED => self::PUBLISHED,
+			AudienceDesignation::INTERNAL => self::PUBLISHED,
+			AudienceDesignation::BETA => self::PUBLISHED
 		};
 	}
 

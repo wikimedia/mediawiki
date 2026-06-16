@@ -7,8 +7,8 @@ const expect = chai.expect;
 
 const chaiResponseValidator = require( 'chai-openapi-response-validator' ).default;
 
-let pathPrefix = '/content/v1';
-let specModule = '/content/v1';
+const pathPrefix = '/v1';
+const specModule = '/-';
 
 // Parse a URL-ref, which may or may not contain a protocol and host.
 // WHATWG URL currently doesn't support partial URLs, see https://github.com/whatwg/url/issues/531
@@ -534,10 +534,3 @@ describe( 'Page Source', () => {
 		} );
 	} );
 } );
-
-// eslint-disable-next-line mocha/no-exports
-exports.init = function ( pp, sm ) {
-	// Allow testing both legacy and module paths using the same tests
-	pathPrefix = pp;
-	specModule = sm;
-};

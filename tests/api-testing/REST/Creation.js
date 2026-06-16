@@ -8,8 +8,8 @@ const expect = chai.expect;
 
 const chaiResponseValidator = require( 'chai-openapi-response-validator' ).default;
 
-let pathPrefix = '/content/v1';
-let specModule = '/content/v1';
+const pathPrefix = '/v1';
+const specModule = '/-';
 
 describe( 'POST /page', () => {
 	let client, mindy, anon, anonToken, openApiSpec;
@@ -300,10 +300,3 @@ describe( 'POST /page', () => {
 
 	} );
 } );
-
-// eslint-disable-next-line mocha/no-exports
-exports.init = function ( pp, sm ) {
-	// Allow testing both legacy and module paths using the same tests
-	pathPrefix = pp;
-	specModule = sm;
-};
