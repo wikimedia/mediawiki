@@ -318,6 +318,7 @@ mw.hook( 'wikipage.content' ).add( updateThumbnailsToPreferredSize );
  * @exports mediawiki.page.ready
  */
 module.exports = {
+	config,
 	clearAddressBar,
 	enableSearchDialog,
 	loadSearchModule,

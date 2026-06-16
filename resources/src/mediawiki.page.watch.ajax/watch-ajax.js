@@ -1,6 +1,7 @@
 ( function () {
 	// The name of the page to watch or unwatch
 	const pageTitle = mw.config.get( 'wgRelevantPageName' ),
+		pageReadyConfig = require( 'mediawiki.page.ready' ).config,
 		config = require( './config.json' ),
 		isWatchlistExpiryEnabled = config.WatchlistExpiry,
 		watchlistLabelsEnabled = config.EnableWatchlistLabels,
@@ -66,7 +67,10 @@
 			}
 		}
 
-		const msgKey = state === 'loading' ? action + 'ing' : action;
+		const msgKey = pageReadyConfig.watchLoadingStates && state === 'loading' ?
+			action + 'ing' :
+			action;
+
 		// The following messages can be used here:
 		// * watch
 		// * watching

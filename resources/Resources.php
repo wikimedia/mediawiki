@@ -1765,6 +1765,7 @@ return [
 				Config $config
 			) {
 				$readyConfig = [
+					'watchLoadingStates' => true,
 					'search' => true,
 					'searchModule' => 'mediawiki.searchSuggest',
 					'collapsible' => true,
@@ -1814,6 +1815,7 @@ return [
 			],
 		],
 		'dependencies' => [
+			'mediawiki.page.ready',
 			'mediawiki.api',
 			'mediawiki.user',
 			'mediawiki.util',
