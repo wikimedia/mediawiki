@@ -7,7 +7,6 @@
 namespace MediaWiki\EditPage;
 
 use MediaWiki\Html\Html;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\PermissionManager;
@@ -24,23 +23,11 @@ use MediaWiki\User\UserIdentity;
  */
 class TextboxBuilder {
 
-	private readonly PermissionManager $permissionManager;
-	private readonly RestrictionStore $restrictionStore;
-	private readonly UserOptionsLookup $userOptionsLookup;
-
-	/**
-	 * @param PermissionManager|null $permissionManager Passing null is deprecated since 1.46
-	 * @param RestrictionStore|null $restrictionStore Passing null is deprecated since 1.46
-	 * @param UserOptionsLookup|null $userOptionsLookup Passing null is deprecated since 1.46
-	 */
 	public function __construct(
-		?PermissionManager $permissionManager = null,
-		?RestrictionStore $restrictionStore = null,
-		?UserOptionsLookup $userOptionsLookup = null,
+		private readonly PermissionManager $permissionManager,
+		private readonly RestrictionStore $restrictionStore,
+		private readonly UserOptionsLookup $userOptionsLookup,
 	) {
-		$this->permissionManager = $permissionManager ?? MediaWikiServices::getInstance()->getPermissionManager();
-		$this->restrictionStore = $restrictionStore ?? MediaWikiServices::getInstance()->getRestrictionStore();
-		$this->userOptionsLookup = $userOptionsLookup ?? MediaWikiServices::getInstance()->getUserOptionsLookup();
 	}
 
 	/**

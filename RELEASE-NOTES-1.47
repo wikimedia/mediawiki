@@ -207,6 +207,9 @@ because of Phabricator reports.
   EditFilterMergedContent or MultiContentSave instead.
 * The protected static method UserMailer::sendWithPear() has been removed
   following the migration from PEAR Mail to symfony/mailer.
+* Passing null to any of the three constructor parameters of TextboxBuilder,
+  deprecated in 1.46, will now throw a PHP error. Use the service to get an
+  instance of the class.
 * …
 
 === Deprecations in 1.47 ===
