@@ -801,6 +801,63 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expect, $manager->getVaryCookies() );
 	}
 
+	public function testGetAllOpenApiSecuritySchemes() {
+		$manager = $this->createManager();
+
+		$providerBuilder = $this->getMockBuilder( DummySessionProvider::class )
+			->onlyMethods( [ 'getOpenApiSecuritySchemes', '__toString' ] );
+
+		$provider1 = $providerBuilder->getMock();
+		$provider1->expects( $this->once() )->method( 'getOpenApiSecuritySchemes' )
+			->willReturn( [
+				'Session' => [ 'type' => 'apiKey', 'in' => 'cookie', 'name' => 'wiki_session' ],
+				'Token' => [ 'type' => 'apiKey', 'in' => 'cookie', 'name' => 'wikiToken' ],
+			] );
+		$provider1->method( '__toString' )
+			->willReturn( 'MockProvider1' );
+
+		$provider2 = $providerBuilder->getMock();
+		$provider2->expects( $this->once() )->method( 'getOpenApiSecuritySchemes' )
+			->willReturn( [] );
+		$provider2->method( '__toString' )
+			->willReturn( 'MockProvider2' );
+
+		$this->config->set( MainConfigNames::SessionProviders, [
+			$this->objectCacheDef( $provider1 ),
+			$this->objectCacheDef( $provider2 ),
+		] );
+
+		// Keys are derived from the provider name (its __toString(), here "MockProvider1",
+		// with backslashes → hyphens) plus the scheme subKey.
+		$expect = [
+			'MockProvider1-Session' => [ 'type' => 'apiKey', 'in' => 'cookie', 'name' => 'wiki_session' ],
+			'MockProvider1-Token' => [ 'type' => 'apiKey', 'in' => 'cookie', 'name' => 'wikiToken' ],
+		];
+
+		$this->assertEquals( $expect, $manager->getAllOpenApiSecuritySchemes() );
+
+		// Again, to ensure it's cached
+		$this->assertEquals( $expect, $manager->getAllOpenApiSecuritySchemes() );
+	}
+
+	public function testGetAllOpenApiSecuritySchemesKeyFormat() {
+		$manager = $this->createManager();
+
+		// Register a provider class whose FQN contains backslashes (MediaWiki\Tests\Session\NamespacedSchemeProvider).
+		// The implementation must replace '\' with '-' when building the key.
+		$this->config->set( MainConfigNames::SessionProviders, [
+			[ 'class' => NamespacedSchemeProvider::class ],
+		] );
+
+		$schemes = $manager->getAllOpenApiSecuritySchemes();
+
+		// This literal key will only be present if str_replace( '\\', '-', $provider::class ) fires.
+		$this->assertArrayHasKey(
+			'MediaWiki-Tests-Session-NamespacedSchemeProvider-Session',
+			$schemes
+		);
+	}
+
 	public function testGetProviders() {
 		$realManager = $this->createManager();
 		$manager = TestingAccessWrapper::newFromObject( $realManager );
@@ -1777,5 +1834,18 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			}
 		);
 		return $lookup;
+	}
+}
+
+/**
+ * Fixture for testGetAllOpenApiSecuritySchemesKeyFormat: a namespaced provider whose FQN
+ * contains backslashes, letting the test assert the exact hyphen-separated key produced by
+ * str_replace( '\\', '-', $provider::class ).
+ */
+class NamespacedSchemeProvider extends DummySessionProvider {
+	public function getOpenApiSecuritySchemes(): array {
+		return [
+			'Session' => [ 'type' => 'apiKey', 'in' => 'cookie', 'name' => 'test_session' ],
+		];
 	}
 }

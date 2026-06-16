@@ -344,6 +344,34 @@ class CookieSessionProvider extends SessionProvider {
 	}
 
 	/** @inheritDoc */
+	public function getOpenApiSecuritySchemes(): array {
+		return [
+			'Session' => [
+				'type' => 'apiKey',
+				'in' => 'cookie',
+				'name' => $this->params['sessionName'],
+				'description' => "MediaWiki Session ID cookie.\n"
+					. "Note: Write operations using this method also require "
+					. "a CSRF token to be submitted in the request body.",
+			],
+			'UserID' => [
+				'type' => 'apiKey',
+				'in' => 'cookie',
+				'name' => $this->cookieOptions['prefix'] . 'UserID',
+				'description' => "MediaWiki User ID cookie.\n"
+					. "Required alongside the session ID.",
+			],
+			'Token' => [
+				'type' => 'apiKey',
+				'in' => 'cookie',
+				'name' => $this->cookieOptions['prefix'] . 'Token',
+				'description' => "MediaWiki User Token cookie.\n"
+					. "Required for persistent session verification.",
+			],
+		];
+	}
+
+	/** @inheritDoc */
 	public function suggestLoginUsername( WebRequest $request ) {
 		$name = $this->getCookie( $request, 'UserName', $this->cookieOptions['prefix'] );
 		if ( $name !== null ) {

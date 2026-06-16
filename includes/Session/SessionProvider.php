@@ -479,6 +479,27 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 	}
 
 	/**
+	 * Return OpenAPI security scheme definitions provided by this session provider.
+	 *
+	 * Returns an array mapping a scheme suffix to an OpenAPI Security Scheme Object (as an
+	 * associative array). In the aggregated output of
+	 * SessionManager::getAllOpenApiSecuritySchemes(), each final key is the provider's name
+	 * (its string representation, which defaults to the class name, with backslashes replaced
+	 * by hyphens) followed by a hyphen and the suffix.
+	 *
+	 * For example, a provider whose class is MediaWiki\Session\CookieSessionProvider returning
+	 * [ 'Session' => [...] ] will produce the key "MediaWiki-Session-CookieSessionProvider-Session"
+	 * in the aggregated output of SessionManager::getAllOpenApiSecuritySchemes().
+	 *
+	 * @stable to override
+	 * @since 1.47
+	 * @return array<string, array> Mapping of scheme suffix to OpenAPI Security Scheme Object
+	 */
+	public function getOpenApiSecuritySchemes(): array {
+		return [];
+	}
+
+	/**
 	 * Get a suggested username for the login form
 	 *
 	 * This is usually null, but may return the user name of a previous login session

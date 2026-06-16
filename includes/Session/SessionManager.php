@@ -72,6 +72,9 @@ class SessionManager implements SessionManagerInterface {
 	/** @var array */
 	private $varyHeaders = null;
 
+	/** @var array<string, array>|null */
+	private $securitySchemes = null;
+
 	/** @var SessionBackend[] */
 	private $allSessionBackends = [];
 
@@ -330,6 +333,42 @@ class SessionManager implements SessionManagerInterface {
 			$this->varyCookies = array_values( array_unique( $cookies ) );
 		}
 		return $this->varyCookies;
+	}
+
+	/**
+	 * Gathers the OpenAPI security schemes from all registered SessionProviders.
+	 *
+	 * Iterates through all active session providers (from both Core and Extensions) and
+	 * collects their OpenAPI security scheme definitions. Each scheme key is auto-generated
+	 * from the provider's name (its string representation, which defaults to the fully
+	 * qualified PHP class name, with backslashes replaced by hyphens), followed by a hyphen
+	 * and the scheme-specific suffix returned by the provider. Using the provider's name
+	 * keeps keys unique even if two providers share the same class, matching the uniqueness
+	 * guarantee SessionManager enforces on provider names.
+	 *
+	 * Example: CookieSessionProvider returning [ 'Session' => [...] ] produces the key
+	 * "MediaWiki-Session-CookieSessionProvider-Session" in the returned array.
+	 *
+	 * @since 1.47
+	 * @return array<string, array> An associative array of security schemes for the OpenAPI
+	 *   components.securitySchemes object.
+	 */
+	public function getAllOpenApiSecuritySchemes(): array {
+		if ( $this->securitySchemes === null ) {
+			$securitySchemes = [];
+			foreach ( $this->getProviders() as $provider ) {
+				$schemes = $provider->getOpenApiSecuritySchemes();
+				if ( $schemes ) {
+					$baseName = str_replace( '\\', '-', (string)$provider );
+					foreach ( $schemes as $subKey => $schemeDefinition ) {
+						$schemeName = "{$baseName}-{$subKey}";
+						$securitySchemes[$schemeName] = $schemeDefinition;
+					}
+				}
+			}
+			$this->securitySchemes = $securitySchemes;
+		}
+		return $this->securitySchemes;
 	}
 
 	/**

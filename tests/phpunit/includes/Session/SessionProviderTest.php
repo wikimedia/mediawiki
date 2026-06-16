@@ -51,6 +51,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( [], $provider->getVaryHeaders() );
 		$this->assertSame( [], $provider->getVaryCookies() );
+		$this->assertSame( [], $provider->getOpenApiSecuritySchemes() );
 		$this->assertNull( $provider->suggestLoginUsername( new FauxRequest ) );
 
 		$this->assertSame( get_class( $provider ), (string)$provider );

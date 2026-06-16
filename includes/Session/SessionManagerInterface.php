@@ -89,4 +89,13 @@ interface SessionManagerInterface extends LoggerAwareInterface {
 	 */
 	public function getVaryCookies();
 
+	/**
+	 * Gathers the OpenAPI security schemes from all registered SessionProviders.
+	 *
+	 * @since 1.47
+	 * @return array<string, array> An associative array of security schemes for the OpenAPI
+	 *   components.securitySchemes object.
+	 */
+	public function getAllOpenApiSecuritySchemes(): array;
+
 }

@@ -678,6 +678,42 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayEquals( $expectedCookies, $provider->getVaryCookies() );
 	}
 
+	public function testGetOpenApiSecuritySchemes() {
+		$provider = new CookieSessionProvider(
+			$this->createNoOpMock( JwtCodec::class ),
+			$this->createNoOpMock( UrlUtils::class ),
+			[
+				'priority' => 1,
+				'cookieOptions' => [ 'prefix' => 'wiki' ],
+			]
+		);
+		$config = $this->getConfig();
+		$config->set( MainConfigNames::CookiePrefix, 'wiki' );
+		$config->set( MainConfigNames::SessionName, false );
+		$this->initProvider( $provider, null, $config );
+
+		$schemes = $provider->getOpenApiSecuritySchemes();
+
+		$this->assertArrayHasKey( 'Session', $schemes );
+		$this->assertArrayHasKey( 'UserID', $schemes );
+		$this->assertArrayHasKey( 'Token', $schemes );
+		$this->assertCount( 3, $schemes );
+
+		// Session ID cookie: name is derived from the configured session name
+		$this->assertSame( 'apiKey', $schemes['Session']['type'] );
+		$this->assertSame( 'cookie', $schemes['Session']['in'] );
+		$this->assertSame( 'wiki_session', $schemes['Session']['name'] );
+
+		// UserID and Token cookies: names use the cookie prefix
+		$this->assertSame( 'apiKey', $schemes['UserID']['type'] );
+		$this->assertSame( 'cookie', $schemes['UserID']['in'] );
+		$this->assertSame( 'wikiUserID', $schemes['UserID']['name'] );
+
+		$this->assertSame( 'apiKey', $schemes['Token']['type'] );
+		$this->assertSame( 'cookie', $schemes['Token']['in'] );
+		$this->assertSame( 'wikiToken', $schemes['Token']['name'] );
+	}
+
 	public function testSuggestLoginUsername() {
 		$provider = new CookieSessionProvider(
 			$this->createNoOpMock( JwtCodec::class ),
