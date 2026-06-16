@@ -386,7 +386,7 @@
 					.prop( 'tabIndex', 0 )
 					.attr( {
 						role: 'columnheader button',
-						title: msg[ 2 ]
+						title: msg[ getHeaderSortSequence( $cell )[ 0 ] ]
 					} );
 
 				for ( let k = 0; k < this.colSpan; k++ ) {
@@ -493,20 +493,24 @@
 	}
 
 	function setHeadersCss( table, $headers, list, css, msg, columnToHeader ) {
-		// Remove all header information and reset titles to default message
+		// Remove all header information and reset titles to the first configured sort order.
 		// The following classes are used here:
 		// * headerSortUp
 		// * headerSortDown
-		$headers.removeClass( css ).attr( 'title', msg[ 2 ] );
+		$headers.removeClass( css ).each( function () {
+			const $header = $( this );
+			$header.attr( 'title', msg[ getHeaderSortSequence( $header )[ 0 ] ] );
+		} );
 
 		for ( let i = 0; i < list.length; i++ ) {
+			const $header = $headers.eq( columnToHeader[ list[ i ][ 0 ] ] ),
+				order = list[ i ][ 1 ];
 			// The following classes are used here:
 			// * headerSortUp
 			// * headerSortDown
-			$headers
-				.eq( columnToHeader[ list[ i ][ 0 ] ] )
-				.addClass( css[ list[ i ][ 1 ] ] )
-				.attr( 'title', msg[ list[ i ][ 1 ] ] );
+			$header
+				.addClass( css[ order ] )
+				.attr( 'title', msg[ getNextSortOrder( $header, order ) ] );
 		}
 	}
 
@@ -907,9 +911,8 @@
 
 				// Get the CSS class names, could be done elsewhere
 				const sortCSS = [ config.cssAsc, config.cssDesc, config.cssInitial ];
-				// Messages tell the user what the *next* state will be
-				// so are shifted by one relative to the CSS classes.
-				const sortMsg = [ mw.msg( 'sort-descending' ), mw.msg( 'sort-initial' ), mw.msg( 'sort-ascending' ) ];
+				// Messages tell the user what the next sort action will be.
+				const sortMsg = [ mw.msg( 'sort-ascending' ), mw.msg( 'sort-descending' ), mw.msg( 'sort-initial' ) ];
 
 				// Build headers
 				const $headers = buildHeaders( table, sortMsg );

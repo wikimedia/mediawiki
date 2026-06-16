@@ -238,9 +238,19 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 			const $table = tableCreate( planetHeader, planets );
 			$table.find( 'th' ).eq( 1 ).attr( 'data-sort-order', 'desc' );
 			$table.tablesorter();
+			assert.strictEqual(
+				$table.find( '.headerSort' ).eq( 1 ).attr( 'title' ),
+				mw.msg( 'sort-descending' ),
+				'Initial title indicates descending sort'
+			);
 			$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' );
 
 			assert.deepEqual( tableExtract( $table ), reversed( planetsAscRadius ) );
+			assert.strictEqual(
+				$table.find( '.headerSort' ).eq( 1 ).attr( 'title' ),
+				mw.msg( 'sort-ascending' ),
+				'Title indicates ascending sort after descending sort'
+			);
 		}
 	);
 	QUnit.test(
@@ -252,6 +262,11 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 			$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' ).trigger( 'click' );
 
 			assert.deepEqual( tableExtract( $table ), planetsAscRadius );
+			assert.strictEqual(
+				$table.find( '.headerSort' ).eq( 1 ).attr( 'title' ),
+				mw.msg( 'sort-initial' ),
+				'Title indicates initial sort after ascending sort'
+			);
 		}
 	);
 	QUnit.test(
@@ -266,6 +281,11 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 				.trigger( 'click' );
 
 			assert.deepEqual( tableExtract( $table ), planets );
+			assert.strictEqual(
+				$table.find( '.headerSort' ).eq( 1 ).attr( 'title' ),
+				mw.msg( 'sort-descending' ),
+				'Title indicates descending sort after returning to initial sort'
+			);
 		}
 	);
 	QUnit.test(
@@ -276,9 +296,20 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 			$table.tablesorter( { sortList: [
 				{ 1: 'desc' }
 			] } );
+
+			assert.strictEqual(
+				$table.find( '.headerSort' ).eq( 1 ).attr( 'title' ),
+				mw.msg( 'sort-ascending' ),
+				'Initial sort title indicates ascending sort'
+			);
 			$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' );
 
 			assert.deepEqual( tableExtract( $table ), planetsAscRadius );
+			assert.strictEqual(
+				$table.find( '.headerSort' ).eq( 1 ).attr( 'title' ),
+				mw.msg( 'sort-initial' ),
+				'Title indicates initial sort after ascending sort'
+			);
 		}
 	);
 	QUnit.test(
