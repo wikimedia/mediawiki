@@ -12,6 +12,8 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\ShadowPage\ShadowPageLoader;
+use MediaWiki\Title\TitleFormatter;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use Psr\Log\LoggerInterface;
@@ -37,6 +39,8 @@ class PageEditFactory {
 		private readonly RateLimiter $rateLimiter,
 		private readonly RevisionStore $revisionStore,
 		private readonly ShadowPageLoader $shadowPageLoader,
+		private readonly TitleFormatter $titleFormatter,
+		private readonly UserOptionsLookup $userOptionsLookup,
 		private readonly WatchlistManager $watchlistManager,
 		private readonly WatchedItemStoreInterface $watchedItemStore,
 		private readonly WikiPageFactory $wikiPageFactory,
@@ -61,6 +65,8 @@ class PageEditFactory {
 			$this->rateLimiter,
 			$this->revisionStore,
 			$this->shadowPageLoader,
+			$this->titleFormatter,
+			$this->userOptionsLookup,
 			$this->watchlistManager,
 			$this->watchedItemStore,
 			$this->wikiPageFactory,

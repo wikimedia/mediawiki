@@ -3,12 +3,15 @@
 namespace MediaWiki\Tests\PageEdit;
 
 use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Page\WikiPage;
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\PageEdit\PageEdit;
 use MediaWiki\PageEdit\PageEditFactory;
 use MediaWiki\PageEdit\PageEditInputs;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWikiIntegrationTestCase;
 use TestUser;
 use Wikimedia\TestingAccessWrapper;
@@ -24,8 +27,10 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 	 * @return PageEdit
 	 */
 	private function newPageEdit(
-		WikiPage $page,
+		ProperPageIdentity $page,
 		TestUser $user,
+		bool $allowBlankSummary = false,
+		?IContextSource $context = null,
 		?string $edittime = null,
 		?int $editRevId = null,
 		string $section = '',
@@ -34,16 +39,18 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 		int $undidRev = 0,
 		int $undoAfter = 0,
 	) {
-		$context = new DerivativeContext( RequestContext::getMain() );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $page );
+		$context ??= new DerivativeContext( RequestContext::getMain() );
 		$context->setUser( $user->getUser() );
 		$inputs = ( new PageEditInputs(
 			authority: $user->getAuthority(),
-			contentModel: $page->getTitle()->getContentModel(),
+			contentModel: $wikiPage->getTitle()->getContentModel(),
 			context: $context,
-			page: $page,
+			page: $wikiPage,
 			summary: $summary,
 			textbox1: $textbox1,
-		) )->setEdittime( $edittime )
+		) )->setAllowBlankSummary( $allowBlankSummary )
+			->setEdittime( $edittime )
 			->setEditRevId( $editRevId )
 			->setSection( $section )
 			->setUndidRev( $undidRev )
@@ -194,6 +201,68 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 			summary: $summary,
 		);
 		$this->assertTrue( $pageEdit->hasConflict( $page ) );
+	}
+
+	/**
+	 * @dataProvider provideTestShouldAllowBlankSummary
+	 */
+	public function testShouldAllowBlankSummary(
+		bool $shouldAllow,
+		int $namespace,
+		bool $userPrefEnabled,
+		bool $expected,
+	) {
+		$user = $this->getTestUser();
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $user->getUser() );
+		$this->setService( 'UserOptionsLookup', new StaticUserOptionsLookup( [
+			$user->getUserIdentity()->getName() => [
+				'forceeditsummary' => $userPrefEnabled,
+			]
+		] ) );
+
+		$pageEdit = $this->newPageEdit(
+			page: PageIdentityValue::localIdentity( 1, $namespace, $user->getUserIdentity()->getName() ),
+			user: $user,
+			allowBlankSummary: $shouldAllow,
+			context: $context,
+		);
+		$this->assertEquals( $expected, $pageEdit->shouldAllowBlankSummary() );
+	}
+
+	public static function provideTestShouldAllowBlankSummary(): array {
+		return [
+			'Standard behaviour with preference enabled' => [
+				'shouldAllow' => false,
+				'namespace' => NS_MAIN,
+				'userPrefEnabled' => true,
+				'expected' => false,
+			],
+			'Allowed through inputs' => [
+				'shouldAllow' => true,
+				'namespace' => NS_MAIN,
+				'userPrefEnabled' => true,
+				'expected' => true,
+			],
+			'Editing own user page' => [
+				'shouldAllow' => false,
+				'namespace' => NS_USER,
+				'userPrefEnabled' => true,
+				'expected' => true,
+			],
+			'Editing own talk page' => [
+				'shouldAllow' => false,
+				'namespace' => NS_USER_TALK,
+				'userPrefEnabled' => true,
+				'expected' => true,
+			],
+			'User preference disabled' => [
+				'shouldAllow' => false,
+				'namespace' => NS_MAIN,
+				'userPrefEnabled' => false,
+				'expected' => true,
+			],
+		];
 	}
 
 }

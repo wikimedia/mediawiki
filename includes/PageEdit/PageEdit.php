@@ -39,6 +39,8 @@ use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFormatter;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
@@ -83,6 +85,8 @@ class PageEdit implements IEditObject {
 		private readonly RateLimiter $rateLimiter,
 		private readonly RevisionStore $revisionStore,
 		private readonly ShadowPageLoader $shadowPageLoader,
+		private readonly TitleFormatter $titleFormatter,
+		private readonly UserOptionsLookup $userOptionsLookup,
 		private readonly WatchlistManager $watchlistManager,
 		private readonly WatchedItemStoreInterface $watchedItemStore,
 		private readonly WikiPageFactory $wikiPageFactory,
@@ -551,6 +555,8 @@ class PageEdit implements IEditObject {
 		$revision = $this->inputs->getOldid()
 			? $this->revisionStore->getRevisionById( $this->inputs->getOldid() )
 			: $page->getRevisionRecord();
+		$allowBlankSummary = $this->shouldAllowBlankSummary();
+
 		return new EditConstraintRunner(
 			$this->constraintFactory->newEditFilterMergedContentHookConstraint(
 				$content,
@@ -563,7 +569,7 @@ class PageEdit implements IEditObject {
 			new NewSectionMissingSubjectConstraint(
 				$this->section,
 				$this->inputs->getSectiontitle() ?? '',
-				$this->inputs->shouldAllowBlankSummary(),
+				$allowBlankSummary,
 				$this->getSubmitButtonLabel()
 			),
 			new MissingCommentConstraint( $this->section, $this->textbox1 ),
@@ -571,7 +577,7 @@ class PageEdit implements IEditObject {
 				$this->section,
 				$this->inputs->getSummary(),
 				$this->inputs->getAutoSumm(),
-				$this->inputs->shouldAllowBlankSummary(),
+				$allowBlankSummary,
 				$content,
 				$this->pageEditingHelper->getOriginalContent(
 					$this->inputs->getAuthority(),
@@ -825,6 +831,22 @@ class PageEdit implements IEditObject {
 	 */
 	private function isBotEdit(): bool {
 		return $this->inputs->shouldMarkAsBot() && $this->inputs->getAuthority()->isAllowed( 'bot' );
+	}
+
+	/**
+	 * @return bool Whether a blank edit summary should be allowed. This is the case when either
+	 * * the caller wants us to allow blank summaries
+	 * * the user is editing their own user or talk page
+	 * * the user does not have the preference for the warning enabled
+	 */
+	private function shouldAllowBlankSummary(): bool {
+		$user = $this->inputs->getContext()->getUser();
+		$page = $this->inputs->getPage();
+
+		return $this->inputs->shouldAllowBlankSummary()
+			|| ( in_array( $page->getNamespace(), [ NS_USER, NS_USER_TALK ] )
+				&& $this->titleFormatter->getText( $page ) === $user->getName() )
+			|| !$this->userOptionsLookup->getOption( $user, 'forceeditsummary' );
 	}
 
 }

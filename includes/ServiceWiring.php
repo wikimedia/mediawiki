@@ -3287,6 +3287,8 @@ return [
 			$services->getRateLimiter(),
 			$services->getRevisionStore(),
 			$services->getShadowPageLoader(),
+			$services->getTitleFormatter(),
+			$services->getUserOptionsLookup(),
 			$services->getWatchlistManager(),
 			$services->getWatchedItemStore(),
 			$services->getWikiPageFactory(),

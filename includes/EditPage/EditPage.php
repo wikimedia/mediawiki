@@ -1253,8 +1253,6 @@ class EditPage implements IEditObject {
 
 		$this->ignoreRevisionDeletedWarning = $request->getCheck( 'wpIgnoreRevisionDeleted' );
 
-		$user = $this->context->getUser();
-
 		$this->minoredit = $request->getCheck( 'wpMinoredit' );
 		$this->watchthis = $request->getCheck( 'wpWatchthis' );
 		$submittedExpiry = $request->getText( 'wpWatchlistExpiry' );
@@ -1272,18 +1270,9 @@ class EditPage implements IEditObject {
 			$this->watchlistLabels = $request->getIntArray( 'wpWatchlistLabels', [] );
 		}
 
-		# Don't force edit summaries when a user is editing their own user or talk page
-		if ( ( $this->page->getNamespace() === NS_USER || $this->page->getNamespace() === NS_USER_TALK )
-			&& $this->getTitle()->getText() === $user->getName()
-		) {
-			$this->allowBlankSummary = true;
-		} else {
-			$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' )
-				|| !$this->userOptionsLookup->getOption( $user, 'forceeditsummary' );
-		}
-
 		$this->autoSumm = $request->getText( 'wpAutoSummary' );
 
+		$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' );
 		$this->allowBlankArticle = $request->getBool( 'wpIgnoreBlankArticle' );
 		$allowedProblematicRedirectTargetText = $request->getText( 'wpAllowedProblematicRedirectTarget' );
 		$this->allowedProblematicRedirectTarget = $allowedProblematicRedirectTargetText === ''
@@ -2016,6 +2005,8 @@ class EditPage implements IEditObject {
 				->setValue( self::AS_SPAM_ERROR );
 		}
 
+		$allowBlankSummary = $this->allowBlankSummary || ( $this->nosummary && $this->section === 'new' );
+
 		$inputs = ( new PageEditInputs(
 			authority: $this->getAuthority(),
 			contentModel: $this->contentModel,
@@ -2024,7 +2015,7 @@ class EditPage implements IEditObject {
 			summary: $this->summary,
 			textbox1: $this->textbox1,
 		) )->setAllowBlankArticle( $this->allowBlankArticle )
-			->setAllowBlankSummary( $this->allowBlankSummary )
+			->setAllowBlankSummary( $allowBlankSummary )
 			->setAllowedProblematicRedirectTarget( $this->allowedProblematicRedirectTarget )
 			->setAutoSumm( $this->autoSumm )
 			->setChangeTags( $this->changeTags )
@@ -2110,6 +2101,7 @@ class EditPage implements IEditObject {
 			$failed instanceof NewSectionMissingSubjectConstraint
 		) {
 			$this->missingSummary = true;
+			$this->allowBlankSummary = true;
 		} elseif ( $failed instanceof RedirectConstraint ) {
 			$this->problematicRedirectTarget = $failed->problematicTarget;
 		} elseif ( $failed instanceof AccidentalRecreationConstraint ) {
@@ -2397,18 +2389,11 @@ class EditPage implements IEditObject {
 			$out->addHTML( Html::hidden( 'nosummary', true ) );
 		}
 
-		# If a blank edit summary was previously provided, and the appropriate
-		# user preference is active, pass a hidden tag as wpIgnoreBlankSummary. This will stop the
+		# If a blank edit summary was previously provided and an edit constraint fails
+		# because of it, pass a hidden tag as wpIgnoreBlankSummary. This will stop the
 		# user being bounced back more than once in the event that a summary
 		# is not required.
-		# ####
-		# For a bit more sophisticated detection of blank summaries, hash the
-		# automatic one and pass that in the hidden field wpAutoSummary.
-		if (
-			$this->missingSummary ||
-			( $this->section === 'new' && $this->nosummary ) ||
-			$this->allowBlankSummary
-		) {
+		if ( $this->allowBlankSummary ) {
 			$out->addHTML( Html::hidden( 'wpIgnoreBlankSummary', true ) );
 		}
 
