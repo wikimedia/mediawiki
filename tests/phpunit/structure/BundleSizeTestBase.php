@@ -3,14 +3,12 @@
 namespace MediaWiki\Tests\Structure;
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\Context;
-use MediaWiki\ResourceLoader\DependencyStore;
+use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\Assert;
 use RuntimeException;
-use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactory;
 
@@ -37,19 +35,6 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 	private const CORE_SIZE_ADJUSTMENTS = [
 		'mw.loader.impl' => 17
 	];
-
-	public static function provideBundleSize() {
-		$file = static::getBundleSizeConfigData();
-		$content = json_decode( file_get_contents( $file ), true );
-
-		if ( !is_array( $content ) ) {
-			throw new RuntimeException( "Failed to load JSON from $file" );
-		}
-
-		foreach ( $content as $testCase ) {
-			yield $testCase['resourceModule'] => [ $testCase ];
-		}
-	}
 
 	private static function stringToFloat( string $maxSize ): float {
 		if ( str_contains( $maxSize, 'KB' ) || str_contains( $maxSize, 'kB' ) ) {
@@ -85,56 +70,92 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideBundleSize
 	 * @coversNothing
 	 */
-	public function testBundleSize( $testCase ) {
-		$this->assertArrayHasKey( 'resourceModule', $testCase );
-		$moduleName = $testCase['resourceModule'];
+	public function testBundleSize() {
+		$file = static::getBundleSizeConfigData();
+		$content = json_decode( file_get_contents( $file ), true );
 
-		$this->assertTrue(
-			array_key_exists( 'maxSizeUncompressed', $testCase )
-				xor array_key_exists( 'maxSize', $testCase ),
-			'Exactly one of "maxSize" or "maxSizeUncompressed" must be defined for module ' .
-				$moduleName . '.'
-		);
+		if ( !is_array( $content ) ) {
+			throw new RuntimeException( "Failed to load JSON from $file" );
+		}
+
+		$failures = [];
+		$resourceLoader = $this->getServiceContainer()->getResourceLoader();
+		$skin = $this->getSkinName();
+		foreach ( $content as $i => $testCase ) {
+			if ( !isset( $testCase['resourceModule'] ) ) {
+				$failures[] = 'Missing key "resourceModule" at item at #' . $i;
+				continue;
+			}
+
+			$moduleName = $testCase['resourceModule'];
+			$moduleMessage = $this->verifyBundleSize(
+				$resourceLoader,
+				$skin,
+				$moduleName,
+				$testCase
+			);
+
+			if ( $moduleMessage !== null ) {
+				$failures[] = $moduleMessage;
+			}
+		}
+
+		$this->assertSame( [], $failures, 'Errors with bundle sizes for some modules, sizes defined in ' . $file );
+	}
+
+	private function verifyBundleSize(
+		ResourceLoader $resourceLoader,
+		string $skin,
+		string $moduleName,
+		array $testCase
+	): ?string {
+		if ( !( array_key_exists( 'maxSizeUncompressed', $testCase )
+			xor array_key_exists( 'maxSize', $testCase ) )
+		) {
+			return 'Exactly one of "maxSize" or "maxSizeUncompressed" must be defined for module ' .
+				$moduleName . '.';
+		}
 
 		$maxSizeUncompressed = $testCase['maxSizeUncompressed'] ?? null;
 		$maxSize = $testCase['maxSize'] ?? null;
 
 		if ( $maxSize === null && $maxSizeUncompressed === null ) {
-			$this->markTestSkipped( "The module $moduleName has opted out of bundle size testing." );
+			// The module has opted out of bundle size testing.
+			return null;
 		}
 
 		$maxSize = self::normalizeSize( $maxSize );
 		$maxSizeUncompressed = self::normalizeSize( $maxSizeUncompressed );
 
-		$resourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
-		$resourceLoader->setDependencyStore( new DependencyStore( new HashBagOStuff() ) );
 		$request = new FauxRequest(
 			[
 				'lang' => 'en',
 				'modules' => $moduleName,
-				'skin' => $this->getSkinName(),
+				'skin' => $skin,
 			]
 		);
 
 		$context = new Context( $resourceLoader, $request );
 		$module = $resourceLoader->getModule( $moduleName );
 		$content = $resourceLoader->makeModuleResponse( $context, [ $moduleName => $module ] );
-		$contentTransferSizeUncompressed = strlen( $content );
-		$contentTransferSize = strlen( gzencode( $content, 9 ) );
-		$contentTransferSize -= array_sum( self::CORE_SIZE_ADJUSTMENTS );
 		if ( $maxSize !== null ) {
+			$contentTransferSize = strlen( gzencode( $content, 9 ) );
+			$contentTransferSize -= array_sum( self::CORE_SIZE_ADJUSTMENTS );
 			$kilobytes = round( $contentTransferSize / 1024, 1, PHP_ROUND_HALF_UP );
-			$message = "$moduleName should be less than $maxSize bytes (compressed), but is $kilobytes kB";
-			$this->assertLessThan( $maxSize, $contentTransferSize, $message );
+			if ( $maxSize < $contentTransferSize ) {
+				return "$moduleName should be less than $maxSize bytes (compressed), but is $kilobytes kB";
+			}
 		}
 		if ( $maxSizeUncompressed !== null ) {
+			$contentTransferSizeUncompressed = strlen( $content );
 			$kilobytes = round( $contentTransferSizeUncompressed / 1024, 1, PHP_ROUND_HALF_UP );
-			$messageUncompressed = "$moduleName should be less than $maxSizeUncompressed (uncompressed) bytes, but is $kilobytes kB";
-			$this->assertLessThan( $maxSizeUncompressed, $contentTransferSizeUncompressed, $messageUncompressed );
+			if ( $maxSizeUncompressed < $contentTransferSizeUncompressed ) {
+				return "$moduleName should be less than $maxSizeUncompressed (uncompressed) bytes, but is $kilobytes kB";
+			}
 		}
+		return null;
 	}
 
 	/**
