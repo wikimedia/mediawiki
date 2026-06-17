@@ -2060,7 +2060,6 @@ class EditPage implements IEditObject {
 		$this->isConflict = $pageEditResult->isConflict();
 		$this->parentRevId = $pageEditResult->getParentRevId();
 		$this->section = $pageEditResult->getSection();
-		$this->summary = $pageEditResult->getSummary();
 		$this->textbox1 = $pageEditResult->getTextbox1();
 
 		if ( !$pageEditResult->getStatus()->isOK() ) {

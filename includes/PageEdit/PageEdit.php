@@ -68,7 +68,6 @@ class PageEdit implements IEditObject {
 	private ?bool $redirect = null;
 	private string $section;
 	private ?string $sectionanchor = null;
-	private string $summary;
 	private string $textbox1;
 
 	public function __construct(
@@ -90,7 +89,6 @@ class PageEdit implements IEditObject {
 		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->parentRevId = $inputs->getParentRevId();
 		$this->section = $inputs->getSection();
-		$this->summary = $inputs->getSummary();
 		$this->textbox1 = $inputs->getTextbox1();
 	}
 
@@ -109,7 +107,6 @@ class PageEdit implements IEditObject {
 			redirect: $this->redirect,
 			section: $this->section,
 			sectionanchor: $this->sectionanchor,
-			summary: $this->summary,
 			textbox1: $this->textbox1,
 		);
 	}
@@ -217,7 +214,7 @@ class PageEdit implements IEditObject {
 				$this->isConflict = true;
 				if ( $this->section === 'new' ) {
 					if ( $page->getUserText() === $requestUser->getName() &&
-						$page->getComment() === $this->summary
+						$page->getComment() === $this->inputs->getSummary()
 					) {
 						// Probably a duplicate submission of a new comment.
 						// This can happen when CDN resends a request after
@@ -384,7 +381,7 @@ class PageEdit implements IEditObject {
 		$pageUpdater
 			->addTags( $this->inputs->getChangeTags() )
 			->saveRevision(
-				CommentStoreComment::newUnsavedComment( trim( $this->summary ) ),
+				CommentStoreComment::newUnsavedComment( trim( $this->inputs->getSummary() ) ),
 				$flags
 			);
 		$doEditStatus = $pageUpdater->getStatus();
@@ -423,7 +420,7 @@ class PageEdit implements IEditObject {
 				// $oldContentModel is set when $changingContentModel is true
 				$new ? false : $oldContentModel,
 				$this->inputs->getContentModel(),
-				$this->summary
+				$this->inputs->getSummary()
 			);
 		}
 
@@ -449,7 +446,7 @@ class PageEdit implements IEditObject {
 		return new EditConstraintRunner(
 			// Ensure that the summary and text don't match the spam regex
 			$this->constraintFactory->newSpamRegexConstraint(
-				$this->summary,
+				$this->inputs->getSummary(),
 				$this->inputs->getSectiontitle(),
 				$this->textbox1,
 				$this->inputs->getContext()->getRequest()->getIP(),
@@ -517,7 +514,7 @@ class PageEdit implements IEditObject {
 			$this->constraintFactory->newEditFilterMergedContentHookConstraint(
 				$content,
 				$this->inputs->getContext(),
-				$this->summary,
+				$this->inputs->getSummary(),
 				$markAsMinor,
 				$this->inputs->getContext()->getLanguage(),
 				$pstUser
@@ -544,7 +541,7 @@ class PageEdit implements IEditObject {
 			$this->constraintFactory->newEditFilterMergedContentHookConstraint(
 				$content,
 				$this->inputs->getContext(),
-				$this->summary,
+				$this->inputs->getSummary(),
 				$markAsMinor,
 				$this->inputs->getContext()->getLanguage(),
 				$pstUser
@@ -558,7 +555,7 @@ class PageEdit implements IEditObject {
 			new MissingCommentConstraint( $this->section, $this->textbox1 ),
 			new ExistingSectionEditConstraint(
 				$this->section,
-				$this->summary,
+				$this->inputs->getSummary(),
 				$this->inputs->getAutoSumm(),
 				$this->inputs->shouldAllowBlankSummary(),
 				$content,
