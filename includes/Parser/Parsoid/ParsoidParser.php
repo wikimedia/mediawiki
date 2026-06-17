@@ -33,6 +33,10 @@ use Wikimedia\Parsoid\Parsoid;
  *
  * @since 1.41
  * @unstable since 1.41; see T236809 for plan.
+ *
+ * This class can generate the following messages through the Parsoid library.
+ * Although they are not used within MediaWiki core, their translations should be kept:
+ * - apierror-imagelimitexceeded
  */
 class ParsoidParser /* eventually this will extend \Parser */ {
 	public function __construct(
