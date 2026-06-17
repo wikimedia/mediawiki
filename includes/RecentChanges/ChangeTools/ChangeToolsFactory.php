@@ -4,6 +4,7 @@ namespace MediaWiki\RecentChanges\ChangeTools;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Revision\RevisionRecord;
@@ -81,7 +82,13 @@ class ChangeToolsFactory {
 						'undo' => $revision->getId()
 					]
 				);
-				$tools['mw-undo'] = "<span class=\"mw-history-undo\">{$undoLink}</span>";
+				$tools['mw-undo'] = Html::rawElement(
+					'span',
+					[
+						'class' => [ 'mw-history-undo', 'mw-change-tools-undo' ]
+					],
+					$undoLink,
+				);
 			}
 		}
 

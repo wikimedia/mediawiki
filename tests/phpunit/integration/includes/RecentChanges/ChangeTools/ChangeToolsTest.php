@@ -38,12 +38,12 @@ class ChangeToolsTest extends MediaWikiIntegrationTestCase {
 
 		// We can't use assertEquals here since the rollback link contains a token
 		$this->assertStringStartsWith(
-			' <span class="mw-changeslist-links mw-pager-tools"><span><span class="mw-rollback-link">',
+			' <span class="mw-changeslist-links mw-pager-tools mw-change-tools"><span><span class="mw-rollback-link">',
 			$changeTools->toHtml(),
 			'ChangeTools HTML should contain a rollback link wrapped in the expected HTML structure.'
 		);
 		$this->assertStringContainsString(
-			'<span class="mw-history-undo">',
+			'<span class="mw-history-undo mw-change-tools-undo">',
 			$changeTools->toHtml(),
 			'ChangeTools HTML should contain an undo link when a previous revision is provided',
 		);

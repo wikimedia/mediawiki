@@ -33,7 +33,7 @@ class ChangeTools {
 		if ( $html ) {
 			return ' ' . Html::rawElement(
 				'span',
-				[ 'class' => [ 'mw-changeslist-links', 'mw-pager-tools' ] ],
+				[ 'class' => [ 'mw-changeslist-links', 'mw-pager-tools', 'mw-change-tools' ] ],
 				$html
 			);
 		}
