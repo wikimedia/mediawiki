@@ -341,6 +341,7 @@ class Linker {
 		$classes = [];
 		if (
 			!isset( $handlerParams['width'] ) &&
+			!isset( $handlerParams['height'] ) &&
 			!isset( $frameParams['manualthumb'] ) &&
 			!isset( $frameParams['framed'] )
 		) {
@@ -568,7 +569,7 @@ class Linker {
 			$frameParams['manualthumb'] = $manualthumb;
 		} elseif ( $framed ) {
 			$frameParams['framed'] = true;
-		} elseif ( !isset( $params['width'] ) ) {
+		} elseif ( !isset( $params['width'] ) && !isset( $params['height'] ) ) {
 			$classes[] = 'mw-default-size';
 		}
 		return self::makeThumbLink2(

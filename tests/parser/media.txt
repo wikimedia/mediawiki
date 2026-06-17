@@ -3051,6 +3051,16 @@ Width + Height sized image (using px) (height is ignored)
 !! end
 
 !! test
+Height-only media option
+!! wikitext
+[[File:Foobar.jpg|thumb|x200px]]
+!! html/php
+<figure typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/1765px-Foobar.jpg" decoding="async" width="1765" height="200" class="mw-file-element" srcset="http://example.com/images/3/3a/Foobar.jpg 2x" /></a><figcaption></figcaption></figure>
+!! html/parsoid+integrated
+<figure typeof="mw:File/Thumb"><a class="mw-file-description" href="./File:Foobar.jpg"><img class="mw-file-element" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" height="200" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/1765px-Foobar.jpg" srcset="http://example.com/images/3/3a/Foobar.jpg 2x" width="1765"/></a><figcaption></figcaption></figure>
+!! end
+
+!! test
 Width-sized image (using px, no following whitespace)
 !! wikitext
 [[Image:foobar.jpg|640px]]
