@@ -24,18 +24,14 @@ class StructureTest extends \PHPUnit\Framework\TestCase {
 	public function testUnitTestFileNamesEndWithTest() {
 		// realpath() also normalizes directory separator on windows for prefix compares
 		$rootPath = realpath( __DIR__ . '/..' );
-		$suitesPath = realpath( __DIR__ . '/../suites/' );
 		$testClassRegex = '/^(final )?class .* extends [\S]*(TestCase|TestBase)\\b/m';
 
 		$results = $this->recurseFiles( $rootPath );
 
 		$results = array_filter(
 			$results,
-			static function ( $filename ) use ( $testClassRegex, $suitesPath ) {
-				// Remove testUnitTestFileNamesEndWithTest false positives
-				if ( str_starts_with( $filename, $suitesPath ) ||
-					str_ends_with( $filename, 'Test.php' )
-				) {
+			static function ( $filename ) use ( $testClassRegex ) {
+				if ( str_ends_with( $filename, 'Test.php' ) ) {
 					return false;
 				}
 				$contents = file_get_contents( $filename );
