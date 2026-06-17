@@ -152,6 +152,7 @@ trait PageHandlerTestTrait {
 				return new HtmlShadowOutputHelper(
 					$services->getShadowPageLoader(),
 					$services->getTitleFormatter(),
+					$services->getParsoidSiteConfig(),
 					ParserOptions::newFromAnon(),
 					$page
 				);

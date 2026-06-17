@@ -188,6 +188,7 @@ class PageRestHelperFactory {
 		return new HtmlShadowOutputHelper(
 			$this->shadowPageLoader,
 			$this->titleFormatter,
+			$this->parsoidSiteConfig,
 			$parserOptions,
 			$page
 		);

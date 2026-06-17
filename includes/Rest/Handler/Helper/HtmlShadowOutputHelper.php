@@ -8,14 +8,14 @@ namespace MediaWiki\Rest\Handler\Helper;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Title\TitleFormatter;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
-use Wikimedia\Parsoid\Utils\ContentUtils;
-use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @since 1.47
@@ -29,6 +29,7 @@ class HtmlShadowOutputHelper implements HtmlOutputHelper {
 	public function __construct(
 		private ShadowPageLoader $shadowPageLoader,
 		private TitleFormatter $titleFormatter,
+		private SiteConfig $siteConfig,
 		private ParserOptions $parserOptions,
 		PageIdentity $page
 	) {
@@ -71,20 +72,8 @@ class HtmlShadowOutputHelper implements HtmlOutputHelper {
 	 * body-only, per the ContentHolder invariant.)
 	 */
 	public function getPageBundle(): HtmlPageBundle {
-		// T429391: This is creating full-document output (and a PageBundle)
-		// without being Parsoid HTML.  This should probably be replaced
-		// by a call to
-		// PageBundleParserOutputConverter::htmlPageBundleFromParserOutput()
-		$output = $this->getHtml();
-		$language = $output->getLanguage()->toBcp47Code();
-		$messageDom = DOMUtils::parseHTML( $output->getContentHolderText() );
-		DOMUtils::appendToHead( $messageDom, 'meta', [
-			'http-equiv' => 'content-language',
-			'content' => $language,
-		] );
-		return new HtmlPageBundle(
-			html: ContentUtils::toXML( $messageDom ),
-			headers: [ 'content-language' => $language ],
+		return PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+			$this->getHtml(), $this->siteConfig, bodyOnly: false
 		);
 	}
 
