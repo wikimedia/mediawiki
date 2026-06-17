@@ -69,7 +69,7 @@ class PageEdit implements IEditObject {
 	private int $parentRevId;
 	private ?bool $redirect = null;
 	private string $section;
-	private ?string $sectionanchor = null;
+	private string $sectionanchor = '';
 	private string $textbox1;
 
 	public function __construct(
@@ -178,13 +178,12 @@ class PageEdit implements IEditObject {
 		if ( $new ) {
 			$content = $textbox_content;
 
-			$this->sectionanchor = '';
 			if ( $this->section === 'new' ) {
 				if ( $sectiontitle !== null ) {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $sectiontitle );
+					$this->sectionanchor = $this->pageEditingHelper->guessSectionName( $sectiontitle );
 				}
-				$this->sectionanchor = $this->inputs->getNewSectionAnchor();
 			}
 
 			$pageUpdater = $page->newPageUpdater( $pstUser )
@@ -283,9 +282,8 @@ class PageEdit implements IEditObject {
 			}
 
 			# All's well
-			$sectionAnchor = '';
 			if ( $this->section === 'new' ) {
-				$sectionAnchor = $this->inputs->getNewSectionAnchor();
+				$this->sectionanchor = $this->pageEditingHelper->guessSectionName( $sectiontitle ?? '' );
 			} elseif ( $this->section !== '' ) {
 				# Try to get a section anchor from the section source, redirect
 				# to edited section if header found.
@@ -295,10 +293,9 @@ class PageEdit implements IEditObject {
 				# We can't deal with anchors, includes, html etc in the header for now,
 				# headline would need to be parsed to improve this.
 				if ( $hasmatch && $matches[2] !== '' ) {
-					$sectionAnchor = $this->pageEditingHelper->guessSectionName( $matches[2] );
+					$this->sectionanchor = $this->pageEditingHelper->guessSectionName( $matches[2] );
 				}
 			}
-			$this->sectionanchor = $sectionAnchor;
 
 			// Save errors may fall down to the edit form, but we've now
 			// merged the section into full text. Clear the section field

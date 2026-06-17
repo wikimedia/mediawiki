@@ -287,8 +287,6 @@ class EditPage implements IEditObject {
 
 	public ?string $sectiontitle = null;
 
-	private ?string $newSectionAnchor = null;
-
 	/**
 	 * Timestamp from the first time the edit form was rendered.
 	 */
@@ -1811,7 +1809,7 @@ class EditPage implements IEditObject {
 				if ( $extraQueryRedirect ) {
 					$queryParts[] = $extraQueryRedirect;
 				}
-				$anchor = $resultDetails['sectionanchor'] ?? '';
+				$anchor = $resultDetails['sectionanchor'];
 				$this->doPostEditRedirect( implode( '&', $queryParts ), $anchor );
 				return false;
 
@@ -1936,18 +1934,13 @@ class EditPage implements IEditObject {
 			$services->getContentLanguageCode()->toString()
 		);
 
-		if ( $this->sectiontitle !== '' ) {
-			$this->newSectionAnchor = $this->pageEditingHelper->guessSectionName( $this->sectiontitle );
-			// If no edit summary was specified, create one automatically from the section
-			// title and have it link to the new section. Otherwise, respect the summary as
-			// passed.
-			if ( $this->summary === '' ) {
-				$messageValue = MessageValue::new( 'newsectionsummary' )
-					->plaintextParams( $parser->stripSectionName( $this->sectiontitle ) );
-				$this->summary = $textFormatter->format( $messageValue );
-			}
-		} else {
-			$this->newSectionAnchor = '';
+		// If no edit summary was specified and the section title is not empty, create
+		// a summary automatically from the section title and have it link to the new section.
+		// Otherwise, respect the summary as passed.
+		if ( $this->sectiontitle !== '' && $this->summary === '' ) {
+			$messageValue = MessageValue::new( 'newsectionsummary' )
+				->plaintextParams( $parser->stripSectionName( $this->sectiontitle ) );
+			$this->summary = $textFormatter->format( $messageValue );
 		}
 	}
 
@@ -2043,7 +2036,6 @@ class EditPage implements IEditObject {
 			->setIgnoreRevisionDeletedWarning( $this->ignoreRevisionDeletedWarning )
 			->setMarkAsBot( $this->markAsBot )
 			->setMarkAsMinor( $this->minoredit )
-			->setNewSectionAnchor( $this->newSectionAnchor )
 			->setOldid( $this->oldid )
 			->setParentRevId( $this->parentRevId )
 			->setRecreate( $this->recreate )

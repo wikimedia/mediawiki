@@ -99,7 +99,6 @@ class ParserCoreTagHooks {
 		$attribs = array_map( $parser->killMarkers( ... ), $attribs );
 		$attribs = Sanitizer::validateTagAttributes( $attribs, 'pre' );
 
-		// @phan-suppress-next-line SecurityCheck-XSS escaped in previous line
 		return Html::rawElement( 'pre', $attribs, $content );
 	}
 

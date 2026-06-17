@@ -16,7 +16,7 @@ class PageEditResult {
 		private readonly int $parentRevId,
 		private readonly ?bool $redirect,
 		private readonly string $section,
-		private readonly ?string $sectionanchor,
+		private readonly string $sectionanchor,
 		private readonly string $textbox1,
 	) {
 	}
@@ -49,7 +49,7 @@ class PageEditResult {
 		return $this->section;
 	}
 
-	public function getSectionanchor(): ?string {
+	public function getSectionanchor(): string {
 		return $this->sectionanchor;
 	}
 

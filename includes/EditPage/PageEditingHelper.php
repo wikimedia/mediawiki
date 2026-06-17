@@ -40,8 +40,13 @@ class PageEditingHelper {
 
 	/**
 	 * Turns section name wikitext into anchors for use in HTTP redirects.
+	 *
+	 * @return string An empty string if $text is empty; otherwise the section name as an anchor starting with '#'.
 	 */
 	public function guessSectionName( string $text ): string {
+		if ( $text === '' ) {
+			return '';
+		}
 		$parser = $this->parserFactory->getMainInstance();
 		$name = $parser->guessSectionNameFromWikiText( $text );
 		// Per T216029, fragments in HTTP redirects need to be urlencoded,

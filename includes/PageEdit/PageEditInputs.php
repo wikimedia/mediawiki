@@ -31,7 +31,6 @@ class PageEditInputs {
 	private bool $ignoreRevisionDeletedWarning = false;
 	private bool $markAsBot = false;
 	private bool $markAsMinor = false;
-	private ?string $newSectionAnchor = null;
 	private int $oldid = 0;
 	private int $parentRevId = 0;
 	private bool $recreate = false;
@@ -210,15 +209,6 @@ class PageEditInputs {
 
 	public function setMarkAsMinor( bool $markAsMinor ): self {
 		$this->markAsMinor = $markAsMinor;
-		return $this;
-	}
-
-	public function getNewSectionAnchor(): ?string {
-		return $this->newSectionAnchor;
-	}
-
-	public function setNewSectionAnchor( ?string $newSectionAnchor ): self {
-		$this->newSectionAnchor = $newSectionAnchor;
 		return $this;
 	}
 

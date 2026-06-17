@@ -35,6 +35,10 @@ class PageEditingHelperIntegrationTest extends MediaWikiIntegrationTestCase {
 			$helper->guessSectionName( '😀' ),
 			'Special characters should be URL-encoded in the guessed section name (T216029).'
 		);
+		$this->assertSame(
+			'',
+			$helper->guessSectionName( '' )
+		);
 	}
 
 	public function testGetUndoContent_SingleEdit() {
