@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"ArcaneIE",
 			"ShockD",
 			"Spas.Z.Spasov",
 			"StanProg",
@@ -96,6 +97,7 @@
 	"apierror-copyuploadbaddomain": "Качването чрез URL не е позволено от този домейн.",
 	"apierror-copyuploadbadurl": "Качването не е позволено от този URL.",
 	"apierror-filedoesnotexist": "Файлът не съществува.",
+	"apierror-imagelimitexceeded": "Лимитът за изображения е превишен",
 	"apierror-invalidcategory": "Името на категорията, което въведохте, не е валидно.",
 	"api-feed-error-title": "Грешка ($1)",
 	"api-credits-header": "Създатели",

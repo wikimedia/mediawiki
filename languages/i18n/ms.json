@@ -2349,7 +2349,7 @@
 	"block-confirm-no": "Tidak",
 	"block-submit": "Hantar",
 	"block-success": "[[Special:Contributions/$1|{{GENDER:$1|$1}}]] ([[{{ns:user_talk}}:$1|bincang]]) telah disekat. Lihat [[Special:BlockList|senarai sekatan]] untuk menyemak sekatan.",
-	"block-additional-success-text": "The following associated {{PLURAL:$2|Akaun}} berkaitan berikut {{PLURAL:$2|juga telah disekat}}: $1.",
+	"block-additional-success-text": "{{PLURAL:$2|Akaun}} berkaitan berikut {{PLURAL:$2|juga telah disekat}}: $1.",
 	"block-additional-error-header-text": "{{PLURAL:$1|Sekatan}} gagal",
 	"block-target-link": "[[Special:Contributions/$1|$1]] ([[{{ns:user_talk}}:$1|bincang]])",
 	"block-user-active-blocks": "Sekatan aktif",

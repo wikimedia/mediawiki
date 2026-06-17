@@ -1812,6 +1812,7 @@
 	"apierror-filetypecannotberotated": "O tipo de ficheiro non permite que sexa rotado.",
 	"apierror-formatphp": "Esta resposta non pode ser representada usando kbd>format=php</kbd>. Consulte https://phabricator.wikimedia.org/T68776.",
 	"apierror-http-contenttoolarge": "O contido da solicitude HTTP é demasiado grande. Lonxitude máxima: $1.",
+	"apierror-imagelimitexceeded": "Superouse o límite de imaxes",
 	"apierror-imageusage-badtitle": "O título para <kbd>$1</kbd> debe ser un ficheiro.",
 	"apierror-import-unknownerror": "Erro descoñecido ó importarː $1.",
 	"apierror-info-singlepagerevision": "Fornecéronse varias páxinas ou revisións, pero <var>$1prop=preloadcontent</var> e <var>$1prop=editintro</var> só se poden usar cunha soa páxina e revisión.",

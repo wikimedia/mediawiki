@@ -28,6 +28,7 @@
 			"Thingofme",
 			"Tmp1109",
 			"Trần Nguyễn Minh Huy",
+			"Ttra2607",
 			"Vinhtantran",
 			"לערי ריינהארט"
 		]
@@ -71,6 +72,7 @@
 	"prefs-user-downloaddata-info": "Dữ liệu tài khoản của tôi trong dự án này",
 	"prefs-user-restoreprefs-label": "Đặt lại tùy chọn:",
 	"prefs-user-restoreprefs-info": "Đặt lại tùy chọn (trong mọi phần)",
+	"prefs-accountsecurity": "Bảo mật tài khoản",
 	"prefs-i18n": "Quốc tế hóa",
 	"yourlanguage": "Ngôn ngữ:",
 	"yourgender": "Bạn muốn được miêu tả như thế nào?",
@@ -156,6 +158,10 @@
 	"prefs-files": "Tập tin",
 	"imagemaxsize": "Giới hạn cỡ hình trên trang miêu tả tập tin:",
 	"thumbsize": "Cỡ hình thu nhỏ:",
+	"thumbsize-small": "Nhỏ",
+	"thumbsize-regular": "Thường xuyên",
+	"thumbsize-large": "Lớn",
+	"thumbsize-help": "Một số người dùng có thể thích ảnh thu nhỏ có kích thước nhỏ hơn hoặc lớn hơn mức bình thường. Kích thước tiêu chuẩn là $1 pixel.",
 	"prefs-diffs": "Khác biệt",
 	"tog-diffonly": "Không hiện nội dung trang ở phía dưới phần so sánh phiên bản",
 	"tog-norollbackdiff": "Bỏ qua bản so sánh sau khi lùi sửa",

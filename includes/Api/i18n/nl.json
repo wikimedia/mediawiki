@@ -1822,6 +1822,7 @@
 	"apierror-filetypecannotberotated": "Dit bestandstype kan niet geroteerd worden.",
 	"apierror-formatphp": "Dit antwoord kan niet worden weergegeven met <kbd>format=php</kbd>. Zie https://phabricator.wikimedia.org/T68776.",
 	"apierror-http-contenttoolarge": "Inhoud HTTP-verzoek te groot. Maximale lengte: $1.",
+	"apierror-imagelimitexceeded": "De afbeeldingenlimiet is overschreden",
 	"apierror-imageusage-badtitle": "De titel voor <kbd>$1</kbd> moet een bestand zijn.",
 	"apierror-import-unknownerror": "Onbekende fout trad op tijdens het importeren: $1.",
 	"apierror-info-singlepagerevision": "Er zijn meerdere pagina’s of versies aangeleverd, maar <var>$1prop=preloadcontent</var> en <var>$1prop=editintro</var> mogen slechts met één pagina en versie worden gebruikt.",
