@@ -75,19 +75,31 @@
 			.then( ( experiment ) => {
 				const isMobile = mw.config.get( 'skin' ) === 'minerva';
 				if ( isMobile && data.tempUserCreated && experiment.isAssignedGroup( 'treatment' ) ) {
-					mw.tempUserCreated.showCondensedPopup( {
-						classes: [ 'postedit-tempusercreated' ],
-						title: mw.message( 'postedit-confirmation-published-title' ).text(),
-						content: [
-							mw.message( 'postedit-temp-created-createaccount-benefits' ).text(),
-							mw.message( 'postedit-temp-created-createaccount-benefit-1' ).text(),
-							mw.message( 'postedit-temp-created-createaccount-benefit-2' ).text(),
-							mw.message( 'postedit-temp-created-createaccount-benefit-3' ).text()
-						],
-						primaryActionLabel: mw.message( 'createaccount' ).text(),
-						primaryActionUrl: mw.util.getUrl( 'Special:CreateAccount' ),
-						hideBackdrop: true
-					} );
+					// mediawiki.action.view.postEdit is loaded two times on temporary account auto-creation, avoid
+					// displaying the confirmation until the temp account is attached (user menu is present in nav).
+					if ( mw.user.isTemp() ) {
+						// Make sure the popover will actually show as a bottom sheet, since we don't provide an
+						// anchor point, it wouldn't fall back to the desktop version so we manually provide the
+						// default confirmation.
+						const isMobileBreakpoint = window.matchMedia( '(max-width: 639px)' ).matches;
+						if ( isMobileBreakpoint ) {
+							mw.tempUserCreated.showCondensedPopup( {
+								classes: [ 'postedit-tempusercreated' ],
+								title: mw.message( 'postedit-confirmation-published-title' ).text(),
+								content: [
+									mw.message( 'postedit-temp-created-createaccount-benefits' ).text(),
+									mw.message( 'postedit-temp-created-createaccount-benefit-1' ).text(),
+									mw.message( 'postedit-temp-created-createaccount-benefit-2' ).text(),
+									mw.message( 'postedit-temp-created-createaccount-benefit-3' ).text()
+								],
+								primaryActionLabel: mw.message( 'createaccount' ).text(),
+								primaryActionUrl: mw.util.getUrl( 'Special:CreateAccount' )
+							} );
+						} else {
+							// Fallback to default confirmation until Codex bottom sheet works on desktop, T366048
+							showDefaultConfirmation();
+						}
+					}
 					// Deprecated - use the 'postEdit' hook, and an additional pause if required
 					mw.hook( 'postEdit.afterRemoval' ).fire();
 				} else {

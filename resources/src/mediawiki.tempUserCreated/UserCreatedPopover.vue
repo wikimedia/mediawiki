@@ -105,5 +105,23 @@ module.exports = defineComponent( {
 		font-weight: @font-weight-bold;
 		line-height: @line-height-large;
 	}
+
+	.mw-popover-content > p {
+		margin: 0;
+		line-height: @line-height-medium;
+	}
+
+	.mw-popover-content > p + ul {
+		margin-top: 0;
+	}
+
+	.mw-popover-content > ul {
+		padding-left: @spacing-200;
+		line-height: @line-height-medium;
+	}
+
+	.mw-popover-content > ul > li {
+		margin-bottom: 0;
+	}
 }
 </style>
