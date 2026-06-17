@@ -399,6 +399,7 @@ class LocalFileMoveBatch {
 				->where( [ 'file_name' => $this->newName ] )
 				->andWhere( [ 'file_deleted' => 1 ] )
 				->caller( __METHOD__ )->fetchField();
+
 			if ( $deleted ) {
 				// Overwriting an existing file that was deleted.
 				// Once the file deletion storage refactor starts,
@@ -408,6 +409,7 @@ class LocalFileMoveBatch {
 					->where( [ 'file_name' => $this->newName ] )
 					->andWhere( [ 'file_deleted' => 1 ] )
 					->caller( __METHOD__ )->execute();
+
 				// Paranoia
 				$dbw->newUpdateQueryBuilder()
 					->update( 'filerevision' )
@@ -415,21 +417,33 @@ class LocalFileMoveBatch {
 					->where( [ 'fr_file' => $deleted ] )
 					->caller( __METHOD__ )->execute();
 			}
+
 			$dbw->newUpdateQueryBuilder()
 				->update( 'file' )
 				->set( [ 'file_name' => $this->newName ] )
 				->where( [ 'file_id' => $this->file->getFileIdFromName() ] )
 				->caller( __METHOD__ )->execute();
+
+			$dbw->newUpdateQueryBuilder()
+				->update( 'filerevision' )
+				->set( [
+					'fr_archive_name' => new RawSQLValue( $dbw->strreplace(
+						'fr_archive_name',
+						$dbw->addQuotes( $this->oldName ),
+						$dbw->addQuotes( $this->newName )
+					) ),
+				] )
+				->where( [ 'fr_file' => $this->file->getFileIdFromName() ] )
+				->caller( __METHOD__ )->execute();
+
 		}
 		if ( $migrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
-			// Update current image
 			$dbw->newUpdateQueryBuilder()
 				->update( 'image' )
 				->set( [ 'img_name' => $this->newName ] )
 				->where( [ 'img_name' => $this->oldName ] )
 				->caller( __METHOD__ )->execute();
 
-			// Update old images
 			$dbw->newUpdateQueryBuilder()
 				->update( 'oldimage' )
 				->set( [
