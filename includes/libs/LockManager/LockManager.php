@@ -129,8 +129,13 @@ abstract class LockManager {
 		$loop = new WaitConditionLoop(
 			function () use ( &$status, $pathsByType ) {
 				$status = $this->doLockByType( $pathsByType );
-
-				return $status->isOK() ?: WaitConditionLoop::CONDITION_CONTINUE;
+				if ( $status->isOK() ) {
+					return WaitConditionLoop::CONDITION_REACHED;
+				} elseif ( $status->hasMessage( 'lockmanager-fail-conflict' ) ) {
+					return WaitConditionLoop::CONDITION_CONTINUE;
+				} else {
+					return WaitConditionLoop::CONDITION_ABORTED;
+				}
 			},
 			$timeout
 		);
@@ -200,16 +205,23 @@ abstract class LockManager {
 	}
 
 	/**
-	 * @see LockManager::lockByType()
+	 * Acquire a set of locks without blocking
+	 *
+	 * If some locks could not be acquired, then the other locks should be released.
+	 * This must set the "lockmanager-fail-conflict" error if there are any lock conflicts.
+	 *
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return StatusValue
+	 * @see LockManager::lockByType()
 	 */
 	abstract protected function doLockByType( array $pathsByType );
 
 	/**
-	 * @see LockManager::unlockByType()
+	 * Release a set of locks
+	 *
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return StatusValue
+	 * @see LockManager::unlockByType()
 	 */
 	abstract protected function doUnlockByType( array $pathsByType );
 }
