@@ -7,13 +7,14 @@
  *
  * For more details see https://wikitech.wikimedia.org/wiki/Provenance
  *
+ * @param {string} [loc] The document location (optional, exposed for testing)
  * @return {string|null} The wprov string
  * @ignore
  */
-function stripWprov() {
-	const uri = new URL( window.location.href );
+function stripWprov( loc = window.location.href ) {
+	const uri = new URL( loc );
 	const wprov = uri.searchParams.get( 'wprov' );
-	if ( window.history.replaceState ) {
+	if ( window.history.replaceState && wprov ) {
 		uri.searchParams.delete( 'wprov' );
 		// When 'title' is the only remaining parameter, use the canonical URL
 		if (
