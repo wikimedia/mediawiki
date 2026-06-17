@@ -1270,6 +1270,7 @@
 	"linterror-multiple-unclosed-formatting-tags": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-multiple-unclosed-formatting-tags-details}}.",
 	"linterror-night-mode-unaware-background-color": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-night-mode-unaware-background-color-details}}.",
 	"linterror-obsolete-tag": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-obsolete-tag-details}}.",
+	"linterror-pre-expansion": "Error message, follows {{msg-mw|badsightml}}.",
 	"linterror-pwrap-bug-workaround": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-pwrap-bug-workaround-details}}.",
 	"linterror-self-closed-tag": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-self-closed-tag-details}}.",
 	"linterror-stripped-tag": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-stripped-tag-details}}.",
