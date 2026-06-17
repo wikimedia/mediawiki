@@ -2,7 +2,7 @@
 	"$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
 	"bomFormat": "CycloneDX",
 	"specVersion": "1.6",
-	"serialNumber": "urn:uuid:e6142fa6-cbca-4064-a869-64753c04cb5d",
+	"serialNumber": "urn:uuid:bcec141c-8c00-42a6-b88a-afb20c4f167b",
 	"version": 1,
 	"components": [
 		{
@@ -472,7 +472,7 @@
 		{
 			"type": "library",
 			"name": "pinia",
-			"version": "2.0.16",
+			"version": "3.0.4",
 			"licenses": [
 				{
 					"license": {
@@ -480,7 +480,7 @@
 					}
 				}
 			],
-			"purl": "pkg:npm/pinia@2.0.16",
+			"purl": "pkg:npm/pinia@3.0.4",
 			"authors": [
 				{
 					"name": "Eduardo San Martin Morote"
@@ -488,7 +488,7 @@
 			],
 			"externalReferences": [
 				{
-					"url": "https://pinia.vuejs.org/",
+					"url": "https://pinia.vuejs.org",
 					"type": "website"
 				}
 			]
@@ -573,30 +573,6 @@
 		},
 		{
 			"type": "library",
-			"name": "vue-demi",
-			"version": "0.14.7",
-			"licenses": [
-				{
-					"license": {
-						"id": "MIT"
-					}
-				}
-			],
-			"purl": "pkg:npm/vue-demi@0.14.7",
-			"authors": [
-				{
-					"name": "Anthony Fu"
-				}
-			],
-			"externalReferences": [
-				{
-					"url": "https://github.com/vueuse/vue-demi/",
-					"type": "website"
-				}
-			]
-		},
-		{
-			"type": "library",
 			"name": "vue",
 			"version": "3.5.13",
 			"licenses": [
@@ -615,6 +591,30 @@
 			"externalReferences": [
 				{
 					"url": "https://vuejs.org/",
+					"type": "website"
+				}
+			]
+		},
+		{
+			"type": "library",
+			"name": "vue-devtools-api",
+			"version": "8.1.3",
+			"licenses": [
+				{
+					"license": {
+						"id": "MIT"
+					}
+				}
+			],
+			"purl": "pkg:npm/@vue/devtools-api@8.1.3",
+			"authors": [
+				{
+					"name": "webfansplz"
+				}
+			],
+			"externalReferences": [
+				{
+					"url": "https://github.com/vuejs/devtools#readme",
 					"type": "website"
 				}
 			]

@@ -1,10 +1,12 @@
 /*!
-  * pinia v2.0.16
-  * (c) 2022 Eduardo San Martin Morote
-  * @license MIT
-  */
-var Pinia = (function (exports, vueDemi) {
+ * pinia v3.0.4
+ * (c) 2025 Eduardo San Martin Morote
+ * @license MIT
+ */
+var Pinia = (function (exports, vue, devtoolsApi) {
   'use strict';
+
+  const IS_CLIENT = typeof window !== 'undefined';
 
   /**
    * setActivePinia must be called to handle SSR at the top of functions like
@@ -17,179 +19,21 @@ var Pinia = (function (exports, vueDemi) {
    *
    * @param pinia - Pinia instance
    */
+  // @ts-expect-error: cannot constrain the type of the return
   const setActivePinia = (pinia) => (activePinia = pinia);
   /**
    * Get the currently active pinia if there is any.
    */
-  const getActivePinia = () => (vueDemi.getCurrentInstance() && vueDemi.inject(piniaSymbol)) || activePinia;
+  const getActivePinia = () => {
+          const pinia = vue.hasInjectionContext() && vue.inject(piniaSymbol);
+          if (!pinia && !IS_CLIENT) {
+              console.error(`[🍍]: Pinia instance not found in context. This falls back to the global activePinia which exposes you to cross-request pollution on the server. Most of the time, it means you are calling "useStore()" in the wrong place.\n` +
+                  `Read https://vuejs.org/guide/reusability/composables.html to learn more`);
+          }
+          return pinia || activePinia;
+      }
+      ;
   const piniaSymbol = (Symbol('pinia') );
-
-  function getDevtoolsGlobalHook() {
-      return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
-  }
-  function getTarget() {
-      // @ts-ignore
-      return (typeof navigator !== 'undefined' && typeof window !== 'undefined')
-          ? window
-          : typeof global !== 'undefined'
-              ? global
-              : {};
-  }
-  const isProxyAvailable = typeof Proxy === 'function';
-
-  const HOOK_SETUP = 'devtools-plugin:setup';
-  const HOOK_PLUGIN_SETTINGS_SET = 'plugin:settings:set';
-
-  let supported;
-  let perf;
-  function isPerformanceSupported() {
-      var _a;
-      if (supported !== undefined) {
-          return supported;
-      }
-      if (typeof window !== 'undefined' && window.performance) {
-          supported = true;
-          perf = window.performance;
-      }
-      else if (typeof global !== 'undefined' && ((_a = global.perf_hooks) === null || _a === void 0 ? void 0 : _a.performance)) {
-          supported = true;
-          perf = global.perf_hooks.performance;
-      }
-      else {
-          supported = false;
-      }
-      return supported;
-  }
-  function now() {
-      return isPerformanceSupported() ? perf.now() : Date.now();
-  }
-
-  class ApiProxy {
-      constructor(plugin, hook) {
-          this.target = null;
-          this.targetQueue = [];
-          this.onQueue = [];
-          this.plugin = plugin;
-          this.hook = hook;
-          const defaultSettings = {};
-          if (plugin.settings) {
-              for (const id in plugin.settings) {
-                  const item = plugin.settings[id];
-                  defaultSettings[id] = item.defaultValue;
-              }
-          }
-          const localSettingsSaveId = `__vue-devtools-plugin-settings__${plugin.id}`;
-          let currentSettings = Object.assign({}, defaultSettings);
-          try {
-              const raw = localStorage.getItem(localSettingsSaveId);
-              const data = JSON.parse(raw);
-              Object.assign(currentSettings, data);
-          }
-          catch (e) {
-              // noop
-          }
-          this.fallbacks = {
-              getSettings() {
-                  return currentSettings;
-              },
-              setSettings(value) {
-                  try {
-                      localStorage.setItem(localSettingsSaveId, JSON.stringify(value));
-                  }
-                  catch (e) {
-                      // noop
-                  }
-                  currentSettings = value;
-              },
-              now() {
-                  return now();
-              },
-          };
-          if (hook) {
-              hook.on(HOOK_PLUGIN_SETTINGS_SET, (pluginId, value) => {
-                  if (pluginId === this.plugin.id) {
-                      this.fallbacks.setSettings(value);
-                  }
-              });
-          }
-          this.proxiedOn = new Proxy({}, {
-              get: (_target, prop) => {
-                  if (this.target) {
-                      return this.target.on[prop];
-                  }
-                  else {
-                      return (...args) => {
-                          this.onQueue.push({
-                              method: prop,
-                              args,
-                          });
-                      };
-                  }
-              },
-          });
-          this.proxiedTarget = new Proxy({}, {
-              get: (_target, prop) => {
-                  if (this.target) {
-                      return this.target[prop];
-                  }
-                  else if (prop === 'on') {
-                      return this.proxiedOn;
-                  }
-                  else if (Object.keys(this.fallbacks).includes(prop)) {
-                      return (...args) => {
-                          this.targetQueue.push({
-                              method: prop,
-                              args,
-                              resolve: () => { },
-                          });
-                          return this.fallbacks[prop](...args);
-                      };
-                  }
-                  else {
-                      return (...args) => {
-                          return new Promise(resolve => {
-                              this.targetQueue.push({
-                                  method: prop,
-                                  args,
-                                  resolve,
-                              });
-                          });
-                      };
-                  }
-              },
-          });
-      }
-      async setRealTarget(target) {
-          this.target = target;
-          for (const item of this.onQueue) {
-              this.target.on[item.method](...item.args);
-          }
-          for (const item of this.targetQueue) {
-              item.resolve(await this.target[item.method](...item.args));
-          }
-      }
-  }
-
-  function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
-      const descriptor = pluginDescriptor;
-      const target = getTarget();
-      const hook = getDevtoolsGlobalHook();
-      const enableProxy = isProxyAvailable && descriptor.enableEarlyProxy;
-      if (hook && (target.__VUE_DEVTOOLS_PLUGIN_API_AVAILABLE__ || !enableProxy)) {
-          hook.emit(HOOK_SETUP, pluginDescriptor, setupFn);
-      }
-      else {
-          const proxy = enableProxy ? new ApiProxy(descriptor, hook) : null;
-          const list = target.__VUE_DEVTOOLS_PLUGINS__ = target.__VUE_DEVTOOLS_PLUGINS__ || [];
-          list.push({
-              pluginDescriptor: descriptor,
-              setupFn,
-              proxy,
-          });
-          if (proxy)
-              setupFn(proxy.proxiedTarget);
-      }
-  }
 
   function isPlainObject(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -228,8 +72,6 @@ var Pinia = (function (exports, vueDemi) {
       MutationType["patchFunction"] = "patch function";
       // maybe reset? for $state = {} and $reset
   })(exports.MutationType || (exports.MutationType = {}));
-
-  const IS_CLIENT = typeof window !== 'undefined';
 
   /*
    * FileSaver.js A saveAs() FileSaver implementation.
@@ -287,13 +129,26 @@ var Pinia = (function (exports, vueDemi) {
           node.dispatchEvent(new MouseEvent('click'));
       }
       catch (e) {
-          const evt = document.createEvent('MouseEvents');
-          evt.initMouseEvent('click', true, true, window, 0, 0, 0, 80, 20, false, false, false, false, 0, null);
+          const evt = new MouseEvent('click', {
+              bubbles: true,
+              cancelable: true,
+              view: window,
+              detail: 0,
+              screenX: 80,
+              screenY: 20,
+              clientX: 80,
+              clientY: 20,
+              ctrlKey: false,
+              altKey: false,
+              shiftKey: false,
+              metaKey: false,
+              button: 0,
+              relatedTarget: null,
+          });
           node.dispatchEvent(evt);
       }
   }
-  const _navigator = 
-   typeof navigator === 'object' ? navigator : { userAgent: '' };
+  const _navigator = typeof navigator === 'object' ? navigator : { userAgent: '' };
   // Detect WebView inside a native macOS app by ruling out all browsers
   // We just need to check for 'Safari' because all other browsers (besides Firefox) include that too
   // https://www.whatismybrowser.com/guides/the-latest-user-agent/macos
@@ -421,6 +276,7 @@ var Pinia = (function (exports, vueDemi) {
   function toastMessage(message, type) {
       const piniaMessage = '🍍 ' + message;
       if (typeof __VUE_DEVTOOLS_TOAST__ === 'function') {
+          // No longer available :(
           __VUE_DEVTOOLS_TOAST__(piniaMessage, type);
       }
       else if (type === 'error') {
@@ -437,6 +293,10 @@ var Pinia = (function (exports, vueDemi) {
       return '_a' in o && 'install' in o;
   }
 
+  /**
+   * This file contain devtools actions, they are not Pinia actions.
+   */
+  // ---
   function checkClipboardAccess() {
       if (!('clipboard' in navigator)) {
           toastMessage(`Your browser doesn't support the Clipboard API`, 'error');
@@ -469,7 +329,7 @@ var Pinia = (function (exports, vueDemi) {
       if (checkClipboardAccess())
           return;
       try {
-          pinia.state.value = JSON.parse(await navigator.clipboard.readText());
+          loadStoresState(pinia, JSON.parse(await navigator.clipboard.readText()));
           toastMessage('Global state pasted from clipboard.');
       }
       catch (error) {
@@ -518,17 +378,30 @@ var Pinia = (function (exports, vueDemi) {
   }
   async function actionGlobalOpenStateFile(pinia) {
       try {
-          const open = await getFileOpener();
+          const open = getFileOpener();
           const result = await open();
           if (!result)
               return;
           const { text, file } = result;
-          pinia.state.value = JSON.parse(text);
+          loadStoresState(pinia, JSON.parse(text));
           toastMessage(`Global state imported from "${file.name}".`);
       }
       catch (error) {
-          toastMessage(`Failed to export the state as JSON. Check the console for more details.`, 'error');
+          toastMessage(`Failed to import the state from JSON. Check the console for more details.`, 'error');
           console.error(error);
+      }
+  }
+  function loadStoresState(pinia, state) {
+      for (const key in state) {
+          const storeState = pinia.state.value[key];
+          // store is already instantiated, patch it
+          if (storeState) {
+              Object.assign(storeState, state[key]);
+          }
+          else {
+              // store is not instantiated, set the initial state
+              pinia.state.value[key] = state[key];
+          }
       }
   }
 
@@ -647,6 +520,7 @@ var Pinia = (function (exports, vueDemi) {
   const componentStateTypes = [];
   const MUTATIONS_LAYER_ID = 'pinia:mutations';
   const INSPECTOR_ID = 'pinia';
+  const { assign: assign$1 } = Object;
   /**
    * Gets the displayed name of a store in devtools
    *
@@ -662,7 +536,7 @@ var Pinia = (function (exports, vueDemi) {
    * @param pinia - pinia instance
    */
   function registerPiniaDevtools(app, pinia) {
-      setupDevtoolsPlugin({
+      devtoolsApi.setupDevtoolsPlugin({
           id: 'dev.esm.pinia',
           label: 'Pinia 🍍',
           logo: 'https://pinia.vuejs.org/logo.svg',
@@ -718,8 +592,27 @@ var Pinia = (function (exports, vueDemi) {
                       tooltip: 'Import the state from a JSON file',
                   },
               ],
+              nodeActions: [
+                  {
+                      icon: 'restore',
+                      tooltip: 'Reset the state (with "$reset")',
+                      action: (nodeId) => {
+                          const store = pinia._s.get(nodeId);
+                          if (!store) {
+                              toastMessage(`Cannot reset "${nodeId}" store because it wasn't found.`, 'warn');
+                          }
+                          else if (typeof store.$reset !== 'function') {
+                              toastMessage(`Cannot reset "${nodeId}" store because it doesn't have a "$reset" method implemented.`, 'warn');
+                          }
+                          else {
+                              store.$reset();
+                              toastMessage(`Store "${nodeId}" reset.`);
+                          }
+                      },
+                  },
+              ],
           });
-          api.on.inspectComponent((payload, ctx) => {
+          api.on.inspectComponent((payload) => {
               const proxy = (payload.componentInstance &&
                   payload.componentInstance.proxy);
               if (proxy && proxy._pStores) {
@@ -732,7 +625,7 @@ var Pinia = (function (exports, vueDemi) {
                           value: store._isOptionsAPI
                               ? {
                                   _custom: {
-                                      value: store.$state,
+                                      value: vue.toRaw(store.$state),
                                       actions: [
                                           {
                                               icon: 'restore',
@@ -742,7 +635,11 @@ var Pinia = (function (exports, vueDemi) {
                                       ],
                                   },
                               }
-                              : store.$state,
+                              : // NOTE: workaround to unwrap transferred refs
+                                  Object.keys(store.$state).reduce((state, key) => {
+                                      state[key] = store.$state[key];
+                                      return state;
+                                  }, {}),
                       });
                       if (store._getters && store._getters.length) {
                           payload.instanceData.state.push({
@@ -777,6 +674,8 @@ var Pinia = (function (exports, vueDemi) {
                       : stores).map(formatStoreForInspectorTree);
               }
           });
+          // Expose pinia instance as $pinia to window
+          globalThis.$pinia = pinia;
           api.on.getInspectorState((payload) => {
               if (payload.app === app && payload.inspectorId === INSPECTOR_ID) {
                   const inspectedStore = payload.nodeId === PINIA_ROOT_ID
@@ -788,11 +687,14 @@ var Pinia = (function (exports, vueDemi) {
                       return;
                   }
                   if (inspectedStore) {
+                      // Expose selected store as $store to window
+                      if (payload.nodeId !== PINIA_ROOT_ID)
+                          globalThis.$store = vue.toRaw(inspectedStore);
                       payload.state = formatStoreForInspectorState(inspectedStore);
                   }
               }
           });
-          api.on.editInspectorState((payload, ctx) => {
+          api.on.editInspectorState((payload) => {
               if (payload.app === app && payload.inspectorId === INSPECTOR_ID) {
                   const inspectedStore = payload.nodeId === PINIA_ROOT_ID
                       ? pinia
@@ -843,7 +745,7 @@ var Pinia = (function (exports, vueDemi) {
       if (!componentStateTypes.includes(getStoreType(store.$id))) {
           componentStateTypes.push(getStoreType(store.$id));
       }
-      setupDevtoolsPlugin({
+      devtoolsApi.setupDevtoolsPlugin({
           id: 'dev.esm.pinia',
           label: 'Pinia 🍍',
           logo: 'https://pinia.vuejs.org/logo.svg',
@@ -921,7 +823,7 @@ var Pinia = (function (exports, vueDemi) {
               });
           }, true);
           store._customProperties.forEach((name) => {
-              vueDemi.watch(() => vueDemi.unref(store[name]), (newValue, oldValue) => {
+              vue.watch(() => vue.unref(store[name]), (newValue, oldValue) => {
                   api.notifyComponentUpdate();
                   api.sendInspectorState(INSPECTOR_ID);
                   if (isTimelineActive) {
@@ -950,14 +852,9 @@ var Pinia = (function (exports, vueDemi) {
               const eventData = {
                   time: now(),
                   title: formatMutationType(type),
-                  data: {
-                      store: formatDisplay(store.$id),
-                      ...formatEventData(events),
-                  },
+                  data: assign$1({ store: formatDisplay(store.$id) }, formatEventData(events)),
                   groupId: activeAction,
               };
-              // reset for the next mutation
-              activeAction = undefined;
               if (type === exports.MutationType.patchFunction) {
                   eventData.subtitle = '⤵️';
               }
@@ -983,7 +880,7 @@ var Pinia = (function (exports, vueDemi) {
               });
           }, { detached: true, flush: 'sync' });
           const hotUpdate = store._hotUpdate;
-          store._hotUpdate = vueDemi.markRaw((newStore) => {
+          store._hotUpdate = vue.markRaw((newStore) => {
               hotUpdate(newStore);
               api.addTimelineEvent({
                   layerId: MUTATIONS_LAYER_ID,
@@ -1029,29 +926,35 @@ var Pinia = (function (exports, vueDemi) {
    * @param store - store to patch
    * @param actionNames - list of actionst to patch
    */
-  function patchActionForGrouping(store, actionNames) {
+  function patchActionForGrouping(store, actionNames, wrapWithProxy) {
       // original actions of the store as they are given by pinia. We are going to override them
       const actions = actionNames.reduce((storeActions, actionName) => {
           // use toRaw to avoid tracking #541
-          storeActions[actionName] = vueDemi.toRaw(store)[actionName];
+          storeActions[actionName] = vue.toRaw(store)[actionName];
           return storeActions;
       }, {});
       for (const actionName in actions) {
           store[actionName] = function () {
-              // setActivePinia(store._p)
               // the running action id is incremented in a before action hook
               const _actionId = runningActionId;
-              const trackedStore = new Proxy(store, {
-                  get(...args) {
-                      activeAction = _actionId;
-                      return Reflect.get(...args);
-                  },
-                  set(...args) {
-                      activeAction = _actionId;
-                      return Reflect.set(...args);
-                  },
-              });
-              return actions[actionName].apply(trackedStore, arguments);
+              const trackedStore = wrapWithProxy
+                  ? new Proxy(store, {
+                      get(...args) {
+                          activeAction = _actionId;
+                          return Reflect.get(...args);
+                      },
+                      set(...args) {
+                          activeAction = _actionId;
+                          return Reflect.set(...args);
+                      },
+                  })
+                  : store;
+              // For Setup Stores we need https://github.com/tc39/proposal-async-context
+              activeAction = _actionId;
+              const retValue = actions[actionName].apply(trackedStore, arguments);
+              // this is safer as async actions in Setup Stores would associate mutations done outside of the action
+              activeAction = undefined;
+              return retValue;
           };
       }
   }
@@ -1064,20 +967,15 @@ var Pinia = (function (exports, vueDemi) {
           return;
       }
       // detect option api vs setup api
-      if (options.state) {
-          store._isOptionsAPI = true;
-      }
-      // only wrap actions in option-defined stores as this technique relies on
-      // wrapping the context of the action with a proxy
-      if (typeof options.state === 'function') {
-          patchActionForGrouping(
-          // @ts-expect-error: can cast the store...
-          store, Object.keys(options.actions));
-          const originalHotUpdate = store._hotUpdate;
+      store._isOptionsAPI = !!options.state;
+      // Do not overwrite actions mocked by @pinia/testing (#2298)
+      if (!store._p._testing) {
+          patchActionForGrouping(store, Object.keys(options.actions), store._isOptionsAPI);
           // Upgrade the HMR to also update the new actions
-          vueDemi.toRaw(store)._hotUpdate = function (newStore) {
+          const originalHotUpdate = store._hotUpdate;
+          vue.toRaw(store)._hotUpdate = function (newStore) {
               originalHotUpdate.apply(this, arguments);
-              patchActionForGrouping(store, Object.keys(newStore._hmrPayload.actions));
+              patchActionForGrouping(store, Object.keys(newStore._hmrPayload.actions), !!store._isOptionsAPI);
           };
       }
       addStoreToDevtools(app, 
@@ -1089,32 +987,30 @@ var Pinia = (function (exports, vueDemi) {
    * Creates a Pinia instance to be used by the application
    */
   function createPinia() {
-      const scope = vueDemi.effectScope(true);
+      const scope = vue.effectScope(true);
       // NOTE: here we could check the window object for a state and directly set it
       // if there is anything like it with Vue 3 SSR
-      const state = scope.run(() => vueDemi.ref({}));
+      const state = scope.run(() => vue.ref({}));
       let _p = [];
       // plugins added before calling app.use(pinia)
       let toBeInstalled = [];
-      const pinia = vueDemi.markRaw({
+      const pinia = vue.markRaw({
           install(app) {
               // this allows calling useStore() outside of a component setup after
               // installing pinia's plugin
               setActivePinia(pinia);
-              if (!vueDemi.isVue2) {
-                  pinia._a = app;
-                  app.provide(piniaSymbol, pinia);
-                  app.config.globalProperties.$pinia = pinia;
-                  /* istanbul ignore else */
-                  if (IS_CLIENT) {
-                      registerPiniaDevtools(app, pinia);
-                  }
-                  toBeInstalled.forEach((plugin) => _p.push(plugin));
-                  toBeInstalled = [];
+              pinia._a = app;
+              app.provide(piniaSymbol, pinia);
+              app.config.globalProperties.$pinia = pinia;
+              /* istanbul ignore else */
+              if (IS_CLIENT) {
+                  registerPiniaDevtools(app, pinia);
               }
+              toBeInstalled.forEach((plugin) => _p.push(plugin));
+              toBeInstalled = [];
           },
           use(plugin) {
-              if (!this._a && !vueDemi.isVue2) {
+              if (!this._a) {
                   toBeInstalled.push(plugin);
               }
               else {
@@ -1131,12 +1027,26 @@ var Pinia = (function (exports, vueDemi) {
           state,
       });
       // pinia devtools rely on dev only features so they cannot be forced unless
-      // the dev build of Vue is used
-      // We also don't need devtools in test mode
-      if (IS_CLIENT && !false) {
+      // the dev build of Vue is used. Avoid old browsers like IE11.
+      if (IS_CLIENT && typeof Proxy !== 'undefined') {
           pinia.use(devtoolsPlugin);
       }
       return pinia;
+  }
+  /**
+   * Dispose a Pinia instance by stopping its effectScope and removing the state, plugins and stores. This is mostly
+   * useful in tests, with both a testing pinia or a regular pinia and in applications that use multiple pinia instances.
+   * Once disposed, the pinia instance cannot be used anymore.
+   *
+   * @param pinia - pinia instance
+   */
+  function disposePinia(pinia) {
+      pinia._e.stop();
+      pinia._s.clear();
+      pinia._p.splice(0);
+      pinia.state.value = {};
+      // @ts-expect-error: non valid
+      pinia._a = null;
   }
 
   /**
@@ -1168,19 +1078,14 @@ var Pinia = (function (exports, vueDemi) {
           const targetValue = newState[key];
           if (isPlainObject(targetValue) &&
               isPlainObject(subPatch) &&
-              !vueDemi.isRef(subPatch) &&
-              !vueDemi.isReactive(subPatch)) {
+              !vue.isRef(subPatch) &&
+              !vue.isReactive(subPatch)) {
               newState[key] = patchObject(targetValue, subPatch);
           }
           else {
               // objects are either a bit more complex (e.g. refs) or primitives, so we
               // just set the whole thing
-              if (vueDemi.isVue2) {
-                  vueDemi.set(newState, key, subPatch);
-              }
-              else {
-                  newState[key] = subPatch;
-              }
+              newState[key] = subPatch;
           }
       }
       return newState;
@@ -1233,26 +1138,42 @@ var Pinia = (function (exports, vueDemi) {
 
   const noop = () => { };
   function addSubscription(subscriptions, callback, detached, onCleanup = noop) {
-      subscriptions.push(callback);
+      subscriptions.add(callback);
       const removeSubscription = () => {
-          const idx = subscriptions.indexOf(callback);
-          if (idx > -1) {
-              subscriptions.splice(idx, 1);
-              onCleanup();
-          }
+          const isDel = subscriptions.delete(callback);
+          isDel && onCleanup();
       };
-      if (!detached && vueDemi.getCurrentInstance()) {
-          vueDemi.onUnmounted(removeSubscription);
+      if (!detached && vue.getCurrentScope()) {
+          vue.onScopeDispose(removeSubscription);
       }
       return removeSubscription;
   }
   function triggerSubscriptions(subscriptions, ...args) {
-      subscriptions.slice().forEach((callback) => {
+      subscriptions.forEach((callback) => {
           callback(...args);
       });
   }
 
+  const fallbackRunWithContext = (fn) => fn();
+  /**
+   * Marks a function as an action for `$onAction`
+   * @internal
+   */
+  const ACTION_MARKER = Symbol();
+  /**
+   * Action name symbol. Allows to add a name to an action after defining it
+   * @internal
+   */
+  const ACTION_NAME = Symbol();
   function mergeReactiveObjects(target, patchToApply) {
+      // Handle Map instances
+      if (target instanceof Map && patchToApply instanceof Map) {
+          patchToApply.forEach((value, key) => target.set(key, value));
+      }
+      else if (target instanceof Set && patchToApply instanceof Set) {
+          // Handle Set instances
+          patchToApply.forEach(target.add, target);
+      }
       // no need to go through symbols because they cannot be serialized anyway
       for (const key in patchToApply) {
           if (!patchToApply.hasOwnProperty(key))
@@ -1262,8 +1183,11 @@ var Pinia = (function (exports, vueDemi) {
           if (isPlainObject(targetValue) &&
               isPlainObject(subPatch) &&
               target.hasOwnProperty(key) &&
-              !vueDemi.isRef(subPatch) &&
-              !vueDemi.isReactive(subPatch)) {
+              !vue.isRef(subPatch) &&
+              !vue.isReactive(subPatch)) {
+              // NOTE: here I wanted to warn about inconsistent types but it's not possible because in setup stores one might
+              // start the value of a property as a certain type e.g. a Map, and then for some reason, during SSR, change that
+              // to `undefined`. When trying to hydrate, we want to override the Map with `undefined`.
               target[key] = mergeReactiveObjects(targetValue, subPatch);
           }
           else {
@@ -1275,7 +1199,6 @@ var Pinia = (function (exports, vueDemi) {
   }
   const skipHydrateSymbol = Symbol('pinia:skipHydration')
       ;
-  const skipHydrateMap = /*#__PURE__*/ new WeakMap();
   /**
    * Tells Pinia to skip the hydration process of a given object. This is useful in setup stores (only) when you return a
    * stateful object in the store but it isn't really state. e.g. returning a router instance in a setup store.
@@ -1284,19 +1207,21 @@ var Pinia = (function (exports, vueDemi) {
    * @returns obj
    */
   function skipHydrate(obj) {
-      return vueDemi.isVue2
-          ? // in @vue/composition-api, the refs are sealed so defineProperty doesn't work...
-              /* istanbul ignore next */ skipHydrateMap.set(obj, 1) && obj
-          : Object.defineProperty(obj, skipHydrateSymbol, {});
+      return Object.defineProperty(obj, skipHydrateSymbol, {});
   }
+  /**
+   * Returns whether a value should be hydrated
+   *
+   * @param obj - target variable
+   * @returns true if `obj` should be hydrated
+   */
   function shouldHydrate(obj) {
-      return vueDemi.isVue2
-          ? /* istanbul ignore next */ !skipHydrateMap.has(obj)
-          : !isPlainObject(obj) || !obj.hasOwnProperty(skipHydrateSymbol);
+      return (!isPlainObject(obj) ||
+          !Object.prototype.hasOwnProperty.call(obj, skipHydrateSymbol));
   }
   const { assign } = Object;
   function isComputed(o) {
-      return !!(vueDemi.isRef(o) && o.effect);
+      return !!(vue.isRef(o) && o.effect);
   }
   function createOptionsStore(id, options, pinia, hot) {
       const { state, actions, getters } = options;
@@ -1305,30 +1230,22 @@ var Pinia = (function (exports, vueDemi) {
       function setup() {
           if (!initialState && (!hot)) {
               /* istanbul ignore if */
-              if (vueDemi.isVue2) {
-                  vueDemi.set(pinia.state.value, id, state ? state() : {});
-              }
-              else {
-                  pinia.state.value[id] = state ? state() : {};
-              }
+              pinia.state.value[id] = state ? state() : {};
           }
           // avoid creating a state in pinia.state.value
           const localState = hot
               ? // use ref() to unwrap refs inside state TODO: check if this is still necessary
-                  vueDemi.toRefs(vueDemi.ref(state ? state() : {}).value)
-              : vueDemi.toRefs(pinia.state.value[id]);
+                  vue.toRefs(vue.ref(state ? state() : {}).value)
+              : vue.toRefs(pinia.state.value[id]);
           return assign(localState, actions, Object.keys(getters || {}).reduce((computedGetters, name) => {
               if (name in localState) {
                   console.warn(`[🍍]: A getter cannot have the same name as another state property. Rename one of them. Found with "${name}" in store "${id}".`);
               }
-              computedGetters[name] = vueDemi.markRaw(vueDemi.computed(() => {
+              computedGetters[name] = vue.markRaw(vue.computed(() => {
                   setActivePinia(pinia);
                   // it was created just before
                   const store = pinia._s.get(id);
                   // allow cross using stores
-                  /* istanbul ignore next */
-                  if (vueDemi.isVue2 && !store._r)
-                      return;
                   // @ts-expect-error
                   // return getters![name].call(context, context)
                   // TODO: avoid reading the getter while assigning with a global variable
@@ -1338,30 +1255,19 @@ var Pinia = (function (exports, vueDemi) {
           }, {}));
       }
       store = createSetupStore(id, setup, options, pinia, hot, true);
-      store.$reset = function $reset() {
-          const newState = state ? state() : {};
-          // we use a patch to group all changes into one single subscription
-          this.$patch(($state) => {
-              assign($state, newState);
-          });
-      };
       return store;
   }
   function createSetupStore($id, setup, options = {}, pinia, hot, isOptionsStore) {
       let scope;
       const optionsForPlugin = assign({ actions: {} }, options);
       /* istanbul ignore if */
-      // @ts-expect-error: active is an internal property
       if (!pinia._e.active) {
           throw new Error('Pinia destroyed');
       }
       // watcher options for $subscribe
-      const $subscribeOptions = {
-          deep: true,
-          // flush: 'post',
-      };
+      const $subscribeOptions = { deep: true };
       /* istanbul ignore else */
-      if (!vueDemi.isVue2) {
+      {
           $subscribeOptions.onTrigger = (event) => {
               /* istanbul ignore else */
               if (isListening) {
@@ -1383,22 +1289,17 @@ var Pinia = (function (exports, vueDemi) {
       // internal state
       let isListening; // set to true at the end
       let isSyncListening; // set to true at the end
-      let subscriptions = vueDemi.markRaw([]);
-      let actionSubscriptions = vueDemi.markRaw([]);
+      let subscriptions = new Set();
+      let actionSubscriptions = new Set();
       let debuggerEvents;
       const initialState = pinia.state.value[$id];
       // avoid setting the state for option stores if it is set
       // by the setup
       if (!isOptionsStore && !initialState && (!hot)) {
           /* istanbul ignore if */
-          if (vueDemi.isVue2) {
-              vueDemi.set(pinia.state.value, $id, {});
-          }
-          else {
-              pinia.state.value[$id] = {};
-          }
+          pinia.state.value[$id] = {};
       }
-      const hotState = vueDemi.ref({});
+      const hotState = vue.ref({});
       // avoid triggering too many listeners
       // https://github.com/vuejs/pinia/issues/1129
       let activeListener;
@@ -1428,7 +1329,7 @@ var Pinia = (function (exports, vueDemi) {
               };
           }
           const myListenerId = (activeListener = Symbol());
-          vueDemi.nextTick().then(() => {
+          vue.nextTick().then(() => {
               if (activeListener === myListenerId) {
                   isListening = true;
               }
@@ -1437,70 +1338,87 @@ var Pinia = (function (exports, vueDemi) {
           // because we paused the watcher, we need to manually call the subscriptions
           triggerSubscriptions(subscriptions, subscriptionMutation, pinia.state.value[$id]);
       }
-      /* istanbul ignore next */
-      const $reset = () => {
-              throw new Error(`🍍: Store "${$id}" is built using the setup syntax and does not implement $reset().`);
+      const $reset = isOptionsStore
+          ? function $reset() {
+              const { state } = options;
+              const newState = state ? state() : {};
+              // we use a patch to group all changes into one single subscription
+              this.$patch(($state) => {
+                  // @ts-expect-error: FIXME: shouldn't error?
+                  assign($state, newState);
+              });
           }
-          ;
+          : /* istanbul ignore next */
+              () => {
+                      throw new Error(`🍍: Store "${$id}" is built using the setup syntax and does not implement $reset().`);
+                  }
+                  ;
       function $dispose() {
           scope.stop();
-          subscriptions = [];
-          actionSubscriptions = [];
+          subscriptions.clear();
+          actionSubscriptions.clear();
           pinia._s.delete($id);
       }
       /**
-       * Wraps an action to handle subscriptions.
-       *
+       * Helper that wraps function so it can be tracked with $onAction
+       * @param fn - action to wrap
        * @param name - name of the action
-       * @param action - action to wrap
-       * @returns a wrapped action to handle subscriptions
        */
-      function wrapAction(name, action) {
-          return function () {
+      const action = (fn, name = '') => {
+          if (ACTION_MARKER in fn) {
+              fn[ACTION_NAME] = name;
+              return fn;
+          }
+          const wrappedAction = function () {
               setActivePinia(pinia);
               const args = Array.from(arguments);
-              const afterCallbackList = [];
-              const onErrorCallbackList = [];
+              const afterCallbackSet = new Set();
+              const onErrorCallbackSet = new Set();
               function after(callback) {
-                  afterCallbackList.push(callback);
+                  afterCallbackSet.add(callback);
               }
               function onError(callback) {
-                  onErrorCallbackList.push(callback);
+                  onErrorCallbackSet.add(callback);
               }
               // @ts-expect-error
               triggerSubscriptions(actionSubscriptions, {
                   args,
-                  name,
+                  name: wrappedAction[ACTION_NAME],
                   store,
                   after,
                   onError,
               });
               let ret;
               try {
-                  ret = action.apply(this && this.$id === $id ? this : store, args);
+                  ret = fn.apply(this && this.$id === $id ? this : store, args);
                   // handle sync errors
               }
               catch (error) {
-                  triggerSubscriptions(onErrorCallbackList, error);
+                  triggerSubscriptions(onErrorCallbackSet, error);
                   throw error;
               }
               if (ret instanceof Promise) {
                   return ret
                       .then((value) => {
-                      triggerSubscriptions(afterCallbackList, value);
+                      triggerSubscriptions(afterCallbackSet, value);
                       return value;
                   })
                       .catch((error) => {
-                      triggerSubscriptions(onErrorCallbackList, error);
+                      triggerSubscriptions(onErrorCallbackSet, error);
                       return Promise.reject(error);
                   });
               }
-              // allow the afterCallback to override the return value
-              triggerSubscriptions(afterCallbackList, ret);
+              // trigger after callbacks
+              triggerSubscriptions(afterCallbackSet, ret);
               return ret;
           };
-      }
-      const _hmrPayload = /*#__PURE__*/ vueDemi.markRaw({
+          wrappedAction[ACTION_MARKER] = true;
+          wrappedAction[ACTION_NAME] = name; // will be set later
+          // @ts-expect-error: we are intentionally limiting the returned type to just Fn
+          // because all the added properties are internals that are exposed through `$onAction()` only
+          return wrappedAction;
+      };
+      const _hmrPayload = /*#__PURE__*/ vue.markRaw({
           actions: {},
           getters: {},
           state: [],
@@ -1515,7 +1433,7 @@ var Pinia = (function (exports, vueDemi) {
           $reset,
           $subscribe(callback, options = {}) {
               const removeSubscription = addSubscription(subscriptions, callback, options.detached, () => stopWatcher());
-              const stopWatcher = scope.run(() => vueDemi.watch(() => pinia.state.value[$id], (state) => {
+              const stopWatcher = scope.run(() => vue.watch(() => pinia.state.value[$id], (state) => {
                   if (options.flush === 'sync' ? isSyncListening : isListening) {
                       callback({
                           storeId: $id,
@@ -1528,58 +1446,44 @@ var Pinia = (function (exports, vueDemi) {
           },
           $dispose,
       };
-      /* istanbul ignore if */
-      if (vueDemi.isVue2) {
-          // start as non ready
-          partialStore._r = false;
-      }
-      const store = vueDemi.reactive(assign(IS_CLIENT
-          ? // devtools custom properties
-              {
-                  _customProperties: vueDemi.markRaw(new Set()),
-                  _hmrPayload,
-              }
-          : {}, partialStore
-      // must be added later
-      // setupStore
-      ));
+      const store = vue.reactive(assign({
+              _hmrPayload,
+              _customProperties: vue.markRaw(new Set()), // devtools custom properties
+          }, partialStore
+          // must be added later
+          // setupStore
+          )
+          );
       // store the partial store now so the setup of stores can instantiate each other before they are finished without
       // creating infinite loops.
       pinia._s.set($id, store);
+      const runWithContext = (pinia._a && pinia._a.runWithContext) || fallbackRunWithContext;
       // TODO: idea create skipSerialize that marks properties as non serializable and they are skipped
-      const setupStore = pinia._e.run(() => {
-          scope = vueDemi.effectScope();
-          return scope.run(() => setup());
-      });
+      const setupStore = runWithContext(() => pinia._e.run(() => (scope = vue.effectScope()).run(() => setup({ action }))));
       // overwrite existing actions to support $onAction
       for (const key in setupStore) {
           const prop = setupStore[key];
-          if ((vueDemi.isRef(prop) && !isComputed(prop)) || vueDemi.isReactive(prop)) {
+          if ((vue.isRef(prop) && !isComputed(prop)) || vue.isReactive(prop)) {
               // mark it as a piece of state to be serialized
               if (hot) {
-                  vueDemi.set(hotState.value, key, vueDemi.toRef(setupStore, key));
+                  hotState.value[key] = vue.toRef(setupStore, key);
                   // createOptionStore directly sets the state in pinia.state.value so we
                   // can just skip that
               }
               else if (!isOptionsStore) {
                   // in setup stores we must hydrate the state and sync pinia state tree with the refs the user just created
                   if (initialState && shouldHydrate(prop)) {
-                      if (vueDemi.isRef(prop)) {
+                      if (vue.isRef(prop)) {
                           prop.value = initialState[key];
                       }
                       else {
                           // probably a reactive object, lets recursively assign
+                          // @ts-expect-error: prop is unknown
                           mergeReactiveObjects(prop, initialState[key]);
                       }
                   }
                   // transfer the ref to the pinia state to keep everything in sync
-                  /* istanbul ignore if */
-                  if (vueDemi.isVue2) {
-                      vueDemi.set(pinia.state.value[$id], key, prop);
-                  }
-                  else {
-                      pinia.state.value[$id][key] = prop;
-                  }
+                  pinia.state.value[$id][key] = prop;
               }
               /* istanbul ignore else */
               {
@@ -1588,18 +1492,11 @@ var Pinia = (function (exports, vueDemi) {
               // action
           }
           else if (typeof prop === 'function') {
-              // @ts-expect-error: we are overriding the function we avoid wrapping if
-              const actionValue = hot ? prop : wrapAction(key, prop);
+              const actionValue = hot ? prop : action(prop, key);
               // this a hot module replacement store because the hotUpdate method needs
               // to do it with the right context
-              /* istanbul ignore if */
-              if (vueDemi.isVue2) {
-                  vueDemi.set(setupStore, key, actionValue);
-              }
-              else {
-                  // @ts-expect-error
-                  setupStore[key] = actionValue;
-              }
+              // @ts-expect-error
+              setupStore[key] = actionValue;
               /* istanbul ignore else */
               {
                   _hmrPayload.actions[key] = prop;
@@ -1616,9 +1513,9 @@ var Pinia = (function (exports, vueDemi) {
                           options.getters[key]
                       : prop;
                   if (IS_CLIENT) {
-                      const getters = 
-                      // @ts-expect-error: it should be on the store
-                      setupStore._getters || (setupStore._getters = vueDemi.markRaw([]));
+                      const getters = setupStore._getters ||
+                          // @ts-expect-error: same
+                          (setupStore._getters = vue.markRaw([]));
                       getters.push(key);
                   }
               }
@@ -1626,19 +1523,10 @@ var Pinia = (function (exports, vueDemi) {
       }
       // add the state, getters, and action properties
       /* istanbul ignore if */
-      if (vueDemi.isVue2) {
-          Object.keys(setupStore).forEach((key) => {
-              vueDemi.set(store, key, 
-              // @ts-expect-error: valid key indexing
-              setupStore[key]);
-          });
-      }
-      else {
-          assign(store, setupStore);
-          // allows retrieving reactive objects with `storeToRefs()`. Must be called after assigning to the reactive object.
-          // Make `storeToRefs()` work with `reactive()` #799
-          assign(vueDemi.toRaw(store), setupStore);
-      }
+      assign(store, setupStore);
+      // allows retrieving reactive objects with `storeToRefs()`. Must be called after assigning to the reactive object.
+      // Make `storeToRefs()` work with `reactive()` #799
+      assign(vue.toRaw(store), setupStore);
       // use this instead of a computed with setter to be able to create it anywhere
       // without linking the computed lifespan to wherever the store is first
       // created.
@@ -1650,6 +1538,7 @@ var Pinia = (function (exports, vueDemi) {
                   throw new Error('cannot set hotState');
               }
               $patch(($state) => {
+                  // @ts-expect-error: FIXME: shouldn't error?
                   assign($state, state);
               });
           },
@@ -1657,7 +1546,7 @@ var Pinia = (function (exports, vueDemi) {
       // add the hotUpdate before plugins to allow them to override it
       /* istanbul ignore else */
       {
-          store._hotUpdate = vueDemi.markRaw((newStore) => {
+          store._hotUpdate = vue.markRaw((newStore) => {
               store._hotUpdating = true;
               newStore._hmrPayload.state.forEach((stateKey) => {
                   if (stateKey in store.$state) {
@@ -1675,48 +1564,58 @@ var Pinia = (function (exports, vueDemi) {
                   }
                   // patch direct access properties to allow store.stateProperty to work as
                   // store.$state.stateProperty
-                  vueDemi.set(store, stateKey, vueDemi.toRef(newStore.$state, stateKey));
+                  // @ts-expect-error: any type
+                  store[stateKey] = vue.toRef(newStore.$state, stateKey);
               });
               // remove deleted state properties
               Object.keys(store.$state).forEach((stateKey) => {
                   if (!(stateKey in newStore.$state)) {
-                      vueDemi.del(store, stateKey);
+                      // @ts-expect-error: noop if doesn't exist
+                      delete store[stateKey];
                   }
               });
               // avoid devtools logging this as a mutation
               isListening = false;
               isSyncListening = false;
-              pinia.state.value[$id] = vueDemi.toRef(newStore._hmrPayload, 'hotState');
+              pinia.state.value[$id] = vue.toRef(newStore._hmrPayload, 'hotState');
               isSyncListening = true;
-              vueDemi.nextTick().then(() => {
+              vue.nextTick().then(() => {
                   isListening = true;
               });
               for (const actionName in newStore._hmrPayload.actions) {
-                  const action = newStore[actionName];
-                  vueDemi.set(store, actionName, wrapAction(actionName, action));
+                  const actionFn = newStore[actionName];
+                  // @ts-expect-error: actionName is a string
+                  store[actionName] =
+                      //
+                      action(actionFn, actionName);
               }
               // TODO: does this work in both setup and option store?
               for (const getterName in newStore._hmrPayload.getters) {
                   const getter = newStore._hmrPayload.getters[getterName];
                   const getterValue = isOptionsStore
                       ? // special handling of options api
-                          vueDemi.computed(() => {
+                          vue.computed(() => {
                               setActivePinia(pinia);
                               return getter.call(store, store);
                           })
                       : getter;
-                  vueDemi.set(store, getterName, getterValue);
+                  // @ts-expect-error: getterName is a string
+                  store[getterName] =
+                      //
+                      getterValue;
               }
               // remove deleted getters
               Object.keys(store._hmrPayload.getters).forEach((key) => {
                   if (!(key in newStore._hmrPayload.getters)) {
-                      vueDemi.del(store, key);
+                      // @ts-expect-error: noop if doesn't exist
+                      delete store[key];
                   }
               });
               // remove old actions
               Object.keys(store._hmrPayload.actions).forEach((key) => {
                   if (!(key in newStore._hmrPayload.actions)) {
-                      vueDemi.del(store, key);
+                      // @ts-expect-error: noop if doesn't exist
+                      delete store[key];
                   }
               });
               // update the values used in devtools and to allow deleting new properties later on
@@ -1724,32 +1623,24 @@ var Pinia = (function (exports, vueDemi) {
               store._getters = newStore._getters;
               store._hotUpdating = false;
           });
+      }
+      if (IS_CLIENT) {
           const nonEnumerable = {
               writable: true,
               configurable: true,
               // avoid warning on devtools trying to display this property
               enumerable: false,
           };
-          if (IS_CLIENT) {
-              ['_p', '_hmrPayload', '_getters', '_customProperties'].forEach((p) => {
-                  Object.defineProperty(store, p, {
-                      value: store[p],
-                      ...nonEnumerable,
-                  });
-              });
-          }
-      }
-      /* istanbul ignore if */
-      if (vueDemi.isVue2) {
-          // mark the store as ready before plugins
-          store._r = true;
+          ['_p', '_hmrPayload', '_getters', '_customProperties'].forEach((p) => {
+              Object.defineProperty(store, p, assign({ value: store[p] }, nonEnumerable));
+          });
       }
       // apply all plugins
       pinia._p.forEach((extender) => {
           /* istanbul ignore else */
           if (IS_CLIENT) {
               const extensions = scope.run(() => extender({
-                  store,
+                  store: store,
                   app: pinia._a,
                   pinia,
                   options: optionsForPlugin,
@@ -1759,7 +1650,7 @@ var Pinia = (function (exports, vueDemi) {
           }
           else {
               assign(store, scope.run(() => extender({
-                  store,
+                  store: store,
                   app: pinia._a,
                   pinia,
                   options: optionsForPlugin,
@@ -1784,34 +1675,27 @@ var Pinia = (function (exports, vueDemi) {
       isSyncListening = true;
       return store;
   }
+  // allows unused stores to be tree shaken
+  /*! #__NO_SIDE_EFFECTS__ */
   function defineStore(
   // TODO: add proper types from above
-  idOrOptions, setup, setupOptions) {
-      let id;
+  id, setup, setupOptions) {
       let options;
       const isSetupStore = typeof setup === 'function';
-      if (typeof idOrOptions === 'string') {
-          id = idOrOptions;
-          // the option store setup will contain the actual options in this case
-          options = isSetupStore ? setupOptions : setup;
-      }
-      else {
-          options = idOrOptions;
-          id = idOrOptions.id;
-      }
+      // the option store setup will contain the actual options in this case
+      options = isSetupStore ? setupOptions : setup;
       function useStore(pinia, hot) {
-          const currentInstance = vueDemi.getCurrentInstance();
+          const hasContext = vue.hasInjectionContext();
           pinia =
               // in test mode, ignore the argument provided as we can always retrieve a
               // pinia instance with getActivePinia()
               (pinia) ||
-                  (currentInstance && vueDemi.inject(piniaSymbol));
+                  (hasContext ? vue.inject(piniaSymbol, null) : null);
           if (pinia)
               setActivePinia(pinia);
           if (!activePinia) {
-              throw new Error(`[🍍]: getActivePinia was called with no active Pinia. Did you forget to install pinia?\n` +
-                  `\tconst pinia = createPinia()\n` +
-                  `\tapp.use(pinia)\n` +
+              throw new Error(`[🍍]: "getActivePinia()" was called but there was no active Pinia. Are you trying to use a store before calling "app.use(pinia)"?\n` +
+                  `See https://pinia.vuejs.org/core-concepts/outside-component-usage.html for help.\n` +
                   `This will fail in production.`);
           }
           pinia = activePinia;
@@ -1840,15 +1724,17 @@ var Pinia = (function (exports, vueDemi) {
               delete pinia.state.value[hotId];
               pinia._s.delete(hotId);
           }
-          // save stores in instances to access them devtools
-          if (IS_CLIENT &&
-              currentInstance &&
-              currentInstance.proxy &&
-              // avoid adding stores that are just built for hot module replacement
-              !hot) {
-              const vm = currentInstance.proxy;
-              const cache = '_pStores' in vm ? vm._pStores : (vm._pStores = {});
-              cache[id] = store;
+          if (IS_CLIENT) {
+              const currentInstance = vue.getCurrentInstance();
+              // save stores in instances to access them devtools
+              if (currentInstance &&
+                  currentInstance.proxy &&
+                  // avoid adding stores that are just built for hot module replacement
+                  !hot) {
+                  const vm = currentInstance.proxy;
+                  const cache = '_pStores' in vm ? vm._pStores : (vm._pStores = {});
+                  cache[id] = store;
+              }
           }
           // StoreGeneric cannot be casted towards Store
           return store;
@@ -1921,6 +1807,7 @@ var Pinia = (function (exports, vueDemi) {
       return Array.isArray(keysOrMapper)
           ? keysOrMapper.reduce((reduced, key) => {
               reduced[key] = function () {
+                  // @ts-expect-error: FIXME: should work?
                   return useStore(this.$pinia)[key];
               };
               return reduced;
@@ -1934,7 +1821,8 @@ var Pinia = (function (exports, vueDemi) {
                   // function
                   return typeof storeKey === 'function'
                       ? storeKey.call(this, store)
-                      : store[storeKey];
+                      : // @ts-expect-error: FIXME: should work?
+                          store[storeKey];
               };
               return reduced;
           }, {});
@@ -1957,6 +1845,7 @@ var Pinia = (function (exports, vueDemi) {
           ? keysOrMapper.reduce((reduced, key) => {
               // @ts-expect-error
               reduced[key] = function (...args) {
+                  // @ts-expect-error: FIXME: should work?
                   return useStore(this.$pinia)[key](...args);
               };
               return reduced;
@@ -1964,6 +1853,7 @@ var Pinia = (function (exports, vueDemi) {
           : Object.keys(keysOrMapper).reduce((reduced, key) => {
               // @ts-expect-error
               reduced[key] = function (...args) {
+                  // @ts-expect-error: FIXME: should work?
                   return useStore(this.$pinia)[keysOrMapper[key]](...args);
               };
               return reduced;
@@ -1980,26 +1870,22 @@ var Pinia = (function (exports, vueDemi) {
   function mapWritableState(useStore, keysOrMapper) {
       return Array.isArray(keysOrMapper)
           ? keysOrMapper.reduce((reduced, key) => {
-              // @ts-ignore
               reduced[key] = {
                   get() {
                       return useStore(this.$pinia)[key];
                   },
                   set(value) {
-                      // it's easier to type it here as any
                       return (useStore(this.$pinia)[key] = value);
                   },
               };
               return reduced;
           }, {})
           : Object.keys(keysOrMapper).reduce((reduced, key) => {
-              // @ts-ignore
               reduced[key] = {
                   get() {
                       return useStore(this.$pinia)[keysOrMapper[key]];
                   },
                   set(value) {
-                      // it's easier to type it here as any
                       return (useStore(this.$pinia)[keysOrMapper[key]] = value);
                   },
               };
@@ -2016,98 +1902,37 @@ var Pinia = (function (exports, vueDemi) {
    * @param store - store to extract the refs from
    */
   function storeToRefs(store) {
-      // See https://github.com/vuejs/pinia/issues/852
-      // It's easier to just use toRefs() even if it includes more stuff
-      if (vueDemi.isVue2) {
-          // @ts-expect-error: toRefs include methods and others
-          return vueDemi.toRefs(store);
-      }
-      else {
-          store = vueDemi.toRaw(store);
-          const refs = {};
-          for (const key in store) {
-              const value = store[key];
-              if (vueDemi.isRef(value) || vueDemi.isReactive(value)) {
-                  // @ts-expect-error: the key is state or getter
-                  refs[key] =
-                      // ---
-                      vueDemi.toRef(store, key);
-              }
+      const rawStore = vue.toRaw(store);
+      const refs = {};
+      for (const key in rawStore) {
+          const value = rawStore[key];
+          // There is no native method to check for a computed
+          // https://github.com/vuejs/core/pull/4165
+          if (value.effect) {
+              // @ts-expect-error: too hard to type correctly
+              refs[key] =
+                  // ...
+                  vue.computed({
+                      get: () => store[key],
+                      set(value) {
+                          store[key] = value;
+                      },
+                  });
           }
-          return refs;
+          else if (vue.isRef(value) || vue.isReactive(value)) {
+              // @ts-expect-error: the key is state or getter
+              refs[key] =
+                  // ---
+                  vue.toRef(store, key);
+          }
       }
+      return refs;
   }
 
-  /**
-   * Vue 2 Plugin that must be installed for pinia to work. Note **you don't need
-   * this plugin if you are using Nuxt.js**. Use the `buildModule` instead:
-   * https://pinia.vuejs.org/ssr/nuxt.html.
-   *
-   * @example
-   * ```js
-   * import Vue from 'vue'
-   * import { PiniaVuePlugin, createPinia } from 'pinia'
-   *
-   * Vue.use(PiniaVuePlugin)
-   * const pinia = createPinia()
-   *
-   * new Vue({
-   *   el: '#app',
-   *   // ...
-   *   pinia,
-   * })
-   * ```
-   *
-   * @param _Vue - `Vue` imported from 'vue'.
-   */
-  const PiniaVuePlugin = function (_Vue) {
-      // Equivalent of
-      // app.config.globalProperties.$pinia = pinia
-      _Vue.mixin({
-          beforeCreate() {
-              const options = this.$options;
-              if (options.pinia) {
-                  const pinia = options.pinia;
-                  // HACK: taken from provide(): https://github.com/vuejs/composition-api/blob/main/src/apis/inject.ts#L31
-                  /* istanbul ignore else */
-                  if (!this._provided) {
-                      const provideCache = {};
-                      Object.defineProperty(this, '_provided', {
-                          get: () => provideCache,
-                          set: (v) => Object.assign(provideCache, v),
-                      });
-                  }
-                  this._provided[piniaSymbol] = pinia;
-                  // propagate the pinia instance in an SSR friendly way
-                  // avoid adding it to nuxt twice
-                  /* istanbul ignore else */
-                  if (!this.$pinia) {
-                      this.$pinia = pinia;
-                  }
-                  pinia._a = this;
-                  if (IS_CLIENT) {
-                      // this allows calling useStore() outside of a component setup after
-                      // installing pinia's plugin
-                      setActivePinia(pinia);
-                      {
-                          registerPiniaDevtools(pinia._a, pinia);
-                      }
-                  }
-              }
-              else if (!this.$pinia && options.parent && options.parent.$pinia) {
-                  this.$pinia = options.parent.$pinia;
-              }
-          },
-          destroyed() {
-              delete this._pStores;
-          },
-      });
-  };
-
-  exports.PiniaVuePlugin = PiniaVuePlugin;
   exports.acceptHMRUpdate = acceptHMRUpdate;
   exports.createPinia = createPinia;
   exports.defineStore = defineStore;
+  exports.disposePinia = disposePinia;
   exports.getActivePinia = getActivePinia;
   exports.mapActions = mapActions;
   exports.mapGetters = mapGetters;
@@ -2116,11 +1941,10 @@ var Pinia = (function (exports, vueDemi) {
   exports.mapWritableState = mapWritableState;
   exports.setActivePinia = setActivePinia;
   exports.setMapStoreSuffix = setMapStoreSuffix;
+  exports.shouldHydrate = shouldHydrate;
   exports.skipHydrate = skipHydrate;
   exports.storeToRefs = storeToRefs;
 
-  Object.defineProperty(exports, '__esModule', { value: true });
-
   return exports;
 
-})({}, VueDemi);
+})({}, Vue, devtoolsApi);

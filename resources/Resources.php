@@ -643,41 +643,54 @@ return [
 				'callback' => static function ( Context $context, Config $config ) {
 					// Use the development version if development mode is enabled, or if we're in debug mode
 					$developmentMode = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug();
-
+					$prefix = $developmentMode ?
+						'var Vue=require("vue");var devtoolsApi=require("./vue-devtools-api.js");' :
+						'var Vue=require("vue");';
 					$file = $developmentMode ?
 						'resources/lib/pinia/pinia.iife.js' :
 						'resources/lib/pinia/pinia.iife.prod.js';
-
 					// The file shipped by Pinia does var Pinia = ...;, but doesn't export it
-					// Add module.exports = Pinia; programmatically, and inject vue-demi.
-					return "var VueDemi=require('./vue-demi.js');" .
+					// Add module.exports = Pinia; programmatically, and import Vue
+					return $prefix .
 						file_get_contents( MW_INSTALL_PATH . "/$file" ) .
-						';module.exports=Pinia;';
+						'module.exports=Pinia;';
 				},
 				'versionCallback' => static function ( Context $context, Config $config ) {
 					$file = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug() ?
 						'resources/lib/pinia/pinia.iife.js' :
 						'resources/lib/pinia/pinia.iife.prod.js';
 					return new FilePath( $file );
-				}
+				},
 			],
 			[
-				'name' => 'resources/lib/pinia/vue-demi.js',
+				'name' => 'resources/lib/pinia/vue-devtools-api.js',
 				'callback' => static function ( Context $context, Config $config ) {
-					$developmentMode = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug();
-
-					// In non-development mode, Pinia doesn't need vue-demi, so don't load it.
-					// Instead, just wrap Vue.
-					if ( !$developmentMode ) {
-						return "module.exports=require('vue');";
+					// Vue DevTools is only required in DEBUG mode with ES2020+ browsers, stub out otherwise
+					if ( !$config->get( MainConfigNames::VueDevelopmentMode ) && !$context->getDebug() ) {
+						return 'module.exports={};';
 					}
 
-					return new FilePath( 'resources/lib/vue-demi/index.cjs' );
-				}
-			]
+					// The file shipped by VueDevToolsApi does var VueDevToolsApi = ...;, but doesn't export it
+					// Add module.exports = VueDevToolsApi; programmatically
+					$contents = file_get_contents( MW_INSTALL_PATH .
+						'/resources/lib/vue-devtools-api/vue-devtools-api.global.js' ) .
+						'module.exports=VueDevToolsApi;';
+
+					// TODO: ResourceLoader doesn't support optional chaining in template strings *yet* (T386530)
+					$before = '`custom-ic-baseline-${options?.icon?.replace(/_/g, "-")}`';
+					$after = '"custom-ic-baseline-" + options?.icon?.replace(/_/g, "-")';
+					$offset = strpos( $contents, $before );
+
+					return $offset === false ? $contents :
+						substr_replace( $contents, $after, $offset, strlen( $before ) );
+				},
+				'versionCallback' => static function ( Context $context, Config $config ) {
+					return new FilePath( 'resources/lib/vue-devtools-api/vue-devtools-api.global.js' );
+				},
+			],
 		],
 		'dependencies' => [
-			'vue'
+			'vue',
 		],
 	],
 
