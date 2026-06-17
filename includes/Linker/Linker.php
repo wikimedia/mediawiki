@@ -461,8 +461,11 @@ class Linker {
 			$params += [
 				'img-class' => 'mw-file-element',
 			];
-
-			if ( isset( $frameParams['upright'] ) ) {
+			if (
+				isset( $frameParams['upright'] ) &&
+				in_array( 'mw-default-size', $classes, true ) &&
+				isset( $frameParams['frameless'] )
+			) {
 				$params['img-class'] .= ' mw-file-upright';
 				$params['style'] = '--mw-file-upright: ' . $frameParams['upright'];
 			}
@@ -748,7 +751,10 @@ class Linker {
 			$params += [
 				'img-class' => 'mw-file-element',
 			];
-			if ( isset( $frameParams['upright'] ) ) {
+			if (
+				isset( $frameParams['upright'] ) &&
+				in_array( 'mw-default-size', $classes, true )
+			) {
 				$params['img-class'] .= ' mw-file-upright';
 				$params['style'] = '--mw-file-upright: ' . $frameParams['upright'];
 			}

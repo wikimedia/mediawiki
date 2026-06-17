@@ -3543,6 +3543,32 @@ Image: upright option (parsoid)
 !! end
 
 !! test
+Upright on different formats
+!! options
+parsoid=wt2html
+!! wikitext
+[[File:Foobar.jpg|upright]]
+[[File:Foobar.jpg|thumb|upright]]
+[[File:Foobar.jpg|thumbnail=Thumb.png|upright]]
+[[File:Foobar.jpg|frame|upright]]
+[[File:Foobar.jpg|frameless|upright]]
+!! html/php
+<p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
+</p>
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/140px-Foobar.jpg" decoding="async" width="140" height="16" style="--mw-file-upright: 0.75" class="mw-file-element mw-file-upright" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/280px-Foobar.jpg 2x" /></a><figcaption></figcaption></figure>
+<figure typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><img resource="/wiki/File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<figure typeof="mw:File/Frame"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<p><span class="mw-default-size" typeof="mw:File/Frameless"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/140px-Foobar.jpg" decoding="async" width="140" height="16" style="--mw-file-upright: 0.75" class="mw-file-element mw-file-upright" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/280px-Foobar.jpg 2x" /></a></span>
+</p>
+!! html/parsoid+integrated
+<p><span class="mw-default-size" typeof="mw:File"><a class="mw-file-description" href="./File:Foobar.jpg"><img class="mw-file-element" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" height="220" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941"/></a></span></p>
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a class="mw-file-description" href="./File:Foobar.jpg"><img class="mw-file-element mw-file-upright" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" height="16" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/140px-Foobar.jpg" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/280px-Foobar.jpg 2x" style="--mw-file-upright: 0.75" width="140"/></a><figcaption></figcaption></figure>
+<figure data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}' typeof="mw:File/Thumb"><a class="mw-file-description" href="./File:Foobar.jpg"><img class="mw-file-element" data-file-height="135" data-file-type="bitmap" data-file-width="135" decoding="async" height="135" resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" width="135"/></a><figcaption></figcaption></figure>
+<figure typeof="mw:File/Frame"><a class="mw-file-description" href="./File:Foobar.jpg"><img class="mw-file-element" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" height="220" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941"/></a><figcaption></figcaption></figure>
+<p><span class="mw-default-size" typeof="mw:File/Frameless"><a class="mw-file-description" href="./File:Foobar.jpg"><img class="mw-file-element mw-file-upright" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" height="16" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/140px-Foobar.jpg" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/280px-Foobar.jpg 2x" style="--mw-file-upright: 0.75" width="140"/></a></span></p>
+!! end
+
+!! test
 Image: upright option is ignored on inline and frame images (parsoid)
 !! wikitext
 [[File:Foobar.jpg|500x500px|upright=0.5|caption]]
