@@ -69,12 +69,12 @@ class CheckComposerLockUpToDate extends Maintenance {
 				$suggestedCommand .= ' --no-dev';
 			}
 			$this->fatalError(
-				'Error: your composer.lock file is not up to date. ' .
+				'Error: your composer.lock file is not up to date! ' .
 				'Run "' . $suggestedCommand . '" to install newer dependencies'
 			);
 		} else {
 			// We couldn't find any out-of-date dependencies, so assume everything is ok!
-			$this->output( "Your composer.lock file is up to date with current dependencies!\n" );
+			$this->output( "Your composer.lock file is up to date with current dependencies\n" );
 		}
 	}
 }
