@@ -363,6 +363,12 @@ $wgFileBackends = null;
 $wgLockManagers = null;
 
 /**
+ * Config variable stub for the DefaultLockManager setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::DefaultLockManager
+ */
+$wgDefaultLockManager = null;
+
+/**
  * Config variable stub for the ShowEXIF setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ShowEXIF
  */

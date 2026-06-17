@@ -378,6 +378,12 @@ class MainConfigNames {
 	public const LockManagers = 'LockManagers';
 
 	/**
+	 * Name constant for the DefaultLockManager setting, for use with Config::get()
+	 * @see MainConfigSchema::DefaultLockManager
+	 */
+	public const DefaultLockManager = 'DefaultLockManager';
+
+	/**
 	 * Name constant for the ShowEXIF setting, for use with Config::get()
 	 * @see MainConfigSchema::ShowEXIF
 	 */

@@ -231,6 +231,7 @@ use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\EventRelayer\EventRelayerGroup;
 use Wikimedia\FileBackend\FSFile\TempFSFileFactory;
+use Wikimedia\LockManager\LockManager;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\NonSerializable\NonSerializableTrait;
@@ -1534,6 +1535,15 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLocalServerObjectCache(): BagOStuff {
 		return $this->getService( 'LocalServerObjectCache' );
+	}
+
+	/**
+	 * Returns the default lock manager for the local wiki.
+	 *
+	 * @since 1.47
+	 */
+	public function getLockManager(): LockManager {
+		return $this->getService( 'LockManager' );
 	}
 
 	/**

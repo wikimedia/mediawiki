@@ -317,6 +317,7 @@ use MediaWiki\WikiMap\WikiMap;
 use Psr\Http\Client\ClientInterface;
 use Wikimedia\EventRelayer\EventRelayerGroup;
 use Wikimedia\FileBackend\FSFile\TempFSFileFactory;
+use Wikimedia\LockManager\DatabaseLockManager;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -1420,6 +1421,27 @@ return [
 
 	'LocalServerObjectCache' => static function ( MediaWikiServices $services ): BagOStuff {
 		return $services->getObjectCacheFactory()->getInstance( CACHE_ACCEL );
+	},
+
+	'LockManager' => static function ( MediaWikiServices $services ): LockManager {
+		// TODO: This probably should move to a dedicated factory but the current state
+		// of lock manager factories needs refactoring first.
+		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+			return new NullLockManager( [] );
+		}
+		$lockManager = $services->getMainConfig()->get( MainConfigNames::DefaultLockManager );
+		if ( !$lockManager ) {
+			return new DatabaseLockManager(
+				[
+					'domain' => WikiMap::getCurrentWikiDbDomain()->getId(),
+					'dbProvider' => $services->getConnectionProvider(),
+					'logger' => LoggerFactory::getInstance( 'lockManager' )
+				]
+			);
+		}
+		return $services->getLockManagerGroupFactory()
+			->getLockManagerGroup( WikiMap::getCurrentWikiDbDomain()->getId() )
+			->get( $lockManager );
 	},
 
 	'LockManagerGroupFactory' => static function ( MediaWikiServices $services ): LockManagerGroupFactory {

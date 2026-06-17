@@ -108,6 +108,7 @@ return [
 			],
 			'LockManagers' => [
 			],
+			'DefaultLockManager' => null,
 			'ShowEXIF' => null,
 			'UpdateCompatibleMetadata' => false,
 			'AllowCopyUploads' => false,
@@ -2835,6 +2836,10 @@ return [
 			'UploadDialog' => 'object',
 			'FileBackends' => 'object',
 			'LockManagers' => 'array',
+			'DefaultLockManager' => [
+				'string',
+				'null',
+			],
 			'CopyUploadsDomains' => 'array',
 			'CopyUploadTimeout' => [
 				'boolean',

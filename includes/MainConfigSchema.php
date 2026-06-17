@@ -1369,6 +1369,16 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Name of the default lock manager from the list of conferred lock managers
+	 *
+	 * If not set, none means the database will be used as the default lock management.
+	 */
+	public const DefaultLockManager = [
+		'default' => null,
+		'type' => '?string'
+	];
+
+	/**
 	 * Whether to show Exif data.
 	 * The effective default value is determined at runtime:
 	 * enabled if PHP's EXIF extension module is loaded.

@@ -745,6 +745,14 @@ config-schema:
               ],
             ];
             ```
+    DefaultLockManager:
+        default: null
+        type:
+            - string
+            - 'null'
+        description: |-
+            Name of the default lock manager from the list of conferred lock managers
+            If not set, none means the database will be used as the default lock management.
     ShowEXIF:
         dynamicDefault:
             callback: [MediaWiki\MainConfigSchema, getDefaultShowEXIF]

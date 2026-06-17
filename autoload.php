@@ -4467,6 +4467,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Leximorph\\Util\\JsonLoader' => __DIR__ . '/includes/libs/Leximorph/Util/JsonLoader.php',
 	'Wikimedia\\Leximorph\\Util\\XmlLoader' => __DIR__ . '/includes/libs/Leximorph/Util/XmlLoader.php',
 	'Wikimedia\\LightweightObjectStore\\ExpirationAwareness' => __DIR__ . '/includes/libs/LightweightObjectStore/ExpirationAwareness.php',
+	'Wikimedia\\LockManager\\DatabaseLockManager' => __DIR__ . '/includes/libs/LockManager/DatabaseLockManager.php',
 	'Wikimedia\\LockManager\\FSLockManager' => __DIR__ . '/includes/libs/LockManager/FSLockManager.php',
 	'Wikimedia\\LockManager\\LockManager' => __DIR__ . '/includes/libs/LockManager/LockManager.php',
 	'Wikimedia\\LockManager\\MemcLockManager' => __DIR__ . '/includes/libs/LockManager/MemcLockManager.php',

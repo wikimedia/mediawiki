@@ -122,7 +122,7 @@ abstract class LockManager {
 	 * @return StatusValue
 	 * @since 1.22
 	 */
-	final public function lockByType( array $pathsByType, $timeout = 0 ) {
+	public function lockByType( array $pathsByType, $timeout = 0 ) {
 		$pathsByType = $this->normalizePathsByType( $pathsByType );
 
 		$status = null;
