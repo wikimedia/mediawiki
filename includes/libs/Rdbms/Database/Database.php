@@ -2730,20 +2730,9 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	 * @since 1.27
 	 */
 	public static function getCacheSetOptions( ?IReadableDatabase ...$dbs ) {
-		$res = [ 'lag' => 0, 'since' => INF, 'pending' => false ];
+		$res = [ 'pending' => false ];
 
 		foreach ( $dbs as $db ) {
-			if ( $db instanceof IReadableDatabase ) {
-				$status = $db->getSessionLagStatus();
-
-				if ( $status['lag'] === false ) {
-					$res['lag'] = false;
-				} elseif ( $res['lag'] !== false ) {
-					$res['lag'] = max( $res['lag'], $status['lag'] );
-				}
-				$res['since'] = min( $res['since'], $status['since'] );
-			}
-
 			if ( $db instanceof IDatabaseForOwner ) {
 				$res['pending'] = $res['pending'] ?: $db->writesPending();
 			}
