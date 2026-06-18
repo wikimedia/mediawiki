@@ -8,10 +8,14 @@
 namespace MediaWiki\Parser;
 
 use InvalidArgumentException;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Parser\Parsoid\Config\DataAccess;
 use MediaWiki\Title\Title;
 use RuntimeException;
 use Stringable;
+use Wikimedia\Parsoid\Fragments\HeadingPFragment;
 
 /**
  * An expansion frame, used as a context to expand the result of preprocessToObj()
@@ -72,6 +76,8 @@ class PPFrame_Hash implements Stringable, PPFrame {
 	 */
 	private $maxPPExpandDepth;
 
+	private bool $useHeadingPFragments;
+
 	/**
 	 * @param Preprocessor $preprocessor The parent preprocessor
 	 */
@@ -85,6 +91,13 @@ class PPFrame_Hash implements Stringable, PPFrame {
 		$this->loopCheckHash = [];
 		$this->depth = 0;
 		$this->childExpansionCache = [];
+
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$this->useHeadingPFragments = in_array(
+			'HeadingPFragment',
+			$config->get( MainConfigNames::ReturnExperimentalPFragmentTypes ),
+			true
+		);
 	}
 
 	/**
@@ -357,6 +370,25 @@ class PPFrame_Hash implements Stringable, PPFrame {
 					$s = substr( $s, 0, $bits['level'] ) . $marker . substr( $s, $bits['level'] );
 					$this->parser->getStripState()->addGeneral( $marker, '' );
 					$out .= $s;
+				} elseif (
+					$this->useHeadingPFragments &&
+					$this->parser->useParsoidFragments() &&
+					$this->parser->getOutputType() === Parser::OT_PREPROCESS
+				) {
+					$s = $this->expand( $contextChildren, $flags );
+					$fragment = DataAccess::unstripForParsoid( $s, $this->parser );
+					$bits = PPNode_Hash_Tree::splitRawHeading( $contextChildren );
+					// @phan-suppress-next-line PhanUndeclaredClassMethod
+					$pFragment = new HeadingPFragment( $fragment, $this->title, $bits['i'] );
+
+					// Just generate a unique marker
+					$this->parser->mHeadings[] = [];
+					$serial = count( $this->parser->mHeadings ) - 1;
+					$marker = Parser::MARKER_PREFIX . "-h-$serial-" . Parser::MARKER_SUFFIX;
+
+					// @phan-suppress-next-line PhanTypeMismatchArgument
+					$this->parser->getStripState()->addParsoidOpaque( $marker, $pFragment );
+					$out .= $marker;
 				} else {
 					# Expand in virtual stack
 					$newIterator = $contextChildren;

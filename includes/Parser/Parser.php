@@ -2876,6 +2876,11 @@ class Parser {
 		$this->mStripExtTags = $val;
 	}
 
+	/** @internal */
+	public function useParsoidFragments(): bool {
+		return $this->useParsoidFragments;
+	}
+
 	/**
 	 * Warn the user when a parser limitation is reached
 	 * Will warn at most once the user per limitation type

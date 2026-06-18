@@ -492,8 +492,19 @@ class DataAccess extends IDataAccess {
 				'parsoidTopLevelCall' => true,
 			]
 		);
-		// Where the result has strip state markers, tunnel this content
-		// through Parsoid as a PFragment type.
+
+		$out = $parser->getOutput();
+		$out->collectMetadata( $metadata ); # merges $out into $metadata
+		$parserOptions->registerWatcher( $oldWatcher );
+
+		return self::unstripForParsoid( $wikitext, $parser );
+	}
+
+	/**
+	 * Where the result has strip state markers, tunnel this content
+	 * through Parsoid as a PFragment type.
+	 */
+	public static function unstripForParsoid( string $wikitext, Parser $parser ): string|PFragment {
 		$pieces = $parser->getStripState()->split( $wikitext );
 		if ( count( $pieces ) > 1 || ( $pieces[0]['type'] ?? null ) !== 'string' ) {
 			for ( $i = 0; $i < count( $pieces ); $i++ ) {
@@ -539,11 +550,6 @@ class DataAccess extends IDataAccess {
 			// result will be a PFragment, no longer a string.
 			$wikitext = PFragment::fromSplitWt( $result );
 		}
-
-		$out = $parser->getOutput();
-		$out->collectMetadata( $metadata ); # merges $out into $metadata
-		$parserOptions->registerWatcher( $oldWatcher );
-
 		return $wikitext;
 	}
 
