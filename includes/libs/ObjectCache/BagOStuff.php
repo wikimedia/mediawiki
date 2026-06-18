@@ -192,12 +192,13 @@ abstract class BagOStuff implements
 	 *
 	 * @param array $params Parameters include:
 	 *   - keyspace: Keyspace to use for keys in makeKey(). [Default: "local"]
-	 *   - asyncHandler: Callable to use for scheduling tasks after the web request ends.
-	 *      In CLI mode, it should run the task immediately. [Default: null]
-	 *   - stats: IStatsdDataFactory instance. [optional]
+	 *   - stats: StatsFactory instance. [optional]
 	 *   - logger: \Psr\Log\LoggerInterface instance. [optional]
+	 *   - asyncHandler: Callable to use for scheduling tasks after the web request ends.
+	 *       In CLI mode, it should run the task immediately. [Default: null]
 	 *
-	 * @phan-param array{keyspace?:string,logger?:\Psr\Log\LoggerInterface,asyncHandler?:callable} $params
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @phan-param array{keyspace?:string,stats?:\Wikimedia\Stats\StatsFactory,logger?:\Psr\Log\LoggerInterface,asyncHandler?:callable} $params
 	 */
 	public function __construct( array $params = [] ) {
 		$this->keyspace = $params['keyspace'] ?? 'local';
