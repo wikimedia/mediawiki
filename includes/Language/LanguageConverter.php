@@ -741,12 +741,60 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$variant ??= $this->getPreferredVariant();
 
 		$index = $title->getNamespace();
-		$nsText = $this->convertNamespace( $index, $variant );
+		// $title may be a PageReference, which has no ::getText(); derive the
+		// text from the DB key so that both kinds of argument are accepted.
+		$name = str_replace( '_', ' ', $title->getDBkey() );
+		// Resolve the namespace text in a gender-aware way (T425402). convertNamespace()
+		// is gender-blind and caches per (index, variant), so it cannot be used here for
+		// gender-distinct namespaces (e.g. NS_USER on sh: Korisnik vs Korisnica).
+		$nsText = $this->convertNamespaceForTitle( $index, $variant, $name );
 
-		$name = str_replace( '_', ' ', $title->getDBKey() );
 		$mainText = $this->translate( $name, $variant );
 
 		return [ $nsText, ':', $mainText ];
+	}
+
+	/**
+	 * Get the namespace display text in the given variant for a specific title,
+	 * honouring gender-distinct namespace aliases.
+	 *
+	 * Unlike convertNamespace(), the result may depend on the page owner's gender
+	 * (the title text is assumed to be a username) and is therefore not cached.
+	 *
+	 * @param int $index Namespace id
+	 * @param string $variant Variant code
+	 * @param string $titleText Main part of the title, with spaces (assumed
+	 *   to be a username for gender-distinct namespaces)
+	 * @return string Namespace name for display, with spaces
+	 */
+	private function convertNamespaceForTitle( int $index, string $variant, string $titleText ): string {
+		if ( $index === NS_MAIN ) {
+			return '';
+		}
+
+		$services = MediaWikiServices::getInstance();
+		$nsInfo = $services->getNamespaceInfo();
+		$languageFactory = $services->getLanguageFactory();
+		$genderCache = $services->getGenderCache();
+
+		if (
+			!$nsInfo->hasGenderDistinction( $index ) ||
+			!$languageFactory->getLanguage( $variant )->needsGenderDistinction()
+		) {
+			// No gender alias can apply; use the regular cached path.
+			return $this->convertNamespace( $index, $variant );
+		}
+
+		// A variant-specific namespace name override still takes precedence,
+		// matching convertNamespace()/computeNsVariantText().
+		$nsConvMsg = wfMessage( 'conversion-ns' . $index )->inLanguage( $variant );
+		if ( $nsConvMsg->exists() ) {
+			return $nsConvMsg->plain();
+		}
+
+		$gender = $genderCache->getGenderOf( $titleText, __METHOD__ );
+		$variantLang = $languageFactory->getLanguage( $variant );
+		return strtr( $variantLang->getGenderNsText( $index, $gender ), '_', ' ' );
 	}
 
 	/** @inheritDoc */
