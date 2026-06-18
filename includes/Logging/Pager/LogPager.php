@@ -264,15 +264,46 @@ class LogPager extends ReverseChronologicalPager {
 					continue;
 				}
 			}
-			$orConds[] = $this->mDb->makeList(
-				$this->getTitleConds( $page, $pattern ),
-				ISQLPlatform::LIST_AND
-			);
+			$pageConds = $this->getWildcardUserRightsConds( $page );
+			if ( !$pageConds ) {
+				$pageConds = $this->getTitleConds( $page, $pattern );
+			}
+			$orConds[] = $this->mDb->makeList( $pageConds, ISQLPlatform::LIST_AND );
 		}
 		if ( $orConds ) {
 			$this->mConds[] = $this->mDb->makeList( $orConds, ISQLPlatform::LIST_OR );
 			$this->enforceActionRestrictions();
 		}
+	}
+
+	private function getWildcardUserRightsConds( PageReference $page ): array {
+		$interwikiDelimiter = $this->getConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter );
+
+		if ( $this->types != [ 'rights' ] ) {
+			return [];
+		}
+		$parts = explode( $interwikiDelimiter, $page->getDBkey() );
+		if ( count( $parts ) != 2 ) {
+			return [];
+		}
+		[ $name, $database ] = array_map( 'trim', $parts );
+		if ( !str_contains( $database, '*' ) ) {
+			return [];
+		}
+
+		$params = [ $name . $interwikiDelimiter ];
+		$databaseParts = explode( '*', $database );
+		$databasePartCount = count( $databaseParts );
+		foreach ( $databaseParts as $i => $databasepart ) {
+			$params[] = $databasepart;
+			if ( $i < $databasePartCount - 1 ) {
+				$params[] = $this->mDb->anyString();
+			}
+		}
+		return [
+			'log_namespace' => $page->getNamespace(),
+			$this->mDb->expr( 'log_title', IExpression::LIKE, new LikeValue( ...$params ) ),
+		];
 	}
 
 	/**
@@ -284,21 +315,6 @@ class LogPager extends ReverseChronologicalPager {
 	 */
 	private function getTitleConds( $page, $pattern ) {
 		$conds = [];
-		$ns = $page->getNamespace();
-		$db = $this->mDb;
-
-		$interwikiDelimiter = $this->getConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter );
-
-		$doUserRightsLogLike = false;
-		if ( $this->types == [ 'rights' ] ) {
-			$parts = explode( $interwikiDelimiter, $page->getDBkey() );
-			if ( count( $parts ) == 2 ) {
-				[ $name, $database ] = array_map( 'trim', $parts );
-				if ( str_contains( $database, '*' ) ) {
-					$doUserRightsLogLike = true;
-				}
-			}
-		}
 
 		/**
 		 * Using the (log_namespace, log_title, log_timestamp) index with a
@@ -313,25 +329,12 @@ class LogPager extends ReverseChronologicalPager {
 		 * log entries for even the busiest pages, so it can be safely scanned
 		 * in full to satisfy an impossible condition on user or similar.
 		 */
-		$conds['log_namespace'] = $ns;
-		if ( $doUserRightsLogLike ) {
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $name is set when reached here
-			$params = [ $name . $interwikiDelimiter ];
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $database is set when reached here
-			$databaseParts = explode( '*', $database );
-			$databasePartCount = count( $databaseParts );
-			foreach ( $databaseParts as $i => $databasepart ) {
-				$params[] = $databasepart;
-				if ( $i < $databasePartCount - 1 ) {
-					$params[] = $db->anyString();
-				}
-			}
-			$conds[] = $db->expr( 'log_title', IExpression::LIKE, new LikeValue( ...$params ) );
-		} elseif ( $pattern ) {
-			$conds[] = $db->expr(
+		$conds['log_namespace'] = $page->getNamespace();
+		if ( $pattern ) {
+			$conds[] = $this->mDb->expr(
 				'log_title',
 				IExpression::LIKE,
-				new LikeValue( $page->getDBkey(), $db->anyString() )
+				new LikeValue( $page->getDBkey(), $this->mDb->anyString() )
 			);
 		} else {
 			$conds['log_title'] = $page->getDBkey();
