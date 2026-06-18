@@ -103,9 +103,9 @@ class LogPager extends ReverseChronologicalPager {
 		$this->actorNormalization = $actorNormalization ?? $services->getActorNormalization();
 		$this->logFormatterFactory = $logFormatterFactory ?? $services->getLogFormatterFactory();
 
-		$this->limitLogId( $logId ); // set before types per T269761
-		$this->limitType( $types ); // also excludes hidden types
-		$this->limitFilterTypes();
+		$isSingleLogId = $this->limitLogId( $logId ); // set before types per T269761
+		$this->limitType( $types, $isSingleLogId ); // also excludes hidden types
+		$this->limitFilterTypes( $isSingleLogId );
 		$this->limitPerformer( $performer );
 		$this->limitTitles( $pages, $pattern );
 		$this->limitAction( $action );
@@ -126,8 +126,8 @@ class LogPager extends ReverseChronologicalPager {
 		return $query;
 	}
 
-	private function limitFilterTypes() {
-		if ( $this->hasEqualsClause( 'log_id' ) ) { // T220834
+	private function limitFilterTypes( bool $isSingleLogId ) {
+		if ( $isSingleLogId ) { // T220834
 			return;
 		}
 		$filterTypes = $this->getFilterParams();
@@ -172,8 +172,9 @@ class LogPager extends ReverseChronologicalPager {
 	 *
 	 * @param string|array $types Log types ('upload', 'delete', etc);
 	 *   empty string means no restriction
+	 * @param bool $isSingleLogId
 	 */
-	private function limitType( $types ) {
+	private function limitType( $types, $isSingleLogId ) {
 		$restrictions = $this->getConfig()->get( MainConfigNames::LogRestrictions );
 		// If $types is not an array, make it an array
 		$types = ( $types === '' ) ? [] : (array)$types;
@@ -198,7 +199,7 @@ class LogPager extends ReverseChronologicalPager {
 		// Exception: if we are showing only a single log entry based on the log id,
 		// we don't require that "specific request" so that the links-in-logs feature
 		// works. See T269761
-		$audience = ( $types || $this->hasEqualsClause( 'log_id' ) ) ? 'user' : 'public';
+		$audience = ( $types || $isSingleLogId ) ? 'user' : 'public';
 		$hideLogs = LogEventsList::getExcludeClause( $this->mDb, $audience, $this->getAuthority() );
 		if ( $hideLogs !== false ) {
 			$this->mConds[] = $hideLogs;
@@ -363,12 +364,14 @@ class LogPager extends ReverseChronologicalPager {
 	/**
 	 * Limit to the (single) specified log ID.
 	 * @param int $logId The log entry ID.
+	 * @return bool Whether the limit was applied
 	 */
 	protected function limitLogId( $logId ) {
 		if ( !$logId ) {
-			return;
+			return false;
 		}
 		$this->mConds['log_id'] = $logId;
+		return true;
 	}
 
 	/**
