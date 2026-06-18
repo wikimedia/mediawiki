@@ -427,16 +427,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( $this->userCanSeeRevDel() ) {
 			return 'private';
 		}
-		if ( $params['prop'] !== null && in_array( 'parsedcomment', $params['prop'] ) ) {
-			// MediaWiki\CommentFormatter\CommentFormatter::formatItems() calls wfMessage() among other things
-			return 'anon-public-user-private';
-		} elseif ( LogEventsList::getExcludeClause( $this->getDB(), 'user', $this->getAuthority() )
-			=== LogEventsList::getExcludeClause( $this->getDB(), 'public' )
-		) { // Output can only contain public data.
-			return 'public';
-		} else {
-			return 'anon-public-user-private';
-		}
+		return 'anon-public-user-private';
 	}
 
 	/** @inheritDoc */
