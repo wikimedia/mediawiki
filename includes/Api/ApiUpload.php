@@ -783,7 +783,7 @@ class ApiUpload extends ApiBase {
 			if ( $progress['result'] === 'Success' ) {
 				if ( isset( $progress['filekey'] ) ) {
 					// assembled file, load stashed file from upload stash for imageinfo
-					$file = $this->localRepo->getUploadStash()->getFile( $progress['filekey'] );
+					$file = $this->localRepo->getUploadStash( $this->getUser() )->getFile( $progress['filekey'] );
 					if ( $file ) {
 						$imageinfo = $this->getUploadImageInfoInternal( $file, true );
 					}
