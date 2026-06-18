@@ -553,7 +553,33 @@
 		},
 		"JobClasses": {
 			"type": "object",
-			"description": "Job types this extension implements (mapping of job type to class name or factory function)"
+			"description": "Job types this extension implements (mapping of job type to class name or factory function)",
+			"patternProperties": {
+				".*": {
+					"oneOf": [
+						{
+							"type": "string",
+							"description": "Class name of a Job class."
+						},
+						{
+							"type": "object",
+							"properties": {
+								"needsPage": {
+									"type": "boolean",
+									"description": "Job class does not require a Title as constructor argument"
+								},
+								"factory": { "description": "See the ObjectFactorySpec definition" },
+								"class": { "description": "See the ObjectFactorySpec definition" },
+								"args": { "description": "See the ObjectFactorySpec definition" },
+								"services": { "description": "See the ObjectFactorySpec definition" },
+								"optional_services": { "description": "See the ObjectFactorySpec definition" }
+							},
+							"allOf": [ { "$ref": "#/definitions/ObjectFactorySpec" } ],
+							"additionalProperties": false
+						}
+					]
+				}
+			}
 		},
 		"NotificationMiddleware": {
 			"type": "array",
