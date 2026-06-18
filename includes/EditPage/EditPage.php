@@ -409,6 +409,9 @@ class EditPage implements IEditObject {
 	/** Whether temp username acquisition failed (false indicates no failure or not attempted) */
 	private bool $unableToAcquireTempName = false;
 
+	/** Whether reauthentication is required for saving the edit (operation name, or null) */
+	private ?string $reauthRequired = null;
+
 	/**
 	 * @stable to call
 	 * @param Article $article
@@ -606,6 +609,7 @@ class EditPage implements IEditObject {
 
 			return;
 		}
+		$this->reauthRequired = $status->getReauthOperation();
 
 		$revRecord = $this->mArticle->fetchRevisionRecord();
 		// Disallow editing revisions with content models different from the current one
@@ -652,7 +656,7 @@ class EditPage implements IEditObject {
 		# in the back door with a hand-edited submission URL.
 
 		if ( $this->formtype === 'save' ) {
-			if ( $status->getReauthOperation() !== null ) {
+			if ( $this->reauthRequired !== null ) {
 				// reauth at the attempted post/form save, stash user-submitted data
 				$this->setStashKey( self::EDITFORM_ID . ':' . $this->getTitle()->getPrefixedDBkey() );
 				$queryParams = $this->stashDataOnPost();
@@ -3824,8 +3828,6 @@ class EditPage implements IEditObject {
 			'tabIndex' => ++$tabindex,
 			'id' => 'wpSaveWidget',
 			'inputId' => 'wpSave',
-			// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
-			'useInputTag' => true,
 			'flags' => [ 'progressive', 'primary' ],
 			'label' => $buttonLabel,
 			'infusable' => true,
@@ -3834,15 +3836,19 @@ class EditPage implements IEditObject {
 			'title' => Linker::titleAttrib( $buttonTooltip ),
 			// Messages used: accesskey-save, accesskey-publish
 			'accessKey' => Linker::accesskey( $buttonTooltip ),
+			'icon' => $this->reauthRequired ? 'lock' : null,
 		] );
+
+		// Make sure the lock icon is loaded if we need it
+		if ( $this->reauthRequired ) {
+			$this->context->getOutput()->addModuleStyles( 'oojs-ui.styles.icons-moderation' );
+		}
 
 		$buttons['preview'] = new OOUI\ButtonInputWidget( [
 			'name' => 'wpPreview',
 			'tabIndex' => ++$tabindex,
 			'id' => 'wpPreviewWidget',
 			'inputId' => 'wpPreview',
-			// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
-			'useInputTag' => true,
 			'label' => $this->context->msg( 'showpreview' )->text(),
 			'infusable' => true,
 			'type' => 'submit',
@@ -3859,8 +3865,6 @@ class EditPage implements IEditObject {
 			'tabIndex' => ++$tabindex,
 			'id' => 'wpDiffWidget',
 			'inputId' => 'wpDiff',
-			// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
-			'useInputTag' => true,
 			'label' => $this->context->msg( 'showdiff' )->text(),
 			'infusable' => true,
 			'type' => 'submit',
