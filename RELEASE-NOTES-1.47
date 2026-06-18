@@ -228,6 +228,9 @@ because of Phabricator reports.
   - IncludableSpecialPage
   - UnlistedSpecialPage
   Instantiate a subclass instead.
+* The following LogPager methods, deprecated in 1.45, were removed:
+  getType, getPage, getPattern, getYear, getMonth, getDay, getTagFilter,
+  getTagInvert, getAction.
 * It is no longer possible to call File::getShortDesc, File::getLongDesc,
   File::getDescriptionText, File::getDimensionsString,
   MediaHandler::getGeneralShortDesc or MediaHandler::getGeneralLongDesc without

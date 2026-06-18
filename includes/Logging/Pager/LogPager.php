@@ -38,20 +38,8 @@ class LogPager extends ReverseChronologicalPager {
 	/** @var string Events limited to those by performer when set */
 	private $performer = '';
 
-	/**
-	 * @var string Events limited to those about this page when set.
-	 *  Only exists to support deprecated method getPage().
-	 */
-	private $page = '';
-
-	/** @var bool */
-	private $pattern = false;
-
 	/** @var string */
 	private $typeCGI = '';
-
-	/** @var string */
-	private $action = '';
 
 	/** @var bool */
 	private $performerRestrictionsEnforced = false;
@@ -275,8 +263,6 @@ class LogPager extends ReverseChronologicalPager {
 					continue;
 				}
 			}
-			$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
-			$this->page = $titleFormatter->getPrefixedDBkey( $page );
 			$orConds[] = $this->mDb->makeList(
 				$this->getTitleConds( $page, $pattern ),
 				ISQLPlatform::LIST_AND
@@ -284,7 +270,6 @@ class LogPager extends ReverseChronologicalPager {
 		}
 		if ( $orConds ) {
 			$this->mConds[] = $this->mDb->makeList( $orConds, ISQLPlatform::LIST_OR );
-			$this->pattern = $pattern;
 			$this->enforceActionRestrictions();
 		}
 	}
@@ -371,7 +356,6 @@ class LogPager extends ReverseChronologicalPager {
 			if ( $action !== '' && isset( $actions[$type][$action] ) ) {
 				// add condition to query
 				$this->mConds['log_action'] = $actions[$type][$action];
-				$this->action = $action;
 			}
 		}
 	}
@@ -498,92 +482,12 @@ class LogPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * @deprecated since 1.45
-	 * @return array
-	 */
-	public function getType() {
-		wfDeprecated( __METHOD__, '1.45' );
-		return $this->types;
-	}
-
-	/**
 	 * Guaranteed to either return a valid title string or a Zero-Length String
 	 *
 	 * @return string
 	 */
 	public function getPerformer() {
 		return $this->performer;
-	}
-
-	/**
-	 * @deprecated since 1.45
-	 * @return string
-	 */
-	public function getPage() {
-		wfDeprecated( __METHOD__, '1.45' );
-		return $this->page;
-	}
-
-	/**
-	 * @deprecated since 1.45
-	 * @return bool
-	 */
-	public function getPattern() {
-		wfDeprecated( __METHOD__, '1.45' );
-		return $this->pattern;
-	}
-
-	/**
-	 * @deprecated since 1.45
-	 * @return int
-	 */
-	public function getYear() {
-		wfDeprecated( __METHOD__, '1.45' );
-		return $this->mYear;
-	}
-
-	/**
-	 * @deprecated since 1.45
-	 * @return int
-	 */
-	public function getMonth() {
-		wfDeprecated( __METHOD__, '1.45' );
-		return $this->mMonth;
-	}
-
-	/**
-	 * @deprecated since 1.45
-	 * @return int
-	 */
-	public function getDay() {
-		wfDeprecated( __METHOD__, '1.45' );
-		return $this->mDay;
-	}
-
-	/**
-	 * @deprecated since 1.45
-	 * @return string
-	 */
-	public function getTagFilter() {
-		return $this->mTagFilter;
-	}
-
-	/**
-	 * @deprecated since 1.45
-	 * @return bool
-	 */
-	public function getTagInvert() {
-		wfDeprecated( __METHOD__, '1.45' );
-		return $this->mTagInvert;
-	}
-
-	/**
-	 * @deprecated since 1.45
-	 * @return string
-	 */
-	public function getAction() {
-		wfDeprecated( __METHOD__, '1.45' );
-		return $this->action;
 	}
 
 	/**
