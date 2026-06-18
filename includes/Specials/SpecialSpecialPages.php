@@ -176,7 +176,7 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 				$indexAttr = [];
 				if ( $canonicalName !== null ) {
 					$c = 0;
-					foreach ( $aliases[ $canonicalName ] as $alias ) {
+					foreach ( $aliases[ $canonicalName ] ?? [] as $alias ) {
 						$indexAttr[ 'data-search-index-' . $c ] = str_replace( '_', ' ', $language->lc( $alias ) );
 						++$c;
 					}
