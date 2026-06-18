@@ -40,6 +40,19 @@
 	const config = require( './config.json' );
 	const storageKey = 'mw-PostEdit' + mw.config.get( 'wgPageName' );
 
+	function setupInstrumentation( experiment, selector ) {
+		const { ClickThroughRateInstrument } = require( 'ext.wikimediaEvents.testKitchen' );
+		experiment.sendExposure();
+		setTimeout( () => {
+			// defer some ms the CTR start to give time for the toast to render
+			ClickThroughRateInstrument.start(
+				selector,
+				'Create account CTA',
+				experiment
+			);
+		}, 500 );
+	}
+
 	function showConfirmation( data ) {
 		data = data || {};
 
@@ -70,38 +83,57 @@
 			}
 		};
 
-		mw.loader.using( [ 'ext.testKitchen' ] )
+		mw.loader.using( [ 'ext.testKitchen', 'ext.wikimediaEvents.testKitchen' ] )
 			.then( () => mw.testKitchen.getExperiment( 'we-1-8-tempuser-post-edit' ) )
 			.then( ( experiment ) => {
 				const isMobile = mw.config.get( 'skin' ) === 'minerva';
-				if ( isMobile && data.tempUserCreated && experiment.isAssignedGroup( 'treatment' ) ) {
-					// mediawiki.action.view.postEdit is loaded two times on temporary account auto-creation, avoid
-					// displaying the confirmation until the temp account is attached (user menu is present in nav).
-					if ( mw.user.isTemp() ) {
-						// Make sure the popover will actually show as a bottom sheet, since we don't provide an
-						// anchor point, it wouldn't fall back to the desktop version so we manually provide the
-						// default confirmation.
-						const isMobileBreakpoint = window.matchMedia( '(max-width: 639px)' ).matches;
-						if ( isMobileBreakpoint ) {
-							mw.tempUserCreated.showCondensedPopup( {
-								classes: [ 'postedit-tempusercreated' ],
-								title: mw.message( 'postedit-confirmation-published-title' ).text(),
-								content: [
-									mw.message( 'postedit-temp-created-createaccount-benefits' ).text(),
-									mw.message( 'postedit-temp-created-createaccount-benefit-1' ).text(),
-									mw.message( 'postedit-temp-created-createaccount-benefit-2' ).text(),
-									mw.message( 'postedit-temp-created-createaccount-benefit-3' ).text()
-								],
-								primaryActionLabel: mw.message( 'createaccount' ).text(),
-								primaryActionUrl: mw.util.getUrl( 'Special:CreateAccount' )
-							} );
-						} else {
-							// Fallback to default confirmation until Codex bottom sheet works on desktop, T366048
-							showDefaultConfirmation();
+				const isMobileBreakpoint = window.matchMedia( '(max-width: 639px)' ).matches;
+				// Experiment enrollment criteria
+				if (
+					isMobile &&
+					// Make sure the popover will actually show as a bottom sheet, since we don't provide an
+					// anchor point, it wouldn't fall back to the desktop version so we manually provide the
+					// default confirmation.
+					isMobileBreakpoint &&
+					data.tempUserCreated
+				) {
+					const selector = experiment.isAssignedGroup( 'treatment' ) ?
+						'.mw-popover > footer > * > .cdx-button' :
+						'.postedit-tempuserpopup > * > [href*="Special:CreateAccount"]';
+					if ( experiment.isAssignedGroup( 'treatment' ) ) {
+						// mediawiki.action.view.postEdit is loaded two times on temporary account auto-creation, avoid
+						// displaying the confirmation until the temp account is attached (user menu is present in nav).
+						if ( !mw.user.isTemp() ) {
+							return;
 						}
+						mw.tempUserCreated.showCondensedPopup( {
+							classes: [ 'postedit-tempusercreated' ],
+							title: mw.message( 'postedit-confirmation-published-title' ).text(),
+							content: [
+								mw.message( 'postedit-temp-created-createaccount-benefits' ).text(),
+								mw.message( 'postedit-temp-created-createaccount-benefit-1' ).text(),
+								mw.message( 'postedit-temp-created-createaccount-benefit-2' ).text(),
+								mw.message( 'postedit-temp-created-createaccount-benefit-3' ).text()
+							],
+							primaryActionLabel: mw.message( 'createaccount' ).text(),
+							primaryActionUrl: mw.util.getUrl( 'Special:CreateAccount' )
+						} );
+						// Deprecated - use the 'postEdit' hook, and an additional pause if required
+						mw.hook( 'postEdit.afterRemoval' ).fire();
+						setupInstrumentation( experiment, selector );
+					} else {
+						showDefaultConfirmation();
+						// Ensure exposure is logged only once for users in the control group where the toast shows twice.
+						if (
+							mw.storage.session.get( 'we-1-8-tempuser-post-edit__should_log' ) &&
+							mw.storage.session.get( 'we-1-8-tempuser-post-edit__should_log' ) < Date.now()
+						) {
+							setupInstrumentation( experiment, selector );
+							mw.storage.session.remove( 'we-1-8-tempuser-post-edit__should_log' );
+						}
+						// This only needs to last for the time between Special:CentralLogin redirects and the final load
+						mw.storage.session.set( 'we-1-8-tempuser-post-edit__should_log', Date.now(), 30 );
 					}
-					// Deprecated - use the 'postEdit' hook, and an additional pause if required
-					mw.hook( 'postEdit.afterRemoval' ).fire();
 				} else {
 					showDefaultConfirmation();
 				}
