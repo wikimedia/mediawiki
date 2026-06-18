@@ -2870,7 +2870,7 @@
 	"confirmemail": "Потврда имејл-адресе",
 	"confirmemail_noemail": "Није наведена важећа имејл-адреса у [[Special:Preferences|подешавањима]].",
 	"confirmemail_text": "{{SITENAME}} захтева да проверите ваљаност имејл-адресе пре него што почнете да користите функцију имејла.\nАктивирајте дугме испод да бисте послали поруку с потврдом на своју адресу.\nПорука ће укључивати везу с кодом;\nучитајте везу у свом прегледачу да бисте потврдили да је ваша имејл-адреса важећа.",
-	"confirmemail-notice": "Молимо, [[Special:ConfirmEmail|потврдите Вашу имејл адресу]].<br><br>This is required if you ever need to recover your account, and other features and security protections on {{SITENAME}} may require a confirmed email.",
+	"confirmemail-notice": "Молимо, [[Special:ConfirmEmail|потврдите Вашу имејл адресу]].<br><br>Ово је потребно ако икада будете морали да опоравите налог, такође за неке опције и сигурносне заштите на {{SITENAME}}.",
 	"confirmemail_pending": "Код за потврду вам је већ послат имејлом.\nАко сте недавно отворили налог, можда треба да сачекате неколико минута да пристигне пре него што поново затражите нови код.",
 	"confirmemail_send": "Пошаљи код за потврду",
 	"confirmemail_sent": "Потврдна порука је послата.",

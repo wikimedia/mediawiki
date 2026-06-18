@@ -410,6 +410,7 @@
 	"apihelp-parse-paramvalue-prop-properties": "Obter varias propiedades definidas no texto wiki analizado.",
 	"apihelp-parse-paramvalue-prop-limitreportdata": "Devolve o informe de límite de forma estruturada. Non devolve datos cando <var>$1disablelimitreport</var> está fixado.",
 	"apihelp-parse-paramvalue-prop-limitreporthtml": "Devolve a versión HTML do informe de límite. Non devolve datos cando <var>$1disablelimitreport</var> está fixado.",
+	"apihelp-parse-paramvalue-prop-parseroutput": "Devolve o obxecto <code>ParserOutput</code> serializado en JSON para o contido analizado. O formato desta propiedade pode cambiar en calquera momento; «[[mw:Manual:Parser cache/Serialization compatibility]]» non ofrece garantía ningunha de estabilidade da API.",
 	"apihelp-parse-paramvalue-prop-parsetree": "Árbores de análise XML do contido da revisión (precisa o modelo de contido <code>$1</code>)",
 	"apihelp-parse-paramvalue-prop-parsewarnings": "Devolve os avisos que ocorreron ó analizar o contido (como texto wiki).",
 	"apihelp-parse-paramvalue-prop-parsewarningshtml": "Devolve os avisos que ocorreron ó analizar o contido (como HTML).",

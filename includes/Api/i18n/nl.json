@@ -420,6 +420,7 @@
 	"apihelp-parse-paramvalue-prop-properties": "Geeft verschillende eigenschappen die gedefinieerd zijn in de geparsete wikitekst.",
 	"apihelp-parse-paramvalue-prop-limitreportdata": "Geeft het limietrapport op een gestructureerde manier. Geeft geen gegevens wanneer <var>$1disablelimitreport</var> is ingesteld.",
 	"apihelp-parse-paramvalue-prop-limitreporthtml": "Geeft de HTML-versie van het limietrapport. Geeft geen gegevens wanneer <var>$1disablelimitreport</var> is ingesteld.",
+	"apihelp-parse-paramvalue-prop-parseroutput": "Geeft het in JSON geserialiseerde object <code>ParserOutput</code> voor de verwerkte inhoud. De indeling van deze eigenschap kan op elk moment veranderen; [[mw:Manual:Parser cache/Serialization compatibility]] biedt geen enkele stabiliteitsgarantie voor de API.",
 	"apihelp-parse-paramvalue-prop-parsetree": "De XML-ontleedboom van de versie-inhoud (vereist inhoudsmodel <code>$1</code>)",
 	"apihelp-parse-paramvalue-prop-parsewarnings": "Geeft de waarschuwingen weer die zijn opgetreden tijdens het parsen van de inhoud (als wikitekst).",
 	"apihelp-parse-paramvalue-prop-parsewarningshtml": "Geeft de waarschuwingen weer die zijn opgetreden tijdens het parsen van inhoud (als HTML).",
