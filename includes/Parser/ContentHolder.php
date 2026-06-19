@@ -198,6 +198,40 @@ class ContentHolder implements JsonCodecable {
 	}
 
 	/**
+	 * Helper method to prepend the given HTML string to the
+	 * named content fragment.
+	 */
+	public function prependHtmlString( string $html, string $fragmentName = self::BODY_FRAGMENT ): void {
+		if ( $this->domFormat ) {
+			$df = $this->createFragment( $html );
+			$this->prependDom( $df, $fragmentName );
+		} else {
+			$prev = $this->htmlMap[ $fragmentName ] ?? '';
+			$this->htmlMap[ $fragmentName ] = $html . $prev;
+		}
+	}
+
+	/**
+	 * Helper method to prepend the given DocumentFragment to the
+	 * named content fragment.
+	 */
+	public function prependDom( DocumentFragment $df, string $fragmentName = self::BODY_FRAGMENT ) {
+		if ( !$this->domFormat ) {
+			// Note: in order to have a fragment with the right owner, the
+			// ContentHolder is already in dom format.
+			$this->convertHtmlToDom();
+		}
+		Assert::invariant( $df->ownerDocument === $this->ownerDocument,
+			"Fragment not owned by the ContentHolder document." );
+
+		$prev = $this->domMap[ $fragmentName ] ??
+			  $this->ownerDocument->createDocumentFragment();
+		// @phan-suppress-next-line PhanParamTooManyInternal phan bug
+		$prev->prepend( $df );
+		$this->domMap[ $fragmentName ] = $prev;
+	}
+
+	/**
 	 * Helper method to append the given HTML string to the
 	 * named content fragment.
 	 */
@@ -226,7 +260,8 @@ class ContentHolder implements JsonCodecable {
 
 		$prev = $this->domMap[ $fragmentName ] ??
 			  $this->ownerDocument->createDocumentFragment();
-		DOMCompat::append( $prev, $df );
+		// @phan-suppress-next-line PhanParamTooManyInternal phan bug
+		$prev->append( $df );
 		$this->domMap[ $fragmentName ] = $prev;
 	}
 

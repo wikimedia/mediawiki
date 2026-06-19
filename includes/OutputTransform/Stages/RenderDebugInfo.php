@@ -8,7 +8,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
-use MediaWiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use Psr\Log\LoggerInterface;
@@ -17,7 +17,7 @@ use Psr\Log\LoggerInterface;
  * Adds debug info to the output
  * @internal
  */
-class RenderDebugInfo extends ContentTextTransformStage {
+class RenderDebugInfo extends OutputTransformStage {
 	private HookRunner $hookRunner;
 
 	public function __construct(
@@ -25,7 +25,7 @@ class RenderDebugInfo extends ContentTextTransformStage {
 		LoggerInterface $logger,
 		HookContainer $hookContainer
 	) {
-		parent::__construct( $options, $logger, transformBodyOnly: true );
+		parent::__construct( $options, $logger );
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
@@ -33,9 +33,10 @@ class RenderDebugInfo extends ContentTextTransformStage {
 		return $options['includeDebugInfo'] ?? false;
 	}
 
-	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
+	public function transform( ParserOutput $po, ParserOptions $popts, array &$options ): ParserOutput {
 		$debugInfo = $this->debugInfo( $po );
-		return $text . $debugInfo;
+		$po->getContentHolder()->appendHtmlString( $debugInfo );
+		return $po;
 	}
 
 	private function debugInfo( ParserOutput $po ): string {

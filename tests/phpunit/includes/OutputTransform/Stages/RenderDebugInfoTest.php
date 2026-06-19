@@ -43,9 +43,7 @@ class RenderDebugInfoTest extends OutputTransformStageTestBase {
 	 */
 	public static function provideTransform(): array {
 		$text = <<<EOF
-<!DOCTYPE html>
-<html><head><title>Main Page</title></head><body data-parsoid='{"dsr":[0,6,0,0]}' lang="en"><p data-parsoid='{"dsr":[0,5,0,0]}'>hello</p>
-</body></html>
+<p data-parsoid='{"dsr":[0,5,0,0]}'>hello</p>
 EOF;
 		$expectedText = $text . "\n<!-- \nNewPP limit report\nComplications: []\n-->\n";
 		$po = new ParserOutput( $text );
@@ -64,9 +62,21 @@ EOF;
 		$expectedWithSource->setLimitReportData( 'test', 'limit' );
 		$expectedWithSource->setLimitReportData( 'cachereport-expiry-source', 'somesource' );
 
+		// DOM format ContentHolders
+		$po2 = clone $po;
+		$po2->getContentHolder()->getAsDom();
+		$poWithSource2 = clone $poWithSource;
+		$poWithSource2->getContentHolder()->getAsDom();
+
 		return [
-			[ $po, ParserOptions::newFromAnon(), [], $expected ],
-			[ $poWithSource, ParserOptions::newFromAnon(), [], $expectedWithSource ],
+			'text, no source' =>
+				[ $po, ParserOptions::newFromAnon(), [], $expected ],
+			'text, with source' =>
+				[ $poWithSource, ParserOptions::newFromAnon(), [], $expectedWithSource ],
+			'dom, no source' =>
+				[ $po2, ParserOptions::newFromAnon(), [], $expected ],
+			'dom, with source' =>
+				[ $poWithSource2, ParserOptions::newFromAnon(), [], $expectedWithSource ],
 		];
 	}
 }

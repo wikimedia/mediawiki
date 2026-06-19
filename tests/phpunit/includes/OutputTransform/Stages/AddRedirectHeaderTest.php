@@ -48,6 +48,13 @@ EOF;
 		$expected = new ParserOutput( $expectedText );
 		$expected->setRedirectHeader( $redirect );
 		$expected->getContentHolder()->setAsHtmlString( 'My Fragment', 'this is just a random fragment' );
-		return [ [ $po, ParserOptions::newFromAnon(), [], $expected ] ];
+
+		// DOM version
+		$po2 = clone $po;
+		$po2->getContentHolder()->getAsDom();
+		return [
+			'text' => [ $po, ParserOptions::newFromAnon(), [], $expected ],
+			'dom' => [ $po2, ParserOptions::newFromAnon(), [], $expected ],
+		];
 	}
 }
