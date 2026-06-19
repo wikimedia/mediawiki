@@ -33,6 +33,18 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		];
 		$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, $overrides );
 
+		$this->overrideConfigValue( MainConfigNames::RestExternalModules, [
+			'mockExternal/v1' => [
+				'info' => [
+					'title' => 'Mock External Module',
+					'version' => '1.0.0',
+					'description' => 'This is a mock external module.'
+				],
+				'base' => 'https://example.com/mockExternal/v1',
+				'spec' => 'https://example.com/mockExternal/v1/spec.json',
+			],
+		] );
+
 		$rss = $conf->get( MainConfigNames::RestSandboxSpecs );
 		$rss['mock.v1-invalid.json'] = [ 'file' => __DIR__ . '/mock.v1-invalid.json' ];
 		$this->overrideConfigValue( MainConfigNames::RestSandboxSpecs, $rss );
@@ -138,6 +150,15 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 				'group' => '',
 				'url' => '/rest.php/specs/v0/module/-',
 				'name' => 'MediaWiki REST API (routes not in modules)',
+			]
+		];
+
+		yield 'mockExternal/v1' => [
+			'mockExternal/v1',
+			[
+				'group' => '',
+				'url' => 'https://example.com/mockExternal/v1/spec.json',
+				'name' => 'Mock External Module',
 			]
 		];
 

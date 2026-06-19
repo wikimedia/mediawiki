@@ -213,7 +213,11 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$request = new RequestData( $params );
 
-		$router = $this->createRouter( $request, $specFile );
+		$moduleModes = [
+			'mock/v1' => ModuleMode::PUBLISHED,
+			'' => ModuleMode::PUBLISHED,
+		];
+		$router = $this->createRouter( $request, $specFile, $moduleModes );
 
 		$handler = $this->newHandler();
 		$response = $this->executeHandler(
@@ -235,6 +239,48 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsArray( $data, 'Body must be a JSON array' );
 		$this->assertWellFormedOAS( $data );
 		$this->assertContainsRecursive( $expected, $data );
+	}
+
+	public function testExternalModuleSpecs() {
+		$this->overrideConfigValue( MainConfigNames::RestExternalModules, [
+			'mockExternal/v1' => [
+				'info' => [
+					'title' => 'Mock External Module',
+					'version' => '1.0.0',
+					'description' => 'This is a mock external module.'
+				],
+				'base' => 'https://example.com/mockExternal/v1',
+				'spec' => 'https://example.com/mockExternal/v1/spec.json',
+			],
+		] );
+
+		$request = new RequestData(
+			[ 'pathParams' => [ 'module' => 'mockExternal', 'version' => 'v1' ] ]
+		);
+
+		$moduleModes = [
+			'mockExternal/v1' => ModuleMode::PUBLISHED,
+		];
+		$router = $this->createRouter( $request, null, $moduleModes );
+
+		$handler = $this->newHandler();
+		$response = $this->executeHandler(
+			$handler,
+			$request,
+			[],
+			[],
+			[],
+			[],
+			null,
+			null,
+			$router
+		);
+		$this->assertSame( 301, $response->getStatusCode() );
+		$this->assertArrayHasKey( 'Location', $response->getHeaders() );
+		$this->assertSame(
+			'https://example.com/mockExternal/v1/spec.json',
+			$response->getHeaderLine( 'Location' )
+		);
 	}
 
 	public static function provideGenerateOperationId(): iterable {

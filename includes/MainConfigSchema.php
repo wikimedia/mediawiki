@@ -12943,6 +12943,39 @@ class MainConfigSchema {
 		]
 	];
 
+	/**
+	 * A list of "external" REST modules, by module id, and the details for each.
+	 *
+	 * "External" modules are implemented outside MediaWiki and its extensions.
+	 * Listing them here allows them to appear in /discovery and the REST Sandbox.
+	 *
+	 * @unstable Introduced in 1.47. We may adjust this as we refine this functionality.
+	 */
+	public const RestExternalModules = [
+		'default' => [],
+		'type' => 'map',
+		'mergeStrategy' => 'array_replace_recursive',
+		'additionalProperties' => [
+			'type' => 'object',
+			'properties' => [
+				'info' => [
+					'type' => 'object',
+					'properties' => [
+						'version' => [ 'type' => 'string' ],
+						'title' => [ 'type' => 'string' ],
+						'x-i18n-title' => [ 'type' => 'string' ],
+						'description' => [ 'type' => 'string' ],
+						'x-i18n-description' => [ 'type' => 'string' ],
+					],
+					'required' => [ 'version' ],
+				],
+				'base' => [ 'type' => 'string', 'format' => 'uri' ],
+				'spec' => [ 'type' => 'string', 'format' => 'uri' ],
+			],
+			'required' => [ 'info', 'base', 'spec' ],
+		]
+	];
+
 	// endregion -- End AJAX and API
 
 	/***************************************************************************/

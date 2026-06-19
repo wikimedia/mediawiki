@@ -24,6 +24,7 @@ class DiscoveryHandler extends Handler {
 		MainConfigNames::EmergencyContact,
 		MainConfigNames::Sitename,
 		MainConfigNames::Server,
+		MainConfigNames::RestExternalModules,
 	];
 
 	private ServiceOptions $options;
@@ -63,6 +64,16 @@ class DiscoveryHandler extends Handler {
 					$modules[$moduleId] = $this->getModuleSpec( $module );
 				}
 			}
+		}
+
+		$restExternalModules = $this->options->get( MainConfigNames::RestExternalModules );
+		$localizer = $this->getJsonLocalizer();
+		foreach ( $restExternalModules as $externalModuleId => $em ) {
+			$mode = $moduleManager->getModuleMode( $externalModuleId );
+			if ( $mode === ModuleMode::DISABLED || $mode === ModuleMode::HIDDEN ) {
+				continue;
+			}
+			$modules[$externalModuleId] = [ 'moduleId' => $externalModuleId ] + $localizer->localizeJson( $em );
 		}
 
 		// This will put the "routes not in modules" entry first.

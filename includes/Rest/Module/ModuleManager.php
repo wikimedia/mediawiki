@@ -50,6 +50,7 @@ class ModuleManager {
 	private array $extensionModuleFiles;
 	private array $restApiAdditionalRouteFiles;
 	private array $restSandboxSpecs;
+	private array $restExternalModules;
 	private array $restModuleOverrides;
 
 	private string $scriptPath;
@@ -66,6 +67,7 @@ class ModuleManager {
 		MainConfigNames::ExtensionDirectory,
 		MainConfigNames::RestAPIAdditionalRouteFiles,
 		MainConfigNames::RestSandboxSpecs,
+		MainConfigNames::RestExternalModules,
 		MainConfigNames::RestModuleOverrides,
 		MainConfigNames::ScriptPath
 	];
@@ -86,6 +88,7 @@ class ModuleManager {
 		$this->extensionDirectory = $options->get( MainConfigNames::ExtensionDirectory );
 		$this->restApiAdditionalRouteFiles = $options->get( MainConfigNames::RestAPIAdditionalRouteFiles );
 		$this->restSandboxSpecs = $options->get( MainConfigNames::RestSandboxSpecs );
+		$this->restExternalModules = $options->get( MainConfigNames::RestExternalModules );
 		$this->restModuleOverrides = $options->get( MainConfigNames::RestModuleOverrides );
 		$this->scriptPath = $options->get( MainConfigNames::ScriptPath );
 
@@ -231,7 +234,29 @@ class ModuleManager {
 		$extensionSpecs = [];
 		foreach ( $this->extensionModuleFiles as $file ) {
 			$key = basename( $file, '.json' );
-			$extensionSpecs[$key] = $this->normalizeSpec( $key, [ 'file' => $file ] );
+			$spec = $this->normalizeSpec( $key, [ 'file' => $file ] );
+			if ( $spec['mode'] === ModuleMode::PUBLISHED ) {
+				$extensionSpecs[$key] = $spec;
+			}
+		}
+
+		// RestExternalModules (modules not in core or extensions)
+		$externalModules = [];
+		$localizer = new JsonLocalizer( $this->responseFactory );
+		foreach ( $this->restExternalModules as $externalModuleId => $em ) {
+			$mode = $this->getModuleMode( $externalModuleId );
+			if ( $mode !== ModuleMode::PUBLISHED ) {
+				continue;
+			}
+
+			$em = $localizer->localizeJson( $em );
+
+			$externalModules[$externalModuleId] = [
+				'name' => $em['info']['title'] ?? $externalModuleId,
+				'url' => $em['spec'],
+				'mode' => $mode,
+				'params' => $this->getModeParams( $externalModuleId ),
+			];
 		}
 
 		// RestSandboxSpecs overrides everything else. If RestSandboxSpecs includes a module,
@@ -243,12 +268,13 @@ class ModuleManager {
 		}
 		unset( $spec );
 
-		$specs = array_merge( $coreSpecs, $extensionSpecs, $rssSpecs );
+		$specs = array_merge( $coreSpecs, $extensionSpecs, $externalModules, $rssSpecs );
 		foreach ( $specs as $key => &$spec ) {
 			unset( $spec['mode'] );
 			$spec['group'] = $spec['params']['group'] ?? '';
 			unset( $spec['params'] );
 		}
+		unset( $spec );
 
 		// This will put the "routes not in modules" entry first.
 		$defaultName = self::CORE_SPECS['mw-extra']['name'];

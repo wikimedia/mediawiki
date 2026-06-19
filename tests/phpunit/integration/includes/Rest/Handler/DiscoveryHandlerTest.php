@@ -60,6 +60,7 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 		$moduleModes = [
 			'SpecTestRoutes/v1' => ModuleMode::PUBLISHED,
 			'SpecTestRoutes/v2' => ModuleMode::HIDDEN,
+			'mockExternal/v1' => ModuleMode::PUBLISHED,
 		];
 
 		return ( new Router(
@@ -124,6 +125,18 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::RestPath => '/api',
 		] );
 
+		$this->overrideConfigValue( MainConfigNames::RestExternalModules, [
+			'mockExternal/v1' => [
+				'info' => [
+					'title' => 'Mock External Module',
+					'version' => '1.0.0',
+					'description' => 'This is a mock external module.'
+				],
+				'base' => 'https://example.com/mockExternal/v1',
+				'spec' => 'https://example.com/mockExternal/v1/spec.json',
+			],
+		] );
+
 		$request = new RequestData( [] );
 		$router = $this->createRouter(
 			$request,
@@ -180,6 +193,15 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 					],
 					'base' => 'https://example.com:1234/api/SpecTestRoutes/v3',
 					'spec' => 'https://example.com:1234/api/specs/v0/module/SpecTestRoutes%2Fv3',
+				],
+				'mockExternal/v1' => [
+					'info' => [
+						'title' => 'Mock External Module',
+						'version' => '1.0.0',
+						'description' => 'This is a mock external module.'
+					],
+					'base' => 'https://example.com/mockExternal/v1',
+					'spec' => 'https://example.com/mockExternal/v1/spec.json',
 				],
 			],
 		];

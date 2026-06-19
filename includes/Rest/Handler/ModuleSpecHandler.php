@@ -10,6 +10,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\Validator\Validator;
@@ -31,6 +32,7 @@ class ModuleSpecHandler extends SimpleHandler {
 		MainConfigNames::RightsText,
 		MainConfigNames::EmergencyContact,
 		MainConfigNames::Sitename,
+		MainConfigNames::RestExternalModules,
 	];
 
 	private ServiceOptions $options;
@@ -44,36 +46,48 @@ class ModuleSpecHandler extends SimpleHandler {
 	/**
 	 * @param string $moduleName
 	 * @param string $version
+	 *
+	 * @return array|Response OpenAPI operation object, or Response object if redirect is needed
 	 */
-	public function run( $moduleName, $version = '' ): array {
+	public function run( $moduleName, $version = '' ): array|Response {
 		// TODO: implement caching, get cache key from Router.
 
 		if ( $version !== '' ) {
 			$moduleName .= '/' . $version;
 		}
 
+		$mode = null;
 		if ( $moduleName === '-' ) {
 			// Hack that allows us to fetch a spec for the empty module prefix
 			$moduleName = '';
+			$mode = ModuleMode::PUBLISHED;
 		}
 
-		// This will also throw for DISABLED modules, which is the desired behavior.
+		// Suppress OpenAPI spec for HIDDEN or DISABLED modules. This is not a security or
+		// protection mechanism. MediaWiki is open source, so callers can learn the details of
+		// its endpoints.  This is just a way to hide the spec in cases where it should not be
+		// available.
+		$mode ??= $this->getRouter()->getModuleManager()->getModuleMode( $moduleName );
+		if ( $mode === ModuleMode::HIDDEN || $mode === ModuleMode::DISABLED ) {
+			throw new LocalizedHttpException(
+				MessageValue::new( 'rest-unavailable-spec' )->params( $moduleName ),
+				403
+			);
+		}
+
+		// If this is an external module, redirect to its spec
+		$restExternalModules = $this->options->get( MainConfigNames::RestExternalModules );
+		$em = $restExternalModules[$moduleName] ?? null;
+		if ( $em ) {
+			$response = $this->getResponseFactory()->createPermanentRedirect( $em['spec'] );
+			return $response;
+		}
+
 		$module = $this->getRouter()->getModule( $moduleName );
 		if ( !$module ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-unknown-module' )->params( $moduleName ),
 				404
-			);
-		}
-
-		// Suppress OpenAPI spec for HIDDEN modules. This is not a security or protection
-		// mechanism. MediaWiki is open source, so callers can learn the details of its endpoints.
-		// This is just a way to hide the spec in cases where it should not be available.
-		$mode = $this->getRouter()->getModuleManager()->getModuleMode( $moduleName );
-		if ( $mode === ModuleMode::HIDDEN ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-unavailable-spec' )->params( $moduleName ),
-				403
 			);
 		}
 

@@ -4311,6 +4311,12 @@ $wgRestSandboxSpecs = null;
 $wgRestModuleOverrides = null;
 
 /**
+ * Config variable stub for the RestExternalModules setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::RestExternalModules
+ */
+$wgRestExternalModules = null;
+
+/**
  * Config variable stub for the MaxShellMemory setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::MaxShellMemory
  */

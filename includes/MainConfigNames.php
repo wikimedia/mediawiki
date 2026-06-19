@@ -4326,6 +4326,12 @@ class MainConfigNames {
 	public const RestModuleOverrides = 'RestModuleOverrides';
 
 	/**
+	 * Name constant for the RestExternalModules setting, for use with Config::get()
+	 * @see MainConfigSchema::RestExternalModules
+	 */
+	public const RestExternalModules = 'RestExternalModules';
+
+	/**
 	 * Name constant for the MaxShellMemory setting, for use with Config::get()
 	 * @see MainConfigSchema::MaxShellMemory
 	 */
