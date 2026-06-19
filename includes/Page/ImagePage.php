@@ -23,6 +23,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
 use MediaWiki\Upload\UploadBase;
 use stdClass;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -822,7 +823,8 @@ class ImagePage extends Article {
 			// "Upload a new version of this file" link
 			$ulink = $this->linkRenderer->makeExternalLink(
 				$this->getUploadUrl(),
-				$this->getContext()->msg( 'uploadnewversion-linktext' ),
+				new HtmlArmor( '<button class="cdx-button cdx-button--action-progressive">' .
+				$this->getContext()->msg( 'uploadnewversion-linktext' ) . '</button>' ),
 				$this->getTitle()
 			);
 			$attrs = [ 'class' => 'plainlinks', 'id' => 'mw-imagepage-reupload-link' ];
