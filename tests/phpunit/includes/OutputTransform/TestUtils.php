@@ -14,24 +14,24 @@ class TestUtils {
 	public const TEST_DOC = <<<HTML
 <p>Test document.
 </p>
-<meta property="mw:PageProp/toc" />
-<h2 data-mw-anchor="Section_1" data-mw-wikitext>Section 1<mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2>
+<meta property="mw:PageProp/toc"/>
+<h2 data-mw-anchor="Section_1" data-mw-wikitext="">Section 1<mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2>
 <p>One
 </p>
-<h2 data-mw-anchor="Section_2" data-mw-wikitext>Section 2<mw:editsection page="Test Page" section="2">Section 2</mw:editsection></h2>
+<h2 data-mw-anchor="Section_2" data-mw-wikitext="">Section 2<mw:editsection page="Test Page" section="2">Section 2</mw:editsection></h2>
 <p>Two
 </p>
-<h3 data-mw-anchor="Section_2.1" data-mw-wikitext><i>Section 2.1</i></h3>
+<h3 data-mw-anchor="Section_2.1" data-mw-wikitext=""><i>Section 2.1</i></h3>
 <p>Two point one
 </p>
-<h2 data-mw-anchor="Section_3" data-mw-wikitext>Section 3<mw:editsection page="Test Page" section="4">Section 3</mw:editsection></h2>
+<h2 data-mw-anchor="Section_3" data-mw-wikitext="">Section 3<mw:editsection page="Test Page" section="4">Section 3</mw:editsection></h2>
 <p>Three
 </p>
 HTML;
 	public const TEST_DOC_WITH_LINKS = <<<HTML
 <p>Test document.
 </p>
-<meta property="mw:PageProp/toc" />
+<meta property="mw:PageProp/toc"/>
 <div class="mw-heading mw-heading2"><h2 id="Section_1">Section 1</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 <p>One
 </p>
@@ -48,7 +48,7 @@ HTML;
 	public const TEST_DOC_WITHOUT_LINKS = <<<HTML
 <p>Test document.
 </p>
-<meta property="mw:PageProp/toc" />
+<meta property="mw:PageProp/toc"/>
 <div class="mw-heading mw-heading2"><h2 id="Section_1">Section 1</h2></div>
 <p>One
 </p>
