@@ -4,7 +4,6 @@
  * @file
  */
 
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DB\MWLBFactory;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
@@ -27,14 +26,12 @@ class MWLBFactoryTest extends MediaWikiUnitTestCase {
 
 	private function newMWLBFactory() {
 		return new MWLBFactory(
-			new ServiceOptions( [], [] ),
 			new ConfiguredReadOnlyMode( 'Test' ),
 			new ChronologyProtector(),
 			new EmptyBagOStuff(),
 			new WANObjectCache( [ 'cache' => new EmptyBagOStuff() ] ),
 			new CriticalSectionProvider( RequestTimeout::singleton(), 1, null, null ),
 			StatsFactory::newNull(),
-			[],
 			new NoopTracer(),
 		);
 	}

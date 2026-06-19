@@ -1280,6 +1280,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\DB\\AbstractSchemaValidationError' => __DIR__ . '/includes/DB/AbstractSchemaValidationError.php',
 	'MediaWiki\\DB\\AbstractSchemaValidator' => __DIR__ . '/includes/DB/AbstractSchemaValidator.php',
 	'MediaWiki\\DB\\CloneDatabase' => __DIR__ . '/includes/DB/CloneDatabase.php',
+	'MediaWiki\\DB\\MWLBConfig' => __DIR__ . '/includes/DB/MWLBConfig.php',
 	'MediaWiki\\DB\\MWLBFactory' => __DIR__ . '/includes/DB/MWLBFactory.php',
 	'MediaWiki\\DB\\WriteDuplicator' => __DIR__ . '/includes/DB/WriteDuplicator.php',
 	'MediaWiki\\Debug\\DeprecatablePropertyArray' => __DIR__ . '/includes/Debug/DeprecatablePropertyArray.php',

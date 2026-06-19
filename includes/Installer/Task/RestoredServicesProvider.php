@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Installer\Task;
 
-use MediaWiki\DB\MWLBFactory;
+use MediaWiki\DB\MWLBConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
@@ -39,7 +39,7 @@ class RestoredServicesProvider extends Task {
 		$connection = $this->definitelyGetConnection( ITaskContext::CONN_CREATE_TABLES );
 		$virtualDomains = array_merge(
 			$this->getVirtualDomains(),
-			MWLBFactory::CORE_VIRTUAL_DOMAINS
+			MWLBConfig::CORE_VIRTUAL_DOMAINS
 		);
 
 		$services = $this->resetMediaWikiServices( [

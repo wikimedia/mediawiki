@@ -47,6 +47,7 @@ use MediaWiki\Content\ContentJsonCodec;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\DB\MWLBConfig;
 use MediaWiki\DB\MWLBFactory;
 use MediaWiki\DB\WriteDuplicator;
 use MediaWiki\DomainEvent\DomainEventDispatcher;
@@ -1165,6 +1166,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDBLoadBalancerFactory(): LBFactory {
 		return $this->getService( 'DBLoadBalancerFactory' );
+	}
+
+	/**
+	 * @since 1.47
+	 */
+	public function getDBLoadBalancerFactoryConfig(): MWLBConfig {
+		return $this->getService( 'DBLoadBalancerFactoryConfig' );
 	}
 
 	/**

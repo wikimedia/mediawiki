@@ -77,6 +77,7 @@ use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\DB\MWLBConfig;
 use MediaWiki\DB\MWLBFactory;
 use MediaWiki\DB\WriteDuplicator;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -865,12 +866,10 @@ return [
 	},
 
 	'DBLoadBalancerFactory' => static function ( MediaWikiServices $services ): Wikimedia\Rdbms\LBFactory {
-		$mainConfig = $services->getMainConfig();
 		$lbFactoryConfigBuilder = $services->getDBLoadBalancerFactoryConfigBuilder();
 
-		$lbConf = $lbFactoryConfigBuilder->applyDefaultConfig(
-			$mainConfig->get( MainConfigNames::LBFactoryConf )
-		);
+		$lbConf = $services->getDBLoadBalancerFactoryConfig()->getConfig();
+		$lbConf = $lbFactoryConfigBuilder->applyServices( $lbConf );
 
 		$class = $lbFactoryConfigBuilder->getLBFactoryClass( $lbConf );
 		$instance = new $class( $lbConf );
@@ -878,6 +877,14 @@ return [
 		$lbFactoryConfigBuilder->setDomainAliases( $instance );
 
 		return $instance;
+	},
+
+	'DBLoadBalancerFactoryConfig' => static function ( MediaWikiServices $services ): MWLBConfig {
+		return new MWLBConfig(
+			new ServiceOptions( MWLBConfig::APPLY_DEFAULT_CONFIG_OPTIONS, $services->getMainConfig() ),
+			ExtensionRegistry::getInstance()->getAttribute( 'DatabaseVirtualDomains' ),
+			$services->getMainConfig()->get( MainConfigNames::LBFactoryConf )
+		);
 	},
 
 	'DBLoadBalancerFactoryConfigBuilder' => static function ( MediaWikiServices $services ): MWLBFactory {
@@ -896,7 +903,6 @@ return [
 		}
 
 		return new MWLBFactory(
-			new ServiceOptions( MWLBFactory::APPLY_DEFAULT_CONFIG_OPTIONS, $services->getMainConfig() ),
 			new ConfiguredReadOnlyMode(
 				$mainConfig->get( MainConfigNames::ReadOnly ),
 				$mainConfig->get( MainConfigNames::ReadOnlyFile )
@@ -906,7 +912,6 @@ return [
 			$wanCache,
 			$services->getCriticalSectionProvider(),
 			$services->getStatsFactory(),
-			ExtensionRegistry::getInstance()->getAttribute( 'DatabaseVirtualDomains' ),
 			$services->getTracer(),
 			RequestContext::getMain()->getRequest()->getIP()
 		);
