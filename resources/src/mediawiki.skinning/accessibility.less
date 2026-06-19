@@ -30,10 +30,10 @@ plugin/no-unsupported-browser-features */
 .mw-parser-output .mw-default-size img.mw-file-upright {
 	height: auto;
 	@calc-standard: ~'var( --image-size-standard ) * var( --mw-file-upright, 1 )';
-	width: ~'calc( @{@calc-standard} )';
+	width: ~'calc( @{calc-standard} )';
 
 	@supports ( width: round( 1.5px, 1px ) ) {
-		width: ~'calc( round( @{@calc-standard}, 10px ) )';
+		width: ~'calc( round( @{calc-standard}, 10px ) )';
 	}
 
 	html.skin-thumbsize-clientpref-small & {
