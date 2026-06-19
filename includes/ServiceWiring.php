@@ -1485,6 +1485,23 @@ return [
 			// Let pre-emptive refreshes happen post-send on HTTP requests
 			$wanParams['asyncHandler'] = DeferredUpdates::addCallableUpdate( ... );
 		}
+		// Detect how many dbs we have.
+		// This ideally should be done somewhere else but that triggers recursion
+		// TODO: Factor out db config into a lightweight dedicated service so it wouldn't rely on WAN
+		$lbConf = $mainConfig->get( MainConfigNames::LBFactoryConf );
+		$dbServers = $mainConfig->get( MainConfigNames::DBservers );
+		if ( isset( $lbConf['servers'] ) ) {
+			$dbsCount = count( $lbConf['servers'] );
+		} elseif ( $dbServers ) {
+			$dbsCount = count( $dbServers );
+		} else {
+			$dbsCount = 1;
+		}
+		if ( $dbsCount === 1 && !defined( 'MW_PHPUNIT_TEST' ) ) {
+			$wanParams['pendingCallback'] = static function () use ( $services ) {
+				return $services->getDBLoadBalancer()->hasOrMadeRecentPrimaryChanges();
+			};
+		}
 		return new WANObjectCache( $wanParams );
 	},
 

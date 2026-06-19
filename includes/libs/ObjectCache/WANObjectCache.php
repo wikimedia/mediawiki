@@ -319,6 +319,10 @@ class WANObjectCache implements
 
 	/** Value prefix of purge values */
 	private const PURGE_VAL_PREFIX = 'PURGED';
+	/**
+	 * @var callable|null
+	 */
+	private $pendingCallback;
 
 	/**
 	 * @stable to call
@@ -367,6 +371,7 @@ class WANObjectCache implements
 
 		$this->asyncHandler = $params['asyncHandler'] ?? null;
 		$this->missLog = array_fill( 0, 10, [ '', 0.0 ] );
+		$this->pendingCallback = $params['pendingCallback'] ?? null;
 	}
 
 	public function setLogger( LoggerInterface $logger ): void {
@@ -753,10 +758,6 @@ class WANObjectCache implements
 	 *      duration of transaction "view snapshots" (e.g. innodb REPEATABLE-READ) and the time
 	 *      elapsed since the first read. This should not be affected by replication lag.
 	 *      Default: 0 seconds
-	 *   - pending: Whether this data is possibly from an uncommitted write transaction.
-	 *      Generally, other threads should not see values from the future and
-	 *      they certainly should not see ones that ended up getting rolled back.
-	 *      Default: false
 	 *   - lockTSE: If excessive replication/snapshot lag is detected, then store the value
 	 *      with this TTL and flag it as stale. This is only useful if the reads for this key
 	 *      use getWithSetCallback() with "lockTSE" set. Note that if "staleTTL" is set
@@ -776,7 +777,7 @@ class WANObjectCache implements
 	 *      Default: null
 	 *   - walltime: How long the value took to generate in seconds. Default: null
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{lag?:float|int,since?:float|int,pending?:bool,lockTSE?:int,staleTTL?:int,creating?:bool,version?:int,walltime?:int|float,segmentable?:bool} $opts
+	 * @phan-param array{lag?:float|int,since?:float|int,lockTSE?:int,staleTTL?:int,creating?:bool,version?:int,walltime?:int|float,segmentable?:bool} $opts
 	 * @note Options added in 1.28: staleTTL
 	 * @note Options added in 1.33: creating
 	 * @note Options added in 1.34: version, walltime
@@ -797,7 +798,6 @@ class WANObjectCache implements
 			$opts['walltime'] ?? null,
 			$opts['lag'] ?? 0,
 			$opts['since'] ?? null,
-			$opts['pending'] ?? false,
 			$opts['lockTSE'] ?? self::TSE_NONE,
 			$opts['staleTTL'] ?? self::STALE_TTL_NONE,
 			$opts['segmentable'] ?? false,
@@ -820,7 +820,6 @@ class WANObjectCache implements
 	 * @param float|null $walltime
 	 * @param float|int|bool $dataReplicaLag
 	 * @param float|int|null $dataReadSince
-	 * @param bool $dataPendingCommit
 	 * @param int $lockTSE
 	 * @param int $staleTTL
 	 * @param bool $segmentable
@@ -835,7 +834,6 @@ class WANObjectCache implements
 		?float $walltime,
 		$dataReplicaLag,
 		$dataReadSince,
-		bool $dataPendingCommit,
 		int $lockTSE,
 		int $staleTTL,
 		bool $segmentable,
@@ -863,7 +861,7 @@ class WANObjectCache implements
 		// made after that time, could have already expired (the key is no longer write-holed).
 		// The mitigation TTL depends on whether this data lag is assumed to systemically effect
 		// regeneration attempts in the near future. The TTL also reflects regeneration wall time.
-		if ( $dataPendingCommit ) {
+		if ( $this->pendingCallback && ( $this->pendingCallback )() ) {
 			// Case A: data comes from an uncommitted write transaction
 			$mitigated = 'pending writes';
 			// Data might never be committed; rely on a less problematic regeneration attempt
@@ -1873,8 +1871,6 @@ class WANObjectCache implements
 					$setOpts['lag'] ?? 0,
 					// @phan-suppress-next-line PhanCoalescingAlwaysNull
 					$setOpts['since'] ?? $preCallbackTime,
-					// @phan-suppress-next-line PhanCoalescingAlwaysNull
-					$setOpts['pending'] ?? false,
 					$lockTSE,
 					$staleTTL,
 					$segmentable,

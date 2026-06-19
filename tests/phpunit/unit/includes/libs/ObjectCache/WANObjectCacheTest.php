@@ -1945,12 +1945,14 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testWritePending() {
-		[ $cache ] = $this->newWanCache();
+		[ $cache ] = $this->newWanCache(
+			[ 'pendingCallback' => static function () { return true;
+			} ]
+		);
 		$value = 1;
 
 		$key = wfRandomString();
-		$opts = [ 'pending' => true ];
-		$cache->set( $key, $value, 30, $opts );
+		$cache->set( $key, $value, 30 );
 		$this->assertSame( false, $cache->get( $key ), "Pending value not written." );
 	}
 
