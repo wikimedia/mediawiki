@@ -253,6 +253,9 @@ because of Phabricator reports.
   - addParserOutputContent: requires non-null ParserOptions (1.44)
   - addParserOutputText: requires string first argument (1.42)
   - addParserOutput: requires non-null ParserOptions (1.44)
+  - transformCssMedia: requires non-null WebRequest as 2nd argument (1.46)
+* ResourceLoader::makeCombinedStyles() now requires a non-null WebRequest
+  as its 2nd argument (deprecated in 1.46)
 * The unused method SpecialVersion::getVersionLinked, deprecated in 1.46, has
   been removed.
 * The ConditionalDefaultOptionsAddCondition hook, deprecated in 1.46, has been

@@ -1473,13 +1473,10 @@ MESSAGE;
 	 * single stylesheet with "@media" blocks.
 	 *
 	 * @param array<string,string|string[]> $stylePairs Map from media type to CSS string(s)
-	 * @param WebRequest|null $request Null (deprecated since 1.46) falls back to $wgRequest
+	 * @param WebRequest $request
 	 * @return string[] CSS strings
 	 */
-	public static function makeCombinedStyles( array $stylePairs, $request = null ) {
-		if ( $request === null ) {
-			wfDeprecated( __METHOD__ . ' with null $request', '1.46' );
-		}
+	public static function makeCombinedStyles( array $stylePairs, WebRequest $request ) {
 		$out = [];
 		foreach ( $stylePairs as $media => $styles ) {
 			// FileModule::getStyle can return the styles as a string or an
