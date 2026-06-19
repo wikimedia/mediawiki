@@ -7,7 +7,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageFactory;
-use MediaWiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\OutputTransform\OutputTransformStage;
+use MediaWiki\Parser\ContentHolder;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use Psr\Log\LoggerInterface;
@@ -16,7 +17,7 @@ use Psr\Log\LoggerInterface;
  * Wrap the output in a div with the provided class name
  * @internal
  */
-class AddWrapperDivClass extends ContentTextTransformStage {
+class AddWrapperDivClass extends OutputTransformStage {
 
 	public function __construct(
 		ServiceOptions $options,
@@ -24,7 +25,7 @@ class AddWrapperDivClass extends ContentTextTransformStage {
 		private LanguageFactory $langFactory,
 		private Language $contentLang
 	) {
-		parent::__construct( $options, $logger, transformBodyOnly: true );
+		parent::__construct( $options, $logger );
 	}
 
 	/**
@@ -44,7 +45,7 @@ class AddWrapperDivClass extends ContentTextTransformStage {
 		return self::wrapperDivClass( $po, $popts, $options ) !== null;
 	}
 
-	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
+	public function transform( ParserOutput $po, ParserOptions $popts, array &$options ): ParserOutput {
 		$wrapperDivClass = self::wrapperDivClass( $po, $popts, $options );
 		$pageLang = $this->getLanguageWithFallbackGuess( $po );
 		$extraAttrs = [];
@@ -56,11 +57,34 @@ class AddWrapperDivClass extends ContentTextTransformStage {
 		if ( $htmlVersion !== null ) {
 			$extraAttrs['data-mw-html-version'] = $htmlVersion;
 		}
-		return Html::rawElement( 'div', [
+		$attrs = [
 			'class' => 'mw-content-' . $pageLang->getDir() . ' ' . $wrapperDivClass,
 			'lang' => $pageLang->toBcp47Code(),
 			'dir' => $pageLang->getDir(),
-		] + $extraAttrs, $text );
+		] + $extraAttrs;
+		$contentHolder = $po->getContentHolder();
+		if ( $contentHolder->preferDom() ) {
+			$divFragment = $contentHolder->createFragment(
+				Html::rawElement( 'div', $attrs, '' )
+			);
+			// @phan-suppress-next-line PhanParamTooManyInternal phan bug
+			$divFragment->firstElementChild->append(
+				$contentHolder->getAsDom( ContentHolder::BODY_FRAGMENT )
+			);
+			$contentHolder->setAsDom(
+				ContentHolder::BODY_FRAGMENT,
+				$divFragment
+			);
+		} else {
+			$text = $contentHolder->getAsHtmlString(
+				ContentHolder::BODY_FRAGMENT
+			) ?? '';
+			$contentHolder->setAsHtmlString(
+				ContentHolder::BODY_FRAGMENT,
+				Html::rawElement( 'div', $attrs, $text )
+			);
+		}
+		return $po;
 	}
 
 	private function getLanguageWithFallbackGuess( ParserOutput $po ): Language {

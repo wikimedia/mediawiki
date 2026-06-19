@@ -61,8 +61,14 @@ class AddWrapperDivClassTest extends OutputTransformStageTestBase {
 EOF;
 		$expected = new ParserOutput( $wrappedText );
 		$expected->getContentHolder()->setAsHtmlString( 'My Fragment', 'this is just a random fragment' );
+		$po2 = clone $po;
+		// Convert to DOM format.
+		$po2->getContentHolder()->getAsDom();
 		return [
-			[ $po, ParserOptions::newFromAnon(), $opts, $expected ]
+			'text' =>
+				[ $po, ParserOptions::newFromAnon(), $opts, $expected ],
+			'dom' =>
+				[ $po2, ParserOptions::newFromAnon(), $opts, $expected ],
 		];
 	}
 }
