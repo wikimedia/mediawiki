@@ -119,7 +119,8 @@
 			"Wolf Lambert",
 			"Xxmarijnw",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"XXBlackburnXx"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categorie|Categorieën}}",
@@ -2096,7 +2097,7 @@
 	"enotif_pagelog": "Voor logboek van deze pagina, zie $1",
 	"enotif_anon_editor": "anonieme gebruiker $1",
 	"enotif_temp_editor": "tijdelijke gebruiker $1",
-	"enotif_body": "Beste $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nSamenvatting van de wijziging: $PAGESUMMARY $PAGEMINOREDIT\ndfff                                                                                                                                                                                                         f ffgvdd\nContactgegevens van de auteur:\nE-mailadres: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nEr komen geen andere meldingen meer in geval van verdere activiteit, tenzij u deze pagina bezoekt terwijl u bent aangemeld. U kunt ook de meldingsvlaggen bij alle pagina's op uw volglijst verwijderen.\n\nGroet van uw {{SITENAME}}-meldsysteem.\n\n--\nU kunt uw e-mailinstellingen wijzigen op:\n{{canonicalurl:{{#special:Preferences}}}}\n\nU kunt uw volglijstinstellingen wijzigen op:\n{{canonicalurl:Special:Watchlist/edit}}\n\nU kunt de pagina van uw volglijst verwijderen via de volgende koppeling:\n$UNWATCHURL\n\nTerugkoppeling en verdere assistentie:\n$HELPPAGE",
+	"enotif_body": "Beste $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nSamenvatting van de wijziging: $PAGESUMMARY $PAGEMINOREDIT\n\nContactgegevens van de auteur:\nE-mailadres: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nEr komen geen andere meldingen meer in geval van verdere activiteit, tenzij u deze pagina bezoekt terwijl u bent aangemeld. U kunt ook de meldingsvlaggen bij alle pagina's op uw volglijst verwijderen.\n\nGroet van uw {{SITENAME}}-meldsysteem.\n\n--\nU kunt uw e-mailinstellingen wijzigen op:\n{{canonicalurl:{{#special:Preferences}}}}\n\nU kunt uw volglijstinstellingen wijzigen op:\n{{canonicalurl:Special:Watchlist/edit}}\n\nU kunt de pagina van uw volglijst verwijderen via de volgende koppeling:\n$UNWATCHURL\n\nTerugkoppeling en verdere assistentie:\n$HELPPAGE",
 	"enotif_minoredit": "Dit is een kleine bewerking",
 	"deletepage-deletetalk": "Bijbehorende overlegpagina verwijderen",
 	"deletepage-submit": "Pagina verwijderen",
@@ -2415,7 +2416,7 @@
 	"block-expiry-custom-weeks": "weken",
 	"block-expiry-custom-months": "maanden",
 	"block-expiry-custom-years": "jaren",
-	"block-expiry-datetime": "Bepaalde datum en tijd",
+	"block-expiry-datetime": "Specifieke datum en tijd",
 	"block-options": "Extra opties",
 	"block-reason": "Reden",
 	"block-reason-help": "Vermeld bijvoorbeeld specifieke pagina’s die zijn gevandaliseerd",

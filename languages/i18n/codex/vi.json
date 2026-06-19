@@ -4,9 +4,15 @@
 			"Bapham123",
 			"Duongvu",
 			"Noeruchan",
-			"Nvdtn19"
+			"Nvdtn19",
+			"Ttra2607"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Vụn bánh mì",
+	"cdx-breadcrumb-overflow-label": "Thêm tùy chọn điều hướng",
+	"cdx-chip-input-chip-added": "Đã thêm $1 chip.",
+	"cdx-chip-input-chip-removed": "Con chip $1 đã bị xóa.",
+	"cdx-input-chip-aria-description": "Nhấn Enter để sửa đổi hoặc Delete để xóa",
 	"cdx-dialog-close-button-label": "Đóng",
 	"cdx-label-optional-flag": "(tùy chọn)",
 	"cdx-message-dismiss-button-label": "Đóng",
@@ -24,6 +30,9 @@
 	"cdx-table-pager-items-per-page-default": "Kết quả trên mỗi trang",
 	"cdx-table-pagination-status-message-determinate-long": "Hiển thị kết quả $1–$2 trong tổng số $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 trong tổng số $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Hiển thị kết quả $1–$2 trong tổng số $3",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1 – $2 trong số nhiều",
+	"cdx-table-pagination-status-message-indeterminate-final": "Hiển thị kết quả cuối cùng {{PLURAL:$1| $1 result| $1 results}}",
 	"cdx-table-pagination-status-message-pending": "Đang tải kết quả...",
 	"cdx-table-no-data-message": "Không có dữ liệu nào có sẵn."
 }

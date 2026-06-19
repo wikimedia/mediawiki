@@ -2471,7 +2471,7 @@
 	"ipblocklist-legend": "차단된 사용자 찾기",
 	"blocklist-autoblocks": "자동 차단 숨기기",
 	"blocklist-userblocks": "계정에 대한 차단 숨기기",
-	"blocklist-nameduserblocks": "이름이 있는 사용자 차단 숨기기",
+	"blocklist-nameduserblocks": "명명된 사용자 차단 숨기기",
 	"blocklist-tempblocks": "기한이 정해진 차단을 숨기기",
 	"blocklist-indefblocks": "무기한 차단 숨기기",
 	"blocklist-addressblocks": "단일 IP 차단을 숨기기",

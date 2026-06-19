@@ -3128,7 +3128,7 @@
 	"watchlisttools-clear": "Tyhjennä tarkkailulista",
 	"watchlisttools-view": "Näytä tarkkailulista",
 	"watchlisttools-edit": "Muokkaa tarkkailulistaa",
-	"watchlisttools-labels": "Hallinnoi aihelappuja",
+	"watchlisttools-labels": "Hallitse aihelappuja",
 	"watchlisttools-raw": "Muokkaa tarkkailulistaa raakamuodossa",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|keskustelu]])",
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|keskustelu]])",

@@ -82,7 +82,8 @@
 			"沈澄心",
 			"아라",
 			"Trần Xuân",
-			"YeBoy371"
+			"YeBoy371",
+			"Ttra2607"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Thể loại}}",
@@ -2477,8 +2478,11 @@
 	"remove-blocklink": "bỏ cấm",
 	"manage-blocklink": "quản lý tác vụ cấm",
 	"empty-username": "(không có tên người dùng)",
+	"available-username": "Tên người dùng khả dụng",
+	"available-username-check-feedback": "Kiểm tra tình trạng có sẵn",
 	"blocklist-hidden-placeholder": "(người dùng bị ẩn)",
 	"blocklist-hidden-param": "đã ẩn tên người dùng",
+	"blocklist-block-hidden": "khối bị ẩn",
 	"contribslink": "đóng góp",
 	"emaillink": "gửi thư điện tử",
 	"autoblocker": "Bạn bị tự động cấm vì địa chỉ IP của bạn vừa rồi đã được “[[User:$1|$1]]” sử dụng. Lý do $1 bị cấm: \"$2\"",
@@ -3248,6 +3252,8 @@
 	"tag-mw-server-side-upload-description": "Tập tin phương tiện được tải lên bằng mã bảo trì",
 	"tag-mw-ipblock-appeal": "Kháng nghị lệnh cấm IP",
 	"tag-mw-ipblock-appeal-description": "Các tác vụ tạo tài khoản tạm thời thông qua [[{{#special:Mytalk}}]] từ các địa chỉ IP bị cấm mở tài khoản",
+	"tag-mw-edited-other-users-js": "Đã chỉnh sửa mã JavaScript của người dùng khác",
+	"tag-mw-edited-other-users-js-description": "Các sửa đổi trong không gian người dùng làm thay đổi các trang JavaScript thuộc về người dùng khác",
 	"tags-title": "Thẻ đánh dấu",
 	"tags-intro": "Trang này liệt kê các thẻ đánh dấu mà phần mềm dùng nó để đánh dấu một sửa đổi, và ý nghĩa của nó.",
 	"tags-tag": "Tên thẻ",
@@ -3990,5 +3996,6 @@
 	"table-of-contents-show-button-aria-label": "Hiển thị mục lục",
 	"table-of-contents-hide-button-aria-label": "Ẩn mục lục",
 	"diff-usergroups": "$1 {{PLURAL:$1|nhóm người dùng}}",
-	"languageselector-no-results": "Không tìm thấy kết quả."
+	"languageselector-no-results": "Không tìm thấy kết quả.",
+	"languageselector-invalid-input": "“$1” không phải là mã ngôn ngữ hợp lệ."
 }
