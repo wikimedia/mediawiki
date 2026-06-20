@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Parser;
 
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\PPFrame_Hash;
 use MediaWiki\Parser\StripState;
 use MediaWikiIntegrationTestCase;
 
@@ -229,15 +230,31 @@ class StripStateTest extends MediaWikiIntegrationTestCase {
 		// exttag strip marker
 		$ref = "<ref>foo</ref>";
 		$m3 = $this->getMarker();
-		$ss->addExtTag( $m3, $ref );
+		$frame = $this->createMock( PPFrame_Hash::class );
+		$ss->addExtTag( $m3, $ref, $frame );
 
 		$text .= $m3;
 		$r3 = $ss->split( $text );
-		$expected = array_merge( $expected, [
+		$expected3 = array_merge( $expected, [
 			[ 'type' => 'string', 'content' => $ref ],
 			[ 'type' => 'string', 'content' => '' ]
 		] );
-		$this->assertSame( $expected, $r3 );
+		$this->assertSame( $expected3, $r3 );
+
+		// Now repeat the test with the keepExtTag flag
+		$r4 = $ss->split( $text, keepExtTag: true );
+		$expected4 = array_merge( $expected, [
+			[ 'type' => 'exttag',
+			  // Note that content is not recursively split with keepExtTag
+			  // DataAccess::unstripForParsoid will handle the recursion when
+			  // processing the 'exttag' type.
+			  'content' => $ref,
+			  'extra' => $frame,
+			  'marker' => $m3,
+			],
+			[ 'type' => 'string', 'content' => '' ],
+		] );
+		$this->assertSame( $expected4, $r4 );
 	}
 
 	public function testSplitRecursive() {
@@ -245,11 +262,13 @@ class StripStateTest extends MediaWikiIntegrationTestCase {
 
 		$ref = "<ref>foo</ref>";
 		$m1 = $this->getMarker();
-		$ss->addExtTag( $m1, $ref );
+		$frame1 = $this->createMock( PPFrame_Hash::class );
+		$ss->addExtTag( $m1, $ref, $frame1 );
 
 		$poem = "<poem>foo $m1</poem>";
 		$m2 = $this->getMarker();
-		$ss->addExtTag( $m2, $poem );
+		$frame2 = $this->createMock( PPFrame_Hash::class );
+		$ss->addExtTag( $m2, $poem, $frame2 );
 
 		$text = "abc $m2";
 		$expected = [
@@ -260,6 +279,22 @@ class StripStateTest extends MediaWikiIntegrationTestCase {
 			[ 'type' => 'string', 'content' => '' ],
 		];
 		$result = $ss->split( $text );
+		$this->assertSame( $expected, $result );
+
+		// Now repeat the test with the keepExtTag flag
+		$expected = [
+			[ 'type' => 'string', 'content' => 'abc ' ],
+			[ 'type' => 'exttag',
+			  // Note that content is not recursively split with keepExtTag
+			  // DataAccess::unstripForParsoid will handle the recursion when
+			  // processing the 'exttag' type.
+			  'content' => "<poem>foo $m1</poem>",
+			  'extra' => $frame2,
+			  'marker' => $m2,
+			],
+			[ 'type' => 'string', 'content' => '' ],
+		];
+		$result = $ss->split( $text, keepExtTag: true );
 		$this->assertSame( $expected, $result );
 	}
 }
