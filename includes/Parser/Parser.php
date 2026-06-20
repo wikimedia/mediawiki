@@ -314,13 +314,13 @@ class Parser {
 	/** Output type, one of the OT_xxx constants */
 	private int $mOutputType;
 	/**
-	 * When true (default), extension tags are put in the general strip state
+	 * When false (default), extension tags are put in the general strip state
 	 * for OT_PREPROCESS.
-	 * When false, extension tags are skipped during OT_PREPROCESS (parsoid
+	 * When true, extension tags are skipped during OT_PREPROCESS (parsoid
 	 * fragment v1) or put into the `exttag` strip state (parsoid fragment
 	 * v2+)
 	 */
-	private bool $mStripExtTags = true;
+	private bool $useParsoidFragments = false;
 	/**
 	 * Shortcut alias, see Parser::setOutputType()
 	 * @deprecated since 1.35
@@ -2872,8 +2872,8 @@ class Parser {
 	}
 
 	/** @internal */
-	public function setStripExtTags( bool $val ) {
-		$this->mStripExtTags = $val;
+	public function setUseParsoidFragments( bool $val ) {
+		$this->useParsoidFragments = $val;
 	}
 
 	/**
@@ -3118,9 +3118,7 @@ class Parser {
 			if ( !$title->isExternal() ) {
 				if ( $title->isSpecialPage()
 					&& $this->mOptions->getAllowSpecialInclusion()
-					&& ( $this->ot['html'] ||
-						// PFragment for Parsoid
-						( !$this->mStripExtTags && $this->ot['pre'] ) )
+					&& ( $this->ot['html'] || ( $this->useParsoidFragments && $this->ot['pre'] ) )
 				) {
 					$specialPage = $this->specialPageFactory->getPage( $title->getDBkey() );
 					// Pass the template arguments as URL parameters.
@@ -4014,7 +4012,7 @@ class Parser {
 		// with StripState::replaceNoWikis
 		$extra = $isNowiki ? ( $content ?? '' ) : null;
 
-		if ( $this->ot['html'] || ( $isNowiki && !$this->mStripExtTags ) ) {
+		if ( $this->ot['html'] || ( $isNowiki && $this->useParsoidFragments ) ) {
 			$attributes = Sanitizer::decodeTagAttributes( $attrText );
 			// Merge in attributes passed via {{#tag:}} parser function
 			if ( isset( $params['attributes'] ) ) {
@@ -4060,7 +4058,7 @@ class Parser {
 				}
 				$output = "<$name$attrText>$content$close";
 			}
-			if ( !$this->mStripExtTags ) {
+			if ( $this->useParsoidFragments ) {
 				$markerType = 'exttag';
 			}
 		}

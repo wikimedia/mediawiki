@@ -388,7 +388,7 @@ class DataAccess extends IDataAccess {
 		// Use the same legacy parser object for all calls to extension tag
 		// processing, for greater compatibility.
 		$this->parser ??= $this->parserFactory->create();
-		$this->parser->setStripExtTags( false );
+		$this->parser->setUseParsoidFragments( true );
 		$this->parser->startExternalParse(
 			Title::newFromLinkTarget( $pageConfig->getLinkTarget() ),
 			$parserOptions,
