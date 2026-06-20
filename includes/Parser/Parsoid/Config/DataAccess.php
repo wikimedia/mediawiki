@@ -21,6 +21,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Media\MediaTransformError;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Parser\Parser;
@@ -36,6 +37,7 @@ use Wikimedia\Parsoid\Config\PageContent as IPageContent;
 use Wikimedia\Parsoid\Config\SiteConfig as ISiteConfig;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
+use Wikimedia\Parsoid\Fragments\ExtTagPFragment;
 use Wikimedia\Parsoid\Fragments\HtmlPFragment;
 use Wikimedia\Parsoid\Fragments\PFragment;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -377,7 +379,11 @@ class DataAccess extends IDataAccess {
 	 * @param int $outputType
 	 * @return Parser
 	 */
-	private function prepareParser( IPageConfig $pageConfig, int $outputType ) {
+	private function prepareParser(
+		IPageConfig $pageConfig,
+		int $outputType,
+		?ParsoidLinkTarget $titleOverride = null,
+	) {
 		'@phan-var PageConfig $pageConfig'; // @var PageConfig $pageConfig
 		// Clear the state only when the PageConfig changes, so that Parser's internal caches can
 		// be retained. This should also provide better compatibility with extension tags.
@@ -390,7 +396,7 @@ class DataAccess extends IDataAccess {
 		$this->parser ??= $this->parserFactory->create();
 		$this->parser->setStripExtTags( false );
 		$this->parser->startExternalParse(
-			Title::newFromLinkTarget( $pageConfig->getLinkTarget() ),
+			Title::newFromLinkTarget( $titleOverride ?? $pageConfig->getLinkTarget() ),
 			$parserOptions,
 			$outputType, $clearState, $pageConfig->getRevisionId() );
 
@@ -422,10 +428,22 @@ class DataAccess extends IDataAccess {
 	public function parseWikitext(
 		IPageConfig $pageConfig,
 		ContentMetadataCollector $metadata,
-		string $wikitext
+		string $wikitext,
+	): string {
+		return $this->parseWikitextWithTitle(
+			$pageConfig, $metadata, $wikitext, null
+		);
+	}
+
+	/** @inheritDoc */
+	public function parseWikitextWithTitle(
+		IPageConfig $pageConfig,
+		ContentMetadataCollector $metadata,
+		string $wikitext,
+		?ParsoidLinkTarget $titleOverride = null
 	): string {
 		'@phan-var PageConfig $pageConfig'; // @var PageConfig $pageConfig
-		$parser = $this->prepareParser( $pageConfig, Parser::OT_HTML );
+		$parser = $this->prepareParser( $pageConfig, Parser::OT_HTML, $titleOverride );
 
 		// XXX: Ideally we will eventually have the legacy parser use our
 		// ContentMetadataCollector instead of having a new ParserOutput
@@ -505,7 +523,18 @@ class DataAccess extends IDataAccess {
 	 * through Parsoid as a PFragment type.
 	 */
 	public static function unstripForParsoid( string $wikitext, Parser $parser ): string|PFragment {
-		$pieces = $parser->getStripState()->split( $wikitext );
+		// Temporary config flag while we test this functionality
+		$useExtTagPFragments = in_array(
+			'ExtTagPFragment',
+			MediaWikiServices::getInstance()->getMainConfig()
+				->get( MainConfigNames::ReturnExperimentalPFragmentTypes ),
+			true
+		);
+
+		$pieces = $parser->getStripState()->split(
+			$wikitext,
+			keepExtTag: $useExtTagPFragments,
+		);
 		if ( count( $pieces ) > 1 || ( $pieces[0]['type'] ?? null ) !== 'string' ) {
 			for ( $i = 0; $i < count( $pieces ); $i++ ) {
 				[ 'type' => $type, 'content' => $content ] = $pieces[$i];
@@ -525,6 +554,11 @@ class DataAccess extends IDataAccess {
 						], $content );
 					}
 					$pieces[$i] = $content ? HtmlPFragment::newFromHtmlString( $content, null ) : '';
+				} elseif ( $type === 'exttag' && $useExtTagPFragments ) {
+					$frame = $pieces[$i]['extra'] ?? null;
+					$sub = self::unstripForParsoid( $content, $parser );
+					// @phan-suppress-next-line PhanUndeclaredClassMethod
+					$pieces[$i] = new ExtTagPFragment( $sub, $frame->getTitle() );
 				} else {
 					// T381709: technically this fragment should
 					// be subject to language conversion and some
