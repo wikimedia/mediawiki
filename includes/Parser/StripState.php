@@ -88,11 +88,12 @@ class StripState {
 	/**
 	 * @param string $marker
 	 * @param string|Closure $value
+	 * @param PPFrame $frame
 	 * @since 1.44
 	 * @internal Parsoid use only.
 	 */
-	public function addExtTag( $marker, $value ) {
-		$this->addItem( 'exttag', $marker, $value );
+	public function addExtTag( $marker, $value, $frame ) {
+		$this->addItem( 'exttag', $marker, $value, $frame );
 	}
 
 	/**
@@ -111,7 +112,7 @@ class StripState {
 	 * @param string $marker
 	 * @param-taint $marker none
 	 * @param string|Closure $value
-	 * @param string|PFragment|null $extra
+	 * @param string|PFragment|PPFrame|null $extra
 	 * @param-taint $value exec_html
 	 */
 	protected function addItem( $type, $marker, $value, $extra = null ) {
@@ -184,7 +185,7 @@ class StripState {
 	 * - otherwise, name of the strip marker that generated the 'content' value
 	 * @return array<string|array{type:string,content:string,extra?:mixed}>
 	 */
-	public function split( string $text ): array {
+	public function split( string $text, bool $keepExtTag = false ): array {
 		$result = [];
 		$pieces = preg_split( $this->regex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		for ( $i = 0; $i < count( $pieces ); $i++ ) {
@@ -241,7 +242,16 @@ class StripState {
 
 						$this->circularRefGuard[$marker] = true;
 						$this->depth++;
-						$result = array_merge( $result, $this->split( $value ) );
+						if ( $keepExtTag ) {
+							$result[] = [
+								'type' => 'exttag',
+								'content' => $value,
+								'extra' => $extra,
+								'marker' => Parser::MARKER_PREFIX . $marker . Parser::MARKER_SUFFIX,
+							];
+						} else {
+							$result = array_merge( $result, $this->split( $value ) );
+						}
 						$this->depth--;
 						unset( $this->circularRefGuard[$marker] );
 					} else {

@@ -4075,7 +4075,7 @@ class Parser {
 		} elseif ( $markerType === 'general' ) {
 			$this->mStripState->addGeneral( $marker, $output );
 		} elseif ( $markerType === 'exttag' ) {
-			$this->mStripState->addExtTag( $marker, $output );
+			$this->mStripState->addExtTag( $marker, $output, $frame );
 		} else {
 			throw new UnexpectedValueException( __METHOD__ . ': invalid marker type' );
 		}
