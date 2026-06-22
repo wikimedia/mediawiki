@@ -10,7 +10,7 @@
  * elements like `button`s and we don't feature `fixed` anywhere in deployed
  * skins or extensions.
  */
-/* stylelint-disable declaration-no-important, selector-class-pattern, time-min-milliseconds,
+/* stylelint-disable declaration-no-important, time-min-milliseconds,
 plugin/no-unsupported-browser-features */
 @media ( prefers-reduced-motion: reduce ) {
 	*,
@@ -29,28 +29,10 @@ plugin/no-unsupported-browser-features */
 .mw-parser-output .mw-default-size img[ width="@{image-size-standard}" ],
 .mw-parser-output .mw-default-size img.mw-file-upright {
 	height: auto;
-	@calc-standard: ~'var( --image-size-standard ) * var( --mw-file-upright, 1 )';
-	width: ~'calc( @{calc-standard} )';
+	@calc-user: ~'var( --image-size-user ) * var( --mw-file-upright, 1 )';
+	width: ~'calc( @{calc-user} )';
 
 	@supports ( width: round( 1.5px, 1px ) ) {
-		width: ~'calc( round( @{calc-standard}, 10px ) )';
-	}
-
-	html.skin-thumbsize-clientpref-small & {
-		@calc-small: ~'var( --image-size-small ) * var( --mw-file-upright, 1 )';
-		width: ~'calc( @{calc-small} )';
-
-		@supports ( width: round( 1.5px, 1px ) ) {
-			width: ~'calc( round( @{calc-small}, 10px ) )';
-		}
-	}
-
-	html.skin-thumbsize-clientpref-large & {
-		@calc-large: ~'var( --image-size-large ) * var( --mw-file-upright, 1 )';
-		width: ~'calc( @{calc-large} )';
-
-		@supports ( width: round( 1.5px, 1px ) ) {
-			width: ~'calc( round( @{calc-large}, 10px ) )';
-		}
+		width: ~'calc( round( @{calc-user}, 10px ) )';
 	}
 }

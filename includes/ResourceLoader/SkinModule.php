@@ -525,6 +525,13 @@ class SkinModule extends FileModule {
 	--image-size-small: {$smallSize}px;
 	--image-size-standard: {$defaultSize}px;
 	--image-size-large: {$largeSize}px;
+	--image-size-user: var( --image-size-standard );
+}
+html.skin-thumbsize-clientpref-small {
+	--image-size-user: var( --image-size-small );
+}
+html.skin-thumbsize-clientpref-large {
+	--image-size-user: var( --image-size-large );
 }
 CSS;
 		}
@@ -752,6 +759,7 @@ CSS;
 		$summary = parent::getDefinitionSummary( $context );
 		$config = $this->getConfig();
 		$summary[] = [
+			'csslastmodified' => '2026-06-22',
 			'thumblimits' => $config->get( 'ThumbLimits' ),
 			'logos' => self::getAvailableLogos( $config, $context->getLanguage() ),
 		];
