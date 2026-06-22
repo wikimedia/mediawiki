@@ -393,6 +393,7 @@
 	"apihelp-parse-paramvalue-prop-properties": "Poda različne lastnosti, definirane v razčlenjenem vikibesedilu.",
 	"apihelp-parse-paramvalue-prop-limitreportdata": "Na strukturiran način poda poročilo o omejitvah. Če je nastavljeno <var>$1disablelimitreport</var>, ne poda podatkov.",
 	"apihelp-parse-paramvalue-prop-limitreporthtml": "Poda različico HTMl poročila o omejitvah. Če je nastavljeno <var>$1disablelimitreport</var>, ne poda podatkov.",
+	"apihelp-parse-paramvalue-prop-parseroutput": "Za razčlenjeno vsebino poda JSON-serializiran objekt <code>ParserOutput</code>. Oblika te lastnosti se lahko kadar koli spremeni; [[mw:Manual:Parser cachedler/serialization compatibility]] ne zagotavlja stabilnosti API-ja.",
 	"apihelp-parse-paramvalue-prop-parsetree": "Drevo razčlembe XML vsebine redakcije (zahteva vsebinski model <code>$1</code>)",
 	"apihelp-parse-paramvalue-prop-parsewarnings": "Poda opozorila, ki so se pojavila med razčlenjevanjem vsebine (kot vikibesedilo).",
 	"apihelp-parse-paramvalue-prop-parsewarningshtml": "Poda opozorila, ki so se pojavila med razčlenjevanjem vsebine (kot HTML).",

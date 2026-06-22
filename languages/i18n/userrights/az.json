@@ -323,7 +323,7 @@
 	"listgrouprights-restrictedgroups-cond-blocked": "İstifadəçinin hesabı sayt daxilində bloklanıb",
 	"listgrouprights-restrictedgroups-cond-isbot": "İstifadəçi botdur",
 	"listgrouprights-namespaceprotection-header": "Ad fəzası məhdudiyyətləri",
-	"listgrouprights-namespaceprotection-namespace": "Adlar fəzası",
+	"listgrouprights-namespaceprotection-namespace": "Ad fəzası",
 	"listgrouprights-namespaceprotection-restrictedto": "İstifadəçiyə redaktə etməyə icazə verən hüquq(lar)",
 	"restrictedgroups-autodemotion-log-reason": "{{GENDER:$1|İstifadəçi}} {{PLURAL:$2|məhdud qrupdan|məhdud qruplardan}} avtomatik çıxarılır",
 	"listgrants": "İcazələr",

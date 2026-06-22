@@ -1930,7 +1930,7 @@
 	"apierror-sectionreplacefailed": "업데이트된 문단을 병합할 수 없습니다.",
 	"apierror-sectionsnotsupported": "문단은 콘텐츠 모델 $1에서 지원되지 않습니다.",
 	"apierror-sectionsnotsupported-what": "$1에서는 문단이 지원되지 않습니다.",
-	"apierror-show": "잘못된 매개변수 - 상호 배타적인 값은 제공될 수 없습니다.",
+	"apierror-show": "잘못된 매개변수 - 같이 사용할 수 없는 값은 제공될 수 없습니다.",
 	"apierror-siteinfo-includealldenied": "<var>$wgShowHostnames</var>가 참이 아닐 경우 모든 서버의 정보를 볼 수 없습니다.",
 	"apierror-sizediffdisabled": "구두쇠 모드에서는 크기 차이 기능이 비활성화됩니다.",
 	"apierror-spamdetected": "스팸 프래그먼트인 <code>$1</code> 이 포함되어 있어 수정이 거부되었습니다.",

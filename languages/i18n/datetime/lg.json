@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"B722N",
 			"Kizito",
 			"Ssemmanda will"
 		]
 	},
 	"january": "Gusooka",
-	"february": "Gwakubiri(Mukutulansanja)",
+	"february": "Gwakubiri (Mukutulansanja)",
 	"march": "Gwakusatu(Mugulansigo)",
 	"april": "Gwakuna(Kafuumuulampawu)",
 	"may_long": "Gwakutaano(Muzigo)",
@@ -48,11 +49,11 @@
 	"friday": "Lwakutaano",
 	"saturday": "Lwamukaaga",
 	"sunday": "Ssande",
-	"mon": "Mman",
-	"tue": "Lw2",
-	"wed": "Lw3",
-	"thu": "Lw4",
-	"fri": "Lw5",
-	"sat": "Lw6",
-	"sun": "Ssan"
+	"mon": "Mmande",
+	"tue": "Lwakubiri",
+	"wed": "Lwakusatu",
+	"thu": "Lwakuna",
+	"fri": "Lwakutaano",
+	"sat": "Olwomukaaga",
+	"sun": "Ssande"
 }
