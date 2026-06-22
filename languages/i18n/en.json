@@ -298,6 +298,7 @@
 	"welcomecreation-msg": "Your account has been created.\nYou can change your {{SITENAME}} [[Special:Preferences|preferences]] if you wish.",
 	"yourname": "Username:",
 	"userlogin-yourname": "Username",
+	"userlogin-yourname-reauth": "Signed in as <strong>$1</strong>",
 	"userlogin-yourname-ph": "Enter your username",
 	"createacct-another-username-ph": "Enter the username",
 	"userlogin-yourpassword": "Password",

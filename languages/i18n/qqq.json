@@ -580,6 +580,7 @@
 	"yourname": "Since 1.22 no longer used in core, but used by some extensions.\n{{Identical|Username}}",
 	"userlogin-yourname": "In user login & create account forms, label for username field.\n{{doc-important|<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is '''NOT''' supported.}}\n\nSee examples: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]\n{{Identical|Username}}",
 	"userlogin-yourname-ph": "Placeholder text in login & create account form field.\n\nSee example: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]",
+	"userlogin-yourname-reauth": "When an already logged-in user is reauthenticating, this text is shown instead of the username input.\n\nParameters:\n* $1 - username of the already logged-in user",
 	"createacct-another-username-ph": "Placeholder text in create account form field when one user creates an account for another.",
 	"userlogin-yourpassword": "In login & create account forms, label for password field.\n\nSee examples: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]\n{{Identical|Password}}",
 	"userlogin-yourpassword-ph": "Placeholder text in login form for password field.\n\nSee examples: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]\n{{Identical|Enter password}}",

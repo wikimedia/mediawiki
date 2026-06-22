@@ -1242,6 +1242,23 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			];
 		}
 
+		if ( $this->getUser()->isNamed() && $this->securityLevel ) {
+			// Keep the 'username' field key in the descriptor so the form processor
+			// still binds POST['wpName'] -> $data['username'] for the AuthenticationRequest,
+			// but render it as a hidden input. Add a separate info field for the visual.
+			$fieldDefinitions['username']['type'] = 'hidden';
+			$fieldDefinitions['username']['default'] = $this->getUser()->getName();
+			unset( $fieldDefinitions['username']['placeholder-message'] );
+			unset( $fieldDefinitions['username']['label-raw'] );
+
+			$fieldDefinitions['usernameDisplay'] = [
+				'type' => 'info',
+				'default' => $this->msg( 'userlogin-yourname-reauth', $this->getUser()->getName() )->parse(),
+				'raw' => true,
+				'weight' => -10,
+			];
+		}
+
 		if ( $this->mEntryError ) {
 			$defaultHtml = '';
 			if ( $this->mEntryErrorType === 'error' ) {
