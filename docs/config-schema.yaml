@@ -8452,3 +8452,10 @@ config-schema:
              complete.
             @unstable temporary statistics gathering
             @since 1.46
+    ReturnExperimentalPFragmentTypes:
+        default: []
+        type: array
+        description: |-
+            Which experimental PFragment types to return during preprocessing
+            @unstable Temporary feature flag, T391624
+            @since 1.47

@@ -4597,3 +4597,9 @@ $wgUsePostprocCacheParsoid = null;
  * @see MediaWiki\MainConfigSchema::ParserOptionsLogUnsafeSampleRate
  */
 $wgParserOptionsLogUnsafeSampleRate = null;
+
+/**
+ * Config variable stub for the ReturnExperimentalPFragmentTypes setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ReturnExperimentalPFragmentTypes
+ */
+$wgReturnExperimentalPFragmentTypes = null;

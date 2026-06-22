@@ -2772,6 +2772,8 @@ return [
 			'UsePostprocCacheLegacy' => false,
 			'UsePostprocCacheParsoid' => true,
 			'ParserOptionsLogUnsafeSampleRate' => 0,
+			'ReturnExperimentalPFragmentTypes' => [
+			],
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -3290,6 +3292,7 @@ return [
 			'UsePostprocCacheLegacy' => 'boolean',
 			'UsePostprocCacheParsoid' => 'boolean',
 			'ParserOptionsLogUnsafeSampleRate' => 'integer',
+			'ReturnExperimentalPFragmentTypes' => 'array',
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',
