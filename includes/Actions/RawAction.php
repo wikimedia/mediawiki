@@ -19,6 +19,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\HttpError;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Article;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
@@ -27,6 +28,7 @@ use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -179,13 +181,32 @@ class RawAction extends FormlessAction {
 		// checking only for pages that exist
 		if ( $contentType === 'text/javascript' && $title->exists() ) {
 			if ( !( $title->isSiteJsConfigPage() || $title->isUserJsConfigPage() ) ) {
+				$redirectTarget = MediaWikiServices::getInstance()
+					->getRedirectLookup()
+					->getRedirectTarget( $title );
+				$redirectTitle = $redirectTarget ? Title::newFromLinkTarget( $redirectTarget ) : null;
+				$isRedirectToJsConfigPage = $redirectTitle &&
+					( $redirectTitle->isSiteJsConfigPage() || $redirectTitle->isUserJsConfigPage() );
+
 				$log = LoggerFactory::getInstance( "security" );
-				$log->info( "Did not block loading unprotected JS {title} for {user} with more restrictions",
-					[
-						'user' => $this->getUser()->getName(),
-						'title' => $title->getPrefixedDBkey(),
-					]
-				);
+				if ( $isRedirectToJsConfigPage ) {
+					$log->info(
+						"Did not block loading JS redirect {title} to {redirectTarget} "
+							. "for {user} with more restrictions",
+						[
+							'user' => $this->getUser()->getName(),
+							'title' => $title->getPrefixedDBkey(),
+							'redirectTarget' => $redirectTitle->getPrefixedDBkey(),
+						]
+					);
+				} else {
+					$log->info( "Did not block loading unprotected JS {title} for {user} with more restrictions",
+						[
+							'user' => $this->getUser()->getName(),
+							'title' => $title->getPrefixedDBkey(),
+						]
+					);
+				}
 			}
 		}
 
