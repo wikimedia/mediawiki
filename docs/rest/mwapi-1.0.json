@@ -97,16 +97,19 @@
 				},
 				"args": {
 					"type": "array",
-					"description": "Arguments to pass to the constructor or the factory method."
+					"description": "Arguments to pass to the constructor or the factory method.",
+					"items": {
+						"type": "object"
+					}
 				},
 				"services": {
 					"type": "array",
-					"item": { "type": "string" },
+					"items": { "type": "string" },
 					"description": "List of services to pass as arguments. Each name will be looked up in MediaWikiServices."
 				},
 				"optional_services": {
 					"type": "array",
-					"item": { "type": "string" },
+					"items": { "type": "string" },
 					"description": "List of services to pass as arguments. Each name will be looked up in MediaWikiServices. If the service is unknown the parameter is set to 'null' instead of causing an error."
 				}
 			},

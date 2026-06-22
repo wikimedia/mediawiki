@@ -260,6 +260,18 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 'https://example.com/docs', $externalDocs['url'] );
 	}
 
+	public function testOpenApiTags() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/test.v1/ModuleTest/hello/world' ) ] );
+		$module = $this->createOpenApiModule( $request );
+
+		$tags = $module->getOpenApiTags();
+		$this->assertCount( 2, $tags );
+		$this->assertSame( 'Foo', $tags[0]['name'] );
+		$this->assertSame( 'Foo operations', $tags[0]['description'] );
+		$this->assertSame( 'Bar', $tags[1]['name'] );
+		$this->assertSame( 'Bar operations', $tags[1]['description'] );
+	}
+
 	public function testManualOperationIdPassedThrough() {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/test.v1/ModuleTest/hello/world' ),

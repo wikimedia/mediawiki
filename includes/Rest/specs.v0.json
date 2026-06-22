@@ -12,9 +12,24 @@
 		"description": "API documentation",
 		"url": "https://www.mediawiki.org/wiki/API:REST_API"
 	},
+	"tags": [
+		{
+			"name": "Discovery",
+			"description": "Operations related to discovery, which is the process of finding and understanding the available REST endpoints and their specifications.",
+			"x-i18n-description": "rest-tag-discovery-desc"
+		},
+		{
+			"name": "Modules",
+			"description": "Operations related to modules, which are grouped reusable components that provide specific functionality within the REST API.",
+			"x-i18n-description": "rest-tag-modules-desc"
+		}
+	],
 	"paths": {
 		"/discovery": {
 			"get": {
+				"tags": [
+					"Discovery"
+				],
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\DiscoveryHandler",
 					"services": [
@@ -25,6 +40,9 @@
 		},
 		"/module/{module}": {
 			"get": {
+				"tags": [
+					"Modules"
+				],
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\ModuleSpecHandler",
 					"services": [
@@ -35,6 +53,9 @@
 		},
 		"/module/{module}/{version}": {
 			"get": {
+				"tags": [
+					"Modules"
+				],
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\ModuleSpecHandler",
 					"services": [

@@ -96,6 +96,7 @@ class ModuleSpecHandler extends SimpleHandler {
 			'info' => $this->getInfoSpec( $module ),
 			'servers' => $this->getServerSpec( $module ),
 			'externalDocs' => $module->getOpenApiExternalDocs(),
+			'tags' => $module->getOpenApiTags(),
 			'paths' => $this->getPathsSpec( $module ),
 			'components' => $this->getComponentsSpec(),
 		];
@@ -104,6 +105,10 @@ class ModuleSpecHandler extends SimpleHandler {
 
 		if ( !$spec['externalDocs'] ) {
 			unset( $spec['externalDocs'] );
+		}
+
+		if ( empty( $spec['tags'] ) ) {
+			unset( $spec['tags'] );
 		}
 
 		return $spec;

@@ -560,6 +560,22 @@ abstract class Module {
 	}
 
 	/**
+	 * Return an array with data to be included in an OpenAPI "tags" object
+	 * describing this module's tags.
+	 *
+	 * Each tag should be an associative array with 'name' and
+	 * 'description' keys. Example:
+	 *   [ [ 'name' => 'pages', 'description' => 'Page operations' ] ]
+	 *
+	 * @see https://spec.openapis.org/oas/v3.0.0#tag-object
+	 * @since 1.47
+	 * @return array[]
+	 */
+	public function getOpenApiTags(): array {
+		return [];
+	}
+
+	/**
 	 * Returns fields to be included when describing this module in the
 	 * discovery document.
 	 *

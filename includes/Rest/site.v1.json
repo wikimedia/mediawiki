@@ -11,9 +11,19 @@
 		"description": "API documentation",
 		"url": "https://www.mediawiki.org/wiki/API:REST_API"
 	},
+	"tags": [
+		{
+			"name": "Sitemaps",
+			"description": "Operations related to sitemaps, which are XML files that provide information about the pages, videos, and other files on a site, and the relationships between them. Search engines read these files to more intelligently crawl a site.",
+			"x-i18n-description": "rest-tag-sitemaps-desc"
+		}
+	],
 	"paths": {
 		"/sitemap/{indexId}": {
 			"get": {
+				"tags": [
+					"Sitemaps"
+				],
 				"x-i18n-description": "rest-endpoint-desc-get-sitemap-index",
 				"x-i18n-summary": "rest-endpoint-summ-get-sitemap-index",
 				"handler": {
@@ -30,6 +40,9 @@
 		},
 		"/sitemap/{indexId}/page/{pageId}": {
 			"get": {
+				"tags": [
+					"Sitemaps"
+				],
 				"x-i18n-description": "rest-endpoint-desc-get-sitemap-page",
 				"x-i18n-summary": "rest-endpoint-summ-get-sitemap-page",
 				"handler": {

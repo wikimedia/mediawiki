@@ -53,6 +53,9 @@
 					},
 					{
 						"type": "array",
+						"items": {
+							"type": "object"
+						},
 						"maxItems": 0
 					}
 				]

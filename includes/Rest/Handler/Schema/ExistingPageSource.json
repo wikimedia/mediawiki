@@ -96,10 +96,16 @@
 		},
 		"tags": {
 			"type": "array",
+			"items": {
+				"type": "string"
+			},
 			"x-i18n-description": "rest-property-desc-page-restbase-compatibility"
 		},
 		"restrictions": {
 			"type": "array",
+			"items": {
+				"type": "string"
+			},
 			"x-i18n-description": "rest-property-desc-page-restbase-compatibility"
 		},
 		"page_language": {

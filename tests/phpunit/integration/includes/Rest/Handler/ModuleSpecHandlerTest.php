@@ -130,6 +130,16 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 					'description' => 'Test docs',
 					'url' => 'https://example.com/docs',
 				],
+				'tags' => [
+					[
+						'name' => 'Foo',
+						'description' => 'Foo operations',
+					],
+					[
+						'name' => 'Bar',
+						'description' => 'Bar operations',
+					],
+				],
 				'servers' => [
 					[ 'url' => 'https://example.com:1234/api/mock/v1' ]
 				],

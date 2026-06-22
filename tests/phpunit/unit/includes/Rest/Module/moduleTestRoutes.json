@@ -10,6 +10,16 @@
 		"description": "Test docs",
 		"url": "https://example.com/docs"
 	},
+	"tags": [
+		{
+			"name": "Foo",
+			"description": "Foo operations"
+		},
+		{
+			"name": "Bar",
+			"description": "Bar operations"
+		}
+	],
 	"paths": {
 		"/ModuleTest/HELLO/{name}": {
 			"get": {
