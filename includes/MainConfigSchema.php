@@ -13631,5 +13631,16 @@ class MainConfigSchema {
 		'type' => 'integer'
 	];
 
+	/**
+	 * Which experimental PFragment types to return during preprocessing
+	 *
+	 * @unstable Temporary feature flag, T391624
+	 * @since 1.47
+	 */
+	public const ReturnExperimentalPFragmentTypes = [
+		'default' => [],
+		'type' => 'list'
+	];
+
 	// endregion -- End Miscellaneous
 }

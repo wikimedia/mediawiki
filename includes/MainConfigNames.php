@@ -4619,4 +4619,10 @@ class MainConfigNames {
 	 */
 	public const ParserOptionsLogUnsafeSampleRate = 'ParserOptionsLogUnsafeSampleRate';
 
+	/**
+	 * Name constant for the ReturnExperimentalPFragmentTypes setting, for use with Config::get()
+	 * @see MainConfigSchema::ReturnExperimentalPFragmentTypes
+	 */
+	public const ReturnExperimentalPFragmentTypes = 'ReturnExperimentalPFragmentTypes';
+
 }
