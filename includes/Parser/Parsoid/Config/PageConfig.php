@@ -115,20 +115,6 @@ class PageConfig extends IPageConfig {
 	}
 
 	/** @inheritDoc */
-	public function getRevisionUser(): ?string {
-		$rev = $this->getRevision();
-		$user = $rev ? $rev->getUser() : null;
-		return $user ? $user->getName() : null;
-	}
-
-	/** @inheritDoc */
-	public function getRevisionUserId(): ?int {
-		$rev = $this->getRevision();
-		$user = $rev ? $rev->getUser() : null;
-		return $user ? $user->getId() : null;
-	}
-
-	/** @inheritDoc */
 	public function getRevisionSha1(): ?string {
 		$rev = $this->getRevision();
 		if ( $rev ) {
