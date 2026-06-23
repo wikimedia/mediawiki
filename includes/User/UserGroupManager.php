@@ -658,7 +658,7 @@ class UserGroupManager {
 	 *
 	 * @param UserIdentity $user the user to search for
 	 * @param int $queryFlags
-	 * @return UserGroupMembership[] Associative array of (group name => UserGroupMembership object)
+	 * @return array<string,UserGroupMembership> Associative array of (group name => UserGroupMembership object)
 	 */
 	public function getUserGroupMemberships(
 		UserIdentity $user,

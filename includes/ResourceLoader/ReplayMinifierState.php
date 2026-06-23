@@ -18,6 +18,7 @@ use Wikimedia\Minify\MinifierState;
  */
 class ReplayMinifierState extends MinifierState {
 
+	/** @var array<array{0:string,1:array}> */
 	protected array $calls = [];
 
 	/**

@@ -25,6 +25,10 @@ class ArrayConfigBuilder extends ConfigBuilderBase {
 		$this->config[$key] = $value;
 	}
 
+	/**
+	 * @param array<string,mixed> $values
+	 * @param array<string,MergeStrategy> $mergeStrategies
+	 */
 	public function setMulti( array $values, array $mergeStrategies = [] ): ConfigBuilder {
 		if ( !$mergeStrategies ) {
 			$this->config = array_merge( $this->config, $values );

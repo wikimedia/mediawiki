@@ -195,7 +195,7 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	/**
-	 * @param array $jobs
+	 * @param IJobSpecification[] $jobs
 	 * @param HashRing &$partitionRing
 	 * @param int $flags
 	 * @throws JobQueueError
@@ -208,7 +208,7 @@ class JobQueueFederated extends JobQueue {
 		// to use a consistent hash to avoid allowing duplicate jobs per partition.
 		// When inserting a batch of de-duplicated jobs, QOS_ATOMIC is disregarded.
 		$uJobsByPartition = []; // (partition name => job list)
-		/** @var Job $job */
+		/** @var IJobSpecification $job */
 		foreach ( $jobs as $key => $job ) {
 			if ( $job->ignoreDuplicates() ) {
 				$sha1 = sha1( serialize( $job->getDeduplicationInfo() ) );

@@ -204,7 +204,7 @@ class PPNode_Hash_Tree implements Stringable, PPNode {
 	 *  - index         String index
 	 *  - value         PPNode value
 	 *
-	 * @return array
+	 * @return array{name:self,index:string|int,value:self}
 	 */
 	public function splitArg() {
 		return self::splitRawArg( $this->rawChildren );
@@ -213,7 +213,7 @@ class PPNode_Hash_Tree implements Stringable, PPNode {
 	/**
 	 * Like splitArg() but for a raw child array. For internal use only.
 	 * @param array $children
-	 * @return array
+	 * @return array{name:self,index:string|int,value:self}
 	 */
 	public static function splitRawArg( array $children ) {
 		$bits = [];
@@ -246,7 +246,7 @@ class PPNode_Hash_Tree implements Stringable, PPNode {
 	 * Split an "<ext>" node into an associative array containing name, attr, inner and close
 	 * All values in the resulting array are PPNodes. Inner and close are optional.
 	 *
-	 * @return array
+	 * @return array{name:self,attr?:self,inner?:self,close?:self}
 	 */
 	public function splitExt() {
 		return self::splitRawExt( $this->rawChildren );
@@ -255,7 +255,7 @@ class PPNode_Hash_Tree implements Stringable, PPNode {
 	/**
 	 * Like splitExt() but for a raw child array. For internal use only.
 	 * @param array $children
-	 * @return array
+	 * @return array{name:self,attr?:self,inner?:self,close?:self}
 	 */
 	public static function splitRawExt( array $children ) {
 		$bits = [];
@@ -287,7 +287,7 @@ class PPNode_Hash_Tree implements Stringable, PPNode {
 	/**
 	 * Split an "<h>" node
 	 *
-	 * @return array
+	 * @return array{i:int,level:int}
 	 */
 	public function splitHeading() {
 		if ( $this->name !== 'h' ) {
@@ -299,7 +299,7 @@ class PPNode_Hash_Tree implements Stringable, PPNode {
 	/**
 	 * Like splitHeading() but for a raw child array. For internal use only.
 	 * @param array $children
-	 * @return array
+	 * @return array{i:int,level:int}
 	 */
 	public static function splitRawHeading( array $children ) {
 		$bits = [];

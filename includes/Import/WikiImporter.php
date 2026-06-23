@@ -434,8 +434,7 @@ class WikiImporter {
 
 	/**
 	 * Default per-page callback. Sets up some things related to site statistics
-	 * @param array $titleAndForeignTitle Two-element array, with Title object at
-	 * index 0 and ForeignTitle object at index 1
+	 * @param array{0:Title,1:ForeignTitle} $titleAndForeignTitle
 	 * @return bool
 	 */
 	public function beforeImportPage( $titleAndForeignTitle ) {

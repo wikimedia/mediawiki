@@ -270,8 +270,8 @@ class ManifoldTextDiffer implements TextDiffer {
 	 * which the first element is the TextDiffer object, and the second element
 	 * is the list of formats which the TextDiffer will handle.
 	 *
-	 * @param array $formats
-	 * @return array|array{0:TextDiffer,1:string[]}
+	 * @param string[] $formats
+	 * @return array<array{0:TextDiffer,1:string[]}>
 	 */
 	private function splitBatchByDiffer( $formats ) {
 		$result = [];

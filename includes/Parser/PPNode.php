@@ -81,20 +81,20 @@ interface PPNode {
 	 *    name          PPNode name
 	 *    index         String index
 	 *    value         PPNode value
-	 * @return array
+	 * @return array{name:self,index:string|int,value:self}
 	 */
 	public function splitArg();
 
 	/**
 	 * Split an "<ext>" node into an associative array containing name, attr, inner and close
 	 * All values in the resulting array are PPNodes. Inner and close are optional.
-	 * @return array
+	 * @return array{name:self,attr?:self,inner?:self,close?:self}
 	 */
 	public function splitExt();
 
 	/**
 	 * Split an "<h>" node
-	 * @return array
+	 * @return array{i:int,level:int}
 	 */
 	public function splitHeading();
 }

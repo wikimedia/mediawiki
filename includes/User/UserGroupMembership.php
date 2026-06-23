@@ -187,7 +187,7 @@ class UserGroupMembership {
 	 * @param self|string $ugm
 	 * @param IContextSource $context
 	 * @param string|null $userName
-	 * @return array
+	 * @return array{expiry:?string,linkTitle:Title|false,groupName:string}
 	 */
 	private static function getLinkInfo( $ugm, $context, $userName = null ): array {
 		if ( $ugm instanceof UserGroupMembership ) {

@@ -21,6 +21,7 @@ use MediaWiki\Specials\Helpers\License;
  */
 class Licenses extends HTMLFormField {
 	protected string $msg;
+	/** @var License[] */
 	protected array $lines = [];
 	protected string $html;
 	protected ?string $selected;
@@ -109,9 +110,9 @@ class Licenses extends HTMLFormField {
 	}
 
 	/**
-	 * @param array &$list
-	 * @param array $path
-	 * @param mixed $item
+	 * @param License[] &$list
+	 * @param int[] $path
+	 * @param License $item
 	 */
 	protected function stackItem( &$list, $path, $item ) {
 		$position =& $list;
@@ -175,7 +176,7 @@ class Licenses extends HTMLFormField {
 	/**
 	 * Accessor for $this->lines
 	 *
-	 * @return array
+	 * @return License[]
 	 */
 	public function getLines() {
 		return $this->lines;

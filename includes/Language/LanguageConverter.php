@@ -1044,7 +1044,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	/**
 	 * Load default conversion tables.
 	 *
-	 * @return array
+	 * @return array<string,ReplacementArray>
 	 */
 	abstract protected function loadDefaultTables(): array;
 
@@ -1088,7 +1088,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	/**
 	 * Hook for post-processing after conversion tables are loaded.
 	 *
-	 * @param ReplacementArray[] &$tables
+	 * @param array<string,ReplacementArray> &$tables
 	 */
 	protected function postLoadTables( &$tables ) {
 	}
