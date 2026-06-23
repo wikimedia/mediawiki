@@ -19,6 +19,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig;
@@ -761,6 +762,10 @@ abstract class ParsoidHandler extends Handler {
 						'outputOffsetType' => $attribs['offsetType']
 					]
 				);
+			}
+
+			if ( $attribs['body_only'] ) {
+				$pb->html = Parser::extractBody( $pb->html );
 			}
 
 			$response = $this->getResponseFactory()->createJson( $pb->responseData() );
