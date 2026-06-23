@@ -72,8 +72,7 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 			WANObjectCache::newEmpty(),
 			$options['mimeAnalyzer'] ?? $this->createNoOpMock( MimeAnalyzer::class ),
 			$options['lmgFactory'] ?? $this->getLockManagerGroupFactory(),
-			$options['tmpFileFactory'] ?? $this->getTempFSFileFactory(),
-			$this->getDummyObjectFactory()
+			$options['tmpFileFactory'] ?? $this->getTempFSFileFactory()
 		);
 	}
 

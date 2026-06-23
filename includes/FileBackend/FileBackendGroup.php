@@ -26,7 +26,6 @@ use Wikimedia\Http\TelemetryHeadersInterface;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -42,28 +41,12 @@ class FileBackendGroup {
 	 */
 	protected $backends = [];
 
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var BagOStuff */
-	private $srvCache;
-
-	/** @var WANObjectCache */
-	private $wanCache;
-
-	/** @var MimeAnalyzer */
-	private $mimeAnalyzer;
-
-	/** @var LockManagerGroupFactory */
-	private $lmgFactory;
-
-	/** @var TempFSFileFactory */
-	private $tmpFileFactory;
-
-	/** @var ObjectFactory */
-	private $objectFactory;
-
-	/** @var TelemetryHeadersInterface|null */
+	private ServiceOptions $options;
+	private BagOStuff $srvCache;
+	private WANObjectCache $wanCache;
+	private MimeAnalyzer $mimeAnalyzer;
+	private LockManagerGroupFactory $lmgFactory;
+	private TempFSFileFactory $tmpFileFactory;
 	private ?TelemetryHeadersInterface $telemetry;
 
 	/**
@@ -77,17 +60,6 @@ class FileBackendGroup {
 		'fallbackWikiId',
 	];
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param ReadOnlyMode $readOnlyMode
-	 * @param BagOStuff $srvCache
-	 * @param WANObjectCache $wanCache
-	 * @param MimeAnalyzer $mimeAnalyzer
-	 * @param LockManagerGroupFactory $lmgFactory
-	 * @param TempFSFileFactory $tmpFileFactory
-	 * @param ObjectFactory $objectFactory
-	 * @param TelemetryHeadersInterface|null $telemetry
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		ReadOnlyMode $readOnlyMode,
@@ -96,7 +68,6 @@ class FileBackendGroup {
 		MimeAnalyzer $mimeAnalyzer,
 		LockManagerGroupFactory $lmgFactory,
 		TempFSFileFactory $tmpFileFactory,
-		ObjectFactory $objectFactory,
 		?TelemetryHeadersInterface $telemetry = null
 	) {
 		$this->options = $options;
@@ -105,7 +76,6 @@ class FileBackendGroup {
 		$this->mimeAnalyzer = $mimeAnalyzer;
 		$this->lmgFactory = $lmgFactory;
 		$this->tmpFileFactory = $tmpFileFactory;
-		$this->objectFactory = $objectFactory;
 		$this->telemetry = $telemetry;
 
 		// Register explicitly defined backends
