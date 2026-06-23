@@ -1066,6 +1066,7 @@ abstract class ParsoidHandler extends Handler {
 		$languageVariantConverter = MediaWikiServices::getInstance()
 			->getHtmlTransformFactory()
 			->getLanguageVariantConverter( $pageIdentity );
+		$languageVariantConverter->setPageConfig( $pageConfig );
 		$httpContentLanguage = $attribs['pagelanguage' ] ?? null;
 		if ( $httpContentLanguage ) {
 			$languageVariantConverter->setPageLanguageOverride( $httpContentLanguage );

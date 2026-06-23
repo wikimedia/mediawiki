@@ -1134,7 +1134,8 @@ return [
 			$services->getParsoidPageConfigFactory(),
 			$services->getContentHandlerFactory(),
 			$services->getParsoidSiteConfig(),
-			$services->getLanguageConverterPipeline(),
+			$services->getTitleFactory(),
+			$services->getLanguageConverterFactory(),
 			$services->getLanguageFactory()
 		);
 	},
@@ -1237,17 +1238,6 @@ return [
 				return $services->getContentLanguage();
 			}
 		);
-	},
-
-	'LanguageConverterPipeline' => static function ( MediaWikiServices $services ): OutputTransformPipeline {
-		return ( new DefaultOutputPipelineFactory(
-			new ServiceOptions(
-				DefaultOutputPipelineFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
-			),
-			$services->getMainConfig(),
-			LoggerFactory::getInstance( 'Parser' ),
-			$services->getObjectFactory()
-		) )->buildPipeline( only: [ 'ParsoidLanguageConverter' ] );
 	},
 
 	'LanguageFactory' => static function ( MediaWikiServices $services ): LanguageFactory {

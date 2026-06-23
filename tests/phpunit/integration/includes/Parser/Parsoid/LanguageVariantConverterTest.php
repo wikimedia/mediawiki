@@ -186,7 +186,6 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		$expectedLanguage ??= $target;
 
 		$page = $this->getExistingTestPage();
-		$parserOutput->setTitle( $page );
 		$languageVariantConverter = $this->getLanguageVariantConverter( $page );
 		if ( $contentLanguage ) {
 			$contentLanguage = $this->getLanguageBcp47( $contentLanguage );
@@ -217,6 +216,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		if ( $expectedLanguage !== false ) {
 			$this->assertMatchesRegularExpression( "@<meta http-equiv=\"content-language\" content=\"($expectedLanguage)\"/>@i", $html );
 		}
+
 		$this->assertEquals( Parsoid::defaultHTMLVersion(), $pageBundle->version );
 
 		if ( $expectedLanguage !== false ) {
@@ -232,10 +232,13 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 
 	private function getLanguageVariantConverter( PageIdentity $pageIdentity ): LanguageVariantConverter {
 		return new LanguageVariantConverter(
-			$this->getServiceContainer()->getLanguageConverterPipeline(),
-			$this->getServiceContainer()->getLanguageFactory(),
-			$this->getServiceContainer()->getParsoidSiteConfig(),
 			$pageIdentity,
+			$this->getServiceContainer()->getParsoidPageConfigFactory(),
+			$this->getServiceContainer()->getService( '_Parsoid' ),
+			$this->getServiceContainer()->getParsoidSiteConfig(),
+			$this->getServiceContainer()->getTitleFactory(),
+			$this->getServiceContainer()->getLanguageConverterFactory(),
+			$this->getServiceContainer()->getLanguageFactory()
 		);
 	}
 }
