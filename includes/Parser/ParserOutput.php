@@ -864,12 +864,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @note Use of the reference returned by this method has been
-	 *  deprecated since 1.43.  In a future release this will return a
-	 *  normal array.  Use ::addExternalLink() to modify the set of
-	 *  external links stored in this ParserOutput.
+	 * @note This returned a reference to the array until 1.47;
+	 *  use ::addExternalLink() to modify the set of external links
+	 *  stored in this ParserOutput.
 	 */
-	public function &getExternalLinks(): array {
+	public function getExternalLinks(): array {
 		return $this->mExternalLinks;
 	}
 

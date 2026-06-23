@@ -199,6 +199,9 @@ because of Phabricator reports.
   - ::setLanguageLinks()     [1.42] use ::addLanguageLink()
   - ::setTimestamp()         [1.42] use ::setRevisionTimestamp()
   - ::__serialize()          [1.39] use JSON serialization
+* ParserOutput::getExternalLinks(), which used to return a mutable reference
+  to its array, now returns the array by value.  Mutating the array returned
+  by ::getExternalLinks() has been deprecated since 1.43.
 * ChannelFeed::outHeader(), ::outItem(), ::outFooter(), ::httpHeaders() and
   ::outXmlHeader() have been removed. Use/override ::outputHeader(),
   ::outputItem(), ::outputFooter(), ::sendHttpHeaders() and ::outputXmlHeader()
