@@ -784,6 +784,17 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	public function getPageBundle(): HtmlPageBundle {
 		// XXX: converting between HtmlPageBundle and ParserOutput is inefficient!
 		$parserOutput = $this->getParserOutput();
+		// Check if variant conversion has to be performed
+		// NOTE: Variant conversion is performed on the fly, and kept outside the stash.
+		if ( $this->targetLanguage ) {
+			$languageVariantConverter = $this->htmlTransformFactory->getLanguageVariantConverter( $this->page );
+			$parserOutput = $languageVariantConverter->convertParserOutputVariant(
+				$parserOutput,
+				$this->targetLanguage,
+				$this->sourceLanguage,
+			);
+		}
+
 		// An HtmlPageBundle always carries the full document (head +
 		// body, with the <head> rebuilt from metadata). Request it
 		// explicitly so this keeps emitting a full document once the
@@ -791,17 +802,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
 			$parserOutput, $this->parsoidSiteConfig, bodyOnly: false,
 		);
-
-		// Check if variant conversion has to be performed
-		// NOTE: Variant conversion is performed on the fly, and kept outside the stash.
-		if ( $this->targetLanguage ) {
-			$languageVariantConverter = $this->htmlTransformFactory->getLanguageVariantConverter( $this->page );
-			$pb = $languageVariantConverter->convertPageBundleVariant(
-				$pb,
-				$this->targetLanguage,
-				$this->sourceLanguage
-			);
-		}
 
 		if ( $this->flavor === 'edit' ) {
 			// The 'edit' flavor inlines data-parsoid/data-mw attributes so the

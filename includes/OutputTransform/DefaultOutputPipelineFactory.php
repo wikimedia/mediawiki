@@ -196,13 +196,23 @@ class DefaultOutputPipelineFactory {
 		$this->objectFactory = $objectFactory;
 	}
 
+	public function buildDefaultOutputPipeline(): OutputTransformPipeline {
+		return $this->buildPipeline();
+	}
+
+	public function buildLanguageConverterPipeline(): OutputTransformPipeline {
+		return $this->buildPipeline( only: [ 'ParsoidLanguageConverter' ] );
+	}
+
 	/**
 	 * Creates a pipeline of transformations to transform the content of the ParserOutput object from "parsed HTML"
 	 * to "output HTML" and returns it.
 	 * @internal
+	 * @param ?list<string> $only If provided, create a pipeline consisting
+	 *  only of the named stages.
 	 * @return OutputTransformPipeline
 	 */
-	public function buildPipeline(): OutputTransformPipeline {
+	private function buildPipeline( ?array $only = null ): OutputTransformPipeline {
 		// Add extension stages
 		$list = array_merge(
 			self::CORE_LIST,
@@ -210,7 +220,10 @@ class DefaultOutputPipelineFactory {
 		);
 
 		$otp = new OutputTransformPipeline();
-		foreach ( $list as $spec ) {
+		foreach ( $list as $stageName => $spec ) {
+			if ( $only !== null && !in_array( $stageName, $only, true ) ) {
+				continue;
+			}
 			if ( is_array( $spec ) &&
 				array_key_exists( 'domStage', $spec ) &&
 				array_key_exists( 'textStage', $spec )

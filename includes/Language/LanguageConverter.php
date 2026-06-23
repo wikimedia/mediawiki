@@ -340,9 +340,9 @@ abstract class LanguageConverter implements ILanguageConverter {
 	}
 
 	/** @inheritDoc */
-	public function validateVariant( $variant = null ) {
+	public function validateVariant( $variant = null, bool $fallbackToDefault = false ) {
 		if ( $variant === null ) {
-			return null;
+			return $fallbackToDefault ? $this->getStaticDefaultVariant() : null;
 		}
 		// Our internal variants are always lower-case; the variant we
 		// are validating may have mixed cases.
@@ -360,7 +360,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 				return $v;
 			}
 		}
-		return null;
+		return $fallbackToDefault ? $this->getStaticDefaultVariant() : null;
 	}
 
 	/** @inheritDoc */

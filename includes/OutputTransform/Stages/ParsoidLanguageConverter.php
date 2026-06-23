@@ -96,6 +96,17 @@ class ParsoidLanguageConverter extends OutputTransformStage {
 		$converter = $this->languageConverterFactory->getLanguageConverter(
 			$targetLanguage
 		);
+		// Ensure that the variant is valid; attempt to use the
+		// converter's main code if not.
+		if ( $toVariant !== null ) {
+			$toVariant = $this->languageFactory->getLanguage(
+				$converter->validateVariant(
+					$toVariant->getCode(),
+					fallbackToDefault: true,
+				)
+			);
+		}
+
 		$tocVariant = null;
 		if (
 			$toVariant !== null &&

@@ -749,16 +749,16 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	) {
 		$converter = $this->createNoOpMock(
 			LanguageVariantConverter::class,
-			[ 'convertPageBundleVariant' ]
+			[ 'convertParserOutputVariant' ]
 		);
 
 		// This is the key assertion in this test:
 		$converter->expects( $this->once() )
-			->method( 'convertPageBundleVariant' )->with(
+			->method( 'convertParserOutputVariant' )->with(
 				$this->anything(),
 				$expectedTarget,
 				$expectedSource
-			);
+			)->willReturnArgument( 0 );
 
 		$transformFactory = $this->createNoOpMock(
 			HtmlTransformFactory::class,

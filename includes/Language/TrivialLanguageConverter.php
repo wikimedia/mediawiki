@@ -163,7 +163,10 @@ class TrivialLanguageConverter implements ILanguageConverter {
 	}
 
 	/** @inheritDoc */
-	public function validateVariant( $variant = null ) {
+	public function validateVariant( $variant = null, bool $fallbackToDefault = false ) {
+		if ( $fallbackToDefault ) {
+			return $this->language->getCode();
+		}
 		if ( $variant === null ) {
 			return null;
 		}

@@ -4,8 +4,8 @@ declare( strict_types = 1 );
 namespace MediaWiki\Parser\Parsoid;
 
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Language\LanguageFactory;
+use MediaWiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Title\TitleFactory;
@@ -24,7 +24,7 @@ class HtmlTransformFactory {
 		private readonly IContentHandlerFactory $contentHandlerFactory,
 		private readonly SiteConfig $siteConfig,
 		private readonly TitleFactory $titleFactory,
-		private readonly LanguageConverterFactory $languageConverterFactory,
+		private readonly OutputTransformPipeline $languageConverterPipeline,
 		private readonly LanguageFactory $languageFactory,
 	) {
 	}
@@ -59,13 +59,11 @@ class HtmlTransformFactory {
 	 */
 	public function getLanguageVariantConverter( PageIdentity $page ): LanguageVariantConverter {
 		return new LanguageVariantConverter(
-			$page,
-			$this->configFactory,
-			$this->parsoid,
+			$this->languageConverterPipeline,
+			$this->languageFactory,
 			$this->siteConfig,
 			$this->titleFactory,
-			$this->languageConverterFactory,
-			$this->languageFactory
+			$page,
 		);
 	}
 

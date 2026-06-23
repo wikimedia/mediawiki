@@ -1071,7 +1071,6 @@ abstract class ParsoidHandler extends Handler {
 		$languageVariantConverter = MediaWikiServices::getInstance()
 			->getHtmlTransformFactory()
 			->getLanguageVariantConverter( $pageIdentity );
-		$languageVariantConverter->setPageConfig( $pageConfig );
 		$httpContentLanguage = $attribs['pagelanguage' ] ?? null;
 		if ( $httpContentLanguage ) {
 			$languageVariantConverter->setPageLanguageOverride( $httpContentLanguage );
@@ -1086,8 +1085,10 @@ abstract class ParsoidHandler extends Handler {
 				[ 'reason' => $e->getMessage() ]
 			);
 		}
+		$out->headers['vary'] ??= 'Accept-Language';
 
 		$response = $this->getResponseFactory()->createJson( $out->responseData() );
+		$response->addHeader( 'Vary', 'Accept-Language' );
 		ParsoidFormatHelper::setContentType(
 			$response, ParsoidFormatHelper::FORMAT_PAGEBUNDLE, $out->version
 		);

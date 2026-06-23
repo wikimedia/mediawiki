@@ -912,14 +912,19 @@ return [
 	},
 
 	'DefaultOutputPipeline' => static function ( MediaWikiServices $services ): OutputTransformPipeline {
-		return ( new DefaultOutputPipelineFactory(
+		return $services->getDefaultOutputPipelineFactory()
+			->buildDefaultOutputPipeline();
+	},
+
+	'DefaultOutputPipelineFactory' => static function ( MediaWikiServices $services ): DefaultOutputPipelineFactory {
+		return new DefaultOutputPipelineFactory(
 			new ServiceOptions(
 				DefaultOutputPipelineFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
 			$services->getMainConfig(),
 			LoggerFactory::getInstance( 'Parser' ),
 			$services->getObjectFactory()
-		) )->buildPipeline();
+		);
 	},
 
 	'DeletePageFactory' => static function ( MediaWikiServices $services ): DeletePageFactory {
@@ -1134,7 +1139,7 @@ return [
 			$services->getContentHandlerFactory(),
 			$services->getParsoidSiteConfig(),
 			$services->getTitleFactory(),
-			$services->getLanguageConverterFactory(),
+			$services->getLanguageConverterPipeline(),
 			$services->getLanguageFactory()
 		);
 	},
@@ -1237,6 +1242,11 @@ return [
 				return $services->getContentLanguage();
 			}
 		);
+	},
+
+	'LanguageConverterPipeline' => static function ( MediaWikiServices $services ): OutputTransformPipeline {
+		return $services->getDefaultOutputPipelineFactory()
+			->buildLanguageConverterPipeline();
 	},
 
 	'LanguageFactory' => static function ( MediaWikiServices $services ): LanguageFactory {

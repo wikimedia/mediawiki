@@ -77,10 +77,12 @@ interface ILanguageConverter {
 	 * which does a strict test.
 	 *
 	 * @param string|null $variant The variant to validate
+	 * @param bool $fallbackToDefault If true, returns a valid default variant
+	 *   instead of `null`
 	 * @return string|null Returns an equivalent valid variant code if possible,
 	 *   null otherwise
 	 */
-	public function validateVariant( $variant = null );
+	public function validateVariant( $variant = null, bool $fallbackToDefault = false );
 
 	/**
 	 * Get the variant specified in the URL

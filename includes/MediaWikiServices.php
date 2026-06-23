@@ -104,6 +104,7 @@ use MediaWiki\Mail\NotificationEmail\NotificationEmailSender;
 use MediaWiki\Media\MediaHandlerFactory;
 use MediaWiki\Notification\NotificationService;
 use MediaWiki\ObjectCache\ObjectCacheFactory;
+use MediaWiki\OutputTransform\DefaultOutputPipelineFactory;
 use MediaWiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\DeletePageFactory;
@@ -1181,6 +1182,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @return DefaultOutputPipelineFactory
+	 * @internal
+	 */
+	public function getDefaultOutputPipelineFactory(): DefaultOutputPipelineFactory {
+		return $this->getService( 'DefaultOutputPipelineFactory' );
+	}
+
+	/**
 	 * @since 1.37
 	 */
 	public function getDeletePageFactory(): DeletePageFactory {
@@ -1406,6 +1415,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLanguageConverterFactory(): LanguageConverterFactory {
 		return $this->getService( 'LanguageConverterFactory' );
+	}
+
+	/**
+	 * @return OutputTransformPipeline
+	 * @internal
+	 */
+	public function getLanguageConverterPipeline(): OutputTransformPipeline {
+		return $this->getService( 'LanguageConverterPipeline' );
 	}
 
 	/**
