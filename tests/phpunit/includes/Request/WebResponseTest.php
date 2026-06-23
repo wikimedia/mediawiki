@@ -34,8 +34,8 @@ class WebResponseTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals(
 			[
-				[ 'info', 'ignored post-send cookie {cookie}' ],
-				[ 'info', 'ignored post-send header {header}' ],
+				[ 'warning', 'ignored post-send cookie {cookie}' ],
+				[ 'warning', 'ignored post-send header {header}' ],
 			],
 			$logger->getBuffer()
 		);

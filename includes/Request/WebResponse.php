@@ -10,6 +10,7 @@ namespace MediaWiki\Request;
 
 use LogicException;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use RuntimeException;
@@ -53,7 +54,7 @@ class WebResponse {
 	 */
 	public function header( $string, $replace = true, $http_response_code = null ) {
 		if ( $this->disableForPostSend ) {
-			wfDebugLog( 'header', 'ignored post-send header {header}', 'all', [
+			LoggerFactory::getInstance( 'header' )->warning( 'ignored post-send header {header}', [
 				'header' => $string,
 				'replace' => $replace,
 				'http_response_code' => $http_response_code,
@@ -102,7 +103,7 @@ class WebResponse {
 	 */
 	public function statusHeader( $code ) {
 		if ( $this->disableForPostSend ) {
-			wfDebugLog( 'header', 'ignored post-send status header {code}', 'all', [
+			LoggerFactory::getInstance( 'header' )->warning( 'ignored post-send status header {code}', [
 				'code' => $code,
 				'exception' => new RuntimeException( 'Ignored post-send status header' ),
 			] );
@@ -142,6 +143,7 @@ class WebResponse {
 	 * @since 1.22 Replaced $prefix, $domain, and $forceSecure with $options
 	 */
 	public function setCookie( $name, $value, $expire = 0, $options = [] ) {
+		$logger = LoggerFactory::getInstance( 'cookie' );
 		$services = MediaWikiServices::getInstance();
 		$mainConfig = $services->getMainConfig();
 		$cookiePath = $mainConfig->get( MainConfigNames::CookiePath );
@@ -168,7 +170,7 @@ class WebResponse {
 
 		if ( $this->disableForPostSend ) {
 			$prefixedName = $options['prefix'] . $name;
-			wfDebugLog( 'cookie', 'ignored post-send cookie {cookie}', 'all', [
+			$logger->warning( 'ignored post-send cookie {cookie}', [
 				'cookie' => $prefixedName,
 				'data' => [
 					'name' => $prefixedName,
@@ -225,16 +227,16 @@ class WebResponse {
 		$optionsForDeduplication = [ $func, $prefixedName, $value, $setOptions ];
 
 		if ( $deleting && !isset( self::$setCookies[$key] ) ) { // isset( null ) is false
-			wfDebugLog( 'cookie', "already deleted $logDesc" );
+			$logger->debug( "already deleted $logDesc" );
 			return;
 		} elseif ( !$deleting && isset( self::$setCookies[$key] ) &&
 			self::$setCookies[$key] === $optionsForDeduplication
 		) {
-			wfDebugLog( 'cookie', "already set $logDesc" );
+			$logger->debug( "already set $logDesc" );
 			return;
 		}
 
-		wfDebugLog( 'cookie', $logDesc );
+		$logger->info( $logDesc );
 		$this->actuallySetCookie( $func, $prefixedName, $value, $setOptions );
 		self::$setCookies[$key] = $deleting ? null : $optionsForDeduplication;
 	}
