@@ -384,20 +384,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $this->contentHolder->has( ContentHolder::BODY_FRAGMENT );
 	}
 
-	/**
-	 * Get the cacheable text with <mw:editsection> markers still in it. The
-	 * return value is suitable for writing back via setText() but is not valid
-	 * for display to the user.
-	 *
-	 * @return string
-	 * @since 1.27
-	 * @deprecated since 1.45; use ::getContentHolderText() instead
-	 */
-	public function getRawText() {
-		wfDeprecated( __METHOD__, '1.45' );
-		return $this->getContentHolderText();
-	}
-
 	/*
 	 * @unstable This method is transitional and will be replaced by a method
 	 * in another class, maybe ContentRenderer.  It allows us to break our
@@ -572,16 +558,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @return string[]
-	 * @note Before 1.43, this function returned an array reference.
-	 * @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::LANGUAGE)
-	 */
-	public function getLanguageLinks() {
-		wfDeprecated( __METHOD__, '1.43' );
-		return $this->getLanguageLinksInternal();
-	}
-
-	/**
 	 * @return list<string>
 	 */
 	private function getLanguageLinksInternal(): array {
@@ -590,12 +566,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$result[] = "$lang:$title";
 		}
 		return $result;
-	}
-
-	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::INTERWIKI) */
-	public function getInterwikiLinks() {
-		wfDeprecated( __METHOD__, '1.43' );
-		return $this->mInterwikiLinks;
 	}
 
 	/**
@@ -869,12 +839,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		};
 	}
 
-	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::LOCAL) */
-	public function &getLinks() {
-		wfDeprecated( __METHOD__, '1.43' );
-		return $this->mLinks;
-	}
-
 	/**
 	 * Return true if the given parser output has local links registered
 	 * in the metadata.
@@ -891,46 +855,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @return array Keys are DBKs for the links to special pages in the document
-	 * @since 1.35
-	 * @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::SPECIAL)
-	 */
-	public function &getLinksSpecial() {
-		wfDeprecated( __METHOD__, '1.43' );
-		return $this->mLinksSpecial;
-	}
-
-	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::TEMPLATE) */
-	public function &getTemplates() {
-		wfDeprecated( __METHOD__, '1.43' );
-		return $this->mTemplates;
-	}
-
-	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::TEMPLATE) */
-	public function &getTemplateIds() {
-		wfDeprecated( __METHOD__, '1.43' );
-		return $this->mTemplateIds;
-	}
-
-	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::MEDIA) */
-	public function &getImages() {
-		wfDeprecated( __METHOD__, '1.43' );
-		return $this->mImages;
-	}
-
-	/**
 	 * Return true if there are image dependencies registered for this
 	 * ParserOutput.
 	 * @since 1.44
 	 */
 	public function hasImages(): bool {
 		return $this->mImages !== [];
-	}
-
-	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::MEDIA) */
-	public function &getFileSearchOptions() {
-		wfDeprecated( __METHOD__, '1.43' );
-		return $this->mFileSearchOptions;
 	}
 
 	/**
@@ -1032,15 +962,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @return string|null TS::MW timestamp of the revision content
-	 * @deprecated since 1.42; use ::getRevisionTimestamp() instead
-	 */
-	public function getTimestamp() {
-		wfDeprecated( __METHOD__, '1.42' );
-		return $this->getRevisionTimestamp();
-	}
-
-	/**
 	 * @return array
 	 */
 	public function getLimitReportData() {
@@ -1087,56 +1008,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	public function getExtraCSPStyleSrcs() {
 		return $this->mExtraStyleSrcs;
-	}
-
-	/**
-	 * Set the raw text of the ParserOutput.
-	 *
-	 * If you did not generate html, pass null to mark it as such.
-	 *
-	 * @since 1.42
-	 * @param string|null $text HTML content of ParserOutput or null if not generated
-	 * @param-taint $text exec_html
-	 * @deprecated Since 1.45, use ::setContentHolderText()
-	 */
-	public function setRawText( ?string $text ): void {
-		wfDeprecated( __METHOD__, '1.45' );
-		$this->setContentHolderText( $text );
-	}
-
-	/**
-	 * Set the raw text of the ParserOutput.
-	 *
-	 * If you did not generate html, pass null to mark it as such.
-	 *
-	 * @since 1.39 You can now pass null to this function
-	 * @param string|null $text HTML content of ParserOutput or null if not generated
-	 * @param-taint $text exec_html
-	 * @return string|null Previous value of ParserOutput's raw text
-	 * @deprecated since 1.42; use ::setContentHolderText() which matches
-	 *  the getter ::getContentHolderText()
-	 */
-	public function setText( $text ) {
-		wfDeprecated( __METHOD__, '1.42' );
-		$ret = $this->hasText() ? $this->getContentHolderText() : null;
-		$this->setContentHolderText( $text );
-		return $ret;
-	}
-
-	/**
-	 * @deprecated since 1.42, use ::addLanguageLink() instead.
-	 */
-	public function setLanguageLinks( $ll ) {
-		wfDeprecated( __METHOD__, '1.42' );
-		$old = $this->getLanguageLinksInternal();
-		$this->mLanguageLinkMap = [];
-		if ( $ll === null ) { // T376323
-			wfDeprecated( __METHOD__ . ' with null argument', '1.43' );
-		}
-		foreach ( ( $ll ?? [] ) as $l ) {
-			$this->addLanguageLink( $l );
-		}
-		return $old;
 	}
 
 	/** @internal For use by OutputPage only. */
@@ -1197,17 +1068,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	public function setRevisionTimestamp( ?string $timestamp ): void {
 		$this->mTimestamp = $timestamp;
-	}
-
-	/**
-	 * @param ?string $timestamp TS::MW timestamp of the revision content
-	 *
-	 * @return ?string The previous value of the timestamp
-	 * @deprecated since 1.42; use ::setRevisionTimestamp() instead
-	 */
-	public function setTimestamp( $timestamp ) {
-		wfDeprecated( __METHOD__, '1.42' );
-		return wfSetVar( $this->mTimestamp, $timestamp );
 	}
 
 	/**
@@ -3574,13 +3434,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		}
 
 		return $properties;
-	}
-
-	public function __serialize(): array {
-		// Support for PHP serialization of ParserOutput for ParserCache
-		// was turned off in 1.39 and is not guaranteed to work.
-		wfDeprecated( "PHP serialization of ParserOutput", "1.39" );
-		return (array)$this;
 	}
 
 	public function __clone() {

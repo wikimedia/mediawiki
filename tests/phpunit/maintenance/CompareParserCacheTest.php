@@ -75,7 +75,7 @@ class CompareParserCacheTest extends MaintenanceBaseTestCase {
 		// Mock ParserCache::get to return something other than abcdef to have a difference between page content
 		// and the parser cache content.
 		$mockParserOutput = $this->createMock( ParserOutput::class );
-		$mockParserOutput->method( 'getRawText' )
+		$mockParserOutput->method( 'getContentHolderText' )
 			->willReturn( 'abc' );
 		$mockParserCache = $this->createMock( ParserCache::class );
 		$mockParserCache->method( 'get' )

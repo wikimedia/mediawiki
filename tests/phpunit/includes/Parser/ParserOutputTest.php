@@ -342,9 +342,9 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\ParserOutput::getRawText
+	 * @covers \MediaWiki\Parser\ParserOutput::getContentHolderText
 	 */
-	public function testGetRawText_failsIfNoText() {
+	public function testGetContentHolderText_failsIfNoText() {
 		$po = new ParserOutput( null );
 
 		$this->expectException( LogicException::class );
@@ -631,7 +631,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers \MediaWiki\Parser\ParserOutput::addLink
-	 * @covers \MediaWiki\Parser\ParserOutput::getLinks
 	 * @covers \MediaWiki\Parser\ParserOutput::getLinkList
 	 */
 	public function testAddLink() {
@@ -723,20 +722,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$b->addImage( new TitleValue( NS_FILE, 'Puff.jpg' ), '20180101000017', 'BEEF' );
 
 		yield 'all kinds of links' => [ $a, $b, [
-			'getLinks' => [
-				NS_MAIN => [
-					'Kittens' => 6,
-					'Goats' => 7,
-					'Dragons' => 8,
-				],
-				NS_TALK => [
-					'Kittens' => 16,
-					'Goats' => 17,
-				],
-				NS_FILE => [
-					'Dragons.jpg' => 28,
-				],
-			],
 			'getLinkList!LOCAL' => [
 				'_args_' => [ ParserOutputLinkTypes::LOCAL ],
 				[
@@ -764,24 +749,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 					'pageid' => 28,
 				],
 			],
-			'getTemplates' => [
-				NS_MAIN => [
-					'Dragons' => 118,
-				],
-				NS_TEMPLATE => [
-					'Dragons' => 108,
-					'Goats' => 107,
-				],
-			],
-			'getTemplateIds' => [
-				NS_MAIN => [
-					'Dragons' => 1118,
-				],
-				NS_TEMPLATE => [
-					'Dragons' => 1108,
-					'Goats' => 1107,
-				],
-			],
 			'getLinkList!TEMPLATE' => [
 				'_args_' => [ ParserOutputLinkTypes::TEMPLATE ],
 				[
@@ -800,7 +767,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 					'revid' => 1118,
 				],
 			],
-			'getLanguageLinks' => [ 'de:de', 'ru:ru#ru', 'fr:fr' ],
 			'getLinkList!LANGUAGE' => [
 				'_args_' => [ ParserOutputLinkTypes::LANGUAGE ],
 				[
@@ -812,11 +778,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 				[
 					'link' => new TitleValue( NS_MAIN, 'fr', '', 'fr' ),
 				],
-			],
-			'getInterwikiLinks' => [
-				'de' => [ 'Kittens_DE' => 1 ],
-				'ru' => [ 'Kittens RU' => 1, 'Dragons RU' => 1, ],
-				'fr' => [ 'Kittens_FR' => 1 ],
 			],
 			'getLinkList!INTERWIKI' => [
 				'_args_' => [ ParserOutputLinkTypes::INTERWIKI ],
@@ -844,11 +805,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 					'link' => new TitleValue( NS_CATEGORY, 'Bar' ),
 					'sort' => 'Y',
 				],
-			],
-			'getImages' => [ 'Billy.jpg' => 1, 'Puff.jpg' => 1 ],
-			'getFileSearchOptions' => [
-				'Billy.jpg' => [ 'time' => '20180101000013', 'sha1' => 'DEAD' ],
-				'Puff.jpg' => [ 'time' => '20180101000017', 'sha1' => 'BEEF' ],
 			],
 			'getLinkList!MEDIA' => [
 				'_args_' => [ ParserOutputLinkTypes::MEDIA ],
@@ -928,13 +884,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * @param array $expected
 	 */
 	public function testMergeTrackingMetaDataFrom( ParserOutput $a, ParserOutput $b, $expected ) {
-		$this->filterDeprecated( '/ParserOutput::getFileSearchOptions was deprecated/' );
-		$this->filterDeprecated( '/ParserOutput::getImages was deprecated/' );
-		$this->filterDeprecated( '/ParserOutput::getInterwikiLinks was deprecated/' );
-		$this->filterDeprecated( '/ParserOutput::getTemplates was deprecated/' );
-		$this->filterDeprecated( '/ParserOutput::getTemplateIds was deprecated/' );
-		$this->filterDeprecated( '/ParserOutput::getLinks was deprecated/' );
-		$this->filterDeprecated( '/ParserOutput::getLanguageLinks was deprecated/' );
 		$a->mergeTrackingMetaDataFrom( $b );
 
 		$this->assertFieldValues( $a, $expected );
@@ -956,13 +905,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * @param array $expected
 	 */
 	public function testCollectMetaData( ParserOutput $a, ParserOutput $b, $expected ) {
-		$this->filterDeprecated( '/ParserOutput::getFileSearchOptions was deprecated/' );
-		$this->filterDeprecated( '/ParserOutput::getImages was deprecated/' );
-		$this->filterDeprecated( '/ParserOutput::getInterwikiLinks was deprecated/' );
-		$this->filterDeprecated( '/ParserOutput::getTemplates was deprecated/' );
-		$this->filterDeprecated( '/ParserOutput::getTemplateIds was deprecated/' );
-		$this->filterDeprecated( '/ParserOutput::getLinks was deprecated/' );
-		$this->filterDeprecated( '/ParserOutput::getLanguageLinks was deprecated/' );
 		$b->collectMetadata( $a );
 
 		$this->assertFieldValues( $a, $expected );

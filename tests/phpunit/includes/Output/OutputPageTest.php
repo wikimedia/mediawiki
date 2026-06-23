@@ -1199,7 +1199,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [ 'pt:E' ], $op->getLanguageLinks() );
 
 		$pOut1 = $this->createParserOutputStub( [
-			'getLanguageLinks' => [ 'he:F', 'ar:G#y' ],
 			'getLinkList' => static function ( $type ) {
 				if ( $type !== ParserOutputLinkTypes::LANGUAGE ) {
 					return [];
@@ -1215,7 +1214,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		# Duplicates are removed in OutputPage (T26502)
 		$pOut2 = $this->createParserOutputStub( [
-			'getLanguageLinks' => [ 'pt:H' ],
 			'getLinkList' => static function ( $type ) {
 				if ( $type !== ParserOutputLinkTypes::LANGUAGE ) {
 					return [];
@@ -1727,18 +1725,14 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$arrayReturningMethods = [
 			'getCategoryNames',
 			'getCategoryMap',
-			'getFileSearchOptions',
 			'getHeadItems',
-			'getImages',
 			'getIndicators',
 			'getSections',
 			'getModules',
 			'getModuleStyles',
 			'getWarningMsgs',
 			'getJsConfigVars',
-			'getLanguageLinks',
 			'getLinkList',
-			'getTemplateIds',
 			'getExtraCSPDefaultSrcs',
 			'getExtraCSPStyleSrcs',
 			'getExtraCSPScriptSrcs',

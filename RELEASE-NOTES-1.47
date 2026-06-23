@@ -182,6 +182,23 @@ because of Phabricator reports.
   up from 10.3 (from 2017).
 * It is no longer possible to pass null to the $output parameter of
   FeedUtils::checkFeedOutput. This behaviour was deprecated in 1.46.
+* The following deprecated methods of ParserOutput have been removed, with
+  the version they were deprecated in square brackets:
+  - ::getRawText()           [1.45] use ::getContentHolderText()
+  - ::getLanguageLinks()     [1.43] use ::getLinkList(::LANGUAGE)
+  - ::getInterwikiLinks()    [1.43] use ::getLinkList(::INTERWIKI)
+  - ::getLinks()             [1.43] use ::getLinkList(::LOCAL)
+  - ::getLinksSpecial()      [1.43] use ::getLinkList(::SPECIAL)
+  - ::getTemplates()         [1.43] use ::getLinkList(::TEMPLATE)
+  - ::getTemplateIds()       [1.43] use ::getLinkList(::TEMPLATE)
+  - ::getImages()            [1.43] use ::getLinkList(::MEDIA)
+  - ::getFileSearchOptions() [1.43] use ::getLinkList(::MEDIA)
+  - ::getTimestamp()         [1.42] use ::getRevisionTimestamp()
+  - ::setRawText()           [1.45] use ::setContentHolderText()
+  - ::setText()              [1.42] use ::setContentHolderText()
+  - ::setLanguageLinks()     [1.42] use ::addLanguageLink()
+  - ::setTimestamp()         [1.42] use ::setRevisionTimestamp()
+  - ::__serialize()          [1.39] use JSON serialization
 * ChannelFeed::outHeader(), ::outItem(), ::outFooter(), ::httpHeaders() and
   ::outXmlHeader() have been removed. Use/override ::outputHeader(),
   ::outputItem(), ::outputFooter(), ::sendHttpHeaders() and ::outputXmlHeader()

@@ -8,8 +8,10 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
@@ -298,7 +300,14 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 		}
 
 		foreach ( $expectedLinks as $func => $expected ) {
-			$output = $this->parser->getOutput()->$func();
+			if ( str_contains( $func, '!' ) ) {
+				[ $trimmed, $ignore ] = explode( '!', $func, 2 );
+				$args = $expected['_args_'] ?? [];
+				unset( $expected['_args_'] );
+				$output = $this->parser->getOutput()->$trimmed( ...$args );
+			} else {
+				$output = $this->parser->getOutput()->$func();
+			}
 			$this->assertEquals( $expected, $output, "$desc ($func)" );
 		}
 	}
@@ -326,13 +335,28 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 			[
 				'Test',
 				[ 'link-title', 'Test' ],
-				[ 'getLinks' => [ 0 => [ 'Test' => 0 ] ] ],
+				[
+					'getLinkList!LOCAL' => [
+						'_args_' => [ ParserOutputLinkTypes::LOCAL ],
+						[
+							'link' => new TitleValue( NS_MAIN, 'Test' ),
+							'pageid' => 0,
+						],
+					],
+				],
 				'Internal link',
 			],
 			[
 				'mw:Test',
 				[ 'link-title', 'mw:Test' ],
-				[ 'getInterwikiLinks' => [ 'mw' => [ 'Test' => 1 ] ] ],
+				[
+					'getLinkList!INTERWIKI' => [
+						'_args_' => [ ParserOutputLinkTypes::INTERWIKI ],
+						[
+							'link' => new TitleValue( NS_MAIN, 'Test', '', 'mw' ),
+						],
+					],
+				],
 				'Internal link (interwiki)',
 			],
 			[
