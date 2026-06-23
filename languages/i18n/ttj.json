@@ -209,6 +209,7 @@
 	"exception-nologin": "Toyetaahize",
 	"logout-failed": "Tiwaakwerugiza hati: $1",
 	"cannotlogoutnow-title": "Tiwaakwerugiza hati",
+	"welcomeuser": "Kaije, $1!",
 	"yourname": "Ibara ly'omukozesa:",
 	"userlogin-yourname": "Ibara ly'omukozesa",
 	"userlogin-yourname-ph": "Tamu ibara ly'omukozesa",
