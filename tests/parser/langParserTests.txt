@@ -2213,3 +2213,22 @@ Even if the <nowiki>nowiki -{contains}- lc markup</nowiki>.
 <p>Тхис <span typeof="mw:Nowiki">is Latin</span>.</p>
 <p>Евен иф тхе <span typeof="mw:Nowiki">nowiki -{contains}- lc markup</span>.</p>
 !! end
+
+!! test
+T429060: text inside -{}- should be rendered, even when __NOCONTENTCONVERT__
+!! options
+language=sr htmlVariantLanguage=sr-Cyrl
+parsoid=wt2html
+!! wikitext
+__NOCONTENTCONVERT__
+This is -{raw}- text
+!! html/php
+<p>This is -{raw}- text
+</p>
+!! html/parsoid
+<meta property="mw:PageProp/nocontentconvert"/>
+<p>This is <span data-mw-variant='{"disabled":{"t":"raw"}}' typeof="mw:LanguageVariant"></span> text</p>
+!! html/parsoid+langconv
+<meta property="mw:PageProp/nocontentconvert"/>
+<p>This is <span data-mw-variant='{"disabled":{"t":"raw"}}' typeof="mw:LanguageVariant">raw</span> text</p>
+!! end

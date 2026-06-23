@@ -114,21 +114,23 @@ class ParsoidLanguageConverter extends OutputTransformStage {
 			$converter->hasVariants() &&
 			// From parser.php
 			( !$popts->getDisableContentConversion() ) &&
-			( !$popts->getInterfaceMessage() ) &&
-			$po->getPageProperty( 'nocontentconvert' ) === null
+			( !$popts->getInterfaceMessage() )
 		) {
 			// Converter::loadTables() is protected, so call ::translate()
 			// to load the converter tables. Otherwise trying to add a rule
 			// as the very first thing in the wikitext will fail/crash because
 			// the tables won't have been loaded yet.
 			$converter->translate( 'x', $toVariant->getCode() );
+			// 'nocontentconvert' actually means "treat everything as
+			// surrounded by -{ ... }-" not to skip processing LC markup
+			$isRaw = ( $po->getPageProperty( 'nocontentconvert' ) !== null );
 			// Now actually do the language conversion on the DOM
 			$redLinks = [];
 
 			// Do body fragment first (and update rule state)
 			$bodyFragment = $contentHolder->getAsDom( ContentHolder::BODY_FRAGMENT );
 			if ( $bodyFragment !== null ) {
-				$this->doTraversal( $bodyFragment, $converter, $toVariant->getCode(), false, $redLinks );
+				$this->doTraversal( $bodyFragment, $converter, $toVariant->getCode(), $isRaw, $redLinks );
 			}
 
 			// Now do all other fragments (in sorted order for reproducibility)
@@ -138,7 +140,7 @@ class ParsoidLanguageConverter extends OutputTransformStage {
 				if ( $fragName !== ContentHolder::BODY_FRAGMENT ) {
 					$df = $contentHolder->getAsDom( $fragName );
 					'@phan-var DocumentFragment $df'; // not null
-					$this->doTraversal( $df, $converter, $toVariant->getCode(), false, $redLinks );
+					$this->doTraversal( $df, $converter, $toVariant->getCode(), $isRaw, $redLinks );
 				}
 			}
 
@@ -149,7 +151,7 @@ class ParsoidLanguageConverter extends OutputTransformStage {
 
 			// Adjust wrapper div class on body fragment (see AddWrapperDivClass)
 			$wrapperDivClass = AddWrapperDivClass::wrapperDivClass( $po, $popts, $options );
-			if ( $wrapperDivClass !== null && $bodyFragment !== null ) {
+			if ( $wrapperDivClass !== null && $bodyFragment !== null && !$isRaw ) {
 				$div = DOMCompat::getFirstElementChild( $bodyFragment );
 				$classes = $div ? DOMCompat::getClassList( $div ) : null;
 				if ( $classes?->contains( $wrapperDivClass ) ) {
@@ -165,9 +167,12 @@ class ParsoidLanguageConverter extends OutputTransformStage {
 			}
 
 			// Set language
-			$po->setLanguage( $toVariant );
-			$tocVariant = $toVariant;
-		} else {
+			if ( !$isRaw ) {
+				$po->setLanguage( $toVariant );
+				$tocVariant = $toVariant;
+			}
+		}
+		if ( $tocVariant === null ) {
 			$po->setLanguage( $targetLanguage );
 		}
 		/**
