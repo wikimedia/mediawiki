@@ -6,10 +6,12 @@
 		"properties": {
 			"type": {
 				"x-i18n-description": "rest-property-desc-linterror-type",
+				"example": "obsolete-tag",
 				"type": "string"
 			},
 			"dsr": {
 				"x-i18n-description": "rest-property-desc-linterror-dsr",
+				"example": [ 0, 7, 3, 4 ],
 				"type": "array",
 				"items": {
 					"type": "number"
@@ -19,12 +21,14 @@
 			},
 			"templateInfo": {
 				"x-i18n-description": "rest-property-desc-linterror-templateinfo",
+				"example": null,
 				"nullable": true,
 				"anyOf": [
 					{
 						"type": "object",
 						"properties": {
 							"name": {
+								"x-i18n-description": "rest-property-desc-templateinfo-name",
 								"type": "string"
 							}
 						},
@@ -36,6 +40,7 @@
 						"type": "object",
 						"properties": {
 							"multiPartTemplateBlock": {
+								"x-i18n-description": "rest-property-desc-templateinfo-multipart",
 								"enum": [ true ]
 							}
 						},
@@ -47,6 +52,7 @@
 			},
 			"params": {
 				"x-i18n-description": "rest-property-desc-linterror-params",
+				"example": {},
 				"anyOf": [
 					{
 						"type": "object"

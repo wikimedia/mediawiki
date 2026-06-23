@@ -128,11 +128,13 @@ class TransformHandler extends ParsoidHandler {
 			case 'html':
 				$spec = parent::generateResponseSpec( $method );
 				$spec['200']['content']['text/html']['schema']['type'] = 'string';
+				$spec['200']['content']['text/html']['example'] = '<h2 id="mwAA">Hello world</h2>';
 				return $spec;
 
 			case 'wikitext':
 				$spec = parent::generateResponseSpec( $method );
 				$spec['200']['content']['text/plain']['schema']['type'] = 'string';
+				$spec['200']['content']['text/plain']['example'] = "== Hello world ==\n";
 				return $spec;
 
 			case 'lint':

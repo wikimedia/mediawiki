@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use Wikimedia\Message\MessageValue;
+
 /**
  * Handler for transforming content given in the request.
  *
@@ -37,6 +39,8 @@ class TransformWikitextToLintHandler extends TransformHandler {
 					'type' => 'object',
 					'properties' => [
 						'wikitext' => [
+							'x-i18n-description' => 'rest-property-desc-transform-wikitext',
+							'example' => '== Hello world ==',
 							'type' => 'string',
 						]
 					]
@@ -45,12 +49,18 @@ class TransformWikitextToLintHandler extends TransformHandler {
 					'type' => 'object',
 					'properties' => [
 						'wikitext' => [
+							'x-i18n-description' => 'rest-property-desc-transform-wikitext-with-headers',
+							'example' => [ 'body' => '== Hello world ==' ],
 							'type' => 'object',
 							'properties' => [
 								'headers' => [
+									'x-i18n-description' => 'rest-property-desc-transform-wikitext-headers',
+									'example' => [ 'content-language' => 'en' ],
 									'type' => 'object',
 								],
 								'body' => [
+									'x-i18n-description' => 'rest-property-desc-transform-wikitext-body',
+									'example' => '== Hello world ==',
 									'type' => 'string',
 								]
 							]
@@ -59,6 +69,18 @@ class TransformWikitextToLintHandler extends TransformHandler {
 				]
 			],
 		];
+	}
+
+	public function getRequestBodyDescription(): MessageValue|string|null {
+		return new MessageValue( 'rest-requestbody-desc-transform-wikitext' );
+	}
+
+	public function getRequestBodyExample( string $mediaType ): ?array {
+		return [ 'wikitext' => '== Hello world ==' ];
+	}
+
+	public function getResponseBodyExampleFileName( string $method ): ?string {
+		return __DIR__ . '/Example/ContentLintErrors.json';
 	}
 
 	public function getResponseBodySchemaFileName( string $method ): ?string {

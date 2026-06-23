@@ -2268,6 +2268,72 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->assertArrayNotHasKey( 'description', $spec['requestBody'] );
 	}
 
+	public function testGetOpenApiSpecRequestBodySchemaLocalized(): void {
+		$handler = $this->newHandler( [
+			'getParamSettings',
+			'getHeaderParamSettings',
+			'getBodyParamSettings',
+			'getSupportedRequestTypes',
+			'getRequestBodySchema',
+			'getResponseBodySchema',
+			'getResponseHeaderSettings',
+		] );
+		$handler->method( 'getParamSettings' )->willReturn( [] );
+		$handler->method( 'getHeaderParamSettings' )->willReturn( [] );
+		$handler->method( 'getBodyParamSettings' )->willReturn( [] );
+		$handler->method( 'getSupportedRequestTypes' )->willReturn( [ 'application/json' ] );
+		$handler->method( 'getRequestBodySchema' )->willReturn( [
+			'type' => 'object',
+			'properties' => [
+				'plain' => [
+					'type' => 'string',
+				],
+				'localized' => [
+					'type' => 'string',
+					'x-i18n-description' => 'rest-property-desc-mock-desc',
+				],
+				'nested' => [
+					'type' => 'object',
+					'properties' => [
+						'inner' => [
+							'type' => 'string',
+							'x-i18n-description' => 'rest-property-desc-mock-desc',
+						],
+					],
+				],
+			],
+		] );
+		$handler->method( 'getResponseBodySchema' )->willReturn( null );
+		$handler->method( 'getResponseHeaderSettings' )->willReturn( [] );
+
+		$module = $this->createNoOpMock( Module::class, [ 'getModuleDescription' ] );
+		$module->method( 'getModuleDescription' )->willReturn( [] );
+		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
+
+		$formatter = $this->getDummyTextFormatter( true );
+		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
+		$authority = $this->mockAnonUltimateAuthority();
+		$hookContainer = $this->createHookContainer();
+		$handler->initServices( $authority, $responseFactory, $hookContainer );
+
+		$spec = $handler->getOpenApiSpec( 'POST' );
+
+		$schema = $spec['requestBody']['content']['application/json']['schema'];
+		// Properties without an x-i18n-description are left untouched.
+		$this->assertArrayNotHasKey( 'description', $schema['properties']['plain'] );
+		// x-i18n-description is replaced with a localized description.
+		$this->assertArrayNotHasKey( 'x-i18n-description', $schema['properties']['localized'] );
+		$this->assertSame(
+			'<message key="rest-property-desc-mock-desc"></message>',
+			$schema['properties']['localized']['description']
+		);
+		// Nested schema properties are localized too.
+		$this->assertSame(
+			'<message key="rest-property-desc-mock-desc"></message>',
+			$schema['properties']['nested']['properties']['inner']['description']
+		);
+	}
+
 	public function testGetOpenApiSpecRequestBodyExamplePresent(): void {
 		$expectedExample = [ 'title' => 'Earth', 'source' => 'text/plain' ];
 

@@ -27,7 +27,8 @@ class TransformWikitextToHtmlTitleHandler extends TransformHandler {
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-transform-title' ),
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-wikitext-to-html-title' ),
+				Handler::PARAM_EXAMPLE => 'Main_Page',
 			],
 		];
 	}
@@ -48,6 +49,8 @@ class TransformWikitextToHtmlTitleHandler extends TransformHandler {
 					'type' => 'object',
 					'properties' => [
 						'wikitext' => [
+							'x-i18n-description' => 'rest-property-desc-transform-wikitext',
+							'example' => '== Hello world ==',
 							'type' => 'string',
 						]
 					]
@@ -56,12 +59,18 @@ class TransformWikitextToHtmlTitleHandler extends TransformHandler {
 					'type' => 'object',
 					'properties' => [
 						'wikitext' => [
+							'x-i18n-description' => 'rest-property-desc-transform-wikitext-with-headers',
+							'example' => [ 'body' => '== Hello world ==' ],
 							'type' => 'object',
 							'properties' => [
 								'headers' => [
+									'x-i18n-description' => 'rest-property-desc-transform-wikitext-headers',
+									'example' => [ 'content-language' => 'en' ],
 									'type' => 'object',
 								],
 								'body' => [
+									'x-i18n-description' => 'rest-property-desc-transform-wikitext-body',
+									'example' => '== Hello world ==',
 									'type' => 'string',
 								]
 							]
@@ -70,5 +79,13 @@ class TransformWikitextToHtmlTitleHandler extends TransformHandler {
 				]
 			],
 		];
+	}
+
+	public function getRequestBodyDescription(): MessageValue|string|null {
+		return new MessageValue( 'rest-requestbody-desc-transform-wikitext' );
+	}
+
+	public function getRequestBodyExample( string $mediaType ): ?array {
+		return [ 'wikitext' => '== Hello world ==' ];
 	}
 }

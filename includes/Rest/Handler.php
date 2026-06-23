@@ -868,6 +868,7 @@ abstract class Handler {
 			$schema = $this->getRequestBodySchema( $type );
 
 			if ( $schema ) {
+				$schema = $this->getJsonLocalizer()->localizeJson( $schema );
 				$mediaTypes[$type] = [ 'schema' => $schema ];
 				$example = $this->getRequestBodyExample( $type );
 				if ( $example ) {
