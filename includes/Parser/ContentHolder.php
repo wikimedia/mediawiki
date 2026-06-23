@@ -276,8 +276,9 @@ class ContentHolder implements JsonCodecable {
 	 */
 	public function prependDom( DocumentFragment $df, string $fragmentName = self::BODY_FRAGMENT ) {
 		if ( !$this->domFormat ) {
-			// Note: in order to have a fragment with the right owner, the
-			// ContentHolder is already in dom format.
+			// Not worth optimizing, because you almost certainly were in
+			// DOM format already in order to generate $df with the right
+			// owner. We'll still convert here for correctness in corner cases.
 			$this->convertHtmlToDom();
 		}
 		Assert::invariant( $df->ownerDocument === $this->ownerDocument,
@@ -310,8 +311,9 @@ class ContentHolder implements JsonCodecable {
 	 */
 	public function appendDom( DocumentFragment $df, string $fragmentName = self::BODY_FRAGMENT ) {
 		if ( !$this->domFormat ) {
-			// Note: in order to have a fragment with the right owner, the
-			// ContentHolder is already in dom format.
+			// Not worth optimizing, because you almost certainly were in
+			// DOM format already in order to generate $df with the right
+			// owner. We'll still convert here for correctness in corner cases.
 			$this->convertHtmlToDom();
 		}
 		Assert::invariant( $df->ownerDocument === $this->ownerDocument,
