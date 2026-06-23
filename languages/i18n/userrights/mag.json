@@ -18,7 +18,7 @@
 	"userrights-unchangeable-col": "समूह जेकरा अपने नै बदल सकही",
 	"userrights-expiry-current": "समाप्ति $1",
 	"userrights-expiry-none": "समाप्त नै होतै",
-	"userrights-expiry-othertime": "अन्य समय:",
+	"userrights-expiry-othertime": "अन्य समाप्ति समय",
 	"userrights-expiry-options": "१ दिन:1 day,१ सप्ताह:1 week,१ महीना:1 month,३ महीना:3 months,६ महीने:6 months,१ बरिस:1 year",
 	"userrights-invalid-expiry": "\"$1\" समूहला समाप्ति समय अमान्य हे ।",
 	"userrights-expiry-in-past": "\"$1\" समूहला समाप्ति समय पहिलहीँ बीत चुकल हे ।",
@@ -104,10 +104,10 @@
 	"grant-viewmywatchlist": "अपन ध्यानसूची देखी",
 	"grant-viewrestrictedlogs": "प्रतिबन्धित प्रविष्टि लॉग् देखी",
 	"action-read": "ई पन्ना पढ़ी",
-	"action-edit": "ई पन्ना सम्पादित करी",
+	"action-edit": "ई पन्ना सम्पादित करथिन",
 	"action-createpage": "ई पन्ना बनावी",
 	"action-createtalk": "ई वार्तापन्ना बनावी",
-	"action-createaccount": "ई सदस्यखाता बनावी",
+	"action-createaccount": "ई प्रयोगकर्ता खाता बनावथिन",
 	"action-autocreateaccount": "स्वतः बाहरी सदस्यखाता बनावी",
 	"action-history": "ई पन्नाके इतिहास देखी",
 	"action-minoredit": "ई सम्पादनके छोट चिह्नित करी",
@@ -128,5 +128,5 @@
 	"action-editcontentmodel": "एगो पन्नाके सामग्री मॉडल सम्पादित करी",
 	"action-managechangetags": "अङ्कितक बनावी आउ (अ)सक्षम करी",
 	"action-applychangetags": "अपन परिवर्तन सङ्ग अङ्कितक जोड़ी",
-	"listgrouprights-members": "(सदस्स सूची)"
+	"listgrouprights-members": "(सदस्य सूची)"
 }

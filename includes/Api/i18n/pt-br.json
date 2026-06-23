@@ -560,7 +560,7 @@
 	"apihelp-query+allmessages-param-prop": "Quais propriedades obter.",
 	"apihelp-query+allmessages-param-enableparser": "Defina para ativar o analisador, irá processar o texto wiki da mensagem (substituir palavras mágicas, predefinições manipuladoras, etc.).",
 	"apihelp-query+allmessages-param-nocontent": "Se configurado, não inclua o conteúdo das mensagens na saída.",
-	"apihelp-query+allmessages-param-includelocal": "Inclua também mensagens locais, ou seja, mensagens que não existem no software, mas existem como no {{ns:MediaWiki}} namespace.\nIsso lista todas as páginas de espaço nominal-{{ns: MediaWiki}}, então também irá listar aqueles que não são realmente mensagens, como [[MediaWiki:Common.js|Common.js]].",
+	"apihelp-query+allmessages-param-includelocal": "Incluir também mensagens locais, ou seja, mensagens que não existem no ''software'', mas existem como no espaço nominal {{ns:MediaWiki}}.\nIsso lista todas as páginas do espaço nominal {{ns: MediaWiki}}, então também listará aquelas que não são realmente mensagens, como [[MediaWiki:Common.js|Common.js]].",
 	"apihelp-query+allmessages-param-args": "Argumentos para serem substituídos pela mensagem.",
 	"apihelp-query+allmessages-param-filter": "Retornar apenas mensagens com nomes que contêm essa string.",
 	"apihelp-query+allmessages-param-customised": "Retornar apenas mensagens neste estado de personalização.",

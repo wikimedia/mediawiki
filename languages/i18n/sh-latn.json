@@ -130,7 +130,7 @@
 	"redirectpagesub": "Preusmjerenje",
 	"redirectto": "Preusmjerenje na:",
 	"lastmodifiedat": "Ova stranica posljednji je put izmijenjena $1 u $2.",
-	"renderedwith-parsoid": "Stranica je ispisana pomoću [[mw:Special:MyLanguage/Parsoid|Parsoida]].",
+	"renderedwith-parsoid": "Stranica je ispisana [[mw:Special:MyLanguage/Parsoid|Parsoidom]].",
 	"viewcount": "Ovoj stranici je pristupljeno {{PLURAL:$1|$1 put|$1 puta}}.",
 	"protectedpage": "Zaštićena stranica",
 	"jumpto": "Prijeđi na:",

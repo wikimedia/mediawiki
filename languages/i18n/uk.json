@@ -3228,7 +3228,7 @@
 	"version-libraries-authors": "Автори",
 	"version-libraries-source": "Джерело",
 	"redirect": "Перенаправлення за файлом, користувачем, сторінкою, версією або ID журналу",
-	"redirect-summary": "Ця спеціальна сторінка перенаправляє на файл (за поданою назвою файлу), сторінку (за поданим ID версії або сторінки), сторінку користувача (за поданим числовим ID користувача) або запис журлану (за поданим ID журналу). Використання: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]],[[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]] або [[{{#Special:Redirect}}/logid/186]].",
+	"redirect-summary": "Ця спеціальна сторінка перенаправляє на файл (за поданою назвою файлу), сторінку (за поданим ID версії або сторінки), сторінку користувача (за поданим числовим ID користувача) або запис журналу (за поданим ID журналу). Використання: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]],[[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]] або [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "Перейти",
 	"redirect-lookup": "Шукати:",
 	"redirect-value": "Значення:",
