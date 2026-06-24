@@ -700,6 +700,7 @@
 	"pt-login": "Shown to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg-mw|nav-login-createaccount}} is shown there).\n{{Identical|Log in}}",
 	"pt-login-button": "Shown as the caption of the button at [[Special:UserLogin]].\n{{Identical|Log in}}",
 	"pt-login-continue-button": "Shown as the caption of the button at [[Special:UserLogin]] in second and later steps of a multipage login.",
+	"pt-login-reauth-button": "Shown as the caption of the button at [[Special:UserLogin]] when a user who is already logged in is reauthenticating.",
 	"pt-createaccount": "Used on the top of the page for logged out users, where it appears next to {{msg-mw|pt-login}}, so consider making them similar.\n{{Identical|Create account}}",
 	"pt-userlogout": "{{Doc-actionlink}}\n{{Identical|Log out}}",
 	"php-mail-error-unknown": "{{doc-important|Do not translate \"mail()\".}}\n\nUsed as error message when <code>mail()</code> returned empty error message.",

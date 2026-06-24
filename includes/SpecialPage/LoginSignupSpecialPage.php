@@ -1188,10 +1188,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'loginattempt' => [
 					// submit button
 					'type' => 'submit',
-					// The following messages are used here:
-					// * pt-login-button
-					// * pt-login-continue-button
-					'default' => $this->msg( 'pt-login-' . $continuePart . 'button' )->text(),
+					'default' => $this->msg( $this->securityLevel ?
+							'pt-login-reauth-button' :
+							// The following messages are used here:
+							// * pt-login-button
+							// * pt-login-continue-button
+							'pt-login-' . $continuePart . 'button'
+						)->text(),
 					'id' => 'wpLoginAttempt',
 					'weight' => 100,
 				],
@@ -1469,7 +1472,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			unset( $formDescriptor['createaccount'], $formDescriptor['loginattempt'] );
 		}
 
-		if ( $this->getUser()->isNamed() && !$this->isContinued() ) {
+		if ( $this->getUser()->isNamed() && !$this->isContinued() && !$this->securityLevel ) {
 			// Remove 'primary' flag from the default form submission button if the user is already logged in
 			if ( isset( $formDescriptor['createaccount'] ) ) {
 				$formDescriptor['createaccount']['flags'] = [ 'progressive' ];

@@ -419,6 +419,7 @@
 	"pt-login": "Log in",
 	"pt-login-button": "Log in",
 	"pt-login-continue-button": "Continue login",
+	"pt-login-reauth-button": "Continue",
 	"pt-createaccount": "Create account",
 	"pt-userlogout": "Log out",
 	"php-mail-error-unknown": "Unknown error in PHP's mail() function.",
