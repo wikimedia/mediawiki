@@ -24,6 +24,7 @@
 			"Tr jason",
 			"VulpesVulpes825",
 			"WaitSpring",
+			"Zhoucantd",
 			"沈澄心",
 			"范",
 			"铁桶"
@@ -142,8 +143,8 @@
 	"rest-param-desc-update-source": "采用 content_model 属性指定格式的页面内容",
 	"rest-param-desc-latest-source": "采用 content_model 属性指定格式的最新页面内容",
 	"rest-param-desc-compare-from": "用作比较基础的修订标识符",
-	"rest-param-desc-compare-from-id": "“起始”修订的修订标识符",
-	"rest-param-desc-compare-from-slotrole": "被比较的插槽的角色（当前始终为“主要”）",
+	"rest-param-desc-compare-from-id": "修订标识符",
+	"rest-param-desc-compare-from-slotrole": "被比较的插槽的角色（始终为“主要”）",
 	"rest-param-desc-compare-from-sections": "修订版的预处理器部分，没有模板扩展",
 	"rest-param-desc-compare-from-section-level": "部分级别",
 	"rest-param-desc-compare-from-section-heading": "章节标题，例如 1 对应<h1>",

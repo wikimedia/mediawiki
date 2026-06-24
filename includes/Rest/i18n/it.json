@@ -70,7 +70,7 @@
 	"rest-endpoint-summ-get-revision-id-with-html": "Ottieni informazioni sulla versione con HTML",
 	"rest-endpoint-summ-get-revision-id-bare": "Ottieni la versione",
 	"rest-endpoint-summ-get-search": "Ottieni il documento descrittivo di OpenSearch",
-	"rest-endpoint-summ-get-search-title": "Completamento automatico del titolo della pagina",
+	"rest-endpoint-summ-get-search-title": "Elenca pagine per titolo dell'interrogazione",
 	"rest-endpoint-summ-get-page-title-bare": "Ottieni la pagina",
 	"rest-endpoint-summ-get-page-title-with-html": "Ottieni la pagina con HTML",
 	"rest-endpoint-summ-get-page-title-media": "Ottieni i file sulla pagina",
