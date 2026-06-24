@@ -4,7 +4,6 @@ use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\MainConfigNames;
 
 /**
- * @group Database
  * @group GlobalFunctions
  */
 class GlobalTest extends MediaWikiIntegrationTestCase {

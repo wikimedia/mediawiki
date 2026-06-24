@@ -22,7 +22,6 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\User\UserRequirementsConditionChecker
- * @group Database
  */
 class UserRequirementsConditionCheckerTest extends MediaWikiIntegrationTestCase {
 

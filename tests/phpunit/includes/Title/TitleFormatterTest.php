@@ -7,7 +7,6 @@ use MediaWiki\Title\TitleValue;
  * @covers \MediaWiki\Title\TitleParser
  *
  * @group Title
- * @group Database
  */
 class TitleFormatterTest extends TitleCodecTestBase {
 

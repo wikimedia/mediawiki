@@ -13,8 +13,6 @@ use Psr\Log\NullLogger;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\AddRedirectHeader
- * @group Database
- *        ^ Title shenanigans seem to require this
  */
 class AddRedirectHeaderTest extends OutputTransformStageTestBase {
 

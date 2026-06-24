@@ -7,7 +7,6 @@ use PHPUnit\Framework\ExpectationFailedException;
 
 /**
  * @covers \FindClasses
- * @group Database
  * @author Dreamy Jazz
  */
 class FindClassesTest extends MaintenanceBaseTestCase {

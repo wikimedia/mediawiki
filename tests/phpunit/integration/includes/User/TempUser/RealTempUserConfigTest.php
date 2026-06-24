@@ -13,7 +13,6 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers \MediaWiki\User\TempUser\RealTempUserConfig
- * @group Database
  */
 class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 

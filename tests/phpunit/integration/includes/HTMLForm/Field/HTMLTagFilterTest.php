@@ -9,7 +9,6 @@ use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @group Database
  * @covers \MediaWiki\HTMLForm\Field\HTMLTagFilter
  */
 class HTMLTagFilterTest extends HTMLFormFieldTestCase {

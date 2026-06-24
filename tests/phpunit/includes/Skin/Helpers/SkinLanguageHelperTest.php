@@ -11,7 +11,6 @@ use MediaWiki\Title\Title;
 
 /**
  * @covers \MediaWiki\Skin\Helpers\SkinLanguageHelper
- * @group Database
  */
 class SkinLanguageHelperTest extends MediaWikiIntegrationTestCase {
 

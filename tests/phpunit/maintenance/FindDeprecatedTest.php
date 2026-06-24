@@ -9,7 +9,6 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \FindDeprecated
  * @covers \DeprecatedInterfaceFinder
  * @covers \FileAwareNodeVisitor
- * @group Database
  * @author Dreamy Jazz
  */
 class FindDeprecatedTest extends MaintenanceBaseTestCase {

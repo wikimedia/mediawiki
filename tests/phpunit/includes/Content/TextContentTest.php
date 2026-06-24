@@ -17,7 +17,6 @@ use MediaWikiLangTestCase;
  * Needs database to do link updates.
  *
  * @group ContentHandler
- * @group Database
  * @covers \MediaWiki\Content\TextContent
  * @covers \MediaWiki\Content\TextContentHandler
  */

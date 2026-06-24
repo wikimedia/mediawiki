@@ -18,7 +18,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @group API
- * @group Database
  * @group medium
  *
  * @covers \MediaWiki\Api\ApiOptions

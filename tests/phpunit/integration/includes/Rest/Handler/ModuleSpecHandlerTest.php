@@ -26,8 +26,6 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Rest\Handler\ModuleSpecHandler
- *
- * @group Database
  */
 class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;

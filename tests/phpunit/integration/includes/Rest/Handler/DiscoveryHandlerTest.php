@@ -22,8 +22,6 @@ use Wikimedia\Message\MessageSpecifier;
 
 /**
  * @covers \MediaWiki\Rest\Handler\DiscoveryHandler
- *
- * @group Database
  */
 class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;

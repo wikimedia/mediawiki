@@ -16,7 +16,6 @@ use Wikimedia\Parsoid\ParserTests\TestUtils;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\ParsoidLanguageConverter
- * @group Database
  */
 class ParsoidLanguageConverterTest extends MediaWikiIntegrationTestCase {
 

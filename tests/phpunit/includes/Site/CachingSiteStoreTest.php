@@ -14,7 +14,6 @@ use MediaWikiIntegrationTestCase;
 /**
  * @covers \MediaWiki\Site\CachingSiteStore
  * @group Site
- * @group Database
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class CachingSiteStoreTest extends MediaWikiIntegrationTestCase {

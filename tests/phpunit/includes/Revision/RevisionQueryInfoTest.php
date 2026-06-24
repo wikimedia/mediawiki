@@ -9,7 +9,6 @@ use MediaWikiIntegrationTestCase;
  *
  * @group RevisionStore
  * @group Storage
- * @group Database
  */
 class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 

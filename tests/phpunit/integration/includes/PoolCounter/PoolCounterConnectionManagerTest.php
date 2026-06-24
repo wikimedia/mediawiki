@@ -7,7 +7,6 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\PoolCounter\PoolCounterConnectionManager
- * @group Database
  */
 class PoolCounterConnectionManagerTest extends MediaWikiIntegrationTestCase {
 

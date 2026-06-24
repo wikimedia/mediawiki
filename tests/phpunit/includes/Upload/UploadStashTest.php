@@ -4,8 +4,6 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Upload\UploadFromStash;
 
 /**
- * @group Database
- *
  * @covers \MediaWiki\Upload\UploadStash
  */
 class UploadStashTest extends MediaWikiIntegrationTestCase {

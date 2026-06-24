@@ -13,7 +13,6 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @author MAbualruz
- * @group Database
  * @covers \MediaWiki\Specials\Contribute\ContributeFactory
  */
 class ContributeFactoryTest extends MediaWikiIntegrationTestCase {
