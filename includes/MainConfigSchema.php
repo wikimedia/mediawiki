@@ -12952,16 +12952,14 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * A list of OpenAPI specs to be made available for exploration on
-	 * Special:RestSandbox. If none are given, Special:RestSandbox is disabled.
+	 * A list of OpenAPI specs to be made available for exploration on the REST sandbox.
 	 *
 	 * This is an associative array, arbitrary spec IDs to spec descriptions.
 	 * Each spec description is an array with the following keys:
 	 * - url: the URL that will return the OpenAPI spec.
-	 * - name: the name of the API, to be shown on Special:RestSandbox.
+	 * - name: the name of the API, to be shown on the REST sandbox.
 	 *   Ignored if msg is given.
-	 * - msg: a message key for the name of the API, to be shown on
-	 *   Special:RestSandbox.
+	 * - msg: a message key for the name of the API, to be shown on the REST sandbox.
 	 * - file: optional module definition file name. If supplied, information therein is used for
 	 *   name and/or url. Info supplied directly in config (via url/name/msg) takes precedence.
 	 *

@@ -99,7 +99,6 @@ class DiscoveryHandler extends Handler {
 			'contact' => $this->getContactSpec(),
 			// TODO: terms of service
 			// TODO: owner/operator
-			// TODO: link to Special:RestSandbox
 			// TODO: link to https://www.mediawiki.org/wiki/API:REST_API
 		];
 	}
