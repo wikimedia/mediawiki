@@ -100,7 +100,7 @@ class ChangeTagsFormatterTest extends MediaWikiUnitTestCase {
 		);
 		$this->assertNull( $objectUnderTest->buildTagFilter(
 			'test',
-			true,
+			'ooui',
 			$this->createMock( IContextSource::class ) )
 		);
 	}
@@ -113,7 +113,7 @@ class ChangeTagsFormatterTest extends MediaWikiUnitTestCase {
 		$objectUnderTest = $this->getObjectUnderTest( $mockChangeTagsStore );
 		$this->assertNull( $objectUnderTest->buildTagFilter(
 			'test',
-			true,
+			'ooui',
 			$this->createMock( IContextSource::class ) )
 		);
 	}

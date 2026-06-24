@@ -162,8 +162,11 @@ class ChangeTagsFormatter {
 	 *
 	 * @since 1.47
 	 * @param string $selected Tag to select by default
-	 * @param bool $ooui Use an OOUI {@link ComboBoxInputWidget} as selector instead of a non-OOUI input field
-	 *        You need to call {@link OutputPage::enableOOUI()} yourself.
+	 * @param string $format One of the following formats:
+	 *   - `'ooui'`: Use an OOUI {@link ComboBoxInputWidget}. You need to call {@link OutputPage::enableOOUI()}
+	 *       yourself.
+	 *   - `'codex'`: Use a Codex CSS-only Lookup input.
+	 *   - otherwise: Plain HTML select box.
 	 * @param IContextSource $context
 	 * @param bool $activeOnly If `true`, only show tags which have been used at least once
 	 * @param bool $useAllTags If `true`, use all known tags. If `false`, use only tags defined by MediaWiki core
@@ -173,7 +176,7 @@ class ChangeTagsFormatter {
 	 */
 	public function buildTagFilter(
 		string $selected,
-		bool $ooui,
+		string $format,
 		IContextSource $context,
 		bool $activeOnly = true,
 		bool $useAllTags = true
@@ -205,7 +208,7 @@ class ChangeTagsFormatter {
 			$context->msg( 'tag-filter' )->parse()
 		);
 
-		if ( $ooui ) {
+		if ( $format === 'ooui' ) {
 			$options = Html::listDropdownOptionsOoui( $autocomplete );
 
 			$data[1] = new ComboBoxInputWidget( [
@@ -227,12 +230,16 @@ class ChangeTagsFormatter {
 				$selected,
 				'text',
 				[
-					'class' => [ 'mw-tagfilter-input' ],
+					'class' => [ 'mw-tagfilter-input', 'cdx-text-input__input' => $format === 'codex' ],
 					'size' => 20,
 					'id' => 'tagfilter',
 					'list' => 'tagfilter-datalist',
 				]
-			) . $datalistHtml;
+			);
+			if ( $format === 'codex' ) {
+				$data[1] = Html::rawElement( 'div', [ 'class' => 'cdx-text-input' ], $data[1] );
+			}
+			$data[1] .= $datalistHtml;
 		}
 
 		return $data;

@@ -686,7 +686,7 @@ class ChangeTags {
 	) {
 		return MediaWikiServices::getInstance()->getChangeTagsFormatter()->buildTagFilter(
 			$selected,
-			$ooui,
+			$ooui ? 'ooui' : 'other',
 			$context,
 			$activeOnly,
 			$useAllTags

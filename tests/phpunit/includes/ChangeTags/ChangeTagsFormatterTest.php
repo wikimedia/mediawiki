@@ -270,12 +270,22 @@ class ChangeTagsFormatterTest extends MediaWikiIntegrationTestCase {
 				'<input class="mw-tagfilter-input" size="20" id="tagfilter" list="tagfilter-datalist" name="tagfilter"><datalist id="tagfilter-datalist"></datalist>'
 			],
 			$this->getServiceContainer()->getChangeTagsFormatter()->buildTagFilter(
-				'', false, RequestContext::getMain()
+				'', 'other', RequestContext::getMain()
+			)
+		);
+
+		$this->assertSame(
+			[
+				'<label for="tagfilter"><a href="/wiki/Special:Tags" title="Special:Tags">Tag</a> filter:</label>',
+				'<div class="cdx-text-input"><input class="mw-tagfilter-input cdx-text-input__input" size="20" id="tagfilter" list="tagfilter-datalist" name="tagfilter"></div><datalist id="tagfilter-datalist"></datalist>'
+			],
+			$this->getServiceContainer()->getChangeTagsFormatter()->buildTagFilter(
+				'', 'codex', RequestContext::getMain()
 			)
 		);
 
 		$oouiActualTagFilter = $this->getServiceContainer()->getChangeTagsFormatter()->buildTagFilter(
-			'', true, RequestContext::getMain()
+			'', 'ooui', RequestContext::getMain()
 		);
 		$this->assertCount( 2, $oouiActualTagFilter );
 		$this->assertSame(
@@ -316,7 +326,7 @@ class ChangeTagsFormatterTest extends MediaWikiIntegrationTestCase {
 				'<input class="mw-tagfilter-input" size="20" id="tagfilter" list="tagfilter-datalist" name="tagfilter"><datalist id="tagfilter-datalist"><option value="mw-test">mw-test</option><option value="mw-reverted">Reverted</option></datalist>'
 			],
 			$this->getServiceContainer()->getChangeTagsFormatter()->buildTagFilter(
-				'', false, RequestContext::getMain()
+				'', 'other', RequestContext::getMain()
 			),
 			'Tag filter HTML was not as expected'
 		);

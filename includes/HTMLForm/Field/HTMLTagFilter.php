@@ -4,6 +4,7 @@ namespace MediaWiki\HTMLForm\Field;
 
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\HTMLForm\HTMLFormField;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Wrapper for ChangeTags::buildTagFilterSelector to use in HTMLForm
@@ -11,7 +12,7 @@ use MediaWiki\HTMLForm\HTMLFormField;
  * @stable to extend
  */
 class HTMLTagFilter extends HTMLFormField {
-	/** @var array */
+	/** @var array|null */
 	protected $tagFilter;
 
 	/** @var bool */
@@ -38,16 +39,20 @@ class HTMLTagFilter extends HTMLFormField {
 		}
 	}
 
-	/** @inheritDoc */
-	public function getTableRow( $value ) {
-		$this->tagFilter = ChangeTags::buildTagFilterSelector(
+	private function buildTagFilter( string $value, string $format ): bool {
+		$this->tagFilter = MediaWikiServices::getInstance()->getChangeTagsFormatter()->buildTagFilter(
 			$value,
-			false,
+			$format,
 			$this->mParent->getContext(),
 			$this->activeOnly,
 			$this->useAllTags
 		);
-		if ( $this->tagFilter ) {
+		return (bool)$this->tagFilter;
+	}
+
+	/** @inheritDoc */
+	public function getTableRow( $value ) {
+		if ( $this->buildTagFilter( $value, 'other' ) ) {
 			return parent::getTableRow( $value );
 		}
 		return '';
@@ -55,14 +60,7 @@ class HTMLTagFilter extends HTMLFormField {
 
 	/** @inheritDoc */
 	public function getDiv( $value ) {
-		$this->tagFilter = ChangeTags::buildTagFilterSelector(
-			$value,
-			false,
-			$this->mParent->getContext(),
-			$this->activeOnly,
-			$this->useAllTags
-		);
-		if ( $this->tagFilter ) {
+		if ( $this->buildTagFilter( $value, 'other' ) ) {
 			return parent::getDiv( $value );
 		}
 		return '';
@@ -70,17 +68,18 @@ class HTMLTagFilter extends HTMLFormField {
 
 	/** @inheritDoc */
 	public function getOOUI( $value ) {
-		$this->tagFilter = ChangeTags::buildTagFilterSelector(
-			$value,
-			true,
-			$this->mParent->getContext(),
-			$this->activeOnly,
-			$this->useAllTags
-		);
-		if ( $this->tagFilter ) {
+		if ( $this->buildTagFilter( $value, 'ooui' ) ) {
 			return parent::getOOUI( $value );
 		}
 		return new \OOUI\FieldLayout( new \OOUI\Widget() );
+	}
+
+	/** @inheritDoc */
+	public function getCodex( $value ) {
+		if ( $this->buildTagFilter( $value, 'codex' ) ) {
+			return parent::getCodex( $value );
+		}
+		return '';
 	}
 
 	/** @inheritDoc */
