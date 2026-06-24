@@ -12,6 +12,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Media\MediaTransformOutput;
 use MediaWiki\Media\ThumbnailImage;
+use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MediaWiki\Search\SearchResult;
@@ -463,7 +464,10 @@ class FullSearchResultWidget implements SearchResultWidget {
 	 */
 	protected function buildMeta( $desc, $date ) {
 		if ( $desc && $date ) {
-			$meta = "{$desc} – {$date}";
+			$meta = $this->specialPage->msg( 'search-result-meta-separator',
+				Message::rawParam( $desc ),
+				Message::rawParam( $date )
+			)->escaped();
 		} elseif ( $desc ) {
 			$meta = $desc;
 		} elseif ( $date ) {
