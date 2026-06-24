@@ -15,35 +15,36 @@ THIS IS NOT A RELEASE YET
 * (T419192) Actions: Fix incorrect variable shadowing.
 * (T421659) Installer: Skip dropIndex() when table does not exists.
 * (T413545, T422879) Update wikimedia/parsoid to 0.20.8.
-* (T423185)  HashSiteStore: Don't trigger PHP 8.5 warnings if the Site has
+* (T423185) HashSiteStore: Don't trigger PHP 8.5 warnings if the Site has
   no globalID.
 * Make CacheTime/ParserOutput JsonCodecable; deprecate older json classes.
 * ParserOutput: Add JsonCodec hints for TOCData and WarningMsgs.
 * (T414805) Media: Re-apply Use previous step for non-standard width between
   steps and original.
-* (T418745, T423895)  Media: Fallback to the largest standard size if an
+* (T418745, T423895) Media: Fallback to the largest standard size if an
   overly large one is requested.
 * (T328921) Drop various PHP 7.4/8.0 support hacks, no longer needed.
 * (T261260) Re-add preloading of classes used in the header callback.
 * (T261260) Limit preloading workaround for autoload bug to PHP<8.6.
 * Upload: Avoid null array key in UploadBase::getMaxUploadSize.
 * (T395204) Unify logging of IP / user agent / etc on sensitive operations.
-* (T423502)  AuthManager: Log status changes from
+* (T423502) AuthManager: Log status changes from
   SecuritySensitiveOperationStatusHook call.
+* (T419768) RawAction: Restrict content type to javascript.
 * HTMLForm: Add 'type' => 'button'.
 * (T395204) Update GetSecurityLogContext @since tags for backports.
 * (T402792, T414805, T416620, T418178) DjvuHandler: Make it follow thumb steps.
-*  TextContentHandler::fillParserOutput: Drop old support for Content::getHtml,
+* TextContentHandler::fillParserOutput: Drop old support for Content::getHtml,
   no longer needed.
 * (T410934) Remove noop xml_parser_free() call.
 * Drop empty ids.
-* (T425742)  ApiQueryInfo: Pass an empty string instead of null to
+* (T425742) ApiQueryInfo: Pass an empty string instead of null to
   EditFormPreloadText hook.
 * (T424114) Media: Improve $wgThumbnailSteps docs.
 * resetUserEmail: Log email change to authentication log.
 * resetUserEmail: Add reason option for email change.
 * resetUserEmail: Log more events from script.
-*  changePassword/resetUserEmail: Invalidate user sessions upon password
+* changePassword/resetUserEmail: Invalidate user sessions upon password
   change.
 * (T426861) composer.json: Updated symfony/yaml from 5.4.45 to 5.4.52.
 * (T366986) Parser: Improve recursive lock error message.
