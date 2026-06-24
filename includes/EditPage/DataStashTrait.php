@@ -93,6 +93,31 @@ trait DataStashTrait {
 		return true;
 	}
 
+	protected function destroyStashedData(): bool {
+		$context = $this->getContext();
+		$request = $context->getRequest();
+		$session = $request->getSession();
+		$uniqueId = $request->getVal( 'requestUniqueId' );
+		$key = $this->getStashKey() . ':' . $uniqueId;
+		if ( $session->remove( $key ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	protected function enableReauthPopup( string $jsPopupModule, ?string $operation ): void {
+		$context = $this->getContext();
+		if ( $operation === null ) {
+			return;
+		}
+		$out = $this->getContext()->getOutput();
+		$out->addModules( $jsPopupModule );
+		$out->addJsConfigVars( [
+			'wgReauthOperation' => $operation
+		] );
+	}
+
 	protected function doReauthRedirect( PermissionStatus $status, array $queryParams ): void {
 		$context = $this->getContext();
 		$context->getOutput()->redirect( SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [

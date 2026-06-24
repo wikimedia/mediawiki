@@ -2807,6 +2807,14 @@ return [
 			'resources/src/mediawiki.authenticationPopup/constants.js',
 		]
 	],
+	'mediawiki.editPage.reauthPopup' => [
+		'packageFiles' => [
+			'resources/src/mediawiki.editPage.reauthPopup/init.js',
+		],
+		'dependencies' => [
+			'mediawiki.authenticationPopup',
+		],
+	],
 	'mediawiki.special.userlogin.common.styles' => [
 		'styles' => [
 			'resources/src/mediawiki.special.userlogin.common.styles/userlogin.less',

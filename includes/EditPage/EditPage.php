@@ -609,6 +609,7 @@ class EditPage implements IEditObject {
 
 			return;
 		}
+
 		$this->reauthRequired = $status->getReauthOperation();
 
 		$revRecord = $this->mArticle->fetchRevisionRecord();
@@ -656,12 +657,15 @@ class EditPage implements IEditObject {
 		# in the back door with a hand-edited submission URL.
 
 		if ( $this->formtype === 'save' ) {
+			$this->setStashKey( self::EDITFORM_ID . ':' . $this->getTitle()->getPrefixedDBkey() );
+
 			if ( $this->reauthRequired !== null ) {
 				// reauth at the attempted post/form save, stash user-submitted data
-				$this->setStashKey( self::EDITFORM_ID . ':' . $this->getTitle()->getPrefixedDBkey() );
 				$queryParams = $this->stashDataOnPost();
 				$this->doReauthRedirect( $status, $queryParams );
 			}
+
+			$this->destroyStashedData();
 
 			// we need to check this again here, for other potential issues, since
 			// we're not checking formtype == save for the same validation above
@@ -735,6 +739,12 @@ class EditPage implements IEditObject {
 			);
 			return;
 		}
+
+		// always attach AuthPopup to editform with the caveat that
+		// it will not fire if the user is recently re-authed and
+		// reauthRequired/getReauthOperation() are null
+		$reauthRight = $this->reauthRequired ?: '';
+		$this->enableReauthPopup( 'mediawiki.editPage.reauthPopup', $reauthRight );
 
 		$this->showEditForm();
 	}
