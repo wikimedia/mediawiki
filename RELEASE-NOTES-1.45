@@ -12,6 +12,50 @@ THIS IS NOT A RELEASE YET
 
 === Changes since 1.45.3 ===
 * Localisation updates.
+* (T419192) Actions: Fix incorrect variable shadowing.
+* (T421659) Installer: Skip dropIndex() when table does not exists.
+* (T413545, T422879) Update wikimedia/parsoid to 0.22.3.
+* (T423185)  HashSiteStore: Don't trigger PHP 8.5 warnings if the Site has
+  no globalID.
+* (T420239) search: Escape highlighting terms in postgres.
+* ParserOutput: Add JsonCodec hints for TOCData and WarningMsgs.
+* (T414805) Media: Re-apply Use previous step for non-standard width between
+  steps and original.
+* (T418745, T423895)  Media: Fallback to the largest standard size if an
+  overly large one is requested.
+* (T382781) Changed Levantine Arabic numerals to Western numerals.
+* (T382781) [PHP 8.4] Ensure Levantine Arabic numerals stay as Western
+  numerals.
+* (T261260) Limit preloading workaround for autoload bug to PHP<8.6.
+* Upload: Avoid null array key in UploadBase::getMaxUploadSize.
+* (T423821) Correctly support new file tables in RevDelFileItem.
+* (T423502) AuthManager: Log status changes from
+  SecuritySensitiveOperationStatusHook call.
+* (T419768) RawAction: Restrict content type to javascript.
+* HTMLForm: Add 'type' => 'button'.
+* (T395204) Update GetSecurityLogContext @since tags for backports.
+* (T424553) Correctly support new file tables in RevisionDeleteUser.
+* (T402792, T414805, T416620, T418178) DjvuHandler: Make it follow thumb steps.
+* (T425393)  languages: Add back Chinese language message entries for
+  $specialPageAliases.
+* (T425742) ApiQueryInfo: Pass an empty string instead of null to
+  EditFormPreloadText hook.
+* (T424114) Media: Improve $wgThumbnailSteps docs.
+* resetUserEmail: Log email change to authentication log.
+* resetUserEmail: Add reason option for email change.
+* resetUserEmail: Log more events from script.
+* changePassword/resetUserEmail: Invalidate user sessions upon password
+  change.
+* (T426861) composer.json: Updated symfony/yaml from 6.4.25 to 6.4.40.
+* (T366986) Parser: Improve recursive lock error message.
+* (T413545) Update wikimedia/parsoid to 0.22.4.
+* Add GitHub to $wgGitRepositoryViewers.
+* (T425818) changePassword: Log password change to authentication log.
+* changePassword: Add reason option for password change.
+* (T428406) LocalFileMoveBatch: Also update fr_archive_name when moving file.
+* (T429826) Updated guzzlehttp/guzzle from 7.10.0 to 7.12.1.
+* (T423617) Check the target url for redirects are allowed.
+* (T429965) Updated guzzlehttp/guzzle from 7.12.1 to 7.12.3.
 
 == MediaWiki 1.45.3 ==
 
