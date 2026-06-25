@@ -13,6 +13,7 @@ use MediaWikiIntegrationTestCase;
 /**
  * @group Blocking
  * @group Database
+ * @covers \MediaWiki\Block\BlockUser
  */
 class BlockUserTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
@@ -30,9 +31,6 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->blockUserFactory = $this->getServiceContainer()->getBlockUserFactory();
 	}
 
-	/**
-	 * @covers \MediaWiki\Block\BlockUser::placeBlock
-	 */
 	public function testValidTarget() {
 		$status = $this->blockUserFactory->newBlockUser(
 			$this->user,
@@ -51,9 +49,6 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $block->isAutoblocking() );
 	}
 
-	/**
-	 * @covers \MediaWiki\Block\BlockUser::placeBlock
-	 */
 	public function testHideUser() {
 		$status = $this->blockUserFactory->newBlockUser(
 			$this->user,
@@ -71,9 +66,6 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $block->getHideName() );
 	}
 
-	/**
-	 * @covers \MediaWiki\Block\BlockUser::placeBlock
-	 */
 	public function testExistingPage() {
 		$this->getExistingTestPage( 'Existing Page' );
 		$pageRestriction = PageRestriction::class;
@@ -92,9 +84,6 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'test existingpage', $block->getReasonComment()->text );
 	}
 
-	/**
-	 * @covers \MediaWiki\Block\BlockUser::placeBlock
-	 */
 	public function testNonexistentPage() {
 		$pageRestriction = PageRestriction::class;
 		$page = $pageRestriction::newFromTitle( 'nonexistent' );
@@ -109,9 +98,6 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusError( 'cant-block-nonexistent-page', $status );
 	}
 
-	/**
-	 * @covers \MediaWiki\Block\BlockUser::placeBlockInternal
-	 */
 	public function testReblock() {
 		$blockStatus = $this->blockUserFactory->newBlockUser(
 			$this->user,
@@ -153,9 +139,6 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'test reblock', $block->getReasonComment()->text );
 	}
 
-	/**
-	 * @covers \MediaWiki\Block\BlockUser::placeBlockInternal
-	 */
 	public function testPostHook() {
 		$hookBlock = false;
 		$hookPriorBlock = false;
@@ -198,9 +181,6 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $priorBlock->getId(), $hookPriorBlock->getId() );
 	}
 
-	/**
-	 * @covers \MediaWiki\Block\BlockUser::placeBlockInternal
-	 */
 	public function testIPBlockAllowedAutoblockPreserved() {
 		$blockStatus = $this->blockUserFactory->newBlockUser(
 			$this->user,
@@ -247,9 +227,6 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertContains( $IPBlock->getId(), $blockIds );
 	}
 
-	/**
-	 * @covers \MediaWiki\Block\BlockUser::placeBlockUnsafe
-	 */
 	public function testTooManyContribs() {
 		// Set the contrib limit to zero so that it fails with one edit
 		$this->overrideConfigValue( MainConfigNames::HideUserContribLimit, 0 );
@@ -268,9 +245,6 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusError( 'ipb_hide_invalid', $blockStatus );
 	}
 
-	/**
-	 * @covers \MediaWiki\Block\BlockUser::placeBlockUnsafe
-	 */
 	public function testUpdateWithTooManyContribs() {
 		$this->overrideConfigValue( MainConfigNames::HideUserContribLimit, 0 );
 		$this->blockUserFactory = $this->getServiceContainer()->getBlockUserFactory();
