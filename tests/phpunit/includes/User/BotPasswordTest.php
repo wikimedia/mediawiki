@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\MainConfigNames;
@@ -370,6 +371,72 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 			MediaWiki\Session\BotPasswordSessionProvider::class, $session->getProvider()
 		);
 		$this->assertSame( $session->getId(), $request->getSession()->getId() );
+	}
+
+	public function testLoginOnAutoCreateFailureDueToIPBlock(): void {
+		$mainConfig = $this->getServiceContainer()->getMainConfig();
+		$config = new HashConfig( [
+			MainConfigNames::SessionProviders => $mainConfig->get( MainConfigNames::SessionProviders ) + [
+					MediaWiki\Session\BotPasswordSessionProvider::class => [
+						'class' => MediaWiki\Session\BotPasswordSessionProvider::class,
+						'args' => [ [ 'priority' => 40 ] ],
+						'services' => [ 'GrantsInfo' ],
+					]
+				],
+		] );
+
+		$manager = new SessionManager(
+			new MultiConfig( [ $config, $mainConfig ] ),
+			new Psr\Log\NullLogger,
+			$this->getServiceContainer()->getCentralIdLookup(),
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getObjectFactory(),
+			$this->getServiceContainer()->getProxyLookup(),
+			$this->getServiceContainer()->getUrlUtils(),
+			$this->getServiceContainer()->getUserNameUtils(),
+			$this->getServiceContainer()->getSessionStore()
+		);
+		$this->setService( 'SessionManager', $manager );
+
+		$this->getServiceContainer()->getBlockUserFactory()
+			->newBlockUser(
+				'1.2.3.4',
+				$this->getTestSysop()->getAuthority(),
+				'indefinite',
+				'Test reason',
+				[ 'isCreateAccountBlocked' => true ]
+			)
+			->placeBlock();
+		RequestContext::getMain()->getRequest()->setIP( '1.2.3.4' );
+
+		$hookProvidedAuthenticationResponse = null;
+		$hookProvidedUser = null;
+		$hookProvidedUsername = null;
+		$this->setTemporaryHook(
+			'AuthManagerLoginAuthenticateAudit',
+			static function ( AuthenticationResponse $response, ?User $user, ?string $name ) use (
+				&$hookProvidedAuthenticationResponse, &$hookProvidedUser, &$hookProvidedUsername
+			) {
+				$hookProvidedAuthenticationResponse = $response;
+				$hookProvidedUser = $user;
+				$hookProvidedUsername = $name;
+			}
+		);
+
+		$this->assertFalse(
+			User::newFromName( 'UTDummy' )->isRegistered(),
+			'User does not exist locally before login'
+		);
+		$status = BotPassword::login( 'UTDummy@BotPassword', 'foobaz', new FauxRequest );
+		$this->assertStatusError( 'blockedtext', $status );
+		$this->assertFalse(
+			User::newFromName( 'UTDummy' )->isRegistered(),
+			'User does not exist locally after failed login'
+		);
+
+		$this->assertSame( AuthenticationResponse::FAIL, $hookProvidedAuthenticationResponse->status );
+		$this->assertSame( 'UTDummy', $hookProvidedUser->getName() );
+		$this->assertSame( 'UTDummy', $hookProvidedUsername );
 	}
 
 	/**

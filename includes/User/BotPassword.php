@@ -408,13 +408,17 @@ class BotPassword {
 		$throttle?->clear( $user->getName(), $request->getIP() );
 
 		if ( !$user->isRegistered() ) {
+			// Clone $user before passing it to ::autoCreateUser, as that will
+			// modify the provided User object to an IP for some failures (but
+			// we want the login hook to get the username used and not an IP)
+			$userForFailure = clone $user;
 			$status = $services->getAuthManager()->autoCreateUser(
 				$user,
 				AuthManager::AUTOCREATE_SOURCE_SESSION,
 				false
 			);
 			if ( !$status->isOK() ) {
-				return self::loginHook( $user, $bp, $performer, $status );
+				return self::loginHook( $userForFailure, $bp, $performer, $status );
 			}
 		}
 
