@@ -111,7 +111,7 @@ class LocalFileMoveBatch {
 		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::FileSchemaMigrationStage
 		);
-		if ( $migrationStage && SCHEMA_COMPAT_WRITE_OLD ) {
+		if ( $migrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 			$result = $this->db->newSelectQueryBuilder()
 				->select( [ 'oi_archive_name', 'oi_deleted' ] )
 				->forUpdate() // ignore snapshot
@@ -341,7 +341,7 @@ class LocalFileMoveBatch {
 		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::FileSchemaMigrationStage
 		);
-		if ( $migrationStage && SCHEMA_COMPAT_WRITE_OLD ) {
+		if ( $migrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 			// Lock the image row
 			$hasCurrent = $dbw->newSelectQueryBuilder()
 				->from( 'image' )
