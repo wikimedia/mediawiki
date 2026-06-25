@@ -445,24 +445,55 @@ class UserMailer {
 		ini_set( 'html_errors', $html_errors );
 
 		if ( self::$mErrorString ) {
-			wfDebug( "Error sending mail: " . self::$mErrorString );
+			LoggerFactory::getInstance( 'usermailer' )->warning(
+				"Error sending mail to {to} ({recipient_count} recipient(s)): {error}",
+				self::mailLogContext( $to, $from ) + [ 'error' => self::$mErrorString ]
+			);
 			return Status::newFatal( 'php-mail-error', self::$mErrorString );
 		} elseif ( !$sent ) {
 			// @phan-suppress-previous-line PhanPossiblyUndeclaredVariable sent set on success
 			// mail function only tells if there's an error
-			wfDebug( "Unknown error sending mail" );
+			LoggerFactory::getInstance( 'usermailer' )->warning(
+				"Unknown error sending mail to {to} ({recipient_count} recipient(s))",
+				self::mailLogContext( $to, $from )
+			);
 			return Status::newFatal( 'php-mail-error-unknown' );
 		}
 		LoggerFactory::getInstance( 'usermailer' )->info(
 			"Email sent to {to} from {from} with subject {subject}",
-			[
-				'to' => $to[0]->toString(),
+			self::mailLogContext( $to, $from ) + [
 				'allto' => implode( ', ', array_map( 'strval', $to ) ),
-				'from' => $from->toString(),
 				'subject' => $subject,
 			]
 		);
 		return Status::newGood();
+	}
+
+	/**
+	 * Common PSR-3 log context describing a mail send attempt.
+	 *
+	 * @param MailAddress[] $to
+	 */
+	private static function mailLogContext( array $to, MailAddress $from ): array {
+		return [
+			'to' => $to[0]->toString(),
+			'recipient_count' => count( $to ),
+			'recipient_domains' => self::recipientDomains( $to ),
+			'from' => $from->toString(),
+		];
+	}
+
+	/**
+	 * Distinct recipient domains as a comma-separated string, for log context.
+	 *
+	 * @param MailAddress[] $to
+	 */
+	private static function recipientDomains( array $to ): string {
+		$domains = array_map(
+			static fn ( MailAddress $recip ): string => substr( strrchr( $recip->address, '@' ) ?: '', 1 ),
+			$to
+		);
+		return implode( ', ', array_unique( array_filter( $domains ) ) );
 	}
 
 	/**

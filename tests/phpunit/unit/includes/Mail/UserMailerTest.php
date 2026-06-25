@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Unit\Mail;
 
+use MediaWiki\Mail\MailAddress;
 use MediaWiki\Mail\UserMailer;
 use MediaWikiUnitTestCase;
 use Wikimedia\TestingAccessWrapper;
@@ -137,5 +138,75 @@ class UserMailerTest extends MediaWikiUnitTestCase {
 			$transport->getPassword(),
 			'When auth is requested but credentials are omitted, an empty password should be used rather than triggering an undefined-index error'
 		);
+	}
+
+	/**
+	 * @dataProvider provideRecipientDomains
+	 */
+	public function testRecipientDomains( array $addresses, string $expected ) {
+		$to = array_map( static fn ( string $address ) => new MailAddress( $address ), $addresses );
+		$this->assertSame(
+			$expected,
+			TestingAccessWrapper::newFromClass( UserMailer::class )->recipientDomains( $to )
+		);
+	}
+
+	public static function provideRecipientDomains(): array {
+		return [
+			'single recipient' => [ [ 'alice@example.org' ], 'example.org' ],
+			'distinct domains, in order' => [
+				[ 'alice@example.org', 'bob@gmail.com' ],
+				'example.org, gmail.com',
+			],
+			'duplicate domains collapse to one' => [
+				[ 'alice@example.org', 'carol@example.org' ],
+				'example.org',
+			],
+			'address without @ is skipped' => [
+				[ 'invalid', 'bob@gmail.com' ],
+				'gmail.com',
+			],
+			'no extractable domain yields empty string' => [
+				[ 'invalid', 'alsoinvalid' ],
+				'',
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideMailLogContext
+	 */
+	public function testMailLogContext( array $toAddresses, string $fromAddress, array $expected ) {
+		$to = array_map( static fn ( string $address ) => new MailAddress( $address ), $toAddresses );
+		$from = new MailAddress( $fromAddress );
+		$this->assertSame(
+			$expected,
+			TestingAccessWrapper::newFromClass( UserMailer::class )->mailLogContext( $to, $from )
+		);
+	}
+
+	public static function provideMailLogContext(): array {
+		return [
+			'single recipient' => [
+				[ 'alice@example.org' ],
+				'noreply@wiki.example',
+				[
+					'to' => 'alice@example.org',
+					'recipient_count' => 1,
+					'recipient_domains' => 'example.org',
+					'from' => 'noreply@wiki.example',
+				],
+			],
+			'multiple recipients log the first as {to}' => [
+				[ 'alice@example.org', 'bob@gmail.com' ],
+				'noreply@wiki.example',
+				[
+					'to' => 'alice@example.org',
+					'recipient_count' => 2,
+					'recipient_domains' => 'example.org, gmail.com',
+					'from' => 'noreply@wiki.example',
+				],
+			],
+		];
 	}
 }
