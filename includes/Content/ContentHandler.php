@@ -919,15 +919,11 @@ abstract class ContentHandler {
 	 * @since 1.21
 	 *
 	 * @param Title $title The page's title
-	 * @param bool &$hasHistory Whether the page has a history
 	 *
 	 * @return string|false String containing deletion reason or empty string, or
 	 *    boolean false if no revision occurred
 	 */
-	public function getAutoDeleteReason( Title $title, &$hasHistory = false ) {
-		if ( func_num_args() === 2 ) {
-			wfDeprecated( __METHOD__ . ': $hasHistory parameter', '1.38' );
-		}
+	public function getAutoDeleteReason( Title $title ) {
 		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$revStore = MediaWikiServices::getInstance()->getRevisionStore();
 
@@ -976,7 +972,6 @@ abstract class ContentHandler {
 			return false;
 		}
 
-		$hasHistory = ( $res->numRows() > 1 );
 		$row = $res->fetchObject();
 
 		if ( $row ) { // $row is false if the only contributor is hidden

@@ -1153,7 +1153,7 @@ more stuff
 	/**
 	 * @dataProvider provideGetAutoDeleteReason
 	 */
-	public function testGetAutoDeleteReason( $edits, $expectedResult, $expectedHistory ) {
+	public function testGetAutoDeleteReason( $edits, $expectedResult ) {
 		$this->disableAutoCreateTempUser();
 
 		// NOTE: assume Help namespace to contain wikitext
@@ -1177,9 +1177,7 @@ more stuff
 			$c++;
 		}
 
-		$this->hideDeprecated( WikiPage::class . '::getAutoDeleteReason:' );
-		$this->hideDeprecated( ContentHandler::class . '::getAutoDeleteReason:' );
-		$reason = $page->getAutoDeleteReason( $hasHistory );
+		$reason = $page->getAutoDeleteReason();
 
 		if ( is_bool( $expectedResult ) || $expectedResult === null ) {
 			$this->assertEquals( $expectedResult, $reason );
@@ -1187,9 +1185,6 @@ more stuff
 			$this->assertTrue( (bool)preg_match( $expectedResult, $reason ),
 				"Autosummary didn't match expected pattern $expectedResult: $reason" );
 		}
-
-		$this->assertEquals( $expectedHistory, $hasHistory,
-			"expected \$hasHistory to be " . var_export( $expectedHistory, true ) );
 	}
 
 	public static function providePreSaveTransform() {

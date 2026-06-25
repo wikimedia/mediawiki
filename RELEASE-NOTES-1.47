@@ -275,6 +275,9 @@ because of Phabricator reports.
   ::addParserOutputMetadata().  That is, these flags are now set if *any*
   ParserOutput added to the page sets the flag; previously they were
   last-ParserOutput-wins.
+* ContentHandler::getAutoDeleteReason() and WikiPage::getAutoDeleteReason()
+  no longer accept the $hasHistory parameter. This parameter has been
+  emitting warnings since 1.38 and has no replacement.
 * The protected static method UserMailer::sendWithPear() has been removed
   following the migration from PEAR Mail to symfony/mailer.
 * Passing null to any of the three constructor parameters of TextboxBuilder,

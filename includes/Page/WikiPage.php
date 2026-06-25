@@ -2782,15 +2782,10 @@ class WikiPage implements Stringable, Page, PageRecord {
 	/**
 	 * Auto-generates a deletion reason
 	 *
-	 * @param bool &$hasHistory Whether the page has a history
 	 * @return string|false String containing deletion reason or empty string, or boolean false
 	 *    if no revision occurred
 	 */
-	public function getAutoDeleteReason( &$hasHistory = false ) {
-		if ( func_num_args() === 1 ) {
-			wfDeprecated( __METHOD__ . ': $hasHistory parameter', '1.38' );
-			return $this->getContentHandler()->getAutoDeleteReason( $this->getTitle(), $hasHistory );
-		}
+	public function getAutoDeleteReason() {
 		return $this->getContentHandler()->getAutoDeleteReason( $this->getTitle() );
 	}
 
