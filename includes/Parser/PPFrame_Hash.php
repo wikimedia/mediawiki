@@ -378,7 +378,6 @@ class PPFrame_Hash implements Stringable, PPFrame {
 					$s = $this->expand( $contextChildren, $flags );
 					$fragment = DataAccess::unstripForParsoid( $s, $this->parser );
 					$bits = PPNode_Hash_Tree::splitRawHeading( $contextChildren );
-					// @phan-suppress-next-line PhanUndeclaredClassMethod
 					$pFragment = new HeadingPFragment( $fragment, $this->title, $bits['i'] );
 
 					// Just generate a unique marker
@@ -386,7 +385,6 @@ class PPFrame_Hash implements Stringable, PPFrame {
 					$serial = count( $this->parser->mHeadings ) - 1;
 					$marker = Parser::MARKER_PREFIX . "-h-$serial-" . Parser::MARKER_SUFFIX;
 
-					// @phan-suppress-next-line PhanTypeMismatchArgument
 					$this->parser->getStripState()->addParsoidOpaque( $marker, $pFragment );
 					$out .= $marker;
 				} else {
