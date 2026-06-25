@@ -118,7 +118,12 @@ class ModuleSpecHandler extends SimpleHandler {
 	 * @see https://spec.openapis.org/oas/v3.0.0#info-object
 	 */
 	private function getInfoSpec( Module $module ): array {
-		// TODO: Let Modules provide their name, description, version, etc
+		// Modules manage their own version see SpecBasedModule::getOpenApiInfo()
+		// and ExtraRoutesModule::getOpenApiInfo().
+		// We add a blank string as the version fallback here so the required info.version field is
+		// always present in the spec, even when empty, as required by the OpenAPI specification.
+		// A blank version still raises an error in OpenAPI spec linters, such as the WMF spectral linter.
+
 		$prefix = $module->getPathPrefix();
 
 		if ( $prefix === '' ) {
@@ -130,7 +135,7 @@ class ModuleSpecHandler extends SimpleHandler {
 
 		return $module->getOpenApiInfo() + [
 			'title' => $title,
-			'version' => 'undefined',
+			'version' => '',
 			'license' => $this->getLicenseSpec(),
 			'contact' => $this->getContactSpec(),
 		];

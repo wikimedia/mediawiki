@@ -188,7 +188,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			[
 				'info' => [
 					'title' => '<message key="rest-module-extra-routes-title"></message>',
-					'version' => 'undefined',
+					'version' => '0.1.0',
 					'license' => [
 						'name' => 'Test License',
 						'url' => 'https://example.com/license',

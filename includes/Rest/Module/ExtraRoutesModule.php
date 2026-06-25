@@ -257,7 +257,7 @@ class ExtraRoutesModule extends MatcherBasedModule {
 		return [
 			'title' => $this->jsonLocalizer->getFormattedMessage( 'rest-module-extra-routes-title' ),
 			'description' => $this->jsonLocalizer->getFormattedMessage( 'rest-module-extra-routes-desc' ),
-			'version' => 'undefined',
+			'version' => '0.1.0',
 		];
 	}
 }

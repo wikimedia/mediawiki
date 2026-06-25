@@ -322,7 +322,7 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 
 		$info = $module->getOpenApiInfo();
 		$this->assertSame( 'rest-module-extra-routes-title', $info['title'] );
-		$this->assertSame( 'undefined', $info['version'] );
+		$this->assertSame( '0.1.0', $info['version'] );
 
 		$handler = $module->getHandlerForPath( '/ModuleTest/hello/world', $request );
 		$oas = $handler->getOpenApiSpec( 'GET' );
