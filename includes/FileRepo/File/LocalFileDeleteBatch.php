@@ -83,7 +83,7 @@ class LocalFileDeleteBatch {
 		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::FileSchemaMigrationStage
 		);
-		if ( $migrationStage && SCHEMA_COMPAT_WRITE_OLD ) {
+		if ( $migrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 			$result = $dbw->newSelectQueryBuilder()
 				->select( [ 'oi_archive_name' ] )
 				->from( 'oldimage' )
@@ -139,7 +139,7 @@ class LocalFileDeleteBatch {
 
 		if ( count( $oldRels ) ) {
 			$dbw = $this->file->repo->getPrimaryDB();
-			if ( $migrationStage && SCHEMA_COMPAT_WRITE_OLD ) {
+			if ( $migrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 				$res = $dbw->newSelectQueryBuilder()
 					->select( [ 'oi_archive_name', 'oi_sha1' ] )
 					->from( 'oldimage' )
@@ -179,7 +179,7 @@ class LocalFileDeleteBatch {
 					if ( $props['fileExists'] ) {
 						// Upgrade the oldimage row
 
-						if ( $migrationStage && SCHEMA_COMPAT_WRITE_OLD ) {
+						if ( $migrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 							$dbw->newUpdateQueryBuilder()
 								->update( 'oldimage' )
 								->set( [ 'oi_sha1' => $props['sha1'] ] )
@@ -189,7 +189,7 @@ class LocalFileDeleteBatch {
 								] )
 								->caller( __METHOD__ )->execute();
 						}
-						if ( $migrationStage && SCHEMA_COMPAT_WRITE_NEW ) {
+						if ( $migrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 							$dbw->newUpdateQueryBuilder()
 								->update( 'filerevision' )
 								->set( [ 'fr_sha1' => $props['sha1'] ] )
