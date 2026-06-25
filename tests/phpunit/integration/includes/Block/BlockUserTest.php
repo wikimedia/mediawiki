@@ -5,10 +5,14 @@ namespace MediaWiki\Tests\Integration\Block;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @group Blocking
@@ -32,9 +36,10 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testValidTarget() {
+		$performer = $this->mockRegisteredUltimateAuthority();
 		$status = $this->blockUserFactory->newBlockUser(
 			$this->user,
-			$this->mockRegisteredUltimateAuthority(),
+			$performer,
 			'infinity',
 			'test block'
 		)->placeBlock();
@@ -47,12 +52,82 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $block->isUsertalkEditAllowed() );
 		$this->assertFalse( $block->isEmailBlocked() );
 		$this->assertTrue( $block->isAutoblocking() );
+
+		$this->assertBlockLog( 'block', 'block', $performer->getUser(), $block );
+	}
+
+	private function assertBlockLog(
+		string $expectedLogType,
+		string $expectedLogAction,
+		UserIdentity $performer,
+		DatabaseBlock $block,
+		array $expectedBlockFlags = [],
+		array $blockRestrictions = [],
+		int $logDeletedFlags = 0
+	): void {
+		$actualBlockId = $block->getId();
+
+		// Get the most recent log for this block ID (reblocks use the same block ID
+		// and for this test we should assume the caller wants to test the just
+		// inserted block)
+		$associatedLoggingId = $this->getDb()->newSelectQueryBuilder()
+			->select( 'log_id' )
+			->from( 'logging' )
+			->where( [
+				'log_params ' . $this->getDb()->buildLike(
+					$this->getDb()->anyString(),
+					'"blockId";i:' . $actualBlockId . ';',
+					$this->getDb()->anyString()
+				),
+			] )
+			->orderBy( 'log_id', SelectQueryBuilder::SORT_DESC )
+			->caller( __METHOD__ )
+			->fetchField();
+		$this->assertNotFalse( $associatedLoggingId, 'Could not find logging row for the provided block' );
+
+		$this->newSelectQueryBuilder()
+			->select( [
+				'log_type', 'log_action', 'log_title', 'log_namespace', 'comment_text', 'actor_name', 'log_deleted',
+			] )
+			->from( 'logging' )
+			->join( 'comment', null, 'log_comment_id = comment_id' )
+			->join( 'actor', null, 'log_actor = actor_id' )
+			->where( [ 'log_id' => $associatedLoggingId ] )
+			->caller( __METHOD__ )
+			->assertRowValue( [
+				$expectedLogType,
+				$expectedLogAction,
+				Title::newFromText( $block->getTargetUserIdentity()->getName() )->getDBkey(),
+				NS_USER,
+				$block->getReasonComment()->text,
+				$performer->getName(),
+				$logDeletedFlags
+			] );
+
+		$actualLogParams = $this->newSelectQueryBuilder()
+			->select( [ 'log_params' ] )
+			->from( 'logging' )
+			->where( [ 'log_id' => $associatedLoggingId ] )
+			->caller( __METHOD__ )
+			->fetchField();
+		$expectedLogParams = [
+			'5::duration' => $block->getExpiry(),
+			'6::flags' => implode( ',', $expectedBlockFlags ),
+			'sitewide' => $block->isSitewide(),
+			'blockId' => $block->getId(),
+		];
+		if ( $blockRestrictions ) {
+			$expectedLogParams['7::restrictions'] = $blockRestrictions;
+		}
+
+		$this->assertArrayEquals( $expectedLogParams, LogEntryBase::extractParams( $actualLogParams ), false, true );
 	}
 
 	public function testHideUser() {
+		$performer = $this->getTestUser( [ 'sysop', 'suppress' ] )->getUser();
 		$status = $this->blockUserFactory->newBlockUser(
 			$this->user,
-			$this->getTestUser( [ 'sysop', 'suppress' ] )->getUser(),
+			$performer,
 			'infinity',
 			'test hideuser',
 			[
@@ -64,15 +139,18 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( DatabaseBlock::class, $block );
 		$this->assertSame( 'test hideuser', $block->getReasonComment()->text );
 		$this->assertTrue( $block->getHideName() );
+
+		$this->assertBlockLog( 'suppress', 'block', $performer, $block, [ 'hiddenname' ] );
 	}
 
 	public function testExistingPage() {
 		$this->getExistingTestPage( 'Existing Page' );
 		$pageRestriction = PageRestriction::class;
 		$page = $pageRestriction::newFromTitle( 'Existing Page' );
+		$performer = $this->getTestUser( [ 'sysop', 'suppress' ] )->getUser();
 		$status = $this->blockUserFactory->newBlockUser(
 			$this->user,
-			$this->getTestUser( [ 'sysop', 'suppress' ] )->getUser(),
+			$performer,
 			'infinity',
 			'test existingpage',
 			[],
@@ -82,6 +160,8 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$block = $this->user->getBlock();
 		$this->assertInstanceOf( DatabaseBlock::class, $block );
 		$this->assertSame( 'test existingpage', $block->getReasonComment()->text );
+
+		$this->assertBlockLog( 'block', 'block', $performer, $block, [], [ 'pages' => [ 'Existing Page' ] ] );
 	}
 
 	public function testNonexistentPage() {
@@ -99,9 +179,10 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testReblock() {
+		$performer = $this->mockRegisteredUltimateAuthority();
 		$blockStatus = $this->blockUserFactory->newBlockUser(
 			$this->user,
-			$this->mockRegisteredUltimateAuthority(),
+			$performer,
 			'infinity',
 			'test block'
 		)->placeBlockUnsafe();
@@ -111,6 +192,8 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'test block', $priorBlock->getReasonComment()->text );
 
 		$blockId = $priorBlock->getId();
+
+		$this->assertBlockLog( 'block', 'block', $performer->getUser(), $priorBlock );
 
 		$reblockStatus = $this->blockUserFactory->newBlockUser(
 			$this->user,
@@ -137,6 +220,8 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$block = $this->user->getBlock();
 		$this->assertInstanceOf( DatabaseBlock::class, $block );
 		$this->assertSame( 'test reblock', $block->getReasonComment()->text );
+
+		$this->assertBlockLog( 'block', 'reblock', $performer->getUser(), $block );
 	}
 
 	public function testPostHook() {
@@ -269,6 +354,17 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 			[ 'isHideUser' => true ]
 		)->placeBlockUnsafe();
 		$this->assertStatusError( 'ipb_hide_invalid', $blockStatus );
+	}
+
+	public function testPlaceBlockForHideUserBlockWhenUserCannotHideUsers(): void {
+		$blockStatus = $this->blockUserFactory->newBlockUser(
+			$this->user,
+			$this->mockRegisteredAuthorityWithoutPermissions( [ 'hideuser' ] ),
+			'infinity',
+			'test block',
+			[ 'isHideUser' => true ]
+		)->placeBlock();
+		$this->assertStatusError( 'badaccess-group0', $blockStatus );
 	}
 
 }
