@@ -557,7 +557,6 @@ class DataAccess extends IDataAccess {
 				} elseif ( $type === 'exttag' && $useExtTagPFragments ) {
 					$frame = $pieces[$i]['extra'] ?? null;
 					$sub = self::unstripForParsoid( $content, $parser );
-					// @phan-suppress-next-line PhanUndeclaredClassMethod
 					$pieces[$i] = new ExtTagPFragment( $sub, $frame->getTitle() );
 				} else {
 					// T381709: technically this fragment should
