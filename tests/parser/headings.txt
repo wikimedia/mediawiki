@@ -151,8 +151,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 ==a==
 {{Test}}
@@ -330,8 +328,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 ==a==
 {{1x|1=
@@ -443,8 +439,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 {{pfheading}}
 !! metadata/integrated
@@ -2160,8 +2154,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 __FORCETOC__
 {{1x|1=<spantag>
@@ -2779,8 +2771,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 {{With a section?}}
 !! html/php
@@ -2820,8 +2810,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 === out ===
 123
@@ -2862,8 +2850,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 === out ===
 123
@@ -2892,8 +2878,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 {{with redirect}}
 !! metadata
@@ -3005,8 +2989,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 {{noincludeheading}}
 !! metadata/integrated

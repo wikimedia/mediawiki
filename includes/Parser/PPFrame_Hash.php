@@ -8,8 +8,6 @@
 namespace MediaWiki\Parser;
 
 use InvalidArgumentException;
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\Parsoid\Config\DataAccess;
 use MediaWiki\Title\Title;
@@ -76,8 +74,6 @@ class PPFrame_Hash implements Stringable, PPFrame {
 	 */
 	private $maxPPExpandDepth;
 
-	private bool $useHeadingPFragments;
-
 	/**
 	 * @param Preprocessor $preprocessor The parent preprocessor
 	 */
@@ -91,13 +87,6 @@ class PPFrame_Hash implements Stringable, PPFrame {
 		$this->loopCheckHash = [];
 		$this->depth = 0;
 		$this->childExpansionCache = [];
-
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$this->useHeadingPFragments = in_array(
-			'HeadingPFragment',
-			$config->get( MainConfigNames::ReturnExperimentalPFragmentTypes ),
-			true
-		);
 	}
 
 	/**
@@ -371,7 +360,6 @@ class PPFrame_Hash implements Stringable, PPFrame {
 					$this->parser->getStripState()->addGeneral( $marker, '' );
 					$out .= $s;
 				} elseif (
-					$this->useHeadingPFragments &&
 					$this->parser->useParsoidFragments() &&
 					$this->parser->getOutputType() === Parser::OT_PREPROCESS
 				) {
