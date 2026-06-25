@@ -808,6 +808,7 @@
 	"postedit-confirmation-published": "[[Special:Diff/$2|La tua modifica]] è stata pubblicata.",
 	"postedit-temp-created-label": "Utenza temporanea",
 	"postedit-temp-created": "Un'[[$2|utenza generata automaticamente]] è stata creata per te aggiungendo un cookie al tuo browser. Per scegliere un nome a piacere e ottenere più funzioni, considera la [$1 creazione di un'utenza].",
+	"postedit-confirmation-published-title": "La tua modifica è stata pubblicata!",
 	"edit-already-exists": "Impossibile creare una nuova pagina.\nEsiste già.",
 	"defaultmessagetext": "Testo predefinito",
 	"content-failed-to-parse": "Impossibile analizzare $2 per il modello $1: $3",

@@ -331,6 +331,7 @@
 	"welcomecreation-msg": "A túa conta creouse correctamente.\nNon esquezas aquelar as túas [[Special:Preferences|preferencias]] de {{SITENAME}}.",
 	"yourname": "Nome de usuario:",
 	"userlogin-yourname": "Nome de usuario",
+	"userlogin-yourname-reauth": "Iniciaches sesión como <strong>$1</strong>",
 	"userlogin-yourname-ph": "Escribe o teu nome de usuario",
 	"createacct-another-username-ph": "Escribe o nome de usuario",
 	"userlogin-yourpassword": "Contrasinal",

@@ -327,6 +327,7 @@
 	"welcomecreation-msg": "Вашата корисничка сметка е создадена.\nНе заборавајте да ги измените вашите [[Special:Preferences|{{SITENAME}} нагодувања]].",
 	"yourname": "Корисничко име:",
 	"userlogin-yourname": "Корисничко име",
+	"userlogin-yourname-reauth": "Најавен како <strong>$1</strong>",
 	"userlogin-yourname-ph": "Внесете корисничко име",
 	"createacct-another-username-ph": "Внесете корисничко име",
 	"userlogin-yourpassword": "Лозинка",

@@ -379,6 +379,7 @@
 	"welcomecreation-msg": "Din konto er blevet oprettet.\nDu kan ændre dine {{SITENAME}} [[Special:Preferences|indstillinger]] hvis du ønsker.",
 	"yourname": "Brugernavn:",
 	"userlogin-yourname": "Brugernavn",
+	"userlogin-yourname-reauth": "Logget ind som <strong>$1</strong>",
 	"userlogin-yourname-ph": "Indtast dit brugernavn",
 	"createacct-another-username-ph": "Indtast brugernavnet",
 	"userlogin-yourpassword": "Adgangskode",

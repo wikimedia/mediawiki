@@ -304,6 +304,7 @@
 	"welcomecreation-msg": "Koontadaada waa la abuuray.\nWaxaad beddeli kartaa [[Special:Preferences|dookhyada]] {{SITENAME}} haddii aad rabto.",
 	"yourname": "Magaca isticmaalaha:",
 	"userlogin-yourname": "Magaca isticmaalaha",
+	"userlogin-yourname-reauth": "Waxaa lagu galay sidii <strong>$1</strong>",
 	"userlogin-yourname-ph": "Gali magacaaga isticmaale",
 	"createacct-another-username-ph": "Geli magaca isticmaalaha",
 	"userlogin-yourpassword": "Erey sir",

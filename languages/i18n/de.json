@@ -428,6 +428,7 @@
 	"welcomecreation-msg": "{{#FORMAL:Dein|Ihr}} Benutzerkonto wurde erstellt.\n{{#FORMAL:Vergiss|Vergessen Sie}} nicht, {{#FORMAL:deine|Ihre}} [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ändern.",
 	"yourname": "Benutzername:",
 	"userlogin-yourname": "Benutzername",
+	"userlogin-yourname-reauth": "Eingeloggt als <strong>$1</strong>",
 	"userlogin-yourname-ph": "{{#FORMAL:Gib deinen|Geben Sie Ihren}} Benutzernamen ein",
 	"createacct-another-username-ph": "Benutzername",
 	"userlogin-yourpassword": "Passwort",

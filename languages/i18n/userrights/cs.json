@@ -11,7 +11,8 @@
 			"Matěj Suchánek",
 			"Mormegil",
 			"Patrik L.",
-			"Slepi"
+			"Slepi",
+			"Walter Klosse"
 		]
 	},
 	"userrights": "Uživatelská práva",
@@ -158,6 +159,7 @@
 	"right-applychangetags": "Přidávání [[Special:Tags|značek]] k vlastním změnám",
 	"right-changetags": "Přidávání libovolných [[Special:Tags|značek]] na jednotlivé revize a protokolovací záznamy a jejich odebírání",
 	"right-deletechangetags": "Mazání [[Special:Tags|značek]] z databáze",
+	"right-logout": "Odhlašte se",
 	"grant-generic": "Balíček oprávnění „$1“",
 	"grant-group-page-interaction": "Interakce se stránkami",
 	"grant-group-file-interaction": "Interakce se soubory",
@@ -281,6 +283,7 @@
 	"action-renameuser": "přejmenovávat uživatele",
 	"action-renameuser-global": "přejmenovávat globální uživatele",
 	"action-suppressredirect": "nezakládat při přesouvání stránek přesměrování z původního názvu",
+	"action-logout": "odhlašte se",
 	"listgrouprights": "Práva skupin uživatelů",
 	"listgrouprights-summary": "Toto je seznam uživatelských skupin definovaných na této wiki a&nbsp;jejich přístupových práv.\n\n[[{{MediaWiki:Listgrouprights-helppage}}|Podrobné informace o&nbsp;jednotlivých právech]]",
 	"listgrouprights-key": "Legenda:\n* <span class=\"listgrouprights-granted\">Udělená práva</span>\n* <span class=\"listgrouprights-revoked\">Odebraná práva</span>",

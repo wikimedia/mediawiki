@@ -342,6 +342,7 @@
 	"welcomecreation-msg": "Hesabınız yaradıldı.\nÖz {{SITENAME}} [[Special:Preferences|parametrlərinizi]] dəyişə bilərsiniz.",
 	"yourname": "İstifadəçi adı:",
 	"userlogin-yourname": "İstifadəçi adı",
+	"userlogin-yourname-reauth": "<strong>$1</strong> olaraq daxil olunub",
 	"userlogin-yourname-ph": "İstifadəçi adınızı daxil edin",
 	"createacct-another-username-ph": "İstifadəçi adınızı daxil edin:",
 	"userlogin-yourpassword": "Parol",

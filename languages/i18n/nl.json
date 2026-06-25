@@ -413,6 +413,7 @@
 	"welcomecreation-msg": "Uw account is aangemaakt.\nIndien gewenst kunt u uw [[Special:Preferences|voorkeuren]] voor {{SITENAME}} aanpassen.",
 	"yourname": "Gebruikersnaam:",
 	"userlogin-yourname": "Gebruikersnaam",
+	"userlogin-yourname-reauth": "Aangemeld als <strong>$1</strong>",
 	"userlogin-yourname-ph": "Geef uw gebruikersnaam op",
 	"createacct-another-username-ph": "Geef de gebruikersnaam op",
 	"userlogin-yourpassword": "Wachtwoord",

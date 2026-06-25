@@ -409,6 +409,7 @@
 	"welcomecreation-msg": "계정이 만들어졌습니다.\n{{SITENAME}}의 사용자 [[Special:Preferences|환경 설정]]을 바꿀 수 있습니다.",
 	"yourname": "사용자 이름:",
 	"userlogin-yourname": "사용자 이름",
+	"userlogin-yourname-reauth": "<strong>$1</strong>님으로 로그인되었습니다",
 	"userlogin-yourname-ph": "사용자 이름을 입력하세요",
 	"createacct-another-username-ph": "사용자 이름을 입력하세요",
 	"userlogin-yourpassword": "비밀번호",

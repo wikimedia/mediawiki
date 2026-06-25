@@ -3,6 +3,7 @@
 		"authors": [
 			"IJzeren Jan",
 			"Matma Rex",
+			"Nintendofan885",
 			"Polda18",
 			"SaldırganSincap"
 		]
@@ -1538,7 +1539,7 @@
 	"statistics-header-users": "Statistiky koristnikov",
 	"statistics-header-hooks": "Ostale statistiky",
 	"statistics-articles": "Osnovne stranice",
-	"statistics-articles-desc": "Za podrobnosti pogledajte [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod\ndokumentaciju o čisljenju člankov]",
+	"statistics-articles-desc": "Za podrobnosti pogledajte [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod dokumentaciju o čisljenju člankov]",
 	"statistics-pages": "Stranice",
 	"statistics-pages-desc": "Vse stranice v viki, vključno s besědnymi stranicami, prěnapravjenjami, i t.d.",
 	"statistics-files": "Dodane fajly",

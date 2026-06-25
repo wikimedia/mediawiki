@@ -301,6 +301,7 @@
 	"welcomecreation-msg": "Vòstre compte d'utilizaire es estat creat.\nDoblidetz pas de modificar [[Special:Preferences|vòstras preferéncias per {{SITENAME}}]].",
 	"yourname": "Nom d'utilizaire :",
 	"userlogin-yourname": "Nom d'utilizaire",
+	"userlogin-yourname-reauth": "Connectat coma <strong>$1</strong>",
 	"userlogin-yourname-ph": "Picatz vòstre nom d'utilizator",
 	"createacct-another-username-ph": "Picar lo nom d'utilizaire",
 	"userlogin-yourpassword": "Senhal",

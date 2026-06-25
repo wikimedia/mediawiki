@@ -529,6 +529,7 @@
 	"welcomecreation-msg": "您的账号已创建。您可以根据自身需要更改您在{{SITENAME}}的[[Special:Preferences|参数设置]]。",
 	"yourname": "用户名：",
 	"userlogin-yourname": "用户名",
+	"userlogin-yourname-reauth": "已以<strong>$1</strong>身份登录",
 	"userlogin-yourname-ph": "请输入您的用户名",
 	"createacct-another-username-ph": "请输入用户名",
 	"userlogin-yourpassword": "密码",
