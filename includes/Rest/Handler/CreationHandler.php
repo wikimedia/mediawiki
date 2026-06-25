@@ -58,6 +58,10 @@ class CreationHandler extends EditHandler {
 		+ $this->getTokenParamDefinition();
 	}
 
+	public function getRequestBodyDescription(): MessageValue|string|null {
+		return new MessageValue( 'rest-requestbody-desc-create-page' );
+	}
+
 	/**
 	 * @inheritDoc
 	 */

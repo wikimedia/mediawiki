@@ -28,6 +28,7 @@
 					"timestamp": {
 						"type": "string",
 						"format": "date-time",
+						"x-i18n-description": "rest-property-desc-revision-timestamp",
 						"example": "2024-04-13T08:05:03Z"
 					},
 					"minor": {

@@ -400,6 +400,15 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	public function testGetRequestBodyDescription() {
+		$handler = $this->newHandler( [] );
+
+		$this->assertEquals(
+			new MessageValue( 'rest-requestbody-desc-create-page' ),
+			$handler->getRequestBodyDescription()
+		);
+	}
+
 	/**
 	 * @dataProvider provideBodyValidation
 	 */

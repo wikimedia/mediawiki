@@ -89,7 +89,7 @@
 		},
 		"user": {
 			"type": "object",
-			"description": "",
+			"x-i18n-description": "rest-property-desc-user",
 			"nullable": true,
 			"required": [
 				"id",

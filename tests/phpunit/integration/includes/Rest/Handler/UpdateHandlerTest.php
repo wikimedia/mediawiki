@@ -497,6 +497,15 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	public function testGetRequestBodyDescription() {
+		$handler = $this->newHandler( [] );
+
+		$this->assertEquals(
+			new MessageValue( 'rest-requestbody-desc-update-page' ),
+			$handler->getRequestBodyDescription()
+		);
+	}
+
 	/**
 	 * @dataProvider provideBodyValidation
 	 */
