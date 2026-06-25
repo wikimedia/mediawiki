@@ -1159,10 +1159,11 @@ class LocalFile extends File {
 	/**
 	 * Get handler-specific metadata as a serialized string
 	 *
-	 * @deprecated since 1.37 use getMetadataArray() or getMetadataItem()
+	 * @deprecated since 1.37 use getMetadataArray() or getMetadataItems()
 	 * @return string
 	 */
 	public function getMetadata() {
+		wfDeprecated( __METHOD__, '1.37' ); // since 1.47
 		$data = $this->getMetadataArray();
 		if ( !$data ) {
 			return '';

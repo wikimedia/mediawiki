@@ -174,8 +174,10 @@ class ForeignAPIFile extends File {
 
 	/**
 	 * @return string|false
+	 * @deprecated since 1.37 use getMetadataArray()
 	 */
 	public function getMetadata() {
+		wfDeprecated( __METHOD__, '1.47' );
 		if ( isset( $this->mInfo['metadata'] ) ) {
 			return serialize( self::parseMetadata( $this->mInfo['metadata'] ) );
 		}

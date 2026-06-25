@@ -730,6 +730,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				$this->dataLoaded = true;
 			}
 		};
+		$this->expectDeprecationAndContinue( "/LocalFile::getMetadata was deprecated in MediaWiki 1\.37/" );
 		$this->assertSame( $meta, $file->getMetadata() );
 	}
 

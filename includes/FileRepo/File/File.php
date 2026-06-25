@@ -807,6 +807,7 @@ abstract class File implements MediaHandlerState {
 	 * @return string|false
 	 */
 	public function getMetadata() {
+		wfDeprecated( __METHOD__, '1.37' ); // since 1.47
 		return false;
 	}
 

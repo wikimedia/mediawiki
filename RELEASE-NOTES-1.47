@@ -487,6 +487,9 @@ because of Phabricator reports.
   use MediaWikiIntegrationTestCase::newSelectQueryBuilder() instead.
 * MediaWikiIntegrationTestCase::assertArraySubmapSame() has been deprecated,
   use MediaWikiTestCaseTrait::assertArrayContains() instead.
+* File::getMetadata(), LocalFile::getMetadata() and ArchivedFile::getMetadata(),
+  deprecated since 1.37, now emits warnings. Use the getMetadataArray() or
+  getMetadataItems() functions instead.
 * MediaTransformOutput::streamFile(), deprecated since 1.26, now emits
   deprecation warnings. Use streamFileWithStatus() instead.
 * PageUpdater::isUnchanged(), deprecated since 1.38, now emits

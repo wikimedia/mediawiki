@@ -423,6 +423,7 @@ class ArchivedFile {
 	 * @return string
 	 */
 	public function getMetadata() {
+		wfDeprecated( __METHOD__, '1.37' ); // since 1.47
 		$data = $this->getMetadataArray();
 		if ( !$data ) {
 			return '';

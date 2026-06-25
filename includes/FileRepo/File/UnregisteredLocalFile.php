@@ -172,8 +172,10 @@ class UnregisteredLocalFile extends File {
 
 	/**
 	 * @return string|false
+	 * @deprecated since 1.47 use getMetadataArray()
 	 */
 	public function getMetadata() {
+		wfDeprecated( __METHOD__, '1.47' );
 		$info = $this->getSizeAndMetadata();
 		return $info['metadata'] ? serialize( $info['metadata'] ) : false;
 	}
