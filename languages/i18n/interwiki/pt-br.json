@@ -29,7 +29,7 @@
 	"interwiki_trans": "Transcluir",
 	"interwiki-trans-label": "Transcluir",
 	"interwiki_trans_1_intro": "Se a sintaxe wikitext <code>{<nowiki />{prefix:<em>pagename</em>}}</code> for usada, permite a transclusão da predefinição/página da wiki estrangeira se as transclusões interwiki estiverem habilitadas em geral ([//www.mediawiki.org/wiki/Manual:$wgEnableScaryTranscluding scary transclusion]).",
-	"interwiki_trans_0_intro": "Não permita que <code>{<nowiki />{prefix:<em>pagename</em>}}</code> transclua predefinições/páginas estrangeiras, antes procure pela página local no namespace de predefinição.",
+	"interwiki_trans_0_intro": "Não permite que <code>{<nowiki />{prefixo:<em>nome da página</em>}}</code> transclua predefinições ou páginas estrangeiras. Antes, procura pela página local no espaço nominal de predefinição.",
 	"interwiki_1": "sim",
 	"interwiki_0": "não",
 	"interwiki_error": "ERRO: A tabela de interwikis está vazia, ou alguma outra coisa não correu bem.",

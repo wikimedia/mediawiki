@@ -5,6 +5,12 @@
 		]
 	},
 	"rest-invalid-user": "ټاکل شوی کارن‌نوم ($1) ناچله دی",
+	"rest-unsupported-content-type": "د منځپانگې نه ملاتړکېدونکی ډول: $1",
+	"rest-permission-error": "پرېښونه ناگاره شوه: $1",
+	"rest-permission-denied-anon": "د ورک‌نومي کارن له خوا د لاسرسي وړ نه دی",
+	"rest-permission-denied-title": "کارن د ($1) سرليک لوستلو رښته نه لري",
+	"rest-permission-denied-revision": "کارن غوښتل‌شوې بياليدنې ($1) ته لاسرسی نه‌لري.",
+	"rest-pagehistory-param-range-error": "د بياليدنې پېژند بايد له ۰ څخه لوی وي",
 	"rest-mock-error": "خيالي تېروتنه.",
 	"rest-specified-revision-unavailable": "ځانگړې‌شوې بیاکتنه ړنگه‌شوې يا ځپل‌شوې ده.",
 	"rest-previous-revision-unavailable": "پخوانۍ بیاکتنه ونهٔ موندل شوه. ايا مخ تاله‌شوی يا ړنگ‌شوی دی؟",
