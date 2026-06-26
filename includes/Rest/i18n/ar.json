@@ -313,5 +313,10 @@
 	"rest-responseheader-desc-contenttype": "يشير إلى نوع الوسائط الأصلي للمورد قبل تطبيق أي ترميز للمحتوى.",
 	"rest-responseheader-desc-link": "يُتيح هذا الأسلوب إمكانية تسلسل رابط واحد أو أكثر في رؤوس HTTP. يسمح هذا للخادم بتوجيه العميل إلى مورد آخر يحتوي على بيانات وصفية حول المورد المطلوب.",
 	"rest-responseheader-desc-expires": "يحتوي على التاريخ والوقت اللذين تُعتبر بعدهما الاستجابة منتهية الصلاحية في سياق التخزين المؤقت لبروتوكول HTTP.",
-	"rest-responseheader-desc-location": "يشير إلى عنوان URL مستهدف لغرضين أساسيين: إعادة التوجيه وتحديد موقع مورد تم إنشاؤه حديثًا."
+	"rest-responseheader-desc-location": "يشير إلى عنوان URL مستهدف لغرضين أساسيين: إعادة التوجيه وتحديد موقع مورد تم إنشاؤه حديثًا.",
+	"rest-openapispec-genericerrorresponse-desc": "رد خطأ عام. ستوفر الرسالة مزيدًا من التفاصيل حول الخطأ.",
+	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "رمز حالة HTTP الخاص باستجابة الخطأ.",
+	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "رسالة حالة HTTP الخاصة باستجابة الخطأ.",
+	"rest-openapispec-genericerrorresponse-property-desc-message": "رسالة خطأ سهلة القراءة، مفيدة عندما لا تتوفر ترجمات للرسائل.",
+	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "خريطة لرموز اللغة ورسائل الخطأ التي يمكن قراءتها من قبل البشر، للعملاء الذين يمكنهم استخدامها."
 }

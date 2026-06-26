@@ -26,7 +26,8 @@
 			"沈澄心",
 			"范",
 			"铁桶",
-			"Peterxy"
+			"Peterxy",
+			"Zhoucantd"
 		]
 	},
 	"rest-prefix-mismatch": "请求的路径（$1）不在REST API基本路径（$2）中",

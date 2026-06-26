@@ -274,7 +274,8 @@
 			"ديفيد",
 			"아라",
 			"Flame7311",
-			"Tar Lócesilion"
+			"Tar Lócesilion",
+			"TheDeath246"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoría|Categorías}}",
@@ -425,7 +426,7 @@
 	"editlink": "editar",
 	"viewsourcelink": "ver código",
 	"editsectionhint": "Editar sección: $1",
-	"toc": "Sumario",
+	"toc": "Índice",
 	"showtoc": "mostrar",
 	"hidetoc": "ocultar",
 	"collapsible-collapse": "Contraer",
