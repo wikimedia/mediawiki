@@ -18,8 +18,26 @@ use Throwable;
  */
 class PageEditStatus extends StatusValue {
 
+	private bool $canResubmit = false;
 	private ?Closure $errorFunction = null;
 	private ?EditConstraint $failedConstraint = null;
+
+	/**
+	 * @param bool $canResubmit Whether the warning or error can be bypassed by resubmitting the edit.
+	 */
+	public function setCanResubmit( bool $canResubmit ): self {
+		$this->canResubmit = $canResubmit;
+		return $this;
+	}
+
+	/**
+	 * @return bool Whether the warning or error can be bypassed by resubmitting the edit.
+	 * Note: This assumes that the caller stores the {@link PageEditAttemptState} and passes
+	 * it to the next edit attempt.
+	 */
+	public function canResubmit(): bool {
+		return $this->canResubmit;
+	}
 
 	/**
 	 * @param Closure|null $errorFunction A function that can be called to produce an error.

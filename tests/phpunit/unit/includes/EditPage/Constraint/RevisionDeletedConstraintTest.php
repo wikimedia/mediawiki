@@ -59,8 +59,9 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 			$title,
 			$this->createMock( Authority::class ),
 		);
-		$this->assertConstraintFailed( $constraint, EditConstraint::AS_REVISION_WAS_DELETED );
+		$status = $this->assertConstraintFailed( $constraint, EditConstraint::AS_REVISION_WAS_DELETED );
 		$this->assertTrue( $editAttemptState->shouldIgnoreRevisionDeletedWarning() );
+		$this->assertTrue( $status->canResubmit() );
 	}
 
 	public function testWarning_revisionDeletedCanSeeIgnored() {
@@ -90,7 +91,8 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 			$this->createMock( Title::class ),
 			$this->createMock( Authority::class ),
 		);
-		$this->assertConstraintFailed( $constraint, EditConstraint::AS_REVISION_WAS_DELETED );
+		$status = $this->assertConstraintFailed( $constraint, EditConstraint::AS_REVISION_WAS_DELETED );
+		$this->assertFalse( $status->canResubmit() );
 	}
 
 	public function testFailure_revisionMissing() {
@@ -104,7 +106,8 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 			$title,
 			$this->createMock( Authority::class ),
 		);
-		$this->assertConstraintFailed( $constraint, EditConstraint::AS_REVISION_MISSING );
+		$status = $this->assertConstraintFailed( $constraint, EditConstraint::AS_REVISION_MISSING );
+		$this->assertFalse( $status->canResubmit() );
 	}
 
 	private function createMockRevision( bool $isDeleted, bool $canSeeRevision ): RevisionRecord {

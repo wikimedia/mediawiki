@@ -40,6 +40,7 @@ class DefaultTextConstraint extends EditConstraint {
 			$this->editAttemptState->setAllowBlankArticle( true );
 			return PageEditStatus::newGood( self::AS_BLANK_ARTICLE )
 				->setOK( false )
+				->setCanResubmit( true )
 				->warning( 'blankarticle', $this->submitButtonLabel );
 		}
 		return PageEditStatus::newGood();

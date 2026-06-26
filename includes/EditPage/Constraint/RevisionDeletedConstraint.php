@@ -55,7 +55,9 @@ class RevisionDeletedConstraint extends EditConstraint {
 					$warningMessage = $this->warningMessageWrapper->params( $warningMessage );
 				}
 				$this->editAttemptState->setIgnoreRevisionDeletedWarning( true );
-				return $status->warning( $warningMessage );
+				return $status
+					->warning( $warningMessage )
+					->setCanResubmit( true );
 			}
 		} elseif ( $this->title->exists() ) {
 			// Something went wrong, and the revision is missing

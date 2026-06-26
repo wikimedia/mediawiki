@@ -37,6 +37,7 @@ class NewSectionMissingSubjectConstraint extends EditConstraint {
 			$this->editAttemptState->setAllowBlankSummary( true );
 			return PageEditStatus::newGood( self::AS_SUMMARY_NEEDED )
 				->setOK( false )
+				->setCanResubmit( true )
 				->warning(
 					'missingcommentheader',
 					$this->submitButtonLabel,

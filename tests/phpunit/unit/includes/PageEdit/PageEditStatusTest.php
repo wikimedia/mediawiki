@@ -25,6 +25,15 @@ class PageEditStatusTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $mockConstraint, $status->getFailedConstraint() );
 	}
 
+	public function testSetAndGetCanResubmit() {
+		$status = new PageEditStatus();
+
+		$this->assertFalse( $status->canResubmit() );
+
+		$status->setCanResubmit( true );
+		$this->assertTrue( $status->canResubmit() );
+	}
+
 	public function testSetValue() {
 		$status = new PageEditStatus();
 

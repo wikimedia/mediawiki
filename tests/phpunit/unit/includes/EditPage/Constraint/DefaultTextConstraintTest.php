@@ -71,8 +71,9 @@ class DefaultTextConstraintTest extends MediaWikiUnitTestCase {
 			new RawMessage( '' ),
 			$editAttemptState,
 		);
-		$this->assertConstraintFailed( $constraint, EditConstraint::AS_BLANK_ARTICLE );
+		$status = $this->assertConstraintFailed( $constraint, EditConstraint::AS_BLANK_ARTICLE );
 		$this->assertTrue( $editAttemptState->shouldAllowBlankArticle() );
+		$this->assertTrue( $status->canResubmit() );
 	}
 
 	public static function provideTestFailure() {

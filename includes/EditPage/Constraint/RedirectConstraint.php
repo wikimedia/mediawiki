@@ -131,7 +131,8 @@ class RedirectConstraint extends EditConstraint {
 				$this->errorMessageWrapper->getKey(),
 				...array_merge( $this->errorMessageWrapper->getParams(), [ $errorMessage ] )
 			)
-			->setOK( false );
+			->setOK( false )
+			->setCanResubmit( true );
 	}
 
 	private function getRedirectTarget( Content $content ): ?Title {

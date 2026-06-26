@@ -66,11 +66,12 @@ class AccidentalRecreationConstraintTest extends MediaWikiUnitTestCase {
 			'20260113100000',
 			null
 		);
-		$this->assertConstraintFailed(
+		$status = $this->assertConstraintFailed(
 			$constraint,
 			EditConstraint::AS_ARTICLE_WAS_DELETED
 		);
 		$this->assertTrue( $editAttemptState->shouldAllowRecreation() );
+		$this->assertTrue( $status->canResubmit() );
 	}
 
 }

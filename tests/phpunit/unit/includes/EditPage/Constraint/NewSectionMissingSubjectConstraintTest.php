@@ -42,8 +42,9 @@ class NewSectionMissingSubjectConstraintTest extends MediaWikiUnitTestCase {
 			new RawMessage( '' ),
 			$editAttemptState,
 		);
-		$this->assertConstraintFailed( $constraint, EditConstraint::AS_SUMMARY_NEEDED );
+		$status = $this->assertConstraintFailed( $constraint, EditConstraint::AS_SUMMARY_NEEDED );
 		$this->assertTrue( $editAttemptState->shouldAllowBlankSummary() );
+		$this->assertTrue( $status->canResubmit() );
 	}
 
 	public function testNonNew() {

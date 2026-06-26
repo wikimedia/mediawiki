@@ -63,6 +63,7 @@ class ExistingSectionEditConstraint extends EditConstraint {
 			$this->editAttemptState->setAllowBlankSummary( true );
 			return PageEditStatus::newGood()
 				->setResult( false, self::AS_SUMMARY_NEEDED )
+				->setCanResubmit( true )
 				->warning(
 					'missingsummary',
 					$this->submitButtonLabel,

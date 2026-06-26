@@ -53,6 +53,7 @@ class AccidentalRecreationConstraint extends EditConstraint {
 
 				return PageEditStatus::newGood( self::AS_ARTICLE_WAS_DELETED )
 					->setOK( false )
+					->setCanResubmit( true )
 					->warning(
 						$commentHtml === ''
 							? 'edit-constraint-confirmrecreate-noreason'
@@ -64,6 +65,7 @@ class AccidentalRecreationConstraint extends EditConstraint {
 			} else {
 				return PageEditStatus::newGood( self::AS_ARTICLE_WAS_DELETED )
 					->setOK( false )
+					->setCanResubmit( true )
 					->warning( 'deletedwhileediting' );
 			}
 		}

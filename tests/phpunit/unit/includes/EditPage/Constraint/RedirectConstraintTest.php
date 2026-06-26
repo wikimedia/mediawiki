@@ -97,11 +97,12 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 			$this->getContent( $targetTitle ),
 			editAttemptState: $editAttemptState,
 		);
-		$this->assertConstraintFailed(
+		$status = $this->assertConstraintFailed(
 			$constraint,
 			IEditObject::AS_BROKEN_REDIRECT
 		);
 		$this->assertEquals( $targetTitle, $editAttemptState->getAllowedProblematicRedirectTarget() );
+		$this->assertTrue( $status->canResubmit() );
 	}
 
 	public function testDoubleRedirectPass() {
@@ -135,11 +136,12 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 			editAttemptState: $editAttemptState,
 			redirectLookupResult: $this->createMock( Title::class ),
 		);
-		$this->assertConstraintFailed(
+		$status = $this->assertConstraintFailed(
 			$constraint,
 			IEditObject::AS_DOUBLE_REDIRECT
 		);
 		$this->assertEquals( $targetTitle, $editAttemptState->getAllowedProblematicRedirectTarget() );
+		$this->assertTrue( $status->canResubmit() );
 	}
 
 	public function testSelfRedirectPass() {
@@ -163,11 +165,12 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 			editAttemptState: $editAttemptState,
 			title: $target
 		);
-		$this->assertConstraintFailed(
+		$status = $this->assertConstraintFailed(
 			$constraint,
 			IEditObject::AS_SELF_REDIRECT
 		);
 		$this->assertEquals( $target, $editAttemptState->getAllowedProblematicRedirectTarget() );
+		$this->assertTrue( $status->canResubmit() );
 	}
 
 	public function testInvalidRedirectTargetPass() {
@@ -189,11 +192,12 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 			$this->getContent( $target ),
 			editAttemptState: $editAttemptState,
 		);
-		$this->assertConstraintFailed(
+		$status = $this->assertConstraintFailed(
 			$constraint,
 			IEditObject::AS_INVALID_REDIRECT_TARGET
 		);
 		$this->assertEquals( $target, $editAttemptState->getAllowedProblematicRedirectTarget() );
+		$this->assertTrue( $status->canResubmit() );
 	}
 
 }
