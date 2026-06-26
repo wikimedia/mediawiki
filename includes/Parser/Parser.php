@@ -847,11 +847,12 @@ class Parser {
 	 * @internal
 	 * @deprecated
 	 * @param string $text Wikitext source of the extension
+	 * @param PPFrame|false $frame The frame to use to expand this tag
 	 * @return string
 	 * @return-taint escaped
 	 */
-	public function parseExtensionTagAsTopLevelDoc( string $text ): string {
-		$text = $this->recursiveTagParse( $text );
+	public function parseExtensionTagAsTopLevelDoc( string $text, PPFrame|false $frame = false ): string {
+		$text = $this->recursiveTagParse( $text, $frame );
 		$this->hookRunner->onParserAfterParse( $this, $text, $this->mStripState );
 		$text = $this->internalParseHalfParsed( $text, true );
 		return $text;
