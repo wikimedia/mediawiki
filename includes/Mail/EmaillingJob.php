@@ -18,12 +18,12 @@ use MediaWiki\Title\Title;
  */
 class EmaillingJob extends Job {
 
-	/** @var IEmailer */
-	private $emailer;
-
-	public function __construct( ?Title $title, array $params, IEmailer $emailer ) {
+	public function __construct(
+		?Title $title,
+		array $params,
+		private readonly IEmailer $emailer,
+	) {
 		parent::__construct( 'sendMail', Title::newMainPage(), $params );
-		$this->emailer = $emailer;
 	}
 
 	/** @inheritDoc */

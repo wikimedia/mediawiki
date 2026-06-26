@@ -25,34 +25,31 @@ class MailAddress implements Stringable {
 
 	public string $name;
 	public string $realName;
-	public string $address;
 
 	/**
 	 * @stable to call
-	 * @since 1.6.0
 	 * @param string $address String with an email address
 	 * @param string|null $name Human-readable name if a string address is given
 	 * @param string|null $realName Human-readable real name if a string address is given
 	 */
-	public function __construct( $address, $name = null, $realName = null ) {
-		$this->address = strval( $address );
+	public function __construct(
+		public string $address,
+		?string $name = null,
+		?string $realName = null,
+	) {
 		$this->name = strval( $name );
 		$this->realName = strval( $realName );
 	}
 
 	/**
 	 * @since 1.24
-	 * @param UserEmailContact $user
-	 * @return self
 	 */
-	public static function newFromUser( UserEmailContact $user ) {
+	public static function newFromUser( UserEmailContact $user ): self {
 		return new self( $user->getEmail(), $user->getUser()->getName(), $user->getRealName() );
 	}
 
 	/**
 	 * @since 1.40
-	 * @param self $other
-	 * @return bool
 	 */
 	public function equals( self $other ): bool {
 		return $this->address === $other->address &&
@@ -62,11 +59,8 @@ class MailAddress implements Stringable {
 
 	/**
 	 * Format and quote address for insertion in SMTP headers
-	 *
-	 * @since 1.6.0
-	 * @return string
 	 */
-	public function toString() {
+	public function toString(): string {
 		if ( !$this->address ) {
 			return '';
 		}

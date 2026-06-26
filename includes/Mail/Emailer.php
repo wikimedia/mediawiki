@@ -11,7 +11,7 @@ use StatusValue;
 /**
  * Send arbitrary emails.
  *
- * Obtain instance via ServiceWiring. This service is intended to eventually
+ * Obtain an instance via ServiceWiring. This service is intended to eventually
  * replace the stable (but static) functions of the UserMailer class.
  *
  * Use of this class is discouraged in favour of higher-level abstractions
@@ -26,8 +26,6 @@ use StatusValue;
 class Emailer implements IEmailer {
 
 	/**
-	 * @since 1.35
-	 *
 	 * This function will perform a direct (authenticated) login to
 	 * a SMTP Server to use for mail relaying if 'wgSMTP' specifies an
 	 * array of parameters. It uses symfony/mailer to do that.

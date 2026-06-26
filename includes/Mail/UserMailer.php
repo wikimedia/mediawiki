@@ -38,8 +38,7 @@ use Symfony\Component\Mime\RawMessage;
  * @ingroup Mail
  */
 class UserMailer {
-	/** @var string */
-	private static $mErrorString;
+	private static string $mErrorString;
 
 	/**
 	 * Build an SMTP transport from the $wgSMTP configuration array.
@@ -71,10 +70,8 @@ class UserMailer {
 
 	/**
 	 * Create a value suitable for the MessageId Header
-	 *
-	 * @return string
 	 */
-	private static function makeMsgId() {
+	private static function makeMsgId(): string {
 		$services = MediaWikiServices::getInstance();
 
 		$smtp = $services->getMainConfig()->get( MainConfigNames::SMTP );
@@ -93,11 +90,11 @@ class UserMailer {
 	/**
 	 * Send a raw email via SMTP (if $wgSMTP is set) or otherwise via PHP mail().
 	 *
-	 * This function perform a direct (authenticated) login to a SMTP server,
+	 * This function performs a direct (authenticated) login to a SMTP server,
 	 * to use for mail relaying, if 'wgSMTP' specifies an array of parameters.
 	 * This uses the symfony/mailer package.
 	 *
-	 * Otherwise it uses the standard PHP 'mail' function, which in turn relies
+	 * Otherwise, it uses the standard PHP 'mail' function, which in turn relies
 	 * on the server's sendmail configuration.
 	 *
 	 * @since 1.12
@@ -143,12 +140,12 @@ class UserMailer {
 				strlen( $body['html'] ) >= $minBodyLen
 			)
 		) {
-			// if it is neither we have a problem
+			// if it is neither, we have a problem
 			return Status::newFatal( 'user-mail-no-body' );
 		}
 
 		if ( !$allowHTMLEmail && is_array( $body ) ) {
-			// HTML not wanted.  Dump it.
+			// HTML is not wanted. Dump it.
 			$body = $body['text'];
 		}
 
@@ -173,8 +170,9 @@ class UserMailer {
 			( new HookRunner( $services->getHookContainer() ) )->onUserMailerSplitTo( $to );
 			if ( $oldTo != $to ) {
 				$splitTo = array_diff( $oldTo, $to );
-				$to = array_diff( $oldTo, $splitTo ); // ignore new addresses added in the hook
-				// first send to non-split address list, then to split addresses one by one
+				// ignore new addresses added in the hook
+				$to = array_diff( $oldTo, $splitTo );
+				// first send email to the non-split address list, then to split addresses one by one
 				$status = Status::newGood();
 				if ( $to ) {
 					$status->merge( self::sendInternal(
@@ -192,7 +190,7 @@ class UserMailer {
 	}
 
 	/**
-	 * Helper function fo UserMailer::send() which does the actual sending. It expects a $to
+	 * Helper function for UserMailer::send() which does the actual sending. It expects a $to
 	 * list which the UserMailerSplitTo hook would not split further.
 	 * @param MailAddress[] $to Array of recipients' email addresses
 	 * @param MailAddress $from Sender's email
@@ -503,7 +501,7 @@ class UserMailer {
 	 * @param string $string Error message
 	 * @suppress PhanUnusedPrivateMethodParameter Used as callback with fix signature
 	 */
-	private static function errorHandler( $code, $string ): bool {
+	private static function errorHandler( int $code, string $string ): bool {
 		if ( self::$mErrorString !== '' ) {
 			self::$mErrorString .= "\n";
 		}
@@ -520,17 +518,14 @@ class UserMailer {
 	 * This method is doing Q encoding inside encoded-words as defined by RFC 2047
 	 * This is for email headers.
 	 * The built in quoted_printable_encode() is for email bodies
-	 * @param string $string
-	 * @param string $charset
-	 * @return string
 	 */
-	public static function quotedPrintable( $string, $charset = '' ) {
+	public static function quotedPrintable( string $string, string $charset = '' ): string {
 		// Probably incomplete; see RFC 2045
 		if ( !$charset ) {
 			$charset = 'UTF-8';
 		}
 		$charset = strtoupper( $charset );
-		$charset = str_replace( 'ISO-8859', 'ISO8859', $charset ); // ?
+		$charset = str_replace( 'ISO-8859', 'ISO8859', $charset );
 
 		$illegal = '\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\xff=';
 		if ( !preg_match( "/[$illegal]/", $string ) ) {

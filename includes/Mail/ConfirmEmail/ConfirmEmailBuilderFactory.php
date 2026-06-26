@@ -10,7 +10,7 @@ class ConfirmEmailBuilderFactory {
 
 	public function __construct(
 		private readonly BagOStuff $cache,
-		private readonly UrlUtils $urlUtils
+		private readonly UrlUtils $urlUtils,
 	) {
 	}
 

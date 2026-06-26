@@ -20,11 +20,11 @@ use StatusValue;
  */
 class ConfirmEmailSender {
 
-	public const EMAIL_TYPE_CREATED = 'created';
-	public const EMAIL_TYPE_CHANGED = 'changed';
-	public const EMAIL_TYPE_SET = 'set';
+	public const string EMAIL_TYPE_CREATED = 'created';
+	public const string EMAIL_TYPE_CHANGED = 'changed';
+	public const string EMAIL_TYPE_SET = 'set';
 
-	public const CONSTRUCTOR_OPTIONS = [
+	public const array CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::PasswordSender,
 	];
 

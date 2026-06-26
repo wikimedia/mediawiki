@@ -38,69 +38,39 @@ class EmailUser {
 	/**
 	 * @internal For use by ServiceWiring
 	 */
-	public const CONSTRUCTOR_OPTIONS = [
+	public const array CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::EnableEmail,
 		MainConfigNames::EnableUserEmail,
 		MainConfigNames::PasswordSender,
 		MainConfigNames::UserEmailUseReplyTo,
 	];
 
-	private ServiceOptions $options;
-	private HookRunner $hookRunner;
-	private UserOptionsLookup $userOptionsLookup;
-	private CentralIdLookup $centralIdLookup;
-	private UserFactory $userFactory;
-	private IEmailer $emailer;
-	private IMessageFormatterFactory $messageFormatterFactory;
-	private ITextFormatter $contLangMsgFormatter;
-	private Authority $sender;
+	private readonly HookRunner $hookRunner;
 
 	/** @var string Temporary property to support the deprecated EmailUserPermissionsErrors hook */
 	private string $editToken = '';
 
 	/**
 	 * @internal For use by EmailUserFactory.
-	 *
-	 * @param ServiceOptions $options
-	 * @param HookContainer $hookContainer
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param CentralIdLookup $centralIdLookup
-	 * @param UserFactory $userFactory
-	 * @param IEmailer $emailer
-	 * @param IMessageFormatterFactory $messageFormatterFactory
-	 * @param ITextFormatter $contLangMsgFormatter
-	 * @param Authority $sender
 	 */
 	public function __construct(
-		ServiceOptions $options,
+		private readonly ServiceOptions $options,
 		HookContainer $hookContainer,
-		UserOptionsLookup $userOptionsLookup,
-		CentralIdLookup $centralIdLookup,
-		UserFactory $userFactory,
-		IEmailer $emailer,
-		IMessageFormatterFactory $messageFormatterFactory,
-		ITextFormatter $contLangMsgFormatter,
-		Authority $sender
+		private readonly UserOptionsLookup $userOptionsLookup,
+		private readonly CentralIdLookup $centralIdLookup,
+		private readonly UserFactory $userFactory,
+		private readonly IEmailer $emailer,
+		private readonly IMessageFormatterFactory $messageFormatterFactory,
+		private readonly ITextFormatter $contLangMsgFormatter,
+		private readonly Authority $sender,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->centralIdLookup = $centralIdLookup;
-		$this->userFactory = $userFactory;
-		$this->emailer = $emailer;
-		$this->messageFormatterFactory = $messageFormatterFactory;
-		$this->contLangMsgFormatter = $contLangMsgFormatter;
-
-		$this->sender = $sender;
 	}
 
 	/**
 	 * @internal
 	 * @todo This method might perhaps be moved to a UserEmailContactLookup or something.
-	 *
-	 * @param UserEmailContact $target Target user
-	 * @return StatusValue
 	 */
 	public function validateTarget( UserEmailContact $target ): StatusValue {
 		$targetIdentity = $target->getUser();
@@ -390,8 +360,6 @@ class EmailUser {
 	}
 
 	/**
-	 * @param string $targetName
-	 * @return string
 	 * XXX This code is still heavily reliant on global state, so temporarily skip it in tests.
 	 * @codeCoverageIgnore
 	 */
@@ -404,7 +372,6 @@ class EmailUser {
 
 	/**
 	 * @internal Only for BC with SpecialEmailUser
-	 * @param string $token
 	 */
 	public function setEditToken( string $token ): void {
 		$this->editToken = $token;

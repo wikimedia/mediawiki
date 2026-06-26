@@ -25,46 +25,21 @@ use Wikimedia\Message\ITextFormatter;
  * @ingroup Mail
  */
 class EmailUserFactory {
-	private ServiceOptions $options;
-	private HookContainer $hookContainer;
-	private UserOptionsLookup $userOptionsLookup;
-	private CentralIdLookup $centralIdLookup;
-	private UserFactory $userFactory;
-	private IEmailer $emailer;
-	private IMessageFormatterFactory $messageFormatterFactory;
-	private ITextFormatter $contLangMsgFormatter;
 
 	/**
 	 * @internal For use by ServiceWiring only.
-	 *
-	 * @param ServiceOptions $options
-	 * @param HookContainer $hookContainer
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param CentralIdLookup $centralIdLookup
-	 * @param UserFactory $userFactory
-	 * @param IEmailer $emailer
-	 * @param IMessageFormatterFactory $messageFormatterFactory
-	 * @param ITextFormatter $contLangMsgFormatter
 	 */
 	public function __construct(
-		ServiceOptions $options,
-		HookContainer $hookContainer,
-		UserOptionsLookup $userOptionsLookup,
-		CentralIdLookup $centralIdLookup,
-		UserFactory $userFactory,
-		IEmailer $emailer,
-		IMessageFormatterFactory $messageFormatterFactory,
-		ITextFormatter $contLangMsgFormatter
+		private readonly ServiceOptions $options,
+		private readonly HookContainer $hookContainer,
+		private readonly UserOptionsLookup $userOptionsLookup,
+		private readonly CentralIdLookup $centralIdLookup,
+		private readonly UserFactory $userFactory,
+		private readonly IEmailer $emailer,
+		private readonly IMessageFormatterFactory $messageFormatterFactory,
+		private readonly ITextFormatter $contLangMsgFormatter,
 	) {
 		$options->assertRequiredOptions( EmailUser::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
-		$this->hookContainer = $hookContainer;
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->centralIdLookup = $centralIdLookup;
-		$this->userFactory = $userFactory;
-		$this->emailer = $emailer;
-		$this->messageFormatterFactory = $messageFormatterFactory;
-		$this->contLangMsgFormatter = $contLangMsgFormatter;
 	}
 
 	public function newEmailUser( Authority $sender ): EmailUser {
@@ -83,9 +58,6 @@ class EmailUserFactory {
 
 	/**
 	 * @internal Temporary BC method for SpecialEmailUser
-	 * @param Authority $sender
-	 * @param Config|null $config
-	 * @return EmailUser
 	 */
 	public function newEmailUserBC( Authority $sender, ?Config $config = null ): EmailUser {
 		$options = $config ? new ServiceOptions( EmailUser::CONSTRUCTOR_OPTIONS, $config ) : $this->options;

@@ -20,7 +20,7 @@ use Wikimedia\ObjectCache\BagOStuff;
  */
 class NotificationEmailSender {
 
-	public const CONSTRUCTOR_OPTIONS = [
+	public const array CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::PasswordSender,
 		MainConfigNames::AllowHTMLEmail,
 	];
@@ -35,7 +35,7 @@ class NotificationEmailSender {
 	}
 
 	/**
-	 * Send an email to the old address notifying about the email change.
+	 * Email the old address notifying about the email change.
 	 *
 	 * @param IContextSource $ctx Request context (for IP, messages, etc.)
 	 * @param User $recipientUser The user whose email is being changed (recipient = their old address)

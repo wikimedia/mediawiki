@@ -22,7 +22,7 @@ class ConfirmEmailContent {
 	public function __construct(
 		private string $subject,
 		private string $plaintext,
-		private ?string $html = null
+		private ?string $html = null,
 	) {
 	}
 

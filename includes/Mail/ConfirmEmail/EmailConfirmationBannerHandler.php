@@ -12,7 +12,7 @@ use MediaWiki\User\User;
  */
 class EmailConfirmationBannerHandler {
 
-	public const CONSTRUCTOR_OPTIONS = [
+	public const array CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::EmailAuthentication,
 		MainConfigNames::EmailConfirmationBanner,
 	];

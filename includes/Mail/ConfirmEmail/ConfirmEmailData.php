@@ -13,10 +13,10 @@ use MediaWiki\User\UserIdentity;
 class ConfirmEmailData {
 
 	public function __construct(
-		private UserIdentity $recipientUser,
-		private string $confirmationUrl,
-		private string $invalidationUrl,
-		private string $urlExpiration,
+		private readonly UserIdentity $recipientUser,
+		private readonly string $confirmationUrl,
+		private readonly string $invalidationUrl,
+		private readonly string $urlExpiration,
 	) {
 	}
 
