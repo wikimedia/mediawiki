@@ -360,6 +360,7 @@
 	"welcomecreation-msg": "Kontoen din har blitt opprettet.\nIkke glem å endre [[Special:Preferences|innstillingene dine]] på {{SITENAME}}.",
 	"yourname": "Brukernavn:",
 	"userlogin-yourname": "Brukernavn",
+	"userlogin-yourname-reauth": "Logget inn som <strong>$1</strong>",
 	"userlogin-yourname-ph": "Fyll inn brukernavnet ditt",
 	"createacct-another-username-ph": "Fyll inn brukernavnet",
 	"userlogin-yourpassword": "Passord",

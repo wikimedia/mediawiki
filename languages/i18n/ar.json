@@ -902,7 +902,7 @@
 	"rev-suppressed-no-diff": "ليس بإمكانك مشاهدة هذا الفرق لأن إحدى المراجعات <strong>حذفت</strong>.",
 	"rev-deleted-unhide-diff": "<strong>حُذِفت</strong> إحدى مراجعتي هذا الفرق.\nيمكن العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{urlencode:{{FULLPAGENAME}}}}}} سجل الحذف].\nبإمكانك [$1 رؤية هذا الفرق] إذا أردت المتابعة.",
 	"rev-suppressed-unhide-diff": "<strong>أُخفيت</strong> إحدى مراجعتي هذا الفرق.\nيمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{urlencode:{{FULLPAGENAME}}}}}} سجل الإخفاء].\nبإمكانك [$1 رؤية هذا الفرق] إذا أردت المتابعة.",
-	"rev-deleted-diff-view": "<strong>أُخفيت</strong> إحدى مراجعتي هذا الفرق.\nيمكنك رؤية هذا الفرق؛ ويمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{urlencode:{{FULLPAGENAME}}}}}} سجل الإخفاء].",
+	"rev-deleted-diff-view": "<strong>حُذِفت</strong> إحدى مراجعتي هذا الفرق.\nيمكنك رؤية الفرق؛ ويمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{urlencode:{{FULLPAGENAME}}}}}} سجل الحذف].",
 	"rev-suppressed-diff-view": "<strong>أُخفيت</strong> إحدى مراجعتي هذا الفرق.\nيمكنك رؤية هذا الفرق؛ ويمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{urlencode:{{FULLPAGENAME}}}}}} سجل الإخفاء].",
 	"rev-delundel": "أظهر/أخف",
 	"rev-showdeleted": "أظهر",

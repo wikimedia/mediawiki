@@ -323,6 +323,7 @@
 	"welcomecreation-msg": "מ'האט געשאפן אייער קאנטע.\nפארגעסט נישט צו ענדערן אייערע [[Special:Preferences|{{SITENAME}} פרעפערענצן]].",
 	"yourname": "באַניצער נאָמען:",
 	"userlogin-yourname": "באַניצער נאָמען",
+	"userlogin-yourname-reauth": "אריינגעלאגט אַלס <strong>$1</strong>",
 	"userlogin-yourname-ph": "גיט אריין אייער באניצער נאמען",
 	"createacct-another-username-ph": "אריינגעבן באניצער נאמען",
 	"userlogin-yourpassword": "פאַסווארט",

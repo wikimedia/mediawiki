@@ -416,6 +416,7 @@
 	"welcomecreation-msg": "Twoje konto zostało utworzone.\nMożesz zmienić swoje [[Special:Preferences|preferencje]], jeśli chcesz.",
 	"yourname": "Nazwa {{GENDER:|użytkownika|użytkowniczki}}:",
 	"userlogin-yourname": "Nazwa użytkownika",
+	"userlogin-yourname-reauth": "Zalogowano jako <strong>$1</strong>",
 	"userlogin-yourname-ph": "Wprowadź swoją nazwę użytkownika",
 	"createacct-another-username-ph": "Wprowadź nazwę użytkownika",
 	"userlogin-yourpassword": "Hasło",

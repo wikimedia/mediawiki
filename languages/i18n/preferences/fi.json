@@ -165,7 +165,7 @@
 	"thumbsize-help": "Jotkut käyttäjät saattavat pitää tavallista pienemmistä tai suuremmista pienoiskuvista. Tavallinen koko on $1 pikseliä.",
 	"prefs-diffs": "Eroavaisuudet",
 	"tog-diffonly": "Älä näytä sivun sisältöä eroavaisuusvertailun alapuolella",
-	"tog-norollbackdiff": "Älä näytä eroavaisuuksia, kun olet palauttanut muokkauksen palauta-työkalulla",
+	"tog-norollbackdiff": "Älä näytä eroavaisuuksia, kun olet palauttanut muokkauksen pikapalautus-työkalulla",
 	"prefs-advancedrendering": "Lisäasetukset",
 	"tog-underline": "Linkkien alleviivaus:",
 	"underline-default": "Ulkoasun tai selaimen oletustapa",
