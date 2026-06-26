@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Integration\Utils;
 
-use MediaWiki\Context\RequestContext;
 use MediaWiki\Utils\SBOMGenerator;
 use MediaWikiIntegrationTestCase;
+use MockMessageLocalizer;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -35,7 +35,7 @@ class SBOMGeneratorIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testGenerateCdxSBOM() {
 		$generator = $this->getSBOMGenerator();
 
-		$sbom = $generator->generateCdxSBOM( RequestContext::getMain() );
+		$sbom = $generator->generateCdxSBOM( new MockMessageLocalizer() );
 		$this->assertEquals( 'http://cyclonedx.org/schema/bom-1.6.schema.json', $sbom['$schema'] );
 		$this->assertEquals( 'CycloneDX', $sbom['bomFormat'] );
 		$this->assertSame( '1.6', $sbom['specVersion'] );

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Utils;
 
-use MediaWiki\Context\IContextSource;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader\ForeignResourceManager;
 use Wikimedia\Composer\ComposerInstalled;
@@ -30,7 +30,7 @@ class SBOMGenerator {
 	 * @see https://cyclonedx.org/docs/1.6/json/
 	 * @return array SBOM data in the CycloneDX 1.6 format
 	 */
-	public function generateCdxSBOM( IContextSource $context ): array {
+	public function generateCdxSBOM( MessageLocalizer $localizer ): array {
 		return [
 			'$schema' => 'http://cyclonedx.org/schema/bom-1.6.schema.json',
 			'bomFormat' => 'CycloneDX',
@@ -43,7 +43,7 @@ class SBOMGenerator {
 			'components' => array_merge(
 				$this->getPlatformComponents(),
 				$this->getMediaWikiComponent(),
-				$this->getExtensionComponents( $this->extensionRegistry->getAllThings(), $context ),
+				$this->getExtensionComponents( $this->extensionRegistry->getAllThings(), $localizer ),
 			),
 		];
 	}
@@ -107,10 +107,10 @@ class SBOMGenerator {
 
 	/**
 	 * @param array $extensions Information about all extensions and skins
-	 * @param IContextSource $context
+	 * @param MessageLocalizer $localizer
 	 * @return array Components for the installed extensions and skins along with their declared foreign resources
 	 */
-	private function getExtensionComponents( array $extensions, IContextSource $context ): array {
+	private function getExtensionComponents( array $extensions, MessageLocalizer $localizer ): array {
 		ksort( $extensions, SORT_STRING );
 		$foreignResourcesDirs = $this->extensionRegistry->getAttribute( 'ForeignResourcesDir' );
 
@@ -144,7 +144,7 @@ class SBOMGenerator {
 			}
 
 			if ( array_key_exists( 'descriptionmsg', $extension ) ) {
-				$componentData['description'] = $context->msg( $extension['descriptionmsg'] )->text();
+				$componentData['description'] = $localizer->msg( $extension['descriptionmsg'] )->text();
 			} elseif ( array_key_exists( 'description', $extension ) ) {
 				$componentData['description'] = $extension['description'];
 			}

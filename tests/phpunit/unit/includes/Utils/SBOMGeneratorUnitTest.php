@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Utils;
 
-use MediaWiki\Context\IContextSource;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
 use MediaWiki\Utils\SBOMGenerator;
 use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -43,12 +43,9 @@ class SBOMGeneratorUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetExtensionComponents( array $extensions, array $expected ) {
 		$generator = $this->newSBOMGenerator();
-		$context = $this->createMock( IContextSource::class );
-		$context->method( 'msg' )
-			->willReturnCallback( fn ( $key ) => $this->getMockMessage( "Test translation for \"$key\"" ) );
 		$this->assertArrayEquals(
 			$expected,
-			$generator->getExtensionComponents( $extensions, $context ),
+			$generator->getExtensionComponents( $extensions, new FakeQqxMessageLocalizer() ),
 			ordered: true,
 		);
 	}
@@ -90,7 +87,7 @@ class SBOMGeneratorUnitTest extends MediaWikiUnitTestCase {
 							'License 1',
 						],
 						'url' => 'https://mediawiki.org/wiki/Extension:Extension1',
-						'description' => 'Test translation for "test-description"',
+						'description' => '(test-description)',
 					],
 					[
 						'type' => 'application',
