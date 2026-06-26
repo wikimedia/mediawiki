@@ -44,6 +44,8 @@ for use in production.
 * (T422995, CVE-2026-58037) SECURITY: LogFormatter: 'raw' parameter format is no
   longer raw HTML.
 * (T422244, CVE-2026-58025) SECURITY: Safely unserialize log entry parameters.
+* (T424462) tests: Limit ResourcesTest::testRespond to general-purpose skins
+* (T424462) tests: loop modules inside ResourcesTest::testRespond
 
 == Upgrading notes for 1.46 ==
 Don't forget to always back up your database before upgrading!
