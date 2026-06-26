@@ -382,7 +382,6 @@ class DataAccess extends IDataAccess {
 	private function prepareParser(
 		IPageConfig $pageConfig,
 		int $outputType,
-		?ParsoidLinkTarget $titleOverride = null,
 	) {
 		'@phan-var PageConfig $pageConfig'; // @var PageConfig $pageConfig
 		// Clear the state only when the PageConfig changes, so that Parser's internal caches can
@@ -396,7 +395,7 @@ class DataAccess extends IDataAccess {
 		$this->parser ??= $this->parserFactory->create();
 		$this->parser->setUseParsoidFragments( true );
 		$this->parser->startExternalParse(
-			Title::newFromLinkTarget( $titleOverride ?? $pageConfig->getLinkTarget() ),
+			Title::newFromLinkTarget( $pageConfig->getLinkTarget() ),
 			$parserOptions,
 			$outputType, $clearState, $pageConfig->getRevisionId() );
 
@@ -443,7 +442,7 @@ class DataAccess extends IDataAccess {
 		?ParsoidLinkTarget $titleOverride = null
 	): string {
 		'@phan-var PageConfig $pageConfig'; // @var PageConfig $pageConfig
-		$parser = $this->prepareParser( $pageConfig, Parser::OT_HTML, $titleOverride );
+		$parser = $this->prepareParser( $pageConfig, Parser::OT_HTML );
 
 		// XXX: Ideally we will eventually have the legacy parser use our
 		// ContentMetadataCollector instead of having a new ParserOutput
@@ -454,7 +453,13 @@ class DataAccess extends IDataAccess {
 		$oldWatcher = $parserOptions->registerWatcher( null );
 		$parser->resetOutput();
 
-		$html = $parser->parseExtensionTagAsTopLevelDoc( $wikitext );
+		$frame = false;
+		if ( $titleOverride !== null ) {
+			$frame = $this->ppFrame->newChild(
+				false, Title::newFromLinkTarget( $titleOverride )
+			);
+		}
+		$html = $parser->parseExtensionTagAsTopLevelDoc( $wikitext, $frame );
 
 		$out = $parser->getOutput();
 		$out->collectMetadata( $metadata ); # merges $out into $metadata
