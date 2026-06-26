@@ -68,7 +68,7 @@
 		"wikimedia/json-codec": "5.0.0",
 		"wikimedia/language-data": "1.1.13",
 		"wikimedia/less.php": "5.5.1",
-		"wikimedia/minify": "2.10.0",
+		"wikimedia/minify": "2.11.0",
 		"wikimedia/normalized-exception": "2.1.1",
 		"wikimedia/object-factory": "6.0.0",
 		"wikimedia/parsoid": "0.24.0-a12",
