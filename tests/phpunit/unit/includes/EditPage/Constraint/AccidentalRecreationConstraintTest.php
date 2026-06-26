@@ -10,6 +10,7 @@ use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Logging\LogFormatterFactory;
+use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\Title\Title;
 use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -30,7 +31,7 @@ class AccidentalRecreationConstraintTest extends MediaWikiUnitTestCase {
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LogFormatterFactory::class ),
 			$this->createMock( Title::class ),
-			false,
+			new PageEditAttemptState(),
 			null,
 			new RawMessage( '' ),
 		);
@@ -55,11 +56,12 @@ class AccidentalRecreationConstraintTest extends MediaWikiUnitTestCase {
 		$title->method( 'exists' )->willReturn( false );
 		$title->method( 'hasDeletedEdits' )->willReturn( true );
 
+		$editAttemptState = new PageEditAttemptState();
 		$constraint = new AccidentalRecreationConstraint(
 			$connectionProvider,
 			$this->createMock( LogFormatterFactory::class ),
 			$title,
-			false,
+			$editAttemptState,
 			// must be less than log_timestamp
 			'20260113100000',
 			null
@@ -68,6 +70,7 @@ class AccidentalRecreationConstraintTest extends MediaWikiUnitTestCase {
 			$constraint,
 			EditConstraint::AS_ARTICLE_WAS_DELETED
 		);
+		$this->assertTrue( $editAttemptState->shouldAllowRecreation() );
 	}
 
 }

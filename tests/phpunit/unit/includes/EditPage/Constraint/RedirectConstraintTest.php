@@ -12,6 +12,7 @@ use MediaWiki\EditPage\Constraint\RedirectConstraint;
 use MediaWiki\EditPage\IEditObject;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Page\RedirectLookup;
+use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\Title\Title;
 use MediaWikiUnitTestCase;
 
@@ -51,13 +52,14 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 	private function createRedirectConstraint(
 		Content $originalContent,
 		Content $newContent,
+		PageEditAttemptState $editAttemptState = new PageEditAttemptState(),
 		?Title $title = null,
 		?Title $redirectLookupResult = null,
 	): RedirectConstraint {
 		$redirectLookup = $this->createMock( RedirectLookup::class );
 		$redirectLookup->method( 'getRedirectTarget' )->willReturn( $redirectLookupResult );
 		return new RedirectConstraint(
-			null,
+			$editAttemptState,
 			$newContent,
 			$originalContent,
 			$title ?? $this->createMock( Title::class ),
@@ -88,14 +90,18 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testBrokenRedirectFailure() {
 		// new content is a broken redirect, but existing content is not
+		$editAttemptState = new PageEditAttemptState();
+		$targetTitle = $this->createTargetTitle( false, false );
 		$constraint = $this->createRedirectConstraint(
 			$this->getContent(),
-			$this->getContent( $this->createTargetTitle( false, false ) )
+			$this->getContent( $targetTitle ),
+			editAttemptState: $editAttemptState,
 		);
 		$this->assertConstraintFailed(
 			$constraint,
 			IEditObject::AS_BROKEN_REDIRECT
 		);
+		$this->assertEquals( $targetTitle, $editAttemptState->getAllowedProblematicRedirectTarget() );
 	}
 
 	public function testDoubleRedirectPass() {
@@ -110,7 +116,8 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testDoubleRedirectFailure() {
 		// new content is a double redirect, but existing content is not
-		$newContent = $this->getContent( $this->createTargetTitle( true, true ) );
+		$targetTitle = $this->createTargetTitle( true, true );
+		$newContent = $this->getContent( $targetTitle );
 
 		$suggestedRedirectContent = $this->createMock( Content::class );
 		$contentHandler = $this->createMock( ContentHandler::class );
@@ -121,15 +128,18 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 		global $wgEnableMagicLinks;
 		$wgEnableMagicLinks = [];
 
+		$editAttemptState = new PageEditAttemptState();
 		$constraint = $this->createRedirectConstraint(
 			$this->getContent(),
 			$newContent,
+			editAttemptState: $editAttemptState,
 			redirectLookupResult: $this->createMock( Title::class ),
 		);
 		$this->assertConstraintFailed(
 			$constraint,
 			IEditObject::AS_DOUBLE_REDIRECT
 		);
+		$this->assertEquals( $targetTitle, $editAttemptState->getAllowedProblematicRedirectTarget() );
 	}
 
 	public function testSelfRedirectPass() {
@@ -138,7 +148,7 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 		$constraint = $this->createRedirectConstraint(
 			$this->getContent( $target ),
 			$this->getContent( $target ),
-			$target
+			title: $target
 		);
 		$this->assertConstraintPassed( $constraint );
 	}
@@ -146,15 +156,18 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 	public function testSelfRedirectFailure() {
 		// new content is a self redirect, but existing content is not
 		$target = $this->createTargetTitle( true, true );
+		$editAttemptState = new PageEditAttemptState();
 		$constraint = $this->createRedirectConstraint(
 			$this->getContent(),
 			$this->getContent( $target ),
-			$target
+			editAttemptState: $editAttemptState,
+			title: $target
 		);
 		$this->assertConstraintFailed(
 			$constraint,
 			IEditObject::AS_SELF_REDIRECT
 		);
+		$this->assertEquals( $target, $editAttemptState->getAllowedProblematicRedirectTarget() );
 	}
 
 	public function testInvalidRedirectTargetPass() {
@@ -169,14 +182,18 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testInvalidRedirectTargetFailure() {
 		// new content is a redirect pointing to an invalid redirect target, but existing content is not
+		$target = $this->createTargetTitle( true, false, false );
+		$editAttemptState = new PageEditAttemptState();
 		$constraint = $this->createRedirectConstraint(
 			$this->getContent(),
-			$this->getContent( $this->createTargetTitle( true, false, false ) )
+			$this->getContent( $target ),
+			editAttemptState: $editAttemptState,
 		);
 		$this->assertConstraintFailed(
 			$constraint,
 			IEditObject::AS_INVALID_REDIRECT_TARGET
 		);
+		$this->assertEquals( $target, $editAttemptState->getAllowedProblematicRedirectTarget() );
 	}
 
 }

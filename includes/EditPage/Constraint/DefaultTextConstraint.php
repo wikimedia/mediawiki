@@ -7,6 +7,7 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Page\PageReference;
+use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\ShadowPage\ShadowPageLoader;
 use Wikimedia\Message\MessageSpecifier;
@@ -25,9 +26,9 @@ class DefaultTextConstraint extends EditConstraint {
 	public function __construct(
 		private readonly ShadowPageLoader $shadowPageLoader,
 		private readonly PageReference $title,
-		private readonly bool $allowBlank,
 		private readonly string $userProvidedText,
 		private readonly MessageSpecifier $submitButtonLabel,
+		private readonly PageEditAttemptState $editAttemptState,
 	) {
 	}
 
@@ -35,7 +36,8 @@ class DefaultTextConstraint extends EditConstraint {
 		$defaultContent = $this->shadowPageLoader->get( $this->title )?->getPreloadContent();
 		// TODO: check whether JSON reserialization causes a mismatch
 		$defaultText = $defaultContent?->serialize() ?? '';
-		if ( !$this->allowBlank && $this->userProvidedText === $defaultText ) {
+		if ( !$this->editAttemptState->shouldAllowBlankArticle() && $this->userProvidedText === $defaultText ) {
+			$this->editAttemptState->setAllowBlankArticle( true );
 			return PageEditStatus::newGood( self::AS_BLANK_ARTICLE )
 				->setOK( false )
 				->warning( 'blankarticle', $this->submitButtonLabel );

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
@@ -19,7 +20,7 @@ use Wikimedia\Message\MessageValue;
 class RevisionDeletedConstraint extends EditConstraint {
 
 	public function __construct(
-		private readonly bool $ignoreWarning,
+		private readonly PageEditAttemptState $editAttemptState,
 		private readonly int $oldId,
 		private readonly ?RevisionRecord $revisionRecord,
 		private readonly string $section,
@@ -43,7 +44,8 @@ class RevisionDeletedConstraint extends EditConstraint {
 					->setValue( self::AS_REVISION_WAS_DELETED );
 			} elseif ( $this->revisionRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				// Let sysop know that this will make private content public if saved
-				$status = PageEditStatus::newGood( self::AS_REVISION_WAS_DELETED );
+				$status = PageEditStatus::newGood( self::AS_REVISION_WAS_DELETED )
+					->setOK( $this->editAttemptState->shouldIgnoreRevisionDeletedWarning() );
 				$warningMessage = MessageValue::new(
 					'rev-deleted-text-view',
 					[ $this->title->getPrefixedURL() ]
@@ -52,7 +54,8 @@ class RevisionDeletedConstraint extends EditConstraint {
 				if ( $this->warningMessageWrapper !== null ) {
 					$warningMessage = $this->warningMessageWrapper->params( $warningMessage );
 				}
-				return $status->warning( $warningMessage )->setOK( $this->ignoreWarning );
+				$this->editAttemptState->setIgnoreRevisionDeletedWarning( true );
+				return $status->warning( $warningMessage );
 			}
 		} elseif ( $this->title->exists() ) {
 			// Something went wrong, and the revision is missing

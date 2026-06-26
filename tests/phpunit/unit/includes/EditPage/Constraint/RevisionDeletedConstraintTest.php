@@ -8,6 +8,7 @@ namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\RevisionDeletedConstraint;
+use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
@@ -24,7 +25,7 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testPass() {
 		$constraint = new RevisionDeletedConstraint(
-			false,
+			new PageEditAttemptState(),
 			1,
 			$this->createMockRevision( false, true ),
 			'notnew',
@@ -36,7 +37,7 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testPass_newSection() {
 		$constraint = new RevisionDeletedConstraint(
-			false,
+			new PageEditAttemptState(),
 			1,
 			$this->createMockRevision( true, false ),
 			'new',
@@ -49,8 +50,9 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 	public function testWarning_revisionDeletedCanSee() {
 		$title = $this->createMock( Title::class );
 		$title->method( 'getPrefixedURL' )->willReturn( 'TestTitle' );
+		$editAttemptState = new PageEditAttemptState();
 		$constraint = new RevisionDeletedConstraint(
-			false,
+			$editAttemptState,
 			1,
 			$this->createMockRevision( true, true ),
 			'notnew',
@@ -58,13 +60,16 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 			$this->createMock( Authority::class ),
 		);
 		$this->assertConstraintFailed( $constraint, EditConstraint::AS_REVISION_WAS_DELETED );
+		$this->assertTrue( $editAttemptState->shouldIgnoreRevisionDeletedWarning() );
 	}
 
 	public function testWarning_revisionDeletedCanSeeIgnored() {
 		$title = $this->createMock( Title::class );
 		$title->method( 'getPrefixedURL' )->willReturn( 'TestTitle' );
+		$editAttemptState = new PageEditAttemptState();
+		$editAttemptState->setIgnoreRevisionDeletedWarning( true );
 		$constraint = new RevisionDeletedConstraint(
-			true,
+			$editAttemptState,
 			1,
 			$this->createMockRevision( true, true ),
 			'notnew',
@@ -78,7 +83,7 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testFailure_revisionDeleted() {
 		$constraint = new RevisionDeletedConstraint(
-			false,
+			new PageEditAttemptState(),
 			1,
 			$this->createMockRevision( true, false ),
 			'notnew',
@@ -92,7 +97,7 @@ class RevisionDeletedConstraintTest extends MediaWikiUnitTestCase {
 		$title = $this->createMock( Title::class );
 		$title->method( 'exists' )->willReturn( true );
 		$constraint = new RevisionDeletedConstraint(
-			false,
+			new PageEditAttemptState(),
 			1,
 			null,
 			'notnew',

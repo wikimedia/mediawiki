@@ -10,6 +10,7 @@ use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\Message\Message;
+use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Title\Title;
 use Wikimedia\Message\MessageSpecifier;
@@ -30,18 +31,19 @@ class AccidentalRecreationConstraint extends EditConstraint {
 		private readonly IConnectionProvider $connectionProvider,
 		private readonly LogFormatterFactory $logFormatterFactory,
 		private readonly Title $title,
-		private readonly bool $allowRecreation,
+		private readonly PageEditAttemptState $editAttemptState,
 		private readonly ?string $startTime,
 		private readonly ?MessageSpecifier $submitButtonLabel,
 	) {
 	}
 
 	public function checkConstraint(): PageEditStatus {
-		if ( $this->allowRecreation ) {
+		if ( $this->editAttemptState->shouldAllowRecreation() ) {
 			return PageEditStatus::newGood();
 		}
 		$deletion = $this->getDeletionSinceLastEdit();
 		if ( $deletion ) {
+			$this->editAttemptState->setAllowRecreation( true );
 			if ( $this->submitButtonLabel ) {
 				$logFormatter = $this->logFormatterFactory->newFromEntry( $deletion );
 				$username = $deletion->isDeleted( LogPage::DELETED_USER )

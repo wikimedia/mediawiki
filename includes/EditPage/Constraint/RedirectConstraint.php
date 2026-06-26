@@ -12,6 +12,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\RedirectLookup;
+use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Title\Title;
 use Wikimedia\Message\MessageSpecifier;
@@ -32,11 +33,8 @@ use Wikimedia\Message\MessageValue;
  */
 class RedirectConstraint extends EditConstraint {
 
-	/** @var Title|null the title the problematic redirect is pointing to */
-	public ?Title $problematicTarget = null;
-
 	public function __construct(
-		private readonly ?LinkTarget $allowedProblematicRedirectTarget,
+		private readonly PageEditAttemptState $editAttemptState,
 		private readonly Content $newContent,
 		private readonly ?Content $originalContent,
 		private readonly PageReference $page,
@@ -57,7 +55,7 @@ class RedirectConstraint extends EditConstraint {
 		// - the last save attempt contained a problematic redirect, and the target is not the same as the one in this
 		//   save attempt (T395767, T395768)
 		if ( $newRedirectTarget !== null &&
-			!$this->allowedProblematicRedirectTarget?->isSameLinkAs( $newRedirectTarget ) ) {
+			!$this->editAttemptState->getAllowedProblematicRedirectTarget()?->isSameLinkAs( $newRedirectTarget ) ) {
 			$currentTarget = $this->originalContent !== null
 				? $this->getRedirectTarget( $this->originalContent )
 				: null;
@@ -65,19 +63,19 @@ class RedirectConstraint extends EditConstraint {
 			// the constraint should only fail if there was no previous content or the previous content contained
 			// a problematic redirect to a different page
 			if ( !$currentTarget?->equals( $newRedirectTarget ) ) {
-				$this->problematicTarget = $newRedirectTarget;
-
 				if ( $newRedirectTarget->isSamePageAs( $this->page ) ) {
 					// redirect pointing to itself - self redirect
 					return $this->wrapResult(
 						self::AS_SELF_REDIRECT,
-						MessageValue::new( 'edit-constraint-selfredirect-warning' )
+						MessageValue::new( 'edit-constraint-selfredirect-warning' ),
+						$newRedirectTarget,
 					);
 				} elseif ( !$newRedirectTarget->isKnown() ) {
 					// redirect target unknown - broken redirect
 					return $this->wrapResult(
 						self::AS_BROKEN_REDIRECT,
-						MessageValue::new( 'edit-constraint-brokenredirect-warning' )
+						MessageValue::new( 'edit-constraint-brokenredirect-warning' ),
+						$newRedirectTarget,
 					);
 				} elseif ( $newRedirectTarget->isRedirect() ) {
 					$doubleRedirectTarget = Title::castFromLinkTarget(
@@ -88,7 +86,8 @@ class RedirectConstraint extends EditConstraint {
 						// the double redirect is pointing to the current page, so it's a loop
 						return $this->wrapResult(
 							self::AS_DOUBLE_REDIRECT_LOOP,
-							MessageValue::new( 'edit-constraint-doubleredirect-loop-warning' )
+							MessageValue::new( 'edit-constraint-doubleredirect-loop-warning' ),
+							$newRedirectTarget,
 						);
 					}
 
@@ -109,12 +108,13 @@ class RedirectConstraint extends EditConstraint {
 							wfEscapeWikiText( $doubleRedirectTargetTitle->getFullText() ),
 							$suggestedRedirectCode,
 						]
-					) );
+					), $newRedirectTarget );
 				} elseif ( !$newRedirectTarget->isValidRedirectTarget() ) {
 					// redirect target is not a valid redirect target
 					return $this->wrapResult(
 						self::AS_INVALID_REDIRECT_TARGET,
-						MessageValue::new( 'edit-constraint-invalidredirecttarget-warning' )
+						MessageValue::new( 'edit-constraint-invalidredirecttarget-warning' ),
+						$newRedirectTarget,
 					);
 				}
 			}
@@ -124,7 +124,8 @@ class RedirectConstraint extends EditConstraint {
 		return PageEditStatus::newGood();
 	}
 
-	private function wrapResult( int $result, MessageValue $errorMessage ): PageEditStatus {
+	private function wrapResult( int $result, MessageValue $errorMessage, LinkTarget $newTarget ): PageEditStatus {
+		$this->editAttemptState->setAllowedProblematicRedirectTarget( $newTarget );
 		return PageEditStatus::newGood( $result )
 			->warning(
 				$this->errorMessageWrapper->getKey(),

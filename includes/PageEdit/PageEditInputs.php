@@ -3,7 +3,6 @@
 namespace MediaWiki\PageEdit;
 
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
@@ -16,9 +15,7 @@ use Wikimedia\Message\MessageSpecifier;
  */
 class PageEditInputs {
 
-	private bool $allowBlankArticle = false;
-	private bool $allowBlankSummary = false;
-	private ?LinkTarget $allowedProblematicRedirectTarget = null;
+	private PageEditAttemptState $attemptState;
 	private string $autoSumm = '';
 	/** @var string[] */
 	private array $changeTags = [];
@@ -28,12 +25,10 @@ class PageEditInputs {
 	private ?int $editRevId = null;
 	private bool $enableApiEditOverride = false;
 	private bool $ignoreProblematicRedirects = false;
-	private bool $ignoreRevisionDeletedWarning = false;
 	private bool $markAsBot = false;
 	private bool $markAsMinor = false;
 	private int $oldid = 0;
 	private int $parentRevId = 0;
-	private bool $recreate = false;
 	private string $section = '';
 	private ?string $sectiontitle = null;
 	private ?string $starttime = null;
@@ -55,33 +50,20 @@ class PageEditInputs {
 		private string $summary,
 		private string $textbox1,
 	) {
+		$this->attemptState = new PageEditAttemptState();
 		$this->starttime = wfTimestampNow();
 	}
 
-	public function shouldAllowBlankArticle(): bool {
-		return $this->allowBlankArticle;
+	public function getAttemptState(): PageEditAttemptState {
+		return $this->attemptState;
 	}
 
-	public function setAllowBlankArticle( bool $allowBlankArticle ): self {
-		$this->allowBlankArticle = $allowBlankArticle;
-		return $this;
-	}
-
-	public function shouldAllowBlankSummary(): bool {
-		return $this->allowBlankSummary;
-	}
-
-	public function setAllowBlankSummary( bool $allowBlankSummary ): self {
-		$this->allowBlankSummary = $allowBlankSummary;
-		return $this;
-	}
-
-	public function getAllowedProblematicRedirectTarget(): ?LinkTarget {
-		return $this->allowedProblematicRedirectTarget;
-	}
-
-	public function setAllowedProblematicRedirectTarget( ?LinkTarget $allowedProblematicRedirectTarget ): self {
-		$this->allowedProblematicRedirectTarget = $allowedProblematicRedirectTarget;
+	/**
+	 * Sets the state from a previous edit attempt.
+	 * PageEdit modifies the object if a constraint fails, so it can be reused for the next edit attempt.
+	 */
+	public function setAttemptState( PageEditAttemptState $attemptState ): self {
+		$this->attemptState = $attemptState;
 		return $this;
 	}
 
@@ -175,15 +157,6 @@ class PageEditInputs {
 		return $this;
 	}
 
-	public function shouldIgnoreRevisionDeletedWarning(): bool {
-		return $this->ignoreRevisionDeletedWarning;
-	}
-
-	public function setIgnoreRevisionDeletedWarning( bool $ignoreRevisionDeletedWarning ): self {
-		$this->ignoreRevisionDeletedWarning = $ignoreRevisionDeletedWarning;
-		return $this;
-	}
-
 	/**
 	 * @return bool Whether the user requested that this edit is marked as a bot edit.
 	 * Note that this method returning `true` doesn't mean the user actually has the
@@ -231,15 +204,6 @@ class PageEditInputs {
 
 	public function setParentRevId( int $parentRevId ): self {
 		$this->parentRevId = $parentRevId;
-		return $this;
-	}
-
-	public function shouldRecreate(): bool {
-		return $this->recreate;
-	}
-
-	public function setRecreate( bool $recreate ): self {
-		$this->recreate = $recreate;
 		return $this;
 	}
 

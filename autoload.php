@@ -2420,6 +2420,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Output\\StreamFile' => __DIR__ . '/includes/Output/StreamFile.php',
 	'MediaWiki\\PHPVersionCheck' => __DIR__ . '/includes/PHPVersionCheck.php',
 	'MediaWiki\\PageEdit\\PageEdit' => __DIR__ . '/includes/PageEdit/PageEdit.php',
+	'MediaWiki\\PageEdit\\PageEditAttemptState' => __DIR__ . '/includes/PageEdit/PageEditAttemptState.php',
 	'MediaWiki\\PageEdit\\PageEditFactory' => __DIR__ . '/includes/PageEdit/PageEditFactory.php',
 	'MediaWiki\\PageEdit\\PageEditInputs' => __DIR__ . '/includes/PageEdit/PageEditInputs.php',
 	'MediaWiki\\PageEdit\\PageEditResult' => __DIR__ . '/includes/PageEdit/PageEditResult.php',

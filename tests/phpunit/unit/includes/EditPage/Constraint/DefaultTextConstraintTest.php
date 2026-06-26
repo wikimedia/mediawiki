@@ -9,6 +9,7 @@ namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\ShadowPage\ShadowPage;
 use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Tests\Mocks\Content\DummyContentForTesting;
@@ -49,9 +50,9 @@ class DefaultTextConstraintTest extends MediaWikiUnitTestCase {
 		$constraint = new DefaultTextConstraint(
 			$this->getShadowPageLoader( 'DefaultMessageTextGoesHere' ),
 			$this->getTitle(),
-			false, // Allow blank
 			'User provided text goes here',
 			new RawMessage( '' ),
+			new PageEditAttemptState(),
 		);
 		$this->assertConstraintPassed( $constraint );
 	}
@@ -62,14 +63,16 @@ class DefaultTextConstraintTest extends MediaWikiUnitTestCase {
 	 * @param string $userInput
 	 */
 	public function testFailure( $defaultText, $userInput ) {
+		$editAttemptState = new PageEditAttemptState();
 		$constraint = new DefaultTextConstraint(
 			$this->getShadowPageLoader( $defaultText ),
 			$this->getTitle(),
-			false, // Allow blank
 			$userInput,
 			new RawMessage( '' ),
+			$editAttemptState,
 		);
 		$this->assertConstraintFailed( $constraint, EditConstraint::AS_BLANK_ARTICLE );
+		$this->assertTrue( $editAttemptState->shouldAllowBlankArticle() );
 	}
 
 	public static function provideTestFailure() {

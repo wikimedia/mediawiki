@@ -22,6 +22,7 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\RedirectLookup;
+use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -95,7 +96,7 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf(
 			RedirectConstraint::class,
 			$factory->newRedirectConstraint(
-				null,
+				$this->createMock( PageEditAttemptState::class ),
 				$this->createMock( Content::class ),
 				$this->createMock( Content::class ),
 				$title,
@@ -107,7 +108,7 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 			AccidentalRecreationConstraint::class,
 			$factory->newAccidentalRecreationConstraint(
 				$title,
-				false,
+				$this->createMock( PageEditAttemptState::class ),
 				null,
 			)
 		);

@@ -11,11 +11,11 @@ use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\RedirectLookup;
+use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Title\Title;
@@ -142,7 +142,7 @@ class EditConstraintFactory {
 	}
 
 	public function newRedirectConstraint(
-		?LinkTarget $allowedProblematicRedirectTarget,
+		PageEditAttemptState $editAttemptState,
 		Content $newContent,
 		?Content $originalContent,
 		PageReference $page,
@@ -150,7 +150,7 @@ class EditConstraintFactory {
 		?string $contentFormat,
 	): RedirectConstraint {
 		return new RedirectConstraint(
-			$allowedProblematicRedirectTarget,
+			$editAttemptState,
 			$newContent,
 			$originalContent,
 			$page,
@@ -162,7 +162,7 @@ class EditConstraintFactory {
 
 	public function newAccidentalRecreationConstraint(
 		Title $title,
-		bool $allowRecreation,
+		PageEditAttemptState $editAttemptState,
 		?string $startTime,
 		?MessageSpecifier $submitButtonLabel = null,
 	): AccidentalRecreationConstraint {
@@ -170,7 +170,7 @@ class EditConstraintFactory {
 			$this->connectionProvider,
 			$this->logFormatterFactory,
 			$title,
-			$allowRecreation,
+			$editAttemptState,
 			$startTime,
 			$submitButtonLabel,
 		);
