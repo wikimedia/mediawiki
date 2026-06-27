@@ -105,7 +105,7 @@ class EditResult implements JsonSerializable {
 
 	/**
 	 * Returns the ID of the oldest revision that was reverted by this edit.
-	 * The same as getOldestRevertedRevisionId if only a single revision was
+	 * The same as getNewestRevertedRevisionId if only a single revision was
 	 * reverted. Returns null if the edit was not a revert.
 	 *
 	 * @see EditResult::isRevert() for information on how a revert is defined
