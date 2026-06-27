@@ -931,7 +931,7 @@ class AuthManager implements LoggerAwareInterface {
 	 *  `userlogin-reauth-banner-generic` as the fallback.
 	 * @return string One of the SEC_* constants.
 	 * @see $wgReauthenticateTime
-	 * @see $wgAllowSecuritySensitiveOperationIfCannotReauthenticate
+	 * @see SessionProvider::allowSecuritySensitiveOperationIfCannotReauthenticate()
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/SecuritySensitiveOperationStatus
 	 * @see ElevatedSecurityAuthenticationRequest
 	 */
@@ -981,18 +981,8 @@ class AuthManager implements LoggerAwareInterface {
 		} else {
 			$timeSinceAuth = -1;
 
-			$pass = $this->config->get(
-				MainConfigNames::AllowSecuritySensitiveOperationIfCannotReauthenticate
-			);
-			if ( isset( $pass[$operation] ) ) {
-				$status = $pass[$operation] ? self::SEC_OK : self::SEC_FAIL;
-			} elseif ( isset( $pass['default'] ) ) {
-				$status = $pass['default'] ? self::SEC_OK : self::SEC_FAIL;
-			} else {
-				throw new UnexpectedValueException(
-					'$wgAllowSecuritySensitiveOperationIfCannotReauthenticate lacks a default'
-				);
-			}
+			$status = $session->allowSecuritySensitiveOperationIfCannotReauthenticate() ?
+				self::SEC_OK : self::SEC_FAIL;
 		}
 
 		$oldStatus = $status;

@@ -327,6 +327,29 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 	abstract public function canChangeUser();
 
 	/**
+	 * Whether security-sensitive operations that require reauthentication should be allowed when
+	 * canChangeUser() returns false (meaning reauthentication is not supported).
+	 *
+	 * - If canChangeUser() returns true, AuthManager::securitySensitiveOperationStatus() will not
+	 *   consult this method. It will return either SEC_REAUTH or SEC_OK depending on the user's
+	 *   reauthentication state.
+	 * - If canChangeUser() returns false, AuthManager concludes that reauthentication is not possible,
+	 *   and consults this method.
+	 *     - If this method returns true, AuthManager::securitySensitiveOperationStatus() will return SEC_OK.
+	 *     - If this method returns false, AuthManager::securitySensitiveOperationStatus() will return SEC_FAIL.
+	 *
+	 * @note For use by \MediaWiki\Session\SessionBackend only
+	 * @param SessionBackend $session
+	 * @param WebRequest $request The request for the given check
+	 * @return bool
+	 */
+	public function allowSecuritySensitiveOperationIfCannotReauthenticate(
+		SessionBackend $session, WebRequest $request
+	) {
+		return true;
+	}
+
+	/**
 	 * Returns the duration (in seconds) for which users will be remembered when
 	 * Session::setRememberUser() is set. Null means setting the remember flag will
 	 * have no effect (and endpoints should not offer that option).

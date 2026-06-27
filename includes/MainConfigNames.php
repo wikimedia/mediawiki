@@ -2589,12 +2589,6 @@ class MainConfigNames {
 	public const ReauthenticateTime = 'ReauthenticateTime';
 
 	/**
-	 * Name constant for the AllowSecuritySensitiveOperationIfCannotReauthenticate setting, for use with Config::get()
-	 * @see MainConfigSchema::AllowSecuritySensitiveOperationIfCannotReauthenticate
-	 */
-	public const AllowSecuritySensitiveOperationIfCannotReauthenticate = 'AllowSecuritySensitiveOperationIfCannotReauthenticate';
-
-	/**
 	 * Name constant for the ChangeCredentialsBlacklist setting, for use with Config::get()
 	 * @see MainConfigSchema::ChangeCredentialsBlacklist
 	 */

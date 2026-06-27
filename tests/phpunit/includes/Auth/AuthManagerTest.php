@@ -52,6 +52,7 @@ use MediaWiki\Notification\NotificationService;
 use MediaWiki\ObjectCache\ObjectCacheFactory;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SessionProvider;
@@ -411,7 +412,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$reauth = $mutableSession ? AuthManager::SEC_REAUTH : AuthManager::SEC_FAIL;
 
 		$provider = $this->getMockSessionProvider(
-			$mutableSession, [ 'provideSessionInfo' ]
+			$mutableSession, [ 'provideSessionInfo', 'allowSecuritySensitiveOperationIfCannotReauthenticate' ]
 		);
 		$provider->method( 'provideSessionInfo' )
 			->willReturnCallback( static function () use ( $provider, &$provideUser ) {
@@ -422,10 +423,14 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 					'userInfo' => UserInfo::newFromUser( $provideUser, true )
 				] );
 			} );
+		$allowIfCannotReauth = true;
+		$provider->method( 'allowSecuritySensitiveOperationIfCannotReauthenticate' )
+			->willReturnCallback( static function ( SessionBackend $session, WebRequest $request ) use ( &$allowIfCannotReauth ) {
+				return $allowIfCannotReauth;
+			} );
 		$this->initializeManager();
 
 		$this->config->set( MainConfigNames::ReauthenticateTime, [] );
-		$this->config->set( MainConfigNames::AllowSecuritySensitiveOperationIfCannotReauthenticate, [] );
 		$provideUser = new User;
 		$session = $provider->getManager()->getSessionForRequest( $this->request );
 		$this->assertSame( 0, $session->getUser()->getId() );
@@ -439,22 +444,17 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$session = $provider->getManager()->getSessionForRequest( $this->request );
 		$this->assertSame( $user->getId(), $session->getUser()->getId() );
 
-		// Error for no default (only gets thrown for non-anonymous user)
-		$session->set( 'AuthManager:lastAuthId', $user->getId() + 1 );
-		$session->set( 'AuthManager:lastAuthTimestamps', [ 'foo' => time() - 5 ] );
-		try {
-			$this->manager->securitySensitiveOperationStatus( 'foo' );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( UnexpectedValueException $ex ) {
-			$this->assertSame(
-				$mutableSession
-					? '$wgReauthenticateTime lacks a default'
-					: '$wgAllowSecuritySensitiveOperationIfCannotReauthenticate lacks a default',
-				$ex->getMessage()
-			);
-		}
-
 		if ( $mutableSession ) {
+			// Error for no default (only gets thrown for non-anonymous user with a mutable session)
+			$session->set( 'AuthManager:lastAuthId', $user->getId() + 1 );
+			$session->set( 'AuthManager:lastAuthTimestamps', [ 'foo' => time() - 5 ] );
+			try {
+				$this->manager->securitySensitiveOperationStatus( 'foo' );
+				$this->fail( 'Expected exception not thrown' );
+			} catch ( UnexpectedValueException $ex ) {
+				$this->assertSame( '$wgReauthenticateTime lacks a default', $ex->getMessage() );
+			}
+
 			$this->config->set( MainConfigNames::ReauthenticateTime, [
 				'test' => 100,
 				'test2' => -1,
@@ -550,19 +550,16 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				$this->manager->securitySensitiveOperationStatus( 'test' )
 			);
 		} else {
-			$this->config->set( MainConfigNames::AllowSecuritySensitiveOperationIfCannotReauthenticate, [
-				'test' => false,
-				'default' => true,
-			] );
-
+			$allowIfCannotReauth = true;
 			$this->assertEquals(
 				AuthManager::SEC_OK,
 				$this->manager->securitySensitiveOperationStatus( 'foo' )
 			);
 
+			$allowIfCannotReauth = false;
 			$this->assertEquals(
 				AuthManager::SEC_FAIL,
-				$this->manager->securitySensitiveOperationStatus( 'test' )
+				$this->manager->securitySensitiveOperationStatus( 'foo' )
 			);
 		}
 

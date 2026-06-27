@@ -52,6 +52,10 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 ==== Removed configuration ====
 * $wgThumbnailStepsRatio, a temporary config, has been removed.
+* $wgAllowSecuritySensitiveOperationIfCannotReauthenticate has been removed.
+  Whether security-sensitive operations are allowed when the session type does
+  not support reauthentication is now decided per session type, via
+  SessionProvider::allowSecuritySensitiveOperationIfCannotReauthenticate().
 * …
 
 === New user-facing features in 1.47 ===
@@ -123,6 +127,10 @@ For notes on 1.46.x and older releases, see HISTORY.
 * (T408666) A new hook LinkTargetIsAlwaysKnownBatch allows overriding whether
   links are always known for a batch of link targets at once. It deprecates
   the TitleIsAlwaysKnown hook, which should no longer be used.
+* SessionProvider subclasses can override
+  allowSecuritySensitiveOperationIfCannotReauthenticate() to fail closed (or
+  decide dynamically, based on the session's provider metadata and the current
+  request) when reauthentication is not possible for the session type.
 * …
 
 === External library changes in 1.47 ===

@@ -2574,12 +2574,6 @@ $wgRememberMe = null;
 $wgReauthenticateTime = null;
 
 /**
- * Config variable stub for the AllowSecuritySensitiveOperationIfCannotReauthenticate setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::AllowSecuritySensitiveOperationIfCannotReauthenticate
- */
-$wgAllowSecuritySensitiveOperationIfCannotReauthenticate = null;
-
-/**
  * Config variable stub for the ChangeCredentialsBlacklist setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ChangeCredentialsBlacklist
  */

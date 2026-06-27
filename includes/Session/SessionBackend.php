@@ -484,6 +484,22 @@ final class SessionBackend {
 	}
 
 	/**
+	 * Whether security-sensitive operations should be allowed at all
+	 *
+	 * @see SessionProvider::allowSecuritySensitiveOperationIfCannotReauthenticate()
+	 * @param int $index Request index
+	 * @return bool
+	 */
+	public function allowSecuritySensitiveOperationIfCannotReauthenticate( $index ) {
+		if ( !isset( $this->requests[$index] ) ) {
+			throw new InvalidArgumentException( 'Invalid session index' );
+		}
+		return $this->provider->allowSecuritySensitiveOperationIfCannotReauthenticate(
+			$this, $this->requests[$index]
+		);
+	}
+
+	/**
 	 * Set a new User object for this session
 	 *
 	 * @note This should only be called when the user has been authenticated via a login process

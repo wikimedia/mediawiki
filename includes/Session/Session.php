@@ -190,6 +190,16 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
+	 * Whether security-sensitive operations should be allowed at all
+	 *
+	 * @see SessionProvider::allowSecuritySensitiveOperationIfCannotReauthenticate()
+	 * @return bool
+	 */
+	public function allowSecuritySensitiveOperationIfCannotReauthenticate() {
+		return $this->backend->allowSecuritySensitiveOperationIfCannotReauthenticate( $this->index );
+	}
+
+	/**
 	 * Set a new user for this session
 	 *
 	 * @note This should only be called when the user has been authenticated

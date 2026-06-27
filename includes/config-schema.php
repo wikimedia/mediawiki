@@ -1032,9 +1032,6 @@ return [
 			'ReauthenticateTime' => [
 				'default' => 3600,
 			],
-			'AllowSecuritySensitiveOperationIfCannotReauthenticate' => [
-				'default' => true,
-			],
 			'ChangeCredentialsBlacklist' => [
 				'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest',
 			],
@@ -3072,7 +3069,6 @@ return [
 			'AuthManagerAutoConfig' => 'object',
 			'RememberMe' => 'string',
 			'ReauthenticateTime' => 'object',
-			'AllowSecuritySensitiveOperationIfCannotReauthenticate' => 'object',
 			'ChangeCredentialsBlacklist' => 'array',
 			'RemoveCredentialsBlacklist' => 'array',
 			'PasswordConfig' => 'object',
@@ -3601,11 +3597,6 @@ return [
 		'ReauthenticateTime' => [
 			'additionalProperties' => [
 				'type' => 'integer',
-			],
-		],
-		'AllowSecuritySensitiveOperationIfCannotReauthenticate' => [
-			'additionalProperties' => [
-				'type' => 'boolean',
 			],
 		],
 		'ChangeCredentialsBlacklist' => [

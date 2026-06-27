@@ -7365,26 +7365,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Whether to allow security-sensitive operations when re-authentication is not possible.
-	 *
-	 * If AuthManager::canAuthenticateNow() is false (e.g. the current
-	 * SessionProvider is not able to change users, such as when OAuth is in use),
-	 * AuthManager::securitySensitiveOperationStatus() cannot sensibly return
-	 * SEC_REAUTH. Setting an operation true here will have it return SEC_OK in
-	 * that case, while setting it false will have it return SEC_FAIL.
-	 *
-	 * The key 'default' is used if a requested operation isn't defined in the array.
-	 *
-	 * @since 1.27
-	 * @see self::ReauthenticateTime
-	 */
-	public const AllowSecuritySensitiveOperationIfCannotReauthenticate = [
-		'default' => [ 'default' => true, ],
-		'type' => 'map',
-		'additionalProperties' => [ 'type' => 'boolean', ],
-	];
-
-	/**
 	 * List of AuthenticationRequest class names which are not changeable through
 	 * Special:ChangeCredentials and the changeauthenticationdata API.
 	 *
