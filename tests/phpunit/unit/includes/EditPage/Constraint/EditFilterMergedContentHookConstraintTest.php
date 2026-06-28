@@ -4,7 +4,7 @@
  * @file
  */
 
-namespace MediaWiki\Tests\Integration\EditPage\Constraint;
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Context\RequestContext;
@@ -12,7 +12,6 @@ use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Html\Html;
-use MediaWiki\Tests\Unit\EditPage\Constraint\EditConstraintTestTrait;
 use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
