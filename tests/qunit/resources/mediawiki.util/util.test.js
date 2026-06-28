@@ -483,6 +483,27 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		);
 	} );
 
+	QUnit.test( 'addPortletLink (hook options)', ( assert ) => {
+		const done = assert.async();
+		$( '#qunit-fixture' ).html( '<ul id="p-toolbox"></ul>' );
+
+		const testOptions = {
+			href: '#',
+			text: 'Label',
+			id: 't-unique-hook-test',
+			customProperty: 'customValue'
+		};
+
+		mw.hook( 'util.addPortletLink' ).add( ( link, options ) => {
+			if ( options.id === 't-unique-hook-test' ) {
+				assert.strictEqual( options.customProperty, 'customValue', 'Custom options are passed in the hook' );
+				done();
+			}
+		} );
+
+		util.addPortletLink( 'p-toolbox', testOptions );
+	} );
+
 	QUnit.test( 'addPortletLink (nested list)', ( assert ) => {
 		// Regression test for T37082
 		$( '#qunit-fixture' ).html(

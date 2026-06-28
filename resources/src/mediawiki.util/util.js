@@ -670,6 +670,7 @@ const util = {
 	 * @property {HTMLElement|jQuery|string} [nextnode] Element that the new item should be added before.
 	 *  Must be another item in the same list, it will be ignored otherwise.
 	 *  Can be specified as DOM reference, as jQuery object, or as CSS selector string.
+	 * @property {string} [icon] Name of the Codex icon name this menu should use if skin supports this.
 	 */
 
 	/**
@@ -837,17 +838,16 @@ const util = {
 		 * @event ~'util.addPortletLink'
 		 * @memberof Hooks
 		 * @param {HTMLElement} item the portlet link that was created.
-		 * @param {Object} information about the item include id.
+		 * @param {PortletOptions} options configuration options passed to addPortletLink.
 		 *
 		 * @example
-		 * mw.hook( 'util.addPortletLink' ).add( ( link ) => {
-		 *     const span = $( '<span class="icon">' );
-		 *     link.appendChild( span );
+		 * mw.hook( 'util.addPortletLink' ).add( ( link, options ) => {
+		 *     if ( options.id === 't-special-link' ) {
+		 *         link.classList.add( 'my-special-class' );
+		 *     }
 		 * } );
 		 */
-		mw.hook( 'util.addPortletLink' ).fire( item, {
-			id: id
-		} );
+		mw.hook( 'util.addPortletLink' ).fire( item, options );
 		return item;
 	},
 
