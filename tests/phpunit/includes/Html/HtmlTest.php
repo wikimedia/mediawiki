@@ -519,7 +519,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 
 	public function testWarningBox() {
 		$this->assertEquals(
-			'<div class="cdx-message--warning cdx-message cdx-message--block">'
+			'<div class="cdx-message--warning cdx-message cdx-message--block" aria-live="polite">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">warn</div></div>',
 			Html::warningBox( 'warn' )
@@ -528,13 +528,13 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 
 	public function testErrorBox() {
 		$this->assertEquals(
-			'<div class="cdx-message--error cdx-message cdx-message--block">'
+			'<div class="cdx-message--error cdx-message cdx-message--block" role="alert">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">err</div></div>',
 			Html::errorBox( 'err' )
 		);
 		$this->assertEquals(
-			'<div class="cdx-message--error errorbox-custom-class cdx-message cdx-message--block">'
+			'<div class="cdx-message--error errorbox-custom-class cdx-message cdx-message--block" role="alert">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">'
 				. '<h2>heading</h2>err'
@@ -542,7 +542,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			Html::errorBox( 'err', 'heading', 'errorbox-custom-class' )
 		);
 		$this->assertEquals(
-			'<div class="cdx-message--error cdx-message cdx-message--block">'
+			'<div class="cdx-message--error cdx-message cdx-message--block" role="alert">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">'
 				. '<h2>0</h2>err'

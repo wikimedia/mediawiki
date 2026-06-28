@@ -720,15 +720,16 @@ class Html {
 	 * @param string|array $className corresponding to box
 	 * @param string $heading (optional)
 	 * @param string $iconClassName (optional) corresponding to box icon
+	 * @param array $attribs additional attributes like aria-live
 	 * @return string of HTML representing a box.
 	 */
-	private static function messageBox( $html, $className, $heading = '', $iconClassName = '' ) {
+	private static function messageBox( $html, $className, $heading = '', $iconClassName = '', array $attribs = [] ) {
 		if ( $heading !== '' ) {
 			$html = self::element( 'h2', [], $heading ) . $html;
 		}
 		self::addClass( $className, 'cdx-message' );
 		self::addClass( $className, 'cdx-message--block' );
-		return self::rawElement( 'div', [ 'class' => $className ],
+		return self::rawElement( 'div', array_merge( [ 'class' => $className ], $attribs ),
 			self::element( 'span', [ 'class' => [
 				'cdx-message__icon',
 				$iconClassName
@@ -777,7 +778,7 @@ class Html {
 	 */
 	public static function warningBox( $html, $className = '' ) {
 		return self::messageBox( $html, [
-			'cdx-message--warning', $className ] );
+			'cdx-message--warning', $className ], '', '', [ 'aria-live' => 'polite' ] );
 	}
 
 	/**
@@ -797,7 +798,7 @@ class Html {
 	 */
 	public static function errorBox( $html, $heading = '', $className = '' ) {
 		return self::messageBox( $html, [
-			'cdx-message--error', $className ], $heading );
+			'cdx-message--error', $className ], $heading, '', [ 'role' => 'alert' ] );
 	}
 
 	/**
