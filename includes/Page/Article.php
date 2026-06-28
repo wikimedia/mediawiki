@@ -732,6 +732,7 @@ class Article implements Page {
 			'skin' => $skin,
 			'injectTOC' => $skinOptions['toc'],
 		];
+		$this->modifyTextOptions( $outputPage, $textOptions );
 		foreach ( $textOptions as $key => $value ) {
 			// allowClone will disappear and should not impact cache
 			// userLang is a duplicate of userlang and should be reconciled with it
@@ -932,6 +933,17 @@ class Article implements Page {
 		$pOutput = $renderStatus->getValue();
 		$this->doOutputMetaData( $pOutput, $outputPage );
 		return true;
+	}
+
+	/**
+	 * Allow subclasses to adjust the post-processing options used when rendering
+	 * the page content (the parsed article body).
+	 *
+	 * @param OutputPage $outputPage
+	 * @param array &$textOptions Options passed to OutputTransformPipeline::run();
+	 *   see the keys listed in ParserOptions::$postprocOptions
+	 */
+	protected function modifyTextOptions( OutputPage $outputPage, array &$textOptions ): void {
 	}
 
 	private function doOutputMetaData( ?ParserOutput $pOutput, OutputPage $outputPage ) {

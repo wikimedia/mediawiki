@@ -16,6 +16,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -23,6 +24,8 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
 use MediaWiki\Upload\UploadBase;
 use stdClass;
+use Wikimedia\Parsoid\Core\SectionMetadata;
+use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -45,6 +48,14 @@ class ImagePage extends Article {
 
 	/** @var string|false Guaranteed to be HTML, {@see File::getDescriptionText} */
 	protected $mExtraDescription = false;
+
+	/**
+	 * @var array[]|null The file page's structural table of contents sections
+	 *   while view() builds the combined file TOC, or null when no combined TOC
+	 *   is being rendered. Used by ::modifyTextOptions() to suppress the file
+	 *   description's separate inline TOC.
+	 */
+	private ?array $tocSections = null;
 
 	/**
 	 * @param Title $title
@@ -133,8 +144,16 @@ class ImagePage extends Article {
 			$formattedMetadata = false;
 		}
 
+		$this->tocSections = null;
 		if ( !$diff && $this->displayImg->exists() ) {
-			$out->addHTML( $this->showTOC( (bool)$formattedMetadata ) );
+			// Collect the file page's structural sections; they are combined with
+			// the description's headings into a single TOC at the end of view().
+			// Setting this also suppresses the description's own inline TOC.
+			$this->tocSections = $this->getFileTOCSections( (bool)$formattedMetadata );
+			// Deprecated since 1.47: kept as an empty element (hidden via CSS) so
+			// that gadgets and user scripts which use `#filetoc` as an insertion
+			// point keep working.
+			$out->addHTML( Html::element( 'ul', [ 'id' => 'filetoc' ] ) . "\n" );
 		}
 
 		if ( !$diff ) {
@@ -211,6 +230,14 @@ class ImagePage extends Article {
 			$out->addModules( [ 'mediawiki.action.view.metadata' ] );
 		}
 
+		// Build the unified TOC, merging the description's headings (collected by
+		// parent::view()) after the leading "File" entry. It feeds the sidebar for
+		// skins with a built-in TOC, and an inline TOC prepended for the rest.
+		if ( $this->tocSections !== null ) {
+			$descriptionSections = $out->getTOCData()?->getSections() ?? [];
+			$out->addTOCPlaceholder( $this->buildTOCData( $this->tocSections, $descriptionSections ), true );
+		}
+
 		// Add remote Filepage.css
 		if ( !$this->repo->isLocal() ) {
 			$css = $this->repo->getDescriptionStylesheetUrl();
@@ -233,12 +260,31 @@ class ImagePage extends Article {
 	}
 
 	/**
-	 * Create the TOC
+	 * @inheritDoc
 	 *
-	 * @param bool $metadata Whether or not to show the metadata link
-	 * @return string
+	 * Suppresses the file description's own inline table of contents while the
+	 * file page renders its combined table of contents (i.e. once
+	 * $this->tocSections has been collected in ::view()); its headings are merged
+	 * into that combined TOC instead.
 	 */
-	protected function showTOC( $metadata ) {
+	protected function modifyTextOptions( OutputPage $outputPage, array &$textOptions ): void {
+		if ( $this->tocSections !== null ) {
+			$textOptions['allowTOC'] = false;
+		}
+	}
+
+	/**
+	 * Collect the structural sections of the file page (File, File history, File
+	 * usage and, optionally, Metadata) as table of contents entries.
+	 *
+	 * The ImagePageShowTOC hook is fired here so that extensions can contribute
+	 * additional entries, exactly as for the legacy `#filetoc`.
+	 *
+	 * @param bool $metadata Whether or not to include the metadata link
+	 * @return array<array{anchor:string,linkAnchor:string,line:string}> Section
+	 *   descriptors in page order, with the "File" entry first
+	 */
+	private function getFileTOCSections( bool $metadata ): array {
 		$r = [
 			Html::rawElement(
 				'li',
@@ -279,10 +325,61 @@ class ImagePage extends Article {
 			);
 		}
 
-		return Html::rawElement( 'ul', [
-			'id' => 'filetoc',
-			'role' => 'navigation'
-		], implode( "\n", $r ) );
+		// Turn the `<li>` list (which may have been extended via the hook) into
+		// section descriptors. Entries that don't contain an anchor link can't be
+		// represented in the TOC and are skipped.
+		$sections = [];
+		foreach ( $r as $li ) {
+			if ( preg_match( '/<a\b[^>]*href="#([^"]*)"[^>]*>(.*?)<\/a>/is', $li, $m ) ) {
+				$sections[] = [
+					'anchor' => rawurldecode( $m[1] ),
+					'linkAnchor' => $m[1],
+					'line' => $m[2],
+				];
+			}
+		}
+
+		return $sections;
+	}
+
+	/**
+	 * Assemble the file page table of contents data.
+	 *
+	 * The description's own section headings, if any, are inserted immediately
+	 * after the leading "File" entry so the resulting order matches the page
+	 * layout: File, description sections, File history, File usage, Metadata.
+	 *
+	 * @param array<array{anchor:string,linkAnchor:string,line:string}> $tocSections
+	 *   Structural section descriptors from ::getFileTOCSections()
+	 * @param SectionMetadata[] $descriptionSections Section metadata produced by the
+	 *   parser for the file description text
+	 * @return TOCData
+	 */
+	private function buildTOCData( array $tocSections, array $descriptionSections ): TOCData {
+		// Merge the structural sections with the description's headings, inserting
+		// the latter right after the leading "File" entry.
+		$sections = [];
+		foreach ( $tocSections as $i => $section ) {
+			$sections[] = new SectionMetadata(
+				0, 2, $section['line'], '', '', null, null,
+				$section['anchor'], $section['linkAnchor']
+			);
+			if ( $i === 0 ) {
+				foreach ( $descriptionSections as $descriptionSection ) {
+					$sections[] = clone $descriptionSection;
+				}
+			}
+		}
+
+		$tocData = new TOCData();
+		$prevHLevel = 0;
+		foreach ( $sections as $section ) {
+			$tocData->addSection( $section );
+			$tocData->processHeading( $prevHLevel, $section->hLevel, $section );
+			$prevHLevel = $section->hLevel;
+		}
+
+		return $tocData;
 	}
 
 	/**

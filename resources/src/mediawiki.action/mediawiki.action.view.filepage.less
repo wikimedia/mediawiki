@@ -113,20 +113,13 @@
 
 /*
  * filetoc
+ *
+ * Deprecated since 1.47: the file table of contents is part of the page table
+ * of contents now, and `#filetoc` is emitted empty purely so that gadgets and
+ * user scripts inserting entries into it keep working.
  */
-#filetoc {
-	background-color: @background-color-neutral-subtle;
-	text-align: center;
-	border: @border-base;
-	padding: 5px;
-	font-size: 95%;
-	margin: 0 0 0.5em 0;
-
-	li {
-		display: inline;
-		list-style-type: none;
-		padding-right: 2em;
-	}
+#filetoc:empty {
+	display: none;
 }
 
 /*

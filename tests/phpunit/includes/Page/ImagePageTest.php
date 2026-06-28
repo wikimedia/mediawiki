@@ -6,6 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ImagePage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
+use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\TestingAccessWrapper;
 
 class ImagePageTest extends MediaWikiMediaTestCase {
@@ -171,5 +172,66 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 			[ 'zh-hant-tw', 'zh', 'zh-tw', 'zh-Hant-TW' ],
 			[ 'zh-hant-tw', 'zh', 'zh-cn', 'zh-Hant-TW' ],
 		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\ImagePage::getFileTOCSections
+	 */
+	public function testGetFileTOCSections() {
+		/** @var ImagePage $page */
+		$page = TestingAccessWrapper::newFromObject( $this->getImagePage( 'animated.gif' ) );
+
+		$withMetadata = $page->getFileTOCSections( true );
+		$this->assertSame(
+			[ 'file', 'filehistory', 'filelinks', 'metadata' ],
+			array_column( $withMetadata, 'anchor' )
+		);
+
+		$withoutMetadata = $page->getFileTOCSections( false );
+		$this->assertSame(
+			[ 'file', 'filehistory', 'filelinks' ],
+			array_column( $withoutMetadata, 'anchor' )
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\ImagePage::buildTOCData
+	 */
+	public function testBuildTOCData() {
+		/** @var ImagePage $page */
+		$page = TestingAccessWrapper::newFromObject( $this->getImagePage( 'animated.gif' ) );
+		$sections = $page->getFileTOCSections( true );
+
+		$tocData = $page->buildTOCData( $sections, [] );
+		$entries = $tocData->getSections();
+		$this->assertSame(
+			[ 'file', 'filehistory', 'filelinks', 'metadata' ],
+			array_map( static fn ( $s ) => $s->anchor, $entries )
+		);
+		// All structural entries are top-level and numbered consecutively.
+		$this->assertSame( [ 1, 1, 1, 1 ], array_map( static fn ( $s ) => $s->tocLevel, $entries ) );
+		$this->assertSame( [ '1', '2', '3', '4' ], array_map( static fn ( $s ) => $s->number, $entries ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\ImagePage::buildTOCData
+	 */
+	public function testBuildTOCDataMergesDescriptionSections() {
+		/** @var ImagePage $page */
+		$page = TestingAccessWrapper::newFromObject( $this->getImagePage( 'animated.gif' ) );
+		$sections = $page->getFileTOCSections( true );
+
+		$descriptionSection = new SectionMetadata(
+			1, 2, 'Description heading', '1', '1', null, null,
+			'Description_heading', 'Description_heading'
+		);
+
+		$tocData = $page->buildTOCData( $sections, [ $descriptionSection ] );
+
+		// The description heading is inserted right after the "File" entry.
+		$this->assertSame(
+			[ 'file', 'Description_heading', 'filehistory', 'filelinks', 'metadata' ],
+			array_map( static fn ( $s ) => $s->anchor, $tocData->getSections() )
+		);
 	}
 }

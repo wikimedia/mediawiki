@@ -4903,14 +4903,23 @@ class OutputPage extends ContextSource {
 	/**
 	 * Helper function to add a Table of Contents to the output.
 	 * @param TOCData $tocData Table of Contents data to add
+	 * @param bool $prepend Whether to render the Table of Contents at the very
+	 *   top of the page body instead of appending it at the current position
+	 *   (since 1.47).
 	 * @since 1.44
 	 */
-	public function addTOCPlaceholder( TOCData $tocData ): void {
+	public function addTOCPlaceholder( TOCData $tocData, bool $prepend = false ): void {
 		$pout = new ParserOutput;
 		$pout->setTOCData( $tocData );
 		$pout->setOutputFlag( ParserOutputFlags::SHOW_TOC );
 		$pout->setContentHolderText( Parser::TOC_PLACEHOLDER );
-		$this->addParserOutput( $pout, $this->internalParserOptions( false ) );
+		if ( $prepend ) {
+			$text = $this->getParserOutputText( $pout, $this->internalParserOptions( false ), [] );
+			$this->addParserOutputMetadata( $pout );
+			$this->prependHTML( $text );
+		} else {
+			$this->addParserOutput( $pout, $this->internalParserOptions( false ) );
+		}
 	}
 
 	/**
