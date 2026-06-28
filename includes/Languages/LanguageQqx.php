@@ -19,13 +19,14 @@ use MediaWiki\Language\Language;
  * extensions that assume the contents of some messages are valid.
  *
  * @ingroup Languages
- * @deprecated since 1.41. The overridden method is deprecated. The feature has been reimplemented
- *   in MessageCache. Callers doing "new LanguageQqx" should use
+ * @deprecated since 1.41. The overridden method is deprecated and emits deprecation warnings since 1.47.
+ *   The feature has been reimplemented in MessageCache. Callers doing "new LanguageQqx" should use
  *   $languageFactory->getLanguage( 'qqx' ) to get a Language object with its code set to qqx.
  */
 class LanguageQqx extends Language {
 	/** @inheritDoc */
 	public function getMessage( $key ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		// Special value replaced in Message::format()
 		return '($*)';
 	}

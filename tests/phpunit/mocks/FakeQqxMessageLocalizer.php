@@ -6,7 +6,6 @@ namespace MediaWiki\Tests\Unit;
 
 use MediaWiki\Language\Language;
 use MediaWiki\Language\MessageLocalizer;
-use MediaWiki\Languages\LanguageQqx;
 use MediaWiki\Message\Message;
 use Wikimedia\Message\MessageSpecifier;
 
@@ -43,9 +42,15 @@ class FakeQqxMessageLocalizer implements MessageLocalizer {
 			}
 
 			public function getLanguage(): Language {
-				return new class() extends LanguageQqx {
+				return new class() extends Language {
 
 					public function __construct() {
+					}
+
+					/** @inheritDoc */
+					public function getMessage( $key ): string {
+						// Special value replaced in Message::format()
+						return '($*)';
 					}
 
 					/** @inheritDoc */
