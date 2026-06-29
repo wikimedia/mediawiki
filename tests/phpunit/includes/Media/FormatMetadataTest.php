@@ -149,6 +149,20 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 				[ 'Software' => [ [ 'Lavf57.25.100' ], [ 'Lavf57.25.100' ] ] ],
 				[ 'Software' => "<ul><li>Lavf57.25.100</li>\n<li>Lavf57.25.100</li></ul>" ],
 			],
+			[
+				// https://phabricator.wikimedia.org/T428305
+				// Model with _type:lang (as PNGs produce via PNGMetadataExtractor)
+				// should not double-escape the formatted value.
+				// Value contains '&' which literal() turns into '&amp;' once;
+				// a second literal() call would produce '&amp;amp;'.
+				[ 'Model' => [ 'x-default' => 'AT&T Test Camera', '_type' => 'lang' ] ],
+				[ 'Model' => '<ul class="metadata-langlist">' .
+						'<li class="mw-metadata-lang-default">' .
+							'<span class="mw-metadata-lang-value">AT&amp;T Test Camera</span>' .
+						"</li>\n" .
+					'</ul>'
+				],
+			],
 		];
 	}
 

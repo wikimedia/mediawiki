@@ -936,7 +936,7 @@ class FormatMetadata extends ContextSource {
 
 	/** Helper function for creating lists of translations.
 	 *
-	 * @param string $value Value (this is not escaped)
+	 * @param string $value Pre-formatted wikitext value
 	 * @param string $lang Lang code of item or false
 	 * @param bool $default If it is default value.
 	 * @param bool $noHtml If to avoid html (for back-compat)
@@ -949,9 +949,9 @@ class FormatMetadata extends ContextSource {
 		}
 
 		if ( $noHtml ) {
-			$wrappedValue = $this->literal( $value );
+			$wrappedValue = $value;
 		} else {
-			$wrappedValue = '<span class="mw-metadata-lang-value">' . $this->literal( $value ) . '</span>';
+			$wrappedValue = '<span class="mw-metadata-lang-value">' . $value . '</span>';
 		}
 
 		if ( $lang === false ) {
