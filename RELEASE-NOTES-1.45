@@ -8,7 +8,7 @@ PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
 
 == MediaWiki 1.45.4 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.45 branch.
 
 === Changes since 1.45.3 ===
 * Localisation updates.
@@ -56,6 +56,26 @@ THIS IS NOT A RELEASE YET
 * (T429826) Updated guzzlehttp/guzzle from 7.10.0 to 7.12.1.
 * (T423617) Check the target url for redirects are allowed.
 * (T429965) Updated guzzlehttp/guzzle from 7.12.1 to 7.12.3.
+* (T383047) Mail: Extract sendWithMailFunction() from UserMailer::send().
+* (T429720) FileRepo: Fix typos in schema compatibility checks.
+* (T383047) Mail: Log PHP mail() send failures with recipient count.
+* (T425406, CVE-2026-58036) SECURITY: Fix ApiQueryUsers leaking status of
+  private user conditions for user.
+* (T422306, CVE-2026-58028) SECURITY: Disallow user JS in pretty-print api.php
+  responses.
+* (T427235, CVE-2026-58033) SECURITY: Exclude rev-deleted usernames from
+  distinct authors query.
+* (T426867, CVE-2026-58032) SECURITY: mw.Api.getErrorMessage: Treat
+  formatversion=1 as text.
+* (T299359, CVE-2026-58026) SECURITY: Make sure the actual title that's being
+  transcluded is includable.
+* (T422085, CVE-2026-58024) SECURITY: Restrict interwiki user lookup in
+  ApiUserrights.
+* (T422676, CVE-2026-58029) SECURITY: Check for editmyprivateinfo right in more
+  places.
+* (T422995, CVE-2026-58037) SECURITY: LogFormatter: 'raw' parameter format is no
+  longer raw HTML.
+* (T422244, CVE-2026-58025) SECURITY: Safely unserialize log entry parameters.
 
 == MediaWiki 1.45.3 ==
 
