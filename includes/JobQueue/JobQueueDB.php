@@ -108,7 +108,7 @@ class JobQueueDB extends JobQueue {
 	protected function doGetSize() {
 		$key = $this->getCacheKey( 'size' );
 
-		$size = $this->wanCache->get( $key );
+		$size = $this->localClusterCache->get( $key );
 		if ( is_int( $size ) ) {
 			return $size;
 		}
@@ -122,7 +122,7 @@ class JobQueueDB extends JobQueue {
 		} catch ( DBError $e ) {
 			throw $this->getDBException( $e );
 		}
-		$this->wanCache->set( $key, $size, self::CACHE_TTL_SHORT );
+		$this->localClusterCache->set( $key, $size, self::CACHE_TTL_SHORT );
 
 		return $size;
 	}
@@ -138,7 +138,7 @@ class JobQueueDB extends JobQueue {
 
 		$key = $this->getCacheKey( 'acquiredcount' );
 
-		$count = $this->wanCache->get( $key );
+		$count = $this->localClusterCache->get( $key );
 		if ( is_int( $count ) ) {
 			return $count;
 		}
@@ -155,7 +155,7 @@ class JobQueueDB extends JobQueue {
 		} catch ( DBError $e ) {
 			throw $this->getDBException( $e );
 		}
-		$this->wanCache->set( $key, $count, self::CACHE_TTL_SHORT );
+		$this->localClusterCache->set( $key, $count, self::CACHE_TTL_SHORT );
 
 		return $count;
 	}
@@ -173,7 +173,7 @@ class JobQueueDB extends JobQueue {
 
 		$key = $this->getCacheKey( 'abandonedcount' );
 
-		$count = $this->wanCache->get( $key );
+		$count = $this->localClusterCache->get( $key );
 		if ( is_int( $count ) ) {
 			return $count;
 		}
@@ -194,7 +194,7 @@ class JobQueueDB extends JobQueue {
 			throw $this->getDBException( $e );
 		}
 
-		$this->wanCache->set( $key, $count, self::CACHE_TTL_SHORT );
+		$this->localClusterCache->set( $key, $count, self::CACHE_TTL_SHORT );
 
 		return $count;
 	}
@@ -354,7 +354,7 @@ class JobQueueDB extends JobQueue {
 	protected function claimRandom( $uuid, $rand, $gte ) {
 		$dbw = $this->getPrimaryDB();
 		// Check cache to see if the queue has <= OFFSET items
-		$tinyQueue = $this->wanCache->get( $this->getCacheKey( 'small' ) );
+		$tinyQueue = $this->localClusterCache->get( $this->getCacheKey( 'small' ) );
 
 		$invertedDirection = false; // whether one job_random direction was already scanned
 		// This uses a replication safe method for acquiring jobs. One could use UPDATE+LIMIT
@@ -402,7 +402,7 @@ class JobQueueDB extends JobQueue {
 					->caller( __METHOD__ )->fetchRow();
 				if ( !$row ) {
 					$tinyQueue = true; // we know the queue must have <= MAX_OFFSET rows
-					$this->wanCache->set( $this->getCacheKey( 'small' ), 1, 30 );
+					$this->localClusterCache->set( $this->getCacheKey( 'small' ), 1, 30 );
 					continue; // use job_random
 				}
 			}
@@ -586,7 +586,7 @@ class JobQueueDB extends JobQueue {
 	 */
 	protected function doFlushCaches() {
 		foreach ( [ 'size', 'acquiredcount' ] as $type ) {
-			$this->wanCache->delete( $this->getCacheKey( $type ) );
+			$this->localClusterCache->delete( $this->getCacheKey( $type ) );
 		}
 	}
 
@@ -874,7 +874,7 @@ class JobQueueDB extends JobQueue {
 	private function getCacheKey( $property ) {
 		$cluster = is_string( $this->cluster ) ? $this->cluster : 'main';
 
-		return $this->wanCache->makeGlobalKey(
+		return $this->localClusterCache->makeGlobalKey(
 			'jobqueue',
 			$this->domain,
 			$cluster,

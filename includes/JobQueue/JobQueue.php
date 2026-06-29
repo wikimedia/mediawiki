@@ -12,7 +12,7 @@ use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\JobQueue\Exceptions\JobQueueReadOnlyError;
 use MediaWiki\JobQueue\Jobs\DuplicateJob;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\ObjectCache\WANObjectCache;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
@@ -51,8 +51,8 @@ abstract class JobQueue {
 	/** @var GlobalIdGenerator */
 	protected $idGenerator;
 
-	/** @var WANObjectCache */
-	protected $wanCache;
+	/** @var BagOStuff */
+	protected $localClusterCache;
 
 	/** @var bool */
 	protected $typeAgnostic;
@@ -72,7 +72,7 @@ abstract class JobQueue {
 	 * 	 - type : A job type, 'default' if typeAgnostic is set
 	 *   - domain : A DB domain ID
 	 *   - idGenerator : A GlobalIdGenerator instance.
-	 *   - wanCache : An instance of WANObjectCache to use for caching [default: none]
+	 *   - localClusterCache : An instance of LocalClusterCache to use for caching [default: none]
 	 *   - stats : An instance of StatsFactory [default: none]
 	 *   - claimTTL : Seconds a job can be claimed for exclusive execution [default: forever]
 	 *   - maxTries : Total times a job can be tried, assuming claims expire [default: 3]
@@ -96,7 +96,9 @@ abstract class JobQueue {
 		}
 		$this->readOnlyReason = $params['readOnlyReason'] ?? false;
 		$this->stats = $params['stats'] ?? StatsFactory::newNull();
-		$this->wanCache = $params['wanCache'] ?? WANObjectCache::newEmpty();
+		$services = MediaWikiServices::getInstance();
+		$this->localClusterCache = $params['localClusterCache'] ??
+			$services->getObjectCacheFactory()->getLocalClusterInstance();
 		$this->idGenerator = $params['idGenerator'];
 		if ( ( $params['typeAgnostic'] ?? false ) && !$this->supportsTypeAgnostic() ) {
 			throw new JobQueueError( __CLASS__ . " does not support type agnostic queues." );
@@ -106,7 +108,7 @@ abstract class JobQueue {
 			$this->type = 'default';
 		}
 
-		$this->jobFactory = MediaWikiServices::getInstance()->getJobFactory();
+		$this->jobFactory = $services->getJobFactory();
 	}
 
 	/**
@@ -500,13 +502,13 @@ abstract class JobQueue {
 		// insert fails, the de-duplication registration will be aborted. Having only the
 		// de-duplication registration succeed would cause jobs to become no-ops without
 		// any actual jobs that made them redundant.
-		$timestamp = $this->wanCache->get( $key ); // last known timestamp of such a root job
+		$timestamp = $this->localClusterCache->get( $key ); // last known timestamp of such a root job
 		if ( $timestamp !== false && $timestamp >= $params['rootJobTimestamp'] ) {
 			return true; // a newer version of this root job was enqueued
 		}
 
 		// Update the timestamp of the last root job started at the location...
-		return $this->wanCache->set( $key, $params['rootJobTimestamp'], self::ROOTJOB_TTL );
+		return $this->localClusterCache->set( $key, $params['rootJobTimestamp'], self::ROOTJOB_TTL );
 	}
 
 	/**
@@ -536,10 +538,10 @@ abstract class JobQueue {
 
 		$key = $this->getRootJobCacheKey( $params['rootJobSignature'], $job->getType() );
 		// Get the last time this root job was enqueued
-		$timestamp = $this->wanCache->get( $key );
+		$timestamp = $this->localClusterCache->get( $key );
 		if ( $timestamp === false || $params['rootJobTimestamp'] > $timestamp ) {
 			// Update the timestamp of the last known root job started at the location...
-			$this->wanCache->set( $key, $params['rootJobTimestamp'], self::ROOTJOB_TTL );
+			$this->localClusterCache->set( $key, $params['rootJobTimestamp'], self::ROOTJOB_TTL );
 		}
 
 		// Check if a new root job was started at the location after this one's...
@@ -552,7 +554,7 @@ abstract class JobQueue {
 	 * @return string
 	 */
 	protected function getRootJobCacheKey( $signature, $type ) {
-		return $this->wanCache->makeGlobalKey(
+		return $this->localClusterCache->makeGlobalKey(
 			'jobqueue',
 			$this->domain,
 			$type,

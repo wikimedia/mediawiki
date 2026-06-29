@@ -9,7 +9,6 @@ namespace MediaWiki\JobQueue;
 use ArrayIterator;
 use Wikimedia\Iterators\MappedIterator;
 use Wikimedia\ObjectCache\HashBagOStuff;
-use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * PHP memory-backed job queue storage, for testing.
@@ -24,7 +23,7 @@ class JobQueueMemory extends JobQueue {
 	protected static $data = [];
 
 	public function __construct( array $params ) {
-		$params['wanCache'] = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$params['localClusterCache'] = new HashBagOStuff();
 
 		parent::__construct( $params );
 	}

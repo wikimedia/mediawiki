@@ -1207,7 +1207,7 @@ return [
 			new ServiceOptions( JobQueueGroupFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getReadOnlyMode(),
 			$services->getStatsFactory(),
-			$services->getMainWANObjectCache(),
+			$services->getObjectCacheFactory()->getLocalClusterInstance(),
 			$services->getGlobalIdGenerator()
 		);
 	},

@@ -10,7 +10,7 @@ use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\WikiMap\WikiMap;
-use Wikimedia\ObjectCache\WANObjectCache;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
@@ -44,8 +44,8 @@ class JobQueueGroupFactory {
 	/** @var StatsFactory */
 	private $statsFactory;
 
-	/** @var WANObjectCache */
-	private $wanCache;
+	/** @var BagOStuff */
+	private $localClusterCache;
 
 	/** @var GlobalIdGenerator */
 	private $globalIdGenerator;
@@ -54,14 +54,14 @@ class JobQueueGroupFactory {
 	 * @param ServiceOptions $options
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param StatsFactory $statsFactory
-	 * @param WANObjectCache $wanCache
+	 * @param BagOStuff $localClusterCache
 	 * @param GlobalIdGenerator $globalIdGenerator
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		ReadOnlyMode $readOnlyMode,
 		StatsFactory $statsFactory,
-		WANObjectCache $wanCache,
+		BagOStuff $localClusterCache,
 		GlobalIdGenerator $globalIdGenerator
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -69,7 +69,7 @@ class JobQueueGroupFactory {
 		$this->options = $options;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->statsFactory = $statsFactory;
-		$this->wanCache = $wanCache;
+		$this->localClusterCache = $localClusterCache;
 		$this->globalIdGenerator = $globalIdGenerator;
 	}
 
@@ -107,7 +107,7 @@ class JobQueueGroupFactory {
 				$this->options->get( MainConfigNames::JobTypeConf ),
 				$this->options->get( MainConfigNames::JobTypesExcludedFromDefaultQueue ),
 				$this->statsFactory,
-				$this->wanCache,
+				$this->localClusterCache,
 				$this->globalIdGenerator
 			);
 		}

@@ -12,8 +12,8 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\JobQueueEnqueueUpdate;
 use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\MapCacheLRU;
-use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
@@ -44,8 +44,8 @@ class JobQueueGroup {
 	private $jobTypesExcludedFromDefaultQueue;
 	/** @var StatsFactory */
 	private $statsFactory;
-	/** @var WANObjectCache */
-	private $wanCache;
+	/** @var BagOStuff */
+	private $localClusterCache;
 	/** @var GlobalIdGenerator */
 	private $globalIdGenerator;
 
@@ -60,15 +60,13 @@ class JobQueueGroup {
 	private const PROC_CACHE_TTL = 15; // integer; seconds
 
 	/**
-	 * @internal Use MediaWikiServices::getJobQueueGroupFactory
-	 *
 	 * @param string $domain Wiki domain ID
 	 * @param ReadOnlyMode $readOnlyMode Read-only mode
 	 * @param array|null $localJobClasses
 	 * @param array $jobTypeConfiguration
 	 * @param array $jobTypesExcludedFromDefaultQueue
 	 * @param StatsFactory $statsFactory
-	 * @param WANObjectCache $wanCache
+	 * @param BagOStuff $localClusterCache
 	 * @param GlobalIdGenerator $globalIdGenerator
 	 */
 	public function __construct(
@@ -78,7 +76,7 @@ class JobQueueGroup {
 		array $jobTypeConfiguration,
 		array $jobTypesExcludedFromDefaultQueue,
 		StatsFactory $statsFactory,
-		WANObjectCache $wanCache,
+		BagOStuff $localClusterCache,
 		GlobalIdGenerator $globalIdGenerator
 	) {
 		$this->domain = $domain;
@@ -88,7 +86,7 @@ class JobQueueGroup {
 		$this->jobTypeConfiguration = $jobTypeConfiguration;
 		$this->jobTypesExcludedFromDefaultQueue = $jobTypesExcludedFromDefaultQueue;
 		$this->statsFactory = $statsFactory;
-		$this->wanCache = $wanCache;
+		$this->localClusterCache = $localClusterCache;
 		$this->globalIdGenerator = $globalIdGenerator;
 	}
 
@@ -106,7 +104,7 @@ class JobQueueGroup {
 		}
 
 		$conf['stats'] = $this->statsFactory;
-		$conf['wanCache'] = $this->wanCache;
+		$conf['localClusterCache'] = $this->localClusterCache;
 		$conf['idGenerator'] = $this->globalIdGenerator;
 
 		return JobQueue::factory( $conf );
@@ -377,7 +375,7 @@ class JobQueueGroup {
 				$conf['domain'] = $this->domain;
 				$conf['type'] = 'null';
 				$conf['stats'] = $this->statsFactory;
-				$conf['wanCache'] = $this->wanCache;
+				$conf['localClusterCache'] = $this->localClusterCache;
 				$conf['idGenerator'] = $this->globalIdGenerator;
 
 				$queue = JobQueue::factory( $conf );
