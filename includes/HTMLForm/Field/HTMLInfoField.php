@@ -56,10 +56,13 @@ class HTMLInfoField extends HTMLFormField {
 			$value = new \OOUI\HtmlSnippet( $value );
 		}
 
-		return new \OOUI\LabelWidget( [
+		return ( new \OOUI\LabelWidget( [
 			'label' => $value,
 			'id' => $this->mID
-		] );
+		] ) )
+			// In case the information text contains any form elements, avoid treating it
+			// as a clickable label (T428359). Maybe it shouldn't be a `<label>` in the first place…
+			->setAttributes( [ 'for' => '' ] );
 	}
 
 	/**
