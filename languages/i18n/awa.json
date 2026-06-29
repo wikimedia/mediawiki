@@ -15,7 +15,8 @@
 			"Sfic",
 			"राम प्रसाद जोशी",
 			"SaldırganSincap",
-			"Saurmandal"
+			"Saurmandal",
+			"YeBoy371"
 		]
 	},
 	"sunday": "अत्तवार",
@@ -3445,8 +3446,8 @@
 	"mw-widgets-copytextlayout-copy-fail": "Failed to copy to clipboard.",
 	"mw-widgets-copytextlayout-copy-success": "Copied to clipboard.",
 	"mw-widgets-dateinput-no-date": "कवनो नाइ चुना गय",
-	"mw-widgets-dateinput-placeholder-day": "YYYY-MM-DD (साल-महीना-दिन)",
-	"mw-widgets-dateinput-placeholder-month": "YYYY-MM (साल-महीना)",
+	"mw-widgets-dateinput-placeholder-day": "वववव-मम-दद",
+	"mw-widgets-dateinput-placeholder-month": "वववव-मम",
 	"mw-widgets-mediasearch-input-placeholder": "मीडिया हेतु खोजें",
 	"mw-widgets-mediasearch-noresults": "कवनो नतिजा नाई मिला",
 	"mw-widgets-table-row-delete": "लाइन मिटावा",

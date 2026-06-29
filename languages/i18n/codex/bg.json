@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"StanProg"
+		]
+	},
+	"cdx-chip-input-chip-added": "Елемент $1 беше добавен.",
+	"cdx-chip-input-chip-removed": "Елемент $1 беше премахнат.",
+	"cdx-input-chip-aria-description": "Натиснете Enter за редактиране или Delete за премахване.",
+	"cdx-dialog-close-button-label": "Затваряне",
+	"cdx-label-optional-flag": "(незадължително)",
+	"cdx-message-dismiss-button-label": "Затваряне",
+	"cdx-search-input-search-button-label": "Търсене",
+	"cdx-table-select-all-label": "Избиране на всички редове",
+	"cdx-table-select-row-label": "Избиране на ред $1 от $2",
+	"cdx-table-sort-caption": "$1 (заглавията на колоните с бутони са сортируеми).",
+	"cdx-typeahead-search-search-results-label": "Резултати от търсенето",
+	"cdx-table-pager-button-first-page": "Първа страница",
+	"cdx-table-pager-button-last-page": "Последна страница",
+	"cdx-table-pager-button-next-page": "Следваща страница",
+	"cdx-table-pager-button-prev-page": "Предишна страница",
+	"cdx-table-pager-items-per-page-default": "Резултати на страница",
+	"cdx-table-pagination-status-message-determinate-long": "Показване на резултати $1 – $2 от $3.",
+	"cdx-table-pagination-status-message-determinate-short": "$1 – $2 от $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Показване на резултати $1 – $2 от много",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1 – $2 от много",
+	"cdx-table-pagination-status-message-indeterminate-final": "Показване на  {{PLURAL:$1|последния $1 резултат|последните $1 резултати}}",
+	"cdx-table-pagination-status-message-pending": "Зареждане на резултати..."
+}

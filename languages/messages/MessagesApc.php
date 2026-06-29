@@ -92,23 +92,38 @@ $dateFormats = [
 	'jMY both' => 'H:i، j M Y', # Arabic comma
 ];
 
+// Reset to (Western) Arabic digits
+// https://phabricator.wikimedia.org/T382781
 $digitTransformTable = [
-	'0' => '٠', # U+0660
-	'1' => '١', # U+0661
-	'2' => '٢', # U+0662
-	'3' => '٣', # U+0663
-	'4' => '٤', # U+0664
-	'5' => '٥', # U+0665
-	'6' => '٦', # U+0666
-	'7' => '٧', # U+0667
-	'8' => '٨', # U+0668
-	'9' => '٩', # U+0669
+	'0' => '0',
+	'1' => '1',
+	'2' => '2',
+	'3' => '3',
+	'4' => '4',
+	'5' => '5',
+	'6' => '6',
+	'7' => '7',
+	'8' => '8',
+	'9' => '9',
+	// T382781: PHP >= 8.4 converts natively to Arabic digits, so we need to convert back
+	'٠' => '0', # U+0660
+	'١' => '1', # U+0661
+	'٢' => '2', # U+0662
+	'٣' => '3', # U+0663
+	'٤' => '4', # U+0664
+	'٥' => '5', # U+0665
+	'٦' => '6', # U+0666
+	'٧' => '7', # U+0667
+	'٨' => '8', # U+0668
+	'٩' => '9', # U+0669
 ];
 
 $separatorTransformTable = [
-	'.' => '٫', # U+066B
-	',' => '٬', # U+066C
+	'.' => '.',
+	',' => ',',
 ];
+
+$numberingSystem = 'latn';
 
 $namespaceNames = [
 	NS_MEDIA            => 'ميديا',

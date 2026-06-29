@@ -49,6 +49,8 @@ $digitTransformTable = [
 	'9' => '۹',
 ];
 
+$numberingSystem = 'arabext';
+
 $namespaceAliases = [
 	'تصویر' => NS_FILE,
 ];

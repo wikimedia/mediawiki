@@ -30,6 +30,7 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\CodexModule;
 use MediaWiki\ResourceLoader\Context;
+use MediaWiki\ResourceLoader\DateFormatterConfig;
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\ForeignApiModule;
 use MediaWiki\ResourceLoader\LessVarFileModule;
@@ -722,6 +723,20 @@ return [
 		'messages' => [
 			'confirmleave-warning',
 		],
+	],
+	'mediawiki.DateFormatter' => [
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.DateFormatter',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.DateFormatter",
+		'packageFiles' => [
+			'DateFormatter.js',
+			[
+				'name' => 'config.json',
+				'callback' => [ DateFormatterConfig::class, 'getData' ]
+			]
+		],
+		'dependencies' => [
+			'user.options',
+		]
 	],
 	'mediawiki.debug' => [
 		'scripts' => [

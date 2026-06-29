@@ -40,6 +40,8 @@ $digitTransformTable = [
 	'9' => '९', # U+096F
 ];
 
+$numberingSystem = 'deva';
+
 $linkPrefixExtension = false;
 
 $namespaceNames = [

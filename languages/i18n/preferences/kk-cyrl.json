@@ -9,11 +9,13 @@
 			"GaiJin",
 			"Kaztrans",
 			"U.ayaao.p",
-			"СеніңШешең"
+			"СеніңШешең",
+			"Moonborn"
 		]
 	},
 	"preferences": "Баптау",
 	"prefsnologintext2": "Баптауларыңызды өзгерту үшін кіруіңіз керек.",
+	"searchprefs-noresults": "Еш нәтиже жоқ",
 	"saveprefs": "Сақтау",
 	"tooltip-preferences-save": "Баптауларды сақтау",
 	"savedprefs": "Баптауларыңыз сақталды.",

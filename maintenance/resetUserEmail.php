@@ -25,6 +25,8 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Password\PasswordFactory;
 use MediaWiki\User\User;
@@ -46,6 +48,7 @@ class ResetUserEmail extends Maintenance {
 
 		$this->addOption( 'no-reset-password', 'Don\'t reset the user\'s password' );
 		$this->addOption( 'email-password', 'Send a temporary password to the user\'s new email address' );
+		$this->addOption( 'reason', 'Reason for the email change (ticket number etc)', false, true );
 	}
 
 	public function execute() {
@@ -64,10 +67,22 @@ class ResetUserEmail extends Maintenance {
 			$this->fatalError( "Error: email '$email' is not valid\n" );
 		}
 
+		$oldAddr = $user->getEmail();
+
 		// Code from https://wikitech.wikimedia.org/wiki/Password_reset
 		$user->setEmail( $email );
 		$user->setEmailAuthenticationTimestamp( wfTimestampNow() );
 		$user->saveSettings();
+
+		$logger = LoggerFactory::getInstance( 'authentication' );
+		$logger->info(
+			'Changing email address for {user} from {oldemail} to {newemail} via resetUserEmail.php', [
+				'user' => $user->getName(),
+				'oldemail' => $oldAddr,
+				'newemail' => $email,
+				'reason' => $this->getOption( 'reason', '' ),
+			]
+		);
 
 		if ( !$this->hasOption( 'no-reset-password' ) ) {
 			// Kick whomever is currently controlling the account off if possible
@@ -80,6 +95,17 @@ class ResetUserEmail extends Maintenance {
 			if ( !$status->isGood() ) {
 				$this->error( "Password couldn't be reset because:" );
 				$this->error( $status );
+			} else {
+				$logger->info(
+					'Scrambling password for {user} via resetUserEmail.php', [
+						'user' => $user->getName(),
+						'reason' => $this->getOption( 'reason', '' ),
+					]
+				);
+
+				$invalidator = $this->createChild( InvalidateUserSessions::class );
+				$invalidator->setOption( 'user', $user->getName() );
+				$invalidator->execute();
 			}
 		}
 
@@ -90,6 +116,13 @@ class ResetUserEmail extends Maintenance {
 			if ( !$status->isGood() ) {
 				$this->error( "Email couldn't be sent because:" );
 				$this->error( $status );
+			} else {
+				$logger->info(
+					'Password reset email sent for {user} via resetUserEmail.php', [
+						'user' => $user->getName(),
+						'reason' => $this->getOption( 'reason', '' ),
+					]
+				);
 			}
 		}
 		$this->output( "Done!\n" );

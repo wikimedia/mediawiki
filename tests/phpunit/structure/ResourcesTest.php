@@ -318,39 +318,37 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public static function provideRespond() {
-		$services = MediaWikiServices::getInstance();
-		$rl = $services->getResourceLoader();
-		$skinFactory = $services->getSkinFactory();
-		foreach ( array_keys( $skinFactory->getInstalledSkins() ) as $skin ) {
-			foreach ( $rl->getModuleNames() as $moduleName ) {
-				yield [ $moduleName, $skin ];
+	public function testRespond() {
+		$rl = $this->getServiceContainer()->getResourceLoader();
+
+		// Test user-selectable skins plus the basic "fallback" skin. Other "skippable" skins
+		// (e.g. 'apioutput', 'authentication-popup') are special-purpose and most modules are
+		// never served with them in practice (T424462#11995284).
+		$skins = array_keys( $this->getServiceContainer()->getSkinFactory()->getAllowedSkins() );
+		$skins[] = 'fallback';
+
+		$failures = [];
+		foreach ( $rl->getModuleNames() as $moduleName ) {
+			$module = $rl->getModule( $moduleName );
+			// Private modules cannot be served from load.php
+			if ( $module->shouldSkipStructureTest() ) {
+				continue;
+			}
+			// Test only general (scripts) or only=styles responses.
+			$only = $module->getType() === RL\Module::LOAD_STYLES ? 'styles' : null;
+			foreach ( $skins as $skin ) {
+				$context = new RL\Context(
+					$rl,
+					new FauxRequest( [ 'modules' => $moduleName, 'only' => $only, 'skin' => $skin ] )
+				);
+				ob_start();
+				$rl->respond( $context );
+				ob_end_clean();
+				foreach ( $rl->getErrors() as $error ) {
+					$failures[] = "[$moduleName / $skin] $error";
+				}
 			}
 		}
-	}
-
-	/**
-	 * @dataProvider provideRespond
-	 * @param string $moduleName
-	 * @param string $skin
-	 */
-	public function testRespond( $moduleName, $skin ) {
-		$rl = $this->getServiceContainer()->getResourceLoader();
-		$module = $rl->getModule( $moduleName );
-		if ( $module->shouldSkipStructureTest() ) {
-			// Private modules cannot be served from load.php
-			$this->assertTrue( true );
-			return;
-		}
-		// Test only general (scripts) or only=styles responses.
-		$only = $module->getType() === RL\Module::LOAD_STYLES ? 'styles' : null;
-		$context = new RL\Context(
-			$rl,
-			new FauxRequest( [ 'modules' => $moduleName, 'only' => $only, 'skin' => $skin ] )
-		);
-		ob_start();
-		$rl->respond( $context );
-		ob_end_clean();
-		$this->assertSame( [], $rl->getErrors() );
+		$this->assertSame( [], $failures, 'ResourceLoader modules that failed to respond' );
 	}
 }

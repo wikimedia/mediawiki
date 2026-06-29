@@ -190,8 +190,8 @@ class PurgeChangedFiles extends Maintenance {
 					$this->purgeFromArchiveTable( $repo, $file );
 				} elseif ( $logType === 'move' ) {
 					// Purge the target file as well
-
-					$params = unserialize( $row->log_params );
+					// (only handles hard-coded core logs, so no need to pass log type/action here)
+					$params = LogEntryBase::extractParams( $row->log_params, null );
 					if ( isset( $params['4::target'] ) ) {
 						$target = $params['4::target'];
 						$targetFile = $repo->newFile( Title::makeTitle( NS_FILE, $target ) );

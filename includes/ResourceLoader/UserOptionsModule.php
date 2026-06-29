@@ -2,8 +2,10 @@
 
 namespace MediaWiki\ResourceLoader;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\UserTimeCorrection;
 
 /**
  * This program is free software; you can redistribute it and/or modify
@@ -66,6 +68,16 @@ class UserOptionsModule extends Module {
 		$this->getHookRunner()->onResourceLoaderExcludeUserOptions( $keysToExclude, $context );
 		foreach ( $keysToExclude as $excludedKey ) {
 			unset( $options[ $excludedKey ] );
+		}
+
+		// Update timezone offset (T323193)
+		if ( isset( $options['timecorrection'] ) ) {
+			$corr = new UserTimeCorrection(
+				$options['timecorrection'],
+				null,
+				$this->getConfig()->get( MainConfigNames::LocalTZoffset )
+			);
+			$options['timecorrection'] = $corr->toString();
 		}
 
 		// Optimisation: Only output this function call if the user has non-default settings.

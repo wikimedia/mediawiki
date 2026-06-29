@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"cdx-chip-input-chip-added": "Čip $1 bol pridaný.",
+	"cdx-chip-input-chip-removed": "Čip $1 bol odstránený.",
+	"cdx-input-chip-aria-description": "Stlačením Enter upravíte, stlačením Delete odstránite.",
+	"cdx-dialog-close-button-label": "Zavrieť",
+	"cdx-label-optional-flag": "(voliteľné)",
+	"cdx-message-dismiss-button-label": "Zavrieť",
+	"cdx-search-input-search-button-label": "Hľadať",
+	"cdx-table-select-all-label": "Vybrať všetky riadky",
+	"cdx-table-select-row-label": "Vybrať riadok $1 z $2",
+	"cdx-table-sort-caption": "$1 (hlavičky stĺpcov s tlačidlami sa dajú zoraďovať).",
+	"cdx-typeahead-search-search-results-label": "Výsledky vyhľadávania",
+	"cdx-table-pager-button-first-page": "Prvá stránka",
+	"cdx-table-pager-button-last-page": "Posledná stránka",
+	"cdx-table-pager-button-next-page": "Ďalšia stránka",
+	"cdx-table-pager-button-prev-page": "Predchádzajúca stránka",
+	"cdx-table-pager-items-per-page-default": "Výsledkov na stránku",
+	"cdx-table-pagination-status-message-determinate-long": "Zobrazujú sa výsledky $1–$2 z $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 z $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Zobrazujú sa výsledky $1–$2 z mnohých",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 z mnohých",
+	"cdx-table-pagination-status-message-indeterminate-final": "{{PLURAL:$1|Zobrazuje sa posledný $1 výsledok|Zobrazujú sa posledné $1 výsledky|Zobrazuje sa posledných $1 výsledkov}}",
+	"cdx-table-pagination-status-message-pending": "Načítavajú sa výsledky..."
+}

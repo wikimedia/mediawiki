@@ -16,7 +16,8 @@
 			"Xiplus",
 			"Yanteng3",
 			"列维劳德",
-			"沈澄心"
+			"沈澄心",
+			"TripleCamera2022"
 		]
 	},
 	"preferences": "簿註",
@@ -27,7 +28,7 @@
 	"prefs-personal": "概簿",
 	"prefs-info": "基",
 	"username": "簿名：",
-	"prefs-memberingroups": "{{PLURAL:$1|一|權任}}：",
+	"prefs-memberingroups": "權任：",
 	"prefs-edits": "數計：",
 	"prefs-registration": "注簿時辰：",
 	"yourrealname": "本名：",

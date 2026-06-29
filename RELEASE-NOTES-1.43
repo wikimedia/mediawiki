@@ -8,10 +8,77 @@ PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
 
 == MediaWiki 1.43.9 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.43 branch.
 
 === Changes since 1.43.8 ===
 * Localisation updates.
+* (T419192) Actions: Fix incorrect variable shadowing.
+* (T421659) Installer: Skip dropIndex() when table does not exists.
+* (T413545, T422879) Update wikimedia/parsoid to 0.20.8.
+* (T423185) HashSiteStore: Don't trigger PHP 8.5 warnings if the Site has
+  no globalID.
+* Make CacheTime/ParserOutput JsonCodecable; deprecate older json classes.
+* ParserOutput: Add JsonCodec hints for TOCData and WarningMsgs.
+* (T414805) Media: Re-apply Use previous step for non-standard width between
+  steps and original.
+* (T418745, T423895) Media: Fallback to the largest standard size if an
+  overly large one is requested.
+* (T328921) Drop various PHP 7.4/8.0 support hacks, no longer needed.
+* (T261260) Re-add preloading of classes used in the header callback.
+* (T261260) Limit preloading workaround for autoload bug to PHP<8.6.
+* Upload: Avoid null array key in UploadBase::getMaxUploadSize.
+* (T395204) Unify logging of IP / user agent / etc on sensitive operations.
+* (T423502) AuthManager: Log status changes from
+  SecuritySensitiveOperationStatusHook call.
+* (T419768) RawAction: Restrict content type to javascript.
+* HTMLForm: Add 'type' => 'button'.
+* (T395204) Update GetSecurityLogContext @since tags for backports.
+* (T402792, T414805, T416620, T418178) DjvuHandler: Make it follow thumb steps.
+* TextContentHandler::fillParserOutput: Drop old support for Content::getHtml,
+  no longer needed.
+* (T410934) Remove noop xml_parser_free() call.
+* Drop empty ids.
+* (T425742) ApiQueryInfo: Pass an empty string instead of null to
+  EditFormPreloadText hook.
+* (T424114) Media: Improve $wgThumbnailSteps docs.
+* resetUserEmail: Log email change to authentication log.
+* resetUserEmail: Add reason option for email change.
+* resetUserEmail: Log more events from script.
+* changePassword/resetUserEmail: Invalidate user sessions upon password
+  change.
+* (T426861) composer.json: Updated symfony/yaml from 5.4.45 to 5.4.52.
+* (T366986) Parser: Improve recursive lock error message.
+* Add GitHub to $wgGitRepositoryViewers.
+* (T425818) changePassword: Log password change to authentication log.
+* changePassword: Add reason option for password change.
+* (T429826) Updated guzzlehttp/guzzle from 7.10.0 to 7.12.1.
+* (T423617) Check the target url for redirects are allowed.
+* (T429965) Updated guzzlehttp/guzzle from 7.12.1 to 7.12.3.
+* (T389161) Client-side date/time formatter library.
+* (T382781) Changed Levantine Arabic numerals to Western numerals.
+* (T382781) [PHP 8.4] Ensure Levantine Arabic numerals stay as Western
+  numerals.
+* (T383047) UserMailer: hack: preserve multiple error callbacks.
+* (T383047) Mail: Extract sendWithMailFunction() from UserMailer::send().
+* (T429720) FileRepo: Fix typos in schema compatibility checks.
+* (T383047) Mail: Log PHP mail() send failures with recipient count.
+* (T425406, CVE-2026-58036) SECURITY: Fix ApiQueryUsers leaking status of
+  private user conditions for user.
+* (T422306, CVE-2026-58028) SECURITY: Disallow user JS in pretty-print api.php
+  responses.
+* (T427235, CVE-2026-58033) SECURITY: Exclude rev-deleted usernames from
+  distinct authors query.
+* (T426867, CVE-2026-58032) SECURITY: mw.Api.getErrorMessage: Treat
+  formatversion=1 as text.
+* (T299359, CVE-2026-58026) SECURITY: Make sure the actual title that's being
+  transcluded is includable.
+* (T422085, CVE-2026-58024) SECURITY: Restrict interwiki user lookup in
+  ApiUserrights.
+* (T422676, CVE-2026-58029) SECURITY: Check for editmyprivateinfo right in more
+  places.
+* (T422995, CVE-2026-58037) SECURITY: LogFormatter: 'raw' parameter format is no
+  longer raw HTML.
+* (T422244, CVE-2026-58025) SECURITY: Safely unserialize log entry parameters.
 
 == MediaWiki 1.43.8 ==
 

@@ -90,3 +90,5 @@ $digitTransformTable = [
 	'8' => '໘', # U+0ED8
 	'9' => '໙', # U+0ED9
 ];
+
+$numberingSystem = 'laoo';

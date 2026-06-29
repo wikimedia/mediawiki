@@ -41,6 +41,12 @@ $separatorTransformTable = null;
 $minimumGroupingDigits = 1;
 
 /**
+ * The CLDR numbering system name.
+ * Refer to https://github.com/unicode-org/cldr/blob/main/common/supplemental/numberingSystems.xml
+ */
+$numberingSystem = 'latn';
+
+/**
  * URLs do not specify their encoding. UTF-8 is used by default, but if the
  * URL is not a valid UTF-8 sequence, we have to try to guess what the real
  * encoding is. The encoding used in this case is defined below, and must be
@@ -187,6 +193,12 @@ $dateFormats = [
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 	'ISO 8601 pretty' => 'xnm-xnd'
 ];
+
+/**
+ * Overrides for the JS date format option arrays generated from $dateFormats by
+ * Language::convertDateFormatToJs()
+ */
+$jsDateFormats = [];
 
 /**
  * Default list of book sources

@@ -58,6 +58,8 @@ $digitTransformTable = [
 	'9' => '९', # U+096F
 ];
 
+$numberingSystem = 'deva';
+
 $magicWords = [
 	'anchorencode'              => [ '0', 'एङ्कर_कोड', 'ANCHORENCODE' ],
 	'articlepath'               => [ '0', 'लेख_पथ', 'ARTICLEPATH' ],

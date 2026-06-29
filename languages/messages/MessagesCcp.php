@@ -39,4 +39,6 @@ $digitTransformTable = [
 
 $digitGroupingPattern = "#,##,##0.###";
 
+$numberingSystem = 'cakm';
+
 $linkTrail = '/^([\p{Chakma}]+)(.*)$/su';

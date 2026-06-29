@@ -1943,6 +1943,7 @@
 	"apierror-permissiondenied-generic": "Permission denied.",
 	"apierror-permissiondenied-patrolflag": "You need the <code>patrol</code> or <code>patrolmarks</code> right to request the patrolled flag.",
 	"apierror-permissiondenied-unblock": "You don't have permission to unblock users.",
+	"apierror-permissiondenied-userrights-interwiki": "You don't have permission to change user rights on other wikis.",
 	"apierror-prefixsearchdisabled": "Prefix search is disabled in Miser Mode.",
 	"apierror-promised-nonwrite-api": "The <code>Promise-Non-Write-API-Action</code> HTTP header cannot be sent to write-mode API modules.",
 	"apierror-protect-invalidaction": "Invalid protection type \"$1\".",

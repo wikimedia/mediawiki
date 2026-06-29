@@ -6,8 +6,10 @@ use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\StubObject\StubObject;
 use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Language
@@ -177,6 +179,182 @@ class LanguageTest extends MediaWikiUnitTestCase {
 			'Emoji' => [ '😂💀☢️', '😂' ],
 			// Korean is special-cased to remove single letters from syllables
 			'Korean' => [ '위키백과', 'ㅇ' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideConvertDateFormatToJs
+	 * @param string $input
+	 * @param array $expected
+	 */
+	public function testConvertDateFormatToJs( $input, $expected ) {
+		$lang = $this->getObj();
+		/** @var Language|StubObject $tlang */
+		$tlang = TestingAccessWrapper::newFromObject( $lang );
+		$tlang->localisationCache = $this->createMock( LocalisationCache::class );
+		$tlang->localisationCache
+			->method( 'getItem' )
+			->with( 'en', 'numberingSystem' )
+			->willReturn( 'latn' );
+
+		$result = $tlang->convertDateFormatToJs( $input );
+		$this->assertArrayEquals( $expected, $result, false, true );
+	}
+
+	public static function provideConvertDateFormatToJs() {
+		return [
+			[
+				'j F Y',
+				[
+					'options' => [
+						'numberingSystem' => 'latn',
+						'day' => 'numeric',
+						'month' => 'long',
+						'year' => 'numeric'
+					],
+					'pattern' => '{day} {mwMonth} {year}'
+				]
+			],
+			[
+				'xx xnY xx "quote" \Y\\',
+				[
+					'locale' => 'en',
+					'options' => [ 'year' => 'numeric' ],
+					'pattern' => 'x {year} x quote Y\\'
+				]
+			],
+			[
+				'xhY',
+				[
+					'options' => [
+						'numberingSystem' => 'hebr',
+						'year' => 'numeric'
+					],
+					'pattern' => '{year}',
+					'error' => 'Unsupported format code(s): xh'
+				]
+			],
+			[
+				'xg',
+				[
+					'options' => [
+						'numberingSystem' => 'latn',
+						'month' => 'long',
+					],
+					'pattern' => '{mwMonthGen}',
+				]
+			],
+			[
+				'xjx',
+				[
+					'options' => [
+						'numberingSystem' => 'latn',
+						'calendar' => 'hebrew',
+						'month' => 'long',
+					],
+					'pattern' => '{mwMonthGen}',
+				]
+			],
+			[
+				'd D',
+				[
+					'options' => [
+						'numberingSystem' => 'latn',
+						'day' => '2-digit',
+						'weekday' => 'short',
+					],
+					'pattern' => '{day} {weekday}'
+				]
+			],
+			[
+				'xij xiF xiY',
+				[
+					'options' => [
+						'numberingSystem' => 'latn',
+						'day' => 'numeric',
+						'month' => 'long',
+						'year' => 'numeric',
+						'calendar' => 'persian',
+					],
+					'pattern' => '{day} {month} {year}'
+				]
+			],
+			[
+				'xmj xmF xmY',
+				[
+					'options' => [
+						'numberingSystem' => 'latn',
+						'day' => 'numeric',
+						'month' => 'long',
+						'year' => 'numeric',
+						'calendar' => 'islamic',
+					],
+					'pattern' => '{day} {month} {year}'
+				]
+			],
+			[
+				'xjj xjF xjY l',
+				[
+					'options' => [
+						'numberingSystem' => 'latn',
+						'day' => 'numeric',
+						'month' => 'long',
+						'year' => 'numeric',
+						'weekday' => 'long',
+						'calendar' => 'hebrew',
+					],
+					'pattern' => '{day} {month} {year} {weekday}'
+				]
+			],
+			[
+				'xtY',
+				[
+					'options' => [
+						'numberingSystem' => 'latn',
+						'calendar' => 'japanese',
+						'year' => 'numeric',
+						'era' => 'short',
+					],
+					'pattern' => '{era}{year}',
+				]
+			],
+			[
+				'H:i:s',
+				[
+					'options' => [
+						'numberingSystem' => 'latn',
+						'hour' => '2-digit',
+						'minute' => '2-digit',
+						'second' => '2-digit',
+						'hour12' => false,
+					],
+					'pattern' => '{hour}:{minute}:{second}'
+				]
+			],
+			[
+				'h:i a',
+				[
+					'options' => [
+						'numberingSystem' => 'latn',
+						'hour' => '2-digit',
+						'minute' => '2-digit',
+						'hour12' => true,
+					],
+					'pattern' => '{hour}:{minute} {dayPeriod}'
+				]
+			],
+			[
+				'g P',
+				[
+					'options' => [
+						'numberingSystem' => 'latn',
+						'hour' => 'numeric',
+						'hour12' => true,
+						'timeZoneName' => 'longOffset'
+					],
+					'pattern' => '{hour} {timeZoneName}'
+				]
+			],
 		];
 	}
 }

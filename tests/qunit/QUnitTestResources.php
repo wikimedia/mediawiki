@@ -47,6 +47,7 @@ return [
 			'tests/qunit/resources/startup/mw.loader.test.js',
 			'tests/qunit/resources/startup/mw.requestIdleCallback.test.js',
 			'tests/qunit/resources/startup/jscompat.test.js',
+			'tests/qunit/resources/mediawiki.DateFormatter/DateFormatter.test.js',
 			[
 				'name' => 'tests/qunit/resources/startup/clientprefs.js',
 				'callback' => static function () {
@@ -114,6 +115,7 @@ return [
 			'jquery.tablesorter',
 			'jquery.textSelection',
 			'mediawiki.api',
+			'mediawiki.DateFormatter',
 			'mediawiki.ForeignApi.core',
 			'mediawiki.jqueryMsg',
 			'mediawiki.messagePoster',

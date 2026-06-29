@@ -69,6 +69,24 @@ class HashSiteStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\Site\HashSiteStore::saveSite
+	 * @covers \MediaWiki\Site\HashSiteStore::getSite
+	 * @covers \MediaWiki\Site\HashSiteStore::getSites
+	 */
+	public function testSaveSite_noGlobalId() {
+		$store = new HashSiteStore();
+
+		$site = new Site();
+
+		$this->assertCount( 0, $store->getSites(), '0 sites in store' );
+
+		$store->saveSite( $site );
+
+		$this->assertCount( 1, $store->getSites(), 'Store has 1 sites' );
+		$this->assertEquals( $site, $store->getSite( '' ), 'Store has an unnamed site' );
+	}
+
+	/**
 	 * @covers \MediaWiki\Site\HashSiteStore::saveSites
 	 */
 	public function testSaveSites() {

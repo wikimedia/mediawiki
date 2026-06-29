@@ -74,6 +74,8 @@ $separatorTransformTable = [
 
 $digitGroupingPattern = "#,##0.###";
 
+$numberingSystem = 'arab';
+
 $linkPrefixExtension = true;
 
 /**

@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ranjithsiji"
+		]
+	},
+	"cdx-chip-input-chip-added": "$1 ചിപ്പ് ചേർത്തു.",
+	"cdx-chip-input-chip-removed": "$1 ചിപ്പ് നീക്കം ചെയ്തു.",
+	"cdx-input-chip-aria-description": "തിരുത്താനായി എന്റർ ബട്ടണും നീക്കം ചെയ്യാനായി ഡിലീറ്റ് ബട്ടണും ഞെക്കുക",
+	"cdx-dialog-close-button-label": "അടയ്ക്കുക",
+	"cdx-label-optional-flag": "(ഐച്ഛികം)",
+	"cdx-message-dismiss-button-label": "അടയ്ക്കുക",
+	"cdx-search-input-search-button-label": "തിരയുക",
+	"cdx-table-select-all-label": "എല്ലാ വരികളും തിരഞ്ഞെടുക്കുക",
+	"cdx-table-select-row-label": "$2-ന്റെ $1 വരി തിരഞ്ഞെടുക്കുക",
+	"cdx-table-sort-caption": "$1 (ബട്ടണുകളുള്ള നിര ശീർഷകങ്ങൾ അടുക്കാവുന്നവയാണ്).",
+	"cdx-typeahead-search-search-results-label": "തിരയൽ ഫലങ്ങൾ",
+	"cdx-table-pager-button-first-page": "ആദ്യതാൾ",
+	"cdx-table-pager-button-last-page": "അവസാന താൾ",
+	"cdx-table-pager-button-next-page": "അടുത്ത താൾ",
+	"cdx-table-pager-button-prev-page": "മുൻപത്തെ താൾ",
+	"cdx-table-pager-items-per-page-default": "ഓരോ പേജിലും ഫലങ്ങൾ",
+	"cdx-table-pagination-status-message-determinate-long": "$3-ന്റെ $1-$2 ഫലങ്ങൾ കാണിക്കുന്നു",
+	"cdx-table-pagination-status-message-determinate-short": "$3 ന്റെ $1-$2",
+	"cdx-table-pagination-status-message-indeterminate-long": "പലതിൽ നിന്ന് $1 – $2 ഫലങ്ങൾ കാണിക്കുന്നു.",
+	"cdx-table-pagination-status-message-indeterminate-short": "പലതിലും $1 – $2",
+	"cdx-table-pagination-status-message-indeterminate-final": "അവസാനത്തെ {{PLURAL:$1| $1 ഫലം| $1 ഫലങ്ങൾ}} കാണിക്കുന്നു.",
+	"cdx-table-pagination-status-message-pending": "ഫലങ്ങൾ ലോഡ് ചെയ്യുന്നു..."
+}

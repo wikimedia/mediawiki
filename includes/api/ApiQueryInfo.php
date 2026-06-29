@@ -465,8 +465,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			if ( $pageExists ) {
 				$pageInfo['preload'] = '';
 			} else {
-				$text = null;
-				// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
+				$text = '';
 				$this->getHookRunner()->onEditFormPreloadText( $text, $title );
 
 				$pageInfo['preload'] = $text;

@@ -28,6 +28,7 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Maintenance\Maintenance;
 
 /**
@@ -41,6 +42,7 @@ class ChangePassword extends Maintenance {
 		$this->addOption( "user", "The username to operate on", false, true );
 		$this->addOption( "userid", "The user id to operate on", false, true );
 		$this->addOption( "password", "The password to use", true, true );
+		$this->addOption( 'reason', 'Reason for the password change (ticket number etc)', false, true );
 		$this->addDescription( "Change a user's password" );
 	}
 
@@ -54,6 +56,17 @@ class ChangePassword extends Maintenance {
 		] );
 		if ( $status->isGood() ) {
 			$this->output( "Password set for " . $user->getName() . "\n" );
+
+			LoggerFactory::getInstance( 'authentication' )->info(
+				'Password for {user} changed via changePassword.php', [
+					'user' => $user->getName(),
+					'reason' => $this->getOption( 'reason', '' ),
+				]
+			);
+
+			$invalidator = $this->createChild( InvalidateUserSessions::class );
+			$invalidator->setOption( 'user', $user->getName() );
+			$invalidator->execute();
 		} else {
 			$this->fatalError( $status );
 		}

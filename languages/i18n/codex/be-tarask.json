@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Red Winged Duck",
+			"Ucukor"
+		]
+	},
+	"cdx-dialog-close-button-label": "Закрыць",
+	"cdx-label-optional-flag": "(неабавязковае)",
+	"cdx-message-dismiss-button-label": "Закрыць",
+	"cdx-search-input-search-button-label": "Пошук",
+	"cdx-table-select-all-label": "Выбраць усе радкі",
+	"cdx-typeahead-search-search-results-label": "Вынікі пошуку",
+	"cdx-table-pager-button-first-page": "Першая старонка",
+	"cdx-table-pager-button-last-page": "Апошняя старонка",
+	"cdx-table-pager-button-next-page": "Наступная старонка",
+	"cdx-table-pager-button-prev-page": "Папярэдняя старонка",
+	"cdx-table-pagination-status-message-pending": "Ладаваньне вынікаў..."
+}

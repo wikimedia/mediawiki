@@ -183,7 +183,7 @@ class DatabaseLogEntry extends LogEntryBase {
 		if ( !isset( $this->params ) ) {
 			$blob = $this->getRawParameters();
 			AtEase::suppressWarnings();
-			$params = LogEntryBase::extractParams( $blob );
+			$params = LogEntryBase::extractParams( $blob, $this->getFullType() );
 			AtEase::restoreWarnings();
 			if ( $params !== false ) {
 				$this->params = $params;

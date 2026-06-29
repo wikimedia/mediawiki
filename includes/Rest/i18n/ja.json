@@ -8,7 +8,8 @@
 			"MathXplore",
 			"Omotecho",
 			"Shirayuki",
-			"Shulmj"
+			"Shulmj",
+			"Tensama0415"
 		]
 	},
 	"rest-prefix-mismatch": "リクエストされたパス ($1) は REST API ベースパス ($2) 内にありませんでした",
@@ -57,5 +58,6 @@
 	"rest-badtoken": "与えられたCSRFトークンは無効です",
 	"rest-badtoken-missing": "CSRFを防げる認証方法を使用しない限り、<var>token</var>パラメータが必須です。",
 	"rest-badtoken-nosession": "CSRFエラー - sessionがありません。",
+	"rest-mock-error": "偽のエラー。",
 	"rest-edit-conflict": "編集の競合（$1）"
 }

@@ -14,7 +14,9 @@
 			"Ua2004",
 			"Ата",
 			"Максим Підліснюк",
-			"Тест"
+			"Тест",
+			"Vlad5250",
+			"Flomik"
 		]
 	},
 	"exif-imagewidth": "Ширина",
@@ -400,7 +402,7 @@
 	"exif-urgency-other": "Визначений користувачем пріоритет ($1)",
 	"exif-firstphotodate": "Дата першого фото",
 	"exif-lastphotodate": "Дата останнього фото",
-	"exif-projectiontype": "Тип проекції",
+	"exif-projectiontype": "Тип проєкції",
 	"exif-projectiontype-equirectangular": "Еквідистантна",
 	"exif-usepanoramaviewer": "Використовувати переглядач панорами",
 	"exif-usepanoramaviewer-true": "Так",

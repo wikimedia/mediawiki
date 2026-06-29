@@ -25,6 +25,8 @@ $digitTransformTable = [
 	'%' => '٪', # U+066a
 ];
 
+$numberingSystem = 'arab';
+
 $namespaceNames = [
 	NS_MEDIA            => 'میڈیا',
 	NS_SPECIAL          => 'خاص',

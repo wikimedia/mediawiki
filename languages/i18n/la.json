@@ -35,7 +35,8 @@
 			"Xð",
 			"Žekřil71pl",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Grufo"
 		]
 	},
 	"sunday": "dies Solis",
@@ -1243,6 +1244,7 @@
 	"movesubpagetext": "Huic paginae {{PLURAL:$1|est una subpagina subter monstrata|sunt $1 subpaginae subter monstratae}}.",
 	"movenosubpage": "Huic paginae non sunt subpaginae.",
 	"movereason": "Causa:",
+	"movepage-reason-dropdown": "* Rationes communes\n** Titulus male scriptus",
 	"revertmove": "reverti",
 	"delete_and_move_text": "==Deletio necesse est==\nPaginae nomen petitum \"[[:$1]]\" iam existit. Vin tu eam delere ut pagina illic moveatur?",
 	"delete_and_move_confirm": "Ita, paginam delere",

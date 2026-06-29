@@ -27,6 +27,7 @@
 	"group-membership-link-with-expiry": "$1 (arams d $2)",
 	"prefs-edits": "Amḍan n ibeddlilen :",
 	"prefs-registration": "Azmez n tiggezt :",
+	"prefs-registration-date-time": "$1",
 	"yourrealname": "Isem n ṣṣeḥ *:",
 	"prefs-help-realname": "Isem n tidet d anufran.\nma tefkeḍ-t-id, ad yettuseqdac iwaken ad ak(m)-d ttwanefkent tebzirin inek(m).",
 	"yourpassword": "Awal n uffir",

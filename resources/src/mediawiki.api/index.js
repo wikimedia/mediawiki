@@ -544,10 +544,18 @@
 				return $( '<div>' ).text( data.error.info );
 
 			} else if ( data.errors ) {
-				// errorformat: 'html'
+				// errorformat: 'html' (hopefully) or another non-bc format
 				return $( data.errors.map( ( err ) => {
-					// formatversion: 1 / 2
-					const $node = $( '<div>' ).html( err[ '*' ] || err.html );
+					const $node = $( '<div>' );
+					if ( err.html ) {
+						$node.html( err.html );
+					} else if ( err.text ) {
+						$node.text( err.text );
+					} else {
+						// formatversion=1, we can’t tell if this was errorformat=html or errorformat=plaintext;
+						// err on the safe side and treat it as text
+						$node.text( err[ '*' ] );
+					}
 					return $node[ 0 ];
 				} ) );
 

@@ -62,6 +62,8 @@ class ApiRemoveAuthenticationData extends ApiBase {
 			$this->dieWithError( 'apierror-mustbeloggedin-removeauth', 'notloggedin' );
 		}
 
+		$this->checkUserRightsAny( 'editmyprivateinfo' );
+
 		$params = $this->extractRequestParams();
 
 		// Check security-sensitive operation status

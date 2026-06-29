@@ -113,7 +113,7 @@
 	"prefs-description-rendering": "स्किन, आकार, और पठन के विकल्प कॉन्फ़िगर करें।",
 	"prefs-skin": "स्किन",
 	"skin-preview": "पूर्वावलोकन",
-	"prefs-common-config": "सभी स्किन्स के लिए साँझित CSS/जावास्क्रिप्ट:",
+	"prefs-common-config": "सभी स्किन्स के लिए साझा CSS/जावास्क्रिप्ट:",
 	"prefs-custom-css": "अनुकूलित CSS",
 	"prefs-custom-js": "अनुकूलित जावास्क्रिप्ट",
 	"prefs-custom-cssjs-safemode": "सुरक्षित मोड के सक्षम किए जाने के कारण अनुकूलित CSS/जावास्क्रिप्ट इस समय अनुपलब्ध है। अनुकूलित CSS/जावास्क्रिप्ट का उपयोग करने के लिए कृपया [[#mw-input-wpforcesafemode|सुरक्षित मोड अक्षम करें]]।",

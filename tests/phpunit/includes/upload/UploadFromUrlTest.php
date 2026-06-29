@@ -30,6 +30,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			MainConfigNames::AllowCopyUploads => true,
 		] );
 		$this->setGroupPermissions( 'sysop', 'upload_by_url', true );
+		$this->setGroupPermissions( 'user', 'upload_by_url', false );
 
 		if ( $this->getServiceContainer()->getRepoGroup()->getLocalRepo()
 			->newFile( 'UploadFromUrlTest.png' )->exists()
@@ -157,6 +158,9 @@ class UploadFromUrlTest extends ApiTestCase {
 	 * @depends testClearQueue
 	 */
 	public function testSetupUrlDownload( $data ) {
+		$this->overrideConfigValues( [
+			MainConfigNames::CopyUploadsDomains => [ 'www.example.com' ],
+		] );
 		$token = $this->user->getEditToken();
 		$exception = false;
 
@@ -227,6 +231,9 @@ class UploadFromUrlTest extends ApiTestCase {
 	 * @depends testClearQueue
 	 */
 	public function testSyncDownload( $data ) {
+		$this->overrideConfigValues( [
+			MainConfigNames::CopyUploadsDomains => [ 'upload.wikimedia.org' ],
+		] );
 		$file = __DIR__ . '/../../data/upload/png-plain.png';
 		$this->installMockHttp( file_get_contents( $file ) );
 
@@ -262,6 +269,9 @@ class UploadFromUrlTest extends ApiTestCase {
 	}
 
 	public function testUploadFromUrl() {
+		$this->overrideConfigValues( [
+			MainConfigNames::CopyUploadsDomains => [ 'www.example.com' ],
+		] );
 		$file = __DIR__ . '/../../data/upload/png-plain.png';
 		$this->installMockHttp( file_get_contents( $file ) );
 
@@ -274,6 +284,9 @@ class UploadFromUrlTest extends ApiTestCase {
 	}
 
 	public function testUploadFromUrlWithRedirect() {
+		$this->overrideConfigValues( [
+			MainConfigNames::CopyUploadsDomains => [ '*.example.com' ],
+		] );
 		$file = __DIR__ . '/../../data/upload/png-plain.png';
 		$this->installMockHttp( [
 			// First response is a redirect
@@ -294,6 +307,62 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$this->assertStatusOK( $status );
 		$this->assertUploadOk( $upload );
+	}
+
+	public function testUploadFromUrlRedirectToDisallowedHostFails() {
+		$this->overrideConfigValues( [
+			MainConfigNames::CopyUploadsDomains => [ 'www.example.com' ],
+		] );
+
+		$this->installMockHttp( [
+			// Redirect from an allowed host to a disallowed host.
+			$this->makeFakeHttpRequest(
+				'redirecting',
+				302,
+				[ 'Location' => 'http://evil.example.org/test.png' ]
+			),
+		] );
+
+		$upload = new UploadFromUrl();
+		$upload->initialize( 'Test.png', 'http://www.example.com/test.png' );
+		$status = $upload->fetchFile();
+
+		$this->assertStatusError( 'upload-copy-upload-invalid-domain', $status );
+	}
+
+	public function testUploadFromUrlTooManyRedirectsFails() {
+		$this->overrideConfigValues( [
+			MainConfigNames::CopyUploadsDomains => [ 'www.example.com' ],
+		] );
+
+		// Default maxRedirects is 5. Queue 6 consecutive same-host redirects so the
+		// allowed-host check passes each time and $attemptsLeft drains to 0.
+		$this->installMockHttp( [
+			$this->makeFakeHttpRequest(
+				'redirect 1', 302, [ 'Location' => 'http://www.example.com/redirect-1.png' ]
+			),
+			$this->makeFakeHttpRequest(
+				'redirect 2', 302, [ 'Location' => 'http://www.example.com/redirect-2.png' ]
+			),
+			$this->makeFakeHttpRequest(
+				'redirect 3', 302, [ 'Location' => 'http://www.example.com/redirect-3.png' ]
+			),
+			$this->makeFakeHttpRequest(
+				'redirect 4', 302, [ 'Location' => 'http://www.example.com/redirect-4.png' ]
+			),
+			$this->makeFakeHttpRequest(
+				'redirect 5', 302, [ 'Location' => 'http://www.example.com/redirect-5.png' ]
+			),
+			$this->makeFakeHttpRequest(
+				'redirect 6', 302, [ 'Location' => 'http://www.example.com/redirect-6.png' ]
+			),
+		] );
+
+		$upload = new UploadFromUrl();
+		$upload->initialize( 'Test.png', 'http://www.example.com/test.png' );
+		$status = $upload->fetchFile();
+
+		$this->assertStatusError( 'upload-too-many-redirects', $status );
 	}
 
 	public function testUploadFromUrlCacheKey() {

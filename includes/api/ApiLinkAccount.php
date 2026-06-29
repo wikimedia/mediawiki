@@ -65,6 +65,8 @@ class ApiLinkAccount extends ApiBase {
 			$this->dieWithError( 'apierror-mustbeloggedin-linkaccounts', 'notloggedin' );
 		}
 
+		$this->checkUserRightsAny( 'editmyprivateinfo' );
+
 		$params = $this->extractRequestParams();
 
 		$this->requireAtLeastOneParameter( $params, 'continue', 'returnurl' );

@@ -6,7 +6,8 @@
 			"LongJohn nl",
 			"Mainframe98",
 			"McDutchie",
-			"Romaine"
+			"Romaine",
+			"Siebrand"
 		]
 	},
 	"rest-prefix-mismatch": "Het gevraagde pad ($1) bevind zich niet in het basispad van de REST API ($2)",
@@ -19,7 +20,7 @@
 	"rest-nonexistent-revision": "De opgegeven versie ($1) bestaat niet",
 	"rest-nonexistent-user": "De opgegeven gebruiker ($1) bestaat niet",
 	"rest-invalid-user": "De opgegeven gebruikersnaam ($1) is niet geldig",
-	"rest-invalid-ip": "Het opgegeven IP-adres ($1) is ongeldig",
+	"rest-invalid-ip": "Het opgegeven IP-adres ($1) is onjuist",
 	"rest-invalid-title": "De opgegeven titel ($1) verwijst niet naar een wikipagina.",
 	"rest-unsupported-content-type": "Niet-ondersteund inhoudstype: $1",
 	"rest-permission-error": "Toegang geweigerd: $1",
@@ -57,7 +58,7 @@
 	"rest-cannot-load-file": "Het bestand voor titel “$1” kan niet worden geladen.",
 	"rest-cross-origin-anon-write": "Anonieme “cross-origin”-schrijfverzoeken zijn niet toegestaan",
 	"rest-requires-safe-against-csrf": "Voor dit eindpunt is een CSRF-veilige sessieprovider vereist.",
-	"rest-badtoken": "Het opgegeven CSRF-token is ongeldig.",
+	"rest-badtoken": "Het opgegeven CSRF-token is onjuist.",
 	"rest-badtoken-missing": "De parameter <var>token</var> is vereist, tenzij u een CSRF-veilige authenticatiemethode gebruikt.",
 	"rest-badtoken-nosession": "CSRF-fout – geen sessie.",
 	"rest-mock-error": "Nagebootste fout.",

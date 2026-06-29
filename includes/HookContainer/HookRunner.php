@@ -217,6 +217,7 @@ class HookRunner implements
 	\MediaWiki\Hook\GetMagicVariableIDsHook,
 	\MediaWiki\Hook\GetMetadataVersionHook,
 	\MediaWiki\Hook\GetNewMessagesAlertHook,
+	\MediaWiki\Hook\GetSecurityLogContextHook,
 	\MediaWiki\Hook\GetRelativeTimestampHook,
 	\MediaWiki\Hook\GitViewersHook,
 	\MediaWiki\Hook\HistoryPageToolLinksHook,
@@ -2019,6 +2020,14 @@ class HookRunner implements
 		$this->container->run(
 			'PermissionErrorAudit',
 			[ $title, $user, $action, $rigor, $errors ],
+			[ 'abortable' => false ]
+		);
+	}
+
+	public function onGetSecurityLogContext( array $info, array &$context ): void {
+		$this->container->run(
+			'GetSecurityLogContext',
+			[ $info, &$context ],
 			[ 'abortable' => false ]
 		);
 	}

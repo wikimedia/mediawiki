@@ -31,7 +31,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
-use ReflectionMethod;
 use SearchEngine;
 use SearchIndexField;
 use WikiPage;
@@ -240,17 +239,9 @@ class TextContentHandler extends ContentHandler {
 		}
 
 		if ( $cpoParams->getGenerateHtml() ) {
-			// Temporary changes as getHtml() is deprecated, we are working on removing usage of it.
-			if ( method_exists( $content, 'getHtml' ) ) {
-				$method = new ReflectionMethod( $content, 'getHtml' );
-				$method->setAccessible( true );
-				$html = $method->invoke( $content );
-				$html = "<pre>$html</pre>";
-			} else {
-				// Return an HTML representation of the content
-				$html = htmlspecialchars( $content->getText(), ENT_COMPAT );
-				$html = "<pre>$html</pre>";
-			}
+			// Return an HTML representation of the content
+			$html = htmlspecialchars( $content->getText(), ENT_COMPAT );
+			$html = "<pre>$html</pre>";
 		} else {
 			$html = null;
 		}

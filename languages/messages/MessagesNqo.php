@@ -38,3 +38,5 @@ $digitTransformTable = [
 	'8' => '߈', # U+07C8
 	'9' => '߉', # U+07C9
 ];
+
+$numberingSystem = 'nkoo';

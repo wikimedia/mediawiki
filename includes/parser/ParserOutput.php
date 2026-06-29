@@ -24,8 +24,6 @@ use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Json\JsonDeserializable;
-use MediaWiki\Json\JsonDeserializableTrait;
-use MediaWiki\Json\JsonDeserializer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Converter;
@@ -35,6 +33,7 @@ use MediaWiki\Title\TitleValue;
 use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
+use Wikimedia\JsonCodec\Hint;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\ContentMetadataCollectorCompat;
@@ -93,7 +92,6 @@ use Wikimedia\Reflection\GhostFieldAccessTrait;
  */
 class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	use GhostFieldAccessTrait;
-	use JsonDeserializableTrait;
 	// This is used to break cyclic dependencies and allow a measure
 	// of compatibility when new methods are added to ContentMetadataCollector
 	// by Parsoid.
@@ -2999,11 +2997,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * Returns a JSON serializable structure representing this ParserOutput instance.
-	 * @see newFromJson()
+	 * @see ::newFromJsonArray()
 	 *
 	 * @return array
 	 */
-	protected function toJsonArray(): array {
+	public function toJsonArray(): array {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 
@@ -3080,19 +3078,27 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $data;
 	}
 
-	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ): ParserOutput {
+	public static function newFromJsonArray( array $json ): ParserOutput {
 		$parserOutput = new ParserOutput();
-		$parserOutput->initFromJson( $deserializer, $json );
+		$parserOutput->initFromJson( $json );
 		return $parserOutput;
+	}
+
+	/** @inheritDoc */
+	public static function jsonClassHintFor( string $keyName ) {
+		return match ( $keyName ) {
+			'TOCData' => Hint::build( TOCData::class, Hint::ONLY_FOR_DECODE ),
+			'WarningMsgs' => Hint::build( MessageValue::class, Hint::LIST, Hint::ONLY_FOR_DECODE ),
+			default => null,
+		};
 	}
 
 	/**
 	 * Initialize member fields from an array returned by jsonSerialize().
-	 * @param JsonDeserializer $deserializer
 	 * @param array $jsonData
 	 */
-	protected function initFromJson( JsonDeserializer $deserializer, array $jsonData ): void {
-		parent::initFromJson( $deserializer, $jsonData );
+	protected function initFromJson( array $jsonData ): void {
+		parent::initFromJson( $jsonData );
 
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!

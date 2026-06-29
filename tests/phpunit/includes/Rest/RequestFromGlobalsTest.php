@@ -66,7 +66,7 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetUri2() {
 		$this->setServerVars( [
-			'REQUEST_URI' => ':8434/test.php/page/1:1',
+			'REQUEST_URI' => '/test.php/page/1:1',
 		] );
 
 		$this->assertEquals( '/test.php/page/1:1', $this->reqFromGlobals->getUri() );

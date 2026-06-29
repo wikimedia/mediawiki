@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"cdx-chip-input-chip-added": "Chip $1 ayaa lagu daray.",
+	"cdx-chip-input-chip-removed": "Chip $1 waa laga saaray.",
+	"cdx-input-chip-aria-description": "Riix Geli si aad u tafatirto ama Tirtir si aad uga saarto.",
+	"cdx-dialog-close-button-label": "Xir",
+	"cdx-label-optional-flag": "(Ikhtiyaar)",
+	"cdx-message-dismiss-button-label": "Xir",
+	"cdx-search-input-search-button-label": "Raadi",
+	"cdx-table-select-all-label": "Dooro dhammaan safafka",
+	"cdx-table-select-row-label": "Dooro safka $1 ee $2",
+	"cdx-table-sort-caption": "$1 (madaxyada tiirarka ee leh badhamo waa la kala hormarin karaa).",
+	"cdx-typeahead-search-search-results-label": "Natiijooyinka raadinta",
+	"cdx-table-pager-button-first-page": "Bogga koowaad",
+	"cdx-table-pager-button-last-page": "Bogga ugu dambeeya",
+	"cdx-table-pager-button-next-page": "Bogga xiga",
+	"cdx-table-pager-button-prev-page": "Boggii hore",
+	"cdx-table-pager-items-per-page-default": "Natiijooyin bog kasta",
+	"cdx-table-pagination-status-message-determinate-long": "Muujinaya natiijooyinka $1–$2 ee $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 ee $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Muujinaya natiijooyinka $1–$2 ee badan",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 ee badan",
+	"cdx-table-pagination-status-message-indeterminate-final": "Muujinaya {{PLURAL:$1|$1 natiijo|$1 natiijooyin}} ee ugu dambeeyay",
+	"cdx-table-pagination-status-message-pending": "Natiijooyin soo raraya..."
+}

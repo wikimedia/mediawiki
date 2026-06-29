@@ -12,6 +12,6 @@ const baseUrl = `${ process.env.MW_SERVER }${ process.env.MW_SCRIPT_PATH }/index
 describe( 'Main page', () => {
 	it( 'should have "Log in" link when using expect', async () => {
 		await browser.url( `${ baseUrl }Main_Page` );
-		await expect( await $( 'li#pt-login-2 a' ) ).toExist();
+		await expect( $( 'li#pt-login-2 a' ) ).toExist();
 	} );
 } );

@@ -4,6 +4,25 @@
  * @group Language
  */
 class LanguageApcTest extends LanguageClassesTestCase {
+
+	/**
+	 * @covers \MediaWiki\Language\Language::formatNum
+	 * @dataProvider provideFormatNum
+	 */
+	public function testFormatNum( $num, $formatted ) {
+		$this->assertEquals( $formatted, $this->getLang()->formatNum( $num ) );
+	}
+
+	public static function provideFormatNum() {
+		// Check that the Western numbers don't change in transformation
+		// https://phabricator.wikimedia.org/T382781
+		return [
+			[ '1234567890', '1,234,567,890' ],
+			[ -12.89, '−12.89' ],
+			[ '1289.456', '1,289.456' ]
+		];
+	}
+
 	/**
 	 * @dataProvider providePlural
 	 * @covers \MediaWiki\Language\Language::convertPlural

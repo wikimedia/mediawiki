@@ -909,7 +909,10 @@ class InfoAction extends FormlessAction {
 					$result['authors'] = (int)$dbr->newSelectQueryBuilder()
 						->select( "COUNT(DISTINCT $field)" )
 						->from( 'revision' )
-						->where( [ $pageField => $id ] )
+						->where( [
+							$pageField => $id,
+							$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0',
+						] )
 						->caller( $fname )
 						->fetchField();
 				}
@@ -932,7 +935,10 @@ class InfoAction extends FormlessAction {
 					->select( "COUNT(DISTINCT $field)" )
 					->from( 'revision' )
 					->where( [ $pageField => $id ] )
-					->andWhere( [ $dbr->expr( 'rev_timestamp', '>=', $threshold ) ] )
+					->andWhere( [
+						$dbr->expr( 'rev_timestamp', '>=', $threshold ),
+						$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0',
+					] )
 					->caller( $fname )
 					->fetchField();
 
