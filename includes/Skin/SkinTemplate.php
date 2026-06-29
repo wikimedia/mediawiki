@@ -451,7 +451,7 @@ class SkinTemplate extends Skin {
 			$personal_urls['mytalk'] = [
 				'text' => $this->msg( 'mytalk' )->text(),
 				'href' => &$usertalkUrlDetails['href'],
-				'class' => $usertalkUrlDetails['exists'] ? null : 'new',
+				'link-class' => $usertalkUrlDetails['exists'] ? [] : [ 'new' ],
 				'exists' => $usertalkUrlDetails['exists'],
 				'active' => ( $usertalkUrlDetails['href'] == $pageurl ),
 				'icon' => 'userTalk'
