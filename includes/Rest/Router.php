@@ -590,7 +590,7 @@ class Router {
 	 * @return array
 	 */
 	public function getRestbaseCompatErrorData( RequestInterface $request, LocalizedHttpException $e ): array {
-		$msg = $e->getMessageValue();
+		$msg = $e->getMessageSpecifier();
 
 		// Match error fields emitted by the RESTBase endpoints.
 		// EntryPoint::getTextFormatters() ensures 'en' is always available.

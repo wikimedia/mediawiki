@@ -173,7 +173,7 @@ class UpdateHandler extends EditHandler {
 
 		if ( $code === 'editconflict' ) {
 			$data = $this->getConflictData();
-			throw new LocalizedHttpException( MessageValue::newFromSpecifier( $msg ), 409, $data );
+			throw new LocalizedHttpException( $msg, 409, $data );
 		}
 
 		parent::throwHttpExceptionForActionModuleError( $msg, $statusCode );

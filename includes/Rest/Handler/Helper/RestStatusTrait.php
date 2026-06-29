@@ -5,6 +5,7 @@ namespace MediaWiki\Rest\Handler\Helper;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Rest\LocalizedHttpException;
 use StatusValue;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -14,7 +15,7 @@ trait RestStatusTrait {
 
 	/**
 	 * @param StatusValue $status
-	 * @param string|MessageValue $msg
+	 * @param string|MessageSpecifier $msg Prior to MediaWiki 1.47 the type was string|MessageValue
 	 * @param int $code
 	 * @param array $data
 	 *

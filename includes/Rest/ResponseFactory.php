@@ -10,7 +10,7 @@ use stdClass;
 use Throwable;
 use Wikimedia\Http\HttpStatus;
 use Wikimedia\Message\ITextFormatter;
-use Wikimedia\Message\MessageValue;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Generates standardized response objects.
@@ -217,14 +217,14 @@ class ResponseFactory {
 	 * Create an HTTP 4xx or 5xx response with error message localisation
 	 *
 	 * @param int $errorCode
-	 * @param MessageValue $messageValue
+	 * @param MessageSpecifier $messageValue Prior to MediaWiki 1.47 this had to be a MessageValue
 	 * @param array $extraData An array of additional data to be included in the JSON response
 	 *
 	 * @return Response
 	 */
 	public function createLocalizedHttpError(
 		$errorCode,
-		MessageValue $messageValue,
+		MessageSpecifier $messageValue,
 		array $extraData = []
 	) {
 		return $this->createHttpError(
@@ -244,7 +244,7 @@ class ResponseFactory {
 		if ( $exception instanceof LocalizedHttpException ) {
 			$response = $this->createLocalizedHttpError(
 				$exception->getCode(),
-				$exception->getMessageValue(),
+				$exception->getMessageSpecifier(),
 				$exception->getErrorData() + $extraData + [
 					'errorKey' => $exception->getErrorKey(),
 				]
@@ -342,16 +342,17 @@ class ResponseFactory {
 	}
 
 	/**
-	 * Tries to return the formatted string(s) for a message value object using the
+	 * Tries to return the formatted string(s) for a message object using the
 	 * response factory's text formatters. The returned array will either be empty (if there are
 	 * no text formatters), or have exactly one key, "messageTranslations", whose value
 	 * is an array of formatted strings, keyed by the associated language code.
 	 *
-	 * @param MessageValue $messageValue the message value object to format
+	 * @param MessageSpecifier $messageValue The message object to format.
+	 *   Prior to MediaWiki 1.47 this had to be a MessageValue.
 	 *
 	 * @return array
 	 */
-	public function formatMessage( MessageValue $messageValue ): array {
+	public function formatMessage( MessageSpecifier $messageValue ): array {
 		if ( !$this->textFormatters ) {
 			// For unit tests
 			return [];
@@ -366,20 +367,21 @@ class ResponseFactory {
 	}
 
 	/**
-	 * Tries to return one formatted string for a message value object. Return value will be:
+	 * Tries to return one formatted string for a message object. Return value will be:
 	 *   1) the formatted string for $preferredLang, if $preferredLang is supplied and the
 	 *      formatted string for that language is available.
 	 *   2) the first available formatted string, if any are available.
 	 *   3) the message key string, if no formatted strings are available.
 	 * Callers who need more specific control should call formatMessage() instead.
 	 *
-	 * @param MessageValue $messageValue the message value object to format
+	 * @param MessageSpecifier $messageValue The message object to format.
+	 *   Prior to MediaWiki 1.47 this had to be a MessageValue
 	 * @param string $preferredlang preferred language for the formatted string, if available
 	 *
 	 * @return string
 	 */
 	public function getFormattedMessage(
-		MessageValue $messageValue, string $preferredlang = ''
+		MessageSpecifier $messageValue, string $preferredlang = ''
 	): string {
 		$strings = $this->formatMessage( $messageValue );
 		if ( !$strings ) {

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest;
 
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -79,8 +80,11 @@ class JsonLocalizer {
 	/**
 	 * Returns the localized value if possible, or the non-localized value if one is
 	 * available, or null otherwise. Translates only top-level keys. Useful when the value
-	 * corresponding to the input key may be either a string to be used as-is or a MessageValue
-	 * object to be localized.
+	 * corresponding to the input key may be either a string to be used as-is or a
+	 * MessageSpecifier object to be localized.
+	 *
+	 * Prior to MediaWiki 1.47, only MessageValue objects were localized, other
+	 * implementations of MessageSpecifier were not supported.
 	 *
 	 * @param array $json the input json, as a PHP array
 	 * @param string $key key name of the field
@@ -91,7 +95,7 @@ class JsonLocalizer {
 		$value = null;
 
 		if ( array_key_exists( $key, $json ) ) {
-			if ( $json[ $key ] instanceof MessageValue ) {
+			if ( $json[ $key ] instanceof MessageSpecifier ) {
 				$value = $this->getFormattedMessage( $json[ $key ] );
 			} else {
 				$value = $json[ $key ];
@@ -104,12 +108,13 @@ class JsonLocalizer {
 	/**
 	 * Tries to return one formatted string for a message key or message value object.
 	 *
-	 * @param string|MessageValue $message the message format, or a key representing it
+	 * @param string|MessageSpecifier $message the message format, or a key representing it.
+	 *   Prior to MediaWiki 1.47 the type was string|MessageValue.
 	 *
 	 * @return string
 	 */
 	public function getFormattedMessage( $message ): string {
-		if ( !$message instanceof MessageValue ) {
+		if ( !$message instanceof MessageSpecifier ) {
 			$message = new MessageValue( $message );
 		}
 

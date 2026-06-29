@@ -208,7 +208,7 @@ abstract class ActionModuleBasedHandler extends Handler {
 		// override to supply mappings
 
 		throw new LocalizedHttpException(
-			MessageValue::newFromSpecifier( $msg ),
+			$msg,
 			$statusCode,
 			// Include the original error code in the response.
 			// This makes it easier to track down the original cause of the error,
