@@ -157,13 +157,13 @@ class JobQueueGroup {
 
 		$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()->getLocalClusterInstance();
 		$cache->set(
-			$cache->makeGlobalKey( 'jobqueue', $this->domain, 'hasjobs', self::TYPE_ANY ),
+			$cache->makeGlobalKey( 'jobqueue-hasjobs', $this->domain, self::TYPE_ANY ),
 			'true',
 			15
 		);
 		if ( array_diff( array_keys( $jobsByType ), $this->jobTypesExcludedFromDefaultQueue ) ) {
 			$cache->set(
-				$cache->makeGlobalKey( 'jobqueue', $this->domain, 'hasjobs', self::TYPE_DEFAULT ),
+				$cache->makeGlobalKey( 'jobqueue-hasjobs', $this->domain, self::TYPE_DEFAULT ),
 				'true',
 				15
 			);
@@ -297,7 +297,7 @@ class JobQueueGroup {
 	 */
 	public function queuesHaveJobs( $type = self::TYPE_ANY ) {
 		$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()->getLocalClusterInstance();
-		$key = $cache->makeGlobalKey( 'jobqueue', $this->domain, 'hasjobs', $type );
+		$key = $cache->makeGlobalKey( 'jobqueue-hasjobs', $this->domain, $type );
 
 		$value = $cache->get( $key );
 		if ( $value === false ) {

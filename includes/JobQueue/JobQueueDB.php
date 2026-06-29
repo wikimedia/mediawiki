@@ -875,7 +875,7 @@ class JobQueueDB extends JobQueue {
 		$cluster = is_string( $this->cluster ) ? $this->cluster : 'main';
 
 		return $this->localClusterCache->makeGlobalKey(
-			'jobqueue',
+			'jobqueue-prop',
 			$this->domain,
 			$cluster,
 			$this->type,

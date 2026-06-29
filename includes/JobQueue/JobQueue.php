@@ -555,10 +555,9 @@ abstract class JobQueue {
 	 */
 	protected function getRootJobCacheKey( $signature, $type ) {
 		return $this->localClusterCache->makeGlobalKey(
-			'jobqueue',
+			'jobqueue-rootjob',
 			$this->domain,
 			$type,
-			'rootjob',
 			$signature
 		);
 	}
