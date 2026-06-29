@@ -428,6 +428,7 @@
 	"pt-login": "Aloggen",
 	"pt-login-button": "Aloggen",
 	"pt-login-continue-button": "Virufuere mam Aloggen",
+	"pt-login-reauth-button": "Virufueren",
 	"pt-createaccount": "Benotzerkont opmaachen",
 	"pt-userlogout": "Ausloggen",
 	"php-mail-error-unknown": "Onbekannte Feeler an der PHP-Mail-Funktioun",
