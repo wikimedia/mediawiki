@@ -100,9 +100,9 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 
-* Added symfony/polyfill-php86 at 1.37.0.
-* Added symfony/mailer at 7.4.12.
-* Added symfony/mime at 7.4.12.
+* Added symfony/polyfill-php86 at 1.38.0.
+* Added symfony/mailer at 7.4.14.
+* Added symfony/mime at 7.4.13.
 * …
 
 ===== New development-only external libraries =====
@@ -115,8 +115,7 @@ For notes on 1.46.x and older releases, see HISTORY.
 * Updated psr/log from 1.1.4 to 3.0.2.
 * Updated symfony/polyfill-php84 from 1.36.0 to 1.38.1.
 * Updated symfony/polyfill-php85 from 1.36.0 to 1.38.1.
-* Updated symfony/polyfill-php86 from 1.36.0 to 1.38.0.
-* Updated symfony/yaml from 7.4.6 to 7.4.12.
+* Updated symfony/yaml from 7.4.6 to 7.4.14.
 * Updated wikimedia/json-codec from 4.0.0 to 5.0.0.
 * Updated wikimedia/minify from 2.10.0 to 2.11.0.
 * Updated codex, codex-design-tokens and codex-icons
