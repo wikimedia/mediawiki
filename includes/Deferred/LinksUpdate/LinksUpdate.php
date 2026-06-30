@@ -14,6 +14,7 @@ use MediaWiki\DB\WriteDuplicator;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DataUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\TransactionRoundAwareUpdate;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\JobQueue\Job;
 use MediaWiki\JobQueue\Jobs\RefreshLinksJob;
@@ -28,6 +29,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use RuntimeException;
+use Wikimedia\LockManager\LockManager;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -40,7 +42,7 @@ use Wikimedia\ScopedCallback;
  *
  * See docs/deferred.txt
  */
-class LinksUpdate extends DataUpdate {
+class LinksUpdate extends DataUpdate implements TransactionRoundAwareUpdate {
 	use ProtectedHookAccessorTrait;
 
 	/** @var int Page ID of the article linked from */
@@ -196,8 +198,9 @@ class LinksUpdate extends DataUpdate {
 	#[\NoDiscard]
 	public static function acquirePageLock( IDatabase $dbw, $pageId, $why = 'atomicity' ): ?ScopedCallback {
 		$key = "{$dbw->getDomainID()}:LinksUpdate:$why:pageid:$pageId"; // per-wiki
-		$scopedLock = $dbw->getScopedLockAndFlush( $key, __METHOD__, 1 );
-		if ( !$scopedLock ) {
+		$lockManager = MediaWikiServices::getInstance()->getLockManager();
+		$status = $lockManager->lock( [ $key ], LockManager::LOCK_EX, 1 );
+		if ( !$status->isOK() ) {
 			$logger = LoggerFactory::getInstance( 'SecondaryDataUpdate' );
 			$logger->info( "Could not acquire lock '{key}' for page ID '{page_id}'.", [
 				'key' => $key,
@@ -205,8 +208,10 @@ class LinksUpdate extends DataUpdate {
 			] );
 			return null;
 		}
-
-		return $scopedLock;
+		$unlocker = new ScopedCallback( static function () use ( $key, $lockManager ) {
+			$lockManager->unlock( [ $key ] );
+		} );
+		return $unlocker;
 	}
 
 	protected function doIncrementalUpdate() {
@@ -532,5 +537,10 @@ class LinksUpdate extends DataUpdate {
 	 */
 	public function isRecursive() {
 		return $this->mRecursive;
+	}
+
+	/** @inheritDoc */
+	public function getTransactionRoundRequirement() {
+		return self::TRX_ROUND_ABSENT;
 	}
 }
