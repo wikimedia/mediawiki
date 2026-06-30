@@ -200,6 +200,8 @@ module.exports = defineComponent( {
 
 		/**
 		 * Allows user to tab into the expiry dropdown from the watch link.
+		 *
+		 * @param e
 		 */
 		const tabKeyListener = ( e ) => {
 			if ( ( e.keyCode || e.which ) !== OO.ui.Keys.TAB ) {

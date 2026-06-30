@@ -208,7 +208,7 @@ class Router extends OO.Registry {
 	 * @return {jQuery.Promise} Promise which resolves when the back navigation is complete
 	 */
 	back() {
-		// eslint-disable-next-line prefer-const
+
 		let timeoutID;
 		const deferred = $.Deferred();
 

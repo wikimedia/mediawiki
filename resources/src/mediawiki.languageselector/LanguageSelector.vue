@@ -1,5 +1,8 @@
 <template>
-	<cdx-field :status="status" :messages="statusMessages" :disabled="disabled">
+	<cdx-field
+		:status="status"
+		:messages="statusMessages"
+		:disabled="disabled">
 		<component
 			:is="isMultiple ? 'cdx-multiselect-lookup' : 'cdx-lookup'"
 			:id="inputId"
