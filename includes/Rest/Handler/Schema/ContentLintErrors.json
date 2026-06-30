@@ -41,6 +41,7 @@
 						"properties": {
 							"multiPartTemplateBlock": {
 								"x-i18n-description": "rest-property-desc-templateinfo-multipart",
+								"type": "boolean",
 								"enum": [ true ]
 							}
 						},

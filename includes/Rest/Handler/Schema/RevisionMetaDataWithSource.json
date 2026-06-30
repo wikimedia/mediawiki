@@ -52,6 +52,7 @@
 			"example": "wikitext"
 		},
 		"page": {
+			"type": "object",
 			"x-i18n-description": "rest-property-desc-revision-page",
 			"required": [
 				"id",
