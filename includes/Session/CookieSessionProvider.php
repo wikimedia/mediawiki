@@ -15,6 +15,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Utils\UrlUtils;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -350,23 +351,19 @@ class CookieSessionProvider extends SessionProvider {
 				'type' => 'apiKey',
 				'in' => 'cookie',
 				'name' => $this->params['sessionName'],
-				'description' => "MediaWiki Session ID cookie.\n"
-					. "Note: Write operations using this method also require "
-					. "a CSRF token to be submitted in the request body.",
+				'description' => new MessageValue( 'sessionprovider-cookie-openapi-description-session' ),
 			],
 			'UserID' => [
 				'type' => 'apiKey',
 				'in' => 'cookie',
 				'name' => $this->cookieOptions['prefix'] . 'UserID',
-				'description' => "MediaWiki User ID cookie.\n"
-					. "Required alongside the session ID.",
+				'description' => new MessageValue( 'sessionprovider-cookie-openapi-description-userid' ),
 			],
 			'Token' => [
 				'type' => 'apiKey',
 				'in' => 'cookie',
 				'name' => $this->cookieOptions['prefix'] . 'Token',
-				'description' => "MediaWiki User Token cookie.\n"
-					. "Required for persistent session verification.",
+				'description' => new MessageValue( 'sessionprovider-cookie-openapi-description-token' ),
 			],
 		];
 	}

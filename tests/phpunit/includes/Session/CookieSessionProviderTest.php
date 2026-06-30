@@ -26,6 +26,7 @@ use Psr\Log\NullLogger;
 use TestLogger;
 use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -712,6 +713,21 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'apiKey', $schemes['Token']['type'] );
 		$this->assertSame( 'cookie', $schemes['Token']['in'] );
 		$this->assertSame( 'wikiToken', $schemes['Token']['name'] );
+
+		// Descriptions are localizable MessageValues, resolved by the OpenAPI spec generator.
+		$this->assertInstanceOf( MessageValue::class, $schemes['Session']['description'] );
+		$this->assertSame(
+			'sessionprovider-cookie-openapi-description-session',
+			$schemes['Session']['description']->getKey()
+		);
+		$this->assertSame(
+			'sessionprovider-cookie-openapi-description-userid',
+			$schemes['UserID']['description']->getKey()
+		);
+		$this->assertSame(
+			'sessionprovider-cookie-openapi-description-token',
+			$schemes['Token']['description']->getKey()
+		);
 	}
 
 	public function testSuggestLoginUsername() {

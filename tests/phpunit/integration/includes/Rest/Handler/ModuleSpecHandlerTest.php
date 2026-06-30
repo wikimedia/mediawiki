@@ -16,11 +16,13 @@ use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Session\SessionManagerInterface;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Constraint\Constraint;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageSpecifier;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\TestingAccessWrapper;
 
@@ -76,11 +78,72 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		) );
 	}
 
-	private function newHandler() {
+	/**
+	 * @param array $securitySchemes Flat security-scheme map returned by the mocked
+	 *   SessionManager::getAllOpenApiSecuritySchemes(); defaults to none.
+	 * @return ModuleSpecHandler
+	 */
+	private function newHandler( array $securitySchemes = [] ) {
 		$config = $this->getServiceContainer()->getMainConfig();
+		$sessionManager = $this->createMock( SessionManagerInterface::class );
+		$sessionManager->method( 'getAllOpenApiSecuritySchemes' )
+			->willReturn( $securitySchemes );
 		return new ModuleSpecHandler(
-			$config
+			$config,
+			$sessionManager
 		);
+	}
+
+	/**
+	 * A bare handler whose only relevant trait is its write-access requirement,
+	 * used to drive getOpenApiSecurityRequirements().
+	 */
+	private function newAccessHandler( bool $needsWriteAccess ): Handler {
+		return new class( $needsWriteAccess ) extends Handler {
+			private bool $needsWriteAccess;
+
+			public function __construct( bool $needsWriteAccess ) {
+				$this->needsWriteAccess = $needsWriteAccess;
+			}
+
+			public function needsWriteAccess() {
+				return $this->needsWriteAccess;
+			}
+
+			public function execute() {
+				return null;
+			}
+		};
+	}
+
+	/**
+	 * A representative flat security-scheme map: a multi-scheme cookie provider
+	 * (grouped with AND) and a single-scheme OAuth-like provider (a separate OR option).
+	 */
+	private static function getTestSecuritySchemes(): array {
+		return [
+			'MediaWiki-Session-CookieSessionProvider-Session' => [
+				'type' => 'apiKey',
+				'in' => 'cookie',
+				'name' => 'wiki_session',
+				'description' => new MessageValue( 'sessionprovider-cookie-openapi-description-session' ),
+			],
+			'MediaWiki-Session-CookieSessionProvider-UserID' => [
+				'type' => 'apiKey',
+				'in' => 'cookie',
+				'name' => 'wikiUserID',
+			],
+			'MediaWiki-Session-CookieSessionProvider-Token' => [
+				'type' => 'apiKey',
+				'in' => 'cookie',
+				'name' => 'wikiToken',
+			],
+			'MediaWiki-Extension-OAuth-SessionProvider' => [
+				'type' => 'http',
+				'scheme' => 'bearer',
+				'description' => 'OAuth 2.0',
+			],
+		];
 	}
 
 	private function assertWellFormedOAS( array $spec ) {
@@ -351,6 +414,115 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			$router
 		);
 		$this->assertSame( 403, $response->getStatusCode() );
+	}
+
+	public function testGetOpenApiSecurityRequirements() {
+		$handler = $this->newHandler( self::getTestSecuritySchemes() );
+		$wrapper = TestingAccessWrapper::newFromObject( $handler );
+
+		$cookieGroup = [
+			'MediaWiki-Session-CookieSessionProvider-Session' => [],
+			'MediaWiki-Session-CookieSessionProvider-UserID' => [],
+			'MediaWiki-Session-CookieSessionProvider-Token' => [],
+		];
+		$oauthGroup = [ 'MediaWiki-Extension-OAuth-SessionProvider' => [] ];
+
+		// Read-only endpoint: anonymous access ({}) plus each provider as an OR option.
+		$read = $wrapper->getOpenApiSecurityRequirements( $this->newAccessHandler( false ) );
+		$this->assertCount( 3, $read );
+		$this->assertEquals( new \stdClass(), $read[0], 'Read endpoints allow anonymous access' );
+		$this->assertSame( $cookieGroup, $read[1], 'Cookie provider schemes are AND-grouped' );
+		$this->assertSame( $oauthGroup, $read[2], 'OAuth provider is a separate OR option' );
+
+		// Write endpoint: authentication mandatory, so the {} option is omitted.
+		$write = $wrapper->getOpenApiSecurityRequirements( $this->newAccessHandler( true ) );
+		$this->assertCount( 2, $write );
+		$this->assertSame( $cookieGroup, $write[0] );
+		$this->assertSame( $oauthGroup, $write[1] );
+	}
+
+	public function testGetOpenApiSecurityRequirementsWithoutProviders() {
+		$wrapper = TestingAccessWrapper::newFromObject( $this->newHandler() );
+
+		// With no provider schemes, a read endpoint still offers anonymous access...
+		$this->assertEquals(
+			[ new \stdClass() ],
+			$wrapper->getOpenApiSecurityRequirements( $this->newAccessHandler( false ) )
+		);
+		// ...while a write endpoint ends up with no satisfiable requirement.
+		$this->assertSame(
+			[],
+			$wrapper->getOpenApiSecurityRequirements( $this->newAccessHandler( true ) )
+		);
+	}
+
+	public function testSecuritySchemesAndPerOperationSecurity() {
+		$this->overrideConfigValues( [
+			MainConfigNames::RightsText => 'Test License',
+			MainConfigNames::RightsUrl => 'https://example.com/license',
+			MainConfigNames::EmergencyContact => 'test@example.com',
+			MainConfigNames::CanonicalServer => 'https://example.com:1234',
+			MainConfigNames::RestPath => '/api',
+		] );
+
+		$request = new RequestData(
+			[ 'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ] ]
+		);
+		$router = $this->createRouter(
+			$request,
+			__DIR__ . '/SpecTestModule.json',
+			[ 'mock/v1' => ModuleMode::PUBLISHED ]
+		);
+
+		$handler = $this->newHandler( self::getTestSecuritySchemes() );
+		$response = $this->executeHandler(
+			$handler,
+			$request,
+			[],
+			[],
+			[],
+			[],
+			null,
+			null,
+			$router
+		);
+		$this->assertSame( 200, $response->getStatusCode() );
+		$data = json_decode( (string)$response->getBody(), true );
+
+		// components.securitySchemes is built from the installed session providers...
+		$schemes = $data['components']['securitySchemes'];
+		$this->assertSame(
+			'apiKey',
+			$schemes['MediaWiki-Session-CookieSessionProvider-Session']['type']
+		);
+		$this->assertSame(
+			'wiki_session',
+			$schemes['MediaWiki-Session-CookieSessionProvider-Session']['name']
+		);
+		// ...with MessageValue descriptions localized (the test formatter dumps the key)...
+		$this->assertSame(
+			'<message key="sessionprovider-cookie-openapi-description-session"></message>',
+			$schemes['MediaWiki-Session-CookieSessionProvider-Session']['description']
+		);
+		// ...and plain-string descriptions emitted unchanged.
+		$this->assertSame(
+			'OAuth 2.0',
+			$schemes['MediaWiki-Extension-OAuth-SessionProvider']['description']
+		);
+
+		// newFooBarHandler requires write access → no anonymous {}; schemes grouped per provider.
+		$expectedSecurity = [
+			[
+				'MediaWiki-Session-CookieSessionProvider-Session' => [],
+				'MediaWiki-Session-CookieSessionProvider-UserID' => [],
+				'MediaWiki-Session-CookieSessionProvider-Token' => [],
+			],
+			[ 'MediaWiki-Extension-OAuth-SessionProvider' => [] ],
+		];
+		$this->assertSame( $expectedSecurity, $data['paths']['/foo/bar']['get']['security'] );
+		$this->assertSame( $expectedSecurity, $data['paths']['/foo/bar']['post']['security'] );
+
+		$this->assertWellFormedOAS( $data );
 	}
 
 	public static function newFooBarHandler() {

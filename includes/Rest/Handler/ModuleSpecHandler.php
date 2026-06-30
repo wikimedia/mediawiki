@@ -14,6 +14,7 @@ use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Session\SessionManagerInterface;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -36,11 +37,13 @@ class ModuleSpecHandler extends SimpleHandler {
 	];
 
 	private ServiceOptions $options;
+	private SessionManagerInterface $sessionManager;
 
-	public function __construct( Config $config ) {
+	public function __construct( Config $config, SessionManagerInterface $sessionManager ) {
 		$options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $config );
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
+		$this->sessionManager = $sessionManager;
 	}
 
 	/**
@@ -208,6 +211,8 @@ class ModuleSpecHandler extends SimpleHandler {
 
 		$operationSpec = $handler->getOpenApiSpec( $method );
 
+		$operationSpec['security'] = $this->getOpenApiSecurityRequirements( $handler );
+
 		// If the spec already contains an explicit operationId (e.g. set in the JSON
 		// definition file via $oasKeys), respect it. Otherwise auto-generate one.
 		if ( !isset( $operationSpec['operationId'] ) ) {
@@ -228,6 +233,54 @@ class ModuleSpecHandler extends SimpleHandler {
 		$usedOpIds[] = $operationSpec['operationId'];
 
 		return $operationSpec;
+	}
+
+	/**
+	 * Build the OpenAPI security requirements array for a route's handler.
+	 *
+	 * Each session provider contributes a single requirement object grouping all of
+	 * its schemes together (logical AND); distinct providers are emitted as separate
+	 * objects (logical OR). Routes that do not require write access additionally allow
+	 * unauthenticated access, represented by a leading empty requirement object ({}).
+	 *
+	 * needsWriteAccess() is used as a heuristic for whether anonymous access is allowed,
+	 * since it is the only signal Handler exposes today. It is not a guarantee: some
+	 * handlers that don't need write access still reject anonymous requests internally
+	 * (e.g. ReadingLists' ListsHandler-derived endpoints, which require a logged-in user
+	 * even though they are read-only). Such routes will be spec'd as allowing anonymous
+	 * access even though the handler will reject anonymous requests at runtime.
+	 *
+	 * Grouping relies on the "{providerBaseName}-{subKey}" naming convention produced by
+	 * SessionManager::getAllOpenApiSecuritySchemes(), where the provider's sanitized class
+	 * name forms the base and the per-scheme suffix (subKey) contains no hyphen. The last
+	 * hyphen therefore separates the provider base name from the suffix.
+	 *
+	 * @see https://spec.openapis.org/oas/v3.0.0#security-requirement-object
+	 * @param Handler $handler
+	 * @return array<int, array|\stdClass> OpenAPI security requirement objects
+	 */
+	private function getOpenApiSecurityRequirements( Handler $handler ): array {
+		$requirements = [];
+
+		// Read-only endpoints are assumed to permit anonymous access. This is only a
+		// heuristic; see the note above for known exceptions.
+		if ( !$handler->needsWriteAccess() ) {
+			$requirements[] = (object)[]; // Represents {} in JSON.
+		}
+
+		// Group schemes by provider (AND within a provider, OR across providers).
+		$providerGroups = [];
+		foreach ( $this->sessionManager->getAllOpenApiSecuritySchemes() as $schemeName => $_ ) {
+			$lastDash = strrpos( $schemeName, '-' );
+			$baseName = $lastDash !== false ? substr( $schemeName, 0, $lastDash ) : $schemeName;
+			$providerGroups[$baseName][$schemeName] = [];
+		}
+
+		foreach ( $providerGroups as $groupSchemes ) {
+			$requirements[] = $groupSchemes;
+		}
+
+		return $requirements;
 	}
 
 	/**
@@ -325,6 +378,21 @@ class ModuleSpecHandler extends SimpleHandler {
 			foreach ( $cmps as $name => $cmp ) {
 				$components[$name] = array_merge( $components[$name] ?? [], $cmp );
 			}
+		}
+
+		// Security schemes are declared by the installed session providers. Resolve any
+		// localizable descriptions (MessageValue); plain-string descriptions, e.g. from
+		// third-party providers, are emitted as-is. The key is omitted when no provider
+		// declares schemes, to avoid an empty securitySchemes object.
+		$securitySchemes = $this->sessionManager->getAllOpenApiSecuritySchemes();
+		foreach ( $securitySchemes as &$scheme ) {
+			if ( isset( $scheme['description'] ) && $scheme['description'] instanceof MessageValue ) {
+				$scheme['description'] = $this->getJsonLocalizer()->getFormattedMessage( $scheme['description'] );
+			}
+		}
+		unset( $scheme );
+		if ( $securitySchemes ) {
+			$components['securitySchemes'] = $securitySchemes;
 		}
 
 		return $components;

@@ -46,7 +46,8 @@
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\ModuleSpecHandler",
 					"services": [
-						"MainConfig"
+						"MainConfig",
+						"SessionManager"
 					]
 				}
 			}
@@ -59,7 +60,8 @@
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\ModuleSpecHandler",
 					"services": [
-						"MainConfig"
+						"MainConfig",
+						"SessionManager"
 					]
 				}
 			}
