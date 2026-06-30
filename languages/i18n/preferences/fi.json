@@ -31,7 +31,8 @@
 			"Tumm1",
 			"Valtlai",
 			"Veikk0.ma",
-			"Wix"
+			"Wix",
+			"Wikipeedikko"
 		]
 	},
 	"preferences": "Asetukset",
@@ -103,10 +104,10 @@
 	"prefs-changeemail": "Muuta tai poista sähköpostiosoite",
 	"prefs-help-email": "Vapaaehtoinen, mutta tarvitaan uuden salasanan pyytämiseen, jos unohdat salasanasi.",
 	"prefs-help-email-required": "Sähköpostiosoite on pakollinen.",
-	"prefs-help-email-others": "Voit myös antaa muiden käyttäjien ottaa yhteyttä sinuun sähköpostilla. Osoitteesi ei paljastu toisen käyttäjän ottaessa sinuun yhteyttä.",
+	"prefs-help-email-others": "Voit myös antaa muiden käyttäjien ottaa yhteyttä sinuun sähköpostitse käyttäjä- ja keskustelusivullasi olevan linkin kautta.\nSähköpostisoitettasi ei paljasteta toisen käyttäjän ottaessa sinuun yhteyttä.",
 	"tog-requireemail": "Lähetä salasanan nollausviesti vain, kun sekä sähköpostiosoite että käyttäjänimi on annettu.",
 	"prefs-help-requireemail": "Tämä parantaa yksityisyyttä ja auttaa estämään epätoivottuja sähköposteja.",
-	"noemailprefs": "Sähköpostiosoitetta ei ole määritelty.",
+	"noemailprefs": "Aseta sähköposti asetuksissasi käyttääksesi näitä ominaisuuksia.",
 	"emailnotauthenticated": "Sähköpostiosoitettasi ei ole vielä varmennettu.\nSähköpostia ei lähetetä liittyen alla oleviin toimintoihin.",
 	"emailconfirmlink": "Varmenna sähköpostiosoite",
 	"prefs-emailconfirm-label": "Sähköpostin varmistus:",
@@ -158,7 +159,7 @@
 	"thumbsize": "Pienoiskuvien koko",
 	"prefs-diffs": "Eroavaisuudet",
 	"tog-diffonly": "Älä näytä sivun sisältöä eroavaisuusvertailun alapuolella",
-	"tog-norollbackdiff": "Älä näytä eroavaisuuksia, kun olet palauttanut muokkauksen palauta-työkalulla",
+	"tog-norollbackdiff": "Älä näytä eroavaisuuksia, kun olet palauttanut muokkauksen pikapalautustyökalulla",
 	"prefs-advancedrendering": "Lisäasetukset",
 	"tog-underline": "Linkkien alleviivaus:",
 	"underline-default": "Ulkoasun tai selaimen oletustapa",

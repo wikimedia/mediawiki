@@ -77,7 +77,7 @@
 	"rest-unmapped-action-error": "매핑되지 않은 작업 모듈 오류: $1",
 	"rest-unsupported-transform-input": "지원되지 않는 입력: $1",
 	"rest-bad-etag": "잘못된 ETag: $1",
-	"rest-unsupported-profile-version": "지원되지 않는 프로파일 버전: $1",
+	"rest-unsupported-profile-version": "지원되지 않는 프로필 버전: $1",
 	"rest-no-json-decode": "페이로드가 JSON을 배열로 디코딩하지 않습니다.",
 	"rest-parsoid-unsupported-media": "지원하지 않는 미디어 유형",
 	"rest-missing-revision-html": "누락된 판 HTML",

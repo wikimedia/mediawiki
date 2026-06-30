@@ -831,7 +831,7 @@
 	"tooltip-last": "Perbezaan dengan semakan sebelumnya",
 	"page_first": "awal",
 	"page_last": "akhir",
-	"histlegend": "Pemilihan perbezaan: tandakan butang radio bagi dua semakan untuk dibandingkan dan tekan butang ''enter'' atau butang berikut.<br />\nPetunjuk: <strong>({{int:cur}})</strong> = perbezaan dengan versi terkini, <strong>({{int:last}})</strong> = perbezaan dengan versi sebelumnya, <strong>{{int:minoreditletter}}</strong> = suntingan kecil.",
+	"histlegend": "Pilih beza suntingan: tekan butang radio dua semakan untuk bandingan, dan tekan butang ''enter'' atau butang berikut.<br />\nPetunjuk: <strong>({{int:cur}})</strong> = beza dengan versi terkini, <strong>({{int:last}})</strong> = beza dengan versi terdahulu, <strong>{{int:minoreditletter}}</strong> = suntingan kecil.",
 	"history-fieldset-title": "Tapis semakan",
 	"history-show-deleted": "Semakan yang dihapus sahaja",
 	"histfirst": "terawal",
