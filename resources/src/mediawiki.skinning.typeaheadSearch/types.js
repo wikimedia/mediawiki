@@ -9,6 +9,7 @@
  * @typedef {Object} SuggestionClickEvent
  * @property {number} numberOfResults
  * @property {number} index
+ * @property {string|null} searchId
  */
 
 /**

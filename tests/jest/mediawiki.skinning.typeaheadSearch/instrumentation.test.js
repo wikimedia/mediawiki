@@ -88,4 +88,50 @@ describe( 'instrumentation', () => {
 				}
 			] );
 	} );
+
+	describe( 'searchId propagation', () => {
+		beforeEach( () => {
+			mw.track = jest.fn();
+		} );
+
+		test( 'onSuggestionClick reports the searchId carried on the event', () => {
+			instrumentation.listeners.onSuggestionClick( {
+				numberOfResults: 3,
+				index: 1,
+				searchId: 'test-search-id'
+			} );
+
+			expect( mw.track ).toHaveBeenCalledWith(
+				'mediawiki.searchSuggest',
+				expect.objectContaining( {
+					action: 'click-result',
+					index: 1,
+					searchId: 'test-search-id'
+				} )
+			);
+		} );
+
+		test( 'each click uses its own event searchId, with no shared state to override', () => {
+			instrumentation.listeners.onSuggestionClick( {
+				numberOfResults: 1,
+				index: 0,
+				searchId: 'first-search-id'
+			} );
+			instrumentation.listeners.onSuggestionClick( {
+				numberOfResults: 1,
+				index: 0,
+				searchId: 'second-search-id'
+			} );
+
+			expect( mw.track ).toHaveBeenNthCalledWith(
+				1,
+				'mediawiki.searchSuggest',
+				expect.objectContaining( { searchId: 'first-search-id' } )
+			);
+			expect( mw.track ).toHaveBeenLastCalledWith(
+				'mediawiki.searchSuggest',
+				expect.objectContaining( { searchId: 'second-search-id' } )
+			);
+		} );
+	} );
 } );

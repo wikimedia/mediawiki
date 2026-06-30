@@ -19,7 +19,8 @@ function onSuggestionClick( event ) {
 	mw.track( 'mediawiki.searchSuggest', {
 		action: 'click-result',
 		numberOfResults: event.numberOfResults,
-		index: event.index
+		index: event.index,
+		searchId: event.searchId
 	} );
 }
 

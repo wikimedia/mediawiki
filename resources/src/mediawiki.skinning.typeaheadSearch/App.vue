@@ -28,7 +28,7 @@
 			:is-mobile-view="useMobileExperience"
 			@load-more="onLoadMore"
 			@input="onInput"
-			@search-result-click="instrumentation.onSuggestionClick"
+			@search-result-click="onSuggestionClick"
 			@submit="onSubmit"
 			@focus="onFocus"
 			@blur="onBlur"
@@ -191,6 +191,9 @@ module.exports = exports = defineComponent( {
 		const searchFooterUrl = ref( '' );
 		// The current search query. Used to detect whether a fetch response is stale.
 		const currentSearchQuery = ref( '' );
+		// searchId of the currently displayed suggestions. Attached to click/submit events so
+		// each event is associated with the response that produced the results the user saw.
+		const currentSearchId = ref( null );
 
 		const containerClasses = computed( () => ( {
 			[ `${ props.prefixClass }typeahead-search-wrapper` ]: true
@@ -239,6 +242,7 @@ module.exports = exports = defineComponent( {
 							)
 						);
 						searchFooterUrl.value = props.urlGenerator.generateUrl( query );
+						currentSearchId.value = searchId;
 					}
 
 					const event = {
@@ -308,11 +312,26 @@ module.exports = exports = defineComponent( {
 		};
 
 		/**
+		 * Attach the searchId of the currently displayed results to a suggestion click, so the
+		 * event is tied to the response the user actually saw rather than a later, possibly
+		 * stale, one.
+		 *
+		 * @param {SuggestionClickEvent} event
+		 */
+		const onSuggestionClick = ( event ) => {
+			instrumentation.listeners.onSuggestionClick(
+				Object.assign( {}, event, { searchId: currentSearchId.value } )
+			);
+		};
+
+		/**
 		 * @param {SearchSubmitEvent} event
 		 */
 		const onSubmit = ( event ) => {
 			wprov.value = instrumentation.getWprovFromResultIndex( event.index );
-			instrumentation.listeners.onSubmit( event );
+			instrumentation.listeners.onSubmit(
+				Object.assign( {}, event, { searchId: currentSearchId.value } )
+			);
 		};
 
 		const onFocus = ( event ) => {
@@ -382,10 +401,10 @@ module.exports = exports = defineComponent( {
 			onExit,
 			onInput,
 			onLoadMore,
+			onSuggestionClick,
 			onSubmit,
 			onFocus,
-			onBlur,
-			instrumentation: instrumentation.listeners
+			onBlur
 		};
 	}
 } );
