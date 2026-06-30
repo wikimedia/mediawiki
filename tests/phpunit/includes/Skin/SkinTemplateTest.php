@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Skin\BaseTemplate;
 use MediaWiki\Skin\QuickTemplate;
@@ -17,6 +18,7 @@ class SkinQuickTemplateTest extends QuickTemplate {
 /**
  * @covers \MediaWiki\Skin\SkinTemplate
  * @covers \MediaWiki\Skin\Skin
+ * @covers \MediaWiki\Skin\Components\SkinComponentFooter
  * @group Skin
  * @group Database
  * @author Bene* < benestar.wikimedia@gmail.com >
@@ -464,5 +466,47 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 			'footerlinks must have a places section' );
 		$this->assertContains( 'ext-link', $footerlinks['places'],
 			'Universal hook footer item must appear in legacy footerlinks (T426358)' );
+	}
+
+	public function testCopyrightShownForKnownButNonExistentTitle() {
+		$this->overrideConfigValues( [
+			MainConfigNames::RightsPage => '',
+			MainConfigNames::RightsUrl => 'https://example.com/licence',
+			MainConfigNames::RightsText => 'Test Licence',
+			MainConfigNames::MaxCredits => 0,
+		] );
+
+		// An always-known special page: isKnown() is true, but it has no DB row so exists() is false.
+		$knownTitle = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
+		$this->assertTrue( $knownTitle->isKnown(), 'precondition: special page is known' );
+		$this->assertFalse( $knownTitle->exists(), 'precondition: special page does not exist in the DB' );
+
+		$context = new RequestContext();
+		$context->setTitle( $knownTitle );
+		$context->getOutput()->setCopyright( true );
+		$skin = $context->getSkin();
+		$skin->setRelevantTitle( $knownTitle );
+
+		$this->assertNotSame(
+			'',
+			$skin->getCopyright(),
+			'Copyright is shown for a known but non-existent title that opts in via setCopyright()'
+		);
+
+		// A genuine redlink is neither known nor existing, so copyright stays suppressed.
+		$redlinkTitle = Title::makeTitle( NS_MAIN, 'Surely no such page exists 0xDEADBEEF' );
+		$this->assertFalse( $redlinkTitle->isKnown(), 'precondition: redlink is not known' );
+
+		$redContext = new RequestContext();
+		$redContext->setTitle( $redlinkTitle );
+		$redContext->getOutput()->setCopyright( true );
+		$redSkin = $redContext->getSkin();
+		$redSkin->setRelevantTitle( $redlinkTitle );
+
+		$this->assertSame(
+			'',
+			$redSkin->getCopyright(),
+			'Copyright stays suppressed for a genuine redlink even when it opts in'
+		);
 	}
 }
