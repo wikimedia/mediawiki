@@ -1480,7 +1480,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * @return bool True if hidden, false otherwise
 	 */
 	public function isHidden() {
-		$block = $this->getBlock();
+		$block = $this->getBlock( disableIpBlockExemptChecking: true );
 		return $block ? $block->getHideName() : false;
 	}
 
