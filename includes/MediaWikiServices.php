@@ -232,7 +232,7 @@ use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\EventRelayer\EventRelayerGroup;
 use Wikimedia\FileBackend\FSFile\TempFSFileFactory;
-use Wikimedia\LockManager\LockManager;
+use Wikimedia\LockManager\ILockManager;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\NonSerializable\NonSerializableTrait;
@@ -1550,7 +1550,7 @@ class MediaWikiServices extends ServiceContainer {
 	 *
 	 * @since 1.47
 	 */
-	public function getLockManager(): LockManager {
+	public function getLockManager(): ILockManager {
 		return $this->getService( 'LockManager' );
 	}
 

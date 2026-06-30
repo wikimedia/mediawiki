@@ -29,7 +29,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use RuntimeException;
-use Wikimedia\LockManager\LockManager;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -199,8 +198,8 @@ class LinksUpdate extends DataUpdate implements TransactionRoundAwareUpdate {
 	public static function acquirePageLock( IDatabase $dbw, $pageId, $why = 'atomicity' ): ?ScopedCallback {
 		$key = "{$dbw->getDomainID()}:LinksUpdate:$why:pageid:$pageId"; // per-wiki
 		$lockManager = MediaWikiServices::getInstance()->getLockManager();
-		$status = $lockManager->lock( [ $key ], LockManager::LOCK_EX, 1 );
-		if ( !$status->isOK() ) {
+		$unlocker = $lockManager->scopedLock( $key, 1 );
+		if ( !$unlocker ) {
 			$logger = LoggerFactory::getInstance( 'SecondaryDataUpdate' );
 			$logger->info( "Could not acquire lock '{key}' for page ID '{page_id}'.", [
 				'key' => $key,
@@ -208,9 +207,6 @@ class LinksUpdate extends DataUpdate implements TransactionRoundAwareUpdate {
 			] );
 			return null;
 		}
-		$unlocker = new ScopedCallback( static function () use ( $key, $lockManager ) {
-			$lockManager->unlock( [ $key ] );
-		} );
 		return $unlocker;
 	}
 

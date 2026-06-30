@@ -4480,6 +4480,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\LightweightObjectStore\\ExpirationAwareness' => __DIR__ . '/includes/libs/LightweightObjectStore/ExpirationAwareness.php',
 	'Wikimedia\\LockManager\\DatabaseLockManager' => __DIR__ . '/includes/libs/LockManager/DatabaseLockManager.php',
 	'Wikimedia\\LockManager\\FSLockManager' => __DIR__ . '/includes/libs/LockManager/FSLockManager.php',
+	'Wikimedia\\LockManager\\ILockManager' => __DIR__ . '/includes/libs/LockManager/ILockManager.php',
 	'Wikimedia\\LockManager\\LockManager' => __DIR__ . '/includes/libs/LockManager/LockManager.php',
 	'Wikimedia\\LockManager\\MemcLockManager' => __DIR__ . '/includes/libs/LockManager/MemcLockManager.php',
 	'Wikimedia\\LockManager\\NullLockManager' => __DIR__ . '/includes/libs/LockManager/NullLockManager.php',

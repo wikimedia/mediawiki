@@ -22,10 +22,9 @@ use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
-use Wikimedia\LockManager\LockManager;
+use Wikimedia\LockManager\ILockManager;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -77,7 +76,7 @@ class PageEditStash {
 	 * @param UserFactory $userFactory
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param JsonCodec $jsonCodec
-	 * @param LockManager $lockManager
+	 * @param ILockManager $lockManager
 	 * @param HookContainer $hookContainer
 	 * @param int $initiator Class INITIATOR__* constant
 	 */
@@ -90,7 +89,7 @@ class PageEditStash {
 		private UserFactory $userFactory,
 		private WikiPageFactory $wikiPageFactory,
 		private JsonCodec $jsonCodec,
-		private LockManager $lockManager,
+		private ILockManager $lockManager,
 		HookContainer $hookContainer,
 		private readonly int $initiator,
 	) {
@@ -115,16 +114,12 @@ class PageEditStash {
 		$page = $pageUpdater->getPage();
 		$contentHash = $this->getContentHash( $content );
 		$key = $this->getStashKey( $page, $contentHash, $user );
-		$lockManger = $this->lockManager;
+		$unlocker = $this->lockManager->scopedLock( $key );
 
-		if ( !$lockManger->lock( [ $key ] ) ) {
+		if ( !$unlocker ) {
 			// De-duplicate requests on the same key
 			return self::ERROR_BUSY;
 		}
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$unlocker = new ScopedCallback( static function () use ( $lockManger, $key ) {
-			$lockManger->unlock( [ $key ] );
-		} );
 
 		$cutoffTime = time() - self::PRESUME_FRESH_TTL_SEC;
 
@@ -360,9 +355,9 @@ class PageEditStash {
 
 			// We ignore user aborts and keep parsing. Block on any prior parsing
 			// so as to use its results and make use of the time spent parsing.
-			if ( $this->lockManager->lock( [ $key ], LockManager::LOCK_EX, 30 ) ) {
+			if ( $this->lockManager->lockKey( $key, 30 ) ) {
 				$editInfo = $this->getStashValue( $key );
-				$this->lockManager->unlock( [ $key ] );
+				$this->lockManager->unlockKey( $key );
 			}
 
 			$timer->stop();

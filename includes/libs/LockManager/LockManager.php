@@ -10,6 +10,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use StatusValue;
 use Wikimedia\RequestTimeout\RequestTimeout;
+use Wikimedia\ScopedCallback;
 use Wikimedia\WaitConditionLoop;
 
 /**
@@ -33,7 +34,7 @@ use Wikimedia\WaitConditionLoop;
  * @ingroup LockManager
  * @since 1.19
  */
-abstract class LockManager {
+abstract class LockManager implements ILockManager {
 	/** @var LoggerInterface */
 	protected $logger;
 
@@ -224,6 +225,34 @@ abstract class LockManager {
 	 * @see LockManager::unlockByType()
 	 */
 	abstract protected function doUnlockByType( array $pathsByType );
+
+	/**
+	 * @inheritDoc
+	 */
+	final public function lockKey( string $key, int $timeout = 0 ): bool {
+		return $this->lockByType( [ self::LOCK_EX => [ $key ] ], $timeout )->isOK();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	final public function unlockKey( string $key ): bool {
+		return $this->unlockByType( [ self::LOCK_EX => [ $key ] ] )->isOK();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	final public function scopedLock( string $key, int $timeout = 0 ): ?ScopedCallback {
+		if ( !$this->lockKey( $key, $timeout ) ) {
+			return null;
+		}
+		$lockManager = $this;
+		$unlocker = new ScopedCallback( static function () use ( $key, $lockManager ) {
+			$lockManager->unlock( [ $key ] );
+		} );
+		return $unlocker;
+	}
 }
 /** @deprecated class alias since 1.46 */
 class_alias( LockManager::class, 'LockManager' );

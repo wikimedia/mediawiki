@@ -79,7 +79,7 @@ class RecentChangesUpdateJob extends Job {
 		$dbProvider = $services->getConnectionProvider();
 		$dbw = $dbProvider->getPrimaryDatabase();
 		$lockKey = $dbw->getDomainID() . ':recentchanges-prune';
-		if ( !$services->getLockManager()->lock( [ $lockKey ] ) ) {
+		if ( !$services->getLockManager()->lockKey( $lockKey ) ) {
 			// already in progress
 			return;
 		}
@@ -137,7 +137,7 @@ class RecentChangesUpdateJob extends Job {
 			}
 		} while ( $rcIds );
 
-		$services->getLockManager()->unlock( [ $lockKey ] );
+		$services->getLockManager()->unlockKey( $lockKey );
 	}
 
 	protected function updateActiveUsers() {
@@ -156,7 +156,7 @@ class RecentChangesUpdateJob extends Job {
 		$ticket = $dbProvider->getEmptyTransactionTicket( __METHOD__ );
 
 		$lockKey = $dbw->getDomainID() . '-activeusers';
-		if ( !$services->getLockManager()->lock( [ $lockKey ] ) ) {
+		if ( !$services->getLockManager()->lockKey( $lockKey ) ) {
 			// Exclusive update (avoids duplicate entries)… it's usually fine to just
 			// drop out here, if the Job is already running.
 			return;
@@ -269,7 +269,7 @@ class RecentChangesUpdateJob extends Job {
 			SiteStatsUpdate::cacheUpdate( $dbw );
 		}
 
-		$services->getLockManager()->unlock( [ $lockKey ] );
+		$services->getLockManager()->unlockKey( $lockKey );
 	}
 }
 
