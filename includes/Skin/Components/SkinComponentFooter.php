@@ -155,6 +155,7 @@ class SkinComponentFooter implements SkinComponent {
 			&& $out->isArticle()
 			&& $out->isRevisionCurrent()
 			&& $maxCredits !== 0;
+		$titleIsKnown = $title && $title->isKnown();
 
 		/** @var CreditsAction $action */
 		if ( $useCredits ) {
@@ -166,13 +167,15 @@ class SkinComponentFooter implements SkinComponent {
 		return [
 			'lastmod' => !$useCredits ? $this->lastModified() : null,
 			'numberofwatchingusers' => null,
-			'credits' => $useCredits && $action ?
-				$action->getCredits( $maxCredits, $showCreditsIfMax ) : null,
+			'credits' => $useCredits && $action ? $action->getCredits( $maxCredits, $showCreditsIfMax ) : null,
 			'renderedwith' => $this->renderedWith(),
-			// Copyright is often rendered as a block in skins and
-			// should thus be last, after the inline elements.
-			'copyright' => $titleExists &&
-			$out->showsCopyright() ? $this->getCopyright() : null,
+			// (T184960) The copyright line is the site licence and is page-independent, so it only needs the page to be
+			// "known" rather than to have a stored revision. This lets pages that opt in via OutputPage::setCopyright()
+			// show it even without a local revision, e.g. always-known special pages, or dynamic/remote content such as
+			// File: pages fetched from Commons. Credits and last-modified keep the stricter exists() gate, as they read
+			// real revision data.
+			// Note: Copyright is often rendered as a block in skins and should thus be last, after the inline elements.
+			'copyright' => $titleIsKnown && $out->showsCopyright() ? $this->getCopyright() : null,
 		];
 	}
 
