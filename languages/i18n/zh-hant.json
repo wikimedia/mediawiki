@@ -572,6 +572,7 @@
 	"pt-login": "登入",
 	"pt-login-button": "登入",
 	"pt-login-continue-button": "繼續登入",
+	"pt-login-reauth-button": "繼續",
 	"pt-createaccount": "建立帳號",
 	"pt-userlogout": "登出",
 	"php-mail-error-unknown": "PHP 的 mail() 函數發生不明錯誤。",

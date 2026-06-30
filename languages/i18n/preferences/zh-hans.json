@@ -104,7 +104,7 @@
 	"badsig": "错误的原始签名。\n请检查HTML标签。",
 	"badsiglength": "您的签名过长。\n不应超过{{PLURAL:$1|$1个字符}}。",
 	"badsigsubst": "您的签名包含嵌套替换（例如：<code>subst:</code>或<code><nowiki>~~~~</nowiki></code>）：",
-	"badsightml": "你的签名包含了无效或废弃的HTML语法：",
+	"badsightml": "您的签名包含无效或已弃用的HTML语法：",
 	"badsiglinks": "您的签名应当包含一个指向您在本wiki的用户页、讨论页或贡献页的链接。请添加链接，例如：<code>$1</code>。",
 	"badsiglinebreak": "您的签名必须只包含单行wikitext。",
 	"prefs-email": "电子邮件选项",

@@ -246,7 +246,7 @@
 	"config-advanced-settings": "고급 설정",
 	"config-cache-options": "객체 캐싱을 위한 설정:",
 	"config-cache-help": "객체 캐싱은 자주 사용하는 데이터를 캐싱하여 미디어위키의 속도를 개선하는 데 사용합니다.\n큰 규모의 사이트는 이를 많이 사용하도록 권장하고 있으며, 소규모 사이트들도 물론 혜택을 볼 수 있습니다.",
-	"config-cache-none": "캐시하지 않음 (기능이 삭제되지는 않지만 큰 위키 사이트에 속도가 영향을 받을 수 있습니다)",
+	"config-cache-none": "캐시하지 않음 (기능이 제거되지는 않지만 큰 위키 사이트에 속도가 영향을 받을 수 있습니다)",
 	"config-cache-accel": "PHP 객체 캐싱 (APC 또는 APCu)",
 	"config-cache-memcached": "Memcached 사용 (추가적인 설치와 설정이 필요합니다)",
 	"config-memcached-servers": "Memcached 서버:",

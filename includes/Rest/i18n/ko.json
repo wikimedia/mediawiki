@@ -174,7 +174,7 @@
 	"rest-param-desc-update-title": "문서 제목입니다. 제목을 형식을 지정하려면 공백을 밑줄로 바꾸고, 그 결과를 URL 인코딩하세요(예: Steller%27s_jay). API 샌드박스에서는 공백을 밑줄로 바꾸되, URL 인코딩은 하지 마세요(예: Steller's_jay).",
 	"rest-param-desc-diff-type": "변경 유형:<ul><li>`0`: 두 판 모두 동일한 내용이며, 차이점을 볼 때 문맥을 제공하기 위해 포함되었습니다. API는 각 변경 사항 주변에 최대 두 줄의 문맥 정보를 반환합니다.</li><li>`1`: `to` 버전에는 포함되었지만 `from` 버전에는 포함되지 않은 줄</li><li>`2`: `from` 버전에는 포함되었지만 `to` 버전에는 포함되지 않은 줄</li><li>`3`: 두 판 간에 텍스트가 다른 줄</li><li>`4`: `from` 판에서 이동된 콘텐츠의 위치</li><li>`5`: `~의` 판에서 이동된 콘텐츠의 위치. 이 유형에는 두 판 간의 단어 수준 차이도 포함될 수 있습니다.</li></ul>",
 	"rest-param-desc-diff-linenumber": "`to` 판을 기준으로 변경된 줄 번호",
-	"rest-param-desc-diff-text": "두 판의 내용을 모두 포함하는 줄의 텍스트입니다. 두 판 간에 텍스트가 다른 줄의 경우, highlightRanges를 사용하여 추가되거나 삭제된 텍스트를 시각적으로 표시할 수 있습니다. 줄 바꿈이 포함된 줄의 경우 API는 \"\" (빈 문자열)을 반환합니다.",
+	"rest-param-desc-diff-text": "두 판의 내용을 모두 포함하는 줄의 텍스트입니다. 두 판 간에 텍스트가 다른 줄의 경우, highlightRanges를 사용하여 추가되거나 제거된 텍스트를 시각적으로 표시할 수 있습니다. 줄 바꿈이 포함된 줄의 경우 API는 \"\" (빈 문자열)을 반환합니다.",
 	"rest-param-desc-diff-highlightranges": "변경 사항을 시각적으로 나타내기 위해 텍스트를 강조 표시할 위치와 스타일을 지정하는 객체 배열",
 	"rest-param-desc-diff-highlightranges-start": "강조 표시된 텍스트가 시작될 위치 (해당 줄의 시작 부분부터 몇 바이트 떨어졌는지)",
 	"rest-param-desc-diff-highlightranges-length": "강조 표시된 부분의 길이 (바이트)",

@@ -1764,6 +1764,7 @@
 	"apierror-permissiondenied": "Du hast keine Berechtigung, um $1.",
 	"apierror-permissiondenied-generic": "Der Zugriff wurde verweigert.",
 	"apierror-permissiondenied-unblock": "Dir fehlt die Berechtigung, Benutzer zu entsperren.",
+	"apierror-permissiondenied-userrights-interwiki": "Du hast keine Berechtigung, die Benutzerrechte auf anderen Wikis zu ändern.",
 	"apierror-prefixsearchdisabled": "Die Präfixsuche ist im Miser-Modus deaktiviert.",
 	"apierror-protect-invalidaction": "Ungültiger Schutztyp „$1“.",
 	"apierror-protect-invalidlevel": "Ungültige Schutzstufe „$1“.",

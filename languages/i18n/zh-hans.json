@@ -650,6 +650,7 @@
 	"pt-login": "登录",
 	"pt-login-button": "登录",
 	"pt-login-continue-button": "继续登录",
+	"pt-login-reauth-button": "继续",
 	"pt-createaccount": "创建账号",
 	"pt-userlogout": "退出",
 	"php-mail-error-unknown": "在PHP的mail()函数中的未知错误。",

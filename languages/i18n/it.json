@@ -568,6 +568,7 @@
 	"pt-login": "entra",
 	"pt-login-button": "Entra",
 	"pt-login-continue-button": "Continua l'accesso",
+	"pt-login-reauth-button": "Continua",
 	"pt-createaccount": "registrati",
 	"pt-userlogout": "esci",
 	"php-mail-error-unknown": "Errore sconosciuto nella funzione PHP mail()",

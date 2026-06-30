@@ -1910,6 +1910,7 @@
 	"apierror-permissiondenied-generic": "권한이 없습니다.",
 	"apierror-permissiondenied-patrolflag": "점검 표시를 요청하려면 <code>patrol</code> 또는 <code>patrolmarks</code> 권한이 필요합니다.",
 	"apierror-permissiondenied-unblock": "사용자의 차단을 해제할 권한이 없습니다.",
+	"apierror-permissiondenied-userrights-interwiki": "다른 위키의 사용자 권한을 변경할 권한이 없습니다.",
 	"apierror-prefixsearchdisabled": "구두쇠 모드에서는 접두사 검색이 비활성화됩니다.",
 	"apierror-promised-nonwrite-api": "<code>Promise-Non-Write-API-Action</code> HTTP 헤더는 쓰기 모드 API 모듈로 전송할 수 없습니다.",
 	"apierror-protect-invalidaction": "잘못된 보호 유형 \"$1\".",

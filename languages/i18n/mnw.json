@@ -664,6 +664,8 @@
 	"unsupported-content-diff": "တၞဟ်ခြာဂှ် ဟွံထံက်ပင် သွက် ဗီုပြင် မာတိကာ $1။",
 	"unsupported-content-diff2": "တၞဟ်ခြာ အကြာ ဗီုပြင် မာတိကာ $1 ကု $2 ဂှ် ဟွံထံက်ပင် ပ္ဍဲဝဳကဳဏအ်။",
 	"duplicate-args-category": "မုက်လိက် မနွံ ကုအရေဝ်မထပ်ဒၟံင် ပ္ဍဲ ထာမ်ပလိက်ဂမၠိုင်",
+	"post-expand-template-inclusion-warning": "<strong>ပရေၚ်မကဵုသတိ:</strong> အဝဲထာမ်ပလိက်မဇၞော်လောန်ဒၟံၚ်။\nထာမ်ပလိက်လ္ၚဵုလုပ်အဝေါၚ်ဟွံသေၚ်။",
+	"post-expand-template-inclusion-category": "မုက်လိက်မၞုံဒၟံၚ်အဝဲထာမ်ပလိက်မပေၚ်အာတုဲဂမၠိုၚ်",
 	"parser-template-loop-warning": "ထာမ်ပလိက် ၜန်ၜုဲ မဂွံဆဵုကေတ် - [[:$1]]",
 	"template-loop-category": "မုက်လိက်ဂမၠိုင် မနွံ ကုထာမ်ပလိက် မၜန်ၜုဲ",
 	"template-loop-category-desc": "မုက်လိက် မနွံ ကုထာမ်ပလိက်မၜန်ၜုဲ၊ ဥပမာ ထာမ်ပလိက် မအာတ်မိက်ဒၟံင် သွက်ဂွံပသောင်။",

@@ -130,6 +130,7 @@
 	"redirectpagesub": "Pajenn adkas",
 	"redirectto": "Adkas da :",
 	"lastmodifiedat": "Kemmoù diwezhañ degaset d'ar bajenn-mañ d'an $1, da $2.",
+	"renderedwith-parsoid": "Gant [[mw:Special:MyLanguage/Parsoid|Parsoid]] eo bet daskoret ar bajenn.",
 	"viewcount": "Sellet ez eus bet {{PLURAL:$1|$1 wezh|$1 gwezh}} ouzh ar bajenn-mañ.",
 	"protectedpage": "Pajenn warezet",
 	"jumpto": "Mont da :",

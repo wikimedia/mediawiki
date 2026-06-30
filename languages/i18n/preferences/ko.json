@@ -216,7 +216,7 @@
 	"prefs-editwatchlist-label": "주시문서 목록의 항목을 편집합니다:",
 	"prefs-editwatchlistlabels-label": "주시문서 목록 레이블 편집:",
 	"prefs-managewatchlistlabels": "주시문서 목록 레이블 표시 및 관리",
-	"prefs-editwatchlist-edit": "주시문서 목록의 제목 보기 및 지우기",
+	"prefs-editwatchlist-edit": "주시문서 목록의 제목 보기 및 제거",
 	"prefs-editwatchlist-raw": "주시문서 목록 직접 편집하기",
 	"prefs-editwatchlist-clear": "주시문서 목록 비우기",
 	"prefs-displaywatchlist": "표시 설정",
