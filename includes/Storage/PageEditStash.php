@@ -22,6 +22,7 @@ use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
+use Wikimedia\LockManager\LockManager;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\ScopedCallback;
@@ -76,6 +77,7 @@ class PageEditStash {
 	 * @param UserFactory $userFactory
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param JsonCodec $jsonCodec
+	 * @param LockManager $lockManager
 	 * @param HookContainer $hookContainer
 	 * @param int $initiator Class INITIATOR__* constant
 	 */
@@ -88,6 +90,7 @@ class PageEditStash {
 		private UserFactory $userFactory,
 		private WikiPageFactory $wikiPageFactory,
 		private JsonCodec $jsonCodec,
+		private LockManager $lockManager,
 		HookContainer $hookContainer,
 		private readonly int $initiator,
 	) {
@@ -112,22 +115,15 @@ class PageEditStash {
 		$page = $pageUpdater->getPage();
 		$contentHash = $this->getContentHash( $content );
 		$key = $this->getStashKey( $page, $contentHash, $user );
-		$fname = __METHOD__;
+		$lockManger = $this->lockManager;
 
-		// Use the primary DB to allow for fast blocking locks on the "save path" where this
-		// value might actually be used to complete a page edit. If the edit submission request
-		// happens before this edit stash requests finishes, then the submission will block until
-		// the stash request finishes parsing. For the lock acquisition below, there is not much
-		// need to duplicate parsing of the same content/user/summary bundle, so try to avoid
-		// blocking at all here.
-		$dbw = $this->dbProvider->getPrimaryDatabase();
-		if ( !$dbw->lock( $key, $fname, 0 ) ) {
+		if ( !$lockManger->lock( [ $key ] ) ) {
 			// De-duplicate requests on the same key
 			return self::ERROR_BUSY;
 		}
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$unlocker = new ScopedCallback( static function () use ( $dbw, $key, $fname ) {
-			$dbw->unlock( $key, $fname );
+		$unlocker = new ScopedCallback( static function () use ( $lockManger, $key ) {
+			$lockManger->unlock( [ $key ] );
 		} );
 
 		$cutoffTime = time() - self::PRESUME_FRESH_TTL_SEC;
@@ -364,10 +360,9 @@ class PageEditStash {
 
 			// We ignore user aborts and keep parsing. Block on any prior parsing
 			// so as to use its results and make use of the time spent parsing.
-			$dbw = $this->dbProvider->getPrimaryDatabase();
-			if ( $dbw->lock( $key, __METHOD__, 30 ) ) {
+			if ( $this->lockManager->lock( [ $key ], LockManager::LOCK_EX, 30 ) ) {
 				$editInfo = $this->getStashValue( $key );
-				$dbw->unlock( $key, __METHOD__ );
+				$this->lockManager->unlock( [ $key ] );
 			}
 
 			$timer->stop();

@@ -48,6 +48,7 @@ class ApiStashEditTest extends ApiTestCase {
 			$this->getServiceContainer()->getUserFactory(),
 			$this->getServiceContainer()->getWikiPageFactory(),
 			$this->getServiceContainer()->getJsonCodec(),
+			$this->getServiceContainer()->getLockManager(),
 			$this->getServiceContainer()->getHookContainer(),
 			PageEditStash::INITIATOR_USER
 		) );

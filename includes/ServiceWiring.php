@@ -1753,6 +1753,7 @@ return [
 			$services->getUserFactory(),
 			$services->getWikiPageFactory(),
 			$services->getJsonCodec(),
+			$services->getLockManager(),
 			$services->getHookContainer(),
 			defined( 'MEDIAWIKI_JOB_RUNNER' ) || MW_ENTRY_POINT === 'cli'
 				? PageEditStash::INITIATOR_JOB_OR_CLI
