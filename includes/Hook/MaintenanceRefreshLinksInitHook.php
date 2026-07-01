@@ -15,8 +15,8 @@ interface MaintenanceRefreshLinksInitHook {
 	/**
 	 * This hook is called before executing the refreshLinks.php maintenance script.
 	 *
-	 * @since 1.35
-	 *
+	 * @since 1.16
+	 * @deprecated since 1.47
 	 * @param RefreshLinks $refreshLinks
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

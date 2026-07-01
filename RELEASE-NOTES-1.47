@@ -482,6 +482,7 @@ because of Phabricator reports.
   ChangeTagsStore::addTagsToDisplayQuery() instead.
 * The MarkPatrolledComplete hook has been deprecated and will trigger
   deprecation warnings. Use the MarkPatrolledAudit hook instead.
+* The MaintenanceRefreshLinksInit hook has been deprecated.
 * FileBackendStore::memCache is now deprecated. Instead, subclasses should
   use FileBackendStore::wanStatCache.
 * FileBackendStore::cheapCache is now deprecated. Instead, subclasses should
