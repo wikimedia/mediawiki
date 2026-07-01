@@ -332,7 +332,6 @@ use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\LBFactoryMulti;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
@@ -867,9 +866,35 @@ return [
 	},
 
 	'DBLoadBalancerFactory' => static function ( MediaWikiServices $services ): Wikimedia\Rdbms\LBFactory {
-		$lbFactoryConfigBuilder = $services->getDBLoadBalancerFactoryConfigBuilder();
-
 		$lbConf = $services->getDBLoadBalancerFactoryConfig()->getConfig();
+
+		$mainConfig = $services->getMainConfig();
+		if ( $services->getObjectCacheFactory()->isDatabaseId(
+			$mainConfig->get( MainConfigNames::MainCacheType )
+		) ) {
+			$wanCache = WANObjectCache::newEmpty();
+		} else {
+			$wanCache = $services->getMainWANObjectCache();
+		}
+		$srvCache = $services->getLocalServerObjectCache();
+		if ( $srvCache instanceof EmptyBagOStuff ) {
+			// Use process cache if no APCU or other local-server cache (e.g. on CLI)
+			$srvCache = new HashBagOStuff( [ 'maxKeys' => 100 ] );
+		}
+
+		$lbFactoryConfigBuilder = new MWLBFactory(
+			new ConfiguredReadOnlyMode(
+				$mainConfig->get( MainConfigNames::ReadOnly ),
+				$mainConfig->get( MainConfigNames::ReadOnlyFile )
+			),
+			$services->getChronologyProtector(),
+			$srvCache,
+			$wanCache,
+			$services->getCriticalSectionProvider(),
+			$services->getStatsFactory(),
+			$services->getTracer(),
+			RequestContext::getMain()->getRequest()->getIP()
+		);
 		$lbConf = $lbFactoryConfigBuilder->applyServices( $lbConf );
 
 		$class = $lbFactoryConfigBuilder->getLBFactoryClass( $lbConf );
@@ -885,36 +910,6 @@ return [
 			new ServiceOptions( MWLBConfig::APPLY_DEFAULT_CONFIG_OPTIONS, $services->getMainConfig() ),
 			ExtensionRegistry::getInstance()->getAttribute( 'DatabaseVirtualDomains' ),
 			$services->getMainConfig()->get( MainConfigNames::LBFactoryConf )
-		);
-	},
-
-	'DBLoadBalancerFactoryConfigBuilder' => static function ( MediaWikiServices $services ): MWLBFactory {
-		$mainConfig = $services->getMainConfig();
-		if ( $services->getObjectCacheFactory()->isDatabaseId(
-			$mainConfig->get( MainConfigNames::MainCacheType )
-		) ) {
-			$wanCache = WANObjectCache::newEmpty();
-		} else {
-			$wanCache = $services->getMainWANObjectCache();
-		}
-		$srvCache = $services->getLocalServerObjectCache();
-		if ( $srvCache instanceof EmptyBagOStuff ) {
-			// Use process cache if no APCU or other local-server cache (e.g. on CLI)
-			$srvCache = new HashBagOStuff( [ 'maxKeys' => 100 ] );
-		}
-
-		return new MWLBFactory(
-			new ConfiguredReadOnlyMode(
-				$mainConfig->get( MainConfigNames::ReadOnly ),
-				$mainConfig->get( MainConfigNames::ReadOnlyFile )
-			),
-			$services->getChronologyProtector(),
-			$srvCache,
-			$wanCache,
-			$services->getCriticalSectionProvider(),
-			$services->getStatsFactory(),
-			$services->getTracer(),
-			RequestContext::getMain()->getRequest()->getIP()
 		);
 	},
 
@@ -1516,10 +1511,9 @@ return [
 
 		// Only the callback only if it's a simple one-database setup.
 		$lbConf = $services->getDBLoadBalancerFactoryConfig()->getConfig();
-		$dbsCount = count( $lbConf['servers'] ?? [ '' ] );
 		if (
-			$lbConf['class'] !== LBFactoryMulti::class &&
-			$dbsCount === 1 &&
+			isset( $lbConf['servers'] ) &&
+			count( $lbConf['servers'] ) === 1 &&
 			!defined( 'MW_PHPUNIT_TEST' )
 		) {
 			$wanParams['pendingCallback'] = static function () use ( $services ) {

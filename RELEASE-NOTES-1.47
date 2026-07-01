@@ -303,6 +303,9 @@ because of Phabricator reports.
   emitting warnings since 1.38 and has no replacement.
 * The protected static method UserMailer::sendWithPear() has been removed
   following the migration from PEAR Mail to symfony/mailer.
+* DBLoadBalancerFactoryConfigBuilder service has been removed without
+  deprecation. It is internal to the rdbms library and shouldn't be used
+  outside of it.
 * Passing null to any of the three constructor parameters of TextboxBuilder,
   deprecated in 1.46, will now throw a PHP error. Use the service to get an
   instance of the class.
