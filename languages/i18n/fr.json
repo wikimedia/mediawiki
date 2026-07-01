@@ -235,7 +235,8 @@
 			"Serieminou",
 			"Alkmen-Alesia",
 			"AhmedG612",
-			"Maxime2024"
+			"Maxime2024",
+			"Crowwhailord"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Catégorie|Catégories}}",
@@ -3858,10 +3859,10 @@
 	"logentry-protect-modify": "$1{{GENDER:$2|}} a modifié les paramètres de protection de $3 $4",
 	"logentry-protect-modify-cascade": "$1{{GENDER:$2|}} a modifié les paramètres de protection de $3 $4 [protection en cascade]",
 	"logentry-rights-rights": "$1{{GENDER:$2|}} a modifié l’appartenance aux groupes de $3{{GENDER:$6|}} : $7",
-	"logentry-rights-rights-granted": "{{GENDER:$2|}}Ajouté à $1",
-	"logentry-rights-rights-revoked": "{{GENDER:$2|}}Retiré des groupes $1",
+	"logentry-rights-rights-granted": "{{GENDER:$2|}}Ajout de $1",
+	"logentry-rights-rights-revoked": "{{GENDER:$2|}}retrait de $1",
 	"logentry-rights-rights-expiry-changed": "{{GENDER:$2|}}Expiration des droits $1",
-	"logentry-rights-rights-kept": "{{GENDER:$2|}}$1 inchangé",
+	"logentry-rights-rights-kept": "{{GENDER:$2|Mantien}} de $1",
 	"logentry-rights-rights-legacy": "$1{{GENDER:$2|}} a modifié l’appartenance aux groupes pour $3",
 	"logentry-rights-autopromote": "Les groupes de $1 ont été {{GENDER:$2|}}mis à jour automatiquement : $7",
 	"logentry-rights-autopromote-granted": "{{GENDER:$2|}}Droit obtenu $1",

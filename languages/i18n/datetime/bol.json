@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"El-hussain14",
-			"Mbfika"
+			"Mbfika",
+			"RAPTOR7762"
 		]
 	},
 	"january": "Janairu",
@@ -50,10 +51,10 @@
 	"sunday": "Laadi",
 	"mon": "Lit",
 	"tue": "Tal",
-	"wed": "Laa",
+	"wed": "Lar",
 	"thu": "Ala",
 	"fri": "Juu",
 	"sat": "Sub",
-	"sun": "Laa",
+	"sun": "Lad",
 	"duration-days": "$1 {{PLURAL:$1|inso|sambodi}}"
 }

@@ -350,7 +350,7 @@
 	"search-relatedarticle": "Галкlанавай",
 	"searchrelated": "Галкlанавай",
 	"searchall": "вири",
-	"search-showingresults": "{{PLURAL:$4|Нетижа <strong>$1</strong> <strong>$3</strong>-диз|Нетижаяр <strong>$1 – $2</strong> <strong>$3</strong>-диз}}",
+	"search-showingresults": "{{PLURAL:$4|1=Нетижа <strong>$1</strong> <strong>$3</strong>-диз|Нетижаяр <strong>$1 – $2</strong> <strong>$3</strong>-диз}}",
 	"search-nonefound": "Тlалабдив кьадай са нетижани жагъанвач.",
 	"powersearch-legend": "Гегьенш жугъурун",
 	"powersearch-ns": "Жугъурун тlварарин генгвилера:",

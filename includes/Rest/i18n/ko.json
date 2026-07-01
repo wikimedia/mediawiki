@@ -78,7 +78,7 @@
 	"rest-unsupported-transform-input": "지원되지 않는 입력: $1",
 	"rest-bad-etag": "잘못된 ETag: $1",
 	"rest-no-stashed-content": "$1에 해당하는 저장된 콘텐츠를 찾을 수 없습니다. 이는 편집 세션이 만료되었기 때문일 가능성이 높습니다. 변경 내용을 복사한 후 페이지를 새로고침하고 다시 시도해 보세요.",
-	"rest-unsupported-profile-version": "지원되지 않는 프로파일 버전: $1",
+	"rest-unsupported-profile-version": "지원되지 않는 프로필 버전: $1",
 	"rest-no-json-decode": "페이로드가 JSON을 배열로 디코딩하지 않습니다.",
 	"rest-parsoid-unsupported-media": "지원하지 않는 미디어 유형",
 	"rest-missing-revision-html": "누락된 판 HTML",

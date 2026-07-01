@@ -4154,6 +4154,7 @@
 	"right-renameuser-global": "Global Benutzer umbenennen",
 	"renameuser-renamed-notice": "{{GENDER:$1|Dieser Benutzer|Diese Benutzerin}} wurde umbenannt.\nDas Umbenennungsprotokoll ist unten als Referenz angegeben.",
 	"log-unknown-action": "führte eine unbekannte Aktion „$2“ auf [[$1]] aus",
+	"log-unsafe-logentry": "(Dieser Logbucheintrag konnte nicht angezeigt werden, da seine Parameter unsichere serialisierte Daten enthalten.)",
 	"createacct-benefit-heading-temp-user": "Vielen Dank für deinen Beitrag zu {{SITENAME}}.\nErstelle ein Konto, um auf weitere Funktionen zuzugreifen.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} wird von Leuten wie dir erstellt. Mit einem Konto erhältst du eine dauerhafte und sichere Identität mit Zugriff auf Funktionen wie:",
 	"benefit-1-description": "Beobachtungslisten, mit denen du den Überblick über die Seiten behältst, die dich interessieren.",
