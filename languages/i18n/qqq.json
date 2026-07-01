@@ -3562,6 +3562,7 @@
 	"tags-create-already-exists": "Error message on [[Special:Tags]]",
 	"tags-create-warnings-above": "Explanation placed before warning messages upon creating a tag.\n\nParameters:\n* $1 - the code name of the tag that the user is attempting to create\n* $2 - the number of warnings",
 	"tags-create-warnings-below": "Question placed after warning messages upon creating a tag.",
+	"tags-create-reserved-prefix": "Error message on [[Special:Tags]] shown when a user tries to create a tag whose name uses the reserved prefix for restricted tags.\n\nParameters:\n* $1 - the reserved prefix.",
 	"tags-delete-title": "The title of a page used to delete a tag. For more information on tags see [[mw:Manual:Tags|MediaWiki]].",
 	"tags-delete-explanation-initial": "The first paragraph of an explanation to tell users what they are about to do.\n\nParameters:\n* $1 - the code name of the tag that is about to be deleted",
 	"tags-delete-explanation-in-use": "\"It\" refers to a tag.\n\nThis is the second paragraph (not always shown) of an explanation to tell users what they are about to do. The first paragraph is probably {{msg-mw|tags-delete-explanation-initial}}.\n\nParameters:\n* $1 - the code name of the tag that is about to be deleted\n* $2 - the number of places the tag is used. The value is the sum of (revisions + log entries) where the tag is used.",

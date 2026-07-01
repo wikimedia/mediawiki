@@ -866,4 +866,36 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $out );
 	}
 
+	/** @dataProvider provideIsTagNameValid */
+	public function testIsTagNameValid( string $tag, ?string $expectedFatalErrorMessage ): void {
+		$actualStatus = ChangeTags::isTagNameValid( $tag );
+		if ( $expectedFatalErrorMessage === null ) {
+			$this->assertStatusGood( $actualStatus );
+		} else {
+			$this->assertStatusError( $expectedFatalErrorMessage, $actualStatus );
+		}
+	}
+
+	public static function provideIsTagNameValid(): array {
+		return [
+			'Valid tag' => [ 'tag' => 'tag1', 'expectedFatalErrorMessage' => null ],
+			'Empty tag' => [ 'tag' => '', 'expectedFatalErrorMessage' => 'tags-create-no-name' ],
+			'Tag with comma' => [ 'tag' => 'tag,1', 'expectedFatalErrorMessage' => 'tags-create-invalid-chars' ],
+			'Tag with pipe' => [ 'tag' => 'tag|1', 'expectedFatalErrorMessage' => 'tags-create-invalid-chars' ],
+			'Tag with slash' => [ 'tag' => 'tag/1', 'expectedFatalErrorMessage' => 'tags-create-invalid-chars' ],
+			'Tag matching restricted tag prefix' => [
+				'tag' => 'mw-private-',
+				'expectedFatalErrorMessage' => 'tags-create-reserved-prefix',
+			],
+			'Restricted tag' => [
+				'tag' => 'mw-private-tag',
+				'expectedFatalErrorMessage' => 'tags-create-reserved-prefix',
+			],
+			'Tag with some but not all of the restricted tag prefix' => [
+				'tag' => 'mw-private',
+				'expectedFatalErrorMessage' => null,
+			],
+		];
+	}
+
 }

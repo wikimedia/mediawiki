@@ -998,6 +998,11 @@ class ChangeTags {
 			return Status::newFatal( 'tags-create-invalid-title-chars' );
 		}
 
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		if ( $changeTagsStore->isRestrictedTag( $tag ) ) {
+			return Status::newFatal( 'tags-create-reserved-prefix', ChangeTagsStore::PRIVATE_TAG_PREFIX );
+		}
+
 		return Status::newGood();
 	}
 

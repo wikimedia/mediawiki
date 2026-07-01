@@ -79,6 +79,16 @@ class ChangeTagsStore {
 		'mw-edited-other-users-css',
 	];
 
+	/**
+	 * Reserved name prefix for rights-restricted change tags. A tag whose name
+	 * starts with this prefix cannot be defined by users and are only visible
+	 * to users with the required right.
+	 *
+	 * @internal Use {@link ChangeTagsStore::isRestrictedTag()} to check if a tag is restricted.
+	 *   Only public for use by {@link ChangeTags}.
+	 */
+	public const string PRIVATE_TAG_PREFIX = 'mw-private-';
+
 	private IConnectionProvider $dbProvider;
 	private LoggerInterface $logger;
 	private ServiceOptions $options;
@@ -556,6 +566,15 @@ class ChangeTagsStore {
 			}
 		}
 		return $tagIds;
+	}
+
+	/**
+	 * Returns whether the given tag name is a restricted (private-prefixed) tag.
+	 *
+	 * @since 1.47
+	 */
+	public function isRestrictedTag( string $tag ): bool {
+		return str_starts_with( $tag, self::PRIVATE_TAG_PREFIX );
 	}
 
 	/**

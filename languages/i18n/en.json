@@ -3281,6 +3281,7 @@
 	"tags-create-already-exists": "The tag \"$1\" already exists.",
 	"tags-create-warnings-above": "The following {{PLURAL:$2|warning was|warnings were}} encountered when attempting to create the tag \"$1\":",
 	"tags-create-warnings-below": "Do you wish to continue creating the tag?",
+	"tags-create-reserved-prefix": "Tag names must not begin with \"$1\", which is reserved for restricted tags defined by the software or extensions.",
 	"tags-delete-title": "Delete tag",
 	"tags-delete-explanation-initial": "You are about to delete the tag \"$1\" from the database.",
 	"tags-delete-explanation-in-use": "It will be removed from {{PLURAL:$2|$2 revision or log entry|all $2 revisions and/or log entries}} to which it is currently applied.",
