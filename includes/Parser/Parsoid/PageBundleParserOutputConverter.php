@@ -274,7 +274,7 @@ final class PageBundleParserOutputConverter {
 		}
 		$revId = $parserOutput->getCacheRevisionId();
 		$revRecord = null;
-		if ( $revId ) {
+		if ( $revId && ( $title === null || $title->canExist() ) ) {
 			$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 			$revRecord = $revLookup->getRevisionById( $revId, 0, $title );
 		}

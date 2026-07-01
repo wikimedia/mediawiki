@@ -116,33 +116,60 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 		);
 	}
 
-	/** @dataProvider provideMetadata */
-	public function testMetadata( TitleValue $title, array $expected ) {
+	private static function assertMetaExists( $doc, string $key ): void {
+		self::assertNotNull(
+			DOMCompat::querySelector( $doc, "meta[property=\"mw:$key\"]" ),
+			"meta mw:$key should be present"
+		);
+	}
+
+	private static function assertMetaAbsent( $doc, string $key ): void {
+		self::assertNull(
+			DOMCompat::querySelector( $doc, "meta[property=\"mw:$key\"]" ),
+			"meta mw:$key should be absent"
+		);
+	}
+
+	public function testMetadataProperPage() {
+		$page = $this->getExistingTestPage();
+		$parserOutput = self::getParserOutput( HtmlPageBundle::newEmpty( 'hello world' ), $page->getTitle() );
+		$parserOutput->setCacheRevisionId( $page->getRevisionRecord()->getId() );
+		$siteConfig = new MockSiteConfig( [] );
+		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+			$parserOutput, $siteConfig, bodyOnly: false,
+		);
+		$doc = DOMUtils::parseHTML( $pb->html, validateXMLNames: true );
+		self::assertMetaExists( $doc, 'pageId' );
+		self::assertMetaExists( $doc, 'pageNamespace' );
+		self::assertMetaExists( $doc, 'revisionSHA1' );
+	}
+
+	public function testMetadataSpecialPage() {
+		$title = new TitleValue( NS_SPECIAL, "SpecialPage" );
 		$parserOutput = self::getParserOutput( HtmlPageBundle::newEmpty( 'hello world' ), $title );
 		$siteConfig = new MockSiteConfig( [] );
 		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
 			$parserOutput, $siteConfig, bodyOnly: false,
 		);
 		$doc = DOMUtils::parseHTML( $pb->html, validateXMLNames: true );
-		foreach ( $expected as $key => $expectedContent ) {
-			$meta = DOMCompat::querySelector( $doc, "meta[property=\"mw:$key\"]" );
-			if ( $expectedContent === null ) {
-				$this->assertNull( $meta, "meta mw:$key should be absent" );
-			} else {
-				$this->assertEquals( $expectedContent, $meta->getAttribute( 'content' ), "meta mw:$key" );
-			}
-		}
+		self::assertMetaAbsent( $doc, 'pageId' );
+		self::assertMetaAbsent( $doc, 'pageNamespace' );
+		self::assertMetaAbsent( $doc, 'revisionSHA1' );
 	}
 
-	public static function provideMetadata() {
-		yield 'proper page adds pageId and pageNamespace in meta' => [
-			new TitleValue( NS_MAIN, 'Main_Page' ),
-			[ 'pageId' => '0', 'pageNamespace' => '0' ],
-		];
-		yield 'special page skips pageId and pageNamespace in meta' => [
-			new TitleValue( NS_SPECIAL, 'Foo' ),
-			[ 'pageId' => null, 'pageNamespace' => null ],
-		];
+	public function testMetadataBogusPage() {
+		$page = $this->getExistingTestPage();
+		$bogusTitle = new TitleValue( NS_SPECIAL, "BogusPage" );
+		$parserOutput = self::getParserOutput( HtmlPageBundle::newEmpty( 'hello world' ), $bogusTitle );
+		$parserOutput->setCacheRevisionId( $page->getRevisionRecord()->getId() );
+		$siteConfig = new MockSiteConfig( [] );
+		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+			$parserOutput, $siteConfig, bodyOnly: false,
+		);
+		$doc = DOMUtils::parseHTML( $pb->html, validateXMLNames: true );
+		self::assertMetaAbsent( $doc, 'pageId' );
+		self::assertMetaAbsent( $doc, 'pageNamespace' );
+		self::assertMetaAbsent( $doc, 'revisionSHA1' );
 	}
 
 	public static function provideHtmlPageBundleFromParserOutputAsFullDocument() {
