@@ -2168,7 +2168,7 @@
 	"watchlistlabels-editpage-label": "[[Special:WatchlistLabels|Метки списка наблюдения]]:",
 	"watchlistlabels-editpage-help": "Добавьте метки списка наблюдения, чтобы упростить процесс отслеживания изменений.",
 	"watchlistlabels-editpage-nolabels": "У вас нет [[Special:WatchlistLabels|меток списка наблюдения]].",
-	"watchlistlabels-editpage-placeholder": "Выберите метки списка наблюдения",
+	"watchlistlabels-editpage-placeholder": "Выбрать метки списка наблюдения",
 	"watchlist-filters-labels-title": "Метки",
 	"watchlist-filters-labels-list-title": "Метки списка наблюдения",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>не</strong> =$1",

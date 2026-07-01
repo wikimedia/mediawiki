@@ -1682,7 +1682,7 @@
 	"mailnologin": "Chomlec'h kaser ebet",
 	"mailnologintext": "Ret eo deoc'h bezañ [[Special:UserLogin|kevreet]]\nha kaout ur chomlec'h postel kadarnaet en ho [[Special:Preferences|penndibaboù]]\nevit gallout kas ur postel d'un implijer all.",
 	"emailuser": "Kas ur postel d'an implijer-mañ",
-	"emailuser-title-target": "Kas ur postel d'an {{PLURAL:$1|an implijer-mañ|an implijerez-mañ}}",
+	"emailuser-title-target": "Kas ur postel d'an {{GENDER:$1|mplijer|implijerez}}-mañ",
 	"emailuser-title-notarget": "Kas ur postel d'un implijer",
 	"emailpagetext": "Gallout a rit ober gant ar furmskrid a-is a-benn kas ur postel d'an {{GENDER:$1|implijer|implijerez}}-mañ.\nEr postel e vo merket ar chomlec'h postel lakaet ganeoc'h en ho [[Special:Preferences|Penndibaboù]] evit ma c’hallo ar resever respont deoc'h war-eeun.",
 	"defemailsubject": "Postel kaset eus {{SITENAME}} gant an implijer \"$1\"",

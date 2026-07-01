@@ -1782,7 +1782,7 @@
 	"watchlistlabels-list-wrapper": "[[Special:WatchlistLabels|نښکې]]: $1",
 	"watchlistlabels-watchaction-label": "کتلړ نښکې:",
 	"watchlistlabels-editpage-label": "[[Special:WatchlistLabels|د کتنلړ نښکې]]:",
-	"watchlistlabels-editpage-placeholder": "د کتنلړ نېکې غوره‌کوف",
+	"watchlistlabels-editpage-placeholder": "د کتنلړ نښکې غوره‌کول",
 	"watchlist-filters-labels-title": "نښکې",
 	"watchlist-filters-labels-list-title": "کتلړ نښکې",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>نه</strong> =$1",

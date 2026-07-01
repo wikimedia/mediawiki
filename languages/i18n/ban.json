@@ -424,6 +424,7 @@
 	"pt-login": "Manjing log",
 	"pt-login-button": "Manjing log",
 	"pt-login-continue-button": "Lanturang manjing log.",
+	"pt-login-reauth-button": "Lanturang",
 	"pt-createaccount": "Kardi akun",
 	"pt-userlogout": "Medal log",
 	"php-mail-error-unknown": "Galat sané nénten kauningin ring kawiguna mail() PHP",
