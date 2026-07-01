@@ -700,6 +700,7 @@ return [
 					],
 				],
 			],
+			'EnableSectionShare' => false,
 			'UseCombinedLoginLink' => false,
 			'Edititis' => false,
 			'Send404Code' => true,

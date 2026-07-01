@@ -5509,6 +5509,17 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Enable sharing links to sections. Next to edit section link.
+	 *
+	 * Wider roll out on Wikimedia blocked on T431514
+	 *
+	 * @unstable
+	 */
+	public const EnableSectionShare = [
+		'default' => false,
+	];
+
+	/**
 	 * Login / create account link behavior when it's possible for anonymous users
 	 * to create an account.
 	 *

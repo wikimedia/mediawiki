@@ -2033,6 +2033,12 @@ $wgExternalInterwikiFragmentMode = null;
 $wgFooterIcons = null;
 
 /**
+ * Config variable stub for the EnableSectionShare setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::EnableSectionShare
+ */
+$wgEnableSectionShare = null;
+
+/**
  * Config variable stub for the UseCombinedLoginLink setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::UseCombinedLoginLink
  */

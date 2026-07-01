@@ -3425,6 +3425,12 @@ config-schema:
                                 you can specify the size of image to use with these keys.
                                 Otherwise they will default to the standard 88x31.
             @todo Reformat documentation.
+    EnableSectionShare:
+        default: false
+        description: |-
+            Enable sharing links to sections. Next to edit section link.
+            Wider roll out on Wikimedia blocked on T431514
+            @unstable
     UseCombinedLoginLink:
         default: false
         description: |-

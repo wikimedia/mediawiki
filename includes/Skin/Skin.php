@@ -2015,6 +2015,26 @@ abstract class Skin extends ContextSource {
 			);
 			$newLinks[] = $component->getTemplateData();
 		}
+		$sectionShare = $this->getConfig()
+			->get( MainConfigNames::EnableSectionShare );
+		if ( $sectionShare ) {
+			$nt->setFragment( $sectionTitle );
+			$component = new SkinComponentLink(
+				'sectionshare', [
+				'icon' => 'share',
+				'class' => 'mw-section-share mw-selflink-fragment',
+				'text' => $this->msg( 'sharesection' )->inLanguage( $lang )->text(),
+				'targetTitle' => $nt,
+				'title' => $this->msg( 'sharesectionhint' )->plaintextParams( $sectionTitle )
+					->inLanguage( $lang )->text(),
+				'href' => Title::newFromLinkTarget( $nt )->getLinkURL( [
+					'wprov' => 'shaw1'
+				] ),
+				], $ctx, $options
+			);
+			$newLinks[] = $component->getTemplateData();
+		}
+
 		return $this->doEditSectionLinksHTML( $newLinks, $lang );
 	}
 

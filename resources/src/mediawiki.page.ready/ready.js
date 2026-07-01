@@ -3,6 +3,7 @@ const config = require( './config.json' );
 const teleportTarget = require( './teleportTarget.js' );
 const enableSearchDialog = require( './enableSearchDialog.js' );
 const clearAddressBar = require( './clearAddressBar.js' );
+const share = require( './share.js' );
 const { updateThumbnailsToPreferredSize } = require( './updateThumbnailsToPreferredSize.js' );
 
 // Break out of framesets
@@ -314,11 +315,28 @@ try {
 updateThumbnailsToPreferredSize( $( '#mw-content-text .mw-parser-output' ) );
 mw.hook( 'wikipage.content' ).add( updateThumbnailsToPreferredSize );
 
+$( document.body ).on( 'click', '.mw-heading a.mw-section-share', function ( event ) {
+	event.preventDefault();
+	const url = new URL( this.getAttribute( 'href' ), location );
+	let link = url.toString();
+	try {
+		// decodeURI() may throw
+		const decodedLink = decodeURI( link );
+		// Check that the decoded URL is parsed to the same canonical URL
+		// new URL() may throw
+		if ( new URL( decodedLink ).toString() === link ) {
+			link = decodedLink;
+		}
+	} catch ( err ) {}
+	share( { url: link } );
+} );
+
 /**
  * @exports mediawiki.page.ready
  */
 module.exports = {
 	config,
+	share,
 	clearAddressBar,
 	enableSearchDialog,
 	loadSearchModule,
