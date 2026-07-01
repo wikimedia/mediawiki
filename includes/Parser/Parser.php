@@ -5142,18 +5142,6 @@ class Parser {
 	 * Placeholders created in Linker::link()
 	 *
 	 * @param string &$text
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function replaceLinkHolders( &$text ) {
-		wfDeprecated( __METHOD__, '1.34' ); // warnings since 1.46
-		$this->replaceLinkHoldersPrivate( $text );
-	}
-
-	/**
-	 * Replace "<!--LINK-->" link placeholders with actual links, in the buffer
-	 * Placeholders created in Linker::link()
-	 *
-	 * @param string &$text
 	 */
 	private function replaceLinkHoldersPrivate( string &$text ): void {
 		$this->mLinkHolders->replace( $text );

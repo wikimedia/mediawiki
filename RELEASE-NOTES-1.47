@@ -295,6 +295,7 @@ because of Phabricator reports.
   ::addParserOutputMetadata().  That is, these flags are now set if *any*
   ParserOutput added to the page sets the flag; previously they were
   last-ParserOutput-wins.
+* Parser::replaceLinkHolders(), deprecated in 1.34, has been removed.
 * ContentHandler::getAutoDeleteReason() and WikiPage::getAutoDeleteReason()
   no longer accept the $hasHistory parameter. This parameter has been
   emitting warnings since 1.38 and has no replacement.
