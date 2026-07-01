@@ -1753,6 +1753,7 @@ return [
 			'teleportTarget.js',
 			'toggleAllCollapsibles.js',
 			'wprovStrip.js',
+			'share.js',
 			[ 'name' => 'config.json', 'callback' => static function (
 				Context $context,
 				Config $config
@@ -1787,7 +1788,8 @@ return [
 			'userlogout-temp-messagebox-body',
 			'userlogout-submit',
 			'temp-user-logout-confirm-title',
-			'logging-out-notify'
+			'logging-out-notify',
+			'sharesection-clipboard-message',
 		],
 		'skinStyles' => [
 			'default' => 'teleportTarget.less'

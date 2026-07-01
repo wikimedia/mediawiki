@@ -2048,6 +2048,12 @@ class MainConfigNames {
 	public const FooterIcons = 'FooterIcons';
 
 	/**
+	 * Name constant for the EnableSectionShare setting, for use with Config::get()
+	 * @see MainConfigSchema::EnableSectionShare
+	 */
+	public const EnableSectionShare = 'EnableSectionShare';
+
+	/**
 	 * Name constant for the UseCombinedLoginLink setting, for use with Config::get()
 	 * @see MainConfigSchema::UseCombinedLoginLink
 	 */
