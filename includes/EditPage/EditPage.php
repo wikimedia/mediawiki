@@ -3449,7 +3449,7 @@ class EditPage implements IEditObject {
 	 * Get parser options for a preview
 	 */
 	protected function getPreviewParserOptions(): ParserOptions {
-		$parserOptions = $this->page->makeParserOptions( $this->context );
+		$parserOptions = $this->mArticle->getParserOptions();
 		$parserOptions->setRenderReason( 'page-preview' );
 		$parserOptions->setIsPreview( true );
 		$parserOptions->setIsSectionPreview( $this->section !== '' );
