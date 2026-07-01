@@ -116,6 +116,35 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 		);
 	}
 
+	/** @dataProvider provideMetadata */
+	public function testMetadata( TitleValue $title, array $expected ) {
+		$parserOutput = self::getParserOutput( HtmlPageBundle::newEmpty( 'hello world' ), $title );
+		$siteConfig = new MockSiteConfig( [] );
+		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+			$parserOutput, $siteConfig, bodyOnly: false,
+		);
+		$doc = DOMUtils::parseHTML( $pb->html, validateXMLNames: true );
+		foreach ( $expected as $key => $expectedContent ) {
+			$meta = DOMCompat::querySelector( $doc, "meta[property=\"mw:$key\"]" );
+			if ( $expectedContent === null ) {
+				$this->assertNull( $meta, "meta mw:$key should be absent" );
+			} else {
+				$this->assertEquals( $expectedContent, $meta->getAttribute( 'content' ), "meta mw:$key" );
+			}
+		}
+	}
+
+	public static function provideMetadata() {
+		yield 'proper page adds pageId and pageNamespace in meta' => [
+			new TitleValue( NS_MAIN, 'Main_Page' ),
+			[ 'pageId' => '0', 'pageNamespace' => '0' ],
+		];
+		yield 'special page skips pageId and pageNamespace in meta' => [
+			new TitleValue( NS_SPECIAL, 'Foo' ),
+			[ 'pageId' => null, 'pageNamespace' => null ],
+		];
+	}
+
 	public static function provideHtmlPageBundleFromParserOutputAsFullDocument() {
 		$po = self::getParserOutput(
 			new HtmlPageBundle(
