@@ -4,22 +4,49 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
 
-== MediaWiki 1.46.0-PRERELEASE ==
+== MediaWiki 1.46.0 ==
 
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.46 is an alpha-quality development branch, and is not recommended
-for use in production.
+=== Changes since MediaWiki 1.46.0-rc.0 ===
+* Localisation updates.
+* (T425818) changePassword: Log password change to authentication log.
+* changePassword: Add reason option for password change.
+* (T427622) Store indicators in ContentHolder: forward compatibility.
+* (T421366) Email confirmation banner: Remove obsolete arm_b variant.
+* (T428289) Email confirmation banner: Remove Test Kitchen A/B test scaffolding.
+* (T428406) LocalFileMoveBatch: Also update fr_archive_name when moving file.
+* (T429826) Updated guzzlehttp/guzzle from 7.10.0 to 7.12.1.
+* (T423617) Check the target url for redirects are allowed.
+* (T429965) Updated guzzlehttp/guzzle from 7.12.1 to 7.12.3.
+* (T428809, CVE-2026-58035) SECURITY: Parse message using v-i18n-html instead of
+  using v-html.
+* (T383047) Mail: Extract sendWithMailFunction() from UserMailer::send().
+* (T429720) FileRepo: Fix typos in schema compatibility checks.
+* (T383047) Mail: Log PHP mail() send failures with recipient count.
+* (T425406, CVE-2026-58036) SECURITY: Fix ApiQueryUsers leaking status of
+  private user conditions for user.
+* (T422306, CVE-2026-58028) SECURITY: Disallow user JS in pretty-print api.php
+  responses.
+* (T427235, CVE-2026-58033) SECURITY: Exclude rev-deleted usernames from
+  distinct authors query.
+* (T426867, CVE-2026-58032) SECURITY: mw.Api.getErrorMessage: Treat
+  formatversion=1 as text.
+* (T299359, CVE-2026-58026) SECURITY: Make sure the actual title that's being
+  transcluded is includable.
+* (T422085, CVE-2026-58024) SECURITY: Restrict interwiki user lookup in
+  ApiUserrights.
+* (T422676, CVE-2026-58029) SECURITY: Check for editmyprivateinfo right in more
+  places.
+* (T422995, CVE-2026-58037) SECURITY: LogFormatter: 'raw' parameter format is no
+  longer raw HTML.
+* (T422244, CVE-2026-58025) SECURITY: Safely unserialize log entry parameters.
+* (T424462) tests: Limit ResourcesTest::testRespond to general-purpose skins
+* (T424462) tests: loop modules inside ResourcesTest::testRespond
 
 == Upgrading notes for 1.46 ==
 Don't forget to always back up your database before upgrading!
 
 See the file UPGRADE for more detailed per-version upgrade instructions from the
 oldest supported upgrading version, MediaWiki 1.39.
-
-Some specific notes for MediaWiki 1.46 upgrades are below:
-
-* …
 
 For notes on 1.45.x and older releases, see HISTORY.
 
@@ -29,7 +56,6 @@ For notes on 1.45.x and older releases, see HISTORY.
 * $wgSVGConverter presets sodipodi and imgserv were removed
 * (T246054) $wgLogos['1.5x'] is no longer used. Devices that previously
   displayed the 1.5x logo will use $wgLogos['1x'] instead.
-* …
 
 ==== New configuration ====
 
@@ -47,7 +73,6 @@ For notes on 1.45.x and older releases, see HISTORY.
   be disabled. This avoids users who have access to recent changes but no
   access to a particular namespace from reading contents of limited pages
   from edit summaries.
-* …
 
 ==== Changed configuration ====
 
@@ -62,7 +87,6 @@ For notes on 1.45.x and older releases, see HISTORY.
   user thumbsize option is an index into this list (currently, '5'), this
   has the effect of changing the user default thumbnail size from 300px
   to 250px; again matching current WMF production defaults.
-* …
 
 ==== Removed configuration ====
 
@@ -70,7 +94,6 @@ For notes on 1.45.x and older releases, see HISTORY.
 * $wgBlockTargetMigrationStage, ignored since 1.43, has now been fully removed.
 * (T413867) $wgEnableSpecialMute and $wgEnableUserEmailMuteList feature flags
   have been removed.
-* …
 
 === New user-facing features in 1.46 ===
 
@@ -90,7 +113,6 @@ For notes on 1.45.x and older releases, see HISTORY.
 * (T413867) Special:Mute is always unconditionally enabled.
 * (T381455) Special:NamespaceInfo will now display aliases defined through
   $wgNamespaceAliases.
-* …
 
 === New features for sysadmins in 1.46 ===
 
@@ -104,7 +126,6 @@ For notes on 1.45.x and older releases, see HISTORY.
 * A new "postprocessing" cache has been added in addition to the parser cache.
   This is enabled by default for Parsoid but not for the legacy parser; use
   $wgParserCacheFilterConfig to enable or disable use of this new cache.
-* …
 
 === New developer features in 1.46 ===
 
@@ -118,7 +139,6 @@ For notes on 1.45.x and older releases, see HISTORY.
 * The LinkerMakeExternalLinkWithContext hook has been added as an improved and
   slightly modernized version of the LinkerMakeExternalLink hook.  Developers
   are encouraged to migrate to the new hook.
-* …
 
 === External library changes in 1.46 ===
 
@@ -126,12 +146,10 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 * Added okvpn/clock-lts at 1.0.0 to over-ride lcobucci/clock.
 * Added wikimedia/language-data composer library at v1.1.13.
-* …
 
 ===== New development-only external libraries =====
 
 * Added ergebnis/phpunit-slow-test-detector v2.24.0.
-* …
 
 ==== Changed external libraries ====
 
@@ -163,7 +181,6 @@ For notes on 1.45.x and older releases, see HISTORY.
 * Updated wikimedia/wrappedstring from 4.0.1 to 4.1.0.
 * Updated wikimedia/xmp-reader from 0.10.2 to 0.10.3.
 * Updated CLDRPluralRuleParser from v1.3.2-pre to v1.6.5.
-* …
 
 ===== Changed development-only external libraries =====
 
@@ -179,22 +196,15 @@ For notes on 1.45.x and older releases, see HISTORY.
 * Updated svgo from 3.3.2 to 3.3.3.
 * Updated symfony/yaml from 6.4.25 to 6.4.26.
 * Updated wikimedia/alea from 1.0.0 to 1.0.1.
-* …
 
 ==== Removed external libraries ====
 
 * Removed symfony/polyfill-php82.
 * Removed symfony/polyfill-php83.
-* …
 
 ===== Removed development-only external libraries =====
 
 * Dropped johnkary/phpunit-speedtrap, incompatible with PHPUnit 10+. (T328919)
-* …
-
-=== Bug fixes in 1.46 ===
-
-* …
 
 === Action API changes in 1.46 ===
 
@@ -216,7 +226,6 @@ For notes on 1.45.x and older releases, see HISTORY.
   in your ::execute() method will then ensure that a consistent message
   is reported in API results as well.
   See ApiQueryDeletedrevs.php for an example of this best practice.
-* …
 
 === Languages updated in 1.46 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -229,7 +238,6 @@ because of Phabricator reports.
 * (T411884) Added language support for Nawat (ppl).
 * (T419373) Added language support for Lakota (lkt).
 * (T423174) Added language support for East Frisian Low Saxon (frs).
-* …
 
 === Breaking changes in 1.46 ===
 
@@ -385,7 +393,6 @@ because of Phabricator reports.
 * EditPage::$textbox2, deprecated in 1.44, was removed.
 * TextConflictHelper::incrementStatsByUserEdits(), deprecated in 1.42, was
   removed.
-* …
 
 === Deprecations in 1.46 ===
 
@@ -1164,11 +1171,6 @@ because of Phabricator reports.
   using `wfMessage( 'percent' )->numParams( round( $x, 2 ) )->text()`.
 * The EditFilter hook has been deprecated and will trigger deprecation warnings.
   Use EditFilterMergedContent or MultiContentSave instead.
-* …
-
-=== Other changes in 1.46 ===
-
-* …
 
 == Compatibility ==
 
