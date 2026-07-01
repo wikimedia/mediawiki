@@ -508,13 +508,8 @@ abstract class Maintenance {
 	 * this for non-error output
 	 * @stable to override
 	 * @param string|StatusValue $err The error to display
-	 * @param int $die Deprecated since 1.31, use Maintenance::fatalError() instead
 	 */
-	protected function error( $err, $die = 0 ) {
-		if ( intval( $die ) !== 0 ) {
-			wfDeprecated( __METHOD__ . '( $err, $die )', '1.31' );
-			$this->fatalError( $err, intval( $die ) );
-		}
+	protected function error( $err ) {
 		if ( $err instanceof StatusValue ) {
 			foreach ( [ 'warning' => 'Warning: ', 'error' => 'Error: ' ] as $type => $prefix ) {
 				foreach ( $err->getMessages( $type ) as $msg ) {

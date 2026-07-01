@@ -288,6 +288,8 @@ because of Phabricator reports.
   Passing null was deprecated in 1.46.
 * Passing a performer to UploadBase::checkWarnings is mandatory now. Passing
   null was deprecated in 1.46.
+* Maintenance::error() no longer accepts a $die argument. This behaviour
+  was deprecated in 1.31. Use Maintenance::fatalError() instead.
 * OutputPage::showNewSectionLink(), ::forceHideNewSectionLink(), and
   ::noGallery() are now merged like all other ParserOutput flags in
   ::addParserOutputMetadata().  That is, these flags are now set if *any*
