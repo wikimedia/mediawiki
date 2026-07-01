@@ -684,12 +684,6 @@ class DatabaseSqlite extends Database {
 	}
 
 	/** @inheritDoc */
-	public function doLockIsFree( string $lockName, string $method ) {
-		// Only locks by this thread will be checked
-		return true;
-	}
-
-	/** @inheritDoc */
 	public function doLock( string $lockName, string $method, int $timeout ) {
 		$status = $this->lockMgr->lock( [ $lockName ], LockManager::LOCK_EX, $timeout );
 		if (
