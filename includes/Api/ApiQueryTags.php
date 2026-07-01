@@ -101,8 +101,6 @@ class ApiQueryTags extends ApiQueryBase {
 				$tag['source'] = [];
 				if ( $isSoftware ) {
 					$tag['source'][] = 'software';
-					// @TODO: remove backwards compatibility entry (T247552)
-					$tag['source'][] = 'extension';
 				}
 				if ( $isExplicit ) {
 					$tag['source'][] = 'manual';

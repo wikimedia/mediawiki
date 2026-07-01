@@ -178,6 +178,8 @@ For notes on 1.46.x and older releases, see HISTORY.
 * (T426802) prop=imageinfo now includes timestamp, user, size, and comment
   fields for file revisions where the file blob is missing from storage,
   alongside the existing "filemissing" flag.
+* (T247552) list=tags no longer includes "extension" alongside "software" for
+  the 'source' prop in results. The deprecated "extension" source was removed.
 * The `action=parse` API has a new `prop=parseroutput` parameter.
   This returns the JSON serialization of the ParserOutput.  This API
   is marked internal as there are no guarantees about the format of
