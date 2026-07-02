@@ -1915,6 +1915,7 @@
 	"apierror-permissiondenied-generic": "Toegang geweigerd.",
 	"apierror-permissiondenied-patrolflag": "Om de status van controleur aan te vragen, hebt u het recht <code>patrol</code> of <code>patrolmarks</code> nodig.",
 	"apierror-permissiondenied-unblock": "U hebt geen rechten om gebruikers te deblokkeren.",
+	"apierror-permissiondenied-userrights-interwiki": "U hebt geen toestemming om gebruikersrechten op andere wiki’s te wijzigen.",
 	"apierror-prefixsearchdisabled": "Zoeken op voorvoegsel is uitgeschakeld in de besparingsmodus.",
 	"apierror-promised-nonwrite-api": "De HTTP-header <code>Promise-Non-Write-API-Action</code> kan niet worden verzonden naar API-modules die in schrijfmodus werken.",
 	"apierror-protect-invalidaction": "Onjuist beveiligingstype \"$1\".",

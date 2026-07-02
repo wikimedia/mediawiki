@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Muhamad Izzul Fiqih",
 			"Pitchrigi"
 		]
 	},
@@ -40,19 +41,19 @@
 	"oct": "Okt",
 	"nov": "Nov",
 	"dec": "Des",
-	"monday": "Senin",
+	"monday": "Senen",
 	"tuesday": "Selaso",
-	"wednesday": "Rabu",
-	"thursday": "Kamis",
+	"wednesday": "Rebo",
+	"thursday": "Kemis",
 	"friday": "Jumat",
 	"saturday": "Sabtu",
-	"sunday": "Minggu",
+	"sunday": "Ahad",
 	"mon": "Sen",
 	"tue": "Sel",
-	"wed": "Rab",
-	"thu": "Kam",
+	"wed": "Reb",
+	"thu": "Kem",
 	"fri": "Jum",
 	"sat": "Sab",
-	"sun": "Min",
+	"sun": "Ahd",
 	"duration-days": "$1 {{PLURAL:$1|ari}}"
 }

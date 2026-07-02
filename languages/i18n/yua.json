@@ -45,7 +45,7 @@
 	"category_header": "Paagina ichille kategoriya $1",
 	"subcategories": "Subkategoriyaso'ob",
 	"category-media-header": "Meedia ichil le kategoriiya: $1",
-	"category-empty": "<em>Le categooria nanti' bix junp'el waal wa archivóo</em>",
+	"category-empty": "<em>Le categooriaa' na'an ti' mix jump'éel wáal wa archivóo.</em>",
 	"hidden-categories": "{{PLURAL:$1|Ta'aka'an Categoriáa|Ta'aka'an Categoriáaob}}",
 	"hidden-category-category": "jejeláasil p´íisilo´ob",
 	"category-subcat-count": "{{PLURAL:$2| In meyaj ts´íib ich maaya t´áan chen ku bisik {{PLURAL:$1}} ichil jun p´éel u kaabalil $2 p´iisil}}",

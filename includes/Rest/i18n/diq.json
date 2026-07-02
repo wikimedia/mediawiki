@@ -34,5 +34,6 @@
 	"rest-param-desc-media-links-title": "Nameyê dosya",
 	"rest-param-desc-media-file-title": "Nameyê dosya",
 	"rest-property-desc-page-language-code": "Kodê zıwani",
-	"rest-schema-desc-search-results": "Peyniya cıgeyrayışi"
+	"rest-schema-desc-search-results": "Peyniya cıgeyrayışi",
+	"rest-property-desc-templateinfo-name": "Nameyê şabloni"
 }
