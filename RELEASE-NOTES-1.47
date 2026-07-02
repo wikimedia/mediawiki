@@ -94,6 +94,9 @@ For notes on 1.46.x and older releases, see HISTORY.
   modules. See MediaWiki\Rest\Module\AudienceDesignation for details. Modules
   requiring a different behavior mode can use the new RestModuleOverrides
   configuration variable.
+* (T423058) The "site.v1" and "specs.v0" REST modules are now enabled by
+  default. They can be disabled by using the new RestModuleOverrides
+  configuration variable.
 * (T412542) The UrlUtils class now has an option to allow any URL protocol:
   `UrlUtils::VALID_PROTOCOLS => UrlUtils::ALL_PROTOCOLS`.
 * (T386456) A new hook ListRestrictedTags allows defining which right(s)
