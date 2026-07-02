@@ -83,7 +83,9 @@ class MwSql extends Maintenance {
 		}
 
 		if ( $this->hasArg( 0 ) ) {
-			$file = fopen( $this->getArg( 0 ), 'r' );
+			// T430985
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$file = @fopen( $this->getArg( 0 ), 'r' );
 			if ( !$file ) {
 				$this->fatalError( "Unable to open input file" );
 			}
