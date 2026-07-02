@@ -124,6 +124,7 @@ For notes on 1.46.x and older releases, see HISTORY.
 * Updated OOUI from v0.53.2 to v0.54.0
 * Updated pinia from 2.0.16 to 3.0.4.
 * Updated @pinia/testing from 0.0.12 to 1.0.3.
+* Updated wikimedia/shellbox from 4.4.0 to 4.5.2.
 * …
 
 ===== Changed development-only external libraries =====
