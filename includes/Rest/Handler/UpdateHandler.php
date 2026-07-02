@@ -50,6 +50,7 @@ class UpdateHandler extends EditHandler {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 				self::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-update-title' ),
+				self::PARAM_EXAMPLE => 'Wikipedia:Sandbox',
 			],
 		] + parent::getParamSettings();
 	}
@@ -63,19 +64,22 @@ class UpdateHandler extends EditHandler {
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-source' )
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-source' ),
+				Handler::PARAM_EXAMPLE => 'Hello, world!',
 			],
 			'comment' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-comment' )
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-comment' ),
+				Handler::PARAM_EXAMPLE => 'Testing out the REST API',
 			],
 			'content_model' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-contentmodel' )
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-contentmodel' ),
+				Handler::PARAM_EXAMPLE => 'wikitext',
 			],
 			'latest' => [
 				self::PARAM_SOURCE => 'body',
@@ -85,7 +89,11 @@ class UpdateHandler extends EditHandler {
 					[ 'id' => 'integer' ],
 					[ 'timestamp' => 'string' ], // from GET response, will be ignored
 				),
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-update-latest' )
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-update-latest' ),
+				Handler::PARAM_EXAMPLE => [
+					'id' => 1347490218,
+					'timestamp' => '2026-04-07T01:20:41Z'
+				],
 			],
 		] + $this->getTokenParamDefinition();
 	}

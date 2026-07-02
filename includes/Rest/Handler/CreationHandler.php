@@ -33,25 +33,29 @@ class CreationHandler extends EditHandler {
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-source' )
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-source' ),
+				Handler::PARAM_EXAMPLE => 'Hello, world!',
 			],
 			'title' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-create-title' )
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-create-title' ),
+				Handler::PARAM_EXAMPLE => 'User:<my username>/Sandbox',
 			],
 			'comment' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-comment' )
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-comment' ),
+				Handler::PARAM_EXAMPLE => 'Testing out the REST API',
 			],
 			'content_model' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-contentmodel' )
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-contentmodel' ),
+				Handler::PARAM_EXAMPLE => 'wikitext',
 			],
 		]
 		+ $this->getTokenParamDefinition();

@@ -8,6 +8,7 @@ use MediaWiki\MainConfigSchema;
 use MediaWiki\Rest\Handler\OpenSearchDescriptionHandler;
 use MediaWiki\Rest\RequestData;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Rest\Handler\OpenSearchDescriptionHandler
@@ -45,6 +46,20 @@ class OpenSearchDescriptionHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertMatchesRegularExpression( '!^<\?xml!', $xml );
 		$this->assertMatchesRegularExpression( '!<OpenSearchDescription!', $xml );
 		$this->assertMatchesRegularExpression( '!<Url type="text/html" method="get" template=!', $xml );
+	}
+
+	public function testGenerateResponseSpec() {
+		$handler = $this->newHandler();
+		$wrapper = TestingAccessWrapper::newFromObject( $handler );
+		$spec = $wrapper->generateResponseSpec( 'GET' );
+
+		$this->assertSame( 'string',
+			$spec['200']['content']['application/opensearchdescription+xml']['schema']['type']
+		);
+		$this->assertStringContainsString(
+			'<OpenSearchDescription',
+			$spec['200']['content']['application/opensearchdescription+xml']['example']
+		);
 	}
 
 	// TODO: write tests for wgOpenSearchTemplates and the OpenSearchUrls hook.

@@ -24,6 +24,7 @@ use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMUtils;
+use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -170,6 +171,20 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '<!DOCTYPE html>', $htmlResponse );
 		$this->assertStringContainsString( '<html', $htmlResponse );
 		$this->assertStringContainsString( self::HTML, $htmlResponse );
+	}
+
+	public function testGenerateResponseSpecWithHtml() {
+		$handler = $this->newHandler();
+		$this->initHandler( $handler, new RequestData( [] ), [ 'format' => 'html' ] );
+		$wrapper = TestingAccessWrapper::newFromObject( $handler );
+		$spec = $wrapper->generateResponseSpec( 'GET' );
+
+		$this->assertArrayNotHasKey( 'application/json', $spec['200']['content'] );
+		$this->assertSame( 'string', $spec['200']['content']['text/html']['schema']['type'] );
+		$this->assertSame(
+			'<h2 id="mwAA">Hello world</h2>',
+			$spec['200']['content']['text/html']['example']
+		);
 	}
 
 	public static function provideWikiRedirect() {

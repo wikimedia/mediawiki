@@ -178,6 +178,10 @@ class OpenSearchDescriptionHandler extends Handler {
 		$spec = parent::generateResponseSpec( $method );
 
 		$spec['200']['content']['application/opensearchdescription+xml']['schema']['type'] = 'string';
+		$spec['200']['content']['application/opensearchdescription+xml']['example'] =
+			'<?xml version="1.0" encoding="UTF-8"?>'
+			. '<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">'
+			. '<Description>Example</Description></OpenSearchDescription>';
 
 		return $spec;
 	}

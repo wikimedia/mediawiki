@@ -186,6 +186,7 @@ abstract class EditHandler extends ActionModuleBasedHandler {
 				// Handler::parseBodyData(), and return a 415 if it is not present.
 				ParamValidator::PARAM_REQUIRED => true,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-contenttype' ),
+				Handler::PARAM_EXAMPLE => 'application/json',
 			],
 		];
 	}

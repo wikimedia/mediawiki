@@ -192,6 +192,7 @@ class PageHTMLHandler extends SimpleHandler {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-acceptlanguage' ),
+				Handler::PARAM_EXAMPLE => 'en',
 			],
 		];
 	}
@@ -206,6 +207,7 @@ class PageHTMLHandler extends SimpleHandler {
 		if ( $this->getOutputMode() == 'html' ) {
 			unset( $spec['200']['content']['application/json'] );
 			$spec['200']['content']['text/html']['schema']['type'] = 'string';
+			$spec['200']['content']['text/html']['example'] = '<h2 id="mwAA">Hello world</h2>';
 		}
 
 		return $spec;
