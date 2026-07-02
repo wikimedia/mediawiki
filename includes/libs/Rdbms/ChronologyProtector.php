@@ -302,7 +302,7 @@ class ChronologyProtector {
 		}
 
 		$cluster = $lb->getClusterName();
-		$masterName = $lb->getServerName( ServerInfo::WRITER_INDEX );
+		$primaryName = $lb->getServerName( ServerInfo::WRITER_INDEX );
 
 		// If LoadBalancer::hasStreamingReplicaServers is false (single DB host),
 		// or if the database type has no replication (i.e. SQLite), then we do not need to
@@ -314,20 +314,20 @@ class ChronologyProtector {
 		// In that case we still store a null value, so that ChronologyProtector::getTouched
 		// reliably detects recent writes for non-database purposes,
 		// such as ParserOutputAccess/PoolWorkArticleViewCurrent. This also makes getTouched()
-		// easier to setup and test, as we it work work always once CP is enabled
+		// easier to setup and test, as it will always work once CP is enabled
 		// (e.g. wgMicroStashType or wgMainCacheType set to a non-DB cache).
 		if ( $lb->hasStreamingReplicaServers() ) {
 			$pos = $lb->getPrimaryPos();
 			if ( $pos ) {
-				$this->logger->debug( __METHOD__ . ": $cluster ($masterName) position now '$pos'" );
-				$this->shutdownPositionsByPrimary[$masterName] = $pos;
+				$this->logger->debug( __METHOD__ . ": $cluster ($primaryName) position now '$pos'" );
+				$this->shutdownPositionsByPrimary[$primaryName] = $pos;
 			} else {
-				$this->logger->debug( __METHOD__ . ": $cluster ($masterName) position unknown" );
-				$this->shutdownPositionsByPrimary[$masterName] = null;
+				$this->logger->debug( __METHOD__ . ": $cluster ($primaryName) position unknown" );
+				$this->shutdownPositionsByPrimary[$primaryName] = null;
 			}
 		} else {
-			$this->logger->debug( __METHOD__ . ": $cluster ($masterName) has no replication" );
-			$this->shutdownPositionsByPrimary[$masterName] = null;
+			$this->logger->debug( __METHOD__ . ": $cluster ($primaryName) has no replication" );
+			$this->shutdownPositionsByPrimary[$primaryName] = null;
 		}
 	}
 
