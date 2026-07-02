@@ -912,6 +912,10 @@ class AuthManager implements LoggerAwareInterface {
 	 *
 	 * @param string $operation Operation being checked. This should be a
 	 *  message-key-like string such as 'change-password' or 'change-email'.
+	 *  When the caller redirects to Special:UserLogin for reauthentication,
+	 *  this same string drives the reauth banner via
+	 *  `userlogin-reauth-banner-{operation}` (lowercased), with
+	 *  `userlogin-reauth-banner-generic` as the fallback.
 	 * @return string One of the SEC_* constants.
 	 * @see $wgReauthenticateTime
 	 * @see $wgAllowSecuritySensitiveOperationIfCannotReauthenticate
