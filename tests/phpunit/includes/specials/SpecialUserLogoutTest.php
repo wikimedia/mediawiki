@@ -1,10 +1,12 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialUserLogout;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \MediaWiki\Specials\SpecialUserLogout
@@ -89,6 +91,37 @@ class SpecialUserLogoutTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( '(templogout)', $html );
 		$this->assertStringNotContainsString( '(userlogout-continue)', $html );
 		$this->assertStringContainsString( '(userlogout-submit)', $html );
+	}
+
+	/** @dataProvider provideViewForTemporaryAccountShowsMoreInfoMessageUnlessDisabled */
+	public function testViewForTemporaryAccountShowsMoreInfoMessageUnlessDisabled(
+		bool $isMoreInfoMessageDisabled
+	): void {
+		$this->enableAutoCreateTempUser();
+		$user = $this->getServiceContainer()->getTempUserCreator()->create( null, new FauxRequest() )->getUser();
+
+		// Define an override for the userlogout-temp-moreinfo message. We have to edit a MediaWiki page to do this
+		// as there isn't an easier way to override message text for a test.
+		$this->overrideConfigValue( MainConfigNames::UseDatabaseMessages, true );
+		$this->assertStatusGood( $this->editPage(
+			Title::newFromText( 'userlogout-temp-moreinfo', NS_MEDIAWIKI ),
+			$isMoreInfoMessageDisabled ? '' : 'User logout moreinfo'
+		) );
+
+		[ $html ] = $this->executeSpecialPage( '', null, 'en', $user, true );
+
+		if ( $isMoreInfoMessageDisabled ) {
+			$this->assertStringNotContainsString( 'User logout moreinfo', $html );
+		} else {
+			$this->assertStringContainsString( 'User logout moreinfo', $html );
+		}
+	}
+
+	public static function provideViewForTemporaryAccountShowsMoreInfoMessageUnlessDisabled(): array {
+		return [
+			'more info message enabled' => [ false ],
+			'more info message disabled' => [ true ],
+		];
 	}
 
 	public function testViewForNamedAccount() {

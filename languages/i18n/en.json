@@ -3997,7 +3997,6 @@
 	"userlogout-submit": "Log out",
 	"userlogout-continue": "Do you want to log out?",
 	"userlogout-temp": "If you are editing on a shared device like a library or school computer, you can exit this session to prevent other people from using this temporary account.",
-	"userlogout-temp-moreinfo": "Please be aware that editing with multiple temporary accounts may be against the rules of this wiki and you could be blocked if this happens frequently.",
 	"userlogout-temp-messagebox-title": "Are you sure you want to exit session and log out?",
 	"userlogout-temp-messagebox-body": "Once you log out, you will no longer be able to access this temporary account.",
 	"temp-user-logout-confirm-title": "Exit session",

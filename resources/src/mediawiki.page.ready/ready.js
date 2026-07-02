@@ -195,8 +195,13 @@ $( () => {
 			// Since temporary accounts cannot be logged into again, show a confirmation dialog.
 			confirmedPromise = mw.loader.using( 'oojs-ui-windows' ).then( () => {
 				const $confirmDialogContent = $( '<div>' ).append(
-					$( '<p>' ).text( mw.msg( 'userlogout-temp' ) ),
-					$( '<p>' ).text( mw.msg( 'userlogout-temp-moreinfo' ) ),
+					$( '<p>' ).text( mw.msg( 'userlogout-temp' ) )
+				);
+				const $moreInfoContent = mw.msg( 'userlogout-temp-moreinfo' );
+				if ( $moreInfoContent.trim().length ) {
+					$confirmDialogContent.append( $( '<p>' ).append( $moreInfoContent ) );
+				}
+				$confirmDialogContent.append(
 					new OO.ui.MessageWidget( {
 						type: 'notice',
 						label: $( '<div>' ).append(
