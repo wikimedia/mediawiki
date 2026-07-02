@@ -171,8 +171,13 @@ $( () => {
 			confirmedPromise = mw.loader.using( [ 'oojs-ui-windows', 'mediawiki.jqueryMsg' ] ).then( () => {
 				// Keep in sync with SpecialUserLogout
 				const $confirmDialogContent = $( '<div>' ).append(
-					$( '<p>' ).append( mw.message( 'userlogout-temp' ).parseDom() ),
-					$( '<p>' ).append( mw.message( 'userlogout-temp-moreinfo' ).parseDom() ),
+					$( '<p>' ).append( mw.message( 'userlogout-temp' ).parseDom() )
+				);
+				const $moreInfoContent = mw.message( 'userlogout-temp-moreinfo' ).parseDom();
+				if ( $moreInfoContent.text().trim().length ) {
+					$confirmDialogContent.append( $( '<p>' ).append( $moreInfoContent ) );
+				}
+				$confirmDialogContent.append(
 					new OO.ui.MessageWidget( {
 						type: 'notice',
 						label: $( '<div>' ).append(

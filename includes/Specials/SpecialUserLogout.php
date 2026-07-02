@@ -76,23 +76,24 @@ class SpecialUserLogout extends FormSpecialPage {
 		$form->setTokenSalt( 'logoutToken' );
 		$form->setSubmitTextMsg( 'userlogout-submit' );
 		if ( $this->getUser()->isTemp() ) {
-			$form->addHeaderHtml(
-				// Keep in sync with mediawiki.page.ready/ready.js
-				Html::rawElement( 'p', [], $this->msg( 'userlogout-temp' )->parse() ) .
-				Html::rawElement( 'p', [], $this->msg( 'userlogout-temp-moreinfo' )->parse() ) .
-				( new MessageWidget( [
-					'type' => 'notice',
-					'label' => new HtmlSnippet(
-						Html::element(
-							'strong',
-							[],
-							$this->msg( 'userlogout-temp-messagebox-title' )->text()
-						) .
-						Html::element( 'br' ) .
-						$this->msg( 'userlogout-temp-messagebox-body' )->parse()
-					),
-				] ) )->toString()
-			);
+			// Keep in sync with mediawiki.page.ready/ready.js
+			$headerHtml = Html::rawElement( 'p', [], $this->msg( 'userlogout-temp' )->parse() );
+			if ( !$this->msg( 'userlogout-temp-moreinfo' )->isDisabled() ) {
+				$headerHtml .= Html::rawElement( 'p', [], $this->msg( 'userlogout-temp-moreinfo' )->parse() );
+			}
+			$headerHtml .= ( new MessageWidget( [
+				'type' => 'notice',
+				'label' => new HtmlSnippet(
+					Html::element(
+						'strong',
+						[],
+						$this->msg( 'userlogout-temp-messagebox-title' )->text()
+					) .
+					Html::element( 'br' ) .
+					$this->msg( 'userlogout-temp-messagebox-body' )->parse()
+				),
+			] ) )->toString();
+			$form->addHeaderHtml( $headerHtml );
 		} else {
 			$form->addHeaderHtml(
 				Html::element( 'p', [], $this->msg( 'userlogout-continue' )->text() )

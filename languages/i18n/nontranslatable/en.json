@@ -351,5 +351,6 @@
 	"watchlist-unwatch-undo": "+",
 	"whatlinkshere-summary": "",
 	"renderedwith-legacy": "-",
-	"diff-usergroups-list": "$1"
+	"diff-usergroups-list": "$1",
+	"userlogout-temp-moreinfo": ""
 }
