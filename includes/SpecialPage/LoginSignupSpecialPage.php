@@ -1036,9 +1036,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				] + $hideIf,
 				'email' => [
 					'type' => 'email',
-					'label-message' => (
-						$config->get( MainConfigNames::EmailConfirmToEdit ) || $showCreateAccountUsernamePolicyPopover
-					) ? 'createacct-emailrequired' : 'createacct-emailoptional',
+					'label-message' => 'createacct-emailrequired',
 					'id' => 'wpEmail',
 					'cssclass' => 'loginText',
 					'size' => '20',

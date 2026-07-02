@@ -349,7 +349,6 @@
 	"createacct-loggedin-continue-as": "Continue as {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Create another account",
 	"createacct-emailrequired": "Email address",
-	"createacct-emailoptional": "Email address (optional)",
 	"createacct-email-ph": "Enter your email address",
 	"createacct-another-email-ph": "Enter email address",
 	"createaccountmail": "Use a temporary random password and send it to the specified email address",
