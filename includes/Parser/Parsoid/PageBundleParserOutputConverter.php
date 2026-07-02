@@ -275,20 +275,11 @@ final class PageBundleParserOutputConverter {
 		// add <head> content based on page meta data:
 		$revProps = [];
 		$title = $parserOutput->getTitle();
-		if ( $title !== null ) {
-			$title = Title::newFromLinkTarget( $title );
-			if ( $title->canExist() ) {
-				$revProps += [
-					'id' => $title->getId(),
-					'ns' => $title->getNamespace(),
-				];
-			}
-		}
 		$revId = $parserOutput->getCacheRevisionId();
 		$revRecord = null;
-		if ( $revId && ( $title === null || $title->canExist() ) ) {
+		if ( $revId ) {
 			$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
-			$revRecord = $revLookup->getRevisionById( $revId, 0, $title );
+			$revRecord = $revLookup->getRevisionById( $revId );
 		}
 		if ( $revRecord !== null ) {
 			$revProps += [
@@ -297,6 +288,18 @@ final class PageBundleParserOutputConverter {
 				'rev_sha1' => $revRecord->getSha1(),
 				'rev_timestamp' => $revRecord->getTimestamp(),
 			];
+			// If both Revision ID and Title as provided; revision overrides
+			// (never output contradictory title and revision information)
+			$title = $revRecord->getPageAsLinkTarget();
+		}
+		if ( $title !== null ) {
+			$title = Title::newFromLinkTarget( $title );
+			if ( $title !== null ) {
+				$revProps['ns'] = $title->getNamespace();
+			}
+			if ( $title?->canExist() ) {
+				$revProps['id'] = $title->getId();
+			}
 		}
 		$revProps['rev_revid'] ??= $parserOutput->getCacheRevisionId();
 		$revProps['rev_timestamp'] ??= $parserOutput->getRevisionTimestamp();

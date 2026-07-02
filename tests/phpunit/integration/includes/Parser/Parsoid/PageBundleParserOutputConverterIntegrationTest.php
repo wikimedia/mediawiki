@@ -116,11 +116,15 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 		);
 	}
 
-	private static function assertMetaExists( $doc, string $key ): void {
+	private static function assertMetaExists( $doc, string $key, ?string $value = null ): void {
+		$el = DOMCompat::querySelector( $doc, "meta[property=\"mw:$key\"]" );
 		self::assertNotNull(
-			DOMCompat::querySelector( $doc, "meta[property=\"mw:$key\"]" ),
+			$el,
 			"meta mw:$key should be present"
 		);
+		if ( $value !== null ) {
+			self::assertSame( $el->getAttribute( 'content' ), $value );
+		}
 	}
 
 	private static function assertMetaAbsent( $doc, string $key ): void {
@@ -153,7 +157,7 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 		);
 		$doc = DOMUtils::parseHTML( $pb->html, validateXMLNames: true );
 		self::assertMetaAbsent( $doc, 'pageId' );
-		self::assertMetaAbsent( $doc, 'pageNamespace' );
+		self::assertMetaExists( $doc, 'pageNamespace', (string)NS_SPECIAL );
 		self::assertMetaAbsent( $doc, 'revisionSHA1' );
 	}
 
@@ -167,9 +171,11 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 			$parserOutput, $siteConfig, bodyOnly: false,
 		);
 		$doc = DOMUtils::parseHTML( $pb->html, validateXMLNames: true );
-		self::assertMetaAbsent( $doc, 'pageId' );
-		self::assertMetaAbsent( $doc, 'pageNamespace' );
-		self::assertMetaAbsent( $doc, 'revisionSHA1' );
+		// When the revision ID is provided, the metadata information will
+		// correspond to the revision ID, not the (potentially bogus) title
+		self::assertMetaExists( $doc, 'pageId', (string)$page->getId() );
+		self::assertMetaExists( $doc, 'pageNamespace', (string)$page->getNamespace() );
+		self::assertMetaExists( $doc, 'revisionSHA1' );
 	}
 
 	public static function provideHtmlPageBundleFromParserOutputAsFullDocument() {

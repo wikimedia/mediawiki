@@ -12,7 +12,6 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
-use Wikimedia\Assert\Assert;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
@@ -97,10 +96,10 @@ class LanguageVariantConverter {
 		Bcp47Code $targetVariant,
 		?Bcp47Code $sourceVariant = null
 	): ParserOutput {
-		Assert::invariant(
-			$parserOutput->getContentHolder()->isParsoidContent(),
-			"Should be Parsoid content"
-		);
+		if ( !$parserOutput->getContentHolder()->isParsoidContent() ) {
+			// Do not convert non-Parsoid HTML (it should be preconverted)
+			return $parserOutput;
+		}
 		$targetVariant = $this->languageFactory->getLanguage( $targetVariant );
 		$popts = $this->parserOptionsForTest ?? ParserOptions::newFromAnon();
 		$popts->setVariant( $targetVariant );
