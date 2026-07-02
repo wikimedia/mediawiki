@@ -89,7 +89,7 @@
 	"rest-page-bundle-validation-error": "PageBundle nezodpovedá contentVersion: $1",
 	"rest-module": "Modul",
 	"rest-module-default": "Predvolený modul",
-	"rest-module-extra-routes-title": "MediaWiki REST API",
+	"rest-module-extra-routes-title": "Dodatočné cesty",
 	"rest-module-extra-routes-desc": "Koncové body REST nepriradené k žiadnemu modulu",
 	"rest-module-specs.v0-desc": "Samodokumentačný modul poskytujúci zisťovanie, špecifikácie a schémy pre všetky dostupné moduly.",
 	"rest-module-content.v1-desc": "Poskytuje prístup k obsahu a metadátam stránok a revízií",

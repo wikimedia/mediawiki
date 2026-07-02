@@ -4,7 +4,8 @@
 			"IJzeren Jan",
 			"Matma Rex",
 			"Polda18",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"Nintendofan885"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategorija|Kategorije|Kategorij}}",
@@ -1774,7 +1775,7 @@
 	"statistics-header-users": "Statistiky koristnikov",
 	"statistics-header-hooks": "Ostale statistiky",
 	"statistics-articles": "Osnovne stranice",
-	"statistics-articles-desc": "Za podrobnosti pogledajte [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod\ndokumentaciju o čisljenju člankov]",
+	"statistics-articles-desc": "Za podrobnosti pogledajte [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod dokumentaciju o čisljenju člankov]",
 	"statistics-pages": "Stranice",
 	"statistics-pages-desc": "Vse stranice v viki, vključno s besědnymi stranicami, prěnapravjenjami, i t.d.",
 	"statistics-files": "Dodane fajly",
@@ -3194,7 +3195,7 @@
 	"specialpages": "Specialne stranice",
 	"specialpages-note-top": "Legenda",
 	"specialpages-note-restricted": "* Normalne specialne stranice.\n* <span class=\"mw-specialpagerestricted\">Specialne stranice s ograničenym dostupom.</span>",
-	"specialpages-header-search": "Iskati specialne stranice",
+	"specialpages-header-search": "Iskati v specialnyh stranicah",
 	"specialpages-group-maintenance": "Raporty poddržky",
 	"specialpages-group-other": "Druge specialne stranice",
 	"specialpages-group-login": "Upravjenje koristničskym kontom",

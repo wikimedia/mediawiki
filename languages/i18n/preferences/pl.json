@@ -25,7 +25,8 @@
 			"WTM",
 			"Woytecr",
 			"Wpedzich",
-			"Wawrzec"
+			"Wawrzec",
+			"PanWor"
 		]
 	},
 	"preferences": "Preferencje",
@@ -43,8 +44,8 @@
 	"prefs-personal": "Profil użytkownika",
 	"prefs-description-personal": "Kontroluj swój wygląd, łącz się i komunikuj.",
 	"prefs-info": "Podstawowe informacje",
-	"username": "{{GENDER:$1|Nazwa użytkownika}}:",
-	"prefs-memberingroups": "{{GENDER:$2|Członek}} {{PLURAL:$1|grupy|grup}}:",
+	"username": "{{GENDER:$1|Nazwa użytkownika|Nazwa użytkowniczki}}:",
+	"prefs-memberingroups": "{{GENDER:$2|Członek|Członkini}} {{PLURAL:$1|grupy|grup}}:",
 	"group-membership-link-with-expiry": "$1 (do $2)",
 	"prefs-edits": "Liczba edycji:",
 	"prefs-registration": "Data rejestracji:",
@@ -234,7 +235,7 @@
 	"tog-watchdeletion": "Dodawaj do obserwowanych strony i pliki, które usuwam",
 	"tog-watchcreations": "Dodawaj do obserwowanych tworzone przeze mnie strony oraz przesyłane przeze mnie pliki",
 	"tog-watchuploads": "Dodawaj do obserwowanych przesyłane przeze mnie nowe pliki",
-	"tog-watchrollback": "Dodawaj do obserwowanych strony, w których {{GENDER:|wycofałem|wycofałam}} edycję",
+	"tog-watchrollback": "Dodawaj do obserwowanych strony, {{GENDER:|w których wycofałem edycję|w których wycofałam edycję|w których wycofano przeze mnie edycję}}",
 	"prefs-tokenwatchlist": "Token",
 	"prefs-watchlist-token": "Identyfikator listy obserwowanych:",
 	"prefs-watchlist-managetokens": "Zarządzaj tokenami",
