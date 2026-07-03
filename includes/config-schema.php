@@ -2138,6 +2138,8 @@ return [
 				'mw-edited-other-users-js' => true,
 				'mw-edited-other-users-css' => true,
 			],
+			'RestrictedTagViewRights' => [
+			],
 			'UnwatchedPageThreshold' => false,
 			'RecentChangesFlags' => [
 				'newpage' => [
@@ -3199,6 +3201,7 @@ return [
 			'FeedClasses' => 'object',
 			'AdvertisedFeedTypes' => 'array',
 			'SoftwareTags' => 'object',
+			'RestrictedTagViewRights' => 'object',
 			'RecentChangesFlags' => 'object',
 			'WatchlistExpiry' => 'boolean',
 			'EnableWatchstarPopover' => 'boolean',

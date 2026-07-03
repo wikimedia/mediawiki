@@ -3775,6 +3775,12 @@ $wgUseTagFilter = null;
 $wgSoftwareTags = null;
 
 /**
+ * Config variable stub for the RestrictedTagViewRights setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::RestrictedTagViewRights
+ */
+$wgRestrictedTagViewRights = null;
+
+/**
  * Config variable stub for the UnwatchedPageThreshold setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::UnwatchedPageThreshold
  */

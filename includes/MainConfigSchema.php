@@ -11150,6 +11150,23 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Maps a rights-restricted change tag name to the right(s) that can view it.
+	 * The rights can either be a single right or list of rights that can view the tag.
+	 *
+	 * Tags are private if they are prefixed with `mw-private-` (as defined at
+	 * {@link ChangeTagsStore::PRIVATE_TAG_PREFIX}). Tags without this prefix that are listed here remain public,
+	 * and any tag with `mw-private-` without a definition here is visible to no-one.
+	 *
+	 * Extensions can add entries via the {@link ListRestrictedTagsHook} hook.
+	 *
+	 * @since 1.47
+	 */
+	public const RestrictedTagViewRights = [
+		'default' => [],
+		'type' => 'map',
+	];
+
+	/**
 	 * If set to an integer, pages that are watched by this many users or more
 	 * will not require the unwatchedpages permission to view the number of
 	 * watchers.

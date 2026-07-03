@@ -13,6 +13,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\NameTableAccessException;
@@ -56,6 +57,7 @@ class ChangeTagsStore {
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::SoftwareTags,
 		MainConfigNames::UseTagFilter,
+		MainConfigNames::RestrictedTagViewRights,
 	];
 
 	/**
@@ -98,6 +100,9 @@ class ChangeTagsStore {
 	private UserFactory $userFactory;
 	private HookContainer $hookContainer;
 	private string|false $wiki;
+
+	/** @var array<string,string[]>|null Instance cache of the map of restricted tags to the rights */
+	private ?array $restrictedTagRights = null;
 
 	public function __construct(
 		IConnectionProvider $dbProvider,
@@ -575,6 +580,56 @@ class ChangeTagsStore {
 	 */
 	public function isRestrictedTag( string $tag ): bool {
 		return str_starts_with( $tag, self::PRIVATE_TAG_PREFIX );
+	}
+
+	/**
+	 * Map of restricted tag name to the right(s) required to view it, as
+	 * declared by the ListRestrictedTags hook and the RestrictedTagViewRights
+	 * config (which overrides the hook). Cached for the request.
+	 *
+	 * @return array<string,string[]>
+	 */
+	private function getRestrictedTagRights(): array {
+		if ( $this->restrictedTagRights === null ) {
+			$restrictedTags = [];
+			$this->hookRunner->onListRestrictedTags( $restrictedTags );
+			$restrictedTags = array_merge(
+				$restrictedTags,
+				$this->options->get( MainConfigNames::RestrictedTagViewRights )
+			);
+
+			$this->restrictedTagRights = [];
+			foreach ( $restrictedTags as $tag => $rights ) {
+				if ( !$this->isRestrictedTag( $tag ) ) {
+					$this->logger->error(
+						'Restricted tags map contains tag {tag} without the required prefix; ignoring',
+						[ 'tag' => $tag ]
+					);
+					continue;
+				}
+				$this->restrictedTagRights[$tag] = (array)$rights;
+			}
+		}
+		return $this->restrictedTagRights;
+	}
+
+	/**
+	 * Determine whether the given {@link Authority} may view the provided tag.
+	 *
+	 * @since 1.47
+	 */
+	public function canViewTag( string $tag, Authority $performer ): bool {
+		if ( !$this->isRestrictedTag( $tag ) ) {
+			return true;
+		}
+
+		$rights = $this->getRestrictedTagRights()[$tag] ?? [];
+		foreach ( $rights as $right ) {
+			if ( $performer->isAllowed( $right ) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

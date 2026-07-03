@@ -1146,6 +1146,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ChangeTags\\Hook\\ChangeTagsAllowedAddHook' => __DIR__ . '/includes/ChangeTags/Hook/ChangeTagsAllowedAddHook.php',
 	'MediaWiki\\ChangeTags\\Hook\\ChangeTagsListActiveHook' => __DIR__ . '/includes/ChangeTags/Hook/ChangeTagsListActiveHook.php',
 	'MediaWiki\\ChangeTags\\Hook\\ListDefinedTagsHook' => __DIR__ . '/includes/ChangeTags/Hook/ListDefinedTagsHook.php',
+	'MediaWiki\\ChangeTags\\Hook\\ListRestrictedTagsHook' => __DIR__ . '/includes/ChangeTags/Hook/ListRestrictedTagsHook.php',
 	'MediaWiki\\ChangeTags\\Taggable' => __DIR__ . '/includes/ChangeTags/Taggable.php',
 	'MediaWiki\\Collation\\AbkhazUppercaseCollation' => __DIR__ . '/includes/Collation/AbkhazUppercaseCollation.php',
 	'MediaWiki\\Collation\\BashkirUppercaseCollation' => __DIR__ . '/includes/Collation/BashkirUppercaseCollation.php',

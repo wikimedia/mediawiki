@@ -39,6 +39,8 @@ For notes on 1.46.x and older releases, see HISTORY.
   for details on available modes.
 * $wgReauthenticateForActions - Allows overriding which sensitive actions
   require reauthentication.
+* $wgRestrictedTagViewRights maps a rights-restricted ("mw-private-" prefixed)
+  change tag to the right(s) that may view it. Default: [].
 * …
 
 ==== Changed configuration ====
@@ -94,6 +96,9 @@ For notes on 1.46.x and older releases, see HISTORY.
   configuration variable.
 * (T412542) The UrlUtils class now has an option to allow any URL protocol:
   `UrlUtils::VALID_PROTOCOLS => UrlUtils::ALL_PROTOCOLS`.
+* (T386456) A new hook ListRestrictedTags allows defining which right(s)
+  allow a user to view a rights-restricted change tag (tags starting with
+  'mw-private-').
 * …
 
 === External library changes in 1.47 ===

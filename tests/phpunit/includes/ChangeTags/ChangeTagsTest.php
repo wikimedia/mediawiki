@@ -8,6 +8,7 @@ use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
@@ -16,6 +17,8 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
  * @group Database
  */
 class ChangeTagsTest extends MediaWikiIntegrationTestCase {
+
+	use MockAuthorityTrait;
 
 	private ChangeTagsStore $changeTags;
 
@@ -894,6 +897,52 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 			'Tag with some but not all of the restricted tag prefix' => [
 				'tag' => 'mw-private',
 				'expectedFatalErrorMessage' => null,
+			],
+		];
+	}
+
+	/** @dataProvider provideCanViewTag */
+	public function testCanViewTag( array $authorityRights, string $tag, bool $expectedReturnValue ): void {
+		$this->setTemporaryHook( 'ListRestrictedTags', static function ( &$restrictedTags ) {
+			$restrictedTags['mw-private-hook-defined-tag'] = [ 'suppress' ];
+			$restrictedTags['mw-private-config-defined-tag'] = [ 'patrol' ];
+		} );
+		$this->overrideConfigValue( MainConfigNames::RestrictedTagViewRights, [
+			'mw-private-config-defined-tag' => 'delete',
+		] );
+		$changeTags = $this->getServiceContainer()->getChangeTagsStore();
+
+		$authority = $this->mockRegisteredAuthorityWithPermissions( $authorityRights );
+		$this->assertSame( $expectedReturnValue, $changeTags->canViewTag( $tag, $authority ) );
+	}
+
+	public static function provideCanViewTag(): array {
+		return [
+			'Tag is not restricted' => [ 'authorityRights' => [], 'tag' => 'test-tag', 'expectedReturnValue' => true ],
+			'User has necessary right to view hook defined restricted tag' => [
+				'authorityRights' => [ 'suppress' ],
+				'tag' => 'mw-private-hook-defined-tag',
+				'expectedReturnValue' => true,
+			],
+			'User has necessary right to view config defined restricted tag' => [
+				'authorityRights' => [ 'delete' ],
+				'tag' => 'mw-private-config-defined-tag',
+				'expectedReturnValue' => true,
+			],
+			'Config overrides hook restrictions on conflict' => [
+				'authorityRights' => [ 'patrol' ],
+				'tag' => 'mw-private-config-defined-tag',
+				'expectedReturnValue' => false,
+			],
+			'User lacks necessary right to view hook defined restricted tag' => [
+				'authorityRights' => [ 'patrol', 'delete' ],
+				'tag' => 'mw-private-hook-defined-tag',
+				'expectedReturnValue' => false,
+			],
+			'Restricted tag absent from the map is visible to no-one' => [
+				'authorityRights' => [ 'suppress', 'patrol', 'delete' ],
+				'tag' => 'mw-private-undefined-tag',
+				'expectedReturnValue' => false,
 			],
 		];
 	}

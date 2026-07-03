@@ -95,6 +95,7 @@ class HookRunner implements
 	\MediaWiki\ChangeTags\Hook\ChangeTagsAllowedAddHook,
 	\MediaWiki\ChangeTags\Hook\ChangeTagsListActiveHook,
 	\MediaWiki\ChangeTags\Hook\ListDefinedTagsHook,
+	\MediaWiki\ChangeTags\Hook\ListRestrictedTagsHook,
 	\MediaWiki\Collation\Hook\Collation__factoryHook,
 	\MediaWiki\Content\Hook\ContentAlterParserOutputHook,
 	\MediaWiki\Content\Hook\ContentGetParserOutputHook,
@@ -2651,6 +2652,15 @@ class HookRunner implements
 		return $this->container->run(
 			'ListDefinedTags',
 			[ &$tags ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onListRestrictedTags( array &$restrictedTags ): void {
+		$this->container->run(
+			'ListRestrictedTags',
+			[ &$restrictedTags ],
+			[ 'abortable' => false ]
 		);
 	}
 

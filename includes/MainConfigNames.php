@@ -3790,6 +3790,12 @@ class MainConfigNames {
 	public const SoftwareTags = 'SoftwareTags';
 
 	/**
+	 * Name constant for the RestrictedTagViewRights setting, for use with Config::get()
+	 * @see MainConfigSchema::RestrictedTagViewRights
+	 */
+	public const RestrictedTagViewRights = 'RestrictedTagViewRights';
+
+	/**
 	 * Name constant for the UnwatchedPageThreshold setting, for use with Config::get()
 	 * @see MainConfigSchema::UnwatchedPageThreshold
 	 */
