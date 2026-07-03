@@ -39,6 +39,7 @@ class MwSql extends Maintenance {
 			'The database wiki ID to use if not the current one', false, true );
 		$this->addOption( 'replicadb',
 			'Replica DB server to use instead of the primary DB (can be "any")', false, true );
+		$this->addArg( 'file', 'File with SQL to execute', false );
 		$this->setBatchSize( 100 );
 	}
 
@@ -83,11 +84,13 @@ class MwSql extends Maintenance {
 		}
 
 		if ( $this->hasArg( 0 ) ) {
-			// T430985
-			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			$file = @fopen( $this->getArg( 0 ), 'r' );
+			$fileName = $this->getArg( 0 );
+			if ( !is_readable( $fileName ) ) {
+				$this->fatalError( "Unable to open input file: $fileName" );
+			}
+			$file = fopen( $fileName, 'r' );
 			if ( !$file ) {
-				$this->fatalError( "Unable to open input file" );
+				$this->fatalError( "Unable to open input file: $fileName" );
 			}
 
 			$error = $db->sourceStream( $file, null, $this->sqlPrintResult( ... ), __METHOD__ );

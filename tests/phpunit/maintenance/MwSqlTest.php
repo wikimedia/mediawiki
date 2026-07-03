@@ -91,4 +91,11 @@ class MwSqlTest extends MaintenanceBaseTestCase {
 		$this->maintenance->setOption( 'replicadb', 'abceftest' );
 		$this->maintenance->execute();
 	}
+
+	public function testNotExistingFile() {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/Unable to open input file: notExisting.tmp/' );
+		$this->maintenance->setArg( 0, 'notExisting.tmp' );
+		$this->maintenance->execute();
+	}
 }
