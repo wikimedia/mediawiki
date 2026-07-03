@@ -52,17 +52,22 @@ class LineFormatter extends MonologLineFormatter {
 	 * @inheritDoc
 	 */
 	public function format( array|LogRecord $record ): string {
+		// A Monolog 3 LogRecord's context is readonly, so drop keys on a copy
+		// and rebuild the record before delegating; mutating $record['context']
+		// in place would silently no-op (T397070).
+		$context = $record['context'] ?? [];
+
 		// Drop the 'private' flag from the context
-		unset( $record['context']['private'] );
+		unset( $context['private'] );
 
 		// Handle throwables specially: pretty format and remove from context
 		// Will be output for a '%exception%' placeholder in format
 		$prettyException = '';
-		if ( isset( $record['context']['exception'] ) &&
+		if ( isset( $context['exception'] ) &&
 			str_contains( $this->format, '%exception%' )
 		) {
-			$e = $record['context']['exception'];
-			unset( $record['context']['exception'] );
+			$e = $context['exception'];
+			unset( $context['exception'] );
 
 			if ( $e instanceof Throwable ) {
 				$prettyException = $this->normalizeException( $e );
@@ -71,6 +76,12 @@ class LineFormatter extends MonologLineFormatter {
 			} else {
 				$prettyException = $this->stringify( $e );
 			}
+		}
+
+		if ( $record instanceof LogRecord ) {
+			$record = $record->with( context: $context );
+		} else {
+			$record['context'] = $context;
 		}
 
 		$output = parent::format( $record );
