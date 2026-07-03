@@ -11350,9 +11350,11 @@ class MainConfigSchema {
 
 	/**
 	 * Set this to true if you want detailed copyright information forms on Upload.
+	 * See T430254 for deprecation.
 	 */
 	public const UseCopyrightUpload = [
 		'default' => false,
+		'deprecated' => 'since 1.47 This feature is being removed.'
 	];
 
 	/**

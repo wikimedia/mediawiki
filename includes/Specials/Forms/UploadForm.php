@@ -363,6 +363,7 @@ class UploadForm extends HTMLForm {
 		}
 
 		if ( $config->get( MainConfigNames::UseCopyrightUpload ) ) {
+			wfDeprecated( '$wgUseCopyrightUpload', '1.47' );
 			$descriptor['UploadCopyStatus'] = [
 				'type' => 'text',
 				'section' => 'description',

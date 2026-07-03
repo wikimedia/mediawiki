@@ -3691,6 +3691,9 @@ return [
 				'type' => 'boolean',
 			],
 		],
+		'UseCopyrightUpload' => [
+			'deprecated' => 'since 1.47 This feature is being removed.',
+		],
 		'JobBackoffThrottling' => [
 			'additionalProperties' => [
 				'type' => 'number',

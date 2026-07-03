@@ -3855,6 +3855,7 @@ $wgRightsIcon = null;
 /**
  * Config variable stub for the UseCopyrightUpload setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::UseCopyrightUpload
+ * @deprecated since 1.47 This feature is being removed.
  */
 $wgUseCopyrightUpload = null;
 

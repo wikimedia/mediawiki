@@ -3870,6 +3870,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the UseCopyrightUpload setting, for use with Config::get()
 	 * @see MainConfigSchema::UseCopyrightUpload
+	 * @deprecated since 1.47 This feature is being removed.
 	 */
 	public const UseCopyrightUpload = 'UseCopyrightUpload';
 
