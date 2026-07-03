@@ -6,6 +6,7 @@
 
 namespace MediaWiki\Logger;
 
+use Closure;
 use DateTimeZone;
 use MediaWiki\Logger\Monolog\BufferHandler;
 use Monolog\Formatter\FormatterInterface;
@@ -14,7 +15,11 @@ use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\PsrHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use Monolog\LogRecord;
 use Psr\Log\LoggerInterface;
+use ReflectionException;
+use ReflectionFunction;
+use ReflectionNamedType;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -242,9 +247,73 @@ class MonologSpi implements Spi {
 			$spec = $this->config['processors'][$name];
 			/** @var callable $processor */
 			$processor = ObjectFactory::getObjectFromSpec( $spec );
-			$this->singletons['processors'][$name] = $processor;
+			$this->singletons['processors'][$name] = self::adaptProcessor( $processor );
 		}
 		return $this->singletons['processors'][$name];
+	}
+
+	/**
+	 * Bridge a Monolog 2-style processor onto the Monolog 3 calling convention.
+	 *
+	 * Monolog 3 passes a LogRecord object to every processor, but configuration
+	 * that predates the upgrade may still register a processor declared as
+	 * `function ( array $record )` — most notably closures defined in
+	 * wmf-config. Such a processor raises a TypeError the moment Monolog hands
+	 * it a LogRecord. Until every caller is migrated to accept a LogRecord
+	 * (T397070), wrap an array-typed processor so it keeps receiving the array
+	 * form, and fold the mutable parts of its result back into the record.
+	 *
+	 * A processor already declared with LogRecord (or an array|LogRecord union,
+	 * or no type at all) is returned unchanged.
+	 *
+	 * @param callable $processor
+	 * @return callable
+	 */
+	private static function adaptProcessor( callable $processor ): callable {
+		if ( !self::processorExpectsArray( $processor ) ) {
+			return $processor;
+		}
+
+		return static function ( LogRecord $record ) use ( $processor ): LogRecord {
+			$result = $processor( $record->toArray() );
+			if ( !is_array( $result ) ) {
+				// A well-behaved processor returns the (array) record; if it
+				// returned nothing useful, leave the record untouched.
+				return $record;
+			}
+			// Only message, context and extra are realistically mutated by a
+			// processor; level, channel and datetime are preserved by with().
+			// (with() also expects a Level enum for 'level', which toArray()
+			// would have flattened to an int, so it must not be round-tripped.)
+			return $record->with(
+				message: $result['message'] ?? $record->message,
+				context: $result['context'] ?? $record->context,
+				extra: $result['extra'] ?? $record->extra,
+			);
+		};
+	}
+
+	/**
+	 * Whether a processor declares its record parameter as a plain array
+	 * (Monolog 2 style) rather than a LogRecord (Monolog 3 style).
+	 *
+	 * @param callable $processor
+	 * @return bool
+	 */
+	private static function processorExpectsArray( callable $processor ): bool {
+		try {
+			$params = ( new ReflectionFunction( Closure::fromCallable( $processor ) ) )
+				->getParameters();
+		} catch ( ReflectionException ) {
+			return false;
+		}
+		if ( $params === [] ) {
+			return false;
+		}
+		$type = $params[0]->getType();
+		// Only bridge an unambiguous `array` hint. A union such as
+		// array|LogRecord already accepts the object, so leave it alone.
+		return $type instanceof ReflectionNamedType && $type->getName() === 'array';
 	}
 
 	/**
