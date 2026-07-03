@@ -330,6 +330,8 @@
 	"rest-requestheader-desc-xrequestid": "Permite o seguimento e a correlación de solicitudes HTTP individuais a medida que flúen a través de sistemas distribuídos, como microservizos, pasarelas de API e balanceadores de carga.",
 	"rest-requestheader-desc-useragent": "Envía unha cadea característica aos servidores web, o que lles permite identificar a aplicación, o sistema operativo, o provedor e/ou a versión do software do cliente solicitante.",
 	"rest-requestheader-desc-ifmatch": "Fai que unha solicitude sexa condicional, garantindo que a acción solicitada (como unha actualización ou eliminación) só se realice se o recurso do servidor coincide cunha versión específica (identificada polo seu ETag) proporcionada polo cliente.",
+	"rest-requestbody-desc-create-page": "Páxina a crear",
+	"rest-requestbody-desc-update-page": "Páxina a actualizar ou crear",
 	"rest-endpoint-desc-get-sitemap-index": "Devolve unha lista XML das páxinas dispoñibles dentro do mapa do sitio. O índice predeterminado é 0; a presenza de índices adicionais listarase en «robots.txt». Hai ata 10.000 páxinas asociadas a cada índice.",
 	"rest-endpoint-summ-get-sitemap-index": "Obter unha lista de páxinas do mapa do sitio",
 	"rest-endpoint-desc-get-sitemap-page": "Devolve unha lista XML dos artigos presentes no sitio. Cada entrada contén un enderezo URL á páxina e a data da última modificación. Cada páxina contén ata 10.000 entradas de URL.",

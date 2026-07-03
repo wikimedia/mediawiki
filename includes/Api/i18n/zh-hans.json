@@ -1949,6 +1949,7 @@
 	"apierror-permissiondenied-generic": "权限被拒绝。",
 	"apierror-permissiondenied-patrolflag": "您需要<code>patrol</code>或<code>patrolmarks</code>权限来请求巡查标记。",
 	"apierror-permissiondenied-unblock": "您没有权限解封用户。",
+	"apierror-permissiondenied-userrights-interwiki": "您没有权限编辑其他wiki上的用户权限。",
 	"apierror-prefixsearchdisabled": "前缀搜索在Miser模式中被禁用。",
 	"apierror-promised-nonwrite-api": "<code>Promise-Non-Write-API-Action</code> HTTP标头不能发送至写模式API模块。",
 	"apierror-protect-invalidaction": "无效的保护类型“$1”。",

@@ -3327,6 +3327,7 @@
 	"tags-create-already-exists": "Il tag \"$1\" esiste già.",
 	"tags-create-warnings-above": "{{PLURAl:$2|È stato rilevato il seguente pericolo|Sono stati rilevati i seguenti pericoli}} mentre si cercava di creare l'etichetta \"$1\":",
 	"tags-create-warnings-below": "Desideri continuare a creare il tag?",
+	"tags-create-reserved-prefix": "I nomi delle etichette non devono iniziare con \"$1\", che è riservato alle etichette definite dal software o dalle estensioni.",
 	"tags-delete-title": "Cancella etichetta",
 	"tags-delete-explanation-initial": "Stai per eliminare il tag \"$1\" dal database.",
 	"tags-delete-explanation-in-use": "Verrà rimossa da {{PLURAL:$2|$2 versioni o voce di registro| tutte le $2 versioni e voci di registro}} dove si trova attualmente.",

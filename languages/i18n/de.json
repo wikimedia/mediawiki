@@ -3343,6 +3343,7 @@
 	"tags-create-already-exists": "Die Markierung „$1“ ist bereits vorhanden.",
 	"tags-create-warnings-above": "Die {{PLURAL:$2|folgende Warnung ist|folgenden Warnungen sind}} beim Versuch, die Markierung „$1“ zu erstellen, aufgetreten:",
 	"tags-create-warnings-below": "Möchtest du mit dem Erstellen der Markierung fortfahren?",
+	"tags-create-reserved-prefix": "Tag-Namen dürfen nicht mit „$1“ beginnen, da dieses für geschützte Tags reserviert ist, die von der Software oder Erweiterungen definiert werden.",
 	"tags-delete-title": "Markierung löschen",
 	"tags-delete-explanation-initial": "Du bist dabei, die Markierung „$1“ aus der Datenbank zu löschen.",
 	"tags-delete-explanation-in-use": "Diese wird von {{PLURAL:$2|einer Version oder einem Logbucheintrag|allen $2 Versionen und/oder Logbucheinträgen}} entfernt, bei {{PLURAL:$2|der/m|denen}} sie derzeit eingesetzt wird.",

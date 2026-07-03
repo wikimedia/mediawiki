@@ -3189,6 +3189,7 @@
 	"tags-create-already-exists": "Calaamadda \"$1\" hore ayay u jirtay.",
 	"tags-create-warnings-above": "{{PLURAL:$2|Digniinta soo socota ayaa|Digniinaha soo socda ayaa}} la kulmay markii la isku dayayay in la abuuro calaamadda \"$1\":",
 	"tags-create-warnings-below": "Ma rabtaa inaad sii waddo abuurista calaamadda?",
+	"tags-create-reserved-prefix": "Magacyada calaamada waa inaysan ku bilaaban \"$1\", maadaama uu u gaar yahay sumado xaddidan oo ay qeexeen software-ka ama kordhinnadiisu.",
 	"tags-delete-title": "Tirtir calaamadda",
 	"tags-delete-explanation-initial": "Waxaad ku dhowdahay inaad ka tirtirto calaamadda \"$1\" kaydka xogta.",
 	"tags-delete-explanation-in-use": "Waxaa laga saari doonaa {{PLURAL:$2|$2 dib u eegis ama gelitaan diiwaan|dhammaan $2 dib u eegisyada iyo/ama gelitaannada diiwaanka}} ee hadda lagu dabaqay.",
