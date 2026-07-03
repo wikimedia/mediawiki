@@ -947,4 +947,50 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	/** @dataProvider provideUpdateTagsWithChecksForFailure */
+	public function testUpdateTagsWithChecksForFailure(
+		array $tagsToAdd,
+		array $tagsToRemove,
+		string $expectedStatusErrorMessage
+	): void {
+		$actualStatus = ChangeTags::updateTagsWithChecks(
+			$tagsToAdd,
+			$tagsToRemove,
+			null,
+			null,
+			null,
+			null,
+			'',
+			$this->mockRegisteredUltimateAuthority()
+		);
+
+		$this->assertStatusError( $expectedStatusErrorMessage, $actualStatus );
+		$this->assertNull( $actualStatus->getValue() );
+	}
+
+	public static function provideUpdateTagsWithChecksForFailure(): array {
+		return [
+			'One tag is not defined when adding it' => [
+				'tagsToAdd' => [ 'undefined-tag' ],
+				'tagsToRemove' => [],
+				'expectedStatusErrorMessage' => 'tags-update-add-not-allowed-one',
+			],
+			'Multiple tags are not defined when adding them' => [
+				'tagsToAdd' => [ 'undefined-tag', 'undefined-tag-2', 'undefined-tag-3' ],
+				'tagsToRemove' => [],
+				'expectedStatusErrorMessage' => 'tags-update-add-not-allowed-multi',
+			],
+			'One tag is software defined when removing it' => [
+				'tagsToAdd' => [],
+				'tagsToRemove' => [ 'mw-contentmodelchange' ],
+				'expectedStatusErrorMessage' => 'tags-update-remove-not-allowed-one',
+			],
+			'Multiple tags are software defined when removing them' => [
+				'tagsToAdd' => [],
+				'tagsToRemove' => [ 'mw-contentmodelchange', 'mw-new-redirect' ],
+				'expectedStatusErrorMessage' => 'tags-update-remove-not-allowed-multi',
+			],
+		];
+	}
+
 }

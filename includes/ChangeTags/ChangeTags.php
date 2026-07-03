@@ -7,6 +7,7 @@
 namespace MediaWiki\ChangeTags;
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
@@ -19,6 +20,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\RevisionDelete\RevDelLogList;
 use MediaWiki\Skin\Skin;
@@ -504,6 +506,7 @@ class ChangeTags {
 	 * Extensions should not use this function, unless directly handling a user
 	 * request to add or remove tags from an existing revision or log entry.
 	 *
+	 * @deprecated Since 1.47
 	 * @param string[] $tagsToAdd Tags that you are interested in adding
 	 * @param string[] $tagsToRemove Tags that you are interested in removing
 	 * @param Authority|null $performer whose permission you wish to check, or null to
@@ -516,17 +519,41 @@ class ChangeTags {
 		array $tagsToRemove,
 		?Authority $performer = null
 	) {
-		if ( $performer !== null ) {
-			if ( !$performer->isDefinitelyAllowed( 'changetags' ) ) {
-				return Status::newFatal( 'tags-update-no-permission' );
-			}
+		wfDeprecated( __METHOD__, '1.47' );
+		return self::canUpdateTagsInternal(
+			$tagsToAdd,
+			$tagsToRemove,
+			$performer ?? new UltimateAuthority( RequestContext::getMain()->getUser() )
+		);
+	}
 
-			if ( $performer->getBlock() && $performer->getBlock()->isSitewide() ) {
-				return Status::newFatal(
-					'tags-update-blocked',
-					$performer->getUser()->getName()
-				);
-			}
+	/**
+	 * Decides whether the given {@link Authority} can add and remove the given tags
+	 * to/from a change.
+	 *
+	 * NOTE: The method is named with "internal" so that the existing public version
+	 * of this method can be still exist but be deprecated. Once {@link self::updateTags()}
+	 * is dropped, this method should be renamed to remove "internal"
+	 *
+	 * @param string[] $tagsToAdd Tags that are being added
+	 * @param string[] $tagsToRemove Tags that are being removed
+	 * @param Authority $performer
+	 * @return Status
+	 */
+	private static function canUpdateTagsInternal(
+		array $tagsToAdd,
+		array $tagsToRemove,
+		Authority $performer
+	): Status {
+		if ( !$performer->isDefinitelyAllowed( 'changetags' ) ) {
+			return Status::newFatal( 'tags-update-no-permission' );
+		}
+
+		if ( $performer->getBlock() && $performer->getBlock()->isSitewide() ) {
+			return Status::newFatal(
+				'tags-update-blocked',
+				$performer->getUser()->getName()
+			);
 		}
 
 		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
@@ -560,10 +587,9 @@ class ChangeTags {
 	 * Adds and/or removes tags to/from a given change, checking whether it is
 	 * allowed first, and adding a log entry afterwards.
 	 *
-	 * Includes a call to ChangeTags::canUpdateTags(), so your code doesn't need
-	 * to do that. However, it doesn't check whether the *_id parameters are a
-	 * valid combination. That is up to you to enforce. See ApiTag::execute() for
-	 * an example.
+	 * This validates that the provided {@link Authority} can make the changes, but
+	 * it does not check whether the *_id parameters are a valid combination.
+	 * That is up to you to enforce. See ApiTag::execute() for an example.
 	 *
 	 * Extensions should generally avoid this function. Call
 	 * ChangeTagsStore->updateTags() instead, unless directly handling a user request
@@ -602,7 +628,7 @@ class ChangeTags {
 		$tagsToRemove ??= [];
 
 		// are we allowed to do this?
-		$result = self::canUpdateTags( $tagsToAdd, $tagsToRemove, $performer );
+		$result = self::canUpdateTagsInternal( $tagsToAdd, $tagsToRemove, $performer );
 		if ( !$result->isOK() ) {
 			$result->value = null;
 			return $result;

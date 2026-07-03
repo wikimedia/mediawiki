@@ -314,6 +314,8 @@ because of Phabricator reports.
 * Passing null to any of the three constructor parameters of TextboxBuilder,
   deprecated in 1.46, will now throw a PHP error. Use the service to get an
   instance of the class.
+* ChangeTags::canUpdateTags has been been hard deprecated. Callers should
+  use ChangeTags::updateTagsWithChecks instead.
 * …
 
 === Deprecations in 1.47 ===
