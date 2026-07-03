@@ -35,7 +35,7 @@
 	"botpasswords-created-body": "{{GENDER:$2|사용자}} \"$2\"의 봇 이름 \"$1\"의 봇 비밀번호가 만들어졌습니다.",
 	"botpasswords-updated-title": "봇 비밀번호 갱신",
 	"botpasswords-updated-body": "{{GENDER:$2|사용자}} \"$2\"의 봇 이름 \"$1\"의 봇 비밀번호가 업데이트되었습니다.",
-	"botpasswords-deleted-title": "봇 비밀번호 제거",
+	"botpasswords-deleted-title": "봇 비밀번호 삭제됨",
 	"botpasswords-deleted-body": "{{GENDER:$2|사용자}} \"$2\"의 봇 이름 \"$1\"의 봇 비밀번호가 삭제되었습니다.",
 	"botpasswords-newpassword": "<strong>$1</strong>님으로 로그인하기 위한 새 비밀번호는 <strong>$2</strong>입니다. <em>추후 참조를 위해 이것을 기록해두시기 바랍니다.</em> <br> (로그인 이름이 최종 사용자 이름과 동일해야 하는 오래된 봇의 경우, 사용자 이름으로 <strong>$3</strong>을(를), 비밀번호로 <strong>$4</strong>을(를) 사용할 수도 있습니다)",
 	"botpasswords-no-provider": "'BotPasswordsSessionProvider'는 이용할 수 없습니다.",

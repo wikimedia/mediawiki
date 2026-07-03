@@ -1874,6 +1874,7 @@
 	"apierror-permissiondenied-generic": "Dovoljenje zavrnjeno.",
 	"apierror-permissiondenied-patrolflag": "Za zahtevanje zastavice pregleda potrebujete pravico <code>patrol</code> ali <code>patrolmarks</code>.",
 	"apierror-permissiondenied-unblock": "Nimate dovoljenja za odblokiranje uporabnikov.",
+	"apierror-permissiondenied-userrights-interwiki": "Nimate dovoljenja za spreminjanje uporabniških pravic v drugih vikijih.",
 	"apierror-prefixsearchdisabled": "Predponsko iskanje je v gospodarnem načinu onemogočeno.",
 	"apierror-promised-nonwrite-api": "HTTP-glave <code>Promise-Non-Write-API-Action</code> ni mogoče poslati API-modulom v načinu pisanja.",
 	"apierror-protect-invalidaction": "Neveljavna vrsta zaščite »$1«.",

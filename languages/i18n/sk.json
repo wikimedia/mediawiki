@@ -4003,6 +4003,7 @@
 	"renameuser-move-log": "Automaticky presunutá stránka počas premenovania {{GENDER:$2|používateľa|používateľky}} „[[User:$1|$1]]“ na „[[User:$2|$2]]“",
 	"renameuser-renamed-notice": "{{GENDER:$1|Tento používateľ bol premenovaný|Táto používateľka bola premenovaná}}.\nZáznam premenovaní je pre informáciu uvedený nižšie.",
 	"log-unknown-action": "vykonal neznámu akciu „$2“ na [[$1]]",
+	"log-unsafe-logentry": "(Tento záznam v denníku nie je možné zobraziť, pretože jeho parametre obsahujú nebezpečné serializované údaje.)",
 	"createacct-benefit-heading-temp-user": "Ďakujeme, že prispievate na {{SITENAME}}.\nVytvorte si účet a získajte prístup k ďalším funkciám.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} tvoria ľudia ako vy. S účtom môžete mať trvalú a bezpečnú identitu s prístupom k funkciám ako:",
 	"benefit-1-description": "Zoznamy sledovaných, vďaka ktorým máte prehľad o stránkach, ktoré vás zaujímajú.",

@@ -31,7 +31,8 @@
 			"Tumm1",
 			"Valtlai",
 			"Veikk0.ma",
-			"Wix"
+			"Wix",
+			"Wikipeedikko"
 		]
 	},
 	"preferences": "Asetukset",
@@ -160,7 +161,7 @@
 	"thumbsize": "Pienoiskuvien koko",
 	"prefs-diffs": "Eroavaisuudet",
 	"tog-diffonly": "Älä näytä sivun sisältöä eroavaisuusvertailun alapuolella",
-	"tog-norollbackdiff": "Älä näytä eroavaisuuksia, kun olet palauttanut muokkauksen palauta-työkalulla",
+	"tog-norollbackdiff": "Älä näytä eroavaisuuksia, kun olet palauttanut muokkauksen pikapalautustyökalulla",
 	"prefs-advancedrendering": "Lisäasetukset",
 	"tog-underline": "Linkkien alleviivaus:",
 	"underline-default": "Ulkoasun tai selaimen oletustapa",

@@ -31,6 +31,8 @@
 	"username": "Імя {{GENDER:$1|ўдзельніка|ўдзельніцы}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Удзельнік|Удзельніца}} {{PLURAL:$1|1=групы|групаў}}:",
 	"group-membership-link-with-expiry": "$1 (да $2)",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|}} {{PLURAL:$1|Вымкнутая група|Вымкнутыя групы}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|Вы}} больш не адпавядаеце [[$3|ўмовам]] для ўдзелу ў {{PLURAL:$1|гэтай групе|гэтых групах}} і таму ня можаце карыстацца правамі, наданымі {{PLURAL:$1|ёю|ім}}.",
 	"prefs-edits": "Колькасьць рэдагаваньняў:",
 	"prefs-registration": "Час рэгістрацыі:",
 	"yourrealname": "Сапраўднае імя:",

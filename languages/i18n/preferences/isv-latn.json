@@ -23,6 +23,8 @@
 	"username": "{{GENDER:$1|Koristničsko ime}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Člen}} {{PLURAL:$1|grupy|grup}}:",
 	"group-membership-link-with-expiry": "$1 (do $2)",
+	"prefs-memberingroupsdisabled": "{{GENDER:$2|}}{{PLURAL:$1|Izključena grupa|Izključene grupy}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|Vy}} veče ne izpolnjajete [[$3|uslovja]] za členstvo {{PLURAL:$1|tutoj grupy|tutyh grup}}, zato vy ne možete koristati prava, ktore prinaležet jihnym členam.",
 	"prefs-edits": "Kolikost pravok:",
 	"prefs-registration": "Data i čas registracije:",
 	"yourrealname": "Pravdivo ime:",

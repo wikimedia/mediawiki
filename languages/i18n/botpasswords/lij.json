@@ -24,6 +24,7 @@
 	"botpasswords-bad-appid": "O nómme bot \"$1\" o no l'é vàlido.",
 	"botpasswords-toolong-restrictions": "L'é stæto inserîo tròppi indirìssi o intervàlli IP.",
 	"botpasswords-toolong-grants": "L'é stæto çernûo tròppi permìssi.",
+	"botpasswords-too-many": "Ti t'ê arivòu a-o lìmite màscimo de $1 {{PLURAL:$1|pòula segrétta|pòule segrétte}} pe-i bot. Pe piâxéi, scancélla de pòule segrétte do bot ch'exìstan avànti de creâne de nêuve.",
 	"botpasswords-insert-failed": "Inposcìbile azónze o nómme bot \"$1\". O l'é za stæto azónto?",
 	"botpasswords-update-failed": "Inposcìbile agiornâ o nómme bot \"$1\". O l'é stæto scasòu?",
 	"botpasswords-created-title": "Pòula segrétta bot creâ",

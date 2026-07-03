@@ -18,7 +18,8 @@
 			"Tsca",
 			"Vlad5250",
 			"WTM",
-			"Woytecr"
+			"Woytecr",
+			"PanWor"
 		]
 	},
 	"userrights": "Uprawnienia użytkowników",
@@ -33,7 +34,7 @@
 	"userrights-groupsmember": "Należy do:",
 	"userrights-groupsmember-auto": "Na stałe należy do:",
 	"userrights-systemuser": "{{GENDER:$1|Ten użytkownik jest użytkownikiem systemowym|Ta użytkowniczka jest użytkowniczką systemową}}",
-	"userrights-groups-help": "Możesz zmienić przynależność {{GENDER:$1|tego użytkownika|tej użytkowniczki}} do podanych grup:\n* Zaznaczone pole oznacza, że użytkownik należy do danej grupy.\n* Niezaznaczone pole oznacza, że użytkownik nie należy do danej grupy.\n* Gwiazdka (*) informuje, że nie możesz usunąć użytkownika z grupy po dodaniu do niej lub dodać po usunięciu.\n* Kratka (#) informuje, że możesz tylko skrócić czas wygaśnięcia członkostwa w danej grupie; nie możesz go wydłużać.",
+	"userrights-groups-help": "Możesz zmienić przynależność {{GENDER:$1|tego użytkownika|tej użytkowniczki}} do podanych grup:\n* Zaznaczone pole oznacza, że {{GENDER:$1|użytkownik|użytkowniczka}} należy do danej grupy.\n* Niezaznaczone pole oznacza, że {{GENDER:$1|użytkownik|użytkowniczka}} nie należy do danej grupy.\n* Gwiazdka (*) informuje, że nie możesz usunąć {{GENDER:$1|użytkownika|użytkowniczki}} z grupy po dodaniu do niej lub dodać po usunięciu.\n* Kratka (#) informuje, że możesz tylko skrócić czas wygaśnięcia członkostwa w danej grupie; nie możesz go wydłużać.",
 	"userrights-reason": "Powód:",
 	"userrights-watchuser": "Obserwuj stronę osobistą i stronę dyskusji tego użytkownika",
 	"userrights-no-interwiki": "Nie masz dostępu do edycji uprawnień na innych wiki.",
@@ -125,6 +126,7 @@
 	"right-editprotected": "Edycja zabezpieczonych stron ({{int:restriction-level-sysop}})",
 	"right-editsemiprotected": "Edycja zabezpieczonych stron ({{int:restriction-level-autoconfirmed}})",
 	"right-editcontentmodel": "Edycja modelu zawartości strony",
+	"right-createwithcontentmodel": "Tworzenie stron z niestandardowymi modelami zawartości",
 	"right-editinterface": "Edycja interfejsu użytkownika",
 	"right-editusercss": "Edycja plików CSS innych użytkowników",
 	"right-edituserjson": "Edycja plików JSON innych użytkowników",
@@ -251,6 +253,7 @@
 	"action-viewmyprivateinfo": "zobaczenia swoich prywatnych danych",
 	"action-editmyprivateinfo": "edycji swoich prywatnych danych",
 	"action-editcontentmodel": "edycji modelu zawartości strony",
+	"action-createwithcontentmodel": "tworzyć strony z niestandardowymi modelami zawartości",
 	"action-managechangetags": "tworzenia i de(aktywowania) znaczników",
 	"action-applychangetags": "wprowadzania znaczników wraz z własnymi zmianami",
 	"action-changetags": "dodawania i usuwania dowolnych znaczników z poszczególnych wersji i wpisów w rejestrze",

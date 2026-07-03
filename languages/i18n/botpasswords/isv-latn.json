@@ -24,6 +24,7 @@
 	"botpasswords-bad-appid": "Nazva bota «$1» jest nepravilna.",
 	"botpasswords-toolong-restrictions": "Vvedeno bylo prěmnogo IP-adresov ili obsegov.",
 	"botpasswords-toolong-grants": "Izbrano bylo prěmnogo dozvoljenij.",
+	"botpasswords-too-many": "Vy jeste dostigli maksimalnu kolikosti $1 {{PLURAL:$1|paroly bota|parol botov}}. Prosimo, odstranite několiko istnujučih parol botov prěd stvorjenjem novyh.",
 	"botpasswords-insert-failed": "Dodanje bota s nazvoju «$1» ne udalo se. Može li byti, že on uže jest dodany?",
 	"botpasswords-update-failed": "Izměna bota s nazvoju «$1» ne udala se. Može li byti, že on byl udaljeny?",
 	"botpasswords-created-title": "Parola bota jest stvorjena",

@@ -62,6 +62,7 @@
 	"username": "Nom {{GENDER:$1|d’utilisateur|d’utilisatrice}} :",
 	"prefs-memberingroups": "Membre{{GENDER:$2|}} d{{PLURAL:$1|u|es}} groupe{{PLURAL:$1||s}} :",
 	"group-membership-link-with-expiry": "$1 (jusqu’à $2)",
+	"prefs-memberingroupsdisabled": "{{PLURAL:$1|Groupe|Groupes}} {{GENDER:$2|{{PLURAL:$1|désactivé|désactivés}}}} :",
 	"prefs-memberingroupsdisabled-help": "{{GENDER:$2| Vous}} ne remplissez plus les [[$3|conditions]] pour être membre de {{PLURAL:$1| ce groupe|ces groupes}} et vous ne pouvez donc pas utiliser les droits accordés par {{PLURAL:$1|celui-ci ci|ceux-ci}}.",
 	"prefs-edits": "Nombre de modifications :",
 	"prefs-registration": "Date d’inscription :",

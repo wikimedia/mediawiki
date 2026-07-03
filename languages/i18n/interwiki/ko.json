@@ -56,7 +56,7 @@
 	"log-name-interwiki": "인터위키 테이블 기록",
 	"logentry-interwiki-iw_add": "$1님이 \"$4\" ($5) (끼워넣기: $6, 로컬: $7) 접두어를 인터위키 테이블에 {{GENDER:$2|추가했습니다}}",
 	"logentry-interwiki-iw_edit": "$1님이 인터위키 테이블의 \"$4\" ($5) (끼워넣기: $6, 로컬: $7) 접두어를 {{GENDER:$2|수정했습니다}}",
-	"logentry-interwiki-iw_delete": "$1님이 인터위키 테이블에서 \"$4\" 접두어를 {{GENDER:$2|삭제했습니다}}",
+	"logentry-interwiki-iw_delete": "$1님이 인터위키 테이블에서 \"$4\" 접두어를 {{GENDER:$2|제거했습니다}}",
 	"log-description-interwiki": "[[Special:Interwiki|인터위키 테이블]]이 바뀐 기록입니다.",
 	"right-interwiki": "인터위키 데이터 편집",
 	"action-interwiki": "이 인터위키 접두어 바꾸기",

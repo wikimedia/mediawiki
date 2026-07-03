@@ -1011,7 +1011,7 @@
 	"linterror-tidy-whitespace-bug": "Tühemiku parsimisviga",
 	"linterror-unclosed-quotes-in-heading": "Sulgemata silt, mis mõjutab sisu väljaspool sisukorda",
 	"linterror-wikilink-in-extlink": "Lingid linkides",
-	"linterror-template-arg-in-extension-tag": "Tarkvaralisa silt malliparameetriga",
+	"linterror-template-arg-in-extension-tag": "Lisasilt malliparameetriga",
 	"email": "E-post",
 	"newuserlogpage": "Konto loomise logi",
 	"newuserlogpagetext": "Siin on logitud kasutajate registreerimine.",

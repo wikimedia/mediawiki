@@ -3927,6 +3927,7 @@
 	"renameuser-move-log": "\"[[User:$1|$1]]\" istifadəçisinin adını \"[[User:$2|$2]]\" olaraq dəyişərkən avtomatik olaraq səhifənin adı dəyişdirildi",
 	"renameuser-renamed-notice": "Bu {{GENDER:$1|istifadəçinin}} adı dəyişdirildi.\nAdın dəyişdirilməsi jurnalı aşağıda istinad üçün təqdim olunub.",
 	"log-unknown-action": "[[$1]] səhifəsində naməlum \"$2\" əməliyyatı həyata keçirdi",
+	"log-unsafe-logentry": "(Bu jurnal qeydi göstərilə bilmədi, çünki onun parametrləri təhlükəli seriyalaşdırılmış məlumatlar ehtiva edir.)",
 	"createacct-benefit-heading-temp-user": "{{SITENAME}} saytına töhfə verdiyiniz üçün təşəkkür edirik.\nDaha çox funksiyadan istifadə edə bilmək üçün hesab yaradın.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} sizin kimi insanlar tərəfindən yazılır. Hesabla aşağıdakı xüsusiyyətlərə çıxışı olan daimi və təhlükəsiz şəxsiyyətə sahib ola bilərsiniz:",
 	"benefit-1-description": "Maraqlandığınız səhifələri izləməyə imkan verən izləmə siyahısı.",

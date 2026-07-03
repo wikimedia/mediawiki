@@ -3854,6 +3854,7 @@
 	"renameuser-move-log": "Bog si otomaatig ah ayaa loo wareejiyay intii lagu jiray beddelka magaca {{GENDER:$2|isticmaalaha}} \"[[User:$1|$1]]\" loo beddelay \"[[User:$2|$2]]\"",
 	"renameuser-renamed-notice": "Isticmaalahaan {{GENDER:$1|waa la beddelay magaciisa}}.\nDiiwaanka beddelka magaca ayaa hoos ku yaal si loo tixraaco.",
 	"log-unknown-action": "wuxuu sameeyay fal aan la aqoon \"$2\" oo ku saabsan [[$1]]",
+	"log-unsafe-logentry": "(Gelitaankan diiwaanka lama soo bandhigi karin, sababtoo ah xuduudihiisu waxay ka kooban yihiin xog taxan oo aan ammaan ahayn.)",
 	"createacct-benefit-heading-temp-user": "Waad ku mahadsan tahay wax ku biirintaada {{SITENAME}}.\nSamee koonto si aad u hesho astaamo dheeraad ah.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} waxaa sameeya dad adiga oo kale ah. Koonto ayaad ku yeelan kartaa aqoonsi joogto ah oo ammaan ah oo aad ku heli karto astaamo sida:",
 	"benefit-1-description": "Liisaska dabagalka oo kuu oggolaanaya inaad la socoto bogagga aad xiisaynayso.",
