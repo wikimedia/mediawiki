@@ -284,7 +284,7 @@ class Image {
 		}
 
 		if ( $this->getExtension() !== 'svg' ) {
-			return file_get_contents( $path );
+			return $this->readFile( $path );
 		}
 
 		if ( $variant && isset( $this->variants[$variant] ) ) {
@@ -293,7 +293,7 @@ class Image {
 			$defaultColor = $this->defaultColor;
 			$data = $defaultColor ?
 				$this->variantize( [ 'color' => $defaultColor ], $context ) :
-				file_get_contents( $path );
+				$this->readFile( $path );
 		}
 
 		if ( $format === 'rasterized' ) {
@@ -305,6 +305,19 @@ class Image {
 		}
 
 		return $data;
+	}
+
+	/**
+	 * @param string $path
+	 * @return string
+	 * @throws RuntimeException if the file cannot be read or is empty
+	 */
+	private function readFile( string $path ): string {
+		$content = file_get_contents( $path );
+		if ( $content === false || $content === '' ) {
+			throw new RuntimeException( "File '$path' could not be read or is empty" );
+		}
+		return $content;
 	}
 
 	/**
@@ -335,7 +348,7 @@ class Image {
 	 */
 	protected function variantize( array $variantConf, Context $context ) {
 		$dom = new DOMDocument;
-		$dom->loadXML( file_get_contents( $this->getPath( $context ) ) );
+		$dom->loadXML( $this->readFile( $this->getPath( $context ) ) );
 		$root = $dom->documentElement;
 		$titleNode = null;
 		$wrapper = $dom->createElementNS( 'http://www.w3.org/2000/svg', 'g' );

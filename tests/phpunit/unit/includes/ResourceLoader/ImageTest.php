@@ -103,6 +103,34 @@ class ImageTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $image->getImageData( $context, null, 'rasterized' ), $data );
 	}
 
+	public function testGetImageDataEmptySvgVariant() {
+		$context = $this->createMock( Context::class );
+		$image = new ResourceLoaderImageTestable(
+			'empty-with-variant',
+			'test',
+			'empty.svg',
+			self::IMAGES_PATH,
+			[ 'destructive' => [ 'color' => 'red' ] ]
+		);
+		$this->expectException( RuntimeException::class );
+		$this->expectExceptionMessage( "could not be read or is empty" );
+		$image->getImageData( $context, 'destructive', 'original' );
+	}
+
+	public function testGetImageDataEmptySvgDirect() {
+		$context = $this->createMock( Context::class );
+		$image = new ResourceLoaderImageTestable(
+			'empty-no-variant',
+			'test',
+			'empty.svg',
+			self::IMAGES_PATH,
+			[]
+		);
+		$this->expectException( RuntimeException::class );
+		$this->expectExceptionMessage( "could not be read or is empty" );
+		$image->getImageData( $context, null, 'original' );
+	}
+
 	public function testMassageSvgPathdata() {
 		$image = $this->getTestImage( 'ghi' );
 		$data = file_get_contents( self::IMAGES_PATH . '/ghi.svg' );
