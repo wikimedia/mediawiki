@@ -569,6 +569,18 @@ class ChangeTags {
 		}
 
 		if ( $tagsToRemove ) {
+			// Restricted tags can only be removed by users who can view the tag. We do this
+			// separately so that private tags that are undefined cannot be removed from changes.
+			$unviewableRestricted = array_filter(
+				$tagsToRemove,
+				static fn ( $tag ) => $changeTagsStore->isRestrictedTag( $tag )
+					&& !$changeTagsStore->canViewTag( $tag, $performer )
+			);
+			if ( $unviewableRestricted ) {
+				return self::restrictedTagError( 'tags-update-remove-not-allowed-one',
+					'tags-update-remove-not-allowed-multi', $unviewableRestricted );
+			}
+
 			// to be removed, a tag must not be defined by an extension, or equivalently it
 			// has to be either explicitly defined or not defined at all
 			// (assuming no edge case of a tag both explicitly-defined and extension-defined)

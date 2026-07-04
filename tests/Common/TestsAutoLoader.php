@@ -348,6 +348,9 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\ExtensionJsonTestBase' => "$testDir/phpunit/integration/includes/ExtensionJsonTestBase.php",
 	'MediaWiki\\Tests\\ExtensionServicesTestBase' => "$testDir/phpunit/integration/includes/ExtensionServicesTestBase.php",
 
+	# tests/phpunit/integration/includes/ChangeTags
+	'MediaWiki\\Tests\\ChangeTags\\RestrictedTagTestTrait' => "$testDir/phpunit/includes/ChangeTags/RestrictedTagTestTrait.php",
+
 	# tests/phpunit/integration/includes/Edit
 	'MediaWiki\\Tests\\Integration\\Edit\\SimpleParsoidOutputStashSerializationTest' => "$testDir/phpunit/integration/includes/Edit/SimpleParsoidOutputStashSerializationTest.php",
 
