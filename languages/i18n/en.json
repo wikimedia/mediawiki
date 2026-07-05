@@ -381,6 +381,7 @@
 	"userexists": "Username entered already in use.\nPlease choose a different name.",
 	"username-previously-renamed-account": "This username can't be registered, because it has been previously used by an account which has been renamed.\nPlease choose a different name.",
 	"allow-previously-renamed-account": "Allow usernames previously used by renamed accounts",
+	"allow-previously-renamed-account-help": "Users with sufficient privileges can set this to create the account even if the given username has been previously used by an account that has been renamed.",
 	"renameuser-warning-previously-renamed-account": "This username has been previously used by an account which has been renamed.",
 	"createacct-normalization": "Your username will be adjusted to \"$2\" due to technical restrictions.",
 	"loginerror": "Login error",
