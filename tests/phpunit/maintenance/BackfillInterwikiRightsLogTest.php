@@ -8,6 +8,7 @@ namespace MediaWiki\Tests\Maintenance;
 
 use BackfillInterwikiRightsLog;
 use MediaWiki\Logging\DatabaseLogEntry;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\User\UserIdentityValue;
@@ -145,13 +146,18 @@ class BackfillInterwikiRightsLogTest extends MaintenanceBaseTestCase {
 	private function insertRightsLogs() {
 		$currWiki = WikiMap::getCurrentWikiId();
 
-		// Interwiki rights log to our wiki - to be copied
+		// Interwiki rights log to our wiki (with legacy params) - to be copied
 		$log1 = new ManualLogEntry( 'rights', 'rights' );
 		$log1->setTimestamp( '20200101000000' );
 		$log1->setPerformer( new UserIdentityValue( 1, 'Performer 1' ) );
 		$log1->setTarget( new PageIdentityValue( 0, NS_USER, 'Target1@' . $currWiki, false ) );
-		$log1->setParameters( [ '4::oldgroups' => [], '5::newgroups' => [ 'sysop' ] ] );
-		$log1->insert();
+		$log1id = $log1->insert();
+		// Fake a legacy log entry
+		$this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase()->newUpdateQueryBuilder()
+			->table( 'logging' )
+			->where( [ 'log_id' => $log1id ] )
+			->set( [ 'log_params' => LogPage::makeParamBlob( [ '', 'sysop' ] ) ] )
+			->execute();
 
 		// Interwiki rights log to other wiki - should be skipped
 		$log2 = new ManualLogEntry( 'rights', 'rights' );

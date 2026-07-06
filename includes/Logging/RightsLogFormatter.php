@@ -476,7 +476,8 @@ class RightsLogFormatter extends LogFormatter {
 	 */
 	private function makeGroupArray( $group ): array {
 		// Migrate old group params from string to array
-		if ( $group === '' ) {
+		// Handle weird entries caused by a bug in the BackfillInterwikiRightsLog script (T430723)
+		if ( $group === '' || $group === [ '' ] ) {
 			$group = [];
 		} elseif ( is_string( $group ) ) {
 			$group = array_map( 'trim', explode( ',', $group ) );

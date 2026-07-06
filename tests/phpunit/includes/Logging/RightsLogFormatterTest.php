@@ -186,6 +186,36 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 				],
 			],
 
+			// Weird format caused by a bug in the BackfillInterwikiRightsLog script (T430723)
+			[
+				[
+					'type' => 'rights',
+					'action' => 'rights',
+					'comment' => 'rights comment',
+					'user' => 0,
+					'user_text' => 'Sysop',
+					'namespace' => NS_USER,
+					'title' => 'User',
+					'params' => [
+						'4::oldgroups' => [ '' ],
+						'5::newgroups' => [ 'sysop', 'bureaucrat' ],
+					],
+				],
+				[
+					'text' => 'Sysop changed group membership for User: granted '
+						. 'administrator and bureaucrat',
+					'api' => [
+						'oldgroups' => [],
+						'newgroups' => [ 'sysop', 'bureaucrat' ],
+						'oldmetadata' => [],
+						'newmetadata' => [
+							[ 'group' => 'sysop', 'expiry' => 'infinity' ],
+							[ 'group' => 'bureaucrat', 'expiry' => 'infinity' ],
+						],
+					],
+				],
+			],
+
 			// Legacy format (oldgroups and newgroups as numeric-keyed strings)
 			[
 				[
