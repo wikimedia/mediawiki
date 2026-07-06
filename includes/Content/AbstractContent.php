@@ -7,7 +7,6 @@
 
 namespace MediaWiki\Content;
 
-use LogicException;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
@@ -134,19 +133,6 @@ abstract class AbstractContent implements Content, JsonCodecable {
 	 */
 	public function serialize( $format = null ) {
 		return $this->getContentHandler()->serializeContent( $this, $format );
-	}
-
-	/**
-	 * @see Content::getNativeData
-	 * @stable to override
-	 * @deprecated since 1.33 Use TextContent::getText() instead.
-	 *  For other content models, use specialized getters.
-	 * @since 1.21
-	 * @return mixed
-	 */
-	public function getNativeData() {
-		wfDeprecated( __METHOD__, '1.33' );
-		throw new LogicException( __METHOD__ . ': not implemented' );
 	}
 
 	/**

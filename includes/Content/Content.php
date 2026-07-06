@@ -61,20 +61,6 @@ interface Content {
 	public function getTextForSummary( $maxLength = 250 );
 
 	/**
-	 * Get native representation of the data.
-	 *
-	 * @note Caller must be aware of content model. Interpretation must consider
-	 * the model from getModel() or the handler from getContentHandler().
-	 *
-	 * @deprecated since 1.33 Use getText() for TextContent instances.
-	 *  For other content models, use specialized getters.
-	 * @since 1.21
-	 * @return mixed The native representation of the content. Could be a
-	 *  string, nested array structure, object, binary blob, anything really.
-	 */
-	public function getNativeData();
-
-	/**
 	 * Get the content's nominal size in "bogo-bytes".
 	 *
 	 * @since 1.21

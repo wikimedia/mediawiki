@@ -221,7 +221,6 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$content = $this->createMock( Content::class );
 		$content->method( 'getModel' )
 			->willReturn( 'NotText' );
-		$content->expects( $this->never() )->method( 'getNativeData' );
 		$content->method( 'copy' )->willReturnSelf();
 
 		$rev = MutableRevisionRecord::newFromContent( $title, $content )

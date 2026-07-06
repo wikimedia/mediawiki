@@ -50,18 +50,6 @@ class DummyNonTextContent extends AbstractContent {
 	}
 
 	/**
-	 * Returns native representation of the data. Interpretation depends on the data model used,
-	 * as given by getDataModel().
-	 *
-	 * @return mixed The native representation of the content. Could be a string, a nested array
-	 *  structure, an object, a binary blob... anything, really.
-	 */
-	public function getNativeData() {
-		wfDeprecated( __METHOD__, '1.33' );
-		return $this->data;
-	}
-
-	/**
 	 * returns the content's nominal size in bogo-bytes.
 	 *
 	 * @return int

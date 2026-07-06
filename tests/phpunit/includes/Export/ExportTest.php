@@ -54,7 +54,7 @@ class ExportTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Regression test for T328503 to verify that custom content types
-	 * with a getNativeData()/getTestData() override that returns a
+	 * with a getTestData() override that returns a
 	 * non-string value export correctly.
 	 */
 	public function testShouldExportContentWithNonStringNativeData(): void {
@@ -102,11 +102,6 @@ class ExportTest extends MediaWikiLangTestCase {
 						);
 
 						$this->data = json_decode( $text, true );
-					}
-
-					public function getNativeData() {
-						wfDeprecated( __METHOD__, '1.33' );
-						return $this->getTestData();
 					}
 
 					public function getTestData() {

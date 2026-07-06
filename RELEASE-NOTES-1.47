@@ -227,6 +227,7 @@ because of Phabricator reports.
   For non-blocking locks, use IDatabase::lock with timeout 0 instead.
 * BaseSearchResultSet::next() and ::rewind(), deprecated since 1.32 have now
   been removed. Use ::extractResults() or a foreach loop instead.
+* Content::getNativeData(), deprecated since 1.33, has been removed.
 * LinksUpdate::getImages(), deprecated since 1.44, has been removed. Use
   LinksUpdate::getParserOutput()->getLinkList(::MEDIA) instead.
 * The ParsoidService class, deprecated since 1.39, has been removed. Use the

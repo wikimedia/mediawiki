@@ -72,14 +72,6 @@ class FallbackContent extends AbstractContent {
 	/**
 	 * @return string data of unknown format and meaning
 	 */
-	public function getNativeData() {
-		wfDeprecated( __METHOD__, '1.33' );
-		return $this->getData();
-	}
-
-	/**
-	 * @return string data of unknown format and meaning
-	 */
 	public function getData() {
 		return $this->data;
 	}

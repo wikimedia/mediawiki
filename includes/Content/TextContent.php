@@ -118,18 +118,6 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns the text represented by this Content object, as a string.
 	 *
-	 * @deprecated since 1.33 use getText() instead.
-	 *
-	 * @return string The raw text. Subclasses may guarantee a specific syntax here.
-	 */
-	public function getNativeData() {
-		wfDeprecated( __METHOD__, '1.33' );
-		return $this->getText();
-	}
-
-	/**
-	 * Returns the text represented by this Content object, as a string.
-	 *
 	 * @since 1.33
 	 * @note This method should not be overwritten by subclasses. If a subclass find itself in
 	 * need to override this method, it should probably not be based on TextContent, but
