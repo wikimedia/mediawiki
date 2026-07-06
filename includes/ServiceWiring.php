@@ -57,6 +57,7 @@ use MediaWiki\Cache\GenderCache;
 use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\Cache\UserCache;
 use MediaWiki\Category\TrackingCategories;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\ChangeTags\ChangeTagsStoreFactory;
 use MediaWiki\Collation\CollationFactory;
@@ -600,6 +601,12 @@ return [
 
 	'ChangeTagDefStore' => static function ( MediaWikiServices $services ): NameTableStore {
 		return $services->getNameTableStoreFactory()->getChangeTagDef();
+	},
+
+	'ChangeTagsFormatter' => static function ( MediaWikiServices $services ): ChangeTagsFormatter {
+		return new ChangeTagsFormatter(
+			$services->getChangeTagsStore()
+		);
 	},
 
 	'ChangeTagsStore' => static function ( MediaWikiServices $services ): ChangeTagsStore {

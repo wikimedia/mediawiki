@@ -1132,6 +1132,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Category\\CategoryViewer' => __DIR__ . '/includes/Category/CategoryViewer.php',
 	'MediaWiki\\Category\\TrackingCategories' => __DIR__ . '/includes/Category/TrackingCategories.php',
 	'MediaWiki\\ChangeTags\\ChangeTags' => __DIR__ . '/includes/ChangeTags/ChangeTags.php',
+	'MediaWiki\\ChangeTags\\ChangeTagsFormatter' => __DIR__ . '/includes/ChangeTags/ChangeTagsFormatter.php',
 	'MediaWiki\\ChangeTags\\ChangeTagsList' => __DIR__ . '/includes/ChangeTags/ChangeTagsList.php',
 	'MediaWiki\\ChangeTags\\ChangeTagsLogItem' => __DIR__ . '/includes/ChangeTags/ChangeTagsLogItem.php',
 	'MediaWiki\\ChangeTags\\ChangeTagsLogList' => __DIR__ . '/includes/ChangeTags/ChangeTagsLogList.php',

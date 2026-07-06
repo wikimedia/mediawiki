@@ -410,8 +410,14 @@ because of Phabricator reports.
   LocalFileLockError is deprecated along with these methods.
 * $wgUseCopyrightUpload has been deprecated and will be removed in a future
   version. See T430254 for details.
-* ChangeTags::canUpdateTags has been been hard deprecated. Callers should
-  use ChangeTags::updateTagsWithChecks instead.
+* The following ChangeTags methods have been deprecated:
+  - tagDescription: use ChangeTagsFormatter::getTagDescription instead
+  - tagShortDescriptionMessage
+  - tagLongDescriptionMessage
+  - tagHelpLink
+  - formatSummaryRow: use ChangeTagsFormatter::formatTagsAsSummaryList instead
+  - canUpdateTags (emits deprecation warnings): use
+    ChangeTags::updateTagsWithChecks instead
 * …
 
 === Other changes in 1.47 ===

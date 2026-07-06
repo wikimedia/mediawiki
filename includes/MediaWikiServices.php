@@ -31,6 +31,7 @@ use MediaWiki\Cache\GenderCache;
 use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\Cache\UserCache;
 use MediaWiki\Category\TrackingCategories;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\ChangeTags\ChangeTagsStoreFactory;
 use MediaWiki\Collation\CollationFactory;
@@ -940,6 +941,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getChangeTagDefStore(): NameTableStore {
 		return $this->getService( 'ChangeTagDefStore' );
+	}
+
+	/**
+	 * @since 1.47
+	 */
+	public function getChangeTagsFormatter(): ChangeTagsFormatter {
+		return $this->getService( 'ChangeTagsFormatter' );
 	}
 
 	/**

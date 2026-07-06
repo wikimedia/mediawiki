@@ -188,6 +188,7 @@ class ChangeTags {
 	/**
 	 * Creates HTML for the given tags
 	 *
+	 * @deprecated Since 1.47. Use {@link ChangeTagsFormatter::formatTagsAsSummaryList} instead.
 	 * @param string $tags Comma-separated list of tags
 	 * @param null|string $unused Unused (formerly: $page)
 	 * @param MessageLocalizer $localizer
@@ -197,47 +198,7 @@ class ChangeTags {
 	 * @return-taint onlysafefor_htmlnoent
 	 */
 	public static function formatSummaryRow( $tags, $unused, MessageLocalizer $localizer ) {
-		if ( $tags === '' || $tags === null ) {
-			return [ '', [] ];
-		}
-
-		$classes = [];
-
-		$tags = explode( ',', $tags );
-		$order = array_flip( MediaWikiServices::getInstance()->getChangeTagsStore()->listDefinedTags() );
-		usort( $tags, static function ( $a, $b ) use ( $order ) {
-			return ( $order[ $a ] ?? INF ) <=> ( $order[ $b ] ?? INF );
-		} );
-
-		$displayTags = [];
-		foreach ( $tags as $tag ) {
-			if ( $tag === '' ) {
-				continue;
-			}
-			$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
-			$description = self::tagDescription( $tag, $localizer );
-			if ( $description === false ) {
-				continue;
-			}
-			$displayTags[] = Html::rawElement(
-				'span',
-				[ 'class' => 'mw-tag-marker ' .
-					Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ],
-				$description
-			);
-		}
-
-		if ( !$displayTags ) {
-			return [ '', $classes ];
-		}
-
-		$markers = $localizer->msg( 'tag-list-wrapper' )
-			->numParams( count( $displayTags ) )
-			->rawParams( implode( ' ', $displayTags ) )
-			->parse();
-		$markers = Html::rawElement( 'span', [ 'class' => 'mw-tag-markers' ], $markers );
-
-		return [ $markers, $classes ];
+		return MediaWikiServices::getInstance()->getChangeTagsFormatter()->formatTagsAsSummaryList( $tags, $localizer );
 	}
 
 	/**
@@ -248,6 +209,7 @@ class ChangeTags {
 	 * used, provided it is not disabled. If the message is disabled, we
 	 * consider the tag hidden, and return false.
 	 *
+	 * @deprecated Since 1.47. Use {@link ChangeTagsFormatter::getTagDescription} instead.
 	 * @since 1.34
 	 * @param string $tag
 	 * @param MessageLocalizer $context
@@ -277,6 +239,7 @@ class ChangeTags {
 	 * and contains a URL or a page title, return a (possibly relative) link URL that points there.
 	 * Otherwise return null.
 	 *
+	 * @deprecated Since 1.47. Use {@link ChangeTagsFormatter::getTagDescription} instead.
 	 * @since 1.43
 	 * @param string $tag
 	 * @param MessageLocalizer $context
@@ -296,22 +259,18 @@ class ChangeTags {
 	 * The description combines the label from tagShortDescriptionMessage() with the link from
 	 * tagHelpLink() (unless the label already contains some links).
 	 *
+	 * @deprecated Since 1.47. Use {@link ChangeTagsFormatter::getTagDescription} instead.
 	 * @param string $tag
 	 * @param MessageLocalizer $context
 	 * @return string|false Tag description or false if tag is to be hidden.
 	 * @since 1.25 Returns false if tag is to be hidden.
 	 */
 	public static function tagDescription( $tag, MessageLocalizer $context ) {
-		$msg = self::tagShortDescriptionMessage( $tag, $context );
-		$link = self::tagHelpLink( $tag, $context );
-		if ( $msg && $link ) {
-			$label = $msg->parse();
-			// Avoid invalid HTML caused by link wrapping if the label already contains a link
-			if ( !str_contains( $label, '<a ' ) ) {
-				return Html::rawElement( 'a', [ 'href' => $link ], $label );
-			}
+		$description = MediaWikiServices::getInstance()->getChangeTagsFormatter()->getTagDescription( $tag, $context );
+		if ( $description === '' ) {
+			return false;
 		}
-		return $msg ? $msg->parse() : false;
+		return $description;
 	}
 
 	/**
@@ -321,6 +280,7 @@ class ChangeTags {
 	 * or if message is disabled, returns false. Otherwise, returns the message object
 	 * for the long description.
 	 *
+	 * @deprecated Since 1.47. Use {@link ChangeTagsFormatter::getTagDescription} instead.
 	 * @param string $tag
 	 * @param MessageLocalizer $context
 	 * @return Message|false Message object of the tag long description or false if
