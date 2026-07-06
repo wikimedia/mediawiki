@@ -27,9 +27,7 @@ use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserIdentity;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * @defgroup ChangeTags Change tagging
@@ -357,81 +355,6 @@ class ChangeTags {
 	}
 
 	/**
-	 * Add and remove tags to/from a change given its rc_id, rev_id and/or log_id,
-	 * without verifying that the tags exist or are valid. If a tag is present in
-	 * both $tagsToAdd and $tagsToRemove, it will be removed.
-	 *
-	 * This function should only be used by extensions to manipulate tags they
-	 * have registered using the ListDefinedTags hook. When dealing with user
-	 * input, call updateTagsWithChecks() instead.
-	 *
-	 * @deprecated since 1.41 use ChangeTagsStore::updateTags(). Hard-deprecated since 1.44.
-	 * @param string|array|null $tagsToAdd Tags to add to the change
-	 * @param string|array|null $tagsToRemove Tags to remove from the change
-	 * @param int|null &$rc_id The rc_id of the change to add the tags to.
-	 * Pass a variable whose value is null if the rc_id is not relevant or unknown.
-	 * @param int|null &$rev_id The rev_id of the change to add the tags to.
-	 * Pass a variable whose value is null if the rev_id is not relevant or unknown.
-	 * @param int|null &$log_id The log_id of the change to add the tags to.
-	 * Pass a variable whose value is null if the log_id is not relevant or unknown.
-	 * @param string|null $params Params to put in the ct_params field of table
-	 * 'change_tag' when adding tags
-	 * @param RecentChange|null $rc Recent change being tagged, in case the tagging accompanies
-	 * the action
-	 * @param UserIdentity|null $user Tagging user, in case the tagging is subsequent to the tagged action
-	 *
-	 * @return array Index 0 is an array of tags actually added, index 1 is an
-	 * array of tags actually removed, index 2 is an array of tags present on the
-	 * revision or log entry before any changes were made
-	 *
-	 * @since 1.25
-	 */
-	public static function updateTags( $tagsToAdd, $tagsToRemove, &$rc_id = null,
-		&$rev_id = null, &$log_id = null, $params = null, ?RecentChange $rc = null,
-		?UserIdentity $user = null
-	) {
-		wfDeprecated( __METHOD__, '1.41' );
-		return MediaWikiServices::getInstance()->getChangeTagsStore()->updateTags(
-			$tagsToAdd, $tagsToRemove, $rc_id, $rev_id, $log_id, $params, $rc, $user
-		);
-	}
-
-	/**
-	 * Return all the tags associated with the given recent change ID,
-	 * revision ID, and/or log entry ID, along with any data stored with the tag.
-	 *
-	 * @deprecated since 1.41 use ChangeTagsStore::getTagsWithData(). Hard-deprecated since 1.44.
-	 * @param IReadableDatabase $db the database to query
-	 * @param int|null $rc_id
-	 * @param int|null $rev_id
-	 * @param int|null $log_id
-	 * @return string[] Tag name => data. Data format is tag-specific.
-	 * @since 1.36
-	 */
-	public static function getTagsWithData(
-		IReadableDatabase $db, $rc_id = null, $rev_id = null, $log_id = null
-	) {
-		wfDeprecated( __METHOD__, '1.41' );
-		return MediaWikiServices::getInstance()->getChangeTagsStore()->getTagsWithData( $db, $rc_id, $rev_id, $log_id );
-	}
-
-	/**
-	 * Return all the tags associated with the given recent change ID,
-	 * revision ID, and/or log entry ID.
-	 *
-	 * @deprecated since 1.41 use ChangeTagsStore::getTags(). Hard-deprecated since 1.44.
-	 * @param IReadableDatabase $db the database to query
-	 * @param int|null $rc_id
-	 * @param int|null $rev_id
-	 * @param int|null $log_id
-	 * @return string[]
-	 */
-	public static function getTags( IReadableDatabase $db, $rc_id = null, $rev_id = null, $log_id = null ) {
-		wfDeprecated( __METHOD__, '1.41' );
-		return MediaWikiServices::getInstance()->getChangeTagsStore()->getTags( $db, $rc_id, $rev_id, $log_id );
-	}
-
-	/**
 	 * Helper function to generate a fatal status with a 'not-allowed' type error.
 	 *
 	 * @param string $msgOne Message key to use in the case of one tag
@@ -532,7 +455,7 @@ class ChangeTags {
 	 * to/from a change.
 	 *
 	 * NOTE: The method is named with "internal" so that the existing public version
-	 * of this method can be still exist but be deprecated. Once {@link self::updateTags()}
+	 * of this method can be still exist but be deprecated. Once {@link self::canUpdateTags()}
 	 * is dropped, this method should be renamed to remove "internal"
 	 *
 	 * @param string[] $tagsToAdd Tags that are being added
