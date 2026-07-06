@@ -98,9 +98,7 @@ class UpdateHandler extends EditHandler {
 	 * @inheritDoc
 	 */
 	protected function getActionModuleParameters() {
-		$body = $this->getValidatedBody();
-		'@phan-var array $body';
-
+		$body = $this->getValidatedBodyArray();
 		$title = $this->getTitleParameter();
 		$baseRevId = $body['latest']['id'] ?? 0;
 
@@ -195,8 +193,7 @@ class UpdateHandler extends EditHandler {
 	 * @return array
 	 */
 	private function getConflictData() {
-		$body = $this->getValidatedBody();
-		'@phan-var array $body';
+		$body = $this->getValidatedBodyArray();
 		$baseRevId = $body['latest']['id'] ?? 0;
 		$title = $this->titleParser->parseTitle( $this->getValidatedParams()['title'] );
 

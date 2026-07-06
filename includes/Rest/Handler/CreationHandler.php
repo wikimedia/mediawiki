@@ -19,8 +19,7 @@ class CreationHandler extends EditHandler {
 	 * @inheritDoc
 	 */
 	protected function getTitleParameter() {
-		$body = $this->getValidatedBody();
-		'@phan-var array $body';
+		$body = $this->getValidatedBodyArray();
 		return $body['title'];
 	}
 
@@ -66,9 +65,7 @@ class CreationHandler extends EditHandler {
 	 * @inheritDoc
 	 */
 	protected function getActionModuleParameters() {
-		$body = $this->getValidatedBody();
-		'@phan-var array $body';
-
+		$body = $this->getValidatedBodyArray();
 		$title = $this->getTitleParameter();
 
 		$contentmodel = $body['content_model'] ?: null;

@@ -1402,7 +1402,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->validateHandler( $handler );
 
 		$this->assertArrayHasKey( 'test', $handler->getValidatedParams() );
-		$this->assertArrayNotHasKey( 'test', $handler->getValidatedBody() );
+		$this->assertArrayNotHasKey( 'test', $handler->getValidatedBodyArray() );
 	}
 
 	/**
@@ -1435,7 +1435,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->initHandler( $handler, $request );
 		$this->validateHandler( $handler );
 
-		$this->assertArrayHasKey( 'test', $handler->getValidatedBody() );
+		$this->assertArrayHasKey( 'test', $handler->getValidatedBodyArray() );
 		$this->assertArrayNotHasKey( 'test', $handler->getValidatedParams() );
 	}
 

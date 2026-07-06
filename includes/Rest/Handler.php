@@ -1280,6 +1280,15 @@ abstract class Handler {
 	}
 
 	/**
+	 * Fetch the validated body, asserting that it is an array. This is safe to
+	 * call from execute() if the body validator is defined such that it only
+	 * permits arrays.
+	 */
+	public function getValidatedBodyArray(): array {
+		return $this->validatedBody;
+	}
+
+	/**
 	 * Returns the parsed body of the request.
 	 * Should only be called if $request->hasBody() returns true.
 	 *
