@@ -57,7 +57,7 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 } );
 
 // strip wprov from the URL
-require( './wprovStrip.js' ).stripWprov();
+const wprov = require( './wprovStrip.js' ).stripWprov();
 
 // Add toolbox portlet to toggle all collapsibles if there are any
 require( './toggleAllCollapsibles.js' );
@@ -329,5 +329,13 @@ module.exports = {
 	 *
 	 * @type {HTMLElement}
 	 */
-	teleportTarget: teleportTarget.target
+	teleportTarget: teleportTarget.target,
+	/**
+	 * Value of the wprov query parameter, captured before it was stripped
+	 * from the URL, so dependent modules can still read it.
+	 * See https://wikitech.wikimedia.org/wiki/Provenance
+	 *
+	 * @type {string|null}
+	 */
+	wprov
 };
