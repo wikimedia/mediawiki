@@ -73,7 +73,9 @@ class ExpandRelativeAttrs extends ContentDOMTransformStage {
 		if ( $pageFragmentPrefix && str_starts_with( $href, $pageFragmentPrefix ) ) {
 			$href = substr( $href, strlen( $pageFragmentPrefix ) - 1 );
 		} else {
-			$href = $urlUtils->expand( $baseHref . $href, PROTO_RELATIVE ) ?? false;
+			// Using PROTO_CANONICAL here to work around issues some clients
+			// have with protocol-relative URLs (T431358)
+			$href = $urlUtils->expand( $baseHref . $href, PROTO_CANONICAL ) ?? false;
 		}
 		$node->setAttribute( $attr, $href );
 	}

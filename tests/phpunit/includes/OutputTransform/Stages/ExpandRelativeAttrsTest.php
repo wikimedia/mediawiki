@@ -50,7 +50,7 @@ class ExpandRelativeAttrsTest extends OutputTransformStageTestBase {
 			[
 				"title" => "Foo",
 				"body" => "<p><a href=\"./Foo#cite1\">hello</a><a href=\"./Foo/Bar#cite1\">boo</a></p>",
-				"result" => "<p><a href=\"#cite1\">hello</a><a href=\"//my.wiki.example/wikix/Foo/Bar#cite1\">boo</a></p>"
+				"result" => "<p><a href=\"#cite1\">hello</a><a href=\"https://my.wiki.example/wikix/Foo/Bar#cite1\">boo</a></p>"
 			],
 			// hrefs have db-key normalization of titles - test that output isn't tripped by that
 			[
@@ -81,7 +81,7 @@ class ExpandRelativeAttrsTest extends OutputTransformStageTestBase {
 			[
 				"title" => "Foo/Bar",
 				"body" => '<figure typeof="mw:File mw:Extension/imagemap"><span><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" usemap="#ImageMap_02c94d3ca4bfc187"></span><map name="ImageMap_02c94d3ca4bfc187"><area href="./Main_Page" shape="poly" coords="10,11,10,30,-30,15"></map><figcaption></figcaption></figure>',
-				"result" => "<figure typeof=\"mw:File mw:Extension/imagemap\"><span><img resource=\"//my.wiki.example/wikix/File:Foobar.jpg\" src=\"http://example.com/images/3/3a/Foobar.jpg\" usemap=\"#ImageMap_02c94d3ca4bfc187\"/></span><map name=\"ImageMap_02c94d3ca4bfc187\"><area href=\"//my.wiki.example/wikix/Main_Page\" shape=\"poly\" coords=\"10,11,10,30,-30,15\"/></map><figcaption></figcaption></figure>",
+				"result" => "<figure typeof=\"mw:File mw:Extension/imagemap\"><span><img resource=\"https://my.wiki.example/wikix/File:Foobar.jpg\" src=\"http://example.com/images/3/3a/Foobar.jpg\" usemap=\"#ImageMap_02c94d3ca4bfc187\"/></span><map name=\"ImageMap_02c94d3ca4bfc187\"><area href=\"https://my.wiki.example/wikix/Main_Page\" shape=\"poly\" coords=\"10,11,10,30,-30,15\"/></map><figcaption></figcaption></figure>",
 			],
 		];
 		// Set test title in parser output extension data

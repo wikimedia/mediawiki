@@ -31,6 +31,7 @@ abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase
 	public function setUp(): void {
 		RequestContext::resetMain();
 		$this->overrideConfigValues( [
+			MainConfigNames::CanonicalServer => 'https://TEST_SERVER',
 			MainConfigNames::ScriptPath => '/w',
 			MainConfigNames::Script => '/w/index.php',
 			MainConfigNames::Server => '//TEST_SERVER',
