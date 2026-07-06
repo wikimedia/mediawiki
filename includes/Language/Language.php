@@ -5032,7 +5032,7 @@ class Language implements Bcp47Code {
 
 	/**
 	 * @internal For DateFormatterConfig
-	 * @return array
+	 * @return array<string,array>
 	 */
 	public function getJsDateFormats() {
 		$jsLcFormats = $this->localisationCache->getItem( $this->mCode, 'jsDateFormats' );

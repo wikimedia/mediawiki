@@ -36,8 +36,7 @@ class DateFormatterConfig extends Module {
 	 */
 	public static function getDataForLang( Language $lang, Config $config ) {
 		$locales = [ $lang->getHtmlCode() ];
-		$fallbacks = $lang->getFallbackLanguages();
-		foreach ( $fallbacks as $code ) {
+		foreach ( $lang->getFallbackLanguages() as $code ) {
 			$locales[] = LanguageCode::bcp47( $code );
 		}
 
@@ -47,29 +46,30 @@ class DateFormatterConfig extends Module {
 		foreach ( $formats as $format ) {
 			$pattern = $format['pattern'] ?? '';
 			foreach ( [ 'mwMonth', 'mwMonthGen', 'mwMonthAbbrev' ] as $field ) {
-				if ( str_contains( $pattern, "{$field}" ) ) {
+				if ( str_contains( $pattern, '{' . $field . '}' ) ) {
 					$haveField[$field] = true;
 				}
 			}
 		}
 
+		$months = [];
 		// Include only the required month data
 		if ( $haveField ) {
-			$months = [ [] ];
+			// Dummy entry for non-existing month zero
+			$months[] = [];
 			for ( $i = 1; $i <= 12; $i++ ) {
+				// The three array elements are expected in this order in DateFormatter.js
 				$data = [
 					isset( $haveField['mwMonth'] ) ? $lang->getMonthName( $i ) : '',
 					isset( $haveField['mwMonthGen'] ) ? $lang->getMonthNameGen( $i ) : '',
 					isset( $haveField['mwMonthAbbrev'] ) ? $lang->getMonthAbbreviation( $i ) : ''
 				];
 				// Trim the end of the array
-				while ( end( $data ) === '' ) {
-					unset( $data[ array_key_last( $data ) ] );
+				while ( array_last( $data ) === '' ) {
+					array_pop( $data );
 				}
-				$months[] = $data;
+				$months[$i] = $data;
 			}
-		} else {
-			$months = [];
 		}
 
 		return [
