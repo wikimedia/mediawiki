@@ -171,6 +171,9 @@ class ChangeTagsStore {
 	 * Return all the tags associated with the given recent change ID,
 	 * revision ID, and/or log entry ID, along with any data stored with the tag.
 	 *
+	 * Does not remove tags that the viewing user cannot see, use {@link self::filterViewableTags} on the array
+	 * keys to filter for tags that the user can see.
+	 *
 	 * @param IReadableDatabase $db the database to query
 	 * @param int|null $rc_id
 	 * @param int|null $rev_id
@@ -528,8 +531,10 @@ class ChangeTagsStore {
 	}
 
 	/**
-	 * Return all the tags associated with the given recent change ID,
-	 * revision ID, and/or log entry ID.
+	 * Return all the tags associated with the given recent change ID, revision ID, and/or log entry ID.
+	 *
+	 * Does not remove tags that the viewing user cannot see, use {@link self::getViewableTags} for that
+	 * instead.
 	 *
 	 * @param IReadableDatabase $db the database to query
 	 * @param int|null $rc_id
@@ -539,6 +544,30 @@ class ChangeTagsStore {
 	 */
 	public function getTags( IReadableDatabase $db, $rc_id = null, $rev_id = null, $log_id = null ) {
 		return array_keys( $this->getTagsWithData( $db, $rc_id, $rev_id, $log_id ) );
+	}
+
+	/**
+	 * Return all the tags viewable by the provided {@link Authority} that are associated with the given
+	 * recent change ID, revision ID, and/or log entry ID.
+	 *
+	 * To get all the tags use {@link self::getTags} instead.
+	 *
+	 * @since 1.47
+	 * @param IReadableDatabase $db
+	 * @param Authority $performer
+	 * @param int|null $recentChangeId
+	 * @param int|null $revisionId
+	 * @param int|null $logId
+	 * @return string[]
+	 */
+	public function getViewableTags(
+		IReadableDatabase $db,
+		Authority $performer,
+		?int $recentChangeId = null,
+		?int $revisionId = null,
+		?int $logId = null
+	): array {
+		return $this->filterViewableTags( $this->getTags( $db, $recentChangeId, $revisionId, $logId ), $performer );
 	}
 
 	/**
@@ -630,6 +659,21 @@ class ChangeTagsStore {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Filter a list of tag names down to those the performer may view. Does not query the database.
+	 *
+	 * @since 1.47
+	 * @param string[] $tags
+	 * @param Authority $performer
+	 * @return string[]
+	 */
+	public function filterViewableTags( array $tags, Authority $performer ): array {
+		return array_values( array_filter(
+			$tags,
+			fn ( string $tag ) => !$this->isRestrictedTag( $tag ) || $this->canViewTag( $tag, $performer )
+		) );
 	}
 
 	/**

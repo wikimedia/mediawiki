@@ -1036,4 +1036,28 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	public function testFilterViewableTags(): void {
+		$this->setRestrictedTags( [ 'mw-private-test' => [ 'viewsuppressed', 'suppress' ] ] );
+
+		$privileged = $this->mockRegisteredAuthorityWithPermissions( [ 'suppress' ] );
+		$unprivileged = $this->mockRegisteredAuthorityWithoutPermissions( [ 'viewsuppressed', 'suppress' ] );
+
+		$tags = [ 'mw-undo', 'mw-private-test' ];
+		$this->assertSame( $tags, $this->changeTags->filterViewableTags( $tags, $privileged ) );
+		$this->assertSame( [ 'mw-undo' ], $this->changeTags->filterViewableTags( $tags, $unprivileged ) );
+	}
+
+	public function testGetViewableTags(): void {
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+
+		$privileged = $this->mockRegisteredAuthorityWithPermissions( [ 'patrol' ] );
+		$unprivileged = $this->mockRegisteredAuthorityWithoutPermissions( [ 'patrol' ] );
+
+		$tags = [ 'mw-undo', 'mw-private-test' ];
+		$this->changeTags->addTags( $tags, 123 );
+
+		$this->assertSame( $tags, $this->changeTags->getViewableTags( $this->getDb(), $privileged, 123 ) );
+		$this->assertSame( [ 'mw-undo' ], $this->changeTags->getViewableTags( $this->getDb(), $unprivileged, 123 ) );
+	}
+
 }

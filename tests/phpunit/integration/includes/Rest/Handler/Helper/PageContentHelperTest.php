@@ -225,6 +225,50 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	/** @dataProvider provideExistingPage */
+	public function testExistingPage( array $tagsOnLatestRevision ): void {
+		$page = $this->getExistingTestPage();
+		$revId = $page->getRevisionRecord()->getId();
+		$rcId = null;
+		$this->getServiceContainer()->getChangeTagsStore()->updateTags(
+			$tagsOnLatestRevision, [], $rcId, $revId
+		);
+
+		$title = $page->getTitle();
+		$helper = $this->newHelper(
+			[ 'title' => $title->getPrefixedDBkey() ],
+			$this->mockRegisteredUltimateAuthority()
+		);
+
+		$this->assertSame( $title->getPrefixedDBkey(), $helper->getTitleText() );
+		$this->assertTrue( $helper->getPage()->isSamePageAs( $title ) );
+
+		$this->assertTrue( $helper->hasContent() );
+		$this->assertFalse( $helper->useShadowContent() );
+		$this->assertNull( $helper->getShadowPage() );
+		$this->assertTrue( $helper->isAccessible() );
+
+		$this->assertSame( $page->getRevisionRecord()->getTimestamp(), $helper->getLastModified() );
+		$this->assertSame(
+			'"' . sha1(
+				$page->getRevisionRecord()->getId() . 'a1' .
+				implode( ', ', $tagsOnLatestRevision )
+			) . '"',
+			$helper->getETag(),
+			'ETag was not as expected'
+		);
+
+		// The line below should not throw any exception
+		$helper->checkAccess();
+	}
+
+	public static function provideExistingPage(): array {
+		return [
+			'No tags on most recent edit' => [ [] ],
+			'Tags on most recent edit' => [ [ 'mw-reverted' ] ],
+		];
+	}
+
 	public function testForbiddenPage() {
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$title = $page->getTitle();

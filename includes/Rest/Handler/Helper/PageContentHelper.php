@@ -194,10 +194,10 @@ class PageContentHelper {
 	}
 
 	/**
-	 * Returns an ETag representing a page's source. The ETag assumes a page's source has changed
-	 * if the latest revision of a page has been made private, un-readable for another reason,
-	 * or a newer revision exists.
-	 * @return string|null
+	 * Returns an ETag representing a page's source. The ETag assumes a page's source has changed if:
+	 * * The latest revision of a page has been made private or un-readable for another reason
+	 * * A newer revision exists
+	 * * The visible tags on the revision have changed
 	 */
 	public function getETag(): ?string {
 		$revision = $this->getTargetRevision();
@@ -206,7 +206,17 @@ class PageContentHelper {
 		$isAccessible = $this->isAccessible();
 		$accessibleTag = $isAccessible ? 'a1' : 'a0';
 
-		$revisionTag = $revId . $accessibleTag;
+		$tagsOnRevision = [];
+		if ( $revision ) {
+			$tagsOnRevision = $this->changeTagsStore->getViewableTags(
+				$this->dbProvider->getReplicaDatabase(),
+				$this->authority,
+				null,
+				$revision->getId()
+			);
+		}
+
+		$revisionTag = $revId . $accessibleTag . implode( ', ', $tagsOnRevision );
 		return '"' . sha1( $revisionTag ) . '"';
 	}
 
@@ -255,8 +265,9 @@ class PageContentHelper {
 		$page = $revision->getPage();
 		$title = $this->titleFactory->newFromPageIdentity( $page );
 
-		$tags = $this->changeTagsStore->getTags(
+		$tags = $this->changeTagsStore->getViewableTags(
 			$this->dbProvider->getReplicaDatabase(),
+			$this->authority,
 			null, $revision->getId(), null
 		);
 
