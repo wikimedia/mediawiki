@@ -259,6 +259,7 @@
 	"apierror-permissiondenied": "Sinulla ei ole oikeutta $1.",
 	"apierror-permissiondenied-generic": "Käyttö estetty.",
 	"apierror-permissiondenied-unblock": "Sinulla ei ole oikeutta poistaa käyttäjien estoja.",
+	"apierror-permissiondenied-userrights-interwiki": "Sinulla ei ole oikeutta muuttaa käyttöoikeuksia muissa wikeissä.",
 	"apierror-protect-invalidaction": "Virheellinen suojaustyyppi ”$1”.",
 	"apierror-protect-invalidlevel": "Virheellinen suojaustaso ”$1”.",
 	"apierror-ratelimited": "Olet ylittänyt toimintorajasi. Odota hetki ja yritä uudelleen.",
@@ -286,5 +287,7 @@
 	"apierror-unrecognizedvalue": "Tunnistamaton arvo parametrille <var>$1</var>: $2.",
 	"apierror-unsupportedrepo": "Paikallinen tiedostovarasto ei tue kaikkien kuvien hakua.",
 	"apierror-writeapidenied": "Sinulla ei ole oikeutta muokata tätä wikiä API:n kautta.",
+	"apiwarn-upload-autotextwithstash": "<var>autotext</var>-parametri ohitetaan, kun <var>stash</var> on asetettu.",
+	"apiwarn-upload-textwithstash": "<var>text</var>-parametri ohitetaan, kun <var>stash</var> on asetettu.",
 	"api-feed-error-title": "Virhe ($1)"
 }

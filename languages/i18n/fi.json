@@ -3322,6 +3322,7 @@
 	"tags-create-already-exists": "Merkkaus ”$1” on jo olemassa.",
 	"tags-create-warnings-above": "{{PLURAL:$2|Seuraava varoitus|Seuraavat varoitukset}} ilmenivät, kun yritettiin luoda merkkausta ”$1”:",
 	"tags-create-warnings-below": "Haluatko jatkaa merkkauksen luomista?",
+	"tags-create-reserved-prefix": "Tunnisteiden nimen alussa ei saa olla $1-merkintää, sillä se on varattu rajoitetuille, ohjelmiston tai laajennusten määrittelemille tunnisteille.",
 	"tags-delete-title": "Hävitä merkkaus pysyvästi",
 	"tags-delete-explanation-initial": "Olet parhaillaan poistamassa (eli tuhoamassa pysyvästi) merkkauksen ”$1” tietokannasta.",
 	"tags-delete-explanation-in-use": "Se poistuu {{PLURAL:$2|$2 sivun versiosta tai lokimerkinnästä|kaikista $2 sivuversiosta tai lokimerkinnöistä}}, joissa se tällä hetkellä on käytössä.",

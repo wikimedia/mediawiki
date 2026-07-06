@@ -3326,6 +3326,7 @@
 	"tags-create-already-exists": "Het label \"$1\" bestaat al.",
 	"tags-create-warnings-above": "De volgende {{PLURAL:$2|waarschuwing is|waarschuwingen zijn}} opgetreden tijdens het aanmaken van het label \"$1\":",
 	"tags-create-warnings-below": "Wilt u doorgaan met het aanmaken van het label?",
+	"tags-create-reserved-prefix": "Tagnamen mogen niet beginnen met “$1”, want dit is gereserveerd voor beperkte tags die door de software of uitbreidingen zijn gedefinieerd.",
 	"tags-delete-title": "Label verwijderen",
 	"tags-delete-explanation-initial": "U bent het label \"$1\" aan het verwijderen uit de database.",
 	"tags-delete-explanation-in-use": "Het wordt verwijderd van {{PLURAL:$2|één versie of logboekregel|alle $2 versies en/of logboekregels}} waarin het is gebruikt.",

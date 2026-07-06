@@ -3258,6 +3258,7 @@
 	"tags-create-already-exists": "\"$1\" etiketi artıq mövcuddur.",
 	"tags-create-warnings-above": "\"$1\" teqini yaradarkən aşağıdakı {{PLURAL:$2|xəbərdarlıq|xəbərdarlıqlar}} peyda oldu:",
 	"tags-create-warnings-below": "Etiketi yaratmağa davam etmək istəyirsinizmi?",
+	"tags-create-reserved-prefix": "Teq adları proqram təminatı və ya uzantılar tərəfindən müəyyən edilmiş məhdud etiketlər üçün ayrılmış \"$1\" ilə başlamamalıdır.",
 	"tags-delete-title": "Etiketi sil",
 	"tags-delete-explanation-initial": "Siz \"$1\" teqini verilənlər bazasından silmək üzrəsiniz.",
 	"tags-delete-explanation-in-use": "O, əlavə edildiyi {{PLURAL:$2|$2 versiya və ya jurnal qeydindən|bütün versiyalardan və jurnal qeydlərindən}} silinəcək.",

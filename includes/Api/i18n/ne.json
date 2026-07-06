@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Nirjal stha",
+			"Pratik11",
 			"पर्वत सुबेदी",
 			"बडा काजी",
 			"सरोज कुमार ढकाल"
@@ -104,6 +105,9 @@
 	"apihelp-query+allfileusages-param-limit": "कतिवटा कुल वस्तुहरू फिर्ता गर्ने छ।",
 	"apihelp-query+allfileusages-param-dir": "कुन दिशामा सूचीबद्ध गर्ने।",
 	"apihelp-query+exturlusage-paramvalue-prop-ids": "पृष्ठको आईडी थप्दछ।",
+	"apihelp-upload-param-copystatus": "फाइलको प्रतिलिपि अधिकार स्थिति ( <var>[[mw:Special:MyLanguage/Manual:$wgUseCopyrightUpload|$wgUseCopyrightUpload]]</var> मा निर्भर गर्दछ)। फाइल विवरण पृष्ठ विकिटेक्स्ट उत्पन्न गर्न <var>$1 अटोटेक्स्टसँग</var> मात्र प्रयोग गरिन्छ।",
+	"apihelp-upload-param-source": "फाइलको प्रतिलिपि अधिकार स्थिति ( <var>[[mw:Special:MyLanguage/Manual:$wgUseCopyrightUpload|$wgUseCopyrightUpload]]</var> मा निर्भर गर्दछ)। फाइल विवरण पृष्ठ विकिटेक्स्ट उत्पन्न गर्न <var>$1 अटोटेक्स्टसँग</var> मात्र प्रयोग गरिन्छ।",
+	"apihelp-upload-param-autotext": "$ <var>$1 पाठ</var> प्यारामिटरलाई ओभरराइड गर्दै, $ <var>$1 टिप्पणी</var> , $ <var>$1 लाइसेन्स</var> , <var>$1 copystatus</var> र <var>$1 स्रोतबाट</var> फाइल विवरण पृष्ठ विकिटेक्स्ट सर्भर-साइड उत्पन्न गर्नुहोस्। एक्सटेन्सनहरूले UploadForm:getInitialPageText हुक मार्फत उत्पन्न पाठ परिवर्तन गर्न सक्छन्। <kbd>action=upload लाई</kbd> [[Special:Upload]] र importImages मर्मत स्क्रिप्टको व्यवहारसँग मेल खाने अनुमति दिन <var>$1 autotext</var> अवस्थित छ।",
 	"apihelp-userrights-param-user": "प्रयोगकर्ता",
 	"apierror-invalidtitle": "खराब शीर्षक \"$1\"।",
 	"apierror-invaliduser": "अवैध प्रयोगकर्ता नाम \"$1\"।",
@@ -118,6 +122,8 @@
 	"apiwarn-invalidcategory": "\"$1\" कुनै श्रेणी होइन।",
 	"apiwarn-invalidtitle": "\"$1\" एउटा मान्य शीर्षक होइन।",
 	"apiwarn-notfile": "\"$1\" एउटा फाइल होइन।",
+	"apiwarn-upload-autotextwithstash": "<var>स्ट्यास</var> सेट गर्दा प्यारामिटर <var>पाठलाई</var> बेवास्ता गरिन्छ।",
+	"apiwarn-upload-textwithstash": "<var>स्ट्यास</var> सेट गर्दा प्यारामिटर <var>पाठलाई</var> बेवास्ता गरिन्छ।",
 	"apiwarn-validationfailed-badpref": "मान्य प्राथमिकता होइन।",
 	"api-feed-error-title": "त्रुटि ($1)",
 	"api-exception-trace": "$1मा $2 ($3)\n$4",

@@ -3269,6 +3269,7 @@
 	"tags-create-already-exists": "A etiqueta «$1» xa existe.",
 	"tags-create-warnings-above": "{{PLURAL:$2|Atopouse o seguinte aviso|Atopáronse os seguintes avisos}} ao intentar crear a etiqueta «$1»:",
 	"tags-create-warnings-below": "Queres continuar creando a etiqueta?",
+	"tags-create-reserved-prefix": "Os nomes das etiquetas non poden comezar por «$1», que é un prefixo reservado para algunhas etiquetas restrinxidas definidas polo software ou as extensións.",
 	"tags-delete-title": "Borrar unha etiqueta",
 	"tags-delete-explanation-initial": "Estás a piques de borrar a etiqueta «$1» da base de datos.",
 	"tags-delete-explanation-in-use": "Ha eliminarse {{PLURAL:$2|dunha revisión ou entrada|das $2 revisións e/ou entradas}} de rexistro {{PLURAL:$2|á|ás}} que actualmente se aplica.",

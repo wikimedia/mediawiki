@@ -3479,6 +3479,7 @@
 	"tags-create-already-exists": "标签“$1”已存在。",
 	"tags-create-warnings-above": "下列{{PLURAL:$2|警告}}是尝试创建“$1”标签时遇到的：",
 	"tags-create-warnings-below": "您希望继续创建此标签吗？",
+	"tags-create-reserved-prefix": "标签名称不能以“$1”开头，因为“$1”是软件或扩展定义的受限标签的保留名称。",
 	"tags-delete-title": "删除标签",
 	"tags-delete-explanation-initial": "您即将从数据库中删除标签“$1”。",
 	"tags-delete-explanation-in-use": "它将从{{PLURAL:$2|所有$2个修订版本和/或日志记录}}中移除。",

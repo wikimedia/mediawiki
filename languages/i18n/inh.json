@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"1233qwer1234qwer4",
 			"Adam-Yourist",
 			"Andrijko Z.",
 			"BaRaN6161 TURK",
@@ -718,7 +719,7 @@
 	"rev-suppressed-text-view": "Ер оагӀон эрш <strong>къайладаьккхад</strong>.\nХьажа йиш я хьа цунга. Ма дарра гойт [{{fullurl:{{#Special:Log}}/suppress|page=$1}} къайладаккхарий тептара тӀа].",
 	"rev-deleted-no-diff": "ОагӀон эршашта юкъерча башхалонга хьожалац хьо, хӀана аьлча, царех цхьа эрш <strong>дӀадаьккхад</strong>.\nМа дарра гойт [{{fullurl:{{#Special:Log}}/delete|page={{urlencode:{{FULLPAGENAME}}}}}} дӀадаккхарий тептара тӀа].",
 	"rev-suppressed-no-diff": "Укх оагӀон эршашта юкъерча башхалонга хьожалац хьо, хӀана аьлча, царех цхьа эрш <strong>къайладаьккхад</strong>.",
-	"rev-deleted-unhide-diff": "ОагӀон эршех цаӀ <strong>дӀадаьккхад</strong>.\nМа дарра гойт [{{fullurl:{{#Special:Log}}/suppress|page={{urlencode:{{FULLPAGENAME}}}}}} дӀадаккхарий тептара тӀа].\nХьайна лой, хьажа йиш я хьа цу [$1 эршашта юкъерча башхалонга].",
+	"rev-deleted-unhide-diff": "ОагӀон эршех цаӀ <strong>дӀадаьккхад</strong>.\nМа дарра гойт [{{fullurl:{{#Special:Log}}/delete|page={{urlencode:{{FULLPAGENAME}}}}}} дӀадаккхарий тептара тӀа].\nХьайна лой, хьажа йиш я хьа цу [$1 эршашта юкъерча башхалонга].",
 	"rev-suppressed-unhide-diff": "Укх вӀашидистара эршех цаӀ <strong>къайладаьккхад</strong>.\nМа дарра гойт [{{fullurl:{{#Special:Log}}/suppress|page={{urlencode:{{FULLPAGENAME}}}}}} къайладаккхарий тептара тӀа].\nБезам бале [$1 цу эрший башхалонга хьажа] йиш я хьа.",
 	"rev-deleted-diff-view": "Укх вӀашидистара дола цхьа эрш <strong>дӀадаьккхад</strong>.\nХьажа йиш я хьа цу вӀашидистарга. Ма дарра гойт [{{fullurl:{{#Special:Log}}/delete|page={{urlencode:{{FULLPAGENAME}}}}}} дӀадаккхарий тептара тӀа].",
 	"rev-suppressed-diff-view": "Укх вӀашидистара дола цхьа эрш <strong>къайладаьккхад</strong>.\nХьажа йиш я хьа цу вӀашидистарга. Ма дарра гойт [{{fullurl:{{#Special:Log}}/suppress|page={{urlencode:{{FULLPAGENAME}}}}}} къайладаккхарий тептара тӀа].",

@@ -3246,6 +3246,7 @@
 	"tags-create-already-exists": "Teg \"$1\" sudah wujud.",
 	"tags-create-warnings-above": "{{PLURAL:$2|Amaran|Amaran-amaran}} berikut ditemui ketika cuba mencipta teg \"$1\":",
 	"tags-create-warnings-below": "Adakah anda hendak bersambung mencipta teg ini?",
+	"tags-create-reserved-prefix": "Nama tag tidak boleh bermula dengan \"$1\", yang dikhaskan untuk tag terhad yang ditakrifkan oleh perisian atau sambungan.",
 	"tags-delete-title": "Hapuskan teg",
 	"tags-delete-explanation-initial": "Anda bakal menghapuskan teg \"$1\" dari pangkalan data.",
 	"tags-delete-explanation-in-use": "Teg ini akan digugurkan dari {{PLURAL:$2|$2|semua $2}} semakan atau entri log yang berkenaan.",

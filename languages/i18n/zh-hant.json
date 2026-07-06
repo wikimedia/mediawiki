@@ -3373,6 +3373,7 @@
 	"tags-create-already-exists": "標籤「$1」已存在。",
 	"tags-create-warnings-above": "嘗試建立標籤 \"$1\" 時發生下列{{PLURAL:$2|警告}}：",
 	"tags-create-warnings-below": "您是否要繼續建立標籤？",
+	"tags-create-reserved-prefix": "標籤名稱不能以「$1」開頭，因為「$1」是軟體或擴充功能定義的受限標籤的保留名稱。",
 	"tags-delete-title": "刪除標籤",
 	"tags-delete-explanation-initial": "您正要從資料庫刪除標籤 \"$1\"。",
 	"tags-delete-explanation-in-use": "標籤會自目前正在使用的{{PLURAL:$2| $2 個修訂或日誌項目| $2 修訂或日誌項目}}中移除。",

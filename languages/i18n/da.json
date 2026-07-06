@@ -3270,6 +3270,7 @@
 	"tags-create-already-exists": "Tagget \"$1\" findes allerede.",
 	"tags-create-warnings-above": "Følgende {{PLURAL:$2|advarsel|advarsler}} opstod, da du forsøgte at oprette tagget \"$1\":",
 	"tags-create-warnings-below": "Ønsker du at fortsætte med at oprette tagget?",
+	"tags-create-reserved-prefix": "Tagnavne må ikke begynde med \"$1\", som er reserveret til begrænsede tags defineret af softwaren eller udvidelserne.",
 	"tags-delete-title": "Slet tag",
 	"tags-delete-explanation-initial": "Du er ved at slette tagget \"$1\" fra databasen.",
 	"tags-delete-explanation-in-use": "Det vil blive fjernet fra {{PLURAL:$2|$2 sideversion eller logindgang|alle $2 sideversioner og/eller logindgange}}, som den i øjeblikket bruges på.",

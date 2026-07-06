@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Pratik11",
 			"बडा काजी"
 		]
 	},
@@ -32,6 +33,11 @@
 	"rest-param-desc-transform-format": "ढाँचा रूपान्तरण",
 	"rest-param-desc-transform-title": "शीर्षक रूपान्तरण",
 	"rest-param-desc-transform-revision": "रूपान्तरण संशोधन",
+	"rest-param-desc-wikitext-to-html-title": "विकिटेक्स्ट-टु-एचटीएमएल रूपान्तरणको सन्दर्भको रूपमा प्रयोग गर्न पृष्ठ शीर्षक",
+	"rest-param-desc-html-to-wikitext-title": "पृष्ठ शीर्षक HTML-to-wikitext रूपान्तरणको लागि सन्दर्भको रूपमा प्रयोग गर्न",
+	"rest-param-desc-wikitext-to-lint-title": "लिन्ट जाँचको सन्दर्भको रूपमा प्रयोग गर्न पृष्ठ शीर्षक",
+	"rest-requestbody-desc-transform-wikitext": "रूपान्तरणका लागि विकिटक्स्ट सामग्री",
+	"rest-requestbody-desc-transform-html": "विकिटेक्स्टमा रूपान्तरण गर्न HTML सामग्री",
 	"rest-param-desc-update-title": "अद्यावधिक पृष्ठ शीर्षक",
 	"rest-property-desc-mock-desc": "उपहास विवरण।",
 	"rest-property-desc-revision-user": "संशोधन गर्ने प्रयोगकर्ताको बारेमा जानकारी",
@@ -65,6 +71,16 @@
 	"rest-schema-desc-revision-compare": "संशोधन तुलना",
 	"rest-endpoint-desc-mock-desc": "उपहास विवरण।",
 	"rest-endpoint-desc-post-page": "पृष्ठ सिर्जना गर्छ।",
+	"rest-property-desc-templateinfo-name": "ढाँचा नाम",
+	"rest-property-desc-templateinfo-multipart": "टेम्प्लेटले धेरै टेम्प्लेट ब्लकहरू फैलाउँछ कि छैन",
+	"rest-property-desc-transform-wikitext": "रूपान्तरणका लागि विकिटक्स्ट सामग्री",
+	"rest-property-desc-transform-wikitext-with-headers": "वैकल्पिक हेडरहरू सहित, रूपान्तरण गर्न विकिटेक्स्ट सामग्री",
+	"rest-property-desc-transform-wikitext-headers": "विकिटेक्स्ट सामग्रीको लागि HTTP हेडरहरू",
+	"rest-property-desc-transform-wikitext-body": "विकिटेक्स्ट सामग्री",
+	"rest-property-desc-transform-html": "विकिटेक्स्टमा रूपान्तरण गर्न HTML सामग्री",
+	"rest-property-desc-transform-html-with-headers": "वैकल्पिक हेडरहरू सहित, विकिटेक्स्टमा रूपान्तरण गर्न HTML सामग्री",
+	"rest-property-desc-transform-html-headers": "HTML सामग्रीको लागि HTTP हेडरहरू",
+	"rest-property-desc-transform-html-body": "HTML सामग्री",
 	"rest-endpoint-summ-get-page-history": "पृष्ठ इतिहास प्राप्त गर्नुहोस्",
 	"rest-endpoint-summ-get-page-history-counts": "पृष्ठ इतिहास गणनाहरू प्राप्त गर्नुहोस्",
 	"rest-endpoint-summ-get-revision-compare": "संशोधनहरू तुलना गर्नुहोस्",
@@ -80,5 +96,7 @@
 	"rest-endpoint-summ-get-page-title-media": "पृष्ठमा फाइलहरू प्राप्त गर्नुहोस्",
 	"rest-endpoint-summ-get-file-title": "फाइल प्राप्त गर्नुहोस्",
 	"rest-endpoint-summ-put-page-title": "पृष्ठ अद्यावधिक गर्नुहोस्",
-	"rest-endpoint-summ-post-page": "पृष्ठ सिर्जना गर्नुहोस्"
+	"rest-endpoint-summ-post-page": "पृष्ठ सिर्जना गर्नुहोस्",
+	"rest-requestbody-desc-create-page": "सिर्जना गर्न पृष्ठ",
+	"rest-requestbody-desc-update-page": "अद्यावधिक वा सिर्जना गर्न पृष्ठ"
 }

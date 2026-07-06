@@ -3328,6 +3328,7 @@
 	"tags-create-already-exists": "\"$1\" 태그가 이미 존재합니다.",
 	"tags-create-warnings-above": "태그 \"$1\"을 생성하려고 하였으나 {{PLURAL:$2|오류}}가 발생하였습니다.",
 	"tags-create-warnings-below": "태그 생성을 계속하시겠습니까?",
+	"tags-create-reserved-prefix": "태그 이름은 \"$1\"(으)로 시작할 수 없습니다. 이는 소프트웨어 또는 확장 기능에서 정의한 제한된 태그에 사용하기 위해 예약되어 있습니다.",
 	"tags-delete-title": "태그 삭제",
 	"tags-delete-explanation-initial": "\"$1\" 태그를 데이터베이스에서 삭제하려고 합니다.",
 	"tags-delete-explanation-in-use": "이 태그가 적용된 {{PLURAL:$2|$2 개의 판이나 로그 기록}}에서 제거될 것입니다.",

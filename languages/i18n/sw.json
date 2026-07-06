@@ -1929,6 +1929,7 @@
 	"tags-create-tag-name": "Jina la tagi:",
 	"tags-create-reason": "Sababu:",
 	"tags-create-submit": "Anzisha",
+	"tags-create-reserved-prefix": "Majina ya lebo hayapaswi kuanza na \" $1 \", ambayo yamehifadhiwa kwa lebo zilizowekewa vikwazo zilizoainishwa na programu au viendelezi.",
 	"tags-delete-reason": "Sababu:",
 	"tags-activate-reason": "Sababu:",
 	"tags-edit-reason": "Sababu:",
