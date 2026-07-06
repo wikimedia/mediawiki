@@ -6,6 +6,7 @@ use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\EditPage\DataStashTrait;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\PermissionsError;
@@ -24,11 +25,13 @@ use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use StatusValue;
 
 /**
  * @ingroup SpecialPage
  */
 class SpecialChangeContentModel extends FormSpecialPage {
+	use DataStashTrait;
 
 	public function __construct(
 		private readonly IContentHandlerFactory $contentHandlerFactory,
@@ -66,6 +69,24 @@ class SpecialChangeContentModel extends FormSpecialPage {
 
 	private string $newContentModel;
 
+	private ?array $stashedData = null;
+
+	private bool $reauthInProgress = false;
+
+	protected function getTitle(): Title {
+		return $this->title
+			? $this->getPageTitle( $this->title->getPrefixedText() )
+			: $this->getPageTitle();
+	}
+
+	private function getStashKeyForTitle( Title $title ): string {
+		return $this->getName() . ':' . $title->getPrefixedDBkey();
+	}
+
+	protected function handleRetrievedData( array $data ): void {
+		$this->stashedData = $data;
+	}
+
 	/** @inheritDoc */
 	protected function setParameter( $par ) {
 		$par = $this->getRequest()->getVal( 'pagetitle', $par );
@@ -76,6 +97,33 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		} else {
 			$this->par = '';
 		}
+	}
+
+	/** @inheritDoc */
+	public function execute( $par ) {
+		$this->setParameter( $par );
+		if ( $this->title ) {
+			$this->setStashKey( $this->getStashKeyForTitle( $this->title ) );
+			if ( $this->retrieveStashedData() ) {
+				$this->setHeaders();
+				$this->outputHeader();
+				$this->checkExecutePermissions( $this->getUser() );
+
+				$result = $this->onSubmit( $this->stashedData );
+				if ( $this->reauthInProgress ) {
+					return;
+				}
+				$this->destroyStashedData();
+				if ( $result === true || ( $result instanceof StatusValue && $result->isGood() ) ) {
+					$this->onSuccess();
+				} else {
+					$this->getForm()->prepareForm()->displayForm( $result );
+				}
+				return;
+			}
+		}
+
+		parent::execute( $par );
 	}
 
 	/** @inheritDoc */
@@ -120,7 +168,12 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$user = $this->getUser();
 		if ( $this->title ) {
 			$perm = $this->title->exists() ? 'editcontentmodel' : 'createwithcontentmodel';
-			$this->permissionManager->throwPermissionErrors( $perm, $user, $this->title );
+			$this->permissionManager->throwPermissionErrors(
+				$perm,
+				$user,
+				$this->title,
+				PermissionManager::RIGOR_FULL
+			);
 		} elseif ( !$this->permissionManager->userHasAnyRight( $user, 'editcontentmodel', 'createwithcontentmodel' ) ) {
 			// The intended use case of this special page is to change the content model of an existing page
 			// nothing stops you from creating a new page with it but that's a hack so display the permission error
@@ -262,6 +315,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 
 	/** @inheritDoc */
 	public function onSubmit( array $data ) {
+		$this->reauthInProgress = false;
 		$this->title = Title::newFromText( $data['pagetitle'] );
 		$this->titleExisted = $this->title->exists();
 		$this->oldContentModel = $this->title->getContentModel();
@@ -276,6 +330,13 @@ class SpecialChangeContentModel extends FormSpecialPage {
 
 		$permissionStatus = $changer->authorizeChange();
 		if ( !$permissionStatus->isGood() ) {
+			if ( $permissionStatus->getReauthOperation() !== null ) {
+				$this->setStashKey( $this->getStashKeyForTitle( $this->title ) );
+				$queryParams = $this->stashDataOnPost();
+				$this->doReauthRedirect( $permissionStatus, $queryParams );
+				$this->reauthInProgress = true;
+				return false;
+			}
 			$out = $this->getOutput();
 			$wikitext = $out->formatPermissionStatus( $permissionStatus );
 			// Hack to get our wikitext parsed
