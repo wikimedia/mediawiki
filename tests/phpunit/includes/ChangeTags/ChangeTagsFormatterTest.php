@@ -218,6 +218,49 @@ class ChangeTagsFormatterTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	public function testGetChangeTagListSummaryCachesUnfilteredList(): void {
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+
+		$realChangeTagsStore = $this->getServiceContainer()->getChangeTagsStore();
+		$mockChangeTagsStore = $this->createMock( ChangeTagsStore::class );
+		$mockChangeTagsStore->method( 'listDefinedTags' )
+			->willReturn( [ 'mw-test', 'mw-private-test' ] );
+		$mockChangeTagsStore->method( 'filterViewableTags' )
+			->willReturnCallback( $realChangeTagsStore->filterViewableTags( ... ) );
+		$this->setService( 'ChangeTagsStore', $mockChangeTagsStore );
+
+		$formatter = $this->getServiceContainer()->getChangeTagsFormatter();
+
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setLanguage( 'qqx' );
+
+		// Warm the cache as a user who cannot see the private tag
+		$tagNames = array_column(
+			$formatter->getChangeTagListSummary(
+				$context,
+				$this->mockRegisteredAuthorityWithPermissions( [] ),
+				false
+			),
+			'name'
+		);
+		$this->assertSame( [ 'mw-test' ], $tagNames );
+
+		$tagNames = array_column(
+			$formatter->getChangeTagListSummary(
+				$context,
+				$this->mockRegisteredAuthorityWithPermissions( [ 'patrol' ] ),
+				false
+			),
+			'name'
+		);
+		$this->assertSame(
+			[ 'mw-test', 'mw-private-test' ],
+			$tagNames,
+			'A user with the needed right must see the private tag even when the cache was ' .
+				'populated for a user without it'
+		);
+	}
+
 	public function testBuildTagFilterForActiveOnlyWhenNoHits(): void {
 		Theme::setSingleton( new BlankTheme() );
 
