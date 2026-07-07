@@ -172,7 +172,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				headers: [
 					'content-language' => $lang
 				]
-			)
+			),
+			isParsoidContent: true,
 		);
 		$pout->setCacheRevisionId( $rev ?? $page->getLatest() );
 		$pout->setCacheTime( wfTimestampNow() ); // will use fake time

@@ -102,22 +102,44 @@ class ContentHolder implements JsonCodecable {
 		HtmlPageBundle $pb,
 		?SiteConfig $siteConfig = null
 	): ContentHolder {
-		$siteConfig ??= MediaWikiServices::getInstance()->getParsoidSiteConfig();
+		return static::createFromPageBundle(
+			$pb, isParsoidContent: true, siteConfig: $siteConfig,
+		);
+	}
+
+	/**
+	 * Create a ContentHolder from an HtmlPageBundle; this doesn't have
+	 * to be Parsoid content.
+	 */
+	public static function createFromPageBundle(
+		HtmlPageBundle $pb,
+		bool $isParsoidContent,
+		?SiteConfig $siteConfig = null
+	): ContentHolder {
 		$htmlMap = [
 			self::BODY_FRAGMENT => $pb->html,
 		] + $pb->fragments;
-		$ch = new ContentHolder(
-			ownerDocument: ContentUtils::createAndLoadDocument(
-				'', siteConfig: $siteConfig,
-			),
-			pageBundle: $pb->toBasePageBundle(),
-			htmlMap: $htmlMap,
-			// T429391: We shouldn't assume this is Parsoid-generated HTML
-			// (MediaWiki DOM Spec HTML) just because it has a page bundle
-			isParsoidContent: true,
-			siteConfig: $siteConfig,
-			bodyOnly: self::detectBodyOnly( $pb->html ),
-		);
+		if ( !$isParsoidContent ) {
+			$ch = new ContentHolder(
+				ownerDocument: DOMCompat::newDocument(),
+				pageBundle: $pb->toBasePageBundle(),
+				htmlMap: $htmlMap,
+				isParsoidContent: false,
+				bodyOnly: self::detectBodyOnly( $pb->html ),
+			);
+		} else {
+			$siteConfig ??= MediaWikiServices::getInstance()->getParsoidSiteConfig();
+			$ch = new ContentHolder(
+				ownerDocument: ContentUtils::createAndLoadDocument(
+					'', siteConfig: $siteConfig,
+				),
+				pageBundle: $pb->toBasePageBundle(),
+				htmlMap: $htmlMap,
+				isParsoidContent: true,
+				siteConfig: $siteConfig,
+				bodyOnly: self::detectBodyOnly( $pb->html ),
+			);
+		}
 		return $ch;
 	}
 
@@ -138,11 +160,6 @@ class ContentHolder implements JsonCodecable {
 	 * content.
 	 */
 	public function isParsoidContent(): bool {
-		// Right now, this invariant feels worth keeping because it helps to make sure that we're doing what we
-		// think we're doing; this can however be revisited if we decide to use parts of the pageBundle for legacy
-		// content as well.
-		Assert::invariant( $this->isParsoidContent === ( $this->pageBundle !== null ),
-			'Inconsistency between parsoid status and bundle existence' );
 		return $this->isParsoidContent;
 	}
 
@@ -395,16 +412,15 @@ class ContentHolder implements JsonCodecable {
 	 * @internal
 	 */
 	public function getBasePageBundle(): BasePageBundle {
-		Assert::invariant( $this->isParsoidContent(), 'getBasePageBundle called on non-Parsoid ContentHolder' );
-		if ( $this->domFormat ) {
+		if ( $this->isParsoidContent() && $this->domFormat ) {
 			// Ensure that data-parsoid and data-mw are serialized into
 			// the page bundle.
 			$this->convertDomToHtml();
 		}
-		$pb = $this->pageBundle;
-		// Parsoid content implies page bundle is non-null
-		'@phan-var BasePageBundle $pb';
-		return $pb;
+		if ( $this->pageBundle === null ) {
+			$this->pageBundle = new BasePageBundle();
+		}
+		return $this->pageBundle;
 	}
 
 	private function convertHtmlToDom() {
@@ -500,9 +516,7 @@ class ContentHolder implements JsonCodecable {
 	}
 
 	public function hasContent(): bool {
-		return $this->isParsoidContent ||
-			$this->domMap ||
-			$this->htmlMap ||
+		return $this->domMap || $this->htmlMap ||
 			( $this->pageBundle?->hasContent() );
 	}
 

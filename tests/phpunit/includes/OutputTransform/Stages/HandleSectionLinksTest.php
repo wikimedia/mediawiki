@@ -35,7 +35,7 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 
 	public static function provideShouldNotRun(): array {
 		return [
-			[ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ) ), ParserOptions::newFromAnon(), [] ]
+			[ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ), isParsoidContent: true ), ParserOptions::newFromAnon(), [] ]
 		];
 	}
 

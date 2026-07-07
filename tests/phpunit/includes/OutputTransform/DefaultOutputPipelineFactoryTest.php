@@ -45,6 +45,7 @@ class DefaultOutputPipelineFactoryTest extends MediaWikiLangTestCase {
 		if ( $isParsoidContent ) {
 			$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
 				new HtmlPageBundle( $text ),
+				isParsoidContent: true,
 				title: Title::newFromText( 'Test page' ),
 			);
 			$po->setLanguage( new Bcp47CodeValue( 'en' ) );

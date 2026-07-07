@@ -36,6 +36,7 @@ class ContentDOMTransformStageTest extends TestCase {
 		$html = "<div>some output</div>";
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
 			new HtmlPageBundle( html: $html ),
+			isParsoidContent: true,
 			title: new TitleValue( NS_MAIN, 'Test_Page' ),
 			siteConfig: new MockSiteConfig( [] ),
 		);
@@ -67,6 +68,7 @@ class ContentDOMTransformStageTest extends TestCase {
 		// Parsoid, also roundtrips the input since document creation marks it as new
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
 			new HtmlPageBundle( html: $html ),
+			isParsoidContent: true,
 			title: new TitleValue( NS_MAIN, 'Test_Page' ),
 			siteConfig: new MockSiteConfig( [] ),
 		);

@@ -350,7 +350,7 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithEmptyToC->setSections( [] );
 
 		$parserOutputPageBundleOnly = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			new HtmlPageBundle( 'hello', null, null, null, "1.2.3" )
+			new HtmlPageBundle( 'hello', null, null, null, "1.2.3" ), isParsoidContent: true
 		);
 		$parserOutputPageBundleOnly->setContentHolderText( null );
 
@@ -732,7 +732,7 @@ abstract class ParserCacheSerializationTestCases {
 				},
 			],
 			'parsoidEmpty' => [
-				'instance' => PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ) ),
+				'instance' => PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ), isParsoidContent: true ),
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertTrue( $object->getContentHolder()->isParsoidContent() );
 					$testCase->assertEqualsCanonicalizing( $object->getContentHolder()->getBasePageBundle(), new BasePageBundle() );
@@ -756,7 +756,8 @@ abstract class ParserCacheSerializationTestCases {
 							),
 							$siteConfig
 						)
-					)
+					),
+					isParsoidContent: true,
 				),
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertTrue( $object->getContentHolder()->isParsoidContent() );

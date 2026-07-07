@@ -608,7 +608,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 			version: '0.0', // an obsolete version
 		);
 		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			$fakeBundle, title: $page,
+			$fakeBundle, isParsoidContent: true, title: $page,
 		);
 		$parserCache = $this->createMockParserCache( $output, true );
 

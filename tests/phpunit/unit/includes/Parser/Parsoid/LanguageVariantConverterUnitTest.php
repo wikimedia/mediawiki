@@ -63,7 +63,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		// convertParserOutputVariant is the method that exercises the language
 		// detection logic
 		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			$pageBundleMock, siteConfig: new MockSiteConfig( [] )
+			$pageBundleMock, isParsoidContent: true, siteConfig: new MockSiteConfig( [] )
 		);
 		$languageVariantConverter->convertParserOutputVariant( $parserOutput, $targetLanguage, $sourceLanguage );
 	}

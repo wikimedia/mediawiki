@@ -163,7 +163,9 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			$parserOutput );
 
 		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			$pageBundle, $parserOutput,
+			$pageBundle,
+			isParsoidContent: true,
+			originalParserOutput: $parserOutput,
 			title: $pageConfig->getLinkTarget(),
 			siteConfig: $this->siteConfig,
 		);

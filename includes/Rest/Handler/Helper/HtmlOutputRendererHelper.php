@@ -492,15 +492,17 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			);
 		}
 
-		if ( $this->flavor === 'edit' ) {
+		if ( $this->flavor === 'edit' && $parserOutput->getContentHolder()->isParsoidContent() ) {
 			// The 'edit' flavor inlines data-parsoid/data-mw attributes so the
 			// editor can round-trip.
 			$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
 				$parserOutput, $this->parsoidSiteConfig, bodyOnly: true
 			);
 			$parserOutput->setContentHolder(
-				ContentHolder::createFromParsoidPageBundle(
-					$this->convertToInline( $pb ), $this->parsoidSiteConfig
+				ContentHolder::createFromPageBundle(
+					$this->convertToInline( $pb ),
+					isParsoidContent: true,
+					siteConfig: $this->parsoidSiteConfig,
 				)
 			);
 		}

@@ -1069,6 +1069,7 @@ abstract class ParsoidHandler extends Handler {
 		// Convert PageBundle to ParserOutput
 		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle(
 			$pb,
+			isParsoidContent: true,
 			title: $pageIdentity,
 			siteConfig: $this->siteConfig
 		);

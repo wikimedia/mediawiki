@@ -20,7 +20,9 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 	/** @dataProvider provideParserOutputFromPageBundle */
 	public function testParserOutputFromPageBundle( HtmlPageBundle $pageBundle ) {
 		$siteConfig = new MockSiteConfig( [] );
-		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, siteConfig: $siteConfig );
+		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+			$pageBundle, isParsoidContent: true, siteConfig: $siteConfig
+		);
 		$this->assertSame( $pageBundle->html, $output->getContentHolderText() );
 
 		$outputPageBundle = $output->getContentHolder()->getBasePageBundle();
@@ -40,7 +42,12 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		$original->setTitle( new TitleValue( NS_MAIN, 'Test_Page' ) );
 
 		// This should preserve the metadata.
-		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $original, siteConfig: new MockSiteConfig( [] ) );
+		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+			$pageBundle,
+			isParsoidContent: true,
+			originalParserOutput: $original,
+			siteConfig: new MockSiteConfig( [] ),
+		);
 		$this->assertSame( $pageBundle->html, $output->getContentHolderText() );
 
 		// Check the page bundle data
@@ -146,7 +153,10 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		HtmlPageBundle $pb, $title = null
 	): ParserOutput {
 		return PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			$pb, title: $title, siteConfig: new MockSiteConfig( [] ),
+			$pb,
+			isParsoidContent: true,
+			title: $title,
+			siteConfig: new MockSiteConfig( [] ),
 		);
 	}
 }

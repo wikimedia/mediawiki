@@ -128,7 +128,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideConvertParserOutputVariant() {
 		foreach ( self::provideConvertPageBundleVariant() as $name => $case ) {
-			$case[0] = PageBundleParserOutputConverter::parserOutputFromPageBundle( $case[0] );
+			$case[0] = PageBundleParserOutputConverter::parserOutputFromPageBundle( $case[0], isParsoidContent: true );
 			yield $name => $case;
 		}
 	}

@@ -34,7 +34,7 @@ class ExpandRelativeAttrsTest extends OutputTransformStageTestBase {
 
 	public static function provideShouldRun(): array {
 		return [
-			[ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ) ), ParserOptions::newFromAnon(), [] ],
+			[ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ), isParsoidContent: true ), ParserOptions::newFromAnon(), [] ],
 		];
 	}
 

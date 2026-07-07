@@ -1948,7 +1948,10 @@ class ParserTestRunner {
 		$pageBundle = new HtmlPageBundle( $origOut );
 		// See ParsoidParser::genParserOutput
 		$metadata = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			$pageBundle, $metadata, title: $pageConfig->getLinkTarget()
+			$pageBundle,
+			isParsoidContent: true,
+			originalParserOutput: $metadata,
+			title: $pageConfig->getLinkTarget(),
 		);
 		/** @var \MediaWiki\Parser\Parsoid\Config\PageConfig $pageConfig */
 		'@phan-var \MediaWiki\Parser\Parsoid\Config\PageConfig $pageConfig';

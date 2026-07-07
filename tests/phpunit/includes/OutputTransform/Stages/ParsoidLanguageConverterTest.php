@@ -41,7 +41,7 @@ class ParsoidLanguageConverterTest extends MediaWikiIntegrationTestCase {
 	) {
 		$languageFactory = $this->getServiceContainer()->getLanguageFactory();
 		$conv = $this->createStage();
-		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( $input ) );
+		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( $input ), isParsoidContent: true );
 		$po->getContentHolder()->addFragment( 'my fragment', $input );
 		$po->setIndicator( 'foo', $input );
 		$po->setTitle( Title::newFromText( 'Test page' ) );

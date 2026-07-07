@@ -45,12 +45,16 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 		);
 
 		$original = new ParserOutput();
-		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $original );
+		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+			$pageBundle, isParsoidContent: true, originalParserOutput: $original
+		);
 		$this->assertSame( $defaultExpiration, $output->getCacheExpiry(),
 			"Cache expiration doesn't match default expiry." );
 
 		$original->updateCacheExpiry( 100 );
-		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $original );
+		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+			$pageBundle, isParsoidContent: true, originalParserOutput: $original
+		);
 		$this->assertSame( 100, $output->getCacheExpiry(),
 			"Cache expiration doesn't matched updated reduced expiry." );
 	}
@@ -195,7 +199,7 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 		HtmlPageBundle $pb, $title = null
 	): ParserOutput {
 		return PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			$pb, title: $title, siteConfig: new MockSiteConfig( [] ),
+			$pb, isParsoidContent: true, title: $title, siteConfig: new MockSiteConfig( [] ),
 		);
 	}
 }

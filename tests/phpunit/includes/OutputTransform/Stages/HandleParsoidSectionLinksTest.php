@@ -28,7 +28,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 	}
 
 	public static function provideShouldRun(): iterable {
-		yield [ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ) ), ParserOptions::newFromAnon(), [] ];
+		yield [ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ), isParsoidContent: true ), ParserOptions::newFromAnon(), [] ];
 	}
 
 	public static function provideShouldNotRun(): iterable {
@@ -43,7 +43,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		string ...$flags,
 	): ParserOutput {
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			new HtmlPageBundle( $rawText ?? '' )
+			new HtmlPageBundle( $rawText ?? '' ), isParsoidContent: true
 		);
 		if ( $parserOptions !== null ) {
 			$po->setFromParserOptions( $parserOptions );

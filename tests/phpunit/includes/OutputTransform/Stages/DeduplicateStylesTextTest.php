@@ -84,9 +84,9 @@ EOF
 		foreach ( $testCases as $name => [ $input, $isParsoid, $expected, $inputFragment, $expectedFragment ] ) {
 			if ( $isParsoid ) {
 				$in = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-					new HtmlPageBundle( $input ) );
+					new HtmlPageBundle( $input ), isParsoidContent: true );
 				$out = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-					new HtmlPageBundle( $expected ) );
+					new HtmlPageBundle( $expected ), isParsoidContent: true );
 			} else {
 				$in = new ParserOutput( $input );
 

@@ -754,7 +754,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$originalContent = new WikitextContent( 'Goats are great!' );
 		$selserContext = new SelserContext( $unchangedPB, 0, $originalContent );
 
-		$unchangedPO = PageBundleParserOutputConverter::parserOutputFromPageBundle( $unchangedPB );
+		$unchangedPO = PageBundleParserOutputConverter::parserOutputFromPageBundle( $unchangedPB, isParsoidContent: true );
 
 		$renderID = new ParsoidRenderID( 0, 'testing' );
 

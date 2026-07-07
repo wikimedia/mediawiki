@@ -51,7 +51,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	) {
 		$this->setUserLang( $userlang );
 		$loc = $this->createStage();
-		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( $input ) );
+		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( $input ), isParsoidContent: true );
 		$po->setLanguage( new Bcp47CodeValue( $pagelang ) );
 		$po->setTitle( Title::newFromText( 'Test page' ) );
 		$popts = ParserOptions::newFromAnon();
@@ -85,7 +85,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 				WTUtils::createPageContentI18nFragment( $doc, $key, $params )
 		);
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			new HtmlPageBundle( ContentUtils::ppToXML( $doc ) ) );
+			new HtmlPageBundle( ContentUtils::ppToXML( $doc ) ), isParsoidContent: true );
 		$po->setLanguage( new Bcp47CodeValue( $lang ?? 'en' ) );
 		$po->setTitle( Title::newFromText( 'Test page' ) );
 		$popts = ParserOptions::newFromAnon();
@@ -108,7 +108,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		WTUtils::addInterfaceI18nAttribute( $a, 'title', $key, $params );
 
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			new HtmlPageBundle( ContentUtils::ppToXML( $doc ) ) );
+			new HtmlPageBundle( ContentUtils::ppToXML( $doc ) ), isParsoidContent: true );
 		$po->setLanguage( new Bcp47CodeValue( $lang ) );
 		$po->setTitle( Title::newFromText( 'Test page' ) );
 		$popts = ParserOptions::newFromAnon();
