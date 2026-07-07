@@ -11,6 +11,7 @@ use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Skin\Skin;
 
 /**
@@ -32,6 +33,7 @@ class ChangeTagsFormatter {
 	 * @since 1.47
 	 * @param string|null $tags Comma-separated list of tags (as returned by a database query)
 	 * @param MessageLocalizer $localizer
+	 * @param Authority $authority
 	 * @return array{0:string,1:string[]} Array with two items: (html, classes)
 	 *   - html: String: HTML for displaying the tags (empty string when param $tags is empty or
 	 *       all tags have no description)
@@ -41,7 +43,8 @@ class ChangeTagsFormatter {
 	 */
 	public function formatTagsAsSummaryList(
 		?string $tags,
-		MessageLocalizer $localizer
+		MessageLocalizer $localizer,
+		Authority $authority
 	): array {
 		if ( $tags === '' || $tags === null ) {
 			return [ '', [] ];
@@ -50,6 +53,7 @@ class ChangeTagsFormatter {
 		$classes = [];
 
 		$tags = explode( ',', $tags );
+		$tags = $this->changeTagsStore->filterViewableTags( $tags, $authority );
 		$order = array_flip( $this->changeTagsStore->listDefinedTags() );
 		usort( $tags, static function ( $a, $b ) use ( $order ) {
 			return ( $order[ $a ] ?? INF ) <=> ( $order[ $b ] ?? INF );

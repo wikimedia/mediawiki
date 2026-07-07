@@ -6,12 +6,15 @@ use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Message\Message;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\ChangeTags\ChangeTagsFormatter
  */
 class ChangeTagsFormatterTest extends MediaWikiUnitTestCase {
+
+	use MockAuthorityTrait;
 
 	private function getObjectUnderTest( ChangeTagsStore $changeTagsStore ): ChangeTagsFormatter {
 		return new ChangeTagsFormatter( $changeTagsStore );
@@ -27,7 +30,8 @@ class ChangeTagsFormatterTest extends MediaWikiUnitTestCase {
 			[ '', [] ],
 			$this->getObjectUnderTest( $mockChangeTagsStore )->formatTagsAsSummaryList(
 				$tags,
-				$this->createMock( MessageLocalizer::class )
+				$this->createMock( MessageLocalizer::class ),
+				$this->mockRegisteredUltimateAuthority()
 			)
 		);
 	}
@@ -56,13 +60,19 @@ class ChangeTagsFormatterTest extends MediaWikiUnitTestCase {
 		$mockChangeTagsStore = $this->createMock( ChangeTagsStore::class );
 		$mockChangeTagsStore->method( 'listDefinedTags' )
 			->willReturn( [ 'test' ] );
+		$mockChangeTagsStore->method( 'filterViewableTags' )
+			->willReturnArgument( 0 );
 
 		$this->assertSame(
 			[
 				'',
 				[ 'mw-tag-test' ]
 			],
-			$this->getObjectUnderTest( $mockChangeTagsStore )->formatTagsAsSummaryList( 'test', $localizer )
+			$this->getObjectUnderTest( $mockChangeTagsStore )->formatTagsAsSummaryList(
+				'test',
+				$localizer,
+				$this->mockRegisteredUltimateAuthority()
+			)
 		);
 	}
 }

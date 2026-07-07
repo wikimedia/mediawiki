@@ -198,7 +198,11 @@ class ChangeTags {
 	 * @return-taint onlysafefor_htmlnoent
 	 */
 	public static function formatSummaryRow( $tags, $unused, MessageLocalizer $localizer ) {
-		return MediaWikiServices::getInstance()->getChangeTagsFormatter()->formatTagsAsSummaryList( $tags, $localizer );
+		return MediaWikiServices::getInstance()->getChangeTagsFormatter()->formatTagsAsSummaryList(
+			$tags,
+			$localizer,
+			RequestContext::getMain()->getAuthority()
+		);
 	}
 
 	/**
