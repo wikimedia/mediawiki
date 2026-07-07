@@ -37,7 +37,6 @@ wikibooks|https://en.wikibooks.org/wiki/$1|0|https://en.wikibooks.org/w/api.php
 wikidata|https://www.wikidata.org/wiki/$1|0|https://www.wikidata.org/w/api.php
 wikihow|https://www.wikihow.com/$1|0|https://www.wikihow.com/api.php
 wikimedia|https://foundation.wikimedia.org/wiki/$1|0|https://foundation.wikimedia.org/w/api.php
-wikinews|https://en.wikinews.org/wiki/$1|0|https://en.wikinews.org/w/api.php
 wikipedia|https://en.wikipedia.org/wiki/$1|0|https://en.wikipedia.org/w/api.php
 wikiquote|https://en.wikiquote.org/wiki/$1|0|https://en.wikiquote.org/w/api.php
 wikisource|https://wikisource.org/wiki/$1|0|https://wikisource.org/w/api.php
