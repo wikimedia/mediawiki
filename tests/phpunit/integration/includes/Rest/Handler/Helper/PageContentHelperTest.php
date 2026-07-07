@@ -16,6 +16,7 @@ use MediaWiki\Rest\Response;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
@@ -29,6 +30,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
+	use RestrictedTagTestTrait;
 
 	private const NO_REVISION_ETAG = '"7afa43d0f642f1fda1b8e30f4f67243049f5fe77"';
 
@@ -267,6 +269,44 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 			'No tags on most recent edit' => [ [] ],
 			'Tags on most recent edit' => [ [ 'mw-reverted' ] ],
 		];
+	}
+
+	public function testRestrictedTagsAreFilteredPerViewer(): void {
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+
+		$page = $this->getExistingTestPage();
+		$revId = $page->getRevisionRecord()->getId();
+		$rcId = null;
+		$this->getServiceContainer()->getChangeTagsStore()->updateTags(
+			[ 'mw-reverted', 'mw-private-test' ], [], $rcId, $revId
+		);
+
+		$title = $page->getTitle()->getPrefixedDBkey();
+		$privileged = $this->newHelper( [ 'title' => $title ], $this->mockRegisteredUltimateAuthority() );
+		$unprivileged = $this->newHelper(
+			[ 'title' => $title ],
+			$this->mockRegisteredAuthorityWithoutPermissions( [ 'patrol' ] )
+		);
+
+		$this->assertTrue( $privileged->isAccessible(), 'Privileged viewer should be able to read the page' );
+		$this->assertTrue( $unprivileged->isAccessible(), 'Unprivileged viewer should be able to read the page' );
+
+		$this->assertEqualsCanonicalizing(
+			[ 'mw-reverted', 'mw-private-test' ],
+			$privileged->constructRestbaseCompatibleMetadata()['tags'],
+			'Privileged viewer should see the restricted tag in the metadata'
+		);
+		$this->assertSame(
+			[ 'mw-reverted' ],
+			$unprivileged->constructRestbaseCompatibleMetadata()['tags'],
+			'Restricted tag should be absent from the metadata for the unprivileged viewer'
+		);
+
+		$this->assertNotSame(
+			$privileged->getETag(),
+			$unprivileged->getETag(),
+			'ETag should differ between viewers with different tag visibility'
+		);
 	}
 
 	public function testForbiddenPage() {
