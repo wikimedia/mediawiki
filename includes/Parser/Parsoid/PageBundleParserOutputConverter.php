@@ -359,6 +359,11 @@ final class PageBundleParserOutputConverter {
 				'property' => 'mw:html:version',
 				'content' => $htmlVersion,
 			] );
+
+			// Add base href pointing to the wiki root
+			self::appendToHead( $document, 'base', [
+				'href' => $siteConfig->baseURI()
+			] );
 		}
 
 		if ( $title !== null ) {
@@ -370,11 +375,6 @@ final class PageBundleParserOutputConverter {
 			// the title element contents are plaintext *not* HTML
 			DOMCompat::setTitle( $document, $title->getPrefixedText() );
 		}
-
-		// Add base href pointing to the wiki root
-		self::appendToHead( $document, 'base', [
-			'href' => $siteConfig->baseURI()
-		] );
 
 		// Ensure there's a <body>
 		if ( DOMCompat::getBody( $document ) === null ) {
