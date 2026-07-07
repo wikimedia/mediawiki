@@ -61,8 +61,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		$sourceLanguage = $sourceLanguageCode ? new Bcp47CodeValue( $sourceLanguageCode ) : null;
 
 		// convertParserOutputVariant is the method that exercises the language
-		// detection logic; it avoids the full-document assembly in convertPageBundleVariant
-		// which requires MediaWiki services unavailable in unit tests.
+		// detection logic
 		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle(
 			$pageBundleMock, siteConfig: new MockSiteConfig( [] )
 		);

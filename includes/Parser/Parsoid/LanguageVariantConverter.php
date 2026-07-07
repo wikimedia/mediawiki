@@ -9,12 +9,10 @@ use MediaWiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Rest\HttpException;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Parsoid\Config\SiteConfig;
-use Wikimedia\Parsoid\Core\HtmlPageBundle;
 
 /**
  * @since 1.40
@@ -49,36 +47,6 @@ class LanguageVariantConverter {
 	public function setPageLanguageOverride( Bcp47Code $language ) {
 		$this->pageLanguageOverride = $this->languageFactory->getLanguage(
 			$language
-		);
-	}
-
-	/**
-	 * Perform variant conversion on a HtmlPageBundle object.
-	 *
-	 * @param HtmlPageBundle $pageBundle
-	 * @param Bcp47Code $targetVariant
-	 * @param ?Bcp47Code $sourceVariant
-	 *
-	 * @return HtmlPageBundle The converted HtmlPageBundle, or the object passed in as
-	 *         $pageBundle if the conversion is not supported.
-	 * @throws HttpException
-	 */
-	public function convertPageBundleVariant(
-		HtmlPageBundle $pageBundle,
-		Bcp47Code $targetVariant,
-		?Bcp47Code $sourceVariant = null
-	): HtmlPageBundle {
-		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			$pageBundle, title: $this->pageIdentity,
-			siteConfig: $this->siteConfig
-		);
-		$modifiedParserOutput = $this->convertParserOutputVariant(
-			$parserOutput, $targetVariant, $sourceVariant
-		);
-		return PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-			$modifiedParserOutput,
-			siteConfig: $this->siteConfig,
-			bodyOnly: false,
 		);
 	}
 

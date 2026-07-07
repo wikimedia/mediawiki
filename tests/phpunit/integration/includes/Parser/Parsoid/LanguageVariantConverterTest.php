@@ -126,45 +126,6 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @dataProvider provideConvertPageBundleVariant
-	 */
-	public function testConvertPageBundleVariant(
-		HtmlPageBundle $pageBundle,
-		$contentLanguage,
-		$target,
-		$source,
-		$expected,
-		$expectedLanguage = null
-	) {
-		$expectedLanguage ??= $target;
-
-		$page = $this->getExistingTestPage();
-		$languageVariantConverter = $this->getLanguageVariantConverter( $page );
-		if ( $contentLanguage ) {
-			$contentLanguage = $this->getLanguageBcp47( $contentLanguage );
-			$languageVariantConverter->setPageLanguageOverride( $contentLanguage );
-		}
-		$target = $this->getLanguageBcp47( $target );
-		if ( $source ) {
-			$source = $this->getLanguageBcp47( $source );
-		}
-
-		$outputPageBundle = $languageVariantConverter->convertPageBundleVariant( $pageBundle, $target, $source );
-
-		$html = $outputPageBundle->toInlineAttributeHtml(
-			siteConfig: $this->getServiceContainer()->getParsoidSiteConfig(),
-		);
-		$stripped = preg_replace( ':</?span[^>]*>:', '', $html );
-		$this->assertStringContainsString( $expected, $stripped );
-
-		if ( $expectedLanguage !== false ) {
-			$this->assertMatchesRegularExpression( "@<meta http-equiv=\"content-language\" content=\"($expectedLanguage)\"/>@i", $html );
-			$this->assertMatchesRegularExpression( "@^$expectedLanguage@i", $outputPageBundle->headers['content-language'] );
-		}
-		$this->assertEquals( Parsoid::defaultHTMLVersion(), $outputPageBundle->version );
-	}
-
 	public static function provideConvertParserOutputVariant() {
 		foreach ( self::provideConvertPageBundleVariant() as $name => $case ) {
 			$case[0] = PageBundleParserOutputConverter::parserOutputFromPageBundle( $case[0] );

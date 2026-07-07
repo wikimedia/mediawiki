@@ -23,6 +23,7 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper;
@@ -1075,9 +1076,16 @@ abstract class ParsoidHandler extends Handler {
 		if ( $httpContentLanguage ) {
 			$languageVariantConverter->setPageLanguageOverride( $httpContentLanguage );
 		}
-
+		// Convert PageBundle to ParserOutput
+		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+			$pb,
+			title: $pageIdentity,
+			siteConfig: $this->siteConfig
+		);
 		try {
-			$out = $languageVariantConverter->convertPageBundleVariant( $pb, $target, $source );
+			$parserOutput = $languageVariantConverter->convertParserOutputVariant(
+				$parserOutput, $target, $source,
+			);
 		} catch ( InvalidArgumentException $e ) {
 			throw new LocalizedHttpException(
 				new MessageValue( "rest-unsupported-language-conversion", [ $source ?? '(unspecified)', $target ] ),
@@ -1085,6 +1093,9 @@ abstract class ParsoidHandler extends Handler {
 				[ 'reason' => $e->getMessage() ]
 			);
 		}
+		$out = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+			$parserOutput, siteConfig: $this->siteConfig, bodyOnly: false,
+		);
 		$out->headers['vary'] ??= 'Accept-Language';
 
 		$response = $this->getResponseFactory()->createJson( $out->responseData() );
