@@ -6,7 +6,7 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\MessageParser;
@@ -42,6 +42,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	private readonly WatchedItemStoreInterface $watchedItemStore;
 	private readonly MessageParser $messageParser;
 	private readonly UserOptionsLookup $userOptionsLookup;
+	private readonly ChangeTagsFormatter $changeTagsFormatter;
 
 	public function __construct(
 		?WatchedItemStoreInterface $watchedItemStore = null,
@@ -51,6 +52,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		?TempUserConfig $tempUserConfig = null,
 		?RecentChangeFactory $recentChangeFactory = null,
 		?ChangesListQueryFactory $changesListQueryFactory = null,
+		?ChangeTagsFormatter $changeTagsFormatter = null,
 	) {
 		// This class is extended and therefor fallback to global state - T265310
 		$services = MediaWikiServices::getInstance();
@@ -65,6 +67,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$this->watchedItemStore = $watchedItemStore ?? $services->getWatchedItemStore();
 		$this->messageParser = $messageParser ?? $services->getMessageParser();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
+		$this->changeTagsFormatter = $changeTagsFormatter ?? $services->getChangeTagsFormatter();
 	}
 
 	protected function getExtraFilterGroupDefinitions(): array {
@@ -533,8 +536,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$extraOpts = [];
 		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
 
-		$tagFilter = ChangeTags::buildTagFilterSelector(
-			$opts['tagfilter'], false, $this->getContext()
+		$tagFilter = $this->changeTagsFormatter->buildTagFilter(
+			$opts['tagfilter'], 'other', $this->getContext()
 		);
 		if ( $tagFilter ) {
 			$tagFilter[1] .= ' ' . Html::rawElement( 'span', [ 'class' => [ 'mw-input-with-label' ] ],

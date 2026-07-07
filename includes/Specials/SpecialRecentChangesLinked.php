@@ -6,6 +6,7 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\MessageParser;
@@ -38,6 +39,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		TempUserConfig $tempUserConfig,
 		RecentChangeFactory $recentChangeFactory,
 		ChangesListQueryFactory $changesListQueryFactory,
+		ChangeTagsFormatter $changeTagsFormatter,
 	) {
 		parent::__construct(
 			$watchedItemStore,
@@ -47,6 +49,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$tempUserConfig,
 			$recentChangeFactory,
 			$changesListQueryFactory,
+			$changeTagsFormatter,
 		);
 		$this->mName = 'Recentchangeslinked';
 	}

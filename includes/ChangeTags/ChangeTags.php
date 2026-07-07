@@ -684,6 +684,7 @@ class ChangeTags {
 		bool $activeOnly = self::TAG_SET_ACTIVE_ONLY,
 		bool $useAllTags = self::USE_ALL_TAGS
 	) {
+		wfDeprecated( __METHOD__, '1.47' );
 		return MediaWikiServices::getInstance()->getChangeTagsFormatter()->buildTagFilter(
 			$selected,
 			$ooui ? 'ooui' : 'other',
@@ -1205,6 +1206,7 @@ class ChangeTags {
 		bool $activeOnly = self::TAG_SET_ACTIVE_ONLY,
 		bool $useAllTags = self::USE_ALL_TAGS
 	) {
+		wfDeprecated( __METHOD__, '1.47' );
 		return MediaWikiServices::getInstance()->getChangeTagsFormatter()->getChangeTagListSummary(
 			new SimpleLocalizationContext( $localizer, $lang ),
 			( $localizer instanceof IContextSource ? $localizer : RequestContext::getMain() )->getAuthority(),
@@ -1234,6 +1236,7 @@ class ChangeTags {
 		bool $activeOnly = self::TAG_SET_ACTIVE_ONLY, bool $useAllTags = self::USE_ALL_TAGS,
 		$labelsOnly = false
 	) {
+		wfDeprecated( __METHOD__, '1.47' );
 		return MediaWikiServices::getInstance()->getChangeTagsFormatter()->getChangeTagList(
 			new SimpleLocalizationContext( $localizer, $lang ),
 			( $localizer instanceof IContextSource ? $localizer : RequestContext::getMain() )->getAuthority(),

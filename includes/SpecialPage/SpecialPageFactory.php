@@ -760,6 +760,7 @@ class SpecialPageFactory {
 				'TempUserConfig',
 				'RecentChangeFactory',
 				'ChangesListQueryFactory',
+				'ChangeTagsFormatter',
 			]
 		],
 		'Recentchangeslinked' => [
@@ -773,6 +774,7 @@ class SpecialPageFactory {
 				'TempUserConfig',
 				'RecentChangeFactory',
 				'ChangesListQueryFactory',
+				'ChangeTagsFormatter',
 			]
 		],
 		'Tags' => [
