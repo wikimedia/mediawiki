@@ -143,21 +143,28 @@ class ChangeTagsFormatterTest extends MediaWikiIntegrationTestCase {
 	public function testGetChangeTagListSummary(
 		bool $activeOnly,
 		bool $useAllTags,
+		array $authorityRights,
 		array $expectedTags
 	): void {
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+
+		$realChangeTagsStore = $this->getServiceContainer()->getChangeTagsStore();
 		$mockChangeTagsStore = $this->createMock( ChangeTagsStore::class );
 		$mockChangeTagsStore->method( 'listDefinedTags' )
-			->willReturn( [ 'mw-reverted', 'mw-test', 'mw-testing', 'mw-new-redirect' ] );
+			->willReturn( [ 'mw-reverted', 'mw-test', 'mw-testing', 'mw-new-redirect', 'mw-private-test' ] );
 		$mockChangeTagsStore->method( 'getCoreDefinedTags' )
 			->willReturn( [ 'mw-reverted', 'mw-new-redirect' ] );
 		$mockChangeTagsStore->method( 'tagUsageStatistics' )
 			->willReturn( [ 'mw-reverted' => 1, 'mw-test' => 2 ] );
+		$mockChangeTagsStore->method( 'filterViewableTags' )
+			->willReturnCallback( $realChangeTagsStore->filterViewableTags( ... ) );
 		$this->setService( 'ChangeTagsStore', $mockChangeTagsStore );
 
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setLanguage( 'qqx' );
 		$actualReturnValue = $this->getServiceContainer()->getChangeTagsFormatter()->getChangeTagListSummary(
 			$context,
+			$this->mockRegisteredAuthorityWithPermissions( $authorityRights ),
 			$activeOnly,
 			$useAllTags
 		);
@@ -178,24 +185,34 @@ class ChangeTagsFormatterTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideGetChangeTagListSummary(): array {
 		return [
-			'All tags including inactive' => [
+			'All tags including inactive when authority can see private tag' => [
 				'activeOnly' => false,
 				'useAllTags' => true,
+				'authorityRights' => [ 'patrol' ],
+				'expectedTags' => [ 'mw-reverted', 'mw-test', 'mw-testing', 'mw-new-redirect', 'mw-private-test' ],
+			],
+			'All tags including inactive when authority cannot see private tag' => [
+				'activeOnly' => false,
+				'useAllTags' => true,
+				'authorityRights' => [],
 				'expectedTags' => [ 'mw-reverted', 'mw-test', 'mw-testing', 'mw-new-redirect' ],
 			],
 			'All active tags' => [
 				'activeOnly' => true,
 				'useAllTags' => true,
+				'authorityRights' => [],
 				'expectedTags' => [ 'mw-reverted', 'mw-test' ],
 			],
 			'Only core defined tags' => [
 				'activeOnly' => false,
 				'useAllTags' => false,
+				'authorityRights' => [],
 				'expectedTags' => [ 'mw-reverted', 'mw-new-redirect' ],
 			],
 			'Only active core defined tags' => [
 				'activeOnly' => true,
 				'useAllTags' => false,
+				'authorityRights' => [],
 				'expectedTags' => [ 'mw-reverted' ],
 			],
 		];
@@ -266,6 +283,8 @@ class ChangeTagsFormatterTest extends MediaWikiIntegrationTestCase {
 		$mockChangeTagsStore = $this->createMock( ChangeTagsStore::class );
 		$mockChangeTagsStore->method( 'listDefinedTags' )
 			->willReturn( [ 'hidden-tag', 'wikitext-tag' ] );
+		$mockChangeTagsStore->method( 'filterViewableTags' )
+			->willReturnArgument( 0 );
 		$this->setService( 'ChangeTagsStore', $mockChangeTagsStore );
 
 		// To avoid using database messages, mock the MessageLocalizer to return controllable
@@ -312,6 +331,7 @@ class ChangeTagsFormatterTest extends MediaWikiIntegrationTestCase {
 			],
 			$this->getServiceContainer()->getChangeTagsFormatter()->getChangeTagList(
 				new SimpleLocalizationContext( $localizer, RequestContext::getMain()->getLanguage() ),
+				$this->mockRegisteredUltimateAuthority(),
 				false
 			),
 			'Change tag list was not as expected'

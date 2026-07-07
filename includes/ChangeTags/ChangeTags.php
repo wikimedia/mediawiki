@@ -1207,6 +1207,7 @@ class ChangeTags {
 	) {
 		return MediaWikiServices::getInstance()->getChangeTagsFormatter()->getChangeTagListSummary(
 			new SimpleLocalizationContext( $localizer, $lang ),
+			( $localizer instanceof IContextSource ? $localizer : RequestContext::getMain() )->getAuthority(),
 			$activeOnly,
 			$useAllTags
 		);
@@ -1235,6 +1236,7 @@ class ChangeTags {
 	) {
 		return MediaWikiServices::getInstance()->getChangeTagsFormatter()->getChangeTagList(
 			new SimpleLocalizationContext( $localizer, $lang ),
+			( $localizer instanceof IContextSource ? $localizer : RequestContext::getMain() )->getAuthority(),
 			$activeOnly,
 			$useAllTags,
 			$labelsOnly

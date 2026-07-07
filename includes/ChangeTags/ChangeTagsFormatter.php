@@ -187,6 +187,7 @@ class ChangeTagsFormatter {
 
 		$tags = $this->getChangeTagList(
 			$context,
+			$context->getAuthority(),
 			$activeOnly,
 			$useAllTags,
 			true
@@ -261,6 +262,7 @@ class ChangeTagsFormatter {
 	 *
 	 * @since 1.47
 	 * @param LocalizationContext $localizationContext
+	 * @param Authority $authority
 	 * @param bool $activeOnly If `true`, only show tags which have been used at least once
 	 * @param bool $useAllTags If `true`, use all known tags. If `false`, use only tags defined by MediaWiki core
 	 *   (excluding tags defined by extensions, users, or site config)
@@ -268,6 +270,7 @@ class ChangeTagsFormatter {
 	 */
 	public function getChangeTagListSummary(
 		LocalizationContext $localizationContext,
+		Authority $authority,
 		bool $activeOnly = true,
 		bool $useAllTags = true
 	): array {
@@ -288,7 +291,7 @@ class ChangeTagsFormatter {
 			$cacheKey .= '-all';
 		}
 
-		return $this->cache->getWithSetCallback(
+		$summary = $this->cache->getWithSetCallback(
 			$this->cache->makeKey( $cacheKey, strtolower( $localizationContext->getLanguageCode()->toBcp47Code() ) ),
 			WANObjectCache::TTL_DAY,
 			function () use ( $localizationContext, $tagKeys, $tagHitCounts ) {
@@ -320,6 +323,17 @@ class ChangeTagsFormatter {
 				return $result;
 			}
 		);
+
+		// Filter out tags that the user cannot see before returning this (the cache assumes the user can see all tags
+		// to avoid splitting it by user)
+		$viewable = array_fill_keys(
+			$this->changeTagsStore->filterViewableTags( array_column( $summary, 'name' ), $authority ),
+			true
+		);
+		return array_values( array_filter(
+			$summary,
+			static fn ( array $tagInfo ) => isset( $viewable[ $tagInfo['name'] ] )
+		) );
 	}
 
 	/**
@@ -332,6 +346,7 @@ class ChangeTagsFormatter {
 	 *
 	 * @since 1.47
 	 * @param LocalizationContext $localizationContext
+	 * @param Authority $authority
 	 * @param bool $activeOnly If `true`, only show tags which have been used at least once
 	 * @param bool $useAllTags If `true`, use all known tags. If `false`, use only tags defined by MediaWiki core
 	 *   (excluding tags defined by extensions, users, or site config)
@@ -341,11 +356,12 @@ class ChangeTagsFormatter {
 	 */
 	public function getChangeTagList(
 		LocalizationContext $localizationContext,
+		Authority $authority,
 		bool $activeOnly = true,
 		bool $useAllTags = true,
 		bool $labelsOnly = false
 	): array {
-		$tags = $this->getChangeTagListSummary( $localizationContext, $activeOnly, $useAllTags );
+		$tags = $this->getChangeTagListSummary( $localizationContext, $authority, $activeOnly, $useAllTags );
 
 		$language = $this->languageFactory->getLanguage( $localizationContext->getLanguageCode() );
 		foreach ( $tags as &$tagInfo ) {
