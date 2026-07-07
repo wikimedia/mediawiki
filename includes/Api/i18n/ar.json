@@ -1915,6 +1915,7 @@
 	"apierror-permissiondenied-generic": "الإذن مرفوض.",
 	"apierror-permissiondenied-patrolflag": "تحتاج إلى صلاحية<code>patrol</code> أو <code>patrolmarks</code> لطلب علم مراجع.",
 	"apierror-permissiondenied-unblock": "ليس لديك صلاحية لرفع منع المستخدمين.",
+	"apierror-permissiondenied-userrights-interwiki": "ليس لديك إذن لتغيير حقوق المستخدم على مواقع ويكي أخرى.",
 	"apierror-prefixsearchdisabled": "تم تعطيل البحث عن بادئة MIME في وضع Miser.",
 	"apierror-promised-nonwrite-api": "لا يمكن إرسال رأس HTTP <code>Promise-Non-Write-API-Action</code> إلى وحدات API الخاصة بوضع الكتابة.",
 	"apierror-protect-invalidaction": "نوع حماية غير صالح \"$1\".",
