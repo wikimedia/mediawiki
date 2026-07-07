@@ -27,13 +27,19 @@ class TransformWikitextToHtmlRevisionHandler extends TransformHandler {
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-transform-title' ),
+				Handler::PARAM_DESCRIPTION => new MessageValue(
+						'rest-param-desc-transform-wikitext-to-html-title-revision-title'
+				),
+				Handler::PARAM_EXAMPLE => 'Main_Page',
 			],
 			'revision' => [
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-transform-revision' ),
+				Handler::PARAM_DESCRIPTION => new MessageValue(
+						'rest-param-desc-transform-wikitext-to-html-title-revision-revision'
+				),
+				Handler::PARAM_EXAMPLE => '1',
 			],
 		];
 	}
@@ -54,6 +60,8 @@ class TransformWikitextToHtmlRevisionHandler extends TransformHandler {
 					'type' => 'object',
 					'properties' => [
 						'wikitext' => [
+							'x-i18n-description' => 'rest-property-desc-transform-wikitext',
+							'example' => '== Hello world ==',
 							'type' => 'string',
 						]
 					]
@@ -62,12 +70,18 @@ class TransformWikitextToHtmlRevisionHandler extends TransformHandler {
 					'type' => 'object',
 					'properties' => [
 						'wikitext' => [
+							'x-i18n-description' => 'rest-property-desc-transform-wikitext-with-headers',
+							'example' => [ 'body' => '== Hello world ==' ],
 							'type' => 'object',
 							'properties' => [
 								'headers' => [
+									'x-i18n-description' => 'rest-property-desc-transform-wikitext-headers',
+									'example' => [ 'content-language' => 'en' ],
 									'type' => 'object',
 								],
 								'body' => [
+									'x-i18n-description' => 'rest-property-desc-transform-wikitext-body',
+									'example' => '== Hello world ==',
 									'type' => 'string',
 								]
 							]
@@ -76,5 +90,9 @@ class TransformWikitextToHtmlRevisionHandler extends TransformHandler {
 				]
 			],
 		];
+	}
+
+	public function getRequestBodyDescription(): MessageValue|string|null {
+		return new MessageValue( 'rest-requestbody-desc-transform-wikitext-revision' );
 	}
 }

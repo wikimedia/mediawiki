@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use Wikimedia\Message\MessageValue;
+
 /**
  * Handler for transforming content given in the request.
  *
@@ -37,6 +39,8 @@ class TransformWikitextToHtmlHandler extends TransformHandler {
 					'type' => 'object',
 					'properties' => [
 						'wikitext' => [
+							'x-i18n-description' => 'rest-property-desc-transform-wikitext',
+							'example' => '== Hello world ==',
 							'type' => 'string',
 						]
 					]
@@ -45,12 +49,18 @@ class TransformWikitextToHtmlHandler extends TransformHandler {
 					'type' => 'object',
 					'properties' => [
 						'wikitext' => [
+							'x-i18n-description' => 'rest-property-desc-transform-wikitext-with-headers',
+							'example' => [ 'body' => '== Hello world ==' ],
 							'type' => 'object',
 							'properties' => [
 								'headers' => [
+									'x-i18n-description' => 'rest-property-desc-transform-wikitext-headers',
+									'example' => [ 'content-language' => 'en' ],
 									'type' => 'object',
 								],
 								'body' => [
+									'x-i18n-description' => 'rest-property-desc-transform-wikitext-body',
+									'example' => '== Hello world ==',
 									'type' => 'string',
 								]
 							]
@@ -59,5 +69,9 @@ class TransformWikitextToHtmlHandler extends TransformHandler {
 				]
 			],
 		];
+	}
+
+	public function getRequestBodyDescription(): MessageValue|string|null {
+		return new MessageValue( 'rest-requestbody-desc-transform-wikitext' );
 	}
 }

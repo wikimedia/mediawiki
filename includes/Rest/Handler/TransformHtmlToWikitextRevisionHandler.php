@@ -27,13 +27,19 @@ class TransformHtmlToWikitextRevisionHandler extends TransformHandler {
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-transform-title' ),
+				Handler::PARAM_DESCRIPTION => new MessageValue(
+						'rest-param-desc-transform-html-to-wikitext-title-revision-title'
+				),
+				Handler::PARAM_EXAMPLE => 'Main_Page',
 			],
 			'revision' => [
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-transform-revision' ),
+				Handler::PARAM_DESCRIPTION => new MessageValue(
+						'rest-param-desc-transform-html-to-wikitext-title-revision-revision'
+				),
+				Handler::PARAM_EXAMPLE => '1',
 			],
 		];
 	}
@@ -54,6 +60,8 @@ class TransformHtmlToWikitextRevisionHandler extends TransformHandler {
 					'type' => 'object',
 					'properties' => [
 						'html' => [
+							'x-i18n-description' => 'rest-property-desc-transform-html',
+							'example' => '<h2>Hello world</h2>',
 							'type' => 'string',
 						]
 					]
@@ -62,12 +70,18 @@ class TransformHtmlToWikitextRevisionHandler extends TransformHandler {
 					'type' => 'object',
 					'properties' => [
 						'html' => [
+							'x-i18n-description' => 'rest-property-desc-transform-html-with-headers',
+							'example' => [ 'body' => '<h2>Hello world</h2>' ],
 							'type' => 'object',
 							'properties' => [
 								'headers' => [
+									'x-i18n-description' => 'rest-property-desc-transform-html-headers',
+									'example' => [ 'content-language' => 'en' ],
 									'type' => 'object',
 								],
 								'body' => [
+									'x-i18n-description' => 'rest-property-desc-transform-html-body',
+									'example' => '<h2>Hello world</h2>',
 									'type' => 'string',
 								]
 							]
@@ -76,5 +90,9 @@ class TransformHtmlToWikitextRevisionHandler extends TransformHandler {
 				]
 			],
 		];
+	}
+
+	public function getRequestBodyDescription(): MessageValue|string|null {
+		return new MessageValue( 'rest-requestbody-desc-transform-html' );
 	}
 }
