@@ -2125,6 +2125,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Language\\MessageParser' => __DIR__ . '/includes/Language/MessageParser.php',
 	'MediaWiki\\Language\\RawMessage' => __DIR__ . '/includes/Language/RawMessage.php',
 	'MediaWiki\\Language\\ReplacementArray' => __DIR__ . '/includes/libs/ReplacementArray.php',
+	'MediaWiki\\Language\\SimpleLocalizationContext' => __DIR__ . '/includes/Language/SimpleLocalizationContext.php',
 	'MediaWiki\\Language\\TrivialLanguageConverter' => __DIR__ . '/includes/Language/TrivialLanguageConverter.php',
 	'MediaWiki\\Languages\\Data\\CrhExceptions' => __DIR__ . '/includes/Languages/Data/CrhExceptions.php',
 	'MediaWiki\\Languages\\Data\\Names' => __DIR__ . '/includes/Languages/Data/Names.php',
