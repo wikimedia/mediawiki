@@ -9,6 +9,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageStore;
@@ -26,6 +27,8 @@ use MediaWiki\Search\SearchResult;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\SearchSuggestion;
 use MediaWiki\Search\SearchSuggestionSet;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
@@ -60,6 +63,7 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 	 * @param PageStore|null $pageStore
 	 * @param TitleFormatter|null $mockTitleFormatter
 	 * @param HookContainer|null $hookContainer
+	 * @param SpecialPageFactory|null $specialPageFactory
 	 *
 	 * @return SearchHandler
 	 */
@@ -72,7 +76,8 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 		?RedirectLookup $redirectLookup = null,
 		?PageStore $pageStore = null,
 		?TitleFormatter $mockTitleFormatter = null,
-		?HookContainer $hookContainer = null
+		?HookContainer $hookContainer = null,
+		?SpecialPageFactory $specialPageFactory = null,
 	): SearchHandler {
 		$sources = [
 			MainConfigNames::SearchType => 'test',
@@ -126,6 +131,8 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 		$searchEngineFactory->method( 'create' )
 			->willReturn( $this->searchEngine );
 
+		$specialPageFactory = $specialPageFactory ?: $this->createNoOpMock( SpecialPageFactory::class, [ 'getPage' ] );
+
 		return new SearchHandler(
 			new HashConfig( $sources ),
 			$searchEngineFactory,
@@ -138,6 +145,7 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 			$redirectLookup,
 			$pageStore ?? $this->createMock( PageStore::class ),
 			$mockTitleFormatter ?? $this->getDummyTitleFormatter(),
+			$specialPageFactory
 		);
 	}
 
@@ -241,6 +249,44 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'Frob', $data['pages'][0]['excerpt'] );
 		$this->assertSame( 'Frobnitz', $data['pages'][1]['title'] );
 		$this->assertSame( 'Frobnitz', $data['pages'][1]['excerpt'] );
+	}
+
+	public function testSpecialPageDescOnCompletionSearch() {
+		$mockTitle = $this->makeMockTitle( 'SomethingSpecial', [ 'namespace' => NS_SPECIAL ] );
+		$completionResults = new SearchSuggestionSet( [
+			$this->makeMockSearchSuggestion( "ignored", $mockTitle ),
+		] );
+		$specialPage = $this->createMock( SpecialPage::class );
+		$msg = $this->createMock( Message::class );
+		$msg->expects( $this->once() )
+			->method( 'plain' )
+			->willReturn( 'Special things to do' );
+		$specialPage->expects( $this->once() )
+			->method( 'getDescription' )
+			->willReturn( $msg );
+		$specialPageFactory = $this->createMock( SpecialPageFactory::class );
+		$specialPageFactory->expects( $this->once() )
+			->method( 'getPage' )
+			->with( 'SomethingSpecial' )
+			->willReturn( $specialPage );
+		$query = 'Special:Something';
+		$handler = $this->newHandler( $query, [], [], $completionResults,
+			null, null, null, null,
+			null, $specialPageFactory );
+		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
+		$response = $this->executeHandler( $handler, $request, [ 'mode' => SearchHandler::COMPLETION_MODE ] );
+		$this->assertSame( 200, $response->getStatusCode() );
+		$this->assertSame( 'application/json', $response->getHeaderLine( 'Content-Type' ) );
+		$this->assertSame( 'public, max-age=1200', $response->getHeaderLine( 'Cache-Control' ) );
+		$this->assertSame( 'a-search-id', $response->getHeaderLine( 'X-Search-ID' ) );
+
+		$data = json_decode( $response->getBody(), true );
+		$this->assertIsArray( $data, 'Body must be a JSON array' );
+
+		$this->assertArrayHasKey( 'pages', $data );
+		$this->assertCount( 1, $data['pages'] );
+		$this->assertSame( 'Special:SomethingSpecial', $data['pages'][0]['title'] );
+		$this->assertSame( 'Special things to do', $data['pages'][0]['description'] );
 	}
 
 	public function testCompletionSearchNotCachedForPublicPages() {

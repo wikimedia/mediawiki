@@ -23,6 +23,7 @@ use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\Search\SearchResult;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\SearchSuggestion;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\TitleFormatter;
 use StatusValue;
 use Wikimedia\Message\MessageValue;
@@ -42,6 +43,7 @@ class SearchHandler extends Handler {
 	private RedirectLookup $redirectLookup;
 	private PageStore $pageStore;
 	private TitleFormatter $titleFormatter;
+	private SpecialPageFactory $specialPageFactory;
 
 	/**
 	 * Search page body and titles.
@@ -88,7 +90,8 @@ class SearchHandler extends Handler {
 		PermissionManager $permissionManager,
 		RedirectLookup $redirectLookup,
 		PageStore $pageStore,
-		TitleFormatter $titleFormatter
+		TitleFormatter $titleFormatter,
+		SpecialPageFactory $specialPageFactory,
 	) {
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->searchEngineConfig = $searchEngineConfig;
@@ -100,6 +103,7 @@ class SearchHandler extends Handler {
 
 		// @todo Avoid injecting the entire config, see T246377
 		$this->completionCacheExpiry = $config->get( MainConfigNames::SearchSuggestCacheExpiry );
+		$this->specialPageFactory = $specialPageFactory;
 	}
 
 	protected function postInitSetup() {
@@ -229,7 +233,7 @@ class SearchHandler extends Handler {
 	 * @param SearchResult|SearchSuggestion $result
 	 *
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-return (false|array{pageIdentity:PageIdentity,suggestion:?SearchSuggestion,result:?SearchResult,redirect:?PageIdentity,anchor:?string}) $pageInfos
+	 * @phan-return (false|array{pageIdentity:PageIdentity,suggestion:?SearchSuggestion,result:?SearchResult,redirect:?PageIdentity,anchor:?string,description:?string}) $pageInfos
 	 * @return bool|array Objects representing a given page:
 	 *   - pageIdentity: PageIdentity of page to return as the match
 	 *   - suggestion: SearchSuggestion or null if $searchResponse is SearchResults
@@ -257,7 +261,8 @@ class SearchHandler extends Handler {
 			'suggestion' => $result instanceof SearchSuggestion ? $result : null,
 			'result' => $result instanceof SearchResult ? $result : null,
 			'redirect' => $redirectSource,
-			'anchor' => $anchor
+			'anchor' => $anchor,
+			'description' => $this->getSpecialPageDescription( $title ),
 		];
 	}
 
@@ -266,7 +271,7 @@ class SearchHandler extends Handler {
 	 * @param array $pageInfos Page Info objects
 	 * @param array $thumbsAndDesc Associative array mapping pageId to array of description and thumbnail
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array<int,array{pageIdentity:PageIdentity,suggestion:SearchSuggestion,result:SearchResult,redirect:?PageIdentity,anchor:?string}> $pageInfos
+	 * @phan-param array<int,array{pageIdentity:PageIdentity,suggestion:SearchSuggestion,result:SearchResult,redirect:?PageIdentity,anchor:?string,description:?string}> $pageInfos
 	 * @phan-param array<int,array{description:array,thumbnail:array}> $thumbsAndDesc
 	 *
 	 * @phpcs:ignore Generic.Files.LineLength
@@ -281,7 +286,8 @@ class SearchHandler extends Handler {
 				'suggestion' => $sugg,
 				'result' => $result,
 				'redirect' => $redirect,
-				'anchor' => $anchor
+				'anchor' => $anchor,
+				'description' => $description,
 			] = $pageInfo;
 			$excerpt = $sugg ? $sugg->getText() : $result->getTextSnippet();
 			$id = ( $page instanceof PageIdentity && $page->canExist() ) ? $page->getId() : 0;
@@ -292,7 +298,7 @@ class SearchHandler extends Handler {
 				'excerpt' => $excerpt ?: null,
 				'matched_title' => $redirect ? $this->titleFormatter->getPrefixedText( $redirect ) : null,
 				'anchor' => $anchor ?: null,
-				'description' => $id > 0 ? $thumbsAndDesc[$id]['description'] : null,
+				'description' => $id > 0 ? $thumbsAndDesc[$id]['description'] : $description,
 				'thumbnail' => $id > 0 ? $thumbsAndDesc[$id]['thumbnail'] : null,
 			];
 		}
@@ -318,6 +324,21 @@ class SearchHandler extends Handler {
 			'duration' => $thumbnail->getDuration(),
 			'url' => $thumbnail->getUrl(),
 		];
+	}
+
+	/**
+	 * Return the page description if this PageIdentity refers to a SpecialPage.
+	 * @param PageIdentity $title
+	 * @return string|null the special page description, null if unknown or not a special page.
+	 */
+	private function getSpecialPageDescription( PageIdentity $title ): ?string {
+		if ( $title->getNamespace() === NS_SPECIAL ) {
+			return $this->specialPageFactory
+				->getPage( $title->getDBkey() )
+				?->getDescription()
+				?->plain();
+		}
+		return null;
 	}
 
 	/**

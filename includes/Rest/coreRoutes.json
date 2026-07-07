@@ -129,7 +129,8 @@
 			"PermissionManager",
 			"RedirectLookup",
 			"PageStore",
-			"TitleFormatter"
+			"TitleFormatter",
+			"SpecialPageFactory"
 		],
 		"mode": "fulltext",
 		"openApiSpec": {
@@ -148,7 +149,8 @@
 			"PermissionManager",
 			"RedirectLookup",
 			"PageStore",
-			"TitleFormatter"
+			"TitleFormatter",
+			"SpecialPageFactory"
 		],
 		"mode": "completion",
 		"openApiSpec": {
