@@ -8,7 +8,7 @@
 namespace MediaWiki\RevisionDelete;
 
 use MediaWiki\Api\ApiResult;
-use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use MediaWiki\Logging\DatabaseLogEntry;
@@ -28,29 +28,23 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class RevDelLogItem extends RevDelItem {
 
-	/** @var CommentStore */
-	private $commentStore;
-	private IConnectionProvider $dbProvider;
-	private LogFormatterFactory $logFormatterFactory;
-
 	/**
 	 * @param RevisionListBase $list
 	 * @param stdClass $row DB result row
 	 * @param CommentStore $commentStore
 	 * @param IConnectionProvider $dbProvider
 	 * @param LogFormatterFactory $logFormatterFactory
+	 * @param ChangeTagsFormatter $changeTagsFormatter
 	 */
 	public function __construct(
 		RevisionListBase $list,
 		$row,
-		CommentStore $commentStore,
-		IConnectionProvider $dbProvider,
-		LogFormatterFactory $logFormatterFactory
+		private readonly CommentStore $commentStore,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly LogFormatterFactory $logFormatterFactory,
+		private readonly ChangeTagsFormatter $changeTagsFormatter,
 	) {
 		parent::__construct( $list, $row );
-		$this->commentStore = $commentStore;
-		$this->dbProvider = $dbProvider;
-		$this->logFormatterFactory = $logFormatterFactory;
 	}
 
 	/** @inheritDoc */
@@ -154,10 +148,10 @@ class RevDelLogItem extends RevDelItem {
 		$content = "$loglink $date $action $comment";
 		$attribs = [];
 		if ( $this->row->ts_tags ) {
-			[ $tagSummary, $classes ] = ChangeTags::formatSummaryRow(
+			[ $tagSummary, $classes ] = $this->changeTagsFormatter->formatTagsAsSummaryList(
 				$this->row->ts_tags,
-				'revisiondelete',
-				$this->list->getContext()
+				$this->list->getContext(),
+				$this->list->getAuthority()
 			);
 			$content .= " $tagSummary";
 			$attribs['class'] = $classes;

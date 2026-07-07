@@ -8,7 +8,7 @@
 namespace MediaWiki\RevisionDelete;
 
 use MediaWiki\Api\ApiResult;
-use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
@@ -27,7 +27,11 @@ class RevDelRevisionItem extends RevDelItem {
 	public $revisionRecord;
 
 	/** @inheritDoc */
-	public function __construct( RevisionListBase $list, $row ) {
+	public function __construct(
+		RevisionListBase $list,
+		$row,
+		private readonly ChangeTagsFormatter $changeTagsFormatter,
+	) {
 		parent::__construct( $list, $row );
 		$this->revisionRecord = static::initRevisionRecord( $list, $row );
 	}
@@ -213,10 +217,10 @@ class RevDelRevisionItem extends RevDelItem {
 		$attribs = [];
 		$tags = $this->getTags();
 		if ( $tags ) {
-			[ $tagSummary, $classes ] = ChangeTags::formatSummaryRow(
+			[ $tagSummary, $classes ] = $this->changeTagsFormatter->formatTagsAsSummaryList(
 				$tags,
-				'revisiondelete',
-				$this->list->getContext()
+				$this->list->getContext(),
+				$this->list->getAuthority()
 			);
 			$content .= " $tagSummary";
 			$attribs['class'] = $classes;

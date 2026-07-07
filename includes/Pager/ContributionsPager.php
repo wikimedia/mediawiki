@@ -8,7 +8,7 @@
 namespace MediaWiki\Pager;
 
 use InvalidArgumentException;
-use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
@@ -150,6 +150,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	protected NamespaceInfo $namespaceInfo;
 	protected RevisionStore $revisionStore;
 	protected readonly ChangeToolsFactory $changeToolsFactory;
+	private readonly ChangeTagsFormatter $changeTagsFormatter;
 
 	/** @var string[] */
 	private $formattedComments = [];
@@ -186,6 +187,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		array $options,
 		?UserIdentity $targetUser,
 		?ChangeToolsFactory $changeToolsFactory = null,
+		?ChangeTagsFormatter $changeTagsFormatter = null,
 	) {
 		$this->isArchive = $options['isArchive'] ?? false;
 		$this->runHooks = $options['runHooks'] ?? true;
@@ -260,6 +262,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->revisionStore = $revisionStore;
 		$this->changeToolsFactory = $changeToolsFactory ?? MediaWikiServices::getInstance()->getChangeToolsFactory();
+		$this->changeTagsFormatter = $changeTagsFormatter ?? MediaWikiServices::getInstance()->getChangeTagsFormatter();
 		$this->namespaceInfo = $namespaceInfo;
 		$this->commentFormatter = $commentFormatter;
 		$this->tagsCache = new MapCacheLRU( 50 );
@@ -997,10 +1000,10 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 				$this->getUser()->getName(),
 				$this->getLanguage()->getCode()
 			),
-			fn () => ChangeTags::formatSummaryRow(
+			fn () => $this->changeTagsFormatter->formatTagsAsSummaryList(
 				$row->ts_tags,
-				null,
-				$this->getContext()
+				$this->getContext(),
+				$this->getAuthority()
 			)
 		);
 		$classes = array_merge( $classes, $newClasses );

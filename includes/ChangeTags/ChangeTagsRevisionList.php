@@ -42,7 +42,11 @@ class ChangeTagsRevisionList extends ChangeTagsList {
 
 	/** @inheritDoc */
 	public function newItem( $row ) {
-		return new ChangeTagsRevisionItem( $this, $row );
+		return new ChangeTagsRevisionItem(
+			$this,
+			$row,
+			MediaWikiServices::getInstance()->getChangeTagsFormatter()
+		);
 	}
 
 	/**

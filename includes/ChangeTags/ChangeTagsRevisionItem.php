@@ -10,6 +10,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\RevisionList\RevisionItem;
+use MediaWiki\RevisionList\RevisionListBase;
 
 /**
  * Item class for a live revision table row with its associated change tags.
@@ -18,6 +19,16 @@ use MediaWiki\RevisionList\RevisionItem;
  * @ingroup ChangeTags
  */
 class ChangeTagsRevisionItem extends RevisionItem {
+
+	/** @inheritDoc */
+	public function __construct(
+		RevisionListBase $list,
+		$row,
+		private readonly ChangeTagsFormatter $changeTagsFormatter,
+	) {
+		parent::__construct( $list, $row );
+	}
+
 	/**
 	 * @return string Comma-separated list of tags
 	 */
@@ -45,10 +56,10 @@ class ChangeTagsRevisionItem extends RevisionItem {
 		$attribs = [];
 		$tags = $this->getTags();
 		if ( $tags ) {
-			[ $tagSummary, $classes ] = ChangeTags::formatSummaryRow(
+			[ $tagSummary, $classes ] = $this->changeTagsFormatter->formatTagsAsSummaryList(
 				$tags,
-				'edittags',
-				$this->list->getContext()
+				$this->list->getContext(),
+				$this->list->getAuthority()
 			);
 			$content .= " $tagSummary";
 			$attribs['class'] = $classes;

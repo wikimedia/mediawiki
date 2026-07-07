@@ -198,6 +198,7 @@ class ChangeTags {
 	 * @return-taint onlysafefor_htmlnoent
 	 */
 	public static function formatSummaryRow( $tags, $unused, MessageLocalizer $localizer ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		return MediaWikiServices::getInstance()->getChangeTagsFormatter()->formatTagsAsSummaryList(
 			$tags,
 			$localizer,

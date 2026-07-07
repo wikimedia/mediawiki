@@ -9,6 +9,7 @@ namespace MediaWiki\RevisionDelete;
 
 use InvalidArgumentException;
 use MediaWiki\Cache\HTMLCacheUpdater;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\HookContainer\HookContainer;
@@ -37,38 +38,25 @@ use Wikimedia\Rdbms\LBFactory;
  */
 class RevDelRevisionList extends RevDelList {
 
-	/** @var LBFactory */
-	private $lbFactory;
-
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var HTMLCacheUpdater */
-	private $htmlCacheUpdater;
-
-	/** @var RevisionStore */
-	private $revisionStore;
-
 	/** @var int */
 	public $currentRevId;
-	private DomainEventDispatcher $eventDispatcher;
 
 	public function __construct(
 		IContextSource $context,
 		PageIdentity $page,
 		array $ids,
-		LBFactory $lbFactory,
+		private readonly LBFactory $lbFactory,
 		HookContainer $hookContainer,
-		HTMLCacheUpdater $htmlCacheUpdater,
-		RevisionStore $revisionStore,
-		DomainEventDispatcher $eventDispatcher
+		private readonly HTMLCacheUpdater $htmlCacheUpdater,
+		private readonly RevisionStore $revisionStore,
+		private readonly DomainEventDispatcher $eventDispatcher,
+		private readonly ChangeTagsFormatter $changeTagsFormatter,
 	) {
-		parent::__construct( $context, $page, $ids, $lbFactory );
-		$this->lbFactory = $lbFactory;
+		parent::__construct( $context, $page, $ids, $this->lbFactory );
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->htmlCacheUpdater = $htmlCacheUpdater;
-		$this->revisionStore = $revisionStore;
-		$this->eventDispatcher = $eventDispatcher;
 	}
 
 	/** @inheritDoc */
@@ -157,9 +145,9 @@ class RevDelRevisionList extends RevDelList {
 	/** @inheritDoc */
 	public function newItem( $row ) {
 		if ( isset( $row->rev_id ) ) {
-			return new RevDelRevisionItem( $this, $row );
+			return new RevDelRevisionItem( $this, $row, $this->changeTagsFormatter );
 		} elseif ( isset( $row->ar_rev_id ) ) {
-			return new RevDelArchivedRevisionItem( $this, $row, $this->lbFactory );
+			return new RevDelArchivedRevisionItem( $this, $row, $this->lbFactory, $this->changeTagsFormatter );
 		} else {
 			// This shouldn't happen. :)
 			throw new InvalidArgumentException( 'Invalid row type in RevDelRevisionList' );

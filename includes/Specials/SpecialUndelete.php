@@ -6,7 +6,7 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -147,6 +147,7 @@ class SpecialUndelete extends SpecialPage {
 		private readonly ArchivedRevisionLookup $archivedRevisionLookup,
 		private readonly CommentFormatter $commentFormatter,
 		private readonly WatchlistManager $watchlistManager,
+		private readonly ChangeTagsFormatter $changeTagsFormatter,
 	) {
 		parent::__construct( 'Undelete' );
 		$this->localRepo = $repoGroup->getLocalRepo();
@@ -869,7 +870,11 @@ class SpecialUndelete extends SpecialPage {
 			}
 		}
 		$tags = implode( ',', $tags );
-		$tagSummary = ChangeTags::formatSummaryRow( $tags, 'deleteddiff', $this->getContext() );
+		$tagSummary = $this->changeTagsFormatter->formatTagsAsSummaryList(
+			$tags,
+			$this->getContext(),
+			$this->getAuthority()
+		);
 		$asof = $this->getLinkRenderer()->makeLink(
 			$targetPage,
 			$this->msg(
@@ -1401,10 +1406,10 @@ class SpecialUndelete extends SpecialPage {
 
 		// Tags
 		$attribs = [];
-		[ $tagSummary, $classes ] = ChangeTags::formatSummaryRow(
+		[ $tagSummary, $classes ] = $this->changeTagsFormatter->formatTagsAsSummaryList(
 			$row->ts_tags,
-			'deletedhistory',
-			$this->getContext()
+			$this->getContext(),
+			$this->getAuthority()
 		);
 		$attribs['class'] = $classes;
 

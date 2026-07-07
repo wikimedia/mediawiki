@@ -7,6 +7,7 @@
 
 namespace MediaWiki\RevisionDelete;
 
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Logging\LogFormatterFactory;
@@ -25,30 +26,19 @@ class RevDelLogList extends RevDelList {
 
 	protected const SUPPRESS_BIT = LogPage::DELETED_RESTRICTED;
 
-	/** @var CommentStore */
-	private $commentStore;
-	private LogFormatterFactory $logFormatterFactory;
-
 	/**
 	 * @internal Use RevisionDeleter
-	 * @param IContextSource $context
-	 * @param PageIdentity $page
-	 * @param array $ids
-	 * @param LBFactory $lbFactory
-	 * @param CommentStore $commentStore
-	 * @param LogFormatterFactory $logFormatterFactory
 	 */
 	public function __construct(
 		IContextSource $context,
 		PageIdentity $page,
 		array $ids,
 		LBFactory $lbFactory,
-		CommentStore $commentStore,
-		LogFormatterFactory $logFormatterFactory
+		private readonly CommentStore $commentStore,
+		private readonly LogFormatterFactory $logFormatterFactory,
+		private readonly ChangeTagsFormatter $changeTagsFormatter,
 	) {
 		parent::__construct( $context, $page, $ids, $lbFactory );
-		$this->commentStore = $commentStore;
-		$this->logFormatterFactory = $logFormatterFactory;
 	}
 
 	/** @inheritDoc */
@@ -130,7 +120,8 @@ class RevDelLogList extends RevDelList {
 			$row,
 			$this->commentStore,
 			MediaWikiServices::getInstance()->getConnectionProvider(),
-			$this->logFormatterFactory
+			$this->logFormatterFactory,
+			$this->changeTagsFormatter
 		);
 	}
 

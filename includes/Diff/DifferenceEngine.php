@@ -14,7 +14,7 @@ use BadMethodCallException;
 use Exception;
 use InvalidArgumentException;
 use LogicException;
-use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -256,6 +256,7 @@ class DifferenceEngine extends ContextSource {
 	private UserEditTracker $userEditTracker;
 	private UserIdentityUtils $userIdentityUtils;
 	private RecentChangeLookup $recentChangeLookup;
+	private ChangeTagsFormatter $changeTagsFormatter;
 
 	/** @var Message[] */
 	private $revisionLoadErrors = [];
@@ -296,6 +297,7 @@ class DifferenceEngine extends ContextSource {
 		$this->userEditTracker = $services->getUserEditTracker();
 		$this->userIdentityUtils = $services->getUserIdentityUtils();
 		$this->recentChangeLookup = $services->getRecentChangeLookup();
+		$this->changeTagsFormatter = $services->getChangeTagsFormatter();
 	}
 
 	/**
@@ -892,7 +894,11 @@ class DifferenceEngine extends ContextSource {
 
 			$ldel = $this->revisionDeleteLink( $oldRevRecord );
 			$oldRevisionHeader = $this->getRevisionHeader( $oldRevRecord, 'complete' );
-			$oldChangeTags = ChangeTags::formatSummaryRow( $this->mOldTags, 'diff', $this->getContext() );
+			$oldChangeTags = $this->changeTagsFormatter->formatTagsAsSummaryList(
+				$this->mOldTags,
+				$this->getContext(),
+				$this->getAuthority()
+			);
 			$oldRevComment = $this->commentFormatter
 				->formatRevision(
 					$oldRevRecord, $user, !$diffOnly, !$this->unhide, /** disable parentheseses */ false
@@ -977,7 +983,11 @@ class DifferenceEngine extends ContextSource {
 
 		$newRevisionHeader = $this->getRevisionHeader( $newRevRecord, 'complete' ) .
 			' ' . implode( ' ', $formattedRevisionTools );
-		$newChangeTags = ChangeTags::formatSummaryRow( $this->mNewTags, 'diff', $this->getContext() );
+		$newChangeTags = $this->changeTagsFormatter->formatTagsAsSummaryList(
+			$this->mNewTags,
+			$this->getContext(),
+			$this->getAuthority()
+		);
 		$newRevComment = $this->commentFormatter->formatRevision(
 			$newRevRecord, $user, !$diffOnly, !$this->unhide, /** disable parentheseses */ false
 		);

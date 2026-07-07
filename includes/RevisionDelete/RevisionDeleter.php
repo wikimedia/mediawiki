@@ -35,7 +35,8 @@ class RevisionDeleter {
 				'HookContainer',
 				'HTMLCacheUpdater',
 				'RevisionStore',
-				'DomainEventDispatcher'
+				'DomainEventDispatcher',
+				'ChangeTagsFormatter',
 			],
 		],
 		'archive' => [
@@ -45,7 +46,8 @@ class RevisionDeleter {
 				'HookContainer',
 				'HTMLCacheUpdater',
 				'RevisionStore',
-				'DomainEventDispatcher'
+				'DomainEventDispatcher',
+				'ChangeTagsFormatter',
 			],
 		],
 		'oldimage' => [
@@ -70,6 +72,7 @@ class RevisionDeleter {
 				'DBLoadBalancerFactory',
 				'CommentStore',
 				'LogFormatterFactory',
+				'ChangeTagsFormatter',
 			],
 		],
 	];

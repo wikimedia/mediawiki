@@ -41,7 +41,12 @@ class ChangeTagsLogList extends ChangeTagsList {
 
 	/** @inheritDoc */
 	public function newItem( $row ) {
-		return new ChangeTagsLogItem( $this, $row );
+		$services = MediaWikiServices::getInstance();
+		return new ChangeTagsLogItem(
+			$this,
+			$row,
+			$services->getChangeTagsFormatter()
+		);
 	}
 
 	/**

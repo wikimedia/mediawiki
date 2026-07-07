@@ -14,6 +14,7 @@ namespace MediaWiki\Logging;
 use InvalidArgumentException;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -76,6 +77,7 @@ class LogEventsList extends ContextSource {
 	private $tagsCache;
 
 	private TempUserConfig $tempUserConfig;
+	private ChangeTagsFormatter $changeTagsFormatter;
 
 	/**
 	 * @param IContextSource $context
@@ -95,6 +97,7 @@ class LogEventsList extends ContextSource {
 		$this->logFormatterFactory = $services->getLogFormatterFactory();
 		$this->tagsCache = new MapCacheLRU( 50 );
 		$this->tempUserConfig = $services->getTempUserConfig();
+		$this->changeTagsFormatter = $services->getChangeTagsFormatter();
 	}
 
 	/**
@@ -425,10 +428,10 @@ class LogEventsList extends ContextSource {
 				$this->getUser()->getName(),
 				$this->getLanguage()->getCode()
 			),
-			fn () => ChangeTags::formatSummaryRow(
+			fn () => $this->changeTagsFormatter->formatTagsAsSummaryList(
 				$row->ts_tags,
-				'logevent',
-				$this->getContext()
+				$this->getContext(),
+				$this->getAuthority()
 			)
 		);
 		$classes = [ 'mw-logline-' . $entry->getType(), ...$newClasses ];

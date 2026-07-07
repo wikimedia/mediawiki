@@ -6,6 +6,7 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -58,6 +59,7 @@ class SpecialNewPages extends IncludableSpecialPage {
 		private readonly ChangeTagsStore $changeTagsStore,
 		private readonly TempUserConfig $tempUserConfig,
 		private readonly RecentChangeFactory $rcFactory,
+		private readonly ChangeTagsFormatter $changeTagsFormatter,
 	) {
 		parent::__construct( 'Newpages' );
 	}
@@ -360,6 +362,7 @@ class SpecialNewPages extends IncludableSpecialPage {
 			$this->contentHandlerFactory,
 			$this->tempUserConfig,
 			$this->rcFactory,
+			$this->changeTagsFormatter,
 			$this->opts,
 		);
 	}

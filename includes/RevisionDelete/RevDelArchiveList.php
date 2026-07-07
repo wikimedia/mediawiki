@@ -8,6 +8,7 @@
 namespace MediaWiki\RevisionDelete;
 
 use MediaWiki\Cache\HTMLCacheUpdater;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\HookContainer\HookContainer;
@@ -25,9 +26,6 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 class RevDelArchiveList extends RevDelRevisionList {
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
 	public function __construct(
 		IContextSource $context,
 		PageIdentity $page,
@@ -35,8 +33,9 @@ class RevDelArchiveList extends RevDelRevisionList {
 		LBFactory $lbFactory,
 		HookContainer $hookContainer,
 		HTMLCacheUpdater $htmlCacheUpdater,
-		RevisionStore $revisionStore,
-		DomainEventDispatcher $eventDispatcher
+		private readonly RevisionStore $revisionStore,
+		DomainEventDispatcher $eventDispatcher,
+		private readonly ChangeTagsFormatter $changeTagsFormatter
 	) {
 		parent::__construct(
 			$context,
@@ -45,10 +44,10 @@ class RevDelArchiveList extends RevDelRevisionList {
 			$lbFactory,
 			$hookContainer,
 			$htmlCacheUpdater,
-			$revisionStore,
-			$eventDispatcher
+			$this->revisionStore,
+			$eventDispatcher,
+			$this->changeTagsFormatter
 		);
-		$this->revisionStore = $revisionStore;
 	}
 
 	/** @inheritDoc */
@@ -87,7 +86,7 @@ class RevDelArchiveList extends RevDelRevisionList {
 
 	/** @inheritDoc */
 	public function newItem( $row ) {
-		return new RevDelArchiveItem( $this, $row );
+		return new RevDelArchiveItem( $this, $row, $this->changeTagsFormatter );
 	}
 
 	/** @inheritDoc */

@@ -6,7 +6,7 @@
 
 namespace MediaWiki\RecentChanges;
 
-use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
@@ -111,6 +111,7 @@ class ChangesList extends ContextSource {
 	protected UserLinkRenderer $userLinkRenderer;
 
 	private ChangeToolsFactory $changeToolsFactory;
+	private ChangeTagsFormatter $changeTagsFormatter;
 
 	protected array $userLabels;
 
@@ -118,11 +119,13 @@ class ChangesList extends ContextSource {
 	 * @param IContextSource $context
 	 * @param ChangesListFilterGroupContainer|null $filterGroups
 	 * @param ChangeToolsFactory|null $changeToolsFactory
+	 * @param ChangeTagsFormatter|null $changeTagsFormatter
 	 */
 	public function __construct(
 		$context,
 		?ChangesListFilterGroupContainer $filterGroups = null,
 		?ChangeToolsFactory $changeToolsFactory = null,
+		?ChangeTagsFormatter $changeTagsFormatter = null,
 	) {
 		$this->setContext( $context );
 		$this->preCacheMessages();
@@ -135,6 +138,7 @@ class ChangesList extends ContextSource {
 		$this->logFormatterFactory = $services->getLogFormatterFactory();
 		$this->userLinkRenderer = $services->getUserLinkRenderer();
 		$this->changeToolsFactory = $changeToolsFactory ?? $services->getChangeToolsFactory();
+		$this->changeTagsFormatter = $changeTagsFormatter ?? $services->getChangeTagsFormatter();
 		$this->tagsCache = new MapCacheLRU( 50 );
 		$this->userLinkCache = new MapCacheLRU( 50 );
 	}
@@ -975,10 +979,10 @@ class ChangesList extends ContextSource {
 				$this->getUser()->getName(),
 				$this->getLanguage()->getCode()
 			),
-			fn () => ChangeTags::formatSummaryRow(
+			fn () => $this->changeTagsFormatter->formatTagsAsSummaryList(
 				$rc->mAttribs['ts_tags'],
-				'changeslist',
-				$this->getContext()
+				$this->getContext(),
+				$this->getAuthority()
 			)
 		);
 		$classes = array_merge( $classes, $newClasses );

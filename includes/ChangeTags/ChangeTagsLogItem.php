@@ -12,6 +12,7 @@ use MediaWiki\Logging\LogFormatter;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\RevisionList\RevisionItemBase;
+use MediaWiki\RevisionList\RevisionListBase;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 
@@ -25,6 +26,16 @@ use MediaWiki\Title\Title;
  * @ingroup ChangeTags
  */
 class ChangeTagsLogItem extends RevisionItemBase {
+
+	/** @inheritDoc */
+	public function __construct(
+		RevisionListBase $list,
+		$row,
+		private readonly ChangeTagsFormatter $changeTagsFormatter,
+	) {
+		parent::__construct( $list, $row );
+	}
+
 	/** @inheritDoc */
 	public function getIdField() {
 		return 'log_id';
@@ -100,10 +111,10 @@ class ChangeTagsLogItem extends RevisionItemBase {
 		$attribs = [];
 		$tags = $this->getTags();
 		if ( $tags ) {
-			[ $tagSummary, $classes ] = ChangeTags::formatSummaryRow(
+			[ $tagSummary, $classes ] = $this->changeTagsFormatter->formatTagsAsSummaryList(
 				$tags,
-				'edittags',
-				$this->list->getContext()
+				$this->list->getContext(),
+				$this->list->getAuthority()
 			);
 			$content .= " $tagSummary";
 			$attribs['class'] = $classes;

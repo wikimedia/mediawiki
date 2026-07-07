@@ -7,7 +7,7 @@
 
 namespace MediaWiki\Specials\Pager;
 
-use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Context\IContextSource;
@@ -44,6 +44,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		private readonly RevisionStore $revisionStore,
 		private readonly CommentFormatter $commentFormatter,
 		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly ChangeTagsFormatter $changeTagsFormatter,
 		public array $mConds,
 		PageIdentity $source,
 		PageIdentity $dest,
@@ -159,10 +160,10 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$comment = $this->commentFormatter->formatRevision( $revRecord, $user );
 
 		// Tags, if any.
-		[ $tagSummary, $classes ] = ChangeTags::formatSummaryRow(
+		[ $tagSummary, $classes ] = $this->changeTagsFormatter->formatTagsAsSummaryList(
 			$row->ts_tags,
-			'mergehistory',
-			$this->getContext()
+			$this->getContext(),
+			$this->getAuthority()
 		);
 
 		return Html::rawElement( 'li', $classes,

@@ -7,7 +7,7 @@
 
 namespace MediaWiki\Specials\Pager;
 
-use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -64,6 +64,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		private readonly IContentHandlerFactory $contentHandlerFactory,
 		private readonly TempUserConfig $tempUserConfig,
 		private readonly RecentChangeFactory $rcFactory,
+		private readonly ChangeTagsFormatter $changeTagsFormatter,
 		protected readonly FormOptions $opts,
 	) {
 		parent::__construct( $context, $linkRenderer );
@@ -269,10 +270,10 @@ class NewPagesPager extends ReverseChronologicalPager {
 					$this->getUser()->getName(),
 					$lang->getCode()
 				),
-				fn () => ChangeTags::formatSummaryRow(
+				fn () => $this->changeTagsFormatter->formatTagsAsSummaryList(
 					$row->ts_tags,
-					'newpages',
-					$this->getContext()
+					$this->getContext(),
+					$this->getAuthority()
 				)
 			);
 			$classes = array_merge( $classes, $newClasses );

@@ -780,7 +780,8 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 			$services->getHookContainer(),
 			$services->getHTMLCacheUpdater(),
 			$services->getRevisionStore(),
-			$services->getDomainEventDispatcher()
+			$services->getDomainEventDispatcher(),
+			$services->getChangeTagsFormatter()
 		);
 	}
 

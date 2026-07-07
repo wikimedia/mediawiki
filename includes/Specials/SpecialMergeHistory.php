@@ -6,6 +6,7 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HTMLForm\HTMLForm;
@@ -76,6 +77,7 @@ class SpecialMergeHistory extends SpecialPage {
 		private readonly RevisionStore $revisionStore,
 		private readonly CommentFormatter $commentFormatter,
 		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly ChangeTagsFormatter $changeTagsFormatter,
 	) {
 		parent::__construct( 'MergeHistory' );
 	}
@@ -242,6 +244,7 @@ class SpecialMergeHistory extends SpecialPage {
 			$this->revisionStore,
 			$this->commentFormatter,
 			$this->changeTagsStore,
+			$this->changeTagsFormatter,
 			[],
 			$this->mTargetObj,
 			$this->mDestObj,

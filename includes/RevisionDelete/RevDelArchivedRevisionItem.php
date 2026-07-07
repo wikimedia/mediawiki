@@ -7,6 +7,7 @@
 
 namespace MediaWiki\RevisionDelete;
 
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\RevisionList\RevisionListBase;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -19,14 +20,15 @@ class RevDelArchivedRevisionItem extends RevDelArchiveItem {
 
 	protected IConnectionProvider $dbProvider;
 
-	/**
-	 * @param RevisionListBase $list
-	 * @param stdClass $row
-	 * @param IConnectionProvider $dbProvider
-	 */
-	public function __construct( RevisionListBase $list, stdClass $row, IConnectionProvider $dbProvider ) {
+	/** @inheritDoc */
+	public function __construct(
+		RevisionListBase $list,
+		stdClass $row,
+		IConnectionProvider $dbProvider,
+		ChangeTagsFormatter $changeTagsFormatter,
+	) {
 		$this->dbProvider = $dbProvider;
-		parent::__construct( $list, $row );
+		parent::__construct( $list, $row, $changeTagsFormatter );
 	}
 
 	/** @inheritDoc */

@@ -11,6 +11,7 @@ namespace MediaWiki\Actions\Pager;
 
 use MediaWiki\Actions\HistoryAction;
 use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
@@ -71,6 +72,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	private readonly HookRunner $hookRunner;
 	private readonly ChangeTagsStore $changeTagsStore;
 	private readonly ChangeToolsFactory $changeToolsFactory;
+	private readonly ChangeTagsFormatter $changeTagsFormatter;
 
 	/**
 	 * @var RevisionRecord[] Revisions, with the key being their result offset
@@ -96,6 +98,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @param HookContainer|null $hookContainer
 	 * @param ChangeTagsStore|null $changeTagsStore
 	 * @param ChangeToolsFactory|null $changeToolsFactory
+	 * @param ChangeTagsFormatter|null $changeTagsFormatter
 	 */
 	public function __construct(
 		public readonly HistoryAction $historyPage,
@@ -111,6 +114,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		?HookContainer $hookContainer = null,
 		?ChangeTagsStore $changeTagsStore = null,
 		?ChangeToolsFactory $changeToolsFactory = null,
+		?ChangeTagsFormatter $changeTagsFormatter = null,
 	) {
 		parent::__construct( $historyPage->getContext() );
 		$this->getDateCond( $year, $month, $day );
@@ -127,6 +131,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			: false;
 		$this->changeTagsStore = $changeTagsStore ?? $services->getChangeTagsStore();
 		$this->changeToolsFactory = $changeToolsFactory ?? $services->getChangeToolsFactory();
+		$this->changeTagsFormatter = $changeTagsFormatter ?? $services->getChangeTagsFormatter();
 
 		$this->fixQueryOffset();
 	}
@@ -510,10 +515,10 @@ class HistoryPager extends ReverseChronologicalPager {
 				$this->getUser()->getName(),
 				$lang->getCode()
 			),
-			fn () => ChangeTags::formatSummaryRow(
+			fn () => $this->changeTagsFormatter->formatTagsAsSummaryList(
 				$row->ts_tags,
-				'history',
-				$this->getContext()
+				$this->getContext(),
+				$this->getAuthority()
 			)
 		);
 		$classes = array_merge( $classes, $newClasses );
