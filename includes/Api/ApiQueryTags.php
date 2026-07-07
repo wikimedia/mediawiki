@@ -54,6 +54,7 @@ class ApiQueryTags extends ApiQueryBase {
 			$this->changeTagsStore->tagUsageStatistics()
 		);
 		$tags = array_keys( $tagHitcounts );
+		$tags = $this->changeTagsStore->filterViewableTags( $tags, $this->getAuthority() );
 
 		# Fetch defined tags that aren't past the continuation
 		if ( $params['continue'] !== null ) {
@@ -122,9 +123,14 @@ class ApiQueryTags extends ApiQueryBase {
 		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'tag' );
 	}
 
-	/** @inheritDoc */
+	/**
+	 * Using 'anon-public-user-private' as additional tags may be visible to users with
+	 * specific rights, while anon users are likely to always see the same list of tags.
+	 *
+	 * @inheritDoc
+	 */
 	public function getCacheMode( $params ) {
-		return 'public';
+		return 'anon-public-user-private';
 	}
 
 	/** @inheritDoc */

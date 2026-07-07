@@ -3,6 +3,8 @@
 namespace MediaWiki\Tests\Integration\Specials;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\FauxRequest;
+use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
 use MediaWiki\Tests\Specials\SpecialPageTestBase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Wikimedia\Parsoid\Core\DOMCompat;
@@ -14,8 +16,18 @@ use Wikimedia\Parsoid\Ext\DOMUtils;
  */
 class SpecialTagsTest extends SpecialPageTestBase {
 	use MockAuthorityTrait;
+	use RestrictedTagTestTrait;
 
-	public function testViewTagsList(): void {
+	/** @dataProvider provideViewTagsList */
+	public function testViewTagsList( array $authorityRights, array $expectedTags, array $unexpectedTags ): void {
+		$this->setTemporaryHook(
+			'ListDefinedTags',
+			static function ( array &$tags ) {
+				$tags[] = 'mw-private-test';
+			}
+		);
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+
 		$editStatus = $this->editPage( $this->getNonexistingTestPage(), 'Test' );
 		$this->assertStatusGood( $editStatus );
 
@@ -24,7 +36,12 @@ class SpecialTagsTest extends SpecialPageTestBase {
 		$this->getServiceContainer()->getChangeTagsStore()
 			->updateTags( [ 'mw-reverted' ], [], $rcId, $revId );
 
-		[ $html ] = $this->executeSpecialPage( '', null, null, $this->mockAnonNullAuthority() );
+		[ $html ] = $this->executeSpecialPage(
+			'',
+			null,
+			null,
+			$this->mockRegisteredAuthorityWithPermissions( $authorityRights )
+		);
 
 		$tagsIntroHtml = $this->assertAndGetByElementClass( $html, 'mw-tags-intro' );
 		$this->assertStringContainsString( '(tags-intro)', $tagsIntroHtml );
@@ -51,6 +68,29 @@ class SpecialTagsTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( '(tags-source-extension)', $firstTableRow );
 		$this->assertStringContainsString( '(tags-active-yes)', $firstTableRow );
 		$this->assertStringContainsString( '(tags-hitcount: 1)', $firstTableRow );
+
+		// All other expected tags should be present too
+		foreach ( $expectedTags as $expectedTag ) {
+			$this->assertStringContainsString( "(tag-$expectedTag)", $tagsTable );
+		}
+		foreach ( $unexpectedTags as $unexpectedTag ) {
+			$this->assertStringNotContainsString( $unexpectedTag, $tagsTable );
+		}
+	}
+
+	public static function provideViewTagsList(): array {
+		return [
+			'User cannot see private tag' => [
+				'authorityRights' => [],
+				'expectedTags' => [ 'mw-reverted' ],
+				'unexpectedTags' => [ 'mw-private-test' ],
+			],
+			'User can see the private tag' => [
+				'authorityRights' => [ 'patrol' ],
+				'expectedTags' => [ 'mw-reverted', 'mw-private-test' ],
+				'unexpectedTags' => [],
+			],
+		];
 	}
 
 	public function testViewTagsListForNoDefinedTags(): void {
@@ -78,6 +118,102 @@ class SpecialTagsTest extends SpecialPageTestBase {
 		$element = DOMCompat::querySelectorAll( $specialPageDocument, '.' . $class );
 		$this->assertCount( 1, $element, "Could not find only one element with CSS class $class in $html" );
 		return DOMCompat::getOuterHTML( $element[0] );
+	}
+
+	public function testViewActivateFormWithNoTagSpecified(): void {
+		[ $html ] = $this->executeSpecialPage(
+			'activate',
+			null,
+			null,
+			$this->mockRegisteredAuthorityWithPermissions( [ 'managechangetags' ] )
+		);
+
+		$this->assertStringContainsString( '(tags-deactivate-or-activate-not-specified)', $html );
+		$this->assertStringNotContainsString( 'tags-activate-question', $html );
+	}
+
+	public function testViewActivateFormForTagUserCannotSee(): void {
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+
+		[ $html ] = $this->executeSpecialPage(
+			'activate',
+			new FauxRequest( [ 'tag' => 'mw-private-test' ] ),
+			null,
+			$this->mockRegisteredAuthorityWithPermissions( [ 'managechangetags' ] )
+		);
+
+		$this->assertStringContainsString( '(tags-activate-not-found: mw-private-test)', $html );
+		$this->assertStringNotContainsString( 'tags-activate-question', $html );
+	}
+
+	public function testViewActivateFormForTagUserCanSee(): void {
+		$this->setTemporaryHook(
+			'ListDefinedTags',
+			static function ( array &$tags ) {
+				$tags[] = 'mw-private-test';
+			}
+		);
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+
+		[ $html ] = $this->executeSpecialPage(
+			'activate',
+			new FauxRequest( [ 'tag' => 'mw-private-test' ] ),
+			null,
+			$this->mockRegisteredAuthorityWithPermissions( [ 'managechangetags', 'patrol' ] )
+		);
+
+		// Software defined tags cannot be activiated, so even though the user can see the tag they
+		// just get a different error message
+		$this->assertStringContainsString( '(tags-activate-not-allowed: mw-private-test)', $html );
+		$this->assertStringNotContainsString( 'tags-activate-question', $html );
+	}
+
+	public function testViewDeleteFormWithNoTagSpecified(): void {
+		[ $html ] = $this->executeSpecialPage(
+			'delete',
+			null,
+			null,
+			$this->mockRegisteredAuthorityWithPermissions( [ 'deletechangetags' ] )
+		);
+
+		$this->assertStringContainsString( '(tags-delete-not-specified)', $html );
+		$this->assertStringNotContainsString( 'tags-delete-explanation-initial', $html );
+	}
+
+	public function testViewDeleteFormForTagUserCannotSee(): void {
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+
+		[ $html ] = $this->executeSpecialPage(
+			'delete',
+			new FauxRequest( [ 'tag' => 'mw-private-test' ] ),
+			null,
+			$this->mockRegisteredAuthorityWithPermissions( [ 'deletechangetags' ] )
+		);
+
+		$this->assertStringContainsString( '(tags-delete-not-found: mw-private-test)', $html );
+		$this->assertStringNotContainsString( 'tags-delete-explanation-initial', $html );
+	}
+
+	public function testViewDeleteFormForTagUserCanSee(): void {
+		$this->setTemporaryHook(
+			'ListDefinedTags',
+			static function ( array &$tags ) {
+				$tags[] = 'mw-private-test';
+			}
+		);
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+
+		[ $html ] = $this->executeSpecialPage(
+			'delete',
+			new FauxRequest( [ 'tag' => 'mw-private-test' ] ),
+			null,
+			$this->mockRegisteredAuthorityWithPermissions( [ 'deletechangetags', 'patrol' ] )
+		);
+
+		// Software defined tags cannot be deleted, so even though the user can see the tag they
+		// just get a different error message
+		$this->assertStringContainsString( '(tags-delete-not-allowed)', $html );
+		$this->assertStringNotContainsString( 'tags-delete-explanation-initial', $html );
 	}
 
 	/** @inheritDoc */

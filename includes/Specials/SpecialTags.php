@@ -55,13 +55,13 @@ class SpecialTags extends SpecialPage {
 		$request = $this->getRequest();
 		switch ( $par ) {
 			case 'delete':
-				$this->showDeleteTagForm( $request->getVal( 'tag' ) );
+				$this->showDeleteTagForm( $request->getVal( 'tag', '' ) );
 				break;
 			case 'activate':
-				$this->showActivateDeactivateForm( $request->getVal( 'tag' ), true );
+				$this->showActivateDeactivateForm( $request->getVal( 'tag', '' ), true );
 				break;
 			case 'deactivate':
-				$this->showActivateDeactivateForm( $request->getVal( 'tag' ), false );
+				$this->showActivateDeactivateForm( $request->getVal( 'tag', '' ), false );
 				break;
 			case 'create':
 				// fall through, thanks to HTMLForm's logic
@@ -122,12 +122,31 @@ class SpecialTags extends SpecialPage {
 
 		// Used to get hitcounts for #doTagRow()
 		$tagStats = $this->changeTagsStore->tagUsageStatistics();
+		$viewableTags = $this->changeTagsStore->filterViewableTags(
+			array_keys( $tagStats ),
+			$this->getAuthority()
+		);
+		$tagStats = array_filter(
+			$tagStats,
+			static fn ( $tag ) => in_array( $tag, $viewableTags, true ),
+			ARRAY_FILTER_USE_KEY
+		);
 
 		// Used in #doTagRow()
 		$this->explicitlyDefinedTags = array_fill_keys(
-			$this->changeTagsStore->listExplicitlyDefinedTags(), true );
+			$this->changeTagsStore->filterViewableTags(
+				$this->changeTagsStore->listExplicitlyDefinedTags(),
+				$this->getAuthority()
+			),
+			true
+		);
 		$this->softwareDefinedTags = array_fill_keys(
-			$this->changeTagsStore->listSoftwareDefinedTags(), true );
+			$this->changeTagsStore->filterViewableTags(
+				$this->changeTagsStore->listSoftwareDefinedTags(),
+				$this->getAuthority()
+			),
+			true
+		);
 
 		// List all defined tags, even if they were never applied
 		$definedTags = array_keys( $this->explicitlyDefinedTags + $this->softwareDefinedTags );
@@ -153,7 +172,12 @@ class SpecialTags extends SpecialPage {
 		$tbody = '';
 		// Used in #doTagRow()
 		$this->softwareActivatedTags = array_fill_keys(
-			$this->changeTagsStore->listSoftwareActivatedTags(), true );
+			$this->changeTagsStore->filterViewableTags(
+				$this->changeTagsStore->listSoftwareActivatedTags(),
+				$this->getAuthority()
+			),
+			true
+		);
 
 		// Insert tags that have been applied at least once
 		foreach ( $tagStats as $tag => $hitcount ) {
@@ -336,10 +360,7 @@ class SpecialTags extends SpecialPage {
 		}
 	}
 
-	/**
-	 * @param string $tag
-	 */
-	protected function showDeleteTagForm( $tag ) {
+	protected function showDeleteTagForm( string $tag ): void {
 		$authority = $this->getAuthority();
 		if ( !$authority->isAllowed( 'deletechangetags' ) ) {
 			throw new PermissionsError( 'deletechangetags' );
@@ -348,6 +369,11 @@ class SpecialTags extends SpecialPage {
 		$out = $this->getOutput();
 		$out->setPageTitleMsg( $this->msg( 'tags-delete-title' ) );
 		$out->addBacklinkSubtitle( $this->getPageTitle() );
+
+		if ( $tag === '' ) {
+			$out->addWikiMsg( 'tags-delete-not-specified' );
+			return;
+		}
 
 		// is the tag actually able to be deleted?
 		$canDeleteResult = ChangeTags::canDeleteTag( $tag, $authority );
@@ -401,11 +427,7 @@ class SpecialTags extends SpecialPage {
 			->show();
 	}
 
-	/**
-	 * @param string $tag
-	 * @param bool $activate
-	 */
-	protected function showActivateDeactivateForm( $tag, $activate ) {
+	protected function showActivateDeactivateForm( string $tag, bool $activate ): void {
 		$actionStr = $activate ? 'activate' : 'deactivate';
 
 		$authority = $this->getAuthority();
@@ -417,6 +439,11 @@ class SpecialTags extends SpecialPage {
 		// tags-activate-title, tags-deactivate-title
 		$out->setPageTitleMsg( $this->msg( "tags-$actionStr-title" ) );
 		$out->addBacklinkSubtitle( $this->getPageTitle() );
+
+		if ( $tag === '' ) {
+			$out->addWikiMsg( 'tags-deactivate-or-activate-not-specified' );
+			return;
+		}
 
 		// is it possible to do this?
 		if ( $activate ) {

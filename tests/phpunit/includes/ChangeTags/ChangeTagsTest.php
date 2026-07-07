@@ -1005,4 +1005,34 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [ 'mw-undo' ], $this->changeTags->getViewableTags( $this->getDb(), $unprivileged, 123 ) );
 	}
 
+	public function testCanCreateTagRejectsReservedPrefix(): void {
+		$this->assertStatusError( 'tags-create-reserved-prefix', ChangeTags::canCreateTag( 'mw-private-test' ) );
+	}
+
+	public function testCanDeleteTagRejectsWhenUserCannotSeeTag(): void {
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+		$status = ChangeTags::canDeleteTag(
+			'mw-private-test',
+			$this->mockRegisteredAuthorityWithPermissions( [ 'deletechangetags' ] )
+		);
+		$this->assertStatusError( 'tags-delete-not-found', $status );
+	}
+
+	public function testCanActivateTagRejectsWhenUserCannotSeeTag(): void {
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+		$status = ChangeTags::canActivateTag(
+			'mw-private-test',
+			$this->mockRegisteredAuthorityWithPermissions( [ 'managechangetags' ] )
+		);
+		$this->assertStatusError( 'tags-activate-not-found', $status );
+	}
+
+	public function testCanDeactivateTagRejectsWhenUserCannotSeeTag(): void {
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+		$status = ChangeTags::canDeactivateTag(
+			'mw-private-test',
+			$this->mockRegisteredAuthorityWithPermissions( [ 'managechangetags' ] )
+		);
+		$this->assertStatusError( 'tags-deactivate-not-found', $status );
+	}
 }

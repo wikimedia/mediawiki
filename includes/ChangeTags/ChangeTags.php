@@ -717,7 +717,8 @@ class ChangeTags {
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canActivateTag( $tag, ?Authority $performer = null ) {
+	public static function canActivateTag( string $tag, ?Authority $performer = null ) {
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 		if ( $performer !== null ) {
 			if ( !$performer->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
@@ -728,12 +729,14 @@ class ChangeTags {
 					$performer->getUser()->getName()
 				);
 			}
+			if ( $changeTagsStore->filterViewableTags( [ $tag ], $performer ) === [] ) {
+				return Status::newFatal( 'tags-activate-not-found', $tag );
+			}
 		}
 
 		// defined tags cannot be activated (a defined tag is either extension-
 		// defined, in which case the extension chooses whether or not to active it;
 		// or user-defined, in which case it is considered active)
-		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 		$definedTags = $changeTagsStore->listDefinedTags();
 		if ( in_array( $tag, $definedTags ) ) {
 			return Status::newFatal( 'tags-activate-not-allowed', $tag );
@@ -792,7 +795,8 @@ class ChangeTags {
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canDeactivateTag( $tag, ?Authority $performer = null ) {
+	public static function canDeactivateTag( string $tag, ?Authority $performer = null ) {
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 		if ( $performer !== null ) {
 			if ( !$performer->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
@@ -803,10 +807,13 @@ class ChangeTags {
 					$performer->getUser()->getName()
 				);
 			}
+			if ( $changeTagsStore->filterViewableTags( [ $tag ], $performer ) === [] ) {
+				return Status::newFatal( 'tags-deactivate-not-found', $tag );
+			}
 		}
 
 		// only explicitly-defined tags can be deactivated
-		$explicitlyDefinedTags = MediaWikiServices::getInstance()->getChangeTagsStore()->listExplicitlyDefinedTags();
+		$explicitlyDefinedTags = $changeTagsStore->listExplicitlyDefinedTags();
 		if ( !in_array( $tag, $explicitlyDefinedTags ) ) {
 			return Status::newFatal( 'tags-deactivate-not-allowed', $tag );
 		}
@@ -1000,9 +1007,10 @@ class ChangeTags {
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canDeleteTag( $tag, ?Authority $performer = null, int $flags = 0 ) {
+	public static function canDeleteTag( string $tag, ?Authority $performer = null, int $flags = 0 ) {
 		$user = null;
 		$services = MediaWikiServices::getInstance();
+		$changeTagsStore = $services->getChangeTagsStore();
 		if ( $performer !== null ) {
 			if ( !$performer->isAllowed( 'deletechangetags' ) ) {
 				return Status::newFatal( 'tags-delete-no-permission' );
@@ -1013,11 +1021,13 @@ class ChangeTags {
 					$performer->getUser()->getName()
 				);
 			}
+			if ( $changeTagsStore->filterViewableTags( [ $tag ], $performer ) === [] ) {
+				return Status::newFatal( 'tags-delete-not-found', $tag );
+			}
 			// ChangeTagCanDelete hook still needs a full User object
 			$user = $services->getUserFactory()->newFromAuthority( $performer );
 		}
 
-		$changeTagsStore = $services->getChangeTagsStore();
 		$tagUsage = $changeTagsStore->tagUsageStatistics();
 		if (
 			!isset( $tagUsage[$tag] ) &&
