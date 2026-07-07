@@ -367,14 +367,4 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 			'toString'
 		);
 	}
-
-	public function testCompare() {
-		$id = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
-		$info1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 1, [ 'id' => $id ] );
-		$info2 = new SessionInfo( SessionInfo::MIN_PRIORITY + 2, [ 'id' => $id ] );
-
-		$this->assertLessThan( 0, SessionInfo::compare( $info1, $info2 ), '<' );
-		$this->assertGreaterThan( 0, SessionInfo::compare( $info2, $info1 ), '>' );
-		$this->assertSame( 0, SessionInfo::compare( $info1, $info1 ), '==' );
-	}
 }

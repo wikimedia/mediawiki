@@ -303,15 +303,4 @@ class SessionInfo implements Stringable {
 			( $this->getProvider() ?: 'null' ) .
 			( $this->userInfo ?: '<null>' ) . $this->getId();
 	}
-
-	/**
-	 * Compare two SessionInfo objects by priority
-	 * @param SessionInfo $a
-	 * @param SessionInfo $b
-	 * @return int Negative if $a < $b, positive if $a > $b, zero if equal
-	 */
-	public static function compare( $a, $b ) {
-		return $a->getPriority() <=> $b->getPriority();
-	}
-
 }

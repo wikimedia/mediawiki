@@ -223,7 +223,7 @@ class SessionManager implements SessionManagerInterface {
 			$request = new FauxRequest;
 		}
 
-		$infos = [];
+		$infosByPriority = [];
 		foreach ( $this->getProviders() as $provider ) {
 			$info = $provider->newSessionInfo( $id );
 			if ( !$info ) {
@@ -245,24 +245,20 @@ class SessionManager implements SessionManagerInterface {
 					"$provider returned empty session info with id flagged unsafe"
 				);
 			}
-			$compare = $infos ? SessionInfo::compare( $infos[0], $info ) : -1;
-			if ( $compare > 0 ) {
-				continue;
-			}
-			if ( $compare === 0 ) {
-				$infos[] = $info;
-			} else {
-				$infos = [ $info ];
-			}
+			$infosByPriority[$info->getPriority()][] = $info;
 		}
 
-		// Make sure there's exactly one
+		if ( !$infosByPriority ) {
+			throw new \UnexpectedValueException( 'No provider could provide an empty session!' );
+		}
+
+		// Pick the highest-priority session info
+		krsort( $infosByPriority );
+		$infos = $infosByPriority[ array_key_first( $infosByPriority ) ];
 		if ( count( $infos ) > 1 ) {
 			throw new \UnexpectedValueException(
 				'Multiple empty sessions tied for top priority: ' . implode( ', ', $infos )
 			);
-		} elseif ( count( $infos ) < 1 ) {
-			throw new \UnexpectedValueException( 'No provider could provide an empty session!' );
 		}
 
 		return $this->getSessionFromInfo( $infos[0], $request );
@@ -609,7 +605,7 @@ class SessionManager implements SessionManagerInterface {
 	 */
 	private function getSessionInfoForRequest( WebRequest $request ) {
 		// Call all providers to fetch "the" session
-		$infos = [];
+		$infosByPriority = [];
 		foreach ( $this->getProviders() as $provider ) {
 			$info = $provider->provideSessionInfo( $request );
 			if ( !$info ) {
@@ -620,50 +616,42 @@ class SessionManager implements SessionManagerInterface {
 					"$provider returned session info for a different provider: $info"
 				);
 			}
-			$infos[] = $info;
+			$infosByPriority[$info->getPriority()][] = $info;
 		}
 
-		// Sort the SessionInfos. Then find the first one that can be
-		// successfully loaded, and then all the ones after it with the same
-		// priority.
-		usort( $infos, SessionInfo::compare( ... ) );
-		$retInfos = [];
-		while ( $infos ) {
-			$info = array_pop( $infos );
-			if ( $this->loadSessionInfoFromStore( $info, $request ) ) {
-				$retInfos[] = $info;
-				while ( $infos ) {
-					/** @var SessionInfo $info */
-					$info = array_pop( $infos );
-					if ( SessionInfo::compare( $retInfos[0], $info ) ) {
-						// We hit a lower priority, stop checking.
-						break;
-					}
-					if ( $this->loadSessionInfoFromStore( $info, $request ) ) {
-						// This is going to error out below, but we want to
-						// provide a complete list.
-						$retInfos[] = $info;
-					} else {
-						// Session load failed, so unpersist it from this request
-						$this->logUnpersist( $info, $request );
-						$info->getProvider()->unpersistSession( $request );
-					}
+		// Order by highest priority first
+		krsort( $infosByPriority );
+
+		// Find the highest-priority non-tied session info that can be loaded
+		$loadedInfos = [];
+		foreach ( $infosByPriority as $infos ) {
+			foreach ( $infos as $info ) {
+				if ( $this->loadSessionInfoFromStore( /*&*/$info, $request ) ) {
+					// This is the winner (unless another one with the same priority can also be loaded,
+					// in which case we will error out below).
+					$loadedInfos[] = $info;
+				} else {
+					// Session load failed, so unpersist it from this request.
+					$this->logUnpersist( $info, $request );
+					$info->getProvider()->unpersistSession( $request );
 				}
-			} else {
-				// Session load failed, so unpersist it from this request
-				$this->logUnpersist( $info, $request );
-				$info->getProvider()->unpersistSession( $request );
 			}
+			if ( count( $loadedInfos ) > 0 ) {
+				// We found the winner or a tie.
+				// In this case we don't attempt loading, or unpersist, lower-priority infos.
+				break;
+			}
+			// Otherwise, keep trying lower-priority session infos.
 		}
 
-		if ( count( $retInfos ) > 1 ) {
+		if ( count( $loadedInfos ) > 1 ) {
 			throw new SessionOverflowException(
-				$retInfos,
-				'Multiple sessions for this request tied for top priority: ' . implode( ', ', $retInfos )
+				$loadedInfos,
+				'Multiple sessions for this request tied for top priority: ' . implode( ', ', $loadedInfos )
 			);
 		}
 
-		return $retInfos[0] ?? null;
+		return $loadedInfos[0] ?? null;
 	}
 
 	/**

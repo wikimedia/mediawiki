@@ -253,6 +253,7 @@ because of Phabricator reports.
   by ::getExternalLinks() has been deprecated since 1.43.
 * CategoryViewer::getSubcategorySortChar(), deprecated in 1.45,
   has been removed.
+* SessionInfo::compare() has been removed without deprecation.
 * ChannelFeed::outHeader(), ::outItem(), ::outFooter(), ::httpHeaders() and
   ::outXmlHeader() have been removed. Use/override ::outputHeader(),
   ::outputItem(), ::outputFooter(), ::sendHttpHeaders() and ::outputXmlHeader()
