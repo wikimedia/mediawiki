@@ -480,6 +480,7 @@
 	"recentchangeslinked-page": "Page name:",
 	"recentchangeslinked-to": "Show changes to pages wey dey link de given page instead",
 	"recentchanges-page-added-to-category": "You add [[:$1]] to category",
+	"recentchanges-page-removed-from-category": "[[:$1]] dem remove from category",
 	"upload": "Upload file",
 	"filedesc": "Summary",
 	"license": "Licensing:",

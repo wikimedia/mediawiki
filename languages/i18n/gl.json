@@ -4097,6 +4097,7 @@
 	"right-renameuser": "Renomear usuarios",
 	"renameuser-renamed-notice": "Este usuario foi renomeado.\nVelaquí está o rexistro de cambios de nome de usuario por se quere consultalo.",
 	"log-unknown-action": "realizou a acción descoñecida «$2» en «[[$1]]»",
+	"log-unsafe-logentry": "(Esta entrada do rexistro non se pode mostrar porque os seus parámetros conteñen datos serializados que son inseguros.)",
 	"createacct-benefit-heading-temp-user": "Grazas por contribuíres a {{SITENAME}}.\nCrea unha conta para acceder a máis funcións.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} está feito por persoas coma ti. Cunha conta podes ter unha identidade permanente e segura con acceso a funcións como:",
 	"benefit-1-description": "Listas de vixilancia que che permiten facer un seguimento das páxinas que che interesan.",

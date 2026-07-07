@@ -830,6 +830,7 @@
 	"unstrip-size-category-desc": "A lap túllépi az <code>unstrip</code> méretkorlátját.",
 	"bad-language-code-category": "Lapok érvénytelen nyelvkódokkal",
 	"bad-language-code-category-desc": "A lap egy <code><nowiki>{{#dir}}</nowiki></code>-t tartalmaz érvénytelen nyelvkóddal.",
+	"bad-double-underscore-category-desc": "A lap egy érvénytelen lefordított [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|kapcsolót]] tartalmaz. Az érvényes fordítások kettős alávonással (<code>__</code>) kezdődnek és végződnek.",
 	"double-px-category": "Lapok extra px-t tartalmazó képmérettel",
 	"double-px-category-desc": "A lap olyan képet tartalmaz, amelynek a méretmegadásában egy extra <code>px</code> utótag van, például <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Hiba van a kézi nyelvi konverziós szabályban",

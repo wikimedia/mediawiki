@@ -2242,7 +2242,7 @@
 	"deletecomment": "Pričina:",
 	"deleteotherreason": "Ina/dodatočna pričina:",
 	"deletereasonotherlist": "Ina pričina",
-	"deletereason-dropdown": "* Obče pričiny za odstranjenje\n** Spam\n** Vandalizm\n** Narušenje avtorskyh prav\n** Prosba avtora\n** Slomjeno prěnapravjenje",
+	"deletereason-dropdown": "* Obče pričiny za odstranjenje\n** Spam\n** Vandalizm\n** Narušenje privatnosti\n** Narušenje avtorskyh prav\n** Nonsens, eksperimentovanje\n** Članok napisany na drugom jezyku\n** Prosba avtora\n** Dvojna stranica\n** Slomjeno prěnapravjenje",
 	"delete-edit-reasonlist": "Praviti pričiny za odstranjenje",
 	"delete-edit-reasonlist-suppress": "Praviti pričiny za skrytje",
 	"delete-toobig": "Tuta stranica imaje dolgu historiju pravok (veče neželi $1 {{PLURAL:$1|versiju|versije|versij}}). Odstranjenje takyh stranic jest ograničeno, da by ne došlo do slučajnyh problemov s funkcionovanjem sajta {{SITENAME}}.",
