@@ -73,6 +73,16 @@ For notes on 1.45.x and older releases, see HISTORY.
   be disabled. This avoids users who have access to recent changes but no
   access to a particular namespace from reading contents of limited pages
   from edit summaries.
+* $wgRestrictedGroups - (T406544) Allows administrators to define conditions
+  that must be met before a user can be added to specific user groups. A new
+  permission, ignore-restricted-groups, allows users with this right to bypass
+  these restrictions.
+
+  If a user no longer meets the conditions for a restricted group (e.g. their
+  edit count drops below the threshold), their membership in that group is
+  automatically disabled. Administrators can see which groups are currently
+  disabled for a user in the user rights interface.
+
 
 ==== Changed configuration ====
 
@@ -97,6 +107,29 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 === New user-facing features in 1.46 ===
 
+* (T411596) Special:EditWatchlist has been redesigned to use a table view, with
+  filtering options, pagination, and support for the new watchlist labels
+  feature.
+* (T157524) Undoing multiple revisions generates an automatic edit summary.
+* (T396155) Email confirmation emails have been redesigned to use HTML email
+  with the wiki logo and a streamlined message (in plain text email as well).
+* (T410267) Dropdown menus to select a language used in various places (e.g.
+  preferences) have been replaced by a new widget with more convenient
+  autocompletion.
+* (T284927) Special:UserLogin and Special:CreateAccount while already logged in
+  now have a primary button to continue as the current user, rather than
+  promoting logging in as another user, to help people who land on these pages
+  unintentionally.
+* (T24029, T155097, T62744) Wikitext editor now preserves certain query
+  parameters (such as `useskin`, `uselang` and `section`) on preview. This
+  allows previewing edits with temporary skin or language changes without
+  altering user preferences, and fixes browser session restore corrupting
+  section edits.
+* (T6055) Interwiki user rights changes are now logged on both the source and
+  target wikis.
+* (b57a58e411fa) Added the format="wikitext" attribute to the <pre> tag, which
+  allows wikitext inside the tag to be parsed and rendered rather than
+  displayed as literal text.
 * (T413375) A new parser function has been added, {{#isbn}}, which replaces
   the ISBN "magic link" functionality for those wikis which have chosen to
   disable it.
@@ -113,6 +146,9 @@ For notes on 1.45.x and older releases, see HISTORY.
 * (T413867) Special:Mute is always unconditionally enabled.
 * (T381455) Special:NamespaceInfo will now display aliases defined through
   $wgNamespaceAliases.
+* (a53243bb25c) Special:Version now includes links to GitHub commit pages for
+  repositories hosted on GitHub.
+* (T363726) action=info now includes a collapsible table of contents.
 
 === New features for sysadmins in 1.46 ===
 
@@ -139,6 +175,10 @@ For notes on 1.45.x and older releases, see HISTORY.
 * The LinkerMakeExternalLinkWithContext hook has been added as an improved and
   slightly modernized version of the LinkerMakeExternalLink hook.  Developers
   are encouraged to migrate to the new hook.
+* (T416542) Logging functions (`ManualLogEntry::insert()` and
+  `DatabaseLogEntry::newFromRow()`) now support interacting with log entries
+  from other wikis in a multi-wiki environment. Previously, this could fail or
+  incorrectly corrupt the local actor store.
 
 === External library changes in 1.46 ===
 
@@ -824,11 +864,13 @@ because of Phabricator reports.
   - MediaWiki\Specials\Exception
     - SpecialUploadStashTooLargeException
   - MediaWiki\Specials\FormFields
+    - EditWatchlistCheckboxSeriesField
     - Licenses
+    - UploadSourceField
   - MediaWiki\Specials\Forms
-    - MediaWiki\Specials\Forms\EditWatchlistNormalHTMLForm
-    - MediaWiki\Specials\Forms\PreferencesFormOOUI
-    - MediaWiki\Specials\Forms\UploadForm
+    - EditWatchlistNormalHTMLForm
+    - PreferencesFormOOUI
+    - UploadForm
   - MediaWiki\Specials\Helpers
     - License
     - LoginHelper
