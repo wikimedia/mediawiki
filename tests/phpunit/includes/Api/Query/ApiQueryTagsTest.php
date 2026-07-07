@@ -1,9 +1,10 @@
 <?php
 
-namespace MediaWiki\Tests\Api;
+namespace MediaWiki\Tests\Api\Query;
 
 use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\ChangeTags\ChangeTagsStore;
+use MediaWiki\Tests\Api\ApiTestCase;
 
 /**
  * @group API
