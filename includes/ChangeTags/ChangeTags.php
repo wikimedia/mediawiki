@@ -266,6 +266,7 @@ class ChangeTags {
 	 * @since 1.25 Returns false if tag is to be hidden.
 	 */
 	public static function tagDescription( $tag, MessageLocalizer $context ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		$description = MediaWikiServices::getInstance()->getChangeTagsFormatter()->getTagDescription( $tag, $context );
 		if ( $description === '' ) {
 			return false;

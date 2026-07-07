@@ -411,7 +411,8 @@ because of Phabricator reports.
 * $wgUseCopyrightUpload has been deprecated and will be removed in a future
   version. See T430254 for details.
 * The following ChangeTags methods have been deprecated:
-  - tagDescription: use ChangeTagsFormatter::getTagDescription instead
+  - tagDescription (emits deprecation warnings): use
+    ChangeTagsFormatter::getTagDescription instead
   - tagShortDescriptionMessage
   - tagLongDescriptionMessage
   - tagHelpLink

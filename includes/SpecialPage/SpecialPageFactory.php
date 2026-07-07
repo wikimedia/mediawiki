@@ -778,6 +778,7 @@ class SpecialPageFactory {
 			'class' => SpecialTags::class,
 			'services' => [
 				'ChangeTagsStore',
+				'ChangeTagsFormatter',
 			]
 		],
 

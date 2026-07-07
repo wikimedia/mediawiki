@@ -455,6 +455,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryTags::class,
 			'services' => [
 				'ChangeTagsStore',
+				'ChangeTagsFormatter',
 			]
 		],
 		'trackingcategories' => [

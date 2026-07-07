@@ -7,6 +7,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Exception\PermissionsError;
@@ -38,7 +39,8 @@ class SpecialTags extends SpecialPage {
 	protected $softwareActivatedTags;
 
 	public function __construct(
-		private readonly ChangeTagsStore $changeTagsStore
+		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly ChangeTagsFormatter $changeTagsFormatter,
 	) {
 		parent::__construct( 'Tags' );
 	}
@@ -185,8 +187,8 @@ class SpecialTags extends SpecialPage {
 		$newRow .= Html::rawElement( 'td', [], Html::element( 'code', [], $tag ) );
 
 		$linkRenderer = $this->getLinkRenderer();
-		$disp = ChangeTags::tagDescription( $tag, $this->getContext() );
-		if ( $disp === false ) {
+		$disp = $this->changeTagsFormatter->getTagDescription( $tag, $this->getContext() );
+		if ( $disp === '' ) {
 			$disp = Html::element( 'em', [], $this->msg( 'tags-hidden' )->text() );
 		}
 		if ( $showEditLinks ) {

@@ -8,7 +8,7 @@
 
 namespace MediaWiki\Api;
 
-use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -24,6 +24,7 @@ class ApiQueryTags extends ApiQueryBase {
 		ApiQuery $query,
 		string $moduleName,
 		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly ChangeTagsFormatter $changeTagsFormatter,
 	) {
 		parent::__construct( $query, $moduleName, 'tg' );
 	}
@@ -76,7 +77,7 @@ class ApiQueryTags extends ApiQueryBase {
 			$tag['name'] = $tagName;
 
 			if ( $fld_displayname ) {
-				$tag['displayname'] = ChangeTags::tagDescription( $tagName, $this );
+				$tag['displayname'] = $this->changeTagsFormatter->getTagDescription( $tagName, $this );
 			}
 
 			if ( $fld_description ) {
