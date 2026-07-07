@@ -361,8 +361,10 @@ final class PageBundleParserOutputConverter {
 			] );
 
 			// Add base href pointing to the wiki root
+			$baseUri = $parserOutput->getExtensionData( 'core:base-uri' )
+					 ?? $siteConfig->baseURI();
 			self::appendToHead( $document, 'base', [
-				'href' => $siteConfig->baseURI()
+				'href' => $baseUri
 			] );
 		}
 

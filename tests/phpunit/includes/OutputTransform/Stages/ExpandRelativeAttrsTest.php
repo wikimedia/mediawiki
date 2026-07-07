@@ -84,7 +84,8 @@ class ExpandRelativeAttrsTest extends OutputTransformStageTestBase {
 				"result" => "<figure typeof=\"mw:File mw:Extension/imagemap\"><span><img resource=\"https://my.wiki.example/wikix/File:Foobar.jpg\" src=\"http://example.com/images/3/3a/Foobar.jpg\" usemap=\"#ImageMap_02c94d3ca4bfc187\"/></span><map name=\"ImageMap_02c94d3ca4bfc187\"><area href=\"https://my.wiki.example/wikix/Main_Page\" shape=\"poly\" coords=\"10,11,10,30,-30,15\"/></map><figcaption></figcaption></figure>",
 			],
 		];
-		// Set test title in parser output extension data
+		// Set test title and base uri in parser output extension data
+		$siteConfig = new MockSiteConfig( [] );
 		foreach ( $testData as $label => $t ) {
 			$title = Title::newFromText( $t['title'] );
 			$docHtml = $t['doc'] ?? $t['body'];
@@ -96,6 +97,9 @@ class ExpandRelativeAttrsTest extends OutputTransformStageTestBase {
 			$poOutput->setIndicator( 'foo', $t['result'] );
 			$poInput->setTitle( $title );
 			$poOutput->setTitle( $title );
+			// Set base uri in the ParserOutput
+			$poInput->setExtensionData( 'core:base-uri', $siteConfig->baseURI() );
+			$poOutput->setExtensionData( 'core:base-uri', $siteConfig->baseURI() );
 			yield $label => [ $poInput, ParserOptions::newFromAnon(), [], $poOutput ];
 		}
 	}

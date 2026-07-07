@@ -233,6 +233,11 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			}
 		}
 
+		// Record base uri
+		$parserOutput->setExtensionData(
+			'core:base-uri', $this->siteConfig->baseURI()
+		);
+
 		// Record Parsoid version in extension data; this allows
 		// us to use the onRejectParserCacheValue hook to selectively
 		// expire "bad" generated content in the event of a rollback.

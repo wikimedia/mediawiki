@@ -94,7 +94,8 @@ class ExpandRelativeAttrs extends ContentDOMTransformStage {
 
 		// Once the ParserCache content has turned over, we can rely exclusively
 		// on extension-data to get base href. Till then, we need the shared state fix.
-		$baseHref = $this->siteConfig->baseURI();
+		$baseHref = $po->getExtensionData( 'core:base-uri' )
+			?? $this->siteConfig->baseURI();
 		// @phan-suppress-next-line PhanUndeclaredClassMethod
 		if ( $this->mobileContext !== null && $this->mobileContext->usingMobileDomain() ) {
 			// @phan-suppress-next-line PhanUndeclaredClassMethod
