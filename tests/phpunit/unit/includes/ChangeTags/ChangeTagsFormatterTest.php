@@ -4,10 +4,16 @@ namespace MediaWiki\Tests\Unit\ChangeTags;
 
 use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\ChangeTags\ChangeTagsStore;
+use MediaWiki\Config\HashConfig;
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Language\MessageLocalizer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiUnitTestCase;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * @covers \MediaWiki\ChangeTags\ChangeTagsFormatter
@@ -16,8 +22,19 @@ class ChangeTagsFormatterTest extends MediaWikiUnitTestCase {
 
 	use MockAuthorityTrait;
 
-	private function getObjectUnderTest( ChangeTagsStore $changeTagsStore ): ChangeTagsFormatter {
-		return new ChangeTagsFormatter( $changeTagsStore );
+	private function getObjectUnderTest(
+		ChangeTagsStore $changeTagsStore,
+		array $options = []
+	): ChangeTagsFormatter {
+		return new ChangeTagsFormatter(
+			new ServiceOptions(
+				ChangeTagsFormatter::CONSTRUCTOR_OPTIONS,
+				new HashConfig( $options + [ MainConfigNames::UseTagFilter => true ] )
+			),
+			$changeTagsStore,
+			$this->createMock( WANObjectCache::class ),
+			$this->createMock( LanguageFactory::class )
+		);
 	}
 
 	/** @dataProvider provideFormatTagsAsSummaryListForNoTags */
@@ -73,6 +90,31 @@ class ChangeTagsFormatterTest extends MediaWikiUnitTestCase {
 				$localizer,
 				$this->mockRegisteredUltimateAuthority()
 			)
+		);
+	}
+
+	public function testBuildTagFilterWhenFilterConfigDisabled(): void {
+		$objectUnderTest = $this->getObjectUnderTest(
+			$this->createMock( ChangeTagsStore::class ),
+			[ MainConfigNames::UseTagFilter => false ]
+		);
+		$this->assertNull( $objectUnderTest->buildTagFilter(
+			'test',
+			true,
+			$this->createMock( IContextSource::class ) )
+		);
+	}
+
+	public function testBuildTagFilterWhenNoDefinedTags(): void {
+		$mockChangeTagsStore = $this->createMock( ChangeTagsStore::class );
+		$mockChangeTagsStore->method( 'listDefinedTags' )
+			->willReturn( [] );
+
+		$objectUnderTest = $this->getObjectUnderTest( $mockChangeTagsStore );
+		$this->assertNull( $objectUnderTest->buildTagFilter(
+			'test',
+			true,
+			$this->createMock( IContextSource::class ) )
 		);
 	}
 }

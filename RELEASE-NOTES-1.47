@@ -414,12 +414,17 @@ because of Phabricator reports.
 * The following ChangeTags methods have been deprecated:
   - tagDescription (emits deprecation warnings): use
     ChangeTagsFormatter::getTagDescription instead
-  - tagShortDescriptionMessage
-  - tagLongDescriptionMessage
-  - tagHelpLink
-  - formatSummaryRow: use ChangeTagsFormatter::formatTagsAsSummaryList instead
+  - tagShortDescriptionMessage (emits deprecation warnings)
+  - tagLongDescriptionMessage (emits deprecation warnings)
+  - tagHelpLink (emits deprecation warnings)
+  - formatSummaryRow (emits deprecation warnings): use
+    ChangeTagsFormatter::formatTagsAsSummaryList instead
   - canUpdateTags (emits deprecation warnings): use
     ChangeTags::updateTagsWithChecks instead
+  - getChangeTagListSummary: use ChangeTagsFormatter::getChangeTagListSummary
+    instead
+  - getChangeTagList: use ChangeTagsFormatter::getChangeTagList instead
+  - buildTagFilterSelector: use ChangeTagsFormatter::buildTagFilter instead
 * …
 
 === Other changes in 1.47 ===

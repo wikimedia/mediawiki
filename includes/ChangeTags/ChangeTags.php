@@ -9,15 +9,13 @@ namespace MediaWiki\ChangeTags;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Language\SimpleLocalizationContext;
 use MediaWiki\Logging\ManualLogEntry;
-use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
-use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -27,7 +25,6 @@ use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * @defgroup ChangeTags Change tagging
@@ -221,6 +218,7 @@ class ChangeTags {
 	 * @return Message|false Tag description, or false if tag is to be hidden.
 	 */
 	public static function tagShortDescriptionMessage( $tag, MessageLocalizer $context ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		$msg = $context->msg( "tag-$tag" );
 		if ( !$msg->exists() ) {
 			// No such message
@@ -251,6 +249,7 @@ class ChangeTags {
 	 * @return string|null Tag link, or null if not provided or invalid
 	 */
 	public static function tagHelpLink( $tag, MessageLocalizer $context ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		$msg = $context->msg( "tag-$tag-helppage" )->inContentLanguage();
 		if ( !$msg->isDisabled() ) {
 			return Skin::makeInternalOrExternalUrl( $msg->text() ) ?: null;
@@ -293,6 +292,7 @@ class ChangeTags {
 	 *  there is no description.
 	 */
 	public static function tagLongDescriptionMessage( $tag, MessageLocalizer $context ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		$msg = $context->msg( "tag-$tag-description" );
 		return $msg->isDisabled() ? false : $msg;
 	}
@@ -669,6 +669,7 @@ class ChangeTags {
 	 * Build a text box to select a change tag. The tag set can be customized via the $activeOnly
 	 * and $useAllTags parameters and defaults to all active tags.
 	 *
+	 * @deprecated Since 1.47. Use {@link ChangeTagsFormatter::buildTagFilter()} instead.
 	 * @param string $selected Tag to select by default
 	 * @param bool $ooui Use an OOUI TextInputWidget as selector instead of a non-OOUI input field
 	 *        You need to call OutputPage::enableOOUI() yourself.
@@ -683,64 +684,13 @@ class ChangeTags {
 		bool $activeOnly = self::TAG_SET_ACTIVE_ONLY,
 		bool $useAllTags = self::USE_ALL_TAGS
 	) {
-		$config = $context->getConfig();
-		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
-		if ( !$config->get( MainConfigNames::UseTagFilter ) ||
-		!count( $changeTagsStore->listDefinedTags() ) ) {
-			return null;
-		}
-
-		$tags = self::getChangeTagList(
+		return MediaWikiServices::getInstance()->getChangeTagsFormatter()->buildTagFilter(
+			$selected,
+			$ooui,
 			$context,
-			$context->getLanguage(),
 			$activeOnly,
-			$useAllTags,
-			true
+			$useAllTags
 		);
-
-		$autocomplete = [];
-		foreach ( $tags as $tagInfo ) {
-			$autocomplete[ $tagInfo['label'] ] = $tagInfo['name'];
-		}
-
-		$data = [];
-		$data[0] = Html::rawElement(
-			'label',
-			[ 'for' => 'tagfilter' ],
-			$context->msg( 'tag-filter' )->parse()
-		);
-
-		if ( $ooui ) {
-			$options = Html::listDropdownOptionsOoui( $autocomplete );
-
-			$data[1] = new \OOUI\ComboBoxInputWidget( [
-				'id' => 'tagfilter',
-				'name' => 'tagfilter',
-				'value' => $selected,
-				'classes' => 'mw-tagfilter-input',
-				'options' => $options,
-			] );
-		} else {
-			$optionsHtml = '';
-			foreach ( $autocomplete as $label => $name ) {
-				$optionsHtml .= Html::element( 'option', [ 'value' => $name ], $label );
-			}
-			$datalistHtml = Html::rawElement( 'datalist', [ 'id' => 'tagfilter-datalist' ], $optionsHtml );
-
-			$data[1] = Html::input(
-				'tagfilter',
-				$selected,
-				'text',
-				[
-					'class' => [ 'mw-tagfilter-input' ],
-					'size' => 20,
-					'id' => 'tagfilter',
-					'list' => 'tagfilter-datalist',
-				]
-			) . $datalistHtml;
-		}
-
-		return $data;
 	}
 
 	/**
@@ -1221,12 +1171,6 @@ class ChangeTags {
 	}
 
 	/**
-	 * Maximum length of a tag description in UTF-8 characters.
-	 * Longer descriptions will be truncated.
-	 */
-	private const TAG_DESC_CHARACTER_LIMIT = 120;
-
-	/**
 	 * Get information about change tags, without parsing messages, for tag filter dropdown menus.
 	 * By default, this will return explicitly-defined and software-defined tags that are currently active (have hits)
 	 *
@@ -1248,6 +1192,7 @@ class ChangeTags {
 	 * This data is consumed by the `mediawiki.rcfilters.filters.ui` module,
 	 * specifically `mw.rcfilters.dm.FilterGroup` and `mw.rcfilters.dm.FilterItem`.
 	 *
+	 * @deprecated Since 1.47. Use {@link ChangeTagsFormatter::getChangeTagListSummary()} instead.
 	 * @param MessageLocalizer $localizer
 	 * @param Language $lang
 	 * @param bool $activeOnly
@@ -1260,57 +1205,10 @@ class ChangeTags {
 		bool $activeOnly = self::TAG_SET_ACTIVE_ONLY,
 		bool $useAllTags = self::USE_ALL_TAGS
 	) {
-		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
-
-		if ( $useAllTags ) {
-			$tagKeys = $changeTagsStore->listDefinedTags();
-			$cacheKey = 'tags-list-summary';
-		} else {
-			$tagKeys = $changeTagsStore->getCoreDefinedTags();
-			$cacheKey = 'core-software-tags-summary';
-		}
-
-		// if $tagHitCounts exists, check against it later to determine whether or not to omit tags
-		$tagHitCounts = null;
-		if ( $activeOnly ) {
-			$tagHitCounts = $changeTagsStore->tagUsageStatistics();
-		} else {
-			// The full set of tags should use a different cache key than the subset
-			$cacheKey .= '-all';
-		}
-
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		return $cache->getWithSetCallback(
-			$cache->makeKey( $cacheKey, $lang->getCode() ),
-			WANObjectCache::TTL_DAY,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $localizer, $tagKeys, $tagHitCounts ) {
-				$result = [];
-				foreach ( $tagKeys as $tagName ) {
-					// Only list tags that are still actively defined
-					if ( $tagHitCounts !== null ) {
-						// Only list tags with more than 0 hits
-						$hits = $tagHitCounts[$tagName] ?? 0;
-						if ( $hits <= 0 ) {
-							continue;
-						}
-					}
-
-					$labelMsg = self::tagShortDescriptionMessage( $tagName, $localizer );
-					$helpLink = self::tagHelpLink( $tagName, $localizer );
-					$descriptionMsg = self::tagLongDescriptionMessage( $tagName, $localizer );
-					// Don't cache the message object, use the correct MessageLocalizer to parse later.
-					$result[] = [
-						'name' => $tagName,
-						'labelMsg' => (bool)$labelMsg,
-						'label' => $labelMsg ? $labelMsg->plain() : $tagName,
-						'descriptionMsg' => (bool)$descriptionMsg,
-						'description' => $descriptionMsg ? $descriptionMsg->plain() : '',
-						'helpLink' => $helpLink,
-						'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
-					];
-				}
-				return $result;
-			}
+		return MediaWikiServices::getInstance()->getChangeTagsFormatter()->getChangeTagListSummary(
+			new SimpleLocalizationContext( $localizer, $lang ),
+			$activeOnly,
+			$useAllTags
 		);
 	}
 
@@ -1322,6 +1220,7 @@ class ChangeTags {
 	 * parsing is expensive, so to detect whether the tag list has changed, use
 	 * getChangeTagListSummary() instead.
 	 *
+	 * @deprecated Since 1.47. Use {@link ChangeTagsFormatter::getChangeTagList()} instead.
 	 * @param MessageLocalizer $localizer
 	 * @param Language $lang
 	 * @param bool $activeOnly
@@ -1334,40 +1233,12 @@ class ChangeTags {
 		bool $activeOnly = self::TAG_SET_ACTIVE_ONLY, bool $useAllTags = self::USE_ALL_TAGS,
 		$labelsOnly = false
 	) {
-		$tags = self::getChangeTagListSummary( $localizer, $lang, $activeOnly, $useAllTags );
-
-		foreach ( $tags as &$tagInfo ) {
-			if ( $tagInfo['labelMsg'] ) {
-				// Optimization: Skip the parsing if the label contains only plain text (T344352)
-				if ( wfEscapeWikiText( $tagInfo['label'] ) !== $tagInfo['label'] ) {
-					// Use localizer with the correct page title to parse plain message from the cache.
-					$labelMsg = new RawMessage( $tagInfo['label'] );
-					$tagInfo['label'] = Sanitizer::stripAllTags( $localizer->msg( $labelMsg )->parse() );
-				}
-			} else {
-				$tagInfo['label'] = $localizer->msg( 'tag-hidden', $tagInfo['name'] )->text();
-			}
-			// Optimization: Skip parsing the descriptions if not needed by the caller (T344352)
-			if ( $labelsOnly ) {
-				unset( $tagInfo['description'] );
-			} elseif ( $tagInfo['descriptionMsg'] ) {
-				// Optimization: Skip the parsing if the description contains only plain text (T344352)
-				if ( wfEscapeWikiText( $tagInfo['description'] ) !== $tagInfo['description'] ) {
-					$descriptionMsg = new RawMessage( $tagInfo['description'] );
-					$tagInfo['description'] = Sanitizer::stripAllTags( $localizer->msg( $descriptionMsg )->parse() );
-				}
-				$tagInfo['description'] = $lang->truncateForVisual( $tagInfo['description'],
-					self::TAG_DESC_CHARACTER_LIMIT );
-			}
-			unset( $tagInfo['labelMsg'] );
-			unset( $tagInfo['descriptionMsg'] );
-		}
-
-		// Instead of sorting by hit count (disabled for now), sort by display name
-		usort( $tags, static function ( $a, $b ) {
-			return strcasecmp( $a['label'], $b['label'] );
-		} );
-		return $tags;
+		return MediaWikiServices::getInstance()->getChangeTagsFormatter()->getChangeTagList(
+			new SimpleLocalizationContext( $localizer, $lang ),
+			$activeOnly,
+			$useAllTags,
+			$labelsOnly
+		);
 	}
 
 	/**

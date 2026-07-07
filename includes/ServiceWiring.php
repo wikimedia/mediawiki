@@ -605,7 +605,10 @@ return [
 
 	'ChangeTagsFormatter' => static function ( MediaWikiServices $services ): ChangeTagsFormatter {
 		return new ChangeTagsFormatter(
-			$services->getChangeTagsStore()
+			new ServiceOptions( ChangeTagsFormatter::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getChangeTagsStore(),
+			$services->getMainWANObjectCache(),
+			$services->getLanguageFactory(),
 		);
 	},
 
