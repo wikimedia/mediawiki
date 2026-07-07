@@ -88,7 +88,7 @@ function transferFocusToRealInput() {
  * dialog.
  *
  * @param {HTMLButtonElement} trigger that will launch the search dialog.
- * @namespace loadSearchModule
+ * @method enableSearchDialog
  * @memberof module:mediawiki.page.ready
  */
 module.exports = function ( trigger ) {
