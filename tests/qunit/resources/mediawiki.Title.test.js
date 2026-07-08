@@ -158,6 +158,19 @@
 		} );
 	} );
 
+	QUnit.test( 'NFC normalization', ( assert ) => {
+		assert.strictEqual(
+			mw.Title.newFromText( 'a\u0301' ).getMain(),
+			'\u00C1',
+			'NFD input at the start should be normalized and capitalized to NFC'
+		);
+		assert.strictEqual(
+			mw.Title.newFromText( 'page_a\u0301' ).getMain(),
+			'Page_\u00E1',
+			'NFD input in the middle should be normalized to NFC'
+		);
+	} );
+
 	QUnit.test( 'makeTitle', ( assert ) => {
 		const NS_MAIN = 0,
 			NS_TALK = 1,

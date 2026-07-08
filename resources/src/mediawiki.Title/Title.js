@@ -218,6 +218,7 @@ const mwString = require( 'mediawiki.String' ),
 		let namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
 
 		title = title
+			.normalize( 'NFC' )
 			// Strip Unicode bidi override characters
 			.replace( rUnicodeBidi, '' )
 			// Normalise whitespace to underscores and remove duplicates
