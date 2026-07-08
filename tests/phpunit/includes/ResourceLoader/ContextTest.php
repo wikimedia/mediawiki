@@ -41,6 +41,7 @@ class ContextTest extends TestCase {
 		// Request parameters
 		$this->assertEquals( [], $ctx->getModules() );
 		$this->assertEquals( 'qqx', $ctx->getLanguage() );
+		$this->assertEquals( 'qqx', $ctx->getLanguageCode()->toBcp47Code() );
 		$this->assertSame( 0, $ctx->getDebug() );
 		$this->assertNull( $ctx->getOnly() );
 		$this->assertEquals( 'fallback', $ctx->getSkin() );
@@ -85,6 +86,7 @@ class ContextTest extends TestCase {
 		);
 		$this->assertSame( 0, $ctx->getDebug() );
 		$this->assertEquals( 'zh', $ctx->getLanguage() );
+		$this->assertEquals( 'zh', $ctx->getLanguageCode()->toBcp47Code() );
 		$this->assertEquals( 'styles', $ctx->getOnly() );
 		$this->assertEquals( 'fallback', $ctx->getSkin() );
 		$this->assertNull( $ctx->getUser() );
@@ -93,6 +95,26 @@ class ContextTest extends TestCase {
 		$this->assertEquals( 'ltr', $ctx->getDirection() );
 		$this->assertEquals( 'zh|fallback|0||styles|||||', $ctx->getHash() );
 		$this->assertSame( [ 'lang' => 'zh' ], $ctx->getReqBase() );
+	}
+
+	/** @dataProvider provideGetLanguageCode */
+	public function testGetLanguageCode( string $requestLanguage, string $expectedLanguageCode ): void {
+		$ctx = new Context( self::getResourceLoader(), new FauxRequest( [ 'lang' => $requestLanguage ] ) );
+
+		$this->assertSame( $expectedLanguageCode, $ctx->getLanguageCode()->toBcp47Code() );
+	}
+
+	public static function provideGetLanguageCode(): array {
+		return [
+			'Language code differs from BCP47 code' => [
+				'requestLanguage' => 'zh-cn',
+				'expectedLanguageCode' => 'zh-Hans-CN',
+			],
+			'Language code is the same as the BCP47 code' => [
+				'requestLanguage' => 'es',
+				'expectedLanguageCode' => 'es',
+			],
+		];
 	}
 
 	public static function provideDirection() {

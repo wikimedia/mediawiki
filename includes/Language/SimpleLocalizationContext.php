@@ -11,9 +11,8 @@ use Wikimedia\Bcp47Code\Bcp47Code;
 /**
  * An implementation of {@link LocalizationContext} that implements only the methods defined in the interface.
  *
- * Intended for use where you don't have access to a full {@link IContextSource} such as when you only have
- * access to a ResourceLoader {@link \MediaWiki\ResourceLoader\Context} (which does not implement
- * {@link LocalizationContext}) but need to provide a {@link LocalizationContext}.
+ * Intended for use where you don't have access to a {@link LocalizationContext} but have access to a
+ * {@link Bcp47Code} and {@link MessageLocalizer}.
  *
  * Callers should usually ensure the languages are the same for the {@link Bcp47Code} and
  * the {@link MessageLocalizer}.

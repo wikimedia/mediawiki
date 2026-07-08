@@ -8,7 +8,8 @@
 
 namespace MediaWiki\ResourceLoader;
 
-use MediaWiki\Language\MessageLocalizer;
+use MediaWiki\Language\LanguageCode;
+use MediaWiki\Language\LocalizationContext;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -19,6 +20,8 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Bcp47Code\Bcp47Code;
+use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 
@@ -29,7 +32,7 @@ use Wikimedia\Message\MessageSpecifier;
  * @ingroup ResourceLoader
  * @since 1.17
  */
-class Context implements MessageLocalizer {
+class Context implements LocalizationContext {
 	public const DEFAULT_LANG = 'qqx';
 	public const DEFAULT_SKIN = 'fallback';
 
@@ -202,6 +205,11 @@ class Context implements MessageLocalizer {
 			$this->language = $lang;
 		}
 		return $this->language;
+	}
+
+	/** @inheritDoc */
+	public function getLanguageCode(): Bcp47Code {
+		return new Bcp47CodeValue( LanguageCode::bcp47( $this->getLanguage() ) );
 	}
 
 	public function getDirection(): string {
