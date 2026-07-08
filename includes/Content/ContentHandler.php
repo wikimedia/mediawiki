@@ -840,7 +840,7 @@ abstract class ContentHandler {
 				return wfMessage( 'autosumm-changed-redirect-target',
 						$oldTarget->getFullText(),
 						$newTarget->getFullText() )
-					->rawParams( $truncatedtext )->inContentLanguage()->text();
+					->plaintextParams( $truncatedtext )->inContentLanguage()->text();
 			case 'removed-redirect':
 				$oldTarget = $oldContent->getRedirectTarget();
 				$truncatedtext = $newContent->getTextForSummary(
@@ -850,13 +850,13 @@ abstract class ContentHandler {
 					- strlen( $oldTarget->getFullText() ) );
 
 				return wfMessage( 'autosumm-removed-redirect', $oldTarget->getFullText() )
-					->rawParams( $truncatedtext )->inContentLanguage()->text();
+					->plaintextParams( $truncatedtext )->inContentLanguage()->text();
 			case 'newpage':
 				// If they're making a new article, give its text, truncated, in the summary.
 				$truncatedtext = $newContent->getTextForSummary(
 					$summaryLimit - strlen( wfMessage( 'autosumm-new' )->inContentLanguage()->text() ) );
 
-				return wfMessage( 'autosumm-new' )->rawParams( $truncatedtext )
+				return wfMessage( 'autosumm-new' )->plaintextParams( $truncatedtext )
 					->inContentLanguage()->text();
 			case 'blank':
 				return wfMessage( 'autosumm-blank' )->inContentLanguage()->text();
@@ -864,7 +864,7 @@ abstract class ContentHandler {
 				$truncatedtext = $newContent->getTextForSummary(
 					$summaryLimit - strlen( wfMessage( 'autosumm-replace' )->inContentLanguage()->text() ) );
 
-				return wfMessage( 'autosumm-replace' )->rawParams( $truncatedtext )
+				return wfMessage( 'autosumm-replace' )->plaintextParams( $truncatedtext )
 					->inContentLanguage()->text();
 			case 'newblank':
 				return wfMessage( 'autosumm-newblank' )->inContentLanguage()->text();

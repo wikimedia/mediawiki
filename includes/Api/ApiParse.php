@@ -934,7 +934,7 @@ class ApiParse extends ApiBase {
 			}
 			if ( $summary !== '' ) {
 				$summary = $this->msg( 'newsectionsummary' )
-					->rawParams( $this->parserFactory->getMainInstance()->stripSectionName( $summary ) )
+					->plaintextParams( $this->parserFactory->getMainInstance()->stripSectionName( $summary ) )
 					->inContentLanguage()->text();
 			}
 		}
