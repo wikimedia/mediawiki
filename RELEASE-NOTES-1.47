@@ -483,6 +483,8 @@ because of Phabricator reports.
 * Linker::makeBrokenImageLinkObj() used to wfWarn if the first argument
   was not a LinkTarget.  This has been changed to a deprecation warning.
   In a future release this will be a type hint on the argument.
+* Linker::linkKnown(), deprecated since 1.28, now emits deprecation
+  warnings. Use LinkRenderer::makeKnownLink() instead.
 * The ParserOptionsRegister hook has been deprecated and replaced by
   ParserOptionsDefaults.
 * The PagerTools class has been deprecated and emits deprecation warnings. Use

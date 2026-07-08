@@ -145,10 +145,10 @@ class Linker {
 	 * @return-taint escaped
 	 */
 	public static function linkKnown(
-		$target, $html = null, $customAttribs = [],
-		$query = [], $options = [ 'known' ]
+		$target, $html = null, $customAttribs = [], $query = [], $options = [ 'known' ]
 	) {
-		return self::link( $target, $html, $customAttribs, $query, $options );
+		wfDeprecated( __METHOD__, '1.28' ); // since 1.47
+		return self::getLinkRenderer( $options )->makeKnownLink( $target, $html, $customAttribs, $query );
 	}
 
 	/**
@@ -1023,9 +1023,9 @@ class Linker {
 			$key = strtolower( $name );
 		}
 
-		return self::linkKnown(
+		return self::getLinkRenderer()->makeKnownLink(
 			SpecialPage::getTitleFor( $name, $subpage ),
-			wfMessage( $key )->escaped(),
+			wfMessage( $key )->plain(),
 			[],
 			$getParams
 		);
