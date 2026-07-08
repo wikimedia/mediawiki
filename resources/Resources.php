@@ -2782,6 +2782,12 @@ return [
 			'resources/src/mediawiki.authenticationPopup/constants.js',
 		]
 	],
+	'mediawiki.authenticationPopup.cancel' => [
+		'packageFiles' => [
+			'resources/src/mediawiki.authenticationPopup/cancel.js',
+			'resources/src/mediawiki.authenticationPopup/constants.js',
+		]
+	],
 	'mediawiki.editPage.reauthPopup' => [
 		'packageFiles' => [
 			'resources/src/mediawiki.editPage.reauthPopup/init.js',

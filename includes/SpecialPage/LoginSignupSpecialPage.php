@@ -654,9 +654,26 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				} else {
 					$submitStatus->warning( 'userlogin-reauth-banner-generic', $this->securityLevel );
 				}
+				$returnTitle = Title::newFromText( $this->mReturnTo );
+				if ( $returnTitle && !$returnTitle->isSpecialPage() ) {
+					$cancelTitle = $returnTitle;
+				} else {
+					$cancelTitle = Title::newMainPage();
+				}
+				$cancelLinkAttribs = [ 'class' => 'mw-authentication-popup-cancel' ];
+				if ( $this->getLoginHelper()->isDisplayModePopup() ) {
+					$cancelLinkAttribs['class'] .= ' mw-authentication-popup-link';
+					$this->getOutput()->addModules( 'mediawiki.authenticationPopup.cancel' );
+				}
 				$form->addHeaderHtml(
-					$this->msg( 'userlogin-reauth-description' )
-					->parseAsBlock()
+					$this->msg( 'userlogin-reauth-description' )->rawParams(
+						$this->getLinkRenderer()->makeLink(
+							$cancelTitle->createFragmentTarget( $this->mReturnToAnchor ),
+							$this->msg( 'userlogin-reauth-description-link' )->text(),
+							$cancelLinkAttribs,
+							wfCgiToArray( $this->mReturnToQuery )
+						)
+					)->parseAsBlock()
 				);
 			} else {
 				// User is accessing the login or signup page while already logged in.

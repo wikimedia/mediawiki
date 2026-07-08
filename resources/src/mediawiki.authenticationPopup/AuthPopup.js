@@ -1,4 +1,4 @@
-const { SUCCESS_PAGE_MESSAGE } = require( './constants.js' );
+const { SUCCESS_PAGE_MESSAGE, CANCEL_PAGE_MESSAGE } = require( './constants.js' );
 const AuthMessageDialog = require( './AuthMessageDialog.js' );
 const AuthPopupError = require( './AuthPopupError.js' );
 
@@ -417,13 +417,23 @@ class AuthPopup {
 				window.addEventListener( 'focus', onFocus );
 				instance.closed.then( () => window.removeEventListener( 'focus', onFocus ) );
 
-				// Wait for a message from authSuccess.js.
+				// Wait for a message from authSuccess.js or authCancel.js.
 				// Beware that it may never come if the initial popup was blocked,
 				// in which case we rely on checking in the 'focus' event.
 				const onMessage = ( event ) => {
-					if ( event.origin !== window.origin ) {
+					if ( event.data === CANCEL_PAGE_MESSAGE ) {
+						// User explicitly cancelled the auth workflow. Close the popup and
+						// resolve without checking checkLoggedIn — the user may still have a
+						// valid session from before, but they've chosen not to complete this
+						// action.
+						if ( w ) {
+							w.close();
+						}
+						m.close();
+						resolve( null );
 						return;
 					}
+
 					if ( event.data !== SUCCESS_PAGE_MESSAGE ) {
 						return;
 					}
