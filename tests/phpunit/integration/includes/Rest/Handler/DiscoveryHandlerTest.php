@@ -119,6 +119,7 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::RightsText => 'Test License',
 			MainConfigNames::RightsUrl => 'https://example.com/license',
 			MainConfigNames::EmergencyContact => 'test@example.com',
+			MainConfigNames::RestTermsOfServiceUrl => 'https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#12._API_Terms',
 			MainConfigNames::CanonicalServer => 'https://example.com:1234',
 			MainConfigNames::RestPath => '/api',
 		] );
@@ -168,6 +169,7 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 		$expected = [
 			'info' => [
 				'title' => 'Test Site',
+				'termsOfService' => 'https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#12._API_Terms',
 				'contact' => [
 					'email' => 'test@example.com',
 				],
@@ -209,6 +211,77 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 
 		// Ensure the hidden module is actually hidden
 		self::assertArrayNotHasKey( 'SpecTestRoutes/v2', $data['modules'] );
+	}
+
+	public function testGetInfoSpecOmitsTermsOfServiceWhenUnset(): void {
+		$this->overrideConfigValues( [
+			MainConfigNames::Sitename => 'Test Site',
+			MainConfigNames::RightsText => 'Test License',
+			MainConfigNames::RightsUrl => 'https://example.com/license',
+			MainConfigNames::EmergencyContact => 'test@example.com',
+			MainConfigNames::RestTermsOfServiceUrl => null,
+			MainConfigNames::CanonicalServer => 'https://example.com:1234',
+			MainConfigNames::RestPath => '/api',
+		] );
+
+		$request = new RequestData( [] );
+		$router = $this->createRouter( $request, [ __DIR__ . '/SpecTestRoutes.v1.json' ] );
+
+		$handler = $this->newHandler();
+		$response = $this->executeHandler(
+			$handler,
+			$request,
+			[],
+			[],
+			[],
+			[],
+			null,
+			null,
+			$router
+		);
+		$this->assertSame( 200, $response->getStatusCode() );
+
+		$data = json_decode( (string)$response->getBody(), true );
+		$this->assertIsArray( $data, 'Body must be a JSON array' );
+		$this->assertWellFormedDiscoveryDoc( $data );
+
+		$this->assertArrayNotHasKey( 'termsOfService', $data['info'] );
+	}
+
+	public function testGetInfoSpecOmitsInvalidContactEmail(): void {
+		$this->overrideConfigValues( [
+			MainConfigNames::Sitename => 'Test Site',
+			MainConfigNames::RightsText => 'Test License',
+			MainConfigNames::RightsUrl => 'https://example.com/license',
+			MainConfigNames::EmergencyContact => 'not-an-email',
+			MainConfigNames::RestTermsOfServiceUrl => 'https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#12._API_Terms',
+			MainConfigNames::CanonicalServer => 'https://example.com:1234',
+			MainConfigNames::RestPath => '/api',
+		] );
+
+		$request = new RequestData( [] );
+		$router = $this->createRouter( $request, [ __DIR__ . '/SpecTestRoutes.v1.json' ] );
+
+		$handler = $this->newHandler();
+		$response = $this->executeHandler(
+			$handler,
+			$request,
+			[],
+			[],
+			[],
+			[],
+			null,
+			null,
+			$router
+		);
+		$this->assertSame( 200, $response->getStatusCode() );
+
+		$data = json_decode( (string)$response->getBody(), true );
+		$this->assertIsArray( $data, 'Body must be a JSON array' );
+		$this->assertWellFormedDiscoveryDoc( $data );
+
+		$this->assertArrayHasKey( 'contact', $data['info'] );
+		$this->assertArrayNotHasKey( 'email', $data['info']['contact'] );
 	}
 
 }

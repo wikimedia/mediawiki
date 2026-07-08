@@ -73,6 +73,7 @@ class Router {
 	private Validator $restValidator;
 	private ErrorReporter $errorReporter;
 	private HookContainer $hookContainer;
+	private ServiceOptions $options;
 	private Session $session;
 
 	/** @var ?StatsFactory */
@@ -86,6 +87,9 @@ class Router {
 		MainConfigNames::InternalServer,
 		MainConfigNames::RestPath,
 		MainConfigNames::ScriptPath,
+		MainConfigNames::Sitename,
+		MainConfigNames::EmergencyContact,
+		MainConfigNames::RestTermsOfServiceUrl,
 	];
 
 	/**
@@ -135,6 +139,7 @@ class Router {
 		$this->restValidator = $restValidator;
 		$this->errorReporter = $errorReporter;
 		$this->hookContainer = $hookContainer;
+		$this->options = $options;
 		$this->session = $session;
 	}
 
@@ -562,7 +567,8 @@ class Router {
 				$this->objectFactory,
 				$this->restValidator,
 				$this->errorReporter,
-				$this->hookContainer
+				$this->hookContainer,
+				new ServiceOptions( ExtraRoutesModule::CONSTRUCTOR_OPTIONS, $this->options )
 			);
 		}
 

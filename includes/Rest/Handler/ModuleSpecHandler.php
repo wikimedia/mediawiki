@@ -33,8 +33,10 @@ class ModuleSpecHandler extends SimpleHandler {
 		MainConfigNames::RightsText,
 		MainConfigNames::EmergencyContact,
 		MainConfigNames::Sitename,
+		MainConfigNames::CanonicalServer,
 		MainConfigNames::RestExternalModules,
 		MainConfigNames::RestLocalModuleTestBaseUrl,
+		MainConfigNames::RestTermsOfServiceUrl,
 	];
 
 	private ServiceOptions $options;
@@ -157,12 +159,15 @@ class ModuleSpecHandler extends SimpleHandler {
 			}
 		}
 
+		$termsOfService = $this->options->get( MainConfigNames::RestTermsOfServiceUrl );
+		if ( is_string( $termsOfService ) && $termsOfService !== '' ) {
+			$info['termsOfService'] = $termsOfService;
+		}
+
 		return $info;
 	}
 
 	private function getLicenseSpec(): array {
-		// TODO: get terms-of-use URL, not content license.
-
 		return [
 			'name' => $this->options->get( MainConfigNames::RightsText ),
 			'url' => $this->options->get( MainConfigNames::RightsUrl ),
@@ -170,9 +175,20 @@ class ModuleSpecHandler extends SimpleHandler {
 	}
 
 	private function getContactSpec(): array {
-		return [
-			'email' => $this->options->get( MainConfigNames::EmergencyContact ),
+		$contact = [
+			'name' => $this->options->get( MainConfigNames::Sitename ),
+			'url' => $this->options->get( MainConfigNames::CanonicalServer ),
 		];
+
+		$email = $this->options->get( MainConfigNames::EmergencyContact );
+		// OpenAPI requires contact.email to be a valid email address. Keep the rest
+		// of the contact object intact and omit the field when the configured value
+		// does not satisfy that format.
+		if ( is_string( $email ) && filter_var( $email, FILTER_VALIDATE_EMAIL ) !== false ) {
+			$contact['email'] = $email;
+		}
+
+		return $contact;
 	}
 
 	private function getServerSpec( Module $module ): array {

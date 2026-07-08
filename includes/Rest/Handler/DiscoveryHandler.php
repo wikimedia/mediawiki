@@ -22,8 +22,10 @@ class DiscoveryHandler extends Handler {
 		MainConfigNames::RightsUrl,
 		MainConfigNames::RightsText,
 		MainConfigNames::EmergencyContact,
+		MainConfigNames::RestTermsOfServiceUrl,
 		MainConfigNames::Sitename,
 		MainConfigNames::Server,
+		MainConfigNames::CanonicalServer,
 		MainConfigNames::RestExternalModules,
 	];
 
@@ -92,15 +94,21 @@ class DiscoveryHandler extends Handler {
 	}
 
 	private function getInfoSpec(): array {
-		return [
+		$info = [
 			'title' => $this->options->get( MainConfigNames::Sitename ),
 			'mediawiki' => MW_VERSION,
 			'license' => $this->getLicenseSpec(),
 			'contact' => $this->getContactSpec(),
-			// TODO: terms of service
 			// TODO: owner/operator
 			// TODO: link to https://www.mediawiki.org/wiki/API:REST_API
 		];
+
+		$termsOfService = $this->options->get( MainConfigNames::RestTermsOfServiceUrl );
+		if ( is_string( $termsOfService ) && $termsOfService !== '' ) {
+			$info['termsOfService'] = $termsOfService;
+		}
+
+		return $info;
 	}
 
 	private function getLicenseSpec(): array {
@@ -114,9 +122,20 @@ class DiscoveryHandler extends Handler {
 
 	private function getContactSpec(): array {
 		// https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#contact-object
-		return [
-			'email' => $this->options->get( MainConfigNames::EmergencyContact ),
+		$contact = [
+			'name' => $this->options->get( MainConfigNames::Sitename ),
+			'url' => $this->options->get( MainConfigNames::CanonicalServer ),
 		];
+
+		$email = $this->options->get( MainConfigNames::EmergencyContact );
+		// OpenAPI requires contact.email to be a valid email address. Keep the rest
+		// of the contact object intact and omit the field when the configured value
+		// does not satisfy that format.
+		if ( is_string( $email ) && filter_var( $email, FILTER_VALIDATE_EMAIL ) !== false ) {
+			$contact['email'] = $email;
+		}
+
+		return $contact;
 	}
 
 	private function getModuleSpec( Module $module ): array {

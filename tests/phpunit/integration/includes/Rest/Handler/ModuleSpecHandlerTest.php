@@ -183,6 +183,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 				'info' => [
 					'title' => 'mock/v1 <message key="rest-module"></message>',
 					'version' => '1.3-test',
+					'termsOfService' => 'https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#12._API_Terms',
 					'contact' => [
 						'email' => 'test@example.com'
 					],
@@ -250,6 +251,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 				'info' => [
 					'title' => '<message key="rest-module-extra-routes-title"></message>',
 					'version' => '0.1.0',
+					'termsOfService' => 'https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#12._API_Terms',
 					'license' => [
 						'name' => 'Test License',
 						'url' => 'https://example.com/license',
@@ -280,6 +282,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::EmergencyContact => 'test@example.com',
 			MainConfigNames::CanonicalServer => 'https://example.com:1234',
 			MainConfigNames::RestPath => '/api',
+			MainConfigNames::RestTermsOfServiceUrl => 'https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#12._API_Terms',
 		] );
 
 		$request = new RequestData( $params );
@@ -310,6 +313,91 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsArray( $data, 'Body must be a JSON array' );
 		$this->assertWellFormedOAS( $data );
 		$this->assertContainsRecursive( $expected, $data );
+		$this->assertArrayHasKey( 'termsOfService', $data['info'] );
+		$this->assertSame(
+			'https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#12._API_Terms',
+			$data['info']['termsOfService']
+		);
+	}
+
+	public function testGetInfoSpecOmitsTermsOfService(): void {
+		$this->overrideConfigValues( [
+			MainConfigNames::RightsText => 'Test License',
+			MainConfigNames::RightsUrl => 'https://example.com/license',
+			MainConfigNames::EmergencyContact => 'test@example.com',
+			MainConfigNames::RestTermsOfServiceUrl => null,
+			MainConfigNames::CanonicalServer => 'https://example.com:1234',
+			MainConfigNames::RestPath => '/api',
+		] );
+
+		$request = new RequestData( [
+			'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ]
+		] );
+
+		$moduleModes = [
+			'mock/v1' => ModuleMode::PUBLISHED,
+		];
+		$router = $this->createRouter( $request, __DIR__ . '/SpecTestModule.json', $moduleModes );
+
+		$handler = $this->newHandler();
+		$response = $this->executeHandler(
+			$handler,
+			$request,
+			[],
+			[],
+			[],
+			[],
+			null,
+			null,
+			$router
+		);
+		$this->assertSame( 200, $response->getStatusCode() );
+
+		$data = json_decode( (string)$response->getBody(), true );
+		$this->assertIsArray( $data, 'Body must be a JSON array' );
+		$this->assertWellFormedOAS( $data );
+		$this->assertArrayNotHasKey( 'termsOfService', $data['info'] );
+	}
+
+	public function testGetInfoSpecOmitsInvalidContactEmail(): void {
+		$this->overrideConfigValues( [
+			MainConfigNames::RightsText => 'Test License',
+			MainConfigNames::RightsUrl => 'https://example.com/license',
+			MainConfigNames::EmergencyContact => 'not-an-email',
+			MainConfigNames::RestTermsOfServiceUrl => 'https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#12._API_Terms',
+			MainConfigNames::CanonicalServer => 'https://example.com:1234',
+			MainConfigNames::RestPath => '/api',
+		] );
+
+		$request = new RequestData( [
+			'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ]
+		] );
+
+		$moduleModes = [
+			'mock/v1' => ModuleMode::PUBLISHED,
+		];
+		$router = $this->createRouter( $request, __DIR__ . '/SpecTestModule.json', $moduleModes );
+
+		$handler = $this->newHandler();
+		$response = $this->executeHandler(
+			$handler,
+			$request,
+			[],
+			[],
+			[],
+			[],
+			null,
+			null,
+			$router
+		);
+		$this->assertSame( 200, $response->getStatusCode() );
+
+		$data = json_decode( (string)$response->getBody(), true );
+		$this->assertIsArray( $data, 'Body must be a JSON array' );
+		$this->assertWellFormedOAS( $data );
+
+		$this->assertArrayHasKey( 'contact', $data['info'] );
+		$this->assertArrayNotHasKey( 'email', $data['info']['contact'] );
 	}
 
 	/**

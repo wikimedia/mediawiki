@@ -362,8 +362,14 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		);
 		$files = $moduleManager->getRouteFiles();
 		$files += $moduleManager->getDisabledRouteFiles();
+		$seen = [];
 
 		foreach ( $files as $file ) {
+			if ( isset( $seen[$file] ) ) {
+				continue;
+			}
+			$seen[$file] = true;
+
 			$moduleSpec = self::loadJsonData( $file );
 			if ( !isset( $moduleSpec->mwapi ) ) {
 				// old-school flat route file, skip

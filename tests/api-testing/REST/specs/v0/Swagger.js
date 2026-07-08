@@ -67,7 +67,8 @@ describe( 'Self-Documentation', () => {
 			assert.nestedProperty( info, 'license' );
 			assert.nestedProperty( info.license, 'url' );
 			assert.nestedProperty( info, 'contact' );
-			assert.nestedProperty( info.contact, 'email' );
+			assert.nestedProperty( info.contact, 'name' );
+			assert.nestedProperty( info.contact, 'url' );
 		} );
 
 		it( 'contains module list', async () => {

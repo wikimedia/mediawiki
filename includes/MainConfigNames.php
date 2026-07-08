@@ -924,6 +924,12 @@ class MainConfigNames {
 	public const EmergencyContact = 'EmergencyContact';
 
 	/**
+	 * Name constant for the RestTermsOfServiceUrl setting, for use with Config::get()
+	 * @see MainConfigSchema::RestTermsOfServiceUrl
+	 */
+	public const RestTermsOfServiceUrl = 'RestTermsOfServiceUrl';
+
+	/**
 	 * Name constant for the PasswordSender setting, for use with Config::get()
 	 * @see MainConfigSchema::PasswordSender
 	 */

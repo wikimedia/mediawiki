@@ -1604,6 +1604,14 @@ config-schema:
         description: |-
             Site admin email address.
             Defaults to "wikiadmin@$wgServerName" (in Setup.php).
+    RestTermsOfServiceUrl:
+        default: null
+        type:
+            - string
+            - 'null'
+        description: |-
+            URL to use for the OpenAPI termsOfService field in the REST API.
+            Defaults to null, so the field is omitted unless a wiki explicitly configures it.
     PasswordSender:
         default: false
         description: |-

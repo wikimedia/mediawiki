@@ -341,6 +341,7 @@ return [
 			'DjvuPostProcessor' => 'pnmtojpeg',
 			'DjvuOutputExtension' => 'jpg',
 			'EmergencyContact' => false,
+			'RestTermsOfServiceUrl' => null,
 			'PasswordSender' => false,
 			'NoReplyAddress' => false,
 			'EnableEmail' => true,
@@ -2916,6 +2917,10 @@ return [
 				'null',
 			],
 			'DjvuPostProcessor' => [
+				'string',
+				'null',
+			],
+			'RestTermsOfServiceUrl' => [
 				'string',
 				'null',
 			],

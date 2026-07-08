@@ -5,7 +5,9 @@ namespace MediaWiki\Rest\Module;
 use AppendIterator;
 use ArrayIterator;
 use Iterator;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\Handler\RedirectHandler;
 use MediaWiki\Rest\JsonLocalizer;
@@ -63,6 +65,13 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  */
 class ExtraRoutesModule extends MatcherBasedModule {
 
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::Sitename,
+		MainConfigNames::CanonicalServer,
+		MainConfigNames::EmergencyContact,
+		MainConfigNames::RestTermsOfServiceUrl,
+	];
+
 	/** @var string[] */
 	private array $routeFiles;
 
@@ -72,6 +81,8 @@ class ExtraRoutesModule extends MatcherBasedModule {
 	private array $extraRoutes;
 
 	private JsonLocalizer $jsonLocalizer;
+
+	private ServiceOptions $options;
 
 	/**
 	 * @var array<int,array>|null A list of route definitions loaded from
@@ -101,7 +112,8 @@ class ExtraRoutesModule extends MatcherBasedModule {
 		ObjectFactory $objectFactory,
 		Validator $restValidator,
 		ErrorReporter $errorReporter,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		ServiceOptions $options
 	) {
 		parent::__construct(
 			$router,
@@ -116,6 +128,8 @@ class ExtraRoutesModule extends MatcherBasedModule {
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
 		$this->jsonLocalizer = new JsonLocalizer( $responseFactory );
+		$this->options = $options;
+		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 	}
 
 	/**
@@ -254,10 +268,44 @@ class ExtraRoutesModule extends MatcherBasedModule {
 	public function getOpenApiInfo() {
 		// Note that mwapi-1.0 is based on OAS 3.0, so it doesn't support the
 		// "summary" property introduced in 3.1.
-		return [
+		$info = [
 			'title' => $this->jsonLocalizer->getFormattedMessage( 'rest-module-extra-routes-title' ),
 			'description' => $this->jsonLocalizer->getFormattedMessage( 'rest-module-extra-routes-desc' ),
 			'version' => '0.1.0',
+			'contact' => $this->getOpenApiContact(),
+		];
+
+		$termsOfService = $this->options->get( MainConfigNames::RestTermsOfServiceUrl );
+		if ( is_string( $termsOfService ) && $termsOfService !== '' ) {
+			$info['termsOfService'] = $termsOfService;
+		}
+
+		return $info;
+	}
+
+	/** @inheritDoc */
+	public function getOpenApiContact(): array {
+		$contact = [
+			'name' => $this->options->get( MainConfigNames::Sitename ),
+			'url' => $this->options->get( MainConfigNames::CanonicalServer ),
+		];
+
+		$email = $this->options->get( MainConfigNames::EmergencyContact );
+		// OpenAPI requires contact.email to be a valid email address. Keep the rest
+		// of the contact object intact and omit the field when the configured value
+		// does not satisfy that format.
+		if ( is_string( $email ) && filter_var( $email, FILTER_VALIDATE_EMAIL ) !== false ) {
+			$contact['email'] = $email;
+		}
+
+		return $contact;
+	}
+
+	/** @inheritDoc */
+	public function getOpenApiExternalDocs(): array {
+		return [
+			'description' => 'API documentation',
+			'url' => 'https://www.mediawiki.org/wiki/API:REST_API',
 		];
 	}
 }

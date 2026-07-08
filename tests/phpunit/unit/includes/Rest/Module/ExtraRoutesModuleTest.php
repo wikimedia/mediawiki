@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest\Module;
 
 use GuzzleHttp\Psr7\Uri;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\HttpException;
@@ -33,13 +34,15 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 
 	private const CANONICAL_SERVER = 'https://wiki.example.com';
 	private const INTERNAL_SERVER = 'http://api.local:8080';
+	private const SITENAME = 'Wiki Example';
+	private const EMERGENCY_CONTACT = 'wiki@example.com';
 
 	/** @var Throwable[] */
 	private $reportedErrors = [];
 
 	/**
 	 * @param RequestInterface $request
-	 * @param array $constructorOverrides Supported keys: basicAuth, extraRoutes, hookContainer
+	 * @param array $constructorOverrides Supported keys: basicAuth, extraRoutes, hookContainer, config
 	 *
 	 * @return ExtraRoutesModule
 	 */
@@ -61,8 +64,15 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 		$config = [
 			MainConfigNames::CanonicalServer => self::CANONICAL_SERVER,
 			MainConfigNames::InternalServer => self::INTERNAL_SERVER,
+			MainConfigNames::Sitename => self::SITENAME,
+			MainConfigNames::EmergencyContact => self::EMERGENCY_CONTACT,
 			MainConfigNames::RestPath => '/rest',
+			MainConfigNames::RestTermsOfServiceUrl => 'https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#12._API_Terms',
 		];
+		if ( isset( $constructorOverrides['config'] ) ) {
+			$config = $constructorOverrides['config'] + $config;
+		}
+		$configObject = new HashConfig( $config );
 
 		$auth = $constructorOverrides['basicAuth'] ?? new StaticBasicAuthorizer();
 		$objectFactory = $this->getDummyObjectFactory();
@@ -82,6 +92,13 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 		$responseFactory = new ResponseFactory( [] );
 		$responseFactory->setShowExceptionDetails( true );
 
+		$options = new \MediaWiki\Config\ServiceOptions( [
+			MainConfigNames::Sitename,
+			MainConfigNames::CanonicalServer,
+			MainConfigNames::EmergencyContact,
+			MainConfigNames::RestTermsOfServiceUrl,
+		], $configObject );
+
 		$module = new ExtraRoutesModule(
 			$routeFiles,
 			$constructorOverrides['extraRoutes'] ?? [],
@@ -91,7 +108,8 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 			$objectFactory,
 			$validator,
 			$mockErrorReporter,
-			$constructorOverrides['hookContainer'] ?? $this->createHookContainer()
+			$constructorOverrides['hookContainer'] ?? $this->createHookContainer(),
+			$options
 		);
 
 		return $module;
@@ -117,6 +135,18 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 		$module = $this->createRouteFileModule( $request );
 		$response = $module->execute( '/ModuleTest/hello/dude', $request );
 		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
+	}
+
+	public function testGetOpenApiInfoOmitsTermsOfServiceWhenUnset() {
+		$module = $this->createRouteFileModule( new RequestData(), [
+			'config' => [
+				MainConfigNames::RestTermsOfServiceUrl => null,
+			],
+		] );
+
+		$info = $module->getOpenApiInfo();
+		$this->assertArrayHasKey( 'contact', $info );
+		$this->assertArrayNotHasKey( 'termsOfService', $info );
 	}
 
 	public function testFlatRouteFile() {
@@ -323,11 +353,29 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 		$info = $module->getOpenApiInfo();
 		$this->assertSame( 'rest-module-extra-routes-title', $info['title'] );
 		$this->assertSame( '0.1.0', $info['version'] );
+		$this->assertSame(
+			'https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#12._API_Terms',
+			$info['termsOfService']
+		);
 
 		$handler = $module->getHandlerForPath( '/ModuleTest/hello/world', $request );
 		$oas = $handler->getOpenApiSpec( 'GET' );
 
 		$this->assertSame( 'hello summary', $oas['summary'] );
+	}
+
+	public function testOpenApiContactOmitsInvalidEmail(): void {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/test.v1/ModuleTest/hello/world' ) ] );
+		$module = $this->createRouteFileModule( $request, [
+			'config' => [
+				MainConfigNames::EmergencyContact => 'not-an-email',
+			],
+		] );
+
+		$contact = $module->getOpenApiContact();
+		$this->assertSame( self::SITENAME, $contact['name'] );
+		$this->assertSame( self::CANONICAL_SERVER, $contact['url'] );
+		$this->assertArrayNotHasKey( 'email', $contact );
 	}
 
 	public function testEndpointDeprecationOpenAPISpec() {

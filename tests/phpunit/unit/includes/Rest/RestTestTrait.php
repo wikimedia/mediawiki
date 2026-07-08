@@ -77,6 +77,7 @@ trait RestTestTrait {
 			MainConfigNames::RightsUrl => 'https://rights.url',
 			MainConfigNames::RightsText => 'your rights',
 			MainConfigNames::EmergencyContact => 'admin@test.test',
+			MainConfigNames::RestTermsOfServiceUrl => 'https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#12._API_Terms',
 			MainConfigNames::Sitename => 'Test Site',
 		];
 
