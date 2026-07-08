@@ -227,6 +227,14 @@ because of Phabricator reports.
   For non-blocking locks, use IDatabase::lock with timeout 0 instead.
 * BaseSearchResultSet::next() and ::rewind(), deprecated since 1.32 have now
   been removed. Use ::extractResults() or a foreach loop instead.
+* Some static methods in Xml, deprecated in 1.42, have been removed:
+  - Xml::attrib(),
+  - Xml::buildForm(),
+  - Xml::fieldset(),
+  - Xml::label(),
+  - Xml::listDropdown(),
+  - Xml::listDropdownOptions() & Xml::listDropdownOptionsOoui(), and
+  - Xml::option().
 * Content::getNativeData(), deprecated since 1.33, has been removed.
 * LinksUpdate::getImages(), deprecated since 1.44, has been removed. Use
   LinksUpdate::getParserOutput()->getLinkList(::MEDIA) instead.
