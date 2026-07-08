@@ -23,7 +23,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
 use MediaWiki\Upload\UploadBase;
 use stdClass;
-use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -824,13 +823,11 @@ class ImagePage extends Article {
 				$this->getFile() )
 		) {
 			// "Upload a new version of this file" link
-			$ulink = $this->linkRenderer->makeExternalLink(
-				$this->getUploadUrl(),
-				new HtmlArmor( '<button class="cdx-button cdx-button--action-progressive">' .
-				$this->getContext()->msg( 'uploadnewversion-linktext' ) . '</button>' ),
-				$this->getTitle()
-			);
-			$attrs = [ 'class' => 'plainlinks', 'id' => 'mw-imagepage-reupload-link' ];
+			$ulink = Html::element( 'a', [
+				'href' => $this->getUploadUrl(),
+				'class' => 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled',
+			], $this->getContext()->msg( 'uploadnewversion-linktext' )->text() );
+			$attrs = [ 'id' => 'mw-imagepage-reupload-link' ];
 			$linkPara = Html::rawElement( 'p', $attrs, $ulink );
 		} else {
 			// "You cannot overwrite this file." message

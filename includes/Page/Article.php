@@ -49,7 +49,6 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use StatusValue;
-use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\IPUtils;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\Parsoid\Parsoid;
@@ -1550,17 +1549,16 @@ class Article implements Page {
 		$outputPage->getMetadata()->setPreventClickjacking( true );
 		$outputPage->addModules( 'mediawiki.misc-authed-curate' );
 
-		$link = $this->linkRenderer->makeKnownLink(
-			$title,
-			new HtmlArmor( '<button class="cdx-button cdx-button--action-progressive">'
-				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $markPatrolledMsg is always set
-				. $markPatrolledMsg->escaped() . '</button>' ),
-			[],
-			[
-				'action' => 'markpatrolled',
-				'rcid' => $rc->getAttribute( 'rc_id' ),
-			]
-		);
+		$patrolUrl = $title->getLinkURL( [
+			'action' => 'markpatrolled',
+			'rcid' => $rc->getAttribute( 'rc_id' ),
+		] );
+		$link = Html::element( 'a', [
+			'href' => $patrolUrl,
+			'class' => 'cdx-button cdx-button--action-progressive ' .
+				'cdx-button--fake-button cdx-button--fake-button--enabled',
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $markPatrolledMsg is always set
+		], $markPatrolledMsg->text() );
 
 		$outputPage->addModuleStyles( 'mediawiki.action.styles' );
 		$outputPage->addHTML( "<div class='patrollink' data-mw-interface>$link</div>" );
