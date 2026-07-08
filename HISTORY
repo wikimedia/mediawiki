@@ -1,5 +1,1265 @@
 Change notes from older releases. For current info, see RELEASE-NOTES-1.47.
 
+= MediaWiki 1.46 =
+
+PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
+PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
+PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
+
+== MediaWiki 1.46.0 ==
+
+=== Changes since MediaWiki 1.46.0-rc.0 ===
+* Localisation updates.
+* (T425818) changePassword: Log password change to authentication log.
+* changePassword: Add reason option for password change.
+* (T427622) Store indicators in ContentHolder: forward compatibility.
+* (T421366) Email confirmation banner: Remove obsolete arm_b variant.
+* (T428289) Email confirmation banner: Remove Test Kitchen A/B test scaffolding.
+* (T428406) LocalFileMoveBatch: Also update fr_archive_name when moving file.
+* (T429826) Updated guzzlehttp/guzzle from 7.10.0 to 7.12.1.
+* (T423617) Check the target url for redirects are allowed.
+* (T429965) Updated guzzlehttp/guzzle from 7.12.1 to 7.12.3.
+* (T428809, CVE-2026-58035) SECURITY: Parse message using v-i18n-html instead of
+  using v-html.
+* (T383047) Mail: Extract sendWithMailFunction() from UserMailer::send().
+* (T429720) FileRepo: Fix typos in schema compatibility checks.
+* (T383047) Mail: Log PHP mail() send failures with recipient count.
+* (T425406, CVE-2026-58036) SECURITY: Fix ApiQueryUsers leaking status of
+  private user conditions for user.
+* (T422306, CVE-2026-58028) SECURITY: Disallow user JS in pretty-print api.php
+  responses.
+* (T427235, CVE-2026-58033) SECURITY: Exclude rev-deleted usernames from
+  distinct authors query.
+* (T426867, CVE-2026-58032) SECURITY: mw.Api.getErrorMessage: Treat
+  formatversion=1 as text.
+* (T299359, CVE-2026-58026) SECURITY: Make sure the actual title that's being
+  transcluded is includable.
+* (T422085, CVE-2026-58024) SECURITY: Restrict interwiki user lookup in
+  ApiUserrights.
+* (T422676, CVE-2026-58029) SECURITY: Check for editmyprivateinfo right in more
+  places.
+* (T422995, CVE-2026-58037) SECURITY: LogFormatter: 'raw' parameter format is no
+  longer raw HTML.
+* (T422244, CVE-2026-58025) SECURITY: Safely unserialize log entry parameters.
+* (T424462) tests: Limit ResourcesTest::testRespond to general-purpose skins
+* (T424462) tests: loop modules inside ResourcesTest::testRespond
+
+== Upgrading notes for 1.46 ==
+Don't forget to always back up your database before upgrading!
+
+See the file UPGRADE for more detailed per-version upgrade instructions from the
+oldest supported upgrading version, MediaWiki 1.39.
+
+For notes on 1.45.x and older releases, see HISTORY.
+
+=== Configuration changes for system administrators in 1.46 ===
+
+* $wgSVGConverter inkscape now requires Inkscape 1.0 or newer
+* $wgSVGConverter presets sodipodi and imgserv were removed
+* (T246054) $wgLogos['1.5x'] is no longer used. Devices that previously
+  displayed the 1.5x logo will use $wgLogos['1x'] instead.
+
+==== New configuration ====
+
+* $wgEnableWatchlistLabels - Feature flag to enable the new watchlist labels
+  feature (see https://www.mediawiki.org/wiki/Help:Watchlist_labels for info).
+  Note that the two new database tables for watchlist labels will be created
+  regardless of the value of this flag. Defaults to false.
+* $wgUserJsPrefLimit – (T408733) This setting lets you limit the maximum number
+  of supported custom JS preferences each user can have, to reduce load. The
+  default value is 100.
+* $wgBotPasswordsLimit - This setting allows administrators to configure the
+  maximum number of bot passwords a user can create. The default value is 100.
+* $wgNamespacesWithoutAutoSummaries - (T376557) Defaults to `[]`, can be set to
+  a list of namespace numbers in which automatic edit summaries should
+  be disabled. This avoids users who have access to recent changes but no
+  access to a particular namespace from reading contents of limited pages
+  from edit summaries.
+* $wgRestrictedGroups - (T406544) Allows administrators to define conditions
+  that must be met before a user can be added to specific user groups. A new
+  permission, ignore-restricted-groups, allows users with this right to bypass
+  these restrictions.
+
+  If a user no longer meets the conditions for a restricted group (e.g. their
+  edit count drops below the threshold), their membership in that group is
+  automatically disabled. Administrators can see which groups are currently
+  disabled for a user in the user rights interface.
+
+
+==== Changed configuration ====
+
+* $wgSVGNativeRendering now defaults to true. This means that uploaded SVGs are
+  rendered directly by the browser most of the time. MediaWiki applies several
+  filters on uploaded SVGs to protect against malicious SVGs.
+  The browser adds restrictions on the SVG when included as an <img> for
+  additional protection. We do advise configuring CSP headers to protect users
+  in case they open a SVG file directly in the browser.
+* $wgThumbLimits has two new entries by default, 220px and 400px.  This
+  matches the configuration used by WMF in production.  Since the default
+  user thumbsize option is an index into this list (currently, '5'), this
+  has the effect of changing the user default thumbnail size from 300px
+  to 250px; again matching current WMF production defaults.
+
+==== Removed configuration ====
+
+* (T276975) $wgAPIRequestLog, ignored since 1.43, has now been fully removed.
+* $wgBlockTargetMigrationStage, ignored since 1.43, has now been fully removed.
+* (T413867) $wgEnableSpecialMute and $wgEnableUserEmailMuteList feature flags
+  have been removed.
+
+=== New user-facing features in 1.46 ===
+
+* (T411596) Special:EditWatchlist has been redesigned to use a table view, with
+  filtering options, pagination, and support for the new watchlist labels
+  feature.
+* (T157524) Undoing multiple revisions generates an automatic edit summary.
+* (T396155) Email confirmation emails have been redesigned to use HTML email
+  with the wiki logo and a streamlined message (in plain text email as well).
+* (T410267) Dropdown menus to select a language used in various places (e.g.
+  preferences) have been replaced by a new widget with more convenient
+  autocompletion.
+* (T284927) Special:UserLogin and Special:CreateAccount while already logged in
+  now have a primary button to continue as the current user, rather than
+  promoting logging in as another user, to help people who land on these pages
+  unintentionally.
+* (T24029, T155097, T62744) Wikitext editor now preserves certain query
+  parameters (such as `useskin`, `uselang` and `section`) on preview. This
+  allows previewing edits with temporary skin or language changes without
+  altering user preferences, and fixes browser session restore corrupting
+  section edits.
+* (T6055) Interwiki user rights changes are now logged on both the source and
+  target wikis.
+* (b57a58e411fa) Added the format="wikitext" attribute to the <pre> tag, which
+  allows wikitext inside the tag to be parsed and rendered rather than
+  displayed as literal text.
+* (T413375) A new parser function has been added, {{#isbn}}, which replaces
+  the ISBN "magic link" functionality for those wikis which have chosen to
+  disable it.
+* (T420600) A new tag has been added called "Edited other user's JS". It is
+  automatically applied to edits to JavaScript pages in userspace that are not
+  subpages of the user making the edit.
+* (T12814) Special:MovePage can now move over existing pages when moving the
+  talk page (following the same logic as for moving the subject page).
+* (T12814) Special:MovePage will now fail loudly if you ask to move the
+  the talk page but it couldn't be moved (rather than not moving the
+  talk page and displaying an easy-to-miss error message)
+* (T85393) Special:MovePage will now require explicit confirmation if the
+  page you are trying to move to is protected against creation.
+* (T413867) Special:Mute is always unconditionally enabled.
+* (T381455) Special:NamespaceInfo will now display aliases defined through
+  $wgNamespaceAliases.
+* (a53243bb25c) Special:Version now includes links to GitHub commit pages for
+  repositories hosted on GitHub.
+* (T363726) action=info now includes a collapsible table of contents.
+
+=== New features for sysadmins in 1.46 ===
+
+* The 'arrays' localisation cache backend is more compact: a redundant list of
+  message keys, and fallback data from other languages, are now deduplicated.
+  Old cache files should either auto-update or continue to be readable where
+  unchanged.
+* The update.php maintenance script and the web-based schema updater now skips
+  messages about schema updates that were already applied in earlier MediaWiki
+  versions.
+* A new "postprocessing" cache has been added in addition to the parser cache.
+  This is enabled by default for Parsoid but not for the legacy parser; use
+  $wgParserCacheFilterConfig to enable or disable use of this new cache.
+
+=== New developer features in 1.46 ===
+
+* Various functions are now marked with the #[\NoDiscard] attribute, which will
+  cause PHP 8.5 (and Phan) to emit warnings when their return values are not
+  used, as that is usually a mistake. This has no effect when running on PHP
+  8.4 or earlier.
+* mw.message( ... ).parseDom() is now part of mediawiki.base and will return a
+  jQuery object wrapping a text node with the unparsed message contents if
+  mediawiki.jqueryMsg is not loaded.
+* The LinkerMakeExternalLinkWithContext hook has been added as an improved and
+  slightly modernized version of the LinkerMakeExternalLink hook.  Developers
+  are encouraged to migrate to the new hook.
+* (T416542) Logging functions (`ManualLogEntry::insert()` and
+  `DatabaseLogEntry::newFromRow()`) now support interacting with log entries
+  from other wikis in a multi-wiki environment. Previously, this could fail or
+  incorrectly corrupt the local actor store.
+
+=== External library changes in 1.46 ===
+
+==== New external libraries ====
+
+* Added okvpn/clock-lts at 1.0.0 to over-ride lcobucci/clock.
+* Added wikimedia/language-data composer library at v1.1.13.
+
+===== New development-only external libraries =====
+
+* Added ergebnis/phpunit-slow-test-detector v2.24.0.
+
+==== Changed external libraries ====
+
+* Updated codex, codex-design-tokens and codex-icons
+  from v2.3.2 to v2.5.1.
+* Updated guzzlehttp/guzzle from 7.10.0 to 7.12.3.
+* Updated jsonrainbow/json-schema from 5.3.0 to 5.3.4.
+* Updated lcobucci/jwt from 4.1.5 to 5.6.0.
+* Updated monolog/monolog from 2.9.3 to 2.11.0.
+* Updated oojs/oojs-ui (OOUI) from v0.53.0 to v0.53.2.
+* Updated pear/net_smtp from 1.12.1 to 1.12.2.
+* Updated psy/psysh from ^0.12.3 to 0.12.19.
+* Updated symfony/polyfill-php84 from 1.33.0 to 1.37.0.
+* Updated symfony/polyfill-php85 from 1.33.0 to 1.37.0.
+* Updated symfony/yaml from 6.4.26 to 7.4.12.
+* Updated wikimedia/bcp-47-code from 2.0.1 to 2.0.3.
+* Updated wikimedia/cldr-plural-rule-parser from 3.0.0 to 3.0.1.
+* Updated wikimedia/css-sanitizer from 6.1.0 to 6.2.1.
+* Updated wikimedia/ip-utils from 5.0.0 to 6.0.1.
+* Updated wikimedia/less.php from 5.2.2 to 5.5.1.
+* Updated wikimedia/minify from 2.9.0 to 2.10.0.
+* Updated wikimedia/object-factory from 5.0.1 to 6.0.0.
+* Updated wikimedia/relpath from 4.0.2 to 4.1.1.
+* Updated wikimedia/remex-html from 5.1.0 to 6.0.0.
+* Updated wikimedia/running-stat from 2.1.0 to 2.2.0.
+* Updated wikimedia/shellbox from 4.3.0 to 4.4.0.
+* Updated wikimedia/testing-access-wrapper from 3.0.0 to 4.0.0.
+* Updated wikimedia/timestamp from 5.0.0 to 5.1.0.
+* Updated wikimedia/wrappedstring from 4.0.1 to 4.1.0.
+* Updated wikimedia/xmp-reader from 0.10.2 to 0.10.3.
+* Updated CLDRPluralRuleParser from v1.3.2-pre to v1.6.5.
+
+===== Changed development-only external libraries =====
+
+* Updated doctrine/dbal from 3.10.0 to 3.10.5.
+* Updated doctrine/sql-formatter from 1.5.2 to 1.5.4.
+* Updated eslint-config-wikimedia from 0.31.0 to 0.32.3.
+* Updated jsdoc-wmf-theme from 1.1.0 to 1.2.0.
+* Updated mck89/peast from 1.17.2 to 1.17.5.
+* Updated mediawiki/mediawiki-codesniffer from 48.0.0 to 50.0.0.
+* Updated mediawiki/mediawiki-phan-config from 0.18.0 to 0.20.0.
+* Updated mediawiki/minus-x from 1.1.3 to 2.0.1.
+* Updated phpunit/phpunit from 9.6.21 to 9.6.34.
+* Updated svgo from 3.3.2 to 3.3.3.
+* Updated symfony/yaml from 6.4.25 to 6.4.26.
+* Updated wikimedia/alea from 1.0.0 to 1.0.1.
+
+==== Removed external libraries ====
+
+* Removed symfony/polyfill-php82.
+* Removed symfony/polyfill-php83.
+
+===== Removed development-only external libraries =====
+
+* Dropped johnkary/phpunit-speedtrap, incompatible with PHPUnit 10+. (T328919)
+
+=== Action API changes in 1.46 ===
+
+* In the `action=parse` API endpoint, the value `prop=sections` has been
+  deprecated. Use `prop=tocdata` instead (T319141).  The `prop=tocdata`
+  schema is documented at [[mw:API:Parsing_wikitext/TOCData]].
+* When specifying the Action API output format as `xml` or `xmlfm`, the
+  `xslt` parameter has been removed.  No alternative is provided.
+* (T359634) An SBOM in the CycloneDX 1.6 format can now be generated via the
+  `sbom` prop of meta=siteinfo.
+
+=== Action API internal changes in 1.46 ===
+
+* Overriding ApiBase::deprecationMsg() instead of ::isDeprecated() allows
+  you to provide a message describing the deprecation and recommended
+  replacement, which will then be visible in [[Special:ApiSandbox]] and
+  other human-readable descriptions of the API.  Using:
+    $this->addDeprecation( $this->deprecationMsg(), ... );
+  in your ::execute() method will then ensure that a consistent message
+  is reported in API results as well.
+  See ApiQueryDeletedrevs.php for an example of this best practice.
+
+=== Languages updated in 1.46 ===
+MediaWiki supports over 350 languages. Many localisations are updated regularly.
+Below only new and removed languages are listed, as well as changes to languages
+because of Phabricator reports.
+
+* (T407507) Updated namespace translations for Igbo (ig) language.
+* (T409708) Added language support for Bole (bol).
+* (T409393) Added language support for Javanese (Javanese script) (jv-java).
+* (T411884) Added language support for Nawat (ppl).
+* (T419373) Added language support for Lakota (lkt).
+* (T423174) Added language support for East Frisian Low Saxon (frs).
+
+=== Breaking changes in 1.46 ===
+
+* The SpecialWatchlistGetNonRevisionTypesHook has been removed. Instead,
+  extensions should ensure that rc_this_oldid is set to zero on recent changes
+  entries that do not relate to any particular revision.
+* MutableRevisionRecord::setSha1() has been removed without deprecation.
+* Localizations of behavior switches must begin and end with double
+  underscore (`_` or U+FF3F).  Some localizations present in 1.45 which
+  did not do so have been removed; check the category named by
+  [[MediaWiki::Bad-double-underscore-category]] before upgrade to see
+  if your local wiki contains affected wikitext.
+* Passing something other than an Authority for the $performer parameter to
+  WatchlistManager methods clearTitleUserNotifications() and
+  clearAllUserNotifications, deprecated since 1.37, will now throw. User
+  implements Authority and so is still permitted.
+* Passing something other than a PageReference for the $title parameter to
+  WatchlistManager::getTitleNotificationTimestamp and
+  clearTitleUserNotifications, deprecated since 1.37, will now throw.
+* Many WatchedItemStore methods took either PageIdentity or LinkTarget, with
+  LinkTarget being deprecated since 1.37. Passing a LinkTarget which is not a
+  PageReference will now throw.
+* Added an `isLegacy()` method to the `LogEntry` interface. All implementors in
+  core already defined this method, and the interface is not stable to
+  implement.
+* WatchedItemQueryService::getWatchedItemsWithRecentChangeInfo, deprecated since
+  1.45, has been removed. The associated constants, which were used as
+  parameters to that method, like WatchedItemQueryService::FILTER_MINOR, have
+  also been removed.
+* The CategoryMembershipChangeJob global namespace alias for the internal
+  MediaWiki\RecentChanges\CategoryMembershipChangeJob class,
+  deprecated since 1.44, has been removed.
+* The following methods of SpecialUserRights, deprecated in 1.45, have been
+  removed: userCanChangeRights, expiryToTimestamp, doSaveUserGroups,
+  fetchUser, changeableGroups. Callers should now use the equivalent methods
+  from UserGroupAssignmentService or MultiFormatUserIdentityLookup.
+* UserGroupsSpecialPage::canProcessExpiries (formerly
+  SpecialUserRights::canProcessExpiries), deprecated in 1.45, has been removed.
+  There's no replacement; the special page always assumes it can process
+  expiries.
+* The tests/phpunit/phpunit.php entrypoint, deprecated in 1.41, has been
+  removed. Use `composer phpunit` instead.
+* The tests/phpunit/suite.xml configuration file and
+  tests/phpunit/bootstrap.integration.php bootstrap, deprecated in 1.42, have
+  been removed. Use phpunit.xml.dist and bootstrap.php instead.
+* The phpunit.xml.dist configuration file has been removed. MediaWiki now
+  provides a phpunit.xml.template file that will be used to generate a local
+  configuration file dependent on the wiki config. The local configuration
+  can be generated manually by running `composer phpunit:config`, or
+  automatically when running tests via `composer phpunit`.
+* The tables represented by subclasses of TitleLinksTable are now expected to
+  be normalized to use the linktarget table. If they are not, they should
+  override the linksTargetNormalizationStage method to return MIGRATION_OLD.
+* MimeAnalyzer::isPHPImageType, deprecated in 1.40, has been removed.
+* FileRepo no longer implements getUploadStash(), only LocalRepo does.
+* EtcdConfig::setLogger(), deprecated in 1.41, has been removed.
+* Deprecated functions in DatabaseBlock have been removed.
+  - DatabaseBlock::delete(), deprecated in 1.36, has been removed. Please use
+    DatabaseBlockStore::deleteBlock instead.
+  - DatabaseBlock::update(), deprecated in 1.36, has been removed. Use the
+    replacement DatabaseBlockStore::updateBlock instead.
+  - DatabaseBlock::insert(), deprecated in 1.36, has been removed. Use the
+    replacement DatabaseBlockStore::insertBlock instead.
+* The Result class has been removed; it was an unused alias of
+  Shellbox\Command\UnboxedResult since 1.36.
+* The PageContentSave hook, deprecated in 1.35, has been removed.
+* The MagicWordwgVariableIDs hook, deprecated in 1.35, has been removed.
+* The UserIsBlockedGlobally hook, deprecated in 1.40, has been removed
+* The hooks 'AbortTalkPageEmailNotification' and 'AbortEmailNotification'
+  (deprecated in 1.44 and 1.45) have been removed.
+* The hooks 'UpdateUserMailerFormattedPageStatus' and
+  'SendWatchlistEmailNotification' (deprecated in 1.45) have been removed.
+* The related method RecentChangeNotifier::getPageStatus() has been removed.
+* Constructing SpecialRedirectWithAction without a SearchEngineFactory argument
+  will now trigger a PHP type error; omitting this was deprecated in 1.39.
+* The PrefixSearchBackend hook, deprecated in 1.27, has been dropped.
+* Parser::getDefaultSort(), deprecated in 1.38, has been removed.
+* WatchedItem::getLinkTarget(), deprecated in 1.36, has been removed. Instead,
+  use ::getTarget() (and cast if needed).
+* The AddNewAccount hook, deprecated in 1.27, has been dropped.
+* wfMatchesDomainsList(), deprecated in 1.39, has been removed. Instead, use
+  UrlUtils::matchesDomainList().
+* The PSR-7 (HTTP request/response) interfaces have been updated from the
+  1.1 version of the spec to 2.0, adding return type hints. The copycat
+  interface MediaWiki\Rest\ResponseInterface has been likewise updated.
+* The global function wfAssembleUrl(), deprecated in 1.39, has been removed.
+  Instead, use UrlUtils::assemble().
+* The global function wfArrayDiff2(), deprecated in 1.43, has been removed.
+* Parser::Options(), deprecated in 1.35, has been dropped. Instead, use the
+  ::getOptions() and ::setOptions() methods.
+* DefaultSettings.php, deprecated in 1.39, has been removed.
+* $wgRCEngines and remaining behaviour has been removed. This was deprecated
+  in 1.38.
+* $wgRCFeeds now explicitly requires a class parameter. The fallback behaviour
+  has been deprecated since 1.38 and has been dropped.
+* Various deprecated Parser class functions have been dropped.
+  - Parser::OutputType(), deprecated in 1.35. Use ::getOutputType() and
+    ::setOutputType() instead.
+  - Parser::getFunctionLang(), deprecated in 1.40. Use ::getTargetLanguage().
+  - Parser::doBlockLevels(), deprecated in 1.35. Internal-only replacement
+    is provided by BlockLevelPass::doBlockLevels().
+  - Parser::attributeStripCallback(), deprecated with warnings in 1.35.
+    This was never intended to be public.
+  - Parser::enableOOUI(), deprecated with warnings in 1.35. Use
+    $parser->getOutput()->setEnableOOUI() instead.
+  - Parser::getPage() never returns null.  Calling ::getPage() without
+    a title set was deprecated in 1.34 and has emitted warnings when
+    returning null since 1.41.
+  - Parser::getOutput() never returns null.  Calling ::getOutput() before
+    the initialization of ParserOutput has been deprecated with warnings
+    since 1.43.
+  - Parser::setCacheTime() no longer accepts -1 to mean "not cacheable".
+    This has emitted deprecation warnings since 1.36.
+* ContentSerializationException no longer extends deprecated MWException.
+* ContentHandler::checkFormat() and AbstractContent::checkFormat() now
+  throw UnsupportedContentFormatException instead of deprecated MWException.
+* wfMergeErrorArrays(), deprecated in 1.43, has been dropped.
+* Article::getRedirectHeaderHtml(), deprecated in 1.41, has been dropped.
+  Instead, use LinkRenderer::makeRedirectHeader().
+* MergeHistory::isValidMerge() and MergeHistory::merge() now return StatusValue
+  instead of Status. There are no known callers outside of core.
+* Various deprecated global functions for handling URLs have been dropped.
+  - wfParseUrl(), deprecated in 1.39, has been dropped. Instead, use
+    UrlUtils::parse().
+  - wfExpandUrl(), deprecated in 1.39, has been dropped. Instead, use
+    UrlUtils::expand().
+  - wfUrlProtocolsWithoutProtRel(), deprecated in 1.39, has been dropped.
+    Instead, use UrlUtils::validAbsoluteProtocols().
+  - wfUrlProtocols(), deprecated in 1.39, has been dropped. Instead,
+    use UrlUtils::validProtocols().
+* The 'vform' HTMLForm display format, deprecated in 1.45, has been removed.
+  Use the 'codex' display format introduced in 1.41, or the 'ooui' format
+  if you need form fields that are not supported by Codex yet.
+* The VFormHTMLForm class and the HTMLFormField::getVForm() method
+  have been removed.
+* ContentHandler::checkModelID() and AbstractContent::checkModelID() now
+  throw UnexpectedContentModelException instead of deprecated MWException.
+* The mediawiki.ui module, deprecated in 1.41 and unused, was removed.
+  Instead, use Codex modules.
+* The mediawiki.ui.input module, deprecated in 1.41 and unused, was removed.
+  Instead, use Codex modules.
+* The mediawiki.ui.checkbox module, deprecated in 1.41 and unused, was removed.
+  Instead, use Codex modules.
+* The mediawiki.ui.radio module, deprecated in 1.41 and unused, was removed.
+  Instead, use Codex modules.
+* The globally available 'mediawiki.ui/mixins.buttons.less', deprecated in 1.34,
+  was removed as generally available mixin.
+* Less mixin 'mediawiki.mixins.animation.less', deprecated in 1.39, was removed.
+  Use standard CSS animation and transform instead.
+* The $wgUser variable, deprecated in 1.36, was removed. You can instead use
+  RequestContext::getMain()->getUser(), or another available ContextSource.
+* EditPage::$action, deprecated in 1.38, was removed.
+* EditPage::$textbox2, deprecated in 1.44, was removed.
+* TextConflictHelper::incrementStatsByUserEdits(), deprecated in 1.42, was
+  removed.
+
+=== Deprecations in 1.46 ===
+
+* (T166010) All PHP code in MediaWiki is slowly being moved to be in a class
+  namespace as appropriate, so that we can use PSR-4 auto-loading, which will
+  speed up general code loading of MediaWiki. The old global namespace class
+  names are being left behind as deprecated aliases.
+
+  In this release of MediaWiki, 2987 classes now have a namespace and 26 do
+  not yet (99% done, up from 89% in MediaWiki 1.45.0). The following have newly
+  been moved:
+  - Actions related hooks: MediaWiki\Hook => MediaWiki\Actions\Hook
+    - ActionBeforeFormDisplayHook
+    - ActionModifyFormFieldsHook
+    - CustomEditorHook
+    - HistoryPageToolLinksHook
+    - HistoryToolsHook
+    - InfoActionHook
+    - PageHistoryBeforeListHook
+    - PageHistoryLineEndingHook
+    - PageHistoryPager__doBatchLookupsHook
+    - PageHistoryPager__getQueryInfoHook
+    - RawPageViewBeforeOutputHook
+    - UnwatchArticleCompleteHook
+    - UnwatchArticleHook
+    - WatchArticleCompleteHook
+    - WatchArticleHook
+  - Actions related pager: MediaWiki\Pager => MediaWiki\Actions\Pager
+    - HistoryPager
+  - MediaWiki\Autoload:
+    - ClassCollector
+    - AutoloadGenerator
+  - MediaWiki\Collation:
+    - AbkhazUppercaseCollation
+    - BashkirUppercaseCollation
+    - CentralKurdishUppercaseCollation
+    - Collation
+    - CollationCkb
+    - CustomUppercaseCollation
+    - IcuCollation
+    - IdentityCollation
+    - InariSaamiUppercaseCollation
+    - NumericUppercaseCollation
+    - RemoteIcuCollation
+    - UppercaseCollation
+  - Collation related hook: MediaWiki\Hook => MediaWiki\Collation\Hook
+    - Collation__factoryHook
+  - Context related hooks: MediaWiki\Hook => MediaWiki\Context\Hook
+    - RequestContextCreateSkinHook
+    - UserGetLanguageObjectHook
+  - MediaWiki\DB:
+    - CloneDatabase
+    - MWLBFactory
+  - MediaWiki\Debug:
+    - MW
+  - Deferred related hooks: MediaWiki\Hook => MediaWiki\Deferred\Hook
+    - LinksUpdateCompleteHook
+    - LinksUpdateHook
+    - UserEditCountUpdateHook
+  - MediaWiki\Diff:
+    - DifferenceEngine
+    - DifferenceEngineSlotDiffRenderer
+    - IncompatibleDiffTypesException
+    - SlotDiffRenderer
+    - TextSlotDiffRenderer
+    - UnsupportedSlotDiffRenderer
+  - Exception related hook: MediaWiki\Hook => MediaWiki\Exception\Hook
+    - LogExceptionHook
+  - MediaWiki\Export:
+    - BaseDump
+    - DumpBZip2Output
+    - DumpNamespaceFilter
+    - Dump7ZipOutput
+    - DumpFileOutput
+    - WikiExporter
+    - DumpLatestFilter
+    - XmlDumpWriter
+    - DumpDBZip2Output
+    - DumpOutput
+    - DumpNotalkFilter
+    - DumpLBZip2Output
+    - DumpMultiWriter
+    - DumpStringOutput
+    - ExportProgressFilter
+    - DumpPipeOutput
+    - DumpGZipOutput
+    - DumpFilter
+  - Export related hooks: MediaWiki\Hook => MediaWiki\Export\Hook
+    - ModifyExportQueryHook
+    - WikiExporter__dumpStableQueryHook
+    - XmlDumpWriterOpenPageHook
+    - XmlDumpWriterWriteRevisionHook
+  - MediaWiki\ExternalStore:
+    - ExternalStoreMedium
+    - ExternalStoreFactory
+    - ExternalStore
+    - ExternalStoreMemory
+    - ExternalStoreMwstore
+    - ExternalStoreHttp
+    - ExternalStoreException
+    - ExternalStoreAccess
+    - ExternalStoreDB
+  - MediaWiki\FileBackend\LockManager:
+    - LockManagerGroup
+  - FileRepo related hooks: MediaWiki\Hook => MediaWiki\FileRepo\Hook
+    - FileTransformedHook
+    - FileUploadHook
+    - LocalFilePurgeThumbnailsHook
+    - LocalFile__getHistoryHook
+  - MediaWiki\Gallery:
+    - ImageGalleryBase
+    - NolinesImageGallery
+    - PackedHoverImageGallery
+    - PackedImageGallery
+    - PackedOverlayImageGallery
+    - SlideshowImageGallery
+    - TraditionalImageGallery
+  - MediaWiki\Gallery\Exception:
+    - ImageGalleryClassNotFoundException
+  - Gallery related hook: MediaWiki\Hook => MediaWiki\Gallery\Hook
+    - GalleryGetModesHook
+  - MediaWiki\Http:
+    - MWCallbackStream
+    - MWHttpRequest
+    - GuzzleHttpRequest
+  - MediaWiki\Import:
+    - WikiImporterFactory
+    - ImportableOldRevisionImporter
+    - ImportStreamSource
+    - ImportableUploadRevisionImporter
+    - OldRevisionImporter
+    - WikiRevision
+    - ImportableOldRevision
+    - ImportStringSource
+    - ImportableUploadRevision
+    - ImportSource
+    - UploadRevisionImporter
+    - WikiImporter
+    - UploadSourceAdapter
+  - Import related hooks: MediaWiki\Hook => MediaWiki\Import\Hook
+    - AfterImportPageHook
+    - ImportHandleContentXMLTagHook
+    - ImportHandleLogItemXMLTagHook
+    - ImportHandlePageXMLTagHook
+    - ImportHandleRevisionXMLTagHook
+    - ImportHandleToplevelXMLTagHook
+    - ImportHandleUploadXMLTagHook
+  - Jobs related hook: MediaWiki\Hook => MediaWiki\JobQueue\Jobs\Hook
+    - RecentChangesPurgeRowsHook
+  - MediaWiki\Language
+    - MessageCache
+    - LanguageConverterSpecific
+    - TrivialLanguageConverter
+    - LCStore
+    - LCStoreStaticArray
+    - LanguageConverterIcu
+    - LocalisationCache
+    - LocalisationCacheBulkLoad
+    - MessageLocalizer
+    - LCStoreCDB
+    - LCStoreNull
+    - LCStoreDB
+  - MediaWiki\Language\Converters
+    - ShiConverter
+    - EnConverter
+    - BanConverter
+    - CrhConverter
+    - TlyConverter
+    - ZhConverter
+    - MniConverter
+    - TgConverter
+    - IuConverter
+    - GanConverter
+    - ShConverter
+    - WuuConverter
+    - UzConverter
+    - KuConverter
+    - ZghConverter
+    - SrConverter
+  - MediaWiki\Languages
+    - LanguageTr
+    - LanguageFi
+    - LanguageSh
+    - LanguageHu
+    - LanguageKm
+    - LanguageAr
+    - LanguageWa
+    - LanguageBe_tarask
+    - LanguageKk_cyrl
+    - LanguageHy
+    - LanguageEn
+    - LanguageMy
+    - LanguageKaa
+    - LanguageDsb
+    - LanguageLa
+    - LanguageBs
+    - LanguageSl
+    - LanguageQqx
+    - LanguageOs
+    - LanguageZh_hans
+    - LanguageKsh
+    - LanguageKk
+    - LanguageWuu
+    - LanguageGa
+    - LanguageTyv
+    - LanguageMl
+    - LanguageAz
+    - LanguageYue
+    - LanguageJa
+    - LanguageCu
+    - LanguageZh
+    - LanguageHsb
+    - LanguageGan
+  - Linker related hooks: MediaWiki\Hook => MediaWiki\Linker\Hook
+    - LinkerMakeExternalImageHook
+    - LinkerMakeExternalLinkHook
+    - LinkerMakeMediaLinkFileHook
+  - MediaWiki\ObjectCache:
+    - ObjectCache
+    - ObjectCacheFactory
+    - SqlBagOStuff
+  - MediaWiki\Skins\Hook => MediaWiki\Skin\Hook
+    - SkinAfterPortletHook
+    - SkinPageReadyConfigHook
+  - Logging related hooks: MediaWiki\Hook => MediaWiki\Logging\Hook
+    - LogEventsListGetExtraInputsHook
+    - LogEventsListLineEndingHook
+    - LogEventsListShowLogExtractHook
+    - LogLineHook
+    - ManualLogEntryBeforePublishHook
+  - Logging related pager: MediaWiki\Pager => MediaWiki\Logging\Pager
+    - LogPager
+  - Mail related hooks: MediaWiki\Hook => MediaWiki\Mail\Hook
+    - AlternateUserMailerHook
+    - UserMailerChangeReturnPathHook
+    - UserMailerSplitToHook
+    - UserMailerTransformContentHook
+    - UserMailerTransformMessageHook
+  - MediaWiki\Media
+    - PNGMetadataExtractor
+    - MediaHandlerFactory
+    - MediaTransformInvalidParametersException
+    - DjVuImage
+    - SVGReader
+    - IPTC
+    - BitmapHandler_ClientOnly
+    - TransformationalImageHandler
+    - BmpHandler
+    - JpegMetadataExtractor
+    - GIFMetadataExtractor
+    - ExifBitmapHandler
+    - BitmapHandler
+    - InvalidJpegException
+    - DjVuHandler
+    - ThumbnailImage
+    - JpegHandler
+    - GIFHandler
+    - PNGHandler
+    - MediaHandlerState
+    - TrivialMediaHandlerState
+    - MediaHandler
+    - InvalidSVGException
+    - XCFHandler
+    - TiffHandler
+    - MediaTransformError
+    - BitmapMetadataHandler
+    - FormatMetadata
+    - InvalidTiffException
+    - TransformTooBigImageAreaError
+    - TransformParameterError
+    - SvgHandler
+    - InvalidPSIRException
+    - ImageHandler
+    - WebPHandler
+    - MediaTransformOutput
+    - Jpeg2000Handler
+    - Exif
+  - Media related hooks: MediaWiki\Hook => MediaWiki\Media\Hook
+    - BitmapHandlerCheckImageAreaHook
+    - BitmapHandlerTransformHook
+    - GetExtendedMetadataHook
+    - GetMetadataVersionHook
+    - ThumbnailBeforeProduceHTMLHook
+    - ValidateExtendedMetadataCacheHook
+  - Parser related hooks: MediaWiki\Hook => MediaWiki\Parser\Hook
+    - AfterParserFetchFileAndTitleHook
+    - BeforeParserFetchFileAndTitleHook
+    - BeforeParserFetchTemplateRevisionRecordHook
+    - GetLinkColoursHook
+    - GetMagicVariableIDsHook
+    - InternalParseBeforeLinksHook
+    - IsValidEmailAddrHook
+    - PageRenderingHashHook
+    - ParserAfterParseHook
+    - ParserAfterTidyHook
+    - ParserBeforeInternalParseHook
+    - ParserBeforePreprocessHook
+    - ParserCacheSaveCompleteHook
+    - ParserClearStateHook
+    - ParserClonedHook
+    - ParserFetchTemplateDataHook
+    - ParserFirstCallInitHook
+    - ParserGetVariableValueSwitchHook
+    - ParserGetVariableValueTsHook
+    - ParserLimitReportFormatHook
+    - ParserLimitReportPrepareHook
+    - ParserLogLinterDataHook
+    - ParserMakeImageParamsHook
+    - ParserModifyImageHTMLHook
+    - ParserOptionsRegisterHook
+    - ParserOutputPostCacheTransformHook
+    - ParserPreSaveTransformCompleteHook
+    - RejectParserCacheValueHook
+  - Password related hook: MediaWiki\Hook => MediaWiki\Password\Hook
+    - PasswordPoliciesForUserHook
+  - MediaWiki\Profiler
+    - ProfilerSectionOnly
+    - ProfilerXhprof
+    - Profiler
+    - SectionProfileCallback
+    - ProfilerStub
+    - ProfilerExcimer
+    - SectionProfiler
+  - MediaWiki\Profiler\Output
+    - ProfilerOutputText
+    - ProfilerOutput
+    - ProfilerOutputStats
+    - ProfilerOutputDump
+  - RCFeed related hook: MediaWiki\Hook => MediaWiki\RCFeed\Hook
+    - IRCLineURLHook
+  - RecentChanges related hooks: MediaWiki\Hook => MediaWiki\RecentChanges\Hook
+    - ChangesListInitRowsHook
+    - ChangesListInsertArticleLinkHook
+    - ChangesListInsertLogEntryHook
+    - EnhancedChangesListModifyBlockLineDataHook
+    - EnhancedChangesListModifyLineDataHook
+    - EnhancedChangesList__getLogTextHook
+    - FetchChangesListHook
+    - MarkPatrolledCompleteHook
+    - MarkPatrolledHook
+    - OldChangesListRecentChangesLineHook
+    - RecentChange_saveHook
+  - MediaWiki\RevisionDelete:
+    - RevisionDeleter
+    - RevDelFileItem
+    - RevDelRevisionItem
+    - RevDelLogList
+    - RevisionDeleteUser
+    - RevDelList
+    - RevDelFileList
+    - RevDelArchivedFileList
+    - RevDelLogItem
+    - RevDelRevisionList
+    - RevDelArchivedFileItem
+    - RevDelItem
+    - RevDelArchivedRevisionItem
+    - RevDelArchiveList
+    - RevDelArchiveItem
+  - RevisionDelete related hook: MediaWiki\Hook => MediaWiki\RevisionDelete\Hook
+    - ArticleRevisionVisibilitySetHook
+  - MediaWiki\Search:
+    - SearchMySQL
+    - SqlSearchResult
+    - SqlSearchResultSet
+    - BaseSearchResultSet
+    - ISearchResultSet
+    - PrefixSearch
+    - RevisionSearchResult
+    - SearchEngineConfig
+    - SearchResult
+    - SearchResultSet
+    - SearchResultTrait
+    - TitlePrefixSearch
+    - PaginatingSearchEngine
+    - SearchHighlighter
+    - StringPrefixSearch
+    - SearchIndexField
+    - PerRowAugmentor
+    - ResultAugmentor
+    - NullIndexField
+    - SearchIndexFieldDefinition
+    - FauxSearchResultSet
+    - SearchSuggestion
+    - SearchEngine
+    - SearchSqlite
+    - SearchResultSetTrait
+    - SearchNearMatchResultSet
+    - ResultSetAugmentor
+    - SearchEngineFactory
+    - SearchSuggestionSet
+    - SearchPostgres
+    - SearchDatabase
+    - DummySearchIndexFieldDefinition
+    - SearchExactMatchRescorer
+    - FauxSearchResult
+  - Skin related hooks: MediaWiki\Hook => MediaWiki\Skin\Hook
+    - GetNewMessagesAlertHook
+    - SidebarBeforeOutputHook
+    - SiteNoticeAfterHook
+    - SiteNoticeBeforeHook
+    - SkinAddFooterLinksHook
+    - SkinAfterBottomScriptsHook
+    - SkinAfterContentHook
+    - SkinBuildSidebarHook
+    - SkinCopyrightFooterMessageHook
+    - SkinEditSectionLinksHook
+    - SkinPreloadExistenceHook
+    - SkinSubPageSubtitleHook
+    - SkinTemplateGetLanguageLinkHook
+    - SkinTemplateNavigation__UniversalHook
+    - UndeletePageToolLinksHook
+  - Skin component related classes: MediaWiki\Skin => MediaWiki\Skin\Components
+    - ComponentRegistryContext
+    - SkinComponent
+    - SkinComponentCopyright
+    - SkinComponentFooter
+    - SkinComponentLastModified
+    - SkinComponentLink
+    - SkinComponentListItem
+    - SkinComponentLogo
+    - SkinComponentMenu
+    - SkinComponentRegistry
+    - SkinComponentRegistryContext
+    - SkinComponentRenderedWith
+    - SkinComponentSearch
+    - SkinComponentTableOfContents
+    - SkinComponentTempUserBanner
+    - SkinComponentUtils
+  - MediaWiki\Specials\Exception
+    - SpecialUploadStashTooLargeException
+  - MediaWiki\Specials\FormFields
+    - EditWatchlistCheckboxSeriesField
+    - Licenses
+    - UploadSourceField
+  - MediaWiki\Specials\Forms
+    - EditWatchlistNormalHTMLForm
+    - PreferencesFormOOUI
+    - UploadForm
+  - MediaWiki\Specials\Helpers
+    - License
+    - LoginHelper
+    - ImportReporter
+  - Specials related hooks: MediaWiki\Hook => MediaWiki\Specials\Hook
+    - AncientPagesQueryHook
+    - BeforeWelcomeCreationHook
+    - BlockIpCompleteHook
+    - BlockIpHook
+    - BookInformationHook
+    - ChangeUserGroupsHook
+    - ContribsPager__getQueryInfoHook
+    - ContribsPager__reallyDoQueryHook
+    - ContributionsLineEndingHook
+    - ContributionsToolLinksHook
+    - DeletedContribsPager__reallyDoQueryHook
+    - DeletedContributionsLineEndingHook
+    - EmailUserCCHook
+    - EmailUserCompleteHook
+    - EmailUserFormHook
+    - EmailUserHook
+    - EmailUserPermissionsErrorsHook
+    - ExtensionTypesHook
+    - FileUndeleteCompleteHook
+    - GetLogTypesOnUserHook
+    - ImportLogInterwikiLinkHook
+    - ImportSourcesHook
+    - LanguageSelectorHook
+    - LoginFormValidErrorMessagesHook
+    - LonelyPagesQueryHook
+    - NewPagesLineEndingHook
+    - OtherAutoblockLogLinkHook
+    - OtherBlockLogLinkHook
+    - PostLoginRedirectHook
+    - PreferencesGetLegendHook
+    - PrefsEmailAuditHook
+    - RandomPageQueryHook
+    - ShortPagesQueryHook
+    - SoftwareInfoHook
+    - SpecialBlockModifyFormFieldsHook
+    - SpecialContributionsBeforeMainOutputHook
+    - SpecialContributions__formatRow__flagsHook
+    - SpecialContributions__getForm__filtersHook
+    - SpecialCreateAccountBenefitsHook
+    - SpecialExportGetExtraPagesHook
+    - SpecialListusersDefaultQueryHook
+    - SpecialListusersFormatRowHook
+    - SpecialListusersHeaderFormHook
+    - SpecialListusersHeaderHook
+    - SpecialListusersQueryInfoHook
+    - SpecialLogAddLogSearchRelationsHook
+    - SpecialLogResolveLogTypeHook
+    - SpecialMovepageAfterMoveHook
+    - SpecialMuteModifyFormFieldsHook
+    - SpecialNewPagesFiltersHook
+    - SpecialNewpagesConditionsHook
+    - SpecialPrefixIndexGetFormFiltersHook
+    - SpecialPrefixIndexQueryHook
+    - SpecialRandomGetRandomTitleHook
+    - SpecialRecentChangesPanelHook
+    - SpecialResetTokensTokensHook
+    - SpecialSearchCreateLinkHook
+    - SpecialSearchGoResultHook
+    - SpecialSearchNogomatchHook
+    - SpecialSearchProfilesHook
+    - SpecialSearchResultsAppendHook
+    - SpecialSearchResultsHook
+    - SpecialSearchResultsPrependHook
+    - SpecialSearchSetupEngineHook
+    - SpecialStatsAddExtraHook
+    - SpecialTrackingCategories__generateCatLinkHook
+    - SpecialTrackingCategories__preprocessHook
+    - SpecialUploadCompleteHook
+    - SpecialVersionVersionUrlHook
+    - SpecialWhatLinksHereQueryHook
+    - UnblockUserCompleteHook
+    - UnblockUserHook
+    - UndeleteForm__showHistoryHook
+    - UndeleteForm__showRevisionHook
+    - UploadFormInitDescriptorHook
+    - UploadFormSourceDescriptorsHook
+    - UploadForm_BeforeProcessingHook
+    - UploadForm_getInitialPageTextHook
+    - UploadForm_initialHook
+    - UserCanChangeEmailHook
+    - UserLoginCompleteHook
+    - UserLogoutCompleteHook
+    - UsersPagerDoBatchLookupsHook
+    - WantedPages__getQueryInfoHook
+    - WatchlistEditorBeforeFormRenderHook
+    - WatchlistEditorBuildRemoveLineHook
+    - WhatLinksHerePropsHook
+  - Specials related pager: MediaWiki\Pager => MediaWiki\Specials\Pager
+    - ActiveUsersPager
+    - AllMessagesTablePager
+    - BlockListPager
+    - CategoryPager
+    - ContribsPager
+    - DeletedContribsPager
+    - EditWatchlistPager
+    - ImageListPager
+    - MergeHistoryPager
+    - NewFilesPager
+    - NewPagesPager
+    - PagerTools
+    - ProtectedPagesPager
+    - ProtectedTitlesPager
+    - UploadStashPager
+    - UsersPager
+  - Title related hooks: MediaWiki\Hook => MediaWiki\Title\Hook
+    - CanonicalNamespacesHook
+    - NamespaceIsMovableHook
+  - MediaWiki\Upload:
+    - UploadVerificationStatus
+    - UploadFromStash
+    - UploadFromUrl
+    - UploadBase
+    - UploadStash
+    - UploadStashFile
+    - UploadFromFile
+    - UploadFromChunks
+  - MediaWiki\Upload\Exception:
+    - UploadChunkFileException
+    - UploadChunkVerificationException
+    - UploadStashBadPathException
+    - UploadStashException
+    - UploadStashFileException
+    - UploadStashNotFoundException
+    - UploadStashNoSuchKeyException
+    - UploadStashNotLoggedInException
+    - UploadStashWrongOwnerException
+    - UploadStashZeroLengthFileException
+  - Upload related hooks: MediaWiki\Hook => MediaWiki\Upload\Hook
+    - IsUploadAllowedFromUrlHook
+    - UploadCompleteHook
+    - UploadCreateFromRequestHook
+    - UploadStashFileHook
+    - UploadVerifyFileHook
+    - UploadVerifyUploadHook
+  - MediaWiki\User:
+    - UserEditCountInitJob
+    - UserGroupExpiryJob
+    - Options/UserOptionsUpdateJob
+  - MediaWiki\Utils:
+    - BatchRowUpdate
+    - MWCryptRand
+    - BatchRowWriter
+    - BatchRowIterator
+    - RowUpdateGenerator
+    - MWRestrictions
+    - MWFileProps
+    - ExecutableFinder
+    - FileContentsHasher
+  - Watchlist related hook: MediaWiki\Hook => MediaWiki\Watchlist\Hook
+    - WatchedItemQueryServiceExtensionsHook
+  - The LockManager library: Wikimedia\LockManager
+    - FSLockManager
+    - LockManager
+    - MemcLockManager
+    - NullLockManager
+    - QuorumLockManager
+    - RedisLockManager
+    - ScopedLock
+* Wikimedia\MapCacheLRU\MapCacheLRU renamed to
+  Wikimedia\ObjectCache\MapCacheLRU.
+* MediaWiki\Cache\Hook\MessageCacheFetchOverridesHook renamed to
+  MediaWiki\Language\Hook\MessageCacheFetchOverridesHook.
+* MediaWiki\Cache\Hook\MessageCacheReplaceHook renamed to
+  MediaWiki\Language\Hook\MessageCacheReplaceHook.
+* MediaWiki\Cache\Hook\MessageCache__getHook renamed to
+  MediaWiki\Language\Hook\MessageCache__getHook.
+* MediaWiki\Cache\Hook\MessagesPreLoadHook renamed to
+  MediaWiki\Language\Hook\MessagesPreLoadHook.
+* MediaWiki\Exception\MWContentSerializationException renamed to
+  MediaWiki\Content\ContentSerializationException.
+* MediaWiki\Exception\MWUnknownContentModelException renamed to
+  MediaWiki\Content\UnknownContentModelException.
+* Using an int for the $mode parameter of LanguageFallback::getAll() is now
+  deprecated.  Use the new LanguageFallbackMode enumeration instead.
+* LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use
+  LanguageFallbackModes::{MESSAGES,STRICT} instead.
+* IDatabase::lockIsFree is deprecated. For non-blocking locks, use
+  IDatabase::lock with timeout 0 instead.
+* The AutopromoteCondition hook has been deprecated and will now trigger
+  deprecation warnings. Use UserRequirementsCondition hook, instead.
+* The RecentChange::parseToRCType and RecentChange::parseFromRCType methods are
+  deprecated and will now trigger deprecation warnings.
+* RecentChange::getCharacterDifference was unused and has been deprecated, call
+  ChangesList::formatCharacterDifference or ChangesList::showCharacterDifference
+  instead.
+* Calling ChangesList::flag and ChangesList::showCharacterDifference without
+  specifying a context has been deprecated.
+* Calling ChangesList::userCan without specifying a performer has been
+  deprecated.
+* Parser::makeImage() has been deprecated with warnings; use
+  ::makeImageHtml() instead, which doesn't expose the internal LinkHolderArray.
+* Parser::replaceLinkHolders() now emits deprecation warnings; it was
+  deprecated in 1.34.
+* Parser::setCacheTime() now requires its argument to be a non-null string;
+  passing other values triggers a deprecation warning.
+* PageBundleParserOutputConverter::pageBundleFromParserOutput() has been
+  deprecated with warnings. Use ::htmlPageBundleFromParserOutput() instead.
+* CoreTagHooks has been deprecated; use the ParserCoreTagHooks service
+  instead.  Its static methods were previously marked @internal but will
+  now trigger deprecation warnings as well.
+* Content::getNativeData() now emits deprecation warnings in all Content
+  subclasses defined in core; it was deprecated in 1.33.
+* Returning null (or allowing the null initial value to remain) from the
+  ParserGetVariableValueSwitch hook for a magic word you've registered
+  via the GetMagicVariableIDs hook is deprecated and emits warnings.
+* The WatchedItemQueryServiceExtensions hook is deprecated and is no longer
+  called. Use ApiQueryBaseBeforeQuery, ApiQueryBaseAfterQuery,
+  ApiQueryBaseProcessRow and ApiQueryWatchlistExtractOutputData.
+* Passing oldid to WatchlistManager::clearTitleUserNotifications
+  or WikiPage::doViewUpdates is deprecated and emits notice,
+  pass RevisionRecord instead.
+* ApiUpload::getDummyInstance was deprecated, subclasses of ApiUpload can use
+  ApiUpload::getUploadImageInfo() instead.
+* The UserLinkRenderer service has been marked @internal and the
+  UserLinkRenderer::userLink() method has been deprecated. Use
+  LinkRenderer::makeUserLink() instead. Calls to Linker::userLink()
+  method, deprecated in 1.44, should also use LinkRenderer::makeUserLink().
+  Users of the UserLinkRenderer service should use LinkRenderer.
+* The ParserOutput::mergeTrackingMetaDataFrom(), ::mergeHtmlMetaDataFrom(),
+  and ::mergeInternalMetaDataFrom() methods have been marked @internal.
+  Use ParserOutput::collectMetadata() instead.
+* User::getInstanceForUpdate() has been deprecated and now emits deprecation
+  warnings. In most cases (such as for use with UserOptionsManager) calling
+  this method is no longer needed. In other cases use getInstanceFromPrimary()
+  instead.
+* The use of "fromdb", "fromdbmaster", "forupdate" constants in WikiPage methods
+  has been deprecated. Effected methods include loadFromRow(), wasLoadedFrom(),
+  and loadPageData().
+* The following PageHistoryVisibilityChangedEvent methods were deprecated:
+  - wasCurrentRevisionAffected(); use wasLatestRevisionAffected() instead.
+  - getCurrentRevisionId(); getLatestRevisionId() instead.
+  - getCurrentRevisionVisibilityBefore(); use
+    getLatestRevisionVisibilityBefore() instead.
+  - getCurrentRevisionVisibilityAfter(); use
+    getLatestRevisionVisibilityAfter() instead.
+* Some static methods in Xml, deprecated in 1.42, now emit deprecation warnings:
+  - Xml::attrib(),
+  - Xml::buildForm(),
+  - Xml::fieldset(),
+  - Xml::label() — use Html::label() instead,
+  - Xml::listDropdown(),
+  - Xml::listDropdownOptions() & Xml::listDropdownOptionsOoui(), and
+  - Xml::option().
+* Returning a boolean from LoggedUpdateMaintenance::doDbUpdates() is now
+  deprecated. Maintenance scripts that extend LoggedUpdateMaintenance
+  should return a LoggedUpdateOutcome value from doDbUpdates() and
+  advertise this fact using a return type declaration.
+  This allows doDbUpdates() to signal a dry run explicitly, removing the need
+  to treat dry runs as failures (T411104).
+* Language::emphasize() is unused, got deprecated, and will be removed in the
+  next version.
+* RevisionLookup::getKnownCurrentRevision() is now deprecated in favor of
+  RevisionLookup::getKnownLatestRevision().
+* RevisionStore::getKnownCurrentRevision() is now deprecated in favor of
+  RevisionStore::getKnownLatestRevision().
+* DerivedPageDataUpdater::grabCurrentRevision() is now deprecated in favor of
+  DerivedPageDataUpdater::grabLatestRevision().
+* All public properties of ConverterRule have been deprecated and now emit
+  deprecation warnings.  They will be made private in a future release.
+* Modification of the namespaces key will no longer modify associated pages
+  in the SkinTemplateNavigation::Universal hook (T412238).
+* The global function wfArrayPlus2d() has been deprecated.
+* The global function wfArrayInsertAfter() has been deprecated.
+* All skins are now required to declare the menus they render in their
+  skin definition (per T409774). In future this will allow for
+  skin optimizations. BaseTemplate::getPersonalTools was also
+  deprecated as was calls by BaseTemplate::get to
+  personal_tools and content_actions. Please see migration guide at T416652.
+* Passing null to the $output parameter of FeedUtils::checkFeedOutput is now
+  deprecated and emits deprecation warnings.
+* The HtmlCacheUpdater service has been renamed to HTMLCacheUpdater (T419427).
+  Using the old name is now deprecated and emits deprecation warnings.
+* ChannelFeed::httpHeaders() and ChannelFeed::outXmlHeader() have been
+  deprecated and emit deprecation warnings, use ::sendHttpHeaders() and
+  ::outputXmlHeader() instead.
+* ChannelFeed::outHeader(), ::outItem() and ::outFooter() have been deprecated
+  and emit deprecation warnings, use ::outputHeader(), ::outputItem() and
+  ::outputFooter() instead.
+* ResourceLoader::makeConfigSetScript(), deprecated in 1.44, now emits
+  deprecation warnings.
+* SpecialVersion::getVersionLinked() is unused and has been deprecated.
+* Direct instantiations of the SpecialPage root and intermediate classes are
+  deprecated and emit deprecation warnings:
+  - SpecialPage
+  - ContributionsSpecialPage
+  - IncludableSpecialPage
+  - UnlistedSpecialPage
+* Less mixin 'mediawiki.mixins.rotation.less' got deprecated.
+  Use standard CSS transform and animation instead.
+* The usage of the SpecialPage constructor parameter $includable is deprecated
+  and emits deprecation warnings.
+  The usage of the SpecialPage property $mIncludable is deprecated and emits
+  deprecation warnings.
+  Override the method isIncludable() or extend IncludableSpecialPage instead.
+* Calling ChangeTags::formatSummaryRow and ChangeTags::buildTagFilterSelector
+  without specifying a context was unused and got deprecated.
+* The usage of the SpecialPage, IncludableSpecialPage or UnlistedSpecialPage
+  constructor with the unused parameters $function or $file now emits
+  deprecation warnings.
+* The usage of the SpecialPage constructor parameter $listed is deprecated and
+  emits deprecation warnings.
+  Override the method isListed() or extend UnlistedSpecialPage instead.
+* Accessing the SpecialPage property $mRestriction is now deprecated. Use
+  $this->getRestriction() instead to get the value.
+* The usage of the SpecialPage constructor parameter $restriction is
+  deprecated. Override the method getRestriction() instead.
+* Calling File::getShortDesc, File::getLongDesc, File::getDescriptionText,
+  File::getDimensionsString, MediaHandler::getGeneralShortDesc or
+  MediaHandler::getGeneralLongDesc without specifying a language is deprecated.
+  Inject the suitable context language, falling back to RequestContext.
+* Calling MediaHandler::getShortDesc and MediaHandler::getLongDesc without
+  calling MediaHandler::setLanguage befoe is deprecated.
+* Overriding Action::getArticle now emits deprecation warnings; overriding
+  was deprecated in 1.35.
+* The global function wfGetUrlUtils(), deprecated in 1.43, now emits
+  deprecation warnings. Access the UrlUtils service instead.
+* Calling HTMLForm::loadInputFromParameters without a parent, deprecated since
+  1.40, now emits warnings.
+* RecentChange::newLogEntry, RecentChange::notifyNew and
+  RecentChange::notifyEdit, deprecated in 1.45, now emit warnings.
+* Calling SpecialPageFactory::getUsablePages without context was deprecated.
+* Calling UploadBase::checkWarnings without a user parameter is deprecated
+  and emits warnings.
+* OutputPage::transformCssMedia() and ResourceLoader::makeCombinedStyles() now
+  take a $request parameter, and passing null to it will trigger warnings.
+* The ConditionalDefaultOptionsAddCondition hook has been deprecated
+  and will now trigger deprecation warnings. There is no replacement.
+* TextboxBuilder is no longer newable, and passing null to either of the three
+  constructor parameters has been deprecated. Use the service instead to get an
+  instance of the class.
+* LanguageConverter::getAdditionalFlags() has been deprecated, as it appears
+  to be unused and non-functional.
+* wfPercent() has been deprecated and now emits deprecation warnings. Use
+  round() and format the number as appropriate for the language, for example
+  using `wfMessage( 'percent' )->numParams( round( $x, 2 ) )->text()`.
+* The EditFilter hook has been deprecated and will trigger deprecation warnings.
+  Use EditFilterMergedContent or MultiContentSave instead.
+
+== Compatibility ==
+
+MediaWiki 1.46 requires PHP 8.3.0 or later and the following PHP extensions:
+
+* ctype
+* dom
+* fileinfo
+* iconv
+* intl
+* mbstring
+* xml
+
+MariaDB is the recommended database software. MySQL, PostgreSQL, or SQLite can
+be used instead, but support for them is somewhat less mature.
+
+The supported versions are:
+
+* MariaDB 10.3 or higher
+* MySQL 5.7.0 or higher
+* PostgreSQL 10 or later
+* SQLite 3.8.0 or later
+
+== Online documentation ==
+Documentation for both end-users and site administrators is available on
+MediaWiki.org, and is covered under the GNU Free Documentation License (except
+for pages that explicitly state that their contents are in the public domain):
+
+  <https://www.mediawiki.org/wiki/Special:MyLanguage/Documentation>
+
+== Mailing list ==
+A mailing list is available for MediaWiki user support and discussion:
+
+  <https://lists.wikimedia.org/postorius/lists/mediawiki-l.lists.wikimedia.org/>
+
+A low-traffic announcements-only list is also available:
+
+  <https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/>
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
+
+== IRC help ==
+There's usually someone online in #mediawiki on irc.libera.chat.
+
 = MediaWiki 1.45 =
 
 == MediaWiki 1.45.3 ==
