@@ -4343,7 +4343,7 @@
 			},
 			{
 				"name": "ss_users",
-				"comment": "Number of users, theoretically equal to SELECT COUNT(*) FROM user.",
+				"comment": "Number of users, excluding temporary accounts. See SiteStatsInit::users().",
 				"type": "bigint",
 				"options": {
 					"unsigned": true,
@@ -4364,6 +4364,26 @@
 			{
 				"name": "ss_images",
 				"comment": "Number of images, equivalent to SELECT COUNT(*) FROM image.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": false,
+					"default": null
+				}
+			},
+			{
+				"name": "ss_temp_users",
+				"comment": "Number of temporary accounts, which are not counted in ss_users.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": false,
+					"default": null
+				}
+			},
+			{
+				"name": "ss_active_temp_users",
+				"comment": "Number of temporary accounts that still edit, not counted in ss_active_users.",
 				"type": "bigint",
 				"options": {
 					"unsigned": true,

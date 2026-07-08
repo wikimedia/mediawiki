@@ -738,6 +738,8 @@ CREATE TABLE /*_*/site_stats (
   ss_users BIGINT UNSIGNED DEFAULT NULL,
   ss_active_users BIGINT UNSIGNED DEFAULT NULL,
   ss_images BIGINT UNSIGNED DEFAULT NULL,
+  ss_temp_users BIGINT UNSIGNED DEFAULT NULL,
+  ss_active_temp_users BIGINT UNSIGNED DEFAULT NULL,
   PRIMARY KEY(ss_row_id)
 ) /*$wgDBTableOptions*/;
 
