@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Exec8"
+		]
+	},
+	"cdx-chip-input-chip-added": "Ang Chip $1 gindugang.",
+	"cdx-chip-input-chip-removed": "Ang chip $1 ginkuha.",
+	"cdx-input-chip-aria-description": "I-press ang Enter para ma-edit ukon Delete para makuha.",
+	"cdx-dialog-close-button-label": "Sarado",
+	"cdx-label-optional-flag": "(pagusto lang)",
+	"cdx-message-dismiss-button-label": "Sarado",
+	"cdx-popover-close-button-label": "Sarado",
+	"cdx-search-input-search-button-label": "Magpangita",
+	"cdx-table-select-all-label": "Pilia ang tanan nga mga laray",
+	"cdx-table-select-row-label": "Pilia ang laray $1 sang $2",
+	"cdx-table-sort-caption": "$1 (ang mga ulohan sang kolum nga may mga buton sarang ma-sort).",
+	"cdx-typeahead-search-search-results-label": "Mga resulta sang pagpangita",
+	"cdx-table-pager-button-first-page": "Una nga pahina",
+	"cdx-table-pager-button-last-page": "Katapusan nga pahina",
+	"cdx-table-pager-button-next-page": "Dasong panid",
+	"cdx-table-pager-button-prev-page": "Nagligad nga panid",
+	"cdx-table-pager-items-per-page-default": "Mga resulta kada pahina",
+	"cdx-table-pagination-status-message-determinate-long": "Nagapakita sang mga resulta $1 – $2 sang $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1 – $2 sang $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Nagapakita sang mga resulta $1 – $2 sang madamo",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1 – $2 sang madamo",
+	"cdx-table-pagination-status-message-indeterminate-final": "Nagapakita sang katapusan nga {{PLURAL:$1| $1 nga resulta| $1 nga mga resulta}}",
+	"cdx-table-pagination-status-message-pending": "Naga-load sang mga resulta...",
+	"cdx-table-no-data-message": "Wala sing datos nga magamit."
+}

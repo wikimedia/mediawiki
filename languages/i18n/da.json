@@ -4074,6 +4074,7 @@
 	"right-renameuser-global": "Ændre navn på globale brugere",
 	"renameuser-renamed-notice": "Denne {{GENDER:$1|bruger}} har fået ændret navn.\nNavneændringsloggen er vist nedenfor til reference.",
 	"log-unknown-action": "udførte ukendt handling \"$2\" på [[$1]]",
+	"log-unsafe-logentry": "(Denne logpost kunne ikke vises, fordi dens parametre indeholder usikre serialiserede data.)",
 	"createacct-benefit-heading-temp-user": "Tak, fordi du bidrager til {{SITENAME}}.\nOpret en konto for at få adgang til flere funktioner.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} er lavet af folk som dig. Med en konto kan du have en permanent og sikker identitet med adgang til funktioner som:",
 	"benefit-1-description": "Overvågningslister, der giver dig mulighed for at holde styr på sider, du er interesseret i.",

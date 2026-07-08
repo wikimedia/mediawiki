@@ -256,8 +256,12 @@
 	"exif-urgency-normal": "نورمال ($1)",
 	"exif-urgency-low": "لږ ($1)",
 	"exif-urgency-high": "ډېر ($1)",
+	"exif-firstphotodate": "د لومړي انځور نېټه",
+	"exif-lastphotodate": "د وروستي انځور نېټه",
+	"exif-usepanoramaviewer": "پانورما کتونکی کارول",
 	"exif-usepanoramaviewer-true": "هو",
 	"exif-usepanoramaviewer-false": "نه",
 	"exif-exposurelockused-true": "هو",
-	"exif-exposurelockused-false": "نه"
+	"exif-exposurelockused-false": "نه",
+	"exif-sourcephotoscount": "د سرچينې انځور شمېر"
 }

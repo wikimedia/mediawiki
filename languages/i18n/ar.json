@@ -787,7 +787,7 @@
 	"edit-slots-cannot-remove": "{{PLURAL:$1|الفتحة|الفتحات}} التالية مطلوبة ولا يمكن إزالتها: $2.",
 	"edit-slots-missing": "{{PLURAL:$1|الفتحة|الفتحات}} التالية مفقودة: $2.",
 	"postedit-confirmation-created": "[[Special:Diff/$2|أنشئت الصفحة]].",
-	"postedit-confirmation-restored": "[[Special:Diff/$2|تمت استعادة الصفحة]].",
+	"postedit-confirmation-restored": "[[Special:Diff/$2|استُرجعت الصفحة]].",
 	"postedit-confirmation-saved": "حُفِظ [[Special:Diff/$2||تعديلك]].",
 	"postedit-confirmation-published": "نُشِر [[Special:Diff/$2|تعديلك]].",
 	"postedit-temp-created-label": "حساب مؤقت",
