@@ -289,7 +289,8 @@ Util = {
 					// We probably don't need to check if its required,
 					// it always is, but whats the harm
 					widget = new OO.ui.TextInputWidget( {
-						required: Util.apiBool( pi.required )
+						required: Util.apiBool( pi.required ),
+						dir: 'ltr'
 					} );
 					widget.paramInfo = pi;
 					Object.assign( widget, WidgetMethods.textInputWidget );
@@ -309,9 +310,13 @@ Util = {
 					widget.paramInfo = pi;
 					Object.assign( widget, WidgetMethods.tagWidget );
 				} else {
-					widget = new OO.ui.TextInputWidget( {
+					const inputConfig = {
 						required: Util.apiBool( pi.required )
-					} );
+					};
+					if ( pi.name === 'callback' ) {
+						inputConfig.dir = 'ltr';
+					}
+					widget = new OO.ui.TextInputWidget( inputConfig );
 					widget.paramInfo = pi;
 					Object.assign( widget, WidgetMethods.textInputWidget );
 					widget.setValidation( Validators.generic );
@@ -331,7 +336,8 @@ Util = {
 
 			case 'password':
 				widget = new PasswordParamWidget( {
-					required: Util.apiBool( pi.required )
+					required: Util.apiBool( pi.required ),
+					dir: 'ltr'
 				} );
 				widget.paramInfo = pi;
 				widget.setValidation( Validators.generic );
@@ -344,7 +350,8 @@ Util = {
 					step: 1,
 					min: pi.min || -Infinity,
 					max: pi.max || Infinity,
-					required: Util.apiBool( pi.required )
+					required: Util.apiBool( pi.required ),
+					dir: 'ltr'
 				} );
 				widget.paramInfo = pi;
 				Object.assign( widget, WidgetMethods.textInputWidget );
@@ -354,7 +361,8 @@ Util = {
 
 			case 'limit':
 				widget = new LimitParamWidget( {
-					required: Util.apiBool( pi.required )
+					required: Util.apiBool( pi.required ),
+					dir: 'ltr'
 				} );
 				pi.min = pi.min || 0;
 				pi.apiSandboxMax = ( mw.config.get( 'apihighlimits' ) ? pi.highmax : pi.max ) || pi.max;
@@ -628,7 +636,10 @@ Util = {
 				label: Util.parseMsg( 'apisandbox-request-format-url-label' ),
 				data: new mw.widgets.CopyTextLayout( {
 					label: Util.parseMsg( 'apisandbox-request-url-label' ),
-					copyText: apiUrl + '?' + $.param( displayParams )
+					copyText: apiUrl + '?' + $.param( displayParams ),
+					textInput: {
+						dir: 'ltr'
+					}
 				} )
 			} ),
 			new OO.ui.MenuOptionWidget( {
@@ -640,7 +651,8 @@ Util = {
 					textInput: {
 						classes: [ 'mw-apisandbox-textInputCode' ],
 						autosize: true,
-						maxRows: 6
+						maxRows: 6,
+						dir: 'ltr'
 					}
 				} ).on( 'toggle', ( visible ) => {
 					if ( visible ) {
@@ -668,7 +680,8 @@ Util = {
 					textInput: {
 						classes: [ 'mw-apisandbox-textInputCode' ],
 						autosize: true,
-						maxRows: 6
+						maxRows: 6,
+						dir: 'ltr'
 					}
 				} ).on( 'toggle', ( visible ) => {
 					if ( visible ) {
