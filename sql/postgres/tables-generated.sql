@@ -791,6 +791,8 @@ CREATE TABLE site_stats (
   ss_users BIGINT DEFAULT NULL,
   ss_active_users BIGINT DEFAULT NULL,
   ss_images BIGINT DEFAULT NULL,
+  ss_temp_users BIGINT DEFAULT NULL,
+  ss_active_temp_users BIGINT DEFAULT NULL,
   PRIMARY KEY(ss_row_id)
 );
 

@@ -36,6 +36,8 @@ class PopulateSiteStatsTask extends Task {
 				'ss_users' => 0,
 				'ss_active_users' => 0,
 				'ss_images' => 0,
+				'ss_temp_users' => 0,
+				'ss_active_temp_users' => 0,
 			] )
 			->caller( __METHOD__ )
 			->execute();
