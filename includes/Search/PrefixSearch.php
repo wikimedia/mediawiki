@@ -157,7 +157,8 @@ abstract class PrefixSearch {
 		// canonical and alias title forms...
 		$keys = [];
 		$listedPages = $spFactory->getListedPages();
-		foreach ( $listedPages as $page => $_obj ) {
+		foreach ( $listedPages as $specialPage ) {
+			$page = $specialPage->getLocalName();
 			$keys[$contLang->caseFold( $page )] = [ 'page' => $page, 'rank' => 0 ];
 		}
 
@@ -172,8 +173,20 @@ abstract class PrefixSearch {
 				continue;
 			}
 
+			// No need to even consider aliases (and as a result list the same special page
+			// multiple times) when the primary page name already matches.
+			if ( str_starts_with( $contLang->caseFold( $page ), $searchKey ) ) {
+				continue;
+			}
+
 			foreach ( $aliases as $key => $alias ) {
-				$keys[$contLang->caseFold( $alias )] = [ 'page' => $alias, 'rank' => $key ];
+				$pageKey = $contLang->caseFold( $alias );
+				$keys[$pageKey] = [ 'page' => $alias, 'rank' => $key ];
+				// Stop considering later aliases (and as a result list the same special page
+				// multiple times) when there was already a match.
+				if ( str_starts_with( $pageKey, $searchKey ) ) {
+					break;
+				}
 			}
 		}
 		ksort( $keys );
