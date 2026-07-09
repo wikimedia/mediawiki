@@ -63,6 +63,7 @@ $( () => {
 } );
 
 // Check if the username is invalid or already taken; show username normalisation warning
+// Attach password hide functionality
 mw.hook( 'htmlform.enhance' ).add( async ( $root ) => {
 	const $usernameInput = $root.find( '#wpName2' ),
 		$passwordInput = $root.find( '#wpPassword2' ),
@@ -177,11 +178,23 @@ mw.hook( 'htmlform.enhance' ).add( async ( $root ) => {
 		passwordChecker.attach( $usernameInput.add( $emailInput ).add( $realNameInput ) );
 	}
 
+	function attachPasswordRevealFunctionality() {
+		Array.from( document.querySelectorAll( '#userlogin2 #wpPassword2, #userlogin2 #wpRetype' ) ).forEach( ( passwordInput ) => {
+			const iconElement = Array.from( passwordInput.parentElement.children ).find(
+				( element ) => element.classList.contains( 'mw-password-reveal-icon' )
+			);
+			iconElement.addEventListener( 'click', () => {
+				passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+			} );
+		} );
+	}
+
 	if ( isV2 ) {
 		attachCheckers( HtmlformCheckerV2 );
 		bootstrapUsernamePolicyPopover();
 	} else {
 		attachCheckers( HtmlformChecker );
+		attachPasswordRevealFunctionality();
 	}
 
 } );

@@ -1012,7 +1012,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'id' => 'wpPassword2',
 					'autocomplete' => 'new-password',
 					'placeholder-message' => 'createacct-yourpassword-ph',
-					'help-message' => $showCreateAccountUsernamePolicyPopover ? '' : 'createacct-useuniquepass',
+						'help-message' => '',
+						'end-icon-class' => 'mw-password-reveal-icon'
 				] + $hideIf,
 				'domain' => [],
 				'retype' => [
@@ -1033,6 +1034,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 						return true;
 					},
 					'placeholder-message' => 'createacct-yourpasswordagain-ph',
+						'end-icon-class' => 'mw-password-reveal-icon'
 				] + $hideIf,
 				'email' => [
 					'type' => 'email',
@@ -1117,6 +1119,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 						'submit' )->text(),
 					'name' => 'wpCreateaccount',
 					'id' => 'wpCreateaccount',
+					'size' => 'large',
 					'weight' => 100,
 				],
 			];
@@ -1170,7 +1173,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					$changePassword ? [
 						'autocomplete' => 'new-password',
 						'placeholder-message' => 'createacct-yourpassword-ph',
-						'help-message' => 'createacct-useuniquepass',
+						'help-message' => '',
 					] : [
 						'id' => 'wpPassword1',
 						'autocomplete' => 'current-password',

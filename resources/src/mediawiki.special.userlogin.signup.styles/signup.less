@@ -129,3 +129,11 @@
 .mw-createaccount-username-policy-choose-carefully {
 	font-weight: @font-weight-bold;
 }
+
+#userloginForm {
+	[ type='text' ] ~ .mw-password-reveal-icon,
+	[ type='password' ] ~ .mw-password-reveal-icon {
+		.cdx-mixin-css-icon( @cdx-icon-eye );
+		cursor: pointer;
+	}
+}

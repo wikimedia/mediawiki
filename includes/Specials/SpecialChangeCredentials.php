@@ -141,7 +141,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 				'password' => [
 					'autocomplete' => 'new-password',
 					'placeholder-message' => 'createacct-yourpassword-ph',
-					'help-message' => 'createacct-useuniquepass',
+					'help-message' => '',
 				],
 				'retype' => [
 					'autocomplete' => 'new-password',
