@@ -162,33 +162,34 @@ abstract class PrefixSearch {
 			$keys[$contLang->caseFold( $page )] = [ 'page' => $page, 'rank' => 0 ];
 		}
 
-		foreach ( $contLang->getSpecialPageAliases() as $page => $aliases ) {
-			// Exclude localisation aliases for pages that are not defined (T22885),
-			// e.g. if an extension registers a page based on site configuration.
-			if ( !in_array( $page, $spFactory->getNames() ) ) {
-				continue;
-			}
-			// Exclude aliases for unlisted pages
-			if ( !isset( $listedPages[$page] ) ) {
-				continue;
-			}
+		// Typing "special:" just lists all special pages by their primary name. No need to list the
+		// same special pages again by all their aliases.
+		if ( $searchKey !== '' ) {
+			foreach ( $contLang->getSpecialPageAliases() as $page => $aliases ) {
+				// Exclude aliases for unlisted or undefined pages (T22885),
+				// e.g. if an extension registers a page based on site configuration.
+				if ( !isset( $listedPages[$page] ) ) {
+					continue;
+				}
 
-			// No need to even consider aliases (and as a result list the same special page
-			// multiple times) when the primary page name already matches.
-			if ( str_starts_with( $contLang->caseFold( $page ), $searchKey ) ) {
-				continue;
-			}
+				// No need to even consider aliases (and as a result list the same special page
+				// multiple times) when the primary page name already matches.
+				if ( str_starts_with( $contLang->caseFold( $page ), $searchKey ) ) {
+					continue;
+				}
 
-			foreach ( $aliases as $key => $alias ) {
-				$pageKey = $contLang->caseFold( $alias );
-				$keys[$pageKey] = [ 'page' => $alias, 'rank' => $key ];
-				// Stop considering later aliases (and as a result list the same special page
-				// multiple times) when there was already a match.
-				if ( str_starts_with( $pageKey, $searchKey ) ) {
-					break;
+				foreach ( $aliases as $key => $alias ) {
+					$pageKey = $contLang->caseFold( $alias );
+					$keys[$pageKey] = [ 'page' => $alias, 'rank' => $key ];
+					// Stop considering later aliases (and as a result list the same special page
+					// multiple times) when there was already a match.
+					if ( str_starts_with( $pageKey, $searchKey ) ) {
+						break;
+					}
 				}
 			}
 		}
+
 		ksort( $keys );
 
 		$matches = [];

@@ -26,7 +26,6 @@ use SplObjectStorage;
  */
 
 /**
- * Contain a class for special pages
  * @stable to extend
  * @ingroup Search
  */
