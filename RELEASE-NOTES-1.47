@@ -357,6 +357,7 @@ because of Phabricator reports.
   - listSoftwareDefinedTags
   - purgeTagCacheAll
   - tagUsageStatistics
+  - addTags
 * …
 
 === Deprecations in 1.47 ===

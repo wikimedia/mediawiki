@@ -19,7 +19,6 @@ use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\UltimateAuthority;
-use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\RevisionDelete\RevDelLogList;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -282,29 +281,6 @@ class ChangeTags {
 		wfDeprecated( __METHOD__, '1.47' );
 		$msg = $context->msg( "tag-$tag-description" );
 		return $msg->isDisabled() ? false : $msg;
-	}
-
-	/**
-	 * Add tags to a change given its rc_id, rev_id and/or log_id
-	 *
-	 * @deprecated since 1.41 use ChangeTagsStore instead. Hard-deprecated since 1.44.
-	 * @param string|string[] $tags Tags to add to the change
-	 * @param int|null $rc_id The rc_id of the change to add the tags to
-	 * @param int|null $rev_id The rev_id of the change to add the tags to
-	 * @param int|null $log_id The log_id of the change to add the tags to
-	 * @param string|null $params Params to put in the ct_params field of table 'change_tag'
-	 * @param RecentChange|null $rc Recent change, in case the tagging accompanies the action
-	 * (this should normally be the case)
-	 *
-	 * @return bool False if no changes are made, otherwise true
-	 */
-	public static function addTags( $tags, $rc_id = null, $rev_id = null,
-		$log_id = null, $params = null, ?RecentChange $rc = null
-	) {
-		wfDeprecated( __METHOD__, '1.41' );
-		return MediaWikiServices::getInstance()->getChangeTagsStore()->addTags(
-			$tags, $rc_id, $rev_id, $log_id, $params, $rc
-		);
 	}
 
 	/**
