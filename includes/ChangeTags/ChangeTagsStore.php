@@ -697,6 +697,8 @@ class ChangeTagsStore {
 	}
 
 	/**
+	 * @internal Transitional, until all callers pass a performer.
+	 *
 	 * Like filterViewableTags(), but a null performer may view no restricted
 	 * tags at all.
 	 *
@@ -704,7 +706,7 @@ class ChangeTagsStore {
 	 * @param Authority|null $performer
 	 * @return string[]
 	 */
-	private function filterViewableTagsForPerformer( array $tags, ?Authority $performer ): array {
+	public function filterViewableTagsForPerformer( array $tags, ?Authority $performer ): array {
 		return $this->filterViewableTags( $tags, $performer ?? self::getAuthorityForPublicTags() );
 	}
 

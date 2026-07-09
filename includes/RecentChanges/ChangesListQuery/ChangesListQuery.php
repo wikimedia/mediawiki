@@ -1095,6 +1095,9 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			$this->adjustDensity( self::DENSITY_LINKS )
 				->joinOrderHint( self::JOIN_ORDER_OTHER );
 		}
+		if ( $this->audience !== null ) {
+			$this->getChangeTagsFilter()->setAudience( $this->audience );
+		}
 		foreach ( $this->filterModules as $module ) {
 			$module->prepareQuery( $this->db, $this );
 		}

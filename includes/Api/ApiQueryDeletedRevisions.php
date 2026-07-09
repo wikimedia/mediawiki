@@ -103,7 +103,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 
 		if ( $this->fld_tags ) {
 			$this->addFields( [
-				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'archive' )
+				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'archive', $this->getAuthority() )
 			] );
 		}
 

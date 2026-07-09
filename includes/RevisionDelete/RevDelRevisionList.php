@@ -106,7 +106,8 @@ class RevDelRevisionList extends RevDelList {
 			// workaround for MySQL bug (T104313)
 			->useIndex( [ 'revision' => 'PRIMARY' ] );
 
-		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'revision' );
+		MediaWikiServices::getInstance()->getChangeTagsStore()
+			->addTagsToDisplayQuery( $queryBuilder, 'revision', $this->getAuthority() );
 
 		$live = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 		if ( $live->numRows() >= count( $ids ) ) {
@@ -119,7 +120,8 @@ class RevDelRevisionList extends RevDelList {
 			->where( [ 'ar_rev_id' => $ids ] )
 			->orderBy( 'ar_rev_id', \Wikimedia\Rdbms\SelectQueryBuilder::SORT_DESC );
 
-		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'archive' );
+		MediaWikiServices::getInstance()->getChangeTagsStore()
+			->addTagsToDisplayQuery( $queryBuilder, 'archive', $this->getAuthority() );
 
 		// Check if any requested revisions are available fully deleted.
 		$archived = $queryBuilder->caller( __METHOD__ )->fetchResultSet();

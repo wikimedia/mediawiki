@@ -124,7 +124,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if ( $fld_tags ) {
 			$this->addFields( [
-				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'archive' )
+				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'archive', $this->getAuthority() )
 			] );
 		}
 

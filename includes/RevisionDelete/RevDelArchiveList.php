@@ -79,7 +79,8 @@ class RevDelArchiveList extends RevDelRevisionList {
 			] )
 			->orderBy( 'ar_timestamp', SelectQueryBuilder::SORT_DESC );
 
-		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'archive' );
+		MediaWikiServices::getInstance()->getChangeTagsStore()
+			->addTagsToDisplayQuery( $queryBuilder, 'archive', $this->getAuthority() );
 
 		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}

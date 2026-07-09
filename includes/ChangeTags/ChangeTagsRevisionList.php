@@ -36,7 +36,8 @@ class ChangeTagsRevisionList extends ChangeTagsList {
 			->where( [ 'rev_page' => $this->page->getId(), 'rev_id' => $ids ] )
 			->orderBy( 'rev_id', SelectQueryBuilder::SORT_DESC );
 
-		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'revision' );
+		MediaWikiServices::getInstance()->getChangeTagsStore()
+			->addTagsToDisplayQuery( $queryBuilder, 'revision', $this->getAuthority() );
 		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 

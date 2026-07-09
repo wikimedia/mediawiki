@@ -139,7 +139,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( $this->fld_tags ) {
 			$this->addFields( [
-				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'logging' )
+				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'logging', $this->getAuthority() )
 			] );
 		}
 

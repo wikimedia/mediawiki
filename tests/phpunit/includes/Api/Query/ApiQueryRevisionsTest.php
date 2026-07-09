@@ -2,11 +2,19 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiQueryRevisions;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\Context\RequestContext;
+use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserIdentityValue;
 
@@ -18,6 +26,8 @@ use MediaWiki\User\UserIdentityValue;
  */
 class ApiQueryRevisionsTest extends ApiTestCase {
 	use TempUserTestTrait;
+	use RestrictedTagTestTrait;
+	use MockAuthorityTrait;
 
 	/**
 	 * @group medium
@@ -55,7 +65,6 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 	}
 
 	/**
-	 * @group Database
 	 * @group medium
 	 */
 	public function testRevisionMadeByTempUser() {
@@ -177,5 +186,76 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 			'This page has no sections',
 			'This page has no sections'
 		];
+	}
+
+	public function testRvPropTagsHidesRestrictedTagFromUnprivilegedViewer(): void {
+		$testPage = $this->getExistingTestPage();
+		$revId = $testPage->getLatest();
+		$this->getServiceContainer()->getChangeTagsStore()
+			->addTags( [ 'mw-private-secret' ], null, $revId );
+		$this->setRestrictedTags( [ 'mw-private-secret' => 'viewsuppressed' ] );
+
+		$params = [
+			'action' => 'query',
+			'prop' => 'revisions',
+			'titles' => $testPage->getTitle()->getPrefixedText(),
+			'rvprop' => 'ids|tags',
+		];
+
+		[ $unprivileged ] = $this->doApiRequest(
+			$params, null, false, $this->mockRegisteredAuthorityWithoutPermissions( [ 'viewsuppressed' ] )
+		);
+		$this->assertNotContains( 'mw-private-secret', $this->getRevisionTags( $unprivileged ) );
+
+		[ $privileged ] = $this->doApiRequest(
+			$params, null, false, $this->mockRegisteredAuthorityWithPermissions( [ 'viewsuppressed' ] )
+		);
+		$this->assertContains( 'mw-private-secret', $this->getRevisionTags( $privileged ) );
+	}
+
+	/**
+	 * @dataProvider provideGetCacheMode
+	 */
+	public function testGetCacheModePrivateWhenTagsRequested( array $prop, string $expected ): void {
+		$this->overrideConfigValue( MainConfigNames::RestrictedTagViewRights, [] );
+
+		$revisions = $this->newRevisionsQueryModule( $this->mockRegisteredNullAuthority() );
+
+		$this->assertSame( $expected, $revisions->getCacheMode( [ 'prop' => $prop ] ) );
+	}
+
+	public static function provideGetCacheMode(): array {
+		return [
+			'tags prop is per-viewer private' => [
+				'prop' => [ 'ids', 'tags' ],
+				'expected' => 'anon-public-user-private',
+			],
+			'no tags prop stays public' => [
+				'prop' => [ 'ids' ],
+				'expected' => 'public',
+			],
+		];
+	}
+
+	private function newRevisionsQueryModule( Authority $authority ): ApiQueryRevisions {
+		$context = new RequestContext();
+		$context->setRequest( new FauxRequest() );
+		$context->setAuthority( $authority );
+
+		return ( new ApiMain( $context ) )->getModuleManager()
+			->getModule( 'query' )
+			->getModuleManager()
+			->getModule( 'revisions' );
+	}
+
+	private function getRevisionTags( array $result ): array {
+		$tagLists = [];
+		foreach ( $result['query']['pages'] as $page ) {
+			foreach ( $page['revisions'] as $revision ) {
+				$tagLists[] = $revision['tags'] ?? [];
+			}
+		}
+
+		return array_merge( ...$tagLists );
 	}
 }

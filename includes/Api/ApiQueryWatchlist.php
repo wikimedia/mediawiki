@@ -101,7 +101,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		$query = $this->changesListQueryFactory->newQuery()
 			->caller( __METHOD__ )
-			->watchlistUser( $wlowner );
+			->watchlistUser( $wlowner )
+			->audience( $this->getAuthority() );
 
 		if ( $params['prop'] !== null && $resultPageSet === null ) {
 			$prop = array_fill_keys( $params['prop'], true );

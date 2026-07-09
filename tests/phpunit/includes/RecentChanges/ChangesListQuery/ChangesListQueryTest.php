@@ -20,6 +20,8 @@ use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -63,6 +65,8 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 	use TempUserTestTrait;
+	use RestrictedTagTestTrait;
+	use MockAuthorityTrait;
 
 	/** @var string[] Internal names given to recentchanges rows */
 	private static $rcRowNames = [
@@ -1385,5 +1389,127 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			// Make sure thresholds are passed
 			->denseRcSizeThreshold( 0 );
 		$this->doQuery( $query, $expectedInfo, $expectedIds );
+	}
+
+	public static function provideRestrictedTagTsTags(): array {
+		return [
+			'no audience hides restricted tag' => [
+				'audience' => 'none',
+				'expectRestricted' => false,
+			],
+			'unprivileged audience hides restricted tag' => [
+				'audience' => 'unprivileged',
+				'expectRestricted' => false,
+			],
+			'privileged audience sees restricted tag' => [
+				'audience' => 'privileged',
+				'expectRestricted' => true,
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideRestrictedTagTsTags
+	 */
+	public function testAudienceFiltersRestrictedTagInTsTags( string $audience, bool $expectRestricted ): void {
+		$this->setRestrictedTags( [ 'mw-private-secret' => 'viewsuppressed' ] );
+		$rcId = $this->editAndTagRecentChange( [ 'foo', 'mw-private-secret' ] );
+		$query = $this->getQuery()->addChangeTagSummaryField();
+		if ( $audience === 'unprivileged' ) {
+			$query->audience( $this->mockRegisteredAuthorityWithPermissions( [] ) );
+		} elseif ( $audience === 'privileged' ) {
+			$query->audience( $this->mockRegisteredAuthorityWithPermissions( [ 'viewsuppressed' ] ) );
+		}
+		$tags = $this->fetchTagsForRecentChange( $query, $rcId );
+		$this->assertContains( 'foo', $tags );
+		if ( $expectRestricted ) {
+			$this->assertContains( 'mw-private-secret', $tags );
+		} else {
+			$this->assertNotContains( 'mw-private-secret', $tags );
+		}
+	}
+
+	public static function provideRestrictedTagConditions(): array {
+		return [
+			'required restricted tag hides tagged row from unprivileged viewer' => [
+				'mode' => 'require',
+				'privileged' => false,
+				'expectRowReturned' => false,
+			],
+			'required restricted tag returns tagged row for privileged viewer' => [
+				'mode' => 'require',
+				'privileged' => true,
+				'expectRowReturned' => true,
+			],
+			'excluding an unviewable restricted tag is a no-op for unprivileged viewer' => [
+				'mode' => 'exclude',
+				'privileged' => false,
+				'expectRowReturned' => true,
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideRestrictedTagConditions
+	 */
+	public function testAudienceFiltersRestrictedTagInConditions(
+		string $mode, bool $privileged, bool $expectRowReturned
+	): void {
+		$this->setRestrictedTags( [ 'mw-private-secret' => 'viewsuppressed' ] );
+		$rcId = $this->editAndTagRecentChange( [ 'foo', 'mw-private-secret' ] );
+		$authority = $privileged
+			? $this->mockRegisteredAuthorityWithPermissions( [ 'viewsuppressed' ] )
+			: $this->mockRegisteredAuthorityWithPermissions( [] );
+		$query = $this->getQuery()->audience( $authority );
+		if ( $mode === 'require' ) {
+			$query->requireChangeTags( [ 'mw-private-secret' ] );
+		} else {
+			$query->excludeChangeTags( [ 'mw-private-secret' ] );
+		}
+		$ids = $this->fetchIds( $query );
+		if ( $expectRowReturned ) {
+			$this->assertContains( $rcId, $ids );
+		} else {
+			$this->assertNotContains( $rcId, $ids );
+		}
+	}
+
+	private function editAndTagRecentChange( array $tags ): int {
+		$services = $this->getServiceContainer();
+		$rev = $services->getPageUpdaterFactory()
+			->newPageUpdater(
+				$services->getTitleFactory()->newFromTextThrow( 'Restricted tag test' ),
+				$this->getTestUser()->getUser()
+			)
+			->setContent( SlotRecord::MAIN, new WikitextContent( (string)self::$content++ ) )
+			->saveRevision( '' );
+		$rcId = (int)$this->getDb()->newSelectQueryBuilder()
+			->select( 'rc_id' )
+			->from( 'recentchanges' )
+			->where( [ 'rc_this_oldid' => $rev->getId() ] )
+			->caller( __METHOD__ )
+			->fetchField();
+		$services->getChangeTagsStore()->updateTags( $tags, [], $rcId );
+
+		return $rcId;
+	}
+
+	private function fetchIds( ChangesListQuery $query ): array {
+		$ids = [];
+		foreach ( $query->fetchResult()->getRows() as $row ) {
+			$ids[] = (int)$row->rc_id;
+		}
+
+		return $ids;
+	}
+
+	private function fetchTagsForRecentChange( ChangesListQuery $query, int $rcId ): array {
+		foreach ( $query->fetchResult()->getRows() as $row ) {
+			if ( (int)$row->rc_id === $rcId ) {
+				return $row->ts_tags === null ? [] : explode( ',', $row->ts_tags );
+			}
+		}
+
+		return [];
 	}
 }

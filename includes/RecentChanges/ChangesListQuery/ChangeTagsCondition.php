@@ -3,6 +3,7 @@
 namespace MediaWiki\RecentChanges\ChangesListQuery;
 
 use MediaWiki\ChangeTags\ChangeTagsStore;
+use MediaWiki\Permissions\Authority;
 use Psr\Log\LoggerInterface;
 use stdClass;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -17,6 +18,7 @@ class ChangeTagsCondition extends ChangesListConditionBase {
 
 	private ?int $limit = null;
 	private bool $densityThresholdReached = true;
+	private ?Authority $audience = null;
 
 	public function __construct(
 		private ChangeTagsStore $changeTagsStore,
@@ -53,6 +55,10 @@ class ChangeTagsCondition extends ChangesListConditionBase {
 		$this->denseRcSizeThreshold = $threshold;
 	}
 
+	public function setAudience( Authority $audience ): void {
+		$this->audience = $audience;
+	}
+
 	/** @inheritDoc */
 	public function validateValue( $value ) {
 		if ( !is_scalar( $value ) ) {
@@ -72,13 +78,19 @@ class ChangeTagsCondition extends ChangesListConditionBase {
 	/** @inheritDoc */
 	protected function prepareCapture( IReadableDatabase $dbr, QueryBackend $query ) {
 		$query->fields( [
-			'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'recentchanges' )
+			'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'recentchanges', $this->audience )
 		] );
 	}
 
 	/** @inheritDoc */
 	protected function prepareConds( IReadableDatabase $dbr, QueryBackend $query ) {
 		[ $required, $excluded ] = $this->getUniqueValues();
+		if ( $required ) {
+			$required = $this->changeTagsStore->filterViewableTagsForPerformer( $required, $this->audience );
+		}
+		if ( $excluded ) {
+			$excluded = $this->changeTagsStore->filterViewableTagsForPerformer( $excluded, $this->audience );
+		}
 		if ( $required === [] ) {
 			$query->forceEmptySet();
 		} elseif ( $required ) {

@@ -469,7 +469,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 
 		if ( isset( $this->prop['tags'] ) ) {
 			$this->addFields( [
-				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'revision' )
+				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'revision', $this->getAuthority() )
 			] );
 		}
 

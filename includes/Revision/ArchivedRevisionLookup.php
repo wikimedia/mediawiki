@@ -8,6 +8,9 @@ namespace MediaWiki\Revision;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -39,9 +42,16 @@ class ArchivedRevisionLookup {
 	 * @param PageIdentity $page
 	 * @param array $extraConds Extra conditions to be added to the query
 	 * @param ?int $limit The limit to be applied to the query, or null for no limit
+	 * @param Authority|null $performer Viewer, for restricted-tag access checks. Null hides all
+	 *   restricted tags. (since 1.47)
 	 * @return IResultWrapper
 	 */
-	public function listRevisions( PageIdentity $page, array $extraConds = [], ?int $limit = null ) {
+	public function listRevisions(
+		PageIdentity $page,
+		array $extraConds = [],
+		?int $limit = null,
+		?Authority $performer = null
+	) {
 		$queryBuilder = $this->revisionStore->newArchiveSelectQueryBuilder( $this->dbProvider->getReplicaDatabase() )
 			->joinComment()
 			->where( $extraConds )
@@ -55,7 +65,9 @@ class ArchivedRevisionLookup {
 			$queryBuilder->limit( $limit );
 		}
 
-		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'archive' );
+		$viewer = $performer ?? new SimpleAuthority( UserIdentityValue::newAnonymous( '127.0.0.1' ), [] );
+		MediaWikiServices::getInstance()->getChangeTagsStore()
+			->addTagsToDisplayQuery( $queryBuilder, 'archive', $viewer );
 
 		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}

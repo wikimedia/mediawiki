@@ -427,9 +427,10 @@ class LogPager extends ReverseChronologicalPager {
 		}
 
 		# Add ChangeTags filter query
-		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder(
+		MediaWikiServices::getInstance()->getChangeTagsStore()->addTagsToDisplayQuery(
 			$queryBuilder,
 			'logging',
+			$this->getAuthority(),
 			$this->mTagFilter,
 			$this->mTagInvert
 		);

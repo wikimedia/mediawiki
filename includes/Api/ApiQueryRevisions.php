@@ -153,7 +153,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 		if ( $this->fld_tags ) {
 			$this->addFields( [
-				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'revision' )
+				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'revision', $this->getAuthority() )
 			] );
 		}
 

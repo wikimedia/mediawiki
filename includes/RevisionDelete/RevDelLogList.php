@@ -108,7 +108,8 @@ class RevDelLogList extends RevDelList {
 			->where( [ 'log_id' => $ids ] )
 			->orderBy( [ 'log_timestamp', 'log_id' ], SelectQueryBuilder::SORT_DESC );
 
-		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'logging' );
+		MediaWikiServices::getInstance()->getChangeTagsStore()
+			->addTagsToDisplayQuery( $queryBuilder, 'logging', $this->getAuthority() );
 
 		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}

@@ -182,7 +182,8 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 			->andWhere( [
 				'rev_page' => $this->articleID,
 			] );
-		$this->changeTagsStore->modifyDisplayQueryBuilder( $queryBuilder, 'revision' );
+		$this->changeTagsStore
+			->addTagsToDisplayQuery( $queryBuilder, 'revision', $this->getAuthority() );
 
 		return $queryBuilder->getQueryInfo( 'join_conds' );
 	}
