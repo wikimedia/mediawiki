@@ -326,8 +326,23 @@ because of Phabricator reports.
 * Passing null to any of the three constructor parameters of TextboxBuilder,
   deprecated in 1.46, will now throw a PHP error. Use the service to get an
   instance of the class.
-* ChangeTags::getTags, ::getTagsWithData, and ::updateTags which were
-  deprecated in 1.41 have now been removed
+* The following ChangeTags methods which were deprecated in 1.41 have been
+  removed:
+  - getTags
+  - getTagsWithData
+  - updateTags
+  - getSoftwareTags
+  - modifyDisplayQuery
+  - getDisplayTableName
+  - makeTagSummarySubquery
+  - defineTag
+  - deleteTagEverywhere
+  - listSoftwareActivatedTags
+  - listDefinedTags
+  - listExplicitlyDefinedTags
+  - listSoftwareDefinedTags
+  - purgeTagCacheAll
+  - tagUsageStatistics
 * …
 
 === Deprecations in 1.47 ===
