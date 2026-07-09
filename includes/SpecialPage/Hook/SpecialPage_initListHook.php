@@ -30,7 +30,7 @@ interface SpecialPage_initListHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$list List of core special pages,
+	 * @param array<string,mixed> &$list List of core special pages,
 	 *   mapping of (canonical) page name to class name, factory callback or to ObjectFactory spec
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

@@ -1294,10 +1294,10 @@ class SpecialPageFactory {
 		],
 	];
 
-	/** @var array Special page name => class name */
+	/** @var array<string,mixed>|null Canonical identifier => {@link ObjectFactory} specification */
 	private $list;
 
-	/** @var array */
+	/** @var array<string,string>|null Case-folded alias => canonical identifier */
 	private $aliases;
 
 	/** @noVarDump */
@@ -1337,10 +1337,11 @@ class SpecialPageFactory {
 	}
 
 	/**
-	 * Returns a list of canonical special page names.
-	 * May be used to iterate over all registered special pages.
+	 * Returns a list of canonical identifiers for all registered special pages.
+	 * Note this is not necessarily identical with the default special page name users see.
+	 * Use {@link self::getLocalNameFor} to get the correctly capitalized default name.
 	 *
-	 * @return string[]
+	 * @return list<string>
 	 */
 	public function getNames(): array {
 		return array_keys( $this->getPageList() );
@@ -1348,6 +1349,8 @@ class SpecialPageFactory {
 
 	/**
 	 * Get the special page list as an array
+	 *
+	 * @return array<string,mixed> Canonical identifier => {@link ObjectFactory} specification
 	 */
 	private function getPageList(): array {
 		if ( !is_array( $this->list ) ) {
@@ -1446,8 +1449,8 @@ class SpecialPageFactory {
 	}
 
 	/**
-	 * Initialise and return the list of special page aliases. Returns an array where
-	 * the key is an alias, and the value is the canonical name of the special page.
+	 * Initialise and return the list of special page aliases. Returns an array that maps all
+	 * case-folded aliases to the canonical identifier of the special page.
 	 * All registered special pages are guaranteed to map to themselves.
 	 * @return array<string,string>
 	 */

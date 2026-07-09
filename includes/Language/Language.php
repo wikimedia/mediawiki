@@ -3475,9 +3475,12 @@ class Language implements Bcp47Code {
 	}
 
 	/**
-	 * Get special page names, as an associative array
-	 *   canonical name => array of valid names, including aliases
-	 * @return array<string,string[]>
+	 * Get all aliases for all special pages. Includes aliases from the fallback localisation(s).
+	 * These always include the aliases from MessagesEn.php. May contain duplicates. The first
+	 * listed alias is the default special page name users see.
+	 *
+	 * @return array<string,list<string>> Maps canonical identifiers to lists of aliases, where the
+	 *  first is the default name
 	 */
 	public function getSpecialPageAliases() {
 		// Cache aliases because it may be slow to load them
