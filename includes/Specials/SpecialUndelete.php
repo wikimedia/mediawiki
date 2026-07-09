@@ -981,11 +981,11 @@ class SpecialUndelete extends SpecialPage {
 		} else {
 			$extraConds = [];
 		}
-		$revisions = $this->archivedRevisionLookup->listRevisions(
+		$revisions = $this->archivedRevisionLookup->listArchivedRevisions(
 			$this->mTargetObj,
+			$this->getAuthority(),
 			$extraConds,
-			self::REVISION_HISTORY_LIMIT + 1,
-			$this->getAuthority()
+			self::REVISION_HISTORY_LIMIT + 1
 		);
 		$batch = $this->linkBatchFactory->newLinkBatch()->setCaller( __METHOD__ );
 		$this->addRevisionsToBatch( $batch, $revisions );
@@ -1059,11 +1059,10 @@ class SpecialUndelete extends SpecialPage {
 		$out->addHTML( Html::closeElement( 'div' ) );
 
 		# List all stored revisions
-		$revisions = $this->archivedRevisionLookup->listRevisions(
+		$revisions = $this->archivedRevisionLookup->listArchivedRevisions(
 			$this->mTargetObj,
-			[],
-			self::REVISION_HISTORY_LIMIT + 1,
-			$this->getAuthority()
+			$this->getAuthority(),
+			limit: self::REVISION_HISTORY_LIMIT + 1
 		);
 		$files = $archive->listFiles();
 		$numRevisions = $revisions->numRows();

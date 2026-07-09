@@ -153,6 +153,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$modifiedQuery,
 		$exclude = false
 	) {
+		$this->hideDeprecated( ChangeTagsStore::class . '::modifyDisplayQuery' );
 		$this->overrideConfigValue( MainConfigNames::UseTagFilter, $useTags );
 		// Reset the ChangeTagsStore after the config change
 		$this->changeTags = $this->getServiceContainer()->getChangeTagsStore();
@@ -1002,6 +1003,16 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [ 'mw-undo' ], $this->changeTags->filterViewableTags( $tags, $unprivileged ) );
 	}
 
+	public function testFilterViewableTagsForPerformer(): void {
+		$this->setRestrictedTags( [ 'mw-private-test' => [ 'viewsuppressed', 'suppress' ] ] );
+
+		$privileged = $this->mockRegisteredAuthorityWithPermissions( [ 'suppress' ] );
+
+		$tags = [ 'mw-undo', 'mw-private-test' ];
+		$this->assertSame( [ 'mw-undo' ], $this->changeTags->filterViewableTagsForPerformer( $tags, null ) );
+		$this->assertSame( $tags, $this->changeTags->filterViewableTagsForPerformer( $tags, $privileged ) );
+	}
+
 	public function testGetViewableTags(): void {
 		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
 
@@ -1048,6 +1059,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 
 	/** @dataProvider provideMakeTagSummarySubquery */
 	public function testMakeTagSummarySubquery( ?array $authorityRights, array $expectedTags ): void {
+		$this->filterDeprecated( '/without an Authority \$performer/' );
 		$this->setRestrictedTags( [ 'mw-private-secret' => [ 'suppress' ] ] );
 		$store = $this->getServiceContainer()->getChangeTagsStore();
 		$revId = $this->makeTaggedRevision();
@@ -1191,6 +1203,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testModifyDisplayQueryBuilderHidesRestrictedTags(): void {
+		$this->hideDeprecated( ChangeTagsStore::class . '::modifyDisplayQueryBuilder' );
 		$this->overrideConfigValue( MainConfigNames::UseTagFilter, true );
 		$this->setRestrictedTags( [ 'mw-private-secret' => [ 'suppress' ] ] );
 		$store = $this->getServiceContainer()->getChangeTagsStore();
@@ -1210,6 +1223,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testModifyDisplayQueryAlwaysHidesRestrictedTags(): void {
+		$this->hideDeprecated( ChangeTagsStore::class . '::modifyDisplayQuery' );
 		$this->overrideConfigValue( MainConfigNames::UseTagFilter, true );
 		$this->setRestrictedTags( [ 'mw-private-secret' => [ 'suppress' ] ] );
 		$store = $this->getServiceContainer()->getChangeTagsStore();

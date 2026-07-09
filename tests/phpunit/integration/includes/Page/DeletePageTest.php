@@ -20,6 +20,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\Recentchanges\ChangeTrackingUpdateSpyTrait;
 use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
@@ -35,6 +36,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 	use ChangeTrackingUpdateSpyTrait;
 	use SearchUpdateSpyTrait;
 	use LocalizationUpdateSpyTrait;
+	use MockAuthorityTrait;
 
 	private const PAGE_TEXT = "[[Stuart Little]]\n" .
 		"{{Multiple issues}}\n" .
@@ -118,7 +120,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			return;
 		}
 		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
-		$archivedRevs = $lookup->listRevisions( $title );
+		$archivedRevs = $lookup->listArchivedRevisions( $title, $this->mockRegisteredUltimateAuthority() );
 		if ( !$archivedRevs || $archivedRevs->numRows() !== 1 ) {
 			$this->fail( 'Unexpected number of archived revisions' );
 		}

@@ -403,11 +403,16 @@ because of Phabricator reports.
 * Title::canUseNoindex() is deprecated with warnings. Please use
   NamespaceInfo::canUseNoindex() instead.
 * Passing null as the $performer parameter to
-  ChangeTagsStore::makeTagSummarySubquery() is deprecated. Pass an Authority so
-  that rights-restricted change tags can be shown to users who are allowed to
-  view them.
-* ChangeTagsStore::modifyDisplayQueryBuilder() is deprecated. Use
-  addTagsToDisplayQuery() instead, passing an Authority.
+  ChangeTagsStore::makeTagSummarySubquery() is deprecated and emits deprecation
+  warnings. Pass an Authority so that rights-restricted change tags can be shown
+  to users who are allowed to view them.
+* ArchivedRevisionLookup::listRevisions() is deprecated; use
+  listArchivedRevisions() instead, passing an Authority.
+* ChangeTagsStore::modifyDisplayQueryBuilder() is deprecated and emits
+  deprecation warnings. Use addTagsToDisplayQuery() instead, passing an
+  Authority.
+* ChangeTagsStore::modifyDisplayQuery() is now hard-deprecated; use
+  ChangeTagsStore::addTagsToDisplayQuery() instead.
 * The MarkPatrolledComplete hook has been deprecated and will trigger
   deprecation warnings. Use the MarkPatrolledAudit hook instead.
 * FileBackendStore::memCache is now deprecated. Instead, subclasses should

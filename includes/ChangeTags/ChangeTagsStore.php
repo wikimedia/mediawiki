@@ -230,6 +230,21 @@ class ChangeTagsStore {
 	 * @return string tag summary subquery
 	 */
 	public function makeTagSummarySubquery( $tables, ?Authority $performer = null ): string {
+		if ( $performer === null ) {
+			wfDeprecatedMsg( __METHOD__ . ' without an Authority $performer is deprecated', '1.47' );
+		}
+
+		return $this->buildTagSummarySubquery( $tables, $performer ?? self::getAuthorityForPublicTags() );
+	}
+
+	/**
+	 * makeTagSummarySubquery() without the null-performer deprecation, for internal callers.
+	 *
+	 * @param string|array $tables Table names, see Database::select
+	 * @param Authority $performer Viewer, for restricted-tag access checks
+	 * @return string
+	 */
+	private function buildTagSummarySubquery( $tables, Authority $performer ): string {
 		// Normalize to arrays
 		$tables = (array)$tables;
 
@@ -257,7 +272,7 @@ class ChangeTagsStore {
 		$restrictedCond = $dbr->expr(
 			'ctd_name', IExpression::NOT_LIKE, new LikeValue( self::PRIVATE_TAG_PREFIX, $dbr->anyString() )
 		);
-		$viewable = $this->filterViewableTagsForPerformer( array_keys( $this->getRestrictedTagRights() ), $performer );
+		$viewable = $this->filterViewableTags( array_keys( $this->getRestrictedTagRights() ), $performer );
 		if ( $viewable ) {
 			$restrictedCond = $dbr->orExpr( [ $restrictedCond, $dbr->expr( 'ctd_name', '=', $viewable ) ] );
 		}
@@ -710,9 +725,7 @@ class ChangeTagsStore {
 		return $this->filterViewableTags( $tags, $performer ?? self::getAuthorityForPublicTags() );
 	}
 
-	/**
-	 * A rights-less Authority used to hide all restricted tags.
-	 */
+	/** @return Authority allowed to view no rights-restricted tags, for external-facing public queries. */
 	private static function getAuthorityForPublicTags(): Authority {
 		return new SimpleAuthority( UserIdentityValue::newAnonymous( '127.0.0.1' ), [] );
 	}
@@ -1002,7 +1015,7 @@ class ChangeTagsStore {
 	 * ORDER BY. For example, if you had ORDER BY foo_timestamp DESC, you will now need
 	 * GROUP BY foo_timestamp, foo_id ORDER BY foo_timestamp DESC, foo_id DESC.
 	 *
-	 * @deprecated since 1.41 use ChangeTagsStore::modifyDisplayQueryBuilder instead
+	 * @deprecated since 1.41 use ChangeTagsStore::addTagsToDisplayQuery instead
 	 *
 	 * @param string|array &$tables Table names, see Database::select
 	 * @param string|array &$fields Fields used in query, see Database::select
@@ -1015,6 +1028,8 @@ class ChangeTagsStore {
 	public function modifyDisplayQuery( &$tables, &$fields, &$conds,
 		&$join_conds, &$options, $filter_tag = '', bool $exclude = false
 	) {
+		wfDeprecated( __METHOD__, '1.41' );
+
 		$useTagFilter = $this->options->get( MainConfigNames::UseTagFilter );
 
 		// Normalize to arrays
@@ -1023,7 +1038,7 @@ class ChangeTagsStore {
 		$conds = (array)$conds;
 		$options = (array)$options;
 
-		$fields['ts_tags'] = $this->makeTagSummarySubquery( $tables );
+		$fields['ts_tags'] = $this->makeTagSummarySubquery( $tables, self::getAuthorityForPublicTags() );
 		// We use an alias and qualify the conditions in case there are
 		// multiple joins to this table.
 		// In particular for compatibility with the RC filters that extension Translate does.
@@ -1053,7 +1068,7 @@ class ChangeTagsStore {
 		if ( $filter_tag !== [] && $filter_tag !== '' ) {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
-			$viewableFilterTags = $this->filterViewableTagsForPerformer( (array)$filter_tag, null );
+			$viewableFilterTags = $this->filterViewableTags( (array)$filter_tag, self::getAuthorityForPublicTags() );
 			$filterTagIds = array_values( $this->getTagIdsFromNames( $viewableFilterTags ) );
 
 			if ( $exclude ) {
@@ -1114,7 +1129,7 @@ class ChangeTagsStore {
 		bool $exclude = false
 	): void {
 		$useTagFilter = $this->options->get( MainConfigNames::UseTagFilter );
-		$queryBuilder->field( $this->makeTagSummarySubquery( [ $table ], $performer ), 'ts_tags' );
+		$queryBuilder->field( $this->buildTagSummarySubquery( [ $table ], $performer ), 'ts_tags' );
 
 		// We use an alias and qualify the conditions in case there are
 		// multiple joins to this table.
@@ -1192,6 +1207,8 @@ class ChangeTagsStore {
 		$filter_tag = '',
 		bool $exclude = false
 	): void {
+		wfDeprecated( __METHOD__, '1.47' );
+
 		$this->addTagsToDisplayQuery(
 			$queryBuilder, $table, self::getAuthorityForPublicTags(),
 			$filter_tag === false || $filter_tag === null ? '' : $filter_tag,

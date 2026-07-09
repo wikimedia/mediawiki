@@ -7,6 +7,7 @@ use MediaWiki\Content\ContentHandler;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -16,6 +17,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @covers \MediaWiki\Revision\ArchivedRevisionLookup
  */
 class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
+	use MockAuthorityTrait;
 
 	/**
 	 * @var int
@@ -136,7 +138,7 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 
 	public function testListRevisions() {
 		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
-		$revisions = $lookup->listRevisions( $this->archivedPage );
+		$revisions = $lookup->listArchivedRevisions( $this->archivedPage, $this->mockRegisteredUltimateAuthority() );
 		$this->assertEquals( 2, $revisions->numRows() );
 		// Get the rows as arrays
 		$row0 = (array)$revisions->current();
@@ -154,9 +156,15 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function testListRevisions_slots() {
+	public function testListRevisions_legacy(): void {
 		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
 		$revisions = $lookup->listRevisions( $this->archivedPage );
+		$this->assertEquals( 2, $revisions->numRows() );
+	}
+
+	public function testListRevisions_slots() {
+		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
+		$revisions = $lookup->listArchivedRevisions( $this->archivedPage, $this->mockRegisteredUltimateAuthority() );
 
 		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 		$slotsQuery = $revisionStore->getSlotsQueryInfo( [ 'content' ] );
@@ -176,8 +184,9 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 	public function testListRevisionsOffsetAndLimit() {
 		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
 		$db = $this->getDb();
-		$revisions = $lookup->listRevisions(
+		$revisions = $lookup->listArchivedRevisions(
 			$this->archivedPage,
+			$this->mockRegisteredUltimateAuthority(),
 			[ $db->expr( 'ar_timestamp', '<', $db->timestamp( $this->secondRev->getTimestamp() ) ) ],
 			1 );
 		$this->assertSame( 1, $revisions->numRows() );

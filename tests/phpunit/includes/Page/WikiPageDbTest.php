@@ -564,7 +564,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			] );
 
 		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
-		$archivedRevs = $lookup->listRevisions( $page->getTitle() );
+		$archivedRevs = $lookup->listArchivedRevisions( $page->getTitle(), $this->mockRegisteredUltimateAuthority() );
 		if ( !$archivedRevs || $archivedRevs->numRows() !== 1 ) {
 			$this->fail( 'Unexpected number of archived revisions' );
 		}

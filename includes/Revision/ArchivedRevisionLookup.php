@@ -39,19 +39,20 @@ class ArchivedRevisionLookup {
 	 * List the revisions of the given page. Returns result wrapper with
 	 * various archive table fields.
 	 *
+	 * @since 1.47
+	 *
 	 * @param PageIdentity $page
+	 * @param Authority $performer Viewer, for restricted-tag access checks
 	 * @param array $extraConds Extra conditions to be added to the query
 	 * @param ?int $limit The limit to be applied to the query, or null for no limit
-	 * @param Authority|null $performer Viewer, for restricted-tag access checks. Null hides all
-	 *   restricted tags. (since 1.47)
 	 * @return IResultWrapper
 	 */
-	public function listRevisions(
+	public function listArchivedRevisions(
 		PageIdentity $page,
+		Authority $performer,
 		array $extraConds = [],
-		?int $limit = null,
-		?Authority $performer = null
-	) {
+		?int $limit = null
+	): IResultWrapper {
 		$queryBuilder = $this->revisionStore->newArchiveSelectQueryBuilder( $this->dbProvider->getReplicaDatabase() )
 			->joinComment()
 			->where( $extraConds )
@@ -65,11 +66,34 @@ class ArchivedRevisionLookup {
 			$queryBuilder->limit( $limit );
 		}
 
-		$viewer = $performer ?? new SimpleAuthority( UserIdentityValue::newAnonymous( '127.0.0.1' ), [] );
 		MediaWikiServices::getInstance()->getChangeTagsStore()
-			->addTagsToDisplayQuery( $queryBuilder, 'archive', $viewer );
+			->addTagsToDisplayQuery( $queryBuilder, 'archive', $performer );
 
 		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
+	}
+
+	/**
+	 * List the revisions of the given page. Returns result wrapper with
+	 * various archive table fields.
+	 *
+	 * @deprecated since 1.47, use listArchivedRevisions() instead, passing an Authority
+	 *
+	 * @param PageIdentity $page
+	 * @param array $extraConds Extra conditions to be added to the query
+	 * @param ?int $limit The limit to be applied to the query, or null for no limit
+	 * @param Authority|null $performer Viewer, for restricted-tag access checks. Null hides all
+	 *   restricted tags.
+	 * @return IResultWrapper
+	 */
+	public function listRevisions(
+		PageIdentity $page,
+		array $extraConds = [],
+		?int $limit = null,
+		?Authority $performer = null
+	): IResultWrapper {
+		$viewer = $performer ?? new SimpleAuthority( UserIdentityValue::newAnonymous( '127.0.0.1' ), [] );
+
+		return $this->listArchivedRevisions( $page, $viewer, $extraConds, $limit );
 	}
 
 	/**

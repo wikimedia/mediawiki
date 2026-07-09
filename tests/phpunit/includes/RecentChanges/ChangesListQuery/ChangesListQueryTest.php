@@ -937,7 +937,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 	 * @param array $options
 	 */
 	public function testHighlight( $action, array $expectedIds, array $options = [] ) {
-		$query = $this->getQuery( $options );
+		$query = $this->getQuery( $options )->audience( $this->mockRegisteredUltimateAuthority() );
 		$query->highlight( '', ...$action );
 		$res = $query->fetchResult();
 		$hlIds = [];
@@ -1412,6 +1412,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider provideRestrictedTagTsTags
 	 */
 	public function testAudienceFiltersRestrictedTagInTsTags( string $audience, bool $expectRestricted ): void {
+		$this->filterDeprecated( '/without an Authority \$performer/' );
 		$this->setRestrictedTags( [ 'mw-private-secret' => 'viewsuppressed' ] );
 		$rcId = $this->editAndTagRecentChange( [ 'foo', 'mw-private-secret' ] );
 		$query = $this->getQuery()->addChangeTagSummaryField();
