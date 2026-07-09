@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language\Dependency;
+
 use MediaWiki\Config\Config;
 use MediaWiki\MediaWikiServices;
 

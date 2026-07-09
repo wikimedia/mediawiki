@@ -1,0 +1,19 @@
+<?php
+/**
+ * @license GPL-2.0-or-later
+ * @file
+ */
+
+// phpcs:disable MediaWiki.Files.ClassMatchesFilename.NotMatch
+
+/**
+ * Compatibility class for unserialize of php code from cache.
+ * Adding a namespace breaks class properties, the serialize content contains full qualified names,
+ * that does not unserialize clean for private properties.
+ * T415619 / T428663
+ *
+ * @deprecated Since 1.47
+ * @ingroup Language
+ */
+class GlobalDependency extends \MediaWiki\Language\Dependency\GlobalDependency {
+}

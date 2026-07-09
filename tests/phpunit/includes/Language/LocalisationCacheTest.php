@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Language;
 
-use FileDependency;
 use LCStoreStaticArray;
+use MediaWiki\Language\Dependency\FileDependency;
 use MediaWiki\Language\LocalisationCache;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Mocks\Language\MockLocalisationCacheTrait;

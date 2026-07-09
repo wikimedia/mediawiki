@@ -370,6 +370,13 @@ because of Phabricator reports.
     - NotRecursiveIterator
   - Wikimedia\ObjectCache:
     - MemoizedCallable
+  - MediaWiki\Language\Dependency:
+    - CacheDependency
+    - ConstantDependency
+    - DependencyWrapper
+    - FileDependency
+    - GlobalDependency
+    - MainConfigDependency
   - …
 * The PatrolLog::record method is deprecated and will trigger
   deprecation warnings. Use PatrolManager::createPatrolLog instead.

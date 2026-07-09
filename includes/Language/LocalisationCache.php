@@ -6,20 +6,20 @@
 
 namespace MediaWiki\Language;
 
-use CacheDependency;
 use CLDRPluralRuleParser\Error as CLDRPluralRuleError;
 use CLDRPluralRuleParser\Evaluator;
-use ConstantDependency;
 use DOMDocument;
-use FileDependency;
 use InvalidArgumentException;
 use LogicException;
-use MainConfigDependency;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Language\Dependency\CacheDependency;
+use MediaWiki\Language\Dependency\ConstantDependency;
+use MediaWiki\Language\Dependency\FileDependency;
+use MediaWiki\Language\Dependency\MainConfigDependency;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
@@ -45,7 +45,7 @@ use Wikimedia\Leximorph\Provider\PluralRules as LeximorphPluralRulesProvider;
  * @ingroup Language
  */
 class LocalisationCache {
-	public const VERSION = 6;
+	public const VERSION = 7;
 
 	/**
 	 * True if re-caching should only be done on an explicit call to recache().

@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language\Dependency;
+
 /**
  * Depend on a PHP global variable.
  *

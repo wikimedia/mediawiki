@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Language\Dependency;
+
 /**
  * Depend on a file.
  *
@@ -11,10 +13,16 @@
  * @ingroup Language
  */
 class FileDependency extends CacheDependency {
-	/** @var string */
-	private $filename;
-	/** @var null|false|int */
-	private $timestamp;
+	/**
+	 * @var string
+	 * @private Make private when FileDependency_compat.php is removed
+	 */
+	protected $filename;
+	/**
+	 * @var null|false|int
+	 * @private Make private when FileDependency_compat.php is removed
+	 */
+	protected $timestamp;
 
 	/**
 	 * Create a file dependency
