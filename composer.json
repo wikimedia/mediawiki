@@ -46,6 +46,7 @@
 		"psr/http-message": "2.0",
 		"psr/log": "3.0.2",
 		"ralouphie/getallheaders": "3.0.3",
+		"symfony/event-dispatcher": "7.4.17",
 		"symfony/mailer": "7.4.17",
 		"symfony/mime": "7.4.17",
 		"symfony/polyfill-php84": "1.38.1",
