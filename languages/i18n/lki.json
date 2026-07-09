@@ -303,7 +303,6 @@
 	"userlogin-reauth": "لازم تو دوباره داخل بئت سی حساب تو تأیید بکه {{GENDER:$1|$1}}",
 	"userlogin-createanother": "حساووئ کاربةری تِر بِسازِن",
 	"createacct-emailrequired": "نیشانی ایمیل",
-	"createacct-emailoptional": ")نشانی ایمیل (اختیاری",
 	"createacct-email-ph": "نیشانی ایمیل ووژت بنۆیس",
 	"createacct-another-email-ph": "نیشانی ایمیل ووژتان بنؤیسِن",
 	"createaccountmail": "استفاده از رمز عبور موقت تصادفی و ارسال آن به آدرس ایمیل مشخص شده",

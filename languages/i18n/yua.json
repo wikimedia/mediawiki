@@ -371,7 +371,6 @@
 	"createacct-loggedin-continue-as": "Chúuns bey {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Beet uláak' a cuenta",
 	"createacct-emailrequired": "U bejil a correo electrónico",
-	"createacct-emailoptional": "U beelil correo electrónico. (Ma' jach k'abéeti')",
 	"createacct-email-ph": "Ts'íibt a beelil a correo electrónico",
 	"createacct-another-email-ph": "Ts'íibt a correo electrónico.",
 	"createaccountmail": "K'abéetkuns je'elmáakalmáak majan mukults'íibile', túuxt ti' le correo ku ya'aliko'.",

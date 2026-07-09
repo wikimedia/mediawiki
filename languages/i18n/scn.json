@@ -315,7 +315,6 @@
 	"userlogin-loggedin": "Già trasisti comu {{GENDER:$1|$1}}.\nAdòpira lu mòdulu ccassutta pi tràsiri comu n'àutru utenti.",
 	"userlogin-createanother": "Crea n'àutru cuntu",
 	"createacct-emailrequired": "Nnirizzu di posta elittrònica",
-	"createacct-emailoptional": "Nnirizzu di posta elittrònica (facurtativu)",
 	"createacct-email-ph": "Nzirisci lu tò nnirizzu di posta elittrònica",
 	"createacct-another-email-ph": "Nzirisci lu nnirizzu di posta elittrònica",
 	"createaccountmail": "Adòpira na password timpurània casuali e mànnala ô nnirizzu di posta elittrònica spicificatu",

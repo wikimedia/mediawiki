@@ -257,7 +257,6 @@
 	"userlogin-resetpassword-link": "Paroliñizni unuttıñızmı?",
 	"userlogin-helplink2": "Kiriş içün yardım kerek",
 	"createacct-emailrequired": "E-mail adresi",
-	"createacct-emailoptional": "E-mail adresi (mecburiy degil)",
 	"createacct-email-ph": "E-mail adresiñizni yazıñız",
 	"createacct-another-email-ph": "E-mail adresiñizni yazıñız",
 	"createaccountmail": "Avtomatik olaraq meydanğa ketirilgen muvaqqat bir parol qullana bilir ve bu parolni bildirilgen e-mail adresine yollay bilirsiñiz",

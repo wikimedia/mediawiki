@@ -322,7 +322,6 @@
 	"userlogin-loggedin": "તમે પહેલેથી {{GENDER:$1|$1}} તરીકે પ્રવેશ કરેલો જ છે.\nબીજા સભ્ય તરીકે પ્રવેશ કરવા માટે નીચેનું ફોર્મ વાપરો.",
 	"userlogin-createanother": "બીજું ખાતું બનાવો",
 	"createacct-emailrequired": "ઇમેલ સરનામું",
-	"createacct-emailoptional": "ઇમેલ સરનામું (વૈકલ્પિક)",
 	"createacct-email-ph": "તમારું ઇમેલ સરનામું દાખલ કરો",
 	"createacct-another-email-ph": "તમારું ઇમેલ સરનામું દાખલ કરો",
 	"createaccountmail": "કામચલાઉ ગમે-તેમ પાસવર્ડ વાપરો અને તેને સ્પષ્ટ કરેલ ઇમેલ સરનામા પર મોકલો",

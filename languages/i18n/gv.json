@@ -267,7 +267,6 @@
 	"createacct-loggedin-continue-as": "Gleash er-oi myr {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Croo coontys elley",
 	"createacct-emailrequired": "Enmys post-L",
-	"createacct-emailoptional": "Enmys post-L (reihyssagh)",
 	"createacct-email-ph": "Cur dt’enmys post-L stiagh",
 	"createacct-another-email-ph": "Cur enmys post-L stiagh",
 	"createaccountmail": "Croo fockle arrey shallidagh gyn tort as cur eh da’n post-l reiht ayd",

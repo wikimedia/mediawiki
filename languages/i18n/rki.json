@@ -339,7 +339,6 @@
 	"userlogin-reauth": "မင်းသည် {{GENDER:$1|$1}} ဖြစ်ကြောင်း အတည်ပြုဖို့ ထပ်လို့ဝင်ရောက်ရဖို့။",
 	"userlogin-createanother": "အခြား အကောက်တစ်ခုကိုဖန်တီးပါ",
 	"createacct-emailrequired": "အီးမေးလ်လိပ်စာ",
-	"createacct-emailoptional": "အီးမေးလ်လိပ်စာ (ဖြည့်ဖို့ဆိုကေ)",
 	"createacct-email-ph": "အီးမေး လိပ်စာ ရိုက်ထည့်ပါ",
 	"createacct-another-email-ph": "အီးမေး လိပ်စာ ရိုက်ထည့်ပါ",
 	"createaccountmail": "ယာယီကျပန်းစကားဝှက်ကို အသုံးပြုပနာ သတ်မှတ်ထားရေ အီးမေးလ်လိပ်စာသို့ ပီးပို့ပါ။",

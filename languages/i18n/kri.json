@@ -187,7 +187,6 @@
 	"userlogin-resetpassword-link": "Yu fɔgɛt yu paswɔd?",
 	"userlogin-helplink2": "Ɛp fɔ log in",
 	"userlogin-reauth": "Yu fɔ log in bak fɔ chɛk if yu na {{GENDER:$1| $1 }}.",
-	"createacct-emailoptional": "Email (òpshòn)",
 	"createacct-email-ph": "Rait yu email",
 	"createaccountmail": "Yuz shòrttèm randòm passwòrd èn sèn am go dhi imel address we spesifay",
 	"createacct-submit": "Kreat yu yon akkaunt",

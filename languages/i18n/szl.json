@@ -276,7 +276,6 @@
 	"userlogin-loggedin": "Zalogowano kej {{GENDER:$1|$1}}. Użyj formulara půńiżyj, coby zalogować śe kej inkszy używocz.",
 	"userlogin-createanother": "Stwōrz inksze kōnto",
 	"createacct-emailrequired": "Adresa e‐mail",
-	"createacct-emailoptional": "Adresa e-mail (niymusowo)",
 	"createacct-email-ph": "Wkludź swojã adresã e-mail",
 	"createacct-another-email-ph": "Wkludź adresã e-mail",
 	"createaccountmail": "Użyj tymczasowego losowego hasła i wyślij je na wkludzōnõ adresã e-mail",

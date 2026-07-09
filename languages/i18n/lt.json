@@ -375,7 +375,6 @@
 	"userlogin-createanother": "Sukurti kitą paskyrą",
 	"createacct-loggedin-heading": "Sukurti kitą paskyrą",
 	"createacct-emailrequired": "Elektroninio pašto adresas",
-	"createacct-emailoptional": "Elektroninio pašto adresas (neprivaloma)",
 	"createacct-email-ph": "Įveskite savo elektroninio pašto adresą",
 	"createacct-another-email-ph": "Įveskite elektroninio pašto adresą",
 	"createaccountmail": "Naudokite laikiną atsitiktinį slaptažodį ir nusiųskite jį į elektroninį paštą, nurodytą žemiau.",

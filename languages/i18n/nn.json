@@ -352,7 +352,6 @@
 	"userlogin-createanother": "Opprett ein annan konto",
 	"createacct-loggedin": "Du er allereie logga inn som {{GENDER:$1|$1}}.",
 	"createacct-emailrequired": "E-postadresse:",
-	"createacct-emailoptional": "E-postadresse (valfritt)",
 	"createacct-email-ph": "Skriv inn e-postadressa di",
 	"createacct-another-email-ph": "Skriv inn e-postadresse",
 	"createaccountmail": "Bruk eit mellombels tilfeldig passord og send det til den oppgjevne e-postadressa",

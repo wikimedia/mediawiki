@@ -173,7 +173,6 @@
 	"userlogin-loggedin": "Ya está {{GENDER:$1|conectado|conectada}} como $1.\nUse el formulario de abajo para iniciar sesión como otro usuario.",
 	"userlogin-reauth": "Debe iniciar sesión de nuevo para verificar que usted es {{GENDER:$1|$1}}.",
 	"createacct-emailrequired": "Dirección de correo electrónico",
-	"createacct-emailoptional": "Dirección de correo electrónico (opcional)",
 	"createacct-email-ph": "Escriba su dirección de correo electrónico",
 	"createacct-another-email-ph": "Escriba la dirección de correo electrónico",
 	"createacct-reason-ph": "Por qué está creando otra cuenta",

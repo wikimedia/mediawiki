@@ -241,7 +241,6 @@
 	"userlogin-loggedin": "你已經用{{GENDER:$1|$1}}登入，用下跤的表，登入別个名。",
 	"userlogin-createanother": "開另外一个口座",
 	"createacct-emailrequired": "電子批桶地址",
-	"createacct-emailoptional": "電子批桶地址（無一定愛寫）",
 	"createacct-email-ph": "拍電子批桶地址",
 	"createacct-another-email-ph": "拍電子批桶地址",
 	"createacct-realname": "真正的名",

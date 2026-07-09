@@ -175,7 +175,6 @@
 	"userlogin-helplink2": "Apua sisälelokkaamiseen",
 	"userlogin-createanother": "Luo toinen käyttäjäkonttu",
 	"createacct-emailrequired": "E-postiatressi",
-	"createacct-emailoptional": "E-postiatressi (vapa)",
 	"createacct-email-ph": "Kirjota sinun e-postiatressi",
 	"createacct-another-email-ph": "Lissää e-postiatressi",
 	"createacct-realname": "Oikea nimi (vapa)",

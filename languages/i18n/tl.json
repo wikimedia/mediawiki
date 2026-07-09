@@ -367,7 +367,6 @@
 	"userlogin-reauth": "Kailangan mong mag-log in muli para mapatunayan na ikaw si {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Gumawa pa ng account",
 	"createacct-emailrequired": "Email address",
-	"createacct-emailoptional": "Email (di kailangan)",
 	"createacct-email-ph": "Ilagay ang iyong email address",
 	"createacct-another-email-ph": "Ipasok ang email address",
 	"createaccountmail": "Gumamit ng pansamantalang random na password at ipadala ito sa email na nakasaad sa baba",

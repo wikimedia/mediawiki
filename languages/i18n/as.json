@@ -324,7 +324,6 @@
 	"userlogin-reauth": "আপুনি যে {{GENDER:$1|$1}} সেয়া প্ৰমাণ কৰিবলৈ আকৌ এবাৰ প্ৰৱেশ কৰিব লাগিব।",
 	"userlogin-createanother": "আন এটা একাউণ্ট সৃষ্টি কৰক",
 	"createacct-emailrequired": "ই-মেইল ঠিকনা",
-	"createacct-emailoptional": "ই-মেইল ঠিকনা (বৈকল্পিক)",
 	"createacct-email-ph": "আপোনাৰ ই-মেইল ঠিকনা লিখক",
 	"createacct-another-email-ph": "ইমেইল ঠিকনা লিখক",
 	"createaccountmail": "এটা যাদৃচ্ছিক অস্থায়ী গুপ্তশব্দ ব্যৱহাৰ কৰক আৰু ইয়াক তলত দিয়া ইমেইল ঠিকনাটোলৈ পঠিয়াই দিয়ক",

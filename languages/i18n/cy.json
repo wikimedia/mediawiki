@@ -362,7 +362,6 @@
 	"createacct-loggedin-continue-as": "Parhau fel {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Creu cyfrif arall",
 	"createacct-emailrequired": "Cyfeiriad e-bost",
-	"createacct-emailoptional": "Cyfeiriad e-bost (dewisol)",
 	"createacct-email-ph": "Rhowch eich cyfeiriad e-bost",
 	"createacct-another-email-ph": "Rhowch gyfeiriad e-bost",
 	"createaccountmail": "Defnyddio cyfrinair ar hap dros dro a'i anfon i'r cyfeiriad e-bost a roddwyd",

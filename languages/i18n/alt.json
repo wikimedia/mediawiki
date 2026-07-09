@@ -341,7 +341,6 @@
 	"userlogin-reauth": "Слер {{GENDER:$1|$1}} деп чынын билерге јаҥынаҥ системага кирер.",
 	"userlogin-createanother": "Ӧскӧ аккаунт эдип алар",
 	"createacct-emailrequired": "Email адрес",
-	"createacct-emailoptional": "Email адрес (керектӱ эмес)",
 	"createacct-email-ph": "Email адрезерди кийдирер",
 	"createacct-another-email-ph": "Email адрезерди кийдирер",
 	"createaccountmail": "Кыска ӧйгӧ берилген, келишкен јажыт сӧсти эдинип ле оны алдында кӧргӱзилген email адреске аткарар",

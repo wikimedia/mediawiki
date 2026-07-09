@@ -312,7 +312,6 @@
 	"userlogin-reauth": "{{GENDER:$1|$1}} ekanligingizni tasdiqlash uchun tizimga qaytadan kirishingiz kerak.",
 	"userlogin-createanother": "Boshqa hisob yaratish",
 	"createacct-emailrequired": "Elektron pochta manzilingiz",
-	"createacct-emailoptional": "Elektron pochta manzili (majburiy emas)",
 	"createacct-email-ph": "Elektron pochta manzilingizni kiriting",
 	"createacct-another-email-ph": "Elektron pochta manzilini kiriting",
 	"createaccountmail": "Tasodifan tanlab beriladigan vaqtinchalik maxfiy soʻzdan foydalanish (elektron pochta manzilingizga joʻnatiladi)",

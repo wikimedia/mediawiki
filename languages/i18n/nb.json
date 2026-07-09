@@ -411,7 +411,6 @@
 	"createacct-loggedin-continue-as": "Fortsett som {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Opprett ny konto",
 	"createacct-emailrequired": "E-postadresse",
-	"createacct-emailoptional": "E-postadresse (valgfritt)",
 	"createacct-email-ph": "Fyll inn e-postadressen din",
 	"createacct-another-email-ph": "Fyll inn e-postadressen",
 	"createaccountmail": "Bruk et midlertidig, tilfeldig passord, og send det til angitt e-postadresse",

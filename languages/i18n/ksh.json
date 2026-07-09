@@ -297,7 +297,6 @@
 	"userlogin-reauth": "Do moß desch norr_ens enlogge, öm nohzewiise, dat De verhaftesch {{GENDER:$1|dä|dat|dä Metmaacher|de|dat}} $1 bes.",
 	"userlogin-createanother": "Donn ene zohsäzlejje Zohjang aanlääje",
 	"createacct-emailrequired": "Ding Addräß för de <i lang=\"en\">e-mail</i>",
-	"createacct-emailoptional": "Ding Addräß för de <i lang=\"en\">e-mail</i>, kann fott bliive",
 	"createacct-email-ph": "Jiv Ding Addräß för de <i lang=\"en\">e-mail</i> en!",
 	"createacct-another-email-ph": "Jivv en Addräß för de <i lang=\"en\" xml:lang=\"en\">e-mail</i> aan",
 	"createaccountmail": "Scheck mer en <i lang=\"en\">e-mail</i> met enem neu ußjedaachte Paßwood op Zick",

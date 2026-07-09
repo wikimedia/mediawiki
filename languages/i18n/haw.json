@@ -234,7 +234,6 @@
 	"userlogin-loggedin": "Ua ʻeʻe ʻē ʻoe penei: {{GENDER:$1|$1}}.\nHana i ke kahua i lalo no ka ʻeʻe ʻana i kekahi mea hoʻohana ʻē aʻe.",
 	"userlogin-createanother": "E kāinoa i kekahi moʻokāki ʻē aʻe",
 	"createacct-emailrequired": "Wahinoho lekauila",
-	"createacct-emailoptional": "Wahinoho lekauila (kāpae)",
 	"createacct-email-ph": "E kikokiko i kāu wahinoho lekauila",
 	"createacct-another-email-ph": "E kikokiko i ka wahinoho lekauila",
 	"createaccountmail": "Hana i kekahi ʻōlelo hūnā ponokoho kūikawā a hoʻouna ia i ka wahinoho lekauila i kikokiko ʻia",

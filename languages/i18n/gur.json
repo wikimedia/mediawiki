@@ -287,7 +287,6 @@
 	"userlogin-reauth": "Fu nari ti fu lɔɔgɛ kɛ̃ mɛ le yɛ'ɛsa dee ta'am bisɛ ti fu de {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Maalɛ akanti ayima",
 	"createacct-emailrequired": "Imeeli adɛɛsi",
-	"createacct-emailoptional": "Imeeli aderɛsi",
 	"createacct-email-ph": "Gulesɛ fu Email",
 	"createacct-another-email-ph": "Kɛ'ɛsɛ email aderisi",
 	"createaccountmail": "Dikɛ 'a temporary random' paasewɛdi de ta'asɛ ka bo 'specified' imeeli aderisi",

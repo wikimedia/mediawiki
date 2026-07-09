@@ -392,7 +392,6 @@
 	"createacct-loggedin-continue-as": "Продължаване като {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Създаване на друга сметка",
 	"createacct-emailrequired": "Адрес за електронна поща",
-	"createacct-emailoptional": "Адрес за електронна поща (незадължително)",
 	"createacct-email-ph": "Въведете Вашия адрес за електронна поща",
 	"createacct-another-email-ph": "Въведете електронна поща",
 	"createaccountmail": "Използване на случайна временна парола, която се изпраща на посочената електронната поща",

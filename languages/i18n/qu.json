@@ -268,7 +268,6 @@
 	"userlogin-loggedin": "{{GENDER:$1|$1}} sutiyuq kaspa yaykusqañam kachkanki.\nKay qatiq hunt'ana p'anqata llamk'achiy wakin sutiwan yaykunaykipaq.",
 	"userlogin-createanother": "Huk rakiqunata kamariy",
 	"createacct-emailrequired": "E-chaski imamayta",
-	"createacct-emailoptional": "E-chaski imamayta (munaspayki)",
 	"createacct-email-ph": "E-chaski imamaytaykita yaykuchiy",
 	"createacct-another-email-ph": "E-chaski imamaytata yaykuchiy",
 	"createaccountmail": "Kikinmanta tukusqa mit'alla yaykuna rimata llamk'achispa akllasqa e-chaski imamaytaman kachay",

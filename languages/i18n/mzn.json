@@ -339,7 +339,6 @@
 	"userlogin-reauth": "أی إت‌کش دیگه دله برو که هارشیم راستی {{GENDER:$1|$1}} هستی، یا نا؟",
 	"userlogin-createanother": "اتی دیگه کاروری حىساب بساتن",
 	"createacct-emailrequired": "ایمیل آدرس",
-	"createacct-emailoptional": "ایمیل (اختیاری)",
 	"createacct-email-ph": "شه ایمیل ره باوّین",
 	"createacct-another-email-ph": "شه ایمیل ره باوّین",
 	"createaccountmail": "اتا شانسی رمز دینگن و شه رمز ره ایمیل وسه راهی هاکن",

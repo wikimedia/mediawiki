@@ -337,7 +337,6 @@
 	"createacct-loggedin-continue-as": "كمل بـ{{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "سوي حساب ثاني",
 	"createacct-emailrequired": "عنوان الايميل",
-	"createacct-emailoptional": "الإيميل (إختياري)",
 	"createacct-email-ph": "إكتب الإيميل مالك",
 	"createacct-another-email-ph": "إكتب عنوان الإيميل",
 	"createaccountmail": "استخدم باسورد عشوائي مؤقت ودزها إلى عنوان الايميل المحدد جوا",

@@ -327,7 +327,6 @@
 	"userlogin-reauth": "Kaipuhan maglaog ulit para mapatunayan na ika {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Magmukna nin ibang account",
 	"createacct-emailrequired": "Estada kan e-surat",
-	"createacct-emailoptional": "Email (dai kinakaipuhan)",
 	"createacct-email-ph": "Ilaag an saimong email address",
 	"createacct-another-email-ph": "Ikaag an estada kan e-surat",
 	"createaccountmail": "Gumamit nin sarong temporaryong pampurak na pasa-taramon asin ipadara ini sa pinagsambit na estada kan e-surat",

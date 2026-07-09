@@ -344,7 +344,6 @@
 	"createacct-loggedin-continue-as": "Prodolžiti kako {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Stvoriti drugo koristničsko konto",
 	"createacct-emailrequired": "Adres e-pošty",
-	"createacct-emailoptional": "Adres e-pošty (opcionalno)",
 	"createacct-email-ph": "Vvedite svoj adres e-pošty",
 	"createacct-another-email-ph": "Vpišite adres e-pošty",
 	"createaccountmail": "Izberite začasnu, slučajnu parolu i izšljite ju na ukazany adres e-pošty",

@@ -386,7 +386,6 @@
 	"createacct-loggedin-continue-as": "ดำเนินการต่อในชื่อ {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "สร้างอีกบัญชี",
 	"createacct-emailrequired": "ที่อยู่อีเมล",
-	"createacct-emailoptional": "ที่อยู่อีเมล (ไม่บังคับ)",
 	"createacct-email-ph": "กรอกที่อยู่อีเมลของคุณ",
 	"createacct-another-email-ph": "กรอกที่อยู่อีเมล",
 	"createaccountmail": "ใช้รหัสผ่านสุ่มชั่วคราวและส่งไปยังที่อยู่อีเมลที่ระบุ",

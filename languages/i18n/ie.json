@@ -306,7 +306,6 @@
 	"userlogin-reauth": "Vu deve aperter session denov por verificar que vu es {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Crear altri conto",
 	"createacct-emailrequired": "Adresse postal electronic",
-	"createacct-emailoptional": "Adresse postal electronic (facultativ)",
 	"createacct-email-ph": "Intra tui adresse postal electronic",
 	"createacct-another-email-ph": "Intra che tui adresse postal electronic",
 	"createaccountmail": "Usar un parol-passe sporadic temporari e inviar it por li adresse de missage electronic specificat",

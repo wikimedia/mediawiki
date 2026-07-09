@@ -287,7 +287,6 @@
 	"userlogin-loggedin": "شما انون بی ئنوان {{GENDER:$1|$1}} داخل بوته ئیت .\nشه جهلگین فورما په داخل بوتینا بی ئنوان دیگرین کار زوروکا استفاده بکنیت .",
 	"userlogin-createanother": "دیگرین کار زوروکین حسابئ جوڑ کورتین",
 	"createacct-emailrequired": "ایمیل ادرس",
-	"createacct-emailoptional": "ایمیل ادرس (اختیاری)",
 	"createacct-email-ph": "وتي ایمیل ادرسا داخل بکنیت",
 	"createacct-another-email-ph": "ایمیل ادرسی داخل کورتین",
 	"createaccountmail": "استفاده شه تصادفین پاسوردا و آیی دیم داتین بی مشخصین ایمیل ادرسیا",

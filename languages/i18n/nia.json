@@ -324,7 +324,6 @@
 	"userlogin-reauth": "Lö tola lö möi ua ndra'ugö bakha ba wangoroma'ö wa ya'ugö {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Fazökhi akun bö'ö",
 	"createacct-emailrequired": "Alamat email",
-	"createacct-emailoptional": "Alamat surel (opsional)",
 	"createacct-email-ph": "Sura alamat surel",
 	"createacct-another-email-ph": "Sura alamat email",
 	"createaccountmail": "Oguna'ö nono kusi gasa-gasa ba fa'ohe'ö ia ba alamat email si no muhonogöi",

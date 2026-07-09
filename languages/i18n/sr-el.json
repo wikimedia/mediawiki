@@ -363,7 +363,6 @@
 	"userlogin-reauth": "Morate se ponovo prijaviti da biste potvrdili da ste {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Otvori još jedan nalog",
 	"createacct-emailrequired": "Imejl-adresa",
-	"createacct-emailoptional": "Imejl-adresa (poželjno)",
 	"createacct-email-ph": "Unesite imejl-adresu",
 	"createacct-another-email-ph": "Unesite imejl-adresu",
 	"createaccountmail": "Postavi privremenu, nasumičnu lozinku i pošalji mi je na navedeni imejl",

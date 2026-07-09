@@ -352,7 +352,6 @@
 	"userlogin-reauth": "Eger ke {{GENDER:$1|$1}} şımayê se xo araşt kerdışirê fına ronıştış akerê.",
 	"userlogin-createanother": "Zewbi hesab vıraz",
 	"createacct-emailrequired": "Adresa e-posteyi",
-	"createacct-emailoptional": "Adresa e-postey (mecburi niya)",
 	"createacct-email-ph": "Adresa e-posteyê xo cıkewe",
 	"createacct-another-email-ph": "Adresa e-posta de fi",
 	"createaccountmail": "Yew parolaya rastameyiya ravêrdiye bıgurene û parola ena adresa e-postey rê bırışe",

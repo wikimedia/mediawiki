@@ -326,7 +326,6 @@
 	"userlogin-reauth": "Та {{GENDER:$1|$1}} бийән батлхин төлә дәкн невтрх шаардлһтат.",
 	"userlogin-createanother": "Оңдан бүрткл үүскх",
 	"createacct-emailrequired": "Цәкм хәәрцгин хайг",
-	"createacct-emailoptional": "Цәкм хәәрцгин хайг (эврән)",
 	"createacct-email-ph": "Цәкм хәәрцгин хайган орултн",
 	"createacct-another-email-ph": "Цәкм хәәрцгин хайган орултн",
 	"createaccountmail": "Токалдлар зокагдсн түр-зуурын нууц үгиг ашглҗ, түүг заагдсн цәкм хәәрцгүр илгәх.",

@@ -367,7 +367,6 @@
 	"createacct-loggedin-continue-as": "Padayon bilang {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Maghimo sang isa pa ka account",
 	"createacct-emailrequired": "Adres pansulat-e",
-	"createacct-emailoptional": "Adres pansulat-e (opsiyonal)",
 	"createacct-email-ph": "Isulod ang imong adres pansulat-e.",
 	"createacct-another-email-ph": "Magbutang sang adres pansulat-e.",
 	"createaccountmail": "Maggamit sang temporaryo nga random nga password kag ipadala ini sa gintalana nga email address",

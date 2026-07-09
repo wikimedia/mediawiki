@@ -419,7 +419,6 @@
 	"createacct-loggedin-continue-as": "Continueu com a {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Creeu un altre compte",
 	"createacct-emailrequired": "Adreça electrònica",
-	"createacct-emailoptional": "Adreça electrònica (opcional)",
 	"createacct-email-ph": "Introduïu la vostra adreça de correu electrònic",
 	"createacct-another-email-ph": "Introduïu una adreça de correu electrònic",
 	"createaccountmail": "Utilitza una contrasenya aleatòria temporal i envia-la a l'adreça de correu indicada",

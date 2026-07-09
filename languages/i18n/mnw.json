@@ -345,7 +345,6 @@
 	"createacct-loggedin-continue-as": "ဆက်အာ နဒဒှ် {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "ခၞံကၠောန် အကံက်တၞဟ်",
 	"createacct-emailrequired": "ဌာန်ဒတန် အဳမေလ်",
-	"createacct-emailoptional": "ဌာန်ဒတန် အဳမေဝ် (သ္ဒးစုတ်ဟေင်)",
 	"createacct-email-ph": "စုတ် ဌာန်ဒတန် အဳမေဝ် မၞးညိ",
 	"createacct-another-email-ph": "စုတ် ဌာန်ဒတန် အဳမေဝ်",
 	"createaccountmail": "စကာ မလိက်ပၞုက်ဇဟောမ်ယာယဳ တုဲ ပလံင်ဏာ ဇရေင် ဌာန်ဒတန် အဳမေလ်",

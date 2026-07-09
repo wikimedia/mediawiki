@@ -313,7 +313,6 @@
 	"userlogin-reauth": "သင် {{GENDER:$1|}}ဖြစ်ကြောင်း အတည်ပြုရန်အတွက် အကောင့်ထဲ ထပ်မံဝင်ရောက်ရပါမည်။",
 	"userlogin-createanother": "အခြားအကောင့် ဖန်တီးရန်",
 	"createacct-emailrequired": "အီးမေး လိပ်စာ",
-	"createacct-emailoptional": "အီးမေး လိပ်စာ (ဖြည့်လိုက)",
 	"createacct-email-ph": "သင့်အီးမေး လိပ်စာ ရိုက်ထည့်ပါ",
 	"createacct-another-email-ph": "အီးမေး လိပ်စာ ရိုက်ထည့်ပါ",
 	"createaccountmail": "ယာယီ ကျပန်းစကားဝှက်ကို သီးသန့် အီးမေးလ်လိပ်စာသို့ ပေးပို့အသုံးပြုရန်",

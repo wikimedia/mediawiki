@@ -353,7 +353,6 @@
 	"userlogin-reauth": "Morate se ponovo prijaviti da bismo potvrdili da ste zaista {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Napravi još jedan račun",
 	"createacct-emailrequired": "Adresa e-pošte",
-	"createacct-emailoptional": "Adresa e-pošte (neobavezno)",
 	"createacct-email-ph": "Unesite adresu e-pоšte",
 	"createacct-another-email-ph": "Unesite adresu e-pošte",
 	"createaccountmail": "Postavi privremenu, nasumičnu lozinku i pošalji mi je na navedenu adresu e-pošte",

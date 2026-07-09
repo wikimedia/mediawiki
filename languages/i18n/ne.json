@@ -382,7 +382,6 @@
 	"createacct-loggedin-continue-as": "{{GENDER:$1|$1}}को रूपमा जारी राख्नुहोस्",
 	"createacct-loggedin-heading": "अर्को खाता खोल्नुहोस्",
 	"createacct-emailrequired": "विडाँक ठेगाना",
-	"createacct-emailoptional": "विडाँक ठेगाना (ऐच्छिक)",
 	"createacct-email-ph": "तपाईंको इमेल ठेगाना भर्नुहोस्",
 	"createacct-another-email-ph": "इमेल ठेगाना भर्नुहोस्",
 	"createaccountmail": "कुनै अस्थाई र श्रिजित पासवर्ड प्रयोग गर्ने र खुलाईएको इमेलमा पठाउने",

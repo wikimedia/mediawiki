@@ -367,7 +367,6 @@
 	"createacct-loggedin-continue-as": "Halda áfram sem {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Búa til annan aðgang",
 	"createacct-emailrequired": "Tölvupóstfang",
-	"createacct-emailoptional": "Tölvupóstfang (valfrjálst)",
 	"createacct-email-ph": "Ritaðu tölvupóstfangið þitt",
 	"createacct-another-email-ph": "Ritaðu tölvupóstfang",
 	"createaccountmail": "Nota tímabundið aðgangsorð af handahófi og sendu það á tilgreint tölvupóstfang",

@@ -313,7 +313,6 @@
 	"userlogin-reauth": "आप के ई साबित करे खातिर की आपे {{GENDER:$1|$1}} बानी, दुबारा खाता में प्रवेश करे के पड़ी।",
 	"userlogin-createanother": "एगो दूसर खाता बनाईं",
 	"createacct-emailrequired": "ईमेल पता",
-	"createacct-emailoptional": "ईमेल पता (वैकल्पिक)",
 	"createacct-email-ph": "आपन ईमेल पता लिखीं",
 	"createacct-another-email-ph": "ईमेल पता लिखीं",
 	"createaccountmail": "एगो अस्थायी यादृच्छिक (रैन्डम) गुप्तशब्द के प्रयोग करीं आ दिहल गइल ईमेल पता पर भेजीं",

@@ -240,7 +240,6 @@
 	"userlogin-joinproject": "{{SITENAME}} лейхасына къошулынъыз",
 	"createaccount": "Къайд олув",
 	"createacct-emailrequired": "E-mail adresi",
-	"createacct-emailoptional": "E-mail адреси (меджбурий дегиль)",
 	"createacct-email-ph": "E-mail адресинъизни язынъыз",
 	"createacct-another-email-ph": "E-mail адресинъизни язынъыз",
 	"createaccountmail": "Автоматик оларакъ мейдангъа кетирильген мувакъкъат бир пароль къуллана билир ве бу парольни бильдирильген e-mail адресине ёллай билирсинъиз",

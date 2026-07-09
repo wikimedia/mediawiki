@@ -345,7 +345,6 @@
 	"userlogin-reauth": "Te gh'hee de andà dent anmò de verificà che te see{{GENDER:$1|t el $1| la $1|$1 }}.",
 	"userlogin-createanother": "Crea un'altra utenza",
 	"createacct-emailrequired": "Adress de posta elettronica",
-	"createacct-emailoptional": "Adress de posta elettronica (opzional)",
 	"createacct-email-ph": "Met dent el to adress de posta elettronica",
 	"createacct-another-email-ph": "Met denter l'adress de posta elettronica",
 	"createaccountmail": "Dopra una parola ciav a cas provvisoria e mandela a l'adress de posta elettronica specificad",

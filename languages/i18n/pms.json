@@ -358,7 +358,6 @@
 	"createacct-loggedin-continue-as": "Continua com {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Creé n'àutr cont",
 	"createacct-emailrequired": "Adrëssa ëd pòsta eletrònica",
-	"createacct-emailoptional": "Adrëssa ëd pòsta eletrònica (opsional)",
 	"createacct-email-ph": "Ch'a buta soa adrëssa ëd pòsta eletrònica",
 	"createacct-another-email-ph": "Buté l'adrëssa ëd pòsta eletrònica",
 	"createaccountmail": "Dovré na ciav temporania d'ancàpit e mandela a l'adrëssa ëd pòsta eletrònica spessificà",

@@ -500,7 +500,6 @@
 	"createacct-loggedin-continue-as": "Continuar como {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Criar uma outra conta",
 	"createacct-emailrequired": "Endereço de e-mail",
-	"createacct-emailoptional": "Endereço de e-mail (opcional)",
 	"createacct-email-ph": "Confirme seu endereço de e-mail",
 	"createacct-another-email-ph": "Forneça o endereço de e-mail",
 	"createaccountmail": "Usar uma senha aleatória e temporária que será enviada ao endereço de e-mail especificado a seguir",

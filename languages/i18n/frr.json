@@ -304,7 +304,6 @@
 	"userlogin-reauth": "Dü skel di nei uunmelde, am tu preewein, dat dü {{GENDER:$1|$1}} beest.",
 	"userlogin-createanother": "En ööder brükerkonto iinracht",
 	"createacct-emailrequired": "E-mail adres",
-	"createacct-emailoptional": "E-mail adres (optional)",
 	"createacct-email-ph": "Du din e-mail adres iin",
 	"createacct-another-email-ph": "E-Mail-adres uundu",
 	"createaccountmail": "E-mail tu detdiar adres ferschüür mä en tidjwiis tufelag paaswurd",

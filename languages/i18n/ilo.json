@@ -306,7 +306,6 @@
 	"userlogin-reauth": "Nasken a sumrekka manen tapno mapasingkedan a sika ni {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Agpartuat iti sabali a pakabilangan",
 	"createacct-emailrequired": "Adres ti esurat",
-	"createacct-emailoptional": "Adres ti esurat (pagpilian)",
 	"createacct-email-ph": "Ikabil ti esurat a pagtaengam",
 	"createacct-another-email-ph": "Ikabil ti adres ti esurat",
 	"createaccountmail": "Agusar iti pugto a temporario a kontrasenias ken ipatulod iti nainaganan nga adres ti esurat",

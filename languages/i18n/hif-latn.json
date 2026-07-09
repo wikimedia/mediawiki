@@ -307,7 +307,6 @@
 	"userlogin-loggedin": "Aap {{GENDER:$1|$1}} ke naam ke niche login bhayaa hae.\nNiche ke form ke kaam me laae ke duusra naam ke niche login ho.",
 	"userlogin-reauth": "Aap ke fir se log in kare ke parri, ii verify kare ke khaatir, ki aap {{GENDER:$1|$1}} hai.",
 	"userlogin-createanother": "Duusra account banao",
-	"createacct-emailoptional": "Email address (jaruri nai hae)",
 	"createacct-email-ph": "Aapan mail address ke likho",
 	"createacct-another-email-ph": "Email address ke likho",
 	"createaccountmail": "Ek temporary password ke kaam me laao aur iske batawa gais Email pe bhej do",

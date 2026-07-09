@@ -309,7 +309,6 @@
 	"userlogin-reauth": "Yi'o musti pe'entapo tumuwoto mopopatato yi'o odelo {{GENDER:$1|$1}}",
 	"userlogin-createanother": "Mohutu akun uwēwo",
 	"createacct-emailrequired": "Alamat tuladu email",
-	"createacct-emailoptional": "Alamat tuladu email (paralu tuwangalo)",
 	"createacct-email-ph": "Tuwanga alamat tuladu email",
 	"createacct-another-email-ph": "Tuwanga alamat tuladu email",
 	"createaccountmail": "Popohunawa tahu u'unti ja kakali wawu lawola ode tuladu elektronik u pilohile",

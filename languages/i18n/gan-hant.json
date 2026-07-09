@@ -285,7 +285,6 @@
 	"userlogin-reauth": "汝必須再登陸一邊來驗證汝係{{GENDER:$1|$1}}。",
 	"userlogin-createanother": "創建另一個賬號",
 	"createacct-emailrequired": "電子郵件地址",
-	"createacct-emailoptional": "電子郵件地址（選填）",
 	"createacct-email-ph": "寫汝嗰電子郵件地址",
 	"createacct-another-email-ph": "寫電子郵件地址",
 	"createaccountmail": "通過email",

@@ -326,7 +326,6 @@
 	"userlogin-reauth": "{{GENDER:$1|$1}} гээшэб гэжэ баталхын түлөө та  системэ руу шэнээр орохо ёһотойт.",
 	"userlogin-createanother": "Бүридхэлэй ондоо бэшэлгэ зохёохо",
 	"createacct-emailrequired": "Сахим хаяг",
-	"createacct-emailoptional": "Сахим хаяг (заатагүй бэшэ)",
 	"createacct-email-ph": "Өөрынгөө сахим хаяг оруулагты",
 	"createacct-another-email-ph": "Сахим хаяг оруулагты",
 	"createaccountmail": "Гэнтын аргаар бии болгогдоһон саг зуурын нюуса нэрэ хэрэглээд, тэрэнээ заагдаһан сахим хаягаар  эльгээхэ.",

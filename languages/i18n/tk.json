@@ -312,7 +312,6 @@
 	"userlogin-loggedin": "Siz {{GENDER:$1|$1}} diýip girdiňiz. Başga bir ulanyjy hökmünde girmek üçin aşakdaky formany ulanyň.",
 	"userlogin-createanother": "Başga hasap açyň",
 	"createacct-emailrequired": "Email adres",
-	"createacct-emailoptional": "E-poçta salgysy (islege bagly)",
 	"createacct-email-ph": "E-poçta salgyňyzy giriziň",
 	"createacct-another-email-ph": "E-poçta salgysyny giriziň",
 	"createaccountmail": "Wagtlaýyn tötänleýin paroly ulanyň we görkezilen e-poçta adresine iberiň",

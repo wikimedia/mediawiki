@@ -136,7 +136,6 @@
 	"createaccount": "Йаңа ҡатнашыуцыны теркәү",
 	"userlogin-resetpassword-link": "Паролеғысны оноттоғос ма?",
 	"userlogin-helplink2": "Керер өцөн йәртәм",
-	"createacct-emailoptional": "Электрон почтағысның адресы (тейешлецә түгел)",
 	"createacct-email-ph": "Электрон почтағысның адресын йасың",
 	"createacct-submit": "Исәп йасманы пултырғалы",
 	"createacct-benefit-heading": "{{SITENAME}} — сеснең шигелле кешеләрнең эше.",

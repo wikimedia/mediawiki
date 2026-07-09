@@ -303,7 +303,6 @@
 	"userlogin-reauth": "तम {{GENDER:$1|$1}} हो भणिबर पुष्टि अद्दाइ दोसर्‍याँ लगइन अर:।",
 	"userlogin-createanother": "दोसरो खाता खोल",
 	"createacct-emailrequired": "इमेल ठेगाना",
-	"createacct-emailoptional": "इमेल ठेगाना (ऐच्छिक)",
 	"createacct-email-ph": "तमरो इमेल ठेगाना भरऽ",
 	"createacct-another-email-ph": "इमेल ठेगाना भर",
 	"createacct-realname": "वास्तविक नाम (ऐच्छिक)",

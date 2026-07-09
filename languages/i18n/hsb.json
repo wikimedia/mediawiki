@@ -334,7 +334,6 @@
 	"createacct-loggedin-continue-as": "Dale jako {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Druhe konto wutworić",
 	"createacct-emailrequired": "E-mejlowa adresa",
-	"createacct-emailoptional": "E-mejlowa adresa (opcionalny)",
 	"createacct-email-ph": "Zapodaj swoju e-mejlowu adresu",
 	"createacct-another-email-ph": "E-mejlowu adresu zapodać",
 	"createaccountmail": "Nachwilne připadne hesło wužiwać a jo na slědowacu e-mejlowu adresu pósłać",

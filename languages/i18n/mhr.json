@@ -334,7 +334,6 @@
 	"userlogin-reauth": "Тый {{GENDER:$1|$1}} улат манын чынлашлан, системыш уэш пурышаш улат.",
 	"userlogin-createanother": "Вес аккаунтым ышташ",
 	"createacct-emailrequired": "Электрон почто адрес",
-	"createacct-emailoptional": "Электрон почто адрес (кӱлешыжак огыл)",
 	"createacct-email-ph": "Электрон почто адресетым пурто",
 	"createacct-another-email-ph": "Электрон почто адресым пурто",
 	"createaccountmail": "Жаплан чокым ыштыме шолыпмутым кучылташ да ончыктымо электрон почто адресыш колташ",

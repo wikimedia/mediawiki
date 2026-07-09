@@ -252,7 +252,6 @@
 	"userlogin-resetpassword-link": "Num tesserae oblitus es?",
 	"userlogin-helplink2": "auxilium dandi nominis",
 	"createacct-emailrequired": "Inscriptio electronica",
-	"createacct-emailoptional": "Inscriptio electronica (non necesse)",
 	"createacct-email-ph": "Inscriptionem electronicam tuam inscribe",
 	"createacct-another-email-ph": "Inscriptionem electronicam inscribe",
 	"createaccountmail": "Use a temporary random password and send it to the specified email address",

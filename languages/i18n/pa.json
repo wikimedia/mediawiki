@@ -377,7 +377,6 @@
 	"createacct-loggedin-continue-as": "{{GENDER:$1| $1 }} ਦੇ ਤੌਰ ਤੇ ਜਾਰੀ ਰੱਖੋ",
 	"createacct-loggedin-heading": "ਇੱਕ ਹੋਰ ਖਾਤਾ ਬਣਾਓ",
 	"createacct-emailrequired": "ਈਮੇਲ ਪਤਾ",
-	"createacct-emailoptional": "ਈਮੇਲ ਪਤਾ (ਚੋਣਵਾਂ)",
 	"createacct-email-ph": "ਆਪਣਾ ਈਮੇਲ ਪਤਾ ਦਿਉ",
 	"createacct-another-email-ph": "ਆਪਣਾ ਈਮੇਲ ਪਤਾ ਦਿਉ",
 	"createaccountmail": "ਆਰਜ਼ੀ ਬੇਤਰਤੀਬ ਪਾਰਸ਼ਬਦ ਵਰਤੋਂ ਅਤੇ ਇਸ ਨੂੰ ਖ਼ਾਸ ਈਮੇਲ ਪਤੇ ਉੱਤੇ ਭੇਜੋ",

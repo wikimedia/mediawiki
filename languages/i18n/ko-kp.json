@@ -314,7 +314,6 @@
 	"userlogin-reauth": "당신이 {{GENDER:$1|$1}}임을 검증하려면 다시 가입해야 합니다.",
 	"userlogin-createanother": "다른 계산자리 만들기",
 	"createacct-emailrequired": "전자우편 주소",
-	"createacct-emailoptional": "전자우편 주소 (선택 사항)",
 	"createacct-email-ph": "전자우편 주소를 입력하세요",
 	"createacct-another-email-ph": "전자우편 주소를 입력하세요",
 	"createaccountmail": "임의의 림시 통행암호를 전자우편으로 보내기",

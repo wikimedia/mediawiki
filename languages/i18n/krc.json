@@ -352,7 +352,6 @@
 	"createacct-loggedin-continue-as": "{{GENDER:$1|$1}} кибик бардыр",
 	"createacct-loggedin-heading": "Башха хыйсаб къура",
 	"createacct-emailrequired": "Электрон почтаны адреси",
-	"createacct-emailoptional": "Email адресинг (амалсыз тюлдю)",
 	"createacct-email-ph": "Email адресинги джаз",
 	"createacct-another-email-ph": "Электрон почтаны адресин джаз",
 	"createaccountmail": "Эсде болмагъанлай генерация этилген болджаллы паролну хайырландырыу эмда берилген электрон почта адресге ийиу",

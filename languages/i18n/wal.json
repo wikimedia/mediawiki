@@ -277,7 +277,6 @@
 	"userlogin-reauth": "Neeni hagaa {{GENDER:$1|$1}} boxooxissanawu zaaretta gelanawu bessaasa.",
 	"userlogin-createanother": "Hara akkawunttiyaa medha",
 	"createacct-emailrequired": "Iimmayliyaa qatuwaa",
-	"createacct-emailoptional": "Iimmayliyaa (ne maata)",
 	"createacct-email-ph": "Ne iimmayliyaa gelissa",
 	"createacct-another-email-ph": "Iimmayliyaa qatuwaa gelissa",
 	"createaccountmail-help": "Geliyoo qaalaa erennan hara akkawunttiyaa medhanawu go'ana danddayees.",

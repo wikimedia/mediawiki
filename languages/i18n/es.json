@@ -611,7 +611,6 @@
 	"createacct-loggedin-continue-as": "Continuar como {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Crear otra cuenta",
 	"createacct-emailrequired": "Dirección de correo electrónico",
-	"createacct-emailoptional": "Dirección de correo electrónico (opcional)",
 	"createacct-email-ph": "Escribe tu dirección de correo electrónico",
 	"createacct-another-email-ph": "Escribe la dirección de correo electrónico",
 	"createaccountmail": "Utilizar una contraseña aleatoria temporal y enviarla a la dirección de correo electrónico especificada",

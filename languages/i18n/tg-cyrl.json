@@ -361,7 +361,6 @@
 	"createacct-loggedin-continue-as": "Давом додан чун {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Эҷоди ҳисоби дигар",
 	"createacct-emailrequired": "Нишонаи email",
-	"createacct-emailoptional": "Нишони email (ихтиёрӣ)",
 	"createacct-email-ph": "Нишони email худро ворид кунед",
 	"createacct-another-email-ph": "Нишонаи email-ро ворид кунед",
 	"createaccountmail": "Аз гузарвожаи муваққатӣ ва тасодуфӣ истифода кунед ва онро нишонаи электронии мушаххасшуда бифиристед",

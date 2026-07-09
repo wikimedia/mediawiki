@@ -296,7 +296,6 @@
 	"userlogin-reauth": "Ou divèt roukonnègté oukò pou vérifyé ki ou sa {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Kréyé rounòt kont",
 	"createacct-emailrequired": "Adrès kourilèt",
-	"createacct-emailoptional": "Adrès kourilèt (fakiltativ)",
 	"createacct-email-ph": "Rantré ou adrès kourilèt",
 	"createacct-another-email-ph": "Rantré adrès kourilèt-a",
 	"createaccountmail": "Itilizé roun kodsigré aléyatwè ki tanporèr é voyé li pou adrès kourilèt ki èspésifyé",

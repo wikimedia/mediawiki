@@ -312,7 +312,6 @@
 	"userlogin-reauth": "Du muesch di nomol aamälde go z verifiziere, ass du {{GENDER:$1|$1}} bisch.",
 	"userlogin-createanother": "En ander Benutzerkonto aalege",
 	"createacct-emailrequired": "E-Mail-Adräss",
-	"createacct-emailoptional": "E-Mail-Adräss (optional)",
 	"createacct-email-ph": "Gib Dyy E-Mail-Adräss yy",
 	"createacct-another-email-ph": "Gib Dyy E-Mail-Adräss yy",
 	"createaccountmail": "E temporär Zuefallspasswort bruuchen un an di aagee E-Mail-Adräss schicke",

@@ -300,7 +300,6 @@
 	"userlogin-reauth": "لازم لك تتوصّل م` الجديد باش توتّق بلّي نتا {{GENDER:$1|$1}}",
 	"userlogin-createanother": "اخلق حساب وحداخُر.",
 	"createacct-emailrequired": "علوان تاع إيمال",
-	"createacct-emailoptional": "علوان ليمال (ماشي مسيّف)",
 	"createacct-email-ph": "دخّل علوان` ليمال تاعك",
 	"createacct-another-email-ph": "دخّل علوان تاع إيمال",
 	"createaccountmail": "استعمل كلمت` سرّ على الزهَر و ابعتها للإيمال المنعوت هنايا.",

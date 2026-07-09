@@ -325,7 +325,6 @@
 	"userlogin-loggedin": "ඔබ දැනටමත් {{GENDER:$1|}} ලෙස පිවිසී ඇත.\nනව පරිශීලකයෙකු ලෙස ඇතුළු වීමට පහත ආකෘතිය පුරවන්න.",
 	"userlogin-createanother": "තවත් ගිණුමක් ආරම්භ කරන්න",
 	"createacct-emailrequired": "වි-තැපෑල ලිපිනය",
-	"createacct-emailoptional": "විද්‍යුත් ලිපිනය (අනිවාර්ය නැත)",
 	"createacct-email-ph": "ඔබගේ විද්‍යුත් ලිපිනය ඇතුළු කරන්න",
 	"createacct-another-email-ph": "ඊ මේල් ලිපිනය ඇතුළත් කරන්න.",
 	"createaccountmail": "තාවකාලික අහුඹු මුර පදයක් භාවිතා කර එය පහත දක්වා ඇති විද්යුත් තැපැල් ලිපිනයට යවන්න",

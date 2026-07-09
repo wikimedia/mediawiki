@@ -323,7 +323,6 @@
 	"userlogin-reauth": "Woga ye lo be ya gboroya gan woyi {{TIN:$1|$1}}.",
 	"userlogin-createanother": "Tswa dukunsoba woe",
 	"createacct-emailrequired": "Yeji sanwosoba",
-	"createacct-emailoptional": "Yeji sanwosoba (wun jin kpaka a)",
 	"createacct-email-ph": "Ah yeji sanwosoba danbo",
 	"createacct-another-email-ph": "Ah yeji sanwosoba woe danbo",
 	"createaccountmail": "Lotun be ekakyangi giganzaci epagigan beman wo daugwa lo yeji sanwosoba tsitsaci",

@@ -181,7 +181,6 @@
 	"userlogin-loggedin": "شمه هسأ {{GENDER:$1|$1}}ˇ تأهأت ديرين بمأىن.\nأگه خأ ىکته دئه کارگيرˇ تأهأت ديرن بأىن، جيري فؤرمه کاراگيرين.",
 	"userlogin-createanother": "ىکته دئه کارگيري حيساب چاکۊن",
 	"createacct-emailrequired": "ايمىلˇ آدرس",
-	"createacct-emailoptional": "ايمىلˇ آدرس (ديلبخا)",
 	"createacct-email-ph": "تي ايمىلˇ آدرسه بنويس",
 	"createacct-another-email-ph": "ايمىلˇ آدرسه بنويس",
 	"createacct-realname": "واقعي نؤم (ديلبخا)",

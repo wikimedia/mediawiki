@@ -289,7 +289,6 @@
 	"userlogin-reauth": "kanca kisu patalabu aca amisawantanen kisu ku {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "patizeng tu zumaay canghaw",
 	"createacct-emailrequired": "imyiyo(email) puenengan",
-	"createacct-emailoptional": "imyiyo(email) tigami (u pili’ay sasulitan)",
 	"createacct-email-ph": "pisulitan ku imyiyo(email) nu misu",
 	"createacct-another-email-ph": "pisulitan imyiyo(email) puenengan",
 	"createaccountmail": "pisaungay nanunuz kakibalucu’ mima, satu paculilen i matuzu’ay a imyiyo(email) puenengan",

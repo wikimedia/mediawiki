@@ -390,7 +390,6 @@
 	"createacct-loggedin-continue-as": "用{{GENDER:$1|$1}}繼續",
 	"createacct-loggedin-heading": "開另一個戶口",
 	"createacct-emailrequired": "電郵地址",
-	"createacct-emailoptional": "電郵地址（可以唔填）",
 	"createacct-email-ph": "入電郵地址",
 	"createacct-another-email-ph": "入電郵地址",
 	"createaccountmail": "將臨時密碼送到指定電郵地址",

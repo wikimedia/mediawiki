@@ -232,7 +232,6 @@
 	"userlogin-noaccount": "Wala pay akawnt?",
 	"userlogin-joinproject": "Apil sa {{SITENAME}}",
 	"createaccount": "Paghimo'g akawnt",
-	"createacct-emailoptional": "Adres sa email (opsyonal)",
 	"createacct-email-ph": "Pagsulod sa imong email address",
 	"createaccountmail": "sa e-mail",
 	"createacct-submit": "Paghimo sa imong account",

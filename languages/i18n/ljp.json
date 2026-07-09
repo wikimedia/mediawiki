@@ -329,7 +329,6 @@
 	"userlogin-reauth": "Niku musti kughuk log luwot guway meriksa bahwa Niku iyulah {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Guway akun baghih",
 	"createacct-emailrequired": "Jenganan surél",
-	"createacct-emailoptional": "Jenganan surél (mak wajib)",
 	"createacct-email-ph": "Kurukko jenganan surél (email) mu",
 	"createacct-another-email-ph": "Kughukko jenganan surél",
 	"createaccountmail": "Pakay kata sandi acak sementagha ghik kighimko mit halaman surél say tikahagako",

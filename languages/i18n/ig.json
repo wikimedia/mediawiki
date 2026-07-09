@@ -371,7 +371,6 @@
 	"userlogin-reauth": "Ị ga-abanyerịrị ọzọ iji chọpụta na ị bụ {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Mepụta akaụntụ ọzọ",
 	"createacct-emailrequired": "Adreesị ozi ịntanetị",
-	"createacct-emailoptional": "adreesị ozi intanetị (ma ichọ)",
 	"createacct-email-ph": "Denye adreesị ozi ịntanetị gi",
 	"createacct-another-email-ph": "Tinye adreesị ozi-e",
 	"createaccountmail": "Jiri okwungafe enweghị nke nwa oge wee ziga ya na adreesị ozi-e akọwapụtara",

@@ -252,7 +252,6 @@
 	"userlogin-reauth": "Te mues te culeghé mo n iede per verifié che te ies {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Met adum mo n cont.",
 	"createacct-emailrequired": "Adres e-mail",
-	"createacct-emailoptional": "Misciun email (opzional)",
 	"createacct-email-ph": "Dá ite tüa misciun email",
 	"createacct-another-email-ph": "Da ite la adres e-mail",
 	"createaccountmail": "Adrova per ntant na parola tle a caje y mandela a la adres de e-mail spezificheda",

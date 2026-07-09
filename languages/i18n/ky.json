@@ -324,7 +324,6 @@
 	"createacct-loggedin-continue-as": "{{GENDER:$1|$1}} катары улантуу",
 	"createacct-loggedin-heading": "Башка аккаунт түзүү",
 	"createacct-emailrequired": "Электрондук почта",
-	"createacct-emailoptional": "Электрондук почта (шарт эмес)",
 	"createacct-email-ph": "Электрондук почтаңызды териңиз",
 	"createacct-another-email-ph": "Электрондук почтаны териңиз",
 	"createaccountmail": "Убактылуу туш келди сырсөздү колдонуп, келтирилген электрондук почтага жөнөтүү",

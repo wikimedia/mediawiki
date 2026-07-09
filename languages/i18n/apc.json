@@ -280,7 +280,6 @@
 	"userlogin-helplink2": "المساعدة بالدخول على الحساب",
 	"userlogin-createanother": "عمول غير أكونت",
 	"createacct-emailrequired": "عنوان الإيمايل",
-	"createacct-emailoptional": "البريد الإلكتروني (مش ضروري)",
 	"createacct-email-ph": "حط بريدك الإلكتروني",
 	"createacct-another-email-ph": "حط عنوان الإيمايل",
 	"createacct-realname": "الاسم الحقيقي (اختياري)",

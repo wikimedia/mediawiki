@@ -313,7 +313,6 @@
 	"createacct-loggedin-continue-as": "Kuntinua suma {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Kiria un otu kónta",
 	"createacct-emailrequired": "Nderésu di kureiu iletróniku",
-	"createacct-emailoptional": "Nderésu di kureiu iletróniku (opusional)",
 	"createacct-email-ph": "Dijita bu nderésu di kureiu iletróniku",
 	"createacct-another-email-ph": "Dijita nderésu di kureiu iletróniku",
 	"createaccountmail": "Uza un palabra-pasi aliatóri tenpurári i nvia-l pa nderésu di kureiu iletróniku spisifikadu",

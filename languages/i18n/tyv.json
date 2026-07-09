@@ -326,7 +326,6 @@
 	"userlogin-reauth": "Шынап-ла {{GENDER:$1|$1}} мен дээрзин бадыткаарда, системаже катап кирер апаар силер.",
 	"userlogin-createanother": "Өске аккаунт чаяар",
 	"createacct-emailrequired": "Email адрес",
-	"createacct-emailoptional": "Email адрези (албан эвес)",
 	"createacct-email-ph": "Email адрезиңер киириңер",
 	"createacct-another-email-ph": "Email адрезиңер киириңер",
 	"createaccountmail": "Душ бооп чаяаттынган түр парольду ажыглааш, ону айыттынган почта адрезинче чорудар",

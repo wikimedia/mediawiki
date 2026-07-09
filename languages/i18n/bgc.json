@@ -123,7 +123,6 @@
 	"createaccount": "खातो बनावें",
 	"userlogin-resetpassword-link": "थारो पासवर्ड भूल गा?",
 	"userlogin-helplink2": "लॉग-इन करन खातर मदद",
-	"createacct-emailoptional": "ईमेल पता (वैकल्पिक)",
 	"createacct-email-ph": "अपनो ईमेल पता दर्ज कर लेवें",
 	"createacct-submit": "अपनो खातो बना लेवें",
 	"createacct-benefit-heading": "{{SITENAME}} थारा जैसा लोगां द्वारा बनाई जावै सै।",

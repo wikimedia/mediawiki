@@ -355,7 +355,6 @@
 	"userlogin-reauth": "Tev vēlreiz jāpieslēdzas, lai apstiprinātu, ka esi {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Izveidot citu kontu",
 	"createacct-emailrequired": "E-pasta adrese",
-	"createacct-emailoptional": "E-pasta adrese (nav obligāta)",
 	"createacct-email-ph": "Ievadiet savu e-pasta adresi",
 	"createacct-another-email-ph": "Ievadiet e-pasta adresi",
 	"createaccountmail": "Izmantot nejauši ģenerētu pagaidu paroli un nosūtīt to uz norādīto e-pasta adresi",

@@ -300,7 +300,6 @@
 	"userlogin-reauth": "Feumaidh tu clàradh a-steach às ùr a dhearbhadh gur tusa $1.",
 	"userlogin-createanother": "Cruthaich cunntas eile",
 	"createacct-emailrequired": "Seòladh puist-d",
-	"createacct-emailoptional": "Seòladh puist-d (roghainneil)",
 	"createacct-email-ph": "Cuir a-steach an seòladh puist-d agad",
 	"createacct-another-email-ph": "Cuir a-steach seòladh puist-d",
 	"createaccountmail": "Cleachd facal-faire sealach air thuaiream agus cuir e dhan phost-d a tha 'ga shònrachadh gu h-ìosal",

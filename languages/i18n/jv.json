@@ -319,7 +319,6 @@
 	"userlogin-reauth": "Kowé kudu mlebu log manèh saperlu vèrifikasi yèn kowé bener si {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Gawé akun liya",
 	"createacct-emailrequired": "Alamat layang-èl",
-	"createacct-emailoptional": "Alamat layang-èl (manasuka)",
 	"createacct-email-ph": "Isi mawa layang-èlmu",
 	"createacct-another-email-ph": "Isi alamat layang-èl",
 	"createaccountmail": "Nganggo tembung sandi sauntara kang dikirimaké menyang alamat layang-èl",

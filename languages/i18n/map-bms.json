@@ -283,7 +283,6 @@
 	"userlogin-loggedin": "Rika uwis mlebu log nganggo jeneng {{GENDER:$1|$1}}.\nGunakna formulir nang ngisor kiye kanggo mlebu log dadi pangganggo sejen.",
 	"userlogin-createanother": "Gawe akun anyar",
 	"createacct-emailrequired": "Alamat imel",
-	"createacct-emailoptional": "Alamat imel (ora kudu)",
 	"createacct-email-ph": "Lebokna alamat imele Rika",
 	"createacct-another-email-ph": "Lebokna alamat imel",
 	"createaccountmail": "Gunakna tembung sandhi acak sementara lan kirimna maring alamat imel",

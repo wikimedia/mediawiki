@@ -331,7 +331,6 @@
 	"userlogin-reauth": "子須復登，以證子為{{GENDER:$1|$1}}也。",
 	"userlogin-createanother": "別行登簿",
 	"createacct-emailrequired": "電郵",
-	"createacct-emailoptional": "電郵（可選）",
 	"createacct-email-ph": "書君郵址",
 	"createaccountmail": "任設符，傳諸郵驛",
 	"createacct-realname": "實名（可選）",

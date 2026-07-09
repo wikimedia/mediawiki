@@ -353,7 +353,6 @@
 	"createacct-loggedin-continue-as": "Continuar como {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Crear un altere conto",
 	"createacct-emailrequired": "Adresse de e-mail",
-	"createacct-emailoptional": "Adresse de e-mail (optional)",
 	"createacct-email-ph": "Entra tu adresse de e-mail",
 	"createacct-another-email-ph": "Entra adresse de e-mail",
 	"createaccountmail": "Usar un contrasigno aleatori temporari e inviar lo al adresse de e-mail specificate",

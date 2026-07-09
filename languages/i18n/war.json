@@ -314,7 +314,6 @@
 	"userlogin-reauth": "Kinahanglan nimo mag-log in utro basi mapamatud-an nga ikaw hi {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Paghimo hin iba nga akawnt",
 	"createacct-emailrequired": "Email address",
-	"createacct-emailoptional": "Email address (opsyonal)",
 	"createacct-email-ph": "Igbutang an imo email address",
 	"createacct-another-email-ph": "Igbutang an email address",
 	"createaccountmail": "Gamiti hin temporaryo nga bisan ano nag password ngan igpadangat ngada ha espesipikado nga e-mail address",

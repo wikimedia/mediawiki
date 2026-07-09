@@ -325,7 +325,6 @@
 	"userlogin-reauth": "Тіянлы колӧ выльысь пырны системаӧ, медым эскӧдны, мый ті и эм {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Лӧсьӧдны мӧд аккаунт",
 	"createacct-emailrequired": "Электрон пошта инпас",
-	"createacct-emailoptional": "Электрон пошта инпас (индыны абу быть)",
 	"createacct-email-ph": "Индыны электрон пошта инпас",
 	"createacct-another-email-ph": "Индӧй электрон пошта инпас",
 	"createaccountmail": "Корны недырся случайнӧй гусякыв да мӧдӧдны сійӧс индӧм электрон пошта инпасӧ.",

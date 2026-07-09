@@ -332,7 +332,6 @@
 	"userlogin-reauth": "Erġa' idħol biex tivverifika li int {{GENDER:$1|$1}}",
 	"userlogin-createanother": "Oħloq kont ieħor",
 	"createacct-emailrequired": "Indirizz elettroniku",
-	"createacct-emailoptional": "Indirizz elettroniku (mhux obbligatorju)",
 	"createacct-email-ph": "Daħħal l-indirizz elettroniku tiegħek",
 	"createacct-another-email-ph": "Daħħal l-indirizz elettroniku",
 	"createaccountmail": "Uża kelma tad-dħul temporanja li tkun u ibgħatha lill-indirizz elettroniku speċifikat",

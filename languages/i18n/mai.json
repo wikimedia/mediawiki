@@ -317,7 +317,6 @@
 	"userlogin-reauth": "अहाँ {{GENDER:$1|$1}} छी, एहि लेल अहाँक एक बेर आर खातामे प्रवेश करै पडत।",
 	"userlogin-createanother": "दोसर खाता बनाबी",
 	"createacct-emailrequired": "ई-मेल पता",
-	"createacct-emailoptional": "ई-मेल पता (वैकल्पिक)",
 	"createacct-email-ph": "अपन ई-मेल पता लिखी",
 	"createacct-another-email-ph": "ईमेल पता प्रदान करी",
 	"createaccountmail": "एक अस्थायी यादृच्छिक कूटशब्द चुनी आ ओ निर्दिष्ट ई-मेल पता पर भेजी",

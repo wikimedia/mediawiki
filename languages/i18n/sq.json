@@ -377,7 +377,6 @@
 	"userlogin-reauth": "Duhet të hysh përsëri në llogari për të verifikuar që je {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Krijo një llogari tjeter",
 	"createacct-emailrequired": "Adresa elektronike",
-	"createacct-emailoptional": "Adresa e email-it (me dëshirë)",
 	"createacct-email-ph": "Jepni adresën tuaj email",
 	"createacct-another-email-ph": "Fut adresën e email-it",
 	"createaccountmail": "Përdor një fjalëkalim të përkohshëm të rastit dhe dërgoje atë tek adresa e specifikuar e email-it",

@@ -289,7 +289,6 @@
 	"createacct-loggedin-continue-as": "Acontinal comu {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Crial otra cuenta",
 	"createacct-emailrequired": "dereción de correu letrónicu",
-	"createacct-emailoptional": "Dereción de correu letrónicu (ocional)",
 	"createacct-email-ph": "Escrevi la tu dereción de correu letrónicu",
 	"createacct-another-email-ph": "Escrevi la su dereción de correu letrónicu",
 	"createaccountmail": "pol e-mail",

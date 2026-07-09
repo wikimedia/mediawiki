@@ -206,7 +206,6 @@
 	"userlogin-reauth": "އަދި އެއްފަހަރު އަލުން ވަދެވަޑައިގަތުމުން، ތިބޭފުޅާއަކީ {{GENDER:$1|$1}} ކަން ޔަޤީންކުރެވިގެންދާނެއެވެ.",
 	"userlogin-createanother": "އެހެން އެކައުންޓެއް ހަދާށެވެ.",
 	"createacct-emailrequired": "އީމެއިލް އެޑްރެސް",
-	"createacct-emailoptional": "އީމެއިލް އެޑްރެސް (އިޚްތިޔާރީ)",
 	"createacct-email-ph": "ތިޔަބޭފުޅާގެ އީމެއިލް އެޑްރެސް ޖައްސަވާ",
 	"createacct-another-email-ph": "އީމެއިލް އެޑްރެސް ޖައްސަވާ",
 	"createacct-realname": "އަސްލު ނަން (އިޚްތިޔާރީ)",

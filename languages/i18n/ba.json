@@ -360,7 +360,6 @@
 	"userlogin-reauth": "{{GENDER:$1|$1}} икәнегеҙҙе раҫлар өсөн системаға яңынан танылығыҙ.",
 	"userlogin-createanother": "Башҡа иҫәп яҙмаһын булдырырға",
 	"createacct-emailrequired": "Электрон почта адресы",
-	"createacct-emailoptional": "Электрон почта адресы (мотлаҡ түгел)",
 	"createacct-email-ph": "Электрон почта адресығыҙҙы яҙығыҙ",
 	"createacct-another-email-ph": "Электрон почта адресығыҙҙы яҙығыҙ",
 	"createaccountmail": "Осраҡлы ваҡытлыса серһүҙҙе ҡулланырға һәм уны күрһәтелгән электрон почта адресына ебәрергә",

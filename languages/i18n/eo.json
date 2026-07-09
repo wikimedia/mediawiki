@@ -383,7 +383,6 @@
 	"userlogin-reauth": "Vi devas ensaluti denove por konfirmi ke vi estas {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Krei alian konton",
 	"createacct-emailrequired": "Retpoŝta adreso",
-	"createacct-emailoptional": "Retpoŝta adreso (nedeviga)",
 	"createacct-email-ph": "Enigu vian retpoŝtan adreson",
 	"createacct-another-email-ph": "Enigu la retpoŝtan adreson",
 	"createaccountmail": "Uzi provizoran hazardan pasvorton kaj sendi ĝin al la retpoŝta adreso ĉi-suba",

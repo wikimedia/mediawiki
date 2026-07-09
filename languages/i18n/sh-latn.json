@@ -364,7 +364,6 @@
 	"createacct-loggedin-continue-as": "Nastavi kao {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Izrada novog računa",
 	"createacct-emailrequired": "E-adresa",
-	"createacct-emailoptional": "E-adresa (neobavezno)",
 	"createacct-email-ph": "Unesite e-adresu",
 	"createacct-another-email-ph": "Unesite e-adresu",
 	"createaccountmail": "Postavi privremenu, nasumičnu lozinku i pošalji mi je na navedenu e-adresu",

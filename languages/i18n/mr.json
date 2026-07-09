@@ -353,7 +353,6 @@
 	"userlogin-reauth": "आपण {{GENDER:$1|$1}} आहात याची खात्री करण्यासाठी आपला पुनर्प्रवेश आवश्यक आहे.",
 	"userlogin-createanother": "दुसरे नवीन खाते तयार करा",
 	"createacct-emailrequired": "विपत्र पत्ता (ई-मेल)",
-	"createacct-emailoptional": "विपत्र पत्ता (ई-मेल)(ऐच्छिक)",
 	"createacct-email-ph": "आपला विपत्र पत्ता(ई-मेल) टाका",
 	"createacct-another-email-ph": "आपला विपत्रपत्ता (ई-मेल) टाका",
 	"createaccountmail": "तात्पुरता अनियत (रॅन्डम) परवलीचा शब्द तयार करून तो खाली नमूद विपत्रपत्त्यावर पाठवा",

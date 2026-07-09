@@ -182,7 +182,6 @@
 	"createaccount": "Çil gnë kunt i ri",
 	"userlogin-resetpassword-link": "Harrove la password?",
 	"userlogin-helplink2": "Më ndih sa të hihem",
-	"createacct-emailoptional": "Ndirizzi të postës eletronike (opzionali)",
 	"createacct-email-ph": "Shkruaj ndirizin tënd të postës eletronike",
 	"createacct-submit": "Kriar kuntin tënd",
 	"createacct-benefit-heading": "{{SITENAME}} bënet ka gjinde si ti.",

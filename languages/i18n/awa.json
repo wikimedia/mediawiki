@@ -316,7 +316,6 @@
 	"userlogin-reauth": "आप {{GENDER:$1|$1}} हो, इसके लिए आपको एक और बार खाते में लॉग इन करना होगा।",
 	"userlogin-createanother": "एकठु अउर खाता खोला जाय",
 	"createacct-emailrequired": "ई-मेल ठाँव",
-	"createacct-emailoptional": "ई-मेल ठाँव (वैकल्पिक)",
 	"createacct-email-ph": "आपन ई-मेल ठाँव लिखा जाय",
 	"createacct-another-email-ph": "ईमेल ठाँव दिहा जाय",
 	"createaccountmail": "एकठु अस्थायी मनलागा (रैंडम) गुप्त कुंजी चुना जाय अउर ओका निर्दिष्ट ई-मेल ठहर पे भेजा जाय",

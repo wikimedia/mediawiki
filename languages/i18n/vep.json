@@ -334,7 +334,6 @@
 	"userlogin-reauth": "Sinei pidab möst tulda sistemaha, vahvištoitmaha, miše nece oled sinä {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Tege uz' lehtpol'",
 	"createacct-emailrequired": "Email-počtan adres",
-	"createacct-emailoptional": "Emailan adres (ei ole tarbhašt)",
 	"createacct-email-ph": "Kirjuta ičeiž emailan adres",
 	"createacct-another-email-ph": "Kirjuta email-počtan adres",
 	"createaccountmail": "Kävuta keskaigaine statjaline peitsana da oigenda se kirjutadud email-počtan adresale",

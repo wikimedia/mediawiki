@@ -374,7 +374,6 @@
 	"createacct-loggedin-continue-as": "{{GENDER:$1|$1}} లాగా కొనసాగండి",
 	"createacct-loggedin-heading": "మరొక ఖాతాను సృష్టించుకోండి",
 	"createacct-emailrequired": "ఈమెయిలు చిరునామా",
-	"createacct-emailoptional": "ఈమెయిలు చిరునామా (ఐచ్చికం)",
 	"createacct-email-ph": "మీ ఈమెయిలు చిరునామాను ఇవ్వండి",
 	"createacct-another-email-ph": "ఈమెయిలు చిరునామాను ఇవ్వండి",
 	"createaccountmail": "ఏదో ఒక తాత్కాలిక సంకేతపదాన్ని వాడి దాన్ని పేర్కొన్న ఈమెయిలు చిరునామాకు పంపించు",

@@ -368,7 +368,6 @@
 	"createacct-loggedin-continue-as": "Vànni avànti cómme {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Crêa 'n'âtra uténsa",
 	"createacct-emailrequired": "Indirìsso e-mail:",
-	"createacct-emailoptional": "Indirìsso de pòsta eletrònica (facoltatîvo)",
 	"createacct-email-ph": "Scrîvi o tò indirìsso de pòsta eletrònica",
 	"createacct-another-email-ph": "Scrîvi o tò indirìsso emâi",
 	"createaccountmail": "Dêuvia 'na password tenporània abrétio e màndila a l'indirìsso de pòsta eletrònica specificòu",

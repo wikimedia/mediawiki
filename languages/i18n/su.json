@@ -311,7 +311,6 @@
 	"userlogin-reauth": "Anjeun kudu asup log deui pikeun mariksa yén anjeun téh {{GENDER:$1|$1}}",
 	"userlogin-createanother": "Jieun akun séjén",
 	"createacct-emailrequired": "Alamat surélék:",
-	"createacct-emailoptional": "Alamat surélék (teu wajib)",
 	"createacct-email-ph": "Asupkeun alamat surélék anjeun",
 	"createacct-another-email-ph": "Asupkeun alamat surélék",
 	"createaccountmail": "Paké kecap sandi acak sarta kirim ka alamat surélék",

@@ -224,7 +224,6 @@
 	"notloggedin": "Pas connecté",
 	"createaccount": "Créer un compte",
 	"createacct-emailrequired": "Adresse d'email",
-	"createacct-emailoptional": "Adresse d'email (optional)",
 	"createacct-email-ph": "Entres t'adresse d'email",
 	"createacct-another-email-ph": "Entres adresse d'email",
 	"createaccountmail": "par e-mail",

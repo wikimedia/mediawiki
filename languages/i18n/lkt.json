@@ -247,7 +247,6 @@
 	"createacct-loggedin": "Waƞnáš {{GENDER:$1|$1}} ogná čhaž'ónigwa.",
 	"createacct-loggedin-heading": "Čhažé-oyáŋke sáƞpȟa káǧa {{GENDER:|yo|ye|yo/ye}}",
 	"createacct-emailrequired": "Wakȟáƞgli wóyakapi makȟóčhažeyate",
-	"createacct-emailoptional": "Wakȟáƞgli wóyakapi makȟóčhažeyate (kaȟniȟphiča)",
 	"createacct-email-ph": "Wakȟáƞgli wóyakapi makȟóčhažeyate nitȟáwa iyéya {{GENDER:|yo|ye|yo/ye}}",
 	"createacct-another-email-ph": "Wakȟáƞgli wóyakapi makȟóčhažeyate iyéya {{GENDER:|yo|ye|yo/ye}}",
 	"createacct-realname": "Čhaže wówičakȟe",

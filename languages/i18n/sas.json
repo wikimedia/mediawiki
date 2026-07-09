@@ -289,7 +289,6 @@
 	"createacct-loggedin-continue-as": "Lanjut jari {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Piaq akun haq lain",
 	"createacct-emailrequired": "Alamat surél",
-	"createacct-emailoptional": "Alamat surél (opsional)",
 	"createacct-email-ph": "Petamaq alamat surélm",
 	"createacct-another-email-ph": "Petamaq alamat surél",
 	"createaccountmail": "Kadu kata sandi sementara trus kirim juq surél spesifik",

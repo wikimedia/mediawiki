@@ -322,7 +322,6 @@
 	"userlogin-reauth": "Sinul pidäy uvvessah piästä sistiemah varmistamizekse, ku olet {{GENDER:$1|}}.",
 	"userlogin-createanother": "Luaji toine käyttäjäntunnus",
 	"createacct-emailrequired": "Sähköpoštuadressi",
-	"createacct-emailoptional": "Sähköpoštuadressi (ei vältämättäh)",
 	"createacct-email-ph": "Kirjuta oma sähköpoštuadressi",
 	"createacct-another-email-ph": "Kirjuta sähköpoštuadressi",
 	"createaccountmail": "Käytä piävyndähisty väliaigastu peittosanua da työnnä se alemba olijah sähköpoštuadressih.",

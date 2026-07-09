@@ -326,7 +326,6 @@
 	"createacct-loggedin-continue-as": "Lanjut sabagay {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Guway akun barih",
 	"createacct-emailrequired": "Alamat surel",
-	"createacct-emailoptional": "Alamat email (opsional)",
 	"createacct-email-ph": "Kurukko alamat email mu",
 	"createacct-another-email-ph": "Kurukko alamat email mu",
 	"createaccountmail": "Gunako kata sandi acak samantara rik kirimko guk alamat surel say tikahagako",

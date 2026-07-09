@@ -404,7 +404,6 @@
 	"createacct-loggedin-continue-as": "Pokračovať ako {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Vytvoriť iný účet",
 	"createacct-emailrequired": "E-mailová adresa",
-	"createacct-emailoptional": "E-mailová adresa (nepovinné)",
 	"createacct-email-ph": "Zadajte svoju e-mailovú adresu",
 	"createacct-another-email-ph": "Zadajte svoju e-mailovú adresu",
 	"createaccountmail": "Použiť dočasné náhodné heslo a poslať ho na uvedenú e-mailovú adresu",

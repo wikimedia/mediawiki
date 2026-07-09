@@ -371,7 +371,6 @@
 	"createacct-loggedin-continue-as": "Durigar kom {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Kreez altra konto",
 	"createacct-emailrequired": "E-postal adreso",
-	"createacct-emailoptional": "E-postal adreso (ne-obligita)",
 	"createacct-email-ph": "Prizentez vua e-postal adreso",
 	"createacct-another-email-ph": "Prizentez vua e-postal adreso",
 	"createaccountmail": "Uzez provizora pasovorto, ed ad adresizez ol a la korespondanta e-posto",

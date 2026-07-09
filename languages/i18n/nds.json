@@ -341,7 +341,6 @@
 	"userlogin-reauth": "Du musst di noch wedder anmellen, üm to pröven, dat du {{GENDER:$1|$1}} büst.",
 	"userlogin-createanother": "En anner Brukerkonto opstellen",
 	"createacct-emailrequired": "E-Mail-Adress",
-	"createacct-emailoptional": "Emailadress (kannst weglaten)",
 	"createacct-email-ph": "Drag dien Emailadress in",
 	"createacct-another-email-ph": "E-Mail-Adress",
 	"createaccountmail": "En tofällig Övergangspasswoort bruken un an de angeven E-Mail-Adress sennen.",

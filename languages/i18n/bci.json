@@ -283,7 +283,6 @@
 	"userlogin-reauth": "Ô fata kè amoun wlou noun ékoun nan amoun woun kè amoun ti {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Yi interneti conti ouflè",
 	"createacct-emailrequired": "Email adressi",
-	"createacct-emailoptional": "Email adressi (ô timan tchindji)",
 	"createacct-email-ph": "Klè ô email adressi",
 	"createacct-another-email-ph": "Klè ô email adressi",
 	"createaccountmail-help": "Bé kloua fa yi sran ouflè conti mô bé siman i mot de passi.",

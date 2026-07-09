@@ -315,7 +315,6 @@
 	"createacct-loggedin-continue-as": "បន្តជា {{GENDER:$1| $1 }}",
 	"createacct-loggedin-heading": "បង្កើតគណនីមួយទៀត",
 	"createacct-emailrequired": "អាសយដ្ឋានអ៊ីមែល",
-	"createacct-emailoptional": "អាសយដ្ឋានអ៊ីមែល (ដាក់ក៏បានមិនដាក់ក៏បាន)",
 	"createacct-email-ph": "បញ្ចូលអាសយដ្ឋានអ៊ីមែលរបស់អ្នក",
 	"createacct-another-email-ph": "បញ្ចូលអាសយដ្ឋានអ៊ីមែល",
 	"createaccountmail": "ប្រើប្រាស់ពាក្យសម្ងាត់ចៃដន្យបណ្ដោះអាសនុ្ន រួចផ្ញើវាទៅកាន់អាសយដ្ឋានអ៊ីមែលខាងក្រោម",

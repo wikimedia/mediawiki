@@ -328,7 +328,6 @@
 	"userlogin-reauth": "Avit'a trasì n'ata vota pe' puté cuntrullà ca site overo {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Crèa n'at'account",
 	"createacct-emailrequired": "Indirizzo email",
-	"createacct-emailoptional": "Indirizzo 'e posta elettronica (ozzionale)",
 	"createacct-email-ph": "Scrivite 'o nderizzo mail d’’o vuosto",
 	"createacct-another-email-ph": "Scrivite nderizzo mail",
 	"createaccountmail": "Usa na password qualunque temporanea e manna sta password a l'indirizzo 'e posta e-mail specificato",

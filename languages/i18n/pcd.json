@@ -204,7 +204,6 @@
 	"userlogin-reauth": "Os d'vez vous arconnécter pour vérifier éq vos ètes {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Créer un eute compte",
 	"createacct-emailrequired": "Adrèche courriel",
-	"createacct-emailoptional": "Adrèche courriel (facultative)",
 	"createacct-email-ph": "Intrez vote adrèche courriel",
 	"createacct-another-email-ph": "Intrez l' adrèche courriel",
 	"createaccountmail": "Uzer un mot d' passe aléatoére timporoére pi l’invouéyer à l’adrèche ed courriel éspécifiée",

@@ -286,7 +286,6 @@
 	"createacct-loggedin-continue-as": "Neruska nyadi {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Gaga akaun ke bukai",
 	"createacct-emailrequired": "Address e-mel",
-	"createacct-emailoptional": "Address e-mel (pilih)",
 	"createacct-email-ph": "Isi address e-mel nuan",
 	"createacct-another-email-ph": "Isi address e-mel",
 	"createaccountmail": "Kena jaku pansa enda tetap lalu anjung nya ngagai address e-mel ke udah dipadah",

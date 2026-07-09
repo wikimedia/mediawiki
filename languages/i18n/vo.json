@@ -340,7 +340,6 @@
 	"userlogin-reauth": "Mutol nunädön oki nogna, dat podientifükol as geban: {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Jafön lönaspadi votik",
 	"createacct-emailrequired": "Ladet leäktronik",
-	"createacct-emailoptional": "Penedabog leäktronik (nemütiko)",
 	"createacct-email-ph": "Penolöd ladeti penedaboga leäktronik olik",
 	"createacct-another-email-ph": "Penolöd ladeti penedaboga leäktronik olik",
 	"createaccountmail": "Gebolöd letavödi nelaidüpik fädik e sedolöd oni lü ladet leäktronik patik",

@@ -291,7 +291,6 @@
 	"userlogin-loggedin": "Je binnen al an-emeld as {{GENDER:$1|$1}}.\nGebruuk et formulyr hyrunder üm an te melden as een andere gebruker.",
 	"userlogin-createanother": "Een andere gebrukerskonto anmaken",
 	"createacct-emailrequired": "Netpostadres",
-	"createacct-emailoptional": "Netpostadres (niet verplicht)",
 	"createacct-email-ph": "Geav juw netpostadres up",
 	"createacct-another-email-ph": "Vul joew netpostadres in",
 	"createaccountmail": "Gebruuk n tiejelik wachtwoord dat joe netzelde is en stuur t naor t op-egeven netpostadres",

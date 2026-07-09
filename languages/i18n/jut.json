@@ -234,7 +234,6 @@
 	"userlogin-loggedin": "Du ä ållried loggen på som {{GENDER:$1|$1}}. Brug formulari nierfor te å logg på som i ånj bruge.",
 	"userlogin-createanother": "Oprett e ånj konto",
 	"createacct-emailrequired": "E-mailadress",
-	"createacct-emailoptional": "E-mailadress (walgfri)",
 	"createacct-email-ph": "Intast dej e-mailadress",
 	"createacct-another-email-ph": "Intast e-mailadress",
 	"createacct-submit": "Oprett det konto",

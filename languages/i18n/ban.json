@@ -352,7 +352,6 @@
 	"createacct-loggedin-continue-as": "Lanturang dados {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Kardi akun lianan",
 	"createacct-emailrequired": "Alamat rerepél",
-	"createacct-emailoptional": "Alamat rerepél (opsional)",
 	"createacct-email-ph": "Dagingin alamat rerepél ragané",
 	"createacct-another-email-ph": "Dagingin alamat rerepél",
 	"createaccountmail": "Anggén kruna sandi acak ancangan miwah kirimang ring alamat rerepi sané katentuang",

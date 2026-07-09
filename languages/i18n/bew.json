@@ -322,7 +322,6 @@
 	"userlogin-reauth": "Lu misti masup lagi bakal merèksa kalo lu {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Keja rèkening laèn",
 	"createacct-emailrequired": "Aderès surlès",
-	"createacct-emailoptional": "Aderès surlès (sunah)",
 	"createacct-email-ph": "Masupin lu punya aderès surlès",
 	"createacct-another-email-ph": "Masupin aderès surlès",
 	"createaccountmail": "Paké kata sandi sembarang sementara èn kirimin ke alamat surat lèstrik nyang dimaksud",

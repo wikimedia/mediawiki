@@ -366,7 +366,6 @@
 	"createacct-loggedin-continue-as": "{{GENDER:$1|$1}} ретінде жалғастыру",
 	"createacct-loggedin-heading": "Басқа тіркелгі құру",
 	"createacct-emailrequired": "Электрондық пошта мекенжайы",
-	"createacct-emailoptional": "Электрондық пошта мекенжайы (міндетті емес)",
 	"createacct-email-ph": "Электрондық поштаңызды енгізіңіз",
 	"createacct-another-email-ph": "Электрондық пошта енгізіңіз",
 	"createaccountmail": "Белгіленген электрондық пошта мекенжайына уақытша кездейсоқ құпиясөз жіберу",

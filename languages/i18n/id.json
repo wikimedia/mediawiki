@@ -452,7 +452,6 @@
 	"createacct-loggedin-continue-as": "Lanjut sebagai {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Buat akun lain",
 	"createacct-emailrequired": "Alamat surel",
-	"createacct-emailoptional": "Alamat surel (opsional)",
 	"createacct-email-ph": "Masukkan alamat surel Anda",
 	"createacct-another-email-ph": "Masukkan alamat surel",
 	"createaccountmail": "Gunakan kata sandi acak sementara dan kirimkan ke alamat surel yang diinginkan",

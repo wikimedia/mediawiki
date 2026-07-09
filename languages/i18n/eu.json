@@ -372,7 +372,6 @@
 	"userlogin-reauth": "Saioa berriro hasi beharko duzu {{GENDER:$1|$1}} zarela baieztatzeko.",
 	"userlogin-createanother": "Beste kontu bat sortu",
 	"createacct-emailrequired": "E-posta helbidea",
-	"createacct-emailoptional": "E-posta helbidea (hautazkoa)",
 	"createacct-email-ph": "Sartu zure e-posta helbidea",
 	"createacct-another-email-ph": "Posta elektronikoaren helbidea sartu",
 	"createaccountmail": "Erabili behin-behineko pasahitz ausazko bat eta bidali agertzen den e-posta helbidera",

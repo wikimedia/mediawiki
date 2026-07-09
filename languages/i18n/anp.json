@@ -323,7 +323,6 @@
 	"userlogin-reauth": "तोंय {{GENDER:$1|$1}} छेकौ, हैय प्रमाणित करै लेली तोरा दोबारा लॉग-इन करै ल पड़थौं।",
 	"userlogin-createanother": "आपनौ खाता बनाबौ",
 	"createacct-emailrequired": "ई-मेल पता",
-	"createacct-emailoptional": "ई-मेल पता (वैकल्पिक)",
 	"createacct-email-ph": "अपनौ ई-मेल पता लिखौ",
 	"createacct-another-email-ph": "अपनौ ई-मेल पता लिखौ",
 	"createaccountmail": "एगो अस्थायी बेतरतीब पासवर्ड केरौ उपयोग करौ आरो उकरा निर्दिष्ट ईमेल पता प भेजौ",

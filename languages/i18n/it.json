@@ -494,7 +494,6 @@
 	"createacct-loggedin-continue-as": "Continua come {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Crea un’altra utenza",
 	"createacct-emailrequired": "Indirizzo email",
-	"createacct-emailoptional": "Indirizzo di posta elettronica (opzionale)",
 	"createacct-email-ph": "Inserisci il tuo indirizzo email",
 	"createacct-another-email-ph": "Inserisci l'indirizzo di posta elettronica",
 	"createaccountmail": "Usa una password casuale temporanea e inviala all'indirizzo di posta elettronica specificato",

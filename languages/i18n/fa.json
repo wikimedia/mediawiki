@@ -450,7 +450,6 @@
 	"createacct-loggedin-continue-as": "ادامه دادن به‌عنوان {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "ایجاد یک حساب دیگر",
 	"createacct-emailrequired": "نشانی ایمیل",
-	"createacct-emailoptional": "نشانی ایمیل (اختیاری)",
 	"createacct-email-ph": "نشانی ایمیل‌تان را وارد کنید",
 	"createacct-another-email-ph": "نشانی ایمیل را وارد کنید",
 	"createaccountmail": "یک گذرواژه تصادفی موقت استفاده کن و گذرواژه را به نشانی ایمیل مشخص شده بفرست",

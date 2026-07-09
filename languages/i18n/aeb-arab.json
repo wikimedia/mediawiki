@@ -156,7 +156,6 @@
 	"userlogout": "خروج",
 	"notloggedin": "غير مسجل الدخول",
 	"createaccount": "أنشئ حسابا",
-	"createacct-emailoptional": "الإيمايل (إختياري)",
 	"createacct-email-ph": "دخّل الإيمايل متاعك",
 	"createaccountmail": "بواسطة البريد الإلكتروني",
 	"createacct-submit": "أعمل الحساب",

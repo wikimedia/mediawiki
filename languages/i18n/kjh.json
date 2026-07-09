@@ -326,7 +326,6 @@
 	"userlogin-reauth": "{{GENDER:$1|$1}} полчатханын кӧзідер ӱчӱн, сiрерге пазох системаа кірерге кирек.",
 	"userlogin-createanother": "Пасха аккаунт идерге",
 	"createacct-emailrequired": "Электроннай почта адрезi",
-	"createacct-emailoptional": "Электроннай почта адрезі (кирек тее чоғыл)",
 	"createacct-email-ph": "Электроннай почта адрезіңернi киріңер",
 	"createacct-another-email-ph": "Электроннай почта адрезіңернi киріңер",
 	"createaccountmail": "Ӱр нимеске иділген чазыт сӧснең тузаланарға паза аны электроннай почта адрезіне ызарға.",

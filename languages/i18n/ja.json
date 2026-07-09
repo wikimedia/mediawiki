@@ -500,7 +500,6 @@
 	"createacct-loggedin-continue-as": "{{GENDER:$1|$1}} として続行",
 	"createacct-loggedin-heading": "別アカウントを作成",
 	"createacct-emailrequired": "メールアドレス",
-	"createacct-emailoptional": "メールアドレス (省略可能)",
 	"createacct-email-ph": "メールアドレスを入力",
 	"createacct-another-email-ph": "メールアドレスを入力",
 	"createaccountmail": "無作為な仮パスワードを生成し、指定のメールアドレスに送信",

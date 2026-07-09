@@ -331,7 +331,6 @@
 	"userlogin-reauth": "Tu debe reautentici per confirma ce tu es {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Crea un conta nova",
 	"createacct-emailrequired": "Adirije de eposta",
-	"createacct-emailoptional": "Adirije de eposta (si desirada)",
 	"createacct-email-ph": "Tape tua adirije de eposta",
 	"createacct-another-email-ph": "Tape tua adirije de eposta",
 	"createaccountmail": "Usa un clave tempora e acaso, e envia lo a la adirije spesifada de eposta",

@@ -339,7 +339,6 @@
 	"userlogin-reauth": "سىز چوقۇم يەنە بىر قېتىم سىز تىزىملىتىش ئىسپاتى {{GENDER:$1|$1}}",
 	"userlogin-createanother": "باشقا ھېسابات قۇرىمەن",
 	"createacct-emailrequired": "ئېلخەت ئادرېسى",
-	"createacct-emailoptional": "ئېلخەت ئادرېسى (تاللاشچان)",
 	"createacct-email-ph": "ئېلخەت ئادرېسىڭىزنى كىرگۈزۈڭ",
 	"createacct-another-email-ph": "ئېلخەت ئادرېسى كىرگۈزۈڭ",
 	"createaccountmail": "ۋاقىتلىق ئىختىيارىي پارولنى ئىشلەت ھەمدە بەلگىلەنگەن ئېلېكتىرونلۇق خەت ئادرېسىغا ئەۋەت",

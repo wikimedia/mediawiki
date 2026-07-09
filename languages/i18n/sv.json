@@ -441,7 +441,6 @@
 	"createacct-loggedin-continue-as": "Fortsätt som {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Skapa ett annat konto",
 	"createacct-emailrequired": "E-postadress",
-	"createacct-emailoptional": "E-postadress (valfritt)",
 	"createacct-email-ph": "Ange din e-postadress",
 	"createacct-another-email-ph": "Skriv in e-postadress",
 	"createaccountmail": "Använd ett tillfälligt slumpvis valt lösenord och skicka det till den angivna e-postadressen",

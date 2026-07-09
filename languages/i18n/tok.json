@@ -376,7 +376,6 @@
 	"createacct-loggedin-continue-as": "kepeken sijelo {{GENDER:$1|$1}} la o awen",
 	"createacct-loggedin-heading": "o pali e sijelo sin",
 	"createacct-emailrequired": "nimi pi ilo toki Email",
-	"createacct-emailoptional": "sina ken pana e nimi Email",
 	"createacct-email-ph": "o pana e nimi Email",
 	"createacct-another-email-ph": "o pana e nimi Email",
 	"createaccountmail": "o pana e nimi len nasa lon lipu toki",

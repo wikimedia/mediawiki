@@ -349,7 +349,6 @@
 	"userlogin-loggedin": "Haujaingia kama {{GENDER:$1|$1}}.\nTumia fomu hapa chini ili uweze kuingia kama mtumiaji mwingine.",
 	"userlogin-createanother": "Unda akaunti nyingine",
 	"createacct-emailrequired": "Anwani ya barua pepe",
-	"createacct-emailoptional": "Anwani ya barua pepe (si lazima)",
 	"createacct-email-ph": "Weka anwani yako ya barua pepe",
 	"createacct-another-email-ph": "Weka anwani ya barua pepe",
 	"createaccountmail": "Tumia neno la siri la muda tu na kulituma kwa anwani ya barua pepe ilivyoingizwa",

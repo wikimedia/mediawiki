@@ -333,7 +333,6 @@
 	"userlogin-reauth": "Te devi acedere de novo par verificare che te si {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Crea n'altra utensa",
 	"createacct-emailrequired": "Indirisso e-mail",
-	"createacct-emailoptional": "Indiriso e-mail (opsionałe)",
 	"createacct-email-ph": "Xonta el to inderiso e-mail",
 	"createacct-another-email-ph": "Inserissi l'indirizo de e-mail",
 	"createaccountmail": "Dopara na password caxuaƚe tenporanea e inviaƚa al indiriso e-mail spesifegà",

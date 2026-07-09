@@ -323,7 +323,6 @@
 	"userlogin-reauth": "Ye must log in again tae verify that ye are {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Mak anither accoont",
 	"createacct-emailrequired": "Wab-mail address",
-	"createacct-emailoptional": "Wab-mail address (optional)",
 	"createacct-email-ph": "Enter yer wab-mail address",
 	"createacct-another-email-ph": "Enter wab-mail address",
 	"createaccountmail": "Uise ae temporary random trystwird an send it til the specified wab-mail address",

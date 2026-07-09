@@ -267,7 +267,6 @@
 	"userlogin-reauth": "Fo ou konnékté-w ankò pou nou pé vwè sa ou sé {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Kréyé ondòt kont",
 	"createacct-emailrequired": "Adrès email",
-	"createacct-emailoptional": "Adrès email (si ou vlé)",
 	"createacct-email-ph": "Maké adrès email a-w",
 	"createacct-another-email-ph": "Maké adrès email a-w",
 	"createaccountmail-help": "Ou pé sèvi èvè-y pou kréyé on kont pou ondòt moun san savé modpas-la.",

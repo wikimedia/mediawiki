@@ -285,7 +285,6 @@
 	"userlogin-loggedin": "Sy južo ako {{GENDER:$1|$1 pśizjawjony|$1 pśizjawjona}}. Wužyj slědujucy formular, aby se ako drugi wužywaŕ pśizjawił.",
 	"userlogin-createanother": "Druge konto załožyś",
 	"createacct-emailrequired": "E-mailowa adresa",
-	"createacct-emailoptional": "E-mailowa adresa (opcionalny)",
 	"createacct-email-ph": "Zapódaj swóju e-mailowu adresu",
 	"createacct-another-email-ph": "E-mailowu adresu zapódaś",
 	"createaccountmail": "Nachylne pśipadne gronidło wužywaś a jo na pódanu e-mailowu adresu pósłaś",

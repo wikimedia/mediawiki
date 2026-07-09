@@ -323,7 +323,6 @@
 	"userlogin-reauth": "A trasè arrete pe verificà ca si {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Ccreje 'n'otre cunde",
 	"createacct-emailrequired": "Indirizze email",
-	"createacct-emailoptional": "Indirizze email (opzionale)",
 	"createacct-email-ph": "Mitte l'indirizze email tune",
 	"createacct-another-email-ph": "Mitte l'indirizze email",
 	"createaccountmail": "Ause 'na passuord temboranèe a uecchije e mannale a l'indirizze email specificate",

@@ -347,7 +347,6 @@
 	"userlogin-reauth": "侬板定要再登录一趟来验证侬是{{GENDER:$1|$1}}。",
 	"userlogin-createanother": "建别样账号",
 	"createacct-emailrequired": "电子信地址",
-	"createacct-emailoptional": "电子邮件地址（选填）",
 	"createacct-email-ph": "畀你侬个电子信地址打进去",
 	"createacct-another-email-ph": "电子信地址打进去",
 	"createaccountmail": "拿临时随机密码发到指定个电邮地址",

@@ -264,7 +264,6 @@
 	"userlogin-loggedin": "{{#FORMAL:Du bist|Deer seid}} schun als {{GENDER:$1|$1}} aangemeld.",
 	"userlogin-createanother": "En weitres Benutzerkonto erstelle",
 	"createacct-emailrequired": "E-Mail-Adress",
-	"createacct-emailoptional": "E-Mail-Adress (optional)",
 	"createacct-email-ph": "Gebb dein E-Mail-Adress in",
 	"createacct-another-email-ph": "E-Mail-Adress",
 	"createaccountmail": "En temporäres Zufallspasswort verwenne und an die oongebne E-Mail-Adress verschicke",

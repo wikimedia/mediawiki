@@ -248,7 +248,6 @@
 	"userlogin-reauth": "Tamsta torat prisijongtė apent, ka būtom aiško, ka esat {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Padėrbtė kėta paskīra",
 	"createacct-emailrequired": "El. pašta adresos",
-	"createacct-emailoptional": "El. paštos (nie būtėns)",
 	"createacct-email-ph": "Ožrašīkat sava el. pašta adresa",
 	"createacct-another-email-ph": "Ožrašīkėt el. pašta adresa",
 	"createaccountmail": "Nauduokėt laikėna slaptažuodi ė siōskėt nuruodėtō el. paštō",

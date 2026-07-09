@@ -344,7 +344,6 @@
 	"userlogin-reauth": "U moet weer aanmeld om te verifieer dat u $1 is.",
 	"userlogin-createanother": "Skep nog 'n rekening",
 	"createacct-emailrequired": "E-posadres",
-	"createacct-emailoptional": "E-posadres (opsioneel)",
 	"createacct-email-ph": "Sleutel u e-posadres in",
 	"createacct-another-email-ph": "Verskaf e-posadres",
 	"createaccountmail": "Gebruik 'n tydelike lukrake wagwoord en stuur dit na die gespesifiseerde e-posadres",

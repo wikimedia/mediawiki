@@ -335,7 +335,6 @@
 	"userlogin-reauth": "Тиһиккэ хат киирэн {{GENDER:$1|$1}} буоларгын бигэргэтиэхтээххин.",
 	"userlogin-createanother": "Атын аатынан бэлиэтэн",
 	"createacct-emailrequired": "Электрон почта аадырыһа",
-	"createacct-emailoptional": "Электрон почта аадырыһа (булгуччута суох)",
 	"createacct-email-ph": "Электрон аадырыскын суруй",
 	"createacct-another-email-ph": "Электрон почтаҕын киллэр",
 	"createaccountmail": "Быстах аһарыгы туһаныы уонна ону ыйыллыбыт аадырыска ыытыы",

@@ -326,7 +326,6 @@
 	"userlogin-reauth": "Ho nagkon na masuk log mulakan anso bisa mamparekso bahaso na ho ima {{GENDER:$1|$1}}",
 	"userlogin-createanother": "Baen akun na lain nai",
 	"createacct-emailrequired": "Alamat surel",
-	"createacct-emailoptional": "Alamat surel (opsional)",
 	"createacct-email-ph": "Pamasuk alamat surel amu",
 	"createacct-another-email-ph": "Pamasuk alamat surel",
 	"createaccountmail": "Baen ma hata kunci na acak samantara baru kirim ma tu alamat surel na porroa na.",

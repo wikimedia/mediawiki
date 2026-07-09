@@ -322,7 +322,6 @@
 	"userlogin-reauth": "Трєба, же пријавите се поновно за потврджење, же јесте {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Створити друго користничско конто",
 	"createacct-emailrequired": "Адрес е-пошты",
-	"createacct-emailoptional": "Адрес е-пошты (опционално)",
 	"createacct-email-ph": "Введите свој адрес е-пошты",
 	"createacct-another-email-ph": "Впишите адрес е-пошты",
 	"createaccountmail": "Изберите врєменну, случајну паролу и изшљите ју на указаны адрес е-пошты",

@@ -377,7 +377,6 @@
 	"createacct-loggedin-continue-as": "{{GENDER:$1| $1 }} ആയി തുടരുക",
 	"createacct-loggedin-heading": "മറ്റൊരു അംഗത്വമെടുക്കുക",
 	"createacct-emailrequired": "ഇമെയിൽ വിലാസം",
-	"createacct-emailoptional": "ഇമെയിൽ വിലാസം (നിർബന്ധമില്ല)",
 	"createacct-email-ph": "താങ്കളുടെ ഇമെയിൽ വിലാസം നൽകുക",
 	"createacct-another-email-ph": "ഇമെയിൽ വിലാസം നൽകുക",
 	"createaccountmail": "തൽക്കാലം ക്രമരഹിതമായി സൃഷ്ടിച്ച ഒരു രഹസ്യവാക്ക് ഉപയോഗിക്കുകയും അത് തന്നിരിക്കുന്ന ഇമെയിൽ വിലാസത്തിലേക്കയക്കുകയും ചെയ്യുക",

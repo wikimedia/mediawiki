@@ -363,7 +363,6 @@
 	"createacct-loggedin-continue-as": "Nadaljujte kot {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Ustvarite drug račun",
 	"createacct-emailrequired": "E-poštni naslov",
-	"createacct-emailoptional": "E-poštni naslov (izbirno)",
 	"createacct-email-ph": "Vnesite svoj e-poštni naslov",
 	"createacct-another-email-ph": "Vnesite e-poštni naslov",
 	"createaccountmail": "Ustvari začasno naključno geslo in ga pošlji na spodaj navedeni e-poštni naslov",

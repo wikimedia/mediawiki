@@ -321,7 +321,6 @@
 	"userlogin-reauth": "Tienes d'aniciar sesión de nueves pa comprobar que yes {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Crear otra cuenta",
 	"createacct-emailrequired": "Direición de corréu electrónicu",
-	"createacct-emailoptional": "Direición de corréu electrónicu (opcional)",
 	"createacct-email-ph": "Escribe la to direición de corréu electrónicu",
 	"createacct-another-email-ph": "Escribe la direición de corréu electrónicu",
 	"createaccountmail": "Usar una contraseña al debalu temporal y unviala a la direición de corréu electrónicu conseñada",

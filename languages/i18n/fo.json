@@ -276,7 +276,6 @@
 	"userlogin-loggedin": "Tú ert longu innritað/ur sum {{GENDER:$1|$1}}.\nNýt formularin niðanfyri fyri at rita inn sum ein annar brúkari.",
 	"userlogin-createanother": "Stovna eina aðra kontu",
 	"createacct-emailrequired": "Teldupost adressa",
-	"createacct-emailoptional": "Teldupost adressa (valfrítt)",
 	"createacct-email-ph": "Skrivað tína email adressu",
 	"createacct-another-email-ph": "Skriva tína t-post adressu",
 	"createaccountmail": "Nýt eitt fyribils tilvildarligt loyniorð og send tað til nevndu t-post adressuna",

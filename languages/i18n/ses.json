@@ -289,7 +289,6 @@
 	"userlogin-reauth": "War mma hima ka huru ka tabatandi kaŋ war ti {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Kontu tana tee",
 	"createacct-emailrequired": "Bataga aderesu",
-	"createacct-emailoptional": "Bataga aderesu (suubari)",
 	"createacct-email-ph": "Ni bataga aderesoo dam",
 	"createacct-another-email-ph": "Bataga aderesu dam",
 	"createaccountmail": "Šiiyan šennikufal dam saaye bande nd'a sanba bataga aderesu tabatantaa do",

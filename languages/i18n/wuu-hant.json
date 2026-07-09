@@ -312,7 +312,6 @@
 	"userlogin-reauth": "儂板定要再登入一趟來驗證儂是{{GENDER:$1|$1}}。",
 	"userlogin-createanother": "建別樣帳號",
 	"createacct-emailrequired": "電子信地址",
-	"createacct-emailoptional": "電子郵件地址（選填）",
 	"createacct-email-ph": "畀你儂个電子信地址打進去",
 	"createacct-another-email-ph": "電子信地址打進去",
 	"createaccountmail": "拿臨時隨機密碼發到指定个電郵地址",

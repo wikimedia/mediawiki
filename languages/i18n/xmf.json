@@ -362,7 +362,6 @@
 	"createacct-loggedin-continue-as": "გაგჷნძორება მუჭოთ {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "შხვა ახალ ანგარიშიშ გოჭყაფა",
 	"createacct-emailrequired": "ელ. ფოსტაშ მიოწურაფუ",
-	"createacct-emailoptional": "ელ. ფოსტაშ მიოწურაფუ (ვა რე უციო)",
 	"createacct-email-ph": "გენშიონით თქვანი ელ. ფოსტაშ ოწურაფუ",
 	"createacct-another-email-ph": "გენშიონით თქვანი ელ. ფოსტაშ მიოწურაფუ",
 	"createaccountmail": "გჷმირინეთ ალალ მოხვალამ მეთოდით გიშაგორილი ობორჯე პაროლი დო მიდაჯღნით მეწურაფილ ელ.ფოსტაშ მიოწურაფუშა",

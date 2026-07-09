@@ -323,7 +323,6 @@
 	"userlogin-reauth": "Nuru ko do sumuang kawagu montok poposah do iya nopo nga' {{GENDER:$1|$1}}",
 	"userlogin-createanother": "Pomonsoi akaun suai",
 	"createacct-emailrequired": "Porikatan surat-e:",
-	"createacct-emailoptional": "Kinoyonon Emel (pilion)",
 	"createacct-email-ph": "Posuango emel nu",
 	"createacct-another-email-ph": "Posuango email nu",
 	"createaccountmail": "Gunoo nunu nopo boros papatalib om pootodo id surat-e di spesifik",

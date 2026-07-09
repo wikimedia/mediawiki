@@ -285,7 +285,6 @@
 	"userlogin-loggedin": "ທ່ານໄດ້ເຂົ້າສູ່ລະບົບໃນຊື່ {{GENDER:$1|$1}} ແລ້ວ.\nກະລຸນາໃຊ້ແບບຟອມຂ້າງລຸ່ມເພື່ອເຂົ້າສູ່ລະບົບໃນຊື່ອື່ນໆ.",
 	"userlogin-createanother": "ສ້າງອີກບັນຊີໜຶ່ງ",
 	"createacct-emailrequired": "ທີ່ຢູ່ອີເມວ",
-	"createacct-emailoptional": "ທີ່ຢູ່ອີເມວ (ເລືອກບໍ່ໃສ່ກໍ່ໄດ້)",
 	"createacct-email-ph": "ໃສ່ທີ່ຢູ່ອີເມວຂອງທ່ານ",
 	"createacct-another-email-ph": "ໃສ່ທີ່ຢູ່ອີເມວ",
 	"createaccountmail": "ໃຊ້ລະຫັດຜ່ານແບບສຸ່ມຊົ່ວຄາວແລະສົ່ງມັນໄປໃຫ້ທີ່ຢູ່ອີເມວທີ່ລະບຸ",

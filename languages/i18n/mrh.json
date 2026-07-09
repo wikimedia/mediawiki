@@ -221,7 +221,6 @@
 	"userlogin-reauth": "{{GENDER:$1|$1}} na châ tahpa apypa na châ thei n'awpa ta nâ ngia tu'pa â byuh.",
 	"userlogin-createanother": "Account hropa tao",
 	"createacct-emailrequired": "Email address",
-	"createacct-emailoptional": "Email address (nâma rei)",
 	"createacct-email-ph": "Na email address roh teh",
 	"createacct-another-email-ph": "Email address roh teih",
 	"createacct-realname": "Moh dopa(khodâh)",

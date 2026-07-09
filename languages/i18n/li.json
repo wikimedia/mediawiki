@@ -312,7 +312,6 @@
 	"userlogin-reauth": "Doe mós dich oppernuuj aanmelje óm te bevestige det se {{GENDER:$1|$1}} bös.",
 	"userlogin-createanother": "Maak 'nen angere gebroeker",
 	"createacct-emailrequired": "E-mailadres",
-	"createacct-emailoptional": "E-mailadres (optioneel)",
 	"createacct-email-ph": "Veur dien e-mailadres in",
 	"createacct-another-email-ph": "Veur e-mailadres in",
 	"createaccountmail": "Gebroek e tiejelik willekäörig wachwaord en sjik 't nao 't opgegaove e-mailadres",

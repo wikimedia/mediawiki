@@ -318,7 +318,6 @@
 	"createacct-loggedin-continue-as": "Kemmel amzun d {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Snulfu-d amiḍan nniḍen",
 	"createacct-emailrequired": "Tansa imayl",
-	"createacct-emailoptional": "Tansa email (axetṛan)",
 	"createacct-email-ph": "Sekcem tansa email inek(m)",
 	"createacct-another-email-ph": "Sekcem tansa email",
 	"createaccountmail": "Seqdec awal n uɛaddi agacuran akudan dɣa ceggeε-it ar tansa email yemlen",

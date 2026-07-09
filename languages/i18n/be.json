@@ -383,7 +383,6 @@
 	"createacct-loggedin-continue-as": "Працягнуць як {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Стварыць яшчэ адзін уліковы запіс",
 	"createacct-emailrequired": "Адрас электроннай пошты",
-	"createacct-emailoptional": "Адрас электроннай пошты (неабавязкова)",
 	"createacct-email-ph": "Увядзіце ваш адрас электроннай пошты",
 	"createacct-another-email-ph": "Увядзіце адрас электроннай пошты",
 	"createaccountmail": "Ужыць часовы выпадковы пароль і даслаць яго праз эл.пошту",
