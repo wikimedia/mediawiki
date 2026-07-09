@@ -281,7 +281,8 @@ SELECT
 	(
 		SELECT GROUP_CONCAT(ctd_name SEPARATOR ',') 
 		FROM change_tag JOIN change_tag_def ON ((ct_tag_id=ctd_id)) 
-		WHERE (ct_rc_id=rc_id)  
+		WHERE (ct_rc_id=rc_id) 
+		AND (ctd_name NOT LIKE 'mw-private-%' ESCAPE '`')  
 	) AS ts_tags,
 	rc_id,
 	rc_cur_id,

@@ -8,8 +8,11 @@ use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
@@ -167,12 +170,19 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		// HACK resolve deferred group concats (see comment in provideModifyDisplayQuery)
 		if ( isset( $modifiedQuery['fields']['ts_tags'] ) ) {
 			[ $delim, $table, $join, $field, $where ] = $modifiedQuery['fields']['ts_tags'];
-			$modifiedQuery['fields']['ts_tags'] = $this->getDb()
+			$dbr = $this->getDb();
+			$restrictedCond = $dbr->expr(
+				'ctd_name',
+				IExpression::NOT_LIKE,
+				new LikeValue( ChangeTagsStore::PRIVATE_TAG_PREFIX, $dbr->anyString() )
+			);
+			$modifiedQuery['fields']['ts_tags'] = $dbr
 				->newSelectQueryBuilder()
 				->table( $table )
 				->join( ...$join )
 				->field( $field )
 				->where( $where )
+				->andWhere( $restrictedCond )
 				->buildGroupConcatField( $delim );
 		}
 		if ( isset( $modifiedQuery['exception'] ) ) {
@@ -1035,4 +1045,197 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertStatusError( 'tags-deactivate-not-found', $status );
 	}
+
+	/** @dataProvider provideMakeTagSummarySubquery */
+	public function testMakeTagSummarySubquery( ?array $authorityRights, array $expectedTags ): void {
+		$this->setRestrictedTags( [ 'mw-private-secret' => [ 'suppress' ] ] );
+		$store = $this->getServiceContainer()->getChangeTagsStore();
+		$revId = $this->makeTaggedRevision();
+		$performer = $this->makePerformer( $authorityRights );
+
+		$tsTags = $this->getDb()->newSelectQueryBuilder()
+			->field( $store->makeTagSummarySubquery( 'revision', $performer ), 'ts_tags' )
+			->from( 'revision' )
+			->where( [ 'rev_id' => $revId ] )
+			->caller( __METHOD__ )
+			->fetchField();
+
+		$actualTags = explode( ',', $tsTags );
+		$this->assertArrayEquals( $expectedTags, $actualTags );
+	}
+
+	public static function provideMakeTagSummarySubquery(): array {
+		return [
+			'performer with the right sees the restricted tag' => [
+				'authorityRights' => [ 'suppress' ],
+				'expectedTags' => [ 'foo', 'mw-private-secret' ],
+			],
+			'performer without the right sees only the normal tag' => [
+				'authorityRights' => [],
+				'expectedTags' => [ 'foo' ],
+			],
+			'null performer sees only the normal tag' => [
+				'authorityRights' => null,
+				'expectedTags' => [ 'foo' ],
+			],
+		];
+	}
+
+	/** @dataProvider provideMakeTagSummarySubqueryExcludesUnmappedRestrictedTags */
+	public function testMakeTagSummarySubqueryExcludesUnmappedRestrictedTags(
+		?array $authorityRights,
+		array $expectedTags
+	): void {
+		$this->setRestrictedTags( [ 'mw-private-secret' => [ 'suppress' ] ] );
+		$store = $this->getServiceContainer()->getChangeTagsStore();
+		$revId = $this->makeTaggedRevision( [ 'foo', 'mw-private-secret', 'mw-private-unmapped' ] );
+		$performer = $this->makePerformer( $authorityRights );
+
+		$tsTags = $this->getDb()->newSelectQueryBuilder()
+			->field( $store->makeTagSummarySubquery( 'revision', $performer ), 'ts_tags' )
+			->from( 'revision' )
+			->where( [ 'rev_id' => $revId ] )
+			->caller( __METHOD__ )
+			->fetchField();
+
+		$actualTags = explode( ',', $tsTags );
+		$this->assertArrayEquals( $expectedTags, $actualTags );
+	}
+
+	public static function provideMakeTagSummarySubqueryExcludesUnmappedRestrictedTags(): array {
+		return [
+			'performer without rights sees only the normal tag' => [
+				'authorityRights' => [],
+				'expectedTags' => [ 'foo' ],
+			],
+			'performer with suppress sees the mapped tag but not the unmapped one' => [
+				'authorityRights' => [ 'suppress' ],
+				'expectedTags' => [ 'foo', 'mw-private-secret' ],
+			],
+		];
+	}
+
+	/** @dataProvider provideAddTagsToDisplayQueryExecuted */
+	public function testAddTagsToDisplayQueryExecuted(
+		array $authorityRights,
+		string $filterTag,
+		bool $exclude,
+		bool $expectRow,
+		?array $expectedTags
+	): void {
+		$this->overrideConfigValue( MainConfigNames::UseTagFilter, true );
+		$this->setRestrictedTags( [ 'mw-private-secret' => [ 'suppress' ] ] );
+		$store = $this->getServiceContainer()->getChangeTagsStore();
+		$revId = $this->makeTaggedRevision();
+		$performer = $this->mockRegisteredAuthorityWithPermissions( $authorityRights );
+
+		$queryBuilder = $this->getDb()->newSelectQueryBuilder()
+			->select( 'rev_id' )
+			->from( 'revision' )
+			->where( [ 'rev_id' => $revId ] )
+			->caller( __METHOD__ );
+		$store->addTagsToDisplayQuery( $queryBuilder, 'revision', $performer, $filterTag, $exclude );
+
+		$row = $queryBuilder->fetchRow();
+
+		if ( !$expectRow ) {
+			$this->assertFalse( $row );
+
+			return;
+		}
+
+		$this->assertNotFalse( $row );
+		$this->assertSame( $revId, (int)$row->rev_id );
+		$actualTags = explode( ',', $row->ts_tags );
+		$this->assertArrayEquals( $expectedTags, $actualTags );
+	}
+
+	public static function provideAddTagsToDisplayQueryExecuted(): array {
+		return [
+			'no filter, performer without the right hides the restricted tag' => [
+				'authorityRights' => [],
+				'filterTag' => '',
+				'exclude' => false,
+				'expectRow' => true,
+				'expectedTags' => [ 'foo' ],
+			],
+			'no filter, performer with the right sees the restricted tag' => [
+				'authorityRights' => [ 'suppress' ],
+				'filterTag' => '',
+				'exclude' => false,
+				'expectRow' => true,
+				'expectedTags' => [ 'foo', 'mw-private-secret' ],
+			],
+			'filter by restricted tag without the right returns no rows' => [
+				'authorityRights' => [],
+				'filterTag' => 'mw-private-secret',
+				'exclude' => false,
+				'expectRow' => false,
+				'expectedTags' => null,
+			],
+			'filter by restricted tag with the right returns the row' => [
+				'authorityRights' => [ 'suppress' ],
+				'filterTag' => 'mw-private-secret',
+				'exclude' => false,
+				'expectRow' => true,
+				'expectedTags' => [ 'foo', 'mw-private-secret' ],
+			],
+			'exclude by unviewable restricted tag is a no-op' => [
+				'authorityRights' => [],
+				'filterTag' => 'mw-private-secret',
+				'exclude' => true,
+				'expectRow' => true,
+				'expectedTags' => [ 'foo' ],
+			],
+		];
+	}
+
+	public function testModifyDisplayQueryBuilderHidesRestrictedTags(): void {
+		$this->overrideConfigValue( MainConfigNames::UseTagFilter, true );
+		$this->setRestrictedTags( [ 'mw-private-secret' => [ 'suppress' ] ] );
+		$store = $this->getServiceContainer()->getChangeTagsStore();
+		$revId = $this->makeTaggedRevision();
+
+		$queryBuilder = $this->getDb()->newSelectQueryBuilder()
+			->select( 'rev_id' )
+			->from( 'revision' )
+			->where( [ 'rev_id' => $revId ] )
+			->caller( __METHOD__ );
+		$store->modifyDisplayQueryBuilder( $queryBuilder, 'revision' );
+
+		$row = $queryBuilder->fetchRow();
+
+		$this->assertNotFalse( $row );
+		$this->assertArrayEquals( [ 'foo' ], explode( ',', $row->ts_tags ) );
+	}
+
+	public function testModifyDisplayQueryAlwaysHidesRestrictedTags(): void {
+		$this->overrideConfigValue( MainConfigNames::UseTagFilter, true );
+		$this->setRestrictedTags( [ 'mw-private-secret' => [ 'suppress' ] ] );
+		$store = $this->getServiceContainer()->getChangeTagsStore();
+
+		$tables = [ 'recentchanges' ];
+		$fields = [ 'rc_id' ];
+		$conds = [];
+		$joinConds = [];
+		$options = [];
+		$store->modifyDisplayQuery( $tables, $fields, $conds, $joinConds, $options, [ 'mw-private-secret' ] );
+
+		$this->assertContains( '0=1', $conds );
+		$this->assertNotContains( 'DISTINCT', $options );
+	}
+
+	private function makeTaggedRevision( array $tags = [ 'foo', 'mw-private-secret' ] ): int {
+		$revId = $this->getExistingTestPage()->getRevisionRecord()->getId();
+		$this->changeTags->addTags( $tags, null, $revId );
+
+		return $revId;
+	}
+
+	private function makePerformer( ?array $authorityRights ): ?Authority {
+		return $authorityRights === null
+			? null
+			: $this->mockRegisteredAuthorityWithPermissions( $authorityRights );
+	}
+
 }

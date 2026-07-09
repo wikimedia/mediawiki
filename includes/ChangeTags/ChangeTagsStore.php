@@ -14,6 +14,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\NameTableAccessException;
@@ -21,11 +22,14 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -216,11 +220,16 @@ class ChangeTagsStore {
 	/**
 	 * Make the tag summary subquery based on the given tables and return it.
 	 *
-	 * @param string|array $tables Table names, see Database::select
+	 * Restricted tags (the mw-private- prefix) that the given performer may not view are excluded;
+	 * a null performer excludes all of them.
 	 *
-	 * @return string tag summary subqeury
+	 * @param string|array $tables Table names, see Database::select
+	 * @param Authority|null $performer Viewer, for restricted-tag access checks. Null hides all
+	 *   restricted tags. (since 1.47); passing null is deprecated since 1.47
+	 *
+	 * @return string tag summary subquery
 	 */
-	public function makeTagSummarySubquery( $tables ) {
+	public function makeTagSummarySubquery( $tables, ?Authority $performer = null ): string {
 		// Normalize to arrays
 		$tables = (array)$tables;
 
@@ -237,13 +246,24 @@ class ChangeTagsStore {
 			throw new InvalidArgumentException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
-		return $this->dbProvider->getReplicaDatabase( $this->wiki )
-			->newSelectQueryBuilder()
+		$dbr = $this->dbProvider->getReplicaDatabase( $this->wiki );
+		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->table( self::CHANGE_TAG )
 			->join( self::CHANGE_TAG_DEF, null, 'ct_tag_id=ctd_id' )
 			->field( 'ctd_name' )
-			->where( $join_cond )
-			->buildGroupConcatField( ',' );
+			->where( $join_cond );
+
+		// Exclude restricted tags by prefix; re-include the ones the performer may view.
+		$restrictedCond = $dbr->expr(
+			'ctd_name', IExpression::NOT_LIKE, new LikeValue( self::PRIVATE_TAG_PREFIX, $dbr->anyString() )
+		);
+		$viewable = $this->filterViewableTagsForPerformer( array_keys( $this->getRestrictedTagRights() ), $performer );
+		if ( $viewable ) {
+			$restrictedCond = $dbr->orExpr( [ $restrictedCond, $dbr->expr( 'ctd_name', '=', $viewable ) ] );
+		}
+		$queryBuilder->andWhere( $restrictedCond );
+
+		return $queryBuilder->buildGroupConcatField( ',' );
 	}
 
 	/**
@@ -677,6 +697,25 @@ class ChangeTagsStore {
 	}
 
 	/**
+	 * Like filterViewableTags(), but a null performer may view no restricted
+	 * tags at all.
+	 *
+	 * @param string[] $tags
+	 * @param Authority|null $performer
+	 * @return string[]
+	 */
+	private function filterViewableTagsForPerformer( array $tags, ?Authority $performer ): array {
+		return $this->filterViewableTags( $tags, $performer ?? self::getAuthorityForPublicTags() );
+	}
+
+	/**
+	 * A rights-less Authority used to hide all restricted tags.
+	 */
+	private static function getAuthorityForPublicTags(): Authority {
+		return new SimpleAuthority( UserIdentityValue::newAnonymous( '127.0.0.1' ), [] );
+	}
+
+	/**
 	 * Add and remove tags to/from a change given its rc_id, rev_id and/or log_id,
 	 * without verifying that the tags exist or are valid. If a tag is present in
 	 * both $tagsToAdd and $tagsToRemove, it will be removed.
@@ -952,6 +991,9 @@ class ChangeTagsStore {
 	 * When querying table from a remote wiki, this function honors the local wiki's UseTagFilter
 	 * configuration setting.
 	 *
+	 * Restricted tags are always hidden from this method's output and cannot be filtered on; use
+	 * addTagsToDisplayQuery() instead.
+	 *
 	 * WARNING: If $filter_tag contains more than one tag and $exclude is false, this function
 	 * will add DISTINCT, which may cause performance problems for your query unless you put
 	 * the ID field of your table at the end of the ORDER BY, and set a GROUP BY equal to the
@@ -1009,7 +1051,8 @@ class ChangeTagsStore {
 		if ( $filter_tag !== [] && $filter_tag !== '' ) {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
-			$filterTagIds = array_values( $this->getTagIdsFromNames( (array)$filter_tag ) );
+			$viewableFilterTags = $this->filterViewableTagsForPerformer( (array)$filter_tag, null );
+			$filterTagIds = array_values( $this->getTagIdsFromNames( $viewableFilterTags ) );
 
 			if ( $exclude ) {
 				if ( $filterTagIds !== [] ) {
@@ -1031,7 +1074,7 @@ class ChangeTagsStore {
 				}
 
 				if (
-					is_array( $filter_tag ) && count( $filter_tag ) > 1 &&
+					count( $viewableFilterTags ) > 1 &&
 					!in_array( 'DISTINCT', $options )
 				) {
 					$options[] = 'DISTINCT';
@@ -1048,25 +1091,28 @@ class ChangeTagsStore {
 	 * When querying table from a remote wiki, this function honors the local wiki's UseTagFilter
 	 * configuration setting.
 	 *
-	 * WARNING: If $filter_tag contains more than one tag and $exclude is false, this function
+	 * WARNING: If $filterTag contains more than one tag and $exclude is false, this function
 	 * will add DISTINCT, which may cause performance problems for your query unless you put
 	 * the ID field of your table at the end of the ORDER BY, and set a GROUP BY equal to the
 	 * ORDER BY. For example, if you had ORDER BY foo_timestamp DESC, you will now need
 	 * GROUP BY foo_timestamp, foo_id ORDER BY foo_timestamp DESC, foo_id DESC.
 	 *
+	 * @since 1.47
 	 * @param SelectQueryBuilder $queryBuilder Query builder to add the join
 	 * @param string $table Table name. Must be either of 'recentchanges', 'logging', 'revision', or 'archive'
-	 * @param string|array|false|null $filter_tag Tag(s) to select on (OR)
-	 * @param bool $exclude If true, exclude tag(s) from $filter_tag (NOR)
+	 * @param Authority $performer Viewer, for restricted-tag access checks
+	 * @param string|array $filterTag Tag(s) to select on (OR)
+	 * @param bool $exclude If true, exclude tag(s) from $filterTag (NOR)
 	 */
-	public function modifyDisplayQueryBuilder(
+	public function addTagsToDisplayQuery(
 		SelectQueryBuilder $queryBuilder,
-		$table,
-		$filter_tag = '',
+		string $table,
+		Authority $performer,
+		string|array $filterTag = '',
 		bool $exclude = false
-	) {
+	): void {
 		$useTagFilter = $this->options->get( MainConfigNames::UseTagFilter );
-		$queryBuilder->field( $this->makeTagSummarySubquery( [ $table ] ), 'ts_tags' );
+		$queryBuilder->field( $this->makeTagSummarySubquery( [ $table ], $performer ), 'ts_tags' );
 
 		// We use an alias and qualify the conditions in case there are
 		// multiple joins to this table.
@@ -1088,15 +1134,14 @@ class ChangeTagsStore {
 			return;
 		}
 
-		if ( !is_array( $filter_tag ) ) {
-			// some callers provide false or null
-			$filter_tag = (string)$filter_tag;
+		if ( is_string( $filterTag ) ) {
+			$filterTag = $filterTag === '' ? [] : [ $filterTag ];
 		}
-
-		if ( $filter_tag !== [] && $filter_tag !== '' ) {
+		if ( $filterTag !== [] ) {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
-			$filterTagIds = array_values( $this->getTagIdsFromNames( (array)$filter_tag ) );
+			$viewableFilterTags = $this->filterViewableTags( $filterTag, $performer );
+			$filterTagIds = array_values( $this->getTagIdsFromNames( $viewableFilterTags ) );
 
 			if ( $exclude ) {
 				if ( $filterTagIds !== [] ) {
@@ -1120,12 +1165,35 @@ class ChangeTagsStore {
 					$queryBuilder->where( '0=1' );
 				}
 
-				if (
-					is_array( $filter_tag ) && count( $filter_tag ) > 1
-				) {
+				if ( count( $viewableFilterTags ) > 1 ) {
 					$queryBuilder->distinct();
 				}
 			}
 		}
+	}
+
+	/**
+	 * Applies all tags-related changes to a query builder object.
+	 *
+	 * Handles selecting tags, and filtering. Restricted tags are always hidden from this
+	 * method's output; use addTagsToDisplayQuery() with an Authority instead.
+	 *
+	 * @deprecated since 1.47, use {@link self::addTagsToDisplayQuery()} instead
+	 * @param SelectQueryBuilder $queryBuilder Query builder to add the join
+	 * @param string $table Table name. Must be either of 'recentchanges', 'logging', 'revision', or 'archive'
+	 * @param string|array|false|null $filter_tag Tag(s) to select on (OR)
+	 * @param bool $exclude If true, exclude tag(s) from $filter_tag (NOR)
+	 */
+	public function modifyDisplayQueryBuilder(
+		SelectQueryBuilder $queryBuilder,
+		$table,
+		$filter_tag = '',
+		bool $exclude = false
+	): void {
+		$this->addTagsToDisplayQuery(
+			$queryBuilder, $table, self::getAuthorityForPublicTags(),
+			$filter_tag === false || $filter_tag === null ? '' : $filter_tag,
+			$exclude
+		);
 	}
 }

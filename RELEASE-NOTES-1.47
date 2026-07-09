@@ -105,6 +105,13 @@ For notes on 1.46.x and older releases, see HISTORY.
 * (T386456) A new hook ListRestrictedTags allows defining which right(s)
   allow a user to view a rights-restricted change tag (tags starting with
   'mw-private-').
+* ChangeTagsStore::makeTagSummarySubquery() gained an optional $performer
+  (Authority) parameter. When it is null, rights-restricted change tags are
+  hidden from the tag summary.
+* ChangeTagsStore::addTagsToDisplayQuery() is a new method that supersedes
+  modifyDisplayQueryBuilder(). It takes a required Authority $performer before
+  the optional filter arguments, so that rights-restricted change tags can be
+  shown to and filtered on by users who are allowed to view them.
 * …
 
 === External library changes in 1.47 ===
@@ -389,6 +396,12 @@ because of Phabricator reports.
   deprecation warnings. Use PatrolManager::createPatrolLog instead.
 * Title::canUseNoindex() is deprecated with warnings. Please use
   NamespaceInfo::canUseNoindex() instead.
+* Passing null as the $performer parameter to
+  ChangeTagsStore::makeTagSummarySubquery() is deprecated. Pass an Authority so
+  that rights-restricted change tags can be shown to users who are allowed to
+  view them.
+* ChangeTagsStore::modifyDisplayQueryBuilder() is deprecated. Use
+  addTagsToDisplayQuery() instead, passing an Authority.
 * The MarkPatrolledComplete hook has been deprecated and will trigger
   deprecation warnings. Use the MarkPatrolledAudit hook instead.
 * FileBackendStore::memCache is now deprecated. Instead, subclasses should
