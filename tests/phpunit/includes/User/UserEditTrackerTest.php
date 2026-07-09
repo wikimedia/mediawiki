@@ -7,9 +7,12 @@ use MediaWiki\Deferred\UserEditCountUpdate;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\User\ActorStore;
+use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserRigorOptions;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\TestingAccessWrapper;
 
@@ -201,6 +204,32 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( 10, $tracker->getUserEditCount( $userLocal ) );
 		$this->assertSame( 20, $tracker->getUserEditCount( $userRemote ) );
+	}
+
+	public function testUsesActorStoreForProperWiki() {
+		$actorStore = $this->createMock( ActorStore::class );
+		$actorStore->method( 'findActorId' )
+			->willReturn( 1 );
+		$actorStoreFactory = $this->createMock( ActorStoreFactory::class );
+		$actorStoreFactory->method( 'getActorStore' )
+			->willReturnCallback( function ( $wiki ) use ( $actorStore ) {
+				$this->assertSame( 'otherwiki', $wiki );
+				return $actorStore;
+			} );
+		$this->setService( 'ActorStoreFactory', $actorStoreFactory );
+
+		$db = $this->getDb();
+		$dbProvider = $this->createMock( IConnectionProvider::class );
+		$dbProvider->method( 'getReplicaDatabase' )
+			->willReturnCallback( function ( $dbName ) use ( $db ) {
+				$this->assertSame( 'otherwiki', $dbName );
+				return $db;
+			} );
+		$this->setService( 'ConnectionProvider', $dbProvider );
+
+		$user = new UserIdentityValue( 123, __METHOD__, 'otherwiki' );
+		$tracker = $this->getServiceContainer()->getUserEditTracker();
+		$tracker->getFirstEditTimestamp( $user );
 	}
 
 	public function testReadsFromCacheAfterPreloadForMultipleUsers(): void {

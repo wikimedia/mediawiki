@@ -2905,7 +2905,7 @@ return [
 
 	'UserEditTracker' => static function ( MediaWikiServices $services ): UserEditTracker {
 		return new UserEditTracker(
-			$services->getActorNormalization(),
+			$services->getActorStoreFactory(),
 			$services->getConnectionProvider(),
 			$services->getJobQueueGroup(),
 			$services->getMainWANObjectCache()

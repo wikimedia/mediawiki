@@ -35,7 +35,7 @@ class UserEditTracker {
 	private array $userEditCountCache = [];
 
 	public function __construct(
-		private readonly ActorNormalization $actorNormalization,
+		private readonly ActorStoreFactory $actorStoreFactory,
 		private readonly IConnectionProvider $dbProvider,
 		private readonly JobQueueGroup $jobQueueGroup,
 		private readonly WANObjectCache $wanObjectCache,
@@ -135,11 +135,12 @@ class UserEditTracker {
 			throw new LogicException( __METHOD__ . ' only supports local users' );
 		}
 
+		$actorStore = $this->actorStoreFactory->getActorStore( $user->getWikiId() );
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$count = (int)$dbr->newSelectQueryBuilder()
 			->select( 'COUNT(*)' )
 			->from( 'revision' )
-			->where( [ 'rev_actor' => $this->actorNormalization->findActorId( $user, $dbr ) ] )
+			->where( [ 'rev_actor' => $actorStore->findActorId( $user, $dbr ) ] )
 			->caller( __METHOD__ )
 			->fetchField();
 
@@ -249,11 +250,12 @@ class UserEditTracker {
 			$db = $this->dbProvider->getReplicaDatabase( $user->getWikiId() );
 		}
 
+		$actorStore = $this->actorStoreFactory->getActorStore( $user->getWikiId() );
 		$sortOrder = ( $type === self::FIRST_EDIT ) ? SelectQueryBuilder::SORT_ASC : SelectQueryBuilder::SORT_DESC;
 		$time = $db->newSelectQueryBuilder()
 			->select( 'rev_timestamp' )
 			->from( 'revision' )
-			->where( [ 'rev_actor' => $this->actorNormalization->findActorId( $user, $db ) ] )
+			->where( [ 'rev_actor' => $actorStore->findActorId( $user, $db ) ] )
 			->orderBy( 'rev_timestamp', $sortOrder )
 			->caller( __METHOD__ )
 			->fetchField();
