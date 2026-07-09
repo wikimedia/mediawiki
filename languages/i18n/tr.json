@@ -3423,7 +3423,7 @@
 	"tag-mw-contentmodelchange": "içerik modeli değişikliği",
 	"tag-mw-contentmodelchange-description": "Bir sayfanın içerik modelini değiştiren düzenlemeler",
 	"tag-mw-new-redirect": "Yeni yönlendirme",
-	"tag-mw-new-redirect-description": "Yeni bir yönlendirme oluştan veya bir sayfayı bir yönlendirmeye dönüştüren değişiklikler",
+	"tag-mw-new-redirect-description": "Yeni bir yönlendirme oluşturan veya bir sayfayı bir yönlendirmeye dönüştüren değişiklikler",
 	"tag-mw-removed-redirect": "Kaldırılan yönlendirme",
 	"tag-mw-removed-redirect-description": "Mevcut bir yönlendirmeyi, yönlendirme olmaktan çıkaran değişiklikler",
 	"tag-mw-changed-redirect-target": "Yönlendirme hedefi değiştirildi",

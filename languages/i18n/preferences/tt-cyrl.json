@@ -200,7 +200,7 @@
 	"prefs-watchlist-edits-max": "Иң күбе: 1000",
 	"prefs-advancedwatchlist": "Киңәйтелгән көйләнмәләр",
 	"tog-extendwatchlist": "Соңгы үзгәрешләрне генә түгел, ә барлык үзгәрешләрне дә күрсәтү өчен күзәтү исемлеген ачыгыз",
-	"tog-watchlistunwatchlinks": "Үзгәрешләр белән күзәтелгән битләр өчен күзәтмәү/күзәтү ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) туры тамгаларын өстәү (функцияләрен күчерү өчен JavaScript кирәк)",
+	"tog-watchlistunwatchlinks": "Үзгәрешләр белән күзәтелгән битләр өчен күзәтүдән алу/күзәтү ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) туры тамгаларын өстәү (функцияләрен күчерү өчен JavaScript кирәк)",
 	"rcfilters-watchlist-preference-label": "Интерфейсны JavaScriptтан башка куллану",
 	"rcfilters-watchlist-preference-help": "[[{{#special:Watchlist}}|Күзәтү исемлеген]] сөзгечләр яисә аерымлап алу буенча эзләү функциясеннән башка йөкли",
 	"prefs-changeswatchlist": "Күрсәтелгән үзгәрешләр",

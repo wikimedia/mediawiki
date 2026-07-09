@@ -1012,7 +1012,7 @@
 	"cantrollback": "ለውጡን መገልበጥ አይቻልም፦ አቅራቢው ብቻ ስላዘጋጁት ነው።",
 	"alreadyrolled": "የ[[:$1]] መጨረሻ ለውጥ በ[[User:$2|$2]] ([[User talk:$2|ውይይት]]) መገልበት አይቻልም፤ ሌላ ሰው አሁን ገጹን መልሶታል።\n\nመጨረሻው ለውጥ በ[[User:$3|$3]] ([[User talk:$3|ውይይት]]) ነበረ።",
 	"editcomment": "ማጠቃለያው፦ <em>$1</em> ነበረ።",
-	"revertpage": "የ$2ን ለውጦች ወደ $1 እትም መለሰ።",
+	"revertpage": "የ[[Special:Contributions/$2|$2]]ን ለውጦች ወደ [[User:$1|$1]] እትም መለሰ።",
 	"rollback-success": "የ$1 ለውጦች ተገለበጡ፣ ወደ $2 ዕትም ተመልሷል።",
 	"protectlogpage": "የማቆለፍ መዝገብ",
 	"protectlogtext": "ይህ መዝገብ ገጽ ሲቆለፍ ወይም ሲከፈት ይዘረዝራል። ለአሁኑ የተቆለፈውን ለመመልከት፣ [[Special:ProtectedPages|የቆለፉትን ገጾች]] ደግሞ ያዩ።",

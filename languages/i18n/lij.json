@@ -4014,6 +4014,7 @@
 	"right-renameuser-global": "Uténti rinominatoî globâli",
 	"renameuser-renamed-notice": "St'uténte chi {{GENDER:$1|o l'é stæto rinominòu|a l'é stæta rinominâ}}.\nO regìstro di uténti rinominæ o l'é riportòu chi aprêuvo pe informaçión.",
 	"log-unknown-action": "fæto açión sconosciûa \"$2\" in sce [[$1]]",
+	"log-unsafe-logentry": "(Sto log de regìstro o no peu êse mostròu, perché i seu paràmetri contêgnan di dæti serializæ no segûi.)",
 	"createacct-benefit-heading-temp-user": "Gràçie pe contriboî a {{SITENAME}}.\nTI ti peu creâ 'n'uténsa p'avéi bén bén de fonçioìn de ciù.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} o l'é fæto de persónn-e cómme ti. Co-in'uténsa ti t'æ 'n'identitæ permanénte e segûa ciù l'intrâ a de fonçioìn cómme:",
 	"benefit-1-description": "Lìste di òservæ speciâli che te perméttan de controlâ e pàgine de tò interèsse.",

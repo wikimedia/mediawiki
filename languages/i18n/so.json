@@ -833,7 +833,7 @@
 	"diff-incompatible": "Lama barbar dhigi karo moodallada nuxurka ee \"$1\" iyo \"$2\"",
 	"diff-empty": "(Wax isbedel ah ma jiro)",
 	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|wax ka beddel|wax ka beddello}}",
-	"diff-multi-sameuser": "({{PLURAL:$1|Hal dib u eegis dhexdhexaad|$1 dib u eegis dhexdhexaad ah}} isla {{GENDER\n:$3|isticmaale}} aan la muujin)",
+	"diff-multi-sameuser": "({{PLURAL:$1|Hal dib u eegis dhexdhexaad|$1 dib u eegis dhexdhexaad ah}} isla {{GENDER:$3|isticmaale}} aan la muujin)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Hal wax ka beddel dhexe|$1 wax ka beddello dhexe}} oo ay sameeyeen {{PLURAL:$2|hal isticmaale kale|$2 isticmaalayaal}} lama muujin)",
 	"diff-multi-manyusers": "({{PLURAL:$1|Hal dib u eegis dhexdhexaad ah|$1 dib u eegisyo dhexdhexaad ah}} oo ay sameeyeen in ka badan $2 {{PLURAL:$2|isticmaale|isticmaaleyaal}} lama muujin)",
 	"diff-paragraph-moved-tonew": "Faqradda waa la wareejiyay. Guji si aad ugu booddo goobta cusub.",
