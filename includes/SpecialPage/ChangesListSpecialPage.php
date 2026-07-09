@@ -6,7 +6,6 @@
 
 namespace MediaWiki\SpecialPage;
 
-use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
@@ -14,6 +13,8 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
 use MediaWiki\RecentChanges\ChangesListFilterFactory;
 use MediaWiki\RecentChanges\ChangesListFilterGroup;
@@ -681,6 +682,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$out->addJsConfigVars( 'wgStructuredChangeFilters', $jsData['groups'] );
 			$out->addJsConfigVars( 'wgStructuredChangeFiltersMessages', $messages );
 			$out->addJsConfigVars( 'wgStructuredChangeFiltersCollapsedState', $collapsed );
+			$restrictedTags = $this->getViewableRestrictedChangeTags();
+			if ( $restrictedTags ) {
+				$out->addJsConfigVars( 'wgStructuredChangeFiltersRestrictedTags', $restrictedTags );
+			}
 
 			$out->addJsConfigVars(
 				'StructuredChangeFiltersDisplayConfig',
@@ -716,19 +721,52 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Get essential data about getRcFiltersConfigVars() for change detection.
+	 * Returns the list of rights-restricted change tags that the user can see (restricted tags are those starting with
+	 * {@link ChangeTagsStore::PRIVATE_TAG_PREFIX}). Return array can be sent as a JS configuration variable to
+	 * the client for use.
+	 */
+	private function getViewableRestrictedChangeTags(): array {
+		$services = MediaWikiServices::getInstance();
+		$changeTagsFormatter = $services->getChangeTagsFormatter();
+		$changeTagsStore = $services->getChangeTagsStore();
+
+		// First check if the user can see any restricted tags using the less expensive ::getChangeTagListSummary
+		$changeTagsSummary = $changeTagsFormatter->getChangeTagListSummary(
+			$this->getContext(),
+			$this->getAuthority()
+		);
+		$restrictedTagNames = array_fill_keys(
+			array_filter(
+				array_column( $changeTagsSummary, 'name' ),
+				static fn ( string $tagName ) => $changeTagsStore->isRestrictedTag( $tagName )
+			),
+			true
+		);
+		if ( !$restrictedTagNames ) {
+			return [];
+		}
+
+		// Now call the more expensive ::getChangeTagList to get the list for the frontend
+		return array_values( array_filter(
+			$changeTagsFormatter->getChangeTagList( $this->getContext(), $this->getAuthority() ),
+			static fn ( array $tagInfo ) => isset( $restrictedTagNames[$tagInfo['name']] )
+		) );
+	}
+
+	/**
+	 * Get essential data about {@link self::getRcFiltersConfigVars()} for change detection.
 	 *
 	 * @internal For use by Resources.php only.
 	 * @see Module::getDefinitionSummary() and Module::getVersionHash()
-	 * @param RL\Context $context
-	 * @return array
 	 */
-	public static function getRcFiltersConfigSummary( RL\Context $context ) {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()
-			->getLanguage( $context->getLanguage() );
+	public static function getRcFiltersConfigSummary( RL\Context $context ): array {
+		$services = MediaWikiServices::getInstance();
 		return [
 			// Reduce version computation by avoiding Message parsing
-			'RCFiltersChangeTags' => ChangeTags::getChangeTagListSummary( $context, $lang ),
+			'RCFiltersChangeTags' => $services->getChangeTagsFormatter()->getChangeTagListSummary(
+				$context,
+				self::getAuthorityForPublicChangeTags()
+			),
 			'StructuredChangeFiltersEditWatchlistUrl' =>
 				SpecialPage::getTitleFor( 'EditWatchlist' )->getLocalURL()
 		];
@@ -737,18 +775,28 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Get config vars to export with the mediawiki.rcfilters.filters.ui module.
 	 *
+	 * Includes the public list of change tag filters (private tags are sent via JS config variables).
+	 *
 	 * @internal For use by Resources.php only.
-	 * @param RL\Context $context
-	 * @return array
 	 */
-	public static function getRcFiltersConfigVars( RL\Context $context ) {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()
-			->getLanguage( $context->getLanguage() );
+	public static function getRcFiltersConfigVars( RL\Context $context ): array {
+		$services = MediaWikiServices::getInstance();
 		return [
-			'RCFiltersChangeTags' => ChangeTags::getChangeTagList( $context, $lang ),
+			'RCFiltersChangeTags' => $services->getChangeTagsFormatter()->getChangeTagList(
+				$context,
+				self::getAuthorityForPublicChangeTags()
+			),
 			'StructuredChangeFiltersEditWatchlistUrl' =>
 				SpecialPage::getTitleFor( 'EditWatchlist' )->getLocalURL()
 		];
+	}
+
+	/**
+	 * Gets an {@link Authority} that has no rights for use in generating the list of public
+	 * change tags.
+	 */
+	private static function getAuthorityForPublicChangeTags(): Authority {
+		return new SimpleAuthority( UserIdentityValue::newAnonymous( '127.0.0.1' ), [] );
 	}
 
 	/**

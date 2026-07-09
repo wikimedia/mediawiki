@@ -184,11 +184,20 @@ function init() {
 	// call will do that and add the -loading class right back.
 	$( document.body ).removeClass( 'mw-rcfilters-ui-loading' );
 
+	// Restricted tags the user may view are sent per-request, outside the
+	// publicly cached module (empty for most users).
+	let changeTags = require( './config.json' ).RCFiltersChangeTags;
+	const restrictedTags = mw.config.get( 'wgStructuredChangeFiltersRestrictedTags' ) || [];
+	if ( restrictedTags.length ) {
+		changeTags = changeTags.concat( restrictedTags )
+			.sort( ( a, b ) => a.label.localeCompare( b.label ) );
+	}
+
 	controller.initialize(
 		mw.config.get( 'wgStructuredChangeFilters' ),
 		// All namespaces without Media namespace
 		getNamespaces( [ 'Media' ] ),
-		require( './config.json' ).RCFiltersChangeTags,
+		changeTags,
 		conditionalViews
 	);
 

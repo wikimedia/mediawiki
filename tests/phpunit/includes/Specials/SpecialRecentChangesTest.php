@@ -5,6 +5,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialRecentChanges;
+use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
 use MediaWiki\Tests\SpecialPage\AbstractChangesListSpecialPageTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -22,6 +23,7 @@ use Wikimedia\TestingAccessWrapper;
 class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 	use MockAuthorityTrait;
 	use TempUserTestTrait;
+	use RestrictedTagTestTrait;
 
 	protected function getPage(): SpecialRecentChanges {
 		return new SpecialRecentChanges(
@@ -218,5 +220,68 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 		);
 		$this->assertStringNotContainsString( 'rcshowhideliu', $html );
 		$this->assertStringNotContainsString( 'rcshowhideanons', $html );
+	}
+
+	/** @dataProvider provideChangeTagFiltersConfig */
+	public function testChangeTagFiltersConfig( array $authorityRights, ?array $expectedConfigValue ): void {
+		$this->setTemporaryHook(
+			'ListDefinedTags',
+			static function ( array &$tags ) {
+				$tags[] = 'mw-private-test';
+			}
+		);
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+
+		$editStatus = $this->editPage( $this->getNonexistingTestPage(), 'test' );
+		$this->assertStatusGood( $editStatus );
+
+		$this->getServiceContainer()->getChangeTagsStore()->addTags(
+			[ 'mw-reverted', 'mw-private-test' ],
+			null,
+			$editStatus->getNewRevision()->getId()
+		);
+
+		$context = RequestContext::getMain();
+		$context->setAuthority( $this->mockRegisteredAuthorityWithPermissions( $authorityRights ) );
+		$context->setLanguage( 'qqx' );
+
+		( new SpecialPageExecutor() )->executeSpecialPage(
+			$this->getPage(),
+			'',
+			null,
+			null,
+			null,
+			false,
+			$context
+		);
+
+		$jsConfigVars = $context->getOutput()->getJsConfigVars();
+		if ( $expectedConfigValue === null ) {
+			$this->assertArrayNotHasKey( 'wgStructuredChangeFiltersRestrictedTags', $jsConfigVars );
+		} else {
+			$this->assertArrayHasKey( 'wgStructuredChangeFiltersRestrictedTags', $jsConfigVars );
+			$this->assertSame(
+				$expectedConfigValue,
+				$jsConfigVars['wgStructuredChangeFiltersRestrictedTags'],
+			);
+		}
+	}
+
+	public static function provideChangeTagFiltersConfig(): array {
+		return [
+			'User can see the restricted tag' => [
+				'authorityRights' => [ 'patrol' ],
+				'expectedConfigValue' => [
+					[
+						'name' => 'mw-private-test',
+						'label' => '(tag-mw-private-test)',
+						'description' => '(tag-mw-private-test-description)',
+						'helpLink' => null,
+						'cssClass' => 'mw-tag-mw-private-test',
+					]
+				],
+			],
+			'User cannot see the restricted tag' => [ 'authorityRights' => [], 'expectedConfigValue' => null ],
+		];
 	}
 }

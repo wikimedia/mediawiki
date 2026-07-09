@@ -2,17 +2,23 @@
 
 namespace MediaWiki\Tests\SpecialPage;
 
+use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Language\LocalizationContext;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
 use MediaWiki\RecentChanges\ChangesListFilterGroupContainer;
 use MediaWiki\RecentChanges\ChangesListStringOptionsFilterGroup;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\ResourceLoader\Context;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\ScopedCallback;
@@ -817,6 +823,64 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$filterNames = array_keys(
 			$this->changesListSpecialPage->getFilterGroup( 'userExpLevel' )->getFilters() );
 		$this->assertSame( [ "unregistered", "registered", "newcomer", "learner", "experienced" ], $filterNames );
+	}
+
+	public function testRLConfigCallbacks(): void {
+		$rlContext = $this->createMock( Context::class );
+		$rlContext->method( 'getLanguageCode' )
+			->willReturn( new Bcp47CodeValue( 'qqx' ) );
+
+		// Mock the ChangeTagsFormatter methods so that we can have fixed return values (for easier testing)
+		$mockChangeTagsFormatter = $this->createMock( ChangeTagsFormatter::class );
+		$mockChangeTagsFormatter->expects( $this->atLeastOnce() )
+			->method( 'getChangeTagList' )
+			->willReturnCallback( function (
+				LocalizationContext $context,
+				Authority $actualAuthority
+			) use ( $rlContext ) {
+				$this->assertSame( $rlContext, $context );
+
+				// Authority should have no rights to ensure the list is fully public
+				$this->assertFalse( $actualAuthority->isAllowedAny( 'patrol', 'read' ) );
+
+				return [ [ 'name' => 'mw-reverted', 'mock' => 'getChangeTagList' ] ];
+			} );
+		$mockChangeTagsFormatter->expects( $this->atLeastOnce() )
+			->method( 'getChangeTagListSummary' )
+			->willReturnCallback( function (
+				LocalizationContext $context,
+				Authority $actualAuthority
+			) use ( $rlContext ) {
+				$this->assertSame( $rlContext, $context );
+
+				// Authority should have no rights to ensure the list is fully public
+				$this->assertFalse( $actualAuthority->isAllowedAny( 'patrol', 'read' ) );
+
+				return [ [ 'name' => 'mw-reverted', 'mock' => 'getChangeTagListSummary' ] ];
+			} );
+		$this->setService( 'ChangeTagsFormatter', $mockChangeTagsFormatter );
+
+		$expectedWatchlistUrl = SpecialPage::getTitleFor( 'EditWatchlist' )->getLocalURL();
+
+		$this->assertArrayEquals(
+			[
+				'RCFiltersChangeTags' => [ [ 'name' => 'mw-reverted', 'mock' => 'getChangeTagListSummary' ] ],
+				'StructuredChangeFiltersEditWatchlistUrl' => $expectedWatchlistUrl,
+			],
+			ChangesListSpecialPage::getRcFiltersConfigSummary( $rlContext ),
+			false,
+			true
+		);
+
+		$this->assertArrayEquals(
+			[
+				'RCFiltersChangeTags' => [ [ 'name' => 'mw-reverted', 'mock' => 'getChangeTagList' ] ],
+				'StructuredChangeFiltersEditWatchlistUrl' => $expectedWatchlistUrl,
+			],
+			ChangesListSpecialPage::getRcFiltersConfigVars( $rlContext ),
+			false,
+			true
+		);
 	}
 
 	public function testGetStructuredFilterJsData() {
