@@ -129,6 +129,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			'dstUrl' => $dstUrl,
 			'interlace' => $params['interlace'] ?? false,
 			'isFilePageThumb' => $params['isFilePageThumb'] ?? false,
+			'usePhysicalSize' => $params['usePhysicalSize'] ?? false,
 		];
 
 		if ( isset( $params['quality'] ) && $params['quality'] === 'low' ) {
@@ -174,17 +175,9 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			return new TransformTooBigImageAreaError( $params, $maxImageArea );
 		}
 
-		$usePhysicalSize = $params['usePhysicalSize'] ?? false;
 		if ( $flags & self::TRANSFORM_LATER ) {
 			wfDebug( __METHOD__ . ": Transforming later per flags." );
-			$newParams = [
-				'width' => $scalerParams[$usePhysicalSize ? 'physicalWidth' : 'clientWidth'],
-				'height' => $scalerParams[$usePhysicalSize ? 'physicalHeight' : 'clientHeight']
-			];
-			if ( isset( $params['page'] ) && $params['page'] ) {
-				$newParams['page'] = $params['page'];
-			}
-			return new ThumbnailImage( $image, $dstUrl, false, $newParams );
+			return new ThumbnailImage( $image, $dstUrl, false, $params );
 		}
 
 		# Try to make a target path for the thumbnail
@@ -278,14 +271,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			return $mto;
 		}
 
-		$newParams = [
-			'width' => $scalerParams[$usePhysicalSize ? 'physicalWidth' : 'clientWidth'],
-			'height' => $scalerParams[$usePhysicalSize ? 'physicalHeight' : 'clientHeight']
-		];
-		if ( isset( $params['page'] ) && $params['page'] ) {
-			$newParams['page'] = $params['page'];
-		}
-		return new ThumbnailImage( $image, $dstUrl, $dstPath, $newParams );
+		return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 	}
 
 	/**
@@ -336,7 +322,10 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	protected function getClientScalingThumbnailImage( $image, $scalerParams ) {
 		$params = [
 			'width' => $scalerParams['clientWidth'],
-			'height' => $scalerParams['clientHeight']
+			'height' => $scalerParams['clientHeight'],
+			'physicalWidth' => $scalerParams['physicalWidth'] ?? $scalerParams['clientWidth'],
+			'physicalHeight' => $scalerParams['physicalHeight'] ?? $scalerParams['clientHeight'],
+			'usePhysicalSize' => $scalerParams['usePhysicalSize'] ?? false,
 		];
 
 		$url = $image->getUrl();
