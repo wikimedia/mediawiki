@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Integration\Block;
 
+use MediaWiki\Block\BlockUser;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -221,7 +222,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 			$this->mockAnonUltimateAuthority(),
 			'infinity',
 			'test reblock'
-		)->placeBlockUnsafe( /*reblock=*/false );
+		)->placeBlockUnsafe();
 		$this->assertStatusError( 'ipb_already_blocked', $reblockStatus );
 
 		$this->user->clearInstanceCache();
@@ -234,7 +235,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 			$this->mockRegisteredUltimateAuthority(),
 			'infinity',
 			'test reblock'
-		)->placeBlockUnsafe( /*reblock=*/true );
+		)->placeBlockUnsafe( BlockUser::CONFLICT_REBLOCK );
 		$this->assertStatusGood( $reblockStatus );
 
 		$this->user->clearInstanceCache();
@@ -277,7 +278,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 			$this->mockRegisteredUltimateAuthority(),
 			'infinity',
 			'test reblock'
-		)->placeBlockUnsafe( /*reblock=*/true );
+		)->placeBlockUnsafe( BlockUser::CONFLICT_REBLOCK );
 		$this->assertStatusGood( $reblockStatus );
 
 		$this->user->clearInstanceCache();
