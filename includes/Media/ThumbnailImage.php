@@ -25,15 +25,18 @@ use MediaWiki\Title\Title;
 class ThumbnailImage extends MediaTransformOutput {
 	/**
 	 * Get a thumbnail object from a file and parameters.
-	 * If $path is set to null, the output file is treated as a source copy.
-	 * If $path is set to false, no output file will be created.
-	 * $parameters should include, as a minimum, (file) 'width' and 'height'.
-	 * It may also include a 'page' parameter for multipage files.
 	 *
 	 * @param File $file
 	 * @param string $url URL path to the thumb
 	 * @param string|null|false $path Filesystem path to the thumb
+	 *  If $path is set to null, the output file is treated as a source copy.
+	 *  If $path is set to false, no output file will be created.
 	 * @param array $parameters Associative array of parameters
+	 *  - 'width' and 'height': Required.
+	 *  - 'physicalWidth' and 'physicalHeight': Required, usually set by
+	 *     ImageHandler::normaliseParams or a subclass override.
+	 *  - 'page': Optional, for multipage files.
+	 *  - 'usePhysicalSize': Optional, used by ApiQueryImageInfo.
 	 */
 	public function __construct( $file, $url, $path = false, $parameters = [] ) {
 		// Previous parameters:
@@ -57,6 +60,11 @@ class ThumbnailImage extends MediaTransformOutput {
 			$path = ( $numArgs > 4 ) ? func_get_arg( 4 ) : false;
 		}
 
+		if ( $actualParams['usePhysicalSize'] ?? false ) {
+			$actualParams['width'] = $actualParams['physicalWidth'];
+			$actualParams['height'] = $actualParams['physicalHeight'];
+		}
+
 		$this->file = $file;
 		$this->url = $url;
 		$this->path = $path;
@@ -64,7 +72,6 @@ class ThumbnailImage extends MediaTransformOutput {
 		// These should be integers when they get here.
 		// If not, there's a bug somewhere.  But let's at
 		// least produce valid HTML code regardless.
-		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal Confused by old signature
 		$this->width = (int)round( $actualParams['width'] );
 		$this->height = (int)round( $actualParams['height'] );
 

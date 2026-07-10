@@ -176,17 +176,9 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			return new TransformTooBigImageAreaError( $params, $maxImageArea );
 		}
 
-		$usePhysicalSize = $params['usePhysicalSize'] ?? false;
 		if ( $flags & self::TRANSFORM_LATER ) {
 			wfDebug( __METHOD__ . ": Transforming later per flags." );
-			$newParams = [
-				'width' => $scalerParams[$usePhysicalSize ? 'physicalWidth' : 'clientWidth'],
-				'height' => $scalerParams[$usePhysicalSize ? 'physicalHeight' : 'clientHeight']
-			];
-			if ( isset( $params['page'] ) && $params['page'] ) {
-				$newParams['page'] = $params['page'];
-			}
-			return new ThumbnailImage( $image, $dstUrl, false, $newParams );
+			return new ThumbnailImage( $image, $dstUrl, false, $params );
 		}
 
 		# Try to make a target path for the thumbnail
@@ -280,14 +272,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			return $mto;
 		}
 
-		$newParams = [
-			'width' => $scalerParams[$usePhysicalSize ? 'physicalWidth' : 'clientWidth'],
-			'height' => $scalerParams[$usePhysicalSize ? 'physicalHeight' : 'clientHeight']
-		];
-		if ( isset( $params['page'] ) && $params['page'] ) {
-			$newParams['page'] = $params['page'];
-		}
-		return new ThumbnailImage( $image, $dstUrl, $dstPath, $newParams );
+		return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 	}
 
 	/**
