@@ -86,8 +86,6 @@ class PageSourceHandlerTest extends MediaWikiIntegrationTestCase {
 
 		);
 
-		$htmlUrl = 'https://wiki.example.com/rest/mock/page/Talk%3ASourceEndpointTestPage%2Fwith%2Fslashes/html';
-
 		$handler = $this->newHandler();
 		$config = [ 'format' => 'bare' ];
 		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config );

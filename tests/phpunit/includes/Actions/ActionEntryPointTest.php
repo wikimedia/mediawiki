@@ -637,7 +637,6 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		$request = new FauxRequest( $params );
 
 		$env = new MockEnvironment( $request );
-		$context = $env->makeFauxContext();
 
 		$entryPoint = $this->getEntryPoint( $env );
 		$entryPoint->run();

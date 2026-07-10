@@ -76,7 +76,6 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		session_write_close();
 		ini_set( 'session.use_cookies', 1 );
 
-		$store = new TestBagOStuff();
 		// Tolerate debug message, anything else is unexpected
 		$logger = new TestLogger( false, static function ( $m ) {
 			return preg_match( '/^SessionManager using store/', $m ) ? null : $m;

@@ -3,7 +3,6 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
-use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Skin\SkinMustache;
 use MediaWiki\Title\Title;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -21,8 +20,6 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 	 * @return MockObject|OutputPage
 	 */
 	private function getMockOutputPage( $html, $title ) {
-		$mockContentSecurityPolicy = $this->createMock( ContentSecurityPolicy::class );
-
 		$mock = $this->createMock( OutputPage::class );
 		$mock->method( 'getHTML' )
 			->willReturn( $html );

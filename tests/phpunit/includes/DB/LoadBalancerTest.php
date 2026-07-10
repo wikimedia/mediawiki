@@ -134,16 +134,12 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		$dbw = $lb->getConnection( DB_PRIMARY );
 		$dbw->ensureConnection();
-		$wConn = TestingAccessWrapper::newFromObject( $dbw )->conn;
-		$wConnWrap = TestingAccessWrapper::newFromObject( $wConn );
 
 		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on primary" );
 		$this->assertWriteAllowed( $dbw );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
 		$dbr->ensureConnection();
-		$rConn = TestingAccessWrapper::newFromObject( $dbr )->conn;
-		$rConnWrap = TestingAccessWrapper::newFromObject( $rConn );
 
 		$this->assertTrue( $dbr->isReadOnly(), 'replica shows as replica' );
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );

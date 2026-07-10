@@ -7,7 +7,6 @@ use DummySessionProvider;
 use InvalidArgumentException;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\Session;
@@ -1001,9 +1000,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->setService( 'SessionManager', $this->manager );
 		PHPSessionHandler::install( $this->manager );
 
-		$manager = TestingAccessWrapper::newFromObject( $this->manager );
-		$request = RequestContext::getMain()->getRequest();
-
 		session_id( '' );
 		TestingAccessWrapper::newFromObject( $backend )->checkPHPSession();
 		$this->assertSame( $backend->getId(), session_id() );
@@ -1029,9 +1025,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->setService( 'SessionManager', $this->manager );
 		PHPSessionHandler::install( $this->manager );
 
-		$manager = TestingAccessWrapper::newFromObject( $this->manager );
-		$request = RequestContext::getMain()->getRequest();
-
 		session_id( self::SESSIONID );
 		@session_start();
 		$_SESSION['foo'] = __METHOD__;
@@ -1053,9 +1046,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 		$this->setService( 'SessionManager', $this->manager );
 		PHPSessionHandler::install( $this->manager );
-
-		$manager = TestingAccessWrapper::newFromObject( $this->manager );
-		$request = RequestContext::getMain()->getRequest();
 
 		session_id( self::SESSIONID . 'x' );
 		@session_start();

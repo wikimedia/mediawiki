@@ -148,7 +148,6 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		// Create the necessary mocks
 		$languageFactoryMock = $this->getLanguageFactoryMock();
 		$pageLanguage = new Bcp47CodeValue( $pageLanguageCode );
-		$sourceLanguage = $sourceLanguageCode ? new Bcp47CodeValue( $sourceLanguageCode ) : null;
 		$targetLanguage = new Bcp47CodeValue( $targetLanguageCode );
 
 		$parserOptionsMock = $this->createMock( ParserOptions::class );

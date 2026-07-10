@@ -852,7 +852,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function resetServicesWithMockedParsoid( ?Parsoid $mockParsoid = null ): void {
-		$services = $this->getServiceContainer();
 		$mockParsoidParserFactory = $this->newMockParsoidParserFactory( [
 			'Parsoid' => $mockParsoid,
 		] );

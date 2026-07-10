@@ -3510,7 +3510,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		// maintenance scripts always work
 		$expectedSource = AuthManager::AUTOCREATE_SOURCE_MAINT;
 		$this->initializeManager( true );
-		$session = $this->request->getSession();
 		$user = User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
 		$ret = $this->manager->autoCreateUser(
@@ -3524,7 +3523,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$expectedSource = AuthManager::AUTOCREATE_SOURCE_SESSION;
 		$this->setGroupPermissions( '*', 'autocreateaccount', true );
 		$this->initializeManager( true );
-		$session = $this->request->getSession();
 		$user = User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
 		$ret = $this->manager->autoCreateUser(

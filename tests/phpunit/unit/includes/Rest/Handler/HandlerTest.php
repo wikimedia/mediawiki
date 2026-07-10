@@ -583,8 +583,6 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testOverrideGetBodyParamSettings() {
-		$paramSettings =
-
 		$handler = new class() extends Handler {
 
 			public function execute() {

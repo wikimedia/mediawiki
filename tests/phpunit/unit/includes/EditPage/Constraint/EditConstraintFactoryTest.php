@@ -59,7 +59,6 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( UserFactory::class )
 		);
 
-		$user = $this->createMock( User::class );
 		$title = $this->createMock( Title::class );
 		$context = $this->createMock( IContextSource::class );
 		$newContent = $this->createMock( Content::class );

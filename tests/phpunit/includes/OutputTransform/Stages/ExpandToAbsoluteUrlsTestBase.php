@@ -23,7 +23,6 @@ abstract class ExpandToAbsoluteUrlsTestBase extends OutputTransformStageTestBase
 	}
 
 	public static function provideTransform(): array {
-		$options = [];
 		$res = [
 			[ '', '' ],
 			[ '<p>test</p>', '<p>test</p>' ],

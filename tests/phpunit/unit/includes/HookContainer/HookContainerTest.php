@@ -335,7 +335,6 @@ namespace MediaWiki\Tests\HookContainer {
 			$closure = static function ( &$count ) {
 				$count++;
 			};
-			$extra	= 10;
 			return [
 				// Callables
 				'Function' => [ 'fooGlobalFunction' ],

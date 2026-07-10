@@ -783,7 +783,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
-		$store = new TestBagOStuff();
 
 		// For User::requiresHTTPS
 		$this->overrideConfigValue( MainConfigNames::ForceHTTPS, $forceHTTPS );

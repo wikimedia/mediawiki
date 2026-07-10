@@ -31,7 +31,7 @@ class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTes
 		try {
 			$req = ElevatedSecurityAuthenticationRequest::create( $session, 'foo' );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( LogicException $e ) {
+		} catch ( LogicException ) {
 		}
 
 		$session->setUser( $user );
@@ -194,7 +194,7 @@ class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTes
 		try {
 			$req->loadFromSubmission( [ 'elevatedSecurityToken' => 'fake' ] );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( LogicException $e ) {
+		} catch ( LogicException ) {
 		}
 		$this->assertTrue( true );
 	}

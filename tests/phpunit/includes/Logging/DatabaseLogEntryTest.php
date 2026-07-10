@@ -213,9 +213,6 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Logging\DatabaseLogEntry::newFromId
 	 */
 	public function testNewFromIdAnotherWiki() {
-		$realDb = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase();
-		$realActorStore = $this->getServiceContainer()->getActorStore();
-
 		$row = (object)[
 			'log_id' => 9999,
 			'log_type' => 'phpunit',

@@ -349,7 +349,6 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 				return false;
 			}
 		);
-		$e = null;
 		try {
 			$this->doApiRequest( [
 				'action' => 'query',

@@ -2927,7 +2927,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusGood( $editStatus, 'must create revision 1' );
 		$revRecord1 = $editStatus->getNewRevision();
 
-		$contentAddress = $revRecord1->getSlot( SlotRecord::MAIN )->getAddress();
 		$blobStatus = StatusValue::newGood( [] );
 		$blobStatus->warning( 'internalerror_info', 'oops!' );
 

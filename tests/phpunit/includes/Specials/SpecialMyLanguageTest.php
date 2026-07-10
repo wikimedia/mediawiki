@@ -70,7 +70,6 @@ class SpecialMyLanguageTest extends SpecialPageTestBase {
 	 */
 	public function testFindTitle( $expected, $subpage, $contLang, $userLang ) {
 		$this->setContentLang( $contLang );
-		$services = $this->getServiceContainer();
 		$special = $this->newSpecialPage();
 		$special->getContext()->setLanguage( $userLang );
 		$this->overrideConfigValue( MainConfigNames::PageLanguageUseDB, true );
@@ -132,7 +131,6 @@ class SpecialMyLanguageTest extends SpecialPageTestBase {
 	 */
 	public function testFindTitleForTransclusion( $expected, $subpage, $langCode, $userLang ) {
 		$this->setContentLang( $langCode );
-		$services = $this->getServiceContainer();
 		$special = $this->newSpecialPage();
 		$special->getContext()->setLanguage( $userLang );
 		// Test with subpages both enabled and disabled

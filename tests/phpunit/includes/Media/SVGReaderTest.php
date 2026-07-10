@@ -20,7 +20,6 @@ class SVGReaderTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider provideSvgFilesWithXMLMetadata
 	 */
 	public function testGetXMLMetadata( $infile, $expected ) {
-		$r = new XMLReader();
 		$this->assertMetadata( $infile, $expected );
 	}
 

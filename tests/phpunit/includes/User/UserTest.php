@@ -897,7 +897,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( User::class . '::isBlockedFrom' );
 		// First, check the user isn't blocked
 		$user = $this->getMutableTestUser()->getUser();
-		$ut = Title::makeTitle( NS_USER_TALK, $user->getName() );
 		$this->assertNull( $user->getBlock( false ) );
 		$this->assertFalse( $user->isHidden() );
 

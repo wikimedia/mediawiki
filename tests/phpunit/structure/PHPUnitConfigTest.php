@@ -104,8 +104,6 @@ class PHPUnitConfigTest extends PHPUnit\Framework\TestCase {
 	 * every parser test in tests/parser/*.txt (both in core and extensions).
 	 */
 	public function testConfigParserTests() {
-		$testRootDir = realpath( __DIR__ . '/..' );
-
 		$dom = new DOMDocument();
 		$dom->load( __DIR__ . '/../../../phpunit.xml' );
 		$suites = $dom->documentElement->getElementsByTagName( 'testsuites' )[0];
