@@ -997,7 +997,7 @@
 	"linterror-multiple-unclosed-formatting-tags": "Multiple unclosed formatting tags on the page",
 	"linterror-night-mode-unaware-background-color": "Background color inline style needs text color",
 	"linterror-obsolete-tag": "Obsolete HTML tag",
-	"linterror-pre-expansion": "Wikitext format pre extension tag expanding templates",
+	"linterror-pre-expansion": "A template is used inside a wikitext-format pre extension tag",
 	"linterror-pwrap-bug-workaround": "Paragraph wrapping bug workaround",
 	"linterror-self-closed-tag": "Self-closed tag",
 	"linterror-stripped-tag": "Stripped tag",
