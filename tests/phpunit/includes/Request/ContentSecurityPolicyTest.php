@@ -149,8 +149,9 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::REPORT_ONLY_MODE );
 		$expected = "script-src 'unsafe-eval' blob: 'self' 'unsafe-inline'" .
 			" sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:;" .
-			" style-src * data: blob: style.example.com 'unsafe-inline'; object-src 'none'; report-to" .
-			self::$CSPReportToEndpointName;
+			" style-src * data: blob: style.example.com 'unsafe-inline'; object-src 'none'; report-to " .
+			self::$CSPReportToReportOnlyEndpointName;
+		$this->assertSame( $expected, $actual );
 
 		$this->setMwGlobals( 'wgCSPUseReportURIDirective', true );
 		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::REPORT_ONLY_MODE );
@@ -174,6 +175,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 			" sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:" .
 			" *.example.com; style-src * data: blob: *.example.com 'unsafe-inline';" .
 			" object-src 'none'; report-to " . self::$CSPReportToEndpointName;
+		$this->assertSame( $expected, $actual );
 
 		$this->setMwGlobals( 'wgCSPUseReportURIDirective', true );
 		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::FULL_MODE );
