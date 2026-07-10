@@ -631,7 +631,7 @@ class ApiEditPage extends ApiBase {
 						// errors on the status.
 						// @codeCoverageIgnoreStart
 						case EditPage::AS_SPAM_ERROR:
-							$status->fatal( 'apierror-spamdetected', $result['spam'] );
+							$status->fatal( 'apierror-spamdetected', $result['spam'] ?? '' );
 							break;
 						case EditPage::AS_READ_ONLY_PAGE_LOGGED:
 							$status->fatal( 'apierror-noedit' );
