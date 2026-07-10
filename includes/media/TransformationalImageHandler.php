@@ -193,9 +193,6 @@ abstract class TransformationalImageHandler extends ImageHandler {
 				'width' => $scalerParams['clientWidth'],
 				'height' => $scalerParams['clientHeight']
 			];
-			if ( isset( $params['quality'] ) ) {
-				$newParams['quality'] = $params['quality'];
-			}
 			if ( isset( $params['page'] ) && $params['page'] ) {
 				$newParams['page'] = $params['page'];
 			}
@@ -297,9 +294,6 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			'width' => $scalerParams['clientWidth'],
 			'height' => $scalerParams['clientHeight']
 		];
-		if ( isset( $params['quality'] ) ) {
-			$newParams['quality'] = $params['quality'];
-		}
 		if ( isset( $params['page'] ) && $params['page'] ) {
 			$newParams['page'] = $params['page'];
 		}
