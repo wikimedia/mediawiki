@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use EditCLI;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Revision\SlotRecord;
@@ -95,7 +94,7 @@ class EditTest extends MaintenanceBaseTestCase {
 
 	public function testExecuteForParseTitle() {
 		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()
-			->newFromTitle( Title::newFromText( RequestContext::getMain()->msg( 'mainpage' )->text() ) );
+			->newFromTitle( Title::newMainPage() );
 		$this->commonTextExecute(
 			[ 'parse-title' => 1 ], '{{int:mainpage}}', $wikiPage,
 			"* testing1234abc", "* testing1234abc"
