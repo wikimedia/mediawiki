@@ -197,14 +197,14 @@ class McrUndoAction extends FormAction {
 		$oldRev = $this->revisionLookup->getRevisionById( $this->undoafter );
 		$curRev = $this->curRev;
 
-		$isLatest = $curRev->getId() === $undoRev->getId();
-
 		if ( $undoRev === null || $oldRev === null ||
 			$undoRev->isDeleted( RevisionRecord::DELETED_TEXT ) ||
 			$oldRev->isDeleted( RevisionRecord::DELETED_TEXT )
 		) {
 			throw new ErrorPageError( 'mcrundofailed', 'undo-norev' );
 		}
+
+		$isLatest = $curRev->getId() === $undoRev->getId();
 
 		if ( $isLatest ) {
 			// Short cut! Undoing the latest revision means we just restore the old.
