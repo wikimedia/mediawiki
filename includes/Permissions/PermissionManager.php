@@ -953,9 +953,7 @@ class PermissionManager {
 			);
 		}
 
-		if ( $targetTitle && $block
-			&& $block instanceof AbstractBlock // for phan
-		) {
+		if ( $targetTitle && $block instanceof AbstractBlock ) {
 			// Allow extensions to let a blocked user access a particular page
 			$allowUsertalk = $block->isUsertalkEditAllowed();
 			$blocked = true;

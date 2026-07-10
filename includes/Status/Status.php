@@ -142,12 +142,10 @@ class Status extends StatusValue {
 
 	private function getFormatter(): StatusFormatter {
 		if ( !$this->formatter ) {
-			$context = RequestContext::getMain();
-
 			// HACK: only works for IContextSource objects.
-			if ( $this->messageLocalizer && $this->messageLocalizer instanceof IContextSource ) {
-				$context = $this->messageLocalizer;
-			}
+			$context = $this->messageLocalizer instanceof IContextSource ?
+				$this->messageLocalizer :
+				RequestContext::getMain();
 
 			$formatterFactory = MediaWikiServices::getInstance()->getFormatterFactory();
 			$this->formatter = $formatterFactory->getStatusFormatter( $context );
@@ -163,8 +161,8 @@ class Status extends StatusValue {
 		[ $errorsOnlyStatus, $warningsOnlyStatus ] = parent::splitByErrorType();
 
 		if ( $this->messageLocalizer ) {
-			$errorsOnlyStatus->setMessageLocalizer = $this->messageLocalizer;
-			$warningsOnlyStatus->setMessageLocalizer = $this->messageLocalizer;
+			$errorsOnlyStatus->setMessageLocalizer( $this->messageLocalizer );
+			$warningsOnlyStatus->setMessageLocalizer( $this->messageLocalizer );
 		}
 
 		if ( $this->formatter ) {

@@ -3577,8 +3577,7 @@ class OutputPage extends ContextSource {
 			//   For isKnownEmpty() calls in RL\ClientHtml skipping empty user/embedded JS modules.
 			$preloadBatch = $moduleStyles;
 			foreach ( $generalModules as $name ) {
-				$module = $rl->getModule( $name );
-				if ( $module && $module instanceof RL\WikiModule ) {
+				if ( $rl->getModule( $name ) instanceof RL\WikiModule ) {
 					$preloadBatch[] = $name;
 				}
 			}

@@ -38,28 +38,22 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 	 * @return bool
 	 */
 	public function deleteFileByTitle( $title ) {
-		if ( $title->exists() ) {
-			$file = $this->getServiceContainer()->getRepoGroup()
-				->findFile( $title, [ 'ignoreRedirect' => true ] );
-			$noOldArchive = ""; // yes this really needs to be set this way
-			$comment = "removing for test";
-			$restrictDeletedVersions = false;
-			$user = $this->getTestSysop()->getUser();
-			$status = FileDeleteForm::doDelete(
-				$title,
-				$file,
-				$noOldArchive,
-				$comment,
-				$restrictDeletedVersions,
-				$user
-			);
-
-			if ( !$status->isGood() ) {
-				return false;
-			}
+		if ( !$title->exists() ) {
+			return true;
 		}
 
-		return !( $title && $title instanceof Title && $title->exists( IDBAccessObject::READ_LATEST ) );
+		$file = $this->getServiceContainer()->getRepoGroup()
+			->findFile( $title, [ 'ignoreRedirect' => true ] );
+		$status = FileDeleteForm::doDelete(
+			$title,
+			$file,
+			null,
+			'removing for test',
+			false,
+			$this->getTestSysop()->getUser()
+		);
+
+		return $status->isGood() && !$title->exists( IDBAccessObject::READ_LATEST );
 	}
 
 	/**
