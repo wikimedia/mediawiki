@@ -254,6 +254,8 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 				// $wgImageLimits
 				32 => [ 'width' => 32, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=32' ],
 				128 => [ 'width' => 128, 'height' => 96, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=128' ],
+				// $wgImageLimits 256x192 satisfied by web-safe original
+				160 => [ 'width' => 160, 'height' => 120, 'url' => 'http://example.com/w/images/b/b0/Landscape-plain.jpg' ],
 			]
 		];
 		yield 'default union portrait' => [
@@ -278,8 +280,11 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 				// $wgThumbLimits, default + responsive
 				40 => [ 'width' => 40, 'height' => 53, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=40' ],
 				80 => [ 'width' => 80, 'height' => 107, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=80' ],
-				// $wgImageLimits, fit portrait in 32x24
+				// $wgImageLimits, fit portrait in 32x24, 128x96
 				18 => [ 'width' => 18, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=18' ],
+				72 => [ 'width' => 72, 'height' => 96, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=72' ],
+				// $wgImageLimits 256x192 (144x192) satisfied by transformed original (this JPEG requires rotation)
+				120 => [ 'width' => 120, 'height' => 160, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=144' ],
 			]
 		];
 		yield 'default union svg' => [
@@ -320,6 +325,8 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 				20 => [ 'width' => 20, 'height' => 15, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=20' ],
 				40 => [ 'width' => 40, 'height' => 30, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=40' ],
 				120 => [ 'width' => 120, 'height' => 90, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=120' ],
+				// Step 250px satisified by web-safe original
+				160 => [ 'width' => 160, 'height' => 120, 'url' => 'http://example.com/w/images/b/b0/Landscape-plain.jpg' ],
 			]
 		];
 		yield 'steps portrait' => [
@@ -332,6 +339,8 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 			[
 				20 => [ 'width' => 20, 'height' => 27, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=20' ],
 				40 => [ 'width' => 40, 'height' => 53, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=40' ],
+				// Step 120px satisfied by transformed original (this JPEG requires rotation)
+				120 => [ 'width' => 120, 'height' => 160, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=120' ],
 			]
 		];
 		yield 'steps svg' => [

@@ -643,16 +643,16 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 			$vals['thumburls'] = [];
 			foreach ( $sizes as $size ) {
-				if ( $size['width'] >= $file->getWidth() && !$file->isVectorized() ) {
-					continue;
-				}
 				$size['requestProvenance'] = 'imageinfo';
 				$size['usePhysicalSize'] = true;
 				$mto = $file->transform( $size );
-				self::$transformCount++;
 				if ( !$mto || $mto->isError() ) {
 					continue;
 				}
+				if ( isset( $vals['thumburls'][$mto->getWidth()] ) ) {
+					continue;
+				}
+				self::$transformCount++;
 				$thumburl = (string)$urlUtils->expand( $mto->getUrl(), PROTO_CURRENT );
 				$vals['thumburls'][$mto->getWidth()] = [
 					'url' => $thumburl,
