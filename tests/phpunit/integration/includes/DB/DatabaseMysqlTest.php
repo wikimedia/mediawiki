@@ -61,8 +61,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 			$this->assertSame( 1, $res->numRows() );
 			$row = $res->fetchRow();
 			$this->assertSame( '1', (string)reset( $row ) );
-		} catch ( DBQueryTimeoutError $e ) {
-			$this->assertInstanceOf( DBQueryTimeoutError::class, $e );
+		} catch ( DBQueryTimeoutError ) {
 		}
 
 		$row = $this->conn->query( 'SELECT "x" AS v', __METHOD__ )->fetchObject();
@@ -73,8 +72,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		try {
 			$this->conn->query( 'KILL (SELECT connection_id())', __METHOD__ );
 			$this->fail( "No DBQueryDisconnectedError caught" );
-		} catch ( DBQueryDisconnectedError $e ) {
-			$this->assertInstanceOf( DBQueryDisconnectedError::class, $e );
+		} catch ( DBQueryDisconnectedError ) {
 		}
 
 		$row = $this->conn->query( 'SELECT "x" AS v', __METHOD__ )->fetchObject();
@@ -100,21 +98,19 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		try {
 			$this->conn->query( 'SELECT 1', __METHOD__ );
 			$this->fail( "No DBQueryDisconnectedError caught" );
-		} catch ( DBQueryDisconnectedError $e ) {
+		} catch ( DBQueryDisconnectedError ) {
 			$this->assertTrue( $this->conn->isOpen(), "Reconnected" );
 			try {
 				$this->conn->endAtomic( __METHOD__ );
 				$this->fail( "No DBUnexpectedError caught" );
-			} catch ( DBUnexpectedError $e ) {
-				$this->assertInstanceOf( DBUnexpectedError::class, $e );
+			} catch ( DBUnexpectedError ) {
 			}
 
 			$this->assertSame( TransactionManager::STATUS_TRX_ERROR, $this->conn->trxStatus() );
 			try {
 				$this->conn->query( 'SELECT "x" AS v', __METHOD__ )->fetchObject();
 				$this->fail( "No DBTransactionStateError caught" );
-			} catch ( DBTransactionStateError $e ) {
-				$this->assertInstanceOf( DBTransactionStateError::class, $e );
+			} catch ( DBTransactionStateError ) {
 			}
 
 			$this->assertSame( 0, $this->conn->trxLevel(), "Transaction lost" );
@@ -132,16 +128,14 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		try {
 			$this->conn->query( 'SELECT 1', __METHOD__ );
 			$this->fail( "No DBQueryDisconnectedError caught" );
-		} catch ( DBQueryDisconnectedError $e ) {
-			$this->assertInstanceOf( DBQueryDisconnectedError::class, $e );
+		} catch ( DBQueryDisconnectedError ) {
 		}
 
 		$this->assertTrue( $this->conn->isOpen(), "Reconnected" );
 		try {
 			$this->conn->query( 'SELECT "x" AS v', __METHOD__ )->fetchObject();
 			$this->fail( "No DBSessionStateError caught" );
-		} catch ( DBSessionStateError $e ) {
-			$this->assertInstanceOf( DBSessionStateError::class, $e );
+		} catch ( DBSessionStateError ) {
 		}
 
 		$this->assertTrue( $this->conn->isOpen(), "Connection remains" );
@@ -261,16 +255,14 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 			$this->assertSame( TransactionManager::STATUS_TRX_OK, $this->conn->trxStatus() );
 			$this->conn->query( "SELECT invalid query()", __METHOD__ );
 			$this->fail( "No DBQueryError caught" );
-		} catch ( DBQueryError $e ) {
-			$this->assertInstanceOf( DBQueryError::class, $e );
+		} catch ( DBQueryError ) {
 		}
 
 		$this->assertSame( TransactionManager::STATUS_TRX_ERROR, $this->conn->trxStatus() );
 		try {
 			$this->conn->query( 'SELECT "x" AS v', __METHOD__ )->fetchObject();
 			$this->fail( "No DBTransactionStateError caught" );
-		} catch ( DBTransactionStateError $e ) {
-			$this->assertInstanceOf( DBTransactionStateError::class, $e );
+		} catch ( DBTransactionStateError ) {
 			$this->assertSame( TransactionManager::STATUS_TRX_ERROR, $this->conn->trxStatus() );
 			$this->assertSame( 1, $this->conn->trxLevel(), "Transaction remains" );
 			$this->assertTrue( $this->conn->isOpen(), "Connection remains" );
@@ -283,8 +275,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		try {
 			$this->conn->query( 'SELECT 1', __METHOD__ );
 			$this->fail( "No DBTransactionStateError caught" );
-		} catch ( DBTransactionStateError $e ) {
-			$this->assertInstanceOf( DBTransactionStateError::class, $e );
+		} catch ( DBTransactionStateError ) {
 		}
 
 		$this->assertSame(
