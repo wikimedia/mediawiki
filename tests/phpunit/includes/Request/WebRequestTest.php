@@ -726,18 +726,54 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 			self::INTERNAL_SERVER . '/w/index.php?title=Title&action=history',
 		];
 		return [
-			[ self::INTERNAL_SERVER . '/Title', $cdnUrls, /* matchOrder= */ false, true ],
-			[ self::INTERNAL_SERVER . '/Title', $cdnUrls, /* matchOrder= */ true, true ],
-			[ self::INTERNAL_SERVER . '/Foo', $cdnUrls, /* matchOrder= */ false, false ],
-			[ self::INTERNAL_SERVER . '/Foo', $cdnUrls, /* matchOrder= */ true, false ],
-			[ self::INTERNAL_SERVER . '/Thing', $cdnUrls, /* matchOrder= */ false, false ],
-			[ self::INTERNAL_SERVER . '/Thing', $cdnUrls, /* matchOrder= */ true, false ],
-			[ self::INTERNAL_SERVER . '/w/index.php?action=history&title=Foo', $cdnUrls, /* matchOrder= */ false, false ],
-			[ self::INTERNAL_SERVER . '/w/index.php?action=history&title=Foo', $cdnUrls, /* matchOrder= */ true, false ],
-			[ self::INTERNAL_SERVER . '/w/index.php?title=Thing&action=history', $cdnUrls, /* matchOrder= */ false, false ],
-			[ self::INTERNAL_SERVER . '/w/index.php?action=history&title=Thing', $cdnUrls, /* matchOrder= */ true, false ],
-			[ self::INTERNAL_SERVER . '/w/index.php?action=history&title=Title', $cdnUrls, /* matchOrder= */ false, true ],
-			[ self::INTERNAL_SERVER . '/w/index.php?action=history&title=Title', $cdnUrls, /* matchOrder= */ true, false ],
+			[ self::INTERNAL_SERVER . '/Title', $cdnUrls,
+				'matchOrder' => false,
+				'expected' => true
+			],
+			[ self::INTERNAL_SERVER . '/Title', $cdnUrls,
+				'matchOrder' => true,
+				'expected' => true
+			],
+			[ self::INTERNAL_SERVER . '/Foo', $cdnUrls,
+				'matchOrder' => false,
+				'expected' => false
+			],
+			[ self::INTERNAL_SERVER . '/Foo', $cdnUrls,
+				'matchOrder' => true,
+				'expected' => false
+			],
+			[ self::INTERNAL_SERVER . '/Thing', $cdnUrls,
+				'matchOrder' => false,
+				'expected' => false
+			],
+			[ self::INTERNAL_SERVER . '/Thing', $cdnUrls,
+				'matchOrder' => true,
+				'expected' => false
+			],
+			[ self::INTERNAL_SERVER . '/w/index.php?action=history&title=Foo', $cdnUrls,
+				'matchOrder' => false,
+				'expected' => false
+			],
+			[ self::INTERNAL_SERVER . '/w/index.php?action=history&title=Foo', $cdnUrls,
+				'matchOrder' => true,
+				'expected' => false
+			],
+			[ self::INTERNAL_SERVER . '/w/index.php?title=Thing&action=history', $cdnUrls,
+				'matchOrder' => false,
+				'expected' => false
+			],
+			[ self::INTERNAL_SERVER . '/w/index.php?action=history&title=Thing', $cdnUrls,
+				'matchOrder' => true,
+				'expected' => false
+			],
+			[ self::INTERNAL_SERVER . '/w/index.php?action=history&title=Title', $cdnUrls,
+				'matchOrder' => false,
+				'expected' => true
+			],
+			[ self::INTERNAL_SERVER . '/w/index.php?action=history&title=Title', $cdnUrls,
+				'matchOrder' => true,
+				'expected' => false
+			],
 		];
 	}
 
