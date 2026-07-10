@@ -3354,6 +3354,7 @@
 	"tags-deactivate-question": "\"$1\" 태그를 비활성화하려고 합니다.",
 	"tags-deactivate-reason": "이유:",
 	"tags-deactivate-not-allowed": "\"$1\" 태그를 비활성화할 수 없습니다.",
+	"tags-deactivate-not-found": "\"$1\" 태그가 존재하지 않습니다.",
 	"tags-deactivate-submit": "비활성화",
 	"tags-apply-no-permission": "사용자의 변경사항과 변경 태그를 적용할 권한이 없습니다.",
 	"tags-apply-blocked": "{{GENDER:$1|당신이}} 차단된 상태에서는 사용자의 변경사항과 변경 태그를 적용할 수 없습니다.",

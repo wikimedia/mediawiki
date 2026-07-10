@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Bengtsson96",
+			"Boivie",
 			"Sabelöga",
 			"Skalman",
 			"WikiPhoenix"
@@ -27,6 +28,7 @@
 	"botpasswords-bad-appid": "Botnamnet ”$1” är inte giltigt.",
 	"botpasswords-toolong-restrictions": "För många IP-adresser eller -intervaller har angivits.",
 	"botpasswords-toolong-grants": "För många behörigheter har markerats.",
+	"botpasswords-too-many": "Du har nått maxgränsen på $1 {{PLURAL:$1|botlösenord}}. Ta bort några befintliga botlösenord innan du skapar nya.",
 	"botpasswords-insert-failed": "Kunde inte lägga till botnamnet ”$1”. Har det redan lagts till?",
 	"botpasswords-update-failed": "Kunde inte uppdatera botnamnet ”$1”. Har det raderats?",
 	"botpasswords-created-title": "Botlösenord skapades",
