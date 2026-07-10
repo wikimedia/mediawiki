@@ -53,7 +53,7 @@ class UploadForm extends HTMLForm {
 	/** @var string[] */
 	protected $mSourceIds;
 
-	/** @var array */
+	/** @var array<string,int> */
 	protected $mMaxUploadSize = [];
 
 	private HookRunner $hookRunner;

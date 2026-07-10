@@ -141,8 +141,8 @@ class FileModule extends Module {
 	 */
 	protected $missingLocalFileRefs = [];
 
-	/** @var array */
-	protected $lessMessages = [];
+	/** @var string[] Message keys */
+	protected array $lessMessages = [];
 
 	/**
 	 * Construct a new module from an options array.
