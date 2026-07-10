@@ -356,16 +356,19 @@ class DeleteAction extends FormAction {
 			if ( !$status->isGood() ) {
 				$this->showLogEntries();
 			}
+
+			$expiry = $values['wpWatchlistExpiry'] ?? '';
+			if ( $context->getConfig()->get( MainConfigNames::WatchlistExpiry ) && $expiry !== '' ) {
+				$expiry = ExpiryDef::normalizeExpiry( $expiry, TS::ISO_8601 );
+			} else {
+				$expiry = null;
+			}
+			$this->watchlistManager->setWatch(
+				!empty( $values['wpWatch'] ), $context->getAuthority(), $title, $expiry
+			);
+
 			$outputPage->returnToMain();
 		}
-
-		$expiry = $values['wpWatchlistExpiry'] ?? '';
-		if ( $context->getConfig()->get( MainConfigNames::WatchlistExpiry ) && $expiry !== '' ) {
-			$expiry = ExpiryDef::normalizeExpiry( $expiry, TS::ISO_8601 );
-		} else {
-			$expiry = null;
-		}
-		$this->watchlistManager->setWatch( !empty( $values['wpWatch'] ), $context->getAuthority(), $title, $expiry );
 	}
 
 	/**
