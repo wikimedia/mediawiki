@@ -30,6 +30,7 @@ trait ApiBlockInfoTrait {
 	 *  - blockexpiryformatted - blockexpiry formatted for the current locale, omitted if infinite
 	 *  - blockexpiryrelative - relative time to blockexpiry (e.g. 'in 5 days'), omitted if infinite
 	 *  - blockpartial - block only applies to certain pages, namespaces and/or actions
+	 *  - blockhidden - true if the block is hidden from users without the hideuser right, omitted if false
 	 *  - systemblocktype - system block type, if any
 	 *  - blockcomponents - If the block is a composite block, this will be an array of block
 	 *    info arrays

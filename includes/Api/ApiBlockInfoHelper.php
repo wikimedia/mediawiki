@@ -40,6 +40,7 @@ class ApiBlockInfoHelper {
 	 *  - blockexpiryrelative - relative time to blockexpiry (e.g. 'in 5 days'), omitted if infinite
 	 *  - blockpartial - block only applies to certain pages, namespaces and/or actions
 	 *  - systemblocktype - system block type, if any
+	 *  - blockhidden - true if the block is hidden from users without the hideuser right, omitted if false
 	 *  - blockcomponents - If the block is a composite block, this will be an array of block
 	 *    info arrays
 	 */
@@ -66,6 +67,9 @@ class ApiBlockInfoHelper {
 		if ( $block instanceof AbstractBlock ) {
 			$vals['blockemail'] = $block->isEmailBlocked();
 			$vals['blockowntalk'] = !$block->isUsertalkEditAllowed();
+			if ( $block->getHideBlock() ) {
+				$vals['blockhidden'] = true;
+			}
 		}
 		if ( $block instanceof DatabaseBlock ) {
 			$vals['blockautoblocking'] = $block->isAutoblocking();

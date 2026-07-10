@@ -69,6 +69,14 @@ class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 				new SystemBlock( [ 'systemBlock' => 'proxy' ] ),
 				[ 'systemblocktype' => 'proxy' ]
 			],
+			'Database block that is hidden' => [
+				new DatabaseBlock( [ 'hideBlock' => true ] ),
+				[ 'blockhidden' => true ],
+			],
+			'Database block that that hides the target' => [
+				new DatabaseBlock( [ 'hideName' => true ] ),
+				[ 'blockhidden' => true ],
+			],
 			'Composite block' => [
 				CompositeBlock::createFromBlocks(
 					new DatabaseBlock( [ 'blockEmail' => false ] ),

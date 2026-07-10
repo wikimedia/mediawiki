@@ -184,6 +184,59 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 		);
 	}
 
+	public function testHiddenBlock(): void {
+		$a = self::$usersAdded[0];
+		$b = self::$usersAdded[1];
+		$blockStatus = $this->getServiceContainer()->getBlockUserFactory()
+			->newBlockUser(
+				$b,
+				new UltimateAuthority( $a ),
+				'infinity',
+				'',
+				[ 'isHideBlock' => true ],
+			)
+			->placeBlock();
+		$this->assertStatusGood( $blockStatus );
+
+		$apiParams = [
+			'action' => 'query',
+			'list' => 'allusers',
+			'auprefix' => self::USER_PREFIX . 'B',
+			'auprop' => 'blockinfo',
+		];
+
+		$result = $this->doApiRequest(
+			$apiParams, null, null,
+			$this->mockRegisteredAuthorityWithPermissions( [] )
+		);
+		$this->assertArrayEquals(
+			[ [
+				'userid' => $b->getId(),
+				'name' => $b->getName(),
+			] ],
+			$result[0]['query']['allusers'],
+			false,
+			true
+		);
+
+		$result = $this->doApiRequest(
+			$apiParams, null, null,
+			$this->mockRegisteredAuthorityWithPermissions( [ 'hideuser' ] )
+		);
+		$this->assertArrayContains(
+			[ [
+				'userid' => $b->getId(),
+				'name' => $b->getName(),
+				'blockedby' => $a->getName(),
+				'blockreason' => '',
+				'blockexpiry' => 'infinite',
+				'blockpartial' => false,
+				'blockhidden' => true,
+			] ],
+			$result[0]['query']['allusers']
+		);
+	}
+
 	public function testBlockInfo() {
 		$a = self::$usersAdded[0];
 		$b = self::$usersAdded[1];

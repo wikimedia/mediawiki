@@ -65,8 +65,13 @@ trait ApiQueryBlockInfoTrait {
 		if ( !$ids ) {
 			return [];
 		}
-		$blocks = MediaWikiServices::getInstance()->getDatabaseBlockStore()
-			->newListFromConds( [ 'bt_user' => $ids ] );
+
+		$blockConds = [ 'bt_user' => $ids ];
+		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
+			$blockConds['bl_deleted'] = 0;
+		}
+
+		$blocks = MediaWikiServices::getInstance()->getDatabaseBlockStore()->newListFromConds( $blockConds );
 		$blocksByUser = [];
 		foreach ( $blocks as $block ) {
 			$blocksByUser[$block->getTargetUserIdentity()->getId()][] = $block;
