@@ -4019,6 +4019,7 @@ $wgAutoloadLocalClasses = [
 	'RenderAction' => __DIR__ . '/includes/Actions/RenderAction.php',
 	'ReplacementArray' => __DIR__ . '/includes/libs/ReplacementArray.php',
 	'RepoGroup' => __DIR__ . '/includes/FileRepo/RepoGroup.php',
+	'ReportObjectStashStats' => __DIR__ . '/maintenance/reportObjectStashStats.php',
 	'RequestContext' => __DIR__ . '/includes/Context/RequestContext.php',
 	'ResetAuthenticationThrottle' => __DIR__ . '/maintenance/resetAuthenticationThrottle.php',
 	'ResetPageRandom' => __DIR__ . '/maintenance/resetPageRandom.php',

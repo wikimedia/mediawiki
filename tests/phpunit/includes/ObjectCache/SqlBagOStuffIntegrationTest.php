@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\ObjectCache\SqlBagOStuff;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * @group BagOStuff
@@ -127,4 +128,179 @@ class SqlBagOStuffIntegrationTest extends BagOStuffTestBase {
 		$cacheDepooled->set( 'keyname2025', 'value2025', 60 );
 		$this->assertSame( 'value2025', $cache->get( 'keyname2025' ) );
 	}
+
+	/**
+	 * Build an isolated single-server SqlBagOStuff backed by a fresh SQLite file.
+	 *
+	 * A dedicated temp file (rather than the shared CACHE_DB test database) gives
+	 * exact, uncontaminated key-group counts and lets us assert on an empty stash.
+	 * SqlBagOStuff auto-creates the objectcache table for SQLite on first connect.
+	 */
+	private function newSqliteStatsCache(): SqlBagOStuff {
+		return new SqlBagOStuff( [
+			'keyspace' => 'test',
+			'servers' => [ 'ms1' => [
+				'serverName' => 'db0',
+				'dbname' => 'unittest_ms1',
+				'type' => 'sqlite',
+				'dbFilePath' => $this->getNewTempFile(),
+			] ],
+			'shards' => 1,
+		] );
+	}
+
+	/**
+	 * @covers \MediaWiki\ObjectCache\SqlBagOStuff::getKeyGroupStats
+	 */
+	public function testGetKeyGroupStatsCountsAndBytesByGroup() {
+		$cache = $this->newSqliteStatsCache();
+
+		$cache->set( $cache->makeKey( 'groupa', 'k1' ), 'v', 60 );
+		$cache->set( $cache->makeKey( 'groupa', 'k2' ), 'v', 60 );
+		$cache->set( $cache->makeKey( 'groupb', 'k1' ), 'v', 60 );
+		// A single much larger value in its own group, for the byte comparison below.
+		$cache->set(
+			$cache->makeKey( 'grouplarge', 'k1' ),
+			str_repeat( wfRandomString( 32 ), 200 ),
+			60
+		);
+
+		$stats = $cache->getKeyGroupStats();
+
+		$this->assertArrayHasKey( 'ms1', $stats, 'Result is keyed by server tag' );
+		$server = $stats['ms1'];
+
+		$this->assertSame( 2, $server['groupa']['keys'], 'groupa has two keys' );
+		$this->assertSame( 1, $server['groupb']['keys'], 'groupb has one key' );
+		$this->assertGreaterThan( 0, $server['groupa']['bytes'], 'groupa reports on-disk bytes' );
+
+		// The exact on-disk byte length depends on PHP serialization and optional zlib
+		// compression, so we assert relative sizes rather than a brittle literal: a group
+		// holding one large value must weigh more than a group holding one tiny value.
+		$this->assertGreaterThan(
+			$server['groupb']['bytes'],
+			$server['grouplarge']['bytes'],
+			'A larger stored value yields more bytes'
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\ObjectCache\SqlBagOStuff::getKeyGroupStats
+	 */
+	public function testGetKeyGroupStatsExcludesExpiredButCountsIndefinite() {
+		$cache = $this->newSqliteStatsCache();
+
+		$mockTime = (float)self::TEST_TIME;
+		$cache->setMockTime( $mockTime );
+
+		$cache->set( $cache->makeKey( 'groupexpired', 'k1' ), 'v', 5 );
+		$cache->set( $cache->makeKey( 'groupforever', 'k1' ), 'v', BagOStuff::TTL_INDEFINITE );
+
+		// Advance the census clock past the short TTL so its row is logically expired.
+		$mockTime += 100;
+
+		$stats = $cache->getKeyGroupStats();
+		$server = $stats['ms1'];
+
+		$this->assertArrayNotHasKey( 'groupexpired', $server, 'Expired rows are excluded' );
+		$this->assertArrayHasKey( 'groupforever', $server, 'Indefinite rows are counted' );
+		$this->assertSame( 1, $server['groupforever']['keys'] );
+	}
+
+	/**
+	 * @covers \MediaWiki\ObjectCache\SqlBagOStuff::getKeyGroupStats
+	 */
+	public function testGetKeyGroupStatsThrowsForUnknownTag() {
+		$cache = $this->newSqliteStatsCache();
+
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'Unknown server tag: ms3' );
+		$cache->getKeyGroupStats( 'ms3' );
+	}
+
+	/**
+	 * @covers \MediaWiki\ObjectCache\SqlBagOStuff::getKeyGroupStats
+	 */
+	public function testGetKeyGroupStatsThrowsWhenNoServerTagsConfigured() {
+		// In load-balancer mode there are no server tags. The tag check short-circuits
+		// before any connection, so the callback here is never invoked.
+		$cache = new SqlBagOStuff( [
+			'keyspace' => 'test',
+			'loadBalancerCallback' => static fn () => null,
+			'dbDomain' => false,
+		] );
+
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'Given a tag but no tags are configured' );
+		$cache->getKeyGroupStats( 'anything' );
+	}
+
+	/**
+	 * @covers \MediaWiki\ObjectCache\SqlBagOStuff::getKeyGroupStats
+	 */
+	public function testGetKeyGroupStatsRestrictsToRequestedTag() {
+		$cache = new SqlBagOStuff( [
+			'keyspace' => 'test',
+			'servers' => [ 'ms1' => [
+				'serverName' => 'db0',
+				'dbname' => 'unittest_ms1',
+				'type' => 'sqlite',
+				'dbFilePath' => $this->getNewTempFile(),
+			], 'ms2' => [
+				'serverName' => 'db1',
+				'dbname' => 'unittest_ms2',
+				'type' => 'sqlite',
+				'dbFilePath' => $this->getNewTempFile(),
+			] ],
+			'shards' => 1,
+			// Mirror every write to both servers so ms1 deterministically holds all keys,
+			// letting us assert on its counts rather than relying on the striping hash.
+			'dataRedundancy' => 2,
+		] );
+
+		for ( $i = 0; $i < 10; $i++ ) {
+			$cache->set( $cache->makeKey( 'groupa', 'k' . $i ), 'v', 60 );
+		}
+
+		$stats = $cache->getKeyGroupStats( 'ms1' );
+
+		$this->assertArrayNotHasKey( 'ms2', $stats, 'Other server tags are excluded' );
+		$this->assertSame( 10, $stats['ms1']['groupa']['keys'], 'Requested tag reports its own rows' );
+	}
+
+	/**
+	 * @covers \MediaWiki\ObjectCache\SqlBagOStuff::getKeyGroupStats
+	 */
+	public function testGetKeyGroupStatsPaginatesAcrossBatches() {
+		$cache = $this->newSqliteStatsCache();
+
+		for ( $i = 0; $i < 5; $i++ ) {
+			$cache->set( $cache->makeKey( 'groupbatch', 'k' . $i ), 'v', 60 );
+		}
+
+		$batches = 0;
+		// batchSize below the row count forces the keyset-pagination loop to iterate.
+		$stats = $cache->getKeyGroupStats( null, 2, static function () use ( &$batches ) {
+			$batches++;
+		} );
+
+		$this->assertSame( 5, $stats['ms1']['groupbatch']['keys'], 'All rows counted across batches' );
+		$this->assertGreaterThan( 1, $batches, 'Progress callback fired once per batch' );
+	}
+
+	/**
+	 * @covers \MediaWiki\ObjectCache\SqlBagOStuff::getKeyGroupStats
+	 */
+	public function testGetKeyGroupStatsOnEmptyStash() {
+		$cache = $this->newSqliteStatsCache();
+
+		$stats = $cache->getKeyGroupStats();
+
+		$this->assertSame( [ 'ms1' => [] ], $stats, 'Empty table yields a per-server-empty result' );
+	}
+
+	// @todo Cover graceful degradation when a shard raises a DBError mid-scan. The
+	// existing harness has no clean way to inject a bad connection into a live scan
+	// (testFallback only exercises connect-time failures), so it is left uncovered
+	// rather than building bespoke mocking scaffolding.
 }

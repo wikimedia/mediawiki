@@ -107,6 +107,14 @@ For notes on 1.46.x and older releases, see HISTORY.
   wiki-specific guidance instead. This popup will also have a link to reading
   the wiki's username policy if the message "createacct-helpusername-url" is
   set to an existing wikipage on the local wiki, like "Project:Username_policy"
+* (T430940) A new maintenance script, reportObjectStashStats.php, reports a
+  read-only census of resident keys in a DB-backed object stash, grouped by key
+  group and cluster. It censuses the main object stash (MainStash) by default,
+  or any other SqlBagOStuff-backed entry in $wgObjectCaches given with --cache.
+  With --report it emits the totals as StatsFactory gauges
+  (bagostuff_resident_keys and bagostuff_resident_bytes, plus the per-cluster
+  totals bagostuff_resident_cluster_keys and bagostuff_resident_cluster_bytes)
+  for tracking growth over time.
 * …
 
 === New developer features in 1.47 ===

@@ -1414,6 +1414,133 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 	}
 
+	/**
+	 * Take a read-only census of resident (live, non-expired) keys, grouped by key group.
+	 *
+	 * This is intended for administrative and maintenance use. It scans a live primary
+	 * using gentle, chunked keyset range scans over the "keyname" PRIMARY KEY, so callers
+	 * should rate-limit the work via the $progress callback (e.g. sleep between batches).
+	 *
+	 * The reported byte total is the compressed, on-disk size of each value (the actual
+	 * blob byte length), summed per key group; value blobs are never shipped to the client.
+	 *
+	 * A depooled or unreachable server is skipped rather than causing a fatal error, so the
+	 * returned array may cover fewer servers than are configured.
+	 *
+	 * @internal For use by MediaWiki core maintenance/admin tooling only.
+	 * @param string|null $tag Restrict the census to a single server/cluster tag, or null for all
+	 * @param int $batchSize Number of rows to read per keyset batch
+	 * @param callable|null $progress Called once per batch with the running number of rows
+	 *  scanned for the current server (int); useful for pacing the scan
+	 * @return array<string,array<string,array{keys:int,bytes:int}>> Map of
+	 *  (server tag => (key group => [ 'keys' => count, 'bytes' => on-disk bytes ]))
+	 * @throws InvalidArgumentException
+	 * @since 1.47
+	 */
+	public function getKeyGroupStats(
+		?string $tag = null,
+		int $batchSize = 1000,
+		?callable $progress = null
+	): array {
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$silenceScope = $this->silenceTransactionProfiler();
+
+		if ( $tag !== null ) {
+			// Census one server only, to support per-cluster scans in large wiki farms.
+			$shardIndexes = [];
+			if ( !$this->serverTags ) {
+				throw new InvalidArgumentException( "Given a tag but no tags are configured" );
+			}
+			foreach ( $this->serverTags as $serverShardIndex => $serverTag ) {
+				if ( $tag === $serverTag ) {
+					$shardIndexes[] = $serverShardIndex;
+					break;
+				}
+			}
+			if ( !$shardIndexes ) {
+				throw new InvalidArgumentException( "Unknown server tag: $tag" );
+			}
+		} else {
+			// Deterministic order is fine for a census; no need to shuffle.
+			$shardIndexes = $this->getShardServerIndexes();
+		}
+
+		$stats = [];
+		foreach ( $shardIndexes as $shardIndex ) {
+			try {
+				$db = $this->getConnection( $shardIndex );
+
+				// Avoid contending with a concurrent census on this shard (cf. T330377)
+				$lockKey = "SqlBagOStuff-stats-shard:$shardIndex";
+				if ( !$db->lock( $lockKey, __METHOD__, 0 ) ) {
+					$this->logger->info( "SqlBagOStuff stats for shard $shardIndex already locked, skip" );
+					continue;
+				}
+
+				$serverTag = $this->serverTags[$shardIndex] ?? (string)$shardIndex;
+				$stats[$serverTag] = $this->getServerKeyGroupStats( $db, $batchSize, $progress );
+				$db->unlock( $lockKey, __METHOD__ );
+			} catch ( DBError $e ) {
+				$this->handleDBError( $e, $shardIndex );
+			}
+		}
+
+		return $stats;
+	}
+
+	/**
+	 * @param IDatabase $db
+	 * @param int $batchSize
+	 * @param callable|null $progress Called once per batch with the running rows-scanned count
+	 * @return array<string,array{keys:int,bytes:int}> Map of (key group => stats)
+	 * @throws DBError
+	 */
+	private function getServerKeyGroupStats(
+		IDatabase $db,
+		int $batchSize,
+		?callable $progress
+	): array {
+		// Expired-but-not-yet-GC'd rows are intentionally excluded: they are logically
+		// expired and awaiting garbage collection, so they are not resident inventory.
+		$nowDb = $db->timestamp( (int)$this->getCurrentTime() );
+
+		// SQLite only gained OCTET_LENGTH() in 3.43; LENGTH() is its portable BLOB byte count.
+		$lengthExpr = $db->getType() === 'sqlite' ? 'LENGTH(value)' : 'OCTET_LENGTH(value)';
+
+		$statsByGroup = [];
+		$rowsScanned = 0;
+		foreach ( range( 0, $this->numTableShards - 1 ) as $tableIndex ) {
+			$table = $this->getTableNameByShard( $tableIndex );
+			$cursor = null;
+			do {
+				$res = $db->newSelectQueryBuilder()
+					->select( [ 'keyname', 'size' => $lengthExpr ] )
+					->from( $table )
+					->where( $db->expr( 'exptime', '>=', $nowDb ) )
+					->andWhere( $cursor !== null ? $db->expr( 'keyname', '>', $cursor ) : [] )
+					->orderBy( 'keyname', SelectQueryBuilder::SORT_ASC )
+					->limit( $batchSize )
+					->caller( __METHOD__ )
+					->fetchResultSet();
+
+				foreach ( $res as $row ) {
+					$keygroup = $this->determinekeyGroupForStats( $row->keyname );
+					$statsByGroup[$keygroup] ??= [ 'keys' => 0, 'bytes' => 0 ];
+					$statsByGroup[$keygroup]['keys']++;
+					$statsByGroup[$keygroup]['bytes'] += (int)$row->size;
+					$cursor = $row->keyname;
+					$rowsScanned++;
+				}
+
+				if ( $progress !== null ) {
+					( $progress )( $rowsScanned );
+				}
+			} while ( $res->numRows() === $batchSize );
+		}
+
+		return $statsByGroup;
+	}
+
 	/** @inheritDoc */
 	public function doLock( $key, $timeout = 6, $exptime = 6 ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
