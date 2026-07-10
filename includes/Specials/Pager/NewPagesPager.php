@@ -143,15 +143,11 @@ class NewPagesPager extends ReverseChronologicalPager {
 		];
 
 		// Modify query for tags
-		$this->changeTagsStore->modifyDisplayQuery(
-			$info['tables'],
-			$info['fields'],
-			$info['conds'],
-			$info['join_conds'],
-			$info['options'],
-			$this->opts['tagfilter'],
-			$this->opts['tagInvert']
+		$queryBuilder = $this->getDatabase()->newSelectQueryBuilder()->queryInfo( $info );
+		$this->changeTagsStore->addTagsToDisplayQuery(
+			$queryBuilder, 'recentchanges', $this->getAuthority(), $this->opts['tagfilter'], $this->opts['tagInvert']
 		);
+		$info = $queryBuilder->getQueryInfo( 'join_conds' );
 
 		return $info;
 	}

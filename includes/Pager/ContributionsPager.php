@@ -448,15 +448,15 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	 * @stable to override
 	 */
 	protected function modifyQueryInfoWithTagFilter( array &$queryInfo ): void {
-		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQuery(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			$queryInfo['conds'],
-			$queryInfo['join_conds'],
-			$queryInfo['options'],
-			$this->tagFilter,
-			$this->tagInvert,
+		$queryBuilder = $this->getDatabase()->newSelectQueryBuilder()->queryInfo( $queryInfo );
+		MediaWikiServices::getInstance()->getChangeTagsStore()->addTagsToDisplayQuery(
+			$queryBuilder,
+			$this->isArchive ? 'archive' : 'revision',
+			$this->getAuthority(),
+			$this->tagFilter === false ? '' : $this->tagFilter,
+			$this->tagInvert
 		);
+		$queryInfo = $queryBuilder->getQueryInfo( 'join_conds' );
 	}
 
 	protected function getNamespaceCond(): array {

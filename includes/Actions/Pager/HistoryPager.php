@@ -180,17 +180,11 @@ class HistoryPager extends ReverseChronologicalPager {
 			->where( [ 'rev_page' => $this->getWikiPage()->getId() ] )
 			->andWhere( $this->conds );
 
-		$queryInfo = $queryBuilder->getQueryInfo( 'join_conds' );
-		$this->changeTagsStore->modifyDisplayQuery(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			$queryInfo['conds'],
-			$queryInfo['join_conds'],
-			$queryInfo['options'],
-			$this->tagFilter,
-			$this->tagInvert
+		$this->changeTagsStore->addTagsToDisplayQuery(
+			$queryBuilder, 'revision', $this->getAuthority(), $this->tagFilter ?? '', $this->tagInvert
 		);
 
+		$queryInfo = $queryBuilder->getQueryInfo( 'join_conds' );
 		$this->hookRunner->onPageHistoryPager__getQueryInfo( $this, $queryInfo );
 
 		return $queryInfo;
