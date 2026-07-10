@@ -563,25 +563,6 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $params );
 	}
 
-	public function testGetBodyParamSettings() {
-		$bodyParamSettings = [
-			'bodyfoo' => [
-				ParamValidator::PARAM_TYPE => 'string',
-				Handler::PARAM_SOURCE => 'body',
-			]
-		];
-		$handler = $this->newHandler( [ 'getBodyParamSettings' ] );
-		$handler->method( 'getBodyParamSettings' )->willReturn( $bodyParamSettings );
-
-		$bodyParams = $handler->getBodyParamSettings();
-
-		$expected = [
-			'bodyfoo' => $bodyParamSettings['bodyfoo']
-		];
-
-		$this->assertSame( $expected, $bodyParamSettings );
-	}
-
 	public function testOverrideGetBodyParamSettings() {
 		$handler = new class() extends Handler {
 
