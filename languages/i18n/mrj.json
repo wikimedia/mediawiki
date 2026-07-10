@@ -7,7 +7,8 @@
 			"Matma Rex",
 			"Nadezhda",
 			"SaldırganSincap",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|1=Категори|Категоривлӓ}}",
@@ -718,7 +719,7 @@
 	"rev-suppressed-text-view": "Страницӓн ти версижӹм <strong>блокируйымы</strong>.\nТӹнь тӹдӹм анжал лӓктӹн кердӓт; шукырак информацим [{{fullurl:{{#Special:Log}}/suppress|page=$1}} питӹрӹмӓш журналышты] моаш лиэш.",
 	"rev-deleted-no-diff": "Икманяр верси гӹц иктӹжӹм <strong>карангдымы</strong>, седӹндон ти айыртемӹм анжал лӓктӹн ат керд.\nШукырак информацим [{{fullurl:{{#Special:Log}}/delete|page={{urlencode:{{FULLPAGENAME}}}}}} карангдымаш журналышты] моаш лиэш.",
 	"rev-suppressed-no-diff": "Икманяр верси гӹц иктӹжӹм <strong>блокируйымы</strong>, седӹндон ти айыртемӹм анжал лӓктӹн ат керд.",
-	"rev-deleted-unhide-diff": "Ти айыртемӹн икманяр верси гӹц иктӹжӹм <strong>карангдымы</strong>.\nШукырак информацим [{{fullurl:{{#Special:Log}}/suppress|page={{urlencode:{{FULLPAGENAME}}}}}} карангдымаш журналышты] моаш лиэш.\nПакыла ӹштӹнет гӹнь, кӹзӹтӓт [$1 ти версим анжал лӓктӹн] кердӓт.",
+	"rev-deleted-unhide-diff": "Ти айыртемӹн икманяр верси гӹц иктӹжӹм <strong>карангдымы</strong>.\nШукырак информацим [{{fullurl:{{#Special:Log}}/delete|page={{urlencode:{{FULLPAGENAME}}}}}} карангдымаш журналышты] моаш лиэш.\nПакыла ӹштӹнет гӹнь, кӹзӹтӓт [$1 ти версим анжал лӓктӹн] кердӓт.",
 	"rev-suppressed-unhide-diff": "Ти айыртемӹн икманяр верси гӹц иктӹжӹм <strong>блокируйымы</strong>.\nШукырак информацим [{{fullurl:{{#Special:Log}}/suppress|page={{urlencode:{{FULLPAGENAME}}}}}} питӹрӹмӓш журналышты] моаш лиэш.\nПакыла ӹштӹнет гӹнь, кӹзӹтӓт [$1 ти версим анжал лӓктӹн] кердӓт.",
 	"rev-deleted-diff-view": "Ти айыртемӹн икманяр верси гӹц иктӹжӹм  <strong>карангдымы</strong>.\nТӹнь тӹдӹм анжал лӓктӹн кердӓт; шукырак информацим [{{fullurl:{{#Special:Log}}/delete|page={{urlencode:{{FULLPAGENAME}}}}}} карангдымаш журналышты] моаш лиэш.",
 	"rev-suppressed-diff-view": "Ти айыртемӹн икманяр верси гӹц иктӹжӹм  <strong>шӹлтӹмӹ</strong>.\nТӹнь ти айыртемӹм анжал лӓктӹн кердӓт; шукырак информацим [{{fullurl:{{#Special:Log}}/suppress|page={{urlencode:{{FULLPAGENAME}}}}}} шӹлтӹмӓш журналышты] моаш лиэш.",

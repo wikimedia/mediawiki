@@ -28,7 +28,8 @@
 			"Ömer Berkay",
 			"İnternion",
 			"Anthelior",
-			"HakanIST"
+			"HakanIST",
+			"Leo"
 		]
 	},
 	"userrights": "Kullanıcı hakları",
@@ -134,6 +135,7 @@
 	"right-blockemail": "Bir kullanıcının e-posta göndermesini engelle ya da engeli kaldır",
 	"right-hideuser": "Herkesten gizleyerek veya açarak bir kullanıcı adını engelle ya da engeli kaldır",
 	"right-ipblock-exempt": "IP engellemelerini atla, otomatik engelle ve aralık engellemeleri",
+	"right-logentryimport": "İçe aktarma günlük kayıtları",
 	"right-unblockself": "Kendi engellemesini kaldır",
 	"right-protect": "Koruma ayarlarını değiştir ve kademeli korumalı sayfaları düzenle",
 	"right-editprotected": "Korunan sayfalarda değişiklik yap ({{int:restriction-level-sysop}})",
@@ -293,6 +295,7 @@
 	"action-viewsuppressed": "herhangi bir kullanıcıdan saklanan revizyonları görüntüle",
 	"action-hideuser": "herkesten gizleyerek veya açarak bir kullanıcı adını engelleme ya da engeli kaldırma",
 	"action-ipblock-exempt": "IP engellemelerini, otomatik engellemelerini ve aralık engellemelerini atla",
+	"action-logentryimport": "içe aktarma günlük kayıtları",
 	"action-unblockself": "kendi engelini kaldır",
 	"action-noratelimit": "derecelendirme sınırlamalarından etkilenme",
 	"action-reupload-own": "kendisi tarafından yüklenen mevcut dosyaların üzerine yaz",

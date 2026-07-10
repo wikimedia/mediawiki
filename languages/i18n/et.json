@@ -3917,6 +3917,7 @@
 	"renameuser-move-log": "Teisaldatud automaatselt, kui kasutaja \"[[User:$1|$1]]\" nimetati ümber kasutajaks \"[[User:$2|$2]]\"",
 	"renameuser-renamed-notice": "{{GENDER:$1|Kasutaja}} on ümber nimetatud.\nAllpool on toodud ümbernimetamislogi.",
 	"log-unknown-action": "sooritas leheküljel [[$1]] tundmatu toimingu \"$2\"",
+	"log-unsafe-logentry": "(Seda logikannet ei saa näidata, sest selle parameetrid sisaldavad ebaturvalisi jadastatud andmeid.)",
 	"createacct-benefit-heading-temp-user": "Aitäh, et {{GRAMMAR:partitive|{{SITENAME}}}} muutsid.\nLoo konto, et saaksid kasutada rohkem funktsioone.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} on sinusuguste inimeste tehtud. Kontoga on sul alaline ja turvaline juurdepääs näiteks järgmistele funktsioonidele:",
 	"benefit-1-description": "Jälgimisloend, mis aitab pidada järge sulle huvipakkuvate lehekülgede üle.",

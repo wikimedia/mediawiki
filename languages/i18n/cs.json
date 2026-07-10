@@ -3953,6 +3953,7 @@
 	"renameuser-move-log": "Automatický přesun při přejmenování {{GENDER:$2|uživatele|uživatelky}} „[[User:$1|$1]]“ na „[[User:$2|$2]]“",
 	"renameuser-renamed-notice": "{{GENDER:$1|Tento uživatel byl přejmenován.|Tato uživatelka byla přejmenována.}}\nPro přehled je níže zobrazen výpis z knihy přejmenování uživatelů.",
 	"log-unknown-action": "provedl neznámou akci „$2“ na [[$1]]",
+	"log-unsafe-logentry": "(Tento protokolovací záznam nebylo možné zobrazit, protože jeho parametry obsahují nezabezpečená serializovaná data.)",
 	"createacct-benefit-heading-temp-user": "Děkujeme za příspěvek do {{grammar:2sg|{{SITENAME}}}}.\nZaložte si účet, abyste získali přístup k dalším funkcím.",
 	"createacct-benefit-subheading-temp-user": "{{grammar:4sg|{{SITENAME}}}} vytvářejí lidé jako vy. S účtem můžete mít trvalou a bezpečnou identitu s přístupem k funkcím jako:",
 	"benefit-1-description": "Seznamy sledovaných stránek, které vám umožňují sledovat změny stránek, které vás zajímají.",

@@ -3920,6 +3920,7 @@
 	"renameuser-move-log": "Memindahkan laman secara automatik ketika menukar nama \"[[User:$1|$1]]\" menjadi \"[[User:$2|$2]]\"",
 	"renameuser-renamed-notice": "{{GENDER:$1|Pengguna}} ini telah dinamakan semula.\nLog penamaan semula disediakan di bawah untuk rujukan.",
 	"log-unknown-action": "melakukan tindakan \"$2\" yang tidak diketahui pada [[$1]]",
+	"log-unsafe-logentry": "(Entri log ini tidak dapat ditunjukkan kerana parameternya mengandungi data bersiri yang tidak selamat.)",
 	"createacct-benefit-heading-temp-user": "Terima kasih kerana menyumbang kepada {{SITENAME}}.\nSila buka akaun untuk mengakses lebih banyak ciri.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} dibuat oleh orang seperti anda. Dengan akaun, anda boleh mempunyai identiti kekal dan selamat dengan capaian kepada ciri-ciri seperti:",
 	"benefit-1-description": "Senarai pantau yang membenarkan anda terus menjejak laman yang anda minat",

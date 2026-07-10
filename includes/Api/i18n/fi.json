@@ -259,6 +259,7 @@
 	"apierror-permissiondenied": "Sinulla ei ole oikeutta $1.",
 	"apierror-permissiondenied-generic": "Käyttö estetty.",
 	"apierror-permissiondenied-unblock": "Sinulla ei ole oikeutta poistaa käyttäjien estoja.",
+	"apierror-permissiondenied-userrights-interwiki": "Sinulla ei ole oikeutta muuttaa käyttöoikeuksia muissa wikeissä.",
 	"apierror-protect-invalidaction": "Virheellinen suojaustyyppi ”$1”.",
 	"apierror-protect-invalidlevel": "Virheellinen suojaustaso ”$1”.",
 	"apierror-ratelimited": "Olet ylittänyt toimintorajasi. Odota hetki ja yritä uudelleen.",

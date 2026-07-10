@@ -386,6 +386,7 @@
 	"userlogin-authpopup-loggingin-title": "O kevreañ…",
 	"userlogin-authpopup-retry": "Klaskit en-dro",
 	"userlogin-authpopup-cancel": "Nullañ",
+	"userlogin-authpopup-closeme": "Mar gwelit ar gemennadenn-mañ e c'hallit serriñ ar prenestr-mañ.",
 	"loginsuccesstitle": "Kevreet oc'h.",
 	"loginsuccess": "'''Kevreet oc'h bremañ ouzh {{SITENAME}} evel \"$1\".'''",
 	"nosuchuser": "N'eus ket eus an implijer \"$1\".\nKizidik eo anv an implijerien ouzh ar pennlizherennoù.\nGwiriit eo bet skrivet mat an anv ganeoc'h pe [[Special:CreateAccount|krouit ur gont nevez]].",
@@ -533,6 +534,7 @@
 	"autocreate-preview-warning": "<em>N'oc'h ket kevreet. Ur wech graet ur c'hemm ganeoc'h e vo krouet ur gont berrbad evidoc'h. [[{{MediaWiki:tempuser-helppage}}|Gouzout hiroc'h]].</em>",
 	"missingsummary": "<strong>Taolit evezh:</strong> N'hoc'h eus ket lakaet tamm testenn diverrañ ebet evit ho kemmoù. Mar klikit war \"$1\" en-dro, e vo embannet ho testenn evel m'emañ hepmuiken.",
 	"edit-constraint-warning-wrapper-save": "<strong>Diwallit :</strong> $2 \n\nMar klikit war \"$1\" adarre e vo krouet an adkas n’eus forzh penaos.",
+	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Diwallit :</strong> $2 \n\nMar fell deoc'h kenderc'hel koulskoude, klikit war \"$1\" en-dro, met embannet a vo endalc'had ar c'hemm diverket.",
 	"missingcommenttext": "Skrivit hoc'h evezhiadenn a-is.",
 	"missingcommentheader": "<strong>Taolit evezh :</strong> N'hoc'h eus lakaet tamm danvez/titl ebet d'hoc'h evezhiadenn.\nMar klikit war \"$1\" en-dro, e vo embannet ho testenn evel m'emañ hepmuiken.",
 	"summary-preview": "Rakwelet un diverrañ eus ar c'hemmoù :",
@@ -3257,6 +3259,7 @@
 	"pagelang-unchanged-language": "Kefluniet eo c'hoazh ar bajenn $1 e $2.",
 	"pagelang-unchanged-language-default": "Arventennet eo ar bajenn $1 evit bezañ e yezh dre ziouer danvez ar wiki dija.",
 	"pagelang-db-failed": "N'en deus ket gallet an diaz roadennoù cheñch yezh ar bajenn",
+	"pagelang-invalid-selection": "Kod yezh direizh diuzet",
 	"log-name-pagelang": "Marilh ar cheñchamantoù yezh",
 	"log-description-pagelang": "Hemañ zo ur marilh eus ar c'hemmoù e pajenn ar yezhoù.",
 	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|en deus|he deus}} cheñchet yezh ar bajenn $3 eus $4 da $5.",
@@ -3585,5 +3588,6 @@
 	"table-of-contents-show-button-aria-label": "Diskouez an daolenn",
 	"table-of-contents-hide-button-aria-label": "Kuzhat an daolenn",
 	"diff-usergroups": "$1 {{PLURAL:$1|strollad implijerien}}",
-	"languageselector-no-results": "N'eus bet kavet disoc'h ebet."
+	"languageselector-no-results": "N'eus bet kavet disoc'h ebet.",
+	"languageselector-invalid-input": "N’eo ket \"$1\" ur yezh reizh."
 }
