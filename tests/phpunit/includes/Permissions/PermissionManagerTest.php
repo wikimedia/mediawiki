@@ -1419,12 +1419,15 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->setService( 'AuthManager', $mockAuthManager );
 
 		$result = $permissionManager->getPermissionStatus( 'edit', $user, $siteJsPage, PermissionManager::RIGOR_SECURE );
-		$this->assertStatusMessagesExactly(
-			StatusValue::newFatal( 'sitejsprotected', 'edit' )->fatal( 'badaccess-reauthenticate', 'editsitejscss' ),
-			$result,
-			'RIGOR_SECURE check returns reauth requirement in status message'
-		);
 		$this->assertStatusNotOK( $result, 'RIGOR_SECURE check sets status to not OK' );
+		$messages = $result->getMessages();
+		$this->assertCount( 2, $messages, 'Status has both sitejsprotected and reauth messages' );
+		$this->assertSame( 'sitejsprotected', $messages[0]->getKey() );
+		$reauthMessage = $messages[1];
+		$this->assertInstanceOf( ApiMessage::class, $reauthMessage );
+		$this->assertSame( 'badaccess-reauthenticate', $reauthMessage->getKey() );
+		$this->assertSame( 'reauthenticate', $reauthMessage->getApiCode() );
+		$this->assertSame( [ 'operation' => 'editsitejscss' ], $reauthMessage->getApiData() );
 		$this->assertSame( 'editsitejscss', $result->getReauthOperation(), 'RIGOR_SECURE check sets reauth operation is set' );
 
 		$result = $permissionManager->getPermissionStatus( 'edit', $user, $siteJsPage, PermissionManager::RIGOR_FULL );

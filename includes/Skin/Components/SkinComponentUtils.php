@@ -38,7 +38,7 @@ class SkinComponentUtils {
 		# $this->getTitle() will just give Special:Badtitle, which is
 		# not especially useful as a returnto parameter. Use the title
 		# from the request instead, if there was one.
-		if ( $authority->isAllowed( 'read' ) ) {
+		if ( !$title->isSpecial( 'Badtitle' ) ) {
 			$page = $title;
 		} else {
 			$page = Title::newFromText( $request->getVal( 'title', '' ) );

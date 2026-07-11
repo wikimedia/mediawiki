@@ -9,6 +9,7 @@ namespace MediaWiki\Permissions;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Actions\ActionFactory;
+use MediaWiki\Api\ApiMessage;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
@@ -28,6 +29,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\Skin\Components\SkinComponentUtils;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\NamespaceInfo;
@@ -1600,7 +1602,25 @@ class PermissionManager {
 			if ( $reauth === AuthManager::SEC_REAUTH ) {
 				$status->setReauthOperation( $operation );
 				if ( $rigor === self::RIGOR_SECURE ) {
-					$status->fatal( 'badaccess-reauthenticate', $operation );
+					$context = RequestContext::getMain();
+					$title = $context->getTitle();
+					$returnToParams = $title !== null
+						? SkinComponentUtils::getReturnToParam(
+							$title,
+							$context->getRequest(),
+							$context->getAuthority()
+						)
+						: [];
+					$loginUrl = SpecialPage::getSafeTitleFor( 'Userlogin' )
+						?->getFullURL( [ 'force' => $operation ] + $returnToParams );
+					// The operation is passed as $1 for compatibility with older translations
+					// that still use it inside a {{fullurl:...}} to build the login link. New
+					// translations should use $2 (the full URL) directly.
+					$status->fatal( ApiMessage::create(
+						[ 'badaccess-reauthenticate', $operation, $loginUrl ],
+						'reauthenticate',
+						[ 'operation' => $operation ]
+					) );
 				}
 			} elseif ( $reauth === AuthManager::SEC_FAIL ) {
 				$status->setReauthOperation( $operation );
