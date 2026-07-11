@@ -228,131 +228,154 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 		$this->assertSame( self::NEW_IMAGE_SIZE, $image['size'] );
 	}
 
-	public function testGetImageInfoThumburlsFromStepsPortrait() {
-		$this->overrideConfigValues( [
-			MainConfigNames::Server => 'http://example.com',
-			MainConfigNames::ThumbnailSteps => [ 20, 40, 120, 250 ],
-		] );
-		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
-		// Original portrait is 120x160
-		$this->importFileToTestRepo( self::IMAGES_DIR . '/portrait-rotated.jpg', 'Portrait-rotated.jpg' );
-
-		[ $result, ] = $this->doApiRequest( [
-			'action' => 'query',
-			'prop' => 'imageinfo',
-			'titles' => 'File:Portrait-rotated.jpg',
-			'iiprop' => 'thumburls',
-		] );
-
-		$info = $result['query']['pages']['1'];
-		$image = $info['imageinfo'][0];
-		$this->assertEquals( [
-			20 => [ 'width' => 20, 'height' => 27, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=20' ],
-			40 => [ 'width' => 40, 'height' => 53, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=40' ]
-		], $image['thumburls'] );
+	public static function provideGetImageInfoThumburls() {
+		yield 'default union landscape' => [
+			[
+				MainConfigNames::ThumbnailSteps => null,
+				MainConfigNames::ImageLimits => [
+					[ 32, 24 ],
+					[ 128, 96 ],
+					[ 256, 192 ],
+				],
+				MainConfigNames::ThumbLimits => [
+					30,
+					40,
+					110,
+				],
+				MainConfigNames::ResponsiveImages => true,
+			],
+			// 160x120 landscape (web-safe original)
+			self::IMAGES_DIR . '/landscape-plain.jpg',
+			'Landscape-plain.jpg',
+			[
+				// $wgThumbLimits, default + responsive
+				40 => [ 'width' => 40, 'height' => 30, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=40' ],
+				80 => [ 'width' => 80, 'height' => 60, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=80' ],
+				// $wgImageLimits
+				32 => [ 'width' => 32, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=32' ],
+				128 => [ 'width' => 128, 'height' => 96, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=128' ],
+			]
+		];
+		yield 'default union portrait' => [
+			[
+				MainConfigNames::ThumbnailSteps => null,
+				MainConfigNames::ImageLimits => [
+					[ 32, 24 ],
+					[ 128, 96 ],
+					[ 256, 192 ],
+				],
+				MainConfigNames::ThumbLimits => [
+					30,
+					40,
+					110,
+				],
+				MainConfigNames::ResponsiveImages => true,
+			],
+			// 120x160 portrait (requires rotation)
+			self::IMAGES_DIR . '/portrait-rotated.jpg',
+			'Portrait-rotated.jpg',
+			[
+				// $wgThumbLimits, default + responsive
+				40 => [ 'width' => 40, 'height' => 53, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=40' ],
+				80 => [ 'width' => 80, 'height' => 107, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=80' ],
+				// $wgImageLimits, fit portrait in 32x24
+				18 => [ 'width' => 18, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=18' ],
+			]
+		];
+		yield 'default union svg' => [
+			[
+				MainConfigNames::ThumbnailSteps => null,
+				MainConfigNames::ImageLimits => [
+					[ 32, 24 ],
+					[ 128, 96 ],
+					[ 256, 192 ],
+				],
+				MainConfigNames::ThumbLimits => [
+					30,
+					40,
+					110,
+				],
+				MainConfigNames::ResponsiveImages => true,
+			],
+			self::IMAGES_DIR . '/QA_icon.svg',
+			'QA_icon.svg',
+			[
+				// $wgThumbLimits, default + responsive
+				40 => [ 'width' => 40, 'height' => 40, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=40' ],
+				80 => [ 'width' => 80, 'height' => 80, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=80' ],
+				// $wgImageLimits
+				24 => [ 'width' => 24, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=24' ],
+				96 => [ 'width' => 96, 'height' => 96, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=96' ],
+				192 => [ 'width' => 192, 'height' => 192, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=192' ],
+			]
+		];
+		yield 'steps landscape' => [
+			[
+				MainConfigNames::ThumbnailSteps => [ 20, 40, 120, 250 ],
+			],
+			// 160x120 landscape (web-safe original)
+			self::IMAGES_DIR . '/landscape-plain.jpg',
+			'Landscape-plain.jpg',
+			[
+				20 => [ 'width' => 20, 'height' => 15, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=20' ],
+				40 => [ 'width' => 40, 'height' => 30, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=40' ],
+				120 => [ 'width' => 120, 'height' => 90, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=120' ],
+			]
+		];
+		yield 'steps portrait' => [
+			[
+				MainConfigNames::ThumbnailSteps => [ 20, 40, 120, 250 ],
+			],
+			// 120x160 portrait (requires rotation)
+			self::IMAGES_DIR . '/portrait-rotated.jpg',
+			'Portrait-rotated.jpg',
+			[
+				20 => [ 'width' => 20, 'height' => 27, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=20' ],
+				40 => [ 'width' => 40, 'height' => 53, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=40' ],
+			]
+		];
+		yield 'steps svg' => [
+			[
+				MainConfigNames::ThumbnailSteps => [ 20, 40, 120, 250 ],
+			],
+			self::IMAGES_DIR . '/QA_icon.svg',
+			'QA_icon.svg',
+			[
+				20 => [ 'width' => 20, 'height' => 20, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=20' ],
+				40 => [ 'width' => 40, 'height' => 40, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=40' ],
+				120 => [ 'width' => 120, 'height' => 120, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=120' ],
+				250 => [ 'width' => 250, 'height' => 250, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=250' ],
+			]
+		];
 	}
 
-	public function testGetImageInfoThumburlsFromStepsLandscape() {
-		$this->overrideConfigValues( [
+	/**
+	 * @dataProvider provideGetImageInfoThumburls
+	 */
+	public function testGetImageInfoThumburls(
+		array $conf,
+		string $file,
+		string $name,
+		array $expected
+	) {
+		$this->overrideConfigValues( $conf + [
 			MainConfigNames::Server => 'http://example.com',
-			MainConfigNames::ThumbnailSteps => [ 20, 40, 120, 250 ],
-		] );
-		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
-		// Original landscape is 160x120
-		$this->importFileToTestRepo( self::IMAGES_DIR . '/landscape-plain.jpg', 'Landscape-plain.jpg' );
-
-		[ $result, ] = $this->doApiRequest( [
-			'action' => 'query',
-			'prop' => 'imageinfo',
-			'titles' => 'File:Landscape-plain.jpg',
-			'iiprop' => 'thumburls',
-		] );
-
-		$info = $result['query']['pages']['1'];
-		$image = $info['imageinfo'][0];
-		$this->assertEquals( [
-			20 => [ 'width' => 20, 'height' => 15, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=20' ],
-			40 => [ 'width' => 40, 'height' => 30, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=40' ],
-			120 => [ 'width' => 120, 'height' => 90, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=120' ]
-		], $image['thumburls'] );
-	}
-
-	public function testGetImageInfoThumburlsFromUnionPortrait() {
-		$this->overrideConfigValues( [
-			MainConfigNames::Server => 'http://example.com',
-			MainConfigNames::ThumbnailSteps => null,
-			MainConfigNames::ImageLimits => [
-				[ 32, 24 ],
-				[ 128, 96 ],
-				[ 256, 192 ],
-			],
-			MainConfigNames::ThumbLimits => [
-				30,
-				40,
-				110,
-			],
-			MainConfigNames::ResponsiveImages => true,
+			MainConfigNames::SVGNativeRendering => false,
 		] );
 		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [ 'thumbsize' => 1 ] );
 		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
-		// Original is 160x120
-		$this->importFileToTestRepo( self::IMAGES_DIR . '/portrait-rotated.jpg', 'Portrait-rotated.jpg' );
+		$this->importFileToTestRepo( $file, $name );
 
 		[ $result, ] = $this->doApiRequest( [
 			'action' => 'query',
 			'prop' => 'imageinfo',
-			'titles' => 'File:Portrait-rotated.jpg',
+			'titles' => "File:$name",
 			'iiprop' => 'thumburls',
 		] );
 
 		$info = $result['query']['pages']['1'];
 		$image = $info['imageinfo'][0];
-		$this->assertEquals( [
-			// $wgThumbLimits, default + responsive
-			40 => [ 'width' => 40, 'height' => 53, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=40' ],
-			80 => [ 'width' => 80, 'height' => 107, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=80' ],
-			// $wgImageLimits, fit portrait in 32x24
-			18 => [ 'width' => 18, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=18' ],
-		], $image['thumburls'] );
-	}
-
-	public function testGetImageInfoThumburlsFromUnionLandscape() {
-		$this->overrideConfigValues( [
-			MainConfigNames::Server => 'http://example.com',
-			MainConfigNames::ThumbnailSteps => null,
-			MainConfigNames::ImageLimits => [
-				[ 32, 24 ],
-				[ 128, 96 ],
-				[ 256, 192 ],
-			],
-			MainConfigNames::ThumbLimits => [
-				30,
-				40,
-				110,
-			],
-			MainConfigNames::ResponsiveImages => true,
-		] );
-		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [ 'thumbsize' => 1 ] );
-		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
-		$this->importFileToTestRepo( self::IMAGES_DIR . '/landscape-plain.jpg', 'Landscape-plain.jpg' );
-
-		[ $result, ] = $this->doApiRequest( [
-			'action' => 'query',
-			'prop' => 'imageinfo',
-			'titles' => 'File:Landscape-plain.jpg',
-			'iiprop' => 'thumburls',
-		] );
-
-		$info = $result['query']['pages']['1'];
-		$image = $info['imageinfo'][0];
-		$this->assertEquals( [
-			// $wgThumbLimits, default + responsive
-			40 => [ 'width' => 40, 'height' => 30, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=40' ],
-			80 => [ 'width' => 80, 'height' => 60, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=80' ],
-			// $wgImageLimits
-			32 => [ 'width' => 32, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=32' ],
-			128 => [ 'width' => 128, 'height' => 96, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=128' ],
-		], $image['thumburls'] );
+		$this->assertEquals( $expected, $image['thumburls'] );
 	}
 
 	public function testGetImageCreatedByTempUser() {
