@@ -402,6 +402,8 @@ because of Phabricator reports.
   be used any more.
 * The EditPageBeforeConflictDiff hook has been deprecated and will trigger
   deprecation warnings.
+* Customizing API help output by overriding the ApiBase::modifyHelp() method
+  or by the APIHelpModifyOutput hook has been deprecated.
 * The global variable $wgLang has been deprecated. Use an available
   ContextSource instead, falling back to RequestContext::getMain(). As MediaWiki
   Core no longer reads from $wgLang, writing to $wgLang in extensions will no

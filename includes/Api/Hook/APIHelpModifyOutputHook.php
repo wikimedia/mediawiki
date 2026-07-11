@@ -16,6 +16,7 @@ interface APIHelpModifyOutputHook {
 	 * Use this hook to modify an API module's help output.
 	 *
 	 * @since 1.35
+	 * @deprecated since 1.47
 	 *
 	 * @param ApiBase $module
 	 * @param string[] &$help Array of HTML strings to be joined for the output

@@ -10,6 +10,7 @@ namespace MediaWiki\Api;
 
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlHelper;
 use MediaWiki\Json\FormatJson;
@@ -666,11 +667,15 @@ class ApiHelp extends ApiBase {
 				);
 			}
 
-			$module->modifyHelp( $help, $suboptions, $haveModules );
+			if (
+				$module instanceof ApiMain ||
+				MWDebug::detectDeprecatedOverride( $module, ApiBase::class, 'modifyHelp', '1.47' )
+			) {
+				$module->modifyHelp( $help, $suboptions, $haveModules );
+			}
 
 			if ( $module->getHookContainer()->isRegistered( 'APIHelpModifyOutput' ) ) {
-				// XXX: we should probably deprecate this hook so that we can
-				// migrate the $haveModules format.
+				// Hook is also deprecated since 1.47
 				if ( !empty( $suboptions['toc'] ) ) {
 					$haveModules = array_map(
 						static fn ( $s )=>$s->toLegacy(), $haveModules

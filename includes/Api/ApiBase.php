@@ -2187,6 +2187,8 @@ abstract class ApiBase extends ContextSource {
 	 * This exists mainly for ApiMain to add the Permissions and Credits
 	 * sections. Other modules probably don't need it.
 	 *
+	 * @deprecated since 1.47
+	 *
 	 * @stable to override
 	 * @param string[] &$help Array of help data
 	 * @param array $options Options passed to ApiHelp::getHelp
@@ -2194,6 +2196,7 @@ abstract class ApiBase extends ContextSource {
 	 *   as anchors in the page and SectionMetadata values.
 	 */
 	public function modifyHelp( array &$help, array $options, array &$tocData ) {
+		wfDeprecated( __METHOD__, '1.47' );
 	}
 
 	// endregion -- end of help message generation
