@@ -58,15 +58,6 @@ class ImagePage extends Article {
 	private ?array $tocSections = null;
 
 	/**
-	 * @param Title $title
-	 * @return WikiFilePage
-	 */
-	protected function newPage( Title $title ) {
-		// Overload mPage with a file-specific page
-		return new WikiFilePage( $title );
-	}
-
-	/**
 	 * @param File $file
 	 * @return void
 	 */

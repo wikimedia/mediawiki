@@ -7,27 +7,15 @@
 namespace MediaWiki\Page;
 
 use MediaWiki\Category\CategoryViewer;
-use MediaWiki\Title\Title;
 
 /**
  * Special handling for category description pages.
  *
  * This displays category members: subcategories, pages, and files categorised here.
- *
- * @method WikiCategoryPage getPage() Set by overwritten newPage() in this class
  */
 class CategoryPage extends Article {
 	/** @var class-string<CategoryViewer> Subclasses can change this to override the viewer class. */
 	protected $mCategoryViewerClass = CategoryViewer::class;
-
-	/**
-	 * @param Title $title
-	 * @return WikiCategoryPage
-	 */
-	protected function newPage( Title $title ) {
-		// Overload mPage with a category-specific page
-		return new WikiCategoryPage( $title );
-	}
 
 	public function view() {
 		$request = $this->getContext()->getRequest();

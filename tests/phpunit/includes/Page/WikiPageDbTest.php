@@ -16,6 +16,7 @@ use MediaWiki\Page\Event\PageProtectionChangedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\WikiPage;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Permissions\Authority;
@@ -40,6 +41,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * @covers \MediaWiki\Page\WikiPage
+ * @covers \MediaWiki\Page\WikiPageFactory
  * @group Database
  */
 class WikiPageDbTest extends MediaWikiLangTestCase {
@@ -51,6 +53,12 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	use LocalizationUpdateSpyTrait;
 	use ExpectCallbackTrait;
 
+	private WikiPageFactory $wikiPageFactory;
+
+	public function setUp(): void {
+		$this->wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+	}
+
 	protected function tearDown(): void {
 		ParserOptions::clearStaticCache();
 		parent::tearDown();
@@ -58,16 +66,15 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @param Title|string $title
-	 * @param string|null $model
 	 * @return WikiPage
 	 */
-	private function newPage( $title, $model = null ) {
+	private function newPage( $title ) {
 		if ( is_string( $title ) ) {
 			$ns = $this->getDefaultWikitextNS();
 			$title = Title::newFromText( $title, $ns );
 		}
 
-		return new WikiPage( $title );
+		return $this->wikiPageFactory->newFromTitle( $title );
 	}
 
 	/**
@@ -80,7 +87,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 */
 	protected function createPage( $page, $content, $model = null, ?Authority $performer = null ) {
 		if ( !$page instanceof WikiPage ) {
-			$page = $this->newPage( $page, $model );
+			$page = $this->newPage( $page );
 		}
 
 		$performer ??= $this->getTestUser()->getUser();
@@ -124,7 +131,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	public function testConstructionWithPageThatCannotExist( $ns, $text ) {
 		$title = Title::makeTitle( $ns, $text );
 		$this->expectException( InvalidArgumentException::class );
-		new WikiPage( $title );
+		$this->newPage( $title );
 	}
 
 	public function testPrepareContentForEdit() {
@@ -316,13 +323,13 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertSame( 1, $n, 'pagelinks should contain one link from the page' );
 
 		# ------------------------
-		$page = new WikiPage( $title );
+		$page = $this->newPage( $title );
 
 		$retrieved = $page->getContent();
 		$this->assertTrue( $content->equals( $retrieved ), 'retrieved content doesn\'t equal original' );
 
 		# ------------------------
-		$page = new WikiPage( $title );
+		$page = $this->newPage( $title );
 
 		// try null edit, with a different user
 		$status = $page->doUserEditContent( $content, $user2, 'This changes nothing', EDIT_UPDATE, false );
@@ -363,7 +370,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertSame( $revRecord->getId(), (int)$recentChange->getAttribute( 'rc_this_oldid' ) );
 
 		# ------------------------
-		$page = new WikiPage( $title );
+		$page = $this->newPage( $title );
 
 		$retrieved = $page->getContent();
 		$newText = $retrieved->serialize();
@@ -423,7 +430,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 	public function testDoUserEditContent_twice() {
 		$title = Title::newFromText( __METHOD__ );
-		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$page = $this->newPage( $title );
 		$content = ContentHandler::makeContent( '$1 van $2', $title );
 
 		$user = $this->getTestUser()->getUser();
@@ -611,13 +618,13 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->createPage( $page, "some text", CONTENT_MODEL_WIKITEXT );
 		$this->assertTrue( $page->exists() );
 
-		$page = new WikiPage( $page->getTitle() );
+		$page = $this->newPage( $page->getTitle() );
 		$this->assertTrue( $page->exists() );
 
 		$this->deletePage( $page, "done testing" );
 		$this->assertFalse( $page->exists() );
 
-		$page = new WikiPage( $page->getTitle() );
+		$page = $this->newPage( $page->getTitle() );
 		$this->assertFalse( $page->exists() );
 	}
 
@@ -640,7 +647,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			$this->createPage( $page, "some text", CONTENT_MODEL_WIKITEXT );
 			$this->assertTrue( $page->hasViewableContent() );
 
-			$page = new WikiPage( $page->getTitle() );
+			$page = $this->newPage( $page->getTitle() );
 			$this->assertTrue( $page->hasViewableContent() );
 		}
 	}
@@ -970,7 +977,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetParserOutput_nonexisting() {
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->newPage( Title::newFromText( __METHOD__ ) );
 
 		$opt = ParserOptions::newFromAnon();
 		$po = $page->getParserOutput( $opt );
@@ -1200,7 +1207,7 @@ more stuff
 
 	public function testLoadPageData() {
 		$title = Title::makeTitle( NS_MAIN, 'SomePage' );
-		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$page = $this->newPage( $title );
 
 		$this->assertFalse( $page->wasLoadedFrom( IDBAccessObject::READ_NORMAL ) );
 		$this->assertFalse( $page->wasLoadedFrom( IDBAccessObject::READ_LATEST ) );
@@ -1360,7 +1367,7 @@ more stuff
 
 	public function testInsertOn() {
 		$title = Title::newFromText( __METHOD__ );
-		$page = new WikiPage( $title );
+		$page = $this->newPage( $title );
 
 		$startTimeStamp = wfTimestampNow();
 		$result = $page->insertOn( $this->getDb() );
@@ -1422,7 +1429,7 @@ more stuff
 
 	public function testInsertOn_idSpecified() {
 		$title = Title::newFromText( __METHOD__ );
-		$page = new WikiPage( $title );
+		$page = $this->newPage( $title );
 		$id = 1478952189;
 
 		$result = $page->insertOn( $this->getDb(), $id );

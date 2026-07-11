@@ -144,7 +144,6 @@ class Article implements Page {
 		$this->deprecatePublicProperty( 'mContext', '1.35', __CLASS__ );
 
 		$this->mOldId = $oldId;
-		$this->mPage = $this->newPage( $title );
 
 		$services = MediaWikiServices::getInstance();
 		$this->linkRenderer = $services->getLinkRenderer();
@@ -165,6 +164,11 @@ class Article implements Page {
 		$this->legacyPostprocCacheAvailable =
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UsePostprocCacheLegacy );
 		$this->useLegacyPostprocCache = false;
+
+		// $this->newPage() makes use of wikiPageFactory service which
+		// needs to be set above before the being called, otherwise the
+		// service property will be uninitialized.
+		$this->mPage = $this->newPage( $title );
 	}
 
 	/**
@@ -172,7 +176,7 @@ class Article implements Page {
 	 * @return WikiPage
 	 */
 	protected function newPage( Title $title ) {
-		return new WikiPage( $title );
+		return $this->wikiPageFactory->newFromTitle( $title );
 	}
 
 	/**

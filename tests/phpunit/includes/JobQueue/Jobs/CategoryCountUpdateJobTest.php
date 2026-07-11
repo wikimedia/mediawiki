@@ -3,7 +3,6 @@ namespace MediaWiki\Tests\JobQueue\Jobs;
 
 use MediaWiki\Category\Category;
 use MediaWiki\JobQueue\Jobs\CategoryCountUpdateJob;
-use MediaWiki\Page\WikiPage;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 
@@ -25,7 +24,9 @@ class CategoryCountUpdateJobTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testUpdateCategoryCounts() {
-		$page = new WikiPage( Title::newFromText( self::TITLE_STRING ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle(
+			Title::newFromText( self::TITLE_STRING )
+		);
 
 		// Add an initial category
 		$jobSpec = CategoryCountUpdateJob::newSpec( $page, [ 'A' ], [], 100 );
