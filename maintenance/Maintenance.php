@@ -41,9 +41,11 @@ define( 'MW_ENTRY_POINT', 'cli' );
 
 // Bail on old versions of PHP, or if composer has not been run yet to install
 // dependencies.
-require_once __DIR__ . '/../includes/BootstrapHelperFunctions.php';
 require_once __DIR__ . '/../includes/PHPVersionCheck.php';
 ( new PHPVersionCheck( 'text' ) )->run();
+
+// For compatibility require the bootstrap after version check
+require_once __DIR__ . '/../includes/BootstrapHelperFunctions.php';
 
 /**
  * @var string|false $maintClass

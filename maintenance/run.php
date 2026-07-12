@@ -44,7 +44,8 @@ if ( !defined( 'MW_FINAL_SETUP_CALLBACK' ) ) {
 		$runner->setup( $settingsBuilder );
 	}
 
-	define( 'MW_FINAL_SETUP_CALLBACK', wfMaintenanceRunSetup( ... ) );
+	// Do not use first-class callable here, to make the file compatible with older php syntax
+	define( 'MW_FINAL_SETUP_CALLBACK', 'wfMaintenanceRunSetup' );
 }
 
 // Initialize MediaWiki (load settings, extensions, etc).
