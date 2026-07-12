@@ -19,9 +19,6 @@ use Wikimedia\ParamValidator\ParamValidator;
 class MediaFileHandler extends SimpleHandler {
 	use \MediaWiki\FileRepo\File\MediaFileTrait;
 
-	private RepoGroup $repoGroup;
-	private PageLookup $pageLookup;
-
 	/**
 	 * @var ExistingPageRecord|false|null
 	 */
@@ -33,11 +30,9 @@ class MediaFileHandler extends SimpleHandler {
 	private $file = false;
 
 	public function __construct(
-		RepoGroup $repoGroup,
-		PageLookup $pageLookup
+		private readonly RepoGroup $repoGroup,
+		private readonly PageLookup $pageLookup,
 	) {
-		$this->repoGroup = $repoGroup;
-		$this->pageLookup = $pageLookup;
 	}
 
 	private function getPage(): ?ExistingPageRecord {

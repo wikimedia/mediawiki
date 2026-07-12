@@ -13,20 +13,16 @@ use MediaWiki\Rest\RequestInterface;
  */
 class CompoundAuthorizer implements BasicAuthorizerInterface {
 
-	/** @var BasicAuthorizerInterface[] */
-	private $authorizers;
-
 	/**
-	 * @param array $authorizers
+	 * @param BasicAuthorizerInterface[] $authorizers
 	 */
-	public function __construct( array $authorizers = [] ) {
-		$this->authorizers = $authorizers;
+	public function __construct(
+		private array $authorizers = [],
+	) {
 	}
 
 	/**
 	 * Adds a BasicAuthorizerInterface to the chain of authorizers.
-	 * @param BasicAuthorizerInterface $authorizer
-	 * @return CompoundAuthorizer
 	 */
 	public function addAuthorizer( BasicAuthorizerInterface $authorizer ): CompoundAuthorizer {
 		$this->authorizers[] = $authorizer;

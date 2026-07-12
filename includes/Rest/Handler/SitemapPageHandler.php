@@ -21,11 +21,10 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 class SitemapPageHandler extends SitemapHandlerBase {
 	private const CACHE_VERSION = 1;
 
-	private Config $config;
 	private ?array $data = null;
 
 	public function __construct(
-		Config $config,
+		private readonly Config $config,
 		LanguageConverterFactory $languageConverterFactory,
 		Language $contLang,
 		PermissionManager $permissionManager,
@@ -39,7 +38,6 @@ class SitemapPageHandler extends SitemapHandlerBase {
 			$contLang,
 			$permissionManager,
 		);
-		$this->config = $config;
 	}
 
 	/** @inheritDoc */

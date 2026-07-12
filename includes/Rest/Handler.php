@@ -58,47 +58,22 @@ abstract class Handler {
 	 */
 	private const MISSING_BODY_EXAMPLE = 'missing_example';
 
-	/** @var Module */
-	private $module;
-
-	/** @var RequestInterface */
-	private $request;
-
-	/** @var Authority */
-	private $authority;
-
-	/** @var string */
-	private $path;
-
-	/** @var array */
-	private $config;
-
-	/** @var array */
-	private $openApiSpec;
-
-	/** @var ResponseFactory */
-	private $responseFactory;
-
-	/** @var array|null */
-	private $validatedParams;
+	private ?Module $module = null;
+	private ?RequestInterface $request = null;
+	private ?Authority $authority = null;
+	private string $path;
+	private array $config;
+	private array $openApiSpec;
+	private ?ResponseFactory $responseFactory = null;
+	private ?array $validatedParams = null;
 
 	/** @var mixed|null */
 	private $validatedBody;
-
-	/** @var ConditionalHeaderUtil */
-	private $conditionalHeaderUtil;
-
-	/** @var JsonLocalizer */
-	private $jsonLocalizer;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var Session */
-	private $session;
-
-	/** @var HookRunner */
-	private $hookRunner;
+	private ?ConditionalHeaderUtil $conditionalHeaderUtil = null;
+	private ?JsonLocalizer $jsonLocalizer = null;
+	private HookContainer $hookContainer;
+	private ?Session $session = null;
+	private HookRunner $hookRunner;
 
 	/**
 	 * Injects information about the handler's context in the Module.
@@ -385,21 +360,28 @@ abstract class Handler {
 	}
 
 	/**
-	 * Get the current request. The return type declaration causes it to raise
-	 * a fatal error if initForExecute() has not yet been called.
+	 * Get the current request.
+	 *
+	 * @throws \RuntimeException If initForExecute() has not yet been called
 	 */
 	public function getRequest(): RequestInterface {
+		if ( !$this->request ) {
+			throw new \RuntimeException( 'initForExecute() must be called before getRequest()' );
+		}
 		return $this->request;
 	}
 
 	/**
-	 * Get the current acting authority. The return type declaration causes it to raise
-	 * a fatal error if initServices() has not yet been called.
+	 * Get the current acting authority.
 	 *
 	 * @since 1.36
 	 * @return Authority
+	 * @throws \RuntimeException If initServices() has not yet been called
 	 */
 	public function getAuthority(): Authority {
+		if ( !$this->authority ) {
+			throw new \RuntimeException( 'initServices() must be called before getAuthority()' );
+		}
 		return $this->authority;
 	}
 
@@ -497,7 +479,7 @@ abstract class Handler {
 			: $this->getBodyValidator( $bodyType );
 
 		if ( $legacyBodyValidator && !$legacyBodyValidator instanceof NullBodyValidator ) {
-			$this->validatedBody = $restValidator->validateBody( $this->request, $this );
+			$this->validatedBody = $restValidator->validateBody( $this->getRequest(), $this );
 		} else {
 			// Allow type coercion if the request body is form data.
 			// For JSON requests, insist on proper types.

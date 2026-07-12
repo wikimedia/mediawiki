@@ -72,17 +72,7 @@ class ExtraRoutesModule extends MatcherBasedModule {
 		MainConfigNames::RestTermsOfServiceUrl,
 	];
 
-	/** @var string[] */
-	private array $routeFiles;
-
-	/**
-	 * @var array<int,array> A list of route definitions
-	 */
-	private array $extraRoutes;
-
-	private JsonLocalizer $jsonLocalizer;
-
-	private ServiceOptions $options;
+	private readonly JsonLocalizer $jsonLocalizer;
 
 	/**
 	 * @var array<int,array>|null A list of route definitions loaded from
@@ -104,8 +94,8 @@ class ExtraRoutesModule extends MatcherBasedModule {
 	 *        of this class for a description of the expected structure.
 	 */
 	public function __construct(
-		array $routeFiles,
-		array $extraRoutes,
+		private array $routeFiles,
+		private readonly array $extraRoutes,
 		Router $router,
 		ResponseFactory $responseFactory,
 		BasicAuthorizerInterface $basicAuth,
@@ -113,7 +103,7 @@ class ExtraRoutesModule extends MatcherBasedModule {
 		Validator $restValidator,
 		ErrorReporter $errorReporter,
 		HookContainer $hookContainer,
-		ServiceOptions $options
+		private readonly ServiceOptions $options,
 	) {
 		parent::__construct(
 			$router,
@@ -125,10 +115,7 @@ class ExtraRoutesModule extends MatcherBasedModule {
 			$errorReporter,
 			$hookContainer
 		);
-		$this->routeFiles = $routeFiles;
-		$this->extraRoutes = $extraRoutes;
 		$this->jsonLocalizer = new JsonLocalizer( $responseFactory );
-		$this->options = $options;
 		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 	}
 

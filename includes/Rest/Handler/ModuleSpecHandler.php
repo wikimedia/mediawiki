@@ -39,14 +39,15 @@ class ModuleSpecHandler extends SimpleHandler {
 		MainConfigNames::RestTermsOfServiceUrl,
 	];
 
-	private ServiceOptions $options;
-	private SessionManagerInterface $sessionManager;
+	private readonly ServiceOptions $options;
 
-	public function __construct( Config $config, SessionManagerInterface $sessionManager ) {
+	public function __construct(
+		Config $config,
+		private readonly SessionManagerInterface $sessionManager,
+	) {
 		$options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $config );
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
-		$this->sessionManager = $sessionManager;
 	}
 
 	/**

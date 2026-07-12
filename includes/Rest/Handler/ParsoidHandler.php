@@ -69,16 +69,10 @@ use Wikimedia\Parsoid\Utils\Timing;
  */
 abstract class ParsoidHandler extends Handler {
 
-	private RevisionLookup $revisionLookup;
-	protected SiteConfig $siteConfig;
-	protected PageConfigFactory $pageConfigFactory;
-	protected DataAccess $dataAccess;
-
-	/** @var ExtensionRegistry */
-	protected $extensionRegistry;
+	protected readonly ExtensionRegistry $extensionRegistry;
 
 	/** @var ?StatsdDataFactoryInterface A statistics aggregator */
-	protected $metrics;
+	protected ?StatsdDataFactoryInterface $metrics;
 
 	/** @var array */
 	private $requestAttributes;
@@ -95,15 +89,11 @@ abstract class ParsoidHandler extends Handler {
 	}
 
 	public function __construct(
-		RevisionLookup $revisionLookup,
-		SiteConfig $siteConfig,
-		PageConfigFactory $pageConfigFactory,
-		DataAccess $dataAccess
+		private readonly RevisionLookup $revisionLookup,
+		protected readonly SiteConfig $siteConfig,
+		protected readonly PageConfigFactory $pageConfigFactory,
+		protected readonly DataAccess $dataAccess,
 	) {
-		$this->revisionLookup = $revisionLookup;
-		$this->siteConfig = $siteConfig;
-		$this->pageConfigFactory = $pageConfigFactory;
-		$this->dataAccess = $dataAccess;
 		$this->extensionRegistry = ExtensionRegistry::getInstance();
 		$this->metrics = $siteConfig->metrics();
 	}

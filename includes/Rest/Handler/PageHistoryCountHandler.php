@@ -51,14 +51,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 
 	private const MAX_AGE_200 = 60;
 
-	private RevisionStore $revisionStore;
-	private NameTableStore $changeTagDefStore;
-	private GroupPermissionsLookup $groupPermissionsLookup;
-	private IConnectionProvider $dbProvider;
-	private PageLookup $pageLookup;
-	private WANObjectCache $cache;
-	private PageRestHelperFactory $helperFactory;
-	private TempUserConfig $tempUserConfig;
+	private readonly NameTableStore $changeTagDefStore;
 
 	/** @var RevisionRecord|false|null */
 	private $revision = false;
@@ -69,34 +62,17 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/** @var ExistingPageRecord|false|null */
 	private $page = false;
 
-	/**
-	 * @param RevisionStore $revisionStore
-	 * @param NameTableStoreFactory $nameTableStoreFactory
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param IConnectionProvider $dbProvider
-	 * @param WANObjectCache $cache
-	 * @param PageLookup $pageLookup
-	 * @param PageRestHelperFactory $helperFactory
-	 * @param TempUserConfig $tempUserConfig
-	 */
 	public function __construct(
-		RevisionStore $revisionStore,
+		private readonly RevisionStore $revisionStore,
 		NameTableStoreFactory $nameTableStoreFactory,
-		GroupPermissionsLookup $groupPermissionsLookup,
-		IConnectionProvider $dbProvider,
-		WANObjectCache $cache,
-		PageLookup $pageLookup,
-		PageRestHelperFactory $helperFactory,
-		TempUserConfig $tempUserConfig
+		private readonly GroupPermissionsLookup $groupPermissionsLookup,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly WANObjectCache $cache,
+		private readonly PageLookup $pageLookup,
+		private readonly PageRestHelperFactory $helperFactory,
+		private readonly TempUserConfig $tempUserConfig,
 	) {
-		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
-		$this->dbProvider = $dbProvider;
-		$this->cache = $cache;
-		$this->pageLookup = $pageLookup;
-		$this->helperFactory = $helperFactory;
-		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	private function getRedirectHelper(): PageRedirectHelper {

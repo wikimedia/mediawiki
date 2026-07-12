@@ -11,9 +11,6 @@ use MediaWiki\Rest\RequestInterface;
  * @internal
  */
 class StaticBasicAuthorizer implements BasicAuthorizerInterface {
-	/** @var string|null */
-	private $value;
-
 	/**
 	 * @see BasicAuthorizerInterface::authorize()
 	 *
@@ -21,8 +18,9 @@ class StaticBasicAuthorizer implements BasicAuthorizerInterface {
 	 *   request is denied, this is the string error code. If the request is
 	 *   allowed, it is null.
 	 */
-	public function __construct( $value = null ) {
-		$this->value = $value;
+	public function __construct(
+		private readonly ?string $value = null,
+	) {
 	}
 
 	/** @inheritDoc */

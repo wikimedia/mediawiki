@@ -14,17 +14,14 @@ abstract class RequestBase implements RequestInterface {
 	/** @var array */
 	private $pathParams = [];
 
-	/** @var string */
-	private $cookiePrefix;
-
 	protected ?array $parsedBody = null;
 
 	/**
 	 * @internal
-	 * @param string $cookiePrefix
 	 */
-	public function __construct( $cookiePrefix ) {
-		$this->cookiePrefix = $cookiePrefix;
+	public function __construct(
+		private readonly string $cookiePrefix,
+	) {
 	}
 
 	/**

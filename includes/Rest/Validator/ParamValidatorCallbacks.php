@@ -12,15 +12,10 @@ use Wikimedia\ParamValidator\Callbacks;
 
 class ParamValidatorCallbacks implements Callbacks {
 
-	private RequestInterface $request;
-	private Authority $authority;
-
 	public function __construct(
-		RequestInterface $request,
-		Authority $authority
+		private readonly RequestInterface $request,
+		private readonly Authority $authority,
 	) {
-		$this->request = $request;
-		$this->authority = $authority;
 	}
 
 	/**

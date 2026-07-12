@@ -26,24 +26,13 @@ use Wikimedia\ParamValidator\ParamValidator;
 abstract class EditHandler extends ActionModuleBasedHandler {
 	use TokenAwareHandlerTrait;
 
-	protected Config $config;
-	protected IContentHandlerFactory $contentHandlerFactory;
-	protected TitleParser $titleParser;
-	protected TitleFormatter $titleFormatter;
-	protected RevisionLookup $revisionLookup;
-
 	public function __construct(
-		Config $config,
-		IContentHandlerFactory $contentHandlerFactory,
-		TitleParser $titleParser,
-		TitleFormatter $titleFormatter,
-		RevisionLookup $revisionLookup
+		protected readonly Config $config,
+		protected readonly IContentHandlerFactory $contentHandlerFactory,
+		protected readonly TitleParser $titleParser,
+		protected readonly TitleFormatter $titleFormatter,
+		protected readonly RevisionLookup $revisionLookup,
 	) {
-		$this->config = $config;
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->titleParser = $titleParser;
-		$this->titleFormatter = $titleFormatter;
-		$this->revisionLookup = $revisionLookup;
 	}
 
 	/** @inheritDoc */

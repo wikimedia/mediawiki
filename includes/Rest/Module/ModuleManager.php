@@ -49,19 +49,13 @@ class ModuleManager {
 	private ?array $routeFiles = null;
 	private ?array $disabledRouteFiles = null;
 
-	private string $extensionDirectory;
+	private readonly string $extensionDirectory;
 
-	private array $extensionModuleFiles;
-	private array $restApiAdditionalRouteFiles;
-	private array $restExternalModules;
-	private array $restModuleOverrides;
+	private readonly array $restApiAdditionalRouteFiles;
+	private readonly array $restExternalModules;
+	private readonly array $restModuleOverrides;
 
 	private string $rootPath;
-
-	/** Persistent local server/host cache (e.g. APCu) */
-	private BagOStuff $srvCache;
-
-	private ResponseFactory $responseFactory;
 
 	/**
 	 * @internal
@@ -83,7 +77,10 @@ class ModuleManager {
 	 * @internal
 	 */
 	public function __construct(
-		ServiceOptions $options, array $extensionModuleFiles, BagOStuff $srvCache, ResponseFactory $responseFactory
+		ServiceOptions $options,
+		private readonly array $extensionModuleFiles,
+		private readonly BagOStuff $srvCache,
+		private readonly ResponseFactory $responseFactory,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -92,10 +89,6 @@ class ModuleManager {
 		$this->restExternalModules = $options->get( MainConfigNames::RestExternalModules );
 		$this->restModuleOverrides = $options->get( MainConfigNames::RestModuleOverrides );
 		$this->rootPath = $options->get( MainConfigNames::RestPath );
-
-		$this->extensionModuleFiles = $extensionModuleFiles;
-		$this->srvCache = $srvCache;
-		$this->responseFactory = $responseFactory;
 	}
 
 	/**

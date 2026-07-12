@@ -29,14 +29,12 @@ use Wikimedia\ParamValidator\ParamValidator;
 class PageHTMLHandler extends SimpleHandler {
 
 	private HtmlOutputHelper $htmlHelper;
-	private PageContentHelper $contentHelper;
-	private PageRestHelperFactory $helperFactory;
+	private readonly PageContentHelper $contentHelper;
 
 	public function __construct(
-		PageRestHelperFactory $helperFactory
+		private readonly PageRestHelperFactory $helperFactory,
 	) {
 		$this->contentHelper = $helperFactory->newPageContentHelper();
-		$this->helperFactory = $helperFactory;
 	}
 
 	private function getRedirectHelper(): PageRedirectHelper {

@@ -128,15 +128,12 @@ class Validator {
 	private ParamValidator $paramValidator;
 
 	/**
-	 * @param ObjectFactory $objectFactory
-	 * @param RequestInterface $request
-	 * @param Authority $authority
 	 * @internal
 	 */
 	public function __construct(
 		ObjectFactory $objectFactory,
 		RequestInterface $request,
-		Authority $authority
+		Authority $authority,
 	) {
 		$this->paramValidator = new ParamValidator(
 			new ParamValidatorCallbacks( $request, $authority ),

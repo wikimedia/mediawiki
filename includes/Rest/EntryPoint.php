@@ -23,7 +23,6 @@ use Wikimedia\Message\ITextFormatter;
  */
 class EntryPoint extends MediaWikiEntryPoint {
 
-	private RequestInterface $request;
 	private ?Router $router = null;
 	private ?CorsUtils $cors  = null;
 
@@ -170,14 +169,12 @@ class EntryPoint extends MediaWikiEntryPoint {
 	}
 
 	public function __construct(
-		RequestInterface $request,
+		private readonly RequestInterface $request,
 		RequestContext $context,
 		EntryPointEnvironment $environment,
-		MediaWikiServices $mediaWikiServices
+		MediaWikiServices $mediaWikiServices,
 	) {
 		parent::__construct( $context, $environment, $mediaWikiServices );
-
-		$this->request = $request;
 	}
 
 	/**

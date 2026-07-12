@@ -29,7 +29,7 @@ class DiscoveryHandler extends Handler {
 		MainConfigNames::RestExternalModules,
 	];
 
-	private ServiceOptions $options;
+	private readonly ServiceOptions $options;
 
 	public function __construct( Config $config ) {
 		$options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $config );

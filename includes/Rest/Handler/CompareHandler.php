@@ -17,21 +17,16 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class CompareHandler extends Handler {
-	private RevisionLookup $revisionLookup;
-	private ParserFactory $parserFactory;
-
 	/** @var RevisionRecord[] */
-	private $revisions = [];
+	private array $revisions = [];
 
 	/** @var string[] */
-	private $textCache = [];
+	private array $textCache = [];
 
 	public function __construct(
-		RevisionLookup $revisionLookup,
-		ParserFactory $parserFactory
+		private readonly RevisionLookup $revisionLookup,
+		private readonly ParserFactory $parserFactory,
 	) {
-		$this->revisionLookup = $revisionLookup;
-		$this->parserFactory = $parserFactory;
 	}
 
 	/** @inheritDoc */
@@ -74,11 +69,7 @@ class CompareHandler extends Handler {
 		return $response;
 	}
 
-	/**
-	 * @param string $paramName
-	 * @return RevisionRecord|null
-	 */
-	private function getRevision( $paramName ) {
+	private function getRevision( string $paramName ): ?RevisionRecord {
 		if ( !isset( $this->revisions[$paramName] ) ) {
 			$this->revisions[$paramName] =
 				$this->revisionLookup->getRevisionById( $this->getValidatedParams()[$paramName] );
@@ -87,11 +78,9 @@ class CompareHandler extends Handler {
 	}
 
 	/**
-	 * @param string $paramName
-	 * @return RevisionRecord
 	 * @throws LocalizedHttpException
 	 */
-	private function getRevisionOrThrow( $paramName ) {
+	private function getRevisionOrThrow( string $paramName ): RevisionRecord {
 		$rev = $this->getRevision( $paramName );
 		if ( !$rev ) {
 			throw new LocalizedHttpException(
@@ -105,11 +94,7 @@ class CompareHandler extends Handler {
 		return $rev;
 	}
 
-	/**
-	 * @param RevisionRecord $rev
-	 * @return bool
-	 */
-	private function isAccessible( $rev ) {
+	private function isAccessible( RevisionRecord $rev ): bool {
 		return $rev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() );
 	}
 
@@ -146,10 +131,7 @@ class CompareHandler extends Handler {
 		return $this->textCache[$paramName];
 	}
 
-	/**
-	 * @return string
-	 */
-	private function getJsonDiff() {
+	private function getJsonDiff(): string {
 		// TODO: properly implement
 		// This is a prototype only. SlotDiffRenderer should be extended to support this use case.
 		$fromText = $this->getRevisionText( 'from' );
@@ -161,11 +143,7 @@ class CompareHandler extends Handler {
 		return wikidiff2_inline_json_diff( $fromText, $toText, 2 );
 	}
 
-	/**
-	 * @param string $paramName
-	 * @return array
-	 */
-	private function getSectionInfo( $paramName ) {
+	private function getSectionInfo( string $paramName ): array {
 		$text = $this->getRevisionText( $paramName );
 		$parserSections = $this->parserFactory->getInstance()->getFlatSectionInfo( $text );
 		$sections = [];

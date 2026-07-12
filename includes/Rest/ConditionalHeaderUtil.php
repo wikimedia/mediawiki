@@ -9,8 +9,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 class ConditionalHeaderUtil {
-	/** @var bool */
-	private $varnishETagHack = true;
+	private bool $varnishETagHack = true;
 	/** @var callback|string|null */
 	private $eTag;
 	/** @var callback|string|int|null */
@@ -56,10 +55,8 @@ class ConditionalHeaderUtil {
 	 * If the Varnish ETag hack is disabled by calling this method,
 	 * strong ETag comparison will follow RFC 7232, rejecting all weak
 	 * ETags for If-Match comparison.
-	 *
-	 * @param bool $hack
 	 */
-	public function setVarnishETagHack( $hack ) {
+	public function setVarnishETagHack( bool $hack ) {
 		$this->varnishETagHack = $hack;
 	}
 

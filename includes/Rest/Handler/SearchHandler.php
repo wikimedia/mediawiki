@@ -36,15 +36,6 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 class SearchHandler extends Handler {
 	use RestStatusTrait;
 
-	private SearchEngineFactory $searchEngineFactory;
-	private SearchEngineConfig $searchEngineConfig;
-	private SearchResultThumbnailProvider $searchResultThumbnailProvider;
-	private PermissionManager $permissionManager;
-	private RedirectLookup $redirectLookup;
-	private PageStore $pageStore;
-	private TitleFormatter $titleFormatter;
-	private SpecialPageFactory $specialPageFactory;
-
 	/**
 	 * Search page body and titles.
 	 */
@@ -84,26 +75,17 @@ class SearchHandler extends Handler {
 
 	public function __construct(
 		Config $config,
-		SearchEngineFactory $searchEngineFactory,
-		SearchEngineConfig $searchEngineConfig,
-		SearchResultThumbnailProvider $searchResultThumbnailProvider,
-		PermissionManager $permissionManager,
-		RedirectLookup $redirectLookup,
-		PageStore $pageStore,
-		TitleFormatter $titleFormatter,
-		SpecialPageFactory $specialPageFactory,
+		private readonly SearchEngineFactory $searchEngineFactory,
+		private readonly SearchEngineConfig $searchEngineConfig,
+		private readonly SearchResultThumbnailProvider $searchResultThumbnailProvider,
+		private readonly PermissionManager $permissionManager,
+		private readonly RedirectLookup $redirectLookup,
+		private readonly PageStore $pageStore,
+		private readonly TitleFormatter $titleFormatter,
+		private readonly SpecialPageFactory $specialPageFactory,
 	) {
-		$this->searchEngineFactory = $searchEngineFactory;
-		$this->searchEngineConfig = $searchEngineConfig;
-		$this->searchResultThumbnailProvider = $searchResultThumbnailProvider;
-		$this->permissionManager = $permissionManager;
-		$this->redirectLookup = $redirectLookup;
-		$this->pageStore = $pageStore;
-		$this->titleFormatter = $titleFormatter;
-
 		// @todo Avoid injecting the entire config, see T246377
 		$this->completionCacheExpiry = $config->get( MainConfigNames::SearchSuggestCacheExpiry );
-		$this->specialPageFactory = $specialPageFactory;
 	}
 
 	protected function postInitSetup() {

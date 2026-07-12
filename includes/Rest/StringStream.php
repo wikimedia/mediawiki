@@ -18,8 +18,6 @@ use Stringable;
  */
 class StringStream implements Stringable, CopyableStreamInterface {
 
-	/** @var string */
-	private $contents;
 	/** @var int */
 	private $offset = 0;
 
@@ -28,11 +26,10 @@ class StringStream implements Stringable, CopyableStreamInterface {
 	 *
 	 * The offset will start at 0, ready for reading. If appending to the
 	 * given string is desired, you should first seek to the end.
-	 *
-	 * @param string $contents
 	 */
-	public function __construct( $contents = '' ) {
-		$this->contents = $contents;
+	public function __construct(
+		private string $contents = '',
+	) {
 	}
 
 	/** @inheritDoc */

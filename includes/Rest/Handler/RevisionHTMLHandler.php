@@ -24,11 +24,11 @@ use Wikimedia\ParamValidator\ParamValidator;
 class RevisionHTMLHandler extends SimpleHandler {
 
 	private ?HtmlOutputRendererHelper $htmlHelper = null;
-	private PageRestHelperFactory $helperFactory;
-	private RevisionContentHelper $contentHelper;
+	private readonly RevisionContentHelper $contentHelper;
 
-	public function __construct( PageRestHelperFactory $helperFactory ) {
-		$this->helperFactory = $helperFactory;
+	public function __construct(
+		private readonly PageRestHelperFactory $helperFactory,
+	) {
 		$this->contentHelper = $helperFactory->newRevisionContentHelper();
 	}
 

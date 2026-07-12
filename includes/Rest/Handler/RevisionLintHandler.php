@@ -20,15 +20,13 @@ use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
  */
 class RevisionLintHandler extends SimpleHandler {
 
-	private RevisionContentHelper $contentHelper;
-	private LintErrorChecker $lintErrorChecker;
+	private readonly RevisionContentHelper $contentHelper;
 
 	public function __construct(
 		PageRestHelperFactory $helperFactory,
-		LintErrorChecker $lintErrorChecker
+		private readonly LintErrorChecker $lintErrorChecker,
 	) {
 		$this->contentHelper = $helperFactory->newRevisionContentHelper();
-		$this->lintErrorChecker = $lintErrorChecker;
 	}
 
 	protected function postValidationSetup() {

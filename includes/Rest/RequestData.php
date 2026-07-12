@@ -12,14 +12,12 @@ use Psr\Http\Message\UriInterface;
  * of testing or internal requests.
  */
 class RequestData extends RequestBase {
-	/** @var string */
-	private $method;
+	private readonly string $method;
 
 	/** @var UriInterface */
 	private $uri;
 
-	/** @var string */
-	private $protocolVersion;
+	private string $protocolVersion;
 
 	/** @var StreamInterface */
 	private $body;

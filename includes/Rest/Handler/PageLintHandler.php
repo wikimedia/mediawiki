@@ -21,17 +21,13 @@ use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
  */
 class PageLintHandler extends SimpleHandler {
 
-	private PageRestHelperFactory $helperFactory;
 	private PageContentHelper $contentHelper;
-	private LintErrorChecker $lintErrorChecker;
 
 	public function __construct(
-		PageRestHelperFactory $helperFactory,
-		LintErrorChecker $lintErrorChecker
+		private readonly PageRestHelperFactory $helperFactory,
+		private readonly LintErrorChecker $lintErrorChecker,
 	) {
-		$this->helperFactory = $helperFactory;
 		$this->contentHelper = $helperFactory->newPageContentHelper();
-		$this->lintErrorChecker = $lintErrorChecker;
 	}
 
 	public function getParamSettings(): array {

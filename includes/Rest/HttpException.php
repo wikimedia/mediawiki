@@ -11,18 +11,15 @@ namespace MediaWiki\Rest;
  */
 class HttpException extends \Exception {
 
-	private array $errorData;
-
 	/**
 	 * @stable to call
-	 *
-	 * @param string $message
-	 * @param int $code
-	 * @param array $errorData
 	 */
-	public function __construct( $message, $code = 500, $errorData = [] ) {
+	public function __construct(
+		string $message,
+		int $code = 500,
+		private readonly array $errorData = [],
+	) {
 		parent::__construct( $message, $code );
-		$this->errorData = $errorData;
 	}
 
 	public function getErrorData(): array {

@@ -25,10 +25,7 @@ use Wikimedia\Message\MessageValue;
 abstract class ActionModuleBasedHandler extends Handler {
 	use RestStatusTrait;
 
-	/**
-	 * @var ApiMain|null
-	 */
-	private $apiMain = null;
+	private ?ApiMain $apiMain = null;
 
 	protected function getUser(): User {
 		return $this->getApiMain()->getUser();
@@ -44,10 +41,7 @@ abstract class ActionModuleBasedHandler extends Handler {
 		$this->apiMain = $apiMain;
 	}
 
-	/**
-	 * @return ApiMain
-	 */
-	public function getApiMain() {
+	public function getApiMain(): ApiMain {
 		if ( $this->apiMain ) {
 			return $this->apiMain;
 		}
@@ -166,10 +160,6 @@ abstract class ActionModuleBasedHandler extends Handler {
 	 * to preserve baseline behavior.
 	 *
 	 * @stable to override
-	 *
-	 * @param WebResponse $actionModuleResponse
-	 * @param array $actionModuleResult
-	 * @param Response $response
 	 */
 	protected function mapActionModuleResponse(
 		WebResponse $actionModuleResponse,

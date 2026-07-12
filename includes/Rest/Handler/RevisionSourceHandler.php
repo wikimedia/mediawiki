@@ -18,7 +18,7 @@ use Wikimedia\Message\MessageValue;
  */
 class RevisionSourceHandler extends SimpleHandler {
 
-	private RevisionContentHelper $contentHelper;
+	private readonly RevisionContentHelper $contentHelper;
 
 	public function __construct( PageRestHelperFactory $helperFactory ) {
 		$this->contentHelper = $helperFactory->newRevisionContentHelper();

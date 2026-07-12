@@ -42,48 +42,21 @@ abstract class Module {
 	 */
 	public const CACHE_CONFIG_HASH_KEY = 'CONFIG-HASH';
 
-	private Router $router;
-	protected string $pathPrefix;
-	protected ResponseFactory $responseFactory;
-	private BasicAuthorizerInterface $basicAuth;
-	private ObjectFactory $objectFactory;
-	private Validator $restValidator;
-	private ErrorReporter $errorReporter;
-	private HookContainer $hookContainer;
-
 	private StatsFactory $stats;
 	private ?CorsUtils $cors = null;
-	private HookRunner $hookRunner;
+	private readonly HookRunner $hookRunner;
 
-	/**
-	 * @param Router $router
-	 * @param string $pathPrefix
-	 * @param ResponseFactory $responseFactory
-	 * @param BasicAuthorizerInterface $basicAuth
-	 * @param ObjectFactory $objectFactory
-	 * @param Validator $restValidator
-	 * @param ErrorReporter $errorReporter
-	 */
 	public function __construct(
-		Router $router,
-		string $pathPrefix,
-		ResponseFactory $responseFactory,
-		BasicAuthorizerInterface $basicAuth,
-		ObjectFactory $objectFactory,
-		Validator $restValidator,
-		ErrorReporter $errorReporter,
-		HookContainer $hookContainer
+		private readonly Router $router,
+		protected readonly string $pathPrefix,
+		protected readonly ResponseFactory $responseFactory,
+		private readonly BasicAuthorizerInterface $basicAuth,
+		private readonly ObjectFactory $objectFactory,
+		private readonly Validator $restValidator,
+		private readonly ErrorReporter $errorReporter,
+		HookContainer $hookContainer,
 	) {
-		$this->router = $router;
-		$this->pathPrefix = $pathPrefix;
-		$this->responseFactory = $responseFactory;
-		$this->basicAuth = $basicAuth;
-		$this->objectFactory = $objectFactory;
-		$this->restValidator = $restValidator;
-		$this->errorReporter = $errorReporter;
-		$this->hookContainer = $hookContainer;
-
-		$this->hookRunner = new HookRunner( $this->hookContainer );
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->stats = StatsFactory::newNull();
 	}
 

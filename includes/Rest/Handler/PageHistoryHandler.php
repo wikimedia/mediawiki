@@ -34,13 +34,7 @@ class PageHistoryHandler extends SimpleHandler {
 	private const REVISIONS_RETURN_LIMIT = 20;
 	private const ALLOWED_FILTER_TYPES = [ 'anonymous', 'bot', 'reverted', 'minor' ];
 
-	private RevisionStore $revisionStore;
-	private NameTableStore $changeTagDefStore;
-	private GroupPermissionsLookup $groupPermissionsLookup;
-	private IConnectionProvider $dbProvider;
-	private PageLookup $pageLookup;
-	private TitleFormatter $titleFormatter;
-	private PageRestHelperFactory $helperFactory;
+	private readonly NameTableStore $changeTagDefStore;
 
 	/**
 	 * @var ExistingPageRecord|false|null
@@ -49,31 +43,17 @@ class PageHistoryHandler extends SimpleHandler {
 
 	/**
 	 * RevisionStore $revisionStore
-	 *
-	 * @param RevisionStore $revisionStore
-	 * @param NameTableStoreFactory $nameTableStoreFactory
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param IConnectionProvider $dbProvider
-	 * @param PageLookup $pageLookup
-	 * @param TitleFormatter $titleFormatter
-	 * @param PageRestHelperFactory $helperFactory
 	 */
 	public function __construct(
-		RevisionStore $revisionStore,
+		private readonly RevisionStore $revisionStore,
 		NameTableStoreFactory $nameTableStoreFactory,
-		GroupPermissionsLookup $groupPermissionsLookup,
-		IConnectionProvider $dbProvider,
-		PageLookup $pageLookup,
-		TitleFormatter $titleFormatter,
-		PageRestHelperFactory $helperFactory
+		private readonly GroupPermissionsLookup $groupPermissionsLookup,
+		private readonly IConnectionProvider $dbProvider,
+		private readonly PageLookup $pageLookup,
+		private readonly TitleFormatter $titleFormatter,
+		private readonly PageRestHelperFactory $helperFactory,
 	) {
-		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
-		$this->dbProvider = $dbProvider;
-		$this->pageLookup = $pageLookup;
-		$this->titleFormatter = $titleFormatter;
-		$this->helperFactory = $helperFactory;
 	}
 
 	private function getRedirectHelper(): PageRedirectHelper {

@@ -40,8 +40,6 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  */
 class SpecBasedModule extends MatcherBasedModule {
 
-	private string $definitionFile;
-
 	private ?array $moduleDef = null;
 
 	private ?int $routeFileTimestamp = null;
@@ -52,7 +50,7 @@ class SpecBasedModule extends MatcherBasedModule {
 	 * @internal
 	 */
 	public function __construct(
-		string $definitionFile,
+		private readonly string $definitionFile,
 		Router $router,
 		string $pathPrefix,
 		ResponseFactory $responseFactory,
@@ -60,7 +58,7 @@ class SpecBasedModule extends MatcherBasedModule {
 		ObjectFactory $objectFactory,
 		Validator $restValidator,
 		ErrorReporter $errorReporter,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
 	) {
 		parent::__construct(
 			$router,
@@ -72,7 +70,6 @@ class SpecBasedModule extends MatcherBasedModule {
 			$errorReporter,
 			$hookContainer
 		);
-		$this->definitionFile = $definitionFile;
 	}
 
 	/**

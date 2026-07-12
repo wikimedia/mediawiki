@@ -38,9 +38,6 @@ class Router {
 	/** @var string[] */
 	private $routeFiles;
 
-	/** @var array[] */
-	private $extraRoutes;
-
 	/** @var null|array[] */
 	private $moduleMap = null;
 
@@ -68,17 +65,7 @@ class Router {
 	/** @var CorsUtils|null */
 	private $cors;
 
-	private ModuleManager $moduleManager;
-	private BagOStuff $cacheBag;
-	private ResponseFactory $responseFactory;
-	private BasicAuthorizerInterface $basicAuth;
-	private Authority $authority;
-	private ObjectFactory $objectFactory;
-	private Validator $restValidator;
-	private ErrorReporter $errorReporter;
-	private HookContainer $hookContainer;
-	private ServiceOptions $options;
-	private Session $session;
+	private readonly ResponseFactory $responseFactory;
 
 	/** @var ?StatsFactory */
 	private $stats = null;
@@ -95,8 +82,6 @@ class Router {
 		MainConfigNames::EmergencyContact,
 		MainConfigNames::RestTermsOfServiceUrl,
 	];
-	private array $textFormatters;
-	private bool $showExceptionDetails;
 
 	/**
 	 * @param ModuleManager $moduleManager
@@ -115,42 +100,28 @@ class Router {
 	 * @internal
 	 */
 	public function __construct(
-		ModuleManager $moduleManager,
-		array $extraRoutes,
-		ServiceOptions $options,
-		BagOStuff $cacheBag,
-		array $textFormatters,
-		bool $showExceptionDetails,
-		BasicAuthorizerInterface $basicAuth,
-		Authority $authority,
-		ObjectFactory $objectFactory,
-		Validator $restValidator,
-		ErrorReporter $errorReporter,
-		HookContainer $hookContainer,
-		Session $session
+		private readonly ModuleManager $moduleManager,
+		private readonly array $extraRoutes,
+		private readonly ServiceOptions $options,
+		private readonly BagOStuff $cacheBag,
+		private readonly array $textFormatters,
+		private readonly bool $showExceptionDetails,
+		private readonly BasicAuthorizerInterface $basicAuth,
+		private readonly Authority $authority,
+		private readonly ObjectFactory $objectFactory,
+		private readonly Validator $restValidator,
+		private ErrorReporter $errorReporter,
+		private readonly HookContainer $hookContainer,
+		private readonly Session $session,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->routeFiles = $moduleManager->getRouteFiles();
-		$this->extraRoutes = $extraRoutes;
 		$this->baseUrl = $options->get( MainConfigNames::CanonicalServer );
 		$this->privateBaseUrl = $options->get( MainConfigNames::InternalServer );
 		$this->rootPath = $options->get( MainConfigNames::RestPath );
 		$this->scriptPath = $options->get( MainConfigNames::ScriptPath );
-
-		$this->moduleManager = $moduleManager;
-		$this->cacheBag = $cacheBag;
-		$this->textFormatters = $textFormatters;
-		$this->showExceptionDetails = $showExceptionDetails;
 		$this->responseFactory = self::makeResponseFactory( $textFormatters, $showExceptionDetails );
-		$this->basicAuth = $basicAuth;
-		$this->authority = $authority;
-		$this->objectFactory = $objectFactory;
-		$this->restValidator = $restValidator;
-		$this->errorReporter = $errorReporter;
-		$this->hookContainer = $hookContainer;
-		$this->options = $options;
-		$this->session = $session;
 	}
 
 	/**

@@ -37,18 +37,18 @@ use Wikimedia\Message\MessageValue;
  */
 class OpenSearchDescriptionHandler extends Handler {
 
-	private UrlUtils $urlUtils;
-
 	/** @see MainConfigSchema::Favicon */
-	private string $favicon;
+	private readonly string $favicon;
 
 	/** @see MainConfigSchema::OpenSearchTemplates */
-	private array $templates;
+	private readonly array $templates;
 
-	public function __construct( Config $config, UrlUtils $urlUtils ) {
+	public function __construct(
+		Config $config,
+		private readonly UrlUtils $urlUtils,
+	) {
 		$this->favicon = $config->get( MainConfigNames::Favicon );
 		$this->templates = $config->get( MainConfigNames::OpenSearchTemplates );
-		$this->urlUtils = $urlUtils;
 	}
 
 	public function execute(): Response {

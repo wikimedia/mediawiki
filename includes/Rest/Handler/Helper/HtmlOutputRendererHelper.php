@@ -108,18 +108,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	private $targetLanguage = null;
 
 	/**
-	 * Should we ignore mismatches between $page and the page that $revision belongs to?
-	 * Usually happens because of page moves. This should be set to true only for internal API calls.
-	 */
-	private bool $lenientRevHandling = false;
-
-	/**
 	 * @see the $options parameter on Parsoid::wikitext2html
 	 * @var array
 	 */
 	private $parsoidOptions = [];
-
-	private ?ParserOptions $parserOptions = null;
 
 	/**
 	 * Whether the result can be cached in the parser cache and the web cache.
@@ -128,17 +120,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @var bool
 	 */
 	private $isCacheable = true;
-
-	private ParsoidOutputStash $parsoidOutputStash;
-	private StatsFactory $statsFactory;
-	private ParserOutputAccess $parserOutputAccess;
-	private PageLookup $pageLookup;
-	private RevisionLookup $revisionLookup;
-	private RevisionRenderer $revisionRenderer;
-	private ParsoidSiteConfig $parsoidSiteConfig;
-	private HtmlTransformFactory $htmlTransformFactory;
-	private IContentHandlerFactory $contentHandlerFactory;
-	private LanguageFactory $languageFactory;
 
 	/**
 	 * @param ParsoidOutputStash $parsoidOutputStash
@@ -164,35 +145,23 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 *    has been deprecated.
 	 */
 	public function __construct(
-		ParsoidOutputStash $parsoidOutputStash,
-		StatsFactory $statsFactory,
-		ParserOutputAccess $parserOutputAccess,
-		PageLookup $pageLookup,
-		RevisionLookup $revisionLookup,
-		RevisionRenderer $revisionRenderer,
-		ParsoidSiteConfig $parsoidSiteConfig,
-		HtmlTransformFactory $htmlTransformFactory,
-		IContentHandlerFactory $contentHandlerFactory,
-		LanguageFactory $languageFactory,
+		private readonly ParsoidOutputStash $parsoidOutputStash,
+		private readonly StatsFactory $statsFactory,
+		private readonly ParserOutputAccess $parserOutputAccess,
+		private readonly PageLookup $pageLookup,
+		private readonly RevisionLookup $revisionLookup,
+		private readonly RevisionRenderer $revisionRenderer,
+		private readonly ParsoidSiteConfig $parsoidSiteConfig,
+		private readonly HtmlTransformFactory $htmlTransformFactory,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly LanguageFactory $languageFactory,
 		?PageIdentity $page = null,
 		array $parameters = [],
 		?Authority $authority = null,
 		$revision = null,
-		bool $lenientRevHandling = false,
-		?ParserOptions $parserOptions = null
+		private readonly bool $lenientRevHandling = false,
+		private ?ParserOptions $parserOptions = null
 	) {
-		$this->parsoidOutputStash = $parsoidOutputStash;
-		$this->statsFactory = $statsFactory;
-		$this->parserOutputAccess = $parserOutputAccess;
-		$this->pageLookup = $pageLookup;
-		$this->revisionLookup = $revisionLookup;
-		$this->revisionRenderer = $revisionRenderer;
-		$this->parsoidSiteConfig = $parsoidSiteConfig;
-		$this->htmlTransformFactory = $htmlTransformFactory;
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->languageFactory = $languageFactory;
-		$this->lenientRevHandling = $lenientRevHandling;
-		$this->parserOptions = $parserOptions;
 		if ( $page === null || $authority === null ) {
 			// Constructing without $page and $authority parameters
 			// is deprecated since 1.43.

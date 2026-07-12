@@ -55,18 +55,9 @@ class HtmlInputTransformHelper {
 		MainConfigNames::ParsoidCacheConfig
 	];
 
-	/** @var PageIdentity|null */
-	private $page = null;
-
-	/**
-	 * @var HtmlToContentTransform
-	 */
-	private $transform;
-
-	/**
-	 * @var array
-	 */
-	private $envOptions;
+	private ?PageIdentity $page = null;
+	private ?HtmlToContentTransform $transform = null;
+	private array $envOptions;
 
 	/**
 	 * @param StatsFactory $statsFactory
@@ -413,8 +404,12 @@ class HtmlInputTransformHelper {
 
 	/**
 	 * Return HTMLTransform object, so additional context can be provided by calling setters on it.
+	 * @throws \RuntimeException If initInternal() has not yet been called
 	 */
 	public function getTransform(): HtmlToContentTransform {
+		if ( !$this->transform ) {
+			throw new \RuntimeException( 'initInternal() must be called before getTransform()' );
+		}
 		return $this->transform;
 	}
 
@@ -490,6 +485,7 @@ class HtmlInputTransformHelper {
 			// Try to get a rendering for the given revision, and use it as the basis for selser.
 			// Chances are good that the resulting diff will be reasonably clean.
 			// NOTE: If we don't have a revision ID, we should not attempt selser!
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $this->page is not null
 			$originalRendering = $this->fetchParserOutputFromParsoid( $this->page, $rev, true );
 
 			if ( $originalRendering ) {
@@ -714,6 +710,7 @@ class HtmlInputTransformHelper {
 			// Try to load it from the parser cache instead.
 			// On a wiki with low edit frequency, there is a good chance that it's still there.
 			try {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $this->page is not null
 				$parserOutput = $this->fetchParserOutputFromParsoid( $this->page, $renderID->getRevisionID(), false );
 
 				if ( !$parserOutput ) {

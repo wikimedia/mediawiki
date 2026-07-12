@@ -20,17 +20,13 @@ use Wikimedia\Message\MessageValue;
  */
 class PageSourceHandler extends SimpleHandler {
 
-	private TitleFormatter $titleFormatter;
-	private PageRestHelperFactory $helperFactory;
 	private PageContentHelper $contentHelper;
 
 	public function __construct(
-		TitleFormatter $titleFormatter,
-		PageRestHelperFactory $helperFactory
+		private readonly TitleFormatter $titleFormatter,
+		private readonly PageRestHelperFactory $helperFactory,
 	) {
-		$this->titleFormatter = $titleFormatter;
 		$this->contentHelper = $helperFactory->newPageContentHelper();
-		$this->helperFactory = $helperFactory;
 	}
 
 	private function getRedirectHelper(): PageRedirectHelper {

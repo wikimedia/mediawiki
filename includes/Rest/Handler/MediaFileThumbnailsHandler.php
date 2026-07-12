@@ -20,9 +20,6 @@ use Wikimedia\ParamValidator\ParamValidator;
  * Handler for listing public thumbnail derivatives for a file.
  */
 class MediaFileThumbnailsHandler extends SimpleHandler {
-	private RepoGroup $repoGroup;
-	private PageLookup $pageLookup;
-
 	/**
 	 * @var ExistingPageRecord|false|null
 	 */
@@ -34,11 +31,9 @@ class MediaFileThumbnailsHandler extends SimpleHandler {
 	private $file = false;
 
 	public function __construct(
-		RepoGroup $repoGroup,
-		PageLookup $pageLookup
+		private readonly RepoGroup $repoGroup,
+		private readonly PageLookup $pageLookup,
 	) {
-		$this->repoGroup = $repoGroup;
-		$this->pageLookup = $pageLookup;
 	}
 
 	/**

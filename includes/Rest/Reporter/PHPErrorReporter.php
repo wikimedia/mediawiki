@@ -12,14 +12,12 @@ use Throwable;
  */
 class PHPErrorReporter implements ErrorReporter {
 
-	/** @var int */
-	private $level;
-
 	/**
 	 * @param int $level The error level to pass to trigger_error
 	 */
-	public function __construct( $level = E_USER_WARNING ) {
-		$this->level = $level;
+	public function __construct(
+		private readonly int $level = E_USER_WARNING,
+	) {
 	}
 
 	/**

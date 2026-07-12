@@ -15,7 +15,7 @@ class ResponseFactory {
 	private const CT_HTML = 'text/html; charset=utf-8';
 	private const CT_JSON = 'application/json';
 
-	private ErrorFormatter $errorFormatter;
+	private readonly ErrorFormatter $errorFormatter;
 
 	/**
 	 * @param ITextFormatter[] $textFormatters Only used to build a default ErrorFormatter
@@ -25,7 +25,10 @@ class ResponseFactory {
 	 * @param ErrorFormatter|null $errorFormatter Defaults to the legacy error shape if omitted,
 	 *   for backwards compatibility with callers constructing ResponseFactory directly.
 	 */
-	public function __construct( $textFormatters, ?ErrorFormatter $errorFormatter = null ) {
+	public function __construct(
+		array $textFormatters,
+		?ErrorFormatter $errorFormatter = null,
+	) {
 		$this->errorFormatter = $errorFormatter ?? new ErrorFormatterV1( $textFormatters, false );
 	}
 

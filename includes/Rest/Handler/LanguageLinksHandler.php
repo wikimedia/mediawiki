@@ -28,40 +28,19 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class LanguageLinksHandler extends SimpleHandler {
 
-	private IConnectionProvider $dbProvider;
-	private LanguageNameUtils $languageNameUtils;
-	private TitleFormatter $titleFormatter;
-	private TitleParser $titleParser;
-	private PageLookup $pageLookup;
-	private PageRestHelperFactory $helperFactory;
-
 	/**
 	 * @var ExistingPageRecord|false|null
 	 */
 	private $page = false;
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param LanguageNameUtils $languageNameUtils
-	 * @param TitleFormatter $titleFormatter
-	 * @param TitleParser $titleParser
-	 * @param PageLookup $pageLookup
-	 * @param PageRestHelperFactory $helperFactory
-	 */
 	public function __construct(
-		IConnectionProvider $dbProvider,
-		LanguageNameUtils $languageNameUtils,
-		TitleFormatter $titleFormatter,
-		TitleParser $titleParser,
-		PageLookup $pageLookup,
-		PageRestHelperFactory $helperFactory
+		private readonly IConnectionProvider $dbProvider,
+		private readonly LanguageNameUtils $languageNameUtils,
+		private readonly TitleFormatter $titleFormatter,
+		private readonly TitleParser $titleParser,
+		private readonly PageLookup $pageLookup,
+		private readonly PageRestHelperFactory $helperFactory,
 	) {
-		$this->dbProvider = $dbProvider;
-		$this->languageNameUtils = $languageNameUtils;
-		$this->titleFormatter = $titleFormatter;
-		$this->titleParser = $titleParser;
-		$this->pageLookup = $pageLookup;
-		$this->helperFactory = $helperFactory;
 	}
 
 	private function getRedirectHelper(): PageRedirectHelper {

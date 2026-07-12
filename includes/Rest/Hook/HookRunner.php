@@ -14,10 +14,9 @@ class HookRunner implements
 	RestCheckCanExecuteHook
 {
 
-	private HookContainer $container;
-
-	public function __construct( HookContainer $container ) {
-		$this->container = $container;
+	public function __construct(
+		private readonly HookContainer $container,
+	) {
 	}
 
 	public function onRestCheckCanExecute(

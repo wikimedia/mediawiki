@@ -24,23 +24,16 @@ class MediaLinksHandler extends SimpleHandler {
 	/** int The maximum number of media links to return */
 	private const MAX_NUM_LINKS = 100;
 
-	private IConnectionProvider $dbProvider;
-	private RepoGroup $repoGroup;
-	private PageLookup $pageLookup;
-
 	/**
 	 * @var ExistingPageRecord|false|null
 	 */
 	private $page = false;
 
 	public function __construct(
-		IConnectionProvider $dbProvider,
-		RepoGroup $repoGroup,
-		PageLookup $pageLookup
+		private readonly IConnectionProvider $dbProvider,
+		private readonly RepoGroup $repoGroup,
+		private readonly PageLookup $pageLookup,
 	) {
-		$this->dbProvider = $dbProvider;
-		$this->repoGroup = $repoGroup;
-		$this->pageLookup = $pageLookup;
 	}
 
 	private function getPage(): ?ExistingPageRecord {
