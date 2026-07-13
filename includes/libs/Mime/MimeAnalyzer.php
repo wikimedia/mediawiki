@@ -533,6 +533,13 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			// improve to the extension's type. For example, csv and json are often
 			// misdetected as text/plain.
 			$mime = $this->getMimeTypeFromExtensionOrNull( $ext );
+		} elseif ( $mime === 'application/json' ) {
+			// JSON is commonly used for specific file formats (e.g. glTF).
+			// These formats have MIME types that end in '+json'.
+			$improvedMime = $this->getMimeTypeFromExtensionOrNull( $ext );
+			if ( $improvedMime && str_ends_with( $improvedMime, '+json' ) ) {
+				$mime = $improvedMime;
+			}
 		}
 
 		# Media handling extensions can improve the MIME detected
