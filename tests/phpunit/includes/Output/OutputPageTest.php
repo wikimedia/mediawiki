@@ -92,7 +92,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		} else {
 			$op->redirect( $url );
 		}
-		$expectedUrl = str_replace( "\n", '', $url );
+		$expectedUrl = str_replace( [ "\r", "\n" ], '', $url );
 		$this->assertSame( $expectedUrl, $op->getRedirect() );
 		$this->assertSame( $expectedUrl, $op->mRedirect );
 		$this->assertSame( $code ?? '302', $op->mRedirectCode );
@@ -104,6 +104,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			[ 'http://example.com', '400' ],
 			[ 'http://example.com', 'squirrels!!!' ],
 			[ "a\nb" ],
+			[ "a\rb" ],
+			[ "a\r\nb" ],
 		];
 	}
 

@@ -454,7 +454,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function redirect( $url, $responsecode = '302' ) {
 		# Strip newlines as a paranoia check for header injection in PHP<5.1.2
-		$this->mRedirect = str_replace( "\n", '', $url );
+		$this->mRedirect = str_replace( [ "\r", "\n" ], '', $url );
 		$this->mRedirectCode = (string)$responsecode;
 	}
 
