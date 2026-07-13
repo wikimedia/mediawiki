@@ -85,16 +85,15 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideRedirect
 	 */
-	public function testRedirect( $url, $code = null ) {
+	public function testRedirect( $url, $code = null, $expectedUrl = null ) {
 		$op = $this->newInstance();
-		if ( isset( $code ) ) {
+		if ( $code !== null ) {
 			$op->redirect( $url, $code );
 		} else {
 			$op->redirect( $url );
 		}
-		$expectedUrl = str_replace( [ "\r", "\n" ], '', $url );
-		$this->assertSame( $expectedUrl, $op->getRedirect() );
-		$this->assertSame( $expectedUrl, $op->mRedirect );
+		$this->assertSame( $expectedUrl ?? $url, $op->getRedirect() );
+		$this->assertSame( $expectedUrl ?? $url, $op->mRedirect );
 		$this->assertSame( $code ?? '302', $op->mRedirectCode );
 	}
 
@@ -103,9 +102,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			[ 'http://example.com' ],
 			[ 'http://example.com', '400' ],
 			[ 'http://example.com', 'squirrels!!!' ],
-			[ "a\nb" ],
-			[ "a\rb" ],
-			[ "a\r\nb" ],
+			[ "a\nb", null, "ab" ],
+			[ "a\rb", null, "ab" ],
+			[ "a\r\nb", null, "ab" ],
 		];
 	}
 
@@ -167,20 +166,20 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	public function testSetCanonicalUrl() {
 		$op = $this->newInstance();
-		$op->setCanonicalUrl( 'http://example.comm' );
-		$op->setCanonicalUrl( 'http://example.com' );
+		$op->setCanonicalUrl( 'http://foo.example' );
+		$op->setCanonicalUrl( 'http://bar.example' );
 
-		$this->assertSame( 'http://example.com', $op->getCanonicalUrl() );
+		$this->assertSame( 'http://bar.example', $op->getCanonicalUrl() );
 
 		$headLinks = $op->getHeadLinksArray();
 
 		$this->assertContains( Html::element( 'link', [
-			'rel' => 'canonical', 'href' => 'http://example.com'
+			'rel' => 'canonical', 'href' => 'http://bar.example'
 		] ), $headLinks );
 
-		$this->assertNotContains( Html::element( 'link', [
-			'rel' => 'canonical', 'href' => 'http://example.comm'
-		] ), $headLinks );
+		$this->assertStringNotContainsString( 'http://foo.example',
+			implode( "\n", $headLinks )
+		);
 	}
 
 	public static function provideGetHeadLinksArray() {
