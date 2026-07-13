@@ -474,6 +474,10 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		}
 
 		if ( isset( $this->params['tag'] ) ) {
+			if ( !$this->changeTagsStore->canViewTag( $this->params['tag'], $this->getAuthority() ) ) {
+				$this->addWhere( '1=0' );
+			}
+
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds(
 				[ 'change_tag' => [ 'JOIN', [ $idField . ' = ct_rev_id' ] ] ]

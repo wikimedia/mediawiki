@@ -9,6 +9,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
@@ -26,6 +27,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
 class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 	use MockAuthorityTrait;
 	use TempUserTestTrait;
+	use RestrictedTagTestTrait;
 
 	private function getLoggedInTestUser() {
 		return $this->getTestUser()->getUser();
@@ -1133,4 +1135,58 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		);
 	}
 
+	/** @dataProvider provideTagFilter */
+	public function testTagFilter(
+		array $authorityRights,
+		string $tagFilter,
+		bool $shouldTagFilterFindRecentChangeEntry
+	): void {
+		$editStatus = $this->editPage( $this->getNonexistingTestPage(), 'Test' );
+		$this->assertStatusGood( $editStatus );
+		$revId = $editStatus->getNewRevision()->getId();
+
+		$this->getServiceContainer()->getChangeTagsStore()->addTags( [ 'mw-private-test' ], null, $revId );
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+
+		$params = [
+			'action' => 'query',
+			'list' => 'recentchanges',
+			'rcprop' => 'ids|tags',
+			'rctag' => $tagFilter,
+		];
+
+		[ $result ] = $this->doApiRequest(
+			$params,
+			null,
+			false,
+			$this->mockRegisteredAuthorityWithPermissions( $authorityRights )
+		);
+		if ( $shouldTagFilterFindRecentChangeEntry ) {
+			$this->assertCount( 1, $result['query']['recentchanges'] );
+			$this->assertArrayHasKey( 'tags', $result['query']['recentchanges'][0] );
+			$this->assertContains( 'mw-private-test', $result['query']['recentchanges'][0]['tags'] );
+		} else {
+			$this->assertCount( 0, $result['query']['recentchanges'] );
+		}
+	}
+
+	public static function provideTagFilter(): array {
+		return [
+			'Filtering for non-existent tag' => [
+				'authorityRights' => [ 'patrol' ],
+				'tagFilter' => 'mw-test-non-existing-tag',
+				'shouldTagFilterFindRecentChangeEntry' => false,
+			],
+			'Filtering for private tag the user cannot see' => [
+				'authorityRights' => [],
+				'tagFilter' => 'mw-private-test',
+				'shouldTagFilterFindRecentChangeEntry' => false,
+			],
+			'Filtering for private tag the user can see' => [
+				'authorityRights' => [ 'patrol' ],
+				'tagFilter' => 'mw-private-test',
+				'shouldTagFilterFindRecentChangeEntry' => true,
+			],
+		];
+	}
 }

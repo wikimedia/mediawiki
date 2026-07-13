@@ -6,6 +6,8 @@ use MediaWiki\Block\BlockUser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserIdentityValue;
 
@@ -17,6 +19,8 @@ use MediaWiki\User\UserIdentityValue;
  */
 class ApiQueryLogEventsTest extends ApiTestCase {
 	use TempUserTestTrait;
+	use MockAuthorityTrait;
+	use RestrictedTagTestTrait;
 
 	public function testExecute() {
 		[ $data ] = $this->doApiRequest( [
@@ -125,5 +129,68 @@ class ApiQueryLogEventsTest extends ApiTestCase {
 			$result2_logevents[0]['logid'],
 			'Expected log ID of the tagged block to be returned'
 		);
+	}
+
+	/** @dataProvider provideTagFilter */
+	public function testTagFilter(
+		array $authorityRights,
+		string $tagFilter,
+		bool $shouldTagFilterFindLogEvent
+	): void {
+		$title = $this->getNonexistingTestPage()->getTitle();
+		$this->assertStatusGood( $this->editPage( $title, 'Some Content' ) );
+
+		$logId = $this->newSelectQueryBuilder()
+			->select( 'log_id' )
+			->from( 'logging' )
+			->where( [ 'log_title' => $title->getDBkey() ] )
+			->caller( __METHOD__ )
+			->fetchField();
+
+		$this->getServiceContainer()->getChangeTagsStore()->addTags( [ 'mw-private-test' ], null, null, $logId );
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+
+		$params = [
+			'action' => 'query',
+			'list' => 'logevents',
+			'leprop' => 'ids|tags',
+			'letag' => $tagFilter,
+		];
+
+		[ $result ] = $this->doApiRequest(
+			$params,
+			null,
+			false,
+			$this->mockRegisteredAuthorityWithPermissions( $authorityRights )
+		);
+		if ( $shouldTagFilterFindLogEvent ) {
+			$this->assertCount( 1, $result['query']['logevents'] );
+			$this->assertContains(
+				'mw-private-test',
+				$result['query']['logevents'][0]['tags']
+			);
+		} else {
+			$this->assertCount( 0, $result['query']['logevents'] );
+		}
+	}
+
+	public static function provideTagFilter(): array {
+		return [
+			'Filtering for non-existent tag' => [
+				'authorityRights' => [ 'patrol' ],
+				'tagFilter' => 'mw-test-non-existing-tag',
+				'shouldTagFilterFindLogEvent' => false,
+			],
+			'Filtering for private tag the user cannot see' => [
+				'authorityRights' => [],
+				'tagFilter' => 'mw-private-test',
+				'shouldTagFilterFindLogEvent' => false,
+			],
+			'Filtering for private tag the user can see' => [
+				'authorityRights' => [ 'patrol' ],
+				'tagFilter' => 'mw-private-test',
+				'shouldTagFilterFindLogEvent' => true,
+			],
+		];
 	}
 }

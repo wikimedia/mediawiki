@@ -144,6 +144,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 
 		if ( $params['tag'] !== null ) {
+			if ( !$this->changeTagsStore->canViewTag( $params['tag'], $this->getAuthority() ) ) {
+				$this->addWhere( '1=0' );
+			}
+
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds( [ 'change_tag' => [ 'JOIN',
 				[ 'log_id=ct_log_id' ] ] ] );

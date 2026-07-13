@@ -4,6 +4,8 @@ namespace MediaWiki\Tests\Api\Query;
 
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
@@ -14,6 +16,8 @@ use MediaWiki\User\User;
  * @covers \MediaWiki\Api\ApiQueryDeletedrevs
  */
 class ApiQueryDeletedrevsTest extends ApiTestCase {
+	use MockAuthorityTrait;
+	use RestrictedTagTestTrait;
 
 	private Title $testTitle;
 	private User $user;
@@ -74,5 +78,63 @@ class ApiQueryDeletedrevsTest extends ApiTestCase {
 		$rev = reset( $page['deletedrevisions'] );
 
 		$this->assertArrayNotHasKey( 'sha1', $rev );
+	}
+
+	/** @dataProvider provideTagFilter */
+	public function testTagFilter(
+		array $authorityRights,
+		string $tagFilter,
+		bool $shouldTagFilterFindRevision
+	): void {
+		$testPage = $this->getExistingTestPage();
+		$revId = $testPage->getLatest();
+
+		$this->getServiceContainer()->getChangeTagsStore()->addTags( [ 'mw-private-test' ], null, $revId );
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+
+		$this->deletePage( $testPage );
+
+		$params = [
+			'action' => 'query',
+			'list' => 'deletedrevs',
+			'drprop' => 'ids|tags',
+			'drtag' => $tagFilter,
+		];
+
+		[ $result ] = $this->doApiRequest(
+			$params,
+			null,
+			false,
+			$this->mockRegisteredAuthorityWithPermissions( $authorityRights )
+		);
+		if ( $shouldTagFilterFindRevision ) {
+			$this->assertCount( 1, $result['query']['deletedrevs'] );
+			$this->assertArrayHasKey( 'revisions', $result['query']['deletedrevs'][0] );
+			$this->assertCount( 1, $result['query']['deletedrevs'][0]['revisions'] );
+			$this->assertArrayHasKey( 'tags', $result['query']['deletedrevs'][0]['revisions'][0] );
+			$this->assertContains( 'mw-private-test', $result['query']['deletedrevs'][0]['revisions'][0]['tags'] );
+		} else {
+			$this->assertCount( 0, $result['query']['deletedrevs'] );
+		}
+	}
+
+	public static function provideTagFilter(): array {
+		return [
+			'Filtering for non-existent tag' => [
+				'authorityRights' => [ 'patrol', 'deletedhistory' ],
+				'tagFilter' => 'mw-test-non-existing-tag',
+				'shouldTagFilterFindRevision' => false,
+			],
+			'Filtering for private tag the user cannot see' => [
+				'authorityRights' => [ 'deletedhistory' ],
+				'tagFilter' => 'mw-private-test',
+				'shouldTagFilterFindRevision' => false,
+			],
+			'Filtering for private tag the user can see' => [
+				'authorityRights' => [ 'patrol', 'deletedhistory' ],
+				'tagFilter' => 'mw-private-test',
+				'shouldTagFilterFindRevision' => true,
+			],
+		];
 	}
 }

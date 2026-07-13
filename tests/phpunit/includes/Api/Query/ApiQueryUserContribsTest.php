@@ -4,6 +4,8 @@ namespace MediaWiki\Tests\Api\Query;
 
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
@@ -18,6 +20,8 @@ use MediaWiki\User\UserRigorOptions;
 class ApiQueryUserContribsTest extends ApiTestCase {
 
 	use TempUserTestTrait;
+	use MockAuthorityTrait;
+	use RestrictedTagTestTrait;
 
 	public function addDBDataOnce() {
 		$this->disableAutoCreateTempUser();
@@ -169,4 +173,69 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 		$this->assertSame( $sorted, $ids, "IDs are sorted" );
 	}
 
+	/** @dataProvider provideTagFilter */
+	public function testTagFilter(
+		array $authorityRights,
+		string $tagFilter,
+		bool $shouldTagFilterFindRevision
+	): void {
+		$title = $this->getNonexistingTestPage()->getTitle();
+		$testUser = $this->getTestUser();
+		$editStatus = $this->editPage(
+			$title,
+			'Some Content',
+			'Test',
+			null,
+			$testUser->getAuthority()
+		);
+		$this->assertStatusGood( $editStatus );
+		$revId = $editStatus->getNewRevision()->getId();
+
+		$this->getServiceContainer()->getChangeTagsStore()->addTags( [ 'mw-private-test' ], null, $revId );
+		$this->setRestrictedTags( [ 'mw-private-test' => 'patrol' ] );
+
+		$params = [
+			'action' => 'query',
+			'list' => 'usercontribs',
+			'ucuser' => $testUser->getUserIdentity()->getName(),
+			'ucprop' => 'tags',
+			'uctag' => $tagFilter,
+		];
+
+		[ $result ] = $this->doApiRequest(
+			$params,
+			null,
+			false,
+			$this->mockRegisteredAuthorityWithPermissions( $authorityRights )
+		);
+		if ( $shouldTagFilterFindRevision ) {
+			$this->assertCount( 1, $result['query']['usercontribs'] );
+			$this->assertContains(
+				'mw-private-test',
+				$result['query']['usercontribs'][0]['tags']
+			);
+		} else {
+			$this->assertCount( 0, $result['query']['usercontribs'] );
+		}
+	}
+
+	public static function provideTagFilter(): array {
+		return [
+			'Filtering for non-existent tag' => [
+				'authorityRights' => [ 'patrol' ],
+				'tagFilter' => 'mw-test-non-existing-tag',
+				'shouldTagFilterFindRevision' => false,
+			],
+			'Filtering for private tag the user cannot see' => [
+				'authorityRights' => [],
+				'tagFilter' => 'mw-private-test',
+				'shouldTagFilterFindRevision' => false,
+			],
+			'Filtering for private tag the user can see' => [
+				'authorityRights' => [ 'patrol' ],
+				'tagFilter' => 'mw-private-test',
+				'shouldTagFilterFindRevision' => true,
+			],
+		];
+	}
 }

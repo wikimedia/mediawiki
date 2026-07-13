@@ -108,6 +108,10 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		}
 
 		if ( $params['tag'] !== null ) {
+			if ( !$this->changeTagsStore->canViewTag( $params['tag'], $this->getAuthority() ) ) {
+				$this->addWhere( '1=0' );
+			}
+
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds(
 				[ 'change_tag' => [ 'JOIN', [ 'ar_rev_id=ct_rev_id' ] ] ]
