@@ -234,7 +234,7 @@ class CategoryMembershipChangeJob extends Job {
 		foreach ( $categoryDeletes as $categoryName ) {
 			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryRemovedNotification( $categoryTitle );
-			if ( $insertCount++ && ( $insertCount++ % $batchSize ) == 0 ) {
+			if ( $insertCount++ && ( $insertCount % $batchSize ) == 0 ) {
 				$lbFactory->commitAndWaitForReplication( __METHOD__, $this->ticket );
 			}
 		}
