@@ -1055,7 +1055,7 @@ class FormatMetadata extends ContextSource {
 		}
 		$num ??= '';
 		if ( preg_match( '/^(-?\d+)\/(\d+)$/', $num, $m ) ) {
-			if ( $m[2] !== 0 ) {
+			if ( (int)$m[2] !== 0 ) {
 				$newNum = (int)$m[1] / (int)$m[2];
 				if ( $round !== false ) {
 					$newNum = round( $newNum, $round );
