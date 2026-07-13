@@ -2324,7 +2324,7 @@ abstract class File implements MediaHandlerState {
 						$ttl = WANObjectCache::TTL_UNCACHEABLE;
 					}
 
-					return $res;
+					return $res ?? false;
 				}
 			);
 		}

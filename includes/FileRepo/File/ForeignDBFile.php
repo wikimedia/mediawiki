@@ -111,7 +111,7 @@ class ForeignDBFile extends LocalFile {
 					$ttl = WANObjectCache::TTL_UNCACHEABLE;
 				}
 
-				return $res;
+				return $res ?? false;
 			}
 		);
 	}
