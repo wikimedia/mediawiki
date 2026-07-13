@@ -6,7 +6,7 @@
 			"Y-M D"
 		]
 	},
-	"apihelp-main-param-action": "Peseurt ober kas da benn.",
+	"apihelp-main-param-action": "Peseurt ober kas da benn. Rankout a ra an arventenn-mañ bezañ kaset evel ul lodenn eus URL ar goulenn (ha n'eo ket ar c'horf POST) evit aesaat an implij en difaziañ, en dielfennañ hag en enrollañ pe en ur silañ ar goulenn.",
 	"apihelp-main-param-format": "Furmad an ezvont.",
 	"apihelp-main-param-assertuser": "Gwiria eo mat an implijer red an hini anvet.",
 	"apihelp-main-param-requestid": "Kement talvoud merket amañ a vo lakaet er respont. Gallout a ra bezañ implijet evit diforc'hañ rekedoù.",

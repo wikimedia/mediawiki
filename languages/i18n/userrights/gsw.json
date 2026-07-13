@@ -83,6 +83,7 @@
 	"right-ipblock-exempt": "Uusnahm vu IP-Sperrine, Autoblock und Rangesperre",
 	"right-unblockself": "Sich sälber entsperre",
 	"right-protect": "Syteschutzstatus änderen un kaskadegschitzti Syte bearbeite",
+	"right-editalluserpages": "Benutzersyte bearbeite",
 	"right-editprotected": "Mit «{{int:restriction-level-sysop}}» gschützti Syten ändere",
 	"right-editsemiprotected": "Mit «{{protect-level-autoconfirmed}}» gschützti Syten ändere",
 	"right-editcontentmodel": "Inhaltsmodäll vo’re Syten ändere",

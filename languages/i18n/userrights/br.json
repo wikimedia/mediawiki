@@ -105,6 +105,7 @@
 	"right-ipblock-exempt": "Tremen dreist an IPoù stanket, ar stankadennoù emgefre hag ar bloc'hadennoù IP stanket",
 	"right-unblockself": "En em zistankañ",
 	"right-protect": "Kemmañ arventennoù gwareziñ ar pajennoù ha kemmañ ar pajennoù gwarezet dre skalierad",
+	"right-editalluserpages": "Kemmañ holl bajennoù implijer",
 	"right-editprotected": "Aozañ pajennoù gwarezet ({{int:restriction-level-sysop}})",
 	"right-editsemiprotected": "Kemmañ pajennoù gwarezet ({{int:restriction-level-autoconfirmed}})",
 	"right-editcontentmodel": "Kemmañ patrom danvez ur bajenn bennak",

@@ -179,6 +179,7 @@
 	"new-messages-link-plural": "{{PLURAL:$1|նոր հաղորդագրություն|999=նոր հաղորդագրություններ}}",
 	"new-messages-diff-link-plural": "վերջին {{PLURAL:$1|փոփոխում|999=փոփոխումներ}}",
 	"editsection": "խմբագրել",
+	"sharesection": "կիսվել",
 	"editold": "խմբագրել",
 	"viewsourceold": "դիտել վիքիկոդը",
 	"editlink": "խմբագրել",

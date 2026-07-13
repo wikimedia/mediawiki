@@ -29,6 +29,7 @@
 			"Xiplus",
 			"列维劳德",
 			"星海",
+			"烈羽",
 			"臺灣象象",
 			"阿南之人"
 		]
@@ -134,6 +135,7 @@
 	"right-ipblock-exempt": "略過IP封鎖、自動封鎖及範圍封鎖檢查",
 	"right-unblockself": "解除封鎖自己",
 	"right-protect": "更改保護設定及編輯被連鎖保護的頁面",
+	"right-editalluserpages": "編輯所有使用者頁面",
 	"right-editprotected": "編輯受保護的頁面（{{int:restriction-level-sysop}}）",
 	"right-editsemiprotected": "編輯受保護的頁面（{{int:restriction-level-autoconfirmed}}）",
 	"right-editcontentmodel": "編輯頁面的內容模型",
@@ -273,6 +275,7 @@
 	"action-bigdelete": "刪除有大量歷史記錄的頁面",
 	"action-blockemail": "封鎖或解封使用者傳送電子郵件",
 	"action-bot": "將其視為自動化程序",
+	"action-editalluserpages": "編輯此使用者頁面",
 	"action-editprotected": "編輯受保護的頁面（{{int:restriction-level-sysop}}）",
 	"action-editsemiprotected": "編輯受保護的頁面（{{int:restriction-level-autoconfirmed}}）",
 	"action-editinterface": "編輯使用者介面",

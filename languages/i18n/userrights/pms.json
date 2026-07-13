@@ -97,6 +97,7 @@
 	"right-ipblock-exempt": "Dëscavalché ij blocagi ëd j'IP, ij blocagi automàtich e ij blocagi ëd partìe d'IP",
 	"right-unblockself": "Dësblochesse da soj",
 	"right-protect": "Cambié ij livej ëd protession e modifiché le pàgine protegiùe an cascada",
+	"right-editalluserpages": "Modifiché le pàgine utent",
 	"right-editprotected": "Modifiché le pàgine protegiùe con «{{int:restriction-level-sysop}}»",
 	"right-editsemiprotected": "Modifiché le pàgine protegiùe con «{{int:restriction-level-autoconfirmed}}»",
 	"right-editcontentmodel": "Modifiché ël model ëd contnù ëd na pàgina",

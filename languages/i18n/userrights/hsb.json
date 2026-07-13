@@ -108,6 +108,7 @@
 	"right-ipblock-exempt": "Blokowanja IP, awtomatiske blokowanje a blokowanja wobwodow wobeńć",
 	"right-unblockself": "Swójske blokowanje zběhnyć",
 	"right-protect": "Škitne nastajenja změnić a z kaskadami škitane strony wobdźěłać",
+	"right-editalluserpages": "Wužiwarske strony wobdźěłać",
 	"right-editprotected": "Škitane strony wobdźěłać ({{int:restriction-level-sysop}})",
 	"right-editsemiprotected": "Strony wobdźěłać, kotrež su přez \"{{int:restriction-level-autoconfirmed}}\" škitane",
 	"right-editcontentmodel": "Wobsahowy model strony wobdźěłać",

@@ -121,6 +121,7 @@
 	"right-ipblock-exempt": "เลี่ยงการบล็อกเลขที่อยู่ไอพี บล็อกอัตโนมัติ และบล็อกช่วง",
 	"right-unblockself": "ปลดบล็อกตนเอง",
 	"right-protect": "เปลี่ยนการตั้งค่าการป้องกันและแก้ไขการป้องการแก้ไขของเว็บเพจ",
+	"right-editalluserpages": "แก้ไขหน้าผู้ใช้ทั้งหมด",
 	"right-editprotected": "แก้ไขหน้าที่ถูกล็อกในฐานะ \"{{int:restriction-level-sysop}}\"",
 	"right-editsemiprotected": "แก้ไขหน้าที่ถูกล็อกในฐานะ \"{{int:restriction-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "แก้ไขตัวแบบเนื้อหาของหน้า",

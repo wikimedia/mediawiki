@@ -107,6 +107,7 @@
 	"right-ipblock-exempt": "IP blokeoen, auto-blokeoen eta maila blokeoen gainetik pasa.",
 	"right-unblockself": "Beren burua desblokeatu",
 	"right-protect": "Orrialde babestuak aldatu eta babes maila aldatu",
+	"right-editalluserpages": "Lankide orrialde guztiak aldatu",
 	"right-editprotected": "Babestutako orrialdeak aldatu (babes jauzirik gabe)",
 	"right-editsemiprotected": "Aldatu \"{{int:restriction-level-autoconfirmed}}\" babesa duten orrialdeak",
 	"right-editcontentmodel": "Aldatu orri bateko eduki eredua",

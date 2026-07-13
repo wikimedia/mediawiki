@@ -1122,6 +1122,7 @@
 	"linterror-multiple-unclosed-formatting-tags": "Mehrere nicht geschlossene Formatierungstags auf der Seite",
 	"linterror-night-mode-unaware-background-color": "Der Inline-Stil für die Hintergrundfarbe erfordert eine Textfarbe",
 	"linterror-obsolete-tag": "Veraltetes HTML-Tag",
+	"linterror-pre-expansion": "Innerhalb eines Wikitext-Format-prä-Erweiterungs-Tags wird eine Vorlage verwendet.",
 	"linterror-pwrap-bug-workaround": "Workaround für einen Absatzumbruchfehler",
 	"linterror-self-closed-tag": "Selbstschließendes Tag",
 	"linterror-stripped-tag": "Ignoriertes Tag",

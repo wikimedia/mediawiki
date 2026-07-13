@@ -86,6 +86,7 @@
 	"right-ipblock-exempt": "Blokěrowanja IP, awtomatiske blokěrowanja a blokěrowanja wobcerkow se wobinuś",
 	"right-unblockself": "Wótblokěrowaś se",
 	"right-protect": "Šćitowe schojźeńki změniś a z kaskadami šćitane boki wobźěłaś",
+	"right-editalluserpages": "Wužywarske boki wobźěłaś",
 	"right-editprotected": "Boki wobźěłaś, kótarež su pśez \"{{int:restriction-level-sysop}}\" šćitane",
 	"right-editsemiprotected": "Boki wobźěłaś, kótarež su pśez \"{{int:restriction-level-autoconfirmed}}\" šćitane",
 	"right-editinterface": "Wužywański pówjerch wobźěłaś",

@@ -2015,7 +2015,7 @@
 	"autosumm-changed-redirect-target": "Ubah sasaran paugahan matan [[$1]] ka [[$2]]",
 	"autosumm-new": "Maulah laman nang isinya ''$1''",
 	"lag-warn-normal": "Paubahan pahanyarnya pada $1 {{PLURAL:$1|ditik|diditik}} pinanya kada cungul di daptar ngini.",
-	"lag-warn-high": "Marga pancaunya kalambatan server databasis, paubahan pahanyarnya pada {{PLURAL:$1|datik|dadatik}} pina kada ditampaiakan dalam daptar ngini.",
+	"lag-warn-high": "Maraga server parhatan balambat, paubahan nang diulah {{PLURAL:$1|datik|datik}} pauncitnya pinanya balum mancungul di daptar ini.",
 	"watchlistedit-normal-title": "Babak daptar itihan",
 	"watchlistedit-normal-done": "{{PLURAL:$1|1 judul|$1 jujudul}} dibuang matan daptar itihan Pian:",
 	"watchlistedit-raw-title": "Babak daptar itihan mantah",

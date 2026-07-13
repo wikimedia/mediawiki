@@ -122,6 +122,7 @@
 	"right-ipblock-exempt": "Evitar blocatges d'IP, de rang i automàtics",
 	"right-unblockself": "Desblocar-se a si mateixos",
 	"right-protect": "Canviar els paràmetres de protecció i modificar les pàgines en cascada",
+	"right-editalluserpages": "Editar totes les pàgines d'usuari",
 	"right-editprotected": "Modificar pàgines protegides amb \"{{int:restriction-level-sysop}}\"",
 	"right-editsemiprotected": "Modificar les pàgines protegides amb «{{int:restriction-level-autoconfirmed}}»",
 	"right-editcontentmodel": "Editar el model de contingut d'una pàgina",

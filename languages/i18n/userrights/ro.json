@@ -118,6 +118,7 @@
 	"right-ipblock-exempt": "Ocolește blocarea adresei IP, autoblocările și blocarea intervalelor IP",
 	"right-unblockself": "Se deblochează singur",
 	"right-protect": "Schimbă ajustările de protejare și modifică pagini protejate în cascadă",
+	"right-editalluserpages": "Modifică toate paginile utilizatorului",
 	"right-editprotected": "Modifică pagini protejate ca „{{int:restriction-level-sysop}}”",
 	"right-editsemiprotected": "Modifică pagini protejate ca „{{int:restriction-level-autoconfirmed}}”",
 	"right-editcontentmodel": "Modifică modelul de conținut al unei pagini",

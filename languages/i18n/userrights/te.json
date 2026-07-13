@@ -104,6 +104,7 @@
 	"right-ipblock-exempt": "ఐపీ నిరోధాలు, ఆటో నిరోధాలు, శ్రేణి నిరోధాలను తప్పించు",
 	"right-unblockself": "స్వీయ అనిరోధం",
 	"right-protect": "సంరక్షణ స్థాయిలను మార్చడం, కాస్కేడ్-రక్షిత పేజీలలో దిద్దుబాటు చెయ్యడం",
+	"right-editalluserpages": "వాడుకరి పుటలను మార్చగలడం",
 	"right-editprotected": "సంరక్షించబడిన పేజీలను సరిదిద్దడం \"{{int:restriction-level-sysop}}\"",
 	"right-editsemiprotected": "సంరక్షించబడిన పేజీలను సరిదిద్దడం \"{{int:restriction-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "పేజీ కంటెంటు మోడలును మార్చడం",

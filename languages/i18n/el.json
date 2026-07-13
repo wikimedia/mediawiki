@@ -233,6 +233,7 @@
 	"new-messages-link-plural": "{{PLURAL:$1|ένα νέο μήνυμα|999=νέα μηνύματα}}",
 	"new-messages-diff-link-plural": "{{PLURAL:$1|τελευταία αλλαγή|999=τελευταίες αλλαγές}}",
 	"editsection": "επεξεργασία",
+	"sharesection-clipboard-message": "Ο σύνδεσμος αντιγράφτηκε στο πρόχειρο.",
 	"editold": "επεξεργασία",
 	"viewsourceold": "προβολή κώδικα",
 	"editlink": "επεξεργασία",

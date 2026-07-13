@@ -88,6 +88,7 @@
 	"right-ipblock-exempt": "අන්තර්ජාල ලිපින වාරණයන්, ස්වයංක්‍රීය-වාරණයන් හා පරාස වාරණයන් මඟ හරින්න",
 	"right-unblockself": "ඔවුන් විසින්ම වාරණයෙන් මුදවීම",
 	"right-protect": "ආරක්ෂණ මට්ටම් වෙනස් කරමින් ආරක්ෂිත පිටු සංස්කරණය කරන්න",
+	"right-editalluserpages": "පරිශීලක පිටු සංස්කරණය කිරීම",
 	"right-editprotected": "ආරක්ෂිත පිටු සංස්කරණය කරන්න \"{{int:restriction-level-sysop}}\"",
 	"right-editsemiprotected": "ලෙස ආරක්ෂා සංස්කරණය කරන්න පිටු \"{{int:restriction-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "පිටුවෙහි ඇති අන්තර්ගතය ආකෘතිය සංස්කරණය කරන්න",

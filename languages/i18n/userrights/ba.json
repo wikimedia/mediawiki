@@ -7,6 +7,7 @@
 			"Haqmar",
 			"Lizalizaufa",
 			"Sagan",
+			"Айсар",
 			"З. ӘЙЛЕ",
 			"Ләйсән",
 			"Рустам Нурыев"
@@ -108,6 +109,7 @@
 	"right-ipblock-exempt": "IP буйынса, автоматик һәм арауыҡ бикләүҙәрен урап үтеү",
 	"right-unblockself": "Үҙеңде биктән сығарыу",
 	"right-protect": "Биттәрҙең һаҡланыу кимәлен үҙгәртеү һәм эҙмә-эҙлекле һаҡланған биттәрҙе төҙәтеү",
+	"right-editalluserpages": "Ҡатнашыусының барлыҡ биттәрен үҙгәртеү",
 	"right-editprotected": "\"{{int:restriction-level-sysop}}\" булараҡ һаҡланған биттәрҙе төҙәтеү",
 	"right-editsemiprotected": "\"{{int:restriction-level-autoconfirmed}}\" булараҡ һаҡланған биттәрҙе төҙәтеү",
 	"right-editcontentmodel": "Биттең эстәлек моделен мөхәррирләү",

@@ -1025,7 +1025,7 @@
 	"linterror-multiple-unclosed-formatting-tags": "Múltiples etiquetas de formato sen peche na páxina",
 	"linterror-night-mode-unaware-background-color": "O estilo en liña para a cor de fondo necesita unha cor para o texto",
 	"linterror-obsolete-tag": "Etiqueta HTML obsoleta",
-	"linterror-pre-expansion": "Modelos de expansión de etiquetas previos ao formato de texto wiki",
+	"linterror-pre-expansion": "Úsase un modelo dentro dunha expansión de etiquetas previo ao formato de texto wiki",
 	"linterror-pwrap-bug-workaround": "Solución de erros de axuste de parágrafo",
 	"linterror-self-closed-tag": "Etiqueta auto-pechada",
 	"linterror-stripped-tag": "Etiquetas mal situadas",

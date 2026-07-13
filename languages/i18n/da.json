@@ -1073,7 +1073,7 @@
 	"linterror-multiple-unclosed-formatting-tags": "Flere ikke-lukkede formateringstags på siden",
 	"linterror-night-mode-unaware-background-color": "Indlejret baggrundsfarve kræver tekstfarve",
 	"linterror-obsolete-tag": "Udgået HTML-tag",
-	"linterror-pre-expansion": "Wikitext format pre extension tag udvidende skabeloner",
+	"linterror-pre-expansion": "En skabelon bruges inde i et wikitext-format pre-udvidelsestag",
 	"linterror-pwrap-bug-workaround": "Løsning om fejl i afsnitombrydning",
 	"linterror-self-closed-tag": "Selvlukket tag",
 	"linterror-stripped-tag": "Strippet tag",

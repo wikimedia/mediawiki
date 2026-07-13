@@ -1037,7 +1037,7 @@
 	"linterror-multiple-unclosed-formatting-tags": "Səhifədə çoxlu qapalı olmayan formatlama teqləri",
 	"linterror-night-mode-unaware-background-color": "Fon rəngi daxili stil mətn rəngini tələb edir",
 	"linterror-obsolete-tag": "Köhnəlmiş HTML etiketi",
-	"linterror-pre-expansion": "Vikimətn formatı pre uzantı teqi şablonları işə salır",
+	"linterror-pre-expansion": "Şablon, vikitext formatlı pre-extension teqinin içərisində istifadə olunur",
 	"linterror-pwrap-bug-workaround": "Paraqraf sürüşdürmə xətası müvəqqəti həlli",
 	"linterror-self-closed-tag": "Self-qapalı tag",
 	"linterror-stripped-tag": "Ləğv edilmiş etiket",

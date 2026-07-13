@@ -113,6 +113,7 @@
 	"right-ipblock-exempt": "IP ბლოკის, ავტობლოკის და დიაპაზონთა ბლოკის გასვლა",
 	"right-unblockself": "საკუთარი თავის განბლოკვა",
 	"right-protect": "გვერდების დაცვის დონის შეცვლა და კასკადურად დაცული გვერდების რედაქტირება",
+	"right-editalluserpages": "მომხმარებლების გვერდების რედაქტირება",
 	"right-editprotected": "გვერდების რედაქტირება რომლებიც დაცულია როგორც „{{int:restriction-level-sysop}}“",
 	"right-editsemiprotected": "გვერდების რედაქტირება რომლებიც დაცულია როგორც „{{int:restriction-level-autoconfirmed}}“",
 	"right-editcontentmodel": "გვერდის კონტენტური მოდელის რედაქტირება",

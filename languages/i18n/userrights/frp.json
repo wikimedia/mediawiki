@@ -97,6 +97,7 @@
 	"right-ipblock-exempt": "Èvitar los blocâjos d’IP, los blocâjos ôtomaticos et los blocâjos de plages IP",
 	"right-unblockself": "Sè dèblocar sè-mémo",
 	"right-protect": "Changiér la configuracion de protèccion et pués changiér les pâges protègiêes en cascâda",
+	"right-editalluserpages": "Changiér les pâges usanciér",
 	"right-editprotected": "Changiér les pâges protègiêes avouéc « {{int:restriction-level-sysop}} »",
 	"right-editsemiprotected": "Changiér les pâges protègiêes avouéc « {{int:restriction-level-autoconfirmed}} »",
 	"right-editcontentmodel": "Changiér lo modèlo de contegnu d’una pâge",

@@ -22,7 +22,7 @@
 	"cdx-table-pager-button-last-page": "Zadnja stranica",
 	"cdx-table-pager-button-next-page": "Sljedeća stranica",
 	"cdx-table-pager-button-prev-page": "Prethodna stranica",
-	"cdx-table-pager-items-per-page-current": "$1 {{PLURAL:$1|stavka|stavke|stavaka}}",
+	"cdx-table-pager-items-per-page-current": "$1 {{PLURAL:$1|stavka|stavke|stavaka}} po stranici",
 	"cdx-table-pager-items-per-page-default": "Broj rezultata po stranici",
 	"cdx-table-pagination-status-message-determinate-long": "Prikazuju se rezultati $1&nbsp;–&nbsp;$2 od njih $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 od $3",

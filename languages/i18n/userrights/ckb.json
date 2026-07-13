@@ -103,6 +103,7 @@
 	"right-ipblock-exempt": "لادان لە بەربەستنەکانی ئایپی، بەربەستنە خۆگەڕەکان و بەربەستنەکانی زنجیرە",
 	"right-unblockself": "کردنەوەی خۆیان",
 	"right-protect": "گۆڕینی ڕێکخستنەکانی پاراستن و دەستکاریی پەڕە پارێزراوە تاڤگەیییەکان",
+	"right-editalluserpages": "دەستکاریی پەڕەکانی بەکارھێنەری",
 	"right-editprotected": "دەستکاریی پەڕە پارێزراوەکانی وەک «{{int:restriction-level-sysop}}»",
 	"right-editsemiprotected": "دەستکاریی پەڕە پارێزراوەکانی وەک «{{int:restriction-level-autoconfirmed}}»",
 	"right-editinterface": "دەستکاریی ڕووکاری بەکارھێنەر",

@@ -88,6 +88,7 @@
 	"action-managechangetags": "ǩeâlgglid raajjâd, väʹldded âânnmõʹšše leʹbe väʹldded meädda âânnmõõžžâst",
 	"action-deletechangetags": "jaukkeed ǩeâlgglid teâttvuâđast",
 	"action-bigdelete": "jaukkeed seeidaid, koin lie kuʹǩes historia",
+	"action-editalluserpages": "muʹtted tän õõʹnniseeid",
 	"action-editprotected": "muʹtted seeidaid, kook lie suõjjuum tässa \"{{int:restriction-level-sysop}}\"",
 	"action-editsemiprotected": "muʹtted seeidaid, kook lie suõjjuum tässa \"{{int:restriction-level-autoconfirmed}}\"",
 	"action-editinterface": "muʹtted ââʹnnemõhttõõzz",

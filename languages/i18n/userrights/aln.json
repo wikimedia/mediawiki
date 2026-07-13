@@ -66,6 +66,7 @@
 	"right-blockemail": "Blloko përdoruesin që të mos dërgojë postë elektronike",
 	"right-hideuser": "Blloko përdorues, duke fshehur nga publiku",
 	"right-protect": "Ndrysho nivelin mbrojtës dhe redakto faqet e mbrojtura",
+	"right-editalluserpages": "Redakto faqet përdorues",
 	"right-editprotected": "Redakto faqet e mbrojtura (pa ndryshuar mbrojtjen)",
 	"right-editinterface": "Ndrysho parapamjen e përdoruesit",
 	"right-editusercss": "Redakto skedat CSS të përdoruesve tjerë",

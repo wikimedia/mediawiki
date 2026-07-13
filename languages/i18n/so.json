@@ -996,7 +996,7 @@
 	"linterror-multiple-unclosed-formatting-tags": "Calaamado qaabayn oo badan oo aan la xirin oo ku jira bogga",
 	"linterror-night-mode-unaware-background-color": "Qaabka midabka asalka ee gudaha wuxuu u baahan yahay midab qoraal",
 	"linterror-obsolete-tag": "Calaamad HTML ah oo duugowday",
-	"linterror-pre-expansion": "Qaabka Wikitext ee sumadda pre ayaa balaadhinaya tusmada",
+	"linterror-pre-expansion": "Tusmada ayaa lagu isticmaalayaa gudaha calaamada kordhinta ee qaabka wikitext",
 	"linterror-pwrap-bug-workaround": "Xal ku meelgaar ah oo loogu talagalay khaladka duubista tuducyada",
 	"linterror-self-closed-tag": "Calaamad is-xiraysa",
 	"linterror-stripped-tag": "Calaamad laga saaray",
