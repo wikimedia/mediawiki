@@ -760,7 +760,7 @@ class SkinTemplate extends Skin {
 			'text' => $this->msg( 'pt-createaccount' )->text(),
 			'href' => SkinComponentUtils::makeSpecialUrl( 'CreateAccount', $returnto ),
 			'active' => $title->isSpecial( 'CreateAccount' ),
-			'icon' => 'userAdd'
+			'icon' => 'userAvatar'
 		];
 	}
 
