@@ -736,6 +736,8 @@
 	"bad-double-underscore-category-desc": "The page contains a invalid localized [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|behavior switch]]. Valid localizations begin and end with double underscores.",
 	"double-px-category": "Pages with image sizes containing extra px",
 	"double-px-category-desc": "The page contains an image whose size contains an extra <code>px</code> suffix, like <code>100pxpx</code>.",
+	"media-limit-reached": "Pages where media limit was reached",
+	"media-limit-reached-desc": "The page contains too many media and some of them are not rendered because of that.",
 	"undo-success": "The edit can be undone.\nPlease check the comparison below to verify that this is what you want to do, and then publish the changes below to finish undoing the edit.",
 	"undo-failure": "The edit could not be undone due to conflicting intermediate edits.",
 	"undo-main-slot-only": "The edit could not be undone because it involves content outside the main slot.",

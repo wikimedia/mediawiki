@@ -61,6 +61,8 @@ class TrackingCategories {
 		'bad-language-code-category',
 		'bad-double-underscore-category',
 		'double-px-category',
+		# Emitted in Parsoid
+		'media-limit-reached',
 	];
 
 	public function __construct(
