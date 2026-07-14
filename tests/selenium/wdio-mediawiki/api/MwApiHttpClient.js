@@ -9,7 +9,7 @@ export class MwApiHttpClient {
 		this.verbose = options.verbose;
 	}
 
-	async request( params ) {
+	async request( params, attempt = 1 ) {
 		const url = new URL( this.apiUrl );
 		url.searchParams.set( 'format', 'json' );
 
@@ -68,6 +68,14 @@ export class MwApiHttpClient {
 				const code = data.error.code || 'unknown';
 				const info = data.error.info || JSON.stringify( data.error );
 				console.error( `[API] API Error: ${ code }: ${ info }` );
+				// Retry transient server errors, e.g. DB deadlocks.
+				if ( attempt < 3 && code.startsWith( 'internal_api_error_' ) ) {
+					console.warn( `[API] Retrying request (attempt ${ attempt + 1 } of 3)` );
+					await new Promise( ( resolve ) => {
+						setTimeout( resolve, 1000 );
+					} );
+					return this.request( params, attempt + 1 );
+				}
 				throw new Error( `${ code }: ${ info }` );
 			}
 
