@@ -174,6 +174,26 @@ module.exports = function ( grunt ) {
 		return ok;
 	} );
 
+	// Runs the standalone browser coverage runner (headless Chrome + V8 coverage,
+	// remapped to source via ResourceLoader source maps). Separate from `qunit`
+	// because it requires Chrome and runs outside Karma. See
+	// tests/qunit/coverage-runner.js.
+	grunt.registerTask( 'qunit-coverage-run', function () {
+		const done = this.async();
+		const args = [ 'tests/qunit/coverage-runner.js' ];
+		if ( qunitComponent ) {
+			args.push( '--component=' + qunitComponent );
+		}
+		grunt.util.spawn( {
+			cmd: 'node',
+			args: args,
+			opts: { stdio: 'inherit' }
+		}, ( err, result, code ) => {
+			done( code === 0 );
+		} );
+	} );
+
 	grunt.registerTask( 'lint', [ 'eslint', 'banana', 'stylelint' ] );
 	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:firefox' ] );
+	grunt.registerTask( 'qunit-coverage', [ 'assert-mw-env', 'qunit-coverage-run' ] );
 };

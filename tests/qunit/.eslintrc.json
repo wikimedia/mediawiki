@@ -19,5 +19,11 @@
 		"no-jquery/no-global-selector": "off",
 		"no-jquery/no-parse-html-literal": "off",
 		"qunit/resolve-async": "off"
-	}
+	},
+	"overrides": [
+		{
+			"files": [ "coverage-runner.js" ],
+			"extends": [ "wikimedia/server" ]
+		}
+	]
 }
