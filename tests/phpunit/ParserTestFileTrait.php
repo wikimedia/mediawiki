@@ -185,5 +185,13 @@ trait ParserTestFileTrait {
 		$runner->getRecorder()->setTestCase( $this );
 		$result = $runner->runTest( $test, $mode );
 		$this->assertEquals( $result->expected, $result->actual );
+		if ( $runner->unexpectedTestPasses ) {
+			$runner->unexpectedTestPasses = false;
+			$this->fail(
+				"Unexpectedly passing test. The known failures json file may" .
+				"need an update via --updateKnownFailures option to the" .
+				"parserTests.php runner."
+			);
+		}
 	}
 }
