@@ -469,6 +469,8 @@ because of Phabricator reports.
 * LocalFile::lock() and LocalFile::unlock(), deprecated since 1.38, now emit
   deprecation warnings. Use acquireFileLock() and releaseFileLock() instead.
   LocalFileLockError is deprecated along with these methods.
+* The global function wfArrayPlus2d(), deprecated since 1.46, now emits
+  deprecation warnings.
 * $wgUseCopyrightUpload has been deprecated and will be removed in a future
   version. See T430254 for details.
 * The following ChangeTags methods have been deprecated and emit deprecation
