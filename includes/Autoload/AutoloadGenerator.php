@@ -67,13 +67,6 @@ class AutoloadGenerator {
 	protected $excludePaths = [];
 
 	/**
-	 * Configured PSR4 namespaces
-	 *
-	 * @var string[] namespace => path
-	 */
-	protected $psr4Namespaces = [];
-
-	/**
 	 * @param string $basepath Root path of the project being scanned for classes
 	 * @param array|string $flags
 	 *
@@ -100,22 +93,6 @@ class AutoloadGenerator {
 	public function setExcludePaths( array $paths ) {
 		foreach ( $paths as $path ) {
 			$this->excludePaths[] = self::normalizePathSeparator( $path );
-		}
-	}
-
-	/**
-	 * Unlike self::setExcludePaths(), this will only skip outputting the
-	 * autoloader entry when the namespace matches the path.
-	 *
-	 * @since 1.32
-	 * @deprecated since 1.40 - PSR-4 classes are now included in the generated classmap, hard-deprecated since 1.45
-	 * @param string[] $namespaces Associative array mapping namespace to path
-	 */
-	public function setPsr4Namespaces( array $namespaces ) {
-		wfDeprecated( __METHOD__, '1.40' );
-		foreach ( $namespaces as $ns => $path ) {
-			$ns = rtrim( $ns, '\\' ) . '\\';
-			$this->psr4Namespaces[$ns] = rtrim( self::normalizePathSeparator( $path ), '/' );
 		}
 	}
 
