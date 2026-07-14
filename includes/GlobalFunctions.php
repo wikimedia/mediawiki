@@ -108,9 +108,10 @@ function wfLoadSkins( array $skins ) {
  * @param array $insert The array to insert.
  * @param mixed $after The key to insert after.
  * @return array
- * @deprecated since 1.46, use ArrayUtils::insertAfter
+ * @deprecated since 1.46, hard-deprecated since 1.47, use ArrayUtils::insertAfter
  */
 function wfArrayInsertAfter( array $array, array $insert, $after ) {
+	wfDeprecated( __FUNCTION__, '1.46' );
 	return ArrayUtils::insertAfter( $array, $insert, $after );
 }
 

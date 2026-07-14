@@ -471,6 +471,8 @@ because of Phabricator reports.
   LocalFileLockError is deprecated along with these methods.
 * The global function wfArrayPlus2d(), deprecated since 1.46, now emits
   deprecation warnings.
+* The global function wfArrayInsertAfter(), deprecated since 1.46, now emits
+  deprecation warnings.
 * $wgUseCopyrightUpload has been deprecated and will be removed in a future
   version. See T430254 for details.
 * The following ChangeTags methods have been deprecated and emit deprecation
