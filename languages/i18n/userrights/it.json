@@ -269,7 +269,7 @@
 	"action-bigdelete": "cancellare pagine con cronologie lunghe",
 	"action-blockemail": "bloccare o sbloccare un utente dall'invio di email",
 	"action-bot": "essere trattato come processo automatizzato",
-	"action-editalluserpages": "modificare questa pagina utente",
+	"action-editalluserpages": "modificare le pagine di altri utenti",
 	"action-editprotected": "modificare pagine protette con \"{{int:restriction-level-sysop}}\"",
 	"action-editsemiprotected": "modificare pagine protette con \"{{int:restriction-level-autoconfirmed}}\"",
 	"action-editinterface": "modificare l'interfaccia utente",

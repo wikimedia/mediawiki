@@ -1060,7 +1060,7 @@
 	"linterror-multiple-unclosed-formatting-tags": "Více neuzavřených formátovacích značek na stránce",
 	"linterror-night-mode-unaware-background-color": "Vložený styl definující barvu pozadí vyžaduje barvu textu",
 	"linterror-obsolete-tag": "Zastaralá HTML značka",
-	"linterror-pre-expansion": "Rozšiřovací značka pre pro formátování wikitextu rozbaluje šablony",
+	"linterror-pre-expansion": "Uvnitř rozšiřovací značky pre pro formátování wikitextu se používá šablona",
 	"linterror-pwrap-bug-workaround": "Nowrap prvek s blokovým prvkem na jednom řádku",
 	"linterror-self-closed-tag": "Sebeuzavírající značka",
 	"linterror-stripped-tag": "Vyříznutý prvek",

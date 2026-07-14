@@ -1107,7 +1107,7 @@
 	"linterror-multiple-unclosed-formatting-tags": "Meerdere niet-afgesloten opmaakelementen op de pagina",
 	"linterror-night-mode-unaware-background-color": "De stijl voor de achtergrondkleur in de tekst heeft een tekstkleur nodig",
 	"linterror-obsolete-tag": "Verouderd HTML element",
-	"linterror-pre-expansion": "Er wordt een sjabloon gebruikt binnenin een uitbreidingstag ‘pre’ in wikitekstformaat",
+	"linterror-pre-expansion": "Er wordt een sjabloon gebruikt binnenin een uitbreidingstag ‘pre’ in wikitekstopmaak",
 	"linterror-pwrap-bug-workaround": "Tijdelijke oplossing voor de alinea-omwikkelingsbug",
 	"linterror-self-closed-tag": "Zelfsluitend element",
 	"linterror-stripped-tag": "Genegeerd element",

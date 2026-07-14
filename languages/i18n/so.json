@@ -736,6 +736,8 @@
 	"bad-double-underscore-category-desc": "Bogga waxa uu ka kooban yahay wax aan sax ahayn oo la lokalize gareeyay [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|behavior switch]]. Lokalization-ka saxda ah waxay ku bilaabmaan kuna dhammaadaan laba hoosta.",
 	"double-px-category": "Bogagga leh cabbirrada sawirrada ee leh px dheeraad ah",
 	"double-px-category-desc": "Bogga waxa uu ka kooban yahay sawir dhumucdiisu ay wadataa horgale dheeraad ah oo ah <code>px</code>, sida <code>100pxpx</code>.",
+	"media-limit-reached": "Bogagga ay gaareen xadka warbaahinta",
+	"media-limit-reached-desc": "Boggu waxa uu ka kooban yahay warbaahin aad u badan, qaar ka mid ahna lama soo bandhigin sababtaas awgeed.",
 	"undo-success": "Wax ka beddelka waa la ka laaban karaa.\nFadlan hubi isbarbardhigga hoose si aad u xaqiijiso in tani ay tahay waxa aad rabto inaad sameyso, ka dibna daabac isbeddellada hoose si aad u dhammaystirto ka laabashada wax ka beddelka.",
 	"undo-failure": "Wax ka beddelka lama laaban karo sababtoo ah waxaa jira wax ka beddello kale oo is khilaafsan oo dhexda lagu sameeyay.",
 	"undo-main-slot-only": "Wax ka beddelka dib looma celin karo sababtoo ah waxa uu khuseeyaa nuxur ka baxsan booska muhiimka ah.",

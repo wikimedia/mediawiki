@@ -288,7 +288,7 @@
 	"action-bigdelete": "删除有大型历史的页面",
 	"action-blockemail": "阻止或取消阻止用户发送电子邮件",
 	"action-bot": "被视为自动化程序",
-	"action-editalluserpages": "编辑该用户页",
+	"action-editalluserpages": "编辑其他用户的用户页",
 	"action-editprotected": "编辑受保护的页面（{{int:restriction-level-sysop}}）",
 	"action-editsemiprotected": "编辑受保护的页面（{{int:restriction-level-autoconfirmed}}）",
 	"action-editinterface": "编辑用户界面",
