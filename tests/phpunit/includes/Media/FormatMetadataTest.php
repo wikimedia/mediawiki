@@ -45,6 +45,16 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
+	 * Check for correct formatting of division by zero.
+	 * This is not reachable from user input since such fractions are rejected
+	 * by Exif::isRational()
+	 */
+	public function testDivisionByZero() {
+		$formatted = FormatMetadata::getFormattedData( [ 'FNumber' => '1/0' ] );
+		$this->assertSame( [ 'FNumber' => 'f/1/0' ], $formatted );
+	}
+
+	/**
 	 * @dataProvider provideResolveMultivalueValue
 	 */
 	public function testResolveMultivalueValue( $input, $output ) {
