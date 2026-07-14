@@ -429,6 +429,7 @@
 	"userlogin-authpopup-loggingin-title": "O kevreañ…",
 	"userlogin-authpopup-retry": "Klaskit en-dro",
 	"userlogin-authpopup-cancel": "Nullañ",
+	"userlogin-authpopup-closeme": "Mar gwelit ar gemennadenn-mañ e c'hallit serriñ ar prenestr-mañ.",
 	"loginsuccesstitle": "Kevreet oc'h.",
 	"loginsuccess": "'''Kevreet oc'h bremañ ouzh {{SITENAME}} evel \"$1\".'''",
 	"nosuchuser": "N'eus ket eus an implijer \"$1\".\nKizidik eo anv an implijerien ouzh ar pennlizherennoù.\nGwiriit eo bet skrivet mat an anv ganeoc'h pe [[Special:CreateAccount|krouit ur gont nevez]].",

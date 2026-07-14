@@ -3031,7 +3031,7 @@
 	"feedback-thanks-title": "Mercés !",
 	"feedback-useragent": "Agent utilizaire :",
 	"searchsuggest-search": "Recercar sus {{SITENAME}}",
-	"searchsuggest-containing": "Cercar las paginas que contènon",
+	"searchsuggest-containing": "Cercar las paginas que contenon",
 	"api-clientside-error-timeout": "Lo servidor a pas respondut dins lo relambi previst.",
 	"api-clientside-error-invalidresponse": "Respònsa invalida dau serveire.",
 	"api-error-badtoken": "Error intèrna : marrit « geton ».",
