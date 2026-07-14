@@ -636,15 +636,19 @@ class FormatMetadata extends ContextSource {
 					case 'Urgency':
 						// 1-8 with 1 being highest, 5 normal
 						// 0 is reserved, and 9 is 'user-defined'.
-						$urgency = '';
-						if ( $val === 0 || $val === 9 ) {
+						$ival = (int)$val;
+						if ( (string)$ival !== (string)$val ) {
+							$urgency = '';
+						} elseif ( $ival < 1 ) {
 							$urgency = 'other';
-						} elseif ( $val < 5 && $val > 1 ) {
+						} elseif ( $ival < 5 ) {
 							$urgency = 'high';
-						} elseif ( $val === 5 ) {
+						} elseif ( $ival === 5 ) {
 							$urgency = 'normal';
-						} elseif ( $val <= 8 && $val > 5 ) {
+						} elseif ( $ival < 9 ) {
 							$urgency = 'low';
+						} else {
+							$urgency = 'other';
 						}
 
 						if ( $urgency !== '' ) {

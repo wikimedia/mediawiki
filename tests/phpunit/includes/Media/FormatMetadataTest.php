@@ -185,4 +185,45 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 			],
 		];
 	}
+
+	public static function provideIptcUrgency() {
+		return [
+			[ '0', 'User-defined priority (0)' ],
+			[ '1', 'High (1)' ],
+			[ '2', 'High (2)' ],
+			[ '3', 'High (3)' ],
+			[ '4', 'High (4)' ],
+			[ '5', 'Normal (5)' ],
+			[ '6', 'Low (6)' ],
+			[ '7', 'Low (7)' ],
+			[ '8', 'Low (8)' ],
+			[ '9', 'User-defined priority (9)' ],
+			[ '<script></script>', '&lt;script&gt;&lt;/script&gt;' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideIptcUrgency
+	 */
+	public function testIptcUrgency( string $urgency, string $expected ) {
+		$result = FormatMetadata::getFormattedData( [ 'Urgency' => $urgency ] );
+		$this->assertSame( $expected, $result['Urgency'] );
+	}
+
+	public function testIptcUrgencyIntegrated() {
+		$file = $this->dataFile( 'iptc-urgency.jpg', 'image/jpeg' );
+		$meta = $file->formatMetadata();
+		$this->assertSame(
+			[
+				'visible' => [],
+				'collapsed' => [ [
+					'id' => 'exif-urgency',
+					'name' => 'Urgency',
+					'value' => 'High (1)',
+				] ]
+			],
+			$meta
+		);
+	}
+
 }
