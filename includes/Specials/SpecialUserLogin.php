@@ -161,10 +161,24 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 
 	/** @inheritDoc */
 	protected function logAuthResult( $success, UserIdentity $performer, $status = null ) {
-		LoggerFactory::getInstance( 'authevents' )->info( 'Login attempt', [
+		$request = $this->getRequest();
+
+		$authMethod = 'standard';
+		if ( $this->securityLevel ) {
+			$returnToQuery = wfCgiToArray( $request->getText( 'returntoquery' ) );
+			if ( $request->getRawVal( 'display' ) === 'popup' ) {
+				$authMethod = 'authPopup';
+			} elseif ( isset( $returnToQuery['requestUniqueId'] ) ) {
+				$authMethod = 'fallbackDataStash';
+			}
+		}
+
+		LoggerFactory::getInstance( 'authevents' )->info( 'Login attempt, reauth={reauth}', [
 			'event' => 'login',
 			'successful' => $success,
 			'accountType' => $this->identityUtils->getShortUserTypeInternal( $performer ),
+			'reauth' => (bool)$this->securityLevel,
+			'authMethod' => $authMethod,
 			'status' => strval( $status ),
 		] );
 	}
