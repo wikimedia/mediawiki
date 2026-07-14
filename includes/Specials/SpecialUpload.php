@@ -339,7 +339,9 @@ class SpecialUpload extends SpecialPage {
 							$page = new WikiFilePage( $title );
 							$page->doPurge();
 						}
-						$this->getOutput()->redirect( $this->mRequest->getText( 'wpDestUrl' ) );
+						$this->getOutput()->redirect(
+							$title ? $title->getFullURL() : Title::newMainPage()->getFullURL()
+						);
 						break;
 					case 'Warning':
 						$this->showUploadWarning( UploadBase::unserializeWarnings( $progress['warnings'] ) );
@@ -428,19 +430,6 @@ class SpecialUpload extends SpecialPage {
 		// $isActive = $options['active'] ?? false;
 		//$progressBarProperty = $isActive ? '' : 'disabled';
 		$message = $this->msg( $options['msg'] )->escaped();
-		$destUrl = $this->mRequest->getText( 'wpDestUrl', '' );
-		if ( !$destUrl && $this->mUpload ) {
-			if ( !$this->mLocalFile ) {
-				$this->mLocalFile = $this->mUpload->getLocalFile();
-			}
-			// This probably means the title is bad, so we can't get the URL
-			// but we need to wait for the job to execute.
-			if ( $this->mLocalFile === null ) {
-				$destUrl = '';
-			} else {
-				$destUrl = $this->mLocalFile->getTitle()->getFullURL();
-			}
-		}
 
 		$destName = $this->mDesiredDestName;
 		if ( !$destName ) {
@@ -455,10 +444,6 @@ class SpecialUpload extends SpecialPage {
 			'SourceType' => [
 				'type' => 'hidden',
 				'default' => $this->mSourceType,
-			],
-			'DestUrl' => [
-				'type' => 'hidden',
-				'default' => $destUrl,
 			],
 			'DestFile' => [
 				'type' => 'hidden',
