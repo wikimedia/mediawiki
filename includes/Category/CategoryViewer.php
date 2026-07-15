@@ -225,21 +225,6 @@ class CategoryViewer extends ContextSource {
 	}
 
 	/**
-	 * Get the character to be used for sorting subcategories.
-	 *
-	 * @deprecated since 1.45, treat sortkey for sub-category the same as for others instead.
-	 * @param PageIdentity $page
-	 * @param string $sortkey The human-readable sortkey (before transforming to icu or whatever).
-	 * @return string
-	 */
-	public function getSubcategorySortChar( PageIdentity $page, string $sortkey ): string {
-		wfDeprecated( __METHOD__, '1.45' );
-		$firstChar = $this->collation->getFirstLetter( $sortkey );
-
-		return $this->languageConverter->convert( $firstChar );
-	}
-
-	/**
 	 * Add a page in the image namespace
 	 * @param PageReference $page
 	 * @param string $sortkey
