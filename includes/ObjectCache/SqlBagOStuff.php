@@ -21,6 +21,7 @@ use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\DBQueryDisconnectedError;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -1603,6 +1604,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		if ( $exception instanceof DBConnectionError ) {
 			$this->setLastError( self::ERR_UNREACHABLE );
 			$this->logger->warning( __METHOD__ . ": ignoring connection error" );
+		} elseif ( $exception instanceof DBQueryDisconnectedError ) {
+			$this->setLastError( self::ERR_NO_RESPONSE );
+			$this->logger->warning( __METHOD__ . ": ignoring connection loss" );
 		} else {
 			$this->setLastError( self::ERR_UNEXPECTED );
 			$this->logger->warning( __METHOD__ . ": ignoring query error" );
