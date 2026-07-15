@@ -790,9 +790,12 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			return 'private';
 		}
 
-		if ( isset( $params['prop'] ) && in_array( 'tags', $params['prop'], true ) ) {
-			// ts_tags output varies by the viewer's rights when restricted
-			// tags are configured; the mode must not depend on configuration
+		// The 'tags' output and the 'tag'-filtered row set both vary by the
+		// viewer's rights when restricted tags are configured; the mode must
+		// not depend on configuration.
+		if ( ( isset( $params['prop'] ) && in_array( 'tags', $params['prop'], true ) )
+			|| isset( $params['tag'] )
+		) {
 			return 'anon-public-user-private';
 		}
 

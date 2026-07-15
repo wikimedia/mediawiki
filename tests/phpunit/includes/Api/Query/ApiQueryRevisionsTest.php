@@ -268,12 +268,12 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 	/**
 	 * @dataProvider provideGetCacheMode
 	 */
-	public function testGetCacheModePrivateWhenTagsRequested( array $prop, string $expected ): void {
+	public function testGetCacheMode( array $prop, string $expected, ?string $tag = null ): void {
 		$this->overrideConfigValue( MainConfigNames::RestrictedTagViewRights, [] );
 
 		$revisions = $this->newRevisionsQueryModule( $this->mockRegisteredNullAuthority() );
 
-		$this->assertSame( $expected, $revisions->getCacheMode( [ 'prop' => $prop ] ) );
+		$this->assertSame( $expected, $revisions->getCacheMode( [ 'prop' => $prop, 'tag' => $tag ] ) );
 	}
 
 	public static function provideGetCacheMode(): array {
@@ -285,6 +285,11 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 			'no tags prop stays public' => [
 				'prop' => [ 'ids' ],
 				'expected' => 'public',
+			],
+			'tag filter is per-viewer private' => [
+				'prop' => [ 'ids' ],
+				'expected' => 'anon-public-user-private',
+				'tag' => 'mw-private-test',
 			],
 		];
 	}
