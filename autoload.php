@@ -2278,6 +2278,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Mail\\UserMailer' => __DIR__ . '/includes/Mail/UserMailer.php',
 	'MediaWiki\\MainConfigNames' => __DIR__ . '/includes/MainConfigNames.php',
 	'MediaWiki\\MainConfigSchema' => __DIR__ . '/includes/MainConfigSchema.php',
+	'MediaWiki\\Maintenance\\ApplyChangeTag' => __DIR__ . '/maintenance/applyChangeTag.php',
 	'MediaWiki\\Maintenance\\BackupDumper' => __DIR__ . '/maintenance/includes/BackupDumper.php',
 	'MediaWiki\\Maintenance\\Benchmarker' => __DIR__ . '/maintenance/includes/Benchmarker.php',
 	'MediaWiki\\Maintenance\\DeleteLocalPasswords' => __DIR__ . '/maintenance/includes/DeleteLocalPasswords.php',
