@@ -11,7 +11,6 @@ use Generator;
 use MediaWiki;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigException;
-use MediaWiki\Debug\MWDebug;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -721,24 +720,6 @@ abstract class Maintenance {
 			}
 			$this->fatalError( $msg );
 		}
-	}
-
-	/**
-	 * Returns an instance of the given maintenance script, with all of the current arguments
-	 * passed to it.
-	 *
-	 * Callers are expected to run the returned maintenance script instance by calling {@link Maintenance::execute}
-	 *
-	 * @deprecated Since 1.43. Use {@link Maintenance::createChild} instead. This method is an alias to that method.
-	 * @param string $maintClass A name of a child maintenance class
-	 * @param string|null $classFile Full path of where the child is
-	 * @return Maintenance The created instance, which the caller is expected to run by calling
-	 *   {@link Maintenance::execute} on the returned object.
-	 */
-	public function runChild( $maintClass, $classFile = null ) {
-		wfDeprecated( __METHOD__, '1.43' );
-		MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'runChild', '1.43' );
-		return self::createChild( $maintClass, $classFile );
 	}
 
 	/**

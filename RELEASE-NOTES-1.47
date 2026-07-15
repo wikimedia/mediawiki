@@ -239,6 +239,7 @@ because of Phabricator reports.
   ::outXmlHeader() have been removed. Use/override ::outputHeader(),
   ::outputItem(), ::outputFooter(), ::sendHttpHeaders() and ::outputXmlHeader()
   instead.
+* Maintenance::runChild(), deprecated in 1.43, has been removed.
 * AutoloadGenerator::setPsr4Namespaces, deprecated in 1.40, has been removed.
 * ResourceLoader::makeConfigSetScript, deprecated in 1.44, has been removed.
   Use package files instead or return mw.config.set() combined with
