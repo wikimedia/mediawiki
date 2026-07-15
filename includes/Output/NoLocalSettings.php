@@ -10,15 +10,8 @@
 use MediaWiki\Html\TemplateParser;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 
-$matches = [];
-$path = '/';
-foreach ( array_filter( explode( '/', $_SERVER['PHP_SELF'] ) ) as $part ) {
-	if ( !preg_match( '/\.(php)$/', $part, $matches ) ) {
-		$path .= "$part/";
-	} else {
-		break;
-	}
-}
+$scriptPath = dirname( $_SERVER['SCRIPT_NAME'] );
+$path = $scriptPath !== '/' ? rtrim( $scriptPath, '/' ) . '/' : '/';
 
 # Check to see if the installer is running
 if ( !function_exists( 'session_name' ) ) {
