@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bachounda"
+		]
+	},
+	"interwiki": "شوف وعدل بيانات الإنترويكي",
+	"interwiki-title-norights": "شوف بيانات الإنترويكي",
+	"interwiki_intro": "هاذي نظرة عامة على جدول الويكي البيني، لي يحدد الاختصارات تاع البوادئ المستعملة باش تربط بسرعة مع ويكيات مختلفة ومواقع خارجية أخرى. للاستعمال الموصى به، شوف [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki الدليل في MediaWiki.org].",
+	"interwiki-legend-label": "مفتاح",
+	"interwiki_prefix": "البادئة",
+	"interwiki-prefix-label": "البادئة:",
+	"interwiki_prefix_intro": "بادئة الويكي البيني لي تستعمل في صيغة ويكي كود <code>[<nowiki />[البادئة:<em>اسم الصفحه</em>]]</code>.",
+	"interwiki_url_intro": "قالب عناوين الروابط. المكان $1 راح يتبدل بـ <em>اسم الصفحه</em> في صيغة ويكي كود <code>[<nowiki />[البادئة:<em>اسم الصفحه</em>]]</code>.",
+	"interwiki_local": "تحويل",
+	"interwiki-local-label": "تحويل",
+	"interwiki_local_0_intro": "طلبات HTTP خارجية للويكي المحلي باستعمال هاذ البادئة تاع الويكي البيني في الرابط راح تدي لصفحه خطأ \"{{int:badtitle}}\"."
+}

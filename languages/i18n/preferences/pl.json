@@ -52,7 +52,7 @@
 	"prefs-edits": "Liczba edycji:",
 	"prefs-registration": "Data rejestracji:",
 	"yourrealname": "Imię i nazwisko:",
-	"prefs-help-realname": "Imię i nazwisko jest opcjonalne.\nJeśli zdecydujesz się je podać, zostaną użyte, by udokumentować twoje autorstwo.",
+	"prefs-help-realname": "Imię i nazwisko jest opcjonalne.\nJeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje autorstwo.",
 	"yourpassword": "Hasło:",
 	"prefs-resetpass": "Zmień hasło",
 	"passwordtooshort": "Hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}.",

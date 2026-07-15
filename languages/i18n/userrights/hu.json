@@ -249,7 +249,7 @@
 	"action-bigdelete": "nagy laptörténetű lapok törlése",
 	"action-blockemail": "a felhasználó e-mail-küldési lehetőségének blokkolása vagy a blokk feloldása",
 	"action-bot": "automatikus folyamatként való kezelés",
-	"action-editalluserpages": "eme szerkesztői lap szerkesztése",
+	"action-editalluserpages": "más szerkesztői lap szerkesztése",
 	"action-editprotected": "„{{int:restriction-level-sysop}}” védelmi szintű lapok szerkesztése",
 	"action-editsemiprotected": "„{{int:restriction-level-autoconfirmed}}” védelmi szintű lapok szerkesztése",
 	"action-editinterface": "felhasználói felület szerkesztése",
