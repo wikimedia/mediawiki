@@ -17,38 +17,41 @@
 	unicode-bidi: isolate;
 
 	a {
-		// Needed for 'pointer-events' below
+		// Disallow line breaking between the link and its bracket(s) (T432071),
+		// but permit line breaking before the links and between them (T253601)
 		white-space: pre;
+		// Needed for 'pointer-events' below
 		display: inline-block;
+
+		&::before,
+		&::after {
+			color: @color-subtle;
+			// Do not make this a clickable part of the link
+			pointer-events: none;
+			display: inline-block;
+		}
 	}
 
-	&::before {
-		// Add U+200B (zero-width space) to allow line breaking here (T253601)
-		content: '\200B[';
+	a:first-of-type::before {
+		content: '[';
 		// For browsers supporting alt text in 'content', make it empty
-		content: '\200B[' / '';
-		color: @color-subtle;
+		content: '[' / '';
 		margin-right: 0.25em;
 		margin-inline: 0 0.25em;
 	}
 
-	&::after {
+	a:last-of-type::after {
 		content: ']';
 		// For browsers supporting alt text in 'content', make it empty
 		content: ']' / '';
-		color: @color-subtle;
 		margin-left: 0.25em;
 		margin-inline: 0.25em 0;
 	}
 
-	a:not( :first-of-type )::before {
+	a:not( :last-of-type )::after {
 		content: '@{msg-pipe-separator}';
 		// For browsers supporting alt text in 'content', make it empty
 		content: '@{msg-pipe-separator}' / '';
-		color: @color-subtle;
-		// Do not make this a clickable part of the link
-		pointer-events: none;
-		display: inline-block;
 	}
 }
 
