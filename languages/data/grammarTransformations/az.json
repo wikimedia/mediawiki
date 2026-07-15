@@ -87,5 +87,64 @@
 		[ "^(.*[ou][^aıoueəiöü]+)$", "$1u" ],
 		[ "^(.*[eəi][^aıoueəiöü]+)$", "$1i" ],
 		[ "^(.*[öü][^aıoueəiöü]+)$", "$1ü" ]
+	],
+
+	"yerlik": "locative",
+	"locative": [
+		[ "@metadata", [ "comment", "Multi-word phrases ending in possessive suffix (-ı/-i/-u/-ü): linking -n- before suffix. Note: plain words that happen to end in these vowels (e.g. 'su', 'qapı') will also match; a dictionary lookup would be needed to distinguish them." ] ],
+		[ "^(.* .*[ıu])$", "$1nda" ],
+		[ "^(.* .*[iü])$", "$1ndə" ],
+
+		[ "@metadata", [ "comment", "Vowel-final words: use -da/-də by last vowel" ] ],
+		[ "^(.*[aıou])$", "$1da" ],
+		[ "^(.*[eəiöü])$", "$1də" ],
+
+		[ "@metadata", [ "comment", "Consonant-final words: use -da/-də by last vowel" ] ],
+		[ "^(.*[aıou][^aıoueəiöü]+)$", "$1da" ],
+		[ "^(.*[eəiöü][^aıoueəiöü]+)$", "$1də" ]
+	],
+
+	"yönlük": "dative",
+	"dative": [
+		[ "@metadata", [ "comment", "Multi-word phrases ending in possessive suffix (-ı/-i/-u/-ü): linking -n- before suffix. Note: plain words that happen to end in these vowels (e.g. 'su', 'qapı') will also match; a dictionary lookup would be needed to distinguish them." ] ],
+		[ "^(.* .*[ıu])$", "$1na" ],
+		[ "^(.* .*[iü])$", "$1nə" ],
+
+		[ "@metadata", [ "comment", "Vowel-final words: linking -y- before suffix" ] ],
+		[ "^(.*[aıou])$", "$1ya" ],
+		[ "^(.*[eəiöü])$", "$1yə" ],
+
+		[ "@metadata", [ "comment", "Consonant-final words: use -a/-ə by last vowel" ] ],
+		[ "^(.*[aıou][^aıoueəiöü]+)$", "$1a" ],
+		[ "^(.*[eəiöü][^aıoueəiöü]+)$", "$1ə" ]
+	],
+
+	"çıxışlıq": "ablative",
+	"ablative": [
+		[ "@metadata", [ "comment", "Numbers: suffix by last non-zero digit. Back: 0,4,6 → -dan; Front: 1,2,3,5,7,8,9 → -dən" ] ],
+		[ "^(\\d+0{9})$", "$1-dan" ],
+		[ "^(\\d+0{6})$", "$1-dən" ],
+		[ "^(\\d+0{3})$", "$1-dən" ],
+		[ "^(\\d+00)$", "$1-dən" ],
+		[ "^(\\d*(?:10|30))$", "$1-dan" ],
+		[ "^(\\d*20)$", "$1-dən" ],
+		[ "^(\\d*60)$", "$1-dan" ],
+		[ "^(\\d*40)$", "$1-dan" ],
+		[ "^(\\d*(?:50|70|80|90))$", "$1-dən" ],
+		[ "^(\\d*0)$", "$1-dan" ],
+		[ "^(\\d*[12345789])$", "$1-dən" ],
+		[ "^(\\d*6)$", "$1-dan" ],
+
+		[ "@metadata", [ "comment", "Multi-word phrases ending in possessive suffix (-ı/-i/-u/-ü): linking -n- before suffix. Note: plain words that happen to end in these vowels (e.g. 'su', 'qapı') will also match; a dictionary lookup would be needed to distinguish them." ] ],
+		[ "^(.* .*[ıu])$", "$1ndan" ],
+		[ "^(.* .*[iü])$", "$1ndən" ],
+
+		[ "@metadata", [ "comment", "Vowel-final words: use -dan/-dən by last vowel" ] ],
+		[ "^(.*[aıou])$", "$1dan" ],
+		[ "^(.*[eəiöü])$", "$1dən" ],
+
+		[ "@metadata", [ "comment", "Consonant-final words: use -dan/-dən by last vowel" ] ],
+		[ "^(.*[aıou][^aıoueəiöü]+)$", "$1dan" ],
+		[ "^(.*[eəiöü][^aıoueəiöü]+)$", "$1dən" ]
 	]
 }
