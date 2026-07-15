@@ -3266,7 +3266,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\SpecialPage\\Hook\\ChangeAuthenticationDataAuditHook' => __DIR__ . '/includes/SpecialPage/Hook/ChangeAuthenticationDataAuditHook.php',
 	'MediaWiki\\SpecialPage\\Hook\\ChangesListSpecialPageQueryHook' => __DIR__ . '/includes/SpecialPage/Hook/ChangesListSpecialPageQueryHook.php',
 	'MediaWiki\\SpecialPage\\Hook\\ChangesListSpecialPageStructuredFiltersHook' => __DIR__ . '/includes/SpecialPage/Hook/ChangesListSpecialPageStructuredFiltersHook.php',
-	'MediaWiki\\SpecialPage\\Hook\\CreateAccountShouldShowUsernamePolicyPopoverHook' => __DIR__ . '/includes/SpecialPage/Hook/CreateAccountShouldShowUsernamePolicyPopoverHook.php',
 	'MediaWiki\\SpecialPage\\Hook\\RedirectSpecialArticleRedirectParamsHook' => __DIR__ . '/includes/SpecialPage/Hook/RedirectSpecialArticleRedirectParamsHook.php',
 	'MediaWiki\\SpecialPage\\Hook\\SpecialPageAfterExecuteHook' => __DIR__ . '/includes/SpecialPage/Hook/SpecialPageAfterExecuteHook.php',
 	'MediaWiki\\SpecialPage\\Hook\\SpecialPageBeforeExecuteHook' => __DIR__ . '/includes/SpecialPage/Hook/SpecialPageBeforeExecuteHook.php',

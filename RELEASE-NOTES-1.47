@@ -71,6 +71,13 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 === New features for sysadmins in 1.47 ===
 
+* (T430604) On Special:CreateAccount, the messages "createacct-helpusername"
+  and "createacct-username-help" are no longer used. In the future, there will
+  be a small button on that form which opens a popover with three bullet
+  points. The text of those messages can be overridden in the usual way to give
+  wiki-specific guidance instead. This popup will also have a link to reading
+  the wiki's username policy if the message "createacct-helpusername-url" is
+  set to an existing wikipage on the local wiki, like "Project:Username_policy"
 * …
 
 === New developer features in 1.47 ===

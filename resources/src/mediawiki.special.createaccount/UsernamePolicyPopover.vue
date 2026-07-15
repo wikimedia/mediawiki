@@ -3,26 +3,32 @@
 		v-model:open="isPopoverOpen"
 		:anchor="anchor"
 		class="mw-createaccount-username-policy-popover"
-		:title="popoverMessages.title"
+		:title="$i18n( 'createacct-username-policy-popover-title' ).text()"
 		:use-close-button="true"
 		:use-bottom-sheet="true"
 		:show-backdrop="true"
 		placement="bottom"
 	>
-		<!-- eslint-disable vue/no-v-html -->
-		<div
-			ref="bulletsElement"
-			class="mw-createaccount-username-policy-popover-bullets"
-			v-html="popoverMessages.bulletsHtml"
-		></div>
-		<!-- eslint-enable vue/no-v-html -->
+		<ul>
+			<li v-i18n-html:createacct-username-policy-popover-bullet1></li>
+			<li v-i18n-html:createacct-username-policy-popover-bullet2></li>
+			<li v-i18n-html:createacct-username-policy-popover-bullet3></li>
+		</ul>
+		<a
+			v-if="policyPageUrl"
+			:href="policyPageUrl"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="mw-createaccount-username-policy-popover-link"
+		>
+			{{ $i18n( 'createacct-username-policy-link' ).text() }}
+		</a>
 	</cdx-popover>
 </template>
 
 <script>
-const { defineComponent, ref, onMounted, onUnmounted, onUpdated } = require( 'vue' );
+const { defineComponent, ref, onMounted, onUnmounted } = require( 'vue' );
 const { CdxPopover } = require( '@wikimedia/codex' );
-const EXPERIMENT_NAME = 'we-1-8-account-creation-form-v2';
 
 module.exports = defineComponent( {
 	name: 'UsernamePolicyPopover',
@@ -41,22 +47,7 @@ module.exports = defineComponent( {
 	setup( props ) {
 		const isPopoverOpen = ref( false );
 		const anchor = ref( props.triggerElement );
-		const bulletsElement = ref( null );
-		const pack = mw.config.get( 'wgCreateAccountUsernamePolicyPopoverMsgs' );
-		const popoverMessages = pack && typeof pack === 'object' ? pack : {};
-
-		function applyPolicyLinkAttrs() {
-			if ( !bulletsElement.value ) {
-				return;
-			}
-			Array.prototype.forEach.call(
-				bulletsElement.value.querySelectorAll( 'a' ),
-				( link ) => {
-					link.target = '_blank';
-					link.rel = 'noopener noreferrer';
-				}
-			);
-		}
+		const policyPageUrl = mw.config.get( 'wgCreateAccountUsernamePolicyUrl' );
 
 		function onTriggerClick( ev ) {
 			ev.preventDefault();
@@ -66,28 +57,6 @@ module.exports = defineComponent( {
 		onMounted( () => {
 			isPopoverOpen.value = true;
 			props.triggerElement.addEventListener( 'click', onTriggerClick, true );
-			applyPolicyLinkAttrs();
-
-			mw.loader.using( [ 'ext.testKitchen', 'ext.wikimediaEvents.testKitchen' ] ).then( () => {
-				const { ClickThroughRateInstrument, UrlEnrolledExperiment } = require( 'ext.wikimediaEvents.testKitchen' );
-				const experiment = UrlEnrolledExperiment.getExperimentFromQuery( EXPERIMENT_NAME );
-				ClickThroughRateInstrument.start( '.mw-createaccount-username-policy-popover-list > li:first-of-type > a:first-of-type',
-					'username policy popover informational link - offensive', experiment );
-				ClickThroughRateInstrument.start( '.mw-createaccount-username-policy-popover-list > li:first-of-type > a:nth-of-type(2)',
-					'username policy popover informational link - misleading', experiment );
-				ClickThroughRateInstrument.start( '.mw-createaccount-username-policy-popover-list > li:first-of-type > a:nth-of-type(3)',
-					'username policy popover informational link - promotional', experiment );
-
-				ClickThroughRateInstrument.start( '.mw-createaccount-username-policy-popover-list > li:nth-of-type(2) > a:first-of-type',
-					'username policy popover informational link - not an organization', experiment );
-
-				ClickThroughRateInstrument.start( '.mw-createaccount-username-policy-popover-list > li:nth-of-type(3) > a:first-of-type',
-					'username policy popover informational link - real name', experiment );
-			} );
-		} );
-
-		onUpdated( () => {
-			applyPolicyLinkAttrs();
 		} );
 
 		onUnmounted( () => {
@@ -96,9 +65,8 @@ module.exports = defineComponent( {
 
 		return {
 			anchor,
-			bulletsElement,
 			isPopoverOpen,
-			popoverMessages
+			policyPageUrl
 		};
 	}
 } );
@@ -107,8 +75,8 @@ module.exports = defineComponent( {
 <style lang="less">
 @import 'mediawiki.skin.variables.less';
 
-.mw-createaccount-username-policy-popover-list {
-	margin: 0 0 @spacing-75 0;
-	padding-inline-start: @spacing-150;
+.mw-createaccount-username-policy-popover-link {
+	display: inline-block;
+	margin-top: @spacing-100;
 }
 </style>

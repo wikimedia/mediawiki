@@ -612,14 +612,19 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$out->addModuleStyles( [
 				'mediawiki.special.userlogin.signup.styles'
 			] );
-			if ( $this->shouldShowCreateAccountUsernamePolicyPopover() ) {
-				$out->addJsConfigVars( [
-					'wgCreateAccountUsernamePolicyPopoverMsgs' => [
-						'title' => $this->msg( 'createacct-username-policy-popover-title' )->text(),
-						'bulletsHtml' => $this->getCreateAccountUsernamePolicyPopoverBulletsHtml(),
-					],
-				] );
+			$userPolicyTitleUrl = false;
+			if ( !$this->msg( 'createacct-helpusername-url' )->inContentLanguage()->isDisabled() ) {
+				$titleFactory = MediaWikiServices::getInstance()->getTitleFactory();
+				$userPolicyTitle = $titleFactory->newFromText(
+					$this->msg( 'createacct-helpusername-url' )->inContentLanguage()->text(),
+				);
+				if ( $userPolicyTitle && ( $userPolicyTitle->exists() || $userPolicyTitle->isExternal() ) ) {
+					$userPolicyTitleUrl = $userPolicyTitle->getFullURL();
+				}
 			}
+			$out->addJsConfigVars( [
+				'wgCreateAccountUsernamePolicyUrl' => $userPolicyTitleUrl,
+			] );
 		} else {
 			// Additional styles for login form
 			$out->addModuleStyles( [
@@ -937,46 +942,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	}
 
 	/**
-	 * Whether to show the Minerva username policy popover on Special:CreateAccount.Defaults to false;
-	 * extensions opt in via CreateAccountShouldShowUsernamePolicyPopover (e.g. set true for
-	 * experiment treatment). Everyone else on Minerva keeps createacct-username-help / label links.
-	 *
-	 * @return bool
-	 */
-	protected function shouldShowCreateAccountUsernamePolicyPopover(): bool {
-		if ( !$this->isSignup() ) {
-			return false;
-		}
-		if ( $this->getSkin()->getSkinName() !== 'minerva' ) {
-			return false;
-		}
-		$show = false;
-		$this->getHookRunner()->onCreateAccountShouldShowUsernamePolicyPopover(
-			$this,
-			$show
-		);
-		return $show;
-	}
-
-	/**
-	 * Parsed HTML for the username policy popover bullet list.
-	 *
-	 * @return string
-	 */
-	protected function getCreateAccountUsernamePolicyPopoverBulletsHtml(): string {
-		$items = [
-			$this->msg( 'createacct-username-policy-popover-bullet1' )->parse(),
-			$this->msg( 'createacct-username-policy-popover-bullet2' )->parse(),
-			$this->msg( 'createacct-username-policy-popover-bullet3' )->parse(),
-		];
-		$lis = '';
-		foreach ( $items as $html ) {
-			$lis .= Html::rawElement( 'li', [], $html );
-		}
-		return Html::rawElement( 'ul', [ 'class' => 'mw-createaccount-username-policy-popover-list' ], $lis );
-	}
-
-	/**
 	 * Create a HTMLForm descriptor for the core login fields.
 	 *
 	 * @param array $fieldInfo
@@ -999,24 +964,28 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			], Html::element( 'span', [ 'class' => 'mw-secure--icon' ] ) .
 				$this->msg( 'userlogin-signwithsecure' )->parse() );
 		}
-		$usernameHelpLink = '';
-		if ( !$this->msg( 'createacct-helpusername' )->isDisabled() ) {
-			$usernameHelpLink = Html::rawElement( 'span', [
-				'class' => 'mw-login-flush-right',
-			], $this->msg( 'createacct-helpusername' )->parse() );
-		}
 
 		if ( $this->isSignup() ) {
 			$config = $this->getConfig();
+			$usernameHelpButton = Html::rawElement(
+				'button',
+				[
+					'id' => 'mw-username-help',
+					'type' => 'button',
+					'class' => 'cdx-button cdx-button--icon-only cdx-button--weight-quiet cdx-button--size-small',
+					'aria-label' => $this->msg( 'userlogin-yourname-desc-button-a11y-label' )->text(),
+				],
+				Html::element( 'span', [ 'class' => 'cdx-button__icon' ] )
+			);
 			$hideIf = isset( $fieldInfo['mailpassword'] ) ? [ 'hide-if' => [ '===', 'mailpassword', '1' ] ] : [];
-			$showCreateAccountUsernamePolicyPopover = $this->shouldShowCreateAccountUsernamePolicyPopover();
 			$fieldDefinitions = [
 				'username' => [
-					'label-raw' => $this->msg( 'userlogin-yourname' )->escaped()
-						. ( $showCreateAccountUsernamePolicyPopover ? '' : $usernameHelpLink ),
+					'label-raw' => $this->msg( 'userlogin-yourname' )->escaped(),
 					'id' => 'wpName2',
 					'placeholder-message' => $isLoggedIn ? 'createacct-another-username-ph'
 						: 'userlogin-yourname-ph',
+					'description-raw' => $this->msg( 'userlogin-yourname-desc' )->escaped() . $usernameHelpButton,
+					'cssclass' => 'mw-createacct-username',
 				],
 				'mailpassword' => [
 					// create account without providing password, a temporary one will be mailed
@@ -1140,21 +1109,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'weight' => 100,
 				],
 			];
-
-			if ( $showCreateAccountUsernamePolicyPopover ) {
-				// createacct-username-policy-popover-trigger-line is one sentence with $1 = the <a>…</a>
-				// The anchor text uses trigger-link so the
-				// label is translated without putting raw HTML in i18n files.
-				$chooseCarefullyLink = Html::element( 'a', [
-					'href' => '#',
-					'class' => 'mw-createaccount-username-policy-choose-carefully',
-				], $this->msg( 'createacct-username-policy-popover-trigger-link' )->text() );
-				$fieldDefinitions['username']['description-raw'] = $this->msg(
-					'createacct-username-policy-popover-trigger-line'
-				)->rawParams( $chooseCarefullyLink )->parse();
-			} elseif ( !$this->msg( 'createacct-username-help' )->isDisabled() ) {
-				$fieldDefinitions['username']['help-message'] = 'createacct-username-help';
-			}
 
 			if ( $this->loginHelper->isDisplayModePopup() ) {
 				$fieldDefinitions['redirectnotice'] = [

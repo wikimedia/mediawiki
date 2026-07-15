@@ -11,25 +11,18 @@ const mountUsernamePolicyPopover = require( './username-policy-popover.js' );
  *
  * @memberof module:mediawiki.special.createaccount
  */
-function bootstrapUsernamePolicyPopover() {
-	if ( mw.config.get( 'skin' ) !== 'minerva' ) {
+function bootstrapUsernamePolicyPopover( $root ) {
+	const usernameHelpButton = $root.find( '#mw-username-help' ).get( 0 );
+	if ( !usernameHelpButton ) {
 		return;
 	}
-	const chooseCarefullyLink = document.querySelector(
-		'a.mw-createaccount-username-policy-choose-carefully'
-	);
-	if ( !chooseCarefullyLink ) {
-		return;
-	}
-	chooseCarefullyLink.removeAttribute( 'target' );
-	chooseCarefullyLink.setAttribute( 'href', '#' );
 
-	function onChooseCarefullyClick( ev ) {
+	function onUsernameHelpClick( ev ) {
 		ev.preventDefault();
-		chooseCarefullyLink.removeEventListener( 'click', onChooseCarefullyClick, true );
-		mountUsernamePolicyPopover( chooseCarefullyLink );
+		usernameHelpButton.removeEventListener( 'click', onUsernameHelpClick, true );
+		mountUsernamePolicyPopover( usernameHelpButton );
 	}
-	chooseCarefullyLink.addEventListener( 'click', onChooseCarefullyClick, true );
+	usernameHelpButton.addEventListener( 'click', onUsernameHelpClick, true );
 }
 
 // When sending password by email, hide the password input fields.
@@ -68,8 +61,7 @@ mw.hook( 'htmlform.enhance' ).add( async ( $root ) => {
 		$passwordInput = $root.find( '#wpPassword2' ),
 		$emailInput = $root.find( '#wpEmail' ),
 		$realNameInput = $root.find( '#wpRealName' ),
-		api = new mw.Api(),
-		isV2 = mw.config.get( 'GECreateAccountExperimentV2' );
+		api = new mw.Api();
 
 	$usernameInput.on( 'input', () => {
 		const originalCaretPosition = $usernameInput[ 0 ].selectionStart;
@@ -215,8 +207,5 @@ mw.hook( 'htmlform.enhance' ).add( async ( $root ) => {
 
 	attachCheckers();
 	attachPasswordRevealFunctionality();
-	if ( isV2 ) {
-		bootstrapUsernamePolicyPopover();
-	}
-
+	bootstrapUsernamePolicyPopover( $root );
 } );

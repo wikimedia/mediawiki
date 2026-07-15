@@ -126,14 +126,26 @@
 	display: none !important;
 }
 
-.mw-createaccount-username-policy-choose-carefully {
-	font-weight: @font-weight-bold;
-}
-
 #userloginForm {
 	[ type='text' ] ~ .mw-password-reveal-icon,
 	[ type='password' ] ~ .mw-password-reveal-icon {
 		.cdx-mixin-css-icon( @cdx-icon-eye );
 		cursor: pointer;
+	}
+
+	.mw-createacct-username {
+		.cdx-label__description {
+			display: inline-flex;
+			align-items: center;
+			gap: @spacing-25;
+
+			button .cdx-button__icon {
+				.cdx-mixin-css-icon(
+					@cdx-icon-help-notice,
+					@param-size-icon: @size-icon-small,
+					@param-is-button-icon: true
+				);
+			}
+		}
 	}
 }
