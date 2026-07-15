@@ -15,10 +15,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\ContentSecurityPolicy;
-use MediaWiki\Request\WebRequest;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Title\Title;
-use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
@@ -359,37 +357,6 @@ function wfAppendQuery( $url, $query ) {
 		}
 	}
 	return $url;
-}
-
-/**
- * @deprecated since 1.43; get a UrlUtils from services, or construct your own. Warnings since 1.46.
- * @internal
- * @return UrlUtils from services if initialized, otherwise make one from globals
- */
-function wfGetUrlUtils(): UrlUtils {
-	wfDeprecated( __FUNCTION__, '1.43' );
-	global $wgServer, $wgCanonicalServer, $wgInternalServer, $wgRequest, $wgHttpsPort,
-		$wgUrlProtocols;
-
-	if ( MediaWikiServices::hasInstance() ) {
-		$services = MediaWikiServices::getInstance();
-		if ( $services->hasService( 'UrlUtils' ) ) {
-			return $services->getUrlUtils();
-		}
-	}
-
-	return new UrlUtils( [
-		// UrlUtils throws if the relevant $wg(|Canonical|Internal) variable is null, but the old
-		// implementations implicitly converted it to an empty string (presumably by mistake).
-		// Preserve the old behavior for compatibility.
-		UrlUtils::SERVER => $wgServer ?? '',
-		UrlUtils::CANONICAL_SERVER => $wgCanonicalServer ?? '',
-		UrlUtils::INTERNAL_SERVER => $wgInternalServer ?? '',
-		UrlUtils::FALLBACK_PROTOCOL => $wgRequest ? $wgRequest->getProtocol()
-			: WebRequest::detectProtocol(),
-		UrlUtils::HTTPS_PORT => $wgHttpsPort,
-		UrlUtils::VALID_PROTOCOLS => $wgUrlProtocols,
-	] );
 }
 
 /**
