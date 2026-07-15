@@ -164,6 +164,7 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 		$request = $this->getRequest();
 
 		$authMethod = 'standard';
+		$accountType = $this->identityUtils->getShortUserTypeInternal( $performer );
 		if ( $this->securityLevel ) {
 			$returnToQuery = wfCgiToArray( $request->getText( 'returntoquery' ) );
 			if ( $request->getRawVal( 'display' ) === 'popup' ) {
@@ -173,12 +174,19 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 			}
 		}
 
+		LoggerFactory::getInstance( 'authentication' )->info( 'Login attempt', [
+			'event' => 'login',
+			'successful' => $success,
+			'accountType' => $accountType,
+			'reauth' => (bool)$this->securityLevel,
+			'authMethod' => $authMethod,
+			'status' => strval( $status ),
+		] );
+
 		LoggerFactory::getInstance( 'authevents' )->info( 'Login attempt', [
 			'event' => 'login',
 			'successful' => $success,
-			'accountType' => $this->identityUtils->getShortUserTypeInternal( $performer ),
-			'reauth' => (bool)$this->securityLevel,
-			'authMethod' => $authMethod,
+			'accountType' => $accountType,
 			'status' => strval( $status ),
 		] );
 	}
