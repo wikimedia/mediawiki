@@ -236,6 +236,13 @@ class CompositeBlock extends AbstractBlock {
 	/**
 	 * @inheritDoc
 	 */
+	public function appliesToCreatePageInNamespace( int $ns ): bool {
+		return $this->methodReturnsValue( __FUNCTION__, true, $ns );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	public function appliesToPasswordReset() {
 		return $this->methodReturnsValue( __FUNCTION__, true );
 	}

@@ -1,16 +1,16 @@
 <template>
 	<cdx-field>
 		<template #label>
-			{{ $i18n( 'ipb-namespaces-label' ).text() }}
+			{{ label }}
 		</template>
 		<cdx-multiselect-lookup
 			v-model:input-chips="chips"
-			v-model:selected="namespaces"
-			class="mw-block-namespaces"
+			v-model:selected="selectedNamespaces"
+			:class="lookupClass"
 			:menu-items="menuItems"
 			:menu-config="menuConfig"
-			:aria-label="$i18n( 'ipb-namespaces-label' ).text()"
-			:placeholder="$i18n( 'block-namespaces-placeholder' ).text()"
+			:aria-label="label"
+			:placeholder="placeholder"
 			@input="onInput"
 			@update:input-chips="onUpdateChips"
 		></cdx-multiselect-lookup>
@@ -18,13 +18,11 @@
 </template>
 
 <script>
-const { defineComponent, ref } = require( 'vue' );
-const { storeToRefs } = require( 'pinia' );
+const { computed, defineComponent, ref } = require( 'vue' );
 const { CdxField, ChipInputItem, CdxMultiselectLookup } = require( '@wikimedia/codex' );
-const useBlockStore = require( '../stores/block.js' );
 
 /**
- * Namespaces field component for use by Special:Block.
+ * Namespace lookup field component for use by Special:Block.
  *
  * @todo Abstract for general use in MediaWiki (T375220)
  */
@@ -34,8 +32,32 @@ module.exports = exports = defineComponent( {
 		CdxField,
 		CdxMultiselectLookup
 	},
-	setup() {
-		const { namespaces } = storeToRefs( useBlockStore() );
+	props: {
+		modelValue: {
+			type: Array,
+			required: true
+		},
+		lookupClass: {
+			type: String,
+			required: true
+		},
+		labelMessage: {
+			type: String,
+			required: true
+		},
+		placeholderMessage: {
+			type: String,
+			required: true
+		}
+	},
+	emits: [ 'update:modelValue' ],
+	setup( props, { emit } ) {
+		const label = computed( () => mw.message( props.labelMessage ).text() );
+		const placeholder = computed( () => mw.message( props.placeholderMessage ).text() );
+		const selectedNamespaces = computed( {
+			get: () => props.modelValue,
+			set: ( value ) => emit( 'update:modelValue', value )
+		} );
 		const mwNamespaces = mw.config.get( 'wgFormattedNamespaces' );
 		mwNamespaces[ '0' ] = mw.msg( 'blanknamespace' );
 		const initialMenuItems = Object.keys( mwNamespaces )
@@ -46,7 +68,7 @@ module.exports = exports = defineComponent( {
 				label: mwNamespaces[ id ]
 			} ) );
 		const chips = ref(
-			namespaces.value.map( ( nsId ) => ( { value: nsId, label: mwNamespaces[ nsId ] } ) )
+			props.modelValue.map( ( nsId ) => ( { value: nsId, label: mwNamespaces[ nsId ] } ) )
 		);
 		const menuItems = ref( initialMenuItems );
 		const menuConfig = { visibleItemLimit: 10 };
@@ -73,21 +95,25 @@ module.exports = exports = defineComponent( {
 		 * @param {ChipInputItem[]} newChips
 		 */
 		function onUpdateChips( newChips ) {
-			// NOTE: This is to avoid recursive updates since namespaces is bound to MultiselectLookup with v-model
+			// Avoid recursive updates since selectedNamespaces is bound to MultiselectLookup with v-model
 			const uniqueChipValues = newChips.map( ( item ) => item.value );
-			const uniqueNewValues = uniqueChipValues.filter( ( chipValue ) => !namespaces.value.includes( chipValue ) );
-			if ( uniqueNewValues.length !== 0 || namespaces.value.length > uniqueChipValues.length ) {
-				namespaces.value = newChips.map( ( chip ) => chip.value );
+			const uniqueNewValues = uniqueChipValues.filter(
+				( chipValue ) => !props.modelValue.includes( chipValue )
+			);
+			if ( uniqueNewValues.length !== 0 || props.modelValue.length > uniqueChipValues.length ) {
+				emit( 'update:modelValue', uniqueChipValues );
 			}
 		}
 
 		return {
 			chips,
-			namespaces,
+			label,
+			selectedNamespaces,
 			menuItems,
 			menuConfig,
 			onInput,
-			onUpdateChips
+			onUpdateChips,
+			placeholder
 		};
 	}
 } );

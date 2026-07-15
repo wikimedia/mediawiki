@@ -632,6 +632,38 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 						'5::duration' => 'infinite',
 						'6::flags' => 'anononly',
 						'7::restrictions' => [
+							'createpagenamespaces' => [ NS_MAIN ],
+						],
+						'sitewide' => false,
+					],
+				],
+				[
+					'text' => 'Sysop blocked Logtestuser from creating pages in the namespace (Main)'
+						. ' with an expiration time of indefinite (anonymous users only)',
+					'api' => [
+						'duration' => 'infinity',
+						'flags' => [ 'anononly' ],
+						'restrictions' => [
+							'createpagenamespaces' => [ NS_MAIN ],
+						],
+						'sitewide' => false,
+						'duration-l10n' => 'infinite',
+					],
+				],
+			],
+			[
+				[
+					'type' => 'block',
+					'action' => 'block',
+					'comment' => 'Block comment',
+					'user' => 0,
+					'user_text' => 'Sysop',
+					'namespace' => NS_USER,
+					'title' => 'Logtestuser',
+					'params' => [
+						'5::duration' => 'infinite',
+						'6::flags' => 'anononly',
+						'7::restrictions' => [
 							'namespaces' => [ NS_USER ],
 						],
 						'sitewide' => false,

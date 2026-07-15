@@ -9,6 +9,7 @@
 namespace MediaWiki\Block;
 
 use MediaWiki\Block\Restriction\ActionRestriction;
+use MediaWiki\Block\Restriction\CreatePageNamespaceRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
@@ -352,6 +353,8 @@ class BlockRestrictionStore {
 				return NamespaceRestriction::newFromRow( $row );
 			case ActionRestriction::TYPE_ID:
 				return ActionRestriction::newFromRow( $row );
+			case CreatePageNamespaceRestriction::TYPE_ID:
+				return CreatePageNamespaceRestriction::newFromRow( $row );
 			default:
 				return null;
 		}

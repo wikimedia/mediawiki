@@ -10,6 +10,7 @@ use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\ActionRestriction;
+use MediaWiki\Block\Restriction\CreatePageNamespaceRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
@@ -756,6 +757,75 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				$user,
 				PermissionManager::RIGOR_FULL,
 				$title,
+				null
+			)
+		);
+	}
+
+	public function testCreatePageNamespaceRestrictionBlocksOnlyCreationInNamespace() {
+		$block = new DatabaseBlock( [
+			'target' => new AnonIpBlockTarget( '127.0.8.1' ),
+			'by' => UserIdentityValue::newRegistered( 100, 'TestUser' ),
+			'sitewide' => false,
+			'allowUsertalk' => true,
+		] );
+		$block->setRestrictions( [
+			new CreatePageNamespaceRestriction( 0, NS_MAIN ),
+			new CreatePageNamespaceRestriction( 0, NS_USER_TALK )
+		] );
+
+		$user = $this->createUserWithBlock( $block );
+		$this->overrideUserPermissions( $user, [ 'createpage', 'edit' ] );
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		$mainTitle = Title::makeTitle( NS_MAIN, 'CreatePageNamespaceRestrictionMain' );
+		$userTitle = Title::makeTitle( NS_USER, 'CreatePageNamespaceRestrictionUser' );
+		$otherUserTalkTitle = Title::makeTitle( NS_USER_TALK, 'AnotherUser' );
+
+		$this->assertSame(
+			$block,
+			$permissionManager->getApplicableBlock(
+				'create',
+				$user,
+				PermissionManager::RIGOR_FULL,
+				$mainTitle,
+				null
+			)
+		);
+		$this->assertNull(
+			$permissionManager->getApplicableBlock(
+				'edit',
+				$user,
+				PermissionManager::RIGOR_FULL,
+				$mainTitle,
+				null
+			)
+		);
+		$this->assertNull(
+			$permissionManager->getApplicableBlock(
+				'create',
+				$user,
+				PermissionManager::RIGOR_FULL,
+				$userTitle,
+				null
+			)
+		);
+		$this->assertNull(
+			$permissionManager->getApplicableBlock(
+				'create',
+				$user,
+				PermissionManager::RIGOR_FULL,
+				$user->getTalkPage(),
+				null
+			)
+		);
+		$this->assertSame(
+			$block,
+			$permissionManager->getApplicableBlock(
+				'create',
+				$user,
+				PermissionManager::RIGOR_FULL,
+				$otherUserTalkTitle,
 				null
 			)
 		);

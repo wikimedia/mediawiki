@@ -56,6 +56,16 @@ module.exports = exports = defineStore( 'block', () => {
 		.map( Number )
 	);
 	/**
+	 * The namespaces in which the target is blocked from creating pages.
+	 *
+	 * @type {Ref<number[]>}
+	 */
+	const createPageNamespaces = ref( ( mw.config.get( 'blockCreatePageNamespaceRestrictions' ) || '' )
+		.split( '\n' )
+		.filter( Boolean )
+		.map( Number )
+	);
+	/**
 	 * Actions to apply the partial block to,
 	 * i.e. `ipb-action-create`, `ipb-action-move`, `ipb-action-upload`.
 	 *
@@ -344,6 +354,7 @@ module.exports = exports = defineStore( 'block', () => {
 		type.value = blockData.partial ? 'partial' : 'sitewide';
 		pages.value = ( blockData.restrictions.pages || [] ).map( ( i ) => i.title );
 		namespaces.value = blockData.restrictions.namespaces || [];
+		createPageNamespaces.value = blockData.restrictions.createpagenamespaces || [];
 		expiry.value = blockData.expiry;
 		partialOptions.value = ( blockData.restrictions.actions || [] ).map( ( i ) => 'ipb-action-' + i );
 		reason.value = blockData.reason;
@@ -377,6 +388,7 @@ module.exports = exports = defineStore( 'block', () => {
 		type.value = 'sitewide';
 		pages.value = [];
 		namespaces.value = [];
+		createPageNamespaces.value = [];
 		partialOptions.value = [];
 		expiry.value = '';
 		reason.value = '';
@@ -456,6 +468,9 @@ module.exports = exports = defineStore( 'block', () => {
 			}
 			if ( namespaces.value.length ) {
 				params.namespacerestrictions = namespaces.value.join( '|' );
+			}
+			if ( createPageNamespaces.value.length ) {
+				params.createpagenamespacerestrictions = createPageNamespaces.value.join( '|' );
 			}
 		}
 
@@ -650,6 +665,7 @@ module.exports = exports = defineStore( 'block', () => {
 		partialOptions,
 		pages,
 		namespaces,
+		createPageNamespaces,
 		reason,
 		createAccount,
 		disableEmail,

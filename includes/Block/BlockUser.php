@@ -10,6 +10,7 @@ namespace MediaWiki\Block;
 use InvalidArgumentException;
 use MediaWiki\Block\Restriction\AbstractRestriction;
 use MediaWiki\Block\Restriction\ActionRestriction;
+use MediaWiki\Block\Restriction\CreatePageNamespaceRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\ChangeTags\ChangeTags;
@@ -745,6 +746,23 @@ class BlockUser {
 	}
 
 	/**
+	 * Build page creation namespace restrictions array from $this->blockRestrictions
+	 *
+	 * Returns an array of namespace IDs.
+	 *
+	 * @return int[]
+	 */
+	private function getCreatePageNamespaceRestrictions(): array {
+		$namespaceRestrictions = [];
+		foreach ( $this->blockRestrictions as $restriction ) {
+			if ( $restriction instanceof CreatePageNamespaceRestriction ) {
+				$namespaceRestrictions[] = $restriction->getValue();
+			}
+		}
+		return $namespaceRestrictions;
+	}
+
+	/**
 	 * Prepare $logParams
 	 *
 	 * Helper method for $this->log()
@@ -761,6 +779,7 @@ class BlockUser {
 			$pageRestrictions = $this->getPageRestrictions();
 			$namespaceRestrictions = $this->getNamespaceRestrictions();
 			$actionRestrictions = $this->getActionRestrictions();
+			$createPageNamespaceRestrictions = $this->getCreatePageNamespaceRestrictions();
 
 			if ( count( $pageRestrictions ) > 0 ) {
 				$logParams['7::restrictions']['pages'] = $pageRestrictions;
@@ -770,6 +789,9 @@ class BlockUser {
 			}
 			if ( count( $actionRestrictions ) ) {
 				$logParams['7::restrictions']['actions'] = $actionRestrictions;
+			}
+			if ( count( $createPageNamespaceRestrictions ) ) {
+				$logParams['7::restrictions']['createpagenamespaces'] = $createPageNamespaceRestrictions;
 			}
 		}
 		return $logParams;

@@ -979,6 +979,11 @@ class PermissionManager {
 						// Special handling for a user's own talk page. The block is not aware
 						// of the user, so this must be done here.
 						return $originalBlock->appliesToUsertalk( $targetTitle );
+					} elseif (
+						$action === 'create' &&
+						$originalBlock->appliesToCreatePageInNamespace( $targetTitle->getNamespace() )
+					) {
+						return true;
 					} else {
 						return $originalBlock->appliesToTitle( $targetTitle );
 					}

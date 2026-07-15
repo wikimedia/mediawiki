@@ -10,6 +10,7 @@ namespace MediaWiki\Block;
 
 use InvalidArgumentException;
 use MediaWiki\Block\Restriction\ActionRestriction;
+use MediaWiki\Block\Restriction\CreatePageNamespaceRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
@@ -574,6 +575,24 @@ class DatabaseBlock extends AbstractBlock {
 		}
 
 		$restriction = $this->findRestriction( PageRestriction::TYPE, $pageId );
+
+		return (bool)$restriction;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function appliesToCreatePageInNamespace( int $ns ): bool {
+		if ( $this->isSitewide() ) {
+			return true;
+		}
+
+		// Blocks do not apply to virtual namespaces.
+		if ( $ns < 0 ) {
+			return false;
+		}
+
+		$restriction = $this->findRestriction( CreatePageNamespaceRestriction::TYPE, $ns );
 
 		return (bool)$restriction;
 	}

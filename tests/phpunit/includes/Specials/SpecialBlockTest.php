@@ -5,6 +5,7 @@ use Generator;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\ActionRestriction;
+use MediaWiki\Block\Restriction\CreatePageNamespaceRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Content\ContentHandler;
@@ -67,6 +68,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertArrayNotHasKey( 'option-descriptions-messages', $fields['EditingRestriction'] );
 		$this->assertArrayHasKey( 'PageRestrictions', $fields );
 		$this->assertArrayHasKey( 'NamespaceRestrictions', $fields );
+		$this->assertArrayHasKey( 'CreatePageNamespaceRestrictions', $fields );
 		$this->assertArrayHasKey( 'ActionRestrictions', $fields );
 	}
 
@@ -338,6 +340,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 				new PageRestriction( 0, $pageSaturn->getId() ),
 				new PageRestriction( 0, $pageMars->getId() ),
 				new NamespaceRestriction( 0, NS_TALK ),
+				new CreatePageNamespaceRestriction( 0, NS_MAIN ),
 				// Deleted page.
 				new PageRestriction( 0, 999999 ),
 				new ActionRestriction( 0, $actionId ),
@@ -361,6 +364,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( $block->getTargetName(), $fields['Target']['default'] );
 		$this->assertSame( 'partial', $fields['EditingRestriction']['default'] );
 		$this->assertSame( implode( "\n", $titles ), $fields['PageRestrictions']['default'] );
+		$this->assertSame( (string)NS_MAIN, $fields['CreatePageNamespaceRestrictions']['default'] );
 		$this->assertSame( [ $actionId ], $fields['ActionRestrictions']['default'] );
 	}
 
@@ -476,6 +480,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'EditingRestriction' => 'partial',
 			'PageRestrictions' => implode( "\n", $titles ),
 			'NamespaceRestrictions' => '',
+			'CreatePageNamespaceRestrictions' => (string)NS_MAIN,
 			'ActionRestrictions' => [ $actionId ],
 		];
 		$result = $page->onSubmit( $data );
@@ -485,10 +490,11 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$block = $this->blockStore->newFromTarget( $badActor );
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
-		$this->assertCount( 3, $block->getRestrictions() );
+		$this->assertCount( 4, $block->getRestrictions() );
 		$this->assertTrue( $this->getBlockRestrictionStore()->equals( $block->getRestrictions(), [
 			new PageRestriction( $block->getId(), $pageMars->getId() ),
 			new PageRestriction( $block->getId(), $pageSaturn->getId() ),
+			new CreatePageNamespaceRestriction( $block->getId(), NS_MAIN ),
 			new ActionRestriction( $block->getId(), $actionId ),
 		] ) );
 	}

@@ -65,12 +65,14 @@ describe( 'Block store', () => {
 		store.targetUser = 'ExampleUser';
 		store.targetExists = true;
 		store.type = 'partial';
+		store.createPageNamespaces = [ 0 ];
 		store.expiry = 'infinite';
 		store.reason = 'This is a test';
 		store.resetForm();
 		expect( store.targetUser ).toStrictEqual( 'ExampleUser' );
 		expect( store.targetExists ).toStrictEqual( true );
 		expect( store.type ).toStrictEqual( 'sitewide' );
+		expect( store.createPageNamespaces ).toStrictEqual( [] );
 		expect( store.expiry ).toStrictEqual( '' );
 		expect( store.reason ).toStrictEqual( '' );
 		store.resetForm( true );
@@ -174,6 +176,43 @@ describe( 'Block API', () => {
 		store.alreadyBlocked = true;
 		store.doBlock();
 		expect( spy ).toHaveBeenCalledWith( expected );
+	} );
+
+	it( 'should pass create page namespace restrictions to the API', () => {
+		const store = useBlockStore();
+		store.type = 'partial';
+		store.createPageNamespaces = [ 0, 2 ];
+		store.doBlock();
+		const spy = jest.spyOn( mw.Api.prototype, 'postWithEditToken' );
+		expect( spy ).toHaveBeenCalledWith( expect.objectContaining( {
+			partial: 1,
+			actionrestrictions: '',
+			createpagenamespacerestrictions: '0|2'
+		} ) );
+	} );
+
+	it( 'should load create page namespace restrictions from block data', () => {
+		const store = useBlockStore();
+		store.loadFromData( {
+			id: 123,
+			user: 'ExampleUser',
+			partial: true,
+			restrictions: {
+				pages: [],
+				namespaces: [],
+				createpagenamespaces: [ 0, 2 ],
+				actions: []
+			},
+			expiry: 'infinite',
+			reason: '',
+			nocreate: true,
+			noemail: false,
+			allowusertalk: true,
+			anononly: false,
+			hidden: false,
+			autoblock: true
+		} );
+		expect( store.createPageNamespaces ).toStrictEqual( [ 0, 2 ] );
 	} );
 
 	it( 'should make one API request for the block log and active blocks', async () => {

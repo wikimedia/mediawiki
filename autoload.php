@@ -1099,6 +1099,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Block\\RangeBlockTarget' => __DIR__ . '/includes/Block/RangeBlockTarget.php',
 	'MediaWiki\\Block\\Restriction\\AbstractRestriction' => __DIR__ . '/includes/Block/Restriction/AbstractRestriction.php',
 	'MediaWiki\\Block\\Restriction\\ActionRestriction' => __DIR__ . '/includes/Block/Restriction/ActionRestriction.php',
+	'MediaWiki\\Block\\Restriction\\CreatePageNamespaceRestriction' => __DIR__ . '/includes/Block/Restriction/CreatePageNamespaceRestriction.php',
 	'MediaWiki\\Block\\Restriction\\NamespaceRestriction' => __DIR__ . '/includes/Block/Restriction/NamespaceRestriction.php',
 	'MediaWiki\\Block\\Restriction\\PageRestriction' => __DIR__ . '/includes/Block/Restriction/PageRestriction.php',
 	'MediaWiki\\Block\\Restriction\\Restriction' => __DIR__ . '/includes/Block/Restriction/Restriction.php',

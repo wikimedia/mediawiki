@@ -75,6 +75,16 @@
 													</li>
 												</ul>
 											</div>
+											<div v-else-if="restrictionType === 'createpagenamespaces'">
+												{{ mw.message( 'blocklist-editing-createpage-ns' ).text() }}
+												<ul class="mw-block-parameters">
+													<li v-for="namespace in parameter" :key="namespace">
+														<a :href="mw.util.getUrl( 'Special:AllPages', { namespace } )">
+															{{ mwNamespaces[ namespace ] }}
+														</a>
+													</li>
+												</ul>
+											</div>
 											<div v-else-if="restrictionType === 'actions'">
 												{{ mw.message( 'blocklist-editing-action' ).text() }}
 												<ul class="mw-block-parameters">

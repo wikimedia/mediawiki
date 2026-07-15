@@ -19,6 +19,7 @@ use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\MultiblocksException;
 use MediaWiki\Block\RangeBlockTarget;
 use MediaWiki\Block\Restriction\ActionRestriction;
+use MediaWiki\Block\Restriction\CreatePageNamespaceRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\UserBlockTarget;
@@ -258,6 +259,8 @@ class SpecialBlock extends FormSpecialPage {
 			$this->codexFormData[ 'blockAdditionalDetailsPreset' ] = $blockAdditionalDetailsPreset;
 			$this->codexFormData[ 'blockPageRestrictions' ] = $request->getVal( 'wpPageRestrictions' );
 			$this->codexFormData[ 'blockNamespaceRestrictions' ] = $request->getVal( 'wpNamespaceRestrictions' );
+			$this->codexFormData[ 'blockCreatePageNamespaceRestrictions' ] =
+				$request->getVal( 'wpCreatePageNamespaceRestrictions' );
 		}
 	}
 
@@ -416,6 +419,18 @@ class SpecialBlock extends FormSpecialPage {
 		$a['NamespaceRestrictions'] = [
 			'type' => 'namespacesmultiselect',
 			'label' => $this->msg( 'ipb-namespaces-label' )->text(),
+			'exists' => true,
+			'cssclass' => 'mw-htmlform-checkradio-indent mw-block-partial-restriction',
+			'default' => '',
+			'input' => [
+				'autocomplete' => false
+			],
+			'section' => 'actions',
+		];
+
+		$a['CreatePageNamespaceRestrictions'] = [
+			'type' => 'namespacesmultiselect',
+			'label' => $this->msg( 'ipb-createpage-namespaces-label' )->text(),
 			'exists' => true,
 			'cssclass' => 'mw-htmlform-checkradio-indent mw-block-partial-restriction',
 			'default' => '',
@@ -748,6 +763,7 @@ class SpecialBlock extends FormSpecialPage {
 
 				$pageRestrictions = [];
 				$namespaceRestrictions = [];
+				$createPageNamespaceRestrictions = [];
 				foreach ( $block->getRestrictions() as $restriction ) {
 					if ( $restriction instanceof PageRestriction && $restriction->getTitle() ) {
 						$pageRestrictions[] = $restriction->getTitle()->getPrefixedText();
@@ -755,6 +771,10 @@ class SpecialBlock extends FormSpecialPage {
 						$this->namespaceInfo->exists( $restriction->getValue() )
 					) {
 						$namespaceRestrictions[] = $restriction->getValue();
+					} elseif ( $restriction instanceof CreatePageNamespaceRestriction &&
+						$this->namespaceInfo->exists( $restriction->getValue() )
+					) {
+						$createPageNamespaceRestrictions[] = $restriction->getValue();
 					}
 				}
 
@@ -765,6 +785,10 @@ class SpecialBlock extends FormSpecialPage {
 				sort( $namespaceRestrictions );
 				$fields['NamespaceRestrictions']['default'] =
 					$this->codexFormData[ 'blockNamespaceRestrictions' ] = implode( "\n", $namespaceRestrictions );
+				sort( $createPageNamespaceRestrictions );
+				$fields['CreatePageNamespaceRestrictions']['default'] =
+					$this->codexFormData[ 'blockCreatePageNamespaceRestrictions' ] =
+						implode( "\n", $createPageNamespaceRestrictions );
 
 				$actionRestrictions = [];
 				foreach ( $block->getRestrictions() as $restriction ) {
@@ -1075,6 +1099,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		$pageRestrictions = [];
 		$namespaceRestrictions = [];
+		$createPageNamespaceRestrictions = [];
 		$actionRestrictions = [];
 		if ( $isPartialBlock ) {
 			if ( isset( $data['PageRestrictions'] ) && $data['PageRestrictions'] !== '' ) {
@@ -1088,13 +1113,25 @@ class SpecialBlock extends FormSpecialPage {
 					return new NamespaceRestriction( 0, (int)$id );
 				}, explode( "\n", $data['NamespaceRestrictions'] ) );
 			}
+			if ( isset( $data['CreatePageNamespaceRestrictions'] ) &&
+				$data['CreatePageNamespaceRestrictions'] !== ''
+			) {
+				$createPageNamespaceRestrictions = array_map( static function ( $id ) {
+					return new CreatePageNamespaceRestriction( 0, (int)$id );
+				}, explode( "\n", $data['CreatePageNamespaceRestrictions'] ) );
+			}
 			if ( isset( $data['ActionRestrictions'] ) && $data['ActionRestrictions'] !== '' ) {
 				$actionRestrictions = array_map( static function ( $id ) {
 					return new ActionRestriction( 0, $id );
 				}, $data['ActionRestrictions'] );
 			}
 		}
-		$restrictions = array_merge( $pageRestrictions, $namespaceRestrictions, $actionRestrictions );
+		$restrictions = array_merge(
+			$pageRestrictions,
+			$namespaceRestrictions,
+			$createPageNamespaceRestrictions,
+			$actionRestrictions
+		);
 
 		if ( !isset( $data['Tags'] ) ) {
 			$data['Tags'] = [];

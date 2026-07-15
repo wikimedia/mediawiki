@@ -20,7 +20,18 @@
 			class="mw-block-partial-options"
 		>
 			<pages-field></pages-field>
-			<namespaces-field></namespaces-field>
+			<namespaces-field
+				v-model="namespaces"
+				lookup-class="mw-block-namespaces"
+				label-message="ipb-namespaces-label"
+				placeholder-message="block-namespaces-placeholder"
+			></namespaces-field>
+			<namespaces-field
+				v-model="createPageNamespaces"
+				lookup-class="mw-block-createpage-namespaces"
+				label-message="ipb-createpage-namespaces-label"
+				placeholder-message="block-createpage-namespaces-placeholder"
+			></namespaces-field>
 
 			<cdx-field :is-fieldset="true">
 				<cdx-checkbox
@@ -54,7 +65,7 @@ module.exports = exports = defineComponent( {
 		PagesField
 	},
 	setup() {
-		const { type, partialOptions } = storeToRefs( useBlockStore() );
+		const { type, partialOptions, namespaces, createPageNamespaces } = storeToRefs( useBlockStore() );
 
 		const typeCheckboxes = [
 			{
@@ -82,7 +93,9 @@ module.exports = exports = defineComponent( {
 			type,
 			typeCheckboxes,
 			partialOptions,
-			partialBlockCheckboxes
+			partialBlockCheckboxes,
+			namespaces,
+			createPageNamespaces
 		};
 	}
 } );

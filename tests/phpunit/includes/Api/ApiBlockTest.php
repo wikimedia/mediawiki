@@ -6,6 +6,7 @@ use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\ActionRestriction;
+use MediaWiki\Block\Restriction\CreatePageNamespaceRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Logging\LogEntryBase;
@@ -274,6 +275,22 @@ class ApiBlockTest extends ApiTestCase {
 		$block = $this->blockStore->newFromTarget( $this->mUser->getName() );
 
 		$this->assertInstanceOf( NamespaceRestriction::class, $block->getRestrictions()[0] );
+		$this->assertEquals( $namespace, $block->getRestrictions()[0]->getValue() );
+	}
+
+	public function testBlockWithRestrictionsCreatePageNamespace() {
+		$namespace = NS_MAIN;
+
+		$res = $this->doBlock( [
+			'partial' => true,
+			'createpagenamespacerestrictions' => $namespace,
+			'allowusertalk' => true,
+		] );
+
+		$block = $this->blockStore->newFromTarget( $this->mUser->getName() );
+
+		$this->assertSame( [ $namespace ], $res[0]['block']['createpagenamespacerestrictions'] );
+		$this->assertInstanceOf( CreatePageNamespaceRestriction::class, $block->getRestrictions()[0] );
 		$this->assertEquals( $namespace, $block->getRestrictions()[0]->getValue() );
 	}
 

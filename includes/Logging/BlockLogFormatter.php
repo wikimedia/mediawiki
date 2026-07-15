@@ -123,6 +123,26 @@ class BlockLogFormatter extends LogFormatter {
 					$actions[] = $this->msg( 'ipb-action-' . $action )->escaped();
 				}
 
+				$rawCreatePageNamespaces = $params[6]['createpagenamespaces'] ?? [];
+				$createPageNamespaces = [];
+				foreach ( $rawCreatePageNamespaces as $ns ) {
+					$text = (int)$ns === NS_MAIN
+						? $this->msg( 'blanknamespace' )->escaped()
+						: htmlspecialchars( $this->context->getLanguage()->getFormattedNsText( $ns ) );
+					if ( $this->plaintext ) {
+						// Because the plaintext cannot link to the Special:AllPages
+						// link that is linked to in non-plaintext mode, just return
+						// the name of the namespace.
+						$createPageNamespaces[] = $text;
+					} else {
+						$createPageNamespaces[] = $this->makePageLink(
+							SpecialPage::getTitleFor( 'Allpages' ),
+							[ 'namespace' => $ns ],
+							$text
+						);
+					}
+				}
+
 				$restrictions = [];
 				if ( $pageLinks ) {
 					$restrictions[] = $this->msg( 'logentry-partialblock-block-page' )
@@ -139,6 +159,12 @@ class BlockLogFormatter extends LogFormatter {
 					$restrictions[] = $this->msg( 'logentry-partialblock-block-action' )
 						->numParams( count( $actions ) )
 						->rawParams( $this->context->getLanguage()->listToText( $actions ) )->escaped();
+				}
+				if ( $createPageNamespaces ) {
+					$restrictions[] = $this->msg( 'logentry-partialblock-block-createpage-ns' )
+						->numParams( count( $createPageNamespaces ) )
+						->rawParams( $this->context->getLanguage()->listToText( $createPageNamespaces ) )
+						->escaped();
 				}
 
 				$params[6] = Message::rawParam( $this->context->getLanguage()->listToText( $restrictions ) );
@@ -373,6 +399,11 @@ class BlockLogFormatter extends LogFormatter {
 		if ( isset( $ret['restrictions']['namespaces'] ) ) {
 			// @phan-suppress-next-line PhanTypeMismatchArgument False positive
 			ApiResult::setIndexedTagName( $ret['restrictions']['namespaces'], 'ns' );
+		}
+
+		if ( isset( $ret['restrictions']['createpagenamespaces'] ) ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgument False positive
+			ApiResult::setIndexedTagName( $ret['restrictions']['createpagenamespaces'], 'ns' );
 		}
 
 		return $ret;
