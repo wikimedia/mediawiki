@@ -2,11 +2,15 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiQueryRecentChanges;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
@@ -1188,5 +1192,46 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 				'shouldTagFilterFindRecentChangeEntry' => true,
 			],
 		];
+	}
+
+	/**
+	 * @dataProvider provideGetCacheMode
+	 */
+	public function testGetCacheMode( array $prop, string $expected, ?string $tag = null ): void {
+		$recentChanges = $this->newRecentChangesQueryModule( $this->mockRegisteredNullAuthority() );
+
+		$this->assertSame(
+			$expected,
+			$recentChanges->getCacheMode( [ 'prop' => $prop, 'tag' => $tag, 'show' => null ] )
+		);
+	}
+
+	public static function provideGetCacheMode(): array {
+		return [
+			'tags prop is per-viewer private' => [
+				'prop' => [ 'ids', 'tags' ],
+				'expected' => 'anon-public-user-private',
+			],
+			'no tags prop stays public' => [
+				'prop' => [ 'ids' ],
+				'expected' => 'public',
+			],
+			'tag filter is per-viewer private' => [
+				'prop' => [ 'ids' ],
+				'expected' => 'anon-public-user-private',
+				'tag' => 'mw-private-test',
+			],
+		];
+	}
+
+	private function newRecentChangesQueryModule( Authority $authority ): ApiQueryRecentChanges {
+		$context = new RequestContext();
+		$context->setRequest( new FauxRequest() );
+		$context->setAuthority( $authority );
+
+		return ( new ApiMain( $context ) )->getModuleManager()
+			->getModule( 'query' )
+			->getModuleManager()
+			->getModule( 'recentchanges' );
 	}
 }

@@ -603,9 +603,12 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			// MediaWiki\CommentFormatter\CommentFormatter::formatItems() calls wfMessage() among other things
 			return 'anon-public-user-private';
 		}
-		if ( $params['prop'] !== null && in_array( 'tags', $params['prop'] ) ) {
-			// ts_tags output varies by the viewer's rights when restricted
-			// tags are configured; the mode must not depend on configuration
+		// The 'tags' output and the 'tag'-filtered row set both vary by the
+		// viewer's rights when restricted tags are configured; the mode must
+		// not depend on configuration.
+		if ( ( $params['prop'] !== null && in_array( 'tags', $params['prop'] ) )
+			|| isset( $params['tag'] )
+		) {
 			return 'anon-public-user-private';
 		}
 
