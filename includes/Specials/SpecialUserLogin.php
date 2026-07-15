@@ -173,7 +173,7 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 			}
 		}
 
-		LoggerFactory::getInstance( 'authevents' )->info( 'Login attempt, reauth={reauth}', [
+		LoggerFactory::getInstance( 'authevents' )->info( 'Login attempt', [
 			'event' => 'login',
 			'successful' => $success,
 			'accountType' => $this->identityUtils->getShortUserTypeInternal( $performer ),
