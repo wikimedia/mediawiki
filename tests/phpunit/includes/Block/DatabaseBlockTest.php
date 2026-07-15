@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Block;
 
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Restriction\CreatePageNamespaceRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\UserBlockTarget;
@@ -308,6 +309,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $block->appliesToPage( $title->getArticleID() ) );
 		$this->assertTrue( $block->appliesToNamespace( NS_MAIN ) );
 		$this->assertTrue( $block->appliesToNamespace( NS_USER_TALK ) );
+		$this->assertTrue( $block->appliesToCreatePageInNamespace( NS_MAIN ) );
 	}
 
 	public function testAppliesToPageOnPartialPageBlock() {
@@ -356,6 +358,29 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 		$this->assertTrue( $block->appliesToNamespace( NS_MAIN ) );
 		$this->assertFalse( $block->appliesToNamespace( NS_USER ) );
+	}
+
+	public function testAppliesToCreatePageInNamespaceOnPartialBlock() {
+		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
+		$user = $this->getTestUser()->getUser();
+		$block = new DatabaseBlock( [
+			'expiry' => wfTimestamp( TS::MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'allowUsertalk' => true,
+			'sitewide' => false,
+		] );
+
+		$block->setTarget( new UserBlockTarget( $user ) );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
+
+		$restriction = new CreatePageNamespaceRestriction( $block->getId(), NS_MAIN );
+		$this->getBlockRestrictionStore()->insert( [ $restriction ] );
+
+		$this->assertTrue( $block->appliesToCreatePageInNamespace( NS_MAIN ) );
+		$this->assertFalse( $block->appliesToCreatePageInNamespace( NS_USER ) );
+		$this->assertFalse( $block->appliesToNamespace( NS_MAIN ) );
 	}
 
 	public function testBlockAllowsRead() {

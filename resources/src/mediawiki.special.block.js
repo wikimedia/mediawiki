@@ -13,7 +13,8 @@
 	$( () => {
 		let blockTargetWidget, anonOnlyWidget, enableAutoblockWidget, hideUserWidget, watchUserWidget = null,
 			expiryWidget, editingRestrictionWidget, partialActionsRestrictionsWidget, preventTalkPageEditWidget,
-			pageRestrictionsWidget, namespaceRestrictionsWidget, createAccountWidget,
+			pageRestrictionsWidget, namespaceRestrictionsWidget, createPageNamespaceRestrictionsWidget,
+			createAccountWidget,
 			userChangedCreateAccount, updatingBlockOptions;
 
 		function preserveSelectedStateOnDisable( widget ) {
@@ -63,6 +64,7 @@
 
 			pageRestrictionsWidget.setDisabled( isSitewide );
 			namespaceRestrictionsWidget.setDisabled( isSitewide );
+			createPageNamespaceRestrictionsWidget.setDisabled( isSitewide );
 			if ( preventTalkPageEditWidget ) {
 				// Disable for partial blocks, unless the block is against the User_talk namespace
 				preventTalkPageEditWidget.setDisabled(
@@ -152,6 +154,9 @@
 			editingRestrictionWidget = OO.ui.infuse( $( '#mw-input-wpEditingRestriction' ) );
 			pageRestrictionsWidget = OO.ui.infuse( $( '#mw-input-wpPageRestrictions' ) );
 			namespaceRestrictionsWidget = OO.ui.infuse( $( '#mw-input-wpNamespaceRestrictions' ) );
+			createPageNamespaceRestrictionsWidget = OO.ui.infuse(
+				$( '#mw-input-wpCreatePageNamespaceRestrictions' )
+			);
 			editingRestrictionWidget.on( 'change', updateBlockOptions );
 			namespaceRestrictionsWidget.on( 'change', updateBlockOptions );
 			partialActionsRestrictionsWidget = OO.ui.infuse( $( '.mw-block-action-restriction.oo-ui-checkboxMultiselectInputWidget' ) );

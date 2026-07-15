@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Api\Query;
 
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\Restriction\ActionRestriction;
+use MediaWiki\Block\Restriction\CreatePageNamespaceRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Tests\Api\ApiTestCase;
@@ -156,6 +157,11 @@ class ApiQueryBlocksTest extends ApiTestCase {
 				'ir_type' => NamespaceRestriction::TYPE_ID,
 				'ir_value' => NS_USER_TALK,
 			] )
+			->row( [
+				'ir_ipb_id' => $block->getId(),
+				'ir_type' => CreatePageNamespaceRestriction::TYPE_ID,
+				'ir_value' => NS_MAIN,
+			] )
 			// Invalid type
 			->row( [
 				'ir_ipb_id' => $block->getId(),
@@ -205,6 +211,9 @@ class ApiQueryBlocksTest extends ApiTestCase {
 				],
 				'namespaces' => [
 					NS_USER_TALK,
+				],
+				'createpagenamespaces' => [
+					NS_MAIN,
 				],
 				'actions' => [
 					'upload'

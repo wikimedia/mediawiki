@@ -5,6 +5,7 @@ use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockTargetFactory;
 use MediaWiki\Block\HideUserUtils;
+use MediaWiki\Block\Restriction\CreatePageNamespaceRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
@@ -222,6 +223,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$restrictions = [
 			( new PageRestriction( 0, $pageId ) )->setTitle( $title ),
 			new NamespaceRestriction( 0, NS_MAIN ),
+			new CreatePageNamespaceRestriction( 0, NS_USER ),
 			// Deleted page.
 			new PageRestriction( 0, 999999 ),
 		];
@@ -249,6 +251,13 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			. 'Special:AllPages'
 			. '">'
 			. wfMessage( 'blanknamespace' )->text()
+			. '</a></li></ul></li><li>'
+			. wfMessage( 'blocklist-editing-createpage-ns' )->text()
+			. '<ul><li>'
+			. '<a href="/w/index.php?title=Special:AllPages&amp;namespace=2" title="'
+			. 'Special:AllPages'
+			. '">'
+			. $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' )->getFormattedNsText( NS_USER )
 			. '</a></li></ul></li></ul></li></ul>',
 			$formatted
 		);

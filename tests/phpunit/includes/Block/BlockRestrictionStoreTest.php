@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Block;
 
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Block\Restriction\CreatePageNamespaceRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
@@ -104,6 +105,22 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$this->assertEquals( $block->getId(), $namespaceRestriction->getBlockId() );
 		$this->assertSame( NS_USER, $namespaceRestriction->getValue() );
 		$this->assertEquals( NamespaceRestriction::TYPE, $namespaceRestriction->getType() );
+	}
+
+	public function testMappingCreatePageNamespaceRestrictionObject() {
+		$block = $this->insertBlock();
+
+		$this->blockRestrictionStore->insert( [
+			new CreatePageNamespaceRestriction( $block->getId(), NS_USER ),
+		] );
+
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
+
+		[ $restriction ] = $restrictions;
+		$this->assertInstanceOf( CreatePageNamespaceRestriction::class, $restriction );
+		$this->assertEquals( $block->getId(), $restriction->getBlockId() );
+		$this->assertSame( NS_USER, $restriction->getValue() );
+		$this->assertEquals( CreatePageNamespaceRestriction::TYPE, $restriction->getType() );
 	}
 
 	public function testInsert() {

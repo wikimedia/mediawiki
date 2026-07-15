@@ -12,6 +12,7 @@ use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\HideUserUtils;
+use MediaWiki\Block\Restriction\CreatePageNamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
@@ -337,6 +338,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$keys = [
 			'page' => 'pages',
 			'ns' => 'namespaces',
+			'createpage-ns' => 'createpagenamespaces',
 			'action' => 'actions',
 		];
 
@@ -362,7 +364,10 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 			if ( !isset( $data[$id][$key] ) ) {
 				$data[$id][$key] = [];
-				ApiResult::setIndexedTagName( $data[$id][$key], $restriction->getType() );
+				$tagName = $restriction instanceof CreatePageNamespaceRestriction ?
+					'ns' :
+					$restriction->getType();
+				ApiResult::setIndexedTagName( $data[$id][$key], $tagName );
 			}
 			$data[$id][$key][] = $value;
 		}

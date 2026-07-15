@@ -1,10 +1,21 @@
 'use strict';
 
 const { shallowMount } = require( '@vue/test-utils' );
-const { createTestingPinia } = require( '@pinia/testing' );
 const { mockMwConfigGet } = require( './SpecialBlock.setup.js' );
 const NamespacesField = require( '../../../resources/src/mediawiki.special.block/components/NamespacesField.vue' );
-const useBlockStore = require( '../../../resources/src/mediawiki.special.block/stores/block.js' );
+
+const defaultProps = {
+	modelValue: [],
+	lookupClass: 'mw-block-namespaces',
+	labelMessage: 'ipb-namespaces-label',
+	placeholderMessage: 'block-namespaces-placeholder'
+};
+
+function mountField( props = {} ) {
+	return shallowMount( NamespacesField, {
+		props: { ...defaultProps, ...props }
+	} );
+}
 
 describe( 'NamespacesField', () => {
 	it( 'should populate the namespace options from wgFormattedNamespaces', () => {
@@ -18,9 +29,7 @@ describe( 'NamespacesField', () => {
 				0: ''
 			}
 		} );
-		const wrapper = shallowMount( NamespacesField, {
-			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }
-		} );
+		const wrapper = mountField();
 		expect( wrapper.vm.menuItems ).toStrictEqual( [
 			{ value: 0, label: 'blanknamespace' },
 			{ value: 2, label: 'User' },
@@ -28,11 +37,9 @@ describe( 'NamespacesField', () => {
 		] );
 	} );
 
-	it( 'should set the initial selections from blockNamespaceRestrictions', () => {
-		mockMwConfigGet( { blockNamespaceRestrictions: '1\n2' } );
-		const wrapper = shallowMount( NamespacesField, {
-			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }
-		} );
+	it( 'should set the initial selections from the model value', () => {
+		mockMwConfigGet();
+		const wrapper = mountField( { modelValue: [ 1, 2 ] } );
 		expect( wrapper.vm.chips ).toStrictEqual( [
 			{
 				label: 'Talk',
@@ -44,12 +51,9 @@ describe( 'NamespacesField', () => {
 		] );
 	} );
 
-	it( 'should update the store with new selections', () => {
+	it( 'should update the model with new selections', () => {
 		mockMwConfigGet();
-		const wrapper = shallowMount( NamespacesField, {
-			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }
-		} );
-		expect( wrapper.vm.chips ).toStrictEqual( [] );
+		const wrapper = mountField();
 		wrapper.vm.onUpdateChips( [
 			{
 				label: 'Talk',
@@ -59,6 +63,23 @@ describe( 'NamespacesField', () => {
 				value: 2
 			}
 		] );
-		expect( useBlockStore().namespaces ).toStrictEqual( [ 1, 2 ] );
+		expect( wrapper.emitted( 'update:modelValue' ) ).toStrictEqual( [ [ [ 1, 2 ] ] ] );
+	} );
+
+	it( 'should filter namespace options using the input', () => {
+		mockMwConfigGet( {
+			wgFormattedNamespaces: {
+				0: '',
+				2: 'User',
+				3: 'User talk'
+			}
+		} );
+		const wrapper = mountField();
+		wrapper.vm.onInput( 'talk' );
+		expect( wrapper.vm.menuItems ).toStrictEqual( [
+			{ value: 3, label: 'User talk' }
+		] );
+		wrapper.vm.onInput( '' );
+		expect( wrapper.vm.menuItems ).toHaveLength( 3 );
 	} );
 } );

@@ -14,6 +14,7 @@ use MediaWiki\Block\BlockTargetWithUserPage;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Block\RangeBlockTarget;
 use MediaWiki\Block\Restriction\ActionRestriction;
+use MediaWiki\Block\Restriction\CreatePageNamespaceRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
@@ -368,6 +369,7 @@ class BlockListPager extends TablePager {
 					}
 					break;
 				case NamespaceRestriction::TYPE:
+				case CreatePageNamespaceRestriction::TYPE:
 					$text = $restriction->getValue() === NS_MAIN
 						? $this->messages['blanknamespace']
 						: $this->getLanguage()->getFormattedNsText(
@@ -419,6 +421,7 @@ class BlockListPager extends TablePager {
 				// * blocklist-editing-sitewide
 				// * blocklist-editing-page
 				// * blocklist-editing-ns
+				// * blocklist-editing-createpage-ns
 				// * blocklist-editing-action
 				$this->msg( 'blocklist-editing-' . $key ) . Html::rawElement(
 					'ul',
