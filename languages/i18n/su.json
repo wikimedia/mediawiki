@@ -1882,7 +1882,7 @@
 	"blanknamespace": "(Utama)",
 	"contributions": "Kontribusi pamaké",
 	"tool-link-contributions": "Kontribusi {{GENDER:$1|pamaké}}",
-	"contributions-title": "Sumbangan tulisan ti $1",
+	"contributions-title": "{{GENDER:$2|Sumbangan pamaké}} pikeun $1",
 	"mycontris": "Kontribusi",
 	"anoncontribs": "Kontribusi",
 	"contributions-account-creation-date": "Akun dijiyeun pada $1.",

@@ -1401,7 +1401,7 @@
 	"rcfilters-highlighted-filters-list": "پررنگ شده: $1",
 	"rcfilters-quickfilters": "پالایه‌های ذخیره‌شده",
 	"rcfilters-quickfilters-placeholder-title": "هنوز پالایه‌ای ذخیره نشده است",
-	"rcfilters-quickfilters-placeholder-description": "برای ذخیره تنظیمات پالایه و استفاده دوباره از آنها در آینده، روی نماد نشانک در بخش فیلترهای فعال در زیر کلیک کنید.",
+	"rcfilters-quickfilters-placeholder-description": "برای ذخیره تنظیمات پالایه و استفاده دوباره از آنها در آینده، روی نماد نشانک در بخش پالایه‌های فعال در زیر کلیک کنید.",
 	"rcfilters-savedqueries-defaultlabel": "پالایه‌های ذخیره‌شده",
 	"rcfilters-savedqueries-rename": "تغییر نام",
 	"rcfilters-savedqueries-setdefault": "تنظیم به عنوان پیش‌فرض",

@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"MaGa",
+			"Ponor"
+		]
+	},
+	"cdx-chip-input-chip-added": "Dodana je pilula $1.",
+	"cdx-chip-input-chip-removed": "Uklonjena je pilula $1.",
+	"cdx-input-chip-aria-description": "Pritisnite Enter za uređivanje ili Delete za uklanjanje.",
+	"cdx-dialog-close-button-label": "Zatvori",
+	"cdx-label-optional-flag": "(neobavezno)",
+	"cdx-message-dismiss-button-label": "Zatvori",
+	"cdx-popover-close-button-label": "Zatvori",
+	"cdx-search-input-search-button-label": "Pretraži",
+	"cdx-table-select-all-label": "Odaberi sve retke",
+	"cdx-table-select-row-label": "Odaberite $1. od $2 redaka",
+	"cdx-table-sort-caption": "$1 (stupci s tipkama u zaglavlju mogu se sortirati)",
+	"cdx-typeahead-search-search-results-label": "Rezultati pretrage",
+	"cdx-table-pager-button-first-page": "Prva stranica",
+	"cdx-table-pager-button-last-page": "Zadnja stranica",
+	"cdx-table-pager-button-next-page": "Sljedeća stranica",
+	"cdx-table-pager-button-prev-page": "Prethodna stranica",
+	"cdx-table-pager-items-per-page-default": "Broj rezultata po stranici",
+	"cdx-table-pagination-status-message-determinate-long": "Prikazuju se rezultati $1&nbsp;–&nbsp;$2 od njih $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 od $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Prikazuju se rezultati $1&nbsp;–&nbsp;$2 od njih mnogo",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1&nbsp;–&nbsp;$2 od mnogo",
+	"cdx-table-pagination-status-message-indeterminate-final": "{{PLURAL:$1|1=Prikazuje se zadnji rezultat|Prikazuje se posljednji $1 rezultat|Prikazuju se posljednja $1 rezultata|Prikazuje se posljednjih $1 rezultata}}",
+	"cdx-table-pagination-status-message-pending": "Učitavanje rezultata...",
+	"cdx-table-no-data-message": "Podatci nisu dostupni."
+}
