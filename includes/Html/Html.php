@@ -173,31 +173,6 @@ class Html {
 	];
 
 	/**
-	 * Modifies a set of attributes meant for button elements.
-	 *
-	 * @param array $attrs HTML attributes in an associative array
-	 * @param string[] $modifiers Unused
-	 * @return array Modified attributes array
-	 * @deprecated since 1.42 No-op
-	 */
-	public static function buttonAttributes( array $attrs, array $modifiers = [] ) {
-		wfDeprecated( __METHOD__, '1.42' );
-		return $attrs;
-	}
-
-	/**
-	 * Modifies a set of attributes meant for text input elements.
-	 *
-	 * @param array $attrs An attribute array.
-	 * @return array Modified attributes array
-	 * @deprecated since 1.42 No-op
-	 */
-	public static function getTextInputAttributes( array $attrs ) {
-		wfDeprecated( __METHOD__, '1.42' );
-		return $attrs;
-	}
-
-	/**
 	 * Add a class to a 'class' attribute in a format accepted by Html::element().
 	 *
 	 * This method may also be used for any other space-separated attribute, such as 'rel'.
