@@ -339,7 +339,11 @@ class UploadFromChunks extends UploadFromFile {
 
 					return Status::newFatal( $e->msg );
 				}
-				$status = $this->outputChunk( $chunkPath );
+				try {
+					$status = $this->outputChunk( $chunkPath );
+				} catch ( UploadChunkFileException $uploadChunkFileException ) {
+					$status = Status::newFatal( $uploadChunkFileException->getMessage() );
+				}
 				if ( $status->isGood() ) {
 					// Update local offset:
 					$this->mOffset = $preAppendOffset + $chunkSize;

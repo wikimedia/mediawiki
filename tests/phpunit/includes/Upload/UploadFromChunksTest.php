@@ -106,4 +106,22 @@ class UploadFromChunksTest extends MediaWikiIntegrationTestCase {
 		$newFilekey = $upload->getStashFile()->getFileKey();
 		$this->assertNotSame( $filekey, $newFilekey );
 	}
+
+	public function testUploadWhenRepoFails() {
+		$repoMock = $this->createMock( LocalRepo::class );
+		$repoMock->expects( $this->any() )
+			->method( 'quickImportBatch' )
+			->willReturn( Status::newFatal( 'Some repo error' ) );
+		$upload = new UploadFromChunks( $this->getTestUser()->getUser(), false, $repoMock );
+
+		// Add some data to a chunk file.
+		$chunkPath = $this->getNewTempFile();
+		$chuckContents = 'test';
+		file_put_contents( $chunkPath, $chuckContents );
+
+		// Try to add the chunk, and confirm that the error from the repo is passed back through.
+		$chunkStatus = $upload->addChunk( $chunkPath, strlen( $chuckContents ), 0 );
+		$this->assertFalse( $chunkStatus->isOK() );
+		$this->assertStringContainsString( 'Some repo error', $chunkStatus->getMessages()[0]->getKey() );
+	}
 }
