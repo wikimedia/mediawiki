@@ -56,7 +56,6 @@
 	"userlogin-yourname-ph": "Geef je gebruikersnaam op",
 	"userlogin-yourpassword-ph": "Geef je wachtwoord op",
 	"yourpasswordagain": "Typ je wachtwoord nog eens:",
-	"createacct-useuniquepass": "Gebruik liefst een uniek wachtwoord dat je niet op een andere website gebruikt.",
 	"yourdomainname": "Je domein:",
 	"password-change-forbidden": "Je kunt je wachtwoord niet wijzigen in deze wiki.",
 	"externaldberror": "Er is een fout opgetreden bij het aanmelden bij de database of je hebt geen toestemming je externe account bij te werken.",

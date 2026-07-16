@@ -275,7 +275,7 @@
 	"action-bigdelete": "удаление страниц с длинными историями изменений",
 	"action-blockemail": "блокировка или разблокировка для участника отправки электронной почты",
 	"action-bot": "считаться автоматическим процессом",
-	"action-editalluserpages": "редактировать эту страницу участника",
+	"action-editalluserpages": "редактирование страницы других участников",
 	"action-editprotected": "правка страниц, защищённых как «{{int:restriction-level-sysop}}»",
 	"action-editsemiprotected": "правка страниц, защищённых как «{{int:restriction-level-autoconfirmed}}»",
 	"action-editinterface": "правка пользовательского интерфейса",
