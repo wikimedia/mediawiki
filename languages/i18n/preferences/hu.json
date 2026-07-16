@@ -214,6 +214,8 @@
 	"rcfilters-watchlist-preference-label": "JavaScript nélküli felület használata",
 	"rcfilters-watchlist-preference-help": "A [[{{#special:Watchlist}}|figyelőlista]] betöltése szűrők közti keresés és kiemelések lehetősége nélkül.",
 	"prefs-changeswatchlist": "Megjelenítendő változtatások",
+	"tog-watchstar-expiry": "A kézzel hozzáadott lapok figyelésének alapértelmezett időtartama:",
+	"tog-watch-expiry": "Az alapértelmezett időtartam:",
 	"tog-watchlisthideminor": "Apró változtatások elrejtése",
 	"tog-watchlisthidebots": "Botok szerkesztéseinek elrejtése",
 	"tog-watchlisthideown": "Saját szerkesztések elrejtése",

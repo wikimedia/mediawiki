@@ -2197,7 +2197,7 @@
 	"autosumm-changed-redirect-target": "Ubah sasaran paugahan matan [[$1]] ka [[$2]]",
 	"autosumm-new": "Maulah laman nang isinya ''$1''",
 	"lag-warn-normal": "Paubahan pahanyarnya pada $1 {{PLURAL:$1|ditik|diditik}} pinanya kada cungul di daptar ngini.",
-	"lag-warn-high": "Marga pancaunya kalambatan server databasis, paubahan pahanyarnya pada {{PLURAL:$1|datik|dadatik}} pina kada ditampaiakan dalam daptar ngini.",
+	"lag-warn-high": "Maraga server parhatan balambat, paubahan nang diulah {{PLURAL:$1|datik|datik}} pauncitnya pinanya balum mancungul di daptar ini.",
 	"watchlistedit-normal-title": "Babak daptar itihan",
 	"watchlistedit-normal-legend": "Buang jujudul matan daptar itihan",
 	"watchlistedit-normal-explain": "Judul dalam daptar itihan Pian ditampaiakan di bawah ngini.\nGasan mambuang sabuting judul, cintang kutak dudi ka ngini, wan klik \"{{int:Watchlistedit-normal-submit}}\".\nPian kawa jua [[Special:EditWatchlist/raw|mambabak daptar mantah]].",

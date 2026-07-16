@@ -3798,7 +3798,7 @@
 	"rightslogentry-expiry-changed": "$1 (до $2, было: $5)",
 	"feedback-cancel": "Отмена",
 	"feedback-close": "Готово",
-	"feedback-external-bug-report-button": "Отправить техническое задание",
+	"feedback-external-bug-report-button": "Написать технический отчёт",
 	"feedback-dialog-title": "Отправить отзыв",
 	"feedback-dialog-intro": "Вы можете воспользоваться простой формой ниже, чтобы оставить свой отзыв. Комментарий с вашим именем участника будет добавлен на страницу «$1».",
 	"feedback-error1": "Ошибка. Неизвестный результат из API",
