@@ -123,16 +123,11 @@
 						setupInstrumentation( experiment, selector );
 					} else {
 						showDefaultConfirmation();
-						// Ensure exposure is logged only once for users in the control group where the toast shows twice.
-						if (
-							mw.storage.session.get( 'we-1-8-tempuser-post-edit__should_log' ) &&
-							mw.storage.session.get( 'we-1-8-tempuser-post-edit__should_log' ) < Date.now()
-						) {
+						// Ensure exposure is logged only once for VE users in the control group where the toast shows twice.
+						// That is, after the page reloaded and the page was rendered for the temp user
+						if ( mw.user.isTemp() ) {
 							setupInstrumentation( experiment, selector );
-							mw.storage.session.remove( 'we-1-8-tempuser-post-edit__should_log' );
 						}
-						// This only needs to last for the time between Special:CentralLogin redirects and the final load
-						mw.storage.session.set( 'we-1-8-tempuser-post-edit__should_log', Date.now(), 30 );
 					}
 				} else {
 					showDefaultConfirmation();
