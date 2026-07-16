@@ -157,6 +157,7 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testListRevisions_legacy(): void {
+		$this->hideDeprecated( 'MediaWiki\Revision\ArchivedRevisionLookup::listRevisions' );
 		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
 		$revisions = $lookup->listRevisions( $this->archivedPage );
 		$this->assertEquals( 2, $revisions->numRows() );

@@ -91,6 +91,8 @@ class ArchivedRevisionLookup {
 		?int $limit = null,
 		?Authority $performer = null
 	): IResultWrapper {
+		wfDeprecated( __METHOD__, '1.47' );
+
 		$viewer = $performer ?? new SimpleAuthority( UserIdentityValue::newAnonymous( '127.0.0.1' ), [] );
 
 		return $this->listArchivedRevisions( $page, $viewer, $extraConds, $limit );

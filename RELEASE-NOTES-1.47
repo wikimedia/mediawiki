@@ -406,8 +406,8 @@ because of Phabricator reports.
   ChangeTagsStore::makeTagSummarySubquery() is deprecated and emits deprecation
   warnings. Pass an Authority so that rights-restricted change tags can be shown
   to users who are allowed to view them.
-* ArchivedRevisionLookup::listRevisions() is deprecated; use
-  listArchivedRevisions() instead, passing an Authority.
+* ArchivedRevisionLookup::listRevisions() is deprecated and emits deprecation
+  warnings. Use listArchivedRevisions() instead, passing an Authority.
 * ChangeTagsStore::modifyDisplayQueryBuilder() is deprecated and emits
   deprecation warnings. Use addTagsToDisplayQuery() instead, passing an
   Authority.
