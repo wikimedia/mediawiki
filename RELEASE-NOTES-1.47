@@ -251,6 +251,8 @@ because of Phabricator reports.
 * BaseSearchResultSet::next() and ::rewind(), deprecated since 1.32 have now
   been removed. Use ::extractResults() or a foreach loop instead.
 * The global function wfGetUrlUtils(), deprecated since 1.43, has been removed.
+* ExternalLinksLookup::getExternalLinksForPage(), deprecated since 1.45,
+  has been removed.
 * Some static methods in Xml, deprecated in 1.42, have been removed:
   - Xml::attrib(),
   - Xml::buildForm(),
