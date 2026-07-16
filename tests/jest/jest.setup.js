@@ -41,6 +41,7 @@ ApiMock.prototype.get = jest.fn();
 ApiMock.prototype.post = jest.fn();
 ApiMock.prototype.postWithEditToken = jest.fn();
 ApiMock.prototype.postWithToken = jest.fn();
+ApiMock.AbortController = jest.fn();
 
 function RestMock() {}
 RestMock.prototype.get = jest.fn();
@@ -84,7 +85,7 @@ const mw = {
 	},
 	Title: TitleMock,
 	util: {
-		debounce: jest.fn( ( fn ) => fn() ),
+		debounce: jest.fn( ( fn ) => fn ),
 		getUrl: jest.fn( ( pageName ) => '/wiki/' + pageName ),
 		isIPAddress: jest.fn(),
 		isInfinity: jest.fn(),

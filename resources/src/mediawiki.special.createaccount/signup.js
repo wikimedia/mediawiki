@@ -3,7 +3,6 @@
  *
  * @module mediawiki.special.createaccount
  */
-const HtmlformChecker = require( './HtmlformChecker.js' );
 const HtmlformCheckerV2 = require( './HtmlformCheckerV2.js' );
 const mountUsernamePolicyPopover = require( './username-policy-popover.js' );
 
@@ -72,6 +71,33 @@ mw.hook( 'htmlform.enhance' ).add( async ( $root ) => {
 		api = new mw.Api(),
 		isV2 = mw.config.get( 'GECreateAccountExperimentV2' );
 
+	$usernameInput.on( 'input', () => {
+		const originalCaretPosition = $usernameInput[ 0 ].selectionStart;
+		const originalUsername = $usernameInput.val();
+		const fixedUsername = fixUsername( originalUsername );
+		if ( fixedUsername === originalUsername ) {
+			return;
+		}
+		const newCaretPosition = Math.max( 0,
+			originalCaretPosition - ( originalUsername.length - fixedUsername.length )
+		);
+		$usernameInput.val( fixedUsername );
+		$usernameInput[ 0 ].setSelectionRange(
+			newCaretPosition,
+			newCaretPosition
+		);
+	} );
+
+	function fixUsername( username ) {
+		username = username.replace( /_/g, ' ' );
+		// trim leading spaces, replace with trimStart() once T419142 is done
+		username = username.replace( /^\s+/, '' );
+		// Note that this has some minor differences from MediaWiki-core's normalization
+		// but is expected to be fully compatible
+		username = username.charAt( 0 ).toUpperCase() + username.slice( 1 );
+		return username;
+	}
+
 	function checkUsername( username, signal ) {
 		// Leading/trailing/multiple whitespace characters are always stripped in usernames,
 		// this should not require a warning. We do warn about underscores.
@@ -122,14 +148,12 @@ mw.hook( 'htmlform.enhance' ).add( async ( $root ) => {
 						messages: [ mw.message( 'createacct-normalization', username, userinfo.name ).parseDom() ],
 						type: 'success'
 					};
-				} else if ( isV2 ) {
+				} else {
 					return {
 						valid: true,
 						messages: [ mw.message( 'available-username' ).parseDom() ],
 						type: 'success'
 					};
-				} else {
-					return { valid: true, messages: [] };
 				}
 			} );
 	}
@@ -170,11 +194,11 @@ mw.hook( 'htmlform.enhance' ).add( async ( $root ) => {
 			} );
 	}
 
-	function attachCheckers( CheckerFn ) {
-		const usernameChecker = new CheckerFn( $usernameInput, checkUsername, { feedback: true } );
+	function attachCheckers() {
+		const usernameChecker = new HtmlformCheckerV2( $usernameInput, checkUsername, { feedback: true } );
 		usernameChecker.attach();
 
-		const passwordChecker = new CheckerFn( $passwordInput, checkPassword );
+		const passwordChecker = new HtmlformCheckerV2( $passwordInput, checkPassword );
 		passwordChecker.attach( $usernameInput.add( $emailInput ).add( $realNameInput ) );
 	}
 
@@ -189,12 +213,10 @@ mw.hook( 'htmlform.enhance' ).add( async ( $root ) => {
 		} );
 	}
 
+	attachCheckers();
+	attachPasswordRevealFunctionality();
 	if ( isV2 ) {
-		attachCheckers( HtmlformCheckerV2 );
 		bootstrapUsernamePolicyPopover();
-	} else {
-		attachCheckers( HtmlformChecker );
-		attachPasswordRevealFunctionality();
 	}
 
 } );

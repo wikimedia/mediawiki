@@ -24,6 +24,7 @@ module.exports = {
 	// collected
 	collectCoverageFrom: [
 		'resources/src/mediawiki.special.block/**/*.{js,vue}',
+		'resources/src/mediawiki.special.createaccount/**/*.{js,vue}',
 		'resources/src/mediawiki.skinning.typeaheadSearch/**/*.{js,vue}'
 	],
 
