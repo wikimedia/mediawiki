@@ -83,12 +83,6 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	protected static bool $testJobClasses = false;
 
 	/**
-	 * @var bool If true, tests that RestRoutes can be constructed.
-	 * @todo Remove this once no extension needs it.
-	 */
-	protected static bool $testRestRoutes = true;
-
-	/**
 	 * @var array[] Cache for extension.json, shared between all tests.
 	 * Maps {@link $extensionJsonPath} values to parsed extension.json contents.
 	 */
@@ -407,18 +401,10 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( Handler::class, $restHandler );
 	}
 
-	private static function doProvideRestRoutes() {
+	public static function provideRestRoutes() {
 		foreach ( self::getExtensionJson()['RestRoutes'] ?? [] as $specification ) {
 			yield [ $specification ];
 		}
-	}
-
-	public static function provideRestRoutes() {
-		if ( !static::$testRestRoutes ) {
-			return [];
-		}
-
-		yield from self::doProvideRestRoutes();
 	}
 
 	/** @dataProvider provideServicesLists */
@@ -492,7 +478,7 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 			yield "DomainEventIngresses/$index" => $domainEventIngressSpecification;
 		}
 
-		foreach ( self::doProvideRestRoutes() as $index => $restRoute ) {
+		foreach ( self::provideRestRoutes() as $index => $restRoute ) {
 			yield "RestRoutes/$index" => $restRoute;
 		}
 	}
