@@ -59,6 +59,7 @@
 	"rest-badtoken": "The CSRF token provided is invalid.",
 	"rest-badtoken-missing": "The <var>token</var> parameter is required unless using a CSRF-safe authentication method.",
 	"rest-badtoken-nosession": "CSRF error - no session.",
+	"rest-csrf-token-description": "CSRF token.\n**Required** if authenticating via the MediaWiki-Session-CookieSessionProvider cookies.\n**Not required** if using a CSRF-safe mechanism, such as OAuth2.0.",
 	"rest-mock-error": "Mock error.",
 	"rest-specified-revision-unavailable": "The specified revision is deleted or suppressed.",
 	"rest-previous-revision-unavailable": "Could not find previous revision. Has the page been locked or deleted?",

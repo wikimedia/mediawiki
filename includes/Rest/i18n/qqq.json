@@ -64,6 +64,7 @@
 	"rest-badtoken": "Error message for REST API debugging, shown when an invalid CSRF token was provided.",
 	"rest-badtoken-missing": "Error message for REST API debugging, shown when no anti-CSRF security token was provided.\n\n'''Note: CSRF is a type of attack ([[:w:Cross-site request forgery|Cross-Site Request Forgery]]), so \"CSRF-safe\" means \"safe against CSRF attacks\".'''",
 	"rest-badtoken-nosession": "Error message for REST API debugging, shown when an invalid CSRF token was provided and it seems like the client failed to include authentication information.",
+	"rest-csrf-token-description": "OpenAPI parameter description explaining the conditional requirements of the CSRF token parameter.",
 	"rest-mock-error": "Error message for REST API debugging, shown when there is an error mocking",
 	"rest-specified-revision-unavailable": "Error message for REST API debugging, shown when the specified revision is deleted or suppressed",
 	"rest-previous-revision-unavailable": "Error message for REST API debugging, shown when the previous revision can not be found",

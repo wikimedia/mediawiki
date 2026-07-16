@@ -35,6 +35,7 @@ trait TokenAwareHandlerTrait {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => '',
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-csrf-token-description' ),
 			]
 		];
 	}

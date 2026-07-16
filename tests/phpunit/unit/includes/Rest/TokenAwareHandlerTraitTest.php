@@ -10,6 +10,8 @@ use MediaWiki\Session\SessionProvider;
 use MediaWiki\Session\Token;
 use MediaWiki\User\User;
 use MediaWikiUnitTestCase;
+use Wikimedia\Message\MessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @covers \MediaWiki\Rest\TokenAwareHandlerTrait
@@ -136,6 +138,17 @@ class TokenAwareHandlerTraitTest extends MediaWikiUnitTestCase {
 		}
 	}
 
+	public function testGetTokenParamDefinition() {
+		$handler = $this->getHandler( [], null, false, true );
+		$def = $handler->getTokenParamDefinition();
+		$this->assertArrayHasKey( 'token', $def );
+		$this->assertArrayHasKey( Handler::PARAM_DESCRIPTION, $def['token'] );
+		$this->assertInstanceOf( MessageValue::class, $def['token'][Handler::PARAM_DESCRIPTION] );
+		$this->assertSame( 'rest-csrf-token-description', $def['token'][Handler::PARAM_DESCRIPTION]->getKey() );
+		$this->assertArrayHasKey( ParamValidator::PARAM_DEFAULT, $def['token'] );
+		$this->assertSame( '', $def['token'][ParamValidator::PARAM_DEFAULT] );
+	}
+
 	private function getHandler(
 		array $body,
 		?string $sessionToken,
@@ -158,6 +171,7 @@ class TokenAwareHandlerTraitTest extends MediaWikiUnitTestCase {
 		return new class( $session, $body ) extends Handler {
 			use TokenAwareHandlerTrait {
 				validateToken as public;
+				getTokenParamDefinition as public;
 			}
 
 			private Session $session;
