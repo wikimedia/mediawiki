@@ -1920,7 +1920,7 @@ abstract class Skin extends ContextSource {
 		// Extensions may disable or replace the built-in sitenotice
 		$applyDefault = $this->getHookRunner()->onSiteNoticeBefore( $siteNotice, $this );
 		if ( $applyDefault ) {
-			if ( $this->getUser()->isRegistered() ) {
+			if ( $this->getUser()->isNamed() ) {
 				$siteNotice = $this->getCachedNotice( 'sitenotice' );
 			} else {
 				$anonNotice = $this->getCachedNotice( 'anonnotice' );
