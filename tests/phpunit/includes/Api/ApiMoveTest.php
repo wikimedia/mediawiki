@@ -486,6 +486,7 @@ class ApiMoveTest extends ApiTestCase {
 		$talkTitleSub = $titleSub->getTalkPageIfDefined();
 
 		// Subpages are allowed in talk but not main
+		$this->mergeMwGlobalArrayValue( 'wgNamespacesWithSubpages', [ NS_MAIN => false, NS_TALK => true ] );
 		$idBase = $this->createPage( $titleBase );
 		$idSub = $this->createPage( $talkTitleSub );
 
