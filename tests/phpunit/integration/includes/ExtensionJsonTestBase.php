@@ -164,6 +164,76 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	/**
+	 * Test that each handler registered under "Hooks" actually implements the
+	 * hook it is registered for.
+	 *
+	 * For handlers referencing a "HookHandlers" entry with a known class, this
+	 * asserts that the class has the corresponding on<Hook>() method, using the
+	 * same name normalization as HookContainer. For legacy callable handlers,
+	 * it asserts that the callable is valid.
+	 *
+	 * This guards against dangling registrations, e.g. when a handler method is
+	 * removed but its "Hooks" entry is left behind: testHookHandler() only
+	 * constructs the handler class, so such a registration would otherwise go
+	 * unnoticed until the hook fires at runtime.
+	 *
+	 * @dataProvider provideHookNamesAndHandlers
+	 */
+	public function testHookImplementedByHandler( string $hookName, string $handler ): void {
+		$hookHandlers = self::getExtensionJson()['HookHandlers'] ?? [];
+		// Mirror HookContainer::getHookMethodName().
+		$method = 'on' . strtr( $hookName, ':\\-', '___' );
+
+		if ( array_key_exists( $handler, $hookHandlers ) ) {
+			$object = MediaWikiServices::getInstance()->getObjectFactory()
+				->createObject( $hookHandlers[$handler], [ 'allowClassName' => true ] );
+			$class = get_class( $object );
+			$this->assertTrue(
+				method_exists( $object, $method ),
+				"Handler '$handler' ($class) is registered for hook '$hookName' " .
+				"but does not implement $class::$method()."
+			);
+		} else {
+			// Legacy callable handler, e.g. "Class::method".
+			$this->assertIsCallable( $handler,
+				"Hook '$hookName' is registered with a handler that is not callable." );
+		}
+	}
+
+	public static function provideHookNamesAndHandlers(): iterable {
+		$extensionJson = self::getExtensionJson();
+		$hookHandlers = $extensionJson['HookHandlers'] ?? [];
+
+		// Handlers depending on an optional extension that is not loaded are filtered
+		// out by (subclass overrides of) provideHookHandlerNames(); constructing such
+		// a handler would fatal because it implements an interface from the missing
+		// extension. Honour the same filtering here.
+		$testableHandlers = [];
+		foreach ( static::provideHookHandlerNames() as [ $hookHandlerName ] ) {
+			$testableHandlers[$hookHandlerName] = true;
+		}
+
+		foreach ( $extensionJson['Hooks'] ?? [] as $hookName => $handlers ) {
+			$handlers = (array)$handlers;
+			if ( isset( $handlers['handler'] ) ) {
+				$handlers = [ $handlers ];
+			}
+
+			foreach ( $handlers as $index => $handler ) {
+				if ( is_array( $handler ) && isset( $handler['handler'] ) ) {
+					$handler = $handler['handler'];
+				}
+
+				if ( array_key_exists( $handler, $hookHandlers ) && !isset( $testableHandlers[$handler] ) ) {
+					continue;
+				}
+
+				yield "$hookName/$index" => [ $hookName, $handler ];
+			}
+		}
+	}
+
 	/** @dataProvider provideContentModelIDs */
 	public function testContentHandler( string $contentModelID ): void {
 		$specification = self::getExtensionJson()['ContentHandlers'][$contentModelID];
