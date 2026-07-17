@@ -8,6 +8,7 @@ namespace MediaWiki\Session;
 
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerAwareInterface;
 
 /**
@@ -97,5 +98,15 @@ interface SessionManagerInterface extends LoggerAwareInterface {
 	 *   components.securitySchemes object.
 	 */
 	public function getAllOpenApiSecuritySchemes(): array;
+
+	/**
+	 * Return a set of key-value pairs applicable for use as claims in a JSON Web Token.
+	 *
+	 * @param UserIdentity $user The user who is the subject of the claim.
+	 * @return array A set of JWT claims (key-value pairs) as a JSON array.
+	 *
+	 * @since 1.47
+	 */
+	public function getJwtData( UserIdentity $user ): array;
 
 }
