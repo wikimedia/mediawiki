@@ -9,7 +9,6 @@
  */
 
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\User\User;
 
 // @codeCoverageIgnoreStart
@@ -54,7 +53,7 @@ class InvalidateUserSessions extends Maintenance {
 		}
 
 		$i = 0;
-		$sessionManager = SessionManager::singleton();
+		$sessionManager = $this->getServiceContainer()->getSessionManager();
 		foreach ( $usernames as $username ) {
 			$i++;
 			$user = User::newFromName( $username );

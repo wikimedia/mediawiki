@@ -2,7 +2,7 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\Session\SessionManager;
+use MediaWiki\Session\SessionManagerInterface;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
@@ -34,6 +34,7 @@ class ExpireTemporaryAccounts extends Maintenance {
 	protected AuthManager $authManager;
 	protected TempUserConfig $tempUserConfig;
 	protected UserIdentityUtils $userIdentityUtils;
+	protected SessionManagerInterface $sessionManager;
 
 	public function __construct() {
 		parent::__construct();
@@ -70,6 +71,7 @@ class ExpireTemporaryAccounts extends Maintenance {
 		$this->authManager = $services->getAuthManager();
 		$this->tempUserConfig = $services->getTempUserConfig();
 		$this->userIdentityUtils = $services->getUserIdentityUtils();
+		$this->sessionManager = $services->getSessionManager();
 	}
 
 	/**
@@ -149,7 +151,7 @@ class ExpireTemporaryAccounts extends Maintenance {
 	 */
 	protected function expireTemporaryAccount( UserIdentity $tempAccountUserIdentity ): void {
 		$this->authManager->revokeAccessForUser( $tempAccountUserIdentity->getName() );
-		SessionManager::singleton()->invalidateSessionsForUser(
+		$this->sessionManager->invalidateSessionsForUser(
 			$this->userFactory->newFromUserIdentity( $tempAccountUserIdentity )
 		);
 	}
