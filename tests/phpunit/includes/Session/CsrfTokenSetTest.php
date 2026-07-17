@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Session;
 
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\CsrfTokenSet;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 
@@ -16,7 +15,7 @@ class CsrfTokenSetTest extends MediaWikiIntegrationTestCase {
 
 	private function makeRequest( bool $userRegistered ): WebRequest {
 		$webRequest = new WebRequest();
-		$session1 = SessionManager::singleton()->getEmptySession( $webRequest );
+		$session1 = $this->getServiceContainer()->getSessionManager()->getEmptySession( $webRequest );
 		$session1->setUser( $userRegistered ? $this->getTestUser()->getUser() : new User() );
 		return $webRequest;
 	}

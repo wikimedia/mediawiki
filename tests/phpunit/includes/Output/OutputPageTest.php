@@ -28,7 +28,6 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\DependencyStore;
 use MediaWiki\ResourceLoader\ResourceLoader;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\Skin\QuickTemplate;
 use MediaWiki\Tests\ResourceLoader\ResourceLoaderTestCase;
 use MediaWiki\Tests\ResourceLoader\ResourceLoaderTestModule;
@@ -2276,7 +2275,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op = $this->newInstance();
 
 		$expectedCookies = array_merge(
-			SessionManager::singleton()->getVaryCookies(),
+			$this->getServiceContainer()->getSessionManager()->getVaryCookies(),
 			[
 				'forceHTTPS',
 				'cookie1',

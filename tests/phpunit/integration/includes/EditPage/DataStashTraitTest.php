@@ -9,7 +9,6 @@ use MediaWiki\EditPage\DataStashTrait;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\Session;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
@@ -25,7 +24,7 @@ class DataStashTraitTest extends MediaWikiIntegrationTestCase {
 	private const KEY_PREFIX = 'editform:' . self::TITLE;
 
 	private function newSession(): Session {
-		return SessionManager::singleton()->getEmptySession();
+		return $this->getServiceContainer()->getSessionManager()->getEmptySession();
 	}
 
 	private function newContext( FauxRequest $request ): DerivativeContext {

@@ -17,7 +17,6 @@ use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\Session;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiLangTestCase;
 use PHPUnit\Framework\Constraint\Constraint;
@@ -124,7 +123,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		// re-use existing global session by default
 		$session ??= RequestContext::getMain()->getRequest()->getSessionArray();
 
-		$sessionObj = SessionManager::singleton()->getEmptySession();
+		$sessionObj = $this->getServiceContainer()->getSessionManager()->getEmptySession();
 
 		if ( $session !== null ) {
 			foreach ( $session as $key => $value ) {

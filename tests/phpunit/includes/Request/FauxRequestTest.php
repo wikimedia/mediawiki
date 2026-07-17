@@ -4,7 +4,6 @@ use MediaWiki\Exception\MWException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
-use MediaWiki\Session\SessionManager;
 
 class FauxRequestTest extends MediaWikiIntegrationTestCase {
 
@@ -26,7 +25,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Request\FauxRequest::__construct
 	 */
 	public function testConstructWithSession() {
-		$session = SessionManager::singleton()->getEmptySession( new FauxRequest( [] ) );
+		$session = $this->getServiceContainer()->getSessionManager()->getEmptySession( new FauxRequest( [] ) );
 		$this->assertInstanceOf(
 			FauxRequest::class,
 			new FauxRequest( [], false, $session )

@@ -20,7 +20,6 @@ use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\PHPSessionHandler;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\User;
@@ -984,7 +983,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		// Make sure session handling is started
 		if ( !PHPSessionHandler::isInstalled() ) {
 			PHPSessionHandler::install(
-				SessionManager::singleton()
+				$this->getServiceContainer()->getSessionManager()
 			);
 		}
 		$oldSessionId = session_id();
@@ -1025,7 +1024,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		// Make sure session handling is started
 		if ( !PHPSessionHandler::isInstalled() ) {
 			PHPSessionHandler::install(
-				SessionManager::singleton()
+				$this->getServiceContainer()->getSessionManager()
 			);
 		}
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
