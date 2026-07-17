@@ -448,6 +448,8 @@ class BitmapHandler extends TransformationalImageHandler {
 				self::imageJpegWrapper( ... ) ],
 			'image/png' => [ 'imagecreatefrompng', 'bits', false, imagepng( ... ) ],
 			'image/webp' => [ 'imagecreatefromwebp', 'bits', false, imagepng( ... ) ],
+			'image/x-ms-bmp' => [ 'imagecreatefrombmp', 'bits', false, imagepng( ... ) ],
+			'image/x-bmp' => [ 'imagecreatefrombmp', 'bits', false, imagepng( ... ) ],
 			'image/vnd.wap.wbmp' => [ 'imagecreatefromwbmp', 'palette', false, imagewbmp( ... ) ],
 			'image/xbm' => [ 'imagecreatefromxbm', 'palette', false, imagexbm( ... ) ],
 		];

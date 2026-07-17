@@ -68,6 +68,14 @@ class TiffHandler extends ExifBitmapHandler {
 		return $tiffThumbnailType;
 	}
 
+	/**
+	 * GD has no TIFF support, so it must not be selected as the scaler.
+	 * @inheritDoc
+	 */
+	protected function hasGDSupport() {
+		return false;
+	}
+
 	/** @inheritDoc */
 	public function getSizeAndMetadata( $state, $filename ) {
 		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::ShowEXIF );

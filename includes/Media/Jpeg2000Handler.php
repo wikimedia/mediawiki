@@ -41,6 +41,14 @@ class Jpeg2000Handler extends BitmapHandler {
 		return [ 'png', 'image/png' ];
 	}
 
+	/**
+	 * GD has no JPEG 2000 support, so it must not be selected as the scaler.
+	 * @inheritDoc
+	 */
+	protected function hasGDSupport() {
+		return false;
+	}
+
 }
 
 /** @deprecated class alias since 1.46 */
