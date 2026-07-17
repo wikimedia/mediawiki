@@ -143,11 +143,13 @@ class SpecialLog extends SpecialPage {
 				if (
 					(
 						!$formWasSubmitted &&
+						!$this->getRequest()->getVal( 'logid' ) &&
 						!$this->getRequest()->getVal( 'excludetempacct' ) &&
 						!$this->tempUserConfig->isTempName( $opts->getValue( 'user' ) )
 					) ||
 					(
 						$formWasSubmitted &&
+						!$this->getRequest()->getVal( 'logid' ) &&
 						$this->getRequest()->getVal( 'excludetempacct' )
 					)
 				) {
