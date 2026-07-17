@@ -2287,6 +2287,7 @@
 	"sessionfailure-title": "Error de sesión",
 	"sessionfailure": "Parece que hay un problema con tu sesión;\nse ha cancelado esta acción como medida de precaución contra el robo de sesiones.\nEnvía el formulario otra vez.",
 	"changecontentmodel": "Cambiar el modelo de contenido de una página",
+	"changecontentmodel-editing": "Estás a punto de cambiar el modelo de contenido de la página [[:$1]].",
 	"changecontentmodel-legend": "Cambiar el modelo de contenido",
 	"changecontentmodel-title-label": "Título de página:",
 	"changecontentmodel-model-label": "Modelo de contenido nuevo:",

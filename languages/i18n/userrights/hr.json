@@ -37,7 +37,7 @@
 	"userrights-expiry-current": "istječe $1",
 	"userrights-expiry-none": "Neograničeno trajanje statusa",
 	"userrights-expiry-othertime": "Drugi rok istjecanja:",
-	"userrights-expiry-options": "Ističe za 1 dan:1 day,Ističe za 1 tjedan:1 week,Ističe za 1 mjesec:1 month,Ističe za 3 mjeseca:3 months,Ističe za 6 mjeseci:6 months,Ističe za 1 godinu:1 year",
+	"userrights-expiry-options": "Istječe za 1 dan:1 day,Istječe za 1 tjedan:1 week,Istječe za 1 mjesec:1 month,Istječe za 3 mjeseca:3 months,Istječe za 6 mjeseci:6 months,Istječe za 1 godinu:1 year",
 	"userrights-invalid-expiry": "Rok isteka prava iz skupine »$1« nije valjano upisano.",
 	"userrights-expiry-in-past": "Rok isteka prava iz skupine »$1« zadan je u vremenu koje je proteklo.",
 	"userrights-no-group": "Privremeni suradnici nemaju grupe.",

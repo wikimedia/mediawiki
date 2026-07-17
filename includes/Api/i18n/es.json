@@ -67,7 +67,8 @@
 			"Theklan",
 			"Tiberius1701",
 			"Whovian Biologist",
-			"YoViajo"
+			"YoViajo",
+			"-jem-"
 		]
 	},
 	"apihelp-main-param-action": "Qué acción se realizará.",
@@ -107,8 +108,8 @@
 	"apihelp-block-param-noemail": "Evitar que el usuario envíe correos a través de la wiki (es necesario el derecho <code>blockemail</code>).",
 	"apihelp-block-param-hidename": "Ocultar el nombre de usuario del registro de bloqueo (es necesario el derecho <code>hideuser</code>).",
 	"apihelp-block-param-allowusertalk": "Permitir que el usuario edite su propia página de discusión (depende de <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
-	"apihelp-block-param-reblock": "Si el usuario ya está bloqueado por un solo bloqueo, sobrescriba el bloqueo existente. Si el usuario está bloqueado más de una vez, esto fallará; utilice el parámetro <var>id</var> para especificar qué bloque sobrescribir.\n\nwa` le usuario k`alpaja`an chen yèetel junp`èel k`aalil, ka`a ts`ìibt le ya`ax k`alpaja`ano`. Wa le usuario k`alpaja`an màanan junteeno`, yaan u k`aspajal; meyajanaktèech lu nu`ukil <var>id</var> uti`al a we`esik le k`aalil ts`ìibpaja`ano`.",
-	"apihelp-block-param-newblock": "Ts`aaj u làak` k`aalil kex wa le usuario k`aalpaja`ano`. Ma` u beeytal u meyaj yèetel <var>id</var> mix <var>reblock</var> .",
+	"apihelp-block-param-reblock": "Si el usuario ya está bloqueado por un solo bloqueo, sobrescribir el bloqueo existente. Si el usuario tiene más de un bloqueo, esto fallará; se debe usar el parámetro <var>id</var> para especificar qué bloqueo sobrescribir. Incompatible con <var>id</var> y <var>newblock</var>.",
+	"apihelp-block-param-newblock": "Añadir otro bloqueo incluso si el usuario ya está bloqueado. Incompatible con <var>id</var> y <var>reblock</var>.",
 	"apihelp-block-param-watchuser": "Vigilar las páginas de usuario y de discusión del usuario o de la dirección IP.",
 	"apihelp-block-param-watchlistexpiry": "Marca de tiempo de expiración de la lista de seguimiento. Omite por completo este parámetro para mantener la expiración actual sin cambios.",
 	"apihelp-block-param-tags": "Las etiquetas de cambio que se aplicarán a la entrada en el registro de bloqueos.",

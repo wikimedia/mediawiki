@@ -3,11 +3,14 @@
 		"authors": [
 			"Matma Rex",
 			"Msz2001",
-			"Woytecr"
+			"Woytecr",
+			"Strebski"
 		]
 	},
 	"cdx-breadcrumb-navigation-label": "Ścieżka",
 	"cdx-breadcrumb-overflow-label": "Więcej opcji nawigacji",
+	"cdx-chip-input-chip-added": "Dodano żeton o wartości $1 .",
+	"cdx-chip-input-chip-removed": "Żeton $1 został usunięty.",
 	"cdx-input-chip-aria-description": "Naciśnij Enter aby edytować lub Delete aby usunąć.",
 	"cdx-dialog-close-button-label": "Zamknij",
 	"cdx-label-optional-flag": "(opcjonalne)",

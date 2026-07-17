@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bachounda"
+		]
+	},
+	"converter-manual-rule-error": "اكتشافت غلطه في قاعده تحويل اللغه اليدويه",
+	"language-converter-depth-warning": "تجاوز حد العمق تاع محوّل اللغه ($1)"
+}

@@ -409,7 +409,7 @@
 	"error-temporary-accounts-cannot-have-passwords": "Tilapäisellä tunnuksella ei voi olla salasanaa.",
 	"externaldberror": "Tapahtui virhe ulkoisen autentikointitietokannan käytössä tai sinulla ei ole lupaa päivittää tunnustasi.",
 	"login": "Kirjaudu sisään",
-	"login-security": "Varmista henkilöllisyytesi",
+	"login-security": "Vahvista henkilöllisyytesi",
 	"nav-login-createaccount": "Kirjaudu sisään tai luo tunnus",
 	"logout": "Kirjaudu ulos",
 	"userlogout": "Kirjaudu ulos",

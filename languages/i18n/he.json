@@ -3069,7 +3069,7 @@
 	"lag-warn-high": "בגלל עיכוב בעדכון בסיס הנתונים, שינויים שבוצעו לפני פחות {{PLURAL:$1|משנייה אחת|מ־$1 שניות}} אינם מוצגים ברשימה הזאת.",
 	"watchlistedit-normal-title": "עריכת רשימת המעקב",
 	"watchlistedit-normal-check-all": "לסמן הכול",
-	"watchlistedit-normal-done": "{{PLURAL:$1|דף אחד הוסר|$1 דפים הוסרו}} מרשימת המעקב:",
+	"watchlistedit-normal-done": "{{PLURAL:$1|דף אחד הוסר|$1 דפים הוסרו}} מרשימת המעקב שלך:",
 	"watchlistedit-search-label": "חיפוש:",
 	"watchlistedit-search-placeholder": "חיפוש דפים ברשימת המעקב שלך",
 	"watchlistedit-raw-title": "עריכת הרשימה הגולמית",

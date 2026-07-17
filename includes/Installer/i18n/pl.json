@@ -28,7 +28,8 @@
 			"WTM",
 			"WaldiSt",
 			"Woytecr",
-			"아라"
+			"아라",
+			"PanWor"
 		]
 	},
 	"config-desc": "Instalator MediaWiki",
@@ -100,7 +101,7 @@
 	"config-uploads-security-headers": "<strong>Uwaga:</strong> Żądania o obrazki w Twoim katalogu na przesłane pliki powinny zawierać nagłówek HTTP <code>$1</code>, aby ochronić przeglądarkę przed potencjalnie niebezpiecznymi plikami.\nUsilnie zalecamy, by [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security skonfigurować odpowiednie nagłówki odpowiedzi na swoim serwerze WWW] przez zezwoleniem na przesyłanie plików.",
 	"config-uploads-security-requesterror": "<strong>Uwaga:</strong> Z powodu błędu połączenia sieciowego, nie udało się sprawdzić, czy obrazki w Twoim katalogu na przesłane pliki są zwracane razem z nagłówkiem HTTP <code>$1</code> (co ma na celu ochronę przeglądarki przez potencjalnie niebezpiecznymi plikami).\nUsilnie zalecamy, by [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security skonfigurować odpowiednie nagłówki odpowiedzi na swoim serwerze WWW] przez zezwoleniem na przesyłanie plików.",
 	"config-no-cli-uploads-check": "'''Ostrzeżenie:''' Katalog domyślny przesyłanych plików ( <code>$1</code> ) nie jest sprawdzona względem luki\n wykonania dowolnego skryptu podczas instalacji CLI w zabezpieczeniach.",
-	"config-using-32bit": "<strong>Uwaga:</strong> twój system wydaje się działać na 32 bitowej architekturze. Jest to [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit niezalecane].",
+	"config-using-32bit": "<strong>Uwaga:</strong> Twój system wydaje się działać na 32-bitowej architekturze. Jest to [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit niezalecane].",
 	"config-db-type": "Typ bazy danych:",
 	"config-db-host": "Adres serwera bazy danych:",
 	"config-db-host-help": "Jeśli serwer bazy danych jest na innej maszynie, wprowadź jej nazwę domenową lub adres IP.\n\nJeśli korzystasz ze współdzielonego hostingu, operator serwera powinien podać Ci prawidłową nazwę serwera w swojej dokumentacji.\n\nJeśli korzystasz z MySQL, użycie „localhost” może nie zadziałać jako nazwa hosta. Jeśli wystąpi ten problem, użyj „127.0.0.1” jako lokalnego adresu IP.\n\nJeżeli korzystasz z PostgreSQL, pozostaw to pole puste, aby połączyć się poprzez gniazdo Unixa.",
@@ -237,7 +238,7 @@
 	"config-upload-deleted": "Katalog dla usuniętych plików",
 	"config-upload-deleted-help": "Wybierz katalog, w którym będzie archiwum usuniętych plików.\nNajlepiej, aby nie był on dostępny z internetu.",
 	"config-personalization-settings": "Personalizacja",
-	"config-logo-summary": "W każdym z poniższych pól prześlesz obraz o odpowiednim rozmiarze oraz podasz adres URL w odpowiednich polach. Możesz użyć <code>$wgStylePath</code> lub <code>$wgScriptPath</code>, jeśli twoje logo jest relatywne do tych ścieżek. Możesz pozostawić dowolne z tych pól pustym.",
+	"config-logo-summary": "W każdym z poniższych pól prześlesz obraz o odpowiednim rozmiarze oraz podasz adres URL w odpowiednich polach. Możesz użyć <code>$wgStylePath</code> lub <code>$wgScriptPath</code>, jeśli Twoje logo jest relatywne do tych ścieżek. Możesz pozostawić dowolne z tych pól pustym.",
 	"config-logo-preview-main": "Strona główna",
 	"config-logo-icon": "Logo (ikona)",
 	"config-logo-icon-help": "Twoje logo powinno być kwadratem o rozmiarze większym niż 50px lub plikiem SVG.",
@@ -322,7 +323,7 @@
 	"config-help": "pomoc",
 	"config-help-tooltip": "kliknij, aby rozwinąć",
 	"config-nofile": "Nie udało się odnaleźć pliku \"$1\". Czy nie został usunięty?",
-	"config-extension-link": "Czy wiesz, że twoja wiki obsługuje [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions rozszerzenia]?\n\nMożesz przejrzeć [https://www.mediawiki.org/wiki/Category:Extensions_by_category rozszerzenia według kategorii].",
+	"config-extension-link": "Czy wiesz, że Twoja wiki obsługuje [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions rozszerzenia]?\n\nMożesz przejrzeć [https://www.mediawiki.org/wiki/Category:Extensions_by_category rozszerzenia według kategorii].",
 	"config-skins-screenshots": "$1 (zrzut ekranu: $2)",
 	"config-extensions-requires": "$1 (wymaga $2)",
 	"config-screenshot": "zrzut ekranu",
