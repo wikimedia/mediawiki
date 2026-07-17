@@ -8,24 +8,23 @@
  */
 
 $fallback = 'hi';
-
 $namespaceNames = [
 	NS_MEDIA            => 'मीडिया',
-	NS_SPECIAL          => 'बिसेस',
-	NS_TALK             => 'बार्ता',
-	NS_USER             => 'सदस्स',
-	NS_USER_TALK        => 'सदस्स_बार्ता',
-	NS_PROJECT_TALK     => '$1_बार्ता',
+	NS_SPECIAL          => 'विशेष',
+	NS_TALK             => 'वार्ता',
+	NS_USER             => 'प्रयोगकर्ता',
+	NS_USER_TALK        => 'प्रयोगकर्ता_वार्ता',
+	NS_PROJECT_TALK     => '$1_वार्ता',
 	NS_FILE             => 'सञ्चिका',
-	NS_FILE_TALK        => 'सञ्चिका_बार्ता',
-	NS_MEDIAWIKI        => 'मीडियाबिकि',
-	NS_MEDIAWIKI_TALK   => 'मीडियाबिकि_बार्ता',
-	NS_TEMPLATE         => 'साञ्चा',
-	NS_TEMPLATE_TALK    => 'साञ्चा_बार्ता',
-	NS_HELP             => 'सहायता',
-	NS_HELP_TALK        => 'सहायता_बार्ता',
-	NS_CATEGORY         => 'बर्ग',
-	NS_CATEGORY_TALK    => 'बर्ग_बार्ता',
+	NS_FILE_TALK        => 'सञ्चिका_वार्ता',
+	NS_MEDIAWIKI        => 'मीडियाविकि',
+	NS_MEDIAWIKI_TALK   => 'मीडियाविकि_वार्ता',
+	NS_TEMPLATE         => 'साँचा',
+	NS_TEMPLATE_TALK    => 'साँचा_वार्ता',
+	NS_HELP             => 'सहयोग',
+	NS_HELP_TALK        => 'सहयोग_वार्ता',
+	NS_CATEGORY         => 'श्रेणी',
+	NS_CATEGORY_TALK    => 'श्रेणी_वार्ता',
 ];
 
 $digitTransformTable = [
