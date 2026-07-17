@@ -142,7 +142,6 @@ $specialPageAliases = [
 	'RemoveCredentials'         => [ 'הסרת_נתוני_ההזדהות' ],
 	'Renameuser'                => [ 'שינוי_שם_משתמש' ],
 	'ResetTokens'               => [ 'איפוס_אסימונים' ],
-	'RestSandbox'               => [ 'ארגז_חול_של_REST' ],
 	'Revisiondelete'            => [ 'מחיקת_ושחזור_גרסאות' ],
 	'RunJobs'                   => [ 'הרצת_משימות' ],
 	'Search'                    => [ 'חיפוש' ],

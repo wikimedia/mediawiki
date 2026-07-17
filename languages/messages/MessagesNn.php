@@ -316,7 +316,6 @@ $specialPageAliases = [
 	'Redirect'                  => [ 'Omdiriger' ],
 	'Renameuser'                => [ 'Døyp_om_brukar' ],
 	'ResetTokens'               => [ 'Nullstill_nøklar', 'Nullstill_nyklar', 'Nullstill_lyklar' ],
-	'RestSandbox'               => [ 'REST-sandkasse' ],
 	'Revisiondelete'            => [ 'Versjonssletting' ],
 	'RunJobs'                   => [ 'Køyr_jobbar' ],
 	'Search'                    => [ 'Søk' ],

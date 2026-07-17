@@ -260,7 +260,6 @@ $specialPageAliases = [
 	'RemoveCredentials'          => [ '移除凭据' ],
 	'Renameuser'                 => [ '重命名用户', '重新命名用户' ],
 	'ResetTokens'                => [ '重置密钥', '重置权标' ],
-	'RestSandbox'                => [ 'REST沙盒' ],
 	'Revisiondelete'             => [ '版本删除', '删除修订', '恢复修订' ],
 	'RunJobs'                    => [ '运行工作' ],
 	'Search'                     => [ '搜索' ],

@@ -209,7 +209,6 @@ $specialPageAliases = [
 	'RemoveCredentials'         => [ 'Fjern_akkreditiver' ],
 	'Renameuser'                => [ 'Gi_en_bruker_nytt_navn' ],
 	'ResetTokens'               => [ 'Nullstill_nøkler' ],
-	'RestSandbox'               => [ 'REST-sandkasse' ],
 	'Revisiondelete'            => [ 'Revisjonssletting' ],
 	'RunJobs'                   => [ 'Kjør_jobber' ],
 	'Search'                    => [ 'Søk' ],
