@@ -7,7 +7,6 @@
  * @author ऐक्टिवेटेड्
  */
 
-$fallback = 'hi';
 $namespaceNames = [
 	NS_MEDIA            => 'मीडिया',
 	NS_SPECIAL          => 'विशेष',
