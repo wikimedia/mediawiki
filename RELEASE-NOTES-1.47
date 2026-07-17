@@ -475,6 +475,8 @@ because of Phabricator reports.
   use MediaWikiTestCaseTrait::assertArrayContains() instead.
 * MediaTransformOutput::streamFile(), deprecated since 1.26, now emits
   deprecation warnings. Use streamFileWithStatus() instead.
+* PageUpdater::isUnchanged(), deprecated since 1.38, now emits
+  deprecation warnings.
 * LanguageQqx::getMessage(), deprecated since 1.41, now emits deprecation
   warnings. Use LanguageFactory::getLanguage( 'qqx' ) instead.
 * LocalFile::lock() and LocalFile::unlock(), deprecated since 1.38, now emit

@@ -1038,10 +1038,11 @@ class PageUpdater implements PageUpdateCauses {
 	 * Whether saveRevision() did create a revision because the content didn't change: (null-edit).
 	 * Whether the content changed or not is determined by DerivedPageDataUpdater::isChange().
 	 *
-	 * @deprecated since 1.38, use wasRevisionCreated() instead.
+	 * @deprecated since 1.38, hard-deprecated in 1.47, use wasRevisionCreated() instead.
 	 * @return bool
 	 */
 	public function isUnchanged() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return !$this->wasRevisionCreated();
 	}
 

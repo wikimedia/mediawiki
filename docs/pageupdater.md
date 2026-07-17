@@ -38,7 +38,7 @@ This document provides an overview of the usage of PageUpdater and DerivedPageDa
                             |                            |
     Enables-----------------+----------------------------+
       wasSuccess()
-      isUnchanged()
+      wasRevisionCreated()
       isNew()
       getState()
       getNewRevision()
