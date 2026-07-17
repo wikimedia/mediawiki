@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bapham123",
 			"Dinhxuanduyet",
 			"Ioe2015",
 			"Minh Nguyen",
@@ -120,7 +121,7 @@
 	"right-ipblock-exempt": "Bỏ qua lệnh cấm IP, cấm tự động và cấm dải",
 	"right-unblockself": "Bỏ cấm chính mình",
 	"right-protect": "Thay đổi thiết lập khóa và sửa trang bị khóa theo tầng",
-	"right-editalluserpages": "Sửa đổi trang thành viên",
+	"right-editalluserpages": "Sửa đổi tất cả trang thành viên",
 	"right-editprotected": "Sửa trang bị khóa ({{int:restriction-level-sysop}})",
 	"right-editsemiprotected": "Sửa trang bị khóa ({{int:restriction-level-autoconfirmed}})",
 	"right-editcontentmodel": "Sửa kiểu nội dung của trang",

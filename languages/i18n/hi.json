@@ -3174,6 +3174,7 @@
 	"version-license-not-found": "इस एक्सटेंशन के लिए कोई विस्तृत लाइसेंस जानकारी नहीं पायी गयी।",
 	"version-credits-title": "$1 के लिए श्रेय",
 	"version-credits-not-found": "इस एक्सटेंशन के लिए कोई विस्तृत श्रेय जानकारी नहीं पायी गयी।",
+	"version-credits-translators": "अनुवादक",
 	"version-poweredby-credits": "यह विकि <strong>[https://www.mediawiki.org/ मीडियाविकि]</strong> द्वारा संचालित है, कॉपीराइट © 2001-$1 $2।",
 	"version-poweredby-others": "अन्य",
 	"version-poweredby-translators": "translatewiki.net अनुवादक",

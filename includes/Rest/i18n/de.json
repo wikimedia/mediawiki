@@ -62,6 +62,7 @@
 	"rest-badtoken": "Das angegebene CSRF-Token ist ungültig.",
 	"rest-badtoken-missing": "Der <var>token</var>-Parameter ist erforderlich, es sei denn, es wird eine CSRF-sichere Authentifizierungsmethode verwendet.",
 	"rest-badtoken-nosession": "CSRF-Fehler – keine Session.",
+	"rest-csrf-token-description": "CSRF-Token.\n**Erforderlich** bei Authentifizierung über die MediaWiki-Session-CookieSessionProvider-Cookies.\n**Nicht erforderlich** bei Verwendung eines CSRF-sicheren Mechanismus wie OAuth2.0.",
 	"rest-mock-error": "Mock-Fehler.",
 	"rest-specified-revision-unavailable": "Die angegebene Version ist gelöscht oder unterdrückt.",
 	"rest-previous-revision-unavailable": "Vorherige Version konnte nicht gefunden werden. Wurde die Seite gesperrt oder gelöscht?",

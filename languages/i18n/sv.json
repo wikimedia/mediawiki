@@ -3542,7 +3542,7 @@
 	"logentry-patrol-patrol": "$1 {{GENDER:$2|markerade}} versionen $4 av sidan $3 som patrullerad",
 	"logentry-patrol-patrol-auto": "$1 {{GENDER:$2|markerade}} automatiskt versionen $4 av sidan $3 som patrullerad",
 	"logentry-newusers-newusers": "Användarkonto $1 har {{GENDER:$2|skapats}}",
-	"logentry-newusers-create": "Användarkonto $1 har {{GENDER:$2|skapats}}",
+	"logentry-newusers-create": "Användarkonto $1 {{GENDER:$2|skapades}}",
 	"logentry-newusers-create2": "Användarkonto $3 har {{GENDER:$2|skapats}} av $1",
 	"logentry-newusers-byemail": "Användarkontot $3 har {{GENDER:$2|skapats}} av $1 och lösenordet skickades via e-post",
 	"logentry-newusers-autocreate": "Användarkontot $1 {{GENDER:$2|skapades}} automatiskt",

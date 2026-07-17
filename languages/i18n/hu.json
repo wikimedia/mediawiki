@@ -2344,6 +2344,7 @@
 	"block-expiry": "Lejárat",
 	"block-expiry-preset": "Előre beállított időtartam",
 	"block-expiry-preset-placeholder": "Válassz időtartamot",
+	"block-expiry-indefinite": "Határozatlan",
 	"block-expiry-custom": "Egyéni időtartam",
 	"block-expiry-custom-minutes": "perc",
 	"block-expiry-custom-hours": "óra",

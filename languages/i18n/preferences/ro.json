@@ -17,6 +17,7 @@
 			"NGC 54",
 			"Paloi Sciurala",
 			"Strainu",
+			"Vellion Eagle",
 			"WebSourceContentRO",
 			"Wintereu"
 		]
@@ -120,7 +121,7 @@
 	"prefs-skin-responsive": "Activați modul receptiv",
 	"prefs-help-skin-responsive": "Adaptați aspectul la dimensiunea ecranului pe mobil.",
 	"prefs-dateformat": "Format dată",
-	"datedefault": "Nici o preferință",
+	"datedefault": "Nicio preferință",
 	"prefs-timeoffset": "Decalaj orar",
 	"servertime": "Ora serverului:",
 	"localtime": "Ora locală:",
