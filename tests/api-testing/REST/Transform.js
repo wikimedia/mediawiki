@@ -102,7 +102,7 @@ function validateDefaultSpec( response ) {
 
 describe( '/transform/ and related endpoints', () => {
 	const client = new REST();
-	const endpointPrefix = client.pathPrefix = 'rest.php';
+	const endpointPrefix = client.pathPrefix = '/rest.php';
 	const page = utils.title( 'TransformSource_' );
 	const pageEncoded = encodeURIComponent( page );
 	const pageContent = '{|\nhi\n|ho\n|}';
