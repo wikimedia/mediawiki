@@ -109,8 +109,6 @@ function defaultMessage( fallbackUrl ) {
  * @example
  * const authPopup = require( 'mediawiki.authenticationPopup' );
  * authPopup.startPopupWindow()
- * // or: authPopup.startNewTabOrWindow()
- * // or: authPopup.startIframe()
  *     .then( function ( userinfo ) {
  *         if ( userinfo ) {
  *             // Logged in

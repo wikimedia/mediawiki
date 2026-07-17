@@ -7,8 +7,5 @@ if ( link ) {
 		if ( window.opener ) {
 			window.opener.postMessage( CANCEL_PAGE_MESSAGE, '*' );
 		}
-		if ( window.parent && window.parent !== window ) {
-			window.parent.postMessage( CANCEL_PAGE_MESSAGE, '*' );
-		}
 	} );
 }
