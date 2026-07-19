@@ -443,7 +443,15 @@ class HistoryAction extends FormlessAction {
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$rev = $revisionStore->newRevisionFromRow( $row, 0, $this->getTitle() );
 		$prevRev = $revisionStore->getPreviousRevision( $rev );
+
 		$revComment = $rev->getComment() === null ? null : $rev->getComment()->text;
+		if ( $revComment === null ) {
+			// If rev->getComment() returns null, which it'll do when it's rev-deleted for example
+			// (thanks to the default FOR_PUBLIC audience), also redact the formatted comment gotten from
+			// somewhere else.
+			$formattedComment = '';
+		}
+
 		$text = FeedUtils::formatDiffRow2(
 			$this->getTitle(),
 			$prevRev ? $prevRev->getId() : false,
