@@ -461,6 +461,30 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 				],
 				[ 'test', [ NS_HELP ] ],
 			],
+			'namespace prefix with space before colon' => [
+				[
+					'query' => 'help :test',
+				],
+				[ 'test', [ NS_HELP ] ],
+			],
+			'namespace prefix with space after colon' => [
+				[
+					'query' => 'help: test',
+				],
+				[ 'test', [ NS_HELP ] ],
+			],
+			'namespace prefix with spaces around colon' => [
+				[
+					'query' => 'help : test',
+				],
+				[ 'test', [ NS_HELP ] ],
+			],
+			'multiword namespace prefix with spaces around colon' => [
+				[
+					'query' => 'help talk : test',
+				],
+				[ 'test', [ NS_HELP_TALK ] ],
+			],
 			'accented namespace prefix with hook' => [
 				[
 					'query' => 'hélp:test',

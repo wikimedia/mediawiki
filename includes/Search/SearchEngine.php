@@ -417,12 +417,15 @@ abstract class SearchEngine {
 		}
 
 		if ( !$allQuery && str_contains( $query, ':' ) ) {
-			$prefix = str_replace( ' ', '_', substr( $query, 0, strpos( $query, ':' ) ) );
+			$colonPos = strpos( $query, ':' );
+			// Trim whitespace around the prefix so that "User : Foo" is treated the same as
+			// "User:Foo"; Title parsing canonicalizes the colon the same way.
+			$prefix = str_replace( ' ', '_', trim( substr( $query, 0, $colonPos ) ) );
 			$services = MediaWikiServices::getInstance();
 			$index = $services->getContentLanguage()->getNsIndex( $prefix );
 			if ( $index !== false ) {
 				$extractedNamespace = [ $index ];
-				$parsed = substr( $query, strlen( $prefix ) + 1 );
+				$parsed = ltrim( substr( $query, $colonPos + 1 ) );
 			} elseif ( $withPrefixSearchExtractNamespaceHook ) {
 				$hookNamespaces = [ NS_MAIN ];
 				$hookQuery = $query;
