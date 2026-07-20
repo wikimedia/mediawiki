@@ -9,6 +9,7 @@ namespace MediaWiki\Block;
 
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -204,7 +205,10 @@ interface Block extends WikiAwareEntity {
 	/**
 	 * Returns whether the block prevents user talk page access. If this returns true, the user
 	 * will be unable to make any changes to their user talk page for the duration of the block.
+	 *
+	 * @param PageIdentity|null $usertalk The user's user talk page. If null,
+	 *  and if the target is a User, the target's userpage is used
 	 */
-	public function appliesToUsertalk(): bool;
+	public function appliesToUsertalk( ?PageIdentity $usertalk = null ): bool;
 
 }

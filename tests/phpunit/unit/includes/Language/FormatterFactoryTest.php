@@ -8,6 +8,7 @@ use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Language\MessageParser;
+use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWikiUnitTestCase;
@@ -22,6 +23,7 @@ class FormatterFactoryTest extends MediaWikiUnitTestCase {
 		return new FormatterFactory(
 			$this->createNoOpMock( MessageParser::class ),
 			$this->createNoOpMock( TitleFormatter::class ),
+			$this->createNoOpMock( TitleFactory::class ),
 			$this->createNoOpMock( HookContainer::class ),
 			$this->createNoOpMock( UserIdentityUtils::class ),
 			$this->createNoOpMock( LanguageFactory::class ),

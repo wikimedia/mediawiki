@@ -13,6 +13,7 @@ use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -476,11 +477,11 @@ abstract class AbstractBlock implements Block {
 	 * talk page (if they are logged in).
 	 *
 	 * @since 1.33
-	 * @param Title|null $usertalk The user's user talk page. If null,
+	 * @param PageIdentity|null $usertalk The user's user talk page. If null,
 	 *  and if the target is a User, the target's userpage is used
 	 * @return bool The user can edit their talk page
 	 */
-	public function appliesToUsertalk( ?Title $usertalk = null ): bool {
+	public function appliesToUsertalk( ?PageIdentity $usertalk = null ): bool {
 		if ( !$usertalk ) {
 			if ( $this->target instanceof BlockTargetWithUserPage ) {
 				$usertalk = Title::makeTitle(
@@ -501,7 +502,7 @@ abstract class AbstractBlock implements Block {
 		}
 
 		if ( !$this->isSitewide() ) {
-			if ( $this->appliesToPage( $usertalk->getArticleID() ) ) {
+			if ( $this->appliesToPage( $usertalk->getId() ) ) {
 				return true;
 			}
 			if ( !$this->appliesToNamespace( NS_USER_TALK ) ) {

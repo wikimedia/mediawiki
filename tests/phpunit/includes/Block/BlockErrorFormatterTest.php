@@ -11,6 +11,7 @@ use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Message\Message;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Rdbms\IDatabase;
@@ -74,6 +75,11 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 		);
 		$context = $this->getContext();
 
+		// Prime the LinkCache so the partial-block path resolves the talk page article ID without the mocked-out DB.
+		$this->getServiceContainer()->getLinkCache()->addBadLinkObj(
+			Title::makeTitle( NS_USER_TALK, $context->getUser()->getName() )
+		);
+
 		$formatter = $this->getBlockErrorFormatter( $context );
 		$message = $formatter->getMessage(
 			$block,
@@ -110,12 +116,21 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 			]
 		];
 
+		$compositeBlockWithRange = [
+			'timestamp' => $timestamp,
+			'targetName' => 'Alice',
+			'originalBlocks' => [
+				[ DatabaseBlock::class, [ 'timestamp' => $timestamp, 'rangeTarget' => '1.2.3.0/24' ] ],
+				[ DatabaseBlock::class, [ 'timestamp' => $timestamp, 'targetName' => 'Alice' ] ],
+			],
+		];
+
 		return [
 			'Database block' => [
-				DatabaseBlock::class,
-				$databaseBlock,
-				'blockedtext',
-				[
+				'blockClass' => DatabaseBlock::class,
+				'blockData' => $databaseBlock,
+				'expectedKey' => 'blockedtext',
+				'expectedParams' => [
 					'',
 					'Test reason.',
 					'1.2.3.4',
@@ -124,19 +139,19 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					'00:00, 1 (january) 2001',
 					'',
 					'00:00, 1 (january) 2000',
-					(string)false,
+					(string)true,
 					(string)false,
 				],
 			],
 			'Database block (autoblock)' => [
-				DatabaseBlock::class,
-				[
+				'blockClass' => DatabaseBlock::class,
+				'blockData' => [
 					'timestamp' => $timestamp,
 					'expiry' => $expiry,
 					'auto' => true,
 				],
-				'autoblockedtext',
-				[
+				'expectedKey' => 'autoblockedtext',
+				'expectedParams' => [
 					'',
 					'(blockednoreason)',
 					'1.2.3.4',
@@ -145,7 +160,7 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					'00:00, 1 (january) 2001',
 					'',
 					'00:00, 1 (january) 2000',
-					(string)false,
+					(string)true,
 					(string)false,
 				],
 			],
@@ -265,10 +280,10 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 				],
 			],
 			'System block (type \'test\')' => [
-				SystemBlock::class,
-				$systemBlock,
-				'systemblockedtext',
-				[
+				'blockClass' => SystemBlock::class,
+				'blockData' => $systemBlock,
+				'expectedKey' => 'systemblockedtext',
+				'expectedParams' => [
 					'',
 					'(proxyblockreason)',
 					'1.2.3.4',
@@ -277,19 +292,19 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					'(infiniteblock)',
 					'',
 					'00:00, 1 (january) 2000',
-					(string)false,
+					(string)true,
 					(string)false,
 				],
 			],
 			'System block (type \'test\') with reason parameters' => [
-				SystemBlock::class,
-				[
+				'blockClass' => SystemBlock::class,
+				'blockData' => [
 					'timestamp' => $timestamp,
 					'systemBlock' => 'test',
 					'reason' => new Message( 'softblockrangesreason', [ '1.2.3.4' ] ),
 				],
-				'systemblockedtext',
-				[
+				'expectedKey' => 'systemblockedtext',
+				'expectedParams' => [
 					'',
 					'(softblockrangesreason: 1.2.3.4)',
 					'1.2.3.4',
@@ -298,15 +313,15 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					'(infiniteblock)',
 					'',
 					'00:00, 1 (january) 2000',
-					(string)false,
+					(string)true,
 					(string)false,
 				],
 			],
 			'Composite block (original blocks not inserted)' => [
-				CompositeBlock::class,
-				$compositeBlock,
-				'blockedtext-composite',
-				[
+				'blockClass' => CompositeBlock::class,
+				'blockData' => $compositeBlock,
+				'expectedKey' => 'blockedtext-composite',
+				'expectedParams' => [
 					'',
 					'(blockednoreason)',
 					'1.2.3.4',
@@ -315,7 +330,24 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					'(infiniteblock)',
 					'',
 					'00:00, 1 (january) 2000',
+					(string)true,
 					(string)false,
+				],
+			],
+			'Composite block including a range block' => [
+				'blockClass' => CompositeBlock::class,
+				'blockData' => $compositeBlockWithRange,
+				'expectedKey' => 'blockedtext-composite',
+				'expectedParams' => [
+					'',
+					'(blockednoreason)',
+					'1.2.3.4',
+					'',
+					'(blockedtext-composite-no-ids)',
+					'(infiniteblock)',
+					"\u{202A}Alice\u{202C}",
+					'00:00, 1 (january) 2000',
+					(string)true,
 					(string)false,
 				],
 			],
@@ -445,6 +477,11 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 		if ( isset( $blockData['targetName'] ) ) {
 			$blockData['target'] = new UserBlockTarget( new UserIdentityValue( 0, $blockData['targetName'] ) );
 			unset( $blockData['targetName'] );
+		}
+		if ( isset( $blockData['rangeTarget'] ) ) {
+			$blockData['target'] = $this->getServiceContainer()
+				->getBlockTargetFactory()->newRangeBlockTarget( $blockData['rangeTarget'] );
+			unset( $blockData['rangeTarget'] );
 		}
 
 		return new $blockClass( $blockData );

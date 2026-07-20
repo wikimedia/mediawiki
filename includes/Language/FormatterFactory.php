@@ -5,6 +5,7 @@ namespace MediaWiki\Language;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Status\StatusFormatter;
+use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\UserIdentityUtils;
 use Psr\Log\LoggerInterface;
@@ -18,6 +19,7 @@ class FormatterFactory {
 
 	private MessageParser $messageParser;
 	private TitleFormatter $titleFormatter;
+	private TitleFactory $titleFactory;
 	private HookContainer $hookContainer;
 	private UserIdentityUtils $userIdentityUtils;
 	private LanguageFactory $languageFactory;
@@ -26,6 +28,7 @@ class FormatterFactory {
 	public function __construct(
 		MessageParser $messageParser,
 		TitleFormatter $titleFormatter,
+		TitleFactory $titleFactory,
 		HookContainer $hookContainer,
 		UserIdentityUtils $userIdentityUtils,
 		LanguageFactory $languageFactory,
@@ -33,6 +36,7 @@ class FormatterFactory {
 	) {
 		$this->messageParser = $messageParser;
 		$this->titleFormatter = $titleFormatter;
+		$this->titleFactory = $titleFactory;
 		$this->hookContainer = $hookContainer;
 		$this->userIdentityUtils = $userIdentityUtils;
 		$this->languageFactory = $languageFactory;
@@ -46,6 +50,7 @@ class FormatterFactory {
 	public function getBlockErrorFormatter( LocalizationContext $context ): BlockErrorFormatter {
 		return new BlockErrorFormatter(
 			$this->titleFormatter,
+			$this->titleFactory,
 			$this->hookContainer,
 			$this->userIdentityUtils,
 			$this->languageFactory,

@@ -1058,6 +1058,7 @@ return [
 		return new FormatterFactory(
 			$services->getMessageParser(),
 			$services->getTitleFormatter(),
+			$services->getTitleFactory(),
 			$services->getHookContainer(),
 			$services->getUserIdentityUtils(),
 			$services->getLanguageFactory(),

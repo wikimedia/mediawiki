@@ -16,6 +16,7 @@ use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Language\LocalizationContext;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
@@ -29,6 +30,7 @@ use MediaWiki\User\UserIdentityUtils;
 class BlockErrorFormatter {
 
 	private TitleFormatter $titleFormatter;
+	private TitleFactory $titleFactory;
 	private HookRunner $hookRunner;
 	private UserIdentityUtils $userIdentityUtils;
 	private LocalizationContext $uiContext;
@@ -36,12 +38,14 @@ class BlockErrorFormatter {
 
 	public function __construct(
 		TitleFormatter $titleFormatter,
+		TitleFactory $titleFactory,
 		HookContainer $hookContainer,
 		UserIdentityUtils $userIdentityUtils,
 		LanguageFactory $languageFactory,
 		LocalizationContext $uiContext
 	) {
 		$this->titleFormatter = $titleFormatter;
+		$this->titleFactory = $titleFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userIdentityUtils = $userIdentityUtils;
 
@@ -111,6 +115,7 @@ class BlockErrorFormatter {
 	 * Get a standard set of block details for building a block error message.
 	 *
 	 * @param Block $block
+	 * @param UserIdentity $user
 	 * @return array<string,mixed>
 	 *  - identifier: Information for looking up the block
 	 *  - targetName: The target, as a string
@@ -121,8 +126,9 @@ class BlockErrorFormatter {
 	 *  - talkPageDisabled: True if talk page access is prevented by the block
 	 *  - emailDisabled: True if email access is prevented by the block
 	 */
-	private function getBlockErrorInfo( Block $block ) {
+	private function getBlockErrorInfo( Block $block, UserIdentity $user ): array {
 		$blocker = $block->getBlocker();
+		$usertalk = $this->titleFactory->makeTitle( NS_USER_TALK, $user->getName() );
 		return [
 			'identifier' => $block->getIdentifier(),
 			'targetName' => $block->getTargetName(),
@@ -130,7 +136,7 @@ class BlockErrorFormatter {
 			'reason' => $block->getReasonComment(),
 			'expiry' => $block->getExpiry(),
 			'timestamp' => $block->getTimestamp(),
-			'talkPageDisabled' => $block->getTargetUserIdentity() && $block->appliesToUsertalk() ? '1' : '',
+			'talkPageDisabled' => $block->appliesToUsertalk( $usertalk ) ? '1' : '',
 			'emailDisabled' => $block->isEmailBlocked() ? '1' : '',
 		];
 	}
@@ -148,7 +154,7 @@ class BlockErrorFormatter {
 		Block $block,
 		UserIdentity $user
 	) {
-		$info = $this->getBlockErrorInfo( $block );
+		$info = $this->getBlockErrorInfo( $block, $user );
 
 		$language = $this->getLanguage();
 
