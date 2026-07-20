@@ -202,12 +202,14 @@ class CompareHandler extends Handler {
 				ParamValidator::PARAM_REQUIRED => true,
 				Handler::PARAM_SOURCE => 'path',
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-compare-from' ),
+				Handler::PARAM_EXAMPLE => 847170467,
 			],
 			'to' => [
 				ParamValidator::PARAM_TYPE => 'integer',
 				ParamValidator::PARAM_REQUIRED => true,
 				Handler::PARAM_SOURCE => 'path',
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-compare-to' ),
+				Handler::PARAM_EXAMPLE => 851733941,
 			],
 		];
 	}

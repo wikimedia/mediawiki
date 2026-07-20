@@ -699,6 +699,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-pagehistory-count-title' ),
+				Handler::PARAM_EXAMPLE => 'Jupiter',
 			],
 			'type' => [
 				self::PARAM_SOURCE => 'path',
@@ -708,18 +709,21 @@ class PageHistoryCountHandler extends SimpleHandler {
 				),
 				ParamValidator::PARAM_REQUIRED => true,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-pagehistory-count-type' ),
+				Handler::PARAM_EXAMPLE => 'edits',
 			],
 			'from' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'integer',
 				ParamValidator::PARAM_REQUIRED => false,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-pagehistory-count-from' ),
+				Handler::PARAM_EXAMPLE => 384955912,
 			],
 			'to' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'integer',
 				ParamValidator::PARAM_REQUIRED => false,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-pagehistory-count-to' ),
+				Handler::PARAM_EXAMPLE => 406217369,
 			]
 		];
 	}

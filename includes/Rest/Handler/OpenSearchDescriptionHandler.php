@@ -192,6 +192,7 @@ class OpenSearchDescriptionHandler extends Handler {
 			'ctype' => [
 				self::PARAM_SOURCE => 'query',
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-opensearch-ctype' ),
+				Handler::PARAM_EXAMPLE => 'application/xml',
 			]
 		];
 	}

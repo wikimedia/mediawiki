@@ -143,7 +143,8 @@ class RevisionContentHelper extends PageContentHelper {
 				Handler::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'integer',
 				ParamValidator::PARAM_REQUIRED => true,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-revision-id' )
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-revision-id' ),
+				Handler::PARAM_EXAMPLE => 764138197,
 			],
 		];
 	}

@@ -441,6 +441,7 @@ class SearchHandler extends Handler {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-search-q' ),
+				Handler::PARAM_EXAMPLE => 'jupiter',
 			],
 			'limit' => [
 				self::PARAM_SOURCE => 'query',
@@ -450,6 +451,7 @@ class SearchHandler extends Handler {
 				IntegerDef::PARAM_MIN => 1,
 				IntegerDef::PARAM_MAX => self::MAX_LIMIT,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-search-limit' ),
+				Handler::PARAM_EXAMPLE => 20,
 			],
 		];
 	}

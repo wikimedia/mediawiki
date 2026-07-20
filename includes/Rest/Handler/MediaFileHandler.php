@@ -135,6 +135,7 @@ class MediaFileHandler extends SimpleHandler {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-media-file-title' ),
+				Handler::PARAM_EXAMPLE => 'File:Fennec_Fox.jpg',
 			],
 		];
 	}

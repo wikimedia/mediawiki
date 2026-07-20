@@ -156,6 +156,7 @@ class LanguageLinksHandler extends SimpleHandler {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-language-links-title' ),
+				Handler::PARAM_EXAMPLE => 'Jupiter',
 			],
 		];
 	}

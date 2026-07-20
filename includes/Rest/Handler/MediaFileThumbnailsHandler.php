@@ -234,6 +234,7 @@ class MediaFileThumbnailsHandler extends SimpleHandler {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-media-file-title' ),
+				Handler::PARAM_EXAMPLE => 'File:Fennec_Fox.jpg',
 			],
 		];
 	}
@@ -295,9 +296,17 @@ class MediaFileThumbnailsHandler extends SimpleHandler {
 				[
 					'type' => 'object',
 					'properties' => [
-						'httpCode' => [ 'type' => 'integer', 'enum' => [ 400 ] ],
-						'errorKey' => [ 'type' => 'string', 'enum' => [ 'rest-file-not-thumbnailable' ] ],
-					],
+						'httpCode' => [
+							'type' => 'integer',
+							'enum' => [ 400 ],
+							'description' => 'HTTP response status code',
+						],
+						'errorKey' => [
+							'type' => 'string',
+							'enum' => [ 'rest-file-not-thumbnailable' ],
+							'description' => 'HTTP response error key',
+						],
+						],
 				],
 			],
 		];
@@ -308,8 +317,16 @@ class MediaFileThumbnailsHandler extends SimpleHandler {
 				[
 					'type' => 'object',
 					'properties' => [
-						'httpCode' => [ 'type' => 'integer', 'enum' => [ 403 ] ],
-						'errorKey' => [ 'type' => 'string', 'enum' => [ 'rest-permission-denied-title' ] ],
+						'httpCode' => [
+							'type' => 'integer',
+							'enum' => [ 403 ],
+							'description' => 'HTTP response status code',
+						],
+						'errorKey' => [
+							'type' => 'string',
+							'enum' => [ 'rest-permission-denied-title' ],
+							'description' => 'HTTP response error key',
+						],
 					],
 				],
 			],
@@ -323,8 +340,16 @@ class MediaFileThumbnailsHandler extends SimpleHandler {
 						[
 							'type' => 'object',
 							'properties' => [
-								'httpCode' => [ 'type' => 'integer', 'enum' => [ 404 ] ],
-								'errorKey' => [ 'type' => 'string', 'enum' => [ 'rest-nonexistent-title' ] ],
+								'httpCode' => [
+									'type' => 'integer',
+									'enum' => [ 404 ],
+									'description' => 'HTTP response status code',
+								],
+								'errorKey' => [
+									'type' => 'string',
+									'enum' => [ 'rest-nonexistent-title' ],
+									'description' => 'HTTP response error key',
+								],
 							],
 						],
 					],
@@ -335,8 +360,16 @@ class MediaFileThumbnailsHandler extends SimpleHandler {
 						[
 							'type' => 'object',
 							'properties' => [
-								'httpCode' => [ 'type' => 'integer', 'enum' => [ 404 ] ],
-								'errorKey' => [ 'type' => 'string', 'enum' => [ 'rest-cannot-load-file' ] ],
+								'httpCode' => [
+									'type' => 'integer',
+									'enum' => [ 404 ],
+									'description' => 'HTTP response status code',
+								],
+								'errorKey' => [
+									'type' => 'string',
+									'enum' => [ 'rest-cannot-load-file' ],
+									'description' => 'HTTP response error key',
+								],
 							],
 						],
 					],
@@ -349,8 +382,17 @@ class MediaFileThumbnailsHandler extends SimpleHandler {
 			'content' => [
 				'application/json' => [
 					'schema' => $notThumbnailableSchema,
-				]
-			]
+					'example' => [
+						'httpCode' => 400,
+						'httpReason' => 'Bad Request',
+						'message' => 'The file (File:Fennec_Fox.jpg) does not support public thumbnail generation.',
+						'messageTranslations' => [
+							'en' => 'The file (File:Fennec_Fox.jpg) does not support public thumbnail generation.'
+						],
+						'errorKey' => 'rest-file-not-thumbnailable',
+					],
+				],
+			],
 		];
 
 		$spec['403'] = [
@@ -358,8 +400,17 @@ class MediaFileThumbnailsHandler extends SimpleHandler {
 			'content' => [
 				'application/json' => [
 					'schema' => $permissionDeniedSchema,
-				]
-			]
+					'example' => [
+						'httpCode' => 403,
+						'httpReason' => 'Forbidden',
+						'message' => 'The user does not have rights to read title (File:Fennec_Fox.jpg)',
+						'messageTranslations' => [
+							'en' => 'The user does not have rights to read title (File:Fennec_Fox.jpg)'
+						],
+						'errorKey' => 'rest-permission-denied-title',
+					],
+				],
+			],
 		];
 
 		$spec['404'] = [
@@ -367,8 +418,17 @@ class MediaFileThumbnailsHandler extends SimpleHandler {
 			'content' => [
 				'application/json' => [
 					'schema' => $notFoundSchema,
-				]
-			]
+					'example' => [
+						'httpCode' => 404,
+						'httpReason' => 'Not Found',
+						'message' => 'The specified page (File:Fennec_Fox.jpg) does not exist',
+						'messageTranslations' => [
+							'en' => 'The specified page (File:Fennec_Fox.jpg) does not exist'
+						],
+						'errorKey' => 'rest-nonexistent-title',
+					],
+				],
+			],
 		];
 
 		return $spec;

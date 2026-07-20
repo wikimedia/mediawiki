@@ -317,6 +317,7 @@ class PageContentHelper {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-page-content-title' ),
+				Handler::PARAM_EXAMPLE => 'Earth',
 			],
 			'redirect' => [
 				Handler::PARAM_SOURCE => 'query',
@@ -324,6 +325,7 @@ class PageContentHelper {
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => true,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-page-content-redirect' ),
+				Handler::PARAM_EXAMPLE => true,
 			]
 		];
 	}

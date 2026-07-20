@@ -426,24 +426,28 @@ class PageHistoryHandler extends SimpleHandler {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-pagehistory-title' ),
+				Handler::PARAM_EXAMPLE => 'Jupiter',
 			],
 			'older_than' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'integer',
 				ParamValidator::PARAM_REQUIRED => false,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-pagehistory-older-than' ),
+				Handler::PARAM_EXAMPLE => 939967546,
 			],
 			'newer_than' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'integer',
 				ParamValidator::PARAM_REQUIRED => false,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-pagehistory-newer-than' ),
+				Handler::PARAM_EXAMPLE => 939967600,
 			],
 			'filter' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => self::ALLOWED_FILTER_TYPES,
 				ParamValidator::PARAM_REQUIRED => false,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-pagehistory-filter' ),
+				Handler::PARAM_EXAMPLE => 'bot',
 			],
 		];
 	}
