@@ -882,7 +882,7 @@ abstract class ContributionsSpecialPage extends IncludableSpecialPage {
 			'type' => 'tagfilter',
 			'cssclass' => 'mw-tagfilter-input',
 			'id' => 'tagfilter',
-			'label-message' => [ 'tag-filter', 'parse' ],
+			'label-message' => 'tag-filter',
 			'name' => 'tagfilter',
 			'size' => 20,
 			'section' => 'contribs-top',
