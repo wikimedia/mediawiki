@@ -59,6 +59,7 @@
 	"rest-badtoken": "O token CSRF proporcionado non é válido.",
 	"rest-badtoken-missing": "O parámetro <var>token</var> é obrigatorio a menos que uses un método de autenticación seguro contra ataques CSRF.",
 	"rest-badtoken-nosession": "Erro CSRF: Non hai sesión.",
+	"rest-csrf-token-description": "Token CSRF.\n**Obrigatorio** se se autentica a través das cookies «MediaWiki-Session-CookieSessionProvider».\n**Non é obrigatorio** se se usa un mecanismo seguro de CSRF, como OAuth2.0.",
 	"rest-mock-error": "Erro simulado.",
 	"rest-specified-revision-unavailable": "A revisión especificada foi borrada ou suprimida.",
 	"rest-previous-revision-unavailable": "Non se puido atopar a revisión anterior. Bloqueouse ou eliminouse a páxina?",

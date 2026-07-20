@@ -2101,7 +2101,7 @@
 	"watchlist-filters-labels-title": "Etykiety",
 	"watchlist-filters-labels-list-title": "Etykiety listy obserwowanych",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>nie</strong> =$1",
-	"watchlist-filters-view-labels-tooltip": "Filtruj wyniki korzystając z etykiet listy obserwowanych",
+	"watchlist-filters-view-labels-tooltip": "Filtruj wyniki, korzystając z etykiet listy obserwowanych",
 	"enotif_reset": "Zaznacz wszystkie strony jako odwiedzone",
 	"enotif_impersonal_salutation": "użytkownik {{GRAMMAR:D.lp|{{SITENAME}}}}",
 	"enotif_subject_deleted": "Strona {{GRAMMAR:D.lp|{{SITENAME}}}} o nazwie $1 została usunięta przez $2",

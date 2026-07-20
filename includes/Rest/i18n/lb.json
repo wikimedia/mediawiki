@@ -18,6 +18,7 @@
 	"rest-cannot-load-file": "De Fichier fir den Titel ''$1'' kann net geluede ginn.",
 	"rest-badtoken": "De CSRF-Token, deen ugi gouf, ass ongülteg.",
 	"rest-badtoken-nosession": "CSRF-Feeler – keng Sitzung.",
+	"rest-csrf-token-description": "CSRF-Token.\n**Néideg** beim Authentifizéieren iwwer MediaWiki-Session-CookieSessionProvider-Cookies.\n**Net néideg** beim Benotze vun engem CSRF-séchere Mechanismus wéi OAuth2.0.",
 	"rest-transform-missing-html": "Et gouf keen HTML geliwwert.",
 	"rest-transform-missing-title": "Et gouf keen Titel oder Wikitext uginn.",
 	"rest-parsoid-error": "Parsoid-Feeler.",

@@ -108,6 +108,8 @@
 	"apihelp-userrights-param-user": "کارن.",
 	"apihelp-userrights-param-userid": "پرځای يې <kbd>$1کارن=#<var>پېژند</var></kbd> وکاروئ.",
 	"apihelp-userrights-param-reason": "د بدلون لامل.",
+	"apihelp-php-param-formatversion": "زېږندې بڼل",
+	"apihelp-php-paramvalue-formatversion-2": "وسمهاله بڼه.",
 	"api-format-title": "د مېډياويکي API پايله",
 	"api-help-title": "د مېډياويکي API لارښود",
 	"api-help-main-header": "آر چلنوال",
