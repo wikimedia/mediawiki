@@ -476,6 +476,19 @@ class AuthManager implements LoggerAwareInterface {
 			$elevatedSecurityReq = AuthenticationRequest::getRequestByClass(
 				$state['reqs'], ElevatedSecurityAuthenticationRequest::class
 			);
+			// If there was an ElevatedSecurityAuthenticationRequest in the original set of requests,
+			// there won't be one in the latest set of requests. To signal to providers that this is
+			// a reauthentication, pretend it's there anyway. (We can't straightforwardly include it
+			// in continueRequests, because its ->session member doesn't survive serialization, so
+			// loadFromSubmission will fail.)
+			if ( $elevatedSecurityReq &&
+				!AuthenticationRequest::getRequestByClass(
+					$reqs,
+					ElevatedSecurityAuthenticationRequest::class
+				)
+			) {
+				$reqs[] = $elevatedSecurityReq;
+			}
 
 			$status = Status::newGood();
 			foreach ( $reqs as $req ) {
