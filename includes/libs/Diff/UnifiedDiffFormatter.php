@@ -15,6 +15,7 @@ namespace Wikimedia\Diff;
 /**
  * A formatter that outputs unified diffs
  * @newable
+ * @stable to extend
  * @ingroup DifferenceEngine
  */
 class UnifiedDiffFormatter extends DiffFormatter {
