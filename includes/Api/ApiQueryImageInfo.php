@@ -343,6 +343,16 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		$paramList = $h->parseParamString( $otherParams );
 		if ( !$paramList ) {
+			// Handlers require a trailing "-<n>px" width (e.g. "langde-40px").
+			// Synthesise the default thumbnail size so width-less variants parse;
+			// it is discarded again per-size for thumburls.
+			$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+			$thumbKey = $userOptionsLookup->getDefaultOption( 'thumbsize' ) ?: 0;
+			$thumbWidth = $this->getConfig()->get( MainConfigNames::ThumbLimits )[ $thumbKey ];
+			$width = $thumbParams['width'] ?? $thumbWidth;
+			$paramList = $h->parseParamString( $otherParams . "-{$width}px" );
+		}
+		if ( !$paramList ) {
 			// Just set a warning (instead of dieWithError), as in many cases
 			// we could still render the image using width and height parameters,
 			// and this type of thing could happen between different versions of
@@ -641,8 +651,15 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$sizes[] = [ 'width' => $width, 'height' => $height ];
 				}
 			}
+			// Carry handler params (e.g. SVG "lang", PDF "page") into every
+			// suggested URL so they share the variant; only width/height vary.
+			$handlerParams = $thumbParams ? array_diff_key(
+				$thumbParams,
+				[ 'width' => true, 'height' => true, 'requestProvenance' => true ]
+			) : [];
 			$vals['thumburls'] = [];
 			foreach ( $sizes as $size ) {
+				$size += $handlerParams;
 				$size['requestProvenance'] = 'imageinfo';
 				$size['usePhysicalSize'] = true;
 				$mto = $file->transform( $size );

@@ -387,6 +387,70 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 		$this->assertEquals( $expected, $image['thumburls'] );
 	}
 
+	public function testGetImageInfoThumburlsWithUrlParam() {
+		$this->overrideConfigValues( [
+			MainConfigNames::ThumbnailSteps => [ 20, 40, 120 ],
+			MainConfigNames::Server => 'http://example.com',
+			MainConfigNames::SVGNativeRendering => false,
+		] );
+		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [ 'thumbsize' => 1 ] );
+		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
+		$this->importFileToTestRepo( self::IMAGES_DIR . '/QA_icon.svg', 'QA_icon.svg' );
+
+		[ $result, ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'imageinfo',
+			'titles' => 'File:QA_icon.svg',
+			'iiprop' => 'thumburls',
+			// SVG language must be carried into every suggested URL, not just the
+			// width-specific one.
+			'iiurlparam' => 'langde-40px',
+		] );
+
+		$thumburls = $result['query']['pages']['1']['imageinfo'][0]['thumburls'];
+		$this->assertEquals(
+			[
+				20 => [ 'width' => 20, 'height' => 20, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=20&lang=de' ],
+				40 => [ 'width' => 40, 'height' => 40, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=40&lang=de' ],
+				120 => [ 'width' => 120, 'height' => 120, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=120&lang=de' ],
+			],
+			$thumburls,
+			'thumburl in the requested language'
+		);
+	}
+
+	public function testGetImageInfoThumburlsWithWidthlessUrlParam() {
+		$this->overrideConfigValues( [
+			MainConfigNames::ThumbnailSteps => [ 20, 40, 120 ],
+			MainConfigNames::Server => 'http://example.com',
+			MainConfigNames::SVGNativeRendering => false,
+		] );
+		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [ 'thumbsize' => 1 ] );
+		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
+		$this->importFileToTestRepo( self::IMAGES_DIR . '/QA_icon.svg', 'QA_icon.svg' );
+
+		[ $result, ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'imageinfo',
+			'titles' => 'File:QA_icon.svg',
+			'iiprop' => 'thumburls',
+			// SVG language without a trailing "-<n>px" width; the API synthesises
+			// one so the handler can parse it, then discards it per-size.
+			'iiurlparam' => 'langde',
+		] );
+
+		$thumburls = $result['query']['pages']['1']['imageinfo'][0]['thumburls'];
+		$this->assertEquals(
+			[
+				20 => [ 'width' => 20, 'height' => 20, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=20&lang=de' ],
+				40 => [ 'width' => 40, 'height' => 40, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=40&lang=de' ],
+				120 => [ 'width' => 120, 'height' => 120, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=120&lang=de' ],
+			],
+			$thumburls,
+			'thumburl in the requested language despite the width-less urlparam'
+		);
+	}
+
 	public function testGetImageCreatedByTempUser() {
 		[ $result, ] = $this->doApiRequest( [
 			'action' => 'query',
