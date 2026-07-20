@@ -136,9 +136,10 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 			$msg = $msg->inLanguage( $poLang );
 			$lang = $poLang;
 		} elseif ( $i18n->lang === I18nInfo::USER_LANG ) {
-			$msg = $msg->inUserLanguage();
 			// This will split the cache and add language to used-options
 			$lang = $parserOptions->getUserLangObj();
+			$msg = $msg->inLanguage( $lang );
+			$msg->setInterfaceMessageFlag( true );
 		} else {
 			$lang = new Bcp47CodeValue( $i18n->lang );
 			$msg = $msg->inLanguage( $lang );

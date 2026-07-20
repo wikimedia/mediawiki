@@ -55,6 +55,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$po->setLanguage( new Bcp47CodeValue( $pagelang ) );
 		$po->setTitle( Title::newFromText( 'Test page' ) );
 		$popts = ParserOptions::newFromAnon();
+		$popts->setUserLang( $userlang );
 		$opts = [];
 
 		$po->getContentHolder()->addFragment( 'My Fragment', $input );
