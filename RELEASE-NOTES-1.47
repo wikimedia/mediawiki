@@ -112,6 +112,7 @@ For notes on 1.46.x and older releases, see HISTORY.
   modifyDisplayQueryBuilder(). It takes a required Authority $performer before
   the optional filter arguments, so that rights-restricted change tags can be
   shown to and filtered on by users who are allowed to view them.
+* (T432457) The UnifiedDiffFormatter class is now stable to extend.
 * …
 
 === External library changes in 1.47 ===
