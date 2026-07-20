@@ -63,7 +63,7 @@ figure[ typeof~='mw:File/Thumb' ] {
 		}
 
 		body.skin--responsive & {
-			/** Disable magnifying glass at lower resolutions */
+			// Disable magnifying glass at lower resolutions
 			@media all and ( max-width: @max-width-breakpoint-mobile ) {
 				content: none;
 			}
@@ -147,12 +147,10 @@ body.skin--responsive .mw-parser-output {
 		max-width: calc( @size-full - ( 2 * @margin-horizontal-image ) - ( 2 * @border-width-image ) );
 	}
 
-	/**
-	 * When the noresize class is used e.g. on a panorama or image map
-	 * with clickable regions (T22030), do not subject the image to a max-width rule.
-	 *
-	 * [[File:example.jpg|thumb|class=noresize]] and imagemap extension put the class on figure itself (T368034)
-	 */
+	// When the noresize class is used e.g. on a panorama or image map
+	// with clickable regions (T22030), do not subject the image to a max-width rule.
+	//
+	// [[File:example.jpg|thumb|class=noresize]] and imagemap extension put the class on figure itself (T368034)
 	.noresize figure,
 	figure.noresize {
 		img.mw-file-element {
