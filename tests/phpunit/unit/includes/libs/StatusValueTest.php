@@ -227,6 +227,15 @@ class StatusValueTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 1, $testStatusValue2->getAnInt() );
 		$this->assertSame( 'string', $testStatusValue2->getAString() );
 	}
+
+	public function testMergeWithStatusData(): void {
+		$status1 = new StatusValue();
+		$status2 = new StatusValue();
+		$status1->statusData = 'foo';
+		$status2->statusData = 'foo';
+		$status1->merge( $status2 );
+		$this->assertSame( 'foo', $status1->statusData );
+	}
 }
 
 class TestStatusValue extends StatusValue {

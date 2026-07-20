@@ -345,7 +345,11 @@ class StatusValue implements Stringable {
 	 * @return $this
 	 */
 	public function merge( $other, $overwriteValue = false ) {
-		if ( $this->statusData !== null && $other->statusData !== null ) {
+		if ( $this->statusData !== null &&
+			$other->statusData !== null &&
+			// Nothing to worry about when the values are identical anyway
+			$this->statusData !== $other->statusData
+		) {
 			throw new RuntimeException( "Status cannot be merged, because they both have \$statusData" );
 		} else {
 			$this->statusData ??= $other->statusData;
