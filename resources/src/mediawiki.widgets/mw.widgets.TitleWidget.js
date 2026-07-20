@@ -215,8 +215,9 @@
 		return this.getInterwikiMapPromise().then( ( interwikiMap ) => {
 			// Optimization: check we have any prefixes.
 			if ( interwikiMap.length ) {
-				const splitIndex = Math.max( 0, query.indexOf( ':' ) );
-				const interwiki = query.slice( 0, splitIndex ).toLowerCase();
+				// Find the interwiki separator (ignore a leading ':' as in ':en:Foo')
+				const splitIndex = Math.max( 0, query.indexOf( ':', 1 ) );
+				const interwiki = query.slice( query.startsWith( ':' ) ? 1 : 0, splitIndex ).toLowerCase();
 				if (
 					interwiki !== '' &&
 					// Check prefix is not a valid namespace (T420288)
