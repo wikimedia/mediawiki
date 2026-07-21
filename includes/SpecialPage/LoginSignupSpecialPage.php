@@ -1223,6 +1223,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 							'pt-login-' . $continuePart . 'button'
 						)->text(),
 					'id' => 'wpLoginAttempt',
+					'size' => 'large',
 					'weight' => 100,
 				],
 				'linkcontainer' => [
