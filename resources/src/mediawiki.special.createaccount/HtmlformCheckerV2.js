@@ -136,6 +136,7 @@ class HtmlformCheckerV2 {
 		this.validationState = type;
 
 		if ( errors.length === 0 ) {
+			this.resetValidationStateClasses();
 			this.lastError = null;
 			this.validationMessageContent.innerText = '';
 			this.validationMessageContent.innerHTML = '';

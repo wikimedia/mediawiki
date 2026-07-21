@@ -24,6 +24,8 @@ describe( 'Signup', () => {
 		const $input = $( '<input>' ).attr( 'id', 'wpName2' ).appendTo( $usernameField );
 		const $pwField = $( '<div>' ).addClass( 'cdx-field' ).appendTo( $form );
 		$( '<input>' ).attr( 'id', 'wpPassword2' ).appendTo( $pwField );
+		const $confirmPwField = $( '<div>' ).addClass( 'cdx-field' ).appendTo( $form );
+		$( '<input>' ).attr( 'id', 'wpRetype' ).appendTo( $confirmPwField );
 
 		require( '../../../resources/src/mediawiki.special.createaccount/signup.js' );
 

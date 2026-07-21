@@ -59,6 +59,7 @@ $( () => {
 mw.hook( 'htmlform.enhance' ).add( async ( $root ) => {
 	const $usernameInput = $root.find( '#wpName2' ),
 		$passwordInput = $root.find( '#wpPassword2' ),
+		$confirmPasswordInput = $root.find( '#wpRetype' ),
 		$emailInput = $root.find( '#wpEmail' ),
 		$realNameInput = $root.find( '#wpRealName' ),
 		api = new mw.Api();
@@ -186,12 +187,33 @@ mw.hook( 'htmlform.enhance' ).add( async ( $root ) => {
 			} );
 	}
 
+	async function checkConfirmPassword() {
+		const password = $passwordInput.val();
+		const confirmedPassword = $confirmPasswordInput.val();
+		if ( password === '' || confirmedPassword === '' || password === confirmedPassword ) {
+			return {
+				valid: true,
+				messages: [],
+				type: 'success'
+			};
+		}
+
+		return {
+			valid: false,
+			messages: [ mw.message( 'badretype' ).parseDom() ],
+			type: 'warning'
+		};
+	}
+
 	function attachCheckers() {
 		const usernameChecker = new HtmlformCheckerV2( $usernameInput, checkUsername, { feedback: true } );
 		usernameChecker.attach();
 
 		const passwordChecker = new HtmlformCheckerV2( $passwordInput, checkPassword );
 		passwordChecker.attach( $usernameInput.add( $emailInput ).add( $realNameInput ) );
+
+		const confirmPasswordChecker = new HtmlformCheckerV2( $confirmPasswordInput, checkConfirmPassword );
+		confirmPasswordChecker.attach( $passwordInput );
 	}
 
 	function attachPasswordRevealFunctionality() {

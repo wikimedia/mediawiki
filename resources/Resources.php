@@ -2823,6 +2823,7 @@ return [
 		],
 		'messages' => [
 			'createacct-emailrequired',
+			'badretype',
 			'noname',
 			'userexists',
 			'createacct-normalization',
