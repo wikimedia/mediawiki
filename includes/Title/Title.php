@@ -1302,7 +1302,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * @since 1.19
 	 */
 	public function inNamespaces( ...$namespaces ) {
-		if ( count( $namespaces ) > 0 && is_array( $namespaces[0] ) ) {
+		if ( count( $namespaces ) === 1 && is_array( $namespaces[0] ) ) {
 			$namespaces = $namespaces[0];
 		}
 

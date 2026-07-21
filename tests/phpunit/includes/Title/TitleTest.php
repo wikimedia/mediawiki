@@ -117,11 +117,22 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Title\Title::inNamespaces
 	 */
 	public function testInNamespaces() {
-		$mainpage = Title::newFromText( 'Main Page' );
+		$mainpage = Title::makeTitle( NS_MAIN, 'Main Page' );
+		$this->assertFalse( $mainpage->inNamespaces() );
+		$this->assertFalse( $mainpage->inNamespaces( [] ) );
 		$this->assertTrue( $mainpage->inNamespaces( NS_MAIN, NS_USER ) );
 		$this->assertTrue( $mainpage->inNamespaces( [ NS_MAIN, NS_USER ] ) );
 		$this->assertTrue( $mainpage->inNamespaces( [ NS_USER, NS_MAIN ] ) );
 		$this->assertFalse( $mainpage->inNamespaces( [ NS_PROJECT, NS_TEMPLATE ] ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Title\Title::inNamespaces
+	 */
+	public function testInNamespacesWithMoreThanOneArray() {
+		$title = Title::makeTitle( NS_MAIN, 'Test' );
+		$this->expectException( TypeError::class );
+		$title->inNamespaces( [], NS_MAIN );
 	}
 
 	public static function provideHasSubjectNamespace() {
@@ -374,12 +385,12 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	public function testClearCaches() {
 		$linkCache = $this->getServiceContainer()->getLinkCache();
 
-		$title1 = Title::newFromText( 'Foo' );
+		$title1 = Title::makeTitle( NS_MAIN, 'Foo' );
 		$this->addGoodLinkObject( 23, $title1 );
 
 		Title::clearCaches();
 
-		$title2 = Title::newFromText( 'Foo' );
+		$title2 = Title::makeTitle( NS_MAIN, 'Foo' );
 		$this->assertNotSame( $title1, $title2, 'title cache should be empty' );
 		$this->assertSame( 0, $linkCache->getGoodLinkID( 'Foo' ), 'link cache should be empty' );
 	}
@@ -1129,7 +1140,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Title\Title::getWikiId
 	 */
 	public function testGetWikiId() {
-		$title = Title::newFromText( 'Foo' );
+		$title = Title::makeTitle( NS_MAIN, 'Foo' );
 		$this->assertFalse( $title->getWikiId() );
 	}
 
@@ -1915,7 +1926,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Title\Title::isSpecial
 	 */
 	public function testIsNotSpecial() {
-		$title = Title::newFromText( 'NotSpecialPage/Subpage', NS_SPECIAL );
+		$title = Title::makeTitle( NS_SPECIAL, 'NotSpecialPage/Subpage' );
 		$this->assertFalse( $title->isSpecial( 'NotSpecialPage' ) );
 	}
 
@@ -1923,7 +1934,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Title\Title::isTalkPage
 	 */
 	public function testIsTalkPage() {
-		$title = Title::newFromText( 'Talk page', NS_TALK );
+		$title = Title::makeTitle( NS_TALK, 'Talk page' );
 		$this->assertTrue( $title->isTalkPage() );
 
 		$titleNotInTalkNs = Title::makeTitle( NS_HELP, 'Test' );
@@ -2000,9 +2011,9 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideTitleEditURLsWithActionPaths() {
 		return [
-			[ Title::newFromText( 'Title', NS_MAIN ), '/wiki/edit/Title' ],
+			[ Title::makeTitle( NS_MAIN, 'Title' ), '/wiki/edit/Title' ],
 			[ Title::makeTitle( NS_HELP, 'Test', '', 'mw' ), '' ],
-			[ Title::newFromText( 'Test', NS_HELP ), '/wiki/edit/Help:Test' ],
+			[ Title::makeTitle( NS_HELP, 'Test' ), '/wiki/edit/Help:Test' ],
 		];
 	}
 
