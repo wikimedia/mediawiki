@@ -12,7 +12,13 @@
 	 * @param {Function} [filterFunction]
 	 */
 	function internalVisibleLimit( lengthLimiter, textInputWidget, limit, filterFunction ) {
-		limit = limit || +textInputWidget.$input.attr( 'maxlength' );
+		// Match the logic from jquery.lengthLimit:
+		// * If no limit was passed to lengthLimit(), use the maxlength value.
+		// * If there is no (valid) limit passed or found in the property, skip this.
+		limit = Number( limit === undefined ? textInputWidget.$input.attr( 'maxlength' ) : limit );
+		if ( !limit || limit < 0 ) {
+			return;
+		}
 		if ( !filterFunction || typeof filterFunction !== 'function' ) {
 			filterFunction = undefined;
 		}
