@@ -50,6 +50,7 @@
 		// This ensures that the icon will never appear smaller than @calculated-min-size-icon.
 		// Escape the max() call to prevent older Less versions from trying to do the max()
 		// calculation at compile time.
+		background-size: @param-size-icon;
 		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 		background-size: calc( ~'max( @{param-size-icon}, @{calculated-min-size-icon} )' );
 	}
@@ -63,8 +64,12 @@
 		// Support Chrome
 		-webkit-mask-repeat: no-repeat;
 		mask-repeat: no-repeat;
+		// Fallback for browsers that don't support min() or max()
+		// Support Chrome < 79, Firefox < 75, Safari < 11.1
+		-webkit-mask-size: @param-size-icon; // stylelint-disable-line declaration-block-no-duplicate-properties
+		mask-size: @param-size-icon;
 		// Support Chrome
-		-webkit-mask-size: calc( ~'max( @{param-size-icon}, @{calculated-min-size-icon} )' );
+		-webkit-mask-size: calc( ~'max( @{param-size-icon}, @{calculated-min-size-icon} )' ); // stylelint-disable-line order/properties-order
 		mask-size: calc( ~'max( @{param-size-icon}, @{calculated-min-size-icon} )' );
 		/* stylelint-enable plugin/no-unsupported-browser-features */
 	}

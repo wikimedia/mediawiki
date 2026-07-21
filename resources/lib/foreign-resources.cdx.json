@@ -2,7 +2,7 @@
 	"$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
 	"bomFormat": "CycloneDX",
 	"specVersion": "1.6",
-	"serialNumber": "urn:uuid:eeab0a14-ff32-4218-9221-d681d913564d",
+	"serialNumber": "urn:uuid:03da5400-6250-407f-9e53-bc9e2b357b7f",
 	"version": 1,
 	"components": [
 		{
@@ -32,7 +32,7 @@
 		{
 			"type": "library",
 			"name": "codex",
-			"version": "2.6.0",
+			"version": "2.6.2",
 			"licenses": [
 				{
 					"license": {
@@ -40,7 +40,7 @@
 					}
 				}
 			],
-			"purl": "pkg:npm/@wikimedia/codex@2.6.0",
+			"purl": "pkg:npm/@wikimedia/codex@2.6.2",
 			"authors": [
 				{
 					"name": "Design System team"
@@ -59,7 +59,7 @@
 		{
 			"type": "library",
 			"name": "codex-design-tokens",
-			"version": "2.6.0",
+			"version": "2.6.2",
 			"licenses": [
 				{
 					"license": {
@@ -67,7 +67,7 @@
 					}
 				}
 			],
-			"purl": "pkg:npm/@wikimedia/codex-design-tokens@2.6.0",
+			"purl": "pkg:npm/@wikimedia/codex-design-tokens@2.6.2",
 			"authors": [
 				{
 					"name": "Design System team"
@@ -86,7 +86,7 @@
 		{
 			"type": "library",
 			"name": "codex-icons",
-			"version": "2.6.0",
+			"version": "2.6.2",
 			"licenses": [
 				{
 					"license": {
@@ -94,7 +94,7 @@
 					}
 				}
 			],
-			"purl": "pkg:npm/@wikimedia/codex-icons@2.6.0",
+			"purl": "pkg:npm/@wikimedia/codex-icons@2.6.2",
 			"authors": [
 				{
 					"name": "Design System team"

@@ -1,3 +1,47 @@
+# v2.6.2 / 2026-07-21
+
+## Styles
+- Add fallbacks for browsers which don't support min/max (Ed Sanders)
+
+## Icons
+- icons: Amend various icons round 2 (Derek Torsani)
+- icons: Amend `bell` and `bellOutline` (Derek Torsani)
+- icon: Add `helpNoticeFilled` (Derek Torsani)
+- icons: Rename 'draggable' to 'draggableVertical' (Roan Kattouw)
+- icons: Manually optimize draggable icons (Thiemo Kreuz)
+- icons: Amend unStar icon forgotten in round 2 (Thiemo Kreuz)
+- icons: Sync manually optimized SVG files with OOUI (Thiemo Kreuz)
+- icons: Micro-optimize some more selected SVG icons (Thiemo Kreuz)
+- icons: Run SVGO on src icons post refinement (Volker E.)
+
+## Code
+- Use standard thumbnail sizes (NDKDD)
+- Field: Don't render help text container when there is no help text (Les4353)
+- Popover: add Floating UI `shift()` to Popover (TheresNoTime)
+
+## Build
+- build: Re-build on Node 24 and bump tsx for security issue (James D. Forrester)
+- build: Upgrade stylelint-config-wikimedia from 0.19.2 to 0.19.3 (James D. Forrester)
+- build: Upgrade prismjs from 1.29.0 to 1.30.0 (James D. Forrester)
+- build: Upgrade glob from 11.0.0 to 11.1.0 (James D. Forrester)
+- build: Upgrade postcss from 8.5.6 to 8.5.19 (James D. Forrester)
+- build: Upgrade netlify-cli from 18.0.0 to 26.2.0 (James D. Forrester)
+- build: Upgrade start-server-and-test from 1.14.0 to 3.0.11 (James D. Forrester)
+- build: Update SVGO to latest v4.0.2 (Volker E.)
+- build: update eslint config to ignore Vue style blocks (Lauralyn Watson)
+
+## Documentation
+- docs: Add CONTRIBUTING.md (Vanshika)
+- docs: Make data visualization symbols downloadable (1Veertje)
+- docs: Fix link in ChipInput documentation (lokal-profil)
+- docs: Lowercase icon search input for case-insensitive matching (1Veertje)
+- ProgressBar: correct documentation reference URL in warning text (Les4353)
+
+# 2.6.1 / 2026-06-11
+
+## Icons
+- icons: Amend various icons (Derek Torsani)
+
 # 2.6.0 / 2026-06-09
 
 ## Styles

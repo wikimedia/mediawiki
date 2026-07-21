@@ -30,7 +30,7 @@ var __objRest = (source, exclude) => {
   return target;
 };
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-import { ref, onMounted, defineComponent, computed, createElementBlock, openBlock, normalizeClass, createCommentVNode, toDisplayString, Comment, warn, watch, withKeys, withModifiers, renderSlot, toRef, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, mergeProps, useId, withDirectives, vModelCheckbox, createSlots, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, resolveDirective, nextTick, vModelDynamic, onUnmounted, Teleport, toHandlers, vShow, onBeforeUnmount, provide, useCssVars, toRefs, reactive, vModelRadio, vModelText, getCurrentInstance } from "vue";
+import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, withModifiers, renderSlot, toRef, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, mergeProps, useId, withDirectives, vModelCheckbox, createSlots, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, resolveDirective, nextTick, vModelDynamic, onUnmounted, Teleport, toHandlers, vShow, onBeforeUnmount, provide, useCssVars, toRefs, reactive, vModelRadio, vModelText, getCurrentInstance } from "vue";
 function regExpEscape(value) {
   return value.replace(/([\\{}()|.?*+\-^$[\]])/g, "\\$1");
 }
@@ -62,48 +62,48 @@ const stringHelpers = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defin
   regExpEscape,
   splitStringAtMatch
 }, Symbol.toStringTag, { value: "Module" }));
-const m = '<path d="M19.765 16.059 18 19H2L.235 16.059l8-15h3.53zM9 14v2h2v-2zm0-8v6h2V6z"/>', B = '<path d="M18 19H2V1h16zM4 17h11.586l-3.922-3.922a3.5 3.5 0 111.414-1.414L16 14.586V3H4zm6-8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3"/>', V1 = '<path d="M18.154 3.837 8.034 16.62l-1.384.18-4.8-3.6 1.2-1.6 4.02 3.015 9.517-12.02z"/>', p1 = '<path d="M14.243 7.172 11.413 10l2.828 2.83-1.414 1.413L10 11.415l-2.827 2.827-1.414-1.414L8.585 10 5.757 7.172l1.415-1.414 2.827 2.828 2.83-2.828z"/><path d="M10 1a9 9 0 110 18 9 9 0 010-18m0 2a7 7 0 100 14 7 7 0 000-14"/>', i1 = '<path d="M16.707 4.707 11.414 10l5.293 5.293-1.414 1.414L10 11.414l-5.293 5.293-1.414-1.414L8.586 10 3.293 4.707l1.414-1.414L10 8.586l5.293-5.293z"/>', S1 = '<path d="M14 7H6v2.5l4 3.5 4-3.5z"/>', R1 = '<path d="M19 6.4v7.199L13.6 19H6.4L1 13.599v-7.2L6.4 1h7.2zM9 14v2h2v-2zm0-9v7h2V5z"/>', P1 = '<path d="m16.707 8.017-6 5.983H9.293l-6-5.983 1.414-1.414L10 11.896l5.293-5.293z"/>', z0 = '<path d="M15 15H5l3.5-4 2 2L15 8zM6.25 5a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5"/><path d="M19 19H1V1h18zM3 17h14V3H3z"/>', g0 = '<path d="M19 19H1V1h18zm-8.5-6-2-2L5 15h10V8zM6.25 5a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5"/>', M = '<path d="M13 20H7v-2h6zM10 0c1.938 0 3.58.556 4.745 1.644C15.918 2.738 16.5 4.27 16.5 6c0 2.22-1.15 3.732-2.04 4.727-.644.72-.96 1.633-.96 2.662V16h-7v-2.611c0-1.029-.317-1.942-.96-2.662C4.65 9.732 3.5 8.22 3.5 6c0-1.627.593-3.145 1.743-4.255C6.395.634 8.032 0 10 0"/>', f0 = '<path d="M10 1a9 9 0 110 18 9 9 0 010-18M8 9v2h1v2H8v2h4v-2h-1V9zm1-4v2h2V5z"/>', W2 = '<path d="M6 17H4V3h2zM16.417 4.707 11.124 10l5.293 5.293-1.414 1.414-6-6V9.293l6-6z"/>', R2 = '<path d="M16 17h-2V3h2zm-5-7.707v1.414l-5.993 6-1.414-1.414L8.886 10 3.593 4.707l1.414-1.414z"/>', Q2 = '<path d="M14 9.293v1.414l-5.982 6-1.415-1.414L11.896 10 6.603 4.707l1.414-1.414z"/>', s5 = '<path d="M13.417 4.707 8.124 10l5.293 5.293-1.414 1.414-6-6V9.293l6-6z"/>', C5 = '<path d="M8 1a7 7 0 015.605 11.191l5.102 5.102-1.414 1.414-5.102-5.102A7 7 0 118 1m0 2a5 5 0 100 10A5 5 0 008 3"/>', U5 = '<path d="M14 14.5 10 18l-4-3.5V12h8zm0-9V8H6V5.5L10 2z"/>', X5 = '<path d="M10 1a9 9 0 110 18 9 9 0 010-18M8.823 11.118 6.8 9.6l-1.2 1.6 2.8 2.1 1.381-.175 4.624-5.781-1.561-1.25z"/>', q4 = '<path d="M14 13H6v-2.5L10 7l4 3.5z"/>', v3 = m, A3 = B, J3 = V1, j3 = p1, _3 = i1, d7 = S1, m7 = R1, g7 = P1, O7 = z0, Y7 = g0, o6 = {
+const i = '<path d="M9.5 1h1L19 17.2V19H1v-1.8zM9 7v6h2V7zm0 8v2h2v-2z"/>', B = '<path d="M18 20H2V0h16zM4 18h10.969l-3.343-4.347a4 4 0 111.565-1.244L16 16.06V2H4zm6-10a2 2 0 100 4 2 2 0 000-4"/>', V1 = '<path d="M18.154 3.837 8 16.8H6.65l-4.8-3.6 1.2-1.6 4.02 3.015 9.517-12.02z"/>', p1 = '<path d="M14.243 7.172 11.413 10l2.828 2.83-1.414 1.413L10 11.415l-2.827 2.827-1.414-1.414L8.585 10 5.757 7.172l1.415-1.414 2.827 2.828 2.83-2.828z"/><path d="M10 1a9 9 0 110 18 9 9 0 010-18m0 2a7 7 0 100 14 7 7 0 000-14"/>', m1 = '<path d="M16.707 4.707 11.414 10l5.293 5.293-1.414 1.414L10 11.414l-5.293 5.293-1.414-1.414L8.586 10 3.293 4.707l1.414-1.414L10 8.586l5.293-5.293z"/>', f1 = '<path d="M5 8h10v1l-5 5-5-5z"/>', P1 = '<path d="M19 6.4v7.199L13.6 19H6.4L1 13.599v-7.2L6.4 1h7.2zM9 14v2h2v-2zm0-9v7h2V5z"/>', O1 = '<path d="m16.7 8-6 6H9.3l-6-6 1.4-1.4 5.3 5.3 5.3-5.3z"/>', V0 = '<path d="M15 15H5l3.5-4 2 2L15 8z"/><path d="M19 19H1V1h18zM3 17h14V3H3z"/><circle cx="6.5" cy="6.5" r="1.5"/>', u0 = '<path d="M19 19H1V1h18zm-8.5-6-2-2L5 15h10V8zm-4-8a1.5 1.5 0 100 3 1.5 1.5 0 000-3"/>', H = '<path d="M13 20H7v-2h6zM10 0c1.938 0 3.58.556 4.745 1.644C15.918 2.738 16.5 4.27 16.5 6c0 2.22-1.15 3.732-2.04 4.727-.644.72-.96 1.633-.96 2.662V16h-7v-2.611c0-1.029-.317-1.942-.96-2.662C4.65 9.732 3.5 8.22 3.5 6c0-1.627.593-3.145 1.743-4.255C6.395.634 8.032 0 10 0"/>', S0 = '<path d="M10 1a9 9 0 110 18 9 9 0 010-18M8 9v2h1v2H8v2h4v-2h-1V9zm1-4v2h2V5z"/>', E2 = '<path d="M6 17H4V3h2zM16.417 4.707 11.124 10l5.293 5.293-1.414 1.414-6-6V9.293l6-6z"/>', O2 = '<path d="M16 17h-2V3h2zm-5-7.707v1.414l-5.993 6-1.414-1.414L8.886 10 3.593 4.707l1.414-1.414z"/>', X2 = '<path d="M14 9.293v1.414l-5.982 6-1.415-1.414L11.896 10 6.603 4.707l1.414-1.414z"/>', e4 = '<path d="M13.417 4.707 8.124 10l5.293 5.293-1.414 1.414-6-6V9.293l6-6z"/>', b4 = '<path d="M8 1a7 7 0 015.605 11.191l5.102 5.102-1.414 1.414-5.102-5.102A7 7 0 118 1m0 2a5 5 0 100 10A5 5 0 008 3"/>', R4 = '<path d="m15 13-5 5-5-5v-1h10zm0-6v1H5V7l5-5z"/>', h3 = '<path d="M10 1a9 9 0 110 18 9 9 0 010-18M8.823 11.118 6.8 9.6l-1.2 1.6 2.8 2.1h1.1l4.905-5.956-1.561-1.25z"/>', U3 = '<path d="M15 12H5v-1l5-5 5 5z"/>', r5 = i, k5 = B, _5 = V1, c6 = p1, t6 = m1, H6 = f1, I6 = P1, y6 = O1, X6 = V0, t7 = u0, z7 = {
   langCodeMap: {
-    ar: M
+    ar: H
   },
-  default: f0
-}, l8 = {
-  ltr: W2,
+  default: S0
+}, H8 = {
+  ltr: E2,
   shouldFlip: true
-}, s8 = {
-  ltr: R2,
+}, V8 = {
+  ltr: O2,
   shouldFlip: true
-}, M8 = {
-  ltr: Q2,
+}, x8 = {
+  ltr: X2,
   shouldFlip: true
-}, F8 = {
-  ltr: s5,
+}, U8 = {
+  ltr: e4,
   shouldFlip: true
-}, G8 = C5, t9 = U5, p9 = X5, Y9 = q4;
-function Ih(h, l, o) {
-  if (typeof h == "string" || "path" in h)
-    return h;
-  if ("shouldFlip" in h)
-    return h.ltr;
-  if ("rtl" in h)
-    return o === "rtl" ? h.rtl : h.ltr;
-  const v = l in h.langCodeMap ? h.langCodeMap[l] : h.default;
+}, $8 = b4, e9 = R4, A9 = h3, ac = U3;
+function Sc(c, l, o) {
+  if (typeof c == "string" || "path" in c)
+    return c;
+  if ("shouldFlip" in c)
+    return c.ltr;
+  if ("rtl" in c)
+    return o === "rtl" ? c.rtl : c.ltr;
+  const v = l in c.langCodeMap ? c.langCodeMap[l] : c.default;
   return typeof v == "string" || "path" in v ? v : v.ltr;
 }
-function Ah(h, l) {
-  if (typeof h == "string")
+function qc(c, l) {
+  if (typeof c == "string")
     return false;
-  if ("langCodeMap" in h) {
-    const o = l in h.langCodeMap ? h.langCodeMap[l] : h.default;
+  if ("langCodeMap" in c) {
+    const o = l in c.langCodeMap ? c.langCodeMap[l] : c.default;
     if (typeof o == "string")
       return false;
-    h = o;
+    c = o;
   }
-  if ("shouldFlipExceptions" in h && Array.isArray(h.shouldFlipExceptions)) {
-    const o = h.shouldFlipExceptions.indexOf(l);
+  if ("shouldFlipExceptions" in c && Array.isArray(c.shouldFlipExceptions)) {
+    const o = c.shouldFlipExceptions.indexOf(l);
     return o === void 0 || o === -1;
   }
-  return "shouldFlip" in h ? h.shouldFlip : false;
+  return "shouldFlip" in c ? c.shouldFlip : false;
 }
 function useComputedDirection(root) {
   const computedDir = ref(null);
@@ -307,13 +307,13 @@ const _sfc_main$D = defineComponent({
       return (_a = props.lang) != null ? _a : computedLang.value;
     });
     const rootClasses = computed(() => ({
-      "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && Ah(props.icon, overriddenLang.value),
+      "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && qc(props.icon, overriddenLang.value),
       ["cdx-icon--".concat(props.size)]: true
     }));
     const resolvedIcon = computed(
       () => {
         var _a, _b;
-        return Ih(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
+        return Sc(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
       }
     );
     const iconSvg = computed(() => typeof resolvedIcon.value === "string" ? resolvedIcon.value : "");
@@ -941,7 +941,7 @@ const _sfc_main$z = defineComponent({
      */
     placeholderIcon: {
       type: [String, Object],
-      default: Y7
+      default: t7
     }
   },
   setup: (props) => {
@@ -1805,11 +1805,11 @@ const computePosition$1 = async (reference, floating, config) => {
   let statefulPlacement = placement;
   let middlewareData = {};
   let resetCount = 0;
-  for (let i = 0; i < validMiddleware.length; i++) {
+  for (let i2 = 0; i2 < validMiddleware.length; i2++) {
     const {
       name,
       fn
-    } = validMiddleware[i];
+    } = validMiddleware[i2];
     const {
       x: nextX,
       y: nextY,
@@ -1852,7 +1852,7 @@ const computePosition$1 = async (reference, floating, config) => {
           y
         } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
       }
-      i = -1;
+      i2 = -1;
     }
   }
   return {
@@ -2285,6 +2285,70 @@ const shift$1 = function(options) {
           }
         }
       });
+    }
+  };
+};
+const limitShift$1 = function(options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    options,
+    fn(state) {
+      const {
+        x,
+        y,
+        placement,
+        rects,
+        middlewareData
+      } = state;
+      const {
+        offset: offset2 = 0,
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = true
+      } = evaluate(options, state);
+      const coords = {
+        x,
+        y
+      };
+      const crossAxis = getSideAxis(placement);
+      const mainAxis = getOppositeAxis(crossAxis);
+      let mainAxisCoord = coords[mainAxis];
+      let crossAxisCoord = coords[crossAxis];
+      const rawOffset = evaluate(offset2, state);
+      const computedOffset = typeof rawOffset === "number" ? {
+        mainAxis: rawOffset,
+        crossAxis: 0
+      } : __spreadValues({
+        mainAxis: 0,
+        crossAxis: 0
+      }, rawOffset);
+      if (checkMainAxis) {
+        const len = mainAxis === "y" ? "height" : "width";
+        const limitMin = rects.reference[mainAxis] - rects.floating[len] + computedOffset.mainAxis;
+        const limitMax = rects.reference[mainAxis] + rects.reference[len] - computedOffset.mainAxis;
+        if (mainAxisCoord < limitMin) {
+          mainAxisCoord = limitMin;
+        } else if (mainAxisCoord > limitMax) {
+          mainAxisCoord = limitMax;
+        }
+      }
+      if (checkCrossAxis) {
+        var _middlewareData$offse, _middlewareData$offse2;
+        const len = mainAxis === "y" ? "width" : "height";
+        const isOriginSide = ["top", "left"].includes(getSide(placement));
+        const limitMin = rects.reference[crossAxis] - rects.floating[len] + (isOriginSide ? ((_middlewareData$offse = middlewareData.offset) == null ? void 0 : _middlewareData$offse[crossAxis]) || 0 : 0) + (isOriginSide ? 0 : computedOffset.crossAxis);
+        const limitMax = rects.reference[crossAxis] + rects.reference[len] + (isOriginSide ? 0 : ((_middlewareData$offse2 = middlewareData.offset) == null ? void 0 : _middlewareData$offse2[crossAxis]) || 0) - (isOriginSide ? computedOffset.crossAxis : 0);
+        if (crossAxisCoord < limitMin) {
+          crossAxisCoord = limitMin;
+        } else if (crossAxisCoord > limitMax) {
+          crossAxisCoord = limitMax;
+        }
+      }
+      return {
+        [mainAxis]: mainAxisCoord,
+        [crossAxis]: crossAxisCoord
+      };
     }
   };
 };
@@ -3080,6 +3144,7 @@ const flip = flip$1;
 const size = size$1;
 const hide = hide$1;
 const arrow$1 = arrow$2;
+const limitShift = limitShift$1;
 const computePosition = (reference, floating, options) => {
   const cache = /* @__PURE__ */ new Map();
   const mergedOptions = __spreadValues({
@@ -3545,7 +3610,7 @@ const _sfc_main$v = defineComponent({
       rootClasses,
       ariaDescription,
       onKeydown,
-      cdxIconClose: _3,
+      cdxIconClose: t6,
       tabIndex,
       tooltipContent,
       textElement
@@ -4303,7 +4368,7 @@ const _sfc_main$s = defineComponent({
       contentTag,
       linkAttrs,
       title,
-      cdxIconCheck: J3
+      cdxIconCheck: _5
     };
   }
 });
@@ -4480,7 +4545,7 @@ const _sfc_main$r = defineComponent({
   setup(props, { attrs }) {
     useWarnOnce(
       () => !props.inline && !attrs["aria-label"] && !attrs["aria-hidden"],
-      "CdxProgressBar: Progress bars require one of the following attribute, aria-label or aria-hidden. See documentation on https://doc.wikimedia.org/codex/latest/components/demos/progressbar.html"
+      "CdxProgressBar: Progress bars require one of the following attribute, aria-label or aria-hidden. See documentation on https://doc.wikimedia.org/codex/latest/components/demos/progress-bar.html"
     );
     const hasValue = computed(
       () => typeof props.value === "number"
@@ -4671,7 +4736,7 @@ const _sfc_main$q = defineComponent({
      * multi-select) rather than using a falsy value.
      */
     selected: {
-      // eslint-disable-next-line max-len
+      // eslint-disable-next-line vue/max-len
       type: [String, Number, Array, null],
       required: true
     },
@@ -5817,7 +5882,7 @@ const _sfc_main$p = defineComponent({
       onCompositionEnd,
       onInvalid,
       shouldPreventDefault,
-      cdxIconClear: j3
+      cdxIconClear: c6
     };
   },
   // Public methods
@@ -6240,7 +6305,7 @@ const _sfc_main$o = defineComponent({
       onKeydown,
       onButtonClick,
       onButtonMousedown,
-      cdxIconExpand: g7,
+      cdxIconExpand: y6,
       rootClasses,
       rootStyle,
       otherAttrs
@@ -6833,7 +6898,7 @@ const __default__ = defineComponent({
       close,
       onBackdropClick,
       onBackdropMouseDown,
-      cdxIconClose: _3,
+      cdxIconClose: t6,
       labelId,
       rootClasses,
       backdrop,
@@ -7077,12 +7142,12 @@ function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Dialog = /* @__PURE__ */ _export_sfc(__default__, [["render", _sfc_render$o]]);
 const iconMap$2 = {
-  subtle: o6,
-  notice: o6,
-  progressive: o6,
-  error: m7,
-  warning: v3,
-  success: p9
+  subtle: z7,
+  notice: z7,
+  progressive: z7,
+  error: I6,
+  warning: r5,
+  success: A9
 };
 const _sfc_main$n = defineComponent({
   name: "CdxMessage",
@@ -7244,7 +7309,7 @@ const _sfc_main$n = defineComponent({
       computedIcon,
       onDismiss,
       onActionButtonClick,
-      cdxIconClose: _3
+      cdxIconClose: t6
     };
   }
 });
@@ -7431,9 +7496,12 @@ const _sfc_main$m = defineComponent({
   }
 });
 const _hoisted_1$i = { class: "cdx-field__control" };
-const _hoisted_2$9 = { class: "cdx-field__help-text" };
-const _hoisted_3$6 = {
+const _hoisted_2$9 = {
   key: 0,
+  class: "cdx-field__help-text"
+};
+const _hoisted_3$6 = {
+  key: 1,
   class: "cdx-field__validation-message"
 };
 function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
@@ -7473,9 +7541,9 @@ function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
       createElementVNode("div", _hoisted_1$i, [
         renderSlot(_ctx.$slots, "default")
       ]),
-      createElementVNode("div", _hoisted_2$9, [
+      _ctx.$slots["help-text"] ? (openBlock(), createElementBlock("div", _hoisted_2$9, [
         renderSlot(_ctx.$slots, "help-text")
-      ]),
+      ])) : createCommentVNode("v-if", true),
       !_ctx.computedDisabled && _ctx.validationMessage || _ctx.$slots[_ctx.validationMessageType] ? (openBlock(), createElementBlock("div", _hoisted_3$6, [
         createVNode(_component_cdx_message, {
           type: _ctx.validationMessageType,
@@ -7653,7 +7721,7 @@ const _sfc_main$l = defineComponent({
       placeholderStyles,
       handleError,
       handleLoad,
-      cdxIconImage: O7,
+      cdxIconImage: X6,
       iconSizeClass,
       placeholderClasses
     };
@@ -7702,12 +7770,12 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Image$1 = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$l]]);
 const iconMap$1 = {
-  subtle: o6,
-  notice: o6,
-  progressive: o6,
-  error: m7,
-  warning: v3,
-  success: p9
+  subtle: z7,
+  notice: z7,
+  progressive: z7,
+  error: I6,
+  warning: r5,
+  success: A9
 };
 const _sfc_main$k = defineComponent({
   name: "CdxInfoChip",
@@ -8137,7 +8205,7 @@ const _sfc_main$i = defineComponent({
      * Must be bound with `v-model:selected`.
      */
     selected: {
-      // eslint-disable-next-line max-len
+      // eslint-disable-next-line vue/max-len
       type: [String, Number, Array, null],
       required: true
     },
@@ -8890,6 +8958,12 @@ const _sfc_main$g = defineComponent({
         offset(offsetDistance),
         // Default flip behavior will flip floating element across the main axis
         flip(),
+        // Shift the floating element along the cross axis so it stays within the
+        // viewport when the anchor is near an edge.
+        shift({
+          padding: clipPadding2,
+          limiter: limitShift()
+        }),
         size({
           // Spacing between the floating element and the viewport.
           padding: clipPadding2,
@@ -9170,7 +9244,7 @@ const _sfc_main$g = defineComponent({
       showFooter,
       footerActionsClasses,
       close,
-      cdxIconClose: _3,
+      cdxIconClose: t6,
       transitionName,
       backdropClassObject,
       panelClassObject,
@@ -9796,7 +9870,7 @@ const _sfc_main$d = defineComponent({
       rootStyle,
       otherAttrs,
       handleSubmit,
-      searchIcon: G8,
+      searchIcon: $8,
       translatedSearchButtonLabel,
       useButtonOrLabel
     };
@@ -10063,7 +10137,7 @@ const _sfc_main$c = defineComponent({
       onClick,
       onKeydown,
       startIcon,
-      cdxIconExpand: g7
+      cdxIconExpand: y6
     };
   }
 });
@@ -10293,10 +10367,10 @@ const _sfc_main$a = defineComponent({
       btnLabelPrev,
       btnLabelLast,
       wrappedItemsPerPage,
-      cdxIconPrevious: F8,
-      cdxIconNext: M8,
-      cdxIconMoveFirst: l8,
-      cdxIconMoveLast: s8
+      cdxIconPrevious: U8,
+      cdxIconNext: x8,
+      cdxIconMoveFirst: H8,
+      cdxIconMoveLast: V8
     };
   }
 });
@@ -10402,9 +10476,9 @@ const CdxTablePager = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_
 const tableTextAlignmentsValidator = makeStringTypeValidator(TableTextAlignments);
 const paginationPositionValidator = makeStringTypeValidator(TablePaginationPositions);
 const iconMap = {
-  none: t9,
-  asc: Y9,
-  desc: d7
+  none: e9,
+  asc: ac,
+  desc: H6
 };
 const sortDirectionMap = {
   none: "none",
@@ -11451,8 +11525,8 @@ const _sfc_main$8 = defineComponent({
       assignTemplateRefForTabButton,
       scrollTabs,
       focusActiveTab,
-      cdxIconPrevious: F8,
-      cdxIconNext: M8
+      cdxIconPrevious: U8,
+      cdxIconNext: x8
     };
   },
   /**
@@ -13479,7 +13553,7 @@ const _sfc_main = defineComponent({
       onSubmit,
       onKeydown,
       MenuFooterValue,
-      articleIcon: A3,
+      articleIcon: k5,
       translatedSearchResultsLabel
     };
   },
