@@ -11,6 +11,7 @@ namespace MediaWiki\Parser;
 
 use Closure;
 use InvalidArgumentException;
+use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 use Wikimedia\Parsoid\Fragments\PFragment;
 
 /**
@@ -51,7 +52,9 @@ class StripState {
 	public function __construct( ?Parser $parser = null, $options = [] ) {
 		$this->data = [
 			'nowiki' => [],
-			'general' => []
+			'general' => [],
+			'exttag' => [],
+			'parsoid' => [],
 		];
 		$this->extra = [];
 		$this->regex = '/' . Parser::MARKER_PREFIX . "([^\x7f<>&'\"]+)" . Parser::MARKER_SUFFIX . '/';
@@ -140,6 +143,15 @@ class StripState {
 	 */
 	public function unstripNoWiki( $text ) {
 		return $this->unstripType( 'nowiki', $text );
+	}
+
+	/**
+	 * @param string $text
+	 * @param mixed $extApi
+	 * @return mixed
+	 */
+	public function unstripParsoid( string $text, $extApi ) {
+		return $this->unstripType( 'parsoid', $text, $extApi );
 	}
 
 	/**
@@ -287,15 +299,16 @@ class StripState {
 	/**
 	 * @param string $type
 	 * @param string $text
+	 * @param ?ParsoidExtensionAPI $extApi
 	 * @return mixed
 	 */
-	protected function unstripType( $type, $text ) {
+	protected function unstripType( $type, $text, ?ParsoidExtensionAPI $extApi = null ) {
 		// Shortcut
 		if ( !count( $this->data[$type] ) ) {
 			return $text;
 		}
 
-		$callback = function ( $m ) use ( $type ) {
+		$callback = function ( $m ) use ( $type, $extApi ) {
 			$marker = $m[1];
 			if ( isset( $this->data[$type][$marker] ) ) {
 				if ( isset( $this->circularRefGuard[$marker] ) ) {
@@ -313,6 +326,11 @@ class StripState {
 				if ( $value instanceof Closure ) {
 					$value = $value();
 				}
+				if ( $type === 'parsoid' ) {
+					$extra = $this->extra[$type][$marker];
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+					$value = $extra->asHtmlString( $extApi );
+				}
 
 				$this->expandSize += strlen( $value );
 				if ( $this->expandSize > $this->sizeLimit ) {
@@ -321,7 +339,7 @@ class StripState {
 
 				$this->circularRefGuard[$marker] = true;
 				$this->depth++;
-				$ret = $this->unstripType( $type, $value );
+				$ret = $this->unstripType( $type, $value, $extApi );
 				$this->depth--;
 				unset( $this->circularRefGuard[$marker] );
 

@@ -37,6 +37,13 @@ class ParserTestParserHook {
 			$parser->setFunctionHook( $tag . 'tagpf', static function ( $parser, ...$args ) use ( $tag ) {
 				return self::divspanPFHook( $tag, $parser, ...$args );
 			}, Parser::SFH_NO_HASH );
+			// spantaglegacy, divtaglegacy
+			// These are *only* defined in the legacy parser, so that we
+			// can test how well Parsoid calls legacy parser functions.
+			$parser->setHook( $tag . 'taglegacy', static function ( $in, $argv, $parser ) use ( $tag ) {
+				// @phan-suppress-next-line SecurityCheck-XSS parser test code only
+				return self::divspanTagHook( $tag, $in, $argv, $parser );
+			} );
 		}
 		return true;
 	}
@@ -103,6 +110,9 @@ class ParserTestParserHook {
 			'markertype' => 'markerType',
 			'israwhtml' => 'isRawHTML',
 		];
+		// Allow testing wikitext that comes from attributes as well as the
+		// extension body
+		$in = $in ?: $argv['contents'] ?? '';
 		$result[] = "<$tag>" . (
 			( $argv['raw'] ?? false ) ?
 			$in :

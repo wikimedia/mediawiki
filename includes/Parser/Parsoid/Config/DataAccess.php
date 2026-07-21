@@ -37,6 +37,7 @@ use Wikimedia\Parsoid\Config\PageContent as IPageContent;
 use Wikimedia\Parsoid\Config\SiteConfig as ISiteConfig;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
+use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 use Wikimedia\Parsoid\Fragments\ExtTagPFragment;
 use Wikimedia\Parsoid\Fragments\HtmlPFragment;
 use Wikimedia\Parsoid\Fragments\PFragment;
@@ -448,8 +449,9 @@ class DataAccess extends IDataAccess {
 	public function parseWikitextWithTitle(
 		IPageConfig $pageConfig,
 		ContentMetadataCollector $metadata,
-		string $wikitext,
-		?ParsoidLinkTarget $titleOverride = null
+		string|PFragment $wikitext,
+		?ParsoidLinkTarget $titleOverride = null,
+		?ParsoidExtensionAPI $extApi = null,
 	): string {
 		'@phan-var PageConfig $pageConfig'; // @var PageConfig $pageConfig
 		$parser = $this->prepareParser( $pageConfig, Parser::OT_HTML );
@@ -463,6 +465,7 @@ class DataAccess extends IDataAccess {
 		$oldWatcher = $parserOptions->registerWatcher( null );
 		$parser->resetOutput();
 
+		$wikitext = $this->parsoidToStrip( $wikitext, $parser );
 		$frame = false;
 		if ( $titleOverride !== null ) {
 			$frame = $this->ppFrame->newChild(
@@ -470,12 +473,14 @@ class DataAccess extends IDataAccess {
 			);
 		}
 		$html = $parser->parseExtensionTagAsTopLevelDoc( $wikitext, $frame );
+		$html = $parser->getStripState()->unstripParsoid( $html, $extApi );
+		$html = Parser::extractBody( $html );
 
 		$out = $parser->getOutput();
 		$out->collectMetadata( $metadata ); # merges $out into $metadata
 		$parserOptions->registerWatcher( $oldWatcher );
 
-		return Parser::extractBody( $html );
+		return $html;
 	}
 
 	/** @inheritDoc */
@@ -497,6 +502,29 @@ class DataAccess extends IDataAccess {
 		$oldWatcher = $parserOptions->registerWatcher( null );
 		$parser->resetOutput();
 
+		$wikitext = $this->parsoidToStrip( $wikitext, $parser );
+		$this->hookRunner->onParserBeforePreprocess(
+			# $wikitext is passed by reference and mutated
+			$parser, $wikitext, $parser->getStripState()
+		);
+		// New PFragment-based support (T374616)
+		$wikitext = $parser->replaceVariables(
+			$wikitext, $this->ppFrame, false, [
+				'parsoidTopLevelCall' => true,
+			]
+		);
+
+		$out = $parser->getOutput();
+		$out->collectMetadata( $metadata ); # merges $out into $metadata
+		$parserOptions->registerWatcher( $oldWatcher );
+
+		return self::unstripForParsoid( $wikitext, $parser );
+	}
+
+	/**
+	 * Convert Parsoid PFragments to strip markers.
+	 */
+	public function parsoidToStrip( PFragment|string $wikitext, Parser $parser ): string {
 		if ( $wikitext instanceof PFragment ) {
 			$result = [];
 			$index = 1;
@@ -515,22 +543,7 @@ class DataAccess extends IDataAccess {
 			}
 			$wikitext = implode( $result );
 		}
-		$this->hookRunner->onParserBeforePreprocess(
-			# $wikitext is passed by reference and mutated
-			$parser, $wikitext, $parser->getStripState()
-		);
-		// New PFragment-based support (T374616)
-		$wikitext = $parser->replaceVariables(
-			$wikitext, $this->ppFrame, false, [
-				'parsoidTopLevelCall' => true,
-			]
-		);
-
-		$out = $parser->getOutput();
-		$out->collectMetadata( $metadata ); # merges $out into $metadata
-		$parserOptions->registerWatcher( $oldWatcher );
-
-		return self::unstripForParsoid( $wikitext, $parser );
+		return $wikitext;
 	}
 
 	/**
