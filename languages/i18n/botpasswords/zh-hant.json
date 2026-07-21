@@ -30,6 +30,7 @@
 	"botpasswords-bad-appid": "機器人名稱 \"$1\" 無效。",
 	"botpasswords-toolong-restrictions": "輸入過多的 IP 位址或範圍。",
 	"botpasswords-toolong-grants": "選擇過多的授予。",
+	"botpasswords-too-many": "您已達到{{PLURAL:$1|機器人密碼}}的最大限額（$1 個）。請先刪除一些現有的機器人密碼後再建立新的。",
 	"botpasswords-insert-failed": "新增機器人名稱 \"$1\" 失敗，是否已新增過？",
 	"botpasswords-update-failed": "更新機器人名稱 \"$1\" 失敗，是否已刪除過？",
 	"botpasswords-created-title": "成功建立機器人密碼",

@@ -225,6 +225,7 @@
 	"api-help-general-header": "Allgemeng Informatiounen",
 	"api-help-datatypes-header": "Datentypen",
 	"api-help-limits-header": "Limitten",
+	"api-help-param-type-limit": "Typ: Ganz Zuel oder <kbd>max</kbd>",
 	"api-help-examples": "{{PLURAL:$1|Beispill|Beispiler}}:",
 	"api-help-open-in-apisandbox": "<small>[an der Sandkaul opmaachen]</small>",
 	"apierror-articleexists": "D'Säit, déi Dir probéiert hutt unzeleeën, gouf schonn ugeluecht.",
