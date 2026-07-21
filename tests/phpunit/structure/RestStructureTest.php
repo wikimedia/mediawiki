@@ -447,7 +447,8 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 						continue;
 					}
 
-					$this->assertMatchesJsonSchema( $metaSchema, $responseBodySchema, self::SPEC_FILES, "Module '$moduleName'" );
+					$this->assertMatchesJsonSchema( $metaSchema, $responseBodySchema, self::SPEC_FILES,
+						"Module '$moduleName' for $method $path." );
 				}
 			}
 		}
