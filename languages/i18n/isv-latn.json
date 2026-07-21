@@ -5,7 +5,8 @@
 			"Matma Rex",
 			"Polda18",
 			"SaldırganSincap",
-			"Nintendofan885"
+			"Nintendofan885",
+			"VadymTS1"
 		]
 	},
 	"sunday": "nedělja",
@@ -199,7 +200,7 @@
 	"editlink": "praviti",
 	"viewsourcelink": "Izvorny kod",
 	"editsectionhint": "Praviti razděl: «$1»",
-	"toc": "Sodržanje",
+	"toc": "Sodržan‌je",
 	"showtoc": "pokazati",
 	"hidetoc": "skryti",
 	"collapsible-collapse": "smenšiti",
@@ -2819,7 +2820,7 @@
 	"importlogpagetext": "Dnevnik importovanyh administratorami stranic s historijeju pravok iz drugyh viki.",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|versija jest importovana|versije sut importovane|versij jest importovanyh}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|versija jest importovana|versije sut importovane|versij jest importovanyh}} iz $2",
-	"javascripttest": "Testovanje JavaScript’a",
+	"javascripttest": "Testovanje JavaScript'a",
 	"tooltip-pt-userpage": "{{GENDER:|Vaša}} koristničska stranica",
 	"tooltip-pt-anonuserpage": "Koristničska stranica za IP-adres, s ktorogo rabotajete",
 	"tooltip-pt-tmpuserpage": "Vaše avtomatično iztvorjeno začasno koristničsko ime",
