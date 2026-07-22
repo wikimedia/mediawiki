@@ -109,7 +109,7 @@ class GroupPermissionsLookup {
 			);
 		}
 
-		return array_unique( $rights );
+		return array_values( array_unique( $rights ) );
 	}
 
 	/**
@@ -130,7 +130,7 @@ class GroupPermissionsLookup {
 			);
 		}
 
-		return array_unique( $rights );
+		return array_values( array_unique( $rights ) );
 	}
 
 	/**
@@ -173,7 +173,7 @@ class GroupPermissionsLookup {
 				);
 			}
 		}
-		return array_unique( $rights );
+		return array_values( array_unique( $rights ) );
 	}
 
 	/**
