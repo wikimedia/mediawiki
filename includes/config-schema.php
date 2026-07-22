@@ -2707,6 +2707,7 @@ return [
 			],
 			'RestSandboxSpecs' => [
 			],
+			'RestLocalModuleTestBaseUrl' => null,
 			'RestModuleOverrides' => [
 			],
 			'RestExternalModules' => [
@@ -3263,6 +3264,10 @@ return [
 			'AllowedCorsHeaders' => 'array',
 			'RestAPIAdditionalRouteFiles' => 'array',
 			'RestSandboxSpecs' => 'object',
+			'RestLocalModuleTestBaseUrl' => [
+				'string',
+				'null',
+			],
 			'RestModuleOverrides' => 'object',
 			'RestExternalModules' => 'object',
 			'ShellRestrictionMethod' => [

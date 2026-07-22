@@ -4336,6 +4336,12 @@ $wgRestAPIAdditionalRouteFiles = null;
 $wgRestSandboxSpecs = null;
 
 /**
+ * Config variable stub for the RestLocalModuleTestBaseUrl setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::RestLocalModuleTestBaseUrl
+ */
+$wgRestLocalModuleTestBaseUrl = null;
+
+/**
  * Config variable stub for the RestModuleOverrides setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::RestModuleOverrides
  */

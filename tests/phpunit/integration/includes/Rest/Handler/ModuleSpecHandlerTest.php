@@ -312,6 +312,131 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertContainsRecursive( $expected, $data );
 	}
 
+	/**
+	 * Test server list and recommendation header injection based on RestLocalModuleTestBaseUrl config.
+	 *
+	 * @dataProvider provideLocalModuleTestBaseUrlCases
+	 *
+	 * @param string|null $sandboxBaseUrl Value for RestLocalModuleTestBaseUrl
+	 * @param int $expectedServerCount Expected number of servers in output
+	 * @param array $expectedServers Map of index -> [url, description (or null if none expected)]
+	 * @param string|null $expectedRecommendation Expected recommendation message key or null if none expected
+	 * @param string $specFile Name of mock OpenAPI specification file to load
+	 */
+	public function testLocalModuleTestServerOption(
+		?string $sandboxBaseUrl,
+		int $expectedServerCount,
+		array $expectedServers,
+		?string $expectedRecommendation,
+		string $specFile = 'SpecTestModule.json'
+	) {
+		$this->overrideConfigValues( [
+			MainConfigNames::RightsText => 'Test License',
+			MainConfigNames::RightsUrl => 'https://example.com/license',
+			MainConfigNames::EmergencyContact => 'test@example.com',
+			MainConfigNames::Sitename => 'TestWiki',
+			MainConfigNames::RestExternalModules => [],
+			MainConfigNames::CanonicalServer => 'https://zh.wikipedia.org',
+			MainConfigNames::RestPath => '/api',
+			MainConfigNames::RestLocalModuleTestBaseUrl => $sandboxBaseUrl,
+		] );
+
+		$request = new RequestData( [
+			'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ]
+		] );
+
+		$moduleModes = [
+			'mock/v1' => ModuleMode::PUBLISHED,
+			'' => ModuleMode::PUBLISHED,
+		];
+		$router = $this->createRouter( $request, __DIR__ . '/' . $specFile, $moduleModes );
+
+		$handler = $this->newHandler();
+		$response = $this->executeHandler(
+			$handler,
+			$request,
+			[],
+			[],
+			[],
+			[],
+			null,
+			null,
+			$router
+		);
+		$this->assertSame( 200, $response->getStatusCode() );
+		$data = json_decode( (string)$response->getBody(), true );
+
+		$this->assertIsArray( $data, 'Body must be a JSON array' );
+		$this->assertWellFormedOAS( $data );
+
+		$this->assertCount( $expectedServerCount, $data['servers'] );
+		foreach ( $expectedServers as $index => $expectedServer ) {
+			$this->assertSame( $expectedServer['url'], $data['servers'][$index]['url'] );
+			if ( array_key_exists( 'description', $expectedServer ) ) {
+				$this->assertSame( $expectedServer['description'], $data['servers'][$index]['description'] );
+			} else {
+				$this->assertArrayNotHasKey( 'description', $data['servers'][$index] );
+			}
+		}
+
+		if ( $expectedRecommendation !== null ) {
+			$this->assertSame( $expectedRecommendation, $data['info']['description'] );
+		} else {
+			$this->assertArrayNotHasKey( 'description', $data['info'] );
+		}
+	}
+
+	/**
+	 * Data provider for testLocalModuleTestServerOption.
+	 *
+	 * @return array[]
+	 */
+	public static function provideLocalModuleTestBaseUrlCases() {
+		return [
+			'test local module test base URL configured' => [
+				'https://test.wikimedia.org/w/rest.php',
+				2,
+				[
+					0 => [
+						'url' => 'https://zh.wikipedia.org/api/mock/v1',
+						'description' => '<message key="rest-sandbox-server-production"></message>',
+					],
+					1 => [
+						'url' => 'https://test.wikimedia.org/w/rest.php/mock/v1',
+						'description' => '<message key="rest-sandbox-server-sandbox"></message>',
+					],
+				],
+				'<message key="rest-sandbox-recommend-test-server"><text>test.wikimedia.org</text></message>',
+			],
+			'test local module test base URL configured with existing description' => [
+				'https://test.wikimedia.org/w/rest.php',
+				2,
+				[
+					0 => [
+						'url' => 'https://zh.wikipedia.org/api/mock/v1',
+						'description' => '<message key="rest-sandbox-server-production"></message>',
+					],
+					1 => [
+						'url' => 'https://test.wikimedia.org/w/rest.php/mock/v1',
+						'description' => '<message key="rest-sandbox-server-sandbox"></message>',
+					],
+				],
+				'Existing mock description.' . "\n\n" . '<message key="rest-sandbox-recommend-test-server"><text>test.wikimedia.org</text></message>',
+				'SpecTestModuleWithDescription.json'
+			],
+			'no test server' => [
+				null,
+				1,
+				[
+					0 => [
+						'url' => 'https://zh.wikipedia.org/api/mock/v1',
+					],
+				],
+				null,
+			],
+		];
+	}
+
 	public function testExternalModuleSpecs() {
 		$this->overrideConfigValue( MainConfigNames::RestExternalModules, [
 			'mockExternal/v1' => [

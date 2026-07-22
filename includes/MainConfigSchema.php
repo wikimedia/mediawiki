@@ -12982,6 +12982,19 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * The absolute base URL of the local REST API entry point on the test server.
+	 *
+	 * When set (e.g., 'https://test.wikimedia.org/w/rest.php'), the REST Sandbox
+	 * will display this sandbox server as an option for testing calls.
+	 *
+	 * @since 1.47
+	 */
+	public const RestLocalModuleTestBaseUrl = [
+		'default' => null,
+		'type' => '?string',
+	];
+
+	/**
 	 * A list of REST modules, by module id, and the desired behavior mode for each.
 	 *
 	 * By default, behavior modes are determined by a module's audience designation (ex. "beta").

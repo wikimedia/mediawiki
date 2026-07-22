@@ -4351,6 +4351,12 @@ class MainConfigNames {
 	public const RestSandboxSpecs = 'RestSandboxSpecs';
 
 	/**
+	 * Name constant for the RestLocalModuleTestBaseUrl setting, for use with Config::get()
+	 * @see MainConfigSchema::RestLocalModuleTestBaseUrl
+	 */
+	public const RestLocalModuleTestBaseUrl = 'RestLocalModuleTestBaseUrl';
+
+	/**
 	 * Name constant for the RestModuleOverrides setting, for use with Config::get()
 	 * @see MainConfigSchema::RestModuleOverrides
 	 */

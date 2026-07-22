@@ -8065,6 +8065,16 @@ config-schema:
             @unstable Introduced in 1.43. We may want to rename or change this to
             accommodate the need to list external APIs in a central discovery
             document.
+    RestLocalModuleTestBaseUrl:
+        default: null
+        type:
+            - string
+            - 'null'
+        description: |-
+            The absolute base URL of the local REST API entry point on the test server.
+            When set (e.g., 'https://test.wikimedia.org/w/rest.php'), the REST Sandbox
+            will display this sandbox server as an option for testing calls.
+            @since 1.47
     RestModuleOverrides:
         default: {  }
         type: object

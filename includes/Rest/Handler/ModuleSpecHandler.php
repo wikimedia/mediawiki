@@ -34,6 +34,7 @@ class ModuleSpecHandler extends SimpleHandler {
 		MainConfigNames::EmergencyContact,
 		MainConfigNames::Sitename,
 		MainConfigNames::RestExternalModules,
+		MainConfigNames::RestLocalModuleTestBaseUrl,
 	];
 
 	private ServiceOptions $options;
@@ -136,12 +137,27 @@ class ModuleSpecHandler extends SimpleHandler {
 			$title = "$prefix " . $moduleStr;
 		}
 
-		return $module->getOpenApiInfo() + [
+		$info = $module->getOpenApiInfo() + [
 			'title' => $title,
 			'version' => '',
 			'license' => $this->getLicenseSpec(),
 			'contact' => $this->getContactSpec(),
 		];
+
+		$sandboxUrl = $this->getLocalModuleSandboxUrl( $module );
+		if ( $sandboxUrl !== null ) {
+			$host = parse_url( $sandboxUrl, PHP_URL_HOST );
+			$recommendation = $this->getJsonLocalizer()->getFormattedMessage(
+				new MessageValue( 'rest-sandbox-recommend-test-server', [ $host ] )
+			);
+			if ( isset( $info['description'] ) && $info['description'] !== '' ) {
+				$info['description'] = $info['description'] . "\n\n" . $recommendation;
+			} else {
+				$info['description'] = $recommendation;
+			}
+		}
+
+		return $info;
 	}
 
 	private function getLicenseSpec(): array {
@@ -160,17 +176,60 @@ class ModuleSpecHandler extends SimpleHandler {
 	}
 
 	private function getServerSpec( Module $module ): array {
-		$prefix = $module->getPathPrefix();
+		$prodUrl = $this->getModuleRouteUrl( $module );
+		$sandboxUrl = $this->getLocalModuleSandboxUrl( $module );
 
-		if ( $prefix !== '' ) {
-			$prefix = "/$prefix";
+		if ( $sandboxUrl !== null ) {
+			$localizer = $this->getJsonLocalizer();
+			return [
+				[
+					'url' => $prodUrl,
+					'description' => $localizer->getFormattedMessage( 'rest-sandbox-server-production' ),
+				],
+				[
+					'url' => $sandboxUrl,
+					'description' => $localizer->getFormattedMessage( 'rest-sandbox-server-sandbox' ),
+				]
+			];
 		}
 
 		return [
 			[
-				'url' => $this->getRouter()->getRouteUrl( $prefix ),
+				'url' => $prodUrl,
 			]
 		];
+	}
+
+	/**
+	 * Get the absolute entry point route URL for the given module's path prefix.
+	 *
+	 * @param Module $module The REST module to resolve the prefix for
+	 * @return string The absolute route URL (e.g., https://en.wikipedia.org/w/rest.php/specs/v0)
+	 */
+	private function getModuleRouteUrl( Module $module ): string {
+		$prefix = $module->getPathPrefix();
+		if ( $prefix !== '' ) {
+			$prefix = "/$prefix";
+		}
+		return $this->getRouter()->getRouteUrl( $prefix );
+	}
+
+	/**
+	 * Get the absolute sandbox route URL for the given module, if configured via $wgRestLocalModuleTestBaseUrl.
+	 *
+	 * @param Module $module The REST module to resolve the sandbox URL for
+	 * @return string|null The absolute sandbox route URL, or null if not configured
+	 */
+	private function getLocalModuleSandboxUrl( Module $module ): ?string {
+		$sandboxBaseUrl = $this->options->get( MainConfigNames::RestLocalModuleTestBaseUrl );
+		if ( $sandboxBaseUrl === null || $sandboxBaseUrl === '' ) {
+			return null;
+		}
+		$prefix = $module->getPathPrefix();
+		if ( $prefix !== '' ) {
+			return rtrim( $sandboxBaseUrl, '/' ) . '/' . $prefix;
+		}
+		return $sandboxBaseUrl;
 	}
 
 	private function getPathsSpec( Module $module ): array {
