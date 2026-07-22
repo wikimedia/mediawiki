@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Iketsi",
 			"Kaszeba",
 			"Kirsan",
 			"Warszk"
@@ -70,7 +71,7 @@
 	"underline-default": "Tak jak w domëslnym przezérnikù abò skórczi.",
 	"underline-never": "Nigdë",
 	"underline-always": "Wiedno",
-	"tog-showhiddencats": "Wëskrzëni zataconé kategòrëje",
+	"tog-showhiddencats": "Wëskrzëni zataconé kategòrie",
 	"prefs-editing": "Edicëjô",
 	"tog-editsectiononrightclick": "Włączë edicjã sekcji bez klëkniãcé prawą knąpą mëszë na titlu sekcje",
 	"tog-editondblclick": "Editëjë starnë przez dëbeltné klëkniãcé",

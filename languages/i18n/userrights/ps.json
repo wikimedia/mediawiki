@@ -259,7 +259,7 @@
 	"action-bigdelete": "د اوږدو پېښليکونو لرونکي مخونه ړنگول",
 	"action-blockemail": "پر يوه کارن د برېښليک لېږلو بنديز لگول يا لرې کول",
 	"action-bot": "د يوې خپلکارې پروسې په توگه دې ورسره چلند وشي",
-	"action-editalluserpages": "دا کارن مخ سمول",
+	"action-editalluserpages": "د نورو کارنانو مخونه سمول",
 	"action-editprotected": "هغه مخونه سمول چې د \"{{int:restriction-level-sysop}}\" په توگه ژغورل‌شوې دي",
 	"action-editsemiprotected": "هغه مخونه سمول چې د \"{{int:restriction-level-autoconfirmed}}\" په توگه ژغورل‌شوې دي",
 	"action-editinterface": "د کارن مخبڼه سمول",

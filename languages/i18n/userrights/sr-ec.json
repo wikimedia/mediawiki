@@ -256,7 +256,7 @@
 	"action-bigdelete": "бришете странице с великим историјама измена",
 	"action-blockemail": "блокирате/деблокирате кориснику слање имејлова",
 	"action-bot": "будете сматрани аутоматизованим процесом",
-	"action-editalluserpages": "уређујете ову корисничку страницу",
+	"action-editalluserpages": "уређујете странице других корисника",
 	"action-editprotected": "уређујете странице заштићене степеном „{{int:restriction-level-sysop}}”",
 	"action-editsemiprotected": "уређујете странице под заштитом „{{int:restriction-level-autoconfirmed}}”",
 	"action-editinterface": "уређујете кориснички интерфејс",

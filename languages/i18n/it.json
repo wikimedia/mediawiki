@@ -494,6 +494,7 @@
 	"userlogin-loggedin-continue-as": "Continua come {{GENDER:$1|$1}}",
 	"userlogin-loggedin-heading": "Accedi come un altro utente",
 	"userlogin-reauth": "Devi accedere di nuovo per verificare che sei {{GENDER:$1|$1}}.",
+	"userlogin-reauth-description-link": "annulla questa azione",
 	"userlogin-reauth-banner-ChangeEmail": "<strong>Stai cambiando la tua email</strong> <br>Conferma che sei tu per continuare.",
 	"userlogin-createanother": "Crea un’altra utenza",
 	"createacct-loggedin": "Sei già connesso come {{GENDER:$1|$1}}.",
