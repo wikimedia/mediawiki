@@ -351,6 +351,14 @@ abstract class MediaWikiEntryPoint {
 						$config->get( MainConfigNames::DataCenterUpdateStickTTL )
 					);
 				$options = [ 'prefix' => '' ];
+				// SameSite none requires the Secure attribute, and that means https. If
+				// $wgCookieSecure is set to true for a site using http only, this won't work.
+				// maybe we shouldn't even try to set the cookie in that case. oh well
+				if ( $config->get( MainConfigNames::CookieSecure ) ||
+					$config->get( MainConfigNames::ForceHTTPS ) ) {
+					$options[ 'sameSite' ] = 'none';
+					$options[ 'secure' ] = true;
+				}
 				$request->response()->setCookie( 'UseDC', 'master', $expires, $options );
 			}
 
