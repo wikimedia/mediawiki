@@ -2817,6 +2817,7 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.special.createaccount",
 		'packageFiles' => [
 			'signup.js',
+			'validators.js',
 			'HtmlformCheckerV2.js',
 			'username-policy-popover.js',
 			'UsernamePolicyPopover.vue',

@@ -40,6 +40,8 @@
 			"hideSections": [ "Classes", "Events" ],
 			"repository": "https://gerrit.wikimedia.org/g/mediawiki/core/",
 			"linkMap": {
+				"JQuery": "https://api.jquery.com/Types/#jQuery",
+				"MwApi": "https://doc.wikimedia.org/mediawiki-core/master/js/mw.Api.html",
 				"jQuery.fn": "https://api.jquery.com/jQuery/",
 				"JSON.parse": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"
 			}

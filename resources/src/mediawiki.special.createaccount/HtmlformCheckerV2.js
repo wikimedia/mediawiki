@@ -1,4 +1,9 @@
 class HtmlformCheckerV2 {
+	/**
+	 * @param {JQuery} $element
+	 * @param {function(AbortSignal): Promise<{valid: boolean, messages: Array<JQuery<HTMLElement>|string>, type: 'warning'|'success'|'error'}>} validator
+	 * @param {{feedback: boolean}} [options]
+	 */
 	constructor( $element, validator, options = { feedback: false } ) {
 		this.valid = true;
 		this.validationState = null;
@@ -15,6 +20,9 @@ class HtmlformCheckerV2 {
 		this.debouncedValidation = mw.util.debounce( this.validate, 2000 );
 	}
 
+	/**
+	 * @private
+	 */
 	enhanceElement() {
 		this.createValidationMessageElement();
 		this.createProgressIndicatorElement();
@@ -34,6 +42,9 @@ class HtmlformCheckerV2 {
 		}
 	}
 
+	/**
+	 * @private
+	 */
 	createValidationMessageElement() {
 		this.validationMessage = document.createElement( 'div' );
 		this.validationMessage.classList.add( 'cdx-message', 'cdx-message--inline' );
@@ -43,6 +54,9 @@ class HtmlformCheckerV2 {
 		this.validationMessageIcon.classList.add( 'cdx-message__icon' );
 	}
 
+	/**
+	 * @private
+	 */
 	createProgressIndicatorElement() {
 		this.validationMessageProgressIndicator = document.createElement( 'div' );
 		this.validationMessageProgressIndicator.classList.add( 'cdx-progress-indicator' );
@@ -54,6 +68,10 @@ class HtmlformCheckerV2 {
 		this.validationMessageProgressIndicatorElement.appendChild( this.validationMessageProgressIndicatorProgress );
 	}
 
+	/**
+	 * @public
+	 * @param {JQuery} [$extraElements]
+	 */
 	attach( $extraElements ) {
 		let $e = this.$element;
 
@@ -96,16 +114,29 @@ class HtmlformCheckerV2 {
 		} );
 	}
 
-	// Custom show/hide methods to avoid having to memoize all the initial display values for Codex
-	// markup (eg: inline-block, flex, etc.) that needs to be toggled
+	/**
+	 * Custom show/hide methods to avoid having to memoize all the initial display values for Codex
+	 * markup (eg: inline-block, flex, etc.) that needs to be toggled
+	 *
+	 * @private
+	 * @param {HTMLElement} el
+	 */
 	showElement( el ) {
 		el.classList.toggle( 'mw-htmlformchecker-v2-hide', false );
 	}
 
+	/**
+	 * @private
+	 * @param {HTMLElement} el
+	 */
 	hideElement( el ) {
 		el.classList.toggle( 'mw-htmlformchecker-v2-hide', true );
 	}
 
+	/**
+	 * @private
+	 * @param {JQuery|string} err
+	 */
 	setError( err ) {
 		// Existing messages may use html markup, support both plain text and markup for now, prefer
 		// markup over plain text, consider using only plain text.
@@ -125,10 +156,11 @@ class HtmlformCheckerV2 {
 	}
 
 	/**
+	 * @private
 	 * @param {boolean} valid
-	 * @param {Array.<(jQuery|string)>} errors
-	 * @param {?string} type
-	 * @param {?boolean} forceReplacement
+	 * @param {Array<JQuery>|Array<string>} errors
+	 * @param {string} [type]
+	 * @param {boolean} [forceReplacement]
 	 */
 	// eslint-disable-next-line no-unused-vars
 	setErrors( valid, errors, type, forceReplacement ) {
@@ -156,6 +188,9 @@ class HtmlformCheckerV2 {
 		}
 	}
 
+	/**
+	 * @private
+	 */
 	resetValidationStateClasses() {
 		const states = [ 'error', 'warning', 'success', 'notice' ];
 		// Remove any possible prior added validation state classes
@@ -178,6 +213,11 @@ class HtmlformCheckerV2 {
 		);
 	}
 
+	/**
+	 * @private
+	 * @param {string} type
+	 * @param {boolean} [replaceIcon]
+	 */
 	setValidationStateClasses( type, replaceIcon ) {
 		// Flush prior replaced icons
 		this.hideElement( this.validationMessageProgressIndicator );
@@ -203,6 +243,9 @@ class HtmlformCheckerV2 {
 		this.validationState = type;
 	}
 
+	/**
+	 * @private
+	 */
 	showCheckFeedback() {
 		this.resetValidationStateClasses();
 		this.validationMessageContent.innerText = mw.message( 'available-username-check-feedback' ).text();
@@ -210,6 +253,9 @@ class HtmlformCheckerV2 {
 		this.setValidationStateClasses( 'notice', true );
 	}
 
+	/**
+	 * @private
+	 */
 	validate() {
 		const { value } = this.element;
 		if ( this.abortController ) {
@@ -224,7 +270,7 @@ class HtmlformCheckerV2 {
 
 		this.abortController = new mw.Api.AbortController();
 
-		return this.validator( value, this.abortController.signal )
+		return this.validator( this.abortController.signal )
 			.then( ( { valid, messages, type } ) => {
 				// TODO use forceReplacement to trigger a CSS animation when an error changes but its state doesn't
 				const forceReplacement = value !== this.currentValue;
