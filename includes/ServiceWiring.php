@@ -1529,7 +1529,7 @@ return [
 			!defined( 'MW_PHPUNIT_TEST' )
 		) {
 			$wanParams['pendingCallback'] = static function () use ( $services ) {
-				return $services->getDBLoadBalancer()->hasOrMadeRecentPrimaryChanges();
+				return $services->getDBLoadBalancer()->hasPrimaryChanges();
 			};
 		}
 		return new WANObjectCache( $wanParams );
