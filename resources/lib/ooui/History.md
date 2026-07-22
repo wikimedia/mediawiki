@@ -1,10 +1,34 @@
 # OOUI Release History
 
+## v0.54.1 / 2027-07-21
+### Icons
+* icon: Add `helpNoticeFilled` (Derek Torsani)
+* icons: Amend various icons round 2 (Derek Torsani)
+* icons: Fix helpNoticeFilled icon for RTL semantic structure (Volker E.)
+* icons: Manually optimize draggable icons (Thiemo Kreuz)
+* icons: Micro-optimizations to various high-traffic icons (Thiemo Kreuz)
+* icons: Micro-optimize some more selected SVG icons (Thiemo Kreuz)
+* icons: Rename 'draggable' to 'draggableVertical' (Ed Sanders)
+* Minor code optimizations to the new SVG icon set (Thiemo Kreuz)
+
+### Code
+* OOUI: exclude teleport target from WindowManager isolation (Neriah)
+* Optimize logo-MetaWiki.svg icon file (Thiemo Kreuz)
+* WindowManager: Always return `this` from #updateWindowSize (Ed Sanders)
+* WindowManager: Return promise from #destroy (Ed Sanders)
+* build: More robust regex replacement in colorize-svg.js (Thiemo Kreuz)
+* build: Updating npm dependencies ([BOT] libraryupgrader)
+* build: Updating stylelint-config-wikimedia to 0.19.3 ([BOT] libraryupgrader)
+* code: Use built-in PHP str_starts_with / JS String#startsWith (Bartosz Dziewoński)
+* demo: Improve styling of deprecated icons (Ed Sanders)
+
 ## v0.54.0 / 2026-06-11
 
 ### Icons
 * Icons: refine icon library (Derek Torsani)
 * icons: Amend various icons (Derek Torsani)
+* icons: Simplify paths for a few non-relative entries (Ed Sanders)
+
 ### Code
 * build: Updating dependencies ([BOT] libraryupgrader)
 * build: Updating fast-uri to 3.1.2 ([BOT] libraryupgrader)
@@ -15,7 +39,6 @@
 * build: Updating tmp to 0.2.7 ([BOT] libraryupgrader)
 * composer: Indicate that we now require PHP 8.3+ (James D. Forrester)
 * Fix typos in documentation (Ed Sanders)
-* icons: Simplify paths for a few non-relative entries (Ed Sanders)
 * tests: Use ::class for class name resolution (Umherirrender)
 * Update name and address for bvibber (Brooke Vibber)
 
@@ -29,13 +52,16 @@
 * Make menuToolGroup handle fixed width (Ed Sanders)
 * OO.ui.TagMultiselectWidget: Skip parts of onChange handler when disabled (Umherirrender)
 * SelectWidget: Use native event binding for focusin/out (Ed Sanders)
+
 ### Styles
 * Add missing userContributions to Apex theme (Ed Sanders)
 * MessageWidget: Add border radius (Ed Sanders)
 * Update background colors of flagged normal buttons (Ed Sanders)
+
 ### Icons
 * Add destructive variant for stop icon (Sebastian Berlin)
 * icons: Add 'userBlocked' icon (Kosta Harlan)
+
 ### Code
 * Add script to check files/icons exist in wikimediaui and apex (Ed Sanders)
 * AUTHORS.txt: Update for the past three years (James D. Forrester)

@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>
 		move table column after
-	</title><path d="M19 1v18H1V1zM3 3v14h9v-4h2v4h3v-6H8.089l2 2-1.414 1.414-3.707-3.707V9.293l3.707-3.707L10.089 7l-2 2H17V3h-3v4h-2V3z"/></svg>
+	</title><path d="M1 19h18V1H1zM12 9H8.089l2-2-1.414-1.414-3.707 3.707v1.414l3.707 3.707L10.089 13l-2-2H12v6H3V3h9zm5 0v2h-5V9z"/></svg>

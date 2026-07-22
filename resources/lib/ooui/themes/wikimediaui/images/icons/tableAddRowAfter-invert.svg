@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>
 		add table row after
-	</title><g fill="#fff"><path d="M11 11h2v2h-2v2H9v-2H7v-2h2V9h2z"/><path d="M18 5h2v14H0V5h2V1h16zM2 17h16V7H2zM4 5h12V3H4z"/></g></svg>
+	</title><path fill="#fff" d="M1 9h2V1h14v8h2v10H1zm14-6H5v2h10zm0 4H5v2h10zm-4 10v-2h2v-2h-2v-2H9v2H7v2h2v2z"/></svg>

@@ -27,10 +27,14 @@
 			"file": "../wikimediaui/images/icons/downTriangle.svg"
 		},
 		"draggable": {
-			"file": "../wikimediaui/images/icons/draggable.svg"
+			"file": "../wikimediaui/images/icons/draggableVertical.svg",
+			"deprecated": "Renamed since v0.55.0, use 'draggableVertical'/'draggableHorizontal'/ 'draggableXY' instead"
 		},
 		"draggableHorizontal": {
 			"file": "../wikimediaui/images/icons/draggableHorizontal.svg"
+		},
+		"draggableVertical": {
+			"file": "../wikimediaui/images/icons/draggableVertical.svg"
 		},
 		"draggableXY": {
 			"file": "../wikimediaui/images/icons/draggableXY.svg"

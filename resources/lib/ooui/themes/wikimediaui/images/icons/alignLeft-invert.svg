@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>
 		align left
-	</title><path fill="#fff" d="M19 17H1v-2h18zM7 13H1V7h6zm12 0H9v-2h10zm0-4H9V7h10zm0-4H1V3h18z"/></svg>
+	</title><path fill="#fff" d="M19 3v2H1V3zm0 4v2H9V7zm0 4v2H9v-2zm0 4v2H1v-2zM1 7h6v6H1z"/></svg>

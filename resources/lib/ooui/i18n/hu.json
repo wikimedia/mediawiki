@@ -24,6 +24,7 @@
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Mégse",
 	"ooui-dialog-process-error": "Valami elromlott",
+	"ooui-dialog-process-back": "Vissza",
 	"ooui-dialog-process-dismiss": "Elrejt",
 	"ooui-dialog-process-retry": "Próbáld újra",
 	"ooui-dialog-process-continue": "Folytatás",

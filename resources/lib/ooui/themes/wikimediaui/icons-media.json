@@ -73,6 +73,9 @@
 				"rtl": "images/icons/imageGallery-rtl.svg"
 			}
 		},
+		"microphone": {
+			"file": "images/icons/microphone.svg"
+		},
 		"musicalScore": {
 			"file": "images/icons/musicalScore.svg"
 		},

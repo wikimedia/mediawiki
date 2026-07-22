@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>
 		database
-	</title><path d="M7 15a1 1 0 1 1 0 2 1 1 0 0 1 0-2m0-6a1 1 0 1 1 0 2 1 1 0 0 1 0-2m0-6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/><path d="M18 20H2V0h16zM4 18h12v-4H4zm0-6h12V8H4zm0-6h12V2H4z"/></svg>
+	</title><path d="M18 20H2V0h16zM4 18h12v-4H4zm0-6h12V8H4zm0-6h12V2H4z"/><circle cx="7" cy="4" r="1"/><circle cx="7" cy="10" r="1"/><circle cx="7" cy="16" r="1"/></svg>

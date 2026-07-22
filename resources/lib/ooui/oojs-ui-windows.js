@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.54.0
+ * OOUI v0.54.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2026 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2026-06-11T21:42:16Z
+ * Date: 2026-07-21T20:54:31Z
  */
 ( function ( OO ) {
 
@@ -1681,7 +1681,7 @@ OO.ui.WindowManager.prototype.clearWindows = function () {
 OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
 	// Bypass for non-current, and thus invisible, windows
 	if ( win !== this.currentWindow ) {
-		return;
+		return this;
 	}
 
 	const size = win.getSize();
@@ -1835,7 +1835,11 @@ OO.ui.WindowManager.prototype.toggleIsolation = function ( isolate ) {
 		// Walk up the tree
 		while ( !$el.is( 'body' ) && $el.length ) {
 			// Hide all siblings at each level, just leaving the path to the manager visible.
-			const $siblings = $el.siblings().not( 'script' );
+			// Exclude default overlay and teleport target in case they're used by dropdown menus etc.
+			// of widgets placed inside the current window (T409300).
+			const $siblings = $el.siblings().not( 'script' )
+				.not( OO.ui.getTeleportTarget() )
+				.not( OO.ui.getDefaultOverlay() );
 			// Ensure the path to this manager is visible, as it may have been hidden by
 			// another manager.
 			$el
@@ -1875,10 +1879,13 @@ OO.ui.WindowManager.prototype.toggleIsolation = function ( isolate ) {
 
 /**
  * Destroy the window manager.
+ *
+ * @return {jQuery.Promise} Promise resolved when all windows are closed and removed
  */
 OO.ui.WindowManager.prototype.destroy = function () {
-	this.clearWindows();
+	const promise = this.clearWindows();
 	this.$element.remove();
+	return promise;
 };
 
 /**

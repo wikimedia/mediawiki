@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.54.0
+ * OOUI v0.54.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2026 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2026-06-11T21:42:16Z
+ * Date: 2026-07-21T20:54:31Z
  */
 ( function ( OO ) {
 
@@ -441,10 +441,6 @@ OO.ui.resolveMsg = function ( msg ) {
 OO.ui.isSafeUrl = function ( url ) {
 	// Keep this function in sync with php/Tag.php
 
-	function stringStartsWith( haystack, needle ) {
-		return haystack.slice( 0, needle.length ) === needle;
-	}
-
 	const protocolAllowList = [
 		'bitcoin', 'ftp', 'ftps', 'geo', 'git', 'gopher', 'http', 'https', 'irc', 'ircs',
 		'magnet', 'mailto', 'mms', 'news', 'nntp', 'redis', 'sftp', 'sip', 'sips', 'sms', 'ssh',
@@ -456,16 +452,16 @@ OO.ui.isSafeUrl = function ( url ) {
 	}
 
 	for ( let i = 0; i < protocolAllowList.length; i++ ) {
-		if ( stringStartsWith( url, protocolAllowList[ i ] + ':' ) ) {
+		if ( url.startsWith( protocolAllowList[ i ] + ':' ) ) {
 			return true;
 		}
 	}
 
 	// This matches '//' too
-	if ( stringStartsWith( url, '/' ) || stringStartsWith( url, './' ) ) {
+	if ( url.startsWith( '/' ) || url.startsWith( './' ) ) {
 		return true;
 	}
-	if ( stringStartsWith( url, '?' ) || stringStartsWith( url, '#' ) ) {
+	if ( url.startsWith( '?' ) || url.startsWith( '#' ) ) {
 		return true;
 	}
 

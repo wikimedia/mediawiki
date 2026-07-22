@@ -50,10 +50,14 @@
 			"file": "images/icons/downTriangle.svg"
 		},
 		"draggable": {
-			"file": "images/icons/draggable.svg"
+			"file": "images/icons/draggableVertical.svg",
+			"deprecated": "Renamed since v0.55.0, use 'draggableVertical'/'draggableHorizontal'/ 'draggableXY' instead"
 		},
 		"draggableHorizontal": {
 			"file": "images/icons/draggableHorizontal.svg"
+		},
+		"draggableVertical": {
+			"file": "images/icons/draggableVertical.svg"
 		},
 		"draggableXY": {
 			"file": "images/icons/draggableXY.svg"

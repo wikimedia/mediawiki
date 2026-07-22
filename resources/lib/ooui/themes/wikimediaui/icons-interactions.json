@@ -112,6 +112,15 @@
 				}
 			}
 		},
+		"helpNoticeFilled": {
+			"file": {
+				"ltr": "images/icons/helpNoticeFilled-ltr.svg",
+				"rtl": "images/icons/helpNoticeFilled-rtl.svg",
+				"lang": {
+					"he,yi": "images/icons/helpNoticeFilled-ltr.svg"
+				}
+			}
+		},
 		"home": {
 			"file": "images/icons/home.svg"
 		},

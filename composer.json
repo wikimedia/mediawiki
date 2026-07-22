@@ -40,7 +40,7 @@
 		"mck89/peast": "1.17.5",
 		"monolog/monolog": "3.10.0",
 		"okvpn/clock-lts": "1.0.0",
-		"oojs/oojs-ui": "0.54.0",
+		"oojs/oojs-ui": "0.54.1",
 		"php": ">=8.3.0",
 		"psr/container": "2.0.2",
 		"psr/http-message": "2.0",

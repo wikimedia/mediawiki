@@ -83,6 +83,15 @@
 				}
 			}
 		},
+		"helpNoticeFilled": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/helpNoticeFilled-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/helpNoticeFilled-rtl.svg",
+				"lang": {
+					"he,yi": "../wikimediaui/images/icons/helpNoticeFilled-ltr.svg"
+				}
+			}
+		},
 		"home": {
 			"file": "../wikimediaui/images/icons/home.svg"
 		},

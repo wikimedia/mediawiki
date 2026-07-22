@@ -50,6 +50,9 @@
 				"rtl": "../wikimediaui/images/icons/imageGallery-rtl.svg"
 			}
 		},
+		"microphone": {
+			"file": "../wikimediaui/images/icons/microphone.svg"
+		},
 		"musicalScore": {
 			"file": "../wikimediaui/images/icons/musicalScore.svg"
 		},
