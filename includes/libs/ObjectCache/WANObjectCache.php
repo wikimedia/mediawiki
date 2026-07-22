@@ -350,6 +350,10 @@ class WANObjectCache implements
 	 *       overhead and reduces the chance the single downed cache server causes disruption.
 	 *       Use "hash_stop" with mcrouter and "hash_tag" with dynomite. [default: "hash_stop"]
 	 *   - tracer: TracerInterface instance where per-operation spans will be recorded
+	 *   - pendingCallback: a callback which takes no arguments and returns a boolean indicated
+	 *       whether a DB transaction is pending. When supplied and returns true, caching will be
+	 *       disabled to avoid caching data from DB rows that might get rolled back later in the
+	 *       request.
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];

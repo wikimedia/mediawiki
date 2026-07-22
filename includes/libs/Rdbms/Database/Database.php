@@ -2729,6 +2729,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	 *   - pending: whether any of the DBs have uncommitted changes
 	 * @throws DBError
 	 * @since 1.27
+	 * @deprecated since 1.47, has no effect and should be removed
 	 */
 	public static function getCacheSetOptions( ?IReadableDatabase ...$dbs ) {
 		$res = [ 'pending' => false ];
