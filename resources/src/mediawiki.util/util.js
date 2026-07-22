@@ -581,6 +581,26 @@ const util = {
 	},
 
 	/**
+	 * @typedef {Object} PortletOptions
+	 * @property {string} [label] Label of the new portlet.
+	 * @property {string} [selectorHint] Selector of the element the new portlet would like to be
+	 *  inserted near. Typically the portlet will be inserted after this selector, but in some
+	 *  skins, the skin may relocate the element to another available space.
+	 *
+	 *  When provided, skins can use the parameter to infer information about how the user intended
+	 *  the menu to be rendered. For example, in vector and vector-2022 targeting `#p-cactions` will
+	 *  result in the creation of a dropdown menu.
+	 *
+	 *  If this argument is not passed, then the caller is responsible for appending the element to
+	 *  the DOM before using addPortletLink.
+	 *
+	 *  To add a portlet in an exact position do not rely on this parameter, instead assign the
+	 *  returned element to a variable, and use `yourTarget.appendChild( portlet );`
+	 * @property {boolean} [useDivLabel] Set to `true` to use a `<div>` for the portlet label
+	 *  instead of a `<label>` element. (Using a `<label>` is only valid within a `<form>`.)
+	 */
+
+	/**
 	 * Creates a detached portlet Element in the skin with no elements.
 	 *
 	 * @example
@@ -590,28 +610,23 @@ const util = {
 	 * mw.util.addPortletLink( 'p-myportlet', '#', 'Link 2' );
 	 *
 	 * @param {string} id ID of the new portlet.
-	 * @param {string} [label] Label of the new portlet.
-	 * @param {string} [selectorHint] Selector of the element the new portlet would like to
-	 *  be inserted near. Typically the portlet will be inserted after this selector, but in some
-	 *  skins, the skin may relocate the element to another available space.
-	 *
-	 *  When provided, skins can use the parameter to infer information about how the user intended
-	 *  the menu to be rendered. For example, in vector and vector-2022 targeting `#p-cactions` will
-	 *  result in the creation of a dropdown menu.
-	 *
-	 *  If this argument is not passed, then the caller is responsible for appending the element
-	 *  to the DOM before using addPortletLink.
-	 *
-	 *  To add a portlet in an exact position do not rely on this parameter, instead assign the returned
-	 *  element to a variable, and use `yourTarget.appendChild( portlet );`
+	 * @param {PortletOptions|string} [labelOrOptions] Options for the portlet. If a string, this
+	 *  will fall back to label for backwards compatibility.
+	 * @param {string} [_selectorHint] For backwards compatibility. See PortletOptions for
+	 *  documentation.
 	 * @fires Hooks~'util.addPortlet'
-	 * @return {HTMLElement|null} will be null if it was not possible to create an portlet with
-	 *  the required information e.g. the selector given in `selectorHint` parameter could not be resolved
-	 *  to an existing element in the page.
+	 * @return {HTMLElement|null} will be null if it was not possible to create an portlet with the
+	 *  required information e.g. the selector given in `selectorHint` parameter could not be
+	 *  resolved to an existing element in the page.
 	 */
-	addPortlet( id, label, selectorHint ) {
+	addPortlet( id, labelOrOptions, _selectorHint ) {
+		const options = $.isPlainObject( labelOrOptions ) ? labelOrOptions : {
+			label: labelOrOptions,
+			selectorHint: _selectorHint
+		};
+		const { label, selectorHint, useDivLabel } = options;
 		const portlet = document.createElement( 'div' );
-		// These classes should be kept in sync with includes/skins/components/SkinComponentMenu.php.
+		// These classes should be kept in sync with includes/Skin/Components/SkinComponentMenu.php.
 		// eslint-disable-next-line mediawiki/class-doc
 		portlet.classList.add( 'mw-portlet', 'mw-portlet-' + id, 'emptyPortlet',
 			// Additional class is added to allow skins to track portlets added via this mechanism.
@@ -619,7 +634,7 @@ const util = {
 		);
 		portlet.id = id;
 		if ( label ) {
-			const labelNode = document.createElement( 'label' );
+			const labelNode = document.createElement( useDivLabel ? 'div' : 'label' );
 			labelNode.textContent = label;
 			portlet.appendChild( labelNode );
 		}
@@ -658,19 +673,21 @@ const util = {
 	},
 
 	/**
-	 * @typedef {Object} PortletOptions
+	 * @typedef {Object} PortletLinkOptions
 	 * @property {string} href Link URL
 	 * @property {string} text Link text
-	 * @property {string} [id] ID of the list item, should be unique and preferably have
-	 *  the appropriate prefix ('ca-', 'pt-', 'n-' or 't-')
-	 * @property {string} [tooltip] Text to show when hovering over the link, without accesskey suffix
-	 * @property {string} [accesskey] Access key to activate this link. One character only,
-	 *  avoid conflicts with other links. Use `$( '[accesskey=x]' )` in the console to
-	 *  see if 'x' is already used.
-	 * @property {HTMLElement|jQuery|string} [nextnode] Element that the new item should be added before.
-	 *  Must be another item in the same list, it will be ignored otherwise.
-	 *  Can be specified as DOM reference, as jQuery object, or as CSS selector string.
-	 * @property {string} [icon] Name of the Codex icon name this menu should use if skin supports this.
+	 * @property {string} [id] ID of the list item, should be unique and preferably have the
+	 *  appropriate prefix ('ca-', 'pt-', 'n-' or 't-')
+	 * @property {string} [tooltip] Text to show when hovering over the link, without accesskey
+	 *  suffix
+	 * @property {string} [accesskey] Access key to activate this link. One character only, avoid
+	 *  conflicts with other links. Use `$( '[accesskey=x]' )` in the console to see if 'x' is
+	 *  already used.
+	 * @property {HTMLElement|jQuery|string} [nextnode] Element that the new item should be added
+	 *  before. Must be another item in the same list, it will be ignored otherwise. Can be
+	 *  specified as DOM reference, as jQuery object, or as CSS selector string.
+	 * @property {string} [icon] Name of the Codex icon name this menu should use if skin supports
+	 *  this.
 	 */
 
 	/**
@@ -678,25 +695,25 @@ const util = {
 	 *
 	 * The portlets that are supported include:
 	 *
-	 * - p-cactions (Content actions)
-	 * - p-personal (Personal tools)
-	 * - p-navigation (Navigation)
-	 * - p-tb (Toolbox)
-	 * - p-associated-pages (For namespaces and special page tabs on supported skins)
-	 * - p-dock-bottom (A sticky menu fixed to bottom of viewport on supported skins)
-	 * - p-namespaces (For namespaces on legacy skins)
+	 * - `p-cactions` (Content actions)
+	 * - `p-personal` (Personal tools)
+	 * - `p-navigation` (Navigation)
+	 * - `p-tb` (Toolbox)
+	 * - `p-associated-pages` (For namespaces and special page tabs on supported skins)
+	 * - `p-dock-bottom` (A sticky menu fixed to bottom of viewport on supported skins)
+	 * - `p-namespaces` (For namespaces on legacy skins)
 	 *
 	 * Additional menus can be discovered through the following code:
 	 * ```$('.mw-portlet').toArray().map((el) => el.id);```
 	 *
 	 * Menu availability varies by skin, wiki, and current page.
 	 *
-	 * The first three parameters are required, the others are optional and
-	 * may be null. Though providing an id and tooltip is recommended.
+	 * The first three parameters are required, the others are optional and may be null. Though
+	 * providing an id and tooltip is recommended.
 	 *
-	 * By default, the new link will be added to the end of the menu. To
-	 * add the link before an existing item, pass the DOM node or a CSS selector
-	 * for that item, e.g. `'#foobar'` or `document.getElementById( 'foobar' )`.
+	 * By default, the new link will be added to the end of the menu. To add the link before an
+	 * existing item, pass the DOM node or a CSS selector for that item, e.g. `'#foobar'` or
+	 * `document.getElementById( 'foobar' )`.
 	 * ```
 	 * mw.util.addPortletLink(
 	 *     'p-tb', 'https://www.mediawiki.org/',
@@ -714,8 +731,8 @@ const util = {
 	 * } );
 	 * ```
 	 *
-	 * Remember that to call this inside a user script, you may have to ensure the
-	 * `mediawiki.util` is loaded first:
+	 * Remember that to call this inside a user script, you may have to ensure the `mediawiki.util`
+	 * is loaded first:
 	 * ```
 	 * $.when( mw.loader.using( [ 'mediawiki.util' ] ), $.ready ).then( function () {
 	 *      mw.util.addPortletLink( 'p-tb', 'https://www.mediawiki.org/', 'mediawiki.org' );
@@ -723,12 +740,17 @@ const util = {
 	 * ```
 	 *
 	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal').
-	 * @param {PortletOptions|string} hrefOrOptions Portlet options. If a string, this will fall back to href for backwards compatibility.
-	 * @param {string} [_text] For backwards compatibility. See PortletOptions for documentation.
-	 * @param {string} [_id] For backwards compatibility. See PortletOptions for documentation.
-	 * @param {string} [_tooltip] For backwards compatibility. See PortletOptions for documentation.
-	 * @param {string} [_accesskey] For backwards compatibility. See PortletOptions for documentation.
-	 * @param {HTMLElement|jQuery|string} [_nextnode] For backwards compatibility. See PortletOptions for documentation.
+	 * @param {PortletLinkOptions|string} hrefOrOptions Portlet link options. If a string, this will
+	 *  fall back to href for backwards compatibility.
+	 * @param {string} [_text] For backwards compatibility. See PortletLinkOptions for
+	 *  documentation.
+	 * @param {string} [_id] For backwards compatibility. See PortletLinkOptions for documentation.
+	 * @param {string} [_tooltip] For backwards compatibility. See PortletLinkOptions for
+	 *  documentation.
+	 * @param {string} [_accesskey] For backwards compatibility. See PortletLinkOptions for
+	 *  documentation.
+	 * @param {HTMLElement|jQuery|string} [_nextnode] For backwards compatibility. See
+	 *  PortletLinkOptions for documentation.
 	 * @fires Hooks~'util.addPortletLink'
 	 * @return {HTMLElement|null} The added list item, or null if no element was added.
 	 */
@@ -838,7 +860,7 @@ const util = {
 		 * @event ~'util.addPortletLink'
 		 * @memberof Hooks
 		 * @param {HTMLElement} item the portlet link that was created.
-		 * @param {PortletOptions} options configuration options passed to addPortletLink.
+		 * @param {PortletLinkOptions} options configuration options passed to addPortletLink.
 		 *
 		 * @example
 		 * mw.hook( 'util.addPortletLink' ).add( ( link, options ) => {
