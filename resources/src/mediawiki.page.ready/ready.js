@@ -331,6 +331,19 @@ $( document.body ).on( 'click', '.mw-heading a.mw-section-share', function ( eve
 	share( { url: link } );
 } );
 
+// Load lazy loaded images in print mode (T148047). This code supports the mobile site
+// and $wgNativeImageLazyLoading
+window.addEventListener( 'beforeprint', () => {
+	// Printing documents with images that are lazy loaded is broken in Safari
+	// https://bugs.webkit.org/show_bug.cgi?id=224547
+	Array.prototype.forEach.call(
+		document.querySelectorAll( 'img[loading]' ),
+		( img ) => {
+			img.loading = 'eager';
+		}
+	);
+} );
+
 /**
  * @exports mediawiki.page.ready
  */
