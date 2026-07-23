@@ -43,8 +43,8 @@ class ModuleModeTest extends \MediaWikiUnitTestCase {
 	public static function provideGetModeParamsCases() {
 		yield from [
 			[ AudienceDesignation::PUBLIC, [] ],
-			[ AudienceDesignation::INTERNAL, [ 'group' => 'internal' ] ],
-			[ AudienceDesignation::BETA, [ 'group' => 'beta' ] ],
+			[ AudienceDesignation::INTERNAL, [ 'groups' => [ 'internal' ] ] ],
+			[ AudienceDesignation::BETA, [ 'groups' => [ 'beta' ] ] ],
 			[ null, [] ],
 		];
 	}

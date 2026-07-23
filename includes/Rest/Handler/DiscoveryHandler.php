@@ -39,10 +39,10 @@ class DiscoveryHandler extends Handler {
 
 	/** @inheritDoc */
 	public function execute() {
-		// NOTE: must match docs/rest/discovery-1.0.json
+		// NOTE: Must match docs/rest/discovery-1.1.json
 		return [
-			'mw-discovery' => '1.0',
-			'$schema' => 'https://www.mediawiki.org/schema/discovery-1.0',
+			'mw-discovery' => '1.1',
+			'$schema' => 'https://www.mediawiki.org/schema/discovery-1.1',
 			'info' => $this->getInfoSpec(),
 			'servers' => $this->getServerList(),
 			'modules' => $this->getModuleMap(),
@@ -51,7 +51,7 @@ class DiscoveryHandler extends Handler {
 		];
 	}
 
-	private function getModuleMap(): array {
+	private function getModuleMap(): object {
 		$modules = [];
 
 		$router = $this->getRouter();
@@ -75,13 +75,15 @@ class DiscoveryHandler extends Handler {
 			if ( $mode === ModuleMode::DISABLED || $mode === ModuleMode::HIDDEN ) {
 				continue;
 			}
-			$modules[$externalModuleId] = [ 'moduleId' => $externalModuleId ] + $localizer->localizeJson( $em );
+			$moduleSpec = [ 'moduleId' => $externalModuleId ] + $localizer->localizeJson( $em );
+			$moduleSpec['info']['groups'] = $moduleManager->getModuleGroups( $externalModuleId );
+			$modules[$externalModuleId] = $moduleSpec;
 		}
 
 		// This will put the "routes not in modules" entry first.
 		uksort( $modules, 'strnatcasecmp' );
 
-		return $modules;
+		return (object)$modules;
 	}
 
 	private function getServerList(): array {
@@ -139,10 +141,13 @@ class DiscoveryHandler extends Handler {
 	}
 
 	private function getModuleSpec( Module $module ): array {
-		return $module->getModuleDescription();
+		$spec = $module->getModuleDescription();
+		$moduleId = $module->getPathPrefix();
+		$spec['info']['groups'] = $this->getRouter()->getModuleManager()->getModuleGroups( $moduleId );
+		return $spec;
 	}
 
 	protected function getResponseBodySchemaFileName( string $method ): ?string {
-		return MW_INSTALL_PATH . '/docs/rest/discovery-1.0.json';
+		return MW_INSTALL_PATH . '/docs/rest/discovery-1.1.json';
 	}
 }

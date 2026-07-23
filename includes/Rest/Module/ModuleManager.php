@@ -117,6 +117,18 @@ class ModuleManager {
 	}
 
 	/**
+	 * Gets the audience designation groups, if any, for a particular module.
+	 *
+	 * @param string $moduleId The module id
+	 * @return string[] The group names
+	 * @since 1.47
+	 */
+	public function getModuleGroups( string $moduleId ): array {
+		$params = $this->getModeParams( $moduleId );
+		return (array)( $params['groups'] ?? [] );
+	}
+
+	/**
 	 * Gets the configured override parameters (if any) for a particular module
 	 *
 	 * @param string $moduleId The module id

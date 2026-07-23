@@ -258,4 +258,27 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 
 		$this->overrideConfigValue( MainConfigNames::RestSandboxSpecs, $rss );
 	}
+
+	public static function provideGetModuleGroupsCases() {
+		yield from [
+			[ 'example/v1', [] ],
+			[ 'example/v1-published', [] ],
+			[ 'example/v1-internal', [ 'internal' ] ],
+			[ 'example/v1-beta', [ 'beta' ] ],
+			[ 'mockWithOverride/v1', [ 'preferred' ], [ 'mockWithOverride/v1' => [ 'mode' => 'published', 'groups' => [ 'preferred' ] ] ] ],
+			[ 'mockWithMultipleOverrides/v1', [ 'preferred', 'beta' ], [ 'mockWithMultipleOverrides/v1' => [ 'mode' => 'published', 'groups' => [ 'preferred', 'beta' ] ] ] ],
+			[ 'mockWithInternalOverride/v1', [ 'internal' ], [ 'mockWithInternalOverride/v1' => [ 'mode' => 'published', 'groups' => [ 'internal' ] ] ] ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetModuleGroupsCases
+	 */
+	public function testGetModuleGroups( string $moduleId, array $expected, array $overrides = [] ): void {
+		if ( $overrides ) {
+			$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, $overrides );
+		}
+		$moduleManager = $this->getModuleManager();
+		$this->assertSame( $expected, $moduleManager->getModuleGroups( $moduleId ) );
+	}
 }

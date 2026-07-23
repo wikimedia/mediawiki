@@ -29,7 +29,8 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private function createRouter(
 		RequestInterface $request,
-		array $specFiles
+		array $specFiles,
+		array $moduleGroups = []
 	): Router {
 		$services = $this->getServiceContainer();
 
@@ -62,7 +63,7 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		return ( new Router(
-			$this->newMockModuleManager( $specFiles, $moduleModes ),
+			$this->newMockModuleManager( $specFiles, $moduleModes, $moduleGroups ),
 			[],
 			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
 			$services->getLocalServerObjectCache(),
@@ -85,10 +86,10 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function assertWellFormedDiscoveryDoc( array $discovery ) {
-		$schemaFile = MW_INSTALL_PATH . '/docs/rest/discovery-1.0.json';
+		$schemaFile = MW_INSTALL_PATH . '/docs/rest/discovery-1.1.json';
 
 		$this->assertMatchesJsonSchema( $schemaFile, $discovery, [
-			'https://www.mediawiki.org/schema/mwapi-1.0' => MW_INSTALL_PATH . '/docs/rest/mwapi-1.0.json',
+			'https://www.mediawiki.org/schema/mwapi-1.2' => MW_INSTALL_PATH . '/docs/rest/mwapi-1.2.json',
 			'https://spec.openapis.org/oas/3.0/schema/2021-09-28' => __DIR__ . '/data/OpenApi-3.0.json',
 		] );
 	}
@@ -143,6 +144,10 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 				__DIR__ . '/SpecTestRoutes.v3.json', // intentionally missorted
 				__DIR__ . '/SpecTestRoutes.v1.json',
 				__DIR__ . '/SpecTestRoutes.v2.json'
+			],
+			[
+				'SpecTestRoutes/v1' => [ 'test-group' ],
+				'mockExternal/v1' => [ 'external-test-group' ]
 			]
 		);
 
@@ -182,6 +187,7 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 					'info' => [
 						'version' => '1.0',
 						'title' => 'test module',
+						'groups' => [ 'test-group' ],
 					],
 					'base' => 'https://example.com:1234/api/SpecTestRoutes/v1',
 					'spec' => 'https://example.com:1234/api/specs/v0/module/SpecTestRoutes%2Fv1',
@@ -190,6 +196,7 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 					'info' => [
 						'version' => '3.0',
 						'title' => 'test module',
+						'groups' => [],
 					],
 					'base' => 'https://example.com:1234/api/SpecTestRoutes/v3',
 					'spec' => 'https://example.com:1234/api/specs/v0/module/SpecTestRoutes%2Fv3',
@@ -198,7 +205,8 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 					'info' => [
 						'title' => 'Mock External Module',
 						'version' => '1.0.0',
-						'description' => 'This is a mock external module.'
+						'description' => 'This is a mock external module.',
+						'groups' => [ 'external-test-group' ],
 					],
 					'base' => 'https://example.com/mockExternal/v1',
 					'spec' => 'https://example.com/mockExternal/v1/spec.json',
@@ -282,6 +290,44 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertArrayHasKey( 'contact', $data['info'] );
 		$this->assertArrayNotHasKey( 'email', $data['info']['contact'] );
+	}
+
+	public function testGetModuleMapEmpty(): void {
+		$this->overrideConfigValues( [
+			MainConfigNames::Sitename => 'Test Site',
+			MainConfigNames::RightsText => 'Test License',
+			MainConfigNames::RightsUrl => 'https://example.com/license',
+			MainConfigNames::CanonicalServer => 'https://example.com:1234',
+			MainConfigNames::RestPath => '/api',
+		] );
+
+		$this->overrideConfigValue( MainConfigNames::RestExternalModules, [] );
+
+		$request = new RequestData( [] );
+		$router = $this->createRouter( $request, [] );
+
+		$handler = $this->newHandler();
+		$response = $this->executeHandler(
+			$handler,
+			$request,
+			[],
+			[],
+			[],
+			[],
+			null,
+			null,
+			$router
+		);
+		$this->assertSame( 200, $response->getStatusCode() );
+		$this->assertArrayHasKey( 'Content-Type', $response->getHeaders() );
+		$this->assertSame( 'application/json', $response->getHeaderLine( 'Content-Type' ) );
+
+		$json = (string)$response->getBody();
+		$this->assertStringContainsString( '"modules":{}', $json );
+
+		$data = json_decode( $json, true );
+		$this->assertIsArray( $data, 'Body must be a JSON array' );
+		$this->assertWellFormedDiscoveryDoc( $data );
 	}
 
 }

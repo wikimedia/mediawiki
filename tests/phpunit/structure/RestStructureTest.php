@@ -59,8 +59,14 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		'https://www.mediawiki.org/schema/mwapi-1.1#' =>
 			MW_INSTALL_PATH . '/docs/rest/mwapi-1.1.json',
 
+		'https://www.mediawiki.org/schema/mwapi-1.2#' =>
+			MW_INSTALL_PATH . '/docs/rest/mwapi-1.2.json',
+
 		'https://www.mediawiki.org/schema/discovery-1.0#' =>
 			MW_INSTALL_PATH . '/docs/rest/discovery-1.0.json',
+
+		'https://www.mediawiki.org/schema/discovery-1.1#' =>
+			MW_INSTALL_PATH . '/docs/rest/discovery-1.1.json',
 	];
 
 	/** @var ?Router */
@@ -406,13 +412,14 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetModuleDescription(): void {
 		static $infoSchema = [ '$ref' =>
-			'https://www.mediawiki.org/schema/discovery-1.0#/definitions/Module'
+			'https://www.mediawiki.org/schema/discovery-1.1#/definitions/Module'
 		];
 
 		$router = $this->getTestRouter();
 		foreach ( $router->getModuleIds() as $moduleName ) {
 			$module = $router->getModule( $moduleName );
 			$info = $module->getModuleDescription();
+			$info['info']['groups'] = $router->getModuleManager()->getModuleGroups( $moduleName );
 
 			$this->assertMatchesJsonSchema( $infoSchema, $info, self::SPEC_FILES, "Module '$moduleName'" );
 		}

@@ -579,29 +579,34 @@ abstract class Module {
 	 * Returns fields to be included when describing this module in the
 	 * discovery document.
 	 *
-	 * Supported keys are described in /docs/discovery-1.0.json#/definitions/Module
+	 * Supported keys are described in /docs/discovery-1.1.json#/definitions/Module
 	 *
-	 * @see /docs/discovery-1.0.json
-	 * @see /docs/mwapi-1.1.json
+	 * @see /docs/discovery-1.1.json
+	 * @see /docs/mwapi-1.2.json
 	 * @see DiscoveryHandler
 	 */
 	public function getModuleDescription(): array {
-		// TODO: Include the designated audience (T366567).
 		// Note that each module object is designated for only one audience,
 		// even if the spec allows multiple.
 		$moduleId = $this->getPathPrefix();
 
 		// Fields from openApiSpec info to include.
-		// Note that mwapi-1.1 and earlier are based on OAS 3.0, so they don't support the
+		// Note that mwapi-1.2 and earlier are based on OAS 3.0, so they don't support the
 		// "summary" property introduced in 3.1.
+		// NOTE: If you add fields here, you must update both the discovery spec
+		// (docs/rest/discovery-1.1.json) and the module definition spec (docs/rest/mwapi-1.2.json).
+		// Adding fields requires a minor version bump of both specs, and their references
+		// must be synchronized.
 		$infoFields = [ 'version', 'title', 'description', 'deprecationSettings' ];
+
+		$info = array_intersect_key(
+			$this->getOpenApiInfo(),
+			array_flip( $infoFields )
+		);
 
 		return [
 			'moduleId' => $moduleId,
-			'info' => array_intersect_key(
-				$this->getOpenApiInfo(),
-				array_flip( $infoFields )
-			),
+			'info' => $info,
 			'base' => $this->getRouter()->getRouteUrl(
 				'/' . $moduleId
 			),

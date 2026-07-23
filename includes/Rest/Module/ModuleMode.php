@@ -48,10 +48,10 @@ enum ModuleMode: string {
 		$params = [];
 
 		if ( $ad === AudienceDesignation::BETA ) {
-			$params['group'] = 'beta';
+			$params['groups'] = [ 'beta' ];
 		}
 		if ( $ad === AudienceDesignation::INTERNAL ) {
-			$params['group'] = 'internal';
+			$params['groups'] = [ 'internal' ];
 		}
 
 		return $params;

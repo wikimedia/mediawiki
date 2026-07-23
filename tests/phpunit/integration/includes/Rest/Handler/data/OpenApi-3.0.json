@@ -94,7 +94,7 @@
 				"^x-": {
 				}
 			},
-			"additionalProperties": false
+			"additionalProperties": true
 		},
 		"Contact": {
 			"type": "object",

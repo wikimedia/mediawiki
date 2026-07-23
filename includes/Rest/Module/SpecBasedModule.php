@@ -138,7 +138,7 @@ class SpecBasedModule extends MatcherBasedModule {
 
 		// Require a supported version of mwapi
 		if ( version_compare( $mwapi, '1.0.0', '<' ) ||
-			version_compare( $mwapi, '1.1.999', '>' )
+			version_compare( $mwapi, '1.2.999', '>' )
 		) {
 			throw new ModuleConfigurationException(
 				"Unsupported mwapi version {$mwapi} in "

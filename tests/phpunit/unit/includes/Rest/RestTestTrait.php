@@ -39,12 +39,18 @@ trait RestTestTrait {
 	 *
 	 * @return ModuleManager
 	 */
-	private function newMockModuleManager( array $routeFiles, array $moduleModes = [] ): ModuleManager {
+	private function newMockModuleManager( array $routeFiles, array $moduleModes = [], array $moduleGroups = [] ): ModuleManager {
 		$mock = $this->createMock( ModuleManager::class );
 		$mock->method( 'getRouteFiles' )->willReturn( $routeFiles );
 		$mock->method( 'getModuleMode' )->willReturnCallback(
 			static function ( string $moduleId ) use ( $moduleModes ) {
 				return $moduleModes[$moduleId] ?? ModuleMode::DISABLED;
+			}
+		);
+		$mock->method( 'getModuleGroups' )->willReturnCallback(
+			static function ( string $moduleId ) use ( $moduleGroups ) {
+				$groups = $moduleGroups[$moduleId] ?? [];
+				return (array)$groups;
 			}
 		);
 

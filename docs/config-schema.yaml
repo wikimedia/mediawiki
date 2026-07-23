@@ -8066,7 +8066,7 @@ config-schema:
             This variable allows assigning a different behavior mode.
             Each override is an array with a "mode" key indicating the desired behavior, as well as
             any additional information used in applying that mode. For example, the "published" mode
-            allows an optional "group" key, indicating the group the module should belong to.
+            allows an optional "groups" key (an array of strings), indicating the groups the module should belong to.
             @unstable Introduced in 1.47. We may adjust this as we refine the available overrides.
     RestExternalModules:
         default: {  }
