@@ -212,10 +212,10 @@ class MaintenanceParameters {
 
 		foreach ( $this->optionsSequence as $i => [ $opt, ] ) {
 			if ( $opt === $name ) {
-				unset( $this->optionsSequence[$i] );
-				break;
+				$this->optionsSequence[$i] = null;
 			}
 		}
+		$this->optionsSequence = array_values( array_filter( $this->optionsSequence ) );
 	}
 
 	/**

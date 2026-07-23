@@ -13,6 +13,7 @@ class MaintenanceParametersTest extends TestCase {
 		$params = new MaintenanceParameters();
 
 		$params->addOption( 'test', 'Test Option' );
+		$params->addOption( 'multi', 'Test Option', multiOccurrence: true );
 
 		$this->assertTrue( $params->supportsOption( 'test' ) );
 		$this->assertFalse( $params->supportsOption( 'xyzzy' ) );
@@ -23,25 +24,29 @@ class MaintenanceParametersTest extends TestCase {
 
 		$this->assertSame( [], $params->getOptions() );
 		$this->assertSame( [], $params->getOptionsSequence() );
-		$this->assertSame( [ 'test' ], $params->getOptionNames() );
+		$this->assertSame( [ 'test', 'multi' ], $params->getOptionNames() );
 
 		// Provide option value
-		$params->setOptionsAndArgs( [ 'test' => 'foo' ], [] );
+		$params->setOptionsAndArgs( [ 'test' => 'foo', 'multi' => [ 'foo', 'bar' ] ], [] );
 
 		$this->assertTrue( $params->hasOption( 'test' ) );
 		$this->assertSame( 'foo', $params->getOption( 'test' ) );
 		$this->assertSame( 'foo', $params->getOption( 'test', 'default' ) );
 
-		$this->assertSame( [ 'test' => 'foo' ], $params->getOptions() );
-		$this->assertSame( [ [ 'test', 'foo' ] ], $params->getOptionsSequence() );
-		$this->assertSame( [ 'test' ], $params->getOptionNames() );
+		$this->assertSame( [ 'test' => 'foo', 'multi' => [ 'foo', 'bar' ] ], $params->getOptions() );
+		$this->assertSame( [ [ 'test', 'foo' ], [ 'multi', 'foo' ], [ 'multi', 'bar' ] ], $params->getOptionsSequence() );
+		$this->assertSame( [ 'test', 'multi' ], $params->getOptionNames() );
 
 		// Delete option
 		$params->deleteOption( 'test' );
-
 		$this->assertFalse( $params->hasOption( 'test' ) );
 		$this->assertFalse( $params->supportsOption( 'test' ) );
 		$this->assertNull( $params->getOption( 'test' ) );
+
+		$params->deleteOption( 'multi' );
+		$this->assertFalse( $params->hasOption( 'multi' ) );
+		$this->assertFalse( $params->supportsOption( 'multi' ) );
+		$this->assertNull( $params->getOption( 'multi' ) );
 
 		$this->assertSame( [], $params->getOptions() );
 		$this->assertSame( [], $params->getOptionsSequence() );
