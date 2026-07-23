@@ -171,8 +171,28 @@ class MaintenanceParametersTest extends TestCase {
 			[ '--value=foo', 'test' ], [ 'value' => 'foo' ], [ 'test' ]
 		];
 
-		yield 'option value short' => [
+		yield 'simple option value assigned' => [
+			[ '--simple=foo', 'test' ], [ 'simple' => 'foo' ], [ 'test' ]
+		];
+
+		yield 'short option value assigned' => [
+			[ '-v', 'foo' ], [ 'value' => 'foo' ], []
+		];
+
+		yield 'short options, mixing simple and value options' => [
 			[ '-sv', 'foo' ], [ 'simple' => 1, 'value' => 'foo' ], []
+		];
+
+		yield 'short options, mixing simple and value options in wrong order' => [
+			[ '-vs', 'foo' ], [ 'value' => 'foo', 'simple' => 1 ], []
+		];
+
+		yield 'short options, mixing two value options' => [
+			[ '-vw', 'foo', 'bar' ], [ 'value' => 'foo', 'value2' => 'bar' ], []
+		];
+
+		yield 'short option and an argument' => [
+			[ '-s', 'foo' ], [ 'simple' => 1 ], [ 'foo' ]
 		];
 
 		yield 'short option and lonely dash' => [
@@ -186,11 +206,19 @@ class MaintenanceParametersTest extends TestCase {
 		];
 
 		yield 'multi value short' => [
-			[ '-mm', 'foo', 'bar', 'test' ],
+			[ '-m', 'foo', '-m', 'bar', 'test' ],
 			[ 'multi' => [ 'foo', 'bar' ] ],
 			[ 'test' ]
 		];
 
+		yield 'multi value short multiple' => [
+			[ '-mm', 'foo', 'bar', 'test' ],
+			[ 'multi' => [ 'foo', 'bar' ] ],
+			[ 'test' ]
+		];
+	}
+
+	public static function provideArgvAllowUnregistered() {
 		yield 'extra option' => [
 			[ '--extra', 'test' ],
 			[ 'extra' => 1 ],
@@ -202,6 +230,12 @@ class MaintenanceParametersTest extends TestCase {
 			[ 'extra' => 'foo' ],
 			[ 'test' ]
 		];
+
+		yield 'short extra option' => [
+			[ '-e', 'test' ],
+			[ 'e' => 1 ],
+			[ 'test' ]
+		];
 	}
 
 	/**
@@ -209,12 +243,31 @@ class MaintenanceParametersTest extends TestCase {
 	 */
 	public function testLoad( $argv, $expectedOptions, $expectedArgs ) {
 		$params = new MaintenanceParameters();
-		$params->setAllowUnregisteredOptions( true );
+		$params->setAllowUnregisteredOptions( false );
 
 		$params->addOption( 'simple', 'simple option', false, false, 's' );
+		$params->addOption( 'simple2', 'simple option', false, false, 't' );
 		$params->addOption( 'value', 'value option', false, true, 'v' );
+		$params->addOption( 'value2', 'value option', false, true, 'w' );
 		$params->addOption( 'multi', 'multi option', false, true, 'm', true );
 		$params->addArg( 'foo', 'Foozels', false );
+
+		$params->loadWithArgv( $argv );
+
+		$params->validate();
+		$this->assertFalse( $params->hasErrors() );
+		$this->assertSame( [], $params->getErrors() );
+
+		$this->assertSame( $expectedOptions, $params->getOptions() );
+		$this->assertSame( $expectedArgs, $params->getArgs() );
+	}
+
+	/**
+	 * @dataProvider provideArgvAllowUnregistered
+	 */
+	public function testLoadAllowUnregistered( $argv, $expectedOptions, $expectedArgs ) {
+		$params = new MaintenanceParameters();
+		$params->setAllowUnregisteredOptions( true );
 
 		$params->loadWithArgv( $argv );
 
@@ -318,6 +371,21 @@ class MaintenanceParametersTest extends TestCase {
 		yield 'Unexpected option' => [
 			[ '--extra', 'arg', '-s' ],
 			[ 'Unexpected option --extra!' ]
+		];
+
+		yield 'Unexpected short option' => [
+			[ '-e', 'arg', '-s' ],
+			[ 'Unexpected option --e!' ]
+		];
+
+		yield 'Unexpected short option 2' => [
+			[ '-es', 'arg' ],
+			[ 'Unexpected option --e!' ]
+		];
+
+		yield 'Unexpected short option 3' => [
+			[ '-se', 'arg' ],
+			[ 'Unexpected option --e!' ]
 		];
 
 		yield 'Missing value' => [
