@@ -5,6 +5,10 @@
  */
 
 use Wikimedia\Assert\Assert;
+use Wikimedia\JsonCodec\Hint;
+use Wikimedia\JsonCodec\HintType;
+use Wikimedia\JsonCodec\JsonCodecable;
+use Wikimedia\JsonCodec\JsonCodecableTrait;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
@@ -38,7 +42,8 @@ use Wikimedia\Message\MessageValue;
  *   May be 'never' to indicate that there's no meaningful value, and that
  *   this status is only used to keep track of errors and warnings.
  */
-class StatusValue implements Stringable {
+class StatusValue implements JsonCodecable, Stringable {
+	use JsonCodecableTrait;
 
 	/**
 	 * @var bool
@@ -587,4 +592,79 @@ class StatusValue implements Stringable {
 
 		return $result;
 	}
+
+	/**
+	 * JSON serializing a StatusValue is possible only if the value and statusData
+	 * are JSON-serializable, otherwise an InvalidArgumentException will be thrown.
+	 */
+	public function toJsonArray(): array {
+		$errors = [];
+		foreach ( $this->errors as $error ) {
+			if ( $error['message'] instanceof MessageValue ) {
+				$errorData = [ 'message' => $error['message'] ];
+			} elseif ( $error['message'] instanceof MessageSpecifier ) {
+				// Loose round trip
+				$errorData = [ 'message' => MessageValue::newFromSpecifier( $error['message'] ) ];
+			} else {
+				$errorData = [ 'message' => $error['message'] ];
+				if ( $error['params'] ) {
+					$errorData['params'] = $error['params'];
+				}
+			}
+			if ( $error['type'] !== 'error' ) {
+				$errorData['type'] = $error['type'];
+			}
+			$errors[] = $errorData;
+		}
+		$data = [ 'ok' => $this->ok ];
+		if ( $errors ) {
+			$data['errors'] = $errors;
+		}
+		if ( $this->value !== null ) {
+			$data['value'] = $this->value;
+		}
+		if ( $this->success ) {
+			$data['success'] = $this->success;
+		}
+		if ( $this->successCount ) {
+			$data['successCount'] = $this->successCount;
+		}
+		if ( $this->failCount ) {
+			$data['failCount'] = $this->failCount;
+		}
+		if ( $this->statusData !== null ) {
+			$data['statusData'] = $this->statusData;
+		}
+		return $data;
+	}
+
+	/** @inheritDoc */
+	public static function newFromJsonArray( array $json ) {
+		$status = new static;
+		$status->ok = $json['ok'];
+
+		foreach ( $json['errors'] ?? [] as $error ) {
+			$status->errors[] = [
+				'type' => $error['type'] ?? 'error',
+				'message' => $error['message'],
+				'params' => $error['params'] ?? [],
+			];
+		}
+		$status->value = $json['value'] ?? null;
+		$status->success = $json['success'] ?? [];
+		$status->successCount = $json['successCount'] ?? 0;
+		$status->failCount = $json['failCount'] ?? 0;
+		$status->statusData = $json['statusData'] ?? null;
+		return $status;
+	}
+
+	/** @inheritDoc */
+	public static function jsonClassHintFor( string $keyName ) {
+		return match ( $keyName ) {
+			// @phan-suppress-next-line PhanUndeclaredClassReference -- it's an associative array
+			'errors' => Hint::build( 'array', HintType::LIST ),
+			default => null
+		};
+	}
+
 }

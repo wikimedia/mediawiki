@@ -328,6 +328,11 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Unit\\Language\\LanguageFallbackTestTrait' => "$testDir/phpunit/unit/includes/Language/LanguageFallbackTestTrait.php",
 	'MediaWiki\\Tests\\Unit\\Language\\LanguageNameUtilsTestTrait' => "$testDir/phpunit/unit/includes/Language/LanguageNameUtilsTestTrait.php",
 
+	# tests/phpunit/unit/includes/libs
+	'Wikimedia\\Tests\\Unit\\StatusValueTest' => "$testDir/phpunit/unit/includes/libs/StatusValueTest.php",
+	'Wikimedia\\Tests\\Unit\\TestGenericStatusValue' => "$testDir/phpunit/unit/includes/libs/StatusValueTest.php",
+	'Wikimedia\\Tests\\Unit\\TestStatusValue' => "$testDir/phpunit/unit/includes/libs/StatusValueTest.php",
+
 	# tests/phpunit/unit/includes/libs/FileBackend/FSFile
 	'Wikimedia\\Tests\\FileBackend\\FSFile\\TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/FileBackend/FSFile/TempFSFileTestTrait.php",
 

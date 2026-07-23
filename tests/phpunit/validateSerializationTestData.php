@@ -36,6 +36,7 @@ class ValidateSerializationTestData extends Maintenance {
 		\Wikimedia\Tests\Message\ListParamTest::class,
 		\Wikimedia\Tests\Message\MessageValueTest::class,
 		\Wikimedia\Tests\Message\ScalarParamTest::class,
+		\Wikimedia\Tests\Unit\StatusValueTest::class,
 	];
 
 	public function __construct() {

@@ -1,0 +1,1 @@
+{"ok":false,"errors":[{"message":"message1","params":{"0":{"text":"param1","_type_":"Wikimedia\\Message\\ScalarParam"},"_type_":"array"}}],"_type_":"StatusValue"}
