@@ -406,6 +406,9 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Session\\SessionProviderTestTrait' => "$testDir/phpunit/unit/includes/Session/SessionProviderTestTrait.php",
 	'MediaWiki\\Tests\\Session\\SessionStoreTestTrait' => "$testDir/phpunit/unit/includes/Session/SessionStoreTestTrait.php",
 
+	# tests/phpunit
+	'MediaWiki\\Tests\\Unit\\HtmlAssertionHelperTrait' => "$testDir/phpunit/unit/HtmlAssertionHelperTrait.php",
+
 	# tests/suites
 	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",
 	'ParsoidTestFileSuite' => "$testDir/phpunit/suites/ParsoidTestFileSuite.php",
