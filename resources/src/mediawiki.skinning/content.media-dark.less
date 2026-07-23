@@ -6,7 +6,10 @@
 	/* Desktop legacy HTML */
 	.mw-parser-output,
 	/* Parsoid HTML (mobile) */
-	section .mw-heading ~ div,
+	section .mw-heading ~ div.mw-collapsible-content,
+	/* FIXME: Remove in 2 weeks time, the mf-collapsible-content class is for cached HTML
+	and can be removed once MobileFrontend has removed the class. (T432953)*/
+	section .mw-heading ~ div.mf-collapsible-content,
 	/* Parsoid HTML (desktop) */
 	section,
 	/* e.g. https://en.wikipedia.org/wiki/Pullback_(category_theory)#Universal_property */

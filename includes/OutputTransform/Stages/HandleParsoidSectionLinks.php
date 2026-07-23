@@ -235,6 +235,9 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 		// Create collapsible section wrapper if requested.
 		if ( $po->getOutputFlag( ParserOutputFlags::COLLAPSIBLE_SECTIONS ) ) {
 			$contentsDiv = $df->ownerDocument->createElement( 'div' );
+			DOMCompat::getClassList( $contentsDiv )->add(
+				'mw-collapsible-content'
+			);
 			while ( $div->nextSibling !== null ) {
 				$contentsDiv->appendChild( $div->nextSibling );
 			}

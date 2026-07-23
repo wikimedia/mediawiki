@@ -124,7 +124,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		// Test collapsible section wrapper (T359001)
 		$pOpts = ParserOptions::newFromAnon();
 		$pOpts->setCollapsibleSections();
-		$expected = '<section id="a" aria-labelledby="foo"><div class="mw-heading mw-heading-1"><h2 id="foo">Foo</h2>!<a id="c">edit</a>!</div><div>Bar</div></section>';
+		$expected = '<section id="a" aria-labelledby="foo"><div class="mw-heading mw-heading-1"><h2 id="foo">Foo</h2>!<a id="c">edit</a>!</div><div class="mw-collapsible-content">Bar</div></section>';
 		yield 'Standard Parsoid output: collapsible with links' => [
 			self::newParserOutput( $input, $pOpts, $toc, $input ),
 			$pOpts, $options,
@@ -142,7 +142,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		];
 
 		// Reused <div> plus collapsible sections
-		$expected = '<section id="a" aria-labelledby="foo"><div class="mw-heading mw-heading2" id="b">prefix<h2 id="foo">Foo</h2>!<a id="c">edit</a>!suffix</div><div>Bar</div></section>';
+		$expected = '<section id="a" aria-labelledby="foo"><div class="mw-heading mw-heading2" id="b">prefix<h2 id="foo">Foo</h2>!<a id="c">edit</a>!suffix</div><div class="mw-collapsible-content">Bar</div></section>';
 		$pOpts = ParserOptions::newFromAnon();
 		$pOpts->setCollapsibleSections();
 		yield 'Output with existing div: collapsible with links' => [
