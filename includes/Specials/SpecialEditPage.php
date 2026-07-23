@@ -28,5 +28,7 @@ class SpecialEditPage extends SpecialRedirectWithAction {
 	// specialeditpage-submit
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialEditPage::class, 'SpecialEditPage' );
+// @codeCoverageIgnoreEnd

@@ -85,6 +85,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 * a particular user of this wiki (e.g., if the redirect is to the
 	 * user page of a User). See T109724.
 	 *
+	 * @codeCoverageIgnore Merely declarative
 	 * @stable to override
 	 * @since 1.27
 	 * @return bool
@@ -102,5 +103,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( RedirectSpecialPage::class, 'RedirectSpecialPage' );
+// @codeCoverageIgnoreEnd

@@ -100,6 +100,7 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	/**
 	 * @stable to override
 	 * @return bool
+	 * @codeCoverageIgnore Merely declarative
 	 */
 	public function isListed() {
 		return true;
@@ -120,11 +121,14 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	/**
 	 * @stable to override
 	 * @return string
+	 * @codeCoverageIgnore Merely declarative
 	 */
 	protected function getGroupName() {
 		return 'redirects';
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialRedirectWithAction::class, 'SpecialRedirectWithAction' );
+// @codeCoverageIgnoreEnd

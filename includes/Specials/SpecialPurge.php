@@ -28,8 +28,10 @@ class SpecialPurge extends SpecialRedirectWithAction {
 	// specialpurge-submit
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
  */
 class_alias( SpecialPurge::class, 'SpecialPurge' );
+// @codeCoverageIgnoreEnd

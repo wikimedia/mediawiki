@@ -202,6 +202,7 @@ $wgAutoloadClasses += [
 	'SpecialPageExecutor' => "$testDir/phpunit/includes/Specials/SpecialPageExecutor.php",
 	'MediaWiki\\Tests\\Specials\\SpecialPageExecutor' => "$testDir/phpunit/includes/Specials/SpecialPageExecutor.php",
 	'MediaWiki\\Tests\\Specials\\SpecialSearchTestMockResultSet' => "$testDir/phpunit/includes/Specials/SpecialSearchTestMockResultSet.php",
+	'MediaWiki\\Tests\\Integration\\Specials\\SpecialRedirectWithActionTestBase' => "$testDir/phpunit/integration/includes/Specials/SpecialRedirectWithActionTestBase.php",
 
 	# tests/phpunit/includes/Storage
 	'MediaWiki\\Tests\\Storage\\PageEditStashContentsTest' => "$testDir/phpunit/includes/Storage/PageEditStashContentsTest.php",
