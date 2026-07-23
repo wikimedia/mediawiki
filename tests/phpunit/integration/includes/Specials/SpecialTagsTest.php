@@ -43,10 +43,10 @@ class SpecialTagsTest extends SpecialPageTestBase {
 			$this->mockRegisteredAuthorityWithPermissions( $authorityRights )
 		);
 
-		$tagsIntroHtml = $this->assertAndGetByElementClass( $html, 'mw-tags-intro' );
+		$tagsIntroHtml = $this->assertSelectorMatchesOneElement( $html, '.mw-tags-intro' );
 		$this->assertStringContainsString( '(tags-intro)', $tagsIntroHtml );
 
-		$tagsTable = $this->assertAndGetByElementClass( $html, 'mw-tags-table' );
+		$tagsTable = $this->assertSelectorMatchesOneElement( $html, '.mw-tags-table' );
 
 		$tagsTableHeader = DOMCompat::getOuterHTML(
 			DOMCompat::querySelector( DOMUtils::parseHTML( $tagsTable ), 'thead' )
@@ -99,25 +99,10 @@ class SpecialTagsTest extends SpecialPageTestBase {
 
 		[ $html ] = $this->executeSpecialPage( '', null, null, $this->mockAnonNullAuthority() );
 
-		$tagsIntroHtml = $this->assertAndGetByElementClass( $html, 'mw-tags-intro' );
+		$tagsIntroHtml = $this->assertSelectorMatchesOneElement( $html, '.mw-tags-intro' );
 		$this->assertStringContainsString( '(tags-intro)', $tagsIntroHtml );
 
 		$this->assertStringNotContainsString( 'mw-tags-table', $html );
-	}
-
-	/**
-	 * Expects that one element exists with the given class inside the provided HTML and then returns
-	 * the HTML inside that element
-	 *
-	 * @param string $html The HTML to search through
-	 * @param string $class The CSS class to search for, excluding the "." character
-	 * @return string
-	 */
-	private function assertAndGetByElementClass( string $html, string $class ): string {
-		$specialPageDocument = DOMUtils::parseHTML( $html );
-		$element = DOMCompat::querySelectorAll( $specialPageDocument, '.' . $class );
-		$this->assertCount( 1, $element, "Could not find only one element with CSS class $class in $html" );
-		return DOMCompat::getOuterHTML( $element[0] );
 	}
 
 	public function testViewActivateFormWithNoTagSpecified(): void {

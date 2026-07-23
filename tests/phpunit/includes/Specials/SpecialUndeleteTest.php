@@ -6,8 +6,6 @@ use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
-use Wikimedia\Parsoid\Core\DOMCompat;
-use Wikimedia\Parsoid\Ext\DOMUtils;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -58,11 +56,9 @@ class SpecialUndeleteTest extends SpecialPageTestBase {
 
 		$this->assertStringContainsString( '(undelete-summary)', $html );
 
-		$diffTableElements = DOMCompat::querySelectorAll( DOMUtils::parseHTML( $html ), 'table.diff' );
-		$this->assertCount( 1, $diffTableElements );
-		$diffTableHtml = DOMCompat::getOuterHTML( $diffTableElements[0] );
+		$diffTableHtml = $this->assertSelectorMatchesOneElement( $html, 'table.diff' );
 
-		$undeleteRevisionWarningHtml = $this->assertAndGetByElementClass( $html, 'mw-undelete-revision' );
+		$undeleteRevisionWarningHtml = $this->assertSelectorMatchesOneElement( $html, '.mw-undelete-revision' );
 		$this->assertStringContainsString( '(undelete-revision', $undeleteRevisionWarningHtml );
 		$this->assertStringContainsString(
 			$user->getName(),
@@ -75,7 +71,7 @@ class SpecialUndeleteTest extends SpecialPageTestBase {
 			'Missing revision timestamp from deleted revision warning'
 		);
 
-		$undeleteTextAreaHtml = $this->assertAndGetByElementClass( $html, 'mw-undelete-textarea' );
+		$undeleteTextAreaHtml = $this->assertSelectorMatchesOneElement( $html, '.mw-undelete-textarea' );
 		$this->assertStringContainsString( 'second page content', $undeleteTextAreaHtml );
 
 		// Verify the restricted change tag can only be seen if the user can see it
@@ -97,21 +93,6 @@ class SpecialUndeleteTest extends SpecialPageTestBase {
 				'canSeeRestrictedTag' => true,
 			],
 		];
-	}
-
-	/**
-	 * Expects that one element exists with the given class inside the provided HTML and then returns
-	 * the HTML inside that element
-	 *
-	 * @param string $html The HTML to search through
-	 * @param string $class The CSS class to search for, excluding the "." character
-	 * @return string
-	 */
-	private function assertAndGetByElementClass( string $html, string $class ): string {
-		$specialPageDocument = DOMUtils::parseHTML( $html );
-		$element = DOMCompat::querySelectorAll( $specialPageDocument, '.' . $class );
-		$this->assertCount( 1, $element, "Could not find only one element with CSS class $class in $html" );
-		return DOMCompat::getOuterHTML( $element[0] );
 	}
 
 	public function testPermissionErrorOnUnprivilegedUser(): void {

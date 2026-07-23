@@ -6,6 +6,7 @@ use MediaWiki\Language\Language;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Tests\Unit\HtmlAssertionHelperTrait;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -20,6 +21,7 @@ use MediaWikiIntegrationTestCase;
  * @author Thiemo Kreuz
  */
 abstract class SpecialPageTestBase extends MediaWikiIntegrationTestCase {
+	use HtmlAssertionHelperTrait;
 
 	/** @var int */
 	private $obLevel;
@@ -90,7 +92,6 @@ abstract class SpecialPageTestBase extends MediaWikiIntegrationTestCase {
 			$context
 		);
 	}
-
 }
 
 /** @deprecated class alias since 1.46 */
