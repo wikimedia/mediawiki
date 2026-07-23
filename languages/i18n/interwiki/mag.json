@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"ऐक्टिवेटेड्"
+		]
+	},
+	"interwiki": "अन्तरविकि डेटा देखथिन आउ बदलथिन",
+	"interwiki-title-norights": "अन्तरविकि डेटा देखथिन",
+	"interwiki-legend-label": "तालिका",
+	"interwiki_prefix": "उपसर्ग",
+	"interwiki-prefix-label": "उपसर्ग:",
+	"interwiki_url": "युआरएल",
+	"interwiki-url-label": "युआरएल:",
+	"interwiki-api-label": "एपिआइ:",
+	"interwiki_local": "आगे",
+	"interwiki-local-label": "आगे",
+	"interwiki-logtext": "सूचिका देखथिन",
+	"interwiki_addtext": "भाषा वा अन्तरविकि उपसर्ग जोड़थिन",
+	"interwiki-addtext-local": "स्थानीय अन्तरविकि वा भाषा उपसर्ग जोड़थिन",
+	"interwiki-addtext-nolang": "अन्तरविकि उपसर्ग जोड़थिन",
+	"interwiki-addtext-local-nolang": "स्थानीय अन्तरविकि उपसर्ग जोड़थिन",
+	"interwiki_addbutton": "जोड़थिन",
+	"interwiki_added": "\"$1\" उपसर्ग अन्तरविकि तालिकामे जोड़ देल गेलै ।"
+}

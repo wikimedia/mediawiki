@@ -18,7 +18,8 @@
 			"Paloi Sciurala",
 			"Strainu",
 			"WebSourceContentRO",
-			"Wintereu"
+			"Wintereu",
+			"Vellion Eagle"
 		]
 	},
 	"preferences": "Preferințe",
@@ -120,7 +121,7 @@
 	"prefs-skin-responsive": "Activați modul receptiv",
 	"prefs-help-skin-responsive": "Adaptați aspectul la dimensiunea ecranului pe mobil.",
 	"prefs-dateformat": "Format dată",
-	"datedefault": "Nici o preferință",
+	"datedefault": "Nicio preferință",
 	"prefs-timeoffset": "Decalaj orar",
 	"servertime": "Ora serverului:",
 	"localtime": "Ora locală:",

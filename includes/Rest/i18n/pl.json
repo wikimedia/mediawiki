@@ -6,7 +6,8 @@
 			"Pietrasagh",
 			"Rail",
 			"Rainbow P",
-			"Woytecr"
+			"Woytecr",
+			"PanWor"
 		]
 	},
 	"rest-prefix-mismatch": "Żądana ścieżka ($1) nie była wewnątrz ścieżki bazowej REST API ($2)",
@@ -61,7 +62,7 @@
 	"rest-specified-revision-unavailable": "Wskazana wersja została usunięta lub ukryta.",
 	"rest-previous-revision-unavailable": "Nie można znaleźć poprzedniej wersji. Czy strona została zablokowana lub usunięta?",
 	"rest-transform-missing-html": "Nie podano kodu HTML.",
-	"rest-transform-missing-title": "Nie podano tytułu albo wikitekstu.",
+	"rest-transform-missing-title": "Nie podano tytułu albo wikikodu.",
 	"rest-unsupported-target-format": "Żądany format docelowy nie jest wspierany.",
 	"rest-parsoid-resource-exceeded": "Przekroczono limit zasobów",
 	"rest-parsoid-error": "Błąd Parsoida.",
