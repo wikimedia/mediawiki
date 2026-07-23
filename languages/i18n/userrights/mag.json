@@ -23,7 +23,7 @@
 	"userrights-invalid-expiry": "\"$1\" समूहला समाप्ति समय अमान्य हे ।",
 	"userrights-expiry-in-past": "\"$1\" समूहला समाप्ति समय पहिलहीँ बीत गेलै हे ।",
 	"group": "समूह:",
-	"group-user": "सदस्य",
+	"group-user": "प्रयोगकर्ता",
 	"group-temp": "अस्थायी प्रयोगकर्ता",
 	"group-autoconfirmed": "स्वतः अनुमोदित प्रयोगकर्ता",
 	"group-bot": "स्वचालक",

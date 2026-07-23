@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"AF1011",
 			"Agam Riyandana",
 			"Akmaie Ajam",
 			"ArdWar",
@@ -70,6 +71,7 @@
 	"prefs-user-downloaddata-info": "Data akun saya dari proyek ini",
 	"prefs-user-restoreprefs-label": "Atur ulang pengaturan",
 	"prefs-user-restoreprefs-info": "Kembalikan semua preferensi bawaan (di semua bagian):",
+	"prefs-accountsecurity": "Keamanan akun",
 	"prefs-i18n": "Internasionalisasi",
 	"yourlanguage": "Bahasa:",
 	"yourgender": "Bagaimana Anda ingin digambarkan?",
@@ -158,6 +160,7 @@
 	"thumbsize-small": "Kecil",
 	"thumbsize-regular": "Normal",
 	"thumbsize-large": "Besar",
+	"thumbsize-help": "Beberapa pengguna mungkin lebih menyukai gambar yang lebih kecil atau lebih besar dari ukuran normal. Ukuran standar adalah $1 piksel.",
 	"prefs-diffs": "Beda",
 	"tog-diffonly": "Jangan tampilkan isi halaman di bawah perbedaan suntingan",
 	"tog-norollbackdiff": "Jangan tampilkan perbedaan setelah melakukan pengembalian",
