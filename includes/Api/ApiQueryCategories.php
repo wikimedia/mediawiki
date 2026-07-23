@@ -52,16 +52,8 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		$prop = array_fill_keys( (array)$params['prop'], true );
 		$show = array_fill_keys( (array)$params['show'], true );
 
-		$this->addTables( [ 'categorylinks', 'linktarget' ] );
-		$this->addFields( [ 'cl_from', 'lt_title' ] );
-		$this->addFieldsIf( [ 'cl_sortkey', 'cl_sortkey_prefix' ], isset( $prop['sortkey'] ) );
-		$this->addFieldsIf( 'cl_timestamp', isset( $prop['timestamp'] ) );
-		$this->addJoinConds( [ 'linktarget' => [ 'JOIN', 'cl_target_id = lt_id ' ] ] );
-		$this->addWhere( [ 'lt_namespace' => NS_CATEGORY ] );
-		$this->addWhereFld( 'cl_from', array_keys( $pages ) );
-
+		$cats = [];
 		if ( $params['categories'] ) {
-			$cats = [];
 			foreach ( $params['categories'] as $cat ) {
 				$title = Title::newFromText( $cat );
 				if ( !$title || $title->getNamespace() !== NS_CATEGORY ) {
@@ -70,52 +62,99 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 					$cats[] = $title->getDBkey();
 				}
 			}
+
 			if ( !$cats ) {
 				// No titles so no results
 				return;
 			}
-			$this->addWhereFld( 'lt_title', $cats );
 		}
 
+		$filteredRows = [];
+		$hiddenCategories = [];
+		$needHidden = isset( $prop['hidden'] ) || isset( $show['!hidden'] ) || isset( $show['hidden'] );
+		$needFiltering = isset( $show['hidden'] ) || isset( $show['!hidden'] );
+
+		$continueFrom = null;
+		$isFirstBatch = true;
 		if ( $params['continue'] !== null ) {
-			$db = $this->getDB();
 			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string' ] );
-			$op = $params['dir'] == 'descending' ? '<=' : '>=';
-			$this->addWhere( $db->buildComparison( $op, [
-				'cl_from' => $cont[0],
-				'lt_title' => $cont[1],
-			] ) );
+			$continueFrom = [ $cont[0], $cont[1] ];
+			$isFirstBatch = false;
 		}
 
-		if ( isset( $show['hidden'] ) && isset( $show['!hidden'] ) ) {
-			$this->dieWithError( 'apierror-show' );
-		}
-
-		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
-		// Don't order by cl_from if it's constant in the WHERE clause
-		if ( count( $pages ) === 1 ) {
-			$this->addOption( 'ORDER BY', 'lt_title' . $sort );
-		} else {
-			$this->addOption( 'ORDER BY', [
-				'cl_from' . $sort,
-				'lt_title' . $sort
-			] );
-		}
-		$this->addOption( 'LIMIT', $params['limit'] + 1 );
+		$db = $this->getDB();
 
 		$this->setVirtualDomain( CategoryLinksTable::VIRTUAL_DOMAIN );
-		$res = $this->select( __METHOD__ );
-		$this->resetVirtualDomain();
+		$categoryLinksDb = $this->getDB();
 
-		$hiddenCategories = [];
-		if ( isset( $prop['hidden'] ) || isset( $show['!hidden'] ) || isset( $show['hidden'] ) ) {
+		$fields = [ 'cl_from', 'lt_title' ];
+		if ( isset( $prop['sortkey'] ) ) {
+			$fields[] = 'cl_sortkey';
+			$fields[] = 'cl_sortkey_prefix';
+		}
+		if ( isset( $prop['timestamp'] ) ) {
+			$fields[] = 'cl_timestamp';
+		}
+
+		$loopCount = 0;
+		$maxLoops = 20;
+		while ( count( $filteredRows ) < $params['limit'] + 1 ) {
+			if ( $loopCount > $maxLoops ) {
+				// Safety limit to prevent excessive iterations
+				break;
+			}
+
+			$queryBuilder = $categoryLinksDb->newSelectQueryBuilder()
+				->select( $fields )
+				->from( 'categorylinks' )
+				->join( 'linktarget', null, 'cl_target_id = lt_id' )
+				->where( [ 'cl_from' => array_keys( $pages ), 'lt_namespace' => NS_CATEGORY ] )
+				->caller( __METHOD__ );
+
+			if ( $cats !== [] ) {
+				$queryBuilder->andWhere( [ 'lt_title' => $cats ] );
+			}
+
+			if ( $continueFrom !== null ) {
+				// Use strict comparison for subsequent batches to skip the continue row
+				if ( $isFirstBatch ) {
+					$op = $params['dir'] == 'descending' ? '<=' : '>=';
+				} else {
+					$op = $params['dir'] == 'descending' ? '<' : '>';
+				}
+				$queryBuilder->andWhere( $categoryLinksDb->buildComparison( $op, [
+					'cl_from' => $continueFrom[0],
+					'lt_title' => $continueFrom[1],
+				] ) );
+			}
+
+			$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+			if ( count( $pages ) === 1 ) {
+				$queryBuilder->orderBy( 'lt_title' . $sort );
+			} else {
+				$queryBuilder->orderBy( [ 'cl_from' . $sort, 'lt_title' . $sort ] );
+			}
+			$queryBuilder->limit( $params['limit'] + 1 );
+
+			$res = $queryBuilder->fetchResultSet();
+
+			$isFirstBatch = false;
+
+			$batchRows = [];
 			$categories = [];
+
 			foreach ( $res as $row ) {
+				$batchRows[] = $row;
 				$categories[] = $row->lt_title;
 			}
 
-			if ( $categories !== [] ) {
-				$hiddenQueryBuilder = $this->getDB()->newSelectQueryBuilder()
+			if ( $categories === [] ) {
+				// No more rows available
+				break;
+			}
+
+			if ( $needHidden ) {
+				$hiddenQueryBuilder = $db->newSelectQueryBuilder()
 					->select( [ 'pp_page', 'pp_propname', 'page_title' ] )
 					->from( 'page_props' )
 					->join( 'page', null, 'page_id = pp_page' )
@@ -131,24 +170,32 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				foreach ( $hiddenRes as $hiddenRow ) {
 					$hiddenCategories[$hiddenRow->page_title] = true;
 				}
-
-				// Apply hidden/!hidden filtering if needed
-				if ( isset( $show['hidden'] ) || isset( $show['!hidden'] ) ) {
-					$filteredRows = [];
-					$res->seek( 0 );
-					foreach ( $res as $row ) {
-						if ( isset( $show['hidden'] ) === isset( $hiddenCategories[$row->lt_title] ) ) {
-							$filteredRows[] = $row;
-						}
-					}
-					$res = $filteredRows;
-				}
 			}
+
+			if ( $needFiltering ) {
+				foreach ( $batchRows as $row ) {
+					if ( isset( $show['hidden'] ) === isset( $hiddenCategories[$row->lt_title] ) ) {
+						$filteredRows[] = $row;
+					}
+				}
+			} else {
+				$filteredRows = array_merge( $filteredRows, $batchRows );
+			}
+
+			if ( count( $batchRows ) < $params['limit'] + 1 ) {
+				break;
+			}
+
+			$loopCount++;
+			$lastRow = end( $batchRows );
+			$continueFrom = [ $lastRow->cl_from, $lastRow->lt_title ];
 		}
+
+		$this->resetVirtualDomain();
 
 		$count = 0;
 		if ( $resultPageSet === null ) {
-			foreach ( $res as $row ) {
+			foreach ( $filteredRows as $row ) {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
@@ -178,7 +225,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			}
 		} else {
 			$titles = [];
-			foreach ( $res as $row ) {
+			foreach ( $filteredRows as $row ) {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
