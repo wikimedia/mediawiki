@@ -172,7 +172,8 @@ class MaintenanceParametersTest extends TestCase {
 		];
 
 		yield 'simple option value assigned' => [
-			[ '--simple=foo', 'test' ], [ 'simple' => 'foo' ], [ 'test' ]
+			[ '--simple=foo', 'test' ], [ 'simple' => 'foo' ], [ 'test' ],
+			[ 'Option --simple should not be assigned a value.' ]
 		];
 
 		yield 'short option value assigned' => [
@@ -184,11 +185,13 @@ class MaintenanceParametersTest extends TestCase {
 		];
 
 		yield 'short options, mixing simple and value options in wrong order' => [
-			[ '-vs', 'foo' ], [ 'value' => 'foo', 'simple' => 1 ], []
+			[ '-vs', 'foo' ], [ 'value' => 'foo', 'simple' => 1 ], [],
+			[ 'Short option -v should be followed directly by a value rather than another short option.' ]
 		];
 
 		yield 'short options, mixing two value options' => [
-			[ '-vw', 'foo', 'bar' ], [ 'value' => 'foo', 'value2' => 'bar' ], []
+			[ '-vw', 'foo', 'bar' ], [ 'value' => 'foo', 'value2' => 'bar' ], [],
+			[ 'Short option -v should be followed directly by a value rather than another short option.' ]
 		];
 
 		yield 'short option and an argument' => [
@@ -214,7 +217,8 @@ class MaintenanceParametersTest extends TestCase {
 		yield 'multi value short multiple' => [
 			[ '-mm', 'foo', 'bar', 'test' ],
 			[ 'multi' => [ 'foo', 'bar' ] ],
-			[ 'test' ]
+			[ 'test' ],
+			[ 'Short option -m should be followed directly by a value rather than another short option.' ]
 		];
 	}
 
@@ -241,7 +245,7 @@ class MaintenanceParametersTest extends TestCase {
 	/**
 	 * @dataProvider provideArgv
 	 */
-	public function testLoad( $argv, $expectedOptions, $expectedArgs ) {
+	public function testLoad( $argv, $expectedOptions, $expectedArgs, $expectedWarnings = [] ) {
 		$params = new MaintenanceParameters();
 		$params->setAllowUnregisteredOptions( false );
 
@@ -257,6 +261,9 @@ class MaintenanceParametersTest extends TestCase {
 		$params->validate();
 		$this->assertFalse( $params->hasErrors() );
 		$this->assertSame( [], $params->getErrors() );
+
+		$this->assertSame( (bool)$expectedWarnings, $params->hasWarnings() );
+		$this->assertSame( $expectedWarnings, $params->getWarnings() );
 
 		$this->assertSame( $expectedOptions, $params->getOptions() );
 		$this->assertSame( $expectedArgs, $params->getArgs() );
@@ -274,6 +281,9 @@ class MaintenanceParametersTest extends TestCase {
 		$params->validate();
 		$this->assertFalse( $params->hasErrors() );
 		$this->assertSame( [], $params->getErrors() );
+
+		$this->assertFalse( $params->hasWarnings() );
+		$this->assertSame( [], $params->getWarnings() );
 
 		$this->assertSame( $expectedOptions, $params->getOptions() );
 		$this->assertSame( $expectedArgs, $params->getArgs() );
