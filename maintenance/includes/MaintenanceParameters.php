@@ -62,6 +62,9 @@ class MaintenanceParameters {
 	/** @var string[] */
 	private $errors = [];
 
+	/** @var string[] */
+	private $warnings = [];
+
 	/** @var string */
 	private $usagePrefix = 'php maintenance/run.php';
 
@@ -326,6 +329,7 @@ class MaintenanceParameters {
 		$this->mArgs = [];
 		$this->optionsSequence = [];
 		$this->errors = [];
+		$this->warnings = [];
 	}
 
 	/**
@@ -463,6 +467,26 @@ class MaintenanceParameters {
 	 */
 	public function hasErrors(): bool {
 		return (bool)$this->errors;
+	}
+
+	private function warning( string $msg ) {
+		$this->warnings[] = $msg;
+	}
+
+	/**
+	 * Get any warnings encountered while processing parameters.
+	 *
+	 * @return string[]
+	 */
+	public function getWarnings(): array {
+		return $this->warnings;
+	}
+
+	/**
+	 * Whether any warnings have been recorded so far.
+	 */
+	public function hasWarnings(): bool {
+		return (bool)$this->warnings;
 	}
 
 	/**

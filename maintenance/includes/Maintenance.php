@@ -896,6 +896,12 @@ abstract class Maintenance {
 	 * @param bool $force Whether to force the help to show, default false
 	 */
 	protected function maybeHelp( $force = false ) {
+		if ( $this->parameters->hasWarnings() && !$this->hasOption( 'help' ) ) {
+			foreach ( $this->parameters->getWarnings() as $warning ) {
+				$this->error( "WARNING: " . $warning );
+			}
+		}
+
 		if ( !$force && !$this->hasOption( 'help' ) ) {
 			return;
 		}

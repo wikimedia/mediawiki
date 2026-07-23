@@ -104,6 +104,9 @@ class MaintenanceRunner {
 	 * @return never
 	 */
 	private function showHelpAndExit( $code = 0 ): never {
+		foreach ( $this->parameters->getWarnings() as $warning ) {
+			$this->error( "$warning\n" );
+		}
 		foreach ( $this->parameters->getErrors() as $error ) {
 			$this->error( "$error\n" );
 			$code = 1;
