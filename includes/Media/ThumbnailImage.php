@@ -79,6 +79,74 @@ class ThumbnailImage extends MediaTransformOutput {
 		$this->lang = $actualParams['lang'];
 	}
 
+	/** @inheritDoc */
+	public function getAttribs( array $options = [] ): array {
+		$services = MediaWikiServices::getInstance();
+		$mainConfig = $services->getMainConfig();
+		$nativeImageLazyLoading = $mainConfig->get( MainConfigNames::NativeImageLazyLoading );
+
+		$attribs = parent::getAttribs( $options );
+
+		// An empty alt indicates an image is not a key part of the content and
+		// that non-visual browsers may omit it from rendering.  Only set the
+		// parameter if it's explicitly requested.
+		if ( isset( $options['alt'] ) ) {
+			$attribs['alt'] = $options['alt'];
+		}
+
+		// Description links get the mw-file-description class and link
+		// to the file description page, making the resource redundant
+		if (
+			isset( $options['magnify-resource'] ) &&
+			!( $options['desc-link'] ?? false )
+		) {
+			$attribs['resource'] = $options['magnify-resource'];
+		}
+
+		$attribs += [
+			'src' => $this->getUrl(),
+			'decoding' => 'async',
+		];
+
+		if ( $options['loading'] ?? $nativeImageLazyLoading ) {
+			$attribs['loading'] = $options['loading'] ?? 'lazy';
+		}
+
+		if ( empty( $options['no-dimensions'] ) ) {
+			$attribs['width'] = $this->width;
+			$attribs['height'] = $this->height;
+		}
+		$style = '';
+		if ( !empty( $options['valign'] ) ) {
+			$style .= "vertical-align: {$options['valign']};";
+		}
+		if ( !empty( $options['style'] ) ) {
+			$style .= $options['style'];
+		}
+		$style = trim( $style );
+		if ( $style ) {
+			$attribs['style'] = $style;
+		}
+		if ( !empty( $options['img-class'] ) ) {
+			$attribs['class'] = $options['img-class'];
+		}
+		if ( isset( $options['override-height'] ) ) {
+			$attribs['height'] = $options['override-height'];
+		}
+		if ( isset( $options['override-width'] ) ) {
+			$attribs['width'] = $options['override-width'];
+		}
+
+		// Additional densities for responsive images, if specified.
+		// If any of these urls is the same as src url, it'll be excluded.
+		$responsiveUrls = array_diff( $this->responsiveUrls, [ $this->getUrl() ] );
+		if ( $responsiveUrls ) {
+			$attribs['srcset'] = Html::srcSet( $responsiveUrls );
+		}
+
+		return $attribs;
+	}
+
 	/**
 	 * Return HTML `<img ... />` tag for the thumbnail, will include
 	 * width and height attributes and a blank alt text (as required).
@@ -114,42 +182,13 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * @return string
 	 */
 	public function toHtml( $options = [] ) {
-		$services = MediaWikiServices::getInstance();
-		$mainConfig = $services->getMainConfig();
-		$nativeImageLazyLoading = $mainConfig->get( MainConfigNames::NativeImageLazyLoading );
-
 		if ( func_num_args() === 2 ) {
 			throw new InvalidArgumentException( __METHOD__ . ' called in the old style' );
 		}
 
 		$query = $options['desc-query'] ?? '';
 
-		$attribs = [];
-
-		// An empty alt indicates an image is not a key part of the content and
-		// that non-visual browsers may omit it from rendering.  Only set the
-		// parameter if it's explicitly requested.
-		if ( isset( $options['alt'] ) ) {
-			$attribs['alt'] = $options['alt'];
-		}
-
-		// Description links get the mw-file-description class and link
-		// to the file description page, making the resource redundant
-		if (
-			isset( $options['magnify-resource'] ) &&
-			!( $options['desc-link'] ?? false )
-		) {
-			$attribs['resource'] = $options['magnify-resource'];
-		}
-
-		$attribs += [
-			'src' => $this->getUrl(),
-			'decoding' => 'async',
-		];
-
-		if ( $options['loading'] ?? $nativeImageLazyLoading ) {
-			$attribs['loading'] = $options['loading'] ?? 'lazy';
-		}
+		$attribs = $this->getAttribs( $options );
 
 		if ( !empty( $options['custom-url-link'] ) ) {
 			$linkAttribs = [ 'href' => $options['custom-url-link'] ];
@@ -185,38 +224,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			}
 		}
 
-		if ( empty( $options['no-dimensions'] ) ) {
-			$attribs['width'] = $this->width;
-			$attribs['height'] = $this->height;
-		}
-		$style = '';
-		if ( !empty( $options['valign'] ) ) {
-			$style .= "vertical-align: {$options['valign']};";
-		}
-		if ( !empty( $options['style'] ) ) {
-			$style .= $options['style'];
-		}
-		$style = trim( $style );
-		if ( $style ) {
-			$attribs['style'] = $style;
-		}
-		if ( !empty( $options['img-class'] ) ) {
-			$attribs['class'] = $options['img-class'];
-		}
-		if ( isset( $options['override-height'] ) ) {
-			$attribs['height'] = $options['override-height'];
-		}
-		if ( isset( $options['override-width'] ) ) {
-			$attribs['width'] = $options['override-width'];
-		}
-
-		// Additional densities for responsive images, if specified.
-		// If any of these urls is the same as src url, it'll be excluded.
-		$responsiveUrls = array_diff( $this->responsiveUrls, [ $this->getUrl() ] );
-		if ( $responsiveUrls ) {
-			$attribs['srcset'] = Html::srcSet( $responsiveUrls );
-		}
-
+		$services = MediaWikiServices::getInstance();
 		( new HookRunner( $services->getHookContainer() ) )
 			->onThumbnailBeforeProduceHTML( $this, $attribs, $linkAttribs );
 

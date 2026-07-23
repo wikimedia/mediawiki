@@ -249,13 +249,13 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 			'Landscape-plain.jpg',
 			[
 				// $wgThumbLimits, default + responsive
-				40 => [ 'width' => 40, 'height' => 30, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=40' ],
-				80 => [ 'width' => 80, 'height' => 60, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=80' ],
+				40 => [ 'width' => 40, 'height' => 30, 'src' => '/w/thumb.php?f=Landscape-plain.jpg&width=40', 'decoding' => 'async' ],
+				80 => [ 'width' => 80, 'height' => 60, 'src' => '/w/thumb.php?f=Landscape-plain.jpg&width=80', 'decoding' => 'async' ],
 				// $wgImageLimits
-				32 => [ 'width' => 32, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=32' ],
-				128 => [ 'width' => 128, 'height' => 96, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=128' ],
+				32 => [ 'width' => 32, 'height' => 24, 'src' => '/w/thumb.php?f=Landscape-plain.jpg&width=32', 'decoding' => 'async' ],
+				128 => [ 'width' => 128, 'height' => 96, 'src' => '/w/thumb.php?f=Landscape-plain.jpg&width=128', 'decoding' => 'async' ],
 				// $wgImageLimits 256x192 satisfied by web-safe original
-				160 => [ 'width' => 160, 'height' => 120, 'url' => 'http://example.com/w/images/b/b0/Landscape-plain.jpg' ],
+				160 => [ 'width' => 160, 'height' => 120, 'src' => '/w/images/b/b0/Landscape-plain.jpg', 'decoding' => 'async' ],
 			]
 		];
 		yield 'default union portrait' => [
@@ -278,13 +278,13 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 			'Portrait-rotated.jpg',
 			[
 				// $wgThumbLimits, default + responsive
-				40 => [ 'width' => 40, 'height' => 53, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=40' ],
-				80 => [ 'width' => 80, 'height' => 107, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=80' ],
+				40 => [ 'width' => 40, 'height' => 53, 'src' => '/w/thumb.php?f=Portrait-rotated.jpg&width=40', 'decoding' => 'async' ],
+				80 => [ 'width' => 80, 'height' => 107, 'src' => '/w/thumb.php?f=Portrait-rotated.jpg&width=80', 'decoding' => 'async' ],
 				// $wgImageLimits, fit portrait in 32x24, 128x96
-				18 => [ 'width' => 18, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=18' ],
-				72 => [ 'width' => 72, 'height' => 96, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=72' ],
+				18 => [ 'width' => 18, 'height' => 24, 'src' => '/w/thumb.php?f=Portrait-rotated.jpg&width=18', 'decoding' => 'async' ],
+				72 => [ 'width' => 72, 'height' => 96, 'src' => '/w/thumb.php?f=Portrait-rotated.jpg&width=72', 'decoding' => 'async' ],
 				// $wgImageLimits 256x192 (144x192) satisfied by transformed original (this JPEG requires rotation)
-				120 => [ 'width' => 120, 'height' => 160, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=144' ],
+				120 => [ 'width' => 120, 'height' => 160, 'src' => '/w/thumb.php?f=Portrait-rotated.jpg&width=144', 'decoding' => 'async' ],
 			]
 		];
 		yield 'default union svg' => [
@@ -306,12 +306,12 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 			'QA_icon.svg',
 			[
 				// $wgThumbLimits, default + responsive
-				40 => [ 'width' => 40, 'height' => 40, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=40' ],
-				80 => [ 'width' => 80, 'height' => 80, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=80' ],
+				40 => [ 'width' => 40, 'height' => 40, 'src' => '/w/thumb.php?f=QA_icon.svg&width=40', 'decoding' => 'async' ],
+				80 => [ 'width' => 80, 'height' => 80, 'src' => '/w/thumb.php?f=QA_icon.svg&width=80', 'decoding' => 'async' ],
 				// $wgImageLimits
-				24 => [ 'width' => 24, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=24' ],
-				96 => [ 'width' => 96, 'height' => 96, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=96' ],
-				192 => [ 'width' => 192, 'height' => 192, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=192' ],
+				24 => [ 'width' => 24, 'height' => 24, 'src' => '/w/thumb.php?f=QA_icon.svg&width=24', 'decoding' => 'async' ],
+				96 => [ 'width' => 96, 'height' => 96, 'src' => '/w/thumb.php?f=QA_icon.svg&width=96', 'decoding' => 'async' ],
+				192 => [ 'width' => 192, 'height' => 192, 'src' => '/w/thumb.php?f=QA_icon.svg&width=192', 'decoding' => 'async' ],
 			]
 		];
 		yield 'steps landscape' => [
@@ -322,11 +322,11 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 			self::IMAGES_DIR . '/landscape-plain.jpg',
 			'Landscape-plain.jpg',
 			[
-				20 => [ 'width' => 20, 'height' => 15, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=20' ],
-				40 => [ 'width' => 40, 'height' => 30, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=40' ],
-				120 => [ 'width' => 120, 'height' => 90, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=120' ],
+				20 => [ 'width' => 20, 'height' => 15, 'src' => '/w/thumb.php?f=Landscape-plain.jpg&width=20', 'decoding' => 'async' ],
+				40 => [ 'width' => 40, 'height' => 30, 'src' => '/w/thumb.php?f=Landscape-plain.jpg&width=40', 'decoding' => 'async' ],
+				120 => [ 'width' => 120, 'height' => 90, 'src' => '/w/thumb.php?f=Landscape-plain.jpg&width=120', 'decoding' => 'async' ],
 				// Step 250px satisified by web-safe original
-				160 => [ 'width' => 160, 'height' => 120, 'url' => 'http://example.com/w/images/b/b0/Landscape-plain.jpg' ],
+				160 => [ 'width' => 160, 'height' => 120, 'src' => '/w/images/b/b0/Landscape-plain.jpg', 'decoding' => 'async' ],
 			]
 		];
 		yield 'steps portrait' => [
@@ -337,10 +337,10 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 			self::IMAGES_DIR . '/portrait-rotated.jpg',
 			'Portrait-rotated.jpg',
 			[
-				20 => [ 'width' => 20, 'height' => 27, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=20' ],
-				40 => [ 'width' => 40, 'height' => 53, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=40' ],
+				20 => [ 'width' => 20, 'height' => 27, 'src' => '/w/thumb.php?f=Portrait-rotated.jpg&width=20', 'decoding' => 'async' ],
+				40 => [ 'width' => 40, 'height' => 53, 'src' => '/w/thumb.php?f=Portrait-rotated.jpg&width=40', 'decoding' => 'async' ],
 				// Step 120px satisfied by transformed original (this JPEG requires rotation)
-				120 => [ 'width' => 120, 'height' => 160, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=120' ],
+				120 => [ 'width' => 120, 'height' => 160, 'src' => '/w/thumb.php?f=Portrait-rotated.jpg&width=120', 'decoding' => 'async' ],
 			]
 		];
 		yield 'steps svg' => [
@@ -350,10 +350,10 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 			self::IMAGES_DIR . '/QA_icon.svg',
 			'QA_icon.svg',
 			[
-				20 => [ 'width' => 20, 'height' => 20, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=20' ],
-				40 => [ 'width' => 40, 'height' => 40, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=40' ],
-				120 => [ 'width' => 120, 'height' => 120, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=120' ],
-				250 => [ 'width' => 250, 'height' => 250, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=250' ],
+				20 => [ 'width' => 20, 'height' => 20, 'src' => '/w/thumb.php?f=QA_icon.svg&width=20', 'decoding' => 'async' ],
+				40 => [ 'width' => 40, 'height' => 40, 'src' => '/w/thumb.php?f=QA_icon.svg&width=40', 'decoding' => 'async' ],
+				120 => [ 'width' => 120, 'height' => 120, 'src' => '/w/thumb.php?f=QA_icon.svg&width=120', 'decoding' => 'async' ],
+				250 => [ 'width' => 250, 'height' => 250, 'src' => '/w/thumb.php?f=QA_icon.svg&width=250', 'decoding' => 'async' ],
 			]
 		];
 	}
@@ -384,6 +384,11 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 
 		$info = $result['query']['pages']['1'];
 		$image = $info['imageinfo'][0];
+		// For backward compatibility, add 'url' to the list of thumbnail
+		// image attributes.
+		foreach ( $expected as $res => &$props ) {
+			$props['url'] = 'http://example.com' . $props['src'];
+		}
 		$this->assertEquals( $expected, $image['thumburls'] );
 	}
 
@@ -410,9 +415,27 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 		$thumburls = $result['query']['pages']['1']['imageinfo'][0]['thumburls'];
 		$this->assertEquals(
 			[
-				20 => [ 'width' => 20, 'height' => 20, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=20&lang=de' ],
-				40 => [ 'width' => 40, 'height' => 40, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=40&lang=de' ],
-				120 => [ 'width' => 120, 'height' => 120, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=120&lang=de' ],
+				20 => [
+					'width' => 20,
+					'height' => 20,
+					'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=20&lang=de',
+					'src' => '/w/thumb.php?f=QA_icon.svg&width=20&lang=de',
+					'decoding' => 'async',
+				],
+				40 => [
+					'width' => 40,
+					'height' => 40,
+					'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=40&lang=de',
+					'src' => '/w/thumb.php?f=QA_icon.svg&width=40&lang=de',
+					'decoding' => 'async',
+				],
+				120 => [
+					'width' => 120,
+					'height' => 120,
+					'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=120&lang=de',
+					'src' => '/w/thumb.php?f=QA_icon.svg&width=120&lang=de',
+					'decoding' => 'async',
+				],
 			],
 			$thumburls,
 			'thumburl in the requested language'
@@ -442,13 +465,67 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 		$thumburls = $result['query']['pages']['1']['imageinfo'][0]['thumburls'];
 		$this->assertEquals(
 			[
-				20 => [ 'width' => 20, 'height' => 20, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=20&lang=de' ],
-				40 => [ 'width' => 40, 'height' => 40, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=40&lang=de' ],
-				120 => [ 'width' => 120, 'height' => 120, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=120&lang=de' ],
+				20 => [
+					'width' => 20,
+					'height' => 20,
+					'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=20&lang=de',
+					'src' => '/w/thumb.php?f=QA_icon.svg&width=20&lang=de',
+					'decoding' => 'async',
+				],
+				40 => [
+					'width' => 40,
+					'height' => 40,
+					'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=40&lang=de',
+					'src' => '/w/thumb.php?f=QA_icon.svg&width=40&lang=de',
+					'decoding' => 'async',
+				],
+				120 => [
+					'width' => 120,
+					'height' => 120,
+					'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=120&lang=de',
+					'src' => '/w/thumb.php?f=QA_icon.svg&width=120&lang=de',
+					'decoding' => 'async',
+				],
 			],
 			$thumburls,
 			'thumburl in the requested language despite the width-less urlparam'
 		);
+	}
+
+	/**
+	 * @dataProvider provideGetImageInfoThumburls
+	 */
+	public function testGetImageInfoThumbWidth(
+		array $conf,
+		string $file,
+		string $name,
+		array $expected
+	) {
+		$this->overrideConfigValues( $conf + [
+			MainConfigNames::Server => 'http://example.com',
+			MainConfigNames::SVGNativeRendering => false,
+		] );
+		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [ 'thumbsize' => 1 ] );
+		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
+		$this->importFileToTestRepo( $file, $name );
+
+		$width = min( array_keys( $expected ) );
+		[ $result, ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'imageinfo',
+			'titles' => "File:$name",
+			'iiprop' => 'url',
+			'iiurlwidth' => $width,
+		] );
+
+		$info = $result['query']['pages']['1'];
+		$image = $info['imageinfo'][0];
+		$this->assertEquals( 'http://example.com' . $expected[$width]['src'], $image['thumburl'] );
+		$this->assertEquals( $width, $image['thumbwidth'] );
+		// We don't have $expected data for the srcset returned in the
+		// thumbattribs, so exclude it from the comparison.
+		unset( $image['thumbattribs']['srcset'] );
+		$this->assertEquals( $expected[$width], $image['thumbattribs'] );
 	}
 
 	public function testGetImageCreatedByTempUser() {

@@ -122,6 +122,17 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
+	 * Return extra attributes that should be present on the media
+	 * tag in the HTML.  Takes the same option array as ::toHtml()
+	 * (and should be used by the implementation of ::toHtml()).
+	 * @param array $options See options parameter of ::toHtml()
+	 * @return array An attribute array
+	 */
+	public function getAttribs( array $options = [] ): array {
+		return [];
+	}
+
+	/**
 	 * Fetch HTML for this transform output
 	 *
 	 * @param array $options Associative array of options. Boolean options

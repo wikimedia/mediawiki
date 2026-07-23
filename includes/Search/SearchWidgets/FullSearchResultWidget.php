@@ -373,7 +373,6 @@ class FullSearchResultWidget implements SearchResultWidget {
 		if ( $thumb ) {
 			if ( $title->getNamespace() === NS_FILE ) {
 				// don't use a custom link, just use traditional thumbnail HTML
-				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				return $thumb->toHtml( [
 					'desc-link' => true,
 					'loading' => 'lazy',
@@ -382,7 +381,6 @@ class FullSearchResultWidget implements SearchResultWidget {
 			}
 
 			// thumbnails for non-file results should link to the relevant title
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			return $thumb->toHtml( [
 				'desc-link' => true,
 				'custom-title-link' => $title,

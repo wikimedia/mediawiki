@@ -609,6 +609,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						foreach ( $mto->responsiveUrls as $density => $url ) {
 							$vals['responsiveUrls'][$density] = (string)$urlUtils->expand( $url, PROTO_CURRENT );
 						}
+
+						// Report HTML attributes (including 'extra' attributes
+						// like for lazy loading)
+						$vals['thumbattribs'] = $mto->getAttribs();
 					} elseif ( $mto && $mto->isError() ) {
 						/** @var MediaTransformError $mto */
 						'@phan-var MediaTransformError $mto';
@@ -675,7 +679,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					'url' => $thumburl,
 					'width' => $mto->getWidth(),
 					'height' => $mto->getHeight(),
-				];
+				] + $mto->getAttribs();
 			}
 		}
 

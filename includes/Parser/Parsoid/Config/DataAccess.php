@@ -310,6 +310,8 @@ class DataAccess extends IDataAccess {
 					$result['thumburl'] = $mto->getUrl();
 					$result['thumbwidth'] = $mto->getWidth();
 					$result['thumbheight'] = $mto->getHeight();
+
+					$result['thumbattribs'] = $mto->getAttribs();
 				}
 			} else {
 				$result['thumberror'] = "Presumably, invalid parameters, despite validation.";
