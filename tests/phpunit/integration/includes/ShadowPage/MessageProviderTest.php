@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\ShadowPage;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\ShadowPage\MessagePage;
 
 /**
@@ -37,7 +38,8 @@ class MessageProviderTest extends \MediaWikiIntegrationTestCase {
 
 		$this->assertNotNull( $page->getDiffTitleMessage() );
 
-		$view = $page->getView();
+		$opt = ParserOptions::newFromAnon();
+		$view = $page->getView( $opt );
 		$this->assertNotNull( $view );
 
 		$out = $view->getParserOutput();
