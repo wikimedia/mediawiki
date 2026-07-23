@@ -1048,6 +1048,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Title\Title::isAlwaysKnown
+	 * @covers \MediaWiki\Page\LinkAlwaysKnownLookup
 	 * @dataProvider provideIsAlwaysKnown
 	 * @param string $page
 	 * @param bool $isKnown

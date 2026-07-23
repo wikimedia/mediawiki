@@ -39,6 +39,7 @@ class DeprecatedHooks {
 		'RecentChangesPurgeRows' => [ 'deprecatedVersion' => '1.45', 'silent' => true ],
 		'RollbackComplete' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
 		'SearchDataForIndex' => [ 'deprecatedVersion' => '1.40', 'silent' => true ],
+		'TitleIsAlwaysKnown' => [ 'deprecatedVersion' => '1.47', 'silent' => true ],
 		'userCan' => [ 'deprecatedVersion' => '1.37' ],
 		'UserCanSendEmail' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
 		'WatchedItemQueryServiceExtensionsHook' => [ 'deprecatedVersion' => '1.46' ],

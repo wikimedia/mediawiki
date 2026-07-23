@@ -3153,37 +3153,8 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * @return bool
 	 */
 	public function isAlwaysKnown() {
-		$isKnown = null;
-
 		$services = MediaWikiServices::getInstance();
-		( new HookRunner( $services->getHookContainer() ) )->onTitleIsAlwaysKnown( $this, $isKnown );
-
-		if ( $isKnown !== null ) {
-			return $isKnown;
-		}
-
-		if ( $this->isExternal() ) {
-			return true; // any interwiki link might be viewable, for all we know
-		}
-
-		if ( $services->getShadowPageLoader()->existsForLink( $this ) ) {
-			return true;
-		}
-
-		switch ( $this->mNamespace ) {
-			case NS_MEDIA:
-			case NS_FILE:
-				// file exists, possibly in a foreign repo
-				return (bool)$services->getRepoGroup()->findFile( $this );
-			case NS_SPECIAL:
-				// valid special page
-				return $services->getSpecialPageFactory()->exists( $this->mDbkeyform );
-			case NS_MAIN:
-				// selflink, possibly with fragment
-				return $this->mDbkeyform == '';
-			default:
-				return false;
-		}
+		return $services->getLinkAlwaysKnownLookup()->isAlwaysKnown( $this );
 	}
 
 	/**

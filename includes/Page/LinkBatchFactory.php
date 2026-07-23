@@ -28,57 +28,17 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class LinkBatchFactory {
 
-	/**
-	 * @var LinkCache
-	 */
-	private $linkCache;
-
-	/**
-	 * @var TitleFormatter
-	 */
-	private $titleFormatter;
-
-	/**
-	 * @var Language
-	 */
-	private $contentLanguage;
-
-	/**
-	 * @var GenderCache
-	 */
-	private $genderCache;
-
-	/**
-	 * @var IConnectionProvider
-	 */
-	private $dbProvider;
-
-	/** @var LinksMigration */
-	private $linksMigration;
-
-	private TempUserDetailsLookup $tempUserDetailsLookup;
-
-	/** @var LoggerInterface */
-	private $logger;
-
 	public function __construct(
-		LinkCache $linkCache,
-		TitleFormatter $titleFormatter,
-		Language $contentLanguage,
-		GenderCache $genderCache,
-		IConnectionProvider $dbProvider,
-		LinksMigration $linksMigration,
-		TempUserDetailsLookup $tempUserDetailsLookup,
-		LoggerInterface $logger
+		private LinkCache $linkCache,
+		private TitleFormatter $titleFormatter,
+		private Language $contentLanguage,
+		private GenderCache $genderCache,
+		private IConnectionProvider $dbProvider,
+		private LinksMigration $linksMigration,
+		private TempUserDetailsLookup $tempUserDetailsLookup,
+		private LinkAlwaysKnownLookup $linkAlwaysKnownLookup,
+		private LoggerInterface $logger
 	) {
-		$this->linkCache = $linkCache;
-		$this->titleFormatter = $titleFormatter;
-		$this->contentLanguage = $contentLanguage;
-		$this->genderCache = $genderCache;
-		$this->dbProvider = $dbProvider;
-		$this->linksMigration = $linksMigration;
-		$this->tempUserDetailsLookup = $tempUserDetailsLookup;
-		$this->logger = $logger;
 	}
 
 	/**
@@ -95,6 +55,7 @@ class LinkBatchFactory {
 			$this->dbProvider,
 			$this->linksMigration,
 			$this->tempUserDetailsLookup,
+			$this->linkAlwaysKnownLookup,
 			$this->logger
 		);
 	}

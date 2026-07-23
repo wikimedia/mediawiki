@@ -4,6 +4,7 @@ use MediaWiki\Cache\GenderCache;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Page\LinkAlwaysKnownLookup;
 use MediaWiki\Page\LinkBatch;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\LinkCache;
@@ -50,6 +51,7 @@ class LinkBatchFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
 			$this->createMock( TempUserDetailsLookup::class ),
+			$this->createMock( LinkAlwaysKnownLookup::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 

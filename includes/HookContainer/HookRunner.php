@@ -200,6 +200,7 @@ class HookRunner implements
 	\MediaWiki\Hook\ImportHandleUnknownUserHook,
 	\MediaWiki\Hook\InitializeArticleMaybeRedirectHook,
 	\MediaWiki\Hook\IsTrustedProxyHook,
+	\MediaWiki\Hook\LinkTargetIsAlwaysKnownBatchHook,
 	\MediaWiki\Hook\MaintenanceRefreshLinksInitHook,
 	\MediaWiki\Hook\MaintenanceShellStartHook,
 	\MediaWiki\Hook\MaintenanceUpdateAddParamsHook,
@@ -2646,6 +2647,14 @@ class HookRunner implements
 		return $this->container->run(
 			'LinksUpdateComplete',
 			[ $linksUpdate, $ticket ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onLinkTargetIsAlwaysKnownBatch( array $links, array &$isAlwaysKnown ) {
+		return $this->container->run(
+			'LinkTargetIsAlwaysKnownBatch',
+			[ $links, &$isAlwaysKnown ]
 		);
 	}
 

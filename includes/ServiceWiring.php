@@ -165,6 +165,7 @@ use MediaWiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Page\File\BadFileLookup;
+use MediaWiki\Page\LinkAlwaysKnownLookup;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\MergeHistoryFactory;
@@ -1312,6 +1313,18 @@ return [
 		);
 	},
 
+	'LinkAlwaysKnownLookup' => static function ( MediaWikiServices $services ): LinkAlwaysKnownLookup {
+		return new LinkAlwaysKnownLookup(
+			new HookRunner( $services->getHookContainer() ),
+			$services->getTitleFactory(),
+			$services->getTitleFormatter(),
+			$services->getShadowPageLoader(),
+			$services->getRepoGroup(),
+			$services->getSpecialPageFactory(),
+			LoggerFactory::getInstance( 'LinkBatch' )
+		);
+	},
+
 	'LinkBatchFactory' => static function ( MediaWikiServices $services ): LinkBatchFactory {
 		return new LinkBatchFactory(
 			$services->getLinkCache(),
@@ -1321,6 +1334,7 @@ return [
 			$services->getConnectionProvider(),
 			$services->getLinksMigration(),
 			$services->getTempUserDetailsLookup(),
+			$services->getLinkAlwaysKnownLookup(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 	},

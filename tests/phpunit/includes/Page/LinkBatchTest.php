@@ -37,6 +37,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getConnectionProvider(),
 			$this->getServiceContainer()->getLinksMigration(),
 			$this->getServiceContainer()->getTempUserDetailsLookup(),
+			$this->getServiceContainer()->getLinkAlwaysKnownLookup(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 	}
@@ -105,6 +106,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$services->getConnectionProvider(),
 			$services->getLinksMigration(),
 			$services->getTempUserDetailsLookup(),
+			$services->getLinkAlwaysKnownLookup(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 
@@ -201,6 +203,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$services->getConnectionProvider(),
 			$services->getLinksMigration(),
 			$tempUserDetailsLookup,
+			$services->getLinkAlwaysKnownLookup(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 

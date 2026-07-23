@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Preferences\SignatureValidator;
@@ -167,7 +168,9 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Preferences\SignatureValidator::validateSignature()
 	 */
 	public function testValidateWithSpecialPage() {
-		$titleFactory = $this->createNoOpMock( TitleFactory::class, [ 'newMainPage' ] );
+		$titleFactory = $this->createNoOpMock( TitleFactory::class, [ 'newMainPage', 'newFromLinkTarget' ] );
+		$titleFactory->method( 'newFromLinkTarget' )
+			->willReturnCallback( static fn ( LinkTarget $target ) => Title::newFromLinkTarget( $target ) );
 		$titleFactory->method( 'newMainPage' )->willReturn(
 			Title::makeTitle( NS_SPECIAL, 'MainPage' )
 		);

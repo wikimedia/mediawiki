@@ -110,6 +110,7 @@ use MediaWiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Page\File\BadFileLookup;
+use MediaWiki\Page\LinkAlwaysKnownLookup;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\MergeHistoryFactory;
@@ -1465,6 +1466,10 @@ class MediaWikiServices extends ServiceContainer {
 	/** @since 1.45 */
 	public function getLeximorphFactory(): LeximorphFactory {
 		return $this->getService( 'LeximorphFactory' );
+	}
+
+	public function getLinkAlwaysKnownLookup(): LinkAlwaysKnownLookup {
+		return $this->getService( 'LinkAlwaysKnownLookup' );
 	}
 
 	/**

@@ -55,72 +55,23 @@ class LinkBatch {
 	protected $caller;
 
 	/**
-	 * @var LinkCache
-	 */
-	private $linkCache;
-
-	/**
-	 * @var TitleFormatter
-	 */
-	private $titleFormatter;
-
-	/**
-	 * @var Language
-	 */
-	private $contentLanguage;
-
-	/**
-	 * @var GenderCache
-	 */
-	private $genderCache;
-
-	/**
-	 * @var IConnectionProvider
-	 */
-	private $dbProvider;
-
-	/** @var LinksMigration */
-	private $linksMigration;
-
-	private TempUserDetailsLookup $tempUserDetailsLookup;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/**
 	 * @see \MediaWiki\Page\LinkBatchFactory
 	 *
 	 * @internal
 	 * @param iterable<LinkTarget>|iterable<PageReference> $arr Initial titles to be added to the batch
-	 * @param LinkCache $linkCache
-	 * @param TitleFormatter $titleFormatter
-	 * @param Language $contentLanguage
-	 * @param GenderCache $genderCache
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinksMigration $linksMigration
-	 * @param TempUserDetailsLookup $tempUserDetailsLookup
-	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
 		iterable $arr,
-		LinkCache $linkCache,
-		TitleFormatter $titleFormatter,
-		Language $contentLanguage,
-		GenderCache $genderCache,
-		IConnectionProvider $dbProvider,
-		LinksMigration $linksMigration,
-		TempUserDetailsLookup $tempUserDetailsLookup,
-		LoggerInterface $logger
+		private LinkCache $linkCache,
+		private TitleFormatter $titleFormatter,
+		private Language $contentLanguage,
+		private GenderCache $genderCache,
+		private IConnectionProvider $dbProvider,
+		private LinksMigration $linksMigration,
+		private TempUserDetailsLookup $tempUserDetailsLookup,
+		private LinkAlwaysKnownLookup $linkAlwaysKnownLookup,
+		private LoggerInterface $logger
 	) {
-		$this->linkCache = $linkCache;
-		$this->titleFormatter = $titleFormatter;
-		$this->contentLanguage = $contentLanguage;
-		$this->genderCache = $genderCache;
-		$this->dbProvider = $dbProvider;
-		$this->linksMigration = $linksMigration;
-		$this->tempUserDetailsLookup = $tempUserDetailsLookup;
-		$this->logger = $logger;
-
 		foreach ( $arr as $item ) {
 			$this->addObj( $item );
 		}
@@ -253,6 +204,7 @@ class LinkBatch {
 	protected function executeInto( $cache ) {
 		$res = $this->doQuery();
 		$this->doGenderQuery();
+		$this->doIsAlwaysKnownQuery();
 
 		// Prefetch expiration status for temporary accounts added to this batch via addUser()
 		// for efficient user link rendering (T358469).
@@ -374,6 +326,32 @@ class LinkBatch {
 		$this->genderCache->doLinkBatch( $this->data, $this->caller );
 
 		return true;
+	}
+
+	public function doIsAlwaysKnownQuery(): void {
+		if ( $this->isEmpty() ) {
+			return;
+		}
+
+		$links = [];
+		foreach ( $this->data as $ns => $dbkeys ) {
+			foreach ( $dbkeys as $dbkey => $_ ) {
+				try {
+					$links[] = new TitleValue( (int)$ns, (string)$dbkey );
+				} catch ( InvalidArgumentException ) {
+					$this->logger->warning(
+						'Encountered invalid title',
+						[
+							'title_namespace' => $ns,
+							'title_dbkey' => $dbkey,
+							'exception' => new RuntimeException
+						]
+					);
+				}
+			}
+		}
+
+		$this->linkAlwaysKnownLookup->preload( $links );
 	}
 
 	/**

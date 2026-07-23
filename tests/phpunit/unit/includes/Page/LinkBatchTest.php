@@ -6,6 +6,7 @@ use MediaWiki\Cache\GenderCache;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Page\LinkAlwaysKnownLookup;
 use MediaWiki\Page\LinkBatch;
 use MediaWiki\Page\LinkCache;
 use MediaWiki\Title\TitleFormatter;
@@ -32,6 +33,7 @@ class LinkBatchTest extends MediaWikiUnitTestCase {
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
 			$this->createNoOpMock( TempUserDetailsLookup::class ),
+			$this->createNoOpMock( LinkAlwaysKnownLookup::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 
@@ -52,6 +54,7 @@ class LinkBatchTest extends MediaWikiUnitTestCase {
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
 			$this->createNoOpMock( TempUserDetailsLookup::class ),
+			$this->createNoOpMock( LinkAlwaysKnownLookup::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 
@@ -69,6 +72,7 @@ class LinkBatchTest extends MediaWikiUnitTestCase {
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
 			$this->createNoOpMock( TempUserDetailsLookup::class ),
+			$this->createNoOpMock( LinkAlwaysKnownLookup::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 
@@ -88,6 +92,7 @@ class LinkBatchTest extends MediaWikiUnitTestCase {
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
 			$this->createNoOpMock( TempUserDetailsLookup::class ),
+			$this->createNoOpMock( LinkAlwaysKnownLookup::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 		$batch->addObj(
@@ -113,6 +118,7 @@ class LinkBatchTest extends MediaWikiUnitTestCase {
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
 			$this->createNoOpMock( TempUserDetailsLookup::class ),
+			$this->createNoOpMock( LinkAlwaysKnownLookup::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 		$batch->addObj(

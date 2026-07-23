@@ -9,6 +9,7 @@ use MediaWiki\Title\Title;
  * Use the hook name "TitleIsAlwaysKnown" to register handlers implementing this interface.
  *
  * @stable to implement
+ * @deprecated since 1.47, use LinkTargetIsAlwaysKnownBatchHook instead
  * @ingroup Hooks
  */
 interface TitleIsAlwaysKnownHook {
@@ -19,6 +20,7 @@ interface TitleIsAlwaysKnownHook {
 	 * by the isKnown method.
 	 *
 	 * @since 1.35
+	 * @deprecated since 1.47, use LinkTargetIsAlwaysKnownBatchHook instead
 	 *
 	 * @param Title $title Title object that is being checked
 	 * @param bool|null &$isKnown Whether MediaWiki currently thinks this page is known

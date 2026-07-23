@@ -10,6 +10,7 @@ use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\LinkAlwaysKnownLookup;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\PageIdentity;
@@ -160,6 +161,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			$this->getMockLBFactory( $mockDb ),
 			$this->createMock( LinksMigration::class ),
 			$this->createMock( TempUserDetailsLookup::class ),
+			$this->createMock( LinkAlwaysKnownLookup::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 	}
