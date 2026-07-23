@@ -821,8 +821,7 @@ abstract class Maintenance {
 		$this->parameters->loadWithArgv( $argv );
 
 		if ( $this->parameters->hasErrors() ) {
-			$errors = "\nERROR: " . implode( "\nERROR: ", $this->parameters->getErrors() ) . "\n";
-			$this->error( $errors );
+			// Show errors and exit
 			$this->maybeHelp( true );
 		}
 
@@ -902,8 +901,9 @@ abstract class Maintenance {
 		}
 
 		if ( $this->parameters->hasErrors() && !$this->hasOption( 'help' ) ) {
-			$errors = "\nERROR: " . implode( "\nERROR: ", $this->parameters->getErrors() ) . "\n";
-			$this->error( $errors );
+			foreach ( $this->parameters->getErrors() as $error ) {
+				$this->error( "ERROR: " . $error );
+			}
 		}
 
 		$this->showHelp();
