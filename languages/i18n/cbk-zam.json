@@ -371,7 +371,6 @@
 	"createacct-error": "Error na creacion de account",
 	"createaccounterror": "No puede crea con el account: $1",
 	"createacct-popup-redirect-notice": "El hace contigo redirecciona despues el creada del account...",
-	"createacct-username-policy-popover-title": "Policia de nombre de usuario",
 	"createacct-username-policy-popover-trigger-link": "Escoge con cuidao",
 	"createacct-username-policy-popover-trigger-line": "$1 - Ansina el paquilaya contigo conoce el comunidad.",
 	"createacct-username-policy-popover-bullet1": "Don't use [[wikipedia:Wikipedia:Username policy#Disruptive_or_offensive_usernames|offensive]], [[wikipedia:Wikipedia:Username policy#Misleading_usernames|misleading]], or [[wikipedia:Wikipedia:Username policy#Promotional_usernames|promotional]] names.",

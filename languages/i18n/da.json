@@ -447,7 +447,6 @@
 	"createacct-error": "Fejl ved kontooprettelse",
 	"createaccounterror": "Kunne ikke oprette brugerkonto: $1",
 	"createacct-popup-redirect-notice": "Du bliver omdirigeret efter oprettelse af en konto...",
-	"createacct-username-policy-popover-title": "Brugernavnpolitik",
 	"createacct-username-policy-popover-trigger-link": "Vælg omhyggeligt",
 	"createacct-username-policy-popover-trigger-line": "$1 — det er sådan fællesskabet vil kende dig.",
 	"createacct-username-policy-popover-bullet1": "Brug ikke [[wikipedia:Wikipedia:Username policy#Disruptive_or_offensive_usernames|stødende ]], [[wikipedia:Wikipedia:Username policy#Misleading_usernames|vildledende]] eller [[wikipedia:Wikipedia:Username policy#Promotional_usernames|promotende]] navne.",

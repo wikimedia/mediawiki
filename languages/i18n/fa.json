@@ -204,7 +204,7 @@
 	"redirectpagesub": "صفحهٔ تغییرمسیر",
 	"redirectto": "تغییرمسیر به:",
 	"lastmodifiedat": "این صفحه آخرین‌بار در $1 ساعت $2 ویرایش شده است.",
-	"renderedwith-parsoid": "این صفحه با استفاده از [[mw:Special:MyLanguage/Parsoid|پارسوئید]] رندر شده است.",
+	"renderedwith-parsoid": "این صفحه با استفاده از [[mw:Special:MyLanguage/Parsoid|پارسوید]] رندر شده است.",
 	"viewcount": "از این صفحه {{PLURAL:$1|یک‌بار|$1بار}} بازدید شده است.",
 	"protectedpage": "صفحهٔ حفاظت‌شده",
 	"jumpto": "پرش به:",

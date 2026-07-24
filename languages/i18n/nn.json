@@ -1713,6 +1713,7 @@
 	"watchlistlabels-onboarding-filter-body": "Gå til «Etikettar» for å filtrera endringane.",
 	"watchlistlabels-editwatchlist-dialog-unassign": "Fjern",
 	"watchlistlabels-watchaction-label": "Etikettar til overvakingslista:",
+	"watchlistlabels-editpage-nolabels": "Du har ingen [[Special:WatchlistLabels|overvakingslisteetikettar]].",
 	"watchlist-filters-labels-title": "Etikettar",
 	"watchlist-filters-labels-list-title": "Etikettar til overvakingslista",
 	"watchlist-filters-tag-prefix-labels-inverted": "<strong>ikkje</strong> =$1",

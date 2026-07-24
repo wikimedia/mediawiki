@@ -569,7 +569,6 @@
 	"createacct-error": "Ошибка создания учётной записи",
 	"createaccounterror": "Невозможно создать учётную запись: $1",
 	"createacct-popup-redirect-notice": "Вы будете перенаправлены после создания учётной записи…",
-	"createacct-username-policy-popover-title": "Правила именования учётных записей",
 	"createacct-username-policy-popover-trigger-link": "Выбирайте с осторожностью",
 	"createacct-username-policy-popover-trigger-line": "$1 — под этим именем сообщество будет знать вас.",
 	"nocookieslogin": "{{SITENAME}} использует cookie для представления участников.\nВы отключили использование cookie.\nВключите их и попробуйте снова.",

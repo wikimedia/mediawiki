@@ -498,7 +498,6 @@
 	"createacct-error": "Hesap oluşturma hatası",
 	"createaccounterror": "Hesap oluşturulamıyor: $1",
 	"createacct-popup-redirect-notice": "Bir hesap oluşturduktan sonra yönlendirileceksiniz...",
-	"createacct-username-policy-popover-title": "Kullanıcı adı politikası",
 	"createacct-username-policy-popover-trigger-link": "Dikkatli seçin",
 	"nocookieslogin": "{{SITENAME}}, kullanıcılara giriş yapmak için çerezleri kullanıyor.\nDevre dışı bırakılmış çerezleriniz var.\nLütfen etkinleştirin ve tekrar deneyin.",
 	"nocookiesfornew": "Kullanıcı hesabı oluşturulamadı, çünkü kaynağını doğrulayamadık.\nÇerezlerin etkinleştirildiğinden emin olun, bu sayfayı yenileyin ve tekrar deneyin.",

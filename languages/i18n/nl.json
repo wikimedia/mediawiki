@@ -481,7 +481,6 @@
 	"createacct-error": "Fout tijdens aanmaken account",
 	"createaccounterror": "Het was niet mogelijk het account aan te maken: $1",
 	"createacct-popup-redirect-notice": "U wordt doorgestuurd nadat u een account hebt aangemaakt...",
-	"createacct-username-policy-popover-title": "Gebruikersnaambeleid",
 	"createacct-username-policy-popover-trigger-link": "Kies zorgvuldig",
 	"createacct-username-policy-popover-trigger-line": "$1 — zo heet u voor de gemeenschap.",
 	"createacct-username-policy-popover-bullet1": "Gebruik geen [[wikipedia:Wikipedia:Username policy#Disruptive_or_offensive_usernames|beledigende]], [[wikipedia:Wikipedia:Username policy#Misleading_usernames|misleidende]] of [[wikipedia:Wikipedia:Username policy#Promotional_usernames|promotionele]] namen.",

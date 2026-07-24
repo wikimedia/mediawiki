@@ -496,7 +496,6 @@
 	"createacct-error": "Fehler beim Erstellen des Benutzerkontos",
 	"createaccounterror": "Benutzerkonto konnte nicht erstellt werden: $1",
 	"createacct-popup-redirect-notice": "{{#FORMAL:Du wirst|Sie werden}} nach der Kontoerstellung weitergeleitet …",
-	"createacct-username-policy-popover-title": "Benutzernamensrichtlinie",
 	"createacct-username-policy-popover-trigger-link": "{{#FORMAL:Wähle|Wählen Sie}} sorgfältig",
 	"createacct-username-policy-popover-trigger-line": "$1 — so wird die Gemeinschaft {{#FORMAL:dich|Sie}} kennen.",
 	"nocookieslogin": "{{SITENAME}} verwendet Cookies zur Anmeldung der Benutzer. {{#FORMAL:Du hast|Sie haben}} Cookies deaktiviert, bitte {{#FORMAL:aktiviere|aktivieren Sie}} diese und {{#FORMAL:versuche|versuchen Sie}} es erneut.",

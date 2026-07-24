@@ -1338,6 +1338,7 @@
 	"watchlist-options": "Pilihan daptar itihan",
 	"watching": "Maitihi...",
 	"unwatching": "Kada jadi maitihi...",
+	"watchlistlabels-editpage-nolabels": "Pian balum baisi [[Special:WatchlistLabels|pananda gasan daptar itihan]].",
 	"enotif_reset": "Tandai samunyaan laman sudah diilangi",
 	"enotif_impersonal_salutation": "Pamakai {{SITENAME}}",
 	"enotif_subject_deleted": "Tungkaran $1 di {{SITENAME}} hudah dihapus ulih {{gender:$2|$2}}",

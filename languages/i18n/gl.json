@@ -399,7 +399,6 @@
 	"createacct-error": "Erro ao crear a conta",
 	"createaccounterror": "Non se puido crear a conta: $1",
 	"createacct-popup-redirect-notice": "Redirixirémoste cando crees unha conta...",
-	"createacct-username-policy-popover-title": "Política de nomes de usuario",
 	"createacct-username-policy-popover-trigger-link": "Escolle con coidado",
 	"createacct-username-policy-popover-trigger-line": "$1: así é como te coñecerá a comunidade.",
 	"createacct-username-policy-popover-bullet1": "Non empregues nomes [[wikipedia:Wikipedia:Username policy#Disruptive_or_offensive_usernames|ofensivos]], [[wikipedia:Wikipedia:Username policy#Misleading_usernames|enganosos]] ou [[wikipedia:Wikipedia:Username policy#Promotional_usernames|promocionais]].",

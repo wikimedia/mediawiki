@@ -2556,6 +2556,7 @@
 	"available-username-check-feedback": "Verificando a disponibilidade",
 	"blocklist-hidden-placeholder": "(nome de usuário ocultado)",
 	"blocklist-hidden-param": "nome de usuário oculto",
+	"blocklist-block-hidden": "bloqueo oculto",
 	"contribslink": "contribs",
 	"emaillink": "enviar um e-mail",
 	"autoblocker": "Você foi automaticamente bloqueado, pois o seu Endereço IP foi recentemente usado por \"[[User:$1|$1]]\". \nO motivo apresentado para o bloqueio de $1 é: \"$2\"",

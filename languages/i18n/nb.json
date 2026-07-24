@@ -428,7 +428,6 @@
 	"createacct-error": "Feil under kontooppretting",
 	"createaccounterror": "Kunne ikke opprette konto: $1",
 	"createacct-popup-redirect-notice": "Du blir omdirigert etter at du har opprettet en konto …",
-	"createacct-username-policy-popover-title": "Regler for brukernavn",
 	"createacct-username-policy-popover-trigger-link": "Velg med omhu",
 	"createacct-username-policy-popover-trigger-line": "$1 – dette er hvordan nettsamfunnet vil kjenne deg.",
 	"nocookieslogin": "{{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på og du har slått dem av. Slå dem på og prøv igjen.",

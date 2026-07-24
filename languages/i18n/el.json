@@ -446,7 +446,6 @@
 	"createacct-error": "Σφάλμα δημιουργίας λογαριασμού",
 	"createaccounterror": "Δεν ήταν δυνατή η δημιουργία λογαριασμού: $1",
 	"createacct-popup-redirect-notice": "Θα ανακατευθυνθείτε μετά τη δημιουργία ενός λογαριασμού...",
-	"createacct-username-policy-popover-title": "Πολιτική ονόματος χρήστη",
 	"createacct-username-policy-popover-trigger-link": "Επιλέξτε προσεκτικά",
 	"createacct-username-policy-popover-trigger-line": "$1 — είναι πώς θα σε γνωρίζει η κοινότητα.",
 	"nocookieslogin": "Το {{SITENAME}} χρησιμοποιεί cookies κατά τη σύνδεση των χρηστών. Τα cookies είναι απενεργοποιημένα στον υπολογιστή σας. Παρακαλούμε ενεργοποιήστε τα και ξαναδοκιμάστε!",

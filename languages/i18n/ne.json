@@ -558,6 +558,7 @@
 	"missingcommenttext": "कृपया एक टिप्पणी प्रविष्ट गर्नुहोस्।",
 	"missingcommentheader": "<strong>याद गर्नुहोस्:</strong> तपाईले सम्पादन सारांश प्रदान गर्नुभएको छैन।\nयदि तपाईले फेरि \"$1\"मा क्लिक गर्नुभयो भने, तपाईको सम्पादन सारांश बिना नै प्रकाशित हुनेछ।",
 	"summary-preview": "सम्पादन सारांशको पूर्वालोकन:",
+	"autocomment-top": "(शीर्ष)",
 	"previewerrortext": "तपाईंको परिवर्तनको पूर्वावलोकन बनाउन खोज्दा समस्या आएको छ ।",
 	"blockedtitle": "प्रयोगकर्ता निषेधित छ।",
 	"blockedtext": "<strong>तपाईको प्रयोगकर्ता नाम वा आइपी ठेगाना माथि रोक लगाइएको छ।</strong> \n\n{{int:blockedtext-made-by| $1 }}\n{{int:blockedtext-reason-comment| $2 }}\n\n*{{int:blockedtext-start-time| $8 }}\n*{{int:blockedtext-expiration-time| $6 }}\n*{{int:blockedtext-intended-blockee| $7 }}\n\n{{int:blockedtext-contact-blocker-admin| $1 }}\nयदि तपाईको [[Special:Preferences|अभिरुचीहरू]]मा मान्य इमेल ठेगाना निर्दिष्ट गरिएको छ र तपाईलाई यसको प्रयोग गर्नबाट रोक लगाइएको छैन भने तपाईं \"{{int:emailuser}}\" सुविधा प्रयोग गर्न सक्नुहुन्छ।\n{{int:blockedtext-block-ip| $3 }} {{int:blockedtext-block-id| $5 }}\n{{int:blockedtext-include-details-queries}}",

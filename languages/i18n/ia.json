@@ -379,7 +379,6 @@
 	"createacct-error": "Error de creation de conto",
 	"createaccounterror": "Non poteva crear le conto: $1",
 	"createacct-popup-redirect-notice": "Tu essera redirigite post haber create un conto…",
-	"createacct-username-policy-popover-title": "Politica de nomines de usator",
 	"createacct-username-policy-popover-trigger-link": "Elige con prudentia",
 	"createacct-username-policy-popover-trigger-line": "$1; per iste nomine te cognoscera le communitate.",
 	"createacct-username-policy-popover-bullet1": "Evita nomines [[wikipedia:Wikipedia:Username policy#Disruptive_or_offensive_usernames|offensive]], [[wikipedia:Wikipedia:Username policy#Misleading_usernames|deceptive]] o [[wikipedia:Wikipedia:Username policy#Promotional_usernames|promotional]].",

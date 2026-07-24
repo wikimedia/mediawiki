@@ -647,7 +647,7 @@
 	"createacct-error": "Used as heading for the error message.",
 	"createaccounterror": "Parameters:\n* $1 - an error message",
 	"createacct-popup-redirect-notice": "This message is displayed on the mobile popup account creation form, informing the user that after creating an account they will be automatically redirected elsewhere.",
-	"createacct-username-policy-popover-title": "Heading for the username policy summary popover on mobile account creation (Minerva).",
+	"createacct-username-policy-popover-title": "Heading for the username policy summary popover which is available on Special:CreateAccount.",
 	"createacct-username-policy-popover-trigger-link": "Visible text of the link that opens the username policy popover (this message supplies the link label only).\n\nUsed inside {{msg-mw|createacct-username-policy-popover-trigger-line}} as the anchor contents.",
 	"createacct-username-policy-popover-trigger-line": "Single sentence under the username label on Minerva create account: the username policy popover trigger. Use $1 for the link HTML (class mw-createaccount-username-policy-choose-carefully).\n\nSee also:\n* {{msg-mw|createacct-username-policy-popover-trigger-link}}",
 	"createacct-username-policy-popover-bullet1": "{{notranslate}} First bullet for the username policy popover (Minerva). Links open in a new tab.",
