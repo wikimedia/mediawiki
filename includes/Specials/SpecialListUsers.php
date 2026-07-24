@@ -88,7 +88,10 @@ class SpecialListUsers extends IncludableSpecialPage {
 		return $this->userGroupManager->listAllGroups();
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	protected function getGroupName() {
 		return 'users';
 	}
