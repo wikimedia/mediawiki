@@ -2,11 +2,10 @@
 
 namespace Wikimedia\Tests\Message;
 
-use MediaWiki\Json\JsonCodec;
-use Wikimedia\Tests\SerializationTestTrait;
+use Wikimedia\Tests\JsonSerializationTestTrait;
 
 trait MessageSerializationTestTrait {
-	use SerializationTestTrait;
+	use JsonSerializationTestTrait;
 
 	public static function getSerializedDataPath(): string {
 		return __DIR__ . '/../../../../data/MessageValue';
@@ -24,18 +23,5 @@ trait MessageSerializationTestTrait {
 				},
 			];
 		}, self::provideConstruct() );
-	}
-
-	public static function getSupportedSerializationFormats(): array {
-		$jsonCodec = new JsonCodec();
-		return [ [
-			'ext' => 'json',
-			'serializer' => static function ( $obj ) use ( $jsonCodec ) {
-				return $jsonCodec->serialize( $obj );
-			},
-			'deserializer' => static function ( $data ) use ( $jsonCodec ) {
-				return $jsonCodec->deserialize( $data );
-			},
-		] ];
 	}
 }

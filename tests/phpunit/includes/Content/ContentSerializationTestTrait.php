@@ -3,26 +3,18 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Tests\Content;
 
+use MediaWiki\Json\JsonCodec;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Tests\SerializationTestTrait;
+use Wikimedia\Tests\JsonSerializationTestTrait;
 
 trait ContentSerializationTestTrait {
-	use SerializationTestTrait;
+	use JsonSerializationTestTrait;
 
 	public static function getSerializedDataPath(): string {
 		return __DIR__ . '/../../data/Content';
 	}
 
-	public static function getSupportedSerializationFormats(): array {
-		$jsonCodec = MediaWikiServices::getInstance()->getJsonCodec();
-		return [ [
-			'ext' => 'json',
-			'serializer' => static function ( $obj ) use ( $jsonCodec ) {
-				return $jsonCodec->serialize( $obj );
-			},
-			'deserializer' => static function ( $data ) use ( $jsonCodec ) {
-				return $jsonCodec->deserialize( $data );
-			},
-		] ];
+	protected static function getJsonCodec(): JsonCodec {
+		return MediaWikiServices::getInstance()->getJsonCodec();
 	}
 }

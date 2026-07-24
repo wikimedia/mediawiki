@@ -170,10 +170,6 @@ $wgAutoloadClasses += [
 		"$testDir/phpunit/includes/Parser/ParserCacheSerializationTestCases.php",
 	'MediaWiki\\Tests\\Parser\\TrackerWrapper' => "$testDir/phpunit/includes/Parser/TrackerWrapper.php",
 	'MediaWiki\\Tests\\Parser\\TrackingParserCache' => "$testDir/phpunit/includes/Parser/TrackingParserCache.php",
-	'Wikimedia\\Tests\\SerializationTestTrait' =>
-		"$testDir/phpunit/includes/libs/Serialization/SerializationTestTrait.php",
-	'Wikimedia\\Tests\\SerializationTestUtils' =>
-		"$testDir/phpunit/includes/libs/Serialization/SerializationTestUtils.php",
 
 	# tests/phpunit/includes/ResourceLoader
 	'MediaWiki\\Tests\\ResourceLoader\\ImageModuleTest' =>
@@ -228,8 +224,14 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/libs
 	'BagOStuffTestBase' => "$testDir/phpunit/includes/libs/ObjectCache/BagOStuffTestBase.php",
 	'Wikimedia\\Tests\\Diff\FakeDiffOp' => "$testDir/phpunit/unit/includes/libs/Diff/FakeDiffOp.php",
+	'Wikimedia\Tests\JsonSerializationTestTrait' =>
+		"$testDir/phpunit/includes/libs/Serialization/JsonSerializationTestTrait.php",
 	'Wikimedia\\Tests\\ParamValidator\\TypeDef\\TypeDefTestCase' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCase.php",
 	'Wikimedia\\Tests\\ParamValidator\\TypeDef\\TypeDefTestCaseTrait' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCaseTrait.php",
+	'Wikimedia\\Tests\\SerializationTestTrait' =>
+		"$testDir/phpunit/includes/libs/Serialization/SerializationTestTrait.php",
+	'Wikimedia\\Tests\\SerializationTestUtils' =>
+		"$testDir/phpunit/includes/libs/Serialization/SerializationTestUtils.php",
 
 	# tests/phpunit/includes/ParamValidator
 	'MediaWiki\\Tests\\ParamValidator\\TypeDef\\TypeDefIntegrationTestCase' => "$testDir/phpunit/includes/ParamValidator/TypeDef/TypeDefIntegrationTestCase.php",
