@@ -194,6 +194,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
@@ -202,3 +203,4 @@ class_alias( MergeHistoryPager::class, 'MergeHistoryPager' );
 
 /** @deprecated class alias since 1.46 */
 class_alias( MergeHistoryPager::class, 'MediaWiki\\Pager\\MergeHistoryPager' );
+// @codeCoverageIgnoreEnd

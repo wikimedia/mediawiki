@@ -388,5 +388,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialChangeContentModel::class, 'SpecialChangeContentModel' );
+// @codeCoverageIgnoreEnd

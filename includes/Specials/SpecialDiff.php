@@ -131,5 +131,7 @@ class SpecialDiff extends RedirectSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialDiff::class, 'SpecialDiff' );
+// @codeCoverageIgnoreEnd

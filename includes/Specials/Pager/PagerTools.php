@@ -60,6 +60,7 @@ class PagerTools {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
@@ -68,3 +69,4 @@ class_alias( PagerTools::class, 'PagerTools' );
 
 /** @deprecated class alias since 1.46 */
 class_alias( PagerTools::class, 'MediaWiki\\Pager\\PagerTools' );
+// @codeCoverageIgnoreEnd

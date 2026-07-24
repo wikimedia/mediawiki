@@ -42,5 +42,7 @@ class License {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.46 */
 class_alias( License::class, 'License' );
+// @codeCoverageIgnoreEnd

@@ -94,5 +94,7 @@ class SpecialListUsers extends IncludableSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialListUsers::class, 'SpecialListUsers' );
+// @codeCoverageIgnoreEnd

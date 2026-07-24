@@ -1694,8 +1694,10 @@ class SpecialUndelete extends SpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
  */
 class_alias( SpecialUndelete::class, 'SpecialUndelete' );
+// @codeCoverageIgnoreEnd

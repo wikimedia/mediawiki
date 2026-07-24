@@ -285,5 +285,7 @@ class SpecialLinkSearch extends QueryPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialLinkSearch::class, 'SpecialLinkSearch' );
+// @codeCoverageIgnoreEnd

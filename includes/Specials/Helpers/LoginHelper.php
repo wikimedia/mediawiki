@@ -201,5 +201,7 @@ class LoginHelper extends ContextSource {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.46 */
 class_alias( LoginHelper::class, 'LoginHelper' );
+// @codeCoverageIgnoreEnd

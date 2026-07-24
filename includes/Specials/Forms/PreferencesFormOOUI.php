@@ -414,5 +414,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.46 */
 class_alias( PreferencesFormOOUI::class, 'PreferencesFormOOUI' );
+// @codeCoverageIgnoreEnd

@@ -41,8 +41,10 @@ class SpecialRandomRootPage extends SpecialRandomPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
  */
 class_alias( SpecialRandomRootPage::class, 'SpecialRandomRootPage' );
+// @codeCoverageIgnoreEnd

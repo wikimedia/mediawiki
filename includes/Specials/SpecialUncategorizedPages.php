@@ -107,8 +107,10 @@ class SpecialUncategorizedPages extends PageQueryPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
  */
 class_alias( SpecialUncategorizedPages::class, 'SpecialUncategorizedPages' );
+// @codeCoverageIgnoreEnd

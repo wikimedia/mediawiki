@@ -27,5 +27,7 @@ class SpecialBlankpage extends UnlistedSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialBlankpage::class, 'SpecialBlankpage' );
+// @codeCoverageIgnoreEnd

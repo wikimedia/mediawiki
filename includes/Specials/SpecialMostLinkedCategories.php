@@ -106,8 +106,11 @@ class SpecialMostLinkedCategories extends QueryPage {
 		return 'highuse';
 	}
 }
+
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
  */
 class_alias( SpecialMostLinkedCategories::class, 'SpecialMostLinkedCategories' );
+// @codeCoverageIgnoreEnd

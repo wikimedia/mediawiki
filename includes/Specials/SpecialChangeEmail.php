@@ -228,5 +228,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialChangeEmail::class, 'SpecialChangeEmail' );
+// @codeCoverageIgnoreEnd

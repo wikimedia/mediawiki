@@ -199,5 +199,7 @@ HTML;
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialJavaScriptTest::class, 'SpecialJavaScriptTest' );
+// @codeCoverageIgnoreEnd

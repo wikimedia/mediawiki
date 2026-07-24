@@ -414,5 +414,7 @@ class SpecialListGroupRights extends SpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialListGroupRights::class, 'SpecialListGroupRights' );
+// @codeCoverageIgnoreEnd

@@ -134,5 +134,7 @@ class SpecialListDuplicatedFiles extends QueryPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialListDuplicatedFiles::class, 'SpecialListDuplicatedFiles' );
+// @codeCoverageIgnoreEnd

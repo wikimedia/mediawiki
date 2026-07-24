@@ -317,8 +317,10 @@ class SpecialPageLanguage extends FormSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
  */
 class_alias( SpecialPageLanguage::class, 'SpecialPageLanguage' );
+// @codeCoverageIgnoreEnd

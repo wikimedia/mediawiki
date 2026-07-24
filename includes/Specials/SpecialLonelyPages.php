@@ -114,5 +114,7 @@ class SpecialLonelyPages extends PageQueryPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialLonelyPages::class, 'SpecialLonelyPages' );
+// @codeCoverageIgnoreEnd

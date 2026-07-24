@@ -381,8 +381,10 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.40
  */
 class_alias( SpecialUserRights::class, 'UserrightsPage' );
+// @codeCoverageIgnoreEnd

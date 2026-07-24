@@ -16,5 +16,7 @@ use MediaWiki\Upload\Exception\UploadStashException;
 class SpecialUploadStashTooLargeException extends UploadStashException {
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.46 */
 class_alias( SpecialUploadStashTooLargeException::class, 'SpecialUploadStashTooLargeException' );
+// @codeCoverageIgnoreEnd

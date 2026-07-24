@@ -355,6 +355,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
@@ -363,3 +364,4 @@ class_alias( NewPagesPager::class, 'NewPagesPager' );
 
 /** @deprecated class alias since 1.46 */
 class_alias( NewPagesPager::class, 'MediaWiki\\Pager\\NewPagesPager' );
+// @codeCoverageIgnoreEnd

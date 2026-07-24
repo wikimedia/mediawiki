@@ -118,5 +118,7 @@ class SpecialLockdb extends FormSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialLockdb::class, 'SpecialLockdb' );
+// @codeCoverageIgnoreEnd

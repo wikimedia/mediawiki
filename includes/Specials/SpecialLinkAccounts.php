@@ -131,5 +131,7 @@ class SpecialLinkAccounts extends AuthManagerSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialLinkAccounts::class, 'SpecialLinkAccounts' );
+// @codeCoverageIgnoreEnd

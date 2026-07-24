@@ -349,5 +349,7 @@ class SpecialBlockList extends SpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialBlockList::class, 'SpecialBlockList' );
+// @codeCoverageIgnoreEnd

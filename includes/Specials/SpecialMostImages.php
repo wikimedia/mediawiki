@@ -71,8 +71,10 @@ class SpecialMostImages extends ImageQueryPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.40
  */
 class_alias( SpecialMostImages::class, 'MostimagesPage' );
+// @codeCoverageIgnoreEnd

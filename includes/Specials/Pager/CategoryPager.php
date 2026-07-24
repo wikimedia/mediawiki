@@ -117,6 +117,7 @@ class CategoryPager extends AlphabeticPager {
 
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
@@ -125,3 +126,4 @@ class_alias( CategoryPager::class, 'CategoryPager' );
 
 /** @deprecated class alias since 1.46 */
 class_alias( CategoryPager::class, 'MediaWiki\\Pager\\CategoryPager' );
+// @codeCoverageIgnoreEnd

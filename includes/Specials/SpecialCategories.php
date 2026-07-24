@@ -61,5 +61,7 @@ class SpecialCategories extends SpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialCategories::class, 'SpecialCategories' );
+// @codeCoverageIgnoreEnd

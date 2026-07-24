@@ -117,6 +117,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
@@ -125,3 +126,4 @@ class_alias( ProtectedTitlesPager::class, 'ProtectedTitlesPager' );
 
 /** @deprecated class alias since 1.46 */
 class_alias( ProtectedTitlesPager::class, 'MediaWiki\\Pager\\ProtectedTitlesPager' );
+// @codeCoverageIgnoreEnd

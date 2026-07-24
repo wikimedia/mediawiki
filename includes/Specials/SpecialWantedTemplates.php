@@ -72,8 +72,10 @@ class SpecialWantedTemplates extends WantedQueryPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
  */
 class_alias( SpecialWantedTemplates::class, 'SpecialWantedTemplates' );
+// @codeCoverageIgnoreEnd

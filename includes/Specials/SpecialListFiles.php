@@ -120,5 +120,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialListFiles::class, 'SpecialListFiles' );
+// @codeCoverageIgnoreEnd

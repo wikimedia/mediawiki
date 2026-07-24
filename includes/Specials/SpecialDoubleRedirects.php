@@ -243,5 +243,7 @@ class SpecialDoubleRedirects extends QueryPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialDoubleRedirects::class, 'SpecialDoubleRedirects' );
+// @codeCoverageIgnoreEnd

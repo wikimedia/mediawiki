@@ -232,8 +232,10 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
  */
 class_alias( SpecialNewFiles::class, 'SpecialNewFiles' );
+// @codeCoverageIgnoreEnd

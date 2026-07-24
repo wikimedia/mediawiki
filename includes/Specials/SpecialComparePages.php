@@ -158,5 +158,7 @@ class SpecialComparePages extends SpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialComparePages::class, 'SpecialComparePages' );
+// @codeCoverageIgnoreEnd

@@ -28,5 +28,7 @@ class EditWatchlistNormalHTMLForm extends OOUIHTMLForm {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.46 */
 class_alias( EditWatchlistNormalHTMLForm::class, 'EditWatchlistNormalHTMLForm' );
+// @codeCoverageIgnoreEnd

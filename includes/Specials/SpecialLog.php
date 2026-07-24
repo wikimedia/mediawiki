@@ -460,5 +460,7 @@ class SpecialLog extends SpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialLog::class, 'SpecialLog' );
+// @codeCoverageIgnoreEnd

@@ -222,5 +222,7 @@ class Licenses extends HTMLFormField {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.46 */
 class_alias( Licenses::class, 'Licenses' );
+// @codeCoverageIgnoreEnd

@@ -37,8 +37,10 @@ class SpecialRemoveCredentials extends SpecialChangeCredentials {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
  */
 class_alias( SpecialRemoveCredentials::class, 'SpecialRemoveCredentials' );
+// @codeCoverageIgnoreEnd

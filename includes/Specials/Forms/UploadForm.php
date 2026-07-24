@@ -476,5 +476,7 @@ class UploadForm extends HTMLForm {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.46 */
 class_alias( UploadForm::class, 'UploadForm' );
+// @codeCoverageIgnoreEnd

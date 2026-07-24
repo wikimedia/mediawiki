@@ -187,5 +187,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialCreateAccount::class, 'SpecialCreateAccount' );
+// @codeCoverageIgnoreEnd

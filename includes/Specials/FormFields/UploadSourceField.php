@@ -53,5 +53,7 @@ class UploadSourceField extends HTMLTextField {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.46 */
 class_alias( UploadSourceField::class, 'UploadSourceField' );
+// @codeCoverageIgnoreEnd

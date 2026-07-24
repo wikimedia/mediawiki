@@ -41,5 +41,7 @@ class SpecialLongPages extends SpecialShortPages {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialLongPages::class, 'SpecialLongPages' );
+// @codeCoverageIgnoreEnd

@@ -140,5 +140,7 @@ class SpecialContributions extends ContributionsSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialContributions::class, 'SpecialContributions' );
+// @codeCoverageIgnoreEnd

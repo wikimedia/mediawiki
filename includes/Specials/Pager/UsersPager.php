@@ -533,6 +533,7 @@ class UsersPager extends AlphabeticPager {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
@@ -541,3 +542,4 @@ class_alias( UsersPager::class, 'UsersPager' );
 
 /** @deprecated class alias since 1.46 */
 class_alias( UsersPager::class, 'MediaWiki\\Pager\\UsersPager' );
+// @codeCoverageIgnoreEnd

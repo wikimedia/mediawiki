@@ -169,8 +169,10 @@ class SpecialWantedFiles extends WantedQueryPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.40
  */
 class_alias( SpecialWantedFiles::class, 'WantedFilesPage' );
+// @codeCoverageIgnoreEnd

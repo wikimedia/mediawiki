@@ -150,5 +150,7 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialDeletedContributions::class, 'SpecialDeletedContributions' );
+// @codeCoverageIgnoreEnd

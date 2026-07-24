@@ -115,8 +115,10 @@ class SpecialUnusedTemplates extends QueryPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
  */
 class_alias( SpecialUnusedTemplates::class, 'SpecialUnusedTemplates' );
+// @codeCoverageIgnoreEnd

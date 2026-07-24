@@ -105,5 +105,7 @@ class SpecialDeadendPages extends PageQueryPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialDeadendPages::class, 'SpecialDeadendPages' );
+// @codeCoverageIgnoreEnd

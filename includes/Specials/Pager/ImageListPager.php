@@ -786,6 +786,7 @@ class ImageListPager extends TablePager {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
@@ -794,3 +795,4 @@ class_alias( ImageListPager::class, 'ImageListPager' );
 
 /** @deprecated class alias since 1.46 */
 class_alias( ImageListPager::class, 'MediaWiki\\Pager\\ImageListPager' );
+// @codeCoverageIgnoreEnd

@@ -165,5 +165,7 @@ class SpecialAutoblockList extends SpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialAutoblockList::class, 'SpecialAutoblockList' );
+// @codeCoverageIgnoreEnd

@@ -153,5 +153,7 @@ class SpecialAllMessages extends SpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialAllMessages::class, 'SpecialAllMessages' );
+// @codeCoverageIgnoreEnd

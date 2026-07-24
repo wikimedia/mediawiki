@@ -905,8 +905,10 @@ class SpecialSearch extends SpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
  */
 class_alias( SpecialSearch::class, 'SpecialSearch' );
+// @codeCoverageIgnoreEnd

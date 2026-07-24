@@ -778,5 +778,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialEditWatchlist::class, 'SpecialEditWatchlist' );
+// @codeCoverageIgnoreEnd

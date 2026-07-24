@@ -446,5 +446,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialBotPasswords::class, 'SpecialBotPasswords' );
+// @codeCoverageIgnoreEnd

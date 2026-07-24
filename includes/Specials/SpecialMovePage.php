@@ -1305,8 +1305,10 @@ class SpecialMovePage extends UnlistedSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.40
  */
 class_alias( SpecialMovePage::class, 'MovePageForm' );
+// @codeCoverageIgnoreEnd

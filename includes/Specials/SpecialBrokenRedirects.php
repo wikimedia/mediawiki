@@ -254,5 +254,7 @@ class SpecialBrokenRedirects extends QueryPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialBrokenRedirects::class, 'SpecialBrokenRedirects' );
+// @codeCoverageIgnoreEnd

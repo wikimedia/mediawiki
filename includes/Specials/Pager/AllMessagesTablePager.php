@@ -394,6 +394,7 @@ class AllMessagesTablePager extends TablePager {
 
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
@@ -402,3 +403,4 @@ class_alias( AllMessagesTablePager::class, 'AllMessagesTablePager' );
 
 /** @deprecated class alias since 1.46 */
 class_alias( AllMessagesTablePager::class, 'MediaWiki\\Pager\\AllMessagesTablePager' );
+// @codeCoverageIgnoreEnd

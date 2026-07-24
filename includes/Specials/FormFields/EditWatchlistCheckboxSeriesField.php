@@ -27,5 +27,7 @@ class EditWatchlistCheckboxSeriesField extends HTMLMultiSelectField {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.46 */
 class_alias( EditWatchlistCheckboxSeriesField::class, 'EditWatchlistCheckboxSeriesField' );
+// @codeCoverageIgnoreEnd

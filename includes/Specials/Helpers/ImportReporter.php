@@ -189,5 +189,7 @@ class ImportReporter extends ContextSource {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.46 */
 class_alias( ImportReporter::class, 'ImportReporter' );
+// @codeCoverageIgnoreEnd

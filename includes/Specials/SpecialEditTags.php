@@ -497,5 +497,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialEditTags::class, 'SpecialEditTags' );
+// @codeCoverageIgnoreEnd
