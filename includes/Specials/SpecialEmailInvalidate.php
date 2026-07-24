@@ -33,7 +33,10 @@ class SpecialEmailInvalidate extends UnlistedSpecialPage {
 		return 'editmyprivateinfo';
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	public function doesWrites() {
 		return true;
 	}
