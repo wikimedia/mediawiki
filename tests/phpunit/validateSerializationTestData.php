@@ -1,26 +1,48 @@
 <?php
 
-// Adapted from:
-// * tests/phpunit/unit/includes/libs/Message/validateMessageValueTestData.php
-// * tests/phpunit/includes/parser/validateParserCacheSerializationTestData.php
+namespace MediaWiki\Tests\Content;
 
 use MediaWiki\Logger\ConsoleLogger;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\Tests\Language\MessageTest;
 use Wikimedia\Tests\SerializationTestTrait;
 use Wikimedia\Tests\SerializationTestUtils;
 
 define( 'MW_AUTOLOAD_TEST_CLASSES', true );
 define( 'MW_PHPUNIT_TEST', true );
 
-require_once __DIR__ . '/../../../../maintenance/Maintenance.php';
+require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
 // phpcs:disable MediaWiki.Files.ClassMatchesFilename.WrongCase
-class ValidateMessageTestData extends Maintenance {
+class ValidateSerializationTestData extends Maintenance {
+
+	/**
+	 * Using fully-qualified names allows these tests to be thematically grouped
+	 * while also being alphabetically sorted.
+	 *
+	 * TODO: Add an attribute so that extensions can add to this array.
+	 *
+	 * @phpcs-require-sorted-array
+	 */
+	private const CORE_TEST_CLASSES = [
+		\MediaWiki\Tests\Content\CssContentTest::class,
+		\MediaWiki\Tests\Content\JavaScriptContentTest::class,
+		\MediaWiki\Tests\Content\WikitextContentTest::class,
+		\MediaWiki\Tests\Integration\Edit\SimpleParsoidOutputStashSerializationTest::class,
+		\MediaWiki\Tests\Language\MessageTest::class,
+		\MediaWiki\Tests\Parser\CacheTimeTest::class,
+		\MediaWiki\Tests\Parser\ParserOutputTest::class,
+		\MediaWiki\Tests\Storage\PageEditStashContentsTest::class,
+		\Wikimedia\Tests\Message\DataMessageValueTest::class,
+		\Wikimedia\Tests\Message\ListParamTest::class,
+		\Wikimedia\Tests\Message\MessageValueTest::class,
+		\Wikimedia\Tests\Message\ScalarParamTest::class,
+	];
 
 	public function __construct() {
 		parent::__construct();
 
+		$this->addDescription(
+			'Validate or update data files for tests that use SerializationTestTrait' );
 		$this->addArg(
 			'path',
 			'Path of serialization files.',
@@ -32,24 +54,50 @@ class ValidateMessageTestData extends Maintenance {
 			. 'Also determines which files may be created or updated if '
 			. 'the respective options are set.'
 			. 'Unserialization is always checked against all versions. ', false, true );
+		$this->addOption( 'filter', 'Only process tests matching a regex', withArg: true );
 	}
 
+	/** @inheritDoc */
 	public function execute() {
-		/** @var SerializationTestTrait[] $tests */
-		$tests = [
-			MessageTest::class,
-		];
-		foreach ( $tests as $testClass ) {
+		$ok = true;
+		$numDone = 0;
+		foreach ( self::CORE_TEST_CLASSES as $testClass ) {
+			if ( !$this->matchesFilter( $testClass ) ) {
+				continue;
+			}
+			/** @var SerializationTestTrait $testClass */
 			$objClass = $testClass::getClassToTest();
-			$this->validateSerialization(
+			$ok = $this->validateSerialization(
 				$objClass,
 				$testClass::getSerializedDataPath(),
 				$testClass::getSupportedSerializationFormats(),
 				array_map( static function ( $testCase ) {
 					return $testCase['instance'];
 				}, $testClass::getTestInstancesAndAssertions() )
+			) && $ok;
+			$numDone++;
+		}
+		if ( !$numDone ) {
+			$this->output( "WARNING: No tests matched the filter\n" );
+		}
+		if ( !$ok ) {
+			$this->output( "\n\n" );
+			$this->fatalError( "Serialization data mismatch! "
+				. "If this was expected, rerun the script with the --update option "
+				. "to update the expected serialization. WARNING: make sure "
+				. "a forward compatible version of the code is live before deploying a "
+				. "serialization change!\n"
 			);
 		}
+		return $ok;
+	}
+
+	private function matchesFilter( string $className ): bool {
+		$filter = $this->getOption( 'filter' );
+		if ( $filter === null ) {
+			return true;
+		}
+		return (bool)preg_match( '{' . $filter . '}', $className );
 	}
 
 	/**
@@ -61,13 +109,14 @@ class ValidateMessageTestData extends Maintenance {
 	 * @param string $defaultDirectory
 	 * @param array $supportedFormats
 	 * @param array $testInstances
+	 * @return bool
 	 */
 	public function validateSerialization(
 		string $className,
 		string $defaultDirectory,
 		array $supportedFormats,
 		array $testInstances
-	) {
+	): bool {
 		$ok = true;
 		foreach ( $supportedFormats as $serializationFormat ) {
 			$serializationUtils = new SerializationTestUtils(
@@ -84,15 +133,7 @@ class ValidateMessageTestData extends Maintenance {
 				$ok = $this->validateSerializationData( $currentSerialized, $expected ) && $ok;
 			}
 		}
-		if ( !$ok ) {
-			$this->output( "\n\n" );
-			$this->fatalError( "Serialization data mismatch! "
-				. "If this was expected, rerun the script with the --update option "
-				. "to update the expected serialization. WARNING: make sure "
-				. "a forward compatible version of the code is live before deploying a "
-				. "serialization change!\n"
-			);
-		}
+		return $ok;
 	}
 
 	private function validateSerializationData( string $data, \stdClass $fileInfo ): bool {
@@ -122,4 +163,4 @@ class ValidateMessageTestData extends Maintenance {
 	}
 }
 
-return ValidateMessageTestData::class;
+return ValidateSerializationTestData::class;

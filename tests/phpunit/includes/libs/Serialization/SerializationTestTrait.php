@@ -8,6 +8,10 @@ namespace Wikimedia\Tests;
 use Generator;
 use ReflectionClass;
 
+/**
+ * To use this trait, use validateSerializationTestData.php to generate test data.
+ * Add test classes to ValidateSerializationTestData::CORE_TEST_CLASSES.
+ */
 trait SerializationTestTrait {
 
 	/**

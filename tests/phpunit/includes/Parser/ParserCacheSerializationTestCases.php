@@ -36,7 +36,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * failure of a deserialization test most likely indicates an error in the code.
  * However, since the serialization format may change, thus if proper compatibility
  * logic was added but a serialization test is still failing, you might want to
- * update stored serialized data using validateParserCacheSerializationTestData.php
+ * update stored serialized data using the validateSerializationTestData.php
  * script. The same script should be run when more acceptance tests are added
  * to generate and save serialized object, which would be used for acceptance
  * deserialization tests.
@@ -46,7 +46,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  *
  * @see SerializationTestTrait
  * @see SerializationTestUtils
- * @see ValidateParserCacheSerializationTestData
+ * @see ValidateSerializationTestData
  */
 abstract class ParserCacheSerializationTestCases {
 
