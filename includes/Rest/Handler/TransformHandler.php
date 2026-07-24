@@ -163,42 +163,21 @@ class TransformHandler extends ParsoidHandler {
 				// a 400 still gets returned so request will error out
 				ParamValidator::PARAM_REQUIRED => false,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-contenttype' ),
+				Handler::PARAM_EXAMPLE => 'application/json',
 			],
 			'Accept-Language' => [
 				self::PARAM_SOURCE => 'header',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-acceptlanguage' ),
-			],
-			'Cookie' => [
-				self::PARAM_SOURCE => 'header',
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => false,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-cookie' ),
-			],
-			'Authorization' => [
-				self::PARAM_SOURCE => 'header',
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => false,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-authorization' ),
-			],
-			'X-Request-Id' => [
-				self::PARAM_SOURCE => 'header',
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => false,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-xrequestid' ),
-			],
-			'User-Agent' => [
-				self::PARAM_SOURCE => 'header',
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => false,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-useragent' ),
+				Handler::PARAM_EXAMPLE => 'en',
 			],
 			'If-Match' => [
 				self::PARAM_SOURCE => 'header',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-requestheader-desc-ifmatch' ),
+				Handler::PARAM_EXAMPLE => '"abc123"',
 			]
 		];
 	}
