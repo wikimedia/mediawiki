@@ -1,6 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
+			"Albinfo",
+			"Bild-Sprache",
 			"Davent",
 			"Gion-andri"
 		]
@@ -13,7 +15,7 @@
 	"june": "zercladur",
 	"july": "fanadur",
 	"august": "avust",
-	"september": "Settember",
+	"september": "settember",
 	"october": "october",
 	"november": "november",
 	"december": "december",
@@ -48,7 +50,7 @@
 	"friday": "Venderdi",
 	"saturday": "sonda",
 	"sunday": "Dumengia",
-	"mon": "Gli",
+	"mon": "gli",
 	"tue": "ma",
 	"wed": "mes",
 	"thu": "gie",

@@ -924,6 +924,7 @@
 	"apihelp-query+info-paramvalue-prop-protection": "List opp beskyttelsesnivået til hver side.",
 	"apihelp-query+info-paramvalue-prop-talkid": "Side-ID-en til diskusjonssidene for hver ikke-diskusjonsside.",
 	"apihelp-query+info-paramvalue-prop-watched": "List opp overvåkningsstatusen til hver side.",
+	"apihelp-query+info-paramvalue-prop-watchlistlabels": "Opplist overvåkningsetikettene for hver side.",
 	"apihelp-query+info-paramvalue-prop-watchers": "Antall overvåkere, hvis det tillates.",
 	"apihelp-query+info-paramvalue-prop-visitingwatchers": "Antall overvåkende av hver side som har besøkt de siste endringene på siden, hvis det tillates.",
 	"apihelp-query+info-paramvalue-prop-notificationtimestamp": "Overvåkningsvarseltidsstempelet til hver side.",

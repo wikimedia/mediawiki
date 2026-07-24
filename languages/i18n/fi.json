@@ -396,6 +396,7 @@
 	"userlogin-yourname-reauth": "Kirjautunut sisään käyttäjänimellä <strong>$1</strong>",
 	"userlogin-yourname-ph": "Kirjoita käyttäjänimi",
 	"createacct-another-username-ph": "Lisää käyttäjänimi",
+	"createacct-username-policy-popover-title": "Käyttäjänimikäytäntö",
 	"userlogin-yourpassword": "Salasana",
 	"userlogin-yourpassword-ph": "Kirjoita salasana",
 	"createacct-yourpassword-ph": "Kirjoita salasana",

@@ -387,6 +387,7 @@
 	"userlogin-yourname-reauth": "Έχετε συνδεθεί ως <strong>$1</strong>",
 	"userlogin-yourname-ph": "Εισαγάγετε το όνομα χρήστη σας",
 	"createacct-another-username-ph": "Εισαγάγετε το όνομα χρήστη",
+	"createacct-username-policy-popover-title": "Πολιτική ονόματος χρήστη",
 	"userlogin-yourpassword": "Συνθηματικό",
 	"userlogin-yourpassword-ph": "Εισαγάγετε το συνθηματικό σας",
 	"createacct-yourpassword-ph": "Εισαγάγετε συνθηματικό",

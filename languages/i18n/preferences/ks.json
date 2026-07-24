@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Ayaat123"
+		]
 	},
 	"preferences": "ترجِیحات",
 	"searchprefs": "تَرجیحات مَنٛز کٔرِو تَلاش",
@@ -32,7 +34,7 @@
 	"emailconfirmlink": "اِی میل ہٕنٛز تَصدیٖق کٔرِو",
 	"prefs-user-pages": "رُکُن صَفہٕ",
 	"prefs-description-rendering": "بدلٲوِو ژَم، مِیٖنٛژ، تہٕ پرنٕکی وَتہٕ.",
-	"skin-preview": "نُمٲئش",
+	"skin-preview": "نُمٲیِش",
 	"prefs-custom-css": "شَخصی سی ایس ایس",
 	"prefs-custom-js": "شخصی جاوا اسکرپٹ",
 	"prefs-dateformat": "ٹٲریٖخ طَرٕز",

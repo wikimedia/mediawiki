@@ -7,6 +7,7 @@
 			"Fitoschido",
 			"Fúlvio",
 			"Juliana Reboucas de Oliveira",
+			"NenhumaFênix",
 			"Rffontenelle",
 			"Stanglavine"
 		]
@@ -34,16 +35,16 @@
 	"botpasswords-insert-failed": "Falha ao adicionar o nome de robô \"$1\". Ele já foi adicionado?",
 	"botpasswords-update-failed": "Falha ao atualizar o nome do robô \"$1\". Elo já foi apagado?",
 	"botpasswords-created-title": "Senha de robô criada",
-	"botpasswords-created-body": "A senha de robo para o robô de nome \"$1\" do {{GENDER:$2|usuário}} \"$2\" foi criada.",
+	"botpasswords-created-body": "A senha de robo para o robô de nome \"$1\" {{GENDER:$2|do usuário|da usuária|de usuário(a)}} \"$2\" foi criada.",
 	"botpasswords-updated-title": "Senha de robô atualizada",
-	"botpasswords-updated-body": "A senha de robô para o robô de nome \"$1\" do {{GENDER:$2|usuário}} \"$2\" foi atualizada.",
+	"botpasswords-updated-body": "A senha de robô para o robô de nome \"$1\" {{GENDER:$2|do usuário|da usuária|de usuário(a)}} \"$2\" foi atualizada.",
 	"botpasswords-deleted-title": "Senha de bot apagada",
-	"botpasswords-deleted-body": "A senha de robô para o robô de nome \"$1\" do {{GENDER:$2|usuário \"$2\"}} foi apagada.",
+	"botpasswords-deleted-body": "A senha de robô para o robô de nome \"$1\" {{GENDER:$2|do usuário \"$2\"|da usuária \"$2\"|de usuário(a) \"$2\"}} foi apagada.",
 	"botpasswords-newpassword": "A nova senha para se autenticar com <strong>$1</strong> é <strong>$2</strong>. <em>Por favor, guarde isto para referência futura.</em> <br> (para bots antigos que requisitam que o nome da conta seja o mesmo que o eventual nome de usuário, você também pode usar <strong>$3</strong> como nome de usuário e <strong>$4</strong> como senha.)",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider não está disponível.",
 	"botpasswords-restriction-failed": "Restrições de senha de robô evitam esta autenticação.",
 	"botpasswords-invalid-name": "O nome de usuário especificado não contém o separador de senha de robô (\"$1\").",
 	"botpasswords-not-exist": "O usuário \"$1\" não possui uma senha de robô \"$2\".",
-	"botpasswords-needs-reset": "A senha do robô de nome \"$2\" {{GENDER:$1|do usuário|da usuária}} \"$1\" deve ser redefinida.",
+	"botpasswords-needs-reset": "A senha do robô de nome \"$2\" {{GENDER:$1|do usuário|da usuária|de usuário(a)}} \"$1\" deve ser redefinida.",
 	"botpasswords-locked": "Você não pode entrar com uma senha de bot, pois sua conta está bloqueada."
 }

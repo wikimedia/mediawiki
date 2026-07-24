@@ -375,6 +375,7 @@
 	"userlogin-yourname-reauth": "{{GENDER:$1|Přihlášen|Přihlášena|Přihlášen(a)}} jako <strong>$1</strong>",
 	"userlogin-yourname-ph": "Zadejte své uživatelské jméno",
 	"createacct-another-username-ph": "Zadejte uživatelské jméno",
+	"createacct-username-policy-popover-title": "Pravidla pro uživatelská jména",
 	"userlogin-yourpassword": "Heslo",
 	"userlogin-yourpassword-ph": "Zadejte své heslo",
 	"createacct-yourpassword-ph": "Zadejte heslo",

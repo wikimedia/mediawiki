@@ -573,6 +573,7 @@
 	"userlogin-yourname-reauth": "{{GENDER:$1|Conectado|Conectada|Conectado/a}} como <strong>$1</strong>",
 	"userlogin-yourname-ph": "Escribe tu nombre de usuario",
 	"createacct-another-username-ph": "Escribe el nombre de usuario",
+	"createacct-username-policy-popover-title": "Política de nombres de usuario",
 	"userlogin-yourpassword": "Contraseña",
 	"userlogin-yourpassword-ph": "Escribe tu contraseña",
 	"createacct-yourpassword-ph": "Escribe una contraseña",

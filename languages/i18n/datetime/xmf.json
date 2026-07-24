@@ -134,7 +134,7 @@
 	"duration-years": "$1 {{PLURAL:$1|წანა}}",
 	"duration-months": "$1 {{PLURAL:$1|თუთაშ}} კინოხი",
 	"duration-weeks": "$1 {{PLURAL:$1|მარა}}",
-	"duration-days": "$1 {{PLURAL:$1|დღა|დღა}}",
+	"duration-days": "$1 {{PLURAL:$1|დღა}}",
 	"duration-hours": "$1 {{PLURAL:$1|სათი}}",
 	"duration-minutes": "$1 {{PLURAL:$1|წუთი|წუთი}}",
 	"duration-seconds": "$1 {{PLURAL:$1|წამი|წამი}}",

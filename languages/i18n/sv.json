@@ -409,6 +409,7 @@
 	"userlogin-yourname-reauth": "Inloggad som <strong>$1</strong>",
 	"userlogin-yourname-ph": "Ange ditt användarnamn",
 	"createacct-another-username-ph": "Skriv in användarnamnet",
+	"createacct-username-policy-popover-title": "Användarnamnspolicy",
 	"userlogin-yourpassword": "Lösenord",
 	"userlogin-yourpassword-ph": "Ange ditt lösenord",
 	"createacct-yourpassword-ph": "Ange ett lösenord",

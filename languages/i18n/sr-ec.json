@@ -347,6 +347,7 @@
 	"userlogin-yourname": "Корисничко име",
 	"userlogin-yourname-ph": "Унесите корисничко име",
 	"createacct-another-username-ph": "Унесите корисничко име",
+	"createacct-username-policy-popover-title": "Правила за корисничка имена",
 	"userlogin-yourpassword": "Лозинка",
 	"userlogin-yourpassword-ph": "Унесите лозинку",
 	"createacct-yourpassword-ph": "Унесите лозинку",

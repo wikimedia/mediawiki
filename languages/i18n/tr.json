@@ -432,6 +432,7 @@
 	"userlogin-yourname": "Kullanıcı adı",
 	"userlogin-yourname-ph": "Kullanıcı adınızı girin",
 	"createacct-another-username-ph": "Kullanıcı adı girin",
+	"createacct-username-policy-popover-title": "Kullanıcı adı politikası",
 	"userlogin-yourpassword": "Parola",
 	"userlogin-yourpassword-ph": "Parolanızı girin",
 	"createacct-yourpassword-ph": "Bir parola girin",

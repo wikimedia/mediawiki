@@ -418,6 +418,7 @@
 	"userlogin-yourname-reauth": "<strong>$1</strong>님으로 로그인되었습니다",
 	"userlogin-yourname-ph": "사용자 이름을 입력하세요",
 	"createacct-another-username-ph": "사용자 이름을 입력하세요",
+	"createacct-username-policy-popover-title": "사용자 이름 정책",
 	"userlogin-yourpassword": "비밀번호",
 	"userlogin-yourpassword-ph": "비밀번호를 입력하세요",
 	"createacct-yourpassword-ph": "비밀번호를 입력하세요",
