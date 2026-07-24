@@ -49,13 +49,20 @@ class SpecialCategories extends SpecialPage {
 				$this->msg( 'categoriespagetext', $cap->getNumRows() )->parseAsBlock() .
 				$cap->getStartForm( $from ) .
 				$cap->getNavigationBar() .
-				'<ul>' . $cap->getBody() . '</ul>' .
+				Html::rawElement(
+					'ul',
+					[ 'class' => 'mw-special-categories-list' ],
+					$cap->getBody()
+				) .
 				$cap->getNavigationBar() .
 				Html::closeElement( 'div' )
 		);
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	protected function getGroupName() {
 		return 'pages';
 	}
