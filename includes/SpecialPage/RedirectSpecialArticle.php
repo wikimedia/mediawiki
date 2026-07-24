@@ -128,5 +128,7 @@ abstract class RedirectSpecialArticle extends RedirectSpecialPage {
 
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( RedirectSpecialArticle::class, 'RedirectSpecialArticle' );
+// @codeCoverageIgnoreEnd

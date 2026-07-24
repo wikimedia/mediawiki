@@ -1237,5 +1237,7 @@ abstract class SpecialPage implements MessageLocalizer {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialPage::class, 'SpecialPage' );
+// @codeCoverageIgnoreEnd

@@ -1680,5 +1680,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( ChangesListSpecialPage::class, 'ChangesListSpecialPage' );
+// @codeCoverageIgnoreEnd

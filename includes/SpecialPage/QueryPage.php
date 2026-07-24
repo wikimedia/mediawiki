@@ -1062,5 +1062,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( QueryPage::class, 'QueryPage' );
+// @codeCoverageIgnoreEnd

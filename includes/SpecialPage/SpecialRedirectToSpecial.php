@@ -56,5 +56,7 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialRedirectToSpecial::class, 'SpecialRedirectToSpecial' );
+// @codeCoverageIgnoreEnd

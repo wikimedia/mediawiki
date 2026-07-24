@@ -30,11 +30,16 @@ abstract class IncludableSpecialPage extends SpecialPage {
 		$this->mIncludable = true;
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	public function isIncludable() {
 		return true;
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( IncludableSpecialPage::class, 'IncludableSpecialPage' );
+// @codeCoverageIgnoreEnd

@@ -1498,5 +1498,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( LoginSignupSpecialPage::class, 'LoginSignupSpecialPage' );
+// @codeCoverageIgnoreEnd

@@ -290,5 +290,7 @@ abstract class FormSpecialPage extends SpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( FormSpecialPage::class, 'FormSpecialPage' );
+// @codeCoverageIgnoreEnd

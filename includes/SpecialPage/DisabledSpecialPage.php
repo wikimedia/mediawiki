@@ -63,5 +63,7 @@ class DisabledSpecialPage extends UnlistedSpecialPage {
 
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( DisabledSpecialPage::class, 'DisabledSpecialPage' );
+// @codeCoverageIgnoreEnd

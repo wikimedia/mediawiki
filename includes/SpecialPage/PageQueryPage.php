@@ -91,5 +91,7 @@ abstract class PageQueryPage extends QueryPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( PageQueryPage::class, 'PageQueryPage' );
+// @codeCoverageIgnoreEnd

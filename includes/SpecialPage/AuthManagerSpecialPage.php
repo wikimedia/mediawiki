@@ -930,5 +930,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( AuthManagerSpecialPage::class, 'AuthManagerSpecialPage' );
+// @codeCoverageIgnoreEnd

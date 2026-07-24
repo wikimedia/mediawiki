@@ -36,11 +36,16 @@ abstract class UnlistedSpecialPage extends SpecialPage {
 		parent::__construct( ...$parentParams );
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	public function isListed() {
 		return false;
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( UnlistedSpecialPage::class, 'UnlistedSpecialPage' );
+// @codeCoverageIgnoreEnd

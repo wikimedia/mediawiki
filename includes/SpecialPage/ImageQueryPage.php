@@ -88,5 +88,7 @@ abstract class ImageQueryPage extends QueryPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( ImageQueryPage::class, 'ImageQueryPage' );
+// @codeCoverageIgnoreEnd
