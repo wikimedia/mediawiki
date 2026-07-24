@@ -44,7 +44,10 @@ class SpecialApiSandbox extends SpecialPage {
 		);
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	protected function getGroupName() {
 		return 'wiki';
 	}
