@@ -120,6 +120,9 @@ For notes on 1.46.x and older releases, see HISTORY.
   the optional filter arguments, so that rights-restricted change tags can be
   shown to and filtered on by users who are allowed to view them.
 * (T432457) The UnifiedDiffFormatter class is now stable to extend.
+* (T408666) A new hook LinkTargetIsAlwaysKnownBatch allows overriding whether
+  links are always known for a batch of link targets at once. It deprecates
+  the TitleIsAlwaysKnown hook, which should no longer be used.
 * …
 
 === External library changes in 1.47 ===
@@ -523,6 +526,8 @@ because of Phabricator reports.
     instead
   - getChangeTagList: use ChangeTagsFormatter::getChangeTagList instead
   - buildTagFilterSelector: use ChangeTagsFormatter::buildTagFilter instead
+* (T408666) The TitleIsAlwaysKnown hook has been deprecated. Use the
+  LinkTargetIsAlwaysKnownBatch hook instead.
 * …
 
 === Other changes in 1.47 ===
