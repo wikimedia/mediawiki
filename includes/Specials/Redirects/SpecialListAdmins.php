@@ -23,5 +23,7 @@ class SpecialListAdmins extends SpecialRedirectToSpecial {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialListAdmins::class, 'SpecialListAdmins' );
+// @codeCoverageIgnoreEnd

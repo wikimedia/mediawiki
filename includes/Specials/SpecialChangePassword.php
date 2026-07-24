@@ -22,5 +22,7 @@ class SpecialChangePassword extends SpecialRedirectToSpecial {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /** @deprecated class alias since 1.41 */
 class_alias( SpecialChangePassword::class, 'SpecialChangePassword' );
+// @codeCoverageIgnoreEnd
