@@ -48,6 +48,7 @@ class SpecialMycontributions extends RedirectSpecialPage {
 	/**
 	 * Target identifies a specific User. See T109724.
 	 *
+	 * @codeCoverageIgnore Merely declarative
 	 * @since 1.27
 	 * @return bool
 	 */
@@ -55,8 +56,11 @@ class SpecialMycontributions extends RedirectSpecialPage {
 		return true;
 	}
 }
+
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
  */
 class_alias( SpecialMycontributions::class, 'SpecialMycontributions' );
+// @codeCoverageIgnoreEnd

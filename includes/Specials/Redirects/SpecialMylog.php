@@ -51,6 +51,7 @@ class SpecialMylog extends RedirectSpecialPage {
 	/**
 	 * Target identifies a specific User. See T109724.
 	 *
+	 * @codeCoverageIgnore Merely declarative
 	 * @return bool
 	 */
 	public function personallyIdentifiableTarget() {
@@ -70,8 +71,10 @@ class SpecialMylog extends RedirectSpecialPage {
 	}
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
  */
 class_alias( SpecialMylog::class, 'SpecialMylog' );
+// @codeCoverageIgnoreEnd

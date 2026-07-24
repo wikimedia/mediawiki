@@ -82,7 +82,10 @@ class SpecialTalkPage extends FormSpecialPage {
 		return false;
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	public function isListed() {
 		return false;
 	}

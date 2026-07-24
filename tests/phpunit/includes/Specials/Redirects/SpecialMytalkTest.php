@@ -47,21 +47,25 @@ class SpecialMytalkTest extends SpecialPageTestBase {
 		);
 	}
 
-	private function testRedirect( Authority $user ) {
+	private function testRedirect( Authority $user, string $subpage = '' ) {
 		[ , $response ] = $this->executeSpecialPage(
-			'',
+			$subpage,
 			null,
 			null,
 			$user
 		);
 		$this->assertStringContainsString(
-			'User_talk:' . $user->getUser()->getName(),
+			'User_talk:' . $user->getUser()->getName() . ( $subpage ? '/' . $subpage : '' ),
 			$response->getHeader( 'LOCATION' )
 		);
 	}
 
 	public function testLoggedIn() {
 		$this->testRedirect( $this->mockRegisteredNullAuthority() );
+	}
+
+	public function testLoggedInWithSubpage() {
+		$this->testRedirect( $this->mockRegisteredNullAuthority(), 'Testing' );
 	}
 
 	public function testTempAccount() {
@@ -258,5 +262,14 @@ class SpecialMytalkTest extends SpecialPageTestBase {
 				],
 			],
 		];
+	}
+
+	public function testGetRedirectForLoggedOutUser(): void {
+		$this->enableAutoCreateTempUser();
+
+		$context = RequestContext::getMain();
+		$context->setUser( $this->getServiceContainer()->getUserFactory()->newAnonymous( '1.2.3.4' ) );
+
+		$this->assertFalse( $this->newSpecialPage()->getRedirect( '' ) );
 	}
 }

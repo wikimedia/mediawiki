@@ -206,6 +206,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/Specials/Redirects
 	'MediaWiki\\Tests\\Integration\\Specials\\Redirects\\SpecialRedirectToSpecialTestBase' => "$testDir/phpunit/integration/includes/Specials/Redirects/SpecialRedirectToSpecialTestBase.php",
+	'MediaWiki\\Tests\\Integration\\Specials\\Redirects\\RedirectSpecialPageThatRequiresLoginTestBase' => "$testDir/phpunit/integration/includes/Specials/Redirects/RedirectSpecialPageThatRequiresLoginTestBase.php",
 
 	# tests/phpunit/includes/Storage
 	'MediaWiki\\Tests\\Storage\\PageEditStashContentsTest' => "$testDir/phpunit/includes/Storage/PageEditStashContentsTest.php",
