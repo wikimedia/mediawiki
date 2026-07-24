@@ -72,6 +72,7 @@ class SpecialAutoblockList extends SpecialPage {
 			->setFormIdentifier( 'blocklist' )
 			->setWrapperLegendMsg( 'autoblocklist-legend' )
 			->setSubmitTextMsg( 'autoblocklist-submit' )
+			->setId( 'mw-autoblock-list-form' )
 			->prepareForm()
 			->displayForm( false );
 
@@ -159,7 +160,10 @@ class SpecialAutoblockList extends SpecialPage {
 		}
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	protected function getGroupName() {
 		return 'users';
 	}

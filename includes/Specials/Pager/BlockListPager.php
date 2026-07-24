@@ -53,6 +53,9 @@ class BlockListPager extends TablePager {
 	/** @var string[] Cache of messages to avoid them being recreated for every row of the pager. */
 	private array $messages = [];
 
+	/** @var string[] Cache of messages used for the column headers to avoid them being parsed repeatedly. */
+	private array $fieldNames = [];
+
 	public function __construct(
 		IContextSource $context,
 		private readonly BlockActionInfo $blockActionInfo,
@@ -77,10 +80,8 @@ class BlockListPager extends TablePager {
 
 	/** @inheritDoc */
 	protected function getFieldNames() {
-		static $headers = null;
-
-		if ( $headers === null ) {
-			$headers = [
+		if ( $this->fieldNames === [] ) {
+			$this->fieldNames = [
 				'bl_timestamp' => 'blocklist-timestamp',
 				'target' => 'blocklist-target',
 				'bl_expiry' => 'blocklist-expiry',
@@ -88,12 +89,12 @@ class BlockListPager extends TablePager {
 				'params' => 'blocklist-params',
 				'bl_reason' => 'blocklist-reason',
 			];
-			foreach ( $headers as $key => $val ) {
-				$headers[$key] = $this->msg( $val )->text();
+			foreach ( $this->fieldNames as $key => $val ) {
+				$this->fieldNames[$key] = $this->msg( $val )->text();
 			}
 		}
 
-		return $headers;
+		return $this->fieldNames;
 	}
 
 	/**
@@ -573,6 +574,7 @@ class BlockListPager extends TablePager {
 
 }
 
+// @codeCoverageIgnoreStart
 /**
  * Retain the old class name for backwards compatibility.
  * @deprecated since 1.41
@@ -581,3 +583,4 @@ class_alias( BlockListPager::class, 'BlockListPager' );
 
 /** @deprecated class alias since 1.46 */
 class_alias( BlockListPager::class, 'MediaWiki\\Pager\\BlockListPager' );
+// @codeCoverageIgnoreEnd
