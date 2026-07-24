@@ -31,7 +31,10 @@ class SpecialLockdb extends FormSpecialPage {
 		return 'siteadmin';
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	public function doesWrites() {
 		return false;
 	}
@@ -86,7 +89,9 @@ class SpecialLockdb extends FormSpecialPage {
 			# This used to show a file not found error, but the likeliest reason for fopen()
 			# to fail at this point is insufficient permission to write to the file...good old
 			# is_writable() is plain wrong in some cases, it seems...
+			// @codeCoverageIgnoreStart
 			return Status::newFatal( 'lockfilenotwritable' );
+			// @codeCoverageIgnoreEnd
 		}
 		fwrite( $fp, $data['Reason'] );
 		$timestamp = wfTimestampNow();
@@ -112,7 +117,10 @@ class SpecialLockdb extends FormSpecialPage {
 		return 'ooui';
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	protected function getGroupName() {
 		return 'wiki';
 	}
