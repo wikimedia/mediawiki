@@ -12,6 +12,7 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Context\DerivativeContext;
+use MediaWiki\EditPage\DataStashTrait;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\UserBlockedError;
@@ -34,6 +35,7 @@ use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionAccessException;
@@ -76,6 +78,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @ingroup SpecialPage
  */
 class SpecialUndelete extends SpecialPage {
+	use DataStashTrait;
 
 	/**
 	 * Limit of revisions (Page history) to display.
@@ -129,6 +132,8 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	private $mSearchPrefix;
 
+	private bool $reauthInProgress = false;
+
 	private LocalRepo $localRepo;
 
 	public function __construct(
@@ -163,6 +168,62 @@ class SpecialUndelete extends SpecialPage {
 		return true;
 	}
 
+	public function getTitle(): Title {
+		return $this->mTargetObj
+			? $this->getPageTitle( $this->mTargetObj->getPrefixedText() )
+			: $this->getPageTitle();
+	}
+
+	private function getStashKeyForTitle( Title $title ): string {
+		return $this->getName() . ':' . $title->getPrefixedDBkey();
+	}
+
+	/**
+	 * Parse a set of submitted form-field values into member state.
+	 * Shared by loadRequest (regular POST) and handleRetrievedData
+	 */
+	private function parseSubmittedFormFields( array $values ): void {
+		$commentList = $values['wpCommentList'] ?? 'other';
+		$comment = $values['wpComment'] ?? '';
+		if ( $commentList === 'other' ) {
+			$this->mComment = $comment;
+		} elseif ( $comment !== '' ) {
+			$this->mComment = $commentList
+				. $this->msg( 'colon-separator' )->inContentLanguage()->text()
+				. $comment;
+		} else {
+			$this->mComment = $commentList;
+		}
+
+		$this->mUnsuppress = !empty( $values['wpUnsuppress'] )
+			&& $this->permissionManager->userHasRight( $this->getUser(), 'suppressrevision' );
+		$this->mUndeleteTalk = !empty( $values['undeletetalk'] );
+
+		$timestamps = [];
+		$this->mFileVersions = [];
+		foreach ( $values as $key => $val ) {
+			$matches = [];
+			if ( preg_match( '/^ts(\d{14})$/', $key, $matches ) ) {
+				$timestamps[] = $matches[1];
+			} elseif ( preg_match( '/^fileid(\d+)$/', $key, $matches ) ) {
+				$this->mFileVersions[] = (int)$matches[1];
+			}
+		}
+		rsort( $timestamps );
+		$this->mTargetTimestamp = $timestamps;
+	}
+
+	/**
+	 * Restore submitted undelete form state from the stash on the reauth return trip.
+	 */
+	protected function handleRetrievedData( array $data ): void {
+		$this->parseSubmittedFormFields( $data );
+		if ( $this->mAllowed ) {
+			$this->mAction = 'submit';
+			$this->mRestore = true;
+		}
+	}
+
 	private function loadRequest( ?string $par ) {
 		$request = $this->getRequest();
 		$user = $this->getUser();
@@ -194,20 +255,10 @@ class SpecialUndelete extends SpecialPage {
 		$this->mDiff = $request->getCheck( 'diff' );
 		$this->mDiffOnly = $request->getBool( 'diffonly',
 			$this->userOptionsLookup->getOption( $this->getUser(), 'diffonly' ) );
-		$commentList = $request->getText( 'wpCommentList', 'other' );
-		$comment = $request->getText( 'wpComment' );
-		if ( $commentList === 'other' ) {
-			$this->mComment = $comment;
-		} elseif ( $comment !== '' ) {
-			$this->mComment = $commentList . $this->msg( 'colon-separator' )->inContentLanguage()->text() . $comment;
-		} else {
-			$this->mComment = $commentList;
-		}
-		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) &&
-			$this->permissionManager->userHasRight( $user, 'suppressrevision' );
 		$this->mToken = $request->getVal( 'token' );
-		$this->mUndeleteTalk = $request->getCheck( 'undeletetalk' );
 		$this->mHistoryOffset = $request->getVal( 'historyoffset' );
+
+		$this->parseSubmittedFormFields( $request->getValues() );
 
 		if ( $this->isAllowed( 'undelete' ) ) {
 			$this->mAllowed = true; // user can restore
@@ -221,23 +272,6 @@ class SpecialUndelete extends SpecialPage {
 			$this->mCanView = false;
 			$this->mTimestamp = '';
 			$this->mRestore = false;
-		}
-
-		if ( $this->mRestore || $this->mInvert ) {
-			$timestamps = [];
-			$this->mFileVersions = [];
-			foreach ( $request->getValues() as $key => $val ) {
-				$matches = [];
-				if ( preg_match( '/^ts(\d{14})$/', $key, $matches ) ) {
-					$timestamps[] = $matches[1];
-				}
-
-				if ( preg_match( '/^fileid(\d+)$/', $key, $matches ) ) {
-					$this->mFileVersions[] = intval( $matches[1] );
-				}
-			}
-			rsort( $timestamps );
-			$this->mTargetTimestamp = $timestamps;
 		}
 	}
 
@@ -329,6 +363,17 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		$this->getSkin()->setRelevantTitle( $this->mTargetObj );
+
+		// Resume from a stashed submit after reauth. Must come before the
+		// dispatch below, since the return trip is a GET with no form fields.
+		$this->setStashKey( $this->getStashKeyForTitle( $this->mTargetObj ) );
+		if ( $this->retrieveStashedData() ) {
+			$this->undelete();
+			if ( !$this->reauthInProgress ) {
+				$this->destroyStashedData();
+			}
+			return;
+		}
 
 		if ( $this->mTimestamp !== '' ) {
 			$this->showRevision( $this->mTimestamp );
@@ -1620,6 +1665,8 @@ class SpecialUndelete extends SpecialPage {
 	}
 
 	private function undelete() {
+		$this->reauthInProgress = false;
+
 		if ( $this->getConfig()->get( MainConfigNames::UploadMaintenance )
 			&& $this->mTargetObj->getNamespace() === NS_FILE
 		) {
@@ -1644,6 +1691,13 @@ class SpecialUndelete extends SpecialPage {
 			->undeleteIfAllowed( $this->mComment );
 
 		if ( !$status->isGood() ) {
+			if ( $status instanceof PermissionStatus && $status->getReauthOperation() !== null ) {
+				$this->setStashKey( $this->getStashKeyForTitle( $this->mTargetObj ) );
+				$queryParams = $this->stashDataOnPost();
+				$this->doReauthRedirect( $status, $queryParams );
+				$this->reauthInProgress = true;
+				return;
+			}
 			$out->setPageTitleMsg( $this->msg( 'undelete-error' ) );
 			foreach ( $status->getMessages() as $msg ) {
 				$out->addHTML( Html::errorBox(

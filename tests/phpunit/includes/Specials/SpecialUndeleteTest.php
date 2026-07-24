@@ -2,10 +2,15 @@
 
 namespace MediaWiki\Tests\Specials;
 
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
+use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -98,5 +103,112 @@ class SpecialUndeleteTest extends SpecialPageTestBase {
 	public function testPermissionErrorOnUnprivilegedUser(): void {
 		$this->expectException( PermissionsError::class );
 		$this->executeSpecialPage( '', null, 'qqx', $this->getTestUser()->getAuthority() );
+	}
+
+	private function newSpecialPageForUser( User $user ): SpecialPage {
+		$page = $this->newSpecialPage();
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $user );
+		$context->setLanguage( 'qqx' );
+		$context->setRequest( new FauxRequest() );
+		$page->setContext( $context );
+		return $page;
+	}
+
+	public function testHandleRetrievedDataPopulatesFormState(): void {
+		$page = $this->newSpecialPageForUser( $this->getTestUser()->getUser() );
+		$wrapper = TestingAccessWrapper::newFromObject( $page );
+		$wrapper->mAllowed = true;
+
+		$wrapper->handleRetrievedData( [
+			'wpCommentList' => 'other',
+			'wpComment' => 'reason text',
+			'undeletetalk' => '1',
+			'ts20260101000000' => '1',
+			'ts20260102000000' => '1',
+			'fileid42' => '1',
+			'fileid7' => '1',
+		] );
+
+		$this->assertSame( 'reason text', $wrapper->mComment );
+		$this->assertTrue( $wrapper->mUndeleteTalk );
+		$this->assertSame( 'submit', $wrapper->mAction );
+		$this->assertTrue( $wrapper->mRestore );
+		// Timestamps rsorted (newest first)
+		$this->assertSame(
+			[ '20260102000000', '20260101000000' ],
+			$wrapper->mTargetTimestamp
+		);
+		// File ids parsed as ints
+		$this->assertEqualsCanonicalizing( [ 42, 7 ], $wrapper->mFileVersions );
+	}
+
+	public function testHandleRetrievedDataDoesNotForceSubmitWhenNotAllowed(): void {
+		$page = $this->newSpecialPageForUser( $this->getTestUser()->getUser() );
+		$wrapper = TestingAccessWrapper::newFromObject( $page );
+		$wrapper->mAllowed = false;
+		$wrapper->mAction = null;
+		$wrapper->mRestore = false;
+
+		$wrapper->handleRetrievedData( [
+			'wpComment' => 'reason text',
+			'ts20260101000000' => '1',
+		] );
+
+		// Fields still parsed for consistency
+		$this->assertSame( 'reason text', $wrapper->mComment );
+		$this->assertSame( [ '20260101000000' ], $wrapper->mTargetTimestamp );
+		// But submit dispatch is NOT forced — user lacks the right
+		$this->assertNull( $wrapper->mAction );
+		$this->assertFalse( $wrapper->mRestore );
+	}
+
+	public function testHandleRetrievedDataCombinesReasonListAndFreeForm(): void {
+		$page = $this->newSpecialPageForUser( $this->getTestUser()->getUser() );
+		$wrapper = TestingAccessWrapper::newFromObject( $page );
+
+		$wrapper->handleRetrievedData( [
+			'wpCommentList' => 'vandalism',
+			'wpComment' => 'reverted',
+		] );
+
+		$this->assertStringStartsWith( 'vandalism', $wrapper->mComment );
+		$this->assertStringContainsString( 'reverted', $wrapper->mComment );
+	}
+
+	public function testHandleRetrievedDataUnsuppressIgnoredWithoutRight(): void {
+		$page = $this->newSpecialPageForUser( $this->getTestUser()->getUser() );
+		$wrapper = TestingAccessWrapper::newFromObject( $page );
+
+		$wrapper->handleRetrievedData( [ 'wpUnsuppress' => '1' ] );
+
+		$this->assertFalse( $wrapper->mUnsuppress );
+	}
+
+	public function testHandleRetrievedDataUnsuppressHonouredWithRight(): void {
+		$this->setGroupPermissions( [ '*' => [ 'suppressrevision' => true ] ] );
+		$page = $this->newSpecialPageForUser( $this->getTestUser()->getUser() );
+		$wrapper = TestingAccessWrapper::newFromObject( $page );
+
+		$wrapper->handleRetrievedData( [ 'wpUnsuppress' => '1' ] );
+
+		$this->assertTrue( $wrapper->mUnsuppress );
+	}
+
+	public function testGetTitleWithoutTargetReturnsBareSpecialPage(): void {
+		$page = $this->newSpecialPageForUser( $this->getTestUser()->getUser() );
+
+		$this->assertSame( 'Special:Undelete', $page->getTitle()->getPrefixedText() );
+	}
+
+	public function testGetTitleWithTargetIncludesSubpage(): void {
+		$page = $this->newSpecialPageForUser( $this->getTestUser()->getUser() );
+		$wrapper = TestingAccessWrapper::newFromObject( $page );
+		$wrapper->mTargetObj = Title::makeTitle( NS_MEDIAWIKI, 'CTest.js' );
+
+		$this->assertSame(
+			'Special:Undelete/MediaWiki:CTest.js',
+			$page->getTitle()->getPrefixedText()
+		);
 	}
 }
