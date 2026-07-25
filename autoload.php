@@ -3615,7 +3615,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Title\\TitleFormatter' => __DIR__ . '/includes/Title/TitleFormatter.php',
 	'MediaWiki\\Title\\TitleParser' => __DIR__ . '/includes/Title/TitleParser.php',
 	'MediaWiki\\Title\\TitleValue' => __DIR__ . '/includes/Title/TitleValue.php',
-	'MediaWiki\\Upload\\Exception\\UploadChunkFileException' => __DIR__ . '/includes/Upload/Exception/UploadChunkFileException.php',
 	'MediaWiki\\Upload\\Exception\\UploadChunkVerificationException' => __DIR__ . '/includes/Upload/Exception/UploadChunkVerificationException.php',
 	'MediaWiki\\Upload\\Exception\\UploadStashBadPathException' => __DIR__ . '/includes/Upload/Exception/UploadStashBadPathException.php',
 	'MediaWiki\\Upload\\Exception\\UploadStashException' => __DIR__ . '/includes/Upload/Exception/UploadStashException.php',

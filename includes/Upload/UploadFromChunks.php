@@ -9,7 +9,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Status\Status;
-use MediaWiki\Upload\Exception\UploadChunkFileException;
 use MediaWiki\Upload\Exception\UploadChunkVerificationException;
 use MediaWiki\Upload\Exception\UploadStashBadPathException;
 use MediaWiki\Upload\Exception\UploadStashException;
@@ -328,11 +327,7 @@ class UploadFromChunks extends UploadFromFile {
 
 					return Status::newFatal( $e->msg );
 				}
-				try {
-					$status = $this->storeChunk( $chunkPath );
-				} catch ( UploadChunkFileException $uploadChunkFileException ) {
-					$status = Status::newFatal( $uploadChunkFileException->getMessage() );
-				}
+				$status = $this->storeChunk( $chunkPath );
 				if ( $status->isGood() ) {
 					$this->mOffset = $preAppendOffset + $chunkSize;
 					$this->updateChunkStatus();
@@ -408,7 +403,6 @@ class UploadFromChunks extends UploadFromFile {
 
 	/**
 	 * @param string $chunkPath
-	 * @throws UploadChunkFileException
 	 * @return Status
 	 */
 	private function storeChunk( $chunkPath ) {
@@ -421,13 +415,11 @@ class UploadFromChunks extends UploadFromFile {
 			$this->repo->getZonePath( 'temp' ) . "/{$hashPath}{$fileKey}" );
 
 		if ( !$storeStatus->isOK() ) {
-			$error = $this->logFileBackendStatus(
+			$this->logFileBackendStatus(
 				$storeStatus,
 				'[{type}] Error storing chunk in "{chunkPath}" for {fileKey} ({details})',
 				[ 'chunkPath' => $chunkPath, 'fileKey' => $fileKey ]
 			);
-			throw new UploadChunkFileException( "Error storing file in '{chunkPath}': " .
-				implode( '; ', $error ), [ 'chunkPath' => $chunkPath ] );
 		}
 
 		return $storeStatus;
