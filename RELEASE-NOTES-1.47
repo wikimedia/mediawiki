@@ -492,6 +492,8 @@ because of Phabricator reports.
   ParserOptionsDefaults.
 * The PagerTools class has been deprecated and emits deprecation warnings. Use
   the new ChangeToolsFactory service instead.
+* TextboxBuilder::mergeClassesIntoAttributes(), deprecated since 1.44, now
+  emits deprecation warnings.
 * MediaWikiIntegrationTestCase::assertSelect() has been deprecated,
   use MediaWikiIntegrationTestCase::newSelectQueryBuilder() instead.
 * MediaWikiIntegrationTestCase::assertArraySubmapSame() has been deprecated,

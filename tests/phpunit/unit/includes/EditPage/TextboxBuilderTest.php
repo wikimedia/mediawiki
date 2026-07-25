@@ -83,6 +83,7 @@ class TextboxBuilderTest extends MediaWikiUnitTestCase {
 			$this->createMock( RestrictionStore::class ),
 			$this->createMock( UserOptionsLookup::class ),
 		);
+		$this->expectDeprecationAndContinue( '/TextboxBuilder::mergeClassesIntoAttributes/' );
 		$this->assertSame(
 			$expected,
 			$builder->mergeClassesIntoAttributes( $inputClasses, $inputAttributes )

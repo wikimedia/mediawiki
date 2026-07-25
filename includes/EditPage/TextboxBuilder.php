@@ -49,9 +49,10 @@ class TextboxBuilder {
 	 * @param string[] $classes
 	 * @param mixed[] $attribs
 	 * @return mixed[]
-	 * @deprecated since 1.44, use Html::addClass() instead
+	 * @deprecated since 1.44, use Html::addClass() instead; hard-deprecated since 1.47
 	 */
 	public function mergeClassesIntoAttributes( array $classes, array $attribs ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		if ( $classes === [] ) {
 			return $attribs;
 		}
