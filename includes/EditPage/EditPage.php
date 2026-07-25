@@ -1808,6 +1808,8 @@ class EditPage implements IEditObject {
 		$request = $this->context->getRequest();
 		$extraQueryRedirect = $request->getVal( 'wpExtraQueryRedirect' );
 
+		$status->throwErrorIfSet();
+
 		switch ( $statusValue ) {
 			// For status codes that provide their own error/warning messages, we display the errors and warnings in
 			// message boxes.
@@ -1857,16 +1859,6 @@ class EditPage implements IEditObject {
 			case self::AS_SPAM_ERROR:
 				$this->spamPageWithContent( $resultDetails['spam'] ?? false );
 				return false;
-
-			case self::AS_BLOCKED_PAGE_FOR_USER:
-			case self::AS_IMAGE_REDIRECT_ANON:
-			case self::AS_IMAGE_REDIRECT_LOGGED:
-			case self::AS_NO_CHANGE_CONTENT_MODEL:
-			case self::AS_NO_CREATE_PERMISSION:
-			case self::AS_READ_ONLY_PAGE:
-			case self::AS_READ_ONLY_PAGE_ANON:
-			case self::AS_READ_ONLY_PAGE_LOGGED:
-				$status->throwError();
 		}
 	}
 

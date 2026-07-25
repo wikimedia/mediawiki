@@ -56,15 +56,12 @@ class PageEditStatus extends StatusValue {
 
 	/**
 	 * @throws Throwable If an error function is set.
-	 * @throws LogicException If no error function is set or the error function did not throw an error.
 	 */
-	public function throwError(): never {
+	public function throwErrorIfSet(): void {
 		if ( $this->errorFunction !== null ) {
 			( $this->errorFunction )();
-		} else {
-			throw new LogicException( __METHOD__ . ' called, but no error function was set!' );
+			throw new LogicException( 'Error function passed to ' . __CLASS__ . ' did not throw an error!' );
 		}
-		throw new LogicException( __METHOD__ . ' called, but error function did not throw an error!' );
 	}
 
 }

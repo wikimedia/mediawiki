@@ -41,22 +41,20 @@ class PageEditStatusTest extends MediaWikiUnitTestCase {
 		};
 		$status->setErrorFunction( static fn () => throw new $exceptionClass() );
 		$this->expectException( get_class( $exceptionClass ) );
-		$status->throwError();
+		$status->throwErrorIfSet();
 	}
 
 	public function testErrorFunctionNotSet() {
 		$status = new PageEditStatus();
-
-		$this->expectException( LogicException::class );
-		$status->throwError();
+		$status->throwErrorIfSet();
+		$this->assertTrue( true, 'Did not throw' );
 	}
 
 	public function testErrorFunctionDoesNotThrow() {
 		$status = new PageEditStatus();
 		$status->setErrorFunction( static fn () => null );
-
 		$this->expectException( LogicException::class );
-		$status->throwError();
+		$status->throwErrorIfSet();
 	}
 
 }
