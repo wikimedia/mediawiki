@@ -364,6 +364,8 @@ because of Phabricator reports.
 * Passing null to any of the three constructor parameters of TextboxBuilder,
   deprecated in 1.46, will now throw a PHP error. Use the service to get an
   instance of the class.
+* The SpecialVersion::getGitHeadSha1 method, deprecated in 1.41, has
+  been removed.
 * The following ChangeTags methods which were deprecated in 1.41 have been
   removed:
   - getTags

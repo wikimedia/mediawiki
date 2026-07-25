@@ -1401,16 +1401,6 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * @deprecated since 1.41 Use GitInfo::repo() for MW_INSTALL_PATH, or new GitInfo otherwise.
-	 * @param string $dir Directory of the git checkout
-	 * @return string|false Sha1 of commit HEAD points to
-	 */
-	public static function getGitHeadSha1( $dir ) {
-		wfDeprecated( __METHOD__, '1.41' );
-		return ( new GitInfo( $dir ) )->getHeadSHA1();
-	}
-
-	/**
 	 * Get the list of entry points and their URLs
 	 * @return string HTML
 	 */
