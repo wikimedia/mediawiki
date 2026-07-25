@@ -54,7 +54,7 @@ class PageEditFactory {
 	public function newPageEdit( PageEditInputs $inputs ): PageEdit {
 		return new PageEdit(
 			$inputs,
-			new ServiceOptions( PageEdit::CONSTRUCTOR_OPTIONS, $this->options ),
+			$this->options,
 			$this->contentHandlerFactory,
 			$this->constraintFactory,
 			$this->connectionProvider,
