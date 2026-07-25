@@ -279,7 +279,7 @@ class SpecialVersion extends SpecialPage {
 		// Put the software in an array of form 'name' => 'version'. All messages should
 		// be loaded here, so feel free to use wfMessage in the 'name'. Wikitext
 		// can be used both in the name and value.
-		$versionLink = self::getVersionLinkedGit( $this->getLanguage() ) ?: MW_VERSION;
+		$versionLink = $this->getVersionLinkedGit() ?: MW_VERSION;
 		$software = [
 			'[https://www.mediawiki.org/ MediaWiki]' => $versionLink,
 			'[https://php.net/ PHP]' => PHP_VERSION . " (" . PHP_SAPI . ")",
@@ -362,13 +362,9 @@ class SpecialVersion extends SpecialPage {
 		return $version;
 	}
 
-	/**
-	 * @return string
-	 */
-	private static function getMWVersionLinked() {
+	private function getMWVersionLinked(): string {
 		$versionUrl = "";
-		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
-		if ( $hookRunner->onSpecialVersionVersionUrl( MW_VERSION, $versionUrl ) ) {
+		if ( $this->getHookRunner()->onSpecialVersionVersionUrl( MW_VERSION, $versionUrl ) ) {
 			$versionParts = [];
 			preg_match( "/^(\d+\.\d+)/", MW_VERSION, $versionParts );
 			$versionUrl = "https://www.mediawiki.org/wiki/MediaWiki_{$versionParts[1]}";
@@ -382,8 +378,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return bool|string MW version and Git HEAD (SHA1 stripped to the first 7 chars)
 	 *   with link and date, or false on failure
 	 */
-	private static function getVersionLinkedGit( Language $lang ) {
-		// TODO make function non-static and replace param with $this->getLanguage() after dropping getVersionLinked
+	private function getVersionLinkedGit(): bool|string {
 		$gitInfo = new GitInfo( MW_INSTALL_PATH );
 		$headSHA1 = $gitInfo->getHeadSHA1();
 		if ( !$headSHA1 ) {
@@ -400,10 +395,10 @@ class SpecialVersion extends SpecialPage {
 		$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
 		if ( $gitHeadCommitDate ) {
 			$shortSHA1 .= Html::element( 'br' );
-			$shortSHA1 .= $lang->timeanddate( (string)$gitHeadCommitDate, true );
+			$shortSHA1 .= $this->getLanguage()->timeanddate( (string)$gitHeadCommitDate, true );
 		}
 
-		return self::getMWVersionLinked() . " $shortSHA1";
+		return $this->getMWVersionLinked() . " $shortSHA1";
 	}
 
 	/**
