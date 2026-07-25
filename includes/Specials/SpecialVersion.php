@@ -440,6 +440,7 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Returns the internationalized name for an extension type.
 	 *
+	 * @deprecated since 1.47
 	 * @since 1.17
 	 *
 	 * @param string $type
@@ -447,6 +448,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	public static function getExtensionTypeName( $type ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		$types = self::getExtensionTypes();
 
 		return $types[$type] ?? $types['other'];

@@ -516,6 +516,7 @@ because of Phabricator reports.
   deprecation warnings.
 * $wgUseCopyrightUpload has been deprecated and will be removed in a future
   version. See T430254 for details.
+* SpecialVersion::getExtensionTypeName() is unused and has been deprecated.
 * The following ChangeTags methods have been deprecated and emit deprecation
   warnings:
   - tagDescription: use ChangeTagsFormatter::getTagDescription instead
