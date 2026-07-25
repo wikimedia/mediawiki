@@ -481,7 +481,24 @@ class Context implements LocalizationContext {
 		}
 		$json = json_encode( $data, $jsonFlags );
 		if ( json_last_error() !== JSON_ERROR_NONE ) {
-			trigger_error( __METHOD__ . ' partially failed: ' . json_last_error_msg(), E_USER_WARNING );
+			// When we log this warning, the stack trace will not show which component added
+			// the bad value to our array, because the array was made earlier in the process.
+			// To ease error triage, indicate which key contains malformed UTF-8.
+			$jsonErr = json_last_error_msg();
+			$badKey = null;
+			if ( is_array( $data ) ) {
+				foreach ( $data as $key => $value ) {
+					if ( json_encode( $value ) === false ) {
+						$badKey = $key;
+						break;
+					}
+				}
+			}
+			if ( $badKey !== null ) {
+				trigger_error( "Failed to JSON encode $badKey: $jsonErr", E_USER_WARNING );
+			} else {
+				trigger_error( "Partially failed to JSON encode: $jsonErr", E_USER_WARNING );
+			}
 		}
 		return $json;
 	}

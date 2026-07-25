@@ -212,27 +212,20 @@ class ContextTest extends TestCase {
 		$this->assertSame( '{"x":"A"}', $json );
 
 		// Regression: https://phabricator.wikimedia.org/T329330
-		$json = @$ctx->encodeJson( [
-			'x' => 'A',
-			'y' => "Foo\x80\xf0Bar",
-			'z' => 'C',
-		] );
-		$this->assertSame( '{"x":"A","y":null,"z":"C"}', $json, 'Ignore invalid UTF-8' );
-	}
-
-	public function testEncodeJsonWarning() {
-		$ctx = new Context( self::getResourceLoader(), new FauxRequest( [] ) );
+		$data = [
+			'wgHolly' => 'Golightly',
+			'wgFred' => "Foo\x80\xf0Bar",
+			'wgPaul' => 'Baby',
+		];
+		$json = @$ctx->encodeJson( $data );
+		$this->assertSame( '{"wgHolly":"Golightly","wgFred":null,"wgPaul":"Baby"}', $json );
 
 		$this->expectPHPError(
 			E_USER_WARNING,
-			static function () use ( $ctx ) {
-				$ctx->encodeJson( [
-					'x' => 'A',
-					'y' => "Foo\x80\xf0Bar",
-					'z' => 'C',
-				] );
+			static function () use ( $ctx, $data ) {
+				$ctx->encodeJson( $data );
 			},
-			'encodeJson partially failed: Malformed UTF-8'
+			'Failed to JSON encode wgFred: Malformed UTF-8'
 		);
 	}
 
