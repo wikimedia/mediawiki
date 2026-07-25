@@ -189,7 +189,6 @@ class SpecialVersion extends SpecialPage {
 					$this->getParserFunctionHooks(),
 					$this->getParsoidModules(),
 					$this->getHooks(),
-					$this->IPInfo(),
 				];
 
 				// Insert TOC first
@@ -1255,17 +1254,6 @@ class SpecialVersion extends SpecialPage {
 		return Html::rawElement( 'thead', [],
 			Html::rawElement( 'tr', [], $out )
 		);
-	}
-
-	/**
-	 * Get information about client's IP address.
-	 *
-	 * @return string HTML fragment
-	 */
-	private function IPInfo() {
-		$ip = str_replace( '--', ' - ', htmlspecialchars( $this->getRequest()->getIP() ) );
-
-		return "<!-- visited from $ip -->\n<span style='display:none'>visited from $ip</span>";
 	}
 
 	/**
