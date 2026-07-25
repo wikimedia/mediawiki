@@ -87,7 +87,10 @@ class SpecialMergeHistory extends SpecialPage {
 		return 'mergehistory';
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	public function doesWrites() {
 		return true;
 	}
@@ -399,7 +402,10 @@ class SpecialMergeHistory extends SpecialPage {
 		return true;
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	protected function getGroupName() {
 		return 'pagetools';
 	}
