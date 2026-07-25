@@ -10,8 +10,6 @@ use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Html\Html;
-use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Status\Status;
 use MediaWiki\User\UserFactory;
@@ -27,7 +25,6 @@ use MediaWiki\User\UserIdentity;
 class EditFilterMergedContentHookConstraint extends EditConstraint {
 
 	private readonly HookRunner $hookRunner;
-	private string $hookError = '';
 
 	/**
 	 * @param HookContainer $hookContainer
@@ -36,7 +33,6 @@ class EditFilterMergedContentHookConstraint extends EditConstraint {
 	 * @param IContextSource $hookContext NOTE: This should only be passed to the hook.
 	 * @param string $summary
 	 * @param bool $minorEdit
-	 * @param MessageLocalizer $messageLocalizer
 	 * @param UserIdentity $hookUser NOTE: This should only be passed to the hook.
 	 */
 	public function __construct(
@@ -46,7 +42,6 @@ class EditFilterMergedContentHookConstraint extends EditConstraint {
 		private readonly IContextSource $hookContext,
 		private readonly string $summary,
 		private readonly bool $minorEdit,
-		private readonly MessageLocalizer $messageLocalizer,
 		private readonly UserIdentity $hookUser,
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
@@ -68,17 +63,15 @@ class EditFilterMergedContentHookConstraint extends EditConstraint {
 		if ( !$hookResult ) {
 			// Error messages etc. could be handled within the hook...
 			if ( $status->isGood() ) {
-				$status->fatal( 'hookaborted' );
-				// Not setting $this->hookError here is a hack to allow the hook
-				// to cause a return to the edit page without $this->hookError
-				// being set. This is used by ConfirmEdit to display a captcha
-				// without any error message cruft.
+				// Not setting a status message here is a hack to allow the hook
+				// to cause a return to the edit page without an error being
+				// displayed.
+				$status->setOK( false );
 			} else {
 				if ( !$status->getMessages() ) {
 					// Provide a fallback error message if none was set
 					$status->fatal( 'hookaborted' );
 				}
-				$this->hookError = $this->formatStatusErrors( $status );
 			}
 			// Use the existing $status->value if the hook set it
 			if ( !$status->value ) {
@@ -95,36 +88,10 @@ class EditFilterMergedContentHookConstraint extends EditConstraint {
 				// Provide a fallback error message if none was set
 				$status->fatal( 'hookaborted' );
 			}
-			$this->hookError = $this->formatStatusErrors( $status );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
 			return $status;
 		}
 
 		return PageEditStatus::newGood();
 	}
-
-	/**
-	 * TODO this is really ugly. The constraint shouldn't know that the status
-	 * will be used as wikitext, which is what the hookError represents, rather
-	 * than just the error code. This needs a big refactor to remove the hook
-	 * error string and just rely on the status object entirely.
-	 *
-	 * @internal
-	 * @return string
-	 */
-	public function getHookError(): string {
-		return $this->hookError;
-	}
-
-	/**
-	 * Wrap status errors in error boxes for increased visibility.
-	 */
-	private function formatStatusErrors( PageEditStatus $status ): string {
-		$ret = '';
-		foreach ( $status->getMessages() as $msg ) {
-			$ret .= Html::errorBox( "\n" . $this->messageLocalizer->msg( $msg )->plain() . "\n" );
-		}
-		return $ret;
-	}
-
 }

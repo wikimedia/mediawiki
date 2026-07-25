@@ -11,8 +11,6 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Html\Html;
-use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWikiUnitTestCase;
@@ -40,23 +38,20 @@ class EditFilterMergedContentHookConstraintTest extends MediaWikiUnitTestCase {
 		} else {
 			$hookMethod->willReturn( $hookResult );
 		}
-		$constraint = new EditFilterMergedContentHookConstraint(
+		return new EditFilterMergedContentHookConstraint(
 			$hookContainer,
 			$this->createMock( UserFactory::class ),
 			$this->getMockForAbstractClass( Content::class ),
 			$this->createMock( RequestContext::class ),
 			'EditSummaryGoesHere',
 			true, // Minor edit
-			new FakeQqxMessageLocalizer,
 			$this->createMock( UserIdentity::class )
 		);
-		return $constraint;
 	}
 
 	public function testPass() {
 		$constraint = $this->getConstraint( true );
 		$this->assertConstraintPassed( $constraint );
-		$this->assertSame( '', $constraint->getHookError() );
 	}
 
 	public function testFailure_goodStatus() {
@@ -74,14 +69,11 @@ class EditFilterMergedContentHookConstraintTest extends MediaWikiUnitTestCase {
 			return false;
 		} );
 
-		$this->assertConstraintFailed(
+		$status = $this->assertConstraintFailed(
 			$constraint,
 			12345 // Value is set in hook
 		);
-		$this->assertSame(
-			Html::errorBox( "\n(hookaborted)\n" ),
-			$constraint->getHookError()
-		);
+		$this->assertStatusMessage( 'hookaborted', $status );
 	}
 
 	public function testFailure_notOKStatus() {
@@ -92,14 +84,11 @@ class EditFilterMergedContentHookConstraintTest extends MediaWikiUnitTestCase {
 			return true;
 		} );
 
-		$this->assertConstraintFailed(
+		$status = $this->assertConstraintFailed(
 			$constraint,
 			EditConstraint::AS_HOOK_ERROR_EXPECTED
 		);
-		$this->assertSame(
-			Html::errorBox( "\n(hookaborted)\n" ),
-			$constraint->getHookError()
-		);
+		$this->assertStatusMessage( 'hookaborted', $status );
 	}
 
 	public function testFailure_statusMessage() {
@@ -110,13 +99,10 @@ class EditFilterMergedContentHookConstraintTest extends MediaWikiUnitTestCase {
 			return true;
 		} );
 
-		$this->assertConstraintFailed(
+		$status = $this->assertConstraintFailed(
 			$constraint,
 			EditConstraint::AS_HOOK_ERROR_EXPECTED
 		);
-		$this->assertSame(
-			Html::errorBox( "\n(test-hook-error)\n" ),
-			$constraint->getHookError()
-		);
+		$this->assertStatusMessage( 'test-hook-error', $status );
 	}
 }

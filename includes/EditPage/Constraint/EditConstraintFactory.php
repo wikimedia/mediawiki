@@ -11,7 +11,6 @@ use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\MainConfigNames;
@@ -75,7 +74,6 @@ class EditConstraintFactory {
 		IContextSource $context,
 		string $summary,
 		bool $minorEdit,
-		MessageLocalizer $messageLocalizer,
 		UserIdentity $user
 	): EditFilterMergedContentHookConstraint {
 		return new EditFilterMergedContentHookConstraint(
@@ -85,7 +83,6 @@ class EditConstraintFactory {
 			$context,
 			$summary,
 			$minorEdit,
-			$messageLocalizer,
 			$user
 		);
 	}

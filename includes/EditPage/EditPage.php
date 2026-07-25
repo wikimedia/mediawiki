@@ -24,7 +24,6 @@ use MediaWiki\EditPage\Constraint\AuthorizationConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
-use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
 use MediaWiki\EditPage\Constraint\ExistingSectionEditConstraint;
 use MediaWiki\EditPage\Constraint\NewSectionMissingSubjectConstraint;
 use MediaWiki\EditPage\Constraint\RedirectConstraint;
@@ -1816,7 +1815,6 @@ class EditPage implements IEditObject {
 		switch ( $statusValue ) {
 			// Status codes for which the error/warning message is generated somewhere else in this class.
 			// They should be refactored to provide their own messages and handled below (T384399).
-			case self::AS_HOOK_ERROR_EXPECTED:
 			case self::AS_CONFLICT_DETECTED:
 				return true;
 
@@ -1832,6 +1830,7 @@ class EditPage implements IEditObject {
 			case self::AS_DOUBLE_REDIRECT:
 			case self::AS_DOUBLE_REDIRECT_LOOP:
 			case self::AS_END:
+			case self::AS_HOOK_ERROR_EXPECTED:
 			case self::AS_INVALID_REDIRECT_TARGET:
 			case self::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case self::AS_PARSE_ERROR:
@@ -2146,8 +2145,6 @@ class EditPage implements IEditObject {
 			}
 		} elseif ( $failed instanceof DefaultTextConstraint ) {
 			$this->blankArticle = true;
-		} elseif ( $failed instanceof EditFilterMergedContentHookConstraint ) {
-			$this->hookError = $failed->getHookError();
 		} elseif (
 			$failed instanceof ExistingSectionEditConstraint ||
 			$failed instanceof NewSectionMissingSubjectConstraint
