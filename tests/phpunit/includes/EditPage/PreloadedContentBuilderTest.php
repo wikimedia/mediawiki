@@ -77,13 +77,22 @@ class PreloadedContentBuilderTest extends MediaWikiIntegrationTestCase {
 		yield 'Preload using a localisation message' =>
 			[ 'Does-not-exist-asdfasdf', 'MediaWiki:View', [], null, [],
 				"View" ];
+		yield 'Preload using a disabled message' =>
+			[ 'Does-not-exist-asdfasdf', 'MediaWiki:For-preloading-disabled', [], null,
+				[ 'MediaWiki:For-preloading-disabled' => '-' ], '' ];
 		yield 'Preload using a page in mediawiki namespace' =>
 			[ 'Does-not-exist-asdfasdf', 'MediaWiki:For-preloading', [], null, [ 'MediaWiki:For-preloading' => '<noinclude>Noinclude</noinclude><includeonly>Includeonly</includeonly>' ],
 				"Includeonly" ];
 
+		yield 'Preload using a nonexistent page' =>
+			[ 'Does-not-exist-asdfasdf', 'Does-not-exist-either', [], null, [], '' ];
+
 		yield 'Preload over redirect' =>
 			[ 'Does-not-exist-asdfasdf', 'Template:Preload2', [], null, [ 'Template:Preload' => 'Preload', 'Template:Preload2' => '#REDIRECT[[Template:Preload]]' ],
 				"Preload" ];
+		yield 'Preload over broken redirect' =>
+			[ 'Does-not-exist-asdfasdf', 'Template:Preload2', [], null,
+				[ 'Template:Preload2' => '#REDIRECT[[Template:DoesNotExist]]' ], '' ];
 	}
 
 	/**
