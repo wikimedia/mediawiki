@@ -1,5 +1,4 @@
 const { SUCCESS_PAGE_MESSAGE, CANCEL_PAGE_MESSAGE } = require( './constants.js' );
-const AuthMessageDialog = require( './AuthMessageDialog.js' );
 const AuthPopupError = require( './AuthPopupError.js' );
 
 /**
@@ -179,30 +178,11 @@ class AuthPopup {
 	 * @param {string} [config.loginFallbackUrl] URL of a fallback login form to link to if the popup
 	 *     can't be opened. Defaults to `loginPopupUrl` if not provided.
 	 * @param {AuthPopup~CheckLoggedIn} config.checkLoggedIn Async function to check for a login success.
-	 * @param {jQuery|string|Function|null} [config.message] Custom message to replace the contents of
-	 *     the backdrop message dialog, passed to {@link OO.ui.MessageDialog}
 	 */
 	constructor( config ) {
 		this.loginPopupUrl = config.loginPopupUrl;
 		this.loginFallbackUrl = config.loginFallbackUrl || config.loginPopupUrl;
 		this.checkLoggedIn = config.checkLoggedIn;
-		this.message = config.message || ( () => {
-			const message = document.createElement( 'div' );
-
-			const intro = document.createElement( 'p' );
-			intro.innerText = OO.ui.msg( 'userlogin-authpopup-loggingin-body' );
-			message.appendChild( intro );
-
-			const fallbackLink = document.createElement( 'a' );
-			fallbackLink.setAttribute( 'target', '_blank' );
-			fallbackLink.setAttribute( 'href', this.loginFallbackUrl );
-			fallbackLink.innerText = OO.ui.msg( 'userlogin-authpopup-loggingin-body-link' );
-			const fallback = document.createElement( 'p' );
-			fallback.appendChild( fallbackLink );
-			message.appendChild( fallback );
-
-			return $( message );
-		} );
 	}
 
 	/**
@@ -225,11 +205,13 @@ class AuthPopup {
 		let mouseEvent;
 
 		return this.showDialog( {
-			initOpenWindow: ( m ) => {
-				m.$element.one( 'mouseenter', ( e ) => {
+			initOpenWindow: ( vm ) => {
+				// Accessing subcomponents' refs through .$refs is not officially supported,
+				// but we don't really have any alternatives, and it's unlikely to break.
+				$( vm.$refs.dialog.backdrop ).one( 'mouseenter', ( e ) => {
 					mouseEvent = e;
 				} );
-				m.$element.on( 'mousemove', ( e ) => {
+				$( vm.$refs.dialog.backdrop ).on( 'mousemove', ( e ) => {
 					mouseEvent = e;
 				} );
 
@@ -244,14 +226,15 @@ class AuthPopup {
 				return null;
 			},
 
-			openWindow: ( m ) => {
-				const frame = m.$frame[ 0 ];
-				return openBrowserWindowCoveringElement( this.loginPopupUrl, frame, mouseEvent );
+			openWindow: ( vm ) => {
+				// Accessing subcomponents' refs through .$refs is not officially supported,
+				// but we don't really have any alternatives, and it's unlikely to break.
+				const dialogElement = vm.$refs.dialog.dialogElement;
+				return openBrowserWindowCoveringElement( this.loginPopupUrl, dialogElement, mouseEvent );
 			},
 
-			data: {
-				title: OO.ui.deferMsg( 'userlogin-authpopup-loggingin-title' ),
-				message: this.message
+			props: {
+				fallbackUrl: this.loginFallbackUrl
 			}
 		} );
 	}
@@ -259,61 +242,81 @@ class AuthPopup {
 	/**
 	 * Open the backdrop dialog for a customizable popup window.
 	 *
-	 * Caller must provide callback functions that open their popup window, and/or provide the dialog
-	 * opening data to display something in the dialog.
+	 * Caller must provide callback functions that open their popup window,
+	 * and may provide props to be passed to the dialog.
 	 *
 	 * @private
 	 * @param {Object} config
 	 * @param {Function} config.initOpenWindow Called before opening the dialog
 	 * @param {Function} config.openWindow Called after opening the dialog and upon user retry
-	 * @param {Object} config.data Opening data for the MessageDialog
+	 * @param {Object} config.props Props for Vue AuthMessageDialog
 	 * @return {Promise<any>} Resolved when the login succeeds with the value returned by the
 	 *     `checkLoggedIn` callback. Resolved with a falsy value if the user cancels the process.
 	 *     Rejected when an unexpected error stops the login process.
 	 */
 	showDialog( config ) {
-		const { initOpenWindow, openWindow, data } = config;
+		const { initOpenWindow, openWindow, props } = config;
+		const { createMwApp } = require( 'vue' );
+		const AuthMessageDialog = require( './AuthMessageDialog.vue' );
+
+		let onFallback = () => {};
+		let onRetry = () => {};
+		let onCancel = () => {};
 
 		// Display a message in the current browser window, so that if the popup window doesn't open,
 		// or if the user loses it on their desktop somehow, they can still see what was supposed to happen,
 		// and have a way to retry or cancel it. This message stays open throughout the process.
-		const windowManager = new OO.ui.WindowManager();
-		$( OO.ui.getTeleportTarget() ).append( windowManager.$element );
-		const m = new AuthMessageDialog();
-		windowManager.addWindows( { authMessageDialog: m } );
+		const app = createMwApp( AuthMessageDialog, Object.assign( {
+			onFallback: () => {
+				onFallback();
+			},
+			onRetry: () => {
+				onRetry();
+			},
+			onCancel: () => {
+				onCancel();
+			}
+		}, props ) );
+		const vm = app.mount( require( 'mediawiki.page.ready' ).teleportTarget );
 
-		let w = initOpenWindow( m );
+		// This method must be called here, and not async, for iOS compatibility
+		let w = initOpenWindow( vm );
+
+		const wait = new Promise( ( resolve ) => {
+			vm.$nextTick( () => {
+				// Wait a moment to allow the 'mouseenter' event to be fired before the main window
+				// loses focus when we open the popup window.
+				setTimeout( resolve, 100 );
+			} );
+		} );
 
 		return new Promise( ( resolve, reject ) => {
-			const instance = windowManager.openWindow( 'authMessageDialog', data );
-
-			instance.opened.then( () => {
+			wait.then( () => {
 				// Open a browser window covering the message we displayed.
 				if ( !w ) {
-					w = openWindow( m );
+					w = openWindow( vm );
 				}
 
 				// When the fallback link is clicked, opening the login form in a fullscreen window,
 				// close the popup window.
-				m.$body.find( 'a' ).on( 'click', () => {
+				onFallback = () => {
 					if ( w ) {
 						w.close();
 					}
-				} );
-
-				m.on( 'retry', () => {
+				};
+				onRetry = () => {
 					if ( w ) {
 						w.close();
 					}
-					w = openWindow( m );
-				} );
-				m.on( 'cancel', () => {
+					w = openWindow( vm );
+				};
+				onCancel = () => {
 					if ( w ) {
 						w.close();
 					}
-					m.close();
+					app.unmount();
 					resolve( null );
-				} );
+				};
 
 				// Close orphaned browser windows on the user's desktop if they leave/close the page.
 				const onBeforeUnload = () => {
@@ -322,7 +325,7 @@ class AuthPopup {
 					}
 				};
 				window.addEventListener( 'beforeunload', onBeforeUnload );
-				instance.closed.then( () => window.removeEventListener( 'beforeunload', onBeforeUnload ) );
+				app.onUnmount( () => window.removeEventListener( 'beforeunload', onBeforeUnload ) );
 
 				// If the user leaves this window and then comes back, check if they have logged in
 				// the old-fashioned way in the meantime.
@@ -332,13 +335,13 @@ class AuthPopup {
 							if ( w ) {
 								w.close();
 							}
-							m.close();
+							app.unmount();
 							resolve( loggedIn );
 						}
 					} ).catch( reject );
 				};
 				window.addEventListener( 'focus', onFocus );
-				instance.closed.then( () => window.removeEventListener( 'focus', onFocus ) );
+				app.onUnmount( () => window.removeEventListener( 'focus', onFocus ) );
 
 				// Wait for a message from authSuccess.js or authCancel.js.
 				// Beware that it may never come if the initial popup was blocked,
@@ -352,7 +355,7 @@ class AuthPopup {
 						if ( w ) {
 							w.close();
 						}
-						m.close();
+						app.unmount();
 						resolve( null );
 						return;
 					}
@@ -368,7 +371,7 @@ class AuthPopup {
 					// Okay, they went through the workflow. Confirm that they're logged in from our perspective,
 					// because browsers are weird about cookies and they're also weird about popups.
 					this.checkLoggedIn().then( ( loggedIn ) => {
-						m.close();
+						app.unmount();
 						if ( loggedIn ) {
 							// Yes!
 							resolve( loggedIn );
@@ -382,7 +385,7 @@ class AuthPopup {
 					} ).catch( reject );
 				};
 				window.addEventListener( 'message', onMessage );
-				instance.closed.then( () => window.removeEventListener( 'message', onMessage ) );
+				app.onUnmount( () => window.removeEventListener( 'message', onMessage ) );
 			} );
 		} );
 	}
