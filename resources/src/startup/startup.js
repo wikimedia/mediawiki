@@ -13,13 +13,12 @@
  * browsers, and some Grade C and Grade X browsers.
  *
  * The following browsers are known to pass these checks:
- * - Chrome 63+
+ * - Chrome 73+
  * - Edge 79+
- * - Opera 50+
- * - Firefox 58+
- * - Safari 11.1+
- * - Mobile Safari 11.2+ (iOS 11+)
- * - Android 5.0+
+ * - Firefox 78+
+ * - Safari 12.1+
+ * - Mobile Safari on iOS 12.2+
+ * - Android 5.0 (upto Chrome 95)
  *
  * @private
  * @return {boolean} User agent is compatible with MediaWiki JS
@@ -37,40 +36,41 @@ function isCompatible() {
 		// https://blog.whatwg.org/this-week-in-html-5-episode-30
 		'localStorage' in window &&
 
-		// Ensure ES2015 runtime API (a.k.a. ES6)
+		// Ensure ES2019 runtime API
 		//
-		// In practice, Promise.finally is a good proxy for overall ES6 support and
-		// rejects most unsupporting browsers in one sweep. The feature itself
-		// was specified in ES2018, however.
-		// https://caniuse.com/promise-finally
-		// Chrome 63+, Edge 18+, Opera 50+, Safari 11.1+, Firefox 58+, iOS 11+
+		// ES2018 RegExp.prototype.dotAll
+		// https://caniuse.com/mdn-javascript_builtins_regexp_dotall
+		// Chrome 62+, Edge 79+, Firefox 78+, Safari 11.1+, iOS 11.3+
 		//
-		// ES6 RegExp.prototype.flags
-		// https://caniuse.com/mdn-javascript_builtins_regexp_flags
-		// Edge 79+ (Chromium-based, rejects MSEdgeHTML-based Edge <= 18)
+		// ES2019 Object.fromEntries
+		// https://caniuse.com/mdn-javascript_builtins_object_fromentries
+		// Chrome 73+, Edge 79+, Firefox 63+, Safari 12.1+, iOS 12.2+
 		//
-		// eslint-disable-next-line es-x/no-promise-prototype-finally, dot-notation
-		typeof Promise === 'function' && Promise.prototype[ 'finally' ] &&
+		// Test `/./.dotAll` false instead `/./s.dotAll` true, because the latter would
+		// throw a syntax error for flag "s" in older browsers and defeat our purpose,
+		// whereas the former safely returns undefined.
+		// Run `/./.foo` (undefined) or `/./q` (error) to observe this in current browsers.
+		/./.dotAll === false &&
+		'fromEntries' in Object &&
 
-		/./g.flags === 'g' &&
-
-		// Ensure ES2017 grammar and syntax support, including:
-		// - ES6 Arrow Functions (with default params)
-		// - ES2017 Trailing comma in function params
-		// - ES2017 Async Functions
+		// Ensure ES2019 grammar and syntax support
 		//
-		// https://caniuse.com/mdn-javascript_grammar_trailing_commas_trailing_commas_in_functions
-		// Chrome 58+, Edge 14+, Safari 10+, Firefox 52+, Opera 45+
+		// ES2018 Async Generator Functions
+		// (Firefox 55 implemented it, Firefox 57 enabled it in stable)
+		// https://caniuse.com/mdn-javascript_builtins_asyncgenerator
+		// https://caniuse.com/wf-async-generators
+		// Chrome 63+, Edge 79+, Firefox 57+, Safari 12+, iOS 12+
 		//
-		// https://caniuse.com/async-functions
-		// Chrome 55+, Edge 15+, Safari 11+, Firefox 52+, Opera 42+
+		// ES2019 Optional catch binding
+		// https://caniuse.com/mdn-javascript_statements_try_catch_optional_catch_binding
+		// Chrome 66+, Edge 79+, Firefox 58+, Safari 11.1+, iOS 11.3+
 		//
 		// Based on Benjamin De Cock's snippet here:
 		// https://gist.github.com/bendc/d7f3dbc83d0f65ca0433caf90378cd95
 		( function () {
 			try {
 				// eslint-disable-next-line no-new, no-new-func
-				new Function( 'async (a = 0,) => a' );
+				new Function( 'try { async function* x() {} } catch {}' );
 				return true;
 			} catch ( e ) {
 				return false;

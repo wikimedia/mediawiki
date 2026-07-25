@@ -40,7 +40,7 @@ class BenchmarkJsValidate extends Benchmarker {
 		$this->bench( [
 			"Peast::parse ($filename)" => [
 				'function' => static function ( $content ) {
-					Peast\Peast::ES2017( $content )->parse();
+					Peast\Peast::ES2019( $content )->parse();
 				},
 				'args' => [ $content ]
 			]

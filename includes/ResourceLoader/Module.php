@@ -108,7 +108,7 @@ abstract class Module implements LoggerAwareInterface {
 	public const ORIGIN_ALL = 10;
 
 	/** @var int Cache version for user-script JS validation errors from validateScriptFile(). */
-	private const USERJSPARSE_CACHE_VERSION = 4;
+	private const USERJSPARSE_CACHE_VERSION = 5;
 
 	/**
 	 * Get this module's name. This is set when the module is registered
@@ -989,7 +989,7 @@ abstract class Module implements LoggerAwareInterface {
 			$cache::TTL_WEEK,
 			static function () use ( $contents ) {
 				try {
-					Peast::ES2017( $contents )->parse();
+					Peast::ES2019( $contents )->parse();
 				} catch ( PeastSyntaxException $e ) {
 					return $e->getMessage() . " on line " . $e->getPosition()->getLine();
 				}

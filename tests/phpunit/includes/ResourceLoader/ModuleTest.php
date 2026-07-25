@@ -159,8 +159,26 @@ class ModuleTest extends ResourceLoaderTestCase {
 		];
 
 		yield 'valid ES2018 spread in object literal' => [
-			"var x = {b: 2, c: 3}; var y = {a: 1, ...x};",
-			'Parse error: Unexpected: ... on line 1 in input.js'
+			'var x = {b: 2, c: 3}; var y = {a: 1, ...x};'
+		];
+
+		yield 'valid ES2019 spread in object literal' => [
+			'try { async function* x() {} } catch {}'
+		];
+
+		yield 'valid ES2020 nullish operator' => [
+			'var x = 2; var y = x ?? 3; console.log(y);',
+			'Parse error: Unexpected: ?? on line 1 in input.js'
+		];
+
+		yield 'valid ES2021 Nullish coalescing assignment' => [
+			'let x; x ??= 3; console.log(x);',
+			'Parse error: Unexpected: ?? on line 1 in input.js'
+		];
+
+		yield 'valid ES2022 Class' => [
+			'class C { #x = 3; getX() { return this.#x; } } console.log(new C().getX());',
+			'Parse error: Unexpected # on line 1 in input.js'
 		];
 
 		yield 'SyntaxError' => [
