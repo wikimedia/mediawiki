@@ -61,28 +61,6 @@ function buildUrls( extraParams ) {
 }
 
 /**
- * Default backdrop message shown in the parent window while the popup is open.
- *
- * @private
- * @param {string} fallbackUrl URL used by the "open in a new window instead" link
- * @return {jQuery}
- */
-function defaultMessage( fallbackUrl ) {
-	return $( '<div>' ).append(
-		$( '<p>' ).append(
-			mw.message(
-				'userlogin-authpopup-loggingin-body',
-				$( '<a>' ).attr( 'href', fallbackUrl ).attr( 'target', '_blank' )
-			).parseDom()
-		),
-		$.createSpinner( {
-			size: 'large',
-			type: 'block'
-		} )
-	);
-}
-
-/**
  * `userinfo` object as returned by the
  * {@link https://www.mediawiki.org/wiki/API:Userinfo action=query&meta=userinfo API module}.
  *
@@ -134,8 +112,7 @@ function defaultMessage( fallbackUrl ) {
  */
 const loginUrls = buildUrls();
 const loginPopup = new AuthPopup( Object.assign( {}, loginUrls, {
-	checkLoggedIn: checkLoggedIn,
-	message: () => defaultMessage( loginUrls.loginFallbackUrl )
+	checkLoggedIn: checkLoggedIn
 } ) );
 
 /**
@@ -149,8 +126,7 @@ const loginPopup = new AuthPopup( Object.assign( {}, loginUrls, {
 loginPopup.forReauthentication = function ( operation ) {
 	const urls = buildUrls( { force: operation } );
 	return new AuthPopup( Object.assign( {}, urls, {
-		checkLoggedIn: () => checkReauthenticated( operation ),
-		message: () => defaultMessage( urls.loginFallbackUrl )
+		checkLoggedIn: () => checkReauthenticated( operation )
 	} ) );
 };
 

@@ -2813,14 +2813,22 @@ return [
 		'codexStyleOnly' => true,
 	],
 	'mediawiki.authenticationPopup' => [
+		'class' => CodexModule::class,
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.authenticationPopup',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.authenticationPopup",
+		'codexComponents' => [
+			'CdxButton',
+			'CdxDialog',
+			'CdxProgressIndicator',
+		],
 		'packageFiles' => [
-			'resources/src/mediawiki.authenticationPopup/index.js',
-			'resources/src/mediawiki.authenticationPopup/constants.js',
-			'resources/src/mediawiki.authenticationPopup/AuthPopup.js',
-			'resources/src/mediawiki.authenticationPopup/AuthMessageDialog.js',
-			'resources/src/mediawiki.authenticationPopup/AuthPopupError.js',
+			'index.js',
+			'constants.js',
+			'AuthPopup.js',
+			'AuthMessageDialog.vue',
+			'AuthPopupError.js',
 			[
-				'name' => 'resources/src/mediawiki.authenticationPopup/config.json',
+				'name' => 'config.json',
 				'callback' => static function ( Context $context ) {
 					$specials = MediaWikiServices::getInstance()->getSpecialPageFactory();
 					return [
@@ -2834,16 +2842,14 @@ return [
 		],
 		'messages' => [
 			'userlogin-authpopup-loggingin-title',
-			'userlogin-authpopup-loggingin-body',
-			'userlogin-authpopup-loggingin-body-link',
+			'userlogin-authpopup-loggingin-body-popup',
+			'userlogin-authpopup-fallback',
 			'userlogin-authpopup-retry',
 			'userlogin-authpopup-cancel',
 		],
 		'dependencies' => [
-			'jquery.spinner',
 			'mediawiki.Title',
-			'oojs-ui-windows',
-		]
+		],
 	],
 	'mediawiki.authenticationPopup.success' => [
 		'packageFiles' => [
