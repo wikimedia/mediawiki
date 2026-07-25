@@ -152,7 +152,10 @@ class SpecialComparePages extends SpecialPage {
 		return true;
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	protected function getGroupName() {
 		return 'pagetools';
 	}
