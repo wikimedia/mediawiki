@@ -11,9 +11,11 @@ use MediaWiki\Utils\MWCryptRand;
 /**
  * Securely stash user-posted data in the session, modeled on
  * AuthManagerSpecialPage::handleReauthBeforeExecute().
+ *
+ * @since 1.47
  */
 trait DataStashTrait {
-	private const STASH_TTL = 600;
+	private const int STASH_TTL = 600;
 
 	private ?string $stashKey = null;
 
@@ -40,7 +42,7 @@ trait DataStashTrait {
 	/**
 	 * Apply retrieved stashed user data to a page form
 	 *
-	 * Called from setPostDataInRequest() once the stashed data has been
+	 * Called from retrieveStashedData() once the stashed data has been
 	 * retrieved. The default is a no-op; the exhibiting class overrides it to
 	 * act on the data, typically by setting form state such as $this->textbox1.
 	 *
@@ -93,21 +95,16 @@ trait DataStashTrait {
 		return true;
 	}
 
-	protected function destroyStashedData(): bool {
+	protected function destroyStashedData(): void {
 		$context = $this->getContext();
 		$request = $context->getRequest();
 		$session = $request->getSession();
 		$uniqueId = $request->getVal( 'requestUniqueId' );
 		$key = $this->getStashKey() . ':' . $uniqueId;
-		if ( $session->remove( $key ) ) {
-			return true;
-		} else {
-			return false;
-		}
+		$session->remove( $key );
 	}
 
 	protected function enableReauthPopup( string $jsPopupModule, ?string $operation ): void {
-		$context = $this->getContext();
 		if ( $operation === null ) {
 			return;
 		}
