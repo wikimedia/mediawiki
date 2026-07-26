@@ -526,6 +526,9 @@ class WANObjectCache implements
 		foreach ( $resByKey as $key => $res ) {
 			if ( $res[self::RES_VALUE] !== false ) {
 				$valuesByKey[$key] = $res[self::RES_VALUE];
+				$this->logger->debug( "getMulti($key): hit" );
+			} else {
+				$this->logger->debug( "getMulti($key): miss" );
 			}
 
 			if ( $res[self::RES_CUR_TTL] !== null ) {
@@ -798,6 +801,7 @@ class WANObjectCache implements
 
 		$keygroup = $this->determineKeyGroupForStats( $key );
 
+		$this->logger->debug( "set($key): store new value" );
 		$ok = $this->setMainValue(
 			$key,
 			$value,
