@@ -247,10 +247,13 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 		// Scenario 1: Preload avoids on-demand fetch
 		//
 		// Validate that WikiModule->getTitleInfo() utilizes the preloaded batch data.
-		// If preload data is not available or not applicable, the fetchTitleInfo()
+		// If preload data is not available or not applicable, the doBatchFetch()
 		// method would be called to fetch it on-demand. Our test objects,
 		// TestResourceLoaderWikiModule, disable this method. So, if we get data,
 		// that means the batched preload worked.
+		//
+		// To prove the failure, comment out the setTitleInfo() and preloadPersistentCache() calls
+		// in WikiModule::preloadTitleInfo() and try running this case.
 
 		// Arrange
 		$cache1 = $this->getServiceContainer()->getObjectCacheFactory()->getLocalClusterInstance();
@@ -561,12 +564,12 @@ class TestResourceLoaderWikiModule extends WikiModule {
 	/** @var array|null */
 	public static $returnFetchTitleInfo = null;
 
-	protected static function fetchTitleInfo( IReadableDatabase $db, array $pages, $fname = null ) {
+	protected static function doBatchFetch( array $pages, IReadableDatabase $db, string $fname ): array {
 		$ret = self::$returnFetchTitleInfo;
 		self::$returnFetchTitleInfo = null;
 		if ( $ret === null ) {
 			// If a call is expected, a mock return value must be planted first
-			throw new RuntimeException( 'Unexpected fetchTitleInfo call' );
+			throw new RuntimeException( 'Unexpected doBatchFetch call' );
 		}
 		return $ret;
 	}

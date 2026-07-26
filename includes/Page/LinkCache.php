@@ -525,24 +525,40 @@ class LinkCache implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Read [the architecture doc](@ref linkcache) at docs/LinkCache.md
+	 * before enabling on a namespace, to understand if it improves or
+	 * harms performance.
+	 *
 	 * @param LinkTarget|PageReference|int $pageOrNamespace
 	 * @return bool
 	 */
 	private function usePersistentCache( $pageOrNamespace ) {
 		$ns = is_int( $pageOrNamespace ) ? $pageOrNamespace : $pageOrNamespace->getNamespace();
 
+		// Optimization: For the Parser, enable on NS_TEMPLATE, NS_FILE, and NS_CATEGORY.
+		//
+		// Optimization: For ResourceLoader "startup" requests (via MessageBlobStore),
+		// enable on NS_MEDIAWIKI.
+		//
+		// Optimization: For OutputPage (via ResourceLoader\WikiModule), enable for js/css pages
+		// in NS_MEDIAWIKI and NS_USER (T393835).
 		if ( in_array( $ns, [ NS_TEMPLATE, NS_FILE, NS_CATEGORY, NS_MEDIAWIKI ] ) ||
 			( !is_int( $pageOrNamespace ) &&
 				( str_ends_with( $pageOrNamespace->getDBkey(), '.css' ) ||
 					str_ends_with( $pageOrNamespace->getDBkey(), '.js' ) ) ) ) {
 			return true;
 		}
-		// Focus on transcluded pages more than the main content
-		if ( $this->nsInfo->isContent( $ns ) ) {
-			return false;
+
+		// Optimization: For the Parser, enable on additional extension namespaces that are
+		// likely used as transclusions, such as NS_MODULE (low cardinality, high access).
+		// Ignore talk pages and user-defined extra namespaces marked as "content", which are
+		// end-user pages visited and linked to in the same way as the main namespace and would
+		// poison the cache with high-cardinality low-access entries.
+		if ( $ns >= 100 && !$this->nsInfo->isContent( $ns ) && $this->nsInfo->isSubject( $ns ) ) {
+			return true;
 		}
-		// Non-talk extension namespaces (e.g. NS_MODULE)
-		return ( $ns >= 100 && $this->nsInfo->isSubject( $ns ) );
+
+		return false;
 	}
 
 	/**
@@ -563,55 +579,56 @@ class LinkCache implements LoggerAwareInterface {
 	}
 
 	/**
+	 * @internal For use only in LinkBatchFactory::preloadPersistentCache
 	 * @param string[] $pages
-	 * @param string $fname
-	 * @return void
 	 */
-	public function executeBatch( array $pages, $fname ) {
-		$pageObject = [];
-		$result = [];
-
+	public function preloadPersistentCache(
+		array $pages,
+		string $fname,
+		LinkBatchFactory $linkBatchFactory
+	): void {
+		$titles = [];
 		foreach ( $pages as $page ) {
 			$title = Title::newFromText( $page );
 			if ( $title ) {
 				$cacheKey = $this->getPersistentCacheKey( $title );
-				$pageObject[$cacheKey] = $title;
+				if ( $cacheKey !== null ) {
+					$titles[$cacheKey] = $title;
+				}
 			}
 		}
 
-		$rows = $this->wanCache->getMulti( array_keys( $pageObject ) );
-		foreach ( $rows as $key => $row ) {
+		$rows = $this->wanCache->getMulti( array_keys( $titles ) );
+		foreach ( $rows as $cacheKey => $row ) {
 			if ( $row ) {
 				$title = TitleValue::tryNew( (int)$row->page_namespace, $row->page_title );
 				$this->addGoodLinkObjFromRow( $title, $row );
 			} else {
-				$this->addBadLinkObj( $pageObject[$key] );
+				$this->addBadLinkObj( $titles[$cacheKey] );
 			}
-			unset( $pageObject[$key] );
+			unset( $titles[$cacheKey] );
 		}
 
-		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-
-		if ( count( $pageObject ) > 0 ) {
-			$linkBatch = $linkBatchFactory->newLinkBatch( array_values( $pageObject ) )->setCaller( $fname );
-			$result = $linkBatch->doQuery();
-			$linkBatch->doGenderQuery();
+		if ( !$titles ) {
+			return;
 		}
+
+		$linkBatch = $linkBatchFactory->newLinkBatch( array_values( $titles ) )->setCaller( $fname );
+		$result = $linkBatch->doQuery();
+		$linkBatch->doGenderQuery();
 
 		foreach ( $result as $row ) {
 			$title = TitleValue::tryNew( (int)$row->page_namespace, $row->page_title );
 			$cacheKey = $this->getPersistentCacheKey( $title );
 			$this->addGoodLinkObjFromRow( $title, $row );
-			$pageObject[$cacheKey] = $row;
+			$this->wanCache->set( $cacheKey, $row, WANObjectCache::TTL_DAY );
+			unset( $titles[$cacheKey] );
 		}
 
-		foreach ( $pageObject as $key => $row ) {
-			if ( !$row instanceof Title ) {
-				$this->wanCache->set( $key, $row, WANObjectCache::TTL_DAY );
-			} else {
-				$this->wanCache->set( $key, null, WANObjectCache::TTL_DAY );
-				$this->addBadLinkObj( $row );
-			}
+		// Any remaining $titles not returned by LinkBatch::doQuery are non-existent
+		foreach ( $titles as $cacheKey => $title ) {
+			$this->addBadLinkObj( $title );
+			$this->wanCache->set( $cacheKey, null, WANObjectCache::TTL_DAY );
 		}
 	}
 
@@ -623,7 +640,6 @@ class LinkCache implements LoggerAwareInterface {
 	 * @since 1.28
 	 */
 	public function invalidateTitle( $page ) {
-		// for use by ResourceLoader Wikimodule
 		$wanCacheKey = $this->getPersistentCacheKey( $page );
 		if ( $wanCacheKey !== null ) {
 			$this->wanCache->delete( $wanCacheKey );

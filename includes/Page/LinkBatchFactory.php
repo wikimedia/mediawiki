@@ -59,6 +59,31 @@ class LinkBatchFactory {
 			$this->logger
 		);
 	}
+
+	/**
+	 * Warm-up titles that qualify for the persistent version of LinkCache
+	 *
+	 * If your use case involves a set of titles that:
+	 * - qualify for the persistent cache (see LinkCache::usePersistentCache
+	 *   and [the architecture doc](@ref linkcache) at docs/LinkCache.md),
+	 * - and are constant between requests (likely all together a cache-hit),
+	 * - and that you know upfront (i.e. can batch)
+	 * - and that eliminate the need for a database query if they are all a hit
+	 *
+	 * Then consider using this method instead of ::newLinkBatch.
+	 *
+	 * This method tries WANObjectCache first and falls back to backfilling
+	 * from a database query using ::newLinkBatch. It then warms up the
+	 * in-process LinkCache with the results.
+	 *
+	 * Designed for use by ResourceLoader\WikiModule::preloadTitleInfo (T393835).
+	 *
+	 * @since 1.47
+	 * @param string[] $pages
+	 */
+	public function preloadPersistentCache( array $pages, string $fname ): void {
+		$this->linkCache->preloadPersistentCache( $pages, $fname, $this );
+	}
 }
 
 /** @deprecated class alias since 1.45 */

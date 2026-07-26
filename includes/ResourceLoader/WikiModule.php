@@ -64,7 +64,7 @@ class WikiModule extends Module {
 	 *     ]
 	 *   ]
 	 * ]
-	 * @see self::fetchTitleInfo()
+	 * @see self::doBatchFetch()
 	 * @see self::makeTitleKey()
 	 * @var array
 	 */
@@ -550,13 +550,13 @@ class WikiModule extends Module {
 	 */
 	protected function getTitleInfo( Context $context ) {
 		$pageNames = array_keys( $this->getPages( $context ) );
-		sort( $pageNames );
 		$titleInfo = [];
 		$db = $this->getDb();
 		if ( !WikiMap::isCurrentWikiDbDomain( $db->getDomainID() ) ) {
+			sort( $pageNames );
 			$batchKey = implode( '|', $pageNames );
 			if ( !isset( $this->titleInfo[$batchKey] ) ) {
-				$titleDetails = self::doBatchFetch( $pageNames, $db, __METHOD__ );
+				$titleDetails = static::doBatchFetch( $pageNames, $db, __METHOD__ );
 				$this->setTitleInfo( $batchKey, $titleDetails );
 			}
 			$titleInfo = $this->titleInfo[$batchKey];
@@ -596,13 +596,11 @@ class WikiModule extends Module {
 	}
 
 	/**
-	 * Get foreign wiki pages info
-	 * @param array $pages
-	 * @param IReadableDatabase $db
-	 * @param string $fname
-	 * @return array
+	 * Get title info from a foreign wiki
+	 *
+	 * @param string[] $pages
 	 */
-	public static function doBatchFetch( $pages, $db, $fname = __METHOD__ ) {
+	protected static function doBatchFetch( array $pages, IReadableDatabase $db, string $fname ): array {
 		$titleInfo = [];
 		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
 		$linkbatch = $linkBatchFactory->newLinkBatch();
@@ -628,7 +626,7 @@ class WikiModule extends Module {
 					// Each revision forms a new module version hash and invalidate CDN/browser cache
 					'page_latest' => $row->page_latest,
 					// Include page_touched to allow purging if cache is poisoned (T117587, T113916)
-					'page_touched' => ConvertibleTimestamp::convert( TS_MW, $row->page_touched ),
+					'page_touched' => ConvertibleTimestamp::convert( TS::MW, $row->page_touched ),
 				];
 			}
 		}
@@ -682,7 +680,7 @@ class WikiModule extends Module {
 		foreach ( $byDomain as $domainId => $batch ) {
 			if ( !WikiMap::isCurrentWikiDbDomain( $domainId ) ) {
 				$pages = $batch['pages'];
-				$allInfo = self::doBatchFetch( $pages, $batch['db'], __METHOD__ );
+				$allInfo = static::doBatchFetch( $pages, $batch['db'], __METHOD__ );
 
 				foreach ( $batch['modules'] as $wikiModule ) {
 					$pages = $wikiModule->getPages( $context );
@@ -709,8 +707,8 @@ class WikiModule extends Module {
 				}
 			} else {
 				// Local wiki, warm up LinkCache for WikiModule::getTitleInfo
-				$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-				$linkCache->executeBatch( $batch['pages'], __METHOD__ );
+				$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+				$linkBatchFactory->preloadPersistentCache( $batch['pages'], __METHOD__ );
 			}
 		}
 	}

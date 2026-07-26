@@ -84,11 +84,15 @@ The above holds for three important use cases, which therefore benefit from the 
 
 * Lookups by the Parser for single templates ([change 308172](https://gerrit.wikimedia.org/r/308172), [change 496388](https://gerrit.wikimedia.org/r/496388)).
 
-  Each template may recursively lead to other templates that are not known in advance, thus not possible to batch. There is a small set of very popular templates on most wikis. This means caching these in Memcached significantly reduces database load. This is why the "Template" namespace, and "Module" namespace (Scribunto extension) qualify for the persistent cache.
+  Each template may recursively lead to other templates that are not known in advance, thus not possible to batch. There is a small set of very popular templates on most wikis. This means caching these in Memcached significantly reduces database load. Idem for category links. This is why the "Template", "Module" (Scribunto extension), and "Category" namespaces qualify for the persistent cache.
 
 * Lookups by ResourceLoader for interface messages and gadget pages ([change 521976](https://gerrit.wikimedia.org/r/c/mediawiki/core/+/521976)).
 
   The ResourceLoader startup module has to access the message blobs of all registered modules when computing the version hash. This is why the "MediaWiki" namespace, which holds interface messages, qualifies for the persistent cache.
+
+* Lookups by OutputPage for ResourceLoader\WikiModule scripts and styles ([T393835](https://phabricator.wikimedia.org/T393835)).
+
+  During every pageview, `OutputPage::getRlClient` and `ResourceLoader\ClientHtml` need to determine for certain modules if they are empty. For modules implemented by WikiModule (such as "site.styles" and "user") this requires checking page existence. This use case can and does use batching, but that would still incur a database query one every pageview. Given that there are only a small number of pages referenced by a WikiModule on a given wiki we can likely retrieve them all from the cache and thus eliminate the entire database query. This is why the "MediaWiki" namespace, as well as ".js" and ".css" in other namespaces such as NS_USER, qualify for the persistent cache.
 
 ## History
 
