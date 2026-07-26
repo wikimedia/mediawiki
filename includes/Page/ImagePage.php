@@ -433,7 +433,11 @@ class ImagePage extends Article {
 							}
 						}
 					}
-					$otherSizes = array_unique( $otherSizes );
+					// Different requested sizes can produce the same thumbnail; list each
+					// once, and drop it if it's already shown as the preview above (T432193).
+					$otherSizes = array_values(
+						array_diff( array_unique( $otherSizes ), [ $sizeLinkBigImagePreview ] )
+					);
 					if ( count( $otherSizes ) ) {
 						$msgsmall .= ' ' .
 						Html::rawElement(
@@ -742,20 +746,34 @@ class ImagePage extends Article {
 	protected function makeSizeLink( $params, $width, $height ) {
 		$params['width'] = $width;
 		$params['height'] = $height;
-		$img = $this->displayImg;
 		$thumbnail = $this->displayImg->transform( $params );
-		if ( $thumbnail && !$thumbnail->isError() ) {
-			[ $normalizedWidth, ] = self::getNormalizedThumbLimits( $thumbnail->getWidth() );
-			$normalizedHeight = File::scaleHeight( $img->getWidth(), $img->getHeight(), $normalizedWidth );
-			return Html::rawElement( 'a', [
-				'href' => $thumbnail->getUrl(),
-				'class' => 'mw-thumbnail-link'
-				], $this->getContext()->msg( 'show-big-image-size' )->numParams(
-					$normalizedWidth, $normalizedHeight
-				)->parse() );
-		} else {
+		if ( !$thumbnail || $thumbnail->isError() ) {
 			return '';
 		}
+
+		// Label the link with the size of the thumbnail that the URL points at,
+		// Ask the handler what it produced instead of re-evaluating rounding/clamping
+		// rules. The rules differ per format and depend on config like $wgImageLimits
+		// (T432193) and $wgThumbnailSteps (T401668).
+		$labelWidth = $thumbnail->getWidth();
+		$labelHeight = $thumbnail->getHeight();
+		$physicalParams = $params;
+		$handler = $this->displayImg->getHandler();
+		if ( $handler
+			&& $handler->normaliseParams( $this->displayImg, $physicalParams )
+			&& isset( $physicalParams['physicalWidth'] )
+			&& isset( $physicalParams['physicalHeight'] )
+		) {
+			$labelWidth = $physicalParams['physicalWidth'];
+			$labelHeight = $physicalParams['physicalHeight'];
+		}
+
+		return Html::rawElement( 'a', [
+			'href' => $thumbnail->getUrl(),
+			'class' => 'mw-thumbnail-link'
+			], $this->getContext()->msg( 'show-big-image-size' )->numParams(
+				$labelWidth, $labelHeight
+			)->parse() );
 	}
 
 	/**

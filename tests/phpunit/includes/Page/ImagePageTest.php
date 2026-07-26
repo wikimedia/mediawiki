@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\FileRepo\File\UnregisteredLocalFile;
+use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ImagePage;
 use MediaWiki\Request\FauxRequest;
@@ -22,10 +24,15 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 		parent::setUp();
 	}
 
-	public function getImagePage( $filename ) {
+	public function getImagePage( $filename, array $extraRepoOptions = [] ) {
 		$title = Title::makeTitleSafe( NS_FILE, $filename );
 		$title->setContentModel( CONTENT_MODEL_WIKITEXT );
-		$file = $this->dataFile( $filename );
+		if ( $extraRepoOptions ) {
+			$repo = new FileRepo( $extraRepoOptions + $this->getRepoOptions() );
+			$file = new UnregisteredLocalFile( false, $repo, "mwstore://localtesting/data/$filename" );
+		} else {
+			$file = $this->dataFile( $filename );
+		}
 		$iPage = new ImagePage( $title );
 		$iPage->setFile( $file );
 		return $iPage;
@@ -52,6 +59,64 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 			[ 'Toll_Texas_1.svg', 1 ],
 			[ '80x60-Greyscale.xcf', 1 ],
 			[ 'jpeg-comment-binary.jpg', 2 ],
+		];
+	}
+
+	/**
+	 * The label has to describe the thumbnail that the URL points at, whether
+	 * the requested width is rounded up to a thumbnail step (T401668) or that
+	 * step turns out to be beyond what the source can produce (T432193).
+	 *
+	 * @covers \MediaWiki\Page\ImagePage::makeSizeLink
+	 * @dataProvider provideMakeSizeLink
+	 * @param string $filename
+	 * @param int[] $thumbnailSteps
+	 * @param int $requestedWidth
+	 * @param string $expectedLabel
+	 * @param string $expectedThumbName Name of the file the link points at
+	 */
+	public function testMakeSizeLink(
+		$filename, $thumbnailSteps, $requestedWidth, $expectedLabel, $expectedThumbName
+	) {
+		$this->overrideConfigValues( [
+			MainConfigNames::ThumbnailSteps => $thumbnailSteps,
+			// Pick a scaler that does not depend on which image extensions are
+			// available. Nothing is executed, as the transform is deferred.
+			MainConfigNames::UseImageMagick => true,
+		] );
+
+		// transformVia404 so that the thumbnail is described but not rendered.
+		$iPage = TestingAccessWrapper::newFromObject(
+			$this->getImagePage( $filename, [ 'transformVia404' => true ] )
+		);
+
+		// A tall bounding box, so that the width is the limiting dimension.
+		$link = $iPage->makeSizeLink( [], $requestedWidth, 1000 );
+		$this->assertMatchesRegularExpression(
+			'/>\s*' . preg_quote( $expectedLabel, '/' ) . '\s*<\/a>/u', $link );
+		$this->assertSame( 1, preg_match( '/href="([^"]+)"/', $link, $matches ) );
+		$this->assertSame( $expectedThumbName, basename( $matches[1] ) );
+	}
+
+	public static function provideMakeSizeLink() {
+		return [
+			// adobergb.jpg is 120x78, and is web-safe, so it does not mustRender().
+			'rounded up to a thumbnail step' => [
+				'adobergb.jpg', [ 50, 100, 200 ], 60,
+				'100 × 65 pixels', '100px-adobergb.jpg',
+			],
+			'step past the source width, web-safe: served as the original' => [
+				'adobergb.jpg', [ 50, 100, 200 ], 110,
+				'120 × 78 pixels', 'adobergb.jpg',
+			],
+			// 80x60-Greyscale.xcf is 80x60 and mustRender(), so a step past the
+			// source width is rounded back down to the step below it instead.
+			// This is the shape of the PDF in T432193, which was labelled with
+			// the step above the source width while linking the one below it.
+			'step past the source width, must render: served one step down' => [
+				'80x60-Greyscale.xcf', [ 50, 100 ], 80,
+				'50 × 38 pixels', '50px-80x60-Greyscale.xcf.png',
+			],
 		];
 	}
 
