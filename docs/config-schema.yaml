@@ -4073,7 +4073,7 @@ config-schema:
             See Language.php for a list of namespaces.
             For example, namespaces with limited access can be added to avoid page contents
             being leaked in edit summaries.
-            @since 1.45
+            @since 1.46
     ContentNamespaces:
         default:
             - 0

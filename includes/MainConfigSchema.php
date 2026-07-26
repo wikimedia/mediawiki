@@ -6412,7 +6412,7 @@ class MainConfigSchema {
 	 * For example, namespaces with limited access can be added to avoid page contents
 	 * being leaked in edit summaries.
 	 *
-	 * @since 1.45
+	 * @since 1.46
 	 */
 	public const NamespacesWithoutAutoSummaries = [
 		'default' => [],
