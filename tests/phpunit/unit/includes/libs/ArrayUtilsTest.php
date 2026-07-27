@@ -511,6 +511,16 @@ class ArrayUtilsTest extends TestCase {
 					0 => [ 0 => '2dArray' ],
 				],
 			],
+			'Simple union with with array as base value' => [
+				[ 0 => [ 0 => '2dArray' ] ],
+				[ 0 => 1, 1 => '1dArray' ],
+				[ 0 => [ 0 => '2dArray' ], 1 => '1dArray' ],
+			],
+			'Simple union with with array as new values' => [
+				[ 0 => '1dArray' ],
+				[ 0 => [ 0 => '2dArray' ], 1 => '1dArray' ],
+				[ 0 => '1dArray', 1 => '1dArray' ],
+			],
 			'Union of 3d array with different keys' => [
 				[
 					0 => [ 0 => [ 0 => '3dArray' ] ],
