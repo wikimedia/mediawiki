@@ -9,6 +9,7 @@ use MediaWiki\Linker\LinkTarget;
  * Use the hook name "LinkTargetIsAlwaysKnownBatch" to register handlers implementing this interface.
  *
  * @stable to implement
+ * @since 1.47
  * @ingroup Hooks
  */
 interface LinkTargetIsAlwaysKnownBatchHook {
@@ -17,12 +18,12 @@ interface LinkTargetIsAlwaysKnownBatchHook {
 	 * This hook is called when determining if a page exist in batched. Use this hook to
 	 * override default behaviour for determining if a page exists.
 	 *
-	 * If the value for a link is left as null in $isKnown, regular checks happen.
+	 * If the value for a link is left as null in $isAlwaysKnown, regular checks happen.
 	 * If it's a boolean, this value is returned by the isAlwaysKnown method.
 	 *
 	 * @param LinkTarget[] $links
-	 * @param (bool|null)[] &$isAlwaysKnown Evaluation decision for each link (same order as
-	 * links in $links)
+	 * @param (bool|null)[] &$isAlwaysKnown Evaluation decision for each link (keys are the same
+	 * as in $links)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onLinkTargetIsAlwaysKnownBatch( array $links, array &$isAlwaysKnown );

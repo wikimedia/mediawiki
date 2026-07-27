@@ -18,7 +18,7 @@ class LinkAlwaysKnownLookup {
 	private readonly MapCacheLRU $cache;
 	/** @var int In practice, this is global, as services are singletons */
 	private int $individualLookupsInRequest = 0;
-	private const MAX_INDIVIDUAL_LOOKUPS_PER_REQ = 50;
+	private const int MAX_INDIVIDUAL_LOOKUPS_PER_REQ = 50;
 
 	public function __construct(
 		private readonly HookRunner $hookRunner,
@@ -59,13 +59,19 @@ class LinkAlwaysKnownLookup {
 					// Even the second hook made no decision for us, we REALLY
 					// have to decide ourselves...
 					if ( $link->isExternal() ) {
+						// any interwiki link might be viewable, for all we know
 						$isKnown = true;
 					} elseif ( $this->shadowPageLoader->existsForLink( $link ) ) {
 						$isKnown = true;
 					} else {
 						$isKnown = match ( $link->getNamespace() ) {
+							// file exists, possibly in a foreign repo
+							// TODO: it might make sense to switch to RepoGroup::findFiles and
+							// batch this as well
 							NS_MEDIA, NS_FILE => (bool)$this->repoGroup->findFile( $link ),
+							// if the title is a valid special page, it exists
 							NS_SPECIAL => $this->specialPageFactory->exists( $link->getDBkey() ),
+							// self-link, possibly with fragment
 							NS_MAIN => $link->getDBkey() == '',
 							default => false,
 						};
