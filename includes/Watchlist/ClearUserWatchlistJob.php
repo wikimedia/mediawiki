@@ -56,8 +56,8 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 		}
 
 		// Use a named lock so that jobs for this user see each others' changes
-		$lockKey = "{{$dbw->getDomainID()}}:ClearUserWatchlist:$userId"; // per-wiki
-		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 10 );
+		$lockKey = "ClearUserWatchlist:$userId"; // per-wiki
+		$scopedLock = MediaWikiServices::getInstance()->getLockManager()->scopedLock( $lockKey, 10 );
 		if ( !$scopedLock ) {
 			$this->setLastError( "Could not acquire lock '$lockKey'" );
 			return false;

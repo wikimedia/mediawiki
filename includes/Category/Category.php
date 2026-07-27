@@ -18,6 +18,7 @@ use MediaWiki\Title\TitleArrayFromResult;
 use MediaWiki\Title\TitleFactory;
 use RuntimeException;
 use stdClass;
+use Wikimedia\LockManager\ILockManager;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
@@ -58,12 +59,14 @@ class Category {
 	private readonly IConnectionProvider $dbProvider;
 	private readonly ReadOnlyMode $readOnlyMode;
 	private readonly TitleFactory $titleFactory;
+	private ILockManager $lockManager;
 
 	private function __construct() {
 		$services = MediaWikiServices::getInstance();
 		$this->dbProvider = $services->getConnectionProvider();
 		$this->readOnlyMode = $services->getReadOnlyMode();
 		$this->titleFactory = $services->getTitleFactory();
+		$this->lockManager = $services->getLockManager();
 	}
 
 	/**
@@ -374,7 +377,7 @@ class Category {
 
 		# Avoid excess contention on the same category (T162121)
 		$name = __METHOD__ . ':' . md5( $this->mName );
-		$scopedLock = $dbw->getScopedLockAndFlush( $name, __METHOD__, 0 );
+		$scopedLock = $this->lockManager->scopedLock( $name );
 		if ( !$scopedLock ) {
 			return false;
 		}

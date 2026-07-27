@@ -109,8 +109,8 @@ class CategoryMembershipChangeJob extends Job {
 		}
 
 		// Use a named lock so that jobs for this page see each others' changes
-		$lockKey = "{$dbw->getDomainID()}:CategoryMembershipChange:{$page->getId()}"; // per-wiki
-		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 1 );
+		$lockKey = "CategoryMembershipChange:{$page->getId()}"; // per-wiki
+		$scopedLock = $services->getLockManager()->scopedLock( $lockKey, 1 );
 		if ( !$scopedLock ) {
 			$this->setLastError( "Could not acquire lock '$lockKey'" );
 			return false;
