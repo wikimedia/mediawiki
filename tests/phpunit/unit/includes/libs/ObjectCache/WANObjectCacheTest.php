@@ -123,52 +123,6 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public static function provideStaleSetParams() {
-		return [
-			// Given a db transaction (trx lag) that started 30s ago,
-			// we generally don't want to cache its values.
-			[ 30, 0.0, false ],
-			[ 30, 2, false ],
-			[ 30, 10, false ],
-			[ 30, 20, false ],
-			// If the main reason we've hit 30s is that we spent
-			// a lot of time in the regeneration callback (as opposed
-			// to time mainly having passed before the cache computation)
-			// then cache it for at least a little while.
-			[ 30, 28, true ],
-			// Also if we don't know, cache it for a little while.
-			[ 30, null, true ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideStaleSetParams
-	 * @param int $ago
-	 * @param float|null $walltime
-	 * @param bool $cacheable
-	 */
-	public function testStaleSet( $ago, $walltime, $cacheable ) {
-		[ $cache ] = $this->newWanCache();
-		$mockWallClock = 1549343530.0;
-		$cache->setMockTime( $mockWallClock );
-
-		$key = wfRandomString();
-		$value = wfRandomString();
-
-		$cache->set(
-			$key,
-			$value,
-			$cache::TTL_MINUTE,
-			[ 'since' => $mockWallClock - $ago, 'walltime' => $walltime ]
-		);
-
-		$this->assertSame(
-			$cacheable ? $value : false,
-			$cache->get( $key ),
-			"Stale set() value ignored"
-		);
-	}
-
 	public function testProcessCacheTTL() {
 		[ $cache ] = $this->newWanCache();
 		$mockWallClock = 1549343530.0;
@@ -1899,59 +1853,6 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $value, $v, "Value matches" );
 		$this->assertLessThan( -4.9, $curTTL, "Correct CTL" );
 		$this->assertGreaterThan( -5.1, $curTTL, "Correct CTL" );
-	}
-
-	public function testSetWithLag() {
-		[ $cache ] = $this->newWanCache();
-
-		$mockWallClock = 1549343530.0;
-		$cache->setMockTime( $mockWallClock );
-
-		$v = 1;
-
-		$key = wfRandomString();
-		$opts = [ 'lag' => 300, 'since' => $mockWallClock, 'walltime' => 0.1 ];
-		$cache->set( $key, $v, 30, $opts );
-		$this->assertSame( $v, $cache->get( $key ), "Repl-lagged value written." );
-
-		$key = wfRandomString();
-		$opts = [ 'lag' => 300, 'since' => $mockWallClock ];
-		$cache->set( $key, $v, 30, $opts );
-		$this->assertSame( $v, $cache->get( $key ), "Repl-lagged value written (no walltime)." );
-
-		$key = wfRandomString();
-		$cache->get( $key );
-		$mockWallClock += 15;
-		$opts = [ 'lag' => 300, 'since' => $mockWallClock ];
-		$cache->set( $key, $v, 30, $opts );
-		$this->assertSame( $v, $cache->get( $key ), "Repl-lagged value written (auto-walltime)." );
-
-		$key = wfRandomString();
-		$opts = [ 'lag' => 0, 'since' => $mockWallClock - 300, 'walltime' => 0.1 ];
-		$cache->set( $key, $v, 30, $opts );
-		$this->assertSame( false, $cache->get( $key ), "Trx-lagged value written." );
-
-		$key = wfRandomString();
-		$opts = [ 'lag' => 0, 'since' => $mockWallClock - 300 ];
-		$cache->set( $key, $v, 30, $opts );
-		$this->assertSame( $v, $cache->get( $key ), "Trx-lagged value written (no walltime)." );
-
-		$key = wfRandomString();
-		$cache->get( $key );
-		$mockWallClock += 15;
-		$opts = [ 'lag' => 0, 'since' => $mockWallClock - 300 ];
-		$cache->set( $key, $v, 30, $opts );
-		$this->assertSame( false, $cache->get( $key ), "Trx-lagged value not written (auto-walltime)." );
-
-		$key = wfRandomString();
-		$opts = [ 'lag' => 5, 'since' => $mockWallClock - 5, 'walltime' => 0.1 ];
-		$cache->set( $key, $v, 30, $opts );
-		$this->assertSame( false, $cache->get( $key ), "Trx-lagged value written." );
-
-		$key = wfRandomString();
-		$opts = [ 'lag' => 3, 'since' => $mockWallClock - 3 ];
-		$cache->set( $key, $v, 30, $opts );
-		$this->assertSame( $v, $cache->get( $key ), "Lagged value written (no walltime)." );
 	}
 
 	public function testWritePending() {

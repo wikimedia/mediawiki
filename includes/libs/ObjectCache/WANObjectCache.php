@@ -723,16 +723,6 @@ class WANObjectCache implements
 	 * the changes do not replicate to the other WAN sites. In that case, delete()
 	 * should be used instead. This method is intended for use on cache misses.
 	 *
-	 * If data was read using "view snapshots" (e.g. innodb REPEATABLE-READ),
-	 * use 'since' to avoid the following race condition:
-	 *   - a) T1 starts
-	 *   - b) T2 updates a row, calls delete(), and commits
-	 *   - c) The HOLDOFF_TTL passes, expiring the delete() tombstone
-	 *   - d) T1 reads the row and calls set() due to a cache miss
-	 *   - e) Stale value is stuck in cache
-	 *
-	 * Setting 'lag' and 'since' help avoids keys getting stuck in stale states.
-	 *
 	 * Be aware that this does not update the process cache for getWithSetCallback()
 	 * callers. Keys accessed via that method are not generally meant to also be set
 	 * using this primitive method.
@@ -745,7 +735,6 @@ class WANObjectCache implements
 	 * Example usage:
 	 * @code
 	 *     $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-	 *     $setOpts = Database::getCacheSetOptions( $dbr );
 	 *     // Fetch the row from the DB
 	 *     $row = $dbr->selectRow( ... );
 	 *     $key = $cache->makeKey( 'building', $buildingId );
@@ -758,22 +747,6 @@ class WANObjectCache implements
 	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever (default)
 	 *   - WANObjectCache::TTL_UNCACHEABLE: Do not cache (if the key exists, it is not deleted)
 	 * @param array $opts Options map:
-	 *   - lag: Highest seconds of replication lag potentially affecting reads used to generate
-	 *      the value. This should not be affected by the duration of transaction "view snapshots"
-	 *      (e.g. innodb REPEATABLE-READ) nor the time elapsed since the first read (though both
-	 *      increase staleness). For reads using view snapshots, only the replication lag during
-	 *      snapshot initialization matters. Use false if replication is stopped/broken on a
-	 *      replica server involved in the reads.
-	 *      Default: 0 seconds
-	 *   - since: UNIX timestamp indicative of the highest possible staleness caused by the
-	 *      duration of transaction "view snapshots" (e.g. innodb REPEATABLE-READ) and the time
-	 *      elapsed since the first read. This should not be affected by replication lag.
-	 *      Default: 0 seconds
-	 *   - lockTSE: If excessive replication/snapshot lag is detected, then store the value
-	 *      with this TTL and flag it as stale. This is only useful if the reads for this key
-	 *      use getWithSetCallback() with "lockTSE" set. Note that if "staleTTL" is set
-	 *      then it will still add on to this TTL in the excessive lag scenario.
-	 *      Default: WANObjectCache::TSE_NONE
 	 *   - staleTTL: Seconds to keep the key around if it is stale. The get()/getMulti()
 	 *      methods return such stale values with a $curTTL of 0, and getWithSetCallback()
 	 *      will call the generation callback in such cases, passing in the old value
@@ -788,7 +761,7 @@ class WANObjectCache implements
 	 *      Default: null
 	 *   - walltime: How long the value took to generate in seconds. Default: null
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{lag?:float|int,since?:float|int,lockTSE?:int,staleTTL?:int,creating?:bool,version?:int,walltime?:int|float,segmentable?:bool} $opts
+	 * @phan-param array{staleTTL?:int,creating?:bool,version?:int,walltime?:int|float,segmentable?:bool} $opts
 	 * @note Options added in 1.28: staleTTL
 	 * @note Options added in 1.33: creating
 	 * @note Options added in 1.34: version, walltime
@@ -808,9 +781,6 @@ class WANObjectCache implements
 			$ttl,
 			$opts['version'] ?? null,
 			$opts['walltime'] ?? null,
-			$opts['lag'] ?? 0,
-			$opts['since'] ?? null,
-			$opts['lockTSE'] ?? self::TSE_NONE,
 			$opts['staleTTL'] ?? self::STALE_TTL_NONE,
 			$opts['segmentable'] ?? false,
 			$opts['creating'] ?? false
@@ -830,9 +800,6 @@ class WANObjectCache implements
 	 * @param int|float $ttl
 	 * @param int|null $version
 	 * @param float|null $walltime
-	 * @param float|int|bool $dataReplicaLag
-	 * @param float|int|null $dataReadSince
-	 * @param int $lockTSE
 	 * @param int $staleTTL
 	 * @param bool $segmentable
 	 * @param bool $creating
@@ -844,9 +811,6 @@ class WANObjectCache implements
 		$ttl,
 		?int $version,
 		?float $walltime,
-		$dataReplicaLag,
-		$dataReadSince,
-		int $lockTSE,
 		int $staleTTL,
 		bool $segmentable,
 		bool $creating
@@ -865,8 +829,6 @@ class WANObjectCache implements
 			$ttl = self::TTL_INDEFINITE;
 		}
 		$walltime ??= $this->timeSinceLoggedMiss( $key, $now );
-		$dataSnapshotLag = ( $dataReadSince !== null ) ? max( 0, $now - $dataReadSince ) : 0;
-		$dataCombinedLag = $dataReplicaLag + $dataSnapshotLag;
 
 		// Forbid caching data that only exists within an uncommitted transaction. Also, lower
 		// the TTL when the data has a "since" time so far in the past that a delete() tombstone,
@@ -874,57 +836,10 @@ class WANObjectCache implements
 		// The mitigation TTL depends on whether this data lag is assumed to systemically effect
 		// regeneration attempts in the near future. The TTL also reflects regeneration wall time.
 		if ( $this->pendingCallback && ( $this->pendingCallback )() ) {
-			// Case A: data comes from an uncommitted write transaction
-			$mitigated = 'pending writes';
-			// Data might never be committed; rely on a less problematic regeneration attempt
-			$mitigationTTL = self::TTL_UNCACHEABLE;
-		} elseif ( $dataSnapshotLag > self::MAX_READ_LAG ) {
-			// Case B: high snapshot lag
-			$pregenSnapshotLag = ( $walltime !== null ) ? ( $dataSnapshotLag - $walltime ) : 0;
-			if ( ( $pregenSnapshotLag + self::GENERATION_HIGH_SEC ) > self::MAX_READ_LAG ) {
-				// Case B1: generation started when transaction duration was already long
-				$mitigated = 'snapshot lag (late generation)';
-				// Probably non-systemic; rely on a less problematic regeneration attempt
-				$mitigationTTL = self::TTL_UNCACHEABLE;
-			} else {
-				// Case B2: slow generation made transaction duration long
-				$mitigated = 'snapshot lag (high generation time)';
-				// Probably systemic; use a low TTL to avoid stampedes/uncacheability
-				$mitigationTTL = self::TTL_LAGGED;
-			}
-		} elseif ( $dataReplicaLag === false || $dataReplicaLag > self::MAX_READ_LAG ) {
-			// Case C: low/medium snapshot lag with high replication lag
-			$mitigated = 'replication lag';
-			// Probably systemic; use a low TTL to avoid stampedes/uncacheability
-			$mitigationTTL = self::TTL_LAGGED;
-		} elseif ( $dataCombinedLag > self::MAX_READ_LAG ) {
-			$pregenCombinedLag = ( $walltime !== null ) ? ( $dataCombinedLag - $walltime ) : 0;
-			// Case D: medium snapshot lag with medium replication lag
-			if ( ( $pregenCombinedLag + self::GENERATION_HIGH_SEC ) > self::MAX_READ_LAG ) {
-				// Case D1: generation started when read lag was too high
-				$mitigated = 'read lag (late generation)';
-				// Probably non-systemic; rely on a less problematic regeneration attempt
-				$mitigationTTL = self::TTL_UNCACHEABLE;
-			} else {
-				// Case D2: slow generation made read lag too high
-				$mitigated = 'read lag (high generation time)';
-				// Probably systemic; use a low TTL to avoid stampedes/uncacheability
-				$mitigationTTL = self::TTL_LAGGED;
-			}
-		} else {
-			// Case E: new value generated with recent data
-			$mitigated = null;
-			// Nothing to mitigate
-			$mitigationTTL = null;
-		}
-
-		if ( $mitigationTTL === self::TTL_UNCACHEABLE ) {
 			$this->logger->warning(
-				"Rejected set() for {cachekey} due to $mitigated.",
+				"Rejected set() for {cachekey} due to pending writes.",
 				[
 					'cachekey' => $key,
-					'lag' => $dataReplicaLag,
-					'age' => $dataSnapshotLag,
 					'walltime' => $walltime
 				]
 			);
@@ -933,32 +848,8 @@ class WANObjectCache implements
 			return true;
 		}
 
-		// TTL to use in staleness checks (does not effect persistence layer TTL)
-		$logicalTTL = null;
-
-		if ( $mitigationTTL !== null ) {
-			// New value was generated from data that is old enough to be risky
-			if ( $lockTSE >= 0 ) {
-				// Persist the value as long as normal, but make it count as stale sooner
-				$logicalTTL = min( $ttl ?: INF, $mitigationTTL );
-			} else {
-				// Persist the value for a shorter duration
-				$ttl = min( $ttl ?: INF, $mitigationTTL );
-			}
-
-			$this->logger->warning(
-				"Lowered set() TTL for {cachekey} due to $mitigated.",
-				[
-					'cachekey' => $key,
-					'lag' => $dataReplicaLag,
-					'age' => $dataSnapshotLag,
-					'walltime' => $walltime
-				]
-			);
-		}
-
 		// Wrap that value with time/TTL/version metadata
-		$wrapped = $this->wrap( $value, $logicalTTL ?: $ttl, $version, $now );
+		$wrapped = $this->wrap( $value, $ttl, $version, $now );
 		$storeTTL = $ttl + $staleTTL;
 
 		$flags = $this->cache::WRITE_BACKGROUND;
@@ -1006,8 +897,6 @@ class WANObjectCache implements
 	 * For this to always avoid stale value writes, the following must hold:
 	 *   - a) Replication lag is bounded to being less than HOLDOFF_TTL; or
 	 *   - b) If lag is higher, the DB will have gone into read-only mode already
-	 *
-	 * Note that set() can also be lag-aware and lower the TTL if it's high.
 	 *
 	 * Be aware that this does not clear the process cache. Even if it did, callbacks
 	 * used by getWithSetCallback() might still return stale data in the case of either
@@ -1326,12 +1215,6 @@ class WANObjectCache implements
 	 *   - $oldAsOf: generation UNIX timestamp of $oldValue or null if not present (since 1.28)
 	 *   - $params: custom field/value map as defined by $cbParams (since 1.35)
 	 *
-	 * It is strongly recommended to set the 'lag' and 'since' fields to avoid race conditions
-	 * that can cause stale values to get stuck at keys. Usually, callbacks ignore the current
-	 * value, but it can be used to maintain "most recent X" values that come from time or
-	 * sequence based source data, provided that the "as of" id/time is tracked. Note that
-	 * preemptive regeneration and $checkKeys can result in a non-false current value.
-	 *
 	 * Usage of $checkKeys is similar to get() and getMulti(). However, rather than the caller
 	 * having to inspect a "current time left" variable (e.g. $curTTL, $curTTLs), a cache
 	 * regeneration will automatically be triggered using the callback.
@@ -1357,9 +1240,6 @@ class WANObjectCache implements
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-	 *             // Account for any snapshot/replica DB lag
-	 *             $setOpts += Database::getCacheSetOptions( $dbr );
-	 *
 	 *             return $dbr->selectRow( ... );
 	 *        }
 	 *     );
@@ -1375,9 +1255,6 @@ class WANObjectCache implements
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-	 *             // Account for any snapshot/replica DB lag
-	 *             $setOpts += Database::getCacheSetOptions( $dbr );
-	 *
 	 *             return CatConfig::newFromRow( $dbr->selectRow( ... ) );
 	 *         },
 	 *         [
@@ -1402,9 +1279,6 @@ class WANObjectCache implements
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             // Determine new value from the DB
 	 *             $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-	 *             // Account for any snapshot/replica DB lag
-	 *             $setOpts += Database::getCacheSetOptions( $dbr );
-	 *
 	 *             return CatState::newFromResults( $dbr->select( ... ) );
 	 *         },
 	 *         [
@@ -1430,9 +1304,6 @@ class WANObjectCache implements
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             // Determine new value from the DB
 	 *             $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-	 *             // Account for any snapshot/replica DB lag
-	 *             $setOpts += Database::getCacheSetOptions( $dbr );
-	 *
 	 *             return CatToys::newFromResults( $dbr->select( ... ) );
 	 *         },
 	 *         [
@@ -1459,8 +1330,6 @@ class WANObjectCache implements
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-	 *             // Account for any snapshot/replica DB lag
-	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             // Start off with the last cached list
 	 *             $list = $oldValue ?: [];
@@ -1879,11 +1748,6 @@ class WANObjectCache implements
 					$ttl,
 					$version,
 					$walltime,
-					// @phan-suppress-next-line PhanCoalescingAlwaysNull
-					$setOpts['lag'] ?? 0,
-					// @phan-suppress-next-line PhanCoalescingAlwaysNull
-					$setOpts['since'] ?? $preCallbackTime,
-					$lockTSE,
 					$staleTTL,
 					$segmentable,
 					( $curValue === false )
@@ -2024,8 +1888,6 @@ class WANObjectCache implements
 	 *         // Function that derives the new key value
 	 *         function ( $id, $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-	 *             // Account for any snapshot/replica DB lag
-	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             // Load the row for this file
 	 *             $queryInfo = File::getQueryInfo();
@@ -2133,8 +1995,6 @@ class WANObjectCache implements
 	 *         // Function that derives the new key value
 	 *         function ( array $ids, array &$ttls, array &$setOpts ) {
 	 *             $dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-	 *             // Account for any snapshot/replica DB lag
-	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             // Load the rows for these files
 	 *             $rows = array_fill_keys( $ids, false );
@@ -2503,8 +2363,6 @@ class WANObjectCache implements
 	 *         GraphQueryClass::STARTING_TTL,
 	 *         function ( $oldValue, &$ttl, array &$setOpts, $oldAsOf ) use ( $query, $cache ) {
 	 *             $gdb = $this->getReplicaGraphDbConnection();
-	 *             // Account for any snapshot/replica DB lag
-	 *             $setOpts += GraphDatabase::getCacheSetOptions( $gdb );
 	 *
 	 *             $newList = iterator_to_array( $gdb->query( $query ) );
 	 *             sort( $newList, SORT_NUMERIC ); // normalize
