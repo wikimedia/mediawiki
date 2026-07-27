@@ -49,7 +49,7 @@
 		"karma-qunit": "4.2.0",
 		"pinia": "3.0.4",
 		"qunit": "2.24.1",
-		"stylelint-config-wikimedia": "0.19.2",
+		"stylelint-config-wikimedia": "0.19.3",
 		"svgo": "3.3.3",
 		"vue": "3.5.13",
 		"wdio-mediawiki": "file:tests/selenium/wdio-mediawiki",
