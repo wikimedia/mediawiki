@@ -284,7 +284,7 @@
 	"action-bigdelete": "حذف الصفحات ذات التواريخ الكبيرة",
 	"action-blockemail": "منع أو إلغاء منع المستخدم من إرسال البريد الإلكتروني",
 	"action-bot": "يًعامَل كعملية آلية",
-	"action-editalluserpages": "تعديل صفحة المستخدم هذه",
+	"action-editalluserpages": "تعديل صفحات المستخدمين الآخرين",
 	"action-editprotected": "تعديل الصفحات المحمية ({{int:restriction-level-sysop}})",
 	"action-editsemiprotected": "تعديل الصفحات التي حمايتها \"{{int:restriction-level-autoconfirmed}}\"",
 	"action-editinterface": "تعديل واجهة المستخدم",
