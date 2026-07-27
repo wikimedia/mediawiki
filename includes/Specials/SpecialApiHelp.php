@@ -90,7 +90,10 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 		ApiHelp::getHelp( $this->getContext(), $module, $options );
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	public function isIncludable() {
 		return true;
 	}
