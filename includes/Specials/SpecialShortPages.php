@@ -50,9 +50,18 @@ class SpecialShortPages extends QueryPage {
 				$this->namespaceInfo->getContentNamespaces(),
 				$config->get( MainConfigNames::ShortPagesNamespaceExclusions )
 			),
-			'page_is_redirect' => 0
+			'page_is_redirect' => 0,
 		];
 		$joinConds = [];
+		$excludedPageProperty = $this->getExcludedPageProperty();
+		if ( $excludedPageProperty !== null ) {
+			$tables[] = 'page_props';
+			$conds['page_props.pp_page'] = null;
+			$joinConds['page_props'] = [ 'LEFT JOIN', [
+				'page.page_id = page_props.pp_page',
+				'page_props.pp_propname' => $excludedPageProperty,
+			] ];
+		}
 		$options = [ 'USE INDEX' => [ 'page' => 'page_redirect_namespace_len' ] ];
 
 		// Allow extensions to modify the query
@@ -69,6 +78,13 @@ class SpecialShortPages extends QueryPage {
 			'join_conds' => $joinConds,
 			'options' => $options
 		];
+	}
+
+	/**
+	 * @return string|null page property used to exclude pages from this query
+	 */
+	protected function getExcludedPageProperty(): ?string {
+		return 'expectshortpage';
 	}
 
 	/** @inheritDoc */

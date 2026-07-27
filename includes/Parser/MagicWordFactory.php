@@ -117,6 +117,7 @@ class MagicWordFactory {
 
 	/** @var string[] */
 	private array $mDoubleUnderscoreIDs = [
+		'expectshortpage',
 		'expectunusedcategory',
 		'expectunusedtemplate',
 		'forcetoc',

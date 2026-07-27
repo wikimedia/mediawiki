@@ -76,6 +76,8 @@ For notes on 1.46.x and older releases, see HISTORY.
 * (T424179) A new tag has been added called "Edited other user's CSS". It is
   automatically applied to edits to CSS pages in userspace that are not
   subpages of the user making the edit.
+* (T433203) __EXPECTSHORTPAGE__ on a short page causes it to be hidden
+  on Special:ShortPages.
 * …
 
 === New features for sysadmins in 1.47 ===

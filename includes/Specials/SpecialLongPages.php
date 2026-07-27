@@ -36,6 +36,11 @@ class SpecialLongPages extends SpecialShortPages {
 	}
 
 	/** @inheritDoc */
+	protected function getExcludedPageProperty(): ?string {
+		return null;
+	}
+
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

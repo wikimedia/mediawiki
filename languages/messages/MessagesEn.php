@@ -268,6 +268,7 @@ $magicWords = [
 	'displaytitle'            => [ 1, 'DISPLAYTITLE' ],
 	'displaytitle_noerror'    => [ 0, 'noerror' ],
 	'displaytitle_noreplace'  => [ 0, 'noreplace' ],
+	'expectshortpage'         => [ 1, '__EXPECTSHORTPAGE__', ],
 	'expectunusedcategory'    => [ 1, '__EXPECTUNUSEDCATEGORY__', ],
 	'expectunusedtemplate'    => [ 1, '__EXPECTUNUSEDTEMPLATE__', ],
 	'filepath'                => [ 0, 'FILEPATH:' ],

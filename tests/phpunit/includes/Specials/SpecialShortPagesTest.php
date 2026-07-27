@@ -36,6 +36,33 @@ class SpecialShortPagesTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedNS, $queryInfo[ 'conds' ][ 'page_namespace' ] );
 	}
 
+	public function testGetQueryInfoExcludesExpectedShortPages() {
+		$this->setTemporaryHook( 'ShortPagesQuery', static function () {
+			// empty hook handler
+		} );
+		$services = $this->getServiceContainer();
+		$page = new SpecialShortPages(
+			$services->getNamespaceInfo(),
+			$services->getConnectionProvider(),
+			$services->getLinkBatchFactory()
+		);
+		$queryInfo = $page->getQueryInfo();
+
+		$this->assertContains( 'page_props', $queryInfo[ 'tables' ] );
+		$this->assertArrayHasKey( 'page_props.pp_page', $queryInfo[ 'conds' ] );
+		$this->assertNull( $queryInfo[ 'conds' ][ 'page_props.pp_page' ] );
+		$this->assertSame(
+			[
+				'LEFT JOIN',
+				[
+					'page.page_id = page_props.pp_page',
+					'page_props.pp_propname' => 'expectshortpage',
+				],
+			],
+			$queryInfo[ 'join_conds' ][ 'page_props' ]
+		);
+	}
+
 	public static function provideGetQueryInfoRespectsContentNs() {
 		return [
 			[ [ NS_MAIN, NS_FILE ], [], [ NS_MAIN, NS_FILE ] ],
