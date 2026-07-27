@@ -676,28 +676,25 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	public static function newMainPage( ?MessageLocalizer $localizer = null ) {
 		static $recursionGuard = false;
 
-		$title = null;
-
-		if ( !$recursionGuard ) {
-			$msg = $localizer ? $localizer->msg( 'mainpage' ) : wfMessage( 'mainpage' );
-
-			$recursionGuard = true;
-			$title = self::newFromText( $msg->inContentLanguage()->text() );
-			$recursionGuard = false;
+		if ( $recursionGuard ) {
+			// Every page renders at least one link to the Main Page (e.g. sidebar).
+			// Don't produce fatal errors that would make the wiki inaccessible, and hard to fix the
+			// invalid message.
+			//
+			// Fallback scenarios:
+			// * Recursion guard
+			//   If the message contains a bare local interwiki (T297571), then
+			//   Title::newFromText via TitleParser::splitTitleString can get back here.
+			// * Invalid title
+			//   If the 'mainpage' message contains something that is invalid,  Title::newFromText
+			//   will return null.
+			return self::makeTitle( NS_MAIN, 'Main Page' );
 		}
 
-		// Every page renders at least one link to the Main Page (e.g. sidebar).
-		// Don't produce fatal errors that would make the wiki inaccessible, and hard to fix the
-		// invalid message.
-		//
-		// Fallback scenarios:
-		// * Recursion guard
-		//   If the message contains a bare local interwiki (T297571), then
-		//   Title::newFromText via TitleParser::splitTitleString can get back here.
-		// * Invalid title
-		//   If the 'mainpage' message contains something that is invalid,  Title::newFromText
-		//   will return null.
-
+		$msg = $localizer ? $localizer->msg( 'mainpage' ) : wfMessage( 'mainpage' );
+		$recursionGuard = true;
+		$title = self::newFromText( $msg->inContentLanguage()->text() );
+		$recursionGuard = false;
 		return $title ?? self::makeTitle( NS_MAIN, 'Main Page' );
 	}
 
