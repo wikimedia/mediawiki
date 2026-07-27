@@ -62,6 +62,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
+use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -193,6 +194,9 @@ class EditPage implements IEditObject {
 	 * with diff, save prompts, etc.
 	 */
 	public $firsttime;
+
+	/** Whether stashed data was retrieved to populate the values of the current request */
+	private bool $stashedDataRetrieved = false;
 
 	private bool $mTokenOk = false;
 
@@ -349,7 +353,7 @@ class EditPage implements IEditObject {
 	 */
 	private bool $enableApiEditOverride = false;
 
-	protected IContextSource $context;
+	protected DerivativeContext $context;
 
 	/** Whether an old revision is edited */
 	private bool $isOldRev = false;
@@ -516,15 +520,14 @@ class EditPage implements IEditObject {
 	 * Overriden for DataStashTrait
 	 */
 	protected function handleRetrievedData( array $data ): void {
-		$this->textbox1 = $data['wpTextbox1'] ?? $this->textbox1;
-		$this->summary = $data['wpSummary'] ?? $this->summary;
-		$this->minoredit = array_key_exists( 'wpMinoredit', $data );
-		$this->watchthis = array_key_exists( 'wpWatchthis', $data );
-		$this->edittime = $data['wpEdittime'] ?? $this->edittime;
-		$this->editRevId = isset( $data['editRevId'] ) ? (int)$data['editRevId'] : $this->editRevId;
-		$this->starttime = $data['wpStarttime'] ?? $this->starttime;
-		$this->section = $data['wpSection'] ?? $this->section;
-		$this->diff = true;
+		$data = array_diff_key(
+			$data,
+			// Unset wpEditToken and wpSave, as we only want to show a diff for this request.
+			[ 'wpEditToken' => true, 'wpSave' => true ]
+		);
+		$data['wpDiff'] = '1';
+		$request = new DerivativeRequest( $this->context->getRequest(), $data );
+		$this->context->setRequest( $request );
 	}
 
 	/**
@@ -546,9 +549,8 @@ class EditPage implements IEditObject {
 
 		wfDebug( __METHOD__ . ": enter" );
 
-		$request = $this->context->getRequest();
 		// If they used redlink=1 and the page exists, redirect to the main article
-		if ( $request->getBool( 'redlink' ) && $this->page->exists() ) {
+		if ( $this->context->getRequest()->getBool( 'redlink' ) && $this->page->exists() ) {
 			$this->context->getOutput()->redirect( $this->getTitle()->getFullURL() );
 			return;
 		}
@@ -556,10 +558,8 @@ class EditPage implements IEditObject {
 		// check for stashed form data for post-submit reauths, set
 		// EditPage request context if data exists, prior to importFormData
 		$this->setStashKey( self::EDITFORM_ID . ':' . $this->getTitle()->getPrefixedDBkey() );
-		$stashedDataRetrieved = $this->retrieveStashedData();
-		if ( !$stashedDataRetrieved ) {
-			$this->importFormData();
-		}
+		$this->stashedDataRetrieved = $this->retrieveStashedData();
+		$this->importFormData();
 
 		$this->firsttime = false;
 
@@ -691,7 +691,7 @@ class EditPage implements IEditObject {
 		# First time through: get contents, set time for conflict
 		# checking, etc.
 		if ( $this->formtype === 'initial' || $this->firsttime ) {
-			if ( !$stashedDataRetrieved && !$this->initialiseForm() ) {
+			if ( !$this->initialiseForm() ) {
 				return;
 			}
 
@@ -1104,7 +1104,7 @@ class EditPage implements IEditObject {
 
 		$this->isNew = !$this->page->exists() || $this->section === 'new';
 
-		if ( $request->wasPosted() ) {
+		if ( $request->wasPosted() || $this->stashedDataRetrieved ) {
 			$this->importFormDataPosted( $request );
 		} else {
 			# Not a posted form? Start with nothing.
