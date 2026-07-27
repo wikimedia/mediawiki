@@ -162,6 +162,7 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 * Updated composer/spdx-licenses from 1.5.9 to 1.6.0.
 * Updated mediawiki/mediawiki-codesniffer from 50.0.0 to 51.0.0.
+* Updated eslint-config-wikimedia from 0.32.3 to 0.32.5.
 * …
 
 ==== Removed external libraries ====
