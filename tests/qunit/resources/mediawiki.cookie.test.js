@@ -139,7 +139,7 @@
 		}, 'Options (incl. expires)' );
 	} );
 
-	QUnit.test( 'get( key ) - no values', ( assert ) => {
+	QUnit.test( 'get( key ) [default]', ( assert ) => {
 		let key, value;
 
 		mw.cookie.get( 'foo' );
@@ -166,7 +166,7 @@
 		assert.strictEqual( value, 'bar', 'Custom default value' );
 	} );
 
-	QUnit.test( 'get( key ) - with value', ( assert ) => {
+	QUnit.test( 'get( key ) [value]', ( assert ) => {
 		jqcookie.returns( 'bar' );
 
 		const value = mw.cookie.get( 'foo' );
@@ -178,6 +178,45 @@
 
 		const key = jqcookie.lastCall.args[ 0 ];
 		assert.strictEqual( key, 'barfoo' );
+	} );
+
+	QUnit.test.each( 'jar', {
+		simple: [ 'foo', 'bar' ],
+		empty: [ 'foo', '' ],
+		equals: [ 'foo', 'aaa=bbb' ],
+		'quote in key': [ '"got', 'away from me' ],
+		'quote in value middle': [ 'foo', 'I did not touch the "yellow" pencil.' ]
+	}, ( assert, [ name, value ] ) => {
+		jqcookie.restore();
+		mwCookie.jar.removeCookie( name );
+
+		mwCookie.jar.cookie( name, value );
+		assert.strictEqual( mwCookie.jar.cookie( name ), value, 'Return value' );
+
+		mwCookie.jar.removeCookie( name );
+	} );
+
+	// https://github.com/carhartl/jquery-cookie/issues/50
+	QUnit.test( 'jar [raw]', ( assert ) => {
+		jqcookie.restore();
+
+		mwCookie.jar.cookie.raw = true;
+		document.cookie = 'foo=%20val';
+		assert.strictEqual( mwCookie.jar.cookie( 'foo' ), '%20val', 'Return value' );
+		document.cookie = 'foo=aaa=bbb%20';
+		assert.strictEqual( mwCookie.jar.cookie( 'foo' ), 'aaa=bbb%20', 'Return value' );
+
+		mwCookie.jar.removeCookie( 'foo' );
+		delete mwCookie.jar.cookie.raw;
+	} );
+
+	QUnit.test( 'jar [default]', ( assert ) => {
+		jqcookie.restore();
+		mwCookie.jar.removeCookie( 'foo' );
+
+		assert.strictEqual( mwCookie.jar.cookie( 'foo' ), null, 'Return value' );
+
+		mwCookie.jar.removeCookie( 'foo' );
 	} );
 
 }() );

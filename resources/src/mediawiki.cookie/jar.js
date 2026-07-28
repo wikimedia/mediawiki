@@ -22,24 +22,20 @@
 
 	function decoded( s ) {
 		try {
-			return unRfc2068( decodeURIComponent( s.replace( pluses, ' ' ) ) );
+			return decodeURIComponent( s.replace( pluses, ' ' ) );
 		} catch ( e ) {
-			// If the cookie cannot be decoded this should not throw an error.
-			// See T271838.
+			// T271838: If the cookie cannot be decoded this should not throw an error.
 			return '';
 		}
 	}
 
-	function unRfc2068( value ) {
-		if ( value.startsWith( '"' ) ) {
+	function converted( s ) {
+		if ( s.startsWith( '"' ) ) {
 			// This is a quoted cookie as according to RFC2068, unescape
-			value = value.slice( 1, -1 ).replace( /\\"/g, '"' ).replace( /\\\\/g, '\\' );
+			s = s.slice( 1, -1 ).replace( /\\"/g, '"' ).replace( /\\\\/g, '\\' );
 		}
-		return value;
-	}
 
-	function fromJSON( value ) {
-		return config.json ? JSON.parse( value ) : value;
+		return config.json ? JSON.parse( s ) : s;
 	}
 
 	/**
@@ -103,12 +99,12 @@
 			const s = decode( parts.join( '=' ) );
 
 			if ( key && key === name ) {
-				result = fromJSON( s );
+				result = converted( s );
 				break;
 			}
 
 			if ( !key ) {
-				result[ name ] = fromJSON( s );
+				result[ name ] = converted( s );
 			}
 		}
 
