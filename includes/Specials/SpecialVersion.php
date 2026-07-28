@@ -1022,7 +1022,7 @@ class SpecialVersion extends SpecialPage {
 		$vcsDate = null;
 
 		if ( isset( $extension['version'] ) ) {
-			$canonicalVersion = $out->parseInlineAsInterface( $extension['version'] );
+			$canonicalVersion = htmlspecialchars( $extension['version'] );
 		}
 
 		if ( isset( $extension['path'] ) ) {
