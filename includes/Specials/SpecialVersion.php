@@ -1116,7 +1116,7 @@ class SpecialVersion extends SpecialPage {
 		if ( isset( $extension['name'] ) ) {
 			$licenseName = null;
 			if ( isset( $extension['license-name'] ) ) {
-				$licenseName = new HtmlArmor( $out->parseInlineAsInterface( $extension['license-name'] ) );
+				$licenseName = $extension['license-name'];
 			} elseif ( $extensionPath !== null && ExtensionInfo::getLicenseFileNames( $extensionPath ) ) {
 				$licenseName = $this->msg( 'version-ext-license' )->text();
 			}
