@@ -744,6 +744,18 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 		}
 
+		// Use an alternate E-Tag so that HTTP caches self-correct after an error (T431583).
+		//
+		// Usually when a module is broken, ResourceLoader sends a partial response with the rest
+		// of the batch. The mw.loader client isolates dependency trees such that errors often go unnoticed.
+		// The combined version hash skips broken modules and so the future response with the fixed
+		// module naturally has different E-Tag and the cache self-corrects. But, if
+		// Module::getVersionHash suceeeds and only Module::getVersionHash fails, then the error
+		// response could be renewed via HTTP 304 after the error is fixed. This prevents that.
+		if ( $this->errors ) {
+			$etag = 'W/"' . $versionHash . '_with_errors"';
+		}
+
 		$this->sendResponseHeaders( $context, $etag, (bool)$this->errors );
 
 		// Remove the output buffer and output the response
