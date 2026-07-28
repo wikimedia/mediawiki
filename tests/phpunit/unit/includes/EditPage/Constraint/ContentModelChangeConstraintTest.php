@@ -125,7 +125,6 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 	public function testFailure_quick() {
 		$title = $this->makeMockTitle( __METHOD__, [
 			'contentModel' => 'differentStartingContentModel',
-			'exists' => true,
 		] );
 
 		$constraint = new ContentModelChangeConstraint(
