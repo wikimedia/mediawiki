@@ -3039,7 +3039,7 @@
 	"pageinfo-recent-authors": "Antall nylige forfattere",
 	"pageinfo-magic-words": "{{PLURAL:$1|Magisk|Magiske}} ord ($1)",
 	"pageinfo-hidden-categories": "{{PLURAL:$1|Skjult kategori|Skjulte kategorier}} ($1)",
-	"pageinfo-templates": "Transkluderte {{PLURAL:$1|mal|maler}} ($1)",
+	"pageinfo-templates": "{{PLURAL:$1|Transkludert mal|Transkluderte maler}} ($1)",
 	"pageinfo-transclusions": "{{PLURAL:$1|Sider}} transkludert på ($1)",
 	"pageinfo-toolboxlink": "Sideinformasjon",
 	"pageinfo-redirectsto": "Omdirigerer til",

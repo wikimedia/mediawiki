@@ -2288,7 +2288,7 @@
 	"dellogpage": "Silmə jurnalı",
 	"dellogpagetext": "Ən son silinmiş səhifələrin siyahısı.",
 	"deletionlog": "silmə jurnalı",
-	"log-name-create": "Yeni səhifə jurnalı",
+	"log-name-create": "Səhifə yaradılması jurnalı",
 	"log-description-create": "Aşağıda ən son yaradılan səhifələrin siyahısı verilmişdir.",
 	"logentry-create-create": "$1 $3 səhifəsini {{GENDER:$2|yaratdı}}",
 	"reverted": "Daha əvvəlki versiya bərpa edildi",
