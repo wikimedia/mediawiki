@@ -663,7 +663,7 @@
 	"apihelp-unlinkaccount-summary": "Rimuove un'utenza di terze parti collegata all'utente corrente.",
 	"apihelp-unlinkaccount-example-simple": "Tentativo di rimuovere il collegamento dell'utente corrente per il provider associato con <kbd>FooAuthenticationRequest</kbd>.",
 	"apihelp-upload-param-watch": "Aggiungi agli osservati speciali.",
-	"apihelp-upload-param-file": "Contenuto del file.",
+	"apihelp-upload-param-file": "Contenuto del file e altri dettagli. È necessario fornire questo oppure <var>$1filekey</var> o <var>$1url</var>.",
 	"apihelp-upload-example-url": "Carica da un URL.",
 	"apihelp-userrights-param-user": "Utente.",
 	"apihelp-userrights-param-userid": "Specifica <kbd>$1user=#<var>ID</var></kbd> invece.",

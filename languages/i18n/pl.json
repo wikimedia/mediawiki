@@ -3590,7 +3590,7 @@
 	"logentry-newusers-create2": "Konto $3 zostało {{GENDER:$2|utworzone}} przez $1",
 	"logentry-newusers-byemail": "Konto $3 zostało {{GENDER:$2|utworzone}} przez $1, a hasło zostało wysłane na adres e-mail.",
 	"logentry-newusers-autocreate": "{{GENDER:$2|$1 automatycznie utworzył|$1 automatycznie utworzyła|$1 automatycznie utworzył(a)}} konto {{GENDER:$4|użytkownika|użytkowniczki}}",
-	"logentry-protect-move_prot": "{{GENDER:$2|$1 przeniósł|$1 przeniosła|$1 przeniósł(-osła)}} ustawienia zabezpieczeń z $4 do $3",
+	"logentry-protect-move_prot": "$1 {{GENDER:$2|przeniósł|przeniosła|przeniósł(-osła)}} ustawienia zabezpieczeń z $4 do $3",
 	"logentry-protect-unprotect": "{{GENDER:$2|$1 usunął|$1 usunęła|$1 usunął(-ęła)}} zabezpieczenie z $3",
 	"logentry-protect-protect": "{{GENDER:$2|$1 zabezpieczył|$1 zabezpieczyła|$1 zabezpieczył(a)}} $3 $4",
 	"logentry-protect-protect-cascade": "{{GENDER:$2|$1 zabezpieczył|$1 zabezpieczyła|$1 zabezpieczył(a)}} $3 $4 [kaskadowo]",

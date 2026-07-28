@@ -1217,7 +1217,7 @@
 	"deletecomment": "因：",
 	"deleteotherreason": "另／附之因：",
 	"deletereasonotherlist": "另因",
-	"deletereason-dropdown": "*刪削常因\n** 廣告宣傳\n** 毀壞頁面\n** 損害版權\n** 作者請求\n** 斷渡",
+	"deletereason-dropdown": "* 刪削事由\n** 濫發廣告\n** 隳壞\n** 侵權\n** 應作者之請\n** 斷渡",
 	"delete-edit-reasonlist": "纂刪因",
 	"delete-toobig": "此頁含大誌，過$1修。刪頁限矣，防於{{SITENAME}}之亂也。",
 	"delete-warning-toobig": "此頁含大誌，過$1修。刪之可亂{{SITENAME}}之事也；續時留神之。",
