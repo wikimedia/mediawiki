@@ -557,6 +557,8 @@ because of Phabricator reports.
   LinkTargetIsAlwaysKnownBatch hook instead.
 * Overriding MediaHandler::getMetadata() and ::getImageSize(), deprecated since
   1.37, now emits deprecation warnings.
+* (T433783) The SpecialCreateAccountBenefitsHook has been deprecated and will
+  be removed in a future version. There will be no replacement.
 * …
 
 === Other changes in 1.47 ===

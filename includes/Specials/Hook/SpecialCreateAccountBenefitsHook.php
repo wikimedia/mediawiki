@@ -8,7 +8,7 @@ use MediaWiki\HTMLForm\HTMLForm;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "SpecialCreateAccountBenefits" to register handlers implementing this interface.
  *
- * @stable to implement
+ * @deprecated since 1.47 No replacement
  * @ingroup Hooks
  */
 interface SpecialCreateAccountBenefitsHook {
@@ -30,6 +30,7 @@ interface SpecialCreateAccountBenefitsHook {
 	 * @phan-param array{beforeForm:bool} &$options
 	 * @return bool|void True or no return value to continue or false to abort.
 	 * @since 1.40
+	 * @deprecated since 1.47 No replacement
 	 */
 	public function onSpecialCreateAccountBenefits( ?string &$html, array $info, array &$options );
 
