@@ -4,6 +4,7 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Tests\Unit\HtmlAssertionHelperTrait;
 use PHPUnit\Framework\ExpectationFailedException;
 use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\Parsoid\Ext\DOMUtils;
 use Wikimedia\Services\NoSuchServiceException;
 
 /**
@@ -220,7 +221,7 @@ class MediaWikiUnitTestCaseTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideHTMLAssertionHelperTrait
 	 */
-	public function testHTMLAssertionHelperTrait(
+	public function testHTMLAssertionHelperTrait_WithHtml(
 		string $html,
 		string $selector,
 		string|null $expectedException,
@@ -230,6 +231,23 @@ class MediaWikiUnitTestCaseTest extends MediaWikiUnitTestCase {
 			$this->expectException( $expectedException );
 		}
 		$foundHtml = $this->assertSelectorMatchesOneElement( $html, $selector );
+		$this->assertSame( $expectedHtml, $foundHtml );
+	}
+
+	/**
+	 * @dataProvider provideHTMLAssertionHelperTrait
+	 */
+	public function testHTMLAssertionHelperTrait_WithNodes(
+		string $html,
+		string $selector,
+		string|null $expectedException,
+		string|null $expectedHtml = null
+	) {
+		$document = DOMUtils::parseHTML( $html );
+		if ( $expectedException !== null ) {
+			$this->expectException( $expectedException );
+		}
+		$foundHtml = $this->assertSelectorMatchesOneElementInNode( $document, $selector, true );
 		$this->assertSame( $expectedHtml, $foundHtml );
 	}
 
