@@ -77,7 +77,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	public function execute( $par ) {
 		$config = $this->getConfig();
-		$credits = self::getCredits( ExtensionRegistry::getInstance(), $config );
+		$credits = self::getCredits( MediaWikiServices::getInstance()->getExtensionRegistry(), $config );
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -263,8 +263,15 @@ class SpecialVersion extends SpecialPage {
 			$othersLink, $translatorsLink
 		];
 
-		return wfMessage( 'version-poweredby-credits', MWTimestamp::getLocalInstance()->format( 'Y' ),
-			Message::listParam( $authorList ) )->plain();
+		return Html::rawElement(
+			'div',
+			[ 'id' => 'mw-version-poweredby-credits' ],
+			wfMessage(
+				'version-poweredby-credits',
+				MWTimestamp::getLocalInstance()->format( 'Y' ),
+				Message::listParam( $authorList )
+			)->plain()
+		);
 	}
 
 	/**
@@ -789,7 +796,11 @@ class SpecialVersion extends SpecialPage {
 			);
 		} );
 
-		$out .= $this->listToText( $tags );
+		$out .= Html::rawElement(
+			'div',
+			[ 'id' => 'mw-version-parser-extensiontags-list' ],
+			$this->listToText( $tags )
+		);
 
 		return $out;
 	}
@@ -850,7 +861,11 @@ class SpecialVersion extends SpecialPage {
 		};
 		array_walk( $funcHooks, $formatHooks );
 
-		$out .= $this->getLanguage()->listToText( $funcHooks );
+		$out .= Html::rawElement(
+			'div',
+			[ 'id' => 'mw-version-parser-function-hooks-list' ],
+			$this->getLanguage()->listToText( $funcHooks )
+		);
 
 		# Get a list of parser functions from Parsoid as well.
 		$parsoidHooks = [];
@@ -925,7 +940,11 @@ class SpecialVersion extends SpecialPage {
 			$modules
 		);
 
-		$out .= $this->getLanguage()->listToText( $moduleNames );
+		$out .= Html::rawElement(
+			'div',
+			[ 'id' => 'mw-version-parsoid-modules-list' ],
+			$this->getLanguage()->listToText( $moduleNames )
+		);
 
 		return $out;
 	}
@@ -1009,7 +1028,7 @@ class SpecialVersion extends SpecialPage {
 				[ 'class' => 'mw-version-ext-name' ]
 			);
 		} else {
-			$extensionNameLink = htmlspecialchars( $extensionName );
+			$extensionNameLink = Html::element( 'span', [ 'class' => 'mw-version-ext-name' ], $extensionName );
 		}
 
 		// ... and the version information
@@ -1171,7 +1190,15 @@ class SpecialVersion extends SpecialPage {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		$hookNames = $hookContainer->getHookNames();
 
-		if ( !$hookNames ) {
+		$hookNamesToHandlers = array_filter( array_combine(
+			$hookNames,
+			array_map(
+				static fn ( $name ) => $hookContainer->getHandlerDescriptions( $name ),
+				$hookNames
+			)
+		) );
+
+		if ( !$hookNamesToHandlers ) {
 			return '';
 		}
 
@@ -1190,9 +1217,7 @@ class SpecialVersion extends SpecialPage {
 		$ret[] = Html::element( 'th', [], $this->msg( 'version-hook-subscribedby' )->text() );
 		$ret[] = Html::closeElement( 'tr' );
 
-		foreach ( $hookNames as $name ) {
-			$handlers = $hookContainer->getHandlerDescriptions( $name );
-
+		foreach ( $hookNamesToHandlers as $name => $handlers ) {
 			$ret[] = Html::openElement( 'tr' );
 			$ret[] = Html::element( 'td', [], $name );
 			$ret[] = Html::element( 'td', [], $this->listToText( $handlers ) );
@@ -1460,7 +1485,10 @@ class SpecialVersion extends SpecialPage {
 		return $out;
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
 	protected function getGroupName() {
 		return 'wiki';
 	}
