@@ -66,6 +66,7 @@ class ContentModelChangeConstraint extends EditConstraint {
 
 		if ( !$status->isGood() ) {
 			if ( $status->isRateLimitExceeded() ) {
+				$statusValue->merge( $status );
 				$statusValue->setResult( false, self::AS_RATE_LIMITED );
 			} else {
 				$statusValue
@@ -74,7 +75,6 @@ class ContentModelChangeConstraint extends EditConstraint {
 			}
 		}
 
-		// TODO: Use error messages from the PermissionStatus ($status) here - T384399
 		return $statusValue;
 	}
 

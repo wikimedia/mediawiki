@@ -9,6 +9,8 @@ namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 use MediaWiki\EditPage\Constraint\ContentModelChangeConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWikiUnitTestCase;
@@ -135,5 +137,28 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 			$constraint,
 			EditConstraint::AS_NO_CHANGE_CONTENT_MODEL
 		);
+	}
+
+	public function testFailure_RateLimited() {
+		$mockTitle = $this->makeMockTitle( __METHOD__, [
+			'id' => 0,
+		] );
+
+		$authority = $this->createMock( Authority::class );
+		$authority->method( 'authorizeWrite' )->willReturnCallback(
+			function ( string $permission, Title $title, PermissionStatus $status ) use ( $mockTitle ) {
+				$this->assertEquals( 'createwithcontentmodel', $permission );
+				$this->assertEquals( $mockTitle, $title );
+				$status->setRateLimitExceeded();
+				return false;
+			}
+		);
+		$constraint = new ContentModelChangeConstraint(
+			$authority,
+			$mockTitle,
+			'test'
+		);
+		$status = $this->assertConstraintFailed( $constraint, EditConstraint::AS_RATE_LIMITED );
+		$this->assertStatusError( 'actionthrottledtext', $status );
 	}
 }
