@@ -766,7 +766,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$this->getHookRunner()->onSpecialCreateAccountBenefits(
 				$benefitsContainerHtml, $info, $options
 			);
-			$benefitsContainerHtml ??= $this->getBenefitsContainerHtml();
+			$benefitsContainerHtml ??= '';
 			$formAndBenefits = $options['beforeForm']
 				? ( $benefitsContainerHtml . $formBlock )
 				: ( $formBlock . $benefitsContainerHtml );
@@ -779,97 +779,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			. Html::rawElement( 'div', [ 'class' => 'mw-ui-container' ],
 				$formAndBenefits
 			);
-	}
-
-	/**
-	 * The HTML to be shown in the "benefits to signing in / creating an account" section of the signup/login page.
-	 *
-	 * @unstable Experimental method added in 1.38. As noted in the comment from 2015 for getPageHtml,
-	 *   this should use a template.
-	 * @return string
-	 */
-	protected function getBenefitsContainerHtml(): string {
-		$benefitsContainer = '';
-		$this->getOutput()->addModuleStyles( [ 'oojs-ui.styles.icons-user' ] );
-		if ( $this->isSignup() && $this->showExtraInformation() ) {
-			if ( !$this->getUser()->isTemp() ) {
-				// The following messages are used here:
-				// * createacct-benefit-icon1 createacct-benefit-head1 createacct-benefit-text1
-				// * createacct-benefit-icon2 createacct-benefit-head2 createacct-benefit-text2
-				// * createacct-benefit-icon3 createacct-benefit-head3 createacct-benefit-text3
-				$benefitCount = 3;
-				$benefitList = '';
-				for ( $benefitIdx = 1; $benefitIdx <= $benefitCount; $benefitIdx++ ) {
-					$numberUnescaped = $this->msg( "createacct-benefit-head$benefitIdx" )->text();
-					$numberHtml = Html::rawElement( 'strong', [], $numberUnescaped );
-					$iconClass = $this->msg( "createacct-benefit-icon$benefitIdx" )->text();
-					$benefitList .= Html::rawElement( 'div', [ 'class' => "mw-number-text $iconClass" ],
-						Html::rawElement( 'p', [],
-							$this->msg( "createacct-benefit-text$benefitIdx" )->params(
-								$numberUnescaped,
-								$numberHtml
-							)->parse()
-						)
-					);
-				}
-				$benefitsContainer = Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-container' ],
-					Html::element( 'div', [ 'class' => 'mw-createacct-benefits-heading' ],
-						$this->msg( 'createacct-benefit-heading' )->text()
-					)
-					. Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-list' ], $benefitList )
-				);
-			} else {
-				$benefitList = '';
-				$this->getOutput()->addModuleStyles(
-					[
-						'oojs-ui.styles.icons-moderation',
-						'oojs-ui.styles.icons-interactions',
-					]
-				);
-				$benefits = [
-					[
-						'icon' => 'oo-ui-icon-unStar',
-						'description' => $this->msg( "benefit-1-description" )->escaped()
-					],
-					[
-						'icon' => 'oo-ui-icon-userContributions',
-						'description' => $this->msg( "benefit-2-description" )->escaped()
-					],
-					[
-						'icon' => 'oo-ui-icon-settings',
-						'description' => $this->msg( "benefit-3-description" )->escaped()
-					]
-				];
-				foreach ( $benefits as $benefit ) {
-					$benefitContent = Html::rawElement( 'div', [ 'class' => 'mw-benefit-item' ],
-						Html::rawElement( 'span', [ 'class' => $benefit[ 'icon' ] ] )
-						. Html::rawElement( 'p', [], $benefit['description'] )
-					);
-
-					$benefitList .= Html::rawElement(
-						'div', [ 'class' => 'mw-benefit-item-wrapper' ], $benefitContent );
-				}
-
-				$benefitsListWrapper = Html::rawElement(
-					'div', [ 'class' => 'mw-benefit-list-wrapper' ], $benefitList );
-
-				$headingSubheadingWrapper = Html::rawElement( 'div', [ 'class' => 'mw-heading-subheading-wrapper' ],
-					Html::element( 'h2', [],
-						$this->msg( 'createacct-benefit-heading-temp-user' )->text()
-					)
-					. Html::element( 'p', [ 'class' => 'mw-benefit-subheading' ],
-						$this->msg( 'createacct-benefit-subheading-temp-user' )->text()
-					)
-				);
-
-				$benefitsContainer = Html::rawElement(
-					'div', [ 'class' => 'mw-createacct-benefits-container' ],
-					$headingSubheadingWrapper
-					. $benefitsListWrapper
-				);
-			}
-		}
-		return $benefitsContainer;
 	}
 
 	/**
