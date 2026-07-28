@@ -8,10 +8,8 @@ use MediaWiki\Watchlist\ClearUserWatchlistJob;
 
 /**
  * @covers \MediaWiki\Watchlist\ClearUserWatchlistJob
- *
  * @group JobQueue
  * @group Database
- *
  * @license GPL-2.0-or-later
  * @author Addshore
  */
