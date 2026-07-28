@@ -1,0 +1,14 @@
+{
+	"mwapi": "1.2.0",
+	"moduleId": "mockschemaver/v1",
+	"errorSchemaVersion": "2.0",
+	"paths": {
+		"/test": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler"
+				}
+			}
+		}
+	}
+}

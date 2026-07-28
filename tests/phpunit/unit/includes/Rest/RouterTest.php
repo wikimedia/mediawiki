@@ -7,6 +7,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\CorsUtils;
+use MediaWiki\Rest\ErrorFormatterV1;
+use MediaWiki\Rest\ErrorFormatterV2;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
@@ -891,6 +893,64 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'bar', $validatedParams[ 'pathParam' ], (string)$response->getBody() );
 	}
 
+	public function testMakeResponseFactoryDefaultsToLegacyFormatter() {
+		$rf = Router::makeResponseFactory( [], false );
+		$formatter = TestingAccessWrapper::newFromObject( $rf )->errorFormatter;
+		$this->assertInstanceOf( ErrorFormatterV1::class, $formatter );
+	}
+
+	public function testMakeResponseFactoryUsesRegisteredFormatterForSchemaVersion() {
+		$rf = Router::makeResponseFactory( [], false, '2.0' );
+		$formatter = TestingAccessWrapper::newFromObject( $rf )->errorFormatter;
+		$this->assertInstanceOf( ErrorFormatterV2::class, $formatter );
+	}
+
+	public function testMakeResponseFactoryThrowsOnUnknownSchemaVersion() {
+		$this->expectException( ModuleConfigurationException::class );
+		Router::makeResponseFactory( [], false, '9.9' );
+	}
+
+	public function testGetResponseFactoryReturnsInjectedDefaultWhenSchemaVersionAbsent() {
+		$router = $this->newRouter();
+		$wrapper = TestingAccessWrapper::newFromObject( $router );
+
+		// No errorSchemaVersion declared -> reuse the already-injected default ResponseFactory.
+		$this->assertSame( $wrapper->responseFactory, $wrapper->getResponseFactory( [] ) );
+	}
+
+	public function testGetResponseFactorySelectsFormatterForDeclaredSchemaVersion() {
+		$router = $this->newRouter();
+		$wrapper = TestingAccessWrapper::newFromObject( $router );
+
+		$rf = $wrapper->getResponseFactory( [ 'errorSchemaVersion' => '2.0' ] );
+		$formatter = TestingAccessWrapper::newFromObject( $rf )->errorFormatter;
+		$this->assertInstanceOf( ErrorFormatterV2::class, $formatter );
+	}
+
+	public function testModuleDeclaringSchemaVersionUsesRegisteredFormatter() {
+		$router = $this->newRouter( [
+			'routeFiles' => [ __DIR__ . '/mock-schemaver.v1.json' ],
+		] );
+
+		$module = $router->getModule( 'mockschemaver/v1' );
+		$handler = $module->getHandlerForPath( '/test', new RequestData( [] ), true );
+
+		$this->assertNotNull( $module );
+
+		// The module must have been constructed with the ResponseFactory
+		// that uses the formatter registered for its declared schema version.
+		$responseFactory = TestingAccessWrapper::newFromObject( $module )->responseFactory;
+		$formatter = TestingAccessWrapper::newFromObject( $responseFactory )->errorFormatter;
+
+		$this->assertInstanceOf( ErrorFormatterV2::class, $formatter );
+
+		// Response factory test
+		$responseFactory = TestingAccessWrapper::newFromObject( $handler )->responseFactory;
+		$formatter = TestingAccessWrapper::newFromObject( $responseFactory )->errorFormatter;
+
+		$this->assertInstanceOf( ErrorFormatterV2::class, $formatter );
+	}
+
 	private function getCorsUtils(): CorsUtils {
 		$cors = new CorsUtils(
 			new ServiceOptions(
@@ -904,7 +964,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 					MainConfigNames::CrossSiteAJAXdomainExceptions => [],
 				]
 			),
-			new ResponseFactory( [] ),
+			new ResponseFactory( [], new ErrorFormatterV1( [], false ) ),
 			new UserIdentityValue(
 				1,
 				'Test'

@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest\Module;
 use GuzzleHttp\Psr7\Uri;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
+use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Module\ModuleFormatException;
 use MediaWiki\Rest\Module\SpecBasedModule;
 use MediaWiki\Rest\Reporter\ErrorReporter;
@@ -76,8 +77,8 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		] );
 
 		$formatter = $this->getDummyTextFormatter( true );
-		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
-		$responseFactory->setShowExceptionDetails( true );
+		$textFormatters = [ 'qqx' => $formatter ];
+		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, true ) );
 
 		$module = new SpecBasedModule(
 			$specFile,
@@ -329,7 +330,8 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 	public function testLoadModuleDefinition() {
 		$specFile = __DIR__ . '/moduleTestRoutes.json';
 		$formatter = $this->getDummyTextFormatter( true );
-		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
+		$textFormatters = [ 'qqx' => $formatter ];
+		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
 
 		$moduleDef = SpecBasedModule::loadModuleDefinition( $specFile, $responseFactory );
 
@@ -341,7 +343,8 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 	public function testLoadModuleDefinitionWithFlatRoutes() {
 		$specFile = __DIR__ . '/moduleFlatRoutes.json';
 		$formatter = $this->getDummyTextFormatter( true );
-		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
+		$textFormatters = [ 'qqx' => $formatter ];
+		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
 
 		$this->expectException( ModuleFormatException::class );
 		SpecBasedModule::loadModuleDefinition( $specFile, $responseFactory );

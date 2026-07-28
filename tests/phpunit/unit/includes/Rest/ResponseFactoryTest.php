@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest;
 use ArrayIterator;
 use Exception;
 use InvalidArgumentException;
+use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RedirectException;
@@ -29,7 +30,8 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	private function createResponseFactory() {
-		return new ResponseFactory( [ $this->getDummyTextFormatter() ] );
+		$textFormatters = [ $this->getDummyTextFormatter() ];
+		return new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
 	}
 
 	/** @dataProvider provideEncodeJson */

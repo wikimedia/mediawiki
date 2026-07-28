@@ -13,6 +13,7 @@ use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\EntryPoint;
+use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Module\AudienceDesignation;
 use MediaWiki\Rest\Module\ModuleManager;
@@ -135,7 +136,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 			$cors = $this->createNoOpMock( CorsUtils::class );
 
 			$this->router = EntryPoint::createRouter(
-				$this->getServiceContainer(), $context, new RequestData(), $responseFactory, $cors
+				$this->getServiceContainer(), $context, new RequestData(), $responseFactory, [], false, $cors
 			);
 		}
 		return $this->router;
@@ -364,7 +365,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 			new ServiceOptions( ModuleManager::CONSTRUCTOR_OPTIONS, $conf ),
 			ExtensionRegistry::getInstance()->getAttribute( 'RestModuleFiles' ),
 			$services->getLocalServerObjectCache(),
-			new ResponseFactory( [] ),
+			new ResponseFactory( [], new ErrorFormatterV1( [], false ) ),
 		);
 		$files = $moduleManager->getRouteFiles();
 		$files += $moduleManager->getDisabledRouteFiles();

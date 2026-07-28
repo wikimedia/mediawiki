@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
+use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\Module\ModuleMode;
@@ -67,8 +68,8 @@ trait RestTestTrait {
 	 * @return Router
 	 */
 	private function newRouter( array $params = [] ) {
-		$responseFactory = new ResponseFactory( [] );
-		$responseFactory->setShowExceptionDetails( true );
+		$textFormatters = [];
+		$showExceptionDetails = true;
 
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
@@ -94,7 +95,8 @@ trait RestTestTrait {
 			$params['extraRoutes'] ?? [],
 			$params['options'] ?? new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $config ),
 			$params['cacheBag'] ?? new EmptyBagOStuff(),
-			$params['responseFactory'] ?? $responseFactory,
+			$params['textFormatters'] ?? $textFormatters,
+			$params['showExceptionDetails'] ?? $showExceptionDetails,
 			$params['basicAuth'] ?? new StaticBasicAuthorizer(),
 			$params['authority'] ?? $authority,
 			$params['objectFactory'] ?? $objectFactory,
@@ -122,7 +124,7 @@ trait RestTestTrait {
 			->setConstructorArgs( [
 				$params['router'] ?? $this->newRouter( $params ),
 				$params['pathPrefix'] ?? 'mock',
-				$params['responseFactory'] ?? new ResponseFactory( [] ),
+				$params['responseFactory'] ?? new ResponseFactory( [], new ErrorFormatterV1( [], false ) ),
 				$params['basicAuth'] ?? new StaticBasicAuthorizer(),
 				$params['objectFactory'] ?? $objectFactory,
 				$params['restValidator'] ?? new Validator( $objectFactory, $request, $authority ),

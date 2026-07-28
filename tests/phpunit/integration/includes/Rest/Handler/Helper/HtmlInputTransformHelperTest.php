@@ -18,6 +18,7 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
+use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper;
 use MediaWiki\Rest\Handler\Helper\ParsoidFormatHelper;
 use MediaWiki\Rest\HttpException;
@@ -679,7 +680,8 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function createResponse() {
-		$responseFactory = new ResponseFactory( [ new TextFormatter( 'qqx' ) ] );
+		$textFormatters = [ new TextFormatter( 'qqx' ) ];
+		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
 		$response = $responseFactory->create();
 		return $response;
 	}

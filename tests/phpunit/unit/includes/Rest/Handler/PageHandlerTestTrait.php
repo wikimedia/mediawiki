@@ -13,6 +13,7 @@ use MediaWiki\Parser\Parsoid\LintErrorChecker;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Rest\Handler\Helper\HtmlShadowOutputHelper;
 use MediaWiki\Rest\Handler\Helper\PageContentHelper;
@@ -159,7 +160,7 @@ trait PageHandlerTestTrait {
 			} );
 
 		$request ??= new RequestData( [] );
-		$responseFactory = new ResponseFactory( [] );
+		$responseFactory = new ResponseFactory( [], new ErrorFormatterV1( [], false ) );
 		$helperFactory->method( 'newPageRedirectHelper' )
 			->willReturn(
 				new PageRedirectHelper(
@@ -213,7 +214,7 @@ trait PageHandlerTestTrait {
 			) );
 
 		$request ??= new RequestData( [] );
-		$responseFactory = new ResponseFactory( [] );
+		$responseFactory = new ResponseFactory( [], new ErrorFormatterV1( [], false ) );
 		$helperFactory->method( 'newPageRedirectHelper' )
 			->willReturn(
 				new PageRedirectHelper(
@@ -273,7 +274,7 @@ trait PageHandlerTestTrait {
 			) );
 
 		$request ??= new RequestData( [] );
-		$responseFactory = new ResponseFactory( [] );
+		$responseFactory = new ResponseFactory( [], new ErrorFormatterV1( [], false ) );
 		$helperFactory->method( 'newPageRedirectHelper' )
 			->willReturn(
 				new PageRedirectHelper(

@@ -31,6 +31,10 @@ use Wikimedia\Stats\StatsFactory;
 class Router {
 	private const PREFIX_PATTERN = '!^/([-_.\w]+(?:/v[-_.\w]+)?)(/.*)$!';
 
+	private const ERROR_FORMATTERS = [
+		'2.0' => ErrorFormatterV2::class,
+	];
+
 	/** @var string[] */
 	private $routeFiles;
 
@@ -91,13 +95,16 @@ class Router {
 		MainConfigNames::EmergencyContact,
 		MainConfigNames::RestTermsOfServiceUrl,
 	];
+	private array $textFormatters;
+	private bool $showExceptionDetails;
 
 	/**
 	 * @param ModuleManager $moduleManager
 	 * @param array[] $extraRoutes
 	 * @param ServiceOptions $options
 	 * @param BagOStuff $cacheBag A cache in which to store the matcher trees
-	 * @param ResponseFactory $responseFactory
+	 * @param array $textFormatters
+	 * @param bool $showExceptionDetails
 	 * @param BasicAuthorizerInterface $basicAuth
 	 * @param Authority $authority
 	 * @param ObjectFactory $objectFactory
@@ -112,7 +119,8 @@ class Router {
 		array $extraRoutes,
 		ServiceOptions $options,
 		BagOStuff $cacheBag,
-		ResponseFactory $responseFactory,
+		array $textFormatters,
+		bool $showExceptionDetails,
 		BasicAuthorizerInterface $basicAuth,
 		Authority $authority,
 		ObjectFactory $objectFactory,
@@ -132,7 +140,9 @@ class Router {
 
 		$this->moduleManager = $moduleManager;
 		$this->cacheBag = $cacheBag;
-		$this->responseFactory = $responseFactory;
+		$this->textFormatters = $textFormatters;
+		$this->showExceptionDetails = $showExceptionDetails;
+		$this->responseFactory = self::makeResponseFactory( $textFormatters, $showExceptionDetails );
 		$this->basicAuth = $basicAuth;
 		$this->authority = $authority;
 		$this->objectFactory = $objectFactory;
@@ -243,7 +253,7 @@ class Router {
 	}
 
 	private function getModuleMapCacheKey(): string {
-		return $this->cacheBag->makeKey( __CLASS__, 'map', '1' );
+		return $this->cacheBag->makeKey( __CLASS__, 'map', '2' );
 	}
 
 	/**
@@ -283,7 +293,8 @@ class Router {
 				$moduleInfo = [
 					'class' => SpecBasedModule::class,
 					'pathPrefix' => $id,
-					'specFile' => $file
+					'specFile' => $file,
+					'errorSchemaVersion' => $spec['errorSchemaVersion'] ?? null,
 				];
 			} else {
 				// Old-style route file containing a flat list of routes.
@@ -317,6 +328,7 @@ class Router {
 				'pathPrefix' => '',
 				'routeFiles' => $noPrefixFiles,
 				'extraRoutes' => $this->extraRoutes,
+				'errorSchemaVersion' => null,
 			];
 		}
 
@@ -513,12 +525,12 @@ class Router {
 	 *
 	 * @internal
 	 */
-	public function prepareHandler( Handler $handler ) {
+	public function prepareHandler( Handler $handler, ResponseFactory $responseFactory ) {
 		// Injecting services in the Router class means we don't have to inject
 		// them into each Module.
 		$handler->initServices(
 			$this->authority,
-			$this->responseFactory,
+			$responseFactory,
 			$this->hookContainer
 		);
 
@@ -550,7 +562,7 @@ class Router {
 				$info['specFile'],
 				$this,
 				$info['pathPrefix'] ?? $name,
-				$this->responseFactory,
+				$this->getResponseFactory( $info ),
 				$this->basicAuth,
 				$this->objectFactory,
 				$this->restValidator,
@@ -608,5 +620,26 @@ class Router {
 			'detail' => $this->responseFactory->getFormattedMessage( $msg, 'en' ),
 			'uri' => (string)$request->getUri()
 		];
+	}
+
+	public static function makeResponseFactory(
+		array $textFormatters, bool $showExceptionDetails, ?string $schemaVer = null
+	): ResponseFactory {
+		$formatterClass = $schemaVer === null
+			? ErrorFormatterV1::class
+			: ( self::ERROR_FORMATTERS[$schemaVer]
+				?? throw new ModuleConfigurationException( "Unsupported errorSchemaVersion: $schemaVer" ) );
+
+		return new ResponseFactory( $textFormatters, new $formatterClass( $textFormatters, $showExceptionDetails ) );
+	}
+
+	private function getResponseFactory( array $jsonSpecInfo ): ResponseFactory {
+		$schemaVer = $jsonSpecInfo['errorSchemaVersion'] ?? null;
+
+		if ( $schemaVer === null ) {
+			return $this->responseFactory;
+		}
+
+		return self::makeResponseFactory( $this->textFormatters, $this->showExceptionDetails, $schemaVer );
 	}
 }

@@ -3,12 +3,8 @@
 namespace MediaWiki\Rest;
 
 use InvalidArgumentException;
-use MediaWiki\Exception\MWExceptionHandler;
-use MediaWiki\Http\Telemetry;
-use MediaWiki\Language\LanguageCode;
 use stdClass;
 use Throwable;
-use Wikimedia\Http\HttpStatus;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageSpecifier;
 
@@ -19,31 +15,18 @@ class ResponseFactory {
 	private const CT_HTML = 'text/html; charset=utf-8';
 	private const CT_JSON = 'application/json';
 
-	/** @var ITextFormatter[] */
-	private $textFormatters;
-
-	/** @var bool Whether to send exception backtraces to the client */
-	private $showExceptionDetails = false;
+	private ErrorFormatter $errorFormatter;
 
 	/**
-	 * @param ITextFormatter[] $textFormatters
-	 *
-	 * If there is a relative preference among the input text formatters, the formatters should
-	 * be ordered from most to least preferred.
+	 * @param ITextFormatter[] $textFormatters Only used to build a default ErrorFormatter
+	 *   when $errorFormatter is omitted; ignored otherwise. If there is a relative preference
+	 *   among the input text formatters, the formatters should be ordered from most to least
+	 *   preferred.
+	 * @param ErrorFormatter|null $errorFormatter Defaults to the legacy error shape if omitted,
+	 *   for backwards compatibility with callers constructing ResponseFactory directly.
 	 */
-	public function __construct( $textFormatters ) {
-		$this->textFormatters = $textFormatters;
-	}
-
-	/**
-	 * Control whether web responses may include a exception messenger and backtrace
-	 *
-	 * @see $wgShowExceptionDetails
-	 * @since 1.39
-	 * @param bool $showExceptionDetails
-	 */
-	public function setShowExceptionDetails( bool $showExceptionDetails ): void {
-		$this->showExceptionDetails = $showExceptionDetails;
+	public function __construct( $textFormatters, ?ErrorFormatter $errorFormatter = null ) {
+		$this->errorFormatter = $errorFormatter ?? new ErrorFormatterV1( $textFormatters, false );
 	}
 
 	/**
@@ -188,29 +171,62 @@ class ResponseFactory {
 	}
 
 	/**
+	 * @param int $errorCode
+	 * @param array $bodyData
+	 * @return Response
+	 */
+	private function wrapHttpError( int $errorCode, array $bodyData = [] ): Response {
+		$response = $this->createJson( $bodyData );
+
+		// TODO add link to error code documentation
+		$response->setStatus( $errorCode );
+		return $response;
+	}
+
+	/**
 	 * Create a HTTP 4xx or 5xx response.
 	 * @param int $errorCode HTTP error code
 	 * @param array $bodyData An array of data to be included in the JSON response
 	 * @return Response
 	 */
 	public function createHttpError( $errorCode, array $bodyData = [] ) {
-		if ( $errorCode < 400 || $errorCode >= 600 ) {
-			throw new InvalidArgumentException( 'error code must be 4xx or 5xx' );
-		}
-		$extra = [
-			'httpCode' => $errorCode,
-			'httpReason' => HttpStatus::getMessage( $errorCode )
-		];
+		$bodyData = $this->errorFormatter->formatErrorBody( $errorCode, $bodyData );
 
-		if ( $errorCode >= 500 ) {
-			$extra['reqId'] = Telemetry::getInstance()->getRequestId();
-		}
+		return $this->wrapHttpError( $errorCode, $bodyData );
+	}
 
-		$response = $this->createJson( $bodyData + $extra );
+	/**
+	 * @param HttpException $exception
+	 * @return Response
+	 */
+	private function formatHttpException( HttpException $exception, array $extraData = [] ): Response {
+		return $this->wrapHttpError(
+			$exception->getCode(),
+			$this->errorFormatter->formatHttpException(
+				$exception->getCode(),
+				$exception,
+				$extraData
+			)
+		);
+	}
 
-		// TODO add link to error code documentation
-		$response->setStatus( $errorCode );
-		return $response;
+	private function formatException( Throwable $exception ): Response {
+		return $this->wrapHttpError(
+			500,
+			$this->errorFormatter->formatException( 500, $exception )
+		);
+	}
+
+	private function formatLocalizedHttpException(
+		LocalizedHttpException $exception,
+		array $extraData = []
+	): Response {
+		return $this->wrapHttpError(
+			$exception->getCode(),
+			$this->errorFormatter->formatLocalizedHttpException(
+				$exception->getCode(), $exception, $extraData
+			),
+		);
 	}
 
 	/**
@@ -227,9 +243,9 @@ class ResponseFactory {
 		MessageSpecifier $messageValue,
 		array $extraData = []
 	) {
-		return $this->createHttpError(
+		return $this->wrapHttpError(
 			$errorCode,
-			array_merge( $extraData, $this->formatMessage( $messageValue ) )
+			$this->errorFormatter->formatLocalizedHttpError( $errorCode, $messageValue, $extraData )
 		);
 	}
 
@@ -241,46 +257,26 @@ class ResponseFactory {
 	 * @return Response
 	 */
 	public function createFromException( Throwable $exception, array $extraData = [] ) {
-		if ( $exception instanceof LocalizedHttpException ) {
-			$response = $this->createLocalizedHttpError(
-				$exception->getCode(),
-				$exception->getMessageSpecifier(),
-				$exception->getErrorData() + $extraData + [
-					'errorKey' => $exception->getErrorKey(),
-				]
-			);
-		} elseif ( $exception instanceof ResponseException ) {
-			return $exception->getResponse();
-		} elseif ( $exception instanceof RedirectException ) {
-			$response = $this->createRedirect( $exception->getTarget(), $exception->getCode() );
-		} elseif ( $exception instanceof HttpException ) {
-			if ( in_array( $exception->getCode(), [ 204, 304 ], true ) ) {
-				$response = $this->create();
-				$response->setStatus( $exception->getCode() );
-			} else {
-				$response = $this->createHttpError(
-					$exception->getCode(),
-					$exception->getErrorData() + [ 'message' => $exception->getMessage() ]
+		switch ( true ) {
+			case $exception instanceof LocalizedHttpException:
+				return $this->formatLocalizedHttpException(
+					$exception, $extraData
 				);
-			}
-		} elseif ( $this->showExceptionDetails ) {
-			$response = $this->createHttpError( 500, [
-				'message' => 'Error: exception of type ' . get_class( $exception ) . ': '
-					. $exception->getMessage(),
-				'exception' => MWExceptionHandler::getStructuredExceptionData(
-					$exception,
-					MWExceptionHandler::CAUGHT_BY_OTHER
-				)
-			] );
-			// XXX: should we try to do something useful with ILocalizedException?
-			// XXX: should we try to do something useful with common MediaWiki errors like ReadOnlyError?
-		} else {
-			$response = $this->createHttpError( 500, [
-				'message' => 'Error: exception of type ' . get_class( $exception ),
-				'reqId' => Telemetry::getInstance()->getRequestId(),
-			] );
+			case $exception instanceof ResponseException:
+				return $exception->getResponse();
+			case $exception instanceof RedirectException:
+				return $this->createRedirect( $exception->getTarget(), $exception->getCode() );
+			case $exception instanceof HttpException:
+				if ( in_array( $exception->getCode(), [ 204, 304 ], true ) ) {
+					$response = $this->create();
+					$response->setStatus( $exception->getCode() );
+				} else {
+					$response = $this->formatHttpException( $exception, $extraData );
+				}
+				return $response;
+			default:
+				return $this->formatException( $exception );
 		}
-		return $response;
 	}
 
 	/**
@@ -334,11 +330,7 @@ class ResponseFactory {
 	 * @return string[]
 	 */
 	public function getLangCodes(): array {
-		$codes = [];
-		foreach ( $this->textFormatters as $formatter ) {
-			$codes[] = $formatter->getLangCode();
-		}
-		return $codes;
+		return $this->errorFormatter->getLangCodes();
 	}
 
 	/**
@@ -353,17 +345,7 @@ class ResponseFactory {
 	 * @return array
 	 */
 	public function formatMessage( MessageSpecifier $messageValue ): array {
-		if ( !$this->textFormatters ) {
-			// For unit tests
-			return [];
-		}
-		$translations = [];
-		foreach ( $this->textFormatters as $formatter ) {
-			$lang = LanguageCode::bcp47( $formatter->getLangCode() );
-			$messageText = $formatter->format( $messageValue );
-			$translations[$lang] = $messageText;
-		}
-		return [ 'messageTranslations' => $translations ];
+		return $this->errorFormatter->formatMessage( $messageValue );
 	}
 
 	/**
@@ -457,5 +439,4 @@ class ResponseFactory {
 			]
 		];
 	}
-
 }

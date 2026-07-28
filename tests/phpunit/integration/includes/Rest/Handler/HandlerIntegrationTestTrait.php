@@ -7,6 +7,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\EntryPoint;
+use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\RequestData;
@@ -33,12 +34,16 @@ trait HandlerIntegrationTestTrait {
 		}
 		$request = new RequestData( $requestParams );
 		$context = RequestContext::getMain();
-		$responseFactory = new ResponseFactory( [] );
+		$textFormatters = [];
+		$showExceptionDetails = false;
+		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, $showExceptionDetails ) );
 		$router = EntryPoint::createRouter(
 			$this->getServiceContainer(),
 			$context,
 			$request,
-			new ResponseFactory( [] ),
+			new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, $showExceptionDetails ) ),
+			$textFormatters,
+			$showExceptionDetails,
 			new CorsUtils(
 				new ServiceOptions(
 					CorsUtils::CONSTRUCTOR_OPTIONS,

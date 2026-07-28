@@ -6,6 +6,7 @@ use GuzzleHttp\Psr7\Uri;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
+use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\Module\ExtraRoutesModule;
 use MediaWiki\Rest\Module\Module;
@@ -90,8 +91,7 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 			'validator' => $validator
 		] );
 
-		$responseFactory = new ResponseFactory( [] );
-		$responseFactory->setShowExceptionDetails( true );
+		$responseFactory = new ResponseFactory( [], new ErrorFormatterV1( [], true ) );
 
 		$options = new \MediaWiki\Config\ServiceOptions( [
 			MainConfigNames::Sitename,

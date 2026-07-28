@@ -6,6 +6,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\RedirectStore;
+use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler\Helper\PageRedirectHelper;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
@@ -39,7 +40,7 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 				return null;
 			} );
 
-		$responseFactory = new ResponseFactory( [] );
+		$responseFactory = new ResponseFactory( [], new ErrorFormatterV1( [], false ) );
 
 		$router = $this->newRouterForPageHandler( 'https://example.test', '/api' );
 		$request = new RequestData( [ 'queryParams' => $queryParams, 'headers' => $headers ] );

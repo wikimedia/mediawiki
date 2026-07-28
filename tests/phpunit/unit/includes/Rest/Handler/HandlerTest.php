@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 use GuzzleHttp\Psr7\Uri;
 use MediaWiki\ParamValidator\TypeDef\ArrayDef;
 use MediaWiki\Rest\ConditionalHeaderUtil;
+use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -52,7 +53,8 @@ class HandlerTest extends MediaWikiUnitTestCase {
 
 	private function initHandlerPartially( Handler $handler ) {
 		$formatter = $this->getDummyTextFormatter( true );
-		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
+		$textFormatters = [ 'qqx' => $formatter ];
+		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
 
 		$router = $this->newRouter();
 		$module = $this->newModule( [ 'router' => $router ] );
@@ -66,6 +68,23 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$handler->initSession( $session );
 
 		return $handler;
+	}
+
+	/**
+	 * Wire mock services into a handler for the OpenAPI-spec tests.
+	 *
+	 * Uses a dummy text formatter that dumps MessageValue objects, so translated
+	 * message keys in the resulting spec will contain HTML — a testing artifact,
+	 * not what users see at runtime.
+	 */
+	private function initHandlerServices( Handler $handler ): void {
+		$textFormatters = [ 'qqx' => $this->getDummyTextFormatter( true ) ];
+		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
+		$handler->initServices(
+			$this->mockAnonUltimateAuthority(),
+			$responseFactory,
+			$this->createHookContainer()
+		);
 	}
 
 	public function testGetRouter() {
@@ -2117,15 +2136,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			$openApiSpec
 		);
 
-		// Because the dummy text formatter uses MessageValue::dump(), translated message keys
-		// will contain html. This html is a testing artifact and not representative of the spec
-		// presented to users at runtime.
-		$formatter = $this->getDummyTextFormatter( true );
-
-		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
-		$authority = $this->mockAnonUltimateAuthority();
-		$hookContainer = $this->createHookContainer();
-		$handler->initServices( $authority, $responseFactory, $hookContainer );
+		$this->initHandlerServices( $handler );
 
 		$spec = $handler->getOpenApiSpec( $method );
 
@@ -2156,11 +2167,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$module->method( 'getModuleDescription' )->willReturn( [] );
 		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
 
-		$formatter = $this->getDummyTextFormatter( true );
-		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
-		$authority = $this->mockAnonUltimateAuthority();
-		$hookContainer = $this->createHookContainer();
-		$handler->initServices( $authority, $responseFactory, $hookContainer );
+		$this->initHandlerServices( $handler );
 
 		$spec = $handler->getOpenApiSpec( 'GET' );
 
@@ -2196,11 +2203,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$module->method( 'getModuleDescription' )->willReturn( [] );
 		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
 
-		$formatter = $this->getDummyTextFormatter( true );
-		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
-		$authority = $this->mockAnonUltimateAuthority();
-		$hookContainer = $this->createHookContainer();
-		$handler->initServices( $authority, $responseFactory, $hookContainer );
+		$this->initHandlerServices( $handler );
 
 		$spec = $handler->getOpenApiSpec( 'PUT' );
 
@@ -2235,11 +2238,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$module->method( 'getModuleDescription' )->willReturn( [] );
 		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
 
-		$formatter = $this->getDummyTextFormatter( true );
-		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
-		$authority = $this->mockAnonUltimateAuthority();
-		$hookContainer = $this->createHookContainer();
-		$handler->initServices( $authority, $responseFactory, $hookContainer );
+		$this->initHandlerServices( $handler );
 
 		$spec = $handler->getOpenApiSpec( 'PUT' );
 
@@ -2289,11 +2288,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$module->method( 'getModuleDescription' )->willReturn( [] );
 		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
 
-		$formatter = $this->getDummyTextFormatter( true );
-		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
-		$authority = $this->mockAnonUltimateAuthority();
-		$hookContainer = $this->createHookContainer();
-		$handler->initServices( $authority, $responseFactory, $hookContainer );
+		$this->initHandlerServices( $handler );
 
 		$spec = $handler->getOpenApiSpec( 'POST' );
 
@@ -2344,11 +2339,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$module->method( 'getModuleDescription' )->willReturn( [] );
 		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
 
-		$formatter = $this->getDummyTextFormatter( true );
-		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
-		$authority = $this->mockAnonUltimateAuthority();
-		$hookContainer = $this->createHookContainer();
-		$handler->initServices( $authority, $responseFactory, $hookContainer );
+		$this->initHandlerServices( $handler );
 
 		$spec = $handler->getOpenApiSpec( 'POST' );
 
@@ -2421,11 +2412,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$module->method( 'getModuleDescription' )->willReturn( [] );
 		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
 
-		$formatter = $this->getDummyTextFormatter( true );
-		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
-		$authority = $this->mockAnonUltimateAuthority();
-		$hookContainer = $this->createHookContainer();
-		$handler->initServices( $authority, $responseFactory, $hookContainer );
+		$this->initHandlerServices( $handler );
 
 		$spec = $handler->getOpenApiSpec( 'POST' );
 
@@ -2484,11 +2471,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$module->method( 'getModuleDescription' )->willReturn( [] );
 		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
 
-		$formatter = $this->getDummyTextFormatter( true );
-		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
-		$authority = $this->mockAnonUltimateAuthority();
-		$hookContainer = $this->createHookContainer();
-		$handler->initServices( $authority, $responseFactory, $hookContainer );
+		$this->initHandlerServices( $handler );
 
 		$spec = $handler->getOpenApiSpec( 'PUT' );
 

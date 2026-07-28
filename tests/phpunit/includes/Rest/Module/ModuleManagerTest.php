@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Rest;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\ResponseFactory;
@@ -63,7 +64,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 			new ServiceOptions( ModuleManager::CONSTRUCTOR_OPTIONS, $conf ),
 			$extensionModuleFiles,
 			$services->getLocalServerObjectCache(),
-			new ResponseFactory( [] ),
+			new ResponseFactory( [], new ErrorFormatterV1( [], false ) ),
 		);
 	}
 

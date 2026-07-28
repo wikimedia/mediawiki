@@ -25,6 +25,10 @@
 		},
 		"externalDocs": {
 			"$ref": "https://spec.openapis.org/oas/3.0/schema/2021-09-28#/definitions/ExternalDocumentation"
+		},
+		"errorSchemaVersion": {
+			"description": "The version of the error response schema used by the module.",
+			"type": "string"
 		}
 	},
 	"definitions": {

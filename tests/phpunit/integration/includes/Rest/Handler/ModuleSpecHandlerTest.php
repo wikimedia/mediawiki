@@ -13,7 +13,6 @@ use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\SessionManagerInterface;
@@ -60,14 +59,16 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 				return $message->dump();
 			}
 		};
-		$responseFactory = new ResponseFactory( [ $formatter ] );
+		$textFormatters = [ $formatter ];
+		$showExceptionDetails = false;
 
 		return ( new Router(
 			$this->newMockModuleManager( [ $specFile ], $moduleModes ),
 			[],
 			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
 			$services->getLocalServerObjectCache(),
-			$responseFactory,
+			$textFormatters,
+			$showExceptionDetails,
 			$authorizer,
 			$authority,
 			$objectFactory,

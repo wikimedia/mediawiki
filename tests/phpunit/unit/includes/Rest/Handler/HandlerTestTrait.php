@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\Module\Module;
@@ -57,7 +58,8 @@ trait HandlerTestTrait {
 		$routerOrModule = null
 	) {
 		$formatter = $this->getDummyTextFormatter( true );
-		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
+		$textFormatters = [ 'qqx' => $formatter ];
+		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
 
 		$module = null;
 		$router = null;

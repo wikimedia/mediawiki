@@ -184,7 +184,7 @@ abstract class Module {
 		$handler->initContext( $this, $match['path'], $config, $openApiSpec );
 
 		// Inject services and state from the router
-		$this->getRouter()->prepareHandler( $handler );
+		$this->getRouter()->prepareHandler( $handler, $this->responseFactory );
 
 		if ( $initForExecute ) {
 			// Use rawurldecode so a "+" in path params is not interpreted as a space character.

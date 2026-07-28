@@ -34,6 +34,8 @@ class EntryPoint extends MediaWikiEntryPoint {
 	 * @param IContextSource $context
 	 * @param RequestInterface $request
 	 * @param ResponseFactory $responseFactory
+	 * @param ITextFormatter[] $textFormatters
+	 * @param bool $showExceptionDetails
 	 * @param CorsUtils $cors
 	 *
 	 * @return Router
@@ -43,6 +45,8 @@ class EntryPoint extends MediaWikiEntryPoint {
 		IContextSource $context,
 		RequestInterface $request,
 		ResponseFactory $responseFactory,
+		array $textFormatters,
+		bool $showExceptionDetails,
 		CorsUtils $cors
 	): Router {
 		$conf = $services->getMainConfig();
@@ -73,7 +77,8 @@ class EntryPoint extends MediaWikiEntryPoint {
 			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
 			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
 			$services->getLocalServerObjectCache(),
-			$responseFactory,
+			$textFormatters,
+			$showExceptionDetails,
 			$authorizer,
 			$authority,
 			$objectFactory,
@@ -107,11 +112,9 @@ class EntryPoint extends MediaWikiEntryPoint {
 		parent::doSetup();
 
 		$context = $this->getContext();
-
-		$responseFactory = new ResponseFactory( $this->getTextFormatters() );
-		$responseFactory->setShowExceptionDetails(
-			MWExceptionRenderer::shouldShowExceptionDetails()
-		);
+		$textFormatters = $this->getTextFormatters();
+		$showExceptionDetails = MWExceptionRenderer::shouldShowExceptionDetails();
+		$responseFactory = Router::makeResponseFactory( $textFormatters, $showExceptionDetails );
 
 		$this->cors = new CorsUtils(
 			new ServiceOptions(
@@ -128,6 +131,8 @@ class EntryPoint extends MediaWikiEntryPoint {
 				$context,
 				$this->request,
 				$responseFactory,
+				$textFormatters,
+				$showExceptionDetails,
 				$this->cors
 			);
 		}

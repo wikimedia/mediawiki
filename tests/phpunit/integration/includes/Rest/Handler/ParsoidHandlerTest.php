@@ -18,6 +18,7 @@ use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper;
 use MediaWiki\Rest\Handler\Helper\ParsoidFormatHelper;
 use MediaWiki\Rest\Handler\ParsoidHandler;
@@ -279,7 +280,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$formatter = $this->getDummyTextFormatter( true );
 
 		/** @var ResponseFactory|MockObject $responseFactory */
-		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
+		$textFormatters = [ 'qqx' => $formatter ];
+		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
 
 		if ( !$request->hasBody() && $method === 'POST' ) {
 			// Send an empty body if none was provided.
