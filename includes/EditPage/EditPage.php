@@ -1811,8 +1811,8 @@ class EditPage implements IEditObject {
 		$extraQueryRedirect = $request->getVal( 'wpExtraQueryRedirect' );
 
 		switch ( $statusValue ) {
-			// Status codes that provide their own error/warning messages. Most error scenarios that don't
-			// need custom user interface (e.g. edit conflicts) should be handled here, one day (T384399).
+			// For status codes that provide their own error/warning messages, we display the errors and warnings in
+			// message boxes.
 			case self::AS_ARTICLE_WAS_DELETED:
 			case self::AS_BLANK_ARTICLE:
 			case self::AS_BROKEN_REDIRECT:
@@ -1836,8 +1836,7 @@ class EditPage implements IEditObject {
 				$out->addHTML( $this->formatConstraintStatus( $status ) );
 				return true;
 
-			// Status codes for which the error/warning message is generated somewhere else in this class.
-			// They should be refactored to provide their own messages and handled below (T384399).
+			// There is a UI for edit conflicts, so we don't need to show a message box.
 			case self::AS_CONFLICT_DETECTED:
 				return true;
 
