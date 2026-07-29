@@ -695,7 +695,7 @@
 	"recentchangeslinked-feed": "Modificaziuns sin paginas colliadas",
 	"recentchangeslinked-toolbox": "Modificaziuns sin paginas colliadas",
 	"recentchangeslinked-title": "Midadas en artitgels ch'èn colliads cun \"$1\"",
-	"recentchangeslinked-summary": "Quest è ina glista da las midadas ch'èn vegnidas fatgas da curt en artitgels ch'èn colliads cun ina pagina specifica (ni en commembers d'ina categoria specifica).\nPaginas sin [[Special:Watchlist|tia glista d'observaziun]] èn '''grassas'''.",
+	"recentchangeslinked-summary": "Inseri il num d'ina pagina per mussar mididas sin paginas che collian u vegnan colliadas da questa pagina. (Per mussar ils commembers d'ina categoria endatai {{ns:category}}:Num da la categoria). Mida sin paginas [[Special:Watchlist|tia glista d'observaziun]] èn <strong>grassas</strong>.",
 	"recentchangeslinked-page": "Num da la pagina:",
 	"recentchangeslinked-to": "Mussar midadas da paginas che han ina colliaziun a questa pagina",
 	"recentchanges-page-added-to-category": "[[:$1]] agiuntar a la categoria",
