@@ -1826,8 +1826,8 @@
 				localStorage.setItem( store.key, JSON.stringify( {
 					items: store.items,
 					vary: store.vary,
-					// Store with 1e7 ms accuracy (1e4 seconds, or ~ 2.7 hours),
-					// which is enough for the purpose of expiring after ~ 30 days.
+					// Store expiry with 1e7 ms precision (1e4 second increments, or ~2.7 hours),
+					// which is enough for the purpose of expiring after ~30 days.
 					asOf: Math.ceil( Date.now() / 1e7 )
 				} ) );
 			} catch ( e ) {
@@ -1951,6 +1951,13 @@
 					data.vary === this.vary &&
 					data.items &&
 					// Only use if it's been less than 30 days since the data was written
+					//
+					// We discard mw.loader.store contents after 30 days for these reasons:
+					// * Avoid unbounded reuse of unversioned artefacts and configuration (T134368)
+					// * Reuse space from modules that the current user no longer uses (T58778)
+					// * Our math for the version hash entropy requires a limit
+					//   (see also ResourceLoader::makeHash in PHP, and T229245)
+					//
 					// 30 days = 2,592,000 s = 2,592,000,000 ms = ± 259e7 ms
 					Date.now() < ( data.asOf * 1e7 ) + 259e7
 				) {
