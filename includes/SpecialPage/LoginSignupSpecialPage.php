@@ -659,26 +659,33 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				} else {
 					$submitStatus->warning( 'userlogin-reauth-banner-generic', $this->securityLevel );
 				}
-				$returnTitle = Title::newFromText( $this->mReturnTo );
-				if ( $returnTitle && !$returnTitle->isSpecialPage() ) {
-					$cancelTitle = $returnTitle;
-				} else {
-					$cancelTitle = Title::newMainPage();
-				}
+
+				// Build cancel link
 				$cancelLinkAttribs = [ 'class' => 'mw-authentication-popup-cancel' ];
 				if ( $this->getLoginHelper()->isDisplayModePopup() ) {
 					$cancelLinkAttribs['class'] .= ' mw-authentication-popup-link';
 					$this->getOutput()->addModules( 'mediawiki.authenticationPopup.cancel' );
 				}
+				$returnTitle = Title::newFromText( $this->mReturnTo );
+				if ( $returnTitle && !$returnTitle->isSpecialPage() ) {
+					$cancelLink = $this->getLinkRenderer()->makeLink(
+						$returnTitle->createFragmentTarget( $this->mReturnToAnchor ),
+						$this->msg( 'userlogin-reauth-description-link' )->text(),
+						$cancelLinkAttribs,
+						wfCgiToArray( $this->mReturnToQuery )
+					);
+				} else {
+					$cancelLink = $this->getLinkRenderer()->makeLink(
+						Title::newMainPage(),
+						$this->msg( 'userlogin-reauth-description-link' )->text(),
+						$cancelLinkAttribs
+					);
+				}
+
 				$form->addHeaderHtml(
-					$this->msg( 'userlogin-reauth-description' )->rawParams(
-						$this->getLinkRenderer()->makeLink(
-							$cancelTitle->createFragmentTarget( $this->mReturnToAnchor ),
-							$this->msg( 'userlogin-reauth-description-link' )->text(),
-							$cancelLinkAttribs,
-							wfCgiToArray( $this->mReturnToQuery )
-						)
-					)->parseAsBlock()
+					$this->msg( 'userlogin-reauth-description' )
+						->rawParams( $cancelLink )
+						->parseAsBlock()
 				);
 			} else {
 				// User is accessing the login or signup page while already logged in.
