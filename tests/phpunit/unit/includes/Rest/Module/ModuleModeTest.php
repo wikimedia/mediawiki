@@ -22,7 +22,7 @@ class ModuleModeTest extends \MediaWikiUnitTestCase {
 
 	public static function provideGetModuleModeCases() {
 		yield from [
-			[ AudienceDesignation::PUBLISHED, ModuleMode::PUBLISHED ],
+			[ AudienceDesignation::PUBLIC, ModuleMode::PUBLISHED ],
 			[ AudienceDesignation::INTERNAL, ModuleMode::PUBLISHED ],
 			[ AudienceDesignation::BETA, ModuleMode::PUBLISHED ],
 			[ null, ModuleMode::DISABLED ],
@@ -42,7 +42,7 @@ class ModuleModeTest extends \MediaWikiUnitTestCase {
 
 	public static function provideGetModeParamsCases() {
 		yield from [
-			[ AudienceDesignation::PUBLISHED, [] ],
+			[ AudienceDesignation::PUBLIC, [] ],
 			[ AudienceDesignation::INTERNAL, [ 'group' => 'internal' ] ],
 			[ AudienceDesignation::BETA, [ 'group' => 'beta' ] ],
 			[ null, [] ],

@@ -19,11 +19,11 @@ class AudienceDesignationTest extends \MediaWikiUnitTestCase {
 		return [
 			'no designation' => [
 				'mymodule/v1',
-				AudienceDesignation::PUBLISHED,
+				AudienceDesignation::PUBLIC,
 			],
-			'published' => [
-				'mymodule/v1-published',
-				AudienceDesignation::PUBLISHED,
+			'public' => [
+				'mymodule/v1-public',
+				AudienceDesignation::PUBLIC,
 			],
 			'internal' => [
 				'mymodule/v1-internal',

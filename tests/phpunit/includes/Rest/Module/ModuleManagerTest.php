@@ -196,8 +196,8 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		yield from [
 			[ 'example/v1', ModuleMode::PUBLISHED ],
 
-			// We don't expect people to actually use 'published', but if they do, it should work.
-			[ 'example/v1-published', ModuleMode::PUBLISHED ],
+			// We don't expect people to actually use 'public', but if they do, it should work.
+			[ 'example/v1-public', ModuleMode::PUBLISHED ],
 
 			[ 'example/v1-internal', ModuleMode::PUBLISHED ],
 

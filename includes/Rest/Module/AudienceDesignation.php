@@ -4,14 +4,14 @@ namespace MediaWiki\Rest\Module;
 
 /**
  * Describes the set of audience designations available to REST modules.
- * Modules without a specific designation are assumed to be "published".
+ * Modules without a specific designation are assumed to be "public".
  *
  * @since 1.47
  */
 enum AudienceDesignation: string {
 	// This is the default if no audience designation is specified. We therefore don't expect any
 	// module to actually specify this (although it would work as expected if one did).
-	case PUBLISHED = 'published';
+	case PUBLIC = 'public';
 
 	case INTERNAL = 'internal';
 
@@ -25,7 +25,7 @@ enum AudienceDesignation: string {
 	 * @return ?AudienceDesignation
 	 */
 	public static function fromModuleId( string $moduleId ): ?AudienceDesignation {
-		// Module ids with no audience designation are assumed to be "published".
+		// Module ids with no audience designation are assumed to be "public".
 		//
 		// Return null for module ids of invalid format, or whose audience designation is present
 		// but unrecognized. Generally, structure tests should identify invalid module ids and
@@ -43,7 +43,7 @@ enum AudienceDesignation: string {
 		// $match[2], if present, is the audience designation, including its leading dash.
 		// For example, the "-beta" in "mymodule/v1-beta".
 		if ( !isset( $matches[2] ) ) {
-			return self::PUBLISHED;
+			return self::PUBLIC;
 		}
 
 		// The leading character of $matches[2] is guaranteed to be a dash. Strip it.

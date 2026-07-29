@@ -31,7 +31,7 @@ enum ModuleMode: string {
 		}
 
 		return match ( $ad ) {
-			AudienceDesignation::PUBLISHED => self::PUBLISHED,
+			AudienceDesignation::PUBLIC => self::PUBLISHED,
 			AudienceDesignation::INTERNAL => self::PUBLISHED,
 			AudienceDesignation::BETA => self::PUBLISHED
 		};
