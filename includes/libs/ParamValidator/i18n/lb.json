@@ -5,6 +5,7 @@
 			"Volvox"
 		]
 	},
+	"paramvalidator-badexpiry": "Ongültege Wäert „$2“ fir den Oflafparameter „$1“.",
 	"paramvalidator-badinteger": "Ongültege Wäert „$2“ fir de ganzzuelege Parameter „$1“.",
 	"paramvalidator-badtimestamp": "Ongültege Wäert „$2“ fir den Zäitstempel-Parameter „$1“.",
 	"paramvalidator-emptystring": "déi eidel Zeecheketten",

@@ -208,7 +208,7 @@
 	"nextn": "oinmai {{PLURAL:$1|$1}}",
 	"shown-title": "Hatudu {{PLURAL:$1|rezultadu|rezultadu}} $1 kada pájina",
 	"viewprevnext": "Haree ($1 {{int:pipe-separator}} $2) ($3)",
-	"searchmenu-exists": "'''Iha pájina ida ho naran \"[[:$1]]\".'''",
+	"searchmenu-exists": "Iha pájina ida ho naran \"[[:$1]]\" iha {{SITENAME}}. {{PLURAL:$2| 0=|Haree mós rezultadu peskiza sira seluk ne'ebé hetan.}}",
 	"searchmenu-new": "'''Kria pájina \"[[:$1]]\" iha wiki ne'e!'''",
 	"searchprofile-everything": "Hotu",
 	"searchprofile-articles-tooltip": "Buka iha $1",

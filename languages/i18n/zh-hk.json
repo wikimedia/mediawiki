@@ -39,7 +39,8 @@
 			"和平至上",
 			"捍粵者",
 			"星海",
-			"優枰"
+			"優枰",
+			"臺灣象象"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|分類}}",
@@ -233,7 +234,7 @@
 	"speciallogtitlelabel": "目標（標題或以「{{ns:user}}:用戶名」表示用戶）：",
 	"checkbox-select": "選擇：$1",
 	"deletedcontributions": "已刪除的用戶貢獻",
-	"deletedcontributions-title": "已刪除用戶$1的貢獻",
+	"deletedcontributions-title": "用戶$1的已刪除貢獻",
 	"listusersfrom": "從此處開始顯示用戶：",
 	"activeusers": "活躍用戶列表",
 	"activeusers-from": "顯示用戶開始自：",
