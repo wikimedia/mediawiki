@@ -116,7 +116,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$code = $rl->makeModuleResponse( $startupContext, [ 'startup' => $startupModule ] );
 		// The following has to be deferred via RLQ because the startup module is asynchronous.
 		$code .= ResourceLoader::makeLoaderConditionalScript(
-			// Embed page-specific mw.config variables.
+			// Embed page-specific mw.config variables (substitute for OutputPage::getJSVars)
 			//
 			// For compatibility with older tests, these will come from the user
 			// action "viewing Special:JavaScripTest".
@@ -136,6 +136,14 @@ class SpecialJavaScriptTest extends SpecialPage {
 				'wgRelevantPageName' => 'Special:Badtitle/JavaScriptTest',
 				// used by testrunner.js for QUnit toolbar
 				'wgTestModuleComponents' => $this->getComponents(),
+			] ) . ');'
+			// Embed site-wide mw.config variables (override ResourceLoader::getSiteConfigSettings)
+			//
+			// To ensure stable testing irrespective of the developer's LocalSettings.php file,
+			// inspired by T277470.
+			. 'mw.config.set(' . $embedContext->encodeJson( [
+				// used by mediawiki.Title
+				'wgCaseSensitiveNamespaces' => [],
 			] ) . ');'
 			// Embed private modules as they're not allowed to be loaded dynamically
 			. $rl->makeModuleResponse( $embedContext, [
