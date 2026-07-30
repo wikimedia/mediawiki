@@ -230,7 +230,14 @@ class DataAccess extends IDataAccess {
 		foreach ( $files as $f ) {
 			$keys[] = $f[0];
 		}
-		$fileObjs = $this->repoGroup->findFiles( $keys );
+		// Use findFile() for a single lookup to take advantage of the WAN cache.
+		if ( count( $keys ) === 1 ) {
+			$key = $keys[0];
+			$file = $this->repoGroup->findFile( $key );
+			$fileObjs = $file ? [ $key => $file ] : [];
+		} else {
+			$fileObjs = $this->repoGroup->findFiles( $keys );
+		}
 
 		$ret = [];
 		foreach ( $files as $f ) {
@@ -295,8 +302,9 @@ class DataAccess extends IDataAccess {
 					// UrlUtils::expand(), which wouldn't respect the wiki's
 					// protocol preferences -- instead it would use the
 					// protocol used for the API request.
-					if ( is_callable( [ $mto, 'getAPIData' ] ) ) {
-						$result['thumbdata'] = $mto->getAPIData( [ 'withhash' ] );
+					$getAPIData = [ $mto, 'getAPIData' ];
+					if ( is_callable( $getAPIData ) ) {
+						$result['thumbdata'] = $getAPIData( [ 'withhash' ] );
 					}
 
 					$result['thumburl'] = $mto->getUrl();
