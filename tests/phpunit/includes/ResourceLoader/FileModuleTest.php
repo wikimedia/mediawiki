@@ -535,6 +535,20 @@ class FileModuleTest extends ResourceLoaderTestCase {
 			] ]
 		];
 		yield 'packageFiles with different file name and a versionCallback' => [ $a, $b, false ];
+
+		$a = [
+			'packageFiles' => [
+				[ 'name' => 'init.js', 'content' => '// init' ],
+				[ 'name' => 'other.js', 'content' => '// other' ],
+			]
+		];
+		$b = [
+			'packageFiles' => [
+				[ 'name' => 'init.js', 'content' => '// init' ],
+				[ 'name' => 'other.js', 'main' => true, 'content' => '// other' ],
+			]
+		];
+		yield 'packageFiles with different main file' => [ $a, $b, false ];
 	}
 
 	/**

@@ -689,6 +689,7 @@ class FileModule extends Module {
 
 		$packageFiles = $this->expandPackageFiles( $context );
 		$packageSummaries = [];
+		$packageMain = null;
 		if ( $packageFiles ) {
 			// Extract the minimum needed:
 			// - The 'main' pointer (included as-is).
@@ -698,6 +699,7 @@ class FileModule extends Module {
 			//   'getFileHashes' method tracks their content already.
 			//   It is important that the keys of the $packageFiles['files'] array
 			//   are preserved, as they do affect the module output.
+			$packageMain = $packageFiles['main'];
 			foreach ( $packageFiles['files'] as $fileName => $fileInfo ) {
 				$packageSummaries[$fileName] =
 					$fileInfo['definitionSummary'] ?? $fileInfo['content'] ?? null;
@@ -714,6 +716,7 @@ class FileModule extends Module {
 		$summary[] = [
 			'options' => $options,
 			'packageFiles' => $packageSummaries,
+			'packageMain' => $packageMain,
 			'scripts' => $scriptSummaries,
 			'fileHashes' => $this->getFileHashes( $context ),
 			'messageBlob' => $this->getMessageBlob( $context ),
