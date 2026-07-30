@@ -1546,7 +1546,7 @@ class EditPage implements IEditObject {
 						} else {
 							# Inform the user of our success and set an automatic edit summary
 							$undoMsg = 'success';
-							$this->generateUndoEditSummary( $oldrev, $undo, $undorev, $services );
+							$this->generateUndoEditSummary( $oldrev, $undo, $undorev );
 							$this->undidRev = $undo;
 							$this->undoAfter = $undoafter;
 							$this->formtype = 'diff';
@@ -1595,13 +1595,11 @@ class EditPage implements IEditObject {
 	 * @param RevisionRecord|null $oldRev The revision in the URI "undoafter" field
 	 * @param int $undo The integer in the URI "undo" field
 	 * @param RevisionRecord|null $undoRev The revision in the URI "undo" field
-	 * @param MediaWikiServices $services Service container
 	 */
 	private function generateUndoEditSummary(
 		?RevisionRecord $oldRev,
 		int $undo,
 		?RevisionRecord $undoRev,
-		MediaWikiServices $services
 	): void {
 		// Generate an autosummary
 		$firstRev = $this->revisionStore->getNextRevision( $oldRev );
@@ -1635,7 +1633,7 @@ class EditPage implements IEditObject {
 				$undoIsAnon =
 					!$undoRev->getUser() ||
 					!$undoRev->getUser()->isRegistered();
-				$disableAnonTalk = $services->getMainConfig()->get( MainConfigNames::DisableAnonTalk );
+				$disableAnonTalk = $this->context->getConfig()->get( MainConfigNames::DisableAnonTalk );
 				$undoMessage = ( $undoIsAnon && $disableAnonTalk ) ?
 					'undo-summary-anon' :
 					'undo-summary';
@@ -1649,7 +1647,7 @@ class EditPage implements IEditObject {
 			// Undid multiple revisions
 			$firstRevisionId = $firstRev->getId();
 			$lastRevisionId = $undoRev->getId();
-			$revisionCount = $services->getRevisionStore()->countRevisionsBetween(
+			$revisionCount = $this->revisionStore->countRevisionsBetween(
 				$firstRev->getPageId(),
 				$firstRev,
 				$undoRev,
