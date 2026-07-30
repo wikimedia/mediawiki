@@ -12,7 +12,11 @@ use InvalidArgumentException;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\EditPage\DataStashTrait;
 use MediaWiki\Exception\MWExceptionHandler;
+use MediaWiki\Exception\PermissionsError;
+use MediaWiki\Exception\ReadOnlyError;
+use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinkRenderer;
@@ -24,12 +28,15 @@ use MediaWiki\Message\Message;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\DeletePageFactory;
+use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
@@ -45,6 +52,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @ingroup Actions
  */
 class DeleteAction extends FormAction {
+	use DataStashTrait;
 
 	/**
 	 * Constants used to localize form fields
@@ -72,6 +80,10 @@ class DeleteAction extends FormAction {
 	private readonly TitleFactory $titleFactory;
 	private readonly IConnectionProvider $dbProvider;
 
+	private bool $reauthInProgress = false;
+
+	private ?array $stashedData = null;
+
 	/**
 	 * @inheritDoc
 	 */
@@ -95,6 +107,52 @@ class DeleteAction extends FormAction {
 	/** @inheritDoc */
 	public function getName() {
 		return 'delete';
+	}
+
+	private function getStashKeyForTitle(): string {
+		return $this->getName() . ':' . $this->getTitle()->getPrefixedDBkey();
+	}
+
+	protected function handleRetrievedData( array $data ): void {
+		$this->stashedData = $data;
+	}
+
+	/**
+	 * Override the base implementation to run the up-front permission check at
+	 * RIGOR_FULL instead of the default RIGOR_SECURE to ensure a redirects= to the
+	 * reauth flow via DataStashTrait.
+	 */
+	protected function checkCanExecute( User $user ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$right = $this->getRestriction();
+		if ( $right !== null ) {
+			$permissionManager->throwPermissionErrors(
+				$right, $user, $this->getTitle(), PermissionManager::RIGOR_FULL
+			);
+		}
+
+		// Block and read-only checks are unchanged from the parent.
+		$checkReplica = !$this->getRequest()->wasPosted();
+		if (
+			$this->requiresUnblock() &&
+			$permissionManager->isBlockedFrom( $user, $this->getTitle(), $checkReplica )
+		) {
+			$block = $user->getBlock();
+			if ( $block ) {
+				throw new UserBlockedError(
+					$block,
+					$user,
+					$this->getLanguage(),
+					$this->getRequest()->getIP()
+				);
+			}
+			throw new PermissionsError( $this->getName(), [ 'badaccess-group0' ] );
+		}
+
+		$readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
+		if ( $this->requiresWrite() && $readOnlyMode->isReadOnly() ) {
+			throw new ReadOnlyError();
+		}
 	}
 
 	/** @inheritDoc */
@@ -142,6 +200,15 @@ class DeleteAction extends FormAction {
 		// This will throw exceptions if there's a problem
 		$this->checkCanExecute( $this->getUser() );
 
+		$this->setStashKey( $this->getStashKeyForTitle() );
+		if ( $this->retrieveStashedData() ) {
+			$this->performDelete( $this->stashedData );
+			if ( !$this->reauthInProgress ) {
+				$this->destroyStashedData();
+			}
+			return;
+		}
+
 		$this->tempDelete();
 	}
 
@@ -149,7 +216,6 @@ class DeleteAction extends FormAction {
 		$article = $this->getArticle();
 		$title = $this->getTitle();
 		$context = $this->getContext();
-		$user = $context->getUser();
 		$request = $context->getRequest();
 		$outputPage = $context->getOutput();
 
@@ -184,29 +250,85 @@ class DeleteAction extends FormAction {
 			return;
 		}
 
+		$this->performDelete( $request->getValues() );
+	}
+
+	/**
+	 * Perform the delete using either a fresh submit's request values or a
+	 * stashed set from the reauth return trip.
+	 *
+	 * @param array $values Form-field values (wpConfirmationRevId, wpSuppress,
+	 *   wpDeleteTalk, wpReason, wpDeleteReasonList, wpWatch, wpWatchlistExpiry).
+	 */
+	private function performDelete( array $values ): void {
+		$this->reauthInProgress = false;
+
+		$article = $this->getArticle();
+		$title = $this->getTitle();
+		$context = $this->getContext();
+		$outputPage = $context->getOutput();
+
+		# The page might have been deleted between the original submit and the
+		# reauth return trip; recheck under READ_LATEST.
+		$article->getPage()->loadPageData( IDBAccessObject::READ_LATEST );
+		if ( !$article->getPage()->exists() ) {
+			$outputPage->setPageTitleMsg(
+				$context->msg( 'cannotdelete-title' )->plaintextParams( $title->getPrefixedText() )
+			);
+			$outputPage->addHTML( Html::errorBox(
+				$context->msg( 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) )->parse(),
+				'',
+				'mw-error-cannotdelete'
+			) );
+			$this->showLogEntries();
+			return;
+		}
+
 		# Check to make sure the page has not been edited while the deletion was being confirmed
-		if ( $article->getRevIdFetched() !== $request->getIntOrNull( 'wpConfirmationRevId' ) ) {
+		$confirmationRevId = isset( $values['wpConfirmationRevId'] ) ? (int)$values['wpConfirmationRevId'] : null;
+		if ( $article->getRevIdFetched() !== $confirmationRevId ) {
 			$this->showEditedWarning();
 			$this->tempConfirmDelete();
 			return;
 		}
 
 		# Flag to hide all contents of the archived revisions
-		$suppress = $request->getCheck( 'wpSuppress' ) &&
+		$suppress = !empty( $values['wpSuppress'] ) &&
 			$context->getAuthority()->isAllowed( 'suppressrevision' );
 
 		$deletePage = $this->deletePageFactory->newDeletePage(
 			$this->getWikiPage(),
 			$context->getAuthority()
 		);
-		$shouldDeleteTalk = $request->getCheck( 'wpDeleteTalk' ) &&
+		$shouldDeleteTalk = !empty( $values['wpDeleteTalk'] ) &&
 			$deletePage->canProbablyDeleteAssociatedTalk()->isGood();
 		$deletePage->setDeleteAssociatedTalk( $shouldDeleteTalk );
 		$status = $deletePage
 			->setSuppress( $suppress )
-			->deleteIfAllowed( $this->getDeleteReason() );
+			->deleteIfAllowed( $this->getDeleteReasonFromValues( $values ) );
 
-		if ( $status->isOK() ) {
+		if ( !$status->isOK() ) {
+			if ( $status instanceof PermissionStatus && $status->getReauthOperation() !== null ) {
+				$this->setStashKey( $this->getStashKeyForTitle() );
+				$queryParams = $this->stashDataOnPost();
+				$this->doReauthRedirect( $status, $queryParams );
+				$this->reauthInProgress = true;
+				return;
+			}
+			$outputPage->setPageTitleMsg(
+				$this->msg( 'cannotdelete-title' )->plaintextParams( $this->getTitle()->getPrefixedText() )
+			);
+
+			foreach ( $status->getMessages() as $msg ) {
+				$outputPage->addHTML( Html::errorBox(
+					$context->msg( $msg )->parse(),
+					'',
+					'mw-error-cannotdelete'
+				) );
+			}
+
+			$this->showLogEntries();
+		} else {
 			$outputPage->setPageTitleMsg( $this->msg( 'actioncomplete' ) );
 			$outputPage->setRobotPolicy( 'noindex,nofollow' );
 
@@ -229,30 +351,15 @@ class DeleteAction extends FormAction {
 				$this->showLogEntries();
 			}
 			$outputPage->returnToMain();
-		} else {
-			$outputPage->setPageTitleMsg(
-				$this->msg( 'cannotdelete-title' )->plaintextParams( $this->getTitle()->getPrefixedText() )
-			);
-
-			foreach ( $status->getMessages() as $msg ) {
-				$outputPage->addHTML( Html::errorBox(
-					$context->msg( $msg )->parse(),
-					'',
-					'mw-error-cannotdelete'
-				) );
-			}
-
-			$this->showLogEntries();
 		}
 
-		$expiry = $this->getRequest()->getText( 'wpWatchlistExpiry' );
-
+		$expiry = $values['wpWatchlistExpiry'] ?? '';
 		if ( $context->getConfig()->get( MainConfigNames::WatchlistExpiry ) && $expiry !== '' ) {
 			$expiry = ExpiryDef::normalizeExpiry( $expiry, TS::ISO_8601 );
 		} else {
 			$expiry = null;
 		}
-		$this->watchlistManager->setWatch( $request->getCheck( 'wpWatch' ), $context->getAuthority(), $title, $expiry );
+		$this->watchlistManager->setWatch( !empty( $values['wpWatch'] ), $context->getAuthority(), $title, $expiry );
 	}
 
 	/**
@@ -560,8 +667,12 @@ class DeleteAction extends FormAction {
 	}
 
 	protected function getDeleteReason(): string {
-		$deleteReasonList = $this->getRequest()->getText( 'wpDeleteReasonList', 'other' );
-		$deleteReason = $this->getRequest()->getText( 'wpReason' );
+		return $this->getDeleteReasonFromValues( $this->getRequest()->getValues() );
+	}
+
+	private function getDeleteReasonFromValues( array $values ): string {
+		$deleteReasonList = $values['wpDeleteReasonList'] ?? 'other';
+		$deleteReason = $values['wpReason'] ?? '';
 
 		if ( $deleteReasonList === 'other' ) {
 			return $deleteReason;
