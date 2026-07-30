@@ -8,7 +8,6 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\TitleFactory;
-use MediaWiki\Title\TitleFormatter;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Wikimedia\ObjectCache\MapCacheLRU;
@@ -23,17 +22,12 @@ class LinkAlwaysKnownLookup {
 	public function __construct(
 		private readonly HookRunner $hookRunner,
 		private readonly TitleFactory $titleFactory,
-		private readonly TitleFormatter $titleFormatter,
 		private readonly ShadowPageLoader $shadowPageLoader,
 		private readonly RepoGroup $repoGroup,
 		private readonly SpecialPageFactory $specialPageFactory,
 		private readonly LoggerInterface $logger
 	) {
 		$this->cache = new MapCacheLRU( 100_000 );
-	}
-
-	private function makeCacheKeyForLinkTarget( LinkTarget $target ): string {
-		return $this->titleFormatter->getPrefixedDBkey( $target );
 	}
 
 	/**
@@ -80,7 +74,7 @@ class LinkAlwaysKnownLookup {
 			}
 
 			$this->cache->set(
-				$this->makeCacheKeyForLinkTarget( $link ),
+				CacheKeyHelper::getKeyForPage( $link ),
 				$isKnown
 			);
 			$isKnownArr[$i] = $isKnown;
@@ -95,7 +89,7 @@ class LinkAlwaysKnownLookup {
 	public function preload( array $links ): void {
 		$uncachedLinks = [];
 		foreach ( $links as $link ) {
-			if ( !$this->cache->has( $this->makeCacheKeyForLinkTarget( $link ) ) ) {
+			if ( !$this->cache->has( CacheKeyHelper::getKeyForPage( $link ) ) ) {
 				$uncachedLinks[] = $link;
 			}
 		}
@@ -108,7 +102,7 @@ class LinkAlwaysKnownLookup {
 	}
 
 	public function isAlwaysKnown( LinkTarget $page ): bool {
-		$key = $this->makeCacheKeyForLinkTarget( $page );
+		$key = CacheKeyHelper::getKeyForPage( $page );
 		if ( !$this->cache->has( $key ) ) {
 			// The compute method writes back to the cache
 			$this->computeIsAlwaysKnownBatch( [ $page ] );

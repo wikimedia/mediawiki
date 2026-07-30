@@ -8,7 +8,6 @@ use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
-use MediaWiki\Title\TitleFormatter;
 use Psr\Log\LoggerInterface;
 use Wikimedia\TestingAccessWrapper;
 
@@ -20,7 +19,6 @@ class LinkAlwaysKnownLookupTest extends MediaWikiUnitTestCase {
 
 	private HookRunner $hookRunner;
 	private TitleFactory $titleFactory;
-	private TitleFormatter $titleFormatter;
 	private ShadowPageLoader $shadowPageLoader;
 	private RepoGroup $repoGroup;
 	private SpecialPageFactory $specialPageFactory;
@@ -36,12 +34,6 @@ class LinkAlwaysKnownLookupTest extends MediaWikiUnitTestCase {
 		$this->titleFactory->method( 'newFromLinkTarget' )
 			->willReturn( $this->createMock( Title::class ) );
 
-		$this->titleFormatter = $this->createMock( TitleFormatter::class );
-		// A cache key that is unique per (interwiki, namespace, dbkey), like the real one.
-		$this->titleFormatter->method( 'getPrefixedDBkey' )
-			->willReturnCallback( static fn ( LinkTarget $target ): string =>
-				$target->getInterwiki() . ':' . $target->getNamespace() . ':' . $target->getDBkey() );
-
 		$this->shadowPageLoader = $this->createMock( ShadowPageLoader::class );
 		$this->repoGroup = $this->createMock( RepoGroup::class );
 		$this->specialPageFactory = $this->createMock( SpecialPageFactory::class );
@@ -52,7 +44,6 @@ class LinkAlwaysKnownLookupTest extends MediaWikiUnitTestCase {
 		return new LinkAlwaysKnownLookup(
 			$this->hookRunner,
 			$this->titleFactory,
-			$this->titleFormatter,
 			$this->shadowPageLoader,
 			$this->repoGroup,
 			$this->specialPageFactory,

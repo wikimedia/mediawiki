@@ -1318,7 +1318,6 @@ return [
 		return new LinkAlwaysKnownLookup(
 			new HookRunner( $services->getHookContainer() ),
 			$services->getTitleFactory(),
-			$services->getTitleFormatter(),
 			$services->getShadowPageLoader(),
 			$services->getRepoGroup(),
 			$services->getSpecialPageFactory(),
