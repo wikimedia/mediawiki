@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Hakka",
-			"Rebelagent"
+			"Rebelagent",
+			"Sekhomba"
 		]
 	},
 	"january": "Firikgong",
@@ -41,20 +42,20 @@
 	"oct": "Phl",
 	"nov": "Ngw",
 	"dec": "Sed",
-	"monday": "Mosupologo",
+	"monday": "Mosupulogo",
 	"tuesday": "Labobedi",
 	"wednesday": "Laboraro",
 	"thursday": "Labone",
 	"friday": "Labotlhano",
 	"saturday": "Matlhatso",
-	"sunday": "Tshipi",
+	"sunday": "Sontaga",
 	"mon": "Mos",
 	"tue": "Lab",
 	"wed": "Lab",
 	"thu": "Lab",
 	"fri": "Lab",
 	"sat": "Mat",
-	"sun": "Tsh",
+	"sun": "Letsatsi",
 	"period-am": "AM",
 	"period-pm": "PM"
 }

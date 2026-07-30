@@ -2601,7 +2601,7 @@
 	"year": "Datant de l’année (et précédentes) :",
 	"date": "À partir du (et antérieurement) :",
 	"sp-contributions-blocklog": "journal des blocages",
-	"sp-contributions-suppresslog": "contributions de l’utilisat{{GENDER:$1|eur|rice}} supprimées",
+	"sp-contributions-suppresslog": "contributions de l’utilisat{{GENDER:$1|eur|rice}} masquées",
 	"sp-contributions-deleted": "contributions de l’utilisat{{GENDER:$1|eur|rice}} supprimées",
 	"sp-contributions-uploads": "téléversements",
 	"sp-contributions-logs": "journaux",

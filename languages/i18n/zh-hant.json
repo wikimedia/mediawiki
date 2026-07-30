@@ -2148,7 +2148,7 @@
 	"categoriespagetext": "下列為存在於 wiki 裡可能有、或可能沒被使用到的{{PLURAL:$1|分類|分類}}。\n請參考[[Special:WantedCategories|所需的分類]]。",
 	"categoriesfrom": "從此處開始顯示分類：",
 	"deletedcontributions": "已刪除的使用者貢獻",
-	"deletedcontributions-title": "已刪除使用者$1的貢獻",
+	"deletedcontributions-title": "使用者$1的已刪除貢獻",
 	"deletedcontributions-title-for-ip-when-temporary-accounts-enabled": "已刪除舊式IP $1的貢獻",
 	"sp-deletedcontributions-contribs": "貢獻",
 	"linksearch": "外部連結搜尋",

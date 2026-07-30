@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Ebrahim",
-			"Jeeputer"
+			"Jeeputer",
+			"Mohammad ebz"
 		]
 	},
+	"cdx-breadcrumb-overflow-label": "گزینه‌های بیشتر ناوبری",
 	"cdx-input-chip-aria-description": "Enter را برای ویرایش یا Delete را برای حذف بفشارید.",
 	"cdx-dialog-close-button-label": "بستن",
 	"cdx-label-optional-flag": "(اختیاری)",
