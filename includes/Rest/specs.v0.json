@@ -35,7 +35,8 @@
 					"services": [
 						"MainConfig"
 					]
-				}
+				},
+				"x-i18n-summary": "rest-endpoint-summ-specs-discovery"
 			}
 		},
 		"/module/{module}": {
@@ -49,7 +50,8 @@
 						"MainConfig",
 						"SessionManager"
 					]
-				}
+				},
+				"x-i18n-summary": "rest-endpoint-summ-specs-module"
 			}
 		},
 		"/module/{module}/{version}": {
@@ -63,7 +65,8 @@
 						"MainConfig",
 						"SessionManager"
 					]
-				}
+				},
+				"x-i18n-summary": "rest-endpoint-summ-specs-module-version"
 			}
 		}
 	}
