@@ -10,6 +10,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Wikimedia\Parsoid\Ext\DOMUtils;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -58,12 +59,17 @@ class SpecialUndeleteTest extends SpecialPageTestBase {
 			'qqx',
 			$user
 		);
+		$htmlDoc = DOMUtils::parseHTML( $html );
 
 		$this->assertStringContainsString( '(undelete-summary)', $html );
 
-		$diffTableHtml = $this->assertSelectorMatchesOneElement( $html, 'table.diff' );
+		$diffTableHtml = $this->assertSelectorMatchesOneElementInNode( $htmlDoc, 'table.diff', true );
 
-		$undeleteRevisionWarningHtml = $this->assertSelectorMatchesOneElement( $html, '.mw-undelete-revision' );
+		$undeleteRevisionWarningHtml = $this->assertSelectorMatchesOneElementInNode(
+			$htmlDoc,
+			'.mw-undelete-revision',
+			true
+		);
 		$this->assertStringContainsString( '(undelete-revision', $undeleteRevisionWarningHtml );
 		$this->assertStringContainsString(
 			$user->getName(),
@@ -76,7 +82,11 @@ class SpecialUndeleteTest extends SpecialPageTestBase {
 			'Missing revision timestamp from deleted revision warning'
 		);
 
-		$undeleteTextAreaHtml = $this->assertSelectorMatchesOneElement( $html, '.mw-undelete-textarea' );
+		$undeleteTextAreaHtml = $this->assertSelectorMatchesOneElementInNode(
+			$htmlDoc,
+			'.mw-undelete-textarea',
+			true
+		);
 		$this->assertStringContainsString( 'second page content', $undeleteTextAreaHtml );
 
 		// Verify the restricted change tag can only be seen if the user can see it

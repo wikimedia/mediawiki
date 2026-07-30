@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Integration\Specials;
 
 use MediaWiki\Tests\Specials\SpecialPageTestBase;
+use Wikimedia\Parsoid\Ext\DOMUtils;
 
 /**
  * @covers \MediaWiki\Specials\SpecialCategories
@@ -34,14 +35,15 @@ class SpecialCategoriesTest extends SpecialPageTestBase {
 		$this->verifyCategoriesListForm( $html );
 		$this->assertStringContainsString( '(categoriespagetext: 1)', $html );
 
-		$categoriesListHtml = $this->assertSelectorMatchesOneElement(
-			$html,
+		$categoriesListNode = $this->assertSelectorMatchesOneElementInNode(
+			DOMUtils::parseHTML( $html ),
 			'.mw-special-categories-list'
 		);
 
-		$categoryItem = $this->assertSelectorMatchesOneElement(
-			$categoriesListHtml,
-			'.mw-special-categories-list-item'
+		$categoryItem = $this->assertSelectorMatchesOneElementInNode(
+			$categoriesListNode,
+			'.mw-special-categories-list-item',
+			true
 		);
 		$this->assertStringContainsString( 'Category:Test', $categoryItem );
 		$this->assertStringContainsString( 'nmembers: 1', $categoryItem );

@@ -8,6 +8,8 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Specials\SpecialPageTestBase;
 use MediaWiki\Title\Title;
+use Wikimedia\Parsoid\Ext\DOMUtils;
+use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -82,21 +84,22 @@ class SpecialMergeHistoryTest extends SpecialPageTestBase {
 			null,
 			$this->getTestSysop()->getAuthority()
 		);
+		$doc = DOMUtils::parseHTML( $html );
 
 		$this->assertStringContainsString( '(mergehistory-list)', $html );
 		$this->assertStringContainsString( '(mergehistory-submit)', $html );
 		$this->assertStringContainsString( '(mergehistory-reason)', $html );
 
-		$mergeHistoryList = $this->assertSelectorMatchesOneElement( $html, '#mw-mergehistory-list' );
+		$mergeHistoryList = $this->assertSelectorMatchesOneElementInNode( $doc, '#mw-mergehistory-list' );
 
-		$revisionRowHtml = $this->assertSelectorMatchesOneElement( $mergeHistoryList, 'li' );
-		$this->assertStringContainsString( '(mergehistory-revisionrow', $revisionRowHtml );
+		$revisionRow = $this->assertSelectorMatchesOneElementInNode( $mergeHistoryList, 'li' );
+		$this->assertStringContainsString( '(mergehistory-revisionrow', DOMCompat::getInnerHTML( $revisionRow ) );
 
-		$editSummaryCommentHtml = $this->assertSelectorMatchesOneElement( $revisionRowHtml, '.comment' );
+		$editSummaryCommentHtml = $this->assertSelectorMatchesOneElementInNode( $revisionRow, '.comment', true );
 		$this->assertStringContainsString( 'Source page edit summary', $editSummaryCommentHtml );
 
 		$this->assertStringContainsString( '(mergelog)', $html );
-		$logEmptyMessage = $this->assertSelectorMatchesOneElement( $html, '.mw-warning-logempty' );
+		$logEmptyMessage = $this->assertSelectorMatchesOneElementInNode( $doc, '.mw-warning-logempty', true );
 		$this->assertStringContainsString( '(logempty)', $logEmptyMessage );
 	}
 

@@ -42,14 +42,15 @@ class SpecialTagsTest extends SpecialPageTestBase {
 			null,
 			$this->mockRegisteredAuthorityWithPermissions( $authorityRights )
 		);
+		$htmlDoc = DOMUtils::parseHTML( $html );
 
-		$tagsIntroHtml = $this->assertSelectorMatchesOneElement( $html, '.mw-tags-intro' );
+		$tagsIntroHtml = $this->assertSelectorMatchesOneElementInNode( $htmlDoc, '.mw-tags-intro', true );
 		$this->assertStringContainsString( '(tags-intro)', $tagsIntroHtml );
 
-		$tagsTable = $this->assertSelectorMatchesOneElement( $html, '.mw-tags-table' );
+		$tagsTable = $this->assertSelectorMatchesOneElementInNode( $htmlDoc, '.mw-tags-table' );
 
 		$tagsTableHeader = DOMCompat::getOuterHTML(
-			DOMCompat::querySelector( DOMUtils::parseHTML( $tagsTable ), 'thead' )
+			DOMCompat::querySelector( $tagsTable, 'thead' )
 		);
 
 		$this->assertStringContainsString( '(tags-tag)', $tagsTableHeader );
@@ -61,7 +62,7 @@ class SpecialTagsTest extends SpecialPageTestBase {
 
 		// mw-reverted has one use we added above, so should be at the top of the table
 		$firstTableRow = DOMCompat::getOuterHTML(
-			DOMCompat::querySelector( DOMUtils::parseHTML( $tagsTable ), 'tbody > tr' )
+			DOMCompat::querySelector( $tagsTable, 'tbody > tr' )
 		);
 		$this->assertStringContainsString( '(tag-mw-reverted)', $firstTableRow );
 		$this->assertStringContainsString( '(tag-mw-reverted-description)', $firstTableRow );
@@ -69,12 +70,14 @@ class SpecialTagsTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( '(tags-active-yes)', $firstTableRow );
 		$this->assertStringContainsString( '(tags-hitcount: 1)', $firstTableRow );
 
+		$tagsTableInnerHtml = DOMCompat::getInnerHTML( $tagsTable );
+
 		// All other expected tags should be present too
 		foreach ( $expectedTags as $expectedTag ) {
-			$this->assertStringContainsString( "(tag-$expectedTag)", $tagsTable );
+			$this->assertStringContainsString( "(tag-$expectedTag)", $tagsTableInnerHtml );
 		}
 		foreach ( $unexpectedTags as $unexpectedTag ) {
-			$this->assertStringNotContainsString( $unexpectedTag, $tagsTable );
+			$this->assertStringNotContainsString( $unexpectedTag, $tagsTableInnerHtml );
 		}
 	}
 

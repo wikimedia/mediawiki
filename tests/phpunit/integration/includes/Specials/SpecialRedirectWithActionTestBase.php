@@ -7,6 +7,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Specials\SpecialPageTestBase;
 use MediaWiki\Title\Title;
+use Wikimedia\Parsoid\Ext\DOMUtils;
+use Wikimedia\Parsoid\Utils\DOMCompat;
 
 /**
  * A base class for tests of special pages that extend {@link SpecialRedirectWithAction}. Used to
@@ -56,10 +58,11 @@ abstract class SpecialRedirectWithActionTestBase extends SpecialPageTestBase {
 			'Did not redirect when no target specified in URL'
 		);
 
-		$formHtml = $this->assertSelectorMatchesOneElement( $html, '.mw-htmlform-ooui' );
+		$formNode = $this->assertSelectorMatchesOneElementInNode( DOMUtils::parseHTML( $html ), '.mw-htmlform-ooui' );
+		$formHtml = DOMCompat::getInnerHTML( $formNode );
 
 		$this->assertStringContainsString( '(special' . $this->getMsgPrefix() . '-page)', $formHtml );
-		$this->assertSelectorMatchesOneElement( $formHtml, 'input[type="text"][name="page"]' );
+		$this->assertSelectorMatchesOneElementInNode( $formNode, 'input[type="text"][name="page"]' );
 
 		$this->assertStringContainsString( '(special' . $this->getMsgPrefix() . '-submit)', $formHtml );
 	}

@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Integration\Specials;
 
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Specials\SpecialPageTestBase;
+use Wikimedia\Parsoid\Ext\DOMUtils;
 
 /**
  * @covers \MediaWiki\Specials\SpecialComparePages
@@ -57,18 +58,29 @@ class SpecialComparePagesTest extends SpecialPageTestBase {
 
 		$this->verifyComparePagesForm( $html );
 
-		$diffHtml = $this->assertSelectorMatchesOneElement( $html, '.diff-type-table.diff' );
+		$diffNode = $this->assertSelectorMatchesOneElementInNode(
+			DOMUtils::parseHTML( $html ),
+			'.diff-type-table.diff'
+		);
 
 		// Check that the diff shown uses the latest revision from the first page and the specified revision
 		// from the second page
-		$leftSideDiffHtml = $this->assertSelectorMatchesOneElement( $diffHtml, '.diff-side-deleted.diff-otitle' );
+		$leftSideDiffHtml = $this->assertSelectorMatchesOneElementInNode(
+			$diffNode,
+			'.diff-side-deleted.diff-otitle',
+			true
+		);
 		$this->assertStringContainsString(
 			'?title=First_page&amp;oldid=1',
 			$leftSideDiffHtml,
 			'Wrong revision ID used for the left side in the diff'
 		);
 
-		$rightSideDiffHtml = $this->assertSelectorMatchesOneElement( $diffHtml, '.diff-side-added.diff-ntitle' );
+		$rightSideDiffHtml = $this->assertSelectorMatchesOneElementInNode(
+			$diffNode,
+			'.diff-side-added.diff-ntitle',
+			true
+		);
 		$this->assertStringContainsString(
 			'?title=Second_page&amp;oldid=2',
 			$rightSideDiffHtml,
