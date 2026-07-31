@@ -1026,6 +1026,7 @@ class SpecialPageFactory {
 			'class' => SpecialImport::class,
 			'services' => [
 				'WikiImporterFactory',
+				'PermissionManager',
 			]
 		],
 		'Undelete' => [

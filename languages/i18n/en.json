@@ -4040,5 +4040,6 @@
 	"diff-usergroups": "$1 {{PLURAL:$1|user group|user groups}}",
 	"languageselector-no-results": "No results found.",
 	"languageselector-invalid-input": "\"$1\" is not a valid language.",
-	"mypage-disallowed-action": "For security reasons, action \"$1\" cannot be used on the page Special:MyPage."
+	"mypage-disallowed-action": "For security reasons, action \"$1\" cannot be used on the page Special:MyPage.",
+	"import-upload-reauth-reupload": "Your identity has been verified. Please select your import file again and resubmit."
 }

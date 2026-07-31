@@ -418,6 +418,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiImport::class,
 			'services' => [
 				'WikiImporterFactory',
+				'PermissionManager',
 			]
 		],
 		'clearhasmsg' => [

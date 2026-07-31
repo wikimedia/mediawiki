@@ -13,6 +13,7 @@ use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Import\ImportStreamSource;
 use MediaWiki\Import\WikiImporterFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -26,6 +27,7 @@ class ApiImport extends ApiBase {
 		ApiMain $main,
 		string $action,
 		private readonly WikiImporterFactory $wikiImporterFactory,
+		private readonly PermissionManager $permissionManager,
 	) {
 		parent::__construct( $main, $action );
 	}
@@ -85,6 +87,42 @@ class ApiImport extends ApiBase {
 			}
 		}
 		$importer->setUsernamePrefix( $usernamePrefix, $params['assignknownusers'] );
+
+		// T432713#12228661 - temporarily add noratelimit for import
+		$scopedNoRateLimit = $this->permissionManager->addTemporaryUserRights(
+			$this->getUser(), 'noratelimit'
+		);
+
+		$importer->setAuthorizeOnly( true );
+		$importer->doImport();
+		if ( $importer->getReauthOperation() !== null ) {
+			$this->dieWithError(
+				[ 'badaccess-cannotreauthenticate', $importer->getReauthOperation() ],
+				'reauthenticate'
+			);
+		}
+
+		// Re-open the source; the pre-pass consumed the stream
+		$source = $isUpload
+			? ImportStreamSource::newFromUpload( 'xml' )
+			: ImportStreamSource::newFromInterwiki(
+				$params['interwikisource'],
+				$params['interwikipage'],
+				$params['fullhistory'],
+				$params['templates']
+			);
+		if ( !$source->isOK() ) {
+			$this->dieStatus( $source );
+		}
+		$importer = $this->wikiImporterFactory->getWikiImporter( $source->value, $this->getAuthority() );
+		if ( isset( $params['namespace'] ) ) {
+			$importer->setTargetNamespace( $params['namespace'] );
+		} elseif ( isset( $params['rootpage'] ) ) {
+			$importer->setTargetRootPage( $params['rootpage'] );
+		}
+		$importer->setUsernamePrefix( $usernamePrefix, $params['assignknownusers'] );
+		$importer->setAuthorizeOnly( false );
+
 		$reporter = new ApiImportReporter(
 			$importer,
 			$isUpload,

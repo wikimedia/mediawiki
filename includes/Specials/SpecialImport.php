@@ -10,16 +10,19 @@
 namespace MediaWiki\Specials;
 
 use Exception;
+use MediaWiki\EditPage\DataStashTrait;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Import\ImportStreamSource;
 use MediaWiki\Import\WikiImporterFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\Helpers\ImportReporter;
 use MediaWiki\Status\Status;
+use MediaWiki\Title\Title;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\RequestTimeout\TimeoutException;
@@ -30,11 +33,14 @@ use Wikimedia\RequestTimeout\TimeoutException;
  * @ingroup SpecialPage
  */
 class SpecialImport extends SpecialPage {
+	use DataStashTrait;
+
 	/** @var array */
 	private $importSources;
 
 	public function __construct(
-		private readonly WikiImporterFactory $wikiImporterFactory
+		private readonly WikiImporterFactory $wikiImporterFactory,
+		private readonly PermissionManager $permissionManager,
 	) {
 		parent::__construct( 'Import' );
 	}
@@ -47,6 +53,17 @@ class SpecialImport extends SpecialPage {
 	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
+	}
+
+	/** DataStashTrait abstracts / helpers */
+	protected function getTitle(): Title {
+		return $this->getPageTitle();
+	}
+
+	protected function handleRetrievedData( array $data ): void {
+		foreach ( $data as $k => $v ) {
+			$this->getRequest()->setVal( $k, $v );
+		}
 	}
 
 	/**
@@ -95,7 +112,23 @@ class SpecialImport extends SpecialPage {
 		$this->checkReadOnly();
 
 		$request = $this->getRequest();
-		if ( $request->wasPosted() && $request->getRawVal( 'action' ) == 'submit' ) {
+		$this->setStashKey( 'import:' . $this->getUser()->getName() );
+		$returningFromReauth = $this->retrieveStashedData();
+
+		if ( $returningFromReauth
+			&& $request->getVal( 'source' ) === 'upload'
+			&& !$request->getUpload( 'xmlimport' )->exists()
+		) {
+			$this->getOutput()->addHTML( Html::warningBox(
+				$this->msg( 'import-upload-reauth-reupload' )->parse()
+			) );
+			$this->showForm();
+			return;
+		}
+
+		if ( ( $request->wasPosted() && $request->getRawVal( 'action' ) === 'submit' )
+			|| $returningFromReauth
+		) {
 			$this->doImport();
 		}
 		$this->showForm();
@@ -116,6 +149,9 @@ class SpecialImport extends SpecialPage {
 			: $request->getIntOrNull( 'pagelink-depth' );
 
 		$rootpage = '';
+		$frompage = '';
+		$history = false;
+		$includeTemplates = false;
 		$mapping = $request->getVal( 'mapping' );
 		$namespace = $this->getConfig()->get( MainConfigNames::ImportTargetNamespace );
 		if ( $mapping === 'namespace' ) {
@@ -215,6 +251,47 @@ class SpecialImport extends SpecialPage {
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$importer->setUsernamePrefix( $fullInterwikiPrefix, $assignKnownUsers );
 
+			// T432713#12228661 - temporarily add noratelimit for imports
+			$scopedNoRateLimit = $this->permissionManager->addTemporaryUserRights( $user, 'noratelimit' );
+
+			// detect if reauth is needed
+			$importer->setAuthorizeOnly( true );
+			$importer->doImport();
+
+			if ( $importer->getReauthOperation() !== null ) {
+				$queryParams = $this->stashDataOnPost();
+				$status = PermissionStatus::newEmpty();
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
+				$status->setReauthOperation( $importer->getReauthOperation() );
+				$this->doReauthRedirect( $status, $queryParams );
+				return;
+			}
+
+			// Re-open the source; the pre-pass consumed the stream
+			$source = $isUpload
+				? ImportStreamSource::newFromUpload( 'xmlimport' )
+				: ImportStreamSource::newFromInterwiki(
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
+					$fullInterwikiPrefix,
+					$frompage,
+					$history,
+					$includeTemplates,
+					$pageLinkDepth
+				);
+			if ( !$source->isGood() ) {
+				return;
+			}
+			$importer = $this->wikiImporterFactory->getWikiImporter( $source->value, $this->getAuthority() );
+
+			if ( $namespace !== null ) {
+				$importer->setTargetNamespace( $namespace );
+			} elseif ( $rootpage !== null ) {
+				$importer->setTargetRootPage( $rootpage );
+			}
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
+			$importer->setUsernamePrefix( $fullInterwikiPrefix, $assignKnownUsers );
+			$importer->setAuthorizeOnly( false );
+
 			$out->addWikiMsg( "importstart" );
 
 			$reporter = new ImportReporter(
@@ -256,6 +333,7 @@ class SpecialImport extends SpecialPage {
 				);
 			} else {
 				# Success!
+				$this->destroyStashedData();
 				$out->addWikiMsg( 'importsuccess' );
 			}
 		}

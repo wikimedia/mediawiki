@@ -27,6 +27,7 @@ use MediaWiki\Page\CacheKeyHelper;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Status\Status;
@@ -120,6 +121,13 @@ class WikiImporter {
 	private readonly Authority $performer;
 
 	private readonly HookRunner $hookRunner;
+
+	/**
+	 * Re-authentication variables
+	 */
+	private ?string $reauthOperation = null;
+
+	private bool $authorizeOnly = false;
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
@@ -450,6 +458,10 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importRevision( $revision ) {
+		if ( $this->authorizeOnly ) {
+			return false;
+		}
+
 		if ( !$revision->getContentHandler()->canBeUsedOn( $revision->getTitle() ) ) {
 			$this->notice( 'import-error-bad-location',
 				$revision->getTitle()->getPrefixedText(),
@@ -481,6 +493,9 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importLogItem( $revision ) {
+		if ( $this->authorizeOnly ) {
+			return false;
+		}
 		return $revision->importLogItem();
 	}
 
@@ -490,6 +505,9 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importUpload( $revision ) {
+		if ( $this->authorizeOnly ) {
+			return false;
+		}
 		$status = $this->uploadRevisionImporter->import( $revision );
 		return $status->isGood();
 	}
@@ -679,7 +697,7 @@ class WikiImporter {
 			$keepReading = $this->reader->read();
 			$skip = false;
 			$pageCount = 0;
-			while ( $keepReading ) {
+			while ( $keepReading && $this->reauthOperation === null ) {
 				$tag = $this->reader->localName;
 				if ( $this->pageOffset ) {
 					if ( $tag === 'page' ) {
@@ -1263,10 +1281,18 @@ class WikiImporter {
 		} elseif ( !$title->canExist() ) {
 			$this->notice( 'import-error-special', $title->getPrefixedText() );
 			return false;
-		} elseif ( !$this->performer->definitelyCan( 'edit', $title ) ) {
-			# Do not import if the importing wiki user cannot edit this page
-			$this->notice( 'import-error-edit', $title->getPrefixedText() );
-			return false;
+		} else {
+			$status = PermissionStatus::newEmpty();
+			if ( !$this->performer->authorizeWrite( 'edit', $title, $status ) ) {
+				if ( $status->getReauthOperation() !== null ) {
+					$this->reauthOperation = $status->getReauthOperation();
+					return false;
+				}
+
+				// Do not import if the importing wiki user cannot edit this page
+				$this->notice( 'import-error-edit', $title->getPrefixedText() );
+				return false;
+			}
 		}
 
 		return [ $title, $foreignTitle ];
@@ -1329,6 +1355,20 @@ class WikiImporter {
 		// Reopen for the real import
 		UploadSourceAdapter::seekSource( $this->sourceAdapterId, 0 );
 		$this->openReader();
+	}
+
+	/**
+	 * Re-authentication helper method
+	 */
+	public function getReauthOperation(): ?string {
+		return $this->reauthOperation;
+	}
+
+	/**
+	 * Re-authentication helper method
+	 */
+	public function setAuthorizeOnly( bool $authorizeOnly ): void {
+		$this->authorizeOnly = $authorizeOnly;
 	}
 }
 
