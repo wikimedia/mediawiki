@@ -42,8 +42,8 @@ name=
 <p><br />
 </p>
 !! html/parsoid
-<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"empty"},"html":""}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt4" data-mw='{"name":"indicator","attrs":{"name":"name"},"body":{"extsrc":""},"html":""}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"empty"}}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt4" data-mw='{"name":"indicator","attrs":{"name":"name"},"body":{"extsrc":""}}'/>
 !! end
 
 !! test
@@ -108,16 +108,16 @@ paragraphs</indicator>
 </p><p><br />
 </p>
 !! html/parsoid
-<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"01"},"body":{"extsrc":"hello world"},"html":"hello world"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt4" data-mw='{"name":"indicator","attrs":{"name":"02"},"body":{"extsrc":"[[Main Page]]"},"html":"&lt;a rel=\"mw:WikiLink\" href=\"./Main_Page\" title=\"Main Page\">Main Page&lt;/a>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt6" data-mw='{"name":"indicator","attrs":{"name":"03"},"body":{"extsrc":"[[File:Foobar.jpg|25px|link=]]"},"html":"&lt;span typeof=\"mw:File\">&lt;span>&lt;img resource=\"./File:Foobar.jpg\" src=\"http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg\" decoding=\"async\" data-file-width=\"1941\" data-file-height=\"220\" data-file-type=\"bitmap\" height=\"3\" width=\"25\" srcset=\"http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x\" class=\"mw-file-element\"/>&lt;/span>&lt;/span>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt8" data-mw='{"name":"indicator","attrs":{"name":"04"},"body":{"extsrc":"[[File:Foobar.jpg|25px]]"},"html":"&lt;span typeof=\"mw:File\">&lt;a href=\"./File:Foobar.jpg\" class=\"mw-file-description\">&lt;img resource=\"./File:Foobar.jpg\" src=\"http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg\" decoding=\"async\" data-file-width=\"1941\" data-file-height=\"220\" data-file-type=\"bitmap\" height=\"3\" width=\"25\" srcset=\"http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x\" class=\"mw-file-element\"/>&lt;/a>&lt;/span>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt10" data-mw='{"name":"indicator","attrs":{"name":"05"},"body":{"extsrc":"*foo\n*bar"},"html":"&lt;ul>&lt;li>foo&lt;/li>\n&lt;li>bar&lt;/li>&lt;/ul>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt13" data-mw='{"name":"indicator","attrs":{"name":"06"},"body":{"extsrc":"&lt;nowiki>foo&lt;/nowiki>"},"html":"&lt;span typeof=\"mw:Nowiki\">foo&lt;/span>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt15" data-mw='{"name":"indicator","attrs":{"name":"07"},"body":{"extsrc":" Preformatted"},"html":"&lt;pre>Preformatted&lt;/pre>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt17" data-mw='{"name":"indicator","attrs":{"name":"08"},"body":{"extsrc":"&lt;div>Broken tag"},"html":"&lt;div>Broken tag&lt;/div>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt19" data-mw='{"name":"indicator","attrs":{"name":"09"},"body":{"extsrc":"{| class=wikitable\n|cell\n|}"},"html":"&lt;table class=\"wikitable\">\n&lt;tbody>&lt;tr>&lt;td>cell&lt;/td>&lt;/tr>\n&lt;/tbody>&lt;/table>"}'/>
-<meta typeof="mw:Extension/indicator" about="#mwt21" data-mw='{"name":"indicator","attrs":{"name":"10"},"body":{"extsrc":"Two\n\nparagraphs"},"html":"&lt;p>Two&lt;/p>\n\n&lt;p>paragraphs&lt;/p>"}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"01"},"body":{"extsrc":"hello world"}}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt4" data-mw='{"name":"indicator","attrs":{"name":"02"},"body":{"extsrc":"[[Main Page]]"}}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt6" data-mw='{"name":"indicator","attrs":{"name":"03"},"body":{"extsrc":"[[File:Foobar.jpg|25px|link=]]"}}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt8" data-mw='{"name":"indicator","attrs":{"name":"04"},"body":{"extsrc":"[[File:Foobar.jpg|25px]]"}}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt10" data-mw='{"name":"indicator","attrs":{"name":"05"},"body":{"extsrc":"*foo\n*bar"}}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt13" data-mw='{"name":"indicator","attrs":{"name":"06"},"body":{"extsrc":"&lt;nowiki>foo&lt;/nowiki>"}}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt15" data-mw='{"name":"indicator","attrs":{"name":"07"},"body":{"extsrc":" Preformatted"}}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt17" data-mw='{"name":"indicator","attrs":{"name":"08"},"body":{"extsrc":"&lt;div>Broken tag"}}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt19" data-mw='{"name":"indicator","attrs":{"name":"09"},"body":{"extsrc":"{| class=wikitable\n|cell\n|}"}}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt21" data-mw='{"name":"indicator","attrs":{"name":"10"},"body":{"extsrc":"Two\n\nparagraphs"}}'/>
 !! end
 
 !! test
@@ -131,7 +131,7 @@ showindicators
 1&2&3&amp;4&amp;amp;5=Indicator
 !! html/php
 !! html/parsoid
-<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"},"html":"Indicator"}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"}}'/>
 !! end
 
 # this version of the test strips out the ambiguity so Parsoid rts cleanly
@@ -145,7 +145,7 @@ showindicators
 1&2&3&amp;4&amp;amp;5=Indicator
 !! html/php
 !! html/parsoid
-<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"},"html":"Indicator"}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"}}'/>
 !! end
 
 !! test
@@ -161,8 +161,8 @@ x=bar
 <p><br />
 </p>
 !! html/parsoid
-<meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"foo"},"html":"foo"}'/>
-<meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"bar"},"html":"bar"}'/>
+<meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"foo"}}'/>
+<meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"bar"}}'/>
 !! end
 
 !! article
@@ -186,7 +186,7 @@ abcd
 </p>
 !! html/parsoid
 <p>abcd</p>
-<meta typeof="mw:Extension/indicator mw:Transclusion" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"foo"},"html":"foo","parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;indicator name=\"x\">foo&lt;/indicator>"}},"i":0}}]}'/>
+<meta typeof="mw:Extension/indicator mw:Transclusion" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"foo"},"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;indicator name=\"x\">foo&lt;/indicator>"}},"i":0}}]}'/>
 !! end
 
 !! test
@@ -206,8 +206,8 @@ abcd
 </p>
 !! html/parsoid
 <p>abcd
-<meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"bar"},"html":"bar"}'/></p>
-<meta typeof="mw:Extension/indicator mw:Transclusion" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"foo"},"html":"foo","parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;indicator name=\"x\">foo&lt;/indicator>"}},"i":0}}]}'/>
+<meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"bar"}}'/></p>
+<meta typeof="mw:Extension/indicator mw:Transclusion" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"foo"},"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;indicator name=\"x\">foo&lt;/indicator>"}},"i":0}}]}'/>
 !! end
 
 !! test
@@ -226,7 +226,7 @@ efgh
 </p>
 !! html/parsoid
 <p>abcd
-<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"efgh&lt;indicator name=\"x\">foo&lt;/indicator>"}},"i":0}}]}'>efgh</span><meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"foo"},"html":"foo"}'/></p>
+<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"efgh&lt;indicator name=\"x\">foo&lt;/indicator>"}},"i":0}}]}'>efgh</span><meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"foo"}}'/></p>
 !! end
 
 !! test
@@ -246,7 +246,7 @@ abcd
 </p>
 !! html/parsoid
 <p>abcd
-<meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"bar"},"html":"bar"}'/> <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"efgh&lt;indicator name=\"x\">foo&lt;/indicator>"}},"i":0}}]}'>efgh</span><meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"foo"},"html":"foo"}'/></p>
+<meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"bar"}}'/> <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"efgh&lt;indicator name=\"x\">foo&lt;/indicator>"}},"i":0}}]}'>efgh</span><meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"foo"}}'/></p>
 !! end
 
 # Note wt2wt will dirty this output and hence all selser tests
@@ -261,7 +261,7 @@ parsoid=wt2html,selser
 |x
 |}
 !! html/parsoid
-<meta typeof="mw:Extension/indicator" about="#mwt2" data-parsoid='{"fostered":true}' data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"foo"},"html":"foo"}'/><table>
+<meta typeof="mw:Extension/indicator" about="#mwt2" data-parsoid='{"fostered":true}' data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"foo"}}'/><table>
 
 <tbody><tr><td>x
 </td></tr></tbody></table>
@@ -283,7 +283,7 @@ x=<!-- hello -->
 <!-- second comment--></indicator>
 !! html/php
 !! html/parsoid
-<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"&lt;!-- hello -->\n&lt;span>some stuff&lt;/span>\n&lt;!-- second comment-->"},"html":"&lt;!-- hello -->\n&lt;span data-parsoid=&apos;{\"stx\":\"html\"}&apos;>some stuff&lt;/span>\n&lt;!-- second comment-->"}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"&lt;!-- hello -->\n&lt;span>some stuff&lt;/span>\n&lt;!-- second comment-->"}}'/>
 !! end
 
 !! test
@@ -304,7 +304,7 @@ x=
 <span data-parsoid='{"stx":"html","dsr":[30,53,6,7]}'>some stuff</span>
 
 !! html/parsoid
-<p class="mw-empty-elt"><span typeof="mw:Nowiki"></span><meta typeof="mw:Extension/indicator" about="#mwt4" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"\n&lt;span>some stuff&lt;/span>\n"},"html":"\n&lt;span data-parsoid=&apos;{\"stx\":\"html\"}&apos;>some stuff&lt;/span>\n"}'/><span typeof="mw:Nowiki"></span></p>
+<p class="mw-empty-elt"><span typeof="mw:Nowiki"></span><meta typeof="mw:Extension/indicator" about="#mwt4" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"\n&lt;span>some stuff&lt;/span>\n"}}'/><span typeof="mw:Nowiki"></span></p>
 !! end
 
 !! test
@@ -319,7 +319,7 @@ link=<a rel="nofollow" class="external text" href="http://www.example.com">Examp
 link=<a rel="mw:ExtLink nofollow" href="http://www.example.com" class="external text" data-parsoid='{"dsr":[23,55,24,1]}'>Example</a>
 !! html/php
 !! html/parsoid
-<meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"link"},"body":{"extsrc":"[http://www.example.com Example]"},"html":"&lt;a rel=\"mw:ExtLink nofollow\" href=\"http://www.example.com\" class=\"external text\">Example&lt;/a>"}'/>
+<meta typeof="mw:Extension/indicator" data-mw='{"name":"indicator","attrs":{"name":"link"},"body":{"extsrc":"[http://www.example.com Example]"}}'/>
 !! end
 
 !! test
@@ -333,8 +333,8 @@ parsoid=wt2html
 !! metadata/php
 test=foo
 !! metadata/parsoid
-test=<span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"foo"}}' id="mwAg">foo</span>
+test=<span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"foo"}}' id="mwAQ">foo</span>
 !! html/php
 !! html/parsoid+langconv
-<meta data-mw='{"name":"indicator","attrs":{"name":"test"},"body":{"extsrc":"-{foo}-"},"html":"&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"disabled\":{\"t\":\"foo\"}}&apos;>foo&lt;/span>"}' typeof="mw:Extension/indicator"/>
+<meta data-mw='{"name":"indicator","attrs":{"name":"test"},"body":{"extsrc":"-{foo}-"}}' typeof="mw:Extension/indicator"/>
 !! end

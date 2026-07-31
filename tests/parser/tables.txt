@@ -1501,7 +1501,7 @@ Templated table cell with untemplated attributes: Regression tests
 !! end
 
 !! test
-Templated table cell with untemplated attributes: Unsupported (standalone mode) Scenarios
+Templated table cell with untemplated attributes: Integrated mode only
 !! options
 parsoid=wt2html
 !! wikitext
@@ -1520,10 +1520,6 @@ parsoid=wt2html
 <tr>
 <td class="foo">bar
 </td></tr></tbody></table>
-!! html/parsoid+standalone
-This test fails both the two table cell scenarios for different reasons
-because of differences how preprocessing works in standalone mode.
-We don't intend to support this here.
 !! html/parsoid+integrated
 <table>
 <tbody><tr>

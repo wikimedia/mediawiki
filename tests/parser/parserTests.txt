@@ -791,6 +791,8 @@ parsoid=wt2html
 
 !! test
 Self-closed tag hooks
+!! options
+showindicators
 !! wikitext
 <pre />
 <gallery />
@@ -799,11 +801,13 @@ Self-closed tag hooks
 <pre></pre>
 <ul class="gallery mw-gallery-traditional">
 </ul>
+!! metadata
+something=
 !! html/parsoid
 <pre typeof="mw:Extension/pre" about="#mwt2" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{}}'></pre>
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt5" data-mw='{"name":"gallery","attrs":{}}'>
 </ul>
-<meta typeof="mw:Extension/indicator" about="#mwt6" data-mw='{"name":"indicator","attrs":{"name":"something"},"html":""}'/>
+<meta typeof="mw:Extension/indicator" about="#mwt6" data-mw='{"name":"indicator","attrs":{"name":"something"}}'/>
 !! end
 
 ###
@@ -2373,6 +2377,48 @@ Link containing an equals sign
 <p><a rel="mw:WikiLink" href="./Special:BookSources/isbn=4-00-026157-6" title="Special:BookSources/isbn=4-00-026157-6">Special:BookSources/isbn=4-00-026157-6</a></p>
 !! end
 
+# T433320 is a test that uses a numeric character entity to escape the |
+!! test
+Link syntax containing numeric character entities
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+[[Main&#160;Page]]
+[[Foo&#124;bar]]
+[[Foo#a&#160;b]]
+[[Foo#a&#124;b]]
+!! html/php
+<p><a href="/wiki/Main_Page" title="Main Page">Main&#160;Page</a>
+[[Foo&#124;bar]]
+<a href="/wiki/Foo#a_b" title="Foo">Foo#a&#160;b</a>
+<a href="/wiki/Foo#a.7Cb" title="Foo">Foo#a&#124;b</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a>
+[[Foo<span typeof="mw:Entity">|</span>bar]]
+<a rel="mw:WikiLink" href="./Foo#a_b" title="Foo">Foo#a b</a>
+<a rel="mw:WikiLink" href="./Foo#a|b" title="Foo">Foo#a|b</a></p>
+!! end
+
+!! test
+Link syntax containing HTML entitles
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+[[Foo&copy;bar]]
+[[Foo#a&vert;b]]
+[[Foo#a&copy;b]]
+!! html/php
+<p><a href="/index.php?title=Foo%C2%A9bar&amp;action=edit&amp;redlink=1" class="new" title="Foo©bar (page does not exist)">Foo&#169;bar</a>
+<a href="/wiki/Foo#a.7Cb" title="Foo">Foo#a&#124;b</a>
+<a href="/wiki/Foo#a.C2.A9b" title="Foo">Foo#a&#169;b</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Foo©bar?action=edit&amp;redlink=1" title="Foo©bar" class="new" typeof="mw:LocalizedAttrs" data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Foo©bar"]}}'>Foo©bar</a>
+<a rel="mw:WikiLink" href="./Foo#a|b" title="Foo">Foo#a|b</a>
+<a rel="mw:WikiLink" href="./Foo#a©b" title="Foo">Foo#a©b</a></p>
+!! end
+
 !! article
 Foo & bar
 !! text
@@ -2504,7 +2550,7 @@ Link with double quotes in title part (literal) and alternate part (interpreted)
 </p><p><a href="/wiki/%27%27Pentecoste%27%27" title="&#39;&#39;Pentecoste&#39;&#39;"><i>Pentecoste</i></a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg" class="new" title="File:Denys Savchenko ''Pentecoste''.jpg"><span class="mw-file-element mw-broken-media" resource="./File:Denys_Savchenko_''Pentecoste''.jpg" data-parsoid='{"a":{"resource":"./File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"},"sa":{"resource":"File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"}}'>File:Denys Savchenko ''Pentecoste''.jpg</span></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:Upload?wpDestFile=Denys_Savchenko_%27%27Pentecoste%27%27.jpg" class="new" title="File:Denys Savchenko ''Pentecoste''.jpg"><span class="mw-file-element mw-broken-media" resource="./File:Denys_Savchenko_''Pentecoste''.jpg" data-parsoid='{"a":{"resource":"./File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"},"sa":{"resource":"File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"}}'>File:Denys Savchenko ''Pentecoste''.jpg</span></a></span></p>
 
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" data-parsoid='{"stx":"simple","a":{"href":"./&apos;&apos;Pentecoste&apos;&apos;"},"sa":{"href":"&apos;&apos;Pentecoste&apos;&apos;"}}'>''Pentecoste''</a></p>
 
@@ -2967,14 +3013,17 @@ parsoid=html2wt
 !! end
 
 !! test
-Empty title wikilink (current behavior is wrong, in both parsers, see T19006)
+Empty title wikilink (legacy parser behavior is wrong, see T19006)
 !! wikitext
-[[#]] [[#|x]]
+[[#]]
+[[#|x]]
 !! html/php
-<p><a href="/wiki/">#</a> <a href="/wiki/">x</a>
+<p><a href="/wiki/">#</a>
+<a href="/wiki/">x</a>
 </p>
 !! html/parsoid
-<p><a class="mw-selflink selflink" href="./Parser_test" rel="mw:WikiLink">#</a> <a class="mw-selflink selflink" href="./Parser_test" rel="mw:WikiLink">x</a></p>
+<p><a rel="mw:WikiLink" href="./Parser_test#" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#"},"sa":{"href":"#"}}'>#</a>
+<a rel="mw:WikiLink" href="./Parser_test#" class="mw-selflink-fragment" data-parsoid='{"stx":"piped","a":{"href":"./Parser_test#"},"sa":{"href":"#"}}'>x</a></p>
 !! end
 
 !! test
@@ -7279,6 +7328,38 @@ Disabled subpages
 !! end
 
 !! test
+T221028: Colon-escaped and non-colon-escaped slash links in NS with subpages enabled
+!! options
+subpage title=[[Subpage test]]
+!! wikitext
+[[:/subpage]]
+[[/newpage]]
+!! html/php
+<p><a href="/index.php?title=/subpage&amp;action=edit&amp;redlink=1" class="new" title="/subpage (page does not exist)">/subpage</a>
+<a href="/index.php?title=Subpage_test/newpage&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/newpage (page does not exist)">/newpage</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href=".//subpage?action=edit&amp;redlink=1" title="/subpage" class="new" typeof="mw:LocalizedAttrs" data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["/subpage"]}}'>/subpage</a>
+<a rel="mw:WikiLink" href="./Subpage_test/newpage?action=edit&amp;redlink=1" title="Subpage test/newpage" class="new" typeof="mw:LocalizedAttrs" data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Subpage test/newpage"]}}'>/newpage</a></p>
+!! end
+
+!! test
+T234299: Colon-escaped child link doesn't drop trailing slash
+!! options
+subpage title=[[Subpage test]]
+!! wikitext
+[[:/child/]]
+[[/child/]]
+!! html/php
+<p><a href="/index.php?title=/child/&amp;action=edit&amp;redlink=1" class="new" title="/child/ (page does not exist)">/child/</a>
+<a href="/index.php?title=Subpage_test/child&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/child (page does not exist)">child</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href=".//child/?action=edit&amp;redlink=1" title="/child/" class="new" typeof="mw:LocalizedAttrs" data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["/child/"]}}'>/child/</a>
+<a rel="mw:WikiLink" href="./Subpage_test/child?action=edit&amp;redlink=1" title="Subpage test/child" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Subpage_test/child"},"sa":{"href":"/child/"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Subpage test/child"]}}'>child</a></p>
+!! end
+
+!! test
 T2561: {{/Subpage}}
 !! options
 subpage title=[[Page]]
@@ -8615,8 +8696,8 @@ Media link to nonexistent file (T3702)
 <a href="/index.php?title=Special:Upload&amp;wpDestFile=No_such_file.jpg" class="new" title="No such file.jpg">Media:No_such file.jpg</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:MediaLink" href="./Special:FilePath/No_such.jpg" resource="./Media:No_such.jpg" title="No such.jpg" typeof="mw:Error" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}' data-parsoid='{"a":{"resource":"./Media:No_such.jpg"},"sa":{"resource":"Media:No such.jpg"}}'>Media:No such.jpg</a>
-<a rel="mw:MediaLink" href="./Special:FilePath/No_such_file.jpg" resource="./Media:No_such_file.jpg" title="No such file.jpg" typeof="mw:Error" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}' data-parsoid='{"a":{"resource":"./Media:No_such_file.jpg"},"sa":{"resource":"Media:No_such file.jpg"}}'>Media:No_such file.jpg</a></p>
+<p><a rel="mw:MediaLink" href="./Special:Upload?wpDestFile=No_such.jpg" resource="./Media:No_such.jpg" title="No such.jpg" typeof="mw:Error" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}' data-parsoid='{"a":{"resource":"./Media:No_such.jpg"},"sa":{"resource":"Media:No such.jpg"}}'>Media:No such.jpg</a>
+<a rel="mw:MediaLink" href="./Special:Upload?wpDestFile=No_such_file.jpg" resource="./Media:No_such_file.jpg" title="No such file.jpg" typeof="mw:Error" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}' data-parsoid='{"a":{"resource":"./Media:No_such_file.jpg"},"sa":{"resource":"Media:No_such file.jpg"}}'>Media:No_such file.jpg</a></p>
 !! end
 
 !! test
@@ -12970,7 +13051,7 @@ percent-encoding and + signs in internal links (T28410)
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./User:+%25?action=edit&amp;redlink=1" title="User:+%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./User:+%25"},"sa":{"href":"User:+%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["User:+%"]}}'>User:+%</a> <a rel="mw:WikiLink" href="./Page+title%25?action=edit&amp;redlink=1" title="Page+title%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Page+title%25"},"sa":{"href":"Page+title%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Page+title%"]}}'>Page+title%</a>
 <a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%+</a> <a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"piped","a":{"href":"./%25+"},"sa":{"href":"%+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%20</a> <a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+ "}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%+ </a> <a rel="mw:WikiLink" href="./%25+r?action=edit&amp;redlink=1" title="%+r" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25+r"},"sa":{"href":"%+r"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+r"]}}'>%+r</a>
-<a rel="mw:WikiLink" href="./%25?action=edit&amp;redlink=1" title="%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%"]}}'>%</a> <a rel="mw:WikiLink" href="./+?action=edit&amp;redlink=1" title="+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["+"]}}'>+</a> <span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar?action=edit&amp;amp;redlink=1\" title=\"Bar\" class=\"new\" typeof=\"mw:LocalizedAttrs\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"}}&apos; data-mw-i18n=&apos;{\"title\":{\"lang\":\"x-page\",\"key\":\"red-link-title\",\"params\":[\"Bar\"]}}&apos;>bar&lt;/a>","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/%25+abc9" class="new" title="File:%+abc9" data-parsoid="{}"><span class="mw-file-element mw-broken-media" resource="./File:%25+abc9" data-parsoid='{"a":{"resource":"./File:%25+abc9"},"sa":{"resource":"File:%+abc%39"}}'>bar</span></a></span>
+<a rel="mw:WikiLink" href="./%25?action=edit&amp;redlink=1" title="%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%"]}}'>%</a> <a rel="mw:WikiLink" href="./+?action=edit&amp;redlink=1" title="+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["+"]}}'>+</a> <span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar?action=edit&amp;amp;redlink=1\" title=\"Bar\" class=\"new\" typeof=\"mw:LocalizedAttrs\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"}}&apos; data-mw-i18n=&apos;{\"title\":{\"lang\":\"x-page\",\"key\":\"red-link-title\",\"params\":[\"Bar\"]}}&apos;>bar&lt;/a>","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:Upload?wpDestFile=%25%2Babc9" class="new" title="File:%+abc9" data-parsoid="{}"><span class="mw-file-element mw-broken-media" resource="./File:%25+abc9" data-parsoid='{"a":{"resource":"./File:%25+abc9"},"sa":{"resource":"File:%+abc%39"}}'>bar</span></a></span>
 <a rel="mw:WikiLink" href="./3E?action=edit&amp;redlink=1" title="3E" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./3E"},"sa":{"href":"%33%45"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["3E"]}}'>3E</a> <a rel="mw:WikiLink" href="./3E+?action=edit&amp;redlink=1" title="3E+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./3E+"},"sa":{"href":"%33%45+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["3E+"]}}'>3E+</a></p>
 !! end
 
@@ -18191,4 +18272,17 @@ Template returning template syntax in html attribute
 !! html/parsoid+integrated
 <p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"tplrt","href":"./Template:Tplrt"},"params":{},"i":0}}]}'>{{1x|test}}</span></p>
 <div class="{{1x|test}}" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"class"},{"html":"&lt;span typeof=\"mw:Transclusion\" data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"tplrt\",\"href\":\"./Template:Tplrt\"},\"params\":{},\"i\":0}}]}&apos;>{{1x|test}}&lt;/span>"}]]}'>123</div>
+!! end
+
+!! test
+Nested extension tag using the #tag parser function
+!! config
+wgReturnExperimentalPFragmentTypes=[ "ExtTagPFragment" ]
+!! wikitext
+{{#tag:spantag|outer <spantag>inner</spantag>}}
+!! html/php
+<p><span>outer <span>inner</span></span>
+</p>
+!! html/parsoid+integrated
+<p><span data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"outer {{#parsoid\u0000fragment}}"},"parts":[{"template":{"target":{"wt":"#tag:spantag","function":"tag"},"params":{"1":{"wt":"outer &lt;spantag>inner&lt;/spantag>"}},"i":0}}]}' typeof="mw:Extension/spantag mw:Transclusion">outer <span data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"inner"}}' typeof="mw:Extension/spantag">inner</span></span></p>
 !! end

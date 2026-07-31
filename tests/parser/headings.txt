@@ -80,13 +80,17 @@ parsoid={
 <h3>c</h3>
 ===d===
 <h2>e</h2>
-!! metadata
+!! metadata/php
 Sections:
  h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:a line:a
  h2 index: toclevel:1 number:2 title:NULL off:NULL anchor/linkAnchor:b line:b
   h3 index: toclevel:2 number:2.1 title:NULL off:NULL anchor/linkAnchor:c line:c
   h3 index:2 toclevel:2 number:2.2 title:Parser_test off:28 anchor/linkAnchor:d line:d
  h2 index: toclevel:1 number:3 title:NULL off:NULL anchor/linkAnchor:e line:e
+!! metadata/parsoid
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:a line:a
+  h3 index:2 toclevel:2 number:1.1 title:Parser_test off:28 anchor/linkAnchor:d line:d
 !! end
 
 !! test
@@ -106,14 +110,16 @@ ho
 <h2 id="hi" class="mw-html-heading">hi</h2>
 <p>ho
 </p>
-!! html/parsoid
-<section data-mw-section-id="0"></section><section data-mw-section-id="-1"><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n&lt;h2>hi&lt;/h2>\nho\n"}},"i":0}}]}'>
-</span><h2 about="#mwt1" id="hi">hi</h2><span about="#mwt1">
-</span><p about="#mwt1">ho</p><span about="#mwt1">
-</span></section>
-!! metadata
+!! metadata/php
 Sections:
  h2 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:hi line:hi
+!! html/parsoid
+<section data-mw-section-id="0"><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n&lt;h2>hi&lt;/h2>\nho\n"}},"i":0}}]}'>
+</span><h2 about="#mwt1" id="hi" data-parsoid='{"stx":"html"}'>hi</h2><span about="#mwt1">
+</span><p about="#mwt1">ho</p><span about="#mwt1">
+</span></section>
+!! metadata/parsoid
+Sections:
 !! end
 
 !! test
@@ -145,10 +151,12 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
+!! config
+wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 ==a==
 {{Test}}
-!! metadata
+!! metadata/integrated
 Sections:
  h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:a line:a
  h2 index:T-1 toclevel:1 number:2 title:Template:Test off:NULL anchor/linkAnchor:th2 line:th2
@@ -313,27 +321,6 @@ Sections:
  h1 index:2 toclevel:1 number:2 title:Parser_test off:6 anchor/linkAnchor:x line:<i>x</i>
 !! end
 
-# The legacy parser, parsoid+standalone, and parsoid+integrated differ
-# in their "index" output for headings that come from template args.
-#
-# - For templated sections, Parsoid and core differ in some of the metadata.
-#   Parsoid doesn't distinguish between sections that come from template args
-#   and from templated content - it treats them all as template-generated headings.
-#   But core does not consider headings from template-args as "inTemplate", but
-#   'fromtitle' is set to false even so.
-#
-# - Parsoid's behavior is more consistent wrt templates. But, this is potentially
-#   a breaking change for users of TOC data. The index for templated
-#   content is used to generate section edit links for content coming
-#   from a template, and in updating the appropriate article when that
-#   section is saved.  So this is potentially a breaking change when
-#   Parsoid starts to generate section edit links, and possible one
-#   which could cause db corruption.
-#
-# - Additionally, heading-index is reset in integrated mode because templates are
-#   processed by core preprocessor whereas in native preprocessing mode (used by
-#   parsertests), the heading index is not reset.
-# - See also T222419.
 !! test
 Templated sections (heading from template arg)
 !! options
@@ -343,23 +330,17 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
+!! config
+wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 ==a==
 {{1x|1=
 ==b==
 }}
-!! metadata/php
+!! metadata/integrated
 Sections:
  h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:a line:a
  h2 index: toclevel:1 number:2 title:NULL off:NULL anchor/linkAnchor:b line:b
-!! metadata/parsoid+integrated
-Sections:
- h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:a line:a
- h2 index:T-1 toclevel:1 number:2 title:Template:1x off:NULL anchor/linkAnchor:b line:b
-!! metadata/parsoid+standalone
-Sections:
- h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:a line:a
- h2 index:T-2 toclevel:1 number:2 title:Template:1x off:NULL anchor/linkAnchor:b line:b
 !! end
 
 !! test
@@ -424,10 +405,6 @@ Sections:
  h2 index:2 toclevel:1 number:2 title:Parser_test off:32 anchor/linkAnchor:bar line:bar
 !! end
 
-# Parsoid's parser function implementation used for standalone testing
-# is incomplete and only used in parser tests.
-# So, use HTML h-tags instead of wikitext h-tags in the parser function
-# to let us run this test in both standalone and integrated modes.
 !! test
 Handle parser functions generating sections
 !! options
@@ -438,12 +415,42 @@ parsoid={
 	"wrapSections": true
 }
 !! wikitext
-{{#if:1|<h2>foo</h2>|unused}}
+{{#if:1|
+==foo==
+|unused}}
 ==bar==
 !! metadata
 Sections:
  h2 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:foo line:foo
- h2 index:1 toclevel:1 number:2 title:Parser_test off:30 anchor/linkAnchor:bar line:bar
+ h2 index:2 toclevel:1 number:2 title:Parser_test off:27 anchor/linkAnchor:bar line:bar
+!! end
+
+!! article
+Template:Pfheading
+!! text
+{{#if:1|
+==foo==
+|unused}}
+==bar==
+!! endarticle
+
+!! test
+Handle parser functions generating sections (in template)
+!! options
+nohtml
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! config
+wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
+!! wikitext
+{{pfheading}}
+!! metadata/integrated
+Sections:
+ h2 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:foo line:foo
+ h2 index:T-2 toclevel:1 number:2 title:Template:Pfheading off:NULL anchor/linkAnchor:bar line:bar
 !! end
 
 !! test
@@ -459,9 +466,11 @@ parsoid={
 {{{foo|
 ==tplarg==
 |abcd}}}
+==bar==
 !! metadata
 Sections:
  h2 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:tplarg line:tplarg
+ h2 index:2 toclevel:1 number:2 title:Parser_test off:28 anchor/linkAnchor:bar line:bar
 !! end
 
 ###
@@ -2151,6 +2160,8 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
+!! config
+wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 __FORCETOC__
 {{1x|1=<spantag>
@@ -2178,7 +2189,7 @@ blah
 <div class="mw-heading mw-heading2"><h2 id="page_h2">page h2</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: page h2">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 <p>blah
 </p>
-!! html/parsoid
+!! html/parsoid+integrated
 <section data-mw-section-id="-1"><meta property="mw:PageProp/forcetoc" data-parsoid='{"src":"__FORCETOC__","magicSrc":"__FORCETOC__"}'/>
 </section><section data-mw-section-id="-2" about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;spantag>\n==spantag h2==\n&lt;/spantag>\n==template h2=="}},"i":0}},"\nintro\n"]}'><span typeof="mw:Extension/spantag mw:Transclusion" about="#mwt2" data-parsoid='{"pi":[[{"k":"1","named":true,"spc":["","","","\n"]}]]}' data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"\n==spantag h2==\n"},"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;spantag>\n==spantag h2==\n&lt;/spantag>\n==template h2=="}},"i":0}}]}'>
 <section data-mw-section-id="-1"><h2 id="spantag_h2">spantag h2</h2>
@@ -2187,13 +2198,9 @@ blah
 <p>intro</p>
 </section><section data-mw-section-id="2"><h2 id="page_h2">page h2</h2>
 <p>blah</p></section>
-!! metadata/php
+!! metadata/integrated
 Sections:
  h2 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:template_h2 line:template h2
- h2 index:2 toclevel:1 number:2 title:Parser_test off:81 anchor/linkAnchor:page_h2 line:page h2
-!! metadata/parsoid
-Sections:
- h2 index:T-1 toclevel:1 number:1 title:Template:1x off:NULL anchor/linkAnchor:template_h2 line:template h2
  h2 index:2 toclevel:1 number:2 title:Parser_test off:81 anchor/linkAnchor:page_h2 line:page h2
 !! end
 
@@ -2713,9 +2720,9 @@ Sections:
  h2 index: toclevel:1 number:3 title:NULL off:NULL anchor/linkAnchor:HTML_heading_with_attributes.21 line:HTML heading with attributes!
  h2 index:2 toclevel:1 number:4 title:Parser_test off:211 anchor/linkAnchor:Normal_heading_with_existing_wrapper.21 line:Normal heading with existing wrapper!
 !! html/parsoid
-<section data-mw-section-id="0"></section><section data-mw-section-id="1"><h2 id="Normal_heading!" data-parsoid='{}'><span id="Normal_heading.21" typeof="mw:FallbackId"></span>Normal heading!</h2>
+<section data-mw-section-id="0"></section><section data-mw-section-id="-1"><h2 id="Normal_heading!" data-parsoid='{}'><span id="Normal_heading.21" typeof="mw:FallbackId"></span>Normal heading!</h2>
 
-</section><section data-mw-section-id="-1"><h2 id="HTML_heading!" data-parsoid='{"stx":"html"}'><span id="HTML_heading.21" typeof="mw:FallbackId"></span>HTML heading!</h2>
+<h2 id="HTML_heading!" data-parsoid='{"stx":"html"}'><span id="HTML_heading.21" typeof="mw:FallbackId"></span>HTML heading!</h2>
 
 <h2 style="border: 1px solid green; background: lightgreen; padding: 5px; font-size: 1.5em;" id="HTML_heading_with_attributes!" data-parsoid='{"stx":"html"}'><span id="HTML_heading_with_attributes.21" typeof="mw:FallbackId"></span>HTML heading with attributes!</h2>
 
@@ -2725,8 +2732,7 @@ Sections:
 !! metadata/parsoid
 Sections:
  h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:Normal_heading! line:Normal heading!
- h2 index: toclevel:1 number:2 title:NULL off:NULL anchor/linkAnchor:HTML_heading! line:HTML heading!
- h2 index:2 toclevel:1 number:3 title:Parser_test off:211 anchor/linkAnchor:Normal_heading_with_existing_wrapper! line:Normal heading with existing wrapper!
+ h2 index:2 toclevel:1 number:2 title:Parser_test off:211 anchor/linkAnchor:Normal_heading_with_existing_wrapper! line:Normal heading with existing wrapper!
 !! end
 
 !! test
@@ -2773,15 +2779,17 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
+!! config
+wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 {{With a section?}}
 !! html/php
 <div class="mw-heading mw-heading3"><h3 id="test">test</h3><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:With_a_section%3F&amp;action=edit&amp;section=T-1" title="Edit section: test">edit</a><span class="mw-editsection-bracket">]</span></span></div>
-!! html/parsoid
+!! html/parsoid+integrated
 <section data-mw-section-id="0"></section><section data-mw-section-id="-1">
 <h3 typeof="mw:Transclusion" id="test" data-mw='{"parts":[{"template":{"target":{"wt":"With a section?","href":"./Template:With_a_section%3F"},"params":{},"i":0}}]}'>test</h3>
 </section>
-!! metadata
+!! metadata/integrated
 Sections:
  h3 index:T-1 toclevel:1 number:1 title:Template:With_a_section? off:NULL anchor/linkAnchor:test line:test
 !! end
@@ -2812,6 +2820,8 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
+!! config
+wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 === out ===
 123
@@ -2824,7 +2834,7 @@ parsoid={
 {{with two}}
 
 {{with one}}
-!! metadata
+!! metadata/integrated
 Sections:
  h3 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:out line:out
  h3 index:T-1 toclevel:1 number:2 title:Template:With_one off:NULL anchor/linkAnchor:in line:in
@@ -2843,7 +2853,6 @@ lala
 {{with two}}
 !! endarticle
 
-## FIXME: Parsoid doesn't have insight into nested templates
 !! test
 Nested section numbering
 !! options
@@ -2853,12 +2862,14 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
+!! config
+wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 === out ===
 123
 
 {{with heading nesting}}
-!! metadata
+!! metadata/integrated
 Sections:
  h3 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:out line:out
  h3 index:T-1 toclevel:1 number:2 title:Template:With_heading_nesting off:NULL anchor/linkAnchor:in_4 line:in 4
@@ -2881,6 +2892,8 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
+!! config
+wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
 !! wikitext
 {{with redirect}}
 !! metadata
@@ -2963,6 +2976,48 @@ Sections:
 <p>see</p></section>
 !! end
 
+!! article
+Template:Noincludeheading
+!! text
+==== test ====
+yup
+
+==== hi ho ====<noinclude>
+nope
+</noinclude>
+
+==== test 2 ====
+another yup
+
+<!-- well -->==== ha ha ====
+back to nope
+
+==== he he ====  <!-- but this is ok -->
+see
+!! endarticle
+
+!! test
+Editable headings can only have trailing comments and whitespace (in template)
+!! options
+nohtml
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! config
+wgReturnExperimentalPFragmentTypes=[ "HeadingPFragment" ]
+!! wikitext
+{{noincludeheading}}
+!! metadata/integrated
+Sections:
+ h4 index:T-1 toclevel:1 number:1 title:Template:Noincludeheading off:NULL anchor/linkAnchor:test line:test
+ h4 index: toclevel:1 number:2 title:NULL off:NULL anchor/linkAnchor:hi_ho line:hi ho
+ h4 index:T-2 toclevel:1 number:3 title:Template:Noincludeheading off:NULL anchor/linkAnchor:test_2 line:test 2
+ h4 index: toclevel:1 number:4 title:NULL off:NULL anchor/linkAnchor:ha_ha line:ha ha
+ h4 index:T-3 toclevel:1 number:5 title:Template:Noincludeheading off:NULL anchor/linkAnchor:he_he line:he he
+!! end
+
 ## While Parsoid sets an empty id on the heading here, DOMDataUtils::storeInPageBundle
 ## considers it bogus and replaces it with a Parsoid generated id while creating the
 ## PageBundle, orphaning the metadata.  Core's HandleParsoidSectionLinks won't be able
@@ -2984,4 +3039,196 @@ parsoid={
 !! metadata
 Sections:
  h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor: line:
+!! end
+
+!! test
+Unclosed wiklink in heading
+!! options
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+== test [[ 123 ==
+test
+
+== asdf ==
+asdf
+!! html/php
+<div class="mw-heading mw-heading2"><h2 id="test_.5B.5B_123">test [[ 123</h2></div>
+<p>test
+</p>
+<div class="mw-heading mw-heading2"><h2 id="asdf">asdf</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: asdf">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<p>asdf
+</p>
+!! metadata/php
+Sections:
+ h2 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:test_.5B.5B_123 line:test [[ 123
+ h2 index:1 toclevel:1 number:2 title:Parser_test off:24 anchor/linkAnchor:asdf line:asdf
+!! html/parsoid
+<section data-mw-section-id="0"></section><section data-mw-section-id="-1"><h2 id="test_[[_123"><span id="test_.5B.5B_123" typeof="mw:FallbackId"></span>test [[ 123</h2>
+<p>test</p>
+
+</section><section data-mw-section-id="1"><h2 id="asdf">asdf</h2>
+<p>asdf</p></section>
+!! metadata/parsoid
+Sections:
+ h2 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:test_[[_123 line:test [[ 123
+ h2 index:1 toclevel:1 number:2 title:Parser_test off:24 anchor/linkAnchor:asdf line:asdf
+!! end
+
+!! test
+Unclosed template in heading
+!! options
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+== test {{ 123 ==
+test
+
+== asdf ==
+asdf
+!! html/php
+<div class="mw-heading mw-heading2"><h2 id="test_.7B.7B_123">test {{ 123</h2></div>
+<p>test
+</p>
+<div class="mw-heading mw-heading2"><h2 id="asdf">asdf</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: asdf">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<p>asdf
+</p>
+!! metadata/php
+Sections:
+ h2 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:test_.7B.7B_123 line:test {{ 123
+ h2 index:1 toclevel:1 number:2 title:Parser_test off:24 anchor/linkAnchor:asdf line:asdf
+!! html/parsoid
+<section data-mw-section-id="0"></section><section data-mw-section-id="-1"><h2 id="test_{{_123"><span id="test_.7B.7B_123" typeof="mw:FallbackId"></span>test {{ 123</h2>
+<p>test</p>
+
+</section><section data-mw-section-id="1"><h2 id="asdf">asdf</h2>
+<p>asdf</p></section>
+!! metadata/parsoid
+Sections:
+ h2 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:test_{{_123 line:test {{ 123
+ h2 index:1 toclevel:1 number:2 title:Parser_test off:24 anchor/linkAnchor:asdf line:asdf
+!! end
+
+!! test 
+Unclosed templatearg in heading
+!! options
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+== test {{{ 123 ==
+test
+
+== asdf ==
+asdf
+!! html/php
+<div class="mw-heading mw-heading2"><h2 id="test_.7B.7B.7B_123">test {{{ 123</h2></div>
+<p>test
+</p>
+<div class="mw-heading mw-heading2"><h2 id="asdf">asdf</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: asdf">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<p>asdf
+</p>
+!! metadata/php
+Sections:
+ h2 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:test_.7B.7B.7B_123 line:test {{{ 123
+ h2 index:1 toclevel:1 number:2 title:Parser_test off:25 anchor/linkAnchor:asdf line:asdf
+!! html/parsoid
+<section data-mw-section-id="0"></section><section data-mw-section-id="-1"><h2 id="test_{{{_123"><span id="test_.7B.7B.7B_123" typeof="mw:FallbackId"></span>test {{{ 123</h2>
+<p>test</p>
+
+</section><section data-mw-section-id="1"><h2 id="asdf">asdf</h2>
+<p>asdf</p></section>
+!! metadata/parsoid
+Sections:
+ h2 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:test_{{{_123 line:test {{{ 123
+ h2 index:1 toclevel:1 number:2 title:Parser_test off:25 anchor/linkAnchor:asdf line:asdf
+!! end
+
+!! test
+Unclosed langconv in heading
+!! options
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+== test -{ 123 ==
+test
+
+== asdf ==
+asdf
+!! html/php
+<div class="mw-heading mw-heading2"><h2 id="test_-.7B_123">test -{ 123</h2></div>
+<p>test
+</p>
+<div class="mw-heading mw-heading2"><h2 id="asdf">asdf</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: asdf">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<p>asdf
+</p>
+!! metadata/php
+Sections:
+ h2 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:test_-.7B_123 line:test -{ 123
+ h2 index:1 toclevel:1 number:2 title:Parser_test off:24 anchor/linkAnchor:asdf line:asdf
+!! html/parsoid
+<section data-mw-section-id="0"></section><section data-mw-section-id="-1"><h2 id="test_-{_123"><span id="test_-.7B_123" typeof="mw:FallbackId"></span>test -{ 123</h2>
+<p>test</p>
+
+</section><section data-mw-section-id="1"><h2 id="asdf">asdf</h2>
+<p>asdf</p></section>
+!! metadata/parsoid
+Sections:
+ h2 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:test_-{_123 line:test -{ 123
+ h2 index:1 toclevel:1 number:2 title:Parser_test off:24 anchor/linkAnchor:asdf line:asdf
+!! end
+
+!! test
+Compound template with top-level headings
+!! options
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+{{1x|
+{{{!}}
+{{!}}
+}}
+==One==
+Text 1
+===Two===
+Text 2
+|}
+!! html/php
+<table>
+<tbody><tr>
+<td>
+<div class="mw-heading mw-heading2"><h2 id="One">One</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: One">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<p>Text 1
+</p>
+<div class="mw-heading mw-heading3"><h3 id="Two">Two</h3><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Two">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<p>Text 2
+</p>
+</td></tr></tbody></table>
+!! html/parsoid
+<section data-mw-section-id="0"><span class="mw-empty-elt" about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n{{{!}}\n{{!}}\n"}},"i":0}},"\n==One==\nText 1\n===Two===\nText 2\n|}"]}'></span><table about="#mwt1">
+<tbody><tr><td>
+
+<section data-mw-section-id="-1"><h2 id="One">One</h2>
+<p>Text 1</p>
+<section data-mw-section-id="-1"><h3 id="Two">Two</h3>
+<p>Text 2</p></section></section></td></tr>
+</tbody></table></section>
+!! metadata
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:22 anchor/linkAnchor:One line:One
+  h3 index:2 toclevel:2 number:1.1 title:Parser_test off:37 anchor/linkAnchor:Two line:Two
 !! end
