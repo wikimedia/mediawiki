@@ -604,10 +604,14 @@ const util = {
 	 * Creates a detached portlet Element in the skin with no elements.
 	 *
 	 * @example
-	 * // Create a portlet with 2 menu items that is styled as a dropdown in certain skins.
-	 * mw.util.addPortlet( 'p-myportlet', 'My label', '#p-cactions' );
-	 * mw.util.addPortletLink( 'p-myportlet', '#', 'Link 1' );
-	 * mw.util.addPortletLink( 'p-myportlet', '#', 'Link 2' );
+	 * // Create a portlet with 2 menu items that uses a <div> label
+	 * // and is styled as a dropdown in certain skins.
+	 * mw.util.addPortlet( 'p-myportlet', {
+	 *     label: 'My label',
+	 *     selectorHint: '#p-cactions'
+	 * } );
+	 * mw.util.addPortletLink( 'p-myportlet', { href: '#', text: 'Link 1' } );
+	 * mw.util.addPortletLink( 'p-myportlet', { href: '#', text: 'Link 2' } );
 	 *
 	 * @param {string} id ID of the new portlet.
 	 * @param {PortletOptions|string} [labelOrOptions] Options for the portlet. If a string, this
@@ -715,16 +719,19 @@ const util = {
 	 * existing item, pass the DOM node or a CSS selector for that item, e.g. `'#foobar'` or
 	 * `document.getElementById( 'foobar' )`.
 	 * ```
-	 * mw.util.addPortletLink(
-	 *     'p-tb', 'https://www.mediawiki.org/',
-	 *     'mediawiki.org', 't-mworg', 'Go to mediawiki.org', 'm', '#t-print'
-	 * );
+	 * mw.util.addPortletLink( 'p-tb', {
+	 *     href: 'https://www.mediawiki.org/',
+	 *     text: 'mediawiki.org',
+	 *     id: 't-mworg',
+	 *     tooltip: 'Go to mediawiki.org',
+	 *     accesskey: 'm',
+	 *     nextnode: '#t-print'
+	 * } );
 	 *
-	 * var node = mw.util.addPortletLink(
-	 *     'p-tb',
-	 *     mw.util.getUrl( 'Special:Example' ),
-	 *     'Example'
-	 * );
+	 * var node = mw.util.addPortletLink( 'p-tb', {
+	 *     href: mw.util.getUrl( 'Special:Example' ),
+	 *     text: 'Example'
+	 * } );
 	 * $( node ).on( 'click', function ( e ) {
 	 *     console.log( 'Example' );
 	 *     e.preventDefault();
@@ -735,7 +742,10 @@ const util = {
 	 * is loaded first:
 	 * ```
 	 * $.when( mw.loader.using( [ 'mediawiki.util' ] ), $.ready ).then( function () {
-	 *      mw.util.addPortletLink( 'p-tb', 'https://www.mediawiki.org/', 'mediawiki.org' );
+	 *     mw.util.addPortletLink( 'p-tb', {
+	 *         href: 'https://www.mediawiki.org/',
+	 *         text: 'mediawiki.org'
+	 *     } );
 	 * } );
 	 * ```
 	 *
