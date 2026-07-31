@@ -26,6 +26,7 @@
 	"botpasswords-bad-appid": "\"$1\" bot adı etibarlı deyil.",
 	"botpasswords-toolong-restrictions": "Əlavə edilən IP ünvanlarının və ya aralıqlarının sayı həddindən artıq çoxdur.",
 	"botpasswords-toolong-grants": "Seçilmiş icazələrin sayı həddindən artıq çoxdur.",
+	"botpasswords-too-many": "Siz maksimum $1 {{PLURAL:$1|bot parolu}} limitinə çatmısınız. Yeni bot parolları yaratmazdan əvvəl bəzi mövcud bot parollarını silin.",
 	"botpasswords-insert-failed": "Bot adı \"$1\" əlavə etməyib. Artıq əlavə edilib?",
 	"botpasswords-update-failed": "\"$1\" bot adı yenilənmədi. Silinib?",
 	"botpasswords-created-title": "Bot parolu yaradıldı",

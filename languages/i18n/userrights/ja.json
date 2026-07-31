@@ -39,7 +39,9 @@
 			"にょきにょき",
 			"もなー(偽物)",
 			"ネイ",
-			"青子守歌"
+			"青子守歌",
+			"Kanato Hinokuma",
+			"VZP10224"
 		]
 	},
 	"userrights": "利用者権限",
@@ -142,6 +144,7 @@
 	"right-blockemail": "利用者によるメール送信をブロックまたはブロック解除",
 	"right-hideuser": "利用者名をブロックまたはブロック解除し、公開記録から非表示または表示",
 	"right-ipblock-exempt": "IPブロック、自動ブロック、広域ブロックを回避",
+	"right-logentryimport": "記録項目を取り込む",
 	"right-unblockself": "自身に対するブロックを解除",
 	"right-protect": "保護設定を変更し、カスケード保護されたページを編集",
 	"right-editprotected": "「{{int:restriction-level-sysop}}」が設定されたページの編集",
@@ -301,6 +304,7 @@
 	"action-viewsuppressed": "すべての利用者から隠された版の閲覧",
 	"action-hideuser": "利用者名のブロック、ブロック解除、公開記録からの非表示および非表示解除",
 	"action-ipblock-exempt": "IPブロック、自動ブロック、広域ブロックの回避",
+	"action-logentryimport": "記録項目の取り込み",
 	"action-unblockself": "自分に対するブロックの解除",
 	"action-noratelimit": "速度制限を受けない",
 	"action-reupload-own": "自分がアップロードした既存のファイルへの上書き",

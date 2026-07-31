@@ -271,6 +271,7 @@
 	"action-viewsuppressed": "vise sideversjoner skjult fra alle brukere",
 	"action-hideuser": "blokkere eller avblokkere et brukernavn og skjule det fra offentligheten",
 	"action-ipblock-exempt": "omgå IP-blokkeringer, autoblokkeringer og rekkeblokkeringer",
+	"action-logentryimport": "importer loggoppføringer",
 	"action-unblockself": "avblokkere deg selv",
 	"action-noratelimit": "ikke bli påvirket av hastighetsbegrensninger",
 	"action-reupload-own": "overskrive eksisterende filer lastet opp av deg selv",

@@ -150,6 +150,7 @@
 	"config-instantcommons": "\"Instant Commons\" aktivéieren",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/InstantCommons Instant Commons] ass eng Funktioun déi et Wikien erlaabt fir Biller, Téin an aner Medien vu [https://commons.wikimedia.org/ Wikimedia Commons] ze benotzen.\nFir datt dat funktionéiert brauch MediaWiki Zougang zum Internet.\n\nFir méi Informatiounen iwwer dës Funktioun, inklusiv Instruktioune wéi Dir se fir aner Wikie wéi Wikimedia Commons astelle musst, kuckt [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos d'Handbuch].",
 	"config-advanced-settings": "Erweidert Astellungen",
+	"config-memcache-badip": "Dir hutt eng ongülteg IP-Adress fir Memcached aginn: $1.",
 	"config-extensions": "Erweiderungen",
 	"config-skins": "Ausgesinn",
 	"config-skins-help": "D'Benotzeruewerflächen, déi hei driwwer stinn, goufen an Ärem Repertoire <code>./skins</code> fonnt. Dir musst mindestens eng aktivéieren an de Standard eraussichen.",

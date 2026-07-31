@@ -381,7 +381,7 @@
 	"continue-editing": "Kè-sio̍k siu-kái",
 	"session_fail_preview": "'''Pháiⁿ-sè! Gún chiām-sî bô hoat-tō͘ chhú-lí lí ê pian-chi̍p (goân-in: \"phàng-kiàn sú-iōng kî-kan ê chu-liāu\"). Lô-hoân têng chhì khoàⁿ-māi. Ká-sú iû-goân bô-hāu, ē-sái teng-chhut koh-chài teng-ji̍p hoān-sè tō ē-tit kái-koat.'''",
 	"editing": "Siu-kái $1",
-	"creating": "Chhòng-kiàn $1",
+	"creating": "Kiàn-li̍p \"$1\"",
 	"editingsection": "Pian-chi̍p $1 (section)",
 	"editingcomment": "Teh pian-chi̍p $1 (lâu-oē)",
 	"editconflict": "Siu-kái sio-chhiong: $1",

@@ -421,6 +421,7 @@
 	"createacct-error": "Chyba pri vytváraní účtu",
 	"createaccounterror": "Nepodarilo sa vytvoriť účet: $1",
 	"createacct-popup-redirect-notice": "Po vytvorení účtu budete presmerovaní...",
+	"createacct-username-policy-popover-title": "Pravidlá pre používateľské mená",
 	"nocookieslogin": "{{SITENAME}} používa cookies na prihlásenie. Vy máte cookies vypnuté. Prosíme, zapnite ich a skúste znovu.",
 	"nocookiesfornew": "Používateľský účet nebol vytvorený, pretože sme nemohli potvrdiť jeho zdroj.\nUbezpečte sa, že máte povolené cookies, obnovte túto stránku a skúste to znova.",
 	"createacct-loginerror": "Účet bol úspešne vytvorený, ale neboli ste automaticky prihlásený. Prosím, [[Special:UserLogin|prihláste sa]].",

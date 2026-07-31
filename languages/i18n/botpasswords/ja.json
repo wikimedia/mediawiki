@@ -9,7 +9,8 @@
 			"Shirayuki",
 			"Tensama0415",
 			"かしわのはみん",
-			"ネイ"
+			"ネイ",
+			"Waki285"
 		]
 	},
 	"botpasswords": "ボット用パスワード",
@@ -32,6 +33,7 @@
 	"botpasswords-bad-appid": "ボット「$1」は有効ではありません。",
 	"botpasswords-toolong-restrictions": "入力された IP アドレスもしくはその範囲が多すぎます。",
 	"botpasswords-toolong-grants": "選択した権限群が多すぎます。",
+	"botpasswords-too-many": "{{PLURAL:ボットパスワード}}の上限である$1個に達しました。新しいボットパスワードを作成する前に、既存のボットパスワードをいくつか削除してください。",
 	"botpasswords-insert-failed": "ボット「$1」の追加に失敗しました。既に追加されていないか確認してください。",
 	"botpasswords-update-failed": "ボット「$1」の更新に失敗しました。削除されていないか確認してください。",
 	"botpasswords-created-title": "ボット用パスワードが作成されました",

@@ -372,6 +372,7 @@
 	"createacct-error": "Qalad dhacay samaynta akoonka",
 	"createaccounterror": "Ma sameeyn karin akoon: $1",
 	"createacct-popup-redirect-notice": "Waxaad loo wareejin doonaa kadib marka koontada la sameeyo...",
+	"createacct-username-policy-popover-title": "Siyaasadda magaca isticmaalaha",
 	"nocookieslogin": "{{SITENAME}} wuxuu isticmaalaa cookies si ee isticmaaleyaasha u soo galaan.\nCookies'kaaga wuu dansanyahay.\nFadlan shid markale neh ku noqo.",
 	"nocookiesfornew": "Akoonka isticmaalaha lama abuurin, maaddaama aan xaqiijin karin Isheeda.\nHubi inaad karti u leedahay cookies-ka,  dib u cusbooneysii boggan oo mar kale isku day.",
 	"createacct-loginerror": "Koontada si guul leh ayaa loo sameeyay laakiin si toos ah laguma gelin. Fadlan u gudub [[Special:UserLogin|gacan ku gelid]].",

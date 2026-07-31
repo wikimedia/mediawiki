@@ -410,6 +410,7 @@
 	"createacct-error": "Hesab yaratma xətası",
 	"createaccounterror": "Bu istifadəçi adını yaratmaq mümkün olmadı: $1",
 	"createacct-popup-redirect-notice": "Hesab yaratdıqdan sonra yönləndiriləcəksiniz...",
+	"createacct-username-policy-popover-title": "İstifadəçi adı siyasəti",
 	"createacct-username-policy-popover-trigger-link": "Diqqətlə seçin",
 	"createacct-username-policy-popover-trigger-line": "$1 — icma sizi bu cür tanıyacaq.",
 	"nocookieslogin": "{{SITENAME}} istifadəçilərin daxil ola bilməsi üçün kukilərdən istifadə edir. Siz kukilərin qəbuluna qadağa qoymusunuz. Lütfən, onların qəbuluna icazə verin və bir daha daxil olmağa cəhd edin.",

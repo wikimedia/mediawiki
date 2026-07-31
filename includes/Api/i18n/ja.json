@@ -32,7 +32,8 @@
 			"Yuukin0248",
 			"もなー(偽物)",
 			"ネイ",
-			"Tensama0415"
+			"Tensama0415",
+			"Waki285"
 		]
 	},
 	"apihelp-main-param-action": "実行する操作。このパラメータは、デバッグ、分析、リクエストのルーティングまたはフィルタリングを容易にするため、リクエストURLの一部として送信する必要があります（POSTボディには含めないでください）。",
@@ -59,6 +60,7 @@
 	"apihelp-main-param-errorlang": "警告およびエラーで使用する言語。 <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]]</kbd> は言語コードの一覧を返します。 <kbd>content</kbd> を指定するとこのウィキのコンテンツ言語、<kbd>uselang</kbd> を指定すると <var>uselang</var> パラメーターと同じ値を使用します。",
 	"apihelp-main-param-errorsuselocal": "指定された場合、エラーテキストは{{ns:MediaWiki}}名前空間からローカルにカスタマイズされたメッセージを使用します。",
 	"apihelp-acquiretempusername-summary": "一時アカウント作成が有効で現在の利用者がログアウト状態の場合に、一時利用者名を取得して現在のセッションに保存します。すでに保存済みの場合は同じ名前を返します。",
+	"apihelp-acquiretempusername-extended-description": "利用者が後で仮アカウントを作成するような操作を行った場合、保存された利用者名がそのアカウントに使用されます。プレビューでも使用される可能性があります。ただし、アカウントはまだ作成されておらず、その名前は他の利用者には表示されません。",
 	"apihelp-block-summary": "利用者をブロックします。",
 	"apihelp-block-param-id": "変更するブロックID(<kbd>list=blocks</kbd>から取得) 。<var>user</var> 、 <var>reblock</var> 、 <var>newblock</var>と併用することはできません。",
 	"apihelp-block-param-user": "ブロックする利用者。<var>$1id</var>と併用することはできません。",
