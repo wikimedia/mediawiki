@@ -203,7 +203,8 @@ class LinkHolderArray {
 			}
 			unset( $res );
 		}
-		if ( $pagemap !== [] ) {
+		// Skip GetLinkColours for interface messages (T432883).
+		if ( $pagemap !== [] && !$this->parent->getOptions()->getInterfaceMessage() ) {
 			// pass an array of page_ids to an extension
 			$this->hookRunner->onGetLinkColours( $pagemap, $classes, $this->parent->getTitle() );
 		}
@@ -435,7 +436,10 @@ class LinkHolderArray {
 				}
 			}
 		}
-		$this->hookRunner->onGetLinkColours( $pagemap, $classes, $this->parent->getTitle() );
+		// Skip GetLinkColours for interface messages (T432883).
+		if ( !$this->parent->getOptions()->getInterfaceMessage() ) {
+			$this->hookRunner->onGetLinkColours( $pagemap, $classes, $this->parent->getTitle() );
+		}
 
 		// rebuild the categories in original order (if there are replacements)
 		if ( $varCategories !== [] ) {

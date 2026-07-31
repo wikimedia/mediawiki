@@ -1,11 +1,13 @@
 <?php
 
 use MediaWiki\Language\RawMessage;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\Parser;
 
 /**
  * @covers \MediaWiki\Language\MessageParser
+ * @group Database
  */
 class MessageParserTest extends MediaWikiIntegrationTestCase {
 
@@ -44,6 +46,170 @@ class MessageParserTest extends MediaWikiIntegrationTestCase {
 			->parse( 'test', null, true, true, 'en' )
 			->getContentHolderText();
 		$this->assertSame( 'test', Parser::stripOuterParagraph( $result ) );
+	}
+
+	public function testGetLinkColoursAddsClassToLinks() {
+		$this->getExistingTestPage( 'Link' );
+		$text = '[[Link|label]]';
+
+		$this->setTemporaryHook(
+			'GetLinkColours',
+			static function ( $pagemap, &$colours ) {
+				foreach ( $colours as $pdbk => $class ) {
+					$colours[$pdbk] = trim( "$class test-class" );
+				}
+			}
+		);
+
+		$messageParser = $this->getServiceContainer()->getMessageParser();
+		$result = $messageParser
+			->parse( $text, $this->makePage( 'Main_Page' ), true, false, 'en' )
+			->getContentHolderText();
+
+		$this->assertStringContainsString( 'class="test-class"', $result );
+	}
+
+	public function testGetLinkColoursForInterfaceMessages() {
+		$this->getExistingTestPage( 'Link' );
+		$text = '[[Link|label]]';
+
+		$messageParser = $this->getServiceContainer()->getMessageParser();
+		$hookCalls = 0;
+		// T432883: Interface message parses should skip GetLinkColours.
+		$this->setTemporaryHook(
+			'GetLinkColours',
+			static function () use ( &$hookCalls ) {
+				$hookCalls++;
+			}
+		);
+
+		$messageParser->parse(
+			$text,
+			$this->makePage( 'Main_Page' ),
+			true,
+			true,
+			'en'
+		);
+
+		$this->assertSame( 0, $hookCalls );
+	}
+
+	public function testGetLinkColoursForInterfaceMessagesWithTwoLinks() {
+		$this->getExistingTestPage( 'Link' );
+		$this->getExistingTestPage( 'Link2' );
+		$text = '[[Link|label]][[Link2|label]]';
+
+		$messageParser = $this->getServiceContainer()->getMessageParser();
+		$hookCalls = 0;
+		// T432883: Interface message parses should skip GetLinkColours.
+		$this->setTemporaryHook(
+			'GetLinkColours',
+			static function () use ( &$hookCalls ) {
+				$hookCalls++;
+			}
+		);
+
+		$messageParser->parse(
+			$text,
+			$this->makePage( 'Main_Page' ),
+			true,
+			true,
+			'en'
+		);
+
+		$this->assertSame( 0, $hookCalls );
+	}
+
+	public function testGetLinkColoursForInterfaceMessagesWithVariants() {
+		$this->overrideConfigValues( [
+			MainConfigNames::LanguageCode => 'zh',
+			MainConfigNames::DefaultLanguageVariant => 'zh-tw',
+			MainConfigNames::DisableLangConversion => false,
+			MainConfigNames::DisabledVariants => [],
+		] );
+
+		$this->getExistingTestPage( '傌' );
+		$text = '[[zh:㐷|label]]';
+
+		$messageParser = $this->getServiceContainer()->getMessageParser();
+		$hookCalls = 0;
+		// T432883: Interface message parses should skip GetLinkColours, including
+		// the second call made from LinkHolderArray::doVariants().
+		$this->setTemporaryHook(
+			'GetLinkColours',
+			static function () use ( &$hookCalls ) {
+				$hookCalls++;
+			}
+		);
+
+		$messageParser->parse(
+			$text,
+			$this->makePage( 'Main_Page' ),
+			true,
+			true,
+			'zh'
+		);
+
+		$this->assertSame( 0, $hookCalls );
+	}
+
+	public function testGetLinkColoursForNonInterfaceMessages() {
+		$this->getExistingTestPage( 'Link' );
+		$text = '[[Link|label]]';
+
+		$messageParser = $this->getServiceContainer()->getMessageParser();
+		$hookCalls = 0;
+		// T432883: Non-interface message parses should still call GetLinkColours.
+		$this->setTemporaryHook(
+			'GetLinkColours',
+			static function () use ( &$hookCalls ) {
+				$hookCalls++;
+			}
+		);
+
+		$messageParser->parse(
+			$text,
+			$this->makePage( 'Main_Page' ),
+			true,
+			false,
+			'en'
+		);
+
+		$this->assertSame( 1, $hookCalls );
+	}
+
+	public function testGetLinkColoursForNonInterfaceMessagesWithVariants() {
+		$this->overrideConfigValues( [
+			MainConfigNames::LanguageCode => 'zh',
+			MainConfigNames::DefaultLanguageVariant => 'zh-tw',
+			MainConfigNames::DisableLangConversion => false,
+			MainConfigNames::DisabledVariants => [],
+		] );
+
+		$this->getExistingTestPage( '傌' );
+		$this->getExistingTestPage( 'Link' );
+		$text = '[[Link|label]][[zh:㐷|label]]';
+
+		$messageParser = $this->getServiceContainer()->getMessageParser();
+		$hookCalls = 0;
+		// T432883: Interface message parses should skip GetLinkColours, including
+		// the second call made from LinkHolderArray::doVariants().
+		$this->setTemporaryHook(
+			'GetLinkColours',
+			static function () use ( &$hookCalls ) {
+				$hookCalls++;
+			}
+		);
+
+		$messageParser->parse(
+			$text,
+			$this->makePage( 'Main_Page' ),
+			true,
+			false,
+			'zh'
+		);
+
+		$this->assertSame( 2, $hookCalls );
 	}
 
 	public static function provideTransform() {
