@@ -183,8 +183,11 @@ class TraditionalImageGallery extends ImageGalleryBase {
 
 				$thumbhtml = $thumb->toHtml( $imageParameters );
 				$thumbhtml = Html::rawElement( 'span',
-					( isset( $imageOptions['class'] ) ? [ 'class' => $imageOptions['class'] ] : [] ) +
-					[ 'typeof' => $rdfaType ], $thumbhtml
+					[
+						'class' => $imageOptions['class'] ?? null,
+						'typeof' => $rdfaType,
+					],
+					$thumbhtml
 				);
 
 				# Set both fixed width and min-height.
